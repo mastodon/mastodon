@@ -8,9 +8,9 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import AlternateEmailIcon from 'mastodon/../material-icons/400-20px/alternate_email.svg?react';
-import RepeatIcon from 'mastodon/../material-icons/400-20px/repeat.svg?react';
-import StarIcon from 'mastodon/../material-icons/400-20px/star-fill.svg?react';
+import AlternateEmailIcon from 'mastodon/../material-icons/400-24px/alternate_email.svg?react';
+import RepeatIcon from 'mastodon/../material-icons/400-24px/repeat.svg?react';
+import StarIcon from 'mastodon/../material-icons/400-24px/star-fill.svg?react';
 import { AnimatedNumber } from 'mastodon/components/animated_number';
 import EditedTimestamp from 'mastodon/components/edited_timestamp';
 import { getHashtagBarForStatus } from 'mastodon/components/hashtag_bar';

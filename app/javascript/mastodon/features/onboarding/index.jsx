@@ -9,11 +9,11 @@ import { useDispatch } from 'react-redux';
 
 
 import illustration from 'mastodon/../images/elephant_ui_conversation.svg';
-import AccountCircleIcon from 'mastodon/../material-icons/400-20px/account_circle.svg?react';
-import ArrowRightAltIcon from 'mastodon/../material-icons/400-20px/arrow_right_alt.svg?react';
-import ContentCopyIcon from 'mastodon/../material-icons/400-20px/content_copy.svg?react';
-import EditNoteIcon from 'mastodon/../material-icons/400-20px/edit_note.svg?react';
-import PersonAddIcon from 'mastodon/../material-icons/400-20px/person_add.svg?react';
+import AccountCircleIcon from 'mastodon/../material-icons/400-24px/account_circle.svg?react';
+import ArrowRightAltIcon from 'mastodon/../material-icons/400-24px/arrow_right_alt.svg?react';
+import ContentCopyIcon from 'mastodon/../material-icons/400-24px/content_copy.svg?react';
+import EditNoteIcon from 'mastodon/../material-icons/400-24px/edit_note.svg?react';
+import PersonAddIcon from 'mastodon/../material-icons/400-24px/person_add.svg?react';
 import { focusCompose } from 'mastodon/actions/compose';
 import { Icon }  from 'mastodon/components/icon';
 import Column from 'mastodon/features/ui/components/column';

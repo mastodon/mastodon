@@ -11,13 +11,13 @@ import { connect } from 'react-redux';
 
 import spring from 'react-motion/lib/spring';
 
-import PeopleIcon from 'mastodon/../material-icons/400-20px/group.svg?react';
-import HomeIcon from 'mastodon/../material-icons/400-20px/home-fill.svg?react';
-import LogoutIcon from 'mastodon/../material-icons/400-20px/logout.svg?react';
-import MenuIcon from 'mastodon/../material-icons/400-20px/menu.svg?react';
-import NotificationsIcon from 'mastodon/../material-icons/400-20px/notifications-fill.svg?react';
-import PublicIcon from 'mastodon/../material-icons/400-20px/public.svg?react';
-import SettingsIcon from 'mastodon/../material-icons/400-20px/settings-fill.svg?react';
+import PeopleIcon from 'mastodon/../material-icons/400-24px/group.svg?react';
+import HomeIcon from 'mastodon/../material-icons/400-24px/home-fill.svg?react';
+import LogoutIcon from 'mastodon/../material-icons/400-24px/logout.svg?react';
+import MenuIcon from 'mastodon/../material-icons/400-24px/menu.svg?react';
+import NotificationsIcon from 'mastodon/../material-icons/400-24px/notifications-fill.svg?react';
+import PublicIcon from 'mastodon/../material-icons/400-24px/public.svg?react';
+import SettingsIcon from 'mastodon/../material-icons/400-24px/settings-fill.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import Column from 'mastodon/components/column';
 import { Icon }  from 'mastodon/components/icon';

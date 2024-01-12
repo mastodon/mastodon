@@ -9,10 +9,10 @@ import classNames from 'classnames';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
-import AlternateEmailIcon from 'mastodon/../material-icons/400-20px/alternate_email.svg?react';
-import LockIcon from 'mastodon/../material-icons/400-20px/lock.svg?react';
-import LockOpenIcon from 'mastodon/../material-icons/400-20px/lock_open.svg?react';
-import PublicIcon from 'mastodon/../material-icons/400-20px/public.svg?react';
+import AlternateEmailIcon from 'mastodon/../material-icons/400-24px/alternate_email.svg?react';
+import LockIcon from 'mastodon/../material-icons/400-24px/lock.svg?react';
+import LockOpenIcon from 'mastodon/../material-icons/400-24px/lock_open.svg?react';
+import PublicIcon from 'mastodon/../material-icons/400-24px/public.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 
 import { IconButton } from '../../../components/icon_button';

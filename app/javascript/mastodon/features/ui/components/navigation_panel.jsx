@@ -5,16 +5,16 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
-import AlternateEmailIcon from 'mastodon/../material-icons/400-20px/alternate_email.svg?react';
-import BookmarksIcon from 'mastodon/../material-icons/400-20px/bookmarks-fill.svg?react';
-import HomeIcon from 'mastodon/../material-icons/400-20px/home-fill.svg?react';
-import ListAltIcon from 'mastodon/../material-icons/400-20px/list_alt.svg?react';
-import MoreHorizIcon from 'mastodon/../material-icons/400-20px/more_horiz.svg?react';
-import PublicIcon from 'mastodon/../material-icons/400-20px/public.svg?react';
-import SearchIcon from 'mastodon/../material-icons/400-20px/search.svg?react';
-import SettingsIcon from 'mastodon/../material-icons/400-20px/settings-fill.svg?react';
-import StarIcon from 'mastodon/../material-icons/400-20px/star-fill.svg?react';
-import TagIcon from 'mastodon/../material-icons/400-20px/tag.svg?react';
+import AlternateEmailIcon from 'mastodon/../material-icons/400-24px/alternate_email.svg?react';
+import BookmarksIcon from 'mastodon/../material-icons/400-24px/bookmarks-fill.svg?react';
+import HomeIcon from 'mastodon/../material-icons/400-24px/home-fill.svg?react';
+import ListAltIcon from 'mastodon/../material-icons/400-24px/list_alt.svg?react';
+import MoreHorizIcon from 'mastodon/../material-icons/400-24px/more_horiz.svg?react';
+import PublicIcon from 'mastodon/../material-icons/400-24px/public.svg?react';
+import SearchIcon from 'mastodon/../material-icons/400-24px/search.svg?react';
+import SettingsIcon from 'mastodon/../material-icons/400-24px/settings-fill.svg?react';
+import StarIcon from 'mastodon/../material-icons/400-24px/star-fill.svg?react';
+import TagIcon from 'mastodon/../material-icons/400-24px/tag.svg?react';
 import { WordmarkLogo } from 'mastodon/components/logo';
 import { NavigationPortal } from 'mastodon/components/navigation_portal';
 import { timelinePreview, trendsEnabled } from 'mastodon/initial_state';
