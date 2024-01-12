@@ -7,7 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
+import CloseIcon from '@material-symbols/svg-600/outlined/close.svg?react';
 
 import { fetchRelationships } from 'flavours/glitch/actions/accounts';
 import { submitReport } from 'flavours/glitch/actions/reports';

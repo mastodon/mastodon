@@ -3,17 +3,17 @@ import { Component } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import { ReactComponent as BookmarksIcon } from '@material-symbols/svg-600/outlined/bookmarks-fill.svg';
-import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
-import { ReactComponent as ListAltIcon } from '@material-symbols/svg-600/outlined/list_alt.svg';
-import { ReactComponent as MailIcon } from '@material-symbols/svg-600/outlined/mail.svg';
-import { ReactComponent as ManufacturingIcon } from '@material-symbols/svg-600/outlined/manufacturing.svg';
-import { ReactComponent as MoreHorizIcon } from '@material-symbols/svg-600/outlined/more_horiz.svg';
-import { ReactComponent as PublicIcon } from '@material-symbols/svg-600/outlined/public.svg';
-import { ReactComponent as SearchIcon } from '@material-symbols/svg-600/outlined/search.svg';
-import { ReactComponent as SettingsIcon } from '@material-symbols/svg-600/outlined/settings-fill.svg';
-import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/star-fill.svg';
-import { ReactComponent as TagIcon } from '@material-symbols/svg-600/outlined/tag.svg';
+import BookmarksIcon from '@material-symbols/svg-600/outlined/bookmarks-fill.svg?react';
+import HomeIcon from '@material-symbols/svg-600/outlined/home-fill.svg?react';
+import ListAltIcon from '@material-symbols/svg-600/outlined/list_alt.svg?react';
+import MailIcon from '@material-symbols/svg-600/outlined/mail.svg?react';
+import ManufacturingIcon from '@material-symbols/svg-600/outlined/manufacturing.svg?react';
+import MoreHorizIcon from '@material-symbols/svg-600/outlined/more_horiz.svg?react';
+import PublicIcon from '@material-symbols/svg-600/outlined/public.svg?react';
+import SearchIcon from '@material-symbols/svg-600/outlined/search.svg?react';
+import SettingsIcon from '@material-symbols/svg-600/outlined/settings-fill.svg?react';
+import StarIcon from '@material-symbols/svg-600/outlined/star-fill.svg?react';
+import TagIcon from '@material-symbols/svg-600/outlined/tag.svg?react';
 
 import { NavigationPortal } from 'flavours/glitch/components/navigation_portal';
 import { timelinePreview, trendsEnabled } from 'flavours/glitch/initial_state';

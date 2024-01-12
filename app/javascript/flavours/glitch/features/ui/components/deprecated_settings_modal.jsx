@@ -5,8 +5,8 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { ReactComponent as ManufacturingIcon } from '@material-symbols/svg-600/outlined/manufacturing.svg';
-import { ReactComponent as SettingsIcon } from '@material-symbols/svg-600/outlined/settings-fill.svg';
+import ManufacturingIcon from '@material-symbols/svg-600/outlined/manufacturing.svg?react';
+import SettingsIcon from '@material-symbols/svg-600/outlined/settings-fill.svg?react';
 
 import { Button } from 'flavours/glitch/components/button';
 import { Icon } from 'flavours/glitch/components/icon';

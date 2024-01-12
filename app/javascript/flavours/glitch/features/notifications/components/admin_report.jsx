@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as FlagIcon } from '@material-symbols/svg-600/outlined/flag-fill.svg';
+import FlagIcon from '@material-symbols/svg-600/outlined/flag-fill.svg?react';
 import { HotKeys } from 'react-hotkeys';
 
 import { Icon } from 'flavours/glitch/components/icon';

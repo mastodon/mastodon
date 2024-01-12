@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-600/outlined/notifications-fill.svg';
+import NotificationsIcon from '@material-symbols/svg-600/outlined/notifications-fill.svg?react';
 
 import { IconWithBadge } from 'flavours/glitch/components/icon_with_badge';
 

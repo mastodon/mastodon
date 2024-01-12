@@ -8,8 +8,8 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as MoreHorizIcon } from '@material-symbols/svg-600/outlined/more_horiz.svg';
-import { ReactComponent as ReplyIcon } from '@material-symbols/svg-600/outlined/reply.svg';
+import MoreHorizIcon from '@material-symbols/svg-600/outlined/more_horiz.svg?react';
+import ReplyIcon from '@material-symbols/svg-600/outlined/reply.svg?react';
 import { HotKeys } from 'react-hotkeys';
 
 import AttachmentList from 'flavours/glitch/components/attachment_list';

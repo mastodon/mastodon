@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { ReactComponent as InfoIcon } from '@material-symbols/svg-600/outlined/info.svg';
+import InfoIcon from '@material-symbols/svg-600/outlined/info.svg?react';
 
 import { Icon } from 'flavours/glitch/components/icon';
 

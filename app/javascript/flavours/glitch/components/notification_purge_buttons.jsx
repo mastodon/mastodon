@@ -12,7 +12,7 @@ import classNames from 'classnames';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as DeleteIcon } from '@material-symbols/svg-600/outlined/delete.svg';
+import DeleteIcon from '@material-symbols/svg-600/outlined/delete.svg?react';
 
 import { Icon } from 'flavours/glitch/components/icon';
 

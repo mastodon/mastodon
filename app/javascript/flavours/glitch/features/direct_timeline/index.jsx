@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as MailIcon } from '@material-symbols/svg-600/outlined/mail.svg';
+import MailIcon from '@material-symbols/svg-600/outlined/mail.svg?react';
 
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import { mountConversations, unmountConversations, expandConversations } from 'flavours/glitch/actions/conversations';

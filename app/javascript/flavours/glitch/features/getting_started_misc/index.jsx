@@ -5,12 +5,12 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as BlockIcon } from '@material-symbols/svg-600/outlined/block.svg';
-import { ReactComponent as InfoIcon } from '@material-symbols/svg-600/outlined/info.svg';
-import { ReactComponent as PersonCheckIcon } from '@material-symbols/svg-600/outlined/person_check.svg';
-import { ReactComponent as PushPinIcon } from '@material-symbols/svg-600/outlined/push_pin.svg';
-import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/star-fill.svg';
-import { ReactComponent as VolumeOffIcon } from '@material-symbols/svg-600/outlined/volume_off.svg';
+import BlockIcon from '@material-symbols/svg-600/outlined/block.svg?react';
+import InfoIcon from '@material-symbols/svg-600/outlined/info.svg?react';
+import PersonCheckIcon from '@material-symbols/svg-600/outlined/person_check.svg?react';
+import PushPinIcon from '@material-symbols/svg-600/outlined/push_pin.svg?react';
+import StarIcon from '@material-symbols/svg-600/outlined/star-fill.svg?react';
+import VolumeOffIcon from '@material-symbols/svg-600/outlined/volume_off.svg?react';
 
 import { openModal } from 'flavours/glitch/actions/modal';
 import Column from 'flavours/glitch/features/ui/components/column';

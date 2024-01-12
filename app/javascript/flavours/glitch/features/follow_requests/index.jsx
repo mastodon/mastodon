@@ -8,7 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-600/outlined/person_add.svg';
+import PersonAddIcon from '@material-symbols/svg-600/outlined/person_add.svg?react';
 import { debounce } from 'lodash';
 
 import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';

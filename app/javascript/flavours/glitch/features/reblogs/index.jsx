@@ -8,8 +8,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as RefreshIcon } from '@material-symbols/svg-600/outlined/refresh.svg';
-import { ReactComponent as RepeatIcon } from '@material-symbols/svg-600/outlined/repeat.svg';
+import RefreshIcon from '@material-symbols/svg-600/outlined/refresh.svg?react';
+import RepeatIcon from '@material-symbols/svg-600/outlined/repeat.svg?react';
 import { debounce } from 'lodash';
 
 import { Icon }  from 'flavours/glitch/components/icon';

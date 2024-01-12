@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as PublicIcon } from '@material-symbols/svg-600/outlined/public.svg';
+import PublicIcon from '@material-symbols/svg-600/outlined/public.svg?react';
 
 import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner';
 import { domain } from 'flavours/glitch/initial_state';

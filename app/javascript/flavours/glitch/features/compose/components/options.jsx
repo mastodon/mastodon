@@ -6,14 +6,14 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as AttachFileIcon } from '@material-symbols/svg-600/outlined/attach_file.svg';
-import { ReactComponent as BrushIcon } from '@material-symbols/svg-600/outlined/brush.svg';
-import { ReactComponent as CodeIcon } from '@material-symbols/svg-600/outlined/code.svg';
-import { ReactComponent as DescriptionIcon } from '@material-symbols/svg-600/outlined/description.svg';
-import { ReactComponent as InsertChartIcon } from '@material-symbols/svg-600/outlined/insert_chart.svg';
-import { ReactComponent as MarkdownIcon } from '@material-symbols/svg-600/outlined/markdown.svg';
-import { ReactComponent as MoreHorizIcon } from '@material-symbols/svg-600/outlined/more_horiz.svg';
-import { ReactComponent as UploadFileIcon } from '@material-symbols/svg-600/outlined/upload_file.svg';
+import AttachFileIcon from '@material-symbols/svg-600/outlined/attach_file.svg?react';
+import BrushIcon from '@material-symbols/svg-600/outlined/brush.svg?react';
+import CodeIcon from '@material-symbols/svg-600/outlined/code.svg?react';
+import DescriptionIcon from '@material-symbols/svg-600/outlined/description.svg?react';
+import InsertChartIcon from '@material-symbols/svg-600/outlined/insert_chart.svg?react';
+import MarkdownIcon from '@material-symbols/svg-600/outlined/markdown.svg?react';
+import MoreHorizIcon from '@material-symbols/svg-600/outlined/more_horiz.svg?react';
+import UploadFileIcon from '@material-symbols/svg-600/outlined/upload_file.svg?react';
 import Toggle from 'react-toggle';
 
 import { IconButton } from 'flavours/glitch/components/icon_button';

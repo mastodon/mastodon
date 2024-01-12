@@ -8,9 +8,9 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/check.svg';
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
-import { ReactComponent as PersonIcon } from '@material-symbols/svg-600/outlined/person-fill.svg';
+import CheckIcon from '@material-symbols/svg-600/outlined/check.svg?react';
+import CloseIcon from '@material-symbols/svg-600/outlined/close.svg?react';
+import PersonIcon from '@material-symbols/svg-600/outlined/person-fill.svg?react';
 import { HotKeys } from 'react-hotkeys';
 
 import { Avatar } from 'flavours/glitch/components/avatar';

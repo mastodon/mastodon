@@ -12,9 +12,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as ChatIcon } from '@material-symbols/svg-600/outlined/chat.svg';
-import { ReactComponent as VisibilityIcon } from '@material-symbols/svg-600/outlined/visibility.svg';
-import { ReactComponent as VisibilityOffIcon } from '@material-symbols/svg-600/outlined/visibility_off.svg';
+import ChatIcon from '@material-symbols/svg-600/outlined/chat.svg?react';
+import VisibilityIcon from '@material-symbols/svg-600/outlined/visibility.svg?react';
+import VisibilityOffIcon from '@material-symbols/svg-600/outlined/visibility_off.svg?react';
 import { HotKeys } from 'react-hotkeys';
 
 import { Icon }  from 'flavours/glitch/components/icon';

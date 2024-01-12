@@ -5,8 +5,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as ForumIcon } from '@material-symbols/svg-600/outlined/forum.svg';
-import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
+import ForumIcon from '@material-symbols/svg-600/outlined/forum.svg?react';
+import HomeIcon from '@material-symbols/svg-600/outlined/home-fill.svg?react';
 
 import { Icon } from 'flavours/glitch/components/icon';
 
