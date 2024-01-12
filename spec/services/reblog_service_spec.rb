@@ -46,7 +46,7 @@ RSpec.describe ReblogService, type: :service do
           Status
             .where(id: reblog_of_id)
             .where(text: 'discard-status-text')
-            .update_all(deleted_at: Time.now.utc) # rubocop:disable Rails/SkipsModelValidations
+            .update_all(deleted_at: Time.now.utc)
         end
       end
     end
