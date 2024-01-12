@@ -8,8 +8,8 @@ import { useHistory } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
-import { ReactComponent as AddPhotoAlternateIcon } from '@material-symbols/svg-600/outlined/add_photo_alternate.svg';
-import { ReactComponent as EditIcon } from '@material-symbols/svg-600/outlined/edit.svg';
+import AddPhotoAlternateIcon from '@material-symbols/svg-600/outlined/add_photo_alternate.svg?react';
+import EditIcon from '@material-symbols/svg-600/outlined/edit.svg?react';
 import Toggle from 'react-toggle';
 
 import { updateAccount } from 'mastodon/actions/accounts';

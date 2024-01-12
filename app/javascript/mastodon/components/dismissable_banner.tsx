@@ -8,7 +8,7 @@ import { useCallback, useState, useEffect } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
+import CloseIcon from '@material-symbols/svg-600/outlined/close.svg?react';
 
 import { changeSetting } from 'mastodon/actions/settings';
 import { bannerSettings } from 'mastodon/settings';

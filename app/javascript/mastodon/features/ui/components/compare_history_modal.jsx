@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
+import CloseIcon from '@material-symbols/svg-600/outlined/close.svg?react';
 import escapeTextContentForBrowser from 'escape-html';
 
 import { closeModal } from 'mastodon/actions/modal';
