@@ -103,6 +103,12 @@ Rails/Exit:
     - 'config/boot.rb'
     - 'lib/mastodon/cli/*.rb'
 
+# Reason: Conflicts with `Lint/UselessMethodDefinition` for inherited controller actions
+# https://docs.rubocop.org/rubocop-rails/cops_rails.html#railslexicallyscopedactionfilter
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/auth/*'
+
 Rails/SkipsModelValidations:
   Exclude:
     - 'db/*migrate/**/*'
