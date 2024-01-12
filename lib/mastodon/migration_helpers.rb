@@ -10,13 +10,13 @@
 # Documentation on using these functions (and why one might do so):
 # https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/development/what_requires_downtime.md
 
-# The file itself:
-# https://gitlab.com/gitlab-org/gitlab-ce/blob/master/lib/gitlab/database/migration_helpers.rb
+# The original file (since updated):
+# https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/lib/gitlab/database/migration_helpers.rb
 
 # It is licensed as follows:
 
-# Copyright (c) 2011-2017 GitLab B.V.
-
+# Copyright (c) 2011-present GitLab B.V.
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
@@ -24,16 +24,16 @@
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
 
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
 
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-# THE SOFTWARE.
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 
 # This is bad form, but there are enough differences that it's impractical to do
 # otherwise:
