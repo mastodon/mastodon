@@ -6,8 +6,7 @@ import { Helmet } from 'react-helmet';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import InfoIcon from '@material-symbols/svg-600/outlined/info.svg?react';
-
+import InfoIcon from 'mastodon/../material-icons/400-20px/info.svg?react';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 

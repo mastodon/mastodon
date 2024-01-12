@@ -8,9 +8,9 @@ import { Helmet } from 'react-helmet';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import TagIcon from '@material-symbols/svg-600/outlined/tag.svg?react';
 import { isEqual } from 'lodash';
 
+import TagIcon from 'mastodon/../material-icons/400-20px/tag.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { connectHashtagStream } from 'mastodon/actions/streaming';
 import { fetchHashtag, followHashtag, unfollowHashtag } from 'mastodon/actions/tags';

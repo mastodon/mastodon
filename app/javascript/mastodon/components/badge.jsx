@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import GroupsIcon from '@material-symbols/svg-600/outlined/group.svg?react';
-import PersonIcon from '@material-symbols/svg-600/outlined/person.svg?react';
-import SmartToyIcon from '@material-symbols/svg-600/outlined/smart_toy.svg?react';
+import GroupsIcon from 'mastodon/../material-icons/400-20px/group.svg?react';
+import PersonIcon from 'mastodon/../material-icons/400-20px/person.svg?react';
+import SmartToyIcon from 'mastodon/../material-icons/400-20px/smart_toy.svg?react';
 
 
 export const Badge = ({ icon, label, domain }) => (

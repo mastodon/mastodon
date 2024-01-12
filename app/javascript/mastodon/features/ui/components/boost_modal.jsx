@@ -9,8 +9,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import RepeatIcon from '@material-symbols/svg-600/outlined/repeat.svg?react';
-
+import RepeatIcon from 'mastodon/../material-icons/400-20px/repeat.svg?react';
 import { changeBoostPrivacy } from 'mastodon/actions/boosts';
 import AttachmentList from 'mastodon/components/attachment_list';
 import { Icon }  from 'mastodon/components/icon';

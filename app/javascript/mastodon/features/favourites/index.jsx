@@ -8,9 +8,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import RefreshIcon from '@material-symbols/svg-600/outlined/refresh.svg?react';
 import { debounce } from 'lodash';
 
+import RefreshIcon from 'mastodon/../material-icons/400-20px/refresh.svg?react';
 import { fetchFavourites, expandFavourites } from 'mastodon/actions/interactions';
 import ColumnHeader from 'mastodon/components/column_header';
 import { Icon }  from 'mastodon/components/icon';

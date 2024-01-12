@@ -4,7 +4,7 @@ const { settings } = require('../configuration');
 
 module.exports = {
   test: new RegExp(`(${settings.static_assets_extensions.join('|')})$`, 'i'),
-  exclude: [/node_modules\/@material-symbols/, /svg-icons/],
+  exclude: [/material-icons/, /svg-icons/],
   use: [
     {
       loader: 'file-loader',

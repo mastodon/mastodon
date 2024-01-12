@@ -1,6 +1,6 @@
 module.exports = {
   test: /\.svg$/,
-  include: [/node_modules\/@material-symbols/, /svg-icons/],
+  include: [/material-icons/, /svg-icons/],
   issuer: /\.[jt]sx?$/,
   use: [
     {

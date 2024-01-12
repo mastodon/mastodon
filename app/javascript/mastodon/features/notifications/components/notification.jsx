@@ -8,16 +8,16 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import EditIcon from '@material-symbols/svg-600/outlined/edit.svg?react';
-import FlagIcon from '@material-symbols/svg-600/outlined/flag-fill.svg?react';
-import HomeIcon from '@material-symbols/svg-600/outlined/home-fill.svg?react';
-import InsertChartIcon from '@material-symbols/svg-600/outlined/insert_chart.svg?react';
-import PersonIcon from '@material-symbols/svg-600/outlined/person-fill.svg?react';
-import PersonAddIcon from '@material-symbols/svg-600/outlined/person_add-fill.svg?react';
-import RepeatIcon from '@material-symbols/svg-600/outlined/repeat.svg?react';
-import StarIcon from '@material-symbols/svg-600/outlined/star-fill.svg?react';
 import { HotKeys } from 'react-hotkeys';
 
+import EditIcon from 'mastodon/../material-icons/400-20px/edit.svg?react';
+import FlagIcon from 'mastodon/../material-icons/400-20px/flag-fill.svg?react';
+import HomeIcon from 'mastodon/../material-icons/400-20px/home-fill.svg?react';
+import InsertChartIcon from 'mastodon/../material-icons/400-20px/insert_chart.svg?react';
+import PersonIcon from 'mastodon/../material-icons/400-20px/person-fill.svg?react';
+import PersonAddIcon from 'mastodon/../material-icons/400-20px/person_add-fill.svg?react';
+import RepeatIcon from 'mastodon/../material-icons/400-20px/repeat.svg?react';
+import StarIcon from 'mastodon/../material-icons/400-20px/star-fill.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 import AccountContainer from 'mastodon/containers/account_container';
 import StatusContainer from 'mastodon/containers/status_container';
