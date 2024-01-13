@@ -136,7 +136,7 @@
 }
 
 .status__content__spoiler-link {
-  display: inline-block;
+  display: inline-flex;
   border-radius: 2px;
   background: lighten($ui-base-color, 30%);
   border: 0;
@@ -160,8 +160,6 @@
     border-inline-start: 1px solid currentColor;
     padding: 0;
     padding-inline-start: 4px;
-    font-size: 16px;
-    vertical-align: -2px;
   }
 }
 
