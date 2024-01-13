@@ -1425,10 +1425,13 @@ const startServer = async () => {
       // Decrement the metrics for connected clients:
       connectedClients.labels({ type: 'websocket' }).dec();
 
-      // ensure garbage collection:
-      session.socket = null;
-      session.request = null;
-      session.subscriptions = {};
+      // We need to delete the session object as to ensure it correctly gets
+      // garbage collected, without doing this we could accidentally hold on to
+      // references to the websocket, the request, and the logger, causing
+      // memory leaks.
+      //
+      // @ts-ignore
+      delete session;
     });
 
     // Note: immediately after the `error` event is emitted, the `close` event
