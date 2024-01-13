@@ -10,6 +10,8 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "baseUrl": "./",
+    "incremental": true,
+    "tsBuildInfoFile": "tmp/cache/tsconfig.tsbuildinfo",
     "paths": {
       "locales": ["app/javascript/locales"],
       "styles/*": ["app/javascript/styles/*"],
