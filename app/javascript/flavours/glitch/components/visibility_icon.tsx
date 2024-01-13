@@ -57,6 +57,7 @@ export const VisibilityIcon: React.FC<{ visibility: Visibility }> = ({
       id={visibilityIcon.icon}
       icon={visibilityIcon.iconComponent}
       title={visibilityIcon.text}
+      className={'status__visibility-icon'}
     />
   );
 };
