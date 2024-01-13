@@ -1,4 +1,3 @@
-//  Package imports.
 import PropTypes from 'prop-types';
 
 import { defineMessages, injectIntl } from 'react-intl';
@@ -6,9 +5,11 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-//  Components.
+import { ReactComponent as ForumIcon } from '@material-symbols/svg-600/outlined/forum.svg';
+import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
+
 import { Icon } from 'flavours/glitch/components/icon';
-//  Messages.
+
 const messages = defineMessages({
   localOnly: {
     defaultMessage: 'This post is local-only',
@@ -23,8 +24,8 @@ const messages = defineMessages({
 //  We use an array of tuples here instead of an object because it
 //  preserves order.
 const iconMap = [
-  ['do_not_federate', 'home', messages.localOnly],
-  ['threaded_mode', 'comments', messages.threadedMode],
+  ['do_not_federate', 'home', HomeIcon, messages.localOnly],
+  ['threaded_mode', 'comments', ForumIcon, messages.threadedMode],
 ];
 
 class TextareaIcons extends ImmutablePureComponent {
@@ -38,20 +39,17 @@ class TextareaIcons extends ImmutablePureComponent {
     const { advancedOptions, intl } = this.props;
     return (
       <div className='compose-form__textarea-icons'>
-        {advancedOptions ? iconMap.map(
-          ([key, icon, message]) => advancedOptions.get(key) ? (
+        {advancedOptions && iconMap.map(
+          ([key, icon, iconComponent, message]) => advancedOptions.get(key) && (
             <span
               className='textarea_icon'
               key={key}
               title={intl.formatMessage(message)}
             >
-              <Icon
-                fixedWidth
-                id={icon}
-              />
+              <Icon id={icon} icon={iconComponent} />
             </span>
-          ) : null,
-        ) : null}
+          ),
+        )}
       </div>
     );
   }
