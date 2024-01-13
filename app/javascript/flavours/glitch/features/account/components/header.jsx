@@ -10,6 +10,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { Avatar } from 'flavours/glitch/components/avatar';
+import { Badge, AutomatedBadge, GroupBadge } from 'flavours/glitch/components/badge';
 import { Button } from 'flavours/glitch/components/button';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { IconButton } from 'flavours/glitch/components/icon_button';
@@ -308,20 +309,17 @@ class Header extends ImmutablePureComponent {
     const acct            = isLocal && domain ? `${account.get('acct')}@${domain}` : account.get('acct');
     const isIndexable     = !account.get('noindex');
 
-    let badge;
+    const badges = [];
 
     if (account.get('bot')) {
-      badge = (<div className='account-role bot'><FormattedMessage id='account.badges.bot' defaultMessage='Automated' /></div>);
+      badges.push(<AutomatedBadge key='bot-badge' />);
     } else if (account.get('group')) {
-      badge = (<div className='account-role group'><FormattedMessage id='account.badges.group' defaultMessage='Group' /></div>);
-    } else {
-      badge = null;
+      badges.push(<GroupBadge key='group-badge' />);
     }
 
-    let role = null;
-    if (account.getIn(['roles', 0])) {
-      role = (<div key='role' className={`account-role user-role-${account.getIn(['roles', 0, 'id'])}`}>{account.getIn(['roles', 0, 'name'])}</div>);
-    }
+    account.get('roles', []).forEach((role) => {
+      badges.push(<Badge key={`role-badge-${role.get('id')}`} label={<span>{role.get('name')}</span>} domain={domain} />);
+    });
 
     return (
       <div className={classNames('account__header', { inactive: !!account.get('moved') })} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
@@ -339,7 +337,6 @@ class Header extends ImmutablePureComponent {
           <div className='account__header__tabs'>
             <a className='avatar' href={account.get('avatar')} rel='noopener noreferrer' target='_blank' onClick={this.handleAvatarClick}>
               <Avatar account={suspended || hidden ? undefined : account} size={90} />
-              {role}
             </a>
 
             <div className='account__header__tabs__buttons'>
@@ -356,12 +353,18 @@ class Header extends ImmutablePureComponent {
 
           <div className='account__header__tabs__name'>
             <h1>
-              <span dangerouslySetInnerHTML={displayNameHtml} /> {badge}
+              <span dangerouslySetInnerHTML={displayNameHtml} />
               <small>
                 <span>@{acct}</span> {lockedIcon}
               </small>
             </h1>
           </div>
+
+          {badges.length > 0 && (
+            <div className='account__header__badges'>
+              {badges}
+            </div>
+          )}
 
           {signedIn && <AccountNoteContainer account={account} />}
 

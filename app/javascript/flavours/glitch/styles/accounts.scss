@@ -191,7 +191,6 @@
   }
 }
 
-.account-role,
 .information-badge,
 .simple_form .overridden,
 .simple_form .recommended,
@@ -200,24 +199,55 @@
   display: inline-block;
   padding: 4px 6px;
   cursor: default;
-  border-radius: 3px;
+  border-radius: 4px;
   font-size: 12px;
   line-height: 12px;
   font-weight: 500;
   color: $ui-secondary-color;
-  background-color: var(--user-role-background, rgba($ui-secondary-color, 0.1));
-  border: 1px solid var(--user-role-border, rgba($ui-secondary-color, 0.5));
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
 
-  &.moderator {
-    color: $success-green;
-    background-color: rgba($success-green, 0.1);
-    border-color: rgba($success-green, 0.5);
+.information-badge,
+.simple_form .recommended,
+.simple_form .not_recommended {
+  background-color: rgba($ui-secondary-color, 0.1);
+  border: 1px solid rgba($ui-secondary-color, 0.5);
+}
+
+.account-role {
+  display: inline-flex;
+  padding: 4px;
+  padding-inline-end: 8px;
+  border: 1px solid $highlight-text-color;
+  color: $highlight-text-color;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  line-height: 16px;
+  gap: 4px;
+  border-radius: 6px;
+  align-items: center;
+
+  svg {
+    width: auto;
+    height: 15px;
+    opacity: 0.85;
+    fill: currentColor;
   }
 
-  &.admin {
-    color: lighten($error-red, 12%);
-    background-color: rgba(lighten($error-red, 12%), 0.1);
-    border-color: rgba(lighten($error-red, 12%), 0.5);
+  &__domain {
+    font-weight: 400;
+    opacity: 0.75;
+    letter-spacing: 0;
+  }
+}
+
+.information-badge {
+  &.superapp {
+    background-color: rgba($success-green, 0.1);
+    border-color: rgba($success-green, 0.5);
   }
 }
 
