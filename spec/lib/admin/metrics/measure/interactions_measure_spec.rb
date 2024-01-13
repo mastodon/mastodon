@@ -13,5 +13,34 @@ describe Admin::Metrics::Measure::InteractionsMeasure do
     it 'runs data query without error' do
       expect { measure.data }.to_not raise_error
     end
+
+    context 'with activity tracking records' do
+      before do
+        3.times do
+          travel_to 2.days.ago do
+            ActivityTracker.increment('activity:interactions')
+          end
+        end
+        2.times do
+          travel_to 1.day.ago do
+            ActivityTracker.increment('activity:interactions')
+          end
+        end
+        travel_to 0.days.ago do
+          ActivityTracker.increment('activity:interactions')
+        end
+      end
+
+      it 'returns correct activity tracker counts' do
+        expect(measure.data.size)
+          .to eq(3)
+        expect(measure.data.map(&:symbolize_keys))
+          .to contain_exactly(
+            include(date: 2.days.ago.midnight.to_time, value: '3'),
+            include(date: 1.day.ago.midnight.to_time, value: '2'),
+            include(date: 0.days.ago.midnight.to_time, value: '1')
+          )
+      end
+    end
   end
 end
