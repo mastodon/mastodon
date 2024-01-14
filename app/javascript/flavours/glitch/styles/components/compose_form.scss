@@ -526,7 +526,7 @@
 
 .privacy-dropdown__dropdown {
   border-radius: 4px;
-  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+  box-shadow: var(--dropdown-shadow);
   background: $simple-background-color;
   overflow: hidden;
   transform-origin: 50% 0;
@@ -581,7 +581,6 @@
   column-gap: 5px;
 
   .compose-form__publish-button-wrapper {
-    overflow: hidden;
     padding-top: 10px;
 
     button {
@@ -604,7 +603,7 @@
 .language-dropdown {
   &__dropdown {
     background: $simple-background-color;
-    box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+    box-shadow: var(--dropdown-shadow);
     border-radius: 4px;
     overflow: hidden;
     z-index: 2;

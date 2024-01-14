@@ -77,6 +77,10 @@
     background-color: $ui-button-focus-background-color;
   }
 
+  &:focus {
+    outline: $ui-button-icon-focus-outline;
+  }
+
   &--destructive {
     &:active,
     &:focus,
@@ -200,12 +204,10 @@
   &:focus {
     color: lighten($action-button-color, 7%);
     background-color: rgba($action-button-color, 0.15);
-    transition: all 200ms ease-out;
-    transition-property: background-color, color;
   }
 
-  &:focus {
-    background-color: rgba($action-button-color, 0.3);
+  &:focus-visible {
+    outline: $ui-button-icon-focus-outline;
   }
 
   &.disabled {
@@ -227,16 +229,6 @@
     transition: none;
   }
 
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
-  }
-
   &.inverted {
     color: $lighter-text-color;
 
@@ -247,21 +239,28 @@
       background-color: rgba($lighter-text-color, 0.15);
     }
 
-    &:focus {
-      background-color: rgba($lighter-text-color, 0.3);
+    &:focus-visible {
+      outline: $ui-button-icon-focus-outline;
     }
 
     &.disabled {
       color: lighten($lighter-text-color, 7%);
       background-color: transparent;
     }
+  }
 
-    &.active {
+  &.active {
+    color: $highlight-text-color;
+
+    &:hover,
+    &:active,
+    &:focus {
       color: $highlight-text-color;
+      background-color: transparent;
+    }
 
-      &.disabled {
-        color: lighten($highlight-text-color, 13%);
-      }
+    &.disabled {
+      color: lighten($highlight-text-color, 13%);
     }
   }
 
@@ -301,21 +300,16 @@
   cursor: pointer;
   padding: 0 3px;
   white-space: nowrap;
-  outline: 0;
-  transition: all 100ms ease-in;
-  transition-property: background-color, color;
 
   &:hover,
   &:active,
   &:focus {
     color: darken($lighter-text-color, 7%);
     background-color: rgba($lighter-text-color, 0.15);
-    transition: all 200ms ease-out;
-    transition-property: background-color, color;
   }
 
   &:focus {
-    background-color: rgba($lighter-text-color, 0.3);
+    outline: $ui-button-icon-focus-outline;
   }
 
   &.disabled {
@@ -326,16 +320,13 @@
 
   &.active {
     color: $highlight-text-color;
-  }
 
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
+    &:hover,
+    &:active,
+    &:focus {
+      color: $highlight-text-color;
+      background-color: transparent;
+    }
   }
 }
 
@@ -580,7 +571,7 @@ body > [data-popper-placement] {
     font-size: inherit;
     line-height: inherit;
 
-    &:focus {
+    &:focus-visible {
       outline: 1px dotted;
     }
 
@@ -855,6 +846,7 @@ body > [data-popper-placement] {
   cursor: pointer;
   background-color: transparent;
   border: 0;
+  border-radius: 10px;
   padding: 0;
   user-select: none;
   -webkit-tap-highlight-color: rgba($base-overlay-background, 0);
@@ -879,81 +871,41 @@ body > [data-popper-placement] {
 }
 
 .react-toggle-track {
-  width: 50px;
-  height: 24px;
+  width: 32px;
+  height: 20px;
   padding: 0;
-  border-radius: 30px;
-  background-color: $ui-base-color;
-  transition: background-color 0.2s ease;
+  border-radius: 10px;
+  background-color: #626982;
 }
 
-.react-toggle:is(:hover, :focus-within):not(.react-toggle--disabled)
-  .react-toggle-track {
-  background-color: darken($ui-base-color, 10%);
+.react-toggle--focus {
+  outline: $ui-button-focus-outline;
 }
 
 .react-toggle--checked .react-toggle-track {
-  background-color: darken($ui-highlight-color, 2%);
-}
-
-.react-toggle--checked:is(:hover, :focus-within):not(.react-toggle--disabled)
-  .react-toggle-track {
   background-color: $ui-highlight-color;
 }
 
-.react-toggle-track-check {
-  position: absolute;
-  width: 14px;
-  height: 10px;
-  top: 0;
-  bottom: 0;
-  margin-top: auto;
-  margin-bottom: auto;
-  line-height: 0;
-  inset-inline-start: 8px;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-
-.react-toggle--checked .react-toggle-track-check {
-  opacity: 1;
-  transition: opacity 0.25s ease;
-}
-
+.react-toggle-track-check,
 .react-toggle-track-x {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  top: 0;
-  bottom: 0;
-  margin-top: auto;
-  margin-bottom: auto;
-  line-height: 0;
-  inset-inline-end: 10px;
-  opacity: 1;
-  transition: opacity 0.25s ease;
-}
-
-.react-toggle--checked .react-toggle-track-x {
-  opacity: 0;
+  display: none;
 }
 
 .react-toggle-thumb {
   position: absolute;
-  top: 1px;
-  inset-inline-start: 1px;
-  width: 22px;
-  height: 22px;
-  border: 1px solid $ui-base-color;
+  top: 2px;
+  inset-inline-start: 2px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background-color: darken($simple-background-color, 2%);
+  background-color: $primary-text-color;
   box-sizing: border-box;
   transition: all 0.25s ease;
   transition-property: border-color, left;
 }
 
 .react-toggle--checked .react-toggle-thumb {
-  inset-inline-start: 27px;
+  inset-inline-start: 32px - 16px - 2px;
   border-color: $ui-highlight-color;
 }
 
@@ -1237,6 +1189,17 @@ body > [data-popper-placement] {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.button .loading-indicator {
+  position: static;
+  transform: none;
+
+  .circular-progress {
+    color: $primary-text-color;
+    width: 22px;
+    height: 22px;
+  }
 }
 
 .circular-progress {

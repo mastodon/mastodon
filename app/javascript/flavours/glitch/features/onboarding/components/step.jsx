@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
+
 import { ReactComponent as ArrowRightAltIcon } from '@material-symbols/svg-600/outlined/arrow_right_alt.svg';
 import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/done.svg';
 
-import { Icon }  from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/glitch/components/icon';
 
-const Step = ({ label, description, icon, iconComponent, completed, onClick, href }) => {
+export const Step = ({ label, description, icon, iconComponent, completed, onClick, href, to }) => {
   const content = (
     <>
       <div className='onboarding__steps__item__icon'>
@@ -29,6 +31,12 @@ const Step = ({ label, description, icon, iconComponent, completed, onClick, hre
         {content}
       </a>
     );
+  } else if (to) {
+    return (
+      <Link to={to} className='onboarding__steps__item'>
+        {content}
+      </Link>
+    );
   }
 
   return (
@@ -45,7 +53,6 @@ Step.propTypes = {
   iconComponent: PropTypes.func,
   completed: PropTypes.bool,
   href: PropTypes.string,
+  to: PropTypes.string,
   onClick: PropTypes.func,
 };
-
-export default Step;

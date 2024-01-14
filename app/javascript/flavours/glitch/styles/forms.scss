@@ -36,7 +36,7 @@ code {
   }
 
   .input {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
     overflow: hidden;
 
     &.hidden {
@@ -267,12 +267,13 @@ code {
       font-size: 14px;
       color: $primary-text-color;
       display: block;
-      font-weight: 500;
-      padding-top: 5px;
+      font-weight: 600;
+      line-height: 20px;
     }
 
     .hint {
-      margin-bottom: 15px;
+      line-height: 16px;
+      margin-bottom: 12px;
     }
 
     ul {
@@ -428,7 +429,8 @@ code {
   input[type='datetime-local'],
   textarea {
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 20px;
     color: $primary-text-color;
     display: block;
     width: 100%;
@@ -436,9 +438,9 @@ code {
     font-family: inherit;
     resize: vertical;
     background: darken($ui-base-color, 10%);
-    border: 1px solid darken($ui-base-color, 14%);
-    border-radius: 4px;
-    padding: 10px;
+    border: 1px solid darken($ui-base-color, 10%);
+    border-radius: 8px;
+    padding: 10px 16px;
 
     &::placeholder {
       color: lighten($darker-text-color, 4%);
@@ -452,14 +454,13 @@ code {
       border-color: $valid-value-color;
     }
 
-    &:hover {
-      border-color: darken($ui-base-color, 20%);
-    }
-
     &:active,
     &:focus {
       border-color: $highlight-text-color;
-      background: darken($ui-base-color, 8%);
+    }
+
+    @media screen and (width <= 600px) {
+      font-size: 16px;
     }
   }
 
@@ -525,12 +526,11 @@ code {
     border-radius: 4px;
     background: $ui-button-background-color;
     color: $ui-button-color;
-    font-size: 18px;
-    line-height: inherit;
+    font-size: 15px;
+    line-height: 22px;
     height: auto;
-    padding: 10px;
+    padding: 7px 18px;
     text-decoration: none;
-    text-transform: uppercase;
     text-align: center;
     box-sizing: border-box;
     cursor: pointer;
@@ -1220,5 +1220,117 @@ code {
   .completed .circle {
     border-color: $highlight-text-color;
     background: $highlight-text-color;
+  }
+}
+
+.app-form {
+  &__avatar-input,
+  &__header-input {
+    display: block;
+    border-radius: 8px;
+    background: var(--dropdown-background-color);
+    position: relative;
+    cursor: pointer;
+
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      z-index: 0;
+    }
+
+    .icon {
+      position: absolute;
+      inset-inline-start: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: $darker-text-color;
+      z-index: 3;
+    }
+
+    &.selected .icon {
+      color: $primary-text-color;
+      transform: none;
+      inset-inline-start: auto;
+      inset-inline-end: 8px;
+      top: auto;
+      bottom: 8px;
+    }
+
+    &.invalid img {
+      outline: 1px solid $error-value-color;
+      outline-offset: -1px;
+    }
+
+    &.invalid::before {
+      display: block;
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: rgba($error-value-color, 0.25);
+      z-index: 2;
+      border-radius: 8px;
+    }
+
+    &:hover {
+      background-color: var(--dropdown-border-color);
+    }
+  }
+
+  &__avatar-input {
+    width: 80px;
+    height: 80px;
+  }
+
+  &__header-input {
+    aspect-ratio: 580/193;
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: $darker-text-color;
+    font-size: 14px;
+    line-height: 20px;
+
+    .icon {
+      flex: 0 0 auto;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    &__label {
+      flex: 1 1 auto;
+
+      strong {
+        color: $primary-text-color;
+        font-weight: 600;
+      }
+
+      .recommended {
+        position: absolute;
+        margin: 0 4px;
+        margin-top: -2px;
+      }
+    }
+
+    &__toggle {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+    }
+
+    &__toggle > div {
+      display: flex;
+      border-inline-start: 1px solid lighten($ui-base-color, 8%);
+      padding-inline-start: 16px;
+    }
   }
 }
