@@ -17,7 +17,7 @@ import { Avatar } from 'flavours/glitch/components/avatar';
 import { DisplayName } from 'flavours/glitch/components/display_name';
 import { Icon } from 'flavours/glitch/components/icon';
 import { IconButton } from 'flavours/glitch/components/icon_button';
-import Permalink from 'flavours/glitch/components/permalink';
+import { Permalink } from 'flavours/glitch/components/permalink';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 import NotificationOverlayContainer from '../containers/overlay_container';

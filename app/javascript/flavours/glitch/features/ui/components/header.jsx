@@ -14,7 +14,7 @@ import { fetchServer } from 'flavours/glitch/actions/server';
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { Icon } from 'flavours/glitch/components/icon';
 import { WordmarkLogo, SymbolLogo } from 'flavours/glitch/components/logo';
-import Permalink from 'flavours/glitch/components/permalink';
+import { Permalink } from 'flavours/glitch/components/permalink';
 import { registrationsOpen, me, sso_redirect } from 'flavours/glitch/initial_state';
 
 const Account = connect(state => ({

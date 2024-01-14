@@ -12,7 +12,7 @@ import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-600/outli
 import { HotKeys } from 'react-hotkeys';
 
 import { Icon } from 'flavours/glitch/components/icon';
-import Permalink from 'flavours/glitch/components/permalink';
+import { Permalink } from 'flavours/glitch/components/permalink';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 

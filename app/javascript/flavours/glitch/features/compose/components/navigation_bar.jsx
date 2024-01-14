@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import Permalink from 'flavours/glitch/components/permalink';
+import { Permalink } from 'flavours/glitch/components/permalink';
 import { profileLink } from 'flavours/glitch/utils/backend_links';
 
 import { Avatar } from '../../../components/avatar';
