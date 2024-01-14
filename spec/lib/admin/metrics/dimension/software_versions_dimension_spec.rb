@@ -11,8 +11,12 @@ describe Admin::Metrics::Dimension::SoftwareVersionsDimension do
   let(:params) { ActionController::Parameters.new }
 
   describe '#data' do
-    it 'runs data query without error' do
-      expect { subject.data }.to_not raise_error
+    it 'reports on the running software' do
+      expect(subject.data.map(&:symbolize_keys))
+        .to include(
+          include(key: 'mastodon', value: Mastodon::Version.to_s),
+          include(key: 'ruby', value: include(RUBY_VERSION))
+        )
     end
   end
 end
