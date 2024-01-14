@@ -26,7 +26,7 @@ describe Admin::Metrics::Measure::InstanceFollowersMeasure do
     Fabricate(:account, domain: 'other.example').follow!(local_account)
   end
 
-  describe 'total' do
+  describe '#total' do
     context 'without include_subdomains' do
       it 'returns the expected number of accounts' do
         expect(measure.total).to eq 2

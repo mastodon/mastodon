@@ -20,7 +20,7 @@ describe Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure do
     remote_account_on_subdomain.media_attachments.create!(file: attachment_fixture('attachment.jpg'))
   end
 
-  describe 'total' do
+  describe '#total' do
     context 'without include_subdomains' do
       it 'returns the expected number of accounts' do
         expected_total = remote_account.media_attachments.sum(:file_file_size) + remote_account.media_attachments.sum(:thumbnail_file_size)
