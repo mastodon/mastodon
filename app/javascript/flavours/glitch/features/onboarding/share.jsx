@@ -14,7 +14,7 @@ import { ReactComponent as ContentCopyIcon } from '@material-symbols/svg-600/out
 import SwipeableViews from 'react-swipeable-views';
 
 import Column from 'flavours/glitch/components/column';
-import ColumnBackButton from 'flavours/glitch/components/column_back_button';
+import { ColumnBackButton } from 'flavours/glitch/components/column_back_button';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { me, domain } from 'flavours/glitch/initial_state';
 
@@ -146,18 +146,17 @@ class Share extends PureComponent {
   static propTypes = {
     onBack: PropTypes.func,
     account: ImmutablePropTypes.record,
-    multiColumn: PropTypes.bool,
     intl: PropTypes.object,
   };
 
   render () {
-    const { onBack, account, multiColumn, intl } = this.props;
+    const { onBack, account, intl } = this.props;
 
     const url = (new URL(`/@${account.get('username')}`, document.baseURI)).href;
 
     return (
       <Column>
-        <ColumnBackButton multiColumn={multiColumn} onClick={onBack} />
+        <ColumnBackButton onClick={onBack} />
 
         <div className='scrollable privacy-policy'>
           <div className='column-title'>

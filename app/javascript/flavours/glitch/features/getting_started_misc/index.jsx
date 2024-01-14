@@ -13,11 +13,9 @@ import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/s
 import { ReactComponent as VolumeOffIcon } from '@material-symbols/svg-600/outlined/volume_off.svg';
 
 import { openModal } from 'flavours/glitch/actions/modal';
-import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
 import Column from 'flavours/glitch/features/ui/components/column';
 import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
 import ColumnSubheading from 'flavours/glitch/features/ui/components/column_subheading';
-
 
 const messages = defineMessages({
   heading: { id: 'column.heading', defaultMessage: 'Misc' },
@@ -53,9 +51,7 @@ class GettingStartedMisc extends ImmutablePureComponent {
     const { signedIn } = this.context.identity;
 
     return (
-      <Column icon='ellipsis-h' heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
-
+      <Column icon='ellipsis-h' heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <div className='scrollable'>
           <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
           {signedIn && (<ColumnLink key='favourites' icon='star' iconComponent={StarIcon} text={intl.formatMessage(messages.favourites)} to='/favourites' />)}

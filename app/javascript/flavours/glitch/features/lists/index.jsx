@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 import { ReactComponent as ListAltIcon } from '@material-symbols/svg-600/outlined/list_alt.svg';
 
 import { fetchLists } from 'flavours/glitch/actions/lists';
-import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
 import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import Column from 'flavours/glitch/features/ui/components/column';
@@ -66,9 +65,7 @@ class Lists extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.lists' defaultMessage="You don't have any lists yet. When you create one, it will show up here." />;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='bars' iconComponent={ListAltIcon} heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
-
+      <Column bindToDocument={!multiColumn} icon='bars' iconComponent={ListAltIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <NewListForm />
 
         <ColumnSubheading text={intl.formatMessage(messages.subheading)} />

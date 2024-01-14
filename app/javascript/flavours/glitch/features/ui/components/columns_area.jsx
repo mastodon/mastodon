@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Children, cloneElement } from 'react';
+import { Children, cloneElement, useCallback } from 'react';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -21,6 +21,7 @@ import {
   ListTimeline,
   Directory,
 } from '../util/async-components';
+import { useColumnsContext } from '../util/columns_context';
 
 import BundleColumnError from './bundle_column_error';
 import { ColumnLoading } from './column_loading';
@@ -41,6 +42,17 @@ const componentMap = {
   'BOOKMARKS': BookmarkedStatuses,
   'LIST': ListTimeline,
   'DIRECTORY': Directory,
+};
+
+const TabsBarPortal = () => {
+  const {setTabsBarElement} = useColumnsContext();
+
+  const setRef = useCallback((element) => {
+    if(element)
+      setTabsBarElement(element);
+  }, [setTabsBarElement]);
+
+  return <div id='tabs-bar__portal' ref={setRef} />;
 };
 
 export default class ColumnsArea extends ImmutablePureComponent {
@@ -146,7 +158,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
           </div>
 
           <div className='columns-area__panels__main'>
-            <div className='tabs-bar__wrapper'><div id='tabs-bar__portal' /></div>
+            <div className='tabs-bar__wrapper'><TabsBarPortal /></div>
             <div className='columns-area columns-area--mobile'>{children}</div>
           </div>
 

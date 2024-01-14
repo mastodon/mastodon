@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { fetchSuggestions } from 'flavours/glitch/actions/suggestions';
 import { markAsPartial } from 'flavours/glitch/actions/timelines';
 import Column from 'flavours/glitch/components/column';
-import ColumnBackButton from 'flavours/glitch/components/column_back_button';
+import { ColumnBackButton } from 'flavours/glitch/components/column_back_button';
 import { EmptyAccount } from 'flavours/glitch/components/empty_account';
 import Account from 'flavours/glitch/containers/account_container';
 
@@ -25,7 +25,6 @@ class Follows extends PureComponent {
     dispatch: PropTypes.func.isRequired,
     suggestions: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
-    multiColumn: PropTypes.bool,
   };
 
   componentDidMount () {
@@ -39,7 +38,7 @@ class Follows extends PureComponent {
   }
 
   render () {
-    const { onBack, isLoading, suggestions, multiColumn } = this.props;
+    const { onBack, isLoading, suggestions } = this.props;
 
     let loadedContent;
 
@@ -53,7 +52,7 @@ class Follows extends PureComponent {
 
     return (
       <Column>
-        <ColumnBackButton multiColumn={multiColumn} onClick={onBack} />
+        <ColumnBackButton onClick={onBack} />
 
         <div className='scrollable privacy-policy'>
           <div className='column-title'>

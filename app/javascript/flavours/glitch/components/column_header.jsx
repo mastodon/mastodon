@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
-import { createPortal } from 'react-dom';
+import { PureComponent, useCallback } from 'react';
 
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
@@ -15,7 +14,10 @@ import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/
 import { ReactComponent as TuneIcon } from '@material-symbols/svg-600/outlined/tune.svg';
 
 import { Icon }  from 'flavours/glitch/components/icon';
+import { ButtonInTabsBar, useColumnsContext } from 'flavours/glitch/features/ui/util/columns_context';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+
+import { useAppHistory } from './router';
 
 const messages = defineMessages({
   show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
@@ -23,6 +25,34 @@ const messages = defineMessages({
   moveLeft: { id: 'column_header.moveLeft_settings', defaultMessage: 'Move column to the left' },
   moveRight: { id: 'column_header.moveRight_settings', defaultMessage: 'Move column to the right' },
 });
+
+const BackButton = ({ pinned, show }) => {
+  const history = useAppHistory();
+  const { multiColumn } = useColumnsContext();
+
+  const handleBackClick = useCallback(() => {
+    if (history.location?.state?.fromMastodon) {
+      history.goBack();
+    } else {
+      history.push('/');
+    }
+  }, [history]);
+
+  const showButton = history && !pinned && ((multiColumn && history.location?.state?.fromMastodon) || show);
+
+  if(!showButton) return null;
+
+  return (<button onClick={handleBackClick} className='column-header__back-button'>
+    <Icon id='chevron-left' icon={ArrowBackIcon} className='column-back-button__icon' />
+    <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
+  </button>);
+
+};
+
+BackButton.propTypes = {
+  pinned: PropTypes.bool,
+  show: PropTypes.bool,
+};
 
 class ColumnHeader extends PureComponent {
 
@@ -72,16 +102,6 @@ class ColumnHeader extends PureComponent {
     this.props.onMove(1);
   };
 
-  handleBackClick = () => {
-    const { history } = this.props;
-
-    if (history.location?.state?.fromMastodon) {
-      history.goBack();
-    } else {
-      history.push('/');
-    }
-  };
-
   handleTransitionEnd = () => {
     this.setState({ animating: false });
   };
@@ -95,7 +115,7 @@ class ColumnHeader extends PureComponent {
   };
 
   render () {
-    const { title, icon, iconComponent, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues, history } = this.props;
+    const { title, icon, iconComponent, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues } = this.props;
     const { collapsed, animating } = this.state;
 
     const wrapperClassName = classNames('column-header__wrapper', {
@@ -138,14 +158,7 @@ class ColumnHeader extends PureComponent {
       pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' icon={AddIcon} /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
     }
 
-    if (!pinned && ((multiColumn && history.location?.state?.fromMastodon) || showBackButton)) {
-      backButton = (
-        <button onClick={this.handleBackClick} className='column-header__back-button'>
-          <Icon id='chevron-left' icon={ArrowBackIcon} className='column-back-button__icon' />
-          <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
-        </button>
-      );
-    }
+    backButton = <BackButton pinned={pinned} show={showBackButton} />;
 
     const collapsedContent = [
       extraContent,
@@ -203,22 +216,12 @@ class ColumnHeader extends PureComponent {
       </div>
     );
 
-    if (multiColumn || placeholder) {
+    if (placeholder) {
       return component;
     } else {
-      // The portal container and the component may be rendered to the DOM in
-      // the same React render pass, so the container might not be available at
-      // the time `render()` is called.
-      const container = document.getElementById('tabs-bar__portal');
-      if (container === null) {
-        // The container wasn't available, force a re-render so that the
-        // component can eventually be inserted in the container and not scroll
-        // with the rest of the area.
-        this.forceUpdate();
-        return component;
-      } else {
-        return createPortal(component, container);
-      }
+      return (<ButtonInTabsBar>
+        {component}
+      </ButtonInTabsBar>);
     }
   }
 
