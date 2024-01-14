@@ -41,8 +41,15 @@ describe Admin::Metrics::Measure::InstanceFollowsMeasure do
   end
 
   describe '#data' do
-    it 'runs data query without error' do
-      expect { measure.data }.to_not raise_error
+    it 'returns correct instance_followers counts' do
+      expect(measure.data.size)
+        .to eq(3)
+      expect(measure.data.map(&:symbolize_keys))
+        .to contain_exactly(
+          include(date: 2.days.ago.midnight.to_time, value: '0'),
+          include(date: 1.day.ago.midnight.to_time, value: '0'),
+          include(date: 0.days.ago.midnight.to_time, value: '2')
+        )
     end
   end
 end
