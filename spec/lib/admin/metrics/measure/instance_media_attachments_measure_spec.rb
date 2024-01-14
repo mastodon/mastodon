@@ -42,8 +42,19 @@ describe Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure do
   end
 
   describe '#data' do
-    it 'runs data query without error' do
-      expect { measure.data }.to_not raise_error
+    it 'returns correct media_attachments counts' do
+      expect(measure.data.size)
+        .to eq(3)
+      expect(measure.data.map(&:symbolize_keys))
+        .to contain_exactly(
+          include(date: 2.days.ago.midnight.to_time, value: '0'),
+          include(date: 1.day.ago.midnight.to_time, value: '0'),
+          include(date: 0.days.ago.midnight.to_time, value: expected_domain_only_total.to_s)
+        )
+    end
+
+    def expected_domain_only_total
+      remote_account.media_attachments.sum(:file_file_size) + remote_account.media_attachments.sum(:thumbnail_file_size)
     end
   end
 end
