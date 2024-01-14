@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe Admin::Metrics::Measure::ResolvedReportsMeasure do
-  subject(:measure) { described_class.new(start_at, end_at, params) }
+  subject { described_class.new(start_at, end_at, params) }
 
   let(:start_at) { 2.days.ago }
   let(:end_at)   { Time.now.utc }
@@ -11,7 +11,7 @@ describe Admin::Metrics::Measure::ResolvedReportsMeasure do
 
   describe '#data' do
     it 'runs data query without error' do
-      expect { measure.data }.to_not raise_error
+      expect { subject.data }.to_not raise_error
     end
 
     context 'with report records' do
@@ -22,9 +22,9 @@ describe Admin::Metrics::Measure::ResolvedReportsMeasure do
       end
 
       it 'returns correct report counts' do
-        expect(measure.data.size)
+        expect(subject.data.size)
           .to eq(3)
-        expect(measure.data.map(&:symbolize_keys))
+        expect(subject.data.map(&:symbolize_keys))
           .to contain_exactly(
             include(date: 2.days.ago.midnight.to_time, value: '3'),
             include(date: 1.day.ago.midnight.to_time, value: '2'),
