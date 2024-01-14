@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as FlagIcon } from '@material-symbols/svg-600/outlined/flag-fill.svg';
 import { HotKeys } from 'react-hotkeys';
 
 import { Icon } from 'flavours/glitch/components/icon';
@@ -95,7 +96,7 @@ class AdminReport extends ImmutablePureComponent {
         <div className={classNames('notification notification-admin-report focusable', { unread })} tabIndex={0}>
           <div className='notification__message'>
             <div className='notification__favourite-icon-wrapper'>
-              <Icon id='flag' fixedWidth />
+              <Icon id='flag' icon={FlagIcon} />
             </div>
 
             <span title={notification.get('created_at')}>

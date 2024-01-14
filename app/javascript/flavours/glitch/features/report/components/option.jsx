@@ -3,7 +3,9 @@ import { PureComponent } from 'react';
 
 import classNames from 'classnames';
 
-import { Check } from 'flavours/glitch/components/check';
+import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/done.svg';
+
+import { Icon }  from 'flavours/glitch/components/icon';
 
 export default class Option extends PureComponent {
 
@@ -47,7 +49,7 @@ export default class Option extends PureComponent {
           onKeyPress={this.handleKeyPress}
           aria-checked={checked}
           aria-label={label}
-        >{checked && <Check />}</span>
+        >{checked && <Icon icon={CheckIcon} />}</span>
 
         {labelComponent ? labelComponent : (
           <span className='poll__option__text'>

@@ -9,10 +9,12 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { ReactComponent as RepeatIcon } from '@material-symbols/svg-600/outlined/repeat.svg';
+
 import { changeBoostPrivacy } from 'flavours/glitch/actions/boosts';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 import { Icon }  from 'flavours/glitch/components/icon';
-import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
+import { VisibilityIcon } from 'flavours/glitch/components/visibility_icon';
 import PrivacyDropdown from 'flavours/glitch/features/compose/components/privacy_dropdown';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
@@ -108,7 +110,7 @@ class BoostModal extends ImmutablePureComponent {
             { missingMediaDescription ?
               <FormattedMessage id='boost_modal.missing_description' defaultMessage='This toot contains some media without description' />
               :
-              <FormattedMessage id='boost_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <Icon id='retweet' /></span> }} />
+              <FormattedMessage id='boost_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <Icon id='retweet' icon={RepeatIcon} /></span> }} />
             }
           </div>
 

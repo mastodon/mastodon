@@ -5,6 +5,8 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as TripIcon } from '@material-symbols/svg-600/outlined/trip.svg';
+
 import { Icon } from 'flavours/glitch/components/icon';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
@@ -35,7 +37,7 @@ class MovedNote extends ImmutablePureComponent {
     return (
       <div className='account__moved-note'>
         <div className='account__moved-note__message'>
-          <div className='account__moved-note__icon-wrapper'><Icon id='suitcase' className='account__moved-note__icon' fixedWidth /></div>
+          <div className='account__moved-note__icon-wrapper'><Icon id='suitcase' className='account__moved-note__icon' icon={TripIcon} /></div>
           <FormattedMessage id='account.moved_to' defaultMessage='{name} has indicated that their new account is now:' values={{ name: <bdi><strong dangerouslySetInnerHTML={displayNameHtml} /></bdi> }} />
         </div>
 

@@ -157,7 +157,9 @@
 }
 
 .account__disclaimer {
+  display: flex;
   padding: 10px;
+  gap: 5px;
   color: $dark-text-color;
 
   strong {
@@ -290,9 +292,16 @@
   color: $darker-text-color;
   font-size: 15px;
   position: relative;
+  align-items: center;
 
-  .fa {
+  .icon {
     color: $highlight-text-color;
+    width: 18px;
+    height: 18px;
+  }
+
+  .icon-star {
+    color: $gold-star;
   }
 
   > span {
@@ -574,7 +583,12 @@
         border: 1px solid lighten($ui-base-color, 12%);
         border-radius: 4px;
         box-sizing: content-box;
-        padding: 2px;
+        padding: 5px;
+
+        .icon {
+          width: 24px;
+          height: 24px;
+        }
       }
     }
 
@@ -646,6 +660,21 @@
 
       dl:first-child .verified {
         border-radius: 0 4px 0 0;
+      }
+
+      .icon {
+        width: 18px;
+        height: 18px;
+      }
+
+      dd {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        span {
+          display: flex;
+        }
       }
 
       .verified a {
@@ -757,6 +786,11 @@
     color: inherit;
     font-weight: 500;
     text-decoration: none;
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
   }
 }
 

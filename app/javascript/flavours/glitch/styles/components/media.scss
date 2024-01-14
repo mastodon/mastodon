@@ -52,7 +52,9 @@
 }
 
 .media-gallery__gifv__label {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: $white;
   background: rgba($black, 0.65);
   padding: 2px 6px;
@@ -62,6 +64,11 @@
   z-index: 1;
   pointer-events: none;
   line-height: 18px;
+
+  .icon {
+    width: 15px;
+    height: 15px;
+  }
 }
 
 .media-gallery {
@@ -583,18 +590,17 @@
     flex: 0 1 auto;
     min-width: 30px;
     align-items: center;
-    font-size: 16px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    gap: 5px;
 
     .player-button {
       display: inline-block;
       outline: 0;
+      padding: 5px;
       flex: 0 0 auto;
       background: transparent;
-      padding: 5px;
-      font-size: 16px;
       border: 0;
       color: rgba($white, 0.75);
 

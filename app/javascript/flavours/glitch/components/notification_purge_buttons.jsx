@@ -4,8 +4,6 @@
  * a Confirm and Abort buttons are shown in its place.
  */
 
-
-//  Package imports  //
 import PropTypes from 'prop-types';
 
 import { defineMessages, injectIntl } from 'react-intl';
@@ -13,6 +11,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 import classNames from 'classnames';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { ReactComponent as DeleteIcon } from '@material-symbols/svg-600/outlined/delete.svg';
 
 import { Icon } from 'flavours/glitch/components/icon';
 
@@ -53,7 +53,7 @@ class NotificationPurgeButtons extends ImmutablePureComponent {
         </button>
 
         <button onClick={this.props.onDeleteMarked} className='column-header__button'>
-          <Icon id='trash' /><br />{intl.formatMessage(messages.btnApply)}
+          <Icon id='trash' icon={DeleteIcon} /><br />{intl.formatMessage(messages.btnApply)}
         </button>
       </div>
     );

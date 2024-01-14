@@ -9,6 +9,8 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { ReactComponent as PeopleIcon } from '@material-symbols/svg-600/outlined/group.svg';
+
 import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'flavours/glitch/actions/columns';
 import { fetchDirectory, expandDirectory } from 'flavours/glitch/actions/directory';
 import Column from 'flavours/glitch/components/column';
@@ -156,6 +158,7 @@ class Directory extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='address-book-o'
+          iconComponent={PeopleIcon}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
           onMove={this.handleMove}

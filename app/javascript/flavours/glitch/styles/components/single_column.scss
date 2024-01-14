@@ -93,14 +93,6 @@
   }
 }
 
-@media screen and (width >= 600px) {
-  .tabs-bar__link {
-    span {
-      display: inline;
-    }
-  }
-}
-
 .columns-area--mobile {
   flex-direction: column;
   width: 100%;
@@ -220,20 +212,12 @@
 }
 
 @media screen and (min-width: $no-gap-breakpoint) {
-  .tabs-bar {
-    width: 100%;
-  }
-
   .react-swipeable-view-container .columns-area--mobile {
     height: calc(100% - 10px) !important;
   }
 
   .getting-started__wrapper {
     margin-bottom: 10px;
-  }
-
-  .tabs-bar__link.optional {
-    display: none;
   }
 
   .search-page .search {

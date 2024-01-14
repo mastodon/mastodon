@@ -10,6 +10,9 @@ import { createSelector } from '@reduxjs/toolkit';
 import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
 
+import { ReactComponent as CampaignIcon } from '@material-symbols/svg-600/outlined/campaign.svg';
+import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
+
 import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/glitch/actions/announcements';
 import { IconWithBadge } from 'flavours/glitch/components/icon_with_badge';
 import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';
@@ -182,7 +185,7 @@ class HomeTimeline extends PureComponent {
           aria-label={intl.formatMessage(showAnnouncements ? messages.hide_announcements : messages.show_announcements)}
           onClick={this.handleToggleAnnouncementsClick}
         >
-          <IconWithBadge id='bullhorn' count={unreadAnnouncements} />
+          <IconWithBadge id='bullhorn' icon={CampaignIcon} count={unreadAnnouncements} />
         </button>
       );
     }
@@ -199,6 +202,7 @@ class HomeTimeline extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='home'
+          iconComponent={HomeIcon}
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}

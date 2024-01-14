@@ -11,6 +11,9 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { ReactComponent as DeleteForeverIcon } from '@material-symbols/svg-600/outlined/delete_forever.svg';
+import { ReactComponent as DoneAllIcon } from '@material-symbols/svg-600/outlined/done_all.svg';
+import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-600/outlined/notifications-fill.svg';
 import { debounce } from 'lodash';
 
 import { compareId } from 'flavours/glitch/compare_id';
@@ -293,7 +296,7 @@ class Notifications extends PureComponent {
           onClick={this.handleMarkAsRead}
           className='column-header__button'
         >
-          <Icon id='check' />
+          <Icon id='done-all' icon={DoneAllIcon} />
         </button>,
       );
     }
@@ -317,7 +320,7 @@ class Notifications extends PureComponent {
         onClick={this.onEnterCleaningMode}
         className={notifCleaningButtonClassName}
       >
-        <Icon id='eraser' />
+        <Icon id='eraser' icon={DeleteForeverIcon} />
       </button>,
     );
 
@@ -338,6 +341,7 @@ class Notifications extends PureComponent {
       >
         <ColumnHeader
           icon='bell'
+          iconComponent={NotificationsIcon}
           active={isUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}

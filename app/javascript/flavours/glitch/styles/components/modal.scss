@@ -464,19 +464,6 @@
   background-color: inherit;
 }
 
-.actions-modal {
-  .status {
-    background: $white;
-    border-bottom-color: $ui-secondary-color;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-
-  .dropdown-menu__separator {
-    border-bottom-color: $ui-secondary-color;
-  }
-}
-
 .boost-modal__container {
   overflow-x: scroll;
   padding: 10px;
@@ -894,11 +881,6 @@
 }
 
 .actions-modal {
-  .status {
-    overflow-y: auto;
-    max-height: 300px;
-  }
-
   strong {
     display: block;
     font-weight: 500;

@@ -53,7 +53,10 @@
   box-sizing: border-box;
   color: $ui-button-color;
   cursor: pointer;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   font-family: inherit;
   font-size: 15px;
   font-weight: 500;
@@ -153,22 +156,39 @@
   }
 
   &.button--block {
-    display: block;
     width: 100%;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.icon {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  aspect-ratio: 1;
+
+  path {
+    fill: currentColor;
   }
 }
 
 .icon-button {
-  display: inline-block;
-  padding: 0;
+  display: inline-flex;
   color: $action-button-color;
   border: 0;
+  padding: 2px;
   border-radius: 4px;
   background: transparent;
   cursor: pointer;
-  transition: all 100ms ease-in;
-  transition-property: background-color, color;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
+  gap: 4px;
+  flex: 0 0 auto;
 
   a {
     color: inherit;
@@ -257,19 +277,9 @@
     }
   }
 
-  &--with-counter {
-    display: inline-flex;
-    align-items: center;
-    width: auto !important;
-    padding: 0;
-    padding-inline-end: 4px;
-    padding-inline-start: 2px;
-  }
-
   &__counter {
-    display: inline-block;
+    display: block;
     width: auto;
-    margin-inline-start: 4px;
     font-size: 12px;
     font-weight: 500;
   }
@@ -360,10 +370,6 @@ body > [data-popper-placement] {
 .notification__favourite-icon-wrapper {
   inset-inline-start: 0;
   position: absolute;
-
-  .fa.star-icon {
-    color: $gold-star;
-  }
 }
 
 .icon-button.star-icon.active {
@@ -376,14 +382,16 @@ body > [data-popper-placement] {
 
 .no-reduce-motion .icon-button.star-icon {
   &.activate {
-    & > .fa-star {
+    & > .icon {
       animation: spring-rotate-in 1s linear;
+      transform-origin: 50% 55%;
     }
   }
 
   &.deactivate {
-    & > .fa-star {
+    & > .icon {
       animation: spring-rotate-out 1s linear;
+      transform-origin: 50% 55%;
     }
   }
 }
@@ -561,7 +569,8 @@ body > [data-popper-placement] {
   z-index: 9999;
 
   &__text-button {
-    display: inline;
+    display: inline-flex;
+    align-items: center;
     color: inherit;
     background: transparent;
     border: 0;
@@ -573,6 +582,11 @@ body > [data-popper-placement] {
 
     &:focus {
       outline: 1px dotted;
+    }
+
+    .icon {
+      width: 15px;
+      height: 15px;
     }
   }
 
@@ -764,6 +778,7 @@ body > [data-popper-placement] {
 }
 
 .icon-with-badge {
+  display: inline-flex;
   position: relative;
 
   &__badge {
@@ -1082,33 +1097,6 @@ body > [data-popper-placement] {
   }
 }
 
-button.icon-button i.fa-retweet {
-  background-position: 0 0;
-  height: 19px;
-  transition: background-position 0.9s steps(10);
-  transition-duration: 0s;
-  vertical-align: middle;
-  width: 22px;
-
-  &::before {
-    display: none !important;
-  }
-}
-
-button.icon-button.active i.fa-retweet {
-  transition-duration: 0.9s;
-  background-position: 0 100%;
-}
-
-.reduce-motion button.icon-button i.fa-retweet,
-.reduce-motion button.icon-button.active i.fa-retweet {
-  transition: none;
-}
-
-.reduce-motion button.icon-button.disabled i.fa-retweet {
-  color: darken($action-button-color, 13%);
-}
-
 .load-more {
   display: block;
   color: $dark-text-color;
@@ -1219,7 +1207,9 @@ button.icon-button.active i.fa-retweet {
 }
 
 .text-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   padding: 0;
   font-family: inherit;
   font-size: inherit;
@@ -1227,6 +1217,11 @@ button.icon-button.active i.fa-retweet {
   border: 0;
   background: transparent;
   cursor: pointer;
+
+  .icon {
+    width: 13px;
+    height: 13px;
+  }
 }
 
 .loading-indicator {
@@ -1590,6 +1585,11 @@ button.icon-button.active i.fa-retweet {
         color: $primary-text-color;
         text-decoration: none;
 
+        .icon {
+          width: 15px;
+          height: 15px;
+        }
+
         &:hover,
         &:focus,
         &:active {
@@ -1736,5 +1736,10 @@ noscript {
   &:focus,
   &:active {
     background: rgba($ui-base-color, 0.85);
+  }
+
+  .icon {
+    width: 15px;
+    height: 15px;
   }
 }

@@ -104,6 +104,11 @@ $ui-header-height: 55px;
     .button-tertiary {
       flex-shrink: 1;
     }
+
+    .icon {
+      width: 22px;
+      height: 22px;
+    }
   }
 }
 
@@ -117,14 +122,6 @@ $ui-header-height: 55px;
   @media screen and (min-width: $no-gap-breakpoint) {
     padding-top: 10px;
     top: 0;
-  }
-
-  .tabs-bar {
-    margin-bottom: 0;
-
-    @media screen and (min-width: $no-gap-breakpoint) {
-      margin-bottom: 10px;
-    }
   }
 }
 
@@ -170,17 +167,21 @@ $ui-header-height: 55px;
 .column-back-button {
   box-sizing: border-box;
   width: 100%;
-  background: lighten($ui-base-color, 4%);
+  background: $ui-base-color;
   border-radius: 4px 4px 0 0;
   color: $highlight-text-color;
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 16px;
+  line-height: inherit;
   border: 0;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   text-align: unset;
   padding: 15px;
   margin: 0;
   z-index: 3;
+  display: flex;
+  align-items: center;
 
   &:hover {
     text-decoration: underline;
@@ -188,13 +189,16 @@ $ui-header-height: 55px;
 }
 
 .column-header__back-button {
-  background: lighten($ui-base-color, 4%);
+  display: flex;
+  align-items: center;
+  background: $ui-base-color;
   border: 0;
   font-family: inherit;
   color: $highlight-text-color;
   cursor: pointer;
-  flex: 0 0 auto;
+  white-space: nowrap;
   font-size: 16px;
+  flex: 0 0 auto;
   padding: 0;
   padding-inline-end: 5px;
   z-index: 3;
@@ -247,7 +251,9 @@ $ui-header-height: 55px;
 .column-link {
   background: lighten($ui-base-color, 8%);
   color: $primary-text-color;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   font-size: 16px;
   padding: 15px;
   text-decoration: none;
@@ -290,11 +296,6 @@ $ui-header-height: 55px;
       background: transparent;
     }
   }
-}
-
-.column-link__icon {
-  display: inline-block;
-  margin-inline-end: 5px;
 }
 
 .column-subheading {
@@ -344,7 +345,8 @@ $ui-header-height: 55px;
 .column-header {
   display: flex;
   font-size: 16px;
-  background: lighten($ui-base-color, 4%);
+  background: $ui-base-color;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px 4px 0 0;
   flex: 0 0 auto;
   cursor: pointer;
@@ -354,6 +356,9 @@ $ui-header-height: 55px;
   overflow: hidden;
 
   & > button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     margin: 0;
     border: 0;
     padding: 15px;
@@ -419,7 +424,10 @@ $ui-header-height: 55px;
 }
 
 .column-header__button {
-  background: lighten($ui-base-color, 4%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $ui-base-color;
   border: 0;
   color: $darker-text-color;
   cursor: pointer;
@@ -585,11 +593,6 @@ $ui-header-height: 55px;
     color: $error-red;
     text-decoration: underline;
   }
-}
-
-.column-header__icon {
-  display: inline-block;
-  margin-inline-end: 5px;
 }
 
 .column-settings__pillbar {

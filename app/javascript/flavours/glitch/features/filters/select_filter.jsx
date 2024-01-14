@@ -5,6 +5,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
+import { ReactComponent as AddIcon } from '@material-symbols/svg-600/outlined/add.svg';
 import fuzzysort from 'fuzzysort';
 
 import { Icon }  from 'flavours/glitch/components/icon';
@@ -78,7 +79,7 @@ class SelectFilter extends PureComponent {
   renderCreateNew (name) {
     return (
       <div key='add-new-filter' role='button' tabIndex={0} className='language-dropdown__dropdown__results__item' onClick={this.handleNewFilterClick} onKeyDown={this.handleKeyDown}>
-        <Icon id='plus' fixedWidth /> <FormattedMessage id='filter_modal.select_filter.prompt_new' defaultMessage='New category: {name}' values={{ name }} />
+        <Icon id='plus' icon={AddIcon} /> <FormattedMessage id='filter_modal.select_filter.prompt_new' defaultMessage='New category: {name}' values={{ name }} />
       </div>
     );
   }

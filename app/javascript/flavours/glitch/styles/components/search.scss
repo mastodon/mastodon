@@ -24,6 +24,15 @@
       margin-bottom: 10px;
     }
 
+    .icon-button {
+      padding: 0;
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+    }
+
     &__menu {
       margin-bottom: 20px;
 
@@ -132,17 +141,17 @@
     outline: 0 !important;
   }
 
-  .fa {
+  .icon {
     position: absolute;
-    top: 16px;
+    top: 13px;
     inset-inline-end: 10px;
     display: inline-block;
     opacity: 0;
     transition: all 100ms linear;
     transition-property: color, transform, opacity;
     font-size: 18px;
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
     color: $secondary-text-color;
     cursor: default;
     pointer-events: none;
@@ -153,7 +162,7 @@
     }
   }
 
-  .fa-search {
+  .icon-search {
     transform: rotate(0deg);
 
     &.active {
@@ -162,7 +171,7 @@
     }
   }
 
-  .fa-times-circle {
+  .icon-times-circle {
     top: 17px;
     transform: rotate(0deg);
     color: $action-button-color;
@@ -186,11 +195,9 @@
   font-weight: 500;
   font-size: 16px;
   cursor: default;
-
-  .fa {
-    display: inline-block;
-    margin-inline-end: 5px;
-  }
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .search-results__info {
@@ -200,21 +207,6 @@
 }
 
 .trends {
-  &__header {
-    color: $dark-text-color;
-    background: lighten($ui-base-color, 2%);
-    border-bottom: 1px solid darken($ui-base-color, 4%);
-    font-weight: 500;
-    padding: 15px;
-    font-size: 16px;
-    cursor: default;
-
-    .fa {
-      display: inline-block;
-      margin-inline-end: 5px;
-    }
-  }
-
   &__item {
     display: flex;
     align-items: center;

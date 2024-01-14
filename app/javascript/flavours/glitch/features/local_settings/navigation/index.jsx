@@ -4,12 +4,16 @@ import { PureComponent } from 'react';
 
 import { injectIntl, defineMessages } from 'react-intl';
 
-//  Our imports
+import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
+import { ReactComponent as EditIcon } from '@material-symbols/svg-600/outlined/edit.svg';
+import { ReactComponent as ExpandLessIcon } from '@material-symbols/svg-600/outlined/expand_less.svg';
+import { ReactComponent as ImageIcon } from '@material-symbols/svg-600/outlined/image.svg';
+import { ReactComponent as ManufacturingIcon } from '@material-symbols/svg-600/outlined/manufacturing.svg';
+import { ReactComponent as SettingsIcon } from '@material-symbols/svg-600/outlined/settings-fill.svg';
+
 import { preferencesLink } from 'flavours/glitch/utils/backend_links';
 
 import LocalSettingsNavigationItem from './item';
-
-//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 const messages = defineMessages({
   general: {  id: 'settings.general', defaultMessage: 'General' },
@@ -41,6 +45,7 @@ class LocalSettingsNavigation extends PureComponent {
           index={0}
           onNavigate={onNavigate}
           icon='cogs'
+          iconComponent={ManufacturingIcon}
           title={intl.formatMessage(messages.general)}
         />
         <LocalSettingsNavigationItem
@@ -48,6 +53,7 @@ class LocalSettingsNavigation extends PureComponent {
           index={1}
           onNavigate={onNavigate}
           icon='pencil'
+          iconComponent={EditIcon}
           title={intl.formatMessage(messages.compose)}
         />
         <LocalSettingsNavigationItem
@@ -62,6 +68,7 @@ class LocalSettingsNavigation extends PureComponent {
           index={3}
           onNavigate={onNavigate}
           icon='angle-double-up'
+          iconComponent={ExpandLessIcon}
           title={intl.formatMessage(messages.collapsed)}
         />
         <LocalSettingsNavigationItem
@@ -69,6 +76,7 @@ class LocalSettingsNavigation extends PureComponent {
           index={4}
           onNavigate={onNavigate}
           icon='image'
+          iconComponent={ImageIcon}
           title={intl.formatMessage(messages.media)}
         />
         <LocalSettingsNavigationItem
@@ -76,6 +84,7 @@ class LocalSettingsNavigation extends PureComponent {
           href={preferencesLink}
           index={5}
           icon='cog'
+          iconComponent={SettingsIcon}
           title={intl.formatMessage(messages.preferences)}
         />
         <LocalSettingsNavigationItem
@@ -84,6 +93,7 @@ class LocalSettingsNavigation extends PureComponent {
           index={6}
           onNavigate={onClose}
           icon='times'
+          iconComponent={CloseIcon}
           title={intl.formatMessage(messages.close)}
         />
       </nav>

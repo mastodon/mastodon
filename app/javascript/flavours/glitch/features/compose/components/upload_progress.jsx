@@ -3,6 +3,7 @@ import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { ReactComponent as UploadFileIcon } from '@material-symbols/svg-600/outlined/upload_file.svg';
 import spring from 'react-motion/lib/spring';
 
 import { Icon }  from 'flavours/glitch/components/icon';
@@ -35,7 +36,7 @@ export default class UploadProgress extends PureComponent {
     return (
       <div className='upload-progress'>
         <div className='upload-progress__icon'>
-          <Icon id='upload' />
+          <Icon id='upload' icon={UploadFileIcon} />
         </div>
 
         <div className='upload-progress__message'>

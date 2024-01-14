@@ -3,6 +3,8 @@ import { PureComponent } from 'react';
 
 import { injectIntl, defineMessages } from 'react-intl';
 
+import { ReactComponent as PersonIcon } from '@material-symbols/svg-600/outlined/person.svg';
+
 import ColumnHeader from '../../../components/column_header';
 
 const messages = defineMessages({
@@ -23,6 +25,7 @@ class ProfileColumnHeader extends PureComponent {
     return (
       <ColumnHeader
         icon='user-circle'
+        iconComponent={PersonIcon}
         title={intl.formatMessage(messages.profile)}
         onClick={onClick}
         showBackButton

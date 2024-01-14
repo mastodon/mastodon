@@ -15,41 +15,24 @@ $emojis-requiring-inversion: 'back' 'copyright' 'curly_loop' 'currency_exchange'
   }
 }
 
-// Display a checkmark on active UI elements otherwise differing only by color
-.status__action-bar-button,
-.detailed-status__button .icon-button {
-  position: relative;
-
-  &.active::after {
-    position: absolute;
-    content: '\F00C';
-    font-size: 50%;
-    inset-inline-end: -0.55em;
-    top: -0.44em;
-
-    /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword -- this is an icon font, this can't use a generic font */
-    font-family: FontAwesome;
-  }
-}
-
 .hicolor-privacy-icons {
-  .status__visibility-icon.fa-globe,
-  .privacy-dropdown__option .fa-globe {
+  .status__visibility-icon.icon-globe,
+  .privacy-dropdown__option .icon-globe {
     color: #1976d2;
   }
 
-  .status__visibility-icon.fa-unlock,
-  .privacy-dropdown__option .fa-unlock {
+  .status__visibility-icon.icon-unlock,
+  .privacy-dropdown__option .icon-unlock {
     color: #388e3c;
   }
 
-  .status__visibility-icon.fa-lock,
-  .privacy-dropdown__option .fa-lock {
+  .status__visibility-icon.icon-lock,
+  .privacy-dropdown__option .icon-lock {
     color: #ffa000;
   }
 
-  .status__visibility-icon.fa-envelope,
-  .privacy-dropdown__option .fa-envelope {
+  .status__visibility-icon.icon-envelope,
+  .privacy-dropdown__option .icon-envelope {
     color: #d32f2f;
   }
 }

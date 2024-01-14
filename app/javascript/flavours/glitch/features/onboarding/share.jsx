@@ -9,14 +9,14 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { ReactComponent as ArrowRightAltIcon } from '@material-symbols/svg-600/outlined/arrow_right_alt.svg';
+import { ReactComponent as ContentCopyIcon } from '@material-symbols/svg-600/outlined/content_copy.svg';
 import SwipeableViews from 'react-swipeable-views';
 
 import Column from 'flavours/glitch/components/column';
 import ColumnBackButton from 'flavours/glitch/components/column_back_button';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { me, domain } from 'flavours/glitch/initial_state';
-
-import ArrowSmallRight from './components/arrow_small_right';
 
 const messages = defineMessages({
   shareableMessage: { id: 'onboarding.share.message', defaultMessage: 'I\'m {username} on #Mastodon! Come follow me at {url}' },
@@ -79,7 +79,7 @@ class CopyPasteText extends PureComponent {
         <textarea readOnly value={value} ref={this.setRef} onClick={this.handleInputClick} onFocus={this.handleFocus} onBlur={this.handleBlur} />
 
         <button className='button' onClick={this.handleButtonClick}>
-          <Icon id='copy' /> {copied ? <FormattedMessage id='copypaste.copied' defaultMessage='Copied' /> : <FormattedMessage id='copypaste.copy_to_clipboard' defaultMessage='Copy to clipboard' />}
+          <Icon id='copy' icon={ContentCopyIcon} /> {copied ? <FormattedMessage id='copypaste.copied' defaultMessage='Copied' /> : <FormattedMessage id='copypaste.copy_to_clipboard' defaultMessage='Copy to clipboard' />}
         </button>
       </div>
     );
@@ -178,12 +178,12 @@ class Share extends PureComponent {
           <div className='onboarding__links'>
             <Link to='/home' className='onboarding__link'>
               <FormattedMessage id='onboarding.actions.go_to_home' defaultMessage='Take me to my home feed' />
-              <ArrowSmallRight />
+              <Icon icon={ArrowRightAltIcon} />
             </Link>
 
             <Link to='/explore' className='onboarding__link'>
               <FormattedMessage id='onboarding.actions.go_to_explore' defaultMessage='Take me to trending' />
-              <ArrowSmallRight />
+              <Icon icon={ArrowRightAltIcon} />
             </Link>
           </div>
 

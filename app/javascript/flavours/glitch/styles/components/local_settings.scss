@@ -52,7 +52,9 @@
 }
 
 .glitch.local-settings__navigation__item {
-  display: block;
+  display: flex;
+  gap: 5px;
+  align-items: center;
   padding: 15px 20px;
   color: inherit;
   background: lighten($ui-secondary-color, 8%);

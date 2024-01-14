@@ -7,6 +7,8 @@ import { Helmet } from 'react-helmet';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { ReactComponent as InfoIcon } from '@material-symbols/svg-600/outlined/info.svg';
+
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
 
@@ -33,7 +35,8 @@ class KeyboardShortcuts extends ImmutablePureComponent {
       <Column>
         <ColumnHeader
           title={intl.formatMessage(messages.heading)}
-          icon='question'
+          icon='info-circle'
+          iconComponent={InfoIcon}
           multiColumn={multiColumn}
         />
 

@@ -18,8 +18,10 @@ export default class ComposerOptionsDropdown extends PureComponent {
     isUserTouching: PropTypes.func,
     disabled: PropTypes.bool,
     icon: PropTypes.string,
+    iconComponent: PropTypes.func,
     items: PropTypes.arrayOf(PropTypes.shape({
       icon: PropTypes.string,
+      iconComponent: PropTypes.func,
       meta: PropTypes.string,
       name: PropTypes.string.isRequired,
       text: PropTypes.string,
@@ -174,6 +176,7 @@ export default class ComposerOptionsDropdown extends PureComponent {
       disabled,
       title,
       icon,
+      iconComponent,
       items,
       onChange,
       value,
@@ -183,33 +186,30 @@ export default class ComposerOptionsDropdown extends PureComponent {
     } = this.props;
     const { open, placement } = this.state;
 
-    const active = value && items.findIndex(({ name }) => name === value) === (placement === 'bottom' ? 0 : (items.length - 1));
-
     return (
       <div
         className={classNames('privacy-dropdown', placement, { active: open })}
         onKeyDown={this.handleKeyDown}
         ref={this.setTargetRef}
       >
-        <div className={classNames('privacy-dropdown__value', { active })}>
-          <IconButton
-            active={open}
-            className='privacy-dropdown__value-icon'
-            disabled={disabled}
-            icon={icon}
-            inverted
-            onClick={this.handleToggle}
-            onMouseDown={this.handleMouseDown}
-            onKeyDown={this.handleButtonKeyDown}
-            onKeyPress={this.handleKeyPress}
-            size={18}
-            style={{
-              height: null,
-              lineHeight: '27px',
-            }}
-            title={title}
-          />
-        </div>
+        <IconButton
+          active={open}
+          className='privacy-dropdown__value-icon'
+          disabled={disabled}
+          icon={icon}
+          iconComponent={iconComponent}
+          inverted
+          onClick={this.handleToggle}
+          onMouseDown={this.handleMouseDown}
+          onKeyDown={this.handleButtonKeyDown}
+          onKeyPress={this.handleKeyPress}
+          size={18}
+          style={{
+            height: null,
+            lineHeight: '27px',
+          }}
+          title={title}
+        />
 
         <Overlay
           containerPadding={20}

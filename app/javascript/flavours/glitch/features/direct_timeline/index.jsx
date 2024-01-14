@@ -7,6 +7,8 @@ import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
+import { ReactComponent as MailIcon } from '@material-symbols/svg-600/outlined/mail.svg';
+
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import { mountConversations, unmountConversations, expandConversations } from 'flavours/glitch/actions/conversations';
 import { connectDirectStream } from 'flavours/glitch/actions/streaming';
@@ -139,6 +141,7 @@ class DirectTimeline extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='envelope'
+          iconComponent={MailIcon}
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}

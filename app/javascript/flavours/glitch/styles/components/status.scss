@@ -85,10 +85,6 @@
 
     &:hover {
       text-decoration: underline;
-
-      .fa {
-        color: lighten($dark-text-color, 7%);
-      }
     }
 
     &.mention {
@@ -99,10 +95,6 @@
           text-decoration: underline;
         }
       }
-    }
-
-    .fa {
-      color: $dark-text-color;
     }
   }
 
@@ -144,7 +136,7 @@
 }
 
 .status__content__spoiler-link {
-  display: inline-block;
+  display: inline-flex;
   border-radius: 2px;
   background: lighten($ui-base-color, 30%);
   border: 0;
@@ -168,8 +160,6 @@
     border-inline-start: 1px solid currentColor;
     padding: 0;
     padding-inline-start: 4px;
-    font-size: 16px;
-    vertical-align: -2px;
   }
 }
 
@@ -440,20 +430,25 @@
     padding-inline-end: 2px;
   }
 
-  .status__collapse-button.active > .fa-angle-double-up {
+  & > .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .status__collapse-button.active > .icon {
     transform: rotate(-180deg);
   }
 }
 
 .no-reduce-motion .status__collapse-button {
   &.activate {
-    & > .fa-angle-double-up {
+    & > .icon {
       animation: spring-flip-in 1s linear;
     }
   }
 
   &.deactivate {
-    & > .fa-angle-double-up {
+    & > .icon {
       animation: spring-flip-out 1s linear;
     }
   }
@@ -589,6 +584,13 @@
   color: $dark-text-color;
   font-size: 14px;
   line-height: 18px;
+
+  .icon {
+    width: 15px;
+    height: 15px;
+    position: relative;
+    top: 0.145em;
+  }
 }
 
 .detailed-status__action-bar {
@@ -601,18 +603,24 @@
 }
 
 .detailed-status__link {
+  display: inline-flex;
+  align-items: center;
   color: inherit;
   text-decoration: none;
-  white-space: nowrap;
+  gap: 6px;
+  position: relative;
+  top: 0.145em;
+
+  .icon {
+    top: 0;
+  }
 }
 
 .detailed-status__favorites,
 .detailed-status__reblogs {
-  display: inline-block;
   font-weight: 500;
   font-size: 12px;
-  line-height: 17px;
-  margin-inline-start: 6px;
+  line-height: 18px;
 }
 
 .status__display-name,
@@ -852,8 +860,9 @@ a.status-card {
   background: lighten($ui-base-color, 8%);
   position: relative;
 
-  & > .fa {
-    font-size: 21px;
+  & > .icon {
+    width: 18px;
+    height: 18px;
     position: absolute;
     transform-origin: 50% 50%;
     top: 50%;
@@ -952,10 +961,6 @@ a.status-card.compact:hover {
     align-items: center;
     justify-content: center;
     font-size: 26px;
-
-    .fa {
-      display: block;
-    }
   }
 
   &__list {
@@ -991,7 +996,7 @@ a.status-card.compact:hover {
       display: block;
     }
 
-    .fa {
+    .icon {
       color: $dark-text-color;
     }
   }
@@ -1153,10 +1158,9 @@ a.status-card.compact:hover {
   color: $darker-text-color;
   aspect-ratio: 16 / 9;
 
-  i {
-    display: block;
-    font-size: 24px;
-    font-weight: 400;
+  .icon {
+    width: 24px;
+    height: 24px;
     margin-bottom: 10px;
   }
 

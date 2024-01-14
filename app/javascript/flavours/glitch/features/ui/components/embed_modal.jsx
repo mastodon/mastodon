@@ -4,6 +4,8 @@ import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
+
 import api from 'flavours/glitch/api';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 
@@ -62,7 +64,7 @@ class EmbedModal extends ImmutablePureComponent {
     return (
       <div className='modal-root__modal report-modal embed-modal'>
         <div className='report-modal__target'>
-          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={16} />
+          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' iconComponent={CloseIcon} onClick={onClose} size={16} />
           <FormattedMessage id='status.embed' defaultMessage='Embed' />
         </div>
 

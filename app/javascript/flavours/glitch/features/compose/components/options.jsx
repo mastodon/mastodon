@@ -6,6 +6,14 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { ReactComponent as AttachFileIcon } from '@material-symbols/svg-600/outlined/attach_file.svg';
+import { ReactComponent as BrushIcon } from '@material-symbols/svg-600/outlined/brush.svg';
+import { ReactComponent as CodeIcon } from '@material-symbols/svg-600/outlined/code.svg';
+import { ReactComponent as DescriptionIcon } from '@material-symbols/svg-600/outlined/description.svg';
+import { ReactComponent as InsertChartIcon } from '@material-symbols/svg-600/outlined/insert_chart.svg';
+import { ReactComponent as MarkdownIcon } from '@material-symbols/svg-600/outlined/markdown.svg';
+import { ReactComponent as MoreHorizIcon } from '@material-symbols/svg-600/outlined/more_horiz.svg';
+import { ReactComponent as UploadFileIcon } from '@material-symbols/svg-600/outlined/upload_file.svg';
 import Toggle from 'react-toggle';
 
 import { IconButton } from 'flavours/glitch/components/icon_button';
@@ -195,16 +203,19 @@ class ComposerOptions extends ImmutablePureComponent {
     const contentTypeItems = {
       plain: {
         icon: 'file-text',
+        iconComponent: DescriptionIcon,
         name: 'text/plain',
         text: formatMessage(messages.plain),
       },
       html: {
         icon: 'code',
+        iconComponent: CodeIcon,
         name: 'text/html',
         text: formatMessage(messages.html),
       },
       markdown: {
         icon: 'arrow-circle-down',
+        iconComponent: MarkdownIcon,
         name: 'text/markdown',
         text: formatMessage(messages.markdown),
       },
@@ -226,14 +237,17 @@ class ComposerOptions extends ImmutablePureComponent {
         <DropdownContainer
           disabled={disabled || !allowMedia}
           icon='paperclip'
+          iconComponent={AttachFileIcon}
           items={[
             {
               icon: 'cloud-upload',
+              iconComponent: UploadFileIcon,
               name: 'upload',
               text: formatMessage(messages.upload),
             },
             {
               icon: 'paint-brush',
+              iconComponent: BrushIcon,
               name: 'doodle',
               text: formatMessage(messages.doodle),
             },
@@ -246,6 +260,7 @@ class ComposerOptions extends ImmutablePureComponent {
             active={hasPoll}
             disabled={disabled || !allowPoll}
             icon='tasks'
+            iconComponent={InsertChartIcon}
             inverted
             onClick={onTogglePoll}
             size={18}
@@ -256,12 +271,12 @@ class ComposerOptions extends ImmutablePureComponent {
             title={formatMessage(hasPoll ? messages.remove_poll : messages.add_poll)}
           />
         )}
-        <hr />
         <PrivacyDropdownContainer disabled={disabled || isEditing} />
         {showContentTypeChoice && (
           <DropdownContainer
             disabled={disabled}
             icon={(contentTypeItems[contentType.split('/')[1]] || {}).icon}
+            iconComponent={(contentTypeItems[contentType.split('/')[1]] || {}).iconComponent}
             items={[
               contentTypeItems.plain,
               contentTypeItems.html,
@@ -285,6 +300,7 @@ class ComposerOptions extends ImmutablePureComponent {
         <DropdownContainer
           disabled={disabled || isEditing}
           icon='ellipsis-h'
+          iconComponent={MoreHorizIcon}
           items={advancedOptions ? [
             {
               meta: formatMessage(messages.local_only_long),

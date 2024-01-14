@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
@@ -163,6 +164,7 @@ class Dropdown extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     icon: PropTypes.string,
+    iconComponent: PropTypes.func,
     items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list]).isRequired,
     loading: PropTypes.bool,
     size: PropTypes.number,
@@ -255,7 +257,7 @@ class Dropdown extends PureComponent {
   };
 
   findTarget = () => {
-    return this.target;
+    return this.target?.buttonRef?.current ?? this.target;
   };
 
   componentWillUnmount = () => {
@@ -271,6 +273,7 @@ class Dropdown extends PureComponent {
   render () {
     const {
       icon,
+      iconComponent,
       items,
       size,
       title,
@@ -291,9 +294,11 @@ class Dropdown extends PureComponent {
       onMouseDown: this.handleMouseDown,
       onKeyDown: this.handleButtonKeyDown,
       onKeyPress: this.handleKeyPress,
+      ref: this.setTargetRef,
     }) : (
       <IconButton
-        icon={icon}
+        icon={!open ? icon : 'close'}
+        iconComponent={!open ? iconComponent : CloseIcon}
         title={title}
         active={open}
         disabled={disabled}
@@ -302,14 +307,14 @@ class Dropdown extends PureComponent {
         onMouseDown={this.handleMouseDown}
         onKeyDown={this.handleButtonKeyDown}
         onKeyPress={this.handleKeyPress}
+        ref={this.setTargetRef}
       />
     );
 
     return (
       <>
-        <span ref={this.setTargetRef}>
-          {button}
-        </span>
+        {button}
+
         <Overlay show={open} offset={[5, 5]} placement={'bottom'} flip target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
           {({ props, arrowProps, placement }) => (
             <div {...props}>

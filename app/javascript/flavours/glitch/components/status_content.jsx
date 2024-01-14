@@ -9,6 +9,12 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { ReactComponent as ImageIcon } from '@material-symbols/svg-600/outlined/image.svg';
+import { ReactComponent as InsertChartIcon } from '@material-symbols/svg-600/outlined/insert_chart.svg';
+import { ReactComponent as LinkIcon } from '@material-symbols/svg-600/outlined/link.svg';
+import { ReactComponent as MovieIcon } from '@material-symbols/svg-600/outlined/movie.svg';
+import { ReactComponent as MusicNoteIcon } from '@material-symbols/svg-600/outlined/music_note.svg';
+
 import { Icon } from 'flavours/glitch/components/icon';
 import { autoPlayGif, languages as preloadedLanguages } from 'flavours/glitch/initial_state';
 import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
@@ -381,12 +387,21 @@ class StatusContent extends PureComponent {
           />,
         ];
         if (mediaIcons) {
+          const mediaComponents = {
+            'link': LinkIcon,
+            'picture-o': ImageIcon,
+            'tasks': InsertChartIcon,
+            'video-camera': MovieIcon,
+            'music': MusicNoteIcon,
+          };
+
           mediaIcons.forEach((mediaIcon, idx) => {
             toggleText.push(
               <Icon
                 fixedWidth
                 className='status__content__spoiler-icon'
                 id={mediaIcon}
+                icon={mediaComponents[mediaIcon]}
                 aria-hidden='true'
                 key={`icon-${idx}`}
               />,

@@ -2,14 +2,14 @@
  * Notification overlay
  */
 
-
-//  Package imports.
 import PropTypes from 'prop-types';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/check.svg';
 
 import { Icon } from 'flavours/glitch/components/icon';
 
@@ -49,7 +49,7 @@ class NotificationOverlay extends ImmutablePureComponent {
       >
         <div className='wrappy'>
           <div className='ckbox' aria-hidden='true' title={label}>
-            {active ? (<Icon id='check' />) : ''}
+            {active ? (<Icon id='check' icon={CheckIcon} />) : ''}
           </div>
         </div>
       </div>
