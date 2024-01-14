@@ -94,10 +94,51 @@ $font-display: 'mastodon-font-display' !default;
 $font-monospace: 'mastodon-font-monospace' !default;
 
 :root {
-  --dropdown-border-color: #{lighten($ui-base-color, 12%)};
-  --dropdown-background-color: #{lighten($ui-base-color, 4%)};
+  --dropdown-border-color: var(--surface-outline);
+  --dropdown-background-color: var(--surface);
   --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)},
     0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
-  --modal-background-color: #{darken($ui-base-color, 4%)};
-  --modal-border-color: #{lighten($ui-base-color, 4%)};
+  --modal-background-color: var(--background);
+  --modal-border-color: var(--background-outline);
+
+  // New design system
+  --overlay: #000;
+  --overlay-variant: rgba(0, 0, 0, 0.85);
+  --overlay-variant-highlighted: rgba(0, 0, 0, 0.9);
+  --on-overlay: #fff;
+  --background: #161316;
+  --background-outline: #302D30;
+  --background-highlighted: unset;
+  --background-muted: unset;
+  --on-background: #FDFAFE;
+  --on-background-muted: #D1CDD1;
+  --primary: #B2A2FF;
+  --primary-outline: unset;
+  --primary-highlighted: #C3B9FF;
+  --primary-muted: unset;
+  --on-primary: #2A1880;
+  --surface: #302D30;
+  --surface-outline: #6C686C;
+  --surface-highlighted: #4D4A4D;
+  --surface-muted: unset;
+  --on-surface: unset;
+  --on-surface-muted: #A8A5A9;
+  --dangerous: #EC8786;
+  --successful: #7DB664;
+  --successful-outline: #9BC789;
+  --successful-variant: #203417;
+  // One-offs
+  --favourite: #DB9640;
+  --favourite-highlighted: #E4B073;
+  --bookmark: #C06868;
+  --bookmark-highlighted: #EC8786;
+  // Geometry
+  --radius-sm: 4px;
+
+  --Neutral-105: color(display-p3 0.0863 0.0745 0.0863);
+  --Neutral-105-invert: color(display-p3 0.9922 0.9804 0.9961);
+  --Neutral-100: color(display-p3 0.1882 0.1765 0.1882);
+  --Neutral-90: color(display-p3 0.302 0.2902 0.302);
+  --Neutral-77-invert: color(display-p3 0.8196 0.8039 0.8196);
+  --Neutral-65: color(display-p3 0.5255 0.5137 0.5255);
 }

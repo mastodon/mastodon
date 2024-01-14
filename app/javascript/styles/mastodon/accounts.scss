@@ -216,8 +216,8 @@
   display: inline-flex;
   padding: 4px;
   padding-inline-end: 8px;
-  border: 1px solid $highlight-text-color;
-  color: $highlight-text-color;
+  border: 1px solid var(--primary);
+  color: var(--primary);
   font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.5px;
@@ -305,16 +305,16 @@
   }
 
   .verified {
-    border: 1px solid rgba($valid-value-color, 0.5);
-    background: rgba($valid-value-color, 0.25);
+    border: 1px solid var(--successful-outline);
+    background: var(--successful-variant);
 
     a {
-      color: $valid-value-color;
+      color: var(--successful);
       font-weight: 500;
     }
 
     &__mark {
-      color: $valid-value-color;
+      color: var(--successful);
     }
   }
 

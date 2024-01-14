@@ -47,11 +47,11 @@
 }
 
 .button {
-  background-color: $ui-button-background-color;
+  background-color: var(--primary);
   border: 10px none;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   box-sizing: border-box;
-  color: $ui-button-color;
+  color: var(--on-primary);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -74,7 +74,7 @@
   &:active,
   &:focus,
   &:hover {
-    background-color: $ui-button-focus-background-color;
+    background-color: var(--primary-highlighted);
   }
 
   &:focus-visible {
@@ -85,14 +85,14 @@
     &:active,
     &:focus,
     &:hover {
-      background-color: $ui-button-destructive-focus-background-color;
+      background-color: var(--danger);
       transition: none;
     }
   }
 
   &:disabled,
   &.disabled {
-    background-color: $ui-primary-color;
+    background-color: var(--primary-muted);
     cursor: default;
   }
 
@@ -152,7 +152,7 @@
       &:focus,
       &:hover {
         background: $valid-value-color;
-        color: $primary-text-color;
+        color: var(--on-background);
       }
     }
 
@@ -164,7 +164,7 @@
       &:focus,
       &:hover {
         background: $error-value-color;
-        color: $primary-text-color;
+        color: var(--on-background);
       }
     }
   }
@@ -198,10 +198,10 @@
 
 .icon-button {
   display: inline-flex;
-  color: $action-button-color;
+  color: var(--on-background-muted);
   border: 0;
   padding: 0;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   background: transparent;
   cursor: pointer;
   align-items: center;
@@ -218,8 +218,8 @@
   &:hover,
   &:active,
   &:focus {
-    color: lighten($action-button-color, 7%);
-    background-color: rgba($action-button-color, 0.15);
+    color: var(--on-background);
+    // background-color: rgba($action-button-color, 0.15);
   }
 
   &:focus-visible {
@@ -227,7 +227,7 @@
   }
 
   &.disabled {
-    color: darken($action-button-color, 13%);
+    opacity: 0.5;
     background-color: transparent;
     cursor: default;
   }
@@ -253,30 +253,30 @@
   }
 
   &.active {
-    color: $highlight-text-color;
+    color: var(--primary);
 
     &:hover,
     &:active,
     &:focus {
-      color: $highlight-text-color;
+      color: var(--primary-highlighted);
       background-color: transparent;
     }
 
     &.disabled {
-      color: lighten($highlight-text-color, 13%);
+      color: var(--primary-muted);
     }
   }
 
   &.overlayed {
     box-sizing: content-box;
-    background: rgba($black, 0.65);
+    background: var(--overlay-variant);
     backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
-    color: rgba($white, 0.7);
-    border-radius: 4px;
+    color: var(--on-overlay);
+    border-radius: var(--radius-sm);
     padding: 2px;
 
     &:hover {
-      background: rgba($black, 0.9);
+      // background: rgba($black, 0.9);
     }
   }
 
@@ -302,7 +302,7 @@
 .text-icon-button {
   color: $lighter-text-color;
   border: 0;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   background: transparent;
   cursor: pointer;
   font-weight: 600;
@@ -392,7 +392,7 @@ body > [data-popper-placement] {
       flex: 0 0 auto;
       margin-inline-end: 10px;
       top: -1px;
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
       vertical-align: middle;
       cursor: inherit;
 
@@ -411,7 +411,7 @@ body > [data-popper-placement] {
     background: $ui-primary-color;
     box-shadow: 0 2px 6px rgba($base-shadow-color, 0.3);
     padding: 8px 10px;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     font-size: 13px;
     font-weight: 400;
 
@@ -497,12 +497,12 @@ body > [data-popper-placement] {
   }
 
   .spoiler-input__input {
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
   }
 
   .autosuggest-textarea__textarea {
     min-height: 100px;
-    border-radius: 4px 4px 0 0;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
     padding-bottom: 0;
     padding-right: 10px + 22px; // Cannot use inline-end because of dir=auto
     resize: none;
@@ -532,7 +532,7 @@ body > [data-popper-placement] {
     z-index: 99;
     box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
     background: $ui-secondary-color;
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
     color: $inverted-text-color;
     font-size: 14px;
     padding: 6px;
@@ -545,7 +545,7 @@ body > [data-popper-placement] {
   .autosuggest-textarea__suggestions__item {
     padding: 10px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
 
     &:hover,
     &:focus,
@@ -672,7 +672,7 @@ body > [data-popper-placement] {
     }
 
     .compose-form__upload-thumbnail {
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
       background-color: $base-shadow-color;
       background-position: center;
       background-size: cover;
@@ -686,7 +686,7 @@ body > [data-popper-placement] {
   .compose-form__buttons-wrapper {
     padding: 10px;
     background: darken($simple-background-color, 8%);
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
     display: flex;
     justify-content: space-between;
     flex: 0 0 auto;
@@ -795,7 +795,7 @@ body > [data-popper-placement] {
 }
 
 .reply-indicator {
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   margin-bottom: 10px;
   background: $ui-primary-color;
   padding: 10px;
@@ -847,7 +847,7 @@ body > [data-popper-placement] {
   overflow: hidden;
   text-overflow: ellipsis;
   padding-top: 2px;
-  color: $primary-text-color;
+  color: var(--on-background);
 
   &:focus {
     outline: 0;
@@ -878,7 +878,7 @@ body > [data-popper-placement] {
   }
 
   a {
-    color: $secondary-text-color;
+    color: var(--primary);
     text-decoration: none;
     unicode-bidi: isolate;
 
@@ -898,15 +898,16 @@ body > [data-popper-placement] {
   }
 
   a.unhandled-link {
-    color: $highlight-text-color;
+    color: var(--primary);
   }
 
   .status__content__spoiler-link {
-    background: $action-button-color;
+    background: var(--surface);
+    color: var(--on-surface);
 
     &:hover,
     &:focus {
-      background: lighten($action-button-color, 7%);
+      background: var(--surface-highlighted);
       text-decoration: none;
     }
 
@@ -950,7 +951,7 @@ body > [data-popper-placement] {
   }
 
   a {
-    color: $secondary-text-color;
+    color: var(--primary);
     text-decoration: none;
 
     &:hover {
@@ -968,7 +969,7 @@ body > [data-popper-placement] {
     }
 
     &.unhandled-link {
-      color: $highlight-text-color;
+      color: var(--primary);
     }
   }
 }
@@ -983,7 +984,7 @@ body > [data-popper-placement] {
   align-items: center;
   font-size: 15px;
   line-height: 22px;
-  color: $highlight-text-color;
+  color: var(--primary);
   border: 0;
   background: transparent;
   padding: 0;
@@ -1007,7 +1008,7 @@ body > [data-popper-placement] {
   line-height: 22px;
   display: flex;
   justify-content: space-between;
-  color: $dark-text-color;
+  color: var(--on-background-muted);
 }
 
 .status__content__spoiler-link {
@@ -1026,7 +1027,7 @@ body > [data-popper-placement] {
 }
 
 .status__wrapper--filtered {
-  color: $dark-text-color;
+  color: var(--on-background-muted);
   border: 0;
   font-size: inherit;
   text-align: center;
@@ -1036,11 +1037,11 @@ body > [data-popper-placement] {
   box-sizing: border-box;
   width: 100%;
   clear: both;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-outline);
 
   &__button {
     display: inline;
-    color: lighten($ui-highlight-color, 8%);
+    color: var(--primary);
     border: 0;
     background: transparent;
     padding: 0;
@@ -1057,11 +1058,11 @@ body > [data-popper-placement] {
 .focusable {
   &:focus {
     outline: 0;
-    background: lighten($ui-base-color, 4%);
+    background: var(--background-highlighted);
 
     .detailed-status,
     .detailed-status__action-bar {
-      background: lighten($ui-base-color, 8%);
+      background: var(--background-highlighted);
     }
   }
 }
@@ -1069,7 +1070,7 @@ body > [data-popper-placement] {
 .status {
   padding: 16px;
   min-height: 54px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-outline);
   cursor: auto;
 
   @keyframes fade {
@@ -1118,7 +1119,7 @@ body > [data-popper-placement] {
       }
 
       &__spoiler-link {
-        color: $primary-text-color;
+        color: var(--on-background);
         background: $ui-primary-color;
 
         &:hover,
@@ -1153,12 +1154,12 @@ body > [data-popper-placement] {
   }
 
   &--first-in-thread {
-    border-top: 1px solid lighten($ui-base-color, 8%);
+    border-top: 1px solid var(--background-outline);
   }
 
   &__line {
     height: 16px - 4px;
-    border-inline-start: 2px solid lighten($ui-base-color, 8%);
+    border-inline-start: 2px solid var(--background-outline);
     width: 0;
     position: absolute;
     top: 0;
@@ -1175,7 +1176,7 @@ body > [data-popper-placement] {
         top: 16px - 4px;
         height: 46px + 4px + 4px;
         width: 2px;
-        background: $ui-base-color;
+        background: var(--background);
         inset-inline-start: -2px;
       }
     }
@@ -1198,11 +1199,11 @@ body > [data-popper-placement] {
   height: 40px;
   order: 2;
   flex: 0 0 auto;
-  color: $dark-text-color;
+  color: var(--on-background-muted);
 }
 
 .notification__relative_time {
-  color: $dark-text-color;
+  color: var(--on-background-muted);
   float: right;
   font-size: 14px;
   padding-bottom: 1px;
@@ -1219,7 +1220,7 @@ body > [data-popper-placement] {
 }
 
 .status__display-name {
-  color: $dark-text-color;
+  color: var(--on-background-muted);
 }
 
 .status__info .status__display-name {
@@ -1299,10 +1300,10 @@ body > [data-popper-placement] {
   font-size: 15px;
   line-height: 22px;
   font-weight: 500;
-  color: $dark-text-color;
+  color: var(--on-background-muted);
 
   .status__display-name strong {
-    color: $dark-text-color;
+    color: var(--on-background);
   }
 
   > span {
@@ -1313,14 +1314,14 @@ body > [data-popper-placement] {
 }
 
 .status__wrapper-direct {
-  background: mix($ui-base-color, $ui-highlight-color, 95%);
+  //background: mix($ui-base-color, $ui-highlight-color, 95%);
 
   &:focus {
-    background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
+    //background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
   }
 
   .status__prepend {
-    color: $highlight-text-color;
+    //color: $highlight-text-color;
   }
 }
 
@@ -1332,6 +1333,18 @@ body > [data-popper-placement] {
   margin-top: 16px;
 }
 
+.detailed-status__action-bar,
+.status__action-bar {
+  .icon-button {
+    padding: 4px;
+
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
 .detailed-status__action-bar-dropdown {
   flex: 1 1 auto;
   display: flex;
@@ -1341,9 +1354,9 @@ body > [data-popper-placement] {
 }
 
 .detailed-status {
-  background: lighten($ui-base-color, 4%);
+  background: var(--background);
   padding: 16px;
-  border-top: 1px solid lighten($ui-base-color, 8%);
+  border-top: 1px solid var(--background-outline);
 
   &--flex {
     display: flex;
@@ -1391,7 +1404,7 @@ body > [data-popper-placement] {
 
 .detailed-status__meta {
   margin-top: 16px;
-  color: $dark-text-color;
+  color: var(--on-background-muted);
   font-size: 14px;
   line-height: 18px;
 
@@ -1404,9 +1417,9 @@ body > [data-popper-placement] {
 }
 
 .detailed-status__action-bar {
-  background: lighten($ui-base-color, 4%);
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  background: var(--background);
+  border-top: 1px solid var(--background-outline);
+  border-bottom: 1px solid var(--background-outline);
   display: flex;
   flex-direction: row;
   padding: 10px 0;
@@ -1415,26 +1428,22 @@ body > [data-popper-placement] {
 .detailed-status__wrapper-direct {
   .detailed-status,
   .detailed-status__action-bar {
-    background: mix($ui-base-color, $ui-highlight-color, 95%);
+    //background: mix($ui-base-color, $ui-highlight-color, 95%);
   }
 
   &:focus {
     .detailed-status,
     .detailed-status__action-bar {
-      background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
+      //background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
     }
   }
 
   .detailed-status__action-bar {
-    border-top-color: mix(
-      lighten($ui-base-color, 8%),
-      $ui-highlight-color,
-      95%
-    );
+    //border-top-color: mix(var(--Neutral-90), $ui-highlight-color, 95%);
   }
 
   .status__prepend {
-    color: $highlight-text-color;
+    //color: $highlight-text-color;
   }
 }
 
@@ -1470,12 +1479,12 @@ body > [data-popper-placement] {
 
 .domain {
   padding: 10px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-outline);
 
   .domain__domain-name {
     flex: 1 1 auto;
     display: block;
-    color: $primary-text-color;
+    color: var(--on-background);
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -1494,14 +1503,14 @@ body > [data-popper-placement] {
 
 .account {
   padding: 16px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-outline);
 
   .account__display-name {
     flex: 1 1 auto;
     display: flex;
     align-items: center;
     gap: 10px;
-    color: $darker-text-color;
+    color: var(--on-background-muted);
     overflow: hidden;
     text-decoration: none;
     font-size: 14px;
@@ -1536,10 +1545,10 @@ body > [data-popper-placement] {
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     margin-top: 10px;
-    color: $darker-text-color;
+    color: var(--on-background-muted);
 
     &--missing {
-      color: $dark-text-color;
+      color: var(--on-background-muted);
     }
 
     p {
@@ -1610,7 +1619,7 @@ body > [data-popper-placement] {
       top: 50%;
       inset-inline-start: 50%;
       transform: translate(-50%, -50%);
-      color: $primary-text-color;
+      color: var(--on-background);
       text-shadow: 1px 1px 2px $base-shadow-color;
       font-weight: 700;
       font-size: 15px;
@@ -1667,7 +1676,7 @@ a .account__avatar {
 .status__display-name,
 .account__display-name {
   .display-name strong {
-    color: $primary-text-color;
+    color: var(--on-background);
   }
 }
 
@@ -1698,7 +1707,7 @@ a.account__display-name {
 }
 
 .detailed-status__display-name {
-  color: $darker-text-color;
+  color: var(--on-background-muted);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1715,7 +1724,7 @@ a.account__display-name {
   }
 
   strong {
-    color: $primary-text-color;
+    color: var(--on-background);
   }
 }
 
@@ -1727,33 +1736,21 @@ a.account__display-name {
 .muted {
   .status__content,
   .status__content p,
-  .status__content a {
-    color: $dark-text-color;
-  }
-
+  .status__content a,
+  .status__display-name,
   .status__display-name strong {
-    color: $dark-text-color;
+    color: var(--on-background-muted);
   }
 
-  .status__avatar {
-    opacity: 0.5;
-  }
-
+  .status__avatar,
   a.status__content__spoiler-link {
-    background: $ui-base-lighter-color;
-    color: $inverted-text-color;
-
-    &:hover,
-    &:focus {
-      background: lighten($ui-base-lighter-color, 7%);
-      text-decoration: none;
-    }
+    opacity: 0.5;
   }
 }
 
 .notification__report {
   padding: 16px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-outline);
   display: flex;
   gap: 10px;
 
@@ -1766,7 +1763,7 @@ a.account__display-name {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: $darker-text-color;
+    color: var(--on-background-muted);
     gap: 10px;
     font-size: 15px;
     line-height: 22px;
@@ -1792,7 +1789,7 @@ a.account__display-name {
   padding: 16px;
   padding-bottom: 0;
   cursor: default;
-  color: $darker-text-color;
+  color: var(--on-background-muted);
   font-size: 15px;
   line-height: 22px;
   font-weight: 500;
@@ -1807,7 +1804,7 @@ a.account__display-name {
   }
 
   .icon-star {
-    color: $gold-star;
+    color: var(--favourite);
   }
 
   > span {
@@ -1818,11 +1815,11 @@ a.account__display-name {
 }
 
 .icon-button.star-icon.active {
-  color: $gold-star;
+  color: var(--favourite);
 }
 
 .icon-button.bookmark-icon.active {
-  color: $red-bookmark;
+  color: var(--bookmark);
 }
 
 .no-reduce-motion .icon-button.star-icon {
@@ -1942,10 +1939,10 @@ a.account__display-name {
   flex-shrink: 0;
   cursor: default;
   gap: 10px;
-  color: $darker-text-color;
+  color: var(--on-background-muted);
 
   strong {
-    color: $secondary-text-color;
+    color: var(--on-background);
   }
 
   a {
@@ -2026,7 +2023,7 @@ a.account__display-name {
   background: var(--dropdown-background-color);
   border: 1px solid var(--dropdown-border-color);
   padding: 4px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   box-shadow: var(--dropdown-shadow);
   z-index: 9999;
 
@@ -2104,7 +2101,7 @@ a.account__display-name {
   display: block;
 
   &--dangerous {
-    color: $error-value-color;
+    color: var(--dangerous);
   }
 
   a,
@@ -2123,7 +2120,7 @@ a.account__display-name {
     text-overflow: ellipsis;
     white-space: nowrap;
     text-align: inherit;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
 
     &:focus,
     &:hover,
@@ -2262,7 +2259,7 @@ $ui-header-height: 55px;
 }
 
 .tabs-bar__wrapper {
-  background: darken($ui-base-color, 8%);
+  background: var(--background);
   position: sticky;
   top: $ui-header-height;
   z-index: 2;
@@ -2298,8 +2295,10 @@ $ui-header-height: 55px;
   flex-direction: column;
 
   > .scrollable {
-    background: $ui-base-color;
-    border-radius: 0 0 4px 4px;
+    background: var(--background);
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    border: 1px solid var(--background-outline);
+    border-top: 0;
   }
 }
 
@@ -2323,7 +2322,7 @@ $ui-header-height: 55px;
   display: flex;
   flex: 1 1 auto;
   padding: 13px 3px 11px;
-  color: $darker-text-color;
+  color: var(--on-background-muted);
   text-decoration: none;
   text-align: center;
   font-size: 16px;
@@ -2457,8 +2456,8 @@ $ui-header-height: 55px;
 
     .navigation-panel {
       margin: 0;
-      background: $ui-base-color;
-      border-inline-start: 1px solid lighten($ui-base-color, 8%);
+      background: var(--background);
+      border-inline-start: 1px solid var(--background-outline);
       height: 100vh;
     }
 
@@ -2476,8 +2475,8 @@ $ui-header-height: 55px;
 
   .layout-single-column .ui__header {
     display: flex;
-    background: $ui-base-color;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    background: var(--background);
+    border-bottom: 1px solid var(--background-outline);
   }
 
   .column-header,
@@ -2534,14 +2533,14 @@ $ui-header-height: 55px;
     position: absolute;
     inset-inline-start: 9px;
     top: -13px;
-    background: $ui-highlight-color;
-    border: 2px solid lighten($ui-base-color, 8%);
+    background: var(--primary);
+    border: 2px solid var(--surface);
     padding: 1px 6px;
     border-radius: 6px;
     font-size: 10px;
     font-weight: 500;
     line-height: 14px;
-    color: $primary-text-color;
+    color: var(--on-primary);
   }
 
   &__issue-badge {
@@ -2549,7 +2548,7 @@ $ui-header-height: 55px;
     inset-inline-start: 11px;
     bottom: 1px;
     display: block;
-    background: $error-red;
+    background: var(--dangerous);
     border-radius: 50%;
     width: 0.625rem;
     height: 0.625rem;
@@ -2557,7 +2556,7 @@ $ui-header-height: 55px;
 }
 
 .column-link--transparent .icon-with-badge__badge {
-  border-color: darken($ui-base-color, 8%);
+  border-color: var(--background);
 }
 
 .column-title {
@@ -2575,7 +2574,7 @@ $ui-header-height: 55px;
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
-    color: $darker-text-color;
+    color: var(--on-background-muted);
   }
 
   @media screen and (width >= 600px) {
@@ -2585,7 +2584,7 @@ $ui-header-height: 55px;
 
 .onboarding__footer {
   margin-top: 30px;
-  color: $dark-text-color;
+  color: var(--on-background-muted);
   text-align: center;
   font-size: 14px;
 
@@ -2601,8 +2600,8 @@ $ui-header-height: 55px;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  color: $highlight-text-color;
-  background: lighten($ui-base-color, 4%);
+  color: var(--on-surface);
+  background: var(--surface);
   border-radius: 8px;
   padding: 10px 15px;
   box-sizing: border-box;
@@ -2618,7 +2617,7 @@ $ui-header-height: 55px;
   &:hover,
   &:focus,
   &:active {
-    background: lighten($ui-base-color, 8%);
+    background: var(--surface-highlighted);
   }
 }
 
@@ -2634,13 +2633,13 @@ $ui-header-height: 55px;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-  color: $darker-text-color;
+  color: var(--on-background-muted);
   text-align: center;
   margin-bottom: 30px;
 
   strong {
     font-weight: 700;
-    color: $secondary-text-color;
+    color: var(--on-background);
   }
 }
 
@@ -2660,7 +2659,8 @@ $ui-header-height: 55px;
   margin-bottom: 30px;
 
   &__item {
-    background: lighten($ui-base-color, 4%);
+    background: var(--surface);
+    color: var(--on-surface);
     border: 0;
     border-radius: 8px;
     display: flex;
@@ -2677,7 +2677,7 @@ $ui-header-height: 55px;
     &:hover,
     &:focus,
     &:active {
-      background: lighten($ui-base-color, 8%);
+      background: var(--surface-highlighted);
     }
 
     &__icon {
@@ -2688,7 +2688,7 @@ $ui-header-height: 55px;
       justify-content: center;
       width: 36px;
       height: 36px;
-      color: $highlight-text-color;
+      color: var(--primary);
       font-size: 1.2rem;
 
       @media screen and (width >= 600px) {
@@ -2705,7 +2705,7 @@ $ui-header-height: 55px;
       justify-content: center;
       width: 21px;
       height: 21px;
-      color: $primary-text-color;
+      color: var(--on-background);
 
       svg {
         height: 14px;
@@ -2720,7 +2720,7 @@ $ui-header-height: 55px;
       justify-content: center;
       width: 21px;
       height: 21px;
-      color: $highlight-text-color;
+      color: var(--primary);
       font-size: 17px;
 
       svg {
@@ -2734,13 +2734,13 @@ $ui-header-height: 55px;
       line-height: 20px;
 
       h6 {
-        color: $highlight-text-color;
+        color: var(--primary);
         font-weight: 500;
         font-size: 14px;
       }
 
       p {
-        color: $darker-text-color;
+        color: var(--on-surface);
         overflow: hidden;
       }
     }
@@ -2748,7 +2748,7 @@ $ui-header-height: 55px;
 }
 
 .follow-recommendations {
-  background: darken($ui-base-color, 4%);
+  background: var(--background);
   border-radius: 8px;
   margin-bottom: 30px;
 
@@ -2758,7 +2758,7 @@ $ui-header-height: 55px;
 
   &__empty {
     text-align: center;
-    color: $darker-text-color;
+    color: var(--on-background-muted);
     font-weight: 500;
     padding: 40px;
   }
@@ -2772,7 +2772,7 @@ $ui-header-height: 55px;
 
   &:focus {
     outline: 0;
-    border-color: $highlight-text-color;
+    border-color: var(--primary);
   }
 
   .media-modal__pagination {
@@ -2781,11 +2781,11 @@ $ui-header-height: 55px;
 }
 
 .copy-paste-text {
-  background: lighten($ui-base-color, 4%);
+  background: var(--surface);
   border-radius: 8px;
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--surface-outline);
   padding: 16px;
-  color: $primary-text-color;
+  color: var(--on-surface);
   font-size: 15px;
   line-height: 22px;
   display: flex;
@@ -2798,7 +2798,7 @@ $ui-header-height: 55px;
   &.focused {
     transition: none;
     outline: 0;
-    border-color: $highlight-text-color;
+    border-color: var(--primary);
   }
 
   &.copied {
@@ -2828,7 +2828,7 @@ $ui-header-height: 55px;
   margin-bottom: 40px + 20px;
 
   .app-form__avatar-input {
-    border: 2px solid $ui-base-color;
+    border: 2px solid var(--background);
     position: absolute;
     inset-inline-start: -2px;
     bottom: -40px;
@@ -2849,7 +2849,7 @@ $ui-header-height: 55px;
   display: flex;
   flex-direction: column;
   flex: 0 1 auto;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   transition: box-shadow 300ms linear;
   min-height: 0;
   position: relative;
@@ -2879,11 +2879,11 @@ $ui-header-height: 55px;
 
     &__text {
       padding: 15px;
-      color: $secondary-text-color;
+      color: var(--on-background-muted);
 
       strong {
         font-weight: 700;
-        color: $primary-text-color;
+        color: var(--on-background);
       }
     }
   }
@@ -2904,7 +2904,7 @@ $ui-header-height: 55px;
   .compose-form__autosuggest-wrapper {
     overflow-y: auto;
     background-color: $white;
-    border-radius: 4px 4px 0 0;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
     flex: 0 1 auto;
   }
 
@@ -2941,7 +2941,7 @@ $ui-header-height: 55px;
     flex: 0 0 auto;
     border: 0;
     background: transparent;
-    border-top: 1px solid lighten($ui-base-color, 4%);
+    border-top: 1px solid var(--background-outline);
     margin: 10px 0;
   }
 
@@ -2957,14 +2957,14 @@ $ui-header-height: 55px;
   position: relative;
   overflow: hidden;
   display: flex;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .drawer__inner {
   position: absolute;
   top: 0;
   inset-inline-start: 0;
-  background: $ui-base-color;
+  background: var(--background);
   box-sizing: border-box;
   padding: 0;
   display: flex;
@@ -2975,12 +2975,12 @@ $ui-header-height: 55px;
   height: 100%;
 
   &.darker {
-    background: $ui-base-color;
+    background: var(--background);
   }
 }
 
 .drawer__inner__mastodon {
-  background: $ui-base-color
+  background: var(--background)
     url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color($ui-base-color)}"/></svg>')
     no-repeat bottom / 100% auto;
   flex: 1;
@@ -3003,7 +3003,7 @@ $ui-header-height: 55px;
 }
 
 .pseudo-drawer {
-  background: lighten($ui-base-color, 13%);
+  background: var(--background);
   font-size: 13px;
   text-align: start;
 }
@@ -3011,15 +3011,15 @@ $ui-header-height: 55px;
 .drawer__header {
   flex: 0 0 auto;
   font-size: 16px;
-  background: $ui-base-color;
+  background: var(--background);
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
 
   a:hover {
-    background: lighten($ui-base-color, 3%);
+    background: var(--background-highlighted);
   }
 }
 
@@ -3064,15 +3064,15 @@ $ui-header-height: 55px;
 .column-back-button {
   box-sizing: border-box;
   width: 100%;
-  background: $ui-base-color;
-  border-radius: 4px 4px 0 0;
-  color: $highlight-text-color;
+  background: var(--background);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  color: var(--primary);
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 16px;
   line-height: inherit;
   border: 0;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-outline);
   text-align: unset;
   padding: 15px;
   margin: 0;
@@ -3089,10 +3089,10 @@ $ui-header-height: 55px;
 .column-header__back-button {
   display: flex;
   align-items: center;
-  background: $ui-base-color;
+  background: var(--background);
   border: 0;
   font-family: inherit;
-  color: $highlight-text-color;
+  color: var(--primary);
   cursor: pointer;
   white-space: nowrap;
   font-size: 16px;
@@ -3171,7 +3171,7 @@ $ui-header-height: 55px;
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: $primary-text-color;
+  background-color: var(--on-background);
   box-sizing: border-box;
   transition: all 0.25s ease;
   transition-property: border-color, left;
@@ -3183,24 +3183,24 @@ $ui-header-height: 55px;
 }
 
 .switch-to-advanced {
-  color: $light-text-color;
-  background-color: $ui-base-color;
+  color: var(--on-background-muted);
+  background-color: var(--background);
   padding: 15px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   margin-top: 4px;
   margin-bottom: 12px;
   font-size: 13px;
   line-height: 18px;
 
   .switch-to-advanced__toggle {
-    color: $ui-button-tertiary-color;
+    color: var(--on-primary);
     font-weight: bold;
   }
 }
 
 .column-link {
-  background: lighten($ui-base-color, 8%);
-  color: $primary-text-color;
+  background: var(--surface);
+  color: var(--on-surface);
   display: flex;
   align-items: center;
   gap: 5px;
@@ -3215,7 +3215,7 @@ $ui-header-height: 55px;
   &:hover,
   &:focus,
   &:active {
-    background: lighten($ui-base-color, 11%);
+    background: var(--surface-highlighted);
   }
 
   &:focus {
@@ -3229,17 +3229,17 @@ $ui-header-height: 55px;
 
   &--transparent {
     background: transparent;
-    color: $ui-secondary-color;
+    color: var(--on-background-muted);
 
     &:hover,
     &:focus,
     &:active {
       background: transparent;
-      color: $primary-text-color;
+      color: var(--on-background);
     }
 
     &.active {
-      color: $highlight-text-color;
+      color: var(--primary);
     }
   }
 
@@ -3257,18 +3257,18 @@ $ui-header-height: 55px;
 
 .column-link__badge {
   display: inline-block;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 12px;
   line-height: 19px;
   font-weight: 500;
-  background: $ui-base-color;
+  background: var(--background);
   padding: 4px 8px;
   margin: -6px 10px;
 }
 
 .column-subheading {
-  background: $ui-base-color;
-  color: $dark-text-color;
+  background: var(--background);
+  color: var(--on-background-muted);
   padding: 8px 20px;
   font-size: 12px;
   font-weight: 500;
@@ -3279,7 +3279,7 @@ $ui-header-height: 55px;
 .getting-started__wrapper,
 .getting-started,
 .flex-spacer {
-  background: $ui-base-color;
+  background: var(--background);
 }
 
 .getting-started__wrapper {
@@ -3291,7 +3291,7 @@ $ui-header-height: 55px;
 }
 
 .getting-started {
-  color: $dark-text-color;
+  color: var(--on-background-muted);
   overflow: auto;
 
   &__trends {
@@ -3301,14 +3301,14 @@ $ui-header-height: 55px;
     margin-top: 10px;
 
     h4 {
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
+      border-bottom: 1px solid var(--background-outline);
       padding: 10px;
       font-size: 12px;
       text-transform: uppercase;
       font-weight: 500;
 
       a {
-        color: $darker-text-color;
+        color: var(--on-background-muted);
         text-decoration: none;
       }
     }
@@ -3334,7 +3334,7 @@ $ui-header-height: 55px;
       padding: 10px;
 
       &__current {
-        color: $darker-text-color;
+        color: var(--on-background-muted);
       }
     }
   }
@@ -3356,8 +3356,8 @@ $ui-header-height: 55px;
   kbd {
     display: inline-block;
     padding: 3px 5px;
-    background-color: lighten($ui-base-color, 8%);
-    border: 1px solid darken($ui-base-color, 4%);
+    background-color: var(--surface);
+    border: 1px solid var(--surface-outline);
   }
 }
 
@@ -3371,7 +3371,7 @@ $ui-header-height: 55px;
   font-family: inherit;
   font-size: 14px;
   line-height: 22px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   border: 1px solid $white;
 
   &:focus {
@@ -3383,7 +3383,7 @@ $ui-header-height: 55px;
     background: $white;
     border: 1px solid $ui-secondary-color;
     margin-bottom: 10px;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
 
     .setting-text {
       border: 0;
@@ -3419,11 +3419,11 @@ $ui-header-height: 55px;
   align-items: center;
   position: relative;
   font-size: 14px;
-  color: $darker-text-color;
+  color: var(--on-background-muted);
   margin-top: 14px;
   text-decoration: none;
   overflow: hidden;
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-outline);
   border-radius: 8px;
 
   &__actions {
@@ -3451,7 +3451,7 @@ $ui-header-height: 55px;
     button,
     a {
       display: inline;
-      color: $secondary-text-color;
+      color: var(--on-background-muted);
       background: transparent;
       border: 0;
       padding: 0 8px;
@@ -3462,7 +3462,7 @@ $ui-header-height: 55px;
       &:hover,
       &:active,
       &:focus {
-        color: $primary-text-color;
+        color: var(--on-background);
       }
     }
 
@@ -3484,7 +3484,7 @@ a.status-card {
     .status-card__host,
     .status-card__author,
     .status-card__description {
-      color: $highlight-text-color;
+      color: var(--primary);
     }
   }
 }
@@ -3500,7 +3500,7 @@ a.status-card {
     .status-card__host,
     .status-card__author,
     .status-card__description {
-      color: $highlight-text-color;
+      color: var(--primary);
     }
   }
 }
@@ -3530,7 +3530,7 @@ a.status-card {
   font-weight: 700;
   font-size: 19px;
   line-height: 24px;
-  color: $primary-text-color;
+  color: var(--on-background);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -3564,7 +3564,7 @@ a.status-card {
   display: block;
   margin-top: 8px;
   font-size: 14px;
-  color: $primary-text-color;
+  color: var(--on-background);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -3587,7 +3587,7 @@ a.status-card {
   flex: 0 0 auto;
   width: 120px;
   aspect-ratio: 1;
-  background: lighten($ui-base-color, 8%);
+  background: var(--surface);
   position: relative;
 
   & > .icon {
@@ -3661,7 +3661,7 @@ a.status-card {
 
 .load-more {
   display: block;
-  color: $dark-text-color;
+  color: var(--on-background-muted);
   background-color: transparent;
   border: 0;
   font-size: inherit;
@@ -3675,17 +3675,17 @@ a.status-card {
   text-decoration: none;
 
   &:hover {
-    background: lighten($ui-base-color, 2%);
+    color: var(--on-background-muted);
   }
 }
 
 .load-gap {
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-outline);
 }
 
 .timeline-hint {
   text-align: center;
-  color: $darker-text-color;
+  color: var(--on-background-muted);
   padding: 15px;
   box-sizing: border-box;
   width: 100%;
@@ -3696,14 +3696,13 @@ a.status-card {
   }
 
   a {
-    color: $highlight-text-color;
+    color: var(--primary);
     text-decoration: none;
 
     &:hover,
     &:focus,
     &:active {
       text-decoration: underline;
-      color: lighten($highlight-text-color, 4%);
     }
   }
 }
@@ -3712,8 +3711,8 @@ a.status-card {
   text-align: center;
   font-size: 16px;
   font-weight: 500;
-  color: $dark-text-color;
-  background: $ui-base-color;
+  color: var(--on-background-muted);
+  background: var(--background);
   cursor: default;
   display: flex;
   flex: 1 1 auto;
@@ -3742,7 +3741,7 @@ a.status-card {
     strong {
       display: block;
       margin-bottom: 10px;
-      color: $dark-text-color;
+      color: var(--on-background-muted);
     }
 
     span {
@@ -3789,9 +3788,9 @@ a.status-card {
 .column-header {
   display: flex;
   font-size: 16px;
-  background: $ui-base-color;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-  border-radius: 4px 4px 0 0;
+  background: var(--background);
+  border: 1px solid var(--background-outline);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
   flex: 0 0 auto;
   cursor: pointer;
   position: relative;
@@ -3821,13 +3820,13 @@ a.status-card {
   }
 
   & > .column-header__back-button {
-    color: $highlight-text-color;
+    color: var(--primary);
   }
 
   &.active {
     .column-header__icon {
-      color: $highlight-text-color;
-      text-shadow: 0 0 10px rgba($highlight-text-color, 0.4);
+      color: var(--primary);
+      // text-shadow: 0 0 10px rgba($highlight-text-color, 0.4);
     }
   }
 
@@ -3854,9 +3853,9 @@ a.status-card {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: $ui-base-color;
+  background: var(--background);
   border: 0;
-  color: $darker-text-color;
+  color: var(--on-background-muted);
   cursor: pointer;
   font-size: 16px;
   padding: 0 15px;
@@ -3866,7 +3865,7 @@ a.status-card {
   }
 
   &:hover {
-    color: lighten($darker-text-color, 4%);
+    color: var(--on-background);
   }
 
   &:focus-visible {
@@ -3874,17 +3873,18 @@ a.status-card {
   }
 
   &.active {
-    color: $primary-text-color;
-    background: lighten($ui-base-color, 4%);
+    color: var(--on-background);
+    background: var(--background-outline);
 
     &:hover {
-      color: $primary-text-color;
+      color: var(--on-background);
     }
   }
 
   &:disabled {
-    color: $dark-text-color;
+    color: var(--on-background-muted);
     cursor: default;
+    opacity: 0.5;
   }
 }
 
@@ -3892,8 +3892,8 @@ a.status-card {
   max-height: 70vh;
   overflow: hidden;
   overflow-y: auto;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-  color: $darker-text-color;
+  border-bottom: 1px solid var(--background-outline);
+  color: var(--on-background-muted);
   transition:
     max-height 150ms ease-in-out,
     opacity 300ms linear;
@@ -3904,6 +3904,7 @@ a.status-card {
   &.collapsed {
     max-height: 0;
     opacity: 0.5;
+    border-bottom: 0;
   }
 
   &.animating {
@@ -3914,20 +3915,20 @@ a.status-card {
     height: 0;
     background: transparent;
     border: 0;
-    border-top: 1px solid lighten($ui-base-color, 8%);
+    border-top: 1px solid var(--background-outline);
     margin: 10px 0;
   }
 }
 
 .column-header__collapsible-inner {
-  background: $ui-base-color;
+  background: var(--background);
   padding: 15px;
 }
 
 .column-header__setting-btn {
   &:hover,
   &:focus {
-    color: $darker-text-color;
+    color: var(--on-background-muted);
     text-decoration: underline;
   }
 }
@@ -3981,13 +3982,13 @@ a.status-card {
   color: $warning-red;
 
   &:hover {
-    color: $error-red;
+    color: var(--dangerous);
     text-decoration: underline;
   }
 }
 
 .loading-indicator {
-  color: $dark-text-color;
+  color: var(--on-background-muted);
   font-size: 12px;
   font-weight: 400;
   text-transform: uppercase;
@@ -4006,14 +4007,14 @@ a.status-card {
   transform: none;
 
   .circular-progress {
-    color: $primary-text-color;
+    color: var(--on-background);
     width: 22px;
     height: 22px;
   }
 }
 
 .circular-progress {
-  color: lighten($ui-base-color, 26%);
+  color: var(--on-background-muted);
   animation: 1.4s linear 0s infinite normal none running simple-rotate;
 
   circle {
@@ -4097,8 +4098,8 @@ a.status-card {
 
 .video-error-cover {
   align-items: center;
-  background: $base-overlay-background;
-  color: $primary-text-color;
+  background: var(--overlay);
+  color: var(--on-overlay);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -4111,20 +4112,19 @@ a.status-card {
 }
 
 .media-spoiler {
-  background: $base-overlay-background;
-  color: $darker-text-color;
+  background: var(--overlay);
+  color: var(--on-overlay);
   border: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   appearance: none;
 
   &:hover,
   &:active,
   &:focus {
     padding: 0;
-    color: lighten($darker-text-color, 8%);
   }
 }
 
@@ -4173,10 +4173,10 @@ a.status-card {
     padding: 0;
     margin: 0;
     border: 0;
-    color: $white;
+    color: var(--on-overlay);
 
     &__label {
-      background-color: rgba($black, 0.45);
+      background-color: var(--overlay-variant);
       backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
       border-radius: 6px;
       padding: 10px 15px;
@@ -4197,20 +4197,20 @@ a.status-card {
     &:hover,
     &:focus {
       .spoiler-button__overlay__label {
-        background-color: rgba($black, 0.9);
+        background-color: var(--overlay-variant-highlighted);
       }
     }
   }
 }
 
 .modal-container--preloader {
-  background: lighten($ui-base-color, 8%);
+  background: var(--surface);
 }
 
 .account--panel {
-  background: lighten($ui-base-color, 4%);
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  background: var(--background);
+  border-top: 1px solid var(--background-outline);
+  border-bottom: 1px solid var(--background-outline);
   display: flex;
   flex-direction: row;
   padding: 10px 0;
@@ -4223,12 +4223,12 @@ a.status-card {
 }
 
 .column-settings__outer {
-  background: lighten($ui-base-color, 8%);
+  background: var(--surface);
   padding: 15px;
 }
 
 .column-settings__section {
-  color: $darker-text-color;
+  color: var(--on-surface-muted);
   cursor: default;
   display: block;
   font-weight: 500;
@@ -4282,7 +4282,7 @@ a.status-card {
     }
 
     &__multi-value {
-      background: lighten($ui-base-color, 8%);
+      background: var(--surface);
 
       &__remove {
         cursor: pointer;
@@ -4316,7 +4316,7 @@ a.status-card {
     }
 
     &__indicator-separator {
-      background-color: lighten($ui-base-color, 8%);
+      background-color: var(--surface-outline);
     }
 
     &__menu {
@@ -4332,7 +4332,7 @@ a.status-card {
 
     &__option {
       color: $inverted-text-color;
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
       font-size: 14px;
 
       &--is-focused,
@@ -4350,16 +4350,16 @@ a.status-card {
 }
 
 .relationship-tag {
-  color: $white;
+  color: var(--on-overlay);
   margin-bottom: 4px;
   display: block;
-  background-color: rgba($black, 0.45);
+  background-color: var(--overlay-variant);
   backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
   font-size: 11px;
   text-transform: uppercase;
   font-weight: 700;
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .setting-toggle {
@@ -4368,7 +4368,7 @@ a.status-card {
 }
 
 .setting-toggle__label {
-  color: $darker-text-color;
+  color: var(--on-background-muted);
   display: inline-block;
   margin-bottom: 14px;
   margin-inline-start: 8px;
@@ -4377,7 +4377,7 @@ a.status-card {
 
 .limited-account-hint {
   p {
-    color: $secondary-text-color;
+    color: var(--on-background-muted);
     font-size: 15px;
     font-weight: 500;
     margin-bottom: 20px;
@@ -4386,8 +4386,8 @@ a.status-card {
 
 .empty-column-indicator,
 .follow_requests-unlocked_explanation {
-  color: $dark-text-color;
-  background: $ui-base-color;
+  color: var(--on-background-muted);
+  background: var(--background);
   text-align: center;
   padding: 20px;
   font-size: 15px;
@@ -4403,7 +4403,7 @@ a.status-card {
   }
 
   a {
-    color: $highlight-text-color;
+    color: var(--primary);
     text-decoration: none;
 
     &:hover {
@@ -4413,16 +4413,16 @@ a.status-card {
 }
 
 .follow_requests-unlocked_explanation {
-  background: darken($ui-base-color, 4%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  background: var(--background);
+  border-bottom: 1px solid var(--background-outline);
   contain: initial;
   flex-grow: 0;
 }
 
 .error-column {
   padding: 20px;
-  background: $ui-base-color;
-  border-radius: 4px;
+  background: var(--background);
+  border-radius: var(--radius-sm);
   display: flex;
   flex: 1 1 auto;
   align-items: center;
@@ -4438,7 +4438,7 @@ a.status-card {
 
   &__message {
     text-align: center;
-    color: $darker-text-color;
+    color: var(--on-background-muted);
     font-size: 15px;
     line-height: 22px;
 
@@ -4447,7 +4447,7 @@ a.status-card {
       line-height: 33px;
       font-weight: 700;
       margin-bottom: 15px;
-      color: $primary-text-color;
+      color: var(--on-background);
     }
 
     p {
@@ -4537,7 +4537,7 @@ a.status-card {
   background: $simple-background-color;
   position: relative;
   box-shadow: var(--dropdown-shadow);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   margin-top: 5px;
   z-index: 2;
 
@@ -4563,7 +4563,7 @@ a.status-card {
   top: -4px;
   inset-inline-start: -8px;
   background: $simple-background-color;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
   overflow: hidden;
 
@@ -4594,7 +4594,7 @@ a.status-card {
 
 .upload-area {
   align-items: center;
-  background: rgba($base-overlay-background, 0.8);
+  background: var(--overlay-variant);
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -4627,9 +4627,9 @@ a.status-card {
   bottom: 0;
   inset-inline-start: 0;
   z-index: -1;
-  border-radius: 4px;
-  background: $ui-base-color;
-  box-shadow: 0 0 5px rgba($base-shadow-color, 0.2);
+  border-radius: var(--radius-sm);
+  background: var(--background);
+  box-shadow: var(--dropdown-shadow);
 }
 
 .upload-area__content {
@@ -4638,11 +4638,11 @@ a.status-card {
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: $secondary-text-color;
+  color: var(--on-background-muted);
   font-size: 18px;
   font-weight: 500;
-  border: 2px dashed $ui-base-lighter-color;
-  border-radius: 4px;
+  border: 2px dashed var(--background-outline);
+  border-radius: var(--radius-sm);
 }
 
 .upload-progress {
@@ -4730,7 +4730,7 @@ a.status-card {
 .privacy-dropdown__dropdown {
   background: $simple-background-color;
   box-shadow: var(--dropdown-shadow);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
   z-index: 2;
 
@@ -4761,14 +4761,14 @@ a.status-card {
   &:hover,
   &.active {
     background: $ui-highlight-color;
-    color: $primary-text-color;
+    color: var(--on-background);
     outline: 0;
 
     .privacy-dropdown__option__content {
-      color: $primary-text-color;
+      color: var(--on-background);
 
       strong {
-        color: $primary-text-color;
+        color: var(--on-background);
       }
     }
   }
@@ -4806,7 +4806,7 @@ a.status-card {
   &__dropdown {
     background: $simple-background-color;
     box-shadow: var(--dropdown-shadow);
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     overflow: hidden;
     z-index: 2;
 
@@ -4836,7 +4836,7 @@ a.status-card {
         color: $inverted-text-color;
         font-weight: 500;
         padding: 10px;
-        border-radius: 4px;
+        border-radius: var(--radius-sm);
         display: flex;
         gap: 6px;
         align-items: center;
@@ -4853,7 +4853,7 @@ a.status-card {
 
         &.active {
           background: $ui-highlight-color;
-          color: $primary-text-color;
+          color: var(--on-background);
           outline: 0;
 
           .language-dropdown__dropdown__results__item__common-name {
@@ -4880,8 +4880,9 @@ a.status-card {
     inset-inline-start: 0;
     margin-top: -2px;
     width: 100%;
-    background: $ui-base-color;
-    border-radius: 0 0 4px 4px;
+    background: var(--surface);
+    border: 1px solid var(--surface-outline);
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
     box-shadow: var(--dropdown-shadow);
     z-index: 99;
     font-size: 13px;
@@ -4889,7 +4890,7 @@ a.status-card {
 
     h4 {
       text-transform: uppercase;
-      color: $dark-text-color;
+      color: var(--on-surface-muted);
       font-weight: 500;
       padding: 0 10px;
       margin-bottom: 10px;
@@ -4897,6 +4898,7 @@ a.status-card {
 
     .icon-button {
       padding: 0;
+      color: var(--on-surface-muted);
     }
 
     .icon {
@@ -4912,7 +4914,7 @@ a.status-card {
       }
 
       &__message {
-        color: $dark-text-color;
+        color: var(--on-surface-muted);
         padding: 0 10px;
       }
 
@@ -4923,10 +4925,10 @@ a.status-card {
         border: 0;
         font: inherit;
         background: transparent;
-        color: $darker-text-color;
+        color: var(--on-surface-muted);
         padding: 10px;
         cursor: pointer;
-        border-radius: 4px;
+        border-radius: var(--radius-sm);
         text-align: start;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -4945,18 +4947,19 @@ a.status-card {
         &:focus,
         &:active,
         &.selected {
-          background: $ui-highlight-color;
-          color: $primary-text-color;
+          background: var(--primary);
+          color: var(--on-primary);
 
-          .icon-button {
-            color: $primary-text-color;
+          .icon-button,
+          mark {
+            color: var(--on-primary);
           }
         }
 
         mark {
           background: transparent;
           font-weight: 700;
-          color: $primary-text-color;
+          color: var(--on-background);
         }
 
         span {
@@ -4968,6 +4971,10 @@ a.status-card {
   }
 
   &.active {
+    .search__input {
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    }
+
     .search__popout {
       display: block;
     }
@@ -4983,10 +4990,6 @@ a.status-card {
   line-height: 18px;
   font-size: 16px;
 
-  &::placeholder {
-    color: lighten($darker-text-color, 4%);
-  }
-
   &::-moz-focus-inner {
     border: 0;
   }
@@ -4995,10 +4998,6 @@ a.status-card {
   &:focus,
   &:active {
     outline: 0 !important;
-  }
-
-  &:focus {
-    background: lighten($ui-base-color, 4%);
   }
 }
 
@@ -5022,7 +5021,7 @@ a.status-card {
     transition-property: transform, opacity;
     width: 24px;
     height: 24px;
-    color: $secondary-text-color;
+    color: var(--on-surface-muted);
     cursor: default;
     pointer-events: none;
 
@@ -5043,7 +5042,6 @@ a.status-card {
 
   .icon-times-circle {
     transform: rotate(0deg);
-    color: $action-button-color;
     cursor: pointer;
 
     &.active {
@@ -5052,14 +5050,14 @@ a.status-card {
     }
 
     &:hover {
-      color: lighten($action-button-color, 7%);
+      color: var(--on-surface);
     }
   }
 }
 
 .search-results__header {
-  color: $dark-text-color;
-  background: lighten($ui-base-color, 2%);
+  color: var(--on-background-muted);
+  background: var(--background);
   padding: 15px;
   font-weight: 500;
   font-size: 16px;
@@ -5070,19 +5068,16 @@ a.status-card {
 }
 
 .search-results__section {
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-
-  &:last-child {
-    border-bottom: 0;
-  }
+  border: 1px solid var(--background-outline);
+  border-top: 0;
 
   &__header {
-    background: darken($ui-base-color, 4%);
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    background: var(--background);
+    border-bottom: 1px solid var(--background-outline);
     padding: 15px;
     font-weight: 500;
     font-size: 14px;
-    color: $darker-text-color;
+    color: var(--on-background-muted);
     display: flex;
     justify-content: space-between;
 
@@ -5093,7 +5088,7 @@ a.status-card {
     }
 
     button {
-      color: $highlight-text-color;
+      color: var(--primary);
       padding: 0;
       border: 0;
       background: 0;
@@ -5306,16 +5301,16 @@ a.status-card {
       }
 
       &.star-icon.active {
-        color: $gold-star;
+        color: var(--favourite);
 
         &:hover,
         &:focus,
         &:active {
-          background: rgba($gold-star, 0.15);
+          background: rgba(var(--favourite), 0.15);
         }
 
         &:focus {
-          background: rgba($gold-star, 0.3);
+          background: rgba(var(--favourite), 0.3);
         }
       }
 
@@ -5444,7 +5439,7 @@ a.status-card {
     line-height: inherit;
     height: auto;
     margin: -10px;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     background-color: transparent;
 
     &:hover,
@@ -5485,11 +5480,11 @@ a.status-card {
   }
 
   &__case {
-    background: $ui-base-color;
+    background: var(--background);
     color: $secondary-text-color;
     font-weight: 500;
     padding: 10px;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
   }
 }
 
@@ -5647,7 +5642,7 @@ a.status-card {
   }
 
   .status__content__spoiler-link {
-    color: $primary-text-color;
+    color: var(--on-background);
     background: $ui-primary-color;
 
     &:hover {
@@ -5725,7 +5720,7 @@ a.status-card {
     resize: vertical;
     border: 0;
     outline: 0;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     margin: 20px 0;
 
     &::placeholder {
@@ -5760,8 +5755,8 @@ a.status-card {
     &:focus,
     &:active {
       background: transparent;
-      border-color: $ui-button-background-color;
-      color: $ui-button-background-color;
+      border-color: var(--primary);
+      color: var(--primary);
     }
   }
 
@@ -5927,7 +5922,7 @@ a.status-card {
           &,
           button {
             background: $ui-highlight-color;
-            color: $primary-text-color;
+            color: var(--on-background);
           }
         }
 
@@ -5994,7 +5989,7 @@ a.status-card {
       url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(darken($simple-background-color, 14%))}'/></svg>")
       no-repeat right 8px center / auto 16px;
     border: 1px solid darken($simple-background-color, 14%);
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     padding: 6px 10px;
     padding-inline-end: 30px;
   }
@@ -6102,7 +6097,7 @@ a.status-card {
   background: rgba($black, 0.65);
   backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 11px;
   font-weight: 700;
   z-index: 1;
@@ -6118,8 +6113,8 @@ a.status-card {
 .attachment-list {
   display: flex;
   font-size: 14px;
-  border: 1px solid lighten($ui-base-color, 8%);
-  border-radius: 4px;
+  border: 1px solid var(--background-outline);
+  border-radius: var(--radius-sm);
   margin-top: 16px;
   overflow: hidden;
 
@@ -6128,7 +6123,7 @@ a.status-card {
     color: $dark-text-color;
     padding: 8px 18px;
     cursor: default;
-    border-inline-end: 1px solid lighten($ui-base-color, 8%);
+    border-inline-end: 1px solid var(--background-outline);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6279,7 +6274,7 @@ a.status-card {
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
-  background: darken($ui-base-color, 8%);
+  background: var(--background);
   border-radius: 8px;
   padding-bottom: 44px;
   width: 100%;
@@ -6536,7 +6531,7 @@ a.status-card {
       content: '';
       width: 50px;
       background: rgba($white, 0.35);
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
       display: block;
       position: absolute;
       height: 4px;
@@ -6549,7 +6544,7 @@ a.status-card {
       display: block;
       position: absolute;
       height: 4px;
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
       inset-inline-start: 0;
       top: 50%;
       transform: translate(0, -50%);
@@ -6606,7 +6601,7 @@ a.status-card {
       content: '';
       width: 100%;
       background: rgba($white, 0.35);
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
       display: block;
       position: absolute;
       height: 4px;
@@ -6618,7 +6613,7 @@ a.status-card {
       display: block;
       position: absolute;
       height: 4px;
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
       top: 14px;
       background: lighten($ui-highlight-color, 8%);
     }
@@ -6675,20 +6670,20 @@ a.status-card {
 
 .scrollable .account-card {
   margin: 10px;
-  background: lighten($ui-base-color, 8%);
+  background: var(--background);
 }
 
 .scrollable .account-card__title__avatar {
   img,
   .account__avatar {
-    border-color: lighten($ui-base-color, 8%);
+    border-color: var(--background-outline);
   }
 }
 
 .scrollable .account-card__bio::after {
   background: linear-gradient(
     to left,
-    lighten($ui-base-color, 8%),
+    var(--background),
     transparent
   );
 }
@@ -6704,7 +6699,7 @@ a.status-card {
   box-sizing: border-box;
   display: block;
   position: relative;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
   margin: 2px;
 
@@ -6719,8 +6714,9 @@ a.status-card {
 
 .notification__filter-bar,
 .account__section-headline {
-  background: $ui-base-color;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  background: var(--background);
+  border: 1px solid var(--background-outline);
+  border-top: 0;
   cursor: default;
   display: flex;
   flex-shrink: 0;
@@ -6735,7 +6731,7 @@ a.status-card {
   a {
     display: block;
     flex: 1 1 auto;
-    color: $darker-text-color;
+    color: var(--on-background-muted);
     padding: 15px 0;
     font-size: 14px;
     font-weight: 500;
@@ -6746,7 +6742,7 @@ a.status-card {
     white-space: nowrap;
 
     &.active {
-      color: $primary-text-color;
+      color: var(--on-background);
 
       &::before {
         display: block;
@@ -6756,15 +6752,15 @@ a.status-card {
         left: 0;
         width: 100%;
         height: 3px;
-        border-radius: 4px;
-        background: $highlight-text-color;
+        border-radius: var(--radius-sm);
+        background: var(--primary);
       }
     }
   }
 }
 
 .filter-form {
-  background: $ui-base-color;
+  background: var(--background);
 
   &__column {
     padding: 10px 15px;
@@ -6971,12 +6967,12 @@ noscript {
       border: 0;
       padding: 10px;
       font-family: $font-monospace, monospace;
-      background: $ui-base-color;
-      color: $primary-text-color;
+      background: var(--background);
+      color: var(--on-background);
       font-size: 14px;
       margin: 0;
       margin-bottom: 15px;
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
 
       &::-moz-focus-inner {
         border: 0;
@@ -7002,7 +6998,7 @@ noscript {
       max-width: 100%;
       overflow: hidden;
       border: 0;
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
     }
   }
 }
@@ -7011,7 +7007,7 @@ noscript {
 .follow-request-banner,
 .account-memorial-banner {
   padding: 20px;
-  background: lighten($ui-base-color, 4%);
+  background: var(--background);
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -7054,7 +7050,7 @@ noscript {
   justify-content: flex-start;
   gap: 15px;
   align-items: center;
-  background: lighten($ui-base-color, 4%);
+  background: var(--background);
 
   label {
     flex: 1 1 auto;
@@ -7076,7 +7072,7 @@ noscript {
 }
 
 .list-editor {
-  background: $ui-base-color;
+  background: var(--background);
   flex-direction: column;
   border-radius: 8px;
   box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
@@ -7089,7 +7085,7 @@ noscript {
 
   h4 {
     padding: 15px 0;
-    background: lighten($ui-base-color, 13%);
+    background: var(--on-background-muted);
     font-weight: 500;
     font-size: 16px;
     text-align: center;
@@ -7098,7 +7094,7 @@ noscript {
 
   .drawer__pager {
     height: 50vh;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
   }
 
   .drawer__inner {
@@ -7131,7 +7127,7 @@ noscript {
 }
 
 .list-adder {
-  background: $ui-base-color;
+  background: var(--background);
   flex-direction: column;
   border-radius: 8px;
   box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
@@ -7143,11 +7139,11 @@ noscript {
   }
 
   &__account {
-    background: lighten($ui-base-color, 13%);
+    // background: lighten($ui-base-color, 13%);
   }
 
   &__lists {
-    background: lighten($ui-base-color, 13%);
+    // background: lighten($ui-base-color, 13%);
     height: 50vh;
     border-radius: 0 0 8px 8px;
     overflow-y: auto;
@@ -7155,7 +7151,7 @@ noscript {
 
   .list {
     padding: 10px;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--background-outline);
   }
 
   .list__wrapper {
@@ -7224,7 +7220,7 @@ noscript {
     }
 
     strong {
-      color: $primary-text-color;
+      color: var(--on-background);
       font-size: 14px;
       font-weight: 500;
       display: block;
@@ -7232,7 +7228,7 @@ noscript {
     }
 
     div {
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
       box-shadow: 0 0 14px rgba($base-shadow-color, 0.2);
     }
   }
@@ -7298,8 +7294,8 @@ noscript {
     overflow: hidden;
     height: 145px;
     position: relative;
-    background: darken($ui-base-color, 4%);
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    background: var(--background);
+    border-bottom: 1px solid var(--background-outline);
 
     img {
       object-fit: cover;
@@ -7313,7 +7309,7 @@ noscript {
   &__bar {
     position: relative;
     padding: 0 20px;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--background-outline);
 
     .avatar {
       display: block;
@@ -7321,8 +7317,8 @@ noscript {
       width: 94px;
 
       .account__avatar {
-        background: darken($ui-base-color, 8%);
-        border: 2px solid $ui-base-color;
+        background: var(--surface);
+        border: 2px solid var(--background);
       }
     }
   }
@@ -7364,8 +7360,8 @@ noscript {
       }
 
       .icon-button {
-        border: 1px solid lighten($ui-base-color, 12%);
-        border-radius: 4px;
+        border: 1px solid var(--background-outline);
+        border-radius: var(--radius-sm);
         box-sizing: content-box;
         padding: 5px;
 
@@ -7398,7 +7394,7 @@ noscript {
       h1 {
         font-size: 17px;
         line-height: 22px;
-        color: $primary-text-color;
+        color: var(--on-background);
         font-weight: 700;
         overflow: hidden;
         white-space: nowrap;
@@ -7407,7 +7403,7 @@ noscript {
         small {
           display: block;
           font-size: 15px;
-          color: $darker-text-color;
+          color: var(--on-background-muted);
           font-weight: 400;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -7426,20 +7422,32 @@ noscript {
 
   &__bio {
     .account__header__content {
-      color: $primary-text-color;
+      color: var(--on-background);
     }
 
     .account__header__fields {
       margin: 0;
       margin-top: 16px;
-      border-radius: 4px;
-      background: darken($ui-base-color, 4%);
+      border-radius: var(--radius-sm);
+      background: var(--background);
       border: 0;
 
       dl {
         display: block;
         padding: 11px 16px;
-        border-bottom-color: lighten($ui-base-color, 4%);
+        border: 1px solid var(--background-outline);
+        border-top: 0;
+
+        &:first-child {
+          border-top-left-radius: 4px;
+          border-top-right-radius: 4px;
+          border-top: 1px solid var(--background-outline);
+        }
+
+        &:last-child {
+          border-bottom-left-radius: 4px;
+          border-bottom-right-radius: 4px;
+        }
       }
 
       dd,
@@ -7454,11 +7462,11 @@ noscript {
         width: auto;
         background: transparent;
         text-transform: uppercase;
-        color: $dark-text-color;
+        color: var(--on-background-muted);
       }
 
       dd {
-        color: $darker-text-color;
+        color: var(--on-background);
       }
 
       a {
@@ -7471,23 +7479,16 @@ noscript {
       }
 
       .verified {
-        border: 1px solid rgba($valid-value-color, 0.5);
+        border: 1px solid var(--successful-outline);
         margin-top: -1px;
 
         &:first-child {
-          border-top-left-radius: 4px;
-          border-top-right-radius: 4px;
           margin-top: 0;
-        }
-
-        &:last-child {
-          border-bottom-left-radius: 4px;
-          border-bottom-right-radius: 4px;
         }
 
         dt,
         dd {
-          color: $valid-value-color;
+          color: var(--successful);
         }
 
         dd {
@@ -7501,7 +7502,7 @@ noscript {
         }
 
         a {
-          color: $valid-value-color;
+          color: var(--successful);
         }
       }
     }
@@ -7512,28 +7513,28 @@ noscript {
 
     &__links {
       font-size: 14px;
-      color: $darker-text-color;
+      color: var(--on-background-muted);
       margin: 0 -10px;
       padding-top: 16px;
       padding-bottom: 10px;
 
       a {
         display: inline-block;
-        color: $darker-text-color;
+        color: var(--on-background-muted);
         text-decoration: none;
         padding: 5px 10px;
         font-weight: 500;
 
         strong {
           font-weight: 700;
-          color: $primary-text-color;
+          color: var(--on-background);
         }
       }
     }
   }
 
   &__account-note {
-    color: $primary-text-color;
+    color: var(--on-background);
     font-size: 14px;
     font-weight: 400;
     margin-bottom: 10px;
@@ -7542,7 +7543,7 @@ noscript {
       display: block;
       font-size: 12px;
       font-weight: 500;
-      color: $darker-text-color;
+      color: var(--on-background-muted);
       text-transform: uppercase;
       margin-bottom: 5px;
     }
@@ -7551,7 +7552,7 @@ noscript {
       display: block;
       box-sizing: border-box;
       width: calc(100% + 20px);
-      color: $secondary-text-color;
+      color: var(--on-surface);
       background: transparent;
       padding: 10px;
       margin: 0 -10px;
@@ -7560,15 +7561,15 @@ noscript {
       resize: none;
       border: 0;
       outline: 0;
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
 
       &::placeholder {
-        color: $dark-text-color;
+        color: var(--on-surface-muted);
         opacity: 1;
       }
 
       &:focus {
-        background: $ui-base-color;
+        background: var(--surface);
       }
     }
   }
@@ -7587,7 +7588,7 @@ noscript {
 .verified-badge {
   display: inline-flex;
   align-items: center;
-  color: $valid-value-color;
+  color: var(--successful);
   gap: 4px;
   overflow: hidden;
   white-space: nowrap;
@@ -7614,7 +7615,7 @@ noscript {
     display: flex;
     align-items: center;
     padding: 15px;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--background-outline);
     gap: 15px;
 
     &:last-child {
@@ -7623,7 +7624,7 @@ noscript {
 
     &__name {
       flex: 1 1 auto;
-      color: $dark-text-color;
+      color: var(--on-background-muted);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -7633,7 +7634,7 @@ noscript {
       }
 
       a {
-        color: $darker-text-color;
+        color: var(--on-background-muted);
         text-decoration: none;
         font-size: 14px;
         font-weight: 500;
@@ -7657,7 +7658,7 @@ noscript {
       font-size: 24px;
       font-weight: 500;
       text-align: end;
-      color: $secondary-text-color;
+      color: var(--on-background-muted);
       text-decoration: none;
     }
 
@@ -7666,60 +7667,62 @@ noscript {
       width: 50px;
 
       path:first-child {
-        fill: rgba($highlight-text-color, 0.25) !important;
-        fill-opacity: 1 !important;
+        fill: var(--primary) !important;
+        fill-opacity: 0.25 !important;
       }
 
       path:last-child {
-        stroke: lighten($highlight-text-color, 6%) !important;
+        stroke: var(--primary-highlighted) !important;
         fill: none !important;
       }
     }
 
     &--requires-review {
       .trends__item__name {
-        color: $gold-star;
+        color: var(--favourite);
 
         a {
-          color: $gold-star;
+          color: var(--favourite);
         }
       }
 
       .trends__item__current {
-        color: $gold-star;
+        color: var(--favourite);
       }
 
       .trends__item__sparkline {
         path:first-child {
-          fill: rgba($gold-star, 0.25) !important;
+          fill: var(--favourite) !important;
+          fill-opacity: 0.25 !important;
         }
 
         path:last-child {
-          stroke: lighten($gold-star, 6%) !important;
+          stroke: var(--favourite-highlighted) !important;
         }
       }
     }
 
     &--disabled {
       .trends__item__name {
-        color: lighten($ui-base-color, 12%);
+        color: var(--on-background-muted);
 
         a {
-          color: lighten($ui-base-color, 12%);
+          color: var(--on-background-muted);
         }
       }
 
       .trends__item__current {
-        color: lighten($ui-base-color, 12%);
+        color: var(--on-background-muted);
       }
 
       .trends__item__sparkline {
         path:first-child {
-          fill: rgba(lighten($ui-base-color, 12%), 0.25) !important;
+          fill: var(--on-background-muted) !important;
+          fill-opacity: 0.25 !important;
         }
 
         path:last-child {
-          stroke: lighten(lighten($ui-base-color, 12%), 6%) !important;
+          stroke: var(--on-background-muted) !important;
         }
       }
     }
@@ -7732,12 +7735,12 @@ noscript {
 
 .conversation {
   display: flex;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-outline);
   padding: 5px;
   padding-bottom: 0;
 
   &:focus {
-    background: lighten($ui-base-color, 2%);
+    background: var(--background-highlighted);
     outline: 0;
   }
 
@@ -7751,7 +7754,8 @@ noscript {
 
   &__unread {
     display: inline-block;
-    background: $highlight-text-color;
+    background: var(--primary);
+    color: var(--on-primary);
     border-radius: 50%;
     width: 0.625rem;
     height: 0.625rem;
@@ -7773,12 +7777,12 @@ noscript {
 
     &__relative-time {
       font-size: 15px;
-      color: $darker-text-color;
+      color: var(--on-background-muted);
       padding-inline-start: 15px;
     }
 
     &__names {
-      color: $darker-text-color;
+      color: var(--on-background-muted);
       font-size: 15px;
       white-space: nowrap;
       overflow: hidden;
@@ -7788,7 +7792,7 @@ noscript {
       flex-grow: 1;
 
       a {
-        color: $primary-text-color;
+        color: var(--on-background);
         text-decoration: none;
 
         &:hover,
@@ -7805,10 +7809,10 @@ noscript {
   }
 
   &--unread {
-    background: lighten($ui-base-color, 2%);
+    background: var(--background-highlighted);
 
     &:focus {
-      background: lighten($ui-base-color, 4%);
+      background: var(--background-highlighted);
     }
 
     .conversation__content__info {
@@ -7816,13 +7820,13 @@ noscript {
     }
 
     .conversation__content__relative-time {
-      color: $primary-text-color;
+      color: var(--on-background);
     }
   }
 }
 
 .announcements {
-  background: lighten($ui-base-color, 8%);
+  background: var(--background-outline);
   font-size: 13px;
   display: flex;
   align-items: flex-end;
@@ -7872,7 +7876,8 @@ noscript {
       top: 19px;
       inset-inline-end: 19px;
       display: block;
-      background: $highlight-text-color;
+      background: var(--primary);
+      color: var(--on-primary);
       border-radius: 50%;
       width: 0.625rem;
       height: 0.625rem;
@@ -7881,7 +7886,7 @@ noscript {
 
   &__pagination {
     padding: 15px;
-    color: $darker-text-color;
+    color: var(--on-background-muted);
     position: absolute;
     bottom: 3px;
     inset-inline-end: 0;
@@ -7906,7 +7911,7 @@ noscript {
 
   &__item {
     flex-shrink: 0;
-    background: lighten($ui-base-color, 12%);
+    background: var(--surface);
     border: 0;
     border-radius: 3px;
     margin: 2px;
@@ -7943,18 +7948,18 @@ noscript {
       font-weight: 500;
       text-align: center;
       margin-inline-start: 6px;
-      color: $darker-text-color;
+      color: var(--on-surface);
     }
 
     &:hover,
     &:focus,
     &:active {
-      background: lighten($ui-base-color, 16%);
+      background: var(--surface-highlighted);
       transition: all 200ms ease-out;
       transition-property: background-color, color;
 
       &__count {
-        color: lighten($darker-text-color, 4%);
+        color: var(--on-surface-highlighted);
       }
     }
 
@@ -8037,8 +8042,8 @@ noscript {
   width: 300px;
 
   &__footer {
-    border-radius: 0 0 4px 4px;
-    background: lighten($ui-base-color, 4%);
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    background: var(--background-outline);
     padding: 10px;
     padding-top: 12px;
     display: flex;
@@ -8046,8 +8051,8 @@ noscript {
   }
 
   &__header {
-    border-radius: 4px 4px 0 0;
-    background: lighten($ui-base-color, 4%);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    background: var(--background-outline);
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -8063,7 +8068,7 @@ noscript {
     }
 
     .display-name {
-      color: $primary-text-color;
+      color: var(--on-background);
       text-decoration: none;
 
       strong,
@@ -8074,7 +8079,7 @@ noscript {
       }
 
       span {
-        color: $darker-text-color;
+        color: var(--on-background-muted);
       }
     }
   }
@@ -8087,8 +8092,8 @@ noscript {
 
 .picture-in-picture-placeholder {
   box-sizing: border-box;
-  border: 2px dashed lighten($ui-base-color, 8%);
-  background: $base-shadow-color;
+  border: 2px dashed var(--background-outline);
+  background: var(--overlay);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8097,7 +8102,7 @@ noscript {
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
-  color: $darker-text-color;
+  color: var(--on-overlay);
   aspect-ratio: 16 / 9;
 
   .icon {
@@ -8109,13 +8114,13 @@ noscript {
   &:hover,
   &:focus,
   &:active {
-    border-color: lighten($ui-base-color, 12%);
+    // border-color: lighten($ui-base-color, 12%);
   }
 }
 
 .notifications-permission-banner {
   padding: 30px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-outline);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8136,14 +8141,14 @@ noscript {
   }
 
   p {
-    color: $darker-text-color;
+    color: var(--on-background-muted);
     margin-bottom: 15px;
     text-align: center;
   }
 }
 
 .explore__search-header {
-  background: darken($ui-base-color, 4%);
+  background: var(--background);
   justify-content: center;
   align-items: center;
   padding: 15px;
@@ -8154,19 +8159,13 @@ noscript {
   }
 
   .search__input {
-    border: 1px solid lighten($ui-base-color, 8%);
     padding: 10px;
     padding-inline-end: 28px;
-  }
-
-  .search__popout {
-    border: 1px solid lighten($ui-base-color, 8%);
   }
 
   .search .icon {
     top: 9px;
     inset-inline-end: 10px;
-    color: $dark-text-color;
   }
 }
 
@@ -8174,7 +8173,7 @@ noscript {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  background: $ui-base-color;
+  background: var(--background);
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
@@ -8182,10 +8181,10 @@ noscript {
 .story {
   display: flex;
   align-items: center;
-  color: $primary-text-color;
+  color: var(--on-background);
   text-decoration: none;
   padding: 15px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-outline);
   gap: 15px;
 
   &:last-child {
@@ -8207,7 +8206,7 @@ noscript {
     flex: 1 1 auto;
 
     &__publisher {
-      color: $darker-text-color;
+      color: var(--on-background-muted);
       margin-bottom: 8px;
     }
 
@@ -8219,7 +8218,7 @@ noscript {
     }
 
     &__shared {
-      color: $darker-text-color;
+      color: var(--on-background-muted);
     }
 
     strong {
@@ -8287,7 +8286,7 @@ noscript {
   padding: 20px 0;
 
   &__introduction {
-    color: $darker-text-color;
+    color: var(--on-background-muted);
     margin-bottom: 20px;
 
     strong {
@@ -8308,13 +8307,13 @@ noscript {
 
   &__hero {
     display: block;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     width: 100%;
     height: auto;
     margin-bottom: 20px;
     aspect-ratio: 1.9;
     border: 0;
-    background: $ui-base-color;
+    background: var(--background);
     object-fit: cover;
   }
 
@@ -8336,19 +8335,19 @@ noscript {
 
   &__number {
     font-weight: 600;
-    color: $primary-text-color;
+    color: var(--on-background);
     font-size: 14px;
   }
 
   &__number-label {
-    color: $darker-text-color;
+    color: var(--on-background-muted);
     font-weight: 500;
     font-size: 14px;
   }
 
   h4 {
     text-transform: uppercase;
-    color: $darker-text-color;
+    color: var(--on-background-muted);
     margin-bottom: 10px;
     font-weight: 600;
   }
@@ -8391,7 +8390,7 @@ noscript {
     color: $darker-text-color;
 
     strong {
-      color: $primary-text-color;
+      color: var(--on-background);
       font-weight: 700;
     }
   }
@@ -8421,9 +8420,9 @@ noscript {
     &__input {
       @include search-input;
 
-      border: 1px solid lighten($ui-base-color, 8%);
+      border: 1px solid var(--surface-outline);
       padding: 4px 6px;
-      color: $primary-text-color;
+      color: var(--on-surface);
       font-size: 16px;
       line-height: 18px;
       display: flex;
@@ -8438,7 +8437,8 @@ noscript {
         flex: 1 1 auto;
 
         &::placeholder {
-          color: lighten($darker-text-color, 4%);
+          color: var(--on-surface-muted);
+          opacity: 1;
         }
 
         &:focus {
@@ -8455,16 +8455,10 @@ noscript {
       margin-top: -1px;
       padding-top: 5px;
       padding-bottom: 5px;
-      border: 1px solid lighten($ui-base-color, 8%);
-    }
-
-    &.focused &__input {
-      border-color: $highlight-text-color;
-      background: lighten($ui-base-color, 4%);
     }
 
     &.invalid &__input {
-      border-color: $error-red;
+      border-color: var(--dangerous);
     }
 
     &.expanded .search__popout {
@@ -8472,7 +8466,7 @@ noscript {
     }
 
     &.expanded &__input {
-      border-radius: 4px 4px 0 0;
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
     }
   }
 
@@ -8528,10 +8522,10 @@ noscript {
   input {
     display: block;
     font-family: inherit;
-    background: darken($ui-base-color, 8%);
-    border: 1px solid $highlight-text-color;
-    color: $darker-text-color;
-    border-radius: 4px;
+    background: var(--surface);
+    border: 1px solid var(--primary);
+    color: var(--on-surface-muted);
+    border-radius: var(--radius-sm);
     padding: 6px 9px;
     line-height: 22px;
     font-size: 14px;
@@ -8541,7 +8535,6 @@ noscript {
 
     &:focus {
       outline: 0;
-      background: darken($ui-base-color, 4%);
     }
   }
 
@@ -8564,11 +8557,11 @@ noscript {
 }
 
 .privacy-policy {
-  background: $ui-base-color;
+  background: var(--background);
   padding: 20px;
 
   @media screen and (min-width: $no-gap-breakpoint) {
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
   }
 
   &__body {
@@ -8712,7 +8705,7 @@ noscript {
   h6,
   strong,
   b {
-    color: $primary-text-color;
+    color: var(--on-background);
     font-weight: 700;
   }
 
@@ -8734,14 +8727,14 @@ noscript {
 
   code {
     font-size: 0.875em;
-    background: darken($ui-base-color, 8%);
-    border-radius: 4px;
+    background: var(--surface);
+    border-radius: var(--radius-sm);
     padding: 0.2em 0.3em;
   }
 
   hr {
     border: 0;
-    border-top: 1px solid lighten($ui-base-color, 4%);
+    border-top: 1px solid var(--background-outline);
     margin-top: 3em;
     margin-bottom: 3em;
   }
@@ -8799,7 +8792,7 @@ noscript {
     font-size: 15px;
     line-height: 22px;
     font-weight: 500;
-    color: $primary-text-color;
+    color: var(--on-background);
 
     p {
       margin-bottom: 15px;
@@ -8859,7 +8852,7 @@ noscript {
     }
 
     a {
-      color: $primary-text-color;
+      color: var(--on-background);
     }
   }
 }
@@ -8904,7 +8897,7 @@ noscript {
   font-size: 13px;
 
   p {
-    color: $dark-text-color;
+    color: var(--on-background-muted);
     margin-bottom: 20px;
 
     .version {
@@ -8916,7 +8909,7 @@ noscript {
     }
 
     a {
-      color: $dark-text-color;
+      color: var(--on-background-muted);
       text-decoration: underline;
 
       &:hover,
@@ -8932,11 +8925,11 @@ noscript {
   padding: 20px;
 
   @media screen and (min-width: $no-gap-breakpoint) {
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
   }
 
   &__footer {
-    color: $dark-text-color;
+    color: var(--on-background-muted);
     text-align: center;
     font-size: 15px;
     line-height: 22px;
@@ -8950,7 +8943,7 @@ noscript {
       width: 100%;
       height: auto;
       aspect-ratio: 1.9;
-      background: lighten($ui-base-color, 4%);
+      background: var(--surface);
       border-radius: 8px;
       margin-bottom: 30px;
     }
@@ -8971,13 +8964,13 @@ noscript {
       font-size: 16px;
       line-height: 24px;
       font-weight: 400;
-      color: $darker-text-color;
+      color: var(--on-background-muted);
     }
   }
 
   &__meta {
-    background: lighten($ui-base-color, 4%);
-    border-radius: 4px;
+    background: var(--surface);
+    border-radius: var(--radius-sm);
     display: flex;
     margin-bottom: 30px;
     font-size: 15px;
@@ -8992,7 +8985,7 @@ noscript {
       width: 0;
       border: 0;
       border-style: solid;
-      border-color: lighten($ui-base-color, 8%);
+      border-color: var(--background-outline);
       border-left-width: 1px;
       min-height: calc(100% - 60px);
       flex: 0 0 auto;
@@ -9001,7 +8994,7 @@ noscript {
     h4 {
       font-size: 15px;
       text-transform: uppercase;
-      color: $darker-text-color;
+      color: var(--on-background-muted);
       font-weight: 500;
       margin-bottom: 20px;
     }
@@ -9052,7 +9045,7 @@ noscript {
   }
 
   &__mail {
-    color: $primary-text-color;
+    color: var(--on-background);
     text-decoration: none;
     font-weight: 500;
 
@@ -9099,18 +9092,18 @@ noscript {
       font-weight: 600;
       line-height: 22px;
       padding: 20px;
-      border-radius: 4px;
-      background: lighten($ui-base-color, 4%);
-      color: $highlight-text-color;
+      border-radius: var(--radius-sm);
+      background: var(--background-outline);
+      color: var(--primary);
       cursor: pointer;
     }
 
     &.active &__title {
-      border-radius: 4px 4px 0 0;
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
     }
 
     &__body {
-      border: 1px solid lighten($ui-base-color, 4%);
+      border: 1px solid var(--background-outline);
       border-top: 0;
       padding: 20px;
       font-size: 15px;
@@ -9120,18 +9113,18 @@ noscript {
 
   &__domain-blocks {
     margin-top: 30px;
-    background: darken($ui-base-color, 4%);
-    border: 1px solid lighten($ui-base-color, 4%);
-    border-radius: 4px;
+    background: var(--background);
+    border: 1px solid var(--background-outline);
+    border-radius: var(--radius-sm);
 
     &__domain {
-      border-bottom: 1px solid lighten($ui-base-color, 4%);
+      border-bottom: 1px solid var(--background-outline);
       padding: 10px;
       font-size: 15px;
-      color: $darker-text-color;
+      color: var(--on-background-muted);
 
       &:nth-child(2n) {
-        background: darken($ui-base-color, 2%);
+        background: var(--background-variant);
       }
 
       &:last-child {
@@ -9147,7 +9140,7 @@ noscript {
       }
 
       h6 {
-        color: $secondary-text-color;
+        color: var(--on-background);
         font-size: inherit;
         white-space: nowrap;
         overflow: hidden;
@@ -9161,6 +9154,12 @@ noscript {
       }
     }
   }
+}
+
+.column .scrollable.about,
+.column .scrollable.privacy-policy {
+  border-top: 1px solid var(--background-outline);
+  border-radius: var(--radius-sm);
 }
 
 .notification-list {
@@ -9180,8 +9179,8 @@ noscript {
   width: auto;
   padding: 15px;
   margin: 0;
-  color: $white;
-  background: rgba($black, 0.85);
+  color: var(--on-overlay);
+  background: var(--overlay-variant);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(lighten($classic-base-color, 4%), 0.85);
   border-radius: 8px;
@@ -9215,23 +9214,23 @@ noscript {
   text-transform: uppercase;
   margin-inline-start: 10px;
   cursor: pointer;
-  color: $blurple-300;
-  border-radius: 4px;
+  color: var(--primary);
+  border-radius: var(--radius-sm);
   padding: 0 4px;
 
   &:hover,
   &:focus,
   &:active {
-    background: rgba($ui-base-color, 0.85);
+    // background: rgba($ui-base-color, 0.85);
   }
 }
 
 .hashtag-header {
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-outline);
   padding: 15px;
   font-size: 17px;
   line-height: 22px;
-  color: $darker-text-color;
+  color: var(--on-background-muted);
 
   strong {
     font-weight: 700;
@@ -9245,7 +9244,7 @@ noscript {
     gap: 15px;
 
     h1 {
-      color: $primary-text-color;
+      color: var(--on-background);
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
@@ -9263,7 +9262,7 @@ noscript {
   font-size: 14px;
   line-height: 18px;
   gap: 4px;
-  color: $darker-text-color;
+  color: var(--on-background-muted);
 
   a {
     display: inline-flex;
