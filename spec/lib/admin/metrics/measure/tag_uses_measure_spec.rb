@@ -12,10 +12,6 @@ describe Admin::Metrics::Measure::TagUsesMeasure do
   let(:params) { ActionController::Parameters.new(id: tag.id) }
 
   describe '#data' do
-    it 'runs data query without error' do
-      expect { subject.data }.to_not raise_error
-    end
-
     context 'with tagged accounts' do
       let(:alice) { Fabricate(:account, domain: 'alice.example') }
       let(:bob) { Fabricate(:account, domain: 'bob.example') }

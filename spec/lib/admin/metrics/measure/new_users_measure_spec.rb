@@ -10,10 +10,6 @@ describe Admin::Metrics::Measure::NewUsersMeasure do
   let(:params) { ActionController::Parameters.new }
 
   describe '#data' do
-    it 'runs data query without error' do
-      expect { subject.data }.to_not raise_error
-    end
-
     context 'with user records' do
       before do
         3.times { Fabricate :user, created_at: 2.days.ago }

@@ -10,10 +10,6 @@ describe Admin::Metrics::Measure::OpenedReportsMeasure do
   let(:params) { ActionController::Parameters.new }
 
   describe '#data' do
-    it 'runs data query without error' do
-      expect { subject.data }.to_not raise_error
-    end
-
     context 'with report records' do
       before do
         3.times { Fabricate :report, created_at: 2.days.ago }
