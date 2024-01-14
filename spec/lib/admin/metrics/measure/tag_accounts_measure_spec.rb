@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe Admin::Metrics::Measure::TagAccountsMeasure do
-  subject(:measure) { described_class.new(start_at, end_at, params) }
+  subject { described_class.new(start_at, end_at, params) }
 
   let!(:tag) { Fabricate(:tag) }
 
@@ -13,7 +13,7 @@ describe Admin::Metrics::Measure::TagAccountsMeasure do
 
   describe '#data' do
     it 'runs data query without error' do
-      expect { measure.data }.to_not raise_error
+      expect { subject.data }.to_not raise_error
     end
 
     context 'with tagged accounts' do
@@ -38,9 +38,9 @@ describe Admin::Metrics::Measure::TagAccountsMeasure do
       end
 
       it 'returns correct tag_accounts counts' do
-        expect(measure.data.size)
+        expect(subject.data.size)
           .to eq(3)
-        expect(measure.data.map(&:symbolize_keys))
+        expect(subject.data.map(&:symbolize_keys))
           .to contain_exactly(
             include(date: 2.days.ago.midnight.to_time, value: '1'),
             include(date: 1.day.ago.midnight.to_time, value: '2'),
