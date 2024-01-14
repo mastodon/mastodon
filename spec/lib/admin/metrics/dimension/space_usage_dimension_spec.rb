@@ -11,8 +11,13 @@ describe Admin::Metrics::Dimension::SpaceUsageDimension do
   let(:params) { ActionController::Parameters.new }
 
   describe '#data' do
-    it 'runs data query without error' do
-      expect { subject.data }.to_not raise_error
+    it 'reports on used storage space' do
+      expect(subject.data.map(&:symbolize_keys))
+        .to include(
+          include(key: 'media', value: /\d/),
+          include(key: 'postgresql', value: /\d/),
+          include(key: 'redis', value: /\d/)
+        )
     end
   end
 end

@@ -11,8 +11,21 @@ describe Admin::Metrics::Dimension::LanguagesDimension do
   let(:params) { ActionController::Parameters.new }
 
   describe '#data' do
-    it 'runs data query without error' do
-      expect { subject.data }.to_not raise_error
+    let(:alice) { Fabricate(:user, locale: 'en', current_sign_in_at: 1.day.ago) }
+    let(:bob) { Fabricate(:user, locale: 'en', current_sign_in_at: 30.days.ago) }
+
+    before do
+      alice.update(current_sign_in_at: 1.day.ago)
+      bob.update(current_sign_in_at: 30.days.ago)
+    end
+
+    it 'returns locales with sign in counts' do
+      expect(subject.data.size)
+        .to eq(1)
+      expect(subject.data.map(&:symbolize_keys))
+        .to contain_exactly(
+          include(key: 'en', value: '1')
+        )
     end
   end
 end

@@ -11,8 +11,24 @@ describe Admin::Metrics::Dimension::ServersDimension do
   let(:params) { ActionController::Parameters.new }
 
   describe '#data' do
-    it 'runs data query without error' do
-      expect { subject.data }.to_not raise_error
+    let(:domain) { 'host.example' }
+    let(:alice) { Fabricate(:account, domain: domain) }
+    let(:bob) { Fabricate(:account) }
+
+    before do
+      Fabricate :status, account: alice, created_at: 1.day.ago
+      Fabricate :status, account: alice, created_at: 30.days.ago
+      Fabricate :status, account: bob, created_at: 1.day.ago
+    end
+
+    it 'returns domains with status counts' do
+      expect(subject.data.size)
+        .to eq(2)
+      expect(subject.data.map(&:symbolize_keys))
+        .to contain_exactly(
+          include(key: domain, value: '1'),
+          include(key: Rails.configuration.x.local_domain, value: '1')
+        )
     end
   end
 end
