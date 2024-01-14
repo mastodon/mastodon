@@ -22,19 +22,17 @@ describe Admin::Metrics::Measure::TagAccountsMeasure do
 
       before do
         3.times do
-          travel_to 2.days.ago do
-            tag.history.add(alice.id)
-          end
+          travel_to(2.days.ago) { add_tag_history(alice) }
         end
 
         2.times do
-          travel_to 1.day.ago do
-            tag.history.add(alice.id)
-            tag.history.add(bob.id)
+          travel_to(1.day.ago) do
+            add_tag_history(alice)
+            add_tag_history(bob)
           end
         end
 
-        tag.history.add(bob.id)
+        add_tag_history(bob)
       end
 
       it 'returns correct tag_accounts counts' do
@@ -46,6 +44,10 @@ describe Admin::Metrics::Measure::TagAccountsMeasure do
             include(date: 1.day.ago.midnight.to_time, value: '2'),
             include(date: 0.days.ago.midnight.to_time, value: '1')
           )
+      end
+
+      def add_tag_history(account)
+        tag.history.add(account.id)
       end
     end
   end
