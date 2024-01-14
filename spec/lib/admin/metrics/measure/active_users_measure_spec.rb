@@ -17,18 +17,12 @@ describe Admin::Metrics::Measure::ActiveUsersMeasure do
     context 'with activity tracking records' do
       before do
         3.times do
-          travel_to 2.days.ago do
-            ActivityTracker.record('activity:logins', Fabricate(:user).id)
-          end
+          travel_to(2.days.ago) { record_login_activity }
         end
         2.times do
-          travel_to 1.day.ago do
-            ActivityTracker.record('activity:logins', Fabricate(:user).id)
-          end
+          travel_to(1.day.ago) { record_login_activity }
         end
-        travel_to 0.days.ago do
-          ActivityTracker.record('activity:logins', Fabricate(:user).id)
-        end
+        travel_to(0.days.ago) { record_login_activity }
       end
 
       it 'returns correct activity tracker counts' do
@@ -40,6 +34,10 @@ describe Admin::Metrics::Measure::ActiveUsersMeasure do
             include(date: 1.day.ago.midnight.to_time, value: '2'),
             include(date: 0.days.ago.midnight.to_time, value: '1')
           )
+      end
+
+      def record_login_activity
+        ActivityTracker.record('activity:logins', Fabricate(:user).id)
       end
     end
   end
