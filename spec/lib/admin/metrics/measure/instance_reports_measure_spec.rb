@@ -38,7 +38,7 @@ describe Admin::Metrics::Measure::InstanceReportsMeasure do
   end
 
   describe '#data' do
-    it 'returns correct media_attachments counts' do
+    it 'returns correct instance_reports counts' do
       expect(measure.data.size)
         .to eq(3)
       expect(measure.data.map(&:symbolize_keys))
