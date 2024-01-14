@@ -15,5 +15,38 @@ describe Admin::Metrics::Measure::TagUsesMeasure do
     it 'runs data query without error' do
       expect { measure.data }.to_not raise_error
     end
+
+    context 'with tagged accounts' do
+      let(:alice) { Fabricate(:account, domain: 'alice.example') }
+      let(:bob) { Fabricate(:account, domain: 'bob.example') }
+
+      before do
+        3.times do
+          travel_to 2.days.ago do
+            tag.history.add(alice.id)
+          end
+        end
+
+        2.times do
+          travel_to 1.day.ago do
+            tag.history.add(alice.id)
+            tag.history.add(bob.id)
+          end
+        end
+
+        tag.history.add(bob.id)
+      end
+
+      it 'returns correct tag_uses counts' do
+        expect(measure.data.size)
+          .to eq(3)
+        expect(measure.data.map(&:symbolize_keys))
+          .to contain_exactly(
+            include(date: 2.days.ago.midnight.to_time, value: '3'),
+            include(date: 1.day.ago.midnight.to_time, value: '4'),
+            include(date: 0.days.ago.midnight.to_time, value: '1')
+          )
+      end
+    end
   end
 end
