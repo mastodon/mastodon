@@ -22,6 +22,8 @@ describe Admin::Metrics::Measure::InstanceFollowersMeasure do
     Fabricate(:account, domain: "foo.#{domain}").follow!(local_account)
     Fabricate(:account, domain: "foo.#{domain}").follow!(local_account)
     Fabricate(:account, domain: "bar.#{domain}")
+
+    Fabricate(:account, domain: 'other.example').follow!(local_account)
   end
 
   describe 'total' do
@@ -41,8 +43,15 @@ describe Admin::Metrics::Measure::InstanceFollowersMeasure do
   end
 
   describe '#data' do
-    it 'runs data query without error' do
-      expect { measure.data }.to_not raise_error
+    it 'returns correct user counts' do
+      expect(measure.data.size)
+        .to eq(3)
+      expect(measure.data.map(&:symbolize_keys))
+        .to contain_exactly(
+          include(date: 2.days.ago.midnight.to_time, value: '0'),
+          include(date: 1.day.ago.midnight.to_time, value: '0'),
+          include(date: 0.days.ago.midnight.to_time, value: '2')
+        )
     end
   end
 end
