@@ -23,7 +23,7 @@ describe Admin::Metrics::Measure::InstanceAccountsMeasure do
     Fabricate(:account, domain: 'other-host.example')
   end
 
-  describe 'total' do
+  describe '#total' do
     context 'without include_subdomains' do
       it 'returns the expected number of accounts' do
         expect(measure.total).to eq 3

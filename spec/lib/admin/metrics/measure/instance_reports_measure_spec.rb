@@ -21,7 +21,7 @@ describe Admin::Metrics::Measure::InstanceReportsMeasure do
     Fabricate(:report, target_account: Fabricate(:account, domain: "bar.#{domain}"))
   end
 
-  describe 'total' do
+  describe '#total' do
     context 'without include_subdomains' do
       it 'returns the expected number of accounts' do
         expect(measure.total).to eq 2
