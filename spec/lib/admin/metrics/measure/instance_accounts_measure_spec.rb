@@ -40,7 +40,7 @@ describe Admin::Metrics::Measure::InstanceAccountsMeasure do
   end
 
   describe '#data' do
-    it 'returns correct user counts' do
+    it 'returns correct instance_accounts counts' do
       expect(measure.data.size)
         .to eq(3)
       expect(measure.data.map(&:symbolize_keys))

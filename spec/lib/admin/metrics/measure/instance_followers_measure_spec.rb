@@ -43,7 +43,7 @@ describe Admin::Metrics::Measure::InstanceFollowersMeasure do
   end
 
   describe '#data' do
-    it 'returns correct user counts' do
+    it 'returns correct instance_followers counts' do
       expect(measure.data.size)
         .to eq(3)
       expect(measure.data.map(&:symbolize_keys))
