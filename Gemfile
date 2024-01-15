@@ -39,8 +39,7 @@ end
 
 gem 'net-ldap', '~> 0.18'
 
-# TODO: Point back at released omniauth-cas gem when new version is released
-gem 'omniauth-cas', github: 'dlindahl/omniauth-cas', ref: '9d9d3a91b316c55d49ab6e621977f2067010c5bf'
+gem 'omniauth-cas', '~> 3.0.0.beta.1'
 gem 'omniauth-saml', '~> 2.0'
 gem 'omniauth_openid_connect', '~> 0.6.1'
 gem 'omniauth', '~> 2.0'

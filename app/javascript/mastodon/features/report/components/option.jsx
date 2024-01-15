@@ -3,8 +3,7 @@ import { PureComponent } from 'react';
 
 import classNames from 'classnames';
 
-import CheckIcon from '@material-symbols/svg-600/outlined/done.svg?react';
-
+import CheckIcon from 'mastodon/../material-icons/400-24px/done.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 
 export default class Option extends PureComponent {

@@ -9,12 +9,11 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import OpenInNewIcon from '@material-symbols/svg-600/outlined/open_in_new.svg?react';
-import RepeatIcon from '@material-symbols/svg-600/outlined/repeat.svg?react';
-import ReplyIcon from '@material-symbols/svg-600/outlined/reply.svg?react';
-import ReplyAllIcon from '@material-symbols/svg-600/outlined/reply_all.svg?react';
-import StarIcon from '@material-symbols/svg-600/outlined/star.svg?react';
-
+import OpenInNewIcon from 'mastodon/../material-icons/400-24px/open_in_new.svg?react';
+import RepeatIcon from 'mastodon/../material-icons/400-24px/repeat.svg?react';
+import ReplyIcon from 'mastodon/../material-icons/400-24px/reply.svg?react';
+import ReplyAllIcon from 'mastodon/../material-icons/400-24px/reply_all.svg?react';
+import StarIcon from 'mastodon/../material-icons/400-24px/star.svg?react';
 import { initBoostModal } from 'mastodon/actions/boosts';
 import { replyCompose } from 'mastodon/actions/compose';
 import { reblog, favourite, unreblog, unfavourite } from 'mastodon/actions/interactions';

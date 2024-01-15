@@ -8,9 +8,9 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import LockIcon from '@material-symbols/svg-600/outlined/lock.svg?react';
 import { length } from 'stringz';
 
+import LockIcon from 'mastodon/../material-icons/400-24px/lock.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 import { WithOptionalRouterPropTypes, withOptionalRouter } from 'mastodon/utils/react_router';
 

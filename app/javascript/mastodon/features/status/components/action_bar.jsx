@@ -9,15 +9,14 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import BookmarkIcon from '@material-symbols/svg-600/outlined/bookmark-fill.svg?react';
-import BookmarkBorderIcon from '@material-symbols/svg-600/outlined/bookmark.svg?react';
-import MoreHorizIcon from '@material-symbols/svg-600/outlined/more_horiz.svg?react';
-import RepeatIcon from '@material-symbols/svg-600/outlined/repeat.svg?react';
-import ReplyIcon from '@material-symbols/svg-600/outlined/reply.svg?react';
-import ReplyAllIcon from '@material-symbols/svg-600/outlined/reply_all.svg?react';
-import StarIcon from '@material-symbols/svg-600/outlined/star-fill.svg?react';
-import StarBorderIcon from '@material-symbols/svg-600/outlined/star.svg?react';
-
+import BookmarkIcon from 'mastodon/../material-icons/400-24px/bookmark-fill.svg?react';
+import BookmarkBorderIcon from 'mastodon/../material-icons/400-24px/bookmark.svg?react';
+import MoreHorizIcon from 'mastodon/../material-icons/400-24px/more_horiz.svg?react';
+import RepeatIcon from 'mastodon/../material-icons/400-24px/repeat.svg?react';
+import ReplyIcon from 'mastodon/../material-icons/400-24px/reply.svg?react';
+import ReplyAllIcon from 'mastodon/../material-icons/400-24px/reply_all.svg?react';
+import StarIcon from 'mastodon/../material-icons/400-24px/star-fill.svg?react';
+import StarBorderIcon from 'mastodon/../material-icons/400-24px/star.svg?react';
 import RepeatDisabledIcon from 'mastodon/../svg-icons/repeat_disabled.svg?react';
 import RepeatPrivateIcon from 'mastodon/../svg-icons/repeat_private.svg?react';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
