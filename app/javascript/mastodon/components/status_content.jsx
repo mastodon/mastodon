@@ -121,6 +121,11 @@ class StatusContent extends PureComponent {
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
         link.setAttribute('href', `/tags/${link.text.replace(/^#/, '')}`);
+      } else if (status.get('uri') === link.href) {
+        // the link points to the source of the status. this happens e.g. with lemmy posts.
+        // there is no use in trying to open the url on this instance as it's already opened.
+        link.setAttribute('title', link.href);
+        link.classList.add('unhandled-link');
       } else {
         link.setAttribute('title', link.href);
         link.addEventListener('click', this.onLinkClick.bind(this, link), false);
