@@ -155,6 +155,12 @@ RSpec/SpecFilePathFormat:
     OEmbedController: oembed_controller
     OStatus: ostatus
 
+# Reason: Disable until we are at 3.1+ for version target
+# TODO: When we bump to 3.1, first correct Naming/BlockForwarding cops, then enable this
+# https://docs.rubocop.org/rubocop/cops_style.html#styleargumentsforwarding
+Style/ArgumentsForwarding:
+  Enabled: false
+
 # Reason:
 # https://docs.rubocop.org/rubocop/cops_style.html#styleclassandmodulechildren
 Style/ClassAndModuleChildren:
