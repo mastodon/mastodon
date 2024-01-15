@@ -204,7 +204,8 @@ class User < ApplicationRecord
     end
   end
 
-  def confirm!
+  # Mark current email as confirmed, bypassing Devise
+  def mark_email_as_confirmed!
     new_user      = !confirmed?
     self.approved = true if grant_approval_on_confirmation?
 
