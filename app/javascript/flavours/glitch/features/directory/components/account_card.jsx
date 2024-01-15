@@ -19,7 +19,7 @@ import { Avatar } from 'flavours/glitch/components/avatar';
 import { Button } from 'flavours/glitch/components/button';
 import { DisplayName } from 'flavours/glitch/components/display_name';
 import { IconButton } from 'flavours/glitch/components/icon_button';
-import Permalink from 'flavours/glitch/components/permalink';
+import { Permalink } from 'flavours/glitch/components/permalink';
 import { ShortNumber } from 'flavours/glitch/components/short_number';
 import { autoPlayGif, me, unfollowModal } from 'flavours/glitch/initial_state';
 import { makeGetAccount } from 'flavours/glitch/selectors';

@@ -5,7 +5,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import Hashtag from 'flavours/glitch/components/hashtag';
+import { Hashtag } from 'flavours/glitch/components/hashtag';
 
 const messages = defineMessages({
   lastStatusAt: { id: 'account.featured_tags.last_status_at', defaultMessage: 'Last post on {date}' },

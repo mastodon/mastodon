@@ -19,7 +19,7 @@ import { Icon } from 'flavours/glitch/components/icon';
 import { autoPlayGif, languages as preloadedLanguages } from 'flavours/glitch/initial_state';
 import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
 
-import Permalink from './permalink';
+import { Permalink } from './permalink';
 
 const textMatchesTarget = (text, origin, host) => {
   return (text === origin || text === host

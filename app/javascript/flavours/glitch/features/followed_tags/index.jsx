@@ -13,7 +13,7 @@ import { debounce } from 'lodash';
 
 import { expandFollowedHashtags, fetchFollowedHashtags } from 'flavours/glitch/actions/tags';
 import ColumnHeader from 'flavours/glitch/components/column_header';
-import Hashtag from 'flavours/glitch/components/hashtag';
+import { Hashtag } from 'flavours/glitch/components/hashtag';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import Column from 'flavours/glitch/features/ui/components/column';
 

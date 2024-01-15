@@ -15,7 +15,7 @@ import { HotKeys } from 'react-hotkeys';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 import AvatarComposite from 'flavours/glitch/components/avatar_composite';
 import { IconButton } from 'flavours/glitch/components/icon_button';
-import Permalink from 'flavours/glitch/components/permalink';
+import { Permalink } from 'flavours/glitch/components/permalink';
 import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
 import StatusContent from 'flavours/glitch/components/status_content';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';

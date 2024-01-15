@@ -12,7 +12,7 @@ import { ReactComponent as FlagIcon } from '@material-symbols/svg-600/outlined/f
 import { HotKeys } from 'react-hotkeys';
 
 import { Icon } from 'flavours/glitch/components/icon';
-import Permalink from 'flavours/glitch/components/permalink';
+import { Permalink } from 'flavours/glitch/components/permalink';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 import NotificationOverlayContainer from '../containers/overlay_container';

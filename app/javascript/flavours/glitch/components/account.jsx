@@ -17,7 +17,7 @@ import { Avatar } from './avatar';
 import { Button } from './button';
 import { FollowersCounter } from './counters';
 import { DisplayName } from './display_name';
-import Permalink from './permalink';
+import { Permalink } from './permalink';
 import { RelativeTimestamp } from './relative_timestamp';
 
 const messages = defineMessages({
