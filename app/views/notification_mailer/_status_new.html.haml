@@ -1,4 +1,4 @@
-%table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-status-header-img
       = image_tag full_asset_url(status.account.avatar.url), alt: '', width: 48, height: 48
@@ -8,7 +8,7 @@
       %p.email-status-header-handle
         @#{status.account.pretty_acct}
 
-%table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-status-content
       .auto-dir

@@ -75,13 +75,17 @@ table + p {
   border-radius: 12px;
 }
 
+.email-inner-card-td-without-padding,
 .email-inner-card-td {
   border-radius: 12px;
-  padding: 24px;
   overflow: hidden;
   box-shadow: 0 4px 16px 0 rgba(23, 6, 59, 8%);
   background-color: #fff;
   border: 1px solid #dfdee3;
+}
+
+.email-inner-card-td {
+  padding: 24px;
 }
 
 // Utility classes
@@ -108,6 +112,18 @@ table + p {
       }
     }
   }
+}
+
+.email-padding-24 {
+  padding: 24px;
+}
+
+.email-border-top {
+  border-top: 1px solid #dfdee3;
+}
+
+.email-border-bottom {
+  border-bottom: 1px solid #dfdee3;
 }
 
 // Header
@@ -320,6 +336,7 @@ table + p {
 
 .email-status-header-text {
   padding-left: 16px;
+  padding-right: 16px;
   vertical-align: middle;
 }
 
@@ -338,7 +355,6 @@ table + p {
 
 .email-status-content {
   padding-top: 24px;
-  padding-bottom: 24px;
 }
 
 .email-status-spoiler {
@@ -392,6 +408,11 @@ table + p {
 
   a {
     color: #746a89;
+  }
+
+  a:hover {
+    color: #746a89 !important;
+    text-decoration: underline !important;
   }
 }
 
@@ -461,7 +482,7 @@ table + p {
 .email-checklist-text-td {
   h3 {
     margin: 0 0 4px;
-    color: #17063B;
+    color: #17063b;
     font-size: 14px;
     font-weight: 600;
     line-height: 16.8px;
