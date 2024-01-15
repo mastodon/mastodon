@@ -29,7 +29,7 @@
     = javascript_pack_tag 'common', crossorigin: 'anonymous'
 
     -# Needed for the wicg-inert polyfill. It needs to be on it's own <style> tag, with this `id`
-    = stylesheet_pack_tag 'inert', media: 'all', id: 'inert-style'
+    = stylesheet_pack_tag 'core/inert', media: 'all', id: 'inert-style'
 
     - if @theme
       - if @theme[:supported_locales].include? I18n.locale.to_s

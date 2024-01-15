@@ -54,11 +54,7 @@ const entries = Object.assign(
 
 
 module.exports = {
-  entry: {
-    ...entries,
-    // this is cursed, but bypass glitch-soc's theming system for this one
-    inert: './app/javascript/packs/inert.js',
-  },
+  entry: entries,
 
   output: {
     filename: 'js/[name]-[chunkhash].js',
