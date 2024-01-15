@@ -67,7 +67,7 @@ module Account::Counters
   def duplicate_values(key, value)
     Arel.sql(
       ["#{key} = (account_stats.#{key} + #{value})", 'updated_at = CURRENT_TIMESTAMP'].tap do |values|
-        values << 'last_status_at = CURRENT_TIMESTAMP' if key == :statuses_count
+        values << 'last_status_at = CURRENT_TIMESTAMP' if key == :statuses_count && value.positive?
       end.join(', ')
     )
   end
