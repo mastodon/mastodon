@@ -186,38 +186,16 @@ class User < ApplicationRecord
   end
 
   def confirm
-    new_user      = !confirmed?
-    self.approved = true if grant_approval_on_confirmation?
-
-    super
-
-    if new_user
-      # Avoid extremely unlikely race condition when approving and confirming
-      # the user at the same time
-      reload unless approved?
-
-      if approved?
-        prepare_new_user!
-      else
-        notify_staff_about_pending_account!
-      end
+    wrap_email_confirmation do
+      super
     end
   end
 
   # Mark current email as confirmed, bypassing Devise
   def mark_email_as_confirmed!
-    new_user      = !confirmed?
-    self.approved = true if grant_approval_on_confirmation?
-
-    skip_confirmation!
-    save!
-
-    if new_user
-      # Avoid extremely unlikely race condition when approving and confirming
-      # the user at the same time
-      reload unless approved?
-
-      prepare_new_user! if approved?
+    wrap_email_confirmation do
+      skip_confirmation!
+      save!
     end
   end
 
@@ -430,6 +408,25 @@ class User < ApplicationRecord
   def grant_approval_on_confirmation?
     # Re-check approval on confirmation if the server has switched to open registrations
     open_registrations? && !sign_up_from_ip_requires_approval? && !sign_up_email_requires_approval?
+  end
+
+  def wrap_email_confirmation
+    new_user      = !confirmed?
+    self.approved = true if grant_approval_on_confirmation?
+
+    yield
+
+    if new_user
+      # Avoid extremely unlikely race condition when approving and confirming
+      # the user at the same time
+      reload unless approved?
+
+      if approved?
+        prepare_new_user!
+      else
+        notify_staff_about_pending_account!
+      end
+    end
   end
 
   def sign_up_from_ip_requires_approval?
