@@ -60,8 +60,11 @@
                     %table.email-body-table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
                       %tr
                         %td.email-body-td
-                          -# Content
-                          = yield
+                          %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                            %tr
+                              %td.email-body-padding-td
+                                -# Content
+                                = yield
 
               /[if mso]
                 </td></tr></table>

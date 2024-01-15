@@ -1,46 +1,43 @@
 = content_for :heading do
   = render 'application/mailer/heading', heading_title: t("user_mailer.warning.title.#{@warning.action}"), heading_image_url: frontend_asset_url('images/mailer-new/heading/warning.png')
-%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+%table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
-    %td.email-body-padding-td
-      %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+    %td.email-inner-card-td-without-padding
+      %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
         %tr
-          %td.email-inner-card-td-without-padding
-            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-              %tr
-                %td.email-prose.email-padding-24
-                  - unless @warning.none_action?
-                    %p= t "user_mailer.warning.explanation.#{@warning.action}", instance: @instance
+          %td.email-prose.email-padding-24
+            - unless @warning.none_action?
+              %p= t "user_mailer.warning.explanation.#{@warning.action}", instance: @instance
 
-                  - if @warning.text.present?
-                    = linkify(@warning.text)
+            - if @warning.text.present?
+              = linkify(@warning.text)
 
-                  - if @warning.report && !@warning.report.other?
-                    %p
-                      %strong= t('user_mailer.warning.reason')
-                      = t("user_mailer.warning.categories.#{@warning.report.category}")
+            - if @warning.report && !@warning.report.other?
+              %p
+                %strong= t('user_mailer.warning.reason')
+                = t("user_mailer.warning.categories.#{@warning.report.category}")
 
-                    - if @warning.report.violation? && @warning.report.rule_ids.present?
-                      %ul.rules-list
-                        - @warning.report.rules.each do |rule|
-                          %li= rule.text
-
-                  - unless @statuses.empty?
-                    %p
-                      %strong= t('user_mailer.warning.statuses')
+              - if @warning.report.violation? && @warning.report.rule_ids.present?
+                %ul.rules-list
+                  - @warning.report.rules.each do |rule|
+                    %li= rule.text
 
             - unless @statuses.empty?
-              %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-                %tr
-                  %td.email-border-top
-                    - @statuses.each_with_index do |status, i|
-                      %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-                        %tr
-                          %td.email-border-bottom.email-padding-24
-                            = render 'notification_mailer/status', status: status, i: i + 1, highlighted: true, time_zone: @resource.time_zone.presence
+              %p
+                %strong= t('user_mailer.warning.statuses')
 
-            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-              %tr
-                %td.email-prose.email-padding-24
-                  %p= t 'user_mailer.warning.appeal_description', instance: @instance
-                  = render 'application/mailer/button', text: t('user_mailer.warning.appeal'), url: disputes_strike_url(@warning)
+      - unless @statuses.empty?
+        %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+          %tr
+            %td.email-border-top
+              - @statuses.each_with_index do |status, i|
+                %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                  %tr
+                    %td.email-border-bottom.email-padding-24
+                      = render 'notification_mailer/status', status: status, i: i + 1, highlighted: true, time_zone: @resource.time_zone.presence
+
+      %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-prose.email-padding-24
+            %p= t 'user_mailer.warning.appeal_description', instance: @instance
+            = render 'application/mailer/button', text: t('user_mailer.warning.appeal'), url: disputes_strike_url(@warning)

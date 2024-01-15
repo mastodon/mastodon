@@ -1,11 +1,8 @@
 = content_for :heading do
   = render 'application/mailer/heading', heading_title: t('devise.mailer.reconfirmation_instructions.title'), heading_image_url: frontend_asset_url('images/mailer-new/heading/email.png')
-%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+%table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
-    %td.email-body-padding-td
-      %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-        %tr
-          %td.email-inner-card-td.email-prose
-            %p= t('devise.mailer.reconfirmation_instructions.explanation')
-            = render 'application/mailer/button', text: t('devise.mailer.confirmation_instructions.action'), url: confirmation_url(@resource, confirmation_token: @token)
-            %p= t 'devise.mailer.reconfirmation_instructions.extra'
+    %td.email-inner-card-td.email-prose
+      %p= t('devise.mailer.reconfirmation_instructions.explanation')
+      = render 'application/mailer/button', text: t('devise.mailer.confirmation_instructions.action'), url: confirmation_url(@resource, confirmation_token: @token)
+      %p= t 'devise.mailer.reconfirmation_instructions.extra'
