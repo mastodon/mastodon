@@ -10,7 +10,7 @@
                   %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
                     %tr
                       %td.email-checklist-icons-checkbox-td
-                        - if defined?(checked) and checked
+                        - if defined?(checked) && checked
                           = image_tag full_pack_url('media/images/mailer-new/welcome/checkbox-on.png'), alt: '', width: 20, height: 20
                         - else
                           = image_tag full_pack_url('media/images/mailer-new/welcome/checkbox-off.png'), alt: '', width: 20, height: 20
@@ -25,5 +25,5 @@
                       - if defined?(text)
                         %p= text
                     %div
-                      - if defined?(button_text) and defined?(button_url) and defined?(checked) and not checked
+                      - if defined?(button_text) && defined?(button_url) && defined?(checked) && !checked
                         = render 'application/mailer/button', text: button_text, url: button_url
