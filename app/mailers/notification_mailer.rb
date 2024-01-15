@@ -12,6 +12,8 @@ class NotificationMailer < ApplicationMailer
 
   default to: -> { email_address_with_name(@user.email, @me.username) }
 
+  layout 'mailer'
+
   def mention
     return unless @user.functional? && @status.present?
 
