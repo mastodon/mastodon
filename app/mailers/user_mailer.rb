@@ -1,25 +1,7 @@
 # frozen_string_literal: true
 
 class UserMailer < Devise::Mailer
-  CONVERTED = %w(confirmation_instructions
-                 reset_password_instructions
-                 password_change
-                 email_changed
-                 two_factor_disabled
-                 two_factor_enabled
-                 two_factor_recovery_codes_changed
-                 webauthn_enabled
-                 webauthn_disabled
-                 webauthn_credential_added
-                 webauthn_credential_deleted
-                 welcome
-                 backup_ready
-                 warning
-                 appeal_approved
-                 appeal_rejected
-                 suspicious_sign_in).freeze
-
-  layout -> { CONVERTED.include?(action_name) ? 'mailer_new' : 'mailer' }
+  layout -> { 'mailer_new' }
 
   helper :accounts
   helper :application
