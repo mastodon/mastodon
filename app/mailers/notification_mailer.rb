@@ -12,7 +12,11 @@ class NotificationMailer < ApplicationMailer
 
   default to: -> { email_address_with_name(@user.email, @me.username) }
 
-  CONVERTED = %w(reblog).freeze
+  CONVERTED = %w(reblog
+                 mention
+                 follow
+                 follow_request
+                 favourite).freeze
 
   layout -> { CONVERTED.include?(action_name) ? 'mailer_new' : 'mailer' }
 
