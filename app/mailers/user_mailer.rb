@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserMailer < Devise::Mailer
-  layout -> { 'mailer' }
+  layout 'mailer'
 
   helper :accounts
   helper :application
