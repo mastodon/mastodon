@@ -308,11 +308,9 @@ const startServer = async () => {
   // When checking metrics in the browser, the favicon is requested this
   // prevents the request from falling through to the API Router, which would
   // error for this endpoint:
-  // @ts-ignore
-  app.get('/favicon.ico', (req, res) => res.status(404).end());
+  app.get('/favicon.ico', (_req, res) => res.status(404).end());
 
-  // @ts-ignore
-  app.get('/api/v1/streaming/health', (req, res) => {
+  app.get('/api/v1/streaming/health', (_req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('OK');
   });
@@ -386,12 +384,10 @@ const startServer = async () => {
 
     if (subs[channel].length === 0) {
       logger.debug(`Subscribe ${channel}`);
-      // @ts-ignore
       redisSubscribeClient.subscribe(channel, (err, count) => {
         if (err) {
           logger.error(`Error subscribing to ${channel}`);
-        }
-        else {
+        } else if (typeof count === 'number') {
           redisSubscriptions.set(count);
         }
       });
@@ -415,12 +411,10 @@ const startServer = async () => {
 
     if (subs[channel].length === 0) {
       logger.debug(`Unsubscribe ${channel}`);
-      // @ts-ignore
       redisSubscribeClient.unsubscribe(channel, (err, count) => {
         if (err) {
           logger.error(`Error unsubscribing to ${channel}`);
-        }
-        else {
+        } else if (typeof count === 'number') {
           redisSubscriptions.set(count);
         }
       });
@@ -589,11 +583,14 @@ const startServer = async () => {
   /**
    * @param {any} req
    * @param {SystemMessageHandlers} eventHandlers
-   * @returns {function(object): void}
+   * @returns {SubscriptionListener}
    */
   const createSystemMessageListener = (req, eventHandlers) => {
     return message => {
-      // @ts-ignore
+      if (!message?.event) {
+        return;
+      }
+
       const { event } = message;
 
       req.log.debug(`System message for ${req.accountId}: ${event}`);
@@ -692,7 +689,7 @@ const startServer = async () => {
   };
 
   /**
-   * @param {array} arr
+   * @param {any[]} arr
    * @param {number=} shift
    * @returns {string}
    */
@@ -740,7 +737,10 @@ const startServer = async () => {
   const streamFrom = (channelIds, req, log, output, attachCloseHandler, destinationType, needsFiltering = false) => {
     log.info({ channelIds }, `Starting stream`);
 
-    // @ts-ignore
+    /**
+     * @param {string} event
+     * @param {object|string} payload
+     */
     const transmit = (event, payload) => {
       // TODO: Replace "string"-based delete payloads with object payloads:
       const encodedPayload = typeof payload === 'object' ? JSON.stringify(payload) : payload;
@@ -755,9 +755,13 @@ const startServer = async () => {
     // The listener used to process each message off the redis subscription,
     // message here is an object with an `event` and `payload` property. Some
     // events also include a queued_at value, but this is being removed shortly.
+
     /** @type {SubscriptionListener} */
     const listener = message => {
-      // @ts-ignore
+      if (!message?.event || !message?.payload) {
+        return;
+      }
+
       const { event, payload } = message;
 
       // Streaming only needs to apply filtering to some channels and only to
@@ -1525,8 +1529,7 @@ const attachServerWithConfig = (server, onSuccess) => {
       }
     });
   } else {
-    // @ts-ignore
-    server.listen(+process.env.PORT || 4000, process.env.BIND || '127.0.0.1', () => {
+    server.listen(+(process.env.PORT || 4000), process.env.BIND || '127.0.0.1', () => {
       if (onSuccess) {
         onSuccess(`${server.address().address}:${server.address().port}`);
       }
