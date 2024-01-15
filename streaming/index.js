@@ -87,39 +87,75 @@ const parseJSON = (json, req) => {
 };
 
 /**
- * @param {Object.<string, any>} env the `process.env` value to read configuration from
- * @returns {Object.<string, any>} the configuration for the PostgreSQL connection
+ * @param {NodeJS.ProcessEnv} env the `process.env` value to read configuration from
+ * @returns {pg.PoolConfig} the configuration for the PostgreSQL connection
  */
 const pgConfigFromEnv = (env) => {
+  /** @type {Record<string, pg.PoolConfig>} */
   const pgConfigs = {
     development: {
-      user:     env.DB_USER || pg.defaults.user,
+      user: env.DB_USER || pg.defaults.user,
       password: env.DB_PASS || pg.defaults.password,
       database: env.DB_NAME || 'mastodon_development',
-      host:     env.DB_HOST || pg.defaults.host,
-      port:     env.DB_PORT || pg.defaults.port,
+      host: env.DB_HOST || pg.defaults.host,
+      port: typeof env.DB_PORT === 'string' ? parseInt(env.DB_PORT, 10) : pg.defaults.port,
     },
 
     production: {
-      user:     env.DB_USER || 'mastodon',
+      user: env.DB_USER || 'mastodon',
       password: env.DB_PASS || '',
       database: env.DB_NAME || 'mastodon_production',
-      host:     env.DB_HOST || 'localhost',
-      port:     env.DB_PORT || 5432,
+      host: env.DB_HOST || 'localhost',
+      port: typeof env.DB_PORT === 'string' ? parseInt(env.DB_PORT, 10) : 5432,
     },
   };
 
-  let baseConfig;
+  /**
+   * @type {pg.PoolConfig}
+   */
+  let baseConfig = {};
 
   if (env.DATABASE_URL) {
-    baseConfig = dbUrlToConfig(env.DATABASE_URL);
+    const parsedUrl = dbUrlToConfig(env.DATABASE_URL);
+
+    // The result of dbUrlToConfig from pg-connection-string is not type
+    // compatible with pg.PoolConfig, since parts of the connection URL may be
+    // `null` when pg.PoolConfig expects `undefined`, as such we have to
+    // manually create the baseConfig object from the properties of the
+    // parsedUrl.
+    //
+    // For more information see:
+    // https://github.com/brianc/node-postgres/issues/2280
+    //
+    // FIXME: clean up once brianc/node-postgres#3128 lands
+    if (typeof parsedUrl.password === 'string') baseConfig.password = parsedUrl.password;
+    if (typeof parsedUrl.host === 'string') baseConfig.host = parsedUrl.host;
+    if (typeof parsedUrl.user === 'string') baseConfig.user = parsedUrl.user;
+    if (typeof parsedUrl.port === 'string') baseConfig.port = parseInt(parsedUrl.port, 10);
+    if (typeof parsedUrl.database === 'string') baseConfig.database = parsedUrl.database;
+    if (typeof parsedUrl.options === 'string') baseConfig.options = parsedUrl.options;
+
+    // The pg-connection-string type definition isn't correct, as parsedUrl.ssl
+    // can absolutely be an Object, this is to work around these incorrect
+    // types, including the casting of parsedUrl.ssl to Record<string, any>
+    if (typeof parsedUrl.ssl === 'boolean') {
+      baseConfig.ssl = parsedUrl.ssl;
+    } else if (typeof parsedUrl.ssl === 'object' && !Array.isArray(parsedUrl.ssl) && parsedUrl.ssl !== null) {
+      /** @type {Record<string, any>} */
+      const sslOptions = parsedUrl.ssl;
+      baseConfig.ssl = {};
+
+      baseConfig.ssl.cert = sslOptions.cert;
+      baseConfig.ssl.key = sslOptions.key;
+      baseConfig.ssl.ca = sslOptions.ca;
+      baseConfig.ssl.rejectUnauthorized = sslOptions.rejectUnauthorized;
+    }
 
     // Support overriding the database password in the connection URL
     if (!baseConfig.password && env.DB_PASS) {
       baseConfig.password = env.DB_PASS;
     }
-  } else {
-    // @ts-ignore
+  } else if (Object.hasOwnProperty.call(pgConfigs, environment)) {
     baseConfig = pgConfigs[environment];
 
     if (env.DB_SSLMODE) {
@@ -136,12 +172,18 @@ const pgConfigFromEnv = (env) => {
         break;
       }
     }
+  } else {
+    throw new Error('Unable to resolve postgresql database configuration.');
   }
 
   return {
     ...baseConfig,
-    max: env.DB_POOL || 10,
+    max: typeof env.DB_POOL === 'string' ? parseInt(env.DB_POOL, 10) : 10,
     connectionTimeoutMillis: 15000,
+    // Deliberately set application_name to an empty string to prevent excessive
+    // CPU usage with PG Bouncer. See:
+    // - https://github.com/mastodon/mastodon/pull/23958
+    // - https://github.com/pgbouncer/pgbouncer/issues/349
     application_name: '',
   };
 };
