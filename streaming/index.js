@@ -8,7 +8,7 @@ const url = require('url');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const express = require('express');
-const Redis = require('ioredis');
+const { Redis } = require('ioredis');
 const { JSDOM } = require('jsdom');
 const pg = require('pg');
 const dbUrlToConfig = require('pg-connection-string').parse;
@@ -43,13 +43,18 @@ initializeLogLevel(process.env, environment);
  */
 
 /**
- * @param {Object.<string, any>} config
+ * @param {RedisConfiguration} config
+ * @returns {Promise<Redis>}
  */
-const createRedisClient = async (config) => {
-  const { redisParams, redisUrl } = config;
-  // @ts-ignore
-  const client = new Redis(redisUrl, redisParams);
-  // @ts-ignore
+const createRedisClient = async ({ redisParams, redisUrl }) => {
+  let client;
+
+  if (typeof redisUrl === 'string') {
+    client = new Redis(redisUrl, redisParams);
+  } else {
+    client = new Redis(redisParams);
+  }
+
   client.on('error', (err) => logger.error({ err }, 'Redis Client Error!'));
 
   return client;
@@ -189,31 +194,56 @@ const pgConfigFromEnv = (env) => {
 };
 
 /**
- * @param {Object.<string, any>} env the `process.env` value to read configuration from
- * @returns {Object.<string, any>} configuration for the Redis connection
+ * @typedef RedisConfiguration
+ * @property {import('ioredis').RedisOptions} redisParams
+ * @property {string} redisPrefix
+ * @property {string|undefined} redisUrl
+ */
+
+/**
+ * @param {NodeJS.ProcessEnv} env the `process.env` value to read configuration from
+ * @returns {RedisConfiguration} configuration for the Redis connection
  */
 const redisConfigFromEnv = (env) => {
   // ioredis *can* transparently add prefixes for us, but it doesn't *in some cases*,
   // which means we can't use it. But this is something that should be looked into.
   const redisPrefix = env.REDIS_NAMESPACE ? `${env.REDIS_NAMESPACE}:` : '';
 
+  let redisPort = 6379;
+  if (typeof env.REDIS_PORT === 'string') {
+    const portValue = parseInt(env.REDIS_PORT, 10);
+    if (isNaN(portValue)) {
+      throw new Error(`Invalid REDIS_PORT environment variable: ${env.REDIS_PORT}`);
+    }
+    redisPort = portValue;
+  }
+
+  let redisDatabase = 0;
+  if (typeof env.REDIS_DB === 'string') {
+    const dbValue = parseInt(env.REDIS_DB, 10);
+    if (isNaN(dbValue)) {
+      throw new Error(`Invalid REDIS_DB environment variable: ${env.REDIS_DB}`);
+    }
+    redisDatabase = dbValue;
+  }
+
+  /** @type {import('ioredis').RedisOptions} */
   const redisParams = {
     host: env.REDIS_HOST || '127.0.0.1',
-    port: env.REDIS_PORT || 6379,
-    db: env.REDIS_DB || 0,
+    port: redisPort,
+    db: redisDatabase,
     password: env.REDIS_PASSWORD || undefined,
   };
 
   // redisParams.path takes precedence over host and port.
   if (env.REDIS_URL && env.REDIS_URL.startsWith('unix://')) {
-    // @ts-ignore
     redisParams.path = env.REDIS_URL.slice(7);
   }
 
   return {
     redisParams,
     redisPrefix,
-    redisUrl: env.REDIS_URL,
+    redisUrl: typeof env.REDIS_URL === 'string' ? env.REDIS_URL : undefined,
   };
 };
 
