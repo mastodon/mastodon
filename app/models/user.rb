@@ -187,7 +187,7 @@ class User < ApplicationRecord
 
   def confirm
     new_user      = !confirmed?
-    self.approved = true if open_registrations? && !sign_up_from_ip_requires_approval?
+    self.approved = true if grant_approval_on_confirmation?
 
     super
 
@@ -206,7 +206,7 @@ class User < ApplicationRecord
 
   def confirm!
     new_user      = !confirmed?
-    self.approved = true if open_registrations?
+    self.approved = true if grant_approval_on_confirmation?
 
     skip_confirmation!
     save!
@@ -424,6 +424,11 @@ class User < ApplicationRecord
         open_registrations? || valid_invitation? || external?
       end
     end
+  end
+
+  def grant_approval_on_confirmation?
+    # Re-check approval on confirmation if the server has switched to open registrations
+    open_registrations? && !sign_up_from_ip_requires_approval? && !sign_up_email_requires_approval?
   end
 
   def sign_up_from_ip_requires_approval?
