@@ -9,17 +9,17 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as AlternateEmailIcon } from '@material-symbols/svg-600/outlined/alternate_email.svg';
-import { ReactComponent as BookmarksIcon } from '@material-symbols/svg-600/outlined/bookmarks-fill.svg';
-import { ReactComponent as PeopleIcon } from '@material-symbols/svg-600/outlined/group.svg';
-import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
-import { ReactComponent as ListAltIcon } from '@material-symbols/svg-600/outlined/list_alt.svg';
-import { ReactComponent as MenuIcon } from '@material-symbols/svg-600/outlined/menu.svg';
-import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-600/outlined/person_add.svg';
-import { ReactComponent as PublicIcon } from '@material-symbols/svg-600/outlined/public.svg';
-import { ReactComponent as SettingsIcon } from '@material-symbols/svg-600/outlined/settings-fill.svg';
-import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/star.svg';
-import { ReactComponent as TagIcon } from '@material-symbols/svg-600/outlined/tag.svg';
+import AlternateEmailIcon from '@material-symbols/svg-600/outlined/alternate_email.svg?react';
+import BookmarksIcon from '@material-symbols/svg-600/outlined/bookmarks-fill.svg?react';
+import PeopleIcon from '@material-symbols/svg-600/outlined/group.svg?react';
+import HomeIcon from '@material-symbols/svg-600/outlined/home-fill.svg?react';
+import ListAltIcon from '@material-symbols/svg-600/outlined/list_alt.svg?react';
+import MenuIcon from '@material-symbols/svg-600/outlined/menu.svg?react';
+import PersonAddIcon from '@material-symbols/svg-600/outlined/person_add.svg?react';
+import PublicIcon from '@material-symbols/svg-600/outlined/public.svg?react';
+import SettingsIcon from '@material-symbols/svg-600/outlined/settings-fill.svg?react';
+import StarIcon from '@material-symbols/svg-600/outlined/star.svg?react';
+import TagIcon from '@material-symbols/svg-600/outlined/tag.svg?react';
 
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import Column from 'mastodon/components/column';

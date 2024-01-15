@@ -8,11 +8,11 @@ import { Link, Switch, Route, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 
-import { ReactComponent as AccountCircleIcon } from '@material-symbols/svg-600/outlined/account_circle.svg';
-import { ReactComponent as ArrowRightAltIcon } from '@material-symbols/svg-600/outlined/arrow_right_alt.svg';
-import { ReactComponent as ContentCopyIcon } from '@material-symbols/svg-600/outlined/content_copy.svg';
-import { ReactComponent as EditNoteIcon } from '@material-symbols/svg-600/outlined/edit_note.svg';
-import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-600/outlined/person_add.svg';
+import AccountCircleIcon from '@material-symbols/svg-600/outlined/account_circle.svg?react';
+import ArrowRightAltIcon from '@material-symbols/svg-600/outlined/arrow_right_alt.svg?react';
+import ContentCopyIcon from '@material-symbols/svg-600/outlined/content_copy.svg?react';
+import EditNoteIcon from '@material-symbols/svg-600/outlined/edit_note.svg?react';
+import PersonAddIcon from '@material-symbols/svg-600/outlined/person_add.svg?react';
 
 import illustration from 'mastodon/../images/elephant_ui_conversation.svg';
 import { focusCompose } from 'mastodon/actions/compose';

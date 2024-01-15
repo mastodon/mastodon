@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as LockIcon } from '@material-symbols/svg-600/outlined/lock.svg';
+import LockIcon from '@material-symbols/svg-600/outlined/lock.svg?react';
 import { length } from 'stringz';
 
 import { Icon }  from 'mastodon/components/icon';

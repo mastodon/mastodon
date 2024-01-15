@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import { ReactComponent as CheckBoxOutlineBlankIcon } from '@material-symbols/svg-600/outlined/check_box_outline_blank.svg';
+import CheckBoxOutlineBlankIcon from '@material-symbols/svg-600/outlined/check_box_outline_blank.svg?react';
 
 import { isProduction } from 'mastodon/utils/environment';
 

@@ -7,7 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
+import CloseIcon from '@material-symbols/svg-600/outlined/close.svg?react';
 
 import { submitReport } from 'mastodon/actions/reports';
 import { fetchServer } from 'mastodon/actions/server';

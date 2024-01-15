@@ -9,18 +9,18 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as BookmarkIcon } from '@material-symbols/svg-600/outlined/bookmark-fill.svg';
-import { ReactComponent as BookmarkBorderIcon } from '@material-symbols/svg-600/outlined/bookmark.svg';
-import { ReactComponent as MoreHorizIcon } from '@material-symbols/svg-600/outlined/more_horiz.svg';
-import { ReactComponent as RepeatIcon } from '@material-symbols/svg-600/outlined/repeat.svg';
-import { ReactComponent as ReplyIcon } from '@material-symbols/svg-600/outlined/reply.svg';
-import { ReactComponent as ReplyAllIcon } from '@material-symbols/svg-600/outlined/reply_all.svg';
-import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/star-fill.svg';
-import { ReactComponent as StarBorderIcon } from '@material-symbols/svg-600/outlined/star.svg';
-import { ReactComponent as VisibilityIcon } from '@material-symbols/svg-600/outlined/visibility.svg';
+import BookmarkIcon from '@material-symbols/svg-600/outlined/bookmark-fill.svg';
+import BookmarkBorderIcon from '@material-symbols/svg-600/outlined/bookmark.svg?react';
+import MoreHorizIcon from '@material-symbols/svg-600/outlined/more_horiz.svg?react';
+import RepeatIcon from '@material-symbols/svg-600/outlined/repeat.svg?react';
+import ReplyIcon from '@material-symbols/svg-600/outlined/reply.svg?react';
+import ReplyAllIcon from '@material-symbols/svg-600/outlined/reply_all.svg?react';
+import StarIcon from '@material-symbols/svg-600/outlined/star-fill.svg?react';
+import StarBorderIcon from '@material-symbols/svg-600/outlined/star.svg?react';
+import VisibilityIcon from '@material-symbols/svg-600/outlined/visibility.svg?react';
 
-import { ReactComponent as RepeatDisabledIcon } from 'mastodon/../svg-icons/repeat_disabled.svg';
-import { ReactComponent as RepeatPrivateIcon } from 'mastodon/../svg-icons/repeat_private.svg';
+import RepeatDisabledIcon from 'mastodon/../svg-icons/repeat_disabled.svg?react';
+import RepeatPrivateIcon from 'mastodon/../svg-icons/repeat_private.svg?react';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 

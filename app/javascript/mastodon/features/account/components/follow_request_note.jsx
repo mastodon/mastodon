@@ -3,8 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/check.svg';
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
+import CheckIcon from '@material-symbols/svg-600/outlined/check.svg?react';
+import CloseIcon from '@material-symbols/svg-600/outlined/close.svg?react';
 
 import { Icon }  from 'mastodon/components/icon';
 

@@ -8,7 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as RefreshIcon } from '@material-symbols/svg-600/outlined/refresh.svg';
+import RefreshIcon from '@material-symbols/svg-600/outlined/refresh.svg?react';
 import { debounce } from 'lodash';
 
 import { fetchFavourites, expandFavourites } from 'mastodon/actions/interactions';
