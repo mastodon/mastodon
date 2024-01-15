@@ -2,6 +2,8 @@ import classNames from 'classnames';
 
 import { ReactComponent as CheckBoxOutlineBlankIcon } from '@material-symbols/svg-600/outlined/check_box_outline_blank.svg';
 
+import { isProduction } from 'flavours/glitch/utils/environment';
+
 interface SVGPropsWithTitle extends React.SVGProps<SVGSVGElement> {
   title?: string;
 }
@@ -24,7 +26,7 @@ export const Icon: React.FC<Props> = ({
 }) => {
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!IconComponent) {
-    if (process.env.NODE_ENV !== 'production') {
+    if (!isProduction()) {
       throw new Error(
         `<Icon id="${id}" className="${className}"> is missing an "icon" prop.`,
       );

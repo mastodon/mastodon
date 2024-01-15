@@ -18,8 +18,9 @@ import UI from 'flavours/glitch/features/ui';
 import initialState, { title as siteTitle } from 'flavours/glitch/initial_state';
 import { IntlProvider } from 'flavours/glitch/locales';
 import { store } from 'flavours/glitch/store';
+import { isProduction } from 'flavours/glitch/utils/environment';
 
-const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
+const title = isProduction() ? siteTitle : `${siteTitle} (Dev)`;
 
 const hydrateAction = hydrateStore(initialState);
 
