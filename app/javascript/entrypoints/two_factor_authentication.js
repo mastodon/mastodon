@@ -2,7 +2,6 @@ import * as WebAuthnJSON from '@github/webauthn-json';
 import axios from 'axios';
 
 import ready from '../mastodon/ready';
-import 'regenerator-runtime/runtime';
 
 function getCSRFToken() {
   var CSRFSelector = document.querySelector('meta[name="csrf-token"]');

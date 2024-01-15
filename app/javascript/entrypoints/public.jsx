@@ -1,8 +1,6 @@
 import { createRoot }  from 'react-dom/client';
 
-import './public-path';
-
-import { IntlMessageFormat }  from 'intl-messageformat';
+import { IntlMessageFormat } from 'intl-messageformat';
 import { defineMessages } from 'react-intl';
 
 import Rails from '@rails/ujs';

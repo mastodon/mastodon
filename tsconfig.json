@@ -2,24 +2,29 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "target": "esnext",
-    "module": "CommonJS",
+    "module": "ES2022",
     "moduleResolution": "node",
     "allowJs": true,
     "noEmit": true,
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "types": ["vite/client", "vitest/globals"],
     "baseUrl": "./",
     "incremental": true,
     "tsBuildInfoFile": "tmp/cache/tsconfig.tsbuildinfo",
     "paths": {
+      "images/*": ["app/javascript/images/*"],
+      "styles/*": ["app/javascript/styles/*"],
       "mastodon": ["app/javascript/mastodon"],
       "mastodon/*": ["app/javascript/mastodon/*"]
     }
   },
   "include": [
+    "vite.config.mts",
     "app/javascript/mastodon",
     "app/javascript/packs",
+    "app/javascript/entrypoints",
     "app/javascript/types"
   ]
 }

@@ -12,7 +12,7 @@ import { isProduction } from './utils/environment';
 /**
  * @returns {Promise<void>}
  */
-function main() {
+export function main() {
   perf.start('main()');
 
   return ready(async () => {
@@ -45,5 +45,3 @@ function main() {
     perf.stop('main()');
   });
 }
-
-export default main;

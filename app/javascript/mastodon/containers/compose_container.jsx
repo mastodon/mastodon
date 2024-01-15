@@ -16,8 +16,7 @@ if (initialState) {
 
 store.dispatch(fetchCustomEmojis());
 
-export default class ComposeContainer extends PureComponent {
-
+export class ComposeContainer extends PureComponent {
   render () {
     return (
       <IntlProvider>

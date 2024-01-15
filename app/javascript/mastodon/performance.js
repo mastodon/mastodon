@@ -1,11 +1,11 @@
 //
 // Tools for performance debugging, only enabled in development mode.
 // Open up Chrome Dev Tools, then Timeline, then User Timing to see output.
-// Also see config/webpack/loaders/mark.js for the webpack loader marks.
 
 import * as marky from 'marky';
 
 import { isDevelopment } from './utils/environment';
+
 
 if (isDevelopment()) {
   if (typeof performance !== 'undefined' && performance.setResourceTimingBufferSize) {
