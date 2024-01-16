@@ -3,8 +3,8 @@ import { PureComponent } from 'react';
 
 import classNames from 'classnames';
 
+import CheckIcon from '@/material-icons/400-24px/done.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
-import CheckIcon from 'mastodon/../material-icons/400-24px/done.svg?react';
 
 
 export default class Option extends PureComponent {

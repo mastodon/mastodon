@@ -4,13 +4,13 @@ import { PureComponent } from 'react';
 
 import { injectIntl, defineMessages } from 'react-intl';
 
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
+import EditIcon from '@/material-icons/400-24px/edit.svg?react';
+import ExpandLessIcon from '@/material-icons/400-24px/expand_less.svg?react';
+import ImageIcon from '@/material-icons/400-24px/image.svg?react';
+import ManufacturingIcon from '@/material-icons/400-24px/manufacturing.svg?react';
+import SettingsIcon from '@/material-icons/400-24px/settings-fill.svg?react';
 import { preferencesLink } from 'flavours/glitch/utils/backend_links';
-import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
-import EditIcon from 'mastodon/../material-icons/400-24px/edit.svg?react';
-import ExpandLessIcon from 'mastodon/../material-icons/400-24px/expand_less.svg?react';
-import ImageIcon from 'mastodon/../material-icons/400-24px/image.svg?react';
-import ManufacturingIcon from 'mastodon/../material-icons/400-24px/manufacturing.svg?react';
-import SettingsIcon from 'mastodon/../material-icons/400-24px/settings-fill.svg?react';
 
 
 import LocalSettingsNavigationItem from './item';

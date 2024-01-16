@@ -13,12 +13,12 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
+import DeleteForeverIcon from '@/material-icons/400-24px/delete_forever.svg?react';
+import DoneAllIcon from '@/material-icons/400-24px/done_all.svg?react';
+import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import { compareId } from 'flavours/glitch/compare_id';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';
-import DeleteForeverIcon from 'mastodon/../material-icons/400-24px/delete_forever.svg?react';
-import DoneAllIcon from 'mastodon/../material-icons/400-24px/done_all.svg?react';
-import NotificationsIcon from 'mastodon/../material-icons/400-24px/notifications-fill.svg?react';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { submitMarkers } from '../../actions/markers';

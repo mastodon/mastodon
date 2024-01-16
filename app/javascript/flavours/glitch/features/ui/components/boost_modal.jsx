@@ -10,13 +10,13 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
 
+import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
 import { changeBoostPrivacy } from 'flavours/glitch/actions/boosts';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { VisibilityIcon } from 'flavours/glitch/components/visibility_icon';
 import PrivacyDropdown from 'flavours/glitch/features/compose/components/privacy_dropdown';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
-import RepeatIcon from 'mastodon/../material-icons/400-24px/repeat.svg?react';
 
 import { Avatar } from '../../../components/avatar';
 import { Button } from '../../../components/button';

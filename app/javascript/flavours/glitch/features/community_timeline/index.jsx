@@ -8,9 +8,9 @@ import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 
 
+import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
 import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner';
 import { domain } from 'flavours/glitch/initial_state';
-import PeopleIcon from 'mastodon/../material-icons/400-24px/group.svg?react';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { connectCommunityStream } from '../../actions/streaming';

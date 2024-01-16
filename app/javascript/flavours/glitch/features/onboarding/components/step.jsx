@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
+import ArrowRightAltIcon from '@/material-icons/400-24px/arrow_right_alt.svg?react';
+import CheckIcon from '@/material-icons/400-24px/done.svg?react';
 import { Icon } from 'flavours/glitch/components/icon';
-import ArrowRightAltIcon from 'mastodon/../material-icons/400-24px/arrow_right_alt.svg?react';
-import CheckIcon from 'mastodon/../material-icons/400-24px/done.svg?react';
 
 
 export const Step = ({ label, description, icon, iconComponent, completed, onClick, href, to }) => {

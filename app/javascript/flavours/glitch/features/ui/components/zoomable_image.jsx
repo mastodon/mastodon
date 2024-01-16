@@ -3,9 +3,9 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
+import FullscreenExitIcon from '@/material-icons/400-24px/fullscreen_exit.svg?react';
+import RectangleIcon from '@/material-icons/400-24px/rectangle.svg?react';
 import { IconButton } from 'flavours/glitch/components/icon_button';
-import FullscreenExitIcon from 'mastodon/../material-icons/400-24px/fullscreen_exit.svg?react';
-import RectangleIcon from 'mastodon/../material-icons/400-24px/rectangle.svg?react';
 
 const messages = defineMessages({
   compress: { id: 'lightbox.compress', defaultMessage: 'Compress image view box' },

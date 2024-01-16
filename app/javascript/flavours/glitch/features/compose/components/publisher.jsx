@@ -4,12 +4,12 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import LockIcon from '@/material-icons/400-24px/lock.svg?react';
+import LockOpenIcon from '@/material-icons/400-24px/lock_open.svg?react';
+import MailIcon from '@/material-icons/400-24px/mail.svg?react';
+import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import { Button } from 'flavours/glitch/components/button';
 import { Icon } from 'flavours/glitch/components/icon';
-import LockIcon from 'mastodon/../material-icons/400-24px/lock.svg?react';
-import LockOpenIcon from 'mastodon/../material-icons/400-24px/lock_open.svg?react';
-import MailIcon from 'mastodon/../material-icons/400-24px/mail.svg?react';
-import PublicIcon from 'mastodon/../material-icons/400-24px/public.svg?react';
 
 
 const messages = defineMessages({

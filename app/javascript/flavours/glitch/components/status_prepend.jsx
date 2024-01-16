@@ -6,14 +6,14 @@ import { FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import EditIcon from '@/material-icons/400-24px/edit.svg?react';
+import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
+import InsertChartIcon from '@/material-icons/400-24px/insert_chart.svg?react';
+import PushPinIcon from '@/material-icons/400-24px/push_pin.svg?react';
+import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
+import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import { Icon } from 'flavours/glitch/components/icon';
 import { me } from 'flavours/glitch/initial_state';
-import EditIcon from 'mastodon/../material-icons/400-24px/edit.svg?react';
-import HomeIcon from 'mastodon/../material-icons/400-24px/home-fill.svg?react';
-import InsertChartIcon from 'mastodon/../material-icons/400-24px/insert_chart.svg?react';
-import PushPinIcon from 'mastodon/../material-icons/400-24px/push_pin.svg?react';
-import RepeatIcon from 'mastodon/../material-icons/400-24px/repeat.svg?react';
-import StarIcon from 'mastodon/../material-icons/400-24px/star-fill.svg?react';
 
 
 export default class StatusPrepend extends PureComponent {

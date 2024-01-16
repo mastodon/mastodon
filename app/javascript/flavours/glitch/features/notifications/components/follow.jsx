@@ -10,11 +10,11 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { HotKeys } from 'react-hotkeys';
 
+import PersonAddIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
 import { Icon } from 'flavours/glitch/components/icon';
 import { Permalink } from 'flavours/glitch/components/permalink';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
-import PersonAddIcon from 'mastodon/../material-icons/400-24px/person_add-fill.svg?react';
 
 import NotificationOverlayContainer from '../containers/overlay_container';
 

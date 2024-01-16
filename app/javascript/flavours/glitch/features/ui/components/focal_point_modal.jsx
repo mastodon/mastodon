@@ -16,6 +16,7 @@ import tesseractWorkerPath from 'tesseract.js/dist/worker.min.js';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js';
 
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { Button } from 'flavours/glitch/components/button';
 import { GIFV } from 'flavours/glitch/components/gifv';
 import { IconButton } from 'flavours/glitch/components/icon_button';
@@ -25,7 +26,6 @@ import UploadProgress from 'flavours/glitch/features/compose/components/upload_p
 import { Tesseract as fetchTesseract } from 'flavours/glitch/features/ui/util/async-components';
 import { me } from 'flavours/glitch/initial_state';
 import { assetHost } from 'flavours/glitch/utils/config';
-import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
 
 import { changeUploadCompose, uploadThumbnail, onChangeMediaDescription, onChangeMediaFocus } from '../../../actions/compose';
 import Video, { getPointerPosition } from '../../video';

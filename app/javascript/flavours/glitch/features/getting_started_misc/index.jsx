@@ -5,16 +5,16 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import BlockIcon from '@/material-icons/400-24px/block.svg?react';
+import InfoIcon from '@/material-icons/400-24px/info.svg?react';
+import PersonCheckIcon from '@/material-icons/400-24px/person_check.svg?react';
+import PushPinIcon from '@/material-icons/400-24px/push_pin.svg?react';
+import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
+import VolumeOffIcon from '@/material-icons/400-24px/volume_off.svg?react';
 import { openModal } from 'flavours/glitch/actions/modal';
 import Column from 'flavours/glitch/features/ui/components/column';
 import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
 import ColumnSubheading from 'flavours/glitch/features/ui/components/column_subheading';
-import BlockIcon from 'mastodon/../material-icons/400-24px/block.svg?react';
-import InfoIcon from 'mastodon/../material-icons/400-24px/info.svg?react';
-import PersonCheckIcon from 'mastodon/../material-icons/400-24px/person_check.svg?react';
-import PushPinIcon from 'mastodon/../material-icons/400-24px/push_pin.svg?react';
-import StarIcon from 'mastodon/../material-icons/400-24px/star-fill.svg?react';
-import VolumeOffIcon from 'mastodon/../material-icons/400-24px/volume_off.svg?react';
 
 
 const messages = defineMessages({

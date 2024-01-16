@@ -10,10 +10,10 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { HotKeys } from 'react-hotkeys';
 
+import FlagIcon from '@/material-icons/400-24px/flag-fill.svg?react';
 import { Icon } from 'flavours/glitch/components/icon';
 import { Permalink } from 'flavours/glitch/components/permalink';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
-import FlagIcon from 'mastodon/../material-icons/400-24px/flag-fill.svg?react';
 
 import NotificationOverlayContainer from '../containers/overlay_container';
 

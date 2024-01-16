@@ -6,10 +6,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import AddIcon from '@/material-icons/400-24px/add.svg?react';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
+import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
-import AddIcon from 'mastodon/../material-icons/400-24px/add.svg?react';
-import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
-import ListAltIcon from 'mastodon/../material-icons/400-24px/list_alt.svg?react';
 
 
 import { removeFromListAdder, addToListAdder } from '../../../actions/lists';

@@ -10,9 +10,9 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
+import RefreshIcon from '@/material-icons/400-24px/refresh.svg?react';
+import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
-import RefreshIcon from 'mastodon/../material-icons/400-24px/refresh.svg?react';
-import RepeatIcon from 'mastodon/../material-icons/400-24px/repeat.svg?react';
 
 
 import { fetchReblogs, expandReblogs } from '../../actions/interactions';

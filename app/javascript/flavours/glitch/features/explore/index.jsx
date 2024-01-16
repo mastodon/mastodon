@@ -9,12 +9,12 @@ import { NavLink, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
+import SearchIcon from '@/material-icons/400-24px/search.svg?react';
+import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
 import Search from 'flavours/glitch/features/compose/containers/search_container';
 import { trendsEnabled } from 'flavours/glitch/initial_state';
-import SearchIcon from 'mastodon/../material-icons/400-24px/search.svg?react';
-import TagIcon from 'mastodon/../material-icons/400-24px/tag.svg?react';
 
 import Links from './links';
 import SearchResults from './results';

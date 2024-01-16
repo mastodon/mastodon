@@ -10,8 +10,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { debounce } from 'lodash';
 
+import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import { Blurhash } from 'flavours/glitch/components/blurhash';
-import VisibilityOffIcon from 'mastodon/../material-icons/400-24px/visibility_off.svg?react';
 
 import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
 

@@ -10,13 +10,13 @@ import { connect } from 'react-redux';
 
 import { isEqual } from 'lodash';
 
+import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import { connectHashtagStream } from 'flavours/glitch/actions/streaming';
 import { fetchHashtag, followHashtag, unfollowHashtag } from 'flavours/glitch/actions/tags';
 import { expandHashtagTimeline, clearTimeline } from 'flavours/glitch/actions/timelines';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
-import TagIcon from 'mastodon/../material-icons/400-24px/tag.svg?react';
 
 import StatusListContainer from '../ui/containers/status_list_container';
 

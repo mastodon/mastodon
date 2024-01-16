@@ -9,15 +9,15 @@ import { connect } from 'react-redux';
 
 import { throttle, escapeRegExp } from 'lodash';
 
+import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
+import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
+import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
+import StarIcon from '@/material-icons/400-24px/star.svg?react';
 import { openModal, closeModal } from 'flavours/glitch/actions/modal';
 import api from 'flavours/glitch/api';
 import { Button } from 'flavours/glitch/components/button';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { registrationsOpen, sso_redirect } from 'flavours/glitch/initial_state';
-import PersonAddIcon from 'mastodon/../material-icons/400-24px/person_add.svg?react';
-import RepeatIcon from 'mastodon/../material-icons/400-24px/repeat.svg?react';
-import ReplyIcon from 'mastodon/../material-icons/400-24px/reply.svg?react';
-import StarIcon from 'mastodon/../material-icons/400-24px/star.svg?react';
 
 const messages = defineMessages({
   loginPrompt: { id: 'interaction_modal.login.prompt', defaultMessage: 'Domain of your home server, e.g. mastodon.social' },

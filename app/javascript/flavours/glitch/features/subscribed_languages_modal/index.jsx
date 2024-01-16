@@ -9,12 +9,12 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
 
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { followAccount } from 'flavours/glitch/actions/accounts';
 import { Button } from 'flavours/glitch/components/button';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import Option from 'flavours/glitch/features/report/components/option';
 import { languages as preloadedLanguages } from 'flavours/glitch/initial_state';
-import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

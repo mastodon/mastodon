@@ -9,6 +9,9 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import ReactSwipeableViews from 'react-swipeable-views';
 
+import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
+import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { getAverageFromBlurhash } from 'flavours/glitch/blurhash';
 import { GIFV } from 'flavours/glitch/components/gifv';
 import { Icon }  from 'flavours/glitch/components/icon';
@@ -16,9 +19,6 @@ import { IconButton } from 'flavours/glitch/components/icon_button';
 import Footer from 'flavours/glitch/features/picture_in_picture/components/footer';
 import Video from 'flavours/glitch/features/video';
 import { disableSwiping } from 'flavours/glitch/initial_state';
-import ChevronLeftIcon from 'mastodon/../material-icons/400-24px/chevron_left.svg?react';
-import ChevronRightIcon from 'mastodon/../material-icons/400-24px/chevron_right.svg?react';
-import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
 
 import ImageLoader from './image_loader';
 

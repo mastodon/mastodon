@@ -7,9 +7,9 @@ import classNames from 'classnames';
 
 import { connect } from 'react-redux';
 
+import CancelIcon from '@/material-icons/400-24px/cancel.svg?react';
+import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
-import CancelIcon from 'mastodon/../material-icons/400-24px/cancel.svg?react';
-import SearchIcon from 'mastodon/../material-icons/400-24px/search.svg?react';
 
 
 import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from '../../../actions/lists';

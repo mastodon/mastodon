@@ -3,21 +3,21 @@ import { Component } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
+import BookmarksIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
+import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
+import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
+import MailIcon from '@/material-icons/400-24px/mail.svg?react';
+import ManufacturingIcon from '@/material-icons/400-24px/manufacturing.svg?react';
+import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
+import PublicIcon from '@/material-icons/400-24px/public.svg?react';
+import SearchIcon from '@/material-icons/400-24px/search.svg?react';
+import SettingsIcon from '@/material-icons/400-24px/settings-fill.svg?react';
+import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
+import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { NavigationPortal } from 'flavours/glitch/components/navigation_portal';
 import { timelinePreview, trendsEnabled } from 'flavours/glitch/initial_state';
 import { transientSingleColumn } from 'flavours/glitch/is_mobile';
 import { preferencesLink } from 'flavours/glitch/utils/backend_links';
-import BookmarksIcon from 'mastodon/../material-icons/400-24px/bookmarks-fill.svg?react';
-import HomeIcon from 'mastodon/../material-icons/400-24px/home-fill.svg?react';
-import ListAltIcon from 'mastodon/../material-icons/400-24px/list_alt.svg?react';
-import MailIcon from 'mastodon/../material-icons/400-24px/mail.svg?react';
-import ManufacturingIcon from 'mastodon/../material-icons/400-24px/manufacturing.svg?react';
-import MoreHorizIcon from 'mastodon/../material-icons/400-24px/more_horiz.svg?react';
-import PublicIcon from 'mastodon/../material-icons/400-24px/public.svg?react';
-import SearchIcon from 'mastodon/../material-icons/400-24px/search.svg?react';
-import SettingsIcon from 'mastodon/../material-icons/400-24px/settings-fill.svg?react';
-import StarIcon from 'mastodon/../material-icons/400-24px/star-fill.svg?react';
-import TagIcon from 'mastodon/../material-icons/400-24px/tag.svg?react';
 
 import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';

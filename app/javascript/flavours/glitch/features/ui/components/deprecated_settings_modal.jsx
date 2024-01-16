@@ -6,12 +6,12 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 
+import ManufacturingIcon from '@/material-icons/400-24px/manufacturing.svg?react';
+import SettingsIcon from '@/material-icons/400-24px/settings-fill.svg?react';
 import { Button } from 'flavours/glitch/components/button';
 import { Icon } from 'flavours/glitch/components/icon';
 import illustration from 'flavours/glitch/images/logo_warn_glitch.svg';
 import { preferenceLink } from 'flavours/glitch/utils/backend_links';
-import ManufacturingIcon from 'mastodon/../material-icons/400-24px/manufacturing.svg?react';
-import SettingsIcon from 'mastodon/../material-icons/400-24px/settings-fill.svg?react';
 
 const messages = defineMessages({
   discardChanges: { id: 'confirmations.deprecated_settings.confirm', defaultMessage: 'Use Mastodon preferences' },

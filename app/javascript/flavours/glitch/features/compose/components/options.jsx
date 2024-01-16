@@ -8,16 +8,16 @@ import { connect } from 'react-redux';
 
 import Toggle from 'react-toggle';
 
+import AttachFileIcon from '@/material-icons/400-24px/attach_file.svg?react';
+import BrushIcon from '@/material-icons/400-24px/brush.svg?react';
+import CodeIcon from '@/material-icons/400-24px/code.svg?react';
+import DescriptionIcon from '@/material-icons/400-24px/description.svg?react';
+import InsertChartIcon from '@/material-icons/400-24px/insert_chart.svg?react';
+import MarkdownIcon from '@/material-icons/400-24px/markdown.svg?react';
+import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
+import UploadFileIcon from '@/material-icons/400-24px/upload_file.svg?react';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import { pollLimits } from 'flavours/glitch/initial_state';
-import AttachFileIcon from 'mastodon/../material-icons/400-24px/attach_file.svg?react';
-import BrushIcon from 'mastodon/../material-icons/400-24px/brush.svg?react';
-import CodeIcon from 'mastodon/../material-icons/400-24px/code.svg?react';
-import DescriptionIcon from 'mastodon/../material-icons/400-24px/description.svg?react';
-import InsertChartIcon from 'mastodon/../material-icons/400-24px/insert_chart.svg?react';
-import MarkdownIcon from 'mastodon/../material-icons/400-24px/markdown.svg?react';
-import MoreHorizIcon from 'mastodon/../material-icons/400-24px/more_horiz.svg?react';
-import UploadFileIcon from 'mastodon/../material-icons/400-24px/upload_file.svg?react';
 
 
 import DropdownContainer from '../containers/dropdown_container';

@@ -9,6 +9,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 
+import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { Button } from 'flavours/glitch/components/button';
@@ -18,7 +19,6 @@ import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp
 import StatusContent from 'flavours/glitch/components/status_content';
 import { VisibilityIcon } from 'flavours/glitch/components/visibility_icon';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
-import StarIcon from 'mastodon/../material-icons/400-24px/star-fill.svg?react';
 
 const messages = defineMessages({
   favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },

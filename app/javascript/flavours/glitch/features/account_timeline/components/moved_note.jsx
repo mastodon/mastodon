@@ -6,9 +6,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 
+import TripIcon from '@/material-icons/400-24px/trip.svg?react';
 import { Icon } from 'flavours/glitch/components/icon';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
-import TripIcon from 'mastodon/../material-icons/400-24px/trip.svg?react';
 
 import { AvatarOverlay } from '../../../components/avatar_overlay';
 import { DisplayName } from '../../../components/display_name';

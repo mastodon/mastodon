@@ -10,6 +10,8 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
+import RefreshIcon from '@/material-icons/400-24px/refresh.svg?react';
+import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import { fetchFavourites, expandFavourites } from 'flavours/glitch/actions/interactions';
 import ColumnHeader from 'flavours/glitch/components/column_header';
 import { Icon }  from 'flavours/glitch/components/icon';
@@ -17,8 +19,6 @@ import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import Column from 'flavours/glitch/features/ui/components/column';
-import RefreshIcon from 'mastodon/../material-icons/400-24px/refresh.svg?react';
-import StarIcon from 'mastodon/../material-icons/400-24px/star-fill.svg?react';
 
 const messages = defineMessages({
   heading: { id: 'column.favourited_by', defaultMessage: 'Favourited by' },

@@ -6,15 +6,15 @@ import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 
+import AddIcon from '@/material-icons/400-24px/add.svg?react';
+import ArrowBackIcon from '@/material-icons/400-24px/arrow_back.svg?react';
+import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
+import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
+import TuneIcon from '@/material-icons/400-24px/tune.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { ButtonInTabsBar, useColumnsContext } from 'flavours/glitch/features/ui/util/columns_context';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
-import AddIcon from 'mastodon/../material-icons/400-24px/add.svg?react';
-import ArrowBackIcon from 'mastodon/../material-icons/400-24px/arrow_back.svg?react';
-import ChevronLeftIcon from 'mastodon/../material-icons/400-24px/chevron_left.svg?react';
-import ChevronRightIcon from 'mastodon/../material-icons/400-24px/chevron_right.svg?react';
-import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
-import TuneIcon from 'mastodon/../material-icons/400-24px/tune.svg?react';
 
 
 import { useAppHistory } from './router';

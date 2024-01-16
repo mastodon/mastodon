@@ -7,10 +7,10 @@ import { connect } from 'react-redux';
 
 import fuzzysort from 'fuzzysort';
 
+import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { toServerSideType } from 'flavours/glitch/utils/filters';
 import { loupeIcon, deleteIcon } from 'flavours/glitch/utils/icons';
-import AddIcon from 'mastodon/../material-icons/400-24px/add.svg?react';
 
 const messages = defineMessages({
   search: { id: 'filter_modal.select_filter.search', defaultMessage: 'Search or create' },

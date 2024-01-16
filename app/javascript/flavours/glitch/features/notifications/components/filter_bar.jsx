@@ -3,13 +3,13 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
+import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
+import InsertChartIcon from '@/material-icons/400-24px/insert_chart.svg?react';
+import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
+import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
+import ReplyAllIcon from '@/material-icons/400-24px/reply_all.svg?react';
+import StarIcon from '@/material-icons/400-24px/star.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
-import HomeIcon from 'mastodon/../material-icons/400-24px/home-fill.svg?react';
-import InsertChartIcon from 'mastodon/../material-icons/400-24px/insert_chart.svg?react';
-import PersonAddIcon from 'mastodon/../material-icons/400-24px/person_add.svg?react';
-import RepeatIcon from 'mastodon/../material-icons/400-24px/repeat.svg?react';
-import ReplyAllIcon from 'mastodon/../material-icons/400-24px/reply_all.svg?react';
-import StarIcon from 'mastodon/../material-icons/400-24px/star.svg?react';
 
 
 const tooltips = defineMessages({
