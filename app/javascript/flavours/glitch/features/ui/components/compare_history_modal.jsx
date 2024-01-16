@@ -6,9 +6,9 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
 import escapeTextContentForBrowser from 'escape-html';
 
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { closeModal } from 'flavours/glitch/actions/modal';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import InlineAccount from 'flavours/glitch/components/inline_account';

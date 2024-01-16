@@ -3,9 +3,9 @@ import { PureComponent } from 'react';
 
 import classNames from 'classnames';
 
-import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/done.svg';
-
+import CheckIcon from '@/material-icons/400-24px/done.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
+
 
 export default class Option extends PureComponent {
 

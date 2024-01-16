@@ -64,13 +64,6 @@ Rails/HasAndBelongsToMany:
     - 'app/models/status.rb'
     - 'app/models/tag.rb'
 
-# Configuration parameters: Include.
-# Include: app/controllers/**/*.rb, app/mailers/**/*.rb
-Rails/LexicallyScopedActionFilter:
-  Exclude:
-    - 'app/controllers/auth/passwords_controller.rb'
-    - 'app/controllers/auth/registrations_controller.rb'
-
 Rails/OutputSafety:
   Exclude:
     - 'config/initializers/simple_form.rb'
@@ -86,41 +79,6 @@ Rails/RakeEnvironment:
     - 'lib/tasks/mastodon.rake'
     - 'lib/tasks/repo.rake'
     - 'lib/tasks/statistics.rake'
-
-# Configuration parameters: ForbiddenMethods, AllowedMethods.
-# ForbiddenMethods: decrement!, decrement_counter, increment!, increment_counter, insert, insert!, insert_all, insert_all!, toggle!, touch, touch_all, update_all, update_attribute, update_column, update_columns, update_counters, upsert, upsert_all
-Rails/SkipsModelValidations:
-  Exclude:
-    - 'app/controllers/admin/invites_controller.rb'
-    - 'app/controllers/concerns/session_tracking_concern.rb'
-    - 'app/models/concerns/account/merging.rb'
-    - 'app/models/concerns/expireable.rb'
-    - 'app/models/status.rb'
-    - 'app/models/trends/links.rb'
-    - 'app/models/trends/preview_card_batch.rb'
-    - 'app/models/trends/preview_card_provider_batch.rb'
-    - 'app/models/trends/status_batch.rb'
-    - 'app/models/trends/statuses.rb'
-    - 'app/models/trends/tag_batch.rb'
-    - 'app/models/trends/tags.rb'
-    - 'app/models/user.rb'
-    - 'app/services/activitypub/process_status_update_service.rb'
-    - 'app/services/approve_appeal_service.rb'
-    - 'app/services/block_domain_service.rb'
-    - 'app/services/delete_account_service.rb'
-    - 'app/services/process_mentions_service.rb'
-    - 'app/services/unallow_domain_service.rb'
-    - 'app/services/unblock_domain_service.rb'
-    - 'app/services/update_status_service.rb'
-    - 'app/workers/activitypub/post_upgrade_worker.rb'
-    - 'app/workers/move_worker.rb'
-    - 'app/workers/scheduler/ip_cleanup_scheduler.rb'
-    - 'app/workers/scheduler/scheduled_statuses_scheduler.rb'
-    - 'lib/mastodon/cli/accounts.rb'
-    - 'lib/mastodon/cli/maintenance.rb'
-    - 'spec/lib/activitypub/activity/follow_spec.rb'
-    - 'spec/services/follow_service_spec.rb'
-    - 'spec/services/update_account_service_spec.rb'
 
 # Configuration parameters: Include.
 # Include: app/models/**/*.rb

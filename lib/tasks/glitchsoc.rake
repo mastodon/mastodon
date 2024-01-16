@@ -5,7 +5,7 @@ namespace :glitchsoc do
   task backfill_local_only: :environment do
     Status.local.where(local_only: nil).find_each do |status|
       ActiveRecord::Base.logger.silence do
-        status.update_attribute(:local_only, status.marked_local_only?) # rubocop:disable Rails/SkipsModelValidations
+        status.update_attribute(:local_only, status.marked_local_only?)
       end
     end
   end

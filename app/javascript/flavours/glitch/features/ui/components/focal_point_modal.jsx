@@ -9,7 +9,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
 import Textarea from 'react-textarea-autosize';
 import { length } from 'stringz';
 // eslint-disable-next-line import/extensions
@@ -17,6 +16,7 @@ import tesseractWorkerPath from 'tesseract.js/dist/worker.min.js';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js';
 
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { Button } from 'flavours/glitch/components/button';
 import { GIFV } from 'flavours/glitch/components/gifv';
 import { IconButton } from 'flavours/glitch/components/icon_button';

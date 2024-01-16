@@ -5,8 +5,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
 
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 import { WithOptionalRouterPropTypes, withOptionalRouter } from 'flavours/glitch/utils/react_router';
 

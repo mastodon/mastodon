@@ -2,8 +2,8 @@ import { FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
+import background from '@/images/friends-cropped.png';
 import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner';
-import background from 'mastodon/../images/friends-cropped.png';
 
 export const ExplorePrompt = () => (
   <DismissableBanner id='home.explore_prompt'>

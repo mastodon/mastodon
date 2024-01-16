@@ -8,10 +8,10 @@ import classNames from 'classnames';
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { ReactComponent as DescriptionIcon } from '@material-symbols/svg-600/outlined/description-fill.svg';
-import { ReactComponent as OpenInNewIcon } from '@material-symbols/svg-600/outlined/open_in_new.svg';
-import { ReactComponent as PlayArrowIcon } from '@material-symbols/svg-600/outlined/play_arrow-fill.svg';
 
+import DescriptionIcon from '@/material-icons/400-24px/description-fill.svg?react';
+import OpenInNewIcon from '@/material-icons/400-24px/open_in_new.svg?react';
+import PlayArrowIcon from '@/material-icons/400-24px/play_arrow-fill.svg?react';
 import { Blurhash } from 'flavours/glitch/components/blurhash';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { useBlurhash } from 'flavours/glitch/initial_state';

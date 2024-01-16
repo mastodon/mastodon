@@ -3,9 +3,9 @@ import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { ReactComponent as UploadFileIcon } from '@material-symbols/svg-600/outlined/upload_file.svg';
 import spring from 'react-motion/lib/spring';
 
+import UploadFileIcon from '@/material-icons/400-24px/upload_file.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
 
 import Motion from '../../ui/util/optional_motion';

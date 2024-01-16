@@ -6,15 +6,15 @@ import { FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { ReactComponent as EditIcon } from '@material-symbols/svg-600/outlined/edit.svg';
-import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
-import { ReactComponent as InsertChartIcon } from '@material-symbols/svg-600/outlined/insert_chart.svg';
-import { ReactComponent as PushPinIcon } from '@material-symbols/svg-600/outlined/push_pin.svg';
-import { ReactComponent as RepeatIcon } from '@material-symbols/svg-600/outlined/repeat.svg';
-import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/star-fill.svg';
-
+import EditIcon from '@/material-icons/400-24px/edit.svg?react';
+import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
+import InsertChartIcon from '@/material-icons/400-24px/insert_chart.svg?react';
+import PushPinIcon from '@/material-icons/400-24px/push_pin.svg?react';
+import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
+import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import { Icon } from 'flavours/glitch/components/icon';
 import { me } from 'flavours/glitch/initial_state';
+
 
 export default class StatusPrepend extends PureComponent {
 

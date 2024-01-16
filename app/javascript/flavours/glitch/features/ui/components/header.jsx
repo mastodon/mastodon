@@ -7,8 +7,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as SearchIcon } from '@material-symbols/svg-600/outlined/search.svg';
-
+import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { fetchServer } from 'flavours/glitch/actions/server';
 import { Avatar } from 'flavours/glitch/components/avatar';

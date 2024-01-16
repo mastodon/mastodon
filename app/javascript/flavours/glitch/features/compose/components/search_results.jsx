@@ -5,14 +5,14 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as FindInPageIcon } from '@material-symbols/svg-600/outlined/find_in_page.svg';
-import { ReactComponent as PeopleIcon } from '@material-symbols/svg-600/outlined/group.svg';
-import { ReactComponent as SearchIcon } from '@material-symbols/svg-600/outlined/search.svg';
-import { ReactComponent as TagIcon } from '@material-symbols/svg-600/outlined/tag.svg';
-
+import FindInPageIcon from '@/material-icons/400-24px/find_in_page.svg?react';
+import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
+import SearchIcon from '@/material-icons/400-24px/search.svg?react';
+import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { LoadMore } from 'flavours/glitch/components/load_more';
 import { SearchSection } from 'flavours/glitch/features/explore/components/search_section';
+
 
 import { ImmutableHashtag as Hashtag } from '../../../components/hashtag';
 import AccountContainer from '../../../containers/account_container';

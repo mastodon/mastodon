@@ -7,8 +7,8 @@ import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as PeopleIcon } from '@material-symbols/svg-600/outlined/group.svg';
 
+import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
 import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner';
 import { domain } from 'flavours/glitch/initial_state';
 

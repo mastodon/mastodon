@@ -105,7 +105,7 @@ module Mastodon::CLI
       if user.save
         if options[:confirmed]
           user.confirmed_at = nil
-          user.confirm!
+          user.mark_email_as_confirmed!
         end
 
         user.approve! if options[:approve]

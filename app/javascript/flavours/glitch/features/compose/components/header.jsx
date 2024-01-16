@@ -7,17 +7,17 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as PeopleIcon } from '@material-symbols/svg-600/outlined/group.svg';
-import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
-import { ReactComponent as LogoutIcon } from '@material-symbols/svg-600/outlined/logout.svg';
-import { ReactComponent as ManufacturingIcon } from '@material-symbols/svg-600/outlined/manufacturing.svg';
-import { ReactComponent as MenuIcon } from '@material-symbols/svg-600/outlined/menu.svg';
-import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-600/outlined/notifications-fill.svg';
-import { ReactComponent as PublicIcon } from '@material-symbols/svg-600/outlined/public.svg';
-
+import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
+import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
+import LogoutIcon from '@/material-icons/400-24px/logout.svg?react';
+import ManufacturingIcon from '@/material-icons/400-24px/manufacturing.svg?react';
+import MenuIcon from '@/material-icons/400-24px/menu.svg?react';
+import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
+import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import { Icon } from 'flavours/glitch/components/icon';
 import { signOutLink } from 'flavours/glitch/utils/backend_links';
 import { conditionalRender } from 'flavours/glitch/utils/react_helpers';
+
 
 const messages = defineMessages({
   community: {

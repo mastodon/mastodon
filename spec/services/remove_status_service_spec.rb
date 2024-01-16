@@ -116,4 +116,22 @@ RSpec.describe RemoveStatusService, :sidekiq_inline, type: :service do
              )).to have_been_made.once
     end
   end
+
+  context 'when removed status is a reblog of a non-follower' do
+    let!(:original_status) { Fabricate(:status, account: bill, text: 'Hello ThisIsASecret', visibility: :public) }
+    let!(:status) { ReblogService.new.call(alice, original_status) }
+
+    it 'sends Undo activity to followers' do
+      subject.call(status)
+      expect(a_request(:post, bill.inbox_url).with(
+               body: hash_including({
+                 'type' => 'Undo',
+                 'object' => hash_including({
+                   'type' => 'Announce',
+                   'object' => ActivityPub::TagManager.instance.uri_for(original_status),
+                 }),
+               })
+             )).to have_been_made.once
+    end
+  end
 end

@@ -9,8 +9,8 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { ReactComponent as PeopleIcon } from '@material-symbols/svg-600/outlined/group.svg';
 
+import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
 import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'flavours/glitch/actions/columns';
 import { fetchDirectory, expandDirectory } from 'flavours/glitch/actions/directory';
 import Column from 'flavours/glitch/components/column';

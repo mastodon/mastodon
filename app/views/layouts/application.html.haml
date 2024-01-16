@@ -27,6 +27,10 @@
     %title= html_title
 
     = javascript_pack_tag 'common', crossorigin: 'anonymous'
+
+    -# Needed for the wicg-inert polyfill. It needs to be on it's own <style> tag, with this `id`
+    = stylesheet_pack_tag 'core/inert', media: 'all', id: 'inert-style'
+
     - if @theme
       - if @theme[:supported_locales].include? I18n.locale.to_s
         = preload_pack_asset "locales/#{@theme[:flavour]}/#{I18n.locale}-json.js"
@@ -34,8 +38,6 @@
         = preload_pack_asset "locales/#{@theme[:flavour]}/en-json.js"
     = csrf_meta_tags unless skip_csrf_meta_tags?
     %meta{ name: 'style-nonce', content: request.content_security_policy_nonce }
-
-    = stylesheet_link_tag '/inert.css', skip_pipeline: true, media: 'all', id: 'inert-style'
 
     = yield :header_tags
 

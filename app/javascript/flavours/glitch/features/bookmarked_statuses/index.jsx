@@ -8,9 +8,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as BookmarksIcon } from '@material-symbols/svg-600/outlined/bookmarks-fill.svg';
 import { debounce } from 'lodash';
 
+import BookmarksIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
 import { fetchBookmarkedStatuses, expandBookmarkedStatuses } from 'flavours/glitch/actions/bookmarks';
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import ColumnHeader from 'flavours/glitch/components/column_header';

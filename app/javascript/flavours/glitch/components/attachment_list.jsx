@@ -7,9 +7,9 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as LinkIcon } from '@material-symbols/svg-600/outlined/link.svg';
-
+import LinkIcon from '@/material-icons/400-24px/link.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
+
 
 const filename = url => url.split('/').pop().split('#')[0].split('?')[0];
 

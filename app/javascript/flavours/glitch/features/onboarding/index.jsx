@@ -8,19 +8,19 @@ import { Link, Switch, Route, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 
-import { ReactComponent as AccountCircleIcon } from '@material-symbols/svg-600/outlined/account_circle.svg';
-import { ReactComponent as ArrowRightAltIcon } from '@material-symbols/svg-600/outlined/arrow_right_alt.svg';
-import { ReactComponent as ContentCopyIcon } from '@material-symbols/svg-600/outlined/content_copy.svg';
-import { ReactComponent as EditNoteIcon } from '@material-symbols/svg-600/outlined/edit_note.svg';
-import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-600/outlined/person_add.svg';
 
+import illustration from '@/images/elephant_ui_conversation.svg';
+import AccountCircleIcon from '@/material-icons/400-24px/account_circle.svg?react';
+import ArrowRightAltIcon from '@/material-icons/400-24px/arrow_right_alt.svg?react';
+import ContentCopyIcon from '@/material-icons/400-24px/content_copy.svg?react';
+import EditNoteIcon from '@/material-icons/400-24px/edit_note.svg?react';
+import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
 import { focusCompose } from 'flavours/glitch/actions/compose';
 import { Icon }  from 'flavours/glitch/components/icon';
 import Column from 'flavours/glitch/features/ui/components/column';
 import { me } from 'flavours/glitch/initial_state';
 import { useAppSelector } from 'flavours/glitch/store';
 import { assetHost } from 'flavours/glitch/utils/config';
-import illustration from 'mastodon/../images/elephant_ui_conversation.svg';
 
 import { Step } from './components/step';
 import { Follows } from './follows';

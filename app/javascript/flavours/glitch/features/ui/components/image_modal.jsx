@@ -5,8 +5,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
-
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 
 import ImageLoader from './image_loader';

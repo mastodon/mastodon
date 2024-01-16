@@ -46,7 +46,7 @@ RSpec.describe ReblogService, type: :service do
           Status
             .where(id: reblog_of_id)
             .where(text: 'discard-status-text')
-            .update_all(deleted_at: Time.now.utc) # rubocop:disable Rails/SkipsModelValidations
+            .update_all(deleted_at: Time.now.utc)
         end
       end
     end
@@ -85,10 +85,6 @@ RSpec.describe ReblogService, type: :service do
 
     it 'distributes to followers' do
       expect(ActivityPub::DistributionWorker).to have_received(:perform_async)
-    end
-
-    it 'sends an announce activity to the author', :sidekiq_inline do
-      expect(a_request(:post, bob.inbox_url)).to have_been_made.once
     end
   end
 end

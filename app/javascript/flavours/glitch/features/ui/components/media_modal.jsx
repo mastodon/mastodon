@@ -7,11 +7,11 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as ChevronLeftIcon } from '@material-symbols/svg-600/outlined/chevron_left.svg';
-import { ReactComponent as ChevronRightIcon } from '@material-symbols/svg-600/outlined/chevron_right.svg';
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
 import ReactSwipeableViews from 'react-swipeable-views';
 
+import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
+import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { getAverageFromBlurhash } from 'flavours/glitch/blurhash';
 import { GIFV } from 'flavours/glitch/components/gifv';
 import { Icon }  from 'flavours/glitch/components/icon';

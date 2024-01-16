@@ -8,9 +8,9 @@ import { Helmet } from 'react-helmet';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { ReactComponent as TagIcon } from '@material-symbols/svg-600/outlined/tag.svg';
 import { isEqual } from 'lodash';
 
+import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import { connectHashtagStream } from 'flavours/glitch/actions/streaming';
 import { fetchHashtag, followHashtag, unfollowHashtag } from 'flavours/glitch/actions/tags';

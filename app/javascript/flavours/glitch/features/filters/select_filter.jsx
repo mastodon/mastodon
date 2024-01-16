@@ -5,9 +5,9 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as AddIcon } from '@material-symbols/svg-600/outlined/add.svg';
 import fuzzysort from 'fuzzysort';
 
+import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { toServerSideType } from 'flavours/glitch/utils/filters';
 import { loupeIcon, deleteIcon } from 'flavours/glitch/utils/icons';

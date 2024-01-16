@@ -5,13 +5,13 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as AudiotrackIcon } from '@material-symbols/svg-600/outlined/music_note.svg';
-import { ReactComponent as PlayArrowIcon } from '@material-symbols/svg-600/outlined/play_arrow.svg';
-import { ReactComponent as VisibilityOffIcon } from '@material-symbols/svg-600/outlined/visibility_off.svg';
-
+import AudiotrackIcon from '@/material-icons/400-24px/music_note.svg?react';
+import PlayArrowIcon from '@/material-icons/400-24px/play_arrow.svg?react';
+import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import { Blurhash } from 'flavours/glitch/components/blurhash';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
+
 
 export default class MediaItem extends ImmutablePureComponent {
 

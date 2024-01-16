@@ -5,8 +5,8 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as ArrowDropDownIcon } from '@material-symbols/svg-600/outlined/arrow_drop_down.svg';
 
+import ArrowDropDownIcon from '@/material-icons/400-24px/arrow_drop_down.svg?react';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { Icon }  from 'flavours/glitch/components/icon';
 import InlineAccount from 'flavours/glitch/components/inline_account';

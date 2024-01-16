@@ -8,10 +8,10 @@ import { useHistory } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
-import { ReactComponent as AddPhotoAlternateIcon } from '@material-symbols/svg-600/outlined/add_photo_alternate.svg';
-import { ReactComponent as EditIcon } from '@material-symbols/svg-600/outlined/edit.svg';
 import Toggle from 'react-toggle';
 
+import AddPhotoAlternateIcon from '@/material-icons/400-24px/add_photo_alternate.svg?react';
+import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import { updateAccount } from 'flavours/glitch/actions/accounts';
 import { Button } from 'flavours/glitch/components/button';
 import { ColumnBackButton } from 'flavours/glitch/components/column_back_button';

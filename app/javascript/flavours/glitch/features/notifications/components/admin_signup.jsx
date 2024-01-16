@@ -8,9 +8,9 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-600/outlined/person_add-fill.svg';
 import { HotKeys } from 'react-hotkeys';
 
+import PersonAddIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
 import { Icon } from 'flavours/glitch/components/icon';
 import { Permalink } from 'flavours/glitch/components/permalink';
 import AccountContainer from 'flavours/glitch/containers/account_container';

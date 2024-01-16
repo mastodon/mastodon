@@ -10,26 +10,26 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as BookmarksIcon } from '@material-symbols/svg-600/outlined/bookmarks-fill.svg';
-import { ReactComponent as PeopleIcon } from '@material-symbols/svg-600/outlined/group.svg';
-import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
-import { ReactComponent as ListAltIcon } from '@material-symbols/svg-600/outlined/list_alt.svg';
-import { ReactComponent as MailIcon } from '@material-symbols/svg-600/outlined/mail.svg';
-import { ReactComponent as ManufacturingIcon } from '@material-symbols/svg-600/outlined/manufacturing.svg';
-import { ReactComponent as MenuIcon } from '@material-symbols/svg-600/outlined/menu.svg';
-import { ReactComponent as MoreHorizIcon } from '@material-symbols/svg-600/outlined/more_horiz.svg';
-import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-600/outlined/notifications.svg';
-import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-600/outlined/person_add.svg';
-import { ReactComponent as PublicIcon } from '@material-symbols/svg-600/outlined/public.svg';
-import { ReactComponent as SettingsIcon } from '@material-symbols/svg-600/outlined/settings-fill.svg';
-import { ReactComponent as TagIcon } from '@material-symbols/svg-600/outlined/tag.svg';
-
+import BookmarksIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
+import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
+import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
+import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
+import MailIcon from '@/material-icons/400-24px/mail.svg?react';
+import ManufacturingIcon from '@/material-icons/400-24px/manufacturing.svg?react';
+import MenuIcon from '@/material-icons/400-24px/menu.svg?react';
+import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
+import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
+import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
+import PublicIcon from '@/material-icons/400-24px/public.svg?react';
+import SettingsIcon from '@/material-icons/400-24px/settings-fill.svg?react';
+import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
 import { fetchLists } from 'flavours/glitch/actions/lists';
 import { openModal } from 'flavours/glitch/actions/modal';
 import Column from 'flavours/glitch/features/ui/components/column';
 import LinkFooter from 'flavours/glitch/features/ui/components/link_footer';
 import { preferencesLink } from 'flavours/glitch/utils/backend_links';
+
 
 import { me, showTrends } from '../../initial_state';
 import NavigationBar from '../compose/components/navigation_bar';

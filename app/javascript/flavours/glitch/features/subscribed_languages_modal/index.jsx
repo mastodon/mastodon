@@ -8,8 +8,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
 
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { followAccount } from 'flavours/glitch/actions/accounts';
 import { Button } from 'flavours/glitch/components/button';
 import { IconButton } from 'flavours/glitch/components/icon_button';

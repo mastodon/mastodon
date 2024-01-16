@@ -4,8 +4,8 @@ import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
 
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import api from 'flavours/glitch/api';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 

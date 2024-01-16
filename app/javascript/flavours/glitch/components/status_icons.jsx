@@ -6,17 +6,17 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { ReactComponent as ExpandLessIcon } from '@material-symbols/svg-600/outlined/expand_less.svg';
-import { ReactComponent as ForumIcon } from '@material-symbols/svg-600/outlined/forum.svg';
-import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home.svg';
-import { ReactComponent as ImageIcon } from '@material-symbols/svg-600/outlined/image.svg';
-import { ReactComponent as InsertChartIcon } from '@material-symbols/svg-600/outlined/insert_chart.svg';
-import { ReactComponent as LinkIcon } from '@material-symbols/svg-600/outlined/link.svg';
-import { ReactComponent as MovieIcon } from '@material-symbols/svg-600/outlined/movie.svg';
-import { ReactComponent as MusicNoteIcon } from '@material-symbols/svg-600/outlined/music_note.svg';
-
+import ExpandLessIcon from '@/material-icons/400-24px/expand_less.svg?react';
+import ForumIcon from '@/material-icons/400-24px/forum.svg?react';
+import HomeIcon from '@/material-icons/400-24px/home.svg?react';
+import ImageIcon from '@/material-icons/400-24px/image.svg?react';
+import InsertChartIcon from '@/material-icons/400-24px/insert_chart.svg?react';
+import LinkIcon from '@/material-icons/400-24px/link.svg?react';
+import MovieIcon from '@/material-icons/400-24px/movie.svg?react';
+import MusicNoteIcon from '@/material-icons/400-24px/music_note.svg?react';
 import { Icon } from 'flavours/glitch/components/icon';
 import { languages } from 'flavours/glitch/initial_state';
+
 
 import { IconButton } from './icon_button';
 import { VisibilityIcon } from './visibility_icon';

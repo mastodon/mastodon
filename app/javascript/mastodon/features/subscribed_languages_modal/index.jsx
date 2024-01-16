@@ -8,8 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
-
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { followAccount } from 'mastodon/actions/accounts';
 import { Button } from 'mastodon/components/button';
 import { IconButton } from 'mastodon/components/icon_button';

@@ -11,11 +11,11 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { ReactComponent as DeleteForeverIcon } from '@material-symbols/svg-600/outlined/delete_forever.svg';
-import { ReactComponent as DoneAllIcon } from '@material-symbols/svg-600/outlined/done_all.svg';
-import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-600/outlined/notifications-fill.svg';
 import { debounce } from 'lodash';
 
+import DeleteForeverIcon from '@/material-icons/400-24px/delete_forever.svg?react';
+import DoneAllIcon from '@/material-icons/400-24px/done_all.svg?react';
+import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import { compareId } from 'flavours/glitch/compare_id';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';

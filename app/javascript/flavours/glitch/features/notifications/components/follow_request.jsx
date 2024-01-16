@@ -8,11 +8,11 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/check.svg';
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
-import { ReactComponent as PersonIcon } from '@material-symbols/svg-600/outlined/person-fill.svg';
 import { HotKeys } from 'react-hotkeys';
 
+import CheckIcon from '@/material-icons/400-24px/check.svg?react';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
+import PersonIcon from '@/material-icons/400-24px/person-fill.svg?react';
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { DisplayName } from 'flavours/glitch/components/display_name';
 import { Icon } from 'flavours/glitch/components/icon';

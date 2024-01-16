@@ -9,10 +9,10 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { ReactComponent as FindInPageIcon } from '@material-symbols/svg-600/outlined/find_in_page.svg';
-import { ReactComponent as PeopleIcon } from '@material-symbols/svg-600/outlined/group.svg';
-import { ReactComponent as TagIcon } from '@material-symbols/svg-600/outlined/tag.svg';
 
+import FindInPageIcon from '@/material-icons/400-24px/find_in_page.svg?react';
+import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
+import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { submitSearch, expandSearch } from 'flavours/glitch/actions/search';
 import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
 import { Icon } from 'flavours/glitch/components/icon';

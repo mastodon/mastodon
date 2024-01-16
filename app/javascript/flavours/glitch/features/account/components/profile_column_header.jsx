@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { injectIntl, defineMessages } from 'react-intl';
 
-import { ReactComponent as PersonIcon } from '@material-symbols/svg-600/outlined/person.svg';
+import PersonIcon from '@/material-icons/400-24px/person.svg?react';
 
 import ColumnHeader from '../../../components/column_header';
 

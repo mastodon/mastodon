@@ -7,10 +7,10 @@ import classNames from 'classnames';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as CancelIcon } from '@material-symbols/svg-600/outlined/cancel.svg';
-import { ReactComponent as SearchIcon } from '@material-symbols/svg-600/outlined/search.svg';
-
+import CancelIcon from '@/material-icons/400-24px/cancel.svg?react';
+import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
+
 
 import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from '../../../actions/lists';
 

@@ -7,10 +7,10 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 
-import { ReactComponent as ArrowRightAltIcon } from '@material-symbols/svg-600/outlined/arrow_right_alt.svg';
-import { ReactComponent as ContentCopyIcon } from '@material-symbols/svg-600/outlined/content_copy.svg';
 import SwipeableViews from 'react-swipeable-views';
 
+import ArrowRightAltIcon from '@/material-icons/400-24px/arrow_right_alt.svg?react';
+import ContentCopyIcon from '@/material-icons/400-24px/content_copy.svg?react';
 import { ColumnBackButton } from 'flavours/glitch/components/column_back_button';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { me, domain } from 'flavours/glitch/initial_state';

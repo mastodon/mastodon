@@ -8,9 +8,9 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as AddIcon } from '@material-symbols/svg-600/outlined/add.svg';
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
 
+import AddIcon from '@/material-icons/400-24px/add.svg?react';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import AutosuggestInput from 'flavours/glitch/components/autosuggest_input';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { IconButton } from 'flavours/glitch/components/icon_button';

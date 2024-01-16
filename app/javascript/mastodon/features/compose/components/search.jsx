@@ -8,10 +8,9 @@ import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { ReactComponent as CancelIcon } from '@material-symbols/svg-600/outlined/cancel-fill.svg';
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
-import { ReactComponent as SearchIcon } from '@material-symbols/svg-600/outlined/search.svg';
-
+import CancelIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
+import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 import { domain, searchEnabled } from 'mastodon/initial_state';
 import { HASHTAG_REGEX } from 'mastodon/utils/hashtags';

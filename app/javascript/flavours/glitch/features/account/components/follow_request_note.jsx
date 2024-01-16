@@ -3,10 +3,10 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/check.svg';
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
-
+import CheckIcon from '@/material-icons/400-24px/check.svg?react';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
+
 
 export default class FollowRequestNote extends ImmutablePureComponent {
 

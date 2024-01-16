@@ -2,8 +2,7 @@ import { useCallback } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
-import { ReactComponent as MoreHorizIcon } from '@material-symbols/svg-600/outlined/more_horiz.svg';
-
+import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import { Icon } from 'flavours/glitch/components/icon';
 
 const messages = defineMessages({

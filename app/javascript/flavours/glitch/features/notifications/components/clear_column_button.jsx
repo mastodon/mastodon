@@ -3,9 +3,9 @@ import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { ReactComponent as DeleteForeverIcon } from '@material-symbols/svg-600/outlined/delete_forever.svg';
-
+import DeleteForeverIcon from '@/material-icons/400-24px/delete_forever.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
+
 
 export default class ClearColumnButton extends PureComponent {
 

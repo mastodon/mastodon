@@ -6,13 +6,12 @@ import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 
-import { ReactComponent as AddIcon } from '@material-symbols/svg-600/outlined/add.svg';
-import { ReactComponent as ArrowBackIcon } from '@material-symbols/svg-600/outlined/arrow_back.svg';
-import { ReactComponent as ChevronLeftIcon } from '@material-symbols/svg-600/outlined/chevron_left.svg';
-import { ReactComponent as ChevronRightIcon } from '@material-symbols/svg-600/outlined/chevron_right.svg';
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
-import { ReactComponent as TuneIcon } from '@material-symbols/svg-600/outlined/tune.svg';
-
+import AddIcon from '@/material-icons/400-24px/add.svg?react';
+import ArrowBackIcon from '@/material-icons/400-24px/arrow_back.svg?react';
+import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
+import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
+import TuneIcon from '@/material-icons/400-24px/tune.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 import { ButtonInTabsBar, useColumnsContext } from 'mastodon/features/ui/util/columns_context';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';

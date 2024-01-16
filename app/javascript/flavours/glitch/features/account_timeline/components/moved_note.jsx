@@ -5,8 +5,8 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as TripIcon } from '@material-symbols/svg-600/outlined/trip.svg';
 
+import TripIcon from '@/material-icons/400-24px/trip.svg?react';
 import { Icon } from 'flavours/glitch/components/icon';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 

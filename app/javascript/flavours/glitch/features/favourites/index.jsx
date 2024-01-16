@@ -8,10 +8,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as RefreshIcon } from '@material-symbols/svg-600/outlined/refresh.svg';
-import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/star-fill.svg';
 import { debounce } from 'lodash';
 
+import RefreshIcon from '@/material-icons/400-24px/refresh.svg?react';
+import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import { fetchFavourites, expandFavourites } from 'flavours/glitch/actions/interactions';
 import ColumnHeader from 'flavours/glitch/components/column_header';
 import { Icon }  from 'flavours/glitch/components/icon';
