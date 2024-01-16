@@ -803,10 +803,6 @@ describe Mastodon::CLI::Accounts do
       context 'with --dry-run option' do
         let(:options) { { dry_run: true } }
 
-        before do
-          cli.options = options
-        end
-
         it 'does not refresh the avatar for any account' do
           allow(account_example_com_a).to receive(:reset_avatar!)
           allow(account_example_com_b).to receive(:reset_avatar!)
