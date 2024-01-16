@@ -25,9 +25,23 @@ class Instance < ApplicationRecord
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
   scope :domain_starts_with, ->(value) { where(arel_table[:domain].matches("#{sanitize_sql_like(value)}%", false, true)) }
   scope :by_domain_and_subdomains, ->(domain) { where("reverse('.' || domain) LIKE reverse(?)", "%.#{domain}") }
+  scope :with_domain_follows, ->(domains) { where(domain: domains).where(domain_account_follows) }
 
   def self.refresh
     Scenic.database.refresh_materialized_view(table_name, concurrently: true, cascade: false)
+  end
+
+  def self.domain_account_follows
+    Arel.sql(
+      <<~SQL.squish
+        EXISTS (
+          SELECT 1
+          FROM follows
+          JOIN accounts ON follows.account_id = accounts.id OR follows.target_account_id = accounts.id
+          WHERE accounts.domain = instances.domain
+        )
+      SQL
+    )
   end
 
   def readonly?

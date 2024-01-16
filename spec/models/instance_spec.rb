@@ -97,5 +97,37 @@ RSpec.describe Instance do
         described_class.where(domain: 'grexample.com').first
       end
     end
+
+    describe '#with_domain_follows' do
+      before do
+        example_account = Fabricate(:account, domain: 'example.host')
+        other_account = Fabricate(:account, domain: 'other.host')
+        Fabricate(:account, domain: 'none.host')
+
+        Fabricate :follow, account: example_account
+        Fabricate :follow, target_account: other_account
+      end
+
+      it 'returns instances with domain accounts that have follows' do
+        results = described_class.with_domain_follows(['example.host', 'other.host', 'none.host'])
+
+        expect(results)
+          .to include(example_instance)
+          .and include(other_instance)
+          .and not_include(none_instance)
+      end
+
+      def example_instance
+        described_class.where(domain: 'example.host').first
+      end
+
+      def other_instance
+        described_class.where(domain: 'other.host').first
+      end
+
+      def none_instance
+        described_class.where(domain: 'none.host').first
+      end
+    end
   end
 end
