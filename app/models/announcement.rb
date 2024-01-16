@@ -76,13 +76,11 @@ class Announcement < ApplicationRecord
 
   def reactions(account = nil)
     records = begin
-      scope = grouped_ordered_announcement_reactions
-
-      selected_values = [:name, :custom_emoji_id, 'COUNT(*) as count'].tap do |values|
-        values << value_for_reaction_me_column(account)
-      end
-
-      scope.select(selected_values)
+      grouped_ordered_announcement_reactions.select(
+        [:name, :custom_emoji_id, 'COUNT(*) as count'].tap do |values|
+          values << value_for_reaction_me_column(account)
+        end
+      )
     end.to_a
 
     ActiveRecord::Associations::Preloader.new(records: records, associations: :custom_emoji).call
