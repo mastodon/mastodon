@@ -787,7 +787,7 @@ describe Mastodon::CLI::Accounts do
         allow(account_example_com_a).to receive(:reset_avatar!)
         allow(account_example_com_b).to receive(:reset_avatar!)
 
-        expect { cli.refresh(*arguments) }
+        expect { subject }
           .to output_results('OK')
 
         expect(account_example_com_a).to have_received(:reset_avatar!).once
@@ -797,7 +797,7 @@ describe Mastodon::CLI::Accounts do
       it 'does not reset the avatar for unspecified accounts' do
         allow(account_example_net).to receive(:reset_avatar!)
 
-        expect { cli.refresh(*arguments) }
+        expect { subject }
           .to output_results('OK')
 
         expect(account_example_net).to_not have_received(:reset_avatar!)
@@ -807,7 +807,7 @@ describe Mastodon::CLI::Accounts do
         allow(account_example_com_a).to receive(:reset_header!)
         allow(account_example_com_b).to receive(:reset_header!)
 
-        expect { cli.refresh(*arguments) }
+        expect { subject }
           .to output_results('OK')
 
         expect(account_example_com_a).to have_received(:reset_header!).once
@@ -817,7 +817,7 @@ describe Mastodon::CLI::Accounts do
       it 'does not reset the header for unspecified accounts' do
         allow(account_example_net).to receive(:reset_header!)
 
-        expect { cli.refresh(*arguments) }
+        expect { subject }
           .to output_results('OK')
 
         expect(account_example_net).to_not have_received(:reset_header!)
@@ -827,7 +827,7 @@ describe Mastodon::CLI::Accounts do
         it 'displays a failure message' do
           allow(account_example_com_a).to receive(:reset_avatar!).and_raise(Mastodon::UnexpectedResponseError)
 
-          expect { cli.refresh(*arguments) }
+          expect { subject }
             .to output_results("Account failed: #{account_example_com_a.username}@#{account_example_com_a.domain}")
         end
       end
@@ -836,7 +836,7 @@ describe Mastodon::CLI::Accounts do
         it 'exits with an error message' do
           allow(Account).to receive(:find_remote).with(account_example_com_b.username, account_example_com_b.domain).and_return(nil)
 
-          expect { cli.refresh(*arguments) }
+          expect { subject }
             .to output_results('No such account')
             .and raise_error(SystemExit)
         end
@@ -853,7 +853,7 @@ describe Mastodon::CLI::Accounts do
           allow(account_example_com_a).to receive(:reset_avatar!)
           allow(account_example_com_b).to receive(:reset_avatar!)
 
-          expect { cli.refresh(*arguments) }
+          expect { subject }
             .to output_results('OK (DRY RUN)')
 
           expect(account_example_com_a).to_not have_received(:reset_avatar!)
@@ -864,7 +864,7 @@ describe Mastodon::CLI::Accounts do
           allow(account_example_com_a).to receive(:reset_header!)
           allow(account_example_com_b).to receive(:reset_header!)
 
-          expect { cli.refresh(*arguments) }
+          expect { subject }
             .to output_results('OK (DRY RUN)')
 
           expect(account_example_com_a).to_not have_received(:reset_header!)
