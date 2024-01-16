@@ -76,7 +76,7 @@ class Announcement < ApplicationRecord
 
   def reactions(account = nil)
     records = begin
-      scope = announcement_reactions.group(:announcement_id, :name, :custom_emoji_id).order(Arel.sql('MIN(created_at) ASC'))
+      scope = grouped_ordered_announcement_reactions
 
       if account.nil?
         scope.select('name, custom_emoji_id, count(*) as count, false as me')
@@ -90,6 +90,14 @@ class Announcement < ApplicationRecord
   end
 
   private
+
+  def grouped_ordered_announcement_reactions
+    announcement_reactions
+      .group(:announcement_id, :name, :custom_emoji_id)
+      .order(
+        Arel.sql('MIN(created_at)').asc
+      )
+  end
 
   def set_published
     return unless scheduled_at.blank? || scheduled_at.past?
