@@ -11,9 +11,9 @@ import { connect } from 'react-redux';
 
 import Toggle from 'react-toggle';
 
-import DeleteIcon from 'mastodon/../material-icons/400-24px/delete.svg?react';
-import EditIcon from 'mastodon/../material-icons/400-24px/edit.svg?react';
-import ListAltIcon from 'mastodon/../material-icons/400-24px/list_alt.svg?react';
+import DeleteIcon from '@/material-icons/400-24px/delete.svg?react';
+import EditIcon from '@/material-icons/400-24px/edit.svg?react';
+import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { fetchList, deleteList, updateList } from 'mastodon/actions/lists';
 import { openModal } from 'mastodon/actions/modal';

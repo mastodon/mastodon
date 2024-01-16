@@ -9,7 +9,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
-import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { CircularProgress } from 'mastodon/components/circular_progress';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 

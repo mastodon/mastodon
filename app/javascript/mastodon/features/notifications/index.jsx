@@ -12,8 +12,8 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import DoneAllIcon from 'mastodon/../material-icons/400-24px/done_all.svg?react';
-import NotificationsIcon from 'mastodon/../material-icons/400-24px/notifications-fill.svg?react';
+import DoneAllIcon from '@/material-icons/400-24px/done_all.svg?react';
+import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import { compareId } from 'mastodon/compare_id';
 import { Icon }  from 'mastodon/components/icon';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';

@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import escapeTextContentForBrowser from 'escape-html';
 
-import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { closeModal } from 'mastodon/actions/modal';
 import { IconButton } from 'mastodon/components/icon_button';
 import InlineAccount from 'mastodon/components/inline_account';

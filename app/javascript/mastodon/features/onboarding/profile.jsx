@@ -10,8 +10,8 @@ import { useDispatch } from 'react-redux';
 
 import Toggle from 'react-toggle';
 
-import AddPhotoAlternateIcon from 'mastodon/../material-icons/400-24px/add_photo_alternate.svg?react';
-import EditIcon from 'mastodon/../material-icons/400-24px/edit.svg?react';
+import AddPhotoAlternateIcon from '@/material-icons/400-24px/add_photo_alternate.svg?react';
+import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import { updateAccount } from 'mastodon/actions/accounts';
 import { Button } from 'mastodon/components/button';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';

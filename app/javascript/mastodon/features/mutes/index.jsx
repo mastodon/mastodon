@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import VolumeOffIcon from 'mastodon/../material-icons/400-24px/volume_off.svg?react';
+import VolumeOffIcon from '@/material-icons/400-24px/volume_off.svg?react';
 
 import { fetchMutes, expandMutes } from '../../actions/mutes';
 import { LoadingIndicator } from '../../components/loading_indicator';

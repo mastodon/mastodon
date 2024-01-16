@@ -9,12 +9,12 @@ import { is } from 'immutable';
 
 import { throttle, debounce } from 'lodash';
 
-import DownloadIcon from 'mastodon/../material-icons/400-24px/download.svg?react';
-import PauseIcon from 'mastodon/../material-icons/400-24px/pause.svg?react';
-import PlayArrowIcon from 'mastodon/../material-icons/400-24px/play_arrow-fill.svg?react';
-import VisibilityOffIcon from 'mastodon/../material-icons/400-24px/visibility_off.svg?react';
-import VolumeOffIcon from 'mastodon/../material-icons/400-24px/volume_off-fill.svg?react';
-import VolumeUpIcon from 'mastodon/../material-icons/400-24px/volume_up-fill.svg?react';
+import DownloadIcon from '@/material-icons/400-24px/download.svg?react';
+import PauseIcon from '@/material-icons/400-24px/pause.svg?react';
+import PlayArrowIcon from '@/material-icons/400-24px/play_arrow-fill.svg?react';
+import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
+import VolumeOffIcon from '@/material-icons/400-24px/volume_off-fill.svg?react';
+import VolumeUpIcon from '@/material-icons/400-24px/volume_up-fill.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 import { formatTime, getPointerPosition, fileNameFromURL } from 'mastodon/features/video';
 
