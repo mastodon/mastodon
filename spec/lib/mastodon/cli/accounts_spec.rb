@@ -667,6 +667,7 @@ describe Mastodon::CLI::Accounts do
       let!(:remote_account_example_com) { Fabricate(:account, domain: 'example.com') }
       let!(:account_example_net)        { Fabricate(:account, domain: 'example.net') }
       let(:scope)                       { Account.remote }
+      let(:options) { { all: true } }
 
       before do
         # TODO: we should be using `stub_parallelize_with_progress!` but
@@ -674,7 +675,7 @@ describe Mastodon::CLI::Accounts do
         allow(cli).to receive(:parallelize_with_progress).and_yield(remote_account_example_com)
                                                          .and_yield(account_example_net)
                                                          .and_return([2, nil])
-        cli.options = { all: true }
+        cli.options = options
       end
 
       it 'refreshes the avatar for all remote accounts' do
@@ -727,8 +728,10 @@ describe Mastodon::CLI::Accounts do
       end
 
       context 'with --dry-run option' do
+        let(:options) { { all: true, dry_run: true } }
+
         before do
-          cli.options = { all: true, dry_run: true }
+          cli.options = options
         end
 
         it 'does not refresh the avatar for any account' do
@@ -840,8 +843,10 @@ describe Mastodon::CLI::Accounts do
       end
 
       context 'with --dry-run option' do
+        let(:options) { { dry_run: true } }
+
         before do
-          cli.options = { dry_run: true }
+          cli.options = options
         end
 
         it 'does not refresh the avatar for any account' do
@@ -874,12 +879,13 @@ describe Mastodon::CLI::Accounts do
       let!(:account_example_net)   { Fabricate(:account, domain: 'example.net') }
       let(:domain)                 { 'example.com' }
       let(:scope)                  { Account.remote.where(domain: domain) }
+      let(:options) { { domain: domain } }
 
       before do
         allow(cli).to receive(:parallelize_with_progress).and_yield(account_example_com_a)
                                                          .and_yield(account_example_com_b)
                                                          .and_return([2, nil])
-        cli.options = { domain: domain }
+        cli.options = options
       end
 
       it 'refreshes the avatar for all accounts on specified domain' do
