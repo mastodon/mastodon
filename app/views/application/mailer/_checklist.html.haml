@@ -11,9 +11,9 @@
                     %tr
                       %td.email-checklist-icons-checkbox-td
                         - if defined?(checked) && checked
-                          = image_tag full_pack_url('media/images/mailer-new/welcome/checkbox-on.png'), alt: '', width: 20, height: 20
+                          = image_tag frontend_asset_url('images/mailer-new/welcome/checkbox-on.png'), alt: '', width: 20, height: 20
                         - else
-                          = image_tag full_pack_url('media/images/mailer-new/welcome/checkbox-off.png'), alt: '', width: 20, height: 20
+                          = image_tag frontend_asset_url('images/mailer-new/welcome/checkbox-off.png'), alt: '', width: 20, height: 20
                       %td.email-checklist-icons-step-td
                         - if defined?(step_image_url)
                           = image_tag step_image_url, alt: '', width: 40, height: 40
