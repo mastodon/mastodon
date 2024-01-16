@@ -104,7 +104,13 @@ class Announcement < ApplicationRecord
       'FALSE AS me'
     else
       <<~SQL.squish
-        EXISTS(SELECT 1 FROM announcement_reactions r WHERE r.account_id = #{account.id} AND r.announcement_id = announcement_reactions.announcement_id AND r.name = announcement_reactions.name) AS me
+        EXISTS(
+          SELECT 1
+          FROM announcement_reactions inner_reactions
+          WHERE inner_reactions.account_id = #{account.id}
+            AND inner_reactions.announcement_id = announcement_reactions.announcement_id
+            AND inner_reactions.name = announcement_reactions.name
+        ) AS me
       SQL
     end
   end
