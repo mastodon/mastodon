@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 import BlockIcon from '@/material-icons/400-24px/block.svg?react';
 import InfoIcon from '@/material-icons/400-24px/info.svg?react';
+import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import PersonCheckIcon from '@/material-icons/400-24px/person_check.svg?react';
 import PushPinIcon from '@/material-icons/400-24px/push_pin.svg?react';
 import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
@@ -51,7 +52,7 @@ class GettingStartedMisc extends ImmutablePureComponent {
     const { signedIn } = this.context.identity;
 
     return (
-      <Column icon='ellipsis-h' heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
+      <Column icon='ellipsis-h' iconComponent={MoreHorizIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <div className='scrollable'>
           <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
           {signedIn && (<ColumnLink key='favourites' icon='star' iconComponent={StarIcon} text={intl.formatMessage(messages.favourites)} to='/favourites' />)}
