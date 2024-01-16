@@ -1,4 +1,4 @@
-import CheckIcon from 'mastodon/../material-icons/400-24px/check.svg?react';
+import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 
 import { Icon } from './icon';
 

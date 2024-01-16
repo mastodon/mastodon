@@ -9,9 +9,9 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import ReactSwipeableViews from 'react-swipeable-views';
 
-import ChevronLeftIcon from 'mastodon/../material-icons/400-24px/chevron_left.svg?react';
-import ChevronRightIcon from 'mastodon/../material-icons/400-24px/chevron_right.svg?react';
-import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
+import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
+import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { getAverageFromBlurhash } from 'mastodon/blurhash';
 import { GIFV } from 'mastodon/components/gifv';
 import { Icon }  from 'mastodon/components/icon';

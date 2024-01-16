@@ -5,7 +5,7 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import ArrowDropDownIcon from 'mastodon/../material-icons/400-24px/arrow_drop_down.svg?react';
+import ArrowDropDownIcon from '@/material-icons/400-24px/arrow_drop_down.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import { Icon }  from 'mastodon/components/icon';
 import InlineAccount from 'mastodon/components/inline_account';

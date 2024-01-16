@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom';
 
 import SwipeableViews from 'react-swipeable-views';
 
-import ArrowRightAltIcon from 'mastodon/../material-icons/400-24px/arrow_right_alt.svg?react';
-import ContentCopyIcon from 'mastodon/../material-icons/400-24px/content_copy.svg?react';
+import ArrowRightAltIcon from '@/material-icons/400-24px/arrow_right_alt.svg?react';
+import ContentCopyIcon from '@/material-icons/400-24px/content_copy.svg?react';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';
 import { Icon }  from 'mastodon/components/icon';
 import { me, domain } from 'mastodon/initial_state';

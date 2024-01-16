@@ -22,7 +22,7 @@ def find_used_icons
 
   Dir[Rails.root.join('app', 'javascript', '**', '*.*s*')].map do |path|
     File.open(path, 'r') do |file|
-      pattern = %r{\Aimport .* from 'mastodon/../material-icons/(?<weight>[0-9]+)-(?<size>[0-9]+)px/(?<icon>[^-]*)(?<fill>-fill)?.svg\?react';}
+      pattern = %r{\Aimport .* from '@/material-icons/(?<weight>[0-9]+)-(?<size>[0-9]+)px/(?<icon>[^-]*)(?<fill>-fill)?.svg\?react';}
       file.each_line do |line|
         match = pattern.match(line)
         next if match.blank?
