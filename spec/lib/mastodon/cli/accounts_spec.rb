@@ -660,6 +660,8 @@ describe Mastodon::CLI::Accounts do
   end
 
   describe '#refresh' do
+    let(:action) { :refresh }
+
     context 'with --all option' do
       let!(:local_account)              { Fabricate(:account, domain: nil) }
       let!(:remote_account_example_com) { Fabricate(:account, domain: 'example.com') }
@@ -927,7 +929,7 @@ describe Mastodon::CLI::Accounts do
 
     context 'when neither a list of accts nor options are provided' do
       it 'exits with an error message' do
-        expect { cli.refresh }
+        expect { subject }
           .to output_results('No account(s) given')
           .and raise_error(SystemExit)
       end
