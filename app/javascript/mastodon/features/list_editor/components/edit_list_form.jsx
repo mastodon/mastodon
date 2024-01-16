@@ -5,7 +5,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import CheckIcon from 'mastodon/../material-icons/400-24px/check.svg?react';
+import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 
 import { changeListEditorTitle, submitListEditor } from '../../../actions/lists';
 import { IconButton } from '../../../components/icon_button';
