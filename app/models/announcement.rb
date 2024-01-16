@@ -78,11 +78,11 @@ class Announcement < ApplicationRecord
     records = begin
       scope = grouped_ordered_announcement_reactions
 
-      if account.nil?
-        scope.select('name, custom_emoji_id, count(*) as count, false as me')
-      else
-        scope.select("name, custom_emoji_id, count(*) as count, exists(select 1 from announcement_reactions r where r.account_id = #{account.id} and r.announcement_id = announcement_reactions.announcement_id and r.name = announcement_reactions.name) as me")
+      selected_values = [:name, :custom_emoji_id, 'COUNT(*) as count'].tap do |values|
+        values << value_for_reaction_me_column(account)
       end
+
+      scope.select(selected_values)
     end.to_a
 
     ActiveRecord::Associations::Preloader.new(records: records, associations: :custom_emoji).call
@@ -97,6 +97,16 @@ class Announcement < ApplicationRecord
       .order(
         Arel.sql('MIN(created_at)').asc
       )
+  end
+
+  def value_for_reaction_me_column(account)
+    if account.nil?
+      'FALSE AS me'
+    else
+      <<~SQL.squish
+        EXISTS(SELECT 1 FROM announcement_reactions r WHERE r.account_id = #{account.id} AND r.announcement_id = announcement_reactions.announcement_id AND r.name = announcement_reactions.name) AS me
+      SQL
+    end
   end
 
   def set_published
