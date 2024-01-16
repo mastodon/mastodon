@@ -663,108 +663,66 @@ describe Mastodon::CLI::Accounts do
     let(:action) { :refresh }
 
     context 'with --all option' do
-      let!(:local_account)              { Fabricate(:account, domain: nil) }
-      let!(:remote_account_example_com) { Fabricate(:account, domain: 'example.com') }
-      let!(:account_example_net)        { Fabricate(:account, domain: 'example.net') }
-      let(:scope)                       { Account.remote }
       let(:options) { { all: true } }
+      let!(:local_account) { Fabricate(:account, domain: nil) }
+      let(:remote_com_avatar_url) { 'https://example.host/avatar/com' }
+      let(:remote_com_header_url) { 'https://example.host/header/com' }
+      let(:remote_account_example_com) { Fabricate(:account, domain: 'example.com', avatar_remote_url: remote_com_avatar_url, header_remote_url: remote_com_header_url) }
+      let(:remote_net_avatar_url) { 'https://example.host/avatar/net' }
+      let(:remote_net_header_url) { 'https://example.host/header/net' }
+      let(:account_example_net) { Fabricate(:account, domain: 'example.net', avatar_remote_url: remote_net_avatar_url, header_remote_url: remote_net_header_url) }
+      let(:scope) { Account.remote }
 
       before do
-        # TODO: we should be using `stub_parallelize_with_progress!` but
-        # this makes the assertions harder to write
-        allow(cli).to receive(:parallelize_with_progress).and_yield(remote_account_example_com)
-                                                         .and_yield(account_example_net)
-                                                         .and_return([2, nil])
-        cli.options = options
+        stub_parallelize_with_progress!
+
+        stub_request(:get, remote_com_avatar_url)
+          .to_return request_fixture('avatar.txt')
+        stub_request(:get, remote_com_header_url)
+          .to_return request_fixture('avatar.txt')
+        stub_request(:get, remote_net_avatar_url)
+          .to_return request_fixture('avatar.txt')
+        stub_request(:get, remote_net_header_url)
+          .to_return request_fixture('avatar.txt')
+
+        remote_account_example_com
+          .update_column(:avatar_file_name, nil)
+        account_example_net
+          .update_column(:avatar_file_name, nil)
       end
 
-      it 'refreshes the avatar for all remote accounts' do
-        allow(remote_account_example_com).to receive(:reset_avatar!)
-        allow(account_example_net).to receive(:reset_avatar!)
-
-        expect { cli.refresh }
+      it 'refreshes the avatar and header for all remote accounts' do
+        expect { subject }
           .to output_results('Refreshed 2 accounts')
+          .and not_change(local_account, :updated_at)
 
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
-        expect(remote_account_example_com).to have_received(:reset_avatar!).once
-        expect(account_example_net).to have_received(:reset_avatar!).once
-      end
-
-      it 'does not refresh avatar for local accounts' do
-        allow(local_account).to receive(:reset_avatar!)
-
-        expect { cli.refresh }
-          .to output_results('Refreshed 2 accounts')
-
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
-        expect(local_account).to_not have_received(:reset_avatar!)
-      end
-
-      it 'refreshes the header for all remote accounts' do
-        allow(remote_account_example_com).to receive(:reset_header!)
-        allow(account_example_net).to receive(:reset_header!)
-
-        expect { cli.refresh }
-          .to output_results('Refreshed 2 accounts')
-
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
-        expect(remote_account_example_com).to have_received(:reset_header!).once
-        expect(account_example_net).to have_received(:reset_header!).once
-      end
-
-      it 'does not refresh the header for local accounts' do
-        allow(local_account).to receive(:reset_header!)
-
-        expect { cli.refresh }
-          .to output_results('Refreshed 2 accounts')
-
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
-        expect(local_account).to_not have_received(:reset_header!)
-      end
-
-      it 'displays a successful message' do
-        expect { cli.refresh }
-          .to output_results('Refreshed 2 accounts')
+        # One request from factory creation, one more from task
+        expect(a_request(:get, remote_com_avatar_url))
+          .to have_been_made.at_least_times(2)
+        expect(a_request(:get, remote_com_header_url))
+          .to have_been_made.at_least_times(2)
+        expect(a_request(:get, remote_net_avatar_url))
+          .to have_been_made.at_least_times(2)
+        expect(a_request(:get, remote_net_header_url))
+          .to have_been_made.at_least_times(2)
       end
 
       context 'with --dry-run option' do
         let(:options) { { all: true, dry_run: true } }
 
-        before do
-          cli.options = options
-        end
-
-        it 'does not refresh the avatar for any account' do
-          allow(local_account).to receive(:reset_avatar!)
-          allow(remote_account_example_com).to receive(:reset_avatar!)
-          allow(account_example_net).to receive(:reset_avatar!)
-
-          expect { cli.refresh }
+        it 'does not refresh the avatar or header for any account' do
+          expect { subject }
             .to output_results('Refreshed 2 accounts')
 
-          expect(cli).to have_received(:parallelize_with_progress).with(scope).once
-          expect(local_account).to_not have_received(:reset_avatar!)
-          expect(remote_account_example_com).to_not have_received(:reset_avatar!)
-          expect(account_example_net).to_not have_received(:reset_avatar!)
-        end
-
-        it 'does not refresh the header for any account' do
-          allow(local_account).to receive(:reset_header!)
-          allow(remote_account_example_com).to receive(:reset_header!)
-          allow(account_example_net).to receive(:reset_header!)
-
-          expect { cli.refresh }
-            .to output_results('Refreshed 2 accounts')
-
-          expect(cli).to have_received(:parallelize_with_progress).with(scope).once
-          expect(local_account).to_not have_received(:reset_header!)
-          expect(remote_account_example_com).to_not have_received(:reset_header!)
-          expect(account_example_net).to_not have_received(:reset_header!)
-        end
-
-        it 'displays a successful message with (DRY RUN)' do
-          expect { cli.refresh }
-            .to output_results('Refreshed 2 accounts (DRY RUN)')
+          # One request from factory creation, none from task due to dry run
+          expect(a_request(:get, remote_com_avatar_url))
+            .to have_been_made.once
+          expect(a_request(:get, remote_com_header_url))
+            .to have_been_made.once
+          expect(a_request(:get, remote_net_avatar_url))
+            .to have_been_made.once
+          expect(a_request(:get, remote_net_header_url))
+            .to have_been_made.once
         end
       end
     end
