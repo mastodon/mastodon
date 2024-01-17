@@ -23,25 +23,43 @@ class Api::V1::Peers::SearchController < Api::BaseController
   def set_domains
     return if params[:q].blank?
 
-    if Chewy.enabled?
-      @domains = InstancesIndex.query(function_score: {
-        query: {
-          prefix: {
-            domain: TagManager.instance.normalize_domain(params[:q].strip),
-          },
-        },
+    @domains = domains_matching_search_param.limit(10).pluck(:domain)
+  end
 
-        field_value_factor: {
-          field: 'accounts_count',
-          modifier: 'log2p',
-        },
-      }).limit(10).pluck(:domain)
+  def domains_matching_search_param
+    if Chewy.enabled?
+      search_index_query_domains
     else
-      domain = params[:q].strip
-      domain = TagManager.instance.normalize_domain(domain)
-      @domains = Instance.searchable.where(Instance.arel_table[:domain].matches("#{Instance.sanitize_sql_like(domain)}%", false, true)).limit(10).pluck(:domain)
+      database_query_domains
     end
   rescue Addressable::URI::InvalidURIError
-    @domains = []
+    []
+  end
+
+  def search_index_query_domains
+    InstancesIndex.query(function_score: {
+      query: {
+        prefix: {
+          domain: normalized_domain,
+        },
+      },
+
+      field_value_factor: {
+        field: 'accounts_count',
+        modifier: 'log2p',
+      },
+    })
+  end
+
+  def database_query_domains
+    Instance.searchable.domain_starts_with(normalized_domain)
+  end
+
+  def normalized_domain
+    TagManager.instance.normalize_domain(query_value)
+  end
+
+  def query_value
+    params[:q].strip
   end
 end
