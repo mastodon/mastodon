@@ -58,7 +58,7 @@ RSpec.describe UnallowDomainService, type: :service do
         expect(Account.where(domain: bad_domain).exists?).to be true
       end
 
-      it 'removes the remote accounts\'s statuses and media attachments' do
+      it 'does not remove the remote accounts\'s statuses and media attachments' do
         expect { bad_status_harassment.reload }.to_not raise_error
         expect { bad_status_mean.reload }.to_not raise_error
         expect { bad_attachment.reload }.to_not raise_error
