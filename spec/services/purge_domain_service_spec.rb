@@ -5,14 +5,15 @@ require 'rails_helper'
 RSpec.describe PurgeDomainService, type: :service do
   subject { described_class.new }
 
-  let!(:old_account) { Fabricate(:account, domain: 'obsolete.org') }
+  let(:domain) { 'obsolete.org' }
+  let!(:old_account) { Fabricate(:account, domain: domain) }
   let!(:old_status_plain) { Fabricate(:status, account: old_account) }
   let!(:old_status_with_attachment) { Fabricate(:status, account: old_account) }
   let!(:old_attachment) { Fabricate(:media_attachment, account: old_account, status: old_status_with_attachment, file: attachment_fixture('attachment.jpg')) }
 
   describe 'for a suspension' do
     before do
-      subject.call('obsolete.org')
+      subject.call(domain)
     end
 
     it 'removes the remote accounts\'s statuses and media attachments' do
@@ -23,7 +24,7 @@ RSpec.describe PurgeDomainService, type: :service do
     end
 
     it 'refreshes instances view' do
-      expect(Instance.where(domain: 'obsolete.org').exists?).to be false
+      expect(Instance.where(domain: domain).exists?).to be false
     end
   end
 end
