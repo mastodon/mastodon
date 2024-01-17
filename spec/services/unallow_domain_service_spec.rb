@@ -5,12 +5,13 @@ require 'rails_helper'
 RSpec.describe UnallowDomainService, type: :service do
   subject { described_class.new }
 
-  let!(:bad_account) { Fabricate(:account, username: 'badguy666', domain: 'evil.org') }
+  let(:bad_domain) { 'evil.org' }
+  let!(:bad_account) { Fabricate(:account, username: 'badguy666', domain: bad_domain) }
   let!(:bad_status_harassment) { Fabricate(:status, account: bad_account, text: 'You suck') }
   let!(:bad_status_mean) { Fabricate(:status, account: bad_account, text: 'Hahaha') }
   let!(:bad_attachment) { Fabricate(:media_attachment, account: bad_account, status: bad_status_mean, file: attachment_fixture('attachment.jpg')) }
-  let!(:already_banned_account) { Fabricate(:account, username: 'badguy', domain: 'evil.org', suspended: true, silenced: true) }
-  let!(:domain_allow) { Fabricate(:domain_allow, domain: 'evil.org') }
+  let!(:already_banned_account) { Fabricate(:account, username: 'badguy', domain: bad_domain, suspended: true, silenced: true) }
+  let!(:domain_allow) { Fabricate(:domain_allow, domain: bad_domain) }
 
   context 'with limited federation mode', :sidekiq_inline do
     before do
@@ -23,12 +24,12 @@ RSpec.describe UnallowDomainService, type: :service do
       end
 
       it 'removes the allowed domain' do
-        expect(DomainAllow.allowed?('evil.org')).to be false
+        expect(DomainAllow.allowed?(bad_domain)).to be false
       end
 
       it 'removes remote accounts from that domain' do
         expect { already_banned_account.reload }.to raise_error(ActiveRecord::RecordNotFound)
-        expect(Account.where(domain: 'evil.org').exists?).to be false
+        expect(Account.where(domain: bad_domain).exists?).to be false
       end
 
       it 'removes the remote accounts\'s statuses and media attachments' do
@@ -50,11 +51,11 @@ RSpec.describe UnallowDomainService, type: :service do
       end
 
       it 'removes the allowed domain' do
-        expect(DomainAllow.allowed?('evil.org')).to be false
+        expect(DomainAllow.allowed?(bad_domain)).to be false
       end
 
       it 'does not remove accounts from that domain' do
-        expect(Account.where(domain: 'evil.org').exists?).to be true
+        expect(Account.where(domain: bad_domain).exists?).to be true
       end
 
       it 'removes the remote accounts\'s statuses and media attachments' do
