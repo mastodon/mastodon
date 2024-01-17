@@ -88,6 +88,85 @@ table + p {
   padding: 24px;
 }
 
+// Account
+.email-account-banner-table {
+  background-color: #f3f2f5;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.email-account-banner-td {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  height: 140px;
+  vertical-align: bottom;
+  background-color: #f3f2f5;
+  background-position: center;
+  background-size: cover;
+}
+
+.email-account-banner-inner-td {
+  padding: 24px 24px 0;
+  mso-padding-alt: 24px;
+}
+
+.email-account-banner-overlap-div {
+  max-height: 42px;
+}
+
+.email-account-banner-icon-table {
+  width: auto;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  border-collapse: separate;
+  background-color: #fff;
+  border: 2px solid #fff;
+
+  img {
+    display: block;
+    max-width: 100%;
+    border: none;
+    border-radius: 6px;
+  }
+}
+
+.email-account-body-td {
+  padding: 56px 24px 24px;
+  mso-padding-alt: 24px;
+}
+
+.email-account-name {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #17063b;
+}
+
+.email-account-handle {
+  font-size: 14px;
+  line-height: 20px;
+  color: #746a89;
+}
+
+.email-account-stats-table {
+  td {
+    padding-right: 16px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #746a89;
+  }
+
+  b {
+    font-weight: 600;
+    color: #17063b;
+  }
+
+  span {
+    white-space: nowrap;
+  }
+}
+
 // Utility classes
 .email-w-full {
   width: 100%;
@@ -120,6 +199,14 @@ table + p {
 
 .email-padding-top-24 {
   padding-top: 24px;
+}
+
+.email-padding-top-16 {
+  padding-top: 16px;
+}
+
+.email-padding-top-0 {
+  padding-top: 0;
 }
 
 .email-border-top {

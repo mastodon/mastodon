@@ -1608,6 +1608,7 @@ nl:
       unknown_browser: Onbekende browser
       weibo: Weibo
     current_session: Huidige sessie
+    date: Datum
     description: "%{browser} op %{platform}"
     explanation: Dit zijn de webbrowsers die momenteel met jouw Mastodonaccount zijn ingelogd.
     ip: IP
@@ -1774,16 +1775,19 @@ nl:
     webauthn: Beveiligingssleutels
   user_mailer:
     appeal_approved:
-      action: Ga naar je account
+      action: Accountinstellingen
       explanation: Het bezwaar tegen een door een moderator vastgestelde overtreding van jou op %{strike_date}, ingediend op %{appeal_date}, is goedgekeurd. De eerder vastgestelde overtreding is hierbij niet langer geldig.
       subject: Jouw bezwaar van %{date} is goedgekeurd
+      subtitle: Jouw account heeft weer een goede reputatie.
       title: Bezwaar goedgekeurd
     appeal_rejected:
       explanation: Het bezwaar tegen een door een moderator vastgestelde overtreding van jou op %{strike_date}, ingediend op %{appeal_date}, is afgewezen. De vastgestelde overtreding blijft daarom ongewijzigd.
       subject: Jouw bezwaar van %{date} is afgewezen
+      subtitle: Jouw bezwaar is afgewezen.
       title: Bezwaar afgewezen
     backup_ready:
-      explanation: Je hebt een volledige back-up van jouw Mastodon-account opgevraagd. Het staat nu klaar om te worden gedownload!
+      explanation: Je hebt een volledige back-up van je Mastodon-account aangevraagd.
+      extra: Het staat nu klaar om te worden gedownload!
       subject: Jouw archief staat klaar om te worden gedownload
       title: Archief ophalen
     suspicious_sign_in:

@@ -115,26 +115,35 @@ describe Announcement do
 
   describe '#reactions' do
     context 'with announcement_reactions present' do
+      let(:account_reaction_emoji) { Fabricate :custom_emoji }
+      let(:other_reaction_emoji) { Fabricate :custom_emoji }
       let!(:account) { Fabricate(:account) }
       let!(:announcement) { Fabricate(:announcement) }
-      let!(:announcement_reaction) { Fabricate(:announcement_reaction, announcement: announcement, created_at: 10.days.ago) }
-      let!(:announcement_reaction_account) { Fabricate(:announcement_reaction, announcement: announcement, created_at: 5.days.ago, account: account) }
 
       before do
-        Fabricate(:announcement_reaction)
+        Fabricate(:announcement_reaction, announcement: announcement, created_at: 10.days.ago, name: other_reaction_emoji.shortcode)
+        Fabricate(:announcement_reaction, announcement: announcement, created_at: 5.days.ago, account: account, name: account_reaction_emoji.shortcode)
+        Fabricate(:announcement_reaction) # For some other announcement
       end
 
       it 'returns the announcement reactions for the announcement' do
         results = announcement.reactions
 
-        expect(results.first.name).to eq(announcement_reaction.name)
-        expect(results.last.name).to eq(announcement_reaction_account.name)
+        expect(results).to have_attributes(
+          size: eq(2),
+          first: have_attributes(name: other_reaction_emoji.shortcode, me: false),
+          last: have_attributes(name: account_reaction_emoji.shortcode, me: false)
+        )
       end
 
-      it 'returns the announcement reactions for the announcement limited to account' do
+      it 'returns the announcement reactions for the announcement with `me` set correctly' do
         results = announcement.reactions(account)
 
-        expect(results.first.name).to eq(announcement_reaction.name)
+        expect(results).to have_attributes(
+          size: eq(2),
+          first: have_attributes(name: other_reaction_emoji.shortcode, me: false),
+          last: have_attributes(name: account_reaction_emoji.shortcode, me: true)
+        )
       end
     end
   end

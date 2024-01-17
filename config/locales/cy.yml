@@ -21,7 +21,7 @@ cy:
     link_verified_on: Gwiriwyd perchnogaeth y ddolen yma ar %{date}
     nothing_here: Does dim byd yma!
     pin_errors:
-      following: Rhaid i chi fod yn dilyn y person yr ydych am ei gymeradwyo yn barod
+      following: Rhaid i chi fod yn dilyn yn barod y person rydych am ei gymeradwyo
     posts:
       few: Postiadau
       many: Postiadau
@@ -74,7 +74,7 @@ cy:
       edit: Golygu
       email: E-bost
       email_status: Statws e-bost
-      enable: Dad rewi
+      enable: Dadrewi
       enable_sign_in_token_auth: Galluogi dilysu tocynnau e-bost
       enabled: Wedi ei alluogi
       enabled_msg: Wedi dadrewi cyfrif %{username} yn llwyddiannus
@@ -85,7 +85,7 @@ cy:
       invite_request_text: Rhesymau dros ymuno
       invited_by: Gwahoddwyd gan
       ip: IP
-      joined: Ymunwyd
+      joined: Wedi ymuno
       location:
         all: Popeth
         local: Lleol
@@ -1712,6 +1712,7 @@ cy:
       unknown_browser: Porwr Anhysbys
       weibo: Weibo
     current_session: Sesiwn gyfredol
+    date: Dyddiad
     description: "%{browser} ar %{platform}"
     explanation: Dyma'r porwyr gwe sydd wedi mewngofnodi i'ch cyfrif Mastodon ar hyn o bryd.
     ip: IP
@@ -1902,16 +1903,19 @@ cy:
     webauthn: Allweddi diogelwch
   user_mailer:
     appeal_approved:
-      action: Ewch i'ch cyfrif
+      action: Gosodiadau Cyfrif
       explanation: Mae apêl y rhybudd yn erbyn eich cyfrif ar %{strike_date} a gyflwynwyd gennych ar %{appeal_date} wedi'i chymeradwyo. Mae eich cyfrif unwaith eto yn gadarnhaol.
       subject: Mae eich apêl gan %{date} wedi'i chymeradwyo
+      subtitle: Mae eich cyfrif unwaith eto mewn sefyllfa dda.
       title: Cymeradwywyd yr apêl
     appeal_rejected:
       explanation: Mae apêl y rhybudd yn erbyn eich cyfrif ar %{strike_date} a gyflwynwyd gennych ar %{appeal_date} wedi'i gwrthod.
       subject: Mae eich apêl ar %{date} wedi'i gwrthod
+      subtitle: Mae eich apêl wedi'i gwrthod
       title: Mae'r apêl wedi'i gwrthod
     backup_ready:
-      explanation: Fe wnaethoch chi gais am gopi wrth gefn llawn o'ch cyfrif Mastodon. Mae nawr yn barod i'w lawrlwytho!
+      explanation: Rydych wedi gofyn am gopi wrth gefn llawn o'ch cyfrif Mastodon.
+      extra: Mae nawr yn barod i'w lwytho i lawr!
       subject: Mae eich archif yn barod i'w lawrlwytho
       title: Allfudo archif
     suspicious_sign_in:

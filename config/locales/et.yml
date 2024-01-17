@@ -1608,6 +1608,7 @@ et:
       unknown_browser: Tundmatu veebilehitseja
       weibo: Weibo
     current_session: Praegune seanss
+    date: Kuupäev
     description: "%{browser} platvormil %{platform}"
     explanation: Need veebilehitsejad on praegu su Mastodoni kontole sisse loginud.
     ip: IP
@@ -1776,16 +1777,19 @@ et:
     webauthn: Turvavõtmed
   user_mailer:
     appeal_approved:
-      action: Oma kontole
+      action: Konto seaded
       explanation: "%{appeal_date} esitatud vaidlustus %{strike_date} otsuse kohta on rahuldatud. Konto on ennistatud."
       subject: "%{date} esitatud vaidlustus on rahuldatud"
+      subtitle: Sinu konto on jälle heas seisukorras.
       title: Vaidlustus rahuldatud
     appeal_rejected:
       explanation: "%{appeal_date} esitatud vaidlustus %{strike_date} otsuse kohta on tagasi lükatud."
       subject: "%{date} esitatud vaidlustus on tagasi lükatud"
+      subtitle: Sinu vaidlustus lükati tagasi.
       title: Vaidlustus tagasi lükatud
     backup_ready:
-      explanation: Taotlesid oma Mastodoni konto varukoopiat. See on nüüd valmis allalaadimiseks!
+      explanation: Taotlesid oma Mastodoni konto täisvarundust.
+      extra: See on nüüd allalaadimiseks valmis!
       subject: Arhiiv on allalaadimiseks valmis
       title: Arhiivi väljavõte
     suspicious_sign_in:

@@ -1660,6 +1660,7 @@ sl:
       unknown_browser: Neznan brskalnik
       weibo: Weibo
     current_session: Trenutna seja
+    date: Datum
     description: "%{browser} na %{platform}"
     explanation: To so spletni brskalniki, ki so trenutno prijavljeni v vaš Mastodon račun.
     ip: IP
@@ -1838,16 +1839,19 @@ sl:
     webauthn: Varnostni ključi
   user_mailer:
     appeal_approved:
-      action: Pojdite na svoj račun
+      action: Nastavitve računa
       explanation: Pritožbi na ukrep proti vašemu računu z dne %{strike_date}, ki ste jo oddali dne %{appeal_date}, je bilo ugodeno. Vaš račun je znova nesporen.
       subject: Vaši pritožbi z dne %{date} je bilo ugodeno
+      subtitle: Vaš račun je znova na dobrem glasu.
       title: Pritožbi ugodeno
     appeal_rejected:
       explanation: Pritožba na ukrep proti vašemu računu z dne %{strike_date}, ki ste jo oddali dne %{appeal_date}, je bila zavrnjena.
       subject: Vaša pritožba z dne %{date} je bila zavrnjena
+      subtitle: Vaša pritožba je bila zavržena.
       title: Pritožba zavrnjena
     backup_ready:
-      explanation: Zahtevali ste popolno varnostno kopijo računa Mastodon. Zdaj je pripravljen za prenos!
+      explanation: Zahtevali ste polno varnostno kopijo svojega računa Mastodon.
+      extra: Zdaj je na voljo za prenos!
       subject: Vaš arhiv je pripravljen za prenos
       title: Prevzem arhiva
     suspicious_sign_in:

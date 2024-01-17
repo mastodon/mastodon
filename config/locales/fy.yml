@@ -1608,6 +1608,7 @@ fy:
       unknown_browser: Unbekende browser
       weibo: Weibo
     current_session: Aktuele sesje
+    date: Datum
     description: "%{browser} op %{platform}"
     explanation: Dit binne de webbrowsers dy’t op dit stuit mei jo Mastodon-account oanmeld binne.
     ip: IP
@@ -1774,16 +1775,19 @@ fy:
     webauthn: Befeiligingskaaien
   user_mailer:
     appeal_approved:
-      action: Gean nei jo account
+      action: Accountynstellingen
       explanation: It beswier tsjin in troch in moderator fêststelde skeining fan jo op %{strike_date}, yntsjinne op %{appeal_date}, is goedkard. De earder fêststelde skeining is hjirby net langer jildich.
       subject: Jo beswier fan %{date} is goedkard
+      subtitle: Jo account hat wer in goede reputaasje.
       title: Beswier goedkard
     appeal_rejected:
       explanation: It beswier tsjin in troch in moderator fêststelde skeining fan jo op %{strike_date}, yntsjinne op %{appeal_date}, is ôfwêzen. De fêststelde skeining bliuwt wurdt dêrom net wizige.
       subject: Jo beswier fan %{date} is ôfwêzen
+      subtitle: Jo beswier is ôfwêzen.
       title: Beswier ôfwêzen
     backup_ready:
-      explanation: Jo hawwe in folsleine reservekopy fan jo Mastodon-account opfrege. It stiet no klear om download te wurden!
+      explanation: Jo hawwe in folsleine reservekopy fan jo Mastodon-account oanfrege.
+      extra: It stiet no klear om download te wurden!
       subject: Jo argyf stiet klear om download te wurden
       title: Argyf ophelje
     suspicious_sign_in:

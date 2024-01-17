@@ -31,22 +31,26 @@ module AccountsHelper
     Setting.hide_followers_count || account.user&.settings&.[]('hide_followers_count')
   end
 
+  def account_formatted_stat(value)
+    number_to_human(value, precision: 3, strip_insignificant_zeros: true)
+  end
+
   def account_description(account)
     prepend_stats = [
       [
-        number_to_human(account.statuses_count, precision: 3, strip_insignificant_zeros: true),
+        account_formatted_stat(account.statuses_count),
         I18n.t('accounts.posts', count: account.statuses_count),
       ].join(' '),
 
       [
-        number_to_human(account.following_count, precision: 3, strip_insignificant_zeros: true),
+        account_formatted_stat(account.following_count),
         I18n.t('accounts.following', count: account.following_count),
       ].join(' '),
     ]
 
     unless hide_followers_count?(account)
       prepend_stats << [
-        number_to_human(account.followers_count, precision: 3, strip_insignificant_zeros: true),
+        account_formatted_stat(account.followers_count),
         I18n.t('accounts.followers', count: account.followers_count),
       ].join(' ')
     end

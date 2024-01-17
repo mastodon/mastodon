@@ -1608,6 +1608,7 @@ da:
       unknown_browser: Ukendt browser
       weibo: Weibo
     current_session: Aktuelle session
+    date: Dato
     description: "%{browser} på %{platform}"
     explanation: Disse webbrowsere er pt. logget ind på din Mastodon-konto.
     ip: IP
@@ -1774,16 +1775,19 @@ da:
     webauthn: Sikkerhedsnøgler
   user_mailer:
     appeal_approved:
-      action: Gå til din konto
+      action: Kontoindstillinger
       explanation: Appellen af kontoadvarslen fra %{strike_date}, indsendt af dig pr. %{appeal_date}, er blevet godkendt. Din kontostatus er igen god.
       subject: Din appel pr. %{date} er godkendt
+      subtitle: Dit kontoomdømme er nu igen godt.
       title: Appel godkendt
     appeal_rejected:
       explanation: Appellen af kontoadvarslen fra %{strike_date}, indsendt af dig pr. %{appeal_date}, er blevet afvist.
       subject: Din appel pr. %{date} er afvist
+      subtitle: Din appel er afvist.
       title: Appel afvist
     backup_ready:
-      explanation: Den anmodede fulde sikkerhedskopi af din Mastodon-konto er nu klar til download!
+      explanation: Der er anmodet om en fuld sikkerhedskopi af din Mastodon-konto.
+      extra: Sikkerhedskopien kan nu downloades!
       subject: Dit arkiv er klar til download
       title: Arkiv download
     suspicious_sign_in:

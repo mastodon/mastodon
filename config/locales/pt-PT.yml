@@ -1608,6 +1608,7 @@ pt-PT:
       unknown_browser: Navegador Desconhecido
       weibo: Weibo
     current_session: Sessão atual
+    date: Data
     description: "%{browser} em %{platform}"
     explanation: Estes são os navegadores que estão conectados com a tua conta do Mastodon.
     ip: IP
@@ -1774,16 +1775,19 @@ pt-PT:
     webauthn: Chaves de segurança
   user_mailer:
     appeal_approved:
-      action: Ir para a sua conta
+      action: Configurações de Conta
       explanation: O recurso à reprimenda contra a sua conta de %{strike_date}, enviado a %{appeal_date}, foi deferido. A sua conta encontra-se novamente em situação regular.
       subject: O seu recurso de %{date} foi deferido
+      subtitle: A sua conta está em situação regular novamente.
       title: Recurso deferido
     appeal_rejected:
       explanation: O recurso à punição contra a sua conta de %{strike_date}, submetido em %{appeal_date}, foi indeferido.
       subject: O seu recurso de %{date} foi indeferido
+      subtitle: O seu recurso foi rejeitado.
       title: Recurso indeferido
     backup_ready:
-      explanation: Pediu uma cópia integral de salvaguarda da sua conta Mastodon. Já está pronta para descarregar!
+      explanation: Pediu uma cópia completa da sua conta Mastodon.
+      extra: Está pronta para transferir!
       subject: O seu arquivo está pronto para descarregar
       title: Arquivo de ficheiros
     suspicious_sign_in:

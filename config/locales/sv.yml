@@ -1607,6 +1607,7 @@ sv:
       unknown_browser: Okänd browser
       weibo: Weibo
     current_session: Nuvarande session
+    date: Datum
     description: "%{browser} på %{platform}"
     explanation: Detta är inloggade webbläsare på Mastodon just nu.
     ip: IP
@@ -1773,16 +1774,19 @@ sv:
     webauthn: Säkerhetsnycklar
   user_mailer:
     appeal_approved:
-      action: Gå till ditt konto
+      action: Kontoinställningar
       explanation: Överklagandet du skickade in den %{appeal_date} för pricken på ditt konto den %{strike_date} har godkänts. Ditt konto har återigen bra anseende.
       subject: Din överklagan den %{date} har godkänts
+      subtitle: Ditt konto är återigen i gott skick.
       title: Överklagan godkänd
     appeal_rejected:
       explanation: Överklagandet du skickade in den %{appeal_date} för pricken på ditt konto den %{strike_date} har avslagits.
       subject: Din överklagan den %{date} har avslagits
+      subtitle: Din överklagan har avvisats.
       title: Överklagan avslagen
     backup_ready:
-      explanation: Du begärde en fullständig säkerhetskopiering av ditt Mastodon-konto. Det är nu klart för nedladdning!
+      explanation: Du begärde en fullständig säkerhetskopia av ditt Mastodon-konto.
+      extra: Nu redo för nedladdning!
       subject: Ditt arkiv är klart för nedladdning
       title: Arkivuttagning
     suspicious_sign_in:

@@ -47,16 +47,19 @@ sv:
         subject: 'Mastodon: Instruktioner för återställning av lösenord'
         title: Lösenordsåterställning
       two_factor_disabled:
-        explanation: Tvåfaktorsautentisering för ditt konto har inaktiverats. Det är nu möjligt att logga in med enbart e-postadress och lösenord.
+        explanation: Inloggning är nu möjlig med endast e-postadress och lösenord.
         subject: 'Mastodon: Tvåfaktorsautentisering inaktiverad'
+        subtitle: Tvåfaktorsautentisering för ditt konto har inaktiverats.
         title: 2FA inaktiverad
       two_factor_enabled:
-        explanation: Tvåfaktorsautentisering har aktiverats för ditt konto. En token som genereras av en kopplad TOTP-app kommer att krävas vid inloggning.
+        explanation: En token skapad av den parkopplade TOTP-appen kommer att krävas för inloggning.
         subject: 'Mastodon: Tvåfaktorsautentisering aktiverad'
+        subtitle: Tvåfaktorsautentisering har aktiverats för ditt konto.
         title: 2FA aktiverad
       two_factor_recovery_codes_changed:
         explanation: De tidigare återställningskoderna har ogiltigförklarats och nya har genererats.
         subject: Mastodon Tvåfaktors-återställningskoder genererades på nytt
+        subtitle: De tidigare återhämtningskoderna har ogiltigförklarats och nya har skapats.
         title: 2FA-återställningskoder ändrades
       unlock_instructions:
         subject: 'Mastodon: Lås upp instruktioner'
@@ -70,11 +73,10 @@ sv:
           subject: 'Mastodon: Säkerhetsnyckeln borttagen'
           title: En av dina säkerhetsnycklar har raderats
       webauthn_disabled:
-        explanation: Autentisering med säkerhetsnycklar till ditt konto har inaktiverats. Inloggning är nu endast möjligt med den token som genereras av den sammankopplade TOTP-appen.
+        explanation: Autentisering med säkerhetsnycklar har inaktiverats för ditt konto.
         subject: 'Mastodon: Autentisering med säkerhetsnycklar är inaktiverat'
         title: Säkerhetsnycklar inaktiverade
       webauthn_enabled:
-        explanation: Autentisering med säkerhetsnyckel till ditt konto har aktiverats. Din säkerhetsnyckel kan nu användas för inloggning.
         subject: 'Mastodon: Autentisering med säkerhetsnyckel är aktiverat'
         title: Säkerhetsnycklar aktiverade
     omniauth_callbacks:
