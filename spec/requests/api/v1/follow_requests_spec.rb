@@ -21,7 +21,8 @@ RSpec.describe 'Follow requests' do
         a_hash_including(
           id: account.id.to_s,
           username: account.username,
-          acct: account.acct
+          acct: account.acct,
+          follow_request_created_at: FollowRequest.find_by(account_id: account.id).created_at
         )
       end
     end
