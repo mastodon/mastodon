@@ -66,6 +66,10 @@ class FeaturedTag < ApplicationRecord
   end
 
   def validate_tag_uniqueness
-    errors.add(:name, :taken) if FeaturedTag.by_name(name).where(account_id: account_id).exists?
+    errors.add(:name, :taken) if tag_already_featured_for_account?
+  end
+
+  def tag_already_featured_for_account?
+    FeaturedTag.by_name(name).exists?(account_id: account_id)
   end
 end
