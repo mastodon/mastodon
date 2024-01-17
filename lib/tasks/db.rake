@@ -15,7 +15,7 @@ namespace :db do
     end
   end
 
-  task :pre_migration_check do
+  task pre_migration_check: :environment do
     version = ActiveRecord::Base.connection.select_one("SELECT current_setting('server_version_num') AS v")['v'].to_i
     abort 'This version of Mastodon requires PostgreSQL 9.5 or newer. Please update PostgreSQL before updating Mastodon' if version < 90_500
   end
