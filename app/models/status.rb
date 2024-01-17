@@ -123,6 +123,8 @@ class Status < ApplicationRecord
     where('NOT EXISTS (SELECT * FROM statuses_tags forbidden WHERE forbidden.status_id = statuses.id AND forbidden.tag_id IN (?))', tag_ids)
   }
 
+  normalizes :sensitive, with: ->(sensitive) { sensitive.present? }, apply_to_nil: true
+
   after_create_commit :trigger_create_webhooks
   after_update_commit :trigger_update_webhooks
 
@@ -443,7 +445,6 @@ class Status < ApplicationRecord
   def set_visibility
     self.visibility = reblog.visibility if reblog? && visibility.nil?
     self.visibility = (account.locked? ? :private : :public) if visibility.nil?
-    self.sensitive  = false if sensitive.nil?
   end
 
   def set_conversation

@@ -410,4 +410,26 @@ RSpec.describe Status do
       expect(status.uri).to start_with('https://')
     end
   end
+
+  describe 'Normalizations' do
+    describe 'sensitive' do
+      it 'preserves true value' do
+        status = Fabricate.build(:status, sensitive: true)
+
+        expect(status.sensitive).to be(true)
+      end
+
+      it 'preserves false value' do
+        status = Fabricate.build(:status, sensitive: false)
+
+        expect(status.sensitive).to be(false)
+      end
+
+      it 'converts nil value to false' do
+        status = Fabricate.build(:status, sensitive: nil)
+
+        expect(status.sensitive).to be(false)
+      end
+    end
+  end
 end
