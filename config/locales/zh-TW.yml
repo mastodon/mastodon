@@ -1584,6 +1584,7 @@ zh-TW:
       unknown_browser: 未知的瀏覽器
       weibo: 新浪微博
     current_session: 目前的 session
+    date: 日期
     description: "%{platform} 上的 %{browser}"
     explanation: 這些是現在正登入於您 Mastodon 帳號的瀏覽器。
     ip: IP 位址
@@ -1744,16 +1745,19 @@ zh-TW:
     webauthn: 安全金鑰
   user_mailer:
     appeal_approved:
-      action: 前往您的帳號
+      action: 帳號設定
       explanation: 您於 %{appeal_date} 遞交的針對您帳號的 %{strike_date} 警示之申訴已獲批准。您的帳號再次享有良好的信譽。
       subject: 您於 %{date} 提出之申訴已獲批准
+      subtitle: 您的帳號再次保持良好信譽。
       title: 申訴已批准
     appeal_rejected:
       explanation: 您於 %{appeal_date} 遞交的針對您帳號的 %{strike_date} 警示之申訴已被駁回。
       subject: 您於 %{date} 提出之申訴已被駁回
+      subtitle: 您的申訴已被駁回。
       title: 申訴被駁回
     backup_ready:
-      explanation: 您要求的 Mastodon 帳號完整備份檔案現已就緒，可供下載！
+      explanation: 您要求完整備份您的 Mastodon 帳號。
+      extra: 準備好下載了！
       subject: 您的備份檔已可供下載
       title: 檔案匯出
     suspicious_sign_in:

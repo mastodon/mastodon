@@ -1608,6 +1608,7 @@ bg:
       unknown_browser: Неизвестен браузър
       weibo: Weibo
     current_session: Текуща сесия
+    date: Дата
     description: "%{browser} на %{platform}"
     explanation: Това са уеб браузърите, от които в момента сте влезли с вашия Mastodon акаунт.
     ip: IP адрес
@@ -1774,16 +1775,19 @@ bg:
     webauthn: Ключове за сигурност
   user_mailer:
     appeal_approved:
-      action: Към акаунта ви
+      action: Настройки на акаунта
       explanation: Жалбата, която изпратихте на %{appeal_date}, срещу нарушението за вашия акаунт, направено на %{strike_date}, е приета. Вашият акаунт е отново с добра репутация.
       subject: Вашето обжалване от %{date} е било одобрено
+      subtitle: Вашият акаунт още веднъж е в добра репутация.
       title: Одобрено обжалване
     appeal_rejected:
       explanation: Жалбата, която изпратихте на %{appeal_date}, срещу нарушението за вашия акаунт, направено на %{strike_date}, е отхвърлена.
       subject: Вашето обжалване от %{date} е било отхвърлено
+      subtitle: Обжалването ви е отхвърлено.
       title: Отхвърлено обжалване
     backup_ready:
-      explanation: Изискахте пълно резервно копиране на акаунта си в Mastodon. Вече е готово за изтегляне!
+      explanation: Изисквахте пълно резервно копие на акаунта си в Mastodon.
+      extra: Вече е готово за теглене!
       subject: Вашият архив е готов за изтегляне
       title: Сваляне на архива
     suspicious_sign_in:

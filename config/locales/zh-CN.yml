@@ -1582,6 +1582,7 @@ zh-CN:
       unknown_browser: 未知浏览器
       weibo: 新浪微博
     current_session: 当前会话
+    date: 日期
     description: "%{platform} 上的 %{browser}"
     explanation: 你的 Mastodon 账户目前已在这些浏览器上登录。
     ip: IP 地址
@@ -1742,16 +1743,19 @@ zh-CN:
     webauthn: 安全密钥
   user_mailer:
     appeal_approved:
-      action: 前往你的账号
+      action: 账户设置
       explanation: 你于 %{appeal_date} 对 %{strike_date} 在你账号上做出的处罚提出的申诉已被批准，你的账号已回到正常状态。
       subject: 你于 %{date} 提出的申诉已被批准
+      subtitle: 您的账户已再次回到良好状态。
       title: 申诉已批准
     appeal_rejected:
       explanation: 你于 %{appeal_date} 对 %{strike_date} 在你账号上做出的处罚提出的申诉已被驳回。
       subject: 你于 %{date} 提出的申诉已被驳回
+      subtitle: 您的申诉已被驳回。
       title: 申诉已驳回
     backup_ready:
-      explanation: 你请求了一份 Mastodon 账户的完整备份。现在你可以下载了！
+      explanation: 您之前请求为您的 Mastodon 账户创建一份完整的备份。
+      extra: 现在它可以下载了！
       subject: 你的存档已经准备完毕
       title: 存档导出
     suspicious_sign_in:

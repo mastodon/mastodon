@@ -612,6 +612,7 @@ fo:
       created_at: Meldað
       delete_and_resolve: Strika postar
       forwarded: Víðarisent
+      forwarded_replies_explanation: Hendan fráboðanin er frá einum fjarbrúkara og er viðvíkjandi tilfari á einum fjarum ambætara. Tað er sent til tín, tí fráboðaða innihaldið er í svari til ein av tínum brúkarum.
       forwarded_to: Víðarisent til %{domain}
       mark_as_resolved: Marka sum loyst
       mark_as_sensitive: Merkt sum viðkvæmt
@@ -1607,6 +1608,7 @@ fo:
       unknown_browser: Ókendur kagi
       weibo: Weibo
     current_session: Verandi seta
+    date: Dagfesting
     description: "%{browser} á %{platform}"
     explanation: Hetta eru vevkagarnir, sum í løtuni eru ritaðir inn á tína Mastodon kontu.
     ip: IP
@@ -1773,16 +1775,19 @@ fo:
     webauthn: Trygdarlyklar
   user_mailer:
     appeal_approved:
-      action: Far til kontu tína
+      action: Kontustillingar
       explanation: Kæran um atsóknina móti kontu tínari %{strike_date}, sum tú sendi inn %{appeal_date}, er góðkend. Konta tín er aftur tignarlig.
       subject: Kæra tín frá %{date} er góðkend
+      subtitle: Kontan hjá tær er aftur í góðari støðu.
       title: Kæra góðkend
     appeal_rejected:
       explanation: Kæran um atsóknina móti kontu tínari %{strike_date}, sum tú sendi inn %{appeal_date}, er vrakað.
       subject: Kæra tín frá %{date} er vrakað
+      subtitle: Kæra tín er vrakað.
       title: Kæra vrakað
     backup_ready:
-      explanation: Tú bað um eitt fult trygdaravrit av tíni Mastodon kontu. Tað er nú klárt at taka niður!
+      explanation: Tú hevur biðið um eitt fult trygdaravrit av Mastodon-kontuni hjá tær.
+      extra: Tað er nú klárt at taka niður!
       subject: Savnið hjá tær er tøkt at taka niður
       title: Tak savn niður
     suspicious_sign_in:

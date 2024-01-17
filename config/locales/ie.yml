@@ -1608,6 +1608,7 @@ ie:
       unknown_browser: Ínconosset navigator
       weibo: Weibo
     current_session: Actual session
+    date: Date
     description: "%{browser} in %{platform}"
     explanation: Tis-ci es li navigatores queles actualmen ha initiat sessiones a tui Mastodon-conto.
     ip: IP
@@ -1774,16 +1775,18 @@ ie:
     webauthn: Claves de securitá
   user_mailer:
     appeal_approved:
-      action: Ear a tui conto
+      action: Parametres del Conto
       explanation: Li apelle del admoniment contra tui conto ye %{strike_date} quel tu fat ye %{appeal_date} ha esset aprobat. Tui conto retorna a esser in bon statu.
       subject: Tui apelle de %{date} ha esset aprobat
+      subtitle: Tui conto denov es in bon statu.
       title: Apelle aprobat
     appeal_rejected:
       explanation: Li apelle del admoniment contra tui conto ye %{strike_date} quel tu fat ye %{appeal_date} ha esset rejectet.
       subject: Tui apelle de %{date} ha esset rejectet
+      subtitle: Tui apelle ha esset rejectet.
       title: Apelle rejectet
     backup_ready:
-      explanation: Tu solicitat un complet archive de tui Mastodon-conto. Nu it es pret por descargar!
+      extra: It es ja pret a descargar!
       subject: Tui archive es pret por descargar
       title: Descargar archive
     suspicious_sign_in:

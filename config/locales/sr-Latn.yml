@@ -1634,6 +1634,7 @@ sr-Latn:
       unknown_browser: Nepoznati pregledač
       weibo: Veibo
     current_session: Trenutna sesija
+    date: Datum
     description: "%{browser} sa %{platform}"
     explanation: Ovo su veb pretraživači koji su trenutno prijavljeni na vaš Mastodon nalog.
     ip: IP
@@ -1806,16 +1807,19 @@ sr-Latn:
     webauthn: Sigurnosni ključevi
   user_mailer:
     appeal_approved:
-      action: Idite na svoj nalog
+      action: Podešavanja naloga
       explanation: Žalba podneta datuma %{appeal_date} na upisan prestup na Vaše ime datuma %{strike_date} je uvažena. Vaš nalog je ponovo u povoljnom položaju.
       subject: Vaša žalba podneta %{date} je uvažena
+      subtitle: Vaš nalog je ponovo na dobrom glasu.
       title: Žalba uvažena
     appeal_rejected:
       explanation: Žalba podneta datuma %{appeal_date} na upisan prestup na Vaše ime datuma %{strike_date} je odbijena.
       subject: Vaša žalba podneta %{date} je odbijena
+      subtitle: Vaša žalba je odbijena.
       title: Žalba odbijena
     backup_ready:
-      explanation: Tražili ste potpunu rezervnu kopiju vašeg Mastodon naloga. Spremna je za preuzimanje!
+      explanation: Zahtevali ste punu rezervnu kopiju Mastodon naloga.
+      extra: Sada je spremno za preuzimanje!
       subject: Vaša arhiva je spremna za preuzimanje
       title: Izvoz arhive
     suspicious_sign_in:

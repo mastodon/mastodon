@@ -47,16 +47,19 @@ fr:
         subject: 'Mastodon : Instructions pour changer votre mot de passe'
         title: Réinitialisation du mot de passe
       two_factor_disabled:
-        explanation: L'authentification à deux facteurs pour votre compte a été désactivée. La connexion est maintenant possible en utilisant uniquement l'adresse courriel et le mot de passe.
+        explanation: La connexion est maintenant possible en n'utilisant uniquement l'adresse e-mail et le mot de passe.
         subject: 'Mastodon : authentification à deux facteurs désactivée'
+        subtitle: L'authentification à deux facteurs pour votre compte a été désactivée.
         title: 2FA désactivée
       two_factor_enabled:
-        explanation: L'authentification à deux facteurs a été activée pour votre compte. Un jeton généré par l'application appairée TOTP sera nécessaire pour vous connecter.
+        explanation: Un jeton généré par l'application appairée TOTP sera nécessaire pour vous connecter.
         subject: 'Mastodon : authentification à deux facteurs activée'
+        subtitle: L'authentification à deux facteurs est maintenant activée pour votre compte.
         title: A2F activée
       two_factor_recovery_codes_changed:
         explanation: Les codes de récupération précédents ont été invalidés et de nouveaux ont été générés.
         subject: 'Mastodon : codes de récupération à deux facteurs régénérés'
+        subtitle: Les codes de récupération précédents ont été invalidés et de nouveaux codes ont été générés.
         title: Codes de récupération A2F modifiés
       unlock_instructions:
         subject: 'Mastodon : Instructions pour déverrouiller votre compte'
@@ -70,11 +73,9 @@ fr:
           subject: 'Mastodon: Clé de sécurité supprimée'
           title: Une de vos clés de sécurité a été supprimée
       webauthn_disabled:
-        explanation: L'authentification avec les clés de sécurité a été désactivée pour votre compte. La connexion est maintenant possible en utilisant uniquement le jeton généré par l'application TOTP appairée.
         subject: 'Mastodon: Authentification avec clés de sécurité désactivée'
         title: Clés de sécurité désactivées
       webauthn_enabled:
-        explanation: L'authentification par clé de sécurité a été activée pour votre compte. Votre clé de sécurité peut maintenant être utilisée pour vous connecter.
         subject: 'Mastodon: Authentification de la clé de sécurité activée'
         title: Clés de sécurité activées
     omniauth_callbacks:

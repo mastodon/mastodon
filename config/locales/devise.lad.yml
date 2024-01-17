@@ -47,16 +47,15 @@ lad:
         subject: 'Mastodon: Instruksyones para reinisyar kod'
         title: Reinisyar kod
       two_factor_disabled:
-        explanation: La autentifikasyon de dos pasos para tu kuento a sido inkapasitada. Agora puedes konektarte solamente uzando el adreso de posta elektronika i el kod.
         subject: 'Mastodon: La autentifikasyon de dos pasos esta inkapasitada'
         title: Autentifikasyon 2FA inkapasitada
       two_factor_enabled:
-        explanation: La autentifikasyon de dos pasos para tu kuento a sido kapasitada. Se rekiere un token djenerado por la aplikasyon TOTP konektada para entrar.
         subject: 'Mastodon: La autentifikasyon de dos pasos esta kapasitada'
         title: Autentifikasyon 2FA aktivada
       two_factor_recovery_codes_changed:
         explanation: Los kodiches de rekuperasyon previos tienen sido invalidados i se djeneraron kodiches muevos.
         subject: 'Mastodon: Los kodiches de rekuperasyon de dos pasos fueron rejenerados'
+        subtitle: Los kodiches de rekuperasyon previos tienen sido invalidados i se djeneraron kodiches muevos.
         title: Kodiches de rekuperasyon 2FA trokados
       unlock_instructions:
         subject: 'Mastodon: Instruksyones para dezblokar'
@@ -70,11 +69,9 @@ lad:
           subject: 'Mastodon: Yave de sigurita supremida'
           title: Una de tus yaves de sigurita tiene sido supremida
       webauthn_disabled:
-        explanation: La autentifikasyon kon yaves de sigurita a sido inkapasitada para tu kuento. Agora el inisyo de sesyon solo es posivle utilizando el token djeenerado por la aplikasyon TOTP konektada.
         subject: 'Mastodon: autentifikasyon kon yaves de sigurita inkapasitada'
         title: Yaves de sigurita inkapasitadas
       webauthn_enabled:
-        explanation: La autentifikasyon kon yave de sigurita a sido kapasitada para tu kuento. Agora tu yave de sigurita puede ser utilizada para inisyar sesyon.
         subject: 'Mastodon: Autentifikasyon de yave de sigurita aktivada'
         title: Yaves de sigurita kapasitadas
     omniauth_callbacks:

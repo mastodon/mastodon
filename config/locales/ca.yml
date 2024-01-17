@@ -1605,6 +1605,7 @@ ca:
       unknown_browser: Navegador Desconegut
       weibo: Weibo
     current_session: Sessió actual
+    date: Data
     description: "%{browser} de %{platform}"
     explanation: Aquests són els navegadors web que actualment han iniciat la sessió amb el teu compte de Mastodon.
     ip: IP
@@ -1771,16 +1772,19 @@ ca:
     webauthn: Claus de seguretat
   user_mailer:
     appeal_approved:
-      action: Ves al teu compte
+      action: Configuració del compte
       explanation: L'apel·lació a l'acció contra el teu compte del %{strike_date} que has enviat el %{appeal_date} ha estat aprovada. El teu compte torna a estar en bon estat.
       subject: La teva apel·lació del %{date} ha estat aprovada
+      subtitle: El vostre compte torna a estar correcte.
       title: Apel·lació aprovada
     appeal_rejected:
       explanation: L'apel·lació a l'acció contra el teu compte del %{strike_date} que has enviat el %{appeal_date} ha estat rebutjada.
       subject: La teva apel·lació del %{date} ha estat rebutjada
+      subtitle: S'ha rebutjat la vostra apel·lació.
       title: Apel·lació rebutjada
     backup_ready:
-      explanation: Has sol·licitat una copia completa del teu compte Mastodon. Ara ja està a punt per a descàrrega!
+      explanation: Heu demanat una còpia completa de les dades del vostre compte de Mastodon.
+      extra: Ja us ho podeu baixar
       subject: L'arxiu està preparat per a descàrrega
       title: Recollida de l'arxiu
     suspicious_sign_in:
