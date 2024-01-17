@@ -19,12 +19,10 @@ RSpec.describe UnallowDomainService, type: :service do
     end
 
     describe '#call' do
-      before do
-        subject.call(domain_allow)
-      end
-
       it 'makes the domain not allowed and removes accounts from that domain' do
-        expect(bad_domain_allowed).to be false
+        expect { subject.call(domain_allow) }
+          .to change { bad_domain_allowed }.from(true).to(false)
+
         expect(bad_domain_account_exists).to be false
 
         expect { already_banned_account.reload }.to raise_error(ActiveRecord::RecordNotFound)
@@ -41,12 +39,10 @@ RSpec.describe UnallowDomainService, type: :service do
     end
 
     describe '#call' do
-      before do
-        subject.call(domain_allow)
-      end
-
       it 'makes the domain not allowed but preserves accounts from the domain' do
-        expect(bad_domain_allowed).to be false
+        expect { subject.call(domain_allow) }
+          .to change { bad_domain_allowed }.from(true).to(false)
+
         expect(bad_domain_account_exists).to be true
 
         expect { bad_status_harassment.reload }.to_not raise_error
