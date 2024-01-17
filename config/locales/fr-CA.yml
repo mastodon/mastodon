@@ -1608,6 +1608,7 @@ fr-CA:
       unknown_browser: Navigateur inconnu
       weibo: Weibo
     current_session: Session courante
+    date: Date
     description: "%{browser} sur %{platform}"
     explanation: Ceci est la liste des navigateurs actuellement connectés à votre compte Mastodon.
     ip: Adresse IP
@@ -1774,16 +1775,19 @@ fr-CA:
     webauthn: Clés de sécurité
   user_mailer:
     appeal_approved:
-      action: Aller à votre compte
+      action: Paramètres du compte
       explanation: L'appel de la sanction contre votre compte mise en place le %{strike_date} que vous avez soumis le %{appeal_date} a été approuvé. Votre compte est de nouveau en règle.
       subject: Votre appel du %{date} a été approuvé
+      subtitle: Votre compte est de nouveau en règle.
       title: Appel approuvé
     appeal_rejected:
       explanation: L'appel de la sanction contre votre compte mise en place le %{strike_date} que vous avez soumis le %{appeal_date} a été rejeté.
       subject: Votre appel du %{date} a été rejeté
+      subtitle: Votre appel a été rejeté.
       title: Appel rejeté
     backup_ready:
-      explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon. Elle est maintenant prête à être téléchargée !
+      explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon.
+      extra: Elle est maintenant prête à être téléchargée !
       subject: Votre archive est prête à être téléchargée
       title: Récupération de l’archive
     suspicious_sign_in:

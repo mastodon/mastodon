@@ -1660,6 +1660,7 @@ pl:
       unknown_browser: Nieznana Przeglądarka
       weibo: Weibo
     current_session: Obecna sesja
+    date: Data
     description: "%{browser} na %{platform}"
     explanation: Przeglądarki z aktywną sesją Twojego konta.
     ip: Adres IP
@@ -1838,16 +1839,19 @@ pl:
     webauthn: Klucze bezpieczeństwa
   user_mailer:
     appeal_approved:
-      action: Przejdź do swojego konta
+      action: Ustawienia Konta
       explanation: Twoje odwołanie dotyczące ostrzeżenia nałożonego na twoje konto dnia %{strike_date}, które zostało wysłane dnia %{appeal_date} zostało zatwierdzone. Twoje konto jest ponownie w dobrej kondycji.
       subject: Twoje odwołanie z dnia %{date} zostało zatwierdzone
+      subtitle: Reputacja twojego konta została przywrócona.
       title: Odwołanie zatwierdzone
     appeal_rejected:
       explanation: Twoje odwołanie dotyczące ostrzeżenia nałożonego na twoje konto dnia %{strike_date}, które zostało wysłane dnia %{appeal_date} zostało odrzucone.
       subject: Twoje odwołanie z dnia %{date} zostało odrzucone
+      subtitle: Twoje odwołanie zostało odrzucone.
       title: Odwołanie odrzucone
     backup_ready:
-      explanation: Zażądałeś pełnej kopii zapasowej konta na Mastodonie. Jest ona dostępna do pobrania!
+      explanation: Zamówiono pełną kopię zapasową twojego konta Mastodon.
+      extra: Gotowe do pobrania!
       subject: Twoje archiwum jest gotowe do pobrania
       title: Odbiór archiwum
     suspicious_sign_in:

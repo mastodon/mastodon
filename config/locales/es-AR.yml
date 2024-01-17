@@ -1608,6 +1608,7 @@ es-AR:
       unknown_browser: "[Navegador web desconocido]"
       weibo: Weibo
     current_session: Sesión actual
+    date: Fecha
     description: "%{browser} en %{platform}"
     explanation: Estos son los navegadores web en los que actualmente iniciaste sesión en tu cuenta de Mastodon.
     ip: Dirección IP
@@ -1774,16 +1775,19 @@ es-AR:
     webauthn: Llaves de seguridad
   user_mailer:
     appeal_approved:
-      action: Ir a tu cuenta
+      action: Configuración de la cuenta
       explanation: La apelación del incumplimiento contra tu cuenta del %{strike_date} que enviaste el %{appeal_date} fue aprobada. Tu cuenta se encuentra de nuevo en buen estado.
       subject: Tu apelación del %{date} fue aprobada
+      subtitle: Tu cuenta está, de nuevo, en perfecto estado.
       title: Apelación aprobada
     appeal_rejected:
       explanation: La apelación del incumplimiento contra tu cuenta del %{strike_date} que enviaste el %{appeal_date} fue rechazada.
       subject: Tu apelación del %{date} fue rechazada
+      subtitle: Se rechazó tu apelación.
       title: Apelación rechazada
     backup_ready:
-      explanation: Solicitaste un resguardo completo de tu cuenta de Mastodon. ¡Ya está listo para descargar!
+      explanation: Solicitaste una copia de seguridad completa de tu cuenta de Mastodon.
+      extra: "¡Ya está lista para descargar!"
       subject: Tu archivo historial está listo para descargar
       title: Descargar archivo historial
     suspicious_sign_in:

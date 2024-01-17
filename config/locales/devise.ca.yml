@@ -49,16 +49,19 @@ ca:
         subject: 'Mastodon: Instruccions per a reiniciar contrasenya'
         title: Contrasenya restablerta
       two_factor_disabled:
-        explanation: L'autenticació de doble factor per al teu compte s'ha desactivat. Ara només pots iniciar la sessió fent servir la teva adreça de correu-e i la contrasenya.
+        explanation: Només es pot accedir amb compte de correu i contrasenya.
         subject: 'Mastodon: Autenticació de doble factor desactivada'
+        subtitle: S'ha deshabilitat l'autenticació de doble factor al vostre compte.
         title: A2F desactivada
       two_factor_enabled:
-        explanation: L'autenticació de doble factor s'ha habilitat per al teu compte. Per a iniciar la sessió es requerirà un token generat per l'aplicació TOTP que hi hagis emparellat.
+        explanation: Per accedir fa falta un token generat per l'aplicació TOTP aparellada.
         subject: 'Mastodon: Autenticació de doble factor activada'
+        subtitle: S'ha habilitat l'autenticació de doble factor al vostre compte.
         title: A2F activada
       two_factor_recovery_codes_changed:
         explanation: Els codis de recuperació anteriors ja no són vàlids i se n'han generat de nous.
         subject: 'Mastodon: codis de recuperació de doble factor regenerats'
+        subtitle: S'han invalidat els codis de recuperació anteriors i se n'ha generat de nous.
         title: Codis de recuperació A2F canviats
       unlock_instructions:
         subject: 'Mastodon: Instruccions per a desblocar'
@@ -72,11 +75,13 @@ ca:
           subject: 'Mastodon: Clau de seguretat esborrada'
           title: Una de les teves claus de seguretat ha estat esborrada
       webauthn_disabled:
-        explanation: S'ha desactivat l'autenticació amb claus de seguretat per al teu compte. Ara només pots iniciar la sessió usant el token generat per l'aplicació TOTP.
+        explanation: S'ha deshabilitat l'autenticació amb claus de seguretat al vostre compte.
+        extra: Ara només podeu accedir amb el token generat amb l'aplicació TOTP aparellada.
         subject: 'Mastodon: S''ha desactivat l''autenticació amb claus de seguretat'
         title: Claus de seguretat desactivades
       webauthn_enabled:
-        explanation: S'ha activat l'autenticació amb claus de seguretat. Ja pots usar la teva clau de seguretat per a iniciar sessió.
+        explanation: S'ha habilitat l'accés amb clau de seguretat al vostre compte.
+        extra: Ara podeu accedir amb la vostra clau de seguretat.
         subject: 'Mastodon: Autenticació amb clau de seguretat activada'
         title: Claus de seguretat activades
     omniauth_callbacks:

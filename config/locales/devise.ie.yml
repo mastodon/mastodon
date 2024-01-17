@@ -47,16 +47,18 @@ ie:
         subject: 'Mastodon: Instructiones por reiniciar li passa-parol'
         title: Reiniciar passa-parol
       two_factor_disabled:
-        explanation: 2-factor autentication por tui conto ha esset desactivisat. Aperter session nu es possibil solmen per email-adresse e passa-parol.
+        explanation: Aperter session es nu possibil solmen per email-adresse e passa-parol.
         subject: 'Mastodon: 2-factor autentication desactivat'
+        subtitle: 2-factor autentication por tui conto ha esset desactivisat.
         title: 2FA desvalidat
       two_factor_enabled:
-        explanation: 2-factor autentication ha esset activat por tui conto. Un gage generat per li acuplat apli TOTP va esser besonat por intrar.
         subject: 'Mastodon: 2-factor autentication activat'
+        subtitle: 2-factor autentication ha esset activisat por tui conto.
         title: 2FA permisset
       two_factor_recovery_codes_changed:
         explanation: Li anteyan codes de recuperation ha esset ínvalidat, e novis generat.
         subject: 'Mastodon: 2-factor codes de recuperation regenerat'
+        subtitle: Li anteyan codes de recuperation ha esset ínvalidat, e novis generat.
         title: 2FA codes de recuperation changeat
       unlock_instructions:
         subject: 'Mastodon: Desserral instructiones'
@@ -70,11 +72,12 @@ ie:
           subject: 'Mastodon: Clave de securitá deletet'
           title: Un ex tui claves de securitá ha esset deletet
       webauthn_disabled:
-        explanation: Autentication per claves de securitá ha esset desactivat por tui conto. Ja on posse intrar solmen con li gage generat per li acuplat apli TOTP.
+        explanation: Autentication per clave de securitá ha esset desactivisat por tui conto.
         subject: 'Mastodon: Autentication con claves de securitá desactivisat'
         title: Claves de securitá desactivisat
       webauthn_enabled:
-        explanation: Autentication per clave de securitá ha esset activat por tui conto. Ja li clave de securitá posse esser usat por intrar.
+        explanation: Autentication per clave de securitá ha esset activisat por tui conto.
+        extra: Tui clave de securitá nu posse esser usat por aperter session.
         subject: 'Mastodon: Autentication per clave de securitá activat'
         title: Claves de securitá activisat
     omniauth_callbacks:
