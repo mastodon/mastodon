@@ -1,10 +1,10 @@
 %table.email-w-full.email-account-banner-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
-    %td.email-account-banner-td{ height: 140, style: 'background-image:url(https://files.mastodon.social/accounts/headers/000/013/179/original/1375be116fbe0f1d.png)' }
+    %td.email-account-banner-td{ height: 140, background: 'https://files.mastodon.social/accounts/headers/000/013/179/original/1375be116fbe0f1d.png' }
       %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
         %tr
           %td.email-account-banner-inner-td
-            %div.email-account-banner-overlap-div
+            .email-account-banner-overlap-div
               %table.email-account-banner-icon-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
                 %tr
                   %td
@@ -12,19 +12,19 @@
 %table.email-w-full.email-account-body-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-account-body-td
-      %p.email-account-name= "Mastodon"
-      %p.email-account-handle= "@mastodon@mastodon.social"
+      %p.email-account-name= 'Mastodon'
+      %p.email-account-handle= '@mastodon@mastodon.social'
       %table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
         %tr
           %td.email-padding-top-16
             %table.email-w-full.email-account-stats-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
               %tr
                 %td
-                  %b= "251"
-                  %span= "Posts"
+                  %b= '251'
+                  %span= 'Posts'
                 %td
-                  %b= "3"
-                  %span= "Following"
+                  %b= '3'
+                  %span= 'Following'
                 %td
-                  %b= "809K"
-                  %span= "Followers"
+                  %b= '809K'
+                  %span= 'Followers'
