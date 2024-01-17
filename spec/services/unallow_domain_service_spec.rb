@@ -66,7 +66,7 @@ RSpec.describe UnallowDomainService, type: :service do
     end
   end
 
-  def bad_domain_account_exists?
+  def bad_domain_account_exists
     Account.exists?(domain: bad_domain)
   end
 end
