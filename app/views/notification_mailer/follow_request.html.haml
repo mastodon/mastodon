@@ -6,7 +6,7 @@
       %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
         %tr
           %td.email-inner-card-td-without-padding
-            = render 'application/mailer/account'
+            = render 'application/mailer/account', account: @account
             %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
               %tr
                 %td.email-padding-24.email-padding-top-0
