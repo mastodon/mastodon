@@ -24,7 +24,7 @@ RSpec.describe UnallowDomainService, type: :service do
       end
 
       it 'removes the allowed domain' do
-        expect(DomainAllow.allowed?(bad_domain)).to be false
+        expect(bad_domain_allowed).to be false
       end
 
       it 'removes remote accounts from that domain' do
@@ -51,7 +51,7 @@ RSpec.describe UnallowDomainService, type: :service do
       end
 
       it 'removes the allowed domain' do
-        expect(DomainAllow.allowed?(bad_domain)).to be false
+        expect(bad_domain_allowed).to be false
       end
 
       it 'does not remove accounts from that domain' do
@@ -64,6 +64,10 @@ RSpec.describe UnallowDomainService, type: :service do
         expect { bad_attachment.reload }.to_not raise_error
       end
     end
+  end
+
+  def bad_domain_allowed
+    DomainAllow.allowed?(bad_domain)
   end
 
   def bad_domain_account_exists
