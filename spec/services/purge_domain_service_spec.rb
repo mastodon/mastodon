@@ -12,19 +12,18 @@ RSpec.describe PurgeDomainService, type: :service do
   let!(:old_attachment) { Fabricate(:media_attachment, account: old_account, status: old_status_with_attachment, file: attachment_fixture('attachment.jpg')) }
 
   describe 'for a suspension' do
-    before do
-      subject.call(domain)
-    end
+    it 'refreshes instance view and removes associated records' do
+      expect { subject.call(domain) }
+        .to change { domain_instance_exists }.from(true).to(false)
 
-    it 'removes the remote accounts\'s statuses and media attachments' do
       expect { old_account.reload }.to raise_exception ActiveRecord::RecordNotFound
       expect { old_status_plain.reload }.to raise_exception ActiveRecord::RecordNotFound
       expect { old_status_with_attachment.reload }.to raise_exception ActiveRecord::RecordNotFound
       expect { old_attachment.reload }.to raise_exception ActiveRecord::RecordNotFound
     end
 
-    it 'refreshes instances view' do
-      expect(Instance.where(domain: domain).exists?).to be false
+    def domain_instance_exists
+      Instance.exists?(domain: domain)
     end
   end
 end
