@@ -26,10 +26,8 @@ RSpec.describe UnallowDomainService, type: :service do
       it 'makes the domain not allowed and removes accounts from that domain' do
         expect(bad_domain_allowed).to be false
         expect(bad_domain_account_exists).to be false
-        expect { already_banned_account.reload }.to raise_error(ActiveRecord::RecordNotFound)
-      end
 
-      it 'removes the remote accounts\'s statuses and media attachments' do
+        expect { already_banned_account.reload }.to raise_error(ActiveRecord::RecordNotFound)
         expect { bad_status_harassment.reload }.to raise_exception ActiveRecord::RecordNotFound
         expect { bad_status_mean.reload }.to raise_exception ActiveRecord::RecordNotFound
         expect { bad_attachment.reload }.to raise_exception ActiveRecord::RecordNotFound
@@ -50,9 +48,7 @@ RSpec.describe UnallowDomainService, type: :service do
       it 'makes the domain not allowed but preserves accounts from the domain' do
         expect(bad_domain_allowed).to be false
         expect(bad_domain_account_exists).to be true
-      end
 
-      it 'does not remove the remote accounts\'s statuses and media attachments' do
         expect { bad_status_harassment.reload }.to_not raise_error
         expect { bad_status_mean.reload }.to_not raise_error
         expect { bad_attachment.reload }.to_not raise_error
