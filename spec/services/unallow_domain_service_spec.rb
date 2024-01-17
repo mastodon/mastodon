@@ -25,9 +25,9 @@ RSpec.describe UnallowDomainService, type: :service do
           .and change { bad_domain_account_exists }.from(true).to(false)
 
         expect { already_banned_account.reload }.to raise_error(ActiveRecord::RecordNotFound)
-        expect { bad_status_harassment.reload }.to raise_exception ActiveRecord::RecordNotFound
-        expect { bad_status_mean.reload }.to raise_exception ActiveRecord::RecordNotFound
-        expect { bad_attachment.reload }.to raise_exception ActiveRecord::RecordNotFound
+        expect { bad_status_harassment.reload }.to raise_error(ActiveRecord::RecordNotFound)
+        expect { bad_status_mean.reload }.to raise_error(ActiveRecord::RecordNotFound)
+        expect { bad_attachment.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end
