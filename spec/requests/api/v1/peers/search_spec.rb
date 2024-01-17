@@ -4,6 +4,19 @@ require 'rails_helper'
 
 describe 'API Peers Search' do
   describe 'GET /api/v1/peers/search' do
+    context 'when peers api is disabled' do
+      before do
+        Setting.peers_api_enabled = false
+      end
+
+      it 'returns http not found response' do
+        get '/api/v1/peers/search'
+
+        expect(response)
+          .to have_http_status(404)
+      end
+    end
+
     context 'with no search param' do
       it 'returns http success and empty response' do
         get '/api/v1/peers/search'
