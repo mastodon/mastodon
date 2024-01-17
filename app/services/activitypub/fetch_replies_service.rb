@@ -37,7 +37,13 @@ class ActivityPub::FetchRepliesService < BaseService
     return unless @allow_synchronous_requests
     return if non_matching_uri_hosts?(@account.uri, collection_or_uri)
 
-    fetch_resource_without_id_validation(collection_or_uri, nil, true)
+    begin
+      fetch_resource_without_id_validation(collection_or_uri, nil, true)
+    rescue Mastodon::UnexpectedResponseError => e
+      raise unless e.response && e.response.code == 401
+
+      fetch_resource_without_id_validation(collection_or_uri, nil, true, request_options: {with_query_string: true})
+    end
   end
 
   def filtered_replies
