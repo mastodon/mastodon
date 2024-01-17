@@ -50,7 +50,7 @@
                                 /[if mso]
                                   </v:textbox></v:rect>
                                 = link_to root_url, class: 'email-header-logo-a' do
-                                  = image_tag full_pack_url('media/images/mailer-new/common/logo-header.png'), alt: 'Mastodon', width: 157, height: 40
+                                  = image_tag frontend_asset_url('images/mailer-new/common/logo-header.png'), alt: 'Mastodon', width: 157, height: 40
 
                           -# Heading
                           = yield :heading
@@ -75,7 +75,7 @@
                   %td.email-footer-td
                     %p.email-footer-p
                       = link_to root_url, class: 'email-footer-logo-a' do
-                        = image_tag full_pack_url('media/images/mailer-new/common/logo-footer.png'), alt: 'Mastodon', width: 44, height: 44
+                        = image_tag frontend_asset_url('images/mailer-new/common/logo-footer.png'), alt: 'Mastodon', width: 44, height: 44
                     %p.email-footer-p
                       = t 'about.hosted_on', domain: site_hostname
                     %p.email-footer-p
