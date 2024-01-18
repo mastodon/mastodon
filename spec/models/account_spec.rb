@@ -835,6 +835,25 @@ RSpec.describe Account do
   end
 
   describe 'scopes' do
+    describe 'auditable' do
+      let!(:alice) { Fabricate :account }
+      let!(:bob) { Fabricate :account }
+
+      before do
+        2.times { Fabricate :action_log, account: alice }
+      end
+
+      it 'returns distinct accounts with action log records' do
+        results = described_class.auditable
+
+        expect(results.size)
+          .to eq(1)
+        expect(results)
+          .to include(alice)
+          .and not_include(bob)
+      end
+    end
+
     describe 'alphabetic' do
       it 'sorts by alphabetic order of domain and username' do
         matches = [
