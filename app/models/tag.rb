@@ -24,8 +24,11 @@ class Tag < ApplicationRecord
   has_and_belongs_to_many :statuses
   has_and_belongs_to_many :accounts
 
-  has_many :passive_relationships, class_name: 'TagFollow', inverse_of: :tag, dependent: :destroy
-  has_many :featured_tags, dependent: :destroy, inverse_of: :tag
+  with_options inverse_of: :tag, dependent: :destroy do
+    has_many :passive_relationships, class_name: 'TagFollow'
+    has_many :featured_tags
+  end
+
   has_many :followers, through: :passive_relationships, source: :account
 
   HASHTAG_SEPARATORS = "_\u00B7\u30FB\u200c"

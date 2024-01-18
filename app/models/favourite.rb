@@ -16,8 +16,10 @@ class Favourite < ApplicationRecord
 
   update_index('statuses', :status)
 
-  belongs_to :account, inverse_of: :favourites
-  belongs_to :status,  inverse_of: :favourites
+  with_options inverse_of: :favourites do
+    belongs_to :account
+    belongs_to :status
+  end
 
   has_one :notification, as: :activity, dependent: :destroy
 

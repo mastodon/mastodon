@@ -174,9 +174,11 @@ class MediaAttachment < ApplicationRecord
     all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp -define jpeg:dct-method=float',
   }.freeze
 
-  belongs_to :account,          inverse_of: :media_attachments, optional: true
-  belongs_to :status,           inverse_of: :media_attachments, optional: true
-  belongs_to :scheduled_status, inverse_of: :media_attachments, optional: true
+  with_options inverse_of: :media_attachments, optional: true do
+    belongs_to :account
+    belongs_to :status
+    belongs_to :scheduled_status
+  end
 
   has_attached_file :file,
                     styles: ->(f) { file_styles f },

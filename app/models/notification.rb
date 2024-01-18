@@ -79,13 +79,18 @@ class Notification < ApplicationRecord
   belongs_to :activity, polymorphic: true, optional: true
 
   with_options foreign_key: 'activity_id', optional: true do
-    belongs_to :mention, inverse_of: :notification
-    belongs_to :status, inverse_of: :notification
-    belongs_to :follow, inverse_of: :notification
-    belongs_to :follow_request, inverse_of: :notification
-    belongs_to :favourite, inverse_of: :notification
-    belongs_to :poll, inverse_of: false
-    belongs_to :report, inverse_of: false
+    with_options inverse_of: :notification do
+      belongs_to :mention
+      belongs_to :status
+      belongs_to :follow
+      belongs_to :follow_request
+      belongs_to :favourite
+    end
+
+    with_options inverse_of: false do
+      belongs_to :poll
+      belongs_to :report
+    end
   end
 
   validates :type, inclusion: { in: TYPES }

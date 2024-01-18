@@ -15,8 +15,10 @@
 #
 
 class FeaturedTag < ApplicationRecord
-  belongs_to :account, inverse_of: :featured_tags
-  belongs_to :tag, inverse_of: :featured_tags, optional: true # Set after validation
+  with_options inverse_of: :featured_tags do
+    belongs_to :account
+    belongs_to :tag, optional: true # Set after validation
+  end
 
   validates :name, presence: true, format: { with: Tag::HASHTAG_NAME_RE }, on: :create
 
