@@ -1273,7 +1273,8 @@ const startServer = async () => {
     const subscription = subscriptions[channelIds.join(';')];
 
     if (!subscription) {
-      return;
+      throw new Error("subscription not found");
+      // return;
     }
 
     channelIds.forEach(channelId => {
