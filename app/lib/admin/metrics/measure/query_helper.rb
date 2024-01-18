@@ -18,7 +18,7 @@ module Admin::Metrics::Measure::QueryHelper
   def generated_series_days
     Arel.sql(
       <<~SQL.squish
-        SELECT generate_series(date_trunc('day', :start_at::timestamp)::date, date_trunc('day', :end_at::timestamp)::date, interval '1 day') AS period
+        SELECT generate_series(timestamp :start_at, :end_at, '1 day')::date AS period
       SQL
     )
   end
