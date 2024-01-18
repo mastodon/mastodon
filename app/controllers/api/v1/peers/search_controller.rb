@@ -23,36 +23,25 @@ class Api::V1::Peers::SearchController < Api::BaseController
   def set_domains
     return if params[:q].blank?
 
-    @domains = domains_matching_search_param.limit(10).pluck(:domain)
-  end
-
-  def domains_matching_search_param
     if Chewy.enabled?
-      search_index_query_domains
+      @domains = InstancesIndex.query(function_score: {
+        query: {
+          prefix: {
+            domain: normalized_domain,
+          },
+        },
+
+        field_value_factor: {
+          field: 'accounts_count',
+          modifier: 'log2p',
+        },
+      }).limit(10).pluck(:domain)
     else
-      database_query_domains
+      domain = normalized_domain
+      @domains = Instance.searchable.domain_starts_with(domain).limit(10).pluck(:domain)
     end
   rescue Addressable::URI::InvalidURIError
-    Instance.none
-  end
-
-  def search_index_query_domains
-    InstancesIndex.query(function_score: {
-      query: {
-        prefix: {
-          domain: normalized_domain,
-        },
-      },
-
-      field_value_factor: {
-        field: 'accounts_count',
-        modifier: 'log2p',
-      },
-    })
-  end
-
-  def database_query_domains
-    Instance.searchable.domain_starts_with(normalized_domain)
+    @domains = []
   end
 
   def normalized_domain
