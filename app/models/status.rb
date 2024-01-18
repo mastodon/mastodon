@@ -61,8 +61,10 @@ class Status < ApplicationRecord
   belongs_to :conversation, optional: true
   belongs_to :preloadable_poll, class_name: 'Poll', foreign_key: 'poll_id', optional: true, inverse_of: false
 
-  belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies, optional: true
-  belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, optional: true
+  with_options class_name: 'Status', optional: true do
+    belongs_to :thread, foreign_key: 'in_reply_to_id', inverse_of: :replies
+    belongs_to :reblog, foreign_key: 'reblog_of_id', inverse_of: :reblogs
+  end
 
   has_many :favourites, inverse_of: :status, dependent: :destroy
   has_many :bookmarks, inverse_of: :status, dependent: :destroy

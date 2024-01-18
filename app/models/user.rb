@@ -434,7 +434,7 @@ class User < ApplicationRecord
   end
 
   def sign_up_from_ip_requires_approval?
-    !sign_up_ip.nil? && IpBlock.where(severity: :sign_up_requires_approval).where('ip >>= ?', sign_up_ip.to_s).exists?
+    sign_up_ip.present? && IpBlock.sign_up_requires_approval.exists?(['ip >>= ?', sign_up_ip.to_s])
   end
 
   def sign_up_email_requires_approval?
