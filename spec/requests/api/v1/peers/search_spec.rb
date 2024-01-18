@@ -28,6 +28,17 @@ describe 'API Peers Search' do
       end
     end
 
+    context 'with invalid search param' do
+      it 'returns http success and empty response' do
+        get '/api/v1/peers/search', params: { q: 'ftp://Invalid-Host!!.valüe' }
+
+        expect(response)
+          .to have_http_status(200)
+        expect(body_as_json)
+          .to be_blank
+      end
+    end
+
     context 'with search param' do
       let!(:account) { Fabricate(:account, domain: 'host.example') }
 

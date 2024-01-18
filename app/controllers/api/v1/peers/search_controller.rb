@@ -33,7 +33,7 @@ class Api::V1::Peers::SearchController < Api::BaseController
       database_query_domains
     end
   rescue Addressable::URI::InvalidURIError
-    []
+    Instance.none
   end
 
   def search_index_query_domains
