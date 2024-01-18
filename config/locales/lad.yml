@@ -1542,6 +1542,7 @@ lad:
       unknown_browser: Navigador deskonosido
       weibo: Weibo
     current_session: Sesyon aktuala
+    date: Data
     description: "%{browser} en %{platform}"
     explanation: Estos son los navigadores internetikos konektados aktualmente kon tu kuento de Mastodon.
     ip: IP
@@ -1707,16 +1708,16 @@ lad:
     webauthn: Yaves de sigurita
   user_mailer:
     appeal_approved:
-      action: Va a tu kuento
+      action: Preferensyas de kuento
       explanation: La apelasyon del amonestamiento kontra tu kuento del %{strike_date} ke mandates el %{appeal_date} fue achetada. Tu kuento se topa de muevo en dobro estado.
       subject: Tu apelasyon del %{date} fue achetada
       title: Apelasyon achetada
     appeal_rejected:
       explanation: La apelasyon del amonestamiento kontra tu kuento del %{strike_date} ke mandates el %{appeal_date} fue refuzada.
       subject: Tu apelasyon del %{date} fue refuzada
+      subtitle: Tu apelasyon fue refuzada.
       title: Apelasyon refuzada
     backup_ready:
-      explanation: Tienes solisitado una kopia kompleta de tu kuento de Mastodon. Ya esta pronta para abashar!
       subject: Tu dosya esta pronta para abashar
       title: Abasha dosya
     suspicious_sign_in:

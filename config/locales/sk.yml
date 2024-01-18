@@ -1138,6 +1138,7 @@ sk:
       unknown_browser: Neznámy prehliadač
       weibo: Sina/Tencent Weibo
     current_session: Aktuálna sezóna
+    date: Dátum
     description: "%{browser} na %{platform}"
     explanation: Tieto sú prehliadače ktoré sú teraz prihlásené na tvoj Mastodon účet.
     ip: IP adresa
@@ -1245,9 +1246,12 @@ sk:
     recovery_instructions_html: Keď hocikedy stratíš prístup k svojmu telefónu, môžeš použiť jeden z prístupových kódov nižšie pre obnovenie prístupu k svojmu účtu. <strong>Skladuj tieto prístupové kódy na bezpečnom mieste</strong>. Napríklad ich môžeš vytlačiť a uložiť ich spolu s inými dôležitými dokumentami.
   user_mailer:
     appeal_approved:
-      action: Choď na svoj účet
+      action: Nastavenia účtu
+    appeal_rejected:
+      subtitle: Tvoje odvolanie bolo zamietnuté.
     backup_ready:
-      explanation: Vyžiadal/a si si úplnú zálohu svojho Mastodon účtu. Táto záloha je teraz pripravená na stiahnutie!
+      explanation: Vyžiadal/a si si úplnú zálohu svojho Mastodon účtu.
+      extra: Teraz je pripravená na stiahnutie!
       subject: Tvoj archív je pripravený na stiahnutie
       title: Odber archívu
     warning:

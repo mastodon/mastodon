@@ -1582,6 +1582,7 @@ ja:
       unknown_browser: 不明なブラウザ
       weibo: Weibo
     current_session: 現在のセッション
+    date: 日時
     description: "%{platform}上の%{browser}"
     explanation: あなたのMastodonアカウントに現在ログインしているウェブブラウザの一覧です。
     ip: IP
@@ -1742,16 +1743,19 @@ ja:
     webauthn: セキュリティキー
   user_mailer:
     appeal_approved:
-      action: アカウントへ
+      action: アカウント設定
       explanation: "%{strike_date}のストライクに対して、あなたが%{appeal_date}に行った申し立ては承認されました。アカウントは正常な状態に戻りました。"
       subject: "%{date}の申し立てが承認されました"
+      subtitle: あなたのアカウントは正常な状態に戻りました。
       title: 申し立てが承認されました。
     appeal_rejected:
       explanation: "%{strike_date}のストライクに対して、あなたが%{appeal_date}に行った申し立ては却下されました。"
       subject: "%{date}の申し立てが拒否されました"
+      subtitle: 申し立ては拒否されました。
       title: 却下された抗議
     backup_ready:
-      explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
+      explanation: Mastodonアカウントの完全バックアップをリクエストしました。
+      extra: ダウンロードの準備ができました！
       subject: アーカイブの準備ができました
       title: アーカイブの取り出し
     suspicious_sign_in:

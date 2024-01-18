@@ -33,7 +33,7 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
   end
 
   def thumbnail
-    instance_presenter.thumbnail ? full_asset_url(instance_presenter.thumbnail.file.url(:'@1x')) : full_pack_url('media/images/preview.png')
+    instance_presenter.thumbnail ? full_asset_url(instance_presenter.thumbnail.file.url(:'@1x')) : frontend_asset_url('images/preview.png')
   end
 
   def max_toot_chars

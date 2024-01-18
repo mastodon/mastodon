@@ -1,0 +1,30 @@
+%table.email-w-full.email-account-banner-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-account-banner-td{ height: 140, background: full_asset_url(account.header.url) }
+      %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-account-banner-inner-td
+            .email-account-banner-overlap-div
+              %table.email-account-banner-icon-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                %tr
+                  %td
+                    %img{ src: full_asset_url(account.avatar.url), width: 80, height: 80, alt: '' }
+%table.email-w-full.email-account-body-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-account-body-td
+      %p.email-account-name= display_name(account)
+      %p.email-account-handle= acct(account)
+      %table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-padding-top-16
+            %table.email-w-full.email-account-stats-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+              %tr
+                %td
+                  %b= account_formatted_stat(account.statuses_count)
+                  %span= t('accounts.posts', count: account.statuses_count)
+                %td
+                  %b= account_formatted_stat(account.following_count)
+                  %span= t('accounts.following')
+                %td
+                  %b= hide_followers_count?(account) ? '-' : account_formatted_stat(account.followers_count)
+                  %span= t('accounts.followers', count: account.followers_count)

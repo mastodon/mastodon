@@ -47,16 +47,19 @@ pt-PT:
         subject: 'Mastodon: Instruções para redefinir a palavra-passe'
         title: Solicitar nova palavra-passe
       two_factor_disabled:
-        explanation: A autenticação em duas etapas para a sua conta foi desativada. É agora possível aceder apenas com o seu endereço de e-mail e palavra-passe.
+        explanation: O acesso agora é possível usando apenas o endereço de correio eletrónico e palavra-passe.
         subject: 'Mastodon: Autenticação de duas etapas desativada'
+        subtitle: A autenticação de dois fatores foi desativada para a sua conta.
         title: 2FA desativado
       two_factor_enabled:
-        explanation: A autenticação em duas etapas foi ativada para a sua conta. Um token, gerado pela aplicação TOTP emparelhada, será necessário para aceder.
+        explanation: Um token gerado pelo aplicativo TOTP emparelhado será necessário para login.
         subject: 'Mastodon: Autenticação em duas etapas ativada'
+        subtitle: A autenticação de dois fatores foi habilitada para sua conta.
         title: 2FA ativado
       two_factor_recovery_codes_changed:
         explanation: Os códigos de recuperação anteriores foram invalidados e novos foram gerados.
         subject: 'Mastodon: Gerados novos códigos de recuperação em duas etapas'
+        subtitle: Os códigos de recuperação anteriores foram invalidados e novos foram gerados.
         title: Códigos de recuperação 2FA alterados
       unlock_instructions:
         subject: 'Mastodon: Instruções para desbloquear a tua conta'
@@ -70,11 +73,13 @@ pt-PT:
           subject: 'Mastodon: Chave de segurança eliminada'
           title: Uma das suas chaves de segurança foi eliminada
       webauthn_disabled:
-        explanation: A autenticação com chave de segurança foi desativada para a sua conta. Tornou-se possível aceder à sua conta usando apenas o token gerado pela aplicação TOTP emparelhada.
+        explanation: A autenticação com chaves de segurança foi desativada para sua conta.
+        extra: O login agora é possível usando apenas o token gerado pelo aplicativo TOTP emparelhado.
         subject: 'Mastodon: Autenticação com chave de segurança desativada'
         title: Chaves de segurança desativadas
       webauthn_enabled:
-        explanation: A autenticação com chave de segurança foi ativada para sua conta. A sua chave de segurança pode agora ser utilizada para aceder à sua conta.
+        explanation: A autenticação da chave de segurança foi habilitada para sua conta.
+        extra: Sua chave de segurança agora pode ser usada para login.
         subject: 'Mastodon: Autenticação com chave de segurança ativada'
         title: Chaves de segurança ativadas
     omniauth_callbacks:

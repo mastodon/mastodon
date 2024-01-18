@@ -1608,6 +1608,7 @@ tr:
       unknown_browser: Bilinmeyen Tarayıcı
       weibo: Weibo
     current_session: Geçerli oturum
+    date: Tarih
     description: "%{platform} - %{browser}"
     explanation: Bunlar, Mastodon hesabınızda şu anda oturum açmış web tarayıcılarıdır.
     ip: IP
@@ -1774,16 +1775,19 @@ tr:
     webauthn: Güvenlik anahtarları
   user_mailer:
     appeal_approved:
-      action: Hesabınıza gidin
+      action: Hesap Ayarları
       explanation: "%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız onaylandı. Hesabınız artık tekrar iyi durumda."
       subject: "%{date} tarihli itirazınız kabul edildi"
+      subtitle: Hesabınız yeniden iyi bir halde.
       title: İtiraz onaylandı
     appeal_rejected:
       explanation: "%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız reddedildi."
       subject: "%{date} tarihli itirazınız reddedildi"
+      subtitle: İtirazınız reddedildi.
       title: İtiraz reddedildi
     backup_ready:
-      explanation: Mastodon hesabınızın tam yedeğini istemiştiniz. Şimdi indirilebilir durumda!
+      explanation: Mastodon hesabınız tam bir yedeğini istediniz.
+      extra: Şimdi indirebilirsiniz!
       subject: Arşiviniz indirilmeye hazır
       title: Arşiv paketlemesi
     suspicious_sign_in:

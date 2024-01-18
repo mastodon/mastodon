@@ -1,9 +1,13 @@
 = content_for :heading do
-  = render 'application/mailer/heading', heading_title: t('notification_mailer.follow.title'), heading_subtitle: t('notification_mailer.follow.body', name: @account.pretty_acct), heading_image_url: full_pack_url('media/images/mailer-new/heading/user.png')
+  = render 'application/mailer/heading', heading_title: t('notification_mailer.follow.title'), heading_subtitle: t('notification_mailer.follow.body', name: @account.pretty_acct), heading_image_url: frontend_asset_url('images/mailer-new/heading/user.png')
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-body-padding-td
       %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
         %tr
-          %td.email-inner-card-td
-            = render 'application/mailer/button', text: t('application_mailer.view_profile'), url: web_url("@#{@account.pretty_acct}")
+          %td.email-inner-card-td-without-padding
+            = render 'application/mailer/account', account: @account
+            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+              %tr
+                %td.email-padding-24.email-padding-top-0
+                  = render 'application/mailer/button', text: t('application_mailer.view_profile'), url: web_url("@#{@account.pretty_acct}")

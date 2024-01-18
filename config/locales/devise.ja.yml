@@ -47,16 +47,19 @@ ja:
         subject: 'Mastodon: パスワード再発行'
         title: パスワード再発行
       two_factor_disabled:
-        explanation: あなたのアカウントの二要素認証が無効化されました。メールとパスワードのみでログインできます。
+        explanation: メールアドレスとパスワードのみでログイン可能になりました。
         subject: 'Mastodon: 二要素認証が無効になりました'
+        subtitle: 二要素認証が無効になっています。
         title: 二要素認証が無効化されました
       two_factor_enabled:
-        explanation: あなたのアカウントの二要素認証が有効化されました。ログインするには TOTP アプリで生成されたコードが必要です。
+        explanation: ログインには設定済みのTOTPアプリが生成したトークンが必要です。
         subject: 'Mastodon: 二要素認証が有効になりました'
+        subtitle: 二要素認証が有効になりました。
         title: 二要素認証が有効化されました
       two_factor_recovery_codes_changed:
         explanation: 以前のリカバリーコードが無効化され、新しいコードが生成されました。
         subject: 'Mastodon: 二要素認証のリカバリーコードが再生成されました'
+        subtitle: 以前のリカバリーコードが無効化され、新しいコードが生成されました。
         title: 二要素認証のリカバリーコードが変更されました
       unlock_instructions:
         subject: 'Mastodon: アカウントのロックの解除'
@@ -70,11 +73,13 @@ ja:
           subject: 'Mastodon: セキュリティキーが削除されました'
           title: セキュリティキーが削除されました
       webauthn_disabled:
-        explanation: アカウントのセキュリティキーによる認証が無効になりました。ペアリングされたTOTPアプリによって生成されたトークンのみを使用してログインが可能になりました。
+        explanation: セキュリティキー認証が無効になっています。
+        extra: 設定済みのTOTPアプリが生成したトークンのみでログインできるようになりました。
         subject: 'Mastodon: セキュリティキー認証が無効になりました'
         title: セキュリティキーは無効になっています
       webauthn_enabled:
-        explanation: あなたのアカウントでセキュリティキー認証が有効になりました。セキュリティキーをログインに使用できるようになりました。
+        explanation: セキュリティキー認証が有効になりました。
+        extra: ログインにセキュリティキーを使用できるようになりました。
         subject: 'Mastodon: セキュリティキー認証が有効になりました'
         title: セキュリティキーは有効になっています
     omniauth_callbacks:

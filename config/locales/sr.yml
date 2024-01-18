@@ -1634,6 +1634,7 @@ sr:
       unknown_browser: Непознати прегледач
       weibo: Веибо
     current_session: Тренутна сесија
+    date: Датум
     description: "%{browser} са %{platform}"
     explanation: Ово су веб претраживачи који су тренутно пријављени на ваш Mastodon налог.
     ip: IP
@@ -1806,16 +1807,19 @@ sr:
     webauthn: Сигурносни кључеви
   user_mailer:
     appeal_approved:
-      action: Идите на свој налог
+      action: Подешавања налога
       explanation: Жалба поднета датума %{appeal_date} на уписан преступ на Ваше име датума %{strike_date} је уважена. Ваш налог је поново у повољном положају.
       subject: Ваша жалба поднета %{date} је уважена
+      subtitle: Ваш налог је поново на добром гласу.
       title: Жалба уважена
     appeal_rejected:
       explanation: Жалба поднета датума %{appeal_date} на уписан преступ на Ваше име датума %{strike_date} је одбијена.
       subject: Ваша жалба поднета %{date} је одбијена
+      subtitle: Ваша жалба је одбијена.
       title: Жалба одбијена
     backup_ready:
-      explanation: Тражили сте потпуну резервну копију вашег Mastodon налога. Спремна је за преузимање!
+      explanation: Захтевали сте пуну резервну копију Mastodon налога.
+      extra: Сада је спремно за преузимање!
       subject: Ваша архива је спремна за преузимање
       title: Извоз архиве
     suspicious_sign_in:
