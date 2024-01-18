@@ -2,9 +2,7 @@
 
 require 'rails_helper'
 
-describe Api::V1::Accounts::FollowingAccountsController do
-  render_views
-
+describe 'API V1 Accounts FollowingAccounts' do
   let(:user)    { Fabricate(:user) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:accounts') }
   let(:account) { Fabricate(:account) }
