@@ -23,6 +23,7 @@ class Instance < ApplicationRecord
 
   scope :searchable, -> { where.not(domain: DomainBlock.select(:domain)) }
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
+  scope :domain_starts_with, ->(value) { where(arel_table[:domain].matches("#{sanitize_sql_like(value)}%", false, true)) }
   scope :by_domain_and_subdomains, ->(domain) { where("reverse('.' || domain) LIKE reverse(?)", "%.#{domain}") }
 
   def self.refresh
