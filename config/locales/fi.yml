@@ -1608,6 +1608,7 @@ fi:
       unknown_browser: Tuntematon selain
       weibo: Weibo
     current_session: Nykyinen istunto
+    date: Päiväys
     description: "%{browser} alustalla %{platform}"
     explanation: Nämä verkkoselaimet ovat tällä hetkellä kirjautuneena Mastodon-tilillesi.
     ip: IP-osoite
@@ -1774,14 +1775,19 @@ fi:
     webauthn: Suojausavaimet
   user_mailer:
     appeal_approved:
+      action: Tilin asetukset
       explanation: Valitus tiliäsi koskevasta varoituksesta %{strike_date} jonka lähetit %{appeal_date} on hyväksytty. Tilisi on jälleen hyvässä kunnossa.
       subject: Valituksesi %{date} on hyväksytty
+      subtitle: Tilisi on jälleen normaalissa tilassa.
       title: Valitus hyväksytty
     appeal_rejected:
       explanation: Valitus tiliäsi koskevasta varoituksesta %{strike_date} jonka lähetit %{appeal_date} on hylätty.
       subject: Valituksesi %{date} on hylätty
+      subtitle: Vetoomuksesi on hylätty.
       title: Valitus hylätty
     backup_ready:
+      explanation: Olet pyytänyt täysvarmuuskopion Mastodon-tilistäsi.
+      extra: Se on nyt valmis ladattavaksi!
       subject: Arkisto on valmiina ladattavaksi
       title: Arkiston tallennus
     suspicious_sign_in:
