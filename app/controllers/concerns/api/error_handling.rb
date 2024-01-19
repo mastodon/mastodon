@@ -53,8 +53,6 @@ module Api::ErrorHandling
   private
 
   def error_message(key)
-    with_options scope: [:api, :errors] do
-      t(key)
-    end
+    t("api.errors.#{key}")
   end
 end
