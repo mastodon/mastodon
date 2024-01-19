@@ -1608,6 +1608,7 @@ gl:
       unknown_browser: Navegador descoñecido
       weibo: Weibo
     current_session: Sesión actual
+    date: Data
     description: "%{browser} en %{platform}"
     explanation: Estos son os navegadores web nos que actualmente tes sesión iniciada.
     ip: IP
@@ -1774,16 +1775,19 @@ gl:
     webauthn: Chaves de seguridade
   user_mailer:
     appeal_approved:
-      action: Vai á túa conta
+      action: Axustes da conta
       explanation: A apelación da acción contra a túa conta o %{strike_date} que enviaches o %{appeal_date} foi aprobada. A túa conta volve ao estado normal de uso.
       subject: O recurso presentado o %{date} foi aprobado
+      subtitle: A túa conta volve a estar en boa forma.
       title: Apelación aprobada
     appeal_rejected:
       explanation: A apelación contra a acción tomada contra a túa conta o %{strike_date} que enviaches o %{appeal_date} foi rexeitada.
       subject: A túa apelación do %{date} foi rexeitada
+      subtitle: A apelación foi rexeitada.
       title: Apelación rexeitada
     backup_ready:
-      explanation: Solicitaches os datos completos da túa conta de Mastodon. Xa está preparados para descargar!
+      explanation: Solicitaches unha copia completa da túa conta Mastodon.
+      extra: Está preparada para descargala!
       subject: O teu ficheiro xa está preparado para descargar
       title: Leve o ficheiro
     suspicious_sign_in:

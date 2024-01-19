@@ -45,7 +45,7 @@ class FeaturedTag < ApplicationRecord
   end
 
   def decrement(deleted_status_id)
-    update(statuses_count: [0, statuses_count - 1].max, last_status_at: account.statuses.where(visibility: %i(public unlisted)).tagged_with(tag).where.not(id: deleted_status_id).select(:created_at).first&.created_at)
+    update(statuses_count: [0, statuses_count - 1].max, last_status_at: visible_tagged_account_statuses.where.not(id: deleted_status_id).select(:created_at).first&.created_at)
   end
 
   private
@@ -55,8 +55,8 @@ class FeaturedTag < ApplicationRecord
   end
 
   def reset_data
-    self.statuses_count = account.statuses.where(visibility: %i(public unlisted)).tagged_with(tag).count
-    self.last_status_at = account.statuses.where(visibility: %i(public unlisted)).tagged_with(tag).select(:created_at).first&.created_at
+    self.statuses_count = visible_tagged_account_statuses.count
+    self.last_status_at = visible_tagged_account_statuses.select(:created_at).first&.created_at
   end
 
   def validate_featured_tags_limit
@@ -66,6 +66,14 @@ class FeaturedTag < ApplicationRecord
   end
 
   def validate_tag_uniqueness
-    errors.add(:name, :taken) if FeaturedTag.by_name(name).where(account_id: account_id).exists?
+    errors.add(:name, :taken) if tag_already_featured_for_account?
+  end
+
+  def tag_already_featured_for_account?
+    FeaturedTag.by_name(name).exists?(account_id: account_id)
+  end
+
+  def visible_tagged_account_statuses
+    account.statuses.where(visibility: %i(public unlisted)).tagged_with(tag)
   end
 end

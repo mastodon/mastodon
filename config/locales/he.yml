@@ -1660,6 +1660,7 @@ he:
       unknown_browser: דפדפן לא מזוהה
       weibo: Weibo
     current_session: חיבור נוכחי
+    date: תאריך
     description: "%{browser} על %{platform}"
     explanation: אלה הם הדפדפנים המחוברים כרגע לחשבון המסטודון שלך.
     ip: IP
@@ -1838,16 +1839,19 @@ he:
     webauthn: מפתחות אבטחה
   user_mailer:
     appeal_approved:
-      action: מעבר לחשבונך
+      action: הגדרות חשבון
       explanation: הערעור על העברה שנרשמה כנגד חשבונך ב-%{strike_date} שהגשת ב-%{appeal_date} התקבל. חשבונך חזר להיות נקי מכל רבב.
       subject: ערעורך מתאריך %{date} התקבל
+      subtitle: חשבונך חזר למצב מאושר.
       title: הערעור התקבל
     appeal_rejected:
       explanation: הערעור על העברה שנרשמה כנגד חשבונך ב-%{strike_date} שהגשת ב-%{appeal_date} נדחה.
       subject: ערעורך מתאריך %{date} נדחה
+      subtitle: ערעורך נדחה.
       title: הערעור נדחה
     backup_ready:
-      explanation: ביקשת גיבוי מלא של חשבון המסטודון שלך. הוא מוכן להורדה!
+      explanation: ביקשת גיבוי מלא של חשבון המסטודון שלך.
+      extra: הגיבוי מוכן להורדה!
       subject: הארכיון שלך מוכן להורדה
       title: הוצאת ארכיון
     suspicious_sign_in:

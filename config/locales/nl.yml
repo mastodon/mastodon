@@ -425,7 +425,7 @@ nl:
       view: Domeinblokkade bekijken
     email_domain_blocks:
       add_new: Nieuwe toevoegen
-      allow_registrations_with_approval: Inschrijvingen met goedkeuring toestaan
+      allow_registrations_with_approval: Registraties met goedkeuring toestaan
       attempts_over_week:
         one: "%{count} registratiepoging tijdens de afgelopen week"
         other: "%{count} registratiepogingen tijdens de afgelopen week"
@@ -571,7 +571,7 @@ nl:
       enable_hint: Eenmaal ingeschakeld gaat jouw server zich op alle openbare berichten van deze relayserver abonneren en stuurt het de openbare berichten van jouw server naar de relayserver.
       enabled: Ingeschakeld
       inbox_url: Relay-URL
-      pending: Aan het wachten op toestemming van de relayserver
+      pending: Aan het wachten op goedkeuring van de relayserver
       save_and_enable: Opslaan en inschakelen
       setup: Een verbinding met een relayserver maken
       signatures_not_enabled: Federatierelays werken mogelijk niet goed wanneer de veilige modus of de beperkte federatiemodus is ingeschakeld
@@ -1608,6 +1608,7 @@ nl:
       unknown_browser: Onbekende browser
       weibo: Weibo
     current_session: Huidige sessie
+    date: Datum
     description: "%{browser} op %{platform}"
     explanation: Dit zijn de webbrowsers die momenteel met jouw Mastodonaccount zijn ingelogd.
     ip: IP
@@ -1774,16 +1775,19 @@ nl:
     webauthn: Beveiligingssleutels
   user_mailer:
     appeal_approved:
-      action: Ga naar je account
+      action: Accountinstellingen
       explanation: Het bezwaar tegen een door een moderator vastgestelde overtreding van jou op %{strike_date}, ingediend op %{appeal_date}, is goedgekeurd. De eerder vastgestelde overtreding is hierbij niet langer geldig.
       subject: Jouw bezwaar van %{date} is goedgekeurd
+      subtitle: Jouw account heeft weer een goede reputatie.
       title: Bezwaar goedgekeurd
     appeal_rejected:
       explanation: Het bezwaar tegen een door een moderator vastgestelde overtreding van jou op %{strike_date}, ingediend op %{appeal_date}, is afgewezen. De vastgestelde overtreding blijft daarom ongewijzigd.
       subject: Jouw bezwaar van %{date} is afgewezen
+      subtitle: Jouw bezwaar is afgewezen.
       title: Bezwaar afgewezen
     backup_ready:
-      explanation: Je hebt een volledige back-up van jouw Mastodon-account opgevraagd. Het staat nu klaar om te worden gedownload!
+      explanation: Je hebt een volledige back-up van je Mastodon-account aangevraagd.
+      extra: Het staat nu klaar om te worden gedownload!
       subject: Jouw archief staat klaar om te worden gedownload
       title: Archief ophalen
     suspicious_sign_in:

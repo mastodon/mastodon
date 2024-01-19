@@ -13,10 +13,10 @@ import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
 import ReactSwipeableViews from 'react-swipeable-views';
 
-import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
-import AddIcon from 'mastodon/../material-icons/400-24px/add.svg?react';
-import ChevronLeftIcon from 'mastodon/../material-icons/400-24px/chevron_left.svg?react';
-import ChevronRightIcon from 'mastodon/../material-icons/400-24px/chevron_right.svg?react';
+import elephantUIPlane from '@/images/elephant_ui_plane.svg';
+import AddIcon from '@/material-icons/400-24px/add.svg?react';
+import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
+import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 import { AnimatedNumber } from 'mastodon/components/animated_number';
 import { Icon }  from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';

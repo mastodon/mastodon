@@ -9,14 +9,10 @@ RSpec.describe Account do
     let(:bob) { Fabricate(:account, username: 'bob') }
 
     describe '#suspend!' do
-      it 'marks the account as suspended' do
-        subject.suspend!
-        expect(subject.suspended?).to be true
-      end
-
-      it 'creates a deletion request' do
-        subject.suspend!
-        expect(AccountDeletionRequest.where(account: subject).exists?).to be true
+      it 'marks the account as suspended and creates a deletion request' do
+        expect { subject.suspend! }
+          .to change(subject, :suspended?).from(false).to(true)
+          .and(change { AccountDeletionRequest.exists?(account: subject) }.from(false).to(true))
       end
 
       context 'when the account is of a local user' do
@@ -839,6 +835,25 @@ RSpec.describe Account do
   end
 
   describe 'scopes' do
+    describe 'auditable' do
+      let!(:alice) { Fabricate :account }
+      let!(:bob) { Fabricate :account }
+
+      before do
+        2.times { Fabricate :action_log, account: alice }
+      end
+
+      it 'returns distinct accounts with action log records' do
+        results = described_class.auditable
+
+        expect(results.size)
+          .to eq(1)
+        expect(results)
+          .to include(alice)
+          .and not_include(bob)
+      end
+    end
+
     describe 'alphabetic' do
       it 'sorts by alphabetic order of domain and username' do
         matches = [

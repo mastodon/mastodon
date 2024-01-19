@@ -48,15 +48,22 @@ lt:
         new_email: Naujas el pašto adresas
         submit: Pakeisti el pašto adresą
         title: Pakeisti el pašto adresą vartotojui %{username}
+      change_role:
+        label: Keisti vaidmenį
+        no_role: Jokios vaidmenį
+        title: Keisti vaidmenį %{username}
       confirm: Patvirtinti
       confirmed: Patvirtinta
       confirming: Tvirtinama
+      custom: Pasirinktinis
+      delete: Ištrinti duomenis
       deleted: Ištrinti
       demote: Pažeminti
       disable: Išjungti
-      disable_two_factor_authentication: Išjungti 2 faktorių autentifikaciją
+      disable_sign_in_token_auth: Išjungti el. pašto prieigos rakto tapatybės nustatymą
+      disable_two_factor_authentication: Išjungti 2FA
       disabled: Išjungta
-      display_name: Matomas vardas
+      display_name: Rodomas vardas
       domain: Domenas
       edit: Keisti
       email: El paštas
@@ -483,6 +490,7 @@ lt:
     browsers:
       generic: Nežinoma naršyklė
     current_session: Dabartinė sesija
+    date: Data
     description: "%{browser} ant %{platform}"
     explanation: Čia rodomos web naršyklės prijungtos prie Jūsų Mastodon paskyros.
     revoke: Atšaukti
@@ -541,8 +549,14 @@ lt:
     recovery_codes_regenerated: Atkūrimo kodai sėkmingai sugeneruoti
     recovery_instructions_html: Jeigu prarandate prieiga prie telefono, jūs galite naudoti atkūrimo kodus esančius žemiau, kad atgautumėte priega prie savo paskyros.<strong>Laikykite atkūrimo kodus saugiai</strong> Pavyzdžiui, galite norėti juos išspausdinti, ir laikyti kartu su kitais svarbiais dokumentais.
   user_mailer:
+    appeal_approved:
+      action: Paskyros nustatymai
+      subtitle: Tavo paskyros būklė vėl yra gera.
+    appeal_rejected:
+      subtitle: Tavo apeliacija buvo atmesta.
     backup_ready:
-      explanation: Jūs prašėte pilnos Mastodon paskyros atsarginės kopijos. Ji paruošta parsisiuntimui!
+      explanation: Prašai sukurti pilną Mastodon paskyros atsarginę kopiją.
+      extra: Jį jau galima atsisiųsti!
       subject: Jūsų archyvas paruoštas parsisiuntimui
       title: Archyvas išimtas
     warning:

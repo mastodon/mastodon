@@ -10,7 +10,7 @@ import Permalink from './permalink';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import ChevronRightIcon from 'mastodon/../material-icons/400-24px/chevron_right.svg?react';
+import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 import PollContainer from 'mastodon/containers/poll_container';
 import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_state';

@@ -48,6 +48,39 @@ RSpec.describe AppSignUpService, type: :service do
       end
     end
 
+    context 'when the email address requires approval through MX records' do
+      before do
+        Setting.registrations_mode = 'open'
+        Fabricate(:email_domain_block, allow_with_approval: true, domain: 'smtp.email.com')
+        allow(User).to receive(:skip_mx_check?).and_return(false)
+
+        resolver = instance_double(Resolv::DNS, :timeouts= => nil)
+
+        allow(resolver).to receive(:getresources)
+          .with('email.com', Resolv::DNS::Resource::IN::MX)
+          .and_return([instance_double(Resolv::DNS::Resource::MX, exchange: 'smtp.email.com')])
+        allow(resolver).to receive(:getresources).with('email.com', Resolv::DNS::Resource::IN::A).and_return([])
+        allow(resolver).to receive(:getresources).with('email.com', Resolv::DNS::Resource::IN::AAAA).and_return([])
+        allow(resolver).to receive(:getresources).with('smtp.email.com', Resolv::DNS::Resource::IN::A).and_return([instance_double(Resolv::DNS::Resource::IN::A, address: '2.3.4.5')])
+        allow(resolver).to receive(:getresources).with('smtp.email.com', Resolv::DNS::Resource::IN::AAAA).and_return([instance_double(Resolv::DNS::Resource::IN::AAAA, address: 'fd00::2')])
+        allow(Resolv::DNS).to receive(:open).and_yield(resolver)
+      end
+
+      it 'creates an unapproved user', :aggregate_failures do
+        access_token = subject.call(app, remote_ip, params)
+        expect(access_token).to_not be_nil
+        expect(access_token.scopes.to_s).to eq 'read write'
+
+        user = User.find_by(id: access_token.resource_owner_id)
+        expect(user).to_not be_nil
+        expect(user.confirmed?).to be false
+        expect(user.approved?).to be false
+
+        expect(user.account).to_not be_nil
+        expect(user.invite_request).to be_nil
+      end
+    end
+
     context 'when registrations are closed' do
       before do
         Setting.registrations_mode = 'none'

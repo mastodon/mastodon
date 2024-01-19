@@ -1,61 +1,12 @@
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
-              %tr
-                %td.content-cell.hero
-                  .email-row
-                    .col-6
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.text-center.padded
-                              %table.hero-icon{ align: 'center', cellspacing: 0, cellpadding: 0 }
-                                %tbody
-                                  %tr
-                                    %td
-                                      = image_tag full_pack_url('media/images/mailer/icon_flag.png'), alt: ''
-
-                              %h1= t 'user_mailer.appeal_rejected.title'
-
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
-              %tr
-                %td.content-cell.content-start
-                  .email-row
-                    .col-6
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.text-center
-                              %p= t 'user_mailer.appeal_rejected.explanation',
-                                    appeal_date: l(@appeal.created_at.in_time_zone(@resource.time_zone.presence), format: :with_time_zone),
-                                    strike_date: l(@appeal.strike.created_at.in_time_zone(@resource.time_zone.presence), format: :with_time_zone)
-
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
-              %tr
-                %td.content-cell
-                  %table.column{ cellspacing: 0, cellpadding: 0 }
-                    %tbody
-                      %tr
-                        %td.column-cell.button-cell
-                          %table.button{ align: 'center', cellspacing: 0, cellpadding: 0 }
-                            %tbody
-                              %tr
-                                %td.button-primary
-                                  = link_to root_url do
-                                    %span= t 'user_mailer.appeal_approved.action'
+= content_for :heading do
+  = render 'application/mailer/heading', heading_title: t('user_mailer.appeal_rejected.title'), heading_subtitle: t('user_mailer.appeal_rejected.subtitle'), heading_image_url: frontend_asset_url('images/mailer-new/heading/appeal-rejected.png')
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-body-padding-td
+      %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-inner-card-td.email-prose
+            %p= t 'user_mailer.appeal_rejected.explanation',
+                  appeal_date: l(@appeal.created_at.in_time_zone(@resource.time_zone.presence), format: :with_time_zone),
+                  strike_date: l(@appeal.strike.created_at.in_time_zone(@resource.time_zone.presence), format: :with_time_zone)
+            = render 'application/mailer/button', text: t('user_mailer.appeal_approved.action'), url: root_url

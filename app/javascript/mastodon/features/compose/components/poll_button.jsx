@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import InsertChartIcon from 'mastodon/../material-icons/400-24px/insert_chart.svg?react';
+import InsertChartIcon from '@/material-icons/400-24px/insert_chart.svg?react';
 
 import { IconButton } from '../../../components/icon_button';
 

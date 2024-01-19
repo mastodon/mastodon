@@ -8,8 +8,8 @@ import Permalink from 'mastodon/components/permalink';
 
 import { connect } from 'react-redux';
 
-import SearchIcon from 'mastodon/../material-icons/400-24px/search.svg?react';
-import EditIcon from 'mastodon/../material-icons/400-24px/edit.svg?react';
+import SearchIcon from '@/material-icons/400-24px/search.svg?react';
+import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import { fetchServer } from 'mastodon/actions/server';
 import { Avatar } from 'mastodon/components/avatar';

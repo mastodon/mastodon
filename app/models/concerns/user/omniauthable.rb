@@ -61,7 +61,7 @@ module User::Omniauthable
         user.account.avatar_remote_url = nil
       end
 
-      user.confirm! if email_is_verified
+      user.mark_email_as_confirmed! if email_is_verified
       user.save!
       user
     end

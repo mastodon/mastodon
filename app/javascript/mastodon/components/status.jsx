@@ -9,10 +9,10 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { HotKeys } from 'react-hotkeys';
 
-import AlternateEmailIcon from 'mastodon/../material-icons/400-24px/alternate_email.svg?react';
-import PushPinIcon from 'mastodon/../material-icons/400-24px/push_pin.svg?react';
-import RepeatIcon from 'mastodon/../material-icons/400-24px/repeat.svg?react';
-import ReplyIcon from 'mastodon/../material-icons/400-24px/reply.svg?react';
+import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
+import PushPinIcon from '@/material-icons/400-24px/push_pin.svg?react';
+import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
+import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 import { withOptionalRouter, WithOptionalRouterPropTypes } from 'mastodon/utils/react_router';

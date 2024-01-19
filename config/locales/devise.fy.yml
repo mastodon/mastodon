@@ -49,16 +49,19 @@ fy:
         subject: 'Mastodon: Wachtwurd opnij ynstelle'
         title: Wachtwurd opnij ynstelle
       two_factor_disabled:
-        explanation: Twa-stapsferifikaasje foar jo account is útskeakele. Jo kinne no allinnich oanmelde mei in e-mailadres en wachtwurd.
+        explanation: Jo kinne no oanmelde mei allinnich in e-mailadres en wachtwurd.
         subject: 'Mastodon: Twa-stapsferifikaasje útskeakele'
+        subtitle: Twastapsferifikaasje foar jo account is útskeakele.
         title: Twa-stapsferifikaasje útskeakele
       two_factor_enabled:
-        explanation: Twa-stapsferifikaasje foar jo account is ynskeakele. Om oanmelde te kinnen is in troch in twa-stapsferifikaasje-app generearre tagongskoade nedich.
+        explanation: Jo hawwe in troch de autentikaasje-app genearre tagongskoade nedich om oan te melden.
         subject: 'Mastodon: Twa-stapsferifikaasje ynskeakele'
+        subtitle: Twastapsferifikaasje is foar jo account ynskeakele.
         title: Twa-stapsferifikaasje ynskeakele
       two_factor_recovery_codes_changed:
         explanation: De foarige werstelkoaden binne ûnjildich makke en nije binne oanmakke.
         subject: 'Mastodon: Twa-staps-werstelkoaden binne opnij oanmakke'
+        subtitle: De foarige werstelkoaden binne ûnjildich makke en nije binne oanmakke.
         title: Werstelkoaden twa-stapsferifikaasje wizige
       unlock_instructions:
         subject: 'Mastodon: Ynstruksjes foar ûntskoatteljen'
@@ -72,11 +75,13 @@ fy:
           subject: 'Mastodon: Befeiligingskaai fuortsmiten'
           title: Ien fan jo befeiligingskaaien is fuortsmiten
       webauthn_disabled:
-        explanation: Ferifikaasje mei befeiligingskaaien is útskeakele foar jo account. Oanmelden is no allinnich mooglik mei it gebrûk fan in troch in keppele TOTP-app generearre kaai.
+        explanation: Ferifikaasje mei befeiligingskaaien is foar jo account útskeakele.
+        extra: It is no allinnich mooglik om oan te melden mei in troch de autentikaasje-app genearre tagongskoade.
         subject: 'Mastodon: Ferifikaasje mei befeiligingskaaien is útskeakele'
         title: Befeiligingskaaien útskeakele
       webauthn_enabled:
-        explanation: Ferifikaasje mei befeiligingskaaien is ynskeakele foar jo account. Jo befeiligingskaai kin no brûkt wurde om oan te melden.
+        explanation: Ferifikaasje mei befeiligingskaaien is foar jo account ynskeakele.
+        extra: Jo befeiligingskaai kin no brûkt wurde om oan te melden.
         subject: 'Mastodon: Ferifikaasje mei befeiligingskaaien is ynskeakele'
         title: Befeiligingskaaien ynskeakele
     omniauth_callbacks:

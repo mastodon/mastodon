@@ -1610,6 +1610,7 @@ it:
       unknown_browser: Browser sconosciuto
       weibo: Weibo
     current_session: Sessione corrente
+    date: Data
     description: "%{browser} su %{platform}"
     explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al tuo account Mastodon.
     ip: IP
@@ -1776,16 +1777,19 @@ it:
     webauthn: Chiavi di sicurezza
   user_mailer:
     appeal_approved:
-      action: Vai al tuo account
+      action: Impostazioni account
       explanation: L'appello della sanzione contro il tuo account del %{strike_date} che hai inviato il %{appeal_date} è stato approvato. Il tuo account ha riottenuto la buona reputazione.
       subject: Il tuo appello del %{date} è stato approvato
+      subtitle: Il tuo account è ancora una volta in buona posizione.
       title: Appello approvato
     appeal_rejected:
       explanation: L'appello della sanzione contro il tuo account del %{strike_date} che hai inviato il %{appeal_date} è stato respinto.
       subject: Il tuo appello del %{date} è stato respinto
+      subtitle: Il tuo appello è stato respinto.
       title: Appello respinto
     backup_ready:
-      explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!
+      explanation: Hai richiesto un backup completo del tuo account Mastodon.
+      extra: Ora è pronto per il download!
       subject: Il tuo archivio è pronto per essere scaricato
       title: Esportazione archivio
     suspicious_sign_in:

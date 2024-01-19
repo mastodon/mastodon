@@ -1608,6 +1608,7 @@ pt-BR:
       unknown_browser: Navegador desconhecido
       weibo: Weibo
     current_session: Sessão atual
+    date: Data
     description: "%{browser} em %{platform}"
     explanation: Estes são os navegadores que estão conectados com a sua conta Mastodon.
     ip: IP
@@ -1774,16 +1775,18 @@ pt-BR:
     webauthn: Chaves de segurança
   user_mailer:
     appeal_approved:
-      action: Acessar perfil
+      action: Configurações da conta
       explanation: A revisão da punição na sua conta em %{strike_date} que você enviou em %{appeal_date} foi aprovada. Sua conta está novamente em situação regular.
       subject: Sua revisão de %{date} foi aprovada
       title: Revisão aprovada
     appeal_rejected:
       explanation: A revisão da punição na sua conta em %{strike_date} que você enviou em %{appeal_date} foi rejeitada.
       subject: Sua revisão de %{date} foi rejeitada
+      subtitle: Sua revisão foi rejeitada.
       title: Revisão rejeitada
     backup_ready:
-      explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
+      explanation: Você solicitou um ‘backup’ completo da sua conta Mastodon.
+      extra: Agora está pronto para baixar!
       subject: Seu arquivo está pronto para ser baixado
       title: Baixar arquivo
     suspicious_sign_in:

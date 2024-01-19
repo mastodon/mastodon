@@ -29,9 +29,12 @@ class Report < ApplicationRecord
   rate_limit by: :account, family: :reports
 
   belongs_to :account
-  belongs_to :target_account, class_name: 'Account'
-  belongs_to :action_taken_by_account, class_name: 'Account', optional: true
-  belongs_to :assigned_account, class_name: 'Account', optional: true
+
+  with_options class_name: 'Account' do
+    belongs_to :target_account
+    belongs_to :action_taken_by_account, optional: true
+    belongs_to :assigned_account, optional: true
+  end
 
   has_many :notes, class_name: 'ReportNote', inverse_of: :report, dependent: :destroy
   has_many :notifications, as: :activity, dependent: :destroy

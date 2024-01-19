@@ -1582,6 +1582,7 @@ vi:
       unknown_browser: Trình duyệt khác
       weibo: Weibo
     current_session: Phiên hiện tại
+    date: Thời gian
     description: "%{browser} trên %{platform}"
     explanation: Đây là các ứng dụng đã từng đăng nhập vào tài khoản Mastodon của bạn.
     ip: IP
@@ -1742,16 +1743,19 @@ vi:
     webauthn: Khóa bảo mật
   user_mailer:
     appeal_approved:
-      action: Đến trang hồ sơ của bạn
+      action: Cài đặt tài khoản
       explanation: Khiếu nại về tài khoản của bạn vào %{strike_date}, được gửi lúc %{appeal_date} đã được chấp nhận. Tài khoản của bạn đã có thể sử dụng bình thường.
       subject: Khiếu nại của bạn từ %{date} đã được chấp nhận
+      subtitle: Tài khoản của bạn có thể hoạt động lại bình thường.
       title: Khiếu nại đã được chấp nhận
     appeal_rejected:
       explanation: Khiếu nại về tài khoản của bạn vào %{strike_date}, được gửi lúc %{appeal_date} đã bị từ chối.
       subject: Khiếu nại của bạn từ %{date} đã bị từ chối
+      subtitle: Khiếu nại của bạn bị từ chối.
       title: Khiếu nại bị từ chối
     backup_ready:
-      explanation: Bạn đã yêu cầu sao lưu toàn bộ tài khoản Mastodon của mình. Bây giờ có thể tải về!
+      explanation: Bạn đã yêu cầu bản sao tài khoản Mastodon của mình.
+      extra: Hiện nó đã sẵn sàng tải xuống!
       subject: Dữ liệu cá nhân của bạn đã sẵn sàng để tải về
       title: Nhận dữ liệu cá nhân
     suspicious_sign_in:

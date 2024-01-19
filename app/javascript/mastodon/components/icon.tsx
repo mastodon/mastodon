@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import CheckBoxOutlineBlankIcon from 'mastodon/../material-icons/400-24px/check_box_outline_blank.svg?react';
+import CheckBoxOutlineBlankIcon from '@/material-icons/400-24px/check_box_outline_blank.svg?react';
 import { isProduction } from 'mastodon/utils/environment';
 
 interface SVGPropsWithTitle extends React.SVGProps<SVGSVGElement> {

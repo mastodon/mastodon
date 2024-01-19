@@ -1,0 +1,29 @@
+%table.email-w-full.email-checklist-wrapper-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-checklist-wrapper-td
+      %table.email-w-full.email-checklist-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-checklist-td
+            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+              %tr
+                %td.email-checklist-icons-td
+                  %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                    %tr
+                      %td.email-checklist-icons-checkbox-td
+                        - if defined?(checked) && checked
+                          = image_tag frontend_asset_url('images/mailer-new/welcome/checkbox-on.png'), alt: '', width: 20, height: 20
+                        - else
+                          = image_tag frontend_asset_url('images/mailer-new/welcome/checkbox-off.png'), alt: '', width: 20, height: 20
+                      %td.email-checklist-icons-step-td
+                        - if defined?(step_image_url)
+                          = image_tag step_image_url, alt: '', width: 40, height: 40
+                %td.email-checklist-text-td
+                  .email-desktop-flex
+                    %div
+                      - if defined?(title)
+                        %h3= title
+                      - if defined?(text)
+                        %p= text
+                    %div
+                      - if defined?(button_text) && defined?(button_url) && defined?(checked) && !checked
+                        = render 'application/mailer/button', text: button_text, url: button_url

@@ -461,12 +461,12 @@ RSpec.describe User do
     end
   end
 
-  describe '#confirm!' do
+  describe '#mark_email_as_confirmed!' do
     subject(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
 
     before do
       ActionMailer::Base.deliveries.clear
-      user.confirm!
+      user.mark_email_as_confirmed!
     end
 
     after { ActionMailer::Base.deliveries.clear }

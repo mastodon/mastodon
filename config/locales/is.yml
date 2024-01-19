@@ -1612,6 +1612,7 @@ is:
       unknown_browser: Óþekktur vafri
       weibo: Weibo
     current_session: Núverandi seta
+    date: Dagsetning
     description: "%{browser} á %{platform}"
     explanation: Þetta eru vafrarnir sem núna eru skráðir inn á Mastodon-aðganginn þinn.
     ip: IP-vistfang
@@ -1778,16 +1779,19 @@ is:
     webauthn: Öryggislyklar
   user_mailer:
     appeal_approved:
-      action: Farðu inn á notandaaðganginn þinn
+      action: Stillingar notandaaðgangs
       explanation: Áfrýjun refsingarinnar gagnvart aðgangnum þínum þann %{strike_date} sem þú sendir inn þann %{appeal_date} hefur verið samþykkt. Notandaaðgangurinn þinn er aftur í góðu lagi.
       subject: Áfrýjun þín frá %{date} hefur verið samþykkt
+      subtitle: Notandaaðgangurinn þinn er í góðu lagi.
       title: Áfrýjun samþykkt
     appeal_rejected:
       explanation: Áfrýjun refsingarinnar gagnvart aðgangnum þínum þann %{strike_date} sem þú sendir inn þann %{appeal_date} hefur verið hafnað.
       subject: Áfrýjun þinni frá %{date} hefur verið hafnað
+      subtitle: Áfrýjun þinni hefur verið hafnað.
       title: Áfrýjun hafnað
     backup_ready:
-      explanation: Þú baðst um fullt öryggisafrit af Mastodon notandaaðgangnum þínum. Það er núna tilbúið til niðurhals!
+      explanation: Þú baðst um fullt öryggisafrit af Mastodon notandaaðgangnum þínum.
+      extra: Það er núna tilbúið til niðurhals!
       subject: Safnskráin þín er tilbúin til niðurhals
       title: Taka út í safnskrá
     suspicious_sign_in:

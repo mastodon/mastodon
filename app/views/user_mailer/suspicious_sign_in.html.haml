@@ -1,71 +1,24 @@
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
-              %tr
-                %td.content-cell.hero
-                  .email-row
-                    .col-6
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.text-center.padded
-                              %table.hero-icon.warning-icon{ align: 'center', cellspacing: 0, cellpadding: 0 }
-                                %tbody
-                                  %tr
-                                    %td
-                                      = image_tag full_pack_url('media/images/mailer/icon_lock_open.png'), alt: ''
-
-                              %h1= t 'user_mailer.suspicious_sign_in.title'
-                              %p= t 'user_mailer.suspicious_sign_in.explanation'
-
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
-              %tr
-                %td.content-cell
-                  .email-row
-                    .col-6
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.text-center
-                              %p= t 'user_mailer.suspicious_sign_in.details'
-                          %tr
-                            %td.column-cell.text-center
-                              %p
-                                %strong #{t('sessions.ip')}:
-                                = @remote_ip
-                                %br/
-                                %strong #{t('sessions.browser')}:
-                                %span{ title: @user_agent }
-                                  = t 'sessions.description',
-                                      browser: t("sessions.browsers.#{@detection.id}", default: @detection.id.to_s),
-                                      platform: t("sessions.platforms.#{@detection.platform.id}", default: @detection.platform.id.to_s)
-                                %br/
-                                = l(@timestamp.in_time_zone(@resource.time_zone.presence), format: :with_time_zone)
-
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
-              %tr
-                %td.content-cell
-                  .email-row
-                    .col-6
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.text-center
-                              %p= t 'user_mailer.suspicious_sign_in.further_actions_html',
-                                    action: link_to(t('user_mailer.suspicious_sign_in.change_password'), edit_user_registration_url)
+= content_for :heading do
+  = render 'application/mailer/heading', heading_title: t('user_mailer.suspicious_sign_in.title'), heading_subtitle: t('user_mailer.suspicious_sign_in.explanation'), heading_image_url: frontend_asset_url('images/mailer-new/heading/login.png')
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-body-padding-td
+      %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-inner-card-td.email-prose
+            %p= t 'user_mailer.suspicious_sign_in.details'
+            %p
+              %strong #{t('sessions.ip')}:
+              = @remote_ip
+              %br/
+              %strong #{t('sessions.browser')}:
+              %span{ title: @user_agent }
+                = t 'sessions.description',
+                    browser: t("sessions.browsers.#{@detection.id}", default: @detection.id.to_s),
+                    platform: t("sessions.platforms.#{@detection.platform.id}", default: @detection.platform.id.to_s)
+              %br/
+              %strong #{t('sessions.date')}:
+              = l(@timestamp.in_time_zone(@resource.time_zone.presence), format: :with_time_zone)
+            = render 'application/mailer/button', text: t('settings.account_settings'), url: edit_user_registration_url
+      %p= t 'user_mailer.suspicious_sign_in.further_actions_html',
+            action: link_to(t('user_mailer.suspicious_sign_in.change_password'), edit_user_registration_url)
