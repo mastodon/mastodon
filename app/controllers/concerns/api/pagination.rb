@@ -13,6 +13,10 @@ module Api::Pagination
     pagination_collection.first.id
   end
 
+  def insert_pagination_headers
+    set_pagination_headers(next_path, prev_path)
+  end
+
   def set_pagination_headers(next_path = nil, prev_path = nil)
     links = []
     links << [next_path, [%w(rel next)]] if next_path
