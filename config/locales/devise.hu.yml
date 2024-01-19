@@ -47,14 +47,19 @@ hu:
         subject: 'Mastodon: Jelszóvisszaállítási utasítások'
         title: Jelszó visszaállítása
       two_factor_disabled:
+        explanation: A bejelentkezés most már csupán email címmel és jelszóval lehetséges.
         subject: Kétlépcsős azonosítás kikapcsolva
+        subtitle: A kétlépcsős hitelesítés a fiókodhoz ki lett kapcsolva.
         title: Kétlépcsős hitelesítés kikapcsolva
       two_factor_enabled:
+        explanation: Egy párosított TOTP appal generált tokenre lesz szükség a bejelentkezéshez.
         subject: 'Mastodon: Kétlépcsős azonosítás engedélyezve'
+        subtitle: A kétlépcsős hitelesítés a fiókodhoz aktiválva lett.
         title: Kétlépcsős hitelesítés engedélyezve
       two_factor_recovery_codes_changed:
         explanation: A korábbi helyreállítási kódok letiltásra és újragenerálásra kerültek.
         subject: 'Mastodon: Kétlépcsős helyreállítási kódok újból előállítva'
+        subtitle: A korábbi helyreállítási kódokat letiltottuk, és újakat generáltunk.
         title: A kétlépcsős kódok megváltoztak
       unlock_instructions:
         subject: 'Mastodon: Feloldási utasítások'
@@ -68,9 +73,13 @@ hu:
           subject: 'Mastodon: A biztonsági kulcs törlésre került'
           title: Az egyik biztonsági kulcsodat törölték
       webauthn_disabled:
+        explanation: A biztonsági kulcsokkal történő hitelesítés a fiókodhoz ki lett kapcsolva.
+        extra: A bejelentkezés most már csak TOTP app által generált tokennel lehetséges.
         subject: 'Mastodon: A biztonsági kulccsal történő hitelesítés letiltásra került'
         title: A biztonsági kulcsok letiltásra kerültek
       webauthn_enabled:
+        explanation: A biztonsági kulcsokkal történő hitelesítés a fiókodhoz aktiválva lett.
+        extra: A biztonsági kulcsodat mostantól lehet bejelentkezésre használni.
         subject: 'Mastodon: A biztonsági kulcsos hitelesítés engedélyezésre került'
         title: A biztonsági kulcsok engedélyezésre kerültek
     omniauth_callbacks:

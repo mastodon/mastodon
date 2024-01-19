@@ -1608,6 +1608,7 @@ hu:
       unknown_browser: Ismeretlen böngésző
       weibo: Weibo
     current_session: Jelenlegi munkamenet
+    date: Dátum
     description: "%{browser} az alábbi platformon: %{platform}"
     explanation: Jelenleg az alábbi böngészőkkel vagy bejelentkezve a fiókodba.
     ip: IP
@@ -1774,14 +1775,19 @@ hu:
     webauthn: Biztonsági kulcsok
   user_mailer:
     appeal_approved:
+      action: Fiók Beállításai
       explanation: A fiókod %{appeal_date}-i fellebbezése, mely a %{strike_date}-i vétségeddel kapcsolatos, jóváhagyásra került. A fiókod megint makulátlan.
       subject: A %{date}-i fellebbezésedet jóváhagyták
+      subtitle: A fiókod ismét használható állapotban van.
       title: Fellebbezés jóváhagyva
     appeal_rejected:
       explanation: A %{appeal_date}-i fellebbezésed, amely a fiókod %{strike_date}-i vétségével kapcsolatos, elutasításra került.
       subject: A %{date}-i fellebbezésedet visszautasították
+      subtitle: A fellebbezésedet visszautasították.
       title: Fellebbezés visszautasítva
     backup_ready:
+      explanation: A Mastodon fiókod teljes biztonsági mentését kérted.
+      extra: Már letöltésre kész!
       subject: Az adataidról készült archív letöltésre kész
       title: Archiválás
     suspicious_sign_in:
