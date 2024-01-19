@@ -92,6 +92,26 @@ const parseJSON = (json, req) => {
 };
 
 /**
+ * Takes an environment variable that should be an integer, attempts to parse
+ * it falling back to a default if not set, and handles errors parsing.
+ * @param {string|undefined} value
+ * @param {number} defaultValue
+ * @param {string} variableName
+ * @returns {number}
+ */
+const parseIntFromEnv = (value, defaultValue, variableName) => {
+  if (typeof value === 'string' && value.length > 0) {
+    const parsedValue = parseInt(value, 10);
+    if (isNaN(parsedValue)) {
+      throw new Error(`Invalid ${variableName} environment variable: ${value}`);
+    }
+    return parsedValue;
+  } else {
+    return defaultValue;
+  }
+};
+
+/**
  * @param {NodeJS.ProcessEnv} env the `process.env` value to read configuration from
  * @returns {pg.PoolConfig} the configuration for the PostgreSQL connection
  */
@@ -103,7 +123,7 @@ const pgConfigFromEnv = (env) => {
       password: env.DB_PASS || pg.defaults.password,
       database: env.DB_NAME || 'mastodon_development',
       host: env.DB_HOST || pg.defaults.host,
-      port: typeof env.DB_PORT === 'string' ? parseInt(env.DB_PORT, 10) : pg.defaults.port,
+      port: parseIntFromEnv(env.DB_PORT, pg.defaults.port ?? 5432, 'DB_PORT')
     },
 
     production: {
@@ -111,7 +131,7 @@ const pgConfigFromEnv = (env) => {
       password: env.DB_PASS || '',
       database: env.DB_NAME || 'mastodon_production',
       host: env.DB_HOST || 'localhost',
-      port: typeof env.DB_PORT === 'string' ? parseInt(env.DB_PORT, 10) : 5432,
+      port: parseIntFromEnv(env.DB_PORT, 5432, 'DB_PORT')
     },
   };
 
@@ -136,7 +156,14 @@ const pgConfigFromEnv = (env) => {
     if (typeof parsedUrl.password === 'string') baseConfig.password = parsedUrl.password;
     if (typeof parsedUrl.host === 'string') baseConfig.host = parsedUrl.host;
     if (typeof parsedUrl.user === 'string') baseConfig.user = parsedUrl.user;
-    if (typeof parsedUrl.port === 'string') baseConfig.port = parseInt(parsedUrl.port, 10);
+    if (typeof parsedUrl.port === 'string') {
+      const parsedPort = parseInt(parsedUrl.port, 10);
+      if (isNaN(parsedPort)) {
+        const safeDbUrl = parsedUrl.password ? env.DATABASE_URL.replace(parsedUrl.password, '********') : env.DATABASE_URL;
+        throw new Error(`Invalid port specified in DATABASE_URL environment variable: ${safeDbUrl}`);
+      }
+      baseConfig.port = parsedPort;
+    }
     if (typeof parsedUrl.database === 'string') baseConfig.database = parsedUrl.database;
     if (typeof parsedUrl.options === 'string') baseConfig.options = parsedUrl.options;
 
@@ -183,7 +210,7 @@ const pgConfigFromEnv = (env) => {
 
   return {
     ...baseConfig,
-    max: typeof env.DB_POOL === 'string' ? parseInt(env.DB_POOL, 10) : 10,
+    max: parseIntFromEnv(env.DB_POOL, 10, 'DB_POOL'),
     connectionTimeoutMillis: 15000,
     // Deliberately set application_name to an empty string to prevent excessive
     // CPU usage with PG Bouncer. See:
@@ -209,23 +236,8 @@ const redisConfigFromEnv = (env) => {
   // which means we can't use it. But this is something that should be looked into.
   const redisPrefix = env.REDIS_NAMESPACE ? `${env.REDIS_NAMESPACE}:` : '';
 
-  let redisPort = 6379;
-  if (typeof env.REDIS_PORT === 'string') {
-    const portValue = parseInt(env.REDIS_PORT, 10);
-    if (isNaN(portValue)) {
-      throw new Error(`Invalid REDIS_PORT environment variable: ${env.REDIS_PORT}`);
-    }
-    redisPort = portValue;
-  }
-
-  let redisDatabase = 0;
-  if (typeof env.REDIS_DB === 'string') {
-    const dbValue = parseInt(env.REDIS_DB, 10);
-    if (isNaN(dbValue)) {
-      throw new Error(`Invalid REDIS_DB environment variable: ${env.REDIS_DB}`);
-    }
-    redisDatabase = dbValue;
-  }
+  let redisPort = parseIntFromEnv(env.REDIS_PORT, 6379, 'REDIS_PORT');
+  let redisDatabase = parseIntFromEnv(env.REDIS_DB, 0, 'REDIS_DB');
 
   /** @type {import('ioredis').RedisOptions} */
   const redisParams = {
