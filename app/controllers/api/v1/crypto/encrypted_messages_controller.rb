@@ -44,8 +44,4 @@ class Api::V1::Crypto::EncryptedMessagesController < Api::BaseController
   def records_continue?
     @encrypted_messages.size == limit_param(LIMIT)
   end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
-  end
 end
