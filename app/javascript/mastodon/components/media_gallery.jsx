@@ -17,7 +17,7 @@ import { formatTime } from 'mastodon/features/video';
 import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
 
 const colCount = function(size) {
-  return Math.max(Math.floor(Math.sqrt(size)), 2);
+  return Math.max(Math.ceil(Math.sqrt(size)), 2);
 };
 
 const rowCount = function(size) {
