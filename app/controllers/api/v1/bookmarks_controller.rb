@@ -43,12 +43,8 @@ class Api::V1::BookmarksController < Api::BaseController
     api_v1_bookmarks_url pagination_params(min_id: pagination_since_id) unless results.empty?
   end
 
-  def pagination_max_id
-    results.last.id
-  end
-
-  def pagination_since_id
-    results.first.id
+  def pagination_collection
+    results
   end
 
   def records_continue?

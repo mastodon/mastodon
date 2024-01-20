@@ -73,12 +73,8 @@ class Api::V1::Admin::DomainAllowsController < Api::BaseController
     api_v1_admin_domain_allows_url(pagination_params(min_id: pagination_since_id)) unless @domain_allows.empty?
   end
 
-  def pagination_max_id
-    @domain_allows.last.id
-  end
-
-  def pagination_since_id
-    @domain_allows.first.id
+  def pagination_collection
+    @domain_allows
   end
 
   def records_continue?

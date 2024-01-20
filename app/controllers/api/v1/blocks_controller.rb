@@ -40,12 +40,8 @@ class Api::V1::BlocksController < Api::BaseController
     api_v1_blocks_url pagination_params(since_id: pagination_since_id) unless paginated_blocks.empty?
   end
 
-  def pagination_max_id
-    paginated_blocks.last.id
-  end
-
-  def pagination_since_id
-    paginated_blocks.first.id
+  def pagination_collection
+    paginated_blocks
   end
 
   def records_continue?
