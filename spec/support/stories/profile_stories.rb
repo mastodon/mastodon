@@ -18,7 +18,7 @@ module ProfileStories
     visit new_user_session_path
     fill_in 'user_email', with: email
     fill_in 'user_password', with: password
-    click_button I18n.t('auth.login')
+    click_on I18n.t('auth.login')
   end
 
   def with_alice_as_local_user

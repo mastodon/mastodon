@@ -38,27 +38,53 @@ RSpec.describe User do
       user.save(validate: false)
       expect(user.valid?).to be true
     end
+  end
 
-    it 'cleans out invalid locale' do
-      user = Fabricate.build(:user, locale: 'toto')
-      expect(user.valid?).to be true
-      expect(user.locale).to be_nil
+  describe 'Normalizations' do
+    describe 'locale' do
+      it 'preserves valid locale' do
+        user = Fabricate.build(:user, locale: 'en')
+
+        expect(user.locale).to eq('en')
+      end
+
+      it 'cleans out invalid locale' do
+        user = Fabricate.build(:user, locale: 'toto')
+
+        expect(user.locale).to be_nil
+      end
     end
 
-    it 'cleans out invalid timezone' do
-      user = Fabricate.build(:user, time_zone: 'toto')
-      expect(user.valid?).to be true
-      expect(user.time_zone).to be_nil
+    describe 'time_zone' do
+      it 'preserves valid timezone' do
+        user = Fabricate.build(:user, time_zone: 'UTC')
+
+        expect(user.time_zone).to eq('UTC')
+      end
+
+      it 'cleans out invalid timezone' do
+        user = Fabricate.build(:user, time_zone: 'toto')
+
+        expect(user.time_zone).to be_nil
+      end
     end
 
-    it 'cleans out empty string from languages' do
-      user = Fabricate.build(:user, chosen_languages: [''])
-      user.valid?
-      expect(user.chosen_languages).to be_nil
+    describe 'languages' do
+      it 'preserves valid options for languages' do
+        user = Fabricate.build(:user, chosen_languages: ['en', 'fr', ''])
+
+        expect(user.chosen_languages).to eq(['en', 'fr'])
+      end
+
+      it 'cleans out empty string from languages' do
+        user = Fabricate.build(:user, chosen_languages: [''])
+
+        expect(user.chosen_languages).to be_nil
+      end
     end
   end
 
-  describe 'scopes' do
+  describe 'scopes', :sidekiq_inline do
     describe 'recent' do
       it 'returns an array of recent users ordered by id' do
         first_user = Fabricate(:user)
@@ -435,12 +461,12 @@ RSpec.describe User do
     end
   end
 
-  describe '#confirm!' do
+  describe '#mark_email_as_confirmed!' do
     subject(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
 
     before do
       ActionMailer::Base.deliveries.clear
-      user.confirm!
+      user.mark_email_as_confirmed!
     end
 
     after { ActionMailer::Base.deliveries.clear }
@@ -452,7 +478,7 @@ RSpec.describe User do
         expect(user.confirmed_at).to be_present
       end
 
-      it 'delivers mails' do
+      it 'delivers mails', :sidekiq_inline do
         expect(ActionMailer::Base.deliveries.count).to eq 2
       end
     end

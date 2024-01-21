@@ -3,9 +3,11 @@ import {
   isPending as isThunkActionPending,
   isFulfilled as isThunkActionFulfilled,
   isRejected as isThunkActionRejected,
+  isAction,
 } from '@reduxjs/toolkit';
+import type { Middleware, UnknownAction } from '@reduxjs/toolkit';
+
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
-import type { AnyAction, Middleware } from 'redux';
 
 import type { RootState } from '..';
 
@@ -19,14 +21,28 @@ const defaultTypeSuffixes: Config['promiseTypeSuffixes'] = [
   'REJECTED',
 ];
 
+interface ActionWithSkipLoading extends UnknownAction {
+  skipLoading: boolean;
+}
+
+function isActionWithSkipLoading(
+  action: unknown,
+): action is ActionWithSkipLoading {
+  return (
+    isAction(action) &&
+    'skipLoading' in action &&
+    typeof action.skipLoading === 'boolean'
+  );
+}
+
 export const loadingBarMiddleware = (
   config: Config = {},
-): Middleware<unknown, RootState> => {
+): Middleware<{ skipLoading?: boolean }, RootState> => {
   const promiseTypeSuffixes = config.promiseTypeSuffixes ?? defaultTypeSuffixes;
 
   return ({ dispatch }) =>
     (next) =>
-    (action: AnyAction) => {
+    (action) => {
       let isPending = false;
       let isFulfilled = false;
       let isRejected = false;
@@ -39,7 +55,7 @@ export const loadingBarMiddleware = (
         else if (isThunkActionFulfilled(action)) isFulfilled = true;
         else if (isThunkActionRejected(action)) isRejected = true;
       } else if (
-        action.type &&
+        isActionWithSkipLoading(action) &&
         !action.skipLoading &&
         typeof action.type === 'string'
       ) {

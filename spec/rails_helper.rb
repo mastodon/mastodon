@@ -26,7 +26,6 @@ Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!(allow: Chewy.settings[:host], allow_localhost: RUN_SYSTEM_SPECS)
-Sidekiq::Testing.inline!
 Sidekiq.logger = nil
 
 # System tests config
@@ -96,11 +95,8 @@ RSpec.configure do |config|
     self.use_transactional_tests = true
   end
 
-  config.around(:each, :sidekiq_fake) do |example|
-    Sidekiq::Testing.fake! do
-      example.run
-      Sidekiq::Worker.clear_all
-    end
+  config.around(:each, :sidekiq_inline) do |example|
+    Sidekiq::Testing.inline!(&example)
   end
 
   config.before :each, type: :cli do
@@ -111,21 +107,8 @@ RSpec.configure do |config|
     Capybara.current_driver = :rack_test
   end
 
-  config.around :each, type: :system do |example|
-    driven_by :selenium, using: :headless_chrome, screen_size: [1600, 1200]
-
-    # The streaming server needs access to the database
-    # but with use_transactional_tests every transaction
-    # is rolled-back, so the streaming server never sees the data
-    # So we disable this feature for system tests, and use DatabaseCleaner to clean
-    # the database tables between each test
-    self.use_transactional_tests = false
-
-    DatabaseCleaner.cleaning do
-      example.run
-    end
-
-    self.use_transactional_tests = true
+  config.before do |example|
+    allow(Resolv::DNS).to receive(:open).and_raise('Real DNS queries are disabled, stub Resolv::DNS as needed') unless example.metadata[:type] == :system
   end
 
   config.before do |example|

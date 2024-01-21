@@ -425,6 +425,7 @@ de:
       view: Domain-Sperre ansehen
     email_domain_blocks:
       add_new: Neue hinzufügen
+      allow_registrations_with_approval: Registrierungen mit Genehmigung erlauben
       attempts_over_week:
         one: "%{count} Registrierungsversuch in der vergangenen Woche"
         other: "%{count} Registrierungsversuche in der vergangenen Woche"
@@ -1607,6 +1608,7 @@ de:
       unknown_browser: Unbekannter Browser
       weibo: Weibo
     current_session: Aktuelle Sitzung
+    date: Datum
     description: "%{browser} auf %{platform}"
     explanation: Dies sind die Webbrowser, die derzeit mit deinem Mastodon-Konto verbunden sind.
     ip: IP-Adresse
@@ -1773,16 +1775,19 @@ de:
     webauthn: Sicherheitsschlüssel
   user_mailer:
     appeal_approved:
-      action: Dein Konto aufrufen
-      explanation: Der Einspruch gegen deinen Verstoß vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde genehmigt. Dein Konto ist wieder in gutem Zustand.
+      action: Kontoeinstellungen
+      explanation: Der Einspruch gegen deinen Verstoß vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde genehmigt. Dein Konto ist wieder in Ordnung.
       subject: Dein Einspruch vom %{date} wurde angenommen
+      subtitle: Dein Konto ist wieder in Ordnung.
       title: Einspruch angenommen
     appeal_rejected:
       explanation: Der Einspruch gegen deinen Verstoß vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde abgelehnt.
       subject: Dein Einspruch vom %{date} wurde abgelehnt
+      subtitle: Dein Einspruch wurde abgelehnt.
       title: Einspruch abgelehnt
     backup_ready:
-      explanation: Du hast eine vollständige Sicherung deines Mastodon-Kontos angefordert. Die Sicherung kann jetzt heruntergeladen werden!
+      explanation: Du hast eine vollständige Datensicherung deines Mastodon-Kontos angefordert.
+      extra: Sie ist jetzt zum Herunterladen bereit!
       subject: Dein persönliches Archiv kann heruntergeladen werden
       title: Archiv-Download
     suspicious_sign_in:

@@ -23,6 +23,8 @@ ast:
       are_you_sure: "¿De xuru que quies facer esta aición?"
       avatar: Avatar
       by_domain: Dominiu
+      change_role:
+        label: Camudar el rol
       confirming: En confirmación
       disabled: Conxelóse
       display_name: Nome visible
@@ -59,6 +61,7 @@ ast:
       suspend: Suspender
       title: Cuentes
       username: Nome d'usuariu
+      warn: Alvertir
       web: Web
     action_logs:
       actions:
@@ -181,6 +184,7 @@ ast:
       availability:
         no_failures_recorded: Nun se rexistró nengún fallu.
         title: Disponibilidá
+      back_to_warning: Alvertencia
       by_domain: Dominiu
       content_policies:
         comment: Nota interna
@@ -461,6 +465,7 @@ ast:
     delete_account_html: Si quies desaniciar la cuenta, pues facelo <a href="%{path}">equí</a>. Va pidísete que confirmes l'aición.
     description:
       prefix_sign_up: "¡Rexístrate güei en Mastodon!"
+    didnt_get_confirmation: "¿Nun recibiesti l'enllaz de confirmación?"
     dont_have_your_security_key: "¿Nun tienes una llave de seguranza?"
     forgot_password: "¿Escaeciesti la contraseña?"
     login: Aniciar la sesión
@@ -477,6 +482,8 @@ ast:
       accept: Aceptar
       back: Atrás
     security: Seguranza
+    setup:
+      link_not_received: "¿Nun consiguiesti l'enllaz?"
     sign_in:
       preamble_html: Anicia la sesión colos tos datos d'accesu en <strong>%{domain}</strong>. Si la cuenta ta agospiada n'otru sirvidor, nun vas ser a aniciar la sesión equí.
       title: Aniciu de la sesión en «%{domain}»
@@ -535,6 +542,9 @@ ast:
       your_appeal_approved: Aprobóse la to apellación
       your_appeal_pending: Unviesti una apellación
       your_appeal_rejected: Refugóse la to apellación
+  edit_profile:
+    basic_information: Información básica
+    other: Otres preferencies
   errors:
     '400': La solicitú qu'unviesti nun yera válida o yera incorreuta.
     '403': Nun tienes permisu pa ver esta páxina.
@@ -622,6 +632,7 @@ ast:
       muting: Llista de perfiles colos avisos desactivaos
     upload: Xubir
   invites:
+    delete: Desactivar
     expired: Caducó
     expires_in:
       '1800': 30 minutos
@@ -715,6 +726,14 @@ ast:
     other: Otres preferencies
     posting_defaults: Configuración predeterminada del espublizamientu d'artículos
     public_timelines: Llinies de tiempu públiques
+  privacy:
+    hint_html: "<strong>Personaliza cómo quies s'atope esti perfil ya los sos artículos.</strong> Hai una variedá de funciones de Mastodon que puen ayudate a algamar audiencies más grandes cuando s'activen. Dedica un momentu pa revisar estes opciones y asegurate de que s'axusten al to casu."
+    privacy: Privacidá
+    reach: Algame
+    reach_hint_html: Controla si quies que te descubran ya te sigan perfiles nuevos. ¿Quies que los tos artículos apaezan na pantalla «Esploración»? ¿Quies qu'otres persones te vean na recomendación de cuentes? ¿Quies aceptar toles solicitúes de siguimientu automáticamente o tener un control minuciosu de caúna?
+    search: Busca
+    search_hint_html: Controla cómo quies que t'atopen. ¿Quies que la xente t'atope polo qu'espublices públicamente? ¿Quies que la xente fuera de Mástodon atope esti perfil cuando busque na web? Ten en cuenta que nun se pue garantizar la esclusión total de tolos motores de busca.
+    title: Privacidá ya algame
   privacy_policy:
     title: Política de privacidá
   relationships:

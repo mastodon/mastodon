@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import { ReactComponent as InsertChartIcon } from '@material-symbols/svg-600/outlined/insert_chart.svg';
+import InsertChartIcon from '@/material-icons/400-24px/insert_chart.svg?react';
 
 import { IconButton } from '../../../components/icon_button';
 

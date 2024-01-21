@@ -6,7 +6,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as AddPhotoAlternateIcon } from '@material-symbols/svg-600/outlined/add_photo_alternate.svg';
+import AddPhotoAlternateIcon from '@/material-icons/400-24px/add_photo_alternate.svg?react';
 
 import { IconButton } from '../../../components/icon_button';
 

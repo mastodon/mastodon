@@ -21,7 +21,7 @@ const config = {
   coverageDirectory: '<rootDir>/coverage',
   moduleDirectories: ['node_modules', '<rootDir>/app/javascript'],
   moduleNameMapper: {
-    '\\.svg$': '<rootDir>/app/javascript/__mocks__/svg.js',
+    '\\.svg\\?react$': '<rootDir>/app/javascript/__mocks__/svg.js',
   },
 };
 

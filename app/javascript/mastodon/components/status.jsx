@@ -7,12 +7,12 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as AlternateEmailIcon } from '@material-symbols/svg-600/outlined/alternate_email.svg';
-import { ReactComponent as PushPinIcon } from '@material-symbols/svg-600/outlined/push_pin.svg';
-import { ReactComponent as RepeatIcon } from '@material-symbols/svg-600/outlined/repeat.svg';
-import { ReactComponent as ReplyIcon } from '@material-symbols/svg-600/outlined/reply.svg';
 import { HotKeys } from 'react-hotkeys';
 
+import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
+import PushPinIcon from '@/material-icons/400-24px/push_pin.svg?react';
+import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
+import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 import { withOptionalRouter, WithOptionalRouterPropTypes } from 'mastodon/utils/react_router';

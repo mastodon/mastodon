@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_12_073317) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_09_103012) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -435,6 +435,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_073317) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.bigint "parent_id"
+    t.boolean "allow_with_approval", default: false, null: false
     t.index ["domain"], name: "index_email_domain_blocks_on_domain", unique: true
   end
 

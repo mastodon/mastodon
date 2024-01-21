@@ -1,28 +1,61 @@
 ---
 ia:
+  about:
+    contact_missing: Non definite
   admin:
     accounts:
+      are_you_sure: Es tu secur?
+      by_domain: Dominio
+      custom: Personalisate
       delete: Deler datos
       deleted: Delite
+      disable_two_factor_authentication: Disactivar 2FA
       display_name: Nomine visibile
+      domain: Dominio
       enabled: Activate
       location:
         all: Toto
         title: Location
       moderation:
         disabled: Disactivate
+      most_recent_activity: Activitate plus recente
+      most_recent_ip: IP plus recente
+      public: Public
       reset: Reinitialisar
       reset_password: Reinitialisar contrasigno
       search: Cercar
       security: Securitate
+      security_measures:
+        only_password: Solmente contrasigno
+        password_and_2fa: Contrasigno e 2FA
+      statuses: Messages
+      title: Contos
       username: Nomine de usator
+    action_logs:
+      action_types:
+        reset_password_user: Reinitialisar contrasigno
+    announcements:
+      new:
+        create: Crear annuncio
+        title: Nove annuncio
+      title: Annuncios
     custom_emojis:
+      by_domain: Dominio
       copy: Copiar
       create_new_category: Crear nove categoria
       delete: Deler
+      disable: Disactivar
+      disabled: Disactivate
+    dashboard:
+      active_users: usatores active
+      new_users: nove usatores
+      website: Sito web
+    domain_allows:
+      add_new: Permitter federation con dominio
     domain_blocks:
       confirm_suspension:
         cancel: Cancellar
+      domain: Dominio
       export: Exportar
       import: Importar
     email_domain_blocks:
@@ -38,9 +71,11 @@ ia:
         instance_languages_dimension: Linguas principal
       delivery:
         unavailable: Non disponibile
+      empty: Necun dominios trovate.
       private_comment: Commento private
       public_comment: Commento public
     invites:
+      deactivate_all: Disactivar toto
       filter:
         available: Disponibile
     ip_blocks:
@@ -50,3 +85,36 @@ ia:
         '15778476': 6 menses
         '2629746': 1 mense
         '86400': 1 die
+      new:
+        title: Crear un nove regula IP
+      title: Regulas IP
+    relays:
+      delete: Deler
+      disable: Disactivar
+      disabled: Disactivate
+      enable: Activar
+      enabled: Activate
+    reports:
+      are_you_sure: Es tu secur?
+      cancel: Cancellar
+  statuses_cleanup:
+    min_age:
+      '1209600': 2 septimanas
+      '15778476': 6 menses
+      '2629746': 1 mense
+      '31556952': 1 anno
+      '5259492': 2 menses
+      '604800': 1 septimana
+      '63113904': 2 annos
+      '7889238': 3 menses
+  themes:
+    default: Mastodon (Obscur)
+    mastodon-light: Mastodon (Clar)
+  two_factor_authentication:
+    add: Adder
+    disable: Disactivar 2FA
+  user_mailer:
+    welcome:
+      subject: Benvenite in Mastodon
+  webauthn_credentials:
+    delete: Deler

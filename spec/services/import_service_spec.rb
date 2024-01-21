@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ImportService, type: :service do
+RSpec.describe ImportService, :sidekiq_inline, type: :service do
   include RoutingHelper
 
   let!(:account) { Fabricate(:account, locked: false) }

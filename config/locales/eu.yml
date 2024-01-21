@@ -427,6 +427,7 @@ eu:
       view: Ikusi domeinuaren blokeoa
     email_domain_blocks:
       add_new: Gehitu berria
+      allow_registrations_with_approval: Baimendu izen-emateak onarpen bidez
       attempts_over_week:
         one: Izen-emateko saiakera %{count} azken astean
         other: Izen-emateko %{count} saiakera azken astean
@@ -1444,7 +1445,7 @@ eu:
       cooldown: Migratu eta gero egonaldi tarte bat egongo da eta bitartean ezin izango duzu berriro migratu
       disabled_account: Zure uneko kontua ezin izango da gero erabili. Hala ere, datua exporatu ahal izango dituzu, eta berriro aktibatu.
       followers: Ekintza honek jarraitzaile guztiak eramango ditu uneko kontutik kontu berrira
-      only_redirect_html: Bestela, <a href="%{path}">zure profilean birbideratze soil bat jarri</a> dezakezu.
+      only_redirect_html: Bestela, <a href="%{path}">zure profilean birbideratze bat jar</a> dezakezu.
       other_data: Ez da beste daturik migratuko automatikoki
       redirect: Zure uneko kontuaren profila eguneratuko da birbideratze ohar batekin eta bilaketetatik kenduko da
   moderation:
@@ -1611,6 +1612,7 @@ eu:
       unknown_browser: Nabigatzaile ezezaguna
       weibo: Weibo
     current_session: Uneko saioa
+    date: Data
     description: "%{browser} - %{platform}"
     explanation: Zure Mastodon kontuan saioa hasita duten nabigatzaileak daude.
     ip: IP-a
@@ -1777,16 +1779,19 @@ eu:
     webauthn: Segurtasun gakoak
   user_mailer:
     appeal_approved:
-      action: Joan zure kontura
+      action: Kontuaren ezarpenak
       explanation: "%{strike_date}(e)an zure kontuari ezarritako neurriaren aurka %{appeal_date}(e)an jarri zenuen apelazioa onartu da. Zure kontua egoera onean dago berriro."
       subject: "%{date}(e)ko zure apelazioa onartu da"
+      subtitle: Zure kontua egoera onean dago berriro.
       title: Apelazioa onartuta
     appeal_rejected:
       explanation: "%{strike_date}(e)an zure kontuari ezarritako neurriaren aurka %{appeal_date}(e)an jarri zenuen apelazioa baztertu da."
       subject: "%{date}(e)ko zure apelazioa baztertu da"
+      subtitle: Zure apelazioa baztertu da.
       title: Apelazioa baztertuta
     backup_ready:
-      explanation: Zure Mastodon kontuaren babes-kopia osoa eskatu duzu. Deskargatzeko prest dago!
+      explanation: Mastodon kontuaren babeskopia osoa eskatu duzu.
+      extra: Deskargatzeko prest!
       subject: Zure artxiboa deskargatzeko prest dago
       title: Artxiboa jasotzea
     suspicious_sign_in:

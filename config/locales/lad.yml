@@ -383,7 +383,11 @@ lad:
       confirm_suspension:
         cancel: Anula
         confirm: Suspende
+        permanent_action: Si kites la suspensyon no restoraras dingunos datos ni relasyones.
+        remove_all_data: Esto efasara todo el kontenido, multimedia i datos de profiles de los kuentos en este domeno de tu sirvidor.
+        stop_communication: Tu sirvidor deshara de komunikarse kon estos sirvidores.
         title: Konfirma bloko de domeno para %{domain}
+        undo_relationships: Esto kitara todas las relasyones de segimyento entre tu kuentos en estos sirvidores i el tu sirvidor.
       created_msg: El bloko de domeno esta siendo prosesado
       destroyed_msg: El bloko de domeno se dezizo
       domain: Domeno
@@ -417,6 +421,7 @@ lad:
       view: Ve domeno blokado
     email_domain_blocks:
       add_new: Adjustar muevo
+      allow_registrations_with_approval: Permite enrejistrasyones kon aprovasyon
       attempts_over_week:
         one: "\"%{count} prova durante la ultima semana"
         other: "%{count} provas de enrejistrarse durante la ultima semana"
@@ -772,6 +777,8 @@ lad:
       type: Tipo
       types:
         major: Versyon prinsipala
+        minor: Versyon minora
+        patch: Versyon de remendo – koreksyones de yerros i trokamientos simples
       version: Versyon
     statuses:
       account: Autor
@@ -829,8 +836,10 @@ lad:
         message_html: No ay dingun prosedura Sidekiq en egzekusion para la(s) kola(s) %{value}. Por favor, reviza tu konfigurasyon de Sidekiq
       software_version_critical_check:
         action: Amostra aktualizasyones desponivles
+        message_html: Una aktualizasyon kritika de Mastodon esta desponivle. Por favor aktualiza pishin.
       software_version_patch_check:
         action: Amostra aktualizasyones desponivles
+        message_html: Una aktualizasyon de Mastodon kon koreksyon de yerros esta desponivle.
       upload_check_privacy_error:
         action: Klika aki para mas enformasyon
         message_html: "<strong>Tu sirvidor de web es mal konfigurado. La privasita de tus utilizadores esta en riziko.</strong>"
@@ -945,6 +954,7 @@ lad:
       next_steps: Puedes achetar la apelasyon para dezazer la dechizyon de moderasyon, o ignorarla.
       subject: "%{username} esta apelando a una dechizyon de moderasyon en %{instance}"
     new_critical_software_updates:
+      body: Ay mueva versyon kritika de Mastodon. Es posivle ke keras aktualizar pishin!
       subject: Ay aktualizasyones kritikas de Mastodon desponivles para %{instance}!
     new_pending_account:
       body: Los peratim del muevo kuento estan abashos. Puedes achetar o refuzar esta aplikasyon.
@@ -1045,13 +1055,17 @@ lad:
       accept: Acheta
       back: Atras
       preamble: Estas son establesidas i aplikadas por los moderadores de %{domain}.
+      preamble_invited: Antes de kontinuar, por favor reviza las reglas del sirvidor establesidas por los moderatores de %{domain}.
       title: Algunas reglas bazikas.
       title_invited: Fuites envitado.
     security: Sigurita
     set_new_password: Establese muevo kod
     setup:
       email_below_hint_html: Mira en tu kuti de spam o solisita de muevo. Si el adreso de posta elektronika ke aparese aki es yerrado, puedes trokarlo aki.
+      email_settings_hint_html: Klika el atadjiko ke te embimos para verifikar %{email}. Asperaremos aki.
       link_not_received: No risivites un atadijo?
+      new_confirmation_instructions_sent: Resiviras un muevo mesaj de posta elektronika kon el atadjio de konfirmasyon en unos minutos!
+      title: Reviza tu kuti de arivo
     sign_in:
       preamble_html: Konektate kon tus kredensiales de <strong>%{domain}</strong>. Si tu kuento esta balabayado en otruno servidor, no puedras konektarte aki.
       title: Konektate kon %{domain}
@@ -1246,9 +1260,11 @@ lad:
   imports:
     errors:
       empty: Dosya CSV vaziya
+      incompatible_type: Inkompativle kon el tipo de importo eskojido
       invalid_csv_file: 'Dosya CSV no valida. Yerro: %{error}'
       over_rows_processing_limit: kontiene mas de %{count} filas
       too_large: Dosya es mas grande
+    failures: Yerros
     imported: Importado
     modes:
       merge: Une
@@ -1526,6 +1542,7 @@ lad:
       unknown_browser: Navigador deskonosido
       weibo: Weibo
     current_session: Sesyon aktuala
+    date: Data
     description: "%{browser} en %{platform}"
     explanation: Estos son los navigadores internetikos konektados aktualmente kon tu kuento de Mastodon.
     ip: IP
@@ -1671,6 +1688,9 @@ lad:
       month: "%b %Y"
       time: "%H:%M"
       with_time_zone: "%d de %b del %Y, %H:%M %Z"
+  translation:
+    errors:
+      too_many_requests: Ay demaziadas solisitudes de servisyo de traduksyon.
   two_factor_authentication:
     add: Adjusta
     disable: Inkapasita autentifikasyon en dos pasos
@@ -1688,16 +1708,16 @@ lad:
     webauthn: Yaves de sigurita
   user_mailer:
     appeal_approved:
-      action: Va a tu kuento
+      action: Preferensyas de kuento
       explanation: La apelasyon del amonestamiento kontra tu kuento del %{strike_date} ke mandates el %{appeal_date} fue achetada. Tu kuento se topa de muevo en dobro estado.
       subject: Tu apelasyon del %{date} fue achetada
       title: Apelasyon achetada
     appeal_rejected:
       explanation: La apelasyon del amonestamiento kontra tu kuento del %{strike_date} ke mandates el %{appeal_date} fue refuzada.
       subject: Tu apelasyon del %{date} fue refuzada
+      subtitle: Tu apelasyon fue refuzada.
       title: Apelasyon refuzada
     backup_ready:
-      explanation: Tienes solisitado una kopia kompleta de tu kuento de Mastodon. Ya esta pronta para abashar!
       subject: Tu dosya esta pronta para abashar
       title: Abasha dosya
     suspicious_sign_in:
@@ -1750,9 +1770,12 @@ lad:
       title: Bienvenido, %{name}!
   users:
     follow_limit_reached: No puedes segir a mas de %{limit} personas
+    go_to_sso_account_settings: Va a la konfigurasyon de kuento de tu prokurador de identita
     invalid_otp_token: Kodiche de dos pasos no valido
+    otp_lost_help_html: Si pedriste akseso a los dos, puedes kontaktarte kon %{email}
     signed_in_as: 'Konektado komo:'
   verification:
+    here_is_how: Ansina es komo
     verification: Verifikasyon
     verified_links: Tus atadijos verifikados
   webauthn_credentials:

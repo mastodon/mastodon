@@ -425,6 +425,7 @@
       view: Vis domeneblokkering
     email_domain_blocks:
       add_new: Lag ny
+      allow_registrations_with_approval: Tillat registreringer med godkjenning
       attempts_over_week:
         one: "%{count} forsøk i løpet av den siste uken"
         other: "%{count} forsøk på å opprette konto i løpet av den siste uken"
@@ -1773,7 +1774,6 @@
     webauthn: Sikkerhetsnøkler
   user_mailer:
     appeal_approved:
-      action: Gå til kontoen din
       explanation: Klagen på advarselen mot din konto den %{strike_date} som du sendte inn den %{appeal_date} har blitt godkjent. Din konto er nok en gang i god stand.
       subject: Din klage fra %{date} er godkjent
       title: Klage godkjent
@@ -1782,7 +1782,6 @@
       subject: Din klage fra %{date} er avvist
       title: Klage avvist
     backup_ready:
-      explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
       title: Nedlasting av arkiv
     suspicious_sign_in:
