@@ -72,7 +72,7 @@ class Admin::ActionLogFilter
   end
 
   def results
-    scope = latest_action_logs.includes(:target)
+    scope = latest_action_logs.includes(:target, :account)
 
     params.each do |key, value|
       next if key.to_s == 'page'
