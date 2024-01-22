@@ -4,13 +4,13 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { render, fireEvent, screen } from '@testing-library/react';
 
+import { clearSearch } from 'mastodon/actions/search';
+
 import ColumnLink from '../column_link';
 
 jest.mock('mastodon/actions/search', () => ({
   clearSearch: jest.fn(),
 }));
-
-import { clearSearch } from 'mastodon/actions/search';
 
 describe('<ColumnLink />', () => {
   it('clears the search bar on explore click', () => {
