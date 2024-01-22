@@ -28,7 +28,7 @@ export const ConversationsList = ({ scrollKey, ...other }) => {
   }, [conversations]);
 
   const focusChild = (index, alignTop) => {
-    const node = listRef.current;
+    const node = listRef.current.node;
     const element = node.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
 
     if (element) {
@@ -46,7 +46,7 @@ export const ConversationsList = ({ scrollKey, ...other }) => {
     const lastStatusId = conversations.last()?.get('last_status');
 
     if (lastStatusId) {
-      dispatch(expandConversations({ lastStatusId }));
+      dispatch(expandConversations({ maxId: lastStatusId }));
     }
   }, 300, { leading: true });
 
