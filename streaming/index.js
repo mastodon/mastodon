@@ -16,7 +16,7 @@ const WebSocket = require('ws');
 
 const { logger, httpLogger, initializeLogLevel, attachWebsocketHttpLogger, createWebsocketLogger } = require('./logging');
 const { setupMetrics } = require('./metrics');
-const { isTruthy } = require("./utils");
+const { isTruthy, normalizeHashtag, firstParam } = require("./utils");
 
 const environment = process.env.NODE_ENV || 'development';
 
@@ -1111,34 +1111,6 @@ const startServer = async () => {
   };
 
   /**
-   * See app/lib/ascii_folder.rb for the canon definitions
-   * of these constants
-   */
-  const NON_ASCII_CHARS        = 'ÀÁÂÃÄÅàáâãäåĀāĂăĄąÇçĆćĈĉĊċČčÐðĎďĐđÈÉÊËèéêëĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħÌÍÎÏìíîïĨĩĪīĬĭĮįİıĴĵĶķĸĹĺĻļĽľĿŀŁłÑñŃńŅņŇňŉŊŋÒÓÔÕÖØòóôõöøŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšſŢţŤťŦŧÙÚÛÜùúûüŨũŪūŬŭŮůŰűŲųŴŵÝýÿŶŷŸŹźŻżŽž';
-  const EQUIVALENT_ASCII_CHARS = 'AAAAAAaaaaaaAaAaAaCcCcCcCcCcDdDdDdEEEEeeeeEeEeEeEeEeGgGgGgGgHhHhIIIIiiiiIiIiIiIiIiJjKkkLlLlLlLlLlNnNnNnNnnNnOOOOOOooooooOoOoOoRrRrRrSsSsSsSssTtTtTtUUUUuuuuUuUuUuUuUuUuWwYyyYyYZzZzZz';
-
-  /**
-   * @param {string} str
-   * @returns {string}
-   */
-  const foldToASCII = str => {
-    const regex = new RegExp(NON_ASCII_CHARS.split('').join('|'), 'g');
-
-    return str.replace(regex, match => {
-      const index = NON_ASCII_CHARS.indexOf(match);
-      return EQUIVALENT_ASCII_CHARS[index];
-    });
-  };
-
-  /**
-   * @param {string} str
-   * @returns {string}
-   */
-  const normalizeHashtag = str => {
-    return foldToASCII(str.normalize('NFKC').toLowerCase()).replace(/[^\p{L}\p{N}_\u00b7\u200c]/gu, '');
-  };
-
-  /**
    * @param {any} req
    * @param {string} name
    * @param {StreamParams} params
@@ -1378,18 +1350,6 @@ const startServer = async () => {
     };
 
     connectedChannels.labels({ type: 'websocket', channel: 'system' }).inc(2);
-  };
-
-  /**
-   * @param {string|string[]} arrayOrString
-   * @returns {string}
-   */
-  const firstParam = arrayOrString => {
-    if (Array.isArray(arrayOrString)) {
-      return arrayOrString[0];
-    } else {
-      return arrayOrString;
-    }
   };
 
   /**
