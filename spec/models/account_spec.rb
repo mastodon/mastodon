@@ -835,12 +835,12 @@ RSpec.describe Account do
   end
 
   describe 'scopes' do
-    describe 'matches_uri' do
+    describe 'matches_uri_prefix' do
       let!(:alice) { Fabricate :account, domain: 'host.example', uri: 'https://host.example/user/a' }
       let!(:bob) { Fabricate :account, domain: 'top-level.example', uri: 'https://top-level.example' }
 
       it 'returns accounts which start with the value' do
-        results = described_class.matches_uri('https://host.example')
+        results = described_class.matches_uri_prefix('https://host.example')
 
         expect(results.size)
           .to eq(1)
@@ -850,7 +850,7 @@ RSpec.describe Account do
       end
 
       it 'returns accounts which equal the value' do
-        results = described_class.matches_uri('https://top-level.example')
+        results = described_class.matches_uri_prefix('https://top-level.example')
 
         expect(results.size)
           .to eq(1)
