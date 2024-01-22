@@ -5,7 +5,7 @@
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
   "features": {
-    "ghcr.io/devcontainers/features/sshd:1": {}
+    "ghcr.io/devcontainers/features/sshd:1": {},
   },
 
   "runServices": ["app", "db", "redis"],
@@ -15,16 +15,16 @@
   "portsAttributes": {
     "3000": {
       "label": "web",
-      "onAutoForward": "notify"
+      "onAutoForward": "notify",
     },
     "4000": {
       "label": "stream",
-      "onAutoForward": "silent"
-    }
+      "onAutoForward": "silent",
+    },
   },
 
   "otherPortsAttributes": {
-    "onAutoForward": "silent"
+    "onAutoForward": "silent",
   },
 
   "remoteEnv": {
@@ -33,7 +33,7 @@
     "STREAMING_API_BASE_URL": "https://${localEnv:CODESPACE_NAME}-4000.app.github.dev",
     "DISABLE_FORGERY_REQUEST_PROTECTION": "true",
     "ES_ENABLED": "",
-    "LIBRE_TRANSLATE_ENDPOINT": ""
+    "LIBRE_TRANSLATE_ENDPOINT": "",
   },
 
   "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
@@ -43,7 +43,7 @@
   "customizations": {
     "vscode": {
       "settings": {},
-      "extensions": ["EditorConfig.EditorConfig", "webben.browserslist"]
-    }
-  }
+      "extensions": ["EditorConfig.EditorConfig", "webben.browserslist"],
+    },
+  },
 }
