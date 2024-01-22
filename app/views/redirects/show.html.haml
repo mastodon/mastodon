@@ -5,4 +5,4 @@
   .redirect__message
     %h1= t('redirects.title', instance: site_hostname)
     %p= t('redirects.prompt')
-    %p= link_to @redirect_path, ensure_valid_protocol!(@redirect_path), rel: 'noreferrer noopener'
+    %p= link_to @redirect_path, @redirect_path, rel: 'noreferrer noopener'
