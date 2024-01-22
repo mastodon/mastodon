@@ -7,7 +7,7 @@ module Admin
     def index
       authorize :user_role, :index?
 
-      @roles = UserRole.order(position: :desc).page(params[:page])
+      @roles = UserRole.order(position: :desc).includes(:users).page(params[:page])
     end
 
     def new

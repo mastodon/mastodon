@@ -22,7 +22,7 @@ class Admin::Trends::TagsController < Admin::BaseController
   private
 
   def filtered_tags
-    Trends::TagFilter.new(filter_params).results
+    Trends::TagFilter.new(filter_params).results.includes(:user)
   end
 
   def filter_params
