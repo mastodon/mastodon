@@ -84,6 +84,7 @@ hy:
         active: Ակտիվ
         all: Բոլորը
         pending: Սպասում
+        silenced: Սահմանափակ
         suspended: Կասեցուած
         title: Մոդերացիա
       moderation_notes: Մոդերացիայի նշումներ
@@ -462,36 +463,44 @@ hy:
     regenerate_token: Ստեղծել նոր հասանելիութեան կտրոն
     your_token: Քո մուտքի բանալին
   auth:
-    change_password: Գաղտնաբառ
+    apply_for_account: Ուղարկել
     delete_account: Ջնջել հաշիվը
     description:
       prefix_sign_up: Գրանցուի՛ր Մաստոդոնում հենց այսօր
+    didnt_get_confirmation: Չե՞ս ստացել հաստատման յղում
     dont_have_your_security_key: Չունե՞ս անվտանգութեան բանալի։
     forgot_password: Մոռացե՞լ ես գաղտնաբառդ
     login: Մտնել
     logout: Դուրս գալ
     migrate_account: Տեղափոխուել այլ հաշիւ
     or_log_in_with: Կամ մուտք գործել օգտագործելով՝
+    privacy_policy_agreement_html: Ես կարդացել եւ ընդունել եմ <a href="%{privacy_policy_path}" target="_blank">գաղնիութեան քաղաքականութիւնը</a>
+    progress:
+      confirm: Փոստի հաստատում
+      details: Ձեր տուեալները
+      review: Վաւերացում
+      rules: Ընդունել կանոները
     register: Գրանցվել
     registration_closed: "%{instance}ը չի ընդունում նոր անդամներ"
     reset_password: Վերականգնել գաղտանաբառը
+    rules:
+      accept: Հաստատել
+      back: Վերադառնալ
+      preamble: Կանոնները սահմանում եւ կիրառում են %{domain}-ի մոդերատորները։
+      title: Մի քանի հիմանական կանոններ։
     security: Անվտանգություն
     set_new_password: Սահմանել նոր գաղտնաբառ
+    sign_in:
+      preamble_html: Մուտքագրէք <strong>%{domain}</strong>-ի ձեր տուեալները։ Եթե ձեր հաշիւը ուրիշ սպասարկիչի վրայ է, այտեղ մտնել չի ստացուի։
+      title: Մտնել %{domain}
+    sign_up:
+      manual_review: Գրանցումները %{domain}-ում վաւերացնում են մոդերատորնրը։ Մեզ օգնելու համար մի փոքր պատմէք ձեր մասին եւ թե ինչու էք ուզում գրանցուել։
+      preamble: Այս հանգոյցում հաշիւ ունենալով դուք կարող էք հերտեւել դաշնեզերքի ցանկացած օգտատիրոջ, անկախ նրանից թե որտեղ է նրա հաշիւը տեղակայուած։
+      title: Ստեղծի՜ր հաշիւ %{domain}-ում
     status:
       account_status: Հաշուի կարգավիճակ
       pending: Դիմումը պէտք է քննուի մեր անձնակազմի կողմից, ինչը կարող է մի փոքր ժամանակ խլել։ Դիմումի հաստատուելու դէպքում, կտեղեկացնենք նամակով։
     use_security_key: Օգտագործել անվտանգութեան բանալի
-  authorize_follow:
-    already_following: Դու արդէն հետեւում ես այս հաշուին
-    already_requested: Դու արդէն ուղարկել ես հետեւմանն յայտ այս հաշուին
-    follow: Հետևել
-    follow_request: Դու ուղարկել ես հետեւելու հայց՝
-    following: Յաջողութի՜ւն։ Դու այժմ հետեւում ես․
-    post_follow:
-      close: Կամ, կարող ես պարզապէս փակել այս պատուհանը։
-      return: Ցուցադրել օգտատիրոջ էջը
-      web: Անցնել վէբին
-    title: Հետեւել %{acct}
   challenge:
     confirm: Շարունակել
     invalid_password: Անվաւեր ծածկագիր
@@ -562,6 +571,7 @@ hy:
     index:
       delete: Ջնջել
       empty: Դու ֆիլտրեր չունես։
+      expires_on: Լրանում է %{date}-ին
       title: Ֆիլտրեր
     new:
       title: Ավելացնել ֆիլտր
@@ -695,6 +705,10 @@ hy:
     other: Այլ
     posting_defaults: Կանխադիր կարգաւորումներ
     public_timelines: Հանրային հոսք
+  privacy:
+    search: Որոնել
+  privacy_policy:
+    title: Գաղտնիութեան քաղաքականութիւն
   reactions:
     errors:
       unrecognized_emoji: ճանաչուած էմոջի չէ
@@ -798,7 +812,6 @@ hy:
     show_newer: Ցուցադրել նորերը
     show_older: Ցուցադրել հները
     show_thread: Բացել շղթան
-    sign_in_to_participate: Մուտք գործէք՝ զրոյցին միանալու համար
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Հասցէագրուած
@@ -820,8 +833,6 @@ hy:
       '63113904': 2 տարի
       '7889238': 3 ամիս
   stream_entries:
-    pinned: Ամրացուած գրառում
-    reblogged: տարածուած
     sensitive_content: Կասկածելի բովանդակութիւն
   themes:
     contrast: Mastodon (բարձր կոնտրաստով)

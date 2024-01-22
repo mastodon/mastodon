@@ -23,6 +23,8 @@ ast:
       are_you_sure: "¿De xuru que quies facer esta aición?"
       avatar: Avatar
       by_domain: Dominiu
+      change_role:
+        label: Camudar el rol
       confirming: En confirmación
       disabled: Conxelóse
       display_name: Nome visible
@@ -59,6 +61,7 @@ ast:
       suspend: Suspender
       title: Cuentes
       username: Nome d'usuariu
+      warn: Alvertir
       web: Web
     action_logs:
       actions:
@@ -71,6 +74,7 @@ ast:
         create_custom_emoji_html: "%{name} xubió un fustaxe nuevu «%{target}»"
         create_domain_allow_html: "%{name} permitió la federación col dominiu %{target}"
         create_domain_block_html: "%{name} bloquió'l dominiu %{target}"
+        create_unavailable_domain_html: "%{name} paró la entrega al dominiu %{target}"
         create_user_role_html: "%{name} creó'l rol «%{target}»"
         destroy_announcement_html: "%{name} desanició l'anunciu «%{target}»"
         destroy_custom_emoji_html: "%{name} desanició'l fustaxe %{target}"
@@ -180,6 +184,7 @@ ast:
       availability:
         no_failures_recorded: Nun se rexistró nengún fallu.
         title: Disponibilidá
+      back_to_warning: Alvertencia
       by_domain: Dominiu
       content_policies:
         comment: Nota interna
@@ -335,9 +340,15 @@ ast:
           approved: Tol mundu pente una aprobación
           none: Naide
           open: Tol mundu
-      title: Configuración del sirvidor
     site_uploads:
       delete: Desaniciar el ficheru xubíu
+    software_updates:
+      documentation_link: Saber más
+      type: Tipu
+      types:
+        major: Versión mayor
+        minor: Versión menor
+      version: Versión
     statuses:
       back_to_account: Volver a la páxina de la cuenta
       language: Llingua
@@ -398,7 +409,7 @@ ast:
       disable: Desactivar
       disabled: Desactivóse
       edit: Editar l'estremu
-      empty: Entá nun tienes nengún estremu de webhooks configuráu.
+      empty: Nun tienes nengún estremu de webhooks configuráu.
       enable: Activar
       enabled: N'activo
       enabled_events:
@@ -438,7 +449,6 @@ ast:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: tol mundu pue collaborar.
     sensitive_content: Conteníu sensible
-    toot_layout: Distribución de los artículos
   application_mailer:
     notification_preferences: Camudar les preferencies de los mensaxes de corréu electrónicu
   applications:
@@ -449,13 +459,13 @@ ast:
     warning: Ten munchu curiáu con estos datos, ¡enxamás nun los compartas con naide!
     your_token: El pase d'accesu
   auth:
-    change_password: Contraseña
     confirmations:
       wrong_email_hint: Si la direición de corréu electrónicu nun ye correuta, pues camudala na configuración de la cuenta.
     delete_account: Desaniciu de la cuenta
     delete_account_html: Si quies desaniciar la cuenta, pues facelo <a href="%{path}">equí</a>. Va pidísete que confirmes l'aición.
     description:
       prefix_sign_up: "¡Rexístrate güei en Mastodon!"
+    didnt_get_confirmation: "¿Nun recibiesti l'enllaz de confirmación?"
     dont_have_your_security_key: "¿Nun tienes una llave de seguranza?"
     forgot_password: "¿Escaeciesti la contraseña?"
     login: Aniciar la sesión
@@ -472,6 +482,8 @@ ast:
       accept: Aceptar
       back: Atrás
     security: Seguranza
+    setup:
+      link_not_received: "¿Nun consiguiesti l'enllaz?"
     sign_in:
       preamble_html: Anicia la sesión colos tos datos d'accesu en <strong>%{domain}</strong>. Si la cuenta ta agospiada n'otru sirvidor, nun vas ser a aniciar la sesión equí.
       title: Aniciu de la sesión en «%{domain}»
@@ -483,15 +495,6 @@ ast:
       functional: La cuenta ta completamente operativa.
       pending: La to solicitú ta pendiente de que la revise'l nuesu personal ya ye posible que tarde tiempu. Vas recibir un mensaxe si s'aprueba.
     too_fast: El formulariu xubióse mui rápido, volvi tentalo.
-  authorize_follow:
-    already_following: Xá tas siguiendo a esta cuenta
-    already_requested: Yá unviesti una solicitú de siguimientu a esa cuenta
-    error: Desafortunadamente, hebo un error al buscar la cuenta remota
-    follow_request: 'Unviesti una solicitú de siguimientu a:'
-    post_follow:
-      close: O pues zarrar esta ventana.
-      return: Amosar el perfil de la cuenta
-      web: Dir a la web
   challenge:
     confirm: Siguir
     hint_html: "<strong>Conseyu:</strong> nun vamos volver pidite la contraseña hasta dientro d'una hora."
@@ -517,7 +520,7 @@ ast:
     challenge_not_passed: La información qu'introduxesti nun yera correuta
     confirm_password: Introduz la contraseña pa verificar la to identidá
     warning:
-      email_contact_html: Si entá nun aportó, pues unviar un mensaxe a <a href="mailto:%{email}">%{email}</a> pa consiguir más ayuda
+      email_contact_html: Si nun aportó, pues unviar un mensaxe a <a href="mailto:%{email}">%{email}</a> pa consiguir más ayuda
       email_reconfirmation_html: Si nun recibiesti'l mensaxe de confirmación, pues <a href="%{path}">volver solicitalu</a>
       more_details_html: Pa consiguir más detalles, mira la <a href="%{terms_path}">política de privacidá</a>.
   disputes:
@@ -539,6 +542,9 @@ ast:
       your_appeal_approved: Aprobóse la to apellación
       your_appeal_pending: Unviesti una apellación
       your_appeal_rejected: Refugóse la to apellación
+  edit_profile:
+    basic_information: Información básica
+    other: Otres preferencies
   errors:
     '400': La solicitú qu'unviesti nun yera válida o yera incorreuta.
     '403': Nun tienes permisu pa ver esta páxina.
@@ -569,10 +575,10 @@ ast:
     storage: Almacenamientu multimedia
   featured_tags:
     add_new: Amestar
-    hint_html: "<strong>¿Qué son les etiquetes destacaes?</strong> Apaecen de forma bien visible nel perfil públicu ya permite que les persones restolen los tos artículos públicos per duana d'eses etiquetes. Son una gran ferramienta pa tener un rexistru de trabayos creativos o de proyeutos a plazu llongu."
   filters:
     contexts:
       account: Perfiles
+      home: Aniciu ya llistes
       notifications: Avisos
       public: Llinies de tiempu públiques
       thread: Conversaciones
@@ -622,9 +628,11 @@ ast:
       bookmarks: Marcadores
       domain_blocking: Llista de dominios bloquiaos
       following: Llista de siguidores
+      lists: Llistes
       muting: Llista de perfiles colos avisos desactivaos
     upload: Xubir
   invites:
+    delete: Desactivar
     expired: Caducó
     expires_in:
       '1800': 30 minutos
@@ -718,6 +726,14 @@ ast:
     other: Otres preferencies
     posting_defaults: Configuración predeterminada del espublizamientu d'artículos
     public_timelines: Llinies de tiempu públiques
+  privacy:
+    hint_html: "<strong>Personaliza cómo quies s'atope esti perfil ya los sos artículos.</strong> Hai una variedá de funciones de Mastodon que puen ayudate a algamar audiencies más grandes cuando s'activen. Dedica un momentu pa revisar estes opciones y asegurate de que s'axusten al to casu."
+    privacy: Privacidá
+    reach: Algame
+    reach_hint_html: Controla si quies que te descubran ya te sigan perfiles nuevos. ¿Quies que los tos artículos apaezan na pantalla «Esploración»? ¿Quies qu'otres persones te vean na recomendación de cuentes? ¿Quies aceptar toles solicitúes de siguimientu automáticamente o tener un control minuciosu de caúna?
+    search: Busca
+    search_hint_html: Controla cómo quies que t'atopen. ¿Quies que la xente t'atope polo qu'espublices públicamente? ¿Quies que la xente fuera de Mástodon atope esti perfil cuando busque na web? Ten en cuenta que nun se pue garantizar la esclusión total de tolos motores de busca.
+    title: Privacidá ya algame
   privacy_policy:
     title: Política de privacidá
   relationships:
@@ -788,7 +804,7 @@ ast:
     migrate: Migración de la cuenta
     notifications: Avisos
     preferences: Preferencies
-    profile: Perfil
+    profile: Perfil públicu
     relationships: Perfiles que sigues ya te siguen
     statuses_cleanup: Desaniciu automáticu d'artículos
     two_factor_authentication: Autenticación en dos pasos
@@ -825,6 +841,7 @@ ast:
     visibilities:
       direct: Mensaxe direutu
       private: Namás siguidores
+      private_long: Namás los ven los perfiles siguidores
       public_long: Tol mundu pue velos
       unlisted_long: Tol mundu pue velos, mas nun apaecen nes llinies de tiempu públiques
   statuses_cleanup:
@@ -839,8 +856,6 @@ ast:
     keep_polls_hint: Nun desanicia nenguna encuesta de to
     keep_self_bookmark: Caltener los artículos que metieres en Marcadores
     keep_self_bookmark_hint: Nun desanicia nengún artículu que metieres en Marcadores
-    keep_self_fav: Caltener los artículos que seyan favoritos
-    keep_self_fav_hint: Nun desanicia nengún artículu que marcares como favoritu
     min_age:
       '1209600': 2 selmanes
       '15778476': 6 meses
@@ -873,8 +888,8 @@ ast:
       appeal_description: Si te paez que ye un error, pues unviar una apellación al personal de %{instance}.
       explanation:
         disable: Xá nun pues usar la cuenta mas el perfil ya otros datos siguen intautos. Pues solicitar una copia de seguranza de los datos, camudar la configuración de la cuenta o desaniciar la cuenta.
-        silence: Entá pues usar la cuenta mas namás vas ver los artículos de los perfiles que xá siguieres nesti sirvidor ya ye posible que se t'escluya de dalgunes funciones de descubrimientu. Por embargu, otros perfiles tovía puen siguite manualmente.
-        suspend: Xá nun pues usar la cuenta nin se pue acceder a los datos del to perfil. Entá pues aniciar la sesión pa pidir una copia de seguranza de los tos datos hasta que se desanicien en 30 díes, mas vamos caltener dalgunos datos básicos pa evitar que te saltes la suspensión.
+        silence: Pues siguir usando la cuenta mas namás vas ver los artículos de los perfiles que xá siguieres nesti sirvidor ya ye posible que se t'escluya de dalgunes funciones de descubrimientu. Por embargu, otros perfiles entá puen siguite manualmente.
+        suspend: Xá nun pues usar la cuenta nin se pue acceder a los datos del to perfil. Pues aniciar la sesión pa pidir una copia de seguranza de los tos datos hasta que se desanicien en 30 díes, mas vamos caltener dalgunos datos básicos pa evitar que te saltes la suspensión.
       reason: 'Motivu:'
       statuses: 'Artículos citaos:'
       subject:
@@ -894,6 +909,7 @@ ast:
   users:
     follow_limit_reached: Nun pues siguir a más de %{limit} persones
     invalid_otp_token: El códigu de l'autenticación en dos pasos nun ye válidu
+    rate_limited: Fixéronse milenta intentos d'autenticación. Volvi tentalo dempués.
     seamless_external_login: Aniciesti la sesión pente un serviciu esternu, polo que la configuración de la contraseña ya de la direición de corréu electrónicu nun tán disponibles.
     signed_in_as: 'Aniciesti la sesión como:'
   verification:
@@ -902,6 +918,6 @@ ast:
     create:
       error: Hebo un problema al amestar la llave de seguranza. Volvi tentalo.
     invalid_credential: La llave de seguranza nun ye válida
-    not_enabled: Entá nun activesti la función WebAuthn
+    not_enabled: Nun activesti la función WebAuthn
     not_supported: Esti restolador nun ye compatible coles llaves de seguranza
     otp_required: Pa usar les llaves de seguranza, activa primero l'autenticación en dos pasos.

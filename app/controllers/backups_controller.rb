@@ -3,6 +3,7 @@
 class BackupsController < ApplicationController
   include RoutingHelper
 
+  skip_before_action :check_self_destruct!
   skip_before_action :require_functional!
 
   before_action :authenticate_user!
@@ -10,16 +11,16 @@ class BackupsController < ApplicationController
 
   def download
     case Paperclip::Attachment.default_options[:storage]
-    when :s3
-      redirect_to @backup.dump.expiring_url(10)
+    when :s3, :azure
+      redirect_to @backup.dump.expiring_url(10), allow_other_host: true
     when :fog
       if Paperclip::Attachment.default_options.dig(:fog_credentials, :openstack_temp_url_key).present?
-        redirect_to @backup.dump.expiring_url(Time.now.utc + 10)
+        redirect_to @backup.dump.expiring_url(Time.now.utc + 10), allow_other_host: true
       else
-        redirect_to full_asset_url(@backup.dump.url)
+        redirect_to full_asset_url(@backup.dump.url), allow_other_host: true
       end
     when :filesystem
-      redirect_to full_asset_url(@backup.dump.url)
+      redirect_to full_asset_url(@backup.dump.url), allow_other_host: true
     end
   end
 

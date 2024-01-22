@@ -16,8 +16,14 @@ const mapDispatchToProps = dispatch => ({
   },
 
   isUserTouching,
-  onModalOpen: props => dispatch(openModal('ACTIONS', props)),
-  onModalClose: () => dispatch(closeModal()),
+  onModalOpen: props => dispatch(openModal({
+    modalType: 'ACTIONS',
+    modalProps: props,
+  })),
+  onModalClose: () => dispatch(closeModal({
+    modalType: undefined,
+    ignoreFocus: false,
+  })),
 
 });
 

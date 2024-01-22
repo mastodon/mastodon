@@ -4,7 +4,8 @@ require 'rails_helper'
 require 'pundit/rspec'
 
 RSpec.describe UserPolicy do
-  let(:subject) { described_class }
+  subject { described_class }
+
   let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
   let(:john)    { Fabricate(:account) }
 
@@ -63,7 +64,7 @@ RSpec.describe UserPolicy do
 
       context 'when record.confirmed?' do
         it 'denies' do
-          john.user.confirm!
+          john.user.mark_email_as_confirmed!
           expect(subject).to_not permit(admin, john.user)
         end
       end

@@ -5,13 +5,13 @@ require 'rails_helper'
 describe FollowerAccountsController do
   render_views
 
-  let(:alice) { Fabricate(:account) }
-  let(:follower0) { Fabricate(:account) }
-  let(:follower1) { Fabricate(:account) }
+  let(:alice) { Fabricate(:account, username: 'alice') }
+  let(:follower_bob) { Fabricate(:account, username: 'bob') }
+  let(:follower_chris) { Fabricate(:account, username: 'curt') }
 
   describe 'GET #index' do
-    let!(:follow0) { follower0.follow!(alice) }
-    let!(:follow1) { follower1.follow!(alice) }
+    let!(:follow_from_bob) { follower_bob.follow!(alice) }
+    let!(:follow_from_chris) { follower_chris.follow!(alice) }
 
     context 'when format is html' do
       subject(:response) { get :index, params: { account_username: alice.username, format: :html } }
@@ -48,6 +48,13 @@ describe FollowerAccountsController do
 
         it 'returns followers' do
           expect(response).to have_http_status(200)
+          expect(body_as_json)
+            .to include(
+              orderedItems: contain_exactly(
+                include(follow_from_bob.account.username),
+                include(follow_from_chris.account.username)
+              )
+            )
           expect(body['totalItems']).to eq 2
           expect(body['partOf']).to be_present
         end

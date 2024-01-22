@@ -10,18 +10,20 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
+import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { fetchFavouritedStatuses, expandFavouritedStatuses } from 'mastodon/actions/favourites';
 import ColumnHeader from 'mastodon/components/column_header';
 import StatusList from 'mastodon/components/status_list';
 import Column from 'mastodon/features/ui/components/column';
+import { getStatusList } from 'mastodon/selectors';
 
 const messages = defineMessages({
-  heading: { id: 'column.favourites', defaultMessage: 'Favourites' },
+  heading: { id: 'column.favourites', defaultMessage: 'Favorites' },
 });
 
 const mapStateToProps = state => ({
-  statusIds: state.getIn(['status_lists', 'favourites', 'items']),
+  statusIds: getStatusList(state, 'favourites'),
   isLoading: state.getIn(['status_lists', 'favourites', 'isLoading'], true),
   hasMore: !!state.getIn(['status_lists', 'favourites', 'next']),
 });
@@ -73,19 +75,19 @@ class Favourites extends ImmutablePureComponent {
     const { intl, statusIds, columnId, multiColumn, hasMore, isLoading } = this.props;
     const pinned = !!columnId;
 
-    const emptyMessage = <FormattedMessage id='empty_column.favourited_statuses' defaultMessage="You don't have any favourite posts yet. When you favourite one, it will show up here." />;
+    const emptyMessage = <FormattedMessage id='empty_column.favourited_statuses' defaultMessage="You don't have any favorite posts yet. When you favorite one, it will show up here." />;
 
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.heading)}>
         <ColumnHeader
           icon='star'
+          iconComponent={StarIcon}
           title={intl.formatMessage(messages.heading)}
           onPin={this.handlePin}
           onMove={this.handleMove}
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
-          showBackButton
         />
 
         <StatusList

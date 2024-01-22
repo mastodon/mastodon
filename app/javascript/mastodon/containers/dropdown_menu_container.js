@@ -7,9 +7,12 @@ import { openModal, closeModal } from '../actions/modal';
 import DropdownMenu from '../components/dropdown_menu';
 import { isUserTouching } from '../is_mobile';
 
+/**
+ * @param {import('mastodon/store').RootState} state
+ */
 const mapStateToProps = state => ({
-  openDropdownId: state.getIn(['dropdown_menu', 'openId']),
-  openedViaKeyboard: state.getIn(['dropdown_menu', 'keyboard']),
+  openDropdownId: state.dropdownMenu.openId,
+  openedViaKeyboard: state.dropdownMenu.keyboard,
 });
 
 const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
@@ -18,16 +21,22 @@ const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
       dispatch(fetchRelationships([status.getIn(['account', 'id'])]));
     }
 
-    dispatch(isUserTouching() ? openModal('ACTIONS', {
-      status,
-      actions: items,
-      onClick: onItemClick,
-    }) : openDropdownMenu(id, keyboard, scrollKey));
+    dispatch(isUserTouching() ? openModal({
+      modalType: 'ACTIONS',
+      modalProps: {
+        status,
+        actions: items,
+        onClick: onItemClick,
+      },
+    }) : openDropdownMenu({ id, keyboard, scrollKey }));
   },
 
   onClose(id) {
-    dispatch(closeModal('ACTIONS'));
-    dispatch(closeDropdownMenu(id));
+    dispatch(closeModal({
+      modalType: 'ACTIONS',
+      ignoreFocus: false,
+    }));
+    dispatch(closeDropdownMenu({ id }));
   },
 });
 

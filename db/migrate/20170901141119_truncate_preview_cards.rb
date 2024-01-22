@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TruncatePreviewCards < ActiveRecord::Migration[5.1]
   def up
     rename_table :preview_cards, :deprecated_preview_cards
@@ -20,11 +22,9 @@ class TruncatePreviewCards < ActiveRecord::Migration[5.1]
   end
 
   def down
-    if ActiveRecord::Base.connection.table_exists? 'deprecated_preview_cards'
-      drop_table :preview_cards
-      rename_table :deprecated_preview_cards, :preview_cards
-    else
-      raise ActiveRecord::IrreversibleMigration, 'Previous preview cards table has already been removed'
-    end
+    raise ActiveRecord::IrreversibleMigration, 'Previous preview cards table has already been removed' unless ActiveRecord::Base.connection.table_exists? 'deprecated_preview_cards'
+
+    drop_table :preview_cards
+    rename_table :deprecated_preview_cards, :preview_cards
   end
 end

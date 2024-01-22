@@ -29,16 +29,24 @@ describe ApplicationHelper do
 
   describe 'body_classes' do
     context 'with a body class string from a controller' do
-      before do
-        without_partial_double_verification do
-          allow(helper).to receive(:body_class_string).and_return('modal-layout compose-standalone')
-          allow(helper).to receive(:current_theme).and_return('default')
-          allow(helper).to receive(:current_account).and_return(Fabricate(:account))
-        end
-      end
+      before { helper.extend controller_helpers }
 
       it 'uses the controller body classes in the result' do
         expect(helper.body_classes).to match(/modal-layout compose-standalone/)
+      end
+
+      private
+
+      def controller_helpers
+        Module.new do
+          def body_class_string = 'modal-layout compose-standalone'
+
+          def current_account
+            @current_account ||= Fabricate(:account)
+          end
+
+          def current_theme = 'default'
+        end
       end
     end
   end
@@ -77,23 +85,21 @@ describe ApplicationHelper do
 
   describe 'open_registrations?' do
     it 'returns true when open for registrations' do
-      without_partial_double_verification do
-        expect(Setting).to receive(:registrations_mode).and_return('open')
-      end
+      allow(Setting).to receive(:[]).with('registrations_mode').and_return('open')
 
       expect(helper.open_registrations?).to be true
+      expect(Setting).to have_received(:[]).with('registrations_mode')
     end
 
     it 'returns false when closed for registrations' do
-      without_partial_double_verification do
-        expect(Setting).to receive(:registrations_mode).and_return('none')
-      end
+      allow(Setting).to receive(:[]).with('registrations_mode').and_return('none')
 
       expect(helper.open_registrations?).to be false
+      expect(Setting).to have_received(:[]).with('registrations_mode')
     end
   end
 
-  describe 'show_landing_strip?', without_verify_partial_doubles: true do
+  describe 'show_landing_strip?', :without_verify_partial_doubles do
     describe 'when signed in' do
       before do
         allow(helper).to receive(:user_signed_in?).and_return(true)
@@ -126,9 +132,7 @@ describe ApplicationHelper do
   describe 'available_sign_up_path' do
     context 'when registrations are closed' do
       before do
-        without_partial_double_verification do
-          allow(Setting).to receive(:registrations_mode).and_return('none')
-        end
+        allow(Setting).to receive(:[]).with('registrations_mode').and_return 'none'
       end
 
       it 'redirects to joinmastodon site' do
@@ -208,6 +212,18 @@ describe ApplicationHelper do
       end
     end
 
+    context 'when S3 alias includes a path component' do
+      around do |example|
+        ClimateControl.modify S3_ALIAS_HOST: 's3.alias/path' do
+          example.run
+        end
+      end
+
+      it 'returns a correct URL' do
+        expect(helper.storage_host).to eq('https://s3.alias/path')
+      end
+    end
+
     context 'when S3 cloudfront is present' do
       around do |example|
         ClimateControl.modify S3_CLOUDFRONT_HOST: 's3.cloudfront' do
@@ -217,12 +233,6 @@ describe ApplicationHelper do
 
       it 'returns true' do
         expect(helper.storage_host).to eq('https://s3.cloudfront')
-      end
-    end
-
-    context 'when neither env value is present' do
-      it 'returns false' do
-        expect(helper.storage_host).to eq('https:')
       end
     end
   end
@@ -282,16 +292,51 @@ describe ApplicationHelper do
   end
 
   describe 'title' do
-    around do |example|
-      site_title = Setting.site_title
-      example.run
-      Setting.site_title = site_title
-    end
-
     it 'returns site title on production environment' do
       Setting.site_title = 'site title'
-      expect(Rails.env).to receive(:production?).and_return(true)
+      allow(Rails.env).to receive(:production?).and_return(true)
       expect(helper.title).to eq 'site title'
+      expect(Rails.env).to have_received(:production?)
+    end
+
+    it 'returns site title with note on non-production environment' do
+      Setting.site_title = 'site title'
+      allow(Rails.env).to receive(:production?).and_return(false)
+      expect(helper.title).to eq 'site title (Dev)'
+      expect(Rails.env).to have_received(:production?)
+    end
+  end
+
+  describe 'html_title' do
+    before do
+      allow(Rails.env).to receive(:production?).and_return(true)
+    end
+
+    context 'with a page_title content_for value' do
+      it 'uses the value in the html title' do
+        Setting.site_title = 'Site Title'
+        helper.content_for(:page_title, 'Test Value')
+
+        expect(helper.html_title).to eq 'Test Value - Site Title'
+        expect(helper.html_title).to be_html_safe
+      end
+
+      it 'removes extra new lines' do
+        Setting.site_title = 'Site Title'
+        helper.content_for(:page_title, "Test Value\n")
+
+        expect(helper.html_title).to eq 'Test Value - Site Title'
+        expect(helper.html_title).to be_html_safe
+      end
+    end
+
+    context 'without any page_title content_for value' do
+      it 'returns the site title' do
+        Setting.site_title = 'Site Title'
+
+        expect(helper.html_title).to eq 'Site Title'
+        expect(helper.html_title).to be_html_safe
+      end
     end
   end
 end

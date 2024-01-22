@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 Fabricator(:follow_request) do
-  account
-  target_account { Fabricate(:account, locked: true) }
+  account { Fabricate.build(:account) }
+  target_account { Fabricate.build(:account, locked: true) }
 end

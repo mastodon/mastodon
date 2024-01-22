@@ -2,68 +2,85 @@
 
 const fs = require('fs');
 const http = require('http');
+const path = require('path');
 const url = require('url');
 
+const cors = require('cors');
 const dotenv = require('dotenv');
 const express = require('express');
+const Redis = require('ioredis');
 const { JSDOM } = require('jsdom');
-const log = require('npmlog');
 const pg = require('pg');
 const dbUrlToConfig = require('pg-connection-string').parse;
-const redis = require('redis');
-const uuid = require('uuid');
 const WebSocket = require('ws');
+
+const { logger, httpLogger, initializeLogLevel, attachWebsocketHttpLogger, createWebsocketLogger } = require('./logging');
+const { setupMetrics } = require('./metrics');
+const { isTruthy, normalizeHashtag, firstParam } = require("./utils");
 
 const environment = process.env.NODE_ENV || 'development';
 
+// Correctly detect and load .env or .env.production file based on environment:
+const dotenvFile = environment === 'production' ? '.env.production' : '.env';
+
 dotenv.config({
-  path: environment === 'production' ? '.env.production' : '.env',
+  path: path.resolve(__dirname, path.join('..', dotenvFile))
 });
 
-log.level = process.env.LOG_LEVEL || 'verbose';
+initializeLogLevel(process.env, environment);
 
 /**
- * @param {Object.<string, any>} defaultConfig
- * @param {string} redisUrl
+ * Declares the result type for accountFromToken / accountFromRequest.
+ *
+ * Note: This is here because jsdoc doesn't like importing types that
+ * are nested in functions
+ * @typedef ResolvedAccount
+ * @property {string} accessTokenId
+ * @property {string[]} scopes
+ * @property {string} accountId
+ * @property {string[]} chosenLanguages
+ * @property {string} deviceId
  */
-const redisUrlToClient = async (defaultConfig, redisUrl) => {
-  const config = defaultConfig;
 
-  let client;
-
-  if (!redisUrl) {
-    client = redis.createClient(config);
-  } else if (redisUrl.startsWith('unix://')) {
-    client = redis.createClient(Object.assign(config, {
-      socket: {
-        path: redisUrl.slice(7),
-      },
-    }));
-  } else {
-    client = redis.createClient(Object.assign(config, {
-      url: redisUrl,
-    }));
-  }
-
-  client.on('error', (err) => log.error('Redis Client Error!', err));
-  await client.connect();
+/**
+ * @param {Object.<string, any>} config
+ */
+const createRedisClient = async (config) => {
+  const { redisParams, redisUrl } = config;
+  // @ts-ignore
+  const client = new Redis(redisUrl, redisParams);
+  // @ts-ignore
+  client.on('error', (err) => logger.error({ err }, 'Redis Client Error!'));
 
   return client;
 };
 
 /**
+ * Attempts to safely parse a string as JSON, used when both receiving a message
+ * from redis and when receiving a message from a client over a websocket
+ * connection, this is why it accepts a `req` argument.
  * @param {string} json
- * @param {any} req
+ * @param {any?} req
  * @returns {Object.<string, any>|null}
  */
 const parseJSON = (json, req) => {
   try {
     return JSON.parse(json);
   } catch (err) {
-    if (req.accountId) {
-      log.warn(req.requestId, `Error parsing message from user ${req.accountId}: ${err}`);
+    /* FIXME: This logging isn't great, and should probably be done at the
+     * call-site of parseJSON, not in the method, but this would require changing
+     * the signature of parseJSON to return something akin to a Result type:
+     * [Error|null, null|Object<string,any}], and then handling the error
+     * scenarios.
+     */
+    if (req) {
+      if (req.accountId) {
+        req.log.error({ err }, `Error parsing message from user ${req.accountId}`);
+      } else {
+        req.log.error({ err }, `Error parsing message from ${req.remoteAddress}`);
+      }
     } else {
-      log.silly(req.requestId, `Error parsing message from ${req.remoteAddress}: ${err}`);
+      logger.error({ err }, `Error parsing message from redis`);
     }
     return null;
   }
@@ -96,7 +113,13 @@ const pgConfigFromEnv = (env) => {
 
   if (env.DATABASE_URL) {
     baseConfig = dbUrlToConfig(env.DATABASE_URL);
+
+    // Support overriding the database password in the connection URL
+    if (!baseConfig.password && env.DB_PASS) {
+      baseConfig.password = env.DB_PASS;
+    }
   } else {
+    // @ts-ignore
     baseConfig = pgConfigs[environment];
 
     if (env.DB_SSLMODE) {
@@ -128,22 +151,22 @@ const pgConfigFromEnv = (env) => {
  * @returns {Object.<string, any>} configuration for the Redis connection
  */
 const redisConfigFromEnv = (env) => {
-  const redisNamespace = env.REDIS_NAMESPACE || null;
+  // ioredis *can* transparently add prefixes for us, but it doesn't *in some cases*,
+  // which means we can't use it. But this is something that should be looked into.
+  const redisPrefix = env.REDIS_NAMESPACE ? `${env.REDIS_NAMESPACE}:` : '';
 
   const redisParams = {
-    socket: {
-      host: env.REDIS_HOST || '127.0.0.1',
-      port: env.REDIS_PORT || 6379,
-    },
-    database: env.REDIS_DB || 0,
+    host: env.REDIS_HOST || '127.0.0.1',
+    port: env.REDIS_PORT || 6379,
+    db: env.REDIS_DB || 0,
     password: env.REDIS_PASSWORD || undefined,
   };
 
-  if (redisNamespace) {
-    redisParams.namespace = redisNamespace;
+  // redisParams.path takes precedence over host and port.
+  if (env.REDIS_URL && env.REDIS_URL.startsWith('unix://')) {
+    // @ts-ignore
+    redisParams.path = env.REDIS_URL.slice(7);
   }
-
-  const redisPrefix = redisNamespace ? `${redisNamespace}:` : '';
 
   return {
     redisParams,
@@ -152,23 +175,155 @@ const redisConfigFromEnv = (env) => {
   };
 };
 
+const PUBLIC_CHANNELS = [
+  'public',
+  'public:media',
+  'public:local',
+  'public:local:media',
+  'public:remote',
+  'public:remote:media',
+  'hashtag',
+  'hashtag:local',
+];
+
+// Used for priming the counters/gauges for the various metrics that are
+// per-channel
+const CHANNEL_NAMES = [
+  'system',
+  'user',
+  'user:notification',
+  'list',
+  'direct',
+  ...PUBLIC_CHANNELS
+];
+
 const startServer = async () => {
+  const pgPool = new pg.Pool(pgConfigFromEnv(process.env));
+  const server = http.createServer();
+  const wss = new WebSocket.Server({ noServer: true });
+
+  // Set the X-Request-Id header on WebSockets:
+  wss.on("headers", function onHeaders(headers, req) {
+    headers.push(`X-Request-Id: ${req.id}`);
+  });
+
   const app = express();
 
   app.set('trust proxy', process.env.TRUSTED_PROXY_IP ? process.env.TRUSTED_PROXY_IP.split(/(?:\s*,\s*|\s+)/) : 'loopback,uniquelocal');
 
-  const pgPool = new pg.Pool(pgConfigFromEnv(process.env));
-  const server = http.createServer(app);
+  app.use(httpLogger);
+  app.use(cors());
 
-  const { redisParams, redisUrl, redisPrefix } = redisConfigFromEnv(process.env);
+  // Handle eventsource & other http requests:
+  server.on('request', app);
+
+  // Handle upgrade requests:
+  server.on('upgrade', async function handleUpgrade(request, socket, head) {
+    // Setup the HTTP logger, since websocket upgrades don't get the usual http
+    // logger. This decorates the `request` object.
+    attachWebsocketHttpLogger(request);
+
+    request.log.info("HTTP Upgrade Requested");
+
+    /** @param {Error} err */
+    const onSocketError = (err) => {
+      request.log.error({ error: err }, err.message);
+    };
+
+    socket.on('error', onSocketError);
+
+    /** @type {ResolvedAccount} */
+    let resolvedAccount;
+
+    try {
+      resolvedAccount = await accountFromRequest(request);
+    } catch (err) {
+      // Unfortunately for using the on('upgrade') setup, we need to manually
+      // write a HTTP Response to the Socket to close the connection upgrade
+      // attempt, so the following code is to handle all of that.
+      const statusCode = err.status ?? 401;
+
+      /** @type {Record<string, string | number | import('pino-http').ReqId>} */
+      const headers = {
+        'Connection': 'close',
+        'Content-Type': 'text/plain',
+        'Content-Length': 0,
+        'X-Request-Id': request.id,
+        'X-Error-Message': err.status ? err.toString() : 'An unexpected error occurred'
+      };
+
+      // Ensure the socket is closed once we've finished writing to it:
+      socket.once('finish', () => {
+        socket.destroy();
+      });
+
+      // Write the HTTP response manually:
+      socket.end(`HTTP/1.1 ${statusCode} ${http.STATUS_CODES[statusCode]}\r\n${Object.keys(headers).map((key) => `${key}: ${headers[key]}`).join('\r\n')}\r\n\r\n`);
+
+      // Finally, log the error:
+      request.log.error({
+        err,
+        res: {
+          statusCode,
+          headers
+        }
+      }, err.toString());
+
+      return;
+    }
+
+    // Remove the error handler, wss.handleUpgrade has its own:
+    socket.removeListener('error', onSocketError);
+
+    wss.handleUpgrade(request, socket, head, function done(ws) {
+      request.log.info("Authenticated request & upgraded to WebSocket connection");
+
+      const wsLogger = createWebsocketLogger(request, resolvedAccount);
+
+      // Start the connection:
+      wss.emit('connection', ws, request, wsLogger);
+    });
+  });
 
   /**
-   * @type {Object.<string, Array.<function(string): void>>}
+   * @type {Object.<string, Array.<function(Object<string, any>): void>>}
    */
   const subs = {};
 
-  const redisSubscribeClient = await redisUrlToClient(redisParams, redisUrl);
-  const redisClient = await redisUrlToClient(redisParams, redisUrl);
+  const redisConfig = redisConfigFromEnv(process.env);
+  const redisSubscribeClient = await createRedisClient(redisConfig);
+  const redisClient = await createRedisClient(redisConfig);
+  const { redisPrefix } = redisConfig;
+
+  const metrics = setupMetrics(CHANNEL_NAMES, pgPool);
+  // TODO: migrate all metrics to metrics.X.method() instead of just X.method()
+  const {
+    connectedClients,
+    connectedChannels,
+    redisSubscriptions,
+    redisMessagesReceived,
+    messagesSent,
+  } = metrics;
+
+  // When checking metrics in the browser, the favicon is requested this
+  // prevents the request from falling through to the API Router, which would
+  // error for this endpoint:
+  app.get('/favicon.ico', (_req, res) => res.status(404).end());
+
+  app.get('/api/v1/streaming/health', (_req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('OK');
+  });
+
+  app.get('/metrics', async (req, res) => {
+    try {
+      res.set('Content-Type', metrics.register.contentType);
+      res.end(await metrics.register.metrics());
+    } catch (ex) {
+      req.log.error(ex);
+      res.status(500).end();
+    }
+  });
 
   /**
    * @param {string[]} channels
@@ -191,33 +346,51 @@ const startServer = async () => {
   };
 
   /**
-   * @param {string} message
    * @param {string} channel
+   * @param {string} message
    */
-  const onRedisMessage = (message, channel) => {
+  const onRedisMessage = (channel, message) => {
+    redisMessagesReceived.inc();
+
     const callbacks = subs[channel];
 
-    log.silly(`New message on channel ${channel}`);
+    logger.debug(`New message on channel ${redisPrefix}${channel}`);
 
     if (!callbacks) {
       return;
     }
 
-    callbacks.forEach(callback => callback(message));
+    const json = parseJSON(message, null);
+    if (!json) return;
+
+    callbacks.forEach(callback => callback(json));
   };
+  redisSubscribeClient.on("message", onRedisMessage);
+
+  /**
+   * @callback SubscriptionListener
+   * @param {ReturnType<parseJSON>} json of the message
+   * @returns void
+   */
 
   /**
    * @param {string} channel
-   * @param {function(string): void} callback
+   * @param {SubscriptionListener} callback
    */
   const subscribe = (channel, callback) => {
-    log.silly(`Adding listener for ${channel}`);
+    logger.debug(`Adding listener for ${channel}`);
 
     subs[channel] = subs[channel] || [];
 
     if (subs[channel].length === 0) {
-      log.verbose(`Subscribe ${channel}`);
-      redisSubscribeClient.subscribe(channel, onRedisMessage);
+      logger.debug(`Subscribe ${channel}`);
+      redisSubscribeClient.subscribe(channel, (err, count) => {
+        if (err) {
+          logger.error(`Error subscribing to ${channel}`);
+        } else if (typeof count === 'number') {
+          redisSubscriptions.set(count);
+        }
+      });
     }
 
     subs[channel].push(callback);
@@ -225,10 +398,10 @@ const startServer = async () => {
 
   /**
    * @param {string} channel
-   * @param {function(string): void} callback
+   * @param {SubscriptionListener} callback
    */
   const unsubscribe = (channel, callback) => {
-    log.silly(`Removing listener for ${channel}`);
+    logger.debug(`Removing listener for ${channel}`);
 
     if (!subs[channel]) {
       return;
@@ -237,69 +410,20 @@ const startServer = async () => {
     subs[channel] = subs[channel].filter(item => item !== callback);
 
     if (subs[channel].length === 0) {
-      log.verbose(`Unsubscribe ${channel}`);
-      redisSubscribeClient.unsubscribe(channel);
+      logger.debug(`Unsubscribe ${channel}`);
+      redisSubscribeClient.unsubscribe(channel, (err, count) => {
+        if (err) {
+          logger.error(`Error unsubscribing to ${channel}`);
+        } else if (typeof count === 'number') {
+          redisSubscriptions.set(count);
+        }
+      });
       delete subs[channel];
     }
   };
 
-  const FALSE_VALUES = [
-    false,
-    0,
-    '0',
-    'f',
-    'F',
-    'false',
-    'FALSE',
-    'off',
-    'OFF',
-  ];
-
   /**
-   * @param {any} value
-   * @returns {boolean}
-   */
-  const isTruthy = value =>
-    value && !FALSE_VALUES.includes(value);
-
-  /**
-   * @param {any} req
-   * @param {any} res
-   * @param {function(Error=): void} next
-   */
-  const allowCrossDomain = (req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Authorization, Accept, Cache-Control');
-    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
-
-    next();
-  };
-
-  /**
-   * @param {any} req
-   * @param {any} res
-   * @param {function(Error=): void} next
-   */
-  const setRequestId = (req, res, next) => {
-    req.requestId = uuid.v4();
-    res.header('X-Request-Id', req.requestId);
-
-    next();
-  };
-
-  /**
-   * @param {any} req
-   * @param {any} res
-   * @param {function(Error=): void} next
-   */
-  const setRemoteAddress = (req, res, next) => {
-    req.remoteAddress = req.connection.remoteAddress;
-
-    next();
-  };
-
-  /**
-   * @param {any} req
+   * @param {http.IncomingMessage & ResolvedAccount} req
    * @param {string[]} necessaryScopes
    * @returns {boolean}
    */
@@ -309,7 +433,7 @@ const startServer = async () => {
   /**
    * @param {string} token
    * @param {any} req
-   * @returns {Promise.<void>}
+   * @returns {Promise<ResolvedAccount>}
    */
   const accountFromToken = (token, req) => new Promise((resolve, reject) => {
     pgPool.connect((err, client, done) => {
@@ -318,6 +442,7 @@ const startServer = async () => {
         return;
       }
 
+      // @ts-ignore
       client.query('SELECT oauth_access_tokens.id, oauth_access_tokens.resource_owner_id, users.account_id, users.chosen_languages, oauth_access_tokens.scopes, devices.device_id FROM oauth_access_tokens INNER JOIN users ON oauth_access_tokens.resource_owner_id = users.id LEFT OUTER JOIN devices ON oauth_access_tokens.id = devices.access_token_id WHERE oauth_access_tokens.token = $1 AND oauth_access_tokens.revoked_at IS NULL LIMIT 1', [token], (err, result) => {
         done();
 
@@ -328,6 +453,7 @@ const startServer = async () => {
 
         if (result.rows.length === 0) {
           err = new Error('Invalid access token');
+          // @ts-ignore
           err.status = 401;
 
           reject(err);
@@ -340,14 +466,20 @@ const startServer = async () => {
         req.chosenLanguages = result.rows[0].chosen_languages;
         req.deviceId = result.rows[0].device_id;
 
-        resolve();
+        resolve({
+          accessTokenId: result.rows[0].id,
+          scopes: result.rows[0].scopes.split(' '),
+          accountId: result.rows[0].account_id,
+          chosenLanguages: result.rows[0].chosen_languages,
+          deviceId: result.rows[0].device_id
+        });
       });
     });
   });
 
   /**
    * @param {any} req
-   * @returns {Promise.<void>}
+   * @returns {Promise<ResolvedAccount>}
    */
   const accountFromRequest = (req) => new Promise((resolve, reject) => {
     const authorization = req.headers.authorization;
@@ -356,6 +488,7 @@ const startServer = async () => {
 
     if (!authorization && !accessToken) {
       const err = new Error('Missing access token');
+      // @ts-ignore
       err.status = 401;
 
       reject(err);
@@ -369,7 +502,7 @@ const startServer = async () => {
 
   /**
    * @param {any} req
-   * @returns {string}
+   * @returns {string|undefined}
    */
   const channelNameFromPath = req => {
     const { path, query } = req;
@@ -399,27 +532,17 @@ const startServer = async () => {
     }
   };
 
-  const PUBLIC_CHANNELS = [
-    'public',
-    'public:media',
-    'public:local',
-    'public:local:media',
-    'public:remote',
-    'public:remote:media',
-    'hashtag',
-    'hashtag:local',
-  ];
-
   /**
-   * @param {any} req
-   * @param {string} channelName
+   * @param {http.IncomingMessage & ResolvedAccount} req
+   * @param {import('pino').Logger} logger
+   * @param {string|undefined} channelName
    * @returns {Promise.<void>}
    */
-  const checkScopes = (req, channelName) => new Promise((resolve, reject) => {
-    log.silly(req.requestId, `Checking OAuth scopes for ${channelName}`);
+  const checkScopes = (req, logger, channelName) => new Promise((resolve, reject) => {
+    logger.debug(`Checking OAuth scopes for ${channelName}`);
 
     // When accessing public channels, no scopes are needed
-    if (PUBLIC_CHANNELS.includes(channelName)) {
+    if (channelName && PUBLIC_CHANNELS.includes(channelName)) {
       resolve();
       return;
     }
@@ -446,29 +569,11 @@ const startServer = async () => {
     }
 
     const err = new Error('Access token does not cover required scopes');
+    // @ts-ignore
     err.status = 401;
 
     reject(err);
   });
-
-  /**
-   * @param {any} info
-   * @param {function(boolean, number, string): void} callback
-   */
-  const wsVerifyClient = (info, callback) => {
-    // When verifying the websockets connection, we no longer pre-emptively
-    // check OAuth scopes and drop the connection if they're missing. We only
-    // drop the connection if access without token is not allowed by environment
-    // variables. OAuth scope checks are moved to the point of subscription
-    // to a specific stream.
-
-    accountFromRequest(info.req).then(() => {
-      callback(true, undefined, undefined);
-    }).catch(err => {
-      log.error(info.req.requestId, err.toString());
-      callback(false, 401, 'Unauthorized');
-    });
-  };
 
   /**
    * @typedef SystemMessageHandlers
@@ -478,51 +583,53 @@ const startServer = async () => {
   /**
    * @param {any} req
    * @param {SystemMessageHandlers} eventHandlers
-   * @returns {function(string): void}
+   * @returns {SubscriptionListener}
    */
   const createSystemMessageListener = (req, eventHandlers) => {
     return message => {
-      const json = parseJSON(message, req);
+      if (!message?.event) {
+        return;
+      }
 
-      if (!json) return;
+      const { event } = message;
 
-      const { event } = json;
-
-      log.silly(req.requestId, `System message for ${req.accountId}: ${event}`);
+      req.log.debug(`System message for ${req.accountId}: ${event}`);
 
       if (event === 'kill') {
-        log.verbose(req.requestId, `Closing connection for ${req.accountId} due to expired access token`);
+        req.log.debug(`Closing connection for ${req.accountId} due to expired access token`);
         eventHandlers.onKill();
       } else if (event === 'filters_changed') {
-        log.verbose(req.requestId, `Invalidating filters cache for ${req.accountId}`);
+        req.log.debug(`Invalidating filters cache for ${req.accountId}`);
         req.cachedFilters = null;
       }
     };
   };
 
   /**
-   * @param {any} req
-   * @param {any} res
+   * @param {http.IncomingMessage & ResolvedAccount} req
+   * @param {http.OutgoingMessage} res
    */
   const subscribeHttpToSystemChannel = (req, res) => {
     const accessTokenChannelId = `timeline:access_token:${req.accessTokenId}`;
     const systemChannelId = `timeline:system:${req.accountId}`;
 
     const listener = createSystemMessageListener(req, {
-
       onKill() {
         res.end();
       },
-
     });
 
     res.on('close', () => {
       unsubscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
       unsubscribe(`${redisPrefix}${systemChannelId}`, listener);
+
+      connectedChannels.labels({ type: 'eventsource', channel: 'system' }).dec(2);
     });
 
     subscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
     subscribe(`${redisPrefix}${systemChannelId}`, listener);
+
+    connectedChannels.labels({ type: 'eventsource', channel: 'system' }).inc(2);
   };
 
   /**
@@ -536,7 +643,20 @@ const startServer = async () => {
       return;
     }
 
-    accountFromRequest(req).then(() => checkScopes(req, channelNameFromPath(req))).then(() => {
+    const channelName = channelNameFromPath(req);
+
+    // If no channelName can be found for the request, then we should terminate
+    // the connection, as there's nothing to stream back
+    if (!channelName) {
+      const err = new Error('Unknown channel requested');
+      // @ts-ignore
+      err.status = 400;
+
+      next(err);
+      return;
+    }
+
+    accountFromRequest(req).then(() => checkScopes(req, req.log, channelName)).then(() => {
       subscribeHttpToSystemChannel(req, res);
     }).then(() => {
       next();
@@ -552,22 +672,28 @@ const startServer = async () => {
    * @param {function(Error=): void} next
    */
   const errorMiddleware = (err, req, res, next) => {
-    log.error(req.requestId, err.toString());
+    req.log.error({ err }, err.toString());
 
     if (res.headersSent) {
       next(err);
       return;
     }
 
-    res.writeHead(err.status || 500, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ error: err.status ? err.toString() : 'An unexpected error occurred' }));
+    const hasStatusCode = Object.hasOwnProperty.call(err, 'status');
+    // @ts-ignore
+    const statusCode = hasStatusCode ? err.status : 500;
+    const errorMessage = hasStatusCode ? err.toString() : 'An unexpected error occurred';
+
+    res.writeHead(statusCode, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: errorMessage }));
   };
 
   /**
-   * @param {array} arr
+   * @param {any[]} arr
    * @param {number=} shift
    * @returns {string}
    */
+  // @ts-ignore
   const placeholders = (arr, shift = 0) => arr.map((_, i) => `$${i + 1 + shift}`).join(', ');
 
   /**
@@ -584,6 +710,7 @@ const startServer = async () => {
         return;
       }
 
+      // @ts-ignore
       client.query('SELECT id, account_id FROM lists WHERE id = $1 LIMIT 1', [listId], (err, result) => {
         done();
 
@@ -598,63 +725,89 @@ const startServer = async () => {
   });
 
   /**
-   * @param {string[]} ids
-   * @param {any} req
+   * @param {string[]} channelIds
+   * @param {http.IncomingMessage & ResolvedAccount} req
+   * @param {import('pino').Logger} log
    * @param {function(string, string): void} output
-   * @param {function(string[], function(string): void): void} attachCloseHandler
+   * @param {undefined | function(string[], SubscriptionListener): void} attachCloseHandler
+   * @param {'websocket' | 'eventsource'} destinationType
    * @param {boolean=} needsFiltering
-   * @returns {function(string): void}
+   * @returns {SubscriptionListener}
    */
-  const streamFrom = (ids, req, output, attachCloseHandler, needsFiltering = false) => {
-    const accountId = req.accountId || req.remoteAddress;
+  const streamFrom = (channelIds, req, log, output, attachCloseHandler, destinationType, needsFiltering = false) => {
+    log.info({ channelIds }, `Starting stream`);
 
-    log.verbose(req.requestId, `Starting stream from ${ids.join(', ')} for ${accountId}`);
+    /**
+     * @param {string} event
+     * @param {object|string} payload
+     */
+    const transmit = (event, payload) => {
+      // TODO: Replace "string"-based delete payloads with object payloads:
+      const encodedPayload = typeof payload === 'object' ? JSON.stringify(payload) : payload;
 
+      messagesSent.labels({ type: destinationType }).inc(1);
+
+      log.debug({ event, payload }, `Transmitting ${event} to ${req.accountId}`);
+
+      output(event, encodedPayload);
+    };
+
+    // The listener used to process each message off the redis subscription,
+    // message here is an object with an `event` and `payload` property. Some
+    // events also include a queued_at value, but this is being removed shortly.
+
+    /** @type {SubscriptionListener} */
     const listener = message => {
-      const json = parseJSON(message, req);
-
-      if (!json) return;
-
-      const { event, payload, queued_at } = json;
-
-      const transmit = () => {
-        const now = new Date().getTime();
-        const delta = now - queued_at;
-        const encodedPayload = typeof payload === 'object' ? JSON.stringify(payload) : payload;
-
-        log.silly(req.requestId, `Transmitting for ${accountId}: ${event} ${encodedPayload} Delay: ${delta}ms`);
-        output(event, encodedPayload);
-      };
-
-      // Only messages that may require filtering are statuses, since notifications
-      // are already personalized and deletes do not matter
-      if (!needsFiltering || event !== 'update') {
-        transmit();
+      if (!message?.event || !message?.payload) {
         return;
       }
 
-      const unpackedPayload = payload;
-      const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id));
-      const accountDomain = unpackedPayload.account.acct.split('@')[1];
+      const { event, payload } = message;
 
-      if (Array.isArray(req.chosenLanguages) && unpackedPayload.language !== null && req.chosenLanguages.indexOf(unpackedPayload.language) === -1) {
-        log.silly(req.requestId, `Message ${unpackedPayload.id} filtered by language (${unpackedPayload.language})`);
+      // Streaming only needs to apply filtering to some channels and only to
+      // some events. This is because majority of the filtering happens on the
+      // Ruby on Rails side when producing the event for streaming.
+      //
+      // The only events that require filtering from the streaming server are
+      // `update` and `status.update`, all other events are transmitted to the
+      // client as soon as they're received (pass-through).
+      //
+      // The channels that need filtering are determined in the function
+      // `channelNameToIds` defined below:
+      if (!needsFiltering || (event !== 'update' && event !== 'status.update')) {
+        transmit(event, payload);
+        return;
+      }
+
+      // The rest of the logic from here on in this function is to handle
+      // filtering of statuses:
+
+      // Filter based on language:
+      if (Array.isArray(req.chosenLanguages) && payload.language !== null && req.chosenLanguages.indexOf(payload.language) === -1) {
+        log.debug(`Message ${payload.id} filtered by language (${payload.language})`);
         return;
       }
 
       // When the account is not logged in, it is not necessary to confirm the block or mute
       if (!req.accountId) {
-        transmit();
+        transmit(event, payload);
         return;
       }
 
-      pgPool.connect((err, client, done) => {
+      // Filter based on domain blocks, blocks, mutes, or custom filters:
+      // @ts-ignore
+      const targetAccountIds = [payload.account.id].concat(payload.mentions.map(item => item.id));
+      const accountDomain = payload.account.acct.split('@')[1];
+
+      // TODO: Move this logic out of the message handling loop
+      pgPool.connect((err, client, releasePgConnection) => {
         if (err) {
           log.error(err);
           return;
         }
 
         const queries = [
+          // @ts-ignore
           client.query(`SELECT 1
                         FROM blocks
                         WHERE (account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)}))
@@ -663,40 +816,62 @@ const startServer = async () => {
                         SELECT 1
                         FROM mutes
                         WHERE account_id = $1
-                          AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, unpackedPayload.account.id].concat(targetAccountIds)),
+                          AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, payload.account.id].concat(targetAccountIds)),
         ];
 
         if (accountDomain) {
+          // @ts-ignore
           queries.push(client.query('SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2', [req.accountId, accountDomain]));
         }
 
-        if (!unpackedPayload.filtered && !req.cachedFilters) {
+        // @ts-ignore
+        if (!payload.filtered && !req.cachedFilters) {
+          // @ts-ignore
           queries.push(client.query('SELECT filter.id AS id, filter.phrase AS title, filter.context AS context, filter.expires_at AS expires_at, filter.action AS filter_action, keyword.keyword AS keyword, keyword.whole_word AS whole_word FROM custom_filter_keywords keyword JOIN custom_filters filter ON keyword.custom_filter_id = filter.id WHERE filter.account_id = $1 AND (filter.expires_at IS NULL OR filter.expires_at > NOW())', [req.accountId]));
         }
 
         Promise.all(queries).then(values => {
-          done();
+          releasePgConnection();
 
+          // Handling blocks & mutes and domain blocks: If one of those applies,
+          // then we don't transmit the payload of the event to the client
           if (values[0].rows.length > 0 || (accountDomain && values[1].rows.length > 0)) {
             return;
           }
 
-          if (!unpackedPayload.filtered && !req.cachedFilters) {
+          // If the payload already contains the `filtered` property, it means
+          // that filtering has been applied on the ruby on rails side, as
+          // such, we don't need to construct or apply the filters in streaming:
+          if (Object.prototype.hasOwnProperty.call(payload, "filtered")) {
+            transmit(event, payload);
+            return;
+          }
+
+          // Handling for constructing the custom filters and caching them on the request
+          // TODO: Move this logic out of the message handling lifecycle
+          // @ts-ignore
+          if (!req.cachedFilters) {
             const filterRows = values[accountDomain ? 2 : 1].rows;
 
-            req.cachedFilters = filterRows.reduce((cache, row) => {
-              if (cache[row.id]) {
-                cache[row.id].keywords.push([row.keyword, row.whole_word]);
+            // @ts-ignore
+            req.cachedFilters = filterRows.reduce((cache, filter) => {
+              if (cache[filter.id]) {
+                cache[filter.id].keywords.push([filter.keyword, filter.whole_word]);
               } else {
-                cache[row.id] = {
-                  keywords: [[row.keyword, row.whole_word]],
-                  expires_at: row.expires_at,
-                  repr: {
-                    id: row.id,
-                    title: row.title,
-                    context: row.context,
-                    expires_at: row.expires_at,
-                    filter_action: ['warn', 'hide'][row.filter_action],
+                cache[filter.id] = {
+                  keywords: [[filter.keyword, filter.whole_word]],
+                  expires_at: filter.expires_at,
+                  filter: {
+                    id: filter.id,
+                    title: filter.title,
+                    context: filter.context,
+                    expires_at: filter.expires_at,
+                    // filter.filter_action is the value from the
+                    // custom_filters.action database column, it is an integer
+                    // representing a value in an enum defined by Ruby on Rails:
+                    //
+                    // enum { warn: 0, hide: 1 }
+                    filter_action: ['warn', 'hide'][filter.filter_action],
                   },
                 };
               }
@@ -704,7 +879,13 @@ const startServer = async () => {
               return cache;
             }, {});
 
+            // Construct the regular expressions for the custom filters: This
+            // needs to be done in a separate loop as the database returns one
+            // filterRow per keyword, so we need all the keywords before
+            // constructing the regular expression
+            // @ts-ignore
             Object.keys(req.cachedFilters).forEach((key) => {
+              // @ts-ignore
               req.cachedFilters[key].regexp = new RegExp(req.cachedFilters[key].keywords.map(([keyword, whole_word]) => {
                 let expr = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -723,41 +904,71 @@ const startServer = async () => {
             });
           }
 
-          // Check filters
-          if (req.cachedFilters && !unpackedPayload.filtered) {
-            const status = unpackedPayload;
-            const searchContent = ([status.spoiler_text || '', status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
-            const searchIndex = JSDOM.fragment(searchContent).textContent;
+          // Apply cachedFilters against the payload, constructing a
+          // `filter_results` array of FilterResult entities
+          // @ts-ignore
+          if (req.cachedFilters) {
+            const status = payload;
+            // TODO: Calculate searchableContent in Ruby on Rails:
+            // @ts-ignore
+            const searchableContent = ([status.spoiler_text || '', status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+            const searchableTextContent = JSDOM.fragment(searchableContent).textContent;
 
             const now = new Date();
-            payload.filtered = [];
-            Object.values(req.cachedFilters).forEach((cachedFilter) => {
-              if ((cachedFilter.expires_at === null || cachedFilter.expires_at > now)) {
-                const keyword_matches = searchIndex.match(cachedFilter.regexp);
-                if (keyword_matches) {
-                  payload.filtered.push({
-                    filter: cachedFilter.repr,
-                    keyword_matches,
-                  });
-                }
+            // @ts-ignore
+            const filter_results = Object.values(req.cachedFilters).reduce((results, cachedFilter) => {
+              // Check the filter hasn't expired before applying:
+              if (cachedFilter.expires_at !== null && cachedFilter.expires_at < now) {
+                return results;
               }
-            });
-          }
 
-          transmit();
+              // Just in-case JSDOM fails to find textContent in searchableContent
+              if (!searchableTextContent) {
+                return results;
+              }
+
+              const keyword_matches = searchableTextContent.match(cachedFilter.regexp);
+              if (keyword_matches) {
+                // results is an Array of FilterResult; status_matches is always
+                // null as we only are only applying the keyword-based custom
+                // filters, not the status-based custom filters.
+                // https://docs.joinmastodon.org/entities/FilterResult/
+                results.push({
+                  filter: cachedFilter.filter,
+                  keyword_matches,
+                  status_matches: null
+                });
+              }
+
+              return results;
+            }, []);
+
+            // Send the payload + the FilterResults as the `filtered` property
+            // to the streaming connection. To reach this code, the `event` must
+            // have been either `update` or `status.update`, meaning the
+            // `payload` is a Status entity, which has a `filtered` property:
+            //
+            // filtered: https://docs.joinmastodon.org/entities/Status/#filtered
+            transmit(event, {
+              ...payload,
+              filtered: filter_results
+            });
+          } else {
+            transmit(event, payload);
+          }
         }).catch(err => {
           log.error(err);
-          done();
+          releasePgConnection();
         });
       });
     };
 
-    ids.forEach(id => {
+    channelIds.forEach(id => {
       subscribe(`${redisPrefix}${id}`, listener);
     });
 
-    if (attachCloseHandler) {
-      attachCloseHandler(ids.map(id => `${redisPrefix}${id}`), listener);
+    if (typeof attachCloseHandler === 'function') {
+      attachCloseHandler(channelIds.map(id => `${redisPrefix}${id}`), listener);
     }
 
     return listener;
@@ -769,7 +980,14 @@ const startServer = async () => {
    * @returns {function(string, string): void}
    */
   const streamToHttp = (req, res) => {
-    const accountId = req.accountId || req.remoteAddress;
+    const channelName = channelNameFromPath(req);
+
+    connectedClients.labels({ type: 'eventsource' }).inc();
+
+    // In theory we'll always have a channel name, but channelNameFromPath can return undefined:
+    if (typeof channelName === 'string') {
+      connectedChannels.labels({ type: 'eventsource', channel: channelName }).inc();
+    }
 
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-store');
@@ -780,7 +998,16 @@ const startServer = async () => {
     const heartbeat = setInterval(() => res.write(':thump\n'), 15000);
 
     req.on('close', () => {
-      log.verbose(req.requestId, `Ending stream for ${accountId}`);
+      req.log.info({ accountId: req.accountId }, `Ending stream`);
+
+      // We decrement these counters here instead of in streamHttpEnd as in that
+      // method we don't have knowledge of the channel names
+      connectedClients.labels({ type: 'eventsource' }).dec();
+      // In theory we'll always have a channel name, but channelNameFromPath can return undefined:
+      if (typeof channelName === 'string') {
+        connectedChannels.labels({ type: 'eventsource', channel: channelName }).dec();
+      }
+
       clearInterval(heartbeat);
     });
 
@@ -793,12 +1020,13 @@ const startServer = async () => {
   /**
    * @param {any} req
    * @param {function(): void} [closeHandler]
-   * @returns {function(string[]): void}
+   * @returns {function(string[], SubscriptionListener): void}
    */
-  const streamHttpEnd = (req, closeHandler = undefined) => (ids) => {
+
+  const streamHttpEnd = (req, closeHandler = undefined) => (ids, listener) => {
     req.on('close', () => {
       ids.forEach(id => {
-        unsubscribe(id);
+        unsubscribe(id, listener);
       });
 
       if (closeHandler) {
@@ -808,18 +1036,24 @@ const startServer = async () => {
   };
 
   /**
-   * @param {any} req
-   * @param {any} ws
+   * @param {http.IncomingMessage} req
+   * @param {WebSocket} ws
    * @param {string[]} streamName
    * @returns {function(string, string): void}
    */
   const streamToWs = (req, ws, streamName) => (event, payload) => {
     if (ws.readyState !== ws.OPEN) {
-      log.error(req.requestId, 'Tried writing to closed socket');
+      req.log.error('Tried writing to closed socket');
       return;
     }
 
-    ws.send(JSON.stringify({ stream: streamName, event, payload }));
+    const message = JSON.stringify({ stream: streamName, event, payload });
+
+    ws.send(message, (/** @type {Error|undefined} */ err) => {
+      if (err) {
+        req.log.error({err}, `Failed to send to websocket`);
+      }
+    });
   };
 
   /**
@@ -830,52 +1064,26 @@ const startServer = async () => {
     res.end(JSON.stringify({ error: 'Not found' }));
   };
 
-  app.use(setRequestId);
-  app.use(setRemoteAddress);
-  app.use(allowCrossDomain);
+  const api = express.Router();
 
-  app.get('/api/v1/streaming/health', (req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('OK');
-  });
+  app.use(api);
 
-  app.get('/metrics', (req, res) => server.getConnections((err, count) => {
-    res.writeHeader(200, { 'Content-Type': 'application/openmetrics-text; version=1.0.0; charset=utf-8' });
-    res.write('# TYPE connected_clients gauge\n');
-    res.write('# HELP connected_clients The number of clients connected to the streaming server\n');
-    res.write(`connected_clients ${count}.0\n`);
-    res.write('# TYPE connected_channels gauge\n');
-    res.write('# HELP connected_channels The number of Redis channels the streaming server is subscribed to\n');
-    res.write(`connected_channels ${Object.keys(subs).length}.0\n`);
-    res.write('# TYPE pg_pool_total_connections gauge\n');
-    res.write('# HELP pg_pool_total_connections The total number of clients existing within the pool\n');
-    res.write(`pg_pool_total_connections ${pgPool.totalCount}.0\n`);
-    res.write('# TYPE pg_pool_idle_connections gauge\n');
-    res.write('# HELP pg_pool_idle_connections The number of clients which are not checked out but are currently idle in the pool\n');
-    res.write(`pg_pool_idle_connections ${pgPool.idleCount}.0\n`);
-    res.write('# TYPE pg_pool_waiting_queries gauge\n');
-    res.write('# HELP pg_pool_waiting_queries The number of queued requests waiting on a client when all clients are checked out\n');
-    res.write(`pg_pool_waiting_queries ${pgPool.waitingCount}.0\n`);
-    res.write('# EOF\n');
-    res.end();
-  }));
+  api.use(authenticationMiddleware);
+  api.use(errorMiddleware);
 
-  app.use(authenticationMiddleware);
-  app.use(errorMiddleware);
-
-  app.get('/api/v1/streaming/*', (req, res) => {
+  api.get('/api/v1/streaming/*', (req, res) => {
+    // @ts-ignore
     channelNameToIds(req, channelNameFromPath(req), req.query).then(({ channelIds, options }) => {
       const onSend = streamToHttp(req, res);
       const onEnd = streamHttpEnd(req, subscriptionHeartbeat(channelIds));
 
-      streamFrom(channelIds, req, onSend, onEnd, options.needsFiltering);
+      // @ts-ignore
+      streamFrom(channelIds, req, req.log, onSend, onEnd, 'eventsource', options.needsFiltering);
     }).catch(err => {
-      log.verbose(req.requestId, 'Subscription error:', err.toString());
+      res.log.info({ err }, 'Subscription error:', err.toString());
       httpNotFound(res);
     });
   });
-
-  const wss = new WebSocket.Server({ server, verifyClient: wsVerifyClient });
 
   /**
    * @typedef StreamParams
@@ -900,34 +1108,6 @@ const startServer = async () => {
     }
 
     return arr;
-  };
-
-  /**
-   * See app/lib/ascii_folder.rb for the canon definitions
-   * of these constants
-   */
-  const NON_ASCII_CHARS        = 'ÀÁÂÃÄÅàáâãäåĀāĂăĄąÇçĆćĈĉĊċČčÐðĎďĐđÈÉÊËèéêëĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħÌÍÎÏìíîïĨĩĪīĬĭĮįİıĴĵĶķĸĹĺĻļĽľĿŀŁłÑñŃńŅņŇňŉŊŋÒÓÔÕÖØòóôõöøŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšſŢţŤťŦŧÙÚÛÜùúûüŨũŪūŬŭŮůŰűŲųŴŵÝýÿŶŷŸŹźŻżŽž';
-  const EQUIVALENT_ASCII_CHARS = 'AAAAAAaaaaaaAaAaAaCcCcCcCcCcDdDdDdEEEEeeeeEeEeEeEeEeGgGgGgGgHhHhIIIIiiiiIiIiIiIiIiJjKkkLlLlLlLlLlNnNnNnNnnNnOOOOOOooooooOoOoOoRrRrRrSsSsSsSssTtTtTtUUUUuuuuUuUuUuUuUuUuWwYyyYyYZzZzZz';
-
-  /**
-   * @param {string} str
-   * @returns {string}
-   */
-  const foldToASCII = str => {
-    const regex = new RegExp(NON_ASCII_CHARS.split('').join('|'), 'g');
-
-    return str.replace(regex, match => {
-      const index = NON_ASCII_CHARS.indexOf(match);
-      return EQUIVALENT_ASCII_CHARS[index];
-    });
-  };
-
-  /**
-   * @param {string} str
-   * @returns {string}
-   */
-  const normalizeHashtag = str => {
-    return foldToASCII(str.normalize('NFKC').toLowerCase()).replace(/[^\p{L}\p{N}_\u00b7\u200c]/gu, '');
   };
 
   /**
@@ -1024,6 +1204,7 @@ const startServer = async () => {
 
       break;
     case 'list':
+      // @ts-ignore
       authorizeListAccess(params.list, req).then(() => {
         resolve({
           channelIds: [`timeline:list:${params.list}`],
@@ -1045,9 +1226,9 @@ const startServer = async () => {
    * @returns {string[]}
    */
   const streamNameFromChannelName = (channelName, params) => {
-    if (channelName === 'list') {
+    if (channelName === 'list' && params.list) {
       return [channelName, params.list];
-    } else if (['hashtag', 'hashtag:local'].includes(channelName)) {
+    } else if (['hashtag', 'hashtag:local'].includes(channelName) && params.tag) {
       return [channelName, params.tag];
     } else {
       return [channelName];
@@ -1056,18 +1237,20 @@ const startServer = async () => {
 
   /**
    * @typedef WebSocketSession
-   * @property {any} socket
-   * @property {any} request
-   * @property {Object.<string, { listener: function(string): void, stopHeartbeat: function(): void }>} subscriptions
+   * @property {WebSocket & { isAlive: boolean}} websocket
+   * @property {http.IncomingMessage & ResolvedAccount} request
+   * @property {import('pino').Logger} logger
+   * @property {Object.<string, { channelName: string, listener: SubscriptionListener, stopHeartbeat: function(): void }>} subscriptions
    */
 
   /**
    * @param {WebSocketSession} session
    * @param {string} channelName
    * @param {StreamParams} params
+   * @returns {void}
    */
-  const subscribeWebsocketToChannel = ({ socket, request, subscriptions }, channelName, params) =>
-    checkScopes(request, channelName).then(() => channelNameToIds(request, channelName, params)).then(({
+  const subscribeWebsocketToChannel = ({ websocket, request, logger, subscriptions }, channelName, params) => {
+    checkScopes(request, logger, channelName).then(() => channelNameToIds(request, channelName, params)).then(({
       channelIds,
       options,
     }) => {
@@ -1075,99 +1258,113 @@ const startServer = async () => {
         return;
       }
 
-      const onSend = streamToWs(request, socket, streamNameFromChannelName(channelName, params));
+      const onSend = streamToWs(request, websocket, streamNameFromChannelName(channelName, params));
       const stopHeartbeat = subscriptionHeartbeat(channelIds);
-      const listener = streamFrom(channelIds, request, onSend, undefined, options.needsFiltering);
+      const listener = streamFrom(channelIds, request, logger, onSend, undefined, 'websocket', options.needsFiltering);
+
+      connectedChannels.labels({ type: 'websocket', channel: channelName }).inc();
 
       subscriptions[channelIds.join(';')] = {
+        channelName,
         listener,
         stopHeartbeat,
       };
     }).catch(err => {
-      log.verbose(request.requestId, 'Subscription error:', err.toString());
-      socket.send(JSON.stringify({ error: err.toString() }));
+      logger.error({ err }, 'Subscription error');
+      websocket.send(JSON.stringify({ error: err.toString() }));
     });
+  };
+
+  /**
+   * @param {WebSocketSession} session
+   * @param {string[]} channelIds
+   */
+  const removeSubscription = ({ request, logger, subscriptions }, channelIds) => {
+    logger.info({ channelIds, accountId: request.accountId }, `Ending stream`);
+
+    const subscription = subscriptions[channelIds.join(';')];
+
+    if (!subscription) {
+      return;
+    }
+
+    channelIds.forEach(channelId => {
+      unsubscribe(`${redisPrefix}${channelId}`, subscription.listener);
+    });
+
+    connectedChannels.labels({ type: 'websocket', channel: subscription.channelName }).dec();
+    subscription.stopHeartbeat();
+
+    delete subscriptions[channelIds.join(';')];
+  };
 
   /**
    * @param {WebSocketSession} session
    * @param {string} channelName
    * @param {StreamParams} params
+   * @returns {void}
    */
-  const unsubscribeWebsocketFromChannel = ({ socket, request, subscriptions }, channelName, params) =>
+  const unsubscribeWebsocketFromChannel = (session, channelName, params) => {
+    const { websocket, request, logger } = session;
+
     channelNameToIds(request, channelName, params).then(({ channelIds }) => {
-      log.verbose(request.requestId, `Ending stream from ${channelIds.join(', ')} for ${request.accountId}`);
-
-      const subscription = subscriptions[channelIds.join(';')];
-
-      if (!subscription) {
-        return;
-      }
-
-      const { listener, stopHeartbeat } = subscription;
-
-      channelIds.forEach(channelId => {
-        unsubscribe(`${redisPrefix}${channelId}`, listener);
-      });
-
-      stopHeartbeat();
-
-      delete subscriptions[channelIds.join(';')];
+      removeSubscription(session, channelIds);
     }).catch(err => {
-      log.verbose(request.requestId, 'Unsubscription error:', err);
-      socket.send(JSON.stringify({ error: err.toString() }));
+      logger.error({err}, 'Unsubscribe error');
+
+      // If we have a socket that is alive and open still, send the error back to the client:
+      if (websocket.isAlive && websocket.readyState === websocket.OPEN) {
+        websocket.send(JSON.stringify({ error: "Error unsubscribing from channel" }));
+      }
     });
+  };
 
   /**
    * @param {WebSocketSession} session
    */
-  const subscribeWebsocketToSystemChannel = ({ socket, request, subscriptions }) => {
+  const subscribeWebsocketToSystemChannel = ({ websocket, request, subscriptions }) => {
     const accessTokenChannelId = `timeline:access_token:${request.accessTokenId}`;
     const systemChannelId = `timeline:system:${request.accountId}`;
 
     const listener = createSystemMessageListener(request, {
-
       onKill() {
-        socket.close();
+        websocket.close();
       },
-
     });
 
     subscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
     subscribe(`${redisPrefix}${systemChannelId}`, listener);
 
     subscriptions[accessTokenChannelId] = {
+      channelName: 'system',
       listener,
       stopHeartbeat: () => {
       },
     };
 
     subscriptions[systemChannelId] = {
+      channelName: 'system',
       listener,
       stopHeartbeat: () => {
       },
     };
+
+    connectedChannels.labels({ type: 'websocket', channel: 'system' }).inc(2);
   };
 
   /**
-   * @param {string|string[]} arrayOrString
-   * @returns {string}
+   * @param {WebSocket & { isAlive: boolean }} ws
+   * @param {http.IncomingMessage & ResolvedAccount} req
+   * @param {import('pino').Logger} log
    */
-  const firstParam = arrayOrString => {
-    if (Array.isArray(arrayOrString)) {
-      return arrayOrString[0];
-    } else {
-      return arrayOrString;
-    }
-  };
+  function onConnection(ws, req, log) {
+    // Note: url.parse could throw, which would terminate the connection, so we
+    // increment the connected clients metric straight away when we establish
+    // the connection, without waiting:
+    connectedClients.labels({ type: 'websocket' }).inc();
 
-  wss.on('connection', (ws, req) => {
-    const location = url.parse(req.url, true);
-
-    req.requestId = uuid.v4();
-    req.remoteAddress = ws._socket.remoteAddress;
-
+    // Setup connection keep-alive state:
     ws.isAlive = true;
-
     ws.on('pong', () => {
       ws.isAlive = true;
     });
@@ -1176,30 +1373,46 @@ const startServer = async () => {
      * @type {WebSocketSession}
      */
     const session = {
-      socket: ws,
+      websocket: ws,
       request: req,
+      logger: log,
       subscriptions: {},
     };
 
-    const onEnd = () => {
-      const keys = Object.keys(session.subscriptions);
+    ws.on('close', function onWebsocketClose() {
+      const subscriptions = Object.keys(session.subscriptions);
 
-      keys.forEach(channelIds => {
-        const { listener, stopHeartbeat } = session.subscriptions[channelIds];
-
-        channelIds.split(';').forEach(channelId => {
-          unsubscribe(`${redisPrefix}${channelId}`, listener);
-        });
-
-        stopHeartbeat();
+      subscriptions.forEach(channelIds => {
+        removeSubscription(session, channelIds.split(';'));
       });
-    };
 
-    ws.on('close', onEnd);
-    ws.on('error', onEnd);
+      // Decrement the metrics for connected clients:
+      connectedClients.labels({ type: 'websocket' }).dec();
 
-    ws.on('message', data => {
-      const json = parseJSON(data, session.request);
+      // We need to delete the session object as to ensure it correctly gets
+      // garbage collected, without doing this we could accidentally hold on to
+      // references to the websocket, the request, and the logger, causing
+      // memory leaks.
+      //
+      // @ts-ignore
+      delete session;
+    });
+
+    // Note: immediately after the `error` event is emitted, the `close` event
+    // is emitted. As such, all we need to do is log the error here.
+    ws.on('error', (/** @type {Error} */ err) => {
+      log.error(err);
+    });
+
+    ws.on('message', (data, isBinary) => {
+      if (isBinary) {
+        log.warn('Received binary data, closing connection');
+        ws.close(1003, 'The mastodon streaming server does not support binary messages');
+        return;
+      }
+      const message = data.toString('utf8');
+
+      const json = parseJSON(message, session.request);
 
       if (!json) return;
 
@@ -1216,25 +1429,32 @@ const startServer = async () => {
 
     subscribeWebsocketToSystemChannel(session);
 
-    if (location.query.stream) {
+    // Parse the URL for the connection arguments (if supplied), url.parse can throw:
+    const location = req.url && url.parse(req.url, true);
+
+    if (location && location.query.stream) {
       subscribeWebsocketToChannel(session, firstParam(location.query.stream), location.query);
     }
-  });
+  }
+
+  wss.on('connection', onConnection);
 
   setInterval(() => {
     wss.clients.forEach(ws => {
+      // @ts-ignore
       if (ws.isAlive === false) {
         ws.terminate();
         return;
       }
 
+      // @ts-ignore
       ws.isAlive = false;
       ws.ping('', false);
     });
   }, 30000);
 
   attachServerWithConfig(server, address => {
-    log.warn(`Streaming API now listening on ${address}`);
+    logger.info(`Streaming API now listening on ${address}`);
   });
 
   const onExit = () => {
@@ -1242,8 +1462,10 @@ const startServer = async () => {
     process.exit(0);
   };
 
+  /** @param {Error} err */
   const onError = (err) => {
-    log.error(err);
+    logger.error(err);
+
     server.close();
     process.exit(0);
   };
@@ -1267,7 +1489,7 @@ const attachServerWithConfig = (server, onSuccess) => {
       }
     });
   } else {
-    server.listen(+process.env.PORT || 4000, process.env.BIND || '127.0.0.1', () => {
+    server.listen(+(process.env.PORT || 4000), process.env.BIND || '127.0.0.1', () => {
       if (onSuccess) {
         onSuccess(`${server.address().address}:${server.address().port}`);
       }

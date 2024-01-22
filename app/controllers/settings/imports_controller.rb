@@ -12,6 +12,7 @@ class Settings::ImportsController < Settings::BaseController
     muting: 'muted_accounts_failures.csv',
     domain_blocking: 'blocked_domains_failures.csv',
     bookmarks: 'bookmarks_failures.csv',
+    lists: 'lists_failures.csv',
   }.freeze
 
   TYPE_TO_HEADERS_MAP = {
@@ -20,6 +21,7 @@ class Settings::ImportsController < Settings::BaseController
     muting: ['Account address', 'Hide notifications'],
     domain_blocking: false,
     bookmarks: false,
+    lists: false,
   }.freeze
 
   def index
@@ -49,6 +51,8 @@ class Settings::ImportsController < Settings::BaseController
               csv << [row.data['domain']]
             when :bookmarks
               csv << [row.data['uri']]
+            when :lists
+              csv << [row.data['list_name'], row.data['acct']]
             end
           end
         end

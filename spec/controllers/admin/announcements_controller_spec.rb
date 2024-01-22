@@ -73,4 +73,30 @@ describe Admin::AnnouncementsController do
       expect(flash.notice).to match(I18n.t('admin.announcements.destroyed_msg'))
     end
   end
+
+  describe 'POST #publish' do
+    subject { post :publish, params: { id: announcement.id } }
+
+    let(:announcement) { Fabricate(:announcement, published_at: nil) }
+
+    it 'marks announcement published' do
+      subject
+
+      expect(announcement.reload).to be_published
+      expect(response).to redirect_to admin_announcements_path
+    end
+  end
+
+  describe 'POST #unpublish' do
+    subject { post :unpublish, params: { id: announcement.id } }
+
+    let(:announcement) { Fabricate(:announcement, published_at: 4.days.ago) }
+
+    it 'marks announcement as not published' do
+      subject
+
+      expect(announcement.reload).to_not be_published
+      expect(response).to redirect_to admin_announcements_path
+    end
+  end
 end

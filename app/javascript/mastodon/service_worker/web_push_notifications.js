@@ -1,4 +1,4 @@
-import IntlMessageFormat from 'intl-messageformat';
+import { IntlMessageFormat } from 'intl-messageformat';
 
 import { unescape } from 'lodash';
 

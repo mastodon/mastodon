@@ -25,6 +25,6 @@ class Api::V1::Accounts::NotesController < Api::BaseController
   end
 
   def relationships_presenter
-    AccountRelationshipsPresenter.new([@account.id], current_user.account_id)
+    AccountRelationshipsPresenter.new([@account], current_user.account_id)
   end
 end

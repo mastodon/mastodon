@@ -34,7 +34,6 @@ module Mastodon::CLI
       When the --purge-domain-blocks option is given, also purge matching domain blocks.
     LONG_DESC
     def purge(*domains)
-      dry_run            = options[:dry_run] ? ' (DRY RUN)' : ''
       domains            = domains.map { |domain| TagManager.instance.normalize_domain(domain) }
       account_scope      = Account.none
       domain_block_scope = DomainBlock.none
@@ -79,24 +78,26 @@ module Mastodon::CLI
 
       # Actually perform the deletions
       processed, = parallelize_with_progress(account_scope) do |account|
-        DeleteAccountService.new.call(account, reserve_username: false, skip_side_effects: true) unless options[:dry_run]
+        DeleteAccountService.new.call(account, reserve_username: false, skip_side_effects: true) unless dry_run?
       end
 
-      say("Removed #{processed} accounts#{dry_run}", :green)
+      say("Removed #{processed} accounts#{dry_run_mode_suffix}", :green)
 
       if options[:purge_domain_blocks]
         domain_block_count = domain_block_scope.count
-        domain_block_scope.in_batches.destroy_all unless options[:dry_run]
-        say("Removed #{domain_block_count} domain blocks#{dry_run}", :green)
+        domain_block_scope.in_batches.destroy_all unless dry_run?
+        say("Removed #{domain_block_count} domain blocks#{dry_run_mode_suffix}", :green)
       end
 
       custom_emojis_count = emoji_scope.count
-      emoji_scope.in_batches.destroy_all unless options[:dry_run]
+      emoji_scope.in_batches.destroy_all unless dry_run?
 
-      Instance.refresh unless options[:dry_run]
+      Instance.refresh unless dry_run?
 
-      say("Removed #{custom_emojis_count} custom emojis#{dry_run}", :green)
+      say("Removed #{custom_emojis_count} custom emojis#{dry_run_mode_suffix}", :green)
     end
+
+    CRAWL_SLEEP_TIME = 20
 
     option :concurrency, type: :numeric, default: 50, aliases: [:c]
     option :format, type: :string, default: 'summary', aliases: [:f]
@@ -126,7 +127,7 @@ module Mastodon::CLI
       failed          = Concurrent::AtomicFixnum.new(0)
       start_at        = Time.now.to_f
       seed            = start ? [start] : Instance.pluck(:domain)
-      blocked_domains = /\.?(#{DomainBlock.where(severity: 1).pluck(:domain).map { |domain| Regexp.escape(domain) }.join('|')})$/
+      blocked_domains = /\.?(#{Regexp.union(domain_block_suspended_domains).source})$/
       progress        = create_progress_bar
 
       pool = Concurrent::ThreadPoolExecutor.new(min_threads: 0, max_threads: options[:concurrency], idletime: 10, auto_terminate: true, max_queue: 0)
@@ -169,8 +170,8 @@ module Mastodon::CLI
         pool.post(domain, &work_unit)
       end
 
-      sleep 20
-      sleep 20 until pool.queue_length.zero?
+      sleep CRAWL_SLEEP_TIME
+      sleep CRAWL_SLEEP_TIME until pool.queue_length.zero?
 
       pool.shutdown
       pool.wait_for_termination(20)
@@ -189,6 +190,10 @@ module Mastodon::CLI
     end
 
     private
+
+    def domain_block_suspended_domains
+      DomainBlock.suspend.pluck(:domain)
+    end
 
     def stats_to_summary(stats, processed, failed, start_at)
       stats.compact!

@@ -10,7 +10,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   protected
 
   def perform_query
-    [mastodon_version, ruby_version, postgresql_version, redis_version]
+    [mastodon_version, ruby_version, postgresql_version, redis_version, elasticsearch_version].compact
   end
 
   def mastodon_version
@@ -25,7 +25,8 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   end
 
   def ruby_version
-    value = "#{RUBY_VERSION}p#{RUBY_PATCHLEVEL}"
+    yjit = defined?(RubyVM::YJIT) && RubyVM::YJIT.enabled?
+    value = "#{RUBY_VERSION}p#{RUBY_PATCHLEVEL}#{yjit ? ' +YJIT' : ''}"
 
     {
       key: 'ruby',
@@ -55,6 +56,22 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
       value: value,
       human_value: value,
     }
+  end
+
+  def elasticsearch_version
+    return unless Chewy.enabled?
+
+    client_info = Chewy.client.info
+    version = client_info.dig('version', 'number')
+
+    {
+      key: 'elasticsearch',
+      human_key: client_info.dig('version', 'distribution') == 'opensearch' ? 'OpenSearch' : 'Elasticsearch',
+      value: version,
+      human_value: version,
+    }
+  rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error
+    nil
   end
 
   def redis_info

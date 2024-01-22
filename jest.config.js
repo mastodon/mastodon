@@ -13,12 +13,16 @@ const config = {
   collectCoverageFrom: [
     'app/javascript/mastodon/**/*.{js,jsx,ts,tsx}',
     '!app/javascript/mastodon/features/emoji/emoji_compressed.js',
-    '!app/javascript/mastodon/locales/locale-data/*.js',
     '!app/javascript/mastodon/service_worker/entry.js',
     '!app/javascript/mastodon/test_setup.js',
   ],
+  // Those packages are ESM, so we need them to be processed by Babel
+  transformIgnorePatterns: ['/node_modules/(?!(redent|strip-indent)/)'],
   coverageDirectory: '<rootDir>/coverage',
-  moduleDirectories: ['<rootDir>/node_modules', '<rootDir>/app/javascript'],
+  moduleDirectories: ['node_modules', '<rootDir>/app/javascript'],
+  moduleNameMapper: {
+    '\\.svg\\?react$': '<rootDir>/app/javascript/__mocks__/svg.js',
+  },
 };
 
 module.exports = config;

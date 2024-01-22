@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
+import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { mountConversations, unmountConversations, expandConversations } from 'mastodon/actions/conversations';
 import { connectDirectStream } from 'mastodon/actions/streaming';
@@ -81,6 +82,7 @@ class DirectTimeline extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='at'
+          iconComponent={AlternateEmailIcon}
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}

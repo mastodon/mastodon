@@ -17,15 +17,15 @@ import {
 
 const initialState = ImmutableMap({
   server: ImmutableMap({
-    isLoading: true,
+    isLoading: false,
   }),
 
   extendedDescription: ImmutableMap({
-    isLoading: true,
+    isLoading: false,
   }),
 
   domainBlocks: ImmutableMap({
-    isLoading: true,
+    isLoading: false,
     isAvailable: true,
     items: ImmutableList(),
   }),

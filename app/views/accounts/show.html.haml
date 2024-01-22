@@ -1,11 +1,11 @@
 - content_for :page_title do
-  = "#{display_name(@account)} (#{acct(@account)})"
+  #{display_name(@account)} (#{acct(@account)})
 
 - content_for :header_tags do
   - if @account.user_prefers_noindex?
     %meta{ name: 'robots', content: 'noindex, noarchive' }/
 
-  %link{ rel: 'alternate', type: 'application/rss+xml', href: @rss_url }/
+  %link{ rel: 'alternate', type: 'application/rss+xml', href: rss_url }/
   %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@account) }/
 
   - @account.fields.select(&:verifiable?).each do |field|

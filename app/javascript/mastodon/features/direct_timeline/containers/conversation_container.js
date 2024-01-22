@@ -41,10 +41,13 @@ const mapDispatchToProps = (dispatch, { intl, conversationId }) => ({
       let state = getState();
 
       if (state.getIn(['compose', 'text']).trim().length !== 0) {
-        dispatch(openModal('CONFIRM', {
-          message: intl.formatMessage(messages.replyMessage),
-          confirm: intl.formatMessage(messages.replyConfirm),
-          onConfirm: () => dispatch(replyCompose(status, router)),
+        dispatch(openModal({
+          modalType: 'CONFIRM',
+          modalProps: {
+            message: intl.formatMessage(messages.replyMessage),
+            confirm: intl.formatMessage(messages.replyConfirm),
+            onConfirm: () => dispatch(replyCompose(status, router)),
+          },
         }));
       } else {
         dispatch(replyCompose(status, router));

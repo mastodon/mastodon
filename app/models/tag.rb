@@ -20,6 +20,7 @@
 #
 
 class Tag < ApplicationRecord
+  include Paginable
   has_and_belongs_to_many :statuses
   has_and_belongs_to_many :accounts
 
@@ -34,9 +35,9 @@ class Tag < ApplicationRecord
   HASHTAG_LAST_SEQUENCE = '([[:word:]_]*[[:alpha:]][[:word:]_]*)'
   HASHTAG_NAME_PAT = "#{HASHTAG_FIRST_SEQUENCE}|#{HASHTAG_LAST_SEQUENCE}"
 
-  HASHTAG_RE = /(?:^|[^\/\)\w])#(#{HASHTAG_NAME_PAT})/i
+  HASHTAG_RE = %r{(?<![=/)\w])#(#{HASHTAG_NAME_PAT})}i
   HASHTAG_NAME_RE = /\A(#{HASHTAG_NAME_PAT})\z/i
-  HASHTAG_INVALID_CHARS_RE = /[^[:alnum:]#{HASHTAG_SEPARATORS}]/
+  HASHTAG_INVALID_CHARS_RE = /[^[:alnum:]\u0E47-\u0E4E#{HASHTAG_SEPARATORS}]/
 
   validates :name, presence: true, format: { with: HASHTAG_NAME_RE }
   validates :display_name, format: { with: HASHTAG_NAME_RE }

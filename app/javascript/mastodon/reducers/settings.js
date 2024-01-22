@@ -79,6 +79,10 @@ const initialState = ImmutableMap({
     }),
   }),
 
+  firehose: ImmutableMap({
+    onlyMedia: false,
+  }),
+
   community: ImmutableMap({
     regex: ImmutableMap({
       body: '',
@@ -95,6 +99,15 @@ const initialState = ImmutableMap({
     regex: ImmutableMap({
       body: '',
     }),
+  }),
+
+  dismissed_banners: ImmutableMap({
+    'public_timeline': false,
+    'community_timeline': false,
+    'home.explore_prompt': false,
+    'explore/links': false,
+    'explore/statuses': false,
+    'explore/tags': false,
   }),
 });
 

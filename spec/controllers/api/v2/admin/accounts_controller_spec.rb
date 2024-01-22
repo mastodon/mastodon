@@ -15,22 +15,6 @@ RSpec.describe Api::V2::Admin::AccountsController do
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
-  shared_examples 'forbidden for wrong scope' do |wrong_scope|
-    let(:scopes) { wrong_scope }
-
-    it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
-    end
-  end
-
-  shared_examples 'forbidden for wrong role' do |wrong_role|
-    let(:role) { UserRole.find_by(name: wrong_role) }
-
-    it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
-    end
-  end
-
   describe 'GET #index' do
     let!(:remote_account)       { Fabricate(:account, domain: 'example.org') }
     let!(:other_remote_account) { Fabricate(:account, domain: 'foo.bar') }
@@ -50,25 +34,61 @@ RSpec.describe Api::V2::Admin::AccountsController do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    [
-      [{ status: 'active', origin: 'local', permissions: 'staff' }, [:admin_account]],
-      [{ by_domain: 'example.org', origin: 'remote' }, [:remote_account]],
-      [{ status: 'suspended' }, [:suspended_remote, :suspended_account]],
-      [{ status: 'disabled' }, [:disabled_account]],
-      [{ status: 'pending' }, [:pending_account]],
-    ].each do |params, expected_results|
-      context "when called with #{params.inspect}" do
-        let(:params) { params }
+    context 'when called with status active and origin local and permissions staff' do
+      let(:params) { { status: 'active', origin: 'local', permissions: 'staff' } }
 
-        it 'returns http success' do
-          expect(response).to have_http_status(200)
-        end
+      it 'returns the correct accounts' do
+        expect(response).to have_http_status(200)
+        expect(body_json_ids).to eq([admin_account.id])
+      end
+    end
 
-        it "returns the correct accounts (#{expected_results.inspect})" do
-          json = body_as_json
+    context 'when called with by_domain value and origin remote' do
+      let(:params) { { by_domain: 'example.org', origin: 'remote' } }
 
-          expect(json.map { |a| a[:id].to_i }).to eq(expected_results.map { |symbol| send(symbol).id })
-        end
+      it 'returns the correct accounts' do
+        expect(response).to have_http_status(200)
+        expect(body_json_ids).to include(remote_account.id)
+        expect(body_json_ids).to_not include(other_remote_account.id)
+      end
+    end
+
+    context 'when called with status suspended' do
+      let(:params) { { status: 'suspended' } }
+
+      it 'returns the correct accounts' do
+        expect(response).to have_http_status(200)
+        expect(body_json_ids).to include(suspended_remote.id, suspended_account.id)
+      end
+    end
+
+    context 'when called with status disabled' do
+      let(:params) { { status: 'disabled' } }
+
+      it 'returns the correct accounts' do
+        expect(response).to have_http_status(200)
+        expect(body_json_ids).to include(disabled_account.id)
+      end
+    end
+
+    context 'when called with status pending' do
+      let(:params) { { status: 'pending' } }
+
+      it 'returns the correct accounts' do
+        expect(response).to have_http_status(200)
+        expect(body_json_ids).to include(pending_account.id)
+      end
+    end
+
+    def body_json_ids
+      body_as_json.map { |a| a[:id].to_i }
+    end
+
+    context 'with limit param' do
+      let(:params) { { limit: 1 } }
+
+      it 'sets the correct pagination headers' do
+        expect(response.headers['Link'].find_link(%w(rel next)).href).to eq api_v2_admin_accounts_url(limit: 1, max_id: admin_account.id)
       end
     end
   end

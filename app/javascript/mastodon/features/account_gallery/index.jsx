@@ -8,9 +8,9 @@ import { connect } from 'react-redux';
 
 import { lookupAccount, fetchAccount } from 'mastodon/actions/accounts';
 import { openModal } from 'mastodon/actions/modal';
-import ColumnBackButton from 'mastodon/components/column_back_button';
-import LoadMore from 'mastodon/components/load_more';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
+import { ColumnBackButton } from 'mastodon/components/column_back_button';
+import { LoadMore } from 'mastodon/components/load_more';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollContainer from 'mastodon/containers/scroll_container';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
@@ -143,14 +143,23 @@ class AccountGallery extends ImmutablePureComponent {
     const lang = attachment.getIn(['status', 'language']);
 
     if (attachment.get('type') === 'video') {
-      dispatch(openModal('VIDEO', { media: attachment, statusId, lang, options: { autoPlay: true } }));
+      dispatch(openModal({
+        modalType: 'VIDEO',
+        modalProps: { media: attachment, statusId, lang, options: { autoPlay: true } },
+      }));
     } else if (attachment.get('type') === 'audio') {
-      dispatch(openModal('AUDIO', { media: attachment, statusId, lang, options: { autoPlay: true } }));
+      dispatch(openModal({
+        modalType: 'AUDIO',
+        modalProps: { media: attachment, statusId, lang, options: { autoPlay: true } },
+      }));
     } else {
       const media = attachment.getIn(['status', 'media_attachments']);
       const index = media.findIndex(x => x.get('id') === attachment.get('id'));
 
-      dispatch(openModal('MEDIA', { media, index, statusId, lang }));
+      dispatch(openModal({
+        modalType: 'MEDIA',
+        modalProps: { media, index, statusId, lang },
+      }));
     }
   };
 
@@ -194,7 +203,7 @@ class AccountGallery extends ImmutablePureComponent {
 
     return (
       <Column>
-        <ColumnBackButton multiColumn={multiColumn} />
+        <ColumnBackButton />
 
         <ScrollContainer scrollKey='account_gallery'>
           <div className='scrollable scrollable--flex' onScroll={this.handleScroll}>

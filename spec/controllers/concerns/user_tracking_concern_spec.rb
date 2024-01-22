@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-describe ApplicationController do
-  controller do
+describe UserTrackingConcern do
+  controller(ApplicationController) do
     include UserTrackingConcern
 
     def show
@@ -75,7 +75,7 @@ describe ApplicationController do
         expect(redis.ttl("account:#{user.account_id}:regeneration")).to be >= 0
       end
 
-      it 'regenerates feed when sign in is older than two weeks' do
+      it 'regenerates feed when sign in is older than two weeks', :sidekiq_inline do
         get :show
 
         expect_updated_sign_in_at(user)

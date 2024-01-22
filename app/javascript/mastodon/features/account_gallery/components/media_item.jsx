@@ -5,6 +5,9 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import AudiotrackIcon from '@/material-icons/400-24px/music_note.svg?react';
+import PlayArrowIcon from '@/material-icons/400-24px/play_arrow.svg?react';
+import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon }  from 'mastodon/components/icon';
 import { autoPlayGif, displayMedia, useBlurhash } from 'mastodon/initial_state';
@@ -69,7 +72,7 @@ export default class MediaItem extends ImmutablePureComponent {
     if (!visible) {
       icon = (
         <span className='account-gallery__item__icons'>
-          <Icon id='eye-slash' />
+          <Icon id='eye-slash' icon={VisibilityOffIcon} />
         </span>
       );
     } else {
@@ -84,9 +87,9 @@ export default class MediaItem extends ImmutablePureComponent {
         );
 
         if (attachment.get('type') === 'audio') {
-          label = <Icon id='music' />;
+          label = <Icon id='music' icon={AudiotrackIcon} />;
         } else {
-          label = <Icon id='play' />;
+          label = <Icon id='play' icon={PlayArrowIcon} />;
         }
       } else if (attachment.get('type') === 'image') {
         const focusX = attachment.getIn(['meta', 'focus', 'x']) || 0;
@@ -128,7 +131,11 @@ export default class MediaItem extends ImmutablePureComponent {
         <div className='media-gallery__gifv'>
           {content}
 
-          {label && <span className='media-gallery__gifv__label'>{label}</span>}
+          {label && (
+            <div className='media-gallery__item__badges'>
+              <span className='media-gallery__gifv__label'>{label}</span>
+            </div>
+          )}
         </div>
       );
     }

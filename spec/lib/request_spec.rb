@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'securerandom'
 
 describe Request do
-  subject { Request.new(:get, 'http://example.com') }
+  subject { described_class.new(:get, 'http://example.com') }
 
   describe '#headers' do
     it 'returns user agent' do
@@ -48,7 +48,7 @@ describe Request do
       end
 
       it 'executes a HTTP request when the first address is private' do
-        resolver = double
+        resolver = instance_double(Resolv::DNS)
 
         allow(resolver).to receive(:getaddresses).with('example.com').and_return(%w(0.0.0.0 2001:4860:4860::8844))
         allow(resolver).to receive(:timeouts=).and_return(nil)
@@ -64,8 +64,11 @@ describe Request do
       end
 
       it 'closes underlying connection' do
-        expect_any_instance_of(HTTP::Client).to receive(:close)
+        allow(subject.send(:http_client)).to receive(:close)
+
         expect { |block| subject.perform(&block) }.to yield_control
+
+        expect(subject.send(:http_client)).to have_received(:close)
       end
 
       it 'returns response which implements body_with_limit' do
@@ -83,7 +86,7 @@ describe Request do
       end
 
       it 'raises Mastodon::ValidationError' do
-        resolver = double
+        resolver = instance_double(Resolv::DNS)
 
         allow(resolver).to receive(:getaddresses).with('example.com').and_return(%w(0.0.0.0 2001:db8::face))
         allow(resolver).to receive(:timeouts=).and_return(nil)

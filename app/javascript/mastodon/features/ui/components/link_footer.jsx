@@ -19,11 +19,14 @@ const messages = defineMessages({
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
   onLogout () {
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.logoutMessage),
-      confirm: intl.formatMessage(messages.logoutConfirm),
-      closeWhenConfirm: false,
-      onConfirm: () => logOut(),
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.logoutMessage),
+        confirm: intl.formatMessage(messages.logoutConfirm),
+        closeWhenConfirm: false,
+        onConfirm: () => logOut(),
+      },
     }));
   },
 });
@@ -35,6 +38,7 @@ class LinkFooter extends PureComponent {
   };
 
   static propTypes = {
+    multiColumn: PropTypes.bool,
     onLogout: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
@@ -50,6 +54,7 @@ class LinkFooter extends PureComponent {
 
   render () {
     const { signedIn, permissions } = this.context.identity;
+    const { multiColumn } = this.props;
 
     const canInvite = signedIn && ((permissions & PERMISSION_INVITE_USERS) === PERMISSION_INVITE_USERS);
     const canProfileDirectory = profileDirectory;
@@ -61,7 +66,7 @@ class LinkFooter extends PureComponent {
         <p>
           <strong>{domain}</strong>:
           {' '}
-          <Link to='/about'><FormattedMessage id='footer.about' defaultMessage='About' /></Link>
+          <Link to='/about' target={multiColumn ? '_blank' : undefined}><FormattedMessage id='footer.about' defaultMessage='About' /></Link>
           {statusPageUrl && (
             <>
               {DividingCircle}
@@ -81,7 +86,7 @@ class LinkFooter extends PureComponent {
             </>
           )}
           {DividingCircle}
-          <Link to='/privacy-policy'><FormattedMessage id='footer.privacy_policy' defaultMessage='Privacy policy' /></Link>
+          <Link to='/privacy-policy' target={multiColumn ? '_blank' : undefined}><FormattedMessage id='footer.privacy_policy' defaultMessage='Privacy policy' /></Link>
         </p>
 
         <p>
@@ -95,7 +100,7 @@ class LinkFooter extends PureComponent {
           {DividingCircle}
           <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='View source code' /></a>
           {DividingCircle}
-          v{version}
+          <span className='version'>v{version}</span>
         </p>
       </div>
     );

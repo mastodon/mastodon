@@ -7,39 +7,25 @@ module.exports = (api) => {
   };
 
   const envOptions = {
-    loose: true,
-    modules: false,
+    useBuiltIns: "usage",
+    corejs: { version: "3.30" },
     debug: false,
     include: [
-      'proposal-numeric-separator',
+      'transform-numeric-separator',
+      'transform-optional-chaining',
+      'transform-nullish-coalescing-operator',
+      'transform-class-properties',
     ],
   };
 
-  const config = {
-    presets: [
-      '@babel/preset-typescript',
-      ['@babel/react', reactOptions],
-      ['@babel/env', envOptions],
-    ],
-    plugins: [
-      ['react-intl', { messagesDir: './build/messages' }],
-      'preval',
-      '@babel/plugin-proposal-optional-chaining',
-      '@babel/plugin-proposal-nullish-coalescing-operator',
-    ],
-    overrides: [
-      {
-        test: /tesseract\.js/,
-        presets: [
-          ['@babel/env', { ...envOptions, modules: 'commonjs' }],
-        ],
-      },
-    ],
-  };
+  const plugins = [
+    ['formatjs'],
+    'preval',
+  ];
 
   switch (env) {
   case 'production':
-    config.plugins.push(...[
+    plugins.push(...[
       'lodash',
       [
         'transform-react-remove-prop-types',
@@ -62,14 +48,33 @@ module.exports = (api) => {
       ],
     ]);
     break;
+
   case 'development':
     reactOptions.development = true;
     envOptions.debug = true;
-    break;
-  case 'test':
-    envOptions.modules = 'commonjs';
+
+    // We need Babel to not inject polyfills in dev, as this breaks `preval` files
+    envOptions.useBuiltIns = false;
+    envOptions.corejs = undefined;
     break;
   }
+
+  const config = {
+    presets: [
+      '@babel/preset-typescript',
+      ['@babel/react', reactOptions],
+      ['@babel/env', envOptions],
+    ],
+    plugins,
+    overrides: [
+      {
+        test: /tesseract\.js/,
+        presets: [
+          ['@babel/env', { ...envOptions, modules: 'commonjs' }],
+        ],
+      },
+    ],
+  };
 
   return config;
 };

@@ -11,7 +11,7 @@ module ReactComponentHelper
   end
 
   def react_admin_component(name, props = {})
-    data = { 'admin-component': name.to_s.camelcase, props: Oj.dump({ locale: I18n.locale }.merge(props)) }
+    data = { 'admin-component': name.to_s.camelcase, props: Oj.dump(props) }
     div_tag_with_data(data)
   end
 

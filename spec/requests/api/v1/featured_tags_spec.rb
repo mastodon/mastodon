@@ -8,14 +8,6 @@ RSpec.describe 'FeaturedTags' do
   let(:scopes)  { 'read:accounts write:accounts' }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  shared_examples 'forbidden for wrong scope' do |wrong_scope|
-    let(:scopes) { wrong_scope }
-
-    it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
-    end
-  end
-
   describe 'GET /api/v1/featured_tags' do
     context 'with wrong scope' do
       before do
@@ -40,7 +32,7 @@ RSpec.describe 'FeaturedTags' do
     end
 
     context 'when the requesting user has no featured tag' do
-      before { Fabricate.times(3, :featured_tag) }
+      before { Fabricate(:featured_tag) }
 
       it 'returns an empty body' do
         get '/api/v1/featured_tags', headers: headers
@@ -52,7 +44,7 @@ RSpec.describe 'FeaturedTags' do
     end
 
     context 'when the requesting user has featured tags' do
-      let!(:user_featured_tags) { Fabricate.times(5, :featured_tag, account: user.account) }
+      let!(:user_featured_tags) { Fabricate.times(1, :featured_tag, account: user.account) }
 
       it 'returns only the featured tags belonging to the requesting user' do
         get '/api/v1/featured_tags', headers: headers
@@ -155,7 +147,7 @@ RSpec.describe 'FeaturedTags' do
       expect(body).to be_empty
     end
 
-    it 'deletes the featured tag' do
+    it 'deletes the featured tag', :sidekiq_inline do
       delete "/api/v1/featured_tags/#{id}", headers: headers
 
       featured_tag = FeaturedTag.find_by(id: id)

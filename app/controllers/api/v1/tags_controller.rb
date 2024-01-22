@@ -19,6 +19,7 @@ class Api::V1::TagsController < Api::BaseController
 
   def unfollow
     TagFollow.find_by(account: current_account, tag: @tag)&.destroy!
+    TagUnmergeWorker.perform_async(@tag.id, current_account.id)
     render json: @tag, serializer: REST::TagSerializer
   end
 

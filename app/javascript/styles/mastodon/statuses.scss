@@ -77,64 +77,16 @@
   }
 }
 
-.button.logo-button {
-  flex: 0 auto;
-  font-size: 14px;
-  background: darken($ui-highlight-color, 2%);
-  color: $primary-text-color;
-  text-transform: none;
-  line-height: 1.2;
+.button.logo-button svg {
+  width: 20px;
   height: auto;
-  min-height: 36px;
-  min-width: 88px;
-  white-space: normal;
-  overflow-wrap: break-word;
-  hyphens: auto;
-  padding: 0 15px;
-  border: 0;
-
-  svg {
-    width: 20px;
-    height: auto;
-    vertical-align: middle;
-    margin-inline-end: 5px;
-    fill: $primary-text-color;
-  }
-
-  &:active,
-  &:focus,
-  &:hover {
-    background: $ui-highlight-color;
-  }
-
-  &:disabled,
-  &.disabled {
-    &:active,
-    &:focus,
-    &:hover {
-      background: $ui-primary-color;
-    }
-  }
-
-  &.button--destructive {
-    &:active,
-    &:focus,
-    &:hover {
-      background: $error-red;
-    }
-  }
+  vertical-align: middle;
+  margin-inline-end: 5px;
+  fill: $primary-text-color;
 
   @media screen and (max-width: $no-gap-breakpoint) {
-    svg {
-      display: none;
-    }
+    display: none;
   }
-}
-
-a.button.logo-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .embed {

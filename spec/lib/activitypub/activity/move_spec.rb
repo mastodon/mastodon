@@ -26,7 +26,7 @@ RSpec.describe ActivityPub::Activity::Move do
     stub_request(:post, old_account.inbox_url).to_return(status: 200)
     stub_request(:post, new_account.inbox_url).to_return(status: 200)
 
-    service_stub = double
+    service_stub = instance_double(ActivityPub::FetchRemoteAccountService)
     allow(ActivityPub::FetchRemoteAccountService).to receive(:new).and_return(service_stub)
     allow(service_stub).to receive(:call).and_return(returned_account)
   end
@@ -38,7 +38,7 @@ RSpec.describe ActivityPub::Activity::Move do
       subject.perform
     end
 
-    context 'when all conditions are met' do
+    context 'when all conditions are met', :sidekiq_inline do
       it 'sets moved account on old account' do
         expect(old_account.reload.moved_to_account_id).to eq new_account.id
       end

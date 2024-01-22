@@ -143,11 +143,11 @@ class ActivityPub::Activity
   end
 
   def follow_request_from_object
-    @follow_request ||= FollowRequest.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
+    @follow_request_from_object ||= FollowRequest.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
   end
 
   def follow_from_object
-    @follow ||= ::Follow.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
+    @follow_from_object ||= ::Follow.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
   end
 
   def fetch_remote_original_status

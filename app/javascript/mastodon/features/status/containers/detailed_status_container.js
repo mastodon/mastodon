@@ -36,7 +36,7 @@ const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
   redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
-  redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.' },
+  redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favorites and boosts will be lost, and replies to the original post will be orphaned.' },
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
 });
@@ -60,10 +60,13 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     dispatch((_, getState) => {
       let state = getState();
       if (state.getIn(['compose', 'text']).trim().length !== 0) {
-        dispatch(openModal('CONFIRM', {
-          message: intl.formatMessage(messages.replyMessage),
-          confirm: intl.formatMessage(messages.replyConfirm),
-          onConfirm: () => dispatch(replyCompose(status, router)),
+        dispatch(openModal({
+          modalType: 'CONFIRM',
+          modalProps: {
+            message: intl.formatMessage(messages.replyMessage),
+            confirm: intl.formatMessage(messages.replyConfirm),
+            onConfirm: () => dispatch(replyCompose(status, router)),
+          },
         }));
       } else {
         dispatch(replyCompose(status, router));
@@ -104,9 +107,12 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onEmbed (status) {
-    dispatch(openModal('EMBED', {
-      url: status.get('url'),
-      onError: error => dispatch(showAlertForError(error)),
+    dispatch(openModal({
+      modalType: 'EMBED',
+      modalProps: {
+        id: status.get('id'),
+        onError: error => dispatch(showAlertForError(error)),
+      },
     }));
   },
 
@@ -114,10 +120,13 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     if (!deleteModal) {
       dispatch(deleteStatus(status.get('id'), history, withRedraft));
     } else {
-      dispatch(openModal('CONFIRM', {
-        message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
-        confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
-        onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
+      dispatch(openModal({
+        modalType: 'CONFIRM',
+        modalProps: {
+          message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
+          confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
+          onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
+        },
       }));
     }
   },
@@ -131,11 +140,17 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onOpenMedia (media, index, lang) {
-    dispatch(openModal('MEDIA', { media, index, lang }));
+    dispatch(openModal({
+      modalType: 'MEDIA',
+      modalProps: { media, index, lang },
+    }));
   },
 
   onOpenVideo (media, lang, options) {
-    dispatch(openModal('VIDEO', { media, lang, options }));
+    dispatch(openModal({
+      modalType: 'VIDEO',
+      modalProps: { media, lang, options },
+    }));
   },
 
   onBlock (status) {

@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe UpdateAccountService, type: :service do
-  subject { UpdateAccountService.new }
+  subject { described_class.new }
 
-  describe 'switching form locked to unlocked accounts' do
+  describe 'switching form locked to unlocked accounts', :sidekiq_inline do
     let(:account) { Fabricate(:account, locked: true) }
     let(:alice)   { Fabricate(:account) }
     let(:bob)     { Fabricate(:account) }

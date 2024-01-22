@@ -6,9 +6,12 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
+import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
+import ExpandMoreIcon from '@/material-icons/400-24px/expand_more.svg?react';
 import { fetchServer, fetchExtendedDescription, fetchDomainBlocks  } from 'mastodon/actions/server';
 import Column from 'mastodon/components/column';
 import { Icon  }  from 'mastodon/components/icon';
@@ -72,7 +75,7 @@ class Section extends PureComponent {
     return (
       <div className={classNames('about__section', { active: !collapsed })}>
         <div className='about__section__title' role='button' tabIndex={0} onClick={this.handleClick}>
-          <Icon id={collapsed ? 'chevron-right' : 'chevron-down'} fixedWidth /> {title}
+          <Icon id={collapsed ? 'chevron-right' : 'chevron-down'} icon={collapsed ? ChevronRightIcon : ExpandMoreIcon} /> {title}
         </div>
 
         {!collapsed && (
@@ -161,7 +164,7 @@ class About extends PureComponent {
           </Section>
 
           <Section title={intl.formatMessage(messages.rules)}>
-            {!isLoading && (server.get('rules').isEmpty() ? (
+            {!isLoading && (server.get('rules', ImmutableList()).isEmpty() ? (
               <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
             ) : (
               <ol className='rules-list'>

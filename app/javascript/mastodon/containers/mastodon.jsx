@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { IntlProvider, addLocaleData } from 'react-intl';
-
 import { Helmet } from 'react-helmet';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { Provider as ReduxProvider } from 'react-redux';
 
@@ -14,15 +12,14 @@ import { fetchCustomEmojis } from 'mastodon/actions/custom_emojis';
 import { hydrateStore } from 'mastodon/actions/store';
 import { connectUserStream } from 'mastodon/actions/streaming';
 import ErrorBoundary from 'mastodon/components/error_boundary';
+import { Router } from 'mastodon/components/router';
 import UI from 'mastodon/features/ui';
 import initialState, { title as siteTitle } from 'mastodon/initial_state';
-import { getLocale } from 'mastodon/locales';
+import { IntlProvider } from 'mastodon/locales';
 import { store } from 'mastodon/store';
+import { isProduction } from 'mastodon/utils/environment';
 
-const { localeData, messages } = getLocale();
-addLocaleData(localeData);
-
-const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
+const title = isProduction() ? siteTitle : `${siteTitle} (Dev)`;
 
 const hydrateAction = hydrateStore(initialState);
 
@@ -40,10 +37,6 @@ const createIdentityContext = state => ({
 });
 
 export default class Mastodon extends PureComponent {
-
-  static propTypes = {
-    locale: PropTypes.string.isRequired,
-  };
 
   static childContextTypes = {
     identity: PropTypes.shape({
@@ -80,17 +73,15 @@ export default class Mastodon extends PureComponent {
   }
 
   render () {
-    const { locale } = this.props;
-
     return (
-      <IntlProvider locale={locale} messages={messages}>
+      <IntlProvider>
         <ReduxProvider store={store}>
           <ErrorBoundary>
-            <BrowserRouter>
+            <Router>
               <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
                 <Route path='/' component={UI} />
               </ScrollContext>
-            </BrowserRouter>
+            </Router>
 
             <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
           </ErrorBoundary>

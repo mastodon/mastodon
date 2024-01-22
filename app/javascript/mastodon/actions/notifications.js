@@ -1,4 +1,4 @@
-import IntlMessageFormat from 'intl-messageformat';
+import { IntlMessageFormat } from 'intl-messageformat';
 import { defineMessages } from 'react-intl';
 
 import { List as ImmutableList } from 'immutable';
@@ -18,9 +18,12 @@ import {
   importFetchedStatuses,
 } from './importer';
 import { submitMarkers } from './markers';
+import { notificationsUpdate } from "./notifications_typed";
+import { register as registerPushNotifications } from './push_notifications';
 import { saveSettings } from './settings';
 
-export const NOTIFICATIONS_UPDATE      = 'NOTIFICATIONS_UPDATE';
+export * from "./notifications_typed";
+
 export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
 
 export const NOTIFICATIONS_EXPAND_REQUEST = 'NOTIFICATIONS_EXPAND_REQUEST';
@@ -94,12 +97,8 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
         dispatch(importFetchedAccount(notification.report.target_account));
       }
 
-      dispatch({
-        type: NOTIFICATIONS_UPDATE,
-        notification,
-        usePendingItems: preferPendingItems,
-        meta: (playSound && !filtered) ? { sound: 'boop' } : undefined,
-      });
+
+      dispatch(notificationsUpdate({ notification, preferPendingItems, playSound: playSound && !filtered}));
 
       fetchRelatedRelationships(dispatch, [notification]);
     } else if (playSound && !filtered) {
@@ -293,6 +292,10 @@ export function requestBrowserPermission(callback = noOp) {
     requestNotificationPermission((permission) => {
       dispatch(setBrowserPermission(permission));
       callback(permission);
+
+      if (permission === 'granted') {
+        dispatch(registerPushNotifications());
+      }
     });
   };
 }

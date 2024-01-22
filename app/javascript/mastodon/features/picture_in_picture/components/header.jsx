@@ -8,6 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { Avatar } from 'mastodon/components/avatar';
 import { DisplayName } from 'mastodon/components/display_name';
 import { IconButton } from 'mastodon/components/icon_button';
@@ -25,7 +26,7 @@ class Header extends ImmutablePureComponent {
   static propTypes = {
     accountId: PropTypes.string.isRequired,
     statusId: PropTypes.string.isRequired,
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.record.isRequired,
     onClose: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
@@ -40,7 +41,7 @@ class Header extends ImmutablePureComponent {
           <DisplayName account={account} />
         </Link>
 
-        <IconButton icon='times' onClick={onClose} title={intl.formatMessage(messages.close)} />
+        <IconButton icon='times' iconComponent={CloseIcon} onClick={onClose} title={intl.formatMessage(messages.close)} />
       </div>
     );
   }

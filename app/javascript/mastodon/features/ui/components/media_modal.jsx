@@ -9,6 +9,9 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import ReactSwipeableViews from 'react-swipeable-views';
 
+import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
+import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { getAverageFromBlurhash } from 'mastodon/blurhash';
 import { GIFV } from 'mastodon/components/gifv';
 import { Icon }  from 'mastodon/components/icon';
@@ -139,12 +142,13 @@ class MediaModal extends ImmutablePureComponent {
 
     const index = this.getIndex();
 
-    const leftNav  = media.size > 1 && <button tabIndex={0} className='media-modal__nav media-modal__nav--left' onClick={this.handlePrevClick} aria-label={intl.formatMessage(messages.previous)}><Icon id='chevron-left' fixedWidth /></button>;
-    const rightNav = media.size > 1 && <button tabIndex={0} className='media-modal__nav  media-modal__nav--right' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><Icon id='chevron-right' fixedWidth /></button>;
+    const leftNav  = media.size > 1 && <button tabIndex={0} className='media-modal__nav media-modal__nav--left' onClick={this.handlePrevClick} aria-label={intl.formatMessage(messages.previous)}><Icon id='chevron-left' icon={ChevronLeftIcon} /></button>;
+    const rightNav = media.size > 1 && <button tabIndex={0} className='media-modal__nav  media-modal__nav--right' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><Icon id='chevron-right' icon={ChevronRightIcon} /></button>;
 
     const content = media.map((image) => {
       const width  = image.getIn(['meta', 'original', 'width']) || null;
       const height = image.getIn(['meta', 'original', 'height']) || null;
+      const description = image.getIn(['translation', 'description']) || image.get('description');
 
       if (image.get('type') === 'image') {
         return (
@@ -153,7 +157,7 @@ class MediaModal extends ImmutablePureComponent {
             src={image.get('url')}
             width={width}
             height={height}
-            alt={image.get('description')}
+            alt={description}
             lang={lang}
             key={image.get('url')}
             onClick={this.toggleNavigation}
@@ -171,12 +175,13 @@ class MediaModal extends ImmutablePureComponent {
             width={image.get('width')}
             height={image.get('height')}
             frameRate={image.getIn(['meta', 'original', 'frame_rate'])}
+            aspectRatio={`${image.getIn(['meta', 'original', 'width'])} / ${image.getIn(['meta', 'original', 'height'])}`}
             currentTime={currentTime || 0}
             autoPlay={autoPlay || false}
             volume={volume || 1}
             onCloseVideo={onClose}
             detailed
-            alt={image.get('description')}
+            alt={description}
             lang={lang}
             key={image.get('url')}
           />
@@ -188,7 +193,7 @@ class MediaModal extends ImmutablePureComponent {
             width={width}
             height={height}
             key={image.get('url')}
-            alt={image.get('description')}
+            alt={description}
             lang={lang}
             onClick={this.toggleNavigation}
           />
@@ -241,7 +246,7 @@ class MediaModal extends ImmutablePureComponent {
         </div>
 
         <div className={navigationClassName}>
-          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={40} />
+          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' iconComponent={CloseIcon} onClick={onClose} size={40} />
 
           {leftNav}
           {rightNav}

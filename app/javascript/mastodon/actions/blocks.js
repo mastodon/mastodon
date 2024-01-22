@@ -95,6 +95,6 @@ export function initBlockModal(account) {
       account,
     });
 
-    dispatch(openModal('BLOCK'));
+    dispatch(openModal({ modalType: 'BLOCK' }));
   };
 }

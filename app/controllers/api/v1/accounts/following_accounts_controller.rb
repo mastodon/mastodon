@@ -21,12 +21,12 @@ class Api::V1::Accounts::FollowingAccountsController < Api::BaseController
     return [] if hide_results?
 
     scope = default_accounts
-    scope = scope.where.not(id: current_account.excluded_from_timeline_account_ids) unless current_account.nil? || current_account.id == @account.id
+    scope = scope.not_excluded_by_account(current_account) unless current_account.nil? || current_account.id == @account.id
     scope.merge(paginated_follows).to_a
   end
 
   def hide_results?
-    @account.suspended? || (@account.hides_following? && current_account&.id != @account.id) || (current_account && @account.blocking?(current_account))
+    @account.unavailable? || (@account.hides_following? && current_account&.id != @account.id) || (current_account && @account.blocking?(current_account))
   end
 
   def default_accounts

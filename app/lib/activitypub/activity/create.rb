@@ -4,6 +4,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   include FormattingHelper
 
   def perform
+    @account.schedule_refresh_if_stale!
+
     dereference_object!
 
     case @object['type']
@@ -108,6 +110,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def process_status_params
     @status_parser = ActivityPub::Parser::StatusParser.new(@json, followers_collection: @account.followers_url)
 
+    attachment_ids = process_attachments.take(4).map(&:id)
+
     @params = {
       uri: @status_parser.uri,
       url: @status_parser.url || @status_parser.uri,
@@ -123,7 +127,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       visibility: @status_parser.visibility,
       thread: replied_to_status,
       conversation: conversation_from_uri(@object['conversation']),
-      media_attachment_ids: process_attachments.take(4).map(&:id),
+      media_attachment_ids: attachment_ids,
+      ordered_media_attachment_ids: attachment_ids,
       poll: process_poll,
     }
   end
@@ -278,6 +283,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
       rescue Seahorse::Client::NetworkingError => e
         Rails.logger.warn "Error storing media attachment: #{e}"
+        RedownloadMediaWorker.perform_async(media_attachment.id)
       end
     end
 

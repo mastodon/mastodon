@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateIdentities < ActiveRecord::Migration[5.2]
   def change
     create_table :identities, id: :integer do |t|

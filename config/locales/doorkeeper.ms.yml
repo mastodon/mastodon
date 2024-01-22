@@ -4,21 +4,103 @@ ms:
     attributes:
       doorkeeper/application:
         name: Nama aplikasi
+        redirect_uri: Ubah hala URI
+        scopes: Skop
+        website: Laman web permohonan
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: tidak boleh mengandungi serpihan.
+              invalid_uri: mestilah URI yang sah.
+              relative_uri: mestilah URI mutlak.
+              secured_uri: mestilah URI HTTPS/SSL.
   doorkeeper:
     applications:
       buttons:
+        authorize: Benarkan
         cancel: Batal
+        destroy: Musnah
         edit: Sunting
         submit: Hantar
       confirmations:
         destroy: Anda pasti?
+      edit:
+        title: Mengedit permohonan
+      form:
+        error: Alamak! Semak borang anda untuk kemungkinan kesilapan
+      help:
+        native_redirect_uri: Gunakan %{native_redirect_uri} untuk ujian tempatan
+        redirect_uri: Gunakan satu barisan setiap URI
+        scopes: Asingkan skop dengan ruang. Biarkan kosong untuk menggunakan skop lalai.
       index:
+        application: Aplikasi
+        callback_url: URL callback
         delete: Padam
+        empty: Anda tidak mempunyai aplikasi.
         name: Nama
+        new: Aplikasi baru
+        scopes: Skop
         show: Paparkan
+        title: Aplikasi anda
+      new:
+        title: Aplikasi baru
+      show:
+        actions: Tindakan
+        application_id: Kunci klien
+        callback_urls: URLs Callback
+        scopes: Skop
+        secret: Rahsia klien
+        title: 'Aplikasi: %{name}'
+    authorizations:
+      buttons:
+        authorize: Benarkan
+        deny: Nafikan
+      error:
+        title: Ralat telah berlaku
+      new:
+        prompt_html: "%{client_name} ingin mendapatkan kebenaran untuk mengakses akaun anda. Ia adalah aplikasi pihak ketiga. <strong>Jika anda tidak mempercayainya, maka anda tidak seharusnya membenarkannya.</strong>"
+        review_permissions: Semak kebenaran
+        title: Kebenaran diperlukan
+      show:
+        title: Salin kod kebenaran ini dan tampalkannya pada aplikasi.
     authorized_applications:
+      buttons:
+        revoke: Batalkan
+      confirmations:
+        revoke: Adakah anda pasti?
       index:
+        authorized_at: Dibenarkan on %{date}
+        description_html: Ini adalah aplikasi yang boleh mengakses akaun lalui kegunaan API. Jika terdapat aplikasi yang anda tidak kenali di sini, atau aplikasi tidak berfungsi, anda boleh membatalkan aksesnya.
+        last_used_at: Terakhir digunakan pada %{date}
+        never_used: Tidak pernah digunakan
+        scopes: Kebenaran
         superapp: Dalaman
+        title: Aplikasi anda your dibenarkan
+    errors:
+      messages:
+        access_denied: Pemilik sumber atau server kebenaran menolak permintaan.
+        credential_flow_not_configured: Carian Pemilik Sumber gagal kerana Doorkeeper.configure.resource_owner_authenticator tidak dikonfigurasikan.
+        invalid_client: Pengesahan pelanggan gagal disebabkan oleh pelanggan yang tidak diketahui, tiada pengesahan pelanggan disertakan atau kaedah pengesahan yang tidak disokong.
+        invalid_grant: Pemberian kebenaran yang diberikan adalah tidak sah, tamat tempoh, dibatalkan, tidak sepadan dengan URI pengalihan yang digunakan dalam permintaan kebenaran atau telah dikeluarkan kepada klien lain.
+        invalid_redirect_uri: Uri ubah hala yang disertakan tidak sah.
+        invalid_request:
+          missing_param: 'Parameter yang diperlukan hilang: %{value}.'
+          request_not_authorized: Permintaan perlu dibenarkan. Parameter yang diperlukan untuk membenarkan permintaan tiada atau tidak sah.
+          unknown: Permintaan itu tidak mempunyai parameter yang diperlukan, termasuk nilai parameter yang tidak disokong, atau sebaliknya salah bentuk.
+        invalid_resource_owner: Bukti kelayakan pemilik sumber yang diberikan tidak sah atau pemilik sumber tidak dapat ditemui
+        invalid_scope: Skop yang diminta tidak sah, tidak diketahui atau salah bentuk.
+        invalid_token:
+          expired: Token akses telah tamat tempoh
+          revoked: Token akses telah dibatalkan
+          unknown: Token akses tidak sah
+        resource_owner_authenticator_not_configured: Carian Pemilik Sumber gagal kerana Doorkeeper.configure.resource_owner_authenticator tidak dikonfigurasikan.
+        server_error: Server kebenaran mengalami keadaan yang tidak dijangka yang menghalangnya daripada memenuhi permintaan.
+        temporarily_unavailable: Server kebenaran pada masa ini tidak dapat mengendalikan permintaan kerana beban berlebihan sementara atau penyelenggaraan server.
+        unauthorized_client: Klien tidak dibenarkan untuk melaksanakan permintaan ini menggunakan kaedah ini.
+        unsupported_grant_type: Jenis pemberian kebenaran tidak disokong oleh server kebenaran.
+        unsupported_response_type: Server kebenaran tidak menyokong jenis respons ini.
     flash:
       applications:
         create:
@@ -27,26 +109,87 @@ ms:
           notice: Aplikasi dipadamkan.
         update:
           notice: Aplikasi dikemaskini.
+      authorized_applications:
+        destroy:
+          notice: Aplikasi dipadamkan.
     grouped_scopes:
+      access:
+        read: Akses baca sahaja
+        read/write: Akses baca dan tulis
+        write: Akses tulis sahaja
       title:
         accounts: Akaun
         admin/accounts: Pengurusan akaun
         admin/all: Semua fungsi pengurusan
         admin/reports: Pengurusan laporan
+        all: Akses penuh ke akaun Mastodon anda
+        blocks: Blok
+        bookmarks: Penanda buku
         conversations: Perbualan
+        crypto: Penyulitan hujung ke hujung
+        favourites: Kegemaran
+        filters: Penapis
+        follow: Ikut, Senyap dan Blok
         follows: Ikutan
+        lists: Senarai
         media: Lampiran media
+        mutes: Senyapkan
         notifications: Pemberitahuan
         push: Pemberitahuan segera
         reports: Laporan
         search: Cari
         statuses: Hantaran
+    layouts:
+      admin:
+        nav:
+          applications: Aplikasi
+          oauth2_provider: Pembekal OAuth2
+      application:
+        title: Keizinan OAuth diperlukan
     scopes:
       admin:read: baca semua data pada pelayan
       admin:read:accounts: baca maklumat sensitif untuk semua akaun
+      admin:read:canonical_email_blocks: baca maklumat sensitif semua blok e-mel kanonik
+      admin:read:domain_allows: baca maklumat sensitif semua domain yang dibenarkan
+      admin:read:domain_blocks: baca maklumat sensitif semua blok domain
+      admin:read:email_domain_blocks: baca maklumat sensitif semua blok domain e-mel
+      admin:read:ip_blocks: baca maklumat sensitif semua blok IP
       admin:read:reports: baca maklumat sensitif untuk semua laporan dan akaun-akaun yang dilaporkan
       admin:write: mengubah semua data pada pelayan
+      admin:write:accounts: melakukan tindakan penyederhanaan pada akaun
+      admin:write:canonical_email_blocks: melakukan tindakan penyederhanaan pada blok e-mel kanonik
+      admin:write:domain_allows: melakukan tindakan penyederhanaan pada domain yang dibenarkan
+      admin:write:domain_blocks: melakukan tindakan penyederhanaan pada blok domain
+      admin:write:email_domain_blocks: melakukan tindakan penyederhanaan pada blok domain e-mel
+      admin:write:ip_blocks: melakukan tindakan penyederhanaan pada blok IP
+      admin:write:reports: melakukan tindakan penyederhanaan ke atas laporan
+      crypto: gunakan penyulitan hujung ke hujung
+      follow: mengubah suai perhubungan akaun
+      push: terima pemberitahuan tolak anda
+      read: baca semua data akaun anda
+      read:accounts: lihat maklumat akaun
+      read:blocks: lihat blok anda
+      read:bookmarks: lihat penanda halaman anda
+      read:favourites: lihat kegemaran anda
+      read:filters: lihat penapis anda
+      read:follows: lihat senarai yang anda ikuti
+      read:lists: lihat senarai anda
+      read:mutes: lihat senarai yang anda senyapkan
+      read:notifications: lihat notifikasi anda
+      read:reports: lihat laporan anda
+      read:search: cari bagi pihak anda
       read:statuses: lihat semua hantaran
+      write: ubahsuai semua data akaun anda
+      write:accounts: ubaisuai profail anda
+      write:blocks: domain dan akaun blok
       write:bookmarks: menandabuku hantaran
-      write:favourites: hantaran kegemaran
+      write:conversations: senyapkan dan padamkan perbualan
+      write:favourites: pos kesukaan
+      write:filters: cipta penapis
+      write:follows: ikut orang
+      write:lists: cipta senarai
+      write:media: memuat naik fail media
+      write:mutes: membisukan orang dan perbualan
+      write:notifications: kosongkan pemberitahuan anda
+      write:reports: melaporkan orang lain
       write:statuses: terbitkan hantaran

@@ -12,6 +12,7 @@ class EmojiFormatter
   # @param [Hash] options
   # @option options [Boolean] :animate
   # @option options [String] :style
+  # @option options [String] :raw_shortcode
   def initialize(html, custom_emojis, options = {})
     raise ArgumentError unless html.html_safe?
 
@@ -43,7 +44,7 @@ class EmojiFormatter
           next unless (char_after.nil? || !DISALLOWED_BOUNDING_REGEX.match?(char_after)) && (emoji = emoji_map[shortcode])
 
           result << Nokogiri::XML::Text.new(text[last_index..shortname_start_index - 1], tree.document) if shortname_start_index.positive?
-          result << Nokogiri::HTML.fragment(image_for_emoji(shortcode, emoji))
+          result << Nokogiri::HTML.fragment(tag_for_emoji(shortcode, emoji))
 
           last_index = i + 1
         elsif text[i] == ':' && (i.zero? || !DISALLOWED_BOUNDING_REGEX.match?(text[i - 1]))
@@ -52,7 +53,7 @@ class EmojiFormatter
         end
       end
 
-      result << Nokogiri::XML::Text.new(text[last_index..-1], tree.document)
+      result << Nokogiri::XML::Text.new(text[last_index..], tree.document)
       node.replace(result)
     end
 
@@ -65,17 +66,9 @@ class EmojiFormatter
     @emoji_map ||= custom_emojis.each_with_object({}) { |e, h| h[e.shortcode] = [full_asset_url(e.image.url), full_asset_url(e.image.url(:static))] }
   end
 
-  def count_tag_nesting(tag)
-    if tag[1] == '/'
-      -1
-    elsif tag[-2] == '/'
-      0
-    else
-      1
-    end
-  end
+  def tag_for_emoji(shortcode, emoji)
+    return content_tag(:span, ":#{shortcode}:", translate: 'no') if raw_shortcode?
 
-  def image_for_emoji(shortcode, emoji)
     original_url, static_url = emoji
 
     image_tag(
@@ -102,5 +95,9 @@ class EmojiFormatter
 
   def animate?
     @options[:animate] || @options.key?(:style)
+  end
+
+  def raw_shortcode?
+    @options[:raw_shortcode]
   end
 end

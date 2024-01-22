@@ -1,0 +1,29 @@
+- content_for :page_title do
+  = t('admin.software_updates.title')
+
+.simple_form
+  %p.lead
+    = t('admin.software_updates.description')
+    = link_to t('admin.software_updates.documentation_link'), 'https://docs.joinmastodon.org/admin/upgrading/#automated_checks', target: '_new'
+
+%hr.spacer
+
+- unless @software_updates.empty?
+  .table-wrapper
+    %table.table
+      %thead
+        %tr
+          %th= t('admin.software_updates.version')
+          %th= t('admin.software_updates.type')
+          %th
+          %th
+      %tbody
+        - @software_updates.each do |update|
+          %tr
+            %td= update.version
+            %td= t("admin.software_updates.types.#{update.type}")
+            - if update.urgent?
+              %td.critical= t('admin.software_updates.critical_update')
+            - else
+              %td
+            %td= table_link_to 'link', t('admin.software_updates.release_notes'), update.release_notes

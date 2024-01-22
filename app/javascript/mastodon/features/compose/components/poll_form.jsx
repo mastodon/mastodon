@@ -8,6 +8,8 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import AddIcon from '@/material-icons/400-24px/add.svg?react';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import AutosuggestInput from 'mastodon/components/autosuggest_input';
 import { Icon }  from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
@@ -108,7 +110,7 @@ class OptionIntl extends PureComponent {
         </label>
 
         <div className='poll__cancel'>
-          <IconButton disabled={index <= 1} title={intl.formatMessage(messages.remove_option)} icon='times' onClick={this.handleOptionRemove} />
+          <IconButton disabled={index <= 1} title={intl.formatMessage(messages.remove_option)} icon='times' iconComponent={CloseIcon} onClick={this.handleOptionRemove} />
         </div>
       </li>
     );
@@ -164,7 +166,7 @@ class PollForm extends ImmutablePureComponent {
         </ul>
 
         <div className='poll__footer'>
-          <button type='button' disabled={options.size >= 4} className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' /> <FormattedMessage {...messages.add_option} /></button>
+          <button type='button' disabled={options.size >= 4} className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' icon={AddIcon} /> <FormattedMessage {...messages.add_option} /></button>
 
           {/* eslint-disable-next-line jsx-a11y/no-onchange */}
           <select value={expiresIn} onChange={this.handleSelectDuration}>

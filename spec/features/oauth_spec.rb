@@ -49,7 +49,7 @@ describe 'Using OAuth from an external app' do
     let(:user)     { Fabricate(:user, email: email, password: password) }
 
     before do
-      user.confirm!
+      user.mark_email_as_confirmed!
       user.approve!
     end
 
