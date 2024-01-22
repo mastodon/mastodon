@@ -6,9 +6,14 @@ import { render, fireEvent, screen } from '@testing-library/react';
 
 import ColumnLink from '../column_link';
 
+jest.mock('mastodon/actions/search', () => ({
+  clearSearch: jest.fn(),
+}));
+
+import { clearSearch } from 'mastodon/actions/search';
+
 describe('<ColumnLink />', () => {
   it('clears the search bar on explore click', () => {
-    const clearSearchMock = jest.fn();
     render(
       <MemoryRouter>
         <div>
@@ -18,13 +23,12 @@ describe('<ColumnLink />', () => {
             icon='hashtag'
             text='Explore'
             title='Explore'
-            onClick={clearSearchMock}
           />
         </div>
       </MemoryRouter>,
     );
 
     fireEvent.click(screen.getByTitle('Explore'));
-    expect(clearSearchMock).toHaveBeenCalledTimes(1);
+    expect(clearSearch).toHaveBeenCalledTimes(1);
   });
 });
