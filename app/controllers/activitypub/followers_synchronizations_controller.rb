@@ -24,7 +24,7 @@ class ActivityPub::FollowersSynchronizationsController < ActivityPub::BaseContro
   end
 
   def set_items
-    @items = @account.followers.matches_uri(uri_prefix).pluck(:uri)
+    @items = @account.followers.matches_uri_prefix(uri_prefix).pluck(:uri)
   end
 
   def collection_presenter
