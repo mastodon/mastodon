@@ -62,14 +62,14 @@ class Search extends PureComponent {
   };
 
   defaultOptions = [
-    { label: <><mark>has:</mark> <FormattedList type='disjunction' value={['media', 'poll', 'embed']} /></>, action: e => { e.preventDefault(); this._insertText('has:'); } },
-    { label: <><mark>is:</mark> <FormattedList type='disjunction' value={['reply', 'sensitive']} /></>, action: e => { e.preventDefault(); this._insertText('is:'); } },
-    { label: <><mark>language:</mark> <FormattedMessage id='search_popout.language_code' defaultMessage='ISO language code' /></>, action: e => { e.preventDefault(); this._insertText('language:'); } },
-    { label: <><mark>from:</mark> <FormattedMessage id='search_popout.user' defaultMessage='user' /></>, action: e => { e.preventDefault(); this._insertText('from:'); } },
-    { label: <><mark>before:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => { e.preventDefault(); this._insertText('before:'); } },
-    { label: <><mark>during:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => { e.preventDefault(); this._insertText('during:'); } },
-    { label: <><mark>after:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => { e.preventDefault(); this._insertText('after:'); } },
-    { label: <><mark>in:</mark> <FormattedList type='disjunction' value={['all', 'library', 'public']} /></>, action: e => { e.preventDefault(); this._insertText('in:'); } }
+    { key: 'prompt-has', label: <><mark>has:</mark> <FormattedList type='disjunction' value={['media', 'poll', 'embed']} /></>, action: e => { e.preventDefault(); this._insertText('has:'); } },
+    { key: 'prompt-is', label: <><mark>is:</mark> <FormattedList type='disjunction' value={['reply', 'sensitive']} /></>, action: e => { e.preventDefault(); this._insertText('is:'); } },
+    { key: 'prompt-language', label: <><mark>language:</mark> <FormattedMessage id='search_popout.language_code' defaultMessage='ISO language code' /></>, action: e => { e.preventDefault(); this._insertText('language:'); } },
+    { key: 'prompt-from', label: <><mark>from:</mark> <FormattedMessage id='search_popout.user' defaultMessage='user' /></>, action: e => { e.preventDefault(); this._insertText('from:'); } },
+    { key: 'prompt-before', label: <><mark>before:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => { e.preventDefault(); this._insertText('before:'); } },
+    { key: 'prompt-during', label: <><mark>during:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => { e.preventDefault(); this._insertText('during:'); } },
+    { key: 'prompt-after', label: <><mark>after:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => { e.preventDefault(); this._insertText('after:'); } },
+    { key: 'prompt-in', label: <><mark>in:</mark> <FormattedList type='disjunction' value={['all', 'library', 'public']} /></>, action: e => { e.preventDefault(); this._insertText('in:'); } }
   ];
 
   setRef = c => {
@@ -262,6 +262,8 @@ class Search extends PureComponent {
     const { recent } = this.props;
 
     return recent.toArray().map(search => ({
+      key: `${search.get('type')}/${search.get('q')}`,
+
       label: labelForRecentSearch(search),
 
       action: () => this.handleRecentSearchClick(search),
@@ -346,8 +348,8 @@ class Search extends PureComponent {
               <h4><FormattedMessage id='search_popout.recent' defaultMessage='Recent searches' /></h4>
 
               <div className='search__popout__menu'>
-                {recent.size > 0 ? this._getOptions().map(({ label, action, forget }, i) => (
-                  <button key={label} onMouseDown={action} className={classNames('search__popout__menu__item search__popout__menu__item--flex', { selected: selectedOption === i })}>
+                {recent.size > 0 ? this._getOptions().map(({ label, key, action, forget }, i) => (
+                  <button key={key} onMouseDown={action} className={classNames('search__popout__menu__item search__popout__menu__item--flex', { selected: selectedOption === i })}>
                     <span>{label}</span>
                     <button className='icon-button' onMouseDown={forget}><Icon id='times' icon={CloseIcon} /></button>
                   </button>

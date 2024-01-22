@@ -1791,6 +1791,12 @@ en:
       extra: It's now ready for download!
       subject: Your archive is ready for download
       title: Archive takeout
+    failed_2fa:
+      details: 'Here are details of the sign-in attempt:'
+      explanation: Someone has tried to sign in to your account but provided an invalid second authentication factor.
+      further_actions_html: If this wasn't you, we recommend that you %{action} immediately as it may be compromised.
+      subject: Second factor authentication failure
+      title: Failed second factor authentication
     suspicious_sign_in:
       change_password: change your password
       details: 'Here are details of the sign-in:'
@@ -1844,6 +1850,7 @@ en:
     go_to_sso_account_settings: Go to your identity provider's account settings
     invalid_otp_token: Invalid two-factor code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
+    rate_limited: Too many authentication attempts, try again later.
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
   verification:

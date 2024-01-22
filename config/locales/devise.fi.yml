@@ -47,14 +47,19 @@ fi:
         subject: 'Mastodon: ohjeet salasanan vaihtoon'
         title: Salasanan vaihto
       two_factor_disabled:
+        explanation: Sisäänkirjautuminen on nyt mahdollista pelkällä sähköpostiosoitteella ja salasanalla.
         subject: 'Mastodon: kaksivaiheinen todennus poistettu käytöstä'
+        subtitle: Kaksivaiheinen todennus on poistettu käytöstä tililtäsi.
         title: 2-vaiheinen todennus pois käytöstä
       two_factor_enabled:
+        explanation: Sisäänkirjautuminen edellyttää liitetyn TOTP-sovelluksen luomaa aikarajattua kertatunnuslukua.
         subject: 'Mastodon: kaksivaiheinen todennus otettu käyttöön'
+        subtitle: Kaksivaiheinen todennus on otettu käyttöön tilillesi.
         title: 2-vaiheinen todennus käytössä
       two_factor_recovery_codes_changed:
         explanation: Uudet palautuskoodit on nyt luotu ja vanhat on mitätöity.
         subject: 'Mastodon: kaksivaiheisen todennuksen palautuskoodit luotiin uudelleen'
+        subtitle: Aiemmat palautuskoodit on mitätöity ja tilalle on luotu uudet.
         title: 2-vaiheisen todennuksen palautuskoodit vaihdettiin
       unlock_instructions:
         subject: 'Mastodon: lukituksen poistamisen ohjeet'
@@ -68,9 +73,13 @@ fi:
           subject: 'Mastodon: suojausavain poistettu'
           title: Yksi suojausavaimistasi on poistettu
       webauthn_disabled:
+        explanation: Turva-avaimin kirjautuminen on poistettu käytöstä tililtäsi.
+        extra: Sisäänkirjautuminen on nyt mahdollista pelkällä palveluun liitetyn TOTP-sovelluksen luomalla aikarajoitteisella kertatunnusluvulla.
         subject: 'Mastodon: Todennus suojausavaimilla poistettu käytöstä'
         title: Suojausavaimet poistettu käytöstä
       webauthn_enabled:
+        explanation: Turva-avaimella kirjautuminen on otettu käyttöön tilillesi.
+        extra: Voit nyt kirjautua sisään turva-avaimellasi.
         subject: 'Mastodon: Todennus suojausavaimella on otettu käyttöön'
         title: Suojausavaimet käytössä
     omniauth_callbacks:

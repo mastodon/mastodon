@@ -47,14 +47,19 @@ ko:
         subject: 'Mastodon: 암호 재설정 설명'
         title: 암호 재설정
       two_factor_disabled:
+        explanation: 이제 이메일과 암호만 이용해서 로그인이 가능합니다.
         subject: '마스토돈: 이중 인증 비활성화'
+        subtitle: 계정에 대한 2단계 인증이 비활성화되었습니다.
         title: 2FA 비활성화 됨
       two_factor_enabled:
+        explanation: 로그인 하기 위해서는 짝이 되는 TOTP 앱에서 생성한 토큰이 필요합니다.
         subject: '마스토돈: 이중 인증 활성화'
+        subtitle: 계정에 대한 2단계 인증이 활성화되었습니다.
         title: 2FA 활성화 됨
       two_factor_recovery_codes_changed:
         explanation: 이전 복구 코드가 무효화되고 새 코드가 생성되었습니다
         subject: '마스토돈: 이중 인증 복구 코드 재생성 됨'
+        subtitle: 이전 복구 코드가 무효화되고 새 코드가 생성되었습니다.
         title: 2FA 복구 코드 변경됨
       unlock_instructions:
         subject: '마스토돈: 잠금 해제 방법'
@@ -68,9 +73,13 @@ ko:
           subject: '마스토돈: 보안 키 삭제'
           title: 보안 키가 삭제되었습니다
       webauthn_disabled:
+        explanation: 계정의 보안 키 인증이 비활성화되었습니다
+        extra: 이제 TOTP 앱에서 생성한 토큰을 통해서만 로그인 가능합니다.
         subject: '마스토돈: 보안 키를 이용한 인증이 비활성화 됨'
         title: 보안 키 비활성화 됨
       webauthn_enabled:
+        explanation: 계정에 대한 보안키 인증이 활성화되었습니다.
+        extra: 로그인시 보안키가 사용됩니다.
         subject: '마스토돈: 보안 키 인증 활성화 됨'
         title: 보안 키 활성화 됨
     omniauth_callbacks:

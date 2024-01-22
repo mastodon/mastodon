@@ -47,10 +47,14 @@ lad:
         subject: 'Mastodon: Instruksyones para reinisyar kod'
         title: Reinisyar kod
       two_factor_disabled:
+        explanation: Agora puedes konektarte kon tu kuento uzando solo tu adreso de posta i kod.
         subject: 'Mastodon: La autentifikasyon de dos pasos esta inkapasitada'
+        subtitle: La autentifikasyon en dos pasos para tu kuento tiene sido inkapasitada.
         title: Autentifikasyon 2FA inkapasitada
       two_factor_enabled:
+        explanation: Se rekierira un token djenerado por la aplikasyon TOTP konektada para entrar.
         subject: 'Mastodon: La autentifikasyon de dos pasos esta kapasitada'
+        subtitle: La autentifikasyon de dos pasos para tu kuento tiene sido kapasitada.
         title: Autentifikasyon 2FA aktivada
       two_factor_recovery_codes_changed:
         explanation: Los kodiches de rekuperasyon previos tienen sido invalidados i se djeneraron kodiches muevos.
@@ -69,9 +73,13 @@ lad:
           subject: 'Mastodon: Yave de sigurita supremida'
           title: Una de tus yaves de sigurita tiene sido supremida
       webauthn_disabled:
+        explanation: La autentifikasyon kon yaves de sigurita tiene sido inkapasitada para tu kuento.
+        extra: Agora el inisyo de sesyon solo es posivle utilizando el token djeenerado por la aplikasyon TOTP konektada.
         subject: 'Mastodon: autentifikasyon kon yaves de sigurita inkapasitada'
         title: Yaves de sigurita inkapasitadas
       webauthn_enabled:
+        explanation: La autentifikasyon kon yave de sigurita tiene sido kapasitada para tu kuento.
+        extra: Agora tu yave de sigurita puede ser utilizada para konektarte kon tu kuento.
         subject: 'Mastodon: Autentifikasyon de yave de sigurita aktivada'
         title: Yaves de sigurita kapasitadas
     omniauth_callbacks:
