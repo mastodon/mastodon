@@ -47,14 +47,19 @@ sl:
         subject: 'Mastodon: navodila za ponastavitev gesla'
         title: Ponastavitev gesla
       two_factor_disabled:
+        explanation: Prijava je sedaj mogoče le z uporabo e-poštnega naslova in gesla.
         subject: 'Mastodon: dvojno preverjanje pristnosti je onemogočeno'
+        subtitle: Dvo-faktorsko preverjanje pristnosti za vaš račun je bilo onemogočeno.
         title: 2FA onemogočeno
       two_factor_enabled:
+        explanation: Za prijavo bo zahtevan žeton, ustvarjen s povezano aplikacijo TOTP.
         subject: 'Mastodon: dvojno preverjanje pristnosti je omogočeno'
+        subtitle: Dvo-faktorsko preverjanje pristnosti za vaš račun je bilo omogočeno.
         title: 2FA omogočeno
       two_factor_recovery_codes_changed:
         explanation: Prejšnje obnovitvene kode so postale neveljavne in ustvarjene so bile nove.
         subject: 'Mastodon: varnostne obnovitvene kode za dvojno preverjanje pristnosti so ponovno izdelane'
+        subtitle: Prejšnje kode za obnovitev so bile razveljavljene, ustvarjene pa so bile nove.
         title: obnovitvene kode 2FA spremenjene
       unlock_instructions:
         subject: 'Mastodon: navodila za odklepanje'
@@ -68,9 +73,13 @@ sl:
           subject: 'Mastodon: varnostna koda izbrisana'
           title: Ena od vaših varnostnih kod je bila izbrisana
       webauthn_disabled:
+        explanation: Preverjanje pristnosti z varnostnimi ključi za vaš račun je bilo onemogočeno.
+        extra: Prijava je sedaj mogoče le z uporabo žetona, ustvarjenega s povezano aplikacijo TOTP.
         subject: 'Mastodon: overjanje pristnosti z varnosnimi kodami je onemogočeno'
         title: Varnostne kode onemogočene
       webauthn_enabled:
+        explanation: Preverjanje pristnosti z varnostnimi ključi za vaš račun je bilo omogočeno.
+        extra: Za prijavo sedaj lahko uporabite svoj varnostni ključ.
         subject: 'Mastodon: preverjanje pristnosti z varnostno kodo je omogočeno'
         title: Varnostne kode omogočene
     omniauth_callbacks:
