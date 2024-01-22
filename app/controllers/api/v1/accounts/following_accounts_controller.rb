@@ -22,7 +22,7 @@ class Api::V1::Accounts::FollowingAccountsController < Api::BaseController
 
     scope = default_accounts
     scope = scope.not_excluded_by_account(current_account) unless current_account.nil? || current_account.id == @account.id
-    scope.merge(paginated_follows).to_a
+    scope.merge(paginated_follows).includes(:user).to_a
   end
 
   def hide_results?

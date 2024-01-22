@@ -21,7 +21,7 @@ class Api::V1::Statuses::FavouritedByAccountsController < Api::V1::Statuses::Bas
   def default_accounts
     Account
       .without_suspended
-      .includes(:favourites, :account_stat)
+      .includes(:favourites, :account_stat, :user)
       .references(:favourites)
       .where(favourites: { status_id: @status.id })
   end
