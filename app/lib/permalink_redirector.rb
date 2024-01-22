@@ -39,11 +39,10 @@ class PermalinkRedirector
 
   def redirect_confirmation_path
     case object.class.name
-    when 'Account', 'Status'
-      url = ActivityPub::TagManager.instance.uri_for(object)
-      salt = Rails.application.key_generator.generate_key('redirect-url')
-      digest = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), salt, url)
-      redirect_url(url: url, digest: digest)
+    when 'Account'
+      redirect_account_path(object.id)
+    when 'Status'
+      redirect_status_path(object.id)
     else
       @path.delete_prefix('/deck') if @path.start_with?('/deck')
     end
