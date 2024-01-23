@@ -1,15 +1,68 @@
 = content_for :heading do
-  = render 'application/mailer/heading', heading_title: t('user_mailer.welcome.title', name: @resource.account.username), heading_subtitle: t('user_mailer.welcome.explanation')
+  .email-desktop-flex
+    .email-header-left
+      = render 'application/mailer/heading', heading_title: t('user_mailer.welcome.title', name: @resource.account.username), heading_subtitle: t('user_mailer.welcome.explanation')
+    .email-header-right
+      %div.email-header-card
+        %table.email-header-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+          %tr
+            %td
+              %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                %tr
+                  %td.email-header-card-banner-td{ height: 140, background: full_asset_url(@resource.account.header.url) }
+              %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                %tr
+                  %td.email-header-card-body-td
+                    %p.email-header-card-instance= @instance
+                    %p.email-header-card-description= "TODO: The original server operated by the Mastodon gGmbH non-profit. The original server operated by the Mastodon gGmbH non-profit."
+                    = render 'application/mailer/button', text: t('user_mailer.welcome.sign_in_action'), url: web_url, has_arrow: false
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
-    %td.email-body-padding-td
+    %td.email-body-huge-padding-td
+      %h2.email-h2= t('user_mailer.welcome.checklist_title')
+      %p.email-h-sub= t('user_mailer.welcome.checklist_subtitle')
+      = render 'application/mailer/checklist',
+               title: t('user_mailer.welcome.edit_profile_title'),
+               text: t('user_mailer.welcome.edit_profile_step'),
+               checked: false,
+               step_image_url: frontend_asset_url('images/mailer-new/welcome/step1-off.png'),
+               button_text: t('user_mailer.welcome.edit_profile_action'),
+               button_url: settings_profile_url
+      = render 'application/mailer/checklist',
+               title: t('user_mailer.welcome.follow_title'),
+               text: t('user_mailer.welcome.follow_step'),
+               checked: false,
+               step_image_url: frontend_asset_url('images/mailer-new/welcome/step2-off.png'),
+               button_text: t('user_mailer.welcome.follow_action'),
+               button_url: settings_profile_url
+      = render 'application/mailer/checklist',
+               title: t('user_mailer.welcome.post_title'),
+               text: t('user_mailer.welcome.post_step'),
+               checked: false,
+               step_image_url: frontend_asset_url('images/mailer-new/welcome/step3-off.png'),
+               button_text: t('user_mailer.welcome.post_action'),
+               button_url: settings_profile_url
+      = render 'application/mailer/checklist',
+               title: t('user_mailer.welcome.share_title'),
+               text: t('user_mailer.welcome.share_step'),
+               checked: false,
+               step_image_url: frontend_asset_url('images/mailer-new/welcome/step4-off.png'),
+               button_text: t('user_mailer.welcome.share_action'),
+               button_url: settings_profile_url
+      = render 'application/mailer/checklist',
+               title: t('user_mailer.welcome.apps_title'),
+               text: t('user_mailer.welcome.apps_step'),
+               checked: false,
+               step_image_url: frontend_asset_url('images/mailer-new/welcome/step5-off.png'),
+               button_text: t('user_mailer.welcome.apps_action'),
+               button_url: settings_profile_url
       %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
         %tr
           %td.email-inner-card-td-without-padding
             %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
               %tr
                 %td.email-prose.email-padding-24
-                  %p
+                  %p 
                     %b= t 'user_mailer.welcome.full_handle'
                   = render 'application/mailer/frame', text: "#{@resource.account.username}@#{@instance}"
                   %p= t 'user_mailer.welcome.full_handle_hint', instance: @instance

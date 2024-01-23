@@ -1,7 +1,7 @@
 %table.email-w-full.email-checklist-wrapper-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-checklist-wrapper-td
-      %table.email-w-full.email-checklist-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+      %table.email-w-full.email-checklist-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation', :class => ("email-checklist-checked" if defined?(checked) && checked) }
         %tr
           %td.email-checklist-td
             %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
@@ -26,4 +26,4 @@
                         %p= text
                     %div
                       - if defined?(button_text) && defined?(button_url) && defined?(checked) && !checked
-                        = render 'application/mailer/button', text: button_text, url: button_url
+                        = render 'application/mailer/button', text: button_text, url: button_url, has_arrow: false
