@@ -5,6 +5,8 @@ module DomainNormalizable
 
   included do
     before_validation :normalize_domain
+
+    scope :by_domain_length, -> { order(Arel.sql('CHAR_LENGTH(domain)').desc) }
   end
 
   private
