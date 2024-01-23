@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.4] - 2024-01-24
+
+### Fixed
+
+- Fix error when processing remote files with unusually long names ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/28823))
+- Fix processing of compacted single-item JSON-LD collections ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/28816))
+- Retry 401 errors on replies fetching ([ShadowJonathan](https://github.com/mastodon/mastodon/pull/28788))
+- Fix `RecordNotUnique` errors in LinkCrawlWorker ([tribela](https://github.com/mastodon/mastodon/pull/28748))
+- Fix Mastodon not correctly processing HTTP Signatures with query strings ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/28443), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/28476))
+- Fix potential redirection loop of streaming endpoint ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/28665))
+- Fix streaming API redirection ignoring the port of `streaming_api_base_url` ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/28558))
+- Fix error when processing link preview with an array as `inLanguage` ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/28252))
+- Fix unsupported time zone or locale preventing sign-up ([Gargron](https://github.com/mastodon/mastodon/pull/28035))
+- Fix "Hide these posts from home" list setting not refreshing when switching lists ([brianholley](https://github.com/mastodon/mastodon/pull/27763))
+- Fix missing background behind dismissable banner in web UI ([Gargron](https://github.com/mastodon/mastodon/pull/27479))
+- Fix line wrapping of language selection button with long locale codes ([gunchleoc](https://github.com/mastodon/mastodon/pull/27100), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/27127))
+- Fix `Undo Announce` activity not being sent to non-follower authors ([MitarashiDango](https://github.com/mastodon/mastodon/pull/18482))
+- Fix N+1s because of association preloaders not actually getting called ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/28339))
+- Fix empty column explainer getting cropped under certain conditions ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/28337))
+- Fix `LinkCrawlWorker` error when encountering empty OEmbed response ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/28268))
+- Fix call to inefficient `delete_matched` cache method in domain blocks ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/28367))
+
+### Security
+
+- Add rate-limit of TOTP authentication attempts at controller level ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/28801))
+
 ## [4.2.3] - 2023-12-05
 
 ### Fixed
