@@ -77,10 +77,6 @@ Rails/WhereExists:
   Exclude:
     - 'app/controllers/activitypub/inboxes_controller.rb'
     - 'app/controllers/admin/email_domain_blocks_controller.rb'
-    - 'app/lib/activitypub/activity/create.rb'
-    - 'app/lib/delivery_failure_tracker.rb'
-    - 'app/lib/feed_manager.rb'
-    - 'app/lib/suspicious_sign_in_detector.rb'
     - 'app/policies/status_policy.rb'
     - 'app/serializers/rest/announcement_serializer.rb'
     - 'app/workers/move_worker.rb'
