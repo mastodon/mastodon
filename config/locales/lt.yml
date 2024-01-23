@@ -559,6 +559,12 @@ lt:
       extra: Jį jau galima atsisiųsti!
       subject: Jūsų archyvas paruoštas parsisiuntimui
       title: Archyvas išimtas
+    failed_2fa:
+      details: 'Štai išsami informacija apie bandymą prisijungti:'
+      explanation: Kažkas bandė prisijungti prie tavo paskyros, bet nurodė netinkamą antrąjį tapatybės nustatymo veiksnį.
+      further_actions_html: Jei tai buvo ne tu, rekomenduojame nedelsiant imtis %{action}, nes jis gali būti pažeistas.
+      subject: Antrojo veiksnio tapatybės nustatymas nesėkmingai
+      title: Nepavyko atlikti antrojo veiksnio tapatybės nustatymo
     warning:
       subject:
         disable: Jūsų paskyra %{acct} buvo užšaldyta
@@ -584,6 +590,7 @@ lt:
     go_to_sso_account_settings: Eik į savo tapatybės teikėjo paskyros nustatymus
     invalid_otp_token: Netinkamas dviejų veiksnių kodas
     otp_lost_help_html: Jei praradai prieigą prie abiejų, gali susisiek su %{email}
+    rate_limited: Per daug tapatybės nustatymo bandymų. Bandyk dar kartą vėliau.
     seamless_external_login: Esi prisijungęs (-usi) per išorinę paslaugą, todėl slaptažodžio ir el. pašto nustatymai nepasiekiami.
     signed_in_as: 'Prisijungta kaip:'
   verification:
