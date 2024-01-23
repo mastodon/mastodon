@@ -9,7 +9,7 @@ module DatabaseViewRecord
         .database
         .refresh_materialized_view(
           table_name,
-          concurrently: true,
+          concurrently: self::REFRESH_CONCURRENTLY,
           cascade: false
         )
     end

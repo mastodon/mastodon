@@ -9,6 +9,7 @@
 #
 
 class Instance < ApplicationRecord
+  REFRESH_CONCURRENTLY = true
   include DatabaseViewRecord
 
   self.primary_key = :domain

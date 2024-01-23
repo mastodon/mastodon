@@ -10,6 +10,7 @@
 #
 
 class FollowRecommendation < ApplicationRecord
+  REFRESH_CONCURRENTLY = false
   include DatabaseViewRecord
 
   self.primary_key = :account_id

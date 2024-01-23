@@ -10,6 +10,7 @@
 #
 
 class UserIp < ApplicationRecord
+  REFRESH_CONCURRENTLY = true
   include DatabaseViewRecord
 
   self.primary_key = :user_id
