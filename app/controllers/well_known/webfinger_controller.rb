@@ -44,20 +44,18 @@ module WellKnown
     end
 
     def gone
-      expire_in_public_with_code(410)
+      expires_in(3.minutes, public: true)
+      head 410
     end
 
     def bad_request
-      expire_in_public_with_code(400)
+      expires_in(3.minutes, public: true)
+      head 400
     end
 
     def not_found
-      expire_in_public_with_code(404)
-    end
-
-    def expire_in_public_with_code(code)
       expires_in(3.minutes, public: true)
-      head(code)
+      head 404
     end
   end
 end
