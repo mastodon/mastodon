@@ -9,13 +9,13 @@ module WellKnown
     serialization_scope nil
 
     def index
-      expires_in LONG_DURATION, public: true
-      render_with_cache json: {}, serializer: NodeInfo::DiscoverySerializer, adapter: NodeInfo::Adapter, expires_in: LONG_DURATION, root: 'nodeinfo'
+      expires_in 3.days, public: true
+      render_with_cache json: {}, serializer: NodeInfo::DiscoverySerializer, adapter: NodeInfo::Adapter, expires_in: 3.days, root: 'nodeinfo'
     end
 
     def show
-      expires_in NEAR_DURATION, public: true
-      render_with_cache json: {}, serializer: NodeInfo::Serializer, adapter: NodeInfo::Adapter, expires_in: NEAR_DURATION, root: 'nodeinfo'
+      expires_in 30.minutes, public: true
+      render_with_cache json: {}, serializer: NodeInfo::Serializer, adapter: NodeInfo::Adapter, expires_in: 30.minutes, root: 'nodeinfo'
     end
   end
 end

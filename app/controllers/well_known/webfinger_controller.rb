@@ -9,7 +9,7 @@ module WellKnown
     rescue_from ActionController::ParameterMissing, WebfingerResource::InvalidRequest, with: :bad_request
 
     def show
-      expires_in LONG_DURATION, public: true
+      expires_in 3.days, public: true
       render json: @account, serializer: WebfingerSerializer, content_type: 'application/jrd+json'
     end
 
@@ -56,7 +56,7 @@ module WellKnown
     end
 
     def expire_in_public_with_code(code)
-      expires_in(SHORT_DURATION, public: true)
+      expires_in(3.minutes, public: true)
       head(code)
     end
   end
