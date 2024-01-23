@@ -13,7 +13,7 @@ module Mastodon
     end
 
     def patch
-      11
+      12
     end
 
     def flags
