@@ -17,6 +17,7 @@ ia:
       index:
         application: Application
         delete: Deler
+        empty: Tu non ha applicationes.
         name: Nomine
         new: Nove application
         show: Monstrar
@@ -47,6 +48,7 @@ ia:
       title:
         accounts: Contos
         admin/accounts: Gestion de contos
+        all: Accesso plen a tu conto de Mastodon
         bookmarks: Marcapaginas
         conversations: Conversationes
         favourites: Favoritos
@@ -61,8 +63,15 @@ ia:
           applications: Applicationes
           oauth2_provider: Fornitor OAuth2
     scopes:
+      read:favourites: vider tu favoritos
+      read:lists: vider tu listas
+      read:notifications: vider tu notificationes
+      read:statuses: vider tote le messages
       write:accounts: modificar tu profilo
+      write:blocks: blocar contos e dominios
       write:favourites: messages favorite
+      write:filters: crear filtros
       write:lists: crear listas
+      write:media: incargar files de medios
       write:notifications: rader tu notificationes
       write:statuses: publicar messages

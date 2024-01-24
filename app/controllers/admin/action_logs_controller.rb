@@ -6,7 +6,7 @@ module Admin
 
     def index
       authorize :audit_log, :index?
-      @auditable_accounts = Account.where(id: Admin::ActionLog.select('distinct account_id')).select(:id, :username)
+      @auditable_accounts = Account.auditable.select(:id, :username)
     end
 
     private

@@ -835,6 +835,50 @@ RSpec.describe Account do
   end
 
   describe 'scopes' do
+    describe 'matches_uri_prefix' do
+      let!(:alice) { Fabricate :account, domain: 'host.example', uri: 'https://host.example/user/a' }
+      let!(:bob) { Fabricate :account, domain: 'top-level.example', uri: 'https://top-level.example' }
+
+      it 'returns accounts which start with the value' do
+        results = described_class.matches_uri_prefix('https://host.example')
+
+        expect(results.size)
+          .to eq(1)
+        expect(results)
+          .to include(alice)
+          .and not_include(bob)
+      end
+
+      it 'returns accounts which equal the value' do
+        results = described_class.matches_uri_prefix('https://top-level.example')
+
+        expect(results.size)
+          .to eq(1)
+        expect(results)
+          .to include(bob)
+          .and not_include(alice)
+      end
+    end
+
+    describe 'auditable' do
+      let!(:alice) { Fabricate :account }
+      let!(:bob) { Fabricate :account }
+
+      before do
+        2.times { Fabricate :action_log, account: alice }
+      end
+
+      it 'returns distinct accounts with action log records' do
+        results = described_class.auditable
+
+        expect(results.size)
+          .to eq(1)
+        expect(results)
+          .to include(alice)
+          .and not_include(bob)
+      end
+    end
+
     describe 'alphabetic' do
       it 'sorts by alphabetic order of domain and username' do
         matches = [

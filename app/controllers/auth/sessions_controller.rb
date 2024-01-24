@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Auth::SessionsController < Devise::SessionsController
+  include Redisable
+
+  MAX_2FA_ATTEMPTS_PER_HOUR = 10
+
   layout 'auth'
 
   skip_before_action :check_self_destruct!
@@ -135,9 +139,23 @@ class Auth::SessionsController < Devise::SessionsController
     session.delete(:attempt_user_updated_at)
   end
 
+  def clear_2fa_attempt_from_user(user)
+    redis.del(second_factor_attempts_key(user))
+  end
+
+  def check_second_factor_rate_limits(user)
+    attempts, = redis.multi do |multi|
+      multi.incr(second_factor_attempts_key(user))
+      multi.expire(second_factor_attempts_key(user), 1.hour)
+    end
+
+    attempts >= MAX_2FA_ATTEMPTS_PER_HOUR
+  end
+
   def on_authentication_success(user, security_measure)
     @on_authentication_success_called = true
 
+    clear_2fa_attempt_from_user(user)
     clear_attempt_from_session
 
     user.update_sign_in!(new_sign_in: true)
@@ -168,5 +186,14 @@ class Auth::SessionsController < Devise::SessionsController
       ip: request.remote_ip,
       user_agent: request.user_agent
     )
+
+    # Only send a notification email every hour at most
+    return if redis.set("2fa_failure_notification:#{user.id}", '1', ex: 1.hour, get: true).present?
+
+    UserMailer.failed_2fa(user, request.remote_ip, request.user_agent, Time.now.utc).deliver_later!
+  end
+
+  def second_factor_attempts_key(user)
+    "2fa_auth_attempts:#{user.id}:#{Time.now.utc.hour}"
   end
 end

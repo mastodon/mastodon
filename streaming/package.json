@@ -20,10 +20,11 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "ioredis": "^5.3.2",
-    "jsdom": "^23.0.0",
-    "npmlog": "^7.0.1",
+    "jsdom": "^24.0.0",
     "pg": "^8.5.0",
     "pg-connection-string": "^2.6.0",
+    "pino": "^8.17.2",
+    "pino-http": "^9.0.0",
     "prom-client": "^15.0.0",
     "uuid": "^9.0.0",
     "ws": "^8.12.1"
@@ -31,11 +32,11 @@
   "devDependencies": {
     "@types/cors": "^2.8.16",
     "@types/express": "^4.17.17",
-    "@types/npmlog": "^7.0.0",
     "@types/pg": "^8.6.6",
     "@types/uuid": "^9.0.0",
     "@types/ws": "^8.5.9",
     "eslint-define-config": "^2.0.0",
+    "pino-pretty": "^10.3.1",
     "typescript": "^5.0.4"
   },
   "optionalDependencies": {
