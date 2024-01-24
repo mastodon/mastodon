@@ -572,3 +572,9 @@ html {
 .compose-form .spoiler-input__input {
   color: lighten($ui-highlight-color, 8%);
 }
+
+.compose-form .autosuggest-textarea__textarea,
+.compose-form__highlightable,
+.poll__option input[type='text'] {
+  background: darken($ui-base-color, 10%);
+}
