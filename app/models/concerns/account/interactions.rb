@@ -290,6 +290,7 @@ module Account::Interactions
     relations = {
       blocked_by: Account.blocked_by_map(account_ids, id),
       following: Account.following_map(account_ids, id),
+      followed_by: Account.followed_by_map(account_ids, id),
     }
 
     return relations if options[:skip_blocking_and_muting]
