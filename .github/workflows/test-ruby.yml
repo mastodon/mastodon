@@ -52,7 +52,7 @@ jobs:
         run: |
           tar --exclude={"*.br","*.gz"} -zcf artifacts.tar.gz public/assets public/packs*
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: matrix.mode == 'test'
         with:
           path: |-
@@ -117,7 +117,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           path: './'
           name: ${{ github.sha }}
@@ -193,7 +193,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           path: './public'
           name: ${{ github.sha }}
@@ -213,14 +213,14 @@ jobs:
       - run: bundle exec rake spec:system
 
       - name: Archive logs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: e2e-logs-${{ matrix.ruby-version }}
           path: log/
 
       - name: Archive test screenshots
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: e2e-screenshots
@@ -297,7 +297,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           path: './public'
           name: ${{ github.sha }}
@@ -317,14 +317,14 @@ jobs:
       - run: bin/rspec --tag search
 
       - name: Archive logs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: test-search-logs-${{ matrix.ruby-version }}
           path: log/
 
       - name: Archive test screenshots
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: test-search-screenshots
