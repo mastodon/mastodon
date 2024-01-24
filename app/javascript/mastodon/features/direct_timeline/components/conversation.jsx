@@ -47,6 +47,8 @@ const getAccounts = createSelector(
     accountIds.map(id => accounts.get(id))
 );
 
+const getStatus = makeGetStatus();
+
 export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) => {
   const id = conversation.get('id');
   const unread = conversation.get('unread');
@@ -55,7 +57,6 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
   const intl = useIntl();
   const dispatch = useDispatch();
   const history = useHistory();
-  const getStatus = makeGetStatus();
   const lastStatus = useSelector(state => getStatus(state, { id: lastStatusId }));
   const accounts = useSelector(state => getAccounts(state, accountIds));
 

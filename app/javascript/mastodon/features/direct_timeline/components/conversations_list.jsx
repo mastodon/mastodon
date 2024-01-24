@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useRef, useCallback } from 'react';
+import { useRef, useMemo, useCallback } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -10,48 +10,50 @@ import ScrollableList from 'mastodon/components/scrollable_list';
 
 import { Conversation } from './conversation';
 
+const focusChild = (node, index, alignTop) => {
+  const element = node.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
+
+  if (element) {
+    if (alignTop && node.scrollTop > element.offsetTop) {
+      element.scrollIntoView(true);
+    } else if (!alignTop && node.scrollTop + node.clientHeight < element.offsetTop + element.offsetHeight) {
+      element.scrollIntoView(false);
+    }
+
+    element.focus();
+  }
+};
+
 export const ConversationsList = ({ scrollKey, ...other }) => {
   const listRef = useRef();
   const conversations = useSelector(state => state.getIn(['conversations', 'items']));
   const isLoading = useSelector(state => state.getIn(['conversations', 'isLoading'], true));
   const hasMore = useSelector(state => state.getIn(['conversations', 'hasMore'], false));
   const dispatch = useDispatch();
+  const lastStatusId = conversations.last()?.get('last_status');
 
   const handleMoveUp = useCallback(id => {
     const elementIndex = conversations.findIndex(x => x.get('id') === id) - 1;
-    focusChild(elementIndex, true);
-  }, [conversations]);
+    focusChild(listRef.current.node, elementIndex, true);
+  }, [listRef, conversations]);
 
   const handleMoveDown = useCallback(id => {
     const elementIndex = conversations.findIndex(x => x.get('id') === id) + 1;
-    focusChild(elementIndex, false);
-  }, [conversations]);
+    focusChild(listRef.current.node, elementIndex, false);
+  }, [listRef, conversations]);
 
-  const focusChild = (index, alignTop) => {
-    const node = listRef.current.node;
-    const element = node.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
+  const debouncedLoadMore = useMemo(() => debounce(id => {
+    dispatch(expandConversations({ maxId: id }));
+  }, 300, { leading: true }), [dispatch]);
 
-    if (element) {
-      if (alignTop && node.scrollTop > element.offsetTop) {
-        element.scrollIntoView(true);
-      } else if (!alignTop && node.scrollTop + node.clientHeight < element.offsetTop + element.offsetHeight) {
-        element.scrollIntoView(false);
-      }
-
-      element.focus();
-    }
-  };
-
-  const handleLoadMore = debounce(() => {
-    const lastStatusId = conversations.last()?.get('last_status');
-
+  const handleLoadMore = useCallback(() => {
     if (lastStatusId) {
-      dispatch(expandConversations({ maxId: lastStatusId }));
+      debouncedLoadMore(lastStatusId);
     }
-  }, 300, { leading: true });
+  }, [debouncedLoadMore, lastStatusId]);
 
   return (
-    <ScrollableList {...other} isLoading={isLoading} showLoading={isLoading && conversations.isEmpty()} hasMore={hasMore} onLoadMore={handleLoadMore} ref={listRef}>
+    <ScrollableList {...other} scrollKey={scrollKey} isLoading={isLoading} showLoading={isLoading && conversations.isEmpty()} hasMore={hasMore} onLoadMore={handleLoadMore} ref={listRef}>
       {conversations.map(item => (
         <Conversation
           key={item.get('id')}
