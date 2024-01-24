@@ -275,7 +275,7 @@ module Mastodon::CLI
 
     def deduplicate_users_process_email
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users GROUP BY email HAVING count(*) > 1").each do |row|
-        users = User.where(id: row['ids'].split(',')).order(updated_at: :desc).to_a
+        users = User.where(id: row['ids'].split(',')).order(updated_at: :desc).includes(:account).to_a
         ref_user = users.shift
         say "Multiple users registered with e-mail address #{ref_user.email}.", :yellow
         say "e-mail will be disabled for the following accounts: #{users.map { |user| user.account.acct }.join(', ')}", :yellow
@@ -289,7 +289,7 @@ module Mastodon::CLI
 
     def deduplicate_users_process_confirmation_token
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE confirmation_token IS NOT NULL GROUP BY confirmation_token HAVING count(*) > 1").each do |row|
-        users = User.where(id: row['ids'].split(',')).order(created_at: :desc).to_a.drop(1)
+        users = User.where(id: row['ids'].split(',')).order(created_at: :desc).includes(:account).to_a.drop(1)
         say "Unsetting confirmation token for those accounts: #{users.map { |user| user.account.acct }.join(', ')}", :yellow
 
         users.each do |user|
@@ -313,7 +313,7 @@ module Mastodon::CLI
 
     def deduplicate_users_process_password_token
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE reset_password_token IS NOT NULL GROUP BY reset_password_token HAVING count(*) > 1").each do |row|
-        users = User.where(id: row['ids'].split(',')).order(updated_at: :desc).to_a.drop(1)
+        users = User.where(id: row['ids'].split(',')).order(updated_at: :desc).includes(:account).to_a.drop(1)
         say "Unsetting password reset token for those accounts: #{users.map { |user| user.account.acct }.join(', ')}", :yellow
 
         users.each do |user|
@@ -591,7 +591,7 @@ module Mastodon::CLI
     end
 
     def deduplicate_local_accounts!(scope)
-      accounts = scope.order(id: :desc).to_a
+      accounts = scope.order(id: :desc).includes(:account_stat, :user).to_a
 
       say "Multiple local accounts were found for username '#{accounts.first.username}'.", :yellow
       say 'All those accounts are distinct accounts but only the most recently-created one is fully-functional.', :yellow

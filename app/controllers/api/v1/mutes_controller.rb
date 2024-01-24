@@ -17,7 +17,7 @@ class Api::V1::MutesController < Api::BaseController
   end
 
   def paginated_mutes
-    @paginated_mutes ||= Mute.eager_load(:target_account)
+    @paginated_mutes ||= Mute.eager_load(target_account: [:account_stat, :user])
                              .joins(:target_account)
                              .merge(Account.without_suspended)
                              .where(account: current_account)
