@@ -24,7 +24,7 @@ namespace :tests do
         exit(1)
       end
 
-      if Account.where(domain: Rails.configuration.x.local_domain).exists?
+      if Account.exists?(domain: Rails.configuration.x.local_domain)
         puts 'Faux remote accounts not properly cleaned up'
         exit(1)
       end
@@ -81,6 +81,11 @@ namespace :tests do
 
       unless Account.find_local('kmruser').user.settings['default_language'] == 'ku'
         puts 'Default posting language not migrated as expected for kmr users'
+        exit(1)
+      end
+
+      unless Account.find_local('qcuser').user.locale == 'fr-CA'
+        puts 'Locale for fr-QC users not updated to fr-CA as expected'
         exit(1)
       end
     end
@@ -142,12 +147,18 @@ namespace :tests do
         INSERT INTO "accounts"
           (id, username, domain, private_key, public_key, created_at, updated_at)
         VALUES
-          (10, 'kmruser', NULL, #{user_private_key}, #{user_public_key}, now(), now());
+          (10, 'kmruser', NULL, #{user_private_key}, #{user_public_key}, now(), now()),
+          (11, 'qcuser', NULL, #{user_private_key}, #{user_public_key}, now(), now());
 
         INSERT INTO "users"
           (id, account_id, email, created_at, updated_at, admin, locale, chosen_languages)
         VALUES
           (4, 10, 'kmruser@localhost', now(), now(), false, 'ku', '{en,kmr,ku,ckb}');
+
+        INSERT INTO "users"
+          (id, account_id, email, created_at, updated_at, locale)
+        VALUES
+          (5, 11, 'qcuser@localhost', now(), now(), 'fr-QC');
 
         INSERT INTO "settings"
           (id, thing_type, thing_id, var, value, created_at, updated_at)

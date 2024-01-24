@@ -10,11 +10,25 @@
     %p.lead= t('auth.sign_in.preamble_html', domain: site_hostname)
     .fields-group
       - if use_seamless_external_login?
-        = f.input :email, autofocus: true, wrapper: :with_label, label: t('simple_form.labels.defaults.username_or_email'), input_html: { 'aria-label': t('simple_form.labels.defaults.username_or_email') }, hint: false
+        = f.input :email,
+                  autofocus: true,
+                  hint: false,
+                  input_html: { 'aria-label': t('simple_form.labels.defaults.username_or_email') },
+                  label: t('simple_form.labels.defaults.username_or_email'),
+                  wrapper: :with_label
       - else
-        = f.input :email, autofocus: true, wrapper: :with_label, label: t('simple_form.labels.defaults.email'), input_html: { 'aria-label': t('simple_form.labels.defaults.email') }, hint: false
+        = f.input :email,
+                  autofocus: true,
+                  hint: false,
+                  input_html: { 'aria-label': t('simple_form.labels.defaults.email') },
+                  label: t('simple_form.labels.defaults.email'),
+                  wrapper: :with_label
     .fields-group
-      = f.input :password, wrapper: :with_label, label: t('simple_form.labels.defaults.password'), input_html: { 'aria-label': t('simple_form.labels.defaults.password'), autocomplete: 'current-password' }, hint: false
+      = f.input :password,
+                hint: false,
+                input_html: { 'aria-label': t('simple_form.labels.defaults.password'), autocomplete: 'current-password' },
+                label: t('simple_form.labels.defaults.password'),
+                wrapper: :with_label
 
     .actions
       = f.button :button, t('auth.login'), type: :submit

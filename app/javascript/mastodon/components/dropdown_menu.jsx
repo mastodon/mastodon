@@ -6,10 +6,10 @@ import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { CircularProgress } from 'mastodon/components/circular_progress';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 

@@ -138,7 +138,7 @@ RSpec.describe Auth::SessionsController do
           expect(controller.current_user).to eq user
         end
 
-        it 'sends a suspicious sign-in mail' do
+        it 'sends a suspicious sign-in mail', :sidekiq_inline do
           expect(UserMailer.deliveries.size).to eq(1)
           expect(UserMailer.deliveries.first.to.first).to eq(user.email)
           expect(UserMailer.deliveries.first.subject).to eq(I18n.t('user_mailer.suspicious_sign_in.subject'))
@@ -259,6 +259,40 @@ RSpec.describe Auth::SessionsController do
           it 'renders two factor authentication page' do
             expect(controller).to render_template('two_factor')
             expect(controller).to render_template(partial: '_otp_authentication_form')
+          end
+        end
+
+        context 'when repeatedly using an invalid TOTP code before using a valid code' do
+          before do
+            stub_const('Auth::SessionsController::MAX_2FA_ATTEMPTS_PER_HOUR', 2)
+
+            # Travel to the beginning of an hour to avoid crossing rate-limit buckets
+            travel_to '2023-12-20T10:00:00Z'
+          end
+
+          it 'does not log the user in' do
+            Auth::SessionsController::MAX_2FA_ATTEMPTS_PER_HOUR.times do
+              post :create, params: { user: { otp_attempt: '1234' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+              expect(controller.current_user).to be_nil
+            end
+
+            post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+
+            expect(controller.current_user).to be_nil
+            expect(flash[:alert]).to match I18n.t('users.rate_limited')
+          end
+
+          it 'sends a suspicious sign-in mail', :sidekiq_inline do
+            Auth::SessionsController::MAX_2FA_ATTEMPTS_PER_HOUR.times do
+              post :create, params: { user: { otp_attempt: '1234' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+              expect(controller.current_user).to be_nil
+            end
+
+            post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+
+            expect(UserMailer.deliveries.size).to eq(1)
+            expect(UserMailer.deliveries.first.to.first).to eq(user.email)
+            expect(UserMailer.deliveries.first.subject).to eq(I18n.t('user_mailer.failed_2fa.subject'))
           end
         end
 

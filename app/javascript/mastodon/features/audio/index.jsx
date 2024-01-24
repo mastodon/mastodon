@@ -7,14 +7,14 @@ import classNames from 'classnames';
 
 import { is } from 'immutable';
 
-import { ReactComponent as DownloadIcon } from '@material-symbols/svg-600/outlined/download.svg';
-import { ReactComponent as PauseIcon } from '@material-symbols/svg-600/outlined/pause.svg';
-import { ReactComponent as PlayArrowIcon } from '@material-symbols/svg-600/outlined/play_arrow-fill.svg';
-import { ReactComponent as VisibilityOffIcon } from '@material-symbols/svg-600/outlined/visibility_off.svg';
-import { ReactComponent as VolumeOffIcon } from '@material-symbols/svg-600/outlined/volume_off-fill.svg';
-import { ReactComponent as VolumeUpIcon } from '@material-symbols/svg-600/outlined/volume_up-fill.svg';
 import { throttle, debounce } from 'lodash';
 
+import DownloadIcon from '@/material-icons/400-24px/download.svg?react';
+import PauseIcon from '@/material-icons/400-24px/pause.svg?react';
+import PlayArrowIcon from '@/material-icons/400-24px/play_arrow-fill.svg?react';
+import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
+import VolumeOffIcon from '@/material-icons/400-24px/volume_off-fill.svg?react';
+import VolumeUpIcon from '@/material-icons/400-24px/volume_up-fill.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 import { formatTime, getPointerPosition, fileNameFromURL } from 'mastodon/features/video';
 

@@ -1,15 +1,11 @@
 # frozen_string_literal: true
 
-require Rails.root.join('lib', 'mastodon', 'migration_helpers')
-
 class AddCategoryToReports < ActiveRecord::Migration[6.1]
-  include Mastodon::MigrationHelpers
-
   disable_ddl_transaction!
 
   def up
     safety_assured do
-      add_column_with_default :reports, :category, :int, default: 0, allow_null: false
+      add_column :reports, :category, :int, default: 0, null: false
       change_table(:reports, bulk: true) do |t|
         t.column :action_taken_at, :datetime
         t.column :rule_ids, :bigint, array: true

@@ -29,7 +29,7 @@ class AccountSuggestions
       # a complicated query on this end.
 
       account_ids  = account_ids_with_sources[offset, limit]
-      accounts_map = Account.where(id: account_ids.map(&:first)).includes(:account_stat).index_by(&:id)
+      accounts_map = Account.where(id: account_ids.map(&:first)).includes(:account_stat, :user).index_by(&:id)
 
       account_ids.filter_map do |(account_id, source)|
         next unless accounts_map.key?(account_id)

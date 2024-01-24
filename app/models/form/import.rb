@@ -69,7 +69,7 @@ class Form::Import
     ApplicationRecord.transaction do
       now = Time.now.utc
       @bulk_import = current_account.bulk_imports.create(type: type, overwrite: overwrite || false, state: :unconfirmed, original_filename: data.original_filename, likely_mismatched: likely_mismatched?)
-      nb_items = BulkImportRow.insert_all(parsed_rows.map { |row| { bulk_import_id: bulk_import.id, data: row, created_at: now, updated_at: now } }).length # rubocop:disable Rails/SkipsModelValidations
+      nb_items = BulkImportRow.insert_all(parsed_rows.map { |row| { bulk_import_id: bulk_import.id, data: row, created_at: now, updated_at: now } }).length
       @bulk_import.update(total_items: nb_items)
     end
   end

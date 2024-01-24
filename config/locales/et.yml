@@ -425,6 +425,7 @@ et:
       view: Vaata domeeniblokeeringut
     email_domain_blocks:
       add_new: Lisa uus
+      allow_registrations_with_approval: Luba kinnitamisega registreerimine
       attempts_over_week:
         one: "%{count} katse viimase nädala kestel"
         other: "%{count} liitumiskatset viimase nädala kestel"
@@ -1607,6 +1608,7 @@ et:
       unknown_browser: Tundmatu veebilehitseja
       weibo: Weibo
     current_session: Praegune seanss
+    date: Kuupäev
     description: "%{browser} platvormil %{platform}"
     explanation: Need veebilehitsejad on praegu su Mastodoni kontole sisse loginud.
     ip: IP
@@ -1775,18 +1777,27 @@ et:
     webauthn: Turvavõtmed
   user_mailer:
     appeal_approved:
-      action: Oma kontole
+      action: Konto seaded
       explanation: "%{appeal_date} esitatud vaidlustus %{strike_date} otsuse kohta on rahuldatud. Konto on ennistatud."
       subject: "%{date} esitatud vaidlustus on rahuldatud"
+      subtitle: Sinu konto on jälle heas seisukorras.
       title: Vaidlustus rahuldatud
     appeal_rejected:
       explanation: "%{appeal_date} esitatud vaidlustus %{strike_date} otsuse kohta on tagasi lükatud."
       subject: "%{date} esitatud vaidlustus on tagasi lükatud"
+      subtitle: Sinu vaidlustus lükati tagasi.
       title: Vaidlustus tagasi lükatud
     backup_ready:
-      explanation: Taotlesid oma Mastodoni konto varukoopiat. See on nüüd valmis allalaadimiseks!
+      explanation: Taotlesid oma Mastodoni konto täisvarundust.
+      extra: See on nüüd allalaadimiseks valmis!
       subject: Arhiiv on allalaadimiseks valmis
       title: Arhiivi väljavõte
+    failed_2fa:
+      details: 'Sisenemise üksikasjad:'
+      explanation: Keegi püüdis Su kontole siseneda, ent sisestas vale teisese autentimisfaktori.
+      further_actions_html: Kui see polnud Sina, siis soovitame viivitamata %{action}, kuna see võib olla lekkinud.
+      subject: Kaheastmelise autentimise nurjumine
+      title: Kaheastmeline autentimine nurjus
     suspicious_sign_in:
       change_password: muuta oma salasõna
       details: 'Sisenemise üksikasjad:'
@@ -1843,6 +1854,7 @@ et:
     go_to_sso_account_settings: Mine oma idenditeedipakkuja kontosätetesse
     invalid_otp_token: Vale kaheastmeline võti
     otp_lost_help_html: Kui kaotasid ligipääsu mõlemale, saad võtta ühendust %{email}-iga
+    rate_limited: Liiga palju autentimise katseid, proovi hiljem uuesti.
     seamless_external_login: Välise teenuse kaudu sisse logides pole salasõna ja e-posti sätted saadaval.
     signed_in_as: 'Sisse logitud kasutajana:'
   verification:

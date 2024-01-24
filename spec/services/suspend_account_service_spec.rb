@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SuspendAccountService, type: :service do
+RSpec.describe SuspendAccountService, :sidekiq_inline, type: :service do
   shared_examples 'common behavior' do
     subject { described_class.new.call(account) }
 
@@ -16,17 +16,24 @@ RSpec.describe SuspendAccountService, type: :service do
       list.accounts << account
 
       account.suspend!
+
+      Fabricate(:media_attachment, file: attachment_fixture('boop.ogg'), account: account)
     end
 
-    it 'unmerges from feeds of local followers and preserves suspended flag' do
+    it 'unmerges from feeds of local followers and changes file mode and preserves suspended flag' do
       expect { subject }
-        .to_not change_suspended_flag
+        .to change_file_mode
+        .and not_change_suspended_flag
       expect(FeedManager.instance).to have_received(:unmerge_from_home).with(account, local_follower)
       expect(FeedManager.instance).to have_received(:unmerge_from_list).with(account, list)
     end
 
-    def change_suspended_flag
-      change(account, :suspended?)
+    def change_file_mode
+      change { File.stat(account.media_attachments.first.file.path).mode }
+    end
+
+    def not_change_suspended_flag
+      not_change(account, :suspended?)
     end
   end
 

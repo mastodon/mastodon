@@ -103,9 +103,26 @@ Rails/Exit:
     - 'config/boot.rb'
     - 'lib/mastodon/cli/*.rb'
 
-Rails/SkipsModelValidations:
+# Reason: Conflicts with `Lint/UselessMethodDefinition` for inherited controller actions
+# https://docs.rubocop.org/rubocop-rails/cops_rails.html#railslexicallyscopedactionfilter
+Rails/LexicallyScopedActionFilter:
   Exclude:
-    - 'db/*migrate/**/*'
+    - 'app/controllers/auth/*'
+
+# Reason: These tasks are doing local work which do not need full env loaded
+# https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsrakeenvironment
+Rails/RakeEnvironment:
+  Exclude:
+    - 'lib/tasks/auto_annotate_models.rake'
+    - 'lib/tasks/emojis.rake'
+    - 'lib/tasks/mastodon.rake'
+    - 'lib/tasks/repo.rake'
+    - 'lib/tasks/statistics.rake'
+
+# Reason: There are appropriate times to use these features
+# https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsskipsmodelvalidations
+Rails/SkipsModelValidations:
+  Enabled: false
 
 # Reason: We want to preserve the ability to migrate from arbitrary old versions,
 # and cannot guarantee that every installation has run every migration as they upgrade.

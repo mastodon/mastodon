@@ -44,7 +44,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
 
     # If we fetched a status that already exists, then we need to treat the
     # activity as an update rather than create
-    activity_json['type'] = 'Update' if equals_or_includes_any?(activity_json['type'], %w(Create)) && Status.where(uri: object_uri, account_id: actor.id).exists?
+    activity_json['type'] = 'Update' if equals_or_includes_any?(activity_json['type'], %w(Create)) && Status.exists?(uri: object_uri, account_id: actor.id)
 
     with_redis do |redis|
       discoveries = redis.incr("status_discovery_per_request:#{@request_id}")

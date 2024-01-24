@@ -21,8 +21,10 @@ class EmailDomainBlock < ApplicationRecord
   include DomainNormalizable
   include Paginable
 
-  belongs_to :parent, class_name: 'EmailDomainBlock', optional: true
-  has_many :children, class_name: 'EmailDomainBlock', foreign_key: :parent_id, inverse_of: :parent, dependent: :destroy
+  with_options class_name: 'EmailDomainBlock' do
+    belongs_to :parent, optional: true
+    has_many :children, foreign_key: :parent_id, inverse_of: :parent, dependent: :destroy
+  end
 
   validates :domain, presence: true, uniqueness: true, domain: true
 
