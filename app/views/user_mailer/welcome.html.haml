@@ -1,20 +1,22 @@
+- instance_presenter = InstancePresenter.new
 = content_for :heading do
   .email-desktop-flex
     .email-header-left
       = render 'application/mailer/heading', heading_title: t('user_mailer.welcome.title', name: @resource.account.username), heading_subtitle: t('user_mailer.welcome.explanation')
     .email-header-right
-      %div.email-header-card
+      .email-header-card
         %table.email-header-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
           %tr
             %td
               %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
                 %tr
-                  %td.email-header-card-banner-td{ height: 140, background: full_asset_url(@resource.account.header.url) }
+                  %td.email-header-card-banner-td{ height: 140, background: full_asset_url(instance_presenter.thumbnail&.file&.url(:'@1x') || frontend_asset_path('images/preview.png')) }
               %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
                 %tr
                   %td.email-header-card-body-td
                     %p.email-header-card-instance= @instance
-                    %p.email-header-card-description= "TODO: The original server operated by the Mastodon gGmbH non-profit. The original server operated by the Mastodon gGmbH non-profit."
+                    - if defined?(instance_presenter.description) && !instance_presenter.description.empty?
+                      %p.email-header-card-description= instance_presenter.description
                     = render 'application/mailer/button', text: t('user_mailer.welcome.sign_in_action'), url: web_url, has_arrow: false
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
@@ -54,25 +56,68 @@
                text: t('user_mailer.welcome.apps_step'),
                checked: false,
                step_image_url: frontend_asset_url('images/mailer-new/welcome/step5-off.png'),
-               button_text: t('user_mailer.welcome.apps_action'),
-               button_url: settings_profile_url
-      %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-        %tr
-          %td.email-inner-card-td-without-padding
-            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-              %tr
-                %td.email-prose.email-padding-24
-                  %p 
-                    %b= t 'user_mailer.welcome.full_handle'
-                  = render 'application/mailer/frame', text: "#{@resource.account.username}@#{@instance}"
-                  %p= t 'user_mailer.welcome.full_handle_hint', instance: @instance
-            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-              %tr
-                %td.email-border-top.email-prose.email-padding-24
-                  %p= t 'user_mailer.welcome.edit_profile_step'
-                  = render 'application/mailer/button', text: t('user_mailer.welcome.edit_profile_action'), url: settings_profile_url
-            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-              %tr
-                %td.email-border-top.email-prose.email-padding-24
-                  %p= t 'user_mailer.welcome.edit_profile_step'
-                  = render 'application/mailer/button', text: t('user_mailer.welcome.final_action'), url: web_url
+               show_apps_buttons: true
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-body-columns-td
+      .email-desktop-flex
+        /[if mso]
+          <table border="0" cellpadding="0" cellspacing="0" align="center" style="width:100%;" role="presentation"><tr><td style="width:50%; vertical-align:top;">
+        .email-desktop-column
+          %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+            %tr
+              %td.email-column-td
+                %h2.email-h2= t('user_mailer.welcome.follows_title')
+                %p.email-h-sub= t('user_mailer.welcome.follows_subtitle')
+                = render 'application/mailer/follow'
+                %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                  %tr
+                    %td.email-column-action-td
+                      = link_to '', href: 'https://www.example.com', class: 'email-link-with-arrow' do
+                        = t('user_mailer.welcome.follows_view_more')
+                        %span= '❯'
+        /[if mso]
+          </td><td style="width:50%; vertical-align:top;">
+        .email-desktop-column
+          %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+            %tr
+              %td.email-column-td
+                %h2.email-h2= t('user_mailer.welcome.hashtags_title')
+                %p.email-h-sub= t('user_mailer.welcome.hashtags_subtitle')
+                = render 'application/mailer/hashtag'
+                %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                  %tr
+                    %td.email-column-action-td
+                      = link_to '', href: 'https://www.example.com', class: 'email-link-with-arrow' do
+                        = t('user_mailer.welcome.hashtags_view_more')
+                        %span= '❯'
+        /[if mso]
+          </td></tr></table>
+.email-extra-wave
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-extra-td
+      = render 'application/mailer/feature',
+               feature_title: t('user_mailer.welcome.feature_control_title'),
+               feature_text: t('user_mailer.welcome.feature_control'),
+               feature_image_url: frontend_asset_url('images/mailer-new/welcome/feat1.png'),
+               feature_btn_url: 'https://www.example.com',
+               text_first_on_desktop: true
+      = render 'application/mailer/feature',
+               feature_title: t('user_mailer.welcome.feature_audience_title'),
+               feature_text: t('user_mailer.welcome.feature_audience'),
+               feature_image_url: frontend_asset_url('images/mailer-new/welcome/feat2.png'),
+               feature_btn_url: 'https://www.example.com',
+               text_first_on_desktop: false
+      = render 'application/mailer/feature',
+               feature_title: t('user_mailer.welcome.feature_moderation_title'),
+               feature_text: t('user_mailer.welcome.feature_moderation'),
+               feature_image_url: frontend_asset_url('images/mailer-new/welcome/feat3.png'),
+               feature_btn_url: 'https://www.example.com',
+               text_first_on_desktop: true
+      = render 'application/mailer/feature',
+               feature_title: t('user_mailer.welcome.feature_creativity_title'),
+               feature_text: t('user_mailer.welcome.feature_creativity'),
+               feature_image_url: frontend_asset_url('images/mailer-new/welcome/feat4.png'),
+               feature_btn_url: 'https://www.example.com',
+               text_first_on_desktop: false

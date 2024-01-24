@@ -1,0 +1,14 @@
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-mini-wrapper-td
+      %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-mini-td
+            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+              %tr
+                %td.email-mini-follow-img-td
+                %td.email-mini-follow-text-td
+                  %h3= 'ProPublica'
+                  %p= '@ProPublica@newsie.social'
+                %td.email-mini-follow-btn-td
+                  = render 'application/mailer/button', text: t('user_mailer.welcome.follow_action'), url: 'https://www.example.com', has_arrow: false
