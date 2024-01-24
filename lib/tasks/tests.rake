@@ -5,12 +5,16 @@ namespace :tests do
     desc 'Prepares all migrations and test data for consistency checks'
     task prepare_database: :environment do
       {
-        'v2' => 2017_10_10_025614,
-        'v2_4' => 2018_05_14_140000,
-        'v2_4_3' => 2018_07_07_154237,
+        '2' => 2017_10_10_025614,
+        '2_4' => 2018_05_14_140000,
+        '2_4_3' => 2018_07_07_154237,
       }.each do |release, version|
-        system("./bin/rails db:migrate VERSION=#{version}")
-        Rake::Task["tests:migrations:populate_#{release}"].invoke
+        ActiveRecord::Tasks::DatabaseTasks
+          .migration_connection
+          .migration_context
+          .migrate(version)
+        Rake::Task["tests:migrations:populate_v#{release}"]
+          .invoke
       end
     end
 
