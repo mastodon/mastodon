@@ -52,6 +52,7 @@ ie:
         subtitle: 2-factor autentication por tui conto ha esset desactivisat.
         title: 2FA desvalidat
       two_factor_enabled:
+        explanation: Un clave generat del acuplat TOTP-aplication nu va esser besonat por aperter session.
         subject: 'Mastodon: 2-factor autentication activat'
         subtitle: 2-factor autentication ha esset activisat por tui conto.
         title: 2FA permisset
@@ -73,6 +74,7 @@ ie:
           title: Un ex tui claves de securitá ha esset deletet
       webauthn_disabled:
         explanation: Autentication per clave de securitá ha esset desactivisat por tui conto.
+        extra: Aperter session es nu possibil solmen per li clave generat del acuplat TOTP-aplication.
         subject: 'Mastodon: Autentication con claves de securitá desactivisat'
         title: Claves de securitá desactivisat
       webauthn_enabled:

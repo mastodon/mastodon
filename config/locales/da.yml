@@ -1790,6 +1790,12 @@ da:
       extra: Sikkerhedskopien kan nu downloades!
       subject: Dit arkiv er klar til download
       title: Arkiv download
+    failed_2fa:
+      details: 'Her er detaljerne om login-forsøget:'
+      explanation: Nogen har forsøgt at logge ind på kontoen, men har angivet en ugyldig anden godkendelsesfaktor.
+      further_actions_html: Var dette ikke dig, anbefales det straks at %{action}, da den kan være kompromitteret.
+      subject: Anden faktor godkendelsesfejl
+      title: Fejlede på anden faktor godkendelse
     suspicious_sign_in:
       change_password: ændrer din adgangskode
       details: 'Her er nogle detaljer om login-forsøget:'
@@ -1843,6 +1849,7 @@ da:
     go_to_sso_account_settings: Gå til identitetsudbyderens kontoindstillinger
     invalid_otp_token: Ugyldig tofaktorkode
     otp_lost_help_html: Har du mistet adgang til begge, kan du kontakte %{email}
+    rate_limited: For mange godkendelsesforsøg. Prøv igen senere.
     seamless_external_login: Du er logget ind via en ekstern tjeneste, så adgangskode- og e-mailindstillinger er utilgængelige.
     signed_in_as: 'Logget ind som:'
   verification:

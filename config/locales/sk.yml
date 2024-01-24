@@ -430,6 +430,7 @@ sk:
       dashboard:
         instance_accounts_dimension: Najsledovanejšie účty
         instance_accounts_measure: uložené účty
+        instance_followers_measure: naši nasledovatelia tam
         instance_follows_measure: ich sledovatelia tu
         instance_languages_dimension: Najpopulárnejšie jazyky
         instance_media_attachments_measure: uložené mediálne prílohy
@@ -732,6 +733,7 @@ sk:
     new_appeal:
       actions:
         none: varovanie
+        silence: obmedziť ich účet
     new_pending_account:
       body: Podrobnosti o novom účte sú uvedené nižšie. Môžeš túto registračnú požiadavku buď prijať, alebo zamietnúť.
       subject: Nový účet očakáva preverenie na %{instance} (%{username})
@@ -1256,6 +1258,8 @@ sk:
       extra: Teraz je pripravená na stiahnutie!
       subject: Tvoj archív je pripravený na stiahnutie
       title: Odber archívu
+    failed_2fa:
+      details: 'Tu sú podrobnosti o pokuse o prihlásenie:'
     warning:
       subject:
         disable: Tvoj účet %{acct} bol zamrazený
@@ -1279,6 +1283,7 @@ sk:
     follow_limit_reached: Nemôžeš následovať viac ako %{limit} ľudí
     invalid_otp_token: Neplatný kód pre dvojfaktorovú autentikáciu
     otp_lost_help_html: Pokiaľ si stratil/a prístup k obom, môžeš dať vedieť %{email}
+    rate_limited: Príliš veľa pokusov o overenie, skús to znova neskôr.
     seamless_external_login: Si prihlásená/ý cez externú službu, takže nastavenia hesla a emailu ti niesú prístupné.
     signed_in_as: 'Prihlásená/ý ako:'
   verification:

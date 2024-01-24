@@ -1790,6 +1790,11 @@ nl:
       extra: Het staat nu klaar om te worden gedownload!
       subject: Jouw archief staat klaar om te worden gedownload
       title: Archief ophalen
+    failed_2fa:
+      details: 'Hier zijn details van de aanmeldpoging:'
+      explanation: Iemand heeft geprobeerd om in te loggen op uw account maar heeft een ongeldige tweede verificatiefactor opgegeven.
+      subject: Tweede factor authenticatiefout
+      title: Tweestapsverificatie mislukt
     suspicious_sign_in:
       change_password: je wachtwoord te wijzigen
       details: 'Hier zijn de details van inlogpoging:'
@@ -1843,6 +1848,7 @@ nl:
     go_to_sso_account_settings: Ga naar de accountinstellingen van je identiteitsprovider
     invalid_otp_token: Ongeldige tweestaps-toegangscode
     otp_lost_help_html: Als je toegang tot beiden kwijt bent geraakt, neem dan contact op via %{email}
+    rate_limited: Te veel authenticatiepogingen, probeer het later opnieuw.
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.
     signed_in_as: 'Ingelogd als:'
   verification:

@@ -1822,6 +1822,12 @@ sr-Latn:
       extra: Sada je spremno za preuzimanje!
       subject: Vaša arhiva je spremna za preuzimanje
       title: Izvoz arhive
+    failed_2fa:
+      details: 'Evo detalja o pokušaju prijavljivanja:'
+      explanation: Neko je pokušao da se prijavi na vaš nalog ali je dao nevažeći drugi faktor autentifikacije.
+      further_actions_html: Ako to niste bili vi, preporučujemo vam da odmah %{action} jer može biti ugrožena.
+      subject: Neuspeh drugog faktora autentifikacije
+      title: Nije uspeo drugi faktor autentifikacije
     suspicious_sign_in:
       change_password: promenite svoju lozinku
       details: 'Evo detalja o prijavi:'
@@ -1875,6 +1881,7 @@ sr-Latn:
     go_to_sso_account_settings: Idite na podešavanja naloga svog dobavljača identiteta
     invalid_otp_token: Neispravni dvofaktorski kod
     otp_lost_help_html: Ako izgubite pristup za oba, možete stupiti u kontakt sa %{email}
+    rate_limited: Previše pokušaja autentifikacije, pokušajte ponovo kasnije.
     seamless_external_login: Prijavljeni ste putem spoljašnje usluge, tako da lozinka i podešavanja E-pošte nisu dostupni.
     signed_in_as: 'Prijavljen/a kao:'
   verification:

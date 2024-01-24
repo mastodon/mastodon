@@ -47,14 +47,19 @@ sq:
         subject: 'Mastodon: Udhëzime ricaktimi fjalëkalimi'
         title: Ricaktim fjalëkalimi
       two_factor_disabled:
+        explanation: Hyrja tanimë është e mundshme duke përdorur vetëm adresë email dhe fjalëkalim.
         subject: 'Mastodon: U çaktivizua mirëfilltësimi dyfaktorësh'
+        subtitle: Mirëfilltësimi dyfaktorësh për llogarinë tuaj është çaktivizuar.
         title: 2FA u çaktivizua
       two_factor_enabled:
+        explanation: Për të kryer hyrjen do të kërkohet doemos një token i prodhuar nga aplikacioni TOTP i çiftuar.
         subject: 'Mastodon: U aktivizua mirëfilltësimi dyfaktorësh'
+        subtitle: Për llogarinë tuaj është aktivizuar mirëfilltësmi dyfaktorësh.
         title: 2FA u aktivizua
       two_factor_recovery_codes_changed:
         explanation: Kodet e dikurshëm të rikthimit janë bërë të pavlefshëm dhe janë prodhuar të rinj.
         subject: 'Mastodon: U riprodhuan kode rikthimi dyfaktorësh'
+        subtitle: Kodet e dikurshëm të rikthimit janë bërë të pavlefshëm dhe janë prodhuar të rinj.
         title: Kodet e rikthimit 2FA u ndryshuan
       unlock_instructions:
         subject: 'Mastodon: Udhëzime shkyçjeje'
@@ -68,9 +73,13 @@ sq:
           subject: 'Mastodon: Fshirje kyçi sigurie'
           title: Një nga kyçet tuaj të sigurisë është fshirë
       webauthn_disabled:
+        explanation: Mirëfilltësimi me kyçe sigurie është çaktivizuar për llogarinë tuaj.
+        extra: Hyrjet tani janë të mundshme vetëm duke përdorur token-in e prodhuar nga aplikacioni TOTP i çiftuar.
         subject: 'Mastodon: U çaktivizua mirëfilltësimi me kyçe sigurie'
         title: U çaktivizuan kyçe sigurie
       webauthn_enabled:
+        explanation: Mirëfilltësimi me kyçe sigurie është aktivizuar për këtë llogari.
+        extra: Kyçi juaj i sigurisë tanimë mund të përdoret për hyrje.
         subject: 'Mastodon: U aktivizua mirëfilltësim me kyçe sigurie'
         title: U aktivizuan kyçe sigurie
     omniauth_callbacks:

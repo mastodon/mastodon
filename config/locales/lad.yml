@@ -384,6 +384,7 @@ lad:
         cancel: Anula
         confirm: Suspende
         permanent_action: Si kites la suspensyon no restoraras dingunos datos ni relasyones.
+        preamble_html: Estas a punto de suspender <strong>%{domain}</strong> i sus subdomenos.
         remove_all_data: Esto efasara todo el kontenido, multimedia i datos de profiles de los kuentos en este domeno de tu sirvidor.
         stop_communication: Tu sirvidor deshara de komunikarse kon estos sirvidores.
         title: Konfirma bloko de domeno para %{domain}
@@ -608,6 +609,7 @@ lad:
       created_at: Raportado
       delete_and_resolve: Efasa publikasyones
       forwarded: Reembiado
+      forwarded_replies_explanation: Este raporto vyene de un utilizador remoto i es sovre kontenido remoto. Tiene sido reembiado a ti porke el kontenido raportado esta en una repuesta a uno de tus utilizadores.
       forwarded_to: Reembiado a %{domain}
       mark_as_resolved: Marka komo rezolvido
       mark_as_sensitive: Marka komo sensivle
@@ -712,6 +714,7 @@ lad:
         manage_users: Administra utilizadores
         manage_users_description: Permete a los utilizadores ver los peratim de otros utilizadores i realizar aksyones de moderasyon kontra eyos
         manage_webhooks: Administrar webhooks
+        manage_webhooks_description: Permite a los utilizadores konfigurar webhooks para evenimientos administrativos
         view_audit_log: Mostra defter de revisyon
         view_audit_log_description: Permete a los utilizadores ver una estoria de aksyones administrativas en el sirvidor
         view_dashboard: Ve pano
@@ -738,6 +741,8 @@ lad:
       branding:
         preamble: La marka de tu sirvidor lo desferensia de otros sirvidores de la red. Esta enformasyon puede amostrarse por una varieta de entornos, komo en la enterfaz web de Mastodon, en aplikasyones nativas, en previsualizasiones de atadijos en otros sitios internetikos i en aplikasyones de mesajes, etc. Por esta razon, es mijor mantener esta enformasyon klara, breve i konsiza.
         title: Marka
+      captcha_enabled:
+        title: Solisita ke los muevos utilizadores rezolven un CAPTCHA para konfirmar su konto
       content_retention:
         preamble: Kontrola komo el kontenido jenerado por el utilizador se magazina en Mastodon.
         title: Retensyon de kontenido
@@ -765,6 +770,9 @@ lad:
           approved: Se rekiere achetasion para enrejistrarse
           none: Permete a los utilizadores trokar la konfigurasyon del sitio
           open: Kualkiera puede enrejistrarse
+      security:
+        authorized_fetch_overridden_hint: Agora no puedes trokar esta konfigurasyon dkee esta sovreeskrita por una variable de entorno.
+        federation_authentication: Forzamyento de autentifikasyon para la federasyon
       title: Konfigurasyon del sirvidor
     site_uploads:
       delete: Efasa dosya kargada
@@ -820,8 +828,13 @@ lad:
     system_checks:
       database_schema_check:
         message_html: Ay migrasyones asperando de la baza de datos. Por favor, egzekutalas para asigurarte de ke la aplikasyon fonksiona komo deveria
+      elasticsearch_health_red:
+        message_html: El klaster de Elasticsearch no es sano (estado kolorado), funksyones de bushkeda no estan disponivles
+      elasticsearch_health_yellow:
+        message_html: El klaster de Elasticsearch no es sano (estado amariyo), es posivle ke keras investigar la razon
       elasticsearch_preset:
         action: Ve dokumentasyon
+        message_html: Tu klaster de Elasticsearch tiene mas ke un nodo, ama Mastodon no esta konfigurado para uzarlos.
       elasticsearch_preset_single_node:
         action: Ve dokumentasyon
       elasticsearch_running_check:
@@ -1012,12 +1025,17 @@ lad:
   auth:
     apply_for_account: Solisita un kuento
     captcha_confirmation:
+      help_html: Si tyenes problemas kon rezolver el CAPTCHA, puedes kontaktarnos en %{email} i podremos ayudarte.
+      hint_html: Una koza mas! Tenemos ke konfirmar ke eres umano (para evitar spam!). Rezolve el CAPTCHA abasho i klika "Kontinua".
       title: Kontrolo de sigurita
     confirmations:
+      awaiting_review: Tu adreso de posta tiene sido konfirmado! La taifa de %{domain} esta revizando tu enrejistrasyon. Risiviras un meil si acheten tu kuento!
       awaiting_review_title: Estamos revizando tu enrejistramiento
       clicking_this_link: klikando en este atadijo
       login_link: konektate kon kuento
       proceed_to_login_html: Agora puedes ir a %{login_link}.
+      redirect_to_app_html: Seras readresado a la aplikasyon <strong>%{app_name}</strong>. Si esto no afita, aprova %{clicking_this_link} o regresa manualmente a la aplikasyon.
+      registration_complete: Tu enrejistrasyon en %{domain} ya esta kompletada!
       welcome_title: Bienvenido, %{name}!
       wrong_email_hint: Si este adreso de posta es inkorekto, puedes trokarlo en las preferensyas del kuento.
     delete_account: Efasa kuento
@@ -1054,6 +1072,7 @@ lad:
     rules:
       accept: Acheta
       back: Atras
+      invited_by: 'Puedes adjuntarte a %{domain} grasyas a la envitasyon de:'
       preamble: Estas son establesidas i aplikadas por los moderadores de %{domain}.
       preamble_invited: Antes de kontinuar, por favor reviza las reglas del sirvidor establesidas por los moderatores de %{domain}.
       title: Algunas reglas bazikas.
@@ -1078,6 +1097,7 @@ lad:
       functional: Tu kuento esta kompletamente funksyonal.
       pending: Tu solisitasyon esta asperando la revizion por muestros administradores. Esto puede tadrar algun tiempo. Arisiviras una posta elektronika si la solisitasyon sea achetada.
       redirecting_to: Tu kuento se topa inaktivo porke esta siendo readresado a %{acct}.
+      self_destruct: Deke %{domain} va a serrarse, solo tendras akseso limitado a tu kuento.
       view_strikes: Ve amonestamientos pasados kontra tu kuento
     too_fast: Formulario enviado demaziado rapido, aprovalo de muevo.
     use_security_key: Uza la yave de sigurita
@@ -1271,6 +1291,19 @@ lad:
       merge_long: Manten rejistros egzistentes i adjusta muevos
       overwrite: Sobreskrive
       overwrite_long: Mete muevos rejistros en vez de los aktuales
+    overwrite_preambles:
+      blocking_html: Estas a punto de <strong>substituyir tu lista de blokos</strong> por asta <strong>%{total_items} kuentos </strong> de <strong>%{filename}</strong>.
+      bookmarks_html: Estas a punto de <strong>substituyir tus markadores</strong> por asta <strong>%{total_items} publikasyones</strong> ke vinyeron de <strong>%{filename}</strong>.
+      domain_blocking_html: Estas a punto de <strong>substituyir tu lista de blokos de domeno</strong> por asta <strong>%{total_items} domenos </strong> de <strong>%{filename}</strong>.
+      following_html: Estas a punto de <strong>segir</strong> asta <strong>%{total_items} kuentos</strong> de <strong>%{filename}</strong> i <strong>deshar de segir todos los otros kuentos</strong>.
+      lists_html: Estas a punto de <strong>sustituyir tus listas</strong> con el kontenido de <strong>%{filename}</strong>. Asta <strong>%{total_items} kuentos</strong> seran adjustados a muevas listas.
+      muting_html: Estas a punto de <strong>substituyir tu lista de kuentos silensyados</strong> por asta <strong>%{total_items} kuentos </strong> de <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Estas a punto de <strong>blokar</strong> asta <strong>%{total_items} kuentos </strong> de <strong>%{filename}</strong>.
+      bookmarks_html: Estas a punto de adjustar asta <strong>%{total_items} publikasyones</strong> de <strong>%{filename}</strong> a tus <strong>markadores</strong>.
+      domain_blocking_html: Estas a punto de <strong>blokar</strong> asta <strong>%{total_items} domenos </strong> de <strong>%{filename}</strong>.
+      following_html: Estas a punto de <strong>segir</strong> asta <strong>%{total_items} kuentos </strong> de <strong>%{filename}</strong>.
+      muting_html: Estas a punto de <strong>silensyar</strong> asta <strong>%{total_items} kuentos </strong> de <strong>%{filename}</strong>.
     preface: Puedes importar siertos datos, komo todas las personas a las kualas estas sigiendo o blokando en tu kuento en esta instansya, dizde dosyas eksportadas de otra instansya.
     recent_imports: Importasyones resyentes
     states:
@@ -1474,7 +1507,9 @@ lad:
     public_timelines: Linyas de tiempo publikas
   privacy:
     privacy: Privasita
+    reach: Alkanse
     search: Bushkeda
+    title: Privasita i alkanse
   privacy_policy:
     title: Politika de privasita
   reactions:
@@ -1711,6 +1746,7 @@ lad:
       action: Preferensyas de kuento
       explanation: La apelasyon del amonestamiento kontra tu kuento del %{strike_date} ke mandates el %{appeal_date} fue achetada. Tu kuento se topa de muevo en dobro estado.
       subject: Tu apelasyon del %{date} fue achetada
+      subtitle: Tu konto de muevo tiene una reputasyon buena.
       title: Apelasyon achetada
     appeal_rejected:
       explanation: La apelasyon del amonestamiento kontra tu kuento del %{strike_date} ke mandates el %{appeal_date} fue refuzada.
@@ -1718,8 +1754,11 @@ lad:
       subtitle: Tu apelasyon fue refuzada.
       title: Apelasyon refuzada
     backup_ready:
+      extra: Agora esta pronto para abashar!
       subject: Tu dosya esta pronta para abashar
       title: Abasha dosya
+    failed_2fa:
+      details: 'Aki estan los peratim de las provas de koneksyon kon tu kuento:'
     suspicious_sign_in:
       change_password: troka tu kod
       details: 'Aki estan los peratim de la koneksyon kon tu kuento:'
@@ -1773,6 +1812,8 @@ lad:
     go_to_sso_account_settings: Va a la konfigurasyon de kuento de tu prokurador de identita
     invalid_otp_token: Kodiche de dos pasos no valido
     otp_lost_help_html: Si pedriste akseso a los dos, puedes kontaktarte kon %{email}
+    rate_limited: Demaziadas provas de autentifikasyon, aprova de muevo dempues.
+    seamless_external_login: Estas konektado por un servisyo eksterno i estonses la konfigurasyon de kod i konto de posta no estan disponivles.
     signed_in_as: 'Konektado komo:'
   verification:
     here_is_how: Ansina es komo
@@ -1785,6 +1826,7 @@ lad:
       success: Tu yave de sigurita fue adjustada kon sukseso.
     delete: Efasa
     delete_confirmation: Estas siguro ke keres efasar esta yave de sigurita?
+    description_html: Si kapasites <strong>autentifikasyon kon yave de sigurita</strong>, nesesitaras uno de tus yaves de sigurita para konektarte kon tu kuento.
     destroy:
       error: Uvo un problem al efasar tu yave de sigurita. Por favor aprova de muevo.
       success: Tu yave de sigurita fue efasada kon sukseso.

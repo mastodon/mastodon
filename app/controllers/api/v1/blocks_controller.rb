@@ -17,7 +17,7 @@ class Api::V1::BlocksController < Api::BaseController
   end
 
   def paginated_blocks
-    @paginated_blocks ||= Block.eager_load(target_account: :account_stat)
+    @paginated_blocks ||= Block.eager_load(target_account: [:account_stat, :user])
                                .joins(:target_account)
                                .merge(Account.without_suspended)
                                .where(account: current_account)
