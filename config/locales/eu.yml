@@ -1794,6 +1794,12 @@ eu:
       extra: Deskargatzeko prest!
       subject: Zure artxiboa deskargatzeko prest dago
       title: Artxiboa jasotzea
+    failed_2fa:
+      details: 'Hemen dituzu saio-hasieraren saiakeraren xehetasunak:'
+      explanation: Norbait zure kontuan saioa hasten saiatu da, baina bigarren autentifikazioaren faktore baliogabea eman du.
+      further_actions_html: Ez bazara zu izan, "%{action}" ekintza berehala egitea gomendatzen dugu, kontua arriskarazi daiteke eta.
+      subject: Autentifikazioaren bigarren faktoreak huts egin du
+      title: Huts egin duen autentifikazioaren bigarren faktorea
     suspicious_sign_in:
       change_password: aldatu pasahitza
       details: 'Hemen daude saio hasieraren xehetasunak:'
@@ -1847,6 +1853,7 @@ eu:
     go_to_sso_account_settings: Jo zure identitate-hornitzaileko kontuaren ezarpenetara
     invalid_otp_token: Bi faktoreetako kode baliogabea
     otp_lost_help_html: 'Bietara sarbidea galdu baduzu, jarri kontaktuan hemen: %{email}'
+    rate_limited: Autentifikazio saiakera gehiegi, saiatu berriro geroago.
     seamless_external_login: Kanpo zerbitzu baten bidez hasi duzu saioa, beraz pasahitza eta e-mail ezarpenak ez daude eskuragarri.
     signed_in_as: 'Saioa honela hasita:'
   verification:

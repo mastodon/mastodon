@@ -120,7 +120,7 @@ module Mastodon::CLI
 
       say('Beginning removal of now-orphaned media attachments to free up disk space...')
 
-      scope     = MediaAttachment.unattached.where('created_at < ?', options[:days].pred.days.ago)
+      scope     = MediaAttachment.unattached.created_before(options[:days].pred.days.ago)
       processed = 0
       removed   = 0
       progress  = create_progress_bar(scope.count)

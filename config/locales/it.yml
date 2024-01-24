@@ -1792,6 +1792,12 @@ it:
       extra: Ora è pronto per il download!
       subject: Il tuo archivio è pronto per essere scaricato
       title: Esportazione archivio
+    failed_2fa:
+      details: 'Questi sono i dettagli del tentativo di accesso:'
+      explanation: Qualcuno ha tentato di accedere al tuo account ma ha fornito un secondo fattore di autenticazione non valido.
+      further_actions_html: Se non eri tu, ti consigliamo di %{action} immediatamente poiché potrebbe essere compromesso.
+      subject: Errore di autenticazione del secondo fattore
+      title: Autenticazione del secondo fattore non riuscita
     suspicious_sign_in:
       change_password: cambiare la tua password
       details: 'Questi sono i dettagli del tentativo di accesso:'
@@ -1845,6 +1851,7 @@ it:
     go_to_sso_account_settings: Vai alle impostazioni dell'account del tuo provider di identità
     invalid_otp_token: Codice d'accesso non valido
     otp_lost_help_html: Se perdessi l'accesso ad entrambi, puoi entrare in contatto con %{email}
+    rate_limited: Troppi tentativi di autenticazione, per favore riprova più tardi.
     seamless_external_login: Hai effettuato l'accesso tramite un servizio esterno, quindi le impostazioni di password e e-mail non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
   verification:

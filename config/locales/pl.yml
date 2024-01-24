@@ -1854,6 +1854,12 @@ pl:
       extra: Gotowe do pobrania!
       subject: Twoje archiwum jest gotowe do pobrania
       title: Odbiór archiwum
+    failed_2fa:
+      details: 'Oto szczegóły próby logowania:'
+      explanation: Ktoś próbował zalogować się na twoje konto, ale nie przeszedł drugiego etapu autoryzacji.
+      further_actions_html: Jeśli to nie ty, polecamy natychmiastowo %{action}, bo może ono być narażone.
+      subject: Błąd drugiego etapu uwierzytelniania
+      title: Nieudane uwierzytelnienie w drugim etapie
     suspicious_sign_in:
       change_password: zmień hasło
       details: 'Oto szczegóły logowania:'
@@ -1907,6 +1913,7 @@ pl:
     go_to_sso_account_settings: Przejdź do ustawień konta dostawcy tożsamości
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
     otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
+    rate_limited: Zbyt wiele prób uwierzytelnienia. Spróbuj ponownie później.
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowano jako:'
   verification:

@@ -1760,6 +1760,12 @@ zh-TW:
       extra: 準備好下載了！
       subject: 您的備份檔已可供下載
       title: 檔案匯出
+    failed_2fa:
+      details: 以下是該登入嘗試之詳細資訊：
+      explanation: 有人嘗試登入您的帳號，但提供了無效的第二個驗證因子。
+      further_actions_html: 若這並非您所為，我們建議您立刻 %{action}，因為其可能已被入侵。
+      subject: 第二因子驗證失敗
+      title: 第二因子身份驗證失敗
     suspicious_sign_in:
       change_password: 變更密碼
       details: 以下是該登入之詳細資訊：
@@ -1813,6 +1819,7 @@ zh-TW:
     go_to_sso_account_settings: 前往您的身分提供商 (identity provider) 之帳號設定
     invalid_otp_token: 兩階段認證碼不正確
     otp_lost_help_html: 如果您無法存取這兩者，您可以透過 %{email} 與我們聯繫
+    rate_limited: 身份驗證嘗試太多次，請稍後再試。
     seamless_external_login: 由於您是由外部系統登入，所以不能設定密碼與電子郵件。
     signed_in_as: 目前登入的帳號：
   verification:

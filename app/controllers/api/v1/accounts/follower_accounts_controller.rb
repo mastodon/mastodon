@@ -30,7 +30,7 @@ class Api::V1::Accounts::FollowerAccountsController < Api::BaseController
   end
 
   def default_accounts
-    Account.includes(:active_relationships, :account_stat).references(:active_relationships)
+    Account.includes(:active_relationships, :account_stat, :user).references(:active_relationships)
   end
 
   def paginated_follows

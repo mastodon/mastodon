@@ -1790,8 +1790,14 @@ de:
       extra: Sie ist jetzt zum Herunterladen bereit!
       subject: Dein persönliches Archiv kann heruntergeladen werden
       title: Archiv-Download
+    failed_2fa:
+      details: 'Details zum Anmeldeversuch:'
+      explanation: Jemand hat versucht, sich bei deinem Konto anzumelden, aber die Zwei-Faktor-Authentisierung schlug fehl.
+      further_actions_html: Solltest du das nicht gewesen sein, empfehlen wir dir, sofort %{action}, da dein Konto möglicherweise kompromittiert ist.
+      subject: Zwei-Faktor-Authentisierung fehlgeschlagen
+      title: Zwei-Faktor-Authentisierung fehlgeschlagen
     suspicious_sign_in:
-      change_password: dein Passwort ändern
+      change_password: dein Passwort zu ändern
       details: 'Hier sind die Details zu den Anmeldeversuchen:'
       explanation: Wir haben eine Anmeldung zu deinem Konto von einer neuen IP-Adresse festgestellt.
       further_actions_html: Wenn du das nicht warst, empfehlen wir dir schnellstmöglich, %{action} und die Zwei-Faktor-Authentisierung (2FA) für dein Konto zu aktivieren, um es abzusichern.
@@ -1843,6 +1849,7 @@ de:
     go_to_sso_account_settings: Kontoeinstellungen des Identitätsanbieters aufrufen
     invalid_otp_token: Ungültiger Code der Zwei-Faktor-Authentisierung (2FA)
     otp_lost_help_html: Wenn du beides nicht mehr weißt, melde dich bitte bei uns unter der E-Mail-Adresse %{email}
+    rate_limited: Zu viele Authentisierungsversuche. Bitte versuche es später noch einmal.
     seamless_external_login: Du bist über einen externen Dienst angemeldet, daher sind Passwort- und E-Mail-Einstellungen nicht verfügbar.
     signed_in_as: 'Angemeldet als:'
   verification:

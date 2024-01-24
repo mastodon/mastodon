@@ -1604,6 +1604,7 @@ sq:
       unknown_browser: Shfletues i Panjohur
       weibo: Weibo
     current_session: Sesioni i tanishëm
+    date: Datë
     description: "%{browser} në %{platform}"
     explanation: Këta janë shfletuesit e përdorur tani për hyrje te llogaria juaj Mastodon.
     ip: IP
@@ -1770,16 +1771,27 @@ sq:
     webauthn: Kyçe sigurie
   user_mailer:
     appeal_approved:
+      action: Rregullime Llogarie
       explanation: Apelimi i paralajmërimit kundër llogarisë tuaj më %{strike_date}, të cilin e parashtruar më %{appeal_date} është miratuar. Llogaria juaj është sërish në pozita të mira.
       subject: Apelimi juaj i datës %{date} u miratua
+      subtitle: Llogaria juaj edhe një herë është e shëndetshme.
       title: Apelimi u miratua
     appeal_rejected:
       explanation: Apelimi i paralajmërimit kundër llogarisë tuaj më %{strike_date}, të cilin e parashtruar më %{appeal_date}, u hodh poshtë.
       subject: Apelimi juaj prej %{date} është hedhur poshtë
+      subtitle: Apelimi juaj është hedhur poshtë.
       title: Apelimi u hodh poshtë
     backup_ready:
+      explanation: Kërkuat një kopjeruajtje të plotë të llogarisë tuaj Mastodon.
+      extra: Tani është gati për shkarkim!
       subject: Arkivi juaj është gati për shkarkim
       title: Marrje arkivi me vete
+    failed_2fa:
+      details: 'Ja hollësitë e përpjekjes për hyrje:'
+      explanation: Dikush ka provuar të hyjë në llogarinë tuaj, por dha faktor të dytë mirëfilltësimi.
+      further_actions_html: Nëse s’qetë ju, rekomandojmë të %{action} menjëherë, ngaqë mund të jetë komprometua.
+      subject: Dështim faktori të dytë mirëfilltësimesh
+      title: Dështoi mirëfilltësimi me faktor të dytë
     suspicious_sign_in:
       change_password: ndryshoni fjalëkalimin tuaj
       details: 'Ja hollësitë për hyrjen:'
@@ -1833,6 +1845,7 @@ sq:
     go_to_sso_account_settings: Kaloni te rregullime llogarie te shërbimi juaj i identitetit
     invalid_otp_token: Kod dyfaktorësh i pavlefshëm
     otp_lost_help_html: Nëse humbët hyrjen te të dy, mund të lidheni me %{email}
+    rate_limited: Shumë përpjekje mirëfilltësimi, riprovoni më vonë.
     seamless_external_login: Jeni futur përmes një shërbimi të jashtëm, ndaj s’ka rregullime fjalëkalimi dhe email.
     signed_in_as: 'I futur si:'
   verification:

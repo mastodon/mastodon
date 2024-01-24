@@ -1608,6 +1608,7 @@ nn:
       unknown_browser: Ukjend nettlesar
       weibo: Weibo
     current_session: Noverande økt
+    date: Dato
     description: "%{browser} på %{platform}"
     explanation: Desse nettlesarane er logga inn på Mastodon-kontoen din.
     ip: IP-adresse
@@ -1774,16 +1775,27 @@ nn:
     webauthn: Sikkerhetsnøkler
   user_mailer:
     appeal_approved:
+      action: Kontoinnstillinger
       explanation: Apellen på prikken mot din kontor på %{strike_date} som du la inn på %{appeal_date} har blitt godkjend. Din konto er nok ein gong i god stand.
       subject: Din klage fra %{date} er godkjent
+      subtitle: Kontoen din er tilbake i god stand.
       title: Anke godkjend
     appeal_rejected:
       explanation: Klagen på advarselen mot din konto den %{strike_date} som du sendte inn den %{appeal_date} har blitt avvist.
       subject: Din klage fra %{date} er avvist
+      subtitle: Anken din har blitt avvist.
       title: Anke avvist
     backup_ready:
+      explanation: Du etterspurte en fullstendig sikkerhetskopi av din Mastodon-konto.
+      extra: Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
       title: Nedlasting av arkiv
+    failed_2fa:
+      details: 'Her er detaljane om innloggingsforsøket:'
+      explanation: Nokon har prøvd å logge inn på kontoen din, men brukte ein ugyldig andre-autentiseringsfaktor.
+      further_actions_html: Om dette ikkje var deg, rår me deg til å %{action} med éin gong, då det kan vere kompomittert.
+      subject: To-faktor-autentiseringsfeil
+      title: Mislukka to-faktor-autentisering
     suspicious_sign_in:
       change_password: endre passord
       details: 'Her er påloggingsdetaljane:'
@@ -1837,6 +1849,7 @@ nn:
     go_to_sso_account_settings: Gå til kontoinnstillingane hjå identitetsleverandøren din
     invalid_otp_token: Ugyldig tostegskode
     otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
+    rate_limited: For mange autentiseringsforsøk, prøv igjen seinare.
     seamless_external_login: Du er logga inn gjennom eit eksternt reiskap, so passord og e-postinstillingar er ikkje tilgjengelege.
     signed_in_as: 'Logga inn som:'
   verification:

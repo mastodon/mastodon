@@ -1790,6 +1790,12 @@ tr:
       extra: Şimdi indirebilirsiniz!
       subject: Arşiviniz indirilmeye hazır
       title: Arşiv paketlemesi
+    failed_2fa:
+      details: 'İşte oturum açma girişiminin ayrıntıları:'
+      explanation: Birisi hesabınızda oturum açmaya çalıştı ancak hatalı bir iki aşamalı doğrulama kodu kullandı.
+      further_actions_html: Eğer bu kişi siz değilseniz, hemen %{action} yapmanızı öneriyoruz çünkü hesabınız ifşa olmuş olabilir.
+      subject: İki aşamalı doğrulama başarısızlığı
+      title: Başarısız iki aşamalı kimlik doğrulama
     suspicious_sign_in:
       change_password: parolanızı değiştirin
       details: 'Oturum açma ayrıntıları şöyledir:'
@@ -1843,6 +1849,7 @@ tr:
     go_to_sso_account_settings: Kimlik sağlayıcı hesap ayarlarına gidin
     invalid_otp_token: Geçersiz iki adımlı doğrulama kodu
     otp_lost_help_html: Her ikisine de erişiminizi kaybettiyseniz, %{email} ile irtibata geçebilirsiniz
+    rate_limited: Çok fazla kimlik doğrulama denemesi. Daha sonra tekrar deneyin.
     seamless_external_login: Harici bir servis aracılığıyla oturum açtınız, bu nedenle parola ve e-posta ayarları mevcut değildir.
     signed_in_as: 'Oturum açtı:'
   verification:

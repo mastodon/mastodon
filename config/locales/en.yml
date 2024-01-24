@@ -1547,6 +1547,9 @@ en:
     errors:
       limit_reached: Limit of different reactions reached
       unrecognized_emoji: is not a recognized emoji
+  redirects:
+    prompt: If you trust this link, click it to continue.
+    title: You are leaving %{instance}.
   relationships:
     activity: Account activity
     confirm_follow_selected_followers: Are you sure you want to follow selected followers?
@@ -1791,6 +1794,12 @@ en:
       extra: It's now ready for download!
       subject: Your archive is ready for download
       title: Archive takeout
+    failed_2fa:
+      details: 'Here are details of the sign-in attempt:'
+      explanation: Someone has tried to sign in to your account but provided an invalid second authentication factor.
+      further_actions_html: If this wasn't you, we recommend that you %{action} immediately as it may be compromised.
+      subject: Second factor authentication failure
+      title: Failed second factor authentication
     suspicious_sign_in:
       change_password: change your password
       details: 'Here are details of the sign-in:'

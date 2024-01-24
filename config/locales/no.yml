@@ -229,7 +229,7 @@
         update_status: Oppdater statusen
         update_user_role: Oppdater rolle
       actions:
-        approve_appeal_html: "%{name} godkjente klagen på modereringa fra %{target}"
+        approve_appeal_html: "%{name} godkjente anken på moderering fra %{target}"
         approve_user_html: "%{name} godkjente registrering fra %{target}"
         assigned_to_self_report_html: "%{name} tildelte rapport %{target} til seg selv"
         change_email_user_html: "%{name} endret e-postadressen til brukeren %{target}"
@@ -266,7 +266,7 @@
         enable_user_html: "%{name} aktiverte innlogging for bruker %{target}"
         memorialize_account_html: "%{name} endret %{target}s konto til en minneside"
         promote_user_html: "%{name} forfremmet bruker %{target}"
-        reject_appeal_html: "%{name} avviste moderasjonsavgjørelsesklagen fra %{target}"
+        reject_appeal_html: "%{name} avviste anken på moderering fra %{target}"
         reject_user_html: "%{name} avslo registrering fra %{target}"
         remove_avatar_user_html: "%{name} fjernet %{target} sitt profilbilde"
         reopen_report_html: "%{name} gjenåpnet rapporten %{target}"
@@ -372,8 +372,8 @@
       website: Nettside
     disputes:
       appeals:
-        empty: Ingen klager funnet.
-        title: Klager
+        empty: Ingen anker funnet.
+        title: Anker
     domain_allows:
       add_new: Hvitelist domene
       created_msg: Domenet har blitt hvitelistet
@@ -692,8 +692,8 @@
         invite_users_description: Lar brukere invitere nye personer til serveren
         manage_announcements: Behandle Kunngjøringer
         manage_announcements_description: Lar brukere endre kunngjøringer på serveren
-        manage_appeals: Behandle klager
-        manage_appeals_description: Lar brukere gjennomgå klager mot modereringsaktiviteter
+        manage_appeals: Behandle anker
+        manage_appeals_description: Lar brukere gjennomgå anker mot modereringsaktiviteter
         manage_blocks: Behandle Blokker
         manage_blocks_description: Lar brukere blokkere e-postleverandører og IP-adresser
         manage_custom_emojis: Administrer egendefinerte Emojier
@@ -829,8 +829,8 @@
         sensitive: "%{name} merket %{target}s konto som følsom"
         silence: "%{name} begrenset %{target}s konto"
         suspend: "%{name} suspenderte %{target}s konto"
-      appeal_approved: Klage tatt til følge
-      appeal_pending: Klage behandles
+      appeal_approved: Anket
+      appeal_pending: Anke behandles
       appeal_rejected: Anke avvist
     system_checks:
       database_schema_check:
@@ -975,9 +975,9 @@
         sensitive: å merke kontoen sin som følsom
         silence: for å begrense deres konto
         suspend: for å avslutte kontoen
-      body: "%{target} klager på en moderasjonsbeslutning av %{action_taken_by} fra %{date}, noe som var %{type}. De skrev:"
-      next_steps: Du kan godkjenne klagen for å angre på moderasjonsvedtaket eller ignorere det.
-      subject: "%{username} klager på en moderasjonsbeslutning for %{instance}"
+      body: "%{target} anker en moderasjonsbeslutning av %{action_taken_by} fra %{date}, noe som var %{type}. De skrev:"
+      next_steps: Du kan godkjenne anken for å angre på moderasjonsvedtaket eller ignorere det.
+      subject: "%{username} anker en moderasjonsbeslutning for %{instance}"
     new_critical_software_updates:
       body: Nye kritiske versjoner av Mastodon har blitt utgitt, det kan være fordelaktig å oppdatere så snart som mulig!
       subject: Kritiske Mastodon-oppdateringer er tilgjengelige for %{instance}!
@@ -1161,19 +1161,19 @@
   disputes:
     strikes:
       action_taken: Handling utført
-      appeal: Klage
-      appeal_approved: Denne advarselens klage ble tatt til følge og er ikke lenger gyldig
-      appeal_rejected: Klagen ble avvist
-      appeal_submitted_at: Klage levert
-      appealed_msg: Din klage har blitt levert. Du får beskjed om den blir godkjent.
+      appeal: Anke
+      appeal_approved: Denne advarselens anke ble tatt til følge og er ikke lenger gyldig
+      appeal_rejected: Anken ble avvist
+      appeal_submitted_at: Anke levert
+      appealed_msg: Anken din har blitt levert. Du får beskjed om den blir godkjent.
       appeals:
-        submit: Lever klage
-      approve_appeal: Godkjenn klage
+        submit: Lever anke
+      approve_appeal: Godkjenn anke
       associated_report: Tilhørende rapport
       created_at: Datert
       description_html: Dette er tiltakene mot din konto og advarsler som har blitt sent til deg av %{instance}-personalet.
       recipient: Adressert til
-      reject_appeal: Avvis klage
+      reject_appeal: Avvis anke
       status: 'Innlegg #%{id}'
       status_removed: Innlegg allerede fjernet fra systemet
       title: "%{action} fra %{date}"
@@ -1185,9 +1185,9 @@
         sensitive: Merking av konto som sensitiv
         silence: Begrensning av konto
         suspend: Suspensjon av konto
-      your_appeal_approved: Din klage har blitt godkjent
-      your_appeal_pending: Du har levert en klage
-      your_appeal_rejected: Din klage har blitt avvist
+      your_appeal_approved: Anken din har blitt godkjent
+      your_appeal_pending: Du har levert en anke
+      your_appeal_rejected: Anken din har blitt avvist
   domain_validator:
     invalid_domain: er ikke et gyldig domenenavn
   edit_profile:
@@ -1608,6 +1608,7 @@
       unknown_browser: Ukjent Nettleser
       weibo: Weibo
     current_session: Nåværende økt
+    date: Dato
     description: "%{browser} på %{platform}"
     explanation: Dette er nettlesere som er pålogget på din Mastodon-konto akkurat nå.
     ip: IP-adresse
@@ -1740,7 +1741,7 @@
     sensitive_content: Følsomt innhold
   strikes:
     errors:
-      too_late: Det er for sent å klage på denne advarselen
+      too_late: Det er for sent å anke denne advarselen
   tags:
     does_not_match_previous_name: samsvarer ikke med det forrige navnet
   themes:
@@ -1774,16 +1775,27 @@
     webauthn: Sikkerhetsnøkler
   user_mailer:
     appeal_approved:
-      explanation: Klagen på advarselen mot din konto den %{strike_date} som du sendte inn den %{appeal_date} har blitt godkjent. Din konto er nok en gang i god stand.
-      subject: Din klage fra %{date} er godkjent
-      title: Klage godkjent
+      action: Kontoinnstillinger
+      explanation: Anken på advarselen mot din konto den %{strike_date} som du sendte inn den %{appeal_date} har blitt godkjent. Din konto er nok en gang i god stand.
+      subject: Anken din fra %{date} er godkjent
+      subtitle: Kontoen din er tilbake i god stand.
+      title: Anke godkjent
     appeal_rejected:
-      explanation: Klagen på advarselen mot din konto den %{strike_date} som du sendte inn den %{appeal_date} har blitt avvist.
-      subject: Din klage fra %{date} er avvist
-      title: Klage avvist
+      explanation: Anken på advarselen mot din konto den %{strike_date} som du sendte inn den %{appeal_date} har blitt avvist.
+      subject: Anken din fra %{date} er avvist
+      subtitle: Anken din har blitt avvist.
+      title: Anke avvist
     backup_ready:
+      explanation: Du etterspurte en fullstendig sikkerhetskopi av din Mastodon-konto.
+      extra: Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
       title: Nedlasting av arkiv
+    failed_2fa:
+      details: 'Her er detaljer om påloggingsforsøket:'
+      explanation: Noen har prøvd å logge på kontoen din, men ga en ugyldig andre-autentiseringsfaktor.
+      further_actions_html: Hvis dette ikke var deg, anbefaler vi at du %{action} umiddelbart fordi det kan ha blitt kompromittert.
+      subject: Andre-autentiseringsfaktorfeil
+      title: Mislykket andre-autentiseringsfaktor
     suspicious_sign_in:
       change_password: endre passord
       details: 'Her er detaljer om påloggingen:'
@@ -1792,8 +1804,8 @@
       subject: Din konto ble tatt i bruk fra en ny IP-adresse
       title: En ny pålogging
     warning:
-      appeal: Lever en klage
-      appeal_description: Hvis du mener dette er feil, kan du sende inn en klage til personalet i %{instance}.
+      appeal: Lever en anke
+      appeal_description: Hvis du mener dette er feil, kan du sende inn en anke til personalet i %{instance}.
       categories:
         spam: Søppelpost
         violation: Innholdet bryter følgende retningslinjer for fellesskapet
@@ -1837,6 +1849,7 @@
     go_to_sso_account_settings: Gå til din identitetsleverandørs kontoinnstillinger
     invalid_otp_token: Ugyldig to-faktorkode
     otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
+    rate_limited: For mange autentiseringsforsøk, prøv igjen senere.
     seamless_external_login: Du er logget inn via en ekstern tjeneste, så passord og e-post innstillinger er ikke tilgjengelige.
     signed_in_as: 'Innlogget som:'
   verification:

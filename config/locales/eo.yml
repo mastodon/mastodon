@@ -309,6 +309,7 @@ eo:
       unpublish: Malpublikigi
       unpublished_msg: Anonco sukcese malpublikigita!
       updated_msg: Anonco sukcese ĝisdatigis!
+    critical_update_pending: Kritika ĝisdatigo pritraktotas
     custom_emojis:
       assign_category: Atribui kategorion
       by_domain: Domajno
@@ -424,6 +425,7 @@ eo:
       view: Vidi domajna blokado
     email_domain_blocks:
       add_new: Aldoni novan
+      allow_registrations_with_approval: Permesi aliĝojn kun aprobo
       attempts_over_week:
         one: "%{count} provo ekde lasta semajno"
         other: "%{count} registroprovoj ekde lasta semajno"
@@ -770,11 +772,21 @@ eo:
           approved: Bezonas aprobi por aliĝi
           none: Neniu povas aliĝi
           open: Iu povas aliĝi
+      security:
+        authorized_fetch: Devigi aŭtentigon de frataraj serviloj
+      title: Agordoj de la servilo
     site_uploads:
       delete: Forigi elŝutitan dosieron
       destroyed_msg: Reteja alŝuto sukcese forigita!
     software_updates:
+      critical_update: Kritika — bonvolu ĝisdatiĝi rapide
       documentation_link: Lerni pli
+      release_notes: Eldono-notoj
+      title: Disponeblaj ĝisdatigoj
+      type: Tipo
+      types:
+        major: Ĉefa eldono
+        minor: Neĉefa eldono
     statuses:
       account: Skribanto
       application: Aplikaĵo
@@ -1259,6 +1271,9 @@ eo:
       overwrite: Anstataŭigi
       overwrite_long: Anstataŭigi la nunajn registrojn per la novaj
     preface: Vi povas importi datumojn, kiujn vi eksportis el alia servilo, kiel liston de homoj, kiujn vi sekvas aŭ blokas.
+    states:
+      finished: Finita
+      unconfirmed: Nekonfirmita
     success: Viaj datumoj estis sukcese alŝutitaj kaj estos traktitaj kiel planite
     titles:
       following: Importado de sekvaj kontoj
@@ -1528,6 +1543,7 @@ eo:
       unknown_browser: Nekonata retumilo
       weibo: Weibo
     current_session: Nuna seanco
+    date: Dato
     description: "%{browser} en %{platform}"
     explanation: Ĉi tiuj estas la retumiloj nun ensalutintaj al via Mastodon-konto.
     ip: IP
@@ -1693,6 +1709,7 @@ eo:
     webauthn: Sekurecaj ŝlosiloj
   user_mailer:
     appeal_approved:
+      action: Konto-agordoj
       explanation: La apelacio de la admono kontra via konto je %{strike_date} pri sendodato %{appeal_date} aprobitas.
       subject: Via apelacio de %{date} aprobitas
       title: Apelacio estis aprobita
@@ -1701,6 +1718,7 @@ eo:
       subject: Via apelacio de %{date} estis malaprobita
       title: Apelacio estis malaprobita
     backup_ready:
+      extra: Estas nun preta por elŝuto!
       subject: Via arkivo estas preta por elŝutado
       title: Arkiva elŝuto
     suspicious_sign_in:
@@ -1756,6 +1774,7 @@ eo:
     go_to_sso_account_settings: Iru al la agordoj de la konto de via identeca provizanto
     invalid_otp_token: Nevalida kodo de dufaktora aŭtentigo
     otp_lost_help_html: Se vi perdas aliron al ambaŭ, vi povas kontakti %{email}
+    rate_limited: Estas tro multaj aŭtentigaj provoj, reprovu poste.
     seamless_external_login: Vi estas ensalutinta per ekstera servo, do pasvortaj kaj retadresaj agordoj ne estas disponeblaj.
     signed_in_as: 'Salutinta kiel:'
   verification:

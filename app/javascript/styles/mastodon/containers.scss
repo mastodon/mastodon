@@ -104,3 +104,59 @@
     margin-inline-start: 10px;
   }
 }
+
+.redirect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 14px;
+  line-height: 18px;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+
+    img {
+      height: 48px;
+    }
+  }
+
+  &__message {
+    text-align: center;
+
+    h1 {
+      font-size: 17px;
+      line-height: 22px;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+
+    p {
+      margin-bottom: 30px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      color: $highlight-text-color;
+      font-weight: 500;
+      text-decoration: none;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__link {
+    margin-top: 15px;
+  }
+}
