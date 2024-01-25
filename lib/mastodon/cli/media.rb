@@ -9,51 +9,70 @@ module Mastodon::CLI
     VALID_PATH_SEGMENTS_SIZE = [7, 10].freeze
 
     option :days, type: :numeric, default: 7, aliases: [:d]
-    option :prune_profiles, type: :boolean, default: false
-    option :remove_headers, type: :boolean, default: false
+    option :attachments, type: :boolean, default: false
+    option :avatars, type: :boolean, default: false
+    option :headers, type: :boolean, default: false
     option :include_follows, type: :boolean, default: false
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :verbose, type: :boolean, default: false, aliases: [:v]
     option :dry_run, type: :boolean, default: false
+    # BEGIN deprecation
+    option :prune_profiles, type: :boolean, default: false
+    option :remove_headers, type: :boolean, default: false
+    # END deprecation
     desc 'remove', 'Remove remote media files, headers or avatars'
     long_desc <<-DESC
-      Removes locally cached copies of media attachments (and optionally profile
-      headers and avatars) from other servers. By default, only media attachments
-      are removed.
-      The --days option specifies how old media attachments have to be before
-      they are removed. In case of avatars and headers, it specifies how old
-      the last webfinger request and update to the user has to be before they
-      are pruned. It defaults to 7 days.
-      If --prune-profiles is specified, only avatars and headers are removed.
-      If --remove-headers is specified, only headers are removed.
-      If --include-follows is specified along with --prune-profiles or
-      --remove-headers, all non-local profiles will be pruned irrespective of
-      follow status. By default, only accounts that are not followed by or
-      following anyone locally are pruned.
+      Removes locally cached copies of media attachments, avatars or profile headers from other servers.
+
+      DEPRECATION: For backward compatibility, media attachments will be removed if no flags specifying media are provided, but this is
+      deprecated. In future releases, if no flags are provided, nothing will be removed. The flags --prune-profiles and --remove-headers is
+      also deprecated.
+
+      Use the --days=N option to exclude media attachments that have been posted in the past N days and accounts that have been updated in
+      the past N days. Defaults to N=7.
+
+      Use the --attachments option to include media attachments for removal.
+
+      Use the --avatars option to include account avatars for removal.
+
+      Use the --headers option to include profile headers for removal.
+
+      Use the --include-follows option to remove media even if a follow relationship exists. If this flag is not provided, only accounts that
+      are not followed by or following anyone locally will have their media removed.
+
+      Use the --dry-run option to print expected results only, without performing any actions.
     DESC
     def remove
-      if options[:prune_profiles] && options[:remove_headers]
-        say('--prune-profiles and --remove-headers should not be specified simultaneously', :red, true)
-        exit(1)
+      # BEGIN deprecation
+      if options[:prune_profiles]
+        options[:avatars] = true
+        options[:headers] = true
+        say('--prune-profiles is deprecated and will be removed in the future.', :red, true)
       end
-
-      if options[:include_follows] && !(options[:prune_profiles] || options[:remove_headers])
-        say('--include-follows can only be used with --prune-profiles or --remove-headers', :red, true)
-        exit(1)
+      if options[:remove_headers]
+        options[:headers] = true
+        say('--remove-headers is deprecated and will be removed in the future.', :red, true)
       end
+      unless options[:prune_profiles] || options[:remove_headers] || options[:attachments] || options[:avatars] || options[:headers]
+        options[:attachments] = true
+        options[:include_follows] = true
+        say('Usage of this command with no flags specifying media is deprecated and will be removed in the future.', :red, true)
+      end
+      # END deprecation
       time_ago = options[:days].days.ago
 
-      if options[:prune_profiles] || options[:remove_headers]
+      if options[:avatars] || options[:headers]
         processed, aggregate = parallelize_with_progress(Account.remote.where({ last_webfingered_at: ..time_ago, updated_at: ..time_ago })) do |account|
           next if !options[:include_follows] && Follow.where(account: account).or(Follow.where(target_account: account)).exists?
           next if account.avatar.blank? && account.header.blank?
-          next if options[:remove_headers] && account.header.blank?
 
-          size = account.header_file_size || 0
-          size += account.avatar_file_size || 0 if options[:prune_profiles]
+          size = 0
+          size += (account.header_file_size || 0) if options[:headers]
+          size += (account.avatar_file_size || 0) if options[:avatars]
 
           unless dry_run?
-            account.header.destroy
-            account.avatar.destroy if options[:prune_profiles]
+            account.header.destroy if options[:headers]
+            account.avatar.destroy if options[:avatars]
             account.save!
           end
 
@@ -63,8 +82,9 @@ module Mastodon::CLI
         say("Visited #{processed} accounts and removed profile media totaling #{number_to_human_size(aggregate)}#{dry_run_mode_suffix}", :green, true)
       end
 
-      unless options[:prune_profiles] || options[:remove_headers]
+      if options[:attachments]
         processed, aggregate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where(created_at: ..time_ago)) do |media_attachment|
+          next if !options[:include_follows] && Follow.where(account: media_attachment.account).or(Follow.where(target_account: media_attachment.account)).exists?
           next if media_attachment.file.blank?
 
           size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
