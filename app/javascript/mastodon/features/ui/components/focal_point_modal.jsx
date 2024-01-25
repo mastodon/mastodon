@@ -21,7 +21,7 @@ import { Button } from 'mastodon/components/button';
 import { GIFV } from 'mastodon/components/gifv';
 import { IconButton } from 'mastodon/components/icon_button';
 import Audio from 'mastodon/features/audio';
-import CharacterCounter from 'mastodon/features/compose/components/character_counter';
+import { CharacterCounter } from 'mastodon/features/compose/components/character_counter';
 import UploadProgress from 'mastodon/features/compose/components/upload_progress';
 import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
 import { me } from 'mastodon/initial_state';

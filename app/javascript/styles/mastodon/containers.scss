@@ -40,13 +40,12 @@
   .compose-form {
     width: 400px;
     margin: 0 auto;
-    padding: 20px 0;
-    margin-top: 40px;
+    padding: 10px 0;
+    padding-bottom: 20px;
     box-sizing: border-box;
 
     @media screen and (width <= 400px) {
       width: 100%;
-      margin-top: 0;
       padding: 20px;
     }
   }
@@ -56,13 +55,15 @@
   width: 400px;
   margin: 0 auto;
   display: flex;
-  font-size: 13px;
-  line-height: 18px;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 20px;
   box-sizing: border-box;
   padding: 20px 0;
   margin-top: 40px;
   margin-bottom: 10px;
-  border-bottom: 1px solid $ui-base-color;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
 
   @media screen and (width <= 440px) {
     width: 100%;
@@ -71,9 +72,9 @@
   }
 
   .avatar {
-    width: 40px;
-    height: 40px;
-    margin-inline-end: 10px;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 auto;
 
     img {
       width: 100%;
@@ -87,13 +88,14 @@
   .name {
     flex: 1 1 auto;
     color: $secondary-text-color;
-    width: calc(100% - 90px);
 
     .username {
       display: block;
-      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
       text-overflow: ellipsis;
       overflow: hidden;
+      color: $primary-text-color;
     }
   }
 
@@ -101,7 +103,7 @@
     display: block;
     font-size: 32px;
     line-height: 40px;
-    margin-inline-start: 10px;
+    flex: 0 0 auto;
   }
 }
 
