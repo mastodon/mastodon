@@ -159,8 +159,7 @@ const pgConfigFromEnv = (env) => {
     if (typeof parsedUrl.port === 'string') {
       const parsedPort = parseInt(parsedUrl.port, 10);
       if (isNaN(parsedPort)) {
-        const safeDbUrl = parsedUrl.password ? env.DATABASE_URL.replace(parsedUrl.password, '********') : env.DATABASE_URL;
-        throw new Error(`Invalid port specified in DATABASE_URL environment variable: ${safeDbUrl}`);
+        throw new Error('Invalid port specified in DATABASE_URL environment variable');
       }
       baseConfig.port = parsedPort;
     }
