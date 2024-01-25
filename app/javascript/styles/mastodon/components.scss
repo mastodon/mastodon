@@ -474,8 +474,8 @@ body > [data-popper-placement] {
     box-sizing: border-box;
     width: 100%;
     margin: 0;
-    color: $inverted-text-color;
-    background: $simple-background-color;
+    color: $classic-secondary-color;
+    background: $classic-base-color;
     padding: 10px;
     font-family: inherit;
     font-size: 14px;
@@ -484,7 +484,7 @@ body > [data-popper-placement] {
     outline: 0;
 
     &::placeholder {
-      color: $dark-text-color;
+      color: $classic-primary-color;
     }
 
     &:focus {
@@ -685,7 +685,7 @@ body > [data-popper-placement] {
 
   .compose-form__buttons-wrapper {
     padding: 10px;
-    background: darken($simple-background-color, 8%);
+    background: lighten($ui-base-color, 8%);
     border-radius: 0 0 4px 4px;
     display: flex;
     justify-content: space-between;
@@ -2902,7 +2902,7 @@ $ui-header-height: 55px;
 
   .compose-form__autosuggest-wrapper {
     overflow-y: auto;
-    background-color: $white;
+    background-color: $classic-base-color;
     border-radius: 4px 4px 0 0;
     flex: 0 1 auto;
   }
