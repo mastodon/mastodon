@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ReportFilter
+class ReportFilter < BaseFilter
   KEYS = %i(
     resolved
     account_id
@@ -9,24 +9,14 @@ class ReportFilter
     target_origin
   ).freeze
 
-  attr_reader :params
+  private
 
-  def initialize(params)
-    @params = params
-  end
-
-  def results
-    scope = Report.unresolved
-
-    params.each do |key, value|
-      scope = scope.merge scope_for(key, value)
-    end
-
-    scope
+  def default_filter_scope
+    Report.unresolved
   end
 
   def scope_for(key, value)
-    case key.to_sym
+    case key
     when :by_target_domain
       Report.where(target_account: Account.where(domain: value))
     when :resolved
