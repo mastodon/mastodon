@@ -137,7 +137,7 @@ class PrivacyDropdownMenu extends PureComponent {
 
             {item.extra && (
               <div className='privacy-dropdown__option__additional' title={item.extra}>
-                <Icon icon={InfoIcon} />
+                <Icon id='info-circle' icon={InfoIcon} />
               </div>
             )}
           </div>
@@ -255,7 +255,7 @@ class PrivacyDropdown extends PureComponent {
           disabled={disabled}
           className={classNames('dropdown-button', { active: open })}
         >
-          <Icon icon={valueOption.iconComponent} />
+          <Icon id={valueOption.icon} icon={valueOption.iconComponent} />
           <span className='dropdown-button__label'>{valueOption.text}</span>
         </button>
 
