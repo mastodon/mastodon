@@ -270,7 +270,7 @@ class Status < ApplicationRecord
   end
 
   def reported?
-    @reported ||= Report.where(target_account: account).unresolved.where('? = ANY(status_ids)', id).exists?
+    @reported ||= Report.where(target_account: account).unresolved.exists?(['? = ANY(status_ids)', id])
   end
 
   def emojis
