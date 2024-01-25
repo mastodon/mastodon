@@ -298,7 +298,7 @@ class LanguageDropdown extends PureComponent {
   render () {
     const { value, intl, frequentlyUsedLanguages } = this.props;
     const { open, placement } = this.state;
-    const current = preloadedLanguages.find(lang => lang[0] === value);
+    const current = preloadedLanguages.find(lang => lang[0] === value) ?? [];
 
     return (
       <div ref={this.setTargetRef} onKeyDown={this.handleKeyDown}>
@@ -312,7 +312,7 @@ class LanguageDropdown extends PureComponent {
           className={classNames('dropdown-button', { active: open })}
         >
           <Icon icon={TranslateIcon} />
-          <span className='dropdown-button__label'>{current[2]}</span>
+          <span className='dropdown-button__label'>{current[2] ?? value}</span>
         </button>
 
         <Overlay show={open} offset={[5, 5]} placement={placement} flip target={this.findTarget} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
