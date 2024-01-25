@@ -41,7 +41,7 @@ class Report < ApplicationRecord
 
   scope :unresolved, -> { where(action_taken_at: nil) }
   scope :resolved,   -> { where.not(action_taken_at: nil) }
-  scope :with_accounts, -> { includes([:account, :target_account, :action_taken_by_account, :assigned_account].index_with({ user: [:invite_request, :invite] })) }
+  scope :with_accounts, -> { includes([:account, :target_account, :action_taken_by_account, :assigned_account].index_with([:account_stat, { user: [:invite_request, :invite, :ips] }])) }
 
   # A report is considered local if the reporter is local
   delegate :local?, to: :account

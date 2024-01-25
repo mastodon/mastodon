@@ -1789,6 +1789,12 @@ pt-BR:
       extra: Agora está pronto para baixar!
       subject: Seu arquivo está pronto para ser baixado
       title: Baixar arquivo
+    failed_2fa:
+      details: 'Aqui estão os detalhes da tentativa de acesso:'
+      explanation: Alguém tentou entrar em sua conta, mas forneceu um segundo fator de autenticação inválido.
+      further_actions_html: Se não foi você, recomendamos que %{action} imediatamente, pois ela pode ser comprometida.
+      subject: Falha na autenticação do segundo fator
+      title: Falha na autenticação do segundo fator
     suspicious_sign_in:
       change_password: Altere sua senha
       details: 'Aqui estão os detalhes do acesso:'
@@ -1842,6 +1848,7 @@ pt-BR:
     go_to_sso_account_settings: Vá para as configurações de conta do seu provedor de identidade
     invalid_otp_token: Código de dois fatores inválido
     otp_lost_help_html: Se você perder o acesso à ambos, você pode entrar em contato com %{email}
+    rate_limited: Muitas tentativas de autenticação; tente novamente mais tarde.
     seamless_external_login: Você entrou usando um serviço externo, então configurações de e-mail e senha não estão disponíveis.
     signed_in_as: 'Entrou como:'
   verification:

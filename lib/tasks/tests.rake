@@ -24,7 +24,7 @@ namespace :tests do
         exit(1)
       end
 
-      if Account.where(domain: Rails.configuration.x.local_domain).exists?
+      if Account.exists?(domain: Rails.configuration.x.local_domain)
         puts 'Faux remote accounts not properly cleaned up'
         exit(1)
       end
