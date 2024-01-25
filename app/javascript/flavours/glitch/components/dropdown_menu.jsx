@@ -165,7 +165,7 @@ class Dropdown extends PureComponent {
     children: PropTypes.node,
     icon: PropTypes.string,
     iconComponent: PropTypes.func,
-    items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list]).isRequired,
+    items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list]),
     loading: PropTypes.bool,
     size: PropTypes.number,
     title: PropTypes.string,

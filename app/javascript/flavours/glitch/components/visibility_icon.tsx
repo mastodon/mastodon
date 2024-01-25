@@ -1,9 +1,9 @@
 import { defineMessages, useIntl } from 'react-intl';
 
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
-import LockOpenIcon from '@/material-icons/400-24px/lock_open.svg?react';
 import MailIcon from '@/material-icons/400-24px/mail.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
+import QuietTimeIcon from '@/material-icons/400-24px/quiet_time.svg?react';
 
 import { Icon } from './icon';
 
@@ -11,14 +11,17 @@ type Visibility = 'public' | 'unlisted' | 'private' | 'direct';
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
-  unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
+  unlisted_short: {
+    id: 'privacy.unlisted.short',
+    defaultMessage: 'Quiet public',
+  },
   private_short: {
     id: 'privacy.private.short',
-    defaultMessage: 'Followers only',
+    defaultMessage: 'Followers',
   },
   direct_short: {
     id: 'privacy.direct.short',
-    defaultMessage: 'Mentioned people only',
+    defaultMessage: 'Specific people',
   },
 });
 
@@ -35,7 +38,7 @@ export const VisibilityIcon: React.FC<{ visibility: Visibility }> = ({
     },
     unlisted: {
       icon: 'unlock',
-      iconComponent: LockOpenIcon,
+      iconComponent: QuietTimeIcon,
       text: intl.formatMessage(messages.unlisted_short),
     },
     private: {

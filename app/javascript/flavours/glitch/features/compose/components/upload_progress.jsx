@@ -35,9 +35,7 @@ export default class UploadProgress extends PureComponent {
 
     return (
       <div className='upload-progress'>
-        <div className='upload-progress__icon'>
-          <Icon id='upload' icon={UploadFileIcon} />
-        </div>
+        <Icon id='upload' icon={UploadFileIcon} />
 
         <div className='upload-progress__message'>
           {message}
