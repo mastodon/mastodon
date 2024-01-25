@@ -25,7 +25,36 @@ hi:
           attributes:
             url:
               invalid: यह मान्य यु.आर.एल. नहिं है
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: वैध यूआरएल नहीं है
+        import:
+          attributes:
+            data:
+              malformed: विकृत है
         status:
           attributes:
             reblog:
               taken: स्थिति पहले से मौजूद है
+        user:
+          attributes:
+            email:
+              blocked: एक अस्वीकृत ई-मेल प्रदाता का उपयोग करता है
+              unreachable: अस्तित्व में नहीं दिखता
+            role_id:
+              elevated: आपकी वर्तमान भूमिका से अधिक नहीं हो सकता
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: ऐसी अनुमतियाँ शामिल करें जो आधार भूमिका के लिए सुरक्षित नहीं हैं
+              elevated: इसमें वे अनुमतियाँ शामिल नहीं की जा सकतीं जो आपकी वर्तमान भूमिका के पास नहीं हैं
+              own_role: आपकी वर्तमान भूमिका के साथ बदला नहीं जा सकता
+            position:
+              elevated: आपकी वर्तमान भूमिका से अधिक नहीं हो सकता
+              own_role: आपकी वर्तमान भूमिका के साथ बदला नहीं जा सकता
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: उन घटनाओं को शामिल नहीं किया जा सकता जिनका आपके पास अधिकार नहीं है
+
