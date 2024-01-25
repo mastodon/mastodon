@@ -138,10 +138,12 @@ Rails.application.routes.draw do
   get '/:encoded_at(*path)', to: redirect("/@%{path}"), constraints: { encoded_at: /%40/ }
 
   constraints(username: %r{[^@/.]+}) do
-    get '/@:username', to: 'accounts#show', as: :short_account
-    get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
-    get '/@:username/media', to: 'accounts#show', as: :short_account_media
-    get '/@:username/tagged/:tag', to: 'accounts#show', as: :short_account_tag
+    with_options to: 'accounts#show' do
+      get '/@:username', as: :short_account
+      get '/@:username/with_replies', as: :short_account_with_replies
+      get '/@:username/media', as: :short_account_media
+      get '/@:username/tagged/:tag', as: :short_account_tag
+    end
   end
 
   constraints(account_username: %r{[^@/.]+}) do
