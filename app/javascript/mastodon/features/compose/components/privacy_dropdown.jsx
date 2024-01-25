@@ -9,6 +9,7 @@ import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
+import InfoIcon from '@/material-icons/400-24px/info.svg?react';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import QuietTimeIcon from '@/material-icons/400-24px/quiet_time.svg?react';
@@ -17,13 +18,14 @@ import { Icon }  from 'mastodon/components/icon';
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
   public_long: { id: 'privacy.public.long', defaultMessage: 'Anyone on and off Mastodon' },
-  unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Low-key public' },
-  unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Public with less reach' },
+  unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Quiet public' },
+  unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Fewer algorithmic fanfares' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers' },
   private_long: { id: 'privacy.private.long', defaultMessage: 'Only your followers' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Specific people' },
   direct_long: { id: 'privacy.direct.long', defaultMessage: 'Everyone mentioned in the post' },
   change_privacy: { id: 'privacy.change', defaultMessage: 'Change post privacy' },
+  unlisted_extra: { id: 'privacy.unlisted.additional', defaultMessage: 'This behaves exactly like public, except the post will not appear in live feeds or hashtags, explore, or Mastodon search, even if you are opted-in account-wide.' },
 });
 
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
@@ -132,6 +134,12 @@ class PrivacyDropdownMenu extends PureComponent {
               <strong>{item.text}</strong>
               {item.meta}
             </div>
+
+            {item.extra && (
+              <div className='privacy-dropdown__option__additional' title={item.extra}>
+                <Icon icon={InfoIcon} />
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -206,7 +214,7 @@ class PrivacyDropdown extends PureComponent {
 
     this.options = [
       { icon: 'globe', iconComponent: PublicIcon, value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
-      { icon: 'unlock', iconComponent: QuietTimeIcon,  value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long) },
+      { icon: 'unlock', iconComponent: QuietTimeIcon,  value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long), extra: formatMessage(messages.unlisted_extra) },
       { icon: 'lock', iconComponent: LockIcon, value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
     ];
 

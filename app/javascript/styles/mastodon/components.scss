@@ -4978,6 +4978,7 @@ a.status-card {
   padding: 8px 12px;
   cursor: pointer;
   display: flex;
+  align-items: center;
   gap: 12px;
   border-radius: 4px;
   color: $primary-text-color;
@@ -4994,9 +4995,18 @@ a.status-card {
     outline: 0;
 
     .privacy-dropdown__option__content,
-    .privacy-dropdown__option__content strong {
+    .privacy-dropdown__option__content strong,
+    .privacy-dropdown__option__additional {
       color: $primary-text-color;
     }
+  }
+
+  &__additional {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $darker-text-color;
+    cursor: help;
   }
 }
 
