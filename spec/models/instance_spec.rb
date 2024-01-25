@@ -7,126 +7,97 @@ RSpec.describe Instance do
     before { described_class.refresh }
 
     describe '#searchable' do
+      let(:expected_domain) { 'host.example' }
+      let(:blocked_domain) { 'other.example' }
+
       before do
-        Fabricate :account, domain: 'host.example'
-        Fabricate :account, domain: 'other.example'
-        Fabricate :domain_block, domain: 'other.example'
+        Fabricate :account, domain: expected_domain
+        Fabricate :account, domain: blocked_domain
+        Fabricate :domain_block, domain: blocked_domain
       end
 
       it 'returns records not domain blocked' do
-        results = described_class.searchable
+        results = described_class.searchable.pluck(:domain)
 
         expect(results)
-          .to include(expected_instance)
-          .and not_include(not_expected_instance)
-      end
-
-      def expected_instance
-        described_class.find_by(domain: 'host.example')
-      end
-
-      def not_expected_instance
-        described_class.find_by(domain: 'other.example')
+          .to include(expected_domain)
+          .and not_include(blocked_domain)
       end
     end
 
     describe '#matches_domain' do
+      let(:host_domain) { 'host.example.com' }
+      let(:host_under_domain) { 'host_under.example.com' }
+      let(:other_domain) { 'other.example' }
+
       before do
-        Fabricate :account, domain: 'host.example.com'
-        Fabricate :account, domain: 'host_under.example.com'
-        Fabricate :account, domain: 'other.example'
+        Fabricate :account, domain: host_domain
+        Fabricate :account, domain: host_under_domain
+        Fabricate :account, domain: other_domain
       end
 
       it 'returns matching records' do
-        expect(described_class.matches_domain('host.exa'))
-          .to include(host_instance)
-          .and not_include(other_instance)
+        expect(described_class.matches_domain('host.exa').pluck(:domain))
+          .to include(host_domain)
+          .and not_include(other_domain)
 
-        expect(described_class.matches_domain('ple.com'))
-          .to include(host_instance)
-          .and not_include(other_instance)
+        expect(described_class.matches_domain('ple.com').pluck(:domain))
+          .to include(host_domain)
+          .and not_include(other_domain)
 
-        expect(described_class.matches_domain('example'))
-          .to include(host_instance)
-          .and include(other_instance)
+        expect(described_class.matches_domain('example').pluck(:domain))
+          .to include(host_domain)
+          .and include(other_domain)
 
-        expect(described_class.matches_domain('host_')) # Preserve SQL wildcards
-          .to include(host_instance)
-          .and include(host_under_instance)
-          .and not_include(other_instance)
-      end
-
-      def host_instance
-        described_class.find_by(domain: 'host.example.com')
-      end
-
-      def host_under_instance
-        described_class.find_by(domain: 'host_under.example.com')
-      end
-
-      def other_instance
-        described_class.find_by(domain: 'other.example')
+        expect(described_class.matches_domain('host_').pluck(:domain)) # Preserve SQL wildcards
+          .to include(host_domain)
+          .and include(host_under_domain)
+          .and not_include(other_domain)
       end
     end
 
     describe '#by_domain_and_subdomains' do
+      let(:exact_match_domain) { 'example.com' }
+      let(:subdomain_domain) { 'foo.example.com' }
+      let(:partial_domain) { 'grexample.com' }
+
       before do
-        Fabricate(:account, domain: 'example.com')
-        Fabricate(:account, domain: 'foo.example.com')
-        Fabricate(:account, domain: 'grexample.com')
+        Fabricate(:account, domain: exact_match_domain)
+        Fabricate(:account, domain: subdomain_domain)
+        Fabricate(:account, domain: partial_domain)
       end
 
       it 'returns matching instances' do
-        results = described_class.by_domain_and_subdomains('example.com')
+        results = described_class.by_domain_and_subdomains('example.com').pluck(:domain)
 
         expect(results)
-          .to include(exact_match_instance)
-          .and include(subdomain_instance)
-          .and not_include(partial_instance)
-      end
-
-      def exact_match_instance
-        described_class.find_by(domain: 'example.com')
-      end
-
-      def subdomain_instance
-        described_class.find_by(domain: 'foo.example.com')
-      end
-
-      def partial_instance
-        described_class.find_by(domain: 'grexample.com')
+          .to include(exact_match_domain)
+          .and include(subdomain_domain)
+          .and not_include(partial_domain)
       end
     end
 
     describe '#with_domain_follows' do
+      let(:example_domain) { 'example.host' }
+      let(:other_domain) { 'other.host' }
+      let(:none_domain) { 'none.host' }
+
       before do
-        example_account = Fabricate(:account, domain: 'example.host')
-        other_account = Fabricate(:account, domain: 'other.host')
-        Fabricate(:account, domain: 'none.host')
+        example_account = Fabricate(:account, domain: example_domain)
+        other_account = Fabricate(:account, domain: other_domain)
+        Fabricate(:account, domain: none_domain)
 
         Fabricate :follow, account: example_account
         Fabricate :follow, target_account: other_account
       end
 
       it 'returns instances with domain accounts that have follows' do
-        results = described_class.with_domain_follows(['example.host', 'other.host', 'none.host'])
+        results = described_class.with_domain_follows(['example.host', 'other.host', 'none.host']).pluck(:domain)
 
         expect(results)
-          .to include(example_instance)
-          .and include(other_instance)
-          .and not_include(none_instance)
-      end
-
-      def example_instance
-        described_class.find_by(domain: 'example.host')
-      end
-
-      def other_instance
-        described_class.find_by(domain: 'other.host')
-      end
-
-      def none_instance
-        described_class.find_by(domain: 'none.host')
+          .to include(example_domain)
+          .and include(other_domain)
+          .and not_include(none_domain)
       end
     end
   end
