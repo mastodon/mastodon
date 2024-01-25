@@ -1,6 +1,13 @@
 module Subscription
-  class ApplicationMailer < ActionMailer::Base
-    layout 'plain_mailer'
+  class ApplicationMailer < ::ApplicationMailer
+    layout 'mailer'
+
+    helper :application
+    helper :instance
+    helper :formatting
+    helper :routing
+
+    before_action :set_logo
 
     def send_invite(email, invite)
       @invite = invite
@@ -14,6 +21,12 @@ module Subscription
       mail to: email,
           subject: "Your subscription has been canceled",
           template_name: 'canceled'
+    end
+
+    protected
+
+    def set_logo
+      @logo = ::InstancePresenter.new.email&.file&.url
     end
   end
 end
