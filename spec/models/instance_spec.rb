@@ -22,11 +22,11 @@ RSpec.describe Instance do
       end
 
       def expected_instance
-        described_class.where(domain: 'host.example').first
+        described_class.find_by(domain: 'host.example')
       end
 
       def not_expected_instance
-        described_class.where(domain: 'other.example').first
+        described_class.find_by(domain: 'other.example')
       end
     end
 
@@ -57,15 +57,15 @@ RSpec.describe Instance do
       end
 
       def host_instance
-        described_class.where(domain: 'host.example.com').first
+        described_class.find_by(domain: 'host.example.com')
       end
 
       def host_under_instance
-        described_class.where(domain: 'host_under.example.com').first
+        described_class.find_by(domain: 'host_under.example.com')
       end
 
       def other_instance
-        described_class.where(domain: 'other.example').first
+        described_class.find_by(domain: 'other.example')
       end
     end
 
@@ -86,15 +86,15 @@ RSpec.describe Instance do
       end
 
       def exact_match_instance
-        described_class.where(domain: 'example.com').first
+        described_class.find_by(domain: 'example.com')
       end
 
       def subdomain_instance
-        described_class.where(domain: 'foo.example.com').first
+        described_class.find_by(domain: 'foo.example.com')
       end
 
       def partial_instance
-        described_class.where(domain: 'grexample.com').first
+        described_class.find_by(domain: 'grexample.com')
       end
     end
 
@@ -118,15 +118,15 @@ RSpec.describe Instance do
       end
 
       def example_instance
-        described_class.where(domain: 'example.host').first
+        described_class.find_by(domain: 'example.host')
       end
 
       def other_instance
-        described_class.where(domain: 'other.host').first
+        described_class.find_by(domain: 'other.host')
       end
 
       def none_instance
-        described_class.where(domain: 'none.host').first
+        described_class.find_by(domain: 'none.host')
       end
     end
   end
