@@ -121,10 +121,6 @@ Style/GlobalStdStream:
 # Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
 Style/GuardClause:
   Exclude:
-    - 'app/controllers/admin/confirmations_controller.rb'
-    - 'app/controllers/auth/confirmations_controller.rb'
-    - 'app/controllers/auth/passwords_controller.rb'
-    - 'app/controllers/settings/two_factor_authentication/webauthn_credentials_controller.rb'
     - 'app/lib/activitypub/activity/block.rb'
     - 'app/lib/request.rb'
     - 'app/lib/request_pool.rb'
