@@ -716,10 +716,6 @@ module Mastodon::CLI
       ActiveRecord::Migrator.current_version
     end
 
-    def find_duplicate_accounts
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM accounts GROUP BY lower(username), COALESCE(lower(domain), '') HAVING count(*) > 1")
-    end
-
     def duplicate_record_ids_without_nulls(table, group_by)
       database_connection.select_all(<<~SQL.squish)
         SELECT string_agg(id::text, ',') AS ids
