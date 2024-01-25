@@ -11,7 +11,7 @@ import Overlay from 'react-overlays/Overlay';
 
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
-import LockOpenIcon from '@/material-icons/400-24px/lock_open.svg?react';
+import LockOpenRightIcon from '@/material-icons/400-24px/lock_open_right.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 
@@ -228,7 +228,7 @@ class PrivacyDropdown extends PureComponent {
 
     this.options = [
       { icon: 'globe', iconComponent: PublicIcon, value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
-      { icon: 'unlock', iconComponent: LockOpenIcon,  value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long) },
+      { icon: 'unlock', iconComponent: LockOpenRightIcon,  value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long) },
       { icon: 'lock', iconComponent: LockIcon, value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
     ];
 
