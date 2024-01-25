@@ -12,6 +12,7 @@ import { length } from 'stringz';
 
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import { Icon }  from 'mastodon/components/icon';
+import { instanceConfiguration } from 'mastodon/initial_state';
 import { WithOptionalRouterPropTypes, withOptionalRouter } from 'mastodon/utils/react_router';
 
 import AutosuggestInput from '../../../components/autosuggest_input';
@@ -104,7 +105,7 @@ class ComposeForm extends ImmutablePureComponent {
     const fulltext = this.getFulltextForCharacterCounting();
     const isOnlyWhitespace = fulltext.length !== 0 && fulltext.trim().length === 0;
 
-    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > 500 || (isOnlyWhitespace && !anyMedia));
+    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > instanceConfiguration.statuses.max_characters || (isOnlyWhitespace && !anyMedia));
   };
 
   handleSubmit = (e) => {
@@ -297,7 +298,7 @@ class ComposeForm extends ImmutablePureComponent {
             </div>
 
             <div className='character-counter__wrapper'>
-              <CharacterCounter max={500} text={this.getFulltextForCharacterCounting()} />
+              <CharacterCounter max={instanceConfiguration.statuses.max_characters} text={this.getFulltextForCharacterCounting()} />
             </div>
           </div>
         </div>
