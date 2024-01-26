@@ -15,21 +15,12 @@ describe Import::RowWorker do
     shared_examples 'clean failure' do
       let(:service_double) { instance_double(BulkImportRowService, call: false) }
 
-      it 'calls BulkImportRowService' do
-        subject.perform(row.id)
+      it 'calls BulkImportRowService, increases processed items, preserves imported items, preserves the row' do
+        expect { subject.perform(row.id) }
+          .to increase_processed_items
+          .and(preserve_imported_items)
+
         expect(service_double).to have_received(:call).with(row)
-      end
-
-      it 'increases the number of processed items' do
-        expect { subject.perform(row.id) }.to(change { import.reload.processed_items }.by(+1))
-      end
-
-      it 'does not increase the number of imported items' do
-        expect { subject.perform(row.id) }.to_not(change { import.reload.imported_items })
-      end
-
-      it 'does not delete the row' do
-        subject.perform(row.id)
         expect(BulkImportRow.exists?(row.id)).to be true
       end
     end
@@ -43,34 +34,41 @@ describe Import::RowWorker do
         end
       end
 
-      it 'raises an error and does not change processed items count' do
-        expect { subject.perform(row.id) }.to raise_error(StandardError, 'dummy error').and(not_change { import.reload.processed_items })
-      end
-
-      it 'does not delete the row' do
-        expect { subject.perform(row.id) }.to raise_error(StandardError, 'dummy error').and(not_change { BulkImportRow.exists?(row.id) })
+      it 'raises an error and does not change processed items count or delete the row' do
+        expect { subject.perform(row.id) }
+          .to raise_error(StandardError, 'dummy error')
+          .and(not_change { import.reload.processed_items })
+          .and(not_change { BulkImportRow.exists?(row.id) })
       end
     end
 
     shared_examples 'clean success' do
       let(:service_double) { instance_double(BulkImportRowService, call: true) }
 
-      it 'calls BulkImportRowService' do
-        subject.perform(row.id)
+      it 'calls BulkImportRowService, increases processed items, increased imported items, deletes row' do
+        expect { subject.perform(row.id) }
+          .to increase_processed_items
+          .and(increase_imported_items)
+          .and(delete_the_row)
+
         expect(service_double).to have_received(:call).with(row)
       end
+    end
 
-      it 'increases the number of processed items' do
-        expect { subject.perform(row.id) }.to(change { import.reload.processed_items }.by(+1))
-      end
+    def increase_processed_items
+      change { import.reload.processed_items }.by(1)
+    end
 
-      it 'increases the number of imported items' do
-        expect { subject.perform(row.id) }.to(change { import.reload.imported_items }.by(+1))
-      end
+    def increase_imported_items
+      change { import.reload.imported_items }.by(1)
+    end
 
-      it 'deletes the row' do
-        expect { subject.perform(row.id) }.to change { BulkImportRow.exists?(row.id) }.from(true).to(false)
-      end
+    def preserve_imported_items
+      not_change { import.reload.imported_items }
+    end
+
+    def delete_the_row
+      change { BulkImportRow.exists?(row.id) }.from(true).to(false)
     end
 
     context 'when there are multiple rows to process' do
