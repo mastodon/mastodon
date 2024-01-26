@@ -38,6 +38,9 @@ hi:
       upload_check_privacy_error_object_storage:
         action: अधिक जानकारी हेतु यहां क्लिक करें।
         message_html: "<strong> आपके वेब सर्वर का कन्फिगरेशन सही नहीं है। उपयोगकर्ताओं की निजता खतरे में है। </strong>"
+  redirects:
+    prompt: अगर आपको इस लिंक पर भरोसा है तो आगे बढ़ने के लिए इसे क्लिक करें
+    title: आप इस %{instance} को छोड़ने वाले हैं
   relationships:
     follow_failure: चुने हुए अकाउंट्स में से कुछ को फ़ॉलो नहीं किया जा सकता
   sessions:
@@ -50,3 +53,9 @@ hi:
   time:
     formats:
       with_time_zone: "%b %d, %Y, %H:%M %Z"
+  user_mailer:
+    failed_2fa:
+      details: 'आपके साइन इन प्रयासों के डिटेल ये रहे:'
+      explanation: किसी ने आपके अकाउंट पर साइन इन करने का प्रयास किया लेकिन दूसरा प्रमाणीकरण विकल्प गलत दिया।
+      further_actions_html: अगर ये आप नहीं थे, तो हम अनुरोध करते हैं कि आप तुरंत %{action} लें क्योंकि ये शायद खतरे में है।
+      subject: दूसरा फैक्टर सत्यापन नाकाम रहा
