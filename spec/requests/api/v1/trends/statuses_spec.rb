@@ -3,8 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'API V1 Trends Statuses' do
-  render_views
-
   describe 'GET #index' do
     context 'when trends are disabled' do
       before { Setting.trends = false }
