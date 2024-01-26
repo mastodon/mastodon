@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Trends::StatusesController do
+RSpec.describe 'API V1 Trends Links' do
   render_views
 
   describe 'GET #index' do
@@ -21,7 +21,7 @@ RSpec.describe Api::V1::Trends::StatusesController do
 
       it 'returns http success' do
         prepare_trends
-        stub_const('Api::BaseController::DEFAULT_STATUSES_LIMIT', 2)
+        stub_const('Api::V1::Trends::LinksController::DEFAULT_LINKS_LIMIT', 2)
         get :index
 
         expect(response).to have_http_status(200)
@@ -29,10 +29,10 @@ RSpec.describe Api::V1::Trends::StatusesController do
       end
 
       def prepare_trends
-        Fabricate.times(3, :status, trendable: true, language: 'en').each do |status|
-          2.times { |i| Trends.statuses.add(status, i) }
+        Fabricate.times(3, :preview_card, trendable: true, language: 'en').each do |link|
+          2.times { |i| Trends.links.add(link, i) }
         end
-        Trends::Statuses.new(threshold: 1, decay_threshold: -1).refresh
+        Trends::Links.new(threshold: 1).refresh
       end
     end
   end
