@@ -2,18 +2,13 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V2::Admin::AccountsController do
-  render_views
-
+RSpec.describe 'API V2 Admin Accounts' do
   let(:role)   { UserRole.find_by(name: 'Moderator') }
   let(:user)   { Fabricate(:user, role: role) }
   let(:scopes) { 'admin:read admin:write' }
   let(:token)  { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
   let(:account) { Fabricate(:account) }
-
-  before do
-    allow(controller).to receive(:doorkeeper_token) { token }
-  end
 
   describe 'GET #index' do
     let!(:remote_account)       { Fabricate(:account, domain: 'example.org') }
@@ -28,7 +23,8 @@ RSpec.describe Api::V2::Admin::AccountsController do
 
     before do
       pending_account.user.update(approved: false)
-      get :index, params: params
+
+      get '/api/v2/admin/accounts', params: params, headers: headers
     end
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
