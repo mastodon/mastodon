@@ -36,7 +36,7 @@ const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u20
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Content warning (optional)' },
-  publish: { id: 'compose_form.publish', defaultMessage: 'Post' },
+  publish: { id: 'compose_form.publish', defaultMessage: 'Toot!' },
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Update' },
   reply: { id: 'compose_form.reply', defaultMessage: 'Reply' },
 });
@@ -105,7 +105,7 @@ class ComposeForm extends ImmutablePureComponent {
     const fulltext = this.getFulltextForCharacterCounting();
     const isOnlyWhitespace = fulltext.length !== 0 && fulltext.trim().length === 0;
 
-    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > 500 || (isOnlyWhitespace && !anyMedia));
+    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > 3000 || (isOnlyWhitespace && !anyMedia));
   };
 
   handleSubmit = (e) => {
@@ -297,7 +297,7 @@ class ComposeForm extends ImmutablePureComponent {
                 <PollButtonContainer />
                 <SpoilerButtonContainer />
                 <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
-                <CharacterCounter max={500} text={this.getFulltextForCharacterCounting()} />
+                <CharacterCounter max={3000} text={this.getFulltextForCharacterCounting()} />
               </div>
 
               <div className='compose-form__submit'>
