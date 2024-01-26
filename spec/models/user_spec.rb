@@ -187,12 +187,9 @@ RSpec.describe User do
     context 'when the user is already confirmed' do
       let!(:user) { Fabricate(:user, confirmed_at: Time.now.utc, approved: true, unconfirmed_email: new_email) }
 
-      it 'sets email to unconfirmed_email' do
+      it 'sets email to unconfirmed_email and does not trigger web hook' do
         expect { subject }.to change { user.reload.email }.to(new_email)
-      end
 
-      it 'does not trigger the account.approved Web Hook' do
-        subject
         expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
       end
     end
@@ -206,12 +203,9 @@ RSpec.describe User do
           user.approve!
         end
 
-        it 'sets email to unconfirmed_email' do
+        it 'sets email to unconfirmed_email and triggers `account.approved` web hook' do
           expect { subject }.to change { user.reload.email }.to(new_email)
-        end
 
-        it 'triggers the account.approved Web Hook' do
-          user.confirm
           expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
         end
       end
@@ -221,12 +215,9 @@ RSpec.describe User do
           Setting.registrations_mode = 'open'
         end
 
-        it 'sets email to unconfirmed_email' do
+        it 'sets email to unconfirmed_email and triggers `account.approved` web hook' do
           expect { subject }.to change { user.reload.email }.to(new_email)
-        end
 
-        it 'triggers the account.approved Web Hook' do
-          user.confirm
           expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
         end
       end
@@ -236,12 +227,9 @@ RSpec.describe User do
           Setting.registrations_mode = 'approved'
         end
 
-        it 'sets email to unconfirmed_email' do
+        it 'sets email to unconfirmed_email and does not trigger web hook' do
           expect { subject }.to change { user.reload.email }.to(new_email)
-        end
 
-        it 'does not trigger the account.approved Web Hook' do
-          subject
           expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
         end
       end
@@ -259,12 +247,9 @@ RSpec.describe User do
     context 'when the user is already confirmed' do
       let(:user) { Fabricate(:user, confirmed_at: Time.now.utc, approved: false) }
 
-      it 'sets the approved flag' do
+      it 'sets the approved flag and triggers `account.approved` web hook' do
         expect { subject }.to change { user.reload.approved? }.to(true)
-      end
 
-      it 'triggers the account.approved Web Hook' do
-        subject
         expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
       end
     end
@@ -272,12 +257,9 @@ RSpec.describe User do
     context 'when the user is not confirmed' do
       let(:user) { Fabricate(:user, confirmed_at: nil, approved: false) }
 
-      it 'sets the approved flag' do
+      it 'sets the approved flag and does not trigger web hook' do
         expect { subject }.to change { user.reload.approved? }.to(true)
-      end
 
-      it 'does not trigger the account.approved Web Hook' do
-        subject
         expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
       end
     end
