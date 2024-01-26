@@ -15,7 +15,6 @@ import { WithOptionalRouterPropTypes, withOptionalRouter } from 'flavours/glitch
 import AutosuggestInput from '../../../components/autosuggest_input';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import { Button } from '../../../components/button';
-import { maxChars } from '../../../initial_state';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import LanguageDropdown from '../containers/language_dropdown_container';
 import PollButtonContainer from '../containers/poll_button_container';
@@ -81,6 +80,7 @@ class ComposeForm extends ImmutablePureComponent {
     isInReply: PropTypes.bool,
     singleColumn: PropTypes.bool,
     lang: PropTypes.string,
+    maxChars: PropTypes.number,
     ...WithOptionalRouterPropTypes
   };
 
@@ -116,7 +116,7 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   canSubmit = () => {
-    const { isSubmitting, isChangingUpload, isUploading, anyMedia } = this.props;
+    const { isSubmitting, isChangingUpload, isUploading, anyMedia, maxChars } = this.props;
     const fulltext = this.getFulltextForCharacterCounting();
     const isOnlyWhitespace = fulltext.length !== 0 && fulltext.trim().length === 0;
 
@@ -250,7 +250,7 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   render () {
-    const { intl, onPaste, autoFocus, withoutNavigation } = this.props;
+    const { intl, onPaste, autoFocus, withoutNavigation, maxChars } = this.props;
     const { highlighted } = this.state;
     const disabled = this.props.isSubmitting;
 
