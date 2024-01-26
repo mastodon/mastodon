@@ -43,10 +43,10 @@ module Mastodon::CLI
             say('Every deletion notice has been sent! You can safely delete all data and decomission your servers!', :green)
           end
 
-          exit(0)
+          raise(SystemExit)
         end
 
-        exit(1) unless ask('Type in the domain of the server to confirm:') == Rails.configuration.x.local_domain
+        fail_with_message 'Domains do not match. Stopping self-destruct initiation.' unless domain_match_confirmed?
 
         say(<<~WARNING, :yellow)
           This operation WILL NOT be reversible.
@@ -54,18 +54,24 @@ module Mastodon::CLI
           The deletion process itself may take a long time, and will be handled by Sidekiq, so do not shut it down until it has finished (you will be able to re-run this command to see the state of the self-destruct process).
         WARNING
 
-        exit(1) if no?('Are you sure you want to proceed?')
+        fail_with_message 'Operation cancelled. Self-destruct will not begin.' if proceed_prompt_negative?
 
         say(<<~INSTRUCTIONS, :green)
           To switch Mastodon to self-destruct mode, add the following variable to your evironment (e.g. by adding a line to your `.env.production`) and restart all Mastodon processes:
             SELF_DESTRUCT=#{self_destruct_value}
           You can re-run this command to see the state of the self-destruct process.
         INSTRUCTIONS
-      rescue Interrupt
-        exit(1)
       end
 
       private
+
+      def domain_match_confirmed?
+        ask('Type in the domain of the server to confirm:') == Rails.configuration.x.local_domain
+      end
+
+      def proceed_prompt_negative?
+        no?('Are you sure you want to proceed?')
+      end
 
       def self_destruct_value
         Rails
