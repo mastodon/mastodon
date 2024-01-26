@@ -361,6 +361,7 @@ GEM
       terminal-table (>= 1.5.1)
     idn-ruby (0.1.5)
     io-console (0.7.2)
+    iodine (0.7.57)
     irb (1.11.1)
       rdoc
       reline (>= 0.4.2)
@@ -531,8 +532,6 @@ GEM
     psych (5.1.2)
       stringio
     public_suffix (5.0.4)
-    puma (6.4.2)
-      nio4r (~> 2.0)
     pundit (2.3.1)
       activesupport (>= 3.0.0)
     raabro (1.4.0)
@@ -869,6 +868,7 @@ DEPENDENCIES
   httplog (~> 1.6.2)
   i18n-tasks (~> 1.0)
   idn-ruby
+  iodine (~> 0.7)
   irb (~> 1.8)
   json-ld
   json-ld-preloaded (~> 3.2)
@@ -902,7 +902,6 @@ DEPENDENCIES
   private_address_check (~> 0.5)
   propshaft
   public_suffix (~> 5.0)
-  puma (~> 6.3)
   pundit (~> 2.3)
   rack (~> 2.2.7)
   rack-attack (~> 6.6)
