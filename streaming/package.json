@@ -12,7 +12,7 @@
     "url": "https://github.com/mastodon/mastodon.git"
   },
   "scripts": {
-    "start": "node ./index.js",
+    "start": "node --require ./otel-instrumentation.js ./index.js",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

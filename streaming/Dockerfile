@@ -102,4 +102,4 @@ USER mastodon
 # Expose default Streaming ports
 EXPOSE 4000
 # Run streaming when started
-CMD [ node ./streaming/index.js ]
+CMD [ node --require ./streaming/otel-instrumentation.js ./streaming/index.js ]

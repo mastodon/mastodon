@@ -1,0 +1,21 @@
+dist:
+  module: github.com/mastodon/mastodon/observability
+  name: otelcol
+  description: OpenTelemetry Collector for Mastodon instances
+  version: 0.93.0
+  output_path: ./_build
+  otelcol_version: 0.93.0
+
+receivers:
+  - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.93.0
+
+exporters:
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.93.0
+  - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.93.0
+  - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v0.93.0
+
+processors:
+  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.93.0
+  - gomod: go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.93.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.93.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.93.0

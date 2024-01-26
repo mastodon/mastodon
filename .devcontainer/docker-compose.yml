@@ -21,6 +21,7 @@ services:
       ES_HOST: es
       ES_PORT: '9200'
       LIBRE_TRANSLATE_ENDPOINT: http://libretranslate:5000
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://otelcol:4318"
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
     ports:
@@ -74,6 +75,31 @@ services:
     restart: unless-stopped
     volumes:
       - lt-data:/home/libretranslate/.local
+    networks:
+      - external_network
+      - internal_network
+
+  otelcol:
+    build:
+      context: ../observability
+      dockerfile: Dockerfile
+      args:
+        - OBSERVABILITY_BACKEND=datadog
+    container_name: otelcol
+    deploy:
+      resources:
+        limits:
+          memory: 125M
+    restart: unless-stopped
+    environment:
+      - DD_SITE
+      - DD_API_KEY
+    command: [ "--config=/etc/otelcol-config.yml" ]
+    volumes:
+      - ../observability/otelcol-config.yml:/etc/otelcol-config.yml
+    ports:
+      - "4317"
+      - "4318"
     networks:
       - external_network
       - internal_network
