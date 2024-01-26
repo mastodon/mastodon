@@ -153,13 +153,9 @@ RSpec.describe Admin::AccountsController do
     context 'when user is admin' do
       let(:role) { UserRole.find_by(name: 'Admin') }
 
-      it 'succeeds in approving account' do
+      it 'succeeds in approving account and logs action' do
         expect(subject).to redirect_to admin_accounts_path(status: 'pending')
         expect(user.reload).to be_approved
-      end
-
-      it 'logs action' do
-        expect(subject).to have_http_status 302
 
         expect(latest_admin_action_log)
           .to be_present
@@ -195,12 +191,8 @@ RSpec.describe Admin::AccountsController do
     context 'when user is admin' do
       let(:role) { UserRole.find_by(name: 'Admin') }
 
-      it 'succeeds in rejecting account' do
+      it 'succeeds in rejecting account and logs action' do
         expect(subject).to redirect_to admin_accounts_path(status: 'pending')
-      end
-
-      it 'logs action' do
-        expect(subject).to have_http_status 302
 
         expect(latest_admin_action_log)
           .to be_present
@@ -286,12 +278,9 @@ RSpec.describe Admin::AccountsController do
     context 'when user is admin' do
       let(:role) { UserRole.find_by(name: 'Admin') }
 
-      it 'succeeds in removing email blocks' do
+      it 'succeeds in removing email blocks and redirects to admin account path' do
         expect { subject }.to change { CanonicalEmailBlock.where(reference_account: account).count }.from(1).to(0)
-      end
 
-      it 'redirects to admin account path' do
-        subject
         expect(response).to redirect_to admin_account_path(account.id)
       end
     end
