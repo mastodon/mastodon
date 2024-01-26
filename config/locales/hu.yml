@@ -425,6 +425,7 @@ hu:
       view: Domain tiltásának megtekintése
     email_domain_blocks:
       add_new: Új hozzáadása
+      allow_registrations_with_approval: Regisztráció engedélyezése jóváhagyással
       attempts_over_week:
         one: "%{count} próbálkozás a múlt héten"
         other: "%{count} próbálkozás feliratkozásra a múlt héten"
@@ -1545,6 +1546,8 @@ hu:
     errors:
       limit_reached: A különböző reakciók száma elérte a határértéket
       unrecognized_emoji: nem ismert emodzsi
+  redirects:
+    prompt: Ha megbízunk ebben a hivatkozásban, kattintsunk rá a folytatáshoz.
   relationships:
     activity: Fiók aktivitás
     confirm_follow_selected_followers: Biztos, hogy követni akarod a kiválasztott követőket?
@@ -1607,6 +1610,7 @@ hu:
       unknown_browser: Ismeretlen böngésző
       weibo: Weibo
     current_session: Jelenlegi munkamenet
+    date: Dátum
     description: "%{browser} az alábbi platformon: %{platform}"
     explanation: Jelenleg az alábbi böngészőkkel vagy bejelentkezve a fiókodba.
     ip: IP
@@ -1773,18 +1777,27 @@ hu:
     webauthn: Biztonsági kulcsok
   user_mailer:
     appeal_approved:
-      action: Ugrás a fiókodhoz
+      action: Fiók Beállításai
       explanation: A fiókod %{appeal_date}-i fellebbezése, mely a %{strike_date}-i vétségeddel kapcsolatos, jóváhagyásra került. A fiókod megint makulátlan.
       subject: A %{date}-i fellebbezésedet jóváhagyták
+      subtitle: A fiókod ismét használható állapotban van.
       title: Fellebbezés jóváhagyva
     appeal_rejected:
       explanation: A %{appeal_date}-i fellebbezésed, amely a fiókod %{strike_date}-i vétségével kapcsolatos, elutasításra került.
       subject: A %{date}-i fellebbezésedet visszautasították
+      subtitle: A fellebbezésedet visszautasították.
       title: Fellebbezés visszautasítva
     backup_ready:
-      explanation: A Mastodon-fiókod teljes mentését kérted. A mentés elkészült, és letölthető.
+      explanation: A Mastodon fiókod teljes biztonsági mentését kérted.
+      extra: Már letöltésre kész!
       subject: Az adataidról készült archív letöltésre kész
       title: Archiválás
+    failed_2fa:
+      details: 'Itt vannak a bejelentkezési kísérlet részletei:'
+      explanation: Valaki megpróbált bejelentkezni a fiókodba, de a második hitelesítési lépése érvénytelen volt.
+      further_actions_html: Ha ez nem te voltál, azt javasoljuk, hogy azonnal %{action}, mivel lehetséges, hogy az rossz kezekbe került.
+      subject: Második körös hitelesítés sikertelen
+      title: Sikertelen a második körös hitelesítés
     suspicious_sign_in:
       change_password: módosítsd a jelszavad
       details: 'Itt vannak a bejelentkezés részletei:'
@@ -1838,6 +1851,7 @@ hu:
     go_to_sso_account_settings: Ugrás az azonosítási szolgáltatód fiókbeállításaihoz
     invalid_otp_token: Érvénytelen ellenőrző kód
     otp_lost_help_html: Ha mindkettőt elvesztetted, kérhetsz segítséget itt %{email}
+    rate_limited: Túl sok hiteleítési kísérlet történt. Próbáld újra később.
     seamless_external_login: Külső szolgáltatáson keresztül jelentkeztél be, így a jelszó és e-mail beállítások nem elérhetőek.
     signed_in_as: Bejelentkezve mint
   verification:

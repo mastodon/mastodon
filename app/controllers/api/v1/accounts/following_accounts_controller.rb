@@ -21,7 +21,7 @@ class Api::V1::Accounts::FollowingAccountsController < Api::BaseController
     return [] if hide_results?
 
     scope = default_accounts
-    scope = scope.where.not(id: current_account.excluded_from_timeline_account_ids) unless current_account.nil? || current_account.id == @account.id
+    scope = scope.not_excluded_by_account(current_account) unless current_account.nil? || current_account.id == @account.id
     scope.merge(paginated_follows).to_a
   end
 
@@ -30,7 +30,7 @@ class Api::V1::Accounts::FollowingAccountsController < Api::BaseController
   end
 
   def default_accounts
-    Account.includes(:passive_relationships, :account_stat).references(:passive_relationships)
+    Account.includes(:passive_relationships, :account_stat, :user).references(:passive_relationships)
   end
 
   def paginated_follows

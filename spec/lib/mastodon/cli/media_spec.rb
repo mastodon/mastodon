@@ -183,5 +183,74 @@ describe Mastodon::CLI::Media do
           .to output_results('Downloaded 1 media')
       end
     end
+
+    context 'with --days option' do
+      before do
+        Fabricate(:media_attachment, remote_url: 'https://example.com/image.jpg', id: Mastodon::Snowflake.id_at(50.days.ago))
+        Fabricate(:media_attachment, remote_url: 'https://example.com/image.jpg', id: Mastodon::Snowflake.id_at(5.days.ago))
+        Fabricate(:media_attachment, remote_url: '', id: Mastodon::Snowflake.id_at(5.days.ago))
+      end
+
+      let(:options) { { days: 10 } }
+
+      it 'redownloads the attachment file for the remote records more recent than the option' do
+        expect { subject }
+          .to output_results('Downloaded 1 media')
+      end
+    end
+  end
+
+  describe '#remove_orphans' do
+    let(:action) { :remove_orphans }
+
+    before do
+      FileUtils.mkdir_p Rails.public_path.join('system')
+    end
+
+    context 'without any options' do
+      it 'runs without error' do
+        expect { subject }
+          .to output_results('Removed', 'orphans (approx')
+      end
+    end
+
+    context 'when in azure mode' do
+      before do
+        allow(Paperclip::Attachment).to receive(:default_options).and_return(storage: :azure)
+      end
+
+      it 'warns about usage and exits' do
+        expect { subject }
+          .to output_results('azure storage driver is not supported')
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when in fog mode' do
+      before do
+        allow(Paperclip::Attachment).to receive(:default_options).and_return(storage: :fog)
+      end
+
+      it 'warns about usage and exits' do
+        expect { subject }
+          .to output_results('fog storage driver is not supported')
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when in filesystem mode' do
+      before do
+        allow(File).to receive(:delete).and_return(true)
+        media_attachment.delete
+      end
+
+      let(:media_attachment) { Fabricate(:media_attachment) }
+
+      it 'removes the unlinked files' do
+        expect { subject }
+          .to output_results('Removed', 'orphans (approx')
+        expect(File).to have_received(:delete).with(media_attachment.file.path)
+      end
+    end
   end
 end

@@ -31,7 +31,7 @@ Rails.application.configure do
     :fi,
     :fo,
     :fr,
-    :'fr-QC',
+    :'fr-CA',
     :fy,
     :ga,
     :gd,

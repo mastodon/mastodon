@@ -432,6 +432,7 @@ sr:
       view: Прочитај блок домена
     email_domain_blocks:
       add_new: Додај нови
+      allow_registrations_with_approval: Дозволи регистрацију уз одобрење
       attempts_over_week:
         few: "%{count} покушаја током претходне недеље"
         one: "%{count} покушај током претходне недеље"
@@ -1571,6 +1572,9 @@ sr:
     errors:
       limit_reached: Достигнуто је ограничење различитих реакција
       unrecognized_emoji: није препознат емоџи
+  redirects:
+    prompt: Ако верујете овој вези, кликните на њу за наставак.
+    title: Напуштате %{instance}.
   relationships:
     activity: Активност налога
     confirm_follow_selected_followers: Да ли сте сигурни да желите да пратите изабране пратиоце?
@@ -1633,6 +1637,7 @@ sr:
       unknown_browser: Непознати прегледач
       weibo: Веибо
     current_session: Тренутна сесија
+    date: Датум
     description: "%{browser} са %{platform}"
     explanation: Ово су веб претраживачи који су тренутно пријављени на ваш Mastodon налог.
     ip: IP
@@ -1805,18 +1810,27 @@ sr:
     webauthn: Сигурносни кључеви
   user_mailer:
     appeal_approved:
-      action: Идите на свој налог
+      action: Подешавања налога
       explanation: Жалба поднета датума %{appeal_date} на уписан преступ на Ваше име датума %{strike_date} је уважена. Ваш налог је поново у повољном положају.
       subject: Ваша жалба поднета %{date} је уважена
+      subtitle: Ваш налог је поново на добром гласу.
       title: Жалба уважена
     appeal_rejected:
       explanation: Жалба поднета датума %{appeal_date} на уписан преступ на Ваше име датума %{strike_date} је одбијена.
       subject: Ваша жалба поднета %{date} је одбијена
+      subtitle: Ваша жалба је одбијена.
       title: Жалба одбијена
     backup_ready:
-      explanation: Тражили сте потпуну резервну копију вашег Mastodon налога. Спремна је за преузимање!
+      explanation: Захтевали сте пуну резервну копију Mastodon налога.
+      extra: Сада је спремно за преузимање!
       subject: Ваша архива је спремна за преузимање
       title: Извоз архиве
+    failed_2fa:
+      details: 'Ево детаља о покушају пријављивања:'
+      explanation: Неко је покушао да се пријави на ваш налог али је дао неважећи други фактор аутентификације.
+      further_actions_html: Ако то нисте били ви, препоручујемо вам да одмах %{action} јер може бити угрожена.
+      subject: Неуспех другог фактора аутентификације
+      title: Није успео други фактор аутентификације
     suspicious_sign_in:
       change_password: промените своју лозинку
       details: 'Ево детаља о пријави:'
@@ -1870,6 +1884,7 @@ sr:
     go_to_sso_account_settings: Идите на подешавања налога свог добављача идентитета
     invalid_otp_token: Неисправни двофакторски код
     otp_lost_help_html: Ако изгубите приступ за оба, можете ступити у контакт са %{email}
+    rate_limited: Превише покушаја аутентификације, покушајте поново касније.
     seamless_external_login: Пријављени сте путем спољашње услуге, тако да лозинка и подешавања Е-поште нису доступни.
     signed_in_as: 'Пријављен/а као:'
   verification:

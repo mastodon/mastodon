@@ -425,6 +425,7 @@ es-AR:
       view: Ver bloqueo de dominio
     email_domain_blocks:
       add_new: Agregar nuevo
+      allow_registrations_with_approval: Permitir crear cuentas con aprobación
       attempts_over_week:
         one: "%{count} intento durante la última semana"
         other: "%{count} intentos durante la última semana"
@@ -1545,6 +1546,9 @@ es-AR:
     errors:
       limit_reached: Se alcanzó el límite de reacciones diferentes
       unrecognized_emoji: no es un emoji conocido
+  redirects:
+    prompt: Si confiás en este enlace, dale clic o un toque para continuar.
+    title: Estás dejando %{instance}.
   relationships:
     activity: Actividad de la cuenta
     confirm_follow_selected_followers: "¿Estás seguro que querés seguir a los seguidores seleccionados?"
@@ -1607,6 +1611,7 @@ es-AR:
       unknown_browser: "[Navegador web desconocido]"
       weibo: Weibo
     current_session: Sesión actual
+    date: Fecha
     description: "%{browser} en %{platform}"
     explanation: Estos son los navegadores web en los que actualmente iniciaste sesión en tu cuenta de Mastodon.
     ip: Dirección IP
@@ -1773,18 +1778,27 @@ es-AR:
     webauthn: Llaves de seguridad
   user_mailer:
     appeal_approved:
-      action: Ir a tu cuenta
+      action: Configuración de la cuenta
       explanation: La apelación del incumplimiento contra tu cuenta del %{strike_date} que enviaste el %{appeal_date} fue aprobada. Tu cuenta se encuentra de nuevo en buen estado.
       subject: Tu apelación del %{date} fue aprobada
+      subtitle: Tu cuenta está, de nuevo, en perfecto estado.
       title: Apelación aprobada
     appeal_rejected:
       explanation: La apelación del incumplimiento contra tu cuenta del %{strike_date} que enviaste el %{appeal_date} fue rechazada.
       subject: Tu apelación del %{date} fue rechazada
+      subtitle: Se rechazó tu apelación.
       title: Apelación rechazada
     backup_ready:
-      explanation: Solicitaste un resguardo completo de tu cuenta de Mastodon. ¡Ya está listo para descargar!
+      explanation: Solicitaste una copia de seguridad completa de tu cuenta de Mastodon.
+      extra: "¡Ya está lista para descargar!"
       subject: Tu archivo historial está listo para descargar
       title: Descargar archivo historial
+    failed_2fa:
+      details: 'Estos son los detalles del intento de inicio de sesión:'
+      explanation: Alguien intentó iniciar sesión en tu cuenta pero proporcionó un segundo factor de autenticación no válido.
+      further_actions_html: Si vos no fuiste, te recomendamos que %{action} inmediatamente, ya que la seguridad de tu cuenta podría estar comprometida.
+      subject: Fallo de autenticación del segundo factor
+      title: Fallo en la autenticación del segundo factor
     suspicious_sign_in:
       change_password: cambiés tu contraseña
       details: 'Acá están los detalles del inicio de sesión:'
@@ -1838,6 +1852,7 @@ es-AR:
     go_to_sso_account_settings: Andá a la configuración de cuenta de tu proveedor de identidad
     invalid_otp_token: Código de dos factores no válido
     otp_lost_help_html: Si perdiste al acceso a ambos, podés ponerte en contacto con %{email}
+    rate_limited: Demasiados intentos de autenticación; intentá de nuevo más tarde.
     seamless_external_login: Iniciaste sesión desde un servicio externo, así que la configuración de contraseña y correo electrónico no están disponibles.
     signed_in_as: 'Iniciaste sesión como:'
   verification:

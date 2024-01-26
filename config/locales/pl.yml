@@ -439,6 +439,7 @@ pl:
       view: Zobacz blokadę domeny
     email_domain_blocks:
       add_new: Dodaj nową
+      allow_registrations_with_approval: Zezwól na rejestracje po zatwierdzeniu
       attempts_over_week:
         few: "%{count} próby w ciągu ostatniego tygodnia"
         many: "%{count} prób w ciągu ostatniego tygodnia"
@@ -1597,6 +1598,9 @@ pl:
     errors:
       limit_reached: Przekroczono limit różnych reakcji
       unrecognized_emoji: nie jest znanym emoji
+  redirects:
+    prompt: Kliknij ten link jeżeli mu ufasz.
+    title: Opuszczasz %{instance}.
   relationships:
     activity: Aktywność konta
     confirm_follow_selected_followers: Czy na pewno chcesz obserwować wybranych obserwujących?
@@ -1659,6 +1663,7 @@ pl:
       unknown_browser: Nieznana Przeglądarka
       weibo: Weibo
     current_session: Obecna sesja
+    date: Data
     description: "%{browser} na %{platform}"
     explanation: Przeglądarki z aktywną sesją Twojego konta.
     ip: Adres IP
@@ -1837,18 +1842,27 @@ pl:
     webauthn: Klucze bezpieczeństwa
   user_mailer:
     appeal_approved:
-      action: Przejdź do swojego konta
+      action: Ustawienia Konta
       explanation: Twoje odwołanie dotyczące ostrzeżenia nałożonego na twoje konto dnia %{strike_date}, które zostało wysłane dnia %{appeal_date} zostało zatwierdzone. Twoje konto jest ponownie w dobrej kondycji.
       subject: Twoje odwołanie z dnia %{date} zostało zatwierdzone
+      subtitle: Reputacja twojego konta została przywrócona.
       title: Odwołanie zatwierdzone
     appeal_rejected:
       explanation: Twoje odwołanie dotyczące ostrzeżenia nałożonego na twoje konto dnia %{strike_date}, które zostało wysłane dnia %{appeal_date} zostało odrzucone.
       subject: Twoje odwołanie z dnia %{date} zostało odrzucone
+      subtitle: Twoje odwołanie zostało odrzucone.
       title: Odwołanie odrzucone
     backup_ready:
-      explanation: Zażądałeś pełnej kopii zapasowej konta na Mastodonie. Jest ona dostępna do pobrania!
+      explanation: Zamówiono pełną kopię zapasową twojego konta Mastodon.
+      extra: Gotowe do pobrania!
       subject: Twoje archiwum jest gotowe do pobrania
       title: Odbiór archiwum
+    failed_2fa:
+      details: 'Oto szczegóły próby logowania:'
+      explanation: Ktoś próbował zalogować się na twoje konto, ale nie przeszedł drugiego etapu autoryzacji.
+      further_actions_html: Jeśli to nie ty, polecamy natychmiastowo %{action}, bo może ono być narażone.
+      subject: Błąd drugiego etapu uwierzytelniania
+      title: Nieudane uwierzytelnienie w drugim etapie
     suspicious_sign_in:
       change_password: zmień hasło
       details: 'Oto szczegóły logowania:'
@@ -1902,6 +1916,7 @@ pl:
     go_to_sso_account_settings: Przejdź do ustawień konta dostawcy tożsamości
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
     otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
+    rate_limited: Zbyt wiele prób uwierzytelnienia. Spróbuj ponownie później.
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowano jako:'
   verification:

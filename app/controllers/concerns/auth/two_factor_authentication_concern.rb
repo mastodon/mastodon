@@ -66,6 +66,11 @@ module Auth::TwoFactorAuthenticationConcern
   end
 
   def authenticate_with_two_factor_via_otp(user)
+    if check_second_factor_rate_limits(user)
+      flash.now[:alert] = I18n.t('users.rate_limited')
+      return prompt_for_two_factor(user)
+    end
+
     if valid_otp_attempt?(user)
       on_authentication_success(user, :otp)
     else

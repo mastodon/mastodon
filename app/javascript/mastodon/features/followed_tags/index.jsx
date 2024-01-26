@@ -8,9 +8,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as TagIcon } from '@material-symbols/svg-600/outlined/tag.svg';
 import { debounce } from 'lodash';
 
+import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { expandFollowedHashtags, fetchFollowedHashtags } from 'mastodon/actions/tags';
 import ColumnHeader from 'mastodon/components/column_header';
 import { Hashtag } from 'mastodon/components/hashtag';

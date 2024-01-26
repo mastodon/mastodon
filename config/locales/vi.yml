@@ -418,6 +418,7 @@ vi:
       view: Xem máy chủ chặn
     email_domain_blocks:
       add_new: Thêm mới
+      allow_registrations_with_approval: Cho đăng ký nhưng duyệt thủ công
       attempts_over_week:
         other: "%{count} lần thử đăng ký vào tuần trước"
       created_msg: Đã chặn tên miền email này
@@ -1216,7 +1217,7 @@ vi:
   filters:
     contexts:
       account: Trang hồ sơ
-      home: Trang chính và danh sách
+      home: Trang chủ và danh sách
       notifications: Thông báo
       public: Tút công khai
       thread: Thảo luận
@@ -1519,6 +1520,9 @@ vi:
     errors:
       limit_reached: Bạn không nên thao tác liên tục
       unrecognized_emoji: không phải là emoji
+  redirects:
+    prompt: Nếu bạn tin tưởng, hãy nhấn tiếp tục.
+    title: Bạn đang thoát khỏi %{instance}.
   relationships:
     activity: Tương tác
     confirm_follow_selected_followers: Bạn có chắc muốn theo dõi những người đã chọn?
@@ -1581,6 +1585,7 @@ vi:
       unknown_browser: Trình duyệt khác
       weibo: Weibo
     current_session: Phiên hiện tại
+    date: Thời gian
     description: "%{browser} trên %{platform}"
     explanation: Đây là các ứng dụng đã từng đăng nhập vào tài khoản Mastodon của bạn.
     ip: IP
@@ -1741,18 +1746,27 @@ vi:
     webauthn: Khóa bảo mật
   user_mailer:
     appeal_approved:
-      action: Đến trang hồ sơ của bạn
+      action: Cài đặt tài khoản
       explanation: Khiếu nại về tài khoản của bạn vào %{strike_date}, được gửi lúc %{appeal_date} đã được chấp nhận. Tài khoản của bạn đã có thể sử dụng bình thường.
       subject: Khiếu nại của bạn từ %{date} đã được chấp nhận
+      subtitle: Tài khoản của bạn có thể hoạt động lại bình thường.
       title: Khiếu nại đã được chấp nhận
     appeal_rejected:
       explanation: Khiếu nại về tài khoản của bạn vào %{strike_date}, được gửi lúc %{appeal_date} đã bị từ chối.
       subject: Khiếu nại của bạn từ %{date} đã bị từ chối
+      subtitle: Khiếu nại của bạn bị từ chối.
       title: Khiếu nại bị từ chối
     backup_ready:
-      explanation: Bạn đã yêu cầu sao lưu toàn bộ tài khoản Mastodon của mình. Bây giờ có thể tải về!
+      explanation: Bạn đã yêu cầu bản sao tài khoản Mastodon của mình.
+      extra: Hiện nó đã sẵn sàng tải xuống!
       subject: Dữ liệu cá nhân của bạn đã sẵn sàng để tải về
       title: Nhận dữ liệu cá nhân
+    failed_2fa:
+      details: 'Chi tiết thông tin đăng nhập:'
+      explanation: Ai đó đã cố đăng nhập vào tài khoản của bạn nhưng cung cấp yếu tố xác thực thứ hai không hợp lệ.
+      further_actions_html: Nếu không phải bạn, hãy lập tức %{action} vì có thể có rủi ro.
+      subject: Xác minh hai bước thất bại
+      title: Xác minh hai bước thất bại
     suspicious_sign_in:
       change_password: đổi mật khẩu của bạn
       details: 'Chi tiết thông tin đăng nhập:'
@@ -1795,7 +1809,7 @@ vi:
       edit_profile_action: Cài đặt trang hồ sơ
       edit_profile_step: Bạn có thể chỉnh sửa trang hồ sơ của mình bằng cách tải lên ảnh đại diện, ảnh bìa, đổi biệt danh và hơn thế nữa. Bạn cũng có thể tự phê duyệt những người theo dõi mới.
       explanation: Dưới đây là một số mẹo để giúp bạn bắt đầu
-      final_action: Viết tút mới
+      final_action: Soạn tút mới
       final_step: 'Viết tút mới! Ngay cả khi chưa có người theo dõi, người khác vẫn có thể xem tút công khai của bạn trên bảng tin máy chủ và qua hashtag. Hãy giới thiệu bản thân với hashtag #introductions.'
       full_handle: Tên đầy đủ của bạn
       full_handle_hint: Đây cũng là địa chỉ được dùng để giao tiếp với tất cả mọi người.
@@ -1806,6 +1820,7 @@ vi:
     go_to_sso_account_settings: Thiết lập tài khoản nhà cung cấp danh tính
     invalid_otp_token: Mã xác minh 2 bước không hợp lệ
     otp_lost_help_html: Nếu bạn mất quyền truy cập vào cả hai, bạn có thể đăng nhập bằng %{email}
+    rate_limited: Quá nhiều lần thử, vui lòng thử lại sau.
     seamless_external_login: Bạn đã đăng nhập thông qua một dịch vụ bên ngoài, vì vậy mật khẩu và email không khả dụng.
     signed_in_as: 'Đăng nhập bằng:'
   verification:

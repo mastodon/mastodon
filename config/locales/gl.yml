@@ -425,6 +425,7 @@ gl:
       view: Ollar dominios bloqueados
     email_domain_blocks:
       add_new: Engadir novo
+      allow_registrations_with_approval: Permitir crear contas con aprobación
       attempts_over_week:
         one: "%{count} intento na última semana"
         other: "%{count} intentos de conexión na última semana"
@@ -1545,6 +1546,9 @@ gl:
     errors:
       limit_reached: Acadouse o límite das diferentes reaccións
       unrecognized_emoji: non é unha emoticona recoñecida
+  redirects:
+    prompt: Se confías nesta ligazón, preme nela para continuar.
+    title: Vas saír de %{instance}.
   relationships:
     activity: Actividade da conta
     confirm_follow_selected_followers: Tes a certeza de querer seguir as seguidoras seleccionadas?
@@ -1607,6 +1611,7 @@ gl:
       unknown_browser: Navegador descoñecido
       weibo: Weibo
     current_session: Sesión actual
+    date: Data
     description: "%{browser} en %{platform}"
     explanation: Estos son os navegadores web nos que actualmente tes sesión iniciada.
     ip: IP
@@ -1773,18 +1778,27 @@ gl:
     webauthn: Chaves de seguridade
   user_mailer:
     appeal_approved:
-      action: Vai á túa conta
+      action: Axustes da conta
       explanation: A apelación da acción contra a túa conta o %{strike_date} que enviaches o %{appeal_date} foi aprobada. A túa conta volve ao estado normal de uso.
       subject: O recurso presentado o %{date} foi aprobado
+      subtitle: A túa conta volve a estar en boa forma.
       title: Apelación aprobada
     appeal_rejected:
       explanation: A apelación contra a acción tomada contra a túa conta o %{strike_date} que enviaches o %{appeal_date} foi rexeitada.
       subject: A túa apelación do %{date} foi rexeitada
+      subtitle: A apelación foi rexeitada.
       title: Apelación rexeitada
     backup_ready:
-      explanation: Solicitaches os datos completos da túa conta de Mastodon. Xa está preparados para descargar!
+      explanation: Solicitaches unha copia completa da túa conta Mastodon.
+      extra: Está preparada para descargala!
       subject: O teu ficheiro xa está preparado para descargar
       title: Leve o ficheiro
+    failed_2fa:
+      details: 'Detalles do intento de acceso:'
+      explanation: Alguén intentou acceder á túa conta mais fíxoo cun segundo factor de autenticación non válido.
+      further_actions_html: Se non foches ti, recomendámosche %{action} inmediatamente xa que a conta podería estar en risco.
+      subject: Fallo co segundo factor de autenticación
+      title: Fallou o segundo factor de autenticación
     suspicious_sign_in:
       change_password: cambia o teu contrasinal
       details: 'Estos son os detalles do acceso:'
@@ -1838,6 +1852,7 @@ gl:
     go_to_sso_account_settings: Ir aos axustes da conta no teu provedor de identidade
     invalid_otp_token: O código do segundo factor non é válido
     otp_lost_help_html: Se perdes o acceso a ambos, podes contactar con %{email}
+    rate_limited: Demasiados intentos de autenticación, inténtao máis tarde.
     seamless_external_login: Accedeches a través dun servizo externo, polo que os axustes de contrasinal e email non están dispoñibles.
     signed_in_as: 'Rexistrada como:'
   verification:

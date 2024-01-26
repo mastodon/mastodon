@@ -39,15 +39,14 @@ end
 
 gem 'net-ldap', '~> 0.18'
 
-# TODO: Point back at released omniauth-cas gem when PR merged
-# https://github.com/dlindahl/omniauth-cas/pull/68
-gem 'omniauth-cas', github: 'stanhu/omniauth-cas', ref: '4211e6d05941b4a981f9a36b49ec166cecd0e271'
+gem 'omniauth-cas', '~> 3.0.0.beta.1'
 gem 'omniauth-saml', '~> 2.0'
 gem 'omniauth_openid_connect', '~> 0.6.1'
 gem 'omniauth', '~> 2.0'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
 gem 'color_diff', '~> 0.1'
+gem 'csv', '~> 3.2'
 gem 'discard', '~> 1.2'
 gem 'doorkeeper', '~> 5.6'
 gem 'ed25519', '~> 1.3'
@@ -75,7 +74,6 @@ gem 'premailer-rails'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', '~> 2.0', require: 'rack/cors'
 gem 'rails-i18n', '~> 7.0'
-gem 'rails-settings-cached', '~> 0.6', git: 'https://github.com/mastodon/rails-settings-cached.git', branch: 'v0.6.6-aliases-true'
 gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
@@ -90,7 +88,7 @@ gem 'sidekiq-bulk', '~> 0.2.0'
 gem 'simple-navigation', '~> 4.4'
 gem 'simple_form', '~> 5.2'
 gem 'stoplight', '~> 3.0.1'
-gem 'strong_migrations', '1.6.4'
+gem 'strong_migrations', '1.7.0'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2023'
@@ -125,7 +123,7 @@ group :test do
   gem 'database_cleaner-active_record'
 
   # Used to mock environment variables
-  gem 'climate_control', '~> 0.2'
+  gem 'climate_control'
 
   # Generating fake data for specs
   gem 'faker', '~> 3.2'

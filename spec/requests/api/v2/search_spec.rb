@@ -40,13 +40,33 @@ describe 'Search API' do
           end
         end
 
-        context 'with `offset`' do
+        context 'with valid `offset` value' do
           let(:params) { { q: 'test1', offset: 1 } }
 
           it 'returns http unauthorized' do
             get '/api/v2/search', headers: headers, params: params
 
             expect(response).to have_http_status(200)
+          end
+        end
+
+        context 'with negative `offset` value' do
+          let(:params) { { q: 'test1', offset: '-100', type: 'accounts' } }
+
+          it 'returns http bad_request' do
+            get '/api/v2/search', headers: headers, params: params
+
+            expect(response).to have_http_status(400)
+          end
+        end
+
+        context 'with negative `limit` value' do
+          let(:params) { { q: 'test1', limit: '-100', type: 'accounts' } }
+
+          it 'returns http bad_request' do
+            get '/api/v2/search', headers: headers, params: params
+
+            expect(response).to have_http_status(400)
           end
         end
 

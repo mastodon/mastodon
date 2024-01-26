@@ -77,6 +77,7 @@ class Request
     @url         = Addressable::URI.parse(url).normalize
     @http_client = options.delete(:http_client)
     @allow_local = options.delete(:allow_local)
+    @full_path   = options.delete(:with_query_string)
     @options     = options.merge(socket_class: use_proxy? || @allow_local ? ProxySocket : Socket)
     @options     = @options.merge(timeout_class: PerOperationWithDeadline, timeout_options: TIMEOUT)
     @options     = @options.merge(proxy_url) if use_proxy?
@@ -146,7 +147,7 @@ class Request
   private
 
   def set_common_headers!
-    @headers[REQUEST_TARGET]    = "#{@verb} #{@url.path}"
+    @headers[REQUEST_TARGET]    = request_target
     @headers['User-Agent']      = Mastodon::Version.user_agent
     @headers['Host']            = @url.host
     @headers['Date']            = Time.now.utc.httpdate
@@ -155,6 +156,14 @@ class Request
 
   def set_digest!
     @headers['Digest'] = "SHA-256=#{Digest::SHA256.base64digest(@options[:body])}"
+  end
+
+  def request_target
+    if @url.query.nil? || !@full_path
+      "#{@verb} #{@url.path}"
+    else
+      "#{@verb} #{@url.path}?#{@url.query}"
+    end
   end
 
   def signature

@@ -8,10 +8,10 @@ import { useHistory } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
-import { ReactComponent as AddPhotoAlternateIcon } from '@material-symbols/svg-600/outlined/add_photo_alternate.svg';
-import { ReactComponent as EditIcon } from '@material-symbols/svg-600/outlined/edit.svg';
 import Toggle from 'react-toggle';
 
+import AddPhotoAlternateIcon from '@/material-icons/400-24px/add_photo_alternate.svg?react';
+import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import { updateAccount } from 'mastodon/actions/accounts';
 import { Button } from 'mastodon/components/button';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';
@@ -25,6 +25,8 @@ const messages = defineMessages({
   uploadHeader: { id: 'onboarding.profile.upload_header', defaultMessage: 'Upload profile header' },
   uploadAvatar: { id: 'onboarding.profile.upload_avatar', defaultMessage: 'Upload profile picture' },
 });
+
+const nullIfMissing = path => path.endsWith('missing.png') ? null : path;
 
 export const Profile = () => {
   const account = useAppSelector(state => state.getIn(['accounts', me]));
@@ -61,8 +63,8 @@ export const Profile = () => {
     setHeader(e.target?.files?.[0]);
   }, [setHeader]);
 
-  const avatarPreview = useMemo(() => avatar ? URL.createObjectURL(avatar) : account.get('avatar'), [avatar, account]);
-  const headerPreview = useMemo(() => header ? URL.createObjectURL(header) : account.get('header'), [header, account]);
+  const avatarPreview = useMemo(() => avatar ? URL.createObjectURL(avatar) : nullIfMissing(account.get('avatar')), [avatar, account]);
+  const headerPreview = useMemo(() => header ? URL.createObjectURL(header) : nullIfMissing(account.get('header')), [header, account]);
 
   const handleSubmit = useCallback(() => {
     setIsSaving(true);
