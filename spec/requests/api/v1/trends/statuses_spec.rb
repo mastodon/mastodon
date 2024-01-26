@@ -3,12 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe 'API V1 Trends Statuses' do
-  describe 'GET #index' do
+  describe 'GET /api/v1/trends/statuses' do
     context 'when trends are disabled' do
       before { Setting.trends = false }
 
       it 'returns http success' do
-        get :index
+        get '/api/v1/trends/statuses'
 
         expect(response).to have_http_status(200)
       end
@@ -20,7 +20,7 @@ RSpec.describe 'API V1 Trends Statuses' do
       it 'returns http success' do
         prepare_trends
         stub_const('Api::BaseController::DEFAULT_STATUSES_LIMIT', 2)
-        get :index
+        get '/api/v1/trends/statuses'
 
         expect(response).to have_http_status(200)
         expect(response.headers).to include('Link')
