@@ -3,6 +3,7 @@
 class Redirect::BaseController < ApplicationController
   vary_by 'Accept-Language'
 
+  before_action :set_pack
   before_action :set_resource
   before_action :set_app_body_class
 
@@ -20,5 +21,9 @@ class Redirect::BaseController < ApplicationController
 
   def set_resource
     raise NotImplementedError
+  end
+
+  def set_pack
+    use_pack 'public'
   end
 end
