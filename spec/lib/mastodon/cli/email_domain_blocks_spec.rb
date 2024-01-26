@@ -35,8 +35,7 @@ describe Mastodon::CLI::EmailDomainBlocks do
     context 'without any options' do
       it 'warns about usage and exits' do
         expect { subject }
-          .to output_results('No domain(s) given')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No domain(s) given')
       end
     end
 
@@ -72,8 +71,7 @@ describe Mastodon::CLI::EmailDomainBlocks do
     context 'without any options' do
       it 'warns about usage and exits' do
         expect { subject }
-          .to output_results('No domain(s) given')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No domain(s) given')
       end
     end
 
