@@ -108,6 +108,10 @@ class Api::BaseController < ApplicationController
     render json: { error: 'Your login is currently disabled' }, status: 403 if current_user&.account&.unavailable?
   end
 
+  def require_valid_pagination_options!
+    render json: { error: 'Pagination values for `offset` and `limit` must be positive' }, status: 400 if pagination_options_invalid?
+  end
+
   def require_user!
     if !current_user
       render json: { error: 'This method requires an authenticated user' }, status: 422
@@ -135,6 +139,10 @@ class Api::BaseController < ApplicationController
   end
 
   private
+
+  def pagination_options_invalid?
+    params.slice(:limit, :offset).values.map(&:to_i).any?(&:negative?)
+  end
 
   def respond_with_error(code)
     render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code

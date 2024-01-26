@@ -439,6 +439,7 @@ he:
       view: צפייה בחסימת דומיינים
     email_domain_blocks:
       add_new: הוספת חדש
+      allow_registrations_with_approval: הרשאת הרשמה לאחר אישור
       attempts_over_week:
         many: "%{count} נסיונות הרשמה במשך השבוע שעבר"
         one: "%{count} נסיון במשך השבוע שעבר"
@@ -1597,6 +1598,9 @@ he:
     errors:
       limit_reached: גבול מספר התגובות השונות הושג
       unrecognized_emoji: הוא לא אמוג'י מוכר
+  redirects:
+    prompt: יש ללחוץ על הקישור, אם לדעתך ניתן לסמוך עליו.
+    title: יציאה מתוך %{instance}.
   relationships:
     activity: רמת פעילות
     confirm_follow_selected_followers: האם את/ה בטוח/ה שברצונך לעקוב אחרי החשבונות שסומנו?
@@ -1659,6 +1663,7 @@ he:
       unknown_browser: דפדפן לא מזוהה
       weibo: Weibo
     current_session: חיבור נוכחי
+    date: תאריך
     description: "%{browser} על %{platform}"
     explanation: אלה הם הדפדפנים המחוברים כרגע לחשבון המסטודון שלך.
     ip: IP
@@ -1837,18 +1842,27 @@ he:
     webauthn: מפתחות אבטחה
   user_mailer:
     appeal_approved:
-      action: מעבר לחשבונך
+      action: הגדרות חשבון
       explanation: הערעור על העברה שנרשמה כנגד חשבונך ב-%{strike_date} שהגשת ב-%{appeal_date} התקבל. חשבונך חזר להיות נקי מכל רבב.
       subject: ערעורך מתאריך %{date} התקבל
+      subtitle: חשבונך חזר למצב מאושר.
       title: הערעור התקבל
     appeal_rejected:
       explanation: הערעור על העברה שנרשמה כנגד חשבונך ב-%{strike_date} שהגשת ב-%{appeal_date} נדחה.
       subject: ערעורך מתאריך %{date} נדחה
+      subtitle: ערעורך נדחה.
       title: הערעור נדחה
     backup_ready:
-      explanation: ביקשת גיבוי מלא של חשבון המסטודון שלך. הוא מוכן להורדה!
+      explanation: ביקשת גיבוי מלא של חשבון המסטודון שלך.
+      extra: הגיבוי מוכן להורדה!
       subject: הארכיון שלך מוכן להורדה
       title: הוצאת ארכיון
+    failed_2fa:
+      details: 'הנה פרטי נסיון ההתחברות:'
+      explanation: פלוני אלמוני ניסה להתחבר לחשבונך אך האימות המשני נכשל.
+      further_actions_html: אם הנסיון לא היה שלך, אנו ממליצים על %{action} באופן מיידי כדי שהחשבון לא יפול קורבן.
+      subject: נכשל אימות בגורם שני
+      title: אימות בגורם שני נכשל
     suspicious_sign_in:
       change_password: שינוי הסיסמא שלך
       details: 'הנה פרטי ההתחברות:'
@@ -1902,6 +1916,7 @@ he:
     go_to_sso_account_settings: מעבר לאפיוני החשבון שלך בשרת הזהות
     invalid_otp_token: קוד דו-שלבי שגוי
     otp_lost_help_html: אם איבדת גישה לשניהם, ניתן ליצור קשר ב-%{email}
+    rate_limited: יותר מדי ניסיונות אימות, נסו שוב מאוחר יותר.
     seamless_external_login: את.ה מחובר דרך שירות חיצוני, לכן אפשרויות הסיסמא והדוא"ל לא מאופשרות.
     signed_in_as: 'מחובר בתור:'
   verification:

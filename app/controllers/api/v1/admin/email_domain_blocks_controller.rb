@@ -55,7 +55,7 @@ class Api::V1::Admin::EmailDomainBlocksController < Api::BaseController
   end
 
   def resource_params
-    params.permit(:domain)
+    params.permit(:domain, :allow_with_approval)
   end
 
   def insert_pagination_headers

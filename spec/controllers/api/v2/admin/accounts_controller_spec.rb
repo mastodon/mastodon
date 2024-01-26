@@ -34,26 +34,54 @@ RSpec.describe Api::V2::Admin::AccountsController do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    [
-      [{ status: 'active', origin: 'local', permissions: 'staff' }, [:admin_account]],
-      [{ by_domain: 'example.org', origin: 'remote' }, [:remote_account]],
-      [{ status: 'suspended' }, [:suspended_remote, :suspended_account]],
-      [{ status: 'disabled' }, [:disabled_account]],
-      [{ status: 'pending' }, [:pending_account]],
-    ].each do |params, expected_results|
-      context "when called with #{params.inspect}" do
-        let(:params) { params }
+    context 'when called with status active and origin local and permissions staff' do
+      let(:params) { { status: 'active', origin: 'local', permissions: 'staff' } }
 
-        it "returns the correct accounts (#{expected_results.inspect})" do
-          expect(response).to have_http_status(200)
-
-          expect(body_json_ids).to eq(expected_results.map { |symbol| send(symbol).id })
-        end
-
-        def body_json_ids
-          body_as_json.map { |a| a[:id].to_i }
-        end
+      it 'returns the correct accounts' do
+        expect(response).to have_http_status(200)
+        expect(body_json_ids).to eq([admin_account.id])
       end
+    end
+
+    context 'when called with by_domain value and origin remote' do
+      let(:params) { { by_domain: 'example.org', origin: 'remote' } }
+
+      it 'returns the correct accounts' do
+        expect(response).to have_http_status(200)
+        expect(body_json_ids).to include(remote_account.id)
+        expect(body_json_ids).to_not include(other_remote_account.id)
+      end
+    end
+
+    context 'when called with status suspended' do
+      let(:params) { { status: 'suspended' } }
+
+      it 'returns the correct accounts' do
+        expect(response).to have_http_status(200)
+        expect(body_json_ids).to include(suspended_remote.id, suspended_account.id)
+      end
+    end
+
+    context 'when called with status disabled' do
+      let(:params) { { status: 'disabled' } }
+
+      it 'returns the correct accounts' do
+        expect(response).to have_http_status(200)
+        expect(body_json_ids).to include(disabled_account.id)
+      end
+    end
+
+    context 'when called with status pending' do
+      let(:params) { { status: 'pending' } }
+
+      it 'returns the correct accounts' do
+        expect(response).to have_http_status(200)
+        expect(body_json_ids).to include(pending_account.id)
+      end
+    end
+
+    def body_json_ids
+      body_as_json.map { |a| a[:id].to_i }
     end
 
     context 'with limit param' do

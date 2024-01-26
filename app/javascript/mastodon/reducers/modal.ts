@@ -1,6 +1,5 @@
-import { Record as ImmutableRecord, Stack } from 'immutable';
-
 import type { Reducer } from '@reduxjs/toolkit';
+import { Record as ImmutableRecord, Stack } from 'immutable';
 
 import { COMPOSE_UPLOAD_CHANGE_SUCCESS } from '../actions/compose';
 import type { ModalType } from '../actions/modal';

@@ -23,6 +23,7 @@ class AccountSearchService < BaseService
               query: {
                 bool: {
                   must: must_clauses,
+                  must_not: must_not_clauses,
                 },
               },
 
@@ -47,6 +48,10 @@ class AccountSearchService < BaseService
       else
         [core_query]
       end
+    end
+
+    def must_not_clauses
+      []
     end
 
     def should_clauses
@@ -218,7 +223,7 @@ class AccountSearchService < BaseService
 
     records = query_builder.build.limit(limit_for_non_exact_results).offset(offset).objects.compact
 
-    ActiveRecord::Associations::Preloader.new(records: records, associations: :account_stat)
+    ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
 
     records
   rescue Faraday::ConnectionFailed, Parslet::ParseFailed

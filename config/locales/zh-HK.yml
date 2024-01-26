@@ -418,6 +418,7 @@ zh-HK:
       view: 顯示正被阻隔的網域
     email_domain_blocks:
       add_new: 新增
+      allow_registrations_with_approval: 允許經批准的註冊
       attempts_over_week:
         other: 上週嘗試了註冊 %{count} 次
       created_msg: 已新增電郵網域阻隔
@@ -1519,6 +1520,9 @@ zh-HK:
     errors:
       limit_reached: 已達到可以給予反應極限
       unrecognized_emoji: 不能識別這個emoji
+  redirects:
+    prompt: 如果你信任此連結，點擊它繼續。
+    title: 你即將離開 %{instance}。
   relationships:
     activity: 帳戶活動
     confirm_follow_selected_followers: 你確定要追蹤選取的追蹤者嗎？
@@ -1581,6 +1585,7 @@ zh-HK:
       unknown_browser: 未知的瀏覽器
       weibo: 新浪微博
     current_session: 目前的作業階段
+    date: 日期
     description: "%{platform} 上的 %{browser}"
     explanation: 這些是現在正登入於你的 Mastodon 帳號的瀏覽器。
     ip: IP 位址
@@ -1741,18 +1746,27 @@ zh-HK:
     webauthn: 安全密鑰
   user_mailer:
     appeal_approved:
-      action: 前往你的帳號
+      action: 帳號設定
       explanation: 你在 %{appeal_date} 提交針對你帳號於 %{strike_date} 被警告的申訴已獲得批准。你的帳號再次回到良好狀態。
       subject: 你在 %{date} 提出的申訴已獲批准
+      subtitle: 你的帳號再次恢復正常。
       title: 申訴已批准
     appeal_rejected:
       explanation: 你在 %{appeal_date} 提交針對你帳號於 %{strike_date} 被警告的申訴已被駁回。
       subject: 你在 %{date} 提出的申訴已被駁回
+      subtitle: 你的申訴已被駁回.
       title: 申訴被駁回
     backup_ready:
-      explanation: 你要求的 Mastodon 帳號完整備份檔案現已就緒，可供下載。
+      explanation: 你要求完整備份你的 Mastodon 帳號。
+      extra: 現在可以下載了！
       subject: 你的備份檔已可供下載
       title: 檔案匯出
+    failed_2fa:
+      details: 以下是嘗試登入的細節：
+      explanation: 有人嘗試登入你的帳號，但沒有通過雙重認證。
+      further_actions_html: 如果這不是你，我們建議你立刻%{action}，因為你的帳號或已遭到侵害。
+      subject: 雙重認證失敗
+      title: 雙重認證失敗
     suspicious_sign_in:
       change_password: 更改你的密碼
       details: 以下是登入的細節：
@@ -1806,6 +1820,7 @@ zh-HK:
     go_to_sso_account_settings: 前往你身份提供者的帳號設定
     invalid_otp_token: 雙重認證碼不正確
     otp_lost_help_html: 如果這兩者你均無法登入，你可以聯繫 %{email}
+    rate_limited: 嘗試認證次數太多，請稍後再試。
     seamless_external_login: 因為你正在使用第三方服務登入，所以不能設定密碼和電郵。
     signed_in_as: 目前登入的帳戶：
   verification:

@@ -425,6 +425,7 @@ de:
       view: Domain-Sperre ansehen
     email_domain_blocks:
       add_new: Neue hinzufügen
+      allow_registrations_with_approval: Registrierungen mit Genehmigung erlauben
       attempts_over_week:
         one: "%{count} Registrierungsversuch in der vergangenen Woche"
         other: "%{count} Registrierungsversuche in der vergangenen Woche"
@@ -1545,6 +1546,9 @@ de:
     errors:
       limit_reached: Limit für verschiedene Reaktionen erreicht
       unrecognized_emoji: ist ein unbekanntes Emoji
+  redirects:
+    prompt: Wenn du diesem Link vertraust, dann klicke ihn an, um fortzufahren.
+    title: Du verlässt %{instance}.
   relationships:
     activity: Kontoaktivität
     confirm_follow_selected_followers: Möchtest du den ausgewählten Followern folgen?
@@ -1607,6 +1611,7 @@ de:
       unknown_browser: Unbekannter Browser
       weibo: Weibo
     current_session: Aktuelle Sitzung
+    date: Datum
     description: "%{browser} auf %{platform}"
     explanation: Dies sind die Webbrowser, die derzeit mit deinem Mastodon-Konto verbunden sind.
     ip: IP-Adresse
@@ -1773,20 +1778,29 @@ de:
     webauthn: Sicherheitsschlüssel
   user_mailer:
     appeal_approved:
-      action: Dein Konto aufrufen
-      explanation: Der Einspruch gegen deinen Verstoß vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde genehmigt. Dein Konto ist wieder in gutem Zustand.
+      action: Kontoeinstellungen
+      explanation: Der Einspruch gegen deinen Verstoß vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde genehmigt. Dein Konto ist wieder in Ordnung.
       subject: Dein Einspruch vom %{date} wurde angenommen
+      subtitle: Dein Konto ist wieder in Ordnung.
       title: Einspruch angenommen
     appeal_rejected:
       explanation: Der Einspruch gegen deinen Verstoß vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde abgelehnt.
       subject: Dein Einspruch vom %{date} wurde abgelehnt
+      subtitle: Dein Einspruch wurde abgelehnt.
       title: Einspruch abgelehnt
     backup_ready:
-      explanation: Du hast eine vollständige Sicherung deines Mastodon-Kontos angefordert. Die Sicherung kann jetzt heruntergeladen werden!
+      explanation: Du hast eine vollständige Datensicherung deines Mastodon-Kontos angefordert.
+      extra: Sie ist jetzt zum Herunterladen bereit!
       subject: Dein persönliches Archiv kann heruntergeladen werden
       title: Archiv-Download
+    failed_2fa:
+      details: 'Details zum Anmeldeversuch:'
+      explanation: Jemand hat versucht, sich bei deinem Konto anzumelden, aber die Zwei-Faktor-Authentisierung schlug fehl.
+      further_actions_html: Solltest du das nicht gewesen sein, empfehlen wir dir, sofort %{action}, da dein Konto möglicherweise kompromittiert ist.
+      subject: Zwei-Faktor-Authentisierung fehlgeschlagen
+      title: Zwei-Faktor-Authentisierung fehlgeschlagen
     suspicious_sign_in:
-      change_password: dein Passwort ändern
+      change_password: dein Passwort zu ändern
       details: 'Hier sind die Details zu den Anmeldeversuchen:'
       explanation: Wir haben eine Anmeldung zu deinem Konto von einer neuen IP-Adresse festgestellt.
       further_actions_html: Wenn du das nicht warst, empfehlen wir dir schnellstmöglich, %{action} und die Zwei-Faktor-Authentisierung (2FA) für dein Konto zu aktivieren, um es abzusichern.
@@ -1838,6 +1852,7 @@ de:
     go_to_sso_account_settings: Kontoeinstellungen des Identitätsanbieters aufrufen
     invalid_otp_token: Ungültiger Code der Zwei-Faktor-Authentisierung (2FA)
     otp_lost_help_html: Wenn du beides nicht mehr weißt, melde dich bitte bei uns unter der E-Mail-Adresse %{email}
+    rate_limited: Zu viele Authentisierungsversuche. Bitte versuche es später noch einmal.
     seamless_external_login: Du bist über einen externen Dienst angemeldet, daher sind Passwort- und E-Mail-Einstellungen nicht verfügbar.
     signed_in_as: 'Angemeldet als:'
   verification:

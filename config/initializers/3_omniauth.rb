@@ -79,7 +79,7 @@ Devise.setup do |config|
     oidc_options[:client_auth_method] = ENV['OIDC_CLIENT_AUTH_METHOD'] if ENV['OIDC_CLIENT_AUTH_METHOD'] # OPTIONAL (default: basic)
     scope_string = ENV['OIDC_SCOPE'] if ENV['OIDC_SCOPE'] # NEED
     scopes = scope_string.split(',')
-    oidc_options[:scope] = scopes.map { |x| x.to_sym }
+    oidc_options[:scope] = scopes.map(&:to_sym)
     oidc_options[:response_type] = ENV['OIDC_RESPONSE_TYPE'] if ENV['OIDC_RESPONSE_TYPE'] # OPTIONAL (default: code)
     oidc_options[:response_mode] = ENV['OIDC_RESPONSE_MODE'] if ENV['OIDC_RESPONSE_MODE'] # OPTIONAL (default: query)
     oidc_options[:display] = ENV['OIDC_DISPLAY'] if ENV['OIDC_DISPLAY'] # OPTIONAL (default: page)

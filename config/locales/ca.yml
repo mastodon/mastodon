@@ -425,6 +425,7 @@ ca:
       view: Veure el bloqueig del domini
     email_domain_blocks:
       add_new: Afegir nou
+      allow_registrations_with_approval: Permet els registres amb validació
       attempts_over_week:
         one: "%{count} intent en la darrera setmana"
         other: "%{count} intents de registre en la darrera setmana"
@@ -1045,6 +1046,7 @@ ca:
       clicking_this_link: en clicar aquest enllaç
       login_link: inici de sessió
       proceed_to_login_html: Ara pots passar a %{login_link}.
+      redirect_to_app_html: Se us hauria d'haver redirigit a l'app <strong>%{app_name}</strong>. Si això no ha passat, intenteu %{clicking_this_link} o torneu manualment a l'app.
       registration_complete: La teva inscripció a %{domain} ja és completa.
       welcome_title: Hola, %{name}!
       wrong_email_hint: Si aquesta adreça de correu electrònic no és correcte, pots canviar-la en els ajustos del compte.
@@ -1108,6 +1110,7 @@ ca:
       functional: El teu compte està completament operatiu.
       pending: La vostra sol·licitud està pendent de revisió pel nostre personal. Això pot trigar una mica. Rebreu un correu electrònic quan sigui aprovada.
       redirecting_to: El teu compte és inactiu perquè actualment està redirigint a %{acct}.
+      self_destruct: Com que %{domain} tanca, només tindreu accés limitat al vostre compte.
       view_strikes: Veure accions del passat contra el teu compte
     too_fast: Formulari enviat massa ràpid, torna a provar-ho.
     use_security_key: Usa clau de seguretat
@@ -1543,6 +1546,9 @@ ca:
     errors:
       limit_reached: Límit de diferents reaccions assolit
       unrecognized_emoji: no és un emoji reconegut
+  redirects:
+    prompt: Si confieu en aquest enllaç, feu-hi clic per a continuar.
+    title: Esteu sortint de %{instance}.
   relationships:
     activity: Activitat del compte
     confirm_follow_selected_followers: Segur que vols seguir els seguidors seleccionats?
@@ -1579,6 +1585,7 @@ ca:
     over_total_limit: Has superat el límit de %{limit} tuts programats
     too_soon: La data programada ha de ser futura
   self_destruct:
+    lead_html: Lamentablement, <strong>%{domain}</strong> tanca de forma definitiva. Si hi teníeu un compte, no el podreu continuar utilitzant, però podeu demanar una còpia de les vostres dades.
     title: Aquest servidor tancarà
   sessions:
     activity: Última activitat
@@ -1604,6 +1611,7 @@ ca:
       unknown_browser: Navegador Desconegut
       weibo: Weibo
     current_session: Sessió actual
+    date: Data
     description: "%{browser} de %{platform}"
     explanation: Aquests són els navegadors web que actualment han iniciat la sessió amb el teu compte de Mastodon.
     ip: IP
@@ -1770,18 +1778,27 @@ ca:
     webauthn: Claus de seguretat
   user_mailer:
     appeal_approved:
-      action: Ves al teu compte
+      action: Configuració del compte
       explanation: L'apel·lació a l'acció contra el teu compte del %{strike_date} que has enviat el %{appeal_date} ha estat aprovada. El teu compte torna a estar en bon estat.
       subject: La teva apel·lació del %{date} ha estat aprovada
+      subtitle: El vostre compte torna a estar correcte.
       title: Apel·lació aprovada
     appeal_rejected:
       explanation: L'apel·lació a l'acció contra el teu compte del %{strike_date} que has enviat el %{appeal_date} ha estat rebutjada.
       subject: La teva apel·lació del %{date} ha estat rebutjada
+      subtitle: S'ha rebutjat la vostra apel·lació.
       title: Apel·lació rebutjada
     backup_ready:
-      explanation: Has sol·licitat una copia completa del teu compte Mastodon. Ara ja està a punt per a descàrrega!
+      explanation: Heu demanat una còpia completa de les dades del vostre compte de Mastodon.
+      extra: Ja la podeu baixar
       subject: L'arxiu està preparat per a descàrrega
       title: Recollida de l'arxiu
+    failed_2fa:
+      details: 'Aquests són els detalls de l''intent d''accés:'
+      explanation: Algú ha intentat accedir al vostre compte però no ha proporcionat un factor de doble autenticació correcte.
+      further_actions_html: Si no heu estat vosaltres, us recomanem que %{action} immediatament perquè pot estar compromès.
+      subject: Ha fallat el factor de doble autenticació
+      title: Ha fallat l'autenticació de doble factor
     suspicious_sign_in:
       change_password: canvia la teva contrasenya
       details: 'Aquest són els detalls de l''inici de sessió:'
@@ -1835,6 +1852,7 @@ ca:
     go_to_sso_account_settings: Ves a la configuració del compte del teu proveïdor d'identitat
     invalid_otp_token: El codi de dos factors no és correcte
     otp_lost_help_html: Si has perdut l'accés a tots dos pots contactar per %{email}
+    rate_limited: Excessius intents d'autenticació, torneu-hi més tard.
     seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'
   verification:

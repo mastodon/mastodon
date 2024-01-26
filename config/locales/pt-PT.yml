@@ -425,6 +425,7 @@ pt-PT:
       view: Ver domínios bloqueados
     email_domain_blocks:
       add_new: Adicionar novo
+      allow_registrations_with_approval: Permitir inscrições com aprovação
       attempts_over_week:
         one: "%{count} tentativa na última semana"
         other: "%{count} tentativas de inscrição na última semana"
@@ -1545,6 +1546,9 @@ pt-PT:
     errors:
       limit_reached: Alcançado limite de reações diferentes
       unrecognized_emoji: não é um emoji reconhecido
+  redirects:
+    prompt: Se confia nesta hiperligação, clique nela para continuar.
+    title: Está a deixar %{instance}.
   relationships:
     activity: Atividade da conta
     confirm_follow_selected_followers: Tem a certeza que deseja seguir os seguidores selecionados?
@@ -1607,6 +1611,7 @@ pt-PT:
       unknown_browser: Navegador Desconhecido
       weibo: Weibo
     current_session: Sessão atual
+    date: Data
     description: "%{browser} em %{platform}"
     explanation: Estes são os navegadores que estão conectados com a tua conta do Mastodon.
     ip: IP
@@ -1773,18 +1778,27 @@ pt-PT:
     webauthn: Chaves de segurança
   user_mailer:
     appeal_approved:
-      action: Ir para a sua conta
+      action: Configurações de Conta
       explanation: O recurso à reprimenda contra a sua conta de %{strike_date}, enviado a %{appeal_date}, foi deferido. A sua conta encontra-se novamente em situação regular.
       subject: O seu recurso de %{date} foi deferido
+      subtitle: A sua conta está em situação regular novamente.
       title: Recurso deferido
     appeal_rejected:
       explanation: O recurso à punição contra a sua conta de %{strike_date}, submetido em %{appeal_date}, foi indeferido.
       subject: O seu recurso de %{date} foi indeferido
+      subtitle: O seu recurso foi rejeitado.
       title: Recurso indeferido
     backup_ready:
-      explanation: Pediu uma cópia integral de salvaguarda da sua conta Mastodon. Já está pronta para descarregar!
+      explanation: Pediu uma cópia completa da sua conta Mastodon.
+      extra: Está pronta para transferir!
       subject: O seu arquivo está pronto para descarregar
       title: Arquivo de ficheiros
+    failed_2fa:
+      details: 'Aqui estão os detalhes da tentativa de entrada:'
+      explanation: Alguém tentou entrar em sua conta mas forneceu um segundo fator de autenticação inválido.
+      further_actions_html: Se não foi você, recomendamos que %{action} imediatamente, pois pode ter sido comprometido.
+      subject: Falha na autenticação do segundo fator
+      title: Falha na autenticação do segundo fator
     suspicious_sign_in:
       change_password: alterar a sua palavra-passe
       details: 'Eis os pormenores do início de sessão:'
@@ -1838,6 +1852,7 @@ pt-PT:
     go_to_sso_account_settings: Ir para as definições de conta do seu fornecedor de identidade
     invalid_otp_token: Código de autenticação inválido
     otp_lost_help_html: Se perdeu o acesso a ambos, pode entrar em contacto com %{email}
+    rate_limited: Demasiadas tentativas de autenticação, tente novamente mais tarde.
     seamless_external_login: Tu estás ligado via um serviço externo. Por isso, as configurações da palavra-passe e do e-mail não estão disponíveis.
     signed_in_as: 'Registado como:'
   verification:

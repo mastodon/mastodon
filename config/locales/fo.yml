@@ -425,6 +425,7 @@ fo:
       view: Vís navnaøkisblokering
     email_domain_blocks:
       add_new: Stovna
+      allow_registrations_with_approval: Loyv skrásetingum við góðkenning
       attempts_over_week:
         one: "%{count} roynd seinastu vikuna"
         other: "%{count} tilmeldingarroyndir seinastu vikuna"
@@ -611,6 +612,7 @@ fo:
       created_at: Meldað
       delete_and_resolve: Strika postar
       forwarded: Víðarisent
+      forwarded_replies_explanation: Hendan fráboðanin er frá einum fjarbrúkara og er viðvíkjandi tilfari á einum fjarum ambætara. Tað er sent til tín, tí fráboðaða innihaldið er í svari til ein av tínum brúkarum.
       forwarded_to: Víðarisent til %{domain}
       mark_as_resolved: Marka sum loyst
       mark_as_sensitive: Merkt sum viðkvæmt
@@ -1544,6 +1546,9 @@ fo:
     errors:
       limit_reached: Mark fyri ymisk aftursvar rokkið
       unrecognized_emoji: er ikki eitt kenslutekn, sum kennist aftur
+  redirects:
+    prompt: Um tú lítir á hetta leinkið, so kanst tú klikkja á tað fyri at halda fram.
+    title: Tú fer burtur úr %{instance}.
   relationships:
     activity: Kontuvirksemi
     confirm_follow_selected_followers: Vil tú veruliga fylgja valdu fylgjarunum?
@@ -1606,6 +1611,7 @@ fo:
       unknown_browser: Ókendur kagi
       weibo: Weibo
     current_session: Verandi seta
+    date: Dagfesting
     description: "%{browser} á %{platform}"
     explanation: Hetta eru vevkagarnir, sum í løtuni eru ritaðir inn á tína Mastodon kontu.
     ip: IP
@@ -1772,18 +1778,27 @@ fo:
     webauthn: Trygdarlyklar
   user_mailer:
     appeal_approved:
-      action: Far til kontu tína
+      action: Kontustillingar
       explanation: Kæran um atsóknina móti kontu tínari %{strike_date}, sum tú sendi inn %{appeal_date}, er góðkend. Konta tín er aftur tignarlig.
       subject: Kæra tín frá %{date} er góðkend
+      subtitle: Kontan hjá tær er aftur í góðari støðu.
       title: Kæra góðkend
     appeal_rejected:
       explanation: Kæran um atsóknina móti kontu tínari %{strike_date}, sum tú sendi inn %{appeal_date}, er vrakað.
       subject: Kæra tín frá %{date} er vrakað
+      subtitle: Kæra tín er vrakað.
       title: Kæra vrakað
     backup_ready:
-      explanation: Tú bað um eitt fult trygdaravrit av tíni Mastodon kontu. Tað er nú klárt at taka niður!
+      explanation: Tú hevur biðið um eitt fult trygdaravrit av Mastodon-kontuni hjá tær.
+      extra: Tað er nú klárt at taka niður!
       subject: Savnið hjá tær er tøkt at taka niður
       title: Tak savn niður
+    failed_2fa:
+      details: 'Her eru smálutirnir í innritanarroyndini:'
+      explanation: Onkur hevur roynt at rita inn á tína kontu, men gav eitt ógildugt seinna samgildi.
+      further_actions_html: Um hetta ikki var tú, so skjóta vit upp, at tú %{action} beinan vegin, tí tað kann vera sett í vanda.
+      subject: Seinna samgildi miseydnaðist
+      title: Miseydnað seinna samgildi
     suspicious_sign_in:
       change_password: broyt loyniorðið hjá tær
       details: 'Her eru smálutirnir í innritanini:'
@@ -1837,6 +1852,7 @@ fo:
     go_to_sso_account_settings: Far til kontustillingarnar hjá samleikaveitaranum hjá tær
     invalid_otp_token: Ógyldug tvey-stigs koda
     otp_lost_help_html: Hevur tú mist atgongd til bæði, so kanst tú koma í samband við %{email}
+    rate_limited: Ov nógvar samgildisroyndir, royn aftur seinni.
     seamless_external_login: Tú er ritað/ur inn umvegis eina uttanhýsis tænastu, so loyniorð og teldupoststillingar eru ikki tøkar.
     signed_in_as: 'Ritað/ur inn sum:'
   verification:

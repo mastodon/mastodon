@@ -47,16 +47,19 @@ de:
         subject: 'Mastodon: Anleitung zum Zurücksetzen deines Passworts'
         title: Passwort zurücksetzen
       two_factor_disabled:
-        explanation: Zwei-Faktor-Authentisierung (2FA) für dein Konto wurde deaktiviert. Eine Anmeldung ist jetzt nur noch mit E-Mail-Adresse und Passwort möglich.
+        explanation: Das Anmelden ist jetzt nur noch mit einer E-Mail-Adresse und einem Passwort möglich.
         subject: 'Mastodon: Zwei‐Faktor‐Authentisierung (2FA) deaktiviert'
+        subtitle: Zwei-Faktor-Authentisierung wurde für dein Konto deaktiviert.
         title: 2FA deaktiviert
       two_factor_enabled:
-        explanation: Die Zwei-Faktor-Authentisierung (2FA) wurde für dein Konto aktiviert. Das zeitbasierte Einmalpasswort, das von deiner TOTP-App generiert wird, muss bei jeder Anmeldung zusätzlich eingegeben werden.
+        explanation: Für das Anmelden wird ein Token benötigt, das von der hinterlegten TOTP-App generiert wird.
         subject: 'Mastodon: Zwei‐Faktor‐Authentisierung (2FA) aktiviert'
+        subtitle: Zwei-Faktor-Authentisierung wurde für dein Konto aktiviert.
         title: 2FA aktiviert
       two_factor_recovery_codes_changed:
         explanation: Die vorherigen Wiederherstellungscodes wurden ungültig gemacht und es wurden neue erstellt.
         subject: 'Mastodon: Zwei-Faktor-Wiederherstellungscodes neu erstellt'
+        subtitle: Die vorherigen Wiederherstellungscodes wurden ungültig gemacht und es wurden neue erstellt.
         title: 2FA-Wiederherstellungscodes geändert
       unlock_instructions:
         subject: 'Mastodon: Anleitung zum Entsperren deines Kontos'
@@ -70,11 +73,13 @@ de:
           subject: 'Mastodon: Sicherheitsschlüssel entfernt'
           title: Einer deiner Sicherheitsschlüssel wurde entfernt
       webauthn_disabled:
-        explanation: Das Authentisieren mit Sicherheitsschlüsseln wurde für dein Konto deaktiviert. Die Anmeldung ist jetzt nur noch mit dem zeitbasierten Einmalpasswort möglich, das von deiner TOTP-App generiert wird.
+        explanation: Die Authentisierung mit Sicherheitsschlüsseln wurde für dein Konto deaktiviert.
+        extra: Das Anmelden ist jetzt nur noch mit Token aus der TOTP-App möglich, die im Konto hinterlegt wurde.
         subject: 'Mastodon: Authentisierung mit Sicherheitsschlüsseln deaktiviert'
         title: Sicherheitsschlüssel deaktiviert
       webauthn_enabled:
-        explanation: Die Authentisierung mit Sicherheitsschlüssel wurde für dein Konto aktiviert. Dein Sicherheitsschlüssel kann nun für die Anmeldung verwendet werden.
+        explanation: Die Authentisierung mit Sicherheitsschlüsseln wurde für dein Konto aktiviert.
+        extra: Dein Sicherheitsschlüssel kann jetzt zum Anmelden verwendet werden.
         subject: 'Mastodon: Authentisierung mit Sicherheitsschlüssel aktiviert'
         title: Sicherheitsschlüssel aktiviert
     omniauth_callbacks:
