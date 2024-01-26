@@ -182,6 +182,16 @@ module ApplicationHelper
   end
 
   def render_initial_state
+    tag.script(safe_initial_state_json, id: 'initial-state', type: 'application/json')
+  end
+
+  def safe_initial_state_json
+    # JSON is escaped but not marked html_safe because it can't go in attributes.
+    # https://api.rubyonrails.org/classes/ERB/Util.html#method-c-json_escape
+    json_escape(initial_state_json).html_safe # rubocop:disable Rails/OutputSafety
+  end
+
+  def initial_state_json
     state_params = {
       settings: {},
       text: [params[:title], params[:text], params[:url]].compact.join(' '),
@@ -207,10 +217,7 @@ module ApplicationHelper
 
     state_params[:owner] = Account.local.without_suspended.without_internal.first if single_user_mode?
 
-    json = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(state_params), serializer: InitialStateSerializer).to_json
-    # rubocop:disable Rails/OutputSafety
-    content_tag(:script, json_escape(json).html_safe, id: 'initial-state', type: 'application/json')
-    # rubocop:enable Rails/OutputSafety
+    ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(state_params), serializer: InitialStateSerializer).to_json
   end
 
   def grouped_scopes(scopes)
