@@ -470,8 +470,8 @@ class FeedManager
     check_for_blocks = status.active_mentions.pluck(:account_id)
     check_for_blocks.push(status.in_reply_to_account) if status.reply? && !status.in_reply_to_account_id.nil?
 
-    should_filter   = blocks_or_mutes?(receiver_id, check_for_blocks, :mentions)                                                       # Filter if it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked (or muted)
-    should_filter ||= status.account.silenced? && !Follow.where(account_id: receiver_id, target_account_id: status.account_id).exists? # of if the account is silenced and I'm not following them
+    should_filter   = blocks_or_mutes?(receiver_id, check_for_blocks, :mentions) # Filter if it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked (or muted)
+    should_filter ||= status.account.silenced? && !Follow.exists?(account_id: receiver_id, target_account_id: status.account_id) # Filter if the account is silenced and I'm not following them
 
     should_filter
   end
@@ -494,7 +494,7 @@ class FeedManager
     if status.reply? && status.in_reply_to_account_id != status.account_id
       should_filter = status.in_reply_to_account_id != list.account_id
       should_filter &&= !list.show_followed?
-      should_filter &&= !(list.show_list? && ListAccount.where(list_id: list.id, account_id: status.in_reply_to_account_id).exists?)
+      should_filter &&= !(list.show_list? && ListAccount.exists?(list_id: list.id, account_id: status.in_reply_to_account_id))
 
       return !!should_filter
     end
