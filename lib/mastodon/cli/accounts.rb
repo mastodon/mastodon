@@ -216,8 +216,9 @@ module Mastodon::CLI
       end
     end
 
-    option :email
     option :dry_run, type: :boolean
+    option :email
+    option :verbose, type: :boolean, aliases: [:v]
     desc 'delete [USERNAME]', 'Delete a user'
     long_desc <<-LONG_DESC
       Remove a user account with a given USERNAME.
@@ -237,9 +238,11 @@ module Mastodon::CLI
       if username.present?
         account = Account.find_local(username)
         fail_with_message 'No user with such username' if account.nil?
+        say "Found local account with `#{username}` username" if options[:verbose]
       else
         account = Account.left_joins(:user).find_by(user: { email: options[:email] })
         fail_with_message 'No user with such email' if account.nil?
+        say "Found local account with `#{account.user.email}` email" if options[:verbose]
       end
 
       say("Deleting user with #{account.statuses_count} statuses, this might take a while...#{dry_run_mode_suffix}")
