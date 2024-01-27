@@ -46,12 +46,13 @@ module Mastodon::CLI
       end
     end
 
-    option :email, required: true
-    option :confirmed, type: :boolean
-    option :role
-    option :reattach, type: :boolean
-    option :force, type: :boolean
     option :approve, type: :boolean
+    option :confirmed, type: :boolean
+    option :email, required: true
+    option :force, type: :boolean
+    option :reattach, type: :boolean
+    option :role
+    option :verbose, type: :boolean, aliases: [:v]
     desc 'create USERNAME', 'Create a new user account'
     long_desc <<-LONG_DESC
       Create a new user account with a given USERNAME and an
@@ -78,6 +79,7 @@ module Mastodon::CLI
 
         fail_with_message 'Cannot find user role with that name' if role.nil?
 
+        say "Using role of `#{role.name}` for the new user" if options[:verbose]
         role_id = role.id
       end
 
@@ -93,6 +95,7 @@ module Mastodon::CLI
           say('Use --force to reattach it anyway and delete the other user')
           return
         elsif account.user.present?
+          say "Deleting previous account with username `#{username}`" if options[:verbose]
           DeleteAccountService.new.call(account, reserve_email: false, reserve_username: false)
           account = Account.new(username: username)
         end
@@ -105,9 +108,13 @@ module Mastodon::CLI
         if options[:confirmed]
           user.confirmed_at = nil
           user.mark_email_as_confirmed!
+          say 'Marked email as confirmed' if options[:verbose]
         end
 
-        user.approve! if options[:approve]
+        if options[:approve]
+          user.approve!
+          say 'Marked user as approved' if options[:verbose]
+        end
 
         say('OK', :green)
         say("New password: #{password}")
