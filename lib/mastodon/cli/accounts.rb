@@ -251,6 +251,7 @@ module Mastodon::CLI
     end
 
     option :force, type: :boolean, aliases: [:f], description: 'Override public key check'
+    option :verbose, type: :boolean, aliases: [:v]
     desc 'merge FROM TO', 'Merge two remote accounts into one'
     long_desc <<-LONG_DESC
       Merge two remote accounts specified by their username@domain
@@ -264,11 +265,13 @@ module Mastodon::CLI
     def merge(from_acct, to_acct)
       username, domain = from_acct.split('@')
       from_account = Account.find_remote(username, domain)
+      say "Found remote account for removal `#{from_account.acct}`" if options[:verbose]
 
       fail_with_message "No such account (#{from_acct})" if from_account.nil? || from_account.local?
 
       username, domain = to_acct.split('@')
       to_account = Account.find_remote(username, domain)
+      say "Found remote account to preserve `#{to_account.acct}`" if options[:verbose]
 
       fail_with_message "No such account (#{to_acct})" if to_account.nil? || to_account.local?
 
@@ -280,7 +283,10 @@ module Mastodon::CLI
       end
 
       to_account.merge_with!(from_account)
+      say "Merged `#{from_account.acct}` into `#{to_account.acct}`" if options[:verbose]
+
       from_account.destroy
+      say "Destroyed the `#{from_account.acct}` account" if options[:verbose]
 
       say('OK', :green)
     end
