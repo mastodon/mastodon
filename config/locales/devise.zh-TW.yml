@@ -47,14 +47,14 @@ zh-TW:
         subject: Mastodon：重設密碼指引
         title: 重設密碼
       two_factor_disabled:
-        explanation: 現在僅可使用電子郵件地址與密碼登入。
+        explanation: 目前僅可使用電子郵件地址與密碼登入。
         subject: Mastodon：已停用兩階段驗證
-        subtitle: 您帳號的兩步驟驗證已停用。
+        subtitle: 您帳號之兩階段驗證已停用。
         title: 已停用兩階段驗證
       two_factor_enabled:
-        explanation: 登入時需要配對的 TOTP 應用程式產生的權杖。
+        explanation: 登入時需要配對的 TOTP 應用程式產生之 token。
         subject: Mastodon：已啟用兩階段驗證
-        subtitle: 您的帳號已啟用兩步驟驗證。
+        subtitle: 您的帳號之兩階段驗證已啟用。
         title: 已啟用兩階段驗證
       two_factor_recovery_codes_changed:
         explanation: 之前的備用驗證碼已經失效，且已產生新的。
@@ -74,12 +74,12 @@ zh-TW:
           title: 您的一支安全密鑰已經被移除
       webauthn_disabled:
         explanation: 您的帳號已停用安全金鑰身份驗證。
-        extra: 現在僅可使用配對的 TOTP 應用程式產生的權杖登入。
+        extra: 現在僅可使用配對的 TOTP 應用程式產生之 token 登入。
         subject: Mastodon：安全密鑰認證方式已停用
         title: 已停用安全密鑰
       webauthn_enabled:
-        explanation: 您的帳號已啟用安全金鑰驗證。
-        extra: 您的安全金鑰現在可用於登入。
+        explanation: 您的帳號已啟用安全金鑰身分驗證。
+        extra: 您的安全金鑰現在已可用於登入。
         subject: Mastodon：已啟用安全密鑰認證
         title: 已啟用安全密鑰
     omniauth_callbacks:

@@ -73,9 +73,13 @@ fr:
           subject: 'Mastodon: Clé de sécurité supprimée'
           title: Une de vos clés de sécurité a été supprimée
       webauthn_disabled:
+        explanation: L'authentification avec les clés de sécurité a été désactivée pour votre compte.
+        extra: La connexion est maintenant possible en utilisant uniquement le jeton généré par l'application TOTP associée.
         subject: 'Mastodon: Authentification avec clés de sécurité désactivée'
         title: Clés de sécurité désactivées
       webauthn_enabled:
+        explanation: L'authentification par clé de sécurité a été activée pour votre compte.
+        extra: Votre clé de sécurité peut maintenant être utilisée pour vous connecter.
         subject: 'Mastodon: Authentification de la clé de sécurité activée'
         title: Clés de sécurité activées
     omniauth_callbacks:

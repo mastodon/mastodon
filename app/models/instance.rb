@@ -13,12 +13,12 @@ class Instance < ApplicationRecord
 
   attr_accessor :failure_days
 
-  has_many :accounts, foreign_key: :domain, primary_key: :domain, inverse_of: false
-
   with_options foreign_key: :domain, primary_key: :domain, inverse_of: false do
     belongs_to :domain_block
     belongs_to :domain_allow
-    belongs_to :unavailable_domain # skipcq: RB-RL1031
+    belongs_to :unavailable_domain
+
+    has_many :accounts, dependent: nil
   end
 
   scope :searchable, -> { where.not(domain: DomainBlock.select(:domain)) }

@@ -108,7 +108,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_status_params
-    @status_parser = ActivityPub::Parser::StatusParser.new(@json, followers_collection: @account.followers_url)
+    @status_parser = ActivityPub::Parser::StatusParser.new(@json, followers_collection: @account.followers_url, object: @object)
 
     attachment_ids = process_attachments.take(4).map(&:id)
 
@@ -320,7 +320,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     already_voted = true
 
     with_redis_lock("vote:#{replied_to_status.poll_id}:#{@account.id}") do
-      already_voted = poll.votes.where(account: @account).exists?
+      already_voted = poll.votes.exists?(account: @account)
       poll.votes.create!(account: @account, choice: poll.options.index(@object['name']), uri: object_uri)
     end
 
@@ -406,7 +406,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     return false if local_usernames.empty?
 
-    Account.local.where(username: local_usernames).exists?
+    Account.local.exists?(username: local_usernames)
   end
 
   def tombstone_exists?

@@ -1522,6 +1522,9 @@ ko:
     errors:
       limit_reached: 리액션 갯수 제한에 도달했습니다
       unrecognized_emoji: 인식 되지 않은 에모지입니다
+  redirects:
+    prompt: 이 링크를 믿을 수 있다면, 클릭해서 계속하세요.
+    title: "%{instance}를 떠나려고 합니다."
   relationships:
     activity: 계정 활동
     confirm_follow_selected_followers: 정말로 선택된 팔로워들을 팔로우하시겠습니까?
@@ -1762,6 +1765,10 @@ ko:
       title: 아카이브 테이크아웃
     failed_2fa:
       details: '로그인 시도에 대한 상세 정보입니다:'
+      explanation: 누군가가 내 계정에 로그인을 시도했지만 2차인증에 올바른 값을 입력하지 못했습니다.
+      further_actions_html: 만약 당신이 한 게 아니었다면 유출의 가능성이 있으니 가능한 빨리 %{action} 하시기 바랍니다.
+      subject: 2차 인증 실패
+      title: 2차 인증에 실패했습니다
     suspicious_sign_in:
       change_password: 암호 변경
       details: '로그인에 대한 상세 정보입니다:'
