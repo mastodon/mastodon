@@ -104,12 +104,10 @@ Rails.application.routes.draw do
     confirmations: 'auth/confirmations',
   }
 
-  # rubocop:disable Style/FormatStringToken - those do not go through the usual formatting functions and are not safe to correct
   get '/users/:username', to: redirect_with_vary('/@%{username}'), constraints: ->(req) { req.format.nil? || req.format.html? }
   get '/users/:username/following', to: redirect_with_vary('/@%{username}/following'), constraints: ->(req) { req.format.nil? || req.format.html? }
   get '/users/:username/followers', to: redirect_with_vary('/@%{username}/followers'), constraints: ->(req) { req.format.nil? || req.format.html? }
   get '/users/:username/statuses/:id', to: redirect_with_vary('/@%{username}/%{id}'), constraints: ->(req) { req.format.nil? || req.format.html? }
-  # rubocop:enable Style/FormatStringToken
 
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
