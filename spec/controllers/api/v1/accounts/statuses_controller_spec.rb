@@ -39,11 +39,14 @@ describe Api::V1::Accounts::StatusesController do
       end
 
       it 'returns posts along with self replies', :aggregate_failures do
-        json = body_as_json
-        post_ids = json.map { |item| item[:id].to_i }.sort
-
-        expect(response).to have_http_status(200)
-        expect(post_ids).to eq [status.id, status_self_reply.id]
+        expect(response)
+          .to have_http_status(200)
+        expect(body_as_json)
+          .to have_attributes(size: 2)
+          .and contain_exactly(
+            include(id: status.id.to_s),
+            include(id: status_self_reply.id.to_s)
+          )
       end
     end
 

@@ -123,7 +123,7 @@ group :test do
   gem 'database_cleaner-active_record'
 
   # Used to mock environment variables
-  gem 'climate_control', '~> 0.2'
+  gem 'climate_control'
 
   # Generating fake data for specs
   gem 'faker', '~> 3.2'

@@ -1546,6 +1546,9 @@ fi:
     errors:
       limit_reached: Erilaisten reaktioiden raja saavutettu
       unrecognized_emoji: ei ole tunnistettu emoji
+  redirects:
+    prompt: Jos luotat tähän linkkiin, jatka napsauttamalla.
+    title: Olet poistumassa palvelimelta %{instance}.
   relationships:
     activity: Tilin aktiivisuus
     confirm_follow_selected_followers: Haluatko varmasti seurata valittuja seuraajia?
@@ -1791,8 +1794,8 @@ fi:
       subject: Arkisto on valmiina ladattavaksi
       title: Arkiston tallennus
     failed_2fa:
-      details: 'Tässä on tiedot kirjautumisyrityksestä:'
-      explanation: Joku on yrittänyt kirjautua tilillesi, mutta antanut virheellisen kaksivaiheisen todennuksen.
+      details: 'Tässä on tietoja kirjautumisyrityksestä:'
+      explanation: Joku on yrittänyt kirjautua tilillesi mutta on antanut virheellisen toisen vaiheen todennustekijän.
       further_actions_html: Jos se et ollut sinä, suosittelemme, että %{action} välittömästi, sillä se on saattanut vaarantua.
       subject: Kaksivaiheisen todennuksen virhe
       title: Epäonnistunut kaksivaiheinen todennus

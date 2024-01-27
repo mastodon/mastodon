@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import { useRef, useCallback, useEffect } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
@@ -14,103 +14,79 @@ import { connectDirectStream } from 'mastodon/actions/streaming';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 
-import ConversationsListContainer from './containers/conversations_list_container';
+import { ConversationsList } from './components/conversations_list';
 
 const messages = defineMessages({
   title: { id: 'column.direct', defaultMessage: 'Private mentions' },
 });
 
-class DirectTimeline extends PureComponent {
+const DirectTimeline = ({ columnId, multiColumn }) => {
+  const columnRef = useRef();
+  const intl = useIntl();
+  const dispatch = useDispatch();
+  const pinned = !!columnId;
 
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    columnId: PropTypes.string,
-    intl: PropTypes.object.isRequired,
-    hasUnread: PropTypes.bool,
-    multiColumn: PropTypes.bool,
-  };
-
-  handlePin = () => {
-    const { columnId, dispatch } = this.props;
-
+  const handlePin = useCallback(() => {
     if (columnId) {
       dispatch(removeColumn(columnId));
     } else {
       dispatch(addColumn('DIRECT', {}));
     }
-  };
+  }, [dispatch, columnId]);
 
-  handleMove = (dir) => {
-    const { columnId, dispatch } = this.props;
+  const handleMove = useCallback((dir) => {
     dispatch(moveColumn(columnId, dir));
-  };
+  }, [dispatch, columnId]);
 
-  handleHeaderClick = () => {
-    this.column.scrollTop();
-  };
+  const handleHeaderClick = useCallback(() => {
+    columnRef.current.scrollTop();
+  }, [columnRef]);
 
-  componentDidMount () {
-    const { dispatch } = this.props;
-
+  useEffect(() => {
     dispatch(mountConversations());
     dispatch(expandConversations());
-    this.disconnect = dispatch(connectDirectStream());
-  }
 
-  componentWillUnmount () {
-    this.props.dispatch(unmountConversations());
+    const disconnect = dispatch(connectDirectStream());
 
-    if (this.disconnect) {
-      this.disconnect();
-      this.disconnect = null;
-    }
-  }
+    return () => {
+      dispatch(unmountConversations());
+      disconnect();
+    };
+  }, [dispatch]);
 
-  setRef = c => {
-    this.column = c;
-  };
+  return (
+    <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
+      <ColumnHeader
+        icon='at'
+        iconComponent={AlternateEmailIcon}
+        title={intl.formatMessage(messages.title)}
+        onPin={handlePin}
+        onMove={handleMove}
+        onClick={handleHeaderClick}
+        pinned={pinned}
+        multiColumn={multiColumn}
+      />
 
-  handleLoadMore = maxId => {
-    this.props.dispatch(expandConversations({ maxId }));
-  };
+      <ConversationsList
+        trackScroll={!pinned}
+        scrollKey={`direct_timeline-${columnId}`}
+        emptyMessage={<FormattedMessage id='empty_column.direct' defaultMessage="You don't have any private mentions yet. When you send or receive one, it will show up here." />}
+        bindToDocument={!multiColumn}
+        prepend={<div className='follow_requests-unlocked_explanation'><span><FormattedMessage id='compose_form.encryption_warning' defaultMessage='Posts on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.' /> <a href='/terms' target='_blank'><FormattedMessage id='compose_form.direct_message_warning_learn_more' defaultMessage='Learn more' /></a></span></div>}
+        alwaysPrepend
+      />
 
-  render () {
-    const { intl, hasUnread, columnId, multiColumn } = this.props;
-    const pinned = !!columnId;
+      <Helmet>
+        <title>{intl.formatMessage(messages.title)}</title>
+        <meta name='robots' content='noindex' />
+      </Helmet>
+    </Column>
+  );
+};
 
-    return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
-        <ColumnHeader
-          icon='at'
-          iconComponent={AlternateEmailIcon}
-          active={hasUnread}
-          title={intl.formatMessage(messages.title)}
-          onPin={this.handlePin}
-          onMove={this.handleMove}
-          onClick={this.handleHeaderClick}
-          pinned={pinned}
-          multiColumn={multiColumn}
-        />
+DirectTimeline.propTypes = {
+  columnId: PropTypes.string,
+  multiColumn: PropTypes.bool,
+};
 
-        <ConversationsListContainer
-          trackScroll={!pinned}
-          scrollKey={`direct_timeline-${columnId}`}
-          timelineId='direct'
-          bindToDocument={!multiColumn}
-          onLoadMore={this.handleLoadMore}
-          prepend={<div className='follow_requests-unlocked_explanation'><span><FormattedMessage id='compose_form.encryption_warning' defaultMessage='Posts on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.' /> <a href='/terms' target='_blank'><FormattedMessage id='compose_form.direct_message_warning_learn_more' defaultMessage='Learn more' /></a></span></div>}
-          alwaysPrepend
-          emptyMessage={<FormattedMessage id='empty_column.direct' defaultMessage="You don't have any private mentions yet. When you send or receive one, it will show up here." />}
-        />
-
-        <Helmet>
-          <title>{intl.formatMessage(messages.title)}</title>
-          <meta name='robots' content='noindex' />
-        </Helmet>
-      </Column>
-    );
-  }
-
-}
-
-export default connect()(injectIntl(DirectTimeline));
+export default DirectTimeline;

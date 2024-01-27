@@ -68,16 +68,7 @@ class CustomFilter < ApplicationRecord
 
       scope = CustomFilterKeyword.includes(:custom_filter).where(custom_filter: { account_id: account_id }).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()'))
       scope.to_a.group_by(&:custom_filter).each do |filter, keywords|
-        keywords.map! do |keyword|
-          if keyword.whole_word
-            sb = /\A[[:word:]]/.match?(keyword.keyword) ? '\b' : ''
-            eb = /[[:word:]]\z/.match?(keyword.keyword) ? '\b' : ''
-
-            /(?mix:#{sb}#{Regexp.escape(keyword.keyword)}#{eb})/
-          else
-            /#{Regexp.escape(keyword.keyword)}/i
-          end
-        end
+        keywords.map!(&:to_regex)
 
         filters_hash[filter.id] = { keywords: Regexp.union(keywords), filter: filter }
       end.to_h

@@ -2,23 +2,18 @@
 
 require 'rails_helper'
 
-describe Api::V1::Statuses::ReblogsController do
-  render_views
-
+describe 'API V1 Statuses Reblogs' do
   let(:user)  { Fabricate(:user) }
-  let(:app)   { Fabricate(:application, name: 'Test app', website: 'http://testapp.com') }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'write:statuses', application: app) }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  let(:scopes)  { 'write:statuses' }
+  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   context 'with an oauth token' do
-    before do
-      allow(controller).to receive(:doorkeeper_token) { token }
-    end
-
-    describe 'POST #create' do
+    describe 'POST /api/v1/statuses/:status_id/reblog' do
       let(:status) { Fabricate(:status, account: user.account) }
 
       before do
-        post :create, params: { status_id: status.id }
+        post "/api/v1/statuses/#{status.id}/reblog", headers: headers
       end
 
       context 'with public status' do
@@ -46,13 +41,13 @@ describe Api::V1::Statuses::ReblogsController do
       end
     end
 
-    describe 'POST #destroy', :sidekiq_inline do
+    describe 'POST /api/v1/statuses/:status_id/unreblog', :sidekiq_inline do
       context 'with public status' do
         let(:status) { Fabricate(:status, account: user.account) }
 
         before do
           ReblogService.new.call(user.account, status)
-          post :destroy, params: { status_id: status.id }
+          post "/api/v1/statuses/#{status.id}/unreblog", headers: headers
         end
 
         it 'destroys the reblog', :aggregate_failures do
@@ -76,7 +71,7 @@ describe Api::V1::Statuses::ReblogsController do
         before do
           ReblogService.new.call(user.account, status)
           status.account.block!(user.account)
-          post :destroy, params: { status_id: status.id }
+          post "/api/v1/statuses/#{status.id}/unreblog", headers: headers
         end
 
         it 'destroys the reblog', :aggregate_failures do
@@ -98,7 +93,7 @@ describe Api::V1::Statuses::ReblogsController do
         let(:status) { Fabricate(:status, visibility: :private) }
 
         before do
-          post :destroy, params: { status_id: status.id }
+          post "/api/v1/statuses/#{status.id}/unreblog", headers: headers
         end
 
         it 'returns http not found' do
