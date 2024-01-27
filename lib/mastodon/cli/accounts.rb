@@ -311,6 +311,7 @@ module Mastodon::CLI
     end
 
     desc 'backup USERNAME', 'Request a backup for a user'
+    option :verbose, type: :boolean, aliases: [:v]
     long_desc <<-LONG_DESC
       Request a new backup for an account with a given USERNAME.
 
@@ -322,9 +323,14 @@ module Mastodon::CLI
       account = Account.find_local(username)
 
       fail_with_message 'No user with such username' if account.nil?
+      say "Found local account `#{account.acct}`" if options[:verbose]
 
       backup = account.user.backups.create!
+      say "Backup created for `#{account.acct}`" if options[:verbose]
+
       BackupWorker.perform_async(backup.id)
+      say 'Backup delivery added to queue' if options[:verbose]
+
       say('OK', :green)
     end
 
