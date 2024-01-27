@@ -18,6 +18,7 @@ module Subscription
 
     def send_canceled(email, cancel_at)
       @cancel_at = cancel_at
+      @survey_link = ENV['CANCEL_SURVEY_LINK']
       mail to: email,
           subject: "Your subscription has been canceled",
           template_name: 'canceled'

@@ -15,6 +15,13 @@
                             %td.column-cell.text-center.padded
                               %h2= "Your subscription has been canceled"
                               %p= "Your account will remain active until the end of the billing cycle on " + Time.at(@cancel_at).strftime('%b %d, %Y') + "."
+                          - if @survey_link
+                            %tr
+                              %td.column-cell.text-center.padded
+                                %p= "Your feedback is important to us!"
+                                %p= "Please tell us about your experience by completing this survey (< 2 minutes):"
+                                = link_to @survey_link do
+                                  %span= "Take the survey"
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody
@@ -34,4 +41,5 @@
                               %tr
                                 %td
                                   %p= 'Resubscribe or manage your subscription in the future: '
-                                  = settings_subscription.subscriptions_url
+                                  = link_to settings_subscription.subscriptions_url do
+                                    %span= settings_subscription.subscriptions_url
