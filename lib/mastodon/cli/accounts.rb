@@ -6,6 +6,7 @@ require_relative 'base'
 module Mastodon::CLI
   class Accounts < Base
     option :all, type: :boolean
+    option :verbose, type: :boolean, aliases: [:v]
     desc 'rotate [USERNAME]', 'Generate and broadcast new keys'
     long_desc <<-LONG_DESC
       Generate and broadcast new RSA keys as part of security
@@ -26,6 +27,7 @@ module Mastodon::CLI
         scope.find_in_batches do |accounts|
           accounts.each do |account|
             rotate_keys_for_account(account, delay)
+            progress.log("Keys rotated for account: #{account.username}") if options[:verbose]
             progress.increment
             processed += 1
           end
@@ -37,6 +39,7 @@ module Mastodon::CLI
         say("OK, rotated keys for #{processed} accounts", :green)
       elsif username.present?
         rotate_keys_for_account(Account.find_local(username))
+        say "Keys rotated for account: #{username}" if options[:verbose]
         say('OK', :green)
       else
         fail_with_message 'No account(s) given'
