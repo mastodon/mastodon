@@ -123,15 +123,16 @@ module Mastodon::CLI
       end
     end
 
-    option :role
-    option :remove_role, type: :boolean
-    option :email
-    option :confirm, type: :boolean
-    option :enable, type: :boolean
-    option :disable, type: :boolean
-    option :disable_2fa, type: :boolean
     option :approve, type: :boolean
+    option :confirm, type: :boolean
+    option :disable_2fa, type: :boolean
+    option :disable, type: :boolean
+    option :email
+    option :enable, type: :boolean
+    option :remove_role, type: :boolean
     option :reset_password, type: :boolean
+    option :role
+    option :verbose, type: :boolean, aliases: [:v]
     desc 'modify USERNAME', 'Modify a user account'
     long_desc <<-LONG_DESC
       Modify a user account.
@@ -164,21 +165,49 @@ module Mastodon::CLI
 
         fail_with_message 'Cannot find user role with that name' if role.nil?
 
+        say "Using role of `#{role.name}` for the new user" if options[:verbose]
         user.role_id = role.id
       elsif options[:remove_role]
+        say 'Removing role from user' if options[:verbose]
         user.role_id = nil
       end
 
-      password = SecureRandom.hex if options[:reset_password]
-      user.password = password if options[:reset_password]
-      user.email = options[:email] if options[:email]
-      user.disabled = false if options[:enable]
-      user.disabled = true if options[:disable]
-      user.approved = true if options[:approve]
-      user.otp_required_for_login = false if options[:disable_2fa]
+      if options[:reset_password]
+        say 'Resetting user password' if options[:verbose]
+        password = SecureRandom.hex
+        user.password = password
+      end
+
+      if options[:email]
+        user.email = options[:email]
+        say "User email set to `#{user.email}`" if options[:verbose]
+      end
+
+      if options[:enable]
+        user.disabled = false
+        say 'User has been enabled' if options[:verbose]
+      end
+
+      if options[:disable]
+        user.disabled = true
+        say 'User has been disabled' if options[:verbose]
+      end
+
+      if options[:approve]
+        user.approved = true
+        say 'User has been approved' if options[:verbose]
+      end
+
+      if options[:disable_2fa]
+        user.otp_required_for_login = false
+        say 'Disabling two-factor authentication for user' if options[:verbose]
+      end
 
       if user.save
-        user.confirm if options[:confirm]
+        if options[:confirm]
+          user.confirm
+          say 'User has been confirmed' if options[:verbose]
+        end
 
         say('OK', :green)
         say("New password: #{password}") if options[:reset_password]
