@@ -104,10 +104,12 @@ Rails.application.routes.draw do
     confirmations: 'auth/confirmations',
   }
 
-  get '/users/:username', to: redirect_with_vary('/@%{username}'), constraints: ->(req) { req.format.nil? || req.format.html? }
-  get '/users/:username/following', to: redirect_with_vary('/@%{username}/following'), constraints: ->(req) { req.format.nil? || req.format.html? }
-  get '/users/:username/followers', to: redirect_with_vary('/@%{username}/followers'), constraints: ->(req) { req.format.nil? || req.format.html? }
-  get '/users/:username/statuses/:id', to: redirect_with_vary('/@%{username}/%{id}'), constraints: ->(req) { req.format.nil? || req.format.html? }
+  with_options constraints: ->(req) { req.format.nil? || req.format.html? } do
+    get '/users/:username', to: redirect_with_vary('/@%{username}')
+    get '/users/:username/following', to: redirect_with_vary('/@%{username}/following')
+    get '/users/:username/followers', to: redirect_with_vary('/@%{username}/followers')
+    get '/users/:username/statuses/:id', to: redirect_with_vary('/@%{username}/%{id}')
+  end
 
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
