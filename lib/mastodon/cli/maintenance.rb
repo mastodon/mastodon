@@ -244,10 +244,10 @@ module Mastodon::CLI
       end
 
       say 'Reindexing textual indexes on accounts…'
-      database_connection.execute('REINDEX INDEX search_index;')
-      database_connection.execute('REINDEX INDEX index_accounts_on_uri;')
-      database_connection.execute('REINDEX INDEX index_accounts_on_url;')
-      database_connection.execute('REINDEX INDEX index_accounts_on_domain_and_id;') if migrator_version >= 2023_05_24_190515
+      rebuild_index(:search_index)
+      rebuild_index(:index_accounts_on_uri)
+      rebuild_index(:index_accounts_on_url)
+      rebuild_index(:index_accounts_on_domain_and_id) if migrator_version >= 2023_05_24_190515
     end
 
     def deduplicate_users!
@@ -274,7 +274,7 @@ module Mastodon::CLI
         database_connection.add_index :users, ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true, where: 'reset_password_token IS NOT NULL', opclass: :text_pattern_ops
       end
 
-      database_connection.execute('REINDEX INDEX index_users_on_unconfirmed_email;') if migrator_version >= 2023_07_02_151753
+      rebuild_index(:index_users_on_unconfirmed_email) if migrator_version >= 2023_07_02_151753
     end
 
     def deduplicate_users_process_email
@@ -734,6 +734,10 @@ module Mastodon::CLI
 
     def db_table_exists?(table)
       database_connection.table_exists?(table)
+    end
+
+    def rebuild_index(name)
+      database_connection.execute("REINDEX INDEX #{name}")
     end
   end
 end
