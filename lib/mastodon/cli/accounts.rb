@@ -596,6 +596,7 @@ module Mastodon::CLI
     option :force, type: :boolean
     option :replay, type: :boolean
     option :target
+    option :verbose, type: :boolean, aliases: [:v]
     desc 'migrate USERNAME', 'Migrate a local user to another account'
     long_desc <<~LONG_DESC
       With --replay, replay the last migration of the specified account, in
@@ -634,12 +635,14 @@ module Mastodon::CLI
 
         begin
           migration = account.migrations.create!(acct: target_account.acct)
+          say "Created migration for `#{account.acct}` to move to `#{target_account.acct}`" if options[:verbose]
         rescue ActiveRecord::RecordInvalid => e
           fail_with_message "Error: #{e.message}"
         end
       end
 
       MoveService.new.call(migration)
+      say 'Called move service to perform the migration' if options[:verbose]
 
       say("OK, migrated #{account.acct} to #{migration.target_account.acct}", :green)
     end
