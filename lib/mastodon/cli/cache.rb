@@ -49,22 +49,30 @@ module Mastodon::CLI
     end
 
     def recount_account_stats(account)
+      say "Recalculating account stats for `#{account.acct}`" if options[:verbose]
       account.account_stat.tap do |account_stat|
         account_stat.following_count = account.active_relationships.count
         account_stat.followers_count = account.passive_relationships.count
         account_stat.statuses_count  = account.statuses.where.not(visibility: :direct).count
 
-        account_stat.save if account_stat.changed?
+        if account_stat.changed?
+          say "Account stats for `#{account.acct}` changed and will be updated" if options[:verbose]
+          account_stat.save
+        end
       end
     end
 
     def recount_status_stats(status)
+      say "Recalculating status stats for `#{status.id}`" if options[:verbose]
       status.status_stat.tap do |status_stat|
         status_stat.replies_count    = status.replies.where.not(visibility: :direct).count
         status_stat.reblogs_count    = status.reblogs.count
         status_stat.favourites_count = status.favourites.count
 
-        status_stat.save if status_stat.changed?
+        if status_stat.changed?
+          say "Status stats for `#{status.id}` changed and will be updated" if options[:verbose]
+          status_stat.save
+        end
       end
     end
   end
