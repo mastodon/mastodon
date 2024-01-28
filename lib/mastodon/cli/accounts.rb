@@ -525,8 +525,9 @@ module Mastodon::CLI
       say("Processed #{processed} relationships", :green, true)
     end
 
-    option :number, type: :numeric, aliases: [:n]
     option :all, type: :boolean
+    option :number, type: :numeric, aliases: [:n]
+    option :verbose, type: :boolean, aliases: [:v]
     desc 'approve [USERNAME]', 'Approve pending accounts'
     long_desc <<~LONG_DESC
       When registrations require review from staff, approve pending accounts,
@@ -538,19 +539,21 @@ module Mastodon::CLI
       fail_with_message 'Number must be positive' if options[:number]&.negative?
 
       if options[:all]
+        say "Approving all #{User.pending.count} pending users" if options[:verbose]
         User.pending.find_each(&:approve!)
-        say('OK', :green)
       elsif options[:number]&.positive?
+        say "Approving first #{options[:number]} of #{User.pending.count} pending users" if options[:verbose]
         User.pending.order(created_at: :asc).limit(options[:number]).each(&:approve!)
-        say('OK', :green)
       elsif username.present?
         account = Account.find_local(username)
 
         fail_with_message 'No such account' if account.nil?
 
+        say "Approving user for local account `#{account.acct}`" if options[:verbose]
         account.user&.approve!
-        say('OK', :green)
       end
+
+      say('OK', :green)
     end
 
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
