@@ -463,6 +463,7 @@ module Mastodon::CLI
 
       processed, = parallelize_with_progress(target_account.followers.local) do |account|
         UnfollowService.new.call(account, target_account)
+        say "Local account `#{account.acct}` will stop following `#{target_account.acct}`" if options[:verbose]
       end
 
       say("OK, unfollowed target from #{processed} accounts", :green)
