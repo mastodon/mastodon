@@ -336,6 +336,7 @@ module Mastodon::CLI
 
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :dry_run, type: :boolean
+    option :verbose, type: :boolean, aliases: [:v]
     desc 'cull [DOMAIN...]', 'Remove remote accounts that no longer exist'
     long_desc <<-LONG_DESC
       Query every single remote account in the database to determine
@@ -364,6 +365,7 @@ module Mastodon::CLI
         end
 
         if [404, 410].include?(code)
+          say "Account `#{account.acct}` no longer exists and will be deleted" if options[:verbose]
           DeleteAccountService.new.call(account, reserve_username: false) unless dry_run?
           1
         else
