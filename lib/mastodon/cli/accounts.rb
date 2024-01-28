@@ -558,6 +558,7 @@ module Mastodon::CLI
 
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :dry_run, type: :boolean
+    option :verbose, type: :boolean, aliases: [:v]
     desc 'prune', 'Prune remote accounts that never interacted with local users'
     long_desc <<-LONG_DESC
       Prune remote account that
@@ -584,6 +585,7 @@ module Mastodon::CLI
         next if account.suspended?
         next if account.silenced?
 
+        say "Destroying account `#{account.acct}`" if options[:verbose]
         account.destroy unless dry_run?
         1
       end
