@@ -471,6 +471,7 @@ module Mastodon::CLI
 
     option :follows, type: :boolean, default: false
     option :followers, type: :boolean, default: false
+    option :verbose, type: :boolean, aliases: [:v]
     desc 'reset-relationships USERNAME', 'Reset all follows and/or followers for a user'
     long_desc <<-LONG_DESC
       Reset all follows and/or followers for a user specified by USERNAME.
@@ -496,6 +497,7 @@ module Mastodon::CLI
       if options[:follows]
         account.following.reorder(nil).find_each do |target_account|
           UnfollowService.new.call(account, target_account)
+          progress.log "Local account `#{account.acct}` will stop following `#{target_account.acct}`" if options[:verbose]
         rescue => e
           progress.log pastel.red("Error processing #{target_account.id}: #{e}")
         ensure
@@ -504,11 +506,13 @@ module Mastodon::CLI
         end
 
         BootstrapTimelineWorker.perform_async(account.id)
+        say "Local account `#{account.acct}` will start following default accounts" if options[:verbose]
       end
 
       if options[:followers]
         account.followers.reorder(nil).find_each do |target_account|
           UnfollowService.new.call(target_account, account)
+          say "Removing `#{target_account.acct}` from followers of local account `#{account.acct}`" if options[:verbose]
         rescue => e
           progress.log pastel.red("Error processing #{target_account.id}: #{e}")
         ensure
