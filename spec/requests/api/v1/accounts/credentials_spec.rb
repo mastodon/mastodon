@@ -39,8 +39,10 @@ RSpec.describe 'credentials API' do
 
     let(:params) do
       {
+        avatar: fixture_file_upload('avatar.gif', 'image/gif'),
         discoverable: true,
         display_name: "Alice Isn't Dead",
+        header: fixture_file_upload('attachment.jpg', 'image/jpeg'),
         indexable: true,
         locked: false,
         note: 'Hello!',
@@ -65,7 +67,9 @@ RSpec.describe 'credentials API' do
       expect(user.account.reload)
         .to have_attributes(
           display_name: eq("Alice Isn't Dead"),
-          note: 'Hello!'
+          note: 'Hello!',
+          avatar: exist,
+          header: exist
         )
 
       expect(ActivityPub::UpdateDistributionWorker)
