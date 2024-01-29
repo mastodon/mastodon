@@ -37,7 +37,14 @@ RSpec.describe 'credentials API' do
 
     before { allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async) }
 
-    let(:params) { { discoverable: true, locked: false, indexable: true } }
+    let(:params) do
+      {
+        discoverable: true,
+        display_name: "Alice Isn't Dead",
+        indexable: true,
+        locked: false,
+      }
+    end
 
     it_behaves_like 'forbidden for wrong scope', 'read read:accounts'
 
@@ -53,6 +60,11 @@ RSpec.describe 'credentials API' do
         }),
         locked: false,
       })
+
+      expect(user.account.reload)
+        .to have_attributes(
+          display_name: eq("Alice Isn't Dead")
+        )
 
       expect(ActivityPub::UpdateDistributionWorker)
         .to have_received(:perform_async).with(user.account_id)

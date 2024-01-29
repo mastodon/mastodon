@@ -19,7 +19,6 @@ describe Api::V1::Accounts::CredentialsController do
       describe 'with valid data' do
         before do
           patch :update, params: {
-            display_name: "Alice Isn't Dead",
             note: "Hi!\n\nToot toot!",
             avatar: fixture_file_upload('avatar.gif', 'image/gif'),
             header: fixture_file_upload('attachment.jpg', 'image/jpeg'),
@@ -36,7 +35,6 @@ describe Api::V1::Accounts::CredentialsController do
           user.reload
           user.account.reload
 
-          expect(user.account.display_name).to eq("Alice Isn't Dead")
           expect(user.account.note).to eq("Hi!\n\nToot toot!")
           expect(user.account.avatar).to exist
           expect(user.account.header).to exist
