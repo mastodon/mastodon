@@ -19,7 +19,7 @@
 
   .back-link
     = link_to admin_account_path(@account.id) do
-      = fa_icon 'chevron-left fw'
+      = material_symbol 'chevron_left'
       = t('admin.statuses.back_to_account')
 
 %hr.spacer/
@@ -30,7 +30,7 @@
       %label.batch-table__toolbar__select.batch-checkbox-all
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
-        = f.button safe_join([fa_icon('lock'), t('admin.accounts.perform_full_suspension')]),
+        = f.button safe_join([material_symbol('lock'), t('admin.accounts.perform_full_suspension')]),
                    class: 'table-action-link',
                    data: { confirm: t('admin.reports.are_you_sure') },
                    name: :suspend,
