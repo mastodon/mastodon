@@ -55,6 +55,15 @@ RSpec.describe 'credentials API' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:accounts'
 
+    describe 'with empty source list' do
+      let(:params) { { display_name: "I'm a cat", source: {} } }
+
+      it 'returns http success' do
+        subject
+        expect(response).to have_http_status(200)
+      end
+    end
+
     it 'returns http success with updated JSON attributes' do
       subject
 
