@@ -81,10 +81,10 @@ services:
 
   otelcol:
     build:
-      context: ../observability
+      context: ../telemetry
       dockerfile: Dockerfile
       args:
-        - OBSERVABILITY_BACKEND=datadog
+        - TELEMETRY_BACKEND=datadog
     container_name: otelcol
     deploy:
       resources:
@@ -96,7 +96,7 @@ services:
       - DD_API_KEY
     command: [ "--config=/etc/otelcol-config.yml" ]
     volumes:
-      - ../observability/otelcol-config.yml:/etc/otelcol-config.yml
+      - ../telemetry/otelcol-config.yml:/etc/otelcol-config.yml
     ports:
       - "4317"
       - "4318"

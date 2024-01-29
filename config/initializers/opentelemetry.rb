@@ -44,8 +44,3 @@ OpenTelemetry::SDK.configure do |c|
                       $PROGRAM_NAME.split('/').last
                     end
 end
-
-OpenTelemetry::Instrumentation::ActiveSupport.subscribe(
-  OpenTelemetry.tracer_provider.tracer('ActiveRecord'),
-  'sql.active_record'
-)
