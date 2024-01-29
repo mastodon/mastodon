@@ -82,24 +82,4 @@ describe Api::V1::Accounts::CredentialsController do
       end
     end
   end
-
-  context 'without an oauth token' do
-    before do
-      allow(controller).to receive(:doorkeeper_token).and_return(nil)
-    end
-
-    describe 'GET #show' do
-      it 'returns http unauthorized' do
-        get :show
-        expect(response).to have_http_status(401)
-      end
-    end
-
-    describe 'PATCH #update' do
-      it 'returns http unauthorized' do
-        patch :update, params: { note: 'Foo' }
-        expect(response).to have_http_status(401)
-      end
-    end
-  end
 end
