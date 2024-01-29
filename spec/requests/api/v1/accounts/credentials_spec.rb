@@ -64,6 +64,15 @@ RSpec.describe 'credentials API' do
       end
     end
 
+    describe 'with invalid data' do
+      let(:params) { { note: 'This is too long. ' * 30 } }
+
+      it 'returns http unprocessable entity' do
+        subject
+        expect(response).to have_http_status(422)
+      end
+    end
+
     it 'returns http success with updated JSON attributes' do
       subject
 
