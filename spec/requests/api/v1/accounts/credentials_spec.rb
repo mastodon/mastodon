@@ -15,15 +15,11 @@ RSpec.describe 'credentials API' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:accounts'
 
-    it 'returns http success' do
+    it 'returns http success with expected content' do
       subject
 
-      expect(response).to have_http_status(200)
-    end
-
-    it 'returns the expected content' do
-      subject
-
+      expect(response)
+        .to have_http_status(200)
       expect(body_as_json).to include({
         source: hash_including({
           discoverable: false,
@@ -43,15 +39,11 @@ RSpec.describe 'credentials API' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:accounts'
 
-    it 'returns http success' do
+    it 'returns http success with updated JSON attributes' do
       subject
 
-      expect(response).to have_http_status(200)
-    end
-
-    it 'returns JSON with updated attributes' do
-      subject
-
+      expect(response)
+        .to have_http_status(200)
       expect(body_as_json).to include({
         source: hash_including({
           discoverable: true,
