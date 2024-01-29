@@ -43,6 +43,7 @@ RSpec.describe 'credentials API' do
         display_name: "Alice Isn't Dead",
         indexable: true,
         locked: false,
+        note: 'Hello!',
       }
     end
 
@@ -63,7 +64,8 @@ RSpec.describe 'credentials API' do
 
       expect(user.account.reload)
         .to have_attributes(
-          display_name: eq("Alice Isn't Dead")
+          display_name: eq("Alice Isn't Dead"),
+          note: 'Hello!'
         )
 
       expect(ActivityPub::UpdateDistributionWorker)

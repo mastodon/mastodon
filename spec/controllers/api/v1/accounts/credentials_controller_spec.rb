@@ -19,7 +19,6 @@ describe Api::V1::Accounts::CredentialsController do
       describe 'with valid data' do
         before do
           patch :update, params: {
-            note: "Hi!\n\nToot toot!",
             avatar: fixture_file_upload('avatar.gif', 'image/gif'),
             header: fixture_file_upload('attachment.jpg', 'image/jpeg'),
             source: {
@@ -35,7 +34,6 @@ describe Api::V1::Accounts::CredentialsController do
           user.reload
           user.account.reload
 
-          expect(user.account.note).to eq("Hi!\n\nToot toot!")
           expect(user.account.avatar).to exist
           expect(user.account.header).to exist
           expect(user.setting_default_privacy).to eq('unlisted')
