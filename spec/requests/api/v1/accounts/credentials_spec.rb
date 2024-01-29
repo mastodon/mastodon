@@ -35,6 +35,8 @@ RSpec.describe 'credentials API' do
       patch '/api/v1/accounts/update_credentials', headers: headers, params: params
     end
 
+    before { allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async) }
+
     let(:params) { { discoverable: true, locked: false, indexable: true } }
 
     it_behaves_like 'forbidden for wrong scope', 'read read:accounts'
@@ -51,6 +53,9 @@ RSpec.describe 'credentials API' do
         }),
         locked: false,
       })
+
+      expect(ActivityPub::UpdateDistributionWorker)
+        .to have_received(:perform_async).with(user.account_id)
     end
   end
 end

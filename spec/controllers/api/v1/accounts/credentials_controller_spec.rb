@@ -18,8 +18,6 @@ describe Api::V1::Accounts::CredentialsController do
 
       describe 'with valid data' do
         before do
-          allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
-
           patch :update, params: {
             display_name: "Alice Isn't Dead",
             note: "Hi!\n\nToot toot!",
@@ -44,8 +42,6 @@ describe Api::V1::Accounts::CredentialsController do
           expect(user.account.header).to exist
           expect(user.setting_default_privacy).to eq('unlisted')
           expect(user.setting_default_sensitive).to be(true)
-
-          expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(user.account_id)
         end
       end
 
