@@ -2,14 +2,14 @@
   %th= t('admin.accounts.inbox_url')
   %td
     = account.inbox_url
-    = fa_icon DeliveryFailureTracker.available?(account.inbox_url) ? 'check' : 'times'
+    = material_symbol DeliveryFailureTracker.available?(account.inbox_url) ? 'check' : 'close'
   %td
     = table_link_to 'search', domain_block.present? ? t('admin.domain_blocks.view') : t('admin.accounts.view_domain'), admin_instance_path(account.domain)
 %tr
   %th= t('admin.accounts.shared_inbox_url')
   %td
     = account.shared_inbox_url
-    = fa_icon DeliveryFailureTracker.available?(account.shared_inbox_url) ? 'check' : 'times'
+    = material_symbol DeliveryFailureTracker.available?(account.shared_inbox_url) ? 'check' : 'close'
   %td
     - if domain_block.nil?
       = table_link_to 'ban', t('admin.domain_blocks.add_new'), new_admin_domain_block_path(_domain: account.domain)
