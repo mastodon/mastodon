@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.5] - 2024-02-01
+
+### Security
+
+- Fix TODO
+
 ## [4.2.4] - 2024-01-24
 
 ### Fixed
