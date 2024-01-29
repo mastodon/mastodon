@@ -113,6 +113,18 @@ module ApplicationHelper
     content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
   end
 
+  def material_symbol(icon, attributes = {})
+    tag.span(
+      asset_content("#{icon}.svg"),
+      class: %w(icon).concat(attributes[:class].to_s.split),
+      role: :img
+    )
+  end
+
+  def asset_content(path)
+    Rails.application.assets.load_path.find(path).content.html_safe # rubocop:disable Rails/OutputSafety
+  end
+
   def check_icon
     inline_svg_tag 'check.svg'
   end
