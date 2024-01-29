@@ -70,6 +70,7 @@ class ComposeForm extends ImmutablePureComponent {
     isInReply: PropTypes.bool,
     singleColumn: PropTypes.bool,
     lang: PropTypes.string,
+    maxChars: PropTypes.number,
     ...WithOptionalRouterPropTypes
   };
 
@@ -101,11 +102,11 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   canSubmit = () => {
-    const { isSubmitting, isChangingUpload, isUploading, anyMedia } = this.props;
+    const { isSubmitting, isChangingUpload, isUploading, anyMedia, maxChars } = this.props;
     const fulltext = this.getFulltextForCharacterCounting();
     const isOnlyWhitespace = fulltext.length !== 0 && fulltext.trim().length === 0;
 
-    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > 500 || (isOnlyWhitespace && !anyMedia));
+    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > maxChars || (isOnlyWhitespace && !anyMedia));
   };
 
   handleSubmit = (e) => {
@@ -224,7 +225,7 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   render () {
-    const { intl, onPaste, autoFocus, withoutNavigation } = this.props;
+    const { intl, onPaste, autoFocus, withoutNavigation, maxChars } = this.props;
     const { highlighted } = this.state;
     const disabled = this.props.isSubmitting;
 
@@ -297,7 +298,7 @@ class ComposeForm extends ImmutablePureComponent {
                 <PollButtonContainer />
                 <SpoilerButtonContainer />
                 <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
-                <CharacterCounter max={500} text={this.getFulltextForCharacterCounting()} />
+                <CharacterCounter max={maxChars} text={this.getFulltextForCharacterCounting()} />
               </div>
 
               <div className='compose-form__submit'>
