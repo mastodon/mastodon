@@ -30,7 +30,7 @@ RSpec.describe 'credentials API' do
     end
   end
 
-  describe 'POST /api/v1/accounts/update_credentials' do
+  describe 'PATCH /api/v1/accounts/update_credentials' do
     subject do
       patch '/api/v1/accounts/update_credentials', headers: headers, params: params
     end
