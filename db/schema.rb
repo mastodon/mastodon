@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_06_114142) do
+ActiveRecord::Schema.define(version: 2023_07_31_214139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -990,6 +990,23 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.index ["tag_id", "status_id"], name: "index_statuses_tags_on_tag_id_and_status_id", unique: true
   end
 
+  create_table "subscription_members", force: :cascade do |t|
+    t.integer "subscription_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "subscription_stripe_subscriptions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "invite_id"
+    t.string "subscription_id"
+    t.string "customer_id"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "system_keys", force: :cascade do |t|
     t.binary "key"
     t.datetime "created_at", null: false
@@ -1339,4 +1356,26 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   SQL
   add_index "follow_recommendations", ["account_id"], name: "index_follow_recommendations_on_account_id", unique: true
 
+  create_view "user_ips", sql_definition: <<-SQL
+      SELECT t0.user_id,
+      t0.ip,
+      max(t0.used_at) AS used_at
+     FROM ( SELECT users.id AS user_id,
+              users.sign_up_ip AS ip,
+              users.created_at AS used_at
+             FROM users
+            WHERE (users.sign_up_ip IS NOT NULL)
+          UNION ALL
+           SELECT session_activations.user_id,
+              session_activations.ip,
+              session_activations.updated_at
+             FROM session_activations
+          UNION ALL
+           SELECT login_activities.user_id,
+              login_activities.ip,
+              login_activities.created_at
+             FROM login_activities
+            WHERE (login_activities.success = true)) t0
+    GROUP BY t0.user_id, t0.ip;
+  SQL
 end

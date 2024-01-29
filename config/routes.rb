@@ -135,6 +135,7 @@ Rails.application.routes.draw do
   get '/settings', to: redirect('/settings/profile')
 
   namespace :settings do
+    mount Subscription::Engine, at: '/', as: :subscription
     resource :profile, only: [:show, :update] do
       resources :pictures, only: :destroy
     end

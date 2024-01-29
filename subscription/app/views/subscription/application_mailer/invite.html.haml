@@ -1,0 +1,59 @@
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell.hero
+                  .email-row
+                    .col-6
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.text-center.padded
+                              %p.lead= "Your invite code"
+                              %h1= @invite.code
+                              - if (@invite.max_uses > 1)
+                                %p= "Valid for #{@invite.max_uses} uses"
+
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell.content-start
+                  %table.column{ cellspacing: 0, cellpadding: 0 }
+                    %tbody
+                      %tr
+                        %td.column-cell.button-cell
+                          %table.button{ align: 'center', cellspacing: 0, cellpadding: 0 }
+                            %tbody
+                              %tr
+                                %td.button-primary
+                                  = link_to @app_link do
+                                    %span= "Redeem in the iOS App"
+
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell
+                  .email-row
+                    .col-6
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.text-center.padded
+                              - invite_url = main_app.public_invite_url(invite_code: @invite.code)
+                              %p= "Need to redeem on the web instead?"
+                              = link_to invite_url do
+                                %span= invite_url
