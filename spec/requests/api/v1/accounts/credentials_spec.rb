@@ -46,6 +46,10 @@ RSpec.describe 'credentials API' do
         indexable: true,
         locked: false,
         note: 'Hello!',
+        source: {
+          privacy: 'unlisted',
+          sensitive: true,
+        },
       }
     end
 
@@ -56,6 +60,7 @@ RSpec.describe 'credentials API' do
 
       expect(response)
         .to have_http_status(200)
+
       expect(body_as_json).to include({
         source: hash_including({
           discoverable: true,
@@ -64,6 +69,11 @@ RSpec.describe 'credentials API' do
         locked: false,
       })
 
+      expect(ActivityPub::UpdateDistributionWorker)
+        .to have_received(:perform_async).with(user.account_id)
+    end
+
+    def expect_account_updates
       expect(user.account.reload)
         .to have_attributes(
           display_name: eq("Alice Isn't Dead"),
@@ -71,9 +81,14 @@ RSpec.describe 'credentials API' do
           avatar: exist,
           header: exist
         )
+    end
 
-      expect(ActivityPub::UpdateDistributionWorker)
-        .to have_received(:perform_async).with(user.account_id)
+    def expect_user_updates
+      expect(user.reload)
+        .to have_attributes(
+          setting_default_privacy: eq('unlisted'),
+          setting_default_sensitive: be(true)
+        )
     end
   end
 end

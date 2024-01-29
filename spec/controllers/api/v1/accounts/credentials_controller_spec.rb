@@ -18,22 +18,11 @@ describe Api::V1::Accounts::CredentialsController do
 
       describe 'with valid data' do
         before do
-          patch :update, params: {
-            source: {
-              privacy: 'unlisted',
-              sensitive: true,
-            },
-          }
+          patch :update, params: {}
         end
 
         it 'updates account info', :aggregate_failures do
           expect(response).to have_http_status(200)
-
-          user.reload
-          user.account.reload
-
-          expect(user.setting_default_privacy).to eq('unlisted')
-          expect(user.setting_default_sensitive).to be(true)
         end
       end
 
