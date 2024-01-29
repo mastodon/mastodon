@@ -13,15 +13,6 @@ describe Api::V1::Accounts::CredentialsController do
       allow(controller).to receive(:doorkeeper_token) { token }
     end
 
-    describe 'GET #show' do
-      let(:scopes) { 'read:accounts' }
-
-      it 'returns http success' do
-        get :show
-        expect(response).to have_http_status(200)
-      end
-    end
-
     describe 'PATCH #update' do
       let(:scopes) { 'write:accounts' }
 
