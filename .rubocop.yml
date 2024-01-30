@@ -174,6 +174,15 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
+# Reason: Route redirects are not token-formatted and must be skipped
+# https://docs.rubocop.org/rubocop/cops_style.html#styleformatstringtoken
+Style/FormatStringToken:
+  inherit_mode:
+    merge:
+      - AllowedMethods # The rubocop-rails config adds `redirect`
+  AllowedMethods:
+    - redirect_with_vary
+
 # Reason: Enforce modern Ruby style
 # https://docs.rubocop.org/rubocop/cops_style.html#stylehashsyntax
 Style/HashSyntax:
