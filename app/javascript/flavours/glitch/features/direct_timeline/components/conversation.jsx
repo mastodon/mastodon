@@ -167,6 +167,10 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
     }
   }, [dispatch, lastStatus, expanded]);
 
+  if (!lastStatus) {
+    return null;
+  }
+
   const menu = [
     { text: intl.formatMessage(messages.open), action: handleClick },
     null,
