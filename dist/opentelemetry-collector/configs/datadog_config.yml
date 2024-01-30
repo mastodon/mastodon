@@ -1,0 +1,70 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        #endpoint: localhost:4317
+      http:
+        #endpoint: localhost:4318
+        cors:
+          allowed_origins:
+            - "http://*"
+            - "https://*"
+
+processors:
+  batch:
+    send_batch_max_size: 1000
+    send_batch_size: 100
+    timeout: 10s
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 4000
+    spike_limit_mib: 800
+  resourcedetection:
+    detectors: [system]
+    system:
+      resource_attributes:
+        os.description:
+          enabled: true
+        host.arch:
+          enabled: true
+        host.cpu.vendor.id:
+          enabled: true
+        host.cpu.family:
+          enabled: true
+        host.cpu.model.id:
+          enabled: true
+        host.cpu.model.name:
+          enabled: true
+        host.cpu.stepping:
+          enabled: true
+        host.cpu.cache.l2.size:
+          enabled: true
+  resource:
+    attributes:
+      - key: env
+        value: "mastodon"
+        action: upsert
+
+exporters:
+  datadog:
+    api:
+      site: ${DD_SITE}
+      key: ${DD_API_KEY}
+    traces:
+      trace_buffer: 500
+      span_name_as_resource_name: true
+
+service:
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      processors: [batch, resourcedetection, resource, memory_limiter]
+      exporters: [datadog]
+    traces:
+      receivers: [otlp]
+      processors: [batch, resourcedetection, resource, memory_limiter]
+      exporters: [datadog]
+    logs:
+      receivers: [otlp]
+      processors: [batch, resourcedetection, resource, memory_limiter]
+      exporters: [datadog]
