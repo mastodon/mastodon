@@ -1777,8 +1777,8 @@ __metadata:
   linkType: hard
 
 "@formatjs/cli@npm:^6.1.1":
-  version: 6.2.6
-  resolution: "@formatjs/cli@npm:6.2.6"
+  version: 6.2.7
+  resolution: "@formatjs/cli@npm:6.2.7"
   peerDependencies:
     vue: ^3.3.4
   peerDependenciesMeta:
@@ -1786,7 +1786,7 @@ __metadata:
       optional: true
   bin:
     formatjs: bin/formatjs
-  checksum: f8b0bc45c72b83437f0dc91a2d3ea513852c11bfd8eedbc2f255b19552f153bccb4d38fcd281f897ca60d0dfddf2b99de22e5a87cb1e173ca11df88c61cde2e4
+  checksum: ee7b0873a734e02721ce1ee107ee60845bb30855f4ca686bfb6c5e9862353249d5d20748b18db93200aabc7a59875ff062f485c64d41cb8e61f1d43e2bb5eceb
   languageName: node
   linkType: hard
 
@@ -2945,8 +2945,8 @@ __metadata:
   linkType: hard
 
 "@testing-library/jest-dom@npm:^6.0.0":
-  version: 6.2.0
-  resolution: "@testing-library/jest-dom@npm:6.2.0"
+  version: 6.4.0
+  resolution: "@testing-library/jest-dom@npm:6.4.0"
   dependencies:
     "@adobe/css-tools": "npm:^4.3.2"
     "@babel/runtime": "npm:^7.9.2"
@@ -2958,11 +2958,14 @@ __metadata:
     redent: "npm:^3.0.0"
   peerDependencies:
     "@jest/globals": ">= 28"
+    "@types/bun": "*"
     "@types/jest": ">= 28"
     jest: ">= 28"
     vitest: ">= 0.32"
   peerDependenciesMeta:
     "@jest/globals":
+      optional: true
+    "@types/bun":
       optional: true
     "@types/jest":
       optional: true
@@ -2970,7 +2973,7 @@ __metadata:
       optional: true
     vitest:
       optional: true
-  checksum: 71421693e0ad6a46be7d16f00b58a45725c238693972b8b5b1fd9ab797902ccf1209cf259afe8da1bf59d7c958762c46ee85d1aa5b164a5ec330981ea2376b08
+  checksum: 6b7eba9ca388986a721fb12f84adf0f5534bf7ec5851982023a889c4a0afac6e9e91291bdac39e1f59a05adefd7727e30463d98b21c3da32fbfec229ccb11ef1
   languageName: node
   linkType: hard
 
