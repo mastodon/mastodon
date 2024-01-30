@@ -5,13 +5,17 @@ module DatabaseViewRecord
 
   class_methods do
     def refresh
-      Scenic
-        .database
-        .refresh_materialized_view(
-          table_name,
-          concurrently: self::REFRESH_CONCURRENTLY,
-          cascade: false
-        )
+      Scenic.database.refresh_materialized_view(
+        table_name,
+        concurrently: true,
+        cascade: false
+      )
+    rescue ActiveRecord::StatementInvalid
+      Scenic.database.refresh_materialized_view(
+        table_name,
+        concurrently: false,
+        cascade: false
+      )
     end
   end
 
