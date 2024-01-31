@@ -9,7 +9,7 @@ class Api::V1::Trends::TagsController < Api::BaseController
 
   def index
     cache_if_unauthenticated!
-    render json: @tags, each_serializer: REST::TagSerializer, relationships: TagRelationshipsPresenter.new(@tags, current_user&.account_id)
+    render json: @tags, each_serializer: REST::TagSerializer, relationships: relationships
   end
 
   private
@@ -28,6 +28,10 @@ class Api::V1::Trends::TagsController < Api::BaseController
 
   def tags_from_trends
     Trends.tags.query.allowed
+  end
+
+  def relationships
+    TagRelationshipsPresenter.new(@tags, current_user&.account_id)
   end
 
   def pagination_params(core_params)

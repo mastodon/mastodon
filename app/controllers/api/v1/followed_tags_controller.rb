@@ -10,7 +10,7 @@ class Api::V1::FollowedTagsController < Api::BaseController
   after_action :insert_pagination_headers
 
   def index
-    render json: @results.map(&:tag), each_serializer: REST::TagSerializer, relationships: TagRelationshipsPresenter.new(@results.map(&:tag), current_user&.account_id)
+    render json: @results.map(&:tag), each_serializer: REST::TagSerializer, relationships: relationships
   end
 
   private
@@ -20,6 +20,10 @@ class Api::V1::FollowedTagsController < Api::BaseController
       limit_param(TAGS_LIMIT),
       params_slice(:max_id, :since_id, :min_id)
     )
+  end
+
+  def relationships
+    TagRelationshipsPresenter.new(@results.map(&:tag), current_user&.account_id)
   end
 
   def next_path

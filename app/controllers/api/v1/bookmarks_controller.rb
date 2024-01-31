@@ -7,7 +7,7 @@ class Api::V1::BookmarksController < Api::BaseController
 
   def index
     @statuses = load_statuses
-    render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
+    render json: @statuses, each_serializer: REST::StatusSerializer, relationships: relationships
   end
 
   private
@@ -29,6 +29,10 @@ class Api::V1::BookmarksController < Api::BaseController
 
   def account_bookmarks
     current_account.bookmarks
+  end
+
+  def relationships
+    StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
   end
 
   def next_path

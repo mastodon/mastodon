@@ -9,7 +9,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   def index
     cache_if_unauthenticated!
     @statuses = load_statuses
-    render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
+    render json: @statuses, each_serializer: REST::StatusSerializer, relationships: relationships
   end
 
   private
@@ -29,6 +29,10 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
       limit_param(DEFAULT_STATUSES_LIMIT),
       params_slice(:max_id, :since_id, :min_id)
     )
+  end
+
+  def relationships
+    StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
   end
 
   def pagination_params(core_params)

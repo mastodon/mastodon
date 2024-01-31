@@ -12,10 +12,9 @@ class Api::V1::Notifications::RequestsController < Api::BaseController
   def index
     with_read_replica do
       @requests = load_requests
-      @relationships = relationships
     end
 
-    render json: @requests, each_serializer: REST::NotificationRequestSerializer, relationships: @relationships
+    render json: @requests, each_serializer: REST::NotificationRequestSerializer, relationships: relationships
   end
 
   def show
