@@ -11,7 +11,7 @@ class Api::V1::Timelines::ListController < Api::V1::Timelines::BaseController
   def show
     render json: @statuses,
            each_serializer: REST::StatusSerializer,
-           relationships: StatusRelationshipsPresenter.new(@statuses, current_user.account_id)
+           relationships: relationships
   end
 
   private
@@ -39,6 +39,10 @@ class Api::V1::Timelines::ListController < Api::V1::Timelines::BaseController
 
   def list_feed
     ListFeed.new(@list)
+  end
+
+  def relationships
+    StatusRelationshipsPresenter.new(@statuses, current_user.account_id)
   end
 
   def next_path

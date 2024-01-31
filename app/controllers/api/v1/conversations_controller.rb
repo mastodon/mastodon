@@ -11,7 +11,7 @@ class Api::V1::ConversationsController < Api::BaseController
 
   def index
     @conversations = paginated_conversations
-    render json: @conversations, each_serializer: REST::ConversationSerializer, relationships: StatusRelationshipsPresenter.new(@conversations.map(&:last_status), current_user&.account_id)
+    render json: @conversations, each_serializer: REST::ConversationSerializer, relationships: relationships
   end
 
   def read
@@ -51,6 +51,10 @@ class Api::V1::ConversationsController < Api::BaseController
                          ]
                        )
                        .to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
+  end
+
+  def relationships
+    StatusRelationshipsPresenter.new(@conversations.map(&:last_status), current_user&.account_id)
   end
 
   def next_path
