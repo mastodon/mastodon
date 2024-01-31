@@ -14,10 +14,6 @@ class REST::AnnouncementSerializer < REST::BaseSerializer
   has_many :emojis, serializer: REST::CustomEmojiSerializer
   has_many :reactions, serializer: REST::ReactionSerializer
 
-  def current_user?
-    !current_user.nil?
-  end
-
   def id
     object.id.to_s
   end

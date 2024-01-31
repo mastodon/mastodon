@@ -44,10 +44,6 @@ class REST::StatusSerializer < REST::BaseSerializer
     object.in_reply_to_account_id&.to_s
   end
 
-  def current_user?
-    !current_user.nil?
-  end
-
   def show_application?
     object.account.user_shows_application? || (current_user? && current_user.account_id == object.account_id)
   end

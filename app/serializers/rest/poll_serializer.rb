@@ -28,10 +28,6 @@ class REST::PollSerializer < REST::BaseSerializer
     object.own_votes(current_user.account)
   end
 
-  def current_user?
-    !current_user.nil?
-  end
-
   class OptionSerializer < REST::BaseSerializer
     attributes :title, :votes_count
   end

@@ -22,8 +22,4 @@ class REST::TagSerializer < REST::BaseSerializer
       TagFollow.exists?(tag_id: object.id, account_id: current_user.account_id)
     end
   end
-
-  def current_user?
-    !current_user.nil?
-  end
 end
