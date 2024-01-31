@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'opentelemetry/sdk'
 require 'opentelemetry/exporter/otlp'
 require 'opentelemetry/instrumentation/action_pack'
@@ -40,6 +42,6 @@ OpenTelemetry::SDK.configure do |c|
   c.service_name =  case $PROGRAM_NAME
                     when /puma/ then 'mastodon/web'
                     else
-                      "mastodon/" + $PROGRAM_NAME.split('/').last
+                      "mastodon/#{$PROGRAM_NAME.split('/').last}"
                     end
 end
