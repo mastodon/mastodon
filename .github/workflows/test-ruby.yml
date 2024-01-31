@@ -224,7 +224,7 @@ jobs:
         if: failure()
         with:
           name: e2e-screenshots
-          path: tmp/screenshots/
+          path: tmp/capybara/
 
   test-search:
     name: Elastic Search integration testing
@@ -328,4 +328,4 @@ jobs:
         if: failure()
         with:
           name: test-search-screenshots
-          path: tmp/screenshots/
+          path: tmp/capybara/
