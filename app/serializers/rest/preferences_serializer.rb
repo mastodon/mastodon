@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::PreferencesSerializer < ActiveModel::Serializer
+class REST::PreferencesSerializer < REST::BaseSerializer
   attribute :posting_default_privacy, key: 'posting:default:visibility'
   attribute :posting_default_sensitive, key: 'posting:default:sensitive'
   attribute :posting_default_language, key: 'posting:default:language'

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::PollSerializer < ActiveModel::Serializer
+class REST::PollSerializer < REST::BaseSerializer
   # Please update `app/javascript/mastodon/api_types/polls.ts` when making changes to the attributes
 
   attributes :id, :expires_at, :expired,
@@ -32,7 +32,7 @@ class REST::PollSerializer < ActiveModel::Serializer
     !current_user.nil?
   end
 
-  class OptionSerializer < ActiveModel::Serializer
+  class OptionSerializer < REST::BaseSerializer
     attributes :title, :votes_count
   end
 end

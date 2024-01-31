@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::Admin::CanonicalEmailBlockSerializer < ActiveModel::Serializer
+class REST::Admin::CanonicalEmailBlockSerializer < REST::BaseSerializer
   attributes :id, :canonical_email_hash
 
   def id

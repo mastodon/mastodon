@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::PreviewCardSerializer < ActiveModel::Serializer
+class REST::PreviewCardSerializer < REST::BaseSerializer
   include RoutingHelper
 
   attributes :url, :title, :description, :language, :type,

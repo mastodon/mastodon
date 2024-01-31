@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::Admin::Trends::Links::PreviewCardProviderSerializer < ActiveModel::Serializer
+class REST::Admin::Trends::Links::PreviewCardProviderSerializer < REST::BaseSerializer
   attributes :id, :domain, :trendable, :reviewed_at,
              :requested_review_at, :requires_review
 

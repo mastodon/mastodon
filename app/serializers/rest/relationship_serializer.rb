@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::RelationshipSerializer < ActiveModel::Serializer
+class REST::RelationshipSerializer < REST::BaseSerializer
   # Please update `app/javascript/mastodon/api_types/relationships.ts` when making changes to the attributes
 
   attributes :id, :following, :showing_reblogs, :notifying, :languages, :followed_by,

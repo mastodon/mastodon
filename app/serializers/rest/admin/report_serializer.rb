@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::Admin::ReportSerializer < ActiveModel::Serializer
+class REST::Admin::ReportSerializer < REST::BaseSerializer
   attributes :id, :action_taken, :action_taken_at, :category, :comment,
              :forwarded, :created_at, :updated_at
 

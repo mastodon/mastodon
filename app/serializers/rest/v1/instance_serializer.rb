@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::V1::InstanceSerializer < ActiveModel::Serializer
+class REST::V1::InstanceSerializer < REST::BaseSerializer
   include RoutingHelper
 
   attributes :uri, :title, :short_description, :description, :email,

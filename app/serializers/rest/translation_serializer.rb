@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class REST::TranslationSerializer < ActiveModel::Serializer
+class REST::TranslationSerializer < REST::BaseSerializer
   attributes :detected_source_language, :language, :provider, :spoiler_text, :content
 
-  class PollSerializer < ActiveModel::Serializer
+  class PollSerializer < REST::BaseSerializer
     attribute :id
     has_many :options
 
@@ -15,14 +15,14 @@ class REST::TranslationSerializer < ActiveModel::Serializer
       object.poll_options
     end
 
-    class OptionSerializer < ActiveModel::Serializer
+    class OptionSerializer < REST::BaseSerializer
       attributes :title
     end
   end
 
   has_one :poll, serializer: PollSerializer
 
-  class MediaAttachmentSerializer < ActiveModel::Serializer
+  class MediaAttachmentSerializer < REST::BaseSerializer
     attributes :id, :description
 
     def id

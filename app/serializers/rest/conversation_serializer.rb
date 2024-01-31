@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::ConversationSerializer < ActiveModel::Serializer
+class REST::ConversationSerializer < REST::BaseSerializer
   attributes :id, :unread
 
   has_many :participant_accounts, key: :accounts, serializer: REST::AccountSerializer

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::ReactionSerializer < ActiveModel::Serializer
+class REST::ReactionSerializer < REST::BaseSerializer
   include RoutingHelper
 
   attributes :name, :count

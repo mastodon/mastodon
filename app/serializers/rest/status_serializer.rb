@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::StatusSerializer < ActiveModel::Serializer
+class REST::StatusSerializer < REST::BaseSerializer
   include FormattingHelper
 
   # Please update `app/javascript/mastodon/api_types/statuses.ts` when making changes to the attributes
@@ -160,7 +160,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
     instance_options && instance_options[:relationships]
   end
 
-  class ApplicationSerializer < ActiveModel::Serializer
+  class ApplicationSerializer < REST::BaseSerializer
     attributes :name, :website
 
     def website
@@ -168,7 +168,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
     end
   end
 
-  class MentionSerializer < ActiveModel::Serializer
+  class MentionSerializer < REST::BaseSerializer
     attributes :id, :username, :url, :acct
 
     def id
@@ -188,7 +188,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
     end
   end
 
-  class TagSerializer < ActiveModel::Serializer
+  class TagSerializer < REST::BaseSerializer
     include RoutingHelper
 
     attributes :name, :url

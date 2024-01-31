@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class REST::Admin::CohortSerializer < ActiveModel::Serializer
+class REST::Admin::CohortSerializer < REST::BaseSerializer
   attributes :period, :frequency
 
-  class CohortDataSerializer < ActiveModel::Serializer
+  class CohortDataSerializer < REST::BaseSerializer
     attributes :date, :rate, :value
 
     def date

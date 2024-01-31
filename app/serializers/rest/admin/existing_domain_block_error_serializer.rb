@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::Admin::ExistingDomainBlockErrorSerializer < ActiveModel::Serializer
+class REST::Admin::ExistingDomainBlockErrorSerializer < REST::BaseSerializer
   attributes :error
 
   has_one :existing_domain_block, serializer: REST::Admin::DomainBlockSerializer

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::Admin::MeasureSerializer < ActiveModel::Serializer
+class REST::Admin::MeasureSerializer < REST::BaseSerializer
   attributes :key, :unit, :total
 
   attribute :human_value, if: -> { object.respond_to?(:value_to_human_value) }

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::WebPushSubscriptionSerializer < ActiveModel::Serializer
+class REST::WebPushSubscriptionSerializer < REST::BaseSerializer
   attributes :id, :endpoint, :alerts, :server_key, :policy
 
   def alerts

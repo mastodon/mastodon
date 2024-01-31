@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class REST::InstanceSerializer < ActiveModel::Serializer
-  class ContactSerializer < ActiveModel::Serializer
+class REST::InstanceSerializer < REST::BaseSerializer
+  class ContactSerializer < REST::BaseSerializer
     attributes :email
 
     has_one :account, serializer: REST::AccountSerializer

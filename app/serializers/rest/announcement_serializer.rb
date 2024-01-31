@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::AnnouncementSerializer < ActiveModel::Serializer
+class REST::AnnouncementSerializer < REST::BaseSerializer
   include FormattingHelper
 
   attributes :id, :content, :starts_at, :ends_at, :all_day,
@@ -34,7 +34,7 @@ class REST::AnnouncementSerializer < ActiveModel::Serializer
     object.reactions(current_user&.account)
   end
 
-  class AccountSerializer < ActiveModel::Serializer
+  class AccountSerializer < REST::BaseSerializer
     attributes :id, :username, :url, :acct
 
     def id

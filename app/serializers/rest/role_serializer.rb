@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::RoleSerializer < ActiveModel::Serializer
+class REST::RoleSerializer < REST::BaseSerializer
   attributes :id, :name, :permissions, :color, :highlighted
 
   def id

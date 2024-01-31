@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::SuggestionSerializer < ActiveModel::Serializer
+class REST::SuggestionSerializer < REST::BaseSerializer
   attributes :source, :sources
 
   has_one :account, serializer: REST::AccountSerializer

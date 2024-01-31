@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::EncryptedMessageSerializer < ActiveModel::Serializer
+class REST::EncryptedMessageSerializer < REST::BaseSerializer
   attributes :id, :account_id, :device_id,
              :type, :body, :digest, :message_franking,
              :created_at

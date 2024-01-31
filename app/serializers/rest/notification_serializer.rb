@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::NotificationSerializer < ActiveModel::Serializer
+class REST::NotificationSerializer < REST::BaseSerializer
   attributes :id, :type, :created_at
 
   belongs_to :from_account, key: :account, serializer: REST::AccountSerializer

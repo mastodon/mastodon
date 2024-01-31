@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::CustomEmojiSerializer < ActiveModel::Serializer
+class REST::CustomEmojiSerializer < REST::BaseSerializer
   include RoutingHelper
 
   # Please update `app/javascript/mastodon/api_types/custom_emoji.ts` when making changes to the attributes

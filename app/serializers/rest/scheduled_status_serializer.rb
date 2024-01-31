@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::ScheduledStatusSerializer < ActiveModel::Serializer
+class REST::ScheduledStatusSerializer < REST::BaseSerializer
   attributes :id, :scheduled_at, :params
 
   has_many :media_attachments, serializer: REST::MediaAttachmentSerializer

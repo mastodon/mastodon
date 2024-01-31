@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::Admin::IpBlockSerializer < ActiveModel::Serializer
+class REST::Admin::IpBlockSerializer < REST::BaseSerializer
   attributes :id, :ip, :severity, :comment,
              :created_at, :expires_at
 

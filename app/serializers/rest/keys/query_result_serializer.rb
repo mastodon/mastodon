@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::Keys::QueryResultSerializer < ActiveModel::Serializer
+class REST::Keys::QueryResultSerializer < REST::BaseSerializer
   attributes :account_id
 
   has_many :devices, serializer: REST::Keys::DeviceSerializer

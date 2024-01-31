@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::StatusEditSerializer < ActiveModel::Serializer
+class REST::StatusEditSerializer < REST::BaseSerializer
   include FormattingHelper
 
   has_one :account, serializer: REST::AccountSerializer
