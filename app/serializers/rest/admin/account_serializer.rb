@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::Admin::AccountSerializer < ActiveModel::Serializer
+class REST::Admin::AccountSerializer < REST::BaseSerializer
   attributes :id, :username, :domain, :created_at,
              :email, :ip, :confirmed, :suspended,
              :silenced, :sensitized, :disabled, :approved, :locale,

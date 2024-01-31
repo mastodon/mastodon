@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::Admin::WebhookEventSerializer < ActiveModel::Serializer
+class REST::Admin::WebhookEventSerializer < REST::BaseSerializer
   def self.serializer_for(model, options)
     case model.class.name
     when 'Account'

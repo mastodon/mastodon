@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::TagSerializer < ActiveModel::Serializer
+class REST::TagSerializer < REST::BaseSerializer
   include RoutingHelper
 
   attributes :name, :url, :history

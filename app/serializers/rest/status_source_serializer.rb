@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::StatusSourceSerializer < ActiveModel::Serializer
+class REST::StatusSourceSerializer < REST::BaseSerializer
   attributes :id, :text, :spoiler_text
 
   def id

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::PollSerializer < ActiveModel::Serializer
+class REST::PollSerializer < REST::BaseSerializer
   attributes :id, :expires_at, :expired,
              :multiple, :votes_count, :voters_count
 
@@ -30,7 +30,7 @@ class REST::PollSerializer < ActiveModel::Serializer
     !current_user.nil?
   end
 
-  class OptionSerializer < ActiveModel::Serializer
+  class OptionSerializer < REST::BaseSerializer
     attributes :title, :votes_count
   end
 end

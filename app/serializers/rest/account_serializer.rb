@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::AccountSerializer < ActiveModel::Serializer
+class REST::AccountSerializer < REST::BaseSerializer
   include RoutingHelper
   include FormattingHelper
 
@@ -30,7 +30,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
     end
   end
 
-  class RoleSerializer < ActiveModel::Serializer
+  class RoleSerializer < REST::BaseSerializer
     attributes :id, :name, :color
 
     def id
@@ -40,7 +40,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   has_many :roles, serializer: RoleSerializer, if: :local?
 
-  class FieldSerializer < ActiveModel::Serializer
+  class FieldSerializer < REST::BaseSerializer
     include FormattingHelper
 
     attributes :name, :value, :verified_at

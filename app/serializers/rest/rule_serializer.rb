@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::RuleSerializer < ActiveModel::Serializer
+class REST::RuleSerializer < REST::BaseSerializer
   attributes :id, :text, :hint
 
   def id

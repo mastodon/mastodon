@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::Admin::DomainBlockSerializer < ActiveModel::Serializer
+class REST::Admin::DomainBlockSerializer < REST::BaseSerializer
   attributes :id, :domain, :digest, :created_at, :severity,
              :reject_media, :reject_reports,
              :private_comment, :public_comment, :obfuscate

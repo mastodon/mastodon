@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::FilterSerializer < ActiveModel::Serializer
+class REST::FilterSerializer < REST::BaseSerializer
   attributes :id, :title, :context, :expires_at, :filter_action
   has_many :keywords, serializer: REST::FilterKeywordSerializer, if: :rules_requested?
   has_many :statuses, serializer: REST::FilterStatusSerializer, if: :rules_requested?

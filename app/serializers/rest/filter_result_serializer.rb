@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::FilterResultSerializer < ActiveModel::Serializer
+class REST::FilterResultSerializer < REST::BaseSerializer
   belongs_to :filter, serializer: REST::FilterSerializer
   has_many :keyword_matches
   has_many :status_matches
