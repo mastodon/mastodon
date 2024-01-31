@@ -7,8 +7,8 @@ receivers:
         #endpoint: localhost:4318
         cors:
           allowed_origins:
-            - "http://*"
-            - "https://*"
+            - 'http://*'
+            - 'https://*'
 
 processors:
   batch:
@@ -42,7 +42,7 @@ processors:
   resource:
     attributes:
       - key: env
-        value: "mastodon"
+        value: 'mastodon'
         action: upsert
 
 exporters:
