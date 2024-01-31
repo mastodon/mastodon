@@ -8,26 +8,15 @@ class InlineRenderer
   end
 
   def render
-    case @template
-    when :status
-      serializer = REST::StatusSerializer
-      preload_associations_for_status
-    when :notification
-      serializer = REST::NotificationSerializer
-    when :conversation
-      serializer = REST::ConversationSerializer
-    when :announcement
-      serializer = REST::AnnouncementSerializer
-    when :reaction
-      serializer = REST::ReactionSerializer
-    when :encrypted_message
-      serializer = REST::EncryptedMessageSerializer
-    else
-      return
-    end
+    serializer = serializer_from_template
+    return if serializer.nil?
 
-    serializable_resource = ActiveModelSerializers::SerializableResource.new(@object, serializer: serializer, scope: current_user, scope_name: :current_user)
-    serializable_resource.as_json
+    ActiveModelSerializers::SerializableResource.new(
+      @object,
+      serializer: serializer,
+      scope: current_user,
+      scope_name: :current_user
+    ).as_json
   end
 
   def self.render(object, current_account, template)
@@ -35,6 +24,24 @@ class InlineRenderer
   end
 
   private
+
+  def serializer_from_template
+    case @template
+    when :status
+      preload_associations_for_status
+      REST::StatusSerializer
+    when :notification
+      REST::NotificationSerializer
+    when :conversation
+      REST::ConversationSerializer
+    when :announcement
+      REST::AnnouncementSerializer
+    when :reaction
+      REST::ReactionSerializer
+    when :encrypted_message
+      REST::EncryptedMessageSerializer
+    end
+  end
 
   def preload_associations_for_status
     ActiveRecord::Associations::Preloader.new(records: [@object], associations: {
