@@ -13,10 +13,6 @@ class REST::ReactionSerializer < REST::BaseSerializer
     object.respond_to?(:count) ? object.count : 0
   end
 
-  def current_user?
-    !current_user.nil?
-  end
-
   def custom_emoji?
     object.custom_emoji.present?
   end
