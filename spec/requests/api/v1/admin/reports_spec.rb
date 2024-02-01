@@ -151,7 +151,9 @@ RSpec.describe 'Reports' do
     let(:params)  { { category: 'spam' } }
 
     it 'updates the report category', :aggregate_failures do
-      expect { subject }.to change { report.reload.category }.from('other').to('spam')
+      expect { subject }
+        .to change { report.reload.category }.from('other').to('spam')
+        .and change(Admin::ActionLog, :count).by(1)
 
       expect(response).to have_http_status(200)
 
