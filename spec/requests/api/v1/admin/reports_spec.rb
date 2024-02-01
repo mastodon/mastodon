@@ -153,7 +153,7 @@ RSpec.describe 'Reports' do
     it 'updates the report category', :aggregate_failures do
       expect { subject }
         .to change { report.reload.category }.from('other').to('spam')
-        .and change(Admin::ActionLog, :count).by(1)
+        .and create_an_action_log
 
       expect(response).to have_http_status(200)
 
@@ -188,7 +188,7 @@ RSpec.describe 'Reports' do
     it 'marks report as resolved', :aggregate_failures do
       expect { subject }
         .to change { report.reload.unresolved? }.from(true).to(false)
-        .and change(Admin::ActionLog, :count).by(1)
+        .and create_an_action_log
       expect(response).to have_http_status(200)
     end
   end
@@ -206,7 +206,7 @@ RSpec.describe 'Reports' do
     it 'marks report as unresolved', :aggregate_failures do
       expect { subject }
         .to change { report.reload.unresolved? }.from(false).to(true)
-        .and change(Admin::ActionLog, :count).by(1)
+        .and create_an_action_log
       expect(response).to have_http_status(200)
     end
   end
@@ -224,7 +224,7 @@ RSpec.describe 'Reports' do
     it 'assigns report to the requesting user', :aggregate_failures do
       expect { subject }
         .to change { report.reload.assigned_account_id }.from(nil).to(user.account.id)
-        .and change(Admin::ActionLog, :count).by(1)
+        .and create_an_action_log
       expect(response).to have_http_status(200)
     end
   end
@@ -242,8 +242,14 @@ RSpec.describe 'Reports' do
     it 'unassigns report from assignee', :aggregate_failures do
       expect { subject }
         .to change { report.reload.assigned_account_id }.from(user.account.id).to(nil)
-        .and change(Admin::ActionLog, :count).by(1)
+        .and create_an_action_log
       expect(response).to have_http_status(200)
     end
+  end
+
+  private
+
+  def create_an_action_log
+    change(Admin::ActionLog, :count).by(1)
   end
 end
