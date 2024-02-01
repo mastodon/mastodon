@@ -14,7 +14,7 @@ jobs:
         env:
           TZ: Etc/UTC
         run: |
-          echo mastodon_version_prerelease=nightly.2024-02-02-security>> $GITHUB_OUTPUT
+          echo mastodon_version_prerelease=nightly.$(date --date='next day' +'%Y-%m-%d')-security>> $GITHUB_OUTPUT
     outputs:
       prerelease: ${{ steps.version_vars.outputs.mastodon_version_prerelease }}
 
@@ -36,7 +36,7 @@ jobs:
       tags: |
         type=raw,value=edge
         type=raw,value=nightly
-        type=schedule,pattern=${{ needs.compute-suffix.outputs.prerelease }}
+        type=raw,value=${{ needs.compute-suffix.outputs.prerelease }}
     secrets: inherit
 
   build-image-streaming:
@@ -57,5 +57,5 @@ jobs:
       tags: |
         type=raw,value=edge
         type=raw,value=nightly
-        type=schedule,pattern=${{ needs.compute-suffix.outputs.prerelease }}
+        type=raw,value=${{ needs.compute-suffix.outputs.prerelease }}
     secrets: inherit
