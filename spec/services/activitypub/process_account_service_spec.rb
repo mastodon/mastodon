@@ -200,6 +200,89 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
     end
   end
 
+  context 'when processing a chain of moved actors' do
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            movedTo: { '@id': 'as:movedTo', '@type': '@id' },
+          },
+        ],
+        id: 'https://foo.test/users/0',
+        type: 'Person',
+        inbox: 'https://foo.test/inbox',
+        preferredUsername: 'user0',
+        movedTo: 'https://foo.test/users/1',
+      }.with_indifferent_access
+    end
+
+    before do
+      6.times do |i|
+        actor_json = payload.merge({
+          id: "https://foo.test/users/#{i}",
+          preferredUsername: "user#{i}",
+          movedTo: "https://foo.test/users/#{i + 1}",
+        }).with_indifferent_access
+        webfinger = {
+          subject: "acct:user#{i}@foo.test",
+          links: [{ rel: 'self', href: "https://foo.test/users/#{i}" }],
+        }.with_indifferent_access
+        stub_request(:get, "https://foo.test/users/#{i}").to_return(status: 200, body: actor_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, "https://foo.test/.well-known/webfinger?resource=acct:user#{i}@foo.test").to_return(body: webfinger.to_json, headers: { 'Content-Type': 'application/jrd+json' })
+      end
+    end
+
+    it 'correctly sets moved_to on the accounts' do
+      subject.call('user0', 'foo.test', payload)
+      accounts = Array.new(4) { |i| Account.find_by(uri: "https://foo.test/users/#{i}") }
+      expect(accounts[0].moved_to_account).to eq accounts[1]
+      expect(accounts[1].moved_to_account).to eq accounts[2]
+      expect(accounts[2].moved_to_account).to eq accounts[3]
+    end
+  end
+
+  context 'when processing mutually moved-to actors' do
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            movedTo: { '@id': 'as:movedTo', '@type': '@id' },
+          },
+        ],
+        id: 'https://foo.test/users/0',
+        type: 'Person',
+        inbox: 'https://foo.test/inbox',
+        preferredUsername: 'user0',
+        movedTo: 'https://foo.test/users/1',
+      }.with_indifferent_access
+    end
+
+    before do
+      2.times do |i|
+        actor_json = payload.merge({
+          id: "https://foo.test/users/#{i}",
+          preferredUsername: "user#{i}",
+          movedTo: "https://foo.test/users/#{(i + 1) % 2}",
+        }).with_indifferent_access
+        webfinger = {
+          subject: "acct:user#{i}@foo.test",
+          links: [{ rel: 'self', href: "https://foo.test/users/#{i}" }],
+        }.with_indifferent_access
+        stub_request(:get, "https://foo.test/users/#{i}").to_return(status: 200, body: actor_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, "https://foo.test/.well-known/webfinger?resource=acct:user#{i}@foo.test").to_return(body: webfinger.to_json, headers: { 'Content-Type': 'application/jrd+json' })
+      end
+    end
+
+    it 'correctly fetches both accounts' do
+      subject.call('user0', 'foo.test', payload)
+      expect(a_request(:get, 'https://foo.test/users/1')).to have_been_made.once
+      expect(Account.exists?(uri: 'https://foo.test/users/0')).to be true
+      expect(Account.exists?(uri: 'https://foo.test/users/1')).to be true
+    end
+  end
+
   private
 
   def create_some_remote_accounts
