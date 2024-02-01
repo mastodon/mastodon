@@ -28,7 +28,7 @@ const makeGetStatusIds = (pending = false) => createSelector([
   getRegex,
 ], (columnSettings, statusIds, statuses, regex) => {
   return statusIds.filter(id => {
-    if (id === null) return true;
+    if (id === null || id === 'inline-follow-suggestions') return true;
 
     const statusForId = statuses.get(id);
     let showStatus    = true;
