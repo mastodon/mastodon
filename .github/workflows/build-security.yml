@@ -1,4 +1,6 @@
 name: Build security nightly container image
+on:
+  workflow_dispatch:
 
 permissions:
   contents: read
