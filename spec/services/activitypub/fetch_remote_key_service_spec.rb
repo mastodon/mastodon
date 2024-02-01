@@ -55,7 +55,7 @@ RSpec.describe ActivityPub::FetchRemoteKeyService, type: :service do
   end
 
   describe '#call' do
-    let(:account) { subject.call(public_key_id, id: false) }
+    let(:account) { subject.call(public_key_id) }
 
     context 'when the key is a sub-object from the actor' do
       before do
