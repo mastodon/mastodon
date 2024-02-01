@@ -48,7 +48,7 @@ jobs:
       use_native_arm64_builder: false
       cache: false
       push_to_images: |
-        ghcr.io/${{ github.repository_owner }}/mastodon
+        ghcr.io/${{ github.repository_owner }}/mastodon-streaming
       version_prerelease: ${{ needs.compute-suffix.outputs.prerelease }}
       labels: |
         org.opencontainers.image.description=Nightly build image used for testing purposes
