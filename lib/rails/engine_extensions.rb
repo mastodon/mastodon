@@ -9,5 +9,3 @@ module Rails
     end
   end
 end
-
-Rails::Engine.prepend(Rails::EngineExtensions)

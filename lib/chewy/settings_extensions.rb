@@ -7,5 +7,3 @@ module Chewy
     end
   end
 end
-
-Chewy.extend(Chewy::SettingsExtensions)

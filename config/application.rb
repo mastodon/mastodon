@@ -22,32 +22,9 @@ require 'mail'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-require_relative '../lib/mastodon'
-require_relative '../lib/redis/namespace_extensions'
-require_relative '../lib/paperclip/url_generator_extensions'
-require_relative '../lib/paperclip/attachment_extensions'
-require_relative '../lib/paperclip/lazy_thumbnail'
-require_relative '../lib/paperclip/gif_transcoder'
-require_relative '../lib/paperclip/media_type_spoof_detector_extensions'
-require_relative '../lib/paperclip/transcoder'
-require_relative '../lib/paperclip/type_corrector'
-require_relative '../lib/paperclip/response_with_limit_adapter'
-require_relative '../lib/terrapin/multi_pipe_extensions'
-require_relative '../lib/mastodon/snowflake'
-require_relative '../lib/mastodon/version'
+require_relative '../lib/active_record/batches'
 require_relative '../lib/mastodon/rack_middleware'
 require_relative '../lib/public_file_server_middleware'
-require_relative '../lib/devise/strategies/two_factor_ldap_authenticatable'
-require_relative '../lib/devise/strategies/two_factor_pam_authenticatable'
-require_relative '../lib/chewy/settings_extensions'
-require_relative '../lib/chewy/index_extensions'
-require_relative '../lib/chewy/strategy/mastodon'
-require_relative '../lib/chewy/strategy/bypass_with_warning'
-require_relative '../lib/webpacker/manifest_extensions'
-require_relative '../lib/webpacker/helper_extensions'
-require_relative '../lib/rails/engine_extensions'
-require_relative '../lib/active_record/batches'
-require_relative '../lib/simple_navigation/item_extensions'
 
 Dotenv::Railtie.load
 
@@ -101,6 +78,14 @@ module Mastodon
       Doorkeeper::AccessToken.include AccessTokenExtension
       Devise::FailureApp.include AbstractController::Callbacks
       Devise::FailureApp.include Localized
+      Webpacker::Manifest.prepend Webpacker::ManifestExtensions
+      Webpacker::Helper.prepend Webpacker::HelperExtensions
+      Chewy.extend Chewy::SettingsExtensions
+      Chewy::Index.extend Chewy::IndexExtensions
+      Rails::Engine.prepend Rails::EngineExtensions
+      Paperclip::Attachment.prepend(Paperclip::AttachmentExtensions)
+      Paperclip::MediaTypeSpoofDetector.prepend(Paperclip::MediaTypeSpoofDetectorExtensions)
+      Paperclip::UrlGenerator.prepend(Paperclip::URLGeneratorExtensions)
     end
   end
 end

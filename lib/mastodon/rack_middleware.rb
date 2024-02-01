@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../mastodon'
+
 class Mastodon::RackMiddleware
   def initialize(app)
     @app = app

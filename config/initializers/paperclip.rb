@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../../lib/paperclip/response_with_limit_adapter'
+
 Paperclip::DataUriAdapter.register
 Paperclip::ResponseWithLimitAdapter.register
 

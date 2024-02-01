@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../mastodon'
+
 class Mastodon::SidekiqMiddleware
   BACKTRACE_LIMIT = 3
 

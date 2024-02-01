@@ -13,5 +13,3 @@ module Webpacker::ManifestExtensions
     end
   end
 end
-
-Webpacker::Manifest.prepend(Webpacker::ManifestExtensions)

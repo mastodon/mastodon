@@ -94,5 +94,3 @@ module Paperclip
     end
   end
 end
-
-Paperclip::Attachment.prepend(Paperclip::AttachmentExtensions)

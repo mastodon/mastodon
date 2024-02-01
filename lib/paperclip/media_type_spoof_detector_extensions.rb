@@ -20,5 +20,3 @@ module Paperclip
     end
   end
 end
-
-Paperclip::MediaTypeSpoofDetector.prepend(Paperclip::MediaTypeSpoofDetectorExtensions)

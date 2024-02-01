@@ -14,5 +14,3 @@ module Chewy
     end
   end
 end
-
-Chewy::Index.extend(Chewy::IndexExtensions)

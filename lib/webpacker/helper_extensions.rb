@@ -23,5 +23,3 @@ module Webpacker::HelperExtensions
     preload_link_tag(src, options.merge(integrity: integrity, crossorigin: crossorigin))
   end
 end
-
-Webpacker::Helper.prepend(Webpacker::HelperExtensions)

@@ -7,5 +7,3 @@ module Paperclip
     end
   end
 end
-
-Paperclip::UrlGenerator.prepend(Paperclip::URLGeneratorExtensions)
