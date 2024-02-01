@@ -2,23 +2,18 @@
 
 require 'rails_helper'
 
-describe Api::V1::Statuses::MutesController do
-  render_views
-
+describe 'API V1 Statuses Mutes' do
   let(:user)  { Fabricate(:user) }
-  let(:app)   { Fabricate(:application, name: 'Test app', website: 'http://testapp.com') }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'write:mutes', application: app) }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  let(:scopes)  { 'write:mutes' }
+  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   context 'with an oauth token' do
-    before do
-      allow(controller).to receive(:doorkeeper_token) { token }
-    end
-
-    describe 'POST #create' do
+    describe 'POST /api/v1/statuses/:status_id/mute' do
       let(:status) { Fabricate(:status, account: user.account) }
 
       before do
-        post :create, params: { status_id: status.id }
+        post "/api/v1/statuses/#{status.id}/mute", headers: headers
       end
 
       it 'creates a conversation mute', :aggregate_failures do
@@ -27,12 +22,12 @@ describe Api::V1::Statuses::MutesController do
       end
     end
 
-    describe 'POST #destroy' do
+    describe 'POST /api/v1/statuses/:status_id/unmute' do
       let(:status) { Fabricate(:status, account: user.account) }
 
       before do
         user.account.mute_conversation!(status.conversation)
-        post :destroy, params: { status_id: status.id }
+        post "/api/v1/statuses/#{status.id}/unmute", headers: headers
       end
 
       it 'destroys the conversation mute', :aggregate_failures do

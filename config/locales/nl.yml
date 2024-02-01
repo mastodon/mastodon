@@ -1546,6 +1546,9 @@ nl:
     errors:
       limit_reached: Limiet van verschillende emoji-reacties bereikt
       unrecognized_emoji: is geen bestaande emoji-reactie
+  redirects:
+    prompt: Als je deze link vertrouwt, klik er dan op om door te gaan.
+    title: Je verlaat %{instance}.
   relationships:
     activity: Accountactiviteit
     confirm_follow_selected_followers: Weet je zeker dat je de geselecteerde volgers wilt volgen?
@@ -1792,7 +1795,8 @@ nl:
       title: Archief ophalen
     failed_2fa:
       details: 'Hier zijn details van de aanmeldpoging:'
-      explanation: Iemand heeft geprobeerd om in te loggen op uw account maar heeft een ongeldige tweede verificatiefactor opgegeven.
+      explanation: Iemand heeft geprobeerd om in te loggen op jouw account maar heeft een ongeldige tweede verificatiefactor opgegeven.
+      further_actions_html: Als jij dit niet was, raden we je aan om onmiddellijk %{action} aangezien het in gevaar kan zijn.
       subject: Tweede factor authenticatiefout
       title: Tweestapsverificatie mislukt
     suspicious_sign_in:

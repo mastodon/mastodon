@@ -32,7 +32,6 @@ import { isMobile } from '../../is_mobile';
 import Motion from '../ui/util/optional_motion';
 
 import ComposeFormContainer from './containers/compose_form_container';
-import NavigationContainer from './containers/navigation_container';
 import SearchContainer from './containers/search_container';
 import SearchResultsContainer from './containers/search_results_container';
 
@@ -131,8 +130,6 @@ class Compose extends PureComponent {
 
           <div className='drawer__pager'>
             <div className='drawer__inner' onFocus={this.onFocus}>
-              <NavigationContainer onClose={this.onBlur} />
-
               <ComposeFormContainer autoFocus={!isMobile(window.innerWidth)} />
               <ModsAnnouncements />
 
@@ -155,7 +152,6 @@ class Compose extends PureComponent {
 
     return (
       <Column onFocus={this.onFocus}>
-        <NavigationContainer onClose={this.onBlur} />
         <ComposeFormContainer />
 
         <Helmet>

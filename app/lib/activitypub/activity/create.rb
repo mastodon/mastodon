@@ -108,7 +108,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_status_params
-    @status_parser = ActivityPub::Parser::StatusParser.new(@json, followers_collection: @account.followers_url)
+    @status_parser = ActivityPub::Parser::StatusParser.new(@json, followers_collection: @account.followers_url, object: @object)
 
     attachment_ids = process_attachments.take(4).map(&:id)
 

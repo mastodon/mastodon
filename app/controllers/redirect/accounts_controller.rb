@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Redirect::AccountsController < ApplicationController
+class Redirect::AccountsController < Redirect::BaseController
   private
 
   def set_resource
