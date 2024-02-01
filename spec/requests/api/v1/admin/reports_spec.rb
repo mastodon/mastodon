@@ -184,7 +184,9 @@ RSpec.describe 'Reports' do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'marks report as resolved', :aggregate_failures do
-      expect { subject }.to change { report.reload.unresolved? }.from(true).to(false)
+      expect { subject }
+        .to change { report.reload.unresolved? }.from(true).to(false)
+        .and change(Admin::ActionLog, :count).by(1)
       expect(response).to have_http_status(200)
     end
   end
@@ -200,7 +202,9 @@ RSpec.describe 'Reports' do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'marks report as unresolved', :aggregate_failures do
-      expect { subject }.to change { report.reload.unresolved? }.from(false).to(true)
+      expect { subject }
+        .to change { report.reload.unresolved? }.from(false).to(true)
+        .and change(Admin::ActionLog, :count).by(1)
       expect(response).to have_http_status(200)
     end
   end
@@ -216,7 +220,9 @@ RSpec.describe 'Reports' do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'assigns report to the requesting user', :aggregate_failures do
-      expect { subject }.to change { report.reload.assigned_account_id }.from(nil).to(user.account.id)
+      expect { subject }
+        .to change { report.reload.assigned_account_id }.from(nil).to(user.account.id)
+        .and change(Admin::ActionLog, :count).by(1)
       expect(response).to have_http_status(200)
     end
   end
@@ -232,7 +238,9 @@ RSpec.describe 'Reports' do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'unassigns report from assignee', :aggregate_failures do
-      expect { subject }.to change { report.reload.assigned_account_id }.from(user.account.id).to(nil)
+      expect { subject }
+        .to change { report.reload.assigned_account_id }.from(user.account.id).to(nil)
+        .and change(Admin::ActionLog, :count).by(1)
       expect(response).to have_http_status(200)
     end
   end
