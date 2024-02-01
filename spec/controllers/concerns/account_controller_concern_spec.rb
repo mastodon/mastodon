@@ -49,22 +49,21 @@ describe AccountControllerConcern do
   end
 
   context 'when account is not suspended' do
-    it 'assigns @account' do
-      account = Fabricate(:account)
+    let(:account) { Fabricate(:account, username: 'username') }
+
+    it 'assigns @account, returns success, and sets link headers' do
       get 'success', params: { account_username: account.username }
+
       expect(assigns(:account)).to eq account
-    end
-
-    it 'sets link headers' do
-      Fabricate(:account, username: 'username')
-      get 'success', params: { account_username: 'username' }
-      expect(response.headers['Link'].to_s).to eq '<http://test.host/.well-known/webfinger?resource=acct%3Ausername%40cb6e6126.ngrok.io>; rel="lrdd"; type="application/jrd+json", <https://cb6e6126.ngrok.io/users/username>; rel="alternate"; type="application/activity+json"'
-    end
-
-    it 'returns http success' do
-      account = Fabricate(:account)
-      get 'success', params: { account_username: account.username }
       expect(response).to have_http_status(200)
+      expect(response.headers['Link'].to_s).to eq(expected_link_headers)
+    end
+
+    def expected_link_headers
+      [
+        '<http://test.host/.well-known/webfinger?resource=acct%3Ausername%40cb6e6126.ngrok.io>; rel="lrdd"; type="application/jrd+json"',
+        '<https://cb6e6126.ngrok.io/users/username>; rel="alternate"; type="application/activity+json"',
+      ].join(', ')
     end
   end
 end

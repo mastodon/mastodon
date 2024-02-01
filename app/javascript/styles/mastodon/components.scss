@@ -9459,3 +9459,199 @@ noscript {
     padding: 0;
   }
 }
+
+.inline-follow-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid mix($ui-base-color, $ui-highlight-color, 75%);
+  background: mix($ui-base-color, $ui-highlight-color, 95%);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+
+    h3 {
+      font-size: 15px;
+      line-height: 22px;
+      font-weight: 500;
+    }
+
+    &__actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .link-button {
+      font-size: 13px;
+      font-weight: 500;
+    }
+  }
+
+  &__body {
+    position: relative;
+
+    &__scroll-button {
+      position: absolute;
+      height: 100%;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      top: 0;
+      color: $primary-text-color;
+
+      &.left {
+        left: 0;
+      }
+
+      &.right {
+        right: 0;
+      }
+
+      &__icon {
+        border-radius: 50%;
+        background: $ui-highlight-color;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 1;
+        padding: 8px;
+
+        .icon {
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        .inline-follow-suggestions__body__scroll-button__icon {
+          background: lighten($ui-highlight-color, 4%);
+        }
+      }
+    }
+
+    &__scrollable {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 16px;
+      padding: 16px;
+      padding-bottom: 0;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 16px;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+
+      &__card {
+        background: darken($ui-base-color, 4%);
+        border: 1px solid lighten($ui-base-color, 8%);
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+        padding: 12px;
+        scroll-snap-align: start;
+        flex: 0 0 auto;
+        width: 200px;
+        box-sizing: border-box;
+        position: relative;
+
+        a {
+          text-decoration: none;
+        }
+
+        & > .icon-button {
+          position: absolute;
+          inset-inline-end: 8px;
+          top: 8px;
+        }
+
+        &__avatar {
+          height: 48px;
+          display: flex;
+
+          a {
+            display: flex;
+            text-decoration: none;
+          }
+        }
+
+        .account__avatar {
+          flex-shrink: 0;
+          align-self: flex-end;
+          border: 1px solid lighten($ui-base-color, 8%);
+          background-color: $ui-base-color;
+        }
+
+        &__text-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          align-items: center;
+          max-width: 100%;
+
+          a {
+            max-width: 100%;
+          }
+
+          &__source {
+            display: inline-flex;
+            align-items: center;
+            color: $dark-text-color;
+            gap: 4px;
+            overflow: hidden;
+            white-space: nowrap;
+
+            > span {
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            .icon {
+              width: 16px;
+              height: 16px;
+            }
+          }
+        }
+
+        .display-name {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          align-items: center;
+
+          & > * {
+            max-width: 100%;
+          }
+
+          &__html {
+            font-size: 15px;
+            font-weight: 500;
+            color: $secondary-text-color;
+          }
+
+          &__account {
+            font-size: 14px;
+            color: $darker-text-color;
+          }
+        }
+
+        .verified-badge {
+          font-size: 14px;
+          max-width: 100%;
+        }
+
+        .button {
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
