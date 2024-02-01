@@ -19,7 +19,7 @@ class ActivityPub::LinkedDataSignature
     return unless type == 'RsaSignature2017'
 
     creator   = ActivityPub::TagManager.instance.uri_to_actor(creator_uri)
-    creator ||= ActivityPub::FetchRemoteKeyService.new.call(creator_uri, id: false)
+    creator ||= ActivityPub::FetchRemoteKeyService.new.call(creator_uri)
 
     return if creator.nil?
 
