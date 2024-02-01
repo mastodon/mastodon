@@ -139,6 +139,7 @@ describe ResolveURLService, type: :service do
         stub_request(:get, url).to_return(status: 302, headers: { 'Location' => status_url })
         body = ActiveModelSerializers::SerializableResource.new(status, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter).to_json
         stub_request(:get, status_url).to_return(body: body, headers: { 'Content-Type' => 'application/activity+json' })
+        stub_request(:get, uri).to_return(body: body, headers: { 'Content-Type' => 'application/activity+json' })
       end
 
       it 'returns status by url' do

@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.5] - 2024-02-01
+
+### Security
+
+- Fix insufficient origin validation (CVE-2024-23832, [GHSA-3fjr-858r-92rw](https://github.com/mastodon/mastodon/security/advisories/GHSA-3fjr-858r-92rw))
+
 ## [4.2.4] - 2024-01-24
 
 ### Fixed
