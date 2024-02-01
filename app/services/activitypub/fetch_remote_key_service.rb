@@ -4,23 +4,10 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   include JsonLdHelper
 
   # Returns account that owns the key
-  def call(uri, id: true, prefetched_body: nil)
+  def call(uri)
     return if uri.blank?
 
-    if prefetched_body.nil?
-      if id
-        @json = fetch_resource_without_id_validation(uri)
-        if person?
-          @json = fetch_resource(@json['id'], true)
-        elsif uri != @json['id']
-          return
-        end
-      else
-        @json = fetch_resource(uri, id)
-      end
-    else
-      @json = body_to_json(prefetched_body, compare_id: id ? uri : nil)
-    end
+    @json = fetch_resource(uri, false)
 
     return unless supported_context?(@json) && expected_type?
     return find_account(@json['id'], @json) if person?

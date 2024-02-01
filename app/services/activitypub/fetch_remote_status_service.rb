@@ -4,19 +4,19 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   include JsonLdHelper
 
   # Should be called when uri has already been checked for locality
-  def call(uri, id: true, prefetched_body: nil, on_behalf_of: nil)
+  def call(uri, prefetched_body: nil, on_behalf_of: nil)
     @json = begin
       if prefetched_body.nil?
-        fetch_resource(uri, id, on_behalf_of)
+        fetch_resource(uri, true, on_behalf_of)
       else
-        body_to_json(prefetched_body, compare_id: id ? uri : nil)
+        body_to_json(prefetched_body, compare_id: uri)
       end
     end
 
     return if !(supported_context? && expected_type?) || actor_id.nil? || !trustworthy_attribution?(@json['id'], actor_id)
 
     actor = ActivityPub::TagManager.instance.uri_to_resource(actor_id, Account)
-    actor = ActivityPub::FetchRemoteAccountService.new.call(actor_id, id: true) if actor.nil? || needs_update?(actor)
+    actor = ActivityPub::FetchRemoteAccountService.new.call(actor_id) if actor.nil? || needs_update?(actor)
 
     return if actor.nil? || actor.suspended?
 
