@@ -12,6 +12,7 @@ volumes:
 
 services:
   es:
+    platform: linux/amd64
     restart: unless-stopped
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
     environment:
@@ -43,6 +44,7 @@ services:
     hostname: "es"
 
   web:
+    platform: linux/amd64
     #build: .
     #image: ghcr.io/mastodon/mastodon:v4.2.1
     image: mglennon/mastodon:${MY_PACKAGE}
@@ -63,6 +65,7 @@ services:
   streaming:
     #build: .
     #image: ghcr.io/mastodon/mastodon:v4.2.1
+    platform: linux/amd64
     image: mglennon/mastodon:${MY_PACKAGE}
     restart: unless-stopped
     env_file: .env.production
@@ -79,6 +82,7 @@ services:
   sidekiq:
     #build: .
     #image: ghcr.io/mastodon/mastodon:v4.2.1
+    platform: linux/amd64
     image: mglennon/mastodon:${MY_PACKAGE}
     restart: unless-stopped
     env_file: .env.production
@@ -92,6 +96,7 @@ services:
     hostname: "sidekiq"
   redis:
     restart: unless-stopped
+    platform: linux/amd64
     image: redis:7-alpine
     hostname: "mastoredis"
     networks:
@@ -103,6 +108,7 @@ services:
   
   prom_statsd:
     image: prom/statsd-exporter
+    platform: linux/amd64
     container_name: mastodon_statsd
     command: "--statsd.mapping-config=/tmp/statsd_mapping.conf"
     expose:
@@ -117,6 +123,7 @@ services:
 
   sidekiq_exporter:
     image: strech/sidekiq-prometheus-exporter
+    platform: linux/amd64
     container_name: mastodon_sidekiq_exporter
     expose:
       - 9292/tcp
@@ -128,6 +135,7 @@ services:
 
   es_exporter:
     image: quay.io/prometheuscommunity/elasticsearch-exporter:latest
+    platform: linux/amd64
     container_name: mastodon_es_exporter
     command:
       - '--es.uri=http://es:9200'
