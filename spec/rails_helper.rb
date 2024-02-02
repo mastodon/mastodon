@@ -27,7 +27,9 @@ Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!(allow: Chewy.settings[:host], allow_localhost: RUN_SYSTEM_SPECS)
-Sidekiq.logger = nil
+Sidekiq.configure_server do |config|
+  config.logger = nil
+end
 
 # System tests config
 DatabaseCleaner.strategy = [:deletion]
