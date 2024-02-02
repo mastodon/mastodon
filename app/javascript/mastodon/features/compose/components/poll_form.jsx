@@ -137,6 +137,7 @@ export const PollForm = () => {
       ))}
 
       <div className='compose-form__poll__footer'>
+      <button type='button' disabled={options.size >= 8} className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' icon={AddIcon} /> <FormattedMessage {...messages.add_option} /></button>
         <Select label={intl.formatMessage(messages.duration)} options={[
           { value: 300, label: intl.formatMessage(messages.minutes, { number: 5 })},
           { value: 1800, label: intl.formatMessage(messages.minutes, { number: 30 })},
