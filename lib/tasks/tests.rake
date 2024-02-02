@@ -2,6 +2,22 @@
 
 namespace :tests do
   namespace :migrations do
+    desc 'Prepares all migrations and test data for consistency checks'
+    task prepare_database: :environment do
+      {
+        '2' => 2017_10_10_025614,
+        '2_4' => 2018_05_14_140000,
+        '2_4_3' => 2018_07_07_154237,
+      }.each do |release, version|
+        ActiveRecord::Tasks::DatabaseTasks
+          .migration_connection
+          .migration_context
+          .migrate(version)
+        Rake::Task["tests:migrations:populate_v#{release}"]
+          .invoke
+      end
+    end
+
     desc 'Check that database state is consistent with a successful migration from populated data'
     task check_database: :environment do
       unless Account.find_by(username: 'admin', domain: nil)&.hide_collections? == false
@@ -88,6 +104,8 @@ namespace :tests do
         puts 'Locale for fr-QC users not updated to fr-CA as expected'
         exit(1)
       end
+
+      puts 'No errors found. Database state is consistent with a successful migration process.'
     end
 
     desc 'Populate the database with test data for 2.4.3'

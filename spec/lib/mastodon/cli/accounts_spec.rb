@@ -65,8 +65,7 @@ describe Mastodon::CLI::Accounts do
 
           it 'exits with an error message' do
             expect { subject }
-              .to output_results('Failure/Error: email')
-              .and raise_error(SystemExit)
+              .to raise_error(Thor::Error, %r{Failure/Error: email})
           end
         end
       end
@@ -127,8 +126,7 @@ describe Mastodon::CLI::Accounts do
 
           it 'exits with an error message indicating the role name was not found' do
             expect { subject }
-              .to output_results('Cannot find user role with that name')
-              .and raise_error(SystemExit)
+              .to raise_error(Thor::Error, 'Cannot find user role with that name')
           end
         end
       end
@@ -191,8 +189,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating the user was not found' do
         expect { subject }
-          .to output_results('No user with such username')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No user with such username')
       end
     end
 
@@ -214,8 +211,7 @@ describe Mastodon::CLI::Accounts do
 
           it 'exits with an error message indicating the role was not found' do
             expect { subject }
-              .to output_results('Cannot find user role with that name')
-              .and raise_error(SystemExit)
+              .to raise_error(Thor::Error, 'Cannot find user role with that name')
           end
         end
 
@@ -364,8 +360,7 @@ describe Mastodon::CLI::Accounts do
 
         it 'exits with an error message' do
           expect { subject }
-            .to output_results('Failure/Error: email')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, %r{Failure/Error: email})
         end
       end
     end
@@ -387,16 +382,14 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating that only one should be used' do
         expect { subject }
-          .to output_results('Use username or --email, not both')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'Use username or --email, not both')
       end
     end
 
     context 'when neither username nor --email are provided' do
       it 'exits with an error message indicating that no username was provided' do
         expect { subject }
-          .to output_results('No username provided')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No username provided')
       end
     end
 
@@ -425,8 +418,7 @@ describe Mastodon::CLI::Accounts do
 
         it 'exits with an error message indicating that no user was found' do
           expect { subject }
-            .to output_results('No user with such username')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, 'No user with such username')
         end
       end
     end
@@ -458,8 +450,7 @@ describe Mastodon::CLI::Accounts do
 
         it 'exits with an error message indicating that no user was found' do
           expect { subject }
-            .to output_results('No user with such email')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, 'No user with such email')
         end
       end
     end
@@ -511,8 +502,7 @@ describe Mastodon::CLI::Accounts do
 
         it 'exits with an error message indicating that the number must be positive' do
           expect { subject }
-            .to output_results('Number must be positive')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, 'Number must be positive')
         end
       end
 
@@ -545,8 +535,7 @@ describe Mastodon::CLI::Accounts do
 
         it 'exits with an error message indicating that no such account was found' do
           expect { subject }
-            .to output_results('No such account')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, 'No such account')
         end
       end
     end
@@ -560,8 +549,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating that no account with the given username was found' do
         expect { subject }
-          .to output_results('No such account')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No such account')
       end
     end
 
@@ -596,8 +584,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating that no account with the given username was found' do
         expect { subject }
-          .to output_results('No such account')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No such account')
       end
     end
 
@@ -634,8 +621,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating that there is no such account' do
         expect { subject }
-          .to output_results('No user with such username')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No user with such username')
       end
     end
 
@@ -795,8 +781,7 @@ describe Mastodon::CLI::Accounts do
           allow(Account).to receive(:find_remote).with(account_example_com_b.username, account_example_com_b.domain).and_return(nil)
 
           expect { subject }
-            .to output_results('No such account')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, 'No such account')
         end
       end
 
@@ -892,8 +877,7 @@ describe Mastodon::CLI::Accounts do
     context 'when neither a list of accts nor options are provided' do
       it 'exits with an error message' do
         expect { subject }
-          .to output_results('No account(s) given')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No account(s) given')
       end
     end
   end
@@ -904,8 +888,7 @@ describe Mastodon::CLI::Accounts do
     context 'when neither username nor --all option are given' do
       it 'exits with an error message' do
         expect { subject }
-          .to output_results('No account(s) given')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No account(s) given')
       end
     end
 
@@ -940,8 +923,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message when the specified username is not found' do
         expect { subject }
-          .to output_results('No such account')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No such account')
       end
     end
 
@@ -980,8 +962,7 @@ describe Mastodon::CLI::Accounts do
     shared_examples 'an account not found' do |acct|
       it 'exits with an error message indicating that there is no such account' do
         expect { subject }
-          .to output_results("No such account (#{acct})")
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, "No such account (#{acct})")
       end
     end
 
@@ -1031,8 +1012,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating that the accounts do not have the same pub key' do
         expect { subject }
-          .to output_results("Accounts don't have the same public key, might not be duplicates!\nOverride with --force")
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, "Accounts don't have the same public key, might not be duplicates!\nOverride with --force\n")
       end
 
       context 'with --force option' do
@@ -1200,8 +1180,7 @@ describe Mastodon::CLI::Accounts do
     context 'when no option is given' do
       it 'exits with an error message indicating that at least one option is required' do
         expect { subject }
-          .to output_results('Please specify either --follows or --followers, or both')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'Please specify either --follows or --followers, or both')
       end
     end
 
@@ -1211,8 +1190,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating that there is no such account' do
         expect { subject }
-          .to output_results('No such account')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No such account')
       end
     end
 
@@ -1348,18 +1326,16 @@ describe Mastodon::CLI::Accounts do
     end
 
     shared_examples 'a successful migration' do
-      it 'calls the MoveService for the last migration' do
-        expect { subject }
-          .to output_results('OK')
-
-        last_migration = source_account.migrations.last
-
-        expect(move_service).to have_received(:call).with(last_migration).once
-      end
-
-      it 'displays a successful message' do
+      it 'displays a success message and calls the MoveService for the last migration' do
         expect { subject }
           .to output_results("OK, migrated #{source_account.acct} to #{target_account.acct}")
+
+        expect(move_service)
+          .to have_received(:call).with(last_migration).once
+      end
+
+      def last_migration
+        source_account.migrations.last
       end
     end
 
@@ -1368,16 +1344,14 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating that using both options is not possible' do
         expect { subject }
-          .to output_results('Use --replay or --target, not both')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'Use --replay or --target, not both')
       end
     end
 
     context 'when no option is given' do
       it 'exits with an error message indicating that at least one option must be used' do
         expect { subject }
-          .to output_results('Use either --replay or --target')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'Use either --replay or --target')
       end
     end
 
@@ -1387,8 +1361,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating that there is no such account' do
         expect { subject }
-          .to output_results("No such account: #{arguments.first}")
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, "No such account: #{arguments.first}")
       end
     end
 
@@ -1398,8 +1371,7 @@ describe Mastodon::CLI::Accounts do
       context 'when the specified account has no previous migrations' do
         it 'exits with an error message indicating that the given account has no previous migrations' do
           expect { subject }
-            .to output_results('The specified account has not performed any migration')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, 'The specified account has not performed any migration')
         end
       end
 
@@ -1421,8 +1393,7 @@ describe Mastodon::CLI::Accounts do
 
           it 'exits with an error message' do
             expect { subject }
-              .to output_results('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway')
-              .and raise_error(SystemExit)
+              .to raise_error(Thor::Error, 'The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway')
           end
         end
 
@@ -1449,8 +1420,7 @@ describe Mastodon::CLI::Accounts do
 
         it 'exits with an error message indicating that there is no such account' do
           expect { subject }
-            .to output_results("The specified target account could not be found: #{options[:target]}")
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, "The specified target account could not be found: #{options[:target]}")
         end
       end
 
@@ -1474,8 +1444,7 @@ describe Mastodon::CLI::Accounts do
       context 'when the migration record is invalid' do
         it 'exits with an error indicating that the validation failed' do
           expect { subject }
-            .to output_results('Error: Validation failed')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, /Error: Validation failed/)
         end
       end
 
@@ -1486,8 +1455,7 @@ describe Mastodon::CLI::Accounts do
 
         it 'exits with an error message' do
           expect { subject }
-            .to output_results('The specified account is redirecting to a different target account. Use --force if you want to change the migration target')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, 'The specified account is redirecting to a different target account. Use --force if you want to change the migration target')
         end
       end
 

@@ -123,7 +123,7 @@ class MoveWorker
   end
 
   def add_account_note_if_needed!(account, id)
-    unless AccountNote.where(account: account, target_account: @target_account).exists?
+    unless AccountNote.exists?(account: account, target_account: @target_account)
       text = I18n.with_locale(account.user&.locale.presence || I18n.default_locale) do
         I18n.t(id, acct: @source_account.acct)
       end

@@ -96,12 +96,11 @@ Rails/FilePath:
 Rails/HttpStatus:
   EnforcedStyle: numeric
 
-# Reason: Allowed in `tootctl` CLI code and in boot ENV checker
+# Reason: Allowed in boot ENV checker
 # https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsexit
 Rails/Exit:
   Exclude:
     - 'config/boot.rb'
-    - 'lib/mastodon/cli/*.rb'
 
 # Reason: Conflicts with `Lint/UselessMethodDefinition` for inherited controller actions
 # https://docs.rubocop.org/rubocop-rails/cops_rails.html#railslexicallyscopedactionfilter
@@ -174,6 +173,15 @@ Style/ClassAndModuleChildren:
 # https://docs.rubocop.org/rubocop/cops_style.html#styledocumentation
 Style/Documentation:
   Enabled: false
+
+# Reason: Route redirects are not token-formatted and must be skipped
+# https://docs.rubocop.org/rubocop/cops_style.html#styleformatstringtoken
+Style/FormatStringToken:
+  inherit_mode:
+    merge:
+      - AllowedMethods # The rubocop-rails config adds `redirect`
+  AllowedMethods:
+    - redirect_with_vary
 
 # Reason: Enforce modern Ruby style
 # https://docs.rubocop.org/rubocop/cops_style.html#stylehashsyntax

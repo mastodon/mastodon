@@ -1314,6 +1314,9 @@ a.sparkline {
 
     &__label {
       padding: 15px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
     }
 
     &__rules {
@@ -1324,6 +1327,9 @@ a.sparkline {
   &__rule {
     cursor: pointer;
     padding: 15px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
   }
 }
 

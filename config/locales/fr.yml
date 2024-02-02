@@ -1546,6 +1546,9 @@ fr:
     errors:
       limit_reached: Limite de réactions différentes atteinte
       unrecognized_emoji: n’est pas un émoji reconnu
+  redirects:
+    prompt: Si vous faites confiance à ce lien, cliquez pour continuer.
+    title: Vous quittez %{instance}.
   relationships:
     activity: Activité du compte
     confirm_follow_selected_followers: Voulez-vous vraiment suivre les abonné⋅e⋅s sélectionné⋅e⋅s ?
@@ -1790,6 +1793,12 @@ fr:
       extra: Elle est maintenant prête à être téléchargée !
       subject: Votre archive est prête à être téléchargée
       title: Récupération de l’archive
+    failed_2fa:
+      details: 'Voici les détails de la tentative de connexion :'
+      explanation: Quelqu'un a essayé de se connecter à votre compte mais a fourni un second facteur d'authentification invalide.
+      further_actions_html: Si ce n'était pas vous, nous vous recommandons %{action} immédiatement car il pourrait être compromis.
+      subject: Échec de l'authentification à double facteur
+      title: Échec de l'authentification à double facteur
     suspicious_sign_in:
       change_password: changer votre mot de passe
       details: 'Voici les détails de la connexion :'
@@ -1843,6 +1852,7 @@ fr:
     go_to_sso_account_settings: Accédez aux paramètres du compte de votre fournisseur d'identité
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
     otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
+    rate_limited: Trop de tentatives d'authentification, réessayez plus tard.
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
   verification:

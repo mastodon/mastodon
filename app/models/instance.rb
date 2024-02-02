@@ -13,21 +13,35 @@ class Instance < ApplicationRecord
 
   attr_accessor :failure_days
 
-  has_many :accounts, foreign_key: :domain, primary_key: :domain, inverse_of: false
-
   with_options foreign_key: :domain, primary_key: :domain, inverse_of: false do
     belongs_to :domain_block
     belongs_to :domain_allow
-    belongs_to :unavailable_domain # skipcq: RB-RL1031
+    belongs_to :unavailable_domain
+
+    has_many :accounts, dependent: nil
   end
 
   scope :searchable, -> { where.not(domain: DomainBlock.select(:domain)) }
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
   scope :domain_starts_with, ->(value) { where(arel_table[:domain].matches("#{sanitize_sql_like(value)}%", false, true)) }
   scope :by_domain_and_subdomains, ->(domain) { where("reverse('.' || domain) LIKE reverse(?)", "%.#{domain}") }
+  scope :with_domain_follows, ->(domains) { where(domain: domains).where(domain_account_follows) }
 
   def self.refresh
     Scenic.database.refresh_materialized_view(table_name, concurrently: true, cascade: false)
+  end
+
+  def self.domain_account_follows
+    Arel.sql(
+      <<~SQL.squish
+        EXISTS (
+          SELECT 1
+          FROM follows
+          JOIN accounts ON follows.account_id = accounts.id OR follows.target_account_id = accounts.id
+          WHERE accounts.domain = instances.domain
+        )
+      SQL
+    )
   end
 
   def readonly?

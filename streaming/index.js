@@ -8,7 +8,7 @@ const url = require('url');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const express = require('express');
-const Redis = require('ioredis');
+const { Redis } = require('ioredis');
 const { JSDOM } = require('jsdom');
 const pg = require('pg');
 const dbUrlToConfig = require('pg-connection-string').parse;
@@ -43,13 +43,18 @@ initializeLogLevel(process.env, environment);
  */
 
 /**
- * @param {Object.<string, any>} config
+ * @param {RedisConfiguration} config
+ * @returns {Promise<Redis>}
  */
-const createRedisClient = async (config) => {
-  const { redisParams, redisUrl } = config;
-  // @ts-ignore
-  const client = new Redis(redisUrl, redisParams);
-  // @ts-ignore
+const createRedisClient = async ({ redisParams, redisUrl }) => {
+  let client;
+
+  if (typeof redisUrl === 'string') {
+    client = new Redis(redisUrl, redisParams);
+  } else {
+    client = new Redis(redisParams);
+  }
+
   client.on('error', (err) => logger.error({ err }, 'Redis Client Error!'));
 
   return client;
@@ -87,39 +92,101 @@ const parseJSON = (json, req) => {
 };
 
 /**
- * @param {Object.<string, any>} env the `process.env` value to read configuration from
- * @returns {Object.<string, any>} the configuration for the PostgreSQL connection
+ * Takes an environment variable that should be an integer, attempts to parse
+ * it falling back to a default if not set, and handles errors parsing.
+ * @param {string|undefined} value
+ * @param {number} defaultValue
+ * @param {string} variableName
+ * @returns {number}
+ */
+const parseIntFromEnv = (value, defaultValue, variableName) => {
+  if (typeof value === 'string' && value.length > 0) {
+    const parsedValue = parseInt(value, 10);
+    if (isNaN(parsedValue)) {
+      throw new Error(`Invalid ${variableName} environment variable: ${value}`);
+    }
+    return parsedValue;
+  } else {
+    return defaultValue;
+  }
+};
+
+/**
+ * @param {NodeJS.ProcessEnv} env the `process.env` value to read configuration from
+ * @returns {pg.PoolConfig} the configuration for the PostgreSQL connection
  */
 const pgConfigFromEnv = (env) => {
+  /** @type {Record<string, pg.PoolConfig>} */
   const pgConfigs = {
     development: {
-      user:     env.DB_USER || pg.defaults.user,
+      user: env.DB_USER || pg.defaults.user,
       password: env.DB_PASS || pg.defaults.password,
       database: env.DB_NAME || 'mastodon_development',
-      host:     env.DB_HOST || pg.defaults.host,
-      port:     env.DB_PORT || pg.defaults.port,
+      host: env.DB_HOST || pg.defaults.host,
+      port: parseIntFromEnv(env.DB_PORT, pg.defaults.port ?? 5432, 'DB_PORT')
     },
 
     production: {
-      user:     env.DB_USER || 'mastodon',
+      user: env.DB_USER || 'mastodon',
       password: env.DB_PASS || '',
       database: env.DB_NAME || 'mastodon_production',
-      host:     env.DB_HOST || 'localhost',
-      port:     env.DB_PORT || 5432,
+      host: env.DB_HOST || 'localhost',
+      port: parseIntFromEnv(env.DB_PORT, 5432, 'DB_PORT')
     },
   };
 
-  let baseConfig;
+  /**
+   * @type {pg.PoolConfig}
+   */
+  let baseConfig = {};
 
   if (env.DATABASE_URL) {
-    baseConfig = dbUrlToConfig(env.DATABASE_URL);
+    const parsedUrl = dbUrlToConfig(env.DATABASE_URL);
+
+    // The result of dbUrlToConfig from pg-connection-string is not type
+    // compatible with pg.PoolConfig, since parts of the connection URL may be
+    // `null` when pg.PoolConfig expects `undefined`, as such we have to
+    // manually create the baseConfig object from the properties of the
+    // parsedUrl.
+    //
+    // For more information see:
+    // https://github.com/brianc/node-postgres/issues/2280
+    //
+    // FIXME: clean up once brianc/node-postgres#3128 lands
+    if (typeof parsedUrl.password === 'string') baseConfig.password = parsedUrl.password;
+    if (typeof parsedUrl.host === 'string') baseConfig.host = parsedUrl.host;
+    if (typeof parsedUrl.user === 'string') baseConfig.user = parsedUrl.user;
+    if (typeof parsedUrl.port === 'string') {
+      const parsedPort = parseInt(parsedUrl.port, 10);
+      if (isNaN(parsedPort)) {
+        throw new Error('Invalid port specified in DATABASE_URL environment variable');
+      }
+      baseConfig.port = parsedPort;
+    }
+    if (typeof parsedUrl.database === 'string') baseConfig.database = parsedUrl.database;
+    if (typeof parsedUrl.options === 'string') baseConfig.options = parsedUrl.options;
+
+    // The pg-connection-string type definition isn't correct, as parsedUrl.ssl
+    // can absolutely be an Object, this is to work around these incorrect
+    // types, including the casting of parsedUrl.ssl to Record<string, any>
+    if (typeof parsedUrl.ssl === 'boolean') {
+      baseConfig.ssl = parsedUrl.ssl;
+    } else if (typeof parsedUrl.ssl === 'object' && !Array.isArray(parsedUrl.ssl) && parsedUrl.ssl !== null) {
+      /** @type {Record<string, any>} */
+      const sslOptions = parsedUrl.ssl;
+      baseConfig.ssl = {};
+
+      baseConfig.ssl.cert = sslOptions.cert;
+      baseConfig.ssl.key = sslOptions.key;
+      baseConfig.ssl.ca = sslOptions.ca;
+      baseConfig.ssl.rejectUnauthorized = sslOptions.rejectUnauthorized;
+    }
 
     // Support overriding the database password in the connection URL
     if (!baseConfig.password && env.DB_PASS) {
       baseConfig.password = env.DB_PASS;
     }
-  } else {
-    // @ts-ignore
+  } else if (Object.hasOwnProperty.call(pgConfigs, environment)) {
     baseConfig = pgConfigs[environment];
 
     if (env.DB_SSLMODE) {
@@ -136,42 +203,58 @@ const pgConfigFromEnv = (env) => {
         break;
       }
     }
+  } else {
+    throw new Error('Unable to resolve postgresql database configuration.');
   }
 
   return {
     ...baseConfig,
-    max: env.DB_POOL || 10,
+    max: parseIntFromEnv(env.DB_POOL, 10, 'DB_POOL'),
     connectionTimeoutMillis: 15000,
+    // Deliberately set application_name to an empty string to prevent excessive
+    // CPU usage with PG Bouncer. See:
+    // - https://github.com/mastodon/mastodon/pull/23958
+    // - https://github.com/pgbouncer/pgbouncer/issues/349
     application_name: '',
   };
 };
 
 /**
- * @param {Object.<string, any>} env the `process.env` value to read configuration from
- * @returns {Object.<string, any>} configuration for the Redis connection
+ * @typedef RedisConfiguration
+ * @property {import('ioredis').RedisOptions} redisParams
+ * @property {string} redisPrefix
+ * @property {string|undefined} redisUrl
+ */
+
+/**
+ * @param {NodeJS.ProcessEnv} env the `process.env` value to read configuration from
+ * @returns {RedisConfiguration} configuration for the Redis connection
  */
 const redisConfigFromEnv = (env) => {
   // ioredis *can* transparently add prefixes for us, but it doesn't *in some cases*,
   // which means we can't use it. But this is something that should be looked into.
   const redisPrefix = env.REDIS_NAMESPACE ? `${env.REDIS_NAMESPACE}:` : '';
 
+  let redisPort = parseIntFromEnv(env.REDIS_PORT, 6379, 'REDIS_PORT');
+  let redisDatabase = parseIntFromEnv(env.REDIS_DB, 0, 'REDIS_DB');
+
+  /** @type {import('ioredis').RedisOptions} */
   const redisParams = {
     host: env.REDIS_HOST || '127.0.0.1',
-    port: env.REDIS_PORT || 6379,
-    db: env.REDIS_DB || 0,
+    port: redisPort,
+    db: redisDatabase,
     password: env.REDIS_PASSWORD || undefined,
   };
 
   // redisParams.path takes precedence over host and port.
   if (env.REDIS_URL && env.REDIS_URL.startsWith('unix://')) {
-    // @ts-ignore
     redisParams.path = env.REDIS_URL.slice(7);
   }
 
   return {
     redisParams,
     redisPrefix,
-    redisUrl: env.REDIS_URL,
+    redisUrl: typeof env.REDIS_URL === 'string' ? env.REDIS_URL : undefined,
   };
 };
 

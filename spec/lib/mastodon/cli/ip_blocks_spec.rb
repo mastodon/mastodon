@@ -144,8 +144,7 @@ describe Mastodon::CLI::IpBlocks do
 
       it 'exits with an error message' do
         expect { subject }
-          .to output_results('No IP(s) given')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No IP(s) given')
       end
     end
   end
@@ -235,8 +234,7 @@ describe Mastodon::CLI::IpBlocks do
     context 'when no IP address is provided' do
       it 'exits with an error message' do
         expect { subject }
-          .to output_results('No IP(s) given')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No IP(s) given')
       end
     end
   end
