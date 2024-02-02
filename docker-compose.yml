@@ -57,7 +57,7 @@ services:
     image: ghcr.io/mastodon/mastodon-streaming:nightly
     env_file: .env.production
     restart: always
-    command: node ./streaming
+    command: node ./streaming/index.js
     healthcheck:
       test: ['CMD-SHELL', "curl -s --noproxy localhost localhost:4000/api/v1/streaming/health | grep -q 'OK' || exit 1"]
     networks:
