@@ -33,15 +33,15 @@ class CrutchBuilder
   end
 
   def following_index
-    Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map(&:in_reply_to_account_id)).pluck(:target_account_id).index_with(true)
+    Follow.where(account_id: receiver_id, target_account_id: statuses_reply_to_account_ids).pluck(:target_account_id).index_with(true)
   end
 
   def languages_index
-    Follow.where(account_id: receiver_id, target_account_id: statuses.map(&:account_id)).pluck(:target_account_id, :languages).to_h
+    Follow.where(account_id: receiver_id, target_account_id: statuses_account_ids).pluck(:target_account_id, :languages).to_h
   end
 
   def hiding_reblogs_index
-    Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map { |s| s.account_id if s.reblog? }, show_reblogs: false).pluck(:target_account_id).index_with(true)
+    Follow.where(account_id: receiver_id, target_account_id: statuses_reblog_account_ids, show_reblogs: false).pluck(:target_account_id).index_with(true)
   end
 
   def blocking_index
@@ -53,19 +53,39 @@ class CrutchBuilder
   end
 
   def domain_blocking_index
-    AccountDomainBlock.where(account_id: receiver_id, domain: statuses.flat_map { |s| [s.account.domain, s.reblog&.account&.domain] }.compact).pluck(:domain).index_with(true)
+    AccountDomainBlock.where(account_id: receiver_id, domain: statuses_account_domains).pluck(:domain).index_with(true)
   end
 
   def blocked_by_index
-    Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| [s.account_id, s.reblog&.account_id] }.flatten.compact).pluck(:account_id).index_with(true)
+    Block.where(target_account_id: receiver_id, account_id: statuses_and_reblogs_account_ids).pluck(:account_id).index_with(true)
   end
 
   def exclusive_list_users_index
-    ListAccount.where(list: exclusive_lists, account_id: statuses.map(&:account_id)).pluck(:account_id).index_with(true)
+    ListAccount.where(list: exclusive_lists, account_id: statuses_account_ids).pluck(:account_id).index_with(true)
   end
 
   def exclusive_lists
     List.where(account_id: receiver_id, exclusive: true)
+  end
+
+  def statuses_account_ids
+    statuses.map(&:account_id)
+  end
+
+  def statuses_reply_to_account_ids
+    statuses.filter_map(&:in_reply_to_account_id)
+  end
+
+  def statuses_reblog_account_ids
+    statuses.filter_map { |status| status.account_id if status.reblog? }
+  end
+
+  def statuses_account_domains
+    statuses.flat_map { |status| [status.account.domain, status.reblog&.account&.domain] }.compact
+  end
+
+  def statuses_and_reblogs_account_ids
+    statuses.map { |status| [status.account_id, status.reblog&.account_id] }.flatten.compact
   end
 
   def blocked_statuses_from_mentions
