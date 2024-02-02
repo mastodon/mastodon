@@ -10,7 +10,7 @@ class CrutchBuilder
 
   def crutches
     {}.tap do |crutches|
-      crutches[:active_mentions] = crutches_active_mentions
+      crutches[:active_mentions] = active_mentions_index
       crutches[:following] = following_index
       crutches[:languages] = languages_index
       crutches[:hiding_reblogs] = hiding_reblogs_index
@@ -24,7 +24,7 @@ class CrutchBuilder
 
   private
 
-  def crutches_active_mentions
+  def active_mentions_index
     Mention
       .active
       .where(status_id: statuses_primary_and_reblog_ids)
@@ -129,12 +129,12 @@ class CrutchBuilder
 
   def blocked_statuses_from_mentions
     statuses.flat_map do |status|
-      (crutches_active_mentions[status.id] || []).tap do |array|
+      (active_mentions_index[status.id] || []).tap do |array|
         array.push(status.account_id)
 
         if status.reblog?
           array.push(status.reblog.account_id)
-          array.concat(crutches_active_mentions[status.reblog_of_id] || [])
+          array.concat(active_mentions_index[status.reblog_of_id] || [])
         end
       end
     end
