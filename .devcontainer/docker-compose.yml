@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ../..:/workspaces:cached
+      - ..:/workspaces:cached
     environment:
       RAILS_ENV: development
       NODE_ENV: development

@@ -57,8 +57,8 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       },
 
       statuses: {
-        max_characters: StatusLengthValidator::MAX_CHARS,
-        max_media_attachments: 4,
+        max_characters: Rails.configuration.x.max_status_length,
+        max_media_attachments: Rails.configuration.x.max_attachments_per_status,
         characters_reserved_per_url: StatusLengthValidator::URL_PLACEHOLDER_CHARS,
       },
 

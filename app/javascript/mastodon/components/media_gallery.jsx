@@ -17,6 +17,8 @@ import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
 
 import { IconButton } from './icon_button';
 
+import { connect } from 'react-redux';
+
 const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: '{number, plural, one {Hide image} other {Hide images}}' },
 });
@@ -206,6 +208,10 @@ class Item extends PureComponent {
 
 }
 
+const mapStateToProps = state => ({
+  maxNumberOfAttachment: state.getIn(['server', 'server', 'configuration', 'statuses', 'max_media_attachments']),
+});
+
 class MediaGallery extends PureComponent {
 
   static propTypes = {
@@ -221,6 +227,7 @@ class MediaGallery extends PureComponent {
     visible: PropTypes.bool,
     autoplay: PropTypes.bool,
     onToggleVisibility: PropTypes.func,
+    maxNumberOfAttachment: PropTypes.number,
   };
 
   state = {
@@ -305,13 +312,13 @@ class MediaGallery extends PureComponent {
       style.aspectRatio = '3 / 2';
     }
 
-    const size     = media.take(4).size;
+    const size     = media.take(this.props.maxNumberOfAttachment).size;
     const uncached = media.every(attachment => attachment.get('type') === 'unknown');
 
     if (this.isFullSizeEligible()) {
       children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} lang={lang} displayWidth={width} visible={visible} />;
     } else {
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
+      children = media.take(this.props.maxNumberOfAttachment).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
     }
 
     if (uncached) {
@@ -349,4 +356,4 @@ class MediaGallery extends PureComponent {
 
 }
 
-export default injectIntl(MediaGallery);
+export default connect(mapStateToProps)(injectIntl(MediaGallery));
