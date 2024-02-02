@@ -32,23 +32,6 @@ class CrutchBuilder
       .each_with_object({}) { |(id, account_id), mapping| (mapping[id] ||= []).push(account_id) }
   end
 
-  def exclusive_lists
-    List.where(account_id: receiver_id, exclusive: true)
-  end
-
-  def blocked_statuses_from_mentions
-    statuses.flat_map do |status|
-      (crutches_active_mentions[status.id] || []).tap do |array|
-        array.push(status.account_id)
-
-        if status.reblog?
-          array.push(status.reblog.account_id)
-          array.concat(crutches_active_mentions[status.reblog_of_id] || [])
-        end
-      end
-    end
-  end
-
   def following_index
     Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map(&:in_reply_to_account_id)).pluck(:target_account_id).index_with(true)
   end
@@ -79,5 +62,22 @@ class CrutchBuilder
 
   def exclusive_list_users_index
     ListAccount.where(list: exclusive_lists, account_id: statuses.map(&:account_id)).pluck(:account_id).index_with(true)
+  end
+
+  def exclusive_lists
+    List.where(account_id: receiver_id, exclusive: true)
+  end
+
+  def blocked_statuses_from_mentions
+    statuses.flat_map do |status|
+      (crutches_active_mentions[status.id] || []).tap do |array|
+        array.push(status.account_id)
+
+        if status.reblog?
+          array.push(status.reblog.account_id)
+          array.concat(crutches_active_mentions[status.reblog_of_id] || [])
+        end
+      end
+    end
   end
 end
