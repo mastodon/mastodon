@@ -92,6 +92,7 @@ services:
     volumes:
       - ./redis:/data
 
+  # Uncomment to enable Elastic Search
   # es:
   #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
   #   environment:
@@ -123,9 +124,7 @@ services:
   #   volumes:
   #      - ./elasticsearch:/usr/share/elasticsearch/data
 
-  ## Uncomment to enable federation with tor instances along with adding the following ENV variables
-  ## http_hidden_proxy=http://privoxy:8118
-  ## ALLOW_ACCESS_TO_HIDDEN_SERVICE=true
+  ## Uncomment to enable Tor and Privoxy
   # tor:
   #   image: sirboops/tor
   #   networks:
