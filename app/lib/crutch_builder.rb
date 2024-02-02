@@ -27,7 +27,7 @@ class CrutchBuilder
   def crutches_active_mentions
     Mention
       .active
-      .where(status_id: statuses.flat_map { |status| [status.id, status.reblog_of_id] }.compact)
+      .where(status_id: statuses_primary_and_reblog_ids)
       .pluck(:status_id, :account_id)
       .each_with_object({}) { |(id, account_id), mapping| (mapping[id] ||= []).push(account_id) }
   end
@@ -118,6 +118,12 @@ class CrutchBuilder
     statuses
       .map { |status| [status.account_id, status.reblog&.account_id] }
       .flatten
+      .compact
+  end
+
+  def statuses_primary_and_reblog_ids
+    statuses
+      .flat_map { |status| [status.id, status.reblog_of_id] }
       .compact
   end
 
