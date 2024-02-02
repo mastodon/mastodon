@@ -17,7 +17,7 @@ services:
     restart: always
     command: bundle exec puma -C config/puma.rb
     healthcheck:
-      test: ["CMD-SHELL", "curl -s --noproxy localhost localhost:3000/health | grep -q 'OK' || exit 1"]
+      test: ['CMD-SHELL', "curl -s --noproxy localhost localhost:3000/health | grep -q 'OK' || exit 1"]
     networks:
       - external_network
       - internal_network
@@ -59,7 +59,7 @@ services:
     restart: always
     command: node ./streaming
     healthcheck:
-      test: ["CMD-SHELL", "curl -s --noproxy localhost localhost:4000/api/v1/streaming/health | grep -q 'OK' || exit 1"]
+      test: ['CMD-SHELL', "curl -s --noproxy localhost localhost:4000/api/v1/streaming/health | grep -q 'OK' || exit 1"]
     networks:
       - external_network
       - internal_network
@@ -115,7 +115,7 @@ services:
   #       hard: 65536
   #   restart: always
   #   healthcheck:
-  #      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
+  #      test: ['CMD-SHELL', "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
   #   networks:
   #      - external_network
   #      - internal_network
