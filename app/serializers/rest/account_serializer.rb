@@ -61,7 +61,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def note
-    object.suspended? ? '' : account_bio_format(object)
+    object.unavailable? ? '' : account_bio_format(object)
   end
 
   def url
@@ -73,19 +73,19 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def avatar
-    full_asset_url(object.suspended? ? object.avatar.default_url : object.avatar_original_url)
+    full_asset_url(object.unavailable? ? object.avatar.default_url : object.avatar_original_url)
   end
 
   def avatar_static
-    full_asset_url(object.suspended? ? object.avatar.default_url : object.avatar_static_url)
+    full_asset_url(object.unavailable? ? object.avatar.default_url : object.avatar_static_url)
   end
 
   def header
-    full_asset_url(object.suspended? ? object.header.default_url : object.header_original_url)
+    full_asset_url(object.unavailable? ? object.header.default_url : object.header_original_url)
   end
 
   def header_static
-    full_asset_url(object.suspended? ? object.header.default_url : object.header_static_url)
+    full_asset_url(object.unavailable? ? object.header.default_url : object.header_static_url)
   end
 
   def created_at
@@ -97,39 +97,39 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def display_name
-    object.suspended? ? '' : object.display_name
+    object.unavailable? ? '' : object.display_name
   end
 
   def locked
-    object.suspended? ? false : object.locked
+    object.unavailable? ? false : object.locked
   end
 
   def bot
-    object.suspended? ? false : object.bot
+    object.unavailable? ? false : object.bot
   end
 
   def discoverable
-    object.suspended? ? false : object.discoverable
+    object.unavailable? ? false : object.discoverable
   end
 
   def indexable
-    object.suspended? ? false : object.indexable
+    object.unavailable? ? false : object.indexable
   end
 
   def moved_to_account
-    object.suspended? ? nil : AccountDecorator.new(object.moved_to_account)
+    object.unavailable? ? nil : AccountDecorator.new(object.moved_to_account)
   end
 
   def emojis
-    object.suspended? ? [] : object.emojis
+    object.unavailable? ? [] : object.emojis
   end
 
   def fields
-    object.suspended? ? [] : object.fields
+    object.unavailable? ? [] : object.fields
   end
 
   def suspended
-    object.suspended?
+    object.unavailable?
   end
 
   def silenced
@@ -141,7 +141,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def roles
-    if object.suspended? || object.user.nil?
+    if object.unavailable? || object.user.nil?
       []
     else
       [object.user.role].compact.filter(&:highlighted?)

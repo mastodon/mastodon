@@ -120,7 +120,6 @@ module.exports = defineConfig({
     'react/jsx-uses-react': 'off', // not needed with new JSX transform
     'react/jsx-wrap-multilines': 'error',
     'react/no-deprecated': 'off',
-    'react/no-unknown-property': 'off',
     'react/react-in-jsx-scope': 'off', // not needed with new JSX transform
     'react/self-closing-comp': 'error',
 
@@ -166,7 +165,7 @@ module.exports = defineConfig({
     //   },
     // ],
     'jsx-a11y/no-noninteractive-tabindex': 'off',
-    'jsx-a11y/no-onchange': 'warn',
+    'jsx-a11y/no-onchange': 'off',
     // recommended is full 'error'
     'jsx-a11y/no-static-element-interactions': [
       'warn',
@@ -246,7 +245,7 @@ module.exports = defineConfig({
           },
           // Immutable / Redux / data store
           {
-            pattern: '{immutable,react-redux,react-immutable-proptypes,react-immutable-pure-component,reselect}',
+            pattern: '{immutable,@reduxjs/toolkit,react-redux,react-immutable-proptypes,react-immutable-pure-component}',
             group: 'external',
             position: 'before',
           },
@@ -354,7 +353,14 @@ module.exports = defineConfig({
         '@typescript-eslint/consistent-type-exports': 'error',
         '@typescript-eslint/consistent-type-imports': 'error',
         "@typescript-eslint/prefer-nullish-coalescing": ['error', { ignorePrimitives: { boolean: true } }],
-
+        "@typescript-eslint/no-restricted-imports": [
+          "warn",
+          {
+            "name": "react-redux",
+            "importNames": ["useSelector", "useDispatch"],
+            "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
+          }
+        ],
         'jsdoc/require-jsdoc': 'off',
 
         // Those rules set stricter rules for TS files

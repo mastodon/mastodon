@@ -4,14 +4,12 @@
 #
 # Table name: preview_cards_statuses
 #
-#  preview_card_id :bigint(8)        not null
-#  status_id       :bigint(8)        not null
+#  preview_card_id :bigint(8)        not null, primary key
+#  status_id       :bigint(8)        not null, primary key
 #  url             :string
 #
 class PreviewCardsStatus < ApplicationRecord
-  # Composite primary keys are not properly supported in Rails. However,
-  # we shouldn't need this anyway...
-  self.primary_key = nil
+  self.primary_key = [:preview_card_id, :status_id]
 
   belongs_to :preview_card
   belongs_to :status

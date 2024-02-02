@@ -49,7 +49,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def mute
-    MuteService.new.call(current_user.account, @account, notifications: truthy_param?(:notifications), duration: (params[:duration]&.to_i || 0))
+    MuteService.new.call(current_user.account, @account, notifications: truthy_param?(:notifications), duration: params[:duration].to_i)
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships
   end
 
@@ -88,7 +88,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def relationships(**options)
-    AccountRelationshipsPresenter.new([@account.id], current_user.account_id, **options)
+    AccountRelationshipsPresenter.new([@account], current_user.account_id, **options)
   end
 
   def account_params

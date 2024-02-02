@@ -9,14 +9,10 @@ RSpec.describe Account do
     let(:bob) { Fabricate(:account, username: 'bob') }
 
     describe '#suspend!' do
-      it 'marks the account as suspended' do
-        subject.suspend!
-        expect(subject.suspended?).to be true
-      end
-
-      it 'creates a deletion request' do
-        subject.suspend!
-        expect(AccountDeletionRequest.where(account: subject).exists?).to be true
+      it 'marks the account as suspended and creates a deletion request' do
+        expect { subject.suspend! }
+          .to change(subject, :suspended?).from(false).to(true)
+          .and(change { AccountDeletionRequest.exists?(account: subject) }.from(false).to(true))
       end
 
       context 'when the account is of a local user' do
@@ -339,9 +335,11 @@ RSpec.describe Account do
 
       results = account.excluded_from_timeline_account_ids
       expect(results.size).to eq 3
-      expect(results).to include(block.target_account.id)
-      expect(results).to include(mute.target_account.id)
-      expect(results).to include(block_by.account.id)
+      expect(results).to include(
+        block.target_account.id,
+        mute.target_account.id,
+        block_by.account.id
+      )
     end
   end
 
@@ -451,7 +449,7 @@ RSpec.describe Account do
     end
 
     it 'limits via constant by default' do
-      stub_const('AccountSearch::DEFAULT_LIMIT', 1)
+      stub_const('Account::Search::DEFAULT_LIMIT', 1)
       2.times.each { Fabricate(:account, display_name: 'Display Name') }
       results = described_class.search_for('display')
       expect(results.size).to eq 1
@@ -595,7 +593,7 @@ RSpec.describe Account do
     end
 
     it 'limits by 10 by default' do
-      stub_const('AccountSearch::DEFAULT_LIMIT', 1)
+      stub_const('Account::Search::DEFAULT_LIMIT', 1)
       2.times { Fabricate(:account, display_name: 'Display Name') }
       results = described_class.advanced_search_for('display', account)
       expect(results.size).to eq 1
@@ -837,6 +835,50 @@ RSpec.describe Account do
   end
 
   describe 'scopes' do
+    describe 'matches_uri_prefix' do
+      let!(:alice) { Fabricate :account, domain: 'host.example', uri: 'https://host.example/user/a' }
+      let!(:bob) { Fabricate :account, domain: 'top-level.example', uri: 'https://top-level.example' }
+
+      it 'returns accounts which start with the value' do
+        results = described_class.matches_uri_prefix('https://host.example')
+
+        expect(results.size)
+          .to eq(1)
+        expect(results)
+          .to include(alice)
+          .and not_include(bob)
+      end
+
+      it 'returns accounts which equal the value' do
+        results = described_class.matches_uri_prefix('https://top-level.example')
+
+        expect(results.size)
+          .to eq(1)
+        expect(results)
+          .to include(bob)
+          .and not_include(alice)
+      end
+    end
+
+    describe 'auditable' do
+      let!(:alice) { Fabricate :account }
+      let!(:bob) { Fabricate :account }
+
+      before do
+        2.times { Fabricate :action_log, account: alice }
+      end
+
+      it 'returns distinct accounts with action log records' do
+        results = described_class.auditable
+
+        expect(results.size)
+          .to eq(1)
+        expect(results)
+          .to include(alice)
+          .and not_include(bob)
+      end
+    end
+
     describe 'alphabetic' do
       it 'sorts by alphabetic order of domain and username' do
         matches = [
@@ -954,6 +996,7 @@ RSpec.describe Account do
 
       it 'returns every usable non-suspended account' do
         expect(described_class.searchable).to contain_exactly(silenced_local, silenced_remote, local_account, remote_account)
+        expect(described_class.searchable).to_not include(suspended_local, suspended_remote, unconfirmed, unapproved)
       end
 
       it 'does not mess with previously-applied scopes' do

@@ -4,9 +4,9 @@ class Api::BaseController < ApplicationController
   DEFAULT_STATUSES_LIMIT = 20
   DEFAULT_ACCOUNTS_LIMIT = 40
 
-  include RateLimitHeaders
-  include AccessTokenTrackingConcern
-  include ApiCachingConcern
+  include Api::RateLimitHeaders
+  include Api::AccessTokenTrackingConcern
+  include Api::CachingConcern
   include Api::ContentSecurityPolicy
 
   skip_before_action :require_functional!, unless: :limited_federation_mode?
@@ -64,7 +64,7 @@ class Api::BaseController < ApplicationController
   end
 
   def doorkeeper_unauthorized_render_options(error: nil)
-    { json: { error: (error.try(:description) || 'Not authorized') } }
+    { json: { error: error.try(:description) || 'Not authorized' } }
   end
 
   def doorkeeper_forbidden_render_options(*)
@@ -105,7 +105,11 @@ class Api::BaseController < ApplicationController
   end
 
   def require_not_suspended!
-    render json: { error: 'Your login is currently disabled' }, status: 403 if current_user&.account&.suspended?
+    render json: { error: 'Your login is currently disabled' }, status: 403 if current_user&.account&.unavailable?
+  end
+
+  def require_valid_pagination_options!
+    render json: { error: 'Pagination values for `offset` and `limit` must be positive' }, status: 400 if pagination_options_invalid?
   end
 
   def require_user!
@@ -135,6 +139,10 @@ class Api::BaseController < ApplicationController
   end
 
   private
+
+  def pagination_options_invalid?
+    params.slice(:limit, :offset).values.map(&:to_i).any?(&:negative?)
+  end
 
   def respond_with_error(code)
     render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code

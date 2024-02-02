@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe RemoveStatusService, type: :service do
+RSpec.describe RemoveStatusService, :sidekiq_inline, type: :service do
   subject { described_class.new }
 
   let!(:alice)  { Fabricate(:account) }
@@ -12,15 +12,16 @@ RSpec.describe RemoveStatusService, type: :service do
   let!(:bill)   { Fabricate(:account, username: 'bill', protocol: :activitypub, domain: 'example2.com', inbox_url: 'http://example2.com/inbox') }
 
   before do
-    stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
-    stub_request(:post, 'http://example2.com/inbox').to_return(status: 200)
+    stub_request(:post, hank.inbox_url).to_return(status: 200)
+    stub_request(:post, bill.inbox_url).to_return(status: 200)
 
     jeff.follow!(alice)
     hank.follow!(alice)
   end
 
   context 'when removed status is not a reblog' do
-    let!(:status) { PostStatusService.new.call(alice, text: 'Hello @bob@example.com ThisIsASecret') }
+    let!(:media_attachment) { Fabricate(:media_attachment, account: alice) }
+    let!(:status) { PostStatusService.new.call(alice, text: "Hello @#{bob.pretty_acct} ThisIsASecret", media_ids: [media_attachment.id]) }
 
     before do
       FavouriteService.new.call(jeff, status)
@@ -37,9 +38,17 @@ RSpec.describe RemoveStatusService, type: :service do
       expect(HomeFeed.new(jeff).get(10).pluck(:id)).to_not include(status.id)
     end
 
+    it 'publishes to public media timeline' do
+      allow(redis).to receive(:publish).with(any_args)
+
+      subject.call(status)
+
+      expect(redis).to have_received(:publish).with('timeline:public:media', Oj.dump(event: :delete, payload: status.id.to_s))
+    end
+
     it 'sends Delete activity to followers' do
       subject.call(status)
-      expect(a_request(:post, 'http://example.com/inbox').with(
+      expect(a_request(:post, hank.inbox_url).with(
                body: hash_including({
                  'type' => 'Delete',
                  'object' => {
@@ -53,7 +62,7 @@ RSpec.describe RemoveStatusService, type: :service do
 
     it 'sends Delete activity to rebloggers' do
       subject.call(status)
-      expect(a_request(:post, 'http://example2.com/inbox').with(
+      expect(a_request(:post, bill.inbox_url).with(
                body: hash_including({
                  'type' => 'Delete',
                  'object' => {
@@ -78,7 +87,7 @@ RSpec.describe RemoveStatusService, type: :service do
 
     it 'sends Undo activity to followers' do
       subject.call(status)
-      expect(a_request(:post, 'http://example.com/inbox').with(
+      expect(a_request(:post, hank.inbox_url).with(
                body: hash_including({
                  'type' => 'Undo',
                  'object' => hash_including({
@@ -96,7 +105,25 @@ RSpec.describe RemoveStatusService, type: :service do
 
     it 'sends Undo activity to followers' do
       subject.call(status)
-      expect(a_request(:post, 'http://example.com/inbox').with(
+      expect(a_request(:post, hank.inbox_url).with(
+               body: hash_including({
+                 'type' => 'Undo',
+                 'object' => hash_including({
+                   'type' => 'Announce',
+                   'object' => ActivityPub::TagManager.instance.uri_for(original_status),
+                 }),
+               })
+             )).to have_been_made.once
+    end
+  end
+
+  context 'when removed status is a reblog of a non-follower' do
+    let!(:original_status) { Fabricate(:status, account: bill, text: 'Hello ThisIsASecret', visibility: :public) }
+    let!(:status) { ReblogService.new.call(alice, original_status) }
+
+    it 'sends Undo activity to followers' do
+      subject.call(status)
+      expect(a_request(:post, bill.inbox_url).with(
                body: hash_including({
                  'type' => 'Undo',
                  'object' => hash_including({

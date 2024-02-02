@@ -420,6 +420,7 @@ ko:
       view: 도메인 차단 보기
     email_domain_blocks:
       add_new: 새로 추가하기
+      allow_registrations_with_approval: 승인을 통한 가입 허용
       attempts_over_week:
         other: 지난 주 동안 %{count}건의 가입 시도가 있었습니다
       created_msg: 이메일 도메인 차단 규칙을 생성했습니다
@@ -1521,6 +1522,9 @@ ko:
     errors:
       limit_reached: 리액션 갯수 제한에 도달했습니다
       unrecognized_emoji: 인식 되지 않은 에모지입니다
+  redirects:
+    prompt: 이 링크를 믿을 수 있다면, 클릭해서 계속하세요.
+    title: "%{instance}를 떠나려고 합니다."
   relationships:
     activity: 계정 활동
     confirm_follow_selected_followers: 정말로 선택된 팔로워들을 팔로우하시겠습니까?
@@ -1583,6 +1587,7 @@ ko:
       unknown_browser: 알 수 없는 브라우저
       weibo: 웨이보
     current_session: 현재 세션
+    date: 날짜
     description: "%{platform}의 %{browser}"
     explanation: 내 마스토돈 계정에 로그인되어 있는 웹 브라우저 목록입니다.
     ip: IP
@@ -1686,7 +1691,7 @@ ko:
     keep_pinned: 고정된 게시물 유지
     keep_pinned_hint: 고정 게시물을 삭제하지 않습니다
     keep_polls: 설문 유지
-    keep_polls_hint: 설문을 삭제하지 않았음
+    keep_polls_hint: 설문을 삭제하지 않습니다
     keep_self_bookmark: 북마크한 게시물 유지
     keep_self_bookmark_hint: 북마크한 본인의 게시물을 삭제하지 않습니다
     keep_self_fav: 내가 좋아요한 게시물 유지
@@ -1743,18 +1748,27 @@ ko:
     webauthn: 보안 키
   user_mailer:
     appeal_approved:
-      action: 내 계정으로 가기
+      action: 계정 설정
       explanation: "%{strike_date}에 일어난 중재결정에 대한 소명을 %{appeal_date}에 작성했으며 승낙되었습니다. 당신의 계정은 정상적인 상태로 돌아왔습니다."
       subject: 귀하가 %{date}에 작성한 소명이 승낙되었습니다
+      subtitle: 계정이 다시 정상적인 상태입니다.
       title: 소명이 받아들여짐
     appeal_rejected:
       explanation: "%{strike_date}에 일어난 중재결정에 대한 소명을 %{appeal_date}에 작성했지만 반려되었습니다."
       subject: "%{date}에 작성한 소명이 반려되었습니다."
+      subtitle: 소명이 기각되었습니다.
       title: 이의 제기가 거절되었습니다
     backup_ready:
-      explanation: 마스토돈 계정의 전체 백업을 요청하셨지요. 이제 다운로드할 수 있습니다!
+      explanation: 마스토돈 계정에 대한 전체 백업을 요청했습니다
+      extra: 다운로드 할 준비가 되었습니다!
       subject: 아카이브를 다운로드할 수 있습니다
       title: 아카이브 테이크아웃
+    failed_2fa:
+      details: '로그인 시도에 대한 상세 정보입니다:'
+      explanation: 누군가가 내 계정에 로그인을 시도했지만 2차인증에 올바른 값을 입력하지 못했습니다.
+      further_actions_html: 만약 당신이 한 게 아니었다면 유출의 가능성이 있으니 가능한 빨리 %{action} 하시기 바랍니다.
+      subject: 2차 인증 실패
+      title: 2차 인증에 실패했습니다
     suspicious_sign_in:
       change_password: 암호 변경
       details: '로그인에 대한 상세 정보입니다:'
@@ -1808,6 +1822,7 @@ ko:
     go_to_sso_account_settings: ID 공급자의 계정 설정으로 이동
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
     otp_lost_help_html: 만약 양쪽 모두를 잃어버렸다면 %{email}을 통해 복구할 수 있습니다
+    rate_limited: 너무 많은 인증 시도가 있었습니다, 잠시 후에 시도하세요.
     seamless_external_login: 외부 서비스를 이용해 로그인했으므로 이메일과 암호는 설정할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'
   verification:

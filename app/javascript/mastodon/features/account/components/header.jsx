@@ -9,13 +9,12 @@ import { NavLink, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/check.svg';
-import { ReactComponent as LockIcon } from '@material-symbols/svg-600/outlined/lock.svg';
-import { ReactComponent as MoreHorizIcon } from '@material-symbols/svg-600/outlined/more_horiz.svg';
-import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-600/outlined/notifications.svg';
-import { ReactComponent as NotificationsActiveIcon } from '@material-symbols/svg-600/outlined/notifications_active-fill.svg';
-import { ReactComponent as ShareIcon } from '@material-symbols/svg-600/outlined/share.svg';
-
+import CheckIcon from '@/material-icons/400-24px/check.svg?react';
+import LockIcon from '@/material-icons/400-24px/lock.svg?react';
+import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
+import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
+import NotificationsActiveIcon from '@/material-icons/400-24px/notifications_active-fill.svg?react';
+import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 import { Avatar } from 'mastodon/components/avatar';
 import { Badge, AutomatedBadge, GroupBadge } from 'mastodon/components/badge';
 import { Button } from 'mastodon/components/button';
@@ -35,6 +34,8 @@ import FollowRequestNoteContainer from '../containers/follow_request_note_contai
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
+  followBack: { id: 'account.follow_back', defaultMessage: 'Follow back' },
+  mutual: { id: 'account.mutual', defaultMessage: 'Mutual' },
   cancel_follow_request: { id: 'account.cancel_follow_request', defaultMessage: 'Withdraw follow request' },
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
@@ -80,6 +81,20 @@ const titleFromAccount = account => {
   const prefix = displayName.trim().length === 0 ? account.get('username') : displayName;
 
   return `${prefix} (@${acct})`;
+};
+
+const messageForFollowButton = relationship => {
+  if(!relationship) return messages.follow;
+
+  if (relationship.get('following') && relationship.get('followed_by')) {
+    return messages.mutual;
+  } else if (!relationship.get('following') && relationship.get('followed_by')) {
+    return messages.followBack;
+  } else if (relationship.get('following')) {
+    return messages.unfollow;
+  } else {
+    return messages.follow;
+  }
 };
 
 const dateFormatOptions = {
@@ -253,9 +268,7 @@ class Header extends ImmutablePureComponent {
     let info = [];
     let menu = [];
 
-    if (me !== account.get('id') && account.getIn(['relationship', 'followed_by'])) {
-      info.push(<span key='followed_by' className='relationship-tag'><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>);
-    } else if (me !== account.get('id') && account.getIn(['relationship', 'blocking'])) {
+    if (me !== account.get('id') && account.getIn(['relationship', 'blocking'])) {
       info.push(<span key='blocked' className='relationship-tag'><FormattedMessage id='account.blocked' defaultMessage='Blocked' /></span>);
     }
 
@@ -281,7 +294,7 @@ class Header extends ImmutablePureComponent {
       } else if (account.getIn(['relationship', 'requested'])) {
         actionBtn = <Button text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.props.onFollow} />;
       } else if (!account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames({ 'button--destructive': account.getIn(['relationship', 'following']) })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={signedIn ? this.props.onFollow : this.props.onInteractionModal} />;
+        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames({ 'button--destructive': account.getIn(['relationship', 'following']) })} text={intl.formatMessage(messageForFollowButton(account.get('relationship')))} onClick={signedIn ? this.props.onFollow : this.props.onInteractionModal} />;
       } else if (account.getIn(['relationship', 'blocking'])) {
         actionBtn = <Button text={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />;
       }

@@ -439,6 +439,7 @@ uk:
       view: Переглянути заблоковані домени
     email_domain_blocks:
       add_new: Додати
+      allow_registrations_with_approval: Дозволити реєстрації із затвердженням
       attempts_over_week:
         few: "%{count} спроби входу за останній тиждень"
         many: "%{count} спроб входу за останній тиждень"
@@ -1597,6 +1598,9 @@ uk:
     errors:
       limit_reached: Досягнуто обмеження різних реакцій
       unrecognized_emoji: не є розпізнаним емоджі
+  redirects:
+    prompt: Якщо ви довіряєте цьому посиланню, натисніть, щоб продовжити.
+    title: Ви покидаєте %{instance}.
   relationships:
     activity: Діяльність облікового запису
     confirm_follow_selected_followers: Ви справді бажаєте підписатися на обраних підписників?
@@ -1659,6 +1663,7 @@ uk:
       unknown_browser: Невідомий браузер
       weibo: Weibo
     current_session: Поточний сеанс
+    date: Дата
     description: "%{browser} на %{platform}"
     explanation: Це веб-браузери, авторизовані у вашому обліковому записі Mastodon.
     ip: IP
@@ -1837,7 +1842,7 @@ uk:
     webauthn: Ключі безпеки
   user_mailer:
     appeal_approved:
-      action: Перейти у ваш обліковий запис
+      action: Налаштування облікового запису
       explanation: Оскарження попередження вашому обліковому запису %{strike_date}, яке ви надіслали %{appeal_date} було схвалено. Ваш обліковий запис знову вважається добропорядним.
       subject: Вашу апеляцію від %{date} було схвалено
       title: Апеляцію схвалено
@@ -1846,7 +1851,6 @@ uk:
       subject: Вашу апеляцію від %{date} було відхилено
       title: Апеляцію відхилено
     backup_ready:
-      explanation: Ви робили запит повної резервної копії вашого облікового запису Mastodon. Вона вже готова для завантаження!
       subject: Ваш архів готовий до завантаження
       title: Винесення архіву
     suspicious_sign_in:
@@ -1902,6 +1906,7 @@ uk:
     go_to_sso_account_settings: Перейдіть до налаштувань облікового запису постачальника ідентифікації
     invalid_otp_token: Введено неправильний код
     otp_lost_help_html: Якщо ви втратили доступ до обох, ви можете отримати доступ з %{email}
+    rate_limited: Занадто багато спроб з'єднання. Спробуйте ще раз пізніше.
     seamless_external_login: Ви увійшли за допомогою зовнішнього сервісу, тому налаштування паролю та електронної пошти недоступні.
     signed_in_as: 'Ви увійшли як:'
   verification:

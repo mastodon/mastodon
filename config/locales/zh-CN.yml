@@ -418,6 +418,7 @@ zh-CN:
       view: 查看域名屏蔽
     email_domain_blocks:
       add_new: 添加新条目
+      allow_registrations_with_approval: 注册时需要批准
       attempts_over_week:
         other: 上周有 %{count} 次注册尝试
       created_msg: 成功屏蔽电子邮件域名
@@ -1519,6 +1520,9 @@ zh-CN:
     errors:
       limit_reached: 互动种类的限制
       unrecognized_emoji: 不是一个可识别的表情
+  redirects:
+    prompt: 如果您信任此链接，请单击以继续跳转。
+    title: 您正在离开 %{instance} 。
   relationships:
     activity: 账号活动
     confirm_follow_selected_followers: 您确定想要关注所选的关注者吗？
@@ -1581,6 +1585,7 @@ zh-CN:
       unknown_browser: 未知浏览器
       weibo: 新浪微博
     current_session: 当前会话
+    date: 日期
     description: "%{platform} 上的 %{browser}"
     explanation: 你的 Mastodon 账户目前已在这些浏览器上登录。
     ip: IP 地址
@@ -1741,18 +1746,27 @@ zh-CN:
     webauthn: 安全密钥
   user_mailer:
     appeal_approved:
-      action: 前往你的账号
+      action: 账户设置
       explanation: 你于 %{appeal_date} 对 %{strike_date} 在你账号上做出的处罚提出的申诉已被批准，你的账号已回到正常状态。
       subject: 你于 %{date} 提出的申诉已被批准
+      subtitle: 您的账户已再次回到良好状态。
       title: 申诉已批准
     appeal_rejected:
       explanation: 你于 %{appeal_date} 对 %{strike_date} 在你账号上做出的处罚提出的申诉已被驳回。
       subject: 你于 %{date} 提出的申诉已被驳回
+      subtitle: 您的申诉已被驳回。
       title: 申诉已驳回
     backup_ready:
-      explanation: 你请求了一份 Mastodon 账户的完整备份。现在你可以下载了！
+      explanation: 您之前请求为您的 Mastodon 账户创建一份完整的备份。
+      extra: 现在它可以下载了！
       subject: 你的存档已经准备完毕
       title: 存档导出
+    failed_2fa:
+      details: 以下是该次登录尝试的详情：
+      explanation: 有人试图登录到您的账户，但提供了无效的辅助认证因子。
+      further_actions_html: 如果这不是您所为，您的密码可能已经泄露，建议您立即 %{action} 。
+      subject: 辅助认证失败
+      title: 辅助认证失败
     suspicious_sign_in:
       change_password: 更改密码
       details: 以下是该次登录的详细信息：
@@ -1806,6 +1820,7 @@ zh-CN:
     go_to_sso_account_settings: 转到您的身份提供商进行账户设置
     invalid_otp_token: 输入的双因素认证代码无效
     otp_lost_help_html: 如果你不慎丢失了所有的代码，请联系 %{email} 寻求帮助
+    rate_limited: 验证尝试次数过多，请稍后再试。
     seamless_external_login: 因为你是通过外部服务登录的，所以密码和电子邮件地址设置都不可用。
     signed_in_as: 当前登录的账户：
   verification:

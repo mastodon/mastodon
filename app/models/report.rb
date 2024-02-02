@@ -29,16 +29,19 @@ class Report < ApplicationRecord
   rate_limit by: :account, family: :reports
 
   belongs_to :account
-  belongs_to :target_account, class_name: 'Account'
-  belongs_to :action_taken_by_account, class_name: 'Account', optional: true
-  belongs_to :assigned_account, class_name: 'Account', optional: true
+
+  with_options class_name: 'Account' do
+    belongs_to :target_account
+    belongs_to :action_taken_by_account, optional: true
+    belongs_to :assigned_account, optional: true
+  end
 
   has_many :notes, class_name: 'ReportNote', inverse_of: :report, dependent: :destroy
   has_many :notifications, as: :activity, dependent: :destroy
 
   scope :unresolved, -> { where(action_taken_at: nil) }
   scope :resolved,   -> { where.not(action_taken_at: nil) }
-  scope :with_accounts, -> { includes([:account, :target_account, :action_taken_by_account, :assigned_account].index_with({ user: [:invite_request, :invite] })) }
+  scope :with_accounts, -> { includes([:account, :target_account, :action_taken_by_account, :assigned_account].index_with([:account_stat, { user: [:invite_request, :invite, :ips] }])) }
 
   # A report is considered local if the reporter is local
   delegate :local?, to: :account

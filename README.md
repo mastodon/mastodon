@@ -94,6 +94,7 @@ To set up **MacOS** for native development, complete the following steps:
 - Run `brew install postgresql@14`
 - Run `brew install redis`
 - Run `brew install imagemagick`
+- Run `brew install libidn`
 - Install Foreman or a similar tool (such as [overmind](https://github.com/DarthSim/overmind)) to handle multiple process launching.
 - Navigate to Mastodon's root directory and run `brew install nvm` then `nvm use` to use the version from .nvmrc
 - Run `corepack enable && corepack prepare`
@@ -132,7 +133,7 @@ You can open issues for bugs you've found or features you think are missing. You
 
 ## License
 
-Copyright (C) 2016-2023 Eugen Rochko & other Mastodon contributors (see [AUTHORS.md](AUTHORS.md))
+Copyright (C) 2016-2024 Eugen Rochko & other Mastodon contributors (see [AUTHORS.md](AUTHORS.md))
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
