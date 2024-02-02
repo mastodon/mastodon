@@ -61,7 +61,9 @@ services:
     hostname: "mastoweb"
 
   streaming:
-    build: ./streaming
+    build:
+      dockerfile: ./streaming/Dockerfile
+      context: .
     #image: ghcr.io/mastodon/mastodon:v4.2.1
     #image: mglennon/mastodon:${MY_PACKAGE}
     restart: unless-stopped
@@ -97,7 +99,7 @@ services:
     networks:
       - backend
     healthcheck:
-      test: ['CMD', 'redis-cli', 'ping']
+      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
     volumes:
       - mastodon_redis:/data
   
