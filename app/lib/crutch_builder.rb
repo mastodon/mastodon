@@ -9,19 +9,17 @@ class CrutchBuilder
   end
 
   def crutches
-    crutches = {}
-
-    crutches[:active_mentions] = crutches_active_mentions
-    crutches[:following]            = Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map(&:in_reply_to_account_id)).pluck(:target_account_id).index_with(true)
-    crutches[:languages]            = Follow.where(account_id: receiver_id, target_account_id: statuses.map(&:account_id)).pluck(:target_account_id, :languages).to_h
-    crutches[:hiding_reblogs]       = Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map { |s| s.account_id if s.reblog? }, show_reblogs: false).pluck(:target_account_id).index_with(true)
-    crutches[:blocking]             = Block.where(account_id: receiver_id, target_account_id: blocked_statuses_from_mentions).pluck(:target_account_id).index_with(true)
-    crutches[:muting]               = Mute.where(account_id: receiver_id, target_account_id: blocked_statuses_from_mentions).pluck(:target_account_id).index_with(true)
-    crutches[:domain_blocking]      = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.flat_map { |s| [s.account.domain, s.reblog&.account&.domain] }.compact).pluck(:domain).index_with(true)
-    crutches[:blocked_by]           = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| [s.account_id, s.reblog&.account_id] }.flatten.compact).pluck(:account_id).index_with(true)
-    crutches[:exclusive_list_users] = ListAccount.where(list: exclusive_lists, account_id: statuses.map(&:account_id)).pluck(:account_id).index_with(true)
-
-    crutches
+    {}.tap do |crutches|
+      crutches[:active_mentions] = crutches_active_mentions
+      crutches[:following]            = Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map(&:in_reply_to_account_id)).pluck(:target_account_id).index_with(true)
+      crutches[:languages]            = Follow.where(account_id: receiver_id, target_account_id: statuses.map(&:account_id)).pluck(:target_account_id, :languages).to_h
+      crutches[:hiding_reblogs]       = Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map { |s| s.account_id if s.reblog? }, show_reblogs: false).pluck(:target_account_id).index_with(true)
+      crutches[:blocking]             = Block.where(account_id: receiver_id, target_account_id: blocked_statuses_from_mentions).pluck(:target_account_id).index_with(true)
+      crutches[:muting]               = Mute.where(account_id: receiver_id, target_account_id: blocked_statuses_from_mentions).pluck(:target_account_id).index_with(true)
+      crutches[:domain_blocking]      = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.flat_map { |s| [s.account.domain, s.reblog&.account&.domain] }.compact).pluck(:domain).index_with(true)
+      crutches[:blocked_by]           = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| [s.account_id, s.reblog&.account_id] }.flatten.compact).pluck(:account_id).index_with(true)
+      crutches[:exclusive_list_users] = ListAccount.where(list: exclusive_lists, account_id: statuses.map(&:account_id)).pluck(:account_id).index_with(true)
+    end
   end
 
   private
