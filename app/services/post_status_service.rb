@@ -4,6 +4,7 @@ class PostStatusService < BaseService
   include Redisable
   include LanguagesHelper
 
+  SUPPORT_BACKDATED_SPELL = true
   MIN_SCHEDULE_OFFSET = 5.minutes.freeze
 
   class UnexpectedMentionsError < StandardError
@@ -181,8 +182,22 @@ class PostStatusService < BaseService
   end
 
   def status_attributes
+    if SUPPORT_BACKDATED_SPELL
+      pattern = /BD:(\d{8}:\d{6})/ # Regular expression for backdate spell
+      match = @text.match(pattern) # Match the pattern in the text
+      created_at_override = nil
+      override_text = @text
+      if match
+        extracted_text = match[1] # Extract the matched portion
+        require 'date'
+        datetime = DateTime.strptime(extracted_text, '%Y%m%d:%H%M%S')
+        created_at_override = datetime.strftime('%Y-%m-%dT%H:%M:%S.%LZ')
+        override_text = @text.gsub(/\s*BD:#{Regexp.escape(extracted_text)}\s*/, ' ')
+      end
+    end
+
     {
-      text: @text,
+      text: override_text,
       media_attachments: @media || [],
       ordered_media_attachment_ids: (@options[:media_ids] || []).map(&:to_i) & @media.map(&:id),
       thread: @in_reply_to,
@@ -193,6 +208,7 @@ class PostStatusService < BaseService
       language: valid_locale_cascade(@options[:language], @account.user&.preferred_posting_language, I18n.default_locale),
       application: @options[:application],
       rate_limit: @options[:with_rate_limit],
+      created_at: created_at_override,
     }.compact
   end
 
