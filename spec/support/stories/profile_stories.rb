@@ -10,7 +10,7 @@ module ProfileStories
       account: Fabricate(:account, username: 'bob')
     )
 
-    Web::Setting.where(user: bob).first_or_initialize(user: bob).update!(data: { introductionVersion: 201812160442020 }) if finished_onboarding # rubocop:disable Style/NumericLiterals
+    Web::Setting.where(user: bob).first_or_initialize(user: bob).update!(data: { introductionVersion: 2018_12_16_044202 }) if finished_onboarding
   end
 
   def as_a_logged_in_user

@@ -24,11 +24,11 @@ class Admin::ActionLog < ApplicationRecord
   belongs_to :account
   belongs_to :target, polymorphic: true, optional: true
 
-  default_scope -> { order('id desc') }
-
   before_validation :set_human_identifier
   before_validation :set_route_param
   before_validation :set_permalink
+
+  scope :latest, -> { order(id: :desc) }
 
   def action
     super.to_sym

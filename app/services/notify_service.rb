@@ -8,6 +8,7 @@ class NotifyService < BaseService
     admin.sign_up
     update
     poll
+    status
   ).freeze
 
   def call(recipient, type, activity)
@@ -107,7 +108,7 @@ class NotifyService < BaseService
   end
 
   def blocked?
-    blocked   = @recipient.suspended?
+    blocked   = @recipient.unavailable?
     blocked ||= from_self? && @notification.type != :poll
 
     return blocked if message? && from_staff?

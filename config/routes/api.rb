@@ -51,6 +51,12 @@ namespace :api, format: false do
     resources :scheduled_statuses, only: [:index, :show, :update, :destroy]
     resources :preferences, only: [:index]
 
+    resources :annual_reports, only: [:index] do
+      member do
+        post :read
+      end
+    end
+
     resources :announcements, only: [:index] do
       scope module: :announcements do
         resources :reactions, only: [:update, :destroy]
@@ -95,6 +101,11 @@ namespace :api, format: false do
     resources :filters, only: [:index, :create, :show, :update, :destroy]
     resources :endorsements, only: [:index]
     resources :markers, only: [:index, :create]
+
+    namespace :profile do
+      resource :avatar, only: :destroy
+      resource :header, only: :destroy
+    end
 
     namespace :apps do
       get :verify_credentials, to: 'credentials#show'
@@ -275,6 +286,8 @@ namespace :api, format: false do
           post :test
         end
       end
+
+      resources :tags, only: [:index, :show, :update]
     end
   end
 

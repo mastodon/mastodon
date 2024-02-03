@@ -4,10 +4,13 @@ source 'https://rubygems.org'
 ruby '>= 3.0.0'
 
 gem 'puma', '~> 6.3'
-gem 'rails', '~> 7.0'
-gem 'sprockets', '~> 3.7.2'
+gem 'rails', '~> 7.1.1'
+gem 'propshaft'
 gem 'thor', '~> 1.2'
 gem 'rack', '~> 2.2.7'
+
+# For why irb is in the Gemfile, see: https://ruby.social/@st0012/111444685161478182
+gem 'irb', '~> 1.8'
 
 gem 'haml-rails', '~>2.0'
 gem 'pg', '~> 1.5'
@@ -16,14 +19,14 @@ gem 'dotenv-rails', '~> 2.8'
 
 gem 'aws-sdk-s3', '~> 1.123', require: false
 gem 'fog-core', '<= 2.4.0'
-gem 'fog-openstack', '~> 0.3', require: false
+gem 'fog-openstack', '~> 1.0', require: false
 gem 'kt-paperclip', '~> 7.2'
 gem 'md-paperclip-azure', '~> 2.2', require: false
 gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'
-gem 'bootsnap', '~> 1.16.0', require: false
+gem 'bootsnap', '~> 1.17.0', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.3'
@@ -36,15 +39,14 @@ end
 
 gem 'net-ldap', '~> 0.18'
 
-# TODO: Point back at released omniauth-cas gem when PR merged
-# https://github.com/dlindahl/omniauth-cas/pull/68
-gem 'omniauth-cas', github: 'stanhu/omniauth-cas', ref: '4211e6d05941b4a981f9a36b49ec166cecd0e271'
+gem 'omniauth-cas', '~> 3.0.0.beta.1'
 gem 'omniauth-saml', '~> 2.0'
 gem 'omniauth_openid_connect', '~> 0.6.1'
 gem 'omniauth', '~> 2.0'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
 gem 'color_diff', '~> 0.1'
+gem 'csv', '~> 3.2'
 gem 'discard', '~> 1.2'
 gem 'doorkeeper', '~> 5.6'
 gem 'ed25519', '~> 1.3'
@@ -72,7 +74,6 @@ gem 'premailer-rails'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', '~> 2.0', require: 'rack/cors'
 gem 'rails-i18n', '~> 7.0'
-gem 'rails-settings-cached', '~> 0.6', git: 'https://github.com/mastodon/rails-settings-cached.git', branch: 'v0.6.6-aliases-true'
 gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
@@ -86,9 +87,8 @@ gem 'sidekiq-unique-jobs', '~> 7.1'
 gem 'sidekiq-bulk', '~> 0.2.0'
 gem 'simple-navigation', '~> 4.4'
 gem 'simple_form', '~> 5.2'
-gem 'sprockets-rails', '~> 3.4', require: 'sprockets/railtie'
 gem 'stoplight', '~> 3.0.1'
-gem 'strong_migrations', '~> 0.8'
+gem 'strong_migrations', '1.7.0'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2023'
@@ -103,14 +103,17 @@ gem 'rdf-normalize', '~> 0.5'
 gem 'private_address_check', '~> 0.5'
 
 group :test do
-  # Used to split testing into chunks in CI
-  gem 'rspec_chunked', '~> 0.6'
+  # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
+  gem 'rspec-github', '~> 2.4', require: false
 
   # RSpec progress bar formatter
   gem 'fuubar', '~> 2.5'
 
+  # RSpec helpers for email specs
+  gem 'email_spec'
+
   # Extra RSpec extenion methods and helpers for sidekiq
-  gem 'rspec-sidekiq', '~> 3.1'
+  gem 'rspec-sidekiq', '~> 4.0'
 
   # Browser integration testing
   gem 'capybara', '~> 3.39'
@@ -120,13 +123,7 @@ group :test do
   gem 'database_cleaner-active_record'
 
   # Used to mock environment variables
-  gem 'climate_control', '~> 0.2'
-
-  # Generating fake data for specs
-  gem 'faker', '~> 3.2'
-
-  # Generate test objects for specs
-  gem 'fabrication', '~> 2.30'
+  gem 'climate_control'
 
   # Add back helpers functions removed in Rails 5.1
   gem 'rails-controller-testing', '~> 1.0'
@@ -139,6 +136,7 @@ group :test do
 
   # Coverage formatter for RSpec test if DISABLE_SIMPLECOV is false
   gem 'simplecov', '~> 0.22', require: false
+  gem 'simplecov-lcov', '~> 0.8', require: false
 
   # Stub web requests for specs
   gem 'webmock', '~> 3.18'
@@ -170,17 +168,20 @@ group :development do
   # Linter CLI for HAML files
   gem 'haml_lint', require: false
 
-  # Deployment automation
-  gem 'capistrano', '~> 3.17'
-  gem 'capistrano-rails', '~> 1.6'
-  gem 'capistrano-rbenv', '~> 2.2'
-  gem 'capistrano-yarn', '~> 2.0'
-
   # Validate missing i18n keys
   gem 'i18n-tasks', '~> 1.0', require: false
 end
 
 group :development, :test do
+  # Interactive Debugging tools
+  gem 'debug', '~> 1.8'
+
+  # Generate fake data values
+  gem 'faker', '~> 3.2'
+
+  # Generate factory objects
+  gem 'fabrication', '~> 2.30'
+
   # Profiling tools
   gem 'memory_profiler', require: false
   gem 'ruby-prof', require: false
@@ -200,7 +201,7 @@ gem 'connection_pool', require: false
 gem 'xorcist', '~> 1.1'
 gem 'cocoon', '~> 1.2'
 
-gem 'net-http', '~> 0.3.2'
+gem 'net-http', '~> 0.4.0'
 gem 'rubyzip', '~> 2.3'
 
 gem 'hcaptcha', '~> 7.1'

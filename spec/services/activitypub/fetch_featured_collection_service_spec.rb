@@ -31,7 +31,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
     }
   end
 
-  let(:status_json_pinned_unknown_unreachable) do
+  let(:status_json_pinned_unknown_reachable) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
       type: 'Note',
@@ -42,12 +42,22 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
     }
   end
 
+  let(:featured_with_null) do
+    {
+      '@context': 'https://www.w3.org/ns/activitystreams',
+      id: 'https://example.com/account/collections/featured',
+      totalItems: 0,
+      type: 'OrderedCollection',
+    }
+  end
+
   let(:items) do
     [
       'https://example.com/account/pinned/known', # known
       status_json_pinned_unknown_inlined, # unknown inlined
       'https://example.com/account/pinned/unknown-unreachable', # unknown unreachable
       'https://example.com/account/pinned/unknown-reachable', # unknown reachable
+      'https://example.com/account/collections/featured', # featured with null
     ]
   end
 
@@ -65,7 +75,8 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
       stub_request(:get, 'https://example.com/account/pinned/known').to_return(status: 200, body: Oj.dump(status_json_pinned_known))
       stub_request(:get, 'https://example.com/account/pinned/unknown-inlined').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_inlined))
       stub_request(:get, 'https://example.com/account/pinned/unknown-unreachable').to_return(status: 404)
-      stub_request(:get, 'https://example.com/account/pinned/unknown-reachable').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_unreachable))
+      stub_request(:get, 'https://example.com/account/pinned/unknown-reachable').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_reachable))
+      stub_request(:get, 'https://example.com/account/collections/featured').to_return(status: 200, body: Oj.dump(featured_with_null))
 
       subject.call(actor, note: true, hashtag: false)
     end
@@ -76,6 +87,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
         'https://example.com/account/pinned/unknown-inlined',
         'https://example.com/account/pinned/unknown-reachable'
       )
+      expect(actor.pinned_statuses).to_not include(known_status)
     end
   end
 
@@ -103,6 +115,21 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
       end
 
       it_behaves_like 'sets pinned posts'
+
+      context 'when there is a single item, with the array compacted away' do
+        let(:items) { 'https://example.com/account/pinned/unknown-reachable' }
+
+        before do
+          stub_request(:get, 'https://example.com/account/pinned/unknown-reachable').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_reachable))
+          subject.call(actor, note: true, hashtag: false)
+        end
+
+        it 'sets expected posts as pinned posts' do
+          expect(actor.pinned_statuses.pluck(:uri)).to contain_exactly(
+            'https://example.com/account/pinned/unknown-reachable'
+          )
+        end
+      end
     end
 
     context 'when the endpoint is a paginated Collection' do
@@ -124,6 +151,21 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
       end
 
       it_behaves_like 'sets pinned posts'
+
+      context 'when there is a single item, with the array compacted away' do
+        let(:items) { 'https://example.com/account/pinned/unknown-reachable' }
+
+        before do
+          stub_request(:get, 'https://example.com/account/pinned/unknown-reachable').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_reachable))
+          subject.call(actor, note: true, hashtag: false)
+        end
+
+        it 'sets expected posts as pinned posts' do
+          expect(actor.pinned_statuses.pluck(:uri)).to contain_exactly(
+            'https://example.com/account/pinned/unknown-reachable'
+          )
+        end
+      end
     end
   end
 end

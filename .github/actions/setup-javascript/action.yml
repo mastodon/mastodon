@@ -1,0 +1,42 @@
+name: 'Setup Javascript'
+description: 'Setup a Javascript environment ready to run the Mastodon code'
+inputs:
+  onlyProduction:
+    description: Only install production dependencies
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: '.nvmrc'
+
+    # The following is needed because we can not use `cache: true` for `setup-node`, as it does not support Corepack yet and mess up with the cache location if ran after Node is installed
+    - name: Enable corepack
+      shell: bash
+      run: corepack enable
+
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      shell: bash
+      run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+
+    - uses: actions/cache@v4
+      id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
+    - name: Install all yarn packages
+      shell: bash
+      run: yarn install --immutable
+      if: inputs.onlyProduction == 'false'
+
+    - name: Install all production yarn packages
+      shell: bash
+      run: yarn workspaces focus --production
+      if: inputs.onlyProduction != 'false'

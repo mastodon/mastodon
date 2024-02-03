@@ -309,6 +309,7 @@ fy:
       unpublish: Depublisearje
       unpublished_msg: Ungedien meitsjen fan publisearre meidieling is slagge!
       updated_msg: Bywurkjen fan meidieling slagge!
+    critical_update_pending: Kritike fernijing yn behanneling
     custom_emojis:
       assign_category: Kategory tawize
       by_domain: Domein
@@ -424,6 +425,7 @@ fy:
       view: Domeinblokkade besjen
     email_domain_blocks:
       add_new: Nije tafoegje
+      allow_registrations_with_approval: Ynskriuwingen mei tastimming tastean
       attempts_over_week:
         one: "%{count} registraasjebesykjen yn de ôfrûne wike"
         other: "%{count} registraasjebesykjen yn de ôfrûne wike"
@@ -533,6 +535,7 @@ fy:
       total_reported: Rapportaazjes oer harren
       total_storage: Mediabylagen
       totals_time_period_hint_html: De hjirûnder toande totalen befetsje gegevens sûnt it begjin.
+      unknown_instance: Der binne op dit stuit gjin gegevens fan dit domein op dizze server.
     invites:
       deactivate_all: Alles deaktivearje
       filter:
@@ -609,6 +612,7 @@ fy:
       created_at: Rapportearre op
       delete_and_resolve: Berjocht fuortsmite
       forwarded: Trochstjoerd
+      forwarded_replies_explanation: Dit rapport komt fan in eksterne brûker en giet oer eksterne ynhâld. It is nei jo trochstjoerd, omdat de rapportearre ynhâld in reaksje is op ien fan jo brûkers.
       forwarded_to: Trochstjoerd nei %{domain}
       mark_as_resolved: As oplost markearje
       mark_as_sensitive: As gefoelich markearje
@@ -770,10 +774,27 @@ fy:
           approved: Goedkarring fereaske om te registrearje te kinnen
           none: Net ien kin harren registrearje
           open: Elkenien kin harren registrearje
+      security:
+        authorized_fetch: Ferifikaasje fan fedearre servers fereaskje
+        authorized_fetch_hint: Ferifikaasje fereaskje fan federearre servers, makket in striktere hanthaving fan sawol brûkersnivo as server-levelblokken mooglik. Dit giet wol ten koste fan de prestaasjes, ferminderet it berik fan jo antwurden en kin kompatibiliteitsproblemen mei guon federearre services opleverje. Boppedat sil dit net foarkomme dat tawijde spilers jo iepenbiere artikelen en accounts ophelje.
+        authorized_fetch_overridden_hint: Jo kinne op dit stuit dizze ynstelling net wizigje, omdat dizze oerskreaun is troch in omjouwingsfariabele.
+        federation_authentication: Oftwongen federaasje-autentikaasje
       title: Serverynstellingen
     site_uploads:
       delete: Opladen bestân fuortsmite
       destroyed_msg: Fuortsmiten website-oplaad slagge!
+    software_updates:
+      critical_update: Krityk — fernij sa gau as mooglik
+      description: It wurdt oanrekommandearre om jo Mastodon-ynstallaasje by-de-tiid te hâlden om gebrûk meitsje te kinnen fan de nijste oplossingen en funksjes. Boppe dat is it somtiden krúsjaal om Mastodon tidich by te wurkjen om feiligheidsproblemen foar te kommen. Om dizze redenen kontrolearret Mastodon elke 30 minuten fernijingen en bringt jo hjirfan op de hichte neffens jo foarkarren foar e-mailmeldingen.
+      documentation_link: Mear ynfo
+      release_notes: Utjefte-opmerkingen
+      title: Beskikbere fernijingen
+      type: Type
+      types:
+        major: Haadferzje
+        minor: Lytse ferzje
+        patch: Patchferzje – bugfixes en ienfâldich ta te passen wizigingen
+      version: Ferzje
     statuses:
       account: Auteur
       application: Tapassing
@@ -814,6 +835,20 @@ fy:
     system_checks:
       database_schema_check:
         message_html: Der binne database migraasjes yn ôfwachting. Jo moatte dizze útfiere om der foar te soargjen dat de applikaasje wurkjen bliuwt sa as it heard
+      elasticsearch_health_red:
+        message_html: Elasticsearch-cluster is net sûn (reade status), sykfunksjes binne net beskikber
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch-cluster is net sûn (giele status), miskien wolle jo de reden ûndersykje
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch-yndekstawizingen binne ferâldere. Fier <code>tootctl search deploy --only=%{value}</code> út
+      elasticsearch_preset:
+        action: Dokumintaasje besjen
+        message_html: Jo Elasticsearch-cluster hat mear as ien node, mar Mastodon is net konfigurearre om se te brûken.
+      elasticsearch_preset_single_node:
+        action: Dokumintaasje besjen
+        message_html: Jo Elasticsearch-cluster hat mar ien node, <code>ES_PRESET</code> moat ynsteld wurde op <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Jo Elasticsearch-systeemyndeks is ferâldere fanwegen in ynstellingswiziging. Fier <code>tootctl search deploy --reset-chewy</code> út om it by te wurkjen.
       elasticsearch_running_check:
         message_html: Koe gjin ferbining meitsje mei Elasticsearch. Kontrolearje dat Elasticsearch útfierd wurdt of skeakelje full-text-sykjen út
       elasticsearch_version_check:
@@ -824,6 +859,12 @@ fy:
         message_html: Jo hawwe foar dizze server gjin regels opsteld.
       sidekiq_process_check:
         message_html: Der draait gjin Sidekiq-proses foar de wachtrige(n) %{value}. Kontrolearje jo Sidekiq-konfiguraasje
+      software_version_critical_check:
+        action: Beskikbere fernijingen besjen
+        message_html: Der is in kritike fernijing foar Mastodon beskikber. Wurkje sa gau as mooglik by.
+      software_version_patch_check:
+        action: Beskikbere fernijingen besjen
+        message_html: Der is in Mastodon-fernijing foar in bugfix beskikber.
       upload_check_privacy_error:
         action: Klik hjir foar mear ynformaasje
         message_html: "<strong>Jo webserver is ferkeard konfigurearre. De privacy fan jo brûkers is yn gefaar.</strong>"
@@ -937,6 +978,9 @@ fy:
       body: "%{target} makket beswier tsjin in moderaasjemaatregel troch %{action_taken_by} op %{date}, oangeande %{type}. De brûker skriuwt:"
       next_steps: Jo kinne it beswier goedkarre om dêrmei de moderaasjemaatregel ûngedien te meitsjen, of jo kinne it ferwerpe.
       subject: "%{username} makket beswier tsjin in moderaasjemaatregel op %{instance}"
+    new_critical_software_updates:
+      body: Nije krityske ferzjes fan Mastodon binne frijjûn. Jo moatte sa gau as mooglik bywurkje!
+      subject: Kritike Mastodon-fernijingen binne beskikber foar %{instance}!
     new_pending_account:
       body: Sjoch hjirûnder de details fan it nije account. Jo kinne de oanfraach goedkarre of ôfwize.
       subject: Der moat in nij account op %{instance} beoardiele wurde (%{username})
@@ -944,6 +988,9 @@ fy:
       body: "%{reporter} hat %{target} rapportearre"
       body_remote: Ien fan %{domain} hat %{target} rapportearre
       subject: Nije rapportaazje op %{instance} (#%{id})
+    new_software_updates:
+      body: Nije ferzjes fan Mastodon binne frijjûn. Jo wolle miskien bywurkje!
+      subject: Nije ferzjes fan Mastodon binne beskikber foar %{instance}!
     new_trends:
       body: 'De folgjende items moatte beoardiele wurde eardat se iepenbier toand wurde kinne:'
       new_trending_links:
@@ -951,8 +998,6 @@ fy:
       new_trending_statuses:
         title: Trending berjochten
       new_trending_tags:
-        no_approved_tags: Op dit stuit binne der gjin goedkarre hashtags.
-        requirements: 'Elk fan dizze kandidaten kin de #%{rank} goedkarre trending hashtag oertreffe, dy’t op dit stuit #%{lowest_tag_name} is mei in skoare fan %{lowest_tag_score}.'
         title: Trending hashtags
       subject: Nije trends te beoardielen op %{instance}
   aliases:
@@ -996,6 +1041,14 @@ fy:
       hint_html: Noch ien ding! Jo moatte befêstigje dat jo in minske binne (dit is om de spam bûten de doar te hâlden!). Los de ûndersteande CAPTCHA op en klik op ‘Trochgean’.
       title: Befeiligingskontrôle
     confirmations:
+      awaiting_review: Jo e-mailadres is befêstige! De %{domain}-meiwurkers binne no dwaande mei it besjen fan jo registraasje. Jo ûntfange in e-mailberjocht as de jo account goedkarre!
+      awaiting_review_title: Jo registraasje wurdt beoardield
+      clicking_this_link: klik op dizze keppeling
+      login_link: oanmelde
+      proceed_to_login_html: Jo kinne no fierder gean nei %{login_link}.
+      redirect_to_app_html: Jo soene omlaad wêze moatte nei de <strong>%{app_name}</strong> app. As dat net bard is, probearje dan %{clicking_this_link} of kear hânmjittich werom nei de app.
+      registration_complete: Jo registraasje op %{domain} is no foltôge!
+      welcome_title: Wolkom, %{name}!
       wrong_email_hint: As it e-mailadres net korrekt is, kinne jo dat wizigje yn de accountynstellingen.
     delete_account: Account fuortsmite
     delete_account_html: Wannear’t jo jo account graach fuortsmite wolle, kinne jo dat <a href="%{path}">hjir dwaan</a>. Wy freegje jo dêr om in befêstiging.
@@ -1057,6 +1110,7 @@ fy:
       functional: Jo account kin folslein brûkt wurde.
       pending: Jo oanfraach moat noch beoardiele wurde troch ien fan ús meiwurkers. Dit kin miskien efkes duorje. Jo ûntfangt in e-mailberjocht wannear’t jo oanfraach goedkard is.
       redirecting_to: Jo account is ynaktyf, omdat it op dit stuit trochferwezen wurdt nei %{acct}.
+      self_destruct: Omdat %{domain} sluten sil, krije jo mar beheind tagong ta jo account.
       view_strikes: Besjoch de earder troch moderatoaren fêststelde skeiningen dy’t jo makke hawwe
     too_fast: Formulier is te fluch yntsjinne. Probearje it nochris.
     use_security_key: Befeiligingskaai brûke
@@ -1264,12 +1318,14 @@ fy:
       bookmarks_html: Jo steane op it punt om <strong>jo blêdwizers</strong> mei mear as <strong>%{total_items} artikelen</strong> fan <strong>%{filename}</strong> te ferfangen.
       domain_blocking_html: Jo steane op it punt om <strong>jo domeinblokkearlist</strong> mei mear as <strong>%{total_items} domeinen</strong> fan <strong>%{filename}</strong> te ferfangen.
       following_html: Jo steane op it punt om <strong>%{total_items} accounts</strong> út <strong>%{filename}</strong> <strong>te folgjen</strong> en <strong>te stopjen mei folgjen fan alle oaren</strong>.
+      lists_html: Jo steane op it punt <strong>jo listen</strong> te ferfangen troch ynhâld fan <strong>%{filename}</strong>. Oant <strong>%{total_items} accounts</strong> sille oan nije listen tafoege wurde.
       muting_html: Jo steane op it punt om <strong>jo list mei negearre accounts</strong> mei mear as <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> út te ferfangen.
     preambles:
       blocking_html: Jo steane op it punt om <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> út te <strong>blokkearjen</strong>.
       bookmarks_html: Jo steane op it punt om <strong>%{total_items} berjochten</strong> fan <strong>%{filename}</strong> út oan jo <strong>blêdwizers</strong> ta te foegjen.
       domain_blocking_html: Jo steane op it punt om <strong>%{total_items} domeinen</strong> fan <strong>%{filename}</strong> út te <strong>blokkearjen</strong>.
       following_html: Jo steane op it punt om <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> út te <strong>folgjen</strong>.
+      lists_html: Jo steane op it punt om oant <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> ta te foegjen oan jo <strong>listen</strong>. Nije listen wurde oanmakke as der gjin list is om oan ta te foegjen.
       muting_html: Jo steane op it punt om <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> út te <strong>negearjen</strong>.
     preface: Jo kinne bepaalde gegevens, lykas de minsken dy’t jo folgje of blokkearre hawwe, nei jo account op dizze server ymportearje. Jo moatte dizze gegevens wol earst op de oarspronklike server eksportearje.
     recent_imports: Resinte ymports
@@ -1286,6 +1342,7 @@ fy:
       bookmarks: Blêdwizers ymportearje
       domain_blocking: Blokkearre domeinen ymportearje
       following: Folge accounts ymportearje
+      lists: Listen ymportearje
       muting: Negearre accounts ymportearje
     type: Ymporttype
     type_groups:
@@ -1296,6 +1353,7 @@ fy:
       bookmarks: Blêdwizers
       domain_blocking: Domeinblokkearlist
       following: Folchlist
+      lists: Listen
       muting: Negearlist
     upload: Oplade
   invites:
@@ -1310,6 +1368,7 @@ fy:
       '86400': 1 dei
     expires_in_prompt: Nea
     generate: Utnûgingskeppeling generearje
+    invalid: Dizze útnûging is net jildich
     invited_by: 'Jo binne útnûge troch:'
     max_uses:
       one: 1 kear
@@ -1428,6 +1487,7 @@ fy:
     update:
       subject: "%{name} hat in berjocht bewurke"
   notifications:
+    administration_emails: E-mailmeldingen behearder
     email_events: E-mailmeldingen foar eveneminten
     email_events_hint: 'Selektearje eveneminten wêrfoar’t jo meldingen ûntfange wolle:'
     other_settings: Oare meldingsynstellingen
@@ -1471,6 +1531,15 @@ fy:
     other: Oars
     posting_defaults: Standertynstellingen foar berjochten
     public_timelines: Iepenbiere tiidlinen
+  privacy:
+    hint_html: "<strong>Hoe wolle jo dat jo profyl en berjochten fûn wurde kinne?</strong> In ferskaat oan funksjes yn Mastodon kinne jo helpe om een grutter publyk te berikken as se ynskeakele binne. Nim de tiid om dizze ynstellingen te besjen, om der wis fan te wêzen dat se oan jo winsken foldogge."
+    privacy: Privacy
+    privacy_hint_html: Hoefolle ynformaasje wolle jo oan oare brûkers kwyt? Minsken ûntdekke ynteressante accounts en coole apps troch te besjen hokker accounts jo folgje en troch te besjen hokker app jo brûke foar it pleatsen fan berjochten. It kin lykwols sa wêze dat jo dit leaver ferburgen hâlde.
+    reach: Berik
+    reach_hint_html: Wolle jo troch nije minsken ûntdekt en folge wurde? Wolle jo dat jo berjochten op de side Ferkenne toand wurde? Wolle jo oan oare minsken Oanrekommandearre wurde en yn de brûkersgids stean? Wolle jo nije folgers automatysk akseptearje of wolle jo dy hânmjittich goedkarre kinne?
+    search: Sykje
+    search_hint_html: Hoe wolle jo fûn wurde? Wolle jo dat minsken jo fine kinne fia jo iepenbiere berjochten? Wolle jo dat minsken bûten Mastodon jo profyl fine kinne wannear’t se op it web sykje? Ferjit lykwols net dat jo iepenbiere berjochten en profyl nea folslein beskerme wurde kinnen tsjin sykmasinen.
+    title: Privacy en berik
   privacy_policy:
     title: Privacybelied
   reactions:
@@ -1512,6 +1581,9 @@ fy:
     over_daily_limit: Jo binne oer de limyt fan %{limit} yn te plannen berjochten foar hjoed
     over_total_limit: Jo binne oer de limyt fan %{limit} yn te plannen berjochten
     too_soon: De datum foar it ynplande berjocht moat yn de takomst lizze
+  self_destruct:
+    lead_html: Spitigernôch sil <strong>%{domain}</strong> permanint ôfslute. As jo dêr in account hiene, kinne jo dizze net mear brûke, mar jo kinne noch hieltyd in reservekopy fan jo gegevens opfreegje.
+    title: Deze server sil ôfslute
   sessions:
     activity: Lêst warber
     browser: Browser
@@ -1536,6 +1608,7 @@ fy:
       unknown_browser: Unbekende browser
       weibo: Weibo
     current_session: Aktuele sesje
+    date: Datum
     description: "%{browser} op %{platform}"
     explanation: Dit binne de webbrowsers dy’t op dit stuit mei jo Mastodon-account oanmeld binne.
     ip: IP
@@ -1680,6 +1753,11 @@ fy:
       default: "%d %B %Y om %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: It brûkerskwotum foar de oersettsjinst is oer de limyt.
+      too_many_requests: Der binne de lêste tiid te folle fersiken west by de oersettsjinst.
   two_factor_authentication:
     add: Tafoegje
     disable: 2FA útskeakelje
@@ -1697,18 +1775,27 @@ fy:
     webauthn: Befeiligingskaaien
   user_mailer:
     appeal_approved:
-      action: Gean nei jo account
+      action: Accountynstellingen
       explanation: It beswier tsjin in troch in moderator fêststelde skeining fan jo op %{strike_date}, yntsjinne op %{appeal_date}, is goedkard. De earder fêststelde skeining is hjirby net langer jildich.
       subject: Jo beswier fan %{date} is goedkard
+      subtitle: Jo account hat wer in goede reputaasje.
       title: Beswier goedkard
     appeal_rejected:
       explanation: It beswier tsjin in troch in moderator fêststelde skeining fan jo op %{strike_date}, yntsjinne op %{appeal_date}, is ôfwêzen. De fêststelde skeining bliuwt wurdt dêrom net wizige.
       subject: Jo beswier fan %{date} is ôfwêzen
+      subtitle: Jo beswier is ôfwêzen.
       title: Beswier ôfwêzen
     backup_ready:
-      explanation: Jo hawwe in folsleine reservekopy fan jo Mastodon-account opfrege. It stiet no klear om download te wurden!
+      explanation: Jo hawwe in folsleine reservekopy fan jo Mastodon-account oanfrege.
+      extra: It stiet no klear om download te wurden!
       subject: Jo argyf stiet klear om download te wurden
       title: Argyf ophelje
+    failed_2fa:
+      details: 'Hjir binne de details fan de oanmeldbesykjen:'
+      explanation: Ien hat probearre om oan te melden op jo account, mar hat in ûnjildige twaddeferifikaasjefaktor opjûn.
+      further_actions_html: As jo dit net wiene, rekommandearje wy jo oan daliks %{action}, omdat it kompromitearre wêze kin.
+      subject: Twaddefaktorautentikaasjeflater
+      title: Twastapsferifikaasje mislearre
     suspicious_sign_in:
       change_password: wizigje jo wachtwurd
       details: 'Hjir binne de details fan oanmeldbesykjen:'
@@ -1762,6 +1849,7 @@ fy:
     go_to_sso_account_settings: Gean nei de accountynstellingen fan jo identiteitsprovider
     invalid_otp_token: Unjildige twa-stapstagongskoade
     otp_lost_help_html: As jo tagong ta beide kwytrekke binne, nim dan kontakt op fia %{email}
+    rate_limited: Te folle autentikaasjebesykjen, probearje it letter opnij.
     seamless_external_login: Jo binne oanmeld fia in eksterne tsjinst, dêrom binne wachtwurden en e-mailynstellingen net beskikber.
     signed_in_as: 'Oanmeld as:'
   verification:

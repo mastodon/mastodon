@@ -11,7 +11,7 @@ Paperclip.interpolates :filename do |attachment, style|
   end
 end
 
-Paperclip.interpolates :prefix_path do |attachment, style|
+Paperclip.interpolates :prefix_path do |attachment, _style|
   if attachment.storage_schema_version >= 1 && attachment.instance.respond_to?(:local?) && !attachment.instance.local?
     'cache' + File::SEPARATOR
   else
@@ -19,7 +19,7 @@ Paperclip.interpolates :prefix_path do |attachment, style|
   end
 end
 
-Paperclip.interpolates :prefix_url do |attachment, style|
+Paperclip.interpolates :prefix_url do |attachment, _style|
   if attachment.storage_schema_version >= 1 && attachment.instance.respond_to?(:local?) && !attachment.instance.local?
     'cache/'
   else
@@ -91,28 +91,26 @@ if ENV['S3_ENABLED'] == 'true'
   # Some S3-compatible providers might not actually be compatible with some APIs
   # used by kt-paperclip, see https://github.com/mastodon/mastodon/issues/16822
   # and https://github.com/mastodon/mastodon/issues/26394
-  if ENV['S3_FORCE_SINGLE_REQUEST'] == 'true' || ENV['S3_DISABLE_CHECKSUM_MODE'] == 'true'
-    module Paperclip
-      module Storage
-        module S3Extensions
-          def copy_to_local_file(style, local_dest_path)
-            log("copying #{path(style)} to local file #{local_dest_path}")
+  module Paperclip
+    module Storage
+      module S3Extensions
+        def copy_to_local_file(style, local_dest_path)
+          log("copying #{path(style)} to local file #{local_dest_path}")
 
-            options = {}
-            options[:mode] = 'single_request' if ENV['S3_FORCE_SINGLE_REQUEST'] == 'true'
-            options[:checksum_mode] = 'DISABLED' if ENV['S3_DISABLE_CHECKSUM_MODE'] == 'true'
+          options = {}
+          options[:mode] = 'single_request' if ENV['S3_FORCE_SINGLE_REQUEST'] == 'true'
+          options[:checksum_mode] = 'DISABLED' unless ENV['S3_ENABLE_CHECKSUM_MODE'] == 'true'
 
-            s3_object(style).download_file(local_dest_path, options)
-          rescue Aws::Errors::ServiceError => e
-            warn("#{e} - cannot copy #{path(style)} to local file #{local_dest_path}")
-            false
-          end
+          s3_object(style).download_file(local_dest_path, options)
+        rescue Aws::Errors::ServiceError => e
+          warn("#{e} - cannot copy #{path(style)} to local file #{local_dest_path}")
+          false
         end
       end
     end
-
-    Paperclip::Storage::S3.prepend(Paperclip::Storage::S3Extensions)
   end
+
+  Paperclip::Storage::S3.prepend(Paperclip::Storage::S3Extensions)
 elsif ENV['SWIFT_ENABLED'] == 'true'
   require 'fog/openstack'
 

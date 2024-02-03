@@ -97,7 +97,8 @@ SimpleForm.setup do |config|
       end
     end
 
-    b.use :hint,  wrap_with: { tag: :span, class: :hint }
+    b.use :warning_hint, wrap_with: { tag: :span, class: [:hint, 'warning-hint'] }
+    b.use :hint, wrap_with: { tag: :span, class: :hint }
     b.use :error, wrap_with: { tag: :span, class: :error }
   end
 
@@ -111,8 +112,8 @@ SimpleForm.setup do |config|
   config.wrappers :with_block_label, class: [:input, :with_block_label], hint_class: :field_with_hint, error_class: :field_with_errors do |b|
     b.use :html5
     b.use :label
-    b.use :hint, wrap_with: { tag: :span, class: :hint }
     b.use :warning_hint, wrap_with: { tag: :span, class: [:hint, 'warning-hint'] }
+    b.use :hint, wrap_with: { tag: :span, class: :hint }
     b.use :input, wrap_with: { tag: :div, class: :label_input }
     b.use :error, wrap_with: { tag: :span, class: :error }
   end
@@ -163,7 +164,7 @@ SimpleForm.setup do |config|
   # config.item_wrapper_class = nil
 
   # How the label text should be generated altogether with the required text.
-  config.label_text = lambda { |label, required, explicit_label| "#{label} #{required}" }
+  config.label_text = ->(label, required, _explicit_label) { "#{label} #{required}" }
 
   # You can define the class to use on all labels. Default is nil.
   # config.label_class = nil

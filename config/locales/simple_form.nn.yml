@@ -3,9 +3,13 @@ nn:
   simple_form:
     hints:
       account:
+        discoverable: Dei offentlege innlegga dine og profilen din kan dukka opp i tilrådingar på ulike stader på Mastodon, og profilen din kan bli føreslegen for andre folk.
         display_name: Ditt fulle namn eller ditt tøysenamn.
         fields: Heimesida di, pronomen, alder, eller kva du måtte ynskje.
+        indexable: Dei offentlege innlegga dine kan dukka opp i søkjeresultat på Mastodon. Folk som har reagert på oinnlegga dine kan uansett søkja gjennom dei.
         note: 'Du kan @nemne folk eller #emneknaggar.'
+        show_collections: Andre kan sjå kven du følgjer og kven som følgjer deg. Dei du følgjer kan alltid sjå at du følgjer dei.
+        unlocked: Alle kan følgje deg utan å måtte spørje om det. Vel bort om du vil gå gjennom førespurnadar om å følgje deg og seie ja eller nei.
       account_alias:
         acct: Angi brukarnamn@domene til brukaren du ynskjer å flytta frå
       account_migration:
@@ -116,6 +120,9 @@ nn:
       sessions:
         otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
         webauthn: Om det er ein USB-nøkkel må du setja han inn og om nødvendig trykkja på han.
+      settings:
+        indexable: Profilsida di kan dukka opp søkjeresultat frå Google, Bing, Duckduckgo og andre.
+        show_application: Du vil uansett alltid kunna sjå kva app som la ut innlegga dine.
       tag:
         name: Du kan berre endra bruken av store/små bokstavar, t. d. for å gjera det meir leseleg
       user:
@@ -133,9 +140,13 @@ nn:
         url: Kvar hendingar skal sendast
     labels:
       account:
+        discoverable: Ta med profilen og innlegga i oppdagingsalgoritmar
         fields:
           name: Merkelapp
           value: Innhald
+        indexable: Ta med offentlege innlegg i søkjeresultat
+        show_collections: Vis følgjer og følgjare på profilen
+        unlocked: Godta nye følgjare automatisk
       account_alias:
         acct: Brukarnamnet på den gamle kontoen
       account_migration:
@@ -280,9 +291,18 @@ nn:
         pending_account: Send e-post når ein ny konto treng gjennomgang
         reblog: Send e-post når nokon framhevar statusen din
         report: Ny rapport er sendt
+        software_updates:
+          all: Varsle om alle oppdateringar
+          critical: Varsle kun om kristiske oppdateringar
+          label: Ein ny versjon av Mastodon er tilgjengeleg
+          none: Aldri varsle om oppdateringar (ikkje anbefalt)
+          patch: Varsle om feilrettingsoppdateringar
         trending_tag: Ny trend krev gjennomgang
       rule:
         text: Regler
+      settings:
+        indexable: Ta med profilsida i søkjemotorar
+        show_application: Vis kva app du brukte når du skreiv innlegg
       tag:
         listable: Tillat denne emneknaggen å synast i søk og i profilmappa
         name: Emneknagg
@@ -303,6 +323,7 @@ nn:
         url: Endepunkts-URL
     'no': Nei
     not_recommended: Ikkje anbefalt
+    overridden: Overstyrt
     recommended: Tilrådt
     required:
       mark: "*"

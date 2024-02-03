@@ -140,7 +140,9 @@ const fromAcct = (acct: string) => {
 };
 
 const fetchInteractionURL = (uri_or_domain: string) => {
-  if (/^https?:\/\//.test(uri_or_domain)) {
+  if (uri_or_domain === '') {
+    fetchInteractionURLFailure();
+  } else if (/^https?:\/\//.test(uri_or_domain)) {
     fromURL(uri_or_domain);
   } else if (uri_or_domain.includes('@')) {
     fromAcct(uri_or_domain);

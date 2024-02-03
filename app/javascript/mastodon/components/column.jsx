@@ -16,7 +16,13 @@ export default class Column extends PureComponent {
   };
 
   scrollTop () {
-    const scrollable = this.props.bindToDocument ? document.scrollingElement : this.node.querySelector('.scrollable');
+    let scrollable = null;
+
+    if (this.props.bindToDocument) {
+      scrollable = document.scrollingElement;
+    } else {
+      scrollable = this.node.querySelector('.scrollable');
+    }
 
     if (!scrollable) {
       return;

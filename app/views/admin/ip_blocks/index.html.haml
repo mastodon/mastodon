@@ -1,9 +1,6 @@
 - content_for :page_title do
   = t('admin.ip_blocks.title')
 
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-
 - if can?(:create, :ip_block)
   - content_for :heading_actions do
     = link_to t('admin.ip_blocks.add_new'), new_admin_ip_block_path, class: 'button'

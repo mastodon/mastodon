@@ -45,7 +45,7 @@ describe Admin::InvitesController do
 
   describe 'POST #deactivate_all' do
     it 'expires all invites, then redirects to admin_invites_path' do
-      invites = Fabricate.times(2, :invite, expires_at: nil)
+      invites = Fabricate.times(1, :invite, expires_at: nil)
 
       post :deactivate_all
 

@@ -3,9 +3,13 @@ es:
   simple_form:
     hints:
       account:
+        discoverable: Tu perfil y publicaciones públicas pueden ser destacadas o recomendadas en varias áreas de Mastodon y tu perfil puede ser sugerido a otros usuarios.
         display_name: Tu nombre completo o tu apodo.
         fields: Tu carta de presentación, pronombres, edad, lo que quieras.
-        note: Puedes mencionar a otra gente o etiquetas.
+        indexable: Tus publicaciones públicas pueden aparecer en los resultados de búsqueda en Mastodon. Las personas que han interactuado con tus publicaciones pueden ser capaces de buscarlas sin importar su visibilidad.
+        note: Puedes mencionar a otras personas o etiquetas.
+        show_collections: Las personas podrán navegar a través de tus seguidos y seguidores. Esto no impide que las personas que sigues sepan que las estás siguiendo.
+        unlocked: Las personas podrán seguirte sin pedir aprobación. Desmarca si deseas revisar las solicitudes de seguimiento y aceptar o rechazar nuevos seguidores.
       account_alias:
         acct: Especifique su nombre de usuario@dominio de la cuenta de donde se desea migrar
       account_migration:
@@ -83,13 +87,13 @@ es:
         peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el Fediverso. Aquí no se incluye ningún dato sobre si federas con un servidor determinado, solo que tu servidor lo conoce. Esto es utilizado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado por que su cuenta pueda ser descubierta.
         require_invite_text: Cuando los registros requieren aprobación manual, hace obligatoria la entrada de texto "¿Por qué quieres unirte?" en lugar de opcional
-        site_contact_email: Cómo la gente puede ponerse en contacto contigo para consultas legales o de ayuda.
-        site_contact_username: Cómo puede contactarte la gente en Mastodon.
+        site_contact_email: Cómo pueden ponerse en contacto contigo para consultas legales o de ayuda.
+        site_contact_username: Cómo pueden contactarte en Mastodon.
         site_extended_description: Cualquier información adicional que pueda ser útil para los visitantes y sus usuarios. Se puede estructurar con formato Markdown.
         site_short_description: Una breve descripción para ayudar a identificar su servidor de forma única. ¿Quién lo administra, a quién va dirigido?
         site_terms: Utiliza tu propia política de privacidad o déjala en blanco para usar la predeterminada Puede estructurarse con formato Markdown.
-        site_title: Cómo puede referirse la gente a tu servidor además de por el nombre de dominio.
-        status_page_url: URL de la página donde la gente puede ver el estado de este servidor durante una incidencia
+        site_title: Cómo pueden referirse a tu servidor además de por el nombre de dominio.
+        status_page_url: URL de una página donde se pueda ver el estado de este servidor durante una incidencia
         theme: El tema que los visitantes no registrados y los nuevos usuarios ven.
         thumbnail: Una imagen de aproximadamente 2:1 se muestra junto a la información de tu servidor.
         timeline_preview: Los visitantes no registrados podrán navegar por los mensajes públicos más recientes disponibles en el servidor.
@@ -116,6 +120,9 @@ es:
       sessions:
         otp: 'Introduce el código de autenticación de dos factores generado por tu aplicación de teléfono o usa uno de tus códigos de recuperación:'
         webauthn: Si es una tecla USB, asegúrese de insertarla y, si es necesario, púlsela.
+      settings:
+        indexable: Puede que tu página de perfil aparezca en los resultados de búsqueda en Google, Bing y otros.
+        show_application: Tú siempre podrás ver desde qué aplicación se ha publicado tu publicación.
       tag:
         name: Sólo se puede cambiar el cajón de las letras, por ejemplo, para que sea más legible
       user:
@@ -133,9 +140,13 @@ es:
         url: Donde los eventos serán enviados
     labels:
       account:
+        discoverable: Destacar perfil y publicaciones en algoritmos de descubrimiento
         fields:
           name: Etiqueta
           value: Contenido
+        indexable: Incluir publicaciones públicas en los resultados de búsqueda
+        show_collections: Mostrar seguidos y seguidores en el perfil
+        unlocked: Aceptar automáticamente nuevos seguidores
       account_alias:
         acct: Maneja la cuenta antigua
       account_migration:
@@ -257,7 +268,7 @@ es:
       interactions:
         must_be_follower: Bloquear notificaciones de personas que no te siguen
         must_be_following: Bloquear notificaciones de personas que no sigues
-        must_be_following_dm: Bloquear mensajes directos de la gente que no sigues
+        must_be_following_dm: Bloquear mensajes directos de personas que no sigues
       invite:
         comment: Comentar
       invite_request:
@@ -280,9 +291,18 @@ es:
         pending_account: Enviar correo electrónico cuando una nueva cuenta necesita revisión
         reblog: Enviar correo electrónico cuando alguien comparta su publicación
         report: Nuevo informe enviado
+        software_updates:
+          all: Notificar de cualquier actualización
+          critical: Notificar solo de actualizaciones críticas
+          label: Hay disponible una nueva versión de Mastodon
+          none: No notificar nunca de actualizaciones (no recomendado)
+          patch: Notificar de actualizaciones de errores
         trending_tag: Una nueva tendencia requiere revisión
       rule:
         text: Norma
+      settings:
+        indexable: Incluye la página de perfil en los buscadores
+        show_application: Mostrar desde qué aplicación enviaste una publicación
       tag:
         listable: Permitir que esta etiqueta aparezca en las búsquedas y en el directorio del perfil
         name: Etiqueta
@@ -303,6 +323,7 @@ es:
         url: URL de Endpoint
     'no': 'No'
     not_recommended: No recomendado
+    overridden: Sobrescrito
     recommended: Recomendado
     required:
       mark: "*"

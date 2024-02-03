@@ -7,8 +7,8 @@ describe ResolveURLService, type: :service do
 
   describe '#call' do
     it 'returns nil when there is no resource url' do
-      url           = 'http://example.com/missing-resource'
-      known_account = Fabricate(:account, uri: url, domain: 'example.com')
+      url = 'http://example.com/missing-resource'
+      Fabricate(:account, uri: url, domain: 'example.com')
       service = instance_double(FetchResourceService)
 
       allow(FetchResourceService).to receive(:new).and_return service
@@ -139,6 +139,7 @@ describe ResolveURLService, type: :service do
         stub_request(:get, url).to_return(status: 302, headers: { 'Location' => status_url })
         body = ActiveModelSerializers::SerializableResource.new(status, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter).to_json
         stub_request(:get, status_url).to_return(body: body, headers: { 'Content-Type' => 'application/activity+json' })
+        stub_request(:get, uri).to_return(body: body, headers: { 'Content-Type' => 'application/activity+json' })
       end
 
       it 'returns status by url' do

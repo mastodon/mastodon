@@ -6,6 +6,7 @@ en:
         discoverable: Your public posts and profile may be featured or recommended in various areas of Mastodon and your profile may be suggested to other users.
         display_name: Your full name or your fun name.
         fields: Your homepage, pronouns, age, anything you want.
+        indexable: Your public posts may appear in search results on Mastodon. People who have interacted with your posts may be able to search them regardless.
         note: 'You can @mention other people or #hashtags.'
         show_collections: People will be able to browse through your follows and followers. People that you follow will see that you follow them regardless.
         unlocked: People will be able to follow you without requesting approval. Uncheck if you want to review follow requests and chose whether to accept or reject new followers.
@@ -143,6 +144,7 @@ en:
         fields:
           name: Label
           value: Content
+        indexable: Include public posts in search results
         show_collections: Show follows and followers on profile
         unlocked: Automatically accept new followers
       account_alias:
@@ -289,6 +291,12 @@ en:
         pending_account: New account needs review
         reblog: Someone boosted your post
         report: New report is submitted
+        software_updates:
+          all: Notify on all updates
+          critical: Notify on critical updates only
+          label: A new Mastodon version is available
+          none: Never notify of updates (not recommended)
+          patch: Notify on bugfix updates
         trending_tag: New trend requires review
       rule:
         text: Rule
@@ -315,6 +323,7 @@ en:
         url: Endpoint URL
     'no': 'No'
     not_recommended: Not recommended
+    overridden: Overridden
     recommended: Recommended
     required:
       mark: "*"

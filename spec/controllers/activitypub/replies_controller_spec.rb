@@ -8,22 +8,6 @@ RSpec.describe ActivityPub::RepliesController do
   let(:remote_reply_id) { 'https://foobar.com/statuses/1234' }
   let(:remote_querier) { nil }
 
-  shared_examples 'cacheable response' do
-    it 'does not set cookies' do
-      expect(response.cookies).to be_empty
-      expect(response.headers['Set-Cookies']).to be_nil
-    end
-
-    it 'does not set sessions' do
-      response
-      expect(session).to be_empty
-    end
-
-    it 'returns public Cache-Control header' do
-      expect(response.headers['Cache-Control']).to include 'public'
-    end
-  end
-
   shared_examples 'common behavior' do
     context 'when status is private' do
       let(:parent_visibility) { :private }
@@ -100,7 +84,7 @@ RSpec.describe ActivityPub::RepliesController do
           expect(page_json).to be_a Hash
           expect(page_json[:items]).to be_an Array
           expect(page_json[:items].size).to eq 1
-          expect(page_json[:items].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
+          expect(page_json[:items].all? { |item| targets_public_collection?(item) }).to be true
         end
 
         context 'when there are few self-replies' do
@@ -133,13 +117,12 @@ RSpec.describe ActivityPub::RepliesController do
 
         it 'only inlines items that are local and public or unlisted replies' do
           inlined_replies = page_json[:items].select { |x| x.is_a?(Hash) }
-          public_collection = ActivityPub::TagManager::COLLECTIONS[:public]
-          expect(inlined_replies.all? { |item| item[:to].include?(public_collection) || item[:cc].include?(public_collection) }).to be true
+          expect(inlined_replies.all? { |item| targets_public_collection?(item) }).to be true
           expect(inlined_replies.all? { |item| ActivityPub::TagManager.instance.local_uri?(item[:id]) }).to be true
         end
 
         it 'uses ids for remote toots' do
-          remote_replies = page_json[:items].select { |x| !x.is_a?(Hash) }
+          remote_replies = page_json[:items].reject { |x| x.is_a?(Hash) }
           expect(remote_replies.all? { |item| item.is_a?(String) && !ActivityPub::TagManager.instance.local_uri?(item) }).to be true
         end
 
@@ -209,5 +192,15 @@ RSpec.describe ActivityPub::RepliesController do
         it_behaves_like 'disallowed access'
       end
     end
+  end
+
+  private
+
+  def ap_public_collection
+    ActivityPub::TagManager::COLLECTIONS[:public]
+  end
+
+  def targets_public_collection?(item)
+    item[:to].include?(ap_public_collection) || item[:cc].include?(ap_public_collection)
   end
 end

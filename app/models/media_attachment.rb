@@ -44,6 +44,7 @@ class MediaAttachment < ApplicationRecord
 
   MAX_VIDEO_MATRIX_LIMIT = 8_294_400 # 3840x2160px
   MAX_VIDEO_FRAME_RATE   = 120
+  MAX_VIDEO_FRAMES       = 36_000 # Approx. 5 minutes at 120 fps
 
   IMAGE_FILE_EXTENSIONS = %w(.jpg .jpeg .png .gif .webp .heic .heif .avif).freeze
   VIDEO_FILE_EXTENSIONS = %w(.webm .mp4 .m4v .mov).freeze
@@ -98,17 +99,15 @@ class MediaAttachment < ApplicationRecord
     convert_options: {
       output: {
         'loglevel' => 'fatal',
-        'movflags' => 'faststart',
-        'pix_fmt' => 'yuv420p',
-        'vf' => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
-        'vsync' => 'cfr',
+        'preset' => 'veryfast',
+        'movflags' => 'faststart', # Move metadata to start of file so playback can begin before download finishes
+        'pix_fmt' => 'yuv420p', # Ensure color space for cross-browser compatibility
+        'vf' => 'crop=floor(iw/2)*2:floor(ih/2)*2', # h264 requires width and height to be even. Crop instead of scale to avoid blurring
         'c:v' => 'h264',
-        'maxrate' => '1300K',
-        'bufsize' => '1300K',
-        'b:v' => '1300K',
-        'frames:v' => 60 * 60 * 3,
-        'crf' => 18,
+        'c:a' => 'aac',
+        'b:a' => '192k',
         'map_metadata' => '-1',
+        'frames:v' => MAX_VIDEO_FRAMES,
       }.freeze,
     }.freeze,
   }.freeze
@@ -135,7 +134,7 @@ class MediaAttachment < ApplicationRecord
       convert_options: {
         output: {
           'loglevel' => 'fatal',
-          :vf => 'scale=\'min(400\, iw):min(400\, ih)\':force_original_aspect_ratio=decrease',
+          :vf => 'scale=\'min(640\, iw):min(640\, ih)\':force_original_aspect_ratio=decrease',
         }.freeze,
       }.freeze,
       format: 'png',
@@ -172,7 +171,7 @@ class MediaAttachment < ApplicationRecord
   DEFAULT_STYLES = [:original].freeze
 
   GLOBAL_CONVERT_OPTIONS = {
-    all: '-quality 90 +profile "!icc,*" +set modify-date +set create-date',
+    all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp -define jpeg:dct-method=float',
   }.freeze
 
   belongs_to :account,          inverse_of: :media_attachments, optional: true
@@ -205,13 +204,14 @@ class MediaAttachment < ApplicationRecord
   validates :file, presence: true, if: :local?
   validates :thumbnail, absence: true, if: -> { local? && !audio_or_video? }
 
-  scope :attached,   -> { where.not(status_id: nil).or(where.not(scheduled_status_id: nil)) }
+  scope :attached, -> { where.not(status_id: nil).or(where.not(scheduled_status_id: nil)) }
+  scope :cached, -> { remote.where.not(file_file_name: nil) }
+  scope :created_before, ->(value) { where(arel_table[:created_at].lt(value)) }
+  scope :local, -> { where(remote_url: '') }
+  scope :ordered, -> { order(id: :asc) }
+  scope :remote, -> { where.not(remote_url: '') }
   scope :unattached, -> { where(status_id: nil, scheduled_status_id: nil) }
-  scope :local,      -> { where(remote_url: '') }
-  scope :remote,     -> { where.not(remote_url: '') }
-  scope :cached,     -> { remote.where.not(file_file_name: nil) }
-
-  default_scope { order(id: :asc) }
+  scope :updated_before, ->(value) { where(arel_table[:updated_at].lt(value)) }
 
   attr_accessor :skip_download
 
@@ -408,6 +408,6 @@ class MediaAttachment < ApplicationRecord
   end
 
   def reset_parent_cache
-    Rails.cache.delete("statuses/#{status_id}") if status_id.present?
+    Rails.cache.delete("v3:statuses/#{status_id}") if status_id.present?
   end
 end

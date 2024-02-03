@@ -18,7 +18,7 @@ class Settings::PrivacyController < Settings::BaseController
   private
 
   def account_params
-    params.require(:account).permit(:discoverable, :unlocked, :show_collections, settings: UserSettings.keys)
+    params.require(:account).permit(:discoverable, :unlocked, :indexable, :show_collections, settings: UserSettings.keys)
   end
 
   def set_account

@@ -71,7 +71,7 @@ gl:
       enabled: Activado
       enabled_msg: Desbloqueada a conta de %{username}
       followers: Seguidoras
-      follows: Segue
+      follows: Seguimentos
       header: Cabeceira
       inbox_url: URL da caixa de entrada
       invite_request_text: Razóns para unirte
@@ -309,6 +309,7 @@ gl:
       unpublish: Retirar publicación
       unpublished_msg: Anuncio desbotado de xeito correcto!
       updated_msg: Anuncio actualizado de xeito correcto!
+    critical_update_pending: Actualización crítica pendente
     custom_emojis:
       assign_category: Atribuír categoría
       by_domain: Dominio
@@ -383,7 +384,7 @@ gl:
     domain_blocks:
       add_new: Engadir novo bloqueo de dominio
       confirm_suspension:
-        cancel: Cancelar
+        cancel: Desbotar
         confirm: Suspender
         permanent_action: Ao retirar a suspensión non restableces os datos ou a relación.
         preamble_html: Vas suspender a <strong>%{domain}</strong> e os seus subdominios.
@@ -424,6 +425,7 @@ gl:
       view: Ollar dominios bloqueados
     email_domain_blocks:
       add_new: Engadir novo
+      allow_registrations_with_approval: Permitir crear contas con aprobación
       attempts_over_week:
         one: "%{count} intento na última semana"
         other: "%{count} intentos de conexión na última semana"
@@ -533,6 +535,7 @@ gl:
       total_reported: Denuncias sobre eles
       total_storage: Adxuntos multimedia
       totals_time_period_hint_html: Os totais aquí mostrados inclúen todo o historial de datos.
+      unknown_instance: Actualmente non temos constancia deste rexistro no servidor.
     invites:
       deactivate_all: Desactivar todo
       filter:
@@ -609,6 +612,7 @@ gl:
       created_at: Denunciado
       delete_and_resolve: Eliminar publicacións
       forwarded: Reenviado
+      forwarded_replies_explanation: Esta denuncia procede dunha usuaria remota e acerca de contido remoto. Enviouseche unha copia porque o contido denunciado é unha resposta a unha das túas usuarias.
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resolto
       mark_as_sensitive: Marcar como sensible
@@ -748,7 +752,7 @@ gl:
         title: Retención do contido
       default_noindex:
         desc_html: Aféctalle a tódalas usuarias que non cambiaron este axuste elas mesmas
-        title: Por omisión exclúe as usuarias do indexado por servidores de busca
+        title: Omitir por defecto ás usuarias do indexado por servidores de busca
       discovery:
         follow_recommendations: Recomendacións de seguimento
         preamble: Destacar contido interesante é importante para axudar a que as novas usuarias se sintan cómodas se non coñecen a ninguén en Mastodon. Xestiona os diferentes xeitos de promocionar contidos.
@@ -770,10 +774,27 @@ gl:
           approved: Precisa aprobación para rexistrarse
           none: Rexistro pechado
           open: Rexistro aberto
+      security:
+        authorized_fetch: Require autenticación desde os servidores federados
+        authorized_fetch_hint: Ao requerir autenticación desde os servidores federados activas un reforzamento das políticas de bloqueo a nivel usuaria e nivel servidor. Este proceder ten un custo no rendemento, reducindo o alcance das túas respostas e podería introducir problemas de compatibilidade con algúns servizos federados. Ademais, non evitará que contas con tal propósito vexan as túas publicacións públicas e contas.
+        authorized_fetch_overridden_hint: Actualmente non podes cambiar este axuste porque está controlado por unha variable xeral do sistema.
+        federation_authentication: Reforzo da autenticación na federación
       title: Axustes do servidor
     site_uploads:
       delete: Eliminar o ficheiro subido
       destroyed_msg: Eliminado correctamente o subido!
+    software_updates:
+      critical_update: Crítica - actualiza axiña
+      description: Aconsellamos manter actualizado o teu servidor Mastodon para beneficiarte dos últimos arranxos e características. A maiores, de cando en vez hai actualizacións para evitar problemas importantes de seguridade. Debido a isto, Mastodon comproba cada 30 minutos se hai actualizacións e avisarate seguindo as túas preferencias de notificación por correo electrónico.
+      documentation_link: Saber máis
+      release_notes: Notas da versión
+      title: Actualizacións dispoñibles
+      type: Tipo
+      types:
+        major: Versión principal
+        minor: Versión intermedia
+        patch: Versión de arranxos - solución de problemas e cambios simples
+      version: Versión
     statuses:
       account: Autoría
       application: Aplicación
@@ -814,6 +835,20 @@ gl:
     system_checks:
       database_schema_check:
         message_html: Existen migracións pendentes na base de datos. Bota man desta tarefa para facer que a aplicación funcione como se agarda dela
+      elasticsearch_health_red:
+        message_html: O grupo Elasticsearch non está ben (en vermello), as ferramentas de busca non están dispoñibles
+      elasticsearch_health_yellow:
+        message_html: O grupo Elasticsearch non está ben (en amarelo), deberías investigar a causa
+      elasticsearch_index_mismatch:
+        message_html: Os índices de mapeo de Elasticsearch están desactualizados. Executa <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Ver a documentación
+        message_html: O teu grupo Elasticsearch ten máis dun nodo, pero Mastodon non está configurado para usalos.
+      elasticsearch_preset_single_node:
+        action: Ver a documentación
+        message_html: O teu grupo Elasticsearch só ten un nodo, <code>ES_PRESET</code> debería configurarse como <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: O teu índice do sistema Elasticsearch está desactualizado debido a un cambio nos axustes. Executa <code>tootctl search deploy --reset-chewy</code> para actualizalo.
       elasticsearch_running_check:
         message_html: Non se puido conectar con Elasticsearch. Comproba que está funcionando, ou desactiva a busca por texto completo
       elasticsearch_version_check:
@@ -824,6 +859,12 @@ gl:
         message_html: Non tes definidas regras para o servidor.
       sidekiq_process_check:
         message_html: Non hai procesos Sidekiq a funcionar para a cola(s) %{value}. Revisa a túa configuración para Sidekiq
+      software_version_critical_check:
+        action: Mira as actualizacións dispoñibles
+        message_html: Hai unha actualización crítica de Mastodon dispoñible, actualiza axiña.
+      software_version_patch_check:
+        action: Mira as actualizacións dispoñibles
+        message_html: Hai unha actualización de arranxo de problemas de Mastodon.
       upload_check_privacy_error:
         action: Mira aquí para máis información
         message_html: "<strong>O teu servidor non está ben configurado. A privacidade das usuarias está en risco.</strong>"
@@ -937,6 +978,9 @@ gl:
       body: "%{target} apelou a decisión de moderación de %{action_taken_by} o %{date}, de tipo %{type}. Escribiu:"
       next_steps: Podes aprobar o recurso e desfacer a decisión de moderación, ou ignoralo.
       subject: "%{username} fixo unha apelación á decisión de moderación en %{instance}"
+    new_critical_software_updates:
+      body: Publicáronse novas versións de Mastodon para arranxar problemas importantes, deberías actualizar axiña!
+      subject: Actualizacións críticas de Mastodon dispoñibles para %{instance}!
     new_pending_account:
       body: Abaixo están os detalles da conta. Podes aprobar ou rexeitar esta solicitude.
       subject: Hai unha conta nova para revisar en %{instance} (%{username})
@@ -944,6 +988,9 @@ gl:
       body: "%{reporter} informou sobre %{target}"
       body_remote: Alguén desde %{domain} informou sobre %{target}
       subject: Nova denuncia sobre %{instance} (#%{id})
+    new_software_updates:
+      body: Publicáronse novas versións de Mastodon, convenche actualizar!
+      subject: Hai novas versións de Mastodon dispoñibles para %{instance}!
     new_trends:
       body: 'Os seguintes elementos precisan revisión antes de ser mostrados públicamente:'
       new_trending_links:
@@ -951,8 +998,6 @@ gl:
       new_trending_statuses:
         title: Publicacións en voga
       new_trending_tags:
-        no_approved_tags: Non hai etiquetas en voga aprobadas.
-        requirements: 'Calquera destos candidatos podería superar o #%{rank} dos cancelos en voga aprobados, que actualmente é #%{lowest_tag_name} cunha puntuación de %{lowest_tag_score}.'
         title: Cancelos en voga
       subject: Novas tendencias para revisar en %{instance}
   aliases:
@@ -996,6 +1041,14 @@ gl:
       hint_html: Unha cousa máis! Temos que confirmar que es un ser humano (para poder evitar contas de spam!). Resolve o CAPTCHA de aquí embaixo e preme en "Continuar".
       title: Comprobación de seguridade
     confirmations:
+      awaiting_review: O teu correo está verificado! A administración de %{domain} está revisando a túa solicitude. Recibirás outro correo se aproban a túa conta!
+      awaiting_review_title: Estamos revisando a solicitude de rexistro
+      clicking_this_link: premendo nesta ligazón
+      login_link: acceder
+      proceed_to_login_html: Xa podes %{login_link}.
+      redirect_to_app_html: Ímoste redirixir á app <strong>%{app_name}</strong>. Se iso non acontece, proba %{clicking_this_link} ou volve ti manualmente á app.
+      registration_complete: Completouse a creación da conta en %{domain}!
+      welcome_title: Benvida, %{name}!
       wrong_email_hint: Se o enderezo de email non é correcto, podes cambialo nos axustes da conta.
     delete_account: Eliminar conta
     delete_account_html: Se queres eliminar a túa conta, podes <a href="%{path}">facelo aquí</a>. Deberás confirmar a acción.
@@ -1057,6 +1110,7 @@ gl:
       functional: A túa conta está completamente operativa.
       pending: A túa solicitude está pendente de revisión. Poderíanos levar algún tempo. Recibirás un correo se a solicitude está aprobada.
       redirecting_to: A túa conta está inactiva porque está redirixida a %{acct}.
+      self_destruct: Como %{domain} vai fechar, tes acceso restrinxido á túa conta.
       view_strikes: Ver avisos anteriores respecto da túa conta
     too_fast: Formulario enviado demasiado rápido, inténtao outra vez.
     use_security_key: Usa chave de seguridade
@@ -1314,6 +1368,7 @@ gl:
       '86400': 1 día
     expires_in_prompt: Nunca
     generate: Xerar
+    invalid: Este convite non é válido
     invited_by: 'Convidoute:'
     max_uses:
       one: 1 uso
@@ -1432,6 +1487,7 @@ gl:
     update:
       subject: "%{name} editou unha publicación"
   notifications:
+    administration_emails: Notificacións de Admin por correo electrónico
     email_events: Eventos para os correos de notificación
     email_events_hint: 'Escolle os eventos sobre os que queres recibir notificacións:'
     other_settings: Outros axustes das notificacións
@@ -1473,14 +1529,26 @@ gl:
       too_many_options: non pode haber máis de %{max} opcións
   preferences:
     other: Outro
-    posting_defaults: Valores por omisión
+    posting_defaults: Valores por defecto
     public_timelines: Cronoloxías públicas
+  privacy:
+    hint_html: "<strong>Personaliza o xeito no que queres que se atope o teu perfil e publicacións.</strong> Mastodon ten variedade de ferramentas para axudarche a acadar unha audiencia maior. Dedica un minuto a revisalas e confirma que se axustan ao teu caso persoal."
+    privacy: Privacidade
+    privacy_hint_html: Controla canto queres mostrar ás demais persoas. As usuarias descubren perfís interesantes e apps estupendas mirando a quen seguen outras persoas e vendo as apps desde as que publican, pero ti poderías querer non mostralas.
+    reach: Alcance
+    reach_hint_html: Indica o xeito en que queres que outras persoas poidan atoparte e seguirte. Queres aparecer na pantalla Descubrir? Queres que outras persoas poidan incluirte entre as súas recomendacións de seguimento? Queres aceptar os seguimentos automáticamente, ou ter control individual sobre as solicitudes?
+    search: Buscar
+    search_hint_html: Xestiona o xeito en que poden atoparte. Queres que te atopen a través do que publicaches de xeito público? Queres que as persoas de fóra de Mastodon atopen o teu perfil cando fan buscas na web? Por favor, ten en conta que a exclusión total de todos os buscadores non se pode garantir para a información pública.
+    title: Privacidade e alcance
   privacy_policy:
     title: Política de Privacidade
   reactions:
     errors:
       limit_reached: Acadouse o límite das diferentes reaccións
       unrecognized_emoji: non é unha emoticona recoñecida
+  redirects:
+    prompt: Se confías nesta ligazón, preme nela para continuar.
+    title: Vas saír de %{instance}.
   relationships:
     activity: Actividade da conta
     confirm_follow_selected_followers: Tes a certeza de querer seguir as seguidoras seleccionadas?
@@ -1516,6 +1584,9 @@ gl:
     over_daily_limit: Excedeches o límite de %{limit} publicacións programadas para ese día
     over_total_limit: Excedeches o límite de %{limit} publicacións programadas
     too_soon: A data de programación debe estar no futuro
+  self_destruct:
+    lead_html: Desafortunadamente, <strong>%{domain}</strong> vai deixar de dar servizo. Se tes unha conta aquí non poderás seguir usándoa, mais podes solicitar un ficheiro cos teus datos.
+    title: Este servidor vai fechar
   sessions:
     activity: Última actividade
     browser: Navegador
@@ -1540,6 +1611,7 @@ gl:
       unknown_browser: Navegador descoñecido
       weibo: Weibo
     current_session: Sesión actual
+    date: Data
     description: "%{browser} en %{platform}"
     explanation: Estos son os navegadores web nos que actualmente tes sesión iniciada.
     ip: IP
@@ -1631,7 +1703,7 @@ gl:
       private_long: Mostrar só as seguidoras
       public: Público
       public_long: Visible para calquera
-      unlisted: Non listado
+      unlisted: Sen listar
       unlisted_long: Visible para calquera, pero non en cronoloxías públicas
   statuses_cleanup:
     enabled: Borrar automáticamente publicacións antigas
@@ -1684,6 +1756,11 @@ gl:
       default: "%d %b, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d de %b de %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Superouse a cota de uso do servizo de tradución para todo o servidor.
+      too_many_requests: Ultimamente houbo demasiadas solicitudes ao servizo de tradución.
   two_factor_authentication:
     add: Engadir
     disable: Deshabilitar
@@ -1701,23 +1778,32 @@ gl:
     webauthn: Chaves de seguridade
   user_mailer:
     appeal_approved:
-      action: Vai á túa conta
+      action: Axustes da conta
       explanation: A apelación da acción contra a túa conta o %{strike_date} que enviaches o %{appeal_date} foi aprobada. A túa conta volve ao estado normal de uso.
       subject: O recurso presentado o %{date} foi aprobado
+      subtitle: A túa conta volve a estar en boa forma.
       title: Apelación aprobada
     appeal_rejected:
       explanation: A apelación contra a acción tomada contra a túa conta o %{strike_date} que enviaches o %{appeal_date} foi rexeitada.
       subject: A túa apelación do %{date} foi rexeitada
+      subtitle: A apelación foi rexeitada.
       title: Apelación rexeitada
     backup_ready:
-      explanation: Solicitaches os datos completos da túa conta de Mastodon. Xa está preparados para descargar!
+      explanation: Solicitaches unha copia completa da túa conta Mastodon.
+      extra: Está preparada para descargala!
       subject: O teu ficheiro xa está preparado para descargar
       title: Leve o ficheiro
+    failed_2fa:
+      details: 'Detalles do intento de acceso:'
+      explanation: Alguén intentou acceder á túa conta mais fíxoo cun segundo factor de autenticación non válido.
+      further_actions_html: Se non foches ti, recomendámosche %{action} inmediatamente xa que a conta podería estar en risco.
+      subject: Fallo co segundo factor de autenticación
+      title: Fallou o segundo factor de autenticación
     suspicious_sign_in:
       change_password: cambia o teu contrasinal
       details: 'Estos son os detalles do acceso:'
       explanation: Detectamos que accedeches á conta desde un novo enderezo IP.
-      further_actions_html: Se non foches ti, recomendámosche %{action} inmediatamente e activa o segundo factor de autenticación para manter conta segura.
+      further_actions_html: Se non foches ti, aconsellámosche %{action} inmediatamente e activar o segundo factor de autenticación para manter conta segura.
       subject: Accedeuse á túa conta desde novos enderezos IP
       title: Novo acceso
     warning:
@@ -1766,6 +1852,7 @@ gl:
     go_to_sso_account_settings: Ir aos axustes da conta no teu provedor de identidade
     invalid_otp_token: O código do segundo factor non é válido
     otp_lost_help_html: Se perdes o acceso a ambos, podes contactar con %{email}
+    rate_limited: Demasiados intentos de autenticación, inténtao máis tarde.
     seamless_external_login: Accedeches a través dun servizo externo, polo que os axustes de contrasinal e email non están dispoñibles.
     signed_in_as: 'Rexistrada como:'
   verification:

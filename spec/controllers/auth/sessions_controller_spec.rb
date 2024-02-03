@@ -123,12 +123,9 @@ RSpec.describe Auth::SessionsController do
         let(:previous_ip) { '1.2.3.4' }
         let(:current_ip)  { '4.3.2.1' }
 
-        let!(:previous_login) { Fabricate(:login_activity, user: user, ip: previous_ip) }
-
         before do
-          allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip).and_return(current_ip)
-          allow(UserMailer).to receive(:suspicious_sign_in)
-            .and_return(instance_double(ActionMailer::MessageDelivery, deliver_later!: nil))
+          Fabricate(:login_activity, user: user, ip: previous_ip)
+          allow(controller.request).to receive(:remote_ip).and_return(current_ip)
           user.update(current_sign_in_at: 1.month.ago)
           post :create, params: { user: { email: user.email, password: user.password } }
         end
@@ -141,8 +138,10 @@ RSpec.describe Auth::SessionsController do
           expect(controller.current_user).to eq user
         end
 
-        it 'sends a suspicious sign-in mail' do
-          expect(UserMailer).to have_received(:suspicious_sign_in).with(user, current_ip, anything, anything)
+        it 'sends a suspicious sign-in mail', :sidekiq_inline do
+          expect(UserMailer.deliveries.size).to eq(1)
+          expect(UserMailer.deliveries.first.to.first).to eq(user.email)
+          expect(UserMailer.deliveries.first.subject).to eq(I18n.t('user_mailer.suspicious_sign_in.subject'))
         end
       end
 
@@ -263,6 +262,40 @@ RSpec.describe Auth::SessionsController do
           end
         end
 
+        context 'when repeatedly using an invalid TOTP code before using a valid code' do
+          before do
+            stub_const('Auth::SessionsController::MAX_2FA_ATTEMPTS_PER_HOUR', 2)
+
+            # Travel to the beginning of an hour to avoid crossing rate-limit buckets
+            travel_to '2023-12-20T10:00:00Z'
+          end
+
+          it 'does not log the user in' do
+            Auth::SessionsController::MAX_2FA_ATTEMPTS_PER_HOUR.times do
+              post :create, params: { user: { otp_attempt: '1234' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+              expect(controller.current_user).to be_nil
+            end
+
+            post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+
+            expect(controller.current_user).to be_nil
+            expect(flash[:alert]).to match I18n.t('users.rate_limited')
+          end
+
+          it 'sends a suspicious sign-in mail', :sidekiq_inline do
+            Auth::SessionsController::MAX_2FA_ATTEMPTS_PER_HOUR.times do
+              post :create, params: { user: { otp_attempt: '1234' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+              expect(controller.current_user).to be_nil
+            end
+
+            post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+
+            expect(UserMailer.deliveries.size).to eq(1)
+            expect(UserMailer.deliveries.first.to.first).to eq(user.email)
+            expect(UserMailer.deliveries.first.subject).to eq(I18n.t('user_mailer.failed_2fa.subject'))
+          end
+        end
+
         context 'when using a valid OTP' do
           before do
             post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
@@ -279,7 +312,9 @@ RSpec.describe Auth::SessionsController do
 
         context 'when the server has an decryption error' do
           before do
-            allow_any_instance_of(User).to receive(:validate_and_consume_otp!).and_raise(OpenSSL::Cipher::CipherError)
+            allow(user).to receive(:validate_and_consume_otp!).with(user.current_otp).and_raise(OpenSSL::Cipher::CipherError)
+            allow(User).to receive(:find_by).with(id: user.id).and_return(user)
+
             post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 
@@ -326,12 +361,6 @@ RSpec.describe Auth::SessionsController do
           Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
         end
 
-        let!(:recovery_codes) do
-          codes = user.generate_otp_backup_codes!
-          user.save
-          return codes
-        end
-
         let!(:webauthn_credential) do
           user.update(webauthn_id: WebAuthn.generate_user_id)
           public_key_credential = WebAuthn::Credential.from_create(fake_client.create)
@@ -353,6 +382,11 @@ RSpec.describe Auth::SessionsController do
         let(:sign_count) { 1234 }
 
         let(:fake_credential) { fake_client.get(challenge: challenge, sign_count: sign_count) }
+
+        before do
+          user.generate_otp_backup_codes!
+          user.save
+        end
 
         context 'when using email and password' do
           before do
@@ -378,7 +412,7 @@ RSpec.describe Auth::SessionsController do
 
         context 'when using a valid webauthn credential' do
           before do
-            @controller.session[:webauthn_challenge] = challenge
+            controller.session[:webauthn_challenge] = challenge
 
             post :create, params: { user: { credential: fake_credential } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
