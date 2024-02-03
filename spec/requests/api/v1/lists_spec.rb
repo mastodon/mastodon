@@ -135,8 +135,11 @@ RSpec.describe 'Lists' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:lists'
 
-    it 'returns the updated list', :aggregate_failures do
-      subject
+    it 'returns the updated list and updates values', :aggregate_failures do
+      expect { subject }
+        .to change_list_title
+        .and change_list_replies_policy
+        .and change_list_exclusive
 
       expect(response).to have_http_status(200)
       list.reload
@@ -149,16 +152,16 @@ RSpec.describe 'Lists' do
       })
     end
 
-    it 'updates the list title' do
-      expect { subject }.to change { list.reload.title }.from('my list').to('list')
+    def change_list_title
+      change { list.reload.title }.from('my list').to('list')
     end
 
-    it 'updates the list replies_policy' do
-      expect { subject }.to change { list.reload.replies_policy }.from('list').to('followed')
+    def change_list_replies_policy
+      change { list.reload.replies_policy }.from('list').to('followed')
     end
 
-    it 'updates the list exclusive' do
-      expect { subject }.to change { list.reload.exclusive }.from(false).to(true)
+    def change_list_exclusive
+      change { list.reload.exclusive }.from(false).to(true)
     end
 
     context 'when the list does not exist' do

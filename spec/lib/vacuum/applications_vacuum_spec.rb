@@ -13,11 +13,11 @@ RSpec.describe Vacuum::ApplicationsVacuum do
     let!(:unused_app)      { Fabricate(:application, created_at: 1.month.ago) }
     let!(:recent_app)      { Fabricate(:application, created_at: 1.hour.ago) }
 
-    let!(:active_access_token) { Fabricate(:access_token, application: app_with_token) }
-    let!(:active_access_grant) { Fabricate(:access_grant, application: app_with_grant) }
-    let!(:user) { Fabricate(:user, created_by_application: app_with_signup) }
-
     before do
+      Fabricate(:access_token, application: app_with_token)
+      Fabricate(:access_grant, application: app_with_grant)
+      Fabricate(:user, created_by_application: app_with_signup)
+
       subject.perform
     end
 

@@ -417,6 +417,7 @@ ja:
       view: ドメインブロックを表示
     email_domain_blocks:
       add_new: 新規追加
+      allow_registrations_with_approval: 承認制での新規登録を可能にする
       attempts_over_week:
         other: 先週は%{count}回サインアップが試みられました
       created_msg: メールドメインブロックに追加しました
@@ -598,6 +599,7 @@ ja:
       created_at: 通報日時
       delete_and_resolve: 投稿を削除
       forwarded: 転送済み
+      forwarded_replies_explanation: これはリモートユーザーによる、リモートコンテンツについての報告です。問題のコンテンツはあなたのサーバー利用者への返信なので、こちらにも転送されて来ました。
       forwarded_to: "%{domain}に転送されました"
       mark_as_resolved: 解決済みとしてマーク
       mark_as_sensitive: 閲覧注意にする
@@ -977,8 +979,6 @@ ja:
       new_trending_statuses:
         title: トレンド投稿
       new_trending_tags:
-        no_approved_tags: 承認されたトレンドハッシュタグはありません。
-        requirements: 'これらの候補はいずれも %{rank} 位の承認済みトレンドハッシュタグのスコアを上回ります。現在 #%{lowest_tag_name} のスコアは %{lowest_tag_score} です。'
         title: トレンドハッシュタグ
       subject: "%{instance}で新しいトレンドが審査待ちです"
   aliases:
@@ -1022,14 +1022,14 @@ ja:
       hint_html: もう一つだけ！あなたが人間であることを確認する必要があります(スパムを防ぐためです！)。 以下のCAPTCHAを解き、「続ける」をクリックします。
       title: セキュリティチェック
     confirmations:
-      awaiting_review: メールアドレスは確認済みです。%{domain} のモデレーターによりアカウント登録の審査が完了すると、メールでお知らせします。
+      awaiting_review: メールアドレスが確認できました。%{domain} のスタッフが登録審査を行います。承認されたらメールでお知らせします！
       awaiting_review_title: 登録の審査待ちです
-      clicking_this_link: こちらのリンク
-      login_link: こちらのリンク
-      proceed_to_login_html: "%{login_link}から早速ログインしてみましょう。"
-      redirect_to_app_html: "<strong>%{app_name}</strong>に戻ります。自動で移動しない場合は%{clicking_this_link}を押すか、手動でアプリを切り替えてください。"
+      clicking_this_link: このリンクを押す
+      login_link: ログイン
+      proceed_to_login_html: それでは%{login_link}しましょう。
+      redirect_to_app_html: 自動的に<strong>%{app_name}</strong>に戻らなかった場合、%{clicking_this_link}か、手動でアプリを切り替えてください。
       registration_complete: "%{domain} へのアカウント登録が完了しました。"
-      welcome_title: Mastodonへようこそ、%{name}さん
+      welcome_title: ようこそ、%{name}さん！
       wrong_email_hint: メールアドレスが正しくない場合は、アカウント設定で変更できます。
     delete_account: アカウントの削除
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a>から手続きが行えます。削除する前に、確認画面があります。
@@ -1342,6 +1342,7 @@ ja:
       '86400': 1日
     expires_in_prompt: 無期限
     generate: 招待リンクを作成
+    invalid: この招待は無効です
     invited_by: '次の人に招待されました:'
     max_uses:
       other: "%{count}"
@@ -1518,6 +1519,9 @@ ja:
     errors:
       limit_reached: リアクションの種類が上限に達しました
       unrecognized_emoji: は絵文字として認識されていません
+  redirects:
+    prompt: リンク先を確かめ、信用できる場合のみリンクをクリックしてください。
+    title: "%{instance} から別のサーバーに移動します。"
   relationships:
     activity: 活動
     confirm_follow_selected_followers: 選択したフォロワーをフォローしてもよろしいですか？
@@ -1580,6 +1584,7 @@ ja:
       unknown_browser: 不明なブラウザ
       weibo: Weibo
     current_session: 現在のセッション
+    date: 日時
     description: "%{platform}上の%{browser}"
     explanation: あなたのMastodonアカウントに現在ログインしているウェブブラウザの一覧です。
     ip: IP
@@ -1739,18 +1744,27 @@ ja:
     webauthn: セキュリティキー
   user_mailer:
     appeal_approved:
-      action: アカウントへ
+      action: アカウント設定
       explanation: "%{strike_date}のストライクに対して、あなたが%{appeal_date}に行った申し立ては承認されました。アカウントは正常な状態に戻りました。"
       subject: "%{date}の申し立てが承認されました"
+      subtitle: あなたのアカウントは正常な状態に戻りました。
       title: 申し立てが承認されました。
     appeal_rejected:
       explanation: "%{strike_date}のストライクに対して、あなたが%{appeal_date}に行った申し立ては却下されました。"
       subject: "%{date}の申し立てが拒否されました"
+      subtitle: 申し立ては拒否されました。
       title: 却下された抗議
     backup_ready:
-      explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
+      explanation: Mastodonアカウントの完全バックアップをリクエストしました。
+      extra: ダウンロードの準備ができました！
       subject: アーカイブの準備ができました
       title: アーカイブの取り出し
+    failed_2fa:
+      details: '試行されたログインの詳細は以下のとおりです:'
+      explanation: アカウントへのログインが試行されましたが、二要素認証で不正な回答が送信されました。
+      further_actions_html: このログインに心当たりがない場合は、ただちに%{action}してください。
+      subject: 二要素認証に失敗しました
+      title: 二要素認証に失敗した記録があります
     suspicious_sign_in:
       change_password: パスワードを変更
       details: 'ログインの詳細は以下のとおりです:'
@@ -1806,6 +1820,7 @@ ja:
     go_to_sso_account_settings: 外部サービスアカウントの設定はこちらで行ってください
     invalid_otp_token: 二要素認証コードが間違っています
     otp_lost_help_html: どちらも使用できない場合、%{email}に連絡を取ると解決できるかもしれません
+    rate_limited: 認証に失敗した回数が多すぎます。時間をおいてからログインしてください。
     seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
     signed_in_as: '下記でログイン中:'
   verification:

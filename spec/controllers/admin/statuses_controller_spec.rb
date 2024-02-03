@@ -9,13 +9,14 @@ describe Admin::StatusesController do
   let(:account) { Fabricate(:account) }
   let!(:status) { Fabricate(:status, account: account) }
   let(:media_attached_status) { Fabricate(:status, account: account, sensitive: !sensitive) }
-  let!(:media_attachment) { Fabricate(:media_attachment, account: account, status: media_attached_status) }
   let(:last_media_attached_status) { Fabricate(:status, account: account, sensitive: !sensitive) }
-  let!(:last_media_attachment) { Fabricate(:media_attachment, account: account, status: last_media_attached_status) }
-  let!(:last_status) { Fabricate(:status, account: account) }
   let(:sensitive) { true }
 
   before do
+    _last_media_attachment = Fabricate(:media_attachment, account: account, status: last_media_attached_status)
+    _last_status = Fabricate(:status, account: account)
+    _media_attachment = Fabricate(:media_attachment, account: account, status: media_attached_status)
+
     sign_in user, scope: :user
   end
 
@@ -59,16 +60,14 @@ describe Admin::StatusesController do
     shared_examples 'when action is report' do
       let(:action) { 'report' }
 
-      it 'creates a report' do
+      it 'creates a report and redirects to report page' do
         subject
 
-        report = Report.last
-        expect(report.target_account_id).to eq account.id
-        expect(report.status_ids).to eq status_ids
-      end
-
-      it 'redirects to report page' do
-        subject
+        expect(Report.last)
+          .to have_attributes(
+            target_account_id: eq(account.id),
+            status_ids: eq(status_ids)
+          )
 
         expect(response).to redirect_to(admin_report_path(Report.last.id))
       end

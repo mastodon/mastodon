@@ -8,7 +8,7 @@ RSpec.describe 'Notifications' do
   let(:scopes)  { 'read:notifications write:notifications' }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  describe 'GET /api/v1/notifications' do
+  describe 'GET /api/v1/notifications', :sidekiq_inline do
     subject do
       get '/api/v1/notifications', headers: headers, params: params
     end
@@ -168,7 +168,7 @@ RSpec.describe 'Notifications' do
     end
 
     before do
-      Fabricate.times(3, :notification, account: user.account)
+      Fabricate(:notification, account: user.account)
     end
 
     it_behaves_like 'forbidden for wrong scope', 'read read:notifications'

@@ -29,12 +29,16 @@ describe WebfingerResource do
         allow(recognized).to receive(:[]).with(:username).and_return('alice')
         allow(recognized).to receive(:[]).with(:action).and_return('create')
 
-        expect(Rails.application.routes).to receive(:recognize_path).with(resource).and_return(recognized).at_least(:once)
+        allow(Rails.application.routes).to receive(:recognize_path).with(resource).and_return(recognized)
 
         expect do
           described_class.new(resource).username
         end.to raise_error(ActiveRecord::RecordNotFound)
         expect(recognized).to have_received(:[]).exactly(3).times
+
+        expect(Rails.application.routes).to have_received(:recognize_path)
+          .with(resource)
+          .at_least(:once)
       end
 
       it 'raises with a string that doesnt start with URL' do

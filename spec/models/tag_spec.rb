@@ -32,6 +32,10 @@ RSpec.describe Tag do
       expect(subject.match('https://en.wikipedia.org/wiki/Ghostbusters_(song)#Lawsuit')).to be_nil
     end
 
+    it 'does not match URLs with hashtag-like anchors after a numeral' do
+      expect(subject.match('https://gcc.gnu.org/bugzilla/show_bug.cgi?id=111895#c4')).to be_nil
+    end
+
     it 'does not match URLs with hashtag-like anchors after an empty query parameter' do
       expect(subject.match('https://en.wikipedia.org/wiki/Ghostbusters_(song)?foo=#Lawsuit')).to be_nil
     end
@@ -93,6 +97,38 @@ RSpec.describe Tag do
     it 'returns name' do
       tag = Fabricate(:tag, name: 'foo')
       expect(tag.to_param).to eq 'foo'
+    end
+  end
+
+  describe '.recently_used' do
+    let(:account) { Fabricate(:account) }
+    let(:other_person_status) { Fabricate(:status) }
+    let(:out_of_range) { Fabricate(:status, account: account) }
+    let(:older_in_range) { Fabricate(:status, account: account) }
+    let(:newer_in_range) { Fabricate(:status, account: account) }
+    let(:unused_tag) { Fabricate(:tag) }
+    let(:used_tag_one) { Fabricate(:tag) }
+    let(:used_tag_two) { Fabricate(:tag) }
+    let(:used_tag_on_out_of_range) { Fabricate(:tag) }
+
+    before do
+      stub_const 'Tag::RECENT_STATUS_LIMIT', 2
+
+      other_person_status.tags << used_tag_one
+
+      out_of_range.tags << used_tag_on_out_of_range
+
+      older_in_range.tags << used_tag_one
+      older_in_range.tags << used_tag_two
+
+      newer_in_range.tags << used_tag_one
+    end
+
+    it 'returns tags used by account within last X statuses ordered most used first' do
+      results = described_class.recently_used(account)
+
+      expect(results)
+        .to eq([used_tag_one, used_tag_two])
     end
   end
 

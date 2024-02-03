@@ -47,16 +47,19 @@ nl:
         subject: 'Mastodon: Wachtwoord opnieuw instellen'
         title: Wachtwoord opnieuw instellen
       two_factor_disabled:
-        explanation: Tweestapsverificatie voor jouw account is uitgeschakeld. Je kunt nu alleen inloggen met een e-mailadres en wachtwoord.
+        explanation: Je kunt nu inloggen met alleen een e-mailadres en wachtwoord.
         subject: 'Mastodon: Tweestapsverificatie uitgeschakeld'
+        subtitle: Tweestapsverificatie voor je account is uitgeschakeld.
         title: Tweestapsverificatie uitgeschakeld
       two_factor_enabled:
-        explanation: Tweestapsverificatie voor jouw account is ingeschakeld. Om te kunnen inloggen is een door een tweestapsverificatie-app genereerde toegangscode nodig.
+        explanation: Je hebt een door de authenticatie-app gegeneerde toegangscode nodig om in te loggen.
         subject: 'Mastodon: Tweestapsverificatie ingeschakeld'
+        subtitle: Tweestapsverificatie voor je account is ingeschakeld.
         title: Tweestapsverificatie ingeschakeld
       two_factor_recovery_codes_changed:
         explanation: De vorige herstelcodes zijn ongeldig gemaakt en nieuwe zijn aangemaakt.
         subject: 'Mastodon: Tweestaps-herstelcodes zijn opnieuw aangemaakt'
+        subtitle: De vorige herstelcodes zijn ongeldig gemaakt en er zijn nieuwe gegenereerd.
         title: Herstelcodes tweestapsverificatie veranderd
       unlock_instructions:
         subject: 'Mastodon: Instructies om opschorten account ongedaan te maken'
@@ -70,11 +73,13 @@ nl:
           subject: 'Mastodon: Beveiligingssleutel verwijderd'
           title: Een van jouw beveiligingssleutels is verwijderd
       webauthn_disabled:
-        explanation: Verificatie met beveiligingssleutels is uitgeschakeld voor jouw account. Inloggen is nu alleen mogelijk met het gebruik van een door een gepaarde TOTP-app genereerde sleutel.
+        explanation: Verificatie met beveiligingssleutels is uitgeschakeld voor je account.
+        extra: Het is nu alleen mogelijk om te te loggen met een door de authenticatie-app gegeneerde toegangscode.
         subject: 'Mastodon: Verificatie met beveiligingssleutels is uitgeschakeld'
         title: Beveiligingssleutels uitgeschakeld
       webauthn_enabled:
-        explanation: Verificatie met beveiligingssleutels is ingeschakeld voor jouw account. Jouw beveiligingssleutel kan nu gebruikt worden om in te loggen.
+        explanation: Verificatie met beveiligingssleutels is ingeschakeld voor je account.
+        extra: Jouw beveiligingssleutel kan nu gebruikt worden om in te loggen.
         subject: 'Mastodon: Verificatie met beveiligingssleutels is ingeschakeld'
         title: Beveiligingssleutels ingeschakeld
     omniauth_callbacks:

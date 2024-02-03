@@ -424,6 +424,7 @@ is:
       view: Skoða útilokun á léni
     email_domain_blocks:
       add_new: Bæta við nýju
+      allow_registrations_with_approval: Leyfa skráningar með samþykki
       attempts_over_week:
         one: "%{count} tilraun síðustu viku"
         other: "%{count} tilraunir til nýskráningar í síðustu viku"
@@ -610,6 +611,7 @@ is:
       created_at: Tilkynnt
       delete_and_resolve: Eyða færslum
       forwarded: Áframsent
+      forwarded_replies_explanation: Þessi kæra er frá fjartengdum notanda og er um fjartengt efni. Hún hefur verið framsend til þín þar sem kærða efnið er í svari til eins af notendunum þínum.
       forwarded_to: Áframsent á %{domain}
       mark_as_resolved: Merkja sem leyst
       mark_as_sensitive: Merkja sem viðkvæmt
@@ -997,8 +999,6 @@ is:
       new_trending_statuses:
         title: Vinsælar færslur
       new_trending_tags:
-        no_approved_tags: Það eru í augnablikinu engin samþykkt vinsæl myllumerki.
-        requirements: 'Hver af þessum tillögum gætu farið yfir samþykkta vinsæla myllumerkið númer #%{rank}, sem í augnablikinu er %{lowest_tag_name} með %{lowest_tag_score} stig'
         title: Vinsæl myllumerki
       subject: Nýtt vinsælt til yfirferðar á %{instance}
   aliases:
@@ -1044,9 +1044,13 @@ is:
         Leystu Turing skynprófið og smelltu á "Áfram".
       title: Öryggisathugun
     confirmations:
+      awaiting_review: Tölvupóstfangið þitt er staðfest. Umsjónarfólk %{domain} er núna að yfirfara skráninguna þína. Þú munt fá tölvupóst ef þau samþykkja skráninguna þína!
+      awaiting_review_title: Verið er að yfirfara skráninguna þína
       clicking_this_link: smella á þennan tengil
       login_link: skrá þig inn
       proceed_to_login_html: Þú getur núna farið í að %{login_link}.
+      redirect_to_app_html: Þér ætti að hafa verið endurbeint í <strong>%{app_name}</strong> forritið. Ef það gerðist ekki, skaltu prófa að %{clicking_this_link} eða fara aftur í forritið.
+      registration_complete: Skráning þín á %{domain} er núna tilbúin!
       welcome_title: Velkomin/n %{name}!
       wrong_email_hint: Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
     delete_account: Eyða notandaaðgangi
@@ -1367,6 +1371,7 @@ is:
       '86400': 1 dagur
     expires_in_prompt: Aldrei
     generate: Útbúa boðstengil
+    invalid: Þetta boð er ekki gilt
     invited_by: 'Þér var boðið af:'
     max_uses:
       one: 1 afnot
@@ -1544,6 +1549,9 @@ is:
     errors:
       limit_reached: Hámarki mismunandi viðbragða náð
       unrecognized_emoji: er ekki þekkt tjáningartákn
+  redirects:
+    prompt: Ef þú treystir þessum tengli, geturðu smellt á hann til að halda áfram.
+    title: Þú ert að yfirgefa %{instance}.
   relationships:
     activity: Virkni aðgangs
     confirm_follow_selected_followers: Ertu viss um að þú viljir fylgjast með völdum fylgjendum?
@@ -1606,6 +1614,7 @@ is:
       unknown_browser: Óþekktur vafri
       weibo: Weibo
     current_session: Núverandi seta
+    date: Dagsetning
     description: "%{browser} á %{platform}"
     explanation: Þetta eru vafrarnir sem núna eru skráðir inn á Mastodon-aðganginn þinn.
     ip: IP-vistfang
@@ -1771,18 +1780,27 @@ is:
     webauthn: Öryggislyklar
   user_mailer:
     appeal_approved:
-      action: Farðu inn á notandaaðganginn þinn
+      action: Stillingar notandaaðgangs
       explanation: Áfrýjun refsingarinnar gagnvart aðgangnum þínum þann %{strike_date} sem þú sendir inn þann %{appeal_date} hefur verið samþykkt. Notandaaðgangurinn þinn er aftur í góðu lagi.
       subject: Áfrýjun þín frá %{date} hefur verið samþykkt
+      subtitle: Notandaaðgangurinn þinn er í góðu lagi.
       title: Áfrýjun samþykkt
     appeal_rejected:
       explanation: Áfrýjun refsingarinnar gagnvart aðgangnum þínum þann %{strike_date} sem þú sendir inn þann %{appeal_date} hefur verið hafnað.
       subject: Áfrýjun þinni frá %{date} hefur verið hafnað
+      subtitle: Áfrýjun þinni hefur verið hafnað.
       title: Áfrýjun hafnað
     backup_ready:
-      explanation: Þú baðst um fullt öryggisafrit af Mastodon notandaaðgangnum þínum. Það er núna tilbúið til niðurhals!
+      explanation: Þú baðst um fullt öryggisafrit af Mastodon notandaaðgangnum þínum.
+      extra: Það er núna tilbúið til niðurhals!
       subject: Safnskráin þín er tilbúin til niðurhals
       title: Taka út í safnskrá
+    failed_2fa:
+      details: 'Hér eru nánari upplýsingar um innskráningartilraunina:'
+      explanation: Einhver reyndi að skrá sig inn á aðganginn þinn en gaf upp ógild gögn seinna þrepi auðkenningar.
+      further_actions_html: Ef þetta varst ekki þú, þá mælum við eindregið með því að þú %{action} samstundis, þar sem það gæti verið berskjaldað.
+      subject: Bilun í seinna þrepi auðkenningar
+      title: Seinna þrep auðkenningar brást
     suspicious_sign_in:
       change_password: breytir lykilorðinu þínu
       details: 'Hér eru nánari upplýsingar um innskráninguna:'
@@ -1836,6 +1854,7 @@ is:
     go_to_sso_account_settings: Fara í stillingar aðgangsins hjá auðkennisveitunni þinni
     invalid_otp_token: Ógildur tveggja-þátta kóði
     otp_lost_help_html: Ef þú hefur misst aðganginn að hvoru tveggja, geturðu sett þig í samband við %{email}
+    rate_limited: Of margar tilraunir til auðkenningar, prófaðu aftur síðar.
     seamless_external_login: Innskráning þín er í gegnum utanaðkomandi þjónustu, þannig að stillingar fyrir lykilorð og tölvupóst eru ekki aðgengilegar.
     signed_in_as: 'Skráð inn sem:'
   verification:

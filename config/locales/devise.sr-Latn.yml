@@ -47,16 +47,19 @@ sr-Latn:
         subject: 'Mastodont: Uputstvo za resetovanje lozinke'
         title: Lozinka resetovana
       two_factor_disabled:
-        explanation: Dvofaktorska autentifikacija za vaš nalog je onemogućena. Prijava je sada moguća samo pomoću imejla i lozinke.
+        explanation: Prijavljivanje je sada moguće koristeći samo adresu e-pošte i lozinku.
         subject: 'Mastodon: Dvofaktorska autentifikacija je onemogućena'
+        subtitle: Dvofaktorska autentifikacija za vaš nalog je onemogućena.
         title: 2FA isključena
       two_factor_enabled:
-        explanation: Dvofaktorska autentifikacija je omogućena za vaš nalog. Za prijavu će biti potreban token koji generiše uparena TOTP aplikacija.
+        explanation: Za prijavljivanje će biti potreban token koji generiše uparena aplikacija TOTP.
         subject: 'Mastodon: Dvofaktorska autentifikacija je omogućena'
+        subtitle: Dvofaktorska autentifikacija je omogućena za vaš nalog.
         title: 2FA uključena
       two_factor_recovery_codes_changed:
         explanation: Prethodni kodovi za oporavak su poništeni i generisani su novi.
         subject: 'Mastodon: Ponovo su generisani kodovi za oporavak'
+        subtitle: Prethodni kodovi za oporavak su poništeni i generisani su novi.
         title: 2FA kodovi oporavka promenjeni
       unlock_instructions:
         subject: 'Mastodont: Uputstvo za otključavanje korisničkog naloga'
@@ -70,11 +73,13 @@ sr-Latn:
           subject: 'Mastodon: Sigurnosni ključ je izbrisan'
           title: Jedan od vaših bezbednosnih ključeva je izbrisan
       webauthn_disabled:
-        explanation: Autentifikacija pomoću bezbednosnih ključeva je onemogućena za vaš nalog. Prijava je sada moguća samo pomoću tokena koji generiše uparena TOTP aplikacija.
+        explanation: Potvrda identiteta pomoću bezbednosnih ključeva je onemogućena za vaš nalog.
+        extra: Prijavljivanje je sada moguće koristeći samo token koji generiše uparena aplikacija TOTP.
         subject: 'Mastodon: Autentifikacija sa sigurnosnim ključevima onemogućena'
         title: Sigurnosni ključevi su onemogućeni
       webauthn_enabled:
-        explanation: Autentifikacija sa bezbednosnim ključem je omogućena za vaš nalog. Vaš sigurnosni ključ se sada može koristiti za prijavljivanje.
+        explanation: Autentifikacija pomoću bezbednosnog ključa je omogućena za vaš nalog.
+        extra: Vaš bezbednosni ključ se sada može koristiti za prijavljivanje.
         subject: 'Mastodon: Omogućena autentifikacija sa bezbednim ključem'
         title: Sigurnosni ključevi su omogućeni
     omniauth_callbacks:

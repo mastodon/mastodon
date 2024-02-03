@@ -10,7 +10,7 @@ RSpec.describe HomeController do
 
     context 'when not signed in' do
       it 'returns http success' do
-        @request.path = '/'
+        request.path = '/'
         expect(subject).to have_http_status(:success)
       end
     end

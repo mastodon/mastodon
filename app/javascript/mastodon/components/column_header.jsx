@@ -1,21 +1,22 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import { PureComponent, useCallback } from 'react';
 
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 
-import { ReactComponent as AddIcon } from '@material-symbols/svg-600/outlined/add.svg';
-import { ReactComponent as ArrowBackIcon } from '@material-symbols/svg-600/outlined/arrow_back.svg';
-import { ReactComponent as ChevronLeftIcon } from '@material-symbols/svg-600/outlined/chevron_left.svg';
-import { ReactComponent as ChevronRightIcon } from '@material-symbols/svg-600/outlined/chevron_right.svg';
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
-import { ReactComponent as TuneIcon } from '@material-symbols/svg-600/outlined/tune.svg';
-
+import AddIcon from '@/material-icons/400-24px/add.svg?react';
+import ArrowBackIcon from '@/material-icons/400-24px/arrow_back.svg?react';
+import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
+import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
+import TuneIcon from '@/material-icons/400-24px/tune.svg?react';
 import { Icon }  from 'mastodon/components/icon';
-import { ButtonInTabsBar } from 'mastodon/features/ui/util/columns_context';
+import { ButtonInTabsBar, useColumnsContext } from 'mastodon/features/ui/util/columns_context';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
+
+import { useAppHistory } from './router';
 
 const messages = defineMessages({
   show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
@@ -23,6 +24,34 @@ const messages = defineMessages({
   moveLeft: { id: 'column_header.moveLeft_settings', defaultMessage: 'Move column to the left' },
   moveRight: { id: 'column_header.moveRight_settings', defaultMessage: 'Move column to the right' },
 });
+
+const BackButton = ({ pinned, show }) => {
+  const history = useAppHistory();
+  const { multiColumn } = useColumnsContext();
+
+  const handleBackClick = useCallback(() => {
+    if (history.location?.state?.fromMastodon) {
+      history.goBack();
+    } else {
+      history.push('/');
+    }
+  }, [history]);
+
+  const showButton = history && !pinned && ((multiColumn && history.location?.state?.fromMastodon) || show);
+
+  if(!showButton) return null;
+
+  return (<button onClick={handleBackClick} className='column-header__back-button'>
+    <Icon id='chevron-left' icon={ArrowBackIcon} className='column-back-button__icon' />
+    <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
+  </button>);
+
+};
+
+BackButton.propTypes = {
+  pinned: PropTypes.bool,
+  show: PropTypes.bool,
+};
 
 class ColumnHeader extends PureComponent {
 
@@ -72,16 +101,6 @@ class ColumnHeader extends PureComponent {
     this.props.onMove(1);
   };
 
-  handleBackClick = () => {
-    const { history } = this.props;
-
-    if (history.location?.state?.fromMastodon) {
-      history.goBack();
-    } else {
-      history.push('/');
-    }
-  };
-
   handleTransitionEnd = () => {
     this.setState({ animating: false });
   };
@@ -95,7 +114,7 @@ class ColumnHeader extends PureComponent {
   };
 
   render () {
-    const { title, icon, iconComponent, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues, history } = this.props;
+    const { title, icon, iconComponent, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues } = this.props;
     const { collapsed, animating } = this.state;
 
     const wrapperClassName = classNames('column-header__wrapper', {
@@ -138,14 +157,7 @@ class ColumnHeader extends PureComponent {
       pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' icon={AddIcon} /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
     }
 
-    if (!pinned && ((multiColumn && history.location?.state?.fromMastodon) || showBackButton)) {
-      backButton = (
-        <button onClick={this.handleBackClick} className='column-header__back-button'>
-          <Icon id='chevron-left' icon={ArrowBackIcon} className='column-back-button__icon' />
-          <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
-        </button>
-      );
-    }
+    backButton = <BackButton pinned={pinned} show={showBackButton} />;
 
     const collapsedContent = [
       extraContent,
