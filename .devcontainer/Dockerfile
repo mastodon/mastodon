@@ -15,6 +15,6 @@ COPY welcome-message.txt /usr/local/etc/vscode-dev-containers/first-run-notice.t
 
 WORKDIR /mastodon
 
-ENV PATH=/mastodon/bin:${PATH}
+ENV PATH=${PATH}:/mastodon/bin
 
 RUN su vscode -c "git config --global --add safe.directory /mastodon"
