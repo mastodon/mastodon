@@ -425,6 +425,7 @@ fi:
       view: Näytä verkkotunnuksen esto
     email_domain_blocks:
       add_new: Lisää uusi
+      allow_registrations_with_approval: Salli rekisteröitymiset hyväksynnällä
       attempts_over_week:
         one: "%{count} yritystä viimeisen viikon aikana"
         other: "%{count} rekisteröitymisyritystä viimeisen viikon aikana"
@@ -1545,6 +1546,9 @@ fi:
     errors:
       limit_reached: Erilaisten reaktioiden raja saavutettu
       unrecognized_emoji: ei ole tunnistettu emoji
+  redirects:
+    prompt: Jos luotat tähän linkkiin, jatka napsauttamalla.
+    title: Olet poistumassa palvelimelta %{instance}.
   relationships:
     activity: Tilin aktiivisuus
     confirm_follow_selected_followers: Haluatko varmasti seurata valittuja seuraajia?
@@ -1607,6 +1611,7 @@ fi:
       unknown_browser: Tuntematon selain
       weibo: Weibo
     current_session: Nykyinen istunto
+    date: Päiväys
     description: "%{browser} alustalla %{platform}"
     explanation: Nämä verkkoselaimet ovat tällä hetkellä kirjautuneena Mastodon-tilillesi.
     ip: IP-osoite
@@ -1773,18 +1778,27 @@ fi:
     webauthn: Suojausavaimet
   user_mailer:
     appeal_approved:
-      action: Siirry tilillesi
+      action: Tilin asetukset
       explanation: Valitus tiliäsi koskevasta varoituksesta %{strike_date} jonka lähetit %{appeal_date} on hyväksytty. Tilisi on jälleen hyvässä kunnossa.
       subject: Valituksesi %{date} on hyväksytty
+      subtitle: Tilisi on jälleen normaalissa tilassa.
       title: Valitus hyväksytty
     appeal_rejected:
       explanation: Valitus tiliäsi koskevasta varoituksesta %{strike_date} jonka lähetit %{appeal_date} on hylätty.
       subject: Valituksesi %{date} on hylätty
+      subtitle: Vetoomuksesi on hylätty.
       title: Valitus hylätty
     backup_ready:
-      explanation: Pyysit täydellistä varmuuskopiota Mastodon-tilistäsi. Voit nyt ladata sen!
+      explanation: Olet pyytänyt täyden varmuuskopion Mastodon-tilistäsi.
+      extra: Se on nyt valmis ladattavaksi!
       subject: Arkisto on valmiina ladattavaksi
       title: Arkiston tallennus
+    failed_2fa:
+      details: 'Tässä on tietoja kirjautumisyrityksestä:'
+      explanation: Joku on yrittänyt kirjautua tilillesi mutta on antanut virheellisen toisen vaiheen todennustekijän.
+      further_actions_html: Jos se et ollut sinä, suosittelemme, että %{action} välittömästi, sillä se on saattanut vaarantua.
+      subject: Kaksivaiheisen todennuksen virhe
+      title: Epäonnistunut kaksivaiheinen todennus
     suspicious_sign_in:
       change_password: vaihda salasanasi
       details: 'Tässä on tiedot kirjautumisesta:'
@@ -1838,6 +1852,7 @@ fi:
     go_to_sso_account_settings: Avaa identiteettitarjoajasi tiliasetukset
     invalid_otp_token: Virheellinen kaksivaiheisen todentamisen koodi
     otp_lost_help_html: Jos sinulla ei ole pääsyä kumpaankaan, voit ottaa yhteyden osoitteeseen %{email}
+    rate_limited: Liian monta todennusyritystä. Yritä myöhemmin uudelleen.
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
     signed_in_as: 'Kirjautunut tilillä:'
   verification:

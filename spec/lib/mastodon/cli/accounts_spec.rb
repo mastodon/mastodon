@@ -65,8 +65,7 @@ describe Mastodon::CLI::Accounts do
 
           it 'exits with an error message' do
             expect { subject }
-              .to output_results('Failure/Error: email')
-              .and raise_error(SystemExit)
+              .to raise_error(Thor::Error, %r{Failure/Error: email})
           end
         end
       end
@@ -127,8 +126,7 @@ describe Mastodon::CLI::Accounts do
 
           it 'exits with an error message indicating the role name was not found' do
             expect { subject }
-              .to output_results('Cannot find user role with that name')
-              .and raise_error(SystemExit)
+              .to raise_error(Thor::Error, 'Cannot find user role with that name')
           end
         end
       end
@@ -191,8 +189,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating the user was not found' do
         expect { subject }
-          .to output_results('No user with such username')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No user with such username')
       end
     end
 
@@ -214,8 +211,7 @@ describe Mastodon::CLI::Accounts do
 
           it 'exits with an error message indicating the role was not found' do
             expect { subject }
-              .to output_results('Cannot find user role with that name')
-              .and raise_error(SystemExit)
+              .to raise_error(Thor::Error, 'Cannot find user role with that name')
           end
         end
 
@@ -364,8 +360,7 @@ describe Mastodon::CLI::Accounts do
 
         it 'exits with an error message' do
           expect { subject }
-            .to output_results('Failure/Error: email')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, %r{Failure/Error: email})
         end
       end
     end
@@ -387,16 +382,14 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating that only one should be used' do
         expect { subject }
-          .to output_results('Use username or --email, not both')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'Use username or --email, not both')
       end
     end
 
     context 'when neither username nor --email are provided' do
       it 'exits with an error message indicating that no username was provided' do
         expect { subject }
-          .to output_results('No username provided')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No username provided')
       end
     end
 
@@ -425,8 +418,7 @@ describe Mastodon::CLI::Accounts do
 
         it 'exits with an error message indicating that no user was found' do
           expect { subject }
-            .to output_results('No user with such username')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, 'No user with such username')
         end
       end
     end
@@ -458,8 +450,7 @@ describe Mastodon::CLI::Accounts do
 
         it 'exits with an error message indicating that no user was found' do
           expect { subject }
-            .to output_results('No user with such email')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, 'No user with such email')
         end
       end
     end
@@ -511,8 +502,7 @@ describe Mastodon::CLI::Accounts do
 
         it 'exits with an error message indicating that the number must be positive' do
           expect { subject }
-            .to output_results('Number must be positive')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, 'Number must be positive')
         end
       end
 
@@ -545,8 +535,7 @@ describe Mastodon::CLI::Accounts do
 
         it 'exits with an error message indicating that no such account was found' do
           expect { subject }
-            .to output_results('No such account')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, 'No such account')
         end
       end
     end
@@ -560,8 +549,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating that no account with the given username was found' do
         expect { subject }
-          .to output_results('No such account')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No such account')
       end
     end
 
@@ -596,8 +584,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating that no account with the given username was found' do
         expect { subject }
-          .to output_results('No such account')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No such account')
       end
     end
 
@@ -634,8 +621,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating that there is no such account' do
         expect { subject }
-          .to output_results('No user with such username')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No user with such username')
       end
     end
 
@@ -660,106 +646,69 @@ describe Mastodon::CLI::Accounts do
   end
 
   describe '#refresh' do
+    let(:action) { :refresh }
+
     context 'with --all option' do
-      let!(:local_account)              { Fabricate(:account, domain: nil) }
-      let!(:remote_account_example_com) { Fabricate(:account, domain: 'example.com') }
-      let!(:account_example_net)        { Fabricate(:account, domain: 'example.net') }
-      let(:scope)                       { Account.remote }
+      let(:options) { { all: true } }
+      let!(:local_account) { Fabricate(:account, domain: nil) }
+      let(:remote_com_avatar_url) { 'https://example.host/avatar/com' }
+      let(:remote_com_header_url) { 'https://example.host/header/com' }
+      let(:remote_account_example_com) { Fabricate(:account, domain: 'example.com', avatar_remote_url: remote_com_avatar_url, header_remote_url: remote_com_header_url) }
+      let(:remote_net_avatar_url) { 'https://example.host/avatar/net' }
+      let(:remote_net_header_url) { 'https://example.host/header/net' }
+      let(:account_example_net) { Fabricate(:account, domain: 'example.net', avatar_remote_url: remote_net_avatar_url, header_remote_url: remote_net_header_url) }
+      let(:scope) { Account.remote }
 
       before do
-        # TODO: we should be using `stub_parallelize_with_progress!` but
-        # this makes the assertions harder to write
-        allow(cli).to receive(:parallelize_with_progress).and_yield(remote_account_example_com)
-                                                         .and_yield(account_example_net)
-                                                         .and_return([2, nil])
-        cli.options = { all: true }
+        stub_parallelize_with_progress!
+
+        stub_request(:get, remote_com_avatar_url)
+          .to_return request_fixture('avatar.txt')
+        stub_request(:get, remote_com_header_url)
+          .to_return request_fixture('avatar.txt')
+        stub_request(:get, remote_net_avatar_url)
+          .to_return request_fixture('avatar.txt')
+        stub_request(:get, remote_net_header_url)
+          .to_return request_fixture('avatar.txt')
+
+        remote_account_example_com
+          .update_column(:avatar_file_name, nil)
+        account_example_net
+          .update_column(:avatar_file_name, nil)
       end
 
-      it 'refreshes the avatar for all remote accounts' do
-        allow(remote_account_example_com).to receive(:reset_avatar!)
-        allow(account_example_net).to receive(:reset_avatar!)
-
-        expect { cli.refresh }
+      it 'refreshes the avatar and header for all remote accounts' do
+        expect { subject }
           .to output_results('Refreshed 2 accounts')
+          .and not_change(local_account, :updated_at)
 
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
-        expect(remote_account_example_com).to have_received(:reset_avatar!).once
-        expect(account_example_net).to have_received(:reset_avatar!).once
-      end
-
-      it 'does not refresh avatar for local accounts' do
-        allow(local_account).to receive(:reset_avatar!)
-
-        expect { cli.refresh }
-          .to output_results('Refreshed 2 accounts')
-
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
-        expect(local_account).to_not have_received(:reset_avatar!)
-      end
-
-      it 'refreshes the header for all remote accounts' do
-        allow(remote_account_example_com).to receive(:reset_header!)
-        allow(account_example_net).to receive(:reset_header!)
-
-        expect { cli.refresh }
-          .to output_results('Refreshed 2 accounts')
-
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
-        expect(remote_account_example_com).to have_received(:reset_header!).once
-        expect(account_example_net).to have_received(:reset_header!).once
-      end
-
-      it 'does not refresh the header for local accounts' do
-        allow(local_account).to receive(:reset_header!)
-
-        expect { cli.refresh }
-          .to output_results('Refreshed 2 accounts')
-
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
-        expect(local_account).to_not have_received(:reset_header!)
-      end
-
-      it 'displays a successful message' do
-        expect { cli.refresh }
-          .to output_results('Refreshed 2 accounts')
+        # One request from factory creation, one more from task
+        expect(a_request(:get, remote_com_avatar_url))
+          .to have_been_made.at_least_times(2)
+        expect(a_request(:get, remote_com_header_url))
+          .to have_been_made.at_least_times(2)
+        expect(a_request(:get, remote_net_avatar_url))
+          .to have_been_made.at_least_times(2)
+        expect(a_request(:get, remote_net_header_url))
+          .to have_been_made.at_least_times(2)
       end
 
       context 'with --dry-run option' do
-        before do
-          cli.options = { all: true, dry_run: true }
-        end
+        let(:options) { { all: true, dry_run: true } }
 
-        it 'does not refresh the avatar for any account' do
-          allow(local_account).to receive(:reset_avatar!)
-          allow(remote_account_example_com).to receive(:reset_avatar!)
-          allow(account_example_net).to receive(:reset_avatar!)
-
-          expect { cli.refresh }
+        it 'does not refresh the avatar or header for any account' do
+          expect { subject }
             .to output_results('Refreshed 2 accounts')
 
-          expect(cli).to have_received(:parallelize_with_progress).with(scope).once
-          expect(local_account).to_not have_received(:reset_avatar!)
-          expect(remote_account_example_com).to_not have_received(:reset_avatar!)
-          expect(account_example_net).to_not have_received(:reset_avatar!)
-        end
-
-        it 'does not refresh the header for any account' do
-          allow(local_account).to receive(:reset_header!)
-          allow(remote_account_example_com).to receive(:reset_header!)
-          allow(account_example_net).to receive(:reset_header!)
-
-          expect { cli.refresh }
-            .to output_results('Refreshed 2 accounts')
-
-          expect(cli).to have_received(:parallelize_with_progress).with(scope).once
-          expect(local_account).to_not have_received(:reset_header!)
-          expect(remote_account_example_com).to_not have_received(:reset_header!)
-          expect(account_example_net).to_not have_received(:reset_header!)
-        end
-
-        it 'displays a successful message with (DRY RUN)' do
-          expect { cli.refresh }
-            .to output_results('Refreshed 2 accounts (DRY RUN)')
+          # One request from factory creation, none from task due to dry run
+          expect(a_request(:get, remote_com_avatar_url))
+            .to have_been_made.once
+          expect(a_request(:get, remote_com_header_url))
+            .to have_been_made.once
+          expect(a_request(:get, remote_net_avatar_url))
+            .to have_been_made.once
+          expect(a_request(:get, remote_net_header_url))
+            .to have_been_made.once
         end
       end
     end
@@ -782,7 +731,7 @@ describe Mastodon::CLI::Accounts do
         allow(account_example_com_a).to receive(:reset_avatar!)
         allow(account_example_com_b).to receive(:reset_avatar!)
 
-        expect { cli.refresh(*arguments) }
+        expect { subject }
           .to output_results('OK')
 
         expect(account_example_com_a).to have_received(:reset_avatar!).once
@@ -792,7 +741,7 @@ describe Mastodon::CLI::Accounts do
       it 'does not reset the avatar for unspecified accounts' do
         allow(account_example_net).to receive(:reset_avatar!)
 
-        expect { cli.refresh(*arguments) }
+        expect { subject }
           .to output_results('OK')
 
         expect(account_example_net).to_not have_received(:reset_avatar!)
@@ -802,7 +751,7 @@ describe Mastodon::CLI::Accounts do
         allow(account_example_com_a).to receive(:reset_header!)
         allow(account_example_com_b).to receive(:reset_header!)
 
-        expect { cli.refresh(*arguments) }
+        expect { subject }
           .to output_results('OK')
 
         expect(account_example_com_a).to have_received(:reset_header!).once
@@ -812,7 +761,7 @@ describe Mastodon::CLI::Accounts do
       it 'does not reset the header for unspecified accounts' do
         allow(account_example_net).to receive(:reset_header!)
 
-        expect { cli.refresh(*arguments) }
+        expect { subject }
           .to output_results('OK')
 
         expect(account_example_net).to_not have_received(:reset_header!)
@@ -822,7 +771,7 @@ describe Mastodon::CLI::Accounts do
         it 'displays a failure message' do
           allow(account_example_com_a).to receive(:reset_avatar!).and_raise(Mastodon::UnexpectedResponseError)
 
-          expect { cli.refresh(*arguments) }
+          expect { subject }
             .to output_results("Account failed: #{account_example_com_a.username}@#{account_example_com_a.domain}")
         end
       end
@@ -831,22 +780,19 @@ describe Mastodon::CLI::Accounts do
         it 'exits with an error message' do
           allow(Account).to receive(:find_remote).with(account_example_com_b.username, account_example_com_b.domain).and_return(nil)
 
-          expect { cli.refresh(*arguments) }
-            .to output_results('No such account')
-            .and raise_error(SystemExit)
+          expect { subject }
+            .to raise_error(Thor::Error, 'No such account')
         end
       end
 
       context 'with --dry-run option' do
-        before do
-          cli.options = { dry_run: true }
-        end
+        let(:options) { { dry_run: true } }
 
         it 'does not refresh the avatar for any account' do
           allow(account_example_com_a).to receive(:reset_avatar!)
           allow(account_example_com_b).to receive(:reset_avatar!)
 
-          expect { cli.refresh(*arguments) }
+          expect { subject }
             .to output_results('OK (DRY RUN)')
 
           expect(account_example_com_a).to_not have_received(:reset_avatar!)
@@ -857,7 +803,7 @@ describe Mastodon::CLI::Accounts do
           allow(account_example_com_a).to receive(:reset_header!)
           allow(account_example_com_b).to receive(:reset_header!)
 
-          expect { cli.refresh(*arguments) }
+          expect { subject }
             .to output_results('OK (DRY RUN)')
 
           expect(account_example_com_a).to_not have_received(:reset_header!)
@@ -867,69 +813,71 @@ describe Mastodon::CLI::Accounts do
     end
 
     context 'with --domain option' do
-      let!(:account_example_com_a) { Fabricate(:account, domain: 'example.com') }
-      let!(:account_example_com_b) { Fabricate(:account, domain: 'example.com') }
-      let!(:account_example_net)   { Fabricate(:account, domain: 'example.net') }
-      let(:domain)                 { 'example.com' }
-      let(:scope)                  { Account.remote.where(domain: domain) }
+      let(:domain) { 'example.com' }
+      let(:options) { { domain: domain } }
+
+      let(:com_a_avatar_url) { 'https://example.host/avatar/a' }
+      let(:com_a_header_url) { 'https://example.host/header/a' }
+      let(:account_example_com_a) { Fabricate(:account, domain: domain, avatar_remote_url: com_a_avatar_url, header_remote_url: com_a_header_url) }
+
+      let(:com_b_avatar_url) { 'https://example.host/avatar/b' }
+      let(:com_b_header_url) { 'https://example.host/header/b' }
+      let(:account_example_com_b) { Fabricate(:account, domain: domain, avatar_remote_url: com_b_avatar_url, header_remote_url: com_b_header_url) }
+
+      let(:net_avatar_url) { 'https://example.host/avatar/net' }
+      let(:net_header_url) { 'https://example.host/header/net' }
+      let(:account_example_net) { Fabricate(:account, domain: 'example.net', avatar_remote_url: net_avatar_url, header_remote_url: net_header_url) }
 
       before do
-        allow(cli).to receive(:parallelize_with_progress).and_yield(account_example_com_a)
-                                                         .and_yield(account_example_com_b)
-                                                         .and_return([2, nil])
-        cli.options = { domain: domain }
+        stub_parallelize_with_progress!
+
+        stub_request(:get, com_a_avatar_url)
+          .to_return request_fixture('avatar.txt')
+        stub_request(:get, com_a_header_url)
+          .to_return request_fixture('avatar.txt')
+        stub_request(:get, com_b_avatar_url)
+          .to_return request_fixture('avatar.txt')
+        stub_request(:get, com_b_header_url)
+          .to_return request_fixture('avatar.txt')
+        stub_request(:get, net_avatar_url)
+          .to_return request_fixture('avatar.txt')
+        stub_request(:get, net_header_url)
+          .to_return request_fixture('avatar.txt')
+
+        account_example_com_a
+          .update_column(:avatar_file_name, nil)
+        account_example_com_b
+          .update_column(:avatar_file_name, nil)
+        account_example_net
+          .update_column(:avatar_file_name, nil)
       end
 
-      it 'refreshes the avatar for all accounts on specified domain' do
-        allow(account_example_com_a).to receive(:reset_avatar!)
-        allow(account_example_com_b).to receive(:reset_avatar!)
-
-        expect { cli.refresh }
+      it 'refreshes the avatar and header for all accounts on specified domain' do
+        expect { subject }
           .to output_results('Refreshed 2 accounts')
 
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
-        expect(account_example_com_a).to have_received(:reset_avatar!).once
-        expect(account_example_com_b).to have_received(:reset_avatar!).once
-      end
+        # One request from factory creation, one more from task
+        expect(a_request(:get, com_a_avatar_url))
+          .to have_been_made.at_least_times(2)
+        expect(a_request(:get, com_a_header_url))
+          .to have_been_made.at_least_times(2)
+        expect(a_request(:get, com_b_avatar_url))
+          .to have_been_made.at_least_times(2)
+        expect(a_request(:get, com_b_header_url))
+          .to have_been_made.at_least_times(2)
 
-      it 'does not refresh the avatar for accounts outside specified domain' do
-        allow(account_example_net).to receive(:reset_avatar!)
-
-        expect { cli.refresh }
-          .to output_results('Refreshed 2 accounts')
-
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
-        expect(account_example_net).to_not have_received(:reset_avatar!)
-      end
-
-      it 'refreshes the header for all accounts on specified domain' do
-        allow(account_example_com_a).to receive(:reset_header!)
-        allow(account_example_com_b).to receive(:reset_header!)
-
-        expect { cli.refresh }
-          .to output_results('Refreshed 2 accounts')
-
-        expect(cli).to have_received(:parallelize_with_progress).with(scope)
-        expect(account_example_com_a).to have_received(:reset_header!).once
-        expect(account_example_com_b).to have_received(:reset_header!).once
-      end
-
-      it 'does not refresh the header for accounts outside specified domain' do
-        allow(account_example_net).to receive(:reset_header!)
-
-        expect { cli.refresh }
-          .to output_results('Refreshed 2 accounts')
-
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
-        expect(account_example_net).to_not have_received(:reset_header!)
+        # One request from factory creation, none from task
+        expect(a_request(:get, net_avatar_url))
+          .to have_been_made.once
+        expect(a_request(:get, net_header_url))
+          .to have_been_made.once
       end
     end
 
     context 'when neither a list of accts nor options are provided' do
       it 'exits with an error message' do
-        expect { cli.refresh }
-          .to output_results('No account(s) given')
-          .and raise_error(SystemExit)
+        expect { subject }
+          .to raise_error(Thor::Error, 'No account(s) given')
       end
     end
   end
@@ -940,8 +888,7 @@ describe Mastodon::CLI::Accounts do
     context 'when neither username nor --all option are given' do
       it 'exits with an error message' do
         expect { subject }
-          .to output_results('No account(s) given')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No account(s) given')
       end
     end
 
@@ -976,8 +923,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message when the specified username is not found' do
         expect { subject }
-          .to output_results('No such account')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No such account')
       end
     end
 
@@ -1016,8 +962,7 @@ describe Mastodon::CLI::Accounts do
     shared_examples 'an account not found' do |acct|
       it 'exits with an error message indicating that there is no such account' do
         expect { subject }
-          .to output_results("No such account (#{acct})")
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, "No such account (#{acct})")
       end
     end
 
@@ -1067,8 +1012,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating that the accounts do not have the same pub key' do
         expect { subject }
-          .to output_results("Accounts don't have the same public key, might not be duplicates!\nOverride with --force")
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, "Accounts don't have the same public key, might not be duplicates!\nOverride with --force\n")
       end
 
       context 'with --force option' do
@@ -1236,8 +1180,7 @@ describe Mastodon::CLI::Accounts do
     context 'when no option is given' do
       it 'exits with an error message indicating that at least one option is required' do
         expect { subject }
-          .to output_results('Please specify either --follows or --followers, or both')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'Please specify either --follows or --followers, or both')
       end
     end
 
@@ -1247,8 +1190,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating that there is no such account' do
         expect { subject }
-          .to output_results('No such account')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No such account')
       end
     end
 
@@ -1384,18 +1326,16 @@ describe Mastodon::CLI::Accounts do
     end
 
     shared_examples 'a successful migration' do
-      it 'calls the MoveService for the last migration' do
-        expect { subject }
-          .to output_results('OK')
-
-        last_migration = source_account.migrations.last
-
-        expect(move_service).to have_received(:call).with(last_migration).once
-      end
-
-      it 'displays a successful message' do
+      it 'displays a success message and calls the MoveService for the last migration' do
         expect { subject }
           .to output_results("OK, migrated #{source_account.acct} to #{target_account.acct}")
+
+        expect(move_service)
+          .to have_received(:call).with(last_migration).once
+      end
+
+      def last_migration
+        source_account.migrations.last
       end
     end
 
@@ -1404,16 +1344,14 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating that using both options is not possible' do
         expect { subject }
-          .to output_results('Use --replay or --target, not both')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'Use --replay or --target, not both')
       end
     end
 
     context 'when no option is given' do
       it 'exits with an error message indicating that at least one option must be used' do
         expect { subject }
-          .to output_results('Use either --replay or --target')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'Use either --replay or --target')
       end
     end
 
@@ -1423,8 +1361,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'exits with an error message indicating that there is no such account' do
         expect { subject }
-          .to output_results("No such account: #{arguments.first}")
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, "No such account: #{arguments.first}")
       end
     end
 
@@ -1434,8 +1371,7 @@ describe Mastodon::CLI::Accounts do
       context 'when the specified account has no previous migrations' do
         it 'exits with an error message indicating that the given account has no previous migrations' do
           expect { subject }
-            .to output_results('The specified account has not performed any migration')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, 'The specified account has not performed any migration')
         end
       end
 
@@ -1457,8 +1393,7 @@ describe Mastodon::CLI::Accounts do
 
           it 'exits with an error message' do
             expect { subject }
-              .to output_results('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway')
-              .and raise_error(SystemExit)
+              .to raise_error(Thor::Error, 'The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway')
           end
         end
 
@@ -1485,8 +1420,7 @@ describe Mastodon::CLI::Accounts do
 
         it 'exits with an error message indicating that there is no such account' do
           expect { subject }
-            .to output_results("The specified target account could not be found: #{options[:target]}")
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, "The specified target account could not be found: #{options[:target]}")
         end
       end
 
@@ -1510,8 +1444,7 @@ describe Mastodon::CLI::Accounts do
       context 'when the migration record is invalid' do
         it 'exits with an error indicating that the validation failed' do
           expect { subject }
-            .to output_results('Error: Validation failed')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, /Error: Validation failed/)
         end
       end
 
@@ -1522,8 +1455,7 @@ describe Mastodon::CLI::Accounts do
 
         it 'exits with an error message' do
           expect { subject }
-            .to output_results('The specified account is redirecting to a different target account. Use --force if you want to change the migration target')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, 'The specified account is redirecting to a different target account. Use --force if you want to change the migration target')
         end
       end
 

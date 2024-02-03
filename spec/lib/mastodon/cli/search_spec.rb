@@ -20,8 +20,7 @@ describe Mastodon::CLI::Search do
 
       it 'Exits with error message' do
         expect { subject }
-          .to output_results('this concurrency setting')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, /this concurrency setting/)
       end
     end
 
@@ -30,8 +29,7 @@ describe Mastodon::CLI::Search do
 
       it 'Exits with error message' do
         expect { subject }
-          .to output_results('this batch_size setting')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, /this batch_size setting/)
       end
     end
 

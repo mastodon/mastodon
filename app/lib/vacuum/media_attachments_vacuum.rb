@@ -27,11 +27,17 @@ class Vacuum::MediaAttachmentsVacuum
   end
 
   def media_attachments_past_retention_period
-    MediaAttachment.remote.cached.where(MediaAttachment.arel_table[:created_at].lt(@retention_period.ago)).where(MediaAttachment.arel_table[:updated_at].lt(@retention_period.ago))
+    MediaAttachment
+      .remote
+      .cached
+      .created_before(@retention_period.ago)
+      .updated_before(@retention_period.ago)
   end
 
   def orphaned_media_attachments
-    MediaAttachment.unattached.where(MediaAttachment.arel_table[:created_at].lt(TTL.ago))
+    MediaAttachment
+      .unattached
+      .created_before(TTL.ago)
   end
 
   def retention_period?

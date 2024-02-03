@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Api::V1::StreamingController do
   around do |example|
     before = Rails.configuration.x.streaming_api_base_url
-    Rails.configuration.x.streaming_api_base_url = Rails.configuration.x.web_domain
+    Rails.configuration.x.streaming_api_base_url = "wss://#{Rails.configuration.x.web_domain}"
     example.run
     Rails.configuration.x.streaming_api_base_url = before
   end

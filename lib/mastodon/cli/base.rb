@@ -18,6 +18,10 @@ module Mastodon
 
       private
 
+      def fail_with_message(message)
+        raise Thor::Error, message
+      end
+
       def pastel
         @pastel ||= Pastel.new
       end

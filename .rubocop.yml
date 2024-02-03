@@ -96,16 +96,32 @@ Rails/FilePath:
 Rails/HttpStatus:
   EnforcedStyle: numeric
 
-# Reason: Allowed in `tootctl` CLI code and in boot ENV checker
+# Reason: Allowed in boot ENV checker
 # https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsexit
 Rails/Exit:
   Exclude:
     - 'config/boot.rb'
-    - 'lib/mastodon/cli/*.rb'
 
-Rails/SkipsModelValidations:
+# Reason: Conflicts with `Lint/UselessMethodDefinition` for inherited controller actions
+# https://docs.rubocop.org/rubocop-rails/cops_rails.html#railslexicallyscopedactionfilter
+Rails/LexicallyScopedActionFilter:
   Exclude:
-    - 'db/*migrate/**/*'
+    - 'app/controllers/auth/*'
+
+# Reason: These tasks are doing local work which do not need full env loaded
+# https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsrakeenvironment
+Rails/RakeEnvironment:
+  Exclude:
+    - 'lib/tasks/auto_annotate_models.rake'
+    - 'lib/tasks/emojis.rake'
+    - 'lib/tasks/mastodon.rake'
+    - 'lib/tasks/repo.rake'
+    - 'lib/tasks/statistics.rake'
+
+# Reason: There are appropriate times to use these features
+# https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsskipsmodelvalidations
+Rails/SkipsModelValidations:
+  Enabled: false
 
 # Reason: We want to preserve the ability to migrate from arbitrary old versions,
 # and cannot guarantee that every installation has run every migration as they upgrade.
@@ -157,6 +173,15 @@ Style/ClassAndModuleChildren:
 # https://docs.rubocop.org/rubocop/cops_style.html#styledocumentation
 Style/Documentation:
   Enabled: false
+
+# Reason: Route redirects are not token-formatted and must be skipped
+# https://docs.rubocop.org/rubocop/cops_style.html#styleformatstringtoken
+Style/FormatStringToken:
+  inherit_mode:
+    merge:
+      - AllowedMethods # The rubocop-rails config adds `redirect`
+  AllowedMethods:
+    - redirect_with_vary
 
 # Reason: Enforce modern Ruby style
 # https://docs.rubocop.org/rubocop/cops_style.html#stylehashsyntax

@@ -44,8 +44,8 @@ class BulkImport < ApplicationRecord
 
   def self.progress!(bulk_import_id, imported: false)
     # Use `increment_counter` so that the incrementation is done atomically in the database
-    BulkImport.increment_counter(:processed_items, bulk_import_id) # rubocop:disable Rails/SkipsModelValidations
-    BulkImport.increment_counter(:imported_items, bulk_import_id) if imported # rubocop:disable Rails/SkipsModelValidations
+    BulkImport.increment_counter(:processed_items, bulk_import_id)
+    BulkImport.increment_counter(:imported_items, bulk_import_id) if imported
 
     # Since the incrementation has been done atomically, concurrent access to `bulk_import` is now bening
     bulk_import = BulkImport.find(bulk_import_id)

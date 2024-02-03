@@ -184,6 +184,7 @@ sk:
         create_domain_block: Vytvor zákaz domény
         create_email_domain_block: Vytvor zákaz emailovej domény
         create_ip_block: Vytvor IP pravidlo
+        create_unavailable_domain: Vytvor nedostupnú doménu
         create_user_role: Vytvoriť rolu
         demote_user: Zniž užívateľskú rolu
         destroy_announcement: Vymaž oboznámenie
@@ -245,6 +246,7 @@ sk:
         destroy_email_domain_block_html: "%{name} odblokoval/a e-mailovú doménu %{target}"
         destroy_ip_block_html: "%{name} vymazal/a pravidlo pre IP %{target}"
         destroy_status_html: "%{name} zmazal/a príspevok od %{target}"
+        destroy_unavailable_domain_html: "%{name} znova spustil/a doručovanie pre doménu %{target}"
         destroy_user_role_html: "%{name} vymazal/a rolu pre %{target}"
         enable_user_html: "%{name} povolil/a prihlásenie pre používateľa %{target}"
         memorialize_account_html: "%{name} zmenil/a účet %{target} na pamätnú stránku"
@@ -428,6 +430,7 @@ sk:
       dashboard:
         instance_accounts_dimension: Najsledovanejšie účty
         instance_accounts_measure: uložené účty
+        instance_followers_measure: naši nasledovatelia tam
         instance_follows_measure: ich sledovatelia tu
         instance_languages_dimension: Najpopulárnejšie jazyky
         instance_media_attachments_measure: uložené mediálne prílohy
@@ -446,6 +449,7 @@ sk:
         title: Moderácia
       private_comment: Súkromný komentár
       public_comment: Verejný komentár
+      purge: Vyčisti
       title: Federácia
       total_blocked_by_us: Nami blokované
       total_followed_by_them: Nimi sledované
@@ -548,6 +552,7 @@ sk:
           delete_html: Vymaž pohoršujúce príspevky
           mark_as_sensitive_html: Označ médiá pohoršujúcich príspevkov za chúlostivé
         close_report: 'Označ hlásenie #%{id} za vyriešené'
+      target_origin: Pôvod nahláseného účtu
       title: Hlásenia
       unassign: Odober
       unknown_action_msg: 'Neznáma akcia: %{action}'
@@ -597,6 +602,8 @@ sk:
         title: Ohľadom
       appearance:
         title: Vzhľad
+      branding:
+        title: Značka
       content_retention:
         title: Ponechanie obsahu
       discovery:
@@ -627,6 +634,7 @@ sk:
       documentation_link: Zisti viac
       release_notes: Poznámky k vydaniu
       title: Dostupné aktualizácie
+      type: Druh
       types:
         major: Hlavné vydanie
         patch: Opravné vydanie - opravy a jednoducho uplatniteľné zmeny
@@ -635,7 +643,9 @@ sk:
       account: Autor
       application: Aplikácia
       back_to_account: Späť na účet
+      back_to_report: Späť na stránku hlásenia
       batch:
+        remove_from_report: Vymaž z hlásenia
         report: Hlásenie
       deleted: Vymazané
       favourites: Obľúbené
@@ -717,11 +727,13 @@ sk:
       disable: Vypni
       disabled: Vypnuté
       enable: Povoľ
+      enabled: Aktívne
       status: Stav
   admin_mailer:
     new_appeal:
       actions:
         none: varovanie
+        silence: obmedziť ich účet
     new_pending_account:
       body: Podrobnosti o novom účte sú uvedené nižšie. Môžeš túto registračnú požiadavku buď prijať, alebo zamietnúť.
       subject: Nový účet očakáva preverenie na %{instance} (%{username})
@@ -1089,6 +1101,9 @@ sk:
     errors:
       limit_reached: Maximálny počet rôznorodých reakcií bol dosiahnutý
       unrecognized_emoji: je neznámy smajlík
+  redirects:
+    prompt: Ak tomuto odkazu veríš, klikni naňho pre pokračovanie.
+    title: Opúšťaš %{instance}.
   relationships:
     activity: Aktivita účtu
     confirm_follow_selected_followers: Si si istý/á, že chceš nasledovať vybraných sledujúcich?
@@ -1130,6 +1145,7 @@ sk:
       unknown_browser: Neznámy prehliadač
       weibo: Sina/Tencent Weibo
     current_session: Aktuálna sezóna
+    date: Dátum
     description: "%{browser} na %{platform}"
     explanation: Tieto sú prehliadače ktoré sú teraz prihlásené na tvoj Mastodon účet.
     ip: IP adresa
@@ -1237,11 +1253,16 @@ sk:
     recovery_instructions_html: Keď hocikedy stratíš prístup k svojmu telefónu, môžeš použiť jeden z prístupových kódov nižšie pre obnovenie prístupu k svojmu účtu. <strong>Skladuj tieto prístupové kódy na bezpečnom mieste</strong>. Napríklad ich môžeš vytlačiť a uložiť ich spolu s inými dôležitými dokumentami.
   user_mailer:
     appeal_approved:
-      action: Choď na svoj účet
+      action: Nastavenia účtu
+    appeal_rejected:
+      subtitle: Tvoje odvolanie bolo zamietnuté.
     backup_ready:
-      explanation: Vyžiadal/a si si úplnú zálohu svojho Mastodon účtu. Táto záloha je teraz pripravená na stiahnutie!
+      explanation: Vyžiadal/a si si úplnú zálohu svojho Mastodon účtu.
+      extra: Teraz je pripravená na stiahnutie!
       subject: Tvoj archív je pripravený na stiahnutie
       title: Odber archívu
+    failed_2fa:
+      details: 'Tu sú podrobnosti o pokuse o prihlásenie:'
     warning:
       subject:
         disable: Tvoj účet %{acct} bol zamrazený
@@ -1265,6 +1286,7 @@ sk:
     follow_limit_reached: Nemôžeš následovať viac ako %{limit} ľudí
     invalid_otp_token: Neplatný kód pre dvojfaktorovú autentikáciu
     otp_lost_help_html: Pokiaľ si stratil/a prístup k obom, môžeš dať vedieť %{email}
+    rate_limited: Príliš veľa pokusov o overenie, skús to znova neskôr.
     seamless_external_login: Si prihlásená/ý cez externú službu, takže nastavenia hesla a emailu ti niesú prístupné.
     signed_in_as: 'Prihlásená/ý ako:'
   verification:

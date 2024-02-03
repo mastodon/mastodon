@@ -27,8 +27,11 @@ class Poll < ApplicationRecord
   belongs_to :status
 
   has_many :votes, class_name: 'PollVote', inverse_of: :poll, dependent: :delete_all
-  has_many :voters, -> { group('accounts.id') }, through: :votes, class_name: 'Account', source: :account
-  has_many :local_voters, -> { group('accounts.id').merge(Account.local) }, through: :votes, class_name: 'Account', source: :account
+
+  with_options class_name: 'Account', source: :account, through: :votes do
+    has_many :voters, -> { group('accounts.id') }
+    has_many :local_voters, -> { group('accounts.id').merge(Account.local) }
+  end
 
   has_many :notifications, as: :activity, dependent: :destroy
 
@@ -54,7 +57,7 @@ class Poll < ApplicationRecord
   end
 
   def voted?(account)
-    account.id == account_id || votes.where(account: account).exists?
+    account.id == account_id || votes.exists?(account: account)
   end
 
   def own_votes(account)

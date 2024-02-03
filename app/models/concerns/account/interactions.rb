@@ -183,7 +183,7 @@ module Account::Interactions
   end
 
   def following?(other_account)
-    active_relationships.where(target_account: other_account).exists?
+    active_relationships.exists?(target_account: other_account)
   end
 
   def following_anyone?
@@ -199,51 +199,51 @@ module Account::Interactions
   end
 
   def blocking?(other_account)
-    block_relationships.where(target_account: other_account).exists?
+    block_relationships.exists?(target_account: other_account)
   end
 
   def domain_blocking?(other_domain)
-    domain_blocks.where(domain: other_domain).exists?
+    domain_blocks.exists?(domain: other_domain)
   end
 
   def muting?(other_account)
-    mute_relationships.where(target_account: other_account).exists?
+    mute_relationships.exists?(target_account: other_account)
   end
 
   def muting_conversation?(conversation)
-    conversation_mutes.where(conversation: conversation).exists?
+    conversation_mutes.exists?(conversation: conversation)
   end
 
   def muting_notifications?(other_account)
-    mute_relationships.where(target_account: other_account, hide_notifications: true).exists?
+    mute_relationships.exists?(target_account: other_account, hide_notifications: true)
   end
 
   def muting_reblogs?(other_account)
-    active_relationships.where(target_account: other_account, show_reblogs: false).exists?
+    active_relationships.exists?(target_account: other_account, show_reblogs: false)
   end
 
   def requested?(other_account)
-    follow_requests.where(target_account: other_account).exists?
+    follow_requests.exists?(target_account: other_account)
   end
 
   def favourited?(status)
-    status.proper.favourites.where(account: self).exists?
+    status.proper.favourites.exists?(account: self)
   end
 
   def bookmarked?(status)
-    status.proper.bookmarks.where(account: self).exists?
+    status.proper.bookmarks.exists?(account: self)
   end
 
   def reblogged?(status)
-    status.proper.reblogs.where(account: self).exists?
+    status.proper.reblogs.exists?(account: self)
   end
 
   def pinned?(status)
-    status_pins.where(status: status).exists?
+    status_pins.exists?(status: status)
   end
 
   def endorsed?(account)
-    account_pins.where(target_account: account).exists?
+    account_pins.exists?(target_account: account)
   end
 
   def status_matches_filters(status)
