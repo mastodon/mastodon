@@ -309,6 +309,7 @@ et:
       unpublish: Tühista avaldamine
       unpublished_msg: Teadaande eemaldamine avalikkusest õnnestus!
       updated_msg: Teadaande uuendamine õnnestus!
+    critical_update_pending: Kriitiline turvauuendus ootel
     custom_emojis:
       assign_category: Määra kategooria
       by_domain: Domeen
@@ -424,6 +425,7 @@ et:
       view: Vaata domeeniblokeeringut
     email_domain_blocks:
       add_new: Lisa uus
+      allow_registrations_with_approval: Luba kinnitamisega registreerimine
       attempts_over_week:
         one: "%{count} katse viimase nädala kestel"
         other: "%{count} liitumiskatset viimase nädala kestel"
@@ -533,6 +535,7 @@ et:
       total_reported: Nende kohta teateid
       total_storage: Lisatud meedia
       totals_time_period_hint_html: Allpool kuvatud summad sisaldavad andmed kogu aja kohta.
+      unknown_instance: Hetkel pole selle domeeni jaoks siin serveris kirjet.
     invites:
       deactivate_all: Peata kõik
       filter:
@@ -609,6 +612,7 @@ et:
       created_at: Teavitatud
       delete_and_resolve: Kustuta postitused
       forwarded: Edastatud
+      forwarded_replies_explanation: See aruanne pärineb kaugkasutajalt ja käsitleb kaugsisu. See on edastatud sulle, sest raporteeritud sisu on vastus ühele sinu kasutajale.
       forwarded_to: Edastatud %{domain} domeeni
       mark_as_resolved: Märgi lahendatuks
       mark_as_sensitive: Märgi kui tundlik sisu
@@ -770,10 +774,27 @@ et:
           approved: Kinnitus vajalik konto loomisel
           none: Keegi ei saa kontoid luua
           open: Kõik võivad kontoid luua
+      security:
+        authorized_fetch: Nõua föderatiivse serveripoolset autoriseerimist
+        authorized_fetch_hint: Föderatiivsete serverite poolse autoriseerimise nõudmine võimaldab nii kasutaja- kui ka serveritasandi blokeeringute rangemat jõustamist. See toob aga kaasa jõudluse vähenemise, vähendab vastuste ulatust ja võib tekitada ühilduvusprobleeme mõne ühendatud teenusega. Lisaks ei takista see teatud kasutajatel sinu avalike postituste ja kontode kättesaamist.
+        authorized_fetch_overridden_hint: Sa ei saa hetkel seda seadistust muuta, sest see on keskkonnamuutuja poolt alistatud.
+        federation_authentication: Föderatiivse autentimise jõustamine
       title: Serveri seaded
     site_uploads:
       delete: Kustuta üleslaetud fail
       destroyed_msg: Üleslaetud fail edukalt kustutatud!
+    software_updates:
+      critical_update: Kriitiline — uuenda kiiresti
+      description: On soovitav hoida oma Mastodoni paigaldus kõige uuemal kujul, et saada kasu kõige värskematest parandustest ja oskustest. Lisaks, vahel on Mastodoni kiire uuendamine kriitiline, et vältida turvaprobleeme. Neil põhjustel kontrollib Mastodon uuendusi iga 30 minuti tagant ja teavitab sind vastavalt su e-posti teavituste eelistustele.
+      documentation_link: Saa rohkem teada
+      release_notes: Väljalaskemärkused
+      title: Saadaval uuendused
+      type: Tüüp
+      types:
+        major: Suur uuendus
+        minor: Väike uuendus
+        patch: Parandusuuendus — veaparandused ja hõlpsalt rakendatavad muudatused
+      version: Versioon
     statuses:
       account: Autor
       application: Rakendus
@@ -814,6 +835,20 @@ et:
     system_checks:
       database_schema_check:
         message_html: On ootel andmebaasi migreerimisi. Rakenduse ootuspäraseks toimimiseks palun käivita need
+      elasticsearch_health_red:
+        message_html: Elasticsearch klaster on ebaterve (punane staatus), otsingufunktsioonid ei ole saadaval
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch klaster on ebaterve (kollane staatus), võiksid uurida põhjust
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearchi indeksite kaardistused on vananenud. Palun käivita <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Vaata dokumentatsiooni
+        message_html: Elasticsearchi klastris on rohkem kui üks sõlme, kuid Mastodon ei ole nende kasutamiseks konfigureeritud.
+      elasticsearch_preset_single_node:
+        action: Vaata dokumentatsiooni
+        message_html: Elasticsearchi klastris on ainult üks sõlm <code>ES_PRESET</code> peaks olema seatud väärtusele <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Elasticsearchi süsteemiindeks on seadistuse muutumise tõttu vananenud. Palun käivita <code>tootctl search deploy --reset-chewy</code> selle uuendamiseks.
       elasticsearch_running_check:
         message_html: Elasticsearch ei vasta. Kontrolli, kas see töötab või keela täistekstiotsing
       elasticsearch_version_check:
@@ -824,6 +859,12 @@ et:
         message_html: Serverireegleid pole defineeritud.
       sidekiq_process_check:
         message_html: Ühtegi Sidekiq protsessi pole %{value} järjekorra jaoks. Sidekiq seadistus vajab üle vaatamist
+      software_version_critical_check:
+        action: Vaata saadaolevaid uuendusi
+        message_html: Saadaval on Mastodoni kriitiline uuendus, uuenda nii kiiresti kui võimalik.
+      software_version_patch_check:
+        action: Vaata saadaolevaid uuendusi
+        message_html: Saadaval on Mastodoni veaparandusuuendus.
       upload_check_privacy_error:
         action: Klõpsa lisainfo saamiseks siia
         message_html: "<strong>Veebiserver on valesti seadistatud. Kasutajate privaatsus on ohustatud.</strong>"
@@ -937,6 +978,9 @@ et:
       body: "%{target} vaidlustab %{action_taken_by} modereerimisotsuse kuupäevaga %{date}: %{type}. Põhjendus:"
       next_steps: Võid modereeringu tagasi pööramiseks vaidlustuse rahuldada, või ka mitte.
       subject: "%{username} on vaidlustanud %{instance} modereerimisotsuse"
+    new_critical_software_updates:
+      body: Avaldatud on Mastodoni uus kriitiline versioon, sa võiksid selle paigaldada nii ruttu kui võimalik!
+      subject: Saadaval on Mastodoni kriitilised uuendused %{instance} jaoks!
     new_pending_account:
       body: Uue konto üksikasjad on allpool. Saad taotluse vastu võtta või tagasi lükata.
       subject: Uus konto valmis ülevaatluseks serveril %{instance} (%{username})
@@ -944,6 +988,9 @@ et:
       body: "%{reporter} teavitas kasutajast %{target}"
       body_remote: Keegi domeenist %{domain} teavitas kasutajast %{target}
       subject: Uus teavitus %{instance}-ile (#%{id})
+    new_software_updates:
+      body: Avaldatud on Mastodoni uued versioonid. Sa võiksid uuendada!
+      subject: Saadaval on Mastodoni uued versioonid %{instance} jaoks!
     new_trends:
       body: 'Järgmised üksused vajavad enne avalikustamist ülevaatust:'
       new_trending_links:
@@ -951,8 +998,6 @@ et:
       new_trending_statuses:
         title: Trendikad postitused
       new_trending_tags:
-        no_approved_tags: Hetkel ei ole ühtegi heaks kiidetud populaarset silti.
-        requirements: 'Need on siltide kandidaadid mille hulgast ükskõik milline võib järjekorras mööda jõuda #%{rank} kohal olevast heaks kiidetud sildist. See on hetkel #%{lowest_tag_name} mille seis on %{lowest_tag_score}.'
         title: Trendikad sildid
       subject: Uued %{instance} trendid ülevaatuseks
   aliases:
@@ -996,6 +1041,14 @@ et:
       hint_html: Üks asi veel! Me peame veenduma, et oled inimene (et me saaksime spämmi väljaspoole jätta!). Lahenda allpool olev CAPTCHA ja klõpsa "Jätka".
       title: Turvalisuse kontroll
     confirmations:
+      awaiting_review: E-posti aadress on kinnitatud! %{domain} töötajad vaatavad praegu registreeringut läbi. Saad e-kirja, kui nad kiidavad konto heaks!
+      awaiting_review_title: Su registreeringut vaadatakse läbi
+      clicking_this_link: klõpsates seda linki
+      login_link: logi sisse
+      proceed_to_login_html: Saad nüüd jätkata valikuga %{login_link}.
+      redirect_to_app_html: Sind oleks pidanud suunatama rakendusse <strong>%{app_name}</strong>. Kui seda ei juhtunud, proovi %{clicking_this_link} või naase käsitsi rakendusse.
+      registration_complete: Sinu registreering domeenil %{domain} on nüüd valmis!
+      welcome_title: Tere tulemast, %{name}!
       wrong_email_hint: Kui see e-postiaadress pole korrektne, saad seda kontosätetes muuta.
     delete_account: Konto kustutamine
     delete_account_html: Kui soovid oma konto kustutada, siis <a href="%{path}">jätka siit</a>. Pead kustutamise eraldi kinnitama.
@@ -1057,6 +1110,7 @@ et:
       functional: Konto on täies mahus kasutatav.
       pending: Taotlus ootab ülevaatamist meie personali poolt. See võib võtta mõne aja. Kui taotlus on vastu võetud, saadetakse sulle e-kiri.
       redirecting_to: See konto pole aktiivne, sest on suunatud aadressile %{acct}.
+      self_destruct: Kuna %{domain} on sulgemisel, saad oma kontole vaid piiratud ligipääsu.
       view_strikes: Vaata enda eelnevaid juhtumeid
     too_fast: Vorm esitatud liiga kiirelt, proovi uuesti.
     use_security_key: Kasuta turvavõtit
@@ -1314,6 +1368,7 @@ et:
       '86400': 1 päev
     expires_in_prompt: Mitte kunagi
     generate: Loo
+    invalid: See kutse pole kehtiv
     invited_by: 'Sind kutsus:'
     max_uses:
       one: 1 kasutus
@@ -1432,6 +1487,7 @@ et:
     update:
       subject: "%{name} muutis postitust"
   notifications:
+    administration_emails: Admini e-postiteavitused
     email_events: E-posti teadete sündmused
     email_events_hint: 'Vali sündmused, mille kohta soovid teavitusi:'
     other_settings: Muud teadete sätted
@@ -1475,6 +1531,15 @@ et:
     other: Muu
     posting_defaults: Postitamise vaikesätted
     public_timelines: Avalikud ajajooned
+  privacy:
+    hint_html: "<strong>Kohanda, kuidas peaks su postitused ja profiil leitav olema.</strong> Mastodonis olevad paljud oskused võimaldavad jõuda sul rohkemate inimesteni, kui need lubada. Võta üks hetk, et vaadata need üle, et veenduda, kas sinu puhul need sobivad."
+    privacy: Privaatsus
+    privacy_hint_html: Määra, kui palju soovid teiste heaks infot avaldada. Inimesed leiavad huvitavaid profiile ning lahedaid äppe sirvides teiste inimeste jälgimisi ja vaadates, milliste äppidega nad postitavad, kuid sa võid soovida hoida seda varjatuna.
+    reach: Ulatus
+    reach_hint_html: Määra, kas soovid olla leitav ja jälgitav uute inimeste poolt. Kas soovid, et su postitused ilmuksid uurimise ekraanil? Kas soovid, et teised inimesed näeksid sind oma jälgitavate soovituste hulgas? Kas soovid nõustuda kõigi uute jälgijatega automaatselt või soovid igaühe puhul täpsemaid valikuid?
+    search: Otsi
+    search_hint_html: Määra, kuidas sind leitakse. Kas soovid, et inimesed leiavad sind su avalike postituste alusel? Kas soovid, et väljaspool Mastodoni olevad inimesed leiavad veebis otsides su profiili? Pea meeles, et avaliku info puhul pole kõigist otsimootoritest info välistamine tagatav.
+    title: Privaatsus ja ulatus
   privacy_policy:
     title: Isikuandmete kaitse
   reactions:
@@ -1516,6 +1581,9 @@ et:
     over_daily_limit: Lubatud ajastatud postituste arv %{limit} päevas on tänaseks ületatud
     over_total_limit: Oled jõudnud ajastatud postituste lubatud maksimumarvuni %{limit}
     too_soon: Ajastatud kuupäev peab olema tukevikus
+  self_destruct:
+    lead_html: Kahjuks suletakse <strong>%{domain}</strong> lõplikult. Kui sul oli seal konto, ei saa sa seda enam kasutada, kuid siiski võid taotleda oma andmete varukoopiat.
+    title: See server suletakse
   sessions:
     activity: Viimane aktiivsus
     browser: Veebilehitseja
@@ -1540,6 +1608,7 @@ et:
       unknown_browser: Tundmatu veebilehitseja
       weibo: Weibo
     current_session: Praegune seanss
+    date: Kuupäev
     description: "%{browser} platvormil %{platform}"
     explanation: Need veebilehitsejad on praegu su Mastodoni kontole sisse loginud.
     ip: IP
@@ -1686,6 +1755,11 @@ et:
       default: "%d. %B, %Y. aastal, kell %H:%M"
       month: "%B %Y"
       time: "%H:%M"
+      with_time_zone: "%b. %d %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Üle-serveriline tõlketeenuse kasutuskvoot on ületatud.
+      too_many_requests: Viimane aeg on tõlketeenusele esitatud liiga palju taotlusi.
   two_factor_authentication:
     add: Lisa
     disable: Keela 2FA
@@ -1703,18 +1777,27 @@ et:
     webauthn: Turvavõtmed
   user_mailer:
     appeal_approved:
-      action: Oma kontole
+      action: Konto seaded
       explanation: "%{appeal_date} esitatud vaidlustus %{strike_date} otsuse kohta on rahuldatud. Konto on ennistatud."
       subject: "%{date} esitatud vaidlustus on rahuldatud"
+      subtitle: Sinu konto on jälle heas seisukorras.
       title: Vaidlustus rahuldatud
     appeal_rejected:
       explanation: "%{appeal_date} esitatud vaidlustus %{strike_date} otsuse kohta on tagasi lükatud."
       subject: "%{date} esitatud vaidlustus on tagasi lükatud"
+      subtitle: Sinu vaidlustus lükati tagasi.
       title: Vaidlustus tagasi lükatud
     backup_ready:
-      explanation: Taotlesid oma Mastodoni konto varukoopiat. See on nüüd valmis allalaadimiseks!
+      explanation: Taotlesid oma Mastodoni konto täisvarundust.
+      extra: See on nüüd allalaadimiseks valmis!
       subject: Arhiiv on allalaadimiseks valmis
       title: Arhiivi väljavõte
+    failed_2fa:
+      details: 'Sisenemise üksikasjad:'
+      explanation: Keegi püüdis Su kontole siseneda, ent sisestas vale teisese autentimisfaktori.
+      further_actions_html: Kui see polnud Sina, siis soovitame viivitamata %{action}, kuna see võib olla lekkinud.
+      subject: Kaheastmelise autentimise nurjumine
+      title: Kaheastmeline autentimine nurjus
     suspicious_sign_in:
       change_password: muuta oma salasõna
       details: 'Sisenemise üksikasjad:'
@@ -1761,7 +1844,7 @@ et:
         Kui mõni asi arusaamatuks jääb, siis võib vaadata juhendvideot: https://youtu.be/J4ItbTOAw7Q
       explanation: Siin on mõned nõuanded, mis aitavad alustada
       final_action: Alusta postitamist
-      final_step: 'Nüüd tee oma esimene postitus. Hea tava on uues kohas ennast tutvustada ning kindlasti kasuta selles postituses ka teemaviidet #tutvustus. Isegi kui sul ei ole veel jälgijaid, siis su postitusi näevad kohalikul ajajoonel ka kõik teised serveri kasutajad.'
+      final_step: 'Nüüd tee oma esimene postitus. Hea tava on uues kohas ennast tutvustada ning kindlasti kasuta selles postituses ka silti #tutvustus. Isegi kui sul ei ole veel jälgijaid, siis su postitusi näevad kohalikul ajajoonel ka kõik teised serveri kasutajad.'
       full_handle: Kasutajanimi Mastodon võrgustikus
       full_handle_hint: Kui jagad kasutajanime väljaspool serverit, siis kasuta kindlasti pikka nime. Erinevates serverites võib olla sama kasutajanimega liikmeid.
       subject: Tere tulemast Mastodoni
@@ -1771,6 +1854,7 @@ et:
     go_to_sso_account_settings: Mine oma idenditeedipakkuja kontosätetesse
     invalid_otp_token: Vale kaheastmeline võti
     otp_lost_help_html: Kui kaotasid ligipääsu mõlemale, saad võtta ühendust %{email}-iga
+    rate_limited: Liiga palju autentimise katseid, proovi hiljem uuesti.
     seamless_external_login: Välise teenuse kaudu sisse logides pole salasõna ja e-posti sätted saadaval.
     signed_in_as: 'Sisse logitud kasutajana:'
   verification:

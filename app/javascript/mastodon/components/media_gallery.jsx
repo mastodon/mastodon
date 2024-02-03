@@ -10,6 +10,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { debounce } from 'lodash';
 
+import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import { Blurhash } from 'mastodon/components/blurhash';
 
 import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
@@ -102,7 +103,7 @@ class Item extends PureComponent {
     }
 
     if (attachment.get('description')?.length > 0) {
-      badges.push(<span key='alt' className='media-gallery__gifv__label'>ALT</span>);
+      badges.push(<span key='alt' className='media-gallery__alt__label'>ALT</span>);
     }
 
     const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
@@ -323,7 +324,7 @@ class MediaGallery extends PureComponent {
         </button>
       );
     } else if (visible) {
-      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible, { number: size })} icon='eye-slash' overlay onClick={this.handleOpen} ariaHidden />;
+      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible, { number: size })} icon='eye-slash' iconComponent={VisibilityOffIcon} overlay onClick={this.handleOpen} ariaHidden />;
     } else {
       spoilerButton = (
         <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'>

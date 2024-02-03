@@ -3,9 +3,13 @@ fo:
   simple_form:
     hints:
       account:
+        discoverable: Tínir almennu postar og tín vangi kunnu vera drigin fram og viðmæld ymsa staðni í Mastodon og vangin hjá tær kann vera viðmæltur øðrum brúkarum.
         display_name: Títt fulla navn og títt stuttliga navn.
         fields: Heimasíðan hjá tær, fornøvn, aldur ella hvat tú vil.
+        indexable: Almennu postar tínir kunnu vera sjónligir í leitiúrslitum á Mastodon. Óansæð, so kunnu fólk, sum hava samvirkað við tínar postar, finna teir.
         note: 'Tú kanst @umrøða onnur fólk ella #frámerki.'
+        show_collections: Tað verður gjørligt hjá fólki at kaga í listan yvir tey, sum fylgja tær, og tey, sum tú fylgir. Tó so, fólk, sum tú fylgir, síggja at tú fylgir teimum.
+        unlocked: Fólk kunnu fylgja tær uttan at biðja um loyvi. Frável hetta, um tú vilt eftirkanna umbønir og góðkenna ella avvísa nýggjar fylgjarar.
       account_alias:
         acct: Upplýs brúkaranavn@navnaøki á kontuni, sum tú vilt flyta frá
       account_migration:
@@ -116,6 +120,9 @@ fo:
       sessions:
         otp: 'Skriva tvey-faktor koduna frá telefon-appini ella brúka eina av tínum endurgerðskodum:'
         webauthn: Er tað ein geymi, minst so til at seta hann í og, um neyðugt, pikka hann.
+      settings:
+        indexable: Vangasíðan hjá tær kann síggjast í leitiúrslitum á Google, Bing og aðrastaðni.
+        show_application: Óansæð, so er altíð møguligt hjá tær at síggja, hvør app postaði tín post.
       tag:
         name: Tú kanst einans broyta millum stórar og smáar stavir, til dømis fyri at gera tað meira lesiligt
       user:
@@ -133,9 +140,13 @@ fo:
         url: Hvar hendingar verða sendar til
     labels:
       account:
+        discoverable: Framheva vanga og postar í uppdagingar-algoritmum
         fields:
           name: Spjaldur
           value: Innihald
+        indexable: Tak almennar postar við í leitiúrslit
+        show_collections: Vís fylgjarar og tey, tú fylgir, á vanganum
+        unlocked: Góðtak nýggjar fylgjarar sjálvvirkandi
       account_alias:
         acct: Brúkaranavn á gomlu kontuni
       account_migration:
@@ -280,9 +291,18 @@ fo:
         pending_account: Nýggj konta krevur viðgerð
         reblog: Onkur stimbraði postin hjá tær
         report: Nýggj melding er send inn
+        software_updates:
+          all: Gev fráboðan um allar dagføringar
+          critical: Gev einans fráboðan um kritiskar dagføringar
+          label: Ein nýggj Mastodon-útgáva er tøk
+          none: Gev aldrin fráboðan um dagføringar (ikki viðmælt)
+          patch: Gev fráboðan um feilrættingardagføringar
         trending_tag: Broytt rák skal kannast
       rule:
         text: Regla
+      settings:
+        indexable: Lat vangasíðu vera tøka í leitimaskinum
+        show_application: Vís frá hvørjari app tú sendi ein post
       tag:
         listable: Loyva hesum tvíkrossið, at verða vístur í leitingum og uppskotum
         name: Tvíkrossur
@@ -303,6 +323,7 @@ fo:
         url: Endapunkts-URLur
     'no': Nei
     not_recommended: Ikki viðmælt
+    overridden: Ógildað
     recommended: Viðmælt
     required:
       mark: "*"

@@ -33,7 +33,7 @@ class RelationshipsController < ApplicationController
   end
 
   def set_relationships
-    @relationships = AccountRelationshipsPresenter.new(@accounts.pluck(:id), current_user.account_id)
+    @relationships = AccountRelationshipsPresenter.new(@accounts, current_user.account_id)
   end
 
   def form_account_batch_params

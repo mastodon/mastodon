@@ -12,7 +12,7 @@ class Admin::StatusPolicy < ApplicationPolicy
   end
 
   def show?
-    role.can?(:manage_reports, :manage_users) && (record.public_visibility? || record.unlisted_visibility? || record.reported?)
+    role.can?(:manage_reports, :manage_users) && (record.public_visibility? || record.unlisted_visibility? || record.reported? || viewable_through_normal_policy?)
   end
 
   def destroy?
@@ -25,5 +25,11 @@ class Admin::StatusPolicy < ApplicationPolicy
 
   def review?
     role.can?(:manage_taxonomies)
+  end
+
+  private
+
+  def viewable_through_normal_policy?
+    StatusPolicy.new(current_account, record, @preloaded_relations).show?
   end
 end

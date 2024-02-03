@@ -7,6 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { submitReport } from 'mastodon/actions/reports';
 import { fetchServer } from 'mastodon/actions/server';
 import { expandAccountTimeline } from 'mastodon/actions/timelines';
@@ -39,7 +40,7 @@ class ReportModal extends ImmutablePureComponent {
     statusId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.record.isRequired,
   };
 
   state = {
@@ -209,7 +210,7 @@ class ReportModal extends ImmutablePureComponent {
     return (
       <div className='modal-root__modal report-dialog-modal'>
         <div className='report-modal__target'>
-          <IconButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={20} />
+          <IconButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='times' iconComponent={CloseIcon} onClick={onClose} size={20} />
           <FormattedMessage id='report.target' defaultMessage='Report {target}' values={{ target: <strong>{account.get('acct')}</strong> }} />
         </div>
 

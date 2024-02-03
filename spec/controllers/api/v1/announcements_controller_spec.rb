@@ -47,11 +47,8 @@ RSpec.describe Api::V1::AnnouncementsController do
         post :dismiss, params: { id: announcement.id }
       end
 
-      it 'returns http success' do
+      it 'dismisses announcement', :aggregate_failures do
         expect(response).to have_http_status(200)
-      end
-
-      it 'dismisses announcement' do
         expect(announcement.announcement_mutes.find_by(account: user.account)).to_not be_nil
       end
     end

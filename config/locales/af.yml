@@ -5,7 +5,23 @@ af:
     contact_unavailable: NVT
     hosted_on: Mastodon gehuisves op %{domain}
     title: Aangaande
+  accounts:
+    follow: Volg
+    followers:
+      one: Volgeling
+      other: Volgelinge
+    following: Volg
+    nothing_here: Daar is niks hier nie!
+    posts:
+      one: Plasing
+      other: Plasings
+    posts_tab_heading: Plasings
   admin:
+    account_actions:
+      action: Voer aksie uit
+      title: Voer modereer aksie uit op %{acct}
+    account_moderation_notes:
+      create: Los nota
     accounts:
       location:
         local: Plaaslik
@@ -91,13 +107,7 @@ af:
       approve_appeal: Aanvaar appèl
       reject_appeal: Verwerp appèl
   errors:
-    '400': The request you submitted was invalid or malformed.
     '403': Jy het nie toestemming om hierdie bladsy te sien nie.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
-    '429': Too many requests
-    '503': The page could not be served due to a temporary server failure.
   exports:
     bookmarks: Boekmerke
     lists: Lyste
@@ -108,6 +118,7 @@ af:
     types:
       bookmarks: Boekmerke
   invites:
+    invalid: Hierdie uitnodiging is nie geldig nie
     title: Nooi ander
   login_activities:
     description_html: Indien jy onbekende aktiwiteite gewaar, oorweeg dit om jou wagwoord te verander en tweefaktorverifikasie te aktiveer.

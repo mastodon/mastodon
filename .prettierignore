@@ -31,9 +31,6 @@
 # Ignore Vagrant files
 .vagrant/
 
-# Ignore Capistrano customizations
-/config/deploy/*
-
 # Ignore IDE files
 .vscode/
 .idea/
@@ -76,3 +73,5 @@ app/javascript/styles/mastodon/reset.scss
 
 # Ignore the generated AUTHORS.md
 AUTHORS.md
+
+!lint-staged.config.js

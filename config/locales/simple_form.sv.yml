@@ -2,6 +2,14 @@
 sv:
   simple_form:
     hints:
+      account:
+        discoverable: Dina offentliga inlägg och din profil kan komma att presenteras eller rekommenderas inom olika områden av Mastodon och din profil kan komma att föreslås till andra användare.
+        display_name: Ditt fullständiga namn eller ditt roliga namn.
+        fields: Din hemsida, ditt pronomen, din ålder, vadhelst du vill.
+        indexable: Dina offentliga inlägg kan visas i sökresultat på Mastodon. Personer som har interagerat med dina inlägg kan söka dem oavsett.
+        note: 'Du kan @nämna andra personer eller #hashtaggar.'
+        show_collections: Andra kan se vem du följer och vem som följer dig. De du följer kan alltid se att du följer dem.
+        unlocked: Andra kommer att kunna följa dig utan att begära godkännande. Avmarkera om du vill granska följeslagare och välja om du vill acceptera eller avvisa nya följare.
       account_alias:
         acct: Ange användarnamn@domän för kontot som du vill flytta från
       account_migration:
@@ -112,6 +120,9 @@ sv:
       sessions:
         otp: 'Ange tvåfaktorskoden som genererades av din telefonapp, eller använd någon av dina återställningskoder:'
         webauthn: Om det är en USB-nyckel se till att sätta in den och, om nödvändigt, tryck på den.
+      settings:
+        indexable: Din profilsida kan visas i sökresultat på Google, Bing och andra sökmotorer.
+        show_application: Du kommer alltid att kunna se vilken app som publicerat ditt inlägg oavsett.
       tag:
         name: Du kan bara ändra skriftläget av bokstäverna, till exempel, för att göra det mer läsbart
       user:
@@ -125,12 +136,17 @@ sv:
         position: Högre roll avgör konfliktlösning i vissa situationer. Vissa åtgärder kan endast utföras på roller med lägre prioritet
       webhook:
         events: Välj händelser att skicka
+        template: Skriv din egen JSON-nyttolast med variabel interpolation. Lämna tomt för förvald JSON.
         url: Dit händelser kommer skickas
     labels:
       account:
+        discoverable: Presentera profil och inlägg med upptäcktsalgoritmer
         fields:
           name: Etikett
           value: Innehåll
+        indexable: Inkludera offentliga inlägg i sökresultaten
+        show_collections: Göm följare och följeslagare på profilen
+        unlocked: Godkänn nya följare automatiskt
       account_alias:
         acct: Namnet på det gamla kontot
       account_migration:
@@ -275,9 +291,18 @@ sv:
         pending_account: Ett nytt konto behöver granskas
         reblog: Någon boostade ditt inlägg
         report: En ny rapport har skickats
+        software_updates:
+          all: Meddela om alla uppdateringar
+          critical: Meddela endast om kritiska uppdateringar
+          label: En ny version av Mastodon är tillgänglig
+          none: Meddela inte om uppdateringar (rekommenderas inte)
+          patch: Meddela vid buggfix-uppdateringar
         trending_tag: En ny trend kräver granskning
       rule:
         text: Regel
+      settings:
+        indexable: Inkludera profilsidan i sökmotorer
+        show_application: Visa från vilket program du skickade ett inlägg
       tag:
         listable: Tillåt denna hashtagg att visas i sökningar och förslag
         name: Hashtagg
@@ -294,9 +319,11 @@ sv:
         position: Prioritet
       webhook:
         events: Aktiverade händelser
+        template: Lastmall
         url: Slutpunkts-URL
     'no': Nej
     not_recommended: Rekommenderas inte
+    overridden: Åsidosatt
     recommended: Rekommenderad
     required:
       mark: "*"

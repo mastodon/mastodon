@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
+import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import { Icon } from 'mastodon/components/icon';
 
 const messages = defineMessages({
@@ -28,7 +29,7 @@ export const LoadGap: React.FC<Props> = ({ disabled, maxId, onClick }) => {
       onClick={handleClick}
       aria-label={intl.formatMessage(messages.load_more)}
     >
-      <Icon id='ellipsis-h' />
+      <Icon id='ellipsis-h' icon={MoreHorizIcon} />
     </button>
   );
 };

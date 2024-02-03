@@ -143,6 +143,11 @@ $content-width: 840px;
         }
       }
 
+      .warning a {
+        color: $gold-star;
+        font-weight: 700;
+      }
+
       .simple-navigation-active-leaf a {
         color: $primary-text-color;
         background-color: $ui-highlight-color;
@@ -1309,6 +1314,9 @@ a.sparkline {
 
     &__label {
       padding: 15px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
     }
 
     &__rules {
@@ -1319,6 +1327,9 @@ a.sparkline {
   &__rule {
     cursor: pointer;
     padding: 15px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
   }
 }
 

@@ -100,6 +100,9 @@ class MediaAttachment < ApplicationRecord
       output: {
         'loglevel' => 'fatal',
         'preset' => 'veryfast',
+        'movflags' => 'faststart', # Move metadata to start of file so playback can begin before download finishes
+        'pix_fmt' => 'yuv420p', # Ensure color space for cross-browser compatibility
+        'vf' => 'crop=floor(iw/2)*2:floor(ih/2)*2', # h264 requires width and height to be even. Crop instead of scale to avoid blurring
         'c:v' => 'h264',
         'c:a' => 'aac',
         'b:a' => '192k',
@@ -168,7 +171,7 @@ class MediaAttachment < ApplicationRecord
   DEFAULT_STYLES = [:original].freeze
 
   GLOBAL_CONVERT_OPTIONS = {
-    all: '-quality 90 +profile "!icc,*" +set modify-date +set create-date',
+    all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp -define jpeg:dct-method=float',
   }.freeze
 
   belongs_to :account,          inverse_of: :media_attachments, optional: true
@@ -201,13 +204,14 @@ class MediaAttachment < ApplicationRecord
   validates :file, presence: true, if: :local?
   validates :thumbnail, absence: true, if: -> { local? && !audio_or_video? }
 
-  scope :attached,   -> { where.not(status_id: nil).or(where.not(scheduled_status_id: nil)) }
+  scope :attached, -> { where.not(status_id: nil).or(where.not(scheduled_status_id: nil)) }
+  scope :cached, -> { remote.where.not(file_file_name: nil) }
+  scope :created_before, ->(value) { where(arel_table[:created_at].lt(value)) }
+  scope :local, -> { where(remote_url: '') }
+  scope :ordered, -> { order(id: :asc) }
+  scope :remote, -> { where.not(remote_url: '') }
   scope :unattached, -> { where(status_id: nil, scheduled_status_id: nil) }
-  scope :local,      -> { where(remote_url: '') }
-  scope :remote,     -> { where.not(remote_url: '') }
-  scope :cached,     -> { remote.where.not(file_file_name: nil) }
-
-  default_scope { order(id: :asc) }
+  scope :updated_before, ->(value) { where(arel_table[:updated_at].lt(value)) }
 
   attr_accessor :skip_download
 
@@ -404,6 +408,6 @@ class MediaAttachment < ApplicationRecord
   end
 
   def reset_parent_cache
-    Rails.cache.delete("statuses/#{status_id}") if status_id.present?
+    Rails.cache.delete("v3:statuses/#{status_id}") if status_id.present?
   end
 end

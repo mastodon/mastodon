@@ -47,13 +47,13 @@ class UnsuspendAccountService < BaseService
   end
 
   def merge_into_home_timelines!
-    @account.followers_for_local_distribution.find_each do |follower|
+    @account.followers_for_local_distribution.reorder(nil).find_each do |follower|
       FeedManager.instance.merge_into_home(@account, follower)
     end
   end
 
   def merge_into_list_timelines!
-    @account.lists_for_local_distribution.find_each do |list|
+    @account.lists_for_local_distribution.reorder(nil).find_each do |list|
       FeedManager.instance.merge_into_list(@account, list)
     end
   end

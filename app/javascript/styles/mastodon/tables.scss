@@ -12,6 +12,11 @@
     border-top: 1px solid $ui-base-color;
     text-align: start;
     background: darken($ui-base-color, 4%);
+
+    &.critical {
+      font-weight: 700;
+      color: $gold-star;
+    }
   }
 
   & > thead > tr > th {

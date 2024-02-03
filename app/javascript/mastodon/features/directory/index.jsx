@@ -9,6 +9,7 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
 import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'mastodon/actions/columns';
 import { fetchDirectory, expandDirectory } from 'mastodon/actions/directory';
 import Column from 'mastodon/components/column';
@@ -35,10 +36,6 @@ const mapStateToProps = state => ({
 });
 
 class Directory extends PureComponent {
-
-  static contextTypes = {
-    router: PropTypes.object,
-  };
 
   static propTypes = {
     isLoading: PropTypes.bool,
@@ -160,6 +157,7 @@ class Directory extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='address-book-o'
+          iconComponent={PeopleIcon}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
           onMove={this.handleMove}

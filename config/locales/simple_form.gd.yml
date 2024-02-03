@@ -3,9 +3,13 @@ gd:
   simple_form:
     hints:
       account:
+        discoverable: Dh’fhaoidte gun dèid na postaichean poblach ’s a’ phròifil agad a bhrosnachadh no a mholadh ann an caochladh roinnean de Mhastodon agus gun dèid a’ phròifil agad a mholadh do chàch.
         display_name: D’ ainm slàn no spòrsail.
         fields: An duilleag-dhachaigh agad, roimhearan, aois, rud sam bith a thogras tu.
+        indexable: Faodaidh na postaichean poblach agad a nochdadh am measg toraidhean luirg air Mastodon. ’S urrainn dhan fheadhainn a rinn eadar-ghabhail leis na postaichean agad lorg annta air a h-uile dòigh.
         note: "’S urrainn dhut @iomradh a thoirt air càch no air #tagaicheanHais."
+        show_collections: "’S urrainn do chàch na dàimhean leantainn agad a rùrachadh. Chì daoine a leanas tu gu bheil thu ’gan leantainn air a h-uile dòigh."
+        unlocked: "’S urrainnear do leantainn gun aontachadh iarraidh. Thoir a’ chromag far a’ bhogsa nam bu mhiann leat lèirmheas a dhèanamh air na h-iarrtasan leantainn agus taghadh an aontaich thu ri neach-leantainn ùr no an dhiùlt thu iad."
       account_alias:
         acct: Sònraich ainm-cleachdaiche@àrainn dhen chunntas a tha thu airson imrich uaithe
       account_migration:
@@ -76,7 +80,7 @@ gd:
         backups_retention_period: Cùm na tasg-lannan a chaidh a ghintinn dhan luchd-cleachdaidh rè an àireamh de làithean a shònraich thu.
         bootstrap_timeline_accounts: Thèid na cunntasan seo a phrìneachadh air bàrr nam molaidhean leantainn dhan luchd-cleachdaidh ùr.
         closed_registrations_message: Thèid seo a shealltainn nuair a bhios an clàradh dùinte
-        content_cache_retention_period: Thèid na postaichean o fhrithealaichean eile a sguabadh às às dèidh an àireamh de làithean a shònraich thu nuair a bhios luach dearbh air. Dh’fhaoidte nach gabh seo a neo-dhèanamh.
+        content_cache_retention_period: Thèid gach post is brosnachadh o fhrithealaichean eile a sguabadh às às dèidh an àireamh de làithean a shònraicheas tu. Dh’fhaoidte nach gabh a h-uile post aiseag. Thèid gach comharran-lìn, annsachd is brosnachadh co-cheangailte riutha air chall cuideachd agus cha ghabh sin a neo-dhèanamh.
         custom_css: "’S urrainn dhut stoidhlean gnàthaichte a chur an sàs air an tionndadh-lìn de Mhastodon."
         mascot: Tar-àithnidh seo an sgead-dhealbh san eadar-aghaidh-lìn adhartach.
         media_cache_retention_period: Thèid na faidhlichean meadhain air an luchdadh a-nuas a sguabadh às às dèidh an àireamh de làithean a shònraich thu nuair a bhios luach dearbh air agus an ath-luachdadh nuair a thèid an iarraidh an uairsin.
@@ -116,6 +120,9 @@ gd:
       sessions:
         otp: 'Cuir a-steach an còd dà-cheumnach a ghin aplacaid an fhòn agad no cleachd fear dhe na còdan aisig agad:'
         webauthn: Mas e iuchair USB a th’ ann, dèan cinnteach gun cuir thu a-steach e is gun doir thu gnogag air ma bhios feum air sin.
+      settings:
+        indexable: Dh’fhaoidte gun nochd duilleag na pròifil agad am measg nan toraidhean luirg air Google, Bing is eile.
+        show_application: Gidheadh, chì thu dè an aplacaid a dh’fhoillsich am post agad an-còmhnaidh.
       tag:
         name: Mar eisimpleir, ’s urrainn dhut measgachadh de litrichean mòra ’s beaga a chleachdadh ach an gabh a leughadh nas fhasa
       user:
@@ -133,9 +140,13 @@ gd:
         url: Far an dèid na tachartasan a chur
     labels:
       account:
+        discoverable: Brosnaich a’ phròifil is postaichean agad sna h-algairimean luirg
         fields:
           name: Leubail
           value: Susbaint
+        indexable: Gabh na postaichean poblach a-staigh ann an toraidhean luirg
+        show_collections: Seall na dàimhean leantainn air a’ phròifil
+        unlocked: Aontaich ri luchd-leantainn ùr gu fèin-obrachail
       account_alias:
         acct: Ainm-cleachdaiche an t-seann-chunntais
       account_migration:
@@ -280,9 +291,18 @@ gd:
         pending_account: Tha cunntas ùr feumach air lèirmheas
         reblog: Bhrosnaich cuideigin am post agad
         report: Chaidh gearan ùr a chur a-null
+        software_updates:
+          all: Thoir brath dhomh do gach ùrachadh
+          critical: Thoir brathan dhomh do dh’ùrachaidhean èiginneach a-mhàin
+          label: Tha tionndadh ùr de Mhastodon ri fhaighinn
+          none: Na doir brathan thugam mu ùrachaidhean idir (cha mholamaid seo)
+          patch: Thoir brathan dhomh do dh’ùrachaidhean càraidh
         trending_tag: Tha treand ùr ri lèirmheasadh
       rule:
         text: Riaghailt
+      settings:
+        indexable: Gabh a-staigh duilleag na pròifil sna h-einnseanan-luirg
+        show_application: Seall dè an aplacaid a chuir thu post leatha
       tag:
         listable: Leig leis an taga hais seo gun nochd e ann an toraidhean luirg ’s am measg nam molaidhean
         name: Taga hais
@@ -303,6 +323,7 @@ gd:
         url: URL na puinge-deiridh
     'no': Chan eil
     not_recommended: Cha mholamaid seo
+    overridden: "’Ga thar-àithneadh"
     recommended: Molta
     required:
       mark: "*"

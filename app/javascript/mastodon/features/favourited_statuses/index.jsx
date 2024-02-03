@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
+import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { fetchFavouritedStatuses, expandFavouritedStatuses } from 'mastodon/actions/favourites';
 import ColumnHeader from 'mastodon/components/column_header';
@@ -80,6 +81,7 @@ class Favourites extends ImmutablePureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.heading)}>
         <ColumnHeader
           icon='star'
+          iconComponent={StarIcon}
           title={intl.formatMessage(messages.heading)}
           onPin={this.handlePin}
           onMove={this.handleMove}

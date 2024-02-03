@@ -2,6 +2,14 @@
 eu:
   simple_form:
     hints:
+      account:
+        discoverable: Zure bidalketa publikoak eta profila nabarmendu edo gomendatu egin daitezke Mastodoneko hainbat eremutan eta zure profila beste erabiltzaile batzuei iradoki dakieke.
+        display_name: Zure izena edo ezizena.
+        fields: Zure webgunea, izenordainak, adina, nahi duzun guztia.
+        indexable: Zure argitalpen publikoak bilaketa-emaitzetan ager daitezke Mastodonen. Zure argitalpenekin elkarregin duten jendeak ikusi ahal izango dituzte, hala ere.
+        note: 'Beste pertsona edo #traola batzuk @aipatu ditzakezu.'
+        show_collections: Pertsonek zuk jarraitzen dituzunak eta zure jarraitzaileak arakatu ahal izango dute. Jarraitzen dituzun pertsonak jarraitzen dituzula ikusi ahal izando dute, hala ere.
+        unlocked: Pertsonek zuri jarraitu ahal izango dizute onarpen-eskaerarik gabe. Desgaitu jarraipen-eskaerak berrikusi nahi badituzu eta hauek onartu edo ez erabaki nahi baduzu.
       account_alias:
         acct: Zehaztu migrazioaren jatorri den kontuaren erabiltzailea@domeinua
       account_migration:
@@ -112,6 +120,9 @@ eu:
       sessions:
         otp: 'Sartu zure telefonoko aplikazioak sortutako bi faktoreetako kodea, edo erabili zure berreskuratze kodeetako bat:'
         webauthn: USB gako bat bada, ziurtatu sartu duzula, eta behar izanez gero ukitu ezazu.
+      settings:
+        indexable: Zure profila bilaketa-emaitzetan ager daiteke Google, Bing eta beste batzuetan.
+        show_application: Dena dela, beti ikusi ahal izango duzu zein aplikaziok argitaratu zuen zure bidalketa.
       tag:
         name: Letrak maiuskula/minuskulara aldatu ditzakezu besterik ez, adibidez irakurterrazago egiteko
       user:
@@ -125,12 +136,17 @@ eu:
         position: Maila goreneko rolak erabakitzen du gatazkaren konponbidea kasu batzuetan. Ekintza batzuk maila baxuagoko rolen gain bakarrik gauzatu daitezke
       webhook:
         events: Hautatu gertaerak bidaltzeko
+        template: Osatu zure JSON karga interpolazio aldakorra erabiliz. Utzi hutsik JSON lehenetsiarentzat.
         url: Nora bidaliko diren gertaerak
     labels:
       account:
+        discoverable: Ezagutarazi profila eta bidalketak bilaketa algoritmoetan
         fields:
           name: Etiketa
           value: Edukia
+        indexable: Gehitu argitalpen publikoak bilaketa-emaitzetan
+        show_collections: Erakutsi nor jarraitzen duzun eta nork jarraitzen zaituen profilean
+        unlocked: Onartu automatikoki jarraitzake berriak
       account_alias:
         acct: Kontu zaharraren helbidea
       account_migration:
@@ -211,7 +227,7 @@ eu:
         title: Izenburua
         type: Inportazio mota
         username: Erabiltzaile-izena
-        username_or_email: Erabiltzaile-izena edo e-mail helbidea
+        username_or_email: Erabiltzaile-izena edo eposta helbidea
         whole_word: Hitz osoa
       email_domain_block:
         with_dns_records: Sartu ere domeinuaren MX erregistroak eta IPak
@@ -275,9 +291,18 @@ eu:
         pending_account: Bidali e-mail bat kontu bat berrikusi behar denean
         reblog: Bidali e-mail bat norbaitek zure mezuari bultzada ematen badio
         report: Salaketa berria bidali da
+        software_updates:
+          all: Jakinarazi eguneraketa guztiak
+          critical: Jakinarazi eguneraketa kritikoak soilik
+          label: Mastodon bertsio berria eskuragarri
+          none: Inoiz ez jakinarazi egunerakerak (ez da gomendagarria)
+          patch: Jakinarazi akats zuzenketa eguneraketa guztiak
         trending_tag: Joera berriak berrikuspena behar du
       rule:
         text: Araua
+      settings:
+        indexable: Gehitu profila bilaketa-motorretan
+        show_application: Utzi agerian tootak bidaltzeko erabilitako aplikazioa
       tag:
         listable: Baimendu traola hau bilaketetan agertzea eta profilen direktorioan
         name: Traola
@@ -285,6 +310,7 @@ eu:
         usable: Baimendu tootek traola hau erabiltzea
       user:
         role: Rola
+        time_zone: Ordu zona
       user_role:
         color: Bereizgarriaren kolorea
         highlighted: Bistaratu rola bereizgarri bezala erabiltzaileen profiletan
@@ -293,9 +319,11 @@ eu:
         position: Lehentasuna
       webhook:
         events: Gertaerak gaituta
+        template: Karga txantiloia
         url: Amaiera-puntuaren URLa
     'no': Ez
     not_recommended: Ez gomendatua
+    overridden: Gainidatzita
     recommended: Aholkatua
     required:
       mark: "*"

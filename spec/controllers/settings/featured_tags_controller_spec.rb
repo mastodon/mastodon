@@ -43,10 +43,20 @@ describe Settings::FeaturedTagsController do
     end
 
     describe 'GET to #index' do
+      let(:tag) { Fabricate(:tag) }
+
+      before do
+        status = Fabricate :status, account: user.account
+        status.tags << tag
+      end
+
       it 'responds with success' do
         get :index
 
         expect(response).to have_http_status(200)
+        expect(response.body).to include(
+          settings_featured_tags_path(featured_tag: { name: tag.name })
+        )
       end
     end
 

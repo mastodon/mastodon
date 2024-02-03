@@ -72,7 +72,7 @@ class BackupService < BaseService
   end
 
   def dump_media_attachments!(zipfile)
-    MediaAttachment.attached.where(account: account).reorder(nil).find_in_batches do |media_attachments|
+    MediaAttachment.attached.where(account: account).find_in_batches do |media_attachments|
       media_attachments.each do |m|
         path = m.file&.path
         next unless path

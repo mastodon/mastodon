@@ -14,7 +14,7 @@ ca:
     following: Seguint
     instance_actor_flash: Aquest compte és un actor virtual usat per a representar el mateix servidor i no cap usuari individual. Es fa servir per a federar i no s'hauria d'esborrar.
     last_active: última activitat
-    link_verified_on: La propietat d'aquest enllaç s'ha verificat el %{date}
+    link_verified_on: La propietat d'aquest enllaç va quedar verificada el %{date}
     nothing_here: No hi ha res aquí!
     pin_errors:
       following: Has d'estar seguint la persona que vulguis avalar
@@ -309,6 +309,7 @@ ca:
       unpublish: Despublicar
       unpublished_msg: L’anunci s’ha despublicat amb èxit!
       updated_msg: L'anunci s'ha actualitzat correctament!
+    critical_update_pending: Actualització crítica pendent
     custom_emojis:
       assign_category: Assigna una categoria
       by_domain: Domini
@@ -424,6 +425,7 @@ ca:
       view: Veure el bloqueig del domini
     email_domain_blocks:
       add_new: Afegir nou
+      allow_registrations_with_approval: Permet els registres amb validació
       attempts_over_week:
         one: "%{count} intent en la darrera setmana"
         other: "%{count} intents de registre en la darrera setmana"
@@ -533,6 +535,7 @@ ca:
       total_reported: Informes sobre ells
       total_storage: Adjunts multimèdia
       totals_time_period_hint_html: Els totals mostrats a sota incloeixen dades de tots els temps.
+      unknown_instance: A hores d'ara no hi ha cap registre d'aquest domini al servidor.
     invites:
       deactivate_all: Desactiva-ho tot
       filter:
@@ -609,6 +612,7 @@ ca:
       created_at: Denunciat
       delete_and_resolve: Elimina les publicacions
       forwarded: Reenviat
+      forwarded_replies_explanation: Aquesta denúncia és d'un usuari extern i sobre contingut extern. Se t'han reenviat perquè el contingut denunciat és en resposta a un dels teus usuaris.
       forwarded_to: Reenviat a %{domain}
       mark_as_resolved: Marca com a resolt
       mark_as_sensitive: Marca com a sensible
@@ -770,10 +774,27 @@ ca:
           approved: Cal l’aprovació per a registrar-se
           none: No es pot registrar ningú
           open: Qualsevol pot registrar-se
+      security:
+        authorized_fetch: Requereix autenticació dels servidors federats
+        authorized_fetch_hint: Requerir l'autenticació dels servidors federats permet una aplicació més estricta dels bloqueigs a nivell d'usuari i a nivell de servidor. Tanmateix, això provoca una penalització del rendiment, redueix l'abast de les seves respostes i pot introduir problemes de compatibilitat amb alguns serveis federats. A més, això no impedirà que els actors dedicats busquin les teves publicacions i comptes públics.
+        authorized_fetch_overridden_hint: Actualment no pots canviar aquesta configuració perquè està anul·lada per una variable d'entorn.
+        federation_authentication: Aplicació de l'autenticació de la federació
       title: Configuració del servidor
     site_uploads:
       delete: Esborra el fitxer pujat
       destroyed_msg: La càrrega al lloc s'ha suprimit correctament!
+    software_updates:
+      critical_update: Crítica - si us plau, actualitza ràpidament
+      description: Es recomana mantenir actualizada la teva instal·lació de Mastodon per a beneficiar-se de les darreres correccions i característiques. A més, de vegades és fonamental actualitzar Mastodon periòdicament per evitar problemes de seguretat. Per aquestes raons, Mastodon comprova si hi ha actualitzacions cada 30 minuts i et notificarà d'acord amb les teves preferències de notificacions per correu electrònic.
+      documentation_link: Més informació
+      release_notes: Notes de llançament
+      title: Actualitzacions disponibles
+      type: Tipus
+      types:
+        major: Llançament important
+        minor: Llançament menor
+        patch: 'Llançament de pedaços: correccions d''errors i canvis fàcils d''aplicar'
+      version: Versió
     statuses:
       account: Autor
       application: Aplicació
@@ -814,6 +835,20 @@ ca:
     system_checks:
       database_schema_check:
         message_html: Hi ha pendents migracions de la base de dades. Executeu-les per a assegurar que l'aplicació es comporta com s'espera
+      elasticsearch_health_red:
+        message_html: El cluster de Elasticsearch no es saludable (estat vermell), les funcions de cerca no estan disponibles
+      elasticsearch_health_yellow:
+        message_html: El cluster de Elasticsearch no es saludable (estat groc), és possible que vulguis investigar la raó
+      elasticsearch_index_mismatch:
+        message_html: Els mapes de índex de Elasticsearch estan desactualizats. Si us plau executa <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Veure la documentació
+        message_html: El teu clúster de Elasticsearch té més d'un node però Mastodon no està configurat per a emprar-los.
+      elasticsearch_preset_single_node:
+        action: Veure la documentació
+        message_html: El teu clúster de Elasticsearch té només un node, <code>ES_PRESET</code> hauria de ser configurat com <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: L'índex del teu sistema Elasticsearch està desactualizat degut a un canvi de configuració. Si us plau executa <code>tootctl search deploy --reset-chewy</code> per a actualitzar-lo.
       elasticsearch_running_check:
         message_html: No s'ha pogut connectar a Elasticsearch. Verifiqueu que funciona o desactiveu la cerca de text complet
       elasticsearch_version_check:
@@ -824,6 +859,12 @@ ca:
         message_html: No has definit cap norma del servidor.
       sidekiq_process_check:
         message_html: No hi ha cap procés de Sidekiq executant-se per a la cua (o cues) de %{value}. Reviseu la configuració de Sidekiq
+      software_version_critical_check:
+        action: Veure actualitzacions disponibles
+        message_html: Hi ha disponible una actualització crítica de Mastodon, si us plau, actualitza-la el més abans possible.
+      software_version_patch_check:
+        action: Veure actualitzacions disponibles
+        message_html: Hi ha disponible una actualització de correcció d'errors de Mastodon.
       upload_check_privacy_error:
         action: Consulta aquí per a més informació
         message_html: "<strong>El teu servidor no està ben configurat. La privacitat dels teus usuaris està en risc.</strong>"
@@ -937,6 +978,9 @@ ca:
       body: "%{target} està apel·lant una decisió de moderació de %{action_taken_by} el %{date}, del tipus %{type}. Han escrit:"
       next_steps: Pots aprovar l'apel·lació per a desfer la decisió de moderació o ignorar-la.
       subject: "%{username} està apel·lant una decisió de moderació a %{instance}"
+    new_critical_software_updates:
+      body: S'han alliberat noves versions crítiques de Mastodon, és possible que vulguis actualitzar-les el més aviat possible!
+      subject: Hi ha disponibles actualitzacions crítiques de Mastodon per a %{instance}!
     new_pending_account:
       body: A continuació trobaràs els detalls del compte nou. Pots aprovar o rebutjar aquest registre.
       subject: Nou compte per a revisar a %{instance} (%{username})
@@ -944,6 +988,9 @@ ca:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des del domini %{domain} ha informat sobre %{target}
       subject: Informe nou per a %{instance} (#%{id})
+    new_software_updates:
+      body: S'han alliberat noves versions de Mastodon, és possible que desitgis actualitzar!
+      subject: Hi ha disponibles noves versions de Mastodon per a %{instance}!
     new_trends:
       body: 'Els següents elements necessiten una revisió abans de que puguin ser mostrats públicament:'
       new_trending_links:
@@ -951,8 +998,6 @@ ca:
       new_trending_statuses:
         title: Tuts en tendència
       new_trending_tags:
-        no_approved_tags: Actualment no hi ha etiquetes en tendència aprovades.
-        requirements: 'Qualsevol d''aquests candidats podria superar el #%{rank} de la etiqueta en tendència aprovada, que actualment és "%{lowest_tag_name}" amb una puntuació de %{lowest_tag_score}.'
         title: Etiquetes en tendència
       subject: Noves tendències pendents de revisar a %{instance}
   aliases:
@@ -996,6 +1041,14 @@ ca:
       hint_html: Una cosa més! Necessitem confirmar que ets una persona humana (és així com mantenim a ratlla l'spam). Resolt el CAPTCHA inferior i clica a "Segueix".
       title: Revisió de seguretat
     confirmations:
+      awaiting_review: S'ha confirmat la teva adreça-e. El personal de %{domain} revisa ara el registre. Rebràs un correu si t'aproven el compte.
+      awaiting_review_title: S'està revisant la teva inscripció
+      clicking_this_link: en clicar aquest enllaç
+      login_link: inici de sessió
+      proceed_to_login_html: Ara pots passar a %{login_link}.
+      redirect_to_app_html: Se us hauria d'haver redirigit a l'app <strong>%{app_name}</strong>. Si això no ha passat, intenteu %{clicking_this_link} o torneu manualment a l'app.
+      registration_complete: La teva inscripció a %{domain} ja és completa.
+      welcome_title: Hola, %{name}!
       wrong_email_hint: Si aquesta adreça de correu electrònic no és correcte, pots canviar-la en els ajustos del compte.
     delete_account: Elimina el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
@@ -1057,6 +1110,7 @@ ca:
       functional: El teu compte està completament operatiu.
       pending: La vostra sol·licitud està pendent de revisió pel nostre personal. Això pot trigar una mica. Rebreu un correu electrònic quan sigui aprovada.
       redirecting_to: El teu compte és inactiu perquè actualment està redirigint a %{acct}.
+      self_destruct: Com que %{domain} tanca, només tindreu accés limitat al vostre compte.
       view_strikes: Veure accions del passat contra el teu compte
     too_fast: Formulari enviat massa ràpid, torna a provar-ho.
     use_security_key: Usa clau de seguretat
@@ -1314,6 +1368,7 @@ ca:
       '86400': 1 dia
     expires_in_prompt: Mai
     generate: Genera
+    invalid: Aquesta invitació no és vàlida
     invited_by: 'Has estat invitat per:'
     max_uses:
       one: 1 ús
@@ -1420,7 +1475,7 @@ ca:
       action: Respon
       body: "%{name} t'ha mencionat en:"
       subject: "%{name} t'ha mencionat"
-      title: Menció nova
+      title: Nova menció
     poll:
       subject: Ha finalitzat l'enquesta de %{name}
     reblog:
@@ -1432,6 +1487,7 @@ ca:
     update:
       subject: "%{name} ha editat una publicació"
   notifications:
+    administration_emails: Notificacions per correu-e de l'Admin
     email_events: Esdeveniments per a notificacions de correu electrònic
     email_events_hint: 'Selecciona els esdeveniments per als quals vols rebre notificacions:'
     other_settings: Altres opcions de notificació
@@ -1475,12 +1531,24 @@ ca:
     other: Altre
     posting_defaults: Valors per defecte de publicació
     public_timelines: Línies de temps públiques
+  privacy:
+    hint_html: "<strong>Personalitza com vols que siguin trobats el teu perfil i els teus tuts.</strong> Una varietat de característiques de Mastodon et poden ajudar a arribar a una major audiència quan les actives. Dedica una estona a revisar aquests ajustaments per assegurar que son els que necessites."
+    privacy: Privacitat
+    privacy_hint_html: Controla quant vols revelar en benefici d'altres. La gent descobreix perfils interessants i aplicacions genials tot navegant per els usuaris seguits d'altres persones i veient des de quines aplicacions publiquen, però pots preferir mantenir-ho amagat.
+    reach: Arribar a
+    reach_hint_html: Controla si vols ser descobert i seguit per gent nova. Vols que els teus tuts apareguin en la pantalla de Explora? Vols que altres persones et vegin en les seves recomanacions de seguiment? Vols acceptar automàticament als nous seguidors o tenir un control granular sobre cadascun d'ells?
+    search: Cerca
+    search_hint_html: Controla com vols ser trobat. Vols que la gent et trobi per el que publiques? Vols que la gent fora de Mastodon trobi el teu perfil quan cerquin la web? Has de tenir en compte que no es pot garantir la exclusió total de tots els motors de cerca per a la informació pública.
+    title: Privacitat i arribar
   privacy_policy:
     title: Política de Privacitat
   reactions:
     errors:
       limit_reached: Límit de diferents reaccions assolit
       unrecognized_emoji: no és un emoji reconegut
+  redirects:
+    prompt: Si confieu en aquest enllaç, feu-hi clic per a continuar.
+    title: Esteu sortint de %{instance}.
   relationships:
     activity: Activitat del compte
     confirm_follow_selected_followers: Segur que vols seguir els seguidors seleccionats?
@@ -1516,6 +1584,9 @@ ca:
     over_daily_limit: Has superat el límit de %{limit} tuts programats per a avui
     over_total_limit: Has superat el límit de %{limit} tuts programats
     too_soon: La data programada ha de ser futura
+  self_destruct:
+    lead_html: Lamentablement, <strong>%{domain}</strong> tanca de forma definitiva. Si hi teníeu un compte, no el podreu continuar utilitzant, però podeu demanar una còpia de les vostres dades.
+    title: Aquest servidor tancarà
   sessions:
     activity: Última activitat
     browser: Navegador
@@ -1540,6 +1611,7 @@ ca:
       unknown_browser: Navegador Desconegut
       weibo: Weibo
     current_session: Sessió actual
+    date: Data
     description: "%{browser} de %{platform}"
     explanation: Aquests són els navegadors web que actualment han iniciat la sessió amb el teu compte de Mastodon.
     ip: IP
@@ -1684,6 +1756,11 @@ ca:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d %b, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: S'ha superat la quota d'ús de tot el servidor per el servei de traducció.
+      too_many_requests: Hi ha hagut massa sol·licituds al servei de traducció recentment.
   two_factor_authentication:
     add: Afegeix
     disable: Desactiva
@@ -1701,18 +1778,27 @@ ca:
     webauthn: Claus de seguretat
   user_mailer:
     appeal_approved:
-      action: Ves al teu compte
+      action: Configuració del compte
       explanation: L'apel·lació a l'acció contra el teu compte del %{strike_date} que has enviat el %{appeal_date} ha estat aprovada. El teu compte torna a estar en bon estat.
       subject: La teva apel·lació del %{date} ha estat aprovada
+      subtitle: El vostre compte torna a estar correcte.
       title: Apel·lació aprovada
     appeal_rejected:
       explanation: L'apel·lació a l'acció contra el teu compte del %{strike_date} que has enviat el %{appeal_date} ha estat rebutjada.
       subject: La teva apel·lació del %{date} ha estat rebutjada
+      subtitle: S'ha rebutjat la vostra apel·lació.
       title: Apel·lació rebutjada
     backup_ready:
-      explanation: Has sol·licitat una copia completa del teu compte Mastodon. Ara ja està a punt per a descàrrega!
+      explanation: Heu demanat una còpia completa de les dades del vostre compte de Mastodon.
+      extra: Ja la podeu baixar
       subject: L'arxiu està preparat per a descàrrega
       title: Recollida de l'arxiu
+    failed_2fa:
+      details: 'Aquests són els detalls de l''intent d''accés:'
+      explanation: Algú ha intentat accedir al vostre compte però no ha proporcionat un factor de doble autenticació correcte.
+      further_actions_html: Si no heu estat vosaltres, us recomanem que %{action} immediatament perquè pot estar compromès.
+      subject: Ha fallat el factor de doble autenticació
+      title: Ha fallat l'autenticació de doble factor
     suspicious_sign_in:
       change_password: canvia la teva contrasenya
       details: 'Aquest són els detalls de l''inici de sessió:'
@@ -1766,6 +1852,7 @@ ca:
     go_to_sso_account_settings: Ves a la configuració del compte del teu proveïdor d'identitat
     invalid_otp_token: El codi de dos factors no és correcte
     otp_lost_help_html: Si has perdut l'accés a tots dos pots contactar per %{email}
+    rate_limited: Excessius intents d'autenticació, torneu-hi més tard.
     seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'
   verification:

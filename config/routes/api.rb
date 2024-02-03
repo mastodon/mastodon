@@ -51,6 +51,12 @@ namespace :api, format: false do
     resources :scheduled_statuses, only: [:index, :show, :update, :destroy]
     resources :preferences, only: [:index]
 
+    resources :annual_reports, only: [:index] do
+      member do
+        post :read
+      end
+    end
+
     resources :announcements, only: [:index] do
       scope module: :announcements do
         resources :reactions, only: [:update, :destroy]
@@ -280,6 +286,8 @@ namespace :api, format: false do
           post :test
         end
       end
+
+      resources :tags, only: [:index, :show, :update]
     end
   end
 

@@ -180,7 +180,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def check_links!
-    VerifyAccountLinksWorker.perform_async(@account.id)
+    VerifyAccountLinksWorker.perform_in(rand(10.minutes.to_i), @account.id)
   end
 
   def process_duplicate_accounts!
@@ -277,7 +277,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def moved_account
     account   = ActivityPub::TagManager.instance.uri_to_resource(@json['movedTo'], Account)
-    account ||= ActivityPub::FetchRemoteAccountService.new.call(@json['movedTo'], id: true, break_on_redirect: true, request_id: @options[:request_id])
+    account ||= ActivityPub::FetchRemoteAccountService.new.call(@json['movedTo'], break_on_redirect: true, request_id: @options[:request_id])
     account
   end
 
