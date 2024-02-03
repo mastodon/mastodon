@@ -100,6 +100,15 @@ const initialState = ImmutableMap({
       body: '',
     }),
   }),
+
+  dismissed_banners: ImmutableMap({
+    'public_timeline': false,
+    'community_timeline': false,
+    'home/follow-suggestions': false,
+    'explore/links': false,
+    'explore/statuses': false,
+    'explore/tags': false,
+  }),
 });
 
 const defaultColumns = fromJS([

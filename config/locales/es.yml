@@ -425,6 +425,7 @@ es:
       view: Ver dominio bloqueado
     email_domain_blocks:
       add_new: Añadir nuevo
+      allow_registrations_with_approval: Permitir registros con aprobación
       attempts_over_week:
         one: "%{count} intento durante la última semana"
         other: "%{count} intentos de registro durante la última semana"
@@ -611,6 +612,7 @@ es:
       created_at: Denunciado
       delete_and_resolve: Eliminar publicaciones
       forwarded: Reenviado
+      forwarded_replies_explanation: Este informe es de un usuario remoto y sobre contenido remoto. Se le ha enviado porque el contenido reportado es en respuesta a uno de sus usuarios.
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resuelto
       mark_as_sensitive: Marcar como sensible
@@ -996,8 +998,6 @@ es:
       new_trending_statuses:
         title: Publicaciones en tendencia
       new_trending_tags:
-        no_approved_tags: Actualmente no hay ninguna etiqueta en tendencia aprobada.
-        requirements: 'Cualquiera de estos candidatos podría superar el hashtag en tendencia aprobado por #%{rank}, que actualmente es #%{lowest_tag_name} con una puntuación de %{lowest_tag_score}.'
         title: Etiquetas en tendencia
       subject: Nuevas tendencias esperando ser revisadas en %{instance}
   aliases:
@@ -1041,6 +1041,14 @@ es:
       hint_html: ¡Una última cosita! Necesitamos confirmar que eres humano (¡así podemos evitar el spam!). Resuelve este CAPTCHA de debajo y pulsa en "Continuar".
       title: Comprobación de seguridad
     confirmations:
+      awaiting_review: "¡Tu dirección de correo electrónico ha sido confirmada! El personal de %{domain} está revisando tu registro. ¡Recibirás un correo electrónico cuando aprueben tu cuenta!"
+      awaiting_review_title: Estamos revisando tu registro
+      clicking_this_link: haciendo clic en este enlace
+      login_link: iniciar sesión
+      proceed_to_login_html: Ahora puedes proceder a %{login_link}.
+      redirect_to_app_html: Serás redirigido a la aplicación <strong>%{app_name}</strong>. Si esto no sucede, prueba %{clicking_this_link} o regresa manualmente a la aplicación.
+      registration_complete: "¡Has completado tu registro en %{domain}!"
+      welcome_title: "¡Bienvenido, %{name}!"
       wrong_email_hint: Si esa dirección de correo electrónico no es correcta, puedes cambiarla en la configuración de la cuenta.
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
@@ -1100,7 +1108,7 @@ es:
       account_status: Estado de la cuenta
       confirming: Esperando confirmación de correo electrónico.
       functional: Tu cuenta está completamente operativa.
-      pending: Su solicitud está pendiente de revisión por nuestros administradores. Eso puede tardar algún tiempo. Usted recibirá un correo electrónico si el solicitud sea aprobada.
+      pending: Tu solicitud está pendiente de revisión por nuestro personal. Eso puede tardar un tiempo. Recibirás un correo electrónico cuando tu solicitud sea aprobada.
       redirecting_to: Tu cuenta se encuentra inactiva porque está siendo redirigida a %{acct}.
       self_destruct: Como %{domain} está en proceso de cierre, solo tendrás acceso limitado a tu cuenta.
       view_strikes: Ver amonestaciones pasadas contra tu cuenta
@@ -1360,6 +1368,7 @@ es:
       '86400': 1 día
     expires_in_prompt: Nunca
     generate: Generar
+    invalid: Esta invitación no es válida
     invited_by: 'Fuiste invitado por:'
     max_uses:
       one: 1 uso
@@ -1537,6 +1546,9 @@ es:
     errors:
       limit_reached: Límite de reacciones diferentes alcanzado
       unrecognized_emoji: no es un emoji conocido
+  redirects:
+    prompt: Si confías en este enlace, púlsalo para continuar.
+    title: Vas a salir de %{instance}.
   relationships:
     activity: Actividad de la cuenta
     confirm_follow_selected_followers: "¿Estás seguro de que quieres seguir a las cuentas seleccionadas?"
@@ -1599,6 +1611,7 @@ es:
       unknown_browser: Navegador Desconocido
       weibo: Weibo
     current_session: Sesión actual
+    date: Fecha
     description: "%{browser} en %{platform}"
     explanation: Estos son los navegadores web conectados actualmente en tu cuenta de Mastodon.
     ip: IP
@@ -1765,18 +1778,27 @@ es:
     webauthn: Claves de seguridad
   user_mailer:
     appeal_approved:
-      action: Ir a tu cuenta
+      action: Ajustes de la cuenta
       explanation: La apelación de la amonestación contra tu cuenta del %{strike_date} que enviaste el %{appeal_date} fue aprobada. Tu cuenta se encuentra de nuevo en buen estado.
       subject: Tu apelación del %{date} ha sido aprobada
+      subtitle: Tu cuenta se encuentra de nuevo en perfecto estado.
       title: Apelación aprobada
     appeal_rejected:
       explanation: La apelación de la amonestación contra tu cuenta del %{strike_date} que enviaste el %{appeal_date} fue rechazada.
       subject: Tu apelación del %{date} ha sido rechazada
+      subtitle: Tu apelación ha sido rechazada.
       title: Apelación rechazada
     backup_ready:
-      explanation: Has solicitado una copia completa de tu cuenta de Mastodon. ¡Ya está preparada para descargar!
+      explanation: Has solicitado una copia de seguridad completa de tu cuenta de Mastodon.
+      extra: "¡Ya está listo para descargar!"
       subject: Tu archivo está preparado para descargar
       title: Descargar archivo
+    failed_2fa:
+      details: 'Estos son los detalles del intento de inicio de sesión:'
+      explanation: Alguien ha intentado iniciar sesión en tu cuenta pero proporcionó un segundo factor de autenticación inválido.
+      further_actions_html: Si no fuiste tú, se recomienda %{action} inmediatamente ya que puede estar comprometida.
+      subject: Fallo de autenticación del segundo factor
+      title: Fallo en la autenticación del segundo factor
     suspicious_sign_in:
       change_password: cambies tu contraseña
       details: 'Aquí están los detalles del inicio de sesión:'
@@ -1786,7 +1808,7 @@ es:
       title: Un nuevo inicio de sesión
     warning:
       appeal: Enviar una apelación
-      appeal_description: Si crees que esto es un error, puedes enviar una apelación al equipo de %{instance}.
+      appeal_description: Si crees que esto es un error, puedes enviar una apelación al personal de %{instance}.
       categories:
         spam: Spam
         violation: El contenido viola las siguientes directrices de la comunidad
@@ -1830,6 +1852,7 @@ es:
     go_to_sso_account_settings: Diríjase a la configuración de la cuenta de su proveedor de identidad
     invalid_otp_token: Código de dos factores incorrecto
     otp_lost_help_html: Si perdiste al acceso a ambos, puedes ponerte en contancto con %{email}
+    rate_limited: Demasiados intentos de autenticación, inténtalo de nuevo más tarde.
     seamless_external_login: Has iniciado sesión desde un servicio externo, así que los ajustes de contraseña y correo no están disponibles.
     signed_in_as: 'Sesión iniciada como:'
   verification:

@@ -309,6 +309,7 @@ eo:
       unpublish: Malpublikigi
       unpublished_msg: Anonco sukcese malpublikigita!
       updated_msg: Anonco sukcese ĝisdatigis!
+    critical_update_pending: Kritika ĝisdatigo pritraktotas
     custom_emojis:
       assign_category: Atribui kategorion
       by_domain: Domajno
@@ -424,6 +425,7 @@ eo:
       view: Vidi domajna blokado
     email_domain_blocks:
       add_new: Aldoni novan
+      allow_registrations_with_approval: Permesi aliĝojn kun aprobo
       attempts_over_week:
         one: "%{count} provo ekde lasta semajno"
         other: "%{count} registroprovoj ekde lasta semajno"
@@ -770,9 +772,21 @@ eo:
           approved: Bezonas aprobi por aliĝi
           none: Neniu povas aliĝi
           open: Iu povas aliĝi
+      security:
+        authorized_fetch: Devigi aŭtentigon de frataraj serviloj
+      title: Agordoj de la servilo
     site_uploads:
       delete: Forigi elŝutitan dosieron
       destroyed_msg: Reteja alŝuto sukcese forigita!
+    software_updates:
+      critical_update: Kritika — bonvolu ĝisdatiĝi rapide
+      documentation_link: Lerni pli
+      release_notes: Eldono-notoj
+      title: Disponeblaj ĝisdatigoj
+      type: Tipo
+      types:
+        major: Ĉefa eldono
+        minor: Neĉefa eldono
     statuses:
       account: Skribanto
       application: Aplikaĵo
@@ -950,8 +964,6 @@ eo:
       new_trending_statuses:
         title: Popularaĝaj mesaĝoj
       new_trending_tags:
-        no_approved_tags: Nun ne havas aprobitajn popularajn kradvortojn.
-        requirements: Ajn ĉi tiu eroj povas superi la %{rank}an kradvorton kiu estas %{lowest_tag_name} kun %{lowest_tag_score} puentoj.
         title: Tendencantaj kradvortoj
       subject: Novaj popularaĵoj bezonas kontrolitis ĉe %{instance}
   aliases:
@@ -994,6 +1006,8 @@ eo:
       help_html: Se vi havas problemojn solvi la CAPTCHA, vi povas kontakti nin per %{email} kaj ni povas helpi vin.
       title: Sekureckontrolo
     confirmations:
+      login_link: ensaluti
+      welcome_title: Bonvenon, %{name}!
       wrong_email_hint: Se tiu retpoŝtadreso ne estas ĝusta, vi povas ŝanĝi ĝin en la agordoj pri la konto.
     delete_account: Forigi konton
     delete_account_html: Se vi deziras forigi vian konton, vi povas <a href="%{path}">fari tion ĉi tie</a>. Vi bezonos konfirmi vian peton.
@@ -1257,12 +1271,24 @@ eo:
       overwrite: Anstataŭigi
       overwrite_long: Anstataŭigi la nunajn registrojn per la novaj
     preface: Vi povas importi datumojn, kiujn vi eksportis el alia servilo, kiel liston de homoj, kiujn vi sekvas aŭ blokas.
+    states:
+      finished: Finita
+      unconfirmed: Nekonfirmita
     success: Viaj datumoj estis sukcese alŝutitaj kaj estos traktitaj kiel planite
+    titles:
+      following: Importado de sekvaj kontoj
+      lists: Importi listojn
+      muting: Importado de silentigitaj kontoj
+    type: Importi tipon
+    type_groups:
+      constructive: Sekvoj & Legosignoj
+      destructive: Blokas kaj silentigas
     types:
       blocking: Listo de blokitoj
       bookmarks: Legosignoj
       domain_blocking: Listo de blokitaj domajnoj
       following: Listo de sekvatoj
+      lists: Listoj
       muting: Listo de silentigitoj
     upload: Alŝuti
   invites:
@@ -1277,6 +1303,7 @@ eo:
       '86400': 1 tago
     expires_in_prompt: Neniam
     generate: Krei
+    invalid: Ĉi tiu invito ne validas
     invited_by: 'Vi estis invitita de:'
     max_uses:
       one: 1 uzo
@@ -1303,6 +1330,18 @@ eo:
     title: Aŭtentiga historio
   mail_subscriptions:
     unsubscribe:
+      action: Jes, malabonu
+      complete: Malabonita
+      confirmation_html: Ĉu vi certas, ke vi volas malaboni por ricevi %{type} por Mastodon ĉe %{domain} al via retpoŝto ĉe %{email}? Vi ĉiam povas reaboni de viaj <a href="%{settings_path}">retpoŝtaj sciigaj agordoj</a>.
+      emails:
+        notification_emails:
+          favourite: plej ŝatataj sciigaj retpoŝtoj
+          follow: sekvu sciigajn retmesaĝojn
+          follow_request: sekvu petajn retpoŝtojn
+          mention: menciu sciigajn retmesaĝojn
+          reblog: plifortigi sciigajn retpoŝtojn
+      resubscribe_html: Se vi malabonis erare, vi povas reaboni de viaj <a href="%{settings_path}">retpoŝtaj sciigaj agordoj</a>.
+      success_html: Vi ne plu ricevos %{type} por Mastodon sur %{domain} al via retpoŝto ĉe %{email}.
       title: Malaboni
   media_attachments:
     validations:
@@ -1383,6 +1422,7 @@ eo:
     update:
       subject: "%{name} redaktis afiŝon"
   notifications:
+    administration_emails: Admin retpoŝtaj sciigoj
     email_events: Eventoj por retpoŝtaj sciigoj
     email_events_hint: 'Elekti la eventojn pri kioj vi volas ricevi sciigojn:'
     other_settings: Aliaj agordoj de sciigoj
@@ -1419,6 +1459,7 @@ eo:
       expired: La enketo jam finiĝis
       invalid_choice: La elektita voĉdono ne ekzistas
       over_character_limit: ne povas esti po pli longa ol %{max} signoj
+      self_vote: Vi ne povas voĉdoni en viaj propraj balotenketoj
       too_few_options: devas enhavi pli da unu propono
       too_many_options: ne povas enhavi pli da %{max} proponoj
   preferences:
@@ -1426,7 +1467,14 @@ eo:
     posting_defaults: Afiŝaj defaŭltoj
     public_timelines: Publikaj templinioj
   privacy:
+    hint_html: "<strong>Agordu kiel vi volas ke via profilo kaj viaj afiŝoj estu trovitaj.</strong> Diversaj funkcioj en Mastodon povas helpi vin atingi pli larĝan publikon kiam ĝi estas ebligita. Prenu momenton por revizii ĉi tiujn agordojn por certigi, ke ili taŭgas por via uzokazo."
     privacy: Privateco
+    privacy_hint_html: Kontrolu kiom vi volas malkaŝi por la avantaĝo de aliaj. Homoj malkovras interesajn profilojn kaj bonegajn apojn foliumante la sekvaĵojn de aliaj homoj kaj vidante de kiuj aplikaĵoj ili afiŝas, sed vi eble preferas konservi ĝin kaŝita.
+    reach: Atingo
+    reach_hint_html: Kontrolu ĉu vi volas esti malkovrita kaj sekvita de novaj homoj. Ĉu vi volas ke viaj afiŝoj aperu sur la ekrano Esplori? Ĉu vi volas ke aliaj homoj vidu vin en siaj sekvaj rekomendoj? Ĉu vi volas akcepti ĉiujn novajn sekvantojn aŭtomate, aŭ havi granulan kontrolon pri ĉiu?
+    search: Serĉu
+    search_hint_html: Kontrolu kiel vi volas esti trovita. Ĉu vi volas, ke homoj trovu vin laŭ tio, pri kio vi publike afiŝis? Ĉu vi volas, ke homoj ekster Mastodonto trovu vian profilon dum serĉado en la reto? Bonvolu memori, ke totala ekskludo de ĉiuj serĉiloj ne povas esti garantiita por publika informo.
+    title: Privateco kaj atingo
   privacy_policy:
     title: Privateca politiko
   reactions:
@@ -1468,6 +1516,9 @@ eo:
     over_daily_limit: Vi transpasis la limigon al %{limit} samtage planitaj mesaĝoj
     over_total_limit: Vi transpasis la limigon al %{limit} planitaj mesaĝoj
     too_soon: La planita dato devas esti en la estonteco
+  self_destruct:
+    lead_html: Bedaŭrinde, <strong>%{domain}</strong> konstante fermiĝas. Se vi havis konton tie, vi ne povos daŭrigi uzi ĝin, sed vi ankoraŭ povas peti sekurkopion de viaj datumoj.
+    title: Ĉi tiu servilo fermiĝas
   sessions:
     activity: Lasta ago
     browser: Retumilo
@@ -1492,6 +1543,7 @@ eo:
       unknown_browser: Nekonata retumilo
       weibo: Weibo
     current_session: Nuna seanco
+    date: Dato
     description: "%{browser} en %{platform}"
     explanation: Ĉi tiuj estas la retumiloj nun ensalutintaj al via Mastodon-konto.
     ip: IP
@@ -1636,6 +1688,10 @@ eo:
       default: "%Y.%b.%d, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+  translation:
+    errors:
+      quota_exceeded: La tutservila uzkvoto por la tradukservo estas superita.
+      too_many_requests: Lastatempe estis tro multaj petoj al la tradukservo.
   two_factor_authentication:
     add: Aldoni
     disable: Malebligi 2FA-n
@@ -1653,7 +1709,7 @@ eo:
     webauthn: Sekurecaj ŝlosiloj
   user_mailer:
     appeal_approved:
-      action: Iri al via konto
+      action: Konto-agordoj
       explanation: La apelacio de la admono kontra via konto je %{strike_date} pri sendodato %{appeal_date} aprobitas.
       subject: Via apelacio de %{date} aprobitas
       title: Apelacio estis aprobita
@@ -1662,7 +1718,7 @@ eo:
       subject: Via apelacio de %{date} estis malaprobita
       title: Apelacio estis malaprobita
     backup_ready:
-      explanation: Vi petis kompletan arkivon de via Mastodon-konto. Ĝi nun pretas por elŝutado!
+      extra: Estas nun preta por elŝuto!
       subject: Via arkivo estas preta por elŝutado
       title: Arkiva elŝuto
     suspicious_sign_in:
@@ -1715,11 +1771,17 @@ eo:
       title: Bonvenon, %{name}!
   users:
     follow_limit_reached: Vi ne povas sekvi pli ol %{limit} homo(j)
+    go_to_sso_account_settings: Iru al la agordoj de la konto de via identeca provizanto
     invalid_otp_token: Nevalida kodo de dufaktora aŭtentigo
     otp_lost_help_html: Se vi perdas aliron al ambaŭ, vi povas kontakti %{email}
+    rate_limited: Estas tro multaj aŭtentigaj provoj, reprovu poste.
     seamless_external_login: Vi estas ensalutinta per ekstera servo, do pasvortaj kaj retadresaj agordoj ne estas disponeblaj.
     signed_in_as: 'Salutinta kiel:'
   verification:
+    extra_instructions_html: <strong>Konsilo:</strong> La ligilo en via retejo povas esti nevidebla. La grava parto estas <code>rel="me"</code>, kiu evitas identoŝtelon en retejoj kun enhavo generita de uzantoj. Vi povas eĉ uzi <code>link</code>-etikedon en la <code>header</code> de la paĝo anstataŭ <code>a</code>, sed la HTML devas esti atingebla sen plenumado de JavaScript.
+    here_is_how: Jen gvidilo
+    hint_html: "<strong>Ĉiu ajn povas aŭtentigi sian identecon en Mastodon.</strong> Bazinte sur malfermitaj interretaj normoj, nun kaj ĉiame senkoste. Vi nur bezonas personan retejon, per kiu homoj rekonas vin. Kiam vi ligos tiun retejon de via profilo, ni kontrolos, ĉu la retejo responde ligiĝas kun via profilo, kaj montros videblan indikilon tie."
+    instructions_html: Kopiu kaj algluu la jenan kodon en la HTML de via retejo. Poste aldonu la adreson de via retejo en unu el la kromaj kampoj de via profilo en la langeto "Redakti profilon" kaj konservu la ŝanĝojn.
     verification: Kontrolo
     verified_links: Via kontrolitaj ligiloj
   webauthn_credentials:

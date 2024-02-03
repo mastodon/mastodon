@@ -1,4 +1,5 @@
-import type { Middleware, AnyAction } from 'redux';
+import { isAction } from '@reduxjs/toolkit';
+import type { Middleware, UnknownAction } from '@reduxjs/toolkit';
 
 import ready from 'mastodon/ready';
 import { assetHost } from 'mastodon/utils/config';
@@ -8,6 +9,21 @@ import type { RootState } from '..';
 interface AudioSource {
   src: string;
   type: string;
+}
+
+interface ActionWithMetaSound extends UnknownAction {
+  meta: { sound: string };
+}
+
+function isActionWithMetaSound(action: unknown): action is ActionWithMetaSound {
+  return (
+    isAction(action) &&
+    'meta' in action &&
+    typeof action.meta === 'object' &&
+    !!action.meta &&
+    'sound' in action.meta &&
+    typeof action.meta.sound === 'string'
+  );
 }
 
 const createAudio = (sources: AudioSource[]) => {
@@ -34,7 +50,10 @@ const play = (audio: HTMLAudioElement) => {
   void audio.play();
 };
 
-export const soundsMiddleware = (): Middleware<unknown, RootState> => {
+export const soundsMiddleware = (): Middleware<
+  Record<string, never>,
+  RootState
+> => {
   const soundCache: Record<string, HTMLAudioElement> = {};
 
   void ready(() => {
@@ -50,15 +69,15 @@ export const soundsMiddleware = (): Middleware<unknown, RootState> => {
     ]);
   });
 
-  return () =>
-    (next) =>
-    (action: AnyAction & { meta?: { sound?: string } }) => {
-      const sound = action.meta?.sound;
+  return () => (next) => (action) => {
+    if (isActionWithMetaSound(action)) {
+      const sound = action.meta.sound;
 
       if (sound && Object.hasOwn(soundCache, sound)) {
         play(soundCache[sound]);
       }
+    }
 
-      return next(action);
-    };
+    return next(action);
+  };
 };

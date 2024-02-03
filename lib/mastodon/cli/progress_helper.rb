@@ -25,10 +25,7 @@ module Mastodon::CLI
     end
 
     def parallelize_with_progress(scope)
-      if options[:concurrency] < 1
-        say('Cannot run with this concurrency setting, must be at least 1', :red)
-        exit(1)
-      end
+      fail_with_message 'Cannot run with this concurrency setting, must be at least 1' if options[:concurrency] < 1
 
       reset_connection_pools!
 

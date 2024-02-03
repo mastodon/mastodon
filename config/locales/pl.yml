@@ -419,8 +419,8 @@ pl:
         hint: Blokada domen nie zabroni tworzenia wpisów kont w bazie danych, ale pozwoli na automatyczną moderację kont do nich należących.
         severity:
           desc_html: "<strong>Wyciszenie</strong> uczyni wpisy użytkowników z tej domeny widoczne tylko dla osób, które go obserwują. <strong>Zawieszenie</strong> spowoduje usunięcie całej zawartości dodanej przez użytkownika. Użyj <strong>Żadne</strong>, jeżeli chcesz jedynie odrzucać zawartość multimedialną."
-          noop: Nic nie rób
-          silence: Limit
+          noop: Żadne
+          silence: Wycisz
           suspend: Zawieś
         title: Nowa blokada domen
       no_domain_block_selected: Nie zmieniono żadnych bloków domen, gdyż żadna nie została wybrana
@@ -439,6 +439,7 @@ pl:
       view: Zobacz blokadę domeny
     email_domain_blocks:
       add_new: Dodaj nową
+      allow_registrations_with_approval: Zezwól na rejestracje po zatwierdzeniu
       attempts_over_week:
         few: "%{count} próby w ciągu ostatniego tygodnia"
         many: "%{count} prób w ciągu ostatniego tygodnia"
@@ -635,6 +636,7 @@ pl:
       created_at: Zgłoszono
       delete_and_resolve: Usuń posty
       forwarded: Przekazano
+      forwarded_replies_explanation: Ten raport nadszedł od zdalnego użytkownika i dotyczy zdalnej treści. Został ci przekazany, bo raportowana treść jest odpowiedzią na jednego z twoich użytkowników.
       forwarded_to: Przekazano do %{domain}
       mark_as_resolved: Oznacz jako rozwiązane
       mark_as_sensitive: Oznacz jako wrażliwe
@@ -1032,8 +1034,6 @@ pl:
       new_trending_statuses:
         title: Popularne teraz
       new_trending_tags:
-        no_approved_tags: Obecnie nie ma żadnych zatwierdzonych popularnych hasztagów.
-        requirements: 'Każdy z tych kandydatów może przekroczyć #%{rank} zatwierdzonych popularnych teraz hasztagów, który wynosi obecnie %{lowest_tag_name} z wynikiem %{lowest_tag_score}.'
         title: Popularne hasztagi
       subject: Nowe popularne do przeglądu na %{instance}
   aliases:
@@ -1077,6 +1077,14 @@ pl:
       hint_html: Jeszcze jedno! Potrzebujemy potwierdzić twoje człowieczeństwo, żeby ograniczyć spam. Rozwiąż poniższą CAPTCHA-ę i naciśnij "Kontynuuj".
       title: Kontrola bezpieczeństwa
     confirmations:
+      awaiting_review: Twój adres e-mail został potwierdzony! Administracja %{domain} sprawdza Twoją rejestrację. Otrzymasz e-mail w momencie, gdy zaakceptują Twoje konto!
+      awaiting_review_title: Twoja rejestracja jest obecnie sprawdzana
+      clicking_this_link: kliknąć ten link
+      login_link: zaloguj się
+      proceed_to_login_html: Teraz możesz przejść do %{login_link}.
+      redirect_to_app_html: Powinieneś zostać przekierowany do aplikacji <strong>%{app_name}</strong>. Jeśli tak się nie stało, spróbuj %{clicking_this_link} lub ręcznie wróć do aplikacji.
+      registration_complete: Twoja rejestracja na %{domain} została zakończona!
+      welcome_title: Witaj, %{name}!
       wrong_email_hint: Jeśli ten adres e-mail nie jest poprawny, możesz go zmienić w ustawieniach konta.
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
@@ -1410,6 +1418,7 @@ pl:
       '86400': dobie
     expires_in_prompt: Nigdy
     generate: Wygeneruj
+    invalid: Niepoprawne zaproszenie
     invited_by: 'Zostałeś(-aś) zaproszony(-a) przez:'
     max_uses:
       few: "%{count} użycia"
@@ -1589,6 +1598,9 @@ pl:
     errors:
       limit_reached: Przekroczono limit różnych reakcji
       unrecognized_emoji: nie jest znanym emoji
+  redirects:
+    prompt: Kliknij ten link jeżeli mu ufasz.
+    title: Opuszczasz %{instance}.
   relationships:
     activity: Aktywność konta
     confirm_follow_selected_followers: Czy na pewno chcesz obserwować wybranych obserwujących?
@@ -1651,6 +1663,7 @@ pl:
       unknown_browser: Nieznana Przeglądarka
       weibo: Weibo
     current_session: Obecna sesja
+    date: Data
     description: "%{browser} na %{platform}"
     explanation: Przeglądarki z aktywną sesją Twojego konta.
     ip: Adres IP
@@ -1829,18 +1842,27 @@ pl:
     webauthn: Klucze bezpieczeństwa
   user_mailer:
     appeal_approved:
-      action: Przejdź do swojego konta
+      action: Ustawienia Konta
       explanation: Twoje odwołanie dotyczące ostrzeżenia nałożonego na twoje konto dnia %{strike_date}, które zostało wysłane dnia %{appeal_date} zostało zatwierdzone. Twoje konto jest ponownie w dobrej kondycji.
       subject: Twoje odwołanie z dnia %{date} zostało zatwierdzone
+      subtitle: Reputacja twojego konta została przywrócona.
       title: Odwołanie zatwierdzone
     appeal_rejected:
       explanation: Twoje odwołanie dotyczące ostrzeżenia nałożonego na twoje konto dnia %{strike_date}, które zostało wysłane dnia %{appeal_date} zostało odrzucone.
       subject: Twoje odwołanie z dnia %{date} zostało odrzucone
+      subtitle: Twoje odwołanie zostało odrzucone.
       title: Odwołanie odrzucone
     backup_ready:
-      explanation: Zażądałeś pełnej kopii zapasowej konta na Mastodonie. Jest ona dostępna do pobrania!
+      explanation: Zamówiono pełną kopię zapasową twojego konta Mastodon.
+      extra: Gotowe do pobrania!
       subject: Twoje archiwum jest gotowe do pobrania
       title: Odbiór archiwum
+    failed_2fa:
+      details: 'Oto szczegóły próby logowania:'
+      explanation: Ktoś próbował zalogować się na twoje konto, ale nie przeszedł drugiego etapu autoryzacji.
+      further_actions_html: Jeśli to nie ty, polecamy natychmiastowo %{action}, bo może ono być narażone.
+      subject: Błąd drugiego etapu uwierzytelniania
+      title: Nieudane uwierzytelnienie w drugim etapie
     suspicious_sign_in:
       change_password: zmień hasło
       details: 'Oto szczegóły logowania:'
@@ -1894,6 +1916,7 @@ pl:
     go_to_sso_account_settings: Przejdź do ustawień konta dostawcy tożsamości
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
     otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
+    rate_limited: Zbyt wiele prób uwierzytelnienia. Spróbuj ponownie później.
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowano jako:'
   verification:

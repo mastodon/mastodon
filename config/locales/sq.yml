@@ -1,18 +1,18 @@
 ---
 sq:
   about:
-    about_mastodon_html: 'Rrjeti shoqëror i së ardhmes: Pa reklama, pa survejim nga korporata, konceptim etik dhe decentralizim! Jini zot i të dhënave tuaja, me Mastodon-in!'
-    contact_missing: I parregulluar
+    about_mastodon_html: 'Rrjeti social i së ardhmes: Pa reklama, pa sy vëzhguese nga korporata, etik dhe i decentralizuar! Merrni sërisht zotësinë e të dhënave tuaja, me Mastodon!'
+    contact_missing: E pacaktuar
     contact_unavailable: N/A
-    hosted_on: Mastodon i strehuar në %{domain}
+    hosted_on: Server Mastodon i strehuar në %{domain}
     title: Mbi
   accounts:
     follow: Ndiqeni
     followers:
       one: Ndjekës
       other: Ndjekës
-    following: Ndjekje
-    instance_actor_flash: Kjo llogari është një aktor virtual, i përdorur për të përfaqësuar vetë shërbyesin dhe jo ndonjë përdorues individual. Përdoret për qëllime federimi dhe s’duhet pezulluar.
+    following: Po ndjek
+    instance_actor_flash: Kjo llogari është një aktor virtual, i përdorur për të përfaqësuar vetë serverin dhe jo ndonjë përdorues. Përdoret për qëllime federimi dhe s’duhet pezulluar.
     last_active: aktiv së fundi
     link_verified_on: Pronësia e kësaj lidhjeje qe kontrolluar më %{date}
     nothing_here: S’ka gjë këtu!
@@ -425,6 +425,7 @@ sq:
       view: Shihni bllokim përkatësie
     email_domain_blocks:
       add_new: Shtoni të ri
+      allow_registrations_with_approval: Lejo regjistrim me miratim
       attempts_over_week:
         one: "%{count} përpjekje gjatë javës së shkuar"
         other: "%{count} përpjekje regjistrimi gjatë javës së kaluar"
@@ -610,6 +611,7 @@ sq:
       created_at: Raportuar më
       delete_and_resolve: Fshiji postimet
       forwarded: U përcoll
+      forwarded_replies_explanation: Ky raportim është nga një përdorues i largët dhe rreth lënde të largët. Ju është përcjellë ngaqë lënda e raportuar gjendet në përgjigje ndaj njërit prej përdoruesve tuaj.
       forwarded_to: U përcoll te %{domain}
       mark_as_resolved: Vëri shenjë si i zgjidhur
       mark_as_sensitive: Vëri shenjë si rezervat
@@ -925,6 +927,7 @@ sq:
         peaked_on_and_decaying: Kulmoi më %{date}, tani në rënie
         title: Hashtag-ë në modë
         trendable: Mund të shfaqet nën të modës
+        trending_rank: 'Trending #%{rank}'
         usable: Mund të përdoret
         usage_comparison: Përdorur %{today} herë sot, krahasuar me %{yesterday} dje
         used_by_over_week:
@@ -991,7 +994,6 @@ sq:
       new_trending_statuses:
         title: Postime në modë
       new_trending_tags:
-        no_approved_tags: Aktualisht s’ka hashtag-ë në modë të miratuar.
         title: Hashtag-ë në modë
       subject: Gjëra të reja në modë për shqyrtim te %{instance}
   aliases:
@@ -1035,6 +1037,14 @@ sq:
       hint_html: Edhe një gjë tjetër! Na duhet të ripohoni se jeni qenie njerëzore (që të mbajmë larg mesazhe të padëshiruar!). Zgjidhni CAPTCHA-n më poshtë dhe klikoni mbi “Vazhdo”.
       title: Kontroll sigurie
     confirmations:
+      awaiting_review: Adresa juaj email u ripohua! Ekipi i %{domain} stani po bën regjistrimin tuaj. Nëse e miratojnë llogarinë tuaj, do të merrni një email!
+      awaiting_review_title: Regjistrimi juaj po merret në shqyrtim
+      clicking_this_link: duke klikuar këtë lidhje
+      login_link: hyni
+      proceed_to_login_html: Tani mund të vazhdoni të %{login_link}.
+      redirect_to_app_html: Duhet të ishit ridrejtuar te aplikacioni <strong>%{app_name}</strong>. Nëse s’ndodhi, provoni %{clicking_this_link}, ose të ktheheni dorazi te aplikacioni.
+      registration_complete: Tanimë është plotësuar regjistrimi juaj në %{domain}!
+      welcome_title: Mirë se vini, %{name}!
       wrong_email_hint: Nëse ajo adresë email s’është e saktë, mund ta ndryshoni te rregullimet e llogarisë.
     delete_account: Fshije llogarinë
     delete_account_html: Nëse dëshironi të fshihni llogarinë tuaj, mund <a href="%{path}">ta bëni që këtu</a>. Do t’ju kërkohet ta ripohoni.
@@ -1354,6 +1364,7 @@ sq:
       '86400': 1 ditë
     expires_in_prompt: Kurrë
     generate: Prodho lidhje ftese
+    invalid: Kjo ftesë s’është e vlefshme
     invited_by: 'Qetë ftuar nga:'
     max_uses:
       one: 1 përdorim
@@ -1531,6 +1542,9 @@ sq:
     errors:
       limit_reached: U mbërrit në kufirin e reagimeve të ndryshme
       unrecognized_emoji: s’është emotikon i pranuar
+  redirects:
+    prompt: Nëse e besoni këtë lidhje, klikoni që të vazhdohet.
+    title: Po e braktisni %{instance}.
   relationships:
     activity: Veprimtari llogarie
     confirm_follow_selected_followers: Jeni i sigurt se doni të ndiqet ndjekësit e përzgjedhur?
@@ -1593,6 +1607,7 @@ sq:
       unknown_browser: Shfletues i Panjohur
       weibo: Weibo
     current_session: Sesioni i tanishëm
+    date: Datë
     description: "%{browser} në %{platform}"
     explanation: Këta janë shfletuesit e përdorur tani për hyrje te llogaria juaj Mastodon.
     ip: IP
@@ -1759,18 +1774,27 @@ sq:
     webauthn: Kyçe sigurie
   user_mailer:
     appeal_approved:
-      action: Kaloni te llogaria juaj
+      action: Rregullime Llogarie
       explanation: Apelimi i paralajmërimit kundër llogarisë tuaj më %{strike_date}, të cilin e parashtruar më %{appeal_date} është miratuar. Llogaria juaj është sërish në pozita të mira.
       subject: Apelimi juaj i datës %{date} u miratua
+      subtitle: Llogaria juaj edhe një herë është e shëndetshme.
       title: Apelimi u miratua
     appeal_rejected:
       explanation: Apelimi i paralajmërimit kundër llogarisë tuaj më %{strike_date}, të cilin e parashtruar më %{appeal_date}, u hodh poshtë.
       subject: Apelimi juaj prej %{date} është hedhur poshtë
+      subtitle: Apelimi juaj është hedhur poshtë.
       title: Apelimi u hodh poshtë
     backup_ready:
-      explanation: Kërkuat një kopjeruajtje të plotë të llogarisë tuaj Mastodon. E keni gati për shkarkim!
+      explanation: Kërkuat një kopjeruajtje të plotë të llogarisë tuaj Mastodon.
+      extra: Tani është gati për shkarkim!
       subject: Arkivi juaj është gati për shkarkim
       title: Marrje arkivi me vete
+    failed_2fa:
+      details: 'Ja hollësitë e përpjekjes për hyrje:'
+      explanation: Dikush ka provuar të hyjë në llogarinë tuaj, por dha faktor të dytë mirëfilltësimi.
+      further_actions_html: Nëse s’qetë ju, rekomandojmë të %{action} menjëherë, ngaqë mund të jetë komprometua.
+      subject: Dështim faktori të dytë mirëfilltësimesh
+      title: Dështoi mirëfilltësimi me faktor të dytë
     suspicious_sign_in:
       change_password: ndryshoni fjalëkalimin tuaj
       details: 'Ja hollësitë për hyrjen:'
@@ -1824,6 +1848,7 @@ sq:
     go_to_sso_account_settings: Kaloni te rregullime llogarie te shërbimi juaj i identitetit
     invalid_otp_token: Kod dyfaktorësh i pavlefshëm
     otp_lost_help_html: Nëse humbët hyrjen te të dy, mund të lidheni me %{email}
+    rate_limited: Shumë përpjekje mirëfilltësimi, riprovoni më vonë.
     seamless_external_login: Jeni futur përmes një shërbimi të jashtëm, ndaj s’ka rregullime fjalëkalimi dhe email.
     signed_in_as: 'I futur si:'
   verification:

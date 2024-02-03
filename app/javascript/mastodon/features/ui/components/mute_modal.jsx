@@ -108,7 +108,6 @@ class MuteModal extends PureComponent {
           <div>
             <span><FormattedMessage id='mute_modal.duration' defaultMessage='Duration' />: </span>
 
-            {/* eslint-disable-next-line jsx-a11y/no-onchange */}
             <select value={muteDuration} onChange={this.changeMuteDuration}>
               <option value={0}>{intl.formatMessage(messages.indefinite)}</option>
               <option value={300}>{intl.formatMessage(messages.minutes, { number: 5 })}</option>

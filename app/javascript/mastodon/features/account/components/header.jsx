@@ -9,15 +9,16 @@ import { NavLink, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/check.svg';
-import { ReactComponent as LockIcon } from '@material-symbols/svg-600/outlined/lock.svg';
-import { ReactComponent as MoreHorizIcon } from '@material-symbols/svg-600/outlined/more_horiz.svg';
-import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-600/outlined/notifications-fill.svg';
-import { ReactComponent as NotificationsActiveIcon } from '@material-symbols/svg-600/outlined/notifications_active.svg';
-
+import CheckIcon from '@/material-icons/400-24px/check.svg?react';
+import LockIcon from '@/material-icons/400-24px/lock.svg?react';
+import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
+import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
+import NotificationsActiveIcon from '@/material-icons/400-24px/notifications_active-fill.svg?react';
+import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 import { Avatar } from 'mastodon/components/avatar';
 import { Badge, AutomatedBadge, GroupBadge } from 'mastodon/components/badge';
 import { Button } from 'mastodon/components/button';
+import { CopyIconButton } from 'mastodon/components/copy_icon_button';
 import { FollowersCounter, FollowingCounter, StatusesCounter } from 'mastodon/components/counters';
 import { Icon }  from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
@@ -33,6 +34,8 @@ import FollowRequestNoteContainer from '../containers/follow_request_note_contai
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
+  followBack: { id: 'account.follow_back', defaultMessage: 'Follow back' },
+  mutual: { id: 'account.mutual', defaultMessage: 'Mutual' },
   cancel_follow_request: { id: 'account.cancel_follow_request', defaultMessage: 'Withdraw follow request' },
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
@@ -46,6 +49,7 @@ const messages = defineMessages({
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   report: { id: 'account.report', defaultMessage: 'Report @{name}' },
   share: { id: 'account.share', defaultMessage: 'Share @{name}\'s profile' },
+  copy: { id: 'account.copy', defaultMessage: 'Copy link to profile' },
   media: { id: 'account.media', defaultMessage: 'Media' },
   blockDomain: { id: 'account.block_domain', defaultMessage: 'Block domain {domain}' },
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
@@ -79,6 +83,20 @@ const titleFromAccount = account => {
   return `${prefix} (@${acct})`;
 };
 
+const messageForFollowButton = relationship => {
+  if(!relationship) return messages.follow;
+
+  if (relationship.get('following') && relationship.get('followed_by')) {
+    return messages.mutual;
+  } else if (!relationship.get('following') && relationship.get('followed_by')) {
+    return messages.followBack;
+  } else if (relationship.get('following')) {
+    return messages.unfollow;
+  } else {
+    return messages.follow;
+  }
+};
+
 const dateFormatOptions = {
   month: 'short',
   day: 'numeric',
@@ -91,7 +109,7 @@ const dateFormatOptions = {
 class Header extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map,
+    account: ImmutablePropTypes.record,
     identity_props: ImmutablePropTypes.list,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
@@ -245,15 +263,12 @@ class Header extends ImmutablePureComponent {
     const isRemote     = account.get('acct') !== account.get('username');
     const remoteDomain = isRemote ? account.get('acct').split('@')[1] : null;
 
-    let info        = [];
-    let actionBtn   = '';
-    let bellBtn     = '';
-    let lockedIcon  = '';
-    let menu        = [];
+    let actionBtn, bellBtn, lockedIcon, shareBtn;
 
-    if (me !== account.get('id') && account.getIn(['relationship', 'followed_by'])) {
-      info.push(<span key='followed_by' className='relationship-tag'><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>);
-    } else if (me !== account.get('id') && account.getIn(['relationship', 'blocking'])) {
+    let info = [];
+    let menu = [];
+
+    if (me !== account.get('id') && account.getIn(['relationship', 'blocking'])) {
       info.push(<span key='blocked' className='relationship-tag'><FormattedMessage id='account.blocked' defaultMessage='Blocked' /></span>);
     }
 
@@ -264,7 +279,13 @@ class Header extends ImmutablePureComponent {
     }
 
     if (account.getIn(['relationship', 'requested']) || account.getIn(['relationship', 'following'])) {
-      bellBtn = <IconButton icon={account.getIn(['relationship', 'notifying']) ? 'bell' : 'bell-o'} iconComponent={account.getIn(['relationship', 'notifying']) ? NotificationsIcon : NotificationsActiveIcon}  size={24} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
+      bellBtn = <IconButton icon={account.getIn(['relationship', 'notifying']) ? 'bell' : 'bell-o'} iconComponent={account.getIn(['relationship', 'notifying']) ? NotificationsActiveIcon : NotificationsIcon} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
+    }
+
+    if ('share' in navigator) {
+      shareBtn = <IconButton className='optional' iconComponent={ShareIcon} title={intl.formatMessage(messages.share, { name: account.get('username') })} onClick={this.handleShare} />;
+    } else {
+      shareBtn = <CopyIconButton className='optional' title={intl.formatMessage(messages.copy)} value={account.get('url')} />;
     }
 
     if (me !== account.get('id')) {
@@ -273,7 +294,7 @@ class Header extends ImmutablePureComponent {
       } else if (account.getIn(['relationship', 'requested'])) {
         actionBtn = <Button text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.props.onFollow} />;
       } else if (!account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames({ 'button--destructive': account.getIn(['relationship', 'following']) })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={signedIn ? this.props.onFollow : this.props.onInteractionModal} />;
+        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames({ 'button--destructive': account.getIn(['relationship', 'following']) })} text={intl.formatMessage(messageForFollowButton(account.get('relationship')))} onClick={signedIn ? this.props.onFollow : this.props.onInteractionModal} />;
       } else if (account.getIn(['relationship', 'blocking'])) {
         actionBtn = <Button text={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />;
       }
@@ -289,7 +310,7 @@ class Header extends ImmutablePureComponent {
       lockedIcon = <Icon id='lock' icon={LockIcon} title={intl.formatMessage(messages.account_locked)} />;
     }
 
-    if (signedIn && account.get('id') !== me) {
+    if (signedIn && account.get('id') !== me && !account.get('suspended')) {
       menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
       menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.props.onDirect });
       menu.push(null);
@@ -297,10 +318,6 @@ class Header extends ImmutablePureComponent {
 
     if (isRemote) {
       menu.push({ text: intl.formatMessage(messages.openOriginalPage), href: account.get('url') });
-    }
-
-    if ('share' in navigator) {
-      menu.push({ text: intl.formatMessage(messages.share, { name: account.get('username') }), action: this.handleShare });
       menu.push(null);
     }
 
@@ -347,7 +364,9 @@ class Header extends ImmutablePureComponent {
         menu.push({ text: intl.formatMessage(messages.block, { name: account.get('username') }), action: this.props.onBlock, dangerous: true });
       }
 
-      menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.props.onReport, dangerous: true });
+      if (!account.get('suspended')) {
+        menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.props.onReport, dangerous: true });
+      }
     }
 
     if (signedIn && isRemote) {
@@ -395,7 +414,7 @@ class Header extends ImmutablePureComponent {
 
         <div className='account__header__image'>
           <div className='account__header__info'>
-            {!suspended && info}
+            {info}
           </div>
 
           {!(suspended || hidden) && <img src={autoPlayGif ? account.get('header') : account.get('header_static')} alt='' className='parallax' />}
@@ -407,18 +426,17 @@ class Header extends ImmutablePureComponent {
               <Avatar account={suspended || hidden ? undefined : account} size={90} />
             </a>
 
-            {!suspended && (
-              <div className='account__header__tabs__buttons'>
-                {!hidden && (
-                  <>
-                    {actionBtn}
-                    {bellBtn}
-                  </>
-                )}
+            <div className='account__header__tabs__buttons'>
+              {!hidden && (
+                <>
+                  {actionBtn}
+                  {bellBtn}
+                  {shareBtn}
+                </>
+              )}
 
-                <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' iconComponent={MoreHorizIcon} size={24} direction='right' />
-              </div>
-            )}
+              <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' iconComponent={MoreHorizIcon} size={24} direction='right' />
+            </div>
           </div>
 
           <div className='account__header__tabs__name'>

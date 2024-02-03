@@ -20,16 +20,20 @@ declare module '*.png' {
 }
 
 declare module '*.svg' {
+  const path: string;
+  export default path;
+}
+
+declare module '*.svg?react' {
   import type React from 'react';
 
   interface SVGPropsWithTitle extends React.SVGProps<SVGSVGElement> {
     title?: string;
   }
 
-  export const ReactComponent: React.FC<SVGPropsWithTitle>;
+  const ReactComponent: React.FC<SVGPropsWithTitle>;
 
-  const path: string;
-  export default path;
+  export default ReactComponent;
 }
 
 declare module '*.webp' {

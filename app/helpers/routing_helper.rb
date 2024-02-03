@@ -24,8 +24,12 @@ module RoutingHelper
     Rails.configuration.action_controller.asset_host || root_url
   end
 
-  def full_pack_url(source, **options)
-    full_asset_url(asset_pack_path(source, **options))
+  def frontend_asset_path(source, **options)
+    asset_pack_path("media/#{source}", **options)
+  end
+
+  def frontend_asset_url(source, **options)
+    full_asset_url(frontend_asset_path(source, **options))
   end
 
   def use_storage?

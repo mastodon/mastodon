@@ -425,6 +425,7 @@ pt-BR:
       view: Ver domínios bloqueados
     email_domain_blocks:
       add_new: Adicionar novo
+      allow_registrations_with_approval: Permitir inscrições com aprovação
       attempts_over_week:
         one: "%{count} tentativa na última semana"
         other: "%{count} tentativas de inscrição na última semana"
@@ -534,6 +535,7 @@ pt-BR:
       total_reported: Denúncias sobre eles
       total_storage: Mídias anexadas
       totals_time_period_hint_html: Os totais exibidos abaixo incluem dados para todo o tempo.
+      unknown_instance: Atualmente não há registros deste domínio neste servidor.
     invites:
       deactivate_all: Desativar todos
       filter:
@@ -610,6 +612,7 @@ pt-BR:
       created_at: Denunciado
       delete_and_resolve: Excluir publicações
       forwarded: Encaminhados
+      forwarded_replies_explanation: Este relatório é de um usuário remoto e é sobre um conteúdo remoto. Ele foi encaminhado para você porque o conteúdo denunciado está em resposta a um de seus usuários.
       forwarded_to: Encaminhado para %{domain}
       mark_as_resolved: Marcar como resolvido
       mark_as_sensitive: Marcar como sensível
@@ -995,8 +998,6 @@ pt-BR:
       new_trending_statuses:
         title: Publicações em alta
       new_trending_tags:
-        no_approved_tags: No momento, não há hashtags de tendências aprovadas.
-        requirements: 'Qualquer um desses candidatos poderia ultrapassar a hashtag de tendência aprovada #%{rank} , que é atualmente #%{lowest_tag_name} com uma pontuação de %{lowest_tag_score}.'
         title: Hashtags em alta
       subject: Novas tendências para revisão em %{instance}
   aliases:
@@ -1040,6 +1041,14 @@ pt-BR:
       hint_html: Só mais uma coisa! Precisamos confirmar que você é um humano (isso é para que possamos evitar o spam!). Resolva o CAPTCHA abaixo e clique em "Continuar".
       title: Verificação de segurança
     confirmations:
+      awaiting_review: Seu endereço de e-mail foi confirmado! A equipe de %{domain} está agora revisando o seu cadastro. Eles lhe enviarão um e-mail se aprovarem a sua conta!
+      awaiting_review_title: Seu cadastro está sendo analisado
+      clicking_this_link: clicar este link
+      login_link: entrar
+      proceed_to_login_html: Agora você pode prosseguir para %{login_link}.
+      redirect_to_app_html: Você deveria ter sido redirecionado para o aplicativo <strong>%{app_name}</strong>. Se isso não aconteceu, tente %{clicking_this_link} ou volte manualmente para o aplicativo.
+      registration_complete: Seu cadastro no %{domain} foi concluído!
+      welcome_title: Boas vindas, %{name}!
       wrong_email_hint: Se esse endereço de e-mail não estiver correto, você pode alterá-lo nas configurações da conta.
     delete_account: Excluir conta
     delete_account_html: Se você deseja excluir sua conta, você pode <a href="%{path}">fazer isso aqui</a>. Uma confirmação será solicitada.
@@ -1359,6 +1368,7 @@ pt-BR:
       '86400': 1 dia
     expires_in_prompt: Nunca
     generate: Gerar convite
+    invalid: Este convite não é válido
     invited_by: 'Você recebeu convite de:'
     max_uses:
       one: 1 uso
@@ -1536,6 +1546,9 @@ pt-BR:
     errors:
       limit_reached: Limite de reações diferentes atingido
       unrecognized_emoji: não é um emoji reconhecido
+  redirects:
+    prompt: Se você confia neste link, clique nele para continuar.
+    title: Você está saindo de %{instance}.
   relationships:
     activity: Atividade da conta
     confirm_follow_selected_followers: Tem certeza que deseja seguir os seguidores selecionados?
@@ -1598,6 +1611,7 @@ pt-BR:
       unknown_browser: Navegador desconhecido
       weibo: Weibo
     current_session: Sessão atual
+    date: Data
     description: "%{browser} em %{platform}"
     explanation: Estes são os navegadores que estão conectados com a sua conta Mastodon.
     ip: IP
@@ -1764,18 +1778,26 @@ pt-BR:
     webauthn: Chaves de segurança
   user_mailer:
     appeal_approved:
-      action: Acessar perfil
+      action: Configurações da conta
       explanation: A revisão da punição na sua conta em %{strike_date} que você enviou em %{appeal_date} foi aprovada. Sua conta está novamente em situação regular.
       subject: Sua revisão de %{date} foi aprovada
       title: Revisão aprovada
     appeal_rejected:
       explanation: A revisão da punição na sua conta em %{strike_date} que você enviou em %{appeal_date} foi rejeitada.
       subject: Sua revisão de %{date} foi rejeitada
+      subtitle: Sua revisão foi rejeitada.
       title: Revisão rejeitada
     backup_ready:
-      explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
+      explanation: Você solicitou um ‘backup’ completo da sua conta Mastodon.
+      extra: Agora está pronto para baixar!
       subject: Seu arquivo está pronto para ser baixado
       title: Baixar arquivo
+    failed_2fa:
+      details: 'Aqui estão os detalhes da tentativa de acesso:'
+      explanation: Alguém tentou entrar em sua conta, mas forneceu um segundo fator de autenticação inválido.
+      further_actions_html: Se não foi você, recomendamos que %{action} imediatamente, pois ela pode ser comprometida.
+      subject: Falha na autenticação do segundo fator
+      title: Falha na autenticação do segundo fator
     suspicious_sign_in:
       change_password: Altere sua senha
       details: 'Aqui estão os detalhes do acesso:'
@@ -1829,6 +1851,7 @@ pt-BR:
     go_to_sso_account_settings: Vá para as configurações de conta do seu provedor de identidade
     invalid_otp_token: Código de dois fatores inválido
     otp_lost_help_html: Se você perder o acesso à ambos, você pode entrar em contato com %{email}
+    rate_limited: Muitas tentativas de autenticação; tente novamente mais tarde.
     seamless_external_login: Você entrou usando um serviço externo, então configurações de e-mail e senha não estão disponíveis.
     signed_in_as: 'Entrou como:'
   verification:

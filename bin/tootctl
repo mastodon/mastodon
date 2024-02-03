@@ -6,8 +6,13 @@ require_relative '../lib/mastodon/cli/main'
 
 begin
   Chewy.strategy(:mastodon) do
-    Mastodon::CLI::Main.start(ARGV)
+    Mastodon::CLI::Main.start(ARGV, debug: true) # Enables the script to rescue `Thor::Error`
   end
+rescue Thor::Error => e
+  Thor::Shell::Color
+    .new
+    .say_error(e.message, :red)
+  exit(1)
 rescue Interrupt
   exit(130)
 end

@@ -54,14 +54,14 @@ uk:
         no_role: Немає ролі
         title: Змінити роль для %{username}
       confirm: Зберегти
-      confirmed: Підтвердити ел.адресу
+      confirmed: Підтверджено
       confirming: Зберігається
       custom: Власне
       delete: Видалити дані
       deleted: Видалено
       demote: Усунути
       destroyed_msg: Дані %{username} тепер в черзі на негайне видалення
-      disable: Вимкнути
+      disable: Заморозити
       disable_sign_in_token_auth: Вимкнути автентифікацію за допомогою е-пошти
       disable_two_factor_authentication: Вимкнути двофакторну авторизацію
       disabled: Вимкнено
@@ -70,7 +70,7 @@ uk:
       edit: Змінити
       email: Електронна пошта
       email_status: Стан електронної пошти
-      enable: Увімкнути
+      enable: Розморозити
       enable_sign_in_token_auth: Увімкнути автентифікацію за допомогою е-пошти
       enabled: Увімкнено
       enabled_msg: Обліковий запис %{username} успішно розморожено
@@ -439,6 +439,7 @@ uk:
       view: Переглянути заблоковані домени
     email_domain_blocks:
       add_new: Додати
+      allow_registrations_with_approval: Дозволити реєстрації із затвердженням
       attempts_over_week:
         few: "%{count} спроби входу за останній тиждень"
         many: "%{count} спроб входу за останній тиждень"
@@ -635,6 +636,7 @@ uk:
       created_at: Створено
       delete_and_resolve: Видалити дописи
       forwarded: Переслано
+      forwarded_replies_explanation: Цей звіт належить віддаленому користувачеві і про віддалений вміст. Контент був пересланий вам, тому що він містить повідомлення у відповідь одному з ваших користувачів.
       forwarded_to: Переслано до %{domain}
       mark_as_resolved: Позначити вирішеним
       mark_as_sensitive: Позначити делікатним
@@ -1032,8 +1034,6 @@ uk:
       new_trending_statuses:
         title: Популярні дописи
       new_trending_tags:
-        no_approved_tags: На цей час немає схвалених популярних хештегів.
-        requirements: 'Кожен з цих кандидатів може перевершити #%{rank} затвердженого популярного хештеґу, який зараз на #%{lowest_tag_name} з рейтингом %{lowest_tag_score}.'
         title: Популярні хештеги
       subject: Нове популярне до розгляду на %{instance}
   aliases:
@@ -1077,6 +1077,14 @@ uk:
       hint_html: Ще одне! Ми повинні пересвідчитись, що ви людина (щоб ми могли уникнути спаму!). Розв'яжіть CAPTCHA внизу і натисніть кнопку "Продовжити".
       title: Перевірка безпеки
     confirmations:
+      awaiting_review: Ваша електронна адреса підтверджена! Наразі співробітники %{domain} розглядають вашу реєстрацію. Ви отримаєте електронний лист, якщо вони затвердять ваш обліковий запис!
+      awaiting_review_title: Ваша реєстрація розглядається
+      clicking_this_link: натисніть це посилання
+      login_link: увійти
+      proceed_to_login_html: Тепер ви можете перейти до %{login_link}.
+      redirect_to_app_html: Вас мало переспрямувати до програми <strong>%{app_name}</strong>. Якщо цього не сталося, спробуйте %{clicking_this_link} або вручну поверніться до програми.
+      registration_complete: Ваша реєстрація на %{domain} завершена!
+      welcome_title: Ласкаво просимо, %{name}!
       wrong_email_hint: Якщо ця адреса електронної пошти неправильна, можна змінити її в налаштуваннях облікового запису.
     delete_account: Видалити обліковий запис
     delete_account_html: Якщо ви хочете видалити свій обліковий запис, ви можете <a href="%{path}">перейти сюди</a>. Вас попросять підтвердити дію.
@@ -1410,6 +1418,7 @@ uk:
       '86400': 1 день
     expires_in_prompt: Ніколи
     generate: Згенерувати
+    invalid: Це запрошення не дійсне
     invited_by: 'Вас запросив:'
     max_uses:
       few: "%{count} використання"
@@ -1589,6 +1598,9 @@ uk:
     errors:
       limit_reached: Досягнуто обмеження різних реакцій
       unrecognized_emoji: не є розпізнаним емоджі
+  redirects:
+    prompt: Якщо ви довіряєте цьому посиланню, натисніть, щоб продовжити.
+    title: Ви покидаєте %{instance}.
   relationships:
     activity: Діяльність облікового запису
     confirm_follow_selected_followers: Ви справді бажаєте підписатися на обраних підписників?
@@ -1651,6 +1663,7 @@ uk:
       unknown_browser: Невідомий браузер
       weibo: Weibo
     current_session: Поточний сеанс
+    date: Дата
     description: "%{browser} на %{platform}"
     explanation: Це веб-браузери, авторизовані у вашому обліковому записі Mastodon.
     ip: IP
@@ -1829,7 +1842,7 @@ uk:
     webauthn: Ключі безпеки
   user_mailer:
     appeal_approved:
-      action: Перейти у ваш обліковий запис
+      action: Налаштування облікового запису
       explanation: Оскарження попередження вашому обліковому запису %{strike_date}, яке ви надіслали %{appeal_date} було схвалено. Ваш обліковий запис знову вважається добропорядним.
       subject: Вашу апеляцію від %{date} було схвалено
       title: Апеляцію схвалено
@@ -1838,7 +1851,6 @@ uk:
       subject: Вашу апеляцію від %{date} було відхилено
       title: Апеляцію відхилено
     backup_ready:
-      explanation: Ви робили запит повної резервної копії вашого облікового запису Mastodon. Вона вже готова для завантаження!
       subject: Ваш архів готовий до завантаження
       title: Винесення архіву
     suspicious_sign_in:
@@ -1894,6 +1906,7 @@ uk:
     go_to_sso_account_settings: Перейдіть до налаштувань облікового запису постачальника ідентифікації
     invalid_otp_token: Введено неправильний код
     otp_lost_help_html: Якщо ви втратили доступ до обох, ви можете отримати доступ з %{email}
+    rate_limited: Занадто багато спроб з'єднання. Спробуйте ще раз пізніше.
     seamless_external_login: Ви увійшли за допомогою зовнішнього сервісу, тому налаштування паролю та електронної пошти недоступні.
     signed_in_as: 'Ви увійшли як:'
   verification:

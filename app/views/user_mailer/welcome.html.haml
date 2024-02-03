@@ -1,99 +1,25 @@
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
+= content_for :heading do
+  = render 'application/mailer/heading', heading_title: t('user_mailer.welcome.title', name: @resource.account.username), heading_subtitle: t('user_mailer.welcome.explanation')
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-body-padding-td
+      %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-inner-card-td-without-padding
+            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
               %tr
-                %td.content-cell.hero
-                  .email-row
-                    .col-6
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.text-center.padded
-                              %table.hero-icon{ align: 'center', cellspacing: 0, cellpadding: 0 }
-                                %tbody
-                                  %tr
-                                    %td
-                                      = image_tag full_pack_url('media/images/mailer/icon_done.png'), alt: ''
-
-                              %h1= t 'user_mailer.welcome.title', name: @resource.account.username
-                              %p.lead= t 'user_mailer.welcome.explanation'
-
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
+                %td.email-prose.email-padding-24
+                  %p
+                    %b= t 'user_mailer.welcome.full_handle'
+                  = render 'application/mailer/frame', text: "#{@resource.account.username}@#{@instance}"
+                  %p= t 'user_mailer.welcome.full_handle_hint', instance: @instance
+            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
               %tr
-                %td.content-cell.content-start
-                  .email-row
-                    .col-3
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.input-cell.text-center.padded-bottom
-                              %h5= t 'user_mailer.welcome.full_handle'
-                              %table.input{ align: 'center', cellspacing: 0, cellpadding: 0 }
-                                %tbody
-                                  %tr
-                                    %td @#{@resource.account.username}@#{@instance}
-                    .col-3
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell
-                              %p= t 'user_mailer.welcome.full_handle_hint', instance: @instance
-
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
+                %td.email-border-top.email-prose.email-padding-24
+                  %p= t 'user_mailer.welcome.edit_profile_step'
+                  = render 'application/mailer/button', text: t('user_mailer.welcome.edit_profile_action'), url: settings_profile_url
+            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
               %tr
-                %td.content-cell.content-start.border-top
-                  .email-row
-                    .col-4
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.padded
-                              = t 'user_mailer.welcome.edit_profile_step'
-                    .col-2
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.padded
-                              %table.button.button-small{ align: 'left', cellspacing: 0, cellpadding: 0 }
-                                %tbody
-                                  %tr
-                                    %td.button-primary
-                                      = link_to settings_profile_url do
-                                        %span= t 'user_mailer.welcome.edit_profile_action'
-
-              %tr
-                %td.content-cell.padded-bottom
-                  .email-row
-                    .col-4
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.padded
-                              = t 'user_mailer.welcome.final_step'
-                    .col-2
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.padded
-                              %table.button.button-small{ align: 'left', cellspacing: 0, cellpadding: 0 }
-                                %tbody
-                                  %tr
-                                    %td.button-primary
-                                      = link_to web_url do
-                                        %span= t 'user_mailer.welcome.final_action'
+                %td.email-border-top.email-prose.email-padding-24
+                  %p= t 'user_mailer.welcome.edit_profile_step'
+                  = render 'application/mailer/button', text: t('user_mailer.welcome.final_action'), url: web_url

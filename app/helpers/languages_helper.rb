@@ -224,7 +224,7 @@ module LanguagesHelper
     'en-GB': 'English (British)',
     'es-AR': 'Español (Argentina)',
     'es-MX': 'Español (México)',
-    'fr-QC': 'Français (Canadien)',
+    'fr-CA': 'Français (Canadien)',
     'pt-BR': 'Português (Brasil)',
     'pt-PT': 'Português (Portugal)',
     'sr-Latn': 'Srpski (latinica)',
@@ -298,5 +298,3 @@ module LanguagesHelper
     locale_name.to_sym if locale_name.present? && I18n.available_locales.include?(locale_name.to_sym)
   end
 end
-
-# rubocop:enable Metrics/ModuleLength

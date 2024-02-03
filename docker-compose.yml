@@ -59,7 +59,7 @@ services:
     image: ghcr.io/mastodon/mastodon:v4.2.0
     restart: always
     env_file: .env.production
-    command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
+    command: bundle exec puma -C config/puma.rb
     networks:
       - external_network
       - internal_network

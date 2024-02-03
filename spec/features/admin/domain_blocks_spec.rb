@@ -4,6 +4,7 @@ require 'rails_helper'
 
 describe 'blocking domains through the moderation interface' do
   before do
+    allow(DomainBlockWorker).to receive(:perform_async).and_return(true)
     sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')), scope: :user
   end
 
@@ -13,9 +14,10 @@ describe 'blocking domains through the moderation interface' do
 
       fill_in 'domain_block_domain', with: 'example.com'
       select I18n.t('admin.domain_blocks.new.severity.silence'), from: 'domain_block_severity'
-      click_button I18n.t('admin.domain_blocks.new.create')
+      click_on I18n.t('admin.domain_blocks.new.create')
 
       expect(DomainBlock.exists?(domain: 'example.com', severity: 'silence')).to be true
+      expect(DomainBlockWorker).to have_received(:perform_async)
     end
   end
 
@@ -25,15 +27,17 @@ describe 'blocking domains through the moderation interface' do
 
       fill_in 'domain_block_domain', with: 'example.com'
       select I18n.t('admin.domain_blocks.new.severity.suspend'), from: 'domain_block_severity'
-      click_button I18n.t('admin.domain_blocks.new.create')
+      click_on I18n.t('admin.domain_blocks.new.create')
 
-      # It presents a confirmation screen
+      # It doesn't immediately block but presents a confirmation screen
       expect(page).to have_title(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'example.com'))
+      expect(DomainBlockWorker).to_not have_received(:perform_async)
 
       # Confirming creates a block
-      click_button I18n.t('admin.domain_blocks.confirm_suspension.confirm')
+      click_on I18n.t('admin.domain_blocks.confirm_suspension.confirm')
 
       expect(DomainBlock.exists?(domain: 'example.com', severity: 'suspend')).to be true
+      expect(DomainBlockWorker).to have_received(:perform_async)
     end
   end
 
@@ -45,15 +49,17 @@ describe 'blocking domains through the moderation interface' do
 
       fill_in 'domain_block_domain', with: 'example.com'
       select I18n.t('admin.domain_blocks.new.severity.suspend'), from: 'domain_block_severity'
-      click_button I18n.t('admin.domain_blocks.new.create')
+      click_on I18n.t('admin.domain_blocks.new.create')
 
-      # It presents a confirmation screen
+      # It doesn't immediately block but presents a confirmation screen
       expect(page).to have_title(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'example.com'))
+      expect(DomainBlockWorker).to_not have_received(:perform_async)
 
       # Confirming updates the block
-      click_button I18n.t('admin.domain_blocks.confirm_suspension.confirm')
+      click_on I18n.t('admin.domain_blocks.confirm_suspension.confirm')
 
       expect(domain_block.reload.severity).to eq 'suspend'
+      expect(DomainBlockWorker).to have_received(:perform_async)
     end
   end
 
@@ -65,15 +71,17 @@ describe 'blocking domains through the moderation interface' do
 
       fill_in 'domain_block_domain', with: 'subdomain.example.com'
       select I18n.t('admin.domain_blocks.new.severity.suspend'), from: 'domain_block_severity'
-      click_button I18n.t('admin.domain_blocks.new.create')
+      click_on I18n.t('admin.domain_blocks.new.create')
 
-      # It presents a confirmation screen
+      # It doesn't immediately block but presents a confirmation screen
       expect(page).to have_title(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'subdomain.example.com'))
+      expect(DomainBlockWorker).to_not have_received(:perform_async)
 
       # Confirming creates the block
-      click_button I18n.t('admin.domain_blocks.confirm_suspension.confirm')
+      click_on I18n.t('admin.domain_blocks.confirm_suspension.confirm')
 
       expect(DomainBlock.where(domain: 'subdomain.example.com', severity: 'suspend')).to exist
+      expect(DomainBlockWorker).to have_received(:perform_async)
 
       # And leaves the previous block alone
       expect(domain_block.reload.severity).to eq 'silence'
@@ -88,13 +96,15 @@ describe 'blocking domains through the moderation interface' do
       visit edit_admin_domain_block_path(domain_block)
 
       select I18n.t('admin.domain_blocks.new.severity.suspend'), from: 'domain_block_severity'
-      click_button I18n.t('generic.save_changes')
+      click_on I18n.t('generic.save_changes')
 
-      # It presents a confirmation screen
+      # It doesn't immediately block but presents a confirmation screen
       expect(page).to have_title(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'example.com'))
+      expect(DomainBlockWorker).to_not have_received(:perform_async)
 
       # Confirming updates the block
-      click_button I18n.t('admin.domain_blocks.confirm_suspension.confirm')
+      click_on I18n.t('admin.domain_blocks.confirm_suspension.confirm')
+      expect(DomainBlockWorker).to have_received(:perform_async)
 
       expect(domain_block.reload.severity).to eq 'suspend'
     end
