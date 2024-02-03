@@ -276,7 +276,7 @@ const setInputDisabled = (input, disabled) => {
   }
 };
 
-delegate(document, '#account_statuses_cleanup_policy_enabled', 'change', ({ target }) => {
+Rails.delegate(document, '#account_statuses_cleanup_policy_enabled', 'change', ({ target }) => {
   target.form.querySelectorAll('input:not([type=hidden],#account_statuses_cleanup_policy_enabled), select').forEach((input) => {
     setInputDisabled(input, !target.checked);
   });
