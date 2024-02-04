@@ -97,6 +97,21 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
       end
 
       it_behaves_like 'sets pinned posts'
+
+      context 'when there is a single item, with the array compacted away' do
+        let(:items) { 'https://example.com/account/pinned/4' }
+
+        before do
+          stub_request(:get, 'https://example.com/account/pinned/4').to_return(status: 200, body: Oj.dump(status_json_4))
+          subject.call(actor, note: true, hashtag: false)
+        end
+
+        it 'sets expected posts as pinned posts' do
+          expect(actor.pinned_statuses.pluck(:uri)).to contain_exactly(
+            'https://example.com/account/pinned/4'
+          )
+        end
+      end
     end
 
     context 'when the endpoint is a paginated Collection' do
@@ -118,6 +133,21 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
       end
 
       it_behaves_like 'sets pinned posts'
+
+      context 'when there is a single item, with the array compacted away' do
+        let(:items) { 'https://example.com/account/pinned/4' }
+
+        before do
+          stub_request(:get, 'https://example.com/account/pinned/4').to_return(status: 200, body: Oj.dump(status_json_4))
+          subject.call(actor, note: true, hashtag: false)
+        end
+
+        it 'sets expected posts as pinned posts' do
+          expect(actor.pinned_statuses.pluck(:uri)).to contain_exactly(
+            'https://example.com/account/pinned/4'
+          )
+        end
+      end
     end
   end
 end
