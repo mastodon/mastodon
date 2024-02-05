@@ -1326,18 +1326,16 @@ describe Mastodon::CLI::Accounts do
     end
 
     shared_examples 'a successful migration' do
-      it 'calls the MoveService for the last migration' do
-        expect { subject }
-          .to output_results('OK')
-
-        last_migration = source_account.migrations.last
-
-        expect(move_service).to have_received(:call).with(last_migration).once
-      end
-
-      it 'displays a successful message' do
+      it 'displays a success message and calls the MoveService for the last migration' do
         expect { subject }
           .to output_results("OK, migrated #{source_account.acct} to #{target_account.acct}")
+
+        expect(move_service)
+          .to have_received(:call).with(last_migration).once
+      end
+
+      def last_migration
+        source_account.migrations.last
       end
     end
 

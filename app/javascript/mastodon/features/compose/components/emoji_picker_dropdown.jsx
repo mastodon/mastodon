@@ -164,6 +164,7 @@ class EmojiPickerMenuImpl extends PureComponent {
     intl: PropTypes.object.isRequired,
     skinTone: PropTypes.number.isRequired,
     onSkinTone: PropTypes.func.isRequired,
+    pickerButtonRef: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -178,7 +179,7 @@ class EmojiPickerMenuImpl extends PureComponent {
   };
 
   handleDocumentClick = e => {
-    if (this.node && !this.node.contains(e.target)) {
+    if (this.node && !this.node.contains(e.target) && !this.props.pickerButtonRef.contains(e.target)) {
       this.props.onClose();
     }
   };
@@ -233,6 +234,7 @@ class EmojiPickerMenuImpl extends PureComponent {
       emoji.native = emoji.colons;
     }
     if (!(event.ctrlKey || event.metaKey)) {
+
       this.props.onClose();
     }
     this.props.onPick(emoji);
@@ -407,6 +409,7 @@ class EmojiPickerDropdown extends PureComponent {
                   onSkinTone={onSkinTone}
                   skinTone={skinTone}
                   frequentlyUsedEmojis={frequentlyUsedEmojis}
+                  pickerButtonRef={this.target}
                 />
               </div>
             </div>
