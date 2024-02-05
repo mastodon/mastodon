@@ -25,15 +25,15 @@ RSpec.describe ActivityPub::CollectionsController do
 
         it 'returns http success and correct media type' do
           expect(response).to have_http_status(200)
-
           expect(response.media_type).to eq 'application/activity+json'
         end
 
         it_behaves_like 'cacheable response'
 
         it 'returns orderedItems with pinned statuses' do
-          expect(body_as_json[:orderedItems]).to be_an Array
-          expect(body_as_json[:orderedItems].size).to eq 3
+          expect(body_as_json[:orderedItems])
+            .to be_an(Array)
+            .and have_attributes(size: 3)
         end
 
         it 'includes URI of private pinned status' do
@@ -82,8 +82,9 @@ RSpec.describe ActivityPub::CollectionsController do
           it_behaves_like 'cacheable response'
 
           it 'returns orderedItems with pinned statuses' do
-            expect(body_as_json[:orderedItems]).to be_an Array
-            expect(body_as_json[:orderedItems].size).to eq 3
+            expect(body_as_json[:orderedItems])
+              .to be_an(Array)
+              .and have_attributes(size: 3)
           end
 
           it 'includes URI of private pinned status' do
@@ -116,8 +117,9 @@ RSpec.describe ActivityPub::CollectionsController do
             end
 
             it 'returns empty orderedItems' do
-              expect(body_as_json[:orderedItems]).to be_an Array
-              expect(body_as_json[:orderedItems].size).to eq 0
+              expect(body_as_json[:orderedItems])
+                .to be_an(Array)
+                .and have_attributes(size: 0)
             end
           end
 
@@ -137,8 +139,9 @@ RSpec.describe ActivityPub::CollectionsController do
             end
 
             it 'returns empty orderedItems' do
-              expect(body_as_json[:orderedItems]).to be_an Array
-              expect(body_as_json[:orderedItems].size).to eq 0
+              expect(body_as_json[:orderedItems])
+                .to be_an(Array)
+                .and have_attributes(size: 0)
             end
           end
         end
