@@ -17,10 +17,12 @@ RSpec.describe ActivityPub::CollectionsController do
   end
 
   describe 'GET #show' do
-    context 'when id is "featured"' do
-      context 'without signature' do
-        subject(:response) { get :show, params: { id: 'featured', account_username: account.username } }
+    subject(:response) { get :show, params: { id: id, account_username: account.username } }
 
+    context 'when id is "featured"' do
+      let(:id) { 'featured' }
+
+      context 'without signature' do
         let(:remote_account) { nil }
 
         it 'returns http success and correct media type' do
@@ -131,8 +133,9 @@ RSpec.describe ActivityPub::CollectionsController do
     end
 
     context 'when id is not "featured"' do
+      let(:id) { 'hoge' }
+
       it 'returns http not found' do
-        get :show, params: { id: 'hoge', account_username: account.username }
         expect(response).to have_http_status(404)
       end
     end
