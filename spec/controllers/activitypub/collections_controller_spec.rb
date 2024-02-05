@@ -30,18 +30,12 @@ RSpec.describe ActivityPub::CollectionsController do
 
         it_behaves_like 'cacheable response'
 
-        it 'returns orderedItems with pinned statuses' do
+        it 'returns orderedItems with correct items' do
           expect(body_as_json[:orderedItems])
             .to be_an(Array)
             .and have_attributes(size: 3)
-        end
-
-        it 'includes URI of private pinned status' do
-          expect(body_as_json[:orderedItems]).to include(ActivityPub::TagManager.instance.uri_for(private_pinned))
-        end
-
-        it 'does not include contents of private pinned status' do
-          expect(body_as_json).to_not include(private_pinned.text)
+            .and include(ActivityPub::TagManager.instance.uri_for(private_pinned))
+            .and not_include(private_pinned.text)
         end
 
         context 'when account is permanently suspended' do
@@ -81,18 +75,12 @@ RSpec.describe ActivityPub::CollectionsController do
 
           it_behaves_like 'cacheable response'
 
-          it 'returns orderedItems with pinned statuses' do
+          it 'returns orderedItems with expected items' do
             expect(body_as_json[:orderedItems])
               .to be_an(Array)
               .and have_attributes(size: 3)
-          end
-
-          it 'includes URI of private pinned status' do
-            expect(body_as_json[:orderedItems]).to include(ActivityPub::TagManager.instance.uri_for(private_pinned))
-          end
-
-          it 'does not include contents of private pinned status' do
-            expect(body_as_json).to_not include(private_pinned.text)
+              .and include(ActivityPub::TagManager.instance.uri_for(private_pinned))
+              .and not_include(private_pinned.text)
           end
         end
 
