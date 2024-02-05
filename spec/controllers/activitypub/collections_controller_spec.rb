@@ -21,7 +21,6 @@ RSpec.describe ActivityPub::CollectionsController do
       context 'without signature' do
         subject(:response) { get :show, params: { id: 'featured', account_username: account.username } }
 
-        let(:body) { body_as_json }
         let(:remote_account) { nil }
 
         it 'returns http success' do
@@ -35,16 +34,16 @@ RSpec.describe ActivityPub::CollectionsController do
         it_behaves_like 'cacheable response'
 
         it 'returns orderedItems with pinned statuses' do
-          expect(body[:orderedItems]).to be_an Array
-          expect(body[:orderedItems].size).to eq 3
+          expect(body_as_json[:orderedItems]).to be_an Array
+          expect(body_as_json[:orderedItems].size).to eq 3
         end
 
         it 'includes URI of private pinned status' do
-          expect(body[:orderedItems]).to include(ActivityPub::TagManager.instance.uri_for(private_pinned))
+          expect(body_as_json[:orderedItems]).to include(ActivityPub::TagManager.instance.uri_for(private_pinned))
         end
 
         it 'does not include contents of private pinned status' do
-          expect(response.body).to_not include(private_pinned.text)
+          expect(body_as_json).to_not include(private_pinned.text)
         end
 
         context 'when account is permanently suspended' do
@@ -88,18 +87,16 @@ RSpec.describe ActivityPub::CollectionsController do
           it_behaves_like 'cacheable response'
 
           it 'returns orderedItems with pinned statuses' do
-            json = body_as_json
-            expect(json[:orderedItems]).to be_an Array
-            expect(json[:orderedItems].size).to eq 3
+            expect(body_as_json[:orderedItems]).to be_an Array
+            expect(body_as_json[:orderedItems].size).to eq 3
           end
 
           it 'includes URI of private pinned status' do
-            json = body_as_json
-            expect(json[:orderedItems]).to include(ActivityPub::TagManager.instance.uri_for(private_pinned))
+            expect(body_as_json[:orderedItems]).to include(ActivityPub::TagManager.instance.uri_for(private_pinned))
           end
 
           it 'does not include contents of private pinned status' do
-            expect(response.body).to_not include(private_pinned.text)
+            expect(body_as_json).to_not include(private_pinned.text)
           end
         end
 
@@ -127,9 +124,8 @@ RSpec.describe ActivityPub::CollectionsController do
             end
 
             it 'returns empty orderedItems' do
-              json = body_as_json
-              expect(json[:orderedItems]).to be_an Array
-              expect(json[:orderedItems].size).to eq 0
+              expect(body_as_json[:orderedItems]).to be_an Array
+              expect(body_as_json[:orderedItems].size).to eq 0
             end
           end
 
@@ -152,9 +148,8 @@ RSpec.describe ActivityPub::CollectionsController do
             end
 
             it 'returns empty orderedItems' do
-              json = body_as_json
-              expect(json[:orderedItems]).to be_an Array
-              expect(json[:orderedItems].size).to eq 0
+              expect(body_as_json[:orderedItems]).to be_an Array
+              expect(body_as_json[:orderedItems].size).to eq 0
             end
           end
         end
