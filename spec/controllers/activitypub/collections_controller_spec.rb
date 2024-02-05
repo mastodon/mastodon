@@ -23,11 +23,9 @@ RSpec.describe ActivityPub::CollectionsController do
 
         let(:remote_account) { nil }
 
-        it 'returns http success' do
+        it 'returns http success and correct media type' do
           expect(response).to have_http_status(200)
-        end
 
-        it 'returns application/activity+json' do
           expect(response.media_type).to eq 'application/activity+json'
         end
 
@@ -76,11 +74,8 @@ RSpec.describe ActivityPub::CollectionsController do
             get :show, params: { id: 'featured', account_username: account.username }
           end
 
-          it 'returns http success' do
+          it 'returns http success and correct media type' do
             expect(response).to have_http_status(200)
-          end
-
-          it 'returns application/activity+json' do
             expect(response.media_type).to eq 'application/activity+json'
           end
 
@@ -111,11 +106,8 @@ RSpec.describe ActivityPub::CollectionsController do
               get :show, params: { id: 'featured', account_username: account.username }
             end
 
-            it 'returns http success' do
+            it 'returns http success and correct media type' do
               expect(response).to have_http_status(200)
-            end
-
-            it 'returns application/activity+json' do
               expect(response.media_type).to eq 'application/activity+json'
             end
 
@@ -135,11 +127,8 @@ RSpec.describe ActivityPub::CollectionsController do
               get :show, params: { id: 'featured', account_username: account.username }
             end
 
-            it 'returns http success' do
+            it 'returns http success and correct media type' do
               expect(response).to have_http_status(200)
-            end
-
-            it 'returns application/activity+json' do
               expect(response.media_type).to eq 'application/activity+json'
             end
 
