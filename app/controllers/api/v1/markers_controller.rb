@@ -7,38 +7,40 @@ class Api::V1::MarkersController < Api::BaseController
   before_action :require_user!
 
   def index
-    with_read_replica do
-      @markers = current_user.markers.where(timeline: Array(params[:timeline])).index_by(&:timeline)
-    end
-
-    render json: serialize_map(@markers)
+    @markers = current_user_markers
+    render json: marker_timeline_presenter, serializer: REST::MarkerTimelineSerializer
   end
 
   def create
-    Marker.transaction do
-      @markers = {}
-
-      resource_params.each_pair do |timeline, timeline_params|
-        @markers[timeline] = current_user.markers.find_or_create_by(timeline: timeline)
-        @markers[timeline].update!(timeline_params)
-      end
-    end
-
-    render json: serialize_map(@markers)
+    @markers = create_markers_from_params
+    render json: marker_timeline_presenter, serializer: REST::MarkerTimelineSerializer
   rescue ActiveRecord::StaleObjectError
     render json: { error: 'Conflict during update, please try again' }, status: 409
   end
 
   private
 
-  def serialize_map(map)
-    serialized = {}
+  def marker_timeline_presenter
+    MarkerTimelinePresenter.new(@markers)
+  end
 
-    map.each_pair do |key, value|
-      serialized[key] = ActiveModelSerializers::SerializableResource.new(value, serializer: REST::MarkerSerializer).as_json
+  def current_user_markers
+    with_read_replica do
+      current_user.markers.where(timeline: Array(params[:timeline]))
     end
+  end
 
-    Oj.dump(serialized)
+  def create_markers_from_params
+    [].tap do |markers|
+      Marker.transaction do
+        resource_params.each_pair do |timeline, timeline_params|
+          current_user.markers.find_or_create_by(timeline: timeline).tap do |marker|
+            marker.update!(timeline_params)
+            markers << marker
+          end
+        end
+      end
+    end
   end
 
   def resource_params
