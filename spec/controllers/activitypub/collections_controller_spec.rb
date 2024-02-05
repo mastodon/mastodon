@@ -95,12 +95,9 @@ RSpec.describe ActivityPub::CollectionsController do
               get :show, params: { id: 'featured', account_username: account.username }
             end
 
-            it 'returns http success and correct media type' do
+            it 'returns http success and correct media type and cache headers' do
               expect(response).to have_http_status(200)
               expect(response.media_type).to eq 'application/activity+json'
-            end
-
-            it 'returns private Cache-Control header' do
               expect(response.headers['Cache-Control']).to include 'private'
             end
 
@@ -117,12 +114,9 @@ RSpec.describe ActivityPub::CollectionsController do
               get :show, params: { id: 'featured', account_username: account.username }
             end
 
-            it 'returns http success and correct media type' do
+            it 'returns http success and correct media type and cache headers' do
               expect(response).to have_http_status(200)
               expect(response.media_type).to eq 'application/activity+json'
-            end
-
-            it 'returns private Cache-Control header' do
               expect(response.headers['Cache-Control']).to include 'private'
             end
 
