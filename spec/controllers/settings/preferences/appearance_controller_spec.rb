@@ -31,11 +31,5 @@ describe Settings::Preferences::AppearanceController do
 
       expect(response).to redirect_to(settings_preferences_appearance_path)
     end
-
-    it 'renders show on failure' do
-      put :update, params: { user: { locale: 'fake option' } }
-
-      expect(response).to render_template('preferences/appearance/show')
-    end
   end
 end

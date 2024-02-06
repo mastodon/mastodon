@@ -5,7 +5,7 @@ require_relative 'base'
 module Mastodon::CLI
   class Maintenance < Base
     MIN_SUPPORTED_VERSION = 2019_10_01_213028
-    MAX_SUPPORTED_VERSION = 2022_11_04_133904
+    MAX_SUPPORTED_VERSION = 2023_09_07_150100
 
     # Stubs to enjoy ActiveRecord queries while not depending on a particular
     # version of the code/database
@@ -37,6 +37,8 @@ module Mastodon::CLI
     class CanonicalEmailBlock < ApplicationRecord; end
     class Appeal < ApplicationRecord; end
     class Webhook < ApplicationRecord; end
+    class BulkImport < ApplicationRecord; end
+    class SoftwareUpdate < ApplicationRecord; end
 
     class PreviewCard < ApplicationRecord
       self.inheritance_column = false
@@ -86,6 +88,7 @@ module Mastodon::CLI
         owned_classes << FollowRecommendationSuppression if ActiveRecord::Base.connection.table_exists?(:follow_recommendation_suppressions)
         owned_classes << AccountIdentityProof if ActiveRecord::Base.connection.table_exists?(:account_identity_proofs)
         owned_classes << Appeal if ActiveRecord::Base.connection.table_exists?(:appeals)
+        owned_classes << BulkImport if ActiveRecord::Base.connection.table_exists?(:bulk_imports)
 
         owned_classes.each do |klass|
           klass.where(account_id: other_account.id).find_each do |record|
@@ -169,6 +172,7 @@ module Mastodon::CLI
       deduplicate_tags!
       deduplicate_webauthn_credentials!
       deduplicate_webhooks!
+      deduplicate_software_updates!
 
       Scenic.database.refresh_materialized_view('instances', concurrently: true, cascade: false) if ActiveRecord::Migrator.current_version >= 2020_12_06_004238
       Rails.cache.clear
@@ -204,6 +208,7 @@ module Mastodon::CLI
       ActiveRecord::Base.connection.execute('REINDEX INDEX search_index;')
       ActiveRecord::Base.connection.execute('REINDEX INDEX index_accounts_on_uri;')
       ActiveRecord::Base.connection.execute('REINDEX INDEX index_accounts_on_url;')
+      ActiveRecord::Base.connection.execute('REINDEX INDEX index_accounts_on_domain_and_id;') if ActiveRecord::Migrator.current_version >= 2023_05_24_190515
     end
 
     def deduplicate_users!
@@ -241,6 +246,8 @@ module Mastodon::CLI
       else
         ActiveRecord::Base.connection.add_index :users, ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true, where: 'reset_password_token IS NOT NULL', opclass: :text_pattern_ops
       end
+
+      ActiveRecord::Base.connection.execute('REINDEX INDEX index_users_on_unconfirmed_email;') if ActiveRecord::Migrator.current_version >= 2023_07_02_151753
     end
 
     def deduplicate_users_process_confirmation_token
@@ -539,6 +546,11 @@ module Mastodon::CLI
 
       say 'Restoring webhooks indexes…'
       ActiveRecord::Base.connection.add_index :webhooks, ['url'], name: 'index_webhooks_on_url', unique: true
+    end
+
+    def deduplicate_software_updates!
+      # Not bothering with this, it's data that will be recovered with the scheduler
+      SoftwareUpdate.delete_all
     end
 
     def deduplicate_local_accounts!(accounts)

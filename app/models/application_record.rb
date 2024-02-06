@@ -5,7 +5,7 @@ class ApplicationRecord < ActiveRecord::Base
 
   include Remotable
 
-  connects_to database: { writing: :primary, reading: ENV['REPLICA_DB_NAME'] || ENV['REPLICA_DATABASE_URL'] ? :replica : :primary }
+  connects_to database: { writing: :primary, reading: :replica } if DatabaseHelper.replica_enabled?
 
   class << self
     def update_index(_type_name, *_args, &_block)

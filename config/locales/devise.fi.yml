@@ -27,12 +27,12 @@ fi:
         title: Vahvista sähköpostiosoite
       email_changed:
         explanation: 'Tilin sähköpostiosoitteeksi vaihdetaan:'
-        extra: Jos et vaihtanut sähköpostiosoitettasi, joku muu on todennäköisesti päässyt käyttämään tiliäsi. Vaihda salasanasi viipymättä. Jos et pääse kirjautumaan tilillesi, ota yhteyttä instanssin ylläpitäjään.
+        extra: Jos et vaihtanut sähköpostiosoitettasi, joku muu on todennäköisesti päässyt käyttämään tiliäsi. Vaihda salasanasi viipymättä, tai ota yhteyttä palvelimen ylläpitäjään, jos et pääse kirjautumaan tilillesi.
         subject: 'Mastodon: Sähköpostiosoite vaihdettu'
         title: Uusi sähköpostiosoite
       password_change:
         explanation: Tilisi salasana on vaihdettu.
-        extra: Jos et vaihtanut salasanaasi, joku muu on todennäköisesti päässyt käyttämään tiliäsi. Vaihda salasanasi viipymättä. Jos et pääse kirjautumaan tilillesi, ota yhteyttä instanssin ylläpitäjään.
+        extra: Jos et vaihtanut salasanaasi, joku muu on todennäköisesti päässyt käyttämään tiliäsi. Vaihda salasanasi viipymättä, tai ota yhteyttä palvelimen ylläpitäjään, jos et pääse kirjautumaan tilillesi.
         subject: 'Mastodon: salasana vaihdettu'
         title: Salasana vaihdettu
       reconfirmation_instructions:
@@ -47,11 +47,11 @@ fi:
         subject: 'Mastodon: ohjeet salasanan vaihtoon'
         title: Salasanan vaihto
       two_factor_disabled:
-        explanation: Kaksivaiheinen todennus tilillesi poistettiin käytöstä. Kirjautuminen onnistuu nyt käyttäen pelkkää sähköpostiosoitetta ja salasanaa.
+        explanation: Tilisi kaksivaiheinen todennus poistettiin käytöstä. Kirjautuminen onnistuu nyt pelkällä sähköpostiosoitella ja salasanalla.
         subject: 'Mastodon: kaksivaiheinen todennus poistettu käytöstä'
         title: 2-vaiheinen todennus pois käytöstä
       two_factor_enabled:
-        explanation: Kaksivaiheinen tunnistus on otettu käyttöön tilillesi. Kaksivaiheisen tunnistuksen sovelluksesta saatu koodi tarvitaan kirjautumiseen.
+        explanation: Kaksivaiheinen todennus on otettu käyttöön tilillesi. Kirjautumiseen tarvitaan kaksivaiheisen todennuksen sovelluksesta saatu koodi.
         subject: 'Mastodon: kaksivaiheinen todennus otettu käyttöön'
         title: 2-vaiheinen todennus käytössä
       two_factor_recovery_codes_changed:
@@ -70,11 +70,11 @@ fi:
           subject: 'Mastodon: suojausavain poistettu'
           title: Yksi suojausavaimistasi on poistettu
       webauthn_disabled:
-        explanation: Suojausavaimilla todennus on poistettu käytöstä tililtäsi. Kirjautuminen on nyt mahdollista käyttämällä vain paritetun TOTP-sovelluksen luomaa tokenia.
-        subject: 'Mastodon: Todennus suoja-avaimilla poistettu käytöstä'
+        explanation: Suojausavaimilla todennus on poistettu käytöstä tililtäsi. Kirjautuminen on nyt mahdollista vain paritetun TOTP-sovelluksen luomaa koodia käyttämällä.
+        subject: 'Mastodon: Todennus suojausavaimilla poistettu käytöstä'
         title: Suojausavaimet poistettu käytöstä
       webauthn_enabled:
-        explanation: Todennus suojausavaimella on otettu käyttöön tililläsi. Suojausavaintasi voidaan nyt käyttää kirjautumiseen.
+        explanation: Todennus suojausavaimella on otettu käyttöön tilillesi. Suojausavaintasi voidaan nyt käyttää kirjautumiseen.
         subject: 'Mastodon: Todennus suojausavaimella on otettu käyttöön'
         title: Suojausavaimet käytössä
     omniauth_callbacks:

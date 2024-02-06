@@ -273,6 +273,7 @@ sk:
       title: Oboznámenia
       unpublish: Zruš zverejnenie
       updated_msg: Oboznámenie úspešne aktualizované!
+    critical_update_pending: Čaká kritická aktualizácia
     custom_emojis:
       assign_category: Priraď kategóriu
       by_domain: Doména
@@ -418,6 +419,8 @@ sk:
         instance_accounts_dimension: Najsledovanejšie účty
         instance_accounts_measure: uložené účty
         instance_follows_measure: ich sledovatelia tu
+        instance_languages_dimension: Najpopulárnejšie jazyky
+        instance_media_attachments_measure: uložené mediálne prílohy
         instance_reports_measure: hlásenia o nich
         instance_statuses_measure: uložené príspevky
       delivery:
@@ -425,6 +428,7 @@ sk:
         failing: Zlyhávajúce
         unavailable: Nedostupné
       delivery_available: Je v dosahu doručovania
+      empty: Nenájdené žiadne domény.
       moderation:
         all: Všetky
         limited: Obmedzené
@@ -482,6 +486,12 @@ sk:
       created_msg: Poznámka o nahlásení úspešne vytvorená!
       destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
     reports:
+      account:
+        notes:
+          few: "%{count} poznámok"
+          many: "%{count} poznámok"
+          one: "%{count} poznámka"
+          other: "%{count} poznámky"
       action_taken_by: Zákrok vykonal/a
       actions:
         suspend_description_html: Tento účet a všetok jeho obsah bude nedostupný a nakoniec zmazaný, interaktovať s ním bude nemožné. Zvrátiteľné v rámci 30 dní. Uzatvára všetky hlásenia voči tomuto účtu.
@@ -1015,6 +1025,8 @@ sk:
     other: Ostatné
     posting_defaults: Východiskové nastavenia príspevkov
     public_timelines: Verejné časové osi
+  privacy:
+    title: Súkromie a dosah
   reactions:
     errors:
       limit_reached: Maximálny počet rôznorodých reakcií bol dosiahnutý

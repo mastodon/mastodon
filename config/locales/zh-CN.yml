@@ -626,13 +626,13 @@ zh-CN:
       statuses_description_html: 在与该账号的通信中将引用违规内容
       summary:
         action_preambles:
-          delete_html: 您即将<strong>删除</strong> <strong>@%{acct}</strong> 的一些帖子。 这将：
+          delete_html: 您即将<strong>删除</strong> <strong>@%{acct}</strong> 的一些嘟文。 这将：
           mark_as_sensitive_html: 您即将 <strong>标记</strong> <strong>@%{acct}</strong> 的帖一些子为 <strong>敏感</strong>。这将：
           silence_html: 您即将<strong>限制</strong> <strong>@%{acct}</strong> 的帐户。 这将：
           suspend_html: 您即将<strong>暂停</strong> <strong>@%{acct}</strong> 的帐户。 这将：
         actions:
-          delete_html: 删除违规帖子
-          mark_as_sensitive_html: 将违规帖子的媒体标记为敏感
+          delete_html: 删除违规嘟文
+          mark_as_sensitive_html: 将违规嘟文的媒体标记为敏感
           silence_html: 严格限制 <strong>@%{acct}</strong> 的影响力，方法是让他们的个人资料和内容仅对已经关注他们的人可见，或手动查找其个人资料时
           suspend_html: 暂停 <strong>@%{acct}</strong>，使他们的个人资料和内容无法访问，也无法与之互动
         close_report: '将报告 #%{id} 标记为已解决'
@@ -759,7 +759,7 @@ zh-CN:
           open: 开放注册
       security:
         authorized_fetch: 需要跨站认证
-        authorized_fetch_hint: 要求跨站验证可以更严格地执行用户级和服务器级的封锁。然而，这会产生性能上的代价，减少你的回复触达范围，并可能导致与一些联邦服务的兼容问题。此外，这并不能阻止专门的参与者获取你的公共帖子和账户。
+        authorized_fetch_hint: 要求外站请求通过验证能够使用户级别与服务器级别的封锁更为严格。然而，这将带来额外的性能负担、减少回复触达范围、并可能导致与一些联邦宇宙服务的兼容性问题。此外，这并不能阻止他人针对性地获取公开嘟文与账户。
         authorized_fetch_overridden_hint: 由于此设置被环境变量覆盖，目前无法更改。
         federation_authentication: 强制跨站认证
       title: 服务器设置
@@ -1164,7 +1164,7 @@ zh-CN:
     invalid_domain: 不是一个有效的域名
   edit_profile:
     basic_information: 基本信息
-    hint_html: "<strong>自定义公开资料和帖子旁边显示的内容。</strong>当您填写完整的个人资料并设置了头像时，其他人更有可能关注您并与您互动。"
+    hint_html: "<strong>自定义公开资料和嘟文旁边显示的内容。</strong>当您填写完整的个人资料并设置了头像时，其他人更有可能关注您并与您互动。"
     other: 其他
   errors:
     '400': 你提交的请求无效或格式不正确。
@@ -1499,7 +1499,7 @@ zh-CN:
     privacy: 隐私
     privacy_hint_html: 控制你愿意向他人透露多少信息。通过浏览他人的关注列表和查看他们发嘟所用的应用，人们可以发现有趣的用户和酷炫的应用，但你可能更喜欢将其隐藏起来。
     reach: 范围
-    reach_hint_html: 控制您是否希望被新人发现和关注。您是否希望您的帖子出现在“探索”屏幕上？您是否希望其他人在关注推荐中看到您？您是想自动接受所有新粉丝，还是对每个粉丝都进行仔细的筛选？
+    reach_hint_html: 控制您是否希望被新人发现和关注。您是否希望您的嘟文出现在“探索”页面上？您是否希望其他人在关注推荐中看到您？您是想自动接受所有新粉丝，还是对每个粉丝都进行仔细的筛选？
     search: 搜索
     search_hint_html: 控制你希望被找到的方式。你想让人们通过你公开发布的内容来找到你吗？当在网络上搜索时，你是否希望Mastodon之外的人能够找到你的个人资料？请注意，我们无法保证完全排除所有搜索引擎对公开信息的索引。
     title: 隐私与可达性

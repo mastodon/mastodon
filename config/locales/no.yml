@@ -309,6 +309,7 @@
       unpublish: Avpubliser
       unpublished_msg: Kunngjøring upublisert!
       updated_msg: Kunngjøringen er oppdatert!
+    critical_update_pending: Kritisk oppdatering avventer
     custom_emojis:
       assign_category: Tilegn kategori
       by_domain: Domene
@@ -774,6 +775,18 @@
     site_uploads:
       delete: Slett den opplastede filen
       destroyed_msg: Vellykket sletting av sideopplasting!
+    software_updates:
+      critical_update: Kritisk — vennligst oppdater raskt
+      description: "Det anbefales å holde Mastodon-installasjonen oppdatert for å dra nytte av nye rettelser og funksjoner. Dessuten er det av og til viktig å oppdatere Mastodon raskt for å unngå sikkerhetsproblemer. Derfor sjekker Mastodon om det finnes oppdateringer \nhvert 30. minutt, og varsler deg i henhold til dine valg for e-postvarsling."
+      documentation_link: Finn ut mer
+      release_notes: Informasjon om utgivelsen
+      title: Tilgjengelige oppdateringer
+      type: Type
+      types:
+        major: Stor oppdatering
+        minor: Mindre oppdatering
+        patch: Liten oppdatering – feilrettinger og endringer som er lette å legge til
+      version: Versjon
     statuses:
       account: Forfatter
       application: Applikasjon
@@ -838,6 +851,12 @@
         message_html: Du har ikke definert noen serverregler.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-prosess kjører for %{value} køen(e). Vennligst se gjennom Sidekiq-konfigurasjonen din
+      software_version_critical_check:
+        action: Se tilgjengelige oppdateringer
+        message_html: En kritisk oppdatering av Mastodon er tilgjengelig. Vennligst oppdater så raskt som mulig.
+      software_version_patch_check:
+        action: Se tilgjengelige oppdateringer
+        message_html: En oppdatering av Mastodon som inneholder feilrettinger er tilgjengelig.
       upload_check_privacy_error:
         action: Sjekk her for mer informasjon
         message_html: "<strong>Webserveren din er feilkonfigurert. Personvernet til brukerne dine er i fare.</strong>"
@@ -951,6 +970,9 @@
       body: "%{target} klager på en moderasjonsbeslutning av %{action_taken_by} fra %{date}, noe som var %{type}. De skrev:"
       next_steps: Du kan godkjenne klagen for å angre på moderasjonsvedtaket eller ignorere det.
       subject: "%{username} klager på en moderasjonsbeslutning for %{instance}"
+    new_critical_software_updates:
+      body: Nye kritiske versjoner av Mastodon har blitt utgitt, det kan være fordelaktig å oppdatere så snart som mulig!
+      subject: Kritiske Mastodon-oppdateringer er tilgjengelige for %{instance}!
     new_pending_account:
       body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
       subject: Ny konto opp til vurdering på %{instance} (%{username})
@@ -958,6 +980,9 @@
       body: "%{reporter} har rapportert %{target}"
       body_remote: Noen fra %{domain} har rapportert %{target}
       subject: Ny rapport for %{instance} (#%{id})
+    new_software_updates:
+      body: Nye versjoner av Mastodoner har blitt utgitt, du ønsker kanskje å oppdatere!
+      subject: Nye versjoner av Mastodon er tilgjengelige for %{instance}!
     new_trends:
       body: 'Følgende elementer trenger en gjennomgang før de kan vises offentlig:'
       new_trending_links:
@@ -1708,6 +1733,7 @@
       default: "%-d. %b %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%-d. %b %Y, %H:%M %Z"
   two_factor_authentication:
     add: Legg til
     disable: Skru av

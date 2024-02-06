@@ -204,7 +204,7 @@ class Results extends PureComponent {
           <button onClick={this.handleSelectStatuses} className={type === 'statuses' ? 'active' : undefined}><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></button>
         </div>
 
-        <div className='explore__search-results'>
+        <div className='explore__search-results' data-nosnippet>
           <ScrollableList
             scrollKey='search-results'
             isLoading={isLoading}

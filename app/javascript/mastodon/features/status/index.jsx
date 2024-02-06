@@ -220,6 +220,8 @@ class Status extends ImmutablePureComponent {
 
   componentDidMount () {
     attachFullscreenListener(this.onFullScreenChange);
+
+    this._scrollStatusIntoView();
   }
 
   UNSAFE_componentWillReceiveProps (nextProps) {
@@ -579,10 +581,10 @@ class Status extends ImmutablePureComponent {
     this.node = c;
   };
 
-  componentDidUpdate (prevProps) {
-    const { status, ancestorsIds, multiColumn } = this.props;
+  _scrollStatusIntoView () {
+    const { status, multiColumn } = this.props;
 
-    if (status && (ancestorsIds.size > prevProps.ancestorsIds.size || prevProps.status?.get('id') !== status.get('id'))) {
+    if (status) {
       window.requestAnimationFrame(() => {
         this.node?.querySelector('.detailed-status__wrapper')?.scrollIntoView(true);
 
@@ -599,12 +601,36 @@ class Status extends ImmutablePureComponent {
     }
   }
 
+  componentDidUpdate (prevProps) {
+    const { status, ancestorsIds } = this.props;
+
+    if (status && (ancestorsIds.size > prevProps.ancestorsIds.size || prevProps.status?.get('id') !== status.get('id'))) {
+      this._scrollStatusIntoView();
+    }
+  }
+
   componentWillUnmount () {
     detachFullscreenListener(this.onFullScreenChange);
   }
 
   onFullScreenChange = () => {
     this.setState({ fullscreen: isFullscreen() });
+  };
+
+  shouldUpdateScroll = (prevRouterProps, { location }) => {
+    // Do not change scroll when opening a modal
+    if (location.state?.mastodonModalKey !== prevRouterProps?.location?.state?.mastodonModalKey) {
+      return false;
+    }
+
+    // Scroll to focused post if it is loaded
+    const child = this.node?.querySelector('.detailed-status__wrapper');
+    if (child) {
+      return [0, child.offsetTop];
+    }
+
+    // Do not scroll otherwise, `componentDidUpdate` will take care of that
+    return false;
   };
 
   render () {
@@ -660,7 +686,7 @@ class Status extends ImmutablePureComponent {
           )}
         />
 
-        <ScrollContainer scrollKey='thread'>
+        <ScrollContainer scrollKey='thread' shouldUpdateScroll={this.shouldUpdateScroll}>
           <div className={classNames('scrollable', { fullscreen })} ref={this.setRef}>
             {ancestors}
 

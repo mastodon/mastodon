@@ -3,7 +3,6 @@
 class FollowingAccountsController < ApplicationController
   include AccountControllerConcern
   include SignatureVerification
-  include WebAppControllerConcern
 
   vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
 

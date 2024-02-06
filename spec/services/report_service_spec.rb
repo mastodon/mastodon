@@ -36,7 +36,7 @@ RSpec.describe ReportService, type: :service do
         expect(report.uri).to_not be_nil
       end
 
-      context 'when reporting a reply' do
+      context 'when reporting a reply on a different remote server' do
         let(:remote_thread_account) { Fabricate(:account, domain: 'foo.com', protocol: :activitypub, inbox_url: 'http://foo.com/inbox') }
         let(:reported_status) { Fabricate(:status, account: remote_account, thread: Fabricate(:status, account: remote_thread_account)) }
 
@@ -64,6 +64,25 @@ RSpec.describe ReportService, type: :service do
           it 'does not send ActivityPub payload to the author of the replied-to post' do
             subject.call(source_account, remote_account, status_ids: [reported_status.id], forward: forward)
             expect(a_request(:post, 'http://foo.com/inbox')).to_not have_been_made
+          end
+        end
+      end
+
+      context 'when reporting a reply on the same remote server as the person being replied-to' do
+        let(:remote_thread_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }
+        let(:reported_status) { Fabricate(:status, account: remote_account, thread: Fabricate(:status, account: remote_thread_account)) }
+
+        context 'when forward_to_domains includes both the replied-to domain and the origin domain' do
+          it 'sends ActivityPub payload only once' do
+            subject.call(source_account, remote_account, status_ids: [reported_status.id], forward: forward, forward_to_domains: [remote_account.domain])
+            expect(a_request(:post, 'http://example.com/inbox')).to have_been_made.once
+          end
+        end
+
+        context 'when forward_to_domains does not include the replied-to domain' do
+          it 'sends ActivityPub payload only once' do
+            subject.call(source_account, remote_account, status_ids: [reported_status.id], forward: forward)
+            expect(a_request(:post, 'http://example.com/inbox')).to have_been_made.once
           end
         end
       end

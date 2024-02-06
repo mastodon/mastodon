@@ -3,6 +3,18 @@
 require 'sidekiq_unique_jobs/web'
 require 'sidekiq-scheduler/web'
 
+class RedirectWithVary < ActionDispatch::Routing::PathRedirect
+  def serve(...)
+    super.tap do |_, headers, _|
+      headers['Vary'] = 'Origin, Accept'
+    end
+  end
+end
+
+def redirect_with_vary(path)
+  RedirectWithVary.new(301, path)
+end
+
 Rails.application.routes.draw do
   # Paths of routes on the web app that to not require to be indexed or
   # have alternative format representations requiring separate controllers
@@ -90,10 +102,13 @@ Rails.application.routes.draw do
     confirmations:      'auth/confirmations',
   }
 
-  get '/users/:username', to: redirect('/@%{username}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
-  get '/users/:username/following', to: redirect('/@%{username}/following'), constraints: lambda { |req| req.format.nil? || req.format.html? }
-  get '/users/:username/followers', to: redirect('/@%{username}/followers'), constraints: lambda { |req| req.format.nil? || req.format.html? }
-  get '/users/:username/statuses/:id', to: redirect('/@%{username}/%{id}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  # rubocop:disable Style/FormatStringToken - those do not go through the usual formatting functions and are not safe to correct
+  get '/users/:username', to: redirect_with_vary('/@%{username}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  get '/users/:username/following', to: redirect_with_vary('/@%{username}/following'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  get '/users/:username/followers', to: redirect_with_vary('/@%{username}/followers'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  get '/users/:username/statuses/:id', to: redirect_with_vary('/@%{username}/%{id}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  # rubocop:enable Style/FormatStringToken
+
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
   resources :accounts, path: 'users', only: [:show], param: :username do
@@ -134,7 +149,7 @@ Rails.application.routes.draw do
     get '/@:account_username/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
   end
 
-  get '/@:username_with_domain/(*any)', to: 'home#index', constraints: { username_with_domain: %r{([^/])+?} }, format: false
+  get '/@:username_with_domain/(*any)', to: 'home#index', constraints: { username_with_domain: %r{([^/])+?} }, as: :account_with_domain, format: false
   get '/settings', to: redirect('/settings/profile')
 
   draw(:settings)

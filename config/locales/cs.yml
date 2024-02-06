@@ -315,6 +315,7 @@ cs:
       unpublish: Skrýt
       unpublished_msg: Zveřejněné oznámení bylo úspěšně skryto!
       updated_msg: Oznámení bylo úspěšně aktualizováno!
+    critical_update_pending: Čeká se na kritickou aktualizaci
     custom_emojis:
       assign_category: Přiřadit kategorii
       by_domain: Doména
@@ -396,6 +397,15 @@ cs:
       undo: Zakázat federaci s doménou
     domain_blocks:
       add_new: Přidat novou blokaci domény
+      confirm_suspension:
+        cancel: Zrušit
+        confirm: Pozastavit
+        permanent_action: Zrušení pozastavení neobnoví žádná data ani vztah.
+        preamble_html: Chystáte se pozastavit <strong>%{domain}</strong> a jeho poddomény.
+        remove_all_data: Tímto odstraníte z vašeho serveru všechen obsah, média a profilové údaje účtů této domény.
+        stop_communication: Váš server přestane komunikovat s těmito servery.
+        title: Potvrďte blokování domény %{domain}
+        undo_relationships: Toto vrátí jakýkoliv vztah sledování mezi účty na těchto serverech a vaším.
       created_msg: Blokace domény se právě vyřizuje
       destroyed_msg: Blokace domény byla odvolána
       domain: Doména
@@ -759,6 +769,9 @@ cs:
       branding:
         preamble: Značka vašeho serveru jej odlišuje od ostatních serverů v síti. Tyto informace se mohou zobrazovat v různých prostředích, například ve webovém rozhraní Mastodonu, v nativních aplikacích, v náhledech odkazů na jiných webových stránkách a v aplikacích pro zasílání zpráv atd. Z tohoto důvodu je nejlepší, aby tyto informace byly jasné, krátké a stručné.
         title: Značka
+      captcha_enabled:
+        desc_html: Toto spoléhá na externí skripty z hCaptcha, což může být budit obavy o bezpečnost a soukromí. Navíc <strong>to může způsobit, že proces registrace bude pro některé osoby (zejména se zdravotním postižením) hůře přístupný</strong>. Z těchto důvodů zvažte alternativní přístup, jako je schvalování registrace nebo pozvánky.
+        title: Vyžadovat po nových uživatelích, aby vyřešili CAPTCHU pro potvrzení jejich účtu
       content_retention:
         preamble: Určuje, jak je obsah generovaný uživatelem uložen v Mastodonu.
         title: Uchovávání obsahu
@@ -786,9 +799,24 @@ cs:
           approved: Pro registraci je vyžadováno schválení
           none: Nikdo se nemůže registrovat
           open: Kdokoliv se může registrovat
+      security:
+        authorized_fetch: Vyžadovat autentizaci od federovaných serverů
+        authorized_fetch_overridden_hint: Momentálně nemůžete změnit toto nastavení, protože je přepsáno proměnnou prostředí.
+      title: Nastavení serveru
     site_uploads:
       delete: Odstranit nahraný soubor
       destroyed_msg: Upload stránky byl úspěšně smazán!
+    software_updates:
+      critical_update: Kritické — aktualizujte, prosím, co nejdříve
+      documentation_link: Zjistit více
+      release_notes: Poznámky k vydání
+      title: Dostupné aktualizace
+      type: Typ
+      types:
+        major: Hlavní vydání
+        minor: Menší vydání
+        patch: Záplatové vydání — opravy chyb a rychle aplikovatelné změny
+      version: Verze
     statuses:
       account: Autor
       application: Aplikace
@@ -829,6 +857,20 @@ cs:
     system_checks:
       database_schema_check:
         message_html: Na spuštění čekají databázové migrace. Nechte je prosím proběhnout pro zajištění očekávaného chování aplikace
+      elasticsearch_health_red:
+        message_html: Elasticsearch cluster je nezdravý (červený stav), vyhledávací funkce jsou nedostupné
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch cluster je nezdravý (žlutý stav), možná budete chtít prozkoumat důvod
+      elasticsearch_index_mismatch:
+        message_html: Mapování indexu Elasticsearch jsou zastaralá. Prosím spusťte <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Prohlédnout dokumentaci
+        message_html: Váš Elasticsearch cluster má více než jeden node, ale Mastodon není nakonfigurován pro jejich používání.
+      elasticsearch_preset_single_node:
+        action: Zobrazit dokumentaci
+        message_html: Váš Elasticsearch cluster má pouze jeden uzel, <code>ES_PRESET</code> by měl být nastaven na <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Váš system index v Elasticsearch je kvůli změně nastavení zastaralý. Pro aktualizaci prosím spusťte <code>tootctl search deploy --reset-chewy</code>.
       elasticsearch_running_check:
         message_html: Nelze se připojit k Elasticsearch. Prosím zkontrolujte, že běží, nebo vypněte fulltextové vyhledávání
       elasticsearch_version_check:
@@ -839,6 +881,12 @@ cs:
         message_html: Nedefinovali jste žádná pravidla serveru.
       sidekiq_process_check:
         message_html: Pro %{value} frontu/fronty neběží žádný Sidekiq proces. Zkontrolujte prosím svou Sidekiq konfiguraci
+      software_version_critical_check:
+        action: Zobrazit dostupné aktualizace
+        message_html: K dispozici je kritická aktualizace Mastodonu, prosím aktualizujte co nejrychleji.
+      software_version_patch_check:
+        action: Zobrazit dostupné aktualizace
+        message_html: Je dostupná opravná aktualizace Mastodonu.
       upload_check_privacy_error:
         action: Pro více informací se podívejte zde
         message_html: "<strong>Váš webový server je špatně nakonfigurován. Soukromí vašich uživatelů je ohroženo.</strong>"
@@ -960,6 +1008,9 @@ cs:
       body: 'Uživatel %{target} se odvolává proti rozhodnutí moderátora %{action_taken_by} z %{date}, kterým bylo %{type}. Napsal:'
       next_steps: Můžete schválit odvolání pro vrácení rozhodnutí moderátora, nebo to ignorovat.
       subject: Uživatel %{username} se odvolává proti rozhodnutí moderátora na %{instance}
+    new_critical_software_updates:
+      body: Byly vydány nové kritické verze Mastodonu, možná budete chtít aktualizovat co nejdříve!
+      subject: Pro %{instance} jsou dostupné kritické aktualizace Mastodonu!
     new_pending_account:
       body: Detaily nového účtu jsou uvedeny níže. Tuto žádost můžete schválit nebo zamítnout.
       subject: Nový účet na serveru %{instance} čekající na posouzení (%{username})
@@ -967,6 +1018,9 @@ cs:
       body: Uživatel %{reporter} nahlásil uživatele %{target}
       body_remote: Někdo z domény %{domain} nahlásil uživatele %{target}
       subject: Nové hlášení pro %{instance} (#%{id})
+    new_software_updates:
+      body: Byly vydány nové verze Mastodonu, možná budete chtít aktualizovat!
+      subject: Pro %{instance} jsou dostupné nové verze Mastodonu!
     new_trends:
       body: 'Následující položky vyžadují posouzení, než mohou být zobrazeny veřejně:'
       new_trending_links:
@@ -1000,6 +1054,7 @@ cs:
     notification_preferences: Změnit předvolby e-mailů
     salutation: "%{name},"
     settings: 'Změnit předvolby e-mailů: %{link}'
+    unsubscribe: Přestat odebírat
     view: 'Zobrazit:'
     view_profile: Zobrazit profil
     view_status: Zobrazit příspěvek
@@ -1013,6 +1068,10 @@ cs:
     your_token: Váš přístupový token
   auth:
     apply_for_account: Požádat o účet
+    captcha_confirmation:
+      help_html: Pokud máte problémy s řešením CAPTCHA, můžete se s námi spojit prostřednictvím %{email} a můžeme vám pomoci.
+      hint_html: Ještě jedna věc! Musíme potvrdit, že jste člověk (to proto, abychom drželi stranou spam!). Vyřešte CAPTCHA níže a klikněte na "Pokračovat".
+      title: Bezpečnostní kontrola
     confirmations:
       wrong_email_hint: Pokud není e-mail správný, můžete si ho změnit v nastavení účtu.
     delete_account: Odstranit účet
@@ -1049,8 +1108,11 @@ cs:
     rules:
       accept: Přijmout
       back: Zpět
+      invited_by: 'Můžete se připojit k %{domain} díky pozvánce, kterou jste obdrželi od:'
       preamble: Tohle nastavují a prosazují moderátoři %{domain}.
+      preamble_invited: Než budete pokračovat, vezměte prosím v úvahu základní pravidla stanovená moderátory %{domain}.
       title: Některá základní pravidla.
+      title_invited: Byl/a jsi pozván/a.
     security: Zabezpečení
     set_new_password: Nastavit nové heslo
     setup:
@@ -1151,6 +1213,10 @@ cs:
       your_appeal_rejected: Vaše odvolání bylo zamítnuto
   domain_validator:
     invalid_domain: není platné doménové jméno
+  edit_profile:
+    basic_information: Základní informace
+    hint_html: "<strong>Nastavte si, co lidé uvidí na vašem veřejném profilu a vedle vašich příspěvků.</strong> Ostatní lidé vás budou spíše sledovat a komunikovat s vámi, když budete mít vyplněný profil a profilový obrázek."
+    other: Další
   errors:
     '400': Žádost, kterou jste odeslali, byla neplatná nebo poškozená.
     '403': Nejste oprávněni tuto stránku zobrazit.
@@ -1306,6 +1372,7 @@ cs:
       bookmarks: Záložky
       domain_blocking: Seznam blokovaných domén
       following: Seznam sledovaných
+      lists: Seznamy
       muting: Seznam ignorovaných
     upload: Nahrát
   invites:
@@ -1461,12 +1528,22 @@ cs:
       expired: Anketa již skončila
       invalid_choice: Zvolená možnost hlasování neexistuje
       over_character_limit: nesmí být žádná delší než %{max} znaků
+      self_vote: Nemůžete hlasovat ve svých vlastních anketách
       too_few_options: musí mít více než jednu položku
       too_many_options: nesmí obsahovat více než %{max} položek
   preferences:
     other: Ostatní
     posting_defaults: Výchozí možnosti psaní
     public_timelines: Veřejné časové osy
+  privacy:
+    hint_html: "<strong>Nastavte si, jak chcete, aby šlo váš profil a vaše příspěvky nalézt.</strong> Řada funkcí v Mastodonu vám může po zapnutí pomoci získat širší publikum. Věnujte chvíli kontrole těchto nastavení, aby vyhovovala vašim potřebám."
+    privacy: Soukromí
+    privacy_hint_html: Nastavte si, kolik toho chcete zveřejnit ve prospěch ostatních. Lidé objevují zajímavé profily a skvělé aplikace procházením sledovaných ostatních lidí i tím, že vidí, z jakých aplikací ostatní posílají příspěvky, vy se však můžete rozhodnout tyto údaje skrýt.
+    reach: Dosah
+    reach_hint_html: Nastavte si, zda chcete být objeveni a sledováni novými lidmi. Chcete, aby se vaše příspěvky objevovaly na obrazovce Objevit? Chcete, aby vás další lidé viděli ve svých doporučeních ke sledování? Chcete přijímat všechny nové sledující automaticky nebo mít podrobnou kontrolu nad každým z nich?
+    search: Vyhledávání
+    search_hint_html: Mějte pod kontrolou, jak chcete být nalezeni. Chcete, aby vás lidé našli podle toho, o čem jste veřejně psali? Chcete, aby lidé mimo Mastodon mohli nalézt váš profil při prohledávání webu? Mějte na vědomí, že úplné vyřazení ze všech vyhledávačů nelze u veřejných informací garantovat.
+    title: Soukromí a dosah
   privacy_policy:
     title: Zásady ochrany osobních údajů
   reactions:
@@ -1773,7 +1850,10 @@ cs:
     seamless_external_login: Jste přihlášeni přes externí službu, nastavení hesla a e-mailu proto nejsou dostupná.
     signed_in_as: 'Přihlášeni jako:'
   verification:
+    here_is_how: Jak na to
+    instructions_html: Zkopírujte a vložte níže uvedený kód do HTML vašeho webu. Poté přidejte adresu vašeho webu do jednoho z extra políček na vašem profilu na záložce "Upravit profil" a uložte změny.
     verification: Ověření
+    verified_links: Vaše ověřené odkazy
   webauthn_credentials:
     add: Přidat nový bezpečnostní klíč
     create:
