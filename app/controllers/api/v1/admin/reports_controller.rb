@@ -35,6 +35,7 @@ class Api::V1::Admin::ReportsController < Api::BaseController
   def update
     authorize @report, :update?
     @report.update!(report_params)
+    log_action :update, @report
     render json: @report, serializer: REST::Admin::ReportSerializer
   end
 
