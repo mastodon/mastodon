@@ -7,17 +7,6 @@ GIT
       hkdf (~> 0.2)
       jwt (~> 2.0)
 
-GIT
-  remote: https://github.com/jhawthorn/nsa.git
-  revision: e020fcc3a54d993ab45b7194d89ab720296c111b
-  ref: e020fcc3a54d993ab45b7194d89ab720296c111b
-  specs:
-    nsa (0.2.8)
-      activesupport (>= 4.2, < 7.2)
-      concurrent-ruby (~> 1.0, >= 1.0.2)
-      sidekiq (>= 3.5)
-      statsd-ruby (~> 1.4, >= 1.4.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -155,9 +144,9 @@ GEM
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
     blurhash (0.1.7)
-    bootsnap (1.17.1)
+    bootsnap (1.18.3)
       msgpack (~> 1.2)
-    brakeman (6.1.1)
+    brakeman (6.1.2)
       racc
     browser (5.3.1)
     brpoplpush-redis_script (0.1.3)
@@ -167,11 +156,11 @@ GEM
     bundler-audit (0.9.1)
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
-    capybara (3.39.2)
+    capybara (3.40.0)
       addressable
       matrix
       mini_mime (>= 0.1.3)
-      nokogiri (~> 1.8)
+      nokogiri (~> 1.11)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
@@ -180,7 +169,7 @@ GEM
       activesupport
     cbor (0.5.9.6)
     charlock_holmes (0.7.7)
-    chewy (7.5.0)
+    chewy (7.5.1)
       activesupport (>= 5.2)
       elasticsearch (>= 7.12.0, < 7.14.0)
       elasticsearch-dsl
@@ -319,7 +308,7 @@ GEM
       activesupport (>= 5.1)
       haml (>= 4.0.6)
       railties (>= 5.1)
-    haml_lint (0.55.0)
+    haml_lint (0.56.0)
       haml (>= 5.0)
       parallel (~> 1.10)
       rainbow
@@ -465,9 +454,14 @@ GEM
     net-smtp (0.4.0.1)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.16.0)
+    nokogiri (1.16.2)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
+    nsa (0.3.0)
+      activesupport (>= 4.2, < 7.2)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      sidekiq (>= 3.5)
+      statsd-ruby (~> 1.4, >= 1.4.0)
     oj (3.16.3)
       bigdecimal (>= 3.0)
     omniauth (2.1.1)
@@ -771,7 +765,7 @@ GEM
       unf (~> 0.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2023.4)
+    tzinfo-data (1.2024.1)
       tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
@@ -829,7 +823,7 @@ DEPENDENCIES
   better_errors (~> 2.9)
   binding_of_caller (~> 1.0)
   blurhash (~> 0.1)
-  bootsnap (~> 1.17.0)
+  bootsnap (~> 1.18.0)
   brakeman (~> 6.0)
   browser
   bundler-audit (~> 0.9)
@@ -886,7 +880,7 @@ DEPENDENCIES
   net-http (~> 0.4.0)
   net-ldap (~> 0.18)
   nokogiri (~> 1.15)
-  nsa!
+  nsa
   oj (~> 3.14)
   omniauth (~> 2.0)
   omniauth-cas (~> 3.0.0.beta.1)
