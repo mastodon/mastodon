@@ -121,7 +121,7 @@ class ReportReasonSelector extends React.PureComponent {
 
     api().put(`/api/v1/admin/reports/${id}`, {
       category,
-      rule_ids,
+      rule_ids: category === 'violation' ? rule_ids : [],
     }).catch(err => {
       console.error(err);
     });
