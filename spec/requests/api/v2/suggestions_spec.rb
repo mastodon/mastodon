@@ -9,10 +9,28 @@ describe 'Suggestions API' do
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   describe 'GET /api/v2/suggestions' do
-    it 'returns http success' do
+    let(:bob) { Fabricate(:account) }
+    let(:jeff) { Fabricate(:account) }
+    let(:params) { {} }
+
+    before do
+      Setting.bootstrap_timeline_accounts = [bob, jeff].map(&:acct).join(',')
+    end
+
+    it 'returns the expected suggestions' do
       get '/api/v2/suggestions', headers: headers
 
       expect(response).to have_http_status(200)
+
+      expect(body_as_json).to match_array(
+        [bob, jeff].map do |account|
+          hash_including({
+            source: 'staff',
+            sources: ['featured'],
+            account: hash_including({ id: account.id.to_s }),
+          })
+        end
+      )
     end
   end
 end
