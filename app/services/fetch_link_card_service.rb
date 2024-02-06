@@ -100,16 +100,12 @@ class FetchLinkCardService < BaseService
   end
 
   def attempt_oembed
-    service         = FetchOEmbedService.new
-    url_domain      = Addressable::URI.parse(@url).normalized_host
-    cached_endpoint = Rails.cache.read("oembed_endpoint:#{url_domain}")
-
-    embed   = service.call(@url, cached_endpoint: cached_endpoint) unless cached_endpoint.nil?
-    embed ||= service.call(@url, html: html) unless html.nil?
+    embed = oembed_service.call(@url, cached_endpoint: cached_endpoint) unless cached_endpoint.nil?
+    embed ||= oembed_service.call(@url, html: html) unless html.nil?
 
     return false if embed.nil?
 
-    url = Addressable::URI.parse(service.endpoint_url)
+    url = Addressable::URI.parse(oembed_service.endpoint_url)
 
     @card.type          = embed[:type]
     @card.title         = embed[:title]         || ''
@@ -141,6 +137,18 @@ class FetchLinkCardService < BaseService
     end
 
     @card.save_with_optional_image!
+  end
+
+  def cached_endpoint
+    @cached_endpoint ||= Rails.cache.read("oembed_endpoint:#{url_domain}")
+  end
+
+  def oembed_service
+    @oembed_service ||= FetchOEmbedService.new
+  end
+
+  def url_domain
+    @url_domain ||= Addressable::URI.parse(@url).normalized_host
   end
 
   def attempt_opengraph
