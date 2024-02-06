@@ -49,6 +49,7 @@ RSpec.describe 'Domain Blocks' do
           {
             id: domain_block.id.to_s,
             domain: domain_block.domain,
+            digest: domain_block.domain_digest,
             created_at: domain_block.created_at.strftime('%Y-%m-%dT%H:%M:%S.%LZ'),
             severity: domain_block.severity.to_s,
             reject_media: domain_block.reject_media,
@@ -102,6 +103,7 @@ RSpec.describe 'Domain Blocks' do
         {
           id: domain_block.id.to_s,
           domain: domain_block.domain,
+          digest: domain_block.domain_digest,
           created_at: domain_block.created_at.strftime('%Y-%m-%dT%H:%M:%S.%LZ'),
           severity: domain_block.severity.to_s,
           reject_media: domain_block.reject_media,
@@ -212,6 +214,7 @@ RSpec.describe 'Domain Blocks' do
         {
           id: domain_block.id.to_s,
           domain: domain_block.domain,
+          digest: domain_block.domain_digest,
           severity: 'suspend',
         }
       )
