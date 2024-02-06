@@ -15,7 +15,7 @@ class Api::V1::Timelines::HomeController < Api::V1::Timelines::BaseController
     render json: @statuses,
            each_serializer: REST::StatusSerializer,
            relationships: @relationships,
-           status: account_home_feed.regenerating? ? 206 : 200
+           status: home_feed_http_status
   end
 
   private
@@ -39,6 +39,10 @@ class Api::V1::Timelines::HomeController < Api::V1::Timelines::BaseController
 
   def account_home_feed
     HomeFeed.new(current_account)
+  end
+
+  def home_feed_http_status
+    account_home_feed.regenerating? ? 206 : 200
   end
 
   def next_path
