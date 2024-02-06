@@ -88,7 +88,7 @@ be:
         remote: Адлеглы
         title: Месцазнаходжанне
       login_status: Стан уваходу
-      media_attachments: Медыя дадаткі
+      media_attachments: Медыя далучэнні
       memorialize: Даданае да памяці
       memorialized: Запомненае
       memorialized_msg: Уліковы запіс %{username} ператвораны ў мемарыяльны
@@ -522,7 +522,7 @@ be:
         instance_followers_measure: нашых падпісчыкаў там
         instance_follows_measure: іх падпісчыкаў тут
         instance_languages_dimension: Папулярныя мовы
-        instance_media_attachments_measure: захаваныя медыя-ўкладанні
+        instance_media_attachments_measure: захаваныя медыя-далучэнні
         instance_reports_measure: справаздач пра іх
         instance_statuses_measure: захаваных паведамленняў
       delivery:
@@ -555,7 +555,7 @@ be:
       total_followed_by_them: Іхнія падпіскі
       total_followed_by_us: Нашыя падпіскі
       total_reported: Скаргі на іх
-      total_storage: Медыя дадаткі
+      total_storage: Медыя далучэнні
       totals_time_period_hint_html: Паказаныя агульныя значэнні ніжэй уключаюць даныя за ўвесь час.
       unknown_instance: На дадзены момант няма запісаў аб гэтым дамене на гэтым серверы.
     invites:
@@ -1462,9 +1462,9 @@ be:
       title: Адпісацца
   media_attachments:
     validations:
-      images_and_video: Немагчыма прымацаваць відэа да допісу, які ўжо змяшчае выявы
-      not_ready: Няможна дадаць файлы, апрацоўка якіх яшчэ не скончылася. Паспрабуйце яшчэ раз праз хвілінку!
-      too_many: Няможна дадаць больш за 4 файлы
+      images_and_video: Немагчыма далучыць відэа да допісу, які ўжо змяшчае выявы
+      not_ready: Няможна далучыць файлы, апрацоўка якіх яшчэ не скончылася. Паспрабуйце яшчэ раз праз хвілінку!
+      too_many: Немагчыма далучыць больш за 4 файлы
   migrations:
     acct: Перамешчана ў
     cancel: Скасаваць перанакіраванне
@@ -1598,6 +1598,9 @@ be:
     errors:
       limit_reached: Дасягнуты ліміт розных рэакцый
       unrecognized_emoji: невядомае эмодзі
+  redirects:
+    prompt: Калі вы давяраеце гэтай спасылцы, націсніце на яе, каб працягнуць.
+    title: Вы пакідаеце %{instance}.
   relationships:
     activity: Актыўнасць ул. запісу
     confirm_follow_selected_followers: Вы ўпэўнены, што жадаеце падпісацца на выбраных падпісчыкаў?
@@ -1660,6 +1663,7 @@ be:
       unknown_browser: Невядомы браўзер
       weibo: Weibo
     current_session: Бягучая сесія
+    date: Дата
     description: "%{browser} на %{platform}"
     explanation: Гэта вэб-браўзэры, з якіх выкананы ўваход у ваш уліковы запіс Mastodon.
     ip: IP
@@ -1776,7 +1780,7 @@ be:
     interaction_exceptions_explanation: Звярніце ўвагу, што няма гарантыі выдалення пастоў, калі колькасць іх упадабанняў ці пашырэннняў упадзе ніжэй за ліміт, хаця некалі гэтая колькасць перавышала яго.
     keep_direct: Захаваць асабістыя паведамленні
     keep_direct_hint: Не выдаляць асабістыя паведамленні
-    keep_media: Захоўваць допісы з медыя дадаткамі
+    keep_media: Захоўваць допісы з далучаным медыя
     keep_media_hint: Не выдаляць вашыя допісы, якія ўтрымліваюць медыя
     keep_pinned: Захаваць замацаваныя допісы
     keep_pinned_hint: Не выдаляць вашыя замацаваныя допісы
@@ -1838,16 +1842,27 @@ be:
     webauthn: Ключы бяспекі
   user_mailer:
     appeal_approved:
+      action: Налады ўліковага запісу
       explanation: Апеляцыя на папярэджанне супраць вашага ўліковага запісу ад %{strike_date}, якую вы падалі %{appeal_date}, была ўхвалена. Ваш уліковы запіс зноў на добрым рахунку.
       subject: Вашая апеляцыя ад %{date} была ўхваленая
+      subtitle: Ваш уліковы запіс зноў знаходзіцца ў добрым стане.
       title: Абскарджанне ўхвалена
     appeal_rejected:
       explanation: Апеляцыя на папярэджанне супраць вашага ўліковага запісу ад %{strike_date}, якую вы падалі %{appeal_date}, была адхілена.
       subject: Вашая апеляцыя ад %{date} была адхіленая
+      subtitle: Ваша абскарджанне было адхілена.
       title: Абскарджанне адхілена
     backup_ready:
+      explanation: Вы запыталі поўную рэзервовую копію вашага ўліковага запісу Mastodon.
+      extra: Цяпер ён гатовы да загрузкі!
       subject: Ваш архіў гатовы да спампавання
       title: Ваш архіў можна спампаваць
+    failed_2fa:
+      details: 'Вось падрабязнасці ўваходу:'
+      explanation: Хтосьці спрабаваў увайсці ў ваш уліковы запіс, але ўвёў няправільны другі фактар аўтэнтыфікацыі.
+      further_actions_html: Калі гэта не вы, мы рэкамендуем неадкладна %{action}, бо ён можа быць скампраметаваны.
+      subject: Збой аўтэнтыфікацыі па другім фактары
+      title: Няўдалая аўтэнтыфікацыя па другім фактары
     suspicious_sign_in:
       change_password: змяніць свой пароль
       details: 'Вось падрабязнасці ўваходу:'
@@ -1901,6 +1916,7 @@ be:
     go_to_sso_account_settings: Перайдзіце ў налады ідэнтыфікацыі вашага ўліковага запісу
     invalid_otp_token: Няправільны код двухфактарнай аўтэнтыфікацыі
     otp_lost_help_html: Калі вы страцілі доступ да абодвух, вы можаце скарыстацца %{email}
+    rate_limited: Занадта шмат спробаў аўтэнтыфікацыі, паспрабуйце пазней.
     seamless_external_login: Вы ўвайшлі праз знешні сэрвіс, таму налады пароля і эл. пошты недаступныя.
     signed_in_as: 'Увайшлі як:'
   verification:

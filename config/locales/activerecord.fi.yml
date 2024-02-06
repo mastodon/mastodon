@@ -4,7 +4,7 @@ fi:
     attributes:
       poll:
         expires_at: Määräaika
-        options: Valinnat
+        options: Vaihtoehdot
       user:
         agreement: Palvelusopimus
         email: Sähköpostiosoite
@@ -36,7 +36,7 @@ fi:
         status:
           attributes:
             reblog:
-              taken: tila on jo olemassa
+              taken: tästä julkaisusta on jo tehty
         user:
           attributes:
             email:
@@ -47,7 +47,7 @@ fi:
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: sisältää oikeudet, jotka eivät ole turvallisia perusroolille
+              dangerous: sisältää oikeuksia, jotka eivät ole turvallisia perusroolille
               elevated: ei voi sisältää oikeuksia, joita nykyisellä roolillasi ei ole
               own_role: ei voi muuttaa nykyisellä roolillasi
             position:
