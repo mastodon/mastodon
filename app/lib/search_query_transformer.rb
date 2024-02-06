@@ -81,8 +81,19 @@ class SearchQueryTransformer < Parslet::Transform
                     },
                   },
                   {
-                    term: {
-                      searchable_by: @options[:current_account].id,
+                    bool: {
+                      should: [
+                        {
+                          term: {
+                            searchable_by: @options[:current_account].id,
+                          },
+                        },
+                        {
+                          term: {
+                            searchable_by_anyone: true,
+                          },
+                        },
+                      ],
                     },
                   },
                 ],
