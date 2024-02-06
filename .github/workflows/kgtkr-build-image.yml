@@ -1,0 +1,41 @@
+name: kgtkr-build-image
+on: push
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: docker/setup-qemu-action@v2
+      - uses: docker/setup-buildx-action@v2
+      - name: Login to Docker
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate tags
+        uses: kgtkr/docker-tags-gen-action@master
+        id: tags
+        with:
+          name: ghcr.io/${{ github.repository_owner }}/mastodon
+      - id: base_tag
+        run: echo BASE_TAG=$(git describe --abbrev=0 --tag) >> $GITHUB_OUTPUT
+      - uses: docker/build-push-action@v4
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          provenance: false
+          builder: ${{ steps.buildx.outputs.name }}
+          push: true
+          tags: ${{ steps.tags.outputs.tags }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          file: kgtkr.Dockerfile
+          build-args: |
+            BASE_TAG=${{ steps.base_tag.outputs.BASE_TAG }}

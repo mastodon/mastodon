@@ -109,7 +109,8 @@ class ActivityPub::ProcessAccountService < BaseService
       RedownloadAvatarWorker.perform_in(rand(30..600).seconds, @account.id)
     end
     begin
-      @account.header_remote_url = image_url('image') || '' unless skip_download?
+      # 容量節約のためヘッダのダウンロードはスキップする
+      @account.header_remote_url = image_url('image') || '' unless true
       @account.header = nil if @account.header_remote_url.blank?
     rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
       RedownloadHeaderWorker.perform_in(rand(30..600).seconds, @account.id)

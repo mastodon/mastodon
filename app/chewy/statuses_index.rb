@@ -4,6 +4,14 @@ class StatusesIndex < Chewy::Index
   include FormattingHelper
 
   settings index: { refresh_interval: '30s' }, analysis: {
+    tokenizer: {
+      sudachi_tokenizer: {
+        type: 'sudachi_tokenizer',
+        discard_punctuation: true,
+        resources_path: '/usr/share/elasticsearch/config/sudachi',
+        settings_path: '/usr/share/elasticsearch/config/sudachi/sudachi.json',
+      },
+    },
     filter: {
       english_stop: {
         type: 'stop',
@@ -17,15 +25,24 @@ class StatusesIndex < Chewy::Index
         type: 'stemmer',
         language: 'possessive_english',
       },
+      sudachi_split_filter: {
+        type: "sudachi_split",
+        mode: "search"
+      },
     },
     analyzer: {
       content: {
-        tokenizer: 'uax_url_email',
+        tokenizer: 'sudachi_tokenizer',
+        type: 'custom',
         filter: %w(
-          english_possessive_stemmer
           lowercase
-          asciifolding
           cjk_width
+          sudachi_split_filter
+          sudachi_part_of_speech
+          sudachi_ja_stop
+          sudachi_baseform
+          english_possessive_stemmer
+          asciifolding
           english_stop
           english_stemmer
         ),
@@ -71,5 +88,6 @@ class StatusesIndex < Chewy::Index
     end
 
     field :searchable_by, type: 'long', value: ->(status, crutches) { status.searchable_by(crutches) }
+    field :searchable_by_anyone, type: 'boolean', value: ->(status) { status.public_visibility? }
   end
 end
