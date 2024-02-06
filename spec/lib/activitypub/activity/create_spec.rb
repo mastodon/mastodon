@@ -75,47 +75,105 @@ RSpec.describe ActivityPub::Activity::Create do
 
     before do
       follower.follow!(sender)
+
+      # Simulate a temporary failure preventing from fetching the parent post
+      stub_request(:get, object_json[:id]).to_return(status: 500)
     end
 
     it 'correctly processes posts and inserts them in timelines', :aggregate_failures do
-      # Simulate a temporary failure preventing from fetching the parent post
-      stub_request(:get, object_json[:id]).to_return(status: 500)
+      # Process reply object json
+      expect { process_object_reply }
+        .to create_reply_status
+        .and queue_local_notifications(1)
 
-      # When receiving the reply…
-      described_class.new(activity_for_object(reply_json), sender, delivery: true).perform
+      # Process parent object json
+      expect { process_object_parent }
+        .to create_parent_status
+        .and add_status_to_follower_feed(reply_status)
+        .and create_notifications(2)
 
-      # NOTE: Refering explicitly to the workers is a bit awkward
+      # Change reply to reference processed parent
+      expect(reply_status.reload.in_reply_to_id)
+        .to eq parent_status.id
+
+      # Check that the parent status is in home feed
+      expect(follower_home_feed_value_for(parent_status))
+        .to eq(parent_status.id.to_f)
+    end
+
+    def create_notifications(count)
+      change(Notification, :count)
+        .from(0)
+        .to(count)
+    end
+
+    def queue_local_notifications(count)
+      change(LocalNotificationWorker.jobs, :size)
+        .from(0)
+        .to(count)
+    end
+
+    def create_reply_status
+      change { reply_status }
+        .from(nil)
+        .to(
+          have_attributes(
+            reply?: be(true),
+            in_reply_to_id: be_nil
+          )
+        )
+    end
+
+    def create_parent_status
+      change { parent_status }
+        .from(nil)
+        .to(
+          have_attributes(
+            reply?: be(false),
+            in_reply_to_id: be_nil
+          )
+        )
+    end
+
+    def process_object_reply
+      # Receive the reply…
+      receive_and_process(reply_json)
+
+      # Refering explicitly to the workers is a bit awkward
       DistributionWorker.drain
       FeedInsertWorker.drain
+    end
 
-      # …it creates a status with an unknown parent
-      reply = Status.find_by(uri: reply_json[:id])
-      expect(reply.reply?).to be true
-      expect(reply.in_reply_to_id).to be_nil
+    def process_object_parent
+      # Receive the parent…
+      receive_and_process(object_json)
 
-      # …and creates a notification
-      expect(LocalNotificationWorker.jobs.size).to eq 1
-
-      # …but does not insert it into timelines
-      expect(redis.zscore(FeedManager.instance.key(:home, follower.id), reply.id)).to be_nil
-
-      # When receiving the parent…
-      described_class.new(activity_for_object(object_json), sender, delivery: true).perform
-
+      # Drain workers
       Sidekiq::Worker.drain_all
+    end
 
-      # …it creates a status and insert it into timelines
-      parent = Status.find_by(uri: object_json[:id])
-      expect(parent.reply?).to be false
-      expect(parent.in_reply_to_id).to be_nil
-      expect(reply.reload.in_reply_to_id).to eq parent.id
+    def add_status_to_follower_feed(status)
+      change { follower_home_feed_value_for(status) }
+        .from(nil)
+        .to(status.id.to_f)
+    end
 
-      # Check that the both statuses have been inserted into the home feed
-      expect(redis.zscore(FeedManager.instance.key(:home, follower.id), parent.id)).to be_within(0.1).of(parent.id.to_f)
-      expect(redis.zscore(FeedManager.instance.key(:home, follower.id), reply.id)).to be_within(0.1).of(reply.id.to_f)
+    def receive_and_process(json)
+      described_class
+        .new(activity_for_object(json), sender, delivery: true)
+        .perform
+    end
 
-      # Creates two notifications
-      expect(Notification.count).to eq 2
+    def reply_status
+      Status.find_by(uri: reply_json[:id])
+    end
+
+    def parent_status
+      Status.find_by(uri: object_json[:id])
+    end
+
+    def follower_home_feed_value_for(status)
+      redis.zscore(FeedManager.instance.key(:home, follower.id), status.id)
     end
   end
 
