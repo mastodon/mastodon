@@ -228,13 +228,7 @@ RSpec.describe PostStatusService, type: :service do
       subject.call(
         account,
         text: 'test status update',
-        media_ids: [
-          Fabricate(:media_attachment, account: account),
-          Fabricate(:media_attachment, account: account),
-          Fabricate(:media_attachment, account: account),
-          Fabricate(:media_attachment, account: account),
-          Fabricate(:media_attachment, account: account),
-        ].map(&:id)
+        media_ids: Array.new(5) { Fabricate(:media_attachment, account: account) }.map(&:id)
       )
     end.to raise_error(
       Mastodon::ValidationError,
