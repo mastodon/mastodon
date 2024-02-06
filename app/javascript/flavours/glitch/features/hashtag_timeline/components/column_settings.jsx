@@ -9,6 +9,8 @@ import { NonceProvider } from 'react-select';
 import AsyncSelect from 'react-select/async';
 import Toggle from 'react-toggle';
 
+import { maxFeedHashtags } from 'flavours/glitch/initial_state';
+
 import SettingToggle from '../../notifications/components/setting_toggle';
 
 const messages = defineMessages({
@@ -46,9 +48,9 @@ class ColumnSettings extends PureComponent {
   onSelect = mode => value => {
     const oldValue = this.tags(mode);
 
-    // Prevent changes that add more than 4 tags, but allow removing
-    // tags that were already added before
-    if ((value.length > 4) && !(value < oldValue)) {
+    // Prevent changes that add more than the number of configured
+    // tags, but allow removing tags that were already added before
+    if ((value.length > maxFeedHashtags) && !(value < oldValue)) {
       return;
     }
 

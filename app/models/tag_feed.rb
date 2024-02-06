@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TagFeed < PublicFeed
-  LIMIT_PER_MODE = 4
+  LIMIT_PER_MODE = (ENV['MAX_FEED_HASHTAGS'] || 4).to_i
 
   # @param [Tag] tag
   # @param [Account] account
