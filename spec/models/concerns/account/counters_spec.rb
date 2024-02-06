@@ -6,6 +6,8 @@ describe Account::Counters do
   let!(:account) { Fabricate(:account) }
 
   describe '#increment_count!' do
+    let(:increment_by) { 15 }
+
     it 'increments the count' do
       expect(account.followers_count).to eq 0
       account.increment_count!(:followers_count)
@@ -13,24 +15,17 @@ describe Account::Counters do
     end
 
     it 'increments the count in multi-threaded an environment' do
-      increment_by   = 15
-      wait_for_start = true
-
-      threads = Array.new(increment_by) do
-        Thread.new do
-          true while wait_for_start
-          account.increment_count!(:statuses_count)
-        end
+      multi_threaded_execution(increment_by) do
+        account.increment_count!(:statuses_count)
       end
-
-      wait_for_start = false
-      threads.each(&:join)
 
       expect(account.statuses_count).to eq increment_by
     end
   end
 
   describe '#decrement_count!' do
+    let(:decrement_by) { 10 }
+
     it 'decrements the count' do
       account.followers_count = 15
       account.save!
@@ -40,21 +35,12 @@ describe Account::Counters do
     end
 
     it 'decrements the count in multi-threaded an environment' do
-      decrement_by   = 10
-      wait_for_start = true
-
       account.statuses_count = 15
       account.save!
 
-      threads = Array.new(decrement_by) do
-        Thread.new do
-          true while wait_for_start
-          account.decrement_count!(:statuses_count)
-        end
+      multi_threaded_execution(decrement_by) do
+        account.decrement_count!(:statuses_count)
       end
-
-      wait_for_start = false
-      threads.each(&:join)
 
       expect(account.statuses_count).to eq 5
     end
