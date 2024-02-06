@@ -1,4 +1,5 @@
 const { join } = require('path');
+
 const { settings } = require('../configuration');
 
 module.exports = {

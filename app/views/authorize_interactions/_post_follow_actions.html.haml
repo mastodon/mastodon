@@ -1,4 +1,0 @@
-.post-follow-actions
-  %div= link_to t('authorize_follow.post_follow.web'), web_url("@#{@resource.pretty_acct}"), class: 'button button--block'
-  %div= link_to t('authorize_follow.post_follow.return'), ActivityPub::TagManager.instance.url_for(@resource), class: 'button button--block'
-  %div= t('authorize_follow.post_follow.close')

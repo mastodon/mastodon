@@ -10,7 +10,8 @@ module AccountControllerConcern
 
   included do
     before_action :set_instance_presenter
-    before_action :set_link_headers, if: -> { request.format.nil? || request.format == :html }
+
+    after_action :set_link_headers, if: -> { request.format.nil? || request.format == :html }
   end
 
   private

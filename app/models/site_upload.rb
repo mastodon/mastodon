@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: site_uploads
@@ -42,7 +43,7 @@ class SiteUpload < ApplicationRecord
 
   has_attached_file :file, styles: ->(file) { STYLES[file.instance.var.to_sym] }, convert_options: { all: '-coalesce +profile "!icc,*" +set modify-date +set create-date' }, processors: [:lazy_thumbnail, :blurhash_transcoder, :type_corrector]
 
-  validates_attachment_content_type :file, content_type: /\Aimage\/.*\z/
+  validates_attachment_content_type :file, content_type: %r{\Aimage/.*\z}
   validates :file, presence: true
   validates :var, presence: true, uniqueness: true
 

@@ -27,14 +27,12 @@ class ActivityPub::LinkedDataSignature
     document_hash  = hash(@json.without('signature'))
     to_be_verified = options_hash + document_hash
 
-    if creator.keypair.public_key.verify(OpenSSL::Digest.new('SHA256'), Base64.decode64(signature), to_be_verified)
-      creator
-    end
+    creator if creator.keypair.public_key.verify(OpenSSL::Digest.new('SHA256'), Base64.decode64(signature), to_be_verified)
   end
 
   def sign!(creator, sign_with: nil)
     options = {
-      'type'    => 'RsaSignature2017',
+      'type' => 'RsaSignature2017',
       'creator' => ActivityPub::TagManager.instance.key_uri_for(creator),
       'created' => Time.now.utc.iso8601,
     }

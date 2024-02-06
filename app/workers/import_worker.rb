@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# NOTE: This is a deprecated worker, only kept to not break ongoing imports
+# on upgrade. See `ImportWorker` for its replacement.
+
 class ImportWorker
   include Sidekiq::Worker
 

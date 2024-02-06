@@ -5,7 +5,7 @@
   %p.hint.authentication-hint= t('simple_form.hints.sessions.otp')
 
   .fields-group
-    = f.input :otp_attempt, type: :number, wrapper: :with_label, label: t('simple_form.labels.defaults.otp_attempt'), input_html: { 'aria-label' => t('simple_form.labels.defaults.otp_attempt'), :autocomplete => 'one-time-code' }, autofocus: true
+    = f.input :otp_attempt, type: :number, wrapper: :with_label, label: t('simple_form.labels.defaults.otp_attempt'), input_html: { 'aria-label': t('simple_form.labels.defaults.otp_attempt'), autocomplete: 'one-time-code' }, autofocus: true
 
   .actions
     = f.button :button, t('auth.login'), type: :submit

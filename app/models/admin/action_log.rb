@@ -17,7 +17,7 @@
 #
 
 class Admin::ActionLog < ApplicationRecord
-  self.ignored_columns = %w(
+  self.ignored_columns += %w(
     recorded_changes
   )
 

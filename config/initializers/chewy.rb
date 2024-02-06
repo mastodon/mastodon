@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 enabled         = ENV['ES_ENABLED'] == 'true'
 host            = ENV.fetch('ES_HOST') { 'localhost' }
 port            = ENV.fetch('ES_PORT') { 9200 }
@@ -13,23 +15,18 @@ Chewy.settings = {
   journal: false,
   user: user,
   password: password,
+  index: {
+    number_of_replicas: ['single_node_cluster', nil].include?(ENV['ES_PRESET'].presence) ? 0 : 1,
+  },
 }
 
 # We use our own async strategy even outside the request-response
 # cycle, which takes care of checking if Elasticsearch is enabled
 # or not. However, mind that for the Rails console, the :urgent
 # strategy is set automatically with no way to override it.
-Chewy.root_strategy              = :mastodon
+Chewy.root_strategy              = :bypass_with_warning if Rails.env.production?
 Chewy.request_strategy           = :mastodon
 Chewy.use_after_commit_callbacks = false
-
-module Chewy
-  class << self
-    def enabled?
-      settings[:enabled]
-    end
-  end
-end
 
 # Elasticsearch uses Faraday internally. Faraday interprets the
 # http_proxy env variable by default which leads to issues when

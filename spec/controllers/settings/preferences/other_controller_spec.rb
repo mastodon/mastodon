@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Settings::Preferences::OtherController do
@@ -10,9 +12,16 @@ describe Settings::Preferences::OtherController do
   end
 
   describe 'GET #show' do
-    it 'returns http success' do
+    before do
       get :show
+    end
+
+    it 'returns http success' do
       expect(response).to have_http_status(200)
+    end
+
+    it 'returns private cache control headers' do
+      expect(response.headers['Cache-Control']).to include('private, no-store')
     end
   end
 
@@ -23,24 +32,26 @@ describe Settings::Preferences::OtherController do
       expect(response).to redirect_to(settings_preferences_other_path)
       user.reload
       expect(user.locale).to eq 'en'
-      expect(user.chosen_languages).to eq ['es', 'fr']
+      expect(user.chosen_languages).to eq %w(es fr)
     end
 
     it 'updates user settings' do
-      user.settings['boost_modal'] = false
-      user.settings['delete_modal'] = true
+      user.settings.update('web.reblog_modal': false, 'web.delete_modal': true)
+      user.save
 
       put :update, params: {
         user: {
-          setting_boost_modal: '1',
-          setting_delete_modal: '0',
-        }
+          settings_attributes: {
+            'web.reblog_modal': '1',
+            'web.delete_modal': '0',
+          },
+        },
       }
 
       expect(response).to redirect_to(settings_preferences_other_path)
       user.reload
-      expect(user.settings['boost_modal']).to be true
-      expect(user.settings['delete_modal']).to be false
+      expect(user.settings['web.reblog_modal']).to be true
+      expect(user.settings['web.delete_modal']).to be false
     end
   end
 end

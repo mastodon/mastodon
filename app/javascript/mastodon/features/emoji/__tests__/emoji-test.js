@@ -74,9 +74,9 @@ describe('emoji', () => {
         .toEqual('<span class="invisible">😄<br>😴</span><img draggable="false" class="emojione" alt="😇" title=":innocent:" src="/emoji/1f607.svg">');
     });
 
-    it('skips the textual presentation VS15 character', () => {
+    it('does not emojify emojis with textual presentation VS15 character', () => {
       expect(emojify('✴︎')) // This is U+2734 EIGHT POINTED BLACK STAR then U+FE0E VARIATION SELECTOR-15
-        .toEqual('<img draggable="false" class="emojione" alt="✴" title=":eight_pointed_black_star:" src="/emoji/2734_border.svg">');
+        .toEqual('✴︎');
     });
 
     it('does an simple emoji properly', () => {
@@ -87,6 +87,11 @@ describe('emoji', () => {
     it('does an emoji containing ZWJ properly', () => {
       expect(emojify('💂‍♀️💂‍♂️'))
         .toEqual('<img draggable="false" class="emojione" alt="💂\u200D♀️" title=":female-guard:" src="/emoji/1f482-200d-2640-fe0f_border.svg"><img draggable="false" class="emojione" alt="💂\u200D♂️" title=":male-guard:" src="/emoji/1f482-200d-2642-fe0f_border.svg">');
+    });
+
+    it('keeps ordering as expected (issue fixed by PR 20677)', () => {
+      expect(emojify('<p>💕 <a class="hashtag" href="https://example.com/tags/foo" rel="nofollow noopener noreferrer" target="_blank">#<span>foo</span></a> test: foo.</p>'))
+        .toEqual('<p><img draggable="false" class="emojione" alt="💕" title=":two_hearts:" src="/emoji/1f495.svg"> <a class="hashtag" href="https://example.com/tags/foo" rel="nofollow noopener noreferrer" target="_blank">#<span>foo</span></a> test: foo.</p>');
     });
   });
 });

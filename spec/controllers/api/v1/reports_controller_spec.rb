@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::ReportsController, type: :controller do
+RSpec.describe Api::V1::ReportsController do
   render_views
 
   let(:user)  { Fabricate(:user) }
@@ -20,10 +20,9 @@ RSpec.describe Api::V1::ReportsController, type: :controller do
     let(:target_account) { status.account }
     let(:category) { nil }
     let(:forward) { nil }
-    let(:rule_ids){ nil }
+    let(:rule_ids) { nil }
 
     before do
-      allow(AdminMailer).to receive(:new_report).and_return(double('email', deliver_later: nil))
       post :create, params: { status_ids: [status.id], account_id: target_account.id, comment: 'reasons', category: category, rule_ids: rule_ids, forward: forward }
     end
 
@@ -40,7 +39,7 @@ RSpec.describe Api::V1::ReportsController, type: :controller do
     end
 
     it 'sends e-mails to admins' do
-      expect(AdminMailer).to have_received(:new_report).with(admin.account, Report)
+      expect(ActionMailer::Base.deliveries.first.to).to eq([admin.email])
     end
 
     context 'when a status does not belong to the reported account' do
@@ -69,7 +68,7 @@ RSpec.describe Api::V1::ReportsController, type: :controller do
       end
 
       it 'saves rule_ids' do
-        expect(target_account.targeted_reports.first.rule_ids).to match_array([rule.id])
+        expect(target_account.targeted_reports.first.rule_ids).to contain_exactly(rule.id)
       end
     end
   end

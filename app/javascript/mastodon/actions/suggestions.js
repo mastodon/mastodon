@@ -1,6 +1,7 @@
 import api from '../api';
-import { importFetchedAccounts } from './importer';
+
 import { fetchRelationships } from './accounts';
+import { importFetchedAccounts } from './importer';
 
 export const SUGGESTIONS_FETCH_REQUEST = 'SUGGESTIONS_FETCH_REQUEST';
 export const SUGGESTIONS_FETCH_SUCCESS = 'SUGGESTIONS_FETCH_SUCCESS';
@@ -21,14 +22,14 @@ export function fetchSuggestions(withRelationships = false) {
       }
     }).catch(error => dispatch(fetchSuggestionsFail(error)));
   };
-};
+}
 
 export function fetchSuggestionsRequest() {
   return {
     type: SUGGESTIONS_FETCH_REQUEST,
     skipLoading: true,
   };
-};
+}
 
 export function fetchSuggestionsSuccess(suggestions) {
   return {
@@ -36,7 +37,7 @@ export function fetchSuggestionsSuccess(suggestions) {
     suggestions,
     skipLoading: true,
   };
-};
+}
 
 export function fetchSuggestionsFail(error) {
   return {
@@ -45,7 +46,7 @@ export function fetchSuggestionsFail(error) {
     skipLoading: true,
     skipAlert: true,
   };
-};
+}
 
 export const dismissSuggestion = accountId => (dispatch, getState) => {
   dispatch({

@@ -21,7 +21,7 @@ zh-TW:
         action: 驗證電子郵件地址
         action_with_app: 確認並返回 %{app}
         explanation: 您已經在 %{host} 上以此電子郵件地址建立了一支帳號。您距離啟用它只剩一點之遙了。若這不是您，請忽略此信件。
-        explanation_when_pending: 您使用此電子郵件地址申請了 %{host} 的邀請。當您確認電子郵件信箱後我們將審核您的申請。您可以登入以改變您的細節或刪除您的帳號，但直到您的帳號被核准之前，您無法操作大部分的功能。若您的申請遭拒絕，您的資料將被移除而不必做後續動作。如果這不是您，請忽略此信件。
+        explanation_when_pending: 您使用此電子郵件地址申請了 %{host} 的邀請。當您確認電子郵件地址後我們將審核您的申請。您可以在登入後變更詳細資訊或刪除您的帳號，但直到您的帳號被核准之前，您無法操作大部分的功能。若您的申請遭拒絕，您的資料將被移除而不必做後續動作。如果這不是您本人，請忽略此郵件。
         extra_html: 同時也請看看<a href="%{terms_path}">伺服器規則</a>與<a href="%{policy_path}">服務條款</a>。
         subject: Mastodon：%{instance} 確認說明
         title: 驗證電子郵件地址
@@ -49,15 +49,15 @@ zh-TW:
       two_factor_disabled:
         explanation: 您帳號的兩階段驗證已停用。現在只使用電子郵件及密碼登入。
         subject: Mastodon：已停用兩階段驗證
-        title: 已停用 2FA
+        title: 已停用兩階段驗證
       two_factor_enabled:
         explanation: 已對您的帳號啟用兩階段驗證。登入時將需要已配對的 TOTP 應用程式所產生之 Token。
         subject: Mastodon：已啟用兩階段驗證
-        title: 已啟用 2FA
+        title: 已啟用兩階段驗證
       two_factor_recovery_codes_changed:
         explanation: 之前的備用驗證碼已經失效，且已產生新的。
         subject: Mastodon：兩階段驗證備用驗證碼已經重新產生
-        title: 2FA 備用驗證碼已變更
+        title: 兩階段驗證備用驗證碼已變更
       unlock_instructions:
         subject: Mastodon：解鎖指引
       webauthn_credential:
@@ -82,8 +82,8 @@ zh-TW:
       success: 成功透過 %{kind} 帳號登入。
     passwords:
       no_token: 您必須透過密碼重設信件才能存取此頁面。若確實如此，請確定輸入的網址是完整的。
-      send_instructions: 若電子郵件地址存在於我們的資料庫，幾分鐘後您將在信箱中收到密碼復原連結。若未收到請檢查垃圾郵件資料夾。
-      send_paranoid_instructions: 若電子郵件地址存在於我們的資料庫，幾分鐘後您將在信箱中收到密碼復原連結。若未收到請檢查垃圾郵件資料夾。
+      send_instructions: 若電子郵件地址存在於我們的資料庫，幾分鐘後您將於信箱中收到密碼復原連結。若未收到請檢查垃圾郵件資料夾。
+      send_paranoid_instructions: 若電子郵件地址存在於我們的資料庫，幾分鐘後您將於信箱中收到密碼復原連結。若未收到請檢查垃圾郵件資料夾。
       updated: 您的密碼已成功變更，現在已經登入。
       updated_not_active: 您的密碼已成功變更。
     registrations:
@@ -101,8 +101,8 @@ zh-TW:
       signed_out: 已成功登出。
     unlocks:
       send_instructions: 幾分鐘後您將收到解鎖帳號的指引信件。若未收到請檢查垃圾郵件資料夾。
-      send_paranoid_instructions: 若此帳號存在，您將在幾分鐘後收到解鎖指引信件。若未收到請檢查垃圾郵件資料夾。
-      unlocked: 已解鎖您的帳號，請登入繼續。
+      send_paranoid_instructions: 若此帳號存在，您將於幾分鐘後收到解鎖指引信件。若未收到請檢查垃圾郵件資料夾。
+      unlocked: 已解鎖您的帳號，請登入以繼續。
   errors:
     messages:
       already_confirmed: 已經確認，請嘗試登入

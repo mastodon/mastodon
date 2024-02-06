@@ -28,8 +28,8 @@ module SignatureVerification
   end
 
   class SignatureParamsTransformer < Parslet::Transform
-    rule(params: subtree(:p)) do
-      (p.is_a?(Array) ? p : [p]).each_with_object({}) { |(key, val), h| h[key] = val }
+    rule(params: subtree(:param)) do
+      (param.is_a?(Array) ? param : [param]).each_with_object({}) { |(key, value), hash| hash[key] = value }
     end
 
     rule(param: { key: simple(:key), value: simple(:val) }) do
@@ -46,11 +46,11 @@ module SignatureVerification
   end
 
   def require_account_signature!
-    render plain: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_account
+    render json: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_account
   end
 
   def require_actor_signature!
-    render plain: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_actor
+    render json: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_actor
   end
 
   def signed_request?
@@ -97,11 +97,11 @@ module SignatureVerification
 
     actor = stoplight_wrap_request { actor_refresh_key!(actor) }
 
-    raise SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if actor.nil?
+    raise SignatureVerificationError, "Could not refresh public key #{signature_params['keyId']}" if actor.nil?
 
     return actor unless verify_signature(actor, signature, compare_signed_string).nil?
 
-    fail_with! "Verification failed for #{actor.to_log_human_identifier} #{actor.uri} using rsa-sha256 (RSASSA-PKCS1-v1_5 with SHA-256)"
+    fail_with! "Verification failed for #{actor.to_log_human_identifier} #{actor.uri} using rsa-sha256 (RSASSA-PKCS1-v1_5 with SHA-256)", signed_string: compare_signed_string, signature: signature_params['signature']
   rescue SignatureVerificationError => e
     fail_with! e.message
   rescue HTTP::Error, OpenSSL::SSL::SSLError => e
@@ -118,8 +118,10 @@ module SignatureVerification
 
   private
 
-  def fail_with!(message)
-    @signature_verification_failure_reason = message
+  def fail_with!(message, **options)
+    Rails.logger.debug { "Signature verification failed: #{message}" }
+
+    @signature_verification_failure_reason = { error: message }.merge(options)
     @signed_request_actor = nil
   end
 
@@ -138,7 +140,7 @@ module SignatureVerification
   end
 
   def signed_headers
-    signature_params.fetch('headers', signature_algorithm == 'hs2019' ? '(created)' : 'date').downcase.split(' ')
+    signature_params.fetch('headers', signature_algorithm == 'hs2019' ? '(created)' : 'date').downcase.split
   end
 
   def verify_signature_strength!
@@ -165,6 +167,7 @@ module SignatureVerification
     end
 
     raise SignatureVerificationError, "Invalid Digest value. The provided Digest value is not a SHA-256 digest. Given digest: #{sha256[1]}" if digest_size != 32
+
     raise SignatureVerificationError, "Invalid Digest value. Computed SHA-256 digest: #{body_digest}; given: #{sha256[1]}"
   end
 
@@ -179,14 +182,15 @@ module SignatureVerification
 
   def build_signed_string
     signed_headers.map do |signed_header|
-      if signed_header == Request::REQUEST_TARGET
+      case signed_header
+      when Request::REQUEST_TARGET
         "#{Request::REQUEST_TARGET}: #{request.method.downcase} #{request.path}"
-      elsif signed_header == '(created)'
+      when '(created)'
         raise SignatureVerificationError, 'Invalid pseudo-header (created) for rsa-sha256' unless signature_algorithm == 'hs2019'
         raise SignatureVerificationError, 'Pseudo-header (created) used but corresponding argument missing' if signature_params['created'].blank?
 
         "(created): #{signature_params['created']}"
-      elsif signed_header == '(expires)'
+      when '(expires)'
         raise SignatureVerificationError, 'Invalid pseudo-header (expires) for rsa-sha256' unless signature_algorithm == 'hs2019'
         raise SignatureVerificationError, 'Pseudo-header (expires) used but corresponding argument missing' if signature_params['expires'].blank?
 
@@ -209,8 +213,8 @@ module SignatureVerification
       end
 
       expires_time = Time.at(signature_params['expires'].to_i).utc if signature_params['expires'].present?
-    rescue ArgumentError
-      return false
+    rescue ArgumentError => e
+      raise SignatureVerificationError, "Invalid Date header: #{e.message}"
     end
 
     expires_time ||= created_time + 5.minutes unless created_time.nil?
@@ -227,7 +231,7 @@ module SignatureVerification
   end
 
   def to_header_name(name)
-    name.split(/-/).map(&:capitalize).join('-')
+    name.split('-').map(&:capitalize).join('-')
   end
 
   def missing_required_signature_parameters?
@@ -243,7 +247,7 @@ module SignatureVerification
     end
 
     if key_id.start_with?('acct:')
-      stoplight_wrap_request { ResolveAccountService.new.call(key_id.gsub(/\Aacct:/, ''), suppress_errors: false) }
+      stoplight_wrap_request { ResolveAccountService.new.call(key_id.delete_prefix('acct:'), suppress_errors: false) }
     elsif !ActivityPub::TagManager.instance.local_uri?(key_id)
       account   = ActivityPub::TagManager.instance.uri_to_actor(key_id)
       account ||= stoplight_wrap_request { ActivityPub::FetchRemoteKeyService.new.call(key_id, id: false, suppress_errors: false) }

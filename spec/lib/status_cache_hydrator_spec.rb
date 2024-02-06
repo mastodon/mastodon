@@ -44,7 +44,7 @@ describe StatusCacheHydrator do
         let(:reblog) { Fabricate(:status) }
         let(:status) { Fabricate(:status, reblog: reblog) }
 
-        context 'that has been favourited' do
+        context 'when it has been favourited' do
           before do
             FavouriteService.new.call(account, reblog)
           end
@@ -54,7 +54,7 @@ describe StatusCacheHydrator do
           end
         end
 
-        context 'that has been reblogged' do
+        context 'when it has been reblogged' do
           before do
             ReblogService.new.call(account, reblog)
           end
@@ -64,7 +64,7 @@ describe StatusCacheHydrator do
           end
         end
 
-        context 'that has been pinned' do
+        context 'when it has been pinned' do
           let(:reblog) { Fabricate(:status, account: account) }
 
           before do
@@ -76,7 +76,7 @@ describe StatusCacheHydrator do
           end
         end
 
-        context 'that has been followed tags' do
+        context 'when it has been followed tags' do
           let(:followed_tag) { Fabricate(:tag) }
 
           before do
@@ -90,7 +90,7 @@ describe StatusCacheHydrator do
           end
         end
 
-        context 'that has a poll authored by the user' do
+        context 'when it has a poll authored by the user' do
           let(:poll) { Fabricate(:poll, account: account) }
           let(:reblog) { Fabricate(:status, poll: poll, account: account) }
 
@@ -99,7 +99,7 @@ describe StatusCacheHydrator do
           end
         end
 
-        context 'that has been voted in' do
+        context 'when it has been voted in' do
           let(:poll) { Fabricate(:poll, options: %w(Yellow Blue)) }
           let(:reblog) { Fabricate(:status, poll: poll) }
 
@@ -112,7 +112,7 @@ describe StatusCacheHydrator do
           end
         end
 
-        context 'that matches account filters' do
+        context 'when it matches account filters' do
           let(:reblog) { Fabricate(:status, text: 'this toot is about that banned word') }
 
           before do

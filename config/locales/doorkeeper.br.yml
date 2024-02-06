@@ -5,6 +5,7 @@ br:
       doorkeeper/application:
         name: Anv an arload
         redirect_uri: Dazkas URI
+        scopes: Dougoù
         website: Lec'hienn an arload
     errors:
       models:
@@ -19,7 +20,7 @@ br:
         authorize: Aotren
         cancel: Nullañ
         destroy: Distrujañ
-        edit: Aozañ
+        edit: Kemmañ
         submit: Kas
       confirmations:
         destroy: Ha sur oc'h ?
@@ -37,6 +38,7 @@ br:
         empty: Arloadoù ebet ganeoc'h.
         name: Anv
         new: Arload nevez
+        scopes: Dougoù
         show: Diskouez
         title: Hoc'h arloadoù
       new:
@@ -45,6 +47,7 @@ br:
         actions: Obererezhioù
         application_id: Alc'hwez an arval
         callback_urls: URLoù adc'halv
+        scopes: Dougoù
         title: 'Arload : %{name}'
     authorizations:
       buttons:
@@ -93,6 +96,15 @@ br:
       authorized_applications:
         destroy:
           notice: Skarzhet eo bet an arload.
+    grouped_scopes:
+      title:
+        blocks: Re stanket
+        bookmarks: Sinedoù
+        filters: Siloù
+        lists: Listennoù
+        mutes: Kuzhet
+        search: Klask
+        statuses: Toudoù
     layouts:
       admin:
         nav:
@@ -113,7 +125,6 @@ br:
       read:accounts: gwelout titouroù ar c'hontoù
       read:blocks: gwelout ar pezh a zo stanket ganeoc'h
       read:bookmarks: gwelout ho sinedoù
-      read:favourites: gwelout ho muiañ-karet
       read:filters: gwelout ho siloù
       read:follows: gwelout ar pezh a zo heuliet ganeoc'h
       read:lists: gwelout ho listennoù
@@ -125,7 +136,6 @@ br:
       write:accounts: kemmañ ho profil
       write:blocks: berzañ kontoù ha domanioù
       write:bookmarks: toudoù enrollet evel sinedoù
-      write:favourites: merkañ toudoù evel muiañ-karet
       write:filters: krouiñ siloù
       write:follows: heuliañ an dud
       write:lists: krouiñ listennoù

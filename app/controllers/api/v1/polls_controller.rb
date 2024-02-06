@@ -8,6 +8,7 @@ class Api::V1::PollsController < Api::BaseController
   before_action :refresh_poll
 
   def show
+    cache_if_unauthenticated!
     render json: @poll, serializer: REST::PollSerializer, include_results: true
   end
 

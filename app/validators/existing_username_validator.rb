@@ -4,15 +4,13 @@ class ExistingUsernameValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     return if value.blank?
 
-    usernames_and_domains = begin
-      value.split(',').map do |str|
-        username, domain = str.strip.gsub(/\A@/, '').split('@', 2)
-        domain = nil if TagManager.instance.local_domain?(domain)
+    usernames_and_domains = value.split(',').filter_map do |str|
+      username, domain = str.strip.gsub(/\A@/, '').split('@', 2)
+      domain = nil if TagManager.instance.local_domain?(domain)
 
-        next if username.blank?
+      next if username.blank?
 
-        [str, username, domain]
-      end.compact
+      [str, username, domain]
     end
 
     usernames_with_no_accounts = usernames_and_domains.filter_map do |(str, username, domain)|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Doorkeeper.configure do
   # Change the ORM that doorkeeper will use (needs plugins)
   orm :active_record
@@ -98,9 +100,19 @@ Doorkeeper.configure do
                   :'admin:read',
                   :'admin:read:accounts',
                   :'admin:read:reports',
+                  :'admin:read:domain_allows',
+                  :'admin:read:domain_blocks',
+                  :'admin:read:ip_blocks',
+                  :'admin:read:email_domain_blocks',
+                  :'admin:read:canonical_email_blocks',
                   :'admin:write',
                   :'admin:write:accounts',
                   :'admin:write:reports',
+                  :'admin:write:domain_allows',
+                  :'admin:write:domain_blocks',
+                  :'admin:write:ip_blocks',
+                  :'admin:write:email_domain_blocks',
+                  :'admin:write:canonical_email_blocks',
                   :crypto
 
   # Change the way client credentials are retrieved from the request object.

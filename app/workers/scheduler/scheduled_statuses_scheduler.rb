@@ -3,7 +3,7 @@
 class Scheduler::ScheduledStatusesScheduler
   include Sidekiq::Worker
 
-  sidekiq_options retry: 0
+  sidekiq_options retry: 0, lock: :until_executed, lock_ttl: 1.day.to_i
 
   def perform
     publish_scheduled_statuses!

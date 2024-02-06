@@ -4,9 +4,10 @@ class ActivityPub::FollowersSynchronizationsController < ActivityPub::BaseContro
   include SignatureVerification
   include AccountOwnedConcern
 
+  vary_by -> { 'Signature' if authorized_fetch_mode? }
+
   before_action :require_account_signature!
   before_action :set_items
-  before_action :set_cache_headers
 
   def show
     expires_in 0, public: false

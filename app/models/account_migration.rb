@@ -42,7 +42,7 @@ class AccountMigration < ApplicationRecord
 
     return false unless errors.empty?
 
-    with_lock("account_migration:#{account.id}") do
+    with_redis_lock("account_migration:#{account.id}") do
       save
     end
   end
@@ -59,7 +59,7 @@ class AccountMigration < ApplicationRecord
 
   def set_target_account
     self.target_account = ResolveAccountService.new.call(acct, skip_cache: true)
-  rescue Webfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::Error
+  rescue Webfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::Error, Addressable::URI::InvalidURIError
     # Validation will take care of it
   end
 

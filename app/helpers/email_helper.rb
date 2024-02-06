@@ -7,7 +7,7 @@ module EmailHelper
 
   def email_to_canonical_email(str)
     username, domain = str.downcase.split('@', 2)
-    username, = username.gsub('.', '').split('+', 2)
+    username, = username.delete('.').split('+', 2)
 
     "#{username}@#{domain}"
   end

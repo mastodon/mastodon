@@ -4,7 +4,7 @@ zh-TW:
     attributes:
       poll:
         expires_at: 截止時間
-        options: 選擇
+        options: 選項
       user:
         agreement: 服務同意書
         email: 電子郵件地址
@@ -41,7 +41,7 @@ zh-TW:
           attributes:
             email:
               blocked: 使用不被允許的電子郵件供應商
-              unreachable: 似乎不存在
+              unreachable: 該電子郵件地址似乎無法使用
             role_id:
               elevated: 不能高於您目前的角色
         user_role:
@@ -53,3 +53,7 @@ zh-TW:
             position:
               elevated: 不能高於您目前的角色
               own_role: 無法被您目前的角色更改
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: 無法包含您無存取權之事件

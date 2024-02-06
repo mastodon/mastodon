@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateJoinTablePreviewCardsStatuses < ActiveRecord::Migration[5.1]
   def change
     create_join_table :preview_cards, :statuses do |t|

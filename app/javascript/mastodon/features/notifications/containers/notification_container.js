@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
-import { makeGetNotification, makeGetStatus, makeGetReport } from '../../../selectors';
-import Notification from '../components/notification';
+
 import { initBoostModal } from '../../../actions/boosts';
 import { mentionCompose } from '../../../actions/compose';
 import {
@@ -14,6 +13,8 @@ import {
   revealStatus,
 } from '../../../actions/statuses';
 import { boostModal } from '../../../initial_state';
+import { makeGetNotification, makeGetStatus, makeGetReport } from '../../../selectors';
+import Notification from '../components/notification';
 
 const makeMapStateToProps = () => {
   const getNotification = makeGetNotification();
@@ -24,7 +25,7 @@ const makeMapStateToProps = () => {
     const notification = getNotification(state, props.notification, props.accountId);
     return {
       notification: notification,
-      status: notification.get('status') ? getStatus(state, { id: notification.get('status') }) : null,
+      status: notification.get('status') ? getStatus(state, { id: notification.get('status'), contextType: 'notifications' }) : null,
       report: notification.get('report') ? getReport(state, notification.get('report'), notification.getIn(['report', 'target_account', 'id'])) : null,
     };
   };

@@ -1,9 +1,6 @@
 - content_for :page_title do
   = t('.title')
 
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-
 = simple_form_for @announcement, url: admin_announcements_path, html: { novalidate: false } do |f|
   = render 'shared/error_messages', object: @announcement
 

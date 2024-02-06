@@ -15,12 +15,12 @@
 
   = account_action_button(status.account)
 
-  .status__content.emojify{ :data => ({ spoiler: current_account&.user&.setting_expand_spoilers ? 'expanded' : 'folded' } if status.spoiler_text?) }<
+  .status__content.emojify{ data: ({ spoiler: current_account&.user&.setting_expand_spoilers ? 'expanded' : 'folded' } if status.spoiler_text?) }<
     - if status.spoiler_text?
       %p<
         %span.p-summary> #{prerender_custom_emojis(h(status.spoiler_text), status.emojis)}&nbsp;
         %button.status__content__spoiler-link= t('statuses.show_more')
-    .e-content{ :lang => status.language }
+    .e-content{ lang: status.language }
       = prerender_custom_emojis(status_content_format(status), status.emojis)
 
       - if status.preloadable_poll
@@ -62,18 +62,18 @@
       - else
         = fa_icon('reply-all')
       %span.detailed-status__reblogs>= friendly_number_to_human status.replies_count
-      = " "
+      = ' '
     ·
     - if status.public_visibility? || status.unlisted_visibility?
       %span.detailed-status__link
         = fa_icon('retweet')
         %span.detailed-status__reblogs>= friendly_number_to_human status.reblogs_count
-        = " "
+        = ' '
       ·
     %span.detailed-status__link
       = fa_icon('star')
       %span.detailed-status__favorites>= friendly_number_to_human status.favourites_count
-      = " "
+      = ' '
 
     - if user_signed_in?
       ·

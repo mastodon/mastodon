@@ -2,6 +2,14 @@
 ja:
   simple_form:
     hints:
+      account:
+        discoverable: プロフィールと公開投稿をMastodonのおすすめやハイライトとしてほかのユーザーに表示することを許可します。
+        display_name: フルネーム、ハンドルネームなど
+        fields: ホームページ、代名詞、年齢など何でも構いません。
+        indexable: "「公開」で送信された投稿がMastodonの検索結果にヒットするようになります。ここのチェック状態にかかわらず、ほかのユーザーにブーストやお気に入り登録された投稿はそのユーザーから検索されることがあります。"
+        note: '自己紹介には #ハッシュタグ や、ほかのアカウントのユーザー名 (@user) を使用できます'
+        show_collections: チェックを入れるとフォローとフォロワーの一覧を誰でも見られるようにします。チェックをはずすとこれらの情報を非公開にできますが、あなたがフォローしているユーザーからは、あなたがフォロワーになっていることがわかります。
+        unlocked: 新しいフォロワーを自動的に承認します。チェックをはずすとフォローリクエストとその承認が必要になり、新しいフォロワーを受け入れるか拒否するかを自分で選べるようになります。
       account_alias:
         acct: 引っ越し元のユーザー名@ドメインを指定してください
       account_migration:
@@ -18,8 +26,8 @@ ja:
           disable: ユーザーが自分のアカウントを使用できないようにします。コンテンツを削除したり非表示にすることはありません。
           none: これを使用すると、他の操作をせずにユーザーに警告を送信できます。
           sensitive: このユーザーが添付したメディアを強制的に閲覧注意にする
-          silence: ユーザーが公開投稿できないようにし、フォローしていない人に投稿や通知が表示されないようにする。
-          suspend: このアカウントとのやりとりを止め、コンテンツを削除します。30日以内は取消可能です。
+          silence: ユーザーによる公開投稿を禁止し、フォローしていない人に投稿や通知が表示されないようにします。また、このアカウントに対するすべての通報をクローズします。
+          suspend: このアカウントによるすべての活動を禁止し、コンテンツを削除します。この操作は30日以内であれば取り消しが可能です。また、このアカウントに対するすべての通報をクローズします。
         warning_preset_id: オプションです。プリセット警告文の末尾に任意の文字列を追加することができます
       announcement:
         all_day: 有効化すると、対象期間の箇所に日付だけが表示されます
@@ -37,14 +45,11 @@ ja:
         current_password: 現在のアカウントのパスワードを入力してください
         current_username: 確認のため、現在のアカウントのユーザー名を入力してください
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
-        discoverable: レコメンド、トレンド、その他の機能により、あなたのアカウントを他の人から見つけられるようにします
         email: 確認のメールが送信されます
-        fields: プロフィールに表として4つまでの項目を表示することができます
         header: "%{size}までのPNG、GIF、JPGが利用可能です。 %{dimensions}pxまで縮小されます"
         inbox_url: 使用したいリレーサーバーのトップページからURLをコピーします
         irreversible: フィルターが後で削除されても、除外された投稿は元に戻せなくなります
         locale: ユーザーインターフェース、メールやプッシュ通知の言語
-        locked: フォロワーを手動で承認する必要があります
         password: 少なくとも8文字は入力してください
         phrase: 投稿内容の大文字小文字や閲覧注意に関係なく一致
         scopes: アプリの API に許可するアクセス権を選択してください。最上位のスコープを選択する場合、個々のスコープを選択する必要はありません。
@@ -54,12 +59,9 @@ ja:
         setting_display_media_default: 閲覧注意としてマークされたメディアは隠す
         setting_display_media_hide_all: メディアを常に隠す
         setting_display_media_show_all: メディアを常に表示する
-        setting_hide_network: フォローとフォロワーの情報がプロフィールページで見られないようにします
-        setting_noindex: 公開プロフィールおよび各投稿ページに影響します
-        setting_show_application: 投稿するのに使用したアプリが投稿の詳細ビューに表示されるようになります
         setting_use_blurhash: ぼかしはメディアの色を元に生成されますが、細部は見えにくくなっています
         setting_use_pending_items: 新着があってもタイムラインを自動的にスクロールしないようにします
-        username: あなたのユーザー名は%{domain}の中で重複していない必要があります
+        username: アルファベット大文字と小文字、数字、アンダーバー「_」が使えます
         whole_word: キーワードまたはフレーズが英数字のみの場合、単語全体と一致する場合のみ適用されるようになります
       domain_allow:
         domain: 登録するとこのサーバーからデータを受信したり、このドメインから受信するデータを処理して保存できるようになります
@@ -71,29 +73,33 @@ ja:
       filters:
         action: 投稿がフィルタに一致したときに実行するアクションを選択
         actions:
-          hide: フィルタリングしたコンテンツを完全に隠し、あたかも存在しないかのようにします
-          warn: フィルタリングされたコンテンツを、フィルタータイトルの警告の後ろに隠します。
+          hide: フィルタに一致した投稿を完全に非表示にします
+          warn: フィルタに一致した投稿を非表示にし、フィルタのタイトルを含む警告を表示します
       form_admin_settings:
+        activity_api_enabled: 週単位でローカルで公開された投稿数、アクティブユーザー数、新規登録者数を表示します
         backups_retention_period: 生成されたユーザーのアーカイブを指定した日数の間保持します。
-        bootstrap_timeline_accounts: これらのアカウントは、新しいユーザーのフォロー推奨リストの一番上にピン留めされます。
+        bootstrap_timeline_accounts: これらのアカウントは、新しいユーザー向けのおすすめユーザーの一番上にピン留めされます。
         closed_registrations_message: アカウント作成を停止している時に表示されます
-        content_cache_retention_period: 正の値に設定されている場合、他のサーバーの投稿は指定された日数の後に削除されます。元に戻せません。
+        content_cache_retention_period: 指定した日数が経過した他のサーバーの投稿とブーストを削除します。削除された投稿は再取得できない場合があります。削除された投稿についたブックマークやお気に入り、ブーストも失われ、元に戻せません。
         custom_css: ウェブ版のMastodonでカスタムスタイルを適用できます。
         mascot: 上級者向けWebインターフェースのイラストを上書きします。
         media_cache_retention_period: 正の値に設定されている場合、ダウンロードされたメディアファイルは指定された日数の後に削除され、リクエストに応じて再ダウンロードされます。
-        profile_directory: プロフィールディレクトリには、掲載するよう設定したすべてのユーザーが一覧表示されます。
-        require_invite_text: アカウント登録が承認制の場合、「意気込みをお聞かせください」のテキストの入力を必須にする
+        peers_api_enabled: このサーバーが Fediverse で遭遇したドメイン名のリストです。このサーバーが知っているだけで、特定のサーバーと連合しているかのデータは含まれません。これは一般的に Fediverse に関する統計情報を収集するサービスによって使用されます。
+        profile_directory: ディレクトリには、掲載する設定をしたすべてのユーザーが一覧表示されます。
+        require_invite_text: アカウント登録が承認制の場合、登録の際の申請事由の入力を必須にします
         site_contact_email: 法律またはサポートに関する問い合わせ先
         site_contact_username: マストドンでの連絡方法
         site_extended_description: 訪問者やユーザーに役立つかもしれない任意の追加情報。Markdownが使えます。
-        site_short_description: 誰が運営しているのか、誰に向けたものなのかなど、サーバーを特定する短い説明。
+        site_short_description: 運営している人や組織、想定しているユーザーなど、サーバーの特徴を説明する短いテキスト
         site_terms: 独自のプライバシーポリシーを使用するか空白にしてデフォルトのプライバシーポリシーを使用します。Markdownが使えます。
-        site_title: ドメイン名以外でサーバーを参照する方法です。
+        site_title: ドメイン名以外でサーバーを参照する方法
+        status_page_url: 障害発生時などにユーザーがサーバーの状態を確認できるページのURL
         theme: ログインしていない人と新規ユーザーに表示されるテーマ。
         thumbnail: サーバー情報と共に表示される、アスペクト比が約 2:1 の画像。
-        timeline_preview: ログアウトした人でも、サーバー上で利用可能な最新の公開投稿を閲覧することができます。
-        trendable_by_default: トレンドコンテンツの手動レビューをスキップする。個々のコンテンツは後でトレンドから削除できます。
-        trends: トレンドは、サーバー上でどの投稿、ハッシュタグ、ニュース記事が人気を集めているかを示します。
+        timeline_preview: ログインしていないユーザーがサーバー上の最新の公開投稿を閲覧できるようにします。
+        trendable_by_default: トレンドの審査を省略します。トレンドは掲載後でも個別に除外できます。
+        trends: トレンドは、サーバー上で人気を集めている投稿、ハッシュタグ、ニュース記事などが表示されます。
+        trends_as_landing_page: ログインしていないユーザーに対して、サーバーの説明の代わりにトレンドコンテンツを表示します。トレンドを有効にする必要があります。
       form_challenge:
         current_password: セキュリティ上重要なエリアにアクセスしています
       imports:
@@ -114,25 +120,33 @@ ja:
       sessions:
         otp: '携帯電話のアプリで生成された二要素認証コードを入力するか、リカバリーコードを使用してください:'
         webauthn: USBキーの場合は、必ず挿入し、必要に応じてタップしてください。
+      settings:
+        indexable: プロフィールがGoogleやBingなどの検索結果にヒットするようになります。
+        show_application: 自分で自分の投稿の送信元アプリを確認することは、ここのチェック状態にかかわらず可能です。
       tag:
         name: 視認性向上などのためにアルファベット大文字小文字の変更のみ行うことができます
       user:
         chosen_languages: 選択すると、選択した言語の投稿のみが公開タイムラインに表示されるようになります
         role: このロールはユーザーが持つ権限を管理します
       user_role:
-        color: UI 全体で使用される色（RGB hex 形式）
+        color: UI 全体でロールの表示に使用される色（16進数RGB形式）
         highlighted: これによりロールが公開されます。
         name: ロールのバッジを表示する際の表示名
         permissions_as_keys: このロールを持つユーザーは次の機能にアクセスできます
-        position: 特定の状況では、より高いロールが競合の解決を決定します。特定のアクションは優先順位が低いロールでのみ実行できます。
+        position: 場合により、より高いロールのユーザーが紛争の解決を決定します。特定のアクションは優先度が低いロールでのみ実行できます。
       webhook:
         events: 送信するイベントを選択
+        template: 変数補完を使用して、独自のJSONペイロードを構成できます。デフォルトのJSONを使用する場合は空白のままにします。
         url: イベントの送信先
     labels:
       account:
+        discoverable: アカウントを見つけやすくする
         fields:
           name: ラベル
           value: 内容
+        indexable: 公開投稿を検索できるようにする
+        show_collections: フォローとフォロワーの一覧を開示する
+        unlocked: フォローリクエストを不要にする
       account_alias:
         acct: 引っ越し元のユーザー ID
       account_migration:
@@ -170,7 +184,6 @@ ja:
         context: 除外対象
         current_password: 現在のパスワード
         data: データ
-        discoverable: ディレクトリに掲載する
         display_name: 表示名
         email: メールアドレス
         expires_in: 有効期限
@@ -180,7 +193,6 @@ ja:
         inbox_url: リレーサーバーの inbox URL
         irreversible: 隠すのではなく除外する
         locale: 言語
-        locked: 承認制アカウントにする
         max_uses: 使用できる回数
         new_password: 新しいパスワード
         note: プロフィール
@@ -192,7 +204,6 @@ ja:
         setting_always_send_emails: 常にメール通知を送信する
         setting_auto_play_gif: アニメーションGIFを自動再生する
         setting_boost_modal: ブーストする前に確認ダイアログを表示する
-        setting_crop_images: 投稿の詳細以外では画像を16:9に切り抜く
         setting_default_language: 投稿する言語
         setting_default_privacy: 投稿の公開範囲
         setting_default_sensitive: メディアを常に閲覧注意としてマークする
@@ -204,9 +215,7 @@ ja:
         setting_display_media_show_all: 表示
         setting_expand_spoilers: 閲覧注意としてマークされた投稿を常に展開する
         setting_hide_network: 繋がりを隠す
-        setting_noindex: 検索エンジンによるインデックスを拒否する
         setting_reduce_motion: アニメーションの動きを減らす
-        setting_show_application: 送信したアプリを開示する
         setting_system_font_ui: システムのデフォルトフォントを使う
         setting_theme: サイトテーマ
         setting_trends: 本日のトレンドタグを表示する
@@ -229,16 +238,18 @@ ja:
           hide: 完全に隠す
           warn: 警告付きで隠す
       form_admin_settings:
+        activity_api_enabled: APIでユーザーアクティビティに関する集計統計を公開する
         backups_retention_period: ユーザーアーカイブの保持期間
-        bootstrap_timeline_accounts: 新規ユーザーに必ずおすすめするアカウント
-        closed_registrations_message: サインアップできない場合のカスタムメッセージ
+        bootstrap_timeline_accounts: おすすめユーザーに常に表示するアカウント
+        closed_registrations_message: アカウント作成を停止している時のカスタムメッセージ
         content_cache_retention_period: コンテンツキャッシュの保持期間
         custom_css: カスタムCSS
         mascot: カスタムマスコット（レガシー）
         media_cache_retention_period: メディアキャッシュの保持期間
+        peers_api_enabled: 発見したサーバーのリストをAPIで公開する
         profile_directory: ディレクトリを有効にする
         registrations_mode: 新規登録が可能な人
-        require_invite_text: 意気込み理由の入力を必須にする。
+        require_invite_text: 申請事由の入力を必須にする
         show_domain_blocks: ドメインブロックを表示
         show_domain_blocks_rationale: ドメインがブロックされた理由を表示
         site_contact_email: 連絡先メールアドレス
@@ -247,11 +258,13 @@ ja:
         site_short_description: サーバーの説明
         site_terms: プライバシーポリシー
         site_title: サーバーの名前
+        status_page_url: ステータスページのURL
         theme: デフォルトテーマ
         thumbnail: サーバーのサムネイル
         timeline_preview: 公開タイムラインへの未認証のアクセスを許可する
-        trendable_by_default: 審査前のハッシュタグのトレンドへの表示を許可する
+        trendable_by_default: 審査前のトレンドの掲載を許可する
         trends: トレンドを有効にする
+        trends_as_landing_page: 新規登録画面にトレンドを表示する
       interactions:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック
@@ -278,9 +291,18 @@ ja:
         pending_account: 新しいアカウントの承認が必要な時
         reblog: 投稿がブーストされた時
         report: 新しい通報が送信された時
+        software_updates:
+          all: すべてのアップデートを通知する
+          critical: 緊急のアップデートのみ通知する
+          label: 新しいMastodonバージョンが利用可能です
+          none: 通知しない (非推奨)
+          patch: 緊急のアップデートとバグ修正アップデートを通知する
         trending_tag: 新しいトレンドのレビューをする必要がある時
       rule:
         text: ルール
+      settings:
+        indexable: 検索エンジンからアクセスできるようにする
+        show_application: 投稿に使ったアプリを開示する
       tag:
         listable: 検索とディレクトリへの使用を許可する
         name: ハッシュタグ
@@ -288,6 +310,7 @@ ja:
         usable: 投稿への使用を許可する
       user:
         role: ロール
+        time_zone: タイムゾーン
       user_role:
         color: バッジの色
         highlighted: プロフィールにロールのバッジを表示する
@@ -296,9 +319,11 @@ ja:
         position: 優先度
       webhook:
         events: 有効なイベント
+        template: ペイロードテンプレート
         url: エンドポイントURL
     'no': いいえ
     not_recommended: 非推奨
+    overridden: 上書き済み
     recommended: おすすめ
     required:
       mark: "*"

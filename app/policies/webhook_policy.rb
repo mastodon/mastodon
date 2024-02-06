@@ -14,7 +14,7 @@ class WebhookPolicy < ApplicationPolicy
   end
 
   def update?
-    role.can?(:manage_webhooks)
+    role.can?(:manage_webhooks) && record.required_permissions.all? { |permission| role.can?(permission) }
   end
 
   def enable?
@@ -30,6 +30,6 @@ class WebhookPolicy < ApplicationPolicy
   end
 
   def destroy?
-    role.can?(:manage_webhooks)
+    role.can?(:manage_webhooks) && record.required_permissions.all? { |permission| role.can?(permission) }
   end
 end

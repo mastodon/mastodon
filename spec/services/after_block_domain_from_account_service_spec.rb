@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe AfterBlockDomainFromAccountService, type: :service do
+  subject { described_class.new }
+
   let!(:wolf) { Fabricate(:account, username: 'wolf', domain: 'evil.org', inbox_url: 'https://evil.org/inbox', protocol: :activitypub) }
   let!(:alice) { Fabricate(:account, username: 'alice') }
-
-  subject { AfterBlockDomainFromAccountService.new }
 
   before do
     stub_jsonld_contexts!

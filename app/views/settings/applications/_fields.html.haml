@@ -14,5 +14,5 @@
     %label= t('activerecord.attributes.doorkeeper/application.scopes')
     %span.hint= t('simple_form.hints.defaults.scopes')
 
-  - Doorkeeper.configuration.scopes.group_by { |s| s.split(':').first }.each do |k, v|
-    = f.input :scopes, label: false, hint: false, collection: v.sort, wrapper: :with_block_label, include_blank: false, label_method: lambda { |scope| safe_join([content_tag(:samp, scope, class: class_for_scope(scope)), content_tag(:span, t("doorkeeper.scopes.#{scope}"), class: 'hint')]) }, selected: f.object.scopes.all, required: false, as: :check_boxes, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+  - Doorkeeper.configuration.scopes.group_by { |s| s.split(':').first }.each do |_key, value|
+    = f.input :scopes, label: false, hint: false, collection: value.sort, wrapper: :with_block_label, include_blank: false, label_method: ->(scope) { safe_join([content_tag(:samp, scope, class: class_for_scope(scope)), content_tag(:span, t("doorkeeper.scopes.#{scope}"), class: 'hint')]) }, selected: f.object.scopes.all, required: false, as: :check_boxes, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'

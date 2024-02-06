@@ -1,121 +1,105 @@
-FROM ubuntu:20.04 as build-dep
+# syntax=docker/dockerfile:1.4
+# This needs to be bookworm-slim because the Ruby image is built on bookworm-slim
+ARG NODE_VERSION="20.6-bookworm-slim"
 
-# Use bash for the shell
-SHELL ["/bin/bash", "-c"]
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+FROM ghcr.io/moritzheiber/ruby-jemalloc:3.2.2-slim as ruby
+FROM node:${NODE_VERSION} as build
 
-# Install Node v16 (LTS)
-ENV NODE_VER="16.17.1"
-RUN ARCH= && \
-    dpkgArch="$(dpkg --print-architecture)" && \
-  case "${dpkgArch##*-}" in \
-    amd64) ARCH='x64';; \
-    ppc64el) ARCH='ppc64le';; \
-    s390x) ARCH='s390x';; \
-    arm64) ARCH='arm64';; \
-    armhf) ARCH='armv7l';; \
-    i386) ARCH='x86';; \
-    *) echo "unsupported architecture"; exit 1 ;; \
-  esac && \
-    echo "Etc/UTC" > /etc/localtime && \
-	apt-get update && \
-	apt-get install -y --no-install-recommends ca-certificates wget python3 apt-utils && \
-	cd ~ && \
-	wget -q https://nodejs.org/download/release/v$NODE_VER/node-v$NODE_VER-linux-$ARCH.tar.gz && \
-	tar xf node-v$NODE_VER-linux-$ARCH.tar.gz && \
-	rm node-v$NODE_VER-linux-$ARCH.tar.gz && \
-	mv node-v$NODE_VER-linux-$ARCH /opt/node
+COPY --link --from=ruby /opt/ruby /opt/ruby
 
-# Install Ruby 3.0
-ENV RUBY_VER="3.0.4"
-RUN apt-get update && \
-  apt-get install -y --no-install-recommends build-essential \
-    bison libyaml-dev libgdbm-dev libreadline-dev libjemalloc-dev \
-		libncurses5-dev libffi-dev zlib1g-dev libssl-dev && \
-	cd ~ && \
-	wget https://cache.ruby-lang.org/pub/ruby/${RUBY_VER%.*}/ruby-$RUBY_VER.tar.gz && \
-	tar xf ruby-$RUBY_VER.tar.gz && \
-	cd ruby-$RUBY_VER && \
-	./configure --prefix=/opt/ruby \
-	  --with-jemalloc \
-	  --with-shared \
-	  --disable-install-doc && \
-	make -j"$(nproc)" > /dev/null && \
-	make install && \
-	rm -rf ../ruby-$RUBY_VER.tar.gz ../ruby-$RUBY_VER
+ENV DEBIAN_FRONTEND="noninteractive" \
+    PATH="${PATH}:/opt/ruby/bin"
 
-ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin"
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-RUN npm install -g npm@latest && \
-	npm install -g yarn && \
-	gem install bundler && \
-	apt-get update && \
-	apt-get install -y --no-install-recommends git libicu-dev libidn11-dev \
-	libpq-dev shared-mime-info
-
+WORKDIR /opt/mastodon
 COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
-RUN cd /opt/mastodon && \
-  bundle config set --local deployment 'true' && \
-  bundle config set --local without 'development test' && \
-  bundle config set silence_root_warning true && \
-	bundle install -j"$(nproc)" && \
-	yarn install --pure-lockfile
+# hadolint ignore=DL3008
+RUN apt-get update && \
+    apt-get -yq dist-upgrade && \
+    apt-get install -y --no-install-recommends build-essential \
+        git \
+        libicu-dev \
+        libidn-dev \
+        libpq-dev \
+        libjemalloc-dev \
+        zlib1g-dev \
+        libgdbm-dev \
+        libgmp-dev \
+        libssl-dev \
+        libyaml-0-2 \
+        ca-certificates \
+        libreadline8 \
+        python3 \
+        shared-mime-info && \
+    bundle config set --local deployment 'true' && \
+    bundle config set --local without 'development test' && \
+    bundle config set silence_root_warning true && \
+    bundle install -j"$(nproc)" && \
+    yarn install --pure-lockfile --production --network-timeout 600000 && \
+    yarn cache clean
 
-FROM ubuntu:20.04
+FROM node:${NODE_VERSION}
 
-# Copy over all the langs needed for runtime
-COPY --from=build-dep /opt/node /opt/node
-COPY --from=build-dep /opt/ruby /opt/ruby
+# Use those args to specify your own version flags & suffixes
+ARG MASTODON_VERSION_PRERELEASE=""
+ARG MASTODON_VERSION_METADATA=""
 
-# Add more PATHs to the PATH
-ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin:/opt/mastodon/bin"
+ARG UID="991"
+ARG GID="991"
 
-# Create the mastodon user
-ARG UID=991
-ARG GID=991
+COPY --link --from=ruby /opt/ruby /opt/ruby
+
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN apt-get update && \
-	echo "Etc/UTC" > /etc/localtime && \
-	apt-get install -y --no-install-recommends whois wget && \
-	addgroup --gid $GID mastodon && \
-	useradd -m -u $UID -g $GID -d /opt/mastodon mastodon && \
-	echo "mastodon:$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 24 | mkpasswd -s -m sha-256)" | chpasswd && \
-	rm -rf /var/lib/apt/lists/*
 
-# Install mastodon runtime deps
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
-RUN apt-get update && \
-  apt-get -y --no-install-recommends install \
-	  libssl1.1 libpq5 imagemagick ffmpeg libjemalloc2 \
-	  libicu66 libidn11 libyaml-0-2 \
-	  file ca-certificates tzdata libreadline8 gcc tini apt-utils && \
-	ln -s /opt/mastodon /mastodon && \
-	gem install bundler && \
-	rm -rf /var/cache && \
-	rm -rf /var/lib/apt/lists/*
+ENV DEBIAN_FRONTEND="noninteractive" \
+    PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin"
 
-# Copy over mastodon source, and dependencies from building, and set permissions
+# Ignoring these here since we don't want to pin any versions and the Debian image removes apt-get content after use
+# hadolint ignore=DL3008,DL3009
+RUN apt-get update && \
+    echo "Etc/UTC" > /etc/localtime && \
+    groupadd -g "${GID}" mastodon && \
+    useradd -l -u "$UID" -g "${GID}" -m -d /opt/mastodon mastodon && \
+    apt-get -y --no-install-recommends install whois \
+        wget \
+        procps \
+        libssl3 \
+        libpq5 \
+        imagemagick \
+        ffmpeg \
+        libjemalloc2 \
+        libicu72 \
+        libidn12 \
+        libyaml-0-2 \
+        file \
+        ca-certificates \
+        tzdata \
+        libreadline8 \
+        tini && \
+    ln -s /opt/mastodon /mastodon
+
+# Note: no, cleaning here since Debian does this automatically
+# See the file /etc/apt/apt.conf.d/docker-clean within the Docker image's filesystem
+
 COPY --chown=mastodon:mastodon . /opt/mastodon
-COPY --from=build-dep --chown=mastodon:mastodon /opt/mastodon /opt/mastodon
+COPY --chown=mastodon:mastodon --from=build /opt/mastodon /opt/mastodon
 
-# Run mastodon services in prod mode
-ENV RAILS_ENV="production"
-ENV NODE_ENV="production"
-
-# Tell rails to serve static files
-ENV RAILS_SERVE_STATIC_FILES="true"
-ENV BIND="0.0.0.0"
+ENV RAILS_ENV="production" \
+    NODE_ENV="production" \
+    RAILS_SERVE_STATIC_FILES="true" \
+    BIND="0.0.0.0" \
+    MASTODON_VERSION_PRERELEASE="${MASTODON_VERSION_PRERELEASE}" \
+    MASTODON_VERSION_METADATA="${MASTODON_VERSION_METADATA}"
 
 # Set the run user
 USER mastodon
+WORKDIR /opt/mastodon
 
 # Precompile assets
-RUN cd ~ && \
-	OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
-	yarn cache clean
+RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile
 
 # Set the work dir and the container entry point
-WORKDIR /opt/mastodon
 ENTRYPOINT ["/usr/bin/tini", "--"]
 EXPOSE 3000 4000

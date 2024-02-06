@@ -6,10 +6,9 @@ class MediaProxyController < ApplicationController
   include Redisable
   include Lockable
 
-  skip_before_action :store_current_location
   skip_before_action :require_functional!
 
-  before_action :authenticate_user!, if: :whitelist_mode?
+  before_action :authenticate_user!, if: :limited_federation_mode?
 
   rescue_from ActiveRecord::RecordInvalid, with: :not_found
   rescue_from Mastodon::UnexpectedResponseError, with: :not_found
@@ -17,13 +16,13 @@ class MediaProxyController < ApplicationController
   rescue_from HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError, with: :internal_server_error
 
   def show
-    with_lock("media_download:#{params[:id]}") do
+    with_redis_lock("media_download:#{params[:id]}") do
       @media_attachment = MediaAttachment.remote.attached.find(params[:id])
       authorize @media_attachment.status, :show?
       redownload! if @media_attachment.needs_redownload? && !reject_media?
     end
 
-    redirect_to full_asset_url(@media_attachment.file.url(version))
+    redirect_to full_asset_url(@media_attachment.file.url(version)), allow_other_host: true
   end
 
   private
