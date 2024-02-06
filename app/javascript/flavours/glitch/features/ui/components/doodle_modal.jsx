@@ -9,6 +9,10 @@ import { connect } from 'react-redux';
 import Atrament from 'atrament'; // the doodling library
 import { debounce, mapValues } from 'lodash';
 
+import ColorsIcon from '@/material-icons/400-24px/colors.svg?react';
+import DeleteIcon from '@/material-icons/400-24px/delete.svg?react';
+import EditIcon from '@/material-icons/400-24px/edit.svg?react';
+import UndoIcon from '@/material-icons/400-24px/undo.svg?react';
 import { doodleSet, uploadCompose } from 'flavours/glitch/actions/compose';
 import { Button } from 'flavours/glitch/components/button';
 import { IconButton } from 'flavours/glitch/components/icon_button';
@@ -584,10 +588,10 @@ class DoodleModal extends ImmutablePureComponent {
             </div>
           </div>
           <div className='doodle-toolbar'>
-            <IconButton icon='pencil' title='Draw' label='Draw' onClick={this.setModeDraw} size={18} active={this.mode === 'draw'} inverted />
-            <IconButton icon='bath' title='Fill' label='Fill' onClick={this.setModeFill} size={18} active={this.mode === 'fill'} inverted />
-            <IconButton icon='undo' title='Undo' label='Undo' onClick={this.undo} size={18} inverted />
-            <IconButton icon='trash' title='Clear' label='Clear' onClick={this.handleClearBtn} size={18} inverted />
+            <IconButton icon='pencil' iconComponent={EditIcon} title='Draw' label='Draw' onClick={this.setModeDraw} size={18} active={this.mode === 'draw'} inverted />
+            <IconButton icon='bath' iconComponent={ColorsIcon} title='Fill' label='Fill' onClick={this.setModeFill} size={18} active={this.mode === 'fill'} inverted />
+            <IconButton icon='undo' iconComponent={UndoIcon} title='Undo' label='Undo' onClick={this.undo} size={18} inverted />
+            <IconButton icon='trash' iconComponent={DeleteIcon} title='Clear' label='Clear' onClick={this.handleClearBtn} size={18} inverted />
           </div>
           <div className='doodle-palette'>
             {
