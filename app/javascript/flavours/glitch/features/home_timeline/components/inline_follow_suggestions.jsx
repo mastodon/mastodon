@@ -59,7 +59,7 @@ Source.propTypes = {
   id: PropTypes.oneOf(['friends_of_friends', 'similar_to_recently_followed', 'featured', 'most_followed', 'most_interactions']),
 };
 
-const Card = ({ id, source }) => {
+const Card = ({ id, sources }) => {
   const intl = useIntl();
   const account = useSelector(state => state.getIn(['accounts', id]));
   const relationship = useSelector(state => state.getIn(['relationships', id]));
@@ -89,7 +89,7 @@ const Card = ({ id, source }) => {
 
       <div className='inline-follow-suggestions__body__scrollable__card__text-stack'>
         <Link to={`/@${account.get('acct')}`}><DisplayName account={account} /></Link>
-        {firstVerifiedField ? <VerifiedBadge link={firstVerifiedField.get('value')} /> : <Source id={source.get(0)} />}
+        {firstVerifiedField ? <VerifiedBadge link={firstVerifiedField.get('value')} /> : <Source id={sources.get(0)} />}
       </div>
 
       <Button text={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={handleFollow} />
@@ -99,7 +99,7 @@ const Card = ({ id, source }) => {
 
 Card.propTypes = {
   id: PropTypes.string.isRequired,
-  source: ImmutablePropTypes.list,
+  sources: ImmutablePropTypes.list,
 };
 
 const DISMISSIBLE_ID = 'home/follow-suggestions';
@@ -175,7 +175,7 @@ export const InlineFollowSuggestions = ({ hidden }) => {
             <Card
               key={suggestion.get('account')}
               id={suggestion.get('account')}
-              source={suggestion.get('source')}
+              sources={suggestion.get('sources')}
             />
           ))}
         </div>
