@@ -3,7 +3,11 @@
 source 'https://rubygems.org'
 ruby '>= 3.0.0'
 
-gem 'puma', '~> 6.3'
+#gem 'puma', '~> 6.3'
+
+#gem 'iodine'
+gem 'iodine', '~>0.7'
+
 gem 'rails', '~> 7.1.1'
 gem 'propshaft'
 gem 'thor', '~> 1.2'
