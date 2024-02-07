@@ -76,8 +76,11 @@ describe 'blocking domains through the moderation interface' do
       expect(DomainBlockWorker).to have_received(:perform_async)
 
       # And leaves the previous block alone
-      expect(domain_block.reload.severity).to eq 'silence'
-      expect(domain_block.reload.domain).to eq 'example.com'
+      expect(domain_block.reload)
+        .to have_attributes(
+          severity: eq('silence'),
+          domain: eq('example.com')
+        )
     end
   end
 
