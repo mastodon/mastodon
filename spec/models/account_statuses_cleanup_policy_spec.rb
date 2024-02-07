@@ -110,6 +110,13 @@ RSpec.describe AccountStatusesCleanupPolicy do
 
       it 'does not unnecessarily invalidate last_inspected' do
         account_statuses_cleanup_policy.record_last_inspected(42)
+
+        update_cleanup_policy_with_narrower_values
+
+        expect(account_statuses_cleanup_policy.last_inspected).to eq 42
+      end
+
+      def update_cleanup_policy_with_narrower_values
         account_statuses_cleanup_policy.keep_direct = true
         account_statuses_cleanup_policy.keep_pinned = true
         account_statuses_cleanup_policy.keep_polls = true
@@ -119,7 +126,6 @@ RSpec.describe AccountStatusesCleanupPolicy do
         account_statuses_cleanup_policy.min_favs = 5
         account_statuses_cleanup_policy.min_reblogs = 5
         account_statuses_cleanup_policy.save
-        expect(account_statuses_cleanup_policy.last_inspected).to eq 42
       end
     end
   end
