@@ -44,7 +44,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   def configuration
     {
       urls: {
-        streaming: Rails.configuration.x.streaming_api_base_url,
+        streaming_api: Rails.configuration.x.streaming_api_base_url,
         status: object.status_page_url,
       },
 
