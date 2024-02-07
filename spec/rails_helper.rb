@@ -86,6 +86,7 @@ RSpec.configure do |config|
   config.include ActiveSupport::Testing::TimeHelpers
   config.include Chewy::Rspec::Helpers
   config.include Redisable
+  config.include ThreadingHelpers
   config.include SignedRequestHelpers, type: :request
   config.include CommandLineHelpers, type: :cli
 
