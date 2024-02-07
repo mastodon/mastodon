@@ -12,9 +12,7 @@ describe 'blocking domains through the moderation interface' do
     it 'adds a new domain block' do
       visit new_admin_domain_block_path
 
-      fill_in 'domain_block_domain', with: 'example.com'
-      select I18n.t('admin.domain_blocks.new.severity.silence'), from: 'domain_block_severity'
-      click_on I18n.t('admin.domain_blocks.new.create')
+      submit_domain_block('example.com', 'silence')
 
       expect(DomainBlock.exists?(domain: 'example.com', severity: 'silence')).to be true
       expect(DomainBlockWorker).to have_received(:perform_async)
@@ -25,7 +23,7 @@ describe 'blocking domains through the moderation interface' do
     it 'presents a confirmation screen before suspending the domain' do
       visit new_admin_domain_block_path
 
-      submit_domain_suspension 'example.com'
+      submit_domain_block('example.com', 'suspend')
 
       # It doesn't immediately block but presents a confirmation screen
       expect(page).to have_title(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'example.com'))
@@ -45,7 +43,7 @@ describe 'blocking domains through the moderation interface' do
 
       visit new_admin_domain_block_path
 
-      submit_domain_suspension 'example.com'
+      submit_domain_block('example.com', 'suspend')
 
       # It doesn't immediately block but presents a confirmation screen
       expect(page).to have_title(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'example.com'))
@@ -65,7 +63,7 @@ describe 'blocking domains through the moderation interface' do
 
       visit new_admin_domain_block_path
 
-      submit_domain_suspension 'subdomain.example.com'
+      submit_domain_block('subdomain.example.com', 'suspend')
 
       # It doesn't immediately block but presents a confirmation screen
       expect(page).to have_title(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'subdomain.example.com'))
@@ -106,9 +104,9 @@ describe 'blocking domains through the moderation interface' do
 
   private
 
-  def submit_domain_suspension(domain)
+  def submit_domain_block(domain, severity)
     fill_in 'domain_block_domain', with: domain
-    select I18n.t('admin.domain_blocks.new.severity.suspend'), from: 'domain_block_severity'
+    select I18n.t("admin.domain_blocks.new.severity.#{severity}"), from: 'domain_block_severity'
     click_on I18n.t('admin.domain_blocks.new.create')
   end
 end
