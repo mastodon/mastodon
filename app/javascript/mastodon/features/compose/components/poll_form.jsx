@@ -150,64 +150,10 @@ export const PollForm = () => {
 
         <div className='compose-form__poll__footer__sep' />
 
-  static propTypes = {
-    options: ImmutablePropTypes.list,
-    lang: PropTypes.string,
-    expiresIn: PropTypes.number,
-    isMultiple: PropTypes.bool,
-    onChangeOption: PropTypes.func.isRequired,
-    onAddOption: PropTypes.func.isRequired,
-    onRemoveOption: PropTypes.func.isRequired,
-    onChangeSettings: PropTypes.func.isRequired,
-    suggestions: ImmutablePropTypes.list,
-    onClearSuggestions: PropTypes.func.isRequired,
-    onFetchSuggestions: PropTypes.func.isRequired,
-    onSuggestionSelected: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired,
-  };
-
-  handleAddOption = () => {
-    this.props.onAddOption('');
-  };
-
-  handleSelectDuration = e => {
-    this.props.onChangeSettings(e.target.value, this.props.isMultiple);
-  };
-
-  handleToggleMultiple = () => {
-    this.props.onChangeSettings(this.props.expiresIn, !this.props.isMultiple);
-  };
-
-  render () {
-    const { options, lang, expiresIn, isMultiple, onChangeOption, onRemoveOption, intl, ...other } = this.props;
-
-    if (!options) {
-      return null;
-    }
-
-    const autoFocusIndex = options.indexOf('');
-
-    return (
-      <div className='compose-form__poll-wrapper'>
-        <ul>
-          {options.map((title, i) => <Option title={title} lang={lang} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} onToggleMultiple={this.handleToggleMultiple} autoFocus={i === autoFocusIndex} {...other} />)}
-        </ul>
-
-        <div className='poll__footer'>
-          <button type='button' disabled={options.size >= 8} className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' /> <FormattedMessage {...messages.add_option} /></button>
-
-          {/* eslint-disable-next-line jsx-a11y/no-onchange */}
-          <select value={expiresIn} onChange={this.handleSelectDuration}>
-            <option value={300}>{intl.formatMessage(messages.minutes, { number: 5 })}</option>
-            <option value={1800}>{intl.formatMessage(messages.minutes, { number: 30 })}</option>
-            <option value={3600}>{intl.formatMessage(messages.hours, { number: 1 })}</option>
-            <option value={21600}>{intl.formatMessage(messages.hours, { number: 6 })}</option>
-            <option value={43200}>{intl.formatMessage(messages.hours, { number: 12 })}</option>
-            <option value={86400}>{intl.formatMessage(messages.days, { number: 1 })}</option>
-            <option value={259200}>{intl.formatMessage(messages.days, { number: 3 })}</option>
-            <option value={604800}>{intl.formatMessage(messages.days, { number: 7 })}</option>
-          </select>
-        </div>
+        <Select label={intl.formatMessage(messages.type)} options={[
+          { value: false, label: intl.formatMessage(messages.singleChoice) },
+          { value: true, label: intl.formatMessage(messages.multipleChoice) },
+        ]} value={isMultiple} onChange={handleTypeChange} />
       </div>
     </div>
   );
