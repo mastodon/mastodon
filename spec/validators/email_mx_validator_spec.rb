@@ -71,8 +71,15 @@ describe EmailMxValidator do
     it 'adds an error if the MX record is blacklisted' do
       EmailDomainBlock.create!(domain: 'mail.example.com')
 
-      configure_resolver('example.com', mx: resolv_double_mx('mail.example.com'))
-      configure_resolver('mail.example.com')
+      configure_resolver(
+        'example.com',
+        mx: resolv_double_mx('mail.example.com')
+      )
+      configure_resolver(
+        'mail.example.com',
+        a: instance_double(Resolv::DNS::Resource::IN::A, address: '2.3.4.5'),
+        aaaa: instance_double(Resolv::DNS::Resource::IN::AAAA, address: 'fd00::2')
+      )
 
       subject.validate(user)
       expect(user.errors).to have_received(:add)
