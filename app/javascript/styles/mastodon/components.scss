@@ -4711,43 +4711,6 @@ a.status-card {
   animation: heartbeat 1.5s ease-in-out infinite both;
 }
 
-@keyframes shake-bottom {
-  0%,
-  100% {
-    transform: rotate(0deg);
-    transform-origin: 50% 100%;
-  }
-
-  10% {
-    transform: rotate(2deg);
-  }
-
-  20%,
-  40%,
-  60% {
-    transform: rotate(-4deg);
-  }
-
-  30%,
-  50%,
-  70% {
-    transform: rotate(4deg);
-  }
-
-  80% {
-    transform: rotate(-2deg);
-  }
-
-  90% {
-    transform: rotate(2deg);
-  }
-}
-
-.no-reduce-motion .shake-bottom {
-  transform-origin: 50% 100%;
-  animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) 2s 2 both;
-}
-
 .emoji-picker-dropdown__menu {
   position: relative;
   margin-top: 5px;
