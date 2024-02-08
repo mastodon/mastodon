@@ -57,7 +57,7 @@ RSpec.describe FetchResourceService, type: :service do
 
       let(:json) do
         {
-          id: 1,
+          id: 'http://example.com/foo',
           '@context': ActivityPub::TagManager::CONTEXT,
           type: 'Note',
         }.to_json
@@ -83,27 +83,27 @@ RSpec.describe FetchResourceService, type: :service do
         let(:content_type) { 'application/activity+json; charset=utf-8' }
         let(:body) { json }
 
-        it { is_expected.to eq [1, { prefetched_body: body, id: true }] }
+        it { is_expected.to eq ['http://example.com/foo', { prefetched_body: body }] }
       end
 
       context 'when content type is ld+json with profile' do
         let(:content_type) { 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"' }
         let(:body) { json }
 
-        it { is_expected.to eq [1, { prefetched_body: body, id: true }] }
+        it { is_expected.to eq ['http://example.com/foo', { prefetched_body: body }] }
       end
 
       context 'when link header is present' do
         let(:headers) { { 'Link' => '<http://example.com/foo>; rel="alternate"; type="application/activity+json"' } }
 
-        it { is_expected.to eq [1, { prefetched_body: json, id: true }] }
+        it { is_expected.to eq ['http://example.com/foo', { prefetched_body: json }] }
       end
 
       context 'when content type is text/html' do
         let(:content_type) { 'text/html' }
         let(:body) { '<html><head><link rel="alternate" href="http://example.com/foo" type="application/activity+json"/></head></html>' }
 
-        it { is_expected.to eq [1, { prefetched_body: json, id: true }] }
+        it { is_expected.to eq ['http://example.com/foo', { prefetched_body: json }] }
       end
     end
   end

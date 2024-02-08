@@ -19,7 +19,7 @@ class REST::TagSerializer < ActiveModel::Serializer
     if instance_options && instance_options[:relationships]
       instance_options[:relationships].following_map[object.id] || false
     else
-      TagFollow.where(tag_id: object.id, account_id: current_user.account_id).exists?
+      TagFollow.exists?(tag_id: object.id, account_id: current_user.account_id)
     end
   end
 

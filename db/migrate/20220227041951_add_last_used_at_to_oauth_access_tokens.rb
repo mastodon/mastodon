@@ -2,7 +2,11 @@
 
 class AddLastUsedAtToOauthAccessTokens < ActiveRecord::Migration[6.1]
   def change
-    add_column :oauth_access_tokens, :last_used_at, :datetime
-    add_column :oauth_access_tokens, :last_used_ip, :inet
+    safety_assured do
+      change_table(:oauth_access_tokens, bulk: true) do |t|
+        t.column :last_used_at, :datetime
+        t.column :last_used_ip, :inet
+      end
+    end
   end
 end

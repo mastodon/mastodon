@@ -51,7 +51,7 @@ export default class Retention extends PureComponent {
     let content;
 
     if (loading) {
-      content = <FormattedMessage id='loading_indicator.label' defaultMessage='Loading...' />;
+      content = <FormattedMessage id='loading_indicator.label' defaultMessage='Loading…' />;
     } else {
       content = (
         <table className='retention__table'>

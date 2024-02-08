@@ -1,5 +1,5 @@
+import { createSelector } from '@reduxjs/toolkit';
 import { List as ImmutableList, Map as ImmutableMap } from 'immutable';
-import { createSelector } from 'reselect';
 
 import { toServerSideType } from 'mastodon/utils/filters';
 

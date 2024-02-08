@@ -296,7 +296,7 @@ RSpec.describe Form::Import do
 
     it_behaves_like 'on successful import', 'following', 'merge', 'following_accounts.csv', [
       { 'acct' => 'user@example.com', 'show_reblogs' => true, 'notify' => false, 'languages' => nil },
-      { 'acct' => 'user@test.com', 'show_reblogs' => true, 'notify' => true, 'languages' => ['en', 'fr'] },
+      { 'acct' => 'user@test.com', 'show_reblogs' => true, 'notify' => true, 'languages' => %w(en fr) },
     ]
 
     it_behaves_like 'on successful import', 'muting', 'merge', 'muted_accounts.csv', [

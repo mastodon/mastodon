@@ -13,7 +13,7 @@ RSpec.describe Api::V1::ConversationsController do
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
-  describe 'GET #index' do
+  describe 'GET #index', :sidekiq_inline do
     let(:scopes) { 'read:statuses' }
 
     before do

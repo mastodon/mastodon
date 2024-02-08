@@ -69,7 +69,7 @@ class Keys::QueryService < BaseService
 
     return if json['items'].blank?
 
-    @devices = json['items'].map do |device|
+    @devices = as_array(json['items']).map do |device|
       Device.new(device_id: device['id'], name: device['name'], identity_key: device.dig('identityKey', 'publicKeyBase64'), fingerprint_key: device.dig('fingerprintKey', 'publicKeyBase64'), claim_url: device['claim'])
     end
   rescue HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::Error => e

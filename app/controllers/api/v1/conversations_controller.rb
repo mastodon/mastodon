@@ -41,10 +41,10 @@ class Api::V1::ConversationsController < Api::BaseController
                          account: :account_stat,
                          last_status: [
                            :media_attachments,
-                           :preview_cards,
                            :status_stat,
                            :tags,
                            {
+                             preview_cards_status: :preview_card,
                              active_mentions: [account: :account_stat],
                              account: :account_stat,
                            },

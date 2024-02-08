@@ -23,7 +23,7 @@ RSpec.describe ReportService, type: :service do
       stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
     end
 
-    context 'when forward is true' do
+    context 'when forward is true', :sidekiq_inline do
       let(:forward) { true }
 
       it 'sends ActivityPub payload when forward is true' do
@@ -156,9 +156,8 @@ RSpec.describe ReportService, type: :service do
       -> {  described_class.new.call(source_account, target_account) }
     end
 
-    let!(:other_report) { Fabricate(:report, target_account: target_account) }
-
     before do
+      Fabricate(:report, target_account: target_account)
       ActionMailer::Base.deliveries.clear
       source_account.user.settings['notification_emails.report'] = true
       source_account.user.save

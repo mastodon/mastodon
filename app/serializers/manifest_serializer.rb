@@ -39,7 +39,7 @@ class ManifestSerializer < ActiveModel::Serializer
   def icons
     ICON_SIZES.map do |size|
       {
-        src: full_pack_url("media/icons/android-chrome-#{size}x#{size}.png"),
+        src: frontend_asset_url("icons/android-chrome-#{size}x#{size}.png"),
         sizes: "#{size}x#{size}",
         type: 'image/png',
         purpose: 'any maskable',

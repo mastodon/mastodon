@@ -78,7 +78,7 @@ class Admin::SystemCheck::MediaPrivacyCheck < Admin::SystemCheck::BaseCheck
     @media_attachment ||= begin
       attachment = Account.representative.media_attachments.first
       if attachment.present?
-        attachment.touch # rubocop:disable Rails/SkipsModelValidations
+        attachment.touch
         attachment
       else
         create_test_attachment!

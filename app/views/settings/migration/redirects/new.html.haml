@@ -15,7 +15,11 @@
 
   .fields-row
     .fields-row__column.fields-group.fields-row__column-6
-      = f.input :acct, wrapper: :with_block_label, input_html: { autocapitalize: 'none', autocorrect: 'off' }, label: t('simple_form.labels.account_migration.acct'), hint: t('simple_form.hints.account_migration.acct')
+      = f.input :acct,
+                hint: t('simple_form.hints.account_migration.acct'),
+                input_html: { autocapitalize: 'none', autocorrect: 'off' },
+                label: t('simple_form.labels.account_migration.acct'),
+                wrapper: :with_block_label
 
     .fields-row__column.fields-group.fields-row__column-6
       - if current_user.encrypted_password.present?

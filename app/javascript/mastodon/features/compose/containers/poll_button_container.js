@@ -4,7 +4,7 @@ import { addPoll, removePoll } from '../../../actions/compose';
 import PollButton from '../components/poll_button';
 
 const mapStateToProps = state => ({
-  unavailable: state.getIn(['compose', 'is_uploading']) || (state.getIn(['compose', 'media_attachments']).size > 0),
+  disabled: state.getIn(['compose', 'is_uploading']) || (state.getIn(['compose', 'media_attachments']).size > 0),
   active: state.getIn(['compose', 'poll']) !== null,
 });
 

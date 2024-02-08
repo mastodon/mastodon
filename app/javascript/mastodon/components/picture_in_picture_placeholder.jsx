@@ -5,8 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as CancelPresentationIcon } from '@material-symbols/svg-600/outlined/cancel_presentation.svg';
-
+import CancelPresentationIcon from '@/material-icons/400-24px/cancel_presentation.svg?react';
 import { removePictureInPicture } from 'mastodon/actions/picture_in_picture';
 import { Icon }  from 'mastodon/components/icon';
 

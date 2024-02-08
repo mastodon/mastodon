@@ -96,19 +96,19 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def discoverable
-    object.suspended? ? false : (object.discoverable || false)
+    object.unavailable? ? false : (object.discoverable || false)
   end
 
   def indexable
-    object.suspended? ? false : (object.indexable || false)
+    object.unavailable? ? false : (object.indexable || false)
   end
 
   def name
-    object.suspended? ? object.username : (object.display_name.presence || object.username)
+    object.unavailable? ? object.username : (object.display_name.presence || object.username)
   end
 
   def summary
-    object.suspended? ? '' : account_bio_format(object)
+    object.unavailable? ? '' : account_bio_format(object)
   end
 
   def icon
@@ -132,23 +132,23 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def avatar_exists?
-    !object.suspended? && object.avatar?
+    !object.unavailable? && object.avatar?
   end
 
   def header_exists?
-    !object.suspended? && object.header?
+    !object.unavailable? && object.header?
   end
 
   def manually_approves_followers
-    object.suspended? ? false : object.locked
+    object.unavailable? ? false : object.locked
   end
 
   def virtual_tags
-    object.suspended? ? [] : (object.emojis + object.tags)
+    object.unavailable? ? [] : (object.emojis + object.tags)
   end
 
   def virtual_attachments
-    object.suspended? ? [] : object.fields
+    object.unavailable? ? [] : object.fields
   end
 
   def moved_to
@@ -156,11 +156,11 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def moved?
-    !object.suspended? && object.moved?
+    !object.unavailable? && object.moved?
   end
 
   def also_known_as?
-    !object.suspended? && !object.also_known_as.empty?
+    !object.unavailable? && !object.also_known_as.empty?
   end
 
   def published

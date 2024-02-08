@@ -5,24 +5,61 @@ hr:
       confirmed: Vaša adresa e-pošte uspješno je potvrđena.
       send_instructions: Za nekoliko minuta primit ćete e-poštu s uputama kako potvrditi Vašu adresu e-pošte. Molimo pogledajte Vašu mapu s neželjenom poštom, ako niste primili ovu e-poštu.
       send_paranoid_instructions: Ako Vaša adresa e-pošte postoji u našoj bazi podataka, za nekoliko minuta primit ćete e-poštu s uputama kako ju potvrditi. Molimo provjerite mapu s neželjenom poštom, ako niste primili ovu e-poštu.
+    failure:
+      already_authenticated: Već ste prijavljeni.
+      inactive: Vaš račun još nije aktiviran.
+      invalid: "%{authentication_keys} ili lozinka nisu valjani."
+      last_attempt: Imate još jedan pokušaj prije zaključavanja računa.
+      locked: Vaš je račun zaključan.
+      not_found_in_database: "%{authentication_keys} ili lozinka nisu valjani."
+      pending: Tvoj račun je još uvijek pod revizijom.
+      timeout: Vaša je sesija istekla. Ponovno se prijavite kako biste nastavili.
+      unauthenticated: Morate se prijaviti ili registrirati prije nastavka.
+      unconfirmed: Moraš potvrditi svoju email adresu kako bi nastavio.
     mailer:
       confirmation_instructions:
         action: Potvrdi adresu e-pošte
         action_with_app: Potvrdi i vrati se na %{app}
+        extra_html: Važno je da pročitaš <a href="%{terms_path}">pravila ovog servera</a> i <a href="%{policy_path}">naše uvjete korištenja</a>.
         subject: 'Mastodon: upute za potvrđivanje za %{instance}'
         title: Potvrdi adresu e-pošte
       email_changed:
+        explanation: 'Email adresa za ovaj račun je izmijenjena u:'
         subject: 'Mastodon: adresa e-pošte je promijenjena'
         title: Nova adresa e-pošte
       password_change:
+        explanation: Lozinka tvog računa je promijenjena.
         subject: 'Mastodon: lozinka je promijenjena'
+        title: Lozinka je promijenjena
+      reconfirmation_instructions:
+        explanation: Potvrdi novu adresu kako bi promijenio email.
+        subject: 'Mastodon: Potvrdi email za %{instance}'
+        title: Potvrdi adresu e-pošte
       reset_password_instructions:
+        action: Promijeni lozinku
+        explanation: Zatražili ste novu lozinku za svoj račun.
+        extra: Ako nisi ovo zatražio, samo ignoriraj ovu email poruku. Tvoja lozinka neće biti promijenjena sve dok ne pristupiš linku iznad kako bi stvorio novu.
         subject: 'Mastodon: upute za ponovno postavljanje lozinke'
         title: Ponovno postavljanje lozinke
       two_factor_disabled:
+        subject: 'Mastodon: Dvo-faktorska autentifikacija je onemogućena'
         title: 2FA je onemogućen
+      two_factor_enabled:
+        subject: 'Mastodon: Dvo-faktorska autentifikacija je omogućena'
+        title: 2FA omogućena
       unlock_instructions:
         subject: 'Mastodon: upute za otključavanje'
+      webauthn_credential:
+        added:
+          subject: 'Mastodon: Novi sigurnosni ključ'
+          title: Dodan je novi sigurnosni ključ
+        deleted:
+          subject: 'Mastodon: Sigurnosni ključ je obrisan'
+          title: Jedan od tvojih sigurnosnih ključeva je obrisan
+      webauthn_disabled:
+        title: Sigurnosni ključevi su onemogućeni
+      webauthn_enabled:
+        title: Sigurnosni ključevi su omogućeni
     omniauth_callbacks:
       failure: Ne možemo Vas autentificirati s %{kind} zbog "%{reason}".
       success: Uspješno ste autentificirani s računom na %{kind}.

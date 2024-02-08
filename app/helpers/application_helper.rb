@@ -91,6 +91,14 @@ module ApplicationHelper
     end
   end
 
+  def html_title
+    safe_join(
+      [content_for(:page_title).to_s.chomp, title]
+      .select(&:present?),
+      ' - '
+    )
+  end
+
   def title
     Rails.env.production? ? site_title : "#{site_title} (Dev)"
   end
@@ -102,11 +110,11 @@ module ApplicationHelper
   def can?(action, record)
     return false if record.nil?
 
-    policy(record).public_send("#{action}?")
+    policy(record).public_send(:"#{action}?")
   end
 
   def fa_icon(icon, attributes = {})
-    class_names = attributes[:class]&.split(' ') || []
+    class_names = attributes[:class]&.split || []
     class_names << 'fa'
     class_names += icon.split.map { |cl| "fa-#{cl}" }
 

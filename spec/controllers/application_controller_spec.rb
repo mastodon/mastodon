@@ -22,13 +22,10 @@ describe ApplicationController do
   end
 
   shared_examples 'respond_with_error' do |code|
-    it "returns http #{code} for http" do
-      subject
-      expect(response).to have_http_status(code)
-    end
-
-    it 'renders template for http' do
+    it "returns http #{code} for http and renders template" do
       expect(subject).to render_template("errors/#{code}", layout: 'error')
+
+      expect(response).to have_http_status(code)
     end
   end
 

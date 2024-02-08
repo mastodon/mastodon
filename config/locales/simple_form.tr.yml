@@ -48,7 +48,7 @@ tr:
         email: Onay e-postası gönderilir
         header: PNG, GIF ya da JPG. En fazla %{size}. %{dimensions}px boyutuna küçültülecek
         inbox_url: Kullanmak istediğiniz aktarıcının ön sayfasından URL'yi kopyalayın
-        irreversible: Filtrelenmiş gönderiler, filtre daha sonra kaldırılsa bile, geri dönüşümsüz biçimde kaybolur
+        irreversible: Süzgeçlenmiş gönderiler, filtre daha sonra kaldırılsa bile, geri dönüşümsüz biçimde kaybolur
         locale: Kullanıcı arayüzünün dili, e-postalar ve push bildirimleri
         password: En az 8 karakter kullanın
         phrase: Metnin büyük/küçük harf durumundan veya gönderinin içerik uyarısından bağımsız olarak eşleştirilecek
@@ -74,7 +74,7 @@ tr:
         action: Bir gönderi filtreyle eşleştiğinde hangi eylemin yapılacağını seçin
         actions:
           hide: Filtrelenmiş içeriği tamamen gizle, sanki varolmamış gibi
-          warn: Filtrelenmiş içeriği, filtrenin başlığından söz eden bir uyarının arkasında gizle
+          warn: Süzgeçlenmiş içeriği, süzgecinin başlığından söz eden bir uyarının arkasında gizle
       form_admin_settings:
         activity_api_enabled: Yerel olarak yayınlanan gönderi, etkin kullanıcı ve yeni kayıtların haftalık sayıları
         backups_retention_period: Üretilen kullanıcı arşivlerini belirli gün sayısı kadar sakla.
@@ -118,7 +118,7 @@ tr:
       rule:
         text: Bu sunucu üzerindeki kullanıcılar için bir kural veya gereksinimi tanımlayın. Kuralı kısa ve yalın tutmaya çalışın
       sessions:
-        otp: Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.
+        otp: 'Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz:'
         webauthn: Bir USB anahtarıysa, taktığınızdan ve gerekirse üzerine tıkladığınızdan emin olun.
       settings:
         indexable: Profil sayfanız Google, Bing ve diğerlerindeki arama sonuçlarında görüntülenebilir.
@@ -178,10 +178,10 @@ tr:
         autofollow: Hesabınızı takip etmeye davet edin
         avatar: Profil resmi
         bot: Bu bir bot hesabı
-        chosen_languages: Dilleri filtrele
+        chosen_languages: Dilleri süzgeçle
         confirm_new_password: Yeni parolayı onayla
         confirm_password: Parolayı doğrula
-        context: İçeriği filtrele
+        context: İçeriği süzgeçle
         current_password: Güncel parola
         data: Veri
         display_name: Görünen isim
@@ -203,7 +203,7 @@ tr:
         setting_aggregate_reblogs: Zaman çizelgesindeki boostları grupla
         setting_always_send_emails: Her zaman e-posta bildirimleri gönder
         setting_auto_play_gif: Hareketli GIF'leri otomatik oynat
-        setting_boost_modal: Boostlamadan önce onay iletişim kutusu göster
+        setting_boost_modal: Paylaşmadan önce onay iletişim kutusu göster
         setting_default_language: Gönderi dili
         setting_default_privacy: Gönderi gizliliği
         setting_default_sensitive: Medyayı her zaman hassas olarak işaretle

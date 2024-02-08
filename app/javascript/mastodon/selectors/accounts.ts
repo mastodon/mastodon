@@ -1,5 +1,5 @@
+import { createSelector } from '@reduxjs/toolkit';
 import { Record as ImmutableRecord } from 'immutable';
-import { createSelector } from 'reselect';
 
 import { accountDefaultValues } from 'mastodon/models/account';
 import type { Account, AccountShape } from 'mastodon/models/account';

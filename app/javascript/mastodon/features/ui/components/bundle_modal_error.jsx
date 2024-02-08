@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import { ReactComponent as RefreshIcon } from '@material-symbols/svg-600/outlined/refresh.svg';
+import RefreshIcon from '@/material-icons/400-24px/refresh.svg?react';
 
 import { IconButton } from '../../../components/icon_button';
 

@@ -15,10 +15,15 @@ RSpec.describe Api::V1::FiltersController do
   describe 'GET #index' do
     let(:scopes) { 'read:filters' }
     let!(:filter) { Fabricate(:custom_filter, account: user.account) }
+    let!(:custom_filter_keyword) { Fabricate(:custom_filter_keyword, custom_filter: filter) }
 
     it 'returns http success' do
       get :index
       expect(response).to have_http_status(200)
+      expect(body_as_json)
+        .to contain_exactly(
+          include(id: custom_filter_keyword.id.to_s)
+        )
     end
   end
 

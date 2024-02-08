@@ -60,7 +60,7 @@ RSpec.describe UserRole do
   end
 
   describe '#permissions_as_keys=' do
-    let(:input) {}
+    let(:input) { nil }
 
     before do
       subject.permissions_as_keys = input

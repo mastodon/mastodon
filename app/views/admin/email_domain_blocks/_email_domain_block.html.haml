@@ -12,3 +12,7 @@
         ·
 
       = t('admin.email_domain_blocks.attempts_over_week', count: email_domain_block.history.reduce(0) { |sum, day| sum + day.accounts })
+
+      - if email_domain_block.allow_with_approval?
+        ·
+        = t('admin.email_domain_blocks.allow_registrations_with_approval')

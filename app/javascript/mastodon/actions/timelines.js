@@ -21,6 +21,10 @@ export const TIMELINE_DISCONNECT   = 'TIMELINE_DISCONNECT';
 export const TIMELINE_CONNECT      = 'TIMELINE_CONNECT';
 
 export const TIMELINE_MARK_AS_PARTIAL = 'TIMELINE_MARK_AS_PARTIAL';
+export const TIMELINE_INSERT          = 'TIMELINE_INSERT';
+
+export const TIMELINE_SUGGESTIONS = 'inline-follow-suggestions';
+export const TIMELINE_GAP = null;
 
 export const loadPending = timeline => ({
   type: TIMELINE_LOAD_PENDING,
@@ -112,8 +116,18 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
 
     api(getState).get(path, { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
+
       dispatch(importFetchedStatuses(response.data));
       dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null, response.status === 206, isLoadingRecent, isLoadingMore, isLoadingRecent && preferPendingItems));
+
+      if (timelineId === 'home' && !isLoadingMore && !isLoadingRecent) {
+        const now = new Date();
+        const fittingIndex = response.data.findIndex(status => now - (new Date(status.created_at)) > 4 * 3600 * 1000);
+
+        if (fittingIndex !== -1) {
+          dispatch(insertIntoTimeline(timelineId, TIMELINE_SUGGESTIONS, Math.max(1, fittingIndex)));
+        }
+      }
 
       if (timelineId === 'home') {
         dispatch(submitMarkers());
@@ -220,4 +234,11 @@ export const disconnectTimeline = timeline => ({
 export const markAsPartial = timeline => ({
   type: TIMELINE_MARK_AS_PARTIAL,
   timeline,
+});
+
+export const insertIntoTimeline = (timeline, key, index) => ({
+  type: TIMELINE_INSERT,
+  timeline,
+  index,
+  key,
 });

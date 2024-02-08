@@ -7,6 +7,9 @@
   - else
     = link_to t('admin.reports.mark_as_unresolved'), reopen_admin_report_path(@report), method: :post, class: 'button'
 
+- unless @report.account.local? || @report.target_account.local?
+  .flash-message= t('admin.reports.forwarded_replies_explanation')
+
 .report-header
   = render 'admin/reports/header_card', report: @report
   = render 'admin/reports/header_details', report: @report

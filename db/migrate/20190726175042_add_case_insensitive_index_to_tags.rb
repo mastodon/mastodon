@@ -9,9 +9,32 @@ class AddCaseInsensitiveIndexToTags < ActiveRecord::Migration[5.2]
       redundant_tag_ids = row['ids'].split(',')[1..]
 
       safety_assured do
-        execute "UPDATE accounts_tags AS t0 SET tag_id = #{canonical_tag_id} WHERE tag_id IN (#{redundant_tag_ids.join(', ')}) AND NOT EXISTS (SELECT t1.tag_id FROM accounts_tags AS t1 WHERE t1.tag_id = #{canonical_tag_id} AND t1.account_id = t0.account_id)"
-        execute "UPDATE statuses_tags AS t0 SET tag_id = #{canonical_tag_id} WHERE tag_id IN (#{redundant_tag_ids.join(', ')}) AND NOT EXISTS (SELECT t1.tag_id FROM statuses_tags AS t1 WHERE t1.tag_id = #{canonical_tag_id} AND t1.status_id = t0.status_id)"
-        execute "UPDATE featured_tags AS t0 SET tag_id = #{canonical_tag_id} WHERE tag_id IN (#{redundant_tag_ids.join(', ')})  AND NOT EXISTS (SELECT t1.tag_id FROM featured_tags AS t1 WHERE t1.tag_id = #{canonical_tag_id} AND t1.account_id = t0.account_id)"
+        execute <<~SQL.squish
+          UPDATE accounts_tags
+          AS t0
+          SET tag_id = #{canonical_tag_id}
+          WHERE
+            tag_id IN (#{redundant_tag_ids.join(', ')})
+            AND NOT EXISTS (SELECT t1.tag_id FROM accounts_tags AS t1 WHERE t1.tag_id = #{canonical_tag_id} AND t1.account_id = t0.account_id)
+        SQL
+
+        execute <<~SQL.squish
+          UPDATE statuses_tags
+          AS t0
+          SET tag_id = #{canonical_tag_id}
+          WHERE
+            tag_id IN (#{redundant_tag_ids.join(', ')})
+            AND NOT EXISTS (SELECT t1.tag_id FROM statuses_tags AS t1 WHERE t1.tag_id = #{canonical_tag_id} AND t1.status_id = t0.status_id)
+        SQL
+
+        execute <<~SQL.squish
+          UPDATE featured_tags
+            AS t0
+            SET tag_id = #{canonical_tag_id}
+            WHERE
+              tag_id IN (#{redundant_tag_ids.join(', ')})
+              AND NOT EXISTS (SELECT t1.tag_id FROM featured_tags AS t1 WHERE t1.tag_id = #{canonical_tag_id} AND t1.account_id = t0.account_id)
+        SQL
       end
 
       Tag.where(id: redundant_tag_ids).in_batches.delete_all

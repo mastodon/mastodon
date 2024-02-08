@@ -45,6 +45,7 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
+
       redis:
         image: redis:7-alpine
         options: >-
@@ -77,27 +78,10 @@ jobs:
       - name: Create database
         run: './bin/rails db:create'
 
-      - name: Run migrations up to v2.0.0
-        run: './bin/rails db:migrate VERSION=20171010025614'
-
-      - name: Populate database with test data
-        run: './bin/rails tests:migrations:populate_v2'
-
-      - name: Run pre-deployment migrations up to v2.4.0
-        run: './bin/rails db:migrate VERSION=20180514140000'
+      - name: Run historical migrations with data population
+        run: './bin/rails tests:migrations:prepare_database'
         env:
           SKIP_POST_DEPLOYMENT_MIGRATIONS: true
-
-      - name: Populate database with test data
-        run: './bin/rails tests:migrations:populate_v2_4'
-
-      - name: Run migrations up to v2.4.3
-        run: './bin/rails db:migrate VERSION=20180707154237'
-        env:
-          SKIP_POST_DEPLOYMENT_MIGRATIONS: true
-
-      - name: Populate database with test data
-        run: './bin/rails tests:migrations:populate_v2_4_3'
 
       - name: Run all remaining pre-deployment migrations
         run: './bin/rails db:migrate'

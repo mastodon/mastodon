@@ -2,10 +2,12 @@
 
 class AddConfirmableToUsers < ActiveRecord::Migration[5.0]
   def change
-    add_column :users, :confirmation_token, :string
-    add_column :users, :confirmed_at, :datetime
-    add_column :users, :confirmation_sent_at, :datetime
-    add_column :users, :unconfirmed_email, :string
+    change_table(:users, bulk: true) do |t|
+      t.column :confirmation_token, :string
+      t.column :confirmed_at, :datetime
+      t.column :confirmation_sent_at, :datetime
+      t.column :unconfirmed_email, :string
+    end
     add_index :users, :confirmation_token, unique: true
   end
 end

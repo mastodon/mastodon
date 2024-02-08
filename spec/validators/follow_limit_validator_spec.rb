@@ -2,48 +2,76 @@
 
 require 'rails_helper'
 
-RSpec.describe FollowLimitValidator, type: :validator do
+RSpec.describe FollowLimitValidator do
   describe '#validate' do
-    before do
-      allow_any_instance_of(described_class).to receive(:limit_reached?).with(account) do
-        limit_reached
-      end
+    context 'with a nil account' do
+      it 'does not add validation errors to base' do
+        follow = Fabricate.build(:follow, account: nil)
 
-      described_class.new.validate(follow)
-    end
+        follow.valid?
 
-    let(:follow)  { instance_double(Follow, account: account, errors: errors) }
-    let(:errors)  { instance_double(ActiveModel::Errors, add: nil) }
-    let(:account) { instance_double(Account, nil?: _nil, local?: local, following_count: 0, followers_count: 0) }
-    let(:_nil)    { true }
-    let(:local)   { false }
-
-    context 'with follow.account.nil? || !follow.account.local?' do
-      let(:_nil)    { true }
-
-      it 'not calls errors.add' do
-        expect(errors).to_not have_received(:add).with(:base, any_args)
+        expect(follow.errors[:base]).to be_empty
       end
     end
 
-    context 'with !(follow.account.nil? || !follow.account.local?)' do
-      let(:_nil)    { false }
-      let(:local)   { true }
+    context 'with a non-local account' do
+      it 'does not add validation errors to base' do
+        follow = Fabricate.build(:follow, account: Account.new(domain: 'host.example'))
 
-      context 'when limit_reached?' do
-        let(:limit_reached) { true }
+        follow.valid?
 
-        it 'calls errors.add' do
-          expect(errors).to have_received(:add)
-            .with(:base, I18n.t('users.follow_limit_reached', limit: FollowLimitValidator::LIMIT))
+        expect(follow.errors[:base]).to be_empty
+      end
+    end
+
+    context 'with a local account' do
+      let(:account) { Account.new }
+
+      context 'when the followers count is under the limit' do
+        before do
+          allow(account).to receive(:following_count).and_return(described_class::LIMIT - 100)
+        end
+
+        it 'does not add validation errors to base' do
+          follow = Fabricate.build(:follow, account: account)
+
+          follow.valid?
+
+          expect(follow.errors[:base]).to be_empty
         end
       end
 
-      context 'with !limit_reached?' do
-        let(:limit_reached) { false }
+      context 'when the following count is over the limit' do
+        before do
+          allow(account).to receive(:following_count).and_return(described_class::LIMIT + 100)
+        end
 
-        it 'not calls errors.add' do
-          expect(errors).to_not have_received(:add).with(:base, any_args)
+        context 'when the followers count is low' do
+          before do
+            allow(account).to receive(:followers_count).and_return(10)
+          end
+
+          it 'adds validation errors to base' do
+            follow = Fabricate.build(:follow, account: account)
+
+            follow.valid?
+
+            expect(follow.errors[:base]).to include(I18n.t('users.follow_limit_reached', limit: FollowLimitValidator::LIMIT))
+          end
+        end
+
+        context 'when the followers count is high' do
+          before do
+            allow(account).to receive(:followers_count).and_return(100_000)
+          end
+
+          it 'does not add validation errors to base' do
+            follow = Fabricate.build(:follow, account: account)
+
+            follow.valid?
+
+            expect(follow.errors[:base]).to be_empty
+          end
         end
       end
     end

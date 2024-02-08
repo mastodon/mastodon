@@ -1,1 +1,85 @@
+---
 pa:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: ਐਪਲੀਕੇਸ਼ਨ ਦਾ ਨਾਂ
+        website: ਐਪਲੀਕੇਸ਼ਨ ਵੈੱਬਸਾਈਟ
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: ਪਰਮਾਣਿਤ
+        cancel: ਰੱਦ ਕਰੋ
+        destroy: ਖਾਰਜ
+        edit: ਸੋਧੋ
+        submit: ਭੇਜੋ
+      confirmations:
+        destroy: ਪੱਕਾ?
+      edit:
+        title: ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਸੋਧੋ
+      form:
+        error: ਓਹ ਹੋ! ਸੰਭਾਵਿਤ ਗਲਤੀਆਂ ਲਈ ਆਪਣੇ ਫਾਰਮ ਦੀ ਜਾਂਚ ਕਰੋ
+      index:
+        application: ਐਪਲੀਕੇਸ਼ਨ
+        callback_url: ਕਾਲਬੈਕ URL
+        delete: ਹਟਾਓ
+        empty: ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ ਐਪਲੀਕੇਸ਼ਨ ਨਹੀਂ ਹੈ।
+        name: ਨਾਂ
+        new: ਨਵੀਂ ਐਪਲੀਕੇਸ਼ਨ
+        scopes: ਸਕੋਪ
+        show: ਵੇਖਾਓ
+        title: ਤੁਹਾਡੀਆਂ ਐਪਲੀਕੇਸ਼ਨਾਂ
+      new:
+        title: ਨਵੀਂ ਐਪਲੀਕੇਸ਼ਨ
+      show:
+        actions: ਕਾਰਵਾਈਆਂ
+        application_id: ਕਲਾਈਂਟ ਕੁੰਜੀ
+        callback_urls: ਕਾਲਬੈਕ URL
+        scopes: ਸਕੋਪ
+        secret: ਕਲਾਈਂਟ ਭੇਤ
+        title: 'ਐਪਲੀਕੇਸ਼ਨ: %{name}'
+    authorizations:
+      buttons:
+        authorize: ਪਰਮਾਣਿਤ
+        deny: ਇਨਕਾਰ ਕਰੋ
+      error:
+        title: ਗਲਤੀ ਆਈ ਹੈ
+      new:
+        review_permissions: ਇਜਾਜ਼ਤਾਂ ਦੀ ਪੜਤਾਲ ਕਰੋ
+        title: ਪਰਮਾਣਕਿਤਾ ਚਾਹੀਦੀ ਹੈ
+    authorized_applications:
+      buttons:
+        revoke: ਮਨਸੂਖ ਕਰੋ
+      confirmations:
+        revoke: ਪੱਕਾ?
+      index:
+        authorized_at: "%{date} ਨੂੰ ਪਰਮਾਣਿਤ ਕੀਤਾ"
+        last_used_at: "%{date} ਨੂੰ ਆਖਰੀ ਵਾਰ ਵਰਤਿਆ"
+        never_used: ਕਦੀ ਨਹੀਂ ਵਰਤਿਆ
+        scopes: ਇਜਾਜ਼ਤਾਂ
+        superapp: ਅੰਦਰੂਨੀ
+    grouped_scopes:
+      title:
+        accounts: ਖਾਤੇ
+        blocks: ਪਾਬੰਦੀਸ਼ੁਦਾ
+        bookmarks: ਬੁੱਕਮਾਰਕ
+        crypto: ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇੰਕ੍ਰਿਪਸ਼ਨ
+        favourites: ਮਨਪਸੰਦ
+        filters: ਫਿਲਟਰ
+        follow: ਫ਼ਾਲੋ, ਮੌਨ ਅਤੇ ਪਾਬੰਦੀ ਲਾਏ
+        follows: ਫ਼ਾਲੋ
+        lists: ਸੂਚੀਆਂ
+        media: ਨੱਥੀ ਕੀਤਾ ਮੀਡੀਆ
+        mutes: ਮੌਨ
+        notifications: ਨੋਟੀਫਿਕੇਸ਼ਨ
+        reports: ਰਿਪੋਰਟਾਂ
+        search: ਖੋਜੋ
+        statuses: ਪੋਸਟਾਂ
+    layouts:
+      admin:
+        nav:
+          applications: ਐਪਲੀਕੇਸ਼ਨਾਂ
+    scopes:
+      write:follows: ਲੋਕਾਂ ਨੂੰ ਫ਼ਾਲੋ ਕਰੋ
+      write:lists: ਸੂਚੀਆਂ ਬਣਾਓ
+      write:media: ਮੀਡੀਆ ਫਾਇਲਾਂ ਅੱਪਲੋਡ ਕਰੋ

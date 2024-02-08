@@ -26,9 +26,9 @@ class ActivityPub::FetchRepliesService < BaseService
 
     case collection['type']
     when 'Collection', 'CollectionPage'
-      collection['items']
+      as_array(collection['items'])
     when 'OrderedCollection', 'OrderedCollectionPage'
-      collection['orderedItems']
+      as_array(collection['orderedItems'])
     end
   end
 
@@ -37,7 +37,20 @@ class ActivityPub::FetchRepliesService < BaseService
     return unless @allow_synchronous_requests
     return if non_matching_uri_hosts?(@account.uri, collection_or_uri)
 
-    fetch_resource_without_id_validation(collection_or_uri, nil, true)
+    # NOTE: For backward compatibility reasons, Mastodon signs outgoing
+    # queries incorrectly by default.
+    #
+    # While this is relevant for all URLs with query strings, this is
+    # the only code path where this happens in practice.
+    #
+    # Therefore, retry with correct signatures if this fails.
+    begin
+      fetch_resource_without_id_validation(collection_or_uri, nil, true)
+    rescue Mastodon::UnexpectedResponseError => e
+      raise unless e.response && e.response.code == 401 && Addressable::URI.parse(collection_or_uri).query.present?
+
+      fetch_resource_without_id_validation(collection_or_uri, nil, true, request_options: { with_query_string: true })
+    end
   end
 
   def filtered_replies

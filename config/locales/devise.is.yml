@@ -47,16 +47,19 @@ is:
         subject: 'Mastodon: Leiðbeiningar til að endurstilla lykilorð'
         title: Endurstilling lykilorðs
       two_factor_disabled:
-        explanation: Tveggja-þátta auðkenning fyrir aðganginn þinn hefur verið gerð óvirk. Núna er einungis hægt að skrá inn með tölvupóstfangi og lykilorði.
+        explanation: Innskráning er núna möguleg með því að nota aðeins tölvupóstfang og lykilorð.
         subject: 'Mastodon: Tveggja-þátta auðkenning er óvirk'
+        subtitle: Tveggja-þátta auðkenning fyrir aðganginn þinn hefur verið gerð óvirk.
         title: 2FA tveggja-þátta auðkenning er óvirk
       two_factor_enabled:
-        explanation: Tveggja-þátta auðkenning hefur verið gerð virk fyrir aðganginn þinn. Krafist er teikns útbúnu af paraða TOTP-forritinu til að skrá inn.
+        explanation: Teikn sem útbúið hefur verið af pöruðu TOTP-forriti verður nauðsynlegt til innskráningar.
         subject: 'Mastodon: Tveggja-þátta auðkenning er virk'
+        subtitle: Tveggja-þátta auðkenning fyrir aðganginn þinn hefur verið gerð virk.
         title: 2FA tveggja-þátta auðkenning er virk
       two_factor_recovery_codes_changed:
         explanation: Fyrri endurheimtukóðar tveggja-þátta auðkenningar voru ógiltir og nýir útbúnir í staðinn.
         subject: 'Mastodon: Endurheimtukóðar tveggja-þátta auðkenningar voru endurnýjaðir'
+        subtitle: Fyrri endurheimtukóðar tveggja-þátta auðkenningar voru ógiltir og nýir útbúnir í staðinn.
         title: Endurheimtukóðar tveggja-þátta auðkenningar breyttust
       unlock_instructions:
         subject: 'Mastodon: Leiðbeiningar til að aflæsa'
@@ -70,11 +73,13 @@ is:
           subject: 'Mastodon: Öryggislykli eytt'
           title: Einum af öryggilyklunum þínum hefur verið eytt
       webauthn_disabled:
-        explanation: Auðkenning með öryggislyklum hefur verið gerð óvirk fyrir aðganginn þinn. Innskráning er núna einungis möguleg með teikni útbúnu af paraða TOTP-forritinu.
+        explanation: Auðkenning með öryggislyklum hefur verið gerð óvirk fyrir aðganginn þinn.
+        extra: Innskráning er núna möguleg með því að nota einungis teikn útbúnu af paraða TOTP-forritinu.
         subject: 'Mastodon: Auðkenning með öryggislyklum er óvirk'
         title: Öryggislyklar eru óvirkir
       webauthn_enabled:
-        explanation: Auðkenning með öryggislykli hefur verið gerð virk fyrir aðganginn þinn. Nú er hægt að nota öryggislykilinn þinn til að skrá inn.
+        explanation: Auðkenning með öryggislykli hefur verið gerð virk fyrir aðganginn þinn.
+        extra: Nú er hægt að nota öryggislykilinn þinn til að skrá inn.
         subject: 'Mastodon: Auðkenning með öryggislykli er virk'
         title: Öryggislyklar eru virkir
     omniauth_callbacks:

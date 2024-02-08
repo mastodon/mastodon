@@ -51,7 +51,7 @@ class ProcessMentionsService < BaseService
 
       # If after resolving it still isn't found or isn't the right
       # protocol, then give up
-      next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended?
+      next match if mention_undeliverable?(mentioned_account) || mentioned_account&.unavailable?
 
       mention   = @previous_mentions.find { |x| x.account_id == mentioned_account.id }
       mention ||= @current_mentions.find  { |x| x.account_id == mentioned_account.id }

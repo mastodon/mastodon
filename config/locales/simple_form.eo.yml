@@ -8,6 +8,8 @@ eo:
         fields: Via retpaĝo, pronomoj, aĝo, ĉio, kion vi volas.
         indexable: Viaj publikaj afiŝoj povas aperi en serĉrezultoj ĉe Mastodon. Homoj, kiuj interagis kun viaj afiŝoj, eble povos serĉi ilin sendepende.
         note: 'Vi povas @mencii aliajn homojn aŭ #haŝetikedoj.'
+        show_collections: Homoj povos foliumi viajn sekvatojn kaj sekvantojn. Homoj, kiujn vi sekvas, vidos, ke vi sekvas ilin ĉiaokaze.
+        unlocked: Homoj povos sekvi vin sen peto de aprobo. Malelektu se vi volas kontroli petojn de sekvado kaj elekti, ĉu akcepti aŭ malakcepti novajn sekvantojn.
       account_alias:
         acct: Specifu la uzantnomon@domajnon de la konto el kiu vi volas translokiĝi
       account_migration:
@@ -118,6 +120,9 @@ eo:
       sessions:
         otp: 'Enmetu la kodon de dufaktora aŭtentigo el via telefono aŭ uzu unu el viaj realiraj kodoj:'
         webauthn: Se ĝi estas USB-ŝlosilo, certu enmeti ĝin kaj, se necese, frapi ĝin.
+      settings:
+        indexable: Via profila paĝo povas aperi en serĉrezultoj en Google, Bing kaj aliaj.
+        show_application: Vi ĉiam povos vidi kiu aplikaĵo publikigis vian afiŝon ĉiaokaze.
       tag:
         name: Vi povas ŝanĝi nur la majuskladon de la literoj, ekzemple, por igi ĝin pli legebla
       user:
@@ -135,9 +140,13 @@ eo:
         url: Kien eventoj sendotas
     labels:
       account:
+        discoverable: Elstarigi profilon kaj afiŝojn en eltrovantaj algoritmoj
         fields:
           name: Etikedo
           value: Enhavo
+        indexable: Inkludi publikajn afiŝojn en serĉrezultoj
+        show_collections: Montri sekvatojn kaj sekvantojn en la profilo
+        unlocked: Aŭtomate akcepti novajn sekvantojn
       account_alias:
         acct: Tenilo de la malnovan konton
       account_migration:
@@ -221,7 +230,7 @@ eo:
         username_or_email: Uzantnomo aŭ Retadreso
         whole_word: Tuta vorto
       email_domain_block:
-        with_dns_records: Inkluzu MX-rekordojn kaj IP de la domajno
+        with_dns_records: Inkludi MX-rekordojn kaj IP-jn de la domajno
       featured_tag:
         name: Kradvorto
       filters:
@@ -282,9 +291,18 @@ eo:
         pending_account: Sendi retmesaĝon kiam nova konto bezonas kontrolon
         reblog: Sendi retmesaĝon kiam iu diskonigas vian mesaĝon
         report: Nova raporto estas proponita
+        software_updates:
+          all: Sciigi pri ĉiuj ĝisdatigoj
+          critical: Sciigi nur pri gravaj ĝisdatigoj
+          label: Nova Mastodon-versio disponeblas
+          none: Neniam sciigi pri ĝisdatigoj (malrekomendita)
+          patch: Sciigi pri cimoriparaj ĝisdatigoj
         trending_tag: Nova furoro bezonas kontrolon
       rule:
         text: Regulo
+      settings:
+        indexable: Inkludi profilan paĝon en serĉiloj
+        show_application: Montri el kiu aplikaĵo vi sendis afiŝon
       tag:
         listable: Permesi ĉi tiun kradvorton aperi en serĉoj kaj sugestoj
         name: Kradvorto
@@ -305,6 +323,7 @@ eo:
         url: Finpunkto-URL
     'no': Ne
     not_recommended: Nerekomendita
+    overridden: Anstataŭigita
     recommended: Rekomendita
     required:
       mark: "*"

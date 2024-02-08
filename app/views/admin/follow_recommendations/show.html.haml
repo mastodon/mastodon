@@ -38,3 +38,5 @@
         = nothing_here 'nothing-here--under-tabs'
       - else
         = render partial: 'account', collection: @accounts, locals: { f: f }
+
+= paginate @accounts

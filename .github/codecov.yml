@@ -1,0 +1,13 @@
+coverage:
+  status:
+    project:
+      default:
+        # Github status check is not blocking
+        informational: true
+    patch:
+      default:
+        # Github status check is not blocking
+        informational: true
+comment:
+  # Only write a comment in PR if there are changes
+  require_changes: true

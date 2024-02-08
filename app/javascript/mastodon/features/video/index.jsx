@@ -7,18 +7,19 @@ import classNames from 'classnames';
 
 import { is } from 'immutable';
 
-import { ReactComponent as FullscreenIcon } from '@material-symbols/svg-600/outlined/fullscreen.svg';
-import { ReactComponent as FullscreenExitIcon } from '@material-symbols/svg-600/outlined/fullscreen_exit.svg';
-import { ReactComponent as PauseIcon } from '@material-symbols/svg-600/outlined/pause.svg';
-import { ReactComponent as PlayArrowIcon } from '@material-symbols/svg-600/outlined/play_arrow-fill.svg';
-import { ReactComponent as RectangleIcon } from '@material-symbols/svg-600/outlined/rectangle.svg';
-import { ReactComponent as VisibilityOffIcon } from '@material-symbols/svg-600/outlined/visibility_off.svg';
-import { ReactComponent as VolumeOffIcon } from '@material-symbols/svg-600/outlined/volume_off-fill.svg';
-import { ReactComponent as VolumeUpIcon } from '@material-symbols/svg-600/outlined/volume_up-fill.svg';
 import { throttle } from 'lodash';
 
+import FullscreenIcon from '@/material-icons/400-24px/fullscreen.svg?react';
+import FullscreenExitIcon from '@/material-icons/400-24px/fullscreen_exit.svg?react';
+import PauseIcon from '@/material-icons/400-24px/pause.svg?react';
+import PlayArrowIcon from '@/material-icons/400-24px/play_arrow-fill.svg?react';
+import RectangleIcon from '@/material-icons/400-24px/rectangle.svg?react';
+import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
+import VolumeOffIcon from '@/material-icons/400-24px/volume_off-fill.svg?react';
+import VolumeUpIcon from '@/material-icons/400-24px/volume_up-fill.svg?react';
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon }  from 'mastodon/components/icon';
+import { playerSettings } from 'mastodon/settings';
 
 import { displayMedia, useBlurhash } from '../../initial_state';
 import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
@@ -226,8 +227,8 @@ class Video extends PureComponent {
 
     if(!isNaN(x)) {
       this.setState((state) => ({ volume: x, muted: state.muted && x === 0 }), () => {
-        this.video.volume = x;
-        this.video.muted = this.state.muted;
+        this._syncVideoToVolumeState(x);
+        this._saveVolumeState(x);
       });
     }
   }, 15);
@@ -365,6 +366,8 @@ class Video extends PureComponent {
     document.addEventListener('MSFullscreenChange', this.handleFullscreenChange, true);
 
     window.addEventListener('scroll', this.handleScroll);
+
+    this._syncVideoFromLocalStorage();
   }
 
   componentWillUnmount () {
@@ -437,8 +440,28 @@ class Video extends PureComponent {
     const muted = !(this.video.muted || this.state.volume === 0);
 
     this.setState((state) => ({ muted, volume: Math.max(state.volume || 0.5, 0.05) }), () => {
-      this.video.volume = this.state.volume;
-      this.video.muted = this.state.muted;
+      this._syncVideoToVolumeState();
+      this._saveVolumeState();
+    });
+  };
+
+  _syncVideoToVolumeState = (volume = null, muted = null) => {
+    if (!this.video) {
+      return;
+    }
+
+    this.video.volume = volume ?? this.state.volume;
+    this.video.muted = muted ?? this.state.muted;
+  };
+
+  _saveVolumeState = (volume = null, muted = null) => {
+    playerSettings.set('volume', volume ?? this.state.volume);
+    playerSettings.set('muted', muted ?? this.state.muted);
+  };
+
+  _syncVideoFromLocalStorage = () => {
+    this.setState({ volume: playerSettings.get('volume') ?? 0.5, muted: playerSettings.get('muted') ?? false }, () => {
+      this._syncVideoToVolumeState();
     });
   };
 
@@ -480,6 +503,7 @@ class Video extends PureComponent {
 
   handleVolumeChange = () => {
     this.setState({ volume: this.video.volume, muted: this.video.muted });
+    this._saveVolumeState(this.video.volume, this.video.muted);
   };
 
   handleOpenVideo = () => {
@@ -565,7 +589,6 @@ class Video extends PureComponent {
             aria-label={alt}
             title={alt}
             lang={lang}
-            volume={volume}
             onClick={this.togglePlay}
             onKeyDown={this.handleVideoKeyDown}
             onPlay={this.handlePlay}

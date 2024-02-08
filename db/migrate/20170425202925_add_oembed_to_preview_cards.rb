@@ -2,13 +2,15 @@
 
 class AddOEmbedToPreviewCards < ActiveRecord::Migration[5.0]
   def change
-    add_column :preview_cards, :type, :integer, default: 0, null: false
-    add_column :preview_cards, :html, :text, null: false, default: ''
-    add_column :preview_cards, :author_name, :string, null: false, default: ''
-    add_column :preview_cards, :author_url, :string, null: false, default: ''
-    add_column :preview_cards, :provider_name, :string, null: false, default: ''
-    add_column :preview_cards, :provider_url, :string, null: false, default: ''
-    add_column :preview_cards, :width, :integer, default: 0, null: false
-    add_column :preview_cards, :height, :integer, default: 0, null: false
+    change_table(:preview_cards, bulk: true) do |t|
+      t.column :type, :integer, default: 0, null: false
+      t.column :html, :text, null: false, default: ''
+      t.column :author_name, :string, null: false, default: ''
+      t.column :author_url, :string, null: false, default: ''
+      t.column :provider_name, :string, null: false, default: ''
+      t.column :provider_url, :string, null: false, default: ''
+      t.column :width, :integer, default: 0, null: false
+      t.column :height, :integer, default: 0, null: false
+    end
   end
 end

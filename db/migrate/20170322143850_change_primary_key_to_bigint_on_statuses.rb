@@ -2,9 +2,11 @@
 
 class ChangePrimaryKeyToBigintOnStatuses < ActiveRecord::Migration[5.0]
   def change
-    change_column :statuses, :id, :bigint
-    change_column :statuses, :reblog_of_id, :bigint
-    change_column :statuses, :in_reply_to_id, :bigint
+    change_table(:statuses, bulk: true) do |t|
+      t.change :id, :bigint
+      t.change :reblog_of_id, :bigint
+      t.change :in_reply_to_id, :bigint
+    end
 
     change_column :media_attachments, :status_id, :bigint
     change_column :mentions, :status_id, :bigint

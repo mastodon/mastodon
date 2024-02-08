@@ -17,8 +17,7 @@ class AddUniqueIndexOnPreviewCardsStatuses < ActiveRecord::Migration[6.1]
 
   def supports_concurrent_reindex?
     @supports_concurrent_reindex ||= begin
-      version = select_one("SELECT current_setting('server_version_num') AS v")['v'].to_i
-      version >= 120_000
+      ActiveRecord::Base.connection.database_version >= 120_000
     end
   end
 

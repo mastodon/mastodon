@@ -47,16 +47,19 @@ eu:
         subject: 'Mastodon: Pasahitza berrezartzeko argibideak'
         title: Pasahitza berrezartzea
       two_factor_disabled:
-        explanation: Bi faktoreetako autentifikazioa desgaitu da zure kontuan. Orain saioa hasi daiteke e-mail helbidea eta pasahitza bakarrik erabilita.
+        explanation: Orain posible da helbide elektronikoa eta pasahitza erabiliz saioa hastea.
         subject: 'Mastodon: Bi faktoreetako autentifikazioa desgaituta'
+        subtitle: Kontuaren bi faktoreko autentifikazioa desgaitu da.
         title: 2FA desgaituta
       two_factor_enabled:
-        explanation: Bi faktoreetako autentifikazioa gaitu da zure kontuan. Token bat sortu du lotutako TOTP aplikazioak eta saioa hasteko eskatuko da.
+        explanation: Parekatutako TOTP aplikazioak sortutako tokena beharko da saioa hasteko.
         subject: 'Mastodon: Bi faktoreetako autentifikazioa gaituta'
+        subtitle: Kontuaren bi faktoreko autentifikazioa gaitu da.
         title: 2FA gaituta
       two_factor_recovery_codes_changed:
         explanation: Aurreko kodeak baliogabetu dira eta berriak sortu dira.
         subject: 'Mastodon: Bi faktoreetako berreskuratze kodeak birsortuta'
+        subtitle: Aurreko berreskuratze-kodeak baliogabetu eta berriak sortu dira.
         title: 2FA berreskuratze kodeak aldatuta
       unlock_instructions:
         subject: 'Mastodon: Desblokeatzeko argibideak'
@@ -70,11 +73,13 @@ eu:
           subject: 'Mastodon: Segurtasun gakoa ezabatu da'
           title: Zure segurtasun gakoetako bat ezabatu da
       webauthn_disabled:
-        explanation: Segurtasun gako bidezko autentifikazioa desgaitu da zure kontuan. Saioa hasteko modu bakarra parekatutako TOTP aplikazioak sortutako tokena erabiltzea da orain.
+        explanation: Kontuaren segurtasun-gako bidezko autentifikazioa desgaitu da.
+        extra: Parekatutako TOTP aplikazioak sortutako tokena erabiliz bakarrik has daiteke saioa orain.
         subject: 'Mastodon: Segurtasun gakoekin autentifikatzea desgaituta'
         title: Segurtasun gakoak desgaituta
       webauthn_enabled:
-        explanation: Segurtasun gako bidezko autentifikazioa gaitu da zure kontuan. Orain zure segurtasun gakoa erabil dezakezu saioa hasteko.
+        explanation: Kontuaren segurtasun-gako bidezko autentifikazioa gaitu da.
+        extra: Orain, segurtasun-gakoa erabil daiteke saioa hasteko.
         subject: 'Mastodon: Segurtasun gako bidezko autentifikazioa gaituta'
         title: Segurtasun gakoak gaituta
     omniauth_callbacks:

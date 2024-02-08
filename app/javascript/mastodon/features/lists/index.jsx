@@ -4,13 +4,12 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
+import { createSelector } from '@reduxjs/toolkit';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
-import { ReactComponent as ListAltIcon } from '@material-symbols/svg-600/outlined/list_alt.svg';
-
+import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import { fetchLists } from 'mastodon/actions/lists';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';

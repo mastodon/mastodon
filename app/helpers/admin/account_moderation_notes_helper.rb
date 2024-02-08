@@ -6,7 +6,7 @@ module Admin::AccountModerationNotesHelper
 
     link_to path || admin_account_path(account.id), class: name_tag_classes(account), title: account.acct do
       safe_join([
-                  image_tag(account.avatar.url, width: 15, height: 15, alt: display_name(account), class: 'avatar'),
+                  image_tag(account.avatar.url, width: 15, height: 15, alt: '', class: 'avatar'),
                   content_tag(:span, account.acct, class: 'username'),
                 ], ' ')
     end

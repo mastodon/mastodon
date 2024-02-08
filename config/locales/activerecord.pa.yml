@@ -1,1 +1,23 @@
+---
 pa:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: ਆਖਰੀ ਤਾਰੀਖ
+        options: ਚੋਣਾਂ
+      user:
+        agreement: ਸੇਵਾ ਸਮਝੌਤਾ
+        email: ਈਮੇਲ ਪਤਾ
+        locale: ਲੋਕੇਲ
+        password: ਪਾਸਵਰਡ
+      user/account:
+        username: ਵਰਤੋਂਕਾਰ-ਨਾਂ
+      user/invite_request:
+        text: ਕਾਰਨ
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: ਸਿਰਫ਼ ਅੱਖਰ, ਅੰਕ ਅਤੇ ਹੇਠਾਂ-ਰੇਖਾ ਹੀ ਹੋੋਣੀ ਚਾਹੀਦੀ ਹੈ
+              reserved: ਰਾਖਵਾਂ ਹੈ

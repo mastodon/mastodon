@@ -11,7 +11,7 @@ class BatchedRemoveStatusService < BaseService
     ActiveRecord::Associations::Preloader.new(
       records: statuses,
       associations: options[:skip_side_effects] ? :reblogs : [:account, :tags, reblogs: :account]
-    )
+    ).call
 
     statuses_and_reblogs = statuses.flat_map { |status| [status] + status.reblogs }
 
@@ -23,7 +23,7 @@ class BatchedRemoveStatusService < BaseService
     ActiveRecord::Associations::Preloader.new(
       records: statuses_with_account_conversations,
       associations: [mentions: :account]
-    )
+    ).call
 
     statuses_with_account_conversations.each(&:unlink_from_conversations!)
 

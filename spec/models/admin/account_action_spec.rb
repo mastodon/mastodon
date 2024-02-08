@@ -47,11 +47,9 @@ RSpec.describe Admin::AccountAction do
       end
 
       it 'queues Admin::SuspensionWorker by 1' do
-        Sidekiq::Testing.fake! do
-          expect do
-            subject
-          end.to change { Admin::SuspensionWorker.jobs.size }.by 1
-        end
+        expect do
+          subject
+        end.to change { Admin::SuspensionWorker.jobs.size }.by 1
       end
     end
 
@@ -78,13 +76,15 @@ RSpec.describe Admin::AccountAction do
     end
 
     it 'calls process_email!' do
-      expect(account_action).to receive(:process_email!)
+      allow(account_action).to receive(:process_email!)
       subject
+      expect(account_action).to have_received(:process_email!)
     end
 
     it 'calls process_reports!' do
-      expect(account_action).to receive(:process_reports!)
+      allow(account_action).to receive(:process_reports!)
       subject
+      expect(account_action).to have_received(:process_reports!)
     end
   end
 

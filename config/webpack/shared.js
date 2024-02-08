@@ -96,6 +96,9 @@ module.exports = {
       resolve(settings.source_path),
       'node_modules',
     ],
+    alias: {
+      "@": resolve(settings.source_path),
+    }
   },
 
   resolveLoader: {

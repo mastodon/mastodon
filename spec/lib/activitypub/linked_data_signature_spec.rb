@@ -56,7 +56,7 @@ RSpec.describe ActivityPub::LinkedDataSignature do
 
         allow(ActivityPub::FetchRemoteKeyService).to receive(:new).and_return(service_stub)
 
-        allow(service_stub).to receive(:call).with('http://example.com/alice', id: false) do
+        allow(service_stub).to receive(:call).with('http://example.com/alice') do
           sender.update!(public_key: old_key)
           sender
         end
@@ -64,7 +64,7 @@ RSpec.describe ActivityPub::LinkedDataSignature do
 
       it 'fetches key and returns creator' do
         expect(subject.verify_actor!).to eq sender
-        expect(service_stub).to have_received(:call).with('http://example.com/alice', id: false).once
+        expect(service_stub).to have_received(:call).with('http://example.com/alice').once
       end
     end
 

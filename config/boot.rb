@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 unless ENV.key?('RAILS_ENV')
-  STDERR.puts 'ERROR: Missing RAILS_ENV environment variable, please set it to "production", "development", or "test".'
+  warn 'ERROR: Missing RAILS_ENV environment variable, please set it to "production", "development", or "test".'
   exit 1
 end
 

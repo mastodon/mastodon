@@ -8,7 +8,6 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
   subject { described_class.new }
 
   let!(:sender) { Fabricate(:account, domain: 'foo.bar', uri: 'https://foo.bar') }
-  let!(:recipient) { Fabricate(:account) }
 
   let(:existing_status) { nil }
 
@@ -226,7 +225,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
     end
   end
 
-  context 'with statuses referencing other statuses' do
+  context 'with statuses referencing other statuses', :sidekiq_inline do
     before do
       stub_const 'ActivityPub::FetchRemoteStatusService::DISCOVERIES_PER_REQUEST', 5
     end

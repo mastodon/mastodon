@@ -47,16 +47,19 @@ pl:
         subject: 'Mastodon: Instrukcje ustawienia nowego hasła'
         title: Przywracanie hasła
       two_factor_disabled:
-        explanation: Uwierzytelnianie dwuskładnikowe dla Twojego konta zostało wyłączone. Możesz się teraz logować korzystając z samego adresu e-mail i hasła.
+        explanation: Logowanie teraz możliwe tylko adresem mejlowym i hasłem.
         subject: Mastodon – wyłączono uwierzytelnianie dwustopniowe
+        subtitle: Wyłączono uwierzytelnienie dwuskładnikowe dla twojego konta.
         title: Wyłączono 2FA
       two_factor_enabled:
-        explanation: Uwierzytelnianie dwuskładnikowe dla Twojego konta zostało włączone. Logując się, będziesz potrzebować tokenu z połączonej aplikacji TOTP.
+        explanation: Do zalogowanie potrzebny będzie token sparowanej aplikacji TOTP.
         subject: Mastodon – włączono uwierzytelnianie dwustopniowe
+        subtitle: Włączono uwierzytelnienie dwuskładnikowe dla twojego konta.
         title: Włączono 2FA
       two_factor_recovery_codes_changed:
         explanation: Poprzednie kody zapasowe zostały unieważnione, a nowe zostały wygenerowane.
         subject: Mastodon – wygenerowano nowe kody ratunkowe 2FA
+        subtitle: Unieważniono stare kody przywracania i wygenerowano nowe.
         title: Zmieniono kody odzyskiwania 2FA
       unlock_instructions:
         subject: 'Mastodon: Instrukcje odblokowania konta'
@@ -70,11 +73,13 @@ pl:
           subject: 'Mastodon: Klucz bezpieczeństwa usunięty'
           title: Usunięto jeden z twoich kluczy bezpieczeństwa
       webauthn_disabled:
-        explanation: Uwierzytelnianie kluczem bezpieczeństwa zostało wyłączone dla Twojego konta. Logowanie jest teraz możliwe tylko przy użyciu tokenu generowanego przez sparowaną aplikację TOTP.
+        explanation: Wyłączono autoryzację kluczami bezpieczeństwa dla twojego konta.
+        extra: Logowanie teraz możliwe tylko tokenem wygenerowanym przez sparowaną aplikację TOTP.
         subject: 'Mastodon: Wyłączono uwierzytelnianie z kluczami bezpieczeństwa'
         title: Wyłączono klucze bezpieczeństwa
       webauthn_enabled:
-        explanation: Uwierzytelnianie klucza bezpieczeństwa zostało włączone dla Twojego konta. Klucz bezpieczeństwa może być teraz wykorzystywany do logowania.
+        explanation: Włączono autoryzację kluczami bezpieczeństwa dla twojego konta.
+        extra: Twój klucz bezpieczeństwa może być teraz użyty do logowania.
         subject: 'Mastodon: Włączono uwierzytelnianie z kluczami bezpieczeństwa'
         title: Włączono klucze bezpieczeństwa
     omniauth_callbacks:

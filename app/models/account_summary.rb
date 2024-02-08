@@ -10,17 +10,13 @@
 #
 
 class AccountSummary < ApplicationRecord
+  include DatabaseViewRecord
+
   self.primary_key = :account_id
 
+  has_many :follow_recommendation_suppressions, primary_key: :account_id, foreign_key: :account_id, inverse_of: false, dependent: nil
+
   scope :safe, -> { where(sensitive: false) }
-  scope :localized, ->(locale) { where(language: locale) }
-  scope :filtered, -> { joins(arel_table.join(FollowRecommendationSuppression.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:account_id].eq(FollowRecommendationSuppression.arel_table[:account_id])).join_sources).where(FollowRecommendationSuppression.arel_table[:id].eq(nil)) }
-
-  def self.refresh
-    Scenic.database.refresh_materialized_view(table_name, concurrently: false, cascade: false)
-  end
-
-  def readonly?
-    true
-  end
+  scope :localized, ->(locale) { order(Arel::Nodes::Case.new.when(arel_table[:language].eq(locale)).then(1).else(0).desc) }
+  scope :filtered, -> { where.missing(:follow_recommendation_suppressions) }
 end

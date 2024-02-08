@@ -20,7 +20,7 @@ namespace :systemd do
   SYSTEMD_SERVICES.each do |service|
     SERVICE_ACTIONS.each do |action|
       desc "Perform a #{action} on #{service} service"
-      task "#{service}:#{action}".to_sym do
+      task :"#{service}:#{action}" do
         on roles(:app) do
           # runs e.g. "sudo restart mastodon-sidekiq.service"
           sudo :systemctl, action, "#{fetch(:application)}-#{service}.service"

@@ -1,9 +1,23 @@
 ---
 ga:
   devise:
+    confirmations:
+      confirmed: D'éirigh le deimhniú do ríomhphost.
+      send_instructions: Gheobhaidh tú r-phost go gairid ina mbeidh treoracha faoi conas do sheoladh r-phost a dheimhniú. Féach i d'fhillteán turscair mura bhfuair tú an r-phost seo.
+      send_paranoid_instructions: Más ann do do r-phost inár mbonneagar, gheobhaidh tú r-phost i gceann cúpla nóiméad faoi conas do sheoladh r-phost a dheimhniú. Féach i d'fhillteán turscair mura bhfuair tú an r-phost seo.
     failure:
+      already_authenticated: Tá tú sínithe isteach cheana.
+      inactive: Níl do chuntas gníomhachtaithe fós.
+      invalid: "%{authentication_keys} nó pasfhocal neamhbhailí."
+      last_attempt: Tá iarracht amháin eile agat sula gcuirtear do chuntas faoi ghlas.
       locked: Tá do chuntas faoi ghlas.
+      pending: Tá do chuntas fós faoi athbhreithniú.
+      unauthenticated: Ní mór duit lógáil isteach nó síniú suas roimh leanúint leat.
+      unconfirmed: Caithfidh tú do r-phost a dheimhniú roimh leanúint leat.
     mailer:
+      confirmation_instructions:
+        action: Deimhnigh seoladh r-phost
+        action_with_app: Deimhnigh agus fill ar %{app}
       email_changed:
         title: Seoladh ríomhphoist nua
       password_change:

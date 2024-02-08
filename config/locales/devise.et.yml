@@ -47,16 +47,19 @@ et:
         subject: 'Mastodon: salasõna lähtestamisjuhendid'
         title: Salasõna lähtestamine
       two_factor_disabled:
-        explanation: Kontol on kaheastmeline autentimine välja lülitatud. Sisenemine on võimalik ainult kasutades e-postiaadressi ja salasõna.
+        explanation: Sisselogimine on nüüd võimalik vaid e-postiaadressi ja salasõnaga.
         subject: 'Mastodon: Kaheastmeline autentimine välja lülitatud'
+        subtitle: Kaheastmeline autoriseerimine on sinu konto jaoks nüüd välja lülitatud.
         title: 2FA keelatud
       two_factor_enabled:
-        explanation: Kontol on sisse lülitatud kaheastmeline autentimine. Sisenemiseks on vajalik ühekordne aeguv võti TOTP-rakenduse poolt.
+        explanation: Sisenemiseks on vaja seotud kaheastmelise autoriseerimise äpi genereeritud võtit.
         subject: 'Mastodon: kaheastmeline autentimine sisse lülitatud'
+        subtitle: Sinu konto jaoks on kaheastmeline autoriseerimine sisse lülitatud.
         title: 2FA lubatud
       two_factor_recovery_codes_changed:
         explanation: Eelmised taastekoodid on nüüd kehtetud ning loodud uued.
         subject: 'Mastodon: Kaheastmelise autentimise taastuskoodid taasloodud'
+        subtitle: Eelmised taastekoodid on tühistatud ja uued genereeritud.
         title: 2FA taastekoodid muudetud
       unlock_instructions:
         subject: 'Mastodon: Lahti lukustamis juhendid'
@@ -70,11 +73,13 @@ et:
           subject: 'Mastodon: turvavõti kustutatud'
           title: Üks sinu turvavõtmetest on kustutatud
       webauthn_disabled:
-        explanation: Autentimine turvavõtmetega on kontol välja lülitatud. Sisse logimine on nüüd võimalik ainult kasutades seotud TOTP rakenduse poolt genereeritud võtit.
+        explanation: Turvavõtmega autoriseerimine on sinu konto jaoks välja lülitatud.
+        extra: Sisenemine on nüüd võimalik vaid seotud kaheastmelise autoriseerimise äpi genereeritud võtmega.
         subject: 'Mastodon: autentimine turvavõtmega on välja lülitatud'
         title: Turvavõtmed on välja lülitatud
       webauthn_enabled:
-        explanation: Turvavõtmega autentimine on nüüd kontol sisse lülitatud. Nüüd saab kasutada sisse logimiseks sinu turvavõtit.
+        explanation: Turvavõtmega autoriseerimine on sinu konto jaoks nüüd sisse lülitatud.
+        extra: Nüüd saab sisselogimiseks kasutada sinu turvavõtit.
         subject: 'Mastodon: turvavõtme autentimine sisse lülitatud'
         title: Turvavõtmed on sisse lülitatud
     omniauth_callbacks:

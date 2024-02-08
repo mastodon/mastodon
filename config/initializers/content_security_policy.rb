@@ -10,7 +10,7 @@ require_relative '../../app/lib/content_security_policy'
 
 policy = ContentSecurityPolicy.new
 assets_host = policy.assets_host
-media_host = policy.media_host
+media_hosts = policy.media_hosts
 
 def sso_host
   return unless ENV['ONE_CLICK_SSO_LOGIN'] == 'true'
@@ -35,9 +35,9 @@ Rails.application.config.content_security_policy do |p|
   p.default_src     :none
   p.frame_ancestors :none
   p.font_src        :self, assets_host
-  p.img_src         :self, :https, :data, :blob, assets_host
+  p.img_src         :self, :data, :blob, *media_hosts
   p.style_src       :self, assets_host
-  p.media_src       :self, :https, :data, assets_host
+  p.media_src       :self, :data, *media_hosts
   p.frame_src       :self, :https
   p.manifest_src    :self, assets_host
 
@@ -52,12 +52,12 @@ Rails.application.config.content_security_policy do |p|
 
   if Rails.env.development?
     webpacker_public_host = ENV.fetch('WEBPACKER_DEV_SERVER_PUBLIC', Webpacker.config.dev_server[:public])
-    webpacker_urls = %w(ws http).map { |protocol| "#{protocol}#{Webpacker.dev_server.https? ? 's' : ''}://#{webpacker_public_host}" }
+    front_end_build_urls = %w(ws http).map { |protocol| "#{protocol}#{Webpacker.dev_server.https? ? 's' : ''}://#{webpacker_public_host}" }
 
-    p.connect_src :self, :data, :blob, assets_host, media_host, Rails.configuration.x.streaming_api_base_url, *webpacker_urls
+    p.connect_src :self, :data, :blob, *media_hosts, Rails.configuration.x.streaming_api_base_url, *front_end_build_urls
     p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host
   else
-    p.connect_src :self, :data, :blob, assets_host, media_host, Rails.configuration.x.streaming_api_base_url
+    p.connect_src :self, :data, :blob, *media_hosts, Rails.configuration.x.streaming_api_base_url
     p.script_src  :self, assets_host, "'wasm-unsafe-eval'"
   end
 end
@@ -67,7 +67,7 @@ end
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only
 # Rails.application.config.content_security_policy_report_only = true
 
-Rails.application.config.content_security_policy_nonce_generator = ->request { SecureRandom.base64(16) }
+Rails.application.config.content_security_policy_nonce_generator = ->(_request) { SecureRandom.base64(16) }
 
 Rails.application.config.content_security_policy_nonce_directives = %w(style-src)
 
@@ -92,7 +92,7 @@ Rails.application.reloader.to_prepare do
       p.worker_src      :none
     end
 
-    LetterOpenerWeb::LettersController.after_action do |p|
+    LetterOpenerWeb::LettersController.after_action do
       request.content_security_policy_nonce_directives = %w(script-src)
     end
   end

@@ -12,6 +12,7 @@ jobs:
   build-image:
     uses: ./.github/workflows/build-container-image.yml
     with:
+      file_to_build: Dockerfile
       platforms: linux/amd64,linux/arm64
       use_native_arm64_builder: true
       push_to_images: |
@@ -23,6 +24,27 @@ jobs:
       # This needs to be updated after each minor version release
       flavor: |
         latest=${{ startsWith(github.ref, 'refs/tags/v4.2.') }}
+      tags: |
+        type=pep440,pattern={{raw}}
+        type=pep440,pattern=v{{major}}.{{minor}}
+    secrets: inherit
+
+  build-image-streaming:
+    if: startsWith(github.ref, 'refs/tags/v4.3.')
+    uses: ./.github/workflows/build-container-image.yml
+    with:
+      file_to_build: streaming/Dockerfile
+      platforms: linux/amd64,linux/arm64
+      use_native_arm64_builder: true
+      push_to_images: |
+        tootsuite/mastodon-streaming
+        ghcr.io/mastodon/mastodon-streaming
+      # Do not use cache when building releases, so apt update is always ran and the release always contain the latest packages
+      cache: false
+      # Only tag with latest when ran against the latest stable branch
+      # This needs to be updated after each minor version release
+      flavor: |
+        latest=${{ startsWith(github.ref, 'refs/tags/v4.3.') }}
       tags: |
         type=pep440,pattern={{raw}}
         type=pep440,pattern=v{{major}}.{{minor}}

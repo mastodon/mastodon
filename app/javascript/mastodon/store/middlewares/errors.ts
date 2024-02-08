@@ -1,20 +1,34 @@
-import type { AnyAction, Middleware } from 'redux';
+import { isAction } from '@reduxjs/toolkit';
+import type { Action, Middleware } from '@reduxjs/toolkit';
 
 import type { RootState } from '..';
 import { showAlertForError } from '../../actions/alerts';
 
 const defaultFailSuffix = 'FAIL';
+const isFailedAction = new RegExp(`${defaultFailSuffix}$`, 'g');
 
-export const errorsMiddleware: Middleware<unknown, RootState> =
+interface ActionWithMaybeAlertParams extends Action {
+  skipAlert?: boolean;
+  skipNotFound?: boolean;
+  error?: unknown;
+}
+
+function isActionWithmaybeAlertParams(
+  action: unknown,
+): action is ActionWithMaybeAlertParams {
+  return isAction(action);
+}
+
+export const errorsMiddleware: Middleware<Record<string, never>, RootState> =
   ({ dispatch }) =>
   (next) =>
-  (action: AnyAction & { skipAlert?: boolean; skipNotFound?: boolean }) => {
-    if (action.type && !action.skipAlert) {
-      const isFail = new RegExp(`${defaultFailSuffix}$`, 'g');
-
-      if (typeof action.type === 'string' && action.type.match(isFail)) {
-        dispatch(showAlertForError(action.error, action.skipNotFound));
-      }
+  (action) => {
+    if (
+      isActionWithmaybeAlertParams(action) &&
+      !action.skipAlert &&
+      action.type.match(isFailedAction)
+    ) {
+      dispatch(showAlertForError(action.error, action.skipNotFound));
     }
 
     return next(action);

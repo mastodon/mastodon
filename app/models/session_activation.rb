@@ -41,7 +41,7 @@ class SessionActivation < ApplicationRecord
 
   class << self
     def active?(id)
-      id && where(session_id: id).exists?
+      id && exists?(session_id: id)
     end
 
     def activate(**options)

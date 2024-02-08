@@ -12,6 +12,8 @@ RSpec.describe Admin::InstancesController do
   before do
     _account_less_popular = Fabricate(:account, domain: 'less.popular')
     _account_popular_other = Fabricate(:account, domain: 'popular')
+    Instance.refresh
+
     sign_in current_user, scope: :user
   end
 

@@ -16,7 +16,7 @@ module Paperclip
     private
 
     def cache_current_values
-      @original_filename = filename_from_content_disposition.presence || filename_from_path.presence || 'data'
+      @original_filename = truncated_filename
       @tempfile = copy_to_tempfile(@target)
       @content_type = ContentTypeDetector.new(@tempfile.path).detect
       @size = File.size(@tempfile)
@@ -41,6 +41,13 @@ module Paperclip
       raise
     ensure
       source.response.connection.close
+    end
+
+    def truncated_filename
+      filename = filename_from_content_disposition.presence || filename_from_path.presence || 'data'
+      extension = File.extname(filename)
+      basename = File.basename(filename, extension)
+      [basename[...20], extension[..4]].compact_blank.join
     end
 
     def filename_from_content_disposition

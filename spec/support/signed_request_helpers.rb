@@ -2,7 +2,7 @@
 
 module SignedRequestHelpers
   def get(path, headers: nil, sign_with: nil, **args)
-    return super path, headers: headers, **args if sign_with.nil?
+    return super(path, headers: headers, **args) if sign_with.nil?
 
     headers ||= {}
     headers['Date'] = Time.now.utc.httpdate
@@ -16,6 +16,6 @@ module SignedRequestHelpers
 
     headers['Signature'] = "keyId=\"#{key_id}\",algorithm=\"rsa-sha256\",headers=\"#{signed_headers.keys.join(' ').downcase}\",signature=\"#{signature}\""
 
-    super path, headers: headers, **args
+    super(path, headers: headers, **args)
   end
 end

@@ -427,7 +427,11 @@ namespace :mastodon do
             from: env['SMTP_FROM_ADDRESS'],
           }
 
-          mail = ActionMailer::Base.new.mail to: send_to, subject: 'Test', body: 'Mastodon SMTP configuration works!'
+          mail = ActionMailer::Base.new.mail(
+            to: send_to,
+            subject: 'Test', # rubocop:disable Rails/I18nLocaleTexts
+            body: 'Mastodon SMTP configuration works!'
+          )
           mail.deliver
           break
         rescue => e

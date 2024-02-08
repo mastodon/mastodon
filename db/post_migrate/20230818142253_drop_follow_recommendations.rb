@@ -6,7 +6,7 @@ class DropFollowRecommendations < ActiveRecord::Migration[7.0]
   end
 
   def down
-    create_view :follow_recommendations, version: 2, materialized: { no_data: true }
+    create_view :follow_recommendations, version: 2, materialized: true
     safety_assured { add_index :follow_recommendations, :account_id, unique: true }
   end
 end

@@ -10,7 +10,7 @@
 %hr.spacer/
 
 .fields-group
-  = f.input :filter_action, as: :radio_buttons, collection: %i(warn hide), include_blank: false, wrapper: :with_block_label, label_method: ->(action) { safe_join([t("simple_form.labels.filters.actions.#{action}"), content_tag(:span, t("simple_form.hints.filters.actions.#{action}"), class: 'hint')]) }, hint: t('simple_form.hints.filters.action'), required: true
+  = f.input :filter_action, as: :radio_buttons, collection: %i(warn hide), include_blank: false, wrapper: :with_block_label, label_method: ->(action) { filter_action_label(action) }, hint: t('simple_form.hints.filters.action'), required: true
 
 %hr.spacer/
 

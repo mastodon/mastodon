@@ -47,16 +47,19 @@ it:
         subject: 'Mastodon: Istruzioni di ripristino della password'
         title: Ripristino della password
       two_factor_disabled:
-        explanation: L'autenticazione a due fattori per il tuo profilo è stata disabilitata. L'accesso è ora possibile utilizzando solo l'indirizzo email e la password.
+        explanation: Il login è ora possibile utilizzando solo un indirizzo e-mail e una password.
         subject: 'Mastodon: Autenticazione a due fattori disabilitata'
+        subtitle: L'autenticazione a due fattori per il tuo account è stata disabilitata.
         title: A2F disabilitata
       two_factor_enabled:
-        explanation: L'autenticazione a due fattori è stata abilitata per il tuo profilo. Un token, generato dall'app TOTP collegata, sarà richiesto per l'accesso.
+        explanation: Un token generato dall'app TOTP accoppiata sarà richiesto per il login.
         subject: 'Mastodon: Autenticazione a due fattori abilitata'
+        subtitle: L'autenticazione a due fattori è stata abilitata per il tuo account.
         title: A2F abilitata
       two_factor_recovery_codes_changed:
         explanation: I precedenti codici di recupero sono stati annullati e dei nuovi sono stati generati.
         subject: 'Mastodon: Codici di recupero a due fattori rigenerati'
+        subtitle: I precedenti codici di recupero sono stati annullati e dei nuovi sono stati generati.
         title: Codici di recupero A2F cambiati
       unlock_instructions:
         subject: 'Mastodon: Istruzioni di sblocco'
@@ -70,11 +73,13 @@ it:
           subject: 'Mastodon: Chiave di sicurezza eliminata'
           title: Una delle tue chiavi di sicurezza è stata eliminata
       webauthn_disabled:
-        explanation: L'autenticazione con le chiavi di sicurezza è stata disabilitata per il tuo profilo. L'accesso è ora possibile utilizzando solo il token, generato dall'app TOTP associata.
+        explanation: L'autenticazione con le chiavi di sicurezza è stata disabilitata per il tuo account.
+        extra: Il login è ora possibile utilizzando solo il token generato dall'app TOTP accoppiata.
         subject: 'Mastodon: Autenticazione con chiavi di sicurezza disabilitata'
         title: Chiavi di sicurezza disabilitate
       webauthn_enabled:
-        explanation: L'autenticazione con chiavi di sicurezza è stata abilitata per il tuo profilo. La tua chiave di sicurezza è ora utilizzabile per l'accesso.
+        explanation: L'autenticazione della chiave di sicurezza è stata abilitata per il tuo account.
+        extra: La tua chiave di sicurezza può ora essere utilizzata per il login.
         subject: 'Mastodon: Autenticazione con chiavi di sicurezza abilitata'
         title: Chiavi di sicurezza abilitate
     omniauth_callbacks:

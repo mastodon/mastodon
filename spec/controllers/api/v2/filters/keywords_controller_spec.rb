@@ -22,6 +22,10 @@ RSpec.describe Api::V2::Filters::KeywordsController do
     it 'returns http success' do
       get :index, params: { filter_id: filter.id }
       expect(response).to have_http_status(200)
+      expect(body_as_json)
+        .to contain_exactly(
+          include(id: keyword.id.to_s)
+        )
     end
 
     context "when trying to access another's user filters" do

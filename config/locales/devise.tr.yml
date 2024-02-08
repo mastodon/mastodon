@@ -47,16 +47,19 @@ tr:
         subject: 'Mastodon: Parola sıfırlama talimatları'
         title: Parola sıfırlama
       two_factor_disabled:
-        explanation: Hesabınız için iki-adımlı kimlik doğrulama devre dışı bırakıldı. Şimdi sadece e-posta adresi ve parola kullanarak giriş yapabilirsiniz.
+        explanation: Oturum açma şimdi sadece e-posta adresi ve parola ile mümkün.
         subject: 'Mastodon: İki-adımlı kimlik doğrulama devre dışı bırakıldı'
+        subtitle: Hesabınız için iki aşamalı kimlik doğrulama devre dışı bırakılmıştır.
         title: 2FA devre dışı bırakıldı
       two_factor_enabled:
-        explanation: Hesabınız için iki-adımlı kimlik doğrulama etkinleştirildi. Giriş yapmak için eşleştirilmiş TOTP uygulaması tarafından oluşturulan bir belirteç gereklidir.
+        explanation: Oturum açmanız için eşlenmiş TOTP uygulaması tarafından oluşturulmuş bir tokene ihtiyaç var.
         subject: 'Mastodon: İki adımlı kimlik doğrulama etkinleştirildi'
+        subtitle: Hesabınız için iki aşamalı kimlik doğrulama etkinleştirilmiştir.
         title: 2FA etkinleştirildi
       two_factor_recovery_codes_changed:
         explanation: Önceki kurtarma kodları geçersiz kılındı ve yenileri oluşturuldu.
         subject: 'Mastodon: İki adımlı kurtarma kodları yeniden oluşturuldu'
+        subtitle: Önceki kurtarma kodları geçersiz kılındı ve yenileri oluşturuldu.
         title: 2FA kurtarma kodları değiştirildi
       unlock_instructions:
         subject: 'Mastodon: Kilit açma talimatları'
@@ -70,11 +73,13 @@ tr:
           subject: 'Mastodon: Güvenlik anahtarı silindi'
           title: Güvenlik anahtarlarınızdan biri silindi
       webauthn_disabled:
-        explanation: Hesabınız için güvenlik anahtarlarıyla kimlik doğrulama devre dışı bırakıldı. Artık yalnızca eşleştirilmiş TOTP uygulaması tarafından oluşturulan kodu kullanarak giriş yapmak mümkündür.
+        explanation: Hesabınız için güvenlik anahtarıyla kimlik doğrulama devre dışı bırakılmıştır.
+        extra: Oturum açma şimdi sadece eşlenmiş TOTP uygulaması tarafından oluşturulmuş token ile mümkündür.
         subject: 'Mastodon: Güvenlik anahtarlarıyla kimlik doğrulama devre dışı'
         title: Güvenlik anahtarları devre dışı
       webauthn_enabled:
-        explanation: Hesabınız için güvenlik anahtarı doğrulaması etkinleştirildi. Güvenlik anahtarınız artık giriş yapmak için kullanılabilir.
+        explanation: Hesabınız için güvenlik anahtarıyla kimlik doğrulama etkinleştirilmiştir.
+        extra: Güvenlik anahtarınız şimdi oturum açma için kullanılabilir.
         subject: 'Mastodon: Güvenlik anahtarı doğrulaması etkinleştirildi'
         title: Güvenlik anahtarları etkin
     omniauth_callbacks:

@@ -120,7 +120,7 @@ RSpec.describe FetchLinkCardService, type: :service do
       let(:status) { Fabricate(:status, text: 'Check out http://example.com/sjis') }
 
       it 'decodes the HTML' do
-        expect(status.preview_cards.first.title).to eq('SJISのページ')
+        expect(status.preview_card.title).to eq('SJISのページ')
       end
     end
 
@@ -128,7 +128,7 @@ RSpec.describe FetchLinkCardService, type: :service do
       let(:status) { Fabricate(:status, text: 'Check out http://example.com/sjis_with_wrong_charset') }
 
       it 'decodes the HTML despite the wrong charset header' do
-        expect(status.preview_cards.first.title).to eq('SJISのページ')
+        expect(status.preview_card.title).to eq('SJISのページ')
       end
     end
 
@@ -136,7 +136,7 @@ RSpec.describe FetchLinkCardService, type: :service do
       let(:status) { Fabricate(:status, text: 'Check out http://example.com/koi8-r') }
 
       it 'decodes the HTML' do
-        expect(status.preview_cards.first.title).to eq('Московя начинаетъ только въ XVI ст. привлекать внимане иностранцевъ.')
+        expect(status.preview_card.title).to eq('Московя начинаетъ только въ XVI ст. привлекать внимане иностранцевъ.')
       end
     end
 
@@ -144,7 +144,7 @@ RSpec.describe FetchLinkCardService, type: :service do
       let(:status) { Fabricate(:status, text: 'Check out http://example.com/windows-1251') }
 
       it 'decodes the HTML' do
-        expect(status.preview_cards.first.title).to eq('сэмпл текст')
+        expect(status.preview_card.title).to eq('сэмпл текст')
       end
     end
 

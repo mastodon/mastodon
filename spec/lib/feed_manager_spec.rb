@@ -10,7 +10,7 @@ RSpec.describe FeedManager do
     end
   end
 
-  it 'tracks at least as many statuses as reblogs', skip_stub: true do
+  it 'tracks at least as many statuses as reblogs', :skip_stub do
     expect(FeedManager::REBLOG_FALLOFF).to be <= FeedManager::MAX_ITEMS
   end
 

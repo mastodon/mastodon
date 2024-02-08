@@ -85,7 +85,7 @@ RSpec.describe ChallengableConcern do
       before { get :foo }
 
       it 'renders challenge' do
-        expect(response).to render_template('auth/challenges/new')
+        expect(response).to render_template('auth/challenges/new', layout: :auth)
       end
 
       # See Auth::ChallengesControllerSpec
@@ -95,7 +95,7 @@ RSpec.describe ChallengableConcern do
       before { post :bar }
 
       it 'renders challenge' do
-        expect(response).to render_template('auth/challenges/new')
+        expect(response).to render_template('auth/challenges/new', layout: :auth)
       end
 
       it 'accepts correct password' do
@@ -106,7 +106,7 @@ RSpec.describe ChallengableConcern do
 
       it 'rejects wrong password' do
         post :bar, params: { form_challenge: { current_password: 'dddfff888123' } }
-        expect(response.body).to render_template('auth/challenges/new')
+        expect(response.body).to render_template('auth/challenges/new', layout: :auth)
         expect(session[:challenge_passed_at]).to be_nil
       end
     end

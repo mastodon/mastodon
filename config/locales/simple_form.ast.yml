@@ -2,6 +2,9 @@
 ast:
   simple_form:
     hints:
+      account:
+        note: 'Pues @mentar a otros perfiles o poner #etiquetes.'
+        unlocked: Los perfiles van ser a siguite ensin solicitar la to aprobación. Desmarca esta opción si quies revisar les solicitúes de siguimientu y escoyer si aceptales o refugales.
       admin_account_action:
         text_html: Opcional. Pues usar la sintaxis de los artículos ya amestar <a href="%{path}">alvertencies preconfiguraes</a> p'aforrar tiempu
         type_html: Escueyi qué facer con <strong>%{acct}</strong>
@@ -59,9 +62,11 @@ ast:
         chosen_languages: Namás los artículos de les llingües que marques son los que van apaecer nes llinies de tiempu públiques
     labels:
       account:
+        discoverable: Destacar el perfil ya los artículos nos algoritmos de descubrimientu
         fields:
           name: Etiqueta
           value: Conteníu
+        indexable: Incluyir los artículos públicos nos resultaos de busca
       account_warning_preset:
         title: Títulu
       admin_account_action:
@@ -166,9 +171,13 @@ ast:
         pending_account: Una cuenta nueva precisa una revisión
         reblog: Daquién compartió'l to artículu
         report: Unvióse un informe nuevu
+        software_updates:
+          label: Hai disponible un anovamientu de Mastodon
         trending_tag: Una tendencia rique una revisión
       rule:
         text: Norma
+      settings:
+        indexable: Incluyir la páxina del perfil nos motores de busca
       tag:
         listable: Permitir qu'esta etiqueta apaeza nes busques ya nes suxerencies
         name: Etiqueta
@@ -176,6 +185,7 @@ ast:
         usable: Permitir que los artículos usen esta etiqueta
       user:
         role: Rol
+        time_zone: Fusu horariu
       user_role:
         name: Nome
         permissions_as_keys: Permisos

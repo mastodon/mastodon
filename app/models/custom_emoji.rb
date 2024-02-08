@@ -37,11 +37,11 @@ class CustomEmoji < ApplicationRecord
 
   belongs_to :category, class_name: 'CustomEmojiCategory', optional: true
 
-  has_one :local_counterpart, -> { where(domain: nil) }, class_name: 'CustomEmoji', primary_key: :shortcode, foreign_key: :shortcode, inverse_of: false
+  has_one :local_counterpart, -> { where(domain: nil) }, class_name: 'CustomEmoji', primary_key: :shortcode, foreign_key: :shortcode, inverse_of: false, dependent: nil
 
   has_attached_file :image, styles: { static: { format: 'png', convert_options: '-coalesce +profile "!icc,*" +set date:modify +set date:create +set date:timestamp' } }, validate_media_type: false
 
-  before_validation :downcase_domain
+  normalizes :domain, with: ->(domain) { domain.downcase }
 
   validates_attachment :image, content_type: { content_type: IMAGE_MIME_TYPES }, presence: true, size: { less_than: LIMIT }
   validates :shortcode, uniqueness: { scope: :domain }, format: { with: SHORTCODE_ONLY_RE }, length: { minimum: 2 }
@@ -86,7 +86,7 @@ class CustomEmoji < ApplicationRecord
     end
 
     def search(shortcode)
-      where('"custom_emojis"."shortcode" ILIKE ?', "%#{shortcode}%")
+      where(arel_table[:shortcode].matches("%#{sanitize_sql_like(shortcode)}%"))
     end
   end
 
@@ -94,9 +94,5 @@ class CustomEmoji < ApplicationRecord
 
   def remove_entity_cache
     Rails.cache.delete(EntityCache.instance.to_key(:emoji, shortcode, domain))
-  end
-
-  def downcase_domain
-    self.domain = domain.downcase unless domain.nil?
   end
 end

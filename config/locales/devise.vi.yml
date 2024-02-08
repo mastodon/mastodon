@@ -47,16 +47,19 @@ vi:
         subject: 'Mastodon: Hướng dẫn đổi lại mật khẩu'
         title: Đổi lại mật khẩu
       two_factor_disabled:
-        explanation: Đã vô hiệu hóa xác minh 2 bước cho tài khoản của bạn. Bây giờ chỉ có thể đăng nhập bằng địa chỉ email và mật khẩu.
+        explanation: Đăng nhập bây giờ chỉ có thể sử dụng địa chỉ email và mật khẩu.
         subject: 'Mastodon: Xác minh 2 bước đã bị vô hiệu hóa'
+        subtitle: Xác minh hai bước cho tài khoản của bạn đã bị vô hiệu hóa.
         title: Vô hiệu hóa xác minh 2 bước
       two_factor_enabled:
-        explanation: Tài khoản của bạn đã kích hoạt xác minh 2 bước. Lần đăng nhập tới sẽ cần thêm mã đăng nhập được tạo bởi ứng dụng TOTP.
+        explanation: Cần có mã token được tạo bởi ứng dụng TOTP được ghép nối để đăng nhập.
         subject: 'Mastodon: Kích hoạt xác minh 2 bước'
+        subtitle: Xác minh hai bước đã được bật cho tài khoản của bạn.
         title: Kích hoạt xác minh 2 bước
       two_factor_recovery_codes_changed:
         explanation: Các mã khôi phục trước đó đã bị vô hiệu hóa và thay bằng mã mới.
         subject: 'Mastodon: Mã khôi phục xác thực hai yếu tố đã được tạo lại'
+        subtitle: Các mã khôi phục trước đó đã bị vô hiệu hóa và thay bằng mã mới.
         title: Mã khôi phục xác thực hai yếu tố đã thay đổi
       unlock_instructions:
         subject: 'Mastodon: Hướng dẫn mở khóa'
@@ -70,11 +73,13 @@ vi:
           subject: 'Mastodon: Xóa khóa bảo mật'
           title: Một trong những khóa bảo mật của bạn vừa bị xóa
       webauthn_disabled:
-        explanation: Bạn vừa vô hiệu hóa xác thực tài khoản bằng khóa bảo mật. Từ bây giờ, bạn sẽ dùng ứng dụng TOTP để tạo token đăng nhập.
+        explanation: Xác minh bằng khóa bảo mật đã bị vô hiệu hóa đối với tài khoản của bạn.
+        extra: Hiện tại, bạn chỉ có thể đăng nhập bằng cách sử dụng mã token được tạo bởi ứng dụng TOTP được ghép nối.
         subject: 'Mastodon: Vô hiệu hóa xác thực bằng khóa bảo mật'
         title: Đã vô hiệu hóa khóa bảo mật
       webauthn_enabled:
-        explanation: Bạn vừa kích hoạt xác thực tài khoản bằng khóa bảo mật. Từ bây giờ, khóa bảo mật của bạn sẽ được dùng để đăng nhập.
+        explanation: Khóa bảo mật đã được bật cho tài khoản của bạn.
+        extra: Hiện bạn đã có thể dùng khóa bảo mật để đăng nhập.
         subject: 'Mastodon: Kích hoạt xác minh bằng khóa bảo mật'
         title: Đã kích hoạt khóa bảo mật
     omniauth_callbacks:

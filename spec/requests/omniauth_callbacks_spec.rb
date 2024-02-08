@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe 'OmniAuth callbacks' do
   shared_examples 'omniauth provider callbacks' do |provider|
-    subject { post send "user_#{provider}_omniauth_callback_path" }
+    subject { post send :"user_#{provider}_omniauth_callback_path" }
 
     context 'with full information in response' do
       before do

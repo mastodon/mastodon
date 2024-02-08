@@ -1,7 +1,6 @@
-import { Map as ImmutableMap } from 'immutable';
-
 import { isFulfilled } from '@reduxjs/toolkit';
-import type { Reducer } from 'redux';
+import type { Reducer } from '@reduxjs/toolkit';
+import { Map as ImmutableMap } from 'immutable';
 
 import type { ApiRelationshipJSON } from 'mastodon/api_types/relationships';
 import type { Account } from 'mastodon/models/account';

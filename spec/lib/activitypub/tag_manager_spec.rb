@@ -112,6 +112,14 @@ RSpec.describe ActivityPub::TagManager do
       expect(subject.cc(status)).to include(subject.uri_for(foo))
       expect(subject.cc(status)).to_not include(subject.uri_for(alice))
     end
+
+    it 'returns poster of reblogged post, if reblog' do
+      bob    = Fabricate(:account, username: 'bob', domain: 'example.com', inbox_url: 'http://example.com/bob')
+      alice  = Fabricate(:account, username: 'alice')
+      status = Fabricate(:status, visibility: :public, account: bob)
+      reblog = Fabricate(:status, visibility: :public, account: alice, reblog: status)
+      expect(subject.cc(reblog)).to include(subject.uri_for(bob))
+    end
   end
 
   describe '#local_uri?' do

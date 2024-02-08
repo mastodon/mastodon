@@ -13,22 +13,22 @@
 # end
 
 ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.acronym 'StatsD'
-  inflect.acronym 'OEmbed'
-  inflect.acronym 'OStatus'
   inflect.acronym 'ActivityPub'
-  inflect.acronym 'PubSubHubbub'
   inflect.acronym 'ActivityStreams'
-  inflect.acronym 'JsonLd'
-  inflect.acronym 'NodeInfo'
-  inflect.acronym 'Ed25519'
-  inflect.acronym 'TOC'
-  inflect.acronym 'RSS'
-  inflect.acronym 'REST'
-  inflect.acronym 'URL'
   inflect.acronym 'ASCII'
+  inflect.acronym 'CLI'
   inflect.acronym 'DeepL'
   inflect.acronym 'DSL'
+  inflect.acronym 'Ed25519'
+  inflect.acronym 'JsonLd'
+  inflect.acronym 'OEmbed'
+  inflect.acronym 'OStatus'
+  inflect.acronym 'PubSubHubbub'
+  inflect.acronym 'REST'
+  inflect.acronym 'RSS'
+  inflect.acronym 'StatsD'
+  inflect.acronym 'TOC'
+  inflect.acronym 'URL'
 
   inflect.singular 'data', 'data'
 end

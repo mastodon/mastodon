@@ -48,7 +48,15 @@ class FetchResourceService < BaseService
       body = response.body_with_limit
       json = body_to_json(body)
 
-      [json['id'], { prefetched_body: body, id: true }] if supported_context?(json) && (equals_or_includes_any?(json['type'], ActivityPub::FetchRemoteActorService::SUPPORTED_TYPES) || expected_type?(json))
+      return unless supported_context?(json) && (equals_or_includes_any?(json['type'], ActivityPub::FetchRemoteActorService::SUPPORTED_TYPES) || expected_type?(json))
+
+      if json['id'] != @url
+        return if terminal
+
+        return process(json['id'], terminal: true)
+      end
+
+      [@url, { prefetched_body: body }]
     elsif !terminal
       link_header = response['Link'] && parse_link_header(response)
 

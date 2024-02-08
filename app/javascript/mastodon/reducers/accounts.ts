@@ -1,6 +1,5 @@
+import type { Reducer } from '@reduxjs/toolkit';
 import { Map as ImmutableMap } from 'immutable';
-
-import type { Reducer } from 'redux';
 
 import {
   followAccountSuccess,
@@ -41,42 +40,38 @@ const normalizeAccounts = (
   return state;
 };
 
-export const accountsReducer: Reducer<typeof initialState> = (
-  state = initialState,
-  action,
-) => {
-  const currentUserId = me;
-
-  if (!currentUserId)
+function getCurrentUser() {
+  if (!me)
     throw new Error(
       'No current user (me) defined when calling `accountsReducer`',
     );
 
+  return me;
+}
+
+export const accountsReducer: Reducer<typeof initialState> = (
+  state = initialState,
+  action,
+) => {
   if (revealAccount.match(action))
     return state.setIn([action.payload.id, 'hidden'], false);
   else if (importAccounts.match(action))
     return normalizeAccounts(state, action.payload.accounts);
-  else if (followAccountSuccess.match(action))
+  else if (followAccountSuccess.match(action)) {
     return state
-      .update(
-        action.payload.relationship.id,
-        (account) => account?.update('followers_count', (n) => n + 1),
+      .update(action.payload.relationship.id, (account) =>
+        account?.update('followers_count', (n) => n + 1),
       )
-      .update(
-        currentUserId,
-        (account) => account?.update('following_count', (n) => n + 1),
+      .update(getCurrentUser(), (account) =>
+        account?.update('following_count', (n) => n + 1),
       );
-  else if (unfollowAccountSuccess.match(action))
+  } else if (unfollowAccountSuccess.match(action))
     return state
-      .update(
-        action.payload.relationship.id,
-        (account) =>
-          account?.update('followers_count', (n) => Math.max(0, n - 1)),
+      .update(action.payload.relationship.id, (account) =>
+        account?.update('followers_count', (n) => Math.max(0, n - 1)),
       )
-      .update(
-        currentUserId,
-        (account) =>
-          account?.update('following_count', (n) => Math.max(0, n - 1)),
+      .update(getCurrentUser(), (account) =>
+        account?.update('following_count', (n) => Math.max(0, n - 1)),
       );
   else return state;
 };

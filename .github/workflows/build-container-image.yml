@@ -21,6 +21,8 @@ on:
         type: string
       labels:
         type: string
+      file_to_build:
+        type: string
 
 jobs:
   build-image:
@@ -86,6 +88,7 @@ jobs:
       - uses: docker/build-push-action@v5
         with:
           context: .
+          file: ${{ inputs.file_to_build }}
           build-args: |
             MASTODON_VERSION_PRERELEASE=${{ inputs.version_prerelease }}
             MASTODON_VERSION_METADATA=${{ inputs.version_metadata }}

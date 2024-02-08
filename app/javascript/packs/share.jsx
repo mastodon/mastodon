@@ -13,10 +13,12 @@ function loaded() {
 
   if (mountNode) {
     const attr = mountNode.getAttribute('data-props');
-    if(!attr) return;
+
+    if (!attr) return;
 
     const props = JSON.parse(attr);
     const root = createRoot(mountNode);
+
     root.render(<ComposeContainer {...props} />);
   }
 }

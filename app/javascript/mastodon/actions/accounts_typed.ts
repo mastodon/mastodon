@@ -21,7 +21,7 @@ function actionWithSkipLoadingTrue<Args extends object>(args: Args) {
 }
 
 export const followAccountSuccess = createAction(
-  'accounts/followAccountSuccess',
+  'accounts/followAccount/SUCCESS',
   actionWithSkipLoadingTrue<{
     relationship: ApiRelationshipJSON;
     alreadyFollowing: boolean;
@@ -29,7 +29,7 @@ export const followAccountSuccess = createAction(
 );
 
 export const unfollowAccountSuccess = createAction(
-  'accounts/unfollowAccountSuccess',
+  'accounts/unfollowAccount/SUCCESS',
   actionWithSkipLoadingTrue<{
     relationship: ApiRelationshipJSON;
     statuses: unknown;
@@ -38,60 +38,60 @@ export const unfollowAccountSuccess = createAction(
 );
 
 export const authorizeFollowRequestSuccess = createAction<{ id: string }>(
-  'accounts/followRequestAuthorizeSuccess',
+  'accounts/followRequestAuthorize/SUCCESS',
 );
 
 export const rejectFollowRequestSuccess = createAction<{ id: string }>(
-  'accounts/followRequestRejectSuccess',
+  'accounts/followRequestReject/SUCCESS',
 );
 
 export const followAccountRequest = createAction(
-  'accounts/followRequest',
+  'accounts/follow/REQUEST',
   actionWithSkipLoadingTrue<{ id: string; locked: boolean }>,
 );
 
 export const followAccountFail = createAction(
-  'accounts/followFail',
+  'accounts/follow/FAIL',
   actionWithSkipLoadingTrue<{ id: string; error: string; locked: boolean }>,
 );
 
 export const unfollowAccountRequest = createAction(
-  'accounts/unfollowRequest',
+  'accounts/unfollow/REQUEST',
   actionWithSkipLoadingTrue<{ id: string }>,
 );
 
 export const unfollowAccountFail = createAction(
-  'accounts/unfollowFail',
+  'accounts/unfollow/FAIL',
   actionWithSkipLoadingTrue<{ id: string; error: string }>,
 );
 
 export const blockAccountSuccess = createAction<{
   relationship: ApiRelationshipJSON;
   statuses: unknown;
-}>('accounts/blockSuccess');
+}>('accounts/block/SUCCESS');
 
 export const unblockAccountSuccess = createAction<{
   relationship: ApiRelationshipJSON;
-}>('accounts/unblockSuccess');
+}>('accounts/unblock/SUCCESS');
 
 export const muteAccountSuccess = createAction<{
   relationship: ApiRelationshipJSON;
   statuses: unknown;
-}>('accounts/muteSuccess');
+}>('accounts/mute/SUCCESS');
 
 export const unmuteAccountSuccess = createAction<{
   relationship: ApiRelationshipJSON;
-}>('accounts/unmuteSuccess');
+}>('accounts/unmute/SUCCESS');
 
 export const pinAccountSuccess = createAction<{
   relationship: ApiRelationshipJSON;
-}>('accounts/pinSuccess');
+}>('accounts/pin/SUCCESS');
 
 export const unpinAccountSuccess = createAction<{
   relationship: ApiRelationshipJSON;
-}>('accounts/unpinSuccess');
+}>('accounts/unpin/SUCCESS');
 
 export const fetchRelationshipsSuccess = createAction(
-  'relationships/fetchSuccess',
+  'relationships/fetch/SUCCESS',
   actionWithSkipLoadingTrue<{ relationships: ApiRelationshipJSON[] }>,
 );

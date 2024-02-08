@@ -10,15 +10,15 @@ class ActivityPub::FetchRemoteActorService < BaseService
   SUPPORTED_TYPES = %w(Application Group Organization Person Service).freeze
 
   # Does a WebFinger roundtrip on each call, unless `only_key` is true
-  def call(uri, id: true, prefetched_body: nil, break_on_redirect: false, only_key: false, suppress_errors: true, request_id: nil)
+  def call(uri, prefetched_body: nil, break_on_redirect: false, only_key: false, suppress_errors: true, request_id: nil)
     return if domain_not_allowed?(uri)
     return ActivityPub::TagManager.instance.uri_to_actor(uri) if ActivityPub::TagManager.instance.local_uri?(uri)
 
     @json = begin
       if prefetched_body.nil?
-        fetch_resource(uri, id)
+        fetch_resource(uri, true)
       else
-        body_to_json(prefetched_body, compare_id: id ? uri : nil)
+        body_to_json(prefetched_body, compare_id: uri)
       end
     rescue Oj::ParseError
       raise Error, "Error parsing JSON-LD document #{uri}"

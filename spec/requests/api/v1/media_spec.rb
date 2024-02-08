@@ -76,20 +76,14 @@ RSpec.describe 'Media' do
     let(:params) { {} }
 
     shared_examples 'a successful media upload' do |media_type|
-      it 'uploads the file successfully', :aggregate_failures do
+      it 'uploads the file successfully and returns correct media content', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
         expect(MediaAttachment.first).to be_present
         expect(MediaAttachment.first).to have_attached_file(:file)
-      end
 
-      it 'returns the correct media content' do
-        subject
-
-        body = body_as_json
-
-        expect(body).to match(
+        expect(body_as_json).to match(
           a_hash_including(id: MediaAttachment.first.id.to_s, description: params[:description], type: media_type)
         )
       end
@@ -127,19 +121,19 @@ RSpec.describe 'Media' do
       end
     end
 
-    context 'with image/jpeg', paperclip_processing: true do
+    context 'with image/jpeg', :paperclip_processing do
       let(:params) { { file: fixture_file_upload('attachment.jpg', 'image/jpeg'), description: 'jpeg image' } }
 
       it_behaves_like 'a successful media upload', 'image'
     end
 
-    context 'with image/gif', paperclip_processing: true do
+    context 'with image/gif', :paperclip_processing do
       let(:params) { { file: fixture_file_upload('attachment.gif', 'image/gif') } }
 
       it_behaves_like 'a successful media upload', 'image'
     end
 
-    context 'with video/webm', paperclip_processing: true do
+    context 'with video/webm', :paperclip_processing do
       let(:params) { { file: fixture_file_upload('attachment.webm', 'video/webm') } }
 
       it_behaves_like 'a successful media upload', 'gifv'

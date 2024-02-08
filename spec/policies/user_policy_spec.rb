@@ -64,7 +64,7 @@ RSpec.describe UserPolicy do
 
       context 'when record.confirmed?' do
         it 'denies' do
-          john.user.confirm!
+          john.user.mark_email_as_confirmed!
           expect(subject).to_not permit(admin, john.user)
         end
       end

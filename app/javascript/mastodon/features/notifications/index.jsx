@@ -5,15 +5,15 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
+import { createSelector } from '@reduxjs/toolkit';
 import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
-import { ReactComponent as DoneAllIcon } from '@material-symbols/svg-600/outlined/done_all.svg';
-import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-600/outlined/notifications-fill.svg';
 import { debounce } from 'lodash';
 
+import DoneAllIcon from '@/material-icons/400-24px/done_all.svg?react';
+import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import { compareId } from 'mastodon/compare_id';
 import { Icon }  from 'mastodon/components/icon';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';

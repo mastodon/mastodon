@@ -47,8 +47,8 @@
     - else
       = t 'admin.accounts.security_measures.only_password'
   %td
-    - if account.user&.two_factor_enabled?
-      = table_link_to 'unlock', t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(account.user.id), method: :delete if can?(:disable_2fa, account.user)
+    - if account.user&.two_factor_enabled? && can?(:disable_2fa, account.user)
+      = table_link_to 'unlock', t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(account.user.id), method: :delete
 - if can?(:reset_password, account.user)
   %tr
     %td

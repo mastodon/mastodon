@@ -150,7 +150,7 @@ RSpec.describe FollowService, type: :service do
       expect(FollowRequest.find_by(account: sender, target_account: bob)).to_not be_nil
     end
 
-    it 'sends a follow activity to the inbox' do
+    it 'sends a follow activity to the inbox', :sidekiq_inline do
       expect(a_request(:post, 'http://example.com/inbox')).to have_been_made.once
     end
   end

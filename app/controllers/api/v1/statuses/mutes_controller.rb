@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
-class Api::V1::Statuses::MutesController < Api::BaseController
-  include Authorization
-
+class Api::V1::Statuses::MutesController < Api::V1::Statuses::BaseController
   before_action -> { doorkeeper_authorize! :write, :'write:mutes' }
   before_action :require_user!
-  before_action :set_status
   before_action :set_conversation
 
   def create
@@ -23,13 +20,6 @@ class Api::V1::Statuses::MutesController < Api::BaseController
   end
 
   private
-
-  def set_status
-    @status = Status.find(params[:status_id])
-    authorize @status, :show?
-  rescue Mastodon::NotPermittedError
-    not_found
-  end
 
   def set_conversation
     @conversation = @status.conversation

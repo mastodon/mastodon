@@ -2,15 +2,6 @@
 
 require 'devise/strategies/authenticatable'
 
-# TODO: Remove this patch when this PR or similar is merged into Devise:
-# https://github.com/heartcombo/devise/pull/5645
-# We rely on ENV vars and not secrets/credentials, so the deprecation is just noise.
-class Devise::SecretKeyFinder
-  def find
-    @application.secret_key_base
-  end
-end
-
 Warden::Manager.after_set_user except: :fetch do |user, warden|
   session_id = warden.cookies.signed['_session_id'] || warden.raw_session['auth_id']
   session_id = user.activate_session(warden.request) unless user.session_activations.active?(session_id)
@@ -133,9 +124,11 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
-  # by default. You can change it below and use your own secret key.
-  # config.secret_key = '2f86974c4dd7735170fd70fbf399f7a477ffd635ef240d07a22cf4bd7cd13dbae17c4383a2996d0c1e79a991ec18a91a17424c53e4771adb75a8b21904bd1403'
+  #
+  # Set explicitly to Rails default to avoid deprecation warnings.
+  # https://github.com/heartcombo/devise/pull/5645#issuecomment-1871849856
+  # Remove when Devise changes `SecretKeyFinder` to not emit deprecations.
+  config.secret_key = Rails.application.secret_key_base
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,

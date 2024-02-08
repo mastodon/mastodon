@@ -191,6 +191,18 @@ class UserMailer < Devise::Mailer
     end
   end
 
+  def failed_2fa(user, remote_ip, user_agent, timestamp)
+    @resource   = user
+    @remote_ip  = remote_ip
+    @user_agent = user_agent
+    @detection  = Browser.new(user_agent)
+    @timestamp  = timestamp.to_time.utc
+
+    I18n.with_locale(locale) do
+      mail subject: default_i18n_subject
+    end
+  end
+
   private
 
   def default_devise_subject
@@ -202,6 +214,6 @@ class UserMailer < Devise::Mailer
   end
 
   def locale
-    @resource.locale.presence || I18n.default_locale
+    @resource.locale.presence || I18n.locale || I18n.default_locale
   end
 end

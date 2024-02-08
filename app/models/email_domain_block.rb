@@ -4,11 +4,12 @@
 #
 # Table name: email_domain_blocks
 #
-#  id         :bigint(8)        not null, primary key
-#  domain     :string           default(""), not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  parent_id  :bigint(8)
+#  id                  :bigint(8)        not null, primary key
+#  domain              :string           default(""), not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  parent_id           :bigint(8)
+#  allow_with_approval :boolean          default(FALSE), not null
 #
 
 class EmailDomainBlock < ApplicationRecord
@@ -20,8 +21,10 @@ class EmailDomainBlock < ApplicationRecord
   include DomainNormalizable
   include Paginable
 
-  belongs_to :parent, class_name: 'EmailDomainBlock', optional: true
-  has_many :children, class_name: 'EmailDomainBlock', foreign_key: :parent_id, inverse_of: :parent, dependent: :destroy
+  with_options class_name: 'EmailDomainBlock' do
+    belongs_to :parent, optional: true
+    has_many :children, foreign_key: :parent_id, inverse_of: :parent, dependent: :destroy
+  end
 
   validates :domain, presence: true, uniqueness: true, domain: true
 
@@ -42,8 +45,8 @@ class EmailDomainBlock < ApplicationRecord
       @attempt_ip = attempt_ip
     end
 
-    def match?
-      blocking? || invalid_uri?
+    def match?(...)
+      blocking?(...) || invalid_uri?
     end
 
     private
@@ -52,8 +55,8 @@ class EmailDomainBlock < ApplicationRecord
       @uris.any?(&:nil?)
     end
 
-    def blocking?
-      blocks = EmailDomainBlock.where(domain: domains_with_variants).order(Arel.sql('char_length(domain) desc'))
+    def blocking?(allow_with_approval: false)
+      blocks = EmailDomainBlock.where(domain: domains_with_variants, allow_with_approval: allow_with_approval).order(Arel.sql('char_length(domain) desc'))
       blocks.each { |block| block.history.add(@attempt_ip) } if @attempt_ip.present?
       blocks.any?
     end
@@ -85,5 +88,9 @@ class EmailDomainBlock < ApplicationRecord
 
   def self.block?(domain_or_domains, attempt_ip: nil)
     Matcher.new(domain_or_domains, attempt_ip: attempt_ip).match?
+  end
+
+  def self.requires_approval?(domain_or_domains, attempt_ip: nil)
+    Matcher.new(domain_or_domains, attempt_ip: attempt_ip).match?(allow_with_approval: true)
   end
 end

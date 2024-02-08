@@ -47,16 +47,19 @@ cy:
         subject: 'Mastodon: Ailosod cyfarwyddiadau cyfrinair'
         title: Ailosod cyfrinair
       two_factor_disabled:
-        explanation: Mae dilysiad dau ffactor ar gyfer eich cyfrif wedi'i analluogi. Mae modd mewngofnodi nawr gan ddefnyddio cyfeiriad e-bost a chyfrinair yn unig.
+        explanation: Mae modd mewngofnodi nawr gan ddefnyddio dim ond cyfeiriad e-bost a chyfrinair.
         subject: 'Mastodon: mae dilysu dau ffactor wedi''i alluogi'
+        subtitle: Mae dilysiad dau ffactor ar gyfer eich cyfrif wedi'i analluogi.
         title: Dilysu dau ffactor yn anabl
       two_factor_enabled:
-        explanation: Mae dilysu dau ffactor wedi'i alluogi ar gyfer eich cyfrif. Bydd angen tocyn a gynhyrchir gan yr ap TOTP pâr i fewngofnodi.
+        explanation: Bydd angen tocyn wedi'i gynhyrchu gan yr ap TOTP pâr i fewngofnodi.
         subject: 'Mastodon: mae dilysu dau ffactor wedi''i alluogi'
+        subtitle: Mae dilysiad dau ffactor wedi'i alluogi ar gyfer eich cyfrif.
         title: Mae dilysu dau ffactor wedi'i alluogi
       two_factor_recovery_codes_changed:
         explanation: Mae'r codau adfer blaenorol wedi'u hannilysu a chynhyrchwyd rhai newydd.
         subject: 'Mastodon: Mae codau adfer dau ffactor wedi''u hadfywio'
+        subtitle: Mae'r codau adfer blaenorol wedi'u hannilysu a rhai newydd wedi'u cynhyrchu.
         title: Newidiodd codau adfer 2FA
       unlock_instructions:
         subject: 'Mastodon: Cyfarwyddiadau datgloi'
@@ -70,11 +73,13 @@ cy:
           subject: 'Mastodon: Allwedd ddiogelwch wedi''i dileu'
           title: Mae un o'ch allweddi diogelwch wedi'i ddileu
       webauthn_disabled:
-        explanation: Mae dilysu gydag allweddi diogelwch wedi'i analluogi ar gyfer eich cyfrif. Mae mewngofnodi bellach yn bosibl gan ddefnyddio'r tocyn a gynhyrchir gan yr ap TOTP pâr yn unig.
+        explanation: Mae dilysu gydag allweddi diogelwch wedi'i analluogi ar gyfer eich cyfrif.
+        extra: Mae mewngofnodi bellach yn bosibl gan ddefnyddio'r tocyn wedi'i gynhyrchu gan yr ap TOTP pâr yn unig.
         subject: 'Mastodon: Dilysiad gydag allweddi diogelwch wedi''i analluogi'
         title: Allweddi diogelwch wedi'u hanalluogi
       webauthn_enabled:
-        explanation: Mae dilysiad allwedd diogelwch wedi'i alluogi ar gyfer eich cyfrif. Gellir defnyddio'ch allwedd ddiogelwch nawr ar gyfer mewngofnodi.
+        explanation: Mae dilysiad allwedd diogelwch wedi'i alluogi ar gyfer eich cyfrif.
+        extra: Mae modd defnyddio'ch allwedd ddiogelwch nawr i fewngofnodi.
         subject: 'Mastodon: Dilysiad allwedd diogelwch wedi''i alluogi'
         title: Allweddi diogelwch wedi'u galluogi
     omniauth_callbacks:

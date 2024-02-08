@@ -47,16 +47,19 @@ zh-HK:
         subject: 'Mastodon: 重設密碼'
         title: 重設密碼
       two_factor_disabled:
-        explanation: 帳號的雙重認證已被停用。現在只需使用電郵地址和密碼，即可登入。
+        explanation: 現在只需使用電郵地址和密碼即可登入。
         subject: Mastodon：已關閉雙重認證
+        subtitle: 你帳號的雙重認證已被停用。
         title: 已關閉雙重認證
       two_factor_enabled:
-        explanation: 賬號的雙重認證已被啟用。登錄時，將需要已配對 TOTP 應用程式生成的驗證碼。
+        explanation: 登入時將需要由配對的一次性密碼應用程式生成的憑證。
         subject: Mastodon：已啟用雙重認證
+        subtitle: 你的帳號已啟用雙重認證。
         title: 已啟用雙重認證
       two_factor_recovery_codes_changed:
         explanation: 之前的恢復碼失效了，新的已生成。
         subject: Mastodon：已產生新的雙重認證恢復碼
+        subtitle: 先前的恢復碼已經無效，並且已生成新的恢復碼。
         title: 雙重認證恢復碼已更改
       unlock_instructions:
         subject: 'Mastodon: 解除帳號鎖定'
@@ -70,11 +73,13 @@ zh-HK:
           subject: 'Mastodon: 安全鑰匙已移除'
           title: 你其中的一個安全鑰匙已經被移除了
       webauthn_disabled:
-        explanation: 你的帳號的安全鑰匙身份驗證已經停用。你只可以用過去已經配對好的基於時間一次性密碼程式生成的密碼來登錄。
+        explanation: 你的帳號已停用安全密鑰認證。
+        extra: 現在只能使用配對的一次性密碼應用程式生成的憑證登入。
         subject: 'Mastodon: 安全鑰匙身份驗證已經停用'
         title: 已停用安全鑰匙
       webauthn_enabled:
-        explanation: 安全鑰匙身份驗證已啟用。你的安全鑰匙現在可以用來登錄。
+        explanation: 你的帳號已啟用安全密鑰認證。
+        extra: 你現在可以使用安全密鑰來登入。
         subject: 'Mastodon: 安全鑰匙身份驗證已啟用'
         title: 已啟用安全鑰匙
     omniauth_callbacks:

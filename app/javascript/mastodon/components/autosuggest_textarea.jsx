@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import Overlay from 'react-overlays/Overlay';
 import Textarea from 'react-textarea-autosize';
 
 import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
@@ -52,7 +53,6 @@ const AutosuggestTextarea = forwardRef(({
   onFocus,
   autoFocus = true,
   lang,
-  children,
 }, textareaRef) => {
 
   const [suggestionsHidden, setSuggestionsHidden] = useState(true);
@@ -183,40 +183,38 @@ const AutosuggestTextarea = forwardRef(({
     );
   };
 
-  return [
-    <div className='compose-form__autosuggest-wrapper' key='autosuggest-wrapper'>
-      <div className='autosuggest-textarea'>
-        <label>
-          <span style={{ display: 'none' }}>{placeholder}</span>
+  return (
+    <div className='autosuggest-textarea'>
+      <Textarea
+        ref={textareaRef}
+        className='autosuggest-textarea__textarea'
+        disabled={disabled}
+        placeholder={placeholder}
+        autoFocus={autoFocus}
+        value={value}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        onKeyUp={onKeyUp}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        onPaste={handlePaste}
+        dir='auto'
+        aria-autocomplete='list'
+        aria-label={placeholder}
+        lang={lang}
+      />
 
-          <Textarea
-            ref={textareaRef}
-            className='autosuggest-textarea__textarea'
-            disabled={disabled}
-            placeholder={placeholder}
-            autoFocus={autoFocus}
-            value={value}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            onKeyUp={onKeyUp}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onPaste={handlePaste}
-            dir='auto'
-            aria-autocomplete='list'
-            lang={lang}
-          />
-        </label>
-      </div>
-      {children}
-    </div>,
-
-    <div className='autosuggest-textarea__suggestions-wrapper' key='suggestions-wrapper'>
-      <div className={`autosuggest-textarea__suggestions ${suggestionsHidden || suggestions.isEmpty() ? '' : 'autosuggest-textarea__suggestions--visible'}`}>
-        {suggestions.map(renderSuggestion)}
-      </div>
-    </div>,
-  ];
+      <Overlay show={!(suggestionsHidden || suggestions.isEmpty())} offset={[0, 0]} placement='bottom' target={textareaRef} popperConfig={{ strategy: 'fixed' }}>
+        {({ props }) => (
+          <div {...props}>
+            <div className='autosuggest-textarea__suggestions' style={{ width: textareaRef.current?.clientWidth }}>
+              {suggestions.map(renderSuggestion)}
+            </div>
+          </div>
+        )}
+      </Overlay>
+    </div>
+  );
 });
 
 AutosuggestTextarea.propTypes = {
@@ -232,7 +230,6 @@ AutosuggestTextarea.propTypes = {
   onKeyDown: PropTypes.func,
   onPaste: PropTypes.func.isRequired,
   onFocus:PropTypes.func,
-  children: PropTypes.node,
   autoFocus: PropTypes.bool,
   lang: PropTypes.string,
 };

@@ -12,39 +12,6 @@ module SignatureVerification
 
   class SignatureVerificationError < StandardError; end
 
-  class SignatureParamsParser < Parslet::Parser
-    rule(:token)         { match("[0-9a-zA-Z!#$%&'*+.^_`|~-]").repeat(1).as(:token) }
-    rule(:quoted_string) { str('"') >> (qdtext | quoted_pair).repeat.as(:quoted_string) >> str('"') }
-    # qdtext and quoted_pair are not exactly according to spec but meh
-    rule(:qdtext)        { match('[^\\\\"]') }
-    rule(:quoted_pair)   { str('\\') >> any }
-    rule(:bws)           { match('\s').repeat }
-    rule(:param)         { (token.as(:key) >> bws >> str('=') >> bws >> (token | quoted_string).as(:value)).as(:param) }
-    rule(:comma)         { bws >> str(',') >> bws }
-    # Old versions of node-http-signature add an incorrect "Signature " prefix to the header
-    rule(:buggy_prefix)  { str('Signature ') }
-    rule(:params)        { buggy_prefix.maybe >> (param >> (comma >> param).repeat).as(:params) }
-    root(:params)
-  end
-
-  class SignatureParamsTransformer < Parslet::Transform
-    rule(params: subtree(:param)) do
-      (param.is_a?(Array) ? param : [param]).each_with_object({}) { |(key, value), hash| hash[key] = value }
-    end
-
-    rule(param: { key: simple(:key), value: simple(:val) }) do
-      [key, val]
-    end
-
-    rule(quoted_string: simple(:string)) do
-      string.to_s
-    end
-
-    rule(token: simple(:string)) do
-      string.to_s
-    end
-  end
-
   def require_account_signature!
     render json: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_account
   end
@@ -91,14 +58,23 @@ module SignatureVerification
     raise SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if actor.nil?
 
     signature             = Base64.decode64(signature_params['signature'])
-    compare_signed_string = build_signed_string
+    compare_signed_string = build_signed_string(include_query_string: true)
 
+    return actor unless verify_signature(actor, signature, compare_signed_string).nil?
+
+    # Compatibility quirk with older Mastodon versions
+    compare_signed_string = build_signed_string(include_query_string: false)
     return actor unless verify_signature(actor, signature, compare_signed_string).nil?
 
     actor = stoplight_wrap_request { actor_refresh_key!(actor) }
 
     raise SignatureVerificationError, "Could not refresh public key #{signature_params['keyId']}" if actor.nil?
 
+    compare_signed_string = build_signed_string(include_query_string: true)
+    return actor unless verify_signature(actor, signature, compare_signed_string).nil?
+
+    # Compatibility quirk with older Mastodon versions
+    compare_signed_string = build_signed_string(include_query_string: false)
     return actor unless verify_signature(actor, signature, compare_signed_string).nil?
 
     fail_with! "Verification failed for #{actor.to_log_human_identifier} #{actor.uri} using rsa-sha256 (RSASSA-PKCS1-v1_5 with SHA-256)", signed_string: compare_signed_string, signature: signature_params['signature']
@@ -126,12 +102,8 @@ module SignatureVerification
   end
 
   def signature_params
-    @signature_params ||= begin
-      raw_signature = request.headers['Signature']
-      tree          = SignatureParamsParser.new.parse(raw_signature)
-      SignatureParamsTransformer.new.apply(tree)
-    end
-  rescue Parslet::ParseFailed
+    @signature_params ||= SignatureParser.parse(request.headers['Signature'])
+  rescue SignatureParser::ParsingError
     raise SignatureVerificationError, 'Error parsing signature parameters'
   end
 
@@ -180,11 +152,18 @@ module SignatureVerification
     nil
   end
 
-  def build_signed_string
+  def build_signed_string(include_query_string: true)
     signed_headers.map do |signed_header|
       case signed_header
       when Request::REQUEST_TARGET
-        "#{Request::REQUEST_TARGET}: #{request.method.downcase} #{request.path}"
+        if include_query_string
+          "#{Request::REQUEST_TARGET}: #{request.method.downcase} #{request.original_fullpath}"
+        else
+          # Current versions of Mastodon incorrectly omit the query string from the (request-target) pseudo-header.
+          # Therefore, temporarily support such incorrect signatures for compatibility.
+          # TODO: remove eventually some time after release of the fixed version
+          "#{Request::REQUEST_TARGET}: #{request.method.downcase} #{request.path}"
+        end
       when '(created)'
         raise SignatureVerificationError, 'Invalid pseudo-header (created) for rsa-sha256' unless signature_algorithm == 'hs2019'
         raise SignatureVerificationError, 'Pseudo-header (created) used but corresponding argument missing' if signature_params['created'].blank?
@@ -250,7 +229,7 @@ module SignatureVerification
       stoplight_wrap_request { ResolveAccountService.new.call(key_id.delete_prefix('acct:'), suppress_errors: false) }
     elsif !ActivityPub::TagManager.instance.local_uri?(key_id)
       account   = ActivityPub::TagManager.instance.uri_to_actor(key_id)
-      account ||= stoplight_wrap_request { ActivityPub::FetchRemoteKeyService.new.call(key_id, id: false, suppress_errors: false) }
+      account ||= stoplight_wrap_request { ActivityPub::FetchRemoteKeyService.new.call(key_id, suppress_errors: false) }
       account
     end
   rescue Mastodon::PrivateNetworkAddressError => e

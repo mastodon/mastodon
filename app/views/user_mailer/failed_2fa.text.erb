@@ -1,0 +1,15 @@
+<%= t 'user_mailer.failed_2fa.title' %>
+
+===
+
+<%= t 'user_mailer.failed_2fa.explanation' %>
+
+<%= t 'user_mailer.failed_2fa.details' %>
+
+<%= t('sessions.ip') %>: <%= @remote_ip %>
+<%= t('sessions.browser') %>: <%= t('sessions.description', browser: t("sessions.browsers.#{@detection.id}", default: "#{@detection.id}"), platform: t("sessions.platforms.#{@detection.platform.id}", default: "#{@detection.platform.id}")) %>
+<%= l(@timestamp.in_time_zone(@resource.time_zone.presence), format: :with_time_zone) %>
+
+<%= t 'user_mailer.failed_2fa.further_actions_html', action: t('user_mailer.suspicious_sign_in.change_password') %>
+
+=> <%= edit_user_registration_url %>

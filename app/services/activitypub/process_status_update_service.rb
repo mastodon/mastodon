@@ -170,9 +170,9 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     as_array(@json['tag']).each do |tag|
       if equals_or_includes?(tag['type'], 'Hashtag')
-        @raw_tags << tag['name']
+        @raw_tags << tag['name'] if tag['name'].present?
       elsif equals_or_includes?(tag['type'], 'Mention')
-        @raw_mentions << tag['href']
+        @raw_mentions << tag['href'] if tag['href'].present?
       elsif equals_or_includes?(tag['type'], 'Emoji')
         @raw_emojis << tag
       end
@@ -280,7 +280,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def reset_preview_card!
-    @status.preview_cards.clear
+    @status.reset_preview_card!
     LinkCrawlWorker.perform_in(rand(1..59).seconds, @status.id)
   end
 

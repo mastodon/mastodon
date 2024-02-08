@@ -6,7 +6,7 @@ class UpdateFollowRecommendationsToVersion2 < ActiveRecord::Migration[6.1]
 
   def up
     drop_view :follow_recommendations
-    create_view :follow_recommendations, version: 2, materialized: { no_data: true }
+    create_view :follow_recommendations, version: 2, materialized: true
 
     # To be able to refresh the view concurrently,
     # at least one unique index is required

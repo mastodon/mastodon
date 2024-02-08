@@ -18,13 +18,15 @@ RSpec.describe Admin::AccountModerationNotesHelper do
       let(:account) { Fabricate(:account) }
 
       it 'calls #link_to' do
-        expect(helper).to receive(:link_to).with(
+        allow(helper).to receive(:link_to)
+
+        helper.admin_account_link_to(account)
+
+        expect(helper).to have_received(:link_to).with(
           admin_account_path(account.id),
           class: name_tag_classes(account),
           title: account.acct
         )
-
-        helper.admin_account_link_to(account)
       end
     end
   end

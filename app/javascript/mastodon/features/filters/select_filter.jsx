@@ -5,9 +5,9 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as AddIcon } from '@material-symbols/svg-600/outlined/add.svg';
 import fuzzysort from 'fuzzysort';
 
+import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 import { toServerSideType } from 'mastodon/utils/filters';
 import { loupeIcon, deleteIcon } from 'mastodon/utils/icons';

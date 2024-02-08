@@ -16,7 +16,7 @@ describe 'Admin::Trends::Links::PreviewCardProviders' do
 
     context 'without selecting any records' do
       it 'displays a notice about selection' do
-        click_button button_for_allow
+        click_on button_for_allow
 
         expect(page).to have_content(selection_error_text)
       end

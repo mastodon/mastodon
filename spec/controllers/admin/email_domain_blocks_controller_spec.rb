@@ -12,13 +12,14 @@ RSpec.describe Admin::EmailDomainBlocksController do
   describe 'GET #index' do
     around do |example|
       default_per_page = EmailDomainBlock.default_per_page
-      EmailDomainBlock.paginates_per 1
+      EmailDomainBlock.paginates_per 2
       example.run
       EmailDomainBlock.paginates_per default_per_page
     end
 
     it 'returns http success' do
       2.times { Fabricate(:email_domain_block) }
+      Fabricate(:email_domain_block, allow_with_approval: true)
       get :index, params: { page: 2 }
       expect(response).to have_http_status(200)
     end
@@ -34,6 +35,16 @@ RSpec.describe Admin::EmailDomainBlocksController do
   describe 'POST #create' do
     context 'when resolve button is pressed' do
       before do
+        resolver = instance_double(Resolv::DNS)
+
+        allow(resolver).to receive(:getresources)
+          .with('example.com', Resolv::DNS::Resource::IN::MX)
+          .and_return([])
+        allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::A).and_return([])
+        allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::AAAA).and_return([])
+        allow(resolver).to receive(:timeouts=).and_return(nil)
+        allow(Resolv::DNS).to receive(:open).and_yield(resolver)
+
         post :create, params: { email_domain_block: { domain: 'example.com' } }
       end
 

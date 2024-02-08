@@ -6,8 +6,7 @@ import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 
-import { ReactComponent as PublicIcon } from '@material-symbols/svg-600/outlined/public.svg';
-
+import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import { addColumn } from 'mastodon/actions/columns';
 import { changeSetting } from 'mastodon/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'mastodon/actions/streaming';

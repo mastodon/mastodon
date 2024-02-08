@@ -16,7 +16,7 @@ describe 'Admin::CustomEmojis' do
 
     context 'without selecting any records' do
       it 'displays a notice about selection' do
-        click_button button_for_enable
+        click_on button_for_enable
 
         expect(page).to have_content(selection_error_text)
       end

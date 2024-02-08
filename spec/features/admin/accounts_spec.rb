@@ -22,7 +22,7 @@ describe 'Admin::Accounts' do
 
     context 'without selecting any accounts' do
       it 'displays a notice about account selection' do
-        click_button button_for_suspend
+        click_on button_for_suspend
 
         expect(page).to have_content(selection_error_text)
       end
@@ -32,7 +32,7 @@ describe 'Admin::Accounts' do
       it 'suspends the account' do
         batch_checkbox_for(approved_user_account).check
 
-        click_button button_for_suspend
+        click_on button_for_suspend
 
         expect(approved_user_account.reload).to be_suspended
       end
@@ -42,17 +42,17 @@ describe 'Admin::Accounts' do
       it 'approves the account user' do
         batch_checkbox_for(unapproved_user_account).check
 
-        click_button button_for_approve
+        click_on button_for_approve
 
         expect(unapproved_user_account.reload.user).to be_approved
       end
     end
 
-    context 'with action of `reject`' do
+    context 'with action of `reject`', :sidekiq_inline do
       it 'rejects and removes the account' do
         batch_checkbox_for(unapproved_user_account).check
 
-        click_button button_for_reject
+        click_on button_for_reject
 
         expect { unapproved_user_account.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end

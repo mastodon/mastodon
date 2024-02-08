@@ -246,7 +246,7 @@ class FeedManager
   # @param [Account] target_account
   # @return [void]
   def clear_from_lists(account, target_account)
-    List.where(account: account).each do |list|
+    List.where(account: account).find_each do |list|
       clear_from_list(list, target_account)
     end
   end
@@ -420,8 +420,8 @@ class FeedManager
     check_for_blocks = status.active_mentions.pluck(:account_id)
     check_for_blocks.push(status.in_reply_to_account) if status.reply? && !status.in_reply_to_account_id.nil?
 
-    should_filter   = blocks_or_mutes?(receiver_id, check_for_blocks, :mentions)                                                         # Filter if it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked (or muted)
-    should_filter ||= (status.account.silenced? && !Follow.where(account_id: receiver_id, target_account_id: status.account_id).exists?) # of if the account is silenced and I'm not following them
+    should_filter   = blocks_or_mutes?(receiver_id, check_for_blocks, :mentions) # Filter if it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked (or muted)
+    should_filter ||= status.account.silenced? && !Follow.exists?(account_id: receiver_id, target_account_id: status.account_id) # Filter if the account is silenced and I'm not following them
 
     should_filter
   end
@@ -434,7 +434,7 @@ class FeedManager
     if status.reply? && status.in_reply_to_account_id != status.account_id
       should_filter = status.in_reply_to_account_id != list.account_id
       should_filter &&= !list.show_followed?
-      should_filter &&= !(list.show_list? && ListAccount.where(list_id: list.id, account_id: status.in_reply_to_account_id).exists?)
+      should_filter &&= !(list.show_list? && ListAccount.exists?(list_id: list.id, account_id: status.in_reply_to_account_id))
 
       return !!should_filter
     end
@@ -551,7 +551,7 @@ class FeedManager
   def build_crutches(receiver_id, statuses)
     crutches = {}
 
-    crutches[:active_mentions] = Mention.active.where(status_id: statuses.flat_map { |s| [s.id, s.reblog_of_id] }.compact).pluck(:status_id, :account_id).each_with_object({}) { |(id, account_id), mapping| (mapping[id] ||= []).push(account_id) }
+    crutches[:active_mentions] = crutches_active_mentions(statuses)
 
     check_for_blocks = statuses.flat_map do |s|
       arr = crutches[:active_mentions][s.id] || []
@@ -577,5 +577,13 @@ class FeedManager
     crutches[:exclusive_list_users] = ListAccount.where(list: lists, account_id: statuses.map(&:account_id)).pluck(:account_id).index_with(true)
 
     crutches
+  end
+
+  def crutches_active_mentions(statuses)
+    Mention
+      .active
+      .where(status_id: statuses.flat_map { |status| [status.id, status.reblog_of_id] }.compact)
+      .pluck(:status_id, :account_id)
+      .each_with_object({}) { |(id, account_id), mapping| (mapping[id] ||= []).push(account_id) }
   end
 end

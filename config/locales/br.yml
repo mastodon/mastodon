@@ -40,8 +40,10 @@ br:
       change_role:
         no_role: Roll ebet
       confirm: Kadarnaat
+      confirmed: Kadarnaet
       confirming: O kadarnaat
       custom: Personelaet
+      delete: Dilemel ar roadennoù
       deleted: Dilamet
       demote: Argilañ
       disable: Skornañ
@@ -61,6 +63,7 @@ br:
         all: Pep tra
         local: Lec'hel
         remote: A-bell
+      media_attachments: Restroù media stag
       moderation:
         active: Oberiant
         all: Pep tra
@@ -68,6 +71,7 @@ br:
         silenced: Bevennet
         suspended: Astalet
         title: Habaskadur
+      most_recent_activity: Obererezh nevesañ
       perform_full_suspension: Astalañ
       promote: Brudañ
       protocol: Komenad
@@ -76,15 +80,19 @@ br:
       remove_header: Dilemel an talbenn
       reset: Adderaouekaat
       reset_password: Adderaouekaat ar ger-tremen
+      resubscribe: Adkoumanantiñ
       role: Roll
       search: Klask
+      security: Surentez
       silence: Bevenniñ
       silenced: Bevennet
       statuses: Toudoù
+      subscribe: Koumanantiñ
       suspend: Astalañ
       suspended: Astalet
       title: Kontoù
       undo_silenced: Dizober ar bevennañ
+      unsubscribe: Digoumanantiñ
       username: Anv
       warn: Diwall
       web: Web
@@ -167,6 +175,7 @@ br:
         title: Habaskadur
       purge: Spurjañ
       title: Kevread
+      total_storage: Restroù media stag
     invites:
       filter:
         all: Pep tra
@@ -265,6 +274,8 @@ br:
       tags:
         dashboard:
           tag_uses_measure: implijoù hollek
+        not_usable: N'haller ket en implijout
+        title: Hashtagoù diouzh ar c'hiz
       title: Luskadoù
     warning_presets:
       add_new: Ouzhpenniñ unan nevez
@@ -281,6 +292,9 @@ br:
     new_appeal:
       actions:
         none: ur c'hemenn diwall
+    new_trends:
+      new_trending_tags:
+        title: Hashtagoù diouzh ar c'hiz
   appearance:
     discovery: Dizoloadur
   application_mailer:
@@ -289,6 +303,8 @@ br:
   auth:
     delete_account: Dilemel ar gont
     delete_account_html: Ma fell deoc'h dilemel ho kont e c'hellit <a href="%{path}">klikañ amañ</a>. Goulennet e vo ganeoc'h kadarnaat an obererezh.
+    description:
+      prefix_invited_by_user: Pedet oc'h gant @%{name} da zont e-barzh ar servijer Mastodon-mañ!
     login: Mont tre
     logout: Digennaskañ
     migrate_account_html: Ma fell deoc'h adkas ar gont-mañ war-zu unan all e c'hellit <a href="%{path}">arventenniñ an dra-se amañ</a>.
@@ -383,6 +399,10 @@ br:
     table:
       uses: Implijoù
     title: Pediñ tud
+  media_attachments:
+    validations:
+      images_and_video: N'haller stagañ ur video ouzh un embannadur a zo fotoioù gantañ dija
+      too_many: N'haller ket stagañ muioc'h eget 4 restr
   migrations:
     incoming_migrations_html: Evit dilojañ ur gont all da homañ e rankit <a href="%{path}">sevel un alias</a> da gentañ.
   moderation:
@@ -417,13 +437,19 @@ br:
     next: Da-heul
     older: Koshoc'h
     prev: A-raok
+  polls:
+    errors:
+      self_vote: N'hallit ket votiñ en ho sontadegoù deoc'h-c'hwi
   preferences:
     other: All
     posting_defaults: Arventennoù embann dre ziouer
+  redirects:
+    prompt: M'ho peus fiziañs el liamm-mañ, klikit warnañ evit kenderc'hel.
+    title: O kuitaat %{instance} emaoc'h.
   relationships:
     dormant: O kousket
     followers: Heulier·ezed·ien
-    following: O heuliañ
+    following: Koumanantoù
     invited: Pedet
     moved: Dilojet
     mutual: Kenetre
@@ -448,6 +474,7 @@ br:
       safari: Safari
       uc_browser: UC Browser
       weibo: Weibo
+    date: Deiziad
     description: "%{browser} war %{platform}"
     ip: IP
     platforms:
@@ -463,6 +490,7 @@ br:
     account_settings: Arventennoù ar gont
     development: Diorren
     edit_profile: Kemmañ ar profil
+    featured_tags: Hashtagoù pennañ
     import: Enporzhiañ
     import_and_export: Enporzhiañ hag ezporzhiañ
     preferences: Gwellvezioù
@@ -475,6 +503,8 @@ br:
         one: "%{count} skeudenn"
         other: "%{count} skeudenn"
         two: "%{count} skeudenn"
+    pin_errors:
+      ownership: N'hallit ket spilhennañ embannadurioù ar re all
     poll:
       vote: Mouezhiañ
     show_more: Diskouez muioc'h
@@ -483,6 +513,7 @@ br:
       public: Publik
   statuses_cleanup:
     keep_direct: Mirout ar c'hannadoù eeun
+    keep_media: Derc'hel an embannadurioù gant restroù stag
     min_age:
       '1209600': 2 sizhunvezh
       '2629746': 1 mizvezh
@@ -502,6 +533,10 @@ br:
     disable: Diweredekaat
     edit: Kemmañ
   user_mailer:
+    appeal_approved:
+      action: Arventennoù ar gont
+    backup_ready:
+      extra: Prest eo da vezañ pellgarget!
     warning:
       categories:
         spam: Spam
@@ -514,6 +549,7 @@ br:
       subject: Donemat e Mastodoñ
       title: Degemer mat e bourzh, %{name}!
   users:
+    follow_limit_reached: N'hallit ket heulian muioc'h eget %{limit} a zen
     signed_in_as: 'Aet-tre evel:'
   verification:
     verification: Amprouadur

@@ -4,7 +4,7 @@ require 'csv'
 
 module Admin
   class ExportDomainBlocksController < BaseController
-    include AdminExportControllerConcern
+    include Admin::ExportControllerConcern
 
     before_action :set_dummy_import!, only: [:new]
 
@@ -49,7 +49,7 @@ module Admin
         next
       end
 
-      @warning_domains = Instance.where(domain: @domain_blocks.map(&:domain)).where('EXISTS (SELECT 1 FROM follows JOIN accounts ON follows.account_id = accounts.id OR follows.target_account_id = accounts.id WHERE accounts.domain = instances.domain)').pluck(:domain)
+      @warning_domains = instances_from_imported_blocks.pluck(:domain)
     rescue ActionController::ParameterMissing
       flash.now[:alert] = I18n.t('admin.export_domain_blocks.no_file')
       set_dummy_import!
@@ -57,6 +57,10 @@ module Admin
     end
 
     private
+
+    def instances_from_imported_blocks
+      Instance.with_domain_follows(@domain_blocks.map(&:domain))
+    end
 
     def export_filename
       'domain_blocks.csv'
@@ -68,7 +72,7 @@ module Admin
 
     def export_data
       CSV.generate(headers: export_headers, write_headers: true) do |content|
-        DomainBlock.with_limitations.each do |instance|
+        DomainBlock.with_limitations.order(id: :asc).each do |instance|
           content << [instance.domain, instance.severity, instance.reject_media, instance.reject_reports, instance.public_comment, instance.obfuscate]
         end
       end

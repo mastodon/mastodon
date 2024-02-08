@@ -14,7 +14,7 @@ RSpec.describe 'Favourites' do
     end
 
     let(:params)      { {} }
-    let!(:favourites) { Fabricate.times(3, :favourite, account: user.account) }
+    let!(:favourites) { Fabricate.times(2, :favourite, account: user.account) }
 
     let(:expected_response) do
       favourites.map do |favourite|
@@ -37,7 +37,7 @@ RSpec.describe 'Favourites' do
     end
 
     context 'with limit param' do
-      let(:params) { { limit: 2 } }
+      let(:params) { { limit: 1 } }
 
       it 'returns only the requested number of favourites' do
         subject

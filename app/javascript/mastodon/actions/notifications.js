@@ -98,7 +98,7 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
       }
 
 
-      dispatch(notificationsUpdate(notification, preferPendingItems, playSound && !filtered));
+      dispatch(notificationsUpdate({ notification, preferPendingItems, playSound: playSound && !filtered}));
 
       fetchRelatedRelationships(dispatch, [notification]);
     } else if (playSound && !filtered) {

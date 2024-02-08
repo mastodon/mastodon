@@ -26,7 +26,13 @@ RSpec.describe Admin::ExportDomainBlocksController do
 
       get :export, params: { format: :csv }
       expect(response).to have_http_status(200)
-      expect(response.body).to eq(File.read(File.join(file_fixture_path, 'domain_blocks.csv')))
+      expect(response.body).to eq(domain_blocks_csv_file)
+    end
+
+    private
+
+    def domain_blocks_csv_file
+      File.read(File.join(file_fixture_path, 'domain_blocks.csv'))
     end
   end
 
