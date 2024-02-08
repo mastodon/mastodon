@@ -7464,7 +7464,8 @@ img.modal-warning {
 
 .notification__filter-bar,
 .account__section-headline {
-  background: $ui-base-color;
+  // deliberate glitch-soc choice for now
+  background: darken($ui-base-color, 4%);
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
   display: flex;
