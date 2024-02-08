@@ -4711,43 +4711,6 @@ a.status-card {
   animation: heartbeat 1.5s ease-in-out infinite both;
 }
 
-@keyframes shake-bottom {
-  0%,
-  100% {
-    transform: rotate(0deg);
-    transform-origin: 50% 100%;
-  }
-
-  10% {
-    transform: rotate(2deg);
-  }
-
-  20%,
-  40%,
-  60% {
-    transform: rotate(-4deg);
-  }
-
-  30%,
-  50%,
-  70% {
-    transform: rotate(4deg);
-  }
-
-  80% {
-    transform: rotate(-2deg);
-  }
-
-  90% {
-    transform: rotate(2deg);
-  }
-}
-
-.no-reduce-motion .shake-bottom {
-  transform-origin: 50% 100%;
-  animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) 2s 2 both;
-}
-
 .emoji-picker-dropdown__menu {
   position: relative;
   margin-top: 5px;
@@ -5350,20 +5313,6 @@ a.status-card {
   .account:last-child,
   & > div:last-child .status {
     border-bottom: 0;
-  }
-}
-
-.search-results__hashtag {
-  display: block;
-  padding: 10px;
-  color: $secondary-text-color;
-  text-decoration: none;
-
-  &:hover,
-  &:active,
-  &:focus {
-    color: lighten($secondary-text-color, 4%);
-    text-decoration: underline;
   }
 }
 
