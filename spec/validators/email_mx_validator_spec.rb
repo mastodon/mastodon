@@ -5,6 +5,7 @@ require 'rails_helper'
 describe EmailMxValidator do
   describe '#validate' do
     let(:user) { instance_double(User, email: 'foo@example.com', sign_up_ip: '1.2.3.4', errors: instance_double(ActiveModel::Errors, add: nil)) }
+    let(:resolv_dns_double) { instance_double(Resolv::DNS) }
 
     context 'with an e-mail domain that is explicitly allowed' do
       around do |block|
@@ -105,10 +106,6 @@ describe EmailMxValidator do
     allow(Resolv::DNS)
       .to receive(:open)
       .and_yield(resolv_dns_double)
-  end
-
-  def resolv_dns_double
-    @resolv_dns_double ||= instance_double(Resolv::DNS)
   end
 
   def resolv_double_mx(domain)
