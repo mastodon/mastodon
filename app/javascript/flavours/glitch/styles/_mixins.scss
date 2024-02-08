@@ -10,37 +10,6 @@
   background-size: $size $size;
 }
 
-@mixin single-column($media, $parent: '&') {
-  .auto-columns #{$parent} {
-    @media #{$media} {
-      @content;
-    }
-  }
-  .single-column #{$parent} {
-    @content;
-  }
-}
-
-@mixin limited-single-column($media, $parent: '&') {
-  .auto-columns #{$parent},
-  .single-column #{$parent} {
-    @media #{$media} {
-      @content;
-    }
-  }
-}
-
-@mixin multi-columns($media, $parent: '&') {
-  .auto-columns #{$parent} {
-    @media #{$media} {
-      @content;
-    }
-  }
-  .multi-columns #{$parent} {
-    @content;
-  }
-}
-
 @mixin fullwidth-gallery {
   &.full-width {
     margin-left: -14px;

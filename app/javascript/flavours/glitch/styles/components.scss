@@ -496,7 +496,7 @@ body > [data-popper-placement] {
       outline: 0;
     }
 
-    @include single-column('screen and (max-width: 630px)') {
+    @media screen and (width <= 600px) {
       font-size: 16px;
     }
   }
@@ -517,7 +517,7 @@ body > [data-popper-placement] {
       all: unset;
     }
 
-    @include limited-single-column('screen and (max-width: 600px)') {
+    @media screen and (width <= 600px) {
       height: 100px !important; // Prevent auto-resize textarea
       resize: vertical;
     }
@@ -3040,10 +3040,6 @@ $ui-header-height: 55px;
     border-bottom-color: $ui-highlight-color;
   }
 
-  @include limited-single-column('screen and (max-width: 600px)') {
-    font-size: 16px;
-  }
-
   &.light {
     color: $inverted-text-color;
     border-bottom: 2px solid lighten($ui-base-color, 27%);
@@ -3053,6 +3049,10 @@ $ui-header-height: 55px;
       color: $inverted-text-color;
       border-bottom-color: $ui-highlight-color;
     }
+  }
+
+  @media screen and (width <= 600px) {
+    font-size: 16px;
   }
 }
 
@@ -6827,11 +6827,11 @@ img.modal-warning {
     padding-inline-end: 10px;
   }
 
-  @include single-column('screen and (max-width: 630px)') {
+  @media screen and (width <= 630px) {
     flex: auto;
   }
 
-  @include limited-single-column('screen and (max-width: 630px)') {
+  @media screen and (width <= 630px) {
     &,
     &:first-child,
     &:last-child {
@@ -6845,7 +6845,7 @@ img.modal-warning {
     flex: 1 1 200px;
   }
 
-  @include single-column('screen and (max-width: 630px)') {
+  @media screen and (width <= 630px) {
     :root & {
       //  Overrides `.wide` for single-column view
       flex: auto;
@@ -6862,12 +6862,11 @@ img.modal-warning {
 }
 
 .search {
-  @include limited-single-column(
-    'screen and (max-width: #{$no-gap-breakpoint})'
-  ) {
+  @media screen and (max-width: $no-gap-breakpoint) {
     margin-bottom: 0;
   }
-  @include single-column('screen and (max-width: 630px)') {
+
+  @media screen and (width <= 630px) {
     font-size: 16px;
   }
 }
