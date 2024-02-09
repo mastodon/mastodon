@@ -211,6 +211,8 @@ GEM
     discard (1.2.1)
       activerecord (>= 4.2, < 8)
     docile (1.4.0)
+    dockerfile-rails (1.6.5)
+      rails (>= 3.0.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     doorkeeper (5.6.6)
@@ -278,6 +280,7 @@ GEM
       fog-core (>= 1.45, <= 2.1.0)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
+    foreman (0.87.2)
     formatador (0.3.0)
     fugit (1.7.1)
       et-orbi (~> 1, >= 1.2.7)
@@ -433,6 +436,10 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.14.5)
       mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
+    nokogiri (1.14.5-aarch64-linux)
+      racc (~> 1.4)
+    nokogiri (1.14.5-x86_64-linux)
       racc (~> 1.4)
     nsa (0.2.8)
       activesupport (>= 4.2, < 7)
@@ -764,7 +771,9 @@ GEM
     zeitwerk (2.6.12)
 
 PLATFORMS
+  aarch64-linux
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   active_model_serializers (~> 0.10)
@@ -796,6 +805,7 @@ DEPENDENCIES
   devise-two-factor (~> 4.0)
   devise_pam_authenticatable2 (~> 9.2)
   discard (~> 1.2)
+  dockerfile-rails (>= 1.6)
   doorkeeper (~> 5.6)
   dotenv-rails (~> 2.8)
   ed25519 (~> 1.3)
@@ -805,6 +815,7 @@ DEPENDENCIES
   fastimage
   fog-core (<= 2.4.0)
   fog-openstack (~> 0.3)
+  foreman
   fuubar (~> 2.5)
   gitlab-omniauth-openid-connect (~> 0.10.1)
   hamlit-rails (~> 0.2)
@@ -895,3 +906,9 @@ DEPENDENCIES
   webpacker (~> 5.4)
   webpush!
   xorcist (~> 1.1)
+
+RUBY VERSION
+   ruby 3.0.6p216
+
+BUNDLED WITH
+   2.2.33

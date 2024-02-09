@@ -2,7 +2,7 @@
   "name": "@mastodon/mastodon",
   "license": "AGPL-3.0-or-later",
   "engines": {
-    "node": "16.x"
+    "node": ">=14"
   },
   "scripts": {
     "postversion": "git push --tags",
@@ -168,5 +168,6 @@
   "optionalDependencies": {
     "bufferutil": "^4.0.7",
     "utf-8-validate": "^6.0.2"
-  }
+  },
+  "packageManager": "yarn@1.22.19"
 }

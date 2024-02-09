@@ -161,3 +161,4 @@ gem 'xorcist', '~> 1.1'
 gem 'cocoon', '~> 1.2'
 
 gem 'subscription', path: 'subscription'
+gem "dockerfile-rails", ">= 1.6", :group => :development
