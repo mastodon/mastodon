@@ -1,13 +1,13 @@
 .emoji-mart {
+  font-size: 13px;
+  display: inline-block;
+  color: $inverted-text-color;
+
   &,
   * {
     box-sizing: border-box;
     line-height: 1.15;
   }
-
-  font-size: 13px;
-  display: inline-block;
-  color: $inverted-text-color;
 
   .emoji-mart-emoji {
     padding: 6px;
@@ -64,17 +64,17 @@
   }
 
   .emoji-mart-anchor-bar {
-    bottom: 0;
+    bottom: -1px;
   }
 }
 
 .emoji-mart-anchor-bar {
   position: absolute;
-  bottom: -3px;
+  bottom: -5px;
   inset-inline-start: 0;
   width: 100%;
-  height: 3px;
-  background-color: darken($ui-highlight-color, 3%);
+  height: 4px;
+  background-color: $highlight-text-color;
 }
 
 .emoji-mart-anchors {
@@ -173,7 +173,7 @@
   }
 
   &:hover::before {
-    z-index: 0;
+    z-index: -1;
     content: '';
     position: absolute;
     top: 0;

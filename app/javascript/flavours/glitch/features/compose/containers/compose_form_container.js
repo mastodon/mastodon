@@ -71,7 +71,6 @@ const mapStateToProps = state => ({
   isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
   lang: state.getIn(['compose', 'language']),
   advancedOptions: state.getIn(['compose', 'advanced_options']),
-  layout: state.getIn(['local_settings', 'layout']),
   media: state.getIn(['compose', 'media_attachments']),
   sideArm: sideArmPrivacy(state),
   sensitive: state.getIn(['compose', 'sensitive']),

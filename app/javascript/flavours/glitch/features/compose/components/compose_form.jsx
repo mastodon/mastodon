@@ -70,7 +70,6 @@ class ComposeForm extends ImmutablePureComponent {
     singleColumn: PropTypes.bool,
     lang: PropTypes.string,
     advancedOptions: ImmutablePropTypes.map,
-    layout: PropTypes.string,
     media: ImmutablePropTypes.list,
     sideArm: PropTypes.string,
     sensitive: PropTypes.bool,
@@ -259,7 +258,6 @@ class ComposeForm extends ImmutablePureComponent {
       intl,
       advancedOptions,
       isSubmitting,
-      layout,
       onChangeSpoilerness,
       onPaste,
       privacy,
@@ -313,7 +311,7 @@ class ComposeForm extends ImmutablePureComponent {
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             onSuggestionSelected={this.onSuggestionSelected}
             onPaste={onPaste}
-            autoFocus={!showSearch && !isMobile(window.innerWidth, layout)}
+            autoFocus={!showSearch && !isMobile(window.innerWidth)}
             lang={this.props.lang}
           >
             <TextareaIcons advancedOptions={advancedOptions} />

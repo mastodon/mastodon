@@ -602,18 +602,7 @@ class UI extends PureComponent {
     const { draggingOver } = this.state;
     const { children, isWide, location, dropdownMenuIsOpen, layout, moved } = this.props;
 
-    const columnsClass = layout => {
-      switch (layout) {
-      case 'single':
-        return 'single-column';
-      case 'multiple':
-        return 'multi-columns';
-      default:
-        return 'auto-columns';
-      }
-    };
-
-    const className = classNames('ui', columnsClass(layout), {
+    const className = classNames('ui', {
       'wide': isWide,
       'system-font': this.props.systemFontUi,
       'hicolor-privacy-icons': this.props.hicolorPrivacyIcons,

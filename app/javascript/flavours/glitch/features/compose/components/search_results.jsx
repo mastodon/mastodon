@@ -76,7 +76,7 @@ class SearchResults extends ImmutablePureComponent {
 
 
     return (
-      <div className='drawer--results'>
+      <div className='search-results'>
         <header className='search-results__header'>
           <Icon id='search' icon={SearchIcon} />
           <FormattedMessage id='explore.search_results' defaultMessage='Search results' />
