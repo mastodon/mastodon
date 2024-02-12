@@ -11,14 +11,7 @@ module ProfileStories
     )
 
     Web::Setting.where(user: bob).first_or_initialize(user: bob).update!(data: { introductionVersion: 2018_12_16_044202 }) if finished_onboarding
-  end
-
-  def as_a_logged_in_user
-    as_a_registered_user
-    visit new_user_session_path
-    fill_in 'user_email', with: email
-    fill_in 'user_password', with: password
-    click_on I18n.t('auth.login')
+    @bob
   end
 
   def with_alice_as_local_user
