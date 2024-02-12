@@ -12,7 +12,7 @@ gem 'thor', '~> 1.2'
 # For why irb is in the Gemfile, see: https://ruby.social/@st0012/111444685161478182
 gem 'irb', '~> 1.8'
 
-gem 'dotenv-rails', '~> 2.8'
+gem 'dotenv'
 gem 'haml-rails', '~>2.0'
 gem 'pg', '~> 1.5'
 gem 'pghero'
