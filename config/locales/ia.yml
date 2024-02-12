@@ -236,6 +236,8 @@ ia:
   migrations:
     errors:
       not_found: non poterea esser trovate
+  preferences:
+    public_timelines: Chronologias public
   statuses_cleanup:
     min_age:
       '1209600': 2 septimanas
@@ -254,6 +256,7 @@ ia:
     disable: Disactivar 2FA
   user_mailer:
     welcome:
+      final_step: 'Comencia a publicar! Mesmo sin sequitores, tu messages public poterea esser reguardate per alteres, per exemplo in le chronologia local o in hashtags. Tu poterea voler introducer te con le hashtag #introductiones.'
       subject: Benvenite in Mastodon
   webauthn_credentials:
     delete: Deler
