@@ -68,7 +68,7 @@ class NewListForm extends PureComponent {
 
         <Button
           disabled={disabled || !value}
-          title={title}
+          text={title}
           onClick={this.handleClick}
         />
       </form>
