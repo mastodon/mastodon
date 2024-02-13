@@ -24,6 +24,6 @@ class Api::V1::AppsController < Api::BaseController
   end
 
   def app_params
-    params.permit(:client_name, :redirect_uris, :scopes, :website)
+    params.permit(:client_name, :scopes, :website, :redirect_uris, redirect_uris: [])
   end
 end
