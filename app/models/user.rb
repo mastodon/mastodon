@@ -51,6 +51,8 @@ class User < ApplicationRecord
     last_sign_in_ip
     skip_sign_in_token
     filtered_languages
+    admin
+    moderator
   )
 
   include LanguagesHelper
