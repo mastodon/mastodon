@@ -293,7 +293,7 @@ class EmojiPickerMenuImpl extends PureComponent {
           include={categoriesSort}
           recent={frequentlyUsedEmojis}
           skin={skinTone}
-          showPreview={false}
+          showPreview
           showSkinTones={false}
           backgroundImageFn={backgroundImageFn}
           notFound={notFoundFn}
