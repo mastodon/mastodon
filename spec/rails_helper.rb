@@ -116,7 +116,7 @@ RSpec.configure do |config|
   end
 
   config.before :each, type: :request do
-    host! ENV.fetch('LOCAL_DOMAIN')
+    host! ENV.fetch('WEB_DOMAIN')
   end
 
   config.before do |example|
