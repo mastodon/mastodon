@@ -26,6 +26,7 @@ Sidekiq.configure_server do |config|
           'queue' => 'scheduler',
         },
       }
+      SidekiqScheduler::Scheduler.instance.reload_schedule!
     end
   end
 
