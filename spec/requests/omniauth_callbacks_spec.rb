@@ -60,11 +60,13 @@ describe 'OmniAuth callbacks' do
         end
 
         context 'when ALLOW_UNSAFE_AUTH_PROVIDER_REATTACH is not set to true' do
-          it 'does not match the existing user or create an identity' do
+          it 'does not match the existing user or create an identity, and redirects to login page' do
             expect { subject }
               .to not_change(User, :count)
               .and not_change(Identity, :count)
               .and not_change(LoginActivity, :count)
+
+            expect(response).to redirect_to(new_user_session_url)
           end
         end
       end
