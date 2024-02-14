@@ -126,6 +126,18 @@ describe '/api/v1/statuses' do
           expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
           expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
         end
+
+        it 'returns expected status', :aggregate_failures do
+          subject
+
+          expect(body_as_json).to match a_hash_including(
+            {
+              content: '<p>Hello world</p>',
+            }
+          )
+
+          expect(Status.find_by(text: 'Hello world')).to be_present
+        end
       end
 
       context 'with a safeguard' do
@@ -165,6 +177,16 @@ describe '/api/v1/statuses' do
           expect(response).to have_http_status(429)
           expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
           expect(response.headers['X-RateLimit-Remaining']).to eq '0'
+        end
+      end
+
+      context 'with missing thread' do
+        let(:params) { { status: 'Hello world', in_reply_to_id: 0 } }
+
+        it 'returns http not found' do
+          subject
+
+          expect(response).to have_http_status(404)
         end
       end
     end
