@@ -8,6 +8,25 @@ All notable changes to this project will be documented in this file.
 **The 3.5.x branch has reached its end of life and will not receive any further update.**
 This means that no security fix will be made available for this branch after this date, and you will need to update to a more recent version (such as the 4.2.x branch) to receive security fixes.
 
+## [3.5.18] - 2024-02-14
+
+### Security
+
+- Update the `sidekiq-unique-jobs` dependency (see [GHSA-cmh9-rx85-xj38](https://github.com/mhenrixon/sidekiq-unique-jobs/security/advisories/GHSA-cmh9-rx85-xj38))
+  In addition, we have disabled the web interface for `sidekiq-unique-jobs` out of caution.
+  If you need it, you can re-enable it by setting `ENABLE_SIDEKIQ_UNIQUE_JOBS_UI=true`.
+  If you only need to clear all locks, you can now use `bundle exec rake sidekiq_unique_jobs:delete_all_locks`.
+- Update the `nokogiri` dependency (see [GHSA-xc9x-jj77-9p9j](https://github.com/sparklemotion/nokogiri/security/advisories/GHSA-xc9x-jj77-9p9j))
+- Disable administrative Doorkeeper routes ([ThisIsMissEm](https://github.com/mastodon/mastodon/pull/29187))
+- Fix ongoing streaming sessions not being invalidated when applications get deleted in some cases ([GHSA-7w3c-p9j8-mq3x](https://github.com/mastodon/mastodon/security/advisories/GHSA-7w3c-p9j8-mq3x))
+  In some rare cases, the streaming server was not notified of access tokens revocation on application deletion.
+- Change external authentication behavior to never reattach a new identity to an existing user by default ([GHSA-vm39-j3vx-pch3](https://github.com/mastodon/mastodon/security/advisories/GHSA-vm39-j3vx-pch3))
+  Up until now, Mastodon has allowed new identities from external authentication providers to attach to an existing local user based on their verified e-mail address.
+  This allowed upgrading users from a database-stored password to an external authentication provider, or move from one authentication provider to another.
+  However, this behavior may be unexpected, and means that when multiple authentication providers are configured, the overall security would be that of the least secure authentication provider.
+  For these reasons, this behavior is now locked under the `ALLOW_UNSAFE_AUTH_PROVIDER_REATTACH` environment variable.
+  In addition, regardless of this environment variable, Mastodon will refuse to attach two identities from the same authentication provider to the same account.
+
 ## [3.5.17] - 2024-02-01
 
 ### Security
