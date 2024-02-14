@@ -96,7 +96,7 @@ describe 'OmniAuth callbacks' do
 
     context 'when a user cannot be built' do
       before do
-        allow(User).to receive(:find_for_oauth).and_return(User.new)
+        allow(User).to receive(:find_for_omniauth).and_return(User.new)
       end
 
       it 'redirects to the new user signup page' do

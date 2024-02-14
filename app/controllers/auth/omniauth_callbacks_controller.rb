@@ -6,7 +6,7 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def self.provides_callback_for(provider)
     define_method provider do
       @provider = provider
-      @user = User.find_for_oauth(request.env['omniauth.auth'], current_user)
+      @user = User.find_for_omniauth(request.env['omniauth.auth'], current_user)
 
       if @user.persisted?
         record_login_activity
