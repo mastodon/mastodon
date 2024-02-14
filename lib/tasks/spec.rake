@@ -6,6 +6,7 @@ if Rake::Task.task_defined?('spec:system')
       ENV['LOCAL_DOMAIN'] = 'localhost:3000'
       ENV['LOCAL_HTTPS'] = 'false'
       ENV['RUN_SYSTEM_SPECS'] = 'true'
+      ENV['WEB_DOMAIN'] = 'localhost:3000'
     end
   end
 
