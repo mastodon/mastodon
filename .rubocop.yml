@@ -134,6 +134,11 @@ Rails/UnusedIgnoredColumns:
 Rails/NegateInclude:
   Enabled: false
 
+# Reason: Enforce default limit, but allow some elements to span lines
+# https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecexamplelength
+RSpec/ExampleLength:
+  CountAsOne: ['array', 'heredoc', 'method_call']
+
 # Reason: Deprecated cop, will be removed in 3.0, replaced by SpecFilePathFormat
 # https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecfilepath
 RSpec/FilePath:
