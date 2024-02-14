@@ -39,16 +39,33 @@ describe 'OmniAuth callbacks' do
           Fabricate(:user, email: 'user@host.example')
         end
 
-        it 'matches the existing user, creates an identity, and redirects to root path' do
-          expect { subject }
-            .to not_change(User, :count)
-            .and change(Identity, :count)
-            .by(1)
-            .and change(LoginActivity, :count)
-            .by(1)
+        context 'when ALLOW_UNSAFE_AUTH_PROVIDER_REATTACH is set to true' do
+          around do |example|
+            ClimateControl.modify ALLOW_UNSAFE_AUTH_PROVIDER_REATTACH: 'true' do
+              example.run
+            end
+          end
 
-          expect(Identity.find_by(user: User.last).uid).to eq('123')
-          expect(response).to redirect_to(root_path)
+          it 'matches the existing user, creates an identity, and redirects to root path' do
+            expect { subject }
+              .to not_change(User, :count)
+              .and change(Identity, :count)
+              .by(1)
+              .and change(LoginActivity, :count)
+              .by(1)
+
+            expect(Identity.find_by(user: User.last).uid).to eq('123')
+            expect(response).to redirect_to(root_path)
+          end
+        end
+
+        context 'when ALLOW_UNSAFE_AUTH_PROVIDER_REATTACH is not set to true' do
+          it 'does not match the existing user or create an identity' do
+            expect { subject }
+              .to not_change(User, :count)
+              .and not_change(Identity, :count)
+              .and not_change(LoginActivity, :count)
+          end
         end
       end
 
