@@ -364,7 +364,10 @@ RSpec.describe User, type: :model do
     let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
     let!(:web_push_subscription) { Fabricate(:web_push_subscription, access_token: access_token) }
 
+    let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
+
     before do
+      allow(redis).to receive(:pipelined).and_yield(redis_pipeline_stub)
       user.reset_password!
     end
 
@@ -378,6 +381,10 @@ RSpec.describe User, type: :model do
 
     it 'revokes all access tokens' do
       expect(Doorkeeper::AccessToken.active_for(user).count).to eq 0
+    end
+
+    it 'revokes streaming access for all access tokens' do
+      expect(redis_pipeline_stub).to have_received(:publish).with("timeline:access_token:#{access_token.id}", Oj.dump(event: :kill)).once
     end
 
     it 'removes push subscriptions' do

@@ -340,6 +340,25 @@ class User < ApplicationRecord
     super
   end
 
+  def revoke_access!
+    Doorkeeper::AccessGrant.by_resource_owner(self).update_all(revoked_at: Time.now.utc)
+
+    Doorkeeper::AccessToken.by_resource_owner(self).in_batches do |batch|
+      batch.update_all(revoked_at: Time.now.utc)
+      Web::PushSubscription.where(access_token_id: batch).delete_all
+
+      # Revoke each access token for the Streaming API, since `update_all``
+      # doesn't trigger ActiveRecord Callbacks:
+      # TODO: #28793 Combine into a single topic
+      payload = Oj.dump(event: :kill)
+      redis.pipelined do |pipeline|
+        batch.ids.each do |id|
+          pipeline.publish("timeline:access_token:#{id}", payload)
+        end
+      end
+    end
+  end
+
   def reset_password!
     # First, change password to something random and deactivate all sessions
     transaction do
@@ -348,12 +367,7 @@ class User < ApplicationRecord
     end
 
     # Then, remove all authorized applications and connected push subscriptions
-    Doorkeeper::AccessGrant.by_resource_owner(self).in_batches.update_all(revoked_at: Time.now.utc)
-
-    Doorkeeper::AccessToken.by_resource_owner(self).in_batches do |batch|
-      batch.update_all(revoked_at: Time.now.utc)
-      Web::PushSubscription.where(access_token_id: batch).delete_all
-    end
+    revoke_access!
 
     # Finally, send a reset password prompt to the user
     send_reset_password_instructions
