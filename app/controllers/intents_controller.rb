@@ -1,27 +1,26 @@
 # frozen_string_literal: true
 
 class IntentsController < ApplicationController
-  before_action :check_uri
+  EXPECTED_SCHEME = 'web+mastodon'
 
+  before_action :handle_invalid_uri, unless: :valid_uri?
   rescue_from Addressable::URI::InvalidURIError, with: :handle_invalid_uri
 
   def show
-    if uri.scheme == 'web+mastodon'
-      case uri.host
-      when 'follow'
-        return redirect_to authorize_interaction_path(uri: uri.query_values['uri'].delete_prefix('acct:'))
-      when 'share'
-        return redirect_to share_path(text: uri.query_values['text'])
-      end
+    case uri.host
+    when 'follow'
+      redirect_to authorize_interaction_path(uri: uri.query_values['uri'].delete_prefix('acct:'))
+    when 'share'
+      redirect_to share_path(text: uri.query_values['text'])
+    else
+      handle_invalid_uri
     end
-
-    not_found
   end
 
   private
 
-  def check_uri
-    not_found if uri.blank?
+  def valid_uri?
+    uri.present? && uri.scheme == EXPECTED_SCHEME
   end
 
   def handle_invalid_uri

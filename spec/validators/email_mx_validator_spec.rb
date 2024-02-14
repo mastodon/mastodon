@@ -5,6 +5,7 @@ require 'rails_helper'
 describe EmailMxValidator do
   describe '#validate' do
     let(:user) { instance_double(User, email: 'foo@example.com', sign_up_ip: '1.2.3.4', errors: instance_double(ActiveModel::Errors, add: nil)) }
+    let(:resolv_dns_double) { instance_double(Resolv::DNS) }
 
     context 'with an e-mail domain that is explicitly allowed' do
       around do |block|
@@ -15,13 +16,7 @@ describe EmailMxValidator do
       end
 
       it 'does not add errors if there are no DNS records' do
-        resolver = instance_double(Resolv::DNS)
-
-        allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::MX).and_return([])
-        allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::A).and_return([])
-        allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::AAAA).and_return([])
-        allow(resolver).to receive(:timeouts=).and_return(nil)
-        allow(Resolv::DNS).to receive(:open).and_yield(resolver)
+        configure_resolver('example.com')
 
         subject.validate(user)
         expect(user.errors).to_not have_received(:add)
@@ -29,13 +24,7 @@ describe EmailMxValidator do
     end
 
     it 'adds no error if there are DNS records for the e-mail domain' do
-      resolver = instance_double(Resolv::DNS)
-
-      allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::MX).and_return([])
-      allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::A).and_return([Resolv::DNS::Resource::IN::A.new('192.0.2.42')])
-      allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::AAAA).and_return([])
-      allow(resolver).to receive(:timeouts=).and_return(nil)
-      allow(Resolv::DNS).to receive(:open).and_yield(resolver)
+      configure_resolver('example.com', a: resolv_double_a('192.0.2.42'))
 
       subject.validate(user)
       expect(user.errors).to_not have_received(:add)
@@ -58,13 +47,7 @@ describe EmailMxValidator do
     end
 
     it 'adds an error if the email domain name contains empty labels' do
-      resolver = instance_double(Resolv::DNS)
-
-      allow(resolver).to receive(:getresources).with('example..com', Resolv::DNS::Resource::IN::MX).and_return([])
-      allow(resolver).to receive(:getresources).with('example..com', Resolv::DNS::Resource::IN::A).and_return([Resolv::DNS::Resource::IN::A.new('192.0.2.42')])
-      allow(resolver).to receive(:getresources).with('example..com', Resolv::DNS::Resource::IN::AAAA).and_return([])
-      allow(resolver).to receive(:timeouts=).and_return(nil)
-      allow(Resolv::DNS).to receive(:open).and_yield(resolver)
+      configure_resolver('example..com', a: resolv_double_a('192.0.2.42'))
 
       user = instance_double(User, email: 'foo@example..com', sign_up_ip: '1.2.3.4', errors: instance_double(ActiveModel::Errors, add: nil))
       subject.validate(user)
@@ -72,30 +55,15 @@ describe EmailMxValidator do
     end
 
     it 'adds an error if there are no DNS records for the e-mail domain' do
-      resolver = instance_double(Resolv::DNS)
-
-      allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::MX).and_return([])
-      allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::A).and_return([])
-      allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::AAAA).and_return([])
-      allow(resolver).to receive(:timeouts=).and_return(nil)
-      allow(Resolv::DNS).to receive(:open).and_yield(resolver)
+      configure_resolver('example.com')
 
       subject.validate(user)
       expect(user.errors).to have_received(:add)
     end
 
     it 'adds an error if a MX record does not lead to an IP' do
-      resolver = instance_double(Resolv::DNS)
-
-      allow(resolver).to receive(:getresources)
-        .with('example.com', Resolv::DNS::Resource::IN::MX)
-        .and_return([instance_double(Resolv::DNS::Resource::MX, exchange: 'mail.example.com')])
-      allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::A).and_return([])
-      allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::AAAA).and_return([])
-      allow(resolver).to receive(:getresources).with('mail.example.com', Resolv::DNS::Resource::IN::A).and_return([])
-      allow(resolver).to receive(:getresources).with('mail.example.com', Resolv::DNS::Resource::IN::AAAA).and_return([])
-      allow(resolver).to receive(:timeouts=).and_return(nil)
-      allow(Resolv::DNS).to receive(:open).and_yield(resolver)
+      configure_resolver('example.com', mx: resolv_double_mx('mail.example.com'))
+      configure_resolver('mail.example.com')
 
       subject.validate(user)
       expect(user.errors).to have_received(:add)
@@ -103,20 +71,48 @@ describe EmailMxValidator do
 
     it 'adds an error if the MX record is blacklisted' do
       EmailDomainBlock.create!(domain: 'mail.example.com')
-      resolver = instance_double(Resolv::DNS)
 
-      allow(resolver).to receive(:getresources)
-        .with('example.com', Resolv::DNS::Resource::IN::MX)
-        .and_return([instance_double(Resolv::DNS::Resource::MX, exchange: 'mail.example.com')])
-      allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::A).and_return([])
-      allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::AAAA).and_return([])
-      allow(resolver).to receive(:getresources).with('mail.example.com', Resolv::DNS::Resource::IN::A).and_return([instance_double(Resolv::DNS::Resource::IN::A, address: '2.3.4.5')])
-      allow(resolver).to receive(:getresources).with('mail.example.com', Resolv::DNS::Resource::IN::AAAA).and_return([instance_double(Resolv::DNS::Resource::IN::AAAA, address: 'fd00::2')])
-      allow(resolver).to receive(:timeouts=).and_return(nil)
-      allow(Resolv::DNS).to receive(:open).and_yield(resolver)
+      configure_resolver(
+        'example.com',
+        mx: resolv_double_mx('mail.example.com')
+      )
+      configure_resolver(
+        'mail.example.com',
+        a: instance_double(Resolv::DNS::Resource::IN::A, address: '2.3.4.5'),
+        aaaa: instance_double(Resolv::DNS::Resource::IN::AAAA, address: 'fd00::2')
+      )
 
       subject.validate(user)
       expect(user.errors).to have_received(:add)
     end
+  end
+
+  def configure_resolver(domain, options = {})
+    allow(resolv_dns_double)
+      .to receive(:getresources)
+      .with(domain, Resolv::DNS::Resource::IN::MX)
+      .and_return(Array(options[:mx]))
+    allow(resolv_dns_double)
+      .to receive(:getresources)
+      .with(domain, Resolv::DNS::Resource::IN::A)
+      .and_return(Array(options[:a]))
+    allow(resolv_dns_double)
+      .to receive(:getresources)
+      .with(domain, Resolv::DNS::Resource::IN::AAAA)
+      .and_return(Array(options[:aaaa]))
+    allow(resolv_dns_double)
+      .to receive(:timeouts=)
+      .and_return(nil)
+    allow(Resolv::DNS)
+      .to receive(:open)
+      .and_yield(resolv_dns_double)
+  end
+
+  def resolv_double_mx(domain)
+    instance_double(Resolv::DNS::Resource::MX, exchange: domain)
+  end
+
+  def resolv_double_a(domain)
+    Resolv::DNS::Resource::IN::A.new(domain)
   end
 end

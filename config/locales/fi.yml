@@ -387,7 +387,7 @@ fi:
         cancel: Peruuta
         confirm: Jäädytä
         permanent_action: Jäädytyksen kumoaminen ei palauta mitään tietoja tai suhteita.
-        preamble_html: Olet jäädyttämässä verkkotunnuksen <strong>%{domain}</strong> ja sen aliverkkotunnukset.
+        preamble_html: Olet jäädyttämässä verkkotunnuksen <strong>%{domain}</strong> aliverkkotunnuksineen.
         remove_all_data: Tämä toiminto poistaa palvelimeltasi kaiken sisällön, median ja profiilitiedot tämän palvelun tileiltä.
         stop_communication: Palvelimesi lopettaa viestinnän näiden palvelinten kanssa.
         title: Vahvista verkkotunnuksen %{domain} esto
@@ -831,7 +831,7 @@ fi:
         suspend: "%{name} jäädytti käyttäjän %{target} tilin"
       appeal_approved: Valitti
       appeal_pending: Valitus vireillä
-      appeal_rejected: Muutoksenhaku hylättiin
+      appeal_rejected: Vetoomus hylättiin
     system_checks:
       database_schema_check:
         message_html: Tietokannan siirto on vireillä. Suorita ne varmistaaksesi, että sovellus toimii odotetulla tavalla
@@ -1043,10 +1043,10 @@ fi:
     confirmations:
       awaiting_review: Sähköpostiosoitteesi on vahvistettu! Seuraavaksi palvelimen %{domain} ylläpito tarkistaa rekisteröitymisesi, ja saat lopuksi ilmoituksen sähköpostitse, jos tilisi hyväksytään!
       awaiting_review_title: Rekisteröitymisesi on tarkistettavana
-      clicking_this_link: tästä linkistä
+      clicking_this_link: napsauttaa tätä linkkiä
       login_link: kirjautumalla sisään
       proceed_to_login_html: Voit nyt jatkaa %{login_link}.
-      redirect_to_app_html: Sinun olisi pitänyt ohjautua sovellukseen <strong>%{app_name}</strong>. Jos näin ei tapahtunut, yritä avata se %{clicking_this_link} tai palaa sovellukseen manuaalisesti.
+      redirect_to_app_html: Sinun olisi pitänyt ohjautua sovellukseen <strong>%{app_name}</strong>. Jos näin ei tapahtunut, voit %{clicking_this_link} tai palata sovellukseen käsikäyttöisesti.
       registration_complete: Rekisteröitymisesi palvelimelle %{domain} on nyt valmis!
       welcome_title: Tervetuloa, %{name}!
       wrong_email_hint: Jos sähköpostiosoite ei ole oikein, voit muuttaa sen tilin asetuksista.
@@ -1547,7 +1547,7 @@ fi:
       limit_reached: Erilaisten reaktioiden raja saavutettu
       unrecognized_emoji: ei ole tunnistettu emoji
   redirects:
-    prompt: Jos luotat tähän linkkiin, jatka napsauttamalla.
+    prompt: Mikäli luotat linkkiin, jatka napsauttaen sitä.
     title: Olet poistumassa palvelimelta %{instance}.
   relationships:
     activity: Tilin aktiivisuus
@@ -1560,7 +1560,7 @@ fi:
     followers: Seuraajat
     following: Seuratut
     invited: Kutsutut
-    last_active: Viimeksi aktiivinen
+    last_active: Viimeksi aktiiviset
     most_recent: Viimeisimmät
     moved: Muuttaneet
     mutual: Seuraatte toisianne
@@ -1794,11 +1794,11 @@ fi:
       subject: Arkisto on valmiina ladattavaksi
       title: Arkiston tallennus
     failed_2fa:
-      details: 'Tässä on tietoja kirjautumisyrityksestä:'
-      explanation: Joku on yrittänyt kirjautua tilillesi mutta on antanut virheellisen toisen vaiheen todennustekijän.
+      details: 'Sisäänkirjautumispyrkimyksen yksityiskohtaiset tiedot:'
+      explanation: Joku on yrittänyt kirjautua tilillesi antaen väärän toisen todennustunnisteen.
       further_actions_html: Jos se et ollut sinä, suosittelemme, että %{action} välittömästi, sillä se on saattanut vaarantua.
       subject: Kaksivaiheisen todennuksen virhe
-      title: Epäonnistunut kaksivaiheinen todennus
+      title: Kaksivaihekirjautumisen toinen vaihe epäonnistui
     suspicious_sign_in:
       change_password: vaihda salasanasi
       details: 'Tässä on tiedot kirjautumisesta:'
@@ -1852,7 +1852,7 @@ fi:
     go_to_sso_account_settings: Avaa identiteettitarjoajasi tiliasetukset
     invalid_otp_token: Virheellinen kaksivaiheisen todentamisen koodi
     otp_lost_help_html: Jos sinulla ei ole pääsyä kumpaankaan, voit ottaa yhteyden osoitteeseen %{email}
-    rate_limited: Liian monta todennusyritystä. Yritä myöhemmin uudelleen.
+    rate_limited: Liian monta todennusyritystä – yritä uudelleen myöhemmin.
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
     signed_in_as: 'Kirjautunut tilillä:'
   verification:
