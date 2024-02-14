@@ -8,17 +8,6 @@ GIT
       jwt (~> 2.0)
 
 GIT
-  remote: https://github.com/jhawthorn/nsa.git
-  revision: e020fcc3a54d993ab45b7194d89ab720296c111b
-  ref: e020fcc3a54d993ab45b7194d89ab720296c111b
-  specs:
-    nsa (0.2.8)
-      activesupport (>= 4.2, < 7.2)
-      concurrent-ruby (~> 1.0, >= 1.0.2)
-      sidekiq (>= 3.5)
-      statsd-ruby (~> 1.4, >= 1.4.0)
-
-GIT
   remote: https://github.com/mastodon/rails-settings-cached.git
   revision: 86328ef0bd04ce21cc0504ff5e334591e8c2ccab
   branch: v0.6.6-aliases-true
@@ -483,6 +472,11 @@ GEM
     nokogiri (1.16.2)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
+    nsa (0.3.0)
+      activesupport (>= 4.2, < 7.2)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      sidekiq (>= 3.5)
+      statsd-ruby (~> 1.4, >= 1.4.0)
     oj (3.16.1)
     omniauth (2.1.1)
       hashie (>= 3.4.6)
@@ -884,7 +878,7 @@ DEPENDENCIES
   net-http (~> 0.3.2)
   net-ldap (~> 0.18)
   nokogiri (~> 1.15)
-  nsa!
+  nsa
   oj (~> 3.14)
   omniauth (~> 2.0)
   omniauth-cas!
