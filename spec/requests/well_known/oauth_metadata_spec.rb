@@ -22,6 +22,7 @@ describe 'The /.well-known/oauth-authorization-server request' do
     grant_types_supported << 'refresh_token' if Doorkeeper.configuration.refresh_token_enabled?
 
     expect(body_as_json).to include(
+      issuer: root_url(protocol: protocol),
       authorization_endpoint: oauth_authorization_url(protocol: protocol),
       token_endpoint: oauth_token_url(protocol: protocol),
       registration_endpoint: api_v1_apps_url(protocol: protocol),
