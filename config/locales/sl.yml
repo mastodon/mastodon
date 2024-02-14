@@ -1598,6 +1598,9 @@ sl:
     errors:
       limit_reached: Dosežena omejitev različnih reakcij/odzivov
       unrecognized_emoji: ni prepoznan emotikon
+  redirects:
+    prompt: Če zaupate tej povezavi, jo kliknite za nadaljevanje.
+    title: Zapuščate %{instance}.
   relationships:
     activity: Dejavnost računa
     confirm_follow_selected_followers: Ali ste prepričani, da želite slediti izbranim sledilcem?
@@ -1854,6 +1857,12 @@ sl:
       extra: Zdaj je na voljo za prenos!
       subject: Vaš arhiv je pripravljen za prenos
       title: Prevzem arhiva
+    failed_2fa:
+      details: 'Tukaj so podrobnosti poskusa prijave:'
+      explanation: Nekdo se je poskusil prijaviti v vaš račun, vendar ni podal veljavnega drugega faktorja preverjanja pristnosti.
+      further_actions_html: Če to niste bili vi, priporočamo, da takoj %{action}, ker je lahko ogrožena varnost.
+      subject: Napaka preverjanja pristnosti z drugim faktorjem
+      title: Preverjanje pristnosti z drugim faktorjem je spodletelo
     suspicious_sign_in:
       change_password: spremenite svoje geslo
       details: 'Tukaj so podrobnosti prijave:'

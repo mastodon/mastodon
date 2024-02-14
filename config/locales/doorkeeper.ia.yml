@@ -34,6 +34,8 @@ ia:
       confirmations:
         revoke: Es tu secur?
       index:
+        last_used_at: Ultime uso in %{date}
+        never_used: Nunquam usate
         scopes: Permissiones
         title: Tu applicationes autorisate
     flash:
@@ -53,6 +55,7 @@ ia:
         conversations: Conversationes
         favourites: Favoritos
         lists: Listas
+        mutes: Silentiates
         notifications: Notificationes
         push: Notificationes push
         search: Cercar
@@ -63,15 +66,23 @@ ia:
           applications: Applicationes
           oauth2_provider: Fornitor OAuth2
     scopes:
+      admin:read: leger tote le datos in le servitor
+      read: leger tote le datos de tu conto
+      read:accounts: vider informationes de conto
       read:favourites: vider tu favoritos
+      read:filters: vider tu filtros
       read:lists: vider tu listas
       read:notifications: vider tu notificationes
+      read:reports: vider tu reportos
       read:statuses: vider tote le messages
       write:accounts: modificar tu profilo
       write:blocks: blocar contos e dominios
+      write:conversations: silentiar e deler conversationes
       write:favourites: messages favorite
       write:filters: crear filtros
+      write:follows: sequer personas
       write:lists: crear listas
       write:media: incargar files de medios
+      write:mutes: silentiar personas e conversationes
       write:notifications: rader tu notificationes
       write:statuses: publicar messages
