@@ -194,7 +194,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     account = account_from_uri(tag['href'])
     begin
       account = ActivityPub::FetchRemoteAccountService.new.call(tag['href'], request_id: @options[:request_id]) if account.nil?
-    rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, HTTP::OpenSSL::SSLError
+    rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
       account = nil
     end
 
