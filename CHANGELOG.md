@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 **The 3.5.x branch has reached its end of life and will not receive any further update.**
 This means that no security fix will be made available for this branch after this date, and you will need to update to a more recent version (such as the 4.2.x branch) to receive security fixes.
 
+## [3.5.19] - 2024-02-16
+
+### Fixed
+
+- Fix OmniAuth tests and edge cases in error handling ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/29201), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/29207))
+
+### Security
+
+- Fix insufficient checking of remote posts ([GHSA-jhrq-qvrm-qr36](https://github.com/mastodon/mastodon/security/advisories/GHSA-jhrq-qvrm-qr36))
+
 ## [3.5.18] - 2024-02-14
 
 ### Security
