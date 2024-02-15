@@ -3,6 +3,16 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [4.1.15] - 2024-02-16
+
+### Fixed
+
+- Fix OmniAuth tests and edge cases in error handling ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/29201), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/29207))
+
+### Security
+
+- Fix insufficient checking of remote posts ([GHSA-jhrq-qvrm-qr36](https://github.com/mastodon/mastodon/security/advisories/GHSA-jhrq-qvrm-qr36))
+
 ## [4.1.14] - 2024-02-14
 
 ### Security
