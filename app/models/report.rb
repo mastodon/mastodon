@@ -55,7 +55,7 @@ class Report < ApplicationRecord
   # - app/javascript/mastodon/features/notifications/components/report.jsx
   # - app/javascript/mastodon/features/report/category.jsx
   # - app/javascript/mastodon/components/admin/ReportReasonSelector.jsx
-  enum category: {
+  enum :category, {
     other: 0,
     spam: 1_000,
     legal: 1_500,
