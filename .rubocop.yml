@@ -138,6 +138,11 @@ RSpec/ExampleLength:
 RSpec/FilePath:
   Enabled: false
 
+# Reason: Enforce a limit while allowing for more complex examples to exist
+# https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecmultipleexpectations
+RSpec/MultipleExpectations:
+  Max: 5 # Override default of 1
+
 # Reason:
 # https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecnamedsubject
 RSpec/NamedSubject:
