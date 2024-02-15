@@ -137,6 +137,7 @@ RSpec.describe ActivityPub::Activity::Create do
     end
 
     it 'ignores unprocessable mention', :aggregate_failures do
+      stub_request(:get, invalid_mention_json[:tag][:href]).to_return(status: 500)
       # When receiving the post that contains an invalid mention…
       described_class.new(activity_for_object(invalid_mention_json), sender, delivery: true).perform
 
