@@ -324,6 +324,14 @@ $content-width: 840px;
       padding-bottom: 0;
       margin-bottom: 0;
       border-bottom: 0;
+
+      .private-comment {
+        color: $darker-text-color;
+      }
+
+      .public-comment {
+        color: $secondary-text-color;
+      }
     }
 
     & > p {
