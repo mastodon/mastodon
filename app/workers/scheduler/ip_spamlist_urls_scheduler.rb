@@ -57,14 +57,14 @@ class Scheduler::IPSpamlistURLScheduler
 
   def add_ip_limit_addresses!
     @limitips.each do |ip|
-      ip_limit = Iplimit.find_by(ip: ip)
+      ip_limit = IpBlock.find_by(ip: ip)
 
       if ip_limit.present?
         ip_limit.update(expires_in: 24.hours.to_i)
         next
       end
 
-      Iplimit.create(
+      IpBlock.create(
         ip: ip,
         severity: :sign_up_requires_approval,
         comment: 'Scheduled IPLimit',
