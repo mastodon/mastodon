@@ -176,7 +176,19 @@ module JsonLdHelper
     build_request(uri, on_behalf_of).perform do |response|
       raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response) || !raise_on_temporary_error
 
-      body_to_json(response.body_with_limit) if response.code == 200
+      body_to_json(response.body_with_limit) if response.code == 200 && valid_activitypub_content_type?(response)
+    end
+  end
+
+  def valid_activitypub_content_type?(response)
+    return true if response.mime_type == 'application/activity+json'
+
+    # When the mime type is `application/ld+json`, we need to check the profile,
+    # but `http.rb` does not parse it for us.
+    return false unless response.mime_type == 'application/ld+json'
+
+    response.headers[HTTP::Headers::CONTENT_TYPE]&.split(';')&.map(&:strip)&.any? do |str|
+      str.start_with?('profile="') && str[9...-1].split.include?('https://www.w3.org/ns/activitystreams')
     end
   end
 

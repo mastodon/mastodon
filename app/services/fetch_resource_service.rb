@@ -43,7 +43,7 @@ class FetchResourceService < BaseService
     @response_code = response.code
     return nil if response.code != 200
 
-    if ['application/activity+json', 'application/ld+json'].include?(response.mime_type)
+    if valid_activitypub_content_type?(response)
       body = response.body_with_limit
       json = body_to_json(body)
 
