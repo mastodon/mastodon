@@ -6,19 +6,15 @@ class Scheduler::IPSpamlistURLScheduler
   sidekiq_options retry: 0
 
   def perform
-    if ENV['SCHEDULED_IPBLOCK_URLS'].present?
-      @block_url = ENV['SCHEDULED_IPBLOCK_URLS']
-      @blockips = []
-      grab_ip_blocks_addresses!
-      add_ip_blocks_addresses!
-    end
-
-    if ENV['SCHEDULED_IPLIMIT_URLS'].present?
-      @limit_url = ENV['SCHEDULED_IPBLIMIT_URLS']
-      @limitips = []
-      grab_ip_limit_addresses!
-      add_ip_limit_addresses!
-    end
+    @block_url = ENV['SCHEDULED_IPBLOCK_URLS'] if ENV['SCHEDULED_IPBLOCK_URLS'].present?
+    @blockips = []
+    grab_ip_blocks_addresses! if ENV['SCHEDULED_IPBLOCK_URLS'].present?
+    add_ip_blocks_addresses! if ENV['SCHEDULED_IPBLOCK_URLS'].present?
+    
+    @limit_url = ENV['SCHEDULED_IPBLIMIT_URLS'] if ENV['SCHEDULED_IPLIMIT_URLS'].present?
+    @limitips = []
+    grab_ip_limit_addresses! if ENV['SCHEDULED_IPLIMIT_URLS'].present?
+    add_ip_limit_addresses! if ENV['SCHEDULED_IPLIMIT_URLS'].present?
   end
 
   def grab_ip_blocks_addresses!
