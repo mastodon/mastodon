@@ -119,17 +119,12 @@ describe '/api/v1/statuses' do
       it_behaves_like 'forbidden for wrong scope', 'read read:statuses'
 
       context 'with a basic status body' do
-        it 'returns rate limit headers', :aggregate_failures do
+        it 'returns rate limit headers and the expected status', :aggregate_failures do
           subject
 
           expect(response).to have_http_status(200)
           expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
           expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
-        end
-
-        it 'returns expected status', :aggregate_failures do
-          subject
-
           expect(body_as_json).to match a_hash_including(
             {
               content: '<p>Hello world</p>',
