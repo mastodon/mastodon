@@ -193,6 +193,7 @@ module LanguagesHelper
     cnr: ['Montenegrin', 'crnogorski'].freeze,
     jbo: ['Lojban', 'la .lojban.'].freeze,
     kab: ['Kabyle', 'Taqbaylit'].freeze,
+    lad: ['Ladino (Judeo-Spanish)', 'Ladino (Djudezmo)'].freeze,    
     ldn: ['Láadan', 'Láadan'].freeze,
     lfn: ['Lingua Franca Nova', 'lingua franca nova'].freeze,
     sco: ['Scots', 'Scots'].freeze,
