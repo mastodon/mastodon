@@ -63,3 +63,7 @@
       interval: 30 minutes
       class: Scheduler::SoftwareUpdateCheckScheduler
       queue: scheduler
+    ip_spamlist_URL_scheduler:
+      every: '24h'
+      class: Scheduler::IPSpamlistURLScheduler
+      queue: scheduler
