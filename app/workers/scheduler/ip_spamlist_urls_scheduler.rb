@@ -64,5 +64,5 @@ class Scheduler::IPSpamlistURLScheduler
         expires_in: 24.hours.to_i
       )
     end
-  end  
+  end
 end
