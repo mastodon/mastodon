@@ -53,7 +53,7 @@ RSpec.describe ActivityPub::FetchRepliesService, type: :service do
 
       context 'when passing the URL to the collection' do
         before do
-          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload))
+          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
         end
 
         it 'spawns workers for up to 5 replies on the same server' do
@@ -82,7 +82,7 @@ RSpec.describe ActivityPub::FetchRepliesService, type: :service do
 
       context 'when passing the URL to the collection' do
         before do
-          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload))
+          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
         end
 
         it 'spawns workers for up to 5 replies on the same server' do
@@ -115,7 +115,7 @@ RSpec.describe ActivityPub::FetchRepliesService, type: :service do
 
       context 'when passing the URL to the collection' do
         before do
-          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload))
+          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
         end
 
         it 'spawns workers for up to 5 replies on the same server' do

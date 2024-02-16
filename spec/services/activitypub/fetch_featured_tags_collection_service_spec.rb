@@ -36,7 +36,7 @@ RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService, type: :service d
   describe '#call' do
     context 'when the endpoint is a Collection' do
       before do
-        stub_request(:get, collection_url).to_return(status: 200, body: Oj.dump(payload))
+        stub_request(:get, collection_url).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'sets featured tags'
@@ -44,7 +44,7 @@ RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService, type: :service d
 
     context 'when the account already has featured tags' do
       before do
-        stub_request(:get, collection_url).to_return(status: 200, body: Oj.dump(payload))
+        stub_request(:get, collection_url).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
 
         actor.featured_tags.create!(name: 'FoO')
         actor.featured_tags.create!(name: 'baz')
@@ -65,7 +65,7 @@ RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService, type: :service d
       end
 
       before do
-        stub_request(:get, collection_url).to_return(status: 200, body: Oj.dump(payload))
+        stub_request(:get, collection_url).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'sets featured tags'
@@ -86,7 +86,7 @@ RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService, type: :service d
       end
 
       before do
-        stub_request(:get, collection_url).to_return(status: 200, body: Oj.dump(payload))
+        stub_request(:get, collection_url).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'sets featured tags'

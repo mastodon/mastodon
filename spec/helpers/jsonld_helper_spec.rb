@@ -56,15 +56,15 @@ describe JsonLdHelper do
   describe '#fetch_resource' do
     context 'when the second argument is false' do
       it 'returns resource even if the retrieved ID and the given URI does not match' do
-        stub_request(:get, 'https://bob.test/').to_return body: '{"id": "https://alice.test/"}'
-        stub_request(:get, 'https://alice.test/').to_return body: '{"id": "https://alice.test/"}'
+        stub_request(:get, 'https://bob.test/').to_return(body: '{"id": "https://alice.test/"}', headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, 'https://alice.test/').to_return(body: '{"id": "https://alice.test/"}', headers: { 'Content-Type': 'application/activity+json' })
 
         expect(fetch_resource('https://bob.test/', false)).to eq({ 'id' => 'https://alice.test/' })
       end
 
       it 'returns nil if the object identified by the given URI and the object identified by the retrieved ID does not match' do
-        stub_request(:get, 'https://mallory.test/').to_return body: '{"id": "https://marvin.test/"}'
-        stub_request(:get, 'https://marvin.test/').to_return body: '{"id": "https://alice.test/"}'
+        stub_request(:get, 'https://mallory.test/').to_return(body: '{"id": "https://marvin.test/"}', headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, 'https://marvin.test/').to_return(body: '{"id": "https://alice.test/"}', headers: { 'Content-Type': 'application/activity+json' })
 
         expect(fetch_resource('https://mallory.test/', false)).to eq nil
       end
@@ -72,7 +72,7 @@ describe JsonLdHelper do
 
     context 'when the second argument is true' do
       it 'returns nil if the retrieved ID and the given URI does not match' do
-        stub_request(:get, 'https://mallory.test/').to_return body: '{"id": "https://alice.test/"}'
+        stub_request(:get, 'https://mallory.test/').to_return(body: '{"id": "https://alice.test/"}', headers: { 'Content-Type': 'application/activity+json' })
         expect(fetch_resource('https://mallory.test/', true)).to eq nil
       end
     end
@@ -80,12 +80,12 @@ describe JsonLdHelper do
 
   describe '#fetch_resource_without_id_validation' do
     it 'returns nil if the status code is not 200' do
-      stub_request(:get, 'https://host.test/').to_return status: 400, body: '{}'
+      stub_request(:get, 'https://host.test/').to_return(status: 400, body: '{}', headers: { 'Content-Type': 'application/activity+json' })
       expect(fetch_resource_without_id_validation('https://host.test/')).to eq nil
     end
 
     it 'returns hash' do
-      stub_request(:get, 'https://host.test/').to_return status: 200, body: '{}'
+      stub_request(:get, 'https://host.test/').to_return(status: 200, body: '{}', headers: { 'Content-Type': 'application/activity+json' })
       expect(fetch_resource_without_id_validation('https://host.test/')).to eq({})
     end
   end
