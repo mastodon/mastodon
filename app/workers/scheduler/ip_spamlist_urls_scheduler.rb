@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Scheduler::IPSpamlistURLScheduler
+class Scheduler::IpSpamlistUrlsScheduler
   include Sidekiq::Worker
 
   sidekiq_options retry: 0
