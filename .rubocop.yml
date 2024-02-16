@@ -96,12 +96,6 @@ Rails/FilePath:
 Rails/HttpStatus:
   EnforcedStyle: numeric
 
-# Reason: Allowed in boot ENV checker
-# https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsexit
-Rails/Exit:
-  Exclude:
-    - 'config/boot.rb'
-
 # Reason: Conflicts with `Lint/UselessMethodDefinition` for inherited controller actions
 # https://docs.rubocop.org/rubocop-rails/cops_rails.html#railslexicallyscopedactionfilter
 Rails/LexicallyScopedActionFilter:
