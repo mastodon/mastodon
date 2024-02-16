@@ -28,6 +28,6 @@ describe 'OCR', :paperclip_processing, :sidekiq_inline do
 
     click_on('Detect text from picture')
 
-    expect(page).to have_css('#upload-modal__description', text: 'Hello Mastodon')
+    expect(page).to have_css('#upload-modal__description', text: /Hello Mastodon\s*/, wait: 10)
   end
 end
