@@ -72,5 +72,4 @@ class Scheduler::IPSpamlistURLScheduler
       )
     end
   end  
-
 end
