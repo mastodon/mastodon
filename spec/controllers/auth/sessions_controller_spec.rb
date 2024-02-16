@@ -57,11 +57,9 @@ RSpec.describe Auth::SessionsController do
           post :create, params: { user: { email: 'pam_user1', password: '123456' } }
         end
 
-        it 'redirects to home' do
+        it 'redirects to home and logs the user in' do
           expect(response).to redirect_to(root_path)
-        end
 
-        it 'logs the user in' do
           expect(controller.current_user).to be_instance_of(User)
         end
       end
@@ -71,11 +69,9 @@ RSpec.describe Auth::SessionsController do
           post :create, params: { user: { email: 'pam_user1', password: 'WRONGPW' } }
         end
 
-        it 'shows a login error' do
+        it 'shows a login error and does not log the user in' do
           expect(flash[:alert]).to match I18n.t('devise.failure.invalid', authentication_keys: I18n.t('activerecord.attributes.user.email'))
-        end
 
-        it "doesn't log the user in" do
           expect(controller.current_user).to be_nil
         end
       end
@@ -92,11 +88,9 @@ RSpec.describe Auth::SessionsController do
           post :create, params: { user: { email: user.email, password: '123456' } }
         end
 
-        it 'redirects to home' do
+        it 'redirects to home and logs the user in' do
           expect(response).to redirect_to(root_path)
-        end
 
-        it 'logs the user in' do
           expect(controller.current_user).to eq user
         end
       end
@@ -110,16 +104,16 @@ RSpec.describe Auth::SessionsController do
           post :create, params: { user: { email: user.email, password: user.password } }
         end
 
-        it 'redirects to home' do
+        it 'redirects to home and logs the user in' do
           expect(response).to redirect_to(root_path)
-        end
 
-        it 'logs the user in' do
           expect(controller.current_user).to eq user
         end
       end
 
       context 'when using a valid password on a previously-used account with a new IP address' do
+        subject { post :create, params: { user: { email: user.email, password: user.password } } }
+
         let(:previous_ip) { '1.2.3.4' }
         let(:current_ip)  { '4.3.2.1' }
 
@@ -127,18 +121,17 @@ RSpec.describe Auth::SessionsController do
           Fabricate(:login_activity, user: user, ip: previous_ip)
           allow(controller.request).to receive(:remote_ip).and_return(current_ip)
           user.update(current_sign_in_at: 1.month.ago)
-          post :create, params: { user: { email: user.email, password: user.password } }
         end
 
-        it 'redirects to home' do
-          expect(response).to redirect_to(root_path)
-        end
+        it 'logs the user in and sends suspicious email and redirects home', :sidekiq_inline do
+          subject
 
-        it 'logs the user in' do
-          expect(controller.current_user).to eq user
-        end
+          expect(response)
+            .to redirect_to(root_path)
 
-        it 'sends a suspicious sign-in mail', :sidekiq_inline do
+          expect(controller.current_user)
+            .to eq user
+
           expect(UserMailer.deliveries.size).to eq(1)
           expect(UserMailer.deliveries.first.to.first).to eq(user.email)
           expect(UserMailer.deliveries.first.subject).to eq(I18n.t('user_mailer.suspicious_sign_in.subject'))
@@ -150,11 +143,9 @@ RSpec.describe Auth::SessionsController do
           post :create, params: { user: { email: user.email.upcase, password: user.password } }
         end
 
-        it 'redirects to home' do
+        it 'redirects to home and logs the user in' do
           expect(response).to redirect_to(root_path)
-        end
 
-        it 'logs the user in' do
           expect(controller.current_user).to eq user
         end
       end
@@ -164,11 +155,9 @@ RSpec.describe Auth::SessionsController do
           post :create, params: { user: { email: user.email, password: 'wrongpw' } }
         end
 
-        it 'shows a login error' do
+        it 'shows a login error and does not log the user in' do
           expect(flash[:alert]).to match I18n.t('devise.failure.invalid', authentication_keys: I18n.t('activerecord.attributes.user.email'))
-        end
 
-        it "doesn't log the user in" do
           expect(controller.current_user).to be_nil
         end
       end
@@ -270,7 +259,7 @@ RSpec.describe Auth::SessionsController do
             travel_to '2023-12-20T10:00:00Z'
           end
 
-          it 'does not log the user in' do
+          it 'does not log the user in, sets a flash message, and sends a suspicious sign in email', :sidekiq_inline do
             Auth::SessionsController::MAX_2FA_ATTEMPTS_PER_HOUR.times do
               post :create, params: { user: { otp_attempt: '1234' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
               expect(controller.current_user).to be_nil
@@ -278,17 +267,10 @@ RSpec.describe Auth::SessionsController do
 
             post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
 
-            expect(controller.current_user).to be_nil
-            expect(flash[:alert]).to match I18n.t('users.rate_limited')
-          end
-
-          it 'sends a suspicious sign-in mail', :sidekiq_inline do
-            Auth::SessionsController::MAX_2FA_ATTEMPTS_PER_HOUR.times do
-              post :create, params: { user: { otp_attempt: '1234' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
-              expect(controller.current_user).to be_nil
-            end
-
-            post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+            expect(controller.current_user)
+              .to be_nil
+            expect(flash[:alert])
+              .to match I18n.t('users.rate_limited')
 
             expect(UserMailer.deliveries.size).to eq(1)
             expect(UserMailer.deliveries.first.to.first).to eq(user.email)
@@ -301,11 +283,9 @@ RSpec.describe Auth::SessionsController do
             post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 
-          it 'redirects to home' do
+          it 'redirects to home and logs the user in' do
             expect(response).to redirect_to(root_path)
-          end
 
-          it 'logs the user in' do
             expect(controller.current_user).to eq user
           end
         end
@@ -318,11 +298,9 @@ RSpec.describe Auth::SessionsController do
             post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 
-          it 'shows a login error' do
+          it 'shows a login error and does not log the user in' do
             expect(flash[:alert]).to match I18n.t('users.invalid_otp_token')
-          end
 
-          it "doesn't log the user in" do
             expect(controller.current_user).to be_nil
           end
         end
@@ -332,11 +310,9 @@ RSpec.describe Auth::SessionsController do
             post :create, params: { user: { otp_attempt: recovery_codes.first } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 
-          it 'redirects to home' do
+          it 'redirects to home and logs the user in' do
             expect(response).to redirect_to(root_path)
-          end
 
-          it 'logs the user in' do
             expect(controller.current_user).to eq user
           end
         end
@@ -346,11 +322,9 @@ RSpec.describe Auth::SessionsController do
             post :create, params: { user: { otp_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 
-          it 'shows a login error' do
+          it 'shows a login error and does not log the user in' do
             expect(flash[:alert]).to match I18n.t('users.invalid_otp_token')
-          end
 
-          it "doesn't log the user in" do
             expect(controller.current_user).to be_nil
           end
         end
@@ -417,15 +391,11 @@ RSpec.describe Auth::SessionsController do
             post :create, params: { user: { credential: fake_credential } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 
-          it 'instructs the browser to redirect to home' do
+          it 'instructs the browser to redirect to home, logs the user in, and updates the sign count' do
             expect(body_as_json[:redirect_path]).to eq(root_path)
-          end
 
-          it 'logs the user in' do
             expect(controller.current_user).to eq user
-          end
 
-          it 'updates the sign count' do
             expect(webauthn_credential.reload.sign_count).to eq(sign_count)
           end
         end
