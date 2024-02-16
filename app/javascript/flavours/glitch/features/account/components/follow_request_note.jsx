@@ -7,7 +7,6 @@ import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
 
-
 export default class FollowRequestNote extends ImmutablePureComponent {
 
   static propTypes = {

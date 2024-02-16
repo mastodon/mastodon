@@ -5317,7 +5317,7 @@ a.status-card.compact:hover {
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   display: flex;
   flex-direction: row;
-  padding: 10px 0;
+  padding: 8px 0;
 }
 
 .language-dropdown {
@@ -7986,6 +7986,7 @@ noscript {
     height: 145px;
     position: relative;
     background: darken($ui-base-color, 4%);
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
 
     img {
       object-fit: cover;
@@ -7998,9 +7999,9 @@ noscript {
 
   &__bar {
     position: relative;
-    background: lighten($ui-base-color, 4%);
-    padding: 5px;
-    border-bottom: 1px solid lighten($ui-base-color, 12%);
+    padding: 0 20px;
+    padding-bottom: 16px; // glitch-soc addition for the different tabs design
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
 
     .avatar {
       display: block;
@@ -8009,7 +8010,7 @@ noscript {
 
       .account__avatar {
         background: darken($ui-base-color, 8%);
-        border: 2px solid lighten($ui-base-color, 4%);
+        border: 2px solid $ui-base-color;
       }
     }
   }
@@ -8028,8 +8029,8 @@ noscript {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 7px 10px;
     margin-top: -55px;
+    padding-top: 10px;
     gap: 8px;
     overflow: hidden;
     margin-inline-start: -2px; // aligns the pfp with content below
@@ -8064,7 +8065,8 @@ noscript {
     }
 
     &__name {
-      padding: 5px 10px;
+      margin-top: 16px;
+      margin-bottom: 16px;
 
       .emojione {
         width: 22px;
@@ -8072,17 +8074,17 @@ noscript {
       }
 
       h1 {
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 17px;
+        line-height: 22px;
         color: $primary-text-color;
-        font-weight: 500;
+        font-weight: 700;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
 
         small {
           display: block;
-          font-size: 14px;
+          font-size: 15px;
           color: $darker-text-color;
           font-weight: 400;
           overflow: hidden;
@@ -8108,63 +8110,97 @@ noscript {
   }
 
   &__bio {
-    overflow: hidden;
-    margin: 0 -5px;
-
     .account__header__content {
-      padding: 20px 15px;
-      padding-bottom: 5px;
       color: $primary-text-color;
-    }
-
-    .account__header__joined {
-      font-size: 14px;
-      padding: 5px 15px;
-      color: $darker-text-color;
-
-      .columns-area--mobile & {
-        padding-inline-start: 20px;
-        padding-inline-end: 20px;
-      }
     }
 
     .account__header__fields {
       margin: 0;
-      border-top: 1px solid lighten($ui-base-color, 12%);
+      margin-top: 16px;
+      border-radius: 4px;
+      background: darken($ui-base-color, 4%);
+      border: 0;
+
+      dl {
+        display: block;
+        padding: 8px 16px; // glitch-soc: padding purposefuly reduced
+        border-bottom-color: lighten($ui-base-color, 4%);
+      }
+
+      dd,
+      dt {
+        font-size: 13px;
+        line-height: 18px;
+        padding: 0;
+        text-align: initial;
+      }
+
+      dt {
+        width: auto;
+        background: transparent;
+        text-transform: uppercase;
+        color: $dark-text-color;
+      }
+
+      dd {
+        color: $darker-text-color;
+      }
 
       a {
         color: lighten($ui-highlight-color, 8%);
       }
 
-      dl:first-child .verified {
-        border-radius: 0 4px 0 0;
-      }
-
       .icon {
         width: 18px;
         height: 18px;
-        vertical-align: middle;
       }
 
-      dd {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-      }
+      .verified {
+        border: 1px solid rgba($valid-value-color, 0.5);
+        margin-top: -1px;
 
-      .verified a {
-        color: $valid-value-color;
+        &:first-child {
+          border-top-left-radius: 4px;
+          border-top-right-radius: 4px;
+          margin-top: 0;
+        }
+
+        &:last-child {
+          border-bottom-left-radius: 4px;
+          border-bottom-right-radius: 4px;
+        }
+
+        dt,
+        dd {
+          color: $valid-value-color;
+        }
+
+        dd {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+
+          span {
+            display: flex;
+          }
+        }
+
+        a {
+          color: $valid-value-color;
+        }
       }
     }
   }
 
   &__extra {
-    margin-top: 4px;
+    margin-top: 16px;
 
     &__links {
       font-size: 14px;
       color: $darker-text-color;
-      padding: 10px 0;
+      margin: 0 -10px;
+      padding-top: 16px;
+      padding-bottom: 10px;
 
       a {
         display: inline-block;
@@ -8182,14 +8218,10 @@ noscript {
   }
 
   &__account-note {
-    margin: 0 -5px;
-    padding: 10px 15px;
-    display: flex;
-    flex-direction: column;
+    color: $primary-text-color;
     font-size: 14px;
     font-weight: 400;
-    border-top: 1px solid lighten($ui-base-color, 12%);
-    border-bottom: 1px solid lighten($ui-base-color, 12%);
+    margin-bottom: 10px;
 
     label {
       display: block;
@@ -8200,23 +8232,12 @@ noscript {
       margin-bottom: 5px;
     }
 
-    &__content {
-      white-space: pre-wrap;
-      padding: 10px 0;
-    }
-
-    strong {
-      font-size: 12px;
-      font-weight: 500;
-      text-transform: uppercase;
-    }
-
     textarea {
       display: block;
       box-sizing: border-box;
       width: calc(100% + 20px);
       color: $secondary-text-color;
-      background: $ui-base-color;
+      background: transparent;
       padding: 10px;
       margin: 0 -10px;
       font-family: inherit;
@@ -8229,6 +8250,10 @@ noscript {
       &::placeholder {
         color: $dark-text-color;
         opacity: 1;
+      }
+
+      &:focus {
+        background: $ui-base-color;
       }
     }
   }
