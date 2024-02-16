@@ -9,7 +9,7 @@ class OauthMetadataPresenter < ActiveModelSerializers::Model
              :grant_types_supported, :token_endpoint_auth_methods_supported
 
   def issuer
-    "http#{Rails.configuration.x.use_https ? 's' : ''}://#{Rails.configuration.x.web_domain}/"
+    root_url
   end
 
   def authorization_endpoint
