@@ -181,8 +181,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_10_123453) do
     t.integer "avatar_storage_schema_version"
     t.integer "header_storage_schema_version"
     t.string "devices_url"
-    t.integer "suspension_origin"
     t.datetime "sensitized_at", precision: nil
+    t.integer "suspension_origin"
     t.boolean "trendable"
     t.datetime "reviewed_at", precision: nil
     t.datetime "requested_review_at", precision: nil
@@ -564,12 +564,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_10_123453) do
   end
 
   create_table "ip_blocks", force: :cascade do |t|
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.datetime "expires_at", precision: nil
     t.inet "ip", default: "0.0.0.0", null: false
     t.integer "severity", default: 0, null: false
+    t.datetime "expires_at", precision: nil
     t.text "comment", default: "", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["ip"], name: "index_ip_blocks_on_ip", unique: true
   end
 
