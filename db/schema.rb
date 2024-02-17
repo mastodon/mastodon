@@ -1030,8 +1030,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_161611) do
   create_table "status_pins", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.bigint "status_id", null: false
-    t.datetime "created_at", precision: nil, default: -> { "now()" }, null: false
-    t.datetime "updated_at", precision: nil, default: -> { "now()" }, null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id", "status_id"], name: "index_status_pins_on_account_id_and_status_id", unique: true
     t.index ["status_id"], name: "index_status_pins_on_status_id"
   end
