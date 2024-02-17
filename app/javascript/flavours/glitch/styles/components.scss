@@ -2945,7 +2945,6 @@ $ui-header-height: 55px;
   cursor: pointer;
   white-space: nowrap;
   font-size: 16px;
-  flex: 0 0 auto;
   padding: 0;
   padding-inline-end: 5px;
   z-index: 3;
@@ -3213,8 +3212,7 @@ $ui-header-height: 55px;
   }
 }
 
-.setting-text {
-  display: block;
+input.glitch-setting-text {
   box-sizing: border-box;
   color: $darker-text-color;
   background: transparent;
@@ -3232,15 +3230,57 @@ $ui-header-height: 55px;
     border-bottom-color: $ui-highlight-color;
   }
 
-  &.light {
-    color: $inverted-text-color;
-    border-bottom: 2px solid lighten($ui-base-color, 27%);
+  @media screen and (width <= 600px) {
+    font-size: 16px;
+  }
+}
 
-    &:focus,
-    &:active {
-      color: $inverted-text-color;
-      border-bottom-color: $ui-highlight-color;
+.setting-text {
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+  color: $inverted-text-color;
+  background: $white;
+  padding: 7px 10px;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  border-radius: 4px;
+  border: 1px solid $white;
+
+  &:focus {
+    outline: 0;
+    border-color: lighten($ui-highlight-color, 12%);
+  }
+
+  &__wrapper {
+    background: $white;
+    border: 1px solid $ui-secondary-color;
+    margin-bottom: 10px;
+    border-radius: 4px;
+
+    .setting-text {
+      border: 0;
+      margin-bottom: 0;
+      border-radius: 0;
+
+      &:focus {
+        border: 0;
+      }
     }
+
+    &__modifiers {
+      color: $inverted-text-color;
+      font-family: inherit;
+      font-size: 14px;
+      background: $white;
+    }
+  }
+
+  &__toolbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
   }
 
   @media screen and (width <= 600px) {
@@ -6448,56 +6488,11 @@ a.status-card.compact:hover {
   }
 
   .setting-text {
-    display: block;
-    box-sizing: border-box;
     width: 100%;
-    margin: 0;
-    color: $inverted-text-color;
-    background: $white;
-    padding: 10px;
-    font-family: inherit;
-    font-size: 14px;
     resize: none;
-    outline: 0;
-    border-radius: 4px;
-    border: 1px solid $ui-secondary-color;
     min-height: 100px;
     max-height: 50vh;
-    margin-bottom: 10px;
-
-    &:focus {
-      border: 1px solid darken($ui-secondary-color, 8%);
-    }
-
-    &__wrapper {
-      background: $white;
-      border: 1px solid $ui-secondary-color;
-      margin-bottom: 10px;
-      border-radius: 4px;
-
-      .setting-text {
-        border: 0;
-        margin-bottom: 0;
-        border-radius: 0;
-
-        &:focus {
-          border: 0;
-        }
-      }
-
-      &__modifiers {
-        color: $inverted-text-color;
-        font-family: inherit;
-        font-size: 14px;
-        background: $white;
-      }
-    }
-
-    &__toolbar {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
+    border: 0;
   }
 
   .setting-toggle {
@@ -7738,10 +7733,10 @@ noscript {
 }
 
 .column-inline-form {
-  padding: 7px 15px;
-  padding-inline-end: 5px;
+  padding: 15px;
   display: flex;
   justify-content: flex-start;
+  gap: 15px;
   align-items: center;
   background: lighten($ui-base-color, 4%);
 
@@ -7750,17 +7745,7 @@ noscript {
 
     input {
       width: 100%;
-      margin-bottom: 6px;
-
-      &:focus {
-        outline: 0;
-      }
     }
-  }
-
-  .icon-button {
-    flex: 0 0 auto;
-    margin: 0 5px;
   }
 }
 

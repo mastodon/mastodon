@@ -23,7 +23,7 @@ export default class SettingText extends PureComponent {
       <label>
         <span style={{ display: 'none' }}>{label}</span>
         <input
-          className='setting-text'
+          className='glitch-setting-text'
           value={settings.getIn(settingPath)}
           onChange={this.handleChange}
           placeholder={label}

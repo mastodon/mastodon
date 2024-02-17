@@ -80,6 +80,10 @@ html {
   background: $white;
 }
 
+.column-header {
+  border-bottom: 0;
+}
+
 .column-header__button.active {
   color: $ui-highlight-color;
 
@@ -422,7 +426,7 @@ html {
 .column-header__collapsible-inner {
   background: darken($ui-base-color, 4%);
   border: 1px solid lighten($ui-base-color, 8%);
-  border-top: 0;
+  border-bottom: 0;
 }
 
 .column-settings__hashtags .column-select__option {
