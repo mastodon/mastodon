@@ -451,35 +451,32 @@ RSpec.describe User do
   end
 
   describe '#mark_email_as_confirmed!' do
-    subject(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
+    subject { user.mark_email_as_confirmed! }
 
-    before do
-      ActionMailer::Base.deliveries.clear
-      user.mark_email_as_confirmed!
-    end
+    let!(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
+
+    before { ActionMailer::Base.deliveries.clear }
 
     after { ActionMailer::Base.deliveries.clear }
 
     context 'when user is new' do
       let(:confirmed_at) { nil }
 
-      it 'confirms user' do
-        expect(user.confirmed_at).to be_present
-      end
+      it 'confirms user and delivers welcome email', :sidekiq_inline do
+        subject
 
-      it 'delivers mails', :sidekiq_inline do
-        expect(ActionMailer::Base.deliveries.count).to eq 2
+        expect(user.confirmed_at).to be_present
+        expect(ActionMailer::Base.deliveries.count).to eq 1
       end
     end
 
     context 'when user is not new' do
       let(:confirmed_at) { Time.zone.now }
 
-      it 'confirms user' do
-        expect(user.confirmed_at).to be_present
-      end
+      it 'confirms user but does not deliver welcome email' do
+        subject
 
-      it 'does not deliver mail' do
+        expect(user.confirmed_at).to be_present
         expect(ActionMailer::Base.deliveries.count).to eq 0
       end
     end
