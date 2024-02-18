@@ -602,7 +602,7 @@ body > [data-popper-placement] {
     height: 16px;
   }
 
-  .autosuggest-account .display-name > span {
+  .autosuggest-account .display-name__account {
     color: $lighter-text-color;
   }
 
@@ -837,11 +837,6 @@ body > [data-popper-placement] {
   line-height: 24px;
   overflow: hidden;
   text-decoration: none;
-
-  & > .display-name {
-    line-height: unset;
-    height: unset;
-  }
 }
 
 .reply-indicator__display-avatar {
@@ -1042,12 +1037,6 @@ body > [data-popper-placement] {
   height: auto;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: auto;
-
-  @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
-    // Add margin to avoid Edge auto-hiding scrollbar appearing over content.
-    // On Edge 16 this is 16px and Edge <=15 it's 12px, so aim for 16px.
-    padding-inline-end: 28px; // 12px + 16px
-  }
 
   @keyframes fade {
     0% {
@@ -2178,6 +2167,7 @@ $ui-header-height: 55px;
 .columns-area--mobile {
   flex-direction: column;
   width: 100%;
+  height: 100%;
   margin: 0 auto;
 
   .column,
@@ -7444,8 +7434,11 @@ img.modal-warning {
 
 .notification__filter-bar,
 .account__section-headline {
-  // deliberate glitch-soc choice for now
-  background: darken($ui-base-color, 4%);
+  background: darken(
+    $ui-base-color,
+    4%
+  ); // deliberate glitch-soc choice for now
+
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
   display: flex;
@@ -7580,24 +7573,6 @@ noscript {
   }
 
   100% {
-    opacity: 1;
-  }
-}
-
-// glitch-specific “sensitive” label on displayed images; TODO: remove it?
-.sensitive-marker {
-  margin: 0 3px;
-  border-radius: 2px;
-  padding: 2px 6px;
-  color: rgba($primary-text-color, 0.8);
-  background: rgba($base-overlay-background, 0.5);
-  font-size: 12px;
-  line-height: 18px;
-  text-transform: uppercase;
-  opacity: 0.9;
-  transition: opacity 0.1s ease;
-
-  .media-gallery:hover & {
     opacity: 1;
   }
 }
@@ -8456,11 +8431,6 @@ noscript {
       a {
         color: $primary-text-color;
         text-decoration: none;
-
-        .icon {
-          width: 15px;
-          height: 15px;
-        }
 
         &:hover,
         &:focus,
