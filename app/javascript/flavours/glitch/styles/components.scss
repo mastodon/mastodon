@@ -698,6 +698,22 @@ body > [data-popper-placement] {
       .icon-button {
         height: 100%;
       }
+
+      .compose-form__upload-button-icon {
+        line-height: 27px;
+      }
+
+      .compose-form__sensitive-button {
+        display: none;
+
+        &.compose-form__sensitive-button--visible {
+          display: block;
+        }
+
+        .compose-form__sensitive-button__icon {
+          line-height: 27px;
+        }
+      }
     }
 
     .icon-button,
@@ -1057,8 +1073,9 @@ body > [data-popper-placement] {
   }
 
   &.light {
-    .status__relative-time {
-      color: $lighter-text-color;
+    .status__relative-time,
+    .status__visibility-icon {
+      color: $light-text-color;
     }
 
     .status__display-name {
@@ -4142,19 +4159,18 @@ a.status-card.compact:hover {
   background: $base-overlay-background;
   color: $darker-text-color;
   border: 0;
+  padding: 0;
   width: 100%;
   height: 100%;
+  border-radius: 4px;
+  appearance: none;
 
   &:hover,
   &:active,
   &:focus {
+    padding: 0;
     color: lighten($darker-text-color, 8%);
   }
-
-  .status__content > & {
-    margin-top: 15px; // Add margin when used bare for NSFW video player
-  }
-  @include fullwidth-gallery;
 }
 
 .media-spoiler__warning {
@@ -4165,7 +4181,7 @@ a.status-card.compact:hover {
 .media-spoiler__trigger {
   display: block;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .spoiler-button {
@@ -4829,10 +4845,6 @@ a.status-card.compact:hover {
   flex: 1 1 auto;
   color: $lighter-text-color;
 
-  &:not(:first-child) {
-    margin-inline-start: 10px;
-  }
-
   strong {
     font-weight: 500;
     display: block;
@@ -4862,11 +4874,6 @@ a.status-card.compact:hover {
   margin-inline-end: auto;
   margin-bottom: 0;
   min-width: 75%;
-}
-
-.account__header__wrapper {
-  flex: 0 0 auto;
-  background: lighten($ui-base-color, 4%);
 }
 
 .account__disclaimer {
@@ -5729,9 +5736,9 @@ a.status-card.compact:hover {
   display: flex;
 }
 
-.video-modal__container {
+.video-modal .video-player {
+  max-height: 80vh;
   max-width: 100vw;
-  max-height: 100vh;
 }
 
 .audio-modal__container {

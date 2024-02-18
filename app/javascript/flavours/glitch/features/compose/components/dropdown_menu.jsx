@@ -156,7 +156,11 @@ export default class ComposerOptionsDropdownContent extends PureComponent {
     if (!contents) {
       contents = (
         <>
-          {icon && <Icon className='icon' id={icon} icon={iconComponent} />}
+          {icon && (
+            <div className='privacy-dropdown__option__icon'>
+              <Icon className='icon' id={icon} icon={iconComponent} />
+            </div>
+          )}
 
           <div className='privacy-dropdown__option__content'>
             <strong>{text}</strong>
