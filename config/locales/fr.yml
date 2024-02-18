@@ -425,6 +425,7 @@ fr:
       view: Afficher les blocages de domaines
     email_domain_blocks:
       add_new: Ajouter
+      allow_registrations_with_approval: Autoriser les inscriptions avec approbation
       attempts_over_week:
         one: "%{count} tentative au cours de la dernière semaine"
         other: "%{count} tentatives au cours de la dernière semaine"
@@ -1545,6 +1546,9 @@ fr:
     errors:
       limit_reached: Limite de réactions différentes atteinte
       unrecognized_emoji: n’est pas un émoji reconnu
+  redirects:
+    prompt: Si vous faites confiance à ce lien, cliquez pour continuer.
+    title: Vous quittez %{instance}.
   relationships:
     activity: Activité du compte
     confirm_follow_selected_followers: Voulez-vous vraiment suivre les abonné⋅e⋅s sélectionné⋅e⋅s ?
@@ -1607,6 +1611,7 @@ fr:
       unknown_browser: Navigateur inconnu
       weibo: Weibo
     current_session: Session courante
+    date: Date
     description: "%{browser} sur %{platform}"
     explanation: Ceci est la liste des navigateurs actuellement connectés à votre compte Mastodon.
     ip: Adresse IP
@@ -1773,18 +1778,27 @@ fr:
     webauthn: Clés de sécurité
   user_mailer:
     appeal_approved:
-      action: Aller à votre compte
+      action: Paramètres du compte
       explanation: L'appel de la sanction contre votre compte mise en place le %{strike_date} que vous avez soumis le %{appeal_date} a été approuvé. Votre compte est de nouveau en règle.
       subject: Votre appel du %{date} a été approuvé
+      subtitle: Votre compte est de nouveau en règle.
       title: Appel approuvé
     appeal_rejected:
       explanation: L'appel de la sanction contre votre compte mise en place le %{strike_date} que vous avez soumis le %{appeal_date} a été rejeté.
       subject: Votre appel du %{date} a été rejeté
+      subtitle: Votre appel a été rejeté.
       title: Appel rejeté
     backup_ready:
-      explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon. Elle est maintenant prête à être téléchargée !
+      explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon.
+      extra: Elle est maintenant prête à être téléchargée !
       subject: Votre archive est prête à être téléchargée
       title: Récupération de l’archive
+    failed_2fa:
+      details: 'Voici les détails de la tentative de connexion :'
+      explanation: Quelqu'un a essayé de se connecter à votre compte mais a fourni un second facteur d'authentification invalide.
+      further_actions_html: Si ce n'était pas vous, nous vous recommandons %{action} immédiatement car il pourrait être compromis.
+      subject: Échec de l'authentification à double facteur
+      title: Échec de l'authentification à double facteur
     suspicious_sign_in:
       change_password: changer votre mot de passe
       details: 'Voici les détails de la connexion :'
@@ -1838,6 +1852,7 @@ fr:
     go_to_sso_account_settings: Accédez aux paramètres du compte de votre fournisseur d'identité
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
     otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
+    rate_limited: Trop de tentatives d'authentification, réessayez plus tard.
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
   verification:

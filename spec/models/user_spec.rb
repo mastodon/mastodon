@@ -38,27 +38,53 @@ RSpec.describe User do
       user.save(validate: false)
       expect(user.valid?).to be true
     end
+  end
 
-    it 'cleans out invalid locale' do
-      user = Fabricate.build(:user, locale: 'toto')
-      expect(user.valid?).to be true
-      expect(user.locale).to be_nil
+  describe 'Normalizations' do
+    describe 'locale' do
+      it 'preserves valid locale' do
+        user = Fabricate.build(:user, locale: 'en')
+
+        expect(user.locale).to eq('en')
+      end
+
+      it 'cleans out invalid locale' do
+        user = Fabricate.build(:user, locale: 'toto')
+
+        expect(user.locale).to be_nil
+      end
     end
 
-    it 'cleans out invalid timezone' do
-      user = Fabricate.build(:user, time_zone: 'toto')
-      expect(user.valid?).to be true
-      expect(user.time_zone).to be_nil
+    describe 'time_zone' do
+      it 'preserves valid timezone' do
+        user = Fabricate.build(:user, time_zone: 'UTC')
+
+        expect(user.time_zone).to eq('UTC')
+      end
+
+      it 'cleans out invalid timezone' do
+        user = Fabricate.build(:user, time_zone: 'toto')
+
+        expect(user.time_zone).to be_nil
+      end
     end
 
-    it 'cleans out empty string from languages' do
-      user = Fabricate.build(:user, chosen_languages: [''])
-      user.valid?
-      expect(user.chosen_languages).to be_nil
+    describe 'languages' do
+      it 'preserves valid options for languages' do
+        user = Fabricate.build(:user, chosen_languages: ['en', 'fr', ''])
+
+        expect(user.chosen_languages).to eq(['en', 'fr'])
+      end
+
+      it 'cleans out empty string from languages' do
+        user = Fabricate.build(:user, chosen_languages: [''])
+
+        expect(user.chosen_languages).to be_nil
+      end
     end
   end
 
-  describe 'scopes' do
+  describe 'scopes', :sidekiq_inline do
     describe 'recent' do
       it 'returns an array of recent users ordered by id' do
         first_user = Fabricate(:user)
@@ -161,12 +187,9 @@ RSpec.describe User do
     context 'when the user is already confirmed' do
       let!(:user) { Fabricate(:user, confirmed_at: Time.now.utc, approved: true, unconfirmed_email: new_email) }
 
-      it 'sets email to unconfirmed_email' do
+      it 'sets email to unconfirmed_email and does not trigger web hook' do
         expect { subject }.to change { user.reload.email }.to(new_email)
-      end
 
-      it 'does not trigger the account.approved Web Hook' do
-        subject
         expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
       end
     end
@@ -180,12 +203,9 @@ RSpec.describe User do
           user.approve!
         end
 
-        it 'sets email to unconfirmed_email' do
+        it 'sets email to unconfirmed_email and triggers `account.approved` web hook' do
           expect { subject }.to change { user.reload.email }.to(new_email)
-        end
 
-        it 'triggers the account.approved Web Hook' do
-          user.confirm
           expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
         end
       end
@@ -195,12 +215,9 @@ RSpec.describe User do
           Setting.registrations_mode = 'open'
         end
 
-        it 'sets email to unconfirmed_email' do
+        it 'sets email to unconfirmed_email and triggers `account.approved` web hook' do
           expect { subject }.to change { user.reload.email }.to(new_email)
-        end
 
-        it 'triggers the account.approved Web Hook' do
-          user.confirm
           expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
         end
       end
@@ -210,12 +227,9 @@ RSpec.describe User do
           Setting.registrations_mode = 'approved'
         end
 
-        it 'sets email to unconfirmed_email' do
+        it 'sets email to unconfirmed_email and does not trigger web hook' do
           expect { subject }.to change { user.reload.email }.to(new_email)
-        end
 
-        it 'does not trigger the account.approved Web Hook' do
-          subject
           expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
         end
       end
@@ -233,12 +247,9 @@ RSpec.describe User do
     context 'when the user is already confirmed' do
       let(:user) { Fabricate(:user, confirmed_at: Time.now.utc, approved: false) }
 
-      it 'sets the approved flag' do
+      it 'sets the approved flag and triggers `account.approved` web hook' do
         expect { subject }.to change { user.reload.approved? }.to(true)
-      end
 
-      it 'triggers the account.approved Web Hook' do
-        subject
         expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
       end
     end
@@ -246,12 +257,9 @@ RSpec.describe User do
     context 'when the user is not confirmed' do
       let(:user) { Fabricate(:user, confirmed_at: nil, approved: false) }
 
-      it 'sets the approved flag' do
+      it 'sets the approved flag and does not trigger web hook' do
         expect { subject }.to change { user.reload.approved? }.to(true)
-      end
 
-      it 'does not trigger the account.approved Web Hook' do
-        subject
         expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
       end
     end
@@ -412,7 +420,10 @@ RSpec.describe User do
     let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
     let!(:web_push_subscription) { Fabricate(:web_push_subscription, access_token: access_token) }
 
+    let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
+
     before do
+      allow(redis).to receive(:pipelined).and_yield(redis_pipeline_stub)
       user.reset_password!
     end
 
@@ -429,42 +440,43 @@ RSpec.describe User do
       expect(Doorkeeper::AccessToken.active_for(user).count).to eq 0
     end
 
+    it 'revokes streaming access for all access tokens' do
+      expect(redis_pipeline_stub).to have_received(:publish).with("timeline:access_token:#{access_token.id}", Oj.dump(event: :kill)).once
+    end
+
     it 'removes push subscriptions' do
       expect(Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count).to eq 0
       expect { web_push_subscription.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
-  describe '#confirm!' do
-    subject(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
+  describe '#mark_email_as_confirmed!' do
+    subject { user.mark_email_as_confirmed! }
 
-    before do
-      ActionMailer::Base.deliveries.clear
-      user.confirm!
-    end
+    let!(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
+
+    before { ActionMailer::Base.deliveries.clear }
 
     after { ActionMailer::Base.deliveries.clear }
 
     context 'when user is new' do
       let(:confirmed_at) { nil }
 
-      it 'confirms user' do
-        expect(user.confirmed_at).to be_present
-      end
+      it 'confirms user and delivers welcome email', :sidekiq_inline do
+        subject
 
-      it 'delivers mails' do
-        expect(ActionMailer::Base.deliveries.count).to eq 2
+        expect(user.confirmed_at).to be_present
+        expect(ActionMailer::Base.deliveries.count).to eq 1
       end
     end
 
     context 'when user is not new' do
       let(:confirmed_at) { Time.zone.now }
 
-      it 'confirms user' do
-        expect(user.confirmed_at).to be_present
-      end
+      it 'confirms user but does not deliver welcome email' do
+        subject
 
-      it 'does not deliver mail' do
+        expect(user.confirmed_at).to be_present
         expect(ActionMailer::Base.deliveries.count).to eq 0
       end
     end

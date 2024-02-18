@@ -425,6 +425,7 @@ pt-BR:
       view: Ver domínios bloqueados
     email_domain_blocks:
       add_new: Adicionar novo
+      allow_registrations_with_approval: Permitir inscrições com aprovação
       attempts_over_week:
         one: "%{count} tentativa na última semana"
         other: "%{count} tentativas de inscrição na última semana"
@@ -1545,6 +1546,9 @@ pt-BR:
     errors:
       limit_reached: Limite de reações diferentes atingido
       unrecognized_emoji: não é um emoji reconhecido
+  redirects:
+    prompt: Se você confia neste link, clique nele para continuar.
+    title: Você está saindo de %{instance}.
   relationships:
     activity: Atividade da conta
     confirm_follow_selected_followers: Tem certeza que deseja seguir os seguidores selecionados?
@@ -1607,6 +1611,7 @@ pt-BR:
       unknown_browser: Navegador desconhecido
       weibo: Weibo
     current_session: Sessão atual
+    date: Data
     description: "%{browser} em %{platform}"
     explanation: Estes são os navegadores que estão conectados com a sua conta Mastodon.
     ip: IP
@@ -1773,18 +1778,26 @@ pt-BR:
     webauthn: Chaves de segurança
   user_mailer:
     appeal_approved:
-      action: Acessar perfil
+      action: Configurações da conta
       explanation: A revisão da punição na sua conta em %{strike_date} que você enviou em %{appeal_date} foi aprovada. Sua conta está novamente em situação regular.
       subject: Sua revisão de %{date} foi aprovada
       title: Revisão aprovada
     appeal_rejected:
       explanation: A revisão da punição na sua conta em %{strike_date} que você enviou em %{appeal_date} foi rejeitada.
       subject: Sua revisão de %{date} foi rejeitada
+      subtitle: Sua revisão foi rejeitada.
       title: Revisão rejeitada
     backup_ready:
-      explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
+      explanation: Você solicitou um ‘backup’ completo da sua conta Mastodon.
+      extra: Agora está pronto para baixar!
       subject: Seu arquivo está pronto para ser baixado
       title: Baixar arquivo
+    failed_2fa:
+      details: 'Aqui estão os detalhes da tentativa de acesso:'
+      explanation: Alguém tentou entrar em sua conta, mas forneceu um segundo fator de autenticação inválido.
+      further_actions_html: Se não foi você, recomendamos que %{action} imediatamente, pois ela pode ser comprometida.
+      subject: Falha na autenticação do segundo fator
+      title: Falha na autenticação do segundo fator
     suspicious_sign_in:
       change_password: Altere sua senha
       details: 'Aqui estão os detalhes do acesso:'
@@ -1838,6 +1851,7 @@ pt-BR:
     go_to_sso_account_settings: Vá para as configurações de conta do seu provedor de identidade
     invalid_otp_token: Código de dois fatores inválido
     otp_lost_help_html: Se você perder o acesso à ambos, você pode entrar em contato com %{email}
+    rate_limited: Muitas tentativas de autenticação; tente novamente mais tarde.
     seamless_external_login: Você entrou usando um serviço externo, então configurações de e-mail e senha não estão disponíveis.
     signed_in_as: 'Entrou como:'
   verification:

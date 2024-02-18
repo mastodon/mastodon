@@ -5,7 +5,9 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { debounce } from 'lodash';
 
+import { TIMELINE_GAP, TIMELINE_SUGGESTIONS } from 'mastodon/actions/timelines';
 import RegenerationIndicator from 'mastodon/components/regeneration_indicator';
+import { InlineFollowSuggestions } from 'mastodon/features/home_timeline/components/inline_follow_suggestions';
 
 import StatusContainer from '../containers/status_container';
 
@@ -91,25 +93,38 @@ export default class StatusList extends ImmutablePureComponent {
     }
 
     let scrollableContent = (isLoading || statusIds.size > 0) ? (
-      statusIds.map((statusId, index) => statusId === null ? (
-        <LoadGap
-          key={'gap:' + statusIds.get(index + 1)}
-          disabled={isLoading}
-          maxId={index > 0 ? statusIds.get(index - 1) : null}
-          onClick={onLoadMore}
-        />
-      ) : (
-        <StatusContainer
-          key={statusId}
-          id={statusId}
-          onMoveUp={this.handleMoveUp}
-          onMoveDown={this.handleMoveDown}
-          contextType={timelineId}
-          scrollKey={this.props.scrollKey}
-          showThread
-          withCounters={this.props.withCounters}
-        />
-      ))
+      statusIds.map((statusId, index) => {
+        switch(statusId) {
+        case TIMELINE_SUGGESTIONS:
+          return (
+            <InlineFollowSuggestions
+              key='inline-follow-suggestions'
+            />
+          );
+        case TIMELINE_GAP:
+          return (
+            <LoadGap
+              key={'gap:' + statusIds.get(index + 1)}
+              disabled={isLoading}
+              maxId={index > 0 ? statusIds.get(index - 1) : null}
+              onClick={onLoadMore}
+            />
+          );
+        default:
+          return (
+            <StatusContainer
+              key={statusId}
+              id={statusId}
+              onMoveUp={this.handleMoveUp}
+              onMoveDown={this.handleMoveDown}
+              contextType={timelineId}
+              scrollKey={this.props.scrollKey}
+              showThread
+              withCounters={this.props.withCounters}
+            />
+          );
+        }
+      })
     ) : null;
 
     if (scrollableContent && featuredStatusIds) {

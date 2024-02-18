@@ -425,6 +425,7 @@ tr:
       view: Alan adı bloğunu görüntüle
     email_domain_blocks:
       add_new: Yeni ekle
+      allow_registrations_with_approval: Onaylı kayıtlara izin ver
       attempts_over_week:
         one: Son haftada %{count} deneme
         other: Son haftada %{count} kayıt denemesi
@@ -1200,8 +1201,8 @@ tr:
     '406': Bu sayfa istenen formatta mevcut değil.
     '410': Aradığınız sayfa artık yok.
     '422':
-      content: Güvenlik doğrulaması başarısız oldu. Site cookie'lerini engellemiş olabilirsiniz.
-      title: Güvenlik doğrulamasu başarısız
+      content: Güvenlik doğrulaması başarısız oldu. Site çerezlerini engellemiş olabilirmisiniz?
+      title: Güvenlik doğrulaması başarısız
     '429': Kısıtlandı
     '500':
       content: Üzgünüz, ancak bir şey ters gitti.
@@ -1242,15 +1243,15 @@ tr:
       add_keyword: Anahtar sözcük ekle
       keywords: Anahtar Sözcükler
       statuses: Tekil gönderiler
-      statuses_hint_html: Bu filtre, aşağıdaki anahtar kelimelerle eşleşip eşleşmediklerinden bağımsız olarak tekil gönderileri seçmek için uygulanıyor. <a href="%{path}">Filtredeki gönderileri inceleyin veya kaldırın</a>.
-      title: Filtreyi düzenle
+      statuses_hint_html: Bu süzgeçlere, aşağıdaki anahtar kelimelerle eşleşip eşleşmediklerinden bağımsız olarak tekil gönderileri seçmek için uygulanıyor. <a href="%{path}">Süzgeçlerdeki gönderileri inceleyin veya kaldırın</a>.
+      title: Süzgeci düzenle
     errors:
-      deprecated_api_multiple_keywords: Bu parametreler, birden fazla filtre anahtar sözcüğü için geçerli olduğundan dolayı bu uygulama içerisinden değiştirilemezler. Daha yeni bir uygulama veya web arayüzünü kullanın.
+      deprecated_api_multiple_keywords: Bu parametreler, birden fazla süzgeç anahtar sözcüğü için geçerli olduğundan dolayı bu uygulama içerisinden değiştirilemezler. Daha yeni bir uygulama veya web arayüzünü kullanın.
       invalid_context: Sıfır ya da geçersiz içerik sağlandı
     index:
       contexts: "%{contexts} içindeki filtreler"
       delete: Sil
-      empty: Hiç filtreniz yok.
+      empty: Hiç süzgeciniz yok.
       expires_in: "%{distance} sürede sona eriyor"
       expires_on: "%{date} tarihinde sona eriyor"
       keywords:
@@ -1262,16 +1263,16 @@ tr:
       statuses_long:
         one: "%{count} tekil gönderi gizli"
         other: "%{count} tekil gönderi gizli"
-      title: Filtreler
+      title: Süzgeçler
     new:
-      save: Yeni filtre kaydet
-      title: Yeni filtre ekle
+      save: Yeni süzgeç kaydet
+      title: Yeni süzgeç ekle
     statuses:
-      back_to_filter: Filtreye dön
+      back_to_filter: Süzgeçe dön
       batch:
-        remove: Filtreden kaldır
+        remove: Süzgeçden kaldır
       index:
-        hint: Bu filtre diğer ölçütlerden bağımsız olarak tekil gönderileri seçmek için uygulanıyor. Web arayüzünü kullanarak bu filtreye daha fazla gönderi ekleyebilirsiniz.
+        hint: Bu süzgece diğer ölçütlerden bağımsız olarak tekil gönderileri seçmek için uygulanıyor. Web arayüzünü kullanarak bu süzgece daha fazla gönderi ekleyebilirsiniz.
         title: Süzgeçlenmiş gönderiler
   generic:
     all: Tümü
@@ -1479,8 +1480,8 @@ tr:
       subject: Anket %{name} tarafından sonlandırıldı
     reblog:
       body: "%{name} durumunuzu boostladı:"
-      subject: "%{name} durumunuzu boostladı"
-      title: Yeni boost
+      subject: "%{name} durumunuzu paylaştı"
+      title: Yeni paylaşım
     status:
       subject: "%{name} az önce gönderdi"
     update:
@@ -1543,8 +1544,11 @@ tr:
     title: Gizlilik Politikası
   reactions:
     errors:
-      limit_reached: Farklı reaksiyonların sınırına ulaşıldı
+      limit_reached: Farklı tepkilerin sınırına ulaşıldı
       unrecognized_emoji: tanınan bir emoji değil
+  redirects:
+    prompt: Eğer bu bağlantıya güveniyorsanız, tıklayıp devam edebilirsiniz.
+    title: "%{instance} sunucusundan ayrılıyorsunuz."
   relationships:
     activity: Hesap etkinliği
     confirm_follow_selected_followers: Seçili takipçileri takip etmek istediğinizden emin misiniz?
@@ -1607,6 +1611,7 @@ tr:
       unknown_browser: Bilinmeyen Tarayıcı
       weibo: Weibo
     current_session: Geçerli oturum
+    date: Tarih
     description: "%{platform} - %{browser}"
     explanation: Bunlar, Mastodon hesabınızda şu anda oturum açmış web tarayıcılarıdır.
     ip: IP
@@ -1658,17 +1663,17 @@ tr:
         other: "%{count} ses"
       description: 'Ekli: %{attached}'
       image:
-        one: "%{count} resim"
-        other: "%{count} resim"
+        one: "%{count} görsel"
+        other: "%{count} görseller"
       video:
         one: "%{count} video"
-        other: "%{count} video"
-    boosted_from_html: "%{acct_link} kişisinden boostladı"
+        other: "%{count} videolar"
+    boosted_from_html: "%{acct_link} kişisinden paylaştı"
     content_warning: 'İçerik uyarısı: %{warning}'
     default_language: Arayüz diliyle aynı
     disallowed_hashtags:
       one: 'izin verilmeyen bir etiket içeriyordu: %{tags}'
-      other: 'izin verilmeyen hashtag''leri içeriyordu: %{tags}'
+      other: 'izin verilmeyen etiketler içeriyordu: %{tags}'
     edited_at_html: "%{date} tarihinde düzenlendi"
     errors:
       in_reply_not_found: Yanıtlamaya çalıştığınız durum yok gibi görünüyor.
@@ -1678,14 +1683,14 @@ tr:
       direct: Sadece değinilen kullanıcıların görebileceği gönderiler üstte tutulamaz
       limit: Halihazırda maksimum sayıda gönderi sabitlediniz
       ownership: Başkasının gönderisi sabitlenemez
-      reblog: Bir boost sabitlenemez
+      reblog: Bir gönderi sabitlenemez
     poll:
       total_people:
         one: "%{count} kişi"
-        other: "%{count} kişi"
+        other: "%{count} kişiler"
       total_votes:
         one: "%{count} oy"
-        other: "%{count} oy"
+        other: "%{count} oylar"
       vote: Oy Ver
     show_more: Daha fazlasını göster
     show_newer: Yenileri göster
@@ -1751,7 +1756,7 @@ tr:
       default: "%d %b %Y %H:%M"
       month: "%b %Y"
       time: "%H:%M"
-      with_time_zone: "%d.%m.%Y %H:%M %Z"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
   translation:
     errors:
       quota_exceeded: Çeviri hizmetinin sunucu kapsamındaki kullanım kotası aşıldı.
@@ -1769,22 +1774,31 @@ tr:
     otp: Authenticator uygulaması
     recovery_codes: Kurtarma kodlarını yedekle
     recovery_codes_regenerated: Kurtarma kodları başarıyla yeniden oluşturuldu
-    recovery_instructions_html: 'Eğer telefonunuza erişiminizi kaybederseniz, aşağıdaki kurtarma kodlarından birini kullanarak hesabınıza giriş yapabilirsiniz. Kurtarma kodlarınızı güvenli halde tutunuz. Örneğin: kodların çıktısını alıp diğer önemli belgeleriniz ile birlikte saklayabilirsiniz.'
+    recovery_instructions_html: 'Eğer telefonunuza erişiminizi kaybederseniz, aşağıdaki kurtarma kodlarından birini kullanarak hesabınıza giriş yapabilirsiniz. <strong>Kurtarma kodlarınızı güvenli halde tutunuz.</strong> Örneğin: kodların çıktısını alıp diğer önemli belgeleriniz ile birlikte saklayabilirsiniz.'
     webauthn: Güvenlik anahtarları
   user_mailer:
     appeal_approved:
-      action: Hesabınıza gidin
+      action: Hesap Ayarları
       explanation: "%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız onaylandı. Hesabınız artık tekrar iyi durumda."
       subject: "%{date} tarihli itirazınız kabul edildi"
+      subtitle: Hesabınız yeniden iyi bir halde.
       title: İtiraz onaylandı
     appeal_rejected:
       explanation: "%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız reddedildi."
       subject: "%{date} tarihli itirazınız reddedildi"
+      subtitle: İtirazınız reddedildi.
       title: İtiraz reddedildi
     backup_ready:
-      explanation: Mastodon hesabınızın tam yedeğini istemiştiniz. Şimdi indirilebilir durumda!
+      explanation: Mastodon hesabınız tam bir yedeğini istediniz.
+      extra: Şimdi indirebilirsiniz!
       subject: Arşiviniz indirilmeye hazır
       title: Arşiv paketlemesi
+    failed_2fa:
+      details: 'İşte oturum açma girişiminin ayrıntıları:'
+      explanation: Birisi hesabınızda oturum açmaya çalıştı ancak hatalı bir iki aşamalı doğrulama kodu kullandı.
+      further_actions_html: Eğer bu kişi siz değilseniz, hemen %{action} yapmanızı öneriyoruz çünkü hesabınız ifşa olmuş olabilir.
+      subject: İki aşamalı doğrulama başarısızlığı
+      title: Başarısız iki aşamalı kimlik doğrulama
     suspicious_sign_in:
       change_password: parolanızı değiştirin
       details: 'Oturum açma ayrıntıları şöyledir:'
@@ -1838,6 +1852,7 @@ tr:
     go_to_sso_account_settings: Kimlik sağlayıcı hesap ayarlarına gidin
     invalid_otp_token: Geçersiz iki adımlı doğrulama kodu
     otp_lost_help_html: Her ikisine de erişiminizi kaybettiyseniz, %{email} ile irtibata geçebilirsiniz
+    rate_limited: Çok fazla kimlik doğrulama denemesi. Daha sonra tekrar deneyin.
     seamless_external_login: Harici bir servis aracılığıyla oturum açtınız, bu nedenle parola ve e-posta ayarları mevcut değildir.
     signed_in_as: 'Oturum açtı:'
   verification:

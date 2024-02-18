@@ -76,20 +76,14 @@ RSpec.describe 'Media' do
     let(:params) { {} }
 
     shared_examples 'a successful media upload' do |media_type|
-      it 'uploads the file successfully', :aggregate_failures do
+      it 'uploads the file successfully and returns correct media content', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
         expect(MediaAttachment.first).to be_present
         expect(MediaAttachment.first).to have_attached_file(:file)
-      end
 
-      it 'returns the correct media content' do
-        subject
-
-        body = body_as_json
-
-        expect(body).to match(
+        expect(body_as_json).to match(
           a_hash_including(id: MediaAttachment.first.id.to_s, description: params[:description], type: media_type)
         )
       end

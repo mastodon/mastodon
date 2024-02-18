@@ -2,6 +2,22 @@
 
 namespace :tests do
   namespace :migrations do
+    desc 'Prepares all migrations and test data for consistency checks'
+    task prepare_database: :environment do
+      {
+        '2' => 2017_10_10_025614,
+        '2_4' => 2018_05_14_140000,
+        '2_4_3' => 2018_07_07_154237,
+      }.each do |release, version|
+        ActiveRecord::Tasks::DatabaseTasks
+          .migration_connection
+          .migration_context
+          .migrate(version)
+        Rake::Task["tests:migrations:populate_v#{release}"]
+          .invoke
+      end
+    end
+
     desc 'Check that database state is consistent with a successful migration from populated data'
     task check_database: :environment do
       unless Account.find_by(username: 'admin', domain: nil)&.hide_collections? == false
@@ -24,7 +40,7 @@ namespace :tests do
         exit(1)
       end
 
-      if Account.where(domain: Rails.configuration.x.local_domain).exists?
+      if Account.exists?(domain: Rails.configuration.x.local_domain)
         puts 'Faux remote accounts not properly cleaned up'
         exit(1)
       end
@@ -83,6 +99,13 @@ namespace :tests do
         puts 'Default posting language not migrated as expected for kmr users'
         exit(1)
       end
+
+      unless Account.find_local('qcuser').user.locale == 'fr-CA'
+        puts 'Locale for fr-QC users not updated to fr-CA as expected'
+        exit(1)
+      end
+
+      puts 'No errors found. Database state is consistent with a successful migration process.'
     end
 
     desc 'Populate the database with test data for 2.4.3'
@@ -142,12 +165,18 @@ namespace :tests do
         INSERT INTO "accounts"
           (id, username, domain, private_key, public_key, created_at, updated_at)
         VALUES
-          (10, 'kmruser', NULL, #{user_private_key}, #{user_public_key}, now(), now());
+          (10, 'kmruser', NULL, #{user_private_key}, #{user_public_key}, now(), now()),
+          (11, 'qcuser', NULL, #{user_private_key}, #{user_public_key}, now(), now());
 
         INSERT INTO "users"
           (id, account_id, email, created_at, updated_at, admin, locale, chosen_languages)
         VALUES
           (4, 10, 'kmruser@localhost', now(), now(), false, 'ku', '{en,kmr,ku,ckb}');
+
+        INSERT INTO "users"
+          (id, account_id, email, created_at, updated_at, locale)
+        VALUES
+          (5, 11, 'qcuser@localhost', now(), now(), 'fr-QC');
 
         INSERT INTO "settings"
           (id, thing_type, thing_id, var, value, created_at, updated_at)

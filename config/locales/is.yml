@@ -425,6 +425,7 @@ is:
       view: Skoða útilokun á léni
     email_domain_blocks:
       add_new: Bæta við nýju
+      allow_registrations_with_approval: Leyfa skráningar með samþykki
       attempts_over_week:
         one: "%{count} tilraun síðustu viku"
         other: "%{count} tilraunir til nýskráningar í síðustu viku"
@@ -1549,6 +1550,9 @@ is:
     errors:
       limit_reached: Hámarki mismunandi viðbragða náð
       unrecognized_emoji: er ekki þekkt tjáningartákn
+  redirects:
+    prompt: Ef þú treystir þessum tengli, geturðu smellt á hann til að halda áfram.
+    title: Þú ert að yfirgefa %{instance}.
   relationships:
     activity: Virkni aðgangs
     confirm_follow_selected_followers: Ertu viss um að þú viljir fylgjast með völdum fylgjendum?
@@ -1611,6 +1615,7 @@ is:
       unknown_browser: Óþekktur vafri
       weibo: Weibo
     current_session: Núverandi seta
+    date: Dagsetning
     description: "%{browser} á %{platform}"
     explanation: Þetta eru vafrarnir sem núna eru skráðir inn á Mastodon-aðganginn þinn.
     ip: IP-vistfang
@@ -1777,18 +1782,27 @@ is:
     webauthn: Öryggislyklar
   user_mailer:
     appeal_approved:
-      action: Farðu inn á notandaaðganginn þinn
+      action: Stillingar notandaaðgangs
       explanation: Áfrýjun refsingarinnar gagnvart aðgangnum þínum þann %{strike_date} sem þú sendir inn þann %{appeal_date} hefur verið samþykkt. Notandaaðgangurinn þinn er aftur í góðu lagi.
       subject: Áfrýjun þín frá %{date} hefur verið samþykkt
+      subtitle: Notandaaðgangurinn þinn er í góðu lagi.
       title: Áfrýjun samþykkt
     appeal_rejected:
       explanation: Áfrýjun refsingarinnar gagnvart aðgangnum þínum þann %{strike_date} sem þú sendir inn þann %{appeal_date} hefur verið hafnað.
       subject: Áfrýjun þinni frá %{date} hefur verið hafnað
+      subtitle: Áfrýjun þinni hefur verið hafnað.
       title: Áfrýjun hafnað
     backup_ready:
-      explanation: Þú baðst um fullt öryggisafrit af Mastodon notandaaðgangnum þínum. Það er núna tilbúið til niðurhals!
+      explanation: Þú baðst um fullt öryggisafrit af Mastodon notandaaðgangnum þínum.
+      extra: Það er núna tilbúið til niðurhals!
       subject: Safnskráin þín er tilbúin til niðurhals
       title: Taka út í safnskrá
+    failed_2fa:
+      details: 'Hér eru nánari upplýsingar um innskráningartilraunina:'
+      explanation: Einhver reyndi að skrá sig inn á aðganginn þinn en gaf upp ógild gögn seinna þrepi auðkenningar.
+      further_actions_html: Ef þetta varst ekki þú, þá mælum við eindregið með því að þú %{action} samstundis, þar sem það gæti verið berskjaldað.
+      subject: Bilun í seinna þrepi auðkenningar
+      title: Seinna þrep auðkenningar brást
     suspicious_sign_in:
       change_password: breytir lykilorðinu þínu
       details: 'Hér eru nánari upplýsingar um innskráninguna:'
@@ -1842,6 +1856,7 @@ is:
     go_to_sso_account_settings: Fara í stillingar aðgangsins hjá auðkennisveitunni þinni
     invalid_otp_token: Ógildur tveggja-þátta kóði
     otp_lost_help_html: Ef þú hefur misst aðganginn að hvoru tveggja, geturðu sett þig í samband við %{email}
+    rate_limited: Of margar tilraunir til auðkenningar, prófaðu aftur síðar.
     seamless_external_login: Innskráning þín er í gegnum utanaðkomandi þjónustu, þannig að stillingar fyrir lykilorð og tölvupóst eru ekki aðgengilegar.
     signed_in_as: 'Skráð inn sem:'
   verification:

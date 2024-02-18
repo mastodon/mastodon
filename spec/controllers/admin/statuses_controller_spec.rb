@@ -60,16 +60,14 @@ describe Admin::StatusesController do
     shared_examples 'when action is report' do
       let(:action) { 'report' }
 
-      it 'creates a report' do
+      it 'creates a report and redirects to report page' do
         subject
 
-        report = Report.last
-        expect(report.target_account_id).to eq account.id
-        expect(report.status_ids).to eq status_ids
-      end
-
-      it 'redirects to report page' do
-        subject
+        expect(Report.last)
+          .to have_attributes(
+            target_account_id: eq(account.id),
+            status_ids: eq(status_ids)
+          )
 
         expect(response).to redirect_to(admin_report_path(Report.last.id))
       end

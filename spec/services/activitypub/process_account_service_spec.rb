@@ -21,14 +21,22 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
 
     it 'parses out of attachment' do
       account = subject.call('alice', 'example.com', payload)
-      expect(account.fields).to be_a Array
-      expect(account.fields.size).to eq 2
-      expect(account.fields[0]).to be_a Account::Field
-      expect(account.fields[0].name).to eq 'Pronouns'
-      expect(account.fields[0].value).to eq 'They/them'
-      expect(account.fields[1]).to be_a Account::Field
-      expect(account.fields[1].name).to eq 'Occupation'
-      expect(account.fields[1].value).to eq 'Unit test'
+
+      expect(account.fields)
+        .to be_an(Array)
+        .and have_attributes(size: 2)
+      expect(account.fields.first)
+        .to be_an(Account::Field)
+        .and have_attributes(
+          name: eq('Pronouns'),
+          value: eq('They/them')
+        )
+      expect(account.fields.last)
+        .to be_an(Account::Field)
+        .and have_attributes(
+          name: eq('Occupation'),
+          value: eq('Unit test')
+        )
     end
   end
 
@@ -193,7 +201,7 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
       end
     end
 
-    it 'creates accounts without exceeding rate limit' do
+    it 'creates accounts without exceeding rate limit', :sidekiq_inline do
       expect { subject.call('user1', 'foo.test', payload) }
         .to create_some_remote_accounts
         .and create_fewer_than_rate_limit_accounts

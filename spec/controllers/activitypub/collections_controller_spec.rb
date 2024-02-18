@@ -17,34 +17,27 @@ RSpec.describe ActivityPub::CollectionsController do
   end
 
   describe 'GET #show' do
-    context 'when id is "featured"' do
-      context 'without signature' do
-        subject(:response) { get :show, params: { id: 'featured', account_username: account.username } }
+    subject(:response) { get :show, params: { id: id, account_username: account.username } }
 
-        let(:body) { body_as_json }
+    context 'when id is "featured"' do
+      let(:id) { 'featured' }
+
+      context 'without signature' do
         let(:remote_account) { nil }
 
-        it 'returns http success' do
+        it 'returns http success and correct media type' do
           expect(response).to have_http_status(200)
-        end
-
-        it 'returns application/activity+json' do
           expect(response.media_type).to eq 'application/activity+json'
         end
 
         it_behaves_like 'cacheable response'
 
-        it 'returns orderedItems with pinned statuses' do
-          expect(body[:orderedItems]).to be_an Array
-          expect(body[:orderedItems].size).to eq 3
-        end
-
-        it 'includes URI of private pinned status' do
-          expect(body[:orderedItems]).to include(ActivityPub::TagManager.instance.uri_for(private_pinned))
-        end
-
-        it 'does not include contents of private pinned status' do
-          expect(response.body).to_not include(private_pinned.text)
+        it 'returns orderedItems with correct items' do
+          expect(body_as_json[:orderedItems])
+            .to be_an(Array)
+            .and have_attributes(size: 3)
+            .and include(ActivityPub::TagManager.instance.uri_for(private_pinned))
+            .and not_include(private_pinned.text)
         end
 
         context 'when account is permanently suspended' do
@@ -73,33 +66,19 @@ RSpec.describe ActivityPub::CollectionsController do
         let(:remote_account) { Fabricate(:account, domain: 'example.com') }
 
         context 'when getting a featured resource' do
-          before do
-            get :show, params: { id: 'featured', account_username: account.username }
-          end
-
-          it 'returns http success' do
+          it 'returns http success and correct media type' do
             expect(response).to have_http_status(200)
-          end
-
-          it 'returns application/activity+json' do
             expect(response.media_type).to eq 'application/activity+json'
           end
 
           it_behaves_like 'cacheable response'
 
-          it 'returns orderedItems with pinned statuses' do
-            json = body_as_json
-            expect(json[:orderedItems]).to be_an Array
-            expect(json[:orderedItems].size).to eq 3
-          end
-
-          it 'includes URI of private pinned status' do
-            json = body_as_json
-            expect(json[:orderedItems]).to include(ActivityPub::TagManager.instance.uri_for(private_pinned))
-          end
-
-          it 'does not include contents of private pinned status' do
-            expect(response.body).to_not include(private_pinned.text)
+          it 'returns orderedItems with expected items' do
+            expect(body_as_json[:orderedItems])
+              .to be_an(Array)
+              .and have_attributes(size: 3)
+              .and include(ActivityPub::TagManager.instance.uri_for(private_pinned))
+              .and not_include(private_pinned.text)
           end
         end
 
@@ -111,50 +90,36 @@ RSpec.describe ActivityPub::CollectionsController do
           context 'when signed request account is blocked' do
             before do
               account.block!(remote_account)
-              get :show, params: { id: 'featured', account_username: account.username }
             end
 
-            it 'returns http success' do
+            it 'returns http success and correct media type and cache headers' do
               expect(response).to have_http_status(200)
-            end
-
-            it 'returns application/activity+json' do
               expect(response.media_type).to eq 'application/activity+json'
-            end
-
-            it 'returns private Cache-Control header' do
               expect(response.headers['Cache-Control']).to include 'private'
             end
 
             it 'returns empty orderedItems' do
-              json = body_as_json
-              expect(json[:orderedItems]).to be_an Array
-              expect(json[:orderedItems].size).to eq 0
+              expect(body_as_json[:orderedItems])
+                .to be_an(Array)
+                .and have_attributes(size: 0)
             end
           end
 
           context 'when signed request account is domain blocked' do
             before do
               account.block_domain!(remote_account.domain)
-              get :show, params: { id: 'featured', account_username: account.username }
             end
 
-            it 'returns http success' do
+            it 'returns http success and correct media type and cache headers' do
               expect(response).to have_http_status(200)
-            end
-
-            it 'returns application/activity+json' do
               expect(response.media_type).to eq 'application/activity+json'
-            end
-
-            it 'returns private Cache-Control header' do
               expect(response.headers['Cache-Control']).to include 'private'
             end
 
             it 'returns empty orderedItems' do
-              json = body_as_json
-              expect(json[:orderedItems]).to be_an Array
-              expect(json[:orderedItems].size).to eq 0
+              expect(body_as_json[:orderedItems])
+                .to be_an(Array)
+                .and have_attributes(size: 0)
             end
           end
         end
@@ -162,8 +127,9 @@ RSpec.describe ActivityPub::CollectionsController do
     end
 
     context 'when id is not "featured"' do
+      let(:id) { 'hoge' }
+
       it 'returns http not found' do
-        get :show, params: { id: 'hoge', account_username: account.username }
         expect(response).to have_http_status(404)
       end
     end

@@ -42,8 +42,7 @@ describe Mastodon::CLI::Feeds do
 
       it 'displays an error and exits' do
         expect { subject }
-          .to output_results('No such account')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'No such account')
       end
     end
   end

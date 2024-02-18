@@ -48,15 +48,22 @@ lt:
         new_email: Naujas el pašto adresas
         submit: Pakeisti el pašto adresą
         title: Pakeisti el pašto adresą vartotojui %{username}
+      change_role:
+        label: Keisti vaidmenį
+        no_role: Jokios vaidmenį
+        title: Keisti vaidmenį %{username}
       confirm: Patvirtinti
       confirmed: Patvirtinta
       confirming: Tvirtinama
+      custom: Pasirinktinis
+      delete: Ištrinti duomenis
       deleted: Ištrinti
       demote: Pažeminti
       disable: Išjungti
-      disable_two_factor_authentication: Išjungti 2 faktorių autentifikaciją
+      disable_sign_in_token_auth: Išjungti el. pašto prieigos rakto tapatybės nustatymą
+      disable_two_factor_authentication: Išjungti 2FA
       disabled: Išjungta
-      display_name: Matomas vardas
+      display_name: Rodomas vardas
       domain: Domenas
       edit: Keisti
       email: El paštas
@@ -95,14 +102,27 @@ lt:
       public: Viešas
       push_subscription_expires: PuSH prenumeramivas pasibaigė
       redownload: Perkrauti profilį
+      rejected_msg: Sėkmingai patvirtinta %{username} registracijos paraiška
+      remote_suspension_irreversible: Šios paskyros duomenys negrįžtamai ištrinti.
+      remote_suspension_reversible_hint_html: Paskyra jų serveryje buvo sustabdyta, o duomenys bus visiškai pašalinti %{date}. Iki to laiko nuotolinis serveris gali atkurti šią paskyrą be jokių neigiamų pasekmių. Jei norite iš karto pašalinti visus paskyros duomenis, galite tai padaryti toliau.
       remove_avatar: Panaikinti profilio nuotrauką
       remove_header: Panaikinti antraštę
+      removed_header_msg: Sėkmingai pašalintas %{username} antraštės paveikslėlis
       resend_confirmation:
         already_confirmed: Šis vartotojas jau patvirtintas
+        send: Dar kartą išsiųsti patvirtinimo nuorodą
+        success: Patvirtinimo laiškas sėkmingai išsiųstas!
       reset: Iš naujo
       reset_password: Atkurti slaptažodį
       resubscribe: Per prenumeruoti
+      role: Vaidmuo
       search: Ieškoti
+      search_same_email_domain: Kiti tą patį el. pašto domeną turintys naudotojai
+      search_same_ip: Kiti tą patį IP turintys naudotojai
+      security: Apsauga
+      security_measures:
+        only_password: Tik slaptažodis
+        password_and_2fa: Slaptažodis ir 2FA
       sensitized: Pažymėti kaip jautrią informaciją
       shared_inbox_url: Bendroji gautųjų URL
       show:
@@ -113,13 +133,21 @@ lt:
       statuses: Statusai
       subscribe: Prenumeruoti
       suspended: Užrakintas
+      suspension_irreversible: Šios paskyros duomenys negrįžtamai ištrinti. Galite atšaukti paskyros sustabdymą, kad ja būtų galima naudotis, tačiau nebus atkurti jokie anksčiau turėti duomenys.
+      suspension_reversible_hint_html: Paskyra sustabdyta, o duomenys bus visiškai pašalinti %{date}. Iki to laiko paskyrą galima atkurti be jokių neigiamų pasekmių. Jei norite iš karto pašalinti visus paskyros duomenis, galite tai padaryti toliau.
       title: Vartotojai
+      unblock_email: El. pašto adreso atblokavimas
+      unblocked_email_msg: Sėkmingai atblokuotas %{username} el. pašto adresas
       unconfirmed_email: Nepatvirtintas el pašto adresas
       undo_silenced: Atšaukti užtildymą
       undo_suspension: Atšaukti užrakinimą
+      unsilenced_msg: Sėkmingai panaikintas %{username} paskyros apribojimas
       unsubscribe: Nebeprenumeruoti
+      unsuspended_msg: Sėkmingai panaikintas %{username} paskyros apribojimas
       username: Slapyvardis
+      view_domain: Peržiūrėti domeno santrauką
       warn: Įspėti
+      whitelisted: Leidžiama federacijai
     action_logs:
       title: Audito žurnalas
     custom_emojis:
@@ -169,6 +197,7 @@ lt:
       undo: Atkurti domeno bloką
     email_domain_blocks:
       add_new: Pridėti naują
+      allow_registrations_with_approval: Leisti registracijas su patvirtinimu
       created_msg: El pašto domenas sėkmingai pridėtas į juodąjį sąrašą
       delete: Ištrinti
       domain: Domenas
@@ -470,6 +499,9 @@ lt:
     other: Kita
   privacy:
     hint_html: "<strong>Tikrink, kaip nori, kad tavo profilis ir įrašai būtų randami.</strong> Įjungus įvairias Mastodon funkcijas, jos gali padėti pasiekti platesnę auditoriją. Akimirką peržiūrėk šiuos nustatymus, kad įsitikintum, jog jie atitinka tavo naudojimo būdą."
+  redirects:
+    prompt: Jei pasitiki šia nuoroda, spustelėk ją, kad tęstum.
+    title: Palieki %{instance}
   remote_follow:
     missing_resource: Jūsų paskyros nukreipimo URL nerasta
   scheduled_statuses:
@@ -482,6 +514,7 @@ lt:
     browsers:
       generic: Nežinoma naršyklė
     current_session: Dabartinė sesija
+    date: Data
     description: "%{browser} ant %{platform}"
     explanation: Čia rodomos web naršyklės prijungtos prie Jūsų Mastodon paskyros.
     revoke: Atšaukti
@@ -540,10 +573,22 @@ lt:
     recovery_codes_regenerated: Atkūrimo kodai sėkmingai sugeneruoti
     recovery_instructions_html: Jeigu prarandate prieiga prie telefono, jūs galite naudoti atkūrimo kodus esančius žemiau, kad atgautumėte priega prie savo paskyros.<strong>Laikykite atkūrimo kodus saugiai</strong> Pavyzdžiui, galite norėti juos išspausdinti, ir laikyti kartu su kitais svarbiais dokumentais.
   user_mailer:
+    appeal_approved:
+      action: Paskyros nustatymai
+      subtitle: Tavo paskyros būklė vėl yra gera.
+    appeal_rejected:
+      subtitle: Tavo apeliacija buvo atmesta.
     backup_ready:
-      explanation: Jūs prašėte pilnos Mastodon paskyros atsarginės kopijos. Ji paruošta parsisiuntimui!
+      explanation: Prašai sukurti pilną Mastodon paskyros atsarginę kopiją.
+      extra: Jį jau galima atsisiųsti!
       subject: Jūsų archyvas paruoštas parsisiuntimui
       title: Archyvas išimtas
+    failed_2fa:
+      details: 'Štai išsami informacija apie bandymą prisijungti:'
+      explanation: Kažkas bandė prisijungti prie tavo paskyros, bet nurodė netinkamą antrąjį tapatybės nustatymo veiksnį.
+      further_actions_html: Jei tai buvo ne tu, rekomenduojame nedelsiant imtis %{action}, nes jis gali būti pažeistas.
+      subject: Antrojo veiksnio tapatybės nustatymas nesėkmingai
+      title: Nepavyko atlikti antrojo veiksnio tapatybės nustatymo
     warning:
       subject:
         disable: Jūsų paskyra %{acct} buvo užšaldyta
@@ -569,6 +614,7 @@ lt:
     go_to_sso_account_settings: Eik į savo tapatybės teikėjo paskyros nustatymus
     invalid_otp_token: Netinkamas dviejų veiksnių kodas
     otp_lost_help_html: Jei praradai prieigą prie abiejų, gali susisiek su %{email}
+    rate_limited: Per daug tapatybės nustatymo bandymų. Bandyk dar kartą vėliau.
     seamless_external_login: Esi prisijungęs (-usi) per išorinę paslaugą, todėl slaptažodžio ir el. pašto nustatymai nepasiekiami.
     signed_in_as: 'Prisijungta kaip:'
   verification:

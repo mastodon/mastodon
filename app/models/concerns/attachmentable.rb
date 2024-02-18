@@ -11,11 +11,12 @@ module Attachmentable
   # For some file extensions, there exist different content
   # type variants, and browsers often send the wrong one,
   # for example, sending an audio .ogg file as video/ogg,
-  # likewise, MimeMagic also misreports them as such. For
+  # likewise, kt-paperclip also misreports them as such. For
   # those files, it is necessary to use the output of the
   # `file` utility instead
   INCORRECT_CONTENT_TYPES = %w(
     audio/vorbis
+    audio/opus
     video/ogg
     video/webm
   ).freeze

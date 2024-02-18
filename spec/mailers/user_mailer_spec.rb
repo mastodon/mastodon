@@ -135,6 +135,24 @@ describe UserMailer do
                      'user_mailer.suspicious_sign_in.subject'
   end
 
+  describe '#failed_2fa' do
+    let(:ip) { '192.168.0.1' }
+    let(:agent) { 'NCSA_Mosaic/2.0 (Windows 3.1)' }
+    let(:timestamp) { Time.now.utc }
+    let(:mail) { described_class.failed_2fa(receiver, ip, agent, timestamp) }
+
+    it 'renders failed 2FA notification' do
+      receiver.update!(locale: nil)
+
+      expect(mail)
+        .to be_present
+        .and(have_body_text(I18n.t('user_mailer.failed_2fa.explanation')))
+    end
+
+    include_examples 'localized subject',
+                     'user_mailer.failed_2fa.subject'
+  end
+
   describe '#appeal_approved' do
     let(:appeal) { Fabricate(:appeal, account: receiver.account, approved_at: Time.now.utc) }
     let(:mail) { described_class.appeal_approved(receiver, appeal) }

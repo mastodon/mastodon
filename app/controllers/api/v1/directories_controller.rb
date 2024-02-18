@@ -27,7 +27,7 @@ class Api::V1::DirectoriesController < Api::BaseController
       scope.merge!(local_account_scope) if local_accounts?
       scope.merge!(account_exclusion_scope) if current_account
       scope.merge!(account_domain_block_scope) if current_account && !local_accounts?
-    end
+    end.includes(:account_stat, user: :role)
   end
 
   def local_accounts?
