@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AccountSuggestions::FriendsOfFriendsSource < AccountSuggestions::Source
-  def get(account, limit: 10)
+  def get(account, limit: DEFAULT_LIMIT)
     Account.find_by_sql([<<~SQL.squish, { id: account.id, limit: limit }]).map { |row| [row.id, key] }
       WITH first_degree AS (
           SELECT target_account_id
