@@ -64,6 +64,7 @@ class Account < ApplicationRecord
   )
 
   BACKGROUND_REFRESH_INTERVAL = 1.week.freeze
+  INSTANCE_ACTOR_ID = -99
 
   USERNAME_RE   = /[a-z0-9_]+([a-z0-9_.-]+[a-z0-9_]+)?/i
   MENTION_RE    = %r{(?<![=/[:word:]])@((#{USERNAME_RE})(?:@[[:word:].-]+[[:word:]]+)?)}i
@@ -118,7 +119,7 @@ class Account < ApplicationRecord
   scope :sensitized, -> { where.not(sensitized_at: nil) }
   scope :without_suspended, -> { where(suspended_at: nil) }
   scope :without_silenced, -> { where(silenced_at: nil) }
-  scope :without_instance_actor, -> { where.not(id: -99) }
+  scope :without_instance_actor, -> { where.not(id: INSTANCE_ACTOR_ID) }
   scope :recent, -> { reorder(id: :desc) }
   scope :bots, -> { where(actor_type: %w(Application Service)) }
   scope :groups, -> { where(actor_type: 'Group') }
@@ -176,7 +177,7 @@ class Account < ApplicationRecord
   end
 
   def instance_actor?
-    id == -99
+    id == INSTANCE_ACTOR_ID
   end
 
   alias bot bot?
