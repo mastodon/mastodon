@@ -455,18 +455,20 @@ RSpec.describe User do
 
     let!(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
 
-    before { ActionMailer::Base.deliveries.clear }
-
-    after { ActionMailer::Base.deliveries.clear }
-
     context 'when user is new' do
       let(:confirmed_at) { nil }
 
       it 'confirms user and delivers welcome email', :sidekiq_inline do
-        subject
+        emails = capture_emails { subject }
 
         expect(user.confirmed_at).to be_present
-        expect(ActionMailer::Base.deliveries.count).to eq 1
+        expect(emails.size)
+          .to eq(1)
+        expect(emails.first)
+          .to have_attributes(
+            to: contain_exactly(user.email),
+            subject: eq(I18n.t('user_mailer.welcome.subject'))
+          )
       end
     end
 
@@ -474,10 +476,10 @@ RSpec.describe User do
       let(:confirmed_at) { Time.zone.now }
 
       it 'confirms user but does not deliver welcome email' do
-        subject
+        emails = capture_emails { subject }
 
         expect(user.confirmed_at).to be_present
-        expect(ActionMailer::Base.deliveries.count).to eq 0
+        expect(emails).to be_empty
       end
     end
   end
