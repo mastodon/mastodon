@@ -41,6 +41,7 @@ class Explore extends PureComponent {
     intl: PropTypes.object.isRequired,
     multiColumn: PropTypes.bool,
     isSearching: PropTypes.bool,
+    onLoadClear: PropTypes.func.isRequired,
   };
 
   handleHeaderClick = () => {
@@ -50,6 +51,10 @@ class Explore extends PureComponent {
   setRef = c => {
     this.column = c;
   };
+
+  componentWillUnmount () {
+    this.props.onLoadClear();
+  }
 
   render() {
     const { intl, multiColumn, isSearching } = this.props;

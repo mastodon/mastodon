@@ -15,6 +15,7 @@ import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings-fill.svg?react';
 import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import TagIcon from '@/material-icons/400-24px/tag.svg?react';
+import { clearSearch } from 'mastodon/actions/search';
 import { WordmarkLogo } from 'mastodon/components/logo';
 import { NavigationPortal } from 'mastodon/components/navigation_portal';
 import { timelinePreview, trendsEnabled } from 'mastodon/initial_state';
@@ -94,7 +95,7 @@ class NavigationPanel extends Component {
         )}
 
         {trendsEnabled ? (
-          <ColumnLink transparent to='/explore' icon='hashtag' iconComponent={TagIcon} text={intl.formatMessage(messages.explore)} />
+          <ColumnLink transparent to='/explore' icon='hashtag' iconComponent={TagIcon} text={intl.formatMessage(messages.explore)} onClick={clearSearch()} />
         ) : (
           <ColumnLink transparent to='/search' icon='search' iconComponent={SearchIcon} text={intl.formatMessage(messages.search)} />
         )}
