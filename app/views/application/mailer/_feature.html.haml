@@ -15,9 +15,10 @@
                         %h2.email-h2= feature_title
                       - if defined?(feature_text)
                         %p.email-p= feature_text
-                      = link_to '', href: feature_btn_url, class: 'email-link-with-arrow' do
-                        #{t('user_mailer.welcome.feature_action')} 
-                        %span= '❯'
+                      - if defined?(feature_btn_url)
+                        = link_to '', href: feature_btn_url, class: 'email-link-with-arrow' do
+                          #{t('user_mailer.welcome.feature_action')} 
+                          %span= '❯'
               /[if mso]
                 </td><td style="width:50%; vertical-align:top;">
               .email-desktop-column

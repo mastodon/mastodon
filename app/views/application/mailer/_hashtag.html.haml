@@ -1,3 +1,5 @@
+- accounts = hashtag.statuses.with_public_visibility.joins(:account).merge(Account.without_suspended.without_silenced).includes(:account).limit(3).map(&:account)
+
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-mini-wrapper-td
@@ -7,15 +9,12 @@
             %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
               %tr
                 %td.email-mini-hashtag-td{ height: 40 }
-                  %h3= '#Fotomontag'
+                  %h3 ##{hashtag.display_name}
                   %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
                     %tr
                       %td.email-mini-hashtag-img-td
-                        %span.email-mini-hashtag-img-span
-                          = image_tag 'https://files.mastodon.social/accounts/avatars/000/013/179/original/b4ceb19c9c54ec7e.png', alt: '', width: 16, height: 16
-                        %span.email-mini-hashtag-img-span
-                          = image_tag 'https://files.mastodon.social/accounts/avatars/000/013/179/original/b4ceb19c9c54ec7e.png', alt: '', width: 16, height: 16
-                        %span.email-mini-hashtag-img-span
-                          = image_tag 'https://files.mastodon.social/accounts/avatars/000/013/179/original/b4ceb19c9c54ec7e.png', alt: '', width: 16, height: 16
+                        - accounts.each do |account|
+                          %span.email-mini-hashtag-img-span
+                            = image_tag full_asset_url(account.avatar.url), alt: '', width: 16, height: 16
                       %td
-                        %p= t('user_mailer.welcome.hashtags_recent_count')
+                        %p= t('user_mailer.welcome.hashtags_recent_count', people: number_with_delimiter(hashtag.history.aggregate(2.days.ago.to_date..Time.zone.today).accounts), days: 2)
