@@ -20,6 +20,8 @@ RSpec.describe Disputes::AppealsController do
       it 'notifies staff about new appeal and redirects back to strike page', :sidekiq_inline do
         emails = capture_emails { subject }
 
+        expect(emails.size)
+          .to eq(1)
         expect(emails.first)
           .to have_attributes(
             to: contain_exactly(admin.email),

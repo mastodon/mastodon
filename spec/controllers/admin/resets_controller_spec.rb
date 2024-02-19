@@ -17,6 +17,8 @@ describe Admin::ResetsController do
     it 'redirects to admin accounts page' do
       emails = capture_emails { subject }
 
+      expect(emails.size)
+        .to eq(2)
       expect(emails).to have_attributes(
         first: have_attributes(
           to: include(account.user.email),

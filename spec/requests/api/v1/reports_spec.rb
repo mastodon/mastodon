@@ -49,6 +49,8 @@ RSpec.describe 'Reports' do
         expect(target_account.targeted_reports).to_not be_empty
         expect(target_account.targeted_reports.first.comment).to eq 'reasons'
 
+        expect(emails.size)
+          .to eq(1)
         expect(emails.first)
           .to have_attributes(
             to: contain_exactly(admin.email),

@@ -462,6 +462,8 @@ RSpec.describe User do
         emails = capture_emails { subject }
 
         expect(user.confirmed_at).to be_present
+        expect(emails.size)
+          .to eq(1)
         expect(emails.first)
           .to have_attributes(
             to: contain_exactly(user.email),

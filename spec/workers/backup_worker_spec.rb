@@ -19,6 +19,8 @@ describe BackupWorker do
 
       expect(service).to have_received(:call).with(backup)
       expect { other_backup.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect(emails.size)
+        .to eq(1)
       expect(emails.first)
         .to have_attributes(
           to: contain_exactly(backup.user.email),

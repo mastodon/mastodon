@@ -43,6 +43,8 @@ RSpec.describe Admin::Disputes::AppealsController do
       expect(target_account.reload)
         .to_not be_suspended
 
+      expect(emails.size)
+        .to eq(1)
       expect(emails.first)
         .to have_attributes(
           to: contain_exactly(target_account.user.email),
@@ -61,6 +63,9 @@ RSpec.describe Admin::Disputes::AppealsController do
 
       expect(response)
         .to redirect_to(disputes_strike_path(appeal.strike))
+
+      expect(emails.size)
+        .to eq(1)
 
       expect(emails.first)
         .to have_attributes(

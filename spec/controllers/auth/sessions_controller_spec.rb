@@ -132,6 +132,8 @@ RSpec.describe Auth::SessionsController do
           expect(controller.current_user)
             .to eq user
 
+          expect(emails.size)
+            .to eq(1)
           expect(emails.first)
             .to have_attributes(
               to: contain_exactly(user.email),
@@ -276,6 +278,8 @@ RSpec.describe Auth::SessionsController do
             expect(flash[:alert])
               .to match I18n.t('users.rate_limited')
 
+            expect(emails.size)
+              .to eq(1)
             expect(emails.first)
               .to have_attributes(
                 to: contain_exactly(user.email),

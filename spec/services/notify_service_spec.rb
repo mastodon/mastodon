@@ -167,6 +167,8 @@ RSpec.describe NotifyService, type: :service do
       it 'sends email', :sidekiq_inline do
         emails = capture_emails { subject }
 
+        expect(emails.size)
+          .to eq(1)
         expect(emails.first)
           .to have_attributes(
             to: contain_exactly(user.email),
