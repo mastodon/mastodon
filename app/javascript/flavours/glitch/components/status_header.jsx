@@ -45,26 +45,19 @@ export default class StatusHeader extends PureComponent {
     }
 
     return (
-      <div className='status__info__account'>
-        <a
-          href={account.get('url')}
-          target='_blank'
-          className='status__avatar'
-          onClick={this.handleAccountClick}
-          rel='noopener noreferrer'
-        >
+      <a
+        href={account.get('url')}
+        className='status__display-name'
+        target='_blank'
+        onClick={this.handleAccountClick}
+        rel='noopener noreferrer'
+      >
+        <div className='status__avatar'>
           {statusAvatar}
-        </a>
-        <a
-          href={account.get('url')}
-          target='_blank'
-          className='status__display-name'
-          onClick={this.handleAccountClick}
-          rel='noopener noreferrer'
-        >
-          <DisplayName account={account} />
-        </a>
-      </div>
+        </div>
+
+        <DisplayName account={account} />
+      </a>
     );
   }
 

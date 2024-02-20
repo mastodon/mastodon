@@ -147,7 +147,7 @@ class Account extends ImmutablePureComponent {
             </div>
 
             <div className='account__contents'>
-              <DisplayName account={account} inline />
+              <DisplayName account={account} />
               {!minimal && (
                 <div className='account__details'>
                   {account.get('followers_count') !== -1 && (

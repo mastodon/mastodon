@@ -412,7 +412,7 @@ body > [data-popper-placement] {
 
   .compose-form__warning {
     color: $inverted-text-color;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     background: $ui-primary-color;
     box-shadow: 0 2px 6px rgba($base-shadow-color, 0.3);
     padding: 8px 10px;
@@ -1033,8 +1033,7 @@ body > [data-popper-placement] {
 
 .status {
   padding: 10px 14px;
-  position: relative;
-  height: auto;
+  min-height: 54px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: auto;
 
@@ -1090,9 +1089,60 @@ body > [data-popper-placement] {
         color: $primary-text-color;
         background: $ui-primary-color;
 
-        &:hover {
+        &:hover,
+        &:focus {
           background: lighten($ui-primary-color, 8%);
         }
+      }
+    }
+  }
+
+  &--in-thread {
+    $thread-margin: 46px + 10px;
+
+    border-bottom: 0;
+
+    .status__content,
+    .status__action-bar {
+      margin-inline-start: $thread-margin;
+      width: calc(100% - ($thread-margin));
+    }
+  }
+
+  &--first-in-thread {
+    border-top: 1px solid lighten($ui-base-color, 8%);
+  }
+
+  &__line {
+    height: 10px - 4px;
+    border-inline-start: 2px solid lighten($ui-base-color, 8%);
+    width: 0;
+    position: absolute;
+    top: 0;
+    inset-inline-start: 14px + ((46px - 2px) * 0.5);
+
+    &--full {
+      top: 0;
+      height: 100%;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 10px - 4px;
+        height: 46px + 4px + 4px;
+        width: 2px;
+        background: $ui-base-color;
+        inset-inline-start: -2px;
+      }
+    }
+
+    &--first {
+      top: 10px + 46px + 4px;
+      height: calc(100% - (10px + 46px + 4px));
+
+      &::before {
+        display: none;
       }
     }
   }
@@ -1101,6 +1151,7 @@ body > [data-popper-placement] {
     background-position: center;
     background-size: cover;
     user-select: none;
+    min-height: 0;
 
     &.has-background::before {
       display: block;
@@ -1161,25 +1212,30 @@ body > [data-popper-placement] {
         rgba(mix($ui-base-color, $ui-highlight-color, 95%), 1)
       );
     }
-
-    .notification__message {
-      margin-bottom: 0;
-    }
-
-    .status__info .notification__message > span {
-      white-space: nowrap;
-    }
   }
+}
 
+.status__wrapper.collapsed {
   .notification__message {
-    margin: -10px 0 10px;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+}
+
+.notification__message-collapse-button {
+  text-align: end;
+  flex-grow: 2;
+
+  .status__collapse-button .icon {
+    width: 24px;
+    height: 24px;
   }
 }
 
 .status__relative-time {
-  display: inline-block;
-  color: $dark-text-color;
+  display: block;
   font-size: 14px;
+  color: $dark-text-color;
   text-align: end;
   white-space: nowrap;
   overflow: hidden;
@@ -1198,24 +1254,37 @@ body > [data-popper-placement] {
   overflow: hidden;
 }
 
-.status__info__account .status__display-name {
-  display: block;
+.status__info .status__display-name {
   max-width: 100%;
+  display: flex;
+  font-size: 15px;
+  line-height: 22px;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+
+  .display-name {
+    bdi {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &__account {
+      white-space: nowrap;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 }
 
 .status__info {
+  font-size: 15px;
+  padding-bottom: 10px;
   display: flex;
   justify-content: space-between;
-  font-size: 15px;
-
-  > span {
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-
-  .notification__message > span {
-    word-wrap: break-word;
-  }
+  gap: 10px;
+  cursor: pointer;
 }
 
 .status__info__icons {
@@ -1223,23 +1292,21 @@ body > [data-popper-placement] {
   align-items: center;
   height: 1em;
   color: $action-button-color;
-
-  .status__media-icon,
-  .status__visibility-icon,
-  .status__reply-icon,
-  .text-icon {
-    padding-inline-start: 2px;
-    padding-inline-end: 2px;
-  }
+  gap: 4px;
 
   & > .icon {
     width: 16px;
     height: 16px;
   }
+}
 
-  .status__collapse-button.active > .icon {
-    transform: rotate(-180deg);
-  }
+.status__collapse-button {
+  // compensate for large padding built into the icon
+  margin: -4px;
+}
+
+.status__collapse-button.active > .icon {
+  transform: rotate(-180deg);
 }
 
 .no-reduce-motion .status__collapse-button {
@@ -1254,12 +1321,6 @@ body > [data-popper-placement] {
       animation: spring-flip-out 1s linear;
     }
   }
-}
-
-.status__info__account {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 
 .status-check-box__status {
@@ -1298,6 +1359,8 @@ body > [data-popper-placement] {
 }
 
 .status__prepend {
+  padding: 8px 14px; // intentionally reduced padding in glitch-soc
+  padding-bottom: 0;
   display: inline-flex;
   gap: 10px;
   font-size: 14px;
@@ -1317,14 +1380,14 @@ body > [data-popper-placement] {
 }
 
 .status__action-bar {
-  align-items: center;
   display: flex;
+  align-items: center;
   gap: 18px;
   margin-top: 8px;
-}
 
-.status__action-bar-spacer {
-  flex-grow: 1;
+  &-spacer {
+    flex-grow: 1;
+  }
 }
 
 .detailed-status__action-bar-dropdown {
@@ -1375,7 +1438,7 @@ body > [data-popper-placement] {
 }
 
 .detailed-status__meta {
-  margin-top: 15px;
+  margin-top: 16px;
   color: $dark-text-color;
   font-size: 14px;
   line-height: 18px;
@@ -1416,11 +1479,6 @@ body > [data-popper-placement] {
     text-align: center;
     opacity: 0.8;
   }
-}
-
-.notification__favourite-icon-wrapper {
-  inset-inline-start: 0;
-  position: absolute;
 }
 
 .detailed-status__link {
@@ -1656,10 +1714,10 @@ a .account__avatar {
   }
 }
 
-a.status__display-name,
+.status__display-name,
 .reply-indicator__display-name,
 .detailed-status__display-name,
-.account__display-name {
+a.account__display-name {
   &:hover .display-name strong {
     text-decoration: underline;
   }
@@ -1698,15 +1756,9 @@ a.status__display-name,
   }
 }
 
-.status__relative-time,
-.detailed-status__datetime {
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
 .status__avatar {
-  margin-inline-end: 10px;
+  width: 46px;
+  height: 46px;
 }
 
 .muted {
@@ -1738,41 +1790,53 @@ a.status__display-name,
 }
 
 .notification__report {
-  padding: 8px 10px;
-  padding-inline-start: 68px;
-  position: relative;
+  padding: 10px; // deliberate glitch-soc change
   border-bottom: 1px solid lighten($ui-base-color, 8%);
-  min-height: 54px;
+  display: flex;
+  gap: 10px;
 
   &__avatar {
-    position: absolute;
-    inset-inline-start: 10px;
-    top: 10px;
+    flex: 0 0 auto;
   }
 
   &__details {
+    flex: 1 1 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: $darker-text-color;
+    gap: 10px;
     font-size: 15px;
     line-height: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+
+    & > div {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
     strong {
       font-weight: 500;
     }
   }
+
+  &__actions {
+    flex: 0 0 auto;
+  }
 }
 
 .notification__message {
-  margin-inline-start: 42px;
-  padding-top: 8px;
-  padding-inline-start: 26px;
+  padding: 8px 14px 0; // padding intentionally reduced for glitch-soc
   cursor: default;
   color: $darker-text-color;
   font-size: 15px;
-  position: relative;
+
+  // line-height: 22px; omitted in glitch-soc for space saving
+  font-weight: 500;
+  display: flex;
   align-items: center;
+  gap: 10px;
 
   .icon {
     color: $highlight-text-color;
@@ -1785,7 +1849,7 @@ a.status__display-name,
   }
 
   > span {
-    display: block;
+    display: inline;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -1837,53 +1901,17 @@ a.status__display-name,
     text-overflow: ellipsis;
     overflow: hidden;
   }
-
-  a {
-    color: inherit;
-    text-decoration: inherit;
-  }
-
-  strong {
-    display: block;
-  }
-
-  > a:hover {
-    strong {
-      text-decoration: underline;
-    }
-  }
-
-  &.inline {
-    padding: 0;
-    height: 18px;
-    font-size: 15px;
-    line-height: 18px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-
-    strong {
-      display: inline;
-      height: auto;
-      font-size: inherit;
-      line-height: inherit;
-    }
-
-    span {
-      display: inline;
-      height: auto;
-      font-size: inherit;
-      line-height: inherit;
-    }
-  }
 }
 
 .display-name__html {
   font-weight: 500;
 }
 
-.display-name__account {
-  font-size: 14px;
+.status__relative-time,
+.detailed-status__datetime {
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .image-loader {
@@ -3730,59 +3758,6 @@ a.status-card {
   width: 100%;
 }
 
-.notification,
-.status {
-  position: relative;
-
-  &--in-thread {
-    border-bottom: 0;
-
-    .status__content,
-    .status__action-bar {
-      margin-inline-start: 46px + 10px;
-      width: calc(100% - (46px + 10px));
-    }
-  }
-
-  &--first-in-thread {
-    border-top: 1px solid lighten($ui-base-color, 8%);
-  }
-
-  &__line {
-    height: 10px - 4px;
-    border-inline-start: 2px solid lighten($ui-base-color, 8%);
-    width: 0;
-    position: absolute;
-    top: 0;
-    inset-inline-start: 14px + ((46px - 2px) * 0.5);
-
-    &--full {
-      top: 0;
-      height: 100%;
-
-      &::before {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 10px - 4px;
-        height: 46px + 4px + 4px;
-        width: 2px;
-        background: $ui-base-color;
-        inset-inline-start: -2px;
-      }
-    }
-
-    &--first {
-      top: 10px + 46px + 4px;
-      height: calc(100% - (10px + 46px + 4px));
-
-      &::before {
-        display: none;
-      }
-    }
-  }
-}
-
 .load-more {
   display: block;
   color: $dark-text-color;
@@ -3929,6 +3904,7 @@ a.status-card {
     margin: 0;
     border: 0;
     padding: 13px;
+    padding-inline-end: 0;
     color: inherit;
     background: transparent;
     font: inherit;
@@ -3963,7 +3939,6 @@ a.status-card {
 .column-header__buttons {
   height: 48px;
   display: flex;
-  margin-inline-start: 0;
 }
 
 .column-header__links {
@@ -5073,6 +5048,12 @@ a.status-card {
     font-weight: 500;
     display: block;
     color: $inverted-text-color;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 }
 
@@ -5109,12 +5090,6 @@ a.status-card {
 
   strong {
     font-weight: 500;
-
-    @each $lang in $cjk-langs {
-      &:lang(#{$lang}) {
-        font-weight: 700;
-      }
-    }
   }
 
   a {
@@ -5270,7 +5245,6 @@ a.status-card {
 
 .status__content {
   position: relative;
-  margin: 10px 0;
   font-size: 15px;
   line-height: 20px;
   word-wrap: break-word;
@@ -6092,27 +6066,7 @@ a.status-card {
   flex-direction: column;
 
   .status__relative-time {
-    color: $dark-text-color;
-    float: right;
-    font-size: 14px;
-    width: auto;
-    margin: initial;
-    padding: initial;
-  }
-
-  .status__visibility-icon {
-    color: $dark-text-color;
-    font-size: 14px;
-    padding: 0 4px;
-  }
-
-  .status__display-name {
-    display: flex;
-  }
-
-  .status__avatar {
-    height: 48px;
-    width: 48px;
+    order: 2;
   }
 
   .status__content__spoiler-link {
@@ -6159,15 +6113,6 @@ a.status-card {
   .button {
     flex: 0 0 auto;
   }
-}
-
-.boost-modal__status-header {
-  font-size: 15px;
-}
-
-.boost-modal__status-time {
-  float: right;
-  font-size: 14px;
 }
 
 .mute-modal,
@@ -7462,11 +7407,8 @@ img.modal-warning {
 
 .notification__filter-bar,
 .account__section-headline {
-  background: darken(
-    $ui-base-color,
-    4%
-  ); // deliberate glitch-soc choice for now
-
+  // deliberate glitch-soc choice for now
+  background: darken($ui-base-color, 4%);
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
   display: flex;
@@ -7602,6 +7544,90 @@ noscript {
 
   100% {
     opacity: 1;
+  }
+}
+
+@media screen and (width <= 630px) and (height <= 400px) {
+  $duration: 400ms;
+  $delay: 100ms;
+
+  .search {
+    will-change: margin-top;
+    transition: margin-top $duration $delay;
+  }
+
+  .navigation-bar {
+    will-change: padding-bottom;
+    transition: padding-bottom $duration $delay;
+  }
+
+  .navigation-bar {
+    & > a:first-child {
+      will-change: margin-top, margin-inline-start, margin-inline-end, width;
+      transition:
+        margin-top $duration $delay,
+        margin-inline-start $duration ($duration + $delay),
+        margin-inline-end $duration ($duration + $delay);
+    }
+
+    & > .navigation-bar__profile-edit {
+      will-change: margin-top;
+      transition: margin-top $duration $delay;
+    }
+
+    .navigation-bar__actions {
+      & > .icon-button.close {
+        will-change: opacity transform;
+        transition:
+          opacity $duration * 0.5 $delay,
+          transform $duration $delay;
+      }
+
+      & > .compose__action-bar .icon-button {
+        will-change: opacity transform;
+        transition:
+          opacity $duration * 0.5 $delay + $duration * 0.5,
+          transform $duration $delay;
+      }
+    }
+  }
+
+  .is-composing {
+    .search {
+      margin-top: -50px;
+    }
+
+    .navigation-bar {
+      padding-bottom: 0;
+
+      & > a:first-child {
+        margin: -100px 10px 0 -50px;
+      }
+
+      .navigation-bar__profile {
+        padding-top: 2px;
+      }
+
+      .navigation-bar__profile-edit {
+        position: absolute;
+        margin-top: -60px;
+      }
+
+      .navigation-bar__actions {
+        .icon-button.close {
+          pointer-events: auto;
+          opacity: 1;
+          transform: scale(1, 1) translate(0, 0);
+          bottom: 5px;
+        }
+
+        .compose__action-bar .icon-button {
+          pointer-events: none;
+          opacity: 0;
+          transform: scale(0, 1) translate(100%, 0);
+        }
+      }
+    }
   }
 }
 
@@ -8682,7 +8708,7 @@ noscript {
 }
 
 .notification,
-.status {
+.status__wrapper {
   position: relative;
 
   &.unread {

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import classNames from 'classnames';
-
 import type { List } from 'immutable';
 
 import type { Account } from 'flavours/glitch/models/account';
@@ -14,7 +12,6 @@ interface Props {
   account?: Account;
   others?: List<Account>;
   localDomain?: string;
-  inline?: boolean;
 }
 
 export class DisplayName extends React.PureComponent<Props> {
@@ -51,7 +48,7 @@ export class DisplayName extends React.PureComponent<Props> {
   };
 
   render() {
-    const { others, localDomain, inline } = this.props;
+    const { others, localDomain } = this.props;
 
     let displayName: React.ReactNode,
       suffix: React.ReactNode,
@@ -114,13 +111,11 @@ export class DisplayName extends React.PureComponent<Props> {
 
     return (
       <span
-        className={classNames('display-name', { inline })}
+        className='display-name'
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
-        {displayName}
-        {inline ? ' ' : null}
-        {suffix}
+        {displayName} {suffix}
       </span>
     );
   }

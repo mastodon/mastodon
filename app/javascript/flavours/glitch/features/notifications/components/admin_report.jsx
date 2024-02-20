@@ -95,9 +95,7 @@ class AdminReport extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-admin-report focusable', { unread })} tabIndex={0}>
           <div className='notification__message'>
-            <div className='notification__favourite-icon-wrapper'>
-              <Icon id='flag' icon={FlagIcon} />
-            </div>
+            <Icon id='flag' icon={FlagIcon} />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.admin.report' defaultMessage='{name} reported {target}' values={{ name: link, target: targetLink }} />

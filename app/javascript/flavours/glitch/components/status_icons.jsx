@@ -6,7 +6,6 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import ExpandLessIcon from '@/material-icons/400-24px/expand_less.svg?react';
 import ForumIcon from '@/material-icons/400-24px/forum.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home.svg?react';
 import ImageIcon from '@/material-icons/400-24px/image.svg?react';
@@ -17,8 +16,7 @@ import MusicNoteIcon from '@/material-icons/400-24px/music_note.svg?react';
 import { Icon } from 'flavours/glitch/components/icon';
 import { languages } from 'flavours/glitch/initial_state';
 
-
-import { IconButton } from './icon_button';
+import { CollapseButton } from './collapse_button';
 import { VisibilityIcon } from './visibility_icon';
 
 const messages = defineMessages({
@@ -118,6 +116,7 @@ class StatusIcons extends PureComponent {
       mediaIcons,
       collapsible,
       collapsed,
+      setCollapsed,
       settings,
       intl,
     } = this.props;
@@ -143,21 +142,7 @@ class StatusIcons extends PureComponent {
           />}
         {settings.get('media') && !!mediaIcons && mediaIcons.map(icon => this.renderIcon(icon))}
         {settings.get('visibility') && <VisibilityIcon visibility={status.get('visibility')} />}
-        {collapsible && (
-          <IconButton
-            className='status__collapse-button'
-            animate
-            active={collapsed}
-            title={
-              collapsed ?
-                intl.formatMessage(messages.uncollapse) :
-                intl.formatMessage(messages.collapse)
-            }
-            icon='angle-double-up'
-            iconComponent={ExpandLessIcon}
-            onClick={this.handleCollapsedClick}
-          />
-        )}
+        {collapsible && <CollapseButton collapsed={collapsed} setCollapsed={setCollapsed} />}
       </div>
     );
   }

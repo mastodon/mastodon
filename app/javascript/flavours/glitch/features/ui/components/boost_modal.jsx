@@ -9,7 +9,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
 import { changeBoostPrivacy } from 'flavours/glitch/actions/boosts';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
@@ -78,12 +77,11 @@ class BoostModal extends ImmutablePureComponent {
       <div className='modal-root__modal boost-modal'>
         <div className='boost-modal__container'>
           <div className={classNames('status', `status-${status.get('visibility')}`, 'light')}>
-            <div className='boost-modal__status-header'>
-              <div className='boost-modal__status-time'>
-                <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener noreferrer'>
-                  <VisibilityIcon visibility={status.get('visibility')} />
-                  <RelativeTimestamp timestamp={status.get('created_at')} /></a>
-              </div>
+            <div className='status__info'>
+              <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener noreferrer'>
+                <span className='status__visibility-icon'><VisibilityIcon visibility={status.get('visibility')} /></span>
+                <RelativeTimestamp timestamp={status.get('created_at')} />
+              </a>
 
               <a onClick={this.handleAccountClick} href={status.getIn(['account', 'url'])} className='status__display-name'>
                 <div className='status__avatar'>
