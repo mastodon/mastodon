@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::ProcessAccountService, type: :service do
+RSpec.describe ActivityPub::ProcessAccountService do
   subject { described_class.new }
 
   context 'with property values, an avatar, and a profile header' do
