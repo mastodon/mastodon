@@ -191,7 +191,7 @@ module LanguagesHelper
     chr: ['Cherokee', 'ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ'].freeze,
     ckb: ['Sorani (Kurdish)', 'سۆرانی'].freeze,
     cnr: ['Montenegrin', 'crnogorski'].freeze,
-    gsw: ['Schweizerdeutsch', 'Schwiizertütsch'].freeze,
+    gsw: ['Swiss German', 'Schwiizertütsch'].freeze,
     jbo: ['Lojban', 'la .lojban.'].freeze,
     kab: ['Kabyle', 'Taqbaylit'].freeze,
     ldn: ['Láadan', 'Láadan'].freeze,
