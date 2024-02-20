@@ -374,7 +374,7 @@ body > [data-popper-placement] {
 }
 
 .compose-form {
-  padding: 10px;
+  padding: 10px; // glitch: reduced padding
 
   &__sensitive-button {
     padding: 10px;
@@ -1032,7 +1032,7 @@ body > [data-popper-placement] {
 }
 
 .status {
-  padding: 10px 14px;
+  padding: 10px 14px; // glitch: reduced padding
   min-height: 54px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: auto;
@@ -1050,9 +1050,11 @@ body > [data-popper-placement] {
   opacity: 1;
   animation: fade 150ms linear;
 
+  .media-gallery,
   .video-player,
-  .audio-player {
-    margin-top: 8px;
+  .audio-player,
+  .attachment-list {
+    margin-top: 8px; // glitch: reduced margins
   }
 
   &.status-direct {
@@ -1085,7 +1087,7 @@ body > [data-popper-placement] {
         color: $highlight-text-color;
       }
 
-      a.status__content__spoiler-link {
+      &__spoiler-link {
         color: $primary-text-color;
         background: $ui-primary-color;
 
@@ -1251,7 +1253,6 @@ body > [data-popper-placement] {
 
 .status__display-name {
   color: $dark-text-color;
-  overflow: hidden;
 }
 
 .status__info .status__display-name {
@@ -1359,7 +1360,7 @@ body > [data-popper-placement] {
 }
 
 .status__prepend {
-  padding: 8px 14px; // intentionally reduced padding in glitch-soc
+  padding: 8px 14px; // glitch: reduced padding
   padding-bottom: 0;
   display: inline-flex;
   gap: 10px;
@@ -1400,7 +1401,7 @@ body > [data-popper-placement] {
 
 .detailed-status {
   background: lighten($ui-base-color, 4%);
-  padding: 14px 10px;
+  padding: 14px 10px; // glitch: reduced padding
   border-top: 1px solid lighten($ui-base-color, 8%);
 
   &--flex {
@@ -1456,7 +1457,7 @@ body > [data-popper-placement] {
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   display: flex;
   flex-direction: row;
-  padding: 8px 0;
+  padding: 8px 0; // glitch: reduced padding
 }
 
 .compose-form__textarea-icons {
@@ -1527,7 +1528,7 @@ body > [data-popper-placement] {
 }
 
 .account {
-  padding: 10px;
+  padding: 10px; // glitch: reduced padding
   border-bottom: 1px solid lighten($ui-base-color, 8%);
 
   .account__display-name {
@@ -1790,7 +1791,7 @@ a.account__display-name {
 }
 
 .notification__report {
-  padding: 10px; // deliberate glitch-soc change
+  padding: 10px; // glitch: reduced padding
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   display: flex;
   gap: 10px;
@@ -1827,12 +1828,12 @@ a.account__display-name {
 }
 
 .notification__message {
-  padding: 8px 14px 0; // padding intentionally reduced for glitch-soc
+  padding: 8px 14px; // glitch: reduced padding
+  padding-bottom: 0;
   cursor: default;
   color: $darker-text-color;
   font-size: 15px;
-
-  // line-height: 22px; omitted in glitch-soc for space saving
+  line-height: 22px;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -1885,7 +1886,6 @@ a.account__display-name {
   text-decoration: none;
 
   &:hover {
-    color: $primary-text-color;
     text-decoration: underline;
   }
 }
@@ -1975,7 +1975,7 @@ a.account__display-name {
 }
 
 .navigation-bar {
-  padding: 10px;
+  padding: 10px; // glitch: reduced padding
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -2012,6 +2012,7 @@ a.account__display-name {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
+  line-height: 20px;
 }
 
 .navigation-bar__profile-account {
@@ -2056,14 +2057,14 @@ a.account__display-name {
 
 .dropdown-menu__separator {
   border-bottom: 1px solid var(--dropdown-border-color);
-  margin: 2px 0;
+  margin: 2px 0; // glitch: reduced margins
   height: 0;
 }
 
 .dropdown-menu {
   background: var(--dropdown-background-color);
   border: 1px solid var(--dropdown-border-color);
-  padding: 2px;
+  padding: 2px; // glitch: reduced padding
   border-radius: 4px;
   box-shadow: var(--dropdown-shadow);
   z-index: 9999;
@@ -2093,8 +2094,8 @@ a.account__display-name {
   &__container {
     &__header {
       border-bottom: 1px solid var(--dropdown-border-color);
-      padding: 6px 14px;
-      padding-bottom: 12px;
+      padding: 6px 14px; // glitch: reduced padding
+      padding-bottom: 12px; // glitch: reduced padding
       margin-bottom: 4px;
       font-size: 13px;
       line-height: 18px;
@@ -2150,7 +2151,7 @@ a.account__display-name {
     font: inherit;
     display: block;
     width: 100%;
-    padding: 6px 14px;
+    padding: 6px 14px; // glitch: reduced padding
     border: 0;
     margin: 0;
     background: transparent;
@@ -2931,6 +2932,8 @@ $ui-header-height: 55px;
     display: flex;
     flex-direction: column;
     min-height: 310px;
+    padding-bottom: 71px;
+    margin-bottom: -71px;
   }
 
   .compose-form__autosuggest-wrapper {
@@ -3645,7 +3648,7 @@ a.status-card {
 .status-card__content {
   flex: 1 1 auto;
   overflow: hidden;
-  padding: 8px 10px; // intentional glitch-soc change to reduce padding
+  padding: 8px 10px; // glitch: reduced padding
   box-sizing: border-box;
   max-width: 100%;
 }
@@ -3684,7 +3687,7 @@ a.status-card {
 
 .status-card__image {
   flex: 0 0 auto;
-  width: 96px; // intentional glitch-soc change to better use space
+  width: 96px; // glitch: intentional change to better use space
   aspect-ratio: 1;
   background: lighten($ui-base-color, 8%);
   position: relative;
@@ -4392,12 +4395,12 @@ a.status-card {
   z-index: 100;
 
   &--minified {
-    display: flex;
+    display: flex; // glitch: media icon in spoiler button
     inset-inline-start: 4px;
     top: 4px;
     width: auto;
     height: auto;
-    align-items: center;
+    align-items: center; // glitch: media icon in spoiler button
   }
 
   &--click-thru {
@@ -4616,17 +4619,12 @@ a.status-card {
   line-height: 24px;
 }
 
-.setting-toggle__label,
-.setting-meta__label {
+.setting-toggle__label {
   color: $darker-text-color;
   display: inline-block;
   margin-bottom: 14px;
   margin-inline-start: 8px;
   vertical-align: middle;
-}
-
-.setting-meta__label {
-  float: right;
 }
 
 .limited-account-hint {
@@ -5162,43 +5160,6 @@ a.status-card {
   }
 }
 
-.account__moved-note {
-  padding: 14px 10px;
-  padding-bottom: 16px;
-  background: lighten($ui-base-color, 4%);
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-
-  &__message {
-    position: relative;
-    margin-inline-start: 58px;
-    color: $dark-text-color;
-    padding: 8px 0;
-    padding-top: 0;
-    padding-bottom: 4px;
-    font-size: 14px;
-
-    > span {
-      display: block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  }
-
-  &__icon-wrapper {
-    inset-inline-start: -26px;
-    position: absolute;
-  }
-
-  .detailed-status__display-avatar {
-    position: relative;
-  }
-
-  .detailed-status__display-name {
-    margin-bottom: 0;
-  }
-}
-
 @keyframes spring-flip-in {
   0% {
     transform: rotate(0deg);
@@ -5337,16 +5298,6 @@ a.status-card {
 
   .account {
     border-bottom: 0 none;
-  }
-}
-
-.notification-favourite {
-  .status.status-direct {
-    background: transparent;
-
-    .icon-button.disabled {
-      color: lighten($action-button-color, 13%);
-    }
   }
 }
 
@@ -6666,6 +6617,7 @@ a.status-card {
   z-index: 9999;
 }
 
+// glitch: deprecated settings modal
 img.modal-warning {
   display: block;
   margin: auto;
@@ -6673,64 +6625,18 @@ img.modal-warning {
   width: 60px;
 }
 
-.column {
-  overflow: hidden;
-
-  .wide .columns-area:not(.columns-area--mobile) & {
+// glitch: optional wide mode
+.wide .columns-area:not(.columns-area--mobile) {
+  .column {
     flex: auto;
     min-width: 330px;
     max-width: 400px;
   }
 
-  > .scrollable {
-    background: $ui-base-color;
-    border-radius: 0 0 4px 4px;
-  }
-}
-
-.drawer {
-  padding: 10px 5px;
-  flex: none;
-
-  &:first-child {
-    padding-inline-start: 10px;
-  }
-
-  &:last-child {
-    padding-inline-end: 10px;
-  }
-
-  @media screen and (width <= 630px) {
-    flex: auto;
-  }
-
-  @media screen and (width <= 630px) {
-    &,
-    &:first-child,
-    &:last-child {
-      padding: 0;
-    }
-  }
-
-  .wide & {
+  .drawer {
     min-width: 300px;
     max-width: 400px;
     flex: 1 1 200px;
-  }
-
-  @media screen and (width <= 630px) {
-    :root & {
-      //  Overrides `.wide` for single-column view
-      flex: auto;
-      width: 100%;
-      min-width: 0;
-      max-width: none;
-      padding: 0;
-    }
-  }
-
-  .react-swipeable-view-container & {
-    height: 100%;
   }
 }
 
@@ -6769,7 +6675,7 @@ img.modal-warning {
   font-size: 14px;
   border: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px;
-  margin-top: 14px; // glitch-soc change to reduce margins
+  margin-top: 14px; // glitch: reduced margins
   overflow: hidden;
 
   &__icon {
@@ -6811,7 +6717,7 @@ img.modal-warning {
 
   &.compact {
     border: 0;
-    margin-top: 4px; // glitch-soc addition to reduce margins
+    margin-top: 4px; // glitch: reduced margins
 
     .attachment-list__list {
       padding: 0;
@@ -6908,8 +6814,6 @@ img.modal-warning {
   overflow: hidden;
   position: relative;
   width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 .media-gallery__item-gifv-thumbnail {
