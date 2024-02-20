@@ -44,27 +44,98 @@ RSpec.describe Auth::RegistrationsController do
     end
   end
 
-  describe 'GET #update' do
-    let(:user) { Fabricate(:user) }
+  describe 'PUT #update' do
+    let(:current_password) { Faker::Internet.password }
+    let(:user) { Fabricate(:user, password: current_password) }
 
     before do
       request.env['devise.mapping'] = Devise.mappings[:user]
       sign_in(user, scope: :user)
-      post :update
     end
 
     it 'returns http success' do
+      put :update
       expect(response).to have_http_status(200)
     end
 
     it 'returns private cache control headers' do
+      put :update
       expect(response.headers['Cache-Control']).to include('private, no-store')
+    end
+
+    it 'can update the user email' do
+      email = Faker::Internet.email
+
+      expect do
+        put :update, params: { user: { email:, current_password: } }
+        expect(response).to redirect_to(edit_user_registration_path)
+      end.to change { user.reload.unconfirmed_email }.to(email)
+    end
+
+    it 'requires the current password to update the email' do
+      email = Faker::Internet.email
+
+      expect do
+        put :update, params: {
+          user: {
+            email:,
+            current_password: 'something'
+          }
+        }
+        expect(response).to have_http_status(:ok)
+      end.not_to(change { user.reload.unconfirmed_email })
+    end
+
+    it 'can update the user password' do
+      password = Faker::Internet.password
+
+      expect do
+        put :update, params: {
+          user: {
+            password:,
+            password_confirmation: password,
+            current_password:
+          }
+        }
+        expect(response).to redirect_to(edit_user_registration_path)
+      end.to(change { user.reload.encrypted_password })
+    end
+
+    it 'requires the password confirmation' do
+      password = Faker::Internet.password
+
+      expect do
+        put :update, params: {
+          user: {
+            password:,
+            password_confirmation: 'something else',
+            current_password:
+          }
+        }
+        expect(response).to have_http_status(:ok)
+      end.not_to(change { user.reload.encrypted_password })
+    end
+
+    it 'requires the current password to update the password' do
+      password = Faker::Internet.password
+
+      expect do
+        put :update, params: {
+          user: {
+            password:,
+            password_confirmation: password,
+            current_password: 'something'
+          }
+        }
+        expect(response).to have_http_status(:ok)
+      end.not_to(change { user.reload.encrypted_password })
     end
 
     context 'when suspended' do
       let(:user) { Fabricate(:user, account_attributes: { username: 'test', suspended_at: Time.now.utc }) }
 
       it 'returns http forbidden' do
+        put :update
         expect(response).to have_http_status(403)
       end
     end
