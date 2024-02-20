@@ -45,7 +45,7 @@ RSpec.describe Auth::RegistrationsController do
   end
 
   describe 'PUT #update' do
-    let(:current_password) { Faker::Internet.password }
+    let(:current_password) { 'current password' }
     let(:user) { Fabricate(:user, password: current_password) }
 
     before do
@@ -64,21 +64,22 @@ RSpec.describe Auth::RegistrationsController do
     end
 
     it 'can update the user email' do
-      email = Faker::Internet.email
-
-      expect do
-        put :update, params: { user: { email: email, current_password: current_password } }
-        expect(response).to redirect_to(edit_user_registration_path)
-      end.to change { user.reload.unconfirmed_email }.to(email)
-    end
-
-    it 'requires the current password to update the email' do
-      email = Faker::Internet.email
-
       expect do
         put :update, params: {
           user: {
-            email: email,
+            email: 'newemail@example.com',
+            current_password: current_password,
+          },
+        }
+        expect(response).to redirect_to(edit_user_registration_path)
+      end.to change { user.reload.unconfirmed_email }.to('newemail@example.com')
+    end
+
+    it 'requires the current password to update the email' do
+      expect do
+        put :update, params: {
+          user: {
+            email: 'newemail@example.com',
             current_password: 'something',
           },
         }
@@ -87,13 +88,11 @@ RSpec.describe Auth::RegistrationsController do
     end
 
     it 'can update the user password' do
-      password = Faker::Internet.password
-
       expect do
         put :update, params: {
           user: {
-            password: password,
-            password_confirmation: password,
+            password: 'new password',
+            password_confirmation: 'new password',
             current_password: current_password,
           },
         }
@@ -102,12 +101,10 @@ RSpec.describe Auth::RegistrationsController do
     end
 
     it 'requires the password confirmation' do
-      password = Faker::Internet.password
-
       expect do
         put :update, params: {
           user: {
-            password: password,
+            password: 'new password',
             password_confirmation: 'something else',
             current_password: current_password,
           },
@@ -117,13 +114,11 @@ RSpec.describe Auth::RegistrationsController do
     end
 
     it 'requires the current password to update the password' do
-      password = Faker::Internet.password
-
       expect do
         put :update, params: {
           user: {
-            password: password,
-            password_confirmation: password,
+            password: 'new password',
+            password_confirmation: 'new password',
             current_password: 'something',
           },
         }
