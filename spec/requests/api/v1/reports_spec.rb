@@ -35,7 +35,7 @@ RSpec.describe 'Reports' do
 
     it 'creates a report', :aggregate_failures do
       perform_enqueued_jobs do
-        subject
+        emails = capture_emails { subject }
 
         expect(response).to have_http_status(200)
         expect(body_as_json).to match(
@@ -49,7 +49,13 @@ RSpec.describe 'Reports' do
         expect(target_account.targeted_reports).to_not be_empty
         expect(target_account.targeted_reports.first.comment).to eq 'reasons'
 
-        expect(ActionMailer::Base.deliveries.first.to).to eq([admin.email])
+        expect(emails.size)
+          .to eq(1)
+        expect(emails.first)
+          .to have_attributes(
+            to: contain_exactly(admin.email),
+            subject: eq(I18n.t('admin_mailer.new_report.subject', instance: Rails.configuration.x.local_domain, id: target_account.targeted_reports.first.id))
+          )
       end
     end
 
