@@ -67,7 +67,7 @@ RSpec.describe Auth::RegistrationsController do
       email = Faker::Internet.email
 
       expect do
-        put :update, params: { user: { email:, current_password: } }
+        put :update, params: { user: { email: email, current_password: current_password } }
         expect(response).to redirect_to(edit_user_registration_path)
       end.to change { user.reload.unconfirmed_email }.to(email)
     end
@@ -78,12 +78,12 @@ RSpec.describe Auth::RegistrationsController do
       expect do
         put :update, params: {
           user: {
-            email:,
-            current_password: 'something'
-          }
+            email: email,
+            current_password: 'something',
+          },
         }
-        expect(response).to have_http_status(:ok)
-      end.not_to(change { user.reload.unconfirmed_email })
+        expect(response).to have_http_status(200)
+      end.to_not(change { user.reload.unconfirmed_email })
     end
 
     it 'can update the user password' do
@@ -92,10 +92,10 @@ RSpec.describe Auth::RegistrationsController do
       expect do
         put :update, params: {
           user: {
-            password:,
+            password: password,
             password_confirmation: password,
-            current_password:
-          }
+            current_password: current_password,
+          },
         }
         expect(response).to redirect_to(edit_user_registration_path)
       end.to(change { user.reload.encrypted_password })
@@ -107,13 +107,13 @@ RSpec.describe Auth::RegistrationsController do
       expect do
         put :update, params: {
           user: {
-            password:,
+            password: password,
             password_confirmation: 'something else',
-            current_password:
-          }
+            current_password: current_password,
+          },
         }
-        expect(response).to have_http_status(:ok)
-      end.not_to(change { user.reload.encrypted_password })
+        expect(response).to have_http_status(200)
+      end.to_not(change { user.reload.encrypted_password })
     end
 
     it 'requires the current password to update the password' do
@@ -122,13 +122,13 @@ RSpec.describe Auth::RegistrationsController do
       expect do
         put :update, params: {
           user: {
-            password:,
+            password: password,
             password_confirmation: password,
-            current_password: 'something'
-          }
+            current_password: 'something',
+          },
         }
-        expect(response).to have_http_status(:ok)
-      end.not_to(change { user.reload.encrypted_password })
+        expect(response).to have_http_status(200)
+      end.to_not(change { user.reload.encrypted_password })
     end
 
     context 'when suspended' do
