@@ -967,7 +967,7 @@ en:
       webhook: Webhook
   admin_mailer:
     auto_close_registrations:
-      body: Considering no moderator has recently been active on your your server, its settings have been automatically changed to not allow new user registrations without approvals.
+      body: Due to a lack of recent moderator activity, registrations on %{instance} have been automatically switched to requiring manual review, to prevent %{instance} from being used as a platform for potential bad actors. You can switch it back to open registrations at any time.
       subject: Registrations for %{instance} have been automatically switched to requiring approval
     new_appeal:
       actions:
