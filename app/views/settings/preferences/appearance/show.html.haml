@@ -46,6 +46,9 @@
     .fields-group
       = ff.input :'web.mod_reverse_nav', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_reverse_nav'), hint: I18n.t('simple_form.hints.defaults.setting_reverse_nav')
 
+    .fields-group
+      = ff.input :'web.hide_translate_button', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_hide_translate_button')
+
     %h4= t 'appearance.advanced_web_interface'
 
     %p.hint= t 'appearance.advanced_web_interface_hint'
@@ -107,9 +110,6 @@
 
     .fields-group
       = ff.input :'web.expand_content_warnings', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_expand_spoilers')
-
-    .fields-group
-      = ff.input :'web.hide_translate_button', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_hide_translate_button')
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
