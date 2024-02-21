@@ -47,7 +47,7 @@ class AccountSuggestions::SimilarProfilesSource < AccountSuggestions::Source
     end
   end
 
-  def get(account, limit: 10)
+  def get(account, limit: DEFAULT_LIMIT)
     recently_followed_account_ids = account.active_relationships.recent.limit(5).pluck(:target_account_id)
 
     if Chewy.enabled? && !recently_followed_account_ids.empty?
