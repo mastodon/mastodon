@@ -16,21 +16,7 @@ class InitialStateSerializer < ActiveModel::Serializer
     store = default_meta_store
 
     if object.current_account
-      store[:me]                = object.current_account.id.to_s
-      store[:unfollow_modal]    = object_account_user.setting_unfollow_modal
-      store[:boost_modal]       = object_account_user.setting_boost_modal
-      store[:delete_modal]      = object_account_user.setting_delete_modal
-      store[:auto_play_gif]     = object_account_user.setting_auto_play_gif
-      store[:display_media]     = object_account_user.setting_display_media
-      store[:expand_spoilers]   = object_account_user.setting_expand_spoilers
-      store[:reduce_motion]     = object_account_user.setting_reduce_motion
-      store[:disable_swiping]   = object_account_user.setting_disable_swiping
-      store[:advanced_layout]   = object_account_user.setting_advanced_layout
-      store[:use_blurhash]      = object_account_user.setting_use_blurhash
-      store[:use_pending_items] = object_account_user.setting_use_pending_items
-      store[:show_trends]       = Setting.trends && object_account_user.setting_trends
-      store[:webui_styles]      = object_account_user.setting_webui_styles
-      store[:wider_column]      = object_account_user.setting_wider_column
+      store = store.merge(current_account_settings)
     else
       store[:auto_play_gif] = Setting.auto_play_gif
       store[:display_media] = Setting.display_media
@@ -111,6 +97,27 @@ class InitialStateSerializer < ActiveModel::Serializer
       trends_as_landing_page: Setting.trends_as_landing_page,
       trends_enabled: Setting.trends,
       version: instance_presenter.version,
+    }
+  end
+
+  def current_account_settings
+    {
+      me: object.current_account.id.to_s,
+      unfollow_modal: object_account_user.setting_unfollow_modal,
+      boost_modal: object_account_user.setting_boost_modal,
+      delete_modal: object_account_user.setting_delete_modal,
+      auto_play_gif: object_account_user.setting_auto_play_gif,
+      display_media: object_account_user.setting_display_media,
+      expand_spoilers: object_account_user.setting_expand_spoilers,
+      reduce_motion: object_account_user.setting_reduce_motion,
+      disable_swiping: object_account_user.setting_disable_swiping,
+      advanced_layout: object_account_user.setting_advanced_layout,
+      use_blurhash: object_account_user.setting_use_blurhash,
+      use_pending_items: object_account_user.setting_use_pending_items,
+      show_trends: Setting.trends && object_account_user.setting_trends,
+      webui_styles: object_account_user.setting_webui_styles,
+      wider_column: object_account_user.setting_wider_column,
+      hide_translate_button: object_account_user.setting_hide_translate_button,
     }
   end
 

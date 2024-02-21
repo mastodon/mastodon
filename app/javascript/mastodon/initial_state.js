@@ -19,6 +19,7 @@
  * @property {string} display_media
  * @property {string} domain
  * @property {boolean=} expand_spoilers
+ * @property {boolean} hide_translate_button
  * @property {boolean} limited_federation_mode
  * @property {string} locale
  * @property {string | null} mascot
@@ -84,6 +85,7 @@ export const displayMedia = getMeta('display_media');
 export const domain = getMeta('domain');
 export const expandSpoilers = getMeta('expand_spoilers');
 export const forceSingleColumn = !getMeta('advanced_layout');
+export const hideTranslateButton = getMeta('hide_translate_button');
 export const limitedFederationMode = getMeta('limited_federation_mode');
 export const mascot = getMeta('mascot');
 export const me = getMeta('me');

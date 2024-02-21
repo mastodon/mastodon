@@ -150,4 +150,8 @@ module User::HasSettings
   def setting_reverse_nav
     settings['web.mod_reverse_nav']
   end
+
+  def setting_hide_translate_button
+    settings['web.hide_translate_button']
+  end
 end

@@ -36,6 +36,7 @@ class UserSettings
     setting :mod_wider_column, default: false
     setting :mod_webui_styles, default: 'default', in: %w(default compact legacy)
     setting :mod_reverse_nav, default: false
+    setting :hide_translate_button, default: false
   end
 
   namespace :notification_emails do
