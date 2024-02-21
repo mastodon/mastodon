@@ -27,7 +27,7 @@
     "lint:yml": "prettier --check \"**/*.{yaml,yml}\"",
     "lint": "yarn lint:js && yarn lint:json && yarn lint:sass && yarn lint:yml",
     "postversion": "git push --tags",
-    "prepare": "husky install",
+    "prepare": "husky",
     "start": "node ./streaming/index.js",
     "test": "yarn lint && yarn run typecheck && yarn jest",
     "typecheck": "tsc --noEmit"
