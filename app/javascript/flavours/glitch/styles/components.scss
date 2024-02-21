@@ -852,21 +852,33 @@ body > [data-popper-placement] {
   clear: both;
 }
 
+.status__content,
 .reply-indicator__content {
   position: relative;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 20px;
   word-wrap: break-word;
   font-weight: 400;
   overflow: hidden;
-  padding-top: 5px;
-  color: $inverted-text-color;
-  white-space: pre-wrap;
+  text-overflow: ellipsis;
+  padding-top: 2px;
+  color: $primary-text-color;
+
+  &:focus {
+    outline: 0;
+  }
+
+  .emojione {
+    width: 20px;
+    height: 20px;
+    margin: -3px 0 0;
+  }
 
   p,
   pre {
     margin-bottom: 20px;
     white-space: pre-wrap;
+    unicode-bidi: plaintext;
 
     &:last-child {
       margin-bottom: 0;
@@ -874,8 +886,9 @@ body > [data-popper-placement] {
   }
 
   a {
-    color: $lighter-text-color;
+    color: $secondary-text-color;
     text-decoration: none;
+    unicode-bidi: isolate;
 
     &:hover {
       text-decoration: underline;
@@ -892,10 +905,45 @@ body > [data-popper-placement] {
     }
   }
 
-  .emojione {
-    width: 20px;
-    height: 20px;
-    margin: -5px 0 0;
+  a.unhandled-link {
+    color: $highlight-text-color;
+
+    .link-origin-tag {
+      color: $gold-star;
+      font-size: 0.8em;
+    }
+  }
+
+  .status__content__spoiler-link {
+    background: $action-button-color;
+
+    &:hover,
+    &:focus {
+      background: lighten($action-button-color, 7%);
+      text-decoration: none;
+    }
+
+    &::-moz-focus-inner {
+      border: 0;
+    }
+
+    &::-moz-focus-inner,
+    &:focus,
+    &:active {
+      outline: 0 !important;
+    }
+  }
+}
+
+.status__content {
+  overflow: visible;
+
+  .status__content__spoiler {
+    display: none;
+
+    &.status__content__spoiler--visible {
+      display: block;
+    }
   }
 }
 
@@ -1501,6 +1549,15 @@ body > [data-popper-placement] {
   font-weight: 500;
   font-size: 12px;
   line-height: 18px;
+}
+
+.reply-indicator__content {
+  color: $inverted-text-color;
+  font-size: 14px;
+
+  a {
+    color: $lighter-text-color;
+  }
 }
 
 .domain {
@@ -5201,84 +5258,6 @@ a.status-card {
 
   100% {
     transform: rotate(0deg);
-  }
-}
-
-.status__content {
-  position: relative;
-  font-size: 15px;
-  line-height: 20px;
-  word-wrap: break-word;
-  font-weight: 400;
-  overflow: visible;
-  padding-top: 5px;
-
-  &:focus {
-    outline: 0;
-  }
-
-  .emojione {
-    width: 20px;
-    height: 20px;
-    margin: -3px 0 0;
-  }
-
-  p,
-  pre {
-    margin-bottom: 20px;
-    white-space: pre-wrap;
-    unicode-bidi: plaintext;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  a {
-    color: $secondary-text-color;
-    text-decoration: none;
-    unicode-bidi: isolate;
-
-    &:hover {
-      text-decoration: underline;
-    }
-
-    &.mention {
-      &:hover {
-        text-decoration: none;
-
-        span {
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-
-  .status__content__spoiler {
-    display: none;
-
-    &.status__content__spoiler--visible {
-      display: block;
-    }
-  }
-
-  a.unhandled-link {
-    color: $highlight-text-color;
-
-    .link-origin-tag {
-      color: $gold-star;
-      font-size: 0.8em;
-    }
-  }
-
-  .status__content__spoiler-link {
-    background: lighten($ui-base-color, 30%);
-
-    &:hover,
-    &:focus {
-      background: lighten($ui-base-color, 33%);
-      text-decoration: none;
-    }
   }
 }
 
