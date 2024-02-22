@@ -25,6 +25,12 @@ services:
       - "cluster.name=es-mastodon"
       - "discovery.type=single-node"
       - "thread_pool.write.queue_size=1000"
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
     networks:
        - backend
     healthcheck:
