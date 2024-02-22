@@ -966,6 +966,9 @@ nl:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: In verband met een gebrek aan recentelijke moderator-activiteit, is de registratie-modus op %{instance} automatisch veranderd naar handmatige beoordeling door moderatoren. Dit om te voorkomen dat %{instance} als platform voor eventueel misbruik kan worden gebruikt. Je kunt op elk gewenst moment veel terugschakelen naar open registraties.
+      subject: De registratie-modus op %{instance} is automatisch veranderd naar handmatige beoordeling door moderatoren
     new_appeal:
       actions:
         delete_statuses: het verwijderen van diens berichten

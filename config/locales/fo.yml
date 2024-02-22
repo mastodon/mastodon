@@ -966,6 +966,9 @@ fo:
       title: Webhooks/vevhúkar
       webhook: Webhook/vevhúkur
   admin_mailer:
+    auto_close_registrations:
+      body: Vegna avmarkað virksemi hjá umsjónarfólki eru skrásetingar á %{instance} broyttar sjálvvirkandi til at krevja manuella eftirkanning fyri at forða at %{instance} verður brúktur sum ein pallur fyri ringar aktørar. Tú kanst skifta aftur til opnar skrásetingar tá tú vilt.
+      subject: Skrásetingar á %{instance} eru sjálvvirkandi broyttar soleiðis at tær krevja váttan
     new_appeal:
       actions:
         delete_statuses: at strika teirra postar

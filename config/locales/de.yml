@@ -966,6 +966,9 @@ de:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Aufgrund fehlender Aktivität von Moderator*innen müssen neue Registrierungen auf %{instance} jetzt manuell genehmigt werden. Dies wurde automatisch umgestellt, damit %{instance} nicht als Plattform für Böswillige missbraucht werden kann. Du kannst jederzeit auf uneingeschränkte Registrierungen zurückwechseln.
+      subject: Registrierungen auf %{instance} erfordern jetzt eine manuelle Genehmigung (automatisch umgestellt)
     new_appeal:
       actions:
         delete_statuses: das Löschen der Beiträge

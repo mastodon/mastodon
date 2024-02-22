@@ -950,6 +950,9 @@ zh-TW:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: 由於近日缺少管理員活動，%{instance} 上之註冊已自動切換為需要人工審核，以防止 %{instance} 被作為潛在不良行為者之跳板。您隨時能將其切換回開放註冊。
+      subject: "%{instance} 之註冊已自動切換為需要審核"
     new_appeal:
       actions:
         delete_statuses: 要刪除他們的嘟文

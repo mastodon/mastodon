@@ -966,6 +966,9 @@ es:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Debido a la falta de actividad reciente de los moderadores, se ha cambiado automáticamente el registro en %{instance} para requerir revisión manual, para evitar que la instancia %{instance} sea usada como plataforma para malos actores potenciales. Puedes volver a cambiarlo en cualquier momento para abrir de nuevo los registros.
+      subject: Se ha cambiado automáticamente el registro de %{instance} para requerir aprobación
     new_appeal:
       actions:
         delete_statuses: para eliminar sus mensajes

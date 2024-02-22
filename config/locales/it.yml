@@ -966,6 +966,9 @@ it:
       title: Webhook
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: A causa della mancanza di attività recente da parte dei moderatori, le registrazioni su %{instance} sono passate automaticamente alla richiesta di revisione manuale, per evitare che %{instance} venga utilizzata come piattaforma per potenziali malintenzionati. Puoi ripristinarlo per aprire le registrazioni in qualsiasi momento.
+      subject: Le registrazioni per %{instance} sono passate automaticamente alla richiesta di approvazione
     new_appeal:
       actions:
         delete_statuses: per cancellare i loro post
