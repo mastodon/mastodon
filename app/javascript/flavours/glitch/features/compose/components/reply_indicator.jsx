@@ -1,7 +1,5 @@
 import { FormattedMessage } from 'react-intl';
 
-import { Link } from 'react-router-dom';
-
 import { useSelector } from 'react-redux';
 
 import BarChart4BarsIcon from '@/material-icons/400-24px/bar_chart_4_bars.svg?react';
@@ -9,6 +7,7 @@ import PhotoLibraryIcon from '@/material-icons/400-24px/photo_library.svg?react'
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { DisplayName } from 'flavours/glitch/components/display_name';
 import { Icon } from 'flavours/glitch/components/icon';
+import { Permalink } from 'flavours/glitch/components/permalink';
 
 export const ReplyIndicator = () => {
   const inReplyToId = useSelector(state => state.getIn(['compose', 'in_reply_to']));
@@ -25,14 +24,14 @@ export const ReplyIndicator = () => {
     <div className='reply-indicator'>
       <div className='reply-indicator__line' />
 
-      <Link to={`/@${account.get('acct')}`} className='detailed-status__display-avatar'>
+      <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} className='detailed-status__display-avatar'>
         <Avatar account={account} size={46} />
-      </Link>
+      </Permalink>
 
       <div className='reply-indicator__main'>
-        <Link to={`/@${account.get('acct')}`} className='detailed-status__display-name'>
+        <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} className='detailed-status__display-name'>
           <DisplayName account={account} />
-        </Link>
+        </Permalink>
 
         <div className='reply-indicator__content translate' dangerouslySetInnerHTML={content} />
 
