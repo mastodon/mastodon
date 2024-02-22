@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
 
+import { privacyPreference } from 'flavours/glitch/utils/privacy_preference';
+
 import {
   changeCompose,
   submitCompose,
@@ -11,6 +13,23 @@ import {
   uploadCompose,
 } from '../../../actions/compose';
 import ComposeForm from '../components/compose_form';
+
+const sideArmPrivacy = state => {
+  const inReplyTo = state.getIn(['compose', 'in_reply_to']);
+  const replyPrivacy = inReplyTo ? state.getIn(['statuses', inReplyTo, 'visibility']) : null;
+  const sideArmBasePrivacy = state.getIn(['local_settings', 'side_arm']);
+  const sideArmRestrictedPrivacy = replyPrivacy ? privacyPreference(replyPrivacy, sideArmBasePrivacy) : null;
+  let sideArmPrivacy = null;
+  switch (state.getIn(['local_settings', 'side_arm_reply_mode'])) {
+  case 'copy':
+    sideArmPrivacy = replyPrivacy;
+    break;
+  case 'restrict':
+    sideArmPrivacy = sideArmRestrictedPrivacy;
+    break;
+  }
+  return sideArmPrivacy || sideArmBasePrivacy;
+};
 
 const mapStateToProps = state => ({
   text: state.getIn(['compose', 'text']),
@@ -29,6 +48,7 @@ const mapStateToProps = state => ({
   anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
   isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
   lang: state.getIn(['compose', 'language']),
+  sideArm: sideArmPrivacy(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -37,8 +57,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changeCompose(text));
   },
 
-  onSubmit (router) {
-    dispatch(submitCompose(router));
+  onSubmit (router, overridePrivacy = null) {
+    dispatch(submitCompose(router, overridePrivacy));
   },
 
   onClearSuggestions () {

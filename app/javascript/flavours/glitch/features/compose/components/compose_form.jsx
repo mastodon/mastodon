@@ -31,6 +31,7 @@ import { EditIndicator } from './edit_indicator';
 import { NavigationBar } from './navigation_bar';
 import { PollForm } from "./poll_form";
 import { ReplyIndicator } from './reply_indicator';
+import { SecondaryPrivacyButton } from './secondary_privacy_button';
 
 const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 
@@ -50,6 +51,7 @@ class ComposeForm extends ImmutablePureComponent {
     spoiler: PropTypes.bool,
     spoilerAlwaysOn: PropTypes.bool,
     privacy: PropTypes.string,
+    sideArm: PropTypes.string,
     spoilerText: PropTypes.string,
     focusDate: PropTypes.instanceOf(Date),
     caretPosition: PropTypes.number,
@@ -96,6 +98,10 @@ class ComposeForm extends ImmutablePureComponent {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       this.handleSubmit();
     }
+
+    if (e.keyCode === 13 && e.altKey) {
+      this.handleSecondarySubmit();
+    }
   };
 
   getFulltextForCharacterCounting = () => {
@@ -110,7 +116,7 @@ class ComposeForm extends ImmutablePureComponent {
     return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > maxChars || (isOnlyWhitespace && !anyMedia));
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = (e, overridePrivacy = null) => {
     if (this.props.text !== this.textareaRef.current.value) {
       // Something changed the text inside the textarea (e.g. browser extensions like Grammarly)
       // Update the state to match the current text
@@ -121,11 +127,16 @@ class ComposeForm extends ImmutablePureComponent {
       return;
     }
 
-    this.props.onSubmit(this.props.history || null);
+    this.props.onSubmit(this.props.history || null, overridePrivacy);
 
     if (e) {
       e.preventDefault();
     }
+  };
+
+  handleSecondarySubmit = () => {
+    const { sideArm } = this.props;
+    this.handleSubmit(null, sideArm === 'none' ? null : sideArm);
   };
 
   onSuggestionsClearRequested = () => {
@@ -303,6 +314,12 @@ class ComposeForm extends ImmutablePureComponent {
               </div>
 
               <div className='compose-form__submit'>
+                <SecondaryPrivacyButton
+                  disabled={!this.canSubmit()}
+                  privacy={this.props.sideArm}
+                  isEditing={this.props.isEditing}
+                  onClick={this.handleSecondarySubmit}
+                />
                 <Button
                   type='submit'
                   text={intl.formatMessage(this.props.isEditing ? messages.saveChanges : (this.props.isInReply ? messages.reply : messages.publish))}

@@ -750,10 +750,17 @@ body > [data-popper-placement] {
 
   &__submit {
     display: flex;
-    align-items: center;
-    flex: 1 1 auto;
+    flex: 1 0 100%; // glitch: always on its own line
     max-width: 100%;
     overflow: hidden;
+    gap: 5px; // glitch: handle secondary post privacy
+    align-items: stretch; // glitch: handle secondary post privacy
+
+    .button.secondary-post-button {
+      flex: 0 1 auto;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
   }
 
   &__buttons {
