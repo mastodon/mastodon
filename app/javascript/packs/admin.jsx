@@ -145,6 +145,10 @@ delegate(document, '#form_admin_settings_enable_bootstrap_timeline_accounts', 'c
 const onChangeRegistrationMode = (target) => {
   const enabled = target.value === 'approved';
 
+  [].forEach.call(document.querySelectorAll('.form_admin_settings_registrations_mode .warning-hint'), (warning_hint) => {
+    warning_hint.style.display = target.value === 'open' ? 'inline' : 'none';
+  });
+
   [].forEach.call(document.querySelectorAll('#form_admin_settings_require_invite_text'), (input) => {
     input.disabled = !enabled;
     if (enabled) {
