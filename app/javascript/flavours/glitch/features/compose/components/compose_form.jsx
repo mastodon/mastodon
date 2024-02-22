@@ -27,6 +27,7 @@ import WarningContainer from '../containers/warning_container';
 import { countableText } from '../util/counter';
 
 import { CharacterCounter } from './character_counter';
+import { ContentTypeButton } from './content_type_button';
 import { EditIndicator } from './edit_indicator';
 import { NavigationBar } from './navigation_bar';
 import { PollForm } from "./poll_form";
@@ -309,6 +310,7 @@ class ComposeForm extends ImmutablePureComponent {
                 <UploadButtonContainer />
                 <PollButtonContainer />
                 {!this.props.spoilerAlwaysOn && <SpoilerButtonContainer />}
+                <ContentTypeButton />
                 <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
                 <CharacterCounter max={maxChars} text={this.getFulltextForCharacterCounting()} />
               </div>
