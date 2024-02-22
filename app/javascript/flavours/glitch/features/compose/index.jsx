@@ -14,10 +14,10 @@ import spring from 'react-motion/lib/spring';
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import LogoutIcon from '@/material-icons/400-24px/logout.svg?react';
+import ManufacturingIcon from '@/material-icons/400-24px/manufacturing-fill.svg?react';
 import MenuIcon from '@/material-icons/400-24px/menu.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
-import SettingsIcon from '@/material-icons/400-24px/settings-fill.svg?react';
 import { openModal } from 'flavours/glitch/actions/modal';
 import Column from 'flavours/glitch/components/column';
 import { Icon }  from 'flavours/glitch/components/icon';
@@ -39,7 +39,7 @@ const messages = defineMessages({
   notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
   public: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
   community: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
-  preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
+  settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
   logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
   compose: { id: 'navigation_bar.compose', defaultMessage: 'Compose new post' },
   logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
@@ -90,6 +90,15 @@ class Compose extends PureComponent {
     return false;
   };
 
+  handleSettingsClick = e => {
+    const { dispatch } = this.props;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    dispatch(openModal({ modalType: 'SETTINGS', modalProps: {} }));
+  };
+
   onFocus = () => {
     this.props.dispatch(changeComposing(true));
   };
@@ -120,7 +129,15 @@ class Compose extends PureComponent {
             {!columns.some(column => column.get('id') === 'PUBLIC') && (
               <Link to='/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><Icon id='globe' icon={PublicIcon} /></Link>
             )}
-            <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)} aria-label={intl.formatMessage(messages.preferences)}><Icon id='cog' icon={SettingsIcon} /></a>
+            <a
+              onClick={this.handleSettingsClick}
+              href='/settings/preferences'
+              className='drawer__tab'
+              title={intl.formatMessage(messages.settings)}
+              aria-label={intl.formatMessage(messages.settings)}
+            >
+              <Icon id='cogs' icon={ManufacturingIcon} />
+            </a>
             <a href='/auth/sign_out' className='drawer__tab' title={intl.formatMessage(messages.logout)} aria-label={intl.formatMessage(messages.logout)} onClick={this.handleLogoutClick}><Icon id='sign-out' icon={LogoutIcon} /></a>
           </nav>
 
