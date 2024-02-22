@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.8] - 2024-02-23
+
+### Added
+
+- Add hourly task to automatically require approval for new registrations in the absence of moderators ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/29318), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/29355))
+  In order to prevent future abandoned Mastodon servers from being used for spam, harassment and other malicious activity, Mastodon will now automatically switch new user registrations to require moderator approval whenever they are left open and no activity (including non-moderation actions from apps) from any logged-in user with permission to access moderation reports has been detected in a full week.
+  When this happens, users with the permission to change server settings will receive an email notification.
+  This feature is disabled when `EMAIL_DOMAIN_ALLOWLIST` is used, and can also be disabled with `DISABLE_AUTOMATIC_SWITCHING_TO_APPROVED_REGISTRATIONS=true`.
+
+### Changed
+
+- Change registrations to be closed by default on new installations ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/29280))
+  If you are running a server and never changed your registrations mode from the default, updating will automatically close your registrations.
+  Simply re-enable them through the administration interface or using `tootctl settings registrations open` if you want to enable them again.
+
+### Fixed
+
+- Fix processing of remote ActivityPub actors making use of `Link` objects as `Image` `url` ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/29335))
+- Fix link verifications when page size exceeds 1MB ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/29358))
+
 ## [4.2.7] - 2024-02-16
 
 ### Fixed
