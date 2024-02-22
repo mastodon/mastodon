@@ -966,6 +966,9 @@ da:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Grundet manglende nylig moderatoraktivitet er registreringsproceduren på %{instance} automatisk ændret til at kræve manuel gennemgang for at forhindre, at %{instance} bruges som platform for potentielle dårlige aktører. Proceduren kan til enhver tid ændre igen til åbne registreringer.
+      subject: Registreringsproceduren for %{instance} er automatisk ændret til at kræve godkendelse
     new_appeal:
       actions:
         delete_statuses: for sletning af vedkommendes indlæg

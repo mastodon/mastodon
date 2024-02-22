@@ -948,6 +948,9 @@ zh-CN:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: 由于近期缺乏管理员活动， %{instance} 上的注册已自动切换为需要手动审核，以防止 %{instance} 被潜在的不良行为者用作平台。您可以随时将其切换回开放注册。
+      subject: "%{instance} 的注册已自动切换为需要批准"
     new_appeal:
       actions:
         delete_statuses: 删除其嘟文

@@ -948,6 +948,9 @@ ja:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: "%{instance} のモデレーターによる活動がしばらくなかったため、%{instance} のアカウント作成は手動での承認を必要とするように自動的に変更されました。これには %{instance} が悪意ある者の踏み台として使われることを防ぐ役割があります。アカウント作成は必要に応じていつでも再び開放できます。"
+      subject: "%{instance} のアカウント作成は自動的に承認制に変更されました"
     new_appeal:
       actions:
         delete_statuses: 投稿を削除する

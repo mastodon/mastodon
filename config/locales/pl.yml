@@ -1002,6 +1002,9 @@ pl:
       title: Webhooki
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Z powodu braku niedawnych działań moderacyjnych, rejestracje na %{instance} wymagają ręcznej weryfikacji (by uniknąć dystrybucji spamu itp.). W dowolnym momencie możesz przywrócić politykę otwartej rejestracji.
+      subject: "%{instance} zostało automatycznie przełączone na zatwierdzanie rejestracji"
     new_appeal:
       actions:
         delete_statuses: aby usunąć ich wpisy
