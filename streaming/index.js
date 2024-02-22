@@ -1352,7 +1352,7 @@ const startServer = async () => {
       // If we have a socket that is alive and open still, send the error back to the client:
       if (websocket.isAlive && websocket.readyState === websocket.OPEN) {
         // TODO: Use a better error response here
-        websocket.send(JSON.stringify({error: "Error unsubscribing from channel" }));
+        websocket.send(JSON.stringify({ error: "Error unsubscribing from channel" }));
       }
     });
   };
