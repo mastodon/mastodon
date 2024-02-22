@@ -15,6 +15,7 @@ import {
   selectComposeSuggestion,
 } from 'flavours/glitch/actions/compose';
 import AutosuggestInput from 'flavours/glitch/components/autosuggest_input';
+import { pollLimits } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   option_placeholder: { id: 'compose_form.poll.option_placeholder', defaultMessage: 'Option {number}' },
@@ -83,7 +84,7 @@ const Option = ({ multipleChoice, index, title, autoFocus }) => {
 
       <AutosuggestInput
         placeholder={intl.formatMessage(messages.option_placeholder, { number: index + 1 })}
-        maxLength={100}
+        maxLength={pollLimits.max_option_chars}
         value={title}
         lang={lang}
         spellCheck
