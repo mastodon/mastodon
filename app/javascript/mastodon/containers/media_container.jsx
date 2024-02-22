@@ -80,7 +80,7 @@ export default class MediaContainer extends PureComponent {
     return (
       <IntlProvider>
         <>
-          {[].map.call(components, (component, i) => {
+          {components.map((component, i) => {
             const componentName = component.getAttribute('data-component');
             const Component = MEDIA_COMPONENTS[componentName];
             const { media, card, poll, hashtag, ...props } = JSON.parse(component.getAttribute('data-props'));
