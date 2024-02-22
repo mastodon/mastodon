@@ -4,6 +4,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import UploadContainer from '../containers/upload_container';
 import UploadProgressContainer from '../containers/upload_progress_container';
 
+import { SensitiveButton } from './sensitive_button';
+
 export default class UploadForm extends ImmutablePureComponent {
 
   static propTypes = {
@@ -24,6 +26,8 @@ export default class UploadForm extends ImmutablePureComponent {
             ))}
           </div>
         )}
+
+        {!mediaIds.isEmpty() && <SensitiveButton />}
       </>
     );
   }

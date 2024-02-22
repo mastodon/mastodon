@@ -698,6 +698,48 @@ body > [data-popper-placement] {
     }
   }
 
+  // glitch: reintroduce sensitive button
+  &__sensitive-button {
+    padding: 0 12px;
+
+    input[type='checkbox'] {
+      appearance: none;
+      display: block;
+      border: 1px solid $ui-primary-color;
+      box-sizing: border-box;
+      width: 17px;
+      height: 17px;
+      border-radius: 4px;
+      flex: 0 0 auto;
+
+      &:active,
+      &:focus,
+      &:hover {
+        border-color: $highlight-text-color;
+        border-width: 4px;
+      }
+
+      &:checked {
+        background-color: $highlight-text-color;
+        border-color: $highlight-text-color;
+      }
+
+      &::-moz-focus-inner {
+        outline: 0 !important;
+        border: 0;
+      }
+
+      &:focus,
+      &:active {
+        outline: 0 !important;
+      }
+
+      &:disabled {
+        opacity: 0.5;
+      }
+    }
+  }
+
   &__footer {
     display: flex;
     flex-direction: column;
