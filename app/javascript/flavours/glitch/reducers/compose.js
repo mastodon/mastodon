@@ -34,6 +34,7 @@ import {
   COMPOSE_SPOILER_TEXT_CHANGE,
   COMPOSE_VISIBILITY_CHANGE,
   COMPOSE_LANGUAGE_CHANGE,
+  COMPOSE_COMPOSING_CHANGE,
   COMPOSE_CONTENT_TYPE_CHANGE,
   COMPOSE_EMOJI_INSERT,
   COMPOSE_UPLOAD_CHANGE_REQUEST,
@@ -87,9 +88,10 @@ const initialState = ImmutableMap({
   caretPosition: null,
   preselectDate: null,
   in_reply_to: null,
+  is_composing: false,
   is_submitting: false,
-  is_uploading: false,
   is_changing_upload: false,
+  is_uploading: false,
   progress: 0,
   isUploadingThumbnail: false,
   thumbnailProgress: 0,
@@ -252,7 +254,7 @@ function removeMedia(state, mediaId) {
 
 const insertSuggestion = (state, position, token, completion, path) => {
   return state.withMutations(map => {
-    map.updateIn(path, oldText => `${oldText.slice(0, position)}${completion}${completion[0] === ':' ? '\u200B' : ' '}${oldText.slice(position + token.length)}`);
+    map.updateIn(path, oldText => `${oldText.slice(0, position)}${completion} ${oldText.slice(position + token.length)}`);
     map.set('suggestion_token', null);
     map.set('suggestions', ImmutableList());
     if (path.length === 1 && path[0] === 'text') {
@@ -294,14 +296,15 @@ const sortHashtagsByUse = (state, tags) => {
   return sorted;
 };
 
-const insertEmoji = (state, position, emojiData) => {
-  const emoji = emojiData.native;
+const insertEmoji = (state, position, emojiData, needsSpace) => {
+  const oldText = state.get('text');
+  const emoji = needsSpace ? ' ' + emojiData.native : emojiData.native;
 
-  return state.withMutations(map => {
-    map.update('text', oldText => `${oldText.slice(0, position)}${emoji}\u200B${oldText.slice(position)}`);
-    map.set('focusDate', new Date());
-    map.set('caretPosition', position + emoji.length + 1);
-    map.set('idempotencyKey', uuid());
+  return state.merge({
+    text: `${oldText.slice(0, position)}${emoji} ${oldText.slice(position)}`,
+    focusDate: new Date(),
+    caretPosition: position + emoji.length + 1,
+    idempotencyKey: uuid(),
   });
 };
 
@@ -370,7 +373,9 @@ export default function compose(state = initialState, action) {
   case COMPOSE_MOUNT:
     return state.set('mounted', state.get('mounted') + 1);
   case COMPOSE_UNMOUNT:
-    return state.set('mounted', Math.max(state.get('mounted') - 1, 0));
+    return state
+      .set('mounted', Math.max(state.get('mounted') - 1, 0))
+      .set('is_composing', false);
   case COMPOSE_ADVANCED_OPTIONS_CHANGE:
     return state
       .set('advanced_options', state.get('advanced_options').set(action.option, !!overwrite(!state.getIn(['advanced_options', action.option]), action.value)))
@@ -408,6 +413,8 @@ export default function compose(state = initialState, action) {
     return state
       .set('text', action.text)
       .set('idempotencyKey', uuid());
+  case COMPOSE_COMPOSING_CHANGE:
+    return state.set('is_composing', action.value);
   case COMPOSE_CYCLE_ELEFRIEND:
     return state
       .set('elefriend', (state.get('elefriend') + 1) % totalElefriends);
@@ -553,7 +560,7 @@ export default function compose(state = initialState, action) {
       return state;
     }
   case COMPOSE_EMOJI_INSERT:
-    return insertEmoji(state, action.position, action.emoji);
+    return insertEmoji(state, action.position, action.emoji, action.needsSpace);
   case COMPOSE_UPLOAD_CHANGE_SUCCESS:
     return state
       .set('is_changing_upload', false)

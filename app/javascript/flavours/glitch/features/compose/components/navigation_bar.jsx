@@ -2,11 +2,10 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
+import { Link } from 'react-router-dom';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-
-import { Permalink } from 'flavours/glitch/components/permalink';
-import { profileLink } from 'flavours/glitch/utils/backend_links';
 
 import { Avatar } from '../../../components/avatar';
 
@@ -24,24 +23,21 @@ export default class NavigationBar extends ImmutablePureComponent {
     const username = this.props.account.get('acct');
     return (
       <div className='navigation-bar'>
-        <Permalink className='avatar' href={this.props.account.get('url')} to={`/@${username}`}>
+        <Link to={`/@${username}`}>
           <span style={{ display: 'none' }}>{username}</span>
           <Avatar account={this.props.account} size={46} />
-        </Permalink>
+        </Link>
 
         <div className='navigation-bar__profile'>
           <span>
-            <Permalink className='acct' href={this.props.account.get('url')} to={`/@${username}`}>
+            <Link to={`/@${username}`}>
               <strong className='navigation-bar__profile-account'>@{username}</strong>
-            </Permalink>
+            </Link>
           </span>
 
-          { profileLink !== undefined && (
-            <a
-              href={profileLink}
-              className='navigation-bar__profile-edit'
-            ><FormattedMessage id='navigation_bar.edit_profile' defaultMessage='Edit profile' /></a>
-          )}
+          <span>
+            <a href='/settings/profile' className='navigation-bar__profile-edit'><FormattedMessage id='navigation_bar.edit_profile' defaultMessage='Edit profile' /></a>
+          </span>
         </div>
 
         <div className='navigation-bar__actions'>

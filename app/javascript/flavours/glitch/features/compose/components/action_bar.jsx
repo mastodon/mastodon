@@ -6,8 +6,6 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import MenuIcon from '@/material-icons/400-24px/menu.svg?react';
-import { preferencesLink, profileLink } from 'flavours/glitch/utils/backend_links';
-
 
 import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 
@@ -44,8 +42,8 @@ class ActionBar extends PureComponent {
 
     let menu = [];
 
-    menu.push({ text: intl.formatMessage(messages.edit_profile), href: profileLink });
-    menu.push({ text: intl.formatMessage(messages.preferences), href: preferencesLink });
+    menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
+    menu.push({ text: intl.formatMessage(messages.preferences), href: '/settings/preferences' });
     menu.push({ text: intl.formatMessage(messages.pins), to: '/pinned' });
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests' });

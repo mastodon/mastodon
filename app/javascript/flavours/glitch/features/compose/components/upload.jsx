@@ -12,7 +12,6 @@ import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import InfoIcon from '@/material-icons/400-24px/info.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
 
-
 import Motion from '../../ui/util/optional_motion';
 
 export default class Upload extends ImmutablePureComponent {

@@ -20,15 +20,11 @@ const messages = defineMessages({
   },
 });
 
-const mapStateToProps = state => {
-  const spoilersAlwaysOn = state.getIn(['local_settings', 'always_show_spoilers_field']);
-  const spoilerText = state.getIn(['compose', 'spoiler_text']);
-  return {
-    active: state.getIn(['compose', 'sensitive']) || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0),
-    disabled: state.getIn(['compose', 'spoiler']),
-    mediaCount: state.getIn(['compose', 'media_attachments']).size,
-  };
-};
+const mapStateToProps = state => ({
+  active: state.getIn(['compose', 'sensitive']),
+  disabled: state.getIn(['compose', 'spoiler']),
+  mediaCount: state.getIn(['compose', 'media_attachments']).size,
+});
 
 const mapDispatchToProps = dispatch => ({
 

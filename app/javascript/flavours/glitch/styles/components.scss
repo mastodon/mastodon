@@ -648,6 +648,11 @@ body > [data-popper-placement] {
         padding: 10px;
         font-family: inherit;
 
+        .icon {
+          width: 15px;
+          height: 15px;
+        }
+
         &:hover,
         &:focus,
         &:active {
@@ -733,25 +738,9 @@ body > [data-popper-placement] {
     justify-content: flex-end;
     min-width: 0;
     flex: 0 0 auto;
-    column-gap: 5px;
 
     .compose-form__publish-button-wrapper {
-      padding-top: 10px;
-
-      button {
-        padding: 7px 10px;
-        text-align: center;
-
-        & > span {
-          display: flex;
-          gap: 5px;
-          align-items: center;
-        }
-      }
-
-      .side_arm {
-        height: 100%;
-      }
+      padding-top: 15px;
     }
   }
 }
@@ -772,28 +761,6 @@ body > [data-popper-placement] {
   transition:
     height 0.4s ease,
     opacity 0.4s ease;
-}
-
-.compose-form__textarea-icons {
-  display: block;
-  position: absolute;
-  top: 29px;
-  inset-inline-end: 5px;
-  bottom: 5px;
-  overflow: hidden;
-
-  & > .textarea_icon {
-    display: block;
-    margin-top: 2px;
-    margin-inline-start: 2px;
-    width: 24px;
-    height: 24px;
-    color: $lighter-text-color;
-    font-size: 18px;
-    line-height: 24px;
-    text-align: center;
-    opacity: 0.8;
-  }
 }
 
 .sign-in-banner {
@@ -858,6 +825,7 @@ body > [data-popper-placement] {
   max-width: 100%;
   line-height: 24px;
   overflow: hidden;
+  padding-inline-end: 25px;
   text-decoration: none;
 }
 

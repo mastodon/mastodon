@@ -8,21 +8,19 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import AutosuggestInput from 'flavours/glitch/components/autosuggest_input';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { IconButton } from 'flavours/glitch/components/icon_button';
-import { pollLimits } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   option_placeholder: { id: 'compose_form.poll.option_placeholder', defaultMessage: 'Choice {number}' },
   add_option: { id: 'compose_form.poll.add_option', defaultMessage: 'Add a choice' },
   remove_option: { id: 'compose_form.poll.remove_option', defaultMessage: 'Remove this choice' },
   poll_duration: { id: 'compose_form.poll.duration', defaultMessage: 'Poll duration' },
-  single_choice: { id: 'compose_form.poll.single_choice', defaultMessage: 'Allow one choice' },
-  multiple_choices: { id: 'compose_form.poll.multiple_choices', defaultMessage: 'Allow multiple choices' },
+  switchToMultiple: { id: 'compose_form.poll.switch_to_multiple', defaultMessage: 'Change poll to allow multiple choices' },
+  switchToSingle: { id: 'compose_form.poll.switch_to_single', defaultMessage: 'Change poll to allow for a single choice' },
   minutes: { id: 'intervals.full.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}}' },
   hours: { id: 'intervals.full.hours', defaultMessage: '{number, plural, one {# hour} other {# hours}}' },
   days: { id: 'intervals.full.days', defaultMessage: '{number, plural, one {# day} other {# days}}' },
@@ -38,6 +36,7 @@ class OptionIntl extends PureComponent {
     autoFocus: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onRemove: PropTypes.func.isRequired,
+    onToggleMultiple: PropTypes.func.isRequired,
     suggestions: ImmutablePropTypes.list,
     onClearSuggestions: PropTypes.func.isRequired,
     onFetchSuggestions: PropTypes.func.isRequired,
@@ -51,6 +50,19 @@ class OptionIntl extends PureComponent {
 
   handleOptionRemove = () => {
     this.props.onRemove(this.props.index);
+  };
+
+
+  handleToggleMultiple = e => {
+    this.props.onToggleMultiple();
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  handleCheckboxKeypress = e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      this.handleToggleMultiple(e);
+    }
   };
 
   onSuggestionsClearRequested = () => {
@@ -71,11 +83,19 @@ class OptionIntl extends PureComponent {
     return (
       <li>
         <label className='poll__option editable'>
-          <span className={classNames('poll__input', { checkbox: isPollMultiple })} />
+          <span
+            className={classNames('poll__input', { checkbox: isPollMultiple })}
+            onClick={this.handleToggleMultiple}
+            onKeyPress={this.handleCheckboxKeypress}
+            role='button'
+            tabIndex={0}
+            title={intl.formatMessage(isPollMultiple ? messages.switchToSingle : messages.switchToMultiple)}
+            aria-label={intl.formatMessage(isPollMultiple ? messages.switchToSingle : messages.switchToMultiple)}
+          />
 
           <AutosuggestInput
             placeholder={intl.formatMessage(messages.option_placeholder, { number: index + 1 })}
-            maxLength={pollLimits.max_option_chars}
+            maxLength={100}
             value={title}
             lang={lang}
             spellCheck
@@ -126,8 +146,8 @@ class PollForm extends ImmutablePureComponent {
     this.props.onChangeSettings(e.target.value, this.props.isMultiple);
   };
 
-  handleSelectMultiple = e => {
-    this.props.onChangeSettings(this.props.expiresIn, e.target.value === 'true');
+  handleToggleMultiple = () => {
+    this.props.onChangeSettings(this.props.expiresIn, !this.props.isMultiple);
   };
 
   render () {
@@ -142,21 +162,11 @@ class PollForm extends ImmutablePureComponent {
     return (
       <div className='compose-form__poll-wrapper'>
         <ul>
-          {options.map((title, i) => <Option title={title} lang={lang} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} autoFocus={i === autoFocusIndex} {...other} />)}
-          {options.size < pollLimits.max_options && (
-            <label className='poll__text editable'>
-              <span className={classNames('poll__input')} style={{ opacity: 0 }} />
-              <button className='button button-secondary' onClick={this.handleAddOption} type='button'><Icon id='plus' icon={AddIcon} /> <FormattedMessage {...messages.add_option} /></button>
-            </label>
-          )}
+          {options.map((title, i) => <Option title={title} lang={lang} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} onToggleMultiple={this.handleToggleMultiple} autoFocus={i === autoFocusIndex} {...other} />)}
         </ul>
 
         <div className='poll__footer'>
-          {/* eslint-disable-next-line jsx-a11y/no-onchange */}
-          <select value={isMultiple ? 'true' : 'false'} onChange={this.handleSelectMultiple}>
-            <option value='false'>{intl.formatMessage(messages.single_choice)}</option>
-            <option value='true'>{intl.formatMessage(messages.multiple_choices)}</option>
-          </select>
+          <button type='button' disabled={options.size >= 5} className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' icon={AddIcon} /> <FormattedMessage {...messages.add_option} /></button>
 
           {/* eslint-disable-next-line jsx-a11y/no-onchange */}
           <select value={expiresIn} onChange={this.handleSelectDuration}>
