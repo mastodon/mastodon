@@ -26,7 +26,7 @@ class Scheduler::AutoCloseRegistrationsScheduler
   def switch_to_approval_mode!
     Setting.registrations_mode = 'approved'
 
-    User.those_who_can(:view_devops).includes(:account).find_each do |user|
+    User.those_who_can(:manage_settings).includes(:account).find_each do |user|
       AdminMailer.auto_close_registrations(recipient: user.account).deliver_later
     end
   end
