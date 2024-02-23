@@ -746,13 +746,13 @@ RSpec.describe Account do
       end
 
       it 'is valid if we are creating an instance actor account with a period' do
-        account = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
+        account = Fabricate.build(:account, id: described_class::INSTANCE_ACTOR_ID, actor_type: 'Application', locked: true, username: 'example.com')
         expect(account.valid?).to be true
       end
 
       it 'is valid if we are creating a possibly-conflicting instance actor account' do
         _account = Fabricate(:account, username: 'examplecom')
-        instance_account = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
+        instance_account = Fabricate.build(:account, id: described_class::INSTANCE_ACTOR_ID, actor_type: 'Application', locked: true, username: 'example.com')
         expect(instance_account.valid?).to be true
       end
 

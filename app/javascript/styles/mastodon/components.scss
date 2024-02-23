@@ -4325,35 +4325,6 @@ a.status-card {
   z-index: 100;
 }
 
-.media-spoiler {
-  background: $base-overlay-background;
-  color: $darker-text-color;
-  border: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 4px;
-  appearance: none;
-
-  &:hover,
-  &:active,
-  &:focus {
-    padding: 0;
-    color: lighten($darker-text-color, 8%);
-  }
-}
-
-.media-spoiler__warning {
-  display: block;
-  font-size: 14px;
-}
-
-.media-spoiler__trigger {
-  display: block;
-  font-size: 11px;
-  font-weight: 700;
-}
-
 .spoiler-button {
   top: 0;
   inset-inline-start: 0;
@@ -9416,6 +9387,7 @@ noscript {
   flex-direction: column;
   gap: 12px;
   padding: 16px 0;
+  padding-bottom: 0;
   border-bottom: 1px solid mix($ui-base-color, $ui-highlight-color, 75%);
   background: mix($ui-base-color, $ui-highlight-color, 95%);
 
@@ -9454,6 +9426,7 @@ noscript {
       cursor: pointer;
       top: 0;
       color: $primary-text-color;
+      opacity: 0.5;
 
       &.left {
         left: 0;
@@ -9481,6 +9454,8 @@ noscript {
       &:hover,
       &:focus,
       &:active {
+        opacity: 1;
+
         .inline-follow-suggestions__body__scroll-button__icon {
           background: lighten($ui-highlight-color, 4%);
         }
@@ -9492,11 +9467,10 @@ noscript {
       flex-wrap: nowrap;
       gap: 16px;
       padding: 16px;
-      padding-bottom: 0;
       scroll-snap-type: x mandatory;
       scroll-padding: 16px;
       scroll-behavior: smooth;
-      overflow-x: hidden;
+      overflow-x: scroll;
 
       &__card {
         background: darken($ui-base-color, 4%);
@@ -9521,6 +9495,7 @@ noscript {
           position: absolute;
           inset-inline-end: 8px;
           top: 8px;
+          opacity: 0.75;
         }
 
         &__avatar {
@@ -9558,6 +9533,7 @@ noscript {
             gap: 4px;
             overflow: hidden;
             white-space: nowrap;
+            cursor: help;
 
             > span {
               overflow: hidden;

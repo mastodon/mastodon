@@ -1002,6 +1002,9 @@ sl:
       title: Spletne zanke
       webhook: Spletna zanka
   admin_mailer:
+    auto_close_registrations:
+      body: Zaradi pomanjkanja moderiranja v zadnjem času, se je za strežnik %{instance} samodejno vklopilo ročno preverjanje in potrjevanje prijav. S tem se prepreči morebitno zlorabo strežnika %{instance}. Prijave lahko kadarkoli spet spremenite nazaj v odprte.
+      subject: Za strežnik %{instance} se je samodejno vklopilo ročno potrjevanje prijav
     new_appeal:
       actions:
         delete_statuses: brisanje njihovih objav,
