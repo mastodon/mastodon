@@ -299,21 +299,16 @@
   }
 }
 
-.text-icon,
-.text-icon-button {
-  font-weight: 600;
-  font-size: 11px;
-  line-height: 27px;
-  cursor: default;
-}
-
 .text-icon-button {
   color: $lighter-text-color;
   border: 0;
   border-radius: 4px;
   background: transparent;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 11px;
   padding: 0 3px;
+  line-height: 27px;
   white-space: nowrap;
 
   &:hover,
