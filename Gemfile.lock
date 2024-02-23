@@ -286,7 +286,7 @@ GEM
       ruby-progressbar (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    google-protobuf (3.25.3)
+    google-protobuf (3.25.3-arm64-darwin)
     googleapis-common-protos-types (1.14.0)
       google-protobuf (~> 3.18)
     haml (6.3.0)
@@ -429,7 +429,6 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2024.0604)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.7)
     minitest (5.24.1)
     msgpack (1.7.2)
     multi_json (1.15.0)
@@ -450,8 +449,7 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.3)
-    nokogiri (1.16.6)
-      mini_portile2 (~> 2.8.2)
+    nokogiri (1.16.6-arm64-darwin)
       racc (~> 1.4)
     nsa (0.3.0)
       activesupport (>= 4.2, < 7.2)
@@ -800,8 +798,7 @@ GEM
       rufus-scheduler (~> 3.2)
       sidekiq (>= 6, < 8)
       tilt (>= 1.4.0, < 3)
-    sidekiq-unique-jobs (8.0.9)
-      brpoplpush-redis_script (> 0.1.1, <= 2.0.0)
+    sidekiq-unique-jobs (8.0.10)
       concurrent-ruby (~> 1.0, >= 1.0.5)
       sidekiq (>= 7.0.0, < 8.0.0)
       thor (>= 1.0, < 3.0)
@@ -906,7 +903,7 @@ GEM
     zeitwerk (2.6.16)
 
 PLATFORMS
-  ruby
+  arm64-darwin-23
 
 DEPENDENCIES
   active_model_serializers (~> 0.10)
