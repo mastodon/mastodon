@@ -25,7 +25,7 @@ class IpBlock < ApplicationRecord
     no_access: 9999,
   }, prefix: true, validate: true
 
-  validates :ip, :severity, presence: true
+  validates :ip, presence: true
   validates :ip, uniqueness: true
 
   after_commit :reset_cache
