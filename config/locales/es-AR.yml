@@ -767,6 +767,7 @@ es-AR:
         disabled: A nadie
         users: A usuarios locales con sesiones abiertas
       registrations:
+        moderation_recommandation: Por favor, ¡asegurate de tener un equipo de moderación adecuado y reactivo antes de abrir los registros a todos!
         preamble: Controlá quién puede crear una cuenta en tu servidor.
         title: Registros
       registrations_mode:
@@ -774,6 +775,7 @@ es-AR:
           approved: Se requiere aprobación para registrarse
           none: Nadie puede registrarse
           open: Cualquiera puede registrarse
+        warning_hint: Recomendamos el uso de la opción “Se requiere aprobación para registrarse”, a menos que estés seguro de que tu equipo de moderación puede manejar el spam y los registros maliciosos de forma oportuna.
       security:
         authorized_fetch: Requiere autenticación de servidores federados
         authorized_fetch_hint: Requerir autenticación de servidores federados permite un cumplimiento más estricto tanto de los bloques de nivel de usuario como de nivel de servidor. Sin embargo, esto se produce a costa de una penalidad en el rendimiento, reduce el alcance de tus respuestas y puede introducir problemas de compatibilidad con algunos servicios federados. Además, esto no impedirá que actores dedicados obtengan tus mensajes y cuentas públicas.
