@@ -81,8 +81,11 @@ Rails.delegate(document, batchCheckboxClassName, 'change', () => {
   const selectAllMatchingElement = document.querySelector('.batch-table__select-all');
 
   if (checkAllElement) {
-    checkAllElement.checked = document.querySelectorAll(batchCheckboxClassName).every((content) => content.checked);
-    checkAllElement.indeterminate = !checkAllElement.checked && document.querySelectorAll(batchCheckboxClassName).some((content) => content.checked);
+    const allCheckboxes = Array.from(
+      document.querySelectorAll(batchCheckboxClassName)
+    );
+    checkAllElement.checked = allCheckboxes.every((content) => content.checked);
+    checkAllElement.indeterminate = !checkAllElement.checked && allCheckboxes.some((content) => content.checked);
 
     if (selectAllMatchingElement) {
       if (checkAllElement.checked) {
@@ -183,8 +186,9 @@ ready(() => {
 
   const checkAllElement = document.querySelector('#batch_checkbox_all');
   if (checkAllElement) {
-    checkAllElement.checked = document.querySelectorAll(batchCheckboxClassName).every( (content) => content.checked);
-    checkAllElement.indeterminate = !checkAllElement.checked && document.querySelectorAll(batchCheckboxClassName).some((content) => content.checked);
+    const allCheckboxes = Array.from(document.querySelectorAll(batchCheckboxClassName));
+    checkAllElement.checked = allCheckboxes.every( (content) => content.checked);
+    checkAllElement.indeterminate = !checkAllElement.checked && allCheckboxes.some((content) => content.checked);
   }
 
   document.querySelector('a#add-instance-button')?.addEventListener('click', (e) => {
@@ -207,7 +211,7 @@ ready(() => {
   });
 
   Rails.delegate(document, 'form', 'submit', ({ target }) => {
-    target.querySelectorAll('input[type="datetime-local"]').foreach(element => {
+    target.querySelectorAll('input[type="datetime-local"]').forEach(element => {
       if (element.value && element.validity.valid) {
         element.value = convertLocalDatetimeToUTC(element.value);
       }
