@@ -21,7 +21,6 @@ let fetchComposeSuggestionsAccountsController;
 let fetchComposeSuggestionsTagsController;
 
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
-export const COMPOSE_CYCLE_ELEFRIEND = 'COMPOSE_CYCLE_ELEFRIEND';
 export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
 export const COMPOSE_SUBMIT_SUCCESS  = 'COMPOSE_SUBMIT_SUCCESS';
 export const COMPOSE_SUBMIT_FAIL     = 'COMPOSE_SUBMIT_FAIL';
@@ -114,12 +113,6 @@ export function changeCompose(text) {
   return {
     type: COMPOSE_CHANGE,
     text: text,
-  };
-}
-
-export function cycleElefriendCompose() {
-  return {
-    type: COMPOSE_CYCLE_ELEFRIEND,
   };
 }
 

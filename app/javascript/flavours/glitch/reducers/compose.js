@@ -4,7 +4,6 @@ import {
   COMPOSE_MOUNT,
   COMPOSE_UNMOUNT,
   COMPOSE_CHANGE,
-  COMPOSE_CYCLE_ELEFRIEND,
   COMPOSE_REPLY,
   COMPOSE_REPLY_CANCEL,
   COMPOSE_DIRECT,
@@ -62,12 +61,6 @@ import { overwrite } from '../utils/js_helpers';
 import { privacyPreference } from '../utils/privacy_preference';
 import { uuid } from '../uuid';
 
-const totalElefriends = 3;
-
-// ~4% chance you'll end up with an unexpected friend
-// glitch-soc/mastodon repo created_at date: 2017-04-20T21:55:28Z
-const glitchProbability = 1 - 0.0420215528;
-
 const initialState = ImmutableMap({
   mounted: 0,
   advanced_options: ImmutableMap({
@@ -75,7 +68,6 @@ const initialState = ImmutableMap({
     threaded_mode: false,
   }),
   sensitive: false,
-  elefriend: Math.random() < glitchProbability ? Math.floor(Math.random() * totalElefriends) : totalElefriends,
   spoiler: false,
   spoiler_text: '',
   privacy: null,
@@ -425,9 +417,6 @@ export default function compose(state = initialState, action) {
       .set('idempotencyKey', uuid());
   case COMPOSE_COMPOSING_CHANGE:
     return state.set('is_composing', action.value);
-  case COMPOSE_CYCLE_ELEFRIEND:
-    return state
-      .set('elefriend', (state.get('elefriend') + 1) % totalElefriends);
   case COMPOSE_REPLY:
     return state.withMutations(map => {
       map.set('id', null);
