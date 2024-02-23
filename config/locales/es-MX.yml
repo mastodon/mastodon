@@ -767,6 +767,7 @@ es-MX:
         disabled: A nadie
         users: Para los usuarios locales que han iniciado sesión
       registrations:
+        moderation_recommandation: Por favor, ¡asegúrate de tener un equipo de moderación adecuado y reactivo antes de abrir los registros a todo el mundo!
         preamble: Controla quién puede crear una cuenta en tu servidor.
         title: Registros
       registrations_mode:
@@ -774,6 +775,7 @@ es-MX:
           approved: Se requiere aprobación para registrarse
           none: Nadie puede registrarse
           open: Cualquiera puede registrarse
+        warning_hint: Recomendamos el uso de “Se requiere aprobación para registrarse” a menos que estés seguro de que tu equipo de moderación puede manejar el spam y los registros maliciosos en un tiempo razonable.
       security:
         authorized_fetch: Requerir autenticación de servidores federados
         authorized_fetch_hint: Requerir autenticación de servidores federados permite un cumplimiento más estricto tanto de los bloqueos a nivel de usuario como a nivel de servidor. Sin embargo, esto se produce a costa de una penalización en el rendimiento, reduce el alcance de tus respuestas y puede introducir problemas de compatibilidad con algunos servicios federados. Además, esto no impedirá que actores dedicados obtengan tus cuentas y publicaciones públicas.
@@ -967,7 +969,7 @@ es-MX:
       webhook: Webhook
   admin_mailer:
     auto_close_registrations:
-      body: Debido a la falta de actividad reciente de los moderadores, se ha cambiado automáticamente el registro en %{instance} para requerir revisión manual, para evitar que la instancia %{instance} sea usada como plataforma para malos actores potenciales. Puedes volver a cambiarlo en cualquier momento para abrir de nuevo los registros.
+      body: Debido a la falta de moderadores activos, los registros en %{instance} han sido cambiados automáticamente para requerir revisión manual, para evitar que %{instance} se utilice potencialmente como plataforma por malos actores. Puedes volver a cambiarlo para abrir los registros en cualquier momento.
       subject: Se ha cambiado automáticamente el registro de %{instance} para requerir aprobación
     new_appeal:
       actions:

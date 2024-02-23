@@ -795,13 +795,15 @@ cs:
         disabled: Nikomu
         users: Přihlášeným místním uživatelům
       registrations:
+        moderation_recommandation: Před otevřením registrací všem se ujistěte, že máte vhodný a reaktivní moderační tým!
         preamble: Mějte pod kontrolou, kdo může vytvořit účet na vašem serveru.
         title: Registrace
       registrations_mode:
         modes:
-          approved: Pro registraci je vyžadováno schválení
+          approved: Schválení požadované pro registraci
           none: Nikdo se nemůže registrovat
           open: Kdokoliv se může registrovat
+        warning_hint: Doporučujeme použít "Schválení požadované pro registraci", pokud si nejste jistí, že váš moderační tým dokáže včas zpracovat spam a škodlivé registrace.
       security:
         authorized_fetch: Vyžadovat autentizaci od federovaných serverů
         authorized_fetch_hint: Vyžadování ověřování pravosti od federalizovaných serverů umožňuje přísnější prosazování uživatelských i serverních bloků. K tomu však dochází k snížení výkonu, snižení dosah vašich odpovědí a můžou se zavést problémy s kompatibilitou s některými federálními službami. Kromě toho to nebude bránit oddaným uživatelům či robotům v načítání vašich veřejných příspěvků a účtů.
@@ -1002,6 +1004,9 @@ cs:
       title: Webhooky
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Kvůli nedostatku nedávných aktivit od moderátorů byly registrace na %{instance} automaticky přepnuty na vyžadující manuální kontrolu. aby se zabránilo použití %{instance} jako platformy pro potenciálně škodlivých hráčů. Můžete ji kdykoliv přepnout zpět na otevřené registrace.
+      subject: Registrace pro %{instance} byly automaticky přepnuty na vyžadující schválení
     new_appeal:
       actions:
         delete_statuses: smazání jeho příspěvků
