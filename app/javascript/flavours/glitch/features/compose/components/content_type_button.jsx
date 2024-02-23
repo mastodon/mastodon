@@ -2,6 +2,9 @@ import { useCallback } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
+import SmallCodeIcon from '@/material-icons/400-20px/code.svg?react';
+import SmallDescriptionIcon from '@/material-icons/400-20px/description.svg?react';
+import SmallMarkdownIcon from '@/material-icons/400-20px/markdown.svg?react';
 import CodeIcon from '@/material-icons/400-24px/code.svg?react';
 import DescriptionIcon from '@/material-icons/400-24px/description.svg?react';
 import MarkdownIcon from '@/material-icons/400-24px/markdown.svg?react';
@@ -48,9 +51,9 @@ export const ContentTypeButton = () => {
   }[contentType];
 
   const iconComponent = {
-    'text/plain': DescriptionIcon,
-    'text/markdown': MarkdownIcon,
-    'text/html': CodeIcon,
+    'text/plain': SmallDescriptionIcon,
+    'text/markdown': SmallMarkdownIcon,
+    'text/html': SmallCodeIcon,
   }[contentType];
 
   return (
