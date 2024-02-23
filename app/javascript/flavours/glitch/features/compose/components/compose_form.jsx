@@ -48,6 +48,7 @@ class ComposeForm extends ImmutablePureComponent {
     text: PropTypes.string.isRequired,
     suggestions: ImmutablePropTypes.list,
     spoiler: PropTypes.bool,
+    spoilerAlwaysOn: PropTypes.bool,
     privacy: PropTypes.string,
     spoilerText: PropTypes.string,
     focusDate: PropTypes.instanceOf(Date),
@@ -296,7 +297,7 @@ class ComposeForm extends ImmutablePureComponent {
               <div className='compose-form__buttons'>
                 <UploadButtonContainer />
                 <PollButtonContainer />
-                <SpoilerButtonContainer />
+                {!this.props.spoilerAlwaysOn && <SpoilerButtonContainer />}
                 <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
                 <CharacterCounter max={maxChars} text={this.getFulltextForCharacterCounting()} />
               </div>

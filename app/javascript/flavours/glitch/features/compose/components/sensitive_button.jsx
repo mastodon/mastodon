@@ -24,8 +24,9 @@ export const SensitiveButton = () => {
   const spoilersAlwaysOn = useAppSelector((state) => state.getIn(['local_settings', 'always_show_spoilers_field']));
   const spoilerText = useAppSelector((state) => state.getIn(['compose', 'spoiler_text']));
   const sensitive = useAppSelector((state) => state.getIn(['compose', 'sensitive']));
-  const disabled = useAppSelector((state) => state.getIn(['compose', 'spoiler']));
+  const spoiler = useAppSelector((state) => state.getIn(['compose', 'spoiler']));
   const mediaCount = useAppSelector((state) => state.getIn(['compose', 'media_attachments']).size);
+  const disabled = spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler;
 
   const active = sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0);
 
