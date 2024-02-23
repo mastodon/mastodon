@@ -7,7 +7,7 @@ import { IconButton } from 'flavours/glitch/components/icon_button';
 
 import DropdownMenu from './dropdown_menu';
 
-export const DropdownIconButton = ({ value, icon, onChange, iconComponent, title, options }) => {
+export const DropdownIconButton = ({ value, disabled, icon, onChange, iconComponent, title, options }) => {
   const containerRef = useRef(null);
 
   const [activeElement, setActiveElement] = useState(null);
@@ -39,6 +39,7 @@ export const DropdownIconButton = ({ value, icon, onChange, iconComponent, title
   return (
     <div ref={containerRef}>
       <IconButton
+        disabled={disabled}
         icon={icon}
         onClick={handleToggle}
         iconComponent={iconComponent}
@@ -68,6 +69,7 @@ export const DropdownIconButton = ({ value, icon, onChange, iconComponent, title
 
 DropdownIconButton.propTypes = {
   value: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
   icon: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   iconComponent: PropTypes.func.isRequired,

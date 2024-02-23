@@ -20,6 +20,7 @@ const messages = defineMessages({
 export const FederationButton = () => {
   const intl = useIntl();
 
+  const isEditing = useAppSelector((state) => state.getIn(['compose', 'id']) !== null);
   const do_not_federate = useAppSelector((state) => state.getIn(['compose', 'advanced_options', 'do_not_federate']));
   const dispatch = useAppDispatch();
 
@@ -34,6 +35,7 @@ export const FederationButton = () => {
 
   return (
     <DropdownIconButton
+      disabled={isEditing}
       icon={do_not_federate ? 'link-slash' : 'link'}
       iconComponent={do_not_federate ? ShareOffIcon : ShareIcon}
       onChange={handleChange}
