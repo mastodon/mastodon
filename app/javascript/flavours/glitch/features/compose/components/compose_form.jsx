@@ -75,6 +75,9 @@ class ComposeForm extends ImmutablePureComponent {
     autoFocus: PropTypes.bool,
     withoutNavigation: PropTypes.bool,
     anyMedia: PropTypes.bool,
+    media: ImmutablePropTypes.list,
+    mediaDescriptionConfirmation: PropTypes.bool,
+    onMediaDescriptionConfirm: PropTypes.func.isRequired,
     isInReply: PropTypes.bool,
     singleColumn: PropTypes.bool,
     lang: PropTypes.string,
@@ -100,11 +103,11 @@ class ComposeForm extends ImmutablePureComponent {
 
   handleKeyDown = (e) => {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
-      this.handleSubmit();
+      this.handleSubmit(e);
     }
 
     if (e.keyCode === 13 && e.altKey) {
-      this.handleSecondarySubmit();
+      this.handleSecondarySubmit(e);
     }
   };
 
@@ -131,16 +134,22 @@ class ComposeForm extends ImmutablePureComponent {
       return;
     }
 
-    this.props.onSubmit(this.props.history || null, overridePrivacy);
-
     if (e) {
       e.preventDefault();
     }
+
+    // Submit unless there are media with missing descriptions
+    if (this.props.mediaDescriptionConfirmation && this.props.media && this.props.media.some(item => !item.get('description'))) {
+      const firstWithoutDescription = this.props.media.find(item => !item.get('description'));
+      this.props.onMediaDescriptionConfirm(this.props.history || null, firstWithoutDescription.get('id'), overridePrivacy);
+    } else {
+      this.props.onSubmit(this.props.history || null, overridePrivacy);
+    }
   };
 
-  handleSecondarySubmit = () => {
+  handleSecondarySubmit = (e) => {
     const { sideArm } = this.props;
-    this.handleSubmit(null, sideArm === 'none' ? null : sideArm);
+    this.handleSubmit(e, sideArm === 'none' ? null : sideArm);
   };
 
   onSuggestionsClearRequested = () => {

@@ -1,3 +1,5 @@
+import { defineMessages, injectIntl } from 'react-intl';
+
 import { connect } from 'react-redux';
 
 import { privacyPreference } from 'flavours/glitch/utils/privacy_preference';
@@ -12,7 +14,26 @@ import {
   insertEmojiCompose,
   uploadCompose,
 } from '../../../actions/compose';
+import { changeLocalSetting } from '../../../actions/local_settings';
+import {
+  openModal,
+} from '../../../actions/modal';
 import ComposeForm from '../components/compose_form';
+
+const messages = defineMessages({
+  missingDescriptionMessage: {
+    id: 'confirmations.missing_media_description.message',
+    defaultMessage: 'At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.',
+  },
+  missingDescriptionConfirm: {
+    id: 'confirmations.missing_media_description.confirm',
+    defaultMessage: 'Send anyway',
+  },
+  missingDescriptionEdit: {
+    id: 'confirmations.missing_media_description.edit',
+    defaultMessage: 'Edit media',
+  },
+});
 
 const sideArmPrivacy = state => {
   const inReplyTo = state.getIn(['compose', 'in_reply_to']);
@@ -50,9 +71,11 @@ const mapStateToProps = state => ({
   isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
   lang: state.getIn(['compose', 'language']),
   sideArm: sideArmPrivacy(state),
+  media: state.getIn(['compose', 'media_attachments']),
+  mediaDescriptionConfirmation: state.getIn(['local_settings', 'confirm_missing_media_description']),
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onChange (text) {
     dispatch(changeCompose(text));
@@ -86,6 +109,25 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(insertEmojiCompose(position, data, needsSpace));
   },
 
+  onMediaDescriptionConfirm (routerHistory, mediaId, overridePrivacy = null) {
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.missingDescriptionMessage),
+        confirm: intl.formatMessage(messages.missingDescriptionConfirm),
+        onConfirm: () => {
+          dispatch(submitCompose(routerHistory, overridePrivacy));
+        },
+        secondary: intl.formatMessage(messages.missingDescriptionEdit),
+        onSecondary: () => dispatch(openModal({
+          modalType: 'FOCAL_POINT',
+          modalProps: { id: mediaId },
+        })),
+        onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_missing_media_description'], false)),
+      },
+    }));
+  },
+
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ComposeForm);
+export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(ComposeForm));
