@@ -767,6 +767,7 @@ ca:
         disabled: Per a ningú
         users: Per als usuaris locals en línia
       registrations:
+        moderation_recommandation: Assegureu-vos de tenir un equip de moderadors adient i actiu abans d'obrir l'alta de comptes al públic!
         preamble: Controla qui pot crear un compte en el teu servidor.
         title: Registres
       registrations_mode:
@@ -774,6 +775,7 @@ ca:
           approved: Cal l’aprovació per a registrar-se
           none: No es pot registrar ningú
           open: Qualsevol pot registrar-se
+        warning_hint: Recomanem utilitzar l'opció "Es requereix aprovació per a donar-se d'alta" si no teniu un equip de moderadors que puguin gestionar els enviaments de brossa o maliciosos en un temps raonable.
       security:
         authorized_fetch: Requereix autenticació dels servidors federats
         authorized_fetch_hint: Requerir l'autenticació dels servidors federats permet una aplicació més estricta dels bloqueigs a nivell d'usuari i a nivell de servidor. Tanmateix, això provoca una penalització del rendiment, redueix l'abast de les seves respostes i pot introduir problemes de compatibilitat amb alguns serveis federats. A més, això no impedirà que els actors dedicats busquin les teves publicacions i comptes públics.
@@ -966,6 +968,9 @@ ca:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: A causa de la manca d'activitat recent dels moderadors, les altes a %{instance} han passat automàticament a necessitar una revisió manual, per tal d'evitar que %{instance} es faci servir com a plataforma de potencials mals actuants. Podeu revertir-ho a altes obertes en qualsevol moment.
+      subject: Les altes a %{instance} han passat automàticament a necessitar aprovació
     new_appeal:
       actions:
         delete_statuses: eliminar els seus tuts

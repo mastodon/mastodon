@@ -966,6 +966,9 @@ nn:
       title: Webhooker
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: På grunn av mangel på nyleg moderatoraktivitet, er registreringar på %{instance} automatisk bytt til å krevje manuell gjennomgang, for å hindre at %{instance} vert brukt som ein plattform for potensielle dårlege aktørar. Du kan byte tilbake for å opne registreringar når som helst.
+      subject: Registreringar for %{instance} er automatisk bytt til å krevje godkjenning
     new_appeal:
       actions:
         delete_statuses: å slette sine innlegg

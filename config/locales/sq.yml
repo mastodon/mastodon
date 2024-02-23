@@ -962,6 +962,9 @@ sq:
       title: Webhook-ë
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Për shkak mungese veprimtarie moderatori së fundi, regjistrimet te %{instance} janë kaluar automatikisht të kërkojnë shqyrtim dorazi, për të penguar përdorimin e %{instance} si një platformë për aktorë të këqij. Mund të kaloni kurdo te regjistrime të hapura.
+      subject: Regjistrimet te %{instance} janë kaluar automatikisht të kërkojnë miratim
     new_appeal:
       actions:
         delete_statuses: fshirje e postimeve të tij
