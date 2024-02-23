@@ -430,7 +430,6 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2024.0702)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.7)
     minitest (5.25.1)
     msgpack (1.7.2)
     multi_json (1.15.0)
@@ -799,8 +798,7 @@ GEM
       rufus-scheduler (~> 3.2)
       sidekiq (>= 6, < 8)
       tilt (>= 1.4.0, < 3)
-    sidekiq-unique-jobs (8.0.9)
-      brpoplpush-redis_script (> 0.1.1, <= 2.0.0)
+    sidekiq-unique-jobs (8.0.10)
       concurrent-ruby (~> 1.0, >= 1.0.5)
       sidekiq (>= 7.0.0, < 8.0.0)
       thor (>= 1.0, < 3.0)
@@ -904,7 +902,7 @@ GEM
     zeitwerk (2.6.17)
 
 PLATFORMS
-  ruby
+  arm64-darwin-23
 
 DEPENDENCIES
   active_model_serializers (~> 0.10)
