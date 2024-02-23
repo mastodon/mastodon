@@ -29,6 +29,7 @@ import { countableText } from '../util/counter';
 import { CharacterCounter } from './character_counter';
 import { ContentTypeButton } from './content_type_button';
 import { EditIndicator } from './edit_indicator';
+import { FederationButton } from './federation_button';
 import { NavigationBar } from './navigation_bar';
 import { PollForm } from "./poll_form";
 import { ReplyIndicator } from './reply_indicator';
@@ -312,6 +313,7 @@ class ComposeForm extends ImmutablePureComponent {
                 {!this.props.spoilerAlwaysOn && <SpoilerButtonContainer />}
                 <ContentTypeButton />
                 <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
+                <FederationButton />
                 <CharacterCounter max={maxChars} text={this.getFulltextForCharacterCounting()} />
               </div>
 
