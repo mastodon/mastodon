@@ -1,17 +1,14 @@
-import { useCallback, useState, useRef } from 'react';
+import { useCallback } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
-
-import Overlay from 'react-overlays/Overlay';
 
 import CodeIcon from '@/material-icons/400-24px/code.svg?react';
 import DescriptionIcon from '@/material-icons/400-24px/description.svg?react';
 import MarkdownIcon from '@/material-icons/400-24px/markdown.svg?react';
 import { changeComposeContentType } from 'flavours/glitch/actions/compose';
-import { IconButton } from 'flavours/glitch/components/icon_button';
 import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
 
-import DropdownMenu from './dropdown_menu';
+import { DropdownIconButton } from './dropdown_icon_button';
 
 const messages = defineMessages({
   change_content_type: { id: 'compose.content-type.change', defaultMessage: 'Change advanced formatting options' },
@@ -30,37 +27,9 @@ export const ContentTypeButton = () => {
   const contentType = useAppSelector((state) => state.getIn(['compose', 'content_type']));
   const dispatch = useAppDispatch();
 
-  const containerRef = useRef(null);
-
-  const [activeElement, setActiveElement] = useState(null);
-  const [open, setOpen] = useState(false);
-  const [placement, setPlacement] = useState('bottom');
-
-  const handleToggle = useCallback(() => {
-    if (open && activeElement) {
-      activeElement.focus({ preventScroll: true });
-      setActiveElement(null);
-    }
-
-    setOpen(!open);
-  }, [open, setOpen, activeElement, setActiveElement]);
-
-  const handleClose = useCallback(() => {
-    if (open && activeElement) {
-      activeElement.focus({ preventScroll: true });
-      setActiveElement(null);
-    }
-
-    setOpen(false);
-  }, [open, setOpen, activeElement, setActiveElement]);
-
   const handleChange = useCallback((value) => {
     dispatch(changeComposeContentType(value));
   }, [dispatch]);
-
-  const handleOverlayEnter = useCallback((state) => {
-    setPlacement(state.placement);
-  }, [setPlacement]);
 
   if (!showButton) {
     return null;
@@ -85,31 +54,13 @@ export const ContentTypeButton = () => {
   }[contentType];
 
   return (
-    <div ref={containerRef}>
-      <IconButton
-        icon={icon}
-        onClick={handleToggle}
-        iconComponent={iconComponent}
-        title={intl.formatMessage(messages.change_content_type)}
-        active={open}
-        size={18}
-        inverted
-      />
-
-      <Overlay show={open} offset={[5, 5]} placement={placement} flip target={containerRef} popperConfig={{ strategy: 'fixed', onFirstUpdate: handleOverlayEnter }}>
-        {({ props, placement }) => (
-          <div {...props}>
-            <div className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}>
-              <DropdownMenu
-                items={options}
-                value={contentType}
-                onClose={handleClose}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-        )}
-      </Overlay>
-    </div>
+    <DropdownIconButton
+      icon={icon}
+      iconComponent={iconComponent}
+      onChange={handleChange}
+      options={options}
+      title={intl.formatMessage(messages.change_content_type)}
+      value={contentType}
+    />
   );
 };

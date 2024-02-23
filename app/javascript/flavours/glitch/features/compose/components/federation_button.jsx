@@ -1,16 +1,13 @@
-import { useCallback, useState, useRef } from 'react';
+import { useCallback } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
-
-import Overlay from 'react-overlays/Overlay';
 
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 import ShareOffIcon from '@/material-icons/400-24px/share_off.svg?react';
 import { changeComposeAdvancedOption } from 'flavours/glitch/actions/compose';
-import { IconButton } from 'flavours/glitch/components/icon_button';
 import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
 
-import DropdownMenu from './dropdown_menu';
+import { DropdownIconButton } from './dropdown_icon_button';
 
 const messages = defineMessages({
   change_federation_settings: { id: 'compose.change_federation', defaultMessage: 'Change federation settings' },
@@ -26,37 +23,9 @@ export const FederationButton = () => {
   const do_not_federate = useAppSelector((state) => state.getIn(['compose', 'advanced_options', 'do_not_federate']));
   const dispatch = useAppDispatch();
 
-  const containerRef = useRef(null);
-
-  const [activeElement, setActiveElement] = useState(null);
-  const [open, setOpen] = useState(false);
-  const [placement, setPlacement] = useState('bottom');
-
-  const handleToggle = useCallback(() => {
-    if (open && activeElement) {
-      activeElement.focus({ preventScroll: true });
-      setActiveElement(null);
-    }
-
-    setOpen(!open);
-  }, [open, setOpen, activeElement, setActiveElement]);
-
-  const handleClose = useCallback(() => {
-    if (open && activeElement) {
-      activeElement.focus({ preventScroll: true });
-      setActiveElement(null);
-    }
-
-    setOpen(false);
-  }, [open, setOpen, activeElement, setActiveElement]);
-
   const handleChange = useCallback((value) => {
     dispatch(changeComposeAdvancedOption('do_not_federate', value === 'local-only'));
   }, [dispatch]);
-
-  const handleOverlayEnter = useCallback((state) => {
-    setPlacement(state.placement);
-  }, [setPlacement]);
 
   const options = [
     { icon: 'link', iconComponent: ShareIcon, value: 'federated', text: intl.formatMessage(messages.federated_label), meta: intl.formatMessage(messages.federated_meta) },
@@ -64,31 +33,13 @@ export const FederationButton = () => {
   ];
 
   return (
-    <div ref={containerRef}>
-      <IconButton
-        icon={do_not_federate ? 'link-slash' : 'link'}
-        onClick={handleToggle}
-        iconComponent={do_not_federate ? ShareOffIcon : ShareIcon}
-        title={intl.formatMessage(messages.change_federation_settings)}
-        active={open}
-        size={18}
-        inverted
-      />
-
-      <Overlay show={open} offset={[5, 5]} placement={placement} flip target={containerRef} popperConfig={{ strategy: 'fixed', onFirstUpdate: handleOverlayEnter }}>
-        {({ props, placement }) => (
-          <div {...props}>
-            <div className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}>
-              <DropdownMenu
-                items={options}
-                value={do_not_federate ? 'local-only' : 'federated'}
-                onClose={handleClose}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-        )}
-      </Overlay>
-    </div>
+    <DropdownIconButton
+      icon={do_not_federate ? 'link-slash' : 'link'}
+      iconComponent={do_not_federate ? ShareOffIcon : ShareIcon}
+      onChange={handleChange}
+      options={options}
+      title={intl.formatMessage(messages.change_federation_settings)}
+      value={do_not_federate ? 'local-only' : 'federated'}
+    />
   );
 };
