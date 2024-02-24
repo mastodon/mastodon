@@ -10,8 +10,8 @@ import ExpandLessIcon from '@/material-icons/400-24px/expand_less.svg?react';
 import ImageIcon from '@/material-icons/400-24px/image.svg?react';
 import ManufacturingIcon from '@/material-icons/400-24px/manufacturing.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings-fill.svg?react';
+import WarningIcon from '@/material-icons/400-24px/warning.svg?react';
 import { preferencesLink } from 'flavours/glitch/utils/backend_links';
-
 
 import LocalSettingsNavigationItem from './item';
 
@@ -60,7 +60,8 @@ class LocalSettingsNavigation extends PureComponent {
           active={index === 2}
           index={2}
           onNavigate={onNavigate}
-          textIcon='CW'
+          icon='warning'
+          iconComponent={WarningIcon}
           title={intl.formatMessage(messages.content_warnings)}
         />
         <LocalSettingsNavigationItem

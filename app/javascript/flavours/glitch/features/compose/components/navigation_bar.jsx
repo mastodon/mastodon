@@ -1,54 +1,36 @@
-import PropTypes from 'prop-types';
+import { useCallback } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { useIntl, defineMessages } from 'react-intl';
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { Permalink } from 'flavours/glitch/components/permalink';
-import { profileLink } from 'flavours/glitch/utils/backend_links';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
+import { cancelReplyCompose } from 'flavours/glitch/actions/compose';
+import Account from 'flavours/glitch/components/account';
+import { IconButton } from 'flavours/glitch/components/icon_button';
+import { me } from 'flavours/glitch/initial_state';
 
-import { Avatar } from '../../../components/avatar';
+import { ActionBar } from './action_bar';
 
-import ActionBar from './action_bar';
 
-export default class NavigationBar extends ImmutablePureComponent {
+const messages = defineMessages({
+  cancel: { id: 'reply_indicator.cancel', defaultMessage: 'Cancel' },
+});
 
-  static propTypes = {
-    account: ImmutablePropTypes.record.isRequired,
-    onLogout: PropTypes.func.isRequired,
-    onClose: PropTypes.func,
-  };
+export const NavigationBar = () => {
+  const dispatch = useDispatch();
+  const intl = useIntl();
+  const account = useSelector(state => state.getIn(['accounts', me]));
+  const isReplying = useSelector(state => !!state.getIn(['compose', 'in_reply_to']));
 
-  render () {
-    const username = this.props.account.get('acct');
-    return (
-      <div className='navigation-bar'>
-        <Permalink className='avatar' href={this.props.account.get('url')} to={`/@${username}`}>
-          <span style={{ display: 'none' }}>{username}</span>
-          <Avatar account={this.props.account} size={46} />
-        </Permalink>
+  const handleCancelClick = useCallback(() => {
+    dispatch(cancelReplyCompose());
+  }, [dispatch]);
 
-        <div className='navigation-bar__profile'>
-          <span>
-            <Permalink className='acct' href={this.props.account.get('url')} to={`/@${username}`}>
-              <strong className='navigation-bar__profile-account'>@{username}</strong>
-            </Permalink>
-          </span>
-
-          { profileLink !== undefined && (
-            <a
-              href={profileLink}
-              className='navigation-bar__profile-edit'
-            ><FormattedMessage id='navigation_bar.edit_profile' defaultMessage='Edit profile' /></a>
-          )}
-        </div>
-
-        <div className='navigation-bar__actions'>
-          <ActionBar account={this.props.account} onLogout={this.props.onLogout} />
-        </div>
-      </div>
-    );
-  }
-
-}
+  return (
+    <div className='navigation-bar'>
+      <Account account={account} minimal />
+      {isReplying ? <IconButton title={intl.formatMessage(messages.cancel)} iconComponent={CloseIcon} onClick={handleCancelClick} /> : <ActionBar />}
+    </div>
+  );
+};

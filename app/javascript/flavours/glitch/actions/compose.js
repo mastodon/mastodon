@@ -21,7 +21,6 @@ let fetchComposeSuggestionsAccountsController;
 let fetchComposeSuggestionsTagsController;
 
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
-export const COMPOSE_CYCLE_ELEFRIEND = 'COMPOSE_CYCLE_ELEFRIEND';
 export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
 export const COMPOSE_SUBMIT_SUCCESS  = 'COMPOSE_SUBMIT_SUCCESS';
 export const COMPOSE_SUBMIT_FAIL     = 'COMPOSE_SUBMIT_FAIL';
@@ -59,7 +58,7 @@ export const COMPOSE_SENSITIVITY_CHANGE  = 'COMPOSE_SENSITIVITY_CHANGE';
 export const COMPOSE_SPOILERNESS_CHANGE  = 'COMPOSE_SPOILERNESS_CHANGE';
 export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE   = 'COMPOSE_VISIBILITY_CHANGE';
-export const COMPOSE_LISTABILITY_CHANGE  = 'COMPOSE_LISTABILITY_CHANGE';
+export const COMPOSE_COMPOSING_CHANGE    = 'COMPOSE_COMPOSING_CHANGE';
 export const COMPOSE_CONTENT_TYPE_CHANGE = 'COMPOSE_CONTENT_TYPE_CHANGE';
 export const COMPOSE_LANGUAGE_CHANGE     = 'COMPOSE_LANGUAGE_CHANGE';
 
@@ -117,12 +116,6 @@ export function changeCompose(text) {
   };
 }
 
-export function cycleElefriendCompose() {
-  return {
-    type: COMPOSE_CYCLE_ELEFRIEND,
-  };
-}
-
 export function replyCompose(status, routerHistory) {
   return (dispatch, getState) => {
     const prependCWRe = getState().getIn(['local_settings', 'prepend_cw_re']);
@@ -148,13 +141,13 @@ export function resetCompose() {
   };
 }
 
-export const focusCompose = (routerHistory, defaultText) => dispatch => {
+export const focusCompose = (routerHistory, defaultText) => (dispatch, getState) => {
   dispatch({
     type: COMPOSE_FOCUS,
     defaultText,
   });
 
-  ensureComposeIsVisible(routerHistory);
+  ensureComposeIsVisible(getState, routerHistory);
 };
 
 export function mentionCompose(account, routerHistory) {
@@ -179,7 +172,7 @@ export function directCompose(account, routerHistory) {
   };
 }
 
-export function submitCompose(routerHistory) {
+export function submitCompose(routerHistory, overridePrivacy = null) {
   return function (dispatch, getState) {
     let status     = getState().getIn(['compose', 'text'], '');
     const media    = getState().getIn(['compose', 'media_attachments']);
@@ -228,7 +221,7 @@ export function submitCompose(routerHistory) {
         media_attributes,
         sensitive: getState().getIn(['compose', 'sensitive']) || (spoilerText.length > 0 && media.size !== 0),
         spoiler_text: spoilerText,
-        visibility: getState().getIn(['compose', 'privacy']),
+        visibility: overridePrivacy || getState().getIn(['compose', 'privacy']),
         poll: getState().getIn(['compose', 'poll'], null),
         language: getState().getIn(['compose', 'language']),
       },
@@ -245,11 +238,6 @@ export function submitCompose(routerHistory) {
 
       dispatch(insertIntoTagHistory(response.data.tags, status));
       dispatch(submitComposeSuccess({ ...response.data }));
-
-      //  If the response has no data then we can't do anything else.
-      if (!response.data) {
-        return;
-      }
 
       // To make the app more responsive, immediately push the status
       // into the columns
@@ -660,15 +648,19 @@ export const readyComposeSuggestionsTags = (token, tags) => ({
 
 export function selectComposeSuggestion(position, token, suggestion, path) {
   return (dispatch, getState) => {
-    let completion;
+    let completion, startPosition;
+
     if (suggestion.type === 'emoji') {
-      completion = suggestion.native || suggestion.colons;
+      completion    = suggestion.native || suggestion.colons;
+      startPosition = position - 1;
 
       dispatch(useEmoji(suggestion));
     } else if (suggestion.type === 'hashtag') {
-      completion = `#${suggestion.name}`;
+      completion    = `#${suggestion.name}`;
+      startPosition = position - 1;
     } else if (suggestion.type === 'account') {
-      completion = '@' + getState().getIn(['accounts', suggestion.id, 'acct']);
+      completion    = getState().getIn(['accounts', suggestion.id, 'acct']);
+      startPosition = position;
     }
 
     // We don't want to replace hashtags that vary only in case due to accessibility, but we need to fire off an event so that
@@ -676,7 +668,7 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
     if (suggestion.type !== 'hashtag' || token.slice(1).localeCompare(suggestion.name, undefined, { sensitivity: 'accent' }) !== 0) {
       dispatch({
         type: COMPOSE_SUGGESTION_SELECT,
-        position,
+        position: startPosition,
         token,
         completion,
         path,
@@ -684,7 +676,7 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
     } else {
       dispatch({
         type: COMPOSE_SUGGESTION_IGNORE,
-        position,
+        position: startPosition,
         token,
         completion,
         path,
@@ -786,18 +778,26 @@ export function changeComposeVisibility(value) {
   };
 }
 
-export function changeComposeContentType(value) {
-  return {
-    type: COMPOSE_CONTENT_TYPE_CHANGE,
-    value,
-  };
-}
-
-export function insertEmojiCompose(position, emoji) {
+export function insertEmojiCompose(position, emoji, needsSpace) {
   return {
     type: COMPOSE_EMOJI_INSERT,
     position,
     emoji,
+    needsSpace,
+  };
+}
+
+export function changeComposing(value) {
+  return {
+    type: COMPOSE_COMPOSING_CHANGE,
+    value,
+  };
+}
+
+export function changeComposeContentType(value) {
+  return {
+    type: COMPOSE_CONTENT_TYPE_CHANGE,
+    value,
   };
 }
 

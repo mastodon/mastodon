@@ -58,6 +58,8 @@
   &__option {
     position: relative;
     display: flex;
+    align-items: flex-start;
+    gap: 8px;
     padding: 6px 0;
     line-height: 18px;
     cursor: default;
@@ -84,16 +86,22 @@
       box-sizing: border-box;
       width: 100%;
       font-size: 14px;
-      color: $inverted-text-color;
+      color: $secondary-text-color;
       outline: 0;
       font-family: inherit;
-      background: $simple-background-color;
-      border: 1px solid darken($simple-background-color, 14%);
+      background: $ui-base-color;
+      border: 1px solid $darker-text-color;
       border-radius: 4px;
-      padding: 6px 10px;
+      padding: 8px 12px;
 
       &:focus {
-        border-color: $highlight-text-color;
+        border-color: $ui-highlight-color;
+      }
+
+      @media screen and (width <= 600px) {
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.5px;
       }
     }
 
@@ -102,26 +110,20 @@
     }
 
     &.editable {
-      display: flex;
       align-items: center;
       overflow: visible;
     }
   }
 
   &__input {
-    display: inline-block;
+    display: block;
     position: relative;
     border: 1px solid $ui-primary-color;
     box-sizing: border-box;
-    width: 18px;
-    height: 18px;
-    margin-inline-end: 10px;
-    top: -1px;
+    width: 17px;
+    height: 17px;
     border-radius: 50%;
-    vertical-align: middle;
-    margin-top: auto;
-    margin-bottom: auto;
-    flex: 0 0 18px;
+    flex: 0 0 auto;
 
     &.checkbox {
       border-radius: 4px;
@@ -162,6 +164,15 @@
         border-color: $dark-text-color;
         border-width: 1px;
       }
+    }
+  }
+
+  &__option.editable &__input {
+    &:active,
+    &:focus,
+    &:hover {
+      border-color: $ui-primary-color;
+      border-width: 1px;
     }
   }
 
@@ -212,92 +223,6 @@
     padding: 0 16px;
     margin-inline-end: 10px;
     font-size: 14px;
-  }
-}
-
-.compose-form__poll-wrapper {
-  border-top: 1px solid darken($simple-background-color, 8%);
-  overflow-x: hidden;
-
-  ul {
-    padding: 10px;
-  }
-
-  .poll__input {
-    &:active,
-    &:focus,
-    &:hover {
-      border-color: $ui-button-focus-background-color;
-    }
-  }
-
-  .poll__footer {
-    border-top: 1px solid darken($simple-background-color, 8%);
-    padding: 10px;
-    display: flex;
-    align-items: center;
-
-    button,
-    select {
-      width: 100%;
-      flex: 1 1 50%;
-
-      &:focus {
-        border-color: $highlight-text-color;
-      }
-    }
-  }
-
-  .button.button-secondary {
-    font-size: 14px;
-    font-weight: 400;
-    padding: 6px 10px;
-    height: auto;
-    line-height: inherit;
-    color: $action-button-color;
-    border-color: $action-button-color;
-    margin-inline-end: 5px;
-
-    &:hover,
-    &:focus,
-    &.active {
-      border-color: $action-button-color;
-      background-color: $action-button-color;
-      color: $ui-button-color;
-    }
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-
-    .poll__option {
-      flex: 0 0 auto;
-      width: calc(100% - (23px + 6px));
-      margin-inline-end: 6px;
-    }
-  }
-
-  select {
-    appearance: none;
-    box-sizing: border-box;
-    font-size: 14px;
-    color: $inverted-text-color;
-    display: inline-block;
-    width: auto;
-    outline: 0;
-    font-family: inherit;
-    background: $simple-background-color
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(darken($simple-background-color, 14%))}'/></svg>")
-      no-repeat right 8px center / auto 16px;
-    border: 1px solid darken($simple-background-color, 14%);
-    border-radius: 4px;
-    padding: 6px 10px;
-    padding-inline-end: 30px;
-  }
-
-  .icon-button.disabled {
-    color: darken($simple-background-color, 14%);
   }
 }
 

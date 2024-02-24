@@ -24,13 +24,14 @@
   outline: 0;
   box-sizing: border-box;
   width: 100%;
-  border: 0;
   box-shadow: none;
   font-family: inherit;
   background: $ui-base-color;
   color: $darker-text-color;
   border-radius: 4px;
-  font-size: 14px;
+  border: 1px solid lighten($ui-base-color, 8%);
+  font-size: 17px;
+  line-height: normal;
   margin: 0;
 }
 

@@ -1,4 +1,3 @@
-//  Package imports.
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
@@ -6,101 +5,34 @@ import classNames from 'classnames';
 
 import { supportsPassiveEvents } from 'detect-passive-events';
 
-//  Components.
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon }  from 'flavours/glitch/components/icon';
 
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 
-//  The component.
-export default class ComposerOptionsDropdownContent extends PureComponent {
+// copied from PrivacyDropdown; will require refactor with upstream down the line
+class DropdownMenu extends PureComponent {
 
   static propTypes = {
-    items: PropTypes.arrayOf(PropTypes.shape({
-      icon: PropTypes.string,
-      iconComponent: PropTypes.func,
-      meta: PropTypes.node,
-      name: PropTypes.string.isRequired,
-      text: PropTypes.node,
-    })),
-    onChange: PropTypes.func.isRequired,
-    onClose: PropTypes.func.isRequired,
     style: PropTypes.object,
-    value: PropTypes.string,
-    renderItemContents: PropTypes.func,
-    openedViaKeyboard: PropTypes.bool,
-    closeOnChange: PropTypes.bool,
+    items: PropTypes.array.isRequired,
+    value: PropTypes.string.isRequired,
+    onClose: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
   };
 
-  static defaultProps = {
-    style: {},
-    closeOnChange: true,
-  };
-
-  state = {
-    value: this.props.openedViaKeyboard ? this.props.items[0].name : undefined,
-  };
-
-  //  When the document is clicked elsewhere, we close the dropdown.
-  handleDocumentClick = (e) => {
+  handleDocumentClick = e => {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
       e.stopPropagation();
     }
   };
 
-  //  Stores our node in `this.node`.
-  setRef = (node) => {
-    this.node = node;
-  };
-
-  //  On mounting, we add our listeners.
-  componentDidMount () {
-    document.addEventListener('click', this.handleDocumentClick, { capture: true });
-    document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
-    if (this.focusedItem) {
-      this.focusedItem.focus({ preventScroll: true });
-    } else {
-      this.node.firstChild.focus({ preventScroll: true });
-    }
-  }
-
-  //  On unmounting, we remove our listeners.
-  componentWillUnmount () {
-    document.removeEventListener('click', this.handleDocumentClick, { capture: true });
-    document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
-  }
-
-  handleClick = (e) => {
-    const i = Number(e.currentTarget.getAttribute('data-index'));
-
-    const {
-      onChange,
-      onClose,
-      closeOnChange,
-      items,
-    } = this.props;
-
-    const { name } = items[i];
-
-    e.preventDefault();  //  Prevents change in focus on click
-    if (closeOnChange) {
-      onClose();
-    }
-    onChange(name);
-  };
-
-  // Handle changes differently whether the dropdown is a list of options or actions
-  handleChange = (name) => {
-    if (this.props.value) {
-      this.props.onChange(name);
-    } else {
-      this.setState({ value: name });
-    }
-  };
-
-  handleKeyDown = (e) => {
-    const index = Number(e.currentTarget.getAttribute('data-index'));
+  handleKeyDown = e => {
     const { items } = this.props;
+    const value = e.currentTarget.getAttribute('data-index');
+    const index = items.findIndex(item => {
+      return (item.value === value);
+    });
     let element = null;
 
     switch(e.key) {
@@ -108,7 +40,6 @@ export default class ComposerOptionsDropdownContent extends PureComponent {
       this.props.onClose();
       break;
     case 'Enter':
-    case ' ':
       this.handleClick(e);
       break;
     case 'ArrowDown':
@@ -134,72 +65,61 @@ export default class ComposerOptionsDropdownContent extends PureComponent {
 
     if (element) {
       element.focus();
-      this.handleChange(items[Number(element.getAttribute('data-index'))].name);
+      this.props.onChange(element.getAttribute('data-index'));
       e.preventDefault();
       e.stopPropagation();
     }
+  };
+
+  handleClick = e => {
+    const value = e.currentTarget.getAttribute('data-index');
+
+    e.preventDefault();
+
+    this.props.onClose();
+    this.props.onChange(value);
+  };
+
+  componentDidMount () {
+    document.addEventListener('click', this.handleDocumentClick, { capture: true });
+    document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
+    if (this.focusedItem) this.focusedItem.focus({ preventScroll: true });
+  }
+
+  componentWillUnmount () {
+    document.removeEventListener('click', this.handleDocumentClick, { capture: true });
+    document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
+  }
+
+  setRef = c => {
+    this.node = c;
   };
 
   setFocusRef = c => {
     this.focusedItem = c;
   };
 
-  renderItem = (item, i) => {
-    const { name, icon, iconComponent, meta, text } = item;
-
-    const active = (name === (this.props.value || this.state.value));
-
-    const computedClass = classNames('privacy-dropdown__option', { active });
-
-    let contents = this.props.renderItemContents && this.props.renderItemContents(item, i);
-
-    if (!contents) {
-      contents = (
-        <>
-          {icon && (
-            <div className='privacy-dropdown__option__icon'>
-              <Icon className='icon' id={icon} icon={iconComponent} />
-            </div>
-          )}
-
-          <div className='privacy-dropdown__option__content'>
-            <strong>{text}</strong>
-            {meta}
-          </div>
-        </>
-      );
-    }
-
-    return (
-      <div
-        className={computedClass}
-        onClick={this.handleClick}
-        onKeyDown={this.handleKeyDown}
-        role='option'
-        aria-selected={active}
-        tabIndex={0}
-        key={name}
-        data-index={i}
-        ref={active ? this.setFocusRef : null}
-      >
-        {contents}
-      </div>
-    );
-  };
-
-  //  Rendering.
   render () {
-    const {
-      items,
-      style,
-    } = this.props;
+    const { style, items, value } = this.props;
 
-    //  The result.
     return (
       <div style={{ ...style }} role='listbox' ref={this.setRef}>
-        {!!items && items.map((item, i) => this.renderItem(item, i))}
+        {items.map(item => (
+          <div role='option' tabIndex={0} key={item.value} data-index={item.value} onKeyDown={this.handleKeyDown} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })} aria-selected={item.value === value} ref={item.value === value ? this.setFocusRef : null}>
+            <div className='privacy-dropdown__option__icon'>
+              <Icon id={item.icon} icon={item.iconComponent} />
+            </div>
+
+            <div className='privacy-dropdown__option__content'>
+              <strong>{item.text}</strong>
+              {item.meta}
+            </div>
+          </div>
+        ))}
       </div>
     );
   }
 
 }
+
+export default DropdownMenu;

@@ -8,7 +8,6 @@ import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-
 import CancelIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
@@ -186,9 +185,9 @@ class Search extends PureComponent {
   };
 
   handleURLClick = () => {
-    const { onOpenURL, history } = this.props;
+    const { value, onOpenURL, history } = this.props;
 
-    onOpenURL(history);
+    onOpenURL(value, history);
     this._unfocus();
   };
 
@@ -331,7 +330,7 @@ class Search extends PureComponent {
           type='text'
           placeholder={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
           aria-label={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
-          value={value || ''}
+          value={value}
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDown}
           onFocus={this.handleFocus}
@@ -339,8 +338,8 @@ class Search extends PureComponent {
         />
 
         <div role='button' tabIndex={0} className='search__icon' onClick={this.handleClear}>
-          <Icon id='search' icon={SearchIcon}  className={hasValue ? '' : 'active'} />
-          <Icon id='times-circle' icon={CancelIcon} className={hasValue ? 'active' : ''} />
+          <Icon id='search' icon={SearchIcon} className={hasValue ? '' : 'active'} />
+          <Icon id='times-circle' icon={CancelIcon} className={hasValue ? 'active' : ''} aria-label={intl.formatMessage(messages.placeholder)} />
         </div>
 
         <div className='search__popout'>

@@ -28,9 +28,9 @@ const messages = defineMessages({
   pop_in_left: { id: 'settings.pop_in_left', defaultMessage: 'Left' },
   pop_in_right: { id: 'settings.pop_in_right', defaultMessage:  'Right' },
   public: { id: 'privacy.public.short', defaultMessage: 'Public' },
-  unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  private: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
-  direct: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
+  unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Quiet public' },
+  private: { id: 'privacy.private.short', defaultMessage: 'Followers' },
+  direct: { id: 'privacy.direct.short', defaultMessage: 'Specific people' },
 });
 
 class LocalSettingsPage extends PureComponent {
