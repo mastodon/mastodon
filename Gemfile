@@ -125,12 +125,6 @@ group :test do
   # Used to mock environment variables
   gem 'climate_control'
 
-  # Generating fake data for specs
-  gem 'faker', '~> 3.2'
-
-  # Generate test objects for specs
-  gem 'fabrication', '~> 2.30'
-
   # Add back helpers functions removed in Rails 5.1
   gem 'rails-controller-testing', '~> 1.0'
 
@@ -181,6 +175,12 @@ end
 group :development, :test do
   # Interactive Debugging tools
   gem 'debug', '~> 1.8'
+
+  # Generate fake data values
+  gem 'faker', '~> 3.2'
+
+  # Generate factory objects
+  gem 'fabrication', '~> 2.30'
 
   # Profiling tools
   gem 'memory_profiler', require: false

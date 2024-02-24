@@ -210,12 +210,6 @@ html {
   }
 }
 
-// Change the background colors of media and video spoilers
-.media-spoiler,
-.video-player__spoiler {
-  background: $ui-base-color;
-}
-
 .account-gallery__item a {
   background-color: $ui-base-color;
 }
@@ -577,4 +571,17 @@ html {
 .compose-form__highlightable,
 .poll__option input[type='text'] {
   background: darken($ui-base-color, 10%);
+}
+
+.inline-follow-suggestions {
+  background-color: rgba($ui-highlight-color, 0.1);
+  border-bottom-color: rgba($ui-highlight-color, 0.3);
+}
+
+.inline-follow-suggestions__body__scrollable__card {
+  background: $white;
+}
+
+.inline-follow-suggestions__body__scroll-button__icon {
+  color: $white;
 }

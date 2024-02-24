@@ -336,7 +336,7 @@ eu:
       not_permitted: Ez daukazu ekintza hau burutzeko baimenik
       overwrite: Gainidatzi
       shortcode: Laster-kodea
-      shortcode_hint: Gutxienez 2 karaktere, alfanumerikoak eta azpimarra  besterik ez
+      shortcode_hint: Gutxienez 2 karaktere, alfanumerikoak eta azpimarrak soilik
       title: Emoji pertsonalak
       uncategorized: Kategoriarik gabe
       unlist: Kendu zerrendatik
@@ -597,7 +597,7 @@ eu:
         silence_description_html: Kontua soilik honen jarraitzaile edo espresuki bilatzen dutenentzat izango da ikusgarri, kontuaren irisgarritasuna gogorki mugatzen delarik.
         suspend_description_html: Kontua bera eta honen edukiak eskuraezinak izango dira, eta azkenean, ezabatuak. Kontu honekin erlazionatzea ezinezkoa izango da. Prozesua 30 egunez itzulgarria izango da. Kontu honen aurkako txosten guztiak baztertuko lirateke.
       actions_description_html: Erabaki txosten hau konpontzeko ze ekintza hartu. Salatutako kontuaren aurka zigor ekintza bat hartzen baduzu, eposta jakinarazpen bat bidaliko zaie, <strong>Spam</strong> kategoria hautatzean ezik.
-      actions_description_remote_html: Txosten honi konponbidea aurkitzeko zein ekintza egin hautatu. Hau soilik <strong>zure</strong> zerbitzaria kontu honekin nola komunikatu eta bere edukia nola maneiatzeko da.
+      actions_description_remote_html: Hautatu txosten honi konponbidea aurkitzeko zein neurri hartu. Hau soilik <strong>zure</strong> zerbitzaria urruneko kontu honekin nola komunikatu eta bere edukia nola maneiatzeko da.
       add_to_report: Gehitu gehiago txostenera
       are_you_sure: Ziur zaude?
       assign_to_self: Esleitu niri
@@ -1646,7 +1646,7 @@ eu:
     back: Itzuli Mastodon-era
     delete: Kontuaren ezabaketa
     development: Garapena
-    edit_profile: Aldatu profila
+    edit_profile: Editatu profila
     export: Datuen esportazioa
     featured_tags: Nabarmendutako traolak
     import: Inportazioa
@@ -1703,8 +1703,8 @@ eu:
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Zuzena
-      private: Jarraitzaileak besterik ez
-      private_long: Erakutsi jarraitzaileei besterik ez
+      private: Jarraitzaileak soilik
+      private_long: Erakutsi jarraitzaileei soilik
       public: Publikoa
       public_long: Edonork ikusi dezake
       unlisted: Zerrendatu gabea
@@ -1847,7 +1847,7 @@ eu:
       explanation: Hona hasteko aholku batzuk
       final_action: Hasi bidalketak argitaratzen
       final_step: 'Hasi argitaratzen! Jarraitzailerik ez baduzu ere zure bidalketa publikoak besteek ikusi ditzakete, esaterako denbora-lerro lokalean eta traoletan. Zure burua aurkeztu nahi baduzu #aurkezpenak traola erabili zenezake.'
-      full_handle: Zure erabiltzaile-izen osoa
+      full_handle: Helbide osoa
       full_handle_hint: Hau da lagunei esango zeniekeena beste zerbitzari batetik zu jarraitzeko edo zuri mezuak bidaltzeko.
       subject: Ongi etorri Mastodon-era
       title: Ongi etorri, %{name}!
@@ -1860,9 +1860,9 @@ eu:
     seamless_external_login: Kanpo zerbitzu baten bidez hasi duzu saioa, beraz pasahitza eta e-mail ezarpenak ez daude eskuragarri.
     signed_in_as: 'Saioa honela hasita:'
   verification:
-    extra_instructions_html: <strong>Aholkua:</strong> webguneko esteka ikusezina izan daiteke. Muina <code>rel="me"</code> da, erabiltzaileak sortutako edukia duten webguneetan beste inor zure burutzat aurkeztea eragozten duena. <code>a</code> beharrean <code>esteka</code>-etiketa bat ere erabil dezakezu orrialdearen goiburuan, baina HTMLak eskuragarri egon behar du JavaScript exekutatu gabe.
+    extra_instructions_html: <strong>Aholkua:</strong> webguneko esteka ikusezina izan daiteke. Muina <code>rel="me"</code> da, erabiltzaileak sortutako edukia duten webguneetan beste inor zure burutzat aurkeztea eragozten duena. <code>a</code> beharrean <code>esteka</code> motako etiketa bat ere erabil dezakezu orriaren goiburuan, baina HTMLak erabilgarri egon behar du JavaScript exekutatu gabe.
     here_is_how: Hemen duzu nola
-    hint_html: "<strong>Mastodonen nortasun-egiaztapena guztiontzat da.</strong> Web estandar irekietan oinarritua, orain eta betiko doan. Behar duzun guztia jendeak ezagutzen duen webgune pertsonal bat da. Mastodon profiletik webgune honetara estekatzen duzunean, webguneak mastodon profilera estekatzen duela egiaztatuko dugu eta adierazle bat erakutsiko du."
+    hint_html: "<strong>Mastodonen nortasun-egiaztapena guztiontzat da.</strong> Web estandar irekietan oinarritua, orain eta betiko doan. Behar duzun guztia jendeak ezagutzen duen webgune pertsonal bat da. Mastodon profiletik webgune honetara estekatzen duzunean, webguneak Mastodon profilera estekatzen duela egiaztatuko dugu eta adierazle bat erakutsiko du."
     instructions_html: Kopiatu eta itsatsi ondoko kodea zure webguneko HTMLan. Ondoren, gehitu zure webgunearen helbidea zure profileko eremu gehigarrietako batean, "Editatu profila" fitxatik eta gorde aldaketak.
     verification: Egiaztaketa
     verified_links: Zure lotura egiaztatuak

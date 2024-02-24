@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
-import QuickreplyIcon from '@/material-icons/400-24px/quickreply.svg?react';
+import QuickreplyIcon from '@/material-icons/400-20px/quickreply.svg?react';
 import { changeComposeAdvancedOption } from 'flavours/glitch/actions/compose';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';

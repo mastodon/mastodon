@@ -187,12 +187,9 @@ RSpec.describe User do
     context 'when the user is already confirmed' do
       let!(:user) { Fabricate(:user, confirmed_at: Time.now.utc, approved: true, unconfirmed_email: new_email) }
 
-      it 'sets email to unconfirmed_email' do
+      it 'sets email to unconfirmed_email and does not trigger web hook' do
         expect { subject }.to change { user.reload.email }.to(new_email)
-      end
 
-      it 'does not trigger the account.approved Web Hook' do
-        subject
         expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
       end
     end
@@ -206,12 +203,9 @@ RSpec.describe User do
           user.approve!
         end
 
-        it 'sets email to unconfirmed_email' do
+        it 'sets email to unconfirmed_email and triggers `account.approved` web hook' do
           expect { subject }.to change { user.reload.email }.to(new_email)
-        end
 
-        it 'triggers the account.approved Web Hook' do
-          user.confirm
           expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
         end
       end
@@ -221,12 +215,9 @@ RSpec.describe User do
           Setting.registrations_mode = 'open'
         end
 
-        it 'sets email to unconfirmed_email' do
+        it 'sets email to unconfirmed_email and triggers `account.approved` web hook' do
           expect { subject }.to change { user.reload.email }.to(new_email)
-        end
 
-        it 'triggers the account.approved Web Hook' do
-          user.confirm
           expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
         end
       end
@@ -236,12 +227,9 @@ RSpec.describe User do
           Setting.registrations_mode = 'approved'
         end
 
-        it 'sets email to unconfirmed_email' do
+        it 'sets email to unconfirmed_email and does not trigger web hook' do
           expect { subject }.to change { user.reload.email }.to(new_email)
-        end
 
-        it 'does not trigger the account.approved Web Hook' do
-          subject
           expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
         end
       end
@@ -259,12 +247,9 @@ RSpec.describe User do
     context 'when the user is already confirmed' do
       let(:user) { Fabricate(:user, confirmed_at: Time.now.utc, approved: false) }
 
-      it 'sets the approved flag' do
+      it 'sets the approved flag and triggers `account.approved` web hook' do
         expect { subject }.to change { user.reload.approved? }.to(true)
-      end
 
-      it 'triggers the account.approved Web Hook' do
-        subject
         expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
       end
     end
@@ -272,12 +257,9 @@ RSpec.describe User do
     context 'when the user is not confirmed' do
       let(:user) { Fabricate(:user, confirmed_at: nil, approved: false) }
 
-      it 'sets the approved flag' do
+      it 'sets the approved flag and does not trigger web hook' do
         expect { subject }.to change { user.reload.approved? }.to(true)
-      end
 
-      it 'does not trigger the account.approved Web Hook' do
-        subject
         expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
       end
     end
@@ -469,36 +451,35 @@ RSpec.describe User do
   end
 
   describe '#mark_email_as_confirmed!' do
-    subject(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
+    subject { user.mark_email_as_confirmed! }
 
-    before do
-      ActionMailer::Base.deliveries.clear
-      user.mark_email_as_confirmed!
-    end
-
-    after { ActionMailer::Base.deliveries.clear }
+    let!(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
 
     context 'when user is new' do
       let(:confirmed_at) { nil }
 
-      it 'confirms user' do
-        expect(user.confirmed_at).to be_present
-      end
+      it 'confirms user and delivers welcome email', :sidekiq_inline do
+        emails = capture_emails { subject }
 
-      it 'delivers mails', :sidekiq_inline do
-        expect(ActionMailer::Base.deliveries.count).to eq 2
+        expect(user.confirmed_at).to be_present
+        expect(emails.size)
+          .to eq(1)
+        expect(emails.first)
+          .to have_attributes(
+            to: contain_exactly(user.email),
+            subject: eq(I18n.t('user_mailer.welcome.subject'))
+          )
       end
     end
 
     context 'when user is not new' do
       let(:confirmed_at) { Time.zone.now }
 
-      it 'confirms user' do
-        expect(user.confirmed_at).to be_present
-      end
+      it 'confirms user but does not deliver welcome email' do
+        emails = capture_emails { subject }
 
-      it 'does not deliver mail' do
-        expect(ActionMailer::Base.deliveries.count).to eq 0
+        expect(user.confirmed_at).to be_present
+        expect(emails).to be_empty
       end
     end
   end

@@ -755,6 +755,7 @@ zh-TW:
         disabled: 給沒有人
         users: 套用至所有登入的本站使用者
       registrations:
+        moderation_recommandation: 對所有人開放註冊之前，請確保您有人手充足且反應靈敏的管理員團隊！
         preamble: 控制誰能於您伺服器上建立帳號。
         title: 註冊
       registrations_mode:
@@ -762,6 +763,7 @@ zh-TW:
           approved: 註冊需要審核
           none: 沒有人可註冊
           open: 任何人皆能註冊
+        warning_hint: 建議您使用「需要審核註冊」除非您相信您的管理員團隊能即時處理垃圾訊息與惡意帳號註冊。
       security:
         authorized_fetch: 要求自聯邦宇宙伺服器之驗證
         authorized_fetch_hint: 要求聯邦宇宙伺服器進行驗證將更嚴格地執行使用者層級及伺服器層級之封鎖。然而，這將會帶來一些性能損失、減少您的回嘟觸及量、並可能會引入與某些聯邦宇宙伺服器之相容性問題。 此外，這無法阻止專門服務抓取您的公開嘟文及帳號資料。
@@ -779,7 +781,7 @@ zh-TW:
       title: 可取得的更新
       type: 類型
       types:
-        major: 主要版本更新 (major release)
+        major: 主要版本更新
         minor: 次要版本更新 (minor release)
         patch: 修正版本 (patch release) — 錯誤修正及易於套用之變更
       version: 版本
@@ -950,6 +952,9 @@ zh-TW:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: 由於近日缺少管理員活動，%{instance} 上之註冊已自動切換為需要人工審核，以防止 %{instance} 被作為潛在不良行為者之跳板。您隨時能將其切換回開放註冊。
+      subject: "%{instance} 之註冊已自動切換為需要審核"
     new_appeal:
       actions:
         delete_statuses: 要刪除他們的嘟文
@@ -1449,7 +1454,7 @@ zh-TW:
       title: 新的跟隨請求
     mention:
       action: 回覆
-      body: "%{name} 於嘟文中提及您:"
+      body: "%{name} 於嘟文中提及您："
       subject: "%{name} 於嘟文中提及您"
       title: 新的提及
     poll:

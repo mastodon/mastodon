@@ -1016,12 +1016,15 @@ RSpec.describe ActivityPub::Activity::Create do
       it 'creates an encrypted message' do
         encrypted_message = target_device.encrypted_messages.reload.first
 
-        expect(encrypted_message).to_not be_nil
-        expect(encrypted_message.from_device_id).to eq '1234'
-        expect(encrypted_message.from_account).to eq sender
-        expect(encrypted_message.type).to eq 1
-        expect(encrypted_message.body).to eq 'Foo'
-        expect(encrypted_message.digest).to eq 'Foo123'
+        expect(encrypted_message)
+          .to be_present
+          .and have_attributes(
+            from_device_id: eq('1234'),
+            from_account: eq(sender),
+            type: eq(1),
+            body: eq('Foo'),
+            digest: eq('Foo123')
+          )
       end
 
       it 'creates a message franking' do

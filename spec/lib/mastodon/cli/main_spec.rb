@@ -104,9 +104,9 @@ describe Mastodon::CLI::Main do
           answer_hostname_incorrectly
         end
 
-        it 'exits silently' do
+        it 'exits with mismatch error message' do
           expect { subject }
-            .to raise_error(SystemExit)
+            .to raise_error(Thor::Error, /Domains do not match/)
         end
       end
 
@@ -119,7 +119,7 @@ describe Mastodon::CLI::Main do
         it 'passes first step but stops before instructions' do
           expect { subject }
             .to output_results('operation WILL NOT')
-            .and raise_error(SystemExit)
+            .and raise_error(Thor::Error, /Self-destruct will not begin/)
         end
       end
 

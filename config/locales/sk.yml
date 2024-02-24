@@ -88,7 +88,7 @@ sk:
         remote: Federované
         title: Umiestnenie
       login_status: Stav prihlásenia
-      media_attachments: Prílohy
+      media_attachments: Mediálne prílohy
       memorialize: Zmeň na "Navždy budeme spomínať"
       memorialized: Spomienka na
       memorialized_msg: Úspešne zmenené %{username} na spomienkové konto
@@ -175,6 +175,7 @@ sk:
         approve_user: Odobri užívateľa
         assigned_to_self_report: Priraď hlásenie
         change_email_user: Zmeň email pre užívateľa
+        change_role_user: Zmeň užívateľskú rolu
         confirm_user: Potvrď užívateľa
         create_account_warning: Vytvor výstrahu
         create_announcement: Vytvor oboznámenie
@@ -251,15 +252,22 @@ sk:
         enable_user_html: "%{name} povolil/a prihlásenie pre používateľa %{target}"
         memorialize_account_html: "%{name} zmenil/a účet %{target} na pamätnú stránku"
         reject_appeal_html: "%{name} zamietol/la námietku moderovacieho rozhodnutia od %{target}"
+        remove_avatar_user_html: "%{name} vymazal/a %{target}/ov/in avatar"
         reopen_report_html: "%{name} znovu otvoril/a nahlásenie %{target}"
         resend_user_html: "%{name} znovu odoslal/a potvrdzovací email pre %{target}"
         reset_password_user_html: "%{name} resetoval/a heslo používateľa %{target}"
         resolve_report_html: "%{name} vyriešil/a nahlásenie %{target}"
-        sensitive_account_html: "%{name} označil médium od %{target} za chúlostivé"
+        sensitive_account_html: "%{name} označil/a médium od %{target} za chúlostivé"
         silence_account_html: "%{name} obmedzil/a účet %{target}"
         suspend_account_html: "%{name} zablokoval/a účet používateľa %{target}"
         unassigned_report_html: "%{name} odobral/a report od %{target}"
+        unsensitive_account_html: "%{name} odznačil/a médium od %{target} ako chúlostivé"
         unsuspend_account_html: "%{name} spojazdnil/a účet %{target}"
+        update_announcement_html: "%{name} aktualizoval/a oboznámenie %{target}"
+        update_custom_emoji_html: "%{name} aktualizoval/a emotikonu %{target}"
+        update_domain_block_html: "%{name} aktualizoval/a blokovanie domény pre %{target}"
+        update_ip_block_html: "%{name} zmenil/a pravidlo pre IP %{target}"
+        update_status_html: "%{name} aktualizoval/a príspevok od %{target}"
         update_user_role_html: "%{name} zmenil/a rolu pre %{target}"
       deleted_account: zmazaný účet
       empty: Žiadne záznamy nenájdené.
@@ -363,6 +371,7 @@ sk:
           silence: Obmedz
           suspend: Pozastav
         title: Nové blokovanie domény
+      no_domain_block_selected: Žiadne blokovanie domén nebolo zmenené, keďže žiadne neboli vybrané
       not_permitted: Nemáš povolenie na vykonanie tohto kroku
       obfuscate: Zatemniť názov domény
       private_comment: Súkromný komentár
@@ -625,6 +634,7 @@ sk:
           approved: Pre registráciu je nutné povolenie
           none: Nikto sa nemôže registrovať
           open: Ktokoľvek sa môže zaregistrovať
+        warning_hint: Odporúčame používať "Pre registráciu je potrebné schválenie", pokiaľ si niesi istý/á, že tvoj moderovací tím vie zvládnuť spam a záškodné registrácie včas.
       title: Nastavenia servera
     site_uploads:
       delete: Vymaž nahratý súbor
@@ -730,6 +740,8 @@ sk:
       enabled: Aktívne
       status: Stav
   admin_mailer:
+    auto_close_registrations:
+      subject: Registrácie na %{instance} boli automaticky prepnuté na vyžadujúce schválenie
     new_appeal:
       actions:
         none: varovanie
@@ -783,6 +795,7 @@ sk:
     captcha_confirmation:
       title: Bezpečnostná kontrola
     confirmations:
+      clicking_this_link: kliknutím na tento odkaz
       login_link: prihlás sa
       welcome_title: Vitaj, %{name}!
     delete_account: Vymaž účet

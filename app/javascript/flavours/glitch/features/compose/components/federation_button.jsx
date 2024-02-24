@@ -2,6 +2,8 @@ import { useCallback } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
+import SmallShareIcon from '@/material-icons/400-20px/share.svg?react';
+import SmallShareOffIcon from '@/material-icons/400-20px/share_off.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 import ShareOffIcon from '@/material-icons/400-24px/share_off.svg?react';
 import { changeComposeAdvancedOption } from 'flavours/glitch/actions/compose';
@@ -37,7 +39,7 @@ export const FederationButton = () => {
     <DropdownIconButton
       disabled={isEditing}
       icon={do_not_federate ? 'link-slash' : 'link'}
-      iconComponent={do_not_federate ? ShareOffIcon : ShareIcon}
+      iconComponent={do_not_federate ? SmallShareOffIcon : SmallShareIcon}
       onChange={handleChange}
       options={options}
       title={intl.formatMessage(messages.change_federation_settings)}

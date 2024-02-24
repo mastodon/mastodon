@@ -82,10 +82,12 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include Devise::Test::IntegrationHelpers, type: :feature
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include ActionMailer::TestHelper
   config.include Paperclip::Shoulda::Matchers
   config.include ActiveSupport::Testing::TimeHelpers
   config.include Chewy::Rspec::Helpers
   config.include Redisable
+  config.include ThreadingHelpers
   config.include SignedRequestHelpers, type: :request
   config.include CommandLineHelpers, type: :cli
 
@@ -95,8 +97,13 @@ RSpec.configure do |config|
     self.use_transactional_tests = true
   end
 
-  config.around(:each, :sidekiq_inline) do |example|
-    Sidekiq::Testing.inline!(&example)
+  config.around do |example|
+    if example.metadata[:sidekiq_inline] == true
+      Sidekiq::Testing.inline!
+    else
+      Sidekiq::Testing.fake!
+    end
+    example.run
   end
 
   config.before :each, type: :cli do
