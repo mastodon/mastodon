@@ -767,6 +767,7 @@ de:
         disabled: Niemandem
         users: Für angemeldete lokale Benutzer*innen
       registrations:
+        moderation_recommandation: Bitte vergewissere dich, dass du ein geeignetes und reaktionsschnelles Moderationsteam hast, bevor du die Registrierungen uneingeschränkt zulässt!
         preamble: Lege fest, wer auf deinem Server ein Konto erstellen darf.
         title: Registrierungen
       registrations_mode:
@@ -774,6 +775,7 @@ de:
           approved: Registrierung muss genehmigt werden
           none: Niemand darf sich registrieren
           open: Alle können sich registrieren
+        warning_hint: Wir empfehlen die Einstellung „Registrierung muss genehmigt werden“ zu verwenden, es sei denn, du bist dir sicher, dass dein Moderationsteam Spam und böswillige Registrierungen rechtzeitig bearbeiten kann.
       security:
         authorized_fetch: Authentisierung von föderierten Servern erforderlich machen
         authorized_fetch_hint: Das Anfordern einer Authentisierung von föderierten Servern ermöglicht ein strengeres Durchsetzen von Sperren sowohl auf Ebene der Benutzer*innen als auch des Servers. Allerdings ist das mit Leistungseinbußen verbunden, reduziert die Reichweite deiner Antworten und kann zu Kompatibilitätsproblemen mit einigen föderierten Diensten führen. Darüber hinaus wird das Abrufen deiner öffentlichen Beiträge und Konten durch spezialisierte Akteur*innen nicht verhindert.
@@ -968,7 +970,7 @@ de:
   admin_mailer:
     auto_close_registrations:
       body: Aufgrund fehlender Aktivität von Moderator*innen müssen neue Registrierungen auf %{instance} jetzt manuell genehmigt werden. Dies wurde automatisch umgestellt, damit %{instance} nicht als Plattform für Böswillige missbraucht werden kann. Du kannst jederzeit auf uneingeschränkte Registrierungen zurückwechseln.
-      subject: Registrierungen auf %{instance} erfordern jetzt eine manuelle Genehmigung (automatisch umgestellt)
+      subject: Registrierungen auf %{instance} müssen ab jetzt manuell genehmigt werden (automatisch umgestellt)
     new_appeal:
       actions:
         delete_statuses: das Löschen der Beiträge

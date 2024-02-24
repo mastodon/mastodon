@@ -1002,6 +1002,9 @@ he:
       title: התליות רשת
       webhook: התליית רשת
   admin_mailer:
+    auto_close_registrations:
+      body: עקב חוסר פעילות מנחים, הרשמות אל %{instance} עברו אוטומטית למצב אישור ידני, כדי למנוע משרת %{instance} לשמש לכר פעילות לגורמים עוינים. ניתן תמיד לחזור להרשמה פתוחה.
+      subject: הרשמות אל %{instance} הועברו אוטומטית לדרישה לאישור ידני
     new_appeal:
       actions:
         delete_statuses: כדי למחוק את הודעותיהם

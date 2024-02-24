@@ -9,9 +9,9 @@ import { supportsPassiveEvents } from 'detect-passive-events';
 import fuzzysort from 'fuzzysort';
 import Overlay from 'react-overlays/Overlay';
 
-import CancelIcon from 'mastodon/../material-icons/400-24px/cancel-fill.svg?react';
-import SearchIcon from 'mastodon/../material-icons/400-24px/search.svg?react';
-import TranslateIcon from 'mastodon/../material-icons/400-24px/translate.svg?react';
+import CancelIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
+import SearchIcon from '@/material-icons/400-24px/search.svg?react';
+import TranslateIcon from '@/material-icons/400-24px/translate.svg?react';
 import { Icon } from 'mastodon/components/icon';
 import { languages as preloadedLanguages } from 'mastodon/initial_state';
 

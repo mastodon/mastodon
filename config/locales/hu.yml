@@ -767,6 +767,7 @@ hu:
         disabled: Senkinek
         users: Bejelentkezett helyi felhasználóknak
       registrations:
+        moderation_recommandation: Győződjünk meg arról, hogy megfelelő és reaktív moderátor csapatunk van, mielőtt mindenki számára megnyitjuk a regisztrációt!
         preamble: Szabályozd, hogy ki hozhat létre fiókot a kiszolgálón.
         title: Regisztrációk
       registrations_mode:
@@ -774,6 +775,7 @@ hu:
           approved: A regisztráció engedélyhez kötött
           none: Senki sem regisztrálhat
           open: Bárki regisztrálhat
+        warning_hint: Célszerű a "Jóváhagyás szükséges a regisztrációhoz” lehetőség használata, hkivéve, ha biztos vagyunk abban, hogy a moderátor csapat időben tudja kezelni a szemetet és a rosszindulatú regisztrációkat.
       security:
         authorized_fetch: Hitelesítés szükséges a föderációs kiszolgálóktól
         authorized_fetch_hint: A föderációs szerverek hitelesítésének szükségessége lehetővé teszi mind a felhasználói mind a szerver szintű blokkok szigorúbb végrehajtását. Ez azonban a teljesítménybüntetés árán jár, csökkenti a válaszok elérhetőségét és kompatibilitási problémákat vethet fel egyes föderációs szolgáltatásokkal. Emellett ez nem akadályozza meg a dedikált szereplőket abban, hogy nyilvános bejegyzéseiket és fiókjaikat letöltsék.
@@ -967,8 +969,8 @@ hu:
       webhook: Webhook
   admin_mailer:
     auto_close_registrations:
-      body: A közelmúlt moderátori tevékenységnek hiánya miatt %{instance} regisztráció automatikusan kézi ellenőrzést igénylőre vált, hogy megakadályozz, hogy a %{instance} platformot potenciális rossz szereplők számára használhasson. Bármikor visszakapcsolhatjuk a nyitott regisztrációkhoz.
-      subject: "%{instance} regisztráció automatikusan átállt jóváhagyást igénylőre."
+      body: A közelmúlt moderátori tevékenységének hiánya miatt a %{instance} regisztrációja automatikusan kézi ellenőrzést igénylőre váltott azért, hogy megakadályozzuk, hogy a %{instance} potenciálisan rossz szándékú szereplők számára szolgálhasson platformként. A nyílt regisztrációt bármikor visszakapcsolhatod.
+      subject: "%{instance} regisztrációja automatikusan átállt jóváhagyást igénylőre"
     new_appeal:
       actions:
         delete_statuses: bejegyzések törléséről
