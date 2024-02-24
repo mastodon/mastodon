@@ -49,7 +49,7 @@ services:
     hostname: "es"
 
   web:
-    build: .
+    #build: .
     #image: ghcr.io/mastodon/mastodon:v4.2.7
     image: mglennon/mastodon:${MY_PACKAGE}
     restart: unless-stopped
@@ -69,11 +69,11 @@ services:
       com.centurylinklabs.watchtower.enable: true
 
   streaming:
-    build: .
+    #build: .
       #dockerfile: ./streaming/Dockerfile
       #context: .
     #image: ghcr.io/mastodon/mastodon:v4.2.7
-    image: mglennon/mastodon:${MY_PACKAGE}
+    image: mglennon/mastodon-streaming:${MY_PACKAGE}
     restart: unless-stopped
     env_file: .env.production
     command: node ./streaming
@@ -89,7 +89,7 @@ services:
       com.centurylinklabs.watchtower.enable: true
 
   sidekiq:
-    build: .
+    #build: .
     #image: ghcr.io/mastodon/mastodon:v4.2.7
     image: mglennon/mastodon:${MY_PACKAGE}
     restart: unless-stopped
