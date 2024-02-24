@@ -1,32 +1,36 @@
 // @ts-check
 
-const fs = require('fs');
-const http = require('http');
-const path = require('path');
-const url = require('url');
+import fs from 'node:fs';
+import http from 'node:http';
+import path from 'node:path';
+import url from 'node:url';
 
-const cors = require('cors');
-const dotenv = require('dotenv');
-const express = require('express');
-const { Redis } = require('ioredis');
-const { JSDOM } = require('jsdom');
-const pg = require('pg');
-const dbUrlToConfig = require('pg-connection-string').parse;
-const WebSocket = require('ws');
+import cors from 'cors';
+import dotenv from 'dotenv';
+import express from 'express';
+import { Redis } from 'ioredis';
+import { JSDOM } from 'jsdom';
+import pg from 'pg';
+import pgConnectionString from 'pg-connection-string';
+import WebSocket from 'ws';
 
-const errors = require('./errors');
-const { AuthenticationError, RequestError } = require('./errors');
-const { logger, httpLogger, initializeLogLevel, attachWebsocketHttpLogger, createWebsocketLogger } = require('./logging');
-const { setupMetrics } = require('./metrics');
-const { isTruthy, normalizeHashtag, firstParam } = require("./utils");
+import { AuthenticationError, RequestError, extractStatusAndMessage as extractErrorStatusAndMessage } from './errors.js';
+import { logger, httpLogger, initializeLogLevel, attachWebsocketHttpLogger, createWebsocketLogger } from './logging.js';
+import { setupMetrics } from './metrics.js';
+import { isTruthy, normalizeHashtag, firstParam } from './utils.js';
 
 const environment = process.env.NODE_ENV || 'development';
 
 // Correctly detect and load .env or .env.production file based on environment:
 const dotenvFile = environment === 'production' ? '.env.production' : '.env';
+const dotenvFilePath = path.resolve(
+  url.fileURLToPath(
+    new URL(path.join('..', dotenvFile), import.meta.url)
+  )
+);
 
 dotenv.config({
-  path: path.resolve(__dirname, path.join('..', dotenvFile))
+  path: dotenvFilePath
 });
 
 initializeLogLevel(process.env, environment);
@@ -143,7 +147,7 @@ const pgConfigFromEnv = (env) => {
   let baseConfig = {};
 
   if (env.DATABASE_URL) {
-    const parsedUrl = dbUrlToConfig(env.DATABASE_URL);
+    const parsedUrl = pgConnectionString.parse(env.DATABASE_URL);
 
     // The result of dbUrlToConfig from pg-connection-string is not type
     // compatible with pg.PoolConfig, since parts of the connection URL may be
@@ -326,7 +330,7 @@ const startServer = async () => {
       // Unfortunately for using the on('upgrade') setup, we need to manually
       // write a HTTP Response to the Socket to close the connection upgrade
       // attempt, so the following code is to handle all of that.
-      const {statusCode, errorMessage } = errors.extractStatusAndMessage(err);
+      const {statusCode, errorMessage } = extractErrorStatusAndMessage(err);
 
       /** @type {Record<string, string | number | import('pino-http').ReqId>} */
       const headers = {
@@ -748,7 +752,7 @@ const startServer = async () => {
       return;
     }
 
-    const {statusCode, errorMessage } = errors.extractStatusAndMessage(err);
+    const {statusCode, errorMessage } = extractErrorStatusAndMessage(err);
 
     res.writeHead(statusCode, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: errorMessage }));
@@ -1155,7 +1159,7 @@ const startServer = async () => {
       // @ts-ignore
       streamFrom(channelIds, req, req.log, onSend, onEnd, 'eventsource', options.needsFiltering);
     }).catch(err => {
-      const {statusCode, errorMessage } = errors.extractStatusAndMessage(err);
+      const {statusCode, errorMessage } = extractErrorStatusAndMessage(err);
 
       res.log.info({ err }, 'Eventsource subscription error');
 
@@ -1353,7 +1357,7 @@ const startServer = async () => {
         stopHeartbeat,
       };
     }).catch(err => {
-      const {statusCode, errorMessage } = errors.extractStatusAndMessage(err);
+      const {statusCode, errorMessage } = extractErrorStatusAndMessage(err);
 
       logger.error({ err }, 'Websocket subscription error');
 
@@ -1482,13 +1486,15 @@ const startServer = async () => {
       // Decrement the metrics for connected clients:
       connectedClients.labels({ type: 'websocket' }).dec();
 
-      // We need to delete the session object as to ensure it correctly gets
+      // We need to unassign the session object as to ensure it correctly gets
       // garbage collected, without doing this we could accidentally hold on to
       // references to the websocket, the request, and the logger, causing
       // memory leaks.
-      //
-      // @ts-ignore
-      delete session;
+
+      // This is commented out because `delete` only operated on object properties
+      // It needs to be replaced by `session = undefined`, but it requires every calls to
+      // `session` to check for it, thus a significant refactor
+      // delete session;
     });
 
     // Note: immediately after the `error` event is emitted, the `close` event
