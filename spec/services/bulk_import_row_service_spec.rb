@@ -95,23 +95,27 @@ RSpec.describe BulkImportRowService do
     context 'when importing a list row' do
       let(:import_type) { 'lists' }
       let(:target_account) { Fabricate(:account) }
+      let(:list_name) { 'my list' }
       let(:data) do
-        { 'acct' => target_account.acct, 'list_name' => 'my list' }
+        { 'acct' => target_account.acct, 'list_name' => list_name }
       end
 
       shared_examples 'common behavior' do
+        shared_examples 'row import success and list addition' do
+          it 'returns true and adds the target account to the list' do
+            result = nil
+            expect { result = subject.call(import_row) }
+              .to change { result }.from(nil).to(true)
+              .and add_target_account_to_list
+          end
+        end
+
         context 'when the target account is already followed' do
           before do
             account.follow!(target_account)
           end
 
-          it 'returns true' do
-            expect(subject.call(import_row)).to be true
-          end
-
-          it 'adds the target account to the list' do
-            expect { subject.call(import_row) }.to add_target_account_to_list
-          end
+          include_examples 'row import success and list addition'
         end
 
         context 'when the user already requested to follow the target account' do
@@ -119,35 +123,17 @@ RSpec.describe BulkImportRowService do
             account.request_follow!(target_account)
           end
 
-          it 'returns true' do
-            expect(subject.call(import_row)).to be true
-          end
-
-          it 'adds the target account to the list' do
-            expect { subject.call(import_row) }.to add_target_account_to_list
-          end
+          include_examples 'row import success and list addition'
         end
 
         context 'when the target account is neither followed nor requested' do
-          it 'returns true' do
-            expect(subject.call(import_row)).to be true
-          end
-
-          it 'adds the target account to the list' do
-            expect { subject.call(import_row) }.to add_target_account_to_list
-          end
+          include_examples 'row import success and list addition'
         end
 
         context 'when the target account is the user themself' do
           let(:target_account) { account }
 
-          it 'returns true' do
-            expect(subject.call(import_row)).to be true
-          end
-
-          it 'adds the target account to the list' do
-            expect { subject.call(import_row) }.to add_target_account_to_list
-          end
+          include_examples 'row import success and list addition'
         end
 
         def add_target_account_to_list
@@ -161,7 +147,7 @@ RSpec.describe BulkImportRowService do
             .joins(:list)
             .exists?(
               account_id: target_account.id,
-              list: { title: 'my list' }
+              list: { title: list_name }
             )
         end
       end
@@ -172,7 +158,7 @@ RSpec.describe BulkImportRowService do
 
       context 'when the list exists' do
         before do
-          Fabricate(:list, account: account, title: 'my list')
+          Fabricate(:list, account: account, title: list_name)
         end
 
         include_examples 'common behavior'
@@ -180,7 +166,7 @@ RSpec.describe BulkImportRowService do
         it 'does not create a new list' do
           account.follow!(target_account)
 
-          expect { subject.call(import_row) }.to_not(change { List.where(title: 'my list').count })
+          expect { subject.call(import_row) }.to_not(change { List.where(title: list_name).count })
         end
       end
     end
