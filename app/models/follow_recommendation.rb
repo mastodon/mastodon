@@ -19,6 +19,8 @@ class FollowRecommendation < ApplicationRecord
   scope :localized, ->(locale) { joins(:account_summary).merge(AccountSummary.localized(locale)) }
 
   def self.refresh
+    Scenic.database.refresh_materialized_view(table_name, concurrently: true, cascade: false)
+  rescue ActiveRecord::StatementInvalid
     Scenic.database.refresh_materialized_view(table_name, concurrently: false, cascade: false)
   end
 
