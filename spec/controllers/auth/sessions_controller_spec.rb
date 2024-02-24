@@ -124,7 +124,7 @@ RSpec.describe Auth::SessionsController do
         end
 
         it 'logs the user in and sends suspicious email and redirects home', :sidekiq_inline do
-          subject
+          emails = capture_emails { subject }
 
           expect(response)
             .to redirect_to(root_path)
@@ -132,9 +132,13 @@ RSpec.describe Auth::SessionsController do
           expect(controller.current_user)
             .to eq user
 
-          expect(UserMailer.deliveries.size).to eq(1)
-          expect(UserMailer.deliveries.first.to.first).to eq(user.email)
-          expect(UserMailer.deliveries.first.subject).to eq(I18n.t('user_mailer.suspicious_sign_in.subject'))
+          expect(emails.size)
+            .to eq(1)
+          expect(emails.first)
+            .to have_attributes(
+              to: contain_exactly(user.email),
+              subject: eq(I18n.t('user_mailer.suspicious_sign_in.subject'))
+            )
         end
       end
 
@@ -260,21 +264,27 @@ RSpec.describe Auth::SessionsController do
           end
 
           it 'does not log the user in, sets a flash message, and sends a suspicious sign in email', :sidekiq_inline do
-            Auth::SessionsController::MAX_2FA_ATTEMPTS_PER_HOUR.times do
-              post :create, params: { user: { otp_attempt: '1234' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
-              expect(controller.current_user).to be_nil
+            emails = capture_emails do
+              Auth::SessionsController::MAX_2FA_ATTEMPTS_PER_HOUR.times do
+                post :create, params: { user: { otp_attempt: '1234' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+                expect(controller.current_user).to be_nil
+              end
+              post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
             end
-
-            post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
 
             expect(controller.current_user)
               .to be_nil
+
             expect(flash[:alert])
               .to match I18n.t('users.rate_limited')
 
-            expect(UserMailer.deliveries.size).to eq(1)
-            expect(UserMailer.deliveries.first.to.first).to eq(user.email)
-            expect(UserMailer.deliveries.first.subject).to eq(I18n.t('user_mailer.failed_2fa.subject'))
+            expect(emails.size)
+              .to eq(1)
+            expect(emails.first)
+              .to have_attributes(
+                to: contain_exactly(user.email),
+                subject: eq(I18n.t('user_mailer.failed_2fa.subject'))
+              )
           end
         end
 

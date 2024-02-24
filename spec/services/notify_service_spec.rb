@@ -157,8 +157,6 @@ RSpec.describe NotifyService, type: :service do
 
   describe 'email' do
     before do
-      ActionMailer::Base.deliveries.clear
-
       user.settings.update('notification_emails.follow': enabled)
       user.save
     end
@@ -167,7 +165,15 @@ RSpec.describe NotifyService, type: :service do
       let(:enabled) { true }
 
       it 'sends email', :sidekiq_inline do
-        expect { subject }.to change(ActionMailer::Base.deliveries, :count).by(1)
+        emails = capture_emails { subject }
+
+        expect(emails.size)
+          .to eq(1)
+        expect(emails.first)
+          .to have_attributes(
+            to: contain_exactly(user.email),
+            subject: eq(I18n.t('notification_mailer.follow.subject', name: sender.acct))
+          )
       end
     end
 
@@ -175,7 +181,9 @@ RSpec.describe NotifyService, type: :service do
       let(:enabled) { false }
 
       it "doesn't send email" do
-        expect { subject }.to_not change(ActionMailer::Base.deliveries, :count).from(0)
+        emails = capture_emails { subject }
+
+        expect(emails).to be_empty
       end
     end
   end
