@@ -746,13 +746,13 @@ RSpec.describe Account do
       end
 
       it 'is valid if we are creating an instance actor account with a period' do
-        account = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
+        account = Fabricate.build(:account, id: described_class::INSTANCE_ACTOR_ID, actor_type: 'Application', locked: true, username: 'example.com')
         expect(account.valid?).to be true
       end
 
       it 'is valid if we are creating a possibly-conflicting instance actor account' do
         _account = Fabricate(:account, username: 'examplecom')
-        instance_account = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
+        instance_account = Fabricate.build(:account, id: described_class::INSTANCE_ACTOR_ID, actor_type: 'Application', locked: true, username: 'example.com')
         expect(instance_account.valid?).to be true
       end
 
@@ -1035,18 +1035,9 @@ RSpec.describe Account do
     it 'increments the count in multi-threaded an environment when account_stat is not yet initialized' do
       subject
 
-      increment_by   = 15
-      wait_for_start = true
-
-      threads = Array.new(increment_by) do
-        Thread.new do
-          true while wait_for_start
-          described_class.find(subject.id).increment_count!(:followers_count)
-        end
+      multi_threaded_execution(15) do
+        described_class.find(subject.id).increment_count!(:followers_count)
       end
-
-      wait_for_start = false
-      threads.each(&:join)
 
       expect(subject.reload.followers_count).to eq 15
     end

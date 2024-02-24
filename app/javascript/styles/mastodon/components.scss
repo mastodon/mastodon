@@ -4711,43 +4711,6 @@ a.status-card {
   animation: heartbeat 1.5s ease-in-out infinite both;
 }
 
-@keyframes shake-bottom {
-  0%,
-  100% {
-    transform: rotate(0deg);
-    transform-origin: 50% 100%;
-  }
-
-  10% {
-    transform: rotate(2deg);
-  }
-
-  20%,
-  40%,
-  60% {
-    transform: rotate(-4deg);
-  }
-
-  30%,
-  50%,
-  70% {
-    transform: rotate(4deg);
-  }
-
-  80% {
-    transform: rotate(-2deg);
-  }
-
-  90% {
-    transform: rotate(2deg);
-  }
-}
-
-.no-reduce-motion .shake-bottom {
-  transform-origin: 50% 100%;
-  animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) 2s 2 both;
-}
-
 .emoji-picker-dropdown__menu {
   position: relative;
   margin-top: 5px;
@@ -5353,20 +5316,6 @@ a.status-card {
   }
 }
 
-.search-results__hashtag {
-  display: block;
-  padding: 10px;
-  color: $secondary-text-color;
-  text-decoration: none;
-
-  &:hover,
-  &:active,
-  &:focus {
-    color: lighten($secondary-text-color, 4%);
-    text-decoration: underline;
-  }
-}
-
 .search-results__info {
   padding: 20px;
   color: $darker-text-color;
@@ -5394,6 +5343,8 @@ a.status-card {
   inset-inline-start: 0;
   width: 100%;
   height: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -9465,6 +9416,7 @@ noscript {
   flex-direction: column;
   gap: 12px;
   padding: 16px 0;
+  padding-bottom: 0;
   border-bottom: 1px solid mix($ui-base-color, $ui-highlight-color, 75%);
   background: mix($ui-base-color, $ui-highlight-color, 95%);
 
@@ -9503,6 +9455,7 @@ noscript {
       cursor: pointer;
       top: 0;
       color: $primary-text-color;
+      opacity: 0.5;
 
       &.left {
         left: 0;
@@ -9530,6 +9483,8 @@ noscript {
       &:hover,
       &:focus,
       &:active {
+        opacity: 1;
+
         .inline-follow-suggestions__body__scroll-button__icon {
           background: lighten($ui-highlight-color, 4%);
         }
@@ -9541,11 +9496,10 @@ noscript {
       flex-wrap: nowrap;
       gap: 16px;
       padding: 16px;
-      padding-bottom: 0;
       scroll-snap-type: x mandatory;
       scroll-padding: 16px;
       scroll-behavior: smooth;
-      overflow-x: hidden;
+      overflow-x: scroll;
 
       &__card {
         background: darken($ui-base-color, 4%);
@@ -9570,6 +9524,7 @@ noscript {
           position: absolute;
           inset-inline-end: 8px;
           top: 8px;
+          opacity: 0.75;
         }
 
         &__avatar {
@@ -9607,6 +9562,7 @@ noscript {
             gap: 4px;
             overflow: hidden;
             white-space: nowrap;
+            cursor: help;
 
             > span {
               overflow: hidden;
