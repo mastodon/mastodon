@@ -25,7 +25,7 @@ class Trends::Statuses < Trends::Base
     def to_arel
       scope = Status.joins(:trend).reorder(score: :desc)
       scope = scope.reorder(language_order_clause.desc, score: :desc) if preferred_languages.present?
-      scope = scope.merge(StatusTrend.allowed) if @allowed
+      scope = scope.merge(StatusTrend.with_account_constraint.allowed) if @allowed
       scope = scope.not_excluded_by_account(@account).not_domain_blocked_by_account(@account) if @account.present?
       scope = scope.offset(@offset) if @offset.present?
       scope = scope.limit(@limit) if @limit.present?
@@ -79,8 +79,8 @@ class Trends::Statuses < Trends::Base
 
   def request_review
     StatusTrend.pluck('distinct language').flat_map do |language|
-      score_at_threshold = StatusTrend.where(language: language, allowed: true).by_rank.ranked_below(options[:review_threshold]).first&.score || 0
-      status_trends      = StatusTrend.where(language: language, allowed: false).joins(:status).includes(status: :account)
+      score_at_threshold = StatusTrend.where(language: language).allowed.by_rank.ranked_below(options[:review_threshold]).first&.score || 0
+      status_trends      = StatusTrend.where(language: language).not_allowed.joins(:status).includes(status: :account)
 
       status_trends.filter_map do |trend|
         status = trend.status
