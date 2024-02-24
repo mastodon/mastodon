@@ -17,22 +17,18 @@ describe 'The /.well-known/webfinger endpoint' do
   end
 
   shared_examples 'a successful response' do
-    it 'returns http success' do
+    it 'returns http success with correct media type and headers and body json' do
       expect(response).to have_http_status(200)
-    end
 
-    it 'sets only a Vary Origin header' do
       expect(response.headers['Vary']).to eq('Origin')
-    end
 
-    it 'returns application/jrd+json' do
       expect(response.media_type).to eq 'application/jrd+json'
-    end
 
-    it 'returns links for the account' do
-      json = body_as_json
-      expect(json[:subject]).to eq 'acct:alice@cb6e6126.ngrok.io'
-      expect(json[:aliases]).to include('https://cb6e6126.ngrok.io/@alice', 'https://cb6e6126.ngrok.io/users/alice')
+      expect(body_as_json)
+        .to include(
+          subject: eq('acct:alice@cb6e6126.ngrok.io'),
+          aliases: include('https://cb6e6126.ngrok.io/@alice', 'https://cb6e6126.ngrok.io/users/alice')
+        )
     end
   end
 
