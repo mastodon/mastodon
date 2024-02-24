@@ -13,16 +13,18 @@ RSpec.describe InstanceActorsController do
         end
 
         it 'returns http success with correct media type, headers, and session values' do
-          expect(response).to have_http_status(200)
+          expect(response)
+            .to have_http_status(200)
+            .and have_attributes(
+              media_type: eq('application/activity+json'),
+              cookies: be_empty
+            )
 
-          expect(response.media_type).to eq 'application/activity+json'
-
-          expect(response.cookies).to be_empty
-          expect(response.headers['Set-Cookies']).to be_nil
+          expect(response.headers)
+            .to include('Cache-Control' => include('public'))
+            .and not_include('Set-Cookies')
 
           expect(session).to be_empty
-
-          expect(response.headers['Cache-Control']).to include 'public'
 
           expect(body_as_json)
             .to include(:id, :type, :preferredUsername, :inbox, :publicKey, :inbox, :outbox, :url)

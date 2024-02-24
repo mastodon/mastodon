@@ -948,6 +948,9 @@ vi:
       title: Webhook
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Do gần đây thiếu kiểm duyệt viên nên việc đăng ký trên %{instance} sẽ tự động chuyển thành duyệt thủ công, để tránh %{instance} bị sử dụng làm nền tảng cho những kẻ xấu. Bạn có thể chuyển nó trở lại trạng thái đăng ký mở bất kỳ lúc nào.
+      subject: Đăng ký mới %{instance} đã được tự động chuyển sang duyệt thủ công
     new_appeal:
       actions:
         delete_statuses: xóa tút của họ
