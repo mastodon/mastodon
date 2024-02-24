@@ -65,6 +65,8 @@ services:
     volumes:
       - /mnt/dftba-data/mastodon/system:/mastodon/public/system
     hostname: "mastoweb"
+    labels:
+      com.centurylinklabs.watchtower.enable: true
 
   streaming:
     build: .
@@ -83,6 +85,8 @@ services:
     expose:
       - '4000/tcp'
     hostname: "mastostreaming"
+    labels:
+      com.centurylinklabs.watchtower.enable: true
 
   sidekiq:
     build: .
@@ -108,6 +112,8 @@ services:
       test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
     volumes:
       - mastodon_redis:/data
+    labels:
+      com.centurylinklabs.watchtower.enable: true
   
   prom_statsd:
     image: prom/statsd-exporter
