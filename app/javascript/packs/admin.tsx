@@ -1,16 +1,18 @@
 import './public-path';
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 import Rails from '@rails/ujs';
 
 import ready from '../mastodon/ready';
 
-const setAnnouncementEndsAttributes = (target) => {
-  const valid = target?.value && target?.validity?.valid;
-  const element = document.querySelector(
+const setAnnouncementEndsAttributes = (target: HTMLInputElement) => {
+  const valid = target.value && target.validity.valid;
+  const element = document.querySelector<HTMLInputElement>(
     'input[type="datetime-local"]#announcement_ends_at',
   );
+
+  if (!element) return;
+
   if (valid) {
     element.classList.remove('optional');
     element.required = true;
@@ -27,7 +29,8 @@ Rails.delegate(
   'input[type="datetime-local"]#announcement_starts_at',
   'change',
   ({ target }) => {
-    setAnnouncementEndsAttributes(target);
+    if (target instanceof HTMLInputElement)
+      setAnnouncementEndsAttributes(target);
   },
 );
 
@@ -37,14 +40,16 @@ const showSelectAll = () => {
   const selectAllMatchingElement = document.querySelector(
     '.batch-table__select-all',
   );
-  selectAllMatchingElement.classList.add('active');
+  selectAllMatchingElement?.classList.add('active');
 };
 
 const hideSelectAll = () => {
   const selectAllMatchingElement = document.querySelector(
     '.batch-table__select-all',
   );
-  const hiddenField = document.querySelector('#select_all_matching');
+  const hiddenField = document.querySelector<HTMLInputElement>(
+    'input#select_all_matching',
+  );
   const selectedMsg = document.querySelector(
     '.batch-table__select-all .selected',
   );
@@ -52,20 +57,24 @@ const hideSelectAll = () => {
     '.batch-table__select-all .not-selected',
   );
 
-  selectAllMatchingElement.classList.remove('active');
-  selectedMsg.classList.remove('active');
-  notSelectedMsg.classList.add('active');
-  hiddenField.value = '0';
+  selectAllMatchingElement?.classList.remove('active');
+  selectedMsg?.classList.remove('active');
+  notSelectedMsg?.classList.add('active');
+  if (hiddenField) hiddenField.value = '0';
 };
 
 Rails.delegate(document, '#batch_checkbox_all', 'change', ({ target }) => {
+  if (!(target instanceof HTMLInputElement)) return;
+
   const selectAllMatchingElement = document.querySelector(
     '.batch-table__select-all',
   );
 
-  document.querySelectorAll(batchCheckboxClassName).forEach((content) => {
-    content.checked = target.checked;
-  });
+  document
+    .querySelectorAll<HTMLInputElement>(batchCheckboxClassName)
+    .forEach((content) => {
+      content.checked = target.checked;
+    });
 
   if (selectAllMatchingElement) {
     if (target.checked) {
@@ -77,7 +86,12 @@ Rails.delegate(document, '#batch_checkbox_all', 'change', ({ target }) => {
 });
 
 Rails.delegate(document, '.batch-table__select-all button', 'click', () => {
-  const hiddenField = document.querySelector('#select_all_matching');
+  const hiddenField = document.querySelector<HTMLInputElement>(
+    '#select_all_matching',
+  );
+
+  if (!hiddenField) return;
+
   const active = hiddenField.value === '1';
   const selectedMsg = document.querySelector(
     '.batch-table__select-all .selected',
@@ -85,6 +99,8 @@ Rails.delegate(document, '.batch-table__select-all button', 'click', () => {
   const notSelectedMsg = document.querySelector(
     '.batch-table__select-all .not-selected',
   );
+
+  if (!selectedMsg || !notSelectedMsg) return;
 
   if (active) {
     hiddenField.value = '0';
@@ -98,14 +114,16 @@ Rails.delegate(document, '.batch-table__select-all button', 'click', () => {
 });
 
 Rails.delegate(document, batchCheckboxClassName, 'change', () => {
-  const checkAllElement = document.querySelector('#batch_checkbox_all');
+  const checkAllElement = document.querySelector<HTMLInputElement>(
+    'input#batch_checkbox_all',
+  );
   const selectAllMatchingElement = document.querySelector(
     '.batch-table__select-all',
   );
 
   if (checkAllElement) {
     const allCheckboxes = Array.from(
-      document.querySelectorAll(batchCheckboxClassName),
+      document.querySelectorAll<HTMLInputElement>(batchCheckboxClassName),
     );
     checkAllElement.checked = allCheckboxes.every((content) => content.checked);
     checkAllElement.indeterminate =
@@ -127,11 +145,11 @@ Rails.delegate(
   '.filter-subset--with-select select',
   'change',
   ({ target }) => {
-    target.form.submit();
+    if (target instanceof HTMLSelectElement) target.form?.submit();
   },
 );
 
-const onDomainBlockSeverityChange = (target) => {
+const onDomainBlockSeverityChange = (target: HTMLInputElement) => {
   const rejectMediaDiv = document.querySelector(
     '.input.with_label.domain_block_reject_media',
   );
@@ -139,36 +157,39 @@ const onDomainBlockSeverityChange = (target) => {
     '.input.with_label.domain_block_reject_reports',
   );
 
-  if (rejectMediaDiv) {
+  if (rejectMediaDiv && rejectMediaDiv instanceof HTMLElement) {
     rejectMediaDiv.style.display =
       target.value === 'suspend' ? 'none' : 'block';
   }
 
-  if (rejectReportsDiv) {
+  if (rejectReportsDiv && rejectReportsDiv instanceof HTMLElement) {
     rejectReportsDiv.style.display =
       target.value === 'suspend' ? 'none' : 'block';
   }
 };
 
-Rails.delegate(document, '#domain_block_severity', 'change', ({ target }) =>
-  onDomainBlockSeverityChange(target),
-);
+Rails.delegate(document, '#domain_block_severity', 'change', ({ target }) => {
+  if (target instanceof HTMLInputElement) onDomainBlockSeverityChange(target);
+});
 
-const onEnableBootstrapTimelineAccountsChange = (target) => {
-  const bootstrapTimelineAccountsField = document.querySelector(
-    '#form_admin_settings_bootstrap_timeline_accounts',
-  );
+const onEnableBootstrapTimelineAccountsChange = (target: HTMLInputElement) => {
+  const bootstrapTimelineAccountsField =
+    document.querySelector<HTMLInputElement>(
+      '#form_admin_settings_bootstrap_timeline_accounts',
+    );
 
   if (bootstrapTimelineAccountsField) {
     bootstrapTimelineAccountsField.disabled = !target.checked;
     if (target.checked) {
-      bootstrapTimelineAccountsField.parentElement.classList.remove('disabled');
-      bootstrapTimelineAccountsField.parentElement.parentElement.classList.remove(
+      bootstrapTimelineAccountsField.parentElement?.classList.remove(
+        'disabled',
+      );
+      bootstrapTimelineAccountsField.parentElement?.parentElement?.classList.remove(
         'disabled',
       );
     } else {
-      bootstrapTimelineAccountsField.parentElement.classList.add('disabled');
-      bootstrapTimelineAccountsField.parentElement.parentElement.classList.add(
+      bootstrapTimelineAccountsField.parentElement?.classList.add('disabled');
+      bootstrapTimelineAccountsField.parentElement?.parentElement?.classList.add(
         'disabled',
       );
     }
@@ -179,30 +200,37 @@ Rails.delegate(
   document,
   '#form_admin_settings_enable_bootstrap_timeline_accounts',
   'change',
-  ({ target }) => onEnableBootstrapTimelineAccountsChange(target),
+  ({ target }) => {
+    if (target instanceof HTMLInputElement)
+      onEnableBootstrapTimelineAccountsChange(target);
+  },
 );
 
-const onChangeRegistrationMode = (target) => {
+const onChangeRegistrationMode = (target: HTMLInputElement) => {
   const enabled = target.value === 'approved';
 
   document
-    .querySelectorAll('.form_admin_settings_registrations_mode .warning-hint')
+    .querySelectorAll<HTMLElement>(
+      '.form_admin_settings_registrations_mode .warning-hint',
+    )
     .forEach((warning_hint) => {
       warning_hint.style.display = target.value === 'open' ? 'inline' : 'none';
     });
 
   document
-    .querySelectorAll('#form_admin_settings_require_invite_text')
+    .querySelectorAll<HTMLInputElement>(
+      'input#form_admin_settings_require_invite_text',
+    )
     .forEach((input) => {
       input.disabled = !enabled;
       if (enabled) {
-        let element = input;
+        let element: HTMLElement | null = input;
         do {
           element.classList.remove('disabled');
           element = element.parentElement;
         } while (element && !element.classList.contains('fields-group'));
       } else {
-        let element = input;
+        let element: HTMLElement | null = input;
         do {
           element.classList.add('disabled');
           element = element.parentElement;
@@ -211,49 +239,52 @@ const onChangeRegistrationMode = (target) => {
     });
 };
 
-const convertUTCDateTimeToLocal = (value) => {
+const convertUTCDateTimeToLocal = (value: string) => {
   const date = new Date(value + 'Z');
-  const twoChars = (x) => x.toString().padStart(2, '0');
+  const twoChars = (x: number) => x.toString().padStart(2, '0');
   return `${date.getFullYear()}-${twoChars(date.getMonth() + 1)}-${twoChars(date.getDate())}T${twoChars(date.getHours())}:${twoChars(date.getMinutes())}`;
 };
 
-const convertLocalDatetimeToUTC = (value) => {
-  const re = /^([0-9]{4,})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2})/;
-  const match = re.exec(value);
-  const date = new Date(match[1], match[2] - 1, match[3], match[4], match[5]);
+function convertLocalDatetimeToUTC(value: string) {
+  const date = new Date(value);
   const fullISO8601 = date.toISOString();
   return fullISO8601.slice(0, fullISO8601.indexOf('T') + 6);
-};
+}
 
 Rails.delegate(
   document,
   '#form_admin_settings_registrations_mode',
   'change',
-  ({ target }) => onChangeRegistrationMode(target),
+  ({ target }) => {
+    if (target instanceof HTMLInputElement) onChangeRegistrationMode(target);
+  },
 );
 
 ready(() => {
-  const domainBlockSeverityInput = document.getElementById(
-    'domain_block_severity',
+  const domainBlockSeverityInput = document.querySelector<HTMLInputElement>(
+    'input#domain_block_severity',
   );
   if (domainBlockSeverityInput)
     onDomainBlockSeverityChange(domainBlockSeverityInput);
 
-  const enableBootstrapTimelineAccounts = document.getElementById(
-    'form_admin_settings_enable_bootstrap_timeline_accounts',
-  );
+  const enableBootstrapTimelineAccounts =
+    document.querySelector<HTMLInputElement>(
+      'input#form_admin_settings_enable_bootstrap_timeline_accounts',
+    );
   if (enableBootstrapTimelineAccounts)
     onEnableBootstrapTimelineAccountsChange(enableBootstrapTimelineAccounts);
 
-  const registrationMode = document.getElementById(
-    'form_admin_settings_registrations_mode',
+  const registrationMode = document.querySelector<HTMLInputElement>(
+    'input#form_admin_settings_registrations_mode',
   );
   if (registrationMode) onChangeRegistrationMode(registrationMode);
 
-  const checkAllElement = document.querySelector('#batch_checkbox_all');
+  const checkAllElement = document.querySelector<HTMLInputElement>(
+    'input#batch_checkbox_all',
+  );
   if (checkAllElement) {
     const allCheckboxes = Array.from(
-      document.querySelectorAll(batchCheckboxClassName),
+      document.querySelectorAll<HTMLInputElement>(batchCheckboxClassName),
     );
     checkAllElement.checked = allCheckboxes.every((content) => content.checked);
     checkAllElement.indeterminate =
@@ -264,19 +295,19 @@ ready(() => {
   document
     .querySelector('a#add-instance-button')
     ?.addEventListener('click', (e) => {
-      const domain = document.querySelector(
+      const domain = document.querySelector<HTMLInputElement>(
         'input[type="text"]#by_domain',
       )?.value;
 
-      if (domain) {
-        const url = new URL(event.target.href);
+      if (domain && e.target instanceof HTMLAnchorElement) {
+        const url = new URL(e.target.href);
         url.searchParams.set('_domain', domain);
-        e.target.href = url;
+        e.target.href = url.toString();
       }
     });
 
   document
-    .querySelectorAll('input[type="datetime-local"]')
+    .querySelectorAll<HTMLInputElement>('input[type="datetime-local"]')
     .forEach((element) => {
       if (element.value) {
         element.value = convertUTCDateTimeToLocal(element.value);
@@ -287,16 +318,17 @@ ready(() => {
     });
 
   Rails.delegate(document, 'form', 'submit', ({ target }) => {
-    target
-      .querySelectorAll('input[type="datetime-local"]')
-      .forEach((element) => {
-        if (element.value && element.validity.valid) {
-          element.value = convertLocalDatetimeToUTC(element.value);
-        }
-      });
+    if (target instanceof HTMLFormElement)
+      target
+        .querySelectorAll<HTMLInputElement>('input[type="datetime-local"]')
+        .forEach((element) => {
+          if (element.value && element.validity.valid) {
+            element.value = convertLocalDatetimeToUTC(element.value);
+          }
+        });
   });
 
-  const announcementStartsAt = document.querySelector(
+  const announcementStartsAt = document.querySelector<HTMLInputElement>(
     'input[type="datetime-local"]#announcement_starts_at',
   );
   if (announcementStartsAt) {
@@ -305,7 +337,10 @@ ready(() => {
 
   document.querySelectorAll('[data-admin-component]').forEach((element) => {
     const componentName = element.getAttribute('data-admin-component');
-    const componentProps = JSON.parse(element.getAttribute('data-props'));
+    const stringProps = element.getAttribute('data-props');
+    if (!stringProps) return;
+
+    const componentProps = JSON.parse(stringProps) as object;
 
     import('../mastodon/containers/admin_component')
       .then(({ default: AdminComponent }) => {
@@ -318,6 +353,8 @@ ready(() => {
                 <Component {...componentProps} />
               </AdminComponent>,
             );
+
+            return undefined;
           },
         );
       })
@@ -325,4 +362,6 @@ ready(() => {
         console.error(error);
       });
   });
+}).catch((reason) => {
+  throw reason;
 });
