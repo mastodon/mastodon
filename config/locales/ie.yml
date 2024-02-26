@@ -767,6 +767,7 @@ ie:
         disabled: A necun
         users: A local usatores qui ha initiat session
       registrations:
+        moderation_recommandation: Ples assecurar que tu have un equip de moderation quel es adequat e reactiv ante que tu aperte registrationes a omnes!
         preamble: Decider qui posse crear un conto che vor servitor.
         title: Registrationes
       registrations_mode:
@@ -774,6 +775,7 @@ ie:
           approved: Aprobation besonat por adhesion
           none: Nequi posse registrar se
           open: Quicunc posse registrar se
+        warning_hint: Noi recomanda usar "Aprobation besonat por inscrir" si tu ne es confident que tui equip de moderation posse gerer spam e maliciosi registrationes in un curt témpor.
       security:
         authorized_fetch: Postular autentication de federat servitores
         authorized_fetch_hint: Postular autentication de federat servitores possibilisa plu strict infortiament de ambi usatori e servitori bloccas. Támen, ti fórsan va limitar li potentie de vor servitor, reducter li atingement de vor responses, e possibilmen introducter problemas de compatibilitá con quelc federat servicies. Additionalmen, ti ne va preventer dedicat actores de accesser vor public postas e contos.
@@ -966,6 +968,9 @@ ie:
       title: Webcrocs
       webhook: Webcroc
   admin_mailer:
+    auto_close_registrations:
+      body: Pro un manca de recent activitá moderatori, registrationes sur %{instance} ha esset automaticmen changeat al mode quel besona un manual recension, por que %{instance} ne mey esser usat quam un platform por malfatores. Tu posse rechangear a apert registrationes quandecunc.
+      subject: Registrationes por %{instance} ha esset automaticmen changeat al mode quel besona aprobation
     new_appeal:
       actions:
         delete_statuses: deleter su postas
