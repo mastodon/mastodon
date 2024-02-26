@@ -281,6 +281,8 @@ lt:
         desc_html: Tai priklauso nuo hCaptcha išorinių skriptų, kurie gali kelti susirūpinimą dėl saugumo ir privatumo. Be to, <strong>dėl to registracijos procesas kai kuriems žmonėms (ypač neįgaliesiems) gali būti gerokai sunkiau prieinami</strong>. Dėl šių priežasčių apsvarstyk alternatyvias priemones, pavyzdžiui, patvirtinimu arba kvietimu grindžiamą registraciją.
       domain_blocks:
         all: Visiems
+      registrations:
+        moderation_recommandation: Prieš atidarant registraciją visiems, įsitikink, kad turi tinkamą ir reaguojančią prižiūrėjimo komandą!
     software_updates:
       description: Rekomenduojama nuolat atnaujinti Mastodon diegyklę, kad galėtum naudotis naujausiais pataisymais ir funkcijomis. Be to, kartais labai svarbu laiku naujinti Mastodon, kad būtų išvengta saugumo problemų. Dėl šių priežasčių Mastodon kas 30 minučių tikrina, ar yra atnaujinimų, ir praneša tau apie tai pagal tavo el. pašto pranešimų parinktis.
     statuses:
@@ -304,6 +306,9 @@ lt:
       edit_preset: Keisti įspėjimo nustatymus
       title: Valdyti įspėjimo nustatymus
   admin_mailer:
+    auto_close_registrations:
+      body: Dėl pastarojo meto peržiūrėtojų aktyvumo trūkumo %{instance} registracija buvo automatiškai pakeista į reikalaujančią rankinės būdo peržiūros, kad %{instance} nebūtų naudojama kaip platforma potencialiems blogiems veikėjams. Bet kuriuo metu gali ją vėl perjungti į atvirą registraciją.
+      subject: "%{instance} registracijos automatiškai pakeistos į reikalaujančias patvirtinimo"
     new_report:
       body: "%{reporter} parašė skundą apie %{target}"
       body_remote: Kažkas iš %{domain} parašė skundą apie %{target}

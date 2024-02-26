@@ -755,6 +755,7 @@ ko:
         disabled: 아무에게도 안 함
         users: 로그인 한 사용자에게
       registrations:
+        moderation_recommandation: 모두에게 가입을 열기 전에 적절하고 반응이 빠른 중재 팀을 데리고 있는지 확인해 주세요!
         preamble: 누가 이 서버에 계정을 만들 수 있는지 제어합니다.
         title: 가입
       registrations_mode:
@@ -762,6 +763,7 @@ ko:
           approved: 가입하려면 승인이 필요함
           none: 아무도 가입 할 수 없음
           open: 누구나 가입 할 수 있음
+        warning_hint: 당신의 중재 팀이 스팸이나 악의적인 가입을 시기적절하게 처리할 수 있다고 자신할 수 없다면 "가입이 승인을 요구하도록" 설정하는 것을 추천합니다.
       security:
         authorized_fetch: 연합된 서버들에게서 인증 필수
         authorized_fetch_hint: 연합된 서버들에게서 인증을 요구하는 것은 사용자 레벨과 서버 레벨의 차단을 좀 더 확실하게 해줍니다. 한편으로는 성능적인 페널티, 답글의 전달 범위 감소, 몇몇 연합된 서비스들과의 호환성 문제가 있을 가능성이 있습니다. 추가적으로 이 기능은 전용 액터가 공개된 게시물이나 계정을 페치하는 것은 막지 않습니다.
@@ -950,6 +952,9 @@ ko:
       title: 웹훅
       webhook: 웹훅
   admin_mailer:
+    auto_close_registrations:
+      body: 최근 모더레이터 활동 부족으로, %{instance}가 안좋은 일에 사용되는 것을 방지하기 위해 %{instance}의 가입이 수동 심사를 요구하도록 자동으로 변경되었습니다. 언제든지 가입을 다시 열 수 있습니다.
+      subject: "%{instance}의 가입이 승인을 필요로 하도록 자동으로 변경되었습니다"
     new_appeal:
       actions:
         delete_statuses: 게시물을 삭제하는 것

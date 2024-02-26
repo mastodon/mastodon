@@ -9,8 +9,8 @@ import { NavLink, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
+import ExploreIcon from '@/material-icons/400-24px/explore.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
-import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
 import Search from 'flavours/glitch/features/compose/containers/search_container';
@@ -59,8 +59,8 @@ class Explore extends PureComponent {
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
-          icon={isSearching ? 'search' : 'hashtag'}
-          iconComponent={isSearching ? SearchIcon : TagIcon}
+          icon={isSearching ? 'search' : 'explore'}
+          iconComponent={isSearching ? SearchIcon : ExploreIcon}
           title={intl.formatMessage(isSearching ? messages.searchResults : messages.title)}
           onClick={this.handleHeaderClick}
           multiColumn={multiColumn}
