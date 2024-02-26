@@ -8,8 +8,8 @@ import { IconButton } from 'flavours/glitch/components/icon_button';
 import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
 
 const messages = defineMessages({
-  enable_threaded_mode: { id: 'compose.enable_threaded_mode', defaultMessage: 'Enable threaded more' },
-  disable_threaded_mode: { id: 'compose.disable_threaded_mode', defaultMessage: 'Disable threaded more' },
+  enable_threaded_mode: { id: 'compose.enable_threaded_mode', defaultMessage: 'Enable threaded mode' },
+  disable_threaded_mode: { id: 'compose.disable_threaded_mode', defaultMessage: 'Disable threaded mode' },
 });
 
 export const ThreadModeButton = () => {
