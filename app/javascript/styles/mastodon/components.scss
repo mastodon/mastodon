@@ -5195,7 +5195,6 @@ a.status-card {
   .icon {
     position: absolute;
     top: 12px + 2px;
-    inset-inline-start: 16px - 2px;
     display: inline-block;
     opacity: 0;
     transition: all 100ms linear;
@@ -5209,6 +5208,10 @@ a.status-card {
     &.active {
       pointer-events: auto;
       opacity: 1;
+    }
+
+    @media screen and (min-width: $no-gap-breakpoint) {
+      inset-inline-start: 16px - 2px;
     }
   }
 
