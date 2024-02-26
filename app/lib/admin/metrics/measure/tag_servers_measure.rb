@@ -34,10 +34,10 @@ class Admin::Metrics::Measure::TagServersMeasure < Admin::Metrics::Measure::Base
         INNER JOIN accounts ON statuses.account_id = accounts.id
         WHERE statuses_tags.tag_id = :tag_id
           AND statuses.id BETWEEN :earliest_status_id AND :latest_status_id
-          AND date_trunc('day', statuses.created_at)::date = axis.day
+          AND date_trunc('day', statuses.created_at)::date = axis.period
       )
       FROM (
-        SELECT generate_series(date_trunc('day', :start_at::timestamp)::date, date_trunc('day', :end_at::timestamp)::date, ('1 day')::interval) AS day
+        SELECT generate_series(date_trunc('day', :start_at::timestamp)::date, date_trunc('day', :end_at::timestamp)::date, interval '1 day') AS period
       ) as axis
     SQL
   end
