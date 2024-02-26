@@ -13,7 +13,7 @@ import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import QuietTimeIcon from '@/material-icons/400-24px/quiet_time.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 
-import PrivacyDropdownMenu from './privacy_dropdown_menu';
+import { PrivacyDropdownMenu } from './privacy_dropdown_menu';
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },

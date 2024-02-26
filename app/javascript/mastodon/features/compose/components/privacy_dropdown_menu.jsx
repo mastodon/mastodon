@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import classNames from 'classnames';
 
@@ -10,122 +10,107 @@ import { Icon } from 'mastodon/components/icon';
 
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 
-class PrivacyDropdownMenu extends PureComponent {
+export const PrivacyDropdownMenu = ({ style, items, value, onClose, onChange }) => {
+  const nodeRef = useRef(null);
+  const focusedItemRef = useRef(null);
 
-  static propTypes = {
-    style: PropTypes.object,
-    items: PropTypes.array.isRequired,
-    value: PropTypes.string.isRequired,
-    onClose: PropTypes.func.isRequired,
-    onChange: PropTypes.func.isRequired,
-  };
-
-  handleDocumentClick = e => {
-    if (this.node && !this.node.contains(e.target)) {
-      this.props.onClose();
+  const handleDocumentClick = useCallback((e) => {
+    if (nodeRef.current && !nodeRef.current.contains(e.target)) {
+      onClose();
       e.stopPropagation();
     }
-  };
+  }, [nodeRef, onClose]);
 
-  handleKeyDown = e => {
-    const { items } = this.props;
+  const handleClick = useCallback((e) => {
     const value = e.currentTarget.getAttribute('data-index');
-    const index = items.findIndex(item => {
-      return (item.value === value);
-    });
+
+    e.preventDefault();
+
+    onClose();
+    onChange(value);
+  }, [onClose, onChange]);
+
+  const handleKeyDown = useCallback((e) => {
+    const value = e.currentTarget.getAttribute('data-index');
+    const index = items.findIndex(item => (item.value === value));
+
     let element = null;
 
-    switch(e.key) {
+    switch (e.key) {
     case 'Escape':
-      this.props.onClose();
+      onClose();
       break;
     case 'Enter':
-      this.handleClick(e);
+      handleClick(e);
       break;
     case 'ArrowDown':
-      element = this.node.childNodes[index + 1] || this.node.firstChild;
+      element = nodeRef.current.childNodes[index + 1] || nodeRef.current.firstChild;
       break;
     case 'ArrowUp':
-      element = this.node.childNodes[index - 1] || this.node.lastChild;
+      element = nodeRef.current.childNodes[index - 1] || nodeRef.current.lastChild;
       break;
     case 'Tab':
       if (e.shiftKey) {
-        element = this.node.childNodes[index - 1] || this.node.lastChild;
+        element = nodeRef.current.childNodes[index + 1] || nodeRef.current.firstChild;
       } else {
-        element = this.node.childNodes[index + 1] || this.node.firstChild;
+        element = nodeRef.current.childNodes[index - 1] || nodeRef.current.lastChild;
       }
       break;
     case 'Home':
-      element = this.node.firstChild;
+      element = nodeRef.current.firstChild;
       break;
     case 'End':
-      element = this.node.lastChild;
+      element = nodeRef.current.lastChild;
       break;
     }
 
     if (element) {
       element.focus();
-      this.props.onChange(element.getAttribute('data-index'));
+      onChange(element.getAttribute('data-index'));
       e.preventDefault();
       e.stopPropagation();
     }
-  };
+  }, [nodeRef, items, onClose, handleClick, onChange]);
 
-  handleClick = e => {
-    const value = e.currentTarget.getAttribute('data-index');
+  useEffect(() => {
+    document.addEventListener('click', handleDocumentClick, { capture: true });
+    document.addEventListener('touchend', handleDocumentClick, listenerOptions);
+    focusedItemRef.current?.focus({ preventScroll: true });
 
-    e.preventDefault();
+    return () => {
+      document.removeEventListener('click', handleDocumentClick, { capture: true });
+      document.removeEventListener('touchend', handleDocumentClick, listenerOptions);
+    };
+  }, [handleDocumentClick]);
 
-    this.props.onClose();
-    this.props.onChange(value);
-  };
-
-  componentDidMount () {
-    document.addEventListener('click', this.handleDocumentClick, { capture: true });
-    document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
-    if (this.focusedItem) this.focusedItem.focus({ preventScroll: true });
-  }
-
-  componentWillUnmount () {
-    document.removeEventListener('click', this.handleDocumentClick, { capture: true });
-    document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
-  }
-
-  setRef = c => {
-    this.node = c;
-  };
-
-  setFocusRef = c => {
-    this.focusedItem = c;
-  };
-
-  render () {
-    const { style, items, value } = this.props;
-
-    return (
-      <div style={{ ...style }} role='listbox' ref={this.setRef}>
-        {items.map(item => (
-          <div role='option' tabIndex={0} key={item.value} data-index={item.value} onKeyDown={this.handleKeyDown} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })} aria-selected={item.value === value} ref={item.value === value ? this.setFocusRef : null}>
-            <div className='privacy-dropdown__option__icon'>
-              <Icon id={item.icon} icon={item.iconComponent} />
-            </div>
-
-            <div className='privacy-dropdown__option__content'>
-              <strong>{item.text}</strong>
-              {item.meta}
-            </div>
-
-            {item.extra && (
-              <div className='privacy-dropdown__option__additional' title={item.extra}>
-                <Icon id='info-circle' icon={InfoIcon} />
-              </div>
-            )}
+  return (
+    <div style={{ ...style }} role='listbox' ref={nodeRef}>
+      {items.map(item => (
+        <div role='option' tabIndex={0} key={item.value} data-index={item.value} onKeyDown={handleKeyDown} onClick={handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })} aria-selected={item.value === value} ref={item.value === value ? focusedItemRef : null}>
+          <div className='privacy-dropdown__option__icon'>
+            <Icon id={item.icon} icon={item.iconComponent} />
           </div>
-        ))}
-      </div>
-    );
-  }
 
-}
+          <div className='privacy-dropdown__option__content'>
+            <strong>{item.text}</strong>
+            {item.meta}
+          </div>
 
-export default PrivacyDropdownMenu;
+          {item.extra && (
+            <div className='privacy-dropdown__option__additional' title={item.extra}>
+              <Icon id='info-circle' icon={InfoIcon} />
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+PrivacyDropdownMenu.propTypes = {
+  style: PropTypes.object,
+  items: PropTypes.array.isRequired,
+  value: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
