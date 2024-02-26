@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
-  describe '#base_account_scope' do
+  describe '#get' do
     subject { described_class.new }
 
     context 'with follows and follow requests' do
