@@ -41,6 +41,7 @@ export const PrivacyDropdownMenu = ({ style, items, value, onClose, onChange }) 
     case 'Escape':
       onClose();
       break;
+    case ' ':
     case 'Enter':
       handleClick(e);
       break;
