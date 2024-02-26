@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -13,6 +13,7 @@ const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true }
 export const PrivacyDropdownMenu = ({ style, items, value, onClose, onChange }) => {
   const nodeRef = useRef(null);
   const focusedItemRef = useRef(null);
+  const [currentValue, setCurrentValue] = useState(value);
 
   const handleDocumentClick = useCallback((e) => {
     if (nodeRef.current && !nodeRef.current.contains(e.target)) {
@@ -66,11 +67,11 @@ export const PrivacyDropdownMenu = ({ style, items, value, onClose, onChange }) 
 
     if (element) {
       element.focus();
-      onChange(element.getAttribute('data-index'));
+      setCurrentValue(element.getAttribute('data-index'));
       e.preventDefault();
       e.stopPropagation();
     }
-  }, [nodeRef, items, onClose, handleClick, onChange]);
+  }, [nodeRef, items, onClose, handleClick, setCurrentValue]);
 
   useEffect(() => {
     document.addEventListener('click', handleDocumentClick, { capture: true });
@@ -86,7 +87,17 @@ export const PrivacyDropdownMenu = ({ style, items, value, onClose, onChange }) 
   return (
     <div style={{ ...style }} role='listbox' ref={nodeRef}>
       {items.map(item => (
-        <div role='option' tabIndex={0} key={item.value} data-index={item.value} onKeyDown={handleKeyDown} onClick={handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })} aria-selected={item.value === value} ref={item.value === value ? focusedItemRef : null}>
+        <div
+          role='option'
+          tabIndex={0}
+          key={item.value}
+          data-index={item.value}
+          onKeyDown={handleKeyDown}
+          onClick={handleClick}
+          className={classNames('privacy-dropdown__option', { active: item.value === currentValue })}
+          aria-selected={item.value === currentValue}
+          ref={item.value === currentValue ? focusedItemRef : null}
+        >
           <div className='privacy-dropdown__option__icon'>
             <Icon id={item.icon} icon={item.iconComponent} />
           </div>
