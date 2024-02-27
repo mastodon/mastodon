@@ -46,7 +46,7 @@ const hideSelectAll = () => {
 Rails.delegate(document, '#batch_checkbox_all', 'change', ({ target }) => {
   const selectAllMatchingElement = document.querySelector('.batch-table__select-all');
 
-  [].forEach.call(document.querySelectorAll(batchCheckboxClassName), (content) => {
+  document.querySelectorAll(batchCheckboxClassName).forEach((content) => {
     content.checked = target.checked;
   });
 
@@ -81,8 +81,11 @@ Rails.delegate(document, batchCheckboxClassName, 'change', () => {
   const selectAllMatchingElement = document.querySelector('.batch-table__select-all');
 
   if (checkAllElement) {
-    checkAllElement.checked = [].every.call(document.querySelectorAll(batchCheckboxClassName), (content) => content.checked);
-    checkAllElement.indeterminate = !checkAllElement.checked && [].some.call(document.querySelectorAll(batchCheckboxClassName), (content) => content.checked);
+    const allCheckboxes = Array.from(
+      document.querySelectorAll(batchCheckboxClassName)
+    );
+    checkAllElement.checked = allCheckboxes.every((content) => content.checked);
+    checkAllElement.indeterminate = !checkAllElement.checked && allCheckboxes.some((content) => content.checked);
 
     if (selectAllMatchingElement) {
       if (checkAllElement.checked) {
@@ -133,11 +136,11 @@ Rails.delegate(document, '#form_admin_settings_enable_bootstrap_timeline_account
 const onChangeRegistrationMode = (target) => {
   const enabled = target.value === 'approved';
 
-  [].forEach.call(document.querySelectorAll('.form_admin_settings_registrations_mode .warning-hint'), (warning_hint) => {
+  document.querySelectorAll('.form_admin_settings_registrations_mode .warning-hint').forEach((warning_hint) => {
     warning_hint.style.display = target.value === 'open' ? 'inline' : 'none';
   });
 
-  [].forEach.call(document.querySelectorAll('#form_admin_settings_require_invite_text'), (input) => {
+  document.querySelectorAll('#form_admin_settings_require_invite_text').forEach((input) => {
     input.disabled = !enabled;
     if (enabled) {
       let element = input;
@@ -183,8 +186,9 @@ ready(() => {
 
   const checkAllElement = document.querySelector('#batch_checkbox_all');
   if (checkAllElement) {
-    checkAllElement.checked = [].every.call(document.querySelectorAll(batchCheckboxClassName), (content) => content.checked);
-    checkAllElement.indeterminate = !checkAllElement.checked && [].some.call(document.querySelectorAll(batchCheckboxClassName), (content) => content.checked);
+    const allCheckboxes = Array.from(document.querySelectorAll(batchCheckboxClassName));
+    checkAllElement.checked = allCheckboxes.every( (content) => content.checked);
+    checkAllElement.indeterminate = !checkAllElement.checked && allCheckboxes.some((content) => content.checked);
   }
 
   document.querySelector('a#add-instance-button')?.addEventListener('click', (e) => {
@@ -197,7 +201,7 @@ ready(() => {
     }
   });
 
-  [].forEach.call(document.querySelectorAll('input[type="datetime-local"]'), element => {
+  document.querySelectorAll('input[type="datetime-local"]').forEach(element => {
     if (element.value) {
       element.value = convertUTCDateTimeToLocal(element.value);
     }
@@ -207,7 +211,7 @@ ready(() => {
   });
 
   Rails.delegate(document, 'form', 'submit', ({ target }) => {
-    [].forEach.call(target.querySelectorAll('input[type="datetime-local"]'), element => {
+    target.querySelectorAll('input[type="datetime-local"]').forEach(element => {
       if (element.value && element.validity.valid) {
         element.value = convertLocalDatetimeToUTC(element.value);
       }
@@ -219,7 +223,7 @@ ready(() => {
     setAnnouncementEndsAttributes(announcementStartsAt);
   }
 
-  [].forEach.call(document.querySelectorAll('[data-admin-component]'), element => {
+  document.querySelectorAll('[data-admin-component]').forEach(element => {
     const componentName  = element.getAttribute('data-admin-component');
     const componentProps = JSON.parse(element.getAttribute('data-props'));
 
