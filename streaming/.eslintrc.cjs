@@ -1,4 +1,8 @@
+/* eslint-disable import/no-commonjs */
+
 // @ts-check
+
+// @ts-ignore - This needs to be a CJS file (eslint does not yet support ESM configs), and TS is complaining we use require
 const { defineConfig } = require('eslint-define-config');
 
 module.exports = defineConfig({
@@ -22,22 +26,18 @@ module.exports = defineConfig({
     // to maintain.
     'no-delete-var': 'off',
 
-    // The streaming server is written in commonjs, not ESM for now:
-    'import/no-commonjs': 'off',
-
     // This overrides the base configuration for this rule to pick up
     // dependencies for the streaming server from the correct package.json file.
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: [
-          'streaming/.eslintrc.js',
-        ],
+        devDependencies: ['streaming/.eslintrc.cjs'],
         optionalDependencies: false,
         peerDependencies: false,
         includeTypes: true,
         packageDir: __dirname,
       },
     ],
+    'import/extensions': ['error', 'always'],
   },
 });
