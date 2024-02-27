@@ -21,6 +21,7 @@ require 'paperclip/matchers'
 require 'capybara/rspec'
 require 'chewy/rspec'
 require 'email_spec/rspec'
+require 'test_prof/recipes/rspec/before_all'
 
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
