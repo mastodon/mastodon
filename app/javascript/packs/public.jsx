@@ -129,7 +129,7 @@ function loaded() {
     import(/* webpackChunkName: "containers/media_container" */ '../mastodon/containers/media_container')
       .then(({ default: MediaContainer }) => {
         reactComponents.forEach((component) => {
-          component.children.forEach((child) => {
+          Array.from(component.children).forEach((child) => {
             component.removeChild(child);
           });
         });
