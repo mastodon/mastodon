@@ -6,16 +6,16 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
   describe '#get' do
     subject { described_class.new }
 
-    context 'with follows and follow requests' do
-      let!(:bob) { Fabricate(:account, discoverable: true, hide_collections: false) }
-      let!(:alice) { Fabricate(:account, discoverable: true, hide_collections: true) }
-      let!(:eve) { Fabricate(:account, discoverable: true, hide_collections: false) }
-      let!(:mallory) { Fabricate(:account, discoverable: false, hide_collections: false) }
-      let!(:eugen) { Fabricate(:account, discoverable: true, hide_collections: false) }
-      let!(:john) { Fabricate(:account, discoverable: true, hide_collections: false) }
-      let!(:jerk) { Fabricate(:account, discoverable: true, hide_collections: false) }
-      let!(:neil) { Fabricate(:account, discoverable: true, hide_collections: false) }
+    let!(:bob) { Fabricate(:account, discoverable: true, hide_collections: false) }
+    let!(:alice) { Fabricate(:account, discoverable: true, hide_collections: true) }
+    let!(:eve) { Fabricate(:account, discoverable: true, hide_collections: false) }
+    let!(:mallory) { Fabricate(:account, discoverable: false, hide_collections: false) }
+    let!(:eugen) { Fabricate(:account, discoverable: true, hide_collections: false) }
+    let!(:john) { Fabricate(:account, discoverable: true, hide_collections: false) }
+    let!(:jerk) { Fabricate(:account, discoverable: true, hide_collections: false) }
+    let!(:neil) { Fabricate(:account, discoverable: true, hide_collections: false) }
 
+    context 'with follows and blocks' do
       before do
         bob.block!(jerk)
         FollowRecommendationMute.create!(account: bob, target_account: neil)
@@ -47,6 +47,31 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
 
         # the suggestion for neil has already been rejected
         expect(results).to_not include([neil.id, :friends_of_friends])
+      end
+    end
+
+    context 'with deterministic order' do
+      before do
+        # bob follows eve and mallory
+        [eve, mallory].each { |account| bob.follow!(account) }
+
+        # eve follows eugen, john, and jerk
+        [jerk, eugen, john].each { |account| eve.follow!(account) }
+
+        # mallory follows eugen, john, and neil
+        [neil, eugen, john].each { |account| mallory.follow!(account) }
+
+        john.follow!(eugen)
+        john.follow!(neil)
+      end
+
+      it 'returns eligible accounts in the expected order' do
+        expect(subject.get(bob)).to eq [
+          [eugen.id, :friends_of_friends], # followed by 2 friends, 3 followers total
+          [john.id, :friends_of_friends], # followed by 2 friends, 2 followers total
+          [neil.id, :friends_of_friends], # followed by 1 friend, 2 followers total
+          [jerk.id, :friends_of_friends], # followed by 1 friend, 1 follower total
+        ]
       end
     end
   end
