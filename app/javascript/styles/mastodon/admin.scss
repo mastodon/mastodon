@@ -325,12 +325,21 @@ $content-width: 840px;
       margin-bottom: 0;
       border-bottom: 0;
 
-      .private-comment {
-        color: $darker-text-color;
-      }
+      .comment {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 4px;
 
-      .public-comment {
-        color: $secondary-text-color;
+        &.private-comment {
+          display: block;
+          color: $darker-text-color;
+        }
+
+        &.public-comment {
+          display: block;
+          color: $secondary-text-color;
+        }
       }
     }
 
