@@ -2,7 +2,7 @@
 
 // @ts-check
 
-// @ts-ignore - This needs to be a CJS file (eslint does not yet support ESM configd), and TS is complaining we use require
+// @ts-ignore - This needs to be a CJS file (eslint does not yet support ESM configs), and TS is complaining we use require
 const { defineConfig } = require('eslint-define-config');
 
 module.exports = defineConfig({
