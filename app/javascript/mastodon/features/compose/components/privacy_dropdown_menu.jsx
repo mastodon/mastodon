@@ -86,9 +86,9 @@ export const PrivacyDropdownMenu = ({ style, items, value, onClose, onChange }) 
   }, [handleDocumentClick]);
 
   return (
-    <div style={{ ...style }} role='listbox' ref={nodeRef}>
+    <ul style={{ ...style }} role='listbox' ref={nodeRef}>
       {items.map(item => (
-        <div
+        <li
           role='option'
           tabIndex={0}
           key={item.value}
@@ -113,9 +113,9 @@ export const PrivacyDropdownMenu = ({ style, items, value, onClose, onChange }) 
               <Icon id='info-circle' icon={InfoIcon} />
             </div>
           )}
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 
