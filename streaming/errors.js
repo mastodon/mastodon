@@ -5,15 +5,14 @@
  * override it in let statements.
  * @type {string}
  */
-const UNEXPECTED_ERROR_MESSAGE = 'An unexpected error occurred';
-exports.UNKNOWN_ERROR_MESSAGE = UNEXPECTED_ERROR_MESSAGE;
+export const UNEXPECTED_ERROR_MESSAGE = 'An unexpected error occurred';
 
 /**
  * Extracts the status and message properties from the error object, if
  * available for public use. The `unknown` is for catch statements
  * @param {Error | AuthenticationError | RequestError | unknown} err
  */
-exports.extractStatusAndMessage = function(err) {
+export function extractStatusAndMessage(err) {
   let statusCode = 500;
   let errorMessage = UNEXPECTED_ERROR_MESSAGE;
   if (err instanceof AuthenticationError || err instanceof RequestError) {
@@ -22,9 +21,9 @@ exports.extractStatusAndMessage = function(err) {
   }
 
   return { statusCode, errorMessage };
-};
+}
 
-class RequestError extends Error {
+export class RequestError extends Error {
   /**
    * @param {string} message
    */
@@ -35,9 +34,7 @@ class RequestError extends Error {
   }
 }
 
-exports.RequestError = RequestError;
-
-class AuthenticationError extends Error {
+export class AuthenticationError extends Error {
   /**
    * @param {string} message
    */
@@ -47,5 +44,3 @@ class AuthenticationError extends Error {
     this.status = 401;
   }
 }
-
-exports.AuthenticationError = AuthenticationError;

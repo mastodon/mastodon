@@ -180,7 +180,7 @@ class ApplicationController < ActionController::Base
         use_pack 'error'
         render 'errors/self_destruct', layout: 'auth', status: 410, formats: [:html]
       end
-      format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[410] }, status: code }
+      format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[410] }, status: 410 }
     end
   end
 

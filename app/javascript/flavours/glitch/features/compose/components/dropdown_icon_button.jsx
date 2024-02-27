@@ -5,7 +5,7 @@ import Overlay from 'react-overlays/Overlay';
 
 import { IconButton } from 'flavours/glitch/components/icon_button';
 
-import DropdownMenu from './dropdown_menu';
+import { PrivacyDropdownMenu } from './privacy_dropdown_menu';
 
 export const DropdownIconButton = ({ value, disabled, icon, onChange, iconComponent, title, options }) => {
   const containerRef = useRef(null);
@@ -53,7 +53,7 @@ export const DropdownIconButton = ({ value, disabled, icon, onChange, iconCompon
         {({ props, placement }) => (
           <div {...props}>
             <div className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}>
-              <DropdownMenu
+              <PrivacyDropdownMenu
                 items={options}
                 value={value}
                 onClose={handleClose}
