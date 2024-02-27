@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import { uploadCompose } from '../../../actions/compose';
+import { openModal } from '../../../actions/modal';
 import UploadButton from '../components/upload_button';
 
 const mapStateToProps = state => ({
@@ -14,6 +15,12 @@ const mapDispatchToProps = dispatch => ({
     dispatch(uploadCompose(files));
   },
 
+  onDoodleOpen() {
+    dispatch(openModal({
+      modalType: 'DOODLE',
+      modalProps: { noEsc: true, noClose: true },
+    }));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadButton);
