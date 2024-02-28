@@ -48,10 +48,7 @@ module.exports = defineConfig({
     react: {
       version: 'detect',
     },
-    'import/ignore': [
-      'node_modules',
-      '\\.(css|scss|json)$',
-    ],
+    'import/ignore': ['node_modules', '\\.(css|scss|json)$'],
     'import/resolver': {
       typescript: {},
     },
@@ -60,22 +57,19 @@ module.exports = defineConfig({
   rules: {
     'consistent-return': 'error',
     'dot-notation': 'error',
-    eqeqeq: ['error', 'always', { 'null': 'ignore' }],
-    'indent': ['error', 2],
+    eqeqeq: ['error', 'always', { null: 'ignore' }],
+    indent: ['error', 2],
     'jsx-quotes': ['error', 'prefer-single'],
-    'semi': ['error', 'always'],
+    semi: ['error', 'always'],
     'no-case-declarations': 'off',
     'no-catch-shadow': 'error',
     'no-console': [
       'warn',
       {
-        allow: [
-          'error',
-          'warn',
-        ],
+        allow: ['error', 'warn'],
       },
     ],
-    'no-empty': ['error', { "allowEmptyCatch": true }],
+    'no-empty': ['error', { allowEmptyCatch: true }],
     'no-restricted-properties': [
       'error',
       { property: 'substring', message: 'Use .slice instead of .substring.' },
@@ -145,9 +139,7 @@ module.exports = defineConfig({
     'jsx-a11y/no-static-element-interactions': [
       'warn',
       {
-        handlers: [
-          'onClick',
-        ],
+        handlers: ['onClick'],
       },
     ],
 
@@ -220,7 +212,8 @@ module.exports = defineConfig({
           },
           // Immutable / Redux / data store
           {
-            pattern: '{immutable,@reduxjs/toolkit,react-redux,react-immutable-proptypes,react-immutable-pure-component}',
+            pattern:
+              '{immutable,@reduxjs/toolkit,react-redux,react-immutable-proptypes,react-immutable-pure-component}',
             group: 'external',
             position: 'before',
           },
@@ -297,10 +290,7 @@ module.exports = defineConfig({
       },
     },
     {
-      files: [
-        '**/*.ts',
-        '**/*.tsx',
-      ],
+      files: ['**/*.ts', '**/*.tsx'],
 
       extends: [
         'eslint:recommended',
@@ -322,7 +312,7 @@ module.exports = defineConfig({
 
       rules: {
         // Disable formatting rules that have been enabled in the base config
-        'indent': 'off',
+        indent: 'off',
 
         // This is not needed as we use noImplicitReturns, which handles this in addition to understanding types
         'consistent-return': 'off',
@@ -332,37 +322,44 @@ module.exports = defineConfig({
         '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
         '@typescript-eslint/consistent-type-exports': 'error',
         '@typescript-eslint/consistent-type-imports': 'error',
-        "@typescript-eslint/prefer-nullish-coalescing": ['error', { ignorePrimitives: { boolean: true } }],
-        "@typescript-eslint/no-restricted-imports": [
-          "warn",
-          {
-            "name": "react-redux",
-            "importNames": ["useSelector", "useDispatch"],
-            "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
-          }
+        '@typescript-eslint/prefer-nullish-coalescing': [
+          'error',
+          { ignorePrimitives: { boolean: true } },
         ],
-        "@typescript-eslint/restrict-template-expressions": ['warn', { allowNumber: true }],
+        '@typescript-eslint/no-restricted-imports': [
+          'warn',
+          {
+            name: 'react-redux',
+            importNames: ['useSelector', 'useDispatch'],
+            message:
+              'Use typed hooks `useAppDispatch` and `useAppSelector` instead.',
+          },
+        ],
+        '@typescript-eslint/restrict-template-expressions': [
+          'warn',
+          { allowNumber: true },
+        ],
         'jsdoc/require-jsdoc': 'off',
 
         // Those rules set stricter rules for TS files
         // to enforce better practices when converting from JS
         'import/no-default-export': 'warn',
         'react/prefer-stateless-function': 'warn',
-        'react/function-component-definition': ['error', { namedComponents: 'arrow-function' }],
+        'react/function-component-definition': [
+          'error',
+          { namedComponents: 'arrow-function' },
+        ],
         'react/jsx-uses-react': 'off', // not needed with new JSX transform
         'react/react-in-jsx-scope': 'off', // not needed with new JSX transform
         'react/prop-types': 'off',
       },
     },
     {
-      files: [
-        '**/__tests__/*.js',
-        '**/__tests__/*.jsx',
-      ],
+      files: ['**/__tests__/*.js', '**/__tests__/*.jsx'],
 
       env: {
         jest: true,
       },
-    }
+    },
   ],
 });
