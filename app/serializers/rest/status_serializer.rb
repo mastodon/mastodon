@@ -196,5 +196,9 @@ class REST::StatusSerializer < ActiveModel::Serializer
     def url
       tag_url(object)
     end
+
+    def name
+      object.display_name
+    end
   end
 end
