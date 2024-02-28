@@ -14,20 +14,21 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
     let!(:john) { Fabricate(:account, discoverable: true, hide_collections: false) }
     let!(:jerk) { Fabricate(:account, discoverable: true, hide_collections: false) }
     let!(:neil) { Fabricate(:account, discoverable: true, hide_collections: false) }
+    let!(:larry) { Fabricate(:account, discoverable: true, hide_collections: false) }
 
     context 'with follows and blocks' do
       before do
         bob.block!(jerk)
         FollowRecommendationMute.create!(account: bob, target_account: neil)
 
-        # bob follows eugen and alice
-        [eugen, alice].each { |account| bob.follow!(account) }
+        # bob follows eugen, alice and larry
+        [eugen, alice, larry].each { |account| bob.follow!(account) }
 
         # alice follows eve and mallory
         [john, mallory].each { |account| alice.follow!(account) }
 
-        # eugen follows eve, john, jerk and neil
-        [eve, mallory, jerk, neil].each { |account| eugen.follow!(account) }
+        # eugen follows eve, john, jerk, larry and neil
+        [eve, mallory, jerk, larry, neil].each { |account| eugen.follow!(account) }
       end
 
       it 'returns eligible accounts', :aggregate_failures do
@@ -41,6 +42,9 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
 
         # mallory is not discoverable
         expect(results).to_not include([mallory.id, :friends_of_friends])
+
+        # larry is not included because he's followed already
+        expect(results).to_not include([larry.id, :friends_of_friends])
 
         # jerk is blocked
         expect(results).to_not include([jerk.id, :friends_of_friends])
