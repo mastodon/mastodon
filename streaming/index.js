@@ -12,8 +12,18 @@ import { JSDOM } from 'jsdom';
 import { WebSocketServer } from 'ws';
 
 import * as Database from './database.js';
-import { AuthenticationError, RequestError, extractStatusAndMessage as extractErrorStatusAndMessage } from './errors.js';
-import { logger, httpLogger, initializeLogLevel, attachWebsocketHttpLogger, createWebsocketLogger } from './logging.js';
+import {
+  AuthenticationError,
+  RequestError,
+  extractStatusAndMessage as extractErrorStatusAndMessage,
+} from './errors.js';
+import {
+  logger,
+  httpLogger,
+  initializeLogLevel,
+  attachWebsocketHttpLogger,
+  createWebsocketLogger,
+} from './logging.js';
 import { setupMetrics } from './metrics.js';
 import * as Redis from './redis.js';
 import { isTruthy, normalizeHashtag, firstParam } from './utils.js';
@@ -23,13 +33,11 @@ const environment = process.env.NODE_ENV || 'development';
 // Correctly detect and load .env or .env.production file based on environment:
 const dotenvFile = environment === 'production' ? '.env.production' : '.env';
 const dotenvFilePath = path.resolve(
-  url.fileURLToPath(
-    new URL(path.join('..', dotenvFile), import.meta.url)
-  )
+  url.fileURLToPath(new URL(path.join('..', dotenvFile), import.meta.url)),
 );
 
 dotenv.config({
-  path: dotenvFilePath
+  path: dotenvFilePath,
 });
 
 initializeLogLevel(process.env, environment);
@@ -45,7 +53,6 @@ initializeLogLevel(process.env, environment);
  * @property {string} accountId
  * @property {string[]} chosenLanguages
  */
-
 
 /**
  * Attempts to safely parse a string as JSON, used when both receiving a message
@@ -67,9 +74,15 @@ const parseJSON = (json, req) => {
      */
     if (req) {
       if (req.accountId) {
-        req.log.error({ err }, `Error parsing message from user ${req.accountId}`);
+        req.log.error(
+          { err },
+          `Error parsing message from user ${req.accountId}`,
+        );
       } else {
-        req.log.error({ err }, `Error parsing message from ${req.remoteAddress}`);
+        req.log.error(
+          { err },
+          `Error parsing message from ${req.remoteAddress}`,
+        );
       }
     } else {
       logger.error({ err }, `Error parsing message from redis`);
@@ -97,7 +110,7 @@ const CHANNEL_NAMES = [
   'user:notification',
   'list',
   'direct',
-  ...PUBLIC_CHANNELS
+  ...PUBLIC_CHANNELS,
 ];
 
 const startServer = async () => {
@@ -131,7 +144,7 @@ const startServer = async () => {
    * @returns {string}
    */
   function redisUnnamespaced(channel) {
-    if (typeof redisConfig.namespace === "string") {
+    if (typeof redisConfig.namespace === 'string') {
       // Note: this removes the configured namespace and the colon that is used
       // to separate it:
       return channel.slice(redisConfig.namespace.length + 1);
@@ -141,13 +154,18 @@ const startServer = async () => {
   }
 
   // Set the X-Request-Id header on WebSockets:
-  wss.on("headers", function onHeaders(headers, req) {
+  wss.on('headers', function onHeaders(headers, req) {
     headers.push(`X-Request-Id: ${req.id}`);
   });
 
   const app = express();
 
-  app.set('trust proxy', process.env.TRUSTED_PROXY_IP ? process.env.TRUSTED_PROXY_IP.split(/(?:\s*,\s*|\s+)/) : 'loopback,uniquelocal');
+  app.set(
+    'trust proxy',
+    process.env.TRUSTED_PROXY_IP
+      ? process.env.TRUSTED_PROXY_IP.split(/(?:\s*,\s*|\s+)/)
+      : 'loopback,uniquelocal',
+  );
 
   app.use(httpLogger);
   app.use(cors());
@@ -161,7 +179,7 @@ const startServer = async () => {
     // logger. This decorates the `request` object.
     attachWebsocketHttpLogger(request);
 
-    request.log.info("HTTP Upgrade Requested");
+    request.log.info('HTTP Upgrade Requested');
 
     /** @param {Error} err */
     const onSocketError = (err) => {
@@ -179,15 +197,15 @@ const startServer = async () => {
       // Unfortunately for using the on('upgrade') setup, we need to manually
       // write a HTTP Response to the Socket to close the connection upgrade
       // attempt, so the following code is to handle all of that.
-      const {statusCode, errorMessage } = extractErrorStatusAndMessage(err);
+      const { statusCode, errorMessage } = extractErrorStatusAndMessage(err);
 
       /** @type {Record<string, string | number | import('pino-http').ReqId>} */
       const headers = {
-        'Connection': 'close',
+        Connection: 'close',
         'Content-Type': 'text/plain',
         'Content-Length': 0,
         'X-Request-Id': request.id,
-        'X-Error-Message': errorMessage
+        'X-Error-Message': errorMessage,
       };
 
       // Ensure the socket is closed once we've finished writing to it:
@@ -196,16 +214,25 @@ const startServer = async () => {
       });
 
       // Write the HTTP response manually:
-      socket.end(`HTTP/1.1 ${statusCode} ${http.STATUS_CODES[statusCode]}\r\n${Object.keys(headers).map((key) => `${key}: ${headers[key]}`).join('\r\n')}\r\n\r\n`);
+      socket.end(
+        `HTTP/1.1 ${statusCode} ${http.STATUS_CODES[statusCode]}\r\n${Object.keys(
+          headers,
+        )
+          .map((key) => `${key}: ${headers[key]}`)
+          .join('\r\n')}\r\n\r\n`,
+      );
 
       // Finally, log the error:
-      request.log.error({
-        err,
-        res: {
-          statusCode,
-          headers
-        }
-      }, errorMessage);
+      request.log.error(
+        {
+          err,
+          res: {
+            statusCode,
+            headers,
+          },
+        },
+        errorMessage,
+      );
 
       return;
     }
@@ -214,7 +241,9 @@ const startServer = async () => {
     socket.removeListener('error', onSocketError);
 
     wss.handleUpgrade(request, socket, head, function done(ws) {
-      request.log.info("Authenticated request & upgraded to WebSocket connection");
+      request.log.info(
+        'Authenticated request & upgraded to WebSocket connection',
+      );
 
       const wsLogger = createWebsocketLogger(request, resolvedAccount);
 
@@ -236,7 +265,10 @@ const startServer = async () => {
   app.get('/favicon.ico', (_req, res) => res.status(404).end());
 
   app.get('/api/v1/streaming/health', (_req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/plain', 'Cache-Control': 'private, no-store' });
+    res.writeHead(200, {
+      'Content-Type': 'text/plain',
+      'Cache-Control': 'private, no-store',
+    });
     res.end('OK');
   });
 
@@ -246,11 +278,18 @@ const startServer = async () => {
    * @param {string[]} channels
    * @returns {function(): void}
    */
-  const subscriptionHeartbeat = channels => {
+  const subscriptionHeartbeat = (channels) => {
     const interval = 6 * 60;
 
     const tellSubscribed = () => {
-      channels.forEach(channel => redisClient.set(redisNamespaced(`subscribed:${channel}`), '1', 'EX', interval * 3));
+      channels.forEach((channel) =>
+        redisClient.set(
+          redisNamespaced(`subscribed:${channel}`),
+          '1',
+          'EX',
+          interval * 3,
+        ),
+      );
     };
 
     tellSubscribed();
@@ -279,9 +318,9 @@ const startServer = async () => {
     const json = parseJSON(message, null);
     if (!json) return;
 
-    callbacks.forEach(callback => callback(json));
+    callbacks.forEach((callback) => callback(json));
   };
-  redisSubscribeClient.on("message", onRedisMessage);
+  redisSubscribeClient.on('message', onRedisMessage);
 
   /**
    * @callback SubscriptionListener
@@ -324,19 +363,22 @@ const startServer = async () => {
       return;
     }
 
-    subs[channel] = subs[channel].filter(item => item !== callback);
+    subs[channel] = subs[channel].filter((item) => item !== callback);
 
     if (subs[channel].length === 0) {
       logger.debug(`Unsubscribe ${channel}`);
 
       // FIXME: https://github.com/redis/ioredis/issues/1910
-      redisSubscribeClient.unsubscribe(redisNamespaced(channel), (err, count) => {
-        if (err) {
-          logger.error(`Error unsubscribing to ${channel}`);
-        } else if (typeof count === 'number') {
-          metrics.redisSubscriptions.set(count);
-        }
-      });
+      redisSubscribeClient.unsubscribe(
+        redisNamespaced(channel),
+        (err, count) => {
+          if (err) {
+            logger.error(`Error unsubscribing to ${channel}`);
+          } else if (typeof count === 'number') {
+            metrics.redisSubscriptions.set(count);
+          }
+        },
+      );
       delete subs[channel];
     }
   };
@@ -347,7 +389,7 @@ const startServer = async () => {
    * @returns {boolean}
    */
   const isInScope = (req, necessaryScopes) =>
-    req.scopes.some(scope => necessaryScopes.includes(scope));
+    req.scopes.some((scope) => necessaryScopes.includes(scope));
 
   /**
    * @param {string} token
@@ -355,7 +397,10 @@ const startServer = async () => {
    * @returns {Promise<ResolvedAccount>}
    */
   const accountFromToken = async (token, req) => {
-    const result = await pgPool.query('SELECT oauth_access_tokens.id, oauth_access_tokens.resource_owner_id, users.account_id, users.chosen_languages, oauth_access_tokens.scopes FROM oauth_access_tokens INNER JOIN users ON oauth_access_tokens.resource_owner_id = users.id WHERE oauth_access_tokens.token = $1 AND oauth_access_tokens.revoked_at IS NULL LIMIT 1', [token]);
+    const result = await pgPool.query(
+      'SELECT oauth_access_tokens.id, oauth_access_tokens.resource_owner_id, users.account_id, users.chosen_languages, oauth_access_tokens.scopes FROM oauth_access_tokens INNER JOIN users ON oauth_access_tokens.resource_owner_id = users.id WHERE oauth_access_tokens.token = $1 AND oauth_access_tokens.revoked_at IS NULL LIMIT 1',
+      [token],
+    );
 
     if (result.rows.length === 0) {
       throw new AuthenticationError('Invalid access token');
@@ -378,50 +423,54 @@ const startServer = async () => {
    * @param {any} req
    * @returns {Promise<ResolvedAccount>}
    */
-  const accountFromRequest = (req) => new Promise((resolve, reject) => {
-    const authorization = req.headers.authorization;
-    const location      = url.parse(req.url, true);
-    const accessToken   = location.query.access_token || req.headers['sec-websocket-protocol'];
+  const accountFromRequest = (req) =>
+    new Promise((resolve, reject) => {
+      const authorization = req.headers.authorization;
+      const location = url.parse(req.url, true);
+      const accessToken =
+        location.query.access_token || req.headers['sec-websocket-protocol'];
 
-    if (!authorization && !accessToken) {
-      reject(new AuthenticationError('Missing access token'));
-      return;
-    }
+      if (!authorization && !accessToken) {
+        reject(new AuthenticationError('Missing access token'));
+        return;
+      }
 
-    const token = authorization ? authorization.replace(/^Bearer /, '') : accessToken;
+      const token = authorization
+        ? authorization.replace(/^Bearer /, '')
+        : accessToken;
 
-    resolve(accountFromToken(token, req));
-  });
+      resolve(accountFromToken(token, req));
+    });
 
   /**
    * @param {any} req
    * @returns {string|undefined}
    */
-  const channelNameFromPath = req => {
+  const channelNameFromPath = (req) => {
     const { path, query } = req;
     const onlyMedia = isTruthy(query.only_media);
 
     switch (path) {
-    case '/api/v1/streaming/user':
-      return 'user';
-    case '/api/v1/streaming/user/notification':
-      return 'user:notification';
-    case '/api/v1/streaming/public':
-      return onlyMedia ? 'public:media' : 'public';
-    case '/api/v1/streaming/public/local':
-      return onlyMedia ? 'public:local:media' : 'public:local';
-    case '/api/v1/streaming/public/remote':
-      return onlyMedia ? 'public:remote:media' : 'public:remote';
-    case '/api/v1/streaming/hashtag':
-      return 'hashtag';
-    case '/api/v1/streaming/hashtag/local':
-      return 'hashtag:local';
-    case '/api/v1/streaming/direct':
-      return 'direct';
-    case '/api/v1/streaming/list':
-      return 'list';
-    default:
-      return undefined;
+      case '/api/v1/streaming/user':
+        return 'user';
+      case '/api/v1/streaming/user/notification':
+        return 'user:notification';
+      case '/api/v1/streaming/public':
+        return onlyMedia ? 'public:media' : 'public';
+      case '/api/v1/streaming/public/local':
+        return onlyMedia ? 'public:local:media' : 'public:local';
+      case '/api/v1/streaming/public/remote':
+        return onlyMedia ? 'public:remote:media' : 'public:remote';
+      case '/api/v1/streaming/hashtag':
+        return 'hashtag';
+      case '/api/v1/streaming/hashtag/local':
+        return 'hashtag:local';
+      case '/api/v1/streaming/direct':
+        return 'direct';
+      case '/api/v1/streaming/list':
+        return 'list';
+      default:
+        return undefined;
     }
   };
 
@@ -431,38 +480,48 @@ const startServer = async () => {
    * @param {string|undefined} channelName
    * @returns {Promise.<void>}
    */
-  const checkScopes = (req, logger, channelName) => new Promise((resolve, reject) => {
-    logger.debug(`Checking OAuth scopes for ${channelName}`);
+  const checkScopes = (req, logger, channelName) =>
+    new Promise((resolve, reject) => {
+      logger.debug(`Checking OAuth scopes for ${channelName}`);
 
-    // When accessing public channels, no scopes are needed
-    if (channelName && PUBLIC_CHANNELS.includes(channelName)) {
-      resolve();
-      return;
-    }
+      // When accessing public channels, no scopes are needed
+      if (channelName && PUBLIC_CHANNELS.includes(channelName)) {
+        resolve();
+        return;
+      }
 
-    // The `read` scope has the highest priority, if the token has it
-    // then it can access all streams
-    const requiredScopes = ['read'];
+      // The `read` scope has the highest priority, if the token has it
+      // then it can access all streams
+      const requiredScopes = ['read'];
 
-    // When accessing specifically the notifications stream,
-    // we need a read:notifications, while in all other cases,
-    // we can allow access with read:statuses. Mind that the
-    // user stream will not contain notifications unless
-    // the token has either read or read:notifications scope
-    // as well, this is handled separately.
-    if (channelName === 'user:notification') {
-      requiredScopes.push('read:notifications');
-    } else {
-      requiredScopes.push('read:statuses');
-    }
+      // When accessing specifically the notifications stream,
+      // we need a read:notifications, while in all other cases,
+      // we can allow access with read:statuses. Mind that the
+      // user stream will not contain notifications unless
+      // the token has either read or read:notifications scope
+      // as well, this is handled separately.
+      if (channelName === 'user:notification') {
+        requiredScopes.push('read:notifications');
+      } else {
+        requiredScopes.push('read:statuses');
+      }
 
-    if (req.scopes && requiredScopes.some(requiredScope => req.scopes.includes(requiredScope))) {
-      resolve();
-      return;
-    }
+      if (
+        req.scopes &&
+        requiredScopes.some((requiredScope) =>
+          req.scopes.includes(requiredScope),
+        )
+      ) {
+        resolve();
+        return;
+      }
 
-    reject(new AuthenticationError('Access token does not have the required scopes'));
-  });
+      reject(
+        new AuthenticationError(
+          'Access token does not have the required scopes',
+        ),
+      );
+    });
 
   /**
    * @typedef SystemMessageHandlers
@@ -475,7 +534,7 @@ const startServer = async () => {
    * @returns {SubscriptionListener}
    */
   const createSystemMessageListener = (req, eventHandlers) => {
-    return message => {
+    return (message) => {
       if (!message?.event) {
         return;
       }
@@ -485,7 +544,9 @@ const startServer = async () => {
       req.log.debug(`System message for ${req.accountId}: ${event}`);
 
       if (event === 'kill') {
-        req.log.debug(`Closing connection for ${req.accountId} due to expired access token`);
+        req.log.debug(
+          `Closing connection for ${req.accountId} due to expired access token`,
+        );
         eventHandlers.onKill();
       } else if (event === 'filters_changed') {
         req.log.debug(`Invalidating filters cache for ${req.accountId}`);
@@ -512,13 +573,17 @@ const startServer = async () => {
       unsubscribe(accessTokenChannelId, listener);
       unsubscribe(systemChannelId, listener);
 
-      metrics.connectedChannels.labels({ type: 'eventsource', channel: 'system' }).dec(2);
+      metrics.connectedChannels
+        .labels({ type: 'eventsource', channel: 'system' })
+        .dec(2);
     });
 
     subscribe(accessTokenChannelId, listener);
     subscribe(systemChannelId, listener);
 
-    metrics.connectedChannels.labels({ type: 'eventsource', channel: 'system' }).inc(2);
+    metrics.connectedChannels
+      .labels({ type: 'eventsource', channel: 'system' })
+      .inc(2);
   };
 
   /**
@@ -541,13 +606,17 @@ const startServer = async () => {
       return;
     }
 
-    accountFromRequest(req).then(() => checkScopes(req, req.log, channelName)).then(() => {
-      subscribeHttpToSystemChannel(req, res);
-    }).then(() => {
-      next();
-    }).catch(err => {
-      next(err);
-    });
+    accountFromRequest(req)
+      .then(() => checkScopes(req, req.log, channelName))
+      .then(() => {
+        subscribeHttpToSystemChannel(req, res);
+      })
+      .then(() => {
+        next();
+      })
+      .catch((err) => {
+        next(err);
+      });
   };
 
   /**
@@ -564,7 +633,7 @@ const startServer = async () => {
       return;
     }
 
-    const {statusCode, errorMessage } = extractErrorStatusAndMessage(err);
+    const { statusCode, errorMessage } = extractErrorStatusAndMessage(err);
 
     res.writeHead(statusCode, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: errorMessage }));
@@ -576,7 +645,8 @@ const startServer = async () => {
    * @returns {string}
    */
   // @ts-ignore
-  const placeholders = (arr, shift = 0) => arr.map((_, i) => `$${i + 1 + shift}`).join(', ');
+  const placeholders = (arr, shift = 0) =>
+    arr.map((_, i) => `$${i + 1 + shift}`).join(', ');
 
   /**
    * @param {string} listId
@@ -586,7 +656,10 @@ const startServer = async () => {
   const authorizeListAccess = async (listId, req) => {
     const { accountId } = req;
 
-    const result = await pgPool.query('SELECT id, account_id FROM lists WHERE id = $1 AND account_id = $2 LIMIT 1', [listId, accountId]);
+    const result = await pgPool.query(
+      'SELECT id, account_id FROM lists WHERE id = $1 AND account_id = $2 LIMIT 1',
+      [listId, accountId],
+    );
 
     if (result.rows.length === 0) {
       throw new AuthenticationError('List not found');
@@ -603,7 +676,15 @@ const startServer = async () => {
    * @param {boolean=} needsFiltering
    * @returns {SubscriptionListener}
    */
-  const streamFrom = (channelIds, req, log, output, attachCloseHandler, destinationType, needsFiltering = false) => {
+  const streamFrom = (
+    channelIds,
+    req,
+    log,
+    output,
+    attachCloseHandler,
+    destinationType,
+    needsFiltering = false,
+  ) => {
     log.info({ channelIds }, `Starting stream`);
 
     /**
@@ -612,11 +693,15 @@ const startServer = async () => {
      */
     const transmit = (event, payload) => {
       // TODO: Replace "string"-based delete payloads with object payloads:
-      const encodedPayload = typeof payload === 'object' ? JSON.stringify(payload) : payload;
+      const encodedPayload =
+        typeof payload === 'object' ? JSON.stringify(payload) : payload;
 
       metrics.messagesSent.labels({ type: destinationType }).inc(1);
 
-      log.debug({ event, payload }, `Transmitting ${event} to ${req.accountId}`);
+      log.debug(
+        { event, payload },
+        `Transmitting ${event} to ${req.accountId}`,
+      );
 
       output(event, encodedPayload);
     };
@@ -626,7 +711,7 @@ const startServer = async () => {
     // events also include a queued_at value, but this is being removed shortly.
 
     /** @type {SubscriptionListener} */
-    const listener = message => {
+    const listener = (message) => {
       if (!message?.event || !message?.payload) {
         return;
       }
@@ -643,7 +728,10 @@ const startServer = async () => {
       //
       // The channels that need filtering are determined in the function
       // `channelNameToIds` defined below:
-      if (!needsFiltering || (event !== 'update' && event !== 'status.update')) {
+      if (
+        !needsFiltering ||
+        (event !== 'update' && event !== 'status.update')
+      ) {
         transmit(event, payload);
         return;
       }
@@ -652,8 +740,13 @@ const startServer = async () => {
       // filtering of statuses:
 
       // Filter based on language:
-      if (Array.isArray(req.chosenLanguages) && req.chosenLanguages.indexOf(payload.language) === -1) {
-        log.debug(`Message ${payload.id} filtered by language (${payload.language})`);
+      if (
+        Array.isArray(req.chosenLanguages) &&
+        req.chosenLanguages.indexOf(payload.language) === -1
+      ) {
+        log.debug(
+          `Message ${payload.id} filtered by language (${payload.language})`,
+        );
         return;
       }
 
@@ -665,7 +758,9 @@ const startServer = async () => {
 
       // Filter based on domain blocks, blocks, mutes, or custom filters:
       // @ts-ignore
-      const targetAccountIds = [payload.account.id].concat(payload.mentions.map(item => item.id));
+      const targetAccountIds = [payload.account.id].concat(
+        payload.mentions.map((item) => item.id),
+      );
       const accountDomain = payload.account.acct.split('@')[1];
 
       // TODO: Move this logic out of the message handling loop
@@ -677,7 +772,8 @@ const startServer = async () => {
 
         const queries = [
           // @ts-ignore
-          client.query(`SELECT 1
+          client.query(
+            `SELECT 1
                         FROM blocks
                         WHERE (account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)}))
                            OR (account_id = $2 AND target_account_id = $1)
@@ -685,154 +781,200 @@ const startServer = async () => {
                         SELECT 1
                         FROM mutes
                         WHERE account_id = $1
-                          AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, payload.account.id].concat(targetAccountIds)),
+                          AND target_account_id IN (${placeholders(targetAccountIds, 2)})`,
+            [req.accountId, payload.account.id].concat(targetAccountIds),
+          ),
         ];
 
         if (accountDomain) {
           // @ts-ignore
-          queries.push(client.query('SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2', [req.accountId, accountDomain]));
+          queries.push(
+            client.query(
+              'SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2',
+              [req.accountId, accountDomain],
+            ),
+          );
         }
 
         // @ts-ignore
         if (!payload.filtered && !req.cachedFilters) {
           // @ts-ignore
-          queries.push(client.query('SELECT filter.id AS id, filter.phrase AS title, filter.context AS context, filter.expires_at AS expires_at, filter.action AS filter_action, keyword.keyword AS keyword, keyword.whole_word AS whole_word FROM custom_filter_keywords keyword JOIN custom_filters filter ON keyword.custom_filter_id = filter.id WHERE filter.account_id = $1 AND (filter.expires_at IS NULL OR filter.expires_at > NOW())', [req.accountId]));
+          queries.push(
+            client.query(
+              'SELECT filter.id AS id, filter.phrase AS title, filter.context AS context, filter.expires_at AS expires_at, filter.action AS filter_action, keyword.keyword AS keyword, keyword.whole_word AS whole_word FROM custom_filter_keywords keyword JOIN custom_filters filter ON keyword.custom_filter_id = filter.id WHERE filter.account_id = $1 AND (filter.expires_at IS NULL OR filter.expires_at > NOW())',
+              [req.accountId],
+            ),
+          );
         }
 
-        Promise.all(queries).then(values => {
-          releasePgConnection();
+        Promise.all(queries)
+          .then((values) => {
+            releasePgConnection();
 
-          // Handling blocks & mutes and domain blocks: If one of those applies,
-          // then we don't transmit the payload of the event to the client
-          if (values[0].rows.length > 0 || (accountDomain && values[1].rows.length > 0)) {
-            return;
-          }
+            // Handling blocks & mutes and domain blocks: If one of those applies,
+            // then we don't transmit the payload of the event to the client
+            if (
+              values[0].rows.length > 0 ||
+              (accountDomain && values[1].rows.length > 0)
+            ) {
+              return;
+            }
 
-          // If the payload already contains the `filtered` property, it means
-          // that filtering has been applied on the ruby on rails side, as
-          // such, we don't need to construct or apply the filters in streaming:
-          if (Object.hasOwn(payload, "filtered")) {
-            transmit(event, payload);
-            return;
-          }
+            // If the payload already contains the `filtered` property, it means
+            // that filtering has been applied on the ruby on rails side, as
+            // such, we don't need to construct or apply the filters in streaming:
+            if (Object.hasOwn(payload, 'filtered')) {
+              transmit(event, payload);
+              return;
+            }
 
-          // Handling for constructing the custom filters and caching them on the request
-          // TODO: Move this logic out of the message handling lifecycle
-          // @ts-ignore
-          if (!req.cachedFilters) {
-            const filterRows = values[accountDomain ? 2 : 1].rows;
-
+            // Handling for constructing the custom filters and caching them on the request
+            // TODO: Move this logic out of the message handling lifecycle
             // @ts-ignore
-            req.cachedFilters = filterRows.reduce((cache, filter) => {
-              if (cache[filter.id]) {
-                cache[filter.id].keywords.push([filter.keyword, filter.whole_word]);
-              } else {
-                cache[filter.id] = {
-                  keywords: [[filter.keyword, filter.whole_word]],
-                  expires_at: filter.expires_at,
-                  filter: {
-                    id: filter.id,
-                    title: filter.title,
-                    context: filter.context,
-                    expires_at: filter.expires_at,
-                    // filter.filter_action is the value from the
-                    // custom_filters.action database column, it is an integer
-                    // representing a value in an enum defined by Ruby on Rails:
-                    //
-                    // enum { warn: 0, hide: 1 }
-                    filter_action: ['warn', 'hide'][filter.filter_action],
-                  },
-                };
-              }
+            if (!req.cachedFilters) {
+              const filterRows = values[accountDomain ? 2 : 1].rows;
 
-              return cache;
-            }, {});
-
-            // Construct the regular expressions for the custom filters: This
-            // needs to be done in a separate loop as the database returns one
-            // filterRow per keyword, so we need all the keywords before
-            // constructing the regular expression
-            // @ts-ignore
-            Object.keys(req.cachedFilters).forEach((key) => {
               // @ts-ignore
-              req.cachedFilters[key].regexp = new RegExp(req.cachedFilters[key].keywords.map(([keyword, whole_word]) => {
-                let expr = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-                if (whole_word) {
-                  if (/^[\w]/.test(expr)) {
-                    expr = `\\b${expr}`;
-                  }
-
-                  if (/[\w]$/.test(expr)) {
-                    expr = `${expr}\\b`;
-                  }
+              req.cachedFilters = filterRows.reduce((cache, filter) => {
+                if (cache[filter.id]) {
+                  cache[filter.id].keywords.push([
+                    filter.keyword,
+                    filter.whole_word,
+                  ]);
+                } else {
+                  cache[filter.id] = {
+                    keywords: [[filter.keyword, filter.whole_word]],
+                    expires_at: filter.expires_at,
+                    filter: {
+                      id: filter.id,
+                      title: filter.title,
+                      context: filter.context,
+                      expires_at: filter.expires_at,
+                      // filter.filter_action is the value from the
+                      // custom_filters.action database column, it is an integer
+                      // representing a value in an enum defined by Ruby on Rails:
+                      //
+                      // enum { warn: 0, hide: 1 }
+                      filter_action: ['warn', 'hide'][filter.filter_action],
+                    },
+                  };
                 }
 
-                return expr;
-              }).join('|'), 'i');
-            });
-          }
+                return cache;
+              }, {});
 
-          // Apply cachedFilters against the payload, constructing a
-          // `filter_results` array of FilterResult entities
-          // @ts-ignore
-          if (req.cachedFilters) {
-            const status = payload;
-            // TODO: Calculate searchableContent in Ruby on Rails:
+              // Construct the regular expressions for the custom filters: This
+              // needs to be done in a separate loop as the database returns one
+              // filterRow per keyword, so we need all the keywords before
+              // constructing the regular expression
+              // @ts-ignore
+              Object.keys(req.cachedFilters).forEach((key) => {
+                // @ts-ignore
+                req.cachedFilters[key].regexp = new RegExp(
+                  req.cachedFilters[key].keywords
+                    .map(([keyword, whole_word]) => {
+                      let expr = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+                      if (whole_word) {
+                        if (/^[\w]/.test(expr)) {
+                          expr = `\\b${expr}`;
+                        }
+
+                        if (/[\w]$/.test(expr)) {
+                          expr = `${expr}\\b`;
+                        }
+                      }
+
+                      return expr;
+                    })
+                    .join('|'),
+                  'i',
+                );
+              });
+            }
+
+            // Apply cachedFilters against the payload, constructing a
+            // `filter_results` array of FilterResult entities
             // @ts-ignore
-            const searchableContent = ([status.spoiler_text || '', status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
-            const searchableTextContent = JSDOM.fragment(searchableContent).textContent;
+            if (req.cachedFilters) {
+              const status = payload;
+              // TODO: Calculate searchableContent in Ruby on Rails:
+              // @ts-ignore
+              const searchableContent = [
+                status.spoiler_text || '',
+                status.content,
+              ]
+                .concat(
+                  status.poll && status.poll.options
+                    ? status.poll.options.map((option) => option.title)
+                    : [],
+                )
+                .concat(status.media_attachments.map((att) => att.description))
+                .join('\n\n')
+                .replace(/<br\s*\/?>/g, '\n')
+                .replace(/<\/p><p>/g, '\n\n');
+              const searchableTextContent =
+                JSDOM.fragment(searchableContent).textContent;
 
-            const now = new Date();
-            // @ts-ignore
-            const filter_results = Object.values(req.cachedFilters).reduce((results, cachedFilter) => {
-              // Check the filter hasn't expired before applying:
-              if (cachedFilter.expires_at !== null && cachedFilter.expires_at < now) {
-                return results;
-              }
+              const now = new Date();
+              // @ts-ignore
+              const filter_results = Object.values(req.cachedFilters).reduce(
+                (results, cachedFilter) => {
+                  // Check the filter hasn't expired before applying:
+                  if (
+                    cachedFilter.expires_at !== null &&
+                    cachedFilter.expires_at < now
+                  ) {
+                    return results;
+                  }
 
-              // Just in-case JSDOM fails to find textContent in searchableContent
-              if (!searchableTextContent) {
-                return results;
-              }
+                  // Just in-case JSDOM fails to find textContent in searchableContent
+                  if (!searchableTextContent) {
+                    return results;
+                  }
 
-              const keyword_matches = searchableTextContent.match(cachedFilter.regexp);
-              if (keyword_matches) {
-                // results is an Array of FilterResult; status_matches is always
-                // null as we only are only applying the keyword-based custom
-                // filters, not the status-based custom filters.
-                // https://docs.joinmastodon.org/entities/FilterResult/
-                results.push({
-                  filter: cachedFilter.filter,
-                  keyword_matches,
-                  status_matches: null
-                });
-              }
+                  const keyword_matches = searchableTextContent.match(
+                    cachedFilter.regexp,
+                  );
+                  if (keyword_matches) {
+                    // results is an Array of FilterResult; status_matches is always
+                    // null as we only are only applying the keyword-based custom
+                    // filters, not the status-based custom filters.
+                    // https://docs.joinmastodon.org/entities/FilterResult/
+                    results.push({
+                      filter: cachedFilter.filter,
+                      keyword_matches,
+                      status_matches: null,
+                    });
+                  }
 
-              return results;
-            }, []);
+                  return results;
+                },
+                [],
+              );
 
-            // Send the payload + the FilterResults as the `filtered` property
-            // to the streaming connection. To reach this code, the `event` must
-            // have been either `update` or `status.update`, meaning the
-            // `payload` is a Status entity, which has a `filtered` property:
-            //
-            // filtered: https://docs.joinmastodon.org/entities/Status/#filtered
-            transmit(event, {
-              ...payload,
-              filtered: filter_results
-            });
-          } else {
-            transmit(event, payload);
-          }
-        }).catch(err => {
-          log.error(err);
-          releasePgConnection();
-        });
+              // Send the payload + the FilterResults as the `filtered` property
+              // to the streaming connection. To reach this code, the `event` must
+              // have been either `update` or `status.update`, meaning the
+              // `payload` is a Status entity, which has a `filtered` property:
+              //
+              // filtered: https://docs.joinmastodon.org/entities/Status/#filtered
+              transmit(event, {
+                ...payload,
+                filtered: filter_results,
+              });
+            } else {
+              transmit(event, payload);
+            }
+          })
+          .catch((err) => {
+            log.error(err);
+            releasePgConnection();
+          });
       });
     };
 
-    channelIds.forEach(id => {
+    channelIds.forEach((id) => {
       subscribe(id, listener);
     });
 
@@ -855,7 +997,9 @@ const startServer = async () => {
 
     // In theory we'll always have a channel name, but channelNameFromPath can return undefined:
     if (typeof channelName === 'string') {
-      metrics.connectedChannels.labels({ type: 'eventsource', channel: channelName }).inc();
+      metrics.connectedChannels
+        .labels({ type: 'eventsource', channel: channelName })
+        .inc();
     }
 
     res.setHeader('Content-Type', 'text/event-stream');
@@ -874,7 +1018,9 @@ const startServer = async () => {
       metrics.connectedClients.labels({ type: 'eventsource' }).dec();
       // In theory we'll always have a channel name, but channelNameFromPath can return undefined:
       if (typeof channelName === 'string') {
-        metrics.connectedChannels.labels({ type: 'eventsource', channel: channelName }).dec();
+        metrics.connectedChannels
+          .labels({ type: 'eventsource', channel: channelName })
+          .dec();
       }
 
       clearInterval(heartbeat);
@@ -892,17 +1038,19 @@ const startServer = async () => {
    * @returns {function(string[], SubscriptionListener): void}
    */
 
-  const streamHttpEnd = (req, closeHandler = undefined) => (ids, listener) => {
-    req.on('close', () => {
-      ids.forEach(id => {
-        unsubscribe(id, listener);
-      });
+  const streamHttpEnd =
+    (req, closeHandler = undefined) =>
+    (ids, listener) => {
+      req.on('close', () => {
+        ids.forEach((id) => {
+          unsubscribe(id, listener);
+        });
 
-      if (closeHandler) {
-        closeHandler();
-      }
-    });
-  };
+        if (closeHandler) {
+          closeHandler();
+        }
+      });
+    };
 
   /**
    * @param {http.IncomingMessage} req
@@ -920,7 +1068,7 @@ const startServer = async () => {
 
     ws.send(message, (/** @type {Error|undefined} */ err) => {
       if (err) {
-        req.log.error({err}, `Failed to send to websocket`);
+        req.log.error({ err }, `Failed to send to websocket`);
       }
     });
   };
@@ -928,7 +1076,7 @@ const startServer = async () => {
   /**
    * @param {http.ServerResponse} res
    */
-  const httpNotFound = res => {
+  const httpNotFound = (res) => {
     res.writeHead(404, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: 'Not found' }));
   };
@@ -951,20 +1099,30 @@ const startServer = async () => {
       return;
     }
 
-    channelNameToIds(req, channelName, req.query).then(({ channelIds, options }) => {
-      const onSend = streamToHttp(req, res);
-      const onEnd = streamHttpEnd(req, subscriptionHeartbeat(channelIds));
+    channelNameToIds(req, channelName, req.query)
+      .then(({ channelIds, options }) => {
+        const onSend = streamToHttp(req, res);
+        const onEnd = streamHttpEnd(req, subscriptionHeartbeat(channelIds));
 
-      // @ts-ignore
-      streamFrom(channelIds, req, req.log, onSend, onEnd, 'eventsource', options.needsFiltering);
-    }).catch(err => {
-      const {statusCode, errorMessage } = extractErrorStatusAndMessage(err);
+        // @ts-ignore
+        streamFrom(
+          channelIds,
+          req,
+          req.log,
+          onSend,
+          onEnd,
+          'eventsource',
+          options.needsFiltering,
+        );
+      })
+      .catch((err) => {
+        const { statusCode, errorMessage } = extractErrorStatusAndMessage(err);
 
-      res.log.info({ err }, 'Eventsource subscription error');
+        res.log.info({ err }, 'Eventsource subscription error');
 
-      res.writeHead(statusCode, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: errorMessage }));
-    });
+        res.writeHead(statusCode, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: errorMessage }));
+      });
   });
 
   /**
@@ -978,7 +1136,7 @@ const startServer = async () => {
    * @param {any} req
    * @returns {string[]}
    */
-  const channelsForUserStream = req => {
+  const channelsForUserStream = (req) => {
     const arr = [`timeline:${req.accountId}`];
 
     if (isInScope(req, ['read', 'read:notifications'])) {
@@ -994,113 +1152,120 @@ const startServer = async () => {
    * @param {StreamParams} params
    * @returns {Promise.<{ channelIds: string[], options: { needsFiltering: boolean } }>}
    */
-  const channelNameToIds = (req, name, params) => new Promise((resolve, reject) => {
-    switch (name) {
-    case 'user':
-      resolve({
-        channelIds: channelsForUserStream(req),
-        options: { needsFiltering: false },
-      });
+  const channelNameToIds = (req, name, params) =>
+    new Promise((resolve, reject) => {
+      switch (name) {
+        case 'user':
+          resolve({
+            channelIds: channelsForUserStream(req),
+            options: { needsFiltering: false },
+          });
 
-      break;
-    case 'user:notification':
-      resolve({
-        channelIds: [`timeline:${req.accountId}:notifications`],
-        options: { needsFiltering: false },
-      });
+          break;
+        case 'user:notification':
+          resolve({
+            channelIds: [`timeline:${req.accountId}:notifications`],
+            options: { needsFiltering: false },
+          });
 
-      break;
-    case 'public':
-      resolve({
-        channelIds: ['timeline:public'],
-        options: { needsFiltering: true },
-      });
+          break;
+        case 'public':
+          resolve({
+            channelIds: ['timeline:public'],
+            options: { needsFiltering: true },
+          });
 
-      break;
-    case 'public:local':
-      resolve({
-        channelIds: ['timeline:public:local'],
-        options: { needsFiltering: true },
-      });
+          break;
+        case 'public:local':
+          resolve({
+            channelIds: ['timeline:public:local'],
+            options: { needsFiltering: true },
+          });
 
-      break;
-    case 'public:remote':
-      resolve({
-        channelIds: ['timeline:public:remote'],
-        options: { needsFiltering: true },
-      });
+          break;
+        case 'public:remote':
+          resolve({
+            channelIds: ['timeline:public:remote'],
+            options: { needsFiltering: true },
+          });
 
-      break;
-    case 'public:media':
-      resolve({
-        channelIds: ['timeline:public:media'],
-        options: { needsFiltering: true },
-      });
+          break;
+        case 'public:media':
+          resolve({
+            channelIds: ['timeline:public:media'],
+            options: { needsFiltering: true },
+          });
 
-      break;
-    case 'public:local:media':
-      resolve({
-        channelIds: ['timeline:public:local:media'],
-        options: { needsFiltering: true },
-      });
+          break;
+        case 'public:local:media':
+          resolve({
+            channelIds: ['timeline:public:local:media'],
+            options: { needsFiltering: true },
+          });
 
-      break;
-    case 'public:remote:media':
-      resolve({
-        channelIds: ['timeline:public:remote:media'],
-        options: { needsFiltering: true },
-      });
+          break;
+        case 'public:remote:media':
+          resolve({
+            channelIds: ['timeline:public:remote:media'],
+            options: { needsFiltering: true },
+          });
 
-      break;
-    case 'direct':
-      resolve({
-        channelIds: [`timeline:direct:${req.accountId}`],
-        options: { needsFiltering: false },
-      });
+          break;
+        case 'direct':
+          resolve({
+            channelIds: [`timeline:direct:${req.accountId}`],
+            options: { needsFiltering: false },
+          });
 
-      break;
-    case 'hashtag':
-      if (!params.tag) {
-        reject(new RequestError('Missing tag name parameter'));
-      } else {
-        resolve({
-          channelIds: [`timeline:hashtag:${normalizeHashtag(params.tag)}`],
-          options: { needsFiltering: true },
-        });
+          break;
+        case 'hashtag':
+          if (!params.tag) {
+            reject(new RequestError('Missing tag name parameter'));
+          } else {
+            resolve({
+              channelIds: [`timeline:hashtag:${normalizeHashtag(params.tag)}`],
+              options: { needsFiltering: true },
+            });
+          }
+
+          break;
+        case 'hashtag:local':
+          if (!params.tag) {
+            reject(new RequestError('Missing tag name parameter'));
+          } else {
+            resolve({
+              channelIds: [
+                `timeline:hashtag:${normalizeHashtag(params.tag)}:local`,
+              ],
+              options: { needsFiltering: true },
+            });
+          }
+
+          break;
+        case 'list':
+          if (!params.list) {
+            reject(new RequestError('Missing list name parameter'));
+            return;
+          }
+
+          authorizeListAccess(params.list, req)
+            .then(() => {
+              resolve({
+                channelIds: [`timeline:list:${params.list}`],
+                options: { needsFiltering: false },
+              });
+            })
+            .catch(() => {
+              reject(
+                new AuthenticationError('Not authorized to stream this list'),
+              );
+            });
+
+          break;
+        default:
+          reject(new RequestError('Unknown stream type'));
       }
-
-      break;
-    case 'hashtag:local':
-      if (!params.tag) {
-        reject(new RequestError('Missing tag name parameter'));
-      } else {
-        resolve({
-          channelIds: [`timeline:hashtag:${normalizeHashtag(params.tag)}:local`],
-          options: { needsFiltering: true },
-        });
-      }
-
-      break;
-    case 'list':
-      if (!params.list) {
-        reject(new RequestError('Missing list name parameter'));
-        return;
-      }
-
-      authorizeListAccess(params.list, req).then(() => {
-        resolve({
-          channelIds: [`timeline:list:${params.list}`],
-          options: { needsFiltering: false },
-        });
-      }).catch(() => {
-        reject(new AuthenticationError('Not authorized to stream this list'));
-      });
-
-      break;
-    default:
-      reject(new RequestError('Unknown stream type'));
-    }
-  });
+    });
 
   /**
    * @param {string} channelName
@@ -1110,7 +1275,10 @@ const startServer = async () => {
   const streamNameFromChannelName = (channelName, params) => {
     if (channelName === 'list' && params.list) {
       return [channelName, params.list];
-    } else if (['hashtag', 'hashtag:local'].includes(channelName) && params.tag) {
+    } else if (
+      ['hashtag', 'hashtag:local'].includes(channelName) &&
+      params.tag
+    ) {
       return [channelName, params.tag];
     } else {
       return [channelName];
@@ -1131,46 +1299,69 @@ const startServer = async () => {
    * @param {StreamParams} params
    * @returns {void}
    */
-  const subscribeWebsocketToChannel = ({ websocket, request, logger, subscriptions }, channelName, params) => {
-    checkScopes(request, logger, channelName).then(() => channelNameToIds(request, channelName, params)).then(({
-      channelIds,
-      options,
-    }) => {
-      if (subscriptions[channelIds.join(';')]) {
-        return;
-      }
+  const subscribeWebsocketToChannel = (
+    { websocket, request, logger, subscriptions },
+    channelName,
+    params,
+  ) => {
+    checkScopes(request, logger, channelName)
+      .then(() => channelNameToIds(request, channelName, params))
+      .then(({ channelIds, options }) => {
+        if (subscriptions[channelIds.join(';')]) {
+          return;
+        }
 
-      const onSend = streamToWs(request, websocket, streamNameFromChannelName(channelName, params));
-      const stopHeartbeat = subscriptionHeartbeat(channelIds);
-      const listener = streamFrom(channelIds, request, logger, onSend, undefined, 'websocket', options.needsFiltering);
+        const onSend = streamToWs(
+          request,
+          websocket,
+          streamNameFromChannelName(channelName, params),
+        );
+        const stopHeartbeat = subscriptionHeartbeat(channelIds);
+        const listener = streamFrom(
+          channelIds,
+          request,
+          logger,
+          onSend,
+          undefined,
+          'websocket',
+          options.needsFiltering,
+        );
 
-      metrics.connectedChannels.labels({ type: 'websocket', channel: channelName }).inc();
+        metrics.connectedChannels
+          .labels({ type: 'websocket', channel: channelName })
+          .inc();
 
-      subscriptions[channelIds.join(';')] = {
-        channelName,
-        listener,
-        stopHeartbeat,
-      };
-    }).catch(err => {
-      const {statusCode, errorMessage } = extractErrorStatusAndMessage(err);
+        subscriptions[channelIds.join(';')] = {
+          channelName,
+          listener,
+          stopHeartbeat,
+        };
+      })
+      .catch((err) => {
+        const { statusCode, errorMessage } = extractErrorStatusAndMessage(err);
 
-      logger.error({ err }, 'Websocket subscription error');
+        logger.error({ err }, 'Websocket subscription error');
 
-      // If we have a socket that is alive and open still, send the error back to the client:
-      if (websocket.isAlive && websocket.readyState === websocket.OPEN) {
-        websocket.send(JSON.stringify({
-          error: errorMessage,
-          status: statusCode
-        }));
-      }
-    });
+        // If we have a socket that is alive and open still, send the error back to the client:
+        if (websocket.isAlive && websocket.readyState === websocket.OPEN) {
+          websocket.send(
+            JSON.stringify({
+              error: errorMessage,
+              status: statusCode,
+            }),
+          );
+        }
+      });
   };
 
   /**
    * @param {WebSocketSession} session
    * @param {string[]} channelIds
    */
-  const removeSubscription = ({ request, logger, subscriptions }, channelIds) => {
+  const removeSubscription = (
+    { request, logger, subscriptions },
+    channelIds,
+  ) => {
     logger.info({ channelIds, accountId: request.accountId }, `Ending stream`);
 
     const subscription = subscriptions[channelIds.join(';')];
@@ -1179,11 +1370,13 @@ const startServer = async () => {
       return;
     }
 
-    channelIds.forEach(channelId => {
+    channelIds.forEach((channelId) => {
       unsubscribe(channelId, subscription.listener);
     });
 
-    metrics.connectedChannels.labels({ type: 'websocket', channel: subscription.channelName }).dec();
+    metrics.connectedChannels
+      .labels({ type: 'websocket', channel: subscription.channelName })
+      .dec();
     subscription.stopHeartbeat();
 
     delete subscriptions[channelIds.join(';')];
@@ -1198,23 +1391,31 @@ const startServer = async () => {
   const unsubscribeWebsocketFromChannel = (session, channelName, params) => {
     const { websocket, request, logger } = session;
 
-    channelNameToIds(request, channelName, params).then(({ channelIds }) => {
-      removeSubscription(session, channelIds);
-    }).catch(err => {
-      logger.error({err}, 'Websocket unsubscribe error');
+    channelNameToIds(request, channelName, params)
+      .then(({ channelIds }) => {
+        removeSubscription(session, channelIds);
+      })
+      .catch((err) => {
+        logger.error({ err }, 'Websocket unsubscribe error');
 
-      // If we have a socket that is alive and open still, send the error back to the client:
-      if (websocket.isAlive && websocket.readyState === websocket.OPEN) {
-        // TODO: Use a better error response here
-        websocket.send(JSON.stringify({ error: "Error unsubscribing from channel" }));
-      }
-    });
+        // If we have a socket that is alive and open still, send the error back to the client:
+        if (websocket.isAlive && websocket.readyState === websocket.OPEN) {
+          // TODO: Use a better error response here
+          websocket.send(
+            JSON.stringify({ error: 'Error unsubscribing from channel' }),
+          );
+        }
+      });
   };
 
   /**
    * @param {WebSocketSession} session
    */
-  const subscribeWebsocketToSystemChannel = ({ websocket, request, subscriptions }) => {
+  const subscribeWebsocketToSystemChannel = ({
+    websocket,
+    request,
+    subscriptions,
+  }) => {
     const accessTokenChannelId = `timeline:access_token:${request.accessTokenId}`;
     const systemChannelId = `timeline:system:${request.accountId}`;
 
@@ -1230,18 +1431,18 @@ const startServer = async () => {
     subscriptions[accessTokenChannelId] = {
       channelName: 'system',
       listener,
-      stopHeartbeat: () => {
-      },
+      stopHeartbeat: () => {},
     };
 
     subscriptions[systemChannelId] = {
       channelName: 'system',
       listener,
-      stopHeartbeat: () => {
-      },
+      stopHeartbeat: () => {},
     };
 
-    metrics.connectedChannels.labels({ type: 'websocket', channel: 'system' }).inc(2);
+    metrics.connectedChannels
+      .labels({ type: 'websocket', channel: 'system' })
+      .inc(2);
   };
 
   /**
@@ -1274,7 +1475,7 @@ const startServer = async () => {
     ws.on('close', function onWebsocketClose() {
       const subscriptions = Object.keys(session.subscriptions);
 
-      subscriptions.forEach(channelIds => {
+      subscriptions.forEach((channelIds) => {
         removeSubscription(session, channelIds.split(';'));
       });
 
@@ -1301,7 +1502,10 @@ const startServer = async () => {
     ws.on('message', (data, isBinary) => {
       if (isBinary) {
         log.warn('Received binary data, closing connection');
-        ws.close(1003, 'The mastodon streaming server does not support binary messages');
+        ws.close(
+          1003,
+          'The mastodon streaming server does not support binary messages',
+        );
         return;
       }
       const message = data.toString('utf8');
@@ -1327,14 +1531,18 @@ const startServer = async () => {
     const location = req.url && url.parse(req.url, true);
 
     if (location && location.query.stream) {
-      subscribeWebsocketToChannel(session, firstParam(location.query.stream), location.query);
+      subscribeWebsocketToChannel(
+        session,
+        firstParam(location.query.stream),
+        location.query,
+      );
     }
   }
 
   wss.on('connection', onConnection);
 
   setInterval(() => {
-    wss.clients.forEach(ws => {
+    wss.clients.forEach((ws) => {
       // @ts-ignore
       if (ws.isAlive === false) {
         ws.terminate();
@@ -1347,7 +1555,7 @@ const startServer = async () => {
     });
   }, 30000);
 
-  attachServerWithConfig(server, address => {
+  attachServerWithConfig(server, (address) => {
     logger.info(`Streaming API now listening on ${address}`);
   });
 
