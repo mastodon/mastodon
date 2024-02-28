@@ -192,7 +192,7 @@ const pgConfigFromEnv = (env) => {
     if (!baseConfig.password && env.DB_PASS) {
       baseConfig.password = env.DB_PASS;
     }
-  } else if (Object.hasOwnProperty.call(pgConfigs, environment)) {
+  } else if (Object.hasOwn(pgConfigs, environment)) {
     baseConfig = pgConfigs[environment];
 
     if (env.DB_SSLMODE) {
@@ -919,7 +919,7 @@ const startServer = async () => {
           // If the payload already contains the `filtered` property, it means
           // that filtering has been applied on the ruby on rails side, as
           // such, we don't need to construct or apply the filters in streaming:
-          if (Object.prototype.hasOwnProperty.call(payload, "filtered")) {
+          if (Object.hasOwn(payload, "filtered")) {
             transmit(event, payload);
             return;
           }

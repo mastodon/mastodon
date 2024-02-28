@@ -68,11 +68,11 @@ function main() {
     return messageFormat.format(values);
   };
 
-  [].forEach.call(document.querySelectorAll('.emojify'), (content) => {
+  document.querySelectorAll('.emojify').forEach((content) => {
     content.innerHTML = emojify(content.innerHTML);
   });
 
-  [].forEach.call(document.querySelectorAll('time.formatted'), (content) => {
+  document.querySelectorAll('time.formatted').forEach((content) => {
     const datetime = new Date(content.getAttribute('datetime'));
     const formattedDate = dateTimeFormat.format(datetime);
 
@@ -89,7 +89,7 @@ function main() {
   };
   const todayFormat = new IntlMessageFormat(localeData['relative_format.today'] || 'Today at {time}', locale);
 
-  [].forEach.call(document.querySelectorAll('time.relative-formatted'), (content) => {
+  document.querySelectorAll('time.relative-formatted').forEach((content) => {
     const datetime = new Date(content.getAttribute('datetime'));
 
     let formattedContent;
@@ -106,7 +106,7 @@ function main() {
     content.textContent = formattedContent;
   });
 
-  [].forEach.call(document.querySelectorAll('time.time-ago'), (content) => {
+  document.querySelectorAll('time.time-ago').forEach((content) => {
     const datetime = new Date(content.getAttribute('datetime'));
     const now      = new Date();
 
@@ -122,8 +122,8 @@ function main() {
   if (reactComponents.length > 0) {
     import(/* webpackChunkName: "containers/media_container" */ 'flavours/glitch/containers/media_container')
       .then(({ default: MediaContainer }) => {
-        [].forEach.call(reactComponents, (component) => {
-          [].forEach.call(component.children, (child) => {
+        reactComponents.forEach((component) => {
+          Array.from(component.children).forEach((child) => {
             component.removeChild(child);
           });
         });
@@ -188,7 +188,7 @@ function main() {
     return false;
   });
 
-  [].forEach.call(document.querySelectorAll('.status__content__spoiler-link'), (spoilerLink) => {
+  document.querySelectorAll('.status__content__spoiler-link').forEach((spoilerLink) => {
     const statusEl = spoilerLink.parentNode.parentNode;
     const message = (statusEl.dataset.spoiler === 'expanded') ? (localeData['status.show_less'] || 'Show less') : (localeData['status.show_more'] || 'Show more');
     spoilerLink.textContent = (new IntlMessageFormat(message, locale)).format();
