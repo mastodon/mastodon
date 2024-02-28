@@ -324,6 +324,23 @@ $content-width: 840px;
       padding-bottom: 0;
       margin-bottom: 0;
       border-bottom: 0;
+
+      .comment {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 4px;
+
+        &.private-comment {
+          display: block;
+          color: $darker-text-color;
+        }
+
+        &.public-comment {
+          display: block;
+          color: $secondary-text-color;
+        }
+      }
     }
 
     & > p {
