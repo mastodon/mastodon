@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_11_033014) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_29_163603) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -592,6 +592,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_11_033014) do
     t.integer "replies_policy", default: 0, null: false
     t.boolean "exclusive", default: false, null: false
     t.index ["account_id"], name: "index_lists_on_account_id"
+  end
+
+  create_table "local_preview_cards", force: :cascade do |t|
+    t.bigint "status_id", null: false
+    t.bigint "target_status_id"
+    t.bigint "target_account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["status_id"], name: "index_local_preview_cards_on_status_id"
+    t.index ["target_account_id"], name: "index_local_preview_cards_on_target_account_id"
+    t.index ["target_status_id"], name: "index_local_preview_cards_on_target_status_id"
   end
 
   create_table "login_activities", force: :cascade do |t|
@@ -1246,6 +1257,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_11_033014) do
   add_foreign_key "list_accounts", "follows", on_delete: :cascade
   add_foreign_key "list_accounts", "lists", on_delete: :cascade
   add_foreign_key "lists", "accounts", on_delete: :cascade
+  add_foreign_key "local_preview_cards", "accounts", column: "target_account_id", on_delete: :cascade
+  add_foreign_key "local_preview_cards", "statuses", column: "target_status_id", on_delete: :cascade
+  add_foreign_key "local_preview_cards", "statuses", on_delete: :cascade
   add_foreign_key "login_activities", "users", on_delete: :cascade
   add_foreign_key "markers", "users", on_delete: :cascade
   add_foreign_key "media_attachments", "accounts", name: "fk_96dd81e81b", on_delete: :nullify

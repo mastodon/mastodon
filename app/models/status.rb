@@ -85,6 +85,7 @@ class Status < ApplicationRecord
   has_and_belongs_to_many :tags
 
   has_one :preview_cards_status, inverse_of: :status, dependent: :delete
+  has_one :local_preview_card, inverse_of: :status, dependent: :delete
 
   has_one :notification, as: :activity, dependent: :destroy
   has_one :status_stat, inverse_of: :status, dependent: nil
@@ -152,6 +153,7 @@ class Status < ApplicationRecord
                    :status_stat,
                    :tags,
                    :preloadable_poll,
+                   :local_preview_card,
                    preview_cards_status: [:preview_card],
                    account: [:account_stat, user: :role],
                    active_mentions: { account: :account_stat },
@@ -162,6 +164,7 @@ class Status < ApplicationRecord
                      :conversation,
                      :status_stat,
                      :preloadable_poll,
+                     :local_preview_card,
                      preview_cards_status: [:preview_card],
                      account: [:account_stat, user: :role],
                      active_mentions: { account: :account_stat },
@@ -229,10 +232,11 @@ class Status < ApplicationRecord
   end
 
   def preview_card
-    preview_cards_status&.preview_card&.tap { |x| x.original_url = preview_cards_status.url }
+    local_preview_card || preview_cards_status&.preview_card&.tap { |x| x.original_url = preview_cards_status.url }
   end
 
   def reset_preview_card!
+    LocalPreviewCard.where(status_id: id).delete_all
     PreviewCardsStatus.where(status_id: id).delete_all
   end
 
@@ -251,7 +255,7 @@ class Status < ApplicationRecord
   end
 
   def with_preview_card?
-    preview_cards_status.present?
+    local_preview_card.present? || preview_cards_status.present?
   end
 
   def with_poll?
