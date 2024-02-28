@@ -32,6 +32,8 @@
 #  link_type                    :integer
 #  published_at                 :datetime
 #  image_description            :string           default(""), not null
+#  target_status_id             :bigint(8)
+#  target_account_id            :bigint(8)
 #
 
 class PreviewCard < ApplicationRecord
@@ -49,6 +51,9 @@ class PreviewCard < ApplicationRecord
 
   enum :type, { link: 0, photo: 1, video: 2, rich: 3 }
   enum :link_type, { unknown: 0, article: 1 }
+
+  belongs_to :target_status, class_name: 'Status', optional: true, dependent: :destroy
+  belongs_to :target_account, class_name: 'Account', optional: true, dependent: :destroy
 
   has_many :preview_cards_statuses, dependent: :delete_all, inverse_of: :preview_card
   has_many :statuses, through: :preview_cards_statuses
