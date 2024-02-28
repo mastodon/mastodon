@@ -4,9 +4,9 @@ import { createRoot } from 'react-dom/client';
 import ready from 'flavours/glitch/ready';
 
 ready(() => {
-  [].forEach.call(document.querySelectorAll('[data-admin-component]'), element => {
+  document.querySelectorAll('[data-admin-component]').forEach(element => {
     const componentName  = element.getAttribute('data-admin-component');
-    const { ...componentProps } = JSON.parse(element.getAttribute('data-props'));
+    const componentProps = JSON.parse(element.getAttribute('data-props'));
 
     import('flavours/glitch/containers/admin_component').then(({ default: AdminComponent }) => {
       return import('flavours/glitch/components/admin/' + componentName).then(({ default: Component }) => {

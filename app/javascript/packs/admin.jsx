@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import ready from '../mastodon/ready';
 
 ready(() => {
-  [].forEach.call(document.querySelectorAll('[data-admin-component]'), element => {
+  document.querySelectorAll('[data-admin-component]').forEach(element => {
     const componentName  = element.getAttribute('data-admin-component');
     const componentProps = JSON.parse(element.getAttribute('data-props'));
 
