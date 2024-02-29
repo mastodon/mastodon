@@ -60,7 +60,6 @@ function main() {
 
   const timeFormat = new Intl.DateTimeFormat(locale, {
     timeStyle: 'short',
-    hour12: false,
   });
 
   const formatMessage = ({ id, defaultMessage }, values) => {
