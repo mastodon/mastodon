@@ -143,11 +143,14 @@ export const showSearch = () => ({
   type: SEARCH_SHOW,
 });
 
-export const openURL = routerHistory => (dispatch, getState) => {
-  const value = getState().getIn(['search', 'value']);
+export const openURL = (value, history, onFailure) => (dispatch, getState) => {
   const signedIn = !!getState().getIn(['meta', 'me']);
 
   if (!signedIn) {
+    if (onFailure) {
+      onFailure();
+    }
+
     return;
   }
 
@@ -156,15 +159,21 @@ export const openURL = routerHistory => (dispatch, getState) => {
   api(getState).get('/api/v2/search', { params: { q: value, resolve: true } }).then(response => {
     if (response.data.accounts?.length > 0) {
       dispatch(importFetchedAccounts(response.data.accounts));
-      routerHistory.push(`/@${response.data.accounts[0].acct}`);
+      history.push(`/@${response.data.accounts[0].acct}`);
     } else if (response.data.statuses?.length > 0) {
       dispatch(importFetchedStatuses(response.data.statuses));
-      routerHistory.push(`/@${response.data.statuses[0].account.acct}/${response.data.statuses[0].id}`);
+      history.push(`/@${response.data.statuses[0].account.acct}/${response.data.statuses[0].id}`);
+    } else if (onFailure) {
+      onFailure();
     }
 
     dispatch(fetchSearchSuccess(response.data, value));
   }).catch(err => {
     dispatch(fetchSearchFail(err));
+
+    if (onFailure) {
+      onFailure();
+    }
   });
 };
 
