@@ -242,10 +242,6 @@ module Account::Interactions
     status_pins.exists?(status: status)
   end
 
-  def endorsed?(account)
-    account_pins.exists?(target_account: account)
-  end
-
   def status_matches_filters(status)
     active_filters = CustomFilter.cached_filters_for(id)
     CustomFilter.apply_cached_filters(active_filters, status)
