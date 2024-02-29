@@ -13,17 +13,18 @@ describe REST::StatusSerializer do
     ).to_json
   end
 
-  let(:record) { Fabricate(:status, tags: tags) }
-  let(:tag_names) { ['España', 'Test'] }
-  let(:tags) { Tag.find_or_create_by_names(tag_names) }
+  let(:record) { PostStatusService.new.call(account, text: 'Status with special char tags #España') }
+  let(:account) { Fabricate(:account) }
 
   describe 'tags' do
-    it 'returns tags including special characters' do
+    it 'returns tags including special character versions of names and urls' do
       expect(serialization.deep_symbolize_keys)
         .to include(
           tags: contain_exactly(
-            include(name: 'España'),
-            include(name: 'Test')
+            include(
+              name: 'España',
+              url: include('/tags/Espa%C3%B1a')
+            )
           )
         )
     end
