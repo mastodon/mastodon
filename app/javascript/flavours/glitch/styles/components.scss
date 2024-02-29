@@ -5735,10 +5735,6 @@ a.status-card {
       pointer-events: auto;
       opacity: 1;
     }
-
-    @media screen and (min-width: $no-gap-breakpoint) {
-      inset-inline-start: 16px - 2px;
-    }
   }
 
   .icon-search {
@@ -8883,7 +8879,7 @@ noscript {
   .search__input {
     border: 1px solid lighten($ui-base-color, 8%);
     padding: 10px;
-    padding-inline-end: 28px;
+    padding-inline-end: 30px;
   }
 
   .search__popout {
