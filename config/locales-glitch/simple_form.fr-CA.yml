@@ -1,1 +1,26 @@
---- {}
+---
+fr-CA:
+  simple_form:
+    glitch_only: glitch-soc
+    hints:
+      defaults:
+        setting_default_content_type_html: Vos posts sont écrits en HTML brut, sauf indication contraire
+        setting_default_content_type_markdown: Vos posts utilisent Markdown pour un formatage de texte enrichi, sauf indication contraire
+        setting_default_content_type_plain: Vos posts sont écrits en texte brut sans formatage spécial, sauf indication contraire (comportement par défaut de Mastodon)
+        setting_default_language: La langue utilisée pour vos posts peut être automatiquement détectée, cependant cette détection n'est pas toujours fiable
+        setting_show_followers_count: Montrer votre nombre d'abonné·e·s sur votre profil. Si vous cachez votre nombre d'abonné·e·s, il le sera de vous-même également, et certaines applications pourraient indiquer un compte d'abonné·e·s négatif.
+        setting_skin: Relooke le mode de Mastodon choisi
+    labels:
+      defaults:
+        setting_default_content_type: Format par défaut pour les posts
+        setting_default_content_type_html: HTML
+        setting_default_content_type_markdown: Markdown
+        setting_default_content_type_plain: Texte brut
+        setting_favourite_modal: Afficher une fenêtre de confirmation avant de mettre en favori un post (s'applique uniquement au mode Glitch)
+        setting_show_followers_count: Cacher votre nombre d'abonné·e·s
+        setting_skin: Thème
+        setting_system_emoji_font: Utiliser la police par défaut du système pour les émojis (s'applique uniquement au mode Glitch)
+      notification_emails:
+        trending_link: Un nouveau lien en tendances nécessite un examen
+        trending_status: Un nouveau post en tendances nécessite un examen
+        trending_tag: Un nouveau tag en tendances nécessite un examen
