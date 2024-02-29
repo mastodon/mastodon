@@ -18,7 +18,8 @@ describe Api::V1::Accounts::StatusesController do
       get :index, params: { account_id: user.account.id, limit: 1 }
 
       expect(response).to have_http_status(200)
-      expect(response.headers['Link'].links.size).to eq(2)
+      expect(links_from_header.size)
+        .to eq(2)
     end
 
     context 'with only media' do
@@ -55,10 +56,45 @@ describe Api::V1::Accounts::StatusesController do
         Fabricate(:status_pin, account: user.account, status: Fabricate(:status, account: user.account))
       end
 
-      it 'returns http success' do
+      it 'returns http success and includes a header link' do
         get :index, params: { account_id: user.account.id, pinned: true }
 
         expect(response).to have_http_status(200)
+        expect(links_from_header.size)
+          .to eq(1)
+        expect(links_from_header)
+          .to contain_exactly(
+            have_attributes(
+              href: /pinned=true/,
+              attr_pairs: contain_exactly(['rel', 'prev'])
+            )
+          )
+      end
+    end
+
+    context 'with enough pinned statuses to paginate' do
+      before do
+        stub_const 'Api::BaseController::DEFAULT_STATUSES_LIMIT', 1
+        2.times { Fabricate(:status_pin, account: user.account) }
+      end
+
+      it 'returns http success and header pagination links to prev and next' do
+        get :index, params: { account_id: user.account.id, pinned: true }
+
+        expect(response).to have_http_status(200)
+        expect(links_from_header.size)
+          .to eq(2)
+        expect(links_from_header)
+          .to contain_exactly(
+            have_attributes(
+              href: /pinned=true/,
+              attr_pairs: contain_exactly(['rel', 'next'])
+            ),
+            have_attributes(
+              href: /pinned=true/,
+              attr_pairs: contain_exactly(['rel', 'prev'])
+            )
+          )
       end
     end
 
@@ -97,5 +133,13 @@ describe Api::V1::Accounts::StatusesController do
         end
       end
     end
+  end
+
+  private
+
+  def links_from_header
+    response
+      .headers['Link']
+      .links
   end
 end

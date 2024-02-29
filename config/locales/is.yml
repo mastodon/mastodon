@@ -769,6 +769,7 @@ is:
         disabled: Til engra
         users: Til innskráðra staðværra notenda
       registrations:
+        moderation_recommandation: Tryggðu að þú hafir hæft og aðgengilegt umsjónarteymi til taks áður en þú opnar á skráningar fyrir alla!
         preamble: Stýrðu því hverjir geta útbúið notandaaðgang á netþjóninum þínum.
         title: Nýskráningar
       registrations_mode:
@@ -776,6 +777,7 @@ is:
           approved: Krafist er samþykkt nýskráningar
           none: Enginn getur nýskráð sig
           open: Allir geta nýskráð sig
+        warning_hint: Við mælum með því að nota "Krafist er samþykkt nýskráningar" nema ef þú sért viss um að umsjónarteymið þitt geti brugðist tímanlega við ruslpósti og skráningum í misjöfnum tilgangi.
       security:
         authorized_fetch: Krefjast auðkenningar frá netþjónum í skýjasambandi
         authorized_fetch_hint: Að krefjast auðkenningar frá netþjónum í skýjasambandi kallar fram strangari útfærslu á útilokunum, bæði varðandi notendur og netþjóna. Hins vegar kemur þetta niður á afköstum, minnkar útbreiðslu á svörum þínum og gæti valdið samhæfnivandamálum við sumar sambandsþjónustur. Að auki kemur þetta ekki í veg fyrir að aðilar sem ætla sér að ná í opinberar færslur og notendaaðganga frá þér geri það.
@@ -968,6 +970,9 @@ is:
       title: Webhook-vefkrækjur
       webhook: Webhook-vefkrækja
   admin_mailer:
+    auto_close_registrations:
+      body: Vegna skorts á virkni umsjónaraðila að undanförnu, hafa nýskráningar á %{instance} sjálfkrafa verið stilltar á að þarfnast samþykktar umsjónaraðila, til að koma í veg fyrir að %{instance} verði mögulega misnotað af óprúttnum aðilum. Þú getur skipt hvenær sem er aftur yfir í opnar nýskráningar.
+      subject: Nýskráningar á %{instance} hafa sjálfkrafa verið stilltar á að krefjast samþykktar
     new_appeal:
       actions:
         delete_statuses: að eyða færslum viðkomandi

@@ -823,6 +823,7 @@ cy:
         disabled: I neb
         users: I ddefnyddwyr lleol wedi'u mewngofnodi
       registrations:
+        moderation_recommandation: Gwnewch yn siŵr bod gennych chi dîm cymedroli digonol ac adweithiol cyn i chi agor cofrestriadau i bawb!
         preamble: Rheoli pwy all greu cyfrif ar eich gweinydd.
         title: Cofrestriadau
       registrations_mode:
@@ -830,6 +831,7 @@ cy:
           approved: Mae angen cymeradwyaeth i gofrestru
           none: Nid oes neb yn gallu cofrestru
           open: Gall unrhyw un cofrestru
+        warning_hint: Rydym yn argymell defnyddio “Mae angen cymeradwyaeth ar gyfer cofrestru” oni bai eich bod yn hyderus y gall eich tîm cymedroli ymdrin â chofrestriadau sbam a rhai maleisus mewn modd amserol.
       security:
         authorized_fetch: Mae angen dilysu gan weinyddion ffederal
         authorized_fetch_hint: Mae gofyn am ddilysiad gan weinyddion ffederal yn galluogi gorfodi llymach ar flociau lefel defnyddiwr a lefel gweinydd. Fodd bynnag, daw hyn ar gost perfformiad arafach, mae'n lleihau cyrhaeddiad eich atebion, a gall gyflwyno materion cydnawsedd gyda rhai gwasanaethau ffederal. Yn ogystal, ni fydd hyn yn atal actorion ymroddedig rhag estyn eich postiadau a'ch cyfrifon cyhoeddus.
@@ -1038,6 +1040,9 @@ cy:
       title: Bachau Gwe
       webhook: Bachyn Gwe
   admin_mailer:
+    auto_close_registrations:
+      body: Oherwydd diffyg gweithgarwch cymedrolwr diweddar, mae cofrestriadau ar %{instance} wedi'u newid yn awtomatig i'r angen i gael adolygiad â llaw, er mwyn atal %{instance} rhag cael ei ddefnyddio fel llwyfan ar gyfer actorion drwg posibl. Gallwch ei newid yn ôl i agor cofrestriadau ar unrhyw adeg.
+      subject: Mae cofrestriadau ar gyfer %{instance} wedi'u newid yn awtomatig i'r angen i gael cymeradwyaeth
     new_appeal:
       actions:
         delete_statuses: i ddileu eu postiadau
