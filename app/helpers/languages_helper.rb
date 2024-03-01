@@ -127,7 +127,7 @@ module LanguagesHelper
     om: ['Oromo', 'Afaan Oromoo'].freeze,
     or: ['Oriya', 'ଓଡ଼ିଆ'].freeze,
     os: ['Ossetian', 'ирон æвзаг'].freeze,
-    pa: ['Panjabi', 'ਪੰਜਾਬੀ'].freeze,
+    pa: ['Punjabi', 'ਪੰਜਾਬੀ'].freeze,
     pi: ['Pāli', 'पाऴि'].freeze,
     pl: ['Polish', 'Polski'].freeze,
     ps: ['Pashto', 'پښتو'].freeze,
