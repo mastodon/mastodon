@@ -2,9 +2,7 @@
 
 require 'rails_helper'
 
-describe Api::V1::Push::SubscriptionsController do
-  render_views
-
+describe 'API V1 Push Subscriptions' do
   let(:user) { Fabricate(:user) }
   let(:create_payload) do
     {
@@ -34,15 +32,13 @@ describe Api::V1::Push::SubscriptionsController do
       },
     }.with_indifferent_access
   end
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'push') }
+  let(:scopes) { 'push' }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  before do
-    allow(controller).to receive(:doorkeeper_token) { token }
-  end
-
-  describe 'POST #create' do
+  describe 'POST /api/v1/push/subscription' do
     before do
-      post :create, params: create_payload
+      post '/api/v1/push/subscription', params: create_payload, headers: headers
     end
 
     it 'saves push subscriptions' do
@@ -56,19 +52,23 @@ describe Api::V1::Push::SubscriptionsController do
     end
 
     it 'replaces old subscription on repeat calls' do
-      post :create, params: create_payload
+      post '/api/v1/push/subscription', params: create_payload, headers: headers
+
       expect(Web::PushSubscription.where(endpoint: create_payload[:subscription][:endpoint]).count).to eq 1
     end
 
     it 'returns the expected JSON' do
-      expect(body_as_json.with_indifferent_access).to include({ endpoint: create_payload[:subscription][:endpoint], alerts: {}, policy: 'all' })
+      expect(body_as_json.with_indifferent_access)
+        .to include(
+          { endpoint: create_payload[:subscription][:endpoint], alerts: {}, policy: 'all' }
+        )
     end
   end
 
-  describe 'PUT #update' do
+  describe 'PUT /api/v1/push/subscription' do
     before do
-      post :create, params: create_payload
-      put :update, params: alerts_payload
+      post '/api/v1/push/subscription', params: create_payload, headers: headers
+      put '/api/v1/push/subscription', params: alerts_payload, headers: headers
     end
 
     it 'changes alert settings' do
@@ -82,14 +82,17 @@ describe Api::V1::Push::SubscriptionsController do
     end
 
     it 'returns the expected JSON' do
-      expect(body_as_json.with_indifferent_access).to include({ endpoint: create_payload[:subscription][:endpoint], alerts: alerts_payload[:data][:alerts], policy: alerts_payload[:data][:policy] })
+      expect(body_as_json.with_indifferent_access)
+        .to include(
+          { endpoint: create_payload[:subscription][:endpoint], alerts: alerts_payload[:data][:alerts], policy: alerts_payload[:data][:policy] }
+        )
     end
   end
 
-  describe 'DELETE #destroy' do
+  describe 'DELETE /api/v1/push/subscription' do
     before do
-      post :create, params: create_payload
-      delete :destroy
+      post '/api/v1/push/subscription', params: create_payload, headers: headers
+      delete '/api/v1/push/subscription', headers: headers
     end
 
     it 'removes the subscription' do
