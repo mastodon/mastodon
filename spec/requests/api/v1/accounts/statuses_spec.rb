@@ -116,7 +116,7 @@ describe 'API V1 Accounts Statuses' do
 
           expect(body_as_json)
             .to contain_exactly(
-              include(id: status.id.to_s)
+              a_hash_including(id: status.id.to_s)
             )
         end
       end
@@ -131,8 +131,8 @@ describe 'API V1 Accounts Statuses' do
 
           expect(body_as_json)
             .to contain_exactly(
-              include(id: status.id.to_s),
-              include(id: private_status.id.to_s)
+              a_hash_including(id: status.id.to_s),
+              a_hash_including(id: private_status.id.to_s)
             )
         end
       end
