@@ -2,20 +2,16 @@
 
 require 'rails_helper'
 
-describe Api::V1::Accounts::StatusesController do
-  render_views
+describe 'API V1 Accounts Statuses' do
+  let(:user) { Fabricate(:user) }
+  let(:scopes) { 'read:statuses' }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  let(:user)  { Fabricate(:user) }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:statuses') }
-
-  before do
-    allow(controller).to receive(:doorkeeper_token) { token }
-  end
-
-  describe 'GET #index' do
+  describe 'GET /api/v1/accounts/:account_id/statuses' do
     it 'returns expected headers', :aggregate_failures do
       Fabricate(:status, account: user.account)
-      get :index, params: { account_id: user.account.id, limit: 1 }
+      get "/api/v1/accounts/#{user.account.id}/statuses", params: { limit: 1 }, headers: headers
 
       expect(response).to have_http_status(200)
       expect(links_from_header.size)
@@ -24,7 +20,7 @@ describe Api::V1::Accounts::StatusesController do
 
     context 'with only media' do
       it 'returns http success' do
-        get :index, params: { account_id: user.account.id, only_media: true }
+        get "/api/v1/accounts/#{user.account.id}/statuses", params: { only_media: true }, headers: headers
 
         expect(response).to have_http_status(200)
       end
@@ -36,7 +32,7 @@ describe Api::V1::Accounts::StatusesController do
 
       before do
         Fabricate(:status, account: user.account, thread: Fabricate(:status)) # Reply to another user
-        get :index, params: { account_id: user.account.id, exclude_replies: true }
+        get "/api/v1/accounts/#{user.account.id}/statuses", params: { exclude_replies: true }, headers: headers
       end
 
       it 'returns posts along with self replies', :aggregate_failures do
@@ -57,7 +53,7 @@ describe Api::V1::Accounts::StatusesController do
       end
 
       it 'returns http success and includes a header link' do
-        get :index, params: { account_id: user.account.id, pinned: true }
+        get "/api/v1/accounts/#{user.account.id}/statuses", params: { pinned: true }, headers: headers
 
         expect(response).to have_http_status(200)
         expect(links_from_header.size)
@@ -79,7 +75,7 @@ describe Api::V1::Accounts::StatusesController do
       end
 
       it 'returns http success and header pagination links to prev and next' do
-        get :index, params: { account_id: user.account.id, pinned: true }
+        get "/api/v1/accounts/#{user.account.id}/statuses", params: { pinned: true }, headers: headers
 
         expect(response).to have_http_status(200)
         expect(links_from_header.size)
@@ -109,15 +105,19 @@ describe Api::V1::Accounts::StatusesController do
       end
 
       it 'returns http success' do
-        get :index, params: { account_id: account.id, pinned: true }
+        get "/api/v1/accounts/#{account.id}/statuses", params: { pinned: true }, headers: headers
+
         expect(response).to have_http_status(200)
       end
 
       context 'when user does not follow account' do
         it 'lists the public status only' do
-          get :index, params: { account_id: account.id, pinned: true }
-          json = body_as_json
-          expect(json.map { |item| item[:id].to_i }).to eq [status.id]
+          get "/api/v1/accounts/#{account.id}/statuses", params: { pinned: true }, headers: headers
+
+          expect(body_as_json)
+            .to contain_exactly(
+              a_hash_including(id: status.id.to_s)
+            )
         end
       end
 
@@ -127,9 +127,13 @@ describe Api::V1::Accounts::StatusesController do
         end
 
         it 'lists both the public and the private statuses' do
-          get :index, params: { account_id: account.id, pinned: true }
-          json = body_as_json
-          expect(json.map { |item| item[:id].to_i }).to contain_exactly(status.id, private_status.id)
+          get "/api/v1/accounts/#{account.id}/statuses", params: { pinned: true }, headers: headers
+
+          expect(body_as_json)
+            .to contain_exactly(
+              a_hash_including(id: status.id.to_s),
+              a_hash_including(id: private_status.id.to_s)
+            )
         end
       end
     end

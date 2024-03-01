@@ -2,27 +2,26 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::AnnouncementsController do
-  render_views
-
-  let(:user)   { Fabricate(:user) }
-  let(:scopes) { 'read' }
-  let(:token)  { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+RSpec.describe 'API V1 Announcements' do
+  let(:user)    { Fabricate(:user) }
+  let(:scopes)  { 'read' }
+  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   let!(:announcement) { Fabricate(:announcement) }
 
-  describe 'GET #index' do
+  describe 'GET /api/v1/announcements' do
     context 'without token' do
       it 'returns http unprocessable entity' do
-        get :index
+        get '/api/v1/announcements'
+
         expect(response).to have_http_status 422
       end
     end
 
     context 'with token' do
       before do
-        allow(controller).to receive(:doorkeeper_token) { token }
-        get :index
+        get '/api/v1/announcements', headers: headers
       end
 
       it 'returns http success' do
@@ -31,10 +30,11 @@ RSpec.describe Api::V1::AnnouncementsController do
     end
   end
 
-  describe 'POST #dismiss' do
+  describe 'POST /api/v1/announcements/:id/dismiss' do
     context 'without token' do
       it 'returns http unauthorized' do
-        post :dismiss, params: { id: announcement.id }
+        post "/api/v1/announcements/#{announcement.id}/dismiss"
+
         expect(response).to have_http_status 401
       end
     end
@@ -43,8 +43,7 @@ RSpec.describe Api::V1::AnnouncementsController do
       let(:scopes) { 'write:accounts' }
 
       before do
-        allow(controller).to receive(:doorkeeper_token) { token }
-        post :dismiss, params: { id: announcement.id }
+        post "/api/v1/announcements/#{announcement.id}/dismiss", headers: headers
       end
 
       it 'dismisses announcement', :aggregate_failures do
