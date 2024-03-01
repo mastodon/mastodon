@@ -27,7 +27,7 @@ RSpec.describe SignatureParser do
       let(:header) { 'hello this is malformed!' }
 
       it 'raises an error' do
-        expect { subject }.to raise_error(SignatureParser::ParsingError)
+        expect { subject }.to raise_error(described_class::ParsingError)
       end
     end
   end
