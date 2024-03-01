@@ -31,7 +31,7 @@ nn:
       created_msg: Moderatormerknad er laga!
       destroyed_msg: Moderatormerknad er utsletta!
     accounts:
-      add_email_domain_block: Gøym e-postdomene
+      add_email_domain_block: Blokker e-postdomene
       approve: Godtak
       approved_msg: Godkjende %{username} sin registreringssøknad
       are_you_sure: Er du sikker?
@@ -767,13 +767,15 @@ nn:
         disabled: Til ingen
         users: Til lokale brukarar som er logga inn
       registrations:
+        moderation_recommandation: Pass på at du har mange og kjappe redaktørar og moderatorar på laget ditt før du opnar for allmenn registrering!
         preamble: Kontroller kven som kan oppretta konto på tenaren din.
         title: Registreringar
       registrations_mode:
         modes:
-          approved: Godkjenning kreves for påmelding
+          approved: Godkjenning krevst for å registrera seg
           none: Ingen kan melda seg inn
           open: Kven som helst kan melda seg inn
+        warning_hint: Me rår til at du bruker "Godkjenning krevst for å registrera seg" viss du ikkje er sikker på at moderatorane kan handtera søppel og illmeinte registreringar kvikt.
       security:
         authorized_fetch: Krev autentisering frå fødererte tenarar
         authorized_fetch_hint: Krav om autentisering frå fødererte tenarar gjer det mogleg med strengare handheving av blokkering, både på brukar- og tenar-nivå. Likevel, dette har ein kostnad når det gjeld yting, reduserer rekkevidda til svara dine og kan medføra kompabilitetsproblem med enkelte fødererte tenester. Dette vil heller ikkje hindra dei som verkeleg vil i å henta dei offentlege innlegga eller kontoane dine.
@@ -1450,7 +1452,7 @@ nn:
   moderation:
     title: Moderasjon
   move_handler:
-    carry_blocks_over_text: Denne brukaren flytta frå %{acct}, som du gøymde.
+    carry_blocks_over_text: Denne brukaren flytta frå %{acct}, som du hadde blokkert.
     carry_mutes_over_text: Denne brukeren flyttet fra %{acct}, som du hadde dempet.
     copy_account_note_text: 'Denne brukeren flyttet fra %{acct}, her var dine tidligere notater om dem:'
   navigation:
@@ -1537,7 +1539,7 @@ nn:
   privacy:
     hint_html: "<strong>Tilpass korleis du vil at andre skal finna profilen og innlegga dine.</strong> Mastodon har fleire funksjonar du kan ta i bruk for å få kontakt med eit større publikum. Sjå gjerne gjennom innstillingane slik at du er sikker på at dei passar til deg og din bruk."
     privacy: Personvern
-    privacy_hint_html: Ha kontroll over kor mykje du vil dela. Folk finn interessante profilar og fine appar ved å sjå gjennom kva andre fylgjer og kva appar dei legg ut innlegg med, men det kan henda du vil gøyma desse opplysingane.
+    privacy_hint_html: Kontroller kor mykje du vil dela. Folk finn interessante profilar og fine appar ved å sjå gjennom kva andre fylgjer og kva appar dei legg ut innlegg med, men det kan henda du vil gøyma desse opplysingane.
     reach: Nå andre
     reach_hint_html: Hald styring med om du vil at andre skal kunna oppdaga og fylgja deg. Vil du at innlegga dine skal stå på Utforsk-sida? Vil du at andre skal sjå deg i tilrådingane for kven dei skal fylgja? Vil du ta imot nye fylgjarar automatisk, eller vil du kontrollera kvar einskild fylgjar?
     search: Søk
@@ -1550,8 +1552,8 @@ nn:
       limit_reached: Grensen for forskjellige reaksjoner nådd
       unrecognized_emoji: er ikke en gjenkjent emoji
   redirects:
-    prompt: Hvis du stoler på denne lenken, så trykk på den for å fortsette.
-    title: Du forlater %{instance}.
+    prompt: Viss du stolar på denne lenka, klikkar du på ho for å halda fram.
+    title: No forlèt du %{instance}.
   relationships:
     activity: Kontoaktivitet
     confirm_follow_selected_followers: Er du sikker på at du ynskjer å fylgja dei valde fylgjarane?
@@ -1781,7 +1783,7 @@ nn:
     webauthn: Sikkerhetsnøkler
   user_mailer:
     appeal_approved:
-      action: Kontoinnstillinger
+      action: Kontoinnstillingar
       explanation: Apellen på prikken mot din kontor på %{strike_date} som du la inn på %{appeal_date} har blitt godkjend. Din konto er nok ein gong i god stand.
       subject: Din klage fra %{date} er godkjent
       subtitle: Kontoen din er tilbake i god stand.
@@ -1789,11 +1791,11 @@ nn:
     appeal_rejected:
       explanation: Klagen på advarselen mot din konto den %{strike_date} som du sendte inn den %{appeal_date} har blitt avvist.
       subject: Din klage fra %{date} er avvist
-      subtitle: Anken din har blitt avvist.
+      subtitle: Klaga di vart avvist.
       title: Anke avvist
     backup_ready:
-      explanation: Du etterspurte en fullstendig sikkerhetskopi av din Mastodon-konto.
-      extra: Den er nå klar for nedlasting!
+      explanation: Du ba om ein fullstendig tryggingskopi av Mastodon-kontoen din.
+      extra: No kan du lasta han ned!
       subject: Arkivet ditt er klart til å lastes ned
       title: Nedlasting av arkiv
     failed_2fa:

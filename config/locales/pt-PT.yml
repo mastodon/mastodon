@@ -767,6 +767,7 @@ pt-PT:
         disabled: Para ninguém
         users: Para utilizadores locais que se encontrem autenticados
       registrations:
+        moderation_recommandation: Por favor, certifique-se de que você tem uma equipe de moderação adequada e reativa antes de abrir os registros para todos!
         preamble: Controle quem pode criar uma conta no seu servidor.
         title: Inscrições
       registrations_mode:
@@ -774,6 +775,7 @@ pt-PT:
           approved: Registo sujeito a aprovação
           none: Ninguém se pode registar
           open: Qualquer pessoa se pode registar
+        warning_hint: Recomendamos o uso de "Aprovação necessária para se cadastrar", a menos que você esteja confiante de que sua equipe de moderação pode lidar com spam e registros maliciosos em tempo hábil.
       security:
         authorized_fetch: Exigir autenticação de servidores federados
         authorized_fetch_hint: Exigir autenticação de servidores federados permite uma aplicação mais rigorosa de bloqueios tanto ao nível do utilizador como do servidor. No entanto, isso é feito à custa de uma diminuição de desempenho, reduz o alcance das suas respostas e pode introduzir problemas de compatibilidade com alguns serviços federados. Além disso, isso não impede os atores mais empenhados de aceder às suas publicações e contas públicas.
@@ -966,6 +968,9 @@ pt-PT:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Devido à falta de atividade recente dos moderadores, as inscrições em %{instance} foram automaticamente alteradas para requererem revisão manual, para evitar que %{instance} seja utilizada como plataforma para potenciais maus atores. Pode voltar a alterar para inscrições abertas em qualquer altura.
+      subject: As incrições em %{instance} foram automaticamente alteradas para requererem aprovação
     new_appeal:
       actions:
         delete_statuses: para eliminar as suas publicações

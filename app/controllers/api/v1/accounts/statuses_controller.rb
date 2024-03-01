@@ -4,7 +4,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }
   before_action :set_account
 
-  after_action :insert_pagination_headers, unless: -> { truthy_param?(:pinned) }
+  after_action :insert_pagination_headers
 
   def index
     cache_if_unauthenticated!

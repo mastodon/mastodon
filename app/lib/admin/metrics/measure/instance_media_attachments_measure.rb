@@ -50,7 +50,7 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
           WHERE date_trunc('day', media_attachments.created_at)::date = axis.period
             AND #{account_domain_sql(params[:include_subdomains])}
         )
-        SELECT SUM(size) FROM new_media_attachments
+        SELECT COALESCE(SUM(size), 0) FROM new_media_attachments
       ) AS value
       FROM (
         SELECT generate_series(date_trunc('day', :start_at::timestamp)::date, date_trunc('day', :end_at::timestamp)::date, interval '1 day') AS period
