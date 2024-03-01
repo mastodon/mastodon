@@ -150,7 +150,7 @@ Rails.delegate(
   },
 );
 
-const onDomainBlockSeverityChange = (target: HTMLInputElement) => {
+const onDomainBlockSeverityChange = (target: HTMLSelectElement) => {
   const rejectMediaDiv = document.querySelector(
     '.input.with_label.domain_block_reject_media',
   );
@@ -170,7 +170,7 @@ const onDomainBlockSeverityChange = (target: HTMLInputElement) => {
 };
 
 Rails.delegate(document, '#domain_block_severity', 'change', ({ target }) => {
-  if (target instanceof HTMLInputElement) onDomainBlockSeverityChange(target);
+  if (target instanceof HTMLSelectElement) onDomainBlockSeverityChange(target);
 });
 
 const onEnableBootstrapTimelineAccountsChange = (target: HTMLInputElement) => {
@@ -207,7 +207,7 @@ Rails.delegate(
   },
 );
 
-const onChangeRegistrationMode = (target: HTMLInputElement) => {
+const onChangeRegistrationMode = (target: HTMLSelectElement) => {
   const enabled = target.value === 'approved';
 
   document
@@ -257,16 +257,16 @@ Rails.delegate(
   '#form_admin_settings_registrations_mode',
   'change',
   ({ target }) => {
-    if (target instanceof HTMLInputElement) onChangeRegistrationMode(target);
+    if (target instanceof HTMLSelectElement) onChangeRegistrationMode(target);
   },
 );
 
 ready(() => {
-  const domainBlockSeverityInput = document.querySelector<HTMLInputElement>(
-    'input#domain_block_severity',
+  const domainBlockSeveritySelect = document.querySelector<HTMLSelectElement>(
+    'select#domain_block_severity',
   );
-  if (domainBlockSeverityInput)
-    onDomainBlockSeverityChange(domainBlockSeverityInput);
+  if (domainBlockSeveritySelect)
+    onDomainBlockSeverityChange(domainBlockSeveritySelect);
 
   const enableBootstrapTimelineAccounts =
     document.querySelector<HTMLInputElement>(
@@ -275,8 +275,8 @@ ready(() => {
   if (enableBootstrapTimelineAccounts)
     onEnableBootstrapTimelineAccountsChange(enableBootstrapTimelineAccounts);
 
-  const registrationMode = document.querySelector<HTMLInputElement>(
-    'input#form_admin_settings_registrations_mode',
+  const registrationMode = document.querySelector<HTMLSelectElement>(
+    'select#form_admin_settings_registrations_mode',
   );
   if (registrationMode) onChangeRegistrationMode(registrationMode);
 
