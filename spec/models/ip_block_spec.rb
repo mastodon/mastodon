@@ -3,16 +3,6 @@
 require 'rails_helper'
 
 describe IpBlock do
-  shared_context 'with cache setup' do
-    let(:memory_store) { ActiveSupport::Cache.lookup_store(:memory_store) }
-    let(:cache) { Rails.cache }
-
-    before do
-      allow(Rails).to receive(:cache).and_return(memory_store)
-      Rails.cache.clear
-    end
-  end
-
   describe 'validations' do
     it 'validates ip presence', :aggregate_failures do
       ip_block = described_class.new(ip: nil, severity: :no_access)
@@ -49,8 +39,6 @@ describe IpBlock do
   end
 
   describe '.blocked?' do
-    include_context 'with cache setup'
-
     context 'when the IP is blocked' do
       it 'returns true' do
         described_class.create!(ip: '127.0.0.1', severity: :no_access)
@@ -67,14 +55,12 @@ describe IpBlock do
   end
 
   describe 'after_commit' do
-    include_context 'with cache setup'
-
     it 'resets the cache' do
-      allow(cache).to receive(:delete)
+      allow(Rails.cache).to receive(:delete)
 
       described_class.create!(ip: '127.0.0.1', severity: :no_access)
 
-      expect(cache).to have_received(:delete).with(described_class::CACHE_KEY)
+      expect(Rails.cache).to have_received(:delete).with(described_class::CACHE_KEY)
     end
   end
 end
