@@ -95,7 +95,7 @@ To set up **MacOS** for native development, complete the following steps:
 - Navigate to Mastodon's root directory and run `brew install nvm` then `nvm use` to use the version from `.nvmrc`
 - Run `corepack enable && corepack prepare`
 - Run `bundle exec rails db:setup` (optionally prepend `RAILS_ENV=development` to target the dev environment)
-- Finally, run `bin/dev` which will launch the development server.
+- Finally, run `bin/dev` which will launch the local services via `overmind` (if installed) or `foreman`.
 
 ### Docker
 
