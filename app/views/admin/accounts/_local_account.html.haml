@@ -62,7 +62,7 @@
   %td
     %time.formatted{ datetime: account.created_at.iso8601, title: l(account.created_at) }= l account.created_at
   %td
-- recent_ips = account.user.ips.order(used_at: :desc).to_a
+- recent_ips = account.user.ips.by_latest_used.to_a
 - recent_ips.each_with_index do |recent_ip, i|
   %tr
     - if i.zero?
