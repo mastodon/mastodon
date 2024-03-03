@@ -14,6 +14,8 @@
 #
 
 class StatusTrend < ApplicationRecord
+  include RankedTrend
+
   belongs_to :status
   belongs_to :account
 

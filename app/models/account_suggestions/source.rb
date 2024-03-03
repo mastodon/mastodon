@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AccountSuggestions::Source
+  DEFAULT_LIMIT = 10
+
   def get(_account, **kwargs)
     raise NotImplementedError
   end

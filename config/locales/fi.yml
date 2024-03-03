@@ -767,6 +767,7 @@ fi:
         disabled: Ei kenellekkään
         users: Kirjautuneille paikallisille käyttäjille
       registrations:
+        moderation_recommandation: Varmista, että sinulla on riittävä ja toimintavalmis joukko moderaattoreita ennen kuin avaat rekisteröitymiset kaikille!
         preamble: Määritä, kuka voi luoda tilin palvelimellesi.
         title: Rekisteröityminen
       registrations_mode:
@@ -774,6 +775,7 @@ fi:
           approved: Rekisteröinti vaatii hyväksynnän
           none: Kukaan ei voi rekisteröityä
           open: Kaikki voivat rekisteröityä
+        warning_hint: Suosittelemme käyttämään asetusta “Rekisteröinti vaatii hyväksynnän” ellet ole varma siitä, että moderaattorit ovat valmiina käsittelemään roskapostia ja haittarekisteröitymisiä oikea-aikaisesti.
       security:
         authorized_fetch: Vaadi todennus liittoutuvilta palvelimilta
         authorized_fetch_hint: Todennuksen vaatiminen liittoutuvilta palvelimilta mahdollistaa sekä käyttäjä- että palvelintason estojen tiukemman valvonnan. Tämä tapahtuu kuitenkin suorituskyvyn kustannuksella, vähentää vastauksiesi tavoittavuutta ja voi aiheuttaa yhteensopivuusongelmia joidenkin liittoutuvien palvelujen kanssa. Tämä ei myöskään estä omistautuneita toimijoita hakemasta julkisia julkaisujasi ja tilejäsi.
@@ -966,6 +968,9 @@ fi:
       title: Webhookit
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Viimeaikaisen moderaattoritoiminnan puutteen vuoksi %{instance} rekisteröinnit on vaihdettu automaattisesti manuaaliseen tarkasteluun, jotta %{instance} ei käytetä mahdollisien huonojen toimijoiden alustana. Voit vaihtaa sen takaisin avaamalla rekisteröinnit milloin tahansa.
+      subject: Rekisteröinnit %{instance} on automaattisesti vaihdettu vaatimaan hyväksyntää
     new_appeal:
       actions:
         delete_statuses: poistaa hänen julkaisunsa
@@ -1841,10 +1846,6 @@ fi:
       edit_profile_action: Määritä profiili
       edit_profile_step: Voit mukauttaa profiiliasi muun muassa profiilikuvalla ja uudella näyttönimellä. Voit myös valita, haluatko tarkastaa ja hyväksyä uudet seuraajat itse.
       explanation: Näillä vinkeillä pääset alkuun
-      final_action: Ala julkaista
-      final_step: 'Ala julkaista! Vaikkei sinulla olisi seuraajia, voivat muut nähdä julkisia julkaisujasi esimerkiksi paikallisella aikajanalla tai aihetunnisteissa. Kannattaa myös esitellä itsensä aihetunnisteella #esittely.'
-      full_handle: Koko käyttäjätunnuksesi
-      full_handle_hint: Kerro tämä kavereillesi, niin he voivat lähettää sinulle viestejä tai seurata sinua toiselta palvelimelta.
       subject: Tervetuloa Mastodoniin
       title: Tervetuloa mukaan, %{name}!
   users:
