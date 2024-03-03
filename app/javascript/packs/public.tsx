@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './public-path';
 
 import { IntlMessageFormat } from 'intl-messageformat';
+import type { MessageDescriptor, PrimitiveType } from 'react-intl';
 import { defineMessages } from 'react-intl';
 
 import Rails from '@rails/ujs';
@@ -36,12 +37,28 @@ const messages = defineMessages({
   },
 });
 
-window.addEventListener('message', (e) => {
-  const data = e.data || {};
+interface SetHeightMessage {
+  type: 'setHeight';
+  id: string;
+  height: number;
+}
 
-  if (!window.parent || data.type !== 'setHeight') {
-    return;
-  }
+function isSetHeightMessage(data: unknown): data is SetHeightMessage {
+  if (
+    data &&
+    typeof data === 'object' &&
+    'type' in data &&
+    data.type === 'setHeight'
+  )
+    return true;
+  else return false;
+}
+
+window.addEventListener('message', (e) => {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- typings are not correct, it can be null in very rare cases
+  if (!e.data || !isSetHeightMessage(e.data) || !window.parent) return;
+
+  const data = e.data;
 
   ready(() => {
     window.parent.postMessage(
@@ -52,6 +69,8 @@ window.addEventListener('message', (e) => {
       },
       '*',
     );
+  }).catch((e) => {
+    console.error('Error in setHeightMessage postMessage', e);
   });
 });
 
@@ -72,34 +91,41 @@ function loaded() {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
-    timeFormat: false,
   });
 
   const timeFormat = new Intl.DateTimeFormat(locale, {
     timeStyle: 'short',
   });
 
-  const formatMessage = ({ id, defaultMessage }, values) => {
-    const messageFormat = new IntlMessageFormat(
-      localeData[id] || defaultMessage,
-      locale,
-    );
-    return messageFormat.format(values);
+  const formatMessage = (
+    { id, defaultMessage }: MessageDescriptor,
+    values?: Record<string, PrimitiveType>,
+  ) => {
+    let message: string | undefined = undefined;
+
+    if (id) message = localeData[id];
+
+    if (!message) message = defaultMessage as string;
+
+    const messageFormat = new IntlMessageFormat(message, locale);
+    return messageFormat.format(values) as string;
   };
 
   document.querySelectorAll('.emojify').forEach((content) => {
     content.innerHTML = emojify(content.innerHTML);
   });
 
-  document.querySelectorAll('time.formatted').forEach((content) => {
-    const datetime = new Date(content.getAttribute('datetime'));
-    const formattedDate = dateTimeFormat.format(datetime);
+  document
+    .querySelectorAll<HTMLTimeElement>('time.formatted')
+    .forEach((content) => {
+      const datetime = new Date(content.dateTime);
+      const formattedDate = dateTimeFormat.format(datetime);
 
-    content.title = formattedDate;
-    content.textContent = formattedDate;
-  });
+      content.title = formattedDate;
+      content.textContent = formattedDate;
+    });
 
-  const isToday = (date) => {
+  const isToday = (date: Date) => {
     const today = new Date();
 
     return (
@@ -113,43 +139,49 @@ function loaded() {
     locale,
   );
 
-  document.querySelectorAll('time.relative-formatted').forEach((content) => {
-    const datetime = new Date(content.getAttribute('datetime'));
+  document
+    .querySelectorAll<HTMLTimeElement>('time.relative-formatted')
+    .forEach((content) => {
+      const datetime = new Date(content.dateTime);
 
-    let formattedContent;
+      let formattedContent: string;
 
-    if (isToday(datetime)) {
-      const formattedTime = timeFormat.format(datetime);
+      if (isToday(datetime)) {
+        const formattedTime = timeFormat.format(datetime);
 
-      formattedContent = todayFormat.format({ time: formattedTime });
-    } else {
-      formattedContent = dateFormat.format(datetime);
-    }
+        formattedContent = todayFormat.format({
+          time: formattedTime,
+        }) as string;
+      } else {
+        formattedContent = dateFormat.format(datetime);
+      }
 
-    content.title = formattedContent;
-    content.textContent = formattedContent;
-  });
+      content.title = formattedContent;
+      content.textContent = formattedContent;
+    });
 
-  document.querySelectorAll('time.time-ago').forEach((content) => {
-    const datetime = new Date(content.getAttribute('datetime'));
-    const now = new Date();
+  document
+    .querySelectorAll<HTMLTimeElement>('time.time-ago')
+    .forEach((content) => {
+      const datetime = new Date(content.dateTime);
+      const now = new Date();
 
-    const timeGiven = content.getAttribute('datetime').includes('T');
-    content.title = timeGiven
-      ? dateTimeFormat.format(datetime)
-      : dateFormat.format(datetime);
-    content.textContent = timeAgoString(
-      {
-        formatMessage,
-        formatDate: (date, options) =>
-          new Intl.DateTimeFormat(locale, options).format(date),
-      },
-      datetime,
-      now,
-      now.getFullYear(),
-      timeGiven,
-    );
-  });
+      const timeGiven = content.dateTime.includes('T');
+      content.title = timeGiven
+        ? dateTimeFormat.format(datetime)
+        : dateFormat.format(datetime);
+      content.textContent = timeAgoString(
+        {
+          formatMessage,
+          formatDate: (date: Date, options) =>
+            new Intl.DateTimeFormat(locale, options).format(date),
+        },
+        datetime,
+        now.getTime(),
+        now.getFullYear(),
+        timeGiven,
+      );
+    });
 
   const reactComponents = document.querySelectorAll('[data-component]');
 
@@ -171,6 +203,8 @@ function loaded() {
           <MediaContainer locale={locale} components={reactComponents} />,
         );
         document.body.appendChild(content);
+
+        return true;
       })
       .catch((error) => {
         console.error(error);
@@ -179,15 +213,18 @@ function loaded() {
 
   Rails.delegate(
     document,
-    '#user_account_attributes_username',
+    'input#user_account_attributes_username',
     'input',
     throttle(
       ({ target }) => {
+        if (!(target instanceof HTMLInputElement)) return;
+
         if (target.value && target.value.length > 0) {
           axios
             .get('/api/v1/accounts/lookup', { params: { acct: target.value } })
             .then(() => {
               target.setCustomValidity(formatMessage(messages.usernameTaken));
+              return true;
             })
             .catch(() => {
               target.setCustomValidity('');
@@ -206,11 +243,13 @@ function loaded() {
     '#user_password,#user_password_confirmation',
     'input',
     () => {
-      const password = document.getElementById('user_password');
-      const confirmation = document.getElementById(
-        'user_password_confirmation',
+      const password = document.querySelector<HTMLInputElement>(
+        'input#user_password',
       );
-      if (!confirmation) return;
+      const confirmation = document.querySelector<HTMLInputElement>(
+        'input#user_password_confirmation',
+      );
+      if (!confirmation || !password) return;
 
       if (
         confirmation.value &&
@@ -231,38 +270,58 @@ function loaded() {
 
   Rails.delegate(
     document,
-    '.status__content__spoiler-link',
+    'button.status__content__spoiler-link',
     'click',
     function () {
-      const statusEl = this.parentNode.parentNode;
+      if (!(this instanceof HTMLButtonElement)) return;
+
+      const statusEl = this.parentNode?.parentNode;
+
+      if (
+        !(
+          statusEl instanceof HTMLDivElement &&
+          statusEl.classList.contains('.status__content')
+        )
+      )
+        return;
 
       if (statusEl.dataset.spoiler === 'expanded') {
         statusEl.dataset.spoiler = 'folded';
         this.textContent = new IntlMessageFormat(
           localeData['status.show_more'] || 'Show more',
           locale,
-        ).format();
+        ).format() as string;
       } else {
         statusEl.dataset.spoiler = 'expanded';
         this.textContent = new IntlMessageFormat(
           localeData['status.show_less'] || 'Show less',
           locale,
-        ).format();
+        ).format() as string;
       }
-
-      return false;
     },
   );
 
   document
-    .querySelectorAll('.status__content__spoiler-link')
+    .querySelectorAll<HTMLButtonElement>('button.status__content__spoiler-link')
     .forEach((spoilerLink) => {
-      const statusEl = spoilerLink.parentNode.parentNode;
+      const statusEl = spoilerLink.parentNode?.parentNode;
+
+      if (
+        !(
+          statusEl instanceof HTMLDivElement &&
+          statusEl.classList.contains('.status__content')
+        )
+      )
+        return;
+
       const message =
         statusEl.dataset.spoiler === 'expanded'
           ? localeData['status.show_less'] || 'Show less'
           : localeData['status.show_more'] || 'Show more';
-      spoilerLink.textContent = new IntlMessageFormat(message, locale).format();
+      spoilerLink.textContent = new IntlMessageFormat(
+        message,
+        locale,
+      ).format() as string;
     });
 }
 
@@ -271,26 +330,43 @@ Rails.delegate(
   '#edit_profile input[type=file]',
   'change',
   ({ target }) => {
-    const avatar = document.getElementById(target.id + '-preview');
-    const [file] = target.files || [];
+    if (!(target instanceof HTMLInputElement)) return;
+
+    const avatar = document.querySelector<HTMLImageElement>(
+      `img#${target.id}-preview`,
+    );
+
+    if (!avatar) return;
+
+    let file: File | undefined;
+    if (target.files) file = target.files[0];
+
     const url = file ? URL.createObjectURL(file) : avatar.dataset.originalSrc;
 
-    avatar.src = url;
+    if (url) avatar.src = url;
   },
 );
 
 Rails.delegate(document, '.input-copy input', 'click', ({ target }) => {
+  if (!(target instanceof HTMLInputElement)) return;
+
   target.focus();
   target.select();
   target.setSelectionRange(0, target.value.length);
 });
 
 Rails.delegate(document, '.input-copy button', 'click', ({ target }) => {
-  const input = target.parentNode.querySelector('.input-copy__wrapper input');
+  if (!(target instanceof HTMLButtonElement)) return;
 
-  const oldReadOnly = input.readonly;
+  const input = target.parentNode?.querySelector<HTMLInputElement>(
+    '.input-copy__wrapper input',
+  );
 
-  input.readonly = false;
+  if (!input) return;
+
+  const oldReadOnly = input.readOnly;
+
+  input.readOnly = false;
   input.focus();
   input.select();
   input.setSelectionRange(0, input.value.length);
@@ -298,25 +374,33 @@ Rails.delegate(document, '.input-copy button', 'click', ({ target }) => {
   try {
     if (document.execCommand('copy')) {
       input.blur();
-      target.parentNode.classList.add('copied');
+
+      const parent = target.parentElement;
+
+      if (!parent) return;
+      parent.classList.add('copied');
 
       setTimeout(() => {
-        target.parentNode.classList.remove('copied');
+        parent.classList.remove('copied');
       }, 700);
     }
   } catch (err) {
     console.error(err);
   }
 
-  input.readonly = oldReadOnly;
+  input.readOnly = oldReadOnly;
 });
 
 const toggleSidebar = () => {
-  const sidebar = document.querySelector('.sidebar ul');
-  const toggleButton = document.querySelector('.sidebar__toggle__icon');
+  const sidebar = document.querySelector<HTMLUListElement>('.sidebar ul');
+  const toggleButton = document.querySelector<HTMLAnchorElement>(
+    'a.sidebar__toggle__icon',
+  );
+
+  if (!sidebar || !toggleButton) return;
 
   if (sidebar.classList.contains('visible')) {
-    document.body.style.overflow = null;
+    document.body.style.overflow = '';
     toggleButton.setAttribute('aria-expanded', 'false');
   } else {
     document.body.style.overflow = 'hidden';
@@ -338,18 +422,14 @@ Rails.delegate(document, '.sidebar__toggle__icon', 'keydown', (e) => {
   }
 });
 
-Rails.delegate(
-  document,
-  '.custom-emoji',
-  'mouseover',
-  ({ target }) => (target.src = target.getAttribute('data-original')),
-);
-Rails.delegate(
-  document,
-  '.custom-emoji',
-  'mouseout',
-  ({ target }) => (target.src = target.getAttribute('data-static')),
-);
+Rails.delegate(document, 'img.custom-emoji', 'mouseover', ({ target }) => {
+  if (target instanceof HTMLImageElement && target.dataset.original)
+    target.src = target.dataset.original;
+});
+Rails.delegate(document, 'img.custom-emoji', 'mouseout', ({ target }) => {
+  if (target instanceof HTMLImageElement && target.dataset.static)
+    target.src = target.dataset.static;
+});
 
 // Empty the honeypot fields in JS in case something like an extension
 // automatically filled them.
@@ -360,7 +440,7 @@ Rails.delegate(document, '#registration_new_user,#new_user', 'submit', () => {
     'registration_user_website',
     'registration_user_confirm_password',
   ].forEach((id) => {
-    const field = document.getElementById(id);
+    const field = document.querySelector<HTMLInputElement>(`input#${id}`);
     if (field) {
       field.value = '';
     }
@@ -368,7 +448,9 @@ Rails.delegate(document, '#registration_new_user,#new_user', 'submit', () => {
 });
 
 function main() {
-  ready(loaded);
+  ready(loaded).catch((error) => {
+    console.error(error);
+  });
 }
 
 loadPolyfills()
