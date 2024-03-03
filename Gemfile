@@ -72,7 +72,7 @@ gem 'public_suffix', '~> 5.0'
 gem 'pundit', '~> 2.3'
 gem 'premailer-rails'
 gem 'rack-attack', '~> 6.6'
-gem 'rack-cors', '~> 2.0', require: 'rack/cors'
+gem 'rack-cors', '2.0', require: 'rack/cors' # TODO: Remove version lock when resolved: https://github.com/cyu/rack-cors/issues/274
 gem 'rails-i18n', '~> 7.0'
 gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
