@@ -2,27 +2,26 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Announcements::ReactionsController do
-  render_views
-
+RSpec.describe 'API V1 Announcements Reactions' do
   let(:user)   { Fabricate(:user) }
   let(:scopes) { 'write:favourites' }
   let(:token)  { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   let!(:announcement) { Fabricate(:announcement) }
 
-  describe 'PUT #update' do
+  describe 'PUT /api/v1/announcements/:announcement_id/reactions/:id' do
     context 'without token' do
       it 'returns http unauthorized' do
-        put :update, params: { announcement_id: announcement.id, id: '😂' }
+        put "/api/v1/announcements/#{announcement.id}/reactions/#{escaped_emoji}"
+
         expect(response).to have_http_status 401
       end
     end
 
     context 'with token' do
       before do
-        allow(controller).to receive(:doorkeeper_token) { token }
-        put :update, params: { announcement_id: announcement.id, id: '😂' }
+        put "/api/v1/announcements/#{announcement.id}/reactions/#{escaped_emoji}", headers: headers
       end
 
       it 'creates reaction', :aggregate_failures do
@@ -32,22 +31,21 @@ RSpec.describe Api::V1::Announcements::ReactionsController do
     end
   end
 
-  describe 'DELETE #destroy' do
+  describe 'DELETE /api/v1/announcements/:announcement_id/reactions/:id' do
     before do
       announcement.announcement_reactions.create!(account: user.account, name: '😂')
     end
 
     context 'without token' do
       it 'returns http unauthorized' do
-        delete :destroy, params: { announcement_id: announcement.id, id: '😂' }
+        delete "/api/v1/announcements/#{announcement.id}/reactions/#{escaped_emoji}"
         expect(response).to have_http_status 401
       end
     end
 
     context 'with token' do
       before do
-        allow(controller).to receive(:doorkeeper_token) { token }
-        delete :destroy, params: { announcement_id: announcement.id, id: '😂' }
+        delete "/api/v1/announcements/#{announcement.id}/reactions/#{escaped_emoji}", headers: headers
       end
 
       it 'creates reaction', :aggregate_failures do
@@ -55,5 +53,9 @@ RSpec.describe Api::V1::Announcements::ReactionsController do
         expect(announcement.announcement_reactions.find_by(name: '😂', account: user.account)).to be_nil
       end
     end
+  end
+
+  def escaped_emoji
+    CGI.escape('😂')
   end
 end
