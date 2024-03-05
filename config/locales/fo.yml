@@ -767,6 +767,7 @@ fo:
         disabled: Til ongan
         users: Fyri lokalum brúkarum, sum eru ritaðir inn
       registrations:
+        moderation_recommandation: Vinarliga tryggja tær, at tú hevur eitt nøktandi og klárt umsjónartoymi, áðreen tú letur upp fyri skrásetingum frá øllum!
         preamble: Stýr, hvør kann stovna eina kontu á tínum ambætara.
         title: Skrásetingar
       registrations_mode:
@@ -774,6 +775,7 @@ fo:
           approved: Góðkenning kravd fyri tilmelding
           none: Eingin kann tilmelda seg
           open: Øll kunnu tilmelda seg
+        warning_hint: Vit mæla til at brúka "Góðkenning kravd fyri tilmelding" uttan so at tú er fullvís/ur í, at umsjónartoymið hjá tær kann handfara ruskpost og óndsinnaðar skrásetingar so hvørt.
       security:
         authorized_fetch: Krev samgildi frá sameindum ambætarum
         authorized_fetch_hint: At krevja samgildi frá sameindum ambætarum ger strangari útinning av blokkum bæði á brúkara- og ambætara-stigi møguliga. Tó so, kostnaðurin er ein avriksstraffur, minkar um hvussu langt svarini hjá tær røkka og kann viðføra sambæristruplleikar við summar sameindar tænastur. Harafturat forðar hetta ikki teimum, ið miðvíst leggja seg eftir at heinta tínar almennu postar og kontur.
@@ -966,6 +968,9 @@ fo:
       title: Webhooks/vevhúkar
       webhook: Webhook/vevhúkur
   admin_mailer:
+    auto_close_registrations:
+      body: Vegna avmarkað virksemi hjá umsjónarfólki eru skrásetingar á %{instance} broyttar sjálvvirkandi til at krevja manuella eftirkanning fyri at forða at %{instance} verður brúktur sum ein pallur fyri ringar aktørar. Tú kanst skifta aftur til opnar skrásetingar tá tú vilt.
+      subject: Skrásetingar á %{instance} eru sjálvvirkandi broyttar soleiðis at tær krevja váttan
     new_appeal:
       actions:
         delete_statuses: at strika teirra postar
@@ -1841,10 +1846,6 @@ fo:
       edit_profile_action: Set upp vanga
       edit_profile_step: Tú kanst tillaga vanga tín við at leggja eina vangamynd inn, broyta vísta navnið hjá tær og meira. Tú kanst velja at eftirkanna nýggjar fylgjarar, áðrenn teir sleppa at fylgja tær.
       explanation: Her eru nøkur ráð so tú kann koma gott ígongd
-      final_action: Byrja at posta
-      final_step: 'Byrja at posta! Sjálvt uttan fylgjarar, so kunnu tínir almennu postar vera sæddir av øðrum, til dømis á lokalu tíðarlinjuni ella í frámerkjum. Kanska vilt tú greiða frá um teg sjálva/n við frámerkinum #introductions.'
-      full_handle: Fulla brúkaranavn títt
-      full_handle_hint: Hetta er tað, sum tú fortelur vinum tínum, soleiðis at tey kunnu senda tær boð ella fylgja tær frá einum øðrum ambætara.
       subject: Vælkomin til Mastodon
       title: Vælkomin umborð, %{name}!
   users:

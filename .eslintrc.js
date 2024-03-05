@@ -338,7 +338,6 @@ module.exports = defineConfig({
         'plugin:import/typescript',
         'plugin:promise/recommended',
         'plugin:jsdoc/recommended-typescript',
-        'plugin:prettier/recommended',
       ],
 
       parserOptions: {
@@ -347,6 +346,9 @@ module.exports = defineConfig({
       },
 
       rules: {
+        // Disable formatting rules that have been enabled in the base config
+        'indent': 'off',
+
         'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
 
         '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],

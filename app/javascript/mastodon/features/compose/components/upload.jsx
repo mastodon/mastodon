@@ -9,7 +9,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import spring from 'react-motion/lib/spring';
 
-import CloseIcon from '@/material-icons/400-24px/close.svg?react';
+import CloseIcon from '@/material-icons/400-20px/close.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import WarningIcon from '@/material-icons/400-24px/warning.svg?react';
 import { Blurhash } from 'mastodon/components/blurhash';

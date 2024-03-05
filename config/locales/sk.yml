@@ -634,6 +634,7 @@ sk:
           approved: Pre registráciu je nutné povolenie
           none: Nikto sa nemôže registrovať
           open: Ktokoľvek sa môže zaregistrovať
+        warning_hint: Odporúčame používať "Pre registráciu je potrebné schválenie", pokiaľ si niesi istý/á, že tvoj moderovací tím vie zvládnuť spam a záškodné registrácie včas.
       title: Nastavenia servera
     site_uploads:
       delete: Vymaž nahratý súbor
@@ -739,6 +740,8 @@ sk:
       enabled: Aktívne
       status: Stav
   admin_mailer:
+    auto_close_registrations:
+      subject: Registrácie na %{instance} boli automaticky prepnuté na vyžadujúce schválenie
     new_appeal:
       actions:
         none: varovanie
@@ -1287,9 +1290,6 @@ sk:
     welcome:
       edit_profile_action: Nastav profil
       explanation: Tu nájdeš nejaké tipy do začiatku
-      final_action: Začni prispievať
-      full_handle: Adresa tvojho profilu v celom formáte
-      full_handle_hint: Toto je čo musíš dať vedieť svojím priateľom aby ti mohli posielať správy, alebo ťa následovať z iného serveru.
       subject: Vitaj na Mastodone
       title: Vitaj na palube, %{name}!
   users:

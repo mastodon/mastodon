@@ -90,7 +90,7 @@ RSpec.describe ActivityPub::RepliesController do
         context 'when there are few self-replies' do
           it 'points next to replies from other people' do
             expect(page_json).to be_a Hash
-            expect(Addressable::URI.parse(page_json[:next]).query.split('&')).to include('only_other_accounts=true', 'page=true')
+            expect(parsed_uri_query_values(page_json[:next])).to include('only_other_accounts=true', 'page=true')
           end
         end
 
@@ -101,7 +101,7 @@ RSpec.describe ActivityPub::RepliesController do
 
           it 'points next to other self-replies' do
             expect(page_json).to be_a Hash
-            expect(Addressable::URI.parse(page_json[:next]).query.split('&')).to include('only_other_accounts=false', 'page=true')
+            expect(parsed_uri_query_values(page_json[:next])).to include('only_other_accounts=false', 'page=true')
           end
         end
       end
@@ -140,7 +140,7 @@ RSpec.describe ActivityPub::RepliesController do
 
           it 'points next to other replies' do
             expect(page_json).to be_a Hash
-            expect(Addressable::URI.parse(page_json[:next]).query.split('&')).to include('only_other_accounts=true', 'page=true')
+            expect(parsed_uri_query_values(page_json[:next])).to include('only_other_accounts=true', 'page=true')
           end
         end
       end
@@ -195,6 +195,13 @@ RSpec.describe ActivityPub::RepliesController do
   end
 
   private
+
+  def parsed_uri_query_values(uri)
+    Addressable::URI
+      .parse(uri)
+      .query
+      .split('&')
+  end
 
   def ap_public_collection
     ActivityPub::TagManager::COLLECTIONS[:public]

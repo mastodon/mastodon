@@ -188,7 +188,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.post_up_message = <<MESSAGE
 To start server
-  $ vagrant ssh -c "cd /vagrant && foreman start"
+  $ vagrant ssh -c "cd /vagrant && bin/dev"
 MESSAGE
 
 end

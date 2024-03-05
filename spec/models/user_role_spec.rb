@@ -139,7 +139,7 @@ RSpec.describe UserRole do
     end
 
     it 'has negative position' do
-      expect(subject.position).to eq(-1)
+      expect(subject.position).to eq(described_class::NOBODY_POSITION)
     end
   end
 
@@ -159,7 +159,7 @@ RSpec.describe UserRole do
     end
 
     it 'has negative position' do
-      expect(subject.position).to eq(-1)
+      expect(subject.position).to eq(described_class::NOBODY_POSITION)
     end
   end
 

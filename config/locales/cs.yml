@@ -795,13 +795,15 @@ cs:
         disabled: Nikomu
         users: Přihlášeným místním uživatelům
       registrations:
+        moderation_recommandation: Před otevřením registrací všem se ujistěte, že máte vhodný a reaktivní moderační tým!
         preamble: Mějte pod kontrolou, kdo může vytvořit účet na vašem serveru.
         title: Registrace
       registrations_mode:
         modes:
-          approved: Pro registraci je vyžadováno schválení
+          approved: Schválení požadované pro registraci
           none: Nikdo se nemůže registrovat
           open: Kdokoliv se může registrovat
+        warning_hint: Doporučujeme použít "Schválení požadované pro registraci", pokud si nejste jistí, že váš moderační tým dokáže včas zpracovat spam a škodlivé registrace.
       security:
         authorized_fetch: Vyžadovat autentizaci od federovaných serverů
         authorized_fetch_hint: Vyžadování ověřování pravosti od federalizovaných serverů umožňuje přísnější prosazování uživatelských i serverních bloků. K tomu však dochází k snížení výkonu, snižení dosah vašich odpovědí a můžou se zavést problémy s kompatibilitou s některými federálními službami. Kromě toho to nebude bránit oddaným uživatelům či robotům v načítání vašich veřejných příspěvků a účtů.
@@ -1002,6 +1004,9 @@ cs:
       title: Webhooky
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Kvůli nedostatku nedávných aktivit od moderátorů byly registrace na %{instance} automaticky přepnuty na vyžadující manuální kontrolu. aby se zabránilo použití %{instance} jako platformy pro potenciálně škodlivých hráčů. Můžete ji kdykoliv přepnout zpět na otevřené registrace.
+      subject: Registrace pro %{instance} byly automaticky přepnuty na vyžadující schválení
     new_appeal:
       actions:
         delete_statuses: smazání jeho příspěvků
@@ -1905,10 +1910,6 @@ cs:
       edit_profile_action: Nastavit profil
       edit_profile_step: Váš profil si můžete přizpůsobit nahráním profilového obrázku, změnou zobrazovaného jména a dalším. Můžete se přihlásit k přezkoumání nových následovatelů, než vás budou moci následovat.
       explanation: Zde je pár tipů do začátku
-      final_action: Začít psát
-      final_step: 'Začněte psát příspěvky! I bez sledujících mohou vaše veřejné příspěvky vidět ostatní, například na místní časové ose nebo v hashtagu. Možná se budete chtít představit na hashtagu #představení.'
-      full_handle: Vaše celá adresa profilu
-      full_handle_hint: Tohle je, co byste řekli svým přátelům, aby vám mohli posílat zprávy nebo vás sledovat z jiného serveru.
       subject: Vítejte na Mastodonu
       title: Vítejte na palubě, %{name}!
   users:

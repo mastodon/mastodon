@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ActivityPub::ProcessAccountService, type: :service do
   subject { described_class.new }
 
-  context 'with property values' do
+  context 'with property values, an avatar, and a profile header' do
     let(:payload) do
       {
         id: 'https://foo.test',
@@ -16,10 +16,29 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
           { type: 'PropertyValue', name: 'Occupation', value: 'Unit test' },
           { type: 'PropertyValue', name: 'non-string', value: %w(foo bar) },
         ],
+        image: {
+          type: 'Image',
+          mediaType: 'image/png',
+          url: 'https://foo.test/image.png',
+        },
+        icon: {
+          type: 'Image',
+          url: [
+            {
+              mediaType: 'image/png',
+              href: 'https://foo.test/icon.png',
+            },
+          ],
+        },
       }.with_indifferent_access
     end
 
-    it 'parses out of attachment' do
+    before do
+      stub_request(:get, 'https://foo.test/image.png').to_return(request_fixture('avatar.txt'))
+      stub_request(:get, 'https://foo.test/icon.png').to_return(request_fixture('avatar.txt'))
+    end
+
+    it 'parses property values, avatar and profile header as expected' do
       account = subject.call('alice', 'example.com', payload)
 
       expect(account.fields)
@@ -37,6 +56,10 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
           name: eq('Occupation'),
           value: eq('Unit test')
         )
+      expect(account).to have_attributes(
+        avatar_remote_url: 'https://foo.test/icon.png',
+        header_remote_url: 'https://foo.test/image.png'
+      )
     end
   end
 
