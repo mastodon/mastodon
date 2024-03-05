@@ -109,6 +109,9 @@ RSpec.configure do |config|
       # Also needs to be set per-example here because of the database cleaner.
       Setting.registrations_mode = 'open'
 
+      # Load seeds so we have the default roles otherwise cleared by `DatabaseCleaner`
+      Rails.application.load_seed
+
       example.run
     end
 

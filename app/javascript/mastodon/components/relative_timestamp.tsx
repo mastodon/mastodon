@@ -53,7 +53,6 @@ const messages = defineMessages({
 });
 
 const dateFormatOptions = {
-  hour12: false,
   year: 'numeric',
   month: 'short',
   day: '2-digit',

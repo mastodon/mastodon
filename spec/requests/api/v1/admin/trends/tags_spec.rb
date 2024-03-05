@@ -2,31 +2,26 @@
 
 require 'rails_helper'
 
-describe Api::V1::Admin::Trends::StatusesController do
-  render_views
-
+describe 'API V1 Admin Trends Tags' do
   let(:role)   { UserRole.find_by(name: 'Admin') }
   let(:user)   { Fabricate(:user, role: role) }
   let(:scopes) { 'admin:read admin:write' }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:account) { Fabricate(:account) }
-  let(:status)  { Fabricate(:status) }
+  let(:tag)     { Fabricate(:tag) }
+  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  before do
-    allow(controller).to receive(:doorkeeper_token) { token }
-  end
-
-  describe 'GET #index' do
+  describe 'GET /api/v1/admin/trends/tags' do
     it 'returns http success' do
-      get :index, params: { account_id: account.id, limit: 2 }
+      get '/api/v1/admin/trends/tags', params: { account_id: account.id, limit: 2 }, headers: headers
 
       expect(response).to have_http_status(200)
     end
   end
 
-  describe 'POST #approve' do
+  describe 'POST /api/v1/admin/trends/tags/:id/approve' do
     before do
-      post :approve, params: { id: status.id }
+      post "/api/v1/admin/trends/tags/#{tag.id}/approve", headers: headers
     end
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
@@ -37,9 +32,9 @@ describe Api::V1::Admin::Trends::StatusesController do
     end
   end
 
-  describe 'POST #reject' do
+  describe 'POST /api/v1/admin/trends/tags/:id/reject' do
     before do
-      post :reject, params: { id: status.id }
+      post "/api/v1/admin/trends/tags/#{tag.id}/reject", headers: headers
     end
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'

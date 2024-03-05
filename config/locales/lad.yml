@@ -767,6 +767,7 @@ lad:
         disabled: A dinguno
         users: Para los utilizadores lokales ke entrado en su kuento
       registrations:
+        moderation_recommandation: Por favor, asigurate ke tyenes una taifa de moderasyon adekuada i reaktiva antes de avrir los enrejistramyentos a todos!
         preamble: Kontrola ken puede kriyar un kuento en tu sirvidor.
         title: Enrejistramientos
       registrations_mode:
@@ -774,6 +775,7 @@ lad:
           approved: Se rekiere achetasion para enrejistrarse
           none: Permete a los utilizadores trokar la konfigurasyon del sitio
           open: Kualkiera puede enrejistrarse
+        warning_hint: Rekomendamos el uzo de "Se rekiere achetasion para enrejistrarse" a manko ke estes siguro ke tu taifa de moderasyon puede moderar el spam i los enrejistramyentos malisiozos en un tyempo razonavle.
       security:
         authorized_fetch: Rekere autentifikasyon de sirvidores federados
         authorized_fetch_hint: Rekerir autentifikasyon de sirvidores federados permite un forsamyento mas estrikto de los blokos a nivel de utilizador i a nivel de sirvidor. Malgrado esto, el koste de esto es una penalizasyon de efisyensya, reduksyon del alkanse de tus repuestas i puede introduzir problemas de kompatibilita kon algunos sirvisyos federados. Ademas, esto no impidira ke aktores dedikados obtengan tus kuentos publikos i publikasyones publikas.
@@ -966,6 +968,9 @@ lad:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Por la falta de moderadores aktivos, los enrejistramyentos en %{instance} tyenen sido trokados otomatikamente para rekerir revizyon manuala, para ke %{instance} no se utilize potensyalmente komo platforma por malos aktores. Puedes trokarlo de muevo para avrir los enrejistramyentos en kualseker momento.
+      subject: Enrejistramyentos de %{instance} fueron otomatikamente trokados i agora nesesitan aprovasyon
     new_appeal:
       actions:
         delete_statuses: para supremir sus mesajes
@@ -1841,10 +1846,6 @@ lad:
       edit_profile_action: Konfigurasyon de profil
       edit_profile_step: Puedes personalizar tu profil kargando una foto de profil, trokando tu nombre de utilizador i muncho mas. Puedes optar por revizar a los muevos suivantes antes de ke puedan segirte.
       explanation: Aki ay algunos konsejos para ampesar
-      final_action: Ampesa a publikar
-      final_step: 'Ampesa a publikar! Inkluzo sin suivantes, tus publikasyones publikas pueden ser vistas por otros, por enshemplo en la linya de tiempo lokal o en etiketas. Tal vez keras aprezentarte kon la etiketa de #introduksiones.'
-      full_handle: Tu sovrenombre kompleto
-      full_handle_hint: Esto es lo ke le dirias a tus haverim para ke eyos puedan embiarte mesajes o segirte dizde otra instansya.
       subject: Bienvenido a Mastodon
       title: Bienvenido, %{name}!
   users:

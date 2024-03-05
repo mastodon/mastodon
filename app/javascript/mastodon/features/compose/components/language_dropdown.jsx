@@ -141,6 +141,7 @@ class LanguageDropdownMenu extends PureComponent {
     case 'Escape':
       onClose();
       break;
+    case ' ':
     case 'Enter':
       this.handleClick(e);
       break;
