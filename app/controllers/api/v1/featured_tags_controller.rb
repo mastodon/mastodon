@@ -29,6 +29,6 @@ class Api::V1::FeaturedTagsController < Api::BaseController
   end
 
   def set_featured_tags
-    @featured_tags = current_account.featured_tags.order(statuses_count: :desc)
+    @featured_tags = current_account.featured_tags.by_status_count
   end
 end
