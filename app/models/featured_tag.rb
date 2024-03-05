@@ -29,6 +29,7 @@ class FeaturedTag < ApplicationRecord
   before_create :reset_data
 
   scope :by_name, ->(name) { joins(:tag).where(tag: { name: HashtagNormalizer.new.normalize(name) }) }
+  scope :by_status_count, -> { order(statuses_count: :desc) }
 
   LIMIT = 10
 
