@@ -5,8 +5,7 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as ArrowDropDownIcon } from '@material-symbols/svg-600/outlined/arrow_drop_down.svg';
-
+import ArrowDropDownIcon from '@/material-icons/400-24px/arrow_drop_down.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import { Icon }  from 'mastodon/components/icon';
 import InlineAccount from 'mastodon/components/inline_account';
@@ -68,7 +67,7 @@ class EditedTimestamp extends PureComponent {
     return (
       <DropdownMenu statusId={statusId} renderItem={this.renderItem} scrollable renderHeader={this.renderHeader} onItemClick={this.handleItemClick}>
         <button className='dropdown-menu__text-button'>
-          <FormattedMessage id='status.edited' defaultMessage='Edited {date}' values={{ date: intl.formatDate(timestamp, { hour12: false, month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) }} /> <Icon id='caret-down' icon={ArrowDropDownIcon} />
+          <FormattedMessage id='status.edited' defaultMessage='Edited {date}' values={{ date: intl.formatDate(timestamp, { month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) }} /> <Icon id='caret-down' icon={ArrowDropDownIcon} />
         </button>
       </DropdownMenu>
     );

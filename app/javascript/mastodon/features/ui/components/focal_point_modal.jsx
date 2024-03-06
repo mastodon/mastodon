@@ -9,7 +9,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
 import Textarea from 'react-textarea-autosize';
 import { length } from 'stringz';
 // eslint-disable-next-line import/extensions
@@ -17,11 +16,12 @@ import tesseractWorkerPath from 'tesseract.js/dist/worker.min.js';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js';
 
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { Button } from 'mastodon/components/button';
 import { GIFV } from 'mastodon/components/gifv';
 import { IconButton } from 'mastodon/components/icon_button';
 import Audio from 'mastodon/features/audio';
-import CharacterCounter from 'mastodon/features/compose/components/character_counter';
+import { CharacterCounter } from 'mastodon/features/compose/components/character_counter';
 import UploadProgress from 'mastodon/features/compose/components/upload_progress';
 import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
 import { me } from 'mastodon/initial_state';
@@ -222,7 +222,7 @@ class FocalPointModal extends ImmutablePureComponent {
       const worker = createWorker({
         workerPath: tesseractWorkerPath,
         corePath: tesseractCorePath,
-        langPath: `${assetHost}/ocr/lang-data/`,
+        langPath: `${assetHost}/ocr/lang-data`,
         logger: ({ status, progress }) => {
           if (status === 'recognizing text') {
             this.setState({ ocrStatus: 'detecting', progress });

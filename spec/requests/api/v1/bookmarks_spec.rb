@@ -14,7 +14,7 @@ RSpec.describe 'Bookmarks' do
     end
 
     let(:params)     { {} }
-    let!(:bookmarks) { Fabricate.times(3, :bookmark, account: user.account) }
+    let!(:bookmarks) { Fabricate.times(2, :bookmark, account: user.account) }
 
     let(:expected_response) do
       bookmarks.map do |bookmark|
@@ -37,7 +37,7 @@ RSpec.describe 'Bookmarks' do
     end
 
     context 'with limit param' do
-      let(:params) { { limit: 2 } }
+      let(:params) { { limit: 1 } }
 
       it 'paginates correctly', :aggregate_failures do
         subject

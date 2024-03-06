@@ -67,8 +67,9 @@ RSpec.describe NotifyService, type: :service do
 
       context 'when the message chain is initiated by recipient, but is not direct message' do
         let(:reply_to) { Fabricate(:status, account: recipient) }
-        let!(:mention) { Fabricate(:mention, account: sender, status: reply_to) }
         let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct, thread: reply_to)) }
+
+        before { Fabricate(:mention, account: sender, status: reply_to) }
 
         it 'does not notify' do
           expect { subject }.to_not change(Notification, :count)
@@ -77,9 +78,10 @@ RSpec.describe NotifyService, type: :service do
 
       context 'when the message chain is initiated by recipient, but without a mention to the sender, even if the sender sends multiple messages in a row' do
         let(:reply_to) { Fabricate(:status, account: recipient) }
-        let!(:mention) { Fabricate(:mention, account: sender, status: reply_to) }
         let(:dummy_reply) { Fabricate(:status, account: sender, visibility: :direct, thread: reply_to) }
         let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct, thread: dummy_reply)) }
+
+        before { Fabricate(:mention, account: sender, status: reply_to) }
 
         it 'does not notify' do
           expect { subject }.to_not change(Notification, :count)
@@ -88,8 +90,9 @@ RSpec.describe NotifyService, type: :service do
 
       context 'when the message chain is initiated by the recipient with a mention to the sender' do
         let(:reply_to) { Fabricate(:status, account: recipient, visibility: :direct) }
-        let!(:mention) { Fabricate(:mention, account: sender, status: reply_to) }
         let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct, thread: reply_to)) }
+
+        before { Fabricate(:mention, account: sender, status: reply_to) }
 
         it 'does notify' do
           expect { subject }.to change(Notification, :count)
@@ -154,8 +157,6 @@ RSpec.describe NotifyService, type: :service do
 
   describe 'email' do
     before do
-      ActionMailer::Base.deliveries.clear
-
       user.settings.update('notification_emails.follow': enabled)
       user.save
     end
@@ -163,8 +164,16 @@ RSpec.describe NotifyService, type: :service do
     context 'when email notification is enabled' do
       let(:enabled) { true }
 
-      it 'sends email' do
-        expect { subject }.to change(ActionMailer::Base.deliveries, :count).by(1)
+      it 'sends email', :sidekiq_inline do
+        emails = capture_emails { subject }
+
+        expect(emails.size)
+          .to eq(1)
+        expect(emails.first)
+          .to have_attributes(
+            to: contain_exactly(user.email),
+            subject: eq(I18n.t('notification_mailer.follow.subject', name: sender.acct))
+          )
       end
     end
 
@@ -172,7 +181,9 @@ RSpec.describe NotifyService, type: :service do
       let(:enabled) { false }
 
       it "doesn't send email" do
-        expect { subject }.to_not change(ActionMailer::Base.deliveries, :count).from(0)
+        emails = capture_emails { subject }
+
+        expect(emails).to be_empty
       end
     end
   end

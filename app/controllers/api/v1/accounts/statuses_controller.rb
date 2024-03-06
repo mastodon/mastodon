@@ -4,7 +4,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }
   before_action :set_account
 
-  after_action :insert_pagination_headers, unless: -> { truthy_param?(:pinned) }
+  after_action :insert_pagination_headers
 
   def index
     cache_if_unauthenticated!
@@ -19,7 +19,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def load_statuses
-    @account.suspended? ? [] : cached_account_statuses
+    @account.unavailable? ? [] : cached_account_statuses
   end
 
   def cached_account_statuses

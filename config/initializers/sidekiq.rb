@@ -26,6 +26,7 @@ Sidekiq.configure_server do |config|
           'queue' => 'scheduler',
         },
       }
+      SidekiqScheduler::Scheduler.instance.reload_schedule!
     end
   end
 
@@ -43,6 +44,7 @@ end
 Sidekiq.logger.level = ::Logger.const_get(ENV.fetch('RAILS_LOG_LEVEL', 'info').upcase.to_s)
 
 SidekiqUniqueJobs.configure do |config|
+  config.enabled         = !Rails.env.test?
   config.reaper          = :ruby
   config.reaper_count    = 1000
   config.reaper_interval = 600

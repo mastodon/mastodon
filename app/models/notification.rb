@@ -111,7 +111,7 @@ class Notification < ApplicationRecord
 
         # Instead of using the usual `includes`, manually preload each type.
         # If polymorphic associations are loaded with the usual `includes`, other types of associations will be loaded more.
-        ActiveRecord::Associations::Preloader.new(records: grouped_notifications, associations: associations)
+        ActiveRecord::Associations::Preloader.new(records: grouped_notifications, associations: associations).call
       end
 
       unique_target_statuses = notifications.filter_map(&:target_status).uniq

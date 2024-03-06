@@ -7,6 +7,9 @@
   .fields-group
     = f.input :domain, wrapper: :with_block_label, label: t('admin.email_domain_blocks.domain'), input_html: { readonly: defined?(@resolved_records) }
 
+  .fields-group
+    = f.input :allow_with_approval, wrapper: :with_label, hint: false, label: I18n.t('admin.email_domain_blocks.allow_registrations_with_approval')
+
   - if defined?(@resolved_records)
     %p.hint= t('admin.email_domain_blocks.resolved_dns_records_hint_html')
 

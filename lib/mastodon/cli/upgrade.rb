@@ -103,13 +103,11 @@ module Mastodon::CLI
     end
 
     def upgrade_storage_fog(_progress, _attachment, _style)
-      say('The fog storage driver is not supported for this operation at this time', :red)
-      exit(1)
+      fail_with_message 'The fog storage driver is not supported for this operation at this time'
     end
 
     def upgrade_storage_azure(_progress, _attachment, _style)
-      say('The azure storage driver is not supported for this operation at this time', :red)
-      exit(1)
+      fail_with_message 'The azure storage driver is not supported for this operation at this time'
     end
 
     def upgrade_storage_filesystem(progress, attachment, style)

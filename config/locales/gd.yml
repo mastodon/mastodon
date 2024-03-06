@@ -439,6 +439,7 @@ gd:
       view: Seall bacadh na h-àrainne
     email_domain_blocks:
       add_new: Cuir tè ùr ris
+      allow_registrations_with_approval: Ceadaich clàradh le aontachadh
       attempts_over_week:
         few: "%{count} oidhirpean clàraidh rè na seachdain seo chaidh"
         one: "%{count} oidhirp clàraidh rè na seachdain seo chaidh"
@@ -1032,8 +1033,6 @@ gd:
       new_trending_statuses:
         title: Postaichean a’ treandadh
       new_trending_tags:
-        no_approved_tags: Chan eil taga hais a’ treandadh le aontachadh ann.
-        requirements: "’S urrainn do ghin dhe na tagraichean seo dol thairis air #%{rank} a tha aig an taga hais #%{lowest_tag_name} a’ treandadh as ìsle le aontachadh agus sgòr de %{lowest_tag_score} air."
         title: Tagaichean hais a’ treandadh
       subject: Tha treandaichean ùra a’ feitheamh air lèirmheas air %{instance}
   aliases:
@@ -1829,7 +1828,6 @@ gd:
     webauthn: Iuchraichean tèarainteachd
   user_mailer:
     appeal_approved:
-      action: Tadhail air a’ chunntas agad
       explanation: Chaidh aontachadh ris an ath-thagradh agad air an rabhadh o %{strike_date} a chuir thu a-null %{appeal_date}. Tha deagh chliù air a’ chunntas agad a-rithist.
       subject: Chaidh aontachadh ris an ath-thagradh agad o %{date}
       title: Chaidh aontachadh ri ath-thagradh
@@ -1838,7 +1836,6 @@ gd:
       subject: Chaidh an t-ath-thagradh agad o %{date} a dhiùltadh
       title: Chaidh ath-thagradh a dhiùltadh
     backup_ready:
-      explanation: Dh’iarr thu lethbhreac-glèidhidh slàn dhen chunntas Mastodon agad. Tha e deis ri luchdadh a-nuas a-nis!
       subject: Tha an tasg-lann agad deis ri luchdadh a-nuas
       title: Tasg-lann dhut
     suspicious_sign_in:
@@ -1883,10 +1880,6 @@ gd:
       edit_profile_action: Suidhich a’ phròifil agad
       edit_profile_step: "’S urrainn dhut a’ phròifil agad a ghnàthachadh is tu a’ luchdadh suas dealbh pròifil, ag atharrachadh d’ ainm-taisbeanaidh is a bharrachd. ’S urrainn dhut lèirmheas a dhèanamh air daoine mus fhaod iad ’gad leantainn ma thogras tu."
       explanation: Seo gliocas no dhà gus tòiseachadh
-      final_action: Tòisich air postadh
-      final_step: 'Tòisich air postadh! Fiù ’s mur eil duine sam bith ’gad leantainn, chì cuid mhath na postaichean poblach agad, can air an loidhne-ama ionadail no le tagaichean hais. Saoil an innis thu beagan mu d’ dhèidhinn air an taga hais #fàilte?'
-      full_handle: D’ ainm-cleachdaiche slàn
-      full_handle_hint: Seo na bheir thu dha na caraidean agad ach an urrainn dhaibh teachdaireachd a chur thugad no ’gad leantainn o fhrithealaiche eile.
       subject: Fàilte gu Mastodon
       title: Fàilte air bòrd, %{name}!
   users:

@@ -432,6 +432,7 @@ sr:
       view: Прочитај блок домена
     email_domain_blocks:
       add_new: Додај нови
+      allow_registrations_with_approval: Дозволи регистрацију уз одобрење
       attempts_over_week:
         few: "%{count} покушаја током претходне недеље"
         one: "%{count} покушај током претходне недеље"
@@ -623,6 +624,7 @@ sr:
       created_at: Пријављена
       delete_and_resolve: Обриши објаве
       forwarded: Прослеђено
+      forwarded_replies_explanation: Овај извештај је од удаљеног корисника и о удаљеном садржају. Прослеђен вам је јер је пријављени садржај у одговору једном од ваших корисника.
       forwarded_to: Прослеђено ка %{domain}
       mark_as_resolved: Означи као решену
       mark_as_sensitive: Обележи као осетљиво
@@ -1014,8 +1016,6 @@ sr:
       new_trending_statuses:
         title: Објаве у тренду
       new_trending_tags:
-        no_approved_tags: Тренутно нема одобрених хеш ознака у тренду.
-        requirements: 'Било који од следећих кандидата би могао превазићи #%{rank} одобрену хеш ознаку у тренду, која је тренутно #%{lowest_tag_name} са вредношћу %{lowest_tag_score}.'
         title: Хеш ознаке у тренду
       subject: Нови трендови за преглед на %{instance}
   aliases:
@@ -1393,6 +1393,7 @@ sr:
       '86400': 1 дан
     expires_in_prompt: Никад
     generate: Генериши
+    invalid: Ова позивница није важећа
     invited_by: 'Позвао Вас је:'
     max_uses:
       few: "%{count} коришћења"
@@ -1571,6 +1572,9 @@ sr:
     errors:
       limit_reached: Достигнуто је ограничење различитих реакција
       unrecognized_emoji: није препознат емоџи
+  redirects:
+    prompt: Ако верујете овој вези, кликните на њу за наставак.
+    title: Напуштате %{instance}.
   relationships:
     activity: Активност налога
     confirm_follow_selected_followers: Да ли сте сигурни да желите да пратите изабране пратиоце?
@@ -1633,6 +1637,7 @@ sr:
       unknown_browser: Непознати прегледач
       weibo: Веибо
     current_session: Тренутна сесија
+    date: Датум
     description: "%{browser} са %{platform}"
     explanation: Ово су веб претраживачи који су тренутно пријављени на ваш Mastodon налог.
     ip: IP
@@ -1776,8 +1781,8 @@ sr:
     does_not_match_previous_name: не поклапа се са претходним именом
   themes:
     contrast: Велики контраст
-    default: Mastodon (тамно)
-    mastodon-light: Mastodon (светло)
+    default: Mastodon (тамна)
+    mastodon-light: Mastodon (светла)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -1805,18 +1810,27 @@ sr:
     webauthn: Сигурносни кључеви
   user_mailer:
     appeal_approved:
-      action: Идите на свој налог
+      action: Подешавања налога
       explanation: Жалба поднета датума %{appeal_date} на уписан преступ на Ваше име датума %{strike_date} је уважена. Ваш налог је поново у повољном положају.
       subject: Ваша жалба поднета %{date} је уважена
+      subtitle: Ваш налог је поново на добром гласу.
       title: Жалба уважена
     appeal_rejected:
       explanation: Жалба поднета датума %{appeal_date} на уписан преступ на Ваше име датума %{strike_date} је одбијена.
       subject: Ваша жалба поднета %{date} је одбијена
+      subtitle: Ваша жалба је одбијена.
       title: Жалба одбијена
     backup_ready:
-      explanation: Тражили сте потпуну резервну копију вашег Mastodon налога. Спремна је за преузимање!
+      explanation: Захтевали сте пуну резервну копију Mastodon налога.
+      extra: Сада је спремно за преузимање!
       subject: Ваша архива је спремна за преузимање
       title: Извоз архиве
+    failed_2fa:
+      details: 'Ево детаља о покушају пријављивања:'
+      explanation: Неко је покушао да се пријави на ваш налог али је дао неважећи други фактор аутентификације.
+      further_actions_html: Ако то нисте били ви, препоручујемо вам да одмах %{action} јер може бити угрожена.
+      subject: Неуспех другог фактора аутентификације
+      title: Није успео други фактор аутентификације
     suspicious_sign_in:
       change_password: промените своју лозинку
       details: 'Ево детаља о пријави:'
@@ -1859,10 +1873,6 @@ sr:
       edit_profile_action: Подеси налог
       edit_profile_step: Можете прилагодити свој профил тако што ћете поставити профилну слику, променити име за приказ и тако даље. Можете дати сагласност да прегледате нове пратиоце пре него што им дозволите да Вас запрате.
       explanation: Ево неколико савета за почетак
-      final_action: Почните објављивати
-      final_step: 'Почните да објављујете! Чак и без пратилаца, Ваше јавне објаве су видљиве другим људима, на пример на локалној временској линији или у хеш ознакама. Можда желите да се представите са хеш ознаком #introductions или #представљања.'
-      full_handle: Ваш пун надимак
-      full_handle_hint: Ово бисте рекли својим пријатељима како би вам они послали поруку, или запратили са друге инстанце.
       subject: Добро дошли на Mastodon
       title: Добро дошли, %{name}!
   users:
@@ -1870,6 +1880,7 @@ sr:
     go_to_sso_account_settings: Идите на подешавања налога свог добављача идентитета
     invalid_otp_token: Неисправни двофакторски код
     otp_lost_help_html: Ако изгубите приступ за оба, можете ступити у контакт са %{email}
+    rate_limited: Превише покушаја аутентификације, покушајте поново касније.
     seamless_external_login: Пријављени сте путем спољашње услуге, тако да лозинка и подешавања Е-поште нису доступни.
     signed_in_as: 'Пријављен/а као:'
   verification:

@@ -3,10 +3,9 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import { ReactComponent as InsertChartIcon } from '@material-symbols/svg-600/outlined/insert_chart.svg';
+import BarChart4BarsIcon from '@/material-icons/400-20px/bar_chart_4_bars.svg?react';
 
 import { IconButton } from '../../../components/icon_button';
-
 
 const messages = defineMessages({
   add_poll: { id: 'poll_button.add_poll', defaultMessage: 'Add a poll' },
@@ -22,7 +21,6 @@ class PollButton extends PureComponent {
 
   static propTypes = {
     disabled: PropTypes.bool,
-    unavailable: PropTypes.bool,
     active: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -33,17 +31,13 @@ class PollButton extends PureComponent {
   };
 
   render () {
-    const { intl, active, unavailable, disabled } = this.props;
-
-    if (unavailable) {
-      return null;
-    }
+    const { intl, active, disabled } = this.props;
 
     return (
       <div className='compose-form__poll-button'>
         <IconButton
           icon='tasks'
-          iconComponent={InsertChartIcon}
+          iconComponent={BarChart4BarsIcon}
           title={intl.formatMessage(active ? messages.remove_poll : messages.add_poll)}
           disabled={disabled}
           onClick={this.handleClick}

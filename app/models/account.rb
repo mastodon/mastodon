@@ -64,28 +64,30 @@ class Account < ApplicationRecord
   )
 
   BACKGROUND_REFRESH_INTERVAL = 1.week.freeze
+  INSTANCE_ACTOR_ID = -99
 
   USERNAME_RE   = /[a-z0-9_]+([a-z0-9_.-]+[a-z0-9_]+)?/i
   MENTION_RE    = %r{(?<![=/[:word:]])@((#{USERNAME_RE})(?:@[[:word:].-]+[[:word:]]+)?)}i
   URL_PREFIX_RE = %r{\Ahttp(s?)://[^/]+}
   USERNAME_ONLY_RE = /\A#{USERNAME_RE}\z/i
 
-  include Attachmentable
-  include AccountAssociations
-  include AccountAvatar
-  include AccountFinderConcern
-  include AccountHeader
-  include AccountInteractions
-  include Paginable
-  include AccountCounters
-  include DomainNormalizable
-  include DomainMaterializable
-  include AccountMerging
-  include AccountSearch
-  include AccountStatusesSearch
+  include Attachmentable # Load prior to Avatar & Header concerns
 
-  enum protocol: { ostatus: 0, activitypub: 1 }
-  enum suspension_origin: { local: 0, remote: 1 }, _prefix: true
+  include Account::Associations
+  include Account::Avatar
+  include Account::Counters
+  include Account::FinderConcern
+  include Account::Header
+  include Account::Interactions
+  include Account::Merging
+  include Account::Search
+  include Account::StatusesSearch
+  include DomainMaterializable
+  include DomainNormalizable
+  include Paginable
+
+  enum :protocol, { ostatus: 0, activitypub: 1 }
+  enum :suspension_origin, { local: 0, remote: 1 }, prefix: true
 
   validates :username, presence: true
   validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
@@ -107,6 +109,8 @@ class Account < ApplicationRecord
   validates :shared_inbox_url, absence: true, if: :local?, on: :create
   validates :followers_url, absence: true, if: :local?, on: :create
 
+  normalizes :username, with: ->(username) { username.squish }
+
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
@@ -115,20 +119,20 @@ class Account < ApplicationRecord
   scope :sensitized, -> { where.not(sensitized_at: nil) }
   scope :without_suspended, -> { where(suspended_at: nil) }
   scope :without_silenced, -> { where(silenced_at: nil) }
-  scope :without_instance_actor, -> { where.not(id: -99) }
+  scope :without_instance_actor, -> { where.not(id: INSTANCE_ACTOR_ID) }
   scope :recent, -> { reorder(id: :desc) }
   scope :bots, -> { where(actor_type: %w(Application Service)) }
   scope :groups, -> { where(actor_type: 'Group') }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
+  scope :matches_uri_prefix, ->(value) { where(arel_table[:uri].matches("#{sanitize_sql_like(value)}/%", false, true)).or(where(uri: value)) }
   scope :matches_username, ->(value) { where('lower((username)::text) LIKE lower(?)', "#{value}%") }
   scope :matches_display_name, ->(value) { where(arel_table[:display_name].matches("#{value}%")) }
-  scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
   scope :without_unapproved, -> { left_outer_joins(:user).merge(User.approved.confirmed).or(remote) }
+  scope :auditable, -> { where(id: Admin::ActionLog.select(:account_id).distinct) }
   scope :searchable, -> { without_unapproved.without_suspended.where(moved_to_account_id: nil) }
   scope :discoverable, -> { searchable.without_silenced.where(discoverable: true).joins(:account_stat) }
-  scope :followable_by, ->(account) { joins(arel_table.join(Follow.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(Follow.arel_table[:target_account_id]).and(Follow.arel_table[:account_id].eq(account.id))).join_sources).where(Follow.arel_table[:id].eq(nil)).joins(arel_table.join(FollowRequest.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(FollowRequest.arel_table[:target_account_id]).and(FollowRequest.arel_table[:account_id].eq(account.id))).join_sources).where(FollowRequest.arel_table[:id].eq(nil)) }
   scope :by_recent_status, -> { includes(:account_stat).merge(AccountStat.order('last_status_at DESC NULLS LAST')).references(:account_stat) }
-  scope :by_recent_sign_in, -> { order(Arel.sql('users.current_sign_in_at DESC NULLS LAST')) }
+  scope :by_recent_activity, -> { left_joins(:user, :account_stat).order(coalesced_activity_timestamps.desc).order(id: :desc) }
   scope :popular, -> { order('account_stats.followers_count desc') }
   scope :by_domain_and_subdomains, ->(domain) { where(domain: Instance.by_domain_and_subdomains(domain).select(:domain)) }
   scope :not_excluded_by_account, ->(account) { where.not(id: account.excluded_from_timeline_account_ids) }
@@ -173,7 +177,7 @@ class Account < ApplicationRecord
   end
 
   def instance_actor?
-    id == -99
+    id == INSTANCE_ACTOR_ID
   end
 
   alias bot bot?
@@ -245,6 +249,9 @@ class Account < ApplicationRecord
   def suspended_temporarily?
     suspended? && deletion_request.present?
   end
+
+  alias unavailable? suspended?
+  alias permanently_unavailable? suspended_permanently?
 
   def suspend!(date: Time.now.utc, origin: :local, block_email: true)
     transaction do
@@ -438,6 +445,14 @@ class Account < ApplicationRecord
       DeliveryFailureTracker.without_unavailable(urls)
     end
 
+    def coalesced_activity_timestamps
+      Arel.sql(
+        <<~SQL.squish
+          COALESCE(users.current_sign_in_at, account_stats.last_status_at, to_timestamp(0))
+        SQL
+      )
+    end
+
     def from_text(text)
       return [] if text.blank?
 
@@ -453,8 +468,8 @@ class Account < ApplicationRecord
     end
 
     def inverse_alias(key, original_key)
-      define_method("#{key}=") do |value|
-        public_send("#{original_key}=", !ActiveModel::Type::Boolean.new.cast(value))
+      define_method(:"#{key}=") do |value|
+        public_send(:"#{original_key}=", !ActiveModel::Type::Boolean.new.cast(value))
       end
 
       define_method(key) do
@@ -471,7 +486,6 @@ class Account < ApplicationRecord
   end
 
   before_validation :prepare_contents, if: :local?
-  before_validation :prepare_username, on: :create
   before_create :generate_keys
   before_destroy :clean_feed_manager
 
@@ -487,10 +501,6 @@ class Account < ApplicationRecord
   def prepare_contents
     display_name&.strip!
     note&.strip!
-  end
-
-  def prepare_username
-    username&.squish!
   end
 
   def generate_keys

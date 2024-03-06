@@ -69,7 +69,7 @@ Mastodon acts as an OAuth2 provider, so 3rd party apps can use the REST and Stre
 
 - **PostgreSQL** 12+
 - **Redis** 4+
-- **Ruby** 2.7+
+- **Ruby** 3.0+
 - **Node.js** 16+
 
 The repository includes deployment configurations for **Docker and docker-compose** as well as specific platforms like **Heroku**, **Scalingo**, and **Nanobox**. For Helm charts, reference the [mastodon/chart repository](https://github.com/mastodon/chart). The [**standalone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the documentation.
@@ -83,22 +83,19 @@ A **Vagrant** configuration is included for development purposes. To use it, com
 - Install Vagrant and Virtualbox
 - Install the `vagrant-hostsupdater` plugin: `vagrant plugin install vagrant-hostsupdater`
 - Run `vagrant up`
-- Run `vagrant ssh -c "cd /vagrant && foreman start"`
+- Run `vagrant ssh -c "cd /vagrant && bin/dev"`
 - Open `http://mastodon.local` in your browser
 
 ### MacOS
 
 To set up **MacOS** for native development, complete the following steps:
 
-- Install the latest stable Ruby version (use a Ruby version manager for easy installation and management of Ruby versions)
-- Run `brew install postgresql@14`
-- Run `brew install redis`
-- Run `brew install imagemagick`
-- Install Foreman or a similar tool (such as [overmind](https://github.com/DarthSim/overmind)) to handle multiple process launching.
-- Navigate to Mastodon's root directory and run `brew install nvm` then `nvm use` to use the version from .nvmrc
-- Run `corepack enable && yarn set version classic`
+- Use a Ruby version manager to install the specified version from `.ruby-version`
+- Run `brew install postgresql@14 redis imagemagick libidn` to install required dependencies
+- Navigate to Mastodon's root directory and run `brew install nvm` then `nvm use` to use the version from `.nvmrc`
+- Run `corepack enable && corepack prepare`
 - Run `bundle exec rails db:setup` (optionally prepend `RAILS_ENV=development` to target the dev environment)
-- Finally, run `overmind start -f Procfile.dev`
+- Finally, run `bin/dev` which will launch the local services via `overmind` (if installed) or `foreman`
 
 ### Docker
 
@@ -107,7 +104,7 @@ For development with **Docker**, complete the following steps:
 - Install Docker Desktop
 - Run `docker compose -f .devcontainer/docker-compose.yml up -d`
 - Run `docker compose -f .devcontainer/docker-compose.yml exec app .devcontainer/post-create.sh`
-- Finally, run `docker compose -f .devcontainer/docker-compose.yml exec app foreman start -f Procfile.dev`
+- Finally, run `docker compose -f .devcontainer/docker-compose.yml exec app bin/dev`
 
 If you are using an IDE with [support for the Development Container specification](https://containers.dev/supporting), it will run the above `docker compose` commands automatically. For **Visual Studio Code** this requires the [Dev Container extension](https://containers.dev/supporting#dev-containers).
 
@@ -118,7 +115,7 @@ To get you coding in just a few minutes, GitHub Codespaces provides a web-based 
 - Click this button to create a new codespace:<br>
   [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=52281283&devcontainer_path=.devcontainer%2Fcodespaces%2Fdevcontainer.json)
 - Wait for the environment to build. This will take a few minutes.
-- When the editor is ready, run `foreman start -f Procfile.dev` in the terminal.
+- When the editor is ready, run `bin/dev` in the terminal.
 - After a few seconds, a popup will appear with a button labeled _Open in Browser_. This will open Mastodon.
 - On the _Ports_ tab, right click on the “stream” row and select _Port visibility_ → _Public_.
 
@@ -132,7 +129,7 @@ You can open issues for bugs you've found or features you think are missing. You
 
 ## License
 
-Copyright (C) 2016-2023 Eugen Rochko & other Mastodon contributors (see [AUTHORS.md](AUTHORS.md))
+Copyright (C) 2016-2024 Eugen Rochko & other Mastodon contributors (see [AUTHORS.md](AUTHORS.md))
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 

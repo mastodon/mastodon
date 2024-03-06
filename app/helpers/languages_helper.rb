@@ -127,7 +127,7 @@ module LanguagesHelper
     om: ['Oromo', 'Afaan Oromoo'].freeze,
     or: ['Oriya', 'ଓଡ଼ିଆ'].freeze,
     os: ['Ossetian', 'ирон æвзаг'].freeze,
-    pa: ['Panjabi', 'ਪੰਜਾਬੀ'].freeze,
+    pa: ['Punjabi', 'ਪੰਜਾਬੀ'].freeze,
     pi: ['Pāli', 'पाऴि'].freeze,
     pl: ['Polish', 'Polski'].freeze,
     ps: ['Pashto', 'پښتو'].freeze,
@@ -191,16 +191,19 @@ module LanguagesHelper
     chr: ['Cherokee', 'ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ'].freeze,
     ckb: ['Sorani (Kurdish)', 'سۆرانی'].freeze,
     cnr: ['Montenegrin', 'crnogorski'].freeze,
+    csb: ['Kashubian', 'Kaszëbsczi'].freeze,
     jbo: ['Lojban', 'la .lojban.'].freeze,
     kab: ['Kabyle', 'Taqbaylit'].freeze,
     ldn: ['Láadan', 'Láadan'].freeze,
     lfn: ['Lingua Franca Nova', 'lingua franca nova'].freeze,
     ovd: ['Elfdalian', 'Övdalsk'].freeze,
+    pdc: ['Pennsylvania Dutch', 'Pennsilfaani-Deitsch'].freeze,
     sco: ['Scots', 'Scots'].freeze,
     sma: ['Southern Sami', 'Åarjelsaemien Gïele'].freeze,
     smj: ['Lule Sami', 'Julevsámegiella'].freeze,
     szl: ['Silesian', 'ślůnsko godka'].freeze,
     tok: ['Toki Pona', 'toki pona'].freeze,
+    vai: ['Vai', 'ꕙꔤ'].freeze,
     xal: ['Kalmyk', 'Хальмг келн'].freeze,
     zba: ['Balaibalan', 'باليبلن'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
@@ -225,7 +228,7 @@ module LanguagesHelper
     'en-GB': 'English (British)',
     'es-AR': 'Español (Argentina)',
     'es-MX': 'Español (México)',
-    'fr-QC': 'Français (Canadien)',
+    'fr-CA': 'Français (Canadien)',
     'pt-BR': 'Português (Brasil)',
     'pt-PT': 'Português (Portugal)',
     'sr-Latn': 'Srpski (latinica)',
@@ -299,5 +302,3 @@ module LanguagesHelper
     locale_name.to_sym if locale_name.present? && I18n.available_locales.include?(locale_name.to_sym)
   end
 end
-
-# rubocop:enable Metrics/ModuleLength

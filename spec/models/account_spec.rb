@@ -9,14 +9,10 @@ RSpec.describe Account do
     let(:bob) { Fabricate(:account, username: 'bob') }
 
     describe '#suspend!' do
-      it 'marks the account as suspended' do
-        subject.suspend!
-        expect(subject.suspended?).to be true
-      end
-
-      it 'creates a deletion request' do
-        subject.suspend!
-        expect(AccountDeletionRequest.where(account: subject).exists?).to be true
+      it 'marks the account as suspended and creates a deletion request' do
+        expect { subject.suspend! }
+          .to change(subject, :suspended?).from(false).to(true)
+          .and(change { AccountDeletionRequest.exists?(account: subject) }.from(false).to(true))
       end
 
       context 'when the account is of a local user' do
@@ -209,9 +205,13 @@ RSpec.describe Account do
         expect(account.refresh!).to be_nil
       end
 
-      it 'calls not ResolveAccountService#call' do
-        expect_any_instance_of(ResolveAccountService).to_not receive(:call).with(acct)
+      it 'does not call ResolveAccountService#call' do
+        service = instance_double(ResolveAccountService, call: nil)
+        allow(ResolveAccountService).to receive(:new).and_return(service)
+
         account.refresh!
+
+        expect(service).to_not have_received(:call).with(acct)
       end
     end
 
@@ -219,8 +219,12 @@ RSpec.describe Account do
       let(:domain) { 'example.com' }
 
       it 'calls ResolveAccountService#call' do
-        expect_any_instance_of(ResolveAccountService).to receive(:call).with(acct).once
+        service = instance_double(ResolveAccountService, call: nil)
+        allow(ResolveAccountService).to receive(:new).and_return(service)
+
         account.refresh!
+
+        expect(service).to have_received(:call).with(acct).once
       end
     end
   end
@@ -331,9 +335,11 @@ RSpec.describe Account do
 
       results = account.excluded_from_timeline_account_ids
       expect(results.size).to eq 3
-      expect(results).to include(block.target_account.id)
-      expect(results).to include(mute.target_account.id)
-      expect(results).to include(block_by.account.id)
+      expect(results).to include(
+        block.target_account.id,
+        mute.target_account.id,
+        block_by.account.id
+      )
     end
   end
 
@@ -442,10 +448,11 @@ RSpec.describe Account do
       expect(results).to eq [match]
     end
 
-    it 'limits by 10 by default' do
-      11.times.each { Fabricate(:account, display_name: 'Display Name') }
+    it 'limits via constant by default' do
+      stub_const('Account::Search::DEFAULT_LIMIT', 1)
+      2.times.each { Fabricate(:account, display_name: 'Display Name') }
       results = described_class.search_for('display')
-      expect(results.size).to eq 10
+      expect(results.size).to eq 1
     end
 
     it 'accepts arbitrary limits' do
@@ -586,9 +593,10 @@ RSpec.describe Account do
     end
 
     it 'limits by 10 by default' do
-      11.times { Fabricate(:account, display_name: 'Display Name') }
+      stub_const('Account::Search::DEFAULT_LIMIT', 1)
+      2.times { Fabricate(:account, display_name: 'Display Name') }
       results = described_class.advanced_search_for('display', account)
-      expect(results.size).to eq 10
+      expect(results.size).to eq 1
     end
 
     it 'accepts arbitrary limits' do
@@ -738,13 +746,13 @@ RSpec.describe Account do
       end
 
       it 'is valid if we are creating an instance actor account with a period' do
-        account = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
+        account = Fabricate.build(:account, id: described_class::INSTANCE_ACTOR_ID, actor_type: 'Application', locked: true, username: 'example.com')
         expect(account.valid?).to be true
       end
 
       it 'is valid if we are creating a possibly-conflicting instance actor account' do
         _account = Fabricate(:account, username: 'examplecom')
-        instance_account = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
+        instance_account = Fabricate.build(:account, id: described_class::INSTANCE_ACTOR_ID, actor_type: 'Application', locked: true, username: 'example.com')
         expect(instance_account.valid?).to be true
       end
 
@@ -827,6 +835,50 @@ RSpec.describe Account do
   end
 
   describe 'scopes' do
+    describe 'matches_uri_prefix' do
+      let!(:alice) { Fabricate :account, domain: 'host.example', uri: 'https://host.example/user/a' }
+      let!(:bob) { Fabricate :account, domain: 'top-level.example', uri: 'https://top-level.example' }
+
+      it 'returns accounts which start with the value' do
+        results = described_class.matches_uri_prefix('https://host.example')
+
+        expect(results.size)
+          .to eq(1)
+        expect(results)
+          .to include(alice)
+          .and not_include(bob)
+      end
+
+      it 'returns accounts which equal the value' do
+        results = described_class.matches_uri_prefix('https://top-level.example')
+
+        expect(results.size)
+          .to eq(1)
+        expect(results)
+          .to include(bob)
+          .and not_include(alice)
+      end
+    end
+
+    describe 'auditable' do
+      let!(:alice) { Fabricate :account }
+      let!(:bob) { Fabricate :account }
+
+      before do
+        2.times { Fabricate :action_log, account: alice }
+      end
+
+      it 'returns distinct accounts with action log records' do
+        results = described_class.auditable
+
+        expect(results.size)
+          .to eq(1)
+        expect(results)
+          .to include(alice)
+          .and not_include(bob)
+      end
+    end
+
     describe 'alphabetic' do
       it 'sorts by alphabetic order of domain and username' do
         matches = [
@@ -944,6 +996,7 @@ RSpec.describe Account do
 
       it 'returns every usable non-suspended account' do
         expect(described_class.searchable).to contain_exactly(silenced_local, silenced_remote, local_account, remote_account)
+        expect(described_class.searchable).to_not include(suspended_local, suspended_remote, unconfirmed, unapproved)
       end
 
       it 'does not mess with previously-applied scopes' do
@@ -982,18 +1035,9 @@ RSpec.describe Account do
     it 'increments the count in multi-threaded an environment when account_stat is not yet initialized' do
       subject
 
-      increment_by   = 15
-      wait_for_start = true
-
-      threads = Array.new(increment_by) do
-        Thread.new do
-          true while wait_for_start
-          described_class.find(subject.id).increment_count!(:followers_count)
-        end
+      multi_threaded_execution(15) do
+        described_class.find(subject.id).increment_count!(:followers_count)
       end
-
-      wait_for_start = false
-      threads.each(&:join)
 
       expect(subject.reload.followers_count).to eq 15
     end

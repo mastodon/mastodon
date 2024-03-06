@@ -3,7 +3,7 @@
 module Settings
   module Exports
     class BookmarksController < BaseController
-      include ExportControllerConcern
+      include Settings::ExportControllerConcern
 
       def index
         send_export_file
