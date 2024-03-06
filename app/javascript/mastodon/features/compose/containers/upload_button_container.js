@@ -1,6 +1,6 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-import {uploadCompose} from '../../../actions/compose';
+import { uploadCompose } from '../../../actions/compose';
 import UploadButton from '../components/upload_button';
 
 const mapStateToProps = state => {
