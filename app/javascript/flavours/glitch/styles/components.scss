@@ -1334,19 +1334,19 @@ body > [data-popper-placement] {
 }
 
 .status__content__spoiler-link {
-  display: inline-flex;
+  display: inline-flex; // glitch: media icon in spoiler button
   border-radius: 2px;
   background: transparent;
   border: 0;
   color: $inverted-text-color;
   font-weight: 700;
   font-size: 11px;
-  padding: 0 5px;
+  padding: 0 6px;
   text-transform: uppercase;
-  line-height: inherit;
+  line-height: 20px;
   cursor: pointer;
   vertical-align: top;
-  align-items: center;
+  align-items: center; // glitch: content indicator
 
   &:hover {
     background: lighten($ui-base-color, 33%);
@@ -1867,6 +1867,11 @@ body > [data-popper-placement] {
   .audio-player {
     margin-top: 8px;
   }
+
+  .status__prepend {
+    padding: 0;
+    margin-bottom: 16px;
+  }
 }
 
 .scrollable > div:first-child .detailed-status {
@@ -2069,8 +2074,6 @@ body > [data-popper-placement] {
     position: relative;
 
     & > div {
-      @include avatar-radius;
-
       float: left;
       position: relative;
       box-sizing: border-box;
@@ -2222,7 +2225,7 @@ a.account__display-name {
 
     &:hover,
     &:focus {
-      background: lighten($ui-base-color, 29%);
+      background: lighten($ui-base-lighter-color, 7%);
       text-decoration: none;
     }
   }
@@ -4704,35 +4707,6 @@ a.status-card {
   z-index: 100;
 }
 
-.media-spoiler {
-  background: $base-overlay-background;
-  color: $darker-text-color;
-  border: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 4px;
-  appearance: none;
-
-  &:hover,
-  &:active,
-  &:focus {
-    padding: 0;
-    color: lighten($darker-text-color, 8%);
-  }
-}
-
-.media-spoiler__warning {
-  display: block;
-  font-size: 14px;
-}
-
-.media-spoiler__trigger {
-  display: block;
-  font-size: 11px;
-  font-weight: 700;
-}
-
 .spoiler-button {
   top: 0;
   inset-inline-start: 0;
@@ -4742,12 +4716,11 @@ a.status-card {
   z-index: 100;
 
   &--minified {
-    display: flex; // glitch: media icon in spoiler button
+    display: block;
     inset-inline-start: 4px;
     top: 4px;
     width: auto;
     height: auto;
-    align-items: center; // glitch: media icon in spoiler button
   }
 
   &--click-thru {
@@ -6650,8 +6623,6 @@ a.status-card {
           }
         }
 
-        & > .react-toggle,
-        & > .icon,
         button:first-child {
           margin-inline-end: 10px;
         }
