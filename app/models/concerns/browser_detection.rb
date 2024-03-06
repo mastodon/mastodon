@@ -4,7 +4,7 @@ module BrowserDetection
   extend ActiveSupport::Concern
 
   included do
-    normalizes :user_agent, with: ->(value) { value || '' }
+    before_save :assign_user_agent
   end
 
   def detection
@@ -17,5 +17,11 @@ module BrowserDetection
 
   def platform
     detection.platform.id
+  end
+
+  private
+
+  def assign_user_agent
+    self.user_agent ||= ''
   end
 end
