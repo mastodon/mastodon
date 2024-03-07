@@ -6,7 +6,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import PhotoLibraryIcon from '@/material-icons/400-24px/photo_library.svg?react';
+import PhotoLibraryIcon from '@/material-icons/400-20px/photo_library.svg?react';
 import { IconButton } from 'mastodon/components/icon_button';
 
 const messages = defineMessages({
@@ -65,6 +65,7 @@ class UploadButton extends ImmutablePureComponent {
             key={resetFileKey}
             ref={this.setRef}
             type='file'
+            name='file-upload-input'
             multiple
             accept={acceptContentTypes.toArray().join(',')}
             onChange={this.handleChange}

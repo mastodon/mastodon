@@ -158,13 +158,14 @@ RSpec.describe ReportService, type: :service do
 
     before do
       Fabricate(:report, target_account: target_account)
-      ActionMailer::Base.deliveries.clear
       source_account.user.settings['notification_emails.report'] = true
       source_account.user.save
     end
 
     it 'does not send an e-mail' do
-      expect { subject.call }.to_not change(ActionMailer::Base.deliveries, :count).from(0)
+      emails = capture_emails { subject.call }
+
+      expect(emails).to be_empty
     end
   end
 end

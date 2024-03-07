@@ -12,6 +12,8 @@
 #  language        :string
 #
 class PreviewCardTrend < ApplicationRecord
+  include RankedTrend
+
   belongs_to :preview_card
   scope :allowed, -> { where(allowed: true) }
 end

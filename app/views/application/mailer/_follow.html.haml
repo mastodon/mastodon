@@ -1,0 +1,15 @@
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-mini-wrapper-td
+      %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-mini-td
+            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+              %tr
+                %td.email-mini-follow-img-td
+                  = image_tag full_asset_url(follow.account.avatar.url), alt: '', width: 40, height: 40
+                %td.email-mini-follow-text-td
+                  %h3= follow.account.display_name.presence || follow.account.username
+                  %p @#{follow.account.pretty_acct}
+                %td.email-mini-follow-btn-td
+                  = render 'application/mailer/button', text: t('user_mailer.welcome.follow_action'), url: web_url("@#{follow.account.acct}"), has_arrow: false

@@ -9,6 +9,8 @@
 #
 
 class Instance < ApplicationRecord
+  include DatabaseViewRecord
+
   self.primary_key = :domain
 
   attr_accessor :failure_days
@@ -27,10 +29,6 @@ class Instance < ApplicationRecord
   scope :by_domain_and_subdomains, ->(domain) { where("reverse('.' || domain) LIKE reverse(?)", "%.#{domain}") }
   scope :with_domain_follows, ->(domains) { where(domain: domains).where(domain_account_follows) }
 
-  def self.refresh
-    Scenic.database.refresh_materialized_view(table_name, concurrently: true, cascade: false)
-  end
-
   def self.domain_account_follows
     Arel.sql(
       <<~SQL.squish
@@ -42,10 +40,6 @@ class Instance < ApplicationRecord
         )
       SQL
     )
-  end
-
-  def readonly?
-    true
   end
 
   def delivery_failure_tracker

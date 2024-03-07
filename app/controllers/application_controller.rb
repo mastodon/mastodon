@@ -178,7 +178,7 @@ class ApplicationController < ActionController::Base
 
     respond_to do |format|
       format.any  { render 'errors/self_destruct', layout: 'auth', status: 410, formats: [:html] }
-      format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[410] }, status: code }
+      format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[410] }, status: 410 }
     end
   end
 

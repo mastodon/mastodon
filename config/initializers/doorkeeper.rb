@@ -21,9 +21,14 @@ Doorkeeper.configure do
     user unless user&.otp_required_for_login?
   end
 
-  # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
+  # Doorkeeper provides some administrative interfaces for managing OAuth
+  # Applications, allowing creation, edit, and deletion of applications from the
+  # server. At present, these administrative routes are not integrated into
+  # Mastodon, and as such, we've disabled them by always return a 403 forbidden
+  # response for them. This does not affect the ability for users to manage
+  # their own OAuth Applications.
   admin_authenticator do
-    current_user&.admin? || redirect_to(new_user_session_url)
+    head 403
   end
 
   # Authorization Code expiration time (default 10 minutes).

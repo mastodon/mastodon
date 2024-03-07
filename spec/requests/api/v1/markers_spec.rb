@@ -52,5 +52,19 @@ RSpec.describe 'API Markers' do
         expect(user.markers.first.last_read_id).to eq 70_120
       end
     end
+
+    context 'when database object becomes stale' do
+      before do
+        allow(Marker).to receive(:transaction).and_raise(ActiveRecord::StaleObjectError)
+        post '/api/v1/markers', headers: headers, params: { home: { last_read_id: '69420' } }
+      end
+
+      it 'returns error json' do
+        expect(response)
+          .to have_http_status(409)
+        expect(body_as_json)
+          .to include(error: /Conflict during update/)
+      end
+    end
   end
 end

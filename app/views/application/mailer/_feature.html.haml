@@ -1,0 +1,32 @@
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-feature-wrapper-td
+      %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-feature-td
+            .email-desktop-flex{ class: ('email-dir-rtl' if defined?(text_first_on_desktop) && !text_first_on_desktop) }
+              /[if mso]
+                <table border="0" cellpadding="0" cellspacing="0" align="center" style="width:100%;" role="presentation"><tr><td style="width:50%; vertical-align:top;">
+              .email-desktop-column
+                %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                  %tr
+                    %td.email-column-td
+                      - if defined?(feature_title)
+                        %h2.email-h2= feature_title
+                      - if defined?(feature_text)
+                        %p.email-p= feature_text
+                      - if defined?(feature_btn_url)
+                        = link_to '', href: feature_btn_url, class: 'email-link-with-arrow' do
+                          #{t('user_mailer.welcome.feature_action')} 
+                          %span= '❯'
+              /[if mso]
+                </td><td style="width:50%; vertical-align:top;">
+              .email-desktop-column
+                %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                  %tr
+                    %td.email-column-td
+                      - if defined?(key)
+                        %p{ class: ('email-desktop-text-right' if defined?(text_first_on_desktop) && text_first_on_desktop) }
+                          = image_tag frontend_asset_url("images/mailer-new/welcome/#{key}.png"), alt: '', width: 240, height: 230
+              /[if mso]
+                </td></tr></table>

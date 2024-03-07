@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AccountSuggestions::SettingSource < AccountSuggestions::Source
-  def get(account, limit: 10)
+  def get(account, limit: DEFAULT_LIMIT)
     if setting_enabled?
       base_account_scope(account).where(setting_to_where_condition).limit(limit).pluck(:id).zip([key].cycle)
     else

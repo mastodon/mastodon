@@ -9,18 +9,8 @@ RSpec.describe Admin::AccountsController do
 
   describe 'GET #index' do
     let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
-
-    around do |example|
-      default_per_page = Account.default_per_page
-      Account.paginates_per 1
-      example.run
-      Account.paginates_per default_per_page
-    end
-
-    it 'filters with parameters' do
-      account_filter = instance_double(AccountFilter, results: Account.all)
-      allow(AccountFilter).to receive(:new).and_return(account_filter)
-      params = {
+    let(:params) do
+      {
         origin: 'local',
         by_domain: 'domain',
         status: 'active',
@@ -29,25 +19,35 @@ RSpec.describe Admin::AccountsController do
         email: 'local-part@domain',
         ip: '0.0.0.42',
       }
-
-      get :index, params: params
-
-      expect(AccountFilter).to have_received(:new).with(hash_including(params))
     end
 
-    it 'paginates accounts' do
+    around do |example|
+      default_per_page = Account.default_per_page
+      Account.paginates_per 1
+      example.run
+      Account.paginates_per default_per_page
+    end
+
+    before do
       Fabricate(:account)
 
-      get :index, params: { page: 2 }
-
-      accounts = assigns(:accounts)
-      expect(accounts.count).to eq 1
-      expect(accounts.klass).to be Account
+      account_filter = instance_double(AccountFilter, results: Account.all)
+      allow(AccountFilter).to receive(:new).and_return(account_filter)
     end
 
-    it 'returns http success' do
-      get :index
-      expect(response).to have_http_status(200)
+    it 'returns success and paginates and filters with parameters' do
+      get :index, params: params.merge(page: 2)
+
+      expect(response)
+        .to have_http_status(200)
+      expect(assigns(:accounts))
+        .to have_attributes(
+          count: eq(1),
+          klass: be(Account)
+        )
+      expect(AccountFilter)
+        .to have_received(:new)
+        .with(hash_including(params))
     end
   end
 

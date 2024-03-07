@@ -184,7 +184,7 @@ describe 'Caching behavior' do
         get '/users/alice'
 
         expect(response).to redirect_to('/@alice')
-        expect(response.headers['Vary']&.split(',')&.map { |x| x.strip.downcase }).to include('accept')
+        expect(response_vary_headers).to include('accept')
       end
     end
 

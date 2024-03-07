@@ -61,6 +61,12 @@ class AdminMailer < ApplicationMailer
     end
   end
 
+  def auto_close_registrations
+    locale_for_account(@me) do
+      mail subject: default_i18n_subject(instance: @instance)
+    end
+  end
+
   private
 
   def process_params

@@ -3,9 +3,13 @@ cs:
   simple_form:
     hints:
       account:
+        discoverable: Vaše veřejné příspěvky a profil mohou být zobrazeny nebo doporučeny v různých oblastech Mastodonu a váš profil může být navrhován ostatním uživatelům.
         display_name: Vaše celé jméno nebo přezdívka.
         fields: Vaše domovská stránka, zájmena, věk, cokoliv chcete.
+        indexable: Vaše veřejné příspěvky se mohou objevit ve výsledcích vyhledávání na Mastodonu. Lidé, kteří s vašimi příspěvky interagovaly, je mohou stále vyhledávat.
         note: 'Můžete @zmínit jiné osoby nebo #hashtagy.'
+        show_collections: Lidé budou moci procházet skrz sledující. Lidé, které sledujete, uvidí, že je sledujete bezohledně.
+        unlocked: Lidé vás budou moci sledovat, aniž by vás žádali o schválení. Zrušte zaškrtnutí, pokud chcete zkontrolovat požadavky a zvolte, zda přijmete nebo odmítněte nové následovníky.
       account_alias:
         acct: Zadejte svůj účet, ze kterého se chcete přesunout jinam, ve formátu přezdívka@doména
       account_migration:
@@ -34,15 +38,15 @@ cs:
       appeal:
         text: Proti prohřešku se můžete odvolat jen jednou
       defaults:
-        autofollow: Lidé, kteří se zaregistrují na základě pozvánky, vás budou automaticky sledovat
-        avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
+        autofollow: Lidé, kteří se zaregistrují skrz pozvánky, vás budou automaticky sledovat
+        avatar: WEBP, PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         bot: Signalizovat ostatním, že účet převážně vykonává automatizované akce a nemusí být monitorován
         context: Jeden či více kontextů, ve kterých má být filtr uplatněn
         current_password: Z bezpečnostních důvodů prosím zadejte heslo současného účtu
         current_username: Potvrďte prosím tuto akci zadáním uživatelského jména aktuálního účtu
         digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste během své nepřítomnosti obdrželi osobní zprávy
         email: Bude vám poslán potvrzovací e-mail
-        header: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
+        header: WEBP, PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         inbox_url: Zkopírujte URL z hlavní stránky mostu, který chcete použít
         irreversible: Filtrované příspěvky nenávratně zmizí, i pokud bude filtr později odstraněn
         locale: Jazyk uživatelského rozhraní, e-mailů a push notifikací
@@ -72,7 +76,7 @@ cs:
           hide: Úplně schovat filtrovaný obsah tak, jako by neexistoval
           warn: Schovat filtrovaný obsah za varováním zmiňujicím název filtru
       form_admin_settings:
-        activity_api_enabled: Počty lokálně publikovaných příspěvků, aktivních uživatelů a nových registrací v týdenních intervalech
+        activity_api_enabled: Počty lokálně zveřejnělých příspěvků, aktivních uživatelů a nových registrací v týdenních intervalech
         backups_retention_period: Zachovat generované uživatelské archivy pro zadaný počet dní.
         bootstrap_timeline_accounts: Tyto účty budou připnuty na vrchol nových uživatelů podle doporučení.
         closed_registrations_message: Zobrazeno při zavření registrace
@@ -116,6 +120,9 @@ cs:
       sessions:
         otp: 'Zadejte kód pro dvoufázové ověření vygenerovaný vaší mobilní aplikací, nebo použijte jeden z vašich záložních kódů:'
         webauthn: Pokud jde o USB klíč, vložte jej a případně se dotkněte jeho tlačítka.
+      settings:
+        indexable: Vaše profilová stránka se může objevit ve výsledcích vyhledávání na Google, Bingu a ostatních vyhledávačích.
+        show_application: I tak budete vždy moci vidět, která aplikace zveřejnila váš příspěvek.
       tag:
         name: Můžete měnit pouze velikost písmen, například kvůli lepší čitelnosti
       user:
@@ -133,9 +140,13 @@ cs:
         url: Kam budou události odesílány
     labels:
       account:
+        discoverable: Zobrazovat profil a příspěvky ve vyhledávacích algoritmech
         fields:
           name: Označení
           value: Obsah
+        indexable: Zahrnout veřejné příspěvky do výsledků hledání
+        show_collections: Zobrazit koho sledujete a kdo vás sleduje v profilu
+        unlocked: Automaticky přijímat nové sledující
       account_alias:
         acct: Adresa starého účtu
       account_migration:
@@ -280,9 +291,18 @@ cs:
         pending_account: Je třeba posoudit nový účet
         reblog: Někdo boostnul váš příspěvek
         report: Je odesláno nové hlášení
+        software_updates:
+          all: Upozornit na všechny aktualizace
+          critical: Upozornit pouze na kritické aktualizace
+          label: Nová verze Mastodonu k dispozici
+          none: Nikdy neoznamovat aktualizace (nedoporučeno)
+          patch: Upozornit na aktualizace chyb
         trending_tag: Nový trend vyžaduje posouzení
       rule:
         text: Pravidlo
+      settings:
+        indexable: Zahrnout stránku profilu do vyhledávačů
+        show_application: Zobrazit aplikaci, ze které jste odeslali příspěvek
       tag:
         listable: Povolit zobrazení tohoto hashtagu ve vyhledávání a návrzích
         name: Hashtag
@@ -303,6 +323,7 @@ cs:
         url: URL koncového bodu
     'no': Ne
     not_recommended: Nedoporučuje se
+    overridden: Přepsáno
     recommended: Doporučeno
     required:
       mark: "*"

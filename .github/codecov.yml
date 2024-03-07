@@ -1,3 +1,4 @@
+comment: false # Do not leave PR comments
 coverage:
   status:
     project:
@@ -8,6 +9,3 @@ coverage:
       default:
         # Github status check is not blocking
         informational: true
-comment:
-  # Only write a comment in PR if there are changes
-  require_changes: true

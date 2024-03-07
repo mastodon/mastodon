@@ -1,25 +1,76 @@
+- instance_presenter = InstancePresenter.new
+
 = content_for :heading do
-  = render 'application/mailer/heading', heading_title: t('user_mailer.welcome.title', name: @resource.account.username), heading_subtitle: t('user_mailer.welcome.explanation')
+  .email-desktop-flex
+    .email-header-left
+      = render 'application/mailer/heading', heading_title: t('user_mailer.welcome.title', name: @resource.account.username), heading_subtitle: t('user_mailer.welcome.explanation')
+    .email-header-right
+      .email-header-card
+        %table.email-header-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+          %tr
+            %td
+              %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                %tr
+                  %td.email-header-card-banner-td{ height: 140, background: full_asset_url(instance_presenter.thumbnail&.file&.url(:'@1x') || frontend_asset_path('images/preview.png')) }
+              %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                %tr
+                  %td.email-header-card-body-td
+                    %p.email-header-card-instance= @instance
+                    - if instance_presenter.description.present?
+                      %p.email-header-card-description= instance_presenter.description
+                    = render 'application/mailer/button', text: t('user_mailer.welcome.sign_in_action'), url: new_user_session_url, has_arrow: false
+
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
-    %td.email-body-padding-td
-      %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-        %tr
-          %td.email-inner-card-td-without-padding
-            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-              %tr
-                %td.email-prose.email-padding-24
-                  %p
-                    %b= t 'user_mailer.welcome.full_handle'
-                  = render 'application/mailer/frame', text: "#{@resource.account.username}@#{@instance}"
-                  %p= t 'user_mailer.welcome.full_handle_hint', instance: @instance
-            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-              %tr
-                %td.email-border-top.email-prose.email-padding-24
-                  %p= t 'user_mailer.welcome.edit_profile_step'
-                  = render 'application/mailer/button', text: t('user_mailer.welcome.edit_profile_action'), url: settings_profile_url
-            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-              %tr
-                %td.email-border-top.email-prose.email-padding-24
-                  %p= t 'user_mailer.welcome.edit_profile_step'
-                  = render 'application/mailer/button', text: t('user_mailer.welcome.final_action'), url: web_url
+    %td.email-body-huge-padding-td
+      %h2.email-h2= t('user_mailer.welcome.checklist_title')
+      %p.email-h-sub= t('user_mailer.welcome.checklist_subtitle')
+      = render 'application/mailer/checklist', key: 'edit_profile_step', title: t('user_mailer.welcome.edit_profile_title'), text: t('user_mailer.welcome.edit_profile_step'), checked: @has_account_fields, button_text: t('user_mailer.welcome.edit_profile_action'), button_url: web_url('start/profile')
+      = render 'application/mailer/checklist', key: 'follow_step', title: t('user_mailer.welcome.follow_title'), text: t('user_mailer.welcome.follow_step'), checked: @has_active_relationships, button_text: t('user_mailer.welcome.follow_action'), button_url: web_url('start/follows')
+      = render 'application/mailer/checklist', key: 'post_step', title: t('user_mailer.welcome.post_title'), text: t('user_mailer.welcome.post_step'), checked: @has_statuses, button_text: t('user_mailer.welcome.post_action'), button_url: web_url
+      = render 'application/mailer/checklist', key: 'share_step', title: t('user_mailer.welcome.share_title'), text: t('user_mailer.welcome.share_step'), checked: false, button_text: t('user_mailer.welcome.share_action'), button_url: web_url('start/share')
+      = render 'application/mailer/checklist', key: 'apps_step', title: t('user_mailer.welcome.apps_title'), text: t('user_mailer.welcome.apps_step'), checked: false, show_apps_buttons: true
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-body-columns-td
+      .email-desktop-flex
+        /[if mso]
+          <table border="0" cellpadding="0" cellspacing="0" align="center" style="width:100%;" role="presentation"><tr><td style="width:50%; vertical-align:top;">
+        .email-desktop-column
+          %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+            %tr
+              %td.email-column-td
+                %h2.email-h2= t('user_mailer.welcome.follows_title')
+                %p.email-h-sub= t('user_mailer.welcome.follows_subtitle')
+                = render partial: 'application/mailer/follow', collection: @suggestions
+                %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                  %tr
+                    %td.email-column-action-td
+                      = link_to '', href: web_url('explore/suggestions'), class: 'email-link-with-arrow' do
+                        = t('user_mailer.welcome.follows_view_more')
+                        %span= '❯'
+        /[if mso]
+          </td><td style="width:50%; vertical-align:top;">
+        .email-desktop-column
+          %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+            %tr
+              %td.email-column-td
+                %h2.email-h2= t('user_mailer.welcome.hashtags_title')
+                %p.email-h-sub= t('user_mailer.welcome.hashtags_subtitle')
+                = render partial: 'application/mailer/hashtag', collection: @tags
+                %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                  %tr
+                    %td.email-column-action-td
+                      = link_to '', href: web_url('explore/tags'), class: 'email-link-with-arrow' do
+                        = t('user_mailer.welcome.hashtags_view_more')
+                        %span= '❯'
+        /[if mso]
+          </td></tr></table>
+.email-extra-wave
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-extra-td
+      = render 'application/mailer/feature', key: 'feature_control', feature_title: t('user_mailer.welcome.feature_control_title'), feature_text: t('user_mailer.welcome.feature_control'), text_first_on_desktop: true
+      = render 'application/mailer/feature', key: 'feature_audience', feature_title: t('user_mailer.welcome.feature_audience_title'), feature_text: t('user_mailer.welcome.feature_audience'), text_first_on_desktop: false
+      = render 'application/mailer/feature', key: 'feature_moderation', feature_title: t('user_mailer.welcome.feature_moderation_title'), feature_text: t('user_mailer.welcome.feature_moderation'), text_first_on_desktop: true
+      = render 'application/mailer/feature', key: 'feature_creativity', feature_title: t('user_mailer.welcome.feature_creativity_title'), feature_text: t('user_mailer.welcome.feature_creativity'), text_first_on_desktop: false
