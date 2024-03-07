@@ -49,7 +49,8 @@ class Api::V1::NotificationsController < Api::BaseController
     current_account.notifications.without_suspended.browserable(
       types: Array(browserable_params[:types]),
       exclude_types: Array(browserable_params[:exclude_types]),
-      from_account_id: browserable_params[:account_id]
+      from_account_id: browserable_params[:account_id],
+      include_filtered: truthy_param?(:include_filtered)
     )
   end
 
@@ -78,10 +79,10 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def browserable_params
-    params.permit(:account_id, types: [], exclude_types: [])
+    params.permit(:account_id, :include_filtered, types: [], exclude_types: [])
   end
 
   def pagination_params(core_params)
-    params.slice(:limit, :account_id, :types, :exclude_types).permit(:limit, :account_id, types: [], exclude_types: []).merge(core_params)
+    params.slice(:limit, :account_id, :types, :exclude_types, :include_filtered).permit(:limit, :account_id, :include_filtered, types: [], exclude_types: []).merge(core_params)
   end
 end
