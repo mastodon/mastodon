@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_11_033014) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_19_171126) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -437,6 +437,40 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_11_033014) do
     t.bigint "parent_id"
     t.boolean "allow_with_approval", default: false, null: false
     t.index ["domain"], name: "index_email_domain_blocks_on_domain", unique: true
+  end
+
+  create_table "emergency_rate_limit_actions", force: :cascade do |t|
+    t.bigint "emergency_rule_id", null: false
+    t.boolean "new_users_only", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["emergency_rule_id"], name: "index_emergency_rate_limit_actions_on_emergency_rule_id"
+  end
+
+  create_table "emergency_rules", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "duration"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "emergency_setting_override_actions", force: :cascade do |t|
+    t.bigint "emergency_rule_id", null: false
+    t.string "setting", null: false
+    t.string "value", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["emergency_rule_id"], name: "index_emergency_setting_override_actions_on_emergency_rule_id"
+  end
+
+  create_table "emergency_triggers", force: :cascade do |t|
+    t.bigint "emergency_rule_id", null: false
+    t.string "event", null: false
+    t.integer "threshold", null: false
+    t.integer "duration_bucket", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["emergency_rule_id"], name: "index_emergency_triggers_on_emergency_rule_id"
   end
 
   create_table "encrypted_messages", id: :bigint, default: -> { "timestamp_id('encrypted_messages'::text)" }, force: :cascade do |t|
@@ -1224,6 +1258,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_11_033014) do
   add_foreign_key "devices", "accounts", on_delete: :cascade
   add_foreign_key "devices", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade
   add_foreign_key "email_domain_blocks", "email_domain_blocks", column: "parent_id", on_delete: :cascade
+  add_foreign_key "emergency_rate_limit_actions", "emergency_rules", on_delete: :cascade
+  add_foreign_key "emergency_setting_override_actions", "emergency_rules", on_delete: :cascade
+  add_foreign_key "emergency_triggers", "emergency_rules", on_delete: :cascade
   add_foreign_key "encrypted_messages", "accounts", column: "from_account_id", on_delete: :cascade
   add_foreign_key "encrypted_messages", "devices", on_delete: :cascade
   add_foreign_key "favourites", "accounts", name: "fk_5eb6c2b873", on_delete: :cascade

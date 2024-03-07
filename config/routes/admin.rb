@@ -203,4 +203,10 @@ namespace :admin do
   end
 
   resources :software_updates, only: [:index]
+
+  resources :emergency_rules do
+    member do
+      post :deactivate
+    end
+  end
 end

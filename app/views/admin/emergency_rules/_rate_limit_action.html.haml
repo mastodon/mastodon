@@ -1,0 +1,8 @@
+%li.permissions-list__item
+  .permissions-list__item__icon
+    = fa_icon('gavel')
+  .permissions-list__item__text
+    .permissions-list__item__text__title
+      = rate_limit_action.new_users_only? ? t('admin.emergency_rules.rate_limit_actions.new_users_title') : t('admin.emergency_rules.rate_limit_actions.title')
+    .permissions-list__item__text__type
+      = rate_limit_action.new_users_only? ? t('admin.emergency_rules.rate_limit_actions.new_users_description') : t('admin.emergency_rules.rate_limit_actions.description')

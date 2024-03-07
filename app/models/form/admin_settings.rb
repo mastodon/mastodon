@@ -91,7 +91,9 @@ class Form::AdminSettings
                      elsif OVERRIDEN_SETTINGS.include?(key)
                        public_send(OVERRIDEN_SETTINGS[key])
                      else
-                       Setting.public_send(key)
+                       # Avoid any of the emergency overrides by not doing
+                       # Setting.public_send(key)
+                       Setting[key.to_s]
                      end
 
       instance_variable_set(:"@#{key}", stored_value)
