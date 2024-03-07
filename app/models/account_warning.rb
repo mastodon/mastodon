@@ -17,7 +17,7 @@
 #
 
 class AccountWarning < ApplicationRecord
-  enum action: {
+  enum :action, {
     none: 0,
     disable: 1_000,
     mark_statuses_as_sensitive: 1_250,
@@ -25,7 +25,7 @@ class AccountWarning < ApplicationRecord
     sensitive: 2_000,
     silence: 3_000,
     suspend: 4_000,
-  }, _suffix: :action
+  }, suffix: :action
 
   normalizes :text, with: ->(text) { text.to_s }, apply_to_nil: true
 

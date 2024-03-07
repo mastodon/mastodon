@@ -47,15 +47,15 @@ class Report < ApplicationRecord
   delegate :local?, to: :account
 
   validates :comment, length: { maximum: 1_000 }, if: :local?
-  validates :rule_ids, absence: true, unless: :violation?
+  validates :rule_ids, absence: true, if: -> { (category_changed? || rule_ids_changed?) && !violation? }
 
-  validate :validate_rule_ids
+  validate :validate_rule_ids, if: -> { (category_changed? || rule_ids_changed?) && violation? }
 
   # entries here need to be kept in sync with the front-end:
   # - app/javascript/mastodon/features/notifications/components/report.jsx
   # - app/javascript/mastodon/features/report/category.jsx
   # - app/javascript/mastodon/components/admin/ReportReasonSelector.jsx
-  enum category: {
+  enum :category, {
     other: 0,
     spam: 1_000,
     legal: 1_500,
@@ -162,8 +162,6 @@ class Report < ApplicationRecord
   end
 
   def validate_rule_ids
-    return unless violation?
-
     errors.add(:rule_ids, I18n.t('reports.errors.invalid_rules')) unless rules.size == rule_ids&.size
   end
 

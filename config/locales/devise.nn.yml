@@ -12,6 +12,7 @@ nn:
       last_attempt: Du har eitt forsøk igjen før kontoen din vert låst.
       locked: Kontoen din er låst.
       not_found_in_database: Ugyldig %{authentication_keys} eller passord.
+      omniauth_user_creation_failure: Greidde ikkje laga konto for denne identiteten.
       pending: Kontoen din er vert gjennomgått enno.
       timeout: Økta di er utgått. Logg inn omatt for å halde fram.
       unauthenticated: Du må logge inn eller registere deg før du kan halde fram.
@@ -47,19 +48,19 @@ nn:
         subject: 'Mastodon: Instuksjonar for å endra passord'
         title: Attstilling av passord
       two_factor_disabled:
-        explanation: Innlogging er nå mulig med kun e-postadresse og passord.
+        explanation: No kan du logga inn med berre epostadresse og passord.
         subject: 'Mastodon: To-faktor-autentisering deaktivert'
-        subtitle: To-faktor autentisering for din konto har blitt deaktivert.
+        subtitle: Tofaktorinnlogging for denne kontoen er skrudd av.
         title: 2FA deaktivert
       two_factor_enabled:
-        explanation: En token generert av den sammenkoblede TOTP-appen vil være påkrevd for innlogging.
+        explanation: Du treng ein kode frå den tilkopla tofaktor-appen din for å logga inn.
         subject: 'Mastodon: To-faktor-autentisering aktivert'
-        subtitle: Tofaktorautentisering er aktivert for din konto.
+        subtitle: Tofaktorpålogging er skrudd på for kontoen din.
         title: 2FA aktivert
       two_factor_recovery_codes_changed:
         explanation: Dei førre gjenopprettingskodane er ugyldige og nye er genererte.
         subject: 'Mastodon: To-faktor-gjenopprettingskodar har vorte genererte på nytt'
-        subtitle: De forrige gjenopprettingskodene er gjort ugyldige og nye er generert.
+        subtitle: Dei førre innloggingskodane er ikkje gyldige lenger, og nye kodar er laga.
         title: 2FA-gjenopprettingskodane er endra
       unlock_instructions:
         subject: 'Mastodon: Instruksjonar for å opne kontoen igjen'
@@ -73,13 +74,13 @@ nn:
           subject: 'Mastodon: Sikkerheitsnøkkel sletta'
           title: Ein av sikkerheitsnøklane dine har blitt sletta
       webauthn_disabled:
-        explanation: Autentisering med sikkerhetsnøkler er deaktivert for kontoen din.
-        extra: Innlogging er nå mulig med kun tilgangstoken generert av den sammenkoblede TOTP-appen.
+        explanation: Innlogging med tryggingsnykjel er skrudd av for kontoen din.
+        extra: No kan du logga inn med berre kodane som er laga av den tilkopla tofaktor-appen din.
         subject: 'Mastodon: Autentisering med sikkerheitsnøklar vart skrudd av'
         title: Sikkerheitsnøklar deaktivert
       webauthn_enabled:
-        explanation: Sikkerhetsnøkkelautentisering har blitt aktivert for kontoen din.
-        extra: Sikkerhetsnøkkelen din kan nå bli brukt for innlogging.
+        explanation: Innlogging med tryggingsnyklar er skrudd på for kontoen din.
+        extra: No kan du bruka tryggingsnykjelen din for å logga inn.
         subject: 'Mastodon: Sikkerheitsnøkkelsautentisering vart skrudd på'
         title: Sikkerheitsnøklar aktivert
     omniauth_callbacks:

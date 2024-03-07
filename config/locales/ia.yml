@@ -33,11 +33,27 @@ ia:
       username: Nomine de usator
     action_logs:
       action_types:
+        create_announcement: Crear annuncio
+        destroy_ip_block: Deler le regula IP
+        destroy_status: Deler le message
+        destroy_unavailable_domain: Deler le dominio non disponibile
+        disable_user: Disactivar le usator
+        enable_user: Activar le usator
         reset_password_user: Reinitialisar contrasigno
+        update_announcement: Actualisar annuncio
+        update_custom_emoji: Actualisar emoji personalisate
+      actions:
+        change_email_user_html: "%{name} cambiava le adresse de e-mail address del usator %{target}"
+        create_announcement_html: "%{name} creava un nove annuncio %{target}"
     announcements:
+      edit:
+        title: Modificar annuncio
+      empty: Necun annuncios trovate.
       new:
         create: Crear annuncio
         title: Nove annuncio
+      publish: Publicar
+      published_msg: Annuncio publicate con successo!
       title: Annuncios
     custom_emojis:
       by_domain: Dominio
@@ -46,9 +62,16 @@ ia:
       delete: Deler
       disable: Disactivar
       disabled: Disactivate
+      enable: Activar
+      enabled: Activate
+      enabled_msg: Emoji activate con successo
+      new:
+        title: Adder nove emoji personalisate
     dashboard:
       active_users: usatores active
+      media_storage: Immagazinage de medios
       new_users: nove usatores
+      opened_reports: reportos aperte
       website: Sito web
     domain_allows:
       add_new: Permitter federation con dominio
@@ -58,9 +81,14 @@ ia:
       domain: Dominio
       export: Exportar
       import: Importar
+      private_comment: Commento private
+      public_comment: Commento public
     email_domain_blocks:
       add_new: Adder nove
       delete: Deler
+      domain: Dominio
+      new:
+        create: Adder un dominio
     export_domain_allows:
       no_file: Necun file seligite
     follow_recommendations:
@@ -79,6 +107,7 @@ ia:
       filter:
         available: Disponibile
     ip_blocks:
+      add_new: Crear regula
       delete: Deler
       expires_in:
         '1209600': 2 septimanas
@@ -95,8 +124,120 @@ ia:
       enable: Activar
       enabled: Activate
     reports:
+      add_to_report: Adder plus al reporto
       are_you_sure: Es tu secur?
       cancel: Cancellar
+      delete_and_resolve: Deler le messages
+      notes:
+        delete: Deler
+      skip_to_actions: Saltar al actiones
+      status: Stato
+      updated_at: Actualisate
+      view_profile: Vider profilo
+    roles:
+      everyone: Permissiones predefinite
+      privileges:
+        manage_users: Gerer usatores
+    rules:
+      delete: Deler
+    settings:
+      about:
+        title: A proposito de
+      appearance:
+        preamble: Personalisar le interfacie web de Mastodon.
+        title: Apparentia
+      discovery:
+        profile_directory: Directorio de profilos
+        public_timelines: Chronologias public
+        trends: Tendentias
+      title: Parametros de servitor
+    site_uploads:
+      delete: Deler file incargate
+    statuses:
+      language: Lingua
+      metadata: Metadatos
+      open: Aperir message
+      original_status: Message original
+      title: Messages del conto
+      trending: Tendentias
+      visibility: Visibilitate
+    strikes:
+      actions:
+        none: "%{name} ha inviate un advertimento a %{target}"
+    system_checks:
+      rules_check:
+        action: Gerer le regulas del servitor
+      software_version_critical_check:
+        action: Vider le actualisationes disponibile
+      software_version_patch_check:
+        action: Vider le actualisationes disponibile
+      upload_check_privacy_error:
+        action: Verifica hic pro plus de information
+  edit_profile:
+    other: Alteres
+  existing_username_validator:
+    not_found_multiple: non poteva trovar %{usernames}
+  exports:
+    archive_takeout:
+      date: Data
+      download: Discargar tu archivo
+      size: Dimension
+    blocks: Tu ha blocate
+    bookmarks: Marcapaginas
+    csv: CSV
+    mutes: Tu ha silentiate
+    storage: Immagazinage de medios
+  featured_tags:
+    add_new: Adder nove
+  filters:
+    contexts:
+      account: Profilos
+      home: Pagina de initio e listas
+      notifications: Notificationes
+      public: Chronologias public
+      thread: Conversationes
+    edit:
+      add_keyword: Adder parola clave
+      keywords: Parolas clave
+      statuses: Messages individual
+      title: Modificar filtro
+    index:
+      delete: Deler
+  generic:
+    all: Toto
+    cancel: Cancellar
+    changes_saved_msg: Cambios salveguardate con successo!
+    confirm: Confirmar
+    copy: Copiar
+    delete: Deler
+    order_by: Ordinar per
+    save_changes: Salvar le cambios
+    today: hodie
+  imports:
+    errors:
+      empty: File CSV vacue
+      too_large: Le file es troppo longe
+    failures: Fallimentos
+    status: Stato
+    types:
+      lists: Listas
+  invites:
+    expires_in:
+      '1800': 30 minutas
+      '21600': 6 horas
+      '3600': 1 hora
+      '43200': 12 horas
+      '604800': 1 septimana
+      '86400': 1 die
+    expires_in_prompt: Nunquam
+  login_activities:
+    authentication_methods:
+      password: contrasigno
+  migrations:
+    errors:
+      not_found: non poterea esser trovate
+  preferences:
+    public_timelines: Chronologias public
   statuses_cleanup:
     min_age:
       '1209600': 2 septimanas

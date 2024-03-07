@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'sidekiq_unique_jobs/web'
+require 'sidekiq_unique_jobs/web' if ENV['ENABLE_SIDEKIQ_UNIQUE_JOBS_UI'] == true
 require 'sidekiq-scheduler/web'
 
 class RedirectWithVary < ActionDispatch::Routing::PathRedirect

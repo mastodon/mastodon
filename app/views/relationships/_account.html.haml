@@ -16,7 +16,7 @@
             %small= t('accounts.followers', count: account.followers_count).downcase
           %td.accounts-table__count
             - if account.last_status_at.present?
-              %time.time-ago{ datetime: account.last_status_at.to_date.iso8601, title: l(account.last_status_at.to_date) }= l account.last_status_at
+              %time.time-ago{ datetime: account.last_status_at.to_date.iso8601, title: l(account.last_status_at.to_date) }= l account.last_status_at.to_date
             - else
               \-
             %small= t('accounts.last_active')

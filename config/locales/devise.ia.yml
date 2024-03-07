@@ -11,17 +11,36 @@ ia:
       email_changed:
         title: Nove adresse de e-mail
       password_change:
+        subject: 'Mastodon: Contrasigno cambiate'
         title: Contrasigno cambiate
       reconfirmation_instructions:
+        explanation: Confirma le nove adresse pro cambiar tu email.
         title: Verificar adresse de e-mail
       reset_password_instructions:
         action: Cambiar contrasigno
+        subject: 'Mastodon: Instructiones pro reinitialisar le contrasigno'
         title: Reinitialisar contrasigno
       two_factor_disabled:
         title: 2FA disactivate
       two_factor_enabled:
         title: 2FA activate
+      unlock_instructions:
+        subject: 'Mastodon: Instructiones pro disblocar'
+      webauthn_credential:
+        added:
+          explanation: Le sequente clave de securitate esseva addite a tu conto
+          subject: 'Mastodon: Nove clave de securitate'
+          title: Un nove clave de securitate esseva addite
+        deleted:
+          explanation: Le sequente clave de securitate esseva delite de tu conto
+          subject: 'Mastodon: Clave de securitate delite'
+      webauthn_disabled:
+        title: Claves de securitate disactivate
+      webauthn_enabled:
+        title: Claves de securitate activate
     registrations:
+      destroyed: A revider! Tu conto esseva cancellate con successo. Nos spera vider te novemente tosto.
+      signed_up_but_pending: Un message con un ligamine de confirmation esseva inviate a tu conto de email. Post que tu clicca le ligamine, nos revidera tu application. Tu essera notificate si illo es approbate.
       updated: Tu conto ha essite actualisate con successo.
     unlocks:
       unlocked: Tu conto ha essite disblocate con successo. Initia session a continuar.

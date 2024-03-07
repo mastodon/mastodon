@@ -3,7 +3,7 @@ lad:
   devise:
     confirmations:
       confirmed: Tu adreso de posta elektronika tyene sido konfirmado korektamente.
-      send_instructions: Risiviras una posta elektronika kon instruksyones para konfirmar tu adreso de posta elektronika en unos minutos. Por favor, komprova tu kuti de spam si no risivites esta posta elektronika.
+      send_instructions: Risiviras una mesaj de posta elektronika kon instruksyones para konfirmar tu adreso de posta elektronika en unos minutos. Por favor, komprova tu kuti de spam si no risivites esta posta elektronika.
       send_paranoid_instructions: Si tu adreso de posta elektronika existe en muestra baza de datos, risiviras una posta elektronika kon instruksyones sobre komo konfirmar tu adreso de posta elektronika en pokos minutos.
     failure:
       already_authenticated: Ya te konektates kon tu kuento.
@@ -12,7 +12,8 @@ lad:
       last_attempt: Aprova una vez mas antes de ke tu kuento sea blokado.
       locked: Tu kuento esta blokado.
       not_found_in_database: Inkorekto %{authentication_keys} o kod.
-      pending: Tu ainda esta basho revizyon.
+      omniauth_user_creation_failure: Ay un error en kriyar un kuento para esta identita.
+      pending: Tu kuento ainda esta basho revizyon.
       timeout: Tu sesyon tiene kadukado. Por favor konektate kon tu kuento de muevo para kontinuar.
       unauthenticated: Kale konektarte kon tu kuento o enregistrarte antes de kontinuar.
       unconfirmed: Tyenes ke konfirmar tu adreso de posta elektronika antes de kontinuar.
@@ -45,17 +46,17 @@ lad:
         explanation: Solisitates un muevo kod para tu kuento.
         extra: Si no solisitates esto, por favor ignora esta posta. Tu kod no trokara asta ke tu aksedas al atadijo arriva i kriyes un muevo.
         subject: 'Mastodon: Instruksyones para reinisyar kod'
-        title: Reinisyar kod
+        title: Reinisya kod
       two_factor_disabled:
         explanation: Agora puedes konektarte kon tu kuento uzando solo tu adreso de posta i kod.
         subject: 'Mastodon: La autentifikasyon de dos pasos esta inkapasitada'
         subtitle: La autentifikasyon en dos pasos para tu kuento tiene sido inkapasitada.
-        title: Autentifikasyon 2FA inkapasitada
+        title: Autentifikasyon de dos pasos inkapasitada
       two_factor_enabled:
         explanation: Se rekierira un token djenerado por la aplikasyon TOTP konektada para entrar.
         subject: 'Mastodon: La autentifikasyon de dos pasos esta kapasitada'
         subtitle: La autentifikasyon de dos pasos para tu kuento tiene sido kapasitada.
-        title: Autentifikasyon 2FA aktivada
+        title: Autentifikasyon de dos pasos aktivada
       two_factor_recovery_codes_changed:
         explanation: Los kodiches de rekuperasyon previos tienen sido invalidados i se djeneraron kodiches muevos.
         subject: 'Mastodon: Los kodiches de rekuperasyon de dos pasos fueron rejenerados'
@@ -69,9 +70,9 @@ lad:
           subject: 'Mastodon: Mueva yave de sigurita'
           title: Se tiene adjustado una mueva yave de sigurita
         deleted:
-          explanation: La sigiente yave de sigurita a sido supremida de tu kuento
+          explanation: La sigiente yave de sigurita a sido suprimida de tu kuento
           subject: 'Mastodon: Yave de sigurita supremida'
-          title: Una de tus yaves de sigurita tiene sido supremida
+          title: Una de tus yaves de sigurita tiene sido suprimida
       webauthn_disabled:
         explanation: La autentifikasyon kon yaves de sigurita tiene sido inkapasitada para tu kuento.
         extra: Agora el inisyo de sesyon solo es posivle utilizando el token djeenerado por la aplikasyon TOTP konektada.
@@ -89,25 +90,25 @@ lad:
       no_token: No puedes akseder a esta pajina si no vienes dizde una posta elektronika de restablesimyento de kod. Si vienes dizde una posta elektronika de restablesimyento de kod, por favor asigurate de utilizar el URL kompleto embiado.
       send_instructions: Si tu adreso de posta elektronika existe en muestra baza de datos, risiviras un atadijo de rekuperasyon de kod en tu adreso de posta elektronika en pokos minutos. Por favor, komprova tu kuti de posta spam si no risives akeya posta elektronika.
       send_paranoid_instructions: Si tu adreso de posta elektronika existe en muestra baza de datos, risiviras un atadijo de rekuperasyon de kod en tu adreso de posta elektronika en pokos minutos. Por favor, komprova tu kuti de posta no deseado si no risives akeya posta elektronika.
-      updated: Tu kod a sido trokado kon reusho. Tinenes entrado en kuento.
-      updated_not_active: Tu kod se tiene trokado kon reusho.
+      updated: Tu kod a sido trokado kon reushita. Tyenes entrado en kuento.
+      updated_not_active: Tu kod se tiene trokado kon reushita.
     registrations:
-      destroyed: Tu kuento a sido efasado kon reusho. Asperamos verte de muevo pronto.
+      destroyed: Tu kuento a sido efasado kon reushita. Asperamos verte de muevo pronto.
       signed_up: Bienvenido! Te tienes enrejistrado djustamente.
-      signed_up_but_inactive: Te tienes enrejistrado kon reusho. Entanto, no se pudio inisyar sesyon porke tu kuento ainda no esta aktivado.
-      signed_up_but_locked: Te tienes enrejistrado kon reusho. Entanto, no pudites konektarte kon tu kuento porke tu kuento esta blokado.
+      signed_up_but_inactive: Te tienes enrejistrado kon reushita. Entanto, no se pudio inisyar sesyon porke tu kuento ainda no esta aktivado.
+      signed_up_but_locked: Te tienes enrejistrado kon reushita. Entanto, no pudites konektarte kon tu kuento porke tu kuento esta blokado.
       signed_up_but_pending: Un mesaj kon un atadijo de konfirmasyon a sido enviado a tu adreso de posta elektronika. Dempues de klikar en el atadijo, revizaremos tu solisitud. Seras avizado si se acheta.
       signed_up_but_unconfirmed: Un mesaj kon un atadijo de konfirmasyon a sido enviado a tu adreso de posta elektronika. Por favor, sigue el atadijo para aktivar tu kuento. Por favor, komprova tu kuti de posta spam si no risives akeya posta elektronika.
-      update_needs_confirmation: Tienes aktualizado tu kuento kon reusho, pero kale verifikar tu muevo adreso de posta elektronika. Por favor, komprova tu posta elektronika i sige el atadijo de konfirmasyon para konfirmar tu muevo adreso de posta elektronika. Por favor, komprova tu kuti de posta spam si no risives akeya posta elektronika.
-      updated: Tu kuento se aktualizo kon reusho.
+      update_needs_confirmation: Tienes aktualizado tu kuento kon reushita, pero kale verifikar tu muevo adreso de posta elektronika. Por favor, komprova tu posta elektronika i sige el atadijo de konfirmasyon para konfirmar tu muevo adreso de posta elektronika. Por favor, komprova tu kuti de posta spam si no risives akeya posta elektronika.
+      updated: Tu kuento se aktualizo kon reushita.
     sessions:
-      already_signed_out: Salites del kuento kon reusho.
-      signed_in: Konektates kon tu kuento kon reusho.
-      signed_out: Salites del kuento kon reusho.
+      already_signed_out: Salites del kuento kon reushita.
+      signed_in: Konektates kon tu kuento kon reushita.
+      signed_out: Salites del kuento kon reushita.
     unlocks:
       send_instructions: En unos minutos risiviras una posta elektronika kon instruksyones para dezblokar tu kuento. Por favor, komprova tu kuti de posta spam si no risives akeya posta elektronika.
       send_paranoid_instructions: Si tu kuento existe, en unos minutos risiviras una posta elektronika kon instruksyones para dezblokarlo. Por favor, reviza tu kuti de posta spam si no risives akeya posta elektronika.
-      unlocked: Tu kuento fue dezblokado kon reusho. Por favor, konektate kon tu kuento para kontinuar.
+      unlocked: Tu kuento fue dezblokado kon reushita. Por favor, konektate kon tu kuento para kontinuar.
   errors:
     messages:
       already_confirmed: ya estaba konfirmado, por favor aprova konektarte kon tu kuento

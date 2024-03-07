@@ -50,7 +50,7 @@ namespace :tests do
         exit(1)
       end
 
-      if Account.find(-99).private_key.blank?
+      if Account.find(Account::INSTANCE_ACTOR_ID).private_key.blank?
         puts 'Instance actor does not have a private key'
         exit(1)
       end

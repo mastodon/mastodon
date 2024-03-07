@@ -31,7 +31,7 @@ class CustomFilter < ApplicationRecord
   include Expireable
   include Redisable
 
-  enum action: { warn: 0, hide: 1 }, _suffix: :action
+  enum :action, { warn: 0, hide: 1 }, suffix: :action
 
   belongs_to :account
   has_many :keywords, class_name: 'CustomFilterKeyword', inverse_of: :custom_filter, dependent: :destroy

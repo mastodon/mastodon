@@ -47,11 +47,12 @@ class AccountSuggestions::SimilarProfilesSource < AccountSuggestions::Source
     end
   end
 
-  def get(account, limit: 10)
+  def get(account, limit: DEFAULT_LIMIT)
     recently_followed_account_ids = account.active_relationships.recent.limit(5).pluck(:target_account_id)
 
     if Chewy.enabled? && !recently_followed_account_ids.empty?
-      QueryBuilder.new(recently_followed_account_ids, account).build.limit(limit).hits.pluck('_id').map(&:to_i).zip([key].cycle)
+      ids_from_es = QueryBuilder.new(recently_followed_account_ids, account).build.limit(limit).hits.pluck('_id').map(&:to_i)
+      base_account_scope(account).where(id: ids_from_es).pluck(:id).zip([key].cycle)
     else
       []
     end

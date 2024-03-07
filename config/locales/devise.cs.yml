@@ -12,6 +12,7 @@ cs:
       last_attempt: Máte ještě jeden pokus, než bude váš účet uzamčen.
       locked: Váš účet je uzamčen.
       not_found_in_database: Neplatné %{authentication_keys} nebo heslo.
+      omniauth_user_creation_failure: Při vytvoření účtu pro tuto identitu se nastala chyba.
       pending: Váš účet je stále posuzován.
       timeout: Vaše relace vypršela. Pro pokračování se prosím přihlaste znovu.
       unauthenticated: Před pokračováním se musíte přihlásit nebo zaregistrovat.
@@ -47,15 +48,20 @@ cs:
         subject: 'Mastodon: Instrukce pro obnovení hesla'
         title: Obnovení hesla
       two_factor_disabled:
+        explanation: Přihlášení je nyní možné pouze pomocí emailové adresy a hesla.
         subject: 'Mastodon: Dvoufázové ověření bylo vypnuto'
-        title: 2FA bylo vypnuto
+        subtitle: Dvoufaktorové ověřování vašeho účtu bylo vypnuto.
+        title: Dvoufázové ověření bylo vypnuto
       two_factor_enabled:
+        explanation: Pro přihlášení bude vyžadován token generovaný spárovanou TOTP aplikací.
         subject: 'Mastodon: Dvoufázové ověření bylo zapnuto'
-        title: 2FA bylo zapnuto
+        subtitle: Dvoufaktorové ověřování vašeho účtu bylo zapnuto.
+        title: Dvoufázové ověření bylo zapnuto
       two_factor_recovery_codes_changed:
         explanation: Předchozí záložní kódy byly zrušeny a byly vygenerovány nové.
-        subject: 'Mastodon: Dvoufázové záložní kódy byly znovu vygenerovány'
-        title: Záložní kódy pro 2FA byly změněny
+        subject: 'Mastodon: Záložní kódy pro dvoufázové ověření byly znovu vygenerovány'
+        subtitle: Předchozí záložní kódy byly zrušeny a byly vygenerovány nové.
+        title: Záložní kódy pro dvoufázové ověření byly změněny
       unlock_instructions:
         subject: 'Mastodon: Instrukce pro odemčení účtu'
       webauthn_credential:
@@ -68,9 +74,13 @@ cs:
           subject: 'Mastodon: Bezpečnostní klíč byl smazán'
           title: Jeden z vašich bezpečnostních klíčů byl smazán
       webauthn_disabled:
-        subject: 'Mastodon: Přihlašování bezpečnostními klíči bylo vypnuto'
+        explanation: 'Mastodon: Přihlašování pomocí bezpečnostními klíčemi bylo pro váš účet vypnuto.'
+        extra: Přihlášení je nyní možné pouze pomocí tokenem vygenerovaný spárovanou TOTP aplikací.
+        subject: 'Mastodon: Přihlašování pomocí bezpečnostními klíčemi bylo vypnuto'
         title: Bezpečnostní klíče byly zakázány
       webauthn_enabled:
+        explanation: 'Mastodon: Přihlašování bezpečnostními klíči bylo pro váš účet povoleno.'
+        extra: Váš bezpečnostní klíč nyní může být použit pro přihlášení.
         subject: 'Mastodon: Přihlašování bezpečnostními klíči bylo povoleno'
         title: Bezpečnostní klíče byly povoleny
     omniauth_callbacks:

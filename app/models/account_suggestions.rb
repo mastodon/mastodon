@@ -31,12 +31,12 @@ class AccountSuggestions
       account_ids  = account_ids_with_sources[offset, limit]
       accounts_map = Account.where(id: account_ids.map(&:first)).includes(:account_stat, :user).index_by(&:id)
 
-      account_ids.filter_map do |(account_id, source)|
+      account_ids.filter_map do |(account_id, sources)|
         next unless accounts_map.key?(account_id)
 
         AccountSuggestions::Suggestion.new(
           account: accounts_map[account_id],
-          source: source
+          sources: sources
         )
       end
     end
