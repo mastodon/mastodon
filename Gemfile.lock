@@ -465,11 +465,11 @@ GEM
       statsd-ruby (~> 1.4, >= 1.4.0)
     oj (3.16.3)
       bigdecimal (>= 3.0)
-    omniauth (2.1.1)
+    omniauth (2.1.2)
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
       rack-protection
-    omniauth-cas (3.0.0.beta.1)
+    omniauth-cas (3.0.0)
       addressable (~> 2.8)
       nokogiri (~> 1.12)
       omniauth (~> 2.1)
@@ -543,8 +543,9 @@ GEM
       httpclient
       json-jwt (>= 1.11.0)
       rack (>= 2.1.0)
-    rack-protection (3.0.5)
-      rack
+    rack-protection (3.2.0)
+      base64 (>= 0.1.0)
+      rack (~> 2.2, >= 2.2.4)
     rack-proxy (0.7.6)
       rack
     rack-session (1.0.2)
