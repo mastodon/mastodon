@@ -109,6 +109,7 @@ module LanguagesHelper
     mn: ['Mongolian', 'Монгол хэл'].freeze,
     mr: ['Marathi', 'मराठी'].freeze,
     ms: ['Malay', 'Bahasa Melayu'].freeze,
+    'ms-Arab': ['Jawi Malay', 'بهاس ملايو'].freeze,
     mt: ['Maltese', 'Malti'].freeze,
     my: ['Burmese', 'ဗမာစာ'].freeze,
     na: ['Nauru', 'Ekakairũ Naoero'].freeze,
