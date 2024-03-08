@@ -226,6 +226,14 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
+          item={['show_published_toast']}
+          id='mastodon-settings--show_published_toast'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.show_published_toast' defaultMessage='Display toast when publishing/saving a post' />
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
           item={['side_arm']}
           id='mastodon-settings--side_arm'
           options={[

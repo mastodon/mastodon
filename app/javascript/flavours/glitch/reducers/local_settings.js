@@ -61,6 +61,7 @@ const initialState = ImmutableMap({
     media:      true,
     visibility: true,
   }),
+  show_published_toast: true,
 });
 
 const hydrate = (state, localSettings) => state.mergeDeep(localSettings);
