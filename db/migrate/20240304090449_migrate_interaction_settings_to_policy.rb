@@ -20,6 +20,9 @@ class MigrateInteractionSettingsToPolicy < ActiveRecord::Migration[7.1]
   def up
     User.includes(account: :notification_policy).find_each do |user|
       deserialized_settings = Oj.load(user.attributes_before_type_cast['settings'])
+
+      next if deserialized_settings.nil?
+
       policy = user.account.notification_policy || user.account.build_notification_policy
       requires_new_policy = false
 
