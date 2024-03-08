@@ -251,19 +251,19 @@ describe Account::Interactions do
   end
 
   describe '#block_idna_domain!' do
-    subject { [
-      account.block_domain!(idna_domain),
-      account.block_domain!(punycode_domain),
-    ] }
+    subject do
+      [
+        account.block_domain!(idna_domain),
+        account.block_domain!(punycode_domain),
+      ]
+    end
 
     let(:idna_domain) { '대한민국.한국' }
     let(:punycode_domain) { 'xn--3e0bs9hfvinn1a.xn--3e0b707e' }
 
     it 'creates single AccountDomainBlock' do
       expect do
-        subject.each do |s|
-          expect(s).to be_a AccountDomainBlock
-        end
+        expect(subject).to all(be_a AccountDomainBlock)
       end.to change { account.domain_blocks.count }.by 1
     end
   end
