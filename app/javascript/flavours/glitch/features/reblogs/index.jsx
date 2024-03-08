@@ -14,7 +14,6 @@ import RefreshIcon from '@/material-icons/400-24px/refresh.svg?react';
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
 
-
 import { fetchReblogs, expandReblogs } from '../../actions/interactions';
 import ColumnHeader from '../../components/column_header';
 import { LoadingIndicator } from '../../components/loading_indicator';

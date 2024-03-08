@@ -19,6 +19,7 @@ class StatusCheckBox extends PureComponent {
     status: ImmutablePropTypes.map.isRequired,
     checked: PropTypes.bool,
     onToggle: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
   };
 
   handleStatusesToggle = (value, checked) => {

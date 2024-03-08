@@ -8,7 +8,6 @@ import { NavLink, Switch, Route } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-
 import ExploreIcon from '@/material-icons/400-24px/explore.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import Column from 'flavours/glitch/components/column';

@@ -1,7 +1,7 @@
 import api from '../api';
 
 import { ensureComposeIsVisible, setComposeToStatus } from './compose';
-import { importFetchedStatus, importFetchedStatuses } from './importer';
+import { importFetchedStatus, importFetchedStatuses, importFetchedAccount } from './importer';
 import { deleteFromTimelines } from './timelines';
 
 export const STATUS_FETCH_REQUEST = 'STATUS_FETCH_REQUEST';
@@ -138,10 +138,10 @@ export function deleteStatus(id, routerHistory, withRedraft = false) {
     api(getState).delete(`/api/v1/statuses/${id}`).then(response => {
       dispatch(deleteStatusSuccess(id));
       dispatch(deleteFromTimelines(id));
+      dispatch(importFetchedAccount(response.data.account));
 
       if (withRedraft) {
         dispatch(redraft(status, response.data.text, response.data.content_type));
-
         ensureComposeIsVisible(getState, routerHistory);
       }
     }).catch(error => {

@@ -5,7 +5,6 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import TuneIcon from '@/material-icons/400-24px/tune.svg?react';
 import { requestBrowserPermission } from 'flavours/glitch/actions/notifications';

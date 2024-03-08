@@ -1657,6 +1657,7 @@ body > [data-popper-placement] {
   font-size: 15px;
   padding-bottom: 10px;
   display: flex;
+  align-items: start; // glitch: changed because of our different layout
   justify-content: space-between;
   gap: 10px;
   cursor: pointer;
@@ -1865,7 +1866,7 @@ body > [data-popper-placement] {
   .media-gallery,
   .video-player,
   .audio-player {
-    margin-top: 8px;
+    margin-top: 8px; // glitch: reduced margins
   }
 
   .status__prepend {
@@ -2624,6 +2625,10 @@ a.account__display-name {
   justify-content: flex-start;
   overflow-x: auto;
   position: relative;
+
+  &.unscrollable {
+    overflow-x: hidden;
+  }
 
   &__panels {
     display: flex;

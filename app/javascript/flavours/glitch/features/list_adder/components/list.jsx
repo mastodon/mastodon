@@ -11,7 +11,6 @@ import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
 
-
 import { removeFromListAdder, addToListAdder } from '../../../actions/lists';
 import { IconButton }  from '../../../components/icon_button';
 

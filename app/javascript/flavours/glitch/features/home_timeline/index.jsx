@@ -8,7 +8,6 @@ import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
-
 import CampaignIcon from '@/material-icons/400-24px/campaign.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/glitch/actions/announcements';
