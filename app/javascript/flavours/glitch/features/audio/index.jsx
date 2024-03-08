@@ -18,7 +18,6 @@ import VolumeUpIcon from '@/material-icons/400-24px/volume_up-fill.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { formatTime, getPointerPosition, fileNameFromURL } from 'flavours/glitch/features/video';
 
-
 import { Blurhash } from '../../components/blurhash';
 import { displayMedia, useBlurhash } from '../../initial_state';
 

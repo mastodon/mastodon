@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 import PushPinIcon from '@/material-icons/400-24px/push_pin.svg?react';
 import { getStatusList } from 'flavours/glitch/selectors';
 
-
 import { fetchPinnedStatuses } from '../../actions/pin_statuses';
 import StatusList from '../../components/status_list';
 import Column from '../ui/components/column';

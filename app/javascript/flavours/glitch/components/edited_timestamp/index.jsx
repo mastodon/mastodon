@@ -5,7 +5,6 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-
 import ArrowDropDownIcon from '@/material-icons/400-24px/arrow_drop_down.svg?react';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { Icon }  from 'flavours/glitch/components/icon';

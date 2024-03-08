@@ -6,7 +6,6 @@ import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 
-
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import { addColumn } from 'flavours/glitch/actions/columns';
 import { changeSetting } from 'flavours/glitch/actions/settings';

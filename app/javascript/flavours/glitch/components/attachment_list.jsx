@@ -10,7 +10,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import LinkIcon from '@/material-icons/400-24px/link.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
 
-
 const filename = url => url.split('/').pop().split('#')[0].split('?')[0];
 
 export default class AttachmentList extends ImmutablePureComponent {

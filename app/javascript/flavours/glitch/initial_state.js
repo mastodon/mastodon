@@ -45,19 +45,10 @@
  * @property {boolean=} use_pending_items
  * @property {string} version
  * @property {string} sso_redirect
- * @property {boolean} translation_enabled
  * @property {string} status_page_url
  * @property {boolean} system_emoji_font
  * @property {string} default_content_type
  */
-
-/** @type {string} */
-const initialPath = document.querySelector("head meta[name=initialPath]")?.getAttribute("content") ?? '';
-/** @type {boolean} */
-export const hasMultiColumnPath = initialPath === '/'
-  || initialPath === '/getting-started'
-  || initialPath === '/home'
-  || initialPath.startsWith('/deck');
 
 /**
  * @typedef InitialState
@@ -73,6 +64,14 @@ export const hasMultiColumnPath = initialPath === '/'
 const element = document.getElementById('initial-state');
 /** @type {InitialState | undefined} */
 const initialState = element?.textContent && JSON.parse(element.textContent);
+
+/** @type {string} */
+const initialPath = document.querySelector("head meta[name=initialPath]")?.getAttribute("content") ?? '';
+/** @type {boolean} */
+export const hasMultiColumnPath = initialPath === '/'
+  || initialPath === '/getting-started'
+  || initialPath === '/home'
+  || initialPath.startsWith('/deck');
 
 // Glitch-soc-specific “local settings”
 if (initialState) {

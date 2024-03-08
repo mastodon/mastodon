@@ -11,7 +11,6 @@ import CancelIcon from '@/material-icons/400-24px/cancel.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
 
-
 import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from '../../../actions/lists';
 
 const messages = defineMessages({

@@ -16,7 +16,6 @@ import { Icon }  from 'flavours/glitch/components/icon';
 import { ButtonInTabsBar, useColumnsContext } from 'flavours/glitch/features/ui/util/columns_context';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
-
 import { useAppHistory } from './router';
 
 const messages = defineMessages({
