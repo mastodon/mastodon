@@ -48,7 +48,7 @@ const initialState = ImmutableMap({
   browserPermission: 'default',
 });
 
-const notificationToMap = notification => ImmutableMap({
+export const notificationToMap = notification => ImmutableMap({
   id: notification.id,
   type: notification.type,
   account: notification.account.id,
