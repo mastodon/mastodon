@@ -104,7 +104,7 @@ namespace :repo do
     end.uniq.compact
 
     missing_available_locales = locales_in_files - I18n.available_locales
-    supported_locale_codes    = Set.new(LanguagesHelper::SUPPORTED_LOCALES.keys + LanguagesHelper::UI_ONLY_REGIONAL_LOCALES.keys)
+    supported_locale_codes    = Set.new(LanguagesHelper::KNOWN_LOCALES.keys)
     missing_locale_names      = I18n.available_locales.reject { |locale| supported_locale_codes.include?(locale) }
 
     critical = false
