@@ -221,21 +221,21 @@ module LanguagesHelper
   # but for presenting posting and filtering languages, we drop the country code and
   # fall back to the language code, thus skipping these locales there.
   UI_ONLY_REGIONAL_LOCALES = {
-    'en-GB': 'English (British)',
-    'es-AR': 'Español (Argentina)',
-    'es-MX': 'Español (México)',
-    'fr-CA': 'Français (Canadien)',
-    'pt-BR': 'Português (Brasil)',
-    'pt-PT': 'Português (Portugal)',
-    'sr-Latn': 'Srpski (latinica)',
+    'en-GB': ['English (British)', 'English (British)'].freeze,
+    'es-AR': ['Spanish (Argentina)', 'Español (Argentina)'].freeze,
+    'es-MX': ['Spanish (Mexico)', 'Español (México)'].freeze,
+    'fr-CA': ['French (Canadian)', 'Français (Canadien)'].freeze,
+    'pt-BR': ['Portuguese (Brasil)', 'Português (Brasil)'].freeze,
+    'pt-PT': ['Portuguese (Portugal)', 'Português (Portugal)'].freeze,
+    'sr-Latn': ['Serbian (Latin)', 'Srpski (latinica)'].freeze,
   }.freeze
+
+  KNOWN_LOCALES = {}.merge(SUPPORTED_LOCALES).merge(UI_ONLY_REGIONAL_LOCALES).freeze
 
   # Helper for self.sorted_locale_keys
   private_class_method def self.locale_name_for_sorting(locale)
-    if (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
-      ASCIIFolding.new.fold(supported_locale[1]).downcase
-    elsif (regional_locale = UI_ONLY_REGIONAL_LOCALES[locale.to_sym])
-      ASCIIFolding.new.fold(regional_locale).downcase
+    if (known_locale = KNOWN_LOCALES[locale.to_sym])
+      ASCIIFolding.new.fold(known_locale[1]).downcase
     else
       locale
     end
@@ -249,10 +249,8 @@ module LanguagesHelper
   def native_locale_name(locale)
     if locale.blank? || locale == 'und'
       I18n.t('generic.none')
-    elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
-      supported_locale[1]
-    elsif (regional_locale = UI_ONLY_REGIONAL_LOCALES[locale.to_sym])
-      regional_locale
+    elsif (known_locale = KNOWN_LOCALES[locale.to_sym])
+      known_locale[1]
     else
       locale
     end
@@ -261,8 +259,8 @@ module LanguagesHelper
   def standard_locale_name(locale)
     if locale.blank?
       I18n.t('generic.none')
-    elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
-      supported_locale[0]
+    elsif (known_locale = KNOWN_LOCALES[locale.to_sym])
+      known_locale[0]
     else
       locale
     end
