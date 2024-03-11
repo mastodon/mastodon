@@ -54,7 +54,7 @@ import {
 import { REDRAFT } from '../actions/statuses';
 import { STORE_HYDRATE } from '../actions/store';
 import { TIMELINE_DELETE } from '../actions/timelines';
-import { me, defaultContentType, pollLimits } from '../initial_state';
+import { me, defaultContentType } from '../initial_state';
 import { recoverHashtags } from '../utils/hashtag';
 import { unescapeHTML } from '../utils/html';
 import { overwrite } from '../utils/js_helpers';
@@ -356,12 +356,12 @@ const updateSuggestionTags = (state, token) => {
   });
 };
 
-const updatePoll = (state, index, value) => state.updateIn(['poll', 'options'], options => {
+const updatePoll = (state, index, value, maxOptions) => state.updateIn(['poll', 'options'], options => {
   const tmp = options.set(index, value).filterNot(x => x.trim().length === 0);
 
   if (tmp.size === 0) {
     return tmp.push('').push('');
-  } else if (tmp.size < pollLimits.max_options) {
+  } else if (tmp.size < maxOptions) {
     return tmp.push('');
   }
 
@@ -649,7 +649,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_POLL_REMOVE:
     return state.set('poll', null);
   case COMPOSE_POLL_OPTION_CHANGE:
-    return updatePoll(state, action.index, action.title);
+    return updatePoll(state, action.index, action.title, action.maxOptions);
   case COMPOSE_POLL_SETTINGS_CHANGE:
     return state.update('poll', poll => poll.set('expires_in', action.expiresIn).set('multiple', action.isMultiple));
   case COMPOSE_LANGUAGE_CHANGE:
