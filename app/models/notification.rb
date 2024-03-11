@@ -12,6 +12,7 @@
 #  account_id      :bigint(8)        not null
 #  from_account_id :bigint(8)        not null
 #  type            :string
+#  filtered        :boolean          default(FALSE), not null
 #
 
 class Notification < ApplicationRecord
@@ -89,7 +90,7 @@ class Notification < ApplicationRecord
   end
 
   class << self
-    def browserable(types: [], exclude_types: [], from_account_id: nil)
+    def browserable(types: [], exclude_types: [], from_account_id: nil, include_filtered: false)
       requested_types = if types.empty?
                           TYPES
                         else
@@ -99,6 +100,7 @@ class Notification < ApplicationRecord
       requested_types -= exclude_types.map(&:to_sym)
 
       all.tap do |scope|
+        scope.merge!(where(filtered: false)) unless include_filtered || from_account_id.present?
         scope.merge!(where(from_account_id: from_account_id)) if from_account_id.present?
         scope.merge!(where(type: requested_types)) unless requested_types.size == TYPES.size
       end
@@ -144,6 +146,8 @@ class Notification < ApplicationRecord
   after_initialize :set_from_account
   before_validation :set_from_account
 
+  after_destroy :remove_from_notification_request
+
   private
 
   def set_from_account
@@ -157,5 +161,10 @@ class Notification < ApplicationRecord
     when 'Account'
       self.from_account_id = activity&.id
     end
+  end
+
+  def remove_from_notification_request
+    notification_request = NotificationRequest.find_by(account_id: account_id, from_account_id: from_account_id)
+    notification_request&.reconsider_existence!
   end
 end

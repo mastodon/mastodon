@@ -257,6 +257,24 @@ describe Account::Interactions do
     end
   end
 
+  describe '#block_idna_domain!' do
+    subject do
+      [
+        account.block_domain!(idna_domain),
+        account.block_domain!(punycode_domain),
+      ]
+    end
+
+    let(:idna_domain) { '대한민국.한국' }
+    let(:punycode_domain) { 'xn--3e0bs9hfvinn1a.xn--3e0b707e' }
+
+    it 'creates single AccountDomainBlock' do
+      expect do
+        expect(subject).to all(be_a AccountDomainBlock)
+      end.to change { account.domain_blocks.count }.by 1
+    end
+  end
+
   describe '#unfollow!' do
     subject { account.unfollow!(target_account) }
 
@@ -346,6 +364,28 @@ describe Account::Interactions do
     end
 
     context 'when unblocking the domain' do
+      it 'returns nil' do
+        expect(subject).to be_nil
+      end
+    end
+  end
+
+  describe '#unblock_idna_domain!' do
+    subject { account.unblock_domain!(punycode_domain) }
+
+    let(:idna_domain) { '대한민국.한국' }
+    let(:punycode_domain) { 'xn--3e0bs9hfvinn1a.xn--3e0b707e' }
+
+    context 'when blocking the domain' do
+      it 'returns destroyed AccountDomainBlock' do
+        account_domain_block = Fabricate(:account_domain_block, domain: idna_domain)
+        account.domain_blocks << account_domain_block
+        expect(subject).to be_a AccountDomainBlock
+        expect(subject).to be_destroyed
+      end
+    end
+
+    context 'when unblocking idna domain' do
       it 'returns nil' do
         expect(subject).to be_nil
       end

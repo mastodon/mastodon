@@ -29,7 +29,7 @@ ARG MASTODON_VERSION_METADATA=""
 # See: https://docs.joinmastodon.org/admin/config/#rails_serve_static_files
 ARG RAILS_SERVE_STATIC_FILES="true"
 # Allow to use YJIT compiler
-# See: https://github.com/ruby/ruby/blob/master/doc/yjit/yjit.md
+# See: https://github.com/ruby/ruby/blob/v3_2_3/doc/yjit/yjit.md
 ARG RUBY_YJIT_ENABLE="1"
 # Timezone used by the Docker container and runtime, change with [--build-arg TZ=Europe/Berlin]
 ARG TZ="Etc/UTC"

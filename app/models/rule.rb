@@ -10,6 +10,7 @@
 #  text       :text             default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  hint       :text             default(""), not null
 #
 class Rule < ApplicationRecord
   include Discard::Model

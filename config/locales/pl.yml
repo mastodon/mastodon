@@ -1547,7 +1547,6 @@ pl:
     administration_emails: Administracyjne powiadomienia e-mail
     email_events: 'Powiadamiaj e-mailem o:'
     email_events_hint: 'Wybierz wydarzenia, o których chcesz otrzymywać powiadomienia:'
-    other_settings: Inne ustawienia powiadomień
   number:
     human:
       decimal_units:
@@ -1907,9 +1906,42 @@ pl:
         silence: Konto ograniczone
         suspend: Konto zawieszone
     welcome:
-      edit_profile_action: Skonfiguruj profil
-      edit_profile_step: Możesz dostosować profil wysyłając awatar, zmieniając wyświetlaną nazwę i o wiele więcej. Jeżeli chcesz, możesz również włączyć przeglądanie i ręczne akceptowanie nowych próśb o możliwość obserwacji Twojego profilu.
+      apps_android_action: Pobierz z Google Play
+      apps_ios_action: Pobierz z App Store
+      apps_step: Pobierz oficjalne aplikacje.
+      apps_title: Aplikacje Mastodon
+      checklist_subtitle: 'Aby porządnie rozpocząć użytkowanie Mastodona:'
+      checklist_title: Powitalna lista kontrolna
+      edit_profile_action: Personalizuj
+      edit_profile_step: Inni użytkownicy są bardziej skłonni do interakcji z Tobą jeśli posiadasz wypełniony profil.
+      edit_profile_title: Spersonalizuj swój profil
       explanation: Kilka wskazówek, które pomogą Ci rozpocząć
+      feature_action: Dowiedz się więcej
+      feature_audience: Mastodon zapewnia ci unikalne możliwości docierania do twojego grona odbiorców bez żadnych pośredników. Postawiony na własnej infrastrukturze, Mastodon pozwala ci obserwować i być obserwowanym z dowolnego innego serwera Mastodona. Nikt, poza tobą samym(-ą), nie ma nad tym kontroli.
+      feature_audience_title: Buduj swoją publiczność z pewnością
+      feature_control: Sam(a) wiesz najlepiej, co chcesz widzieć na swojej osi czasu. Brak algorytmów i reklam, które marnują twój cenny czas. Obserwuj dowolne osoby z dowolnego serwera Mastodona przy pomocy jednego konta i otrzymuj ich wpisy w kolejności chronologicznej. Każdy zasługuje na własny kąt w internecie.
+      feature_control_title: Miej kontrolę nad swoją osią czasu
+      feature_creativity: Mastodon obsługuje wpisy audio, wideo oraz zdjęcia, jak również opisy zdjęć na potrzeby dostępności, ankiety, ostrzeżenia dotyczące treści, animowane awatary, niestandardowe emoji, kontrolę miniatur zdjęć i więcej, aby pomóc Ci wyrażać siebie. Bez względu na to, czy dzielisz się swoją sztuką, muzyką czy podcastem, Mastodon jest dla ciebie.
+      feature_creativity_title: Niezrównana kreatywność
+      feature_moderation: Mastodon oddaje w twoje ręce prawo podejmowania decyzji. Każdy serwer tworzy własne zasady i regulacje, które są egzekwowane lokalnie a nie odgórnie jak w przypadku korporacyjnych mediów społecznościowych. Czyni to Mastodona najbardziej elastyczną platformą dla różnych grup ludzi z różnymi potrzebami. Dołącz do serwera, z którego zasadami zgadzasz się najbardziej, lub stwórz swój własny.
+      feature_moderation_title: Moderacja we właściwy sposób
+      follow_action: Obserwuj
+      follow_step: Zarządzasz swoim własnym kanałem. Wypełnij go interesującymi ludźmi.
+      follow_title: Spersonalizuj swoją stronę główną
+      follows_subtitle: Obserwuj dobrze znane konta
+      follows_title: Kogo obserwować
+      follows_view_more: Zobacz więcej osób do obserwowania
+      hashtags_recent_count: "%{people} osób w ostatnie %{days} dni"
+      hashtags_subtitle: Zobacz, co było popularne przez ostatnie 2 dni
+      hashtags_title: Popularne hashtagi
+      hashtags_view_more: Zobacz więcej popularnych hashtagów
+      post_action: Utwórz wpis
+      post_step: Przywitaj się ze światem.
+      post_title: Utwórz swój pierwszy post
+      share_action: Udostępnij
+      share_step: Poinformuj swoich przyjaciół jak znaleźć cię na Mastodonie.
+      share_title: Udostępnij swój profil
+      sign_in_action: Zaloguj się
       subject: Witaj w Mastodonie
       title: Witaj na pokładzie, %{name}!
   users:

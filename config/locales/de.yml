@@ -425,7 +425,7 @@ de:
       view: Domain-Sperre ansehen
     email_domain_blocks:
       add_new: Neue hinzufügen
-      allow_registrations_with_approval: Registrierungen mit Genehmigung erlauben
+      allow_registrations_with_approval: Registrierungen mit Genehmigung zulassen
       attempts_over_week:
         one: "%{count} Registrierungsversuch in der vergangenen Woche"
         other: "%{count} Registrierungsversuche in der vergangenen Woche"
@@ -1495,7 +1495,6 @@ de:
     administration_emails: Admin-E-Mail-Benachrichtigungen
     email_events: Benachrichtigungen per E-Mail
     email_events_hint: 'Bitte die Ereignisse auswählen, für die du Benachrichtigungen per E-Mail erhalten möchtest:'
-    other_settings: Weitere Benachrichtigungseinstellungen
   number:
     human:
       decimal_units:
@@ -1843,9 +1842,42 @@ de:
         silence: Konto stummgeschaltet
         suspend: Konto gesperrt
     welcome:
-      edit_profile_action: Profil einrichten
-      edit_profile_step: Du kannst dein Profil anpassen, indem du ein Profilbild hochlädst, deinen Anzeigenamen änderst und vieles mehr. Du kannst dich dafür entscheiden, neue Follower zu überprüfen, bevor sie dir folgen dürfen.
+      apps_android_action: Aus dem Google Play Store herunterladen
+      apps_ios_action: Im App Store herunterladen
+      apps_step: Lade unsere offiziellen Apps herunter.
+      apps_title: Mastodon-Apps
+      checklist_subtitle: 'Fangen wir an, diese neue soziale Dimension zu erkunden:'
+      checklist_title: Willkommensleitfaden
+      edit_profile_action: Personalisieren
+      edit_profile_step: Mit einem vollständigen Profil interagieren andere eher mit dir.
+      edit_profile_title: Personalisiere dein Profil
       explanation: Hier sind ein paar Tipps, um loszulegen
+      feature_action: Mehr erfahren
+      feature_audience: Mastodon bietet dir eine einzigartige Möglichkeit, deine Reichweite ohne Mittelsperson zu verwalten. Auf deiner eigenen Infrastruktur bereitgestellt, ermöglicht Mastodon es dir, jedem anderen Mastodon-Server zu folgen und von jedem anderen Server aus gefolgt zu werden. Ebenso steht Mastodon unter deiner Kontrolle.
+      feature_audience_title: Baue deine Reichweite mit Vertrauen auf
+      feature_control: Du weißt am besten, was du auf deiner Startseite sehen möchtest. Keine Algorithmen oder Werbung, die deine Zeit verschwenden. Folge Nutzer*innen von jedem Mastodon-Server von einem einzelnen Konto aus und empfange deren Beiträge in chronologischer Reihenfolge. Mache Mastodon zu deinem ganz persönlichen Fleckchen im Internet.
+      feature_control_title: Behalte die Kontrolle über deine eigene Timeline
+      feature_creativity: Mastodon unterstützt Audio-, Video- und Bildbeiträge, Beschreibungen, Umfragen, Inhaltswarnungen, animierte Avatare, benutzerdefinierte Emojis, das Zuschneiden von Vorschaubildern und vieles mehr, um dir zu helfen, dich online zu entfalten. Egal, ob du deine Kunst, deine Musik oder deinen Podcast veröffentlichst – Mastodon ist für dich da.
+      feature_creativity_title: Einzigartige Kreativität
+      feature_moderation: Mastodon legt die Entscheidungskraft zurück in deine Hände. Jeder Server erstellt eigene Regeln und Vorschriften, die nur lokal, pro einzelnem Server durchgesetzt werden – und nicht von oben herab, wie es bei den kommerziellen sozialen Medien der Fall ist. Dadurch ist Mastodon viel anpassungsfähiger für verschiedene Gruppen von Menschen. Registriere dich bei einem Server, dessen Regeln du magst, oder hoste deinen eigenen Server.
+      feature_moderation_title: Moderation so, wie sie sein sollte
+      follow_action: Folgen
+      follow_step: Interessanten Profilen zu folgen ist das, was Mastodon ausmacht.
+      follow_title: Personalisiere deine Startseite
+      follows_subtitle: Folge bekannten Profilen
+      follows_title: Empfohlene Profile
+      follows_view_more: Weitere Profile zum Folgen entdecken
+      hashtags_recent_count: "%{people} Personen in den letzten %{days} Tagen"
+      hashtags_subtitle: Entdecke, was in den letzten 2 Tagen angesagt war
+      hashtags_title: Angesagte Hashtags
+      hashtags_view_more: Weitere angesagte Hashtags entdecken
+      post_action: Verfassen
+      post_step: Begrüße die Welt mit Text, Fotos, Videos oder Umfragen.
+      post_title: Erstelle deinen ersten Beitrag
+      share_action: Teilen
+      share_step: Lass deine Freund*innen wissen, wie sie dich auf Mastodon finden können.
+      share_title: Teile dein Mastodon-Profil
+      sign_in_action: Anmelden
       subject: Willkommen bei Mastodon!
       title: Willkommen an Bord, %{name}!
   users:

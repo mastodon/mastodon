@@ -3289,12 +3289,13 @@ $ui-header-height: 55px;
   border: 0;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   text-align: unset;
-  padding: 15px;
+  padding: 13px;
   margin: 0;
   z-index: 3;
   outline: 0;
   display: flex;
   align-items: center;
+  gap: 5px;
 
   &:hover {
     text-decoration: underline;
@@ -3304,6 +3305,7 @@ $ui-header-height: 55px;
 .column-header__back-button {
   display: flex;
   align-items: center;
+  gap: 5px;
   background: $ui-base-color;
   border: 0;
   font-family: inherit;
@@ -3311,21 +3313,17 @@ $ui-header-height: 55px;
   cursor: pointer;
   white-space: nowrap;
   font-size: 16px;
-  padding: 0 5px 0 0;
+  padding: 13px;
   z-index: 3;
 
   &:hover {
     text-decoration: underline;
   }
 
-  &:last-child {
-    padding: 0 15px 0 0;
+  &.compact {
+    padding-inline-end: 5px;
+    flex: 0 0 auto;
   }
-}
-
-.column-back-button__icon {
-  display: inline-block;
-  margin-inline-end: 5px;
 }
 
 .react-toggle {
@@ -4013,7 +4011,7 @@ a.status-card {
   z-index: 2;
   outline: 0;
 
-  & > button {
+  &__title {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -4035,8 +4033,18 @@ a.status-card {
     }
   }
 
-  & > .column-header__back-button {
+  .column-header__back-button + &__title {
+    padding-inline-start: 0;
+  }
+
+  .column-header__back-button {
+    flex: 1;
     color: $highlight-text-color;
+
+    &.compact {
+      flex: 0 0 auto;
+      color: $primary-text-color;
+    }
   }
 
   &.active {
@@ -4049,6 +4057,18 @@ a.status-card {
   &:focus,
   &:active {
     outline: 0;
+  }
+
+  &__advanced-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    padding-top: 0;
+
+    &:first-child {
+      padding-top: 16px;
+    }
   }
 }
 
@@ -4136,7 +4156,6 @@ a.status-card {
 
 .column-header__collapsible-inner {
   background: $ui-base-color;
-  padding: 15px;
 }
 
 .column-header__setting-btn {
@@ -4158,20 +4177,8 @@ a.status-card {
 }
 
 .column-header__setting-arrows {
-  float: right;
-
-  .column-header__setting-btn {
-    padding: 5px;
-
-    &:first-child {
-      padding-inline-end: 7px;
-    }
-
-    &:last-child {
-      padding-inline-start: 7px;
-      margin-inline-start: 5px;
-    }
-  }
+  display: flex;
+  align-items: center;
 }
 
 .text-btn {
@@ -4408,24 +4415,56 @@ a.status-card {
   text-align: center;
 }
 
-.column-settings__outer {
-  background: lighten($ui-base-color, 8%);
-  padding: 15px;
-}
+.column-settings {
+  display: flex;
+  flex-direction: column;
 
-.column-settings__section {
-  color: $darker-text-color;
-  cursor: default;
-  display: block;
-  font-weight: 500;
-  margin-bottom: 10px;
-}
+  &__section {
+    // FIXME: Legacy
+    color: $darker-text-color;
+    cursor: default;
+    display: block;
+    font-weight: 500;
+  }
 
-.column-settings__row--with-margin {
-  margin-bottom: 15px;
+  .column-header__links {
+    margin: 0;
+  }
+
+  section {
+    padding: 16px;
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  h3 {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    color: $primary-text-color;
+    margin-bottom: 16px;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .app-form__toggle {
+    &__toggle > div {
+      border: 0;
+    }
+  }
 }
 
 .column-settings__hashtags {
+  margin-top: 15px;
+
   .column-settings__row {
     margin-bottom: 15px;
   }
@@ -4549,16 +4588,13 @@ a.status-card {
 }
 
 .setting-toggle {
-  display: block;
-  line-height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .setting-toggle__label {
   color: $darker-text-color;
-  display: inline-block;
-  margin-bottom: 14px;
-  margin-inline-start: 8px;
-  vertical-align: middle;
 }
 
 .limited-account-hint {
@@ -6949,29 +6985,33 @@ a.status-card {
   background: $ui-base-color;
 
   &__column {
-    padding: 10px 15px;
-    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
   }
 
   .radio-button {
-    display: block;
+    display: flex;
   }
 }
 
 .column-settings__row .radio-button {
-  display: block;
+  display: flex;
 }
 
 .radio-button {
   font-size: 14px;
   position: relative;
-  display: inline-block;
-  padding: 6px 0;
+  display: inline-flex;
+  align-items: center;
   line-height: 18px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
+  gap: 10px;
+  color: $secondary-text-color;
 
   input[type='radio'],
   input[type='checkbox'] {
@@ -6979,21 +7019,29 @@ a.status-card {
   }
 
   &__input {
-    display: inline-block;
+    display: block;
     position: relative;
-    border: 1px solid $ui-primary-color;
+    border: 2px solid $secondary-text-color;
     box-sizing: border-box;
     width: 18px;
     height: 18px;
     flex: 0 0 auto;
-    margin-inline-end: 10px;
-    top: -1px;
     border-radius: 50%;
-    vertical-align: middle;
 
     &.checked {
-      border-color: lighten($ui-highlight-color, 4%);
-      background: lighten($ui-highlight-color, 4%);
+      border-color: $secondary-text-color;
+
+      &::before {
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        content: '';
+        display: block;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        background: $secondary-text-color;
+      }
     }
   }
 }
@@ -7455,10 +7503,7 @@ noscript {
       .button {
         flex-shrink: 1;
         white-space: nowrap;
-
-        @media screen and (max-width: $no-gap-breakpoint) {
-          min-width: 0;
-        }
+        min-width: 80px;
       }
 
       .icon-button {
@@ -9588,6 +9633,113 @@ noscript {
           width: 100%;
         }
       }
+    }
+  }
+}
+
+.filtered-notifications-banner {
+  display: flex;
+  align-items: center;
+  background: $ui-base-color;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  padding: 15px;
+  gap: 15px;
+  color: $darker-text-color;
+  text-decoration: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $secondary-text-color;
+
+    .filtered-notifications-banner__badge {
+      background: $secondary-text-color;
+    }
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  &__text {
+    flex: 1 1 auto;
+    font-style: 14px;
+    line-height: 20px;
+
+    strong {
+      font-size: 16px;
+      line-height: 24px;
+      display: block;
+    }
+  }
+
+  &__badge {
+    background: $darker-text-color;
+    color: $ui-base-color;
+    border-radius: 100px;
+    padding: 2px 8px;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+
+.notification-request {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 15px;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1 1 auto;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+
+    .account__avatar {
+      flex-shrink: 0;
+    }
+  }
+
+  &__name {
+    flex: 1 1 auto;
+    color: $darker-text-color;
+    font-style: 14px;
+    line-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &__display-name {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      line-height: 24px;
+      color: $secondary-text-color;
+    }
+
+    .filtered-notifications-banner__badge {
+      background-color: $highlight-text-color;
+      border-radius: 4px;
+      padding: 1px 6px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .icon-button {
+      border-radius: 4px;
+      border: 1px solid lighten($ui-base-color, 8%);
+      padding: 5px;
     }
   }
 }

@@ -24,14 +24,13 @@ describe Settings::Preferences::NotificationsController do
 
   describe 'PUT #update' do
     it 'updates notifications settings' do
-      user.settings.update('notification_emails.follow': false, 'interactions.must_be_follower': true)
+      user.settings.update('notification_emails.follow': false)
       user.save
 
       put :update, params: {
         user: {
           settings_attributes: {
             'notification_emails.follow': '1',
-            'interactions.must_be_follower': '0',
           },
         },
       }
@@ -39,7 +38,6 @@ describe Settings::Preferences::NotificationsController do
       expect(response).to redirect_to(settings_preferences_notifications_path)
       user.reload
       expect(user.settings['notification_emails.follow']).to be true
-      expect(user.settings['interactions.must_be_follower']).to be false
     end
   end
 end

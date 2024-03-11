@@ -767,7 +767,7 @@ es-MX:
         disabled: A nadie
         users: Para los usuarios locales que han iniciado sesión
       registrations:
-        moderation_recommandation: Por favor, ¡asegúrate de tener un equipo de moderación adecuado y reactivo antes de abrir los registros a todo el mundo!
+        moderation_recommandation: "¡Por favor, asegúrate de contar con un equipo de moderación adecuado y activo antes de abrir el registro al público!"
         preamble: Controla quién puede crear una cuenta en tu servidor.
         title: Registros
       registrations_mode:
@@ -775,7 +775,7 @@ es-MX:
           approved: Se requiere aprobación para registrarse
           none: Nadie puede registrarse
           open: Cualquiera puede registrarse
-        warning_hint: Recomendamos el uso de “Se requiere aprobación para registrarse” a menos que estés seguro de que tu equipo de moderación puede manejar el spam y los registros maliciosos en un tiempo razonable.
+        warning_hint: Recomendamos el uso de la "Aprobación requerida para el registro", a menos de que confíes en que tu equipo de moderación puede manejar el spam y los registros maliciosos en un tiempo razonable.
       security:
         authorized_fetch: Requerir autenticación de servidores federados
         authorized_fetch_hint: Requerir autenticación de servidores federados permite un cumplimiento más estricto tanto de los bloqueos a nivel de usuario como a nivel de servidor. Sin embargo, esto se produce a costa de una penalización en el rendimiento, reduce el alcance de tus respuestas y puede introducir problemas de compatibilidad con algunos servicios federados. Además, esto no impedirá que actores dedicados obtengan tus cuentas y publicaciones públicas.
@@ -969,7 +969,7 @@ es-MX:
       webhook: Webhook
   admin_mailer:
     auto_close_registrations:
-      body: Debido a la falta de moderadores activos, los registros en %{instance} han sido cambiados automáticamente para requerir revisión manual, para evitar que %{instance} se utilice potencialmente como plataforma por malos actores. Puedes volver a cambiarlo para abrir los registros en cualquier momento.
+      body: Debido al faltante de actividad reciente de moderación, los registros en %{instance} han cambiado automáticamente para requerir la revisión manial, para evitar que %{instance} se utilice como una plataforma para potenciales malos actores. Puedes revertir este cambio en los registros en cualquier momento.
       subject: Se ha cambiado automáticamente el registro de %{instance} para requerir aprobación
     new_appeal:
       actions:
@@ -1495,7 +1495,6 @@ es-MX:
     administration_emails: Notificaciones de administración por correo electrónico
     email_events: Eventos para notificaciones por correo electrónico
     email_events_hint: 'Selecciona los eventos para los que deseas recibir notificaciones:'
-    other_settings: Otros ajustes de notificaciones
   number:
     human:
       decimal_units:
@@ -1843,9 +1842,42 @@ es-MX:
         silence: Cuenta limitada
         suspend: Cuenta suspendida
     welcome:
-      edit_profile_action: Configurar el perfil
-      edit_profile_step: Puedes personalizar tu perfil subiendo una foto de perfil, cambiando tu nombre de usuario y mucho más. Puedes optar por revisar a los nuevos seguidores antes de que puedan seguirte.
+      apps_android_action: Consíguela en Google Play
+      apps_ios_action: Descargar en el App Store
+      apps_step: Descarga nuestras aplicaciones oficiales.
+      apps_title: Aplicaciones de Mastodon
+      checklist_subtitle: 'Comencemos en esta nueva frontera social:'
+      checklist_title: Lista de bienvenida
+      edit_profile_action: Personalizar
+      edit_profile_step: Aumenta tus interacciones con un perfil completo.
+      edit_profile_title: Personaliza tu perfil
       explanation: Aquí hay algunos consejos para empezar
+      feature_action: Leer más
+      feature_audience: Mastodon te proporciona una posibilidad única de gestionar tu audiencia sin intermediarios. El despliegue de Mastodon en tu propia infraestructura te permite seguir y ser seguido desde cualquier servidor de Mastodon que se encuentre en línea y no está bajo el control de nadie más que tú.
+      feature_audience_title: Construye tu audiencia con confianza
+      feature_control: Tú sabes lo que quieres ver en tu página principal. Nada de algoritmos y publicidad para desperdiciar tu tiempo. Sigue a quien quieras a través de cualquier servidor de Mastodon y recibe sus publicaciones en orden cronológico. Haz tu rincón de internet un poco más como tú.
+      feature_control_title: Mantente en control de tu línea de tiempo
+      feature_creativity: Mastodon soporta mensajes de audio, vídeo e imágenes, descripciones de accesibilidad, encuestas, advertencias de contenido, avatares animados, emojis personalizados, recortes de miniatura, y más, para ayudarte a expresarte en línea. Ya sea publicando tu arte, tu música o tu podcast, Mastodon está ahí para ti.
+      feature_creativity_title: Creatividad inigualable
+      feature_moderation: Mastodon vuelve a poner la toma de decisiones en tus manos. Cada servidor crea sus propias reglas y reglamentos, que se aplican localmente y no globalmente como en redes sociales corporativas, lo que resulta en la mayor flexibilidad para responder a las necesidades de diferentes grupos de personas. Únete a un servidor con las reglas con las que esté sde acuerdo, o aloja el tuyo propio.
+      feature_moderation_title: La moderación como debería ser
+      follow_action: Seguir
+      follow_step: Seguir a personas interesantes es de lo que trata Mastodon.
+      follow_title: Personaliza tu línea de inicio
+      follows_subtitle: Seguir cuentas conocidas
+      follows_title: A quién seguir
+      follows_view_more: Ver más personas para seguir
+      hashtags_recent_count: "%{people} personas en los últimos %{days} días"
+      hashtags_subtitle: Explora las tendencias de los últimos 2 días
+      hashtags_title: Etiquetas en tendencia
+      hashtags_view_more: Ver más etiquetas en tendencia
+      post_action: Redactar
+      post_step: Di hola al mundo con texto, fotos, vídeos o encuestas.
+      post_title: Escribe tu primera publicación
+      share_action: Compartir
+      share_step: Dile a tus amigos cómo encontrarte en Mastodon.
+      share_title: Comparte tu perfil de Mastodon
+      sign_in_action: Regístrate
       subject: Bienvenido a Mastodon
       title: Te damos la bienvenida a bordo, %{name}!
   users:

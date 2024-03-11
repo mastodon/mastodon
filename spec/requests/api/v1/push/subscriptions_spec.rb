@@ -37,66 +37,88 @@ describe 'API V1 Push Subscriptions' do
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   describe 'POST /api/v1/push/subscription' do
-    before do
-      post '/api/v1/push/subscription', params: create_payload, headers: headers
-    end
+    subject { post '/api/v1/push/subscription', params: create_payload, headers: headers }
 
-    it 'saves push subscriptions' do
-      push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
+    it 'saves push subscriptions and returns expected JSON' do
+      subject
 
-      expect(push_subscription.endpoint).to eq(create_payload[:subscription][:endpoint])
-      expect(push_subscription.key_p256dh).to eq(create_payload[:subscription][:keys][:p256dh])
-      expect(push_subscription.key_auth).to eq(create_payload[:subscription][:keys][:auth])
-      expect(push_subscription.user_id).to eq user.id
-      expect(push_subscription.access_token_id).to eq token.id
-    end
+      expect(endpoint_push_subscription)
+        .to have_attributes(
+          endpoint: eq(create_payload[:subscription][:endpoint]),
+          key_p256dh: eq(create_payload[:subscription][:keys][:p256dh]),
+          key_auth: eq(create_payload[:subscription][:keys][:auth]),
+          user_id: eq(user.id),
+          access_token_id: eq(token.id)
+        )
 
-    it 'replaces old subscription on repeat calls' do
-      post '/api/v1/push/subscription', params: create_payload, headers: headers
-
-      expect(Web::PushSubscription.where(endpoint: create_payload[:subscription][:endpoint]).count).to eq 1
-    end
-
-    it 'returns the expected JSON' do
       expect(body_as_json.with_indifferent_access)
         .to include(
           { endpoint: create_payload[:subscription][:endpoint], alerts: {}, policy: 'all' }
         )
     end
+
+    it 'replaces old subscription on repeat calls' do
+      2.times { subject }
+
+      expect(endpoint_push_subscriptions.count)
+        .to eq(1)
+    end
   end
 
   describe 'PUT /api/v1/push/subscription' do
-    before do
-      post '/api/v1/push/subscription', params: create_payload, headers: headers
-      put '/api/v1/push/subscription', params: alerts_payload, headers: headers
-    end
+    subject { put '/api/v1/push/subscription', params: alerts_payload, headers: headers }
 
-    it 'changes alert settings' do
-      push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
+    before { create_subscription_with_token }
 
-      expect(push_subscription.data['policy']).to eq(alerts_payload[:data][:policy])
+    it 'changes data policy and alert settings and returns expected JSON' do
+      expect { subject }
+        .to change { endpoint_push_subscription.reload.data }
+        .from(nil)
+        .to(include('policy' => alerts_payload[:data][:policy]))
 
       %w(follow follow_request favourite reblog mention poll status).each do |type|
-        expect(push_subscription.data['alerts'][type]).to eq(alerts_payload[:data][:alerts][type.to_sym].to_s)
+        expect(endpoint_push_subscription.data['alerts']).to include(
+          type.to_s => eq(alerts_payload[:data][:alerts][type.to_sym].to_s)
+        )
       end
-    end
 
-    it 'returns the expected JSON' do
       expect(body_as_json.with_indifferent_access)
         .to include(
-          { endpoint: create_payload[:subscription][:endpoint], alerts: alerts_payload[:data][:alerts], policy: alerts_payload[:data][:policy] }
+          endpoint: create_payload[:subscription][:endpoint],
+          alerts: alerts_payload[:data][:alerts],
+          policy: alerts_payload[:data][:policy]
         )
     end
   end
 
   describe 'DELETE /api/v1/push/subscription' do
-    before do
-      post '/api/v1/push/subscription', params: create_payload, headers: headers
-      delete '/api/v1/push/subscription', headers: headers
-    end
+    subject { delete '/api/v1/push/subscription', headers: headers }
+
+    before { create_subscription_with_token }
 
     it 'removes the subscription' do
-      expect(Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])).to be_nil
+      expect { subject }
+        .to change { endpoint_push_subscription }.to(nil)
     end
+  end
+
+  private
+
+  def endpoint_push_subscriptions
+    Web::PushSubscription.where(
+      endpoint: create_payload[:subscription][:endpoint]
+    )
+  end
+
+  def endpoint_push_subscription
+    endpoint_push_subscriptions.first
+  end
+
+  def create_subscription_with_token
+    Fabricate(
+      :web_push_subscription,
+      endpoint: create_payload[:subscription][:endpoint],
+      access_token_id: token.id
+    )
   end
 end
