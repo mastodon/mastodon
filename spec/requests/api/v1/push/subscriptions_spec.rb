@@ -72,7 +72,9 @@ describe 'API V1 Push Subscriptions' do
 
     it 'changes data policy and alert settings and returns expected JSON' do
       expect { subject }
-        .to change_data_policy
+        .to change { endpoint_push_subscription.reload.data }
+        .from(nil)
+        .to(include('policy' => alerts_payload[:data][:policy]))
 
       %w(follow follow_request favourite reblog mention poll status).each do |type|
         expect(endpoint_push_subscription.data['alerts']).to include(
@@ -86,12 +88,6 @@ describe 'API V1 Push Subscriptions' do
           alerts: alerts_payload[:data][:alerts],
           policy: alerts_payload[:data][:policy]
         )
-    end
-
-    def change_data_policy
-      change { endpoint_push_subscription.reload.data }
-        .from(nil)
-        .to(include('policy' => alerts_payload[:data][:policy]))
     end
   end
 
