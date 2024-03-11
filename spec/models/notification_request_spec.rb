@@ -10,7 +10,7 @@ RSpec.describe NotificationRequest do
 
     context 'when there are remaining notifications' do
       before do
-        Fabricate(:notification, account: subject.account, activity: Fabricate(:status, account: subject.from_account))
+        Fabricate(:notification, account: subject.account, activity: Fabricate(:status, account: subject.from_account), filtered: true)
         subject.reconsider_existence!
       end
 
