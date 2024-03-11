@@ -2,6 +2,11 @@
 
 class AccountSuggestions::FriendsOfFriendsSource < AccountSuggestions::Source
   def get(account, limit: DEFAULT_LIMIT)
+    source_query(account, limit)
+      .map { |id, _frequency| [id, key] }
+  end
+
+  def source_query(account, limit)
     first_degree = account.following.where.not(hide_collections: true).select(:id).reorder(nil)
     base_account_scope(account)
       .joins(:account_stat)
@@ -10,7 +15,6 @@ class AccountSuggestions::FriendsOfFriendsSource < AccountSuggestions::Source
       .reorder('frequency DESC, followers_count DESC')
       .limit(limit)
       .pluck(Arel.sql('accounts.id, COUNT(*) AS frequency'))
-      .map { |id, _frequency| [id, key] }
   end
 
   private
