@@ -69,3 +69,11 @@ export function pluralReady(
 export function roundTo10(num: number): number {
   return Math.round(num * 0.1) / 0.1;
 }
+
+export function toCappedNumber(num: string): string {
+  if (parseInt(num) > 99) {
+    return '99+';
+  } else {
+    return num;
+  }
+}

@@ -35,75 +35,68 @@ export const ColumnSettings: React.FC = () => {
   );
 
   return (
-    <div>
-      <span className='column-settings__section'>
-        <FormattedMessage
-          id='home.column_settings.basic'
-          defaultMessage='Basic'
-        />
-      </span>
+    <div className='column-settings'>
+      <section>
+        <div className='column-settings__row'>
+          <SettingToggle
+            prefix='home_timeline'
+            settings={settings}
+            settingPath={['shows', 'reblog']}
+            onChange={onChange}
+            label={
+              <FormattedMessage
+                id='home.column_settings.show_reblogs'
+                defaultMessage='Show boosts'
+              />
+            }
+          />
 
-      <div className='column-settings__row'>
-        <SettingToggle
-          prefix='home_timeline'
-          settings={settings}
-          settingPath={['shows', 'reblog']}
-          onChange={onChange}
-          label={
-            <FormattedMessage
-              id='home.column_settings.show_reblogs'
-              defaultMessage='Show boosts'
-            />
-          }
-        />
-      </div>
+          <SettingToggle
+            prefix='home_timeline'
+            settings={settings}
+            settingPath={['shows', 'reply']}
+            onChange={onChange}
+            label={
+              <FormattedMessage
+                id='home.column_settings.show_replies'
+                defaultMessage='Show replies'
+              />
+            }
+          />
 
-      <div className='column-settings__row'>
-        <SettingToggle
-          prefix='home_timeline'
-          settings={settings}
-          settingPath={['shows', 'reply']}
-          onChange={onChange}
-          label={
-            <FormattedMessage
-              id='home.column_settings.show_replies'
-              defaultMessage='Show replies'
-            />
-          }
-        />
-      </div>
+          <SettingToggle
+            prefix='home_timeline'
+            settings={settings}
+            settingPath={['shows', 'direct']}
+            onChange={onChange}
+            label={
+              <FormattedMessage
+                id='home.column_settings.show_direct'
+                defaultMessage='Show private mentions'
+              />
+            }
+          />
+        </div>
+      </section>
 
-      <div className='column-settings__row'>
-        <SettingToggle
-          prefix='home_timeline'
-          settings={settings}
-          settingPath={['shows', 'direct']}
-          onChange={onChange}
-          label={
-            <FormattedMessage
-              id='home.column_settings.show_direct'
-              defaultMessage='Show private mentions'
-            />
-          }
-        />
-      </div>
+      <section aria-labelledby='home-column-advanced'>
+        <h3 id='home-column-advanced'>
+          <FormattedMessage
+            id='home.column_settings.advanced'
+            defaultMessage='Advanced'
+          />
+        </h3>
 
-      <span className='column-settings__section'>
-        <FormattedMessage
-          id='home.column_settings.advanced'
-          defaultMessage='Advanced'
-        />
-      </span>
-
-      <div className='column-settings__row'>
-        <SettingText
-          prefix='home_timeline'
-          settings={settings}
-          settingPath={['regex', 'body']}
-          onChange={onChange}
-          label={intl.formatMessage(messages.filter_regex)}
-        />
-      </div>
+        <div className='column-settings__row'>
+          <SettingText
+            prefix='home_timeline'
+            settings={settings}
+            settingPath={['regex', 'body']}
+            onChange={onChange}
+            label={intl.formatMessage(messages.filter_regex)}
+          />
+        </div>
+      </section>
     </div>
   );
 };

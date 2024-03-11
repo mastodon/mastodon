@@ -201,3 +201,11 @@ export function About () {
 export function PrivacyPolicy () {
   return import(/*webpackChunkName: "features/glitch/async/privacy_policy" */'../../privacy_policy');
 }
+
+export function NotificationRequests () {
+  return import(/*webpackChunkName: "features/glitch/notifications/requests" */'../../notifications/requests');
+}
+
+export function NotificationRequest () {
+  return import(/*webpackChunkName: "features/glitch/notifications/request" */'../../notifications/request');
+}
