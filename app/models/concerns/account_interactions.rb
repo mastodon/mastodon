@@ -185,7 +185,7 @@ module AccountInteractions
   end
 
   def unblock_domain!(other_domain)
-    block = domain_blocks.find_by(domain: other_domain)
+    block = domain_blocks.find_by(domain: normalized_domain(other_domain))
     block&.destroy
   end
 
@@ -312,5 +312,9 @@ module AccountInteractions
 
   def remove_potential_friendship(other_account)
     PotentialFriendshipTracker.remove(id, other_account.id)
+  end
+
+  def normalized_domain(domain)
+    TagManager.instance.normalize_domain(domain)
   end
 end
