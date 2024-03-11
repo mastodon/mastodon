@@ -70,7 +70,12 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
       end
 
       it 'returns eligible accounts in the expected order' do
-        expect(subject.get(bob)).to eq [
+        expect(subject.get(bob))
+          .to eq expected_results
+      end
+
+      def expected_results
+        [
           [eugen.id, :friends_of_friends], # followed by 2 friends, 3 followers total
           [john.id, :friends_of_friends], # followed by 2 friends, 2 followers total
           [neil.id, :friends_of_friends], # followed by 1 friend, 2 followers total
