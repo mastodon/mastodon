@@ -11,9 +11,9 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
     let!(:eve) { Fabricate(:account, discoverable: true, hide_collections: false) }
     let!(:mallory) { Fabricate(:account, discoverable: false, hide_collections: false) }
     let!(:eugen) { Fabricate(:account, discoverable: true, hide_collections: false) }
+    let!(:neil) { Fabricate(:account, discoverable: true, hide_collections: false) }
     let!(:john) { Fabricate(:account, discoverable: true, hide_collections: false) }
     let!(:jerk) { Fabricate(:account, discoverable: true, hide_collections: false) }
-    let!(:neil) { Fabricate(:account, discoverable: true, hide_collections: false) }
     let!(:larry) { Fabricate(:account, discoverable: true, hide_collections: false) }
 
     context 'with follows and blocks' do
