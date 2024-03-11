@@ -10,7 +10,7 @@ module Account::Header
   class_methods do
     def header_styles(file)
       styles = { original: { pixels: MAX_PIXELS, file_geometry_parser: FastGeometryParser } }
-      styles[:static] = { format: 'png', convert_options: '-coalesce', file_geometry_parser: FastGeometryParser } if file.content_type == 'image/gif'
+      styles[:static] = { format: 'png', file_geometry_parser: FastGeometryParser } if file.content_type == 'image/gif'
       styles
     end
 
@@ -19,7 +19,7 @@ module Account::Header
 
   included do
     # Header upload
-    has_attached_file :header, styles: ->(f) { header_styles(f) }, convert_options: { all: '+profile "!icc,*" +set date:modify +set date:create +set date:timestamp' }, processors: [:lazy_thumbnail]
+    has_attached_file :header, styles: ->(f) { header_styles(f) }, processors: [:lazy_thumbnail]
     validates_attachment_content_type :header, content_type: IMAGE_MIME_TYPES
     validates_attachment_size :header, less_than: LIMIT
     remotable_attachment :header, LIMIT, suppress_errors: false

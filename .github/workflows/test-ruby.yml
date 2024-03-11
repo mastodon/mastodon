@@ -133,7 +133,7 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg imagemagick libpam-dev
+          additional-system-dependencies: ffmpeg libpam-dev
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
@@ -209,7 +209,7 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg imagemagick
+          additional-system-dependencies: ffmpeg
 
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
@@ -329,7 +329,7 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg imagemagick
+          additional-system-dependencies: ffmpeg
 
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript

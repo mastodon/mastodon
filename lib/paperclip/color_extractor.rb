@@ -7,15 +7,23 @@ module Paperclip
     MIN_CONTRAST        = 3.0
     ACCENT_MIN_CONTRAST = 2.0
     FREQUENCY_THRESHOLD = 0.01
+    BINS = 10
 
     def make
-      depth = 8
+      image = downscaled_image
+      block_edge_dim = (image.height * 0.25).floor
+      line_edge_dim = (image.width * 0.25).floor
 
-      # Determine background palette by getting colors close to the image's edge only
-      background_palette = palette_from_histogram(convert(':source -alpha set -gravity Center -region 75%x75% -fill None -colorize 100% -alpha transparent +region -format %c -colors :quantity -depth :depth histogram:info:', source: File.expand_path(@file.path), quantity: 10, depth: depth), 10)
+      edge_image = begin
+        top = image.crop(0, 0, image.width, block_edge_dim)
+        bottom = image.crop(0, image.height - block_edge_dim, image.width, block_edge_dim)
+        left = image.crop(0, block_edge_dim, line_edge_dim, image.height - (block_edge_dim * 2))
+        right = image.crop(image.width - line_edge_dim, block_edge_dim, line_edge_dim, image.height - (block_edge_dim * 2))
+        top.join(bottom, :vertical).join(left, :horizontal).join(right, :horizontal)
+      end
 
-      # Determine foreground palette from the whole image
-      foreground_palette = palette_from_histogram(convert(':source -format %c -colors :quantity -depth :depth histogram:info:', source: File.expand_path(@file.path), quantity: 10, depth: depth), 10)
+      background_palette = palette_from_image(edge_image)
+      foreground_palette = palette_from_image(image)
 
       background_color   = background_palette.first || foreground_palette.first
       foreground_colors  = []
@@ -78,6 +86,38 @@ module Paperclip
 
     private
 
+    def downscaled_image
+      image = Vips::Image.new_from_file(@file.path, access: :random).thumbnail_image(100)
+
+      if image.bands == 4
+        image.extract_band(0, n: 3)
+      else
+        image
+      end
+    end
+
+    def palette_from_image(image)
+      histogram = image.hist_find_ndim(bins: BINS)
+      _, colors = histogram.max(size: 10, out_array: true, x_array: true, y_array: true)
+
+      colors['out_array'].map.with_index do |v, i|
+        x = colors['x_array'][i]
+        y = colors['y_array'][i]
+
+        rgb_from_xyv(histogram, x, y, v)
+      end.reverse
+    end
+
+    # rubocop:disable Naming/MethodParameterName
+    def rgb_from_xyv(image, x, y, v)
+      pixel = image.getpoint(x, y)
+      z = pixel.find_index(v)
+      r = (x + 0.5) * 256 / BINS
+      g = (y + 0.5) * 256 / BINS
+      b = (z + 0.5) * 256 / BINS
+      ColorDiff::Color::RGB.new(r, g, b)
+    end
+
     def w3c_contrast(color1, color2)
       luminance1 = (color1.to_xyz.y * 0.01) + 0.05
       luminance2 = (color2.to_xyz.y * 0.01) + 0.05
@@ -89,7 +129,6 @@ module Paperclip
       end
     end
 
-    # rubocop:disable Naming/MethodParameterName
     def rgb_to_hsl(r, g, b)
       r /= 255.0
       g /= 255.0
@@ -168,18 +207,6 @@ module Paperclip
               end
 
       ColorDiff::Color::RGB.new(*hsl_to_rgb(hue, saturation, light))
-    end
-
-    def palette_from_histogram(result, quantity)
-      frequencies       = result.scan(/([0-9]+):/).flatten.map(&:to_f)
-      hex_values        = result.scan(/\#([0-9A-Fa-f]{6,8})/).flatten
-      total_frequencies = frequencies.sum.to_f
-
-      frequencies.map.with_index { |f, i| [f / total_frequencies, hex_values[i]] }
-                 .sort_by { |r| -r[0] }
-                 .reject { |r| r[1].size == 8 && r[1].end_with?('00') }
-                 .map { |r| ColorDiff::Color::RGB.new(*r[1][0..5].scan(/../).map { |c| c.to_i(16) }) }
-                 .slice(0, quantity)
     end
 
     def rgb_to_hex(rgb)

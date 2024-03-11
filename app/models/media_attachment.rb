@@ -170,18 +170,13 @@ class MediaAttachment < ApplicationRecord
 
   DEFAULT_STYLES = [:original].freeze
 
-  GLOBAL_CONVERT_OPTIONS = {
-    all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp -define jpeg:dct-method=float',
-  }.freeze
-
   belongs_to :account,          inverse_of: :media_attachments, optional: true
   belongs_to :status,           inverse_of: :media_attachments, optional: true
   belongs_to :scheduled_status, inverse_of: :media_attachments, optional: true
 
   has_attached_file :file,
                     styles: ->(f) { file_styles f },
-                    processors: ->(f) { file_processors f },
-                    convert_options: GLOBAL_CONVERT_OPTIONS
+                    processors: ->(f) { file_processors f }
 
   before_file_validate :set_type_and_extension
   before_file_validate :check_video_dimensions
@@ -192,8 +187,7 @@ class MediaAttachment < ApplicationRecord
 
   has_attached_file :thumbnail,
                     styles: THUMBNAIL_STYLES,
-                    processors: [:lazy_thumbnail, :blurhash_transcoder, :color_extractor],
-                    convert_options: GLOBAL_CONVERT_OPTIONS
+                    processors: [:lazy_thumbnail, :blurhash_transcoder, :color_extractor]
 
   validates_attachment_content_type :thumbnail, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :thumbnail, less_than: IMAGE_LIMIT
