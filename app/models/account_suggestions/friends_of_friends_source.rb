@@ -3,7 +3,7 @@
 class AccountSuggestions::FriendsOfFriendsSource < AccountSuggestions::Source
   def get(account, limit: DEFAULT_LIMIT)
     source_query(account, limit)
-      .map { |id, _frequency| [id, key] }
+      .map { |id, _frequency, _followers_count| [id, key] }
   end
 
   def source_query(account, limit)
@@ -14,7 +14,7 @@ class AccountSuggestions::FriendsOfFriendsSource < AccountSuggestions::Source
       .group('accounts.id, account_stats.id')
       .reorder('frequency DESC, followers_count DESC')
       .limit(limit)
-      .pluck(Arel.sql('accounts.id, COUNT(*) AS frequency'))
+      .pluck(Arel.sql('accounts.id, COUNT(*) AS frequency, followers_count'))
   end
 
   private

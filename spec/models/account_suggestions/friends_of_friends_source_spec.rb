@@ -69,9 +69,17 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
         john.follow!(neil)
       end
 
-      it 'returns eligible accounts in the expected order' do
+      it 'returns eligible accounts in the expected order', :aggregate_failures do
         expect(subject.get(bob))
           .to eq expected_results
+
+        expect(subject.source_query(bob, 5).to_a)
+          .to contain_exactly(
+            [eugen.id, 2, 3],
+            [john.id, 2, 2],
+            [neil.id, 1, 2],
+            [jerk.id, 1, 1]
+          )
       end
 
       def expected_results
