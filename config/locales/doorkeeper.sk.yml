@@ -5,7 +5,7 @@ sk:
       doorkeeper/application:
         name: Názov aplikácie
         redirect_uri: Presmerovacia URI
-        scopes: Pôsobnosť
+        scopes: Povolenia
         website: Webstránka aplikácie
     errors:
       models:
@@ -19,85 +19,85 @@ sk:
   doorkeeper:
     applications:
       buttons:
-        authorize: Autorizuj
-        cancel: Zruš
+        authorize: Povoliť
+        cancel: Zrušiť
         destroy: Zničiť
-        edit: Uprav
-        submit: Pošli
+        edit: Upraviť
+        submit: Odoslať
       confirmations:
-        destroy: Si si istý/á?
+        destroy: Naozaj chcete pokračovať?
       edit:
-        title: Uprav aplikáciu
+        title: Upraviť aplikáciu
       form:
-        error: No teda! Skontroluj formulár pre prípadné chyby
+        error: Ups! Skontrolujte formulár pre prípadné chyby
       help:
-        native_redirect_uri: Použi %{native_redirect_uri} pre lokálne testy
-        redirect_uri: Použi jeden riadok pre každú URI
-        scopes: Oprávnenia oddeľuj medzerami. Nechaj prázdne pre štandardné oprávnenia.
+        native_redirect_uri: Použite %{native_redirect_uri} pre lokálne testy
+        redirect_uri: Použite jeden riadok pre každú URI
+        scopes: Povolenia oddeľujte medzerami. Nechajte prázdne pre štandardné povolenia.
       index:
         application: Aplikácia
         callback_url: Návratová URL
-        delete: Vymaž
+        delete: Vymazať
         empty: Nemáte žiadne aplikácie.
         name: Názov
         new: Nová aplikácia
-        scopes: Oprávnenia
-        show: Ukáž
-        title: Tvoje aplikácie
+        scopes: Povolenia
+        show: Zobraziť
+        title: Vaše aplikácie
       new:
         title: Nová aplikácia
       show:
-        actions: Úkony
+        actions: Akcie
         application_id: Kľúč klienta
-        callback_urls: Návratové URL adresy
-        scopes: Oprávnenia
+        callback_urls: Návratové adresy URL
+        scopes: Povolenia
         secret: Tajné slovo klienta
         title: 'Aplikácia: %{name}'
     authorizations:
       buttons:
-        authorize: Over
-        deny: Zamietni
+        authorize: Povoliť
+        deny: Zakázať
       error:
         title: Nastala chyba
       new:
-        prompt_html: "%{client_name} žiada o povolenie na prístup k vášmu účtu. Ide o aplikáciu tretej strany. <strong>Ak jej nedôverujete, nemali by ste ju autorizovať.</strong>"
+        prompt_html: "%{client_name} žiada o povolenie na prístup k vášmu účtu. Ide o aplikáciu tretej strany. <strong>Ak jej nedôverujete, nemali by ste ju povoliť.</strong>"
         review_permissions: Preskúmať povolenia
-        title: Je potrebná autorizácia
+        title: Je potrebné schválenie
       show:
-        title: Skopíruj tento autorizačný kód a vlož ho do aplikácie.
+        title: Skopírujte tento overovací kód a vložte ho do aplikácie.
     authorized_applications:
       buttons:
         revoke: Zrušiť oprávnenie
       confirmations:
-        revoke: Si si istý?
+        revoke: Naozaj chcete pokračovať?
       index:
-        authorized_at: Autorizované dňa %{date}
+        authorized_at: Povolené dňa %{date}
         description_html: Ide o aplikácie, ktoré môžu pristupovať k vášmu účtu pomocou rozhrania API. Ak sa tu nachádzajú aplikácie, ktoré nepoznáte, alebo ak sa niektorá aplikácia správa nesprávne, môžete jej zrušiť prístup.
         last_used_at: Posledne použitý dňa %{date}
         never_used: Nikdy nepoužité
-        scopes: Oprávnenia
-        superapp: Interný
-        title: Tvoje povolené aplikácie
+        scopes: Povolenia
+        superapp: Interné
+        title: Vaše povolené aplikácie
     errors:
       messages:
-        access_denied: Prístup zamietnutý.
-        credential_flow_not_configured: Resource Owner Password Credentials zlyhal lebo Doorkeeper.configure.resource_owner_from_credentials nebol nakonfigurovaný.
-        invalid_client: Overenie klienta zlyhalo. Neznámy klient, chýbajú údaje o klientovi alebo nepodporovaná metóda overovania.
-        invalid_grant: Dané oprávnenie je neplatné, vypršané, zrušené, nesúhlasí s presmerovacou URI použitou v autorizačnej požiadavke, alebo bolo vydané pre iný klient.
+        access_denied: Vlastník zdroja alebo autorizačný server žiadosť zamietol.
+        credential_flow_not_configured: Protokol poverení vlastníka prostriedkov narazil na chybu z dôvodu nesprávnej konfigurácie Doorkeeper.configure.resource_owner_from_credentials.
+        invalid_client: Overenie klienta zlyhalo z dôvodu neznámeho klienta, nebolo zahrnuté overenie klienta alebo nie je podporovaná metóda overovania.
+        invalid_grant: Dané povolenie je neplatné, vypršalo, bolo zrušené, nesúhlasí s presmerovacou URI použitou v autorizačnej požiadavke alebo bolo vydané pre iného klienta.
         invalid_redirect_uri: Presmerovacia URI je neplatná.
         invalid_request:
           missing_param: 'Chýba požadovaný parameter: %{value}.'
-          request_not_authorized: Žiadosť je potrebné autorizovať. Chýba požadovaný parameter pre autorizáciu žiadosti alebo je neplatný.
+          request_not_authorized: Žiadosť je potrebné schváliť. Chýba požadovaný parameter pre schválenie žiadosti alebo je neplatný.
           unknown: V požiadavke chýba požadovaný parameter, obsahuje nepodporovanú hodnotu parametra alebo je inak chybne vytvorená.
         invalid_resource_owner: Uvedené prihlasovacie údaje sú neplatné alebo nenájdené
         invalid_scope: Požadovaný rozsah je neplatný, neznámy alebo poškodený.
         invalid_token:
           expired: Prístupový token expiroval
-          revoked: Prístupový token bol odňatý
+          revoked: Prístupový token bol odvolaný
           unknown: Prístupový token je neplatný
-        resource_owner_authenticator_not_configured: Resource Owner zlyhal pretože Doorkeeper.configure.resource_owner_authenticator nebol nakonfigurovaný.
-        server_error: Nastala neočakávaná chyba na autorizačnom serveri ktorá zabránila vykonať požiadavku.
-        temporarily_unavailable: Autorizačný server ťa teraz nemôže obslúžiť, pretože prebieha údržba alebo je dočasne preťažený.
+        resource_owner_authenticator_not_configured: Vyhľadávanie vlastníkov zdrojov zlyhalo, pretože Doorkeeper.configure.resource_owner_authenticator nie je nakonfigurovaný.
+        server_error: Nastala neočakávaná chyba na autorizačnom serveri, ktorá zabránila vykonať požiadavku.
+        temporarily_unavailable: Autorizačný server požiadavku teraz nemôže spracovať, pretože prebieha údržba alebo je dočasne preťažený.
         unauthorized_client: Klient nie je autorizovaný vykonať danú požiadavku týmto spôsobom.
         unsupported_grant_type: Tento typ oprávnenia nie je podporovaný autorizačným serverom.
         unsupported_response_type: Overovací server nepodporuje tento druh odpovede.
@@ -122,22 +122,22 @@ sk:
         admin/accounts: Správa účtov
         admin/all: Všetky administratívne funkcie
         admin/reports: Správa reportov
-        all: Plný prístup k tvojmu Mastodon účtu
+        all: Plný prístup k vášmu Mastodon účtu
         blocks: Blokovania
         bookmarks: Záložky
         conversations: Konverzácie
-        crypto: Šifrovanie End-to-end
-        favourites: Obľúbené
+        crypto: Šifrovanie end-to-end
+        favourites: Ohviezdičkované
         filters: Filtre
-        follow: Sledovanie, stlmenie a blokovanie
+        follow: Sledovania, stíšenia a blokovania
         follows: Sledovania
         lists: Zoznamy
         media: Mediálne prílohy
-        mutes: Nevšímané
-        notifications: Oznámenia
-        push: Push notifikácie
-        reports: Reporty
-        search: Hľadať
+        mutes: Stíšenia
+        notifications: Upozornenia
+        push: Upozornenia push
+        reports: Hlásenia
+        search: Vyhľadávanie
         statuses: Príspevky
     layouts:
       admin:
@@ -145,51 +145,51 @@ sk:
           applications: Aplikácie
           oauth2_provider: Poskytovateľ OAuth2
       application:
-        title: Požadovaná OAuth autorizácia
+        title: Požadovaná autorizácia OAuth
     scopes:
-      admin:read: prezeraj všetky dáta na serveri
-      admin:read:accounts: prezeraj chúlostivé informácie na všetkých účtoch
+      admin:read: čítať všetky dáta na serveri
+      admin:read:accounts: čítať citlivé informácie všetkých účtov
       admin:read:canonical_email_blocks: čítať citlivé informácie všetkých kanonických e-mailových blokov
       admin:read:domain_allows: čítať citlivé informácie zo všetkých povolených domén
       admin:read:domain_blocks: čítať citlivé informácie zo všetkých blokov domén
-      admin:read:email_domain_blocks: čítať citlivé informácie zo všetkých blokov emailových domén
+      admin:read:email_domain_blocks: čítať citlivé informácie zo všetkých blokov e-mailových domén
       admin:read:ip_blocks: čítať citlivé informácie zo všetkých blokov IP
-      admin:read:reports: čítaj chulostivé informácie o všetkých hláseniach a nahlásených účtoch
-      admin:write: uprav všetky dáta na serveri
-      admin:write:accounts: urob moderovacie úkony na účtoch
-      admin:write:canonical_email_blocks: vykonať akcie moderácie na kanonických emailových blokoch
-      admin:write:domain_allows: vykonať akcie moderácie na povolených doménach
-      admin:write:domain_blocks: vykonať akcie moderácie na doménových blokoch
-      admin:write:email_domain_blocks: vykonať akcie moderácie na blokoch emailových domén
-      admin:write:ip_blocks: vykonať akcie moderácie na blokoch IP
-      admin:write:reports: urob moderovacie úkony voči hláseniam
-      crypto: používať end-to-end šifrovanie
-      follow: uprav vzťahy svojho účtu
-      push: dostávaj oboznámenia ohľadom tvojho účtu na obrazovku
-      read: prezri si všetky dáta ohľadom svojho účetu
-      read:accounts: prezri si informácie o účte
-      read:blocks: prezri svoje bloky
-      read:bookmarks: pozri svoje záložky
-      read:favourites: zobraziť vaše obľúbené
-      read:filters: prezri svoje filtrovanie
-      read:follows: prezri si svoje sledovania
-      read:lists: prezri si svoje zoznamy
-      read:mutes: prezri svoje utíšenia
-      read:notifications: zhliadni svoje oboznámenia
-      read:reports: prezri svoje reporty
-      read:search: vyhľadvávaj v rámci seba
-      read:statuses: zhliadni všetky príspevky
-      write: upraviť všetky dáta tvojho účtu
-      write:accounts: uprav svoj profil
-      write:blocks: blokuj účty a domény
-      write:bookmarks: pridaj si príspevky k záložkám
-      write:conversations: stíš a vymaž konverzácie
-      write:favourites: obľúbené príspevky
-      write:filters: vytvor roztriedenie
-      write:follows: následuj ľudí
-      write:lists: vytvor listy
-      write:media: nahraj mediálne súbory
-      write:mutes: stíš diskusie, aj zapojených užívateľov
-      write:notifications: vyčisti oboznámenia
-      write:reports: nahlás iných užívateľov
-      write:statuses: publikuj príspevky
+      admin:read:reports: čítať citlivé informácie o všetkých hláseniach a nahlásených účtoch
+      admin:write: upravovať všetky dáta na serveri
+      admin:write:accounts: vykonávať moderovacie úkony na účtoch
+      admin:write:canonical_email_blocks: vykonávať moderovacie akcie na kanonických e-mailových blokoch
+      admin:write:domain_allows: vykonávať moderovacie akcie na povolených doménach
+      admin:write:domain_blocks: vykonávať moderovacie akcie na doménových blokoch
+      admin:write:email_domain_blocks: vykonávať moderovacie akcie na blokoch e-mailových domén
+      admin:write:ip_blocks: vykonávať moderovacie akcie na blokoch IP
+      admin:write:reports: vykonávať moderovacie akcie voči hláseniam
+      crypto: používať šifrovanie end-to-end
+      follow: upravovať vzťahy medzi účtami
+      push: dostávať vaše upozornenia push
+      read: čítať všetky údaje vášho účtu
+      read:accounts: čítať informácie o účtoch
+      read:blocks: čítať blokovania
+      read:bookmarks: čítať vaše záložky
+      read:favourites: čítať vaše ohviezdičkované
+      read:filters: čítať vaše filtre
+      read:follows: čítať vaše sledovania
+      read:lists: čítať vaše zoznamy
+      read:mutes: čítať vaše stíšenia
+      read:notifications: čítať vaše upozornenia
+      read:reports: čítať vaše hlásenia
+      read:search: vyhľadávať vo vašom mene
+      read:statuses: čítať všetky príspevky
+      write: upravovať všetky údaje vášho účtu
+      write:accounts: upravovať váš profil
+      write:blocks: blokovať účty a domény
+      write:bookmarks: pridávať príspevky k záložkám
+      write:conversations: stíšiť a mazať konverzácie
+      write:favourites: hviezdičkovať príspevky
+      write:filters: vytvárať filtre
+      write:follows: sledovať účty
+      write:lists: vytvárať zoznamy
+      write:media: nahrávať mediálne súbory
+      write:mutes: stíšiť účty a konverzácie
+      write:notifications: vyčistiť vaše upozornenia
+      write:reports: nahlasovať ostatných
+      write:statuses: zverejňovať príspevky

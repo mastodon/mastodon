@@ -12,6 +12,7 @@ lv:
       last_attempt: Tev ir vēl viens mēģinājums, pirms tavs konts tiks bloķēts.
       locked: Tavs konts ir bloķēts.
       not_found_in_database: Nederīga %{authentication_keys} vai parole.
+      omniauth_user_creation_failure: Kļūda šīs identitātes konta izveidošanā.
       pending: Tavs konts joprojām tiek pārskatīts.
       timeout: Tava sesija ir beigusies. Lūdzu, pieraksties vēlreiz, lai turpinātu.
       unauthenticated: Lai turpinātu, tev ir jāpierakstās vai jāreģistrējas.
@@ -37,7 +38,7 @@ lv:
         title: Parole nomainīta
       reconfirmation_instructions:
         explanation: Apstiprini jauno adresi, lai mainītu savu e-pastu.
-        extra: Ja šīs izmaiņas neesi veicis tu, lūdzu, ignorē šo e-pasta ziņojumu. Mastodon konta e-pasta adrese nemainīsies, kamēr nebūsi piekļuvis iepriekš norādītajai saitei.
+        extra: Ja šīs izmaiņas neveici Tu, lūgums neņemt vērā šo e-pasta ziņojumu. Mastodon konta e-pasta adrese netiks mainīta, līdz Tu izmantosi augstāk esošo saiti.
         subject: 'Mastodon: Apstiprini e-pastu %{instance}'
         title: Apstiprini e-pasta adresi
       reset_password_instructions:
@@ -47,14 +48,19 @@ lv:
         subject: 'Mastodon: Norādījumi paroles atiestatīšanai'
         title: Paroles atiestatīšana
       two_factor_disabled:
+        explanation: Pieteikšanās tagad ir iespējama izmantojot tikai e-pasta adresi un paroli.
         subject: 'Mastodon: Divfaktoru autentifikācija atspējota'
+        subtitle: Tavam kontam tika atspējota divpakāpju autentifikācija.
         title: 2FA atspējota
       two_factor_enabled:
+        explanation: Būs nepieciešams TOTP lietotnes izveidots kods, lai pieteiktos.
         subject: 'Mastodon: Divfaktoru autentifikācija iespējota'
+        subtitle: Tavam kontam tika iespējota divpakāpju autentifikācija.
         title: 2FA iespējota
       two_factor_recovery_codes_changed:
         explanation: Iepriekšējie atkopšanas kodi ir atzīti par nederīgiem un ģenerēti jauni.
         subject: 'Mastodon: Divfaktoru atkopšanas kodi pārģenerēti'
+        subtitle: Iepriekšējie atkopšanas kodi tika padarīti par nederīgiem, un tika izveidoti jauni.
         title: 2FA atkopšanas kodi mainīti
       unlock_instructions:
         subject: 'Mastodon: Norādījumi atbloķēšanai'
@@ -68,9 +74,13 @@ lv:
           subject: 'Mastodon: Drošības atslēga izdzēsta'
           title: Viena no tavām drošības atslēgām tika izdzēsta
       webauthn_disabled:
+        explanation: Tavam kontam tika atspējota autentifikācija ar drošības atslēgām.
+        extra: Pieteikšanās tagad ir iespējama izmantojot tikai TOTP lietotnes izveidotu kodu.
         subject: 'Mastodon: Autentifikācija ar drošības atslēgām ir atspējota'
         title: Drošības atslēgas atspējotas
       webauthn_enabled:
+        explanation: Tavam kontam tika iespējota drošības atslēgas autentifikācija.
+        extra: Drošības atslēgu tagad var izmantot, lai pieteiktos.
         subject: 'Mastodon: Drošības atslēgas autentifikācija iespējota'
         title: Drošības atslēgas iespējotas
     omniauth_callbacks:
