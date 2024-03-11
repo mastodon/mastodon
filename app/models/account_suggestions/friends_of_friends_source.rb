@@ -12,7 +12,7 @@ class AccountSuggestions::FriendsOfFriendsSource < AccountSuggestions::Source
       .joins(:account_stat)
       .joins(:passive_relationships).where(passive_relationships: { account_id: first_degree })
       .group('accounts.id, account_stats.id')
-      .reorder('frequency DESC, followers_count DESC')
+      .reorder(frequency: :desc, followers_count: :desc)
       .limit(limit)
       .pluck(Arel.sql('accounts.id, COUNT(*) AS frequency, followers_count'))
   end
