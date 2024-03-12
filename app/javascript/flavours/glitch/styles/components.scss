@@ -1375,7 +1375,7 @@ body > [data-popper-placement] {
   box-sizing: border-box;
   width: 100%;
   clear: both;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
 
   &__button {
     display: inline;
@@ -1396,19 +1396,14 @@ body > [data-popper-placement] {
 .focusable {
   &:focus {
     outline: 0;
-    background: lighten($ui-base-color, 4%);
-
-    .detailed-status,
-    .detailed-status__action-bar {
-      background: lighten($ui-base-color, 8%);
-    }
+    background: rgba($ui-highlight-color, 0.05);
   }
 }
 
 .status {
   padding: 10px 14px; // glitch: reduced padding
   min-height: 54px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
   cursor: auto;
 
   @keyframes fade {
@@ -1800,10 +1795,10 @@ body > [data-popper-placement] {
 }
 
 .status__wrapper-direct {
-  background: mix($ui-base-color, $ui-highlight-color, 95%);
+  background: rgba($ui-highlight-color, 0.05);
 
   &:focus {
-    background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
+    background: rgba($ui-highlight-color, 0.05);
   }
 
   .status__prepend {
@@ -1831,9 +1826,8 @@ body > [data-popper-placement] {
 }
 
 .detailed-status {
-  background: lighten($ui-base-color, 4%);
   padding: 14px 10px; // glitch: reduced padding
-  border-top: 1px solid lighten($ui-base-color, 8%);
+  border-top: 1px solid var(--background-border-color);
 
   &--flex {
     display: flex;
@@ -1893,9 +1887,8 @@ body > [data-popper-placement] {
 }
 
 .detailed-status__action-bar {
-  background: lighten($ui-base-color, 4%);
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-top: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--background-border-color);
   display: flex;
   flex-direction: row;
   padding: 8px 0; // glitch: reduced padding
@@ -1950,7 +1943,7 @@ body > [data-popper-placement] {
 
 .domain {
   padding: 10px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
 
   .domain__domain-name {
     flex: 1 1 auto;
@@ -1974,7 +1967,7 @@ body > [data-popper-placement] {
 
 .account {
   padding: 10px; // glitch: reduced padding
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
 
   .account__display-name {
     flex: 1 1 auto;
@@ -2234,7 +2227,7 @@ a.account__display-name {
 
 .notification__report {
   padding: 10px; // glitch: reduced padding
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
   display: flex;
   gap: 10px;
 
@@ -2493,6 +2486,7 @@ a.account__display-name {
 
 .dropdown-menu {
   background: var(--dropdown-background-color);
+  backdrop-filter: var(--background-filter);
   border: 1px solid var(--dropdown-border-color);
   padding: 2px; // glitch: reduced padding
   border-radius: 4px;
@@ -2683,6 +2677,7 @@ $ui-header-height: 55px;
   z-index: 3;
   justify-content: space-between;
   align-items: center;
+  backdrop-filter: var(--background-filter);
 
   &__logo {
     display: inline-flex;
@@ -2731,7 +2726,8 @@ $ui-header-height: 55px;
 }
 
 .tabs-bar__wrapper {
-  background: darken($ui-base-color, 8%);
+  background: var(--background-color-tint);
+  backdrop-filter: var(--background-filter);
   position: sticky;
   top: $ui-header-height;
   z-index: 2;
@@ -2767,8 +2763,15 @@ $ui-header-height: 55px;
   flex-direction: column;
 
   > .scrollable {
-    background: $ui-base-color;
+    border: 1px solid var(--background-border-color);
+    border-top: 0;
     border-radius: 0 0 4px 4px;
+
+    &.about,
+    &.privacy-policy {
+      border-top: 1px solid var(--background-border-color);
+      border-radius: 4px;
+    }
   }
 }
 
@@ -2798,7 +2801,6 @@ $ui-header-height: 55px;
   font-size: 16px;
   align-items: center;
   justify-content: center;
-  border-bottom: 2px solid transparent;
 }
 
 .column,
@@ -2927,8 +2929,7 @@ $ui-header-height: 55px;
 
     .navigation-panel {
       margin: 0;
-      background: $ui-base-color;
-      border-inline-start: 1px solid lighten($ui-base-color, 8%);
+      border-inline-start: 1px solid var(--background-border-color);
       height: 100vh;
     }
 
@@ -2946,8 +2947,15 @@ $ui-header-height: 55px;
 
   .layout-single-column .ui__header {
     display: flex;
-    background: $ui-base-color;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    background: var(--background-color-tint);
+    border-bottom: 1px solid var(--background-border-color);
+  }
+
+  .column > .scrollable,
+  .tabs-bar__wrapper .column-header,
+  .tabs-bar__wrapper .column-back-button {
+    border-left: 0;
+    border-right: 0;
   }
 
   .column-header,
@@ -3005,7 +3013,7 @@ $ui-header-height: 55px;
     inset-inline-start: 9px;
     top: -13px;
     background: $ui-highlight-color;
-    border: 2px solid lighten($ui-base-color, 8%);
+    border: 2px solid var(--background-color);
     padding: 1px 6px;
     border-radius: 6px;
     font-size: 10px;
@@ -3027,7 +3035,7 @@ $ui-header-height: 55px;
 }
 
 .column-link--transparent .icon-with-badge__badge {
-  border-color: darken($ui-base-color, 8%);
+  border-color: var(--background-color);
 }
 
 .column-title {
@@ -3377,7 +3385,7 @@ $ui-header-height: 55px;
     flex: 0 0 auto;
     border: 0;
     background: transparent;
-    border-top: 1px solid lighten($ui-base-color, 4%);
+    border-top: 1px solid var(--background-border-color);
     margin: 10px 0;
   }
 
@@ -3394,13 +3402,14 @@ $ui-header-height: 55px;
   overflow: hidden;
   display: flex;
   border-radius: 4px;
+  border: 1px solid var(--background-border-color);
 }
 
 .drawer__inner {
   position: absolute;
   top: 0;
   inset-inline-start: 0;
-  background: darken($ui-base-color, 4%);
+  background: var(--background-color);
   box-sizing: border-box;
   padding: 0;
   display: flex;
@@ -3409,15 +3418,11 @@ $ui-header-height: 55px;
   overflow-y: auto;
   width: 100%;
   height: 100%;
-
-  &.darker {
-    background: $ui-base-color;
-  }
 }
 
 .drawer__inner__mastodon {
-  background: darken($ui-base-color, 4%)
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color($ui-base-color)}"/></svg>')
+  background: var(--background-color)
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color(darken($ui-base-color, 4%))}"/></svg>')
     no-repeat bottom / 100% auto;
   flex: 1;
   min-height: 47px;
@@ -3441,7 +3446,7 @@ $ui-header-height: 55px;
 .drawer__header {
   flex: 0 0 auto;
   font-size: 16px;
-  background: darken($ui-base-color, 4%);
+  border: 1px solid var(--background-border-color);
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
@@ -3451,7 +3456,7 @@ $ui-header-height: 55px;
   a:hover,
   a:focus,
   a:active {
-    background: $ui-base-color;
+    color: $primary-text-color;
   }
 }
 
@@ -3496,15 +3501,14 @@ $ui-header-height: 55px;
 .column-back-button {
   box-sizing: border-box;
   width: 100%;
-  background: $ui-base-color;
+  background: transparent;
+  border: 1px solid var(--background-border-color);
   border-radius: 4px 4px 0 0;
   color: $highlight-text-color;
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 16px;
   line-height: inherit;
-  border: 0;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
   text-align: unset;
   padding: 13px;
   margin: 0;
@@ -3517,13 +3521,17 @@ $ui-header-height: 55px;
   &:hover {
     text-decoration: underline;
   }
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-top: 0;
+  }
 }
 
 .column-header__back-button {
   display: flex;
   align-items: center;
   gap: 5px;
-  background: $ui-base-color;
+  background: transparent;
   border: 0;
   font-family: inherit;
   color: $highlight-text-color;
@@ -3629,8 +3637,6 @@ $ui-header-height: 55px;
 }
 
 .column-link {
-  background: lighten($ui-base-color, 8%);
-  color: $primary-text-color;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -3640,12 +3646,18 @@ $ui-header-height: 55px;
   overflow: hidden;
   white-space: nowrap;
   border: 0;
+  background: transparent;
+  color: $secondary-text-color;
   border-left: 4px solid transparent;
 
   &:hover,
   &:focus,
   &:active {
-    background: lighten($ui-base-color, 11%);
+    color: $primary-text-color;
+  }
+
+  &.active {
+    color: $highlight-text-color;
   }
 
   &:focus {
@@ -3655,22 +3667,6 @@ $ui-header-height: 55px;
   &:focus-visible {
     border-color: $ui-button-focus-outline-color;
     border-radius: 0;
-  }
-
-  &--transparent {
-    background: transparent;
-    color: $secondary-text-color;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background: transparent;
-      color: $primary-text-color;
-    }
-
-    &.active {
-      color: $highlight-text-color;
-    }
   }
 
   &--logo {
@@ -3697,19 +3693,13 @@ $ui-header-height: 55px;
 }
 
 .column-subheading {
-  background: $ui-base-color;
-  color: $dark-text-color;
+  background: darken($ui-base-color, 4%);
+  color: $darker-text-color;
   padding: 8px 20px;
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   cursor: default;
-}
-
-.getting-started__wrapper,
-.getting-started,
-.flex-spacer {
-  background: $ui-base-color;
 }
 
 .getting-started__wrapper {
@@ -3723,6 +3713,8 @@ $ui-header-height: 55px;
 .getting-started {
   color: $dark-text-color;
   overflow: auto;
+  border: 1px solid var(--background-border-color);
+  border-top: 0;
 
   &__trends {
     flex: 0 1 auto;
@@ -3731,7 +3723,7 @@ $ui-header-height: 55px;
     margin-top: 10px;
 
     h4 {
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
+      border-bottom: 1px solid var(--background-border-color);
       padding: 10px;
       font-size: 12px;
       text-transform: uppercase;
@@ -3876,7 +3868,7 @@ input.glitch-setting-text {
   margin-top: 14px;
   text-decoration: none;
   overflow: hidden;
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
   border-radius: 8px;
 
   &__actions {
@@ -4133,7 +4125,7 @@ a.status-card {
 }
 
 .load-gap {
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
 }
 
 .timeline-hint {
@@ -4166,7 +4158,8 @@ a.status-card {
   font-size: 16px;
   font-weight: 500;
   color: $dark-text-color;
-  background: $ui-base-color;
+  border: 1px solid var(--background-border-color);
+  border-top: 0;
   cursor: default;
   display: flex;
   flex: 1 1 auto;
@@ -4242,8 +4235,7 @@ a.status-card {
 .column-header {
   display: flex;
   font-size: 16px;
-  background: $ui-base-color;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
   border-radius: 4px 4px 0 0;
   flex: 0 0 auto;
   cursor: pointer;
@@ -4310,6 +4302,10 @@ a.status-card {
       padding-top: 16px;
     }
   }
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-top: 0;
+  }
 }
 
 .column-header__buttons {
@@ -4329,9 +4325,9 @@ a.status-card {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: $ui-base-color;
   border: 0;
   color: $darker-text-color;
+  background: transparent;
   cursor: pointer;
   font-size: 16px;
   padding: 0 15px;
@@ -4350,7 +4346,6 @@ a.status-card {
 
   &.active {
     color: $primary-text-color;
-    background: lighten($ui-base-color, 4%);
 
     &:hover {
       color: $primary-text-color;
@@ -4406,7 +4401,6 @@ a.status-card {
   max-height: 70vh;
   overflow: hidden;
   overflow-y: auto;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
   color: $darker-text-color;
   transition:
     max-height 150ms ease-in-out,
@@ -4428,7 +4422,7 @@ a.status-card {
     height: 0;
     background: transparent;
     border: 0;
-    border-top: 1px solid lighten($ui-base-color, 8%);
+    border-top: 1px solid var(--background-border-color);
     margin: 10px 0;
   }
 
@@ -4444,7 +4438,8 @@ a.status-card {
 }
 
 .column-header__collapsible-inner {
-  background: $ui-base-color;
+  border: 1px solid var(--background-border-color);
+  border-top: 0;
 }
 
 .column-header__setting-btn {
@@ -4786,9 +4781,8 @@ a.status-card {
 }
 
 .account--panel {
-  background: lighten($ui-base-color, 4%);
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-top: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--background-border-color);
   display: flex;
   flex-direction: row;
   padding: 10px 0;
@@ -4998,7 +4992,6 @@ a.status-card {
 .empty-column-indicator,
 .follow_requests-unlocked_explanation {
   color: $dark-text-color;
-  background: $ui-base-color;
   text-align: center;
   padding: 20px;
   font-size: 15px;
@@ -5025,14 +5018,14 @@ a.status-card {
 
 .follow_requests-unlocked_explanation {
   background: darken($ui-base-color, 4%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
   contain: initial;
   flex-grow: 0;
 }
 
 .error-column {
   padding: 20px;
-  background: $ui-base-color;
+  border: 1px solid var(--background-border-color);
   border-radius: 4px;
   display: flex;
   flex: 1 1 auto;
@@ -5247,7 +5240,7 @@ a.status-card {
   width: 100%;
   height: 6px;
   border-radius: 6px;
-  background: darken($ui-base-color, 8%);
+  background: var(--background-color);
   position: relative;
   margin-top: 5px;
 }
@@ -5781,7 +5774,7 @@ a.status-card {
 }
 
 .search-results__section {
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
 
   &:last-child {
     border-bottom: 0;
@@ -5789,7 +5782,7 @@ a.status-card {
 
   &__header {
     background: darken($ui-base-color, 4%);
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--background-border-color);
     padding: 15px;
     font-weight: 500;
     font-size: 14px;
@@ -6885,7 +6878,7 @@ img.modal-warning {
 .attachment-list {
   display: flex;
   font-size: 14px;
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
   border-radius: 4px;
   margin-top: 14px; // glitch: reduced margins
   overflow: hidden;
@@ -6895,7 +6888,7 @@ img.modal-warning {
     color: $dark-text-color;
     padding: 8px 18px;
     cursor: default;
-    border-inline-end: 1px solid lighten($ui-base-color, 8%);
+    border-inline-end: 1px solid var(--background-border-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7066,7 +7059,7 @@ img.modal-warning {
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
-  background: darken($ui-base-color, 8%);
+  background: var(--background-color);
   border-radius: 8px;
   padding-bottom: 44px;
   width: 100%;
@@ -7479,7 +7472,6 @@ img.modal-warning {
 
 .scrollable .account-card {
   margin: 10px;
-  background: lighten($ui-base-color, 8%);
 }
 
 .scrollable .account-card__title__avatar {
@@ -7490,11 +7482,7 @@ img.modal-warning {
 }
 
 .scrollable .account-card__bio::after {
-  background: linear-gradient(
-    to left,
-    lighten($ui-base-color, 8%),
-    transparent
-  );
+  background: linear-gradient(to left, var(--background-color), transparent);
 }
 
 .account-gallery__container {
@@ -7523,9 +7511,8 @@ img.modal-warning {
 
 .notification__filter-bar,
 .account__section-headline {
-  // deliberate glitch-soc choice for now
-  background: darken($ui-base-color, 4%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
+  border-top: 0;
   cursor: default;
   display: flex;
   flex-shrink: 0;
@@ -7564,10 +7551,15 @@ img.modal-warning {
       }
     }
   }
+
+  .scrollable & {
+    border-left: 0;
+    border-right: 0;
+  }
 }
 
 .filter-form {
-  background: $ui-base-color;
+  border-bottom: 1px solid var(--background-border-color);
 
   &__column {
     display: flex;
@@ -7785,7 +7777,8 @@ noscript {
   justify-content: flex-start;
   gap: 15px;
   align-items: center;
-  background: lighten($ui-base-color, 4%);
+  border: 1px solid var(--background-border-color);
+  border-top: 0;
 
   label {
     flex: 1 1 auto;
@@ -7886,7 +7879,7 @@ noscript {
 
   .list {
     padding: 10px;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--background-border-color);
   }
 
   .list__wrapper {
@@ -8030,7 +8023,7 @@ noscript {
     height: 145px;
     position: relative;
     background: darken($ui-base-color, 4%);
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--background-border-color);
 
     img {
       object-fit: cover;
@@ -8045,7 +8038,7 @@ noscript {
     position: relative;
     padding: 0 20px;
     padding-bottom: 16px; // glitch-soc addition for the different tabs design
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--background-border-color);
 
     .avatar {
       display: block;
@@ -8053,8 +8046,8 @@ noscript {
       width: 94px;
 
       .account__avatar {
-        background: darken($ui-base-color, 8%);
-        border: 2px solid $ui-base-color;
+        background: var(--background-color);
+        border: 2px solid var(--background-border-color);
       }
     }
   }
@@ -8169,13 +8162,12 @@ noscript {
       margin: 0;
       margin-top: 16px;
       border-radius: 4px;
-      background: darken($ui-base-color, 4%);
-      border: 0;
+      border: 1px solid var(--background-border-color);
 
       dl {
         display: block;
         padding: 8px 16px; // glitch-soc: padding purposefuly reduced
-        border-bottom-color: lighten($ui-base-color, 4%);
+        border-bottom-color: var(--background-border-color);
       }
 
       dd,
@@ -8350,7 +8342,7 @@ noscript {
     display: flex;
     align-items: center;
     padding: 15px;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--background-border-color);
     gap: 15px;
 
     &:last-child {
@@ -8468,7 +8460,7 @@ noscript {
 
 .conversation {
   display: flex;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
   padding: 5px;
   padding-bottom: 0;
 
@@ -8829,7 +8821,7 @@ noscript {
 
 .picture-in-picture-placeholder {
   box-sizing: border-box;
-  border: 2px dashed lighten($ui-base-color, 8%);
+  border: 2px dashed var(--background-border-color);
   background: $base-shadow-color;
   display: flex;
   flex-direction: column;
@@ -8857,7 +8849,7 @@ noscript {
 
 .notifications-permission-banner {
   padding: 30px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8927,7 +8919,7 @@ noscript {
   color: $primary-text-color;
   text-decoration: none;
   padding: 15px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
   gap: 15px;
 
   &:last-child {
@@ -9306,7 +9298,6 @@ noscript {
 }
 
 .privacy-policy {
-  background: $ui-base-color;
   padding: 20px;
 
   @media screen and (min-width: $no-gap-breakpoint) {
@@ -9675,6 +9666,7 @@ noscript {
 
 .about {
   padding: 20px;
+  border-top: 1px solid var(--background-border-color);
 
   @media screen and (min-width: $no-gap-breakpoint) {
     border-radius: 4px;
@@ -9721,7 +9713,7 @@ noscript {
   }
 
   &__meta {
-    background: lighten($ui-base-color, 4%);
+    border: 1px solid var(--background-border-color);
     border-radius: 4px;
     display: flex;
     margin-bottom: 30px;
@@ -9737,7 +9729,7 @@ noscript {
       width: 0;
       border: 0;
       border-style: solid;
-      border-color: lighten($ui-base-color, 8%);
+      border-color: var(--background-border-color);
       border-left-width: 1px;
       min-height: calc(100% - 60px);
       flex: 0 0 auto;
@@ -9845,7 +9837,7 @@ noscript {
       line-height: 22px;
       padding: 20px;
       border-radius: 4px;
-      background: lighten($ui-base-color, 4%);
+      border: 1px solid var(--background-border-color);
       color: $highlight-text-color;
       cursor: pointer;
     }
@@ -9855,7 +9847,7 @@ noscript {
     }
 
     &__body {
-      border: 1px solid lighten($ui-base-color, 4%);
+      border: 1px solid var(--background-border-color);
       border-top: 0;
       padding: 20px;
       font-size: 15px;
@@ -9865,18 +9857,17 @@ noscript {
 
   &__domain-blocks {
     margin-top: 30px;
-    background: darken($ui-base-color, 4%);
-    border: 1px solid lighten($ui-base-color, 4%);
+    border: 1px solid var(--background-border-color);
     border-radius: 4px;
 
     &__domain {
-      border-bottom: 1px solid lighten($ui-base-color, 4%);
+      border-bottom: 1px solid var(--background-border-color);
       padding: 10px;
       font-size: 15px;
       color: $darker-text-color;
 
       &:nth-child(2n) {
-        background: darken($ui-base-color, 2%);
+        background: darken($ui-base-color, 4%);
       }
 
       &:last-child {
@@ -9972,7 +9963,7 @@ noscript {
 }
 
 .hashtag-header {
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
   padding: 15px;
   font-size: 17px;
   line-height: 22px;
@@ -10034,8 +10025,8 @@ noscript {
   gap: 12px;
   padding: 16px 0;
   padding-bottom: 0;
-  border-bottom: 1px solid mix($ui-base-color, $ui-highlight-color, 75%);
-  background: mix($ui-base-color, $ui-highlight-color, 95%);
+  border-bottom: 1px solid var(--background-border-color);
+  background: rgba($ui-highlight-color, 0.05);
 
   &__header {
     display: flex;
@@ -10119,8 +10110,8 @@ noscript {
       overflow-x: scroll;
 
       &__card {
-        background: darken($ui-base-color, 4%);
-        border: 1px solid lighten($ui-base-color, 8%);
+        background: var(--background-color);
+        border: 1px solid var(--background-border-color);
         border-radius: 4px;
         display: flex;
         flex-direction: column;
@@ -10157,7 +10148,7 @@ noscript {
         .account__avatar {
           flex-shrink: 0;
           align-self: flex-end;
-          border: 1px solid lighten($ui-base-color, 8%);
+          border: 1px solid var(--background-border-color);
           background-color: $ui-base-color;
         }
 

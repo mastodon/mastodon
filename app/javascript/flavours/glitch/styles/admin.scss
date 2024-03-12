@@ -1399,8 +1399,8 @@ a.sparkline {
 }
 
 .account-card {
-  background: $ui-base-color;
   border-radius: 4px;
+  border: 1px solid lighten($ui-base-color, 8%);
 
   &__permalink {
     color: inherit;

@@ -26,7 +26,7 @@ $fluid-breakpoint: $maximum-width + 20px;
 
   li {
     position: relative;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--background-border-color);
     padding: 1em 1.75em;
     padding-inline-start: 3em;
     font-weight: 500;
