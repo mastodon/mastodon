@@ -3361,7 +3361,7 @@ $ui-header-height: 55px;
   height: 20px;
   padding: 0;
   border-radius: 10px;
-  background-color: #626982;
+  background-color: $ui-primary-color;
 }
 
 .react-toggle--focus {
@@ -3384,7 +3384,7 @@ $ui-header-height: 55px;
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: $primary-text-color;
+  background-color: $ui-button-color;
   box-sizing: border-box;
   transition: all 0.25s ease;
   transition-property: border-color, left;
