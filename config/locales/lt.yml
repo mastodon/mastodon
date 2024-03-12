@@ -403,10 +403,12 @@ lt:
       import: Importuoti
       new:
         create: Sukurti bloką
-        hint: Domeno blokavimas nesustabdys vartotojų paskyrų sukūrimo duomenų sistemoje, tačiau automatiškai pritaikys atitinkamus moderavimo metodus šioms paskyroms.
+        hint: Domeno blokas netrukdys kurti paskyrų įrašų duomenų bazėje, bet atgaline data ir automatiškai taikys tam tikrus tų paskyrų prižiūrėjimo būdus.
         severity:
+          desc_html: "<strong>Ribojimas</strong> padarys šio domeno paskyrų įrašus nematomus visiems, kurie jų neseka. <strong>Pristabdymas</strong> iš tavo serverio pašalins visą šio domeno paskyrų turinį, mediją ir profilio duomenis. Naudok <strong>Nieko</strong>, jei nori tik atmesti medijos failus."
           noop: Nieko
-          suspend: Draudimas
+          silence: Riboti
+          suspend: Pristabdyti
         title: Naujos domeno blokas
       reject_media: Atmesti medijos failai
       reject_media_hint: Panaikina lokaliai saugomus medijos failus bei atsisako jų parsisiuntimo ateityje. Neliečia užblokavimu
@@ -468,7 +470,7 @@ lt:
       assign_to_self: Paskirti man
       assigned: Paskirtas moderatorius
       comment:
-        none: Nėra
+        none: Nieko
       created_at: Reportuotas
       forwarded_replies_explanation: Šis ataskaita yra iš nuotolinio naudotojo ir susijusi su nuotoliniu turiniu. Jis buvo persiųstas tau, nes turinys, apie kurį pranešta, yra atsakymas vienam iš tavo naudotojų.
       mark_as_resolved: Pažymėti kaip išsprestą
