@@ -16,6 +16,11 @@ class InstanceActorsController < ActivityPub::BaseController
 
   private
 
+  # TODO: Interacts with `AccountOwnedConcern`, included by AP::BaseController
+  def account_required?
+    false
+  end
+
   def set_account
     @account = Account.representative
   end
