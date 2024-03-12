@@ -1,5 +1,3 @@
-import Rails from '@rails/ujs';
-
 import { signOutLink } from 'flavours/glitch/utils/backend_links';
 
 export const logOut = () => {
@@ -11,13 +9,18 @@ export const logOut = () => {
   methodInput.setAttribute('type', 'hidden');
   form.appendChild(methodInput);
 
-  const csrfToken = Rails.csrfToken();
-  const csrfParam = Rails.csrfParam();
+  const csrfToken = document.querySelector<HTMLMetaElement>(
+    'meta[name=csrf-token]',
+  );
+
+  const csrfParam = document.querySelector<HTMLMetaElement>(
+    'meta[name=csrf-param]',
+  );
 
   if (csrfParam && csrfToken) {
     const csrfInput = document.createElement('input');
-    csrfInput.setAttribute('name', csrfParam);
-    csrfInput.setAttribute('value', csrfToken);
+    csrfInput.setAttribute('name', csrfParam.content);
+    csrfInput.setAttribute('value', csrfToken.content);
     csrfInput.setAttribute('type', 'hidden');
     form.appendChild(csrfInput);
   }
