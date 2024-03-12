@@ -11,9 +11,9 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
     let!(:eve) { Fabricate(:account, discoverable: true, hide_collections: false) }
     let!(:mallory) { Fabricate(:account, discoverable: false, hide_collections: false) }
     let!(:eugen) { Fabricate(:account, discoverable: true, hide_collections: false) }
+    let!(:neil) { Fabricate(:account, discoverable: true, hide_collections: false) }
     let!(:john) { Fabricate(:account, discoverable: true, hide_collections: false) }
     let!(:jerk) { Fabricate(:account, discoverable: true, hide_collections: false) }
-    let!(:neil) { Fabricate(:account, discoverable: true, hide_collections: false) }
     let!(:larry) { Fabricate(:account, discoverable: true, hide_collections: false) }
 
     context 'with follows and blocks' do
@@ -70,12 +70,30 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
       end
 
       it 'returns eligible accounts in the expected order' do
-        expect(subject.get(bob)).to eq [
-          [eugen.id, :friends_of_friends], # followed by 2 friends, 3 followers total
-          [john.id, :friends_of_friends], # followed by 2 friends, 2 followers total
-          [neil.id, :friends_of_friends], # followed by 1 friend, 2 followers total
-          [jerk.id, :friends_of_friends], # followed by 1 friend, 1 follower total
+        expect(subject.get(bob)).to eq expected_results
+      end
+
+      it 'contains correct underlying source data' do
+        expect(source_query_values)
+          .to contain_exactly(
+            [eugen.id, 2, 3], # Followed by 2 friends of bob (eve, mallory), 3 followers total (breaks tie)
+            [john.id, 2, 2],  # Followed by 2 friends of bob (eve, mallory), 2 followers total
+            [neil.id, 1, 2],  # Followed by 1 friends of bob (mallory), 2 followers total (breaks tie)
+            [jerk.id, 1, 1]   # Followed by 1 friends of bob (eve), 1 followers total
+          )
+      end
+
+      def expected_results
+        [
+          [eugen.id, :friends_of_friends],
+          [john.id, :friends_of_friends],
+          [neil.id, :friends_of_friends],
+          [jerk.id, :friends_of_friends],
         ]
+      end
+
+      def source_query_values
+        subject.source_query(bob).to_a
       end
     end
   end
