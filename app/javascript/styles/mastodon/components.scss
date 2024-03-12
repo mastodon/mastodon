@@ -7302,6 +7302,21 @@ noscript {
   .list {
     padding: 10px;
     border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+    &.remove {
+      background-color: lighten($ui-base-color, 26%);
+
+      & .list__wrapper .account__relationship .icon-button {
+        color: darken($action-button-color, 10%);
+
+        &:hover,
+        &:active,
+        &:focus {
+          color: darken($action-button-color, 17%);
+          background-color: rgba($ui-base-color, 0.15);
+        }
+      }
+    }
   }
 
   .list__wrapper {
