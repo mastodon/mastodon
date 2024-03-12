@@ -3395,6 +3395,16 @@ $ui-header-height: 55px;
   border-color: $ui-highlight-color;
 }
 
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background: darken($ui-primary-color, 5%);
+}
+
+.react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled)
+  .react-toggle-track {
+  background: lighten($ui-highlight-color, 5%);
+}
+
+
 .switch-to-advanced {
   color: $light-text-color;
   background-color: $ui-base-color;
