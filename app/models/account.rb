@@ -111,6 +111,7 @@ class Account < ApplicationRecord
 
   normalizes :username, with: ->(username) { username.squish }
 
+  scope :without_internal, -> { where(id: 1...) }
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }

@@ -213,7 +213,7 @@ module ApplicationHelper
       state_params[:moved_to_account] = current_account.moved_to_account
     end
 
-    state_params[:owner] = Account.local.without_suspended.where('id > 0').first if single_user_mode?
+    state_params[:owner] = Account.local.without_suspended.without_internal.first if single_user_mode?
 
     json = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(state_params), serializer: InitialStateSerializer).to_json
     # rubocop:disable Rails/OutputSafety
