@@ -22,6 +22,7 @@ import Card from '../features/status/components/card';
 // to use the progress bar to show download progress
 import Bundle from '../features/ui/components/bundle';
 import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
+import { SensitiveMediaContext } from '../features/ui/util/sensitive_media_context';
 import { displayMedia } from '../initial_state';
 
 import { Avatar } from './avatar';
@@ -78,6 +79,8 @@ const messages = defineMessages({
 
 class Status extends ImmutablePureComponent {
 
+  static contextType = SensitiveMediaContext;
+
   static propTypes = {
     status: ImmutablePropTypes.map,
     account: ImmutablePropTypes.record,
@@ -133,19 +136,21 @@ class Status extends ImmutablePureComponent {
   ];
 
   state = {
-    showMedia: defaultMediaVisibility(this.props.status),
-    statusId: undefined,
+    showMedia: defaultMediaVisibility(this.props.status) && !(this.context?.hideMediaByDefault),
     forceFilter: undefined,
   };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.status && nextProps.status.get('id') !== prevState.statusId) {
-      return {
-        showMedia: defaultMediaVisibility(nextProps.status),
-        statusId: nextProps.status.get('id'),
-      };
-    } else {
-      return null;
+  componentDidUpdate (prevProps) {
+    // This will potentially cause a wasteful redraw, but in most cases `Status` components are used
+    // with a `key` directly depending on their `id`, preventing re-use of the component across
+    // different IDs.
+    // But just in case this does change, reset the state on status change.
+
+    if (this.props.status?.get('id') !== prevProps.status?.get('id')) {
+      this.setState({
+        showMedia: defaultMediaVisibility(this.props.status) && !(this.context?.hideMediaByDefault),
+        forceFilter: undefined,
+      });
     }
   }
 
