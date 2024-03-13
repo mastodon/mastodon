@@ -68,6 +68,13 @@ class NotifyService < BaseService
 
     NEW_FOLLOWER_THRESHOLD = 3.days.freeze
 
+    NON_FILTERABLE_TYPES = %i(
+      admin.sign_up
+      admin.report
+      poll
+      update
+    ).freeze
+
     def initialize(notification)
       @notification = notification
       @recipient = notification.account
@@ -76,6 +83,7 @@ class NotifyService < BaseService
     end
 
     def filter?
+      return false unless Notification::PROPERTIES[@notification.type][:filterable]
       return false if override_for_sender?
 
       from_limited? ||
