@@ -15,6 +15,7 @@ import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 import { IconButton } from 'mastodon/components/icon_button';
 import ScrollableList from 'mastodon/components/scrollable_list';
+import { SensitiveMediaContextProvider } from 'mastodon/features/ui/util/sensitive_media_context';
 
 import NotificationContainer from './containers/notification_container';
 
@@ -106,25 +107,27 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
         )}
       />
 
-      <ScrollableList
-        scrollKey={`notification_requests/${id}`}
-        trackScroll={!multiColumn}
-        bindToDocument={!multiColumn}
-        isLoading={isLoading}
-        showLoading={isLoading && notifications.size === 0}
-        hasMore={hasMore}
-        onLoadMore={handleLoadMore}
-      >
-        {notifications.map(item => (
-          item && <NotificationContainer
-            key={item.get('id')}
-            notification={item}
-            accountId={item.get('account')}
-            onMoveUp={handleMoveUp}
-            onMoveDown={handleMoveDown}
-          />
-        ))}
-      </ScrollableList>
+      <SensitiveMediaContextProvider hideMediaByDefault>
+        <ScrollableList
+          scrollKey={`notification_requests/${id}`}
+          trackScroll={!multiColumn}
+          bindToDocument={!multiColumn}
+          isLoading={isLoading}
+          showLoading={isLoading && notifications.size === 0}
+          hasMore={hasMore}
+          onLoadMore={handleLoadMore}
+        >
+          {notifications.map(item => (
+            item && <NotificationContainer
+              key={item.get('id')}
+              notification={item}
+              accountId={item.get('account')}
+              onMoveUp={handleMoveUp}
+              onMoveDown={handleMoveDown}
+            />
+          ))}
+        </ScrollableList>
+      </SensitiveMediaContextProvider>
 
       <Helmet>
         <title>{columnTitle}</title>

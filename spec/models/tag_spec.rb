@@ -22,7 +22,7 @@ RSpec.describe Tag do
   end
 
   describe 'HASHTAG_RE' do
-    subject { Tag::HASHTAG_RE }
+    subject { described_class::HASHTAG_RE }
 
     it 'does not match URLs with anchors with non-hashtag characters' do
       expect(subject.match('Check this out https://medium.com/@alice/some-article#.abcdef123')).to be_nil
