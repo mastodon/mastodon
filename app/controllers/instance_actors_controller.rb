@@ -6,6 +6,8 @@ class InstanceActorsController < ActivityPub::BaseController
   serialization_scope nil
 
   before_action :set_account
+
+  skip_before_action :authenticate_user! # From `AccountOwnedConcern`
   skip_before_action :require_functional!
   skip_before_action :update_user_sign_in
 
@@ -16,7 +18,7 @@ class InstanceActorsController < ActivityPub::BaseController
 
   private
 
-  # TODO: Interacts with `AccountOwnedConcern`, included by AP::BaseController
+  # Skips various `before_action` from `AccountOwnedConcern`
   def account_required?
     false
   end
