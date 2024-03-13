@@ -1557,10 +1557,7 @@ body > [data-popper-placement] {
         bottom: 0;
         inset-inline-start: 0;
         inset-inline-end: 0;
-        background: linear-gradient(
-          rgba($ui-base-color, 0),
-          rgba($ui-base-color, 1)
-        );
+        background: linear-gradient(transparent, var(--background-color));
         pointer-events: none;
       }
 
