@@ -77,8 +77,10 @@ Rails.application.routes.draw do
   get 'remote_interaction_helper', to: 'remote_interaction_helper#index'
 
   resource :instance_actor, path: 'actor', only: [:show] do
-    resource :inbox, only: [:create], module: :activitypub
-    resource :outbox, only: [:show], module: :activitypub
+    scope module: :activitypub do
+      resource :inbox, only: [:create]
+      resource :outbox, only: [:show]
+    end
   end
 
   get '/invite/:invite_code', constraints: ->(req) { req.format == :json }, to: 'api/v1/invites#show'
