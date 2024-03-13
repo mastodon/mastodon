@@ -129,7 +129,7 @@ class ApplicationController < ActionController::Base
   end
 
   def single_user_mode?
-    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.non_internal.exists?
+    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.without_internal.exists?
   end
 
   def use_seamless_external_login?
