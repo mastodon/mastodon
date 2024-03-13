@@ -70,12 +70,8 @@ class Api::V1::NotificationsController < Api::BaseController
     api_v1_notifications_url pagination_params(min_id: pagination_since_id) unless @notifications.empty?
   end
 
-  def pagination_max_id
-    @notifications.last.id
-  end
-
-  def pagination_since_id
-    @notifications.first.id
+  def pagination_collection
+    @notifications
   end
 
   def browserable_params
