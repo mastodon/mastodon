@@ -263,11 +263,11 @@ html {
 }
 
 .react-toggle-track {
-  background: $ui-secondary-color;
+  background: $ui-primary-color;
 }
 
 .react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background: darken($ui-secondary-color, 10%);
+  background: lighten($ui-primary-color, 10%);
 }
 
 .react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled)

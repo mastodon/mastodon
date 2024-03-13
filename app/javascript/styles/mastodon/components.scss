@@ -3369,7 +3369,7 @@ $ui-header-height: 55px;
   height: 20px;
   padding: 0;
   border-radius: 10px;
-  background-color: #626982;
+  background-color: $ui-primary-color;
 }
 
 .react-toggle--focus {
@@ -3392,7 +3392,7 @@ $ui-header-height: 55px;
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: $primary-text-color;
+  background-color: $ui-button-color;
   box-sizing: border-box;
   transition: all 0.25s ease;
   transition-property: border-color, left;
@@ -3401,6 +3401,15 @@ $ui-header-height: 55px;
 .react-toggle--checked .react-toggle-thumb {
   inset-inline-start: 32px - 16px - 2px;
   border-color: $ui-highlight-color;
+}
+
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background: darken($ui-primary-color, 5%);
+}
+
+.react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled)
+  .react-toggle-track {
+  background: lighten($ui-highlight-color, 5%);
 }
 
 .switch-to-advanced {
