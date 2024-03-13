@@ -678,7 +678,7 @@ RSpec.describe Account do
   end
 
   describe 'MENTION_RE' do
-    subject { Account::MENTION_RE }
+    subject { described_class::MENTION_RE }
 
     it 'matches usernames in the middle of a sentence' do
       expect(subject.match('Hello to @alice from me')[1]).to eq 'alice'

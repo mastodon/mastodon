@@ -46,7 +46,7 @@ describe WebfingerResource do
 
         expect do
           described_class.new(resource).username
-        end.to raise_error(WebfingerResource::InvalidRequest)
+        end.to raise_error(described_class::InvalidRequest)
       end
 
       it 'finds the username in a valid https route' do
@@ -137,7 +137,7 @@ describe WebfingerResource do
 
         expect do
           described_class.new(resource).username
-        end.to raise_error(WebfingerResource::InvalidRequest)
+        end.to raise_error(described_class::InvalidRequest)
       end
     end
   end
