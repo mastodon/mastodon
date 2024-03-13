@@ -10,12 +10,9 @@ RSpec.describe BlockService do
   describe 'local' do
     let(:bob) { Fabricate(:account, username: 'bob') }
 
-    before do
-      subject.call(sender, bob)
-    end
-
     it 'creates a blocking relation' do
-      expect(sender.blocking?(bob)).to be true
+      expect { subject.call(sender, bob) }
+        .to change { sender.blocking?(bob) }.from(false).to(true)
     end
   end
 
