@@ -29,18 +29,40 @@ class Notification < ApplicationRecord
     'Poll' => :poll,
   }.freeze
 
-  TYPES = %i(
-    mention
-    status
-    reblog
-    follow
-    follow_request
-    favourite
-    poll
-    update
-    admin.sign_up
-    admin.report
-  ).freeze
+  PROPERTIES = {
+    mention: {
+      filterable: true,
+    }.freeze,
+    status: {
+      filterable: false,
+    }.freeze,
+    reblog: {
+      filterable: true,
+    }.freeze,
+    follow: {
+      filterable: true,
+    }.freeze,
+    follow_request: {
+      filterable: true,
+    }.freeze,
+    favourite: {
+      filterable: true,
+    }.freeze,
+    poll: {
+      filterable: false,
+    }.freeze,
+    update: {
+      filterable: false,
+    }.freeze,
+    'admin.sign_up': {
+      filterable: false,
+    }.freeze,
+    'admin.report': {
+      filterable: false,
+    }.freeze,
+  }.freeze
+
+  TYPES = PROPERTIES.keys.freeze
 
   TARGET_STATUS_INCLUDES_BY_TYPE = {
     status: :status,

@@ -83,7 +83,7 @@ class NotifyService < BaseService
     end
 
     def filter?
-      return false if NON_FILTERABLE_TYPES.include?(@notification.type)
+      return false unless Notification::PROPERTIES[@notification.type][:filterable]
       return false if override_for_sender?
 
       from_limited? ||
