@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UpdateStatusService, type: :service do
+RSpec.describe UpdateStatusService do
   subject { described_class.new }
 
   context 'when nothing changes' do

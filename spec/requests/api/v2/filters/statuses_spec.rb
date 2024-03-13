@@ -2,25 +2,20 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V2::Filters::StatusesController do
-  render_views
-
+RSpec.describe 'API V2 Filters Statuses' do
   let(:user)         { Fabricate(:user) }
   let(:token)        { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:filter)       { Fabricate(:custom_filter, account: user.account) }
   let(:other_user)   { Fabricate(:user) }
   let(:other_filter) { Fabricate(:custom_filter, account: other_user.account) }
+  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  before do
-    allow(controller).to receive(:doorkeeper_token) { token }
-  end
-
-  describe 'GET #index' do
+  describe 'GET /api/v2/filters/:filter_id/statuses' do
     let(:scopes) { 'read:filters' }
     let!(:status_filter) { Fabricate(:custom_filter_status, custom_filter: filter) }
 
     it 'returns http success' do
-      get :index, params: { filter_id: filter.id }
+      get "/api/v2/filters/#{filter.id}/statuses", headers: headers
       expect(response).to have_http_status(200)
       expect(body_as_json)
         .to contain_exactly(
@@ -30,7 +25,7 @@ RSpec.describe Api::V2::Filters::StatusesController do
 
     context "when trying to access another's user filters" do
       it 'returns http not found' do
-        get :index, params: { filter_id: other_filter.id }
+        get "/api/v2/filters/#{other_filter.id}/statuses", headers: headers
         expect(response).to have_http_status(404)
       end
     end
@@ -42,7 +37,7 @@ RSpec.describe Api::V2::Filters::StatusesController do
     let!(:status)   { Fabricate(:status) }
 
     before do
-      post :create, params: { filter_id: filter_id, status_id: status.id }
+      post "/api/v2/filters/#{filter_id}/statuses", headers: headers, params: { status_id: status.id }
     end
 
     it 'creates a filter', :aggregate_failures do
@@ -65,12 +60,12 @@ RSpec.describe Api::V2::Filters::StatusesController do
     end
   end
 
-  describe 'GET #show' do
+  describe 'GET /api/v2/filters/statuses/:id' do
     let(:scopes) { 'read:filters' }
     let!(:status_filter) { Fabricate(:custom_filter_status, custom_filter: filter) }
 
     before do
-      get :show, params: { id: status_filter.id }
+      get "/api/v2/filters/statuses/#{status_filter.id}", headers: headers
     end
 
     it 'responds with the filter', :aggregate_failures do
@@ -89,12 +84,12 @@ RSpec.describe Api::V2::Filters::StatusesController do
     end
   end
 
-  describe 'DELETE #destroy' do
+  describe 'DELETE /api/v2/filters/statuses/:id' do
     let(:scopes) { 'write:filters' }
     let(:status_filter) { Fabricate(:custom_filter_status, custom_filter: filter) }
 
     before do
-      delete :destroy, params: { id: status_filter.id }
+      delete "/api/v2/filters/statuses/#{status_filter.id}", headers: headers
     end
 
     it 'destroys the filter', :aggregate_failures do

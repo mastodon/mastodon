@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe NotifyService, type: :service do
+RSpec.describe NotifyService do
   subject { described_class.new.call(recipient, type, activity) }
 
   let(:user) { Fabricate(:user) }

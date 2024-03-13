@@ -50,6 +50,7 @@ class TextFormatter
 
   class << self
     include ERB::Util
+    include ActionView::Helpers::TagHelper
 
     def shortened_link(url, rel_me: false)
       url = Addressable::URI.parse(url).to_s
@@ -60,9 +61,11 @@ class TextFormatter
       suffix      = url[prefix.length + 30..]
       cutoff      = url[prefix.length..].length > 30
 
-      <<~HTML.squish.html_safe # rubocop:disable Rails/OutputSafety
-        <a href="#{h(url)}" target="_blank" rel="#{rel.join(' ')}" translate="no"><span class="invisible">#{h(prefix)}</span><span class="#{cutoff ? 'ellipsis' : ''}">#{h(display_url)}</span><span class="invisible">#{h(suffix)}</span></a>
-      HTML
+      tag.a href: url, target: '_blank', rel: rel.join(' '), translate: 'no' do
+        tag.span(prefix, class: 'invisible') +
+          tag.span(display_url, class: (cutoff ? 'ellipsis' : '')) +
+          tag.span(suffix, class: 'invisible')
+      end
     rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
       h(url)
     end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe FanOutOnWriteService, type: :service do
+RSpec.describe FanOutOnWriteService do
   subject { described_class.new }
 
   let(:last_active_at) { Time.now.utc }

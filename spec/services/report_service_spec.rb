@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ReportService, type: :service do
+RSpec.describe ReportService do
   subject { described_class.new }
 
   let(:source_account) { Fabricate(:account) }
