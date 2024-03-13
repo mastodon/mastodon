@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PostStatusService, type: :service do
+RSpec.describe PostStatusService do
   subject { described_class.new }
 
   it 'creates a new status' do
