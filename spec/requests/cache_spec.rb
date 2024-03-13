@@ -39,7 +39,7 @@ module TestEndpoints
     /api/v1/accounts/lookup?acct=alice
     /api/v1/statuses/110224538612341312
     /api/v1/statuses/110224538612341312/context
-    /api/v1/polls/12345
+    /api/v1/polls/123456789
     /api/v1/trends/statuses
     /api/v1/directory
   ).freeze
@@ -166,14 +166,18 @@ describe 'Caching behavior' do
     ActionController::Base.allow_forgery_protection = old
   end
 
-  let(:alice) { Fabricate(:account, username: 'alice') }
-  let(:user)  { Fabricate(:user, role: UserRole.find_by(name: 'Moderator')) }
+  let(:alice) { Account.find_by(username: 'alice') }
+  let(:user) { User.find_by(email: 'user@host.example') }
+  let(:token) { Doorkeeper::AccessToken.find_by(resource_owner_id: user.id) }
 
-  before do
-    status = Fabricate(:status, account: alice, id: '110224538612341312')
-    Fabricate(:status, account: alice, id: '110224538643211312', visibility: :private)
+  before_all do
+    alice = Fabricate(:account, username: 'alice')
+    user = Fabricate(:user, email: 'user@host.example', role: UserRole.find_by(name: 'Moderator'))
+    status = Fabricate(:status, account: alice, id: 110_224_538_612_341_312)
+    Fabricate(:status, account: alice, id: 110_224_538_643_211_312, visibility: :private)
     Fabricate(:invite, code: 'abcdef')
-    Fabricate(:poll, status: status, account: alice, id: '12345')
+    Fabricate(:poll, status: status, account: alice, id: 123_456_789)
+    Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read')
 
     user.account.follow!(alice)
   end
@@ -321,8 +325,6 @@ describe 'Caching behavior' do
   end
 
   context 'with an auth token' do
-    let!(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read') }
-
     TestEndpoints::ALWAYS_CACHED.each do |endpoint|
       describe endpoint do
         before do
@@ -585,8 +587,6 @@ describe 'Caching behavior' do
     end
 
     context 'with an auth token' do
-      let!(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read') }
-
       TestEndpoints::ALWAYS_CACHED.each do |endpoint|
         describe endpoint do
           before do
