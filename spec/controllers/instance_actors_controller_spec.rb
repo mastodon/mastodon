@@ -41,6 +41,14 @@ RSpec.describe InstanceActorsController do
 
         it_behaves_like 'shared behavior'
       end
+
+      context 'with a suspended instance actor' do
+        let(:authorized_fetch_mode) { false }
+
+        before { Account.representative.update(suspended_at: 10.days.ago) }
+
+        it_behaves_like 'shared behavior'
+      end
     end
   end
 end
