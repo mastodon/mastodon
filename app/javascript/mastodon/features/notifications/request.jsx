@@ -88,7 +88,7 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
     }
   }, [dispatch, accountId]);
 
-  const columnTitle = intl.formatMessage(messages.title, { name: account?.get('display_name') });
+  const columnTitle = intl.formatMessage(messages.title, { name: account?.get('display_name') || account?.get('username') });
 
   return (
     <Column bindToDocument={!multiColumn} ref={columnRef} label={columnTitle}>

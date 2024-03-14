@@ -552,7 +552,10 @@ export const fetchNotificationsForRequest = accountId => (dispatch, getState) =>
 
   api(getState).get('/api/v1/notifications', { params }).then(response => {
     const next = getLinks(response).refs.find(link => link.rel === 'next');
+    dispatch(importFetchedAccounts(response.data.map(item => item.account)));
     dispatch(importFetchedStatuses(response.data.map(item => item.status).filter(status => !!status)));
+    dispatch(importFetchedAccounts(response.data.filter(item => item.report).map(item => item.report.target_account)));
+
     dispatch(fetchNotificationsForRequestSuccess(response.data, next?.uri));
   }).catch(err => {
     dispatch(fetchNotificationsForRequestFail(err));
@@ -585,7 +588,10 @@ export const expandNotificationsForRequest = () => (dispatch, getState) => {
 
   api(getState).get(url).then(response => {
     const next = getLinks(response).refs.find(link => link.rel === 'next');
+    dispatch(importFetchedAccounts(response.data.map(item => item.account)));
     dispatch(importFetchedStatuses(response.data.map(item => item.status).filter(status => !!status)));
+    dispatch(importFetchedAccounts(response.data.filter(item => item.report).map(item => item.report.target_account)));
+
     dispatch(expandNotificationsForRequestSuccess(response.data, next?.uri));
   }).catch(err => {
     dispatch(expandNotificationsForRequestFail(err));
