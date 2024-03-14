@@ -1380,6 +1380,19 @@ a.sparkline {
 .account-card {
   border-radius: 4px;
   border: 1px solid lighten($ui-base-color, 8%);
+  position: relative;
+
+  &__warning-badge {
+    position: absolute;
+    padding: 4px 10px;
+    top: 10px;
+    inset-inline-start: 10px;
+    border-radius: 4px;
+    background:
+      url('../images/warning-stripes.svg') repeat-y left,
+      url('../images/warning-stripes.svg') repeat-y right,
+      var(--background-color);
+  }
 
   &__permalink {
     color: inherit;
