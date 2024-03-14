@@ -442,7 +442,7 @@ class Account < ApplicationRecord
     end
 
     def inboxes
-      urls = reorder(nil).where(protocol: :activitypub).group(:preferred_inbox_url).pluck(Arel.sql("coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url) AS preferred_inbox_url"))
+      urls = reorder(nil).activitypub.group(:preferred_inbox_url).pluck(Arel.sql("coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url) AS preferred_inbox_url"))
       DeliveryFailureTracker.without_unavailable(urls)
     end
 
