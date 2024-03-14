@@ -199,7 +199,7 @@ class ColumnHeader extends PureComponent {
         <h1 className={buttonClassName}>
           {hasTitle && (
             <>
-              {backButton}
+              {showBackButton && backButton}
 
               <button onClick={this.handleTitleClick} className='column-header__title'>
                 {!showBackButton && <Icon id={icon} icon={iconComponent} className='column-header__icon' />}
@@ -208,7 +208,7 @@ class ColumnHeader extends PureComponent {
             </>
           )}
 
-          {!hasTitle && backButton}
+          {!hasTitle && showBackButton && backButton}
 
           <div className='column-header__buttons'>
             {extraButton}
