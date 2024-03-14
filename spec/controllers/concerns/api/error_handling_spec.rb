@@ -19,20 +19,20 @@ describe Api::ErrorHandling do
     end
 
     {
-      ActiveRecord::RecordInvalid => 422,
-      ActiveRecord::RecordNotFound => 404,
-      ActiveRecord::RecordNotUnique => 422,
-      Date::Error => 422,
-      HTTP::Error => 503,
-      Mastodon::InvalidParameterError => 400,
-      Mastodon::NotPermittedError => 403,
-      Mastodon::RaceConditionError => 503,
-      Mastodon::RateLimitExceededError => 429,
-      Mastodon::UnexpectedResponseError => 503,
-      Mastodon::ValidationError => 422,
-      OpenSSL::SSL::SSLError => 503,
-      Seahorse::Client::NetworkingError => 503,
-      Stoplight::Error::RedLight => 503,
+      ActiveRecord::RecordInvalid => { code: 422 },
+      ActiveRecord::RecordNotFound => { code: 404 },
+      ActiveRecord::RecordNotUnique => { code: 422 },
+      Date::Error => { code: 422 },
+      HTTP::Error => { code: 503 },
+      Mastodon::InvalidParameterError => { code: 400 },
+      Mastodon::NotPermittedError => { code: 403 },
+      Mastodon::RaceConditionError => { code: 503 },
+      Mastodon::RateLimitExceededError => { code: 429 },
+      Mastodon::UnexpectedResponseError => { code: 503 },
+      Mastodon::ValidationError => { code: 422 },
+      OpenSSL::SSL::SSLError => { code: 503 },
+      Seahorse::Client::NetworkingError => { code: 503 },
+      Stoplight::Error::RedLight => { code: 503 },
     }.each do |error, options|
       it "Handles error class of #{error}" do
         allow(FakeService)
@@ -42,7 +42,7 @@ describe Api::ErrorHandling do
         get :failure
 
         expect(response)
-          .to have_http_status(options)
+          .to have_http_status(options[:code])
         expect(FakeService)
           .to have_received(:new)
       end
