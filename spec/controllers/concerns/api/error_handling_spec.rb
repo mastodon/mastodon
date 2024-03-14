@@ -19,20 +19,20 @@ describe Api::ErrorHandling do
     end
 
     {
-      ActiveRecord::RecordInvalid => { code: 422, message: // },
-      ActiveRecord::RecordNotFound => { code: 404, message: // },
-      ActiveRecord::RecordNotUnique => { code: 422, message: // },
-      Date::Error => { code: 422, message: // },
-      HTTP::Error => { code: 503, message: // },
+      ActiveRecord::RecordInvalid => { code: 422, message: /invalid/i },
+      ActiveRecord::RecordNotFound => { code: 404, message: /record not found/i },
+      ActiveRecord::RecordNotUnique => { code: 422, message: /duplicate record/i },
+      Date::Error => { code: 422, message: /invalid date/i },
+      HTTP::Error => { code: 503, message: /remote data could not/i },
       Mastodon::InvalidParameterError => { code: 400, message: // },
-      Mastodon::NotPermittedError => { code: 403, message: // },
-      Mastodon::RaceConditionError => { code: 503, message: // },
-      Mastodon::RateLimitExceededError => { code: 429, message: // },
-      Mastodon::UnexpectedResponseError => { code: 503, message: // },
-      Mastodon::ValidationError => { code: 422, message: // },
-      OpenSSL::SSL::SSLError => { code: 503, message: // },
-      Seahorse::Client::NetworkingError => { code: 503, message: // },
-      Stoplight::Error::RedLight => { code: 503, message: // },
+      Mastodon::NotPermittedError => { code: 403, message: /action is not allowed/i },
+      Mastodon::RaceConditionError => { code: 503, message: /temporary problem serving/i },
+      Mastodon::RateLimitExceededError => { code: 429, message: /too many requests/i },
+      Mastodon::UnexpectedResponseError => { code: 503, message: /remote data could not/i },
+      Mastodon::ValidationError => { code: 422, message: /validation/i },
+      OpenSSL::SSL::SSLError => { code: 503, message: /ssl certificate could not/i },
+      Seahorse::Client::NetworkingError => { code: 503, message: /temporary problem serving/i },
+      Stoplight::Error::RedLight => { code: 503, message: /temporary problem serving/i },
     }.each do |error, options|
       it "Handles error class of #{error}" do
         allow(FakeService)
