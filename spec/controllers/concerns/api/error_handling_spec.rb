@@ -33,7 +33,7 @@ describe Api::ErrorHandling do
       OpenSSL::SSL::SSLError => 503,
       Seahorse::Client::NetworkingError => 503,
       Stoplight::Error::RedLight => 503,
-    }.each do |error, code|
+    }.each do |error, options|
       it "Handles error class of #{error}" do
         allow(FakeService)
           .to receive(:new)
@@ -42,7 +42,7 @@ describe Api::ErrorHandling do
         get :failure
 
         expect(response)
-          .to have_http_status(code)
+          .to have_http_status(options)
         expect(FakeService)
           .to have_received(:new)
       end
