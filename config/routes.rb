@@ -126,11 +126,13 @@ Rails.application.routes.draw do
     resources :followers, only: [:index], controller: :follower_accounts
     resources :following, only: [:index], controller: :following_accounts
 
-    resource :outbox, only: [:show], module: :activitypub
-    resource :inbox, only: [:create], module: :activitypub
-    resource :claim, only: [:create], module: :activitypub
-    resources :collections, only: [:show], module: :activitypub
-    resource :followers_synchronization, only: [:show], module: :activitypub
+    scope module: :activitypub do
+      resource :outbox, only: [:show]
+      resource :inbox, only: [:create]
+      resource :claim, only: [:create]
+      resources :collections, only: [:show]
+      resource :followers_synchronization, only: [:show]
+    end
   end
 
   resource :inbox, only: [:create], module: :activitypub
