@@ -49,7 +49,7 @@ class Trends::StatusFilter
   def trending_scope(value)
     case value
     when 'allowed'
-      StatusTrend.allowed
+      StatusTrend.with_account_constraint.allowed
     else
       StatusTrend.all
     end
