@@ -21,7 +21,7 @@ describe Import::RowWorker do
       end
 
       it 'increases the number of processed items' do
-        expect { subject.perform(row.id) }.to(change { import.reload.processed_items }.by(+1))
+        expect { subject.perform(row.id) }.to(increase_processed_items)
       end
 
       it 'does not increase the number of imported items' do
@@ -61,11 +61,11 @@ describe Import::RowWorker do
       end
 
       it 'increases the number of processed items' do
-        expect { subject.perform(row.id) }.to(change { import.reload.processed_items }.by(+1))
+        expect { subject.perform(row.id) }.to(increase_processed_items)
       end
 
       it 'increases the number of imported items' do
-        expect { subject.perform(row.id) }.to(change { import.reload.imported_items }.by(+1))
+        expect { subject.perform(row.id) }.to(increase_imported_items)
       end
 
       it 'deletes the row' do
@@ -108,7 +108,7 @@ describe Import::RowWorker do
         include_examples 'clean failure'
 
         it 'marks the import as finished' do
-          expect { subject.perform(row.id) }.to change { import.reload.state.to_sym }.from(:in_progress).to(:finished)
+          expect { subject.perform(row.id) }.to mark_import_as_finished
         end
       end
 
@@ -119,9 +119,23 @@ describe Import::RowWorker do
         include_examples 'clean success'
 
         it 'marks the import as finished' do
-          expect { subject.perform(row.id) }.to change { import.reload.state.to_sym }.from(:in_progress).to(:finished)
+          expect { subject.perform(row.id) }.to mark_import_as_finished
         end
       end
     end
+  end
+
+  private
+
+  def increase_processed_items
+    change { import.reload.processed_items }.by(1)
+  end
+
+  def increase_imported_items
+    change { import.reload.imported_items }.by(1)
+  end
+
+  def mark_import_as_finished
+    change { import.reload.state.to_sym }.from(:in_progress).to(:finished)
   end
 end
