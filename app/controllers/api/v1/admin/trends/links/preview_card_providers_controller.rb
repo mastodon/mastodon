@@ -54,12 +54,8 @@ class Api::V1::Admin::Trends::Links::PreviewCardProvidersController < Api::BaseC
     api_v1_admin_trends_links_preview_card_providers_url(pagination_params(min_id: pagination_since_id)) unless @providers.empty?
   end
 
-  def pagination_max_id
-    @providers.last.id
-  end
-
-  def pagination_since_id
-    @providers.first.id
+  def pagination_collection
+    @providers
   end
 
   def records_continue?

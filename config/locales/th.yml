@@ -1469,7 +1469,6 @@ th:
     administration_emails: การแจ้งเตือนอีเมลผู้ดูแล
     email_events: เหตุการณ์สำหรับการแจ้งเตือนอีเมล
     email_events_hint: 'เลือกเหตุการณ์ที่คุณต้องการรับการแจ้งเตือน:'
-    other_settings: การตั้งค่าการแจ้งเตือนอื่น ๆ
   number:
     human:
       decimal_units:
@@ -1811,9 +1810,34 @@ th:
         silence: จำกัดบัญชีอยู่
         suspend: ระงับบัญชีอยู่
     welcome:
-      edit_profile_action: ตั้งค่าโปรไฟล์
-      edit_profile_step: คุณสามารถปรับแต่งโปรไฟล์ของคุณได้โดยอัปโหลดรูปภาพโปรไฟล์ เปลี่ยนชื่อที่แสดงของคุณ และอื่น ๆ คุณสามารถเลือกรับการตรวจทานผู้ติดตามใหม่ก่อนที่จะอนุญาตให้เขาติดตามคุณ
+      apps_android_action: รับแอปใน Google Play
+      apps_ios_action: ดาวน์โหลดใน App Store
+      apps_step: ดาวน์โหลดแอปอย่างเป็นทางการของเรา
+      apps_title: แอป Mastodon
+      checklist_subtitle: 'มาช่วยให้คุณเริ่มต้นใช้งานพรมแดนทางสังคมใหม่นี้กันเลย:'
+      checklist_title: รายการตรวจสอบยินดีต้อนรับ
+      edit_profile_action: ปรับแต่ง
+      edit_profile_step: เพิ่มการโต้ตอบของคุณโดยการมีโปรไฟล์ที่ครอบคลุม
+      edit_profile_title: ปรับแต่งโปรไฟล์ของคุณ
       explanation: นี่คือเคล็ดลับบางส่วนที่จะช่วยให้คุณเริ่มต้นใช้งาน
+      feature_action: เรียนรู้เพิ่มเติม
+      follow_action: ติดตาม
+      follow_step: การติดตามผู้คนที่น่าสนใจคือสิ่งที่ Mastodon ให้ความสำคัญ
+      follow_title: ปรับแต่งฟีดหน้าแรกของคุณ
+      follows_subtitle: ติดตามบัญชีที่มีชื่อเสียง
+      follows_title: ติดตามใครดี
+      follows_view_more: ดูผู้คนที่จะติดตามเพิ่มเติม
+      hashtags_recent_count: "%{people} คนใน %{days} วันที่ผ่านมา"
+      hashtags_subtitle: สำรวจสิ่งที่กำลังนิยมตั้งแต่ 2 วันที่ผ่านมา
+      hashtags_title: แฮชแท็กที่กำลังนิยม
+      hashtags_view_more: ดูแฮชแท็กที่กำลังนิยมเพิ่มเติม
+      post_action: เขียน
+      post_step: กล่าวสวัสดีชาวโลกด้วยข้อความ, รูปภาพ, วิดีโอ หรือการสำรวจความคิดเห็น
+      post_title: สร้างโพสต์แรกของคุณ
+      share_action: แชร์
+      share_step: แจ้งให้เพื่อน ๆ ของคุณทราบวิธีค้นหาคุณใน Mastodon
+      share_title: แชร์โปรไฟล์ Mastodon ของคุณ
+      sign_in_action: ลงชื่อเข้า
       subject: ยินดีต้อนรับสู่ Mastodon
       title: ยินดีต้อนรับ %{name}!
   users:

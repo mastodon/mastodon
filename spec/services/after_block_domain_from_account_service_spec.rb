@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe AfterBlockDomainFromAccountService, type: :service do
+RSpec.describe AfterBlockDomainFromAccountService do
   subject { described_class.new }
 
   let!(:wolf) { Fabricate(:account, username: 'wolf', domain: 'evil.org', inbox_url: 'https://evil.org/inbox', protocol: :activitypub) }

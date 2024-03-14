@@ -12,6 +12,7 @@ RSpec.describe 'API V1 Conversations' do
 
   describe 'GET /api/v1/conversations', :sidekiq_inline do
     before do
+      user.account.follow!(other.account)
       PostStatusService.new.call(other.account, text: 'Hey @alice', visibility: 'direct')
       PostStatusService.new.call(user.account, text: 'Hey, nobody here', visibility: 'direct')
     end

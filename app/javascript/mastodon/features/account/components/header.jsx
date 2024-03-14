@@ -22,6 +22,7 @@ import { CopyIconButton } from 'mastodon/components/copy_icon_button';
 import { FollowersCounter, FollowingCounter, StatusesCounter } from 'mastodon/components/counters';
 import { Icon }  from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { ShortNumber } from 'mastodon/components/short_number';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { autoPlayGif, me, domain } from 'mastodon/initial_state';
@@ -289,7 +290,7 @@ class Header extends ImmutablePureComponent {
 
     if (me !== account.get('id')) {
       if (signedIn && !account.get('relationship')) { // Wait until the relationship is loaded
-        actionBtn = '';
+        actionBtn = <Button disabled><LoadingIndicator /></Button>;
       } else if (account.getIn(['relationship', 'requested'])) {
         actionBtn = <Button text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.props.onFollow} />;
       } else if (!account.getIn(['relationship', 'blocking'])) {
@@ -426,15 +427,10 @@ class Header extends ImmutablePureComponent {
             </a>
 
             <div className='account__header__tabs__buttons'>
-              {!hidden && (
-                <>
-                  {actionBtn}
-                  {bellBtn}
-                  {shareBtn}
-                </>
-              )}
-
+              {!hidden && bellBtn}
+              {!hidden && shareBtn}
               <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' iconComponent={MoreHorizIcon} size={24} direction='right' />
+              {!hidden && actionBtn}
             </div>
           </div>
 

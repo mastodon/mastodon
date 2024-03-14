@@ -116,6 +116,7 @@ fi:
           sign_up_requires_approval: Uudet rekisteröitymiset edellyttävät hyväksyntääsi
         severity: Valitse, mitä tapahtuu tämän IP-osoitteen pyynnöille
       rule:
+        hint: Valinnainen. Anna lisätietoja säännöstä
         text: Kuvaile sääntöä tai edellytystä palvelimesi käyttäjille. Suosi tiivistä, yksinkertaista ilmaisua
       sessions:
         otp: 'Näppäile mobiilisovelluksessa näkyvä kaksivaiheisen todennuksen tunnusluku, tai käytä tarvittaessa palautuskoodia:'
@@ -192,7 +193,7 @@ fi:
         honeypot: "%{label} (älä täytä)"
         inbox_url: Välittäjän postilaatikon URL-osoite
         irreversible: Pudota piilottamisen sijaan
-        locale: Kieli
+        locale: Käyttöliittymän kieli
         max_uses: Käyttökertoja enintään
         new_password: Uusi salasana
         note: Elämäkerta
@@ -299,6 +300,7 @@ fi:
           patch: Ilmoita virhekorjauspäivityksistä
         trending_tag: Uusi trendi vaatii tarkistusta
       rule:
+        hint: Lisätietoja
         text: Sääntö
       settings:
         indexable: Sisällytä profiilisivu hakukoneisiin

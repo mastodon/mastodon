@@ -54,7 +54,7 @@ const initialState = ImmutableMap({
   markNewForDelete: false,
 });
 
-const notificationToMap = (notification, markForDelete) => ImmutableMap({
+export const notificationToMap = (notification, markForDelete = false) => ImmutableMap({
   id: notification.id,
   type: notification.type,
   account: notification.account.id,

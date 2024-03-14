@@ -123,7 +123,7 @@ module.exports = defineConfig({
     'react/react-in-jsx-scope': 'off', // not needed with new JSX transform
     'react/self-closing-comp': 'error',
 
-    // recommended values found in https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/src/index.js
+    // recommended values found in https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/v6.8.0/src/index.js#L46
     'jsx-a11y/accessible-emoji': 'warn',
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
@@ -176,7 +176,7 @@ module.exports = defineConfig({
       },
     ],
 
-    // See https://github.com/import-js/eslint-plugin-import/blob/main/config/recommended.js
+    // See https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/config/recommended.js
     'import/extensions': [
       'error',
       'always',

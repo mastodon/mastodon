@@ -50,12 +50,8 @@ class Api::V1::DomainBlocksController < Api::BaseController
     api_v1_domain_blocks_url pagination_params(since_id: pagination_since_id) unless @blocks.empty?
   end
 
-  def pagination_max_id
-    @blocks.last.id
-  end
-
-  def pagination_since_id
-    @blocks.first.id
+  def pagination_collection
+    @blocks
   end
 
   def records_continue?

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { showAlert } from '../../../actions/alerts';
 import { openModal } from '../../../actions/modal';
-import { setFilter, clearNotifications, requestBrowserPermission } from '../../../actions/notifications';
+import { setFilter, clearNotifications, requestBrowserPermission, updateNotificationsPolicy } from '../../../actions/notifications';
 import { changeAlerts as changePushNotifications } from '../../../actions/push_notifications';
 import { changeSetting } from '../../../actions/settings';
 import ColumnSettings from '../components/column_settings';
@@ -21,6 +21,7 @@ const mapStateToProps = state => ({
   alertsEnabled: state.getIn(['settings', 'notifications', 'alerts']).includes(true),
   browserSupport: state.getIn(['notifications', 'browserSupport']),
   browserPermission: state.getIn(['notifications', 'browserPermission']),
+  notificationPolicy: state.get('notificationPolicy'),
 });
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
@@ -71,6 +72,12 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onRequestNotificationPermission () {
     dispatch(requestBrowserPermission());
+  },
+
+  onChangePolicy (param, checked) {
+    dispatch(updateNotificationsPolicy({
+      [param]: checked,
+    }));
   },
 
 });

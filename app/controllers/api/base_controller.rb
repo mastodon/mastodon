@@ -73,6 +73,14 @@ class Api::BaseController < ApplicationController
 
   protected
 
+  def pagination_max_id
+    pagination_collection.last.id
+  end
+
+  def pagination_since_id
+    pagination_collection.first.id
+  end
+
   def set_pagination_headers(next_path = nil, prev_path = nil)
     links = []
     links << [next_path, [%w(rel next)]] if next_path

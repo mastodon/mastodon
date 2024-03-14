@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe VerifyLinkService, type: :service do
+RSpec.describe VerifyLinkService do
   subject { described_class.new }
 
   context 'when given a local account' do

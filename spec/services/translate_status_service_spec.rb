@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe TranslateStatusService, type: :service do
+RSpec.describe TranslateStatusService do
   subject(:service) { described_class.new }
 
   let(:status) { Fabricate(:status, text: text, spoiler_text: spoiler_text, language: 'en', preloadable_poll: poll, media_attachments: media_attachments) }

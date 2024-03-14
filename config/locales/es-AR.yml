@@ -1495,7 +1495,6 @@ es-AR:
     administration_emails: Notificaciones de administración por correo electrónico
     email_events: Eventos para notificaciones por correo electrónico
     email_events_hint: 'Seleccioná los eventos para los que querés recibir notificaciones:'
-    other_settings: Configuración de otras notificaciones
   number:
     human:
       decimal_units:
@@ -1727,10 +1726,10 @@ es-AR:
     keep_pinned_hint: No elimina ninguno de tus mensajes fijados
     keep_polls: Conservar encuestas
     keep_polls_hint: No elimina ninguna de tus encuestas
-    keep_self_bookmark: Conservar mensajes que marcaste como favoritos
-    keep_self_bookmark_hint: No elimina tus propios mensajes si los marcaste como favoritos
-    keep_self_fav: Conservar mensajes marcados como favoritos
-    keep_self_fav_hint: No elimina tus propios mensajes si los marcaste como favoritos
+    keep_self_bookmark: Conservar mensajes que enviaste a Marcadores
+    keep_self_bookmark_hint: No elimina tus propios mensajes si los enviaste a Marcadores
+    keep_self_fav: Conservar mensajes que enviaste a Favoritos
+    keep_self_fav_hint: No elimina tus propios mensajes si los enviaste a Favoritos
     min_age:
       '1209600': 2 semanas
       '15778476': 6 meses
@@ -1843,9 +1842,42 @@ es-AR:
         silence: Cuenta limitada
         suspend: Cuenta suspendida
     welcome:
-      edit_profile_action: Configurar perfil
-      edit_profile_step: Podés personalizar tu perfil subiendo un avatar (imagen de perfil), cambiando tu nombre a mostrar y más. Podés optar por revisar a los nuevos seguidores antes de que puedan seguirte.
+      apps_android_action: Conseguila en Google Play
+      apps_ios_action: Descargala desde la App Store
+      apps_step: Descargá nuestras aplicaciones oficiales.
+      apps_title: Aplicaciones de Mastodon
+      checklist_subtitle: 'Vamos a iniciarte en esta nueva experiencia social:'
+      checklist_title: Repaso de bienvenida
+      edit_profile_action: Personalizar
+      edit_profile_step: Completá tu perfil para aumentar las posibilidades de interacción.
+      edit_profile_title: Personalizá tu perfil
       explanation: Aquí hay algunos consejos para empezar
+      feature_action: Aprendé más
+      feature_audience: Mastodon te ofrece la posibilidad única de gestionar tu audiencia sin intermediarios. Mastodon desplegado en tu propia infraestructura te permite seguir a otras cuentas, y que te sigan desde cualquier otro servidor en línea de Mastodon y no estar bajo el control de nadie más, excepto el tuyo.
+      feature_audience_title: Construí tu audiencia en confianza
+      feature_control: Vos sabés bien que querés tener en tu línea temporal principal. Nada de algoritmos o publicidades que desperdicien tu tiempo. Seguí cualquier cuenta de cualquier servidor de Mastodon desde la tuya propia y recibí sus mensajes en orden cronológico, haciendo tu espacio de Internet un lugar más personalizado.
+      feature_control_title: Tené el control de tu propia línea temporal
+      feature_creativity: Mastodon soporta mensajes con audio, videos e imágenes, descripciones de accesibilidad, encuestas, advertencias de contenido, avatares animados, emojis personalizables, control de recorte de miniaturas, y más; todo para ayudarte a expresarte en línea. Ya sea que estés publicando tu arte, tu música o tu podcast, Mastodon está ahí para vos.
+      feature_creativity_title: Creatividad sin paralelos
+      feature_moderation: Mastodon vuelve a poner el poder de decisión en tus manos. Cada servidor crea sus propias reglas y regulaciones, las cuales se aplican localmente y no de arriba hacia abajo como las redes sociales corporativas, volviendo a Mastodon la red social más flexible en respuesta a las necesidades de diferentes grupos de personas. Unite a un servidor con cuyas reglas estés de acuerdo, o montá tu propio servidor.
+      feature_moderation_title: Moderando como debería ser
+      follow_action: Seguir
+      follow_step: Seguir cuentas interesantes es de lo que se trata Mastodon.
+      follow_title: Personalizá tu línea de tiempo principal
+      follows_subtitle: Seguí cuentas populares
+      follows_title: A quién seguir
+      follows_view_more: Encontrá más cuentas para seguir
+      hashtags_recent_count: "%{people} cuentas en los últimos %{days} días"
+      hashtags_subtitle: Explora las tendencias de los últimos 2 días
+      hashtags_title: Etiquetas en tendencia
+      hashtags_view_more: Ver más etiquetas en tendencias
+      post_action: Redactar
+      post_step: Decile "Hola" al mundo con textos, fotos, videos o encuestas.
+      post_title: Escribí tu primer mensaje
+      share_action: Compartir
+      share_step: Hacé que tus amistades sepan cómo encontrarte en Mastodon.
+      share_title: Compartí tu perfil de Mastodon
+      sign_in_action: Iniciá sesión
       subject: Bienvenido a Mastodon
       title: "¡Bienvenido a bordo, %{name}!"
   users:

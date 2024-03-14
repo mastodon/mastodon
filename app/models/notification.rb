@@ -12,6 +12,7 @@
 #  account_id      :bigint(8)        not null
 #  from_account_id :bigint(8)        not null
 #  type            :string
+#  filtered        :boolean          default(FALSE), not null
 #
 
 class Notification < ApplicationRecord
@@ -28,18 +29,40 @@ class Notification < ApplicationRecord
     'Poll' => :poll,
   }.freeze
 
-  TYPES = %i(
-    mention
-    status
-    reblog
-    follow
-    follow_request
-    favourite
-    poll
-    update
-    admin.sign_up
-    admin.report
-  ).freeze
+  PROPERTIES = {
+    mention: {
+      filterable: true,
+    }.freeze,
+    status: {
+      filterable: false,
+    }.freeze,
+    reblog: {
+      filterable: true,
+    }.freeze,
+    follow: {
+      filterable: true,
+    }.freeze,
+    follow_request: {
+      filterable: true,
+    }.freeze,
+    favourite: {
+      filterable: true,
+    }.freeze,
+    poll: {
+      filterable: false,
+    }.freeze,
+    update: {
+      filterable: false,
+    }.freeze,
+    'admin.sign_up': {
+      filterable: false,
+    }.freeze,
+    'admin.report': {
+      filterable: false,
+    }.freeze,
+  }.freeze
+
+  TYPES = PROPERTIES.keys.freeze
 
   TARGET_STATUS_INCLUDES_BY_TYPE = {
     status: :status,
@@ -89,7 +112,7 @@ class Notification < ApplicationRecord
   end
 
   class << self
-    def browserable(types: [], exclude_types: [], from_account_id: nil)
+    def browserable(types: [], exclude_types: [], from_account_id: nil, include_filtered: false)
       requested_types = if types.empty?
                           TYPES
                         else
@@ -99,6 +122,7 @@ class Notification < ApplicationRecord
       requested_types -= exclude_types.map(&:to_sym)
 
       all.tap do |scope|
+        scope.merge!(where(filtered: false)) unless include_filtered || from_account_id.present?
         scope.merge!(where(from_account_id: from_account_id)) if from_account_id.present?
         scope.merge!(where(type: requested_types)) unless requested_types.size == TYPES.size
       end
@@ -144,6 +168,8 @@ class Notification < ApplicationRecord
   after_initialize :set_from_account
   before_validation :set_from_account
 
+  after_destroy :remove_from_notification_request
+
   private
 
   def set_from_account
@@ -157,5 +183,10 @@ class Notification < ApplicationRecord
     when 'Account'
       self.from_account_id = activity&.id
     end
+  end
+
+  def remove_from_notification_request
+    notification_request = NotificationRequest.find_by(account_id: account_id, from_account_id: from_account_id)
+    notification_request&.reconsider_existence!
   end
 end

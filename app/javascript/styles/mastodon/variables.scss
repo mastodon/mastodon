@@ -94,10 +94,14 @@ $font-display: 'mastodon-font-display' !default;
 $font-monospace: 'mastodon-font-monospace' !default;
 
 :root {
-  --dropdown-border-color: #{lighten($ui-base-color, 12%)};
-  --dropdown-background-color: #{lighten($ui-base-color, 4%)};
+  --dropdown-border-color: #{lighten($ui-base-color, 4%)};
+  --dropdown-background-color: #{rgba(darken($ui-base-color, 8%), 0.9)};
   --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)},
     0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
   --modal-background-color: #{darken($ui-base-color, 4%)};
   --modal-border-color: #{lighten($ui-base-color, 4%)};
+  --background-border-color: #{lighten($ui-base-color, 4%)};
+  --background-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
+  --background-color: #{darken($ui-base-color, 8%)};
+  --background-color-tint: #{rgba(darken($ui-base-color, 8%), 0.9)};
 }

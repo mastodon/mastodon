@@ -8,15 +8,15 @@ zh-TW:
         fields: 烘培雞、自我認同代稱、年齡，及任何您想分享的。
         indexable: 您的公開嘟文可能會顯示於 Mastodon 之搜尋結果中。曾與您嘟文互動過的人可能無論如何都能搜尋它們。
         note: '您可以 @mention 其他人或者使用 #主題標籤。'
-        show_collections: 人們將能瀏覽您跟隨中及跟隨者帳號。您所跟隨之人能得知您正在跟隨其帳號。
+        show_collections: 人們將能瀏覽您跟隨中及跟隨者帳號。您所跟隨之使用者能得知您正在跟隨其帳號。
         unlocked: 人們將無需額外請求您的同意便能跟隨您的帳號。取消勾選以審查跟隨請求並選擇是否同意或拒絕新跟隨者。
       account_alias:
-        acct: 指定要移動的帳號的「使用者名稱@網域名稱」
+        acct: 指定要移動的帳號之「使用者名稱@網域名稱」
       account_migration:
-        acct: 指定要移動至的帳號的「使用者名稱@網域名稱」
+        acct: 指定欲移動至帳號之「使用者名稱@網域名稱」
       account_warning_preset:
         text: 您可使用嘟文語法，例如網址、「#」標籤與提及功能
-        title: 可選。不會向收件者顯示
+        title: 可選的。不會向收件者顯示
       admin_account_action:
         include_statuses: 使用者可看到導致檢舉或警告的嘟文
         send_email_notification: 使用者將收到帳號發生之事情的解釋
@@ -33,7 +33,7 @@ zh-TW:
         all_day: 當選取時，僅顯示出時間範圍中的日期部分
         ends_at: 可選的。公告會於該時間點自動取消發布
         scheduled_at: 空白則立即發布公告
-        starts_at: 可選的。讓公告於特定時間範圍內顯示
+        starts_at: 可選的。使公告於特定時間範圍內顯示
         text: 您可以使用嘟文語法，但請小心別讓公告太鴨霸而佔據使用者的整個版面。
       appeal:
         text: 您只能對警示提出一次申訴
@@ -52,7 +52,7 @@ zh-TW:
         locale: 使用者介面、電子郵件與推播通知的語言
         password: 使用至少 8 個字元
         phrase: 無論是嘟文的本文或是內容警告都會被過濾
-        scopes: 允許讓應用程式存取的 API。 若您選擇最高階範圍，則無須選擇個別項目。
+        scopes: 允許使應用程式存取的 API。 若您選擇最高階範圍，則無須選擇個別項目。
         setting_aggregate_reblogs: 請勿顯示最近已被轉嘟之嘟文的最新轉嘟（只影響最新收到的嘟文）
         setting_always_send_emails: 一般情況下若您活躍使用 Mastodon ，我們不會寄送電子郵件通知
         setting_default_sensitive: 敏感內容媒體預設隱藏，且按一下即可重新顯示
@@ -116,10 +116,11 @@ zh-TW:
           sign_up_requires_approval: 新註冊申請需要先經過您的審核
         severity: 請選擇將如何處理來自這個 IP 位址的請求
       rule:
+        hint: 可選的。提供關於此規則更多細節
         text: 說明使用者於此伺服器上需遵守的規則或條款。試著維持各項條款簡短而明瞭。
       sessions:
         otp: 請輸入產生自您手機 App 的兩階段驗證碼，或輸入其中一個備用驗證碼：
-        webauthn: 如果它是 USB 安全金鑰的話，請確認已正確插入，如有需要請觸擊。
+        webauthn: 若它是 USB 安全金鑰，請確認已正確插入，如有需要請觸擊。
       settings:
         indexable: 個人檔案可能出現於 Google、Bing、或其他搜尋引擎。
         show_application: 將總是顯示您發嘟文之應用程式
@@ -130,7 +131,7 @@ zh-TW:
         role: 角色控制使用者有哪些權限
       user_role:
         color: 於整個使用者介面中用於角色的顏色，十六進位格式的 RGB
-        highlighted: 這會讓角色公開可見
+        highlighted: 這會使角色公開可見
         name: 角色的公開名稱，如果角色設定為顯示為徽章
         permissions_as_keys: 有此角色的使用者將有權存取...
         position: 某些情況下，衝突的解決方式由更高階的角色決定。某些動作只能由優先程度較低的角色執行
@@ -164,7 +165,7 @@ zh-TW:
           none: 什麼也不做
           sensitive: 敏感内容
           silence: 安靜
-          suspend: 停權並不可逆的刪除帳號資料
+          suspend: 停權並不可逆地刪除帳號資料
         warning_preset_id: 使用警告預設
       announcement:
         all_day: 全天活動
@@ -299,6 +300,7 @@ zh-TW:
           patch: 通知錯誤修正更新
         trending_tag: 新熱門趨勢需要審核
       rule:
+        hint: 其他資訊
         text: 規則
       settings:
         indexable: 於搜尋引擎中包含個人檔案頁面

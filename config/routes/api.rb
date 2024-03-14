@@ -151,6 +151,17 @@ namespace :api, format: false do
       end
     end
 
+    namespace :notifications do
+      resources :requests, only: [:index, :show] do
+        member do
+          post :accept
+          post :dismiss
+        end
+      end
+
+      resource :policy, only: [:show, :update]
+    end
+
     resources :notifications, only: [:index, :show, :destroy] do
       collection do
         post :clear

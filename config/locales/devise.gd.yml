@@ -12,6 +12,7 @@ gd:
       last_attempt: Tha aon oidhirp eile agad mus dèid an cunntas agad a ghlasadh.
       locked: Tha an cunntas agad glaiste.
       not_found_in_database: "%{authentication_keys} no facal-faire mì-dhligheach."
+      omniauth_user_creation_failure: Thachair mearachd le cruthachadh cunntais dhan dearbh-aithne seo.
       pending: Tha an cunntas agad fo lèirmheas fhathast.
       timeout: Dh’fhalbh an ùine air an t-seisean agad. Clàraich a-steach a-rithist airson leantainn air adhart.
       unauthenticated: Feumaidh tu clàradh a-steach no clàradh leinn mus lean thu air adhart.
@@ -47,14 +48,19 @@ gd:
         subject: 'Mastodon: Stiùireadh air ath-shuidheachadh an fhacail-fhaire'
         title: Ath-shuidheachadh an fhacail-fhaire
       two_factor_disabled:
+        explanation: "’S urrainn dhut clàradh a-steach le seòladh puist-d is facal-faire a-mhàin a-nis."
         subject: 'Mastodon: Tha an dearbhadh dà-cheumnach à comas'
+        subtitle: Chaidh an dearbhadh dà-cheumnach a chur à comas dhan chunntas agad.
         title: Dearbhadh dà-cheumnach à comas
       two_factor_enabled:
+        explanation: Bidh feum air tòcan a ghineas an aplacaid TOTP a chaidh a phaidhreachadh airson clàradh a-steach.
         subject: 'Mastodon: Tha an dearbhadh dà-cheumnach an comas'
+        subtitle: Chaidh an dearbhadh dà-cheumnach a chur an comas dhan chunntas agad.
         title: Dearbhadh dà-cheumnach an comas
       two_factor_recovery_codes_changed:
         explanation: Tha na còdan aisig a bh’ agad cheana mì-dhligheach a-nis agus chaidh feadhainn ùra a ghintinn.
         subject: 'Mastodon: Chaidh còdan aisig dà-cheumnach ath-ghintinn'
+        subtitle: Tha na còdan aisig a bh’ agad cheana mì-dhligheach a-nis agus chaidh feadhainn ùra a ghintinn.
         title: Dh’atharraich còdan aisig an dearbhaidh dà-cheumnaich
       unlock_instructions:
         subject: 'Mastodon: Stiùireadh neo-ghlasaidh'
@@ -68,9 +74,13 @@ gd:
           subject: 'Mastodon: Chaidh iuchair tèarainteachd a sguabadh às'
           title: Chaidh tè dhe na h-iuchraichean tèarainteachd agad a sguabadh às
       webauthn_disabled:
+        explanation: Chaidh an dearbhadh le iuchraichean tèarainteachd a chur à comas dhan chunntas agad.
+        extra: "’S urrainn dhut clàradh a-steach leis an tòcan a ghineas an aplacaid TOTP paidhrichte a-mhàin a-nis."
         subject: 'Mastodon: Tha dearbhadh le iuchraichean tèarainteachd à comas'
         title: Chaidh na h-iuchraichean tèarainteachd a chur à comas
       webauthn_enabled:
+        explanation: Chaidh an dearbhadh le iuchair tèarainteachd a chur an comas dhan chunntas agad.
+        extra: "’S urrainn dhut an iuchair tèarainteachd agad a chleachdadh airson clàradh a-steach a-nis."
         subject: 'Mastodon: Tha dearbhadh le iuchair tèarainteachd an comas'
         title: Chaidh na h-iuchraichean tèarainteachd a chur an comas
     omniauth_callbacks:

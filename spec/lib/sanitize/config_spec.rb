@@ -58,7 +58,7 @@ describe Sanitize::Config do
   end
 
   describe '::MASTODON_OUTGOING' do
-    subject { Sanitize::Config::MASTODON_OUTGOING }
+    subject { described_class::MASTODON_OUTGOING }
 
     around do |example|
       original_web_domain = Rails.configuration.x.web_domain

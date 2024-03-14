@@ -743,7 +743,8 @@ into similar problems in the future (e.g. when new tables are created).
 
     private
 
-    # https://github.com/rails/rails/blob/v5.2.0/activerecord/lib/active_record/connection_adapters/postgresql/schema_statements.rb#L678-L684
+    # Private method copied from:
+    # https://github.com/rails/rails/blob/v7.1.3.2/activerecord/lib/active_record/connection_adapters/postgresql/schema_statements.rb#L974-L980
     def extract_foreign_key_action(specifier)
       case specifier
       when 'c'; :cascade

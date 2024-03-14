@@ -20,6 +20,7 @@
     - @rules.each do |rule|
       %li
         .rules-list__text= rule.text
+        .rules-list__hint= rule.hint
 
   .stacked-actions
     - accept_path = @invite_code.present? ? public_invite_url(invite_code: @invite_code, accept: @accept_token) : new_user_registration_path(accept: @accept_token)

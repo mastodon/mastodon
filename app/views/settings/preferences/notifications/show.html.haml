@@ -42,11 +42,3 @@
                      label_method: ->(setting) { I18n.t("simple_form.labels.notification_emails.software_updates.#{setting}") },
                      label: I18n.t('simple_form.labels.notification_emails.software_updates.label'),
                      wrapper: :with_label
-
-  %h4= t 'notifications.other_settings'
-
-  .fields-group
-    = f.simple_fields_for :settings, current_user.settings do |ff|
-      = ff.input :'interactions.must_be_follower', wrapper: :with_label, label: I18n.t('simple_form.labels.interactions.must_be_follower')
-      = ff.input :'interactions.must_be_following', wrapper: :with_label, label: I18n.t('simple_form.labels.interactions.must_be_following')
-      = ff.input :'interactions.must_be_following_dm', wrapper: :with_label, label: I18n.t('simple_form.labels.interactions.must_be_following_dm')
