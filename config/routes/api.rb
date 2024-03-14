@@ -181,12 +181,14 @@ namespace :api, format: false do
     end
 
     resources :accounts, only: [:create, :show] do
-      resources :statuses, only: :index, controller: 'accounts/statuses'
-      resources :followers, only: :index, controller: 'accounts/follower_accounts'
-      resources :following, only: :index, controller: 'accounts/following_accounts'
-      resources :lists, only: :index, controller: 'accounts/lists'
-      resources :identity_proofs, only: :index, controller: 'accounts/identity_proofs'
-      resources :featured_tags, only: :index, controller: 'accounts/featured_tags'
+      scope module: :accounts do
+        resources :statuses, only: :index
+        resources :followers, only: :index, controller: :follower_accounts
+        resources :following, only: :index, controller: :following_accounts
+        resources :lists, only: :index
+        resources :identity_proofs, only: :index
+        resources :featured_tags, only: :index
+      end
 
       member do
         post :follow
