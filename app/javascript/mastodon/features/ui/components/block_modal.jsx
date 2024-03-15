@@ -79,7 +79,7 @@ export const BlockModal = ({ accountId, acct }) => {
             <div className='safety-action-modal__caveats'>
               <FormattedMessage
                 id='block_modal.remote_users_caveat'
-                defaultMessage='Mastodon will tell the remote server {domain} to apply the block on its end, but cannot make sure it will be enforced using the exact same rules.'
+                defaultMessage='We will ask the server {domain} to respect your decision. However, compliance is not guaranteed since some servers may handle blocks differently. Public posts may still be visible to non-logged-in users.'
                 values={{ domain: <strong>{domain}</strong> }}
               />
             </div>
@@ -89,7 +89,7 @@ export const BlockModal = ({ accountId, acct }) => {
         <div className='safety-action-modal__actions'>
           {domain && (
             <button onClick={handleToggleLearnMore} className='link-button'>
-              {expanded ? <FormattedMessage id='block_modal.learn_less' defaultMessage='Learn less' /> : <FormattedMessage id='block_modal.learn_more' defaultMessage='Learn more' />}
+              {expanded ? <FormattedMessage id='block_modal.show_less' defaultMessage='Show less' /> : <FormattedMessage id='block_modal.show_more' defaultMessage='Show more' />}
             </button>
           )}
 
