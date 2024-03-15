@@ -53,8 +53,9 @@ class RedisConfiguration
 
     unless ENV['REDIS_SENTINEL'].include? ','
       ips = Resolv.getaddresses(ENV['REDIS_SENTINEL'])
+      port = ENV.fetch('REDIS_SENTINEL_PORT', '26379')
+
       ENV['REDIS_SENTINEL'] = ips.map do |ip|
-        port = ENV.fetch('REDIS_SENTINEL_PORT', '26379')
         "#{ip}:#{port}"
       end.join(',')
     end

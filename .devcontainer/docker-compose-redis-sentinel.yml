@@ -52,6 +52,8 @@ services:
       - REDIS_PASSWORD=str0ng_passw0rd
     networks:
       - internal_network
+    ports:
+      - '6379:6379'
   redis-replica:
     image: 'bitnami/redis:latest'
     environment:
@@ -61,6 +63,8 @@ services:
       - REDIS_PASSWORD=str0ng_passw0rd
     networks:
       - internal_network
+    ports:
+      - '6379:6379'
   redis-sentinel:
     image: 'bitnami/redis-sentinel:latest'
     environment:

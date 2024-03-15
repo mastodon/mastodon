@@ -34,7 +34,7 @@ def setup_redis_env_url(prefix = nil, defaults = true)
 
     ENV["#{prefix}REDIS_SENTINEL"] = ips.map do |ip|
       "#{ip}:#{port}"
-    end.join(',')
+    end.join(',').concat(',')
   end
 
   ENV["#{prefix}REDIS_URL"] = "redis://:#{password}@#{sentinel_master}"
