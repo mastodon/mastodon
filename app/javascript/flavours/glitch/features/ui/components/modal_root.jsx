@@ -7,6 +7,7 @@ import Base from 'flavours/glitch/components/modal_root';
 import {
   MuteModal,
   BlockModal,
+  DomainBlockModal,
   ReportModal,
   SettingsModal,
   EmbedModal,
@@ -48,6 +49,7 @@ export const MODAL_COMPONENTS = {
   'CONFIRM': () => Promise.resolve({ default: ConfirmationModal }),
   'MUTE': MuteModal,
   'BLOCK': BlockModal,
+  'DOMAIN_BLOCK': DomainBlockModal,
   'REPORT': ReportModal,
   'SETTINGS': SettingsModal,
   'DEPRECATED_SETTINGS': () => Promise.resolve({ default: DeprecatedSettingsModal }),

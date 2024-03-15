@@ -126,6 +126,10 @@ export function BlockModal () {
   return import(/* webpackChunkName: "flavours/glitch/async/block_modal" */'../components/block_modal');
 }
 
+export function DomainBlockModal () {
+  return import(/* webpackChunkName: "flavours/glitch/async/modals/domain_block_modal" */'../components/domain_block_modal');
+}
+
 export function ReportModal () {
   return import(/* webpackChunkName: "flavours/glitch/async/report_modal" */'../components/report_modal');
 }
