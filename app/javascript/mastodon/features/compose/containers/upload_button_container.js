@@ -3,15 +3,24 @@ import { connect } from 'react-redux';
 import { uploadCompose } from '../../../actions/compose';
 import UploadButton from '../components/upload_button';
 
-const mapStateToProps = state => ({
-  disabled: state.getIn(['compose', 'is_uploading']) || (state.getIn(['compose', 'media_attachments']).size + state.getIn(['compose', 'pending_media_attachments']) > 3 || state.getIn(['compose', 'media_attachments']).some(m => ['video', 'audio'].includes(m.get('type')))),
-  unavailable: state.getIn(['compose', 'poll']) !== null,
-  resetFileKey: state.getIn(['compose', 'resetFileKey']),
-});
+const mapStateToProps = state => {
+  const isPoll = state.getIn(['compose', 'poll']) !== null;
+  const isUploading = state.getIn(['compose', 'is_uploading']);
+  const readyAttachmentsSize = state.getIn(['compose', 'media_attachments']).size ?? 0;
+  const pendingAttachmentsSize = state.getIn(['compose', 'pending_media_attachments']).size ?? 0;
+  const attachmentsSize = readyAttachmentsSize + pendingAttachmentsSize;
+  const isOverLimit = attachmentsSize > 3;
+  const hasVideoOrAudio = state.getIn(['compose', 'media_attachments']).some(m => ['video', 'audio'].includes(m.get('type')));
+
+  return {
+    disabled: isPoll || isUploading || isOverLimit || hasVideoOrAudio,
+    resetFileKey: state.getIn(['compose', 'resetFileKey']),
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
 
-  onSelectFile (files) {
+  onSelectFile(files) {
     dispatch(uploadCompose(files));
   },
 

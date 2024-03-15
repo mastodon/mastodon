@@ -425,6 +425,7 @@ it:
       view: Visualizza blocco di dominio
     email_domain_blocks:
       add_new: Aggiungi nuovo
+      allow_registrations_with_approval: Consenti registrazioni con approvazione
       attempts_over_week:
         one: "%{count} tentativo nell'ultima settimana"
         other: "%{count} tentativi di registrazione nell'ultima settimana"
@@ -611,6 +612,7 @@ it:
       created_at: Segnalato
       delete_and_resolve: Cancella post
       forwarded: Inoltrato
+      forwarded_replies_explanation: Questa segnalazione proviene da un utente remoto e tratta di contenuti remoti. È stato inoltrato a voi perché il contenuto riportato è in risposta a uno dei vostri utenti.
       forwarded_to: Inoltrato a %{domain}
       mark_as_resolved: Segna come risolto
       mark_as_sensitive: Segna come sensibile
@@ -765,6 +767,7 @@ it:
         disabled: A nessuno
         users: Agli utenti locali connessi
       registrations:
+        moderation_recommandation: Assicurati di avere un team di moderazione adeguato e reattivo prima di aprire le registrazioni a tutti!
         preamble: Controlla chi può creare un account sul tuo server.
         title: Registrazioni
       registrations_mode:
@@ -772,6 +775,7 @@ it:
           approved: Approvazione richiesta per le iscrizioni
           none: Nessuno può iscriversi
           open: Chiunque può iscriversi
+        warning_hint: Ti consigliamo di utilizzare “Approvazione richiesta per la registrazione” a meno che tu non sia sicuro che il tuo team di moderazione possa gestire lo spam e le registrazioni dannose in modo tempestivo.
       security:
         authorized_fetch: Richiede l'autenticazione dai server federati
         authorized_fetch_hint: La richiesta di autenticazione da server federati consente un'applicazione più rigorosa dei blocchi sia a livello di utente che a livello di server. Tuttavia, ciò comporta una riduzione delle prestazioni, riduce la portata delle tue risposte e potrebbe introdurre problemi di compatibilità con alcuni servizi federati. Inoltre, ciò non impedirà agli attori dedicati di recuperare i tuoi post pubblici e account.
@@ -964,6 +968,9 @@ it:
       title: Webhook
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: A causa della mancanza di attività recente da parte dei moderatori, le registrazioni su %{instance} sono passate automaticamente alla richiesta di revisione manuale, per evitare che %{instance} venga utilizzata come piattaforma per potenziali malintenzionati. Puoi ripristinarlo per aprire le registrazioni in qualsiasi momento.
+      subject: Le registrazioni per %{instance} sono passate automaticamente alla richiesta di approvazione
     new_appeal:
       actions:
         delete_statuses: per cancellare i loro post
@@ -996,8 +1003,6 @@ it:
       new_trending_statuses:
         title: Post di tendenza
       new_trending_tags:
-        no_approved_tags: Attualmente non ci sono hashtag di tendenza approvati.
-        requirements: 'Ognuno di questi candidati potrebbe superare il #%{rank} hashtag di tendenza approvato, che è attualmente "%{lowest_tag_name}" con un punteggio di %{lowest_tag_score}.'
         title: Hashtag di tendenza
       subject: Nuove tendenze in attesa di controllo su %{instance}
   aliases:
@@ -1370,6 +1375,7 @@ it:
       '86400': 1 giorno
     expires_in_prompt: Mai
     generate: Genera
+    invalid: Questo invito non è valido
     invited_by: 'Sei stato invitato da:'
     max_uses:
       one: un uso
@@ -1491,7 +1497,6 @@ it:
     administration_emails: Notifiche email amministratore
     email_events: Eventi per notifiche via email
     email_events_hint: 'Seleziona gli eventi per i quali vuoi ricevere le notifiche:'
-    other_settings: Altre impostazioni delle notifiche
   number:
     human:
       decimal_units:
@@ -1547,6 +1552,9 @@ it:
     errors:
       limit_reached: Raggiunto il limite di reazioni diverse
       unrecognized_emoji: non è un emoji riconosciuto
+  redirects:
+    prompt: Se ti fidi di questo collegamento, fai clic su di esso per continuare.
+    title: Stai lasciando %{instance}.
   relationships:
     activity: Attività dell'account
     confirm_follow_selected_followers: Sei sicuro di voler seguire i follower selezionati?
@@ -1609,6 +1617,7 @@ it:
       unknown_browser: Browser sconosciuto
       weibo: Weibo
     current_session: Sessione corrente
+    date: Data
     description: "%{browser} su %{platform}"
     explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al tuo account Mastodon.
     ip: IP
@@ -1775,18 +1784,27 @@ it:
     webauthn: Chiavi di sicurezza
   user_mailer:
     appeal_approved:
-      action: Vai al tuo account
+      action: Impostazioni account
       explanation: L'appello della sanzione contro il tuo account del %{strike_date} che hai inviato il %{appeal_date} è stato approvato. Il tuo account ha riottenuto la buona reputazione.
       subject: Il tuo appello del %{date} è stato approvato
+      subtitle: Il tuo account è ancora una volta in buona posizione.
       title: Appello approvato
     appeal_rejected:
       explanation: L'appello della sanzione contro il tuo account del %{strike_date} che hai inviato il %{appeal_date} è stato respinto.
       subject: Il tuo appello del %{date} è stato respinto
+      subtitle: Il tuo appello è stato respinto.
       title: Appello respinto
     backup_ready:
-      explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!
+      explanation: Hai richiesto un backup completo del tuo account Mastodon.
+      extra: Ora è pronto per il download!
       subject: Il tuo archivio è pronto per essere scaricato
       title: Esportazione archivio
+    failed_2fa:
+      details: 'Questi sono i dettagli del tentativo di accesso:'
+      explanation: Qualcuno ha tentato di accedere al tuo account ma ha fornito un secondo fattore di autenticazione non valido.
+      further_actions_html: Se non eri tu, ti consigliamo di %{action} immediatamente poiché potrebbe essere compromesso.
+      subject: Errore di autenticazione del secondo fattore
+      title: Autenticazione del secondo fattore non riuscita
     suspicious_sign_in:
       change_password: cambiare la tua password
       details: 'Questi sono i dettagli del tentativo di accesso:'
@@ -1826,13 +1844,42 @@ it:
         silence: Account limitato
         suspend: Account sospeso
     welcome:
-      edit_profile_action: Configura profilo
-      edit_profile_step: Puoi personalizzare il tuo profilo caricando un'immagine del profilo, cambiare il tuo nome e altro ancora. Puoi scegliere di esaminare i nuovi seguaci prima che loro siano autorizzati a seguirti.
+      apps_android_action: Scaricalo da Google Play
+      apps_ios_action: Scarica dall'App Store
+      apps_step: Scarica le nostre app ufficiali.
+      apps_title: App di Mastodon
+      checklist_subtitle: 'Iniziamo su questa nuova frontiera sociale:'
+      checklist_title: Lista di controllo di Benvenuto
+      edit_profile_action: Personalizza
+      edit_profile_step: Gli altri hanno maggiori probabilità di interagire con te se completi il tuo profilo.
+      edit_profile_title: Personalizza il tuo profilo
       explanation: Ecco alcuni suggerimenti per iniziare
-      final_action: Inizia a pubblicare
-      final_step: 'Inizia a pubblicare! Anche senza seguaci, i tuoi post pubblici possono essere visti da altri, ad esempio sulla timeline locale o negli hashtag. Potresti presentarti con l''hashtag #presentazione.'
-      full_handle: Il tuo nome utente completo
-      full_handle_hint: Questo è ciò che diresti ai tuoi amici in modo che possano seguirti o contattarti da un altro server.
+      feature_action: Scopri di più
+      feature_audience: Mastodon ti offre una possibilità unica di gestire il tuo pubblico senza intermediari. Mastodon, distribuito sulla tua stessa infrastruttura, ti permette di seguire e di essere seguito da qualsiasi altro server Mastodon online, e non è controllato da nessun altro, eccetto te.
+      feature_audience_title: Costruisci il tuo pubblico in sicurezza
+      feature_control: Tu sai cosa sia meglio vedere sul tuo home feed. Nessun algoritmo o annunci che sprechino il tuo tempo. Segui chiunque attraverso qualsiasi server Mastodon da un singolo account e ricevi i loro messaggi in ordine cronologico, e rendi il tuo angolo di internet un po' più come te.
+      feature_control_title: Rimani in controllo della tua timeline
+      feature_creativity: Mastodon supporta audio, filmati e post, descrizioni di accessibilità, sondaggi, avvisi di contenuto, avatar animati, emoji personalizzate, controllo del ritaglio delle miniature e altro ancora, per aiutarti a esprimerti online. Che tu stia pubblicando la tua arte, la tua musica o il tuo podcast, Mastodon è lì per te.
+      feature_creativity_title: Creatività senza precedenti
+      feature_moderation: Mastodon rimette il processo decisionale nelle tue mani. Ogni server crea le proprie regole che vengono applicate localmente e non dall'alto verso il basso come i social media aziendali, rendendo più flessibile il rispondere alle esigenze di diversi gruppi di persone. Unisciti a un server con regole con cui sei d'accordo o ospita il tuo.
+      feature_moderation_title: Moderazione come dovrebbe essere
+      follow_action: Segui
+      follow_step: Seguire persone interessanti è ciò che fa Mastodon.
+      follow_title: Personalizza il tuo home feed
+      follows_subtitle: Segui account ben noti
+      follows_title: Chi seguire
+      follows_view_more: Visualizza più persone da seguire
+      hashtags_recent_count: "%{people} persone negli ultimi %{days} giorni"
+      hashtags_subtitle: Esplora le tendenze degli ultimi 2 giorni
+      hashtags_title: Hashtag di tendenza
+      hashtags_view_more: Visualizza altri hashtag di tendenza
+      post_action: Scrivi
+      post_step: Salutate il mondo con testo, foto, video o sondaggi.
+      post_title: Scrivi il tuo primo post
+      share_action: Condividi
+      share_step: Fai sapere ai tuoi amici come trovarti su Mastodon.
+      share_title: Condividi il tuo profilo Mastodon
+      sign_in_action: Accedi
       subject: Benvenuto/a su Mastodon
       title: Benvenuto a bordo, %{name}!
   users:
@@ -1840,6 +1887,7 @@ it:
     go_to_sso_account_settings: Vai alle impostazioni dell'account del tuo provider di identità
     invalid_otp_token: Codice d'accesso non valido
     otp_lost_help_html: Se perdessi l'accesso ad entrambi, puoi entrare in contatto con %{email}
+    rate_limited: Troppi tentativi di autenticazione, per favore riprova più tardi.
     seamless_external_login: Hai effettuato l'accesso tramite un servizio esterno, quindi le impostazioni di password e e-mail non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
   verification:

@@ -419,8 +419,8 @@ pl:
         hint: Blokada domen nie zabroni tworzenia wpisów kont w bazie danych, ale pozwoli na automatyczną moderację kont do nich należących.
         severity:
           desc_html: "<strong>Wyciszenie</strong> uczyni wpisy użytkowników z tej domeny widoczne tylko dla osób, które go obserwują. <strong>Zawieszenie</strong> spowoduje usunięcie całej zawartości dodanej przez użytkownika. Użyj <strong>Żadne</strong>, jeżeli chcesz jedynie odrzucać zawartość multimedialną."
-          noop: Nic nie rób
-          silence: Limit
+          noop: Żadne
+          silence: Wycisz
           suspend: Zawieś
         title: Nowa blokada domen
       no_domain_block_selected: Nie zmieniono żadnych bloków domen, gdyż żadna nie została wybrana
@@ -439,6 +439,7 @@ pl:
       view: Zobacz blokadę domeny
     email_domain_blocks:
       add_new: Dodaj nową
+      allow_registrations_with_approval: Zezwól na rejestracje po zatwierdzeniu
       attempts_over_week:
         few: "%{count} próby w ciągu ostatniego tygodnia"
         many: "%{count} prób w ciągu ostatniego tygodnia"
@@ -635,6 +636,7 @@ pl:
       created_at: Zgłoszono
       delete_and_resolve: Usuń posty
       forwarded: Przekazano
+      forwarded_replies_explanation: Ten raport nadszedł od zdalnego użytkownika i dotyczy zdalnej treści. Został ci przekazany, bo raportowana treść jest odpowiedzią na jednego z twoich użytkowników.
       forwarded_to: Przekazano do %{domain}
       mark_as_resolved: Oznacz jako rozwiązane
       mark_as_sensitive: Oznacz jako wrażliwe
@@ -793,6 +795,7 @@ pl:
         disabled: Nikomu
         users: Zalogowanym lokalnym użytkownikom
       registrations:
+        moderation_recommandation: Upewnij się, że masz adekwatny i szybko reagujący zespół moderacyjny przed otwarciem rejestracji!
         preamble: Kontroluj, kto może utworzyć konto na Twoim serwerze.
         title: Rejestracje
       registrations_mode:
@@ -800,6 +803,7 @@ pl:
           approved: Przyjęcie jest wymagane do rejestracji
           none: Nikt nie może się zarejestrować
           open: Każdy może się zarejestrować
+        warning_hint: Polecamy "Przyjęcie jest wymagane do rejestracji" chyba że masz pewność, że twój zespół moderacyjny może szybko obsłużyć spam i złośliwe rejestracje.
       security:
         authorized_fetch: Wymagaj uwierzytelnienia od sfederowanych serwerów
         authorized_fetch_hint: Wymaganie uwierzytelnienia ze sfederowanych serwerów pozwala na ściślejsze wymuszanie bloków z poziomu użytkowników i serwera, ale jest wolniejsze, redukuje zasięg odpowiedzi, i może być niekompatybilne z niektórymi sfederowanymi usługami. Nie chroni również publicznych kont i wpisów przed oddanymi użytkownikami.
@@ -1000,6 +1004,9 @@ pl:
       title: Webhooki
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Z powodu braku niedawnych działań moderacyjnych, rejestracje na %{instance} wymagają ręcznej weryfikacji (by uniknąć dystrybucji spamu itp.). W dowolnym momencie możesz przywrócić politykę otwartej rejestracji.
+      subject: "%{instance} zostało automatycznie przełączone na zatwierdzanie rejestracji"
     new_appeal:
       actions:
         delete_statuses: aby usunąć ich wpisy
@@ -1032,8 +1039,6 @@ pl:
       new_trending_statuses:
         title: Popularne teraz
       new_trending_tags:
-        no_approved_tags: Obecnie nie ma żadnych zatwierdzonych popularnych hasztagów.
-        requirements: 'Każdy z tych kandydatów może przekroczyć #%{rank} zatwierdzonych popularnych teraz hasztagów, który wynosi obecnie %{lowest_tag_name} z wynikiem %{lowest_tag_score}.'
         title: Popularne hasztagi
       subject: Nowe popularne do przeglądu na %{instance}
   aliases:
@@ -1418,6 +1423,7 @@ pl:
       '86400': dobie
     expires_in_prompt: Nigdy
     generate: Wygeneruj
+    invalid: Niepoprawne zaproszenie
     invited_by: 'Zostałeś(-aś) zaproszony(-a) przez:'
     max_uses:
       few: "%{count} użycia"
@@ -1541,7 +1547,6 @@ pl:
     administration_emails: Administracyjne powiadomienia e-mail
     email_events: 'Powiadamiaj e-mailem o:'
     email_events_hint: 'Wybierz wydarzenia, o których chcesz otrzymywać powiadomienia:'
-    other_settings: Inne ustawienia powiadomień
   number:
     human:
       decimal_units:
@@ -1597,6 +1602,9 @@ pl:
     errors:
       limit_reached: Przekroczono limit różnych reakcji
       unrecognized_emoji: nie jest znanym emoji
+  redirects:
+    prompt: Kliknij ten link jeżeli mu ufasz.
+    title: Opuszczasz %{instance}.
   relationships:
     activity: Aktywność konta
     confirm_follow_selected_followers: Czy na pewno chcesz obserwować wybranych obserwujących?
@@ -1659,6 +1667,7 @@ pl:
       unknown_browser: Nieznana Przeglądarka
       weibo: Weibo
     current_session: Obecna sesja
+    date: Data
     description: "%{browser} na %{platform}"
     explanation: Przeglądarki z aktywną sesją Twojego konta.
     ip: Adres IP
@@ -1837,18 +1846,27 @@ pl:
     webauthn: Klucze bezpieczeństwa
   user_mailer:
     appeal_approved:
-      action: Przejdź do swojego konta
+      action: Ustawienia Konta
       explanation: Twoje odwołanie dotyczące ostrzeżenia nałożonego na twoje konto dnia %{strike_date}, które zostało wysłane dnia %{appeal_date} zostało zatwierdzone. Twoje konto jest ponownie w dobrej kondycji.
       subject: Twoje odwołanie z dnia %{date} zostało zatwierdzone
+      subtitle: Reputacja twojego konta została przywrócona.
       title: Odwołanie zatwierdzone
     appeal_rejected:
       explanation: Twoje odwołanie dotyczące ostrzeżenia nałożonego na twoje konto dnia %{strike_date}, które zostało wysłane dnia %{appeal_date} zostało odrzucone.
       subject: Twoje odwołanie z dnia %{date} zostało odrzucone
+      subtitle: Twoje odwołanie zostało odrzucone.
       title: Odwołanie odrzucone
     backup_ready:
-      explanation: Zażądałeś pełnej kopii zapasowej konta na Mastodonie. Jest ona dostępna do pobrania!
+      explanation: Zamówiono pełną kopię zapasową twojego konta Mastodon.
+      extra: Gotowe do pobrania!
       subject: Twoje archiwum jest gotowe do pobrania
       title: Odbiór archiwum
+    failed_2fa:
+      details: 'Oto szczegóły próby logowania:'
+      explanation: Ktoś próbował zalogować się na twoje konto, ale nie przeszedł drugiego etapu autoryzacji.
+      further_actions_html: Jeśli to nie ty, polecamy natychmiastowo %{action}, bo może ono być narażone.
+      subject: Błąd drugiego etapu uwierzytelniania
+      title: Nieudane uwierzytelnienie w drugim etapie
     suspicious_sign_in:
       change_password: zmień hasło
       details: 'Oto szczegóły logowania:'
@@ -1888,13 +1906,42 @@ pl:
         silence: Konto ograniczone
         suspend: Konto zawieszone
     welcome:
-      edit_profile_action: Skonfiguruj profil
-      edit_profile_step: Możesz dostosować profil wysyłając awatar, zmieniając wyświetlaną nazwę i o wiele więcej. Jeżeli chcesz, możesz również włączyć przeglądanie i ręczne akceptowanie nowych próśb o możliwość obserwacji Twojego profilu.
+      apps_android_action: Pobierz z Google Play
+      apps_ios_action: Pobierz z App Store
+      apps_step: Pobierz oficjalne aplikacje.
+      apps_title: Aplikacje Mastodon
+      checklist_subtitle: 'Aby porządnie rozpocząć użytkowanie Mastodona:'
+      checklist_title: Powitalna lista kontrolna
+      edit_profile_action: Personalizuj
+      edit_profile_step: Inni użytkownicy są bardziej skłonni do interakcji z Tobą jeśli posiadasz wypełniony profil.
+      edit_profile_title: Spersonalizuj swój profil
       explanation: Kilka wskazówek, które pomogą Ci rozpocząć
-      final_action: Zacznij pisać
-      final_step: 'Zacznij tworzyć! Nawet jeżeli nikt Cię nie obserwuje, Twoje publiczne wiadomości będą widziane przez innych, na przykład na lokalnej osi czasu i w hashtagach. Możesz też utworzyć wpis wprowadzający używając hashtagu #introductions.'
-      full_handle: Twój pełny adres
-      full_handle_hint: Ten adres możesz podać znajomym, aby mogli skontaktować się z Tobą lub zacząć obserwować z innego serwera.
+      feature_action: Dowiedz się więcej
+      feature_audience: Mastodon zapewnia ci unikalne możliwości docierania do twojego grona odbiorców bez żadnych pośredników. Postawiony na własnej infrastrukturze, Mastodon pozwala ci obserwować i być obserwowanym z dowolnego innego serwera Mastodona. Nikt, poza tobą samym(-ą), nie ma nad tym kontroli.
+      feature_audience_title: Buduj swoją publiczność z pewnością
+      feature_control: Sam(a) wiesz najlepiej, co chcesz widzieć na swojej osi czasu. Brak algorytmów i reklam, które marnują twój cenny czas. Obserwuj dowolne osoby z dowolnego serwera Mastodona przy pomocy jednego konta i otrzymuj ich wpisy w kolejności chronologicznej. Każdy zasługuje na własny kąt w internecie.
+      feature_control_title: Miej kontrolę nad swoją osią czasu
+      feature_creativity: Mastodon obsługuje wpisy audio, wideo oraz zdjęcia, jak również opisy zdjęć na potrzeby dostępności, ankiety, ostrzeżenia dotyczące treści, animowane awatary, niestandardowe emoji, kontrolę miniatur zdjęć i więcej, aby pomóc Ci wyrażać siebie. Bez względu na to, czy dzielisz się swoją sztuką, muzyką czy podcastem, Mastodon jest dla ciebie.
+      feature_creativity_title: Niezrównana kreatywność
+      feature_moderation: Mastodon oddaje w twoje ręce prawo podejmowania decyzji. Każdy serwer tworzy własne zasady i regulacje, które są egzekwowane lokalnie a nie odgórnie jak w przypadku korporacyjnych mediów społecznościowych. Czyni to Mastodona najbardziej elastyczną platformą dla różnych grup ludzi z różnymi potrzebami. Dołącz do serwera, z którego zasadami zgadzasz się najbardziej, lub stwórz swój własny.
+      feature_moderation_title: Moderacja we właściwy sposób
+      follow_action: Obserwuj
+      follow_step: Zarządzasz swoim własnym kanałem. Wypełnij go interesującymi ludźmi.
+      follow_title: Spersonalizuj swoją stronę główną
+      follows_subtitle: Obserwuj dobrze znane konta
+      follows_title: Kogo obserwować
+      follows_view_more: Zobacz więcej osób do obserwowania
+      hashtags_recent_count: "%{people} osób w ostatnie %{days} dni"
+      hashtags_subtitle: Zobacz, co było popularne przez ostatnie 2 dni
+      hashtags_title: Popularne hashtagi
+      hashtags_view_more: Zobacz więcej popularnych hashtagów
+      post_action: Utwórz wpis
+      post_step: Przywitaj się ze światem.
+      post_title: Utwórz swój pierwszy post
+      share_action: Udostępnij
+      share_step: Poinformuj swoich przyjaciół jak znaleźć cię na Mastodonie.
+      share_title: Udostępnij swój profil
+      sign_in_action: Zaloguj się
       subject: Witaj w Mastodonie
       title: Witaj na pokładzie, %{name}!
   users:
@@ -1902,6 +1949,7 @@ pl:
     go_to_sso_account_settings: Przejdź do ustawień konta dostawcy tożsamości
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
     otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
+    rate_limited: Zbyt wiele prób uwierzytelnienia. Spróbuj ponownie później.
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowano jako:'
   verification:

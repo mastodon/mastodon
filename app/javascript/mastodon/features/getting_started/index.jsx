@@ -9,25 +9,24 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as AlternateEmailIcon } from '@material-symbols/svg-600/outlined/alternate_email.svg';
-import { ReactComponent as BookmarksIcon } from '@material-symbols/svg-600/outlined/bookmarks-fill.svg';
-import { ReactComponent as PeopleIcon } from '@material-symbols/svg-600/outlined/group.svg';
-import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
-import { ReactComponent as ListAltIcon } from '@material-symbols/svg-600/outlined/list_alt.svg';
-import { ReactComponent as MenuIcon } from '@material-symbols/svg-600/outlined/menu.svg';
-import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-600/outlined/person_add.svg';
-import { ReactComponent as PublicIcon } from '@material-symbols/svg-600/outlined/public.svg';
-import { ReactComponent as SettingsIcon } from '@material-symbols/svg-600/outlined/settings-fill.svg';
-import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/star.svg';
-import { ReactComponent as TagIcon } from '@material-symbols/svg-600/outlined/tag.svg';
-
+import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
+import BookmarksIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
+import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
+import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
+import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
+import MenuIcon from '@/material-icons/400-24px/menu.svg?react';
+import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
+import PublicIcon from '@/material-icons/400-24px/public.svg?react';
+import SettingsIcon from '@/material-icons/400-24px/settings-fill.svg?react';
+import StarIcon from '@/material-icons/400-24px/star.svg?react';
+import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 import LinkFooter from 'mastodon/features/ui/components/link_footer';
 
 import { me, showTrends } from '../../initial_state';
-import NavigationContainer from '../compose/containers/navigation_container';
+import { NavigationBar } from '../compose/components/navigation_bar';
 import ColumnLink from '../ui/components/column_link';
 import ColumnSubheading from '../ui/components/column_subheading';
 
@@ -113,7 +112,7 @@ class GettingStarted extends ImmutablePureComponent {
 
     if (showTrends) {
       navItems.push(
-        <ColumnLink key='explore' icon='hashtag' iconComponent={TagIcon} text={intl.formatMessage(messages.explore)} to='/explore' />,
+        <ColumnLink key='explore' icon='explore' iconComponent={TagIcon} text={intl.formatMessage(messages.explore)} to='/explore' />,
       );
     }
 
@@ -144,7 +143,7 @@ class GettingStarted extends ImmutablePureComponent {
 
     return (
       <Column>
-        {(signedIn && !multiColumn) ? <NavigationContainer /> : <ColumnHeader title={intl.formatMessage(messages.menu)} icon='bars' iconComponent={MenuIcon} multiColumn={multiColumn} />}
+        {(signedIn && !multiColumn) ? <NavigationBar /> : <ColumnHeader title={intl.formatMessage(messages.menu)} icon='bars' iconComponent={MenuIcon} multiColumn={multiColumn} />}
 
         <div className='getting-started scrollable scrollable--flex'>
           <div className='getting-started__wrapper'>

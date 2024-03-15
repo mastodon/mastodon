@@ -35,6 +35,7 @@ class Api::V1::Admin::ReportsController < Api::BaseController
   def update
     authorize @report, :update?
     @report.update!(report_params)
+    log_action :update, @report
     render json: @report, serializer: REST::Admin::ReportSerializer
   end
 
@@ -100,12 +101,8 @@ class Api::V1::Admin::ReportsController < Api::BaseController
     api_v1_admin_reports_url(pagination_params(min_id: pagination_since_id)) unless @reports.empty?
   end
 
-  def pagination_max_id
-    @reports.last.id
-  end
-
-  def pagination_since_id
-    @reports.first.id
+  def pagination_collection
+    @reports
   end
 
   def records_continue?

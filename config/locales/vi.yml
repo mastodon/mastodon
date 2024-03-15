@@ -418,6 +418,7 @@ vi:
       view: Xem máy chủ chặn
     email_domain_blocks:
       add_new: Thêm mới
+      allow_registrations_with_approval: Cho đăng ký nhưng duyệt thủ công
       attempts_over_week:
         other: "%{count} lần thử đăng ký vào tuần trước"
       created_msg: Đã chặn tên miền email này
@@ -599,6 +600,7 @@ vi:
       created_at: Báo cáo lúc
       delete_and_resolve: Xóa tút
       forwarded: Chuyển tiếp
+      forwarded_replies_explanation: Báo cáo này từ người dùng ở một máy chủ khác và về nội dung ở một máy chủ khác. Nó được chuyển tiếp tới bạn vì nội dung bị báo cáo là lượt trả lời cho một trong những người dùng của bạn.
       forwarded_to: Chuyển tiếp tới %{domain}
       mark_as_resolved: Xử lý xong
       mark_as_sensitive: Đánh dấu nhạy cảm
@@ -751,6 +753,7 @@ vi:
         disabled: Không ai
         users: Để đăng nhập người cục bộ
       registrations:
+        moderation_recommandation: Vui lòng đảm bảo rằng bạn có một đội ngũ kiểm duyệt và phản ứng nhanh trước khi mở đăng ký cho mọi người!
         preamble: Kiểm soát những ai có thể tạo tài khoản trên máy chủ của bạn.
         title: Đăng ký
       registrations_mode:
@@ -758,6 +761,7 @@ vi:
           approved: Yêu cầu phê duyệt để đăng ký
           none: Không ai có thể đăng ký
           open: Bất cứ ai cũng có thể đăng ký
+        warning_hint: Chúng tôi khuyên bạn nên sử dụng "Duyệt đăng ký thủ công" trừ khi bạn tin tưởng đội ngũ kiểm duyệt của mình có thể xử lý kịp thời các đăng ký spam và độc hại.
       security:
         authorized_fetch: Yêu cầu xác thực từ các máy chủ liên hợp
         authorized_fetch_hint: Yêu cầu xác thực từ các máy chủ liên hợp cho phép thực thi chặt chẽ hơn việc chặn cấp độ người dùng và cấp độ máy chủ. Tuy nhiên, điều này phải trả giá bằng một hình phạt về hiệu suất, làm giảm phạm vi tiếp cận của các lượt trả lời của bạn và có thể gây ra các vấn đề về khả năng tương thích với một số dịch vụ được liên hợp. Ngoài ra, điều này sẽ không ngăn cản các tác nhân chuyên dụng tìm nạp các tút và tài khoản công khai của bạn.
@@ -946,6 +950,9 @@ vi:
       title: Webhook
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Do gần đây thiếu kiểm duyệt viên nên việc đăng ký trên %{instance} sẽ tự động chuyển thành duyệt thủ công, để tránh %{instance} bị sử dụng làm nền tảng cho những kẻ xấu. Bạn có thể chuyển nó trở lại trạng thái đăng ký mở bất kỳ lúc nào.
+      subject: Đăng ký mới %{instance} đã được tự động chuyển sang duyệt thủ công
     new_appeal:
       actions:
         delete_statuses: xóa tút của họ
@@ -978,8 +985,6 @@ vi:
       new_trending_statuses:
         title: Tút nổi bật
       new_trending_tags:
-        no_approved_tags: Hiện tại không có hashtag nổi bật nào được duyệt.
-        requirements: 'Bất kỳ ứng cử viên nào vượt qua #%{rank} duyệt hashtag nổi bật, với hiện tại là "%{lowest_tag_name}" với điểm số %{lowest_tag_score}.'
         title: Hashtag nổi bật
       subject: Nội dung nổi bật chờ duyệt trên %{instance}
   aliases:
@@ -1217,7 +1222,7 @@ vi:
   filters:
     contexts:
       account: Trang hồ sơ
-      home: Trang chính và danh sách
+      home: Trang chủ và danh sách
       notifications: Thông báo
       public: Tút công khai
       thread: Thảo luận
@@ -1343,6 +1348,7 @@ vi:
       '86400': 1 ngày
     expires_in_prompt: Không giới hạn
     generate: Tạo lời mời
+    invalid: Lời mời không hợp lệ
     invited_by: 'Bạn đã được mời bởi:'
     max_uses:
       other: "%{count} lần dùng"
@@ -1463,7 +1469,6 @@ vi:
     administration_emails: Email thông báo admin
     email_events: Email
     email_events_hint: 'Chọn những hoạt động sẽ gửi thông báo qua email:'
-    other_settings: Chặn thông báo từ
   number:
     human:
       decimal_units:
@@ -1519,6 +1524,9 @@ vi:
     errors:
       limit_reached: Bạn không nên thao tác liên tục
       unrecognized_emoji: không phải là emoji
+  redirects:
+    prompt: Nếu bạn tin tưởng, hãy nhấn tiếp tục.
+    title: Bạn đang thoát khỏi %{instance}.
   relationships:
     activity: Tương tác
     confirm_follow_selected_followers: Bạn có chắc muốn theo dõi những người đã chọn?
@@ -1581,6 +1589,7 @@ vi:
       unknown_browser: Trình duyệt khác
       weibo: Weibo
     current_session: Phiên hiện tại
+    date: Thời gian
     description: "%{browser} trên %{platform}"
     explanation: Đây là các ứng dụng đã từng đăng nhập vào tài khoản Mastodon của bạn.
     ip: IP
@@ -1741,18 +1750,27 @@ vi:
     webauthn: Khóa bảo mật
   user_mailer:
     appeal_approved:
-      action: Đến trang hồ sơ của bạn
+      action: Cài đặt tài khoản
       explanation: Khiếu nại về tài khoản của bạn vào %{strike_date}, được gửi lúc %{appeal_date} đã được chấp nhận. Tài khoản của bạn đã có thể sử dụng bình thường.
       subject: Khiếu nại của bạn từ %{date} đã được chấp nhận
+      subtitle: Tài khoản của bạn có thể hoạt động lại bình thường.
       title: Khiếu nại đã được chấp nhận
     appeal_rejected:
       explanation: Khiếu nại về tài khoản của bạn vào %{strike_date}, được gửi lúc %{appeal_date} đã bị từ chối.
       subject: Khiếu nại của bạn từ %{date} đã bị từ chối
+      subtitle: Khiếu nại của bạn bị từ chối.
       title: Khiếu nại bị từ chối
     backup_ready:
-      explanation: Bạn đã yêu cầu sao lưu toàn bộ tài khoản Mastodon của mình. Bây giờ có thể tải về!
+      explanation: Bạn đã yêu cầu bản sao tài khoản Mastodon của mình.
+      extra: Hiện nó đã sẵn sàng tải xuống!
       subject: Dữ liệu cá nhân của bạn đã sẵn sàng để tải về
       title: Nhận dữ liệu cá nhân
+    failed_2fa:
+      details: 'Chi tiết thông tin đăng nhập:'
+      explanation: Ai đó đã cố đăng nhập vào tài khoản của bạn nhưng cung cấp yếu tố xác thực thứ hai không hợp lệ.
+      further_actions_html: Nếu không phải bạn, hãy lập tức %{action} vì có thể có rủi ro.
+      subject: Xác minh hai bước thất bại
+      title: Xác minh hai bước thất bại
     suspicious_sign_in:
       change_password: đổi mật khẩu của bạn
       details: 'Chi tiết thông tin đăng nhập:'
@@ -1792,13 +1810,42 @@ vi:
         silence: Tài khoản bị hạn chế
         suspend: Tài khoản bị vô hiệu hóa
     welcome:
-      edit_profile_action: Cài đặt trang hồ sơ
-      edit_profile_step: Bạn có thể chỉnh sửa trang hồ sơ của mình bằng cách tải lên ảnh đại diện, ảnh bìa, đổi biệt danh và hơn thế nữa. Bạn cũng có thể tự phê duyệt những người theo dõi mới.
+      apps_android_action: Tải trên Google Play
+      apps_ios_action: Tải trên App Store
+      apps_step: Tải ứng dụng chính thức.
+      apps_title: Ứng dụng Mastodon
+      checklist_subtitle: 'Hãy bắt đầu trên mạng xã hội mới này:'
+      checklist_title: Danh sách việc cần làm
+      edit_profile_action: Cá nhân hoá
+      edit_profile_step: Tạo sự tương tác bằng một hồ sơ hoàn chỉnh.
+      edit_profile_title: Tùy biến hồ sơ
       explanation: Dưới đây là một số mẹo để giúp bạn bắt đầu
-      final_action: Viết tút mới
-      final_step: 'Viết tút mới! Ngay cả khi chưa có người theo dõi, người khác vẫn có thể xem tút công khai của bạn trên bảng tin máy chủ và qua hashtag. Hãy giới thiệu bản thân với hashtag #introductions.'
-      full_handle: Tên đầy đủ của bạn
-      full_handle_hint: Đây cũng là địa chỉ được dùng để giao tiếp với tất cả mọi người.
+      feature_action: Tìm hiểu
+      feature_audience: Mastodon cung cấp cho bạn khả năng độc đáo để quản lý người theo dõi của bạn mà không cần bên trung gian. Mastodon có thể triển khai trên cơ sở hạ tầng của riêng bạn, cho phép bạn theo dõi và được theo dõi từ bất kỳ máy chủ Mastodon nào khác và không nằm dưới sự kiểm soát của ai ngoài bạn.
+      feature_audience_title: Tạo cộng đồng của riêng bạn
+      feature_control: Bạn biết rõ nhất những gì bạn muốn xem trên bảng tin. Không có thuật toán hoặc quảng cáo để lãng phí thời gian của bạn. Theo dõi bất kỳ ai trên bất kỳ máy chủ Mastodon nào từ một tài khoản và nhận các tút của họ theo thứ tự thời gian — làm cho góc internet của bạn là của bạn.
+      feature_control_title: Kiểm soát bảng tin của bạn
+      feature_creativity: Mastodon hỗ trợ đăng âm thanh, video, hình ảnh, mô tả trợ năng, thăm dò ý kiến, cảnh báo nội dung, hình đại diện Gif, emoji tùy chỉnh, kiểm soát cắt hình thu nhỏ... để giúp bạn thể hiện cá tính. Cho dù bạn đang xuất bản tác phẩm nghệ thuật, âm nhạc hay podcast của mình, Mastodon luôn hợp cho bạn.
+      feature_creativity_title: Sáng tạo không giới hạn
+      feature_moderation: Mastodon giành quyền tự quyết về tay bạn. Mỗi máy chủ tạo ra các nội quy của riêng họ, được thực thi nội bộ chứ không phải từ trên xuống như dịch vụ mạng xã hội của Big Tech, giúp linh hoạt trong việc đáp ứng nhu cầu của các nhóm người dùng khác nhau. Tham gia một máy chủ với các quy tắc bạn đồng ý hoặc tự chạy máy chủ của riêng bạn.
+      feature_moderation_title: Kiểm duyệt đúng nghĩa
+      follow_action: Theo dõi
+      follow_step: Theo dõi những người thú vị trên Mastodon.
+      follow_title: Cá nhân hóa bảng tin của bạn
+      follows_subtitle: Theo dõi những người thú vị
+      follows_title: Gợi ý theo dõi
+      follows_view_more: Xem thêm những người khác
+      hashtags_recent_count: "%{people} người dùng trong %{days} ngày qua"
+      hashtags_subtitle: Khám phá xu hướng 2 ngày qua
+      hashtags_title: Hashtag xu hướng
+      hashtags_view_more: Xem thêm hashtag xu hướng
+      post_action: Soạn tút
+      post_step: Chào cộng đồng bằng lời nói, ảnh hoặc video.
+      post_title: Đăng tút đầu tiên
+      share_action: Chia sẻ
+      share_step: Hãy để bạn bè của bạn biết cách tìm thấy bạn trên Mastodon.
+      share_title: Chia sẻ hồ sơ Mastodon của bạn
+      sign_in_action: Đăng nhập
       subject: Chào mừng đến với Mastodon
       title: Xin chào %{name}!
   users:
@@ -1806,6 +1853,7 @@ vi:
     go_to_sso_account_settings: Thiết lập tài khoản nhà cung cấp danh tính
     invalid_otp_token: Mã xác minh 2 bước không hợp lệ
     otp_lost_help_html: Nếu bạn mất quyền truy cập vào cả hai, bạn có thể đăng nhập bằng %{email}
+    rate_limited: Quá nhiều lần thử, vui lòng thử lại sau.
     seamless_external_login: Bạn đã đăng nhập thông qua một dịch vụ bên ngoài, vì vậy mật khẩu và email không khả dụng.
     signed_in_as: 'Đăng nhập bằng:'
   verification:

@@ -425,6 +425,7 @@ sv:
       view: Visa domänblock
     email_domain_blocks:
       add_new: Lägg till ny
+      allow_registrations_with_approval: Tillåt registreringar med godkännande
       attempts_over_week:
         one: "%{count} försök under den senaste veckan"
         other: "%{count} registreringsförsök under den senaste veckan"
@@ -611,6 +612,7 @@ sv:
       created_at: Anmäld
       delete_and_resolve: Ta bort inlägg
       forwarded: Vidarebefordrad
+      forwarded_replies_explanation: Den här rapporten är från en annans instans användare och handlar om annans instans inlägg. Det har vidarebefordrats till dig eftersom det rapporterade innehållet är som svar till en av dina användare.
       forwarded_to: Vidarebefordrad till %{domain}
       mark_as_resolved: Markera som löst
       mark_as_sensitive: Markera som känslig
@@ -765,6 +767,7 @@ sv:
         disabled: För ingen
         users: För inloggade lokala användare
       registrations:
+        moderation_recommandation: Se till att du har ett tillräckligt och reaktivt modereringsteam innan du öppnar registreringar till alla!
         preamble: Kontrollera vem som kan skapa ett konto på din server.
         title: Registreringar
       registrations_mode:
@@ -772,6 +775,7 @@ sv:
           approved: Godkännande krävs för registrering
           none: Ingen kan registrera
           open: Alla kan registrera
+        warning_hint: Vi rekommenderar att du använder “Godkännande krävs för registrering” om du inte är säker på att ditt moderatorsteam kan hantera skräppost och skadliga registreringar i tid.
       security:
         authorized_fetch: Kräv autentisering från federerade servrar
         authorized_fetch_hint: Att kräva autentisering från federerade servrar möjliggör striktare tillämpning av både blockering på användarnivå och servernivå. Detta sker dock på bekostnad av prestanda, minskar räckvidden på dina svar, och kan införa kompatibilitet problem med vissa federerade tjänster. Dessutom kommer detta inte att hindra dedikerade aktörer från att hämta dina offentliga inlägg och konton.
@@ -964,6 +968,9 @@ sv:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: På grund av brist på moderatoraktivitet har registreringar på %{instance} automatiskt bytts till att kräva manuell granskning, för att förhindra att %{instance} används som plattform för potentiella dåliga aktörer. Du kan när som helst byta tillbaka den till öppna registreringar.
+      subject: Registreringar för %{instance} har automatiskt bytts till att kräva godkännande
     new_appeal:
       actions:
         delete_statuses: att radera deras inlägg
@@ -996,8 +1003,6 @@ sv:
       new_trending_statuses:
         title: Trendande inlägg
       new_trending_tags:
-        no_approved_tags: Det finns för närvarande inga godkända trendande hashtaggar.
-        requirements: 'Någon av dessa kandidater skulle kunna överträffa #%{rank} godkända trendande hashtaggar, som för närvarande är #%{lowest_tag_name} med en poäng på %{lowest_tag_score}.'
         title: Trendande hashtaggar
       subject: Nya trender tillgängliga för granskning på %{instance}
   aliases:
@@ -1041,6 +1046,7 @@ sv:
       hint_html: En sista sak till! Vi måste bekräfta att du är en människa (för att hålla borta skräpinlägg!). Lös CAPTCHA nedan och klicka på "Fortsätt".
       title: Säkerhetskontroll
     confirmations:
+      awaiting_review: Din e-postadress är bekräftad! %{domain} personalen granskar nu din registrering. Du kommer att få ett e-postmeddelande om de godkänner ditt konto!
       awaiting_review_title: Din registrering är under granskning
       clicking_this_link: klicka på denna länk
       login_link: logga in
@@ -1367,6 +1373,7 @@ sv:
       '86400': 1 dag
     expires_in_prompt: Aldrig
     generate: Skapa
+    invalid: Ogiltig inbjudan
     invited_by: 'Du blev inbjuden av:'
     max_uses:
       one: 1 användning
@@ -1488,7 +1495,6 @@ sv:
     administration_emails: Admin e-postaviseringar
     email_events: Händelser för e-postnotiser
     email_events_hint: 'Välj händelser som du vill ta emot aviseringar för:'
-    other_settings: Andra aviseringsinställningar
   number:
     human:
       decimal_units:
@@ -1544,6 +1550,9 @@ sv:
     errors:
       limit_reached: Gränsen för unika reaktioner uppnådd
       unrecognized_emoji: är inte en igenkänd emoji
+  redirects:
+    prompt: Om du litar på denna länk, klicka på den för att fortsätta.
+    title: Du lämnar %{instance}.
   relationships:
     activity: Kontoaktivitet
     confirm_follow_selected_followers: Är du säker på att du vill följa valda följare?
@@ -1606,6 +1615,7 @@ sv:
       unknown_browser: Okänd browser
       weibo: Weibo
     current_session: Nuvarande session
+    date: Datum
     description: "%{browser} på %{platform}"
     explanation: Detta är inloggade webbläsare på Mastodon just nu.
     ip: IP
@@ -1772,18 +1782,27 @@ sv:
     webauthn: Säkerhetsnycklar
   user_mailer:
     appeal_approved:
-      action: Gå till ditt konto
+      action: Kontoinställningar
       explanation: Överklagandet du skickade in den %{appeal_date} för pricken på ditt konto den %{strike_date} har godkänts. Ditt konto har återigen bra anseende.
       subject: Din överklagan den %{date} har godkänts
+      subtitle: Ditt konto är återigen i gott skick.
       title: Överklagan godkänd
     appeal_rejected:
       explanation: Överklagandet du skickade in den %{appeal_date} för pricken på ditt konto den %{strike_date} har avslagits.
       subject: Din överklagan den %{date} har avslagits
+      subtitle: Din överklagan har avvisats.
       title: Överklagan avslagen
     backup_ready:
-      explanation: Du begärde en fullständig säkerhetskopiering av ditt Mastodon-konto. Det är nu klart för nedladdning!
+      explanation: Du begärde en fullständig säkerhetskopia av ditt Mastodon-konto.
+      extra: Nu redo för nedladdning!
       subject: Ditt arkiv är klart för nedladdning
       title: Arkivuttagning
+    failed_2fa:
+      details: 'Här är detaljerna för inloggningsförsöket:'
+      explanation: Någon har försökt att logga in på ditt konto men tillhandahållit en ogiltig andra autentiseringsfaktor.
+      further_actions_html: Om detta inte var du, rekommenderar vi att du %{action} omedelbart eftersom ditt konto kan ha äventyrats.
+      subject: Andra faktorns autentiseringsfel
+      title: Misslyckad tvåfaktorsautentisering
     suspicious_sign_in:
       change_password: Ändra ditt lösenord
       details: 'Här är inloggningsdetaljerna:'
@@ -1823,13 +1842,42 @@ sv:
         silence: Kontot begränsat
         suspend: Konto avstängt
     welcome:
-      edit_profile_action: Profilinställning
-      edit_profile_step: Du kan anpassa din profil genom att ladda upp en profilbild, ändra ditt visningsnamn med mera. Du kan välja att granska nya följare innan de får följa dig.
+      apps_android_action: Ladda ned på Google Play
+      apps_ios_action: Ladda ner på App Store
+      apps_step: Ladda ner våra officiella appar.
+      apps_title: Mastodon-appar
+      checklist_subtitle: 'Låt oss komma igång med denna nya sociala upplevelse:'
+      checklist_title: Välkomstchecklista
+      edit_profile_action: Gör mer personlig
+      edit_profile_step: Öka din interaktion genom att ha en omfattande profil.
+      edit_profile_title: Anpassa din profil
       explanation: Här är några tips för att komma igång
-      final_action: Börja göra inlägg
-      final_step: 'Börja skriv inlägg! Även utan följare kan dina offentliga inlägg ses av andra, exempelvis på den lokala tidslinjen eller i hashtaggar. Du kanske vill introducera dig själv under hashtaggen #introduktion eller #introductions.'
-      full_handle: Ditt fullständiga användarnamn/mastodonadress
-      full_handle_hint: Det här är vad du skulle berätta för dina vänner så att de kan meddela eller följa dig från en annan instans.
+      feature_action: Lär dig mer
+      feature_audience: Mastodon ger dig en unik möjlighet att hantera din publik utan mellanhänder. Mastodon distribueras på din egen infrastruktur gör att du kan följa och följas från någon annan Mastodon-server online och är under ingen kontroll men din.
+      feature_audience_title: Skapa förtroende hos din publik
+      feature_control: Du vet bäst vad du vill se i ditt hemflöde. Inga algoritmer eller annonser som slösar din tid. Följ vem som helst på vilken Mastodon-server som helst från ett enda konto, få deras inlägg i kronologisk ordning och gör ditt hörn av internet lite mer du.
+      feature_control_title: Håll kontroll över din egen tidslinje
+      feature_creativity: Mastodon stöder ljud-, video- och bildinlägg, tillgänglighetsbeskrivningar, omröstningar, innehållsvarningar, animerade avatarer, anpassade emojis, miniatyrbildskontroll och mer, för att hjälpa dig att uttrycka dig själv online. Oavsett om du publicerar din konst, din musik eller din podcast finns Mastodon där för dig.
+      feature_creativity_title: Oöverträffad kreativitet
+      feature_moderation: Mastodon lägger tillbaka beslutsfattandet i dina händer. Varje server skapar sina egna regler och förordningar som tillämpas lokalt istället för toppstyrt som i företagens sociala medier vilket gör det maximalt flexibelt i att tillgodose behoven hos olika grupper av människor. Gå med i en server med de regler du samtycker till eller var värd för din egen.
+      feature_moderation_title: Moderering som det borde vara
+      follow_action: Följ
+      follow_step: Att följa intressanta människor är vad Mastodon handlar om.
+      follow_title: Anpassa ditt hemflöde
+      follows_subtitle: Följ välkända konton
+      follows_title: Rekommenderade profiler
+      follows_view_more: Visa fler personer att följa
+      hashtags_recent_count: "%{people} personer under de senaste %{days} dagarna"
+      hashtags_subtitle: Utforska vad som har trendat de senaste 2 dagarna
+      hashtags_title: Trendande hashtaggar
+      hashtags_view_more: Visa fler trendande hashtaggar
+      post_action: Skriv
+      post_step: Säg hej till världen med text, foton, videor eller omröstningar.
+      post_title: Skapa ditt första inlägg
+      share_action: Dela
+      share_step: Låt dina vänner veta hur de hittar dig på Mastodon.
+      share_title: Dela din Mastodon-profil
+      sign_in_action: Logga in
       subject: Välkommen till Mastodon
       title: Välkommen ombord, %{name}!
   users:
@@ -1837,6 +1885,7 @@ sv:
     go_to_sso_account_settings: Gå till din identitetsleverantörs kontoinställningar
     invalid_otp_token: Ogiltig tvåfaktorskod
     otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
+    rate_limited: För många autentiseringsförsök, försök igen senare.
     seamless_external_login: Du är inloggad via en extern tjänst, inställningar för lösenord och e-post är därför inte tillgängliga.
     signed_in_as: 'Inloggad som:'
   verification:

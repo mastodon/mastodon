@@ -39,14 +39,14 @@ sv:
         text: Du kan endast överklaga en varning en gång
       defaults:
         autofollow: Användarkonton som skapas genom din inbjudan kommer automatiskt följa dig
-        avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
+        avatar: WEBP, PNG, GIF eller JPG. Högst %{size}. Kommer nedskalas till %{dimensions} pixlar
         bot: Detta konto utför huvudsakligen automatiserade åtgärder och kanske inte övervakas
         context: Ett eller fler sammanhang där filtret ska tillämpas
         current_password: Av säkerhetsskäl krävs lösenordet till det nuvarande kontot
         current_username: Ange det nuvarande kontots användarnamn för att bekräfta
         digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
         email: Du kommer att få ett bekräftelsemeddelande via e-post
-        header: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
+        header: WEBP, PNG, GIF eller JPG. Högst %{size}. Kommer nedskalas till %{dimensions} pixlar
         inbox_url: Kopiera webbadressen från hemsidan av det ombud du vill använda
         irreversible: Filtrerade inlägg kommer att försvinna oåterkalleligt, även om filter tas bort senare
         locale: Språket för användargränssnittet, e-postmeddelanden och push-aviseringar
@@ -299,6 +299,7 @@ sv:
           patch: Meddela vid buggfix-uppdateringar
         trending_tag: En ny trend kräver granskning
       rule:
+        hint: Ytterligare information
         text: Regel
       settings:
         indexable: Inkludera profilsidan i sökmotorer

@@ -14,7 +14,6 @@ require 'active_job/railtie'
 # require 'action_mailbox/engine'
 # require 'action_text/engine'
 # require 'rails/test_unit/railtie'
-require 'sprockets/railtie'
 
 # Used to be implicitly required in action_mailbox/engine
 require 'mail'
@@ -39,8 +38,8 @@ require_relative '../lib/mastodon/snowflake'
 require_relative '../lib/mastodon/version'
 require_relative '../lib/mastodon/rack_middleware'
 require_relative '../lib/public_file_server_middleware'
-require_relative '../lib/devise/two_factor_ldap_authenticatable'
-require_relative '../lib/devise/two_factor_pam_authenticatable'
+require_relative '../lib/devise/strategies/two_factor_ldap_authenticatable'
+require_relative '../lib/devise/strategies/two_factor_pam_authenticatable'
 require_relative '../lib/chewy/settings_extensions'
 require_relative '../lib/chewy/index_extensions'
 require_relative '../lib/chewy/strategy/mastodon'
@@ -64,12 +63,7 @@ module Mastodon
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
-    # TODO: Release a version which uses the 7.0 defaults as specified above,
-    # but preserves the 6.1 cache format as set below. In a subsequent change,
-    # remove this line setting to 6.1 cache format, and then release another version.
-    # https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#new-activesupport-cache-serialization-format
-    # https://github.com/mastodon/mastodon/pull/24241#discussion_r1162890242
-    config.active_support.cache_format_version = 6.1
+    config.active_record.marshalling_format_version = 7.1
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
@@ -86,115 +80,6 @@ module Mastodon
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # All translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.available_locales = [
-      :af,
-      :an,
-      :ar,
-      :ast,
-      :be,
-      :bg,
-      :bn,
-      :br,
-      :bs,
-      :ca,
-      :ckb,
-      :co,
-      :cs,
-      :cy,
-      :da,
-      :de,
-      :el,
-      :en,
-      :'en-GB',
-      :eo,
-      :es,
-      :'es-AR',
-      :'es-MX',
-      :et,
-      :eu,
-      :fa,
-      :fi,
-      :fo,
-      :fr,
-      :'fr-QC',
-      :fy,
-      :ga,
-      :gd,
-      :gl,
-      :he,
-      :hi,
-      :hr,
-      :hu,
-      :hy,
-      :id,
-      :ig,
-      :io,
-      :is,
-      :it,
-      :ja,
-      :ka,
-      :kab,
-      :kk,
-      :kn,
-      :ko,
-      :ku,
-      :kw,
-      :la,
-      :lt,
-      :lv,
-      :mk,
-      :ml,
-      :mr,
-      :ms,
-      :my,
-      :nl,
-      :nn,
-      :no,
-      :oc,
-      :pa,
-      :pl,
-      :'pt-BR',
-      :'pt-PT',
-      :ro,
-      :ru,
-      :sa,
-      :sc,
-      :sco,
-      :si,
-      :sk,
-      :sl,
-      :sq,
-      :sr,
-      :'sr-Latn',
-      :sv,
-      :szl,
-      :ta,
-      :te,
-      :th,
-      :tr,
-      :tt,
-      :ug,
-      :uk,
-      :ur,
-      :vi,
-      :zgh,
-      :'zh-CN',
-      :'zh-HK',
-      :'zh-TW',
-    ]
-
-    config.i18n.default_locale = begin
-      custom_default_locale = ENV['DEFAULT_LOCALE']&.to_sym
-
-      if config.i18n.available_locales.include?(custom_default_locale)
-        custom_default_locale
-      else
-        :en
-      end
-    end
-
     # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
@@ -206,7 +91,7 @@ module Mastodon
     # We use our own middleware for this
     config.public_file_server.enabled = false
 
-    config.middleware.use PublicFileServerMiddleware if Rails.env.local? || ENV['RAILS_SERVE_STATIC_FILES'] == 'true' # rubocop:disable Rails/UnknownEnv
+    config.middleware.use PublicFileServerMiddleware if Rails.env.local? || ENV['RAILS_SERVE_STATIC_FILES'] == 'true'
     config.middleware.use Rack::Attack
     config.middleware.use Mastodon::RackMiddleware
 

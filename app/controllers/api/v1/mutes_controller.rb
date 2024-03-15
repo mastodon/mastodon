@@ -17,7 +17,7 @@ class Api::V1::MutesController < Api::BaseController
   end
 
   def paginated_mutes
-    @paginated_mutes ||= Mute.eager_load(:target_account)
+    @paginated_mutes ||= Mute.eager_load(target_account: [:account_stat, :user])
                              .joins(:target_account)
                              .merge(Account.without_suspended)
                              .where(account: current_account)
@@ -40,12 +40,8 @@ class Api::V1::MutesController < Api::BaseController
     api_v1_mutes_url pagination_params(since_id: pagination_since_id) unless paginated_mutes.empty?
   end
 
-  def pagination_max_id
-    paginated_mutes.last.id
-  end
-
-  def pagination_since_id
-    paginated_mutes.first.id
+  def pagination_collection
+    paginated_mutes
   end
 
   def records_continue?

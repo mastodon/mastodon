@@ -20,6 +20,7 @@ export interface ApiAccountJSON {
   bot: boolean;
   created_at: string;
   discoverable: boolean;
+  indexable: boolean;
   display_name: string;
   emojis: ApiCustomEmojiJSON[];
   fields: ApiAccountFieldJSON[];
@@ -42,4 +43,5 @@ export interface ApiAccountJSON {
   suspended?: boolean;
   limited?: boolean;
   memorial?: boolean;
+  hide_collections: boolean;
 }

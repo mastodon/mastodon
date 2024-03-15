@@ -41,12 +41,8 @@ class Api::V1::Crypto::EncryptedMessagesController < Api::BaseController
     api_v1_crypto_encrypted_messages_url pagination_params(min_id: pagination_since_id) unless @encrypted_messages.empty?
   end
 
-  def pagination_max_id
-    @encrypted_messages.last.id
-  end
-
-  def pagination_since_id
-    @encrypted_messages.first.id
+  def pagination_collection
+    @encrypted_messages
   end
 
   def records_continue?

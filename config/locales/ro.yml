@@ -93,6 +93,7 @@ ro:
       moderation:
         active: Activ
         all: Toate
+        disabled: Dezactivat
         pending: În așteptare
         silenced: Limitat
         suspended: Suspendate
@@ -692,7 +693,6 @@ ro:
     recovery_instructions_html: Dacă îți pierzi vreodată accesul la telefon, poți folosi unul dintre codurile de recuperare de mai jos pentru a recâștiga accesul la contul tău. <strong>Păstrați codurile de recuperare în condiții de siguranță</strong>. De exemplu, le puteți tipări și stoca cu alte documente importante.
   user_mailer:
     backup_ready:
-      explanation: Ai solicitat o copie de rezervă completă a contului tău. Acum este gata pentru descărcare!
       subject: Arhiva ta este gata pentru descărcare
       title: Preluare arhivă
     warning:
@@ -707,11 +707,7 @@ ro:
         silence: Cont limitat
         suspend: Cont suspendat
     welcome:
-      edit_profile_action: Configurare profil
       explanation: Iată câteva sfaturi pentru a începe
-      final_action: Începe să postezi
-      full_handle: Numele tău complet
-      full_handle_hint: Asta este ceea ce vei putea spune prietenilor pentru a te putea contacta sau pentru a te urmării de pe un alt server.
       subject: Bine ai venit
       title: Bine ai venit la bord, %{name}!
   users:

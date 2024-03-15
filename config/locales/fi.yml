@@ -387,7 +387,7 @@ fi:
         cancel: Peruuta
         confirm: Jäädytä
         permanent_action: Jäädytyksen kumoaminen ei palauta mitään tietoja tai suhteita.
-        preamble_html: Olet jäädyttämässä verkkotunnuksen <strong>%{domain}</strong> ja sen aliverkkotunnukset.
+        preamble_html: Olet jäädyttämässä verkkotunnuksen <strong>%{domain}</strong> aliverkkotunnuksineen.
         remove_all_data: Tämä toiminto poistaa palvelimeltasi kaiken sisällön, median ja profiilitiedot tämän palvelun tileiltä.
         stop_communication: Palvelimesi lopettaa viestinnän näiden palvelinten kanssa.
         title: Vahvista verkkotunnuksen %{domain} esto
@@ -425,6 +425,7 @@ fi:
       view: Näytä verkkotunnuksen esto
     email_domain_blocks:
       add_new: Lisää uusi
+      allow_registrations_with_approval: Salli rekisteröitymiset hyväksynnällä
       attempts_over_week:
         one: "%{count} yritystä viimeisen viikon aikana"
         other: "%{count} rekisteröitymisyritystä viimeisen viikon aikana"
@@ -611,6 +612,7 @@ fi:
       created_at: Raportoitu
       delete_and_resolve: Poista julkaisut
       forwarded: Välitetty
+      forwarded_replies_explanation: Tämä raportti on etäkäyttäjältä ja koskee etäsisältöä. Se on välitetty sinulle, koska raportoitu sisältö on vastaus jollekin käyttäjällesi.
       forwarded_to: Välitetty %{domain}
       mark_as_resolved: Merkitse ratkaistuksi
       mark_as_sensitive: Merkitse arkaluonteiseksi
@@ -765,13 +767,15 @@ fi:
         disabled: Ei kenellekkään
         users: Kirjautuneille paikallisille käyttäjille
       registrations:
+        moderation_recommandation: Varmista, että sinulla on riittävä ja toimintavalmis joukko moderaattoreita ennen kuin avaat rekisteröitymiset kaikille!
         preamble: Määritä, kuka voi luoda tilin palvelimellesi.
         title: Rekisteröityminen
       registrations_mode:
         modes:
-          approved: Rekisteröinti vaatii hyväksynnän
+          approved: Rekisteröityminen vaatii hyväksynnän
           none: Kukaan ei voi rekisteröityä
           open: Kaikki voivat rekisteröityä
+        warning_hint: Suosittelemme käyttämään asetusta ”Rekisteröityminen vaatii hyväksynnän”, ellet ole varma siitä, että moderaattorit ovat valmiina käsittelemään roskapostia ja haittarekisteröitymisiä oikea-aikaisesti.
       security:
         authorized_fetch: Vaadi todennus liittoutuvilta palvelimilta
         authorized_fetch_hint: Todennuksen vaatiminen liittoutuvilta palvelimilta mahdollistaa sekä käyttäjä- että palvelintason estojen tiukemman valvonnan. Tämä tapahtuu kuitenkin suorituskyvyn kustannuksella, vähentää vastauksiesi tavoittavuutta ja voi aiheuttaa yhteensopivuusongelmia joidenkin liittoutuvien palvelujen kanssa. Tämä ei myöskään estä omistautuneita toimijoita hakemasta julkisia julkaisujasi ja tilejäsi.
@@ -829,7 +833,7 @@ fi:
         suspend: "%{name} jäädytti käyttäjän %{target} tilin"
       appeal_approved: Valitti
       appeal_pending: Valitus vireillä
-      appeal_rejected: Muutoksenhaku hylättiin
+      appeal_rejected: Vetoomus hylättiin
     system_checks:
       database_schema_check:
         message_html: Tietokannan siirto on vireillä. Suorita ne varmistaaksesi, että sovellus toimii odotetulla tavalla
@@ -964,6 +968,9 @@ fi:
       title: Webhookit
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Viimeaikaisen moderaattoritoiminnan puutteen vuoksi palvelimen %{instance} rekisteröitymiset on vaihdettu automaattisesti manuaaliseen tarkasteluun, jotta palvelinta %{instance} ei käytetä mahdollisten huonojen toimijoiden alustana. Voit vaihtaa takaisin avoimiin rekisteröitymisiin milloin tahansa.
+      subject: Rekisteröitymiset palvelimelle %{instance} on automaattisesti vaihdettu vaatimaan hyväksyntää
     new_appeal:
       actions:
         delete_statuses: poistaa hänen julkaisunsa
@@ -996,8 +1003,6 @@ fi:
       new_trending_statuses:
         title: Suositut julkaisut
       new_trending_tags:
-        no_approved_tags: Tällä hetkellä ei ole hyväksyttyjä suosittuja aihetunnisteita.
-        requirements: 'Mikä tahansa näistä ehdokkaista voisi ylittää #%{rank} hyväksytyn suositun aihetunnisteen, joka on tällä hetkellä #%{lowest_tag_name} %{lowest_tag_score} pisteellä.'
         title: Suositut aihetunnisteet
       subject: Uusia trendejä tarkistettavaksi instanssissa %{instance}
   aliases:
@@ -1041,13 +1046,13 @@ fi:
       hint_html: Vielä yksi juttu! Meidän on vahvistettava, että olet ihminen (tämän avulla pidämme roskapostin poissa!). Ratkaise alla oleva CAPTCHA-vahvistus ja paina "Jatka".
       title: Turvatarkastus
     confirmations:
-      awaiting_review: Sähköpostiosoitteesi on vahvistettu! Seuraavaksi palvelimen %{domain} ylläpito tarkistaa rekisteröitymisesi ja saat lopuksi ilmoituksen sähköpostitse, jos tilisi hyväksytään!
+      awaiting_review: Sähköpostiosoitteesi on vahvistettu! Seuraavaksi palvelimen %{domain} ylläpito tarkistaa rekisteröitymisesi, ja saat lopuksi ilmoituksen sähköpostitse, jos tilisi hyväksytään!
       awaiting_review_title: Rekisteröitymisesi on tarkistettavana
-      clicking_this_link: tästä linkistä
+      clicking_this_link: napsauttaa tätä linkkiä
       login_link: kirjautumalla sisään
       proceed_to_login_html: Voit nyt jatkaa %{login_link}.
-      redirect_to_app_html: Sinun olisi pitänyt ohjautua sovellukseen <strong>%{app_name}</strong>. Jos näin ei tapahtunut, yritä avata se %{clicking_this_link} tai palaa sovellukseen manuaalisesti.
-      registration_complete: Rekisteröitymisesi palvelimelle %{domain} on suoritettu!
+      redirect_to_app_html: Sinun olisi pitänyt ohjautua sovellukseen <strong>%{app_name}</strong>. Jos näin ei tapahtunut, voit %{clicking_this_link} tai palata sovellukseen käsikäyttöisesti.
+      registration_complete: Rekisteröitymisesi palvelimelle %{domain} on nyt valmis!
       welcome_title: Tervetuloa, %{name}!
       wrong_email_hint: Jos sähköpostiosoite ei ole oikein, voit muuttaa sen tilin asetuksista.
     delete_account: Poista tili
@@ -1368,6 +1373,7 @@ fi:
       '86400': 1 vuorokausi
     expires_in_prompt: Ei koskaan
     generate: Luo
+    invalid: Tämä kutsu ei ole kelvollinen
     invited_by: 'Sinut kutsui:'
     max_uses:
       one: kertakäyttöinen
@@ -1489,7 +1495,6 @@ fi:
     administration_emails: Ylläpitäjän sähköposti-ilmoitukset
     email_events: Sähköposti-ilmoitusten tapahtumat
     email_events_hint: 'Valitse tapahtumat, joista haluat saada ilmoituksia:'
-    other_settings: Muut ilmoitusasetukset
   number:
     human:
       decimal_units:
@@ -1545,6 +1550,9 @@ fi:
     errors:
       limit_reached: Erilaisten reaktioiden raja saavutettu
       unrecognized_emoji: ei ole tunnistettu emoji
+  redirects:
+    prompt: Jos luotat linkkiin, jatka napsauttamalla sitä.
+    title: Olet poistumassa palvelimelta %{instance}.
   relationships:
     activity: Tilin aktiivisuus
     confirm_follow_selected_followers: Haluatko varmasti seurata valittuja seuraajia?
@@ -1556,10 +1564,10 @@ fi:
     followers: Seuraajat
     following: Seuratut
     invited: Kutsutut
-    last_active: Viimeksi aktiivinen
+    last_active: Viimeksi aktiiviset
     most_recent: Viimeisimmät
     moved: Muuttaneet
-    mutual: Molemmat
+    mutual: Seuraatte toisianne
     primary: Ensisijaiset
     relationship: Suhde
     remove_selected_domains: Poista kaikki seuraajat valituista verkkotunnuksista
@@ -1607,6 +1615,7 @@ fi:
       unknown_browser: Tuntematon selain
       weibo: Weibo
     current_session: Nykyinen istunto
+    date: Päiväys
     description: "%{browser} alustalla %{platform}"
     explanation: Nämä verkkoselaimet ovat tällä hetkellä kirjautuneena Mastodon-tilillesi.
     ip: IP-osoite
@@ -1773,18 +1782,27 @@ fi:
     webauthn: Suojausavaimet
   user_mailer:
     appeal_approved:
-      action: Siirry tilillesi
+      action: Tilin asetukset
       explanation: Valitus tiliäsi koskevasta varoituksesta %{strike_date} jonka lähetit %{appeal_date} on hyväksytty. Tilisi on jälleen hyvässä kunnossa.
       subject: Valituksesi %{date} on hyväksytty
+      subtitle: Tilisi on jälleen normaalissa tilassa.
       title: Valitus hyväksytty
     appeal_rejected:
       explanation: Valitus tiliäsi koskevasta varoituksesta %{strike_date} jonka lähetit %{appeal_date} on hylätty.
       subject: Valituksesi %{date} on hylätty
+      subtitle: Vetoomuksesi on hylätty.
       title: Valitus hylätty
     backup_ready:
-      explanation: Pyysit täydellistä varmuuskopiota Mastodon-tilistäsi. Voit nyt ladata sen!
+      explanation: Olet pyytänyt täyden varmuuskopion Mastodon-tilistäsi.
+      extra: Se on nyt valmis ladattavaksi!
       subject: Arkisto on valmiina ladattavaksi
       title: Arkiston tallennus
+    failed_2fa:
+      details: 'Sisäänkirjautumispyrkimyksen yksityiskohtaiset tiedot:'
+      explanation: Joku on yrittänyt kirjautua tilillesi antaen väärän toisen todennustunnisteen.
+      further_actions_html: Jos se et ollut sinä, suosittelemme, että %{action} välittömästi, sillä se on saattanut vaarantua.
+      subject: Kaksivaiheisen todennuksen virhe
+      title: Kaksivaiheisen kirjautumisen toinen vaihe epäonnistui
     suspicious_sign_in:
       change_password: vaihda salasanasi
       details: 'Tässä on tiedot kirjautumisesta:'
@@ -1824,20 +1842,50 @@ fi:
         silence: Tiliä rajoitettu
         suspend: Tili jäädytetty
     welcome:
-      edit_profile_action: Määritä profiili
-      edit_profile_step: Voit mukauttaa profiiliasi muun muassa profiilikuvalla ja uudella näyttönimellä. Voit myös valita, haluatko tarkastaa ja hyväksyä uudet seuraajat itse.
+      apps_android_action: Hanki Google Playstä
+      apps_ios_action: Lataa App Storesta
+      apps_step: Lataa viralliset sovelluksemme.
+      apps_title: Mastodon-sovellukset
+      checklist_subtitle: 'Aloitetaan, sinä aloitat uudella sosiaalisella seudulla:'
+      checklist_title: Tervetuloa tarkistuslista
+      edit_profile_action: Mukauta
+      edit_profile_step: Täydentämällä profiilisi tietoja tehostat vaikutemaa.
+      edit_profile_title: Mukauta profiiliasi
       explanation: Näillä vinkeillä pääset alkuun
-      final_action: Ala julkaista
-      final_step: 'Ala julkaista! Vaikkei sinulla olisi seuraajia, voivat muut nähdä julkisia julkaisujasi esimerkiksi paikallisella aikajanalla tai aihetunnisteissa. Kannattaa myös esitellä itsensä aihetunnisteella #esittely.'
-      full_handle: Koko käyttäjätunnuksesi
-      full_handle_hint: Kerro tämä kavereillesi, niin he voivat lähettää sinulle viestejä tai seurata sinua toiselta palvelimelta.
+      feature_action: Lue lisää
+      feature_audience: Mastodon tarjoaa sinulle ainutlaatuisen mahdollisuuden hallita yleisöäsi ilman välikäsiä. Omassa infrastruktuurissasi käytössä oleva Mastodon antaa sinulle mahdollisuuden seurata ja tulla seuratuksi miltä tahansa muulta verkon Mastodon-palvelimelta, ja se on vain sinun hallinnassasi.
+      feature_audience_title: Rakenna yleisöäsi luottavaisin mielin
+      feature_control: Tiedät itse parhaiten, mitä haluat nähdä kotisyötteessäsi. Ei algoritmeja eikä mainoksia tuhlaamassa aikaasi. Seuraa yhdellä tilillä ketä tahansa, miltä tahansa Mastodon-palvelimelta, vastaanota heidän julkaisunsa aikajärjestyksessä ja tee omasta internetin nurkastasi hieman enemmän omanlaisesi.
+      feature_control_title: Pidä aikajanasi hallussasi
+      feature_creativity: Mastodon tukee ääni-, video- ja kuvajulkaisuja, saavutettavuuskuvauksia, äänestyksiä, sisältövaroituksia, animoituja avattaria, mukautettuja emojeita, pikkukuvien rajauksen hallintaa ja paljon muuta, mikä auttaa ilmaisemaan itseäsi verkossa. Julkaisetpa sitten taidetta, musiikkia tai podcastia, Mastodon on sinua varten.
+      feature_creativity_title: Luovuutta vertaansa vailla
+      feature_moderation: Mastodon palauttaa päätöksenteon käsiisi. Jokainen palvelin luo omat sääntönsä ja määräyksensä, joita valvotaan paikallisesti eikä ylhäältä alas kuten kaupallisessa sosiaalisessa mediassa, mikä tekee siitä joustavimman vastaamaan eri ihmisryhmien tarpeisiin. Liity palvelimelle, jonka säännöt sopivat sinulle, tai ylläpidä omaa palvelinta.
+      feature_moderation_title: Moderointi niin kuin kuuluukin
+      follow_action: Seuraa
+      follow_step: Mastodonissa on kyse kiinnostavien ihmisten seuraamisesta.
+      follow_title: Mukauta kotisyötettäsi
+      follows_subtitle: Seuraa tunnettuja tilejä
+      follows_title: Ehdotuksia seurattavaksi
+      follows_view_more: Näytä lisää seurattavia henkilöitä
+      hashtags_recent_count: "%{people} henkilöä viimeisenä %{days} päivänä"
+      hashtags_subtitle: Tutki, mikä on ollut suosittua viimeisenä 2 päivänä
+      hashtags_title: Suositut aihetunnisteet
+      hashtags_view_more: Näytä lisää suosittuja aihetunnisteita
+      post_action: Kirjoita
+      post_step: Tervehdi maailmaa sanoin, kuvin, videoin ja äänestyksin.
+      post_title: Tee ensimmäinen julkaisusi
+      share_action: Jaa
+      share_step: Kerro ystävillesi, kuinka sinut voi löytää Mastodonista.
+      share_title: Jaa Mastodon-profiilisi
+      sign_in_action: Kirjaudu sisään
       subject: Tervetuloa Mastodoniin
       title: Tervetuloa mukaan, %{name}!
   users:
     follow_limit_reached: Et voi seurata yli %{limit} henkilöä
     go_to_sso_account_settings: Avaa identiteettitarjoajasi tiliasetukset
     invalid_otp_token: Virheellinen kaksivaiheisen todentamisen koodi
-    otp_lost_help_html: Jos sinulla ei ole pääsyä kumpaankaan, voit ottaa yhteyttä osoitteeseen %{email}
+    otp_lost_help_html: Jos sinulla ei ole pääsyä kumpaankaan, voit ottaa yhteyden osoitteeseen %{email}
+    rate_limited: Liian monta todennusyritystä – yritä uudelleen myöhemmin.
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
     signed_in_as: 'Kirjautunut tilillä:'
   verification:

@@ -29,30 +29,33 @@ class Report < ApplicationRecord
   rate_limit by: :account, family: :reports
 
   belongs_to :account
-  belongs_to :target_account, class_name: 'Account'
-  belongs_to :action_taken_by_account, class_name: 'Account', optional: true
-  belongs_to :assigned_account, class_name: 'Account', optional: true
+
+  with_options class_name: 'Account' do
+    belongs_to :target_account
+    belongs_to :action_taken_by_account, optional: true
+    belongs_to :assigned_account, optional: true
+  end
 
   has_many :notes, class_name: 'ReportNote', inverse_of: :report, dependent: :destroy
   has_many :notifications, as: :activity, dependent: :destroy
 
   scope :unresolved, -> { where(action_taken_at: nil) }
   scope :resolved,   -> { where.not(action_taken_at: nil) }
-  scope :with_accounts, -> { includes([:account, :target_account, :action_taken_by_account, :assigned_account].index_with({ user: [:invite_request, :invite] })) }
+  scope :with_accounts, -> { includes([:account, :target_account, :action_taken_by_account, :assigned_account].index_with([:account_stat, { user: [:invite_request, :invite, :ips] }])) }
 
   # A report is considered local if the reporter is local
   delegate :local?, to: :account
 
   validates :comment, length: { maximum: 1_000 }, if: :local?
-  validates :rule_ids, absence: true, unless: :violation?
+  validates :rule_ids, absence: true, if: -> { (category_changed? || rule_ids_changed?) && !violation? }
 
-  validate :validate_rule_ids
+  validate :validate_rule_ids, if: -> { (category_changed? || rule_ids_changed?) && violation? }
 
   # entries here need to be kept in sync with the front-end:
   # - app/javascript/mastodon/features/notifications/components/report.jsx
   # - app/javascript/mastodon/features/report/category.jsx
   # - app/javascript/mastodon/components/admin/ReportReasonSelector.jsx
-  enum category: {
+  enum :category, {
     other: 0,
     spam: 1_000,
     legal: 1_500,
@@ -131,25 +134,25 @@ class Report < ApplicationRecord
       Admin::ActionLog.where(
         target_type: 'Report',
         target_id: id
-      ).unscope(:order).arel,
+      ).arel,
 
       Admin::ActionLog.where(
         target_type: 'Account',
         target_id: target_account_id
-      ).unscope(:order).arel,
+      ).arel,
 
       Admin::ActionLog.where(
         target_type: 'Status',
         target_id: status_ids
-      ).unscope(:order).arel,
+      ).arel,
 
       Admin::ActionLog.where(
         target_type: 'AccountWarning',
         target_id: AccountWarning.where(report_id: id).select(:id)
-      ).unscope(:order).arel,
+      ).arel,
     ].reduce { |union, query| Arel::Nodes::UnionAll.new(union, query) }
 
-    Admin::ActionLog.from(Arel::Nodes::As.new(subquery, Admin::ActionLog.arel_table))
+    Admin::ActionLog.latest.from(Arel::Nodes::As.new(subquery, Admin::ActionLog.arel_table))
   end
 
   private
@@ -159,8 +162,6 @@ class Report < ApplicationRecord
   end
 
   def validate_rule_ids
-    return unless violation?
-
     errors.add(:rule_ids, I18n.t('reports.errors.invalid_rules')) unless rules.size == rule_ids&.size
   end
 

@@ -39,14 +39,14 @@ cy:
         text: Dim ond unwaith y gallwch apelio yn erbyn rhybudd
       defaults:
         autofollow: Bydd pobl sy'n cofrestru drwy'r gwahoddiad yn eich dilyn yn awtomatig
-        avatar: PNG, GIF neu JPG. %{size} yn uchafswm. Bydd yn cael ei israddio i %{dimensions}px
+        avatar: WEBP, PNG, GIF neu JPG. %{size} ar y mwyaf. Bydd yn cael ei leihau i %{dimensions}px
         bot: Mae'r cyfrif hwn yn perfformio gweithredoedd awtomatig yn bennaf ac mae'n bosib nad yw'n cael ei fonitro
         context: Un neu fwy cyd-destun lle dylai'r hidlydd weithio
         current_password: At ddibenion diogelwch, nodwch gyfrinair y cyfrif cyfredol
         current_username: I gadarnhau, nodwch enw defnyddiwr y cyfrif cyfredol
         digest: Ond yn cael eu hanfon ar ôl cyfnod hir o anweithgarwch ac ond os ydych wedi derbyn unrhyw negeseuon personol yn eich absenoldeb
         email: Byddwch yn derbyn e-bost cadarnhau
-        header: PNG, GIF neu JPG. %{size} ar y mwyaf. Bydd yn cael ei israddio i %{dimensions}px
+        header: WEBP, PNG, GIF neu JPG. %{size} ar y mwyaf. Bydd yn cael ei leihau i %{dimensions}px
         inbox_url: Copïwch yr URL o dudalen flaen y relái yr ydych am ei ddefnyddio
         irreversible: Bydd postiadau wedi'u hidlo'n diflannu'n ddiwrthdro, hyd yn oed os caiff yr hidlydd ei dynnu'n ddiweddarach
         locale: Iaith y rhyngwyneb, e-byst a hysbysiadau gwthiadwy
@@ -116,6 +116,7 @@ cy:
           sign_up_requires_approval: Bydd angen eich cymeradwyaeth ar gyfer cofrestriadau newydd
         severity: Dewiswch beth fydd yn digwydd gyda cheisiadau o'r IP hwn
       rule:
+        hint: Dewisol. Darparwch ragor o fanylion am y rheol
         text: Disgrifiwch reol neu ofyniad ar gyfer defnyddwyr ar y gweinydd hwn. Ceisiwch ei gadw'n fyr ac yn syml
       sessions:
         otp: 'Mewnbynnwch y cod dau gam a gynhyrchwyd gan eich ap ffôn neu defnyddiwch un o''ch codau adfer:'
@@ -299,6 +300,7 @@ cy:
           patch: Rhoi gwybod am ddiweddariadau trwsio byg
         trending_tag: Mae pwnc llosg newydd angen adolygiad
       rule:
+        hint: Gwybodaeth ychwanegol
         text: Rheol
       settings:
         indexable: Cynnwys tudalen proffil mewn peiriannau chwilio

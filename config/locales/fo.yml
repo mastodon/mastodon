@@ -425,6 +425,7 @@ fo:
       view: Vís navnaøkisblokering
     email_domain_blocks:
       add_new: Stovna
+      allow_registrations_with_approval: Loyv skrásetingum við góðkenning
       attempts_over_week:
         one: "%{count} roynd seinastu vikuna"
         other: "%{count} tilmeldingarroyndir seinastu vikuna"
@@ -611,6 +612,7 @@ fo:
       created_at: Meldað
       delete_and_resolve: Strika postar
       forwarded: Víðarisent
+      forwarded_replies_explanation: Hendan fráboðanin er frá einum fjarbrúkara og er viðvíkjandi tilfari á einum fjarum ambætara. Tað er sent til tín, tí fráboðaða innihaldið er í svari til ein av tínum brúkarum.
       forwarded_to: Víðarisent til %{domain}
       mark_as_resolved: Marka sum loyst
       mark_as_sensitive: Merkt sum viðkvæmt
@@ -765,6 +767,7 @@ fo:
         disabled: Til ongan
         users: Fyri lokalum brúkarum, sum eru ritaðir inn
       registrations:
+        moderation_recommandation: Vinarliga tryggja tær, at tú hevur eitt nøktandi og klárt umsjónartoymi, áðreen tú letur upp fyri skrásetingum frá øllum!
         preamble: Stýr, hvør kann stovna eina kontu á tínum ambætara.
         title: Skrásetingar
       registrations_mode:
@@ -772,6 +775,7 @@ fo:
           approved: Góðkenning kravd fyri tilmelding
           none: Eingin kann tilmelda seg
           open: Øll kunnu tilmelda seg
+        warning_hint: Vit mæla til at brúka "Góðkenning kravd fyri tilmelding" uttan so at tú er fullvís/ur í, at umsjónartoymið hjá tær kann handfara ruskpost og óndsinnaðar skrásetingar so hvørt.
       security:
         authorized_fetch: Krev samgildi frá sameindum ambætarum
         authorized_fetch_hint: At krevja samgildi frá sameindum ambætarum ger strangari útinning av blokkum bæði á brúkara- og ambætara-stigi møguliga. Tó so, kostnaðurin er ein avriksstraffur, minkar um hvussu langt svarini hjá tær røkka og kann viðføra sambæristruplleikar við summar sameindar tænastur. Harafturat forðar hetta ikki teimum, ið miðvíst leggja seg eftir at heinta tínar almennu postar og kontur.
@@ -964,6 +968,9 @@ fo:
       title: Webhooks/vevhúkar
       webhook: Webhook/vevhúkur
   admin_mailer:
+    auto_close_registrations:
+      body: Vegna avmarkað virksemi hjá umsjónarfólki eru skrásetingar á %{instance} broyttar sjálvvirkandi til at krevja manuella eftirkanning fyri at forða at %{instance} verður brúktur sum ein pallur fyri ringar aktørar. Tú kanst skifta aftur til opnar skrásetingar tá tú vilt.
+      subject: Skrásetingar á %{instance} eru sjálvvirkandi broyttar soleiðis at tær krevja váttan
     new_appeal:
       actions:
         delete_statuses: at strika teirra postar
@@ -996,8 +1003,6 @@ fo:
       new_trending_statuses:
         title: Vælumtóktir postar
       new_trending_tags:
-        no_approved_tags: Í løtuni eru eingi góðkend vælumtókt frámerki.
-        requirements: 'Einhvør av hesum kandidatum kunnu fara framum #%{rank} góðkenda vælumtókta frámerki, sum í løtuni er #%{lowest_tag_name} við stigatali %{lowest_tag_score}.'
         title: Vælumtókt frámerki
       subject: Nýggj rák til gjøgnumgongd á %{instance}
   aliases:
@@ -1368,6 +1373,7 @@ fo:
       '86400': 1 dag
     expires_in_prompt: Ongantíð
     generate: Ger innbjóðingarleinki
+    invalid: Henda innbjóðing er ikki gildug
     invited_by: 'Tú var bjóðað/ur av:'
     max_uses:
       one: 1 brúk
@@ -1489,7 +1495,6 @@ fo:
     administration_emails: Fráboðanir um teldupost til umsitarar
     email_events: Hendingar fyri teldupostfráboðanir
     email_events_hint: 'Vel hendingar, sum tú vil hava fráboðanir um:'
-    other_settings: Aðrar fráboðanarstillingar
   number:
     human:
       decimal_units:
@@ -1545,6 +1550,9 @@ fo:
     errors:
       limit_reached: Mark fyri ymisk aftursvar rokkið
       unrecognized_emoji: er ikki eitt kenslutekn, sum kennist aftur
+  redirects:
+    prompt: Um tú lítir á hetta leinkið, so kanst tú klikkja á tað fyri at halda fram.
+    title: Tú fer burtur úr %{instance}.
   relationships:
     activity: Kontuvirksemi
     confirm_follow_selected_followers: Vil tú veruliga fylgja valdu fylgjarunum?
@@ -1607,6 +1615,7 @@ fo:
       unknown_browser: Ókendur kagi
       weibo: Weibo
     current_session: Verandi seta
+    date: Dagfesting
     description: "%{browser} á %{platform}"
     explanation: Hetta eru vevkagarnir, sum í løtuni eru ritaðir inn á tína Mastodon kontu.
     ip: IP
@@ -1773,18 +1782,27 @@ fo:
     webauthn: Trygdarlyklar
   user_mailer:
     appeal_approved:
-      action: Far til kontu tína
+      action: Kontustillingar
       explanation: Kæran um atsóknina móti kontu tínari %{strike_date}, sum tú sendi inn %{appeal_date}, er góðkend. Konta tín er aftur tignarlig.
       subject: Kæra tín frá %{date} er góðkend
+      subtitle: Kontan hjá tær er aftur í góðari støðu.
       title: Kæra góðkend
     appeal_rejected:
       explanation: Kæran um atsóknina móti kontu tínari %{strike_date}, sum tú sendi inn %{appeal_date}, er vrakað.
       subject: Kæra tín frá %{date} er vrakað
+      subtitle: Kæra tín er vrakað.
       title: Kæra vrakað
     backup_ready:
-      explanation: Tú bað um eitt fult trygdaravrit av tíni Mastodon kontu. Tað er nú klárt at taka niður!
+      explanation: Tú hevur biðið um eitt fult trygdaravrit av Mastodon-kontuni hjá tær.
+      extra: Tað er nú klárt at taka niður!
       subject: Savnið hjá tær er tøkt at taka niður
       title: Tak savn niður
+    failed_2fa:
+      details: 'Her eru smálutirnir í innritanarroyndini:'
+      explanation: Onkur hevur roynt at rita inn á tína kontu, men gav eitt ógildugt seinna samgildi.
+      further_actions_html: Um hetta ikki var tú, so skjóta vit upp, at tú %{action} beinan vegin, tí tað kann vera sett í vanda.
+      subject: Seinna samgildi miseydnaðist
+      title: Miseydnað seinna samgildi
     suspicious_sign_in:
       change_password: broyt loyniorðið hjá tær
       details: 'Her eru smálutirnir í innritanini:'
@@ -1824,13 +1842,42 @@ fo:
         silence: Kontoin er avmarkað
         suspend: Konta ógildað
     welcome:
-      edit_profile_action: Set upp vanga
-      edit_profile_step: Tú kanst tillaga vanga tín við at leggja eina vangamynd inn, broyta vísta navnið hjá tær og meira. Tú kanst velja at eftirkanna nýggjar fylgjarar, áðrenn teir sleppa at fylgja tær.
+      apps_android_action: Fá hana á Google Play
+      apps_ios_action: Tak niður á App Store
+      apps_step: Tak okkara almennu appir niður.
+      apps_title: Mastodon appir
+      checklist_subtitle: 'Kom í gongd á hesum nýggja miðli:'
+      checklist_title: Vælkomukekklisti
+      edit_profile_action: Ger persónligt
+      edit_profile_step: Stimbra títt samvirkni við einum fullfíggjaðum vanga.
+      edit_profile_title: Ger vangan hjá tær persónligan
       explanation: Her eru nøkur ráð so tú kann koma gott ígongd
-      final_action: Byrja at posta
-      final_step: 'Byrja at posta! Sjálvt uttan fylgjarar, so kunnu tínir almennu postar vera sæddir av øðrum, til dømis á lokalu tíðarlinjuni ella í frámerkjum. Kanska vilt tú greiða frá um teg sjálva/n við frámerkinum #introductions.'
-      full_handle: Fulla brúkaranavn títt
-      full_handle_hint: Hetta er tað, sum tú fortelur vinum tínum, soleiðis at tey kunnu senda tær boð ella fylgja tær frá einum øðrum ambætara.
+      feature_action: Lær meira
+      feature_audience: Mastodon gevur við ein einastandandi høvi at stýra tínar áskoðarar uttan millumfólk. Mastodon á tínum egnu ambætarum gevur tær høvi at fylgja og at blíva fylgd ella fylgdur frá einum og hvørjum Mastodon ambætara á netinum og er bert undir tínum ræði.
+      feature_audience_title: Uppbygg tína áskoðarafjøld í treysti
+      feature_control: Tú veitst best, hvat tú vilt síggja á tíni heimarás. Ongar algoritmur ella lýsingar at oyðsla tíðina hjá tær við. Fylg hvønn tú vilt á øllum Mastodon ambætarum umvegis eina kontu og móttak teirra postar í tíðarrað, og ger tín part av internetinum eitt sindur meira sum teg.
+      feature_control_title: Varðveit ræði á tíni egnu tíðarrás
+      feature_creativity: Mastodon hevur postar við ljóði, video og myndum, atkomulýsingar, spurnarkanningar, innihaldsávarðingar, livandi avatarar, sergjørd kenslutekn, klipping av smámyndum og annað, sum hjálpir tær at bera teg fram á netinum. Sama um tú útgevur list, tónleik ella poddvarp, Mastodon er har fyri teg.
+      feature_creativity_title: Makaleys skapan
+      feature_moderation: Mastodon leggur avgerðirnar aftur í tínar hendur. Hvør ambætari hevur sínar egnu reglur og fyriskipanir, sum vera útinnaðar lokalt og ikki frá í erva og niðureftir sum sosialir miðlar hjá stórfyritøkum. Hetta ger tað til tað smidliga at svara tørvinum hjá ymsum bólkum av fólki. Luttak á einum ambætara við reglum, sum tú er samd ella samdur við, ella hýs tín egna ambætara.
+      feature_moderation_title: Umsjón, sum hon eigur at vera
+      follow_action: Fylg
+      follow_step: At fylgja áhugaverdum fólki er tað, sum Mastodon snýr seg um.
+      follow_title: Ger tína heimarás persónliga
+      follows_subtitle: Fylg vælkendar kontur
+      follows_title: Hvørji tú átti at fylgt
+      follows_view_more: Sí fleiri fólk at fylgja
+      hashtags_recent_count: "%{people} fólk seinastu %{days} dagarnar"
+      hashtags_subtitle: Kanna rákið seinastu 2 dagarnar
+      hashtags_title: Vælumtókt frámerki
+      hashtags_view_more: Sí fleiri vælumtókt frámerki
+      post_action: Skriva
+      post_step: Sig hey við verðina við teksti, myndum, video ella spurnarkanningum.
+      post_title: Stovna tín fyrsta post
+      share_action: Deil
+      share_step: Lat vinir tínar vita, hvussu tey finna teg á Mastodon.
+      share_title: Deil tín Mastodon vanga
+      sign_in_action: Rita inn
       subject: Vælkomin til Mastodon
       title: Vælkomin umborð, %{name}!
   users:
@@ -1838,6 +1885,7 @@ fo:
     go_to_sso_account_settings: Far til kontustillingarnar hjá samleikaveitaranum hjá tær
     invalid_otp_token: Ógyldug tvey-stigs koda
     otp_lost_help_html: Hevur tú mist atgongd til bæði, so kanst tú koma í samband við %{email}
+    rate_limited: Ov nógvar samgildisroyndir, royn aftur seinni.
     seamless_external_login: Tú er ritað/ur inn umvegis eina uttanhýsis tænastu, so loyniorð og teldupoststillingar eru ikki tøkar.
     signed_in_as: 'Ritað/ur inn sum:'
   verification:

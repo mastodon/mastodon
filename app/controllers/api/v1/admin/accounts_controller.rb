@@ -137,12 +137,8 @@ class Api::V1::Admin::AccountsController < Api::BaseController
     api_v1_admin_accounts_url(pagination_params(min_id: pagination_since_id)) unless @accounts.empty?
   end
 
-  def pagination_max_id
-    @accounts.last.id
-  end
-
-  def pagination_since_id
-    @accounts.first.id
+  def pagination_collection
+    @accounts
   end
 
   def records_continue?

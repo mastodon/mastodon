@@ -91,6 +91,14 @@ module ApplicationHelper
     end
   end
 
+  def html_title
+    safe_join(
+      [content_for(:page_title).to_s.chomp, title]
+      .select(&:present?),
+      ' - '
+    )
+  end
+
   def title
     Rails.env.production? ? site_title : "#{site_title} (Dev)"
   end
@@ -102,11 +110,11 @@ module ApplicationHelper
   def can?(action, record)
     return false if record.nil?
 
-    policy(record).public_send("#{action}?")
+    policy(record).public_send(:"#{action}?")
   end
 
   def fa_icon(icon, attributes = {})
-    class_names = attributes[:class]&.split(' ') || []
+    class_names = attributes[:class]&.split || []
     class_names << 'fa'
     class_names += icon.split.map { |cl| "fa-#{cl}" }
 
@@ -205,7 +213,7 @@ module ApplicationHelper
       state_params[:moved_to_account] = current_account.moved_to_account
     end
 
-    state_params[:owner] = Account.local.without_suspended.where('id > 0').first if single_user_mode?
+    state_params[:owner] = Account.local.without_suspended.without_internal.first if single_user_mode?
 
     json = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(state_params), serializer: InitialStateSerializer).to_json
     # rubocop:disable Rails/OutputSafety

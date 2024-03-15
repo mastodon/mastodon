@@ -439,6 +439,7 @@ sl:
       view: Pokaži domenski blok
     email_domain_blocks:
       add_new: Dodaj novo
+      allow_registrations_with_approval: Dovoli registracije z odobritvijo
       attempts_over_week:
         few: "%{count} poskusi prijave zadnji teden"
         one: "%{count} poskus prijave zadnji teden"
@@ -635,6 +636,7 @@ sl:
       created_at: Prijavljeno
       delete_and_resolve: Izbriši objave
       forwarded: Posredovano
+      forwarded_replies_explanation: To poročilo je od oddaljenega uporabnika in se nanaša na oddaljeno vsebino. Posredovano vam je bilo, ker je vsebina, o kateri poroča, odgovor enemu od vaših uporabnikov.
       forwarded_to: Posredovano na %{domain}
       mark_as_resolved: Označi kot rešeno
       mark_as_sensitive: Označi, kot občutljivo
@@ -793,6 +795,7 @@ sl:
         disabled: Nikomur
         users: Prijavljenim krajevnim uporabnikom
       registrations:
+        moderation_recommandation: Preden prijave odprete za vse poskrbite, da imate v ekipi moderatorjev zadosti aktivnih članov.
         preamble: Nadzirajte, kdo lahko ustvari račun na vašem strežniku.
         title: Registracije
       registrations_mode:
@@ -800,6 +803,7 @@ sl:
           approved: Potrebna je odobritev za prijavo
           none: Nihče se ne more prijaviti
           open: Vsakdo se lahko prijavi
+        warning_hint: Priporočamo uporabo možnosti »Potrebna je odobritev za prijavo«, razen če ste gotovi, da se bo vaša ekipa moderatorjev res zmožna hitro odzvati na neželene vsebine in škodoželjne prijave.
       security:
         authorized_fetch: Od drugih strežnikov v federaciji zahtevaj overitev pristnosti
         authorized_fetch_hint: Zahtevanje overitve pristnosti od drugih strežnikov v federaciji omogoči strožje uveljavljanje uporabniških in strežniških blokad. Vendar je cena za to počasnejše delovanje, zmanjšanje dosega vaših odgovorov in morebitne težave z združljivostjo z nekaterimi storitvami v federaciji. Poleg tega to odločenim akterjem ne bo preprečilo pridobivanja vaših javnih objav in računov.
@@ -1000,6 +1004,9 @@ sl:
       title: Spletne zanke
       webhook: Spletna zanka
   admin_mailer:
+    auto_close_registrations:
+      body: Zaradi pomanjkanja moderiranja v zadnjem času, se je za strežnik %{instance} samodejno vklopilo ročno preverjanje in potrjevanje prijav. S tem se prepreči morebitno zlorabo strežnika %{instance}. Prijave lahko kadarkoli spet spremenite nazaj v odprte.
+      subject: Za strežnik %{instance} se je samodejno vklopilo ročno potrjevanje prijav
     new_appeal:
       actions:
         delete_statuses: brisanje njihovih objav,
@@ -1032,8 +1039,6 @@ sl:
       new_trending_statuses:
         title: Trendne objave
       new_trending_tags:
-        no_approved_tags: Trenutno ni odobrenih ključnikov v trendu.
-        requirements: Vsak od teh kandidatov bi lahko presegel odobreni ključnik v trendu št. %{rank}, ki je trenutno %{lowest_tag_name} z rezultatom %{lowest_tag_score}.
         title: Ključniki v trendu
       subject: Novi trendi za pregled na %{instance}
   aliases:
@@ -1418,6 +1423,7 @@ sl:
       '86400': 1 dan
     expires_in_prompt: Nikoli
     generate: Ustvari
+    invalid: To povabilo ni veljavno
     invited_by: 'Povabil/a vas je:'
     max_uses:
       few: "%{count} uporabe"
@@ -1541,7 +1547,6 @@ sl:
     administration_emails: E-poštna obvestila skrbnika
     email_events: Dogodki za e-obvestila
     email_events_hint: 'Izberite dogodke, za katere želite prejmati obvestila:'
-    other_settings: Druge nastavitve obvestil
   number:
     human:
       decimal_units:
@@ -1597,6 +1602,9 @@ sl:
     errors:
       limit_reached: Dosežena omejitev različnih reakcij/odzivov
       unrecognized_emoji: ni prepoznan emotikon
+  redirects:
+    prompt: Če zaupate tej povezavi, jo kliknite za nadaljevanje.
+    title: Zapuščate %{instance}.
   relationships:
     activity: Dejavnost računa
     confirm_follow_selected_followers: Ali ste prepričani, da želite slediti izbranim sledilcem?
@@ -1659,6 +1667,7 @@ sl:
       unknown_browser: Neznan brskalnik
       weibo: Weibo
     current_session: Trenutna seja
+    date: Datum
     description: "%{browser} na %{platform}"
     explanation: To so spletni brskalniki, ki so trenutno prijavljeni v vaš Mastodon račun.
     ip: IP
@@ -1837,18 +1846,27 @@ sl:
     webauthn: Varnostni ključi
   user_mailer:
     appeal_approved:
-      action: Pojdite na svoj račun
+      action: Nastavitve računa
       explanation: Pritožbi na ukrep proti vašemu računu z dne %{strike_date}, ki ste jo oddali dne %{appeal_date}, je bilo ugodeno. Vaš račun je znova nesporen.
       subject: Vaši pritožbi z dne %{date} je bilo ugodeno
+      subtitle: Vaš račun je znova na dobrem glasu.
       title: Pritožbi ugodeno
     appeal_rejected:
       explanation: Pritožba na ukrep proti vašemu računu z dne %{strike_date}, ki ste jo oddali dne %{appeal_date}, je bila zavrnjena.
       subject: Vaša pritožba z dne %{date} je bila zavrnjena
+      subtitle: Vaša pritožba je bila zavržena.
       title: Pritožba zavrnjena
     backup_ready:
-      explanation: Zahtevali ste popolno varnostno kopijo računa Mastodon. Zdaj je pripravljen za prenos!
+      explanation: Zahtevali ste polno varnostno kopijo svojega računa Mastodon.
+      extra: Zdaj je na voljo za prenos!
       subject: Vaš arhiv je pripravljen za prenos
       title: Prevzem arhiva
+    failed_2fa:
+      details: 'Tukaj so podrobnosti poskusa prijave:'
+      explanation: Nekdo se je poskusil prijaviti v vaš račun, vendar ni podal veljavnega drugega faktorja preverjanja pristnosti.
+      further_actions_html: Če to niste bili vi, priporočamo, da takoj %{action}, ker je lahko ogrožena varnost.
+      subject: Napaka preverjanja pristnosti z drugim faktorjem
+      title: Preverjanje pristnosti z drugim faktorjem je spodletelo
     suspicious_sign_in:
       change_password: spremenite svoje geslo
       details: 'Tukaj so podrobnosti prijave:'
@@ -1888,13 +1906,42 @@ sl:
         silence: Račun je omejen
         suspend: Račun je suspendiran
     welcome:
-      edit_profile_action: Nastavitve profila
-      edit_profile_step: Profil lahko prilagodite tako, da naložite sliko profila, spremenite pojavno ime in drugo. Lahko izberete, da želite pregledati nove sledilce, preden jim dovolite sledenje.
+      apps_android_action: Na voljo v Google Play
+      apps_ios_action: Prenesi iz trgovine App Store
+      apps_step: Prenesite naše uradne aplikacije.
+      apps_title: Programi za Mastodon
+      checklist_subtitle: 'Naj vas pripravimo na doživetja na tej novi družabni meji:'
+      checklist_title: Seznam dobrodošlice
+      edit_profile_action: Poosebite
+      edit_profile_step: Okrepite svoje interakcije z razumljivim profilom.
+      edit_profile_title: Prilagodite svoj profil
       explanation: Tu je nekaj nasvetov za začetek
-      final_action: Začnite objavljati
-      final_step: 'Začnite objavljati! Tudi brez sledilcev bodo vaše javne objave videli drugi, npr. na krajevni časovnici ali v ključnikih. Morda se želite predstaviti s ključnikom #introductions.'
-      full_handle: Vaša polna ročica
-      full_handle_hint: To bi povedali svojim prijateljem, da vam lahko pošljejo sporočila ali vam sledijo iz drugega strežnika.
+      feature_action: Več o tem
+      feature_audience: Mastodon zagotavlja enkratno možnost upravljanja s svojim občinstvom brez posrednika. Mastodon na lastni infrastrukturi omogoča sledenje drugih in drugim na in s poljubljnega povezanega strežnika Masodon in je zgolj pod vašim nadzorom.
+      feature_audience_title: Zaupno razvijajte svoje občinstvo
+      feature_control: Sami najbolje veste, kaj želite videti v svojem viru. Brez algoritmov ali oglasov, ki bi predstavljali izgubo vašega časa. Sledite komur koli prek poljubnega strežnika Mastodon na enem samem računu in prejmite njihove objave v kronološkem zaporedju ter ustvarite svoj kotiček interneta malce bolj po svoji meri in okusu.
+      feature_control_title: Ohranite nadzor nad svojo časovnico
+      feature_creativity: Mastodon podpira zvokovne, video in slikovne objave, opise za dostopnost, ankete, opozorila za vsebino, animirane avatarje, čustvenčke po meri, nadzor na obrezavo oglednih sličic in še veliko drugega. Tako se lahko povsem izrazite na spletu. Najsi želite objaviti svoja likovna dela, glasbo ali podkast, Mastodon vam stoji ob strani.
+      feature_creativity_title: Edinstvena ustvarjalnost
+      feature_moderation: Mastodon vrača odločanje v vaše roke. Vsak strežnik ustvari lastna pravila in predpise, ki se uveljavljajo krajevno in ne od zgoraj navzdol, kot to velja za korporacijske družabne medije. Zato je kar se da prilagodljiv pri odzivanju na potrebe različnih skupin ljudi. Pridružite se strežniku s pravili, s katerimi se strinjate, ali gostite lastnega.
+      feature_moderation_title: Moderiranje, kot bi moralo biti
+      follow_action: Sledite
+      follow_step: Sledenje zanimivim osebam je bistvo Mastodona.
+      follow_title: Poosebite svoj domači vir
+      follows_subtitle: Sledite dobro znanim računom
+      follows_title: Komu slediti
+      follows_view_more: Pokaži več oseb za sledenje
+      hashtags_recent_count: "%{people} oseb v zadnjih %{days} dneh"
+      hashtags_subtitle: Raziščite, kaj je v trendu zadnja dva dni
+      hashtags_title: Ključniki v trendu
+      hashtags_view_more: Pokaži več ključnikov v trendu
+      post_action: Sestavi
+      post_step: Pozdravite cel svet z besedilom, fotografijami, videoposnetki ali anketami.
+      post_title: Ustvarite svojo prvo objavo
+      share_action: Delite
+      share_step: Naj prijatelji izvejo, kako vas najdejo na Mastodonu.
+      share_title: Delite svoj profil Mastodon z drugimi
+      sign_in_action: Prijava
       subject: Dobrodošli na Mastodon
       title: Dobrodošli, %{name}!
   users:
@@ -1902,6 +1949,7 @@ sl:
     go_to_sso_account_settings: Pojdite na nastavitve svojega računa ponudnika identitete
     invalid_otp_token: Neveljavna dvofaktorska koda
     otp_lost_help_html: Če ste izgubili dostop do obeh, stopite v stik z %{email}
+    rate_limited: Preveč poskusov preverjanja pristnosti, poskusite kasneje.
     seamless_external_login: Prijavljeni ste prek zunanje storitve, tako da nastavitve gesla in e-pošte niso na voljo.
     signed_in_as: 'Vpisani kot:'
   verification:

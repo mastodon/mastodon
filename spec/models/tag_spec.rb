@@ -22,7 +22,7 @@ RSpec.describe Tag do
   end
 
   describe 'HASHTAG_RE' do
-    subject { Tag::HASHTAG_RE }
+    subject { described_class::HASHTAG_RE }
 
     it 'does not match URLs with anchors with non-hashtag characters' do
       expect(subject.match('Check this out https://medium.com/@alice/some-article#.abcdef123')).to be_nil
@@ -97,6 +97,38 @@ RSpec.describe Tag do
     it 'returns name' do
       tag = Fabricate(:tag, name: 'foo')
       expect(tag.to_param).to eq 'foo'
+    end
+  end
+
+  describe '.recently_used' do
+    let(:account) { Fabricate(:account) }
+    let(:other_person_status) { Fabricate(:status) }
+    let(:out_of_range) { Fabricate(:status, account: account) }
+    let(:older_in_range) { Fabricate(:status, account: account) }
+    let(:newer_in_range) { Fabricate(:status, account: account) }
+    let(:unused_tag) { Fabricate(:tag) }
+    let(:used_tag_one) { Fabricate(:tag) }
+    let(:used_tag_two) { Fabricate(:tag) }
+    let(:used_tag_on_out_of_range) { Fabricate(:tag) }
+
+    before do
+      stub_const 'Tag::RECENT_STATUS_LIMIT', 2
+
+      other_person_status.tags << used_tag_one
+
+      out_of_range.tags << used_tag_on_out_of_range
+
+      older_in_range.tags << used_tag_one
+      older_in_range.tags << used_tag_two
+
+      newer_in_range.tags << used_tag_one
+    end
+
+    it 'returns tags used by account within last X statuses ordered most used first' do
+      results = described_class.recently_used(account)
+
+      expect(results)
+        .to eq([used_tag_one, used_tag_two])
     end
   end
 

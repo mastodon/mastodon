@@ -10,7 +10,7 @@ tr:
     follow: Takip et
     followers:
       one: Takipçi
-      other: Takipçi
+      other: Takipçiler
     following: Takip ediliyor
     instance_actor_flash: Bu hesap, herhangi bir bireysel kullanıcı değil, sunucunun kendisini temsil etmek için kullanılan sanal bir aktördür. Birleştirme amacıyla kullanılmaktadır ve askıya alınmamalıdır.
     last_active: son etkinlik
@@ -425,6 +425,7 @@ tr:
       view: Alan adı bloğunu görüntüle
     email_domain_blocks:
       add_new: Yeni ekle
+      allow_registrations_with_approval: Onaylı kayıtlara izin ver
       attempts_over_week:
         one: Son haftada %{count} deneme
         other: Son haftada %{count} kayıt denemesi
@@ -611,6 +612,7 @@ tr:
       created_at: Şikayet edildi
       delete_and_resolve: Gönderileri sil
       forwarded: İletildi
+      forwarded_replies_explanation: Bu bildirim başka bir sunucudaki kullanıcı ve içerik ile ilgili. Bildirilen içerik kullanıcılarınızdan birine yanıt şeklinde olduğu için size yönlendirildi.
       forwarded_to: "%{domain}'e iletildi"
       mark_as_resolved: Giderildi olarak işaretle
       mark_as_sensitive: Hassas olarak işaretle
@@ -765,6 +767,7 @@ tr:
         disabled: Hiç kimseye
         users: Oturum açan yerel kullanıcılara
       registrations:
+        moderation_recommandation: Lütfen kayıtları herkese açmadan önce yeterli ve duyarlı bir denetleyici ekibine sahip olduğunuzdan emin olun!
         preamble: Sunucunuzda kimin hesap oluşturabileceğini denetleyin.
         title: Kayıtlar
       registrations_mode:
@@ -772,6 +775,7 @@ tr:
           approved: Kayıt için onay gerekli
           none: Hiç kimse kayıt olamaz
           open: Herkes kaydolabilir
+        warning_hint: Denetleyici ekibinizin istenmeyen ve kötü niyetli kayıtları ele alabilecekleri konusunda emin değilseniz "Kayıt için onay gerekli" seçeneğini kullanmanızı öneririz.
       security:
         authorized_fetch: Dağıtık sunuculardan kimlik doğrulama gerektir
         authorized_fetch_hint: Dağıtık sunuculardan kimlik doğrulaması istemek, hem kullanıcı düzeyinde hem de sunucu düzeyinde blokların daha sıkı bir şekilde uygulanmasını sağlar. Ancak bu performans kaybına sebep olur, yanıtlarınızın erişimini azaltır ve bazı dağıtık hizmetlerle uyumluluk sorunları ortaya çıkarabilir. Ayrıca bu, özel aktörlerin herkese açık gönderilerinizi ve hesaplarınızı getirilmesini engellemez.
@@ -964,6 +968,9 @@ tr:
       title: Web kancaları
       webhook: Web kancası
   admin_mailer:
+    auto_close_registrations:
+      body: Son zamanlardaki denetleyi faaliyeti eksikliğinden dolayı, %{instance} üzerindeki kayıtlar, %{instance} sunucusunun olası kötü aktörler tarafından bir platform olarak kullanımını engellemek için otomatik olarak elle onay gerektirecek şekilde değiştirilmiştir. İstediğiniz zaman açık kayıtlara çevirebilirsiniz.
+      subject: "%{instance} üzerindeki kayıtlar otomatik olarak onay gerektirecek şekilde değiştirilmiştir"
     new_appeal:
       actions:
         delete_statuses: gönderilerini silme
@@ -996,8 +1003,6 @@ tr:
       new_trending_statuses:
         title: Öne çıkan gönderiler
       new_trending_tags:
-        no_approved_tags: Şu anda onaylanmış öne çıkan etiket yok.
-        requirements: 'Aşağıdaki adaylardan herhangi biri, şu anda %{lowest_tag_score} skoruna sahip "%{lowest_tag_name}" olan #%{rank} onaylanmış öne çıkan etiketi geçebilir.'
         title: Öne çıkan etiketler
       subject: "%{instance}, inceleme bekleyen yeni öne çıkan öğelere sahip"
   aliases:
@@ -1201,8 +1206,8 @@ tr:
     '406': Bu sayfa istenen formatta mevcut değil.
     '410': Aradığınız sayfa artık yok.
     '422':
-      content: Güvenlik doğrulaması başarısız oldu. Site cookie'lerini engellemiş olabilirsiniz.
-      title: Güvenlik doğrulamasu başarısız
+      content: Güvenlik doğrulaması başarısız oldu. Site çerezlerini engellemiş olabilirmisiniz?
+      title: Güvenlik doğrulaması başarısız
     '429': Kısıtlandı
     '500':
       content: Üzgünüz, ancak bir şey ters gitti.
@@ -1243,15 +1248,15 @@ tr:
       add_keyword: Anahtar sözcük ekle
       keywords: Anahtar Sözcükler
       statuses: Tekil gönderiler
-      statuses_hint_html: Bu filtre, aşağıdaki anahtar kelimelerle eşleşip eşleşmediklerinden bağımsız olarak tekil gönderileri seçmek için uygulanıyor. <a href="%{path}">Filtredeki gönderileri inceleyin veya kaldırın</a>.
-      title: Filtreyi düzenle
+      statuses_hint_html: Bu süzgeçlere, aşağıdaki anahtar kelimelerle eşleşip eşleşmediklerinden bağımsız olarak tekil gönderileri seçmek için uygulanıyor. <a href="%{path}">Süzgeçlerdeki gönderileri inceleyin veya kaldırın</a>.
+      title: Süzgeci düzenle
     errors:
-      deprecated_api_multiple_keywords: Bu parametreler, birden fazla filtre anahtar sözcüğü için geçerli olduğundan dolayı bu uygulama içerisinden değiştirilemezler. Daha yeni bir uygulama veya web arayüzünü kullanın.
+      deprecated_api_multiple_keywords: Bu parametreler, birden fazla süzgeç anahtar sözcüğü için geçerli olduğundan dolayı bu uygulama içerisinden değiştirilemezler. Daha yeni bir uygulama veya web arayüzünü kullanın.
       invalid_context: Sıfır ya da geçersiz içerik sağlandı
     index:
       contexts: "%{contexts} içindeki filtreler"
       delete: Sil
-      empty: Hiç filtreniz yok.
+      empty: Hiç süzgeciniz yok.
       expires_in: "%{distance} sürede sona eriyor"
       expires_on: "%{date} tarihinde sona eriyor"
       keywords:
@@ -1263,17 +1268,17 @@ tr:
       statuses_long:
         one: "%{count} tekil gönderi gizli"
         other: "%{count} tekil gönderi gizli"
-      title: Filtreler
+      title: Süzgeçler
     new:
-      save: Yeni filtre kaydet
-      title: Yeni filtre ekle
+      save: Yeni süzgeç kaydet
+      title: Yeni süzgeç ekle
     statuses:
-      back_to_filter: Filtreye dön
+      back_to_filter: Süzgeçe dön
       batch:
-        remove: Filtreden kaldır
+        remove: Süzgeçden kaldır
       index:
-        hint: Bu filtre diğer ölçütlerden bağımsız olarak tekil gönderileri seçmek için uygulanıyor. Web arayüzünü kullanarak bu filtreye daha fazla gönderi ekleyebilirsiniz.
-        title: Filtrelenmiş gönderiler
+        hint: Bu süzgece diğer ölçütlerden bağımsız olarak tekil gönderileri seçmek için uygulanıyor. Web arayüzünü kullanarak bu süzgece daha fazla gönderi ekleyebilirsiniz.
+        title: Süzgeçlenmiş gönderiler
   generic:
     all: Tümü
     all_items_on_page_selected_html:
@@ -1368,6 +1373,7 @@ tr:
       '86400': 1 gün
     expires_in_prompt: Asla
     generate: Davet bağlantısı oluştur
+    invalid: Bu davet geçerli değil
     invited_by: 'Davet edildiniz:'
     max_uses:
       one: 1 kullanım
@@ -1479,8 +1485,8 @@ tr:
       subject: Anket %{name} tarafından sonlandırıldı
     reblog:
       body: "%{name} durumunuzu boostladı:"
-      subject: "%{name} durumunuzu boostladı"
-      title: Yeni boost
+      subject: "%{name} durumunuzu paylaştı"
+      title: Yeni paylaşım
     status:
       subject: "%{name} az önce gönderdi"
     update:
@@ -1489,7 +1495,6 @@ tr:
     administration_emails: Yönetici e-posta bildirimleri
     email_events: E-posta bildirimi gönderilecek etkinlikler
     email_events_hint: 'Bildirim almak istediğiniz olayları seçin:'
-    other_settings: Diğer bildirim ayarları
   number:
     human:
       decimal_units:
@@ -1543,8 +1548,11 @@ tr:
     title: Gizlilik Politikası
   reactions:
     errors:
-      limit_reached: Farklı reaksiyonların sınırına ulaşıldı
+      limit_reached: Farklı tepkilerin sınırına ulaşıldı
       unrecognized_emoji: tanınan bir emoji değil
+  redirects:
+    prompt: Eğer bu bağlantıya güveniyorsanız, tıklayıp devam edebilirsiniz.
+    title: "%{instance} sunucusundan ayrılıyorsunuz."
   relationships:
     activity: Hesap etkinliği
     confirm_follow_selected_followers: Seçili takipçileri takip etmek istediğinizden emin misiniz?
@@ -1607,6 +1615,7 @@ tr:
       unknown_browser: Bilinmeyen Tarayıcı
       weibo: Weibo
     current_session: Geçerli oturum
+    date: Tarih
     description: "%{platform} - %{browser}"
     explanation: Bunlar, Mastodon hesabınızda şu anda oturum açmış web tarayıcılarıdır.
     ip: IP
@@ -1658,17 +1667,17 @@ tr:
         other: "%{count} ses"
       description: 'Ekli: %{attached}'
       image:
-        one: "%{count} resim"
-        other: "%{count} resim"
+        one: "%{count} görsel"
+        other: "%{count} görseller"
       video:
         one: "%{count} video"
-        other: "%{count} video"
-    boosted_from_html: "%{acct_link} kişisinden boostladı"
+        other: "%{count} videolar"
+    boosted_from_html: "%{acct_link} kişisinden paylaştı"
     content_warning: 'İçerik uyarısı: %{warning}'
     default_language: Arayüz diliyle aynı
     disallowed_hashtags:
       one: 'izin verilmeyen bir etiket içeriyordu: %{tags}'
-      other: 'izin verilmeyen hashtag''leri içeriyordu: %{tags}'
+      other: 'izin verilmeyen etiketler içeriyordu: %{tags}'
     edited_at_html: "%{date} tarihinde düzenlendi"
     errors:
       in_reply_not_found: Yanıtlamaya çalıştığınız durum yok gibi görünüyor.
@@ -1678,14 +1687,14 @@ tr:
       direct: Sadece değinilen kullanıcıların görebileceği gönderiler üstte tutulamaz
       limit: Halihazırda maksimum sayıda gönderi sabitlediniz
       ownership: Başkasının gönderisi sabitlenemez
-      reblog: Bir boost sabitlenemez
+      reblog: Bir gönderi sabitlenemez
     poll:
       total_people:
         one: "%{count} kişi"
-        other: "%{count} kişi"
+        other: "%{count} kişiler"
       total_votes:
         one: "%{count} oy"
-        other: "%{count} oy"
+        other: "%{count} oylar"
       vote: Oy Ver
     show_more: Daha fazlasını göster
     show_newer: Yenileri göster
@@ -1751,7 +1760,7 @@ tr:
       default: "%d %b %Y %H:%M"
       month: "%b %Y"
       time: "%H:%M"
-      with_time_zone: "%d.%m.%Y %H:%M %Z"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
   translation:
     errors:
       quota_exceeded: Çeviri hizmetinin sunucu kapsamındaki kullanım kotası aşıldı.
@@ -1769,22 +1778,31 @@ tr:
     otp: Authenticator uygulaması
     recovery_codes: Kurtarma kodlarını yedekle
     recovery_codes_regenerated: Kurtarma kodları başarıyla yeniden oluşturuldu
-    recovery_instructions_html: 'Eğer telefonunuza erişiminizi kaybederseniz, aşağıdaki kurtarma kodlarından birini kullanarak hesabınıza giriş yapabilirsiniz. Kurtarma kodlarınızı güvenli halde tutunuz. Örneğin: kodların çıktısını alıp diğer önemli belgeleriniz ile birlikte saklayabilirsiniz.'
+    recovery_instructions_html: 'Eğer telefonunuza erişiminizi kaybederseniz, aşağıdaki kurtarma kodlarından birini kullanarak hesabınıza giriş yapabilirsiniz. <strong>Kurtarma kodlarınızı güvenli halde tutunuz.</strong> Örneğin: kodların çıktısını alıp diğer önemli belgeleriniz ile birlikte saklayabilirsiniz.'
     webauthn: Güvenlik anahtarları
   user_mailer:
     appeal_approved:
-      action: Hesabınıza gidin
+      action: Hesap Ayarları
       explanation: "%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız onaylandı. Hesabınız artık tekrar iyi durumda."
       subject: "%{date} tarihli itirazınız kabul edildi"
+      subtitle: Hesabınız yeniden iyi bir halde.
       title: İtiraz onaylandı
     appeal_rejected:
       explanation: "%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız reddedildi."
       subject: "%{date} tarihli itirazınız reddedildi"
+      subtitle: İtirazınız reddedildi.
       title: İtiraz reddedildi
     backup_ready:
-      explanation: Mastodon hesabınızın tam yedeğini istemiştiniz. Şimdi indirilebilir durumda!
+      explanation: Mastodon hesabınız tam bir yedeğini istediniz.
+      extra: Şimdi indirebilirsiniz!
       subject: Arşiviniz indirilmeye hazır
       title: Arşiv paketlemesi
+    failed_2fa:
+      details: 'İşte oturum açma girişiminin ayrıntıları:'
+      explanation: Birisi hesabınızda oturum açmaya çalıştı ancak hatalı bir iki aşamalı doğrulama kodu kullandı.
+      further_actions_html: Eğer bu kişi siz değilseniz, hemen %{action} yapmanızı öneriyoruz çünkü hesabınız ifşa olmuş olabilir.
+      subject: İki aşamalı doğrulama başarısızlığı
+      title: Başarısız iki aşamalı kimlik doğrulama
     suspicious_sign_in:
       change_password: parolanızı değiştirin
       details: 'Oturum açma ayrıntıları şöyledir:'
@@ -1824,13 +1842,42 @@ tr:
         silence: Hesap sınırlandırıldı
         suspend: Hesap askıya alındı
     welcome:
-      edit_profile_action: Profil kurulumu
-      edit_profile_step: Bir profil resmi yükleyerek, ekran adınızı değiştirerek ve daha fazlasını yaparak profilinizi kişiselleştirebilirsiniz. Sizi takip etmelerine izin verilmeden önce yeni takipçileri incelemeyi tercih edebilirsiniz.
+      apps_android_action: Google Play'den edinin
+      apps_ios_action: App Store'dan İndirin
+      apps_step: Resmi uygulamalarımızı indirin.
+      apps_title: Mastodon uygulamaları
+      checklist_subtitle: 'Bu yeni sosyal sınırda başlamanızı sağlar:'
+      checklist_title: Hoşgeldiniz Yapılacaklar Listesi
+      edit_profile_action: Kişiselleştir
+      edit_profile_step: Kapsamlı bir profille etkileşimlerinizi arttırın.
+      edit_profile_title: Profilinizi kişiselleştirin
       explanation: İşte sana başlangıç için birkaç ipucu
-      final_action: Gönderi yazmaya başlayın
-      final_step: 'Gönderi yazmaya başlayın! Takipçiler olmadan bile, herkese açık gönderileriniz başkaları tarafından görülebilir, örneğin yerel zaman tünelinde veya etiketlerde. Kendinizi #introductions etiketinde tanıtmak isteyebilirsiniz.'
-      full_handle: Tanıtıcınız
-      full_handle_hint: Arkadaşlarınıza, size başka bir sunucudan mesaj atabilmeleri veya sizi takip edebilmeleri için söyleyeceğiniz şey budur.
+      feature_action: Daha fazlası
+      feature_audience: Mastodon, hedef kitlenizi aracılar olmadan yönetmeniz için size eşsiz bir olanak sağlar. Kendi altyapınızda barındırdığınız Mastodon sunucusu, çevrimiçi olarak başka bir Mastodon sunucusundan takip etmenizi ve takip edilmenizi sağlar ve sizden başka kimsenin kontrolü altında değildir.
+      feature_audience_title: Kitlenizi güvenle oluşturun
+      feature_control: Ana akışınızda ne görmek istediğinizi en iyi siz biliyorsunuz. Algoritma veya zamanınızı harcayan reklamlar yok. Tek bir hesapla herhangi bir Mastodon sunucusunda olan bir kimseyi takip edin ve gönderilere zamana göre sıralanmış şekilde erişin. Kendi internet köşenizi biraz daha kendinize benzetin.
+      feature_control_title: Zaman akışınızın denetimi sizde kalsın
+      feature_creativity: Mastodon kendinizi çevrimiçi ifade edebilmenize yardımcı olmak için ses, video ve görsel, erişilebilirlik açıklamaları, anketler, içerik uyarıları, hareketli avatarlar, özel emojiler, önizleme resmini kesme denetimi ve daha fazlasını destekliyor. Kendi sanatınızı, müziğinizi veya podcastinizi yayınlıyorsanız Mastodon kullanımınıza açık.
+      feature_creativity_title: Benzersiz yaratıcılık
+      feature_moderation: Mastodon karar vermeyi yeniden size bırakıyor. Her sunucu kendi kurallarını ve düzenlemelerini oluşturur. Bu kurallar da kurumsal sosyal medyalar gibi tepeden değil, yerel olarak uygulanıyor; bu da Mastodon'u farklı insan gruplarının ihtiyaçlarına yanıt vermede esnek kılıyor. Kurallarına katıldığınız bir sunucuya katılın veya kendi sunucunuzu barındırın.
+      feature_moderation_title: Olması gerektiği gibi moderasyon
+      follow_action: Takip et
+      follow_step: Kendi akışınızı düzenliyorsunuz. Hadi onu ilginç kullanıcılarla dolduralım.
+      follow_title: Anasayfa akışınızı kişiselleştirin
+      follows_subtitle: Tanınmış hesapları takip edin
+      follows_title: Takip edebileceklerin
+      follows_view_more: Takip edecek daha fazla kişi görüntüleyin
+      hashtags_recent_count: "%{days} günde %{people} kişi"
+      hashtags_subtitle: Son 2 günde öne çıkanları keşfedin
+      hashtags_title: Öne çıkan etiketler
+      hashtags_view_more: Daha fazla öne çıkan etiket görüntüleyin
+      post_action: Oluştur
+      post_step: Dünyaya metin, fotoğraf, video ve anketlerle merhaba deyin.
+      post_title: İlk gönderinizi oluşturun
+      share_action: Paylaş
+      share_step: Arkadaşlarınıza Mastodon'da size nasıl ulaşabileceklerini söyleyin.
+      share_title: Mastodon profilinizi paylaşın
+      sign_in_action: Oturum aç
       subject: Mastodon'a hoş geldiniz
       title: Gemiye hoşgeldin, %{name}!
   users:
@@ -1838,6 +1885,7 @@ tr:
     go_to_sso_account_settings: Kimlik sağlayıcı hesap ayarlarına gidin
     invalid_otp_token: Geçersiz iki adımlı doğrulama kodu
     otp_lost_help_html: Her ikisine de erişiminizi kaybettiyseniz, %{email} ile irtibata geçebilirsiniz
+    rate_limited: Çok fazla kimlik doğrulama denemesi. Daha sonra tekrar deneyin.
     seamless_external_login: Harici bir servis aracılığıyla oturum açtınız, bu nedenle parola ve e-posta ayarları mevcut değildir.
     signed_in_as: 'Oturum açtı:'
   verification:

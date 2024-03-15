@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ReportService, type: :service do
+RSpec.describe ReportService do
   subject { described_class.new }
 
   let(:source_account) { Fabricate(:account) }
@@ -23,7 +23,7 @@ RSpec.describe ReportService, type: :service do
       stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
     end
 
-    context 'when forward is true' do
+    context 'when forward is true', :sidekiq_inline do
       let(:forward) { true }
 
       it 'sends ActivityPub payload when forward is true' do
@@ -156,16 +156,16 @@ RSpec.describe ReportService, type: :service do
       -> {  described_class.new.call(source_account, target_account) }
     end
 
-    let!(:other_report) { Fabricate(:report, target_account: target_account) }
-
     before do
-      ActionMailer::Base.deliveries.clear
+      Fabricate(:report, target_account: target_account)
       source_account.user.settings['notification_emails.report'] = true
       source_account.user.save
     end
 
     it 'does not send an e-mail' do
-      expect { subject.call }.to_not change(ActionMailer::Base.deliveries, :count).from(0)
+      emails = capture_emails { subject.call }
+
+      expect(emails).to be_empty
     end
   end
 end

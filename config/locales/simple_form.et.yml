@@ -39,14 +39,14 @@ et:
         text: Otsust on võimalik vaidlustada vaid 1 kord
       defaults:
         autofollow: Inimesed, kes loovad konto selle kutse läbi, automaatselt jälgivad sind
-        avatar: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
+        avatar: WEBP, PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
         bot: Teavita teisi, et see konto teeb enamjaolt automatiseeritud tegevusi ja ei pruugi olla järelvalve all
         context: Üks või mitu konteksti, mille vastu see filter peaks rakenduma
         current_password: Sisesta turvalisuse huvides oma siinse konto salasõna
         current_username: Kinnitamiseks palun sisesta oma konto kasutajanimi
         digest: Saadetakse ainult pärast pikka tegevusetuse perioodi ja ainult siis, kui on saadetud otsesõnumeid
         email: Sulle saadetakse e-posti teel kinnituskiri
-        header: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
+        header: WEBP, PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
         inbox_url: Kopeeri soovitud vahendaja avalehe URL
         irreversible: Filtreeritud postitused kaovad taastamatult, isegi kui filter on hiljem eemaldatud
         locale: Kasutajaliidese, e-kirjade ja tõuketeadete keel
@@ -69,7 +69,7 @@ et:
         domain: See võib olla e-postiaadressis näha olev domeen või MX-kirje, mida aadress kasutab. Kontroll toimub liitumise käigus.
         with_dns_records: Püütakse lahendada selle domeeni DNS-kirjed ja ühtlasi blokeerida ka selle tulemused
       featured_tag:
-        name: 'Siin on mõned nendest siltidest mida sa oled kõige hiljutisemalt kasutanud:'
+        name: 'Siin on mõned nendest siltidest, mida oled viimati kasutanud:'
       filters:
         action: Tegevuse valik, kui postitus vastab filtrile
         actions:
@@ -98,7 +98,7 @@ et:
         thumbnail: Umbes 2:1 mõõdus pilt serveri informatsiooni kõrval.
         timeline_preview: Sisenemata külastajatel on võimalik sirvida viimaseid avalikke postitusi serveril.
         trendable_by_default: Populaarse sisu ülevaatuse vahele jätmine. Pärast seda on siiski võimalik üksikuid üksusi trendidest eemaldada.
-        trends: Populaarsuse suunad näitavad millised postitused, sildid ja uudislood koguvad sinu serveris tähelepanu.
+        trends: Trendid näitavad, millised postitused, sildid ja uudislood koguvad sinu serveris tähelepanu.
         trends_as_landing_page: Näitab välja logitud kasutajatele ja külalistele serveri kirjelduse asemel populaarset sisu. Populaarne sisu (trendid) peab selleks olema sisse lülitatud.
       form_challenge:
         current_password: Turvalisse alasse sisenemine

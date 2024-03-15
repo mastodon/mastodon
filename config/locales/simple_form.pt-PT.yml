@@ -39,14 +39,14 @@ pt-PT:
         text: Só pode recorrer uma única vez de uma reprimenda
       defaults:
         autofollow: As pessoas que aderirem através do convite segui-lo-ão automaticamente
-        avatar: PNG, GIF ou JPG. Ficheiros no máximo de %{size}. Serão reduzidos para %{dimensions}px
+        avatar: WEBP, PNG, GIF ou JPG. No máximo %{size}. Será reduzido para %{dimensions}px
         bot: Esta conta executa essencialmente ações automatizadas e pode não ser monitorizada
         context: Um ou diversos contextos nos quais o filtro deve ser aplicado
         current_password: Para fins de segurança, queira inserir a palavra-passe da conta atual
         current_username: Para confirmar, queira inserir o nome de utilizador da conta atual
         digest: Enviado após um longo período de inatividade e apenas se foste mencionado na tua ausência
         email: Será enviado um e-mail de confirmação
-        header: PNG, GIF ou JPG. Ficheiros no máximo de %{size}. Serão reduzidos para %{dimensions}px
+        header: WEBP, PNG, GIF ou JPG. No máximo %{size}. Será reduzido para %{dimensions}px
         inbox_url: Copie o URL da página inicial do repetidor que quer usar
         irreversible: Publicações filtradas irão desaparecer irremediavelmente, mesmo que o filtro seja removido posteriormente
         locale: O idioma da interface de utilizador, e-mails e notificações push
@@ -116,6 +116,7 @@ pt-PT:
           sign_up_requires_approval: Novas inscrições requererão a sua aprovação
         severity: Escolha o que acontecerá com as solicitações deste IP
       rule:
+        hint: Opcional. Forneça mais detalhes sobre a regra
         text: Descreva uma regra ou requisito para os utilizadores nesta instância. Tente mantê-la curta e simples
       sessions:
         otp: 'Insira o código de autenticação em duas etapas gerado pelo seu telemóvel ou use um dos seus códigos de recuperação:'
@@ -299,6 +300,7 @@ pt-PT:
           patch: Notificar sobre atualizações de correções de problemas
         trending_tag: Uma nova publicação em alta requer avaliação
       rule:
+        hint: Informação Adicional
         text: Regra
       settings:
         indexable: Incluir página de perfil nos motores de busca

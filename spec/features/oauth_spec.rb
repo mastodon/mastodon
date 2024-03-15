@@ -20,7 +20,7 @@ describe 'Using OAuth from an external app' do
       expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.authorize'))
 
       # Upon authorizing, it redirects to the apps' callback URL
-      click_button I18n.t('doorkeeper.authorizations.buttons.authorize')
+      click_on I18n.t('doorkeeper.authorizations.buttons.authorize')
       expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
 
       # It grants the app access to the account
@@ -35,7 +35,7 @@ describe 'Using OAuth from an external app' do
       expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.deny'))
 
       # Upon denying, it redirects to the apps' callback URL
-      click_button I18n.t('doorkeeper.authorizations.buttons.deny')
+      click_on I18n.t('doorkeeper.authorizations.buttons.deny')
       expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
 
       # It does not grant the app access to the account
@@ -49,7 +49,7 @@ describe 'Using OAuth from an external app' do
     let(:user)     { Fabricate(:user, email: email, password: password) }
 
     before do
-      user.confirm!
+      user.mark_email_as_confirmed!
       user.approve!
     end
 
@@ -61,19 +61,15 @@ describe 'Using OAuth from an external app' do
       expect(page).to have_content(I18n.t('auth.login'))
 
       # Failing to log-in presents the form again
-      fill_in 'user_email', with: email
-      fill_in 'user_password', with: 'wrong password'
-      click_button I18n.t('auth.login')
+      fill_in_auth_details(email, 'wrong password')
       expect(page).to have_content(I18n.t('auth.login'))
 
       # Logging in redirects to an authorization page
-      fill_in 'user_email', with: email
-      fill_in 'user_password', with: password
-      click_button I18n.t('auth.login')
+      fill_in_auth_details(email, password)
       expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.authorize'))
 
       # Upon authorizing, it redirects to the apps' callback URL
-      click_button I18n.t('doorkeeper.authorizations.buttons.authorize')
+      click_on I18n.t('doorkeeper.authorizations.buttons.authorize')
       expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
 
       # It grants the app access to the account
@@ -88,19 +84,15 @@ describe 'Using OAuth from an external app' do
       expect(page).to have_content(I18n.t('auth.login'))
 
       # Failing to log-in presents the form again
-      fill_in 'user_email', with: email
-      fill_in 'user_password', with: 'wrong password'
-      click_button I18n.t('auth.login')
+      fill_in_auth_details(email, 'wrong password')
       expect(page).to have_content(I18n.t('auth.login'))
 
       # Logging in redirects to an authorization page
-      fill_in 'user_email', with: email
-      fill_in 'user_password', with: password
-      click_button I18n.t('auth.login')
+      fill_in_auth_details(email, password)
       expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.authorize'))
 
       # Upon denying, it redirects to the apps' callback URL
-      click_button I18n.t('doorkeeper.authorizations.buttons.deny')
+      click_on I18n.t('doorkeeper.authorizations.buttons.deny')
       expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
 
       # It does not grant the app access to the account
@@ -118,29 +110,23 @@ describe 'Using OAuth from an external app' do
         expect(page).to have_content(I18n.t('auth.login'))
 
         # Failing to log-in presents the form again
-        fill_in 'user_email', with: email
-        fill_in 'user_password', with: 'wrong password'
-        click_button I18n.t('auth.login')
+        fill_in_auth_details(email, 'wrong password')
         expect(page).to have_content(I18n.t('auth.login'))
 
         # Logging in redirects to a two-factor authentication page
-        fill_in 'user_email', with: email
-        fill_in 'user_password', with: password
-        click_button I18n.t('auth.login')
+        fill_in_auth_details(email, password)
         expect(page).to have_content(I18n.t('simple_form.hints.sessions.otp'))
 
         # Filling in an incorrect two-factor authentication code presents the form again
-        fill_in 'user_otp_attempt', with: 'wrong'
-        click_button I18n.t('auth.login')
+        fill_in_otp_details('wrong')
         expect(page).to have_content(I18n.t('simple_form.hints.sessions.otp'))
 
         # Filling in the correct TOTP code redirects to an app authorization page
-        fill_in 'user_otp_attempt', with: user.current_otp
-        click_button I18n.t('auth.login')
+        fill_in_otp_details(user.current_otp)
         expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.authorize'))
 
         # Upon authorizing, it redirects to the apps' callback URL
-        click_button I18n.t('doorkeeper.authorizations.buttons.authorize')
+        click_on I18n.t('doorkeeper.authorizations.buttons.authorize')
         expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
 
         # It grants the app access to the account
@@ -155,34 +141,41 @@ describe 'Using OAuth from an external app' do
         expect(page).to have_content(I18n.t('auth.login'))
 
         # Failing to log-in presents the form again
-        fill_in 'user_email', with: email
-        fill_in 'user_password', with: 'wrong password'
-        click_button I18n.t('auth.login')
+        fill_in_auth_details(email, 'wrong password')
         expect(page).to have_content(I18n.t('auth.login'))
 
         # Logging in redirects to a two-factor authentication page
-        fill_in 'user_email', with: email
-        fill_in 'user_password', with: password
-        click_button I18n.t('auth.login')
+        fill_in_auth_details(email, password)
         expect(page).to have_content(I18n.t('simple_form.hints.sessions.otp'))
 
         # Filling in an incorrect two-factor authentication code presents the form again
-        fill_in 'user_otp_attempt', with: 'wrong'
-        click_button I18n.t('auth.login')
+        fill_in_otp_details('wrong')
         expect(page).to have_content(I18n.t('simple_form.hints.sessions.otp'))
 
         # Filling in the correct TOTP code redirects to an app authorization page
-        fill_in 'user_otp_attempt', with: user.current_otp
-        click_button I18n.t('auth.login')
+        fill_in_otp_details(user.current_otp)
         expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.authorize'))
 
         # Upon denying, it redirects to the apps' callback URL
-        click_button I18n.t('doorkeeper.authorizations.buttons.deny')
+        click_on I18n.t('doorkeeper.authorizations.buttons.deny')
         expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
 
         # It does not grant the app access to the account
         expect(Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id)).to be false
       end
+    end
+
+    private
+
+    def fill_in_auth_details(email, password)
+      fill_in 'user_email', with: email
+      fill_in 'user_password', with: password
+      click_on I18n.t('auth.login')
+    end
+
+    def fill_in_otp_details(value)
+      fill_in 'user_otp_attempt', with: value
+      click_on I18n.t('auth.login')
     end
 
     # TODO: external auth

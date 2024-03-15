@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UnfollowService, type: :service do
+RSpec.describe UnfollowService do
   subject { described_class.new }
 
   let(:sender) { Fabricate(:account, username: 'alice') }
@@ -20,7 +20,7 @@ RSpec.describe UnfollowService, type: :service do
     end
   end
 
-  describe 'remote ActivityPub' do
+  describe 'remote ActivityPub', :sidekiq_inline do
     let(:bob) { Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 
     before do
@@ -38,7 +38,7 @@ RSpec.describe UnfollowService, type: :service do
     end
   end
 
-  describe 'remote ActivityPub (reverse)' do
+  describe 'remote ActivityPub (reverse)', :sidekiq_inline do
     let(:bob) { Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 
     before do

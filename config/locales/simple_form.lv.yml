@@ -8,7 +8,7 @@ lv:
         fields: Tava mājas lapa, vietniekvārdi, vecums, viss, ko vēlies.
         indexable: Tavas publiskās ziņas var tikt parādītas Mastodon meklēšanas rezultātos. Personas, kuras ir mijiedarbojušās ar tavām ziņām, var tās meklēt neatkarīgi no tā.
         note: 'Tu vari @minēt citus cilvēkus vai #mirkļbirkas.'
-        show_collections: Cilvēki varēs pārlūkot tavus sekotājus un kam tu seko. Cilvēki, kuriem seko, redzēs, ka tu seko viņiem neatkarīgi no tā.
+        show_collections: Cilvēki varēs pārlūkot Tavus sekotājus un sekojamos. Cilvēki, kuriem Tu seko, redzēs, ka Tu seko viņiem neatkarīgi no tā.
         unlocked: Cilvēki varēs tev sekot, neprasot apstiprinājumu. Noņem atzīmi, ja vēlies pārskatīt sekošanas pieprasījumus un izvēlēties, pieņemt vai noraidīt jaunus sekotājus.
       account_alias:
         acct: Norādi konta lietotājvārdu@domēnu, no kura vēlies pārvākties
@@ -26,7 +26,7 @@ lv:
           disable: Neļauj lietotājam izmantot savu kontu, bet neizdzēs vai neslēp tā saturu.
           none: Izmanto šo, lai nosūtītu lietotājam brīdinājumu, neradot nekādas citas darbības.
           sensitive: Piespiest visus šī lietotāja multivides pielikumus atzīmēt kā sensitīvus.
-          silence: Neļauj lietotājam publicēt ziņas ar publisku redzamību, paslēp viņa ziņas un paziņojumus no personām, kas viņiem neseko. Tiek aizvērti visi šī konta pārskati.
+          silence: Neļaut lietotājam veikt ierakstus ar publisku redzamību, paslēpt viņa ierakstus un paziņojumus no cilvēkiem, kas tam neseko. Tiek aizvērti visi ziņojumi par šo kontu.
           suspend: Novērs jebkādu mijiedarbību no šī konta vai uz to un dzēs tā saturu. Atgriežams 30 dienu laikā. Tiek aizvērti visi šī konta pārskati.
         warning_preset_id: Neobligāts. Tu joprojām vari pievienot pielāgotu tekstu sākotnējās iestatīšanas beigās
       announcement:
@@ -39,14 +39,14 @@ lv:
         text: Brīdinājumu var pārsūdzēt tikai vienu reizi
       defaults:
         autofollow: Cilvēki, kuri reģistrējas, izmantojot uzaicinājumu, automātiski sekos tev
-        avatar: PNG, GIF vai JPG. Ne vairāk kā %{size}. Tiks samazināts līdz %{dimensions} px
+        avatar: WEBP, PNG, GIF vai JPG. Ne vairāk kā %{size}. Tiks samazināts līdz %{dimensions}px
         bot: Paziņo citiem, ka kontā galvenokārt tiek veiktas automatizētas darbības un tas var netikt uzraudzīts
         context: Viens vai vairāki konteksti, kur jāpiemēro filtrs
         current_password: Drošības nolūkos, lūdzu, ievadi pašreizējā konta paroli
         current_username: Lai apstiprinātu, lūdzu, ievadi pašreizējā konta paroli
         digest: Sūta tikai pēc ilgstošas neaktivitātes un tikai tad, ja savas prombūtnes laikā neesi saņēmis personiskas ziņas
         email: Tev tiks nosūtīts apstiprinājuma e-pasts
-        header: PNG, GIF vai JPG. Ne vairāk kā %{size}. Tiks samazināts līdz %{dimensions}px
+        header: WEBP, PNG, GIF vai JPG. Ne vairāk kā %{size}. Tiks samazināts līdz %{dimensions}px
         inbox_url: Nokopē URL no tā releja sākumlapas, kuru vēlies izmantot
         irreversible: Filtrētās ziņas neatgriezeniski pazudīs, pat ja filtrs vēlāk tiks noņemts
         locale: Lietotāja saskarnes, e-pasta ziņojumu un push paziņojumu valoda
@@ -59,7 +59,7 @@ lv:
         setting_display_media_default: Paslēpt multividi, kas atzīmēta kā sensitīva
         setting_display_media_hide_all: Vienmēr slēpt multividi
         setting_display_media_show_all: Vienmēr rādīt multividi
-        setting_use_blurhash: Gradientu pamatā ir paslēpto vizuālo attēlu krāsas, bet neskaidras visas detaļas
+        setting_use_blurhash: Pāreju pamatā ir paslēpto uzskatāmo līdzekļu krāsas, bet saturs tiek padarīts neskaidrs
         setting_use_pending_items: Paslēpt laika skalas atjauninājumus aiz klikšķa, nevis automātiski ritini plūsmu
         username: Tu vari lietot burtus, ciparus un zemsvītras
         whole_word: Ja atslēgvārds vai frāze ir tikai burtciparu, tas tiks lietots tikai tad, ja tas atbilst visam vārdam
@@ -96,7 +96,7 @@ lv:
         status_page_url: Tās lapas URL, kurā lietotāji var redzēt šī servera statusu pārtraukuma laikā
         theme: Tēma, kuru redz apmeklētāji, kuri ir atteikušies, un jaunie lietotāji.
         thumbnail: Aptuveni 2:1 attēls, kas tiek parādīts kopā ar tava servera informāciju.
-        timeline_preview: Atteikušies apmeklētāji varēs pārlūkot jaunākās serverī pieejamās publiskās ziņas.
+        timeline_preview: Atteikušies apmeklētāji varēs pārlūkot jaunākos serverī pieejamos publiskos ierakstus.
         trendable_by_default: Izlaist aktuālā satura manuālu pārskatīšanu. Atsevišķas preces joprojām var noņemt no tendencēm pēc fakta.
         trends: Tendences parāda, kuras ziņas, atsauces un ziņu stāsti gūst panākumus tavā serverī.
         trends_as_landing_page: Šī servera apraksta vietā rādīt aktuālo saturu lietotājiem un apmeklētājiem, kuri ir atteikušies. Nepieciešams iespējot tendences.
@@ -176,8 +176,8 @@ lv:
         text: Paskaidrojiet, kāpēc šis lēmums ir jāatceļ
       defaults:
         autofollow: Uzaicini sekot tavam kontam
-        avatar: Avatars
-        bot: Šis ir bot konts
+        avatar: Profila attēls
+        bot: Šis ir automatizēts konts
         chosen_languages: Filtrēt valodas
         confirm_new_password: Apstiprināt jauno paroli
         confirm_password: Apstiprināt paroli
@@ -220,7 +220,7 @@ lv:
         setting_theme: Vietnes motīvs
         setting_trends: Parādīt šodienas tendences
         setting_unfollow_modal: Parādīt apstiprinājuma dialogu pirms pārtraukt kādam sekot
-        setting_use_blurhash: Rādīt krāsainus gradientus slēptajiem multivides materiāliem
+        setting_use_blurhash: Rādīt krāsainas pārejas paslēptajiem informācijas nesējiem
         setting_use_pending_items: Lēnais režīms
         severity: Smagums
         sign_in_token_attempt: Drošības kods

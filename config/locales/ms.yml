@@ -977,8 +977,6 @@ ms:
       new_trending_statuses:
         title: Pos sohor kini
       new_trending_tags:
-        no_approved_tags: Pada masa ini tiada hashtag sohor kini yang diluluskan.
-        requirements: 'Mana-mana calon ini boleh melepasi hashtag arah aliran #%{rank} yang diluluskan, yang pada masa ini ialah #%{lowest_tag_name} dengan markah %{lowest_tag_score}.'
         title: Hashtag sohor kini
       subject: Trend baharu untuk kesemakan pada %{instance}
   aliases:
@@ -1444,7 +1442,6 @@ ms:
     administration_emails: Notifikasi e-mel pentadbir
     email_events: Acara untuk pemberitahuan e-mel
     email_events_hint: 'Pilih acara yang ingin anda terima pemberitahuan:'
-    other_settings: Tetapan notifikasi lain
   number:
     human:
       decimal_units:
@@ -1722,7 +1719,6 @@ ms:
     webauthn: Kunci keselamatan
   user_mailer:
     appeal_approved:
-      action: Pergi ke akaun anda
       explanation: Rayuan pelanggaran yang dikemukakan pada %{appeal_date} terhadap akaun anda pada %{strike_date} telah diluluskan. Akaun anda kini dalam kedudukan yang baik.
       subject: Rayuan anda dari %{date} telah diluluskan
       title: Rayuan diluluskan
@@ -1731,7 +1727,6 @@ ms:
       subject: Rayuan anda dari %{date} telah ditolak
       title: Rayuan ditolak
     backup_ready:
-      explanation: Anda meminta sandaran penuh akaun Mastodon anda. Ia kini sedia untuk dimuat turun!
       subject: Arkib anda sedia untuk dimuat turun
       title: Arkibkan bawa pulang
     suspicious_sign_in:
@@ -1773,13 +1768,7 @@ ms:
         silence: Akaun terhad
         suspend: Akaun digantung
     welcome:
-      edit_profile_action: Sediakan profil
-      edit_profile_step: Anda boleh menyesuaikan profil anda dengan memuat naik gambar profil, menukar nama paparan anda dan banyak lagi. Anda boleh ikut serta untuk menyemak pengikut baharu sebelum mereka dibenarkan mengikuti anda.
       explanation: Berikut ialah beberapa petua untuk anda bermula
-      final_action: Mula menyiarkan
-      final_step: 'Mula menyiarkan! Walaupun tanpa pengikut, pos awam anda mungkin dilihat oleh orang lain, contohnya pada garis masa tempatan atau dalam hashtag. Anda mungkin ingin memperkenalkan diri anda pada hashtag #introductions.'
-      full_handle: Pemegang penuh anda
-      full_handle_hint: Inilah yang anda akan beritahu rakan anda supaya mereka boleh menghantar mesej atau mengikuti anda dari server lain.
       subject: Selamat datang kepada Mastodon
       title: Selamat datang, %{name}!
   users:

@@ -29,10 +29,27 @@ jobs:
     needs: compute-suffix
     uses: ./.github/workflows/build-container-image.yml
     with:
+      file_to_build: Dockerfile
       platforms: linux/amd64,linux/arm64
       use_native_arm64_builder: true
       push_to_images: |
         ghcr.io/mastodon/mastodon
+      version_metadata: ${{ needs.compute-suffix.outputs.metadata }}
+      flavor: |
+        latest=auto
+      tags: |
+        type=ref,event=pr
+    secrets: inherit
+
+  build-image-streaming:
+    needs: compute-suffix
+    uses: ./.github/workflows/build-container-image.yml
+    with:
+      file_to_build: streaming/Dockerfile
+      platforms: linux/amd64,linux/arm64
+      use_native_arm64_builder: true
+      push_to_images: |
+        ghcr.io/mastodon/mastodon-streaming
       version_metadata: ${{ needs.compute-suffix.outputs.metadata }}
       flavor: |
         latest=auto

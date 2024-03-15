@@ -31,7 +31,7 @@ nn:
       created_msg: Moderatormerknad er laga!
       destroyed_msg: Moderatormerknad er utsletta!
     accounts:
-      add_email_domain_block: Gøym e-postdomene
+      add_email_domain_block: Blokker e-postdomene
       approve: Godtak
       approved_msg: Godkjende %{username} sin registreringssøknad
       are_you_sure: Er du sikker?
@@ -425,6 +425,7 @@ nn:
       view: Vis domeneblokkering
     email_domain_blocks:
       add_new: Lag ny
+      allow_registrations_with_approval: Tillat registreringar med godkjenning
       attempts_over_week:
         one: "%{count} forsøk i løpet av den siste uken"
         other: "%{count} forsøk på å opprette konto i løpet av den siste uken"
@@ -534,6 +535,7 @@ nn:
       total_reported: Rapportar om dei
       total_storage: Medievedlegg
       totals_time_period_hint_html: Totalsum vist nedanfor gjeld data for alle tidsperiodar.
+      unknown_instance: Domenet er ukjent for denne tenaren.
     invites:
       deactivate_all: Slå av alle
       filter:
@@ -610,6 +612,7 @@ nn:
       created_at: Rapportert
       delete_and_resolve: Slett innlegg
       forwarded: Videresendt
+      forwarded_replies_explanation: Denne rapporten gjeld innhald på ein annan nettstad. Rapporten er vidaresend til deg fordi det rapporterte innhaldet er eit svar på noko ein av brukarane på nettstaden din har skrive.
       forwarded_to: Videresendt til %{domain}
       mark_as_resolved: Merk som løyst
       mark_as_sensitive: Marker som ømtolig
@@ -764,13 +767,15 @@ nn:
         disabled: Til ingen
         users: Til lokale brukarar som er logga inn
       registrations:
+        moderation_recommandation: Pass på at du har mange og kjappe redaktørar og moderatorar på laget ditt før du opnar for allmenn registrering!
         preamble: Kontroller kven som kan oppretta konto på tenaren din.
         title: Registreringar
       registrations_mode:
         modes:
-          approved: Godkjenning kreves for påmelding
+          approved: Godkjenning krevst for å registrera seg
           none: Ingen kan melda seg inn
           open: Kven som helst kan melda seg inn
+        warning_hint: Me rår til at du bruker "Godkjenning krevst for å registrera seg" viss du ikkje er sikker på at moderatorane kan handtera søppel og illmeinte registreringar kvikt.
       security:
         authorized_fetch: Krev autentisering frå fødererte tenarar
         authorized_fetch_hint: Krav om autentisering frå fødererte tenarar gjer det mogleg med strengare handheving av blokkering, både på brukar- og tenar-nivå. Likevel, dette har ein kostnad når det gjeld yting, reduserer rekkevidda til svara dine og kan medføra kompabilitetsproblem med enkelte fødererte tenester. Dette vil heller ikkje hindra dei som verkeleg vil i å henta dei offentlege innlegga eller kontoane dine.
@@ -963,6 +968,9 @@ nn:
       title: Webhooker
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: På grunn av mangel på nyleg moderatoraktivitet, er registreringar på %{instance} automatisk bytt til å krevje manuell gjennomgang, for å hindre at %{instance} vert brukt som ein plattform for potensielle dårlege aktørar. Du kan byte tilbake for å opne registreringar når som helst.
+      subject: Registreringar for %{instance} er automatisk bytt til å krevje godkjenning
     new_appeal:
       actions:
         delete_statuses: å slette sine innlegg
@@ -995,8 +1003,6 @@ nn:
       new_trending_statuses:
         title: Populære innlegg
       new_trending_tags:
-        no_approved_tags: Det er ingen godkjende populære emneknaggar no.
-        requirements: 'Alle desse kandidatane kan stiga høgare enn den godkjende populære emneknaggen #%{rank}, som er #%{lowest_tag_name} med ei plassering på %{lowest_tag_score}.'
         title: Populære emneknaggar
       subject: Nye trendar å sjå gjennom på %{instance}
   aliases:
@@ -1040,6 +1046,14 @@ nn:
       hint_html: Berre ein ting til! Vi må bekrefte at du er et menneske (så vi kan halde spam ute!). Løys CAPTCHA-en nedanfor og klikk "Fortsett".
       title: Sikkerheitssjekk
     confirmations:
+      awaiting_review: Epostadressa di er stadfesta! Styrarane på %{domain} ser gjennom registreringa di. Du får ein epost frå dei om dei godkjenner brukarkontoen din.
+      awaiting_review_title: Me går gjennom registreringa di
+      clicking_this_link: klikka på denne lenka
+      login_link: logga inn
+      proceed_to_login_html: No kan du %{login_link}.
+      redirect_to_app_html: Du skulle vorte vidaresend til <strong>%{app_name}</strong>-appen. Viss det ikkje skjedde, kan du prøva å %{clicking_this_link} eller manuelt gå tilbake til appen.
+      registration_complete: Du har registrert deg som brukar på %{domain}.
+      welcome_title: Velkomen, %{name}!
       wrong_email_hint: Viss epostadressa er feil, kan du endra ho i kontoinnstillingane.
     delete_account: Slett konto
     delete_account_html: Om du vil sletta kontoen din, kan du <a href="%{path}">gå hit</a>. Du vert spurd etter stadfesting.
@@ -1101,6 +1115,7 @@ nn:
       functional: Kontoen din er fullt operativt.
       pending: Søknaden din ventar på gjennomgang frå personalet vårt. Dette kan taka litt tid. Du får ein e-post om søknaden din vert godkjend.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
+      self_destruct: Av di %{domain} er i ferd med å stenga, vil du berre få avgrensa tilgang til brukarkontoen din.
       view_strikes: Vis tidligere advarsler mot kontoen din
     too_fast: Skjemaet ble sendt inn for raskt, prøv på nytt.
     use_security_key: Bruk sikkerhetsnøkkel
@@ -1358,6 +1373,7 @@ nn:
       '86400': 1 dag
     expires_in_prompt: Aldri
     generate: Lag innbydingslenkje
+    invalid: Denne invitasjonen er ikkje gyldig
     invited_by: 'Du vart innboden av:'
     max_uses:
       one: 1 bruk
@@ -1436,7 +1452,7 @@ nn:
   moderation:
     title: Moderasjon
   move_handler:
-    carry_blocks_over_text: Denne brukaren flytta frå %{acct}, som du gøymde.
+    carry_blocks_over_text: Denne brukaren flytta frå %{acct}, som du hadde blokkert.
     carry_mutes_over_text: Denne brukeren flyttet fra %{acct}, som du hadde dempet.
     copy_account_note_text: 'Denne brukeren flyttet fra %{acct}, her var dine tidligere notater om dem:'
   navigation:
@@ -1479,7 +1495,6 @@ nn:
     administration_emails: Administrator sine epost-varsler
     email_events: E-postvarslinger for hendelser
     email_events_hint: 'Velg hendelser som du vil motta varslinger for:'
-    other_settings: Andre varslingsinnstillinger
   number:
     human:
       decimal_units:
@@ -1523,7 +1538,7 @@ nn:
   privacy:
     hint_html: "<strong>Tilpass korleis du vil at andre skal finna profilen og innlegga dine.</strong> Mastodon har fleire funksjonar du kan ta i bruk for å få kontakt med eit større publikum. Sjå gjerne gjennom innstillingane slik at du er sikker på at dei passar til deg og din bruk."
     privacy: Personvern
-    privacy_hint_html: Ha kontroll over kor mykje du vil dela. Folk finn interessante profilar og fine appar ved å sjå gjennom kva andre fylgjer og kva appar dei legg ut innlegg med, men det kan henda du vil gøyma desse opplysingane.
+    privacy_hint_html: Kontroller kor mykje du vil dela. Folk finn interessante profilar og fine appar ved å sjå gjennom kva andre fylgjer og kva appar dei legg ut innlegg med, men det kan henda du vil gøyma desse opplysingane.
     reach: Nå andre
     reach_hint_html: Hald styring med om du vil at andre skal kunna oppdaga og fylgja deg. Vil du at innlegga dine skal stå på Utforsk-sida? Vil du at andre skal sjå deg i tilrådingane for kven dei skal fylgja? Vil du ta imot nye fylgjarar automatisk, eller vil du kontrollera kvar einskild fylgjar?
     search: Søk
@@ -1535,6 +1550,9 @@ nn:
     errors:
       limit_reached: Grensen for forskjellige reaksjoner nådd
       unrecognized_emoji: er ikke en gjenkjent emoji
+  redirects:
+    prompt: Viss du stolar på denne lenka, klikkar du på ho for å halda fram.
+    title: No forlèt du %{instance}.
   relationships:
     activity: Kontoaktivitet
     confirm_follow_selected_followers: Er du sikker på at du ynskjer å fylgja dei valde fylgjarane?
@@ -1570,6 +1588,9 @@ nn:
     over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
     over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter
     too_soon: Den planlagte datoen må være i fremtiden
+  self_destruct:
+    lead_html: Diverre stengjer <strong>%{domain}</strong> dørene for godt. Viss du hadde ein brukarkonto der, vil du ikkje kunna halda fram å bruka han, men du kan få ut ein tryggingskopi av dataa dine.
+    title: Denne tenaren stengjer
   sessions:
     activity: Siste aktivitet
     browser: Nettlesar
@@ -1594,6 +1615,7 @@ nn:
       unknown_browser: Ukjend nettlesar
       weibo: Weibo
     current_session: Noverande økt
+    date: Dato
     description: "%{browser} på %{platform}"
     explanation: Desse nettlesarane er logga inn på Mastodon-kontoen din.
     ip: IP-adresse
@@ -1760,18 +1782,27 @@ nn:
     webauthn: Sikkerhetsnøkler
   user_mailer:
     appeal_approved:
-      action: Gå til din konto
+      action: Kontoinnstillingar
       explanation: Apellen på prikken mot din kontor på %{strike_date} som du la inn på %{appeal_date} har blitt godkjend. Din konto er nok ein gong i god stand.
       subject: Din klage fra %{date} er godkjent
+      subtitle: Kontoen din er tilbake i god stand.
       title: Anke godkjend
     appeal_rejected:
       explanation: Klagen på advarselen mot din konto den %{strike_date} som du sendte inn den %{appeal_date} har blitt avvist.
       subject: Din klage fra %{date} er avvist
+      subtitle: Klaga di vart avvist.
       title: Anke avvist
     backup_ready:
-      explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
+      explanation: Du ba om ein fullstendig tryggingskopi av Mastodon-kontoen din.
+      extra: No kan du lasta han ned!
       subject: Arkivet ditt er klart til å lastes ned
       title: Nedlasting av arkiv
+    failed_2fa:
+      details: 'Her er detaljane om innloggingsforsøket:'
+      explanation: Nokon har prøvd å logge inn på kontoen din, men brukte ein ugyldig andre-autentiseringsfaktor.
+      further_actions_html: Om dette ikkje var deg, rår me deg til å %{action} med éin gong, då det kan vere kompomittert.
+      subject: To-faktor-autentiseringsfeil
+      title: Mislukka to-faktor-autentisering
     suspicious_sign_in:
       change_password: endre passord
       details: 'Her er påloggingsdetaljane:'
@@ -1811,13 +1842,42 @@ nn:
         silence: Konto avgrensa
         suspend: Konto utvist
     welcome:
-      edit_profile_action: Lag til profil
-      edit_profile_step: Du kan tilpasse profilen din ved å laste opp et profilbilde, endre visningsnavnet ditt og mer. Du kan velge at nye følgere må godkjennes av deg før de får lov til å følge deg.
+      apps_android_action: Få det på Google Play
+      apps_ios_action: Last ned på App Store
+      apps_step: Last ned dei offisielle appane våre.
+      apps_title: Mastodon-appar
+      checklist_subtitle: 'La oss hjelpa deg i gang på denne nye sosiale reisa:'
+      checklist_title: Kom i gang
+      edit_profile_action: Tilpass til deg
+      edit_profile_step: Få fleire samhandlingar ved å fylla ut profilen din.
+      edit_profile_title: Tilpass profilen din
       explanation: Her er nokre tips for å koma i gang
-      final_action: Kom i gang med å leggja ut
-      final_step: 'Skriv innlegg! Selv uten følgere kan dine offentlige innlegg bli sett av andre, for eksempel på den lokale tidslinjen og i emneknagger. Du kan introdusere deg selv ved å bruke emneknaggen #introduksjon.'
-      full_handle: Det fulle brukarnamnet ditt
-      full_handle_hint: Dette er det du fortel venene dine for at dei skal kunna senda deg meldingar eller fylgja deg frå ein annan tenar.
+      feature_action: Lær meir
+      feature_audience: Mastodon gjev deg eit unikt høve til å styra kven som ser innhaldet ditt, utan mellommenn. Viss du installerer Mastodon på din eigen tenar, kan du fylgja og bli fylgt frå alle andre Mastodon-tenarar på nett, og det er ingen andre enn du som har kontrollen.
+      feature_audience_title: Få tilhengjarar på ein trygg måte
+      feature_control: Du veit best kva du vil ha på tidslina di. Her er ingen algoritmar eller reklame som kastar bort tida. Du kan fylgja folk på ein kvar Mastodon-tenar frå brukarkontoen din, få innlegga deira i kronologisk rekkjefylgje, og gjera ditt eige hjørne av internett litt meir ditt.
+      feature_control_title: Hald kontroll over tidslina di
+      feature_creativity: På Mastodon kan du laga innlegg med lyd, film og bilete, du kan skildra media for betre tilgjenge, du kan laga avrøystingar, innhaldsåtvaringar og eigne smilefjes, du kan klyppa til småbilete og endå meir for å uttrykkja deg på nettet. Mastodon passar for deg, anten du vil skriva eller leggja ut kunst, musikk eller podkastar.
+      feature_creativity_title: Ustoppeleg kreativt
+      feature_moderation: Med Mastodon bestemmer du sjølv. Kvar tenar har sine eigne reglar og retningsliner som blir laga lokalt og ikkje sentralt i eit stort firma, slik det er med andre sosiale nettverk. Det gjer at alle slags grupper kan få ein Mastodon-tenar som passar til dei. Du kan bli med på ein tenar som har reglar du er samd med, eller du kan laga din eigen tenar.
+      feature_moderation_title: Moderering slik det bør vera
+      follow_action: Fylg
+      follow_step: Å fylgja interessante folk er det det handlar om på Mastodon.
+      follow_title: Tilpass tidslina di
+      follows_subtitle: Fylg kjende folk
+      follows_title: Kven du kan fylgja
+      follows_view_more: Sjå fleire du kan fylgja
+      hashtags_recent_count: "%{people} folk dei siste %{days} dagane"
+      hashtags_subtitle: Sjå kva som har vore populært dei siste to dagane
+      hashtags_title: Populære emneknaggar
+      hashtags_view_more: Sjå fleire populære emneknaggar
+      post_action: Skriv
+      post_step: Sei hei til verda med tekst, bilete, filmar eller meiningsmålingar.
+      post_title: Skriv ditt fyrste innlegg
+      share_action: Del
+      share_step: Fortel venene dine korleis dei finn deg på Mastodon.
+      share_title: Del Mastodon-profilen din
+      sign_in_action: Logg inn
       subject: Velkomen til Mastodon
       title: Velkomen om bord, %{name}!
   users:
@@ -1825,6 +1885,7 @@ nn:
     go_to_sso_account_settings: Gå til kontoinnstillingane hjå identitetsleverandøren din
     invalid_otp_token: Ugyldig tostegskode
     otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
+    rate_limited: For mange autentiseringsforsøk, prøv igjen seinare.
     seamless_external_login: Du er logga inn gjennom eit eksternt reiskap, so passord og e-postinstillingar er ikkje tilgjengelege.
     signed_in_as: 'Logga inn som:'
   verification:

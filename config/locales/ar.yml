@@ -42,7 +42,7 @@ ar:
       add_email_domain_block: حظر نطاق البريد الإلكتروني هذا
       approve: صادِق عليه
       approved_msg: تمت الموافقة على تسجيل %{username}
-      are_you_sure: متأكد ؟
+      are_you_sure: هل أنت متأكد؟
       avatar: الصورة الرمزية
       by_domain: النطاق
       change_email:
@@ -55,17 +55,17 @@ ar:
       change_role:
         changed_msg: تم تغيير بنجاح!
         label: تغيير الدور
-        no_role: لا رتب
-        title: تم تغيير الرتب ل %{username}
+        no_role: بلا دور
+        title: تغيير دور %{username}
       confirm: تأكيد
       confirmed: مؤكَّد
       confirming: التأكد
       custom: مخصص
       delete: حذف البيانات
-      deleted: تمت إزالته
-      demote: إنزال الرُتبة الوظيفية
+      deleted: محذوف
+      demote: إنزال الدور الوظيفي
       destroyed_msg: بيانات حساب %{username} الآن في قائمة الانتظار ليتم حذفها قريباً
-      disable: تعطيل
+      disable: تجميد
       disable_sign_in_token_auth: تعطيل مصادقة رمز البريد الإلكتروني
       disable_two_factor_authentication: تعطيل المصادقة بخطوتين
       disabled: معطَّل
@@ -91,7 +91,7 @@ ar:
         local: المحلي
         remote: عن بُعد
         title: الموقع
-      login_status: وضع الدخول
+      login_status: حالة الولوج
       media_attachments: الوسائط المرفقة
       memorialize: تحويل الحساب إلى صفحة ذكرى
       memorialized: تذكاري
@@ -203,10 +203,10 @@ ar:
         destroy_canonical_email_block: حذف نطاق للبريد
         destroy_custom_emoji: احذف الإيموجي المخصص
         destroy_domain_allow: حذف النطاق المسموح به
-        destroy_domain_block: حذف كتلة النطاق
-        destroy_email_domain_block: حذف نطاق بريد إلكتروني
+        destroy_domain_block: إزالة حظر النطاق
+        destroy_email_domain_block: حذف حظر نطاق بريد إلكتروني
         destroy_instance: تنظيف النطاق
-        destroy_ip_block: حذف قانون IP
+        destroy_ip_block: حذف قاعدة IP
         destroy_status: حذف المنشور
         destroy_unavailable_domain: حذف نطاق غير متوفر
         destroy_user_role: حذف الدور
@@ -225,7 +225,7 @@ ar:
         reopen_report: إعادة فتح التقرير
         resend_user: إعادة إرسال بريد التأكيد
         reset_password_user: إعادة تعيين كلمة المرور
-        resolve_report: حل الشكوى
+        resolve_report: معالجة الشكوى
         sensitive_account: وضع علامة على الوسائط في حسابك على أنها حساسة
         silence_account: كتم الحساب
         suspend_account: تعليق الحساب
@@ -236,14 +236,14 @@ ar:
         unsuspend_account: إلغاء تعليق الحساب
         update_announcement: تحديث الإعلان
         update_custom_emoji: تحديث الإيموجي المخصص
-        update_domain_block: تحديث كتلة النطاق
+        update_domain_block: تحديث حظر النطاق
         update_ip_block: تحديث قاعدة IP
         update_status: تحديث المنشور
         update_user_role: تحديث الدور
       actions:
-        approve_appeal_html: وافق %{name} على استئناف قرار الاعتدال من %{target}
-        approve_user_html: قبل %{name} تسجيل %{target}
-        assigned_to_self_report_html: قام %{name} بتعيين التقرير %{target} لأنفسهم
+        approve_appeal_html: وافق %{name} على استئناف الطعن بشأن قرار الإشراف من %{target}
+        approve_user_html: وافق %{name} على تسجيل %{target}
+        assigned_to_self_report_html: قام %{name} بإسناد التقرير %{target} لأنفسهم
         change_email_user_html: غيّر %{name} عنوان البريد الإلكتروني للمستخدم %{target}
         change_role_user_html: قام %{name} بإنشاء قاعدة للـIP %{target}
         confirm_user_html: "%{name} قد قام بتأكيد عنوان البريد الإلكتروني لـ %{target}"
@@ -284,7 +284,7 @@ ar:
         reopen_report_html: قام %{name} بإعادة فتح الشكوى %{target}
         resend_user_html: "%{name} إعادة إرسال البريد الإلكتروني للتأكيد لـ %{target}"
         reset_password_user_html: قام %{name} بإعادة تعيين كلمة مرور المستخدم %{target}
-        resolve_report_html: قام %{name} بحل الشكوى %{target}
+        resolve_report_html: قام %{name} بمعالجة الشكوى %{target}
         sensitive_account_html: قام %{name} بوضع علامة حساس على محتوى %{target}
         silence_account_html: قام %{name} بكتم حساب %{target}
         suspend_account_html: قام %{name} بتعليق حساب %{target}
@@ -299,7 +299,7 @@ ar:
         update_ip_block_html: قام %{name} بإنشاء قاعدة للـIP %{target}
         update_status_html: قام %{name} بتحديث منشور من %{target}
         update_user_role_html: "%{name} تغيير رتبه %{target}"
-      deleted_account: احذف الحساب
+      deleted_account: حذف الحساب
       empty: لم يتم العثور على سجلات.
       filter_by_action: تصفية بحسب الإجراء
       filter_by_user: تصفية حسب المستخدم
@@ -309,14 +309,14 @@ ar:
       edit:
         title: تعديل الإعلان
       empty: لم يتم العثور على أية إعلانات.
-      live: على المباشر
+      live: حي
       new:
         create: إنشاء إعلان
         title: إعلان جديد
       publish: نشر
       published_msg: تم نشر الإعلان بنجاح!
       scheduled_for: بُرمِج على %{time}
-      scheduled_msg: تمت جدولة نشر الإعلان!
+      scheduled_msg: تمت برمجة نشر الإعلان!
       title: الإعلانات
       unpublish: إلغاء النشر
       unpublished_msg: تم إلغاء نشر الإعلان بنجاح!
@@ -390,8 +390,8 @@ ar:
         other: "<strong>%{count}</strong> مستخدماً قيدَ الانتظار"
         two: "<strong>%{count}</strong> مستخدمان قيدَ الانتظار"
         zero: "<strong>%{count}</strong> مستخدمٍ قيدَ الانتظار"
-      resolved_reports: تقارير تم حلها
-      software: البرنامج
+      resolved_reports: تقارير تم معالجتها
+      software: البرمجيات
       sources: مصادر التسجيل
       space: المساحة المستخدَمة
       title: لوح المراقبة
@@ -453,6 +453,7 @@ ar:
       view: عرض كتلة النطاق
     email_domain_blocks:
       add_new: إضافة
+      allow_registrations_with_approval: السماح بالتسجيلات وإنشاء الحسابات بعد الموافقة
       attempts_over_week:
         few: "%{count} محاولات تسجيل في آخر أسبوع"
         many: "%{count} محاولات تسجيل في آخر أسبوع"
@@ -645,8 +646,8 @@ ar:
       actions_description_remote_html: حدّد الإجراءات التي يتعين اتخاذها لحل هذا التقرير. هذا سيؤثر فقط على كيفية اتصال <strong>خادمك</strong> بهذا الحساب البعيد والتعامل مع محتوياته.
       add_to_report: أضف المزيد إلى التقرير
       are_you_sure: هل أنت متأكد ؟
-      assign_to_self: عين لي
-      assigned: تعين رئيس
+      assign_to_self: اسنده لي
+      assigned: المشرف المُسنَد
       by_target_domain: نطاق الحساب المبلّغ عنه
       cancel: إلغاء
       category: الفئة
@@ -659,14 +660,15 @@ ar:
       created_at: ذكرت
       delete_and_resolve: احذف المنشورات
       forwarded: أُعيد توجيهه
+      forwarded_replies_explanation: هذا التقرير من مستخدم عن بُعد وحول محتوى عن بُعد. تم تحويله إليك لأن المحتوى المُبلَغ عنه هو ردّ على أحد مستخدميك.
       forwarded_to: أُعيد توجيهه إلى %{domain}
-      mark_as_resolved: اعتبار الشكوى كمحلولة
+      mark_as_resolved: اعتبار الشكوى كمعالَجة
       mark_as_sensitive: تعيينه كمنشور حساس
-      mark_as_unresolved: علم كغير محلولة
+      mark_as_unresolved: وضع علامة لم يتم معالجتها
       no_one_assigned: لا أحد
       notes:
         create: اضف ملاحظة
-        create_and_resolve: الحل مع ملاحظة
+        create_and_resolve: معالجة مرفوقة بملاحظة
         create_and_unresolve: إعادة فتح مع ملاحظة
         delete: حذف
         placeholder: قم بوصف الإجراءات التي تم اتخاذها أو أي تحديثات أخرى ذات علاقة...
@@ -680,7 +682,7 @@ ar:
       reported_account: حساب مُبلّغ عنه
       reported_by: أبلغ عنه من طرف
       resolved: معالجة
-      resolved_msg: تم حل تقرير بنجاح!
+      resolved_msg: تمت معالجة الشكوى بنجاح!
       skip_to_actions: تخطي إلى الإجراءات
       status: الحالة
       statuses: المحتوى المبلغ عنه
@@ -1068,8 +1070,6 @@ ar:
       new_trending_statuses:
         title: المنشورات الشائعة
       new_trending_tags:
-        no_approved_tags: لا توجد حاليًا وسوم شائعة موافق عليها.
-        requirements: 'يمكن لأي من هؤلاء المرشحين أن يتجاوز علامة #%{rank} من الوسوم الموافق عليها، وهي حاليا #%{lowest_tag_name} مع نتيجة %{lowest_tag_score}.'
         title: الوسوم المتداولة
       subject: تداولات جديدة في انتظار المراجعة على %{instance}
   aliases:
@@ -1118,6 +1118,9 @@ ar:
       clicking_this_link: اضغط على هذا الرابط
       login_link: تسجيل الدخول
       proceed_to_login_html: يمكنكَ الآن الاستمرار إلى %{login_link}.
+      redirect_to_app_html: كان من المفترض إعادة توجيهك إلى تطبيق <strong>%{app_name}</strong>. إن لم يحدث ذلك، حاول %{clicking_this_link} أو العودة يدويًا إلى التطبيق.
+      registration_complete: اكتمل تسجيل حسابك على %{domain} الآن!
+      welcome_title: أهلاً بك، %{name}!
       wrong_email_hint: إذا كان عنوان البريد الإلكتروني هذا غير صحيح، يمكنك تغييره في إعدادات الحساب.
     delete_account: احذف الحساب
     delete_account_html: إن كنت ترغب في حذف حسابك يُمكنك <a href="%{path}">المواصلة هنا</a>. سوف يُطلَبُ منك التأكيد قبل الحذف.
@@ -1179,6 +1182,7 @@ ar:
       functional: حسابك يعمل بشكل كامل.
       pending: إن طلبك قيد المراجعة من قبل فريقنا. قد يستغرق هذا بعض الوقت. سوف تتلقى بريدا إلكترونيا إذا تمت الموافقة على طلبك.
       redirecting_to: حسابك غير نشط لأنه تم تحويله حاليا إلى %{acct}.
+      self_destruct: نظرًا لإغلاق %{domain}، ستحصل فقط على وصول محدود إلى حسابك.
       view_strikes: عرض العقوبات السابقة المُطَبَّقة ضد حسابك
     too_fast: تم إرسال النموذج بسرعة كبيرة، حاول مرة أخرى.
     use_security_key: استخدام مفتاح الأمان
@@ -1356,6 +1360,20 @@ ar:
         title: الرسائل المصفّاة
   generic:
     all: الكل
+    all_items_on_page_selected_html:
+      few: تم تحديد كافة العناصر التي يبلغ عددها <strong>%{count}</strong> في هذه الصفحة.
+      many: تم تحديد كافة العناصر التي يبلغ عددها <strong>%{count}</strong> في هذه الصفحة.
+      one: تم تحديد كافة العناصر التي يبلغ عددها <strong>%{count}</strong> في هذه الصفحة.
+      other: تم تحديد كافة العناصر التي يبلغ عددها <strong>%{count}</strong> في هذه الصفحة.
+      two: تم تحديد كافة العناصر التي يبلغ عددها <strong>%{count}</strong> في هذه الصفحة.
+      zero: تم تحديد كافة العناصر التي يبلغ عددها <strong>%{count}</strong> في هذه الصفحة.
+    all_matching_items_selected_html:
+      few: تم تحديد كافة العناصر التي تشمل عددها <strong>%{count}</strong> في هذه الصفحة.
+      many: تم تحديد كافة العناصر التي تشمل عددها <strong>%{count}</strong> في هذه الصفحة.
+      one: تم تحديد كافة العناصر التي تشمل عددها <strong>%{count}</strong> في هذه الصفحة.
+      other: تم تحديد كافة العناصر التي تشمل عددها <strong>%{count}</strong> في هذه الصفحة.
+      two: تم تحديد كافة العناصر التي تشمل عددها <strong>%{count}</strong> في هذه الصفحة.
+      zero: تم تحديد كافة العناصر التي تشمل عددها <strong>%{count}</strong> في هذه الصفحة.
     cancel: إلغاء
     changes_saved_msg: تم حفظ التعديلات بنجاح!
     confirm: تأكيد
@@ -1365,6 +1383,13 @@ ar:
     none: لا شيء
     order_by: ترتيب بحسب
     save_changes: حفظ التغييرات
+    select_all_matching_items:
+      few: حدد كافة العناصر الـ %{count} المطابقة لبحثك.
+      many: حدد كافة العناصر الـ %{count} المطابقة لبحثك.
+      one: حدد العنصر المطابق لبحثك.
+      other: حدد كافة العناصر الـ %{count} المطابقة لبحثك.
+      two: حدد العنصران المطابقان لبحثك.
+      zero: حدد كافة العناصر الـ %{count} المطابقة لبحثك.
     today: اليوم
     validation_errors:
       few: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
@@ -1443,6 +1468,7 @@ ar:
       '86400': يوم واحد
     expires_in_prompt: أبدا
     generate: توليد
+    invalid: هذه الدعوة غير صالحة
     invited_by: 'تمت دعوتك من طرف:'
     max_uses:
       few: "%{count} استخدامات"
@@ -1568,7 +1594,6 @@ ar:
     administration_emails: إشعارات البريد الإلكتروني الإدارية
     email_events: الأحداث للإشعارات عبر البريد الإلكتروني
     email_events_hint: 'اختر الأحداث التي تريد أن تصِلَك اشعارات عنها:'
-    other_settings: إعدادات أخرى للإشعارات
   number:
     human:
       decimal_units:
@@ -1624,6 +1649,9 @@ ar:
     errors:
       limit_reached: تم بلوغ الحد الأقصى لردود الفعل المختلفة
       unrecognized_emoji: لم يتم التعرف على أنه إيموجي
+  redirects:
+    prompt: إن كنت واثق من هذا الرابط، انقر عليه للمتابعة.
+    title: إنّك مغادر %{instance}.
   relationships:
     activity: نشاط الحساب
     confirm_follow_selected_followers: هل أنت متأكد من أنك تريد متابعة المتابِعين المحددين؟
@@ -1659,6 +1687,9 @@ ar:
     over_daily_limit: لقد تجاوزتَ حد الـ %{limit} منشورات مُبَرمَجة مسموح بها اليوم
     over_total_limit: لقد بلغت حد الـ %{limit} مِن المنشورات المبرمَجة
     too_soon: يجب أن يكون تاريخ البرمجة في المستقبَل
+  self_destruct:
+    lead_html: للأسف، سيتم إغلاق <strong>%{domain}</strong> بشكل دائم. إذا كان لديك حساب هناك، لن تكون قادرًا على الاستمرار في استخدامه، غير أنه يمكنك طلب نسخة احتياطية لبياناتك.
+    title: سيُغلق هذا الخادم أبوابه
   sessions:
     activity: آخر نشاط
     browser: المتصفح
@@ -1683,6 +1714,7 @@ ar:
       unknown_browser: متصفح غير معروف
       weibo: وايبو
     current_session: الجلسة الحالية
+    date: التاريخ
     description: "%{browser} على %{platform}"
     explanation: ها هي قائمة مُتصفِّحات الويب التي تستخدِم حاليًا حساب ماستدون الخاص بك.
     ip: عنوان الإيبي
@@ -1873,18 +1905,27 @@ ar:
     webauthn: مفاتيح الأمان
   user_mailer:
     appeal_approved:
-      action: انتقل إلى حسابك
+      action: إعدادات الحساب
       explanation: تمت الموافقة على استئناف السجل ضد حسابك في %{strike_date} الذي قدمته في %{appeal_date}. حسابك مرة أخرى في حالة جيدة.
       subject: تم قبول طعنك الذي قدمته بتاريخ %{date}
+      subtitle: حسابك في وضع جيد مجدّدا.
       title: تم قبول طعنك
     appeal_rejected:
       explanation: تم رفض استئناف السجل ضد حسابك في %{strike_date} الذي قدمته في %{appeal_date}.
       subject: تم رفض طعنك الذي قدمته بتاريخ %{date}
+      subtitle: تم رفض طعنك.
       title: رُفض الاستئناف
     backup_ready:
-      explanation: لقد قمت بطلب نسخة كاملة لحسابك على ماستدون. إنها متوفرة الآن للتنزيل!
+      explanation: لقد قمت بطلب نسخة كاملة لحسابك على ماستدون.
+      extra: إنه الآن جاهز للتحميل!
       subject: نسخة بيانات حسابك جاهزة للتنزيل
       title: المغادرة بأرشيف الحساب
+    failed_2fa:
+      details: 'فيما يلي تفاصيل محاولة تسجيل الدخول:'
+      explanation: حاول شخص ما تسجيل الدخول إلى حسابك ولكنه قدم عامل مصادقة ثانٍ غير صالح.
+      further_actions_html: إن لم تكن أنت، نوصي بأن تقوم بـ %{action} على الفور، حيث قد يكون الحساب قد تعرض للاختراق.
+      subject: فشل المصادقة على العامل الثاني
+      title: فشل المصادقة على العامل الثاني
     suspicious_sign_in:
       change_password: غيّر كلمتك السرية
       details: 'فيما يلي تفاصيل تسجيل الدخول:'
@@ -1924,13 +1965,7 @@ ar:
         silence: الحساب محدود
         suspend: الحساب مُعلَّق
     welcome:
-      edit_profile_action: تهيئة الملف التعريفي
-      edit_profile_step: يمكنك تخصيص ملفك الشخصي عن طريق رفع صورة ملفك الشخصي, تغيير اسم العرض الخاص بك والمزيد. يمكنك اختيار مراجعة المتابعين الجدد قبل السماح لهم بمتابعتك.
       explanation: ها هي بعض النصائح قبل بداية الاستخدام
-      final_action: اشرَع في النشر
-      final_step: 'ابدأ في النشر! حتى بدون متابعين، منشوراتك العامة قد يشاهدها آخرون، على سبيل المثال في التوقيت المحلي أو في الوسوم. قد ترغب في تقديم نفسك على وسم #introductions.'
-      full_handle: عنوانك الكامل
-      full_handle_hint: هذا هو ما يجب تقديمه لأصدقائك قصد أن يكون بإمكانهم متابَعتك أو مُراسَلتك حتى و إن كانت حساباتهم على خوادم أخرى.
       subject: أهلًا بك على ماستدون
       title: أهلاً بك، %{name}!
   users:
@@ -1938,6 +1973,7 @@ ar:
     go_to_sso_account_settings: انتقل إلى إعدادات حساب مزود الهوية الخاص بك
     invalid_otp_token: رمز المصادقة بخطوتين غير صالح
     otp_lost_help_html: إن فقدتَهُما ، يمكنك الاتصال بـ %{email}
+    rate_limited: عدد محاولات المصادقة كثير جداً، حاول مرة أخرى لاحقاً.
     seamless_external_login: لقد قمت بتسجيل الدخول عبر خدمة خارجية، إنّ إعدادات الكلمة السرية و البريد الإلكتروني غير متوفرة.
     signed_in_as: 'تم تسجيل دخولك بصفة:'
   verification:

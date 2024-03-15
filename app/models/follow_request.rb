@@ -33,7 +33,7 @@ class FollowRequest < ApplicationRecord
 
   def authorize!
     follow = account.follow!(target_account, reblogs: show_reblogs, notify: notify, languages: languages, uri: uri, bypass_limit: true)
-    ListAccount.where(follow_request: self).update_all(follow_request_id: nil, follow_id: follow.id) # rubocop:disable Rails/SkipsModelValidations
+    ListAccount.where(follow_request: self).update_all(follow_request_id: nil, follow_id: follow.id)
     MergeWorker.perform_async(target_account.id, account.id) if account.local?
     destroy!
   end
@@ -45,10 +45,15 @@ class FollowRequest < ApplicationRecord
   end
 
   before_validation :set_uri, only: :create
+  after_commit :invalidate_follow_recommendations_cache
 
   private
 
   def set_uri
     self.uri = ActivityPub::TagManager.instance.generate_uri_for(self) if uri.nil?
+  end
+
+  def invalidate_follow_recommendations_cache
+    Rails.cache.delete("follow_recommendations/#{account_id}")
   end
 end

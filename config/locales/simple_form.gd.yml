@@ -39,14 +39,14 @@ gd:
         text: Chan urrainn dhut ath-thagradh a dhèanamh air rabhadh ach aon turas
       defaults:
         autofollow: Leanaidh na daoine a chlàraicheas leis a cuireadh thu gu fèin-obrachail
-        avatar: PNG, GIF or JPG. %{size} air a char as motha. Thèid a sgèileadh sìos gu %{dimensions}px
+        avatar: WEBP, PNG, GIF or JPG. %{size} air a char as motha. Thèid a sgèileadh sìos gu %{dimensions}px
         bot: Comharraich do chàch gu bheil an cunntas seo ri gnìomhan fèin-obrachail gu h-àraidh is dh’fhaoidte nach doir duine sam bith sùil air idir
         context: Na co-theacsaichean air am bi a’ chriathrag an sàs
         current_password: A chùm tèarainteachd, cuir a-steach facal-faire a’ chunntais làithrich
         current_username: Airson seo a dhearbhadh, cuir a-steach ainm-cleachdaiche a’ chunntais làithrich
         digest: Cha dèid seo a chur ach nuair a bhios tu air ùine mhòr gun ghnìomh a ghabhail agus ma fhuair thu teachdaireachd phearsanta fhad ’s a bha thu air falbh
         email: Thèid post-d dearbhaidh a chur thugad
-        header: PNG, GIF or JPG. %{size} air a char as motha. Thèid a sgèileadh sìos gu %{dimensions}px
+        header: WEBP, PNG, GIF no JPG. %{size} air a char as motha. Thèid a sgèileadh sìos gu %{dimensions}px
         inbox_url: Dèan lethbhreac dhen URL o phrìomh-dhuilleag an ath-sheachadain a bu mhiann leat cleachdadh
         irreversible: Thèid postaichean criathraichte à sealladh gu buan fiù ’s ma bheir thu a’ chriathrag air falbh às dèidh làimhe
         locale: Cànan eadar-aghaidh a’ chleachdaiche, nam post-d ’s nam brathan putaidh
@@ -116,6 +116,7 @@ gd:
           sign_up_requires_approval: Bidh cleachdaichean air an ùr-chlàradh feumach air d’ aonta
         severity: Tagh na thachras le iarrtasan on IP seo
       rule:
+        hint: Roghainneil. Thoir seachad barrachd fiosrachaidh mun riaghailt
         text: Mìnich riaghailt no riatanas do chleachdaichean an fhrithealaiche seo. Feuch an cùm thu sìmplidh goirid e
       sessions:
         otp: 'Cuir a-steach an còd dà-cheumnach a ghin aplacaid an fhòn agad no cleachd fear dhe na còdan aisig agad:'
@@ -140,7 +141,7 @@ gd:
         url: Far an dèid na tachartasan a chur
     labels:
       account:
-        discoverable: Brosnaich a’ phròifil is postaichean agad sna h-algairimean luirg
+        discoverable: Brosnaich a’ phròifil is postaichean agad sna h-algairimean rùrachaidh
         fields:
           name: Leubail
           value: Susbaint
@@ -299,15 +300,16 @@ gd:
           patch: Thoir brathan dhomh do dh’ùrachaidhean càraidh
         trending_tag: Tha treand ùr ri lèirmheasadh
       rule:
+        hint: Barrachd fiosrachaidh
         text: Riaghailt
       settings:
         indexable: Gabh a-staigh duilleag na pròifil sna h-einnseanan-luirg
         show_application: Seall dè an aplacaid a chuir thu post leatha
       tag:
-        listable: Leig leis an taga hais seo gun nochd e ann an toraidhean luirg ’s am measg nam molaidhean
+        listable: Faodaidh an taga hais seo nochdadh ann an toraidhean luirg ’s am measg nam molaidhean
         name: Taga hais
-        trendable: Leig leis an taga hais seo gun nochd e am measg nan treandaichean
-        usable: Leig le postaichean an taga hais seo a chleachdadh
+        trendable: Faodaidh an taga hais seo nochdadh am measg nan treandaichean
+        usable: Faodaidh postaichean an taga hais seo a chleachdadh
       user:
         role: Dreuchd
         time_zone: Roinn-tìde

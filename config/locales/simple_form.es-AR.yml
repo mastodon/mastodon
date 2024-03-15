@@ -39,14 +39,14 @@ es-AR:
         text: Sólo podés apelar un incumplimiento una vez
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
-        avatar: 'PNG, GIF o JPG. Máximo: %{size}. Será subescalado a %{dimensions} píxeles.'
+        avatar: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         bot: Esta cuenta ejecuta principalmente acciones automatizadas y podría no ser monitorizada
         context: Uno o múltiples contextos en los que debe aplicarse el filtro
         current_password: Por razones de seguridad, por favor, ingresá la contraseña de la cuenta actual
         current_username: Para confirmar, por favor, ingresá el nombre de usuario de la cuenta actual
         digest: Sólo enviado tras un largo periodo de inactividad, y sólo si recibiste mensajes personales en tu ausencia
         email: Se te enviará un correo electrónico de confirmación
-        header: 'PNG, GIF o JPG. Máximo: %{size}. Será subescalado a %{dimensions} píxeles.'
+        header: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         inbox_url: Copiá la dirección web desde la página principal del relé que querés usar
         irreversible: Los mensajes filtrados desaparecerán irreversiblemente, incluso si este filtro es eliminado después
         locale: El idioma de la interface de usuario, correos electrónicos y notificaciones push
@@ -116,6 +116,7 @@ es-AR:
           sign_up_requires_approval: Los nuevos registros requerirán tu aprobación
         severity: Elegí lo que pasará con las solicitudes desde esta dirección IP
       rule:
+        hint: Opcional. Ofrecé más detalles sobre la regla
         text: Describí una regla o requisito para los usuarios de este servidor. Intentá hacerla corta y sencilla
       sessions:
         otp: 'Ingresá el código de autenticación de dos factores generado por la aplicación en tu dispositivo, o usá uno de tus códigos de recuperación:'
@@ -299,6 +300,7 @@ es-AR:
           patch: Notificar sobre actualizaciones de corrección de errores
         trending_tag: Una nueva tendencia requiere revisión
       rule:
+        hint: Información adicional
         text: Regla
       settings:
         indexable: Incluir la página de perfil en los motores de búsqueda

@@ -66,16 +66,6 @@ class EmojiFormatter
     @emoji_map ||= custom_emojis.each_with_object({}) { |e, h| h[e.shortcode] = [full_asset_url(e.image.url), full_asset_url(e.image.url(:static))] }
   end
 
-  def count_tag_nesting(tag)
-    if tag[1] == '/'
-      -1
-    elsif tag[-2] == '/'
-      0
-    else
-      1
-    end
-  end
-
   def tag_for_emoji(shortcode, emoji)
     return content_tag(:span, ":#{shortcode}:", translate: 'no') if raw_shortcode?
 
