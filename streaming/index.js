@@ -252,6 +252,19 @@ const redisConfigFromEnv = (env) => {
     password: env.REDIS_PASSWORD || undefined,
   };
 
+  if (env.REDIS_SENTINEL) {
+	redisParams = {
+	  password: env.REDIS_PASSWORD || undefined,
+	  sentinels: env.REDIS_SENTINEL.split(',').map(h => {
+		const s = h.split(':');
+		const host = s[0] || '127.0.0.1';
+		const port =  s[1] || '26379';
+		return { "host": host, "port": port };
+	  }),
+	  name: env.REDIS_SENTINEL_MASTER || 'mymaster',
+	};
+  }
+
   // redisParams.path takes precedence over host and port.
   if (env.REDIS_URL && env.REDIS_URL.startsWith('unix://')) {
     redisParams.path = env.REDIS_URL.slice(7);
