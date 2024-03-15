@@ -441,7 +441,7 @@ class Header extends ImmutablePureComponent {
             <h1>
               <span dangerouslySetInnerHTML={displayNameHtml} />
               <small>
-                <span>@{username}</span>
+                <span>@{username}<span class='invisible'>@{domain}</span></span>
                 <DomainPill username={username} domain={domain} isSelf={me === account.get('id')} />
                 {lockedIcon}
               </small>
