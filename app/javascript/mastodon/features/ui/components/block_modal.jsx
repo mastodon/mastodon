@@ -74,23 +74,24 @@ export const BlockModal = ({ accountId, acct }) => {
       </div>
 
       <div className={classNames('safety-action-modal__bottom', { active: expanded })}>
-        <div className='safety-action-modal__bottom__collapsible'>
-          <div className='safety-action-modal__caveats'>
-            <FormattedMessage id='block_modal.logged_out_caveat' defaultMessage='Your public posts will remain visible to logged-out users.' />
-            {domain && (
+        {domain && (
+          <div className='safety-action-modal__bottom__collapsible'>
+            <div className='safety-action-modal__caveats'>
               <FormattedMessage
                 id='block_modal.remote_users_caveat'
-                defaultMessage='Furthermore, Mastodon will ask {domain} to apply the block on its end, but cannot make sure it will be enforced appropriately.'
+                defaultMessage='Mastodon will tell the remote server {domain} to apply the block on its end, but cannot make sure it will be enforced using the exact same rules.'
                 values={{ domain: <strong>{domain}</strong> }}
               />
-            )}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className='safety-action-modal__actions'>
-          <button onClick={handleToggleLearnMore} className='link-button'>
-            {expanded ? <FormattedMessage id='block_modal.learn_less' defaultMessage='Learn less' /> : <FormattedMessage id='block_modal.learn_more' defaultMessage='Learn more' />}
-          </button>
+          {domain && (
+            <button onClick={handleToggleLearnMore} className='link-button'>
+              {expanded ? <FormattedMessage id='block_modal.learn_less' defaultMessage='Learn less' /> : <FormattedMessage id='block_modal.learn_more' defaultMessage='Learn more' />}
+            </button>
+          )}
 
           <div className='spacer' />
 
