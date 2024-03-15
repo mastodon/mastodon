@@ -1792,6 +1792,118 @@ body > [data-popper-placement] {
     }
   }
 
+  &__domain-pill {
+    display: inline-flex;
+    background: rgba($highlight-text-color, 0.2);
+    border-radius: 4px;
+    border: 0;
+    color: $highlight-text-color;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    padding: 4px 8px;
+
+    &.active {
+      color: $white;
+      background: $ui-highlight-color;
+    }
+
+    &__popout {
+      background: var(--dropdown-background-color);
+      backdrop-filter: var(--background-filter);
+      border: 1px solid var(--dropdown-border-color);
+      box-shadow: var(--dropdown-shadow);
+      max-width: 320px;
+      padding: 16px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      font-size: 14px;
+      line-height: 20px;
+      color: $darker-text-color;
+
+      .link-button {
+        display: inline;
+        font-size: inherit;
+        line-height: inherit;
+      }
+
+      &__header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        &__icon {
+          width: 40px;
+          height: 40px;
+          background: $ui-highlight-color;
+          color: $white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          flex-shrink: 0;
+        }
+
+        h3 {
+          font-size: 17px;
+          line-height: 22px;
+          color: $primary-text-color;
+        }
+      }
+
+      &__handle {
+        border: 2px dashed $highlight-text-color;
+        background: rgba($highlight-text-color, 0.1);
+        padding: 12px 8px;
+        color: $highlight-text-color;
+        border-radius: 4px;
+
+        &__label {
+          font-size: 11px;
+          line-height: 16px;
+          font-weight: 500;
+        }
+
+        &__handle {
+          user-select: all;
+        }
+      }
+
+      &__parts {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 12px;
+        line-height: 16px;
+
+        & > div {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+        }
+
+        &__icon {
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          color: $highlight-text-color;
+        }
+
+        h6 {
+          font-size: 14px;
+          line-height: 20px;
+          font-weight: 500;
+          color: $primary-text-color;
+        }
+      }
+    }
+  }
+
   &__note {
     font-size: 14px;
     font-weight: 400;
@@ -7544,14 +7656,17 @@ noscript {
         font-size: 17px;
         line-height: 22px;
         color: $primary-text-color;
-        font-weight: 700;
+        font-weight: 600;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
 
         small {
-          display: block;
-          font-size: 15px;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 14px;
+          line-height: 20px;
           color: $darker-text-color;
           font-weight: 400;
           overflow: hidden;
@@ -7562,10 +7677,8 @@ noscript {
           }
 
           .icon-lock {
-            height: 16px;
-            width: 16px;
-            position: relative;
-            top: 3px;
+            height: 18px;
+            width: 18px;
           }
         }
       }
