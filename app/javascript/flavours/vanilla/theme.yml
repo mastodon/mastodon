@@ -2,12 +2,12 @@
 pack:
   admin:
     - admin.tsx
-    - public.jsx
-  auth: public.jsx
+    - public.tsx
+  auth: public.tsx
   common:
     filename: common.js
     stylesheet: true
-  embed: public.jsx
+  embed: public.tsx
   error: error.js
   home:
     filename: application.js
@@ -17,8 +17,8 @@ pack:
       - features/notifications
   mailer:
   modal:
-  public: public.jsx
-  settings: public.jsx
+  public: public.tsx
+  settings: public.tsx
   sign_up: sign_up.js
   share: share.jsx
 
