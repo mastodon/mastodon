@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
 
 import { useDispatch } from 'react-redux';
 
@@ -17,6 +19,9 @@ import { Icon } from 'mastodon/components/icon';
 
 export const BlockModal = ({ accountId, acct }) => {
   const dispatch = useDispatch();
+  const [expanded, setExpanded] = useState(false);
+
+  const domain = acct.split('@')[1];
 
   const handleClick = useCallback(() => {
     dispatch(closeModal({ modalType: undefined, ignoreFocus: false }));
@@ -26,6 +31,10 @@ export const BlockModal = ({ accountId, acct }) => {
   const handleCancel = useCallback(() => {
     dispatch(closeModal({ modalType: undefined, ignoreFocus: false }));
   }, [dispatch]);
+
+  const handleToggleLearnMore = useCallback(() => {
+    setExpanded(!expanded);
+  }, [expanded, setExpanded]);
 
   return (
     <div className='modal-root__modal safety-action-modal'>
@@ -64,8 +73,28 @@ export const BlockModal = ({ accountId, acct }) => {
         </div>
       </div>
 
-      <div className='safety-action-modal__bottom'>
+      <div className={classNames('safety-action-modal__bottom', { active: expanded })}>
+        {domain && (
+          <div className='safety-action-modal__bottom__collapsible'>
+            <div className='safety-action-modal__caveats'>
+              <FormattedMessage
+                id='block_modal.remote_users_caveat'
+                defaultMessage='We will ask the server {domain} to respect your decision. However, compliance is not guaranteed since some servers may handle blocks differently. Public posts may still be visible to non-logged-in users.'
+                values={{ domain: <strong>{domain}</strong> }}
+              />
+            </div>
+          </div>
+        )}
+
         <div className='safety-action-modal__actions'>
+          {domain && (
+            <button onClick={handleToggleLearnMore} className='link-button'>
+              {expanded ? <FormattedMessage id='block_modal.show_less' defaultMessage='Show less' /> : <FormattedMessage id='block_modal.show_more' defaultMessage='Show more' />}
+            </button>
+          )}
+
+          <div className='spacer' />
+
           <button onClick={handleCancel} className='link-button'>
             <FormattedMessage id='confirmation_modal.cancel' defaultMessage='Cancel' />
           </button>
