@@ -6,19 +6,26 @@
     .filter-subset.filter-subset--with-select
       %strong= t('admin.accounts.location.title')
       .input.select.optional
-        = select_tag :origin, options_for_select([[t('admin.accounts.location.local'), 'local'], [t('admin.accounts.location.remote'), 'remote']], params[:origin]), prompt: I18n.t('generic.all')
+        = select_tag :origin,
+                     options_for_select([[t('admin.accounts.location.local'), 'local'], [t('admin.accounts.location.remote'), 'remote']], params[:origin]),
+                     prompt: I18n.t('generic.all')
     .filter-subset.filter-subset--with-select
       %strong= t('admin.accounts.moderation.title')
       .input.select.optional
-        = select_tag :status, options_for_select(admin_accounts_moderation_options, params[:status]), prompt: I18n.t('generic.all')
+        = select_tag :status,
+                     options_for_select(admin_accounts_moderation_options, params[:status]),
+                     prompt: I18n.t('generic.all')
     .filter-subset.filter-subset--with-select
       %strong= t('admin.accounts.role')
       .input.select.optional
-        = select_tag :role_ids, options_from_collection_for_select(UserRole.assignable, :id, :name, params[:role_ids]), prompt: I18n.t('admin.accounts.moderation.all')
+        = select_tag :role_ids,
+                     options_from_collection_for_select(UserRole.assignable, :id, :name, params[:role_ids]),
+                     prompt: I18n.t('admin.accounts.moderation.all')
     .filter-subset.filter-subset--with-select
       %strong= t 'generic.order_by'
       .input.select
-        = select_tag :order, options_for_select([[t('relationships.most_recent'), 'recent'], [t('relationships.last_active'), 'active']], params[:order])
+        = select_tag :order,
+                     options_for_select([[t('relationships.most_recent'), 'recent'], [t('relationships.last_active'), 'active']], params[:order])
 
   .fields-group
     - %i(username by_domain display_name email ip).each do |key|
@@ -46,11 +53,23 @@
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
         - if @accounts.any?(&:user_pending?)
-          = f.button safe_join([fa_icon('check'), t('admin.accounts.approve')]), name: :approve, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+          = f.button safe_join([fa_icon('check'), t('admin.accounts.approve')]),
+                     class: 'table-action-link',
+                     data: { confirm: t('admin.reports.are_you_sure') },
+                     name: :approve,
+                     type: :submit
 
-          = f.button safe_join([fa_icon('times'), t('admin.accounts.reject')]), name: :reject, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+          = f.button safe_join([fa_icon('times'), t('admin.accounts.reject')]),
+                     class: 'table-action-link',
+                     data: { confirm: t('admin.reports.are_you_sure') },
+                     name: :reject,
+                     type: :submit
 
-        = f.button safe_join([fa_icon('lock'), t('admin.accounts.perform_full_suspension')]), name: :suspend, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        = f.button safe_join([fa_icon('lock'), t('admin.accounts.perform_full_suspension')]),
+                   class: 'table-action-link',
+                   data: { confirm: t('admin.reports.are_you_sure') },
+                   name: :suspend,
+                   type: :submit
     - if @accounts.total_count > @accounts.size
       .batch-table__select-all
         .not-selected.active

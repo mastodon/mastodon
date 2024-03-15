@@ -11,20 +11,28 @@
   %p.lead= t('admin.settings.branding.preamble')
 
   .fields-group
-    = f.input :site_title, wrapper: :with_label
+    = f.input :site_title,
+              wrapper: :with_label
 
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :site_contact_username, wrapper: :with_label
+      = f.input :site_contact_username,
+                wrapper: :with_label
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :site_contact_email, wrapper: :with_label
+      = f.input :site_contact_email,
+                wrapper: :with_label
 
   .fields-group
-    = f.input :site_short_description, wrapper: :with_block_label, as: :text, input_html: { rows: 2, maxlength: 200 }
+    = f.input :site_short_description,
+              as: :text,
+              input_html: { rows: 2, maxlength: 200 },
+              wrapper: :with_block_label
 
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :thumbnail, as: :file, wrapper: :with_block_label
+      = f.input :thumbnail,
+                as: :file,
+                wrapper: :with_block_label
     .fields-row__column.fields-row__column-6.fields-group
       - if @admin_settings.thumbnail.persisted?
         = image_tag @admin_settings.thumbnail.file.url(:'@1x'), class: 'fields-group__thumbnail'
