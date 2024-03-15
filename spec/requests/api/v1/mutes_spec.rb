@@ -44,10 +44,11 @@ RSpec.describe 'Mutes' do
       it 'sets the correct pagination headers', :aggregate_failures do
         subject
 
-        headers = response.headers['Link']
-
-        expect(headers.find_link(%w(rel prev)).href).to eq(api_v1_mutes_url(limit: params[:limit], since_id: mutes.last.id.to_s))
-        expect(headers.find_link(%w(rel next)).href).to eq(api_v1_mutes_url(limit: params[:limit], max_id: mutes.last.id.to_s))
+        expect(response)
+          .to include_pagination_headers(
+            prev: api_v1_mutes_url(limit: params[:limit], since_id: mutes.last.id),
+            next: api_v1_mutes_url(limit: params[:limit], max_id: mutes.last.id)
+          )
       end
     end
 
