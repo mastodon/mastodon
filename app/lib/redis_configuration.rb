@@ -68,9 +68,17 @@ class RedisConfiguration
     ENV.fetch('REDIS_SENTINEL_MASTER', 'mymaster')
   end
 
+  def sentinel_mode?
+    ENV.include? 'REDIS_SENTINEL'
+  end
+
   private
 
   def raw_connection
-    Redis.new(url: url, driver: :hiredis, sentinels: sentinels, master_name: master_name)
+    if sentinel_mode?
+      Redis.new(url: url, driver: :hiredis, sentinels: sentinels, master_name: master_name)
+    else
+      Redis.new(url: url, driver: :hiredis)
+    end
   end
 end

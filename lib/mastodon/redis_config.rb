@@ -30,8 +30,9 @@ def setup_redis_env_url(prefix = nil, defaults = true)
 
   unless ENV["#{prefix}REDIS_SENTINEL"].include? ','
     ips = Resolv.getaddresses(ENV["#{prefix}REDIS_SENTINEL"])
+    port = ENV.fetch("#{prefix}REDIS_SENTINEL_PORT", '26379')
+
     ENV["#{prefix}REDIS_SENTINEL"] = ips.map do |ip|
-      port = ENV.fetch("#{prefix}REDIS_SENTINEL_PORT", '26379')
       "#{ip}:#{port}"
     end.join(',')
   end
