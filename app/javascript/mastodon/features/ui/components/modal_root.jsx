@@ -7,6 +7,7 @@ import Base from 'mastodon/components/modal_root';
 import {
   MuteModal,
   BlockModal,
+  DomainBlockModal,
   ReportModal,
   EmbedModal,
   ListEditor,
@@ -41,6 +42,7 @@ export const MODAL_COMPONENTS = {
   'CONFIRM': () => Promise.resolve({ default: ConfirmationModal }),
   'MUTE': MuteModal,
   'BLOCK': BlockModal,
+  'DOMAIN_BLOCK': DomainBlockModal,
   'REPORT': ReportModal,
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
   'EMBED': EmbedModal,
