@@ -767,6 +767,7 @@ et:
         disabled: Mitte kellelegi
         users: Sisseloginud kohalikele kasutajatele
       registrations:
+        moderation_recommandation: Enne registreeringute avamist kõigile veendu, et oleks olemas adekvaatne ja reageerimisvalmis modereerijaskond!
         preamble: Kes saab serveril konto luua.
         title: Registreerimised
       registrations_mode:
@@ -774,6 +775,7 @@ et:
           approved: Kinnitus vajalik konto loomisel
           none: Keegi ei saa kontoid luua
           open: Kõik võivad kontoid luua
+        warning_hint: Soovitame liitumisel kasutada heakskiitmise nõuet, kui just pole kindel, et modereerijaskond suudab õigeaegselt käsitleda rämpsu ja pahatahtlikke liitumisi.
       security:
         authorized_fetch: Nõua föderatiivse serveripoolset autoriseerimist
         authorized_fetch_hint: Föderatiivsete serverite poolse autoriseerimise nõudmine võimaldab nii kasutaja- kui ka serveritasandi blokeeringute rangemat jõustamist. See toob aga kaasa jõudluse vähenemise, vähendab vastuste ulatust ja võib tekitada ühilduvusprobleeme mõne ühendatud teenusega. Lisaks ei takista see teatud kasutajatel sinu avalike postituste ja kontode kättesaamist.
@@ -966,6 +968,9 @@ et:
       title: Veebikonksud
       webhook: Veebikonks
   admin_mailer:
+    auto_close_registrations:
+      body: Hiljutise vähese modereerimistegevuse tõttu on %{instance} liitumised automaatselt muudetud heakskiitu nõudvaks, et %{instance} ei muutuks võimalike pahategijate tegevusplatvormiks. Registreerumine on võimalik tagasi avatuks muuta igal ajal.
+      subject: Serveri %{instance} registreeringud on automaatselt muudetud heakskiitu nõudvaks
     new_appeal:
       actions:
         delete_statuses: kustutada postitused
@@ -1490,7 +1495,6 @@ et:
     administration_emails: Admini e-postiteavitused
     email_events: E-posti teadete sündmused
     email_events_hint: 'Vali sündmused, mille kohta soovid teavitusi:'
-    other_settings: Muud teadete sätted
   number:
     human:
       decimal_units:
@@ -1840,12 +1844,42 @@ et:
         silence: Konto limiteeritud
         suspend: Konto kustutatud
     welcome:
-      edit_profile_action: Seadista oma profiil
-      edit_profile_step: |-
-        Esmalt seadista oma profiil. Saad lisada profiilipildi, muuta ekraaninime, lisada lühikirjelduse ja teha paljut muud. Vaata üle oma konto seaded. Saad ise otsustada, kui nähtav on konto teiste jaoks, mis keeltes postitusi oma ajavoos näha soovid ning kui privaatne peaks konto olema.
-
-        Kui mõni asi arusaamatuks jääb, siis võib vaadata juhendvideot: https://youtu.be/J4ItbTOAw7Q
+      apps_android_action: Google Play poest
+      apps_ios_action: Allalaadimine App Store'ist
+      apps_step: Meie ametlikud rakendused.
+      apps_title: Mastodoni rakendused
+      checklist_subtitle: 'Kuidas sel uudsel sotsiaalmeediarindel pihta hakata:'
+      checklist_title: Millest alustada
+      edit_profile_action: Isikupärasta
+      edit_profile_step: Anna oma tegevustele hoogu, luues põhjalik kasutajaprofiil.
+      edit_profile_title: Isikupärasta oma profiili
       explanation: Siin on mõned nõuanded, mis aitavad alustada
+      feature_action: Vaata lisa
+      feature_audience: Mastodon pakub unikaalset võimalust oma jälgijaskonda hallata ilma vahendajateta. Mastodoni käitamine enda serveris võimaldab jälgida kasutajaid ja olla jälgitav ükskõik millisest Mastodoni serverist võrgus ja see pole kellegi teise poolt kontrollitav.
+      feature_audience_title: Kogu enesekindlalt jälgijaid
+      feature_control: Tead ise kõige paremini, mida soovid oma koduvoos näha. Ei aega raiskavaid algoritme ega reklaame. Jälgi ühe kasutajakonto kaudu keda iganes mistahes Mastodoni serveris ja näe postitusi ajalises järjestuses, muutes oma nurgakese Internetist rohkem endale meelepärasemaks.
+      feature_control_title: Säilita oma ajajoone üle kontroll
+      feature_creativity: Mastodon toetab audiot, video- ja pildipostitusi, liigipääsetavuse kirjeldusi, küsitlusi, sisuhoiatusi, animeeritud avatare, kohandatud emotikone, pisipiltide lõikeeelistusi ja enamatki, et end võrgus väljendada. Kas avaldad kunsti, muusikat või taskuhäälingusaadet, Mastodon on mõeldud Sinu jaoks.
+      feature_creativity_title: Võrreldamatu loovus
+      feature_moderation: Mastodon annab otsustusõiguse tagasi Sinu kätte. Igal serveril on oma reeglid ja regulatsioonid, mida hallatakse kohapeal, mitte nagu ülalt-alla korporatiivses sotsiaalmeedias, võimaldades enim paindlikku vastavust erinevate vajadustega gruppide ja inimeste eelistustele. Liitu sobivate reeglitega serveriga, või käivita oma server.
+      feature_moderation_title: Modereerimine, nagu see olema peab
+      follow_action: Jälgi
+      follow_step: Huvipakkuvate inimeste jälgimine ongi Mastodoni olemuseks.
+      follow_title: Isikupärasta oma koduvoogu
+      follows_subtitle: Jälgi teada-tuntud kasutajaid
+      follows_title: Keda jälgida
+      follows_view_more: Vaata lähemalt, keda jälgida
+      hashtags_recent_count: "%{people} inimest viimase %{days} päeva jooksul"
+      hashtags_subtitle: Avasta, mis viimase 2 päeva jooksul on toimunud
+      hashtags_title: Populaarsed märksõnad
+      hashtags_view_more: Vaata teisi trendikaid märksõnu
+      post_action: Postita
+      post_step: Tervita maailma teksti, fotode, videote või küsitlustega.
+      post_title: Tee oma esimene postitus
+      share_action: Jaga
+      share_step: Anna sõpradele teada, kuidas Sind Mastodonis leida.
+      share_title: Jaga oma Mastodoni profiili
+      sign_in_action: Sisene
       subject: Tere tulemast Mastodoni
       title: Tere tulemast, %{name}!
   users:

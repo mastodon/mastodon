@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::SynchronizeFollowersService, type: :service do
+RSpec.describe ActivityPub::SynchronizeFollowersService do
   subject { described_class.new }
 
   let(:actor)          { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/account', inbox_url: 'http://example.com/inbox') }

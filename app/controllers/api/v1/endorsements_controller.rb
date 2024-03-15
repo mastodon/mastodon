@@ -44,12 +44,8 @@ class Api::V1::EndorsementsController < Api::BaseController
     api_v1_endorsements_url pagination_params(since_id: pagination_since_id) unless @accounts.empty?
   end
 
-  def pagination_max_id
-    @accounts.last.id
-  end
-
-  def pagination_since_id
-    @accounts.first.id
+  def pagination_collection
+    @accounts
   end
 
   def records_continue?

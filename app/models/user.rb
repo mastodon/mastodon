@@ -446,7 +446,7 @@ class User < ApplicationRecord
   end
 
   def sign_up_from_ip_requires_approval?
-    sign_up_ip.present? && IpBlock.sign_up_requires_approval.exists?(['ip >>= ?', sign_up_ip.to_s])
+    sign_up_ip.present? && IpBlock.severity_sign_up_requires_approval.exists?(['ip >>= ?', sign_up_ip.to_s])
   end
 
   def sign_up_email_requires_approval?

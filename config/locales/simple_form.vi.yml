@@ -39,12 +39,14 @@ vi:
         text: Bạn chỉ có thể khiếu nại mỗi lần một cảnh cáo
       defaults:
         autofollow: Những người đăng ký sẽ tự động theo dõi bạn
+        avatar: WEBP, PNG, GIF hoặc JPG, tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         bot: Tài khoản này tự động thực hiện các hành động và không được quản lý bởi người thật
         context: Chọn một hoặc nhiều nơi mà bộ lọc sẽ áp dụng
         current_password: Vì mục đích bảo mật, vui lòng nhập mật khẩu của tài khoản hiện tại
         current_username: Để xác nhận, vui lòng nhập tên người dùng của tài khoản hiện tại
         digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được tin nhắn (trong thời gian vắng mặt)
         email: Bạn sẽ được gửi một email xác minh
+        header: WEBP, PNG, GIF hoặc JPG, tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         inbox_url: Sao chép URL của máy chủ mà bạn muốn dùng
         irreversible: Các tút đã lọc sẽ không thể phục hồi, kể cả sau khi xóa bộ lọc
         locale: Ngôn ngữ của giao diện, email và thông báo đẩy
@@ -114,6 +116,7 @@ vi:
           sign_up_requires_approval: Bạn sẽ phê duyệt những đăng ký mới từ IP này
         severity: Chọn hành động nếu nhận được yêu cầu từ IP này
       rule:
+        hint: Tùy chọn. Cung cấp chi tiết hơn về nội quy
         text: Mô tả một nội quy bắt buộc trên máy chủ này. Nên để ngắn và đơn giản
       sessions:
         otp: 'Nhập mã xác minh 2 bước được tạo bởi ứng dụng điện thoại của bạn hoặc dùng một trong các mã khôi phục của bạn:'
@@ -297,6 +300,7 @@ vi:
           patch: Thông báo bản cập sửa lỗi
         trending_tag: Phê duyệt nội dung nổi bật mới
       rule:
+        hint: Thông tin thêm
         text: Nội quy
       settings:
         indexable: Cho phép hiện hồ sơ trong công cụ tìm kiếm

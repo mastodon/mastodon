@@ -48,6 +48,8 @@ import {
   DirectTimeline,
   HashtagTimeline,
   Notifications,
+  NotificationRequests,
+  NotificationRequest,
   FollowRequests,
   FavouritedStatuses,
   BookmarkedStatuses,
@@ -80,7 +82,6 @@ const mapStateToProps = state => ({
   hasComposingText: state.getIn(['compose', 'text']).trim().length !== 0,
   hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
   canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < 4,
-  dropdownMenuIsOpen: state.dropdownMenu.openId !== null,
   firstLaunch: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
   username: state.getIn(['accounts', me, 'username']),
 });
@@ -204,7 +205,9 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
             <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
             <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
-            <WrappedRoute path='/notifications' component={Notifications} content={children} />
+            <WrappedRoute path='/notifications' component={Notifications} content={children} exact />
+            <WrappedRoute path='/notifications/requests' component={NotificationRequests} content={children} exact />
+            <WrappedRoute path='/notifications/requests/:id' component={NotificationRequest} content={children} exact />
             <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
 
             <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
@@ -262,7 +265,6 @@ class UI extends PureComponent {
     hasMediaAttachments: PropTypes.bool,
     canUploadMore: PropTypes.bool,
     intl: PropTypes.object.isRequired,
-    dropdownMenuIsOpen: PropTypes.bool,
     layout: PropTypes.string.isRequired,
     firstLaunch: PropTypes.bool,
     username: PropTypes.string,
@@ -555,7 +557,7 @@ class UI extends PureComponent {
 
   render () {
     const { draggingOver } = this.state;
-    const { children, isComposing, location, dropdownMenuIsOpen, layout } = this.props;
+    const { children, isComposing, location, layout } = this.props;
 
     const handlers = {
       help: this.handleHotkeyToggleHelp,
@@ -581,7 +583,7 @@ class UI extends PureComponent {
 
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
-        <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
+        <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef}>
           <Header />
 
           <SwitchingColumnsArea location={location} singleColumn={layout === 'mobile' || layout === 'single-column'}>

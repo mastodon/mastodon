@@ -753,6 +753,7 @@ vi:
         disabled: Không ai
         users: Để đăng nhập người cục bộ
       registrations:
+        moderation_recommandation: Vui lòng đảm bảo rằng bạn có một đội ngũ kiểm duyệt và phản ứng nhanh trước khi mở đăng ký cho mọi người!
         preamble: Kiểm soát những ai có thể tạo tài khoản trên máy chủ của bạn.
         title: Đăng ký
       registrations_mode:
@@ -760,6 +761,7 @@ vi:
           approved: Yêu cầu phê duyệt để đăng ký
           none: Không ai có thể đăng ký
           open: Bất cứ ai cũng có thể đăng ký
+        warning_hint: Chúng tôi khuyên bạn nên sử dụng "Duyệt đăng ký thủ công" trừ khi bạn tin tưởng đội ngũ kiểm duyệt của mình có thể xử lý kịp thời các đăng ký spam và độc hại.
       security:
         authorized_fetch: Yêu cầu xác thực từ các máy chủ liên hợp
         authorized_fetch_hint: Yêu cầu xác thực từ các máy chủ liên hợp cho phép thực thi chặt chẽ hơn việc chặn cấp độ người dùng và cấp độ máy chủ. Tuy nhiên, điều này phải trả giá bằng một hình phạt về hiệu suất, làm giảm phạm vi tiếp cận của các lượt trả lời của bạn và có thể gây ra các vấn đề về khả năng tương thích với một số dịch vụ được liên hợp. Ngoài ra, điều này sẽ không ngăn cản các tác nhân chuyên dụng tìm nạp các tút và tài khoản công khai của bạn.
@@ -1467,7 +1469,6 @@ vi:
     administration_emails: Email thông báo admin
     email_events: Email
     email_events_hint: 'Chọn những hoạt động sẽ gửi thông báo qua email:'
-    other_settings: Chặn thông báo từ
   number:
     human:
       decimal_units:
@@ -1809,9 +1810,42 @@ vi:
         silence: Tài khoản bị hạn chế
         suspend: Tài khoản bị vô hiệu hóa
     welcome:
-      edit_profile_action: Cài đặt trang hồ sơ
-      edit_profile_step: Bạn có thể chỉnh sửa trang hồ sơ của mình bằng cách tải lên ảnh đại diện, ảnh bìa, đổi biệt danh và hơn thế nữa. Bạn cũng có thể tự phê duyệt những người theo dõi mới.
+      apps_android_action: Tải trên Google Play
+      apps_ios_action: Tải trên App Store
+      apps_step: Tải ứng dụng chính thức.
+      apps_title: Ứng dụng Mastodon
+      checklist_subtitle: 'Hãy bắt đầu trên mạng xã hội mới này:'
+      checklist_title: Danh sách việc cần làm
+      edit_profile_action: Cá nhân hoá
+      edit_profile_step: Tạo sự tương tác bằng một hồ sơ hoàn chỉnh.
+      edit_profile_title: Tùy biến hồ sơ
       explanation: Dưới đây là một số mẹo để giúp bạn bắt đầu
+      feature_action: Tìm hiểu
+      feature_audience: Mastodon cung cấp cho bạn khả năng độc đáo để quản lý người theo dõi của bạn mà không cần bên trung gian. Mastodon có thể triển khai trên cơ sở hạ tầng của riêng bạn, cho phép bạn theo dõi và được theo dõi từ bất kỳ máy chủ Mastodon nào khác và không nằm dưới sự kiểm soát của ai ngoài bạn.
+      feature_audience_title: Tạo cộng đồng của riêng bạn
+      feature_control: Bạn biết rõ nhất những gì bạn muốn xem trên bảng tin. Không có thuật toán hoặc quảng cáo để lãng phí thời gian của bạn. Theo dõi bất kỳ ai trên bất kỳ máy chủ Mastodon nào từ một tài khoản và nhận các tút của họ theo thứ tự thời gian — làm cho góc internet của bạn là của bạn.
+      feature_control_title: Kiểm soát bảng tin của bạn
+      feature_creativity: Mastodon hỗ trợ đăng âm thanh, video, hình ảnh, mô tả trợ năng, thăm dò ý kiến, cảnh báo nội dung, hình đại diện Gif, emoji tùy chỉnh, kiểm soát cắt hình thu nhỏ... để giúp bạn thể hiện cá tính. Cho dù bạn đang xuất bản tác phẩm nghệ thuật, âm nhạc hay podcast của mình, Mastodon luôn hợp cho bạn.
+      feature_creativity_title: Sáng tạo không giới hạn
+      feature_moderation: Mastodon giành quyền tự quyết về tay bạn. Mỗi máy chủ tạo ra các nội quy của riêng họ, được thực thi nội bộ chứ không phải từ trên xuống như dịch vụ mạng xã hội của Big Tech, giúp linh hoạt trong việc đáp ứng nhu cầu của các nhóm người dùng khác nhau. Tham gia một máy chủ với các quy tắc bạn đồng ý hoặc tự chạy máy chủ của riêng bạn.
+      feature_moderation_title: Kiểm duyệt đúng nghĩa
+      follow_action: Theo dõi
+      follow_step: Theo dõi những người thú vị trên Mastodon.
+      follow_title: Cá nhân hóa bảng tin của bạn
+      follows_subtitle: Theo dõi những người thú vị
+      follows_title: Gợi ý theo dõi
+      follows_view_more: Xem thêm những người khác
+      hashtags_recent_count: "%{people} người dùng trong %{days} ngày qua"
+      hashtags_subtitle: Khám phá xu hướng 2 ngày qua
+      hashtags_title: Hashtag xu hướng
+      hashtags_view_more: Xem thêm hashtag xu hướng
+      post_action: Soạn tút
+      post_step: Chào cộng đồng bằng lời nói, ảnh hoặc video.
+      post_title: Đăng tút đầu tiên
+      share_action: Chia sẻ
+      share_step: Hãy để bạn bè của bạn biết cách tìm thấy bạn trên Mastodon.
+      share_title: Chia sẻ hồ sơ Mastodon của bạn
+      sign_in_action: Đăng nhập
       subject: Chào mừng đến với Mastodon
       title: Xin chào %{name}!
   users:

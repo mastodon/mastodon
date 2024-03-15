@@ -198,6 +198,7 @@ module LanguagesHelper
     ldn: ['Láadan', 'Láadan'].freeze,
     lfn: ['Lingua Franca Nova', 'lingua franca nova'].freeze,
     moh: ['Mohawk', 'Kanienʼkéha'].freeze,
+    nds: ['Low German', 'Plattdüütsch'].freeze,
     pdc: ['Pennsylvania Dutch', 'Pennsilfaani-Deitsch'].freeze,
     sco: ['Scots', 'Scots'].freeze,
     sma: ['Southern Sami', 'Åarjelsaemien Gïele'].freeze,

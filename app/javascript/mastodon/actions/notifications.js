@@ -44,6 +44,38 @@ export const NOTIFICATIONS_MARK_AS_READ = 'NOTIFICATIONS_MARK_AS_READ';
 export const NOTIFICATIONS_SET_BROWSER_SUPPORT    = 'NOTIFICATIONS_SET_BROWSER_SUPPORT';
 export const NOTIFICATIONS_SET_BROWSER_PERMISSION = 'NOTIFICATIONS_SET_BROWSER_PERMISSION';
 
+export const NOTIFICATION_POLICY_FETCH_REQUEST = 'NOTIFICATION_POLICY_FETCH_REQUEST';
+export const NOTIFICATION_POLICY_FETCH_SUCCESS = 'NOTIFICATION_POLICY_FETCH_SUCCESS';
+export const NOTIFICATION_POLICY_FETCH_FAIL    = 'NOTIFICATION_POLICY_FETCH_FAIL';
+
+export const NOTIFICATION_REQUESTS_FETCH_REQUEST = 'NOTIFICATION_REQUESTS_FETCH_REQUEST';
+export const NOTIFICATION_REQUESTS_FETCH_SUCCESS = 'NOTIFICATION_REQUESTS_FETCH_SUCCESS';
+export const NOTIFICATION_REQUESTS_FETCH_FAIL    = 'NOTIFICATION_REQUESTS_FETCH_FAIL';
+
+export const NOTIFICATION_REQUESTS_EXPAND_REQUEST = 'NOTIFICATION_REQUESTS_EXPAND_REQUEST';
+export const NOTIFICATION_REQUESTS_EXPAND_SUCCESS = 'NOTIFICATION_REQUESTS_EXPAND_SUCCESS';
+export const NOTIFICATION_REQUESTS_EXPAND_FAIL    = 'NOTIFICATION_REQUESTS_EXPAND_FAIL';
+
+export const NOTIFICATION_REQUEST_FETCH_REQUEST = 'NOTIFICATION_REQUEST_FETCH_REQUEST';
+export const NOTIFICATION_REQUEST_FETCH_SUCCESS = 'NOTIFICATION_REQUEST_FETCH_SUCCESS';
+export const NOTIFICATION_REQUEST_FETCH_FAIL    = 'NOTIFICATION_REQUEST_FETCH_FAIL';
+
+export const NOTIFICATION_REQUEST_ACCEPT_REQUEST = 'NOTIFICATION_REQUEST_ACCEPT_REQUEST';
+export const NOTIFICATION_REQUEST_ACCEPT_SUCCESS = 'NOTIFICATION_REQUEST_ACCEPT_SUCCESS';
+export const NOTIFICATION_REQUEST_ACCEPT_FAIL    = 'NOTIFICATION_REQUEST_ACCEPT_FAIL';
+
+export const NOTIFICATION_REQUEST_DISMISS_REQUEST = 'NOTIFICATION_REQUEST_DISMISS_REQUEST';
+export const NOTIFICATION_REQUEST_DISMISS_SUCCESS = 'NOTIFICATION_REQUEST_DISMISS_SUCCESS';
+export const NOTIFICATION_REQUEST_DISMISS_FAIL    = 'NOTIFICATION_REQUEST_DISMISS_FAIL';
+
+export const NOTIFICATIONS_FOR_REQUEST_FETCH_REQUEST = 'NOTIFICATIONS_FOR_REQUEST_FETCH_REQUEST';
+export const NOTIFICATIONS_FOR_REQUEST_FETCH_SUCCESS = 'NOTIFICATIONS_FOR_REQUEST_FETCH_SUCCESS';
+export const NOTIFICATIONS_FOR_REQUEST_FETCH_FAIL    = 'NOTIFICATIONS_FOR_REQUEST_FETCH_FAIL';
+
+export const NOTIFICATIONS_FOR_REQUEST_EXPAND_REQUEST = 'NOTIFICATIONS_FOR_REQUEST_EXPAND_REQUEST';
+export const NOTIFICATIONS_FOR_REQUEST_EXPAND_SUCCESS = 'NOTIFICATIONS_FOR_REQUEST_EXPAND_SUCCESS';
+export const NOTIFICATIONS_FOR_REQUEST_EXPAND_FAIL    = 'NOTIFICATIONS_FOR_REQUEST_EXPAND_FAIL';
+
 defineMessages({
   mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
   group: { id: 'notifications.group', defaultMessage: '{count} notifications' },
@@ -313,3 +345,270 @@ export function setBrowserPermission (value) {
     value,
   };
 }
+
+export const fetchNotificationPolicy = () => (dispatch, getState) => {
+  dispatch(fetchNotificationPolicyRequest());
+
+  api(getState).get('/api/v1/notifications/policy').then(({ data }) => {
+    dispatch(fetchNotificationPolicySuccess(data));
+  }).catch(err => {
+    dispatch(fetchNotificationPolicyFail(err));
+  });
+};
+
+export const fetchNotificationPolicyRequest = () => ({
+  type: NOTIFICATION_POLICY_FETCH_REQUEST,
+});
+
+export const fetchNotificationPolicySuccess = policy => ({
+  type: NOTIFICATION_POLICY_FETCH_SUCCESS,
+  policy,
+});
+
+export const fetchNotificationPolicyFail = error => ({
+  type: NOTIFICATION_POLICY_FETCH_FAIL,
+  error,
+});
+
+export const updateNotificationsPolicy = params => (dispatch, getState) => {
+  dispatch(fetchNotificationPolicyRequest());
+
+  api(getState).put('/api/v1/notifications/policy', params).then(({ data }) => {
+    dispatch(fetchNotificationPolicySuccess(data));
+  }).catch(err => {
+    dispatch(fetchNotificationPolicyFail(err));
+  });
+};
+
+export const fetchNotificationRequests = () => (dispatch, getState) => {
+  const params = {};
+
+  if (getState().getIn(['notificationRequests', 'isLoading'])) {
+    return;
+  }
+
+  if (getState().getIn(['notificationRequests', 'items'])?.size > 0) {
+    params.since_id = getState().getIn(['notificationRequests', 'items', 0, 'id']);
+  }
+
+  dispatch(fetchNotificationRequestsRequest());
+
+  api(getState).get('/api/v1/notifications/requests', { params }).then(response => {
+    const next = getLinks(response).refs.find(link => link.rel === 'next');
+    dispatch(importFetchedAccounts(response.data.map(x => x.account)));
+    dispatch(fetchNotificationRequestsSuccess(response.data, next ? next.uri : null));
+  }).catch(err => {
+    dispatch(fetchNotificationRequestsFail(err));
+  });
+};
+
+export const fetchNotificationRequestsRequest = () => ({
+  type: NOTIFICATION_REQUESTS_FETCH_REQUEST,
+});
+
+export const fetchNotificationRequestsSuccess = (requests, next) => ({
+  type: NOTIFICATION_REQUESTS_FETCH_SUCCESS,
+  requests,
+  next,
+});
+
+export const fetchNotificationRequestsFail = error => ({
+  type: NOTIFICATION_REQUESTS_FETCH_FAIL,
+  error,
+});
+
+export const expandNotificationRequests = () => (dispatch, getState) => {
+  const url = getState().getIn(['notificationRequests', 'next']);
+
+  if (!url || getState().getIn(['notificationRequests', 'isLoading'])) {
+    return;
+  }
+
+  dispatch(expandNotificationRequestsRequest());
+
+  api(getState).get(url).then(response => {
+    const next = getLinks(response).refs.find(link => link.rel === 'next');
+    dispatch(importFetchedAccounts(response.data.map(x => x.account)));
+    dispatch(expandNotificationRequestsSuccess(response.data, next?.uri));
+  }).catch(err => {
+    dispatch(expandNotificationRequestsFail(err));
+  });
+};
+
+export const expandNotificationRequestsRequest = () => ({
+  type: NOTIFICATION_REQUESTS_EXPAND_REQUEST,
+});
+
+export const expandNotificationRequestsSuccess = (requests, next) => ({
+  type: NOTIFICATION_REQUESTS_EXPAND_SUCCESS,
+  requests,
+  next,
+});
+
+export const expandNotificationRequestsFail = error => ({
+  type: NOTIFICATION_REQUESTS_EXPAND_FAIL,
+  error,
+});
+
+export const fetchNotificationRequest = id => (dispatch, getState) => {
+  const current = getState().getIn(['notificationRequests', 'current']);
+
+  if (current.getIn(['item', 'id']) === id || current.get('isLoading')) {
+    return;
+  }
+
+  dispatch(fetchNotificationRequestRequest(id));
+
+  api(getState).get(`/api/v1/notifications/requests/${id}`).then(({ data }) => {
+    dispatch(fetchNotificationRequestSuccess(data));
+  }).catch(err => {
+    dispatch(fetchNotificationRequestFail(id, err));
+  });
+};
+
+export const fetchNotificationRequestRequest = id => ({
+  type: NOTIFICATION_REQUEST_FETCH_REQUEST,
+  id,
+});
+
+export const fetchNotificationRequestSuccess = request => ({
+  type: NOTIFICATION_REQUEST_FETCH_SUCCESS,
+  request,
+});
+
+export const fetchNotificationRequestFail = (id, error) => ({
+  type: NOTIFICATION_REQUEST_FETCH_FAIL,
+  id,
+  error,
+});
+
+export const acceptNotificationRequest = id => (dispatch, getState) => {
+  dispatch(acceptNotificationRequestRequest(id));
+
+  api(getState).post(`/api/v1/notifications/requests/${id}/accept`).then(() => {
+    dispatch(acceptNotificationRequestSuccess(id));
+  }).catch(err => {
+    dispatch(acceptNotificationRequestFail(id, err));
+  });
+};
+
+export const acceptNotificationRequestRequest = id => ({
+  type: NOTIFICATION_REQUEST_ACCEPT_REQUEST,
+  id,
+});
+
+export const acceptNotificationRequestSuccess = id => ({
+  type: NOTIFICATION_REQUEST_ACCEPT_SUCCESS,
+  id,
+});
+
+export const acceptNotificationRequestFail = (id, error) => ({
+  type: NOTIFICATION_REQUEST_ACCEPT_FAIL,
+  id,
+  error,
+});
+
+export const dismissNotificationRequest = id => (dispatch, getState) => {
+  dispatch(dismissNotificationRequestRequest(id));
+
+  api(getState).post(`/api/v1/notifications/requests/${id}/dismiss`).then(() =>{
+    dispatch(dismissNotificationRequestSuccess(id));
+  }).catch(err => {
+    dispatch(dismissNotificationRequestFail(id, err));
+  });
+};
+
+export const dismissNotificationRequestRequest = id => ({
+  type: NOTIFICATION_REQUEST_DISMISS_REQUEST,
+  id,
+});
+
+export const dismissNotificationRequestSuccess = id => ({
+  type: NOTIFICATION_REQUEST_DISMISS_SUCCESS,
+  id,
+});
+
+export const dismissNotificationRequestFail = (id, error) => ({
+  type: NOTIFICATION_REQUEST_DISMISS_FAIL,
+  id,
+  error,
+});
+
+export const fetchNotificationsForRequest = accountId => (dispatch, getState) => {
+  const current = getState().getIn(['notificationRequests', 'current']);
+  const params = { account_id: accountId };
+
+  if (current.getIn(['item', 'account']) === accountId) {
+    if (current.getIn(['notifications', 'isLoading'])) {
+      return;
+    }
+
+    if (current.getIn(['notifications', 'items'])?.size > 0) {
+      params.since_id = current.getIn(['notifications', 'items', 0, 'id']);
+    }
+  }
+
+  dispatch(fetchNotificationsForRequestRequest());
+
+  api(getState).get('/api/v1/notifications', { params }).then(response => {
+    const next = getLinks(response).refs.find(link => link.rel === 'next');
+    dispatch(importFetchedAccounts(response.data.map(item => item.account)));
+    dispatch(importFetchedStatuses(response.data.map(item => item.status).filter(status => !!status)));
+    dispatch(importFetchedAccounts(response.data.filter(item => item.report).map(item => item.report.target_account)));
+
+    dispatch(fetchNotificationsForRequestSuccess(response.data, next?.uri));
+  }).catch(err => {
+    dispatch(fetchNotificationsForRequestFail(err));
+  });
+};
+
+export const fetchNotificationsForRequestRequest = () => ({
+  type: NOTIFICATIONS_FOR_REQUEST_FETCH_REQUEST,
+});
+
+export const fetchNotificationsForRequestSuccess = (notifications, next) => ({
+  type: NOTIFICATIONS_FOR_REQUEST_FETCH_SUCCESS,
+  notifications,
+  next,
+});
+
+export const fetchNotificationsForRequestFail = (error) => ({
+  type: NOTIFICATIONS_FOR_REQUEST_FETCH_FAIL,
+  error,
+});
+
+export const expandNotificationsForRequest = () => (dispatch, getState) => {
+  const url = getState().getIn(['notificationRequests', 'current', 'notifications', 'next']);
+
+  if (!url || getState().getIn(['notificationRequests', 'current', 'notifications', 'isLoading'])) {
+    return;
+  }
+
+  dispatch(expandNotificationsForRequestRequest());
+
+  api(getState).get(url).then(response => {
+    const next = getLinks(response).refs.find(link => link.rel === 'next');
+    dispatch(importFetchedAccounts(response.data.map(item => item.account)));
+    dispatch(importFetchedStatuses(response.data.map(item => item.status).filter(status => !!status)));
+    dispatch(importFetchedAccounts(response.data.filter(item => item.report).map(item => item.report.target_account)));
+
+    dispatch(expandNotificationsForRequestSuccess(response.data, next?.uri));
+  }).catch(err => {
+    dispatch(expandNotificationsForRequestFail(err));
+  });
+};
+
+export const expandNotificationsForRequestRequest = () => ({
+  type: NOTIFICATIONS_FOR_REQUEST_EXPAND_REQUEST,
+});
+
+export const expandNotificationsForRequestSuccess = (notifications, next) => ({
+  type: NOTIFICATIONS_FOR_REQUEST_EXPAND_SUCCESS,
+  notifications,
+  next,
+});
+
+export const expandNotificationsForRequestFail = (error) => ({
+  type: NOTIFICATIONS_FOR_REQUEST_EXPAND_FAIL,
+  error,
+});

@@ -772,10 +772,10 @@ fi:
         title: Rekisteröityminen
       registrations_mode:
         modes:
-          approved: Rekisteröinti vaatii hyväksynnän
+          approved: Rekisteröityminen vaatii hyväksynnän
           none: Kukaan ei voi rekisteröityä
           open: Kaikki voivat rekisteröityä
-        warning_hint: Suosittelemme käyttämään asetusta “Rekisteröinti vaatii hyväksynnän” ellet ole varma siitä, että moderaattorit ovat valmiina käsittelemään roskapostia ja haittarekisteröitymisiä oikea-aikaisesti.
+        warning_hint: Suosittelemme käyttämään asetusta ”Rekisteröityminen vaatii hyväksynnän”, ellet ole varma siitä, että moderaattorit ovat valmiina käsittelemään roskapostia ja haittarekisteröitymisiä oikea-aikaisesti.
       security:
         authorized_fetch: Vaadi todennus liittoutuvilta palvelimilta
         authorized_fetch_hint: Todennuksen vaatiminen liittoutuvilta palvelimilta mahdollistaa sekä käyttäjä- että palvelintason estojen tiukemman valvonnan. Tämä tapahtuu kuitenkin suorituskyvyn kustannuksella, vähentää vastauksiesi tavoittavuutta ja voi aiheuttaa yhteensopivuusongelmia joidenkin liittoutuvien palvelujen kanssa. Tämä ei myöskään estä omistautuneita toimijoita hakemasta julkisia julkaisujasi ja tilejäsi.
@@ -969,8 +969,8 @@ fi:
       webhook: Webhook
   admin_mailer:
     auto_close_registrations:
-      body: Viimeaikaisen moderaattoritoiminnan puutteen vuoksi %{instance} rekisteröinnit on vaihdettu automaattisesti manuaaliseen tarkasteluun, jotta %{instance} ei käytetä mahdollisien huonojen toimijoiden alustana. Voit vaihtaa sen takaisin avaamalla rekisteröinnit milloin tahansa.
-      subject: Rekisteröinnit %{instance} on automaattisesti vaihdettu vaatimaan hyväksyntää
+      body: Viimeaikaisen moderaattoritoiminnan puutteen vuoksi palvelimen %{instance} rekisteröitymiset on vaihdettu automaattisesti manuaaliseen tarkasteluun, jotta palvelinta %{instance} ei käytetä mahdollisten huonojen toimijoiden alustana. Voit vaihtaa takaisin avoimiin rekisteröitymisiin milloin tahansa.
+      subject: Rekisteröitymiset palvelimelle %{instance} on automaattisesti vaihdettu vaatimaan hyväksyntää
     new_appeal:
       actions:
         delete_statuses: poistaa hänen julkaisunsa
@@ -1495,7 +1495,6 @@ fi:
     administration_emails: Ylläpitäjän sähköposti-ilmoitukset
     email_events: Sähköposti-ilmoitusten tapahtumat
     email_events_hint: 'Valitse tapahtumat, joista haluat saada ilmoituksia:'
-    other_settings: Muut ilmoitusasetukset
   number:
     human:
       decimal_units:
@@ -1552,7 +1551,7 @@ fi:
       limit_reached: Erilaisten reaktioiden raja saavutettu
       unrecognized_emoji: ei ole tunnistettu emoji
   redirects:
-    prompt: Mikäli luotat linkkiin, jatka napsauttaen sitä.
+    prompt: Jos luotat linkkiin, jatka napsauttamalla sitä.
     title: Olet poistumassa palvelimelta %{instance}.
   relationships:
     activity: Tilin aktiivisuus
@@ -1803,7 +1802,7 @@ fi:
       explanation: Joku on yrittänyt kirjautua tilillesi antaen väärän toisen todennustunnisteen.
       further_actions_html: Jos se et ollut sinä, suosittelemme, että %{action} välittömästi, sillä se on saattanut vaarantua.
       subject: Kaksivaiheisen todennuksen virhe
-      title: Kaksivaihekirjautumisen toinen vaihe epäonnistui
+      title: Kaksivaiheisen kirjautumisen toinen vaihe epäonnistui
     suspicious_sign_in:
       change_password: vaihda salasanasi
       details: 'Tässä on tiedot kirjautumisesta:'
@@ -1843,9 +1842,42 @@ fi:
         silence: Tiliä rajoitettu
         suspend: Tili jäädytetty
     welcome:
-      edit_profile_action: Määritä profiili
-      edit_profile_step: Voit mukauttaa profiiliasi muun muassa profiilikuvalla ja uudella näyttönimellä. Voit myös valita, haluatko tarkastaa ja hyväksyä uudet seuraajat itse.
+      apps_android_action: Hanki Google Playstä
+      apps_ios_action: Lataa App Storesta
+      apps_step: Lataa viralliset sovelluksemme.
+      apps_title: Mastodon-sovellukset
+      checklist_subtitle: 'Aloitetaan, sinä aloitat uudella sosiaalisella seudulla:'
+      checklist_title: Tervetuloa tarkistuslista
+      edit_profile_action: Mukauta
+      edit_profile_step: Täydentämällä profiilisi tietoja tehostat vaikutemaa.
+      edit_profile_title: Mukauta profiiliasi
       explanation: Näillä vinkeillä pääset alkuun
+      feature_action: Lue lisää
+      feature_audience: Mastodon tarjoaa sinulle ainutlaatuisen mahdollisuuden hallita yleisöäsi ilman välikäsiä. Omassa infrastruktuurissasi käytössä oleva Mastodon antaa sinulle mahdollisuuden seurata ja tulla seuratuksi miltä tahansa muulta verkon Mastodon-palvelimelta, ja se on vain sinun hallinnassasi.
+      feature_audience_title: Rakenna yleisöäsi luottavaisin mielin
+      feature_control: Tiedät itse parhaiten, mitä haluat nähdä kotisyötteessäsi. Ei algoritmeja eikä mainoksia tuhlaamassa aikaasi. Seuraa yhdellä tilillä ketä tahansa, miltä tahansa Mastodon-palvelimelta, vastaanota heidän julkaisunsa aikajärjestyksessä ja tee omasta internetin nurkastasi hieman enemmän omanlaisesi.
+      feature_control_title: Pidä aikajanasi hallussasi
+      feature_creativity: Mastodon tukee ääni-, video- ja kuvajulkaisuja, saavutettavuuskuvauksia, äänestyksiä, sisältövaroituksia, animoituja avattaria, mukautettuja emojeita, pikkukuvien rajauksen hallintaa ja paljon muuta, mikä auttaa ilmaisemaan itseäsi verkossa. Julkaisetpa sitten taidetta, musiikkia tai podcastia, Mastodon on sinua varten.
+      feature_creativity_title: Luovuutta vertaansa vailla
+      feature_moderation: Mastodon palauttaa päätöksenteon käsiisi. Jokainen palvelin luo omat sääntönsä ja määräyksensä, joita valvotaan paikallisesti eikä ylhäältä alas kuten kaupallisessa sosiaalisessa mediassa, mikä tekee siitä joustavimman vastaamaan eri ihmisryhmien tarpeisiin. Liity palvelimelle, jonka säännöt sopivat sinulle, tai ylläpidä omaa palvelinta.
+      feature_moderation_title: Moderointi niin kuin kuuluukin
+      follow_action: Seuraa
+      follow_step: Mastodonissa on kyse kiinnostavien ihmisten seuraamisesta.
+      follow_title: Mukauta kotisyötettäsi
+      follows_subtitle: Seuraa tunnettuja tilejä
+      follows_title: Ehdotuksia seurattavaksi
+      follows_view_more: Näytä lisää seurattavia henkilöitä
+      hashtags_recent_count: "%{people} henkilöä viimeisenä %{days} päivänä"
+      hashtags_subtitle: Tutki, mikä on ollut suosittua viimeisenä 2 päivänä
+      hashtags_title: Suositut aihetunnisteet
+      hashtags_view_more: Näytä lisää suosittuja aihetunnisteita
+      post_action: Kirjoita
+      post_step: Tervehdi maailmaa sanoin, kuvin, videoin ja äänestyksin.
+      post_title: Tee ensimmäinen julkaisusi
+      share_action: Jaa
+      share_step: Kerro ystävillesi, kuinka sinut voi löytää Mastodonista.
+      share_title: Jaa Mastodon-profiilisi
+      sign_in_action: Kirjaudu sisään
       subject: Tervetuloa Mastodoniin
       title: Tervetuloa mukaan, %{name}!
   users:

@@ -75,12 +75,8 @@ class Api::V1::Admin::IpBlocksController < Api::BaseController
     api_v1_admin_ip_blocks_url(pagination_params(min_id: pagination_since_id)) unless @ip_blocks.empty?
   end
 
-  def pagination_max_id
-    @ip_blocks.last.id
-  end
-
-  def pagination_since_id
-    @ip_blocks.first.id
+  def pagination_collection
+    @ip_blocks
   end
 
   def records_continue?

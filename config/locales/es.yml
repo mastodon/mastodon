@@ -1495,7 +1495,6 @@ es:
     administration_emails: Notificaciones de administración por correo electrónico
     email_events: Eventos para notificaciones por correo electrónico
     email_events_hint: 'Selecciona los eventos para los que deseas recibir notificaciones:'
-    other_settings: Otros ajustes de notificaciones
   number:
     human:
       decimal_units:
@@ -1706,9 +1705,9 @@ es:
       direct: Directa
       private: Sólo mostrar a seguidores
       private_long: Solo mostrar a tus seguidores
-      public: Público
+      public: Pública
       public_long: Todos pueden ver
-      unlisted: Público, pero no mostrar en la historia federada
+      unlisted: Pública, pero no mostrar en la historia federada
       unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo públicas
   statuses_cleanup:
     enabled: Borrar automáticamente publicaciones antiguas
@@ -1843,9 +1842,42 @@ es:
         silence: Cuenta limitada
         suspend: Cuenta suspendida
     welcome:
-      edit_profile_action: Configurar el perfil
-      edit_profile_step: Puedes personalizar tu perfil subiendo una foto de perfil, cambiando tu nombre de usuario y mucho más. Puedes optar por revisar a los nuevos seguidores antes de que puedan seguirte.
+      apps_android_action: Consíguela en Google Play
+      apps_ios_action: Descargar en la App Store
+      apps_step: Descarga nuestras aplicaciones oficiales.
+      apps_title: Aplicaciones para Mastodon
+      checklist_subtitle: 'Vamos a empezar en esta nueva frontera social:'
+      checklist_title: Lista de bienvenida
+      edit_profile_action: Personalizar
+      edit_profile_step: Aumenta tus interacciones completando tu perfil.
+      edit_profile_title: Personaliza tu perfil
       explanation: Aquí hay algunos consejos para empezar
+      feature_action: Saber más
+      feature_audience: Mastodon te ofrece una posibilidad única de gestionar tu audiencia sin intermediarios. Mastodon desplegado en tu propia infraestructura te permite seguir y ser seguido desde cualquier otro servidor Mastodon en línea y no está bajo el control de ningún tercero.
+      feature_audience_title: Construye tu audiencia con confianza
+      feature_control: Tú sabes lo que quieres ver en tu página principal. Nada de algoritmos y publicidad para desperdiciar tu tiempo. Sigue a quien quieras a través de cualquier servidor de Mastodon y recibe sus publicaciones en orden cronológico. Haz tu rincón de internet un poco más como tú.
+      feature_control_title: Mantente en control de tu línea de tiempo
+      feature_creativity: Mastodon soporta mensajes de audio, vídeo e imágenes, descripciones de accesibilidad, encuestas, advertencias de contenido, avatares animados, emojis personalizados, recortes de miniatura, y más, para ayudarte a expresarte en línea. Ya sea publicando tu arte, tu música o tu podcast, Mastodon está ahí para ti.
+      feature_creativity_title: Creatividad inigualable
+      feature_moderation: Mastodon vuelve a poner la toma de decisiones en tus manos. Cada servidor crea sus propias reglas y reglamentos, que se aplican localmente y no globalmente como en redes sociales corporativas, lo que resulta en la mayor flexibilidad para responder a las necesidades de diferentes grupos de personas. Únete a un servidor con las reglas con las que esté sde acuerdo, o aloja el tuyo propio.
+      feature_moderation_title: La moderación como debería ser
+      follow_action: Seguir
+      follow_step: Seguir a personas interesantes es de lo que trata Mastodon.
+      follow_title: Personaliza tu línea de inicio
+      follows_subtitle: Seguir cuentas conocidas
+      follows_title: A quién seguir
+      follows_view_more: Ver más personas para seguir
+      hashtags_recent_count: "%{people} personas en los últimos %{days} días"
+      hashtags_subtitle: Explora las tendencias de los últimos 2 días
+      hashtags_title: Etiquetas en tendencia
+      hashtags_view_more: Ver más etiquetas en tendencia
+      post_action: Redactar
+      post_step: Di hola al mundo con texto, fotos, vídeos o encuestas.
+      post_title: Escribe tu primera publicación
+      share_action: Compartir
+      share_step: Dile a tus amigos cómo encontrarte en Mastodon.
+      share_title: Comparte tu perfil de Mastodon
+      sign_in_action: Regístrate
       subject: Bienvenido a Mastodon
       title: Te damos la bienvenida a bordo, %{name}!
   users:

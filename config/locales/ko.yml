@@ -1,7 +1,7 @@
 ---
 ko:
   about:
-    about_mastodon_html: '미래의 소셜 네트워크: 광고 없음, 기업 감시 없음, 윤리적 설계, 탈중앙화! 여러분만의 데이터를 Mastodon으로 소유하세요!'
+    about_mastodon_html: '미래의 소셜 네트워크: 광고 없음, 기업 감시 없음, 윤리적 설계, 탈중앙화! 여러분만의 데이터를 Mastodon으로 보호하고 누리세요!'
     contact_missing: 미설정
     contact_unavailable: 없음
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
@@ -14,7 +14,7 @@ ko:
     instance_actor_flash: 이 계정은 서버 자신을 나타내기 위한 가상의 계정이며 개인 사용자가 아닙니다. 이 계정은 연합을 위해 사용되며 정지되지 않아야 합니다.
     last_active: 최근 활동
     link_verified_on: "%{date}에 이 링크의 소유가 확인되었습니다"
-    nothing_here: 아무 것도 없습니다!
+    nothing_here: 텅 비어있네요!
     pin_errors:
       following: 추천하려는 사람을 팔로우 하고 있어야 합니다
     posts:
@@ -67,7 +67,7 @@ ko:
       enable: 동결 해제
       enable_sign_in_token_auth: 이메일 토큰 인증 활성화
       enabled: 활성
-      enabled_msg: "%{username}의 계정을 성공적으로 얼리기 해제하였습니다"
+      enabled_msg: "%{username}의 동결을 성공적으로 해제 했습니다."
       followers: 팔로워
       follows: 팔로우
       header: 헤더
@@ -75,7 +75,7 @@ ko:
       invite_request_text: 가입하려는 이유
       invited_by: 초대자
       ip: IP
-      joined: 가입
+      joined: 가입 날짜
       location:
         all: 전체
         local: 로컬
@@ -93,7 +93,7 @@ ko:
         pending: 대기 중
         silenced: 제한됨
         suspended: 정지
-        title: 중재
+        title: 관리
       moderation_notes: 중재 참고사항
       most_recent_activity: 최근 활동
       most_recent_ip: 최근 IP
@@ -103,7 +103,7 @@ ko:
       not_subscribed: 구독하지 않음
       pending: 심사 대기
       perform_full_suspension: 정지
-      previous_strikes: 이전의 처벌들
+      previous_strikes: 과거 처벌
       previous_strikes_description_html:
         other: 이 계정에는 <strong>%{count}</strong>번의 처벌이 있었습니다.
       promote: 승급
@@ -116,7 +116,7 @@ ko:
       rejected_msg: 성공적으로 %{username}의 가입 신청서를 반려하였습니다
       remote_suspension_irreversible: 이 계정의 데이터는 되돌릴 수 없도록 삭제되었습니다.
       remote_suspension_reversible_hint_html: 이 계정은 계정이 속한 서버에서 정지되었습니다, 그리고 %{date}에 데이터가 완전히 삭제될 것입니다. 그 때까지는 해당 서버에서 계정을 그대로 복구할 수 있습니다. 만약 지금 당장 이 계정의 모든 데이터를 삭제하고 싶다면, 아래에서 실행할 수 있습니다.
-      remove_avatar: 아바타 지우기
+      remove_avatar: 아바타 삭제
       remove_header: 헤더 삭제
       removed_avatar_msg: 성공적으로 %{username}의 아바타 이미지를 삭제하였습니다
       removed_header_msg: 성공적으로 %{username}의 헤더 이미지를 삭제하였습니다
@@ -1471,7 +1471,6 @@ ko:
     administration_emails: 관리자 이메일 알림
     email_events: 이메일 알림에 대한 이벤트
     email_events_hint: '알림 받을 이벤트를 선택해주세요:'
-    other_settings: 기타 알림 설정
   number:
     human:
       decimal_units:
@@ -1813,9 +1812,39 @@ ko:
         silence: 계정 제한 됨
         suspend: 계정 정지 됨
     welcome:
-      edit_profile_action: 프로필 설정
-      edit_profile_step: 프로필 사진을 업로드하거나 사람들에게 표시할 이름을 바꾸는 것 등으로 자신의 프로필을 커스텀 할 수 있습니다. 새로운 팔로워를 검토 후에 허용하도록 할 수도 있습니다.
+      apps_android_action: Google Play에서 다운로드
+      apps_ios_action: App Store에서 다운로드
+      apps_step: 공식 앱을 다운로드해보세요.
+      apps_title: Mastodon 앱
+      checklist_subtitle: '이 새로운 소셜미디어를 시작해봅시다:'
+      checklist_title: 환영 체크리스트
+      edit_profile_action: 개인 맞춤
+      edit_profile_step: 의미있는 프로필을 작성해 상호작용을 늘려보세요.
+      edit_profile_title: 프로필 꾸미기
       explanation: 시작하기 전에 몇가지 팁들을 준비했습니다
+      feature_action: 더 알아보기
+      feature_audience: 마스토돈은 중개자 없이 청중을 관리할 수 있는 특별한 가능성을 제공합니다. 자체 인프라에 배포된 마스토돈을 사용하면 온라인에 있는 다른 마스토돈 서버에도 팔로우하거나 팔로우할 수 있으며, 본인 외에는 누구의 통제도 받지 않습니다.
+      feature_control_title: 내 타임라인에 대해 통제권을 유지하세요
+      feature_creativity: 마스토돈은 오디오, 비디오, 사진, 접근성 설명(alt),  투표, 콘텐츠 주의 (블라인드), 움직이는 아바타, 커스텀 이모티콘, 썸네일 자르기, 그리고 더 많은 것들을 당신이 온라인에서 당신을 더 잘 드러낼 수 있도록 돕기위해 지원합니다. 당신이 그림이나 음악을 올리던, 팟캐스트 같은것을 진행하던 마스토돈이 함께합니다.
+      feature_moderation: 마스토돈은 의사 결정권을 사용자에게 돌려줍니다. 각 서버는 기업 소셜 미디어처럼 하향식이 아닌 로컬에서 시행되는 자체 규칙과 규정을 만들 수 있어 다양한 그룹의 요구에 가장 유연하게 대응할 수 있습니다. 동의하는 규칙이 있는 서버에 가입하거나 직접 서버를 호스팅하세요.
+      feature_moderation_title: 올바른 중재
+      follow_action: 팔로우
+      follow_step: 흥미로운 사람들을 팔로우하는 것이 마스토돈의 전부입니다.
+      follow_title: 내게 맞는 홈 피드 꾸미기
+      follows_subtitle: 잘 알려진 계정들을 팔로우
+      follows_title: 누구를 팔로우 할 지
+      follows_view_more: 팔로우 할 사람들 더 보기
+      hashtags_recent_count: 최근 %{days}일동안 %{people} 명
+      hashtags_subtitle: 최근 2일간 무엇이 유행했는지 둘러보기
+      hashtags_title: 유행하는 해시태그
+      hashtags_view_more: 유행하는 해시태그 더 보기
+      post_action: 작성
+      post_step: 글, 사진, 영상, 또는 투표로 세상에 인사해보세요.
+      post_title: 첫번째 게시물 쓰기
+      share_action: 공유
+      share_step: 친구에게 마스토돈에서 나를 찾을 수 있는 방법을 알려주세요.
+      share_title: 마스토돈 프로필을 공유하세요
+      sign_in_action: 로그인
       subject: 마스토돈에 오신 것을 환영합니다
       title: 환영합니다 %{name} 님!
   users:

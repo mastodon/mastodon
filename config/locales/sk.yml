@@ -733,7 +733,7 @@ sk:
       edit_preset: Uprav varovnú predlohu
       title: Spravuj varovné predlohy
     webhooks:
-      delete: Zmazať
+      delete: Vymaž
       disable: Vypni
       disabled: Vypnuté
       enable: Povoľ
@@ -744,6 +744,7 @@ sk:
       subject: Registrácie na %{instance} boli automaticky prepnuté na vyžadujúce schválenie
     new_appeal:
       actions:
+        delete_statuses: vymazať ich príspevky
         none: varovanie
         silence: obmedziť ich účet
     new_pending_account:
@@ -804,6 +805,7 @@ sk:
       prefix_invited_by_user: "@%{name} ťa pozýva na tento Mastodon server!"
       prefix_sign_up: Zaregistruj sa na Mastodone už dnes!
       suffix: S pomocou účtu budeš môcť nasledovať ľudí, posielať príspevky, a vymieňať si správy s užívateľmi na hocijakom Mastodon serveri, ale aj na iných serveroch!
+    dont_have_your_security_key: Nemáš svoj bezpečnostný kľúč?
     forgot_password: Zabudnuté heslo?
     invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítaj si nový.
     log_in_with: Prihlás sa s
@@ -814,6 +816,7 @@ sk:
     or_log_in_with: Alebo prihlás s
     progress:
       confirm: Potvrď email
+      rules: Súhlas s pravidlami
     register: Zaregistruj sa
     registration_closed: "%{instance} neprijíma nových členov"
     resend_confirmation: Odošli potvrdzovací odkaz znovu
@@ -1085,7 +1088,6 @@ sk:
   notifications:
     email_events: Udalosti oznamované emailom
     email_events_hint: 'Vyber si udalosti, pre ktoré chceš dostávať oboznámenia:'
-    other_settings: Ostatné oboznamovacie nastavenia
   otp_authentication:
     enable: Povoľ
   pagination:
@@ -1288,8 +1290,14 @@ sk:
         silence: Účet bol obmedzený
         suspend: Tvoj účet bol vylúčený
     welcome:
-      edit_profile_action: Nastav profil
+      apps_title: Mastodon aplikácie
+      edit_profile_action: Prispôsob
       explanation: Tu nájdeš nejaké tipy do začiatku
+      feature_action: Zisti viac
+      follow_action: Nasleduj
+      post_title: Vytvor svoj prvý príspevok
+      share_action: Zdieľaj
+      sign_in_action: Prihlás sa
       subject: Vitaj na Mastodone
       title: Vitaj na palube, %{name}!
   users:

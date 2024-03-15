@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent, useCallback } from 'react';
 
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
+import { FormattedMessage, injectIntl, defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
@@ -11,7 +11,7 @@ import ArrowBackIcon from '@/material-icons/400-24px/arrow_back.svg?react';
 import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
-import TuneIcon from '@/material-icons/400-24px/tune.svg?react';
+import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 import { ButtonInTabsBar, useColumnsContext } from 'mastodon/features/ui/util/columns_context';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
@@ -23,10 +23,12 @@ const messages = defineMessages({
   hide: { id: 'column_header.hide_settings', defaultMessage: 'Hide settings' },
   moveLeft: { id: 'column_header.moveLeft_settings', defaultMessage: 'Move column to the left' },
   moveRight: { id: 'column_header.moveRight_settings', defaultMessage: 'Move column to the right' },
+  back: { id: 'column_back_button.label', defaultMessage: 'Back' },
 });
 
-const BackButton = ({ pinned, show }) => {
+const BackButton = ({ pinned, show, onlyIcon }) => {
   const history = useAppHistory();
+  const intl = useIntl();
   const { multiColumn } = useColumnsContext();
 
   const handleBackClick = useCallback(() => {
@@ -39,18 +41,20 @@ const BackButton = ({ pinned, show }) => {
 
   const showButton = history && !pinned && ((multiColumn && history.location?.state?.fromMastodon) || show);
 
-  if(!showButton) return null;
+  if (!showButton) return null;
 
-  return (<button onClick={handleBackClick} className='column-header__back-button'>
-    <Icon id='chevron-left' icon={ArrowBackIcon} className='column-back-button__icon' />
-    <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
-  </button>);
-
+  return (
+    <button onClick={handleBackClick} className={classNames('column-header__back-button', { 'compact': onlyIcon })} aria-label={intl.formatMessage(messages.back)}>
+      <Icon id='chevron-left' icon={ArrowBackIcon} className='column-back-button__icon' />
+      {!onlyIcon && <FormattedMessage id='column_back_button.label' defaultMessage='Back' />}
+    </button>
+  );
 };
 
 BackButton.propTypes = {
   pinned: PropTypes.bool,
   show: PropTypes.bool,
+  onlyIcon: PropTypes.bool,
 };
 
 class ColumnHeader extends PureComponent {
@@ -145,27 +149,31 @@ class ColumnHeader extends PureComponent {
     }
 
     if (multiColumn && pinned) {
-      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='times' icon={CloseIcon} /> <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' /></button>;
+      pinButton = <button className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='times' icon={CloseIcon} /> <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' /></button>;
 
       moveButtons = (
-        <div key='move-buttons' className='column-header__setting-arrows'>
+        <div className='column-header__setting-arrows'>
           <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='icon-button column-header__setting-btn' onClick={this.handleMoveLeft}><Icon id='chevron-left' icon={ChevronLeftIcon} /></button>
           <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='icon-button column-header__setting-btn' onClick={this.handleMoveRight}><Icon id='chevron-right' icon={ChevronRightIcon} /></button>
         </div>
       );
     } else if (multiColumn && this.props.onPin) {
-      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' icon={AddIcon} /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
+      pinButton = <button className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' icon={AddIcon} /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
     }
 
-    backButton = <BackButton pinned={pinned} show={showBackButton} />;
+    backButton = <BackButton pinned={pinned} show={showBackButton} onlyIcon={!!title} />;
 
     const collapsedContent = [
       extraContent,
     ];
 
     if (multiColumn) {
-      collapsedContent.push(pinButton);
-      collapsedContent.push(moveButtons);
+      collapsedContent.push(
+        <div key='buttons' className='column-header__advanced-buttons'>
+          {pinButton}
+          {moveButtons}
+        </div>
+      );
     }
 
     if (this.context.identity.signedIn && (children || (multiColumn && this.props.onPin))) {
@@ -177,7 +185,7 @@ class ColumnHeader extends PureComponent {
           onClick={this.handleToggleClick}
         >
           <i className='icon-with-badge'>
-            <Icon id='sliders' icon={TuneIcon} />
+            <Icon id='sliders' icon={SettingsIcon} />
             {collapseIssues && <i className='icon-with-badge__issue-badge' />}
           </i>
         </button>
@@ -190,16 +198,19 @@ class ColumnHeader extends PureComponent {
       <div className={wrapperClassName}>
         <h1 className={buttonClassName}>
           {hasTitle && (
-            <button onClick={this.handleTitleClick}>
-              <Icon id={icon} icon={iconComponent} className='column-header__icon' />
-              {title}
-            </button>
+            <>
+              {showBackButton && backButton}
+
+              <button onClick={this.handleTitleClick} className='column-header__title'>
+                {!showBackButton && <Icon id={icon} icon={iconComponent} className='column-header__icon' />}
+                {title}
+              </button>
+            </>
           )}
 
-          {!hasTitle && backButton}
+          {!hasTitle && showBackButton && backButton}
 
           <div className='column-header__buttons'>
-            {hasTitle && backButton}
             {extraButton}
             {collapseButton}
           </div>

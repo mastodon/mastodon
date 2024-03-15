@@ -27,6 +27,8 @@ import media_attachments from './media_attachments';
 import meta from './meta';
 import { modalReducer } from './modal';
 import mutes from './mutes';
+import { notificationPolicyReducer } from './notification_policy';
+import { notificationRequestsReducer } from './notification_requests';
 import notifications from './notifications';
 import picture_in_picture from './picture_in_picture';
 import polls from './polls';
@@ -84,6 +86,8 @@ const reducers = {
   history,
   tags,
   followed_tags,
+  notificationPolicy: notificationPolicyReducer,
+  notificationRequests: notificationRequestsReducer,
 };
 
 // We want the root state to be an ImmutableRecord, which is an object with a defined list of keys,

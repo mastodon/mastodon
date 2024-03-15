@@ -112,7 +112,7 @@ group :test do
   # RSpec helpers for email specs
   gem 'email_spec'
 
-  # Extra RSpec extenion methods and helpers for sidekiq
+  # Extra RSpec extension methods and helpers for sidekiq
   gem 'rspec-sidekiq', '~> 4.0'
 
   # Browser integration testing

@@ -51,11 +51,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
     @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
   end
 
-  def pagination_max_id
-    @statuses.last.id
-  end
-
-  def pagination_since_id
-    @statuses.first.id
+  def pagination_collection
+    @statuses
   end
 end

@@ -178,7 +178,7 @@ module Account::Interactions
   end
 
   def unblock_domain!(other_domain)
-    block = domain_blocks.find_by(domain: other_domain)
+    block = domain_blocks.find_by(domain: normalized_domain(other_domain))
     block&.destroy
   end
 
@@ -299,5 +299,9 @@ module Account::Interactions
       muting: Account.muting_map(account_ids, id),
       domain_blocking_by_domain: Account.domain_blocking_map_by_domain(domains, id),
     })
+  end
+
+  def normalized_domain(domain)
+    TagManager.instance.normalize_domain(domain)
   end
 end

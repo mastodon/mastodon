@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     /public/remote
     /conversations
     /lists/(*any)
-    /notifications
+    /notifications/(*any)
     /favourites
     /bookmarks
     /pinned
@@ -77,8 +77,10 @@ Rails.application.routes.draw do
   get 'remote_interaction_helper', to: 'remote_interaction_helper#index'
 
   resource :instance_actor, path: 'actor', only: [:show] do
-    resource :inbox, only: [:create], module: :activitypub
-    resource :outbox, only: [:show], module: :activitypub
+    scope module: :activitypub do
+      resource :inbox, only: [:create]
+      resource :outbox, only: [:show]
+    end
   end
 
   get '/invite/:invite_code', constraints: ->(req) { req.format == :json }, to: 'api/v1/invites#show'
@@ -126,11 +128,13 @@ Rails.application.routes.draw do
     resources :followers, only: [:index], controller: :follower_accounts
     resources :following, only: [:index], controller: :following_accounts
 
-    resource :outbox, only: [:show], module: :activitypub
-    resource :inbox, only: [:create], module: :activitypub
-    resource :claim, only: [:create], module: :activitypub
-    resources :collections, only: [:show], module: :activitypub
-    resource :followers_synchronization, only: [:show], module: :activitypub
+    scope module: :activitypub do
+      resource :outbox, only: [:show]
+      resource :inbox, only: [:create]
+      resource :claim, only: [:create]
+      resources :collections, only: [:show]
+      resource :followers_synchronization, only: [:show]
+    end
   end
 
   resource :inbox, only: [:create], module: :activitypub
@@ -138,10 +142,12 @@ Rails.application.routes.draw do
   get '/:encoded_at(*path)', to: redirect("/@%{path}"), constraints: { encoded_at: /%40/ }
 
   constraints(username: %r{[^@/.]+}) do
-    get '/@:username', to: 'accounts#show', as: :short_account
-    get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
-    get '/@:username/media', to: 'accounts#show', as: :short_account_media
-    get '/@:username/tagged/:tag', to: 'accounts#show', as: :short_account_tag
+    with_options to: 'accounts#show' do
+      get '/@:username', as: :short_account
+      get '/@:username/with_replies', as: :short_account_with_replies
+      get '/@:username/media', as: :short_account_media
+      get '/@:username/tagged/:tag', as: :short_account_tag
+    end
   end
 
   constraints(account_username: %r{[^@/.]+}) do

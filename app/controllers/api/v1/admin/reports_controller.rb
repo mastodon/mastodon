@@ -101,12 +101,8 @@ class Api::V1::Admin::ReportsController < Api::BaseController
     api_v1_admin_reports_url(pagination_params(min_id: pagination_since_id)) unless @reports.empty?
   end
 
-  def pagination_max_id
-    @reports.last.id
-  end
-
-  def pagination_since_id
-    @reports.first.id
+  def pagination_collection
+    @reports
   end
 
   def records_continue?

@@ -39,12 +39,14 @@ sr-Latn:
         text: Možete podneti samo jednu žalbu na upisan prestup
       defaults:
         autofollow: Osobe koje se prijave kroz pozivnice će vas automatski zapratiti
+        avatar: WEBP, PNG, GIF ili JPG. Najviše %{size}. Biće smanjeno na %{dimensions}px
         bot: Daje drugima do znanja da ovaj nalog uglavnom vrši automatizovane radnje i možda se ne nadgleda
         context: Jedan ili više konteksta u kojima treba da se primeni filter
         current_password: Iz bezbednosnih razloga molimo Vas unesite lozinku trenutnog naloga
         current_username: Da biste potvrdili, Molimo Vas unesite korisničko ime trenutno aktivnog naloga
         digest: Šalje se samo posle dužeg perioda neaktivnosti i samo u slučaju da ste primili jednu ili više ličnih poruka tokom Vašeg odsustva
         email: Biće Vam poslat mejl sa potvrdom
+        header: WEBP, PNG, GIF ili JPG. Najviše %{size}. Biće smanjeno na %{dimensions}px
         inbox_url: Kopirajte URL sa naslovne strane releja koji želite koristiti
         irreversible: Filtrirane obajve će nestati nepovratno, čak i ako je filter kasnije uklonjen
         locale: Jezik korisničkog okruženja, e-pošte i mobilnih obaveštenja
@@ -114,6 +116,7 @@ sr-Latn:
           sign_up_requires_approval: Nove registracije će zahtevati Vaše odobrenje
         severity: Izaberite šta će se desiti sa zahtevima sa ove IP adrese
       rule:
+        hint: Opcionalno. Pružite više detalja o pravilu
         text: Opišite pravilo ili uslov za korisnike na ovom serveru. Potrudite se da opis bude kratak i jednostavan
       sessions:
         otp: 'Unesite dvofaktorski kod sa Vašeg telefona ili koristite jedan od kodova za oporavak:'
@@ -297,6 +300,7 @@ sr-Latn:
           patch: Obavesti o ispravkama grešaka
         trending_tag: Novi trend treba pregledati
       rule:
+        hint: Dodatne informacije
         text: Pravilo
       settings:
         indexable: Uključi stranicu profila u pretraživače

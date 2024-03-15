@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PostStatusService, type: :service do
+RSpec.describe PostStatusService do
   subject { described_class.new }
 
   it 'creates a new status' do
@@ -150,7 +150,7 @@ RSpec.describe PostStatusService, type: :service do
 
     expect do
       subject.call(account, text: '@alice hm, @bob is really annoying lately', allowed_mentions: [mentioned_account.id])
-    end.to raise_error(an_instance_of(PostStatusService::UnexpectedMentionsError).and(having_attributes(accounts: [unexpected_mentioned_account])))
+    end.to raise_error(an_instance_of(described_class::UnexpectedMentionsError).and(having_attributes(accounts: [unexpected_mentioned_account])))
   end
 
   it 'processes duplicate mentions correctly' do

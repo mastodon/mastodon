@@ -2,6 +2,9 @@
 kab:
   simple_form:
     hints:
+      account:
+        display_name: Isem-ik·im ummid neɣ isem-ik·im n uqeṣṣer.
+        fields: Asebter-ik·im agejdan, imqimen, leεmer, ayen tebɣiḍ.
       account_alias:
         acct: Sekcem isem n umseqdac@domain n umiḍan s wansa itebγiḍ ad gujjeḍ
       account_migration:
@@ -11,6 +14,7 @@ kab:
         type_html: Fren d acu ara txedmeḍ s <strong>%{acct}</strong>
       defaults:
         autofollow: Imdanen ara ijerrden s usnebgi-inek, ad k-ḍefṛen s wudem awurman
+        bot: Smekti-d wiyaḍ dakken amiḍan-a ixeddem s wudem amezwer tigawin tiwurmanin yernu ur yezmir ara ad yettwaɛass
         email: Ad n-teṭṭfeḍ imayl i usentem
         irreversible: Tisuffaɣ i tessazedgeḍ ad ttwakksent i lebda, ula ma tekkseḍ imsizdeg-nni ar zdat
         locale: Tutlayt n ugrudem, imaylen d tilγa
@@ -18,6 +22,9 @@ kab:
         setting_display_media_default: Ffer teywalt yettwacreḍ d tanafrit
         setting_display_media_hide_all: Ffer yal tikkelt akk taywalt
         setting_display_media_show_all: Ffer yal tikkelt teywalt yettwacreḍ d tanafrit
+        username: Tzemreḍ ad tesqedceḍ isekkilen, uṭṭunen akked yijerriden n wadda
+      featured_tag:
+        name: 'Ha-t-an kra seg ihacṭagen i tesseqdaceḍ ussan-a ineggura maḍi :'
       imports:
         data: Afaylu CSV id yusan seg uqeddac-nniḍen n Maṣṭudun
       ip_block:
@@ -82,6 +89,10 @@ kab:
       form_admin_settings:
         site_terms: Tasertit tabaḍnit
         site_title: Isem n uqeddac
+      interactions:
+        must_be_follower: Ssewḥel ilɣa seg wid akked tid ur yellin ara d imeḍfaren-ik·im
+        must_be_following: Ssewḥel ilɣa seg wid akked tid ur tettḍafareḍ ara
+        must_be_following_dm: Sewḥel iznan usriden sɣur wid akked tid ur tettḍafareḍ ara
       invite:
         comment: Awennit
       invite_request:
@@ -93,7 +104,9 @@ kab:
           no_access: Sewḥel anekcum
         severity: Alugen
       notification_emails:
+        favourite: Ma yella walbɛaḍ i iḥemmlen tasuffeɣt-ik·im
         follow: Yeḍfer-ik·im-id walbɛaḍ
+        follow_request: Ma yella win i d-yessutren ad k·em-yeḍfer
         mention: Yuder-ik·em-id walbɛaḍ
         reblog: Yella win yesselhan adda-dik·im
       rule:

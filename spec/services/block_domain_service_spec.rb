@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe BlockDomainService, type: :service do
+RSpec.describe BlockDomainService do
   subject { described_class.new }
 
   let!(:bad_account) { Fabricate(:account, username: 'badguy666', domain: 'evil.org') }
