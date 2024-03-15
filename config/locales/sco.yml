@@ -890,8 +890,6 @@ sco:
       new_trending_statuses:
         title: Trendin posts
       new_trending_tags:
-        no_approved_tags: There nae approved trendin hashtags the noo.
-        requirements: 'Onie o thir candidates cuid surpass the #%{rank} approved trendin hashtag, thit''s #%{lowest_tag_name} the noo, wi a score o %{lowest_tag_score}.'
         title: Trendin hashtags
       subject: New trends up fir luikin ower on %{instance}
   aliases:
@@ -1277,7 +1275,6 @@ sco:
   notifications:
     email_events: Events fir email notes
     email_events_hint: 'Pick events thit ye''r wantin tae get notes fir:'
-    other_settings: Ither notes settins
   number:
     human:
       decimal_units:
@@ -1534,7 +1531,6 @@ sco:
     webauthn: Security keys
   user_mailer:
     appeal_approved:
-      action: Gang tae yer accoont
       explanation: The appeal o the strike agin yer accoont on %{strike_date} thit ye submittit on %{appeal_date} haes been approved. Yer accoont is ance again in guid staunnin.
       subject: Yer appeal fae %{date} haes been approved
       title: Appeal approved
@@ -1543,7 +1539,6 @@ sco:
       subject: Yer appeal fae %{date} haes been rejectit
       title: Appeal rejectit
     backup_ready:
-      explanation: Ye wantit a ful backup o yer Mastodon accoont. It's riddy fir tae doonload noo!
       subject: Yer archive is riddy fir doonload
       title: Archive takoot
     suspicious_sign_in:
@@ -1585,13 +1580,7 @@ sco:
         silence: Accoont limitit
         suspend: Accoont suspendit
     welcome:
-      edit_profile_action: Setup profile
-      edit_profile_step: Ye kin customize yer profile bi uploadin a profile picture, chyngin yer display nemm an mair. Ye kin opt-in fir tae luik ower new follaers afore they’re allooed tae follae ye.
       explanation: Here some tips fir tae get ye stertit
-      final_action: Stert postin
-      final_step: 'Stert postin! Even athout follaers, yer public posts kin stull be seen bi ithers, fir example on the local timeline or in hashtags. Ye mibbie want tae introduce yersel on the #introductions hashtag.'
-      full_handle: Yer ful haunnle
-      full_handle_hint: This is whit ye wad tell yer pals sae thit they kin message or follae ye fae anither server.
       subject: Welcome tae Mastodon, 'mon in
       title: Welcome aboord, %{name}!
   users:

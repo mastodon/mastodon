@@ -4,7 +4,7 @@ ko:
     hints:
       account:
         discoverable: 내 공개 게시물과 프로필이 마스토돈의 다양한 추천 기능에 나타날 수 있고 프로필이 다른 사용자에게 제안될 수 있습니다
-        display_name: 실명 혹은 별명.
+        display_name: 진짜 이름 또는 재미난 이름.
         fields: 홈페이지, 호칭, 나이, 뭐든지 적고 싶은 것들.
         indexable: 내 공개 게시물이 마스토돈의 검색 결과에 나타날 수 있습니다. 내 게시물과 상호작용했던 사람들은 이 설정과 관계 없이 그 게시물을 검색할 수 있습니다.
         note: '남을 @mention 하거나 #hashtag 태그를 달 수 있습니다.'
@@ -39,14 +39,14 @@ ko:
         text: 처벌에 대해 단 한 번만 이의제기를 할 수 있습니다
       defaults:
         autofollow: 이 초대로 가입한 사람은 나를 팔로우하게 됩니다.
-        avatar: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
+        avatar: WEBP, PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소됨
         bot: 이 계정이 대부분 자동으로 작업을 수행하고 잘 확인하지 않는다는 것을 알립니다.
         context: 필터를 적용 할 한 개 이상의 컨텍스트
         current_password: 보안을 위해 현재 계정의 암호를 입력해주세요
         current_username: 확인을 위해, 현재 계정의 사용자명을 입력해주세요
         digest: 오랫동안 활동하지 않았을 때 받은 멘션들에 대한 요약 받기
         email: 확인용 이메일을 보냈습니다.
-        header: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
+        header: WEBP, PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소됨
         inbox_url: 사용 할 릴레이 서버의 프론트페이지에서 URL을 복사합니다
         irreversible: 필터링 된 게시물은 나중에 필터가 사라지더라도 돌아오지 않게 됩니다
         locale: 사용자 인터페이스, 이메일, 푸시 알림 언어
@@ -116,6 +116,7 @@ ko:
           sign_up_requires_approval: 새 가입이 승인을 필요로 하도록 합니다
         severity: 해당 IP로부터의 요청에 대해 무엇이 일어나게 할 지 고르세요
       rule:
+        hint: 옵션사항. 규칙에 대한 더 상세한 정보를 제공하세요
         text: 이 서버 사용자들이 지켜야 할 규칙과 요구사항을 설명해주세요. 짧고 간단하게 작성해주세요
       sessions:
         otp: '휴대전화에서 생성된 이중 인증 코드를 입력하거나, 복구 코드 중 하나를 사용하세요:'
@@ -188,14 +189,14 @@ ko:
         email: 이메일 주소
         expires_in: 만기
         fields: 부가 필드
-        header: 헤더
+        header: 헤더 사진
         honeypot: "%{label} (채우지 마시오)"
         inbox_url: 릴레이 서버의 inbox URL
         irreversible: 숨기는 대신 삭제
         locale: 인터페이스 언어
         max_uses: 사용 횟수 제한
         new_password: 새로운 암호 입력
-        note: 소개
+        note: 자기소개
         otp_attempt: 이중 인증 코드
         password: 암호
         phrase: 키워드 또는 문장
@@ -299,6 +300,7 @@ ko:
           patch: 버그픽스 업데이트에 대해 알림
         trending_tag: 검토해야 할 새 유행
       rule:
+        hint: 추가 정보
         text: 규칙
       settings:
         indexable: 검색 엔진에 프로필 페이지 기재하기

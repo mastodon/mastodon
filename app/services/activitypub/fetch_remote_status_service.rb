@@ -8,14 +8,14 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   DISCOVERIES_PER_REQUEST = 1000
 
   # Should be called when uri has already been checked for locality
-  def call(uri, id: true, prefetched_body: nil, on_behalf_of: nil, expected_actor_uri: nil, request_id: nil)
+  def call(uri, prefetched_body: nil, on_behalf_of: nil, expected_actor_uri: nil, request_id: nil)
     return if domain_not_allowed?(uri)
 
     @request_id = request_id || "#{Time.now.utc.to_i}-status-#{uri}"
     @json = if prefetched_body.nil?
-              fetch_resource(uri, id, on_behalf_of)
+              fetch_resource(uri, true, on_behalf_of)
             else
-              body_to_json(prefetched_body, compare_id: id ? uri : nil)
+              body_to_json(prefetched_body, compare_id: uri)
             end
 
     return unless supported_context?
@@ -44,7 +44,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
 
     # If we fetched a status that already exists, then we need to treat the
     # activity as an update rather than create
-    activity_json['type'] = 'Update' if equals_or_includes_any?(activity_json['type'], %w(Create)) && Status.where(uri: object_uri, account_id: actor.id).exists?
+    activity_json['type'] = 'Update' if equals_or_includes_any?(activity_json['type'], %w(Create)) && Status.exists?(uri: object_uri, account_id: actor.id)
 
     with_redis do |redis|
       discoveries = redis.incr("status_discovery_per_request:#{@request_id}")
@@ -65,7 +65,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
 
   def account_from_uri(uri)
     actor = ActivityPub::TagManager.instance.uri_to_resource(uri, Account)
-    actor = ActivityPub::FetchRemoteAccountService.new.call(uri, id: true, request_id: @request_id) if actor.nil? || actor.possibly_stale?
+    actor = ActivityPub::FetchRemoteAccountService.new.call(uri, request_id: @request_id) if actor.nil? || actor.possibly_stale?
     actor
   end
 

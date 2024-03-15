@@ -6,6 +6,7 @@ import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 
+import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import { addColumn } from 'mastodon/actions/columns';
 import { changeSetting } from 'mastodon/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'mastodon/actions/streaming';
@@ -41,15 +42,17 @@ const ColumnSettings = () => {
   );
 
   return (
-    <div>
-      <div className='column-settings__row'>
-        <SettingToggle
-          settings={settings}
-          settingPath={['onlyMedia']}
-          onChange={onChange}
-          label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />}
-        />
-      </div>
+    <div className='column-settings'>
+      <section>
+        <div className='column-settings__row'>
+          <SettingToggle
+            settings={settings}
+            settingPath={['onlyMedia']}
+            onChange={onChange}
+            label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />}
+          />
+        </div>
+      </section>
     </div>
   );
 };
@@ -160,6 +163,7 @@ const Firehose = ({ feedType, multiColumn }) => {
     <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
       <ColumnHeader
         icon='globe'
+        iconComponent={PublicIcon}
         active={hasUnread}
         title={intl.formatMessage(messages.title)}
         onPin={handlePin}
@@ -169,31 +173,29 @@ const Firehose = ({ feedType, multiColumn }) => {
         <ColumnSettings />
       </ColumnHeader>
 
-      <div className='scrollable scrollable--flex'>
-        <div className='account__section-headline'>
-          <NavLink exact to='/public/local'>
-            <FormattedMessage tagName='div' id='firehose.local' defaultMessage='This server' />
-          </NavLink>
+      <div className='account__section-headline'>
+        <NavLink exact to='/public/local'>
+          <FormattedMessage tagName='div' id='firehose.local' defaultMessage='This server' />
+        </NavLink>
 
-          <NavLink exact to='/public/remote'>
-            <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Other servers' />
-          </NavLink>
+        <NavLink exact to='/public/remote'>
+          <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Other servers' />
+        </NavLink>
 
-          <NavLink exact to='/public'>
-            <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
-          </NavLink>
-        </div>
-
-        <StatusListContainer
-          prepend={prependBanner}
-          timelineId={`${feedType}${onlyMedia ? ':media' : ''}`}
-          onLoadMore={handleLoadMore}
-          trackScroll
-          scrollKey='firehose'
-          emptyMessage={emptyMessage}
-          bindToDocument={!multiColumn}
-        />
+        <NavLink exact to='/public'>
+          <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
+        </NavLink>
       </div>
+
+      <StatusListContainer
+        prepend={prependBanner}
+        timelineId={`${feedType}${onlyMedia ? ':media' : ''}`}
+        onLoadMore={handleLoadMore}
+        trackScroll
+        scrollKey='firehose'
+        emptyMessage={emptyMessage}
+        bindToDocument={!multiColumn}
+      />
 
       <Helmet>
         <title>{intl.formatMessage(messages.title)}</title>
@@ -201,7 +203,7 @@ const Firehose = ({ feedType, multiColumn }) => {
       </Helmet>
     </Column>
   );
-}
+};
 
 Firehose.propTypes = {
   multiColumn: PropTypes.bool,

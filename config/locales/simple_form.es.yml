@@ -11,9 +11,9 @@ es:
         show_collections: Las personas podrán navegar a través de tus seguidos y seguidores. Esto no impide que las personas que sigues sepan que las estás siguiendo.
         unlocked: Las personas podrán seguirte sin pedir aprobación. Desmarca si deseas revisar las solicitudes de seguimiento y aceptar o rechazar nuevos seguidores.
       account_alias:
-        acct: Especifique su nombre de usuario@dominio de la cuenta de donde se desea migrar
+        acct: Especifica el nombre_de_usuario@dominio de la cuenta desde donde deseas migrar
       account_migration:
-        acct: Especifique el nombre de usuario@dominio de la cuenta de la cual se desea migrar
+        acct: Especifica el nombre_de_usuario@dominio de la cuenta hacia la que quieres migrar
       account_warning_preset:
         text: Puede usar sintaxis de publicaciones, como URLs, hashtags y menciones
         title: Opcional. No es visible para el destinatario
@@ -21,14 +21,14 @@ es:
         include_statuses: El usuario verá qué publicaciones han causado la acción de moderación o advertencia
         send_email_notification: El usuario recibirá una explicación de lo que ha sucedido con su cuenta
         text_html: Opcional. Puede usar sintaxis de publicaciones. Puede añadir <a href="%{path}">configuraciones predefinidas de advertencia</a> para ahorrar tiempo
-        type_html: Elige lo qué vas a hacer con <strong>%{acct}</strong>
+        type_html: Elige lo que vas a hacer con <strong>%{acct}</strong>
         types:
           disable: Evita que el usuario utilice su cuenta, pero no elimina ni oculta sus contenidos.
-          none: Utilizar esto para enviar una advertencia al usuario, sin poner en marcha ninguna otra acción.
+          none: Utiliza esto para enviar una advertencia al usuario, sin ejecutar ninguna otra acción.
           sensitive: Forzar que todos los archivos multimedia de este usuario sean marcados como sensibles.
           silence: Evita que el usuario pueda publicar con visibilidad pública, y oculta sus mensajes y notificaciones a personas que no lo siguen. Cierra todos los informes contra esta cuenta.
           suspend: Evita cualquier interacción desde o hacia esta cuenta y elimina su contenido. Reversible en 30 días. Cierra todos los informes contra esta cuenta.
-        warning_preset_id: Opcional. Aún puede añadir texto personalizado al final de la configuración predefinida
+        warning_preset_id: Opcional. Aún puedes añadir texto personalizado al final de la configuración predefinida
       announcement:
         all_day: Cuando está seleccionado solo se mostrarán las fechas del rango de tiempo
         ends_at: Opcional. El anuncio desaparecerá automáticamente en este momento
@@ -36,17 +36,17 @@ es:
         starts_at: Opcional. En caso de que su anuncio esté vinculado a un intervalo de tiempo específico
         text: Puedes usar la sintaxis de publicaciones. Por favor ten en cuenta el espacio que ocupará el anuncio en la pantalla del usuario
       appeal:
-        text: Sólo puedes apelar una amonestación una vez
+        text: Solo puedes apelar la amonestación una vez
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
-        avatar: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
+        avatar: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         bot: Esta cuenta ejecuta principalmente acciones automatizadas y podría no ser monitorizada
         context: Uno o múltiples contextos en los que debe aplicarse el filtro
         current_password: Por razones de seguridad por favor ingrese la contraseña de la cuenta actual
         current_username: Para confirmar, por favor ingrese el nombre de usuario de la cuenta actual
         digest: Solo enviado tras un largo periodo de inactividad y solo si has recibido mensajes personales durante tu ausencia
         email: Se le enviará un correo de confirmación
-        header: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
+        header: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         inbox_url: Copia la URL de la página principal del relés que quieres utilizar
         irreversible: Las publicaciones filtradas desaparecerán irreversiblemente, incluso si este filtro es eliminado más adelante
         locale: El idioma de la interfaz de usuario, correos y notificaciones push
@@ -116,6 +116,7 @@ es:
           sign_up_requires_approval: Nuevos registros requerirán su aprobación
         severity: Elegir lo que pasará con las peticiones desde esta IP
       rule:
+        hint: Opcional. Proporciona más detalles sobre la regla
         text: Describe una norma o requisito para los usuarios de este servidor. Intenta hacerla corta y sencilla
       sessions:
         otp: 'Introduce el código de autenticación de dos factores generado por tu aplicación de teléfono o usa uno de tus códigos de recuperación:'
@@ -299,6 +300,7 @@ es:
           patch: Notificar de actualizaciones de errores
         trending_tag: Una nueva tendencia requiere revisión
       rule:
+        hint: Información adicional
         text: Norma
       settings:
         indexable: Incluye la página de perfil en los buscadores

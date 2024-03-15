@@ -22,7 +22,7 @@ RSpec.describe Tag do
   end
 
   describe 'HASHTAG_RE' do
-    subject { Tag::HASHTAG_RE }
+    subject { described_class::HASHTAG_RE }
 
     it 'does not match URLs with anchors with non-hashtag characters' do
       expect(subject.match('Check this out https://medium.com/@alice/some-article#.abcdef123')).to be_nil
@@ -32,44 +32,52 @@ RSpec.describe Tag do
       expect(subject.match('https://en.wikipedia.org/wiki/Ghostbusters_(song)#Lawsuit')).to be_nil
     end
 
+    it 'does not match URLs with hashtag-like anchors after a numeral' do
+      expect(subject.match('https://gcc.gnu.org/bugzilla/show_bug.cgi?id=111895#c4')).to be_nil
+    end
+
+    it 'does not match URLs with hashtag-like anchors after an empty query parameter' do
+      expect(subject.match('https://en.wikipedia.org/wiki/Ghostbusters_(song)?foo=#Lawsuit')).to be_nil
+    end
+
     it 'matches ﻿#ａｅｓｔｈｅｔｉｃ' do
-      expect(subject.match('﻿this is #ａｅｓｔｈｅｔｉｃ').to_s).to eq ' #ａｅｓｔｈｅｔｉｃ'
+      expect(subject.match('﻿this is #ａｅｓｔｈｅｔｉｃ').to_s).to eq '#ａｅｓｔｈｅｔｉｃ'
     end
 
     it 'matches digits at the start' do
-      expect(subject.match('hello #3d').to_s).to eq ' #3d'
+      expect(subject.match('hello #3d').to_s).to eq '#3d'
     end
 
     it 'matches digits in the middle' do
-      expect(subject.match('hello #l33ts35k').to_s).to eq ' #l33ts35k'
+      expect(subject.match('hello #l33ts35k').to_s).to eq '#l33ts35k'
     end
 
     it 'matches digits at the end' do
-      expect(subject.match('hello #world2016').to_s).to eq ' #world2016'
+      expect(subject.match('hello #world2016').to_s).to eq '#world2016'
     end
 
     it 'matches underscores at the beginning' do
-      expect(subject.match('hello #_test').to_s).to eq ' #_test'
+      expect(subject.match('hello #_test').to_s).to eq '#_test'
     end
 
     it 'matches underscores at the end' do
-      expect(subject.match('hello #test_').to_s).to eq ' #test_'
+      expect(subject.match('hello #test_').to_s).to eq '#test_'
     end
 
     it 'matches underscores in the middle' do
-      expect(subject.match('hello #one_two_three').to_s).to eq ' #one_two_three'
+      expect(subject.match('hello #one_two_three').to_s).to eq '#one_two_three'
     end
 
     it 'matches middle dots' do
-      expect(subject.match('hello #one·two·three').to_s).to eq ' #one·two·three'
+      expect(subject.match('hello #one·two·three').to_s).to eq '#one·two·three'
     end
 
     it 'matches ・unicode in ぼっち・ざ・ろっく correctly' do
-      expect(subject.match('testing #ぼっち・ざ・ろっく').to_s).to eq ' #ぼっち・ざ・ろっく'
+      expect(subject.match('testing #ぼっち・ざ・ろっく').to_s).to eq '#ぼっち・ざ・ろっく'
     end
 
     it 'matches ZWNJ' do
-      expect(subject.match('just add #نرم‌افزار and').to_s).to eq ' #نرم‌افزار'
+      expect(subject.match('just add #نرم‌افزار and').to_s).to eq '#نرم‌افزار'
     end
 
     it 'does not match middle dots at the start' do
@@ -77,7 +85,7 @@ RSpec.describe Tag do
     end
 
     it 'does not match middle dots at the end' do
-      expect(subject.match('hello #one·two·three·').to_s).to eq ' #one·two·three'
+      expect(subject.match('hello #one·two·three·').to_s).to eq '#one·two·three'
     end
 
     it 'does not match purely-numeric hashtags' do
@@ -89,6 +97,38 @@ RSpec.describe Tag do
     it 'returns name' do
       tag = Fabricate(:tag, name: 'foo')
       expect(tag.to_param).to eq 'foo'
+    end
+  end
+
+  describe '.recently_used' do
+    let(:account) { Fabricate(:account) }
+    let(:other_person_status) { Fabricate(:status) }
+    let(:out_of_range) { Fabricate(:status, account: account) }
+    let(:older_in_range) { Fabricate(:status, account: account) }
+    let(:newer_in_range) { Fabricate(:status, account: account) }
+    let(:unused_tag) { Fabricate(:tag) }
+    let(:used_tag_one) { Fabricate(:tag) }
+    let(:used_tag_two) { Fabricate(:tag) }
+    let(:used_tag_on_out_of_range) { Fabricate(:tag) }
+
+    before do
+      stub_const 'Tag::RECENT_STATUS_LIMIT', 2
+
+      other_person_status.tags << used_tag_one
+
+      out_of_range.tags << used_tag_on_out_of_range
+
+      older_in_range.tags << used_tag_one
+      older_in_range.tags << used_tag_two
+
+      newer_in_range.tags << used_tag_one
+    end
+
+    it 'returns tags used by account within last X statuses ordered most used first' do
+      results = described_class.recently_used(account)
+
+      expect(results)
+        .to eq([used_tag_one, used_tag_two])
     end
   end
 

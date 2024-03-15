@@ -72,37 +72,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install native Ruby dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libicu-dev libidn11-dev
-
-      - name: Set up bundler cache
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
 
       - name: Create database
         run: './bin/rails db:create'
 
-      - name: Run migrations up to v2.0.0
-        run: './bin/rails db:migrate VERSION=20171010025614'
-
-      - name: Populate database with test data
-        run: './bin/rails tests:migrations:populate_v2'
-
-      - name: Run migrations up to v2.4.0
-        run: './bin/rails db:migrate VERSION=20180514140000'
-
-      - name: Populate database with test data
-        run: './bin/rails tests:migrations:populate_v2_4'
-
-      - name: Run migrations up to v2.4.3
-        run: './bin/rails db:migrate VERSION=20180707154237'
-
-      - name: Populate database with test data
-        run: './bin/rails tests:migrations:populate_v2_4_3'
+      - name: Run historical migrations with data population
+        run: './bin/rails tests:migrations:prepare_database'
 
       - name: Run all remaining migrations
         run: './bin/rails db:migrate'

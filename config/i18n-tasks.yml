@@ -64,11 +64,13 @@ ignore_unused:
   - 'statuses.attached.*'
   - 'move_handler.carry_{mutes,blocks}_over_text'
   - 'admin_mailer.*.subject'
+  - 'user_mailer.*.subject'
   - 'notification_mailer.*'
   - 'imports.overwrite_preambles.{following,blocking,muting,domain_blocking,bookmarks,lists}_html'
   - 'imports.preambles.{following,blocking,muting,domain_blocking,bookmarks,lists}_html'
   - 'mail_subscriptions.unsubscribe.emails.*'
   - 'preferences.other' # some locales are missing other keys, therefore leading i18n-tasks to detect `preferences` as plural and not finding use
+  - 'edit_profile.other' # some locales are missing other keys, therefore leading i18n-tasks to detect `preferences` as plural and not finding use
 
 ignore_inconsistent_interpolations:
   - '*.one'

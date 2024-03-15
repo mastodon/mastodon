@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 
 import escapeTextContentForBrowser from 'escape-html';
 
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { closeModal } from 'mastodon/actions/modal';
 import { IconButton } from 'mastodon/components/icon_button';
 import InlineAccount from 'mastodon/components/inline_account';
@@ -65,7 +66,7 @@ class CompareHistoryModal extends PureComponent {
     return (
       <div className='modal-root__modal compare-history-modal'>
         <div className='report-modal__target'>
-          <IconButton className='report-modal__close' icon='times' onClick={onClose} size={20} />
+          <IconButton className='report-modal__close' icon='times' iconComponent={CloseIcon} onClick={onClose} size={20} />
           {label}
         </div>
 

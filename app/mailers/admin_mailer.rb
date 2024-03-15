@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AdminMailer < ApplicationMailer
-  layout 'plain_mailer'
+  layout 'admin_mailer'
 
   helper :accounts
   helper :languages
@@ -56,6 +56,12 @@ class AdminMailer < ApplicationMailer
     headers['X-Priority'] = '1'
     headers['Importance'] = 'high'
 
+    locale_for_account(@me) do
+      mail subject: default_i18n_subject(instance: @instance)
+    end
+  end
+
+  def auto_close_registrations
     locale_for_account(@me) do
       mail subject: default_i18n_subject(instance: @instance)
     end

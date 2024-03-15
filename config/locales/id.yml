@@ -878,8 +878,6 @@ id:
       new_trending_statuses:
         title: Kiriman yang sedang tren
       new_trending_tags:
-        no_approved_tags: Saat ini tidak ada tagar tren yang disetujui.
-        requirements: 'Kandidat yang ada di sini bisa saja melewati peringkat #%{rank} tagar sedang tren yang disetujui, yang kini #%{lowest_tag_name} memiliki nilai %{lowest_tag_score}.'
         title: Tagar sedang tren
       subject: Tren baru yang perlu ditinjau di %{instance}
   aliases:
@@ -1259,7 +1257,6 @@ id:
   notifications:
     email_events: Event untuk notifikasi email
     email_events_hint: 'Pilih event yang ingin Anda terima notifikasinya:'
-    other_settings: Pengaturan notifikasi lain
   number:
     human:
       decimal_units:
@@ -1510,7 +1507,6 @@ id:
     webauthn: Kunci keamanan
   user_mailer:
     appeal_approved:
-      action: Ke akun Anda
       explanation: Banding peringatan terhadap akun Anda pada %{strike_date} yang Anda kirim pada %{appeal_date} telah disetujui. Akun Anda akan kembali ditandai sebagai akun bagus.
       subject: Banding Anda dari %{date} telah disetujui
       title: Banding disetujui
@@ -1519,7 +1515,6 @@ id:
       subject: Banding Anda dari %{date} telah ditolak
       title: Banding ditolak
     backup_ready:
-      explanation: Cadangan penuh akun Mastodon Anda sudah dapat diunduh!
       subject: Arsip Anda sudah siap diunduh
       title: Ambil arsip
     suspicious_sign_in:
@@ -1561,13 +1556,7 @@ id:
         silence: Akun dibatasi
         suspend: Akun ditangguhkan
     welcome:
-      edit_profile_action: Siapkan profil
-      edit_profile_step: Anda dapat mengubah profil Anda dengan mengunggah sebuah foto profil, mengubah nama tampilan Anda dan lain-lain. Anda dapat memilih untuk meninjau pengikut baru sebelum mereka diperbolehkan untuk mengikuti Anda.
       explanation: Beberapa tips sebelum Anda memulai
-      final_action: Mulai mengirim
-      final_step: 'Mulai mengirim! Bahkan tanpa pengikut, kiriman publik Anda dapat dilihat oleh orang lain, misalkan di linimasa lokal atau dalam tagar. Anda dapat memperkenalkan diri Anda dalam tagar #introductions.'
-      full_handle: Penanganan penuh Anda
-      full_handle_hint: Ini yang dapat Anda sampaikan kepada teman agar mereka dapat mengirim pesan atau mengikuti Anda dari server lain.
       subject: Selamat datang di Mastodon
       title: Selamat datang, %{name}!
   users:

@@ -52,9 +52,11 @@ REDIS_CACHE_PARAMS = {
   url: ENV['CACHE_REDIS_URL'],
   expires_in: 10.minutes,
   namespace: cache_namespace,
-  pool_size: Sidekiq.server? ? Sidekiq[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
-  pool_timeout: 5,
   connect_timeout: 5,
+  pool: {
+    size: Sidekiq.server? ? Sidekiq[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
+    timeout: 5,
+  },
 
   master_name: (ENV.fetch('CACHE_REDIS_SENTINEL_MASTER', 'mymaster') if ENV['CACHE_REDIS_SENTINEL']),
   sentinels: (if ENV['CACHE_REDIS_SENTINEL']
@@ -63,7 +65,7 @@ REDIS_CACHE_PARAMS = {
                   { host: host, port: port.to_i }
                 end
               end),
-}.compact.freeze
+}.freeze
 
 REDIS_SIDEKIQ_PARAMS = {
   driver: :hiredis,
@@ -77,6 +79,6 @@ REDIS_SIDEKIQ_PARAMS = {
                   { host: host, port: port.to_i }
                 end
               end),
-}.compact.freeze
+}.freeze
 
 ENV['REDIS_NAMESPACE'] = "mastodon_test#{ENV['TEST_ENV_NUMBER']}" if Rails.env.test?

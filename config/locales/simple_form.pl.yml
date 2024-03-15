@@ -39,14 +39,14 @@ pl:
         text: Możesz wysłać odwołanie do ostrzeżenia tylko raz
       defaults:
         autofollow: Osoby, które zarejestrują się z Twojego zaproszenia automatycznie zaczną Cię obserwować
-        avatar: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
+        avatar: WEBP, PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
         bot: To konto wykonuje głównie zautomatyzowane działania i może nie być monitorowane
         context: Jedno lub wiele miejsc, w których filtr zostanie zastosowany
         current_password: Ze względów bezpieczeństwa wprowadź hasło obecnego konta
         current_username: Aby potwierdzić, wprowadź nazwę użytkownika obecnego konta
         digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
         email: Otrzymasz e-mail potwierdzający
-        header: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
+        header: WEBP, PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
         inbox_url: Skopiuj adres ze strony głównej przekaźnika, którego chcesz użyć
         irreversible: Filtrowane wpisy znikną bezpowrotnie, nawet gdy filtr zostanie usunięty
         locale: Język interfejsu, wiadomości e-mail i powiadomieniach push
@@ -116,6 +116,7 @@ pl:
           sign_up_requires_approval: Nowe rejestracje będą wymagać twojej zgody
         severity: Wybierz co ma się stać z żadaniami z tego adresu IP
       rule:
+        hint: Opcjonalne. Dodaj więcej szczegółów dot. tej zasady
         text: Opisz wymóg lub regułę dla użytkowników na tym serwerze. Postaraj się, aby była krótka i prosta
       sessions:
         otp: 'Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych:'
@@ -299,6 +300,7 @@ pl:
           patch: Powiadamiaj o aktualizacjach naprawiających błędy
         trending_tag: Nowe popularne wymagają przeglądu
       rule:
+        hint: Informacje dodatkowe
         text: Zasada
       settings:
         indexable: Udostępniaj profil wyszukiwarkom

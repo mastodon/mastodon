@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 
 import { isEqual } from 'lodash';
 
+import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { connectHashtagStream } from 'mastodon/actions/streaming';
 import { fetchHashtag, followHashtag, unfollowHashtag } from 'mastodon/actions/tags';
@@ -190,6 +191,7 @@ class HashtagTimeline extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={`#${id}`}>
         <ColumnHeader
           icon='hashtag'
+          iconComponent={TagIcon}
           active={hasUnread}
           title={this.title()}
           onPin={this.handlePin}

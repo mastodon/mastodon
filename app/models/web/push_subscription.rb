@@ -19,7 +19,7 @@ class Web::PushSubscription < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :access_token, class_name: 'Doorkeeper::AccessToken', optional: true
 
-  has_one :session_activation, foreign_key: 'web_push_subscription_id', inverse_of: :web_push_subscription
+  has_one :session_activation, foreign_key: 'web_push_subscription_id', inverse_of: :web_push_subscription, dependent: nil
 
   validates :endpoint, presence: true
   validates :key_p256dh, presence: true

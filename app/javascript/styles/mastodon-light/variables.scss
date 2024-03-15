@@ -5,7 +5,7 @@ $white: #ffffff;
 $classic-base-color: #282c37;
 $classic-primary-color: #9baec8;
 $classic-secondary-color: #d9e1e8;
-$classic-highlight-color: #858afa;
+$classic-highlight-color: #6364ff;
 
 $blurple-600: #563acc; // Iris
 $blurple-500: #6364ff; // Brand purple
@@ -34,7 +34,7 @@ $ui-button-tertiary-border-color: $blurple-500 !default;
 
 $primary-text-color: $black !default;
 $darker-text-color: $classic-base-color !default;
-$highlight-text-color: darken($ui-highlight-color, 8%) !default;
+$highlight-text-color: $ui-highlight-color !default;
 $dark-text-color: #444b5d;
 $action-button-color: #606984;
 
@@ -55,3 +55,12 @@ $account-background-color: $white !default;
 }
 
 $emojis-requiring-inversion: 'chains';
+
+.theme-mastodon-light {
+  --dropdown-border-color: #d9e1e8;
+  --dropdown-background-color: #fff;
+  --background-border-color: #d9e1e8;
+  --background-color: #fff;
+  --background-color-tint: rgba(255, 255, 255, 90%);
+  --background-filter: blur(10px);
+}

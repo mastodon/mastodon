@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AccountStatusesCleanupService, type: :service do
+describe AccountStatusesCleanupService do
   let(:account)           { Fabricate(:account, username: 'alice', domain: nil) }
   let(:account_policy)    { Fabricate(:account_statuses_cleanup_policy, account: account) }
   let!(:unrelated_status) { Fabricate(:status, created_at: 3.years.ago) }
@@ -39,6 +39,13 @@ describe AccountStatusesCleanupService, type: :service do
         it 'actually deletes the statuses' do
           subject.call(account_policy, 10)
           expect(Status.find_by(id: [very_old_status.id, old_status.id, another_old_status.id])).to be_nil
+          expect { recent_status.reload }.to_not raise_error
+        end
+
+        it 'preserves recent and unrelated statuses' do
+          subject.call(account_policy, 10)
+          expect { unrelated_status.reload }.to_not raise_error
+          expect { recent_status.reload }.to_not raise_error
         end
       end
 

@@ -20,7 +20,7 @@ class Invite < ApplicationRecord
   include Expireable
 
   belongs_to :user, inverse_of: :invites
-  has_many :users, inverse_of: :invite
+  has_many :users, inverse_of: :invite, dependent: nil
 
   scope :available, -> { where(expires_at: nil).or(where('expires_at >= ?', Time.now.utc)) }
 

@@ -7,6 +7,7 @@ import Base from 'mastodon/components/modal_root';
 import {
   MuteModal,
   BlockModal,
+  DomainBlockModal,
   ReportModal,
   EmbedModal,
   ListEditor,
@@ -41,6 +42,7 @@ export const MODAL_COMPONENTS = {
   'CONFIRM': () => Promise.resolve({ default: ConfirmationModal }),
   'MUTE': MuteModal,
   'BLOCK': BlockModal,
+  'DOMAIN_BLOCK': DomainBlockModal,
   'REPORT': ReportModal,
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
   'EMBED': EmbedModal,
@@ -117,7 +119,7 @@ export default class ModalRoot extends PureComponent {
             <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
               {(SpecificComponent) => {
                 const ref = typeof SpecificComponent !== 'function' ? this.setModalRef : undefined;
-                return <SpecificComponent {...props} onChangeBackgroundColor={this.setBackgroundColor} onClose={this.handleClose} ref={ref} />
+                return <SpecificComponent {...props} onChangeBackgroundColor={this.setBackgroundColor} onClose={this.handleClose} ref={ref} />;
               }}
             </BundleContainer>
 

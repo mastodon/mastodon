@@ -25,11 +25,11 @@ class Api::V1::FollowRequestsController < Api::BaseController
   private
 
   def account
-    Account.find(params[:id])
+    @account ||= Account.find(params[:id])
   end
 
   def relationships(**options)
-    AccountRelationshipsPresenter.new([params[:id]], current_user.account_id, **options)
+    AccountRelationshipsPresenter.new([account], current_user.account_id, **options)
   end
 
   def load_accounts
@@ -37,7 +37,7 @@ class Api::V1::FollowRequestsController < Api::BaseController
   end
 
   def default_accounts
-    Account.without_suspended.includes(:follow_requests, :account_stat).references(:follow_requests)
+    Account.without_suspended.includes(:follow_requests, :account_stat, :user).references(:follow_requests)
   end
 
   def paginated_follow_requests

@@ -55,7 +55,7 @@ class Api::V1::Admin::EmailDomainBlocksController < Api::BaseController
   end
 
   def resource_params
-    params.permit(:domain)
+    params.permit(:domain, :allow_with_approval)
   end
 
   def insert_pagination_headers
@@ -70,12 +70,8 @@ class Api::V1::Admin::EmailDomainBlocksController < Api::BaseController
     api_v1_admin_email_domain_blocks_url(pagination_params(min_id: pagination_since_id)) unless @email_domain_blocks.empty?
   end
 
-  def pagination_max_id
-    @email_domain_blocks.last.id
-  end
-
-  def pagination_since_id
-    @email_domain_blocks.first.id
+  def pagination_collection
+    @email_domain_blocks
   end
 
   def records_continue?

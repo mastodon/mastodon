@@ -6,7 +6,7 @@ def poll_option_json(name, votes)
   { type: 'Note', name: name, replies: { type: 'Collection', totalItems: votes } }
 end
 
-RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
+RSpec.describe ActivityPub::ProcessStatusUpdateService do
   subject { described_class.new }
 
   let!(:status) { Fabricate(:status, text: 'Hello world', account: Fabricate(:account, domain: 'example.com')) }
@@ -218,7 +218,8 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       it 'does not update the text, spoiler_text or edited_at' do
-        expect { subject.call(status, json, json) }.to_not(change { s = status.reload; [s.text, s.spoiler_text, s.edited_at] })
+        expect { subject.call(status, json, json) }
+          .to_not(change { status.reload.attributes.slice('text', 'spoiler_text', 'edited_at').values })
       end
     end
 
@@ -384,7 +385,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       it 'updates the existing media attachment in-place' do
-        media_attachment = status.media_attachments.reload.first
+        media_attachment = status.media_attachments.ordered.reload.first
 
         expect(media_attachment).to_not be_nil
         expect(media_attachment.remote_url).to eq 'https://example.com/foo.png'

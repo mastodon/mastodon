@@ -900,8 +900,6 @@ an:
       new_trending_statuses:
         title: Publicacions en tendencia
       new_trending_tags:
-        no_approved_tags: Actualment no i hai garra etiqueta en tendencia aprebada.
-        requirements: 'Qualsequiera d''estes candidatos podría superar lo hashtag en tendencia aprebau per #%{rank}, que actualment ye #%{lowest_tag_name} con una puntuación de %{lowest_tag_score}.'
         title: Etiquetas en tendencia
       subject: Nuevas tendencias asperando estar revisadas en %{instance}
   aliases:
@@ -1290,7 +1288,6 @@ an:
   notifications:
     email_events: Eventos pa notificacions per correu electronico
     email_events_hint: 'Tría los eventos pa los quals deseyas recibir notificacions:'
-    other_settings: Atros achustes de notificacions
   number:
     human:
       decimal_units:
@@ -1550,7 +1547,6 @@ an:
     webauthn: Claus de seguranza
   user_mailer:
     appeal_approved:
-      action: Ir ta la tuya cuenta
       explanation: L'apelación de l'amonestación contra la tuya cuenta d'o %{strike_date} que ninviés lo %{appeal_date} estió aprebada. La tuya cuenta se troba de nuevo en buen estau.
       subject: La tuya apelación d'o %{date} ha estau aprebada
       title: Apelación aprebada
@@ -1559,7 +1555,6 @@ an:
       subject: La tuya apelación d'o %{date} ha estau refusada
       title: Apelación refusada
     backup_ready:
-      explanation: Has solicitau una copia completa d'a tuya cuenta de Mastodon. Ya ye preparada pa descargar!
       subject: Lo tuyo fichero ye preparau pa descargar
       title: Descargar fichero
     suspicious_sign_in:
@@ -1601,13 +1596,7 @@ an:
         silence: Cuenta limitada
         suspend: Cuenta suspendida
     welcome:
-      edit_profile_action: Configurar lo perfil
-      edit_profile_step: Puetz personalizar lo tuyo perfil puyando una foto de perfil, cambiando lo tuyo nombre d'usuario y muito mas. Puetz optar per revisar a los nuevos seguidores antes que puedan seguir-te.
       explanation: Aquí i hai qualques consellos pa empecipiar
-      final_action: Empecipiar a publicar
-      final_step: 'Empecipia a publicar! Mesmo sin seguidores, las tuyas publicacions publicas pueden estar vistas per atros, per eixemplo en a linia de tiempo local u en etiquetas. Tal vegada quieras presentar-te con a etiqueta de #presentacions.'
-      full_handle: Lo suyo sobrenombre completo
-      full_handle_hint: Esto ye lo que le dirías a los tuyos amigos pa que ells puedan ninviar-te mensaches u seguir-te dende unatra instancia.
       subject: Bienveniu a Mastodon
       title: Te damos la bienvenida a bordo, %{name}!
   users:

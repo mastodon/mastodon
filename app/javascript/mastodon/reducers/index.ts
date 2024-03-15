@@ -3,12 +3,10 @@ import { Record as ImmutableRecord } from 'immutable';
 import { loadingBarReducer } from 'react-redux-loading-bar';
 import { combineReducers } from 'redux-immutable';
 
-import accounts from './accounts';
-import accounts_counters from './accounts_counters';
+import { accountsReducer } from './accounts';
 import accounts_map from './accounts_map';
 import alerts from './alerts';
 import announcements from './announcements';
-import blocks from './blocks';
 import boosts from './boosts';
 import compose from './compose';
 import contexts from './contexts';
@@ -27,12 +25,13 @@ import markers from './markers';
 import media_attachments from './media_attachments';
 import meta from './meta';
 import { modalReducer } from './modal';
-import mutes from './mutes';
+import { notificationPolicyReducer } from './notification_policy';
+import { notificationRequestsReducer } from './notification_requests';
 import notifications from './notifications';
 import picture_in_picture from './picture_in_picture';
 import polls from './polls';
 import push_notifications from './push_notifications';
-import relationships from './relationships';
+import { relationshipsReducer } from './relationships';
 import search from './search';
 import server from './server';
 import settings from './settings';
@@ -55,15 +54,12 @@ const reducers = {
   user_lists,
   domain_lists,
   status_lists,
-  accounts,
-  accounts_counters,
+  accounts: accountsReducer,
   accounts_map,
   statuses,
-  relationships,
+  relationships: relationshipsReducer,
   settings,
   push_notifications,
-  mutes,
-  blocks,
   boosts,
   server,
   contexts,
@@ -86,6 +82,8 @@ const reducers = {
   history,
   tags,
   followed_tags,
+  notificationPolicy: notificationPolicyReducer,
+  notificationRequests: notificationRequestsReducer,
 };
 
 // We want the root state to be an ImmutableRecord, which is an object with a defined list of keys,

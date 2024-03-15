@@ -4,11 +4,12 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
+import { createSelector } from '@reduxjs/toolkit';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
+import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import { fetchLists } from 'mastodon/actions/lists';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
@@ -65,7 +66,7 @@ class Lists extends ImmutablePureComponent {
 
     return (
       <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.heading)}>
-        <ColumnHeader title={intl.formatMessage(messages.heading)} icon='list-ul' multiColumn={multiColumn} />
+        <ColumnHeader title={intl.formatMessage(messages.heading)} icon='list-ul' iconComponent={ListAltIcon} multiColumn={multiColumn} />
 
         <NewListForm />
 
@@ -76,7 +77,7 @@ class Lists extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
         >
           {lists.map(list =>
-            <ColumnLink key={list.get('id')} to={`/lists/${list.get('id')}`} icon='list-ul' text={list.get('title')} />,
+            <ColumnLink key={list.get('id')} to={`/lists/${list.get('id')}`} icon='list-ul' iconComponent={ListAltIcon} text={list.get('title')} />,
           )}
         </ScrollableList>
 
