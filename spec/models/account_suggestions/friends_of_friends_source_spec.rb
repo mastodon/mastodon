@@ -76,19 +76,19 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
       it 'contains correct underlying source data' do
         expect(source_query_values)
           .to contain_exactly(
-            [eugen.id, 2, 3], # Followed by 2 friends of bob (eve, mallory), 3 followers total (breaks tie)
-            [john.id, 2, 2],  # Followed by 2 friends of bob (eve, mallory), 2 followers total
-            [neil.id, 1, 2],  # Followed by 1 friends of bob (mallory), 2 followers total (breaks tie)
-            [jerk.id, 1, 1]   # Followed by 1 friends of bob (eve), 1 followers total
+            [john.id, 2, 2],  # Followed by 2 friends of bob (eve, mallory), 2 followers total (breaks tie)
+            [eugen.id, 2, 3], # Followed by 2 friends of bob (eve, mallory), 3 followers total
+            [jerk.id, 1, 1],  # Followed by 1 friends of bob (eve), 1 followers total (breaks tie)
+            [neil.id, 1, 2]   # Followed by 1 friends of bob (mallory), 2 followers total
           )
       end
 
       def expected_results
         [
-          [eugen.id, :friends_of_friends],
           [john.id, :friends_of_friends],
-          [neil.id, :friends_of_friends],
+          [eugen.id, :friends_of_friends],
           [jerk.id, :friends_of_friends],
+          [neil.id, :friends_of_friends],
         ]
       end
 
