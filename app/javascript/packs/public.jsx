@@ -1,6 +1,6 @@
-import './public-path';
-
 import { createRoot }  from 'react-dom/client';
+
+import './public-path';
 
 import { IntlMessageFormat }  from 'intl-messageformat';
 import { defineMessages } from 'react-intl';

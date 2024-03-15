@@ -1,12 +1,12 @@
-import 'packs/public-path';
 import { createRoot }  from 'react-dom/client';
 
-import { IntlMessageFormat } from 'intl-messageformat';
+import 'packs/public-path';
+
+import { IntlMessageFormat }  from 'intl-messageformat';
 import { defineMessages } from 'react-intl';
 
 import Rails from '@rails/ujs';
 import axios from 'axios';
-import { createBrowserHistory }  from 'history';
 import { throttle } from 'lodash';
 
 import { timeAgoString }  from 'flavours/glitch/components/relative_timestamp';
@@ -14,6 +14,9 @@ import emojify  from 'flavours/glitch/features/emoji/emoji';
 import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
 import { loadLocale, getLocale } from 'flavours/glitch/locales';
 import { loadPolyfills } from 'flavours/glitch/polyfills';
+import ready from 'flavours/glitch/ready';
+
+import 'cocoon-js-vanilla';
 
 const messages = defineMessages({
   usernameTaken: { id: 'username.taken', defaultMessage: 'That username is taken. Try another' },
@@ -21,25 +24,8 @@ const messages = defineMessages({
   passwordDoesNotMatch: { id: 'password_confirmation.mismatching', defaultMessage: 'Password confirmation does not match' },
 });
 
-function main() {
+function loaded() {
   const { messages: localeData } = getLocale();
-
-  const scrollToDetailedStatus = () => {
-    const history = createBrowserHistory();
-    const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
-    const location = history.location;
-
-    if (detailedStatuses.length === 1 && (!location.state || !location.state.scrolledToDetailedStatus)) {
-      detailedStatuses[0].scrollIntoView();
-      history.replace(location.pathname, { ...location.state, scrolledToDetailedStatus: true });
-    }
-  };
-
-  const getEmojiAnimationHandler = (swapTo) => {
-    return ({ target }) => {
-      target.src = target.getAttribute(swapTo);
-    };
-  };
 
   const locale = document.documentElement.lang;
 
@@ -118,6 +104,7 @@ function main() {
   });
 
   const reactComponents = document.querySelectorAll('[data-component]');
+
   if (reactComponents.length > 0) {
     import(/* webpackChunkName: "containers/media_container" */ 'flavours/glitch/containers/media_container')
       .then(({ default: MediaContainer }) => {
@@ -132,27 +119,21 @@ function main() {
         const root = createRoot(content);
         root.render(<MediaContainer locale={locale} components={reactComponents} />);
         document.body.appendChild(content);
-        scrollToDetailedStatus();
       })
       .catch(error => {
         console.error(error);
-        scrollToDetailedStatus();
       });
-  } else {
-    scrollToDetailedStatus();
   }
 
-  Rails.delegate(document, '#user_account_attributes_username', 'input', throttle(() => {
-    const username = document.getElementById('user_account_attributes_username');
-
-    if (username.value && username.value.length > 0) {
-      axios.get('/api/v1/accounts/lookup', { params: { acct: username.value } }).then(() => {
-        username.setCustomValidity(formatMessage(messages.usernameTaken));
+  Rails.delegate(document, '#user_account_attributes_username', 'input', throttle(({ target }) => {
+    if (target.value && target.value.length > 0) {
+      axios.get('/api/v1/accounts/lookup', { params: { acct: target.value } }).then(() => {
+        target.setCustomValidity(formatMessage(messages.usernameTaken));
       }).catch(() => {
-        username.setCustomValidity('');
+        target.setCustomValidity('');
       });
     } else {
-      username.setCustomValidity('');
+      target.setCustomValidity('');
     }
   }, 500, { leading: false, trailing: true }));
 
@@ -169,9 +150,6 @@ function main() {
       confirmation.setCustomValidity('');
     }
   });
-
-  Rails.delegate(document, '.custom-emoji', 'mouseover', getEmojiAnimationHandler('data-original'));
-  Rails.delegate(document, '.custom-emoji', 'mouseout', getEmojiAnimationHandler('data-static'));
 
   Rails.delegate(document, '.status__content__spoiler-link', 'click', function() {
     const statusEl = this.parentNode.parentNode;
@@ -192,44 +170,51 @@ function main() {
     const message = (statusEl.dataset.spoiler === 'expanded') ? (localeData['status.show_less'] || 'Show less') : (localeData['status.show_more'] || 'Show more');
     spoilerLink.textContent = (new IntlMessageFormat(message, locale)).format();
   });
+}
 
-  const toggleSidebar = () => {
-    const sidebar = document.querySelector('.sidebar ul');
-    const toggleButton = document.querySelector('.sidebar__toggle__icon');
+const toggleSidebar = () => {
+  const sidebar = document.querySelector('.sidebar ul');
+  const toggleButton = document.querySelector('.sidebar__toggle__icon');
 
-    if (sidebar.classList.contains('visible')) {
-      document.body.style.overflow = null;
-      toggleButton.setAttribute('aria-expanded', 'false');
-    } else {
-      document.body.style.overflow = 'hidden';
-      toggleButton.setAttribute('aria-expanded', 'true');
-    }
+  if (sidebar.classList.contains('visible')) {
+    document.body.style.overflow = null;
+    toggleButton.setAttribute('aria-expanded', 'false');
+  } else {
+    document.body.style.overflow = 'hidden';
+    toggleButton.setAttribute('aria-expanded', 'true');
+  }
 
-    toggleButton.classList.toggle('active');
-    sidebar.classList.toggle('visible');
-  };
+  toggleButton.classList.toggle('active');
+  sidebar.classList.toggle('visible');
+};
 
-  Rails.delegate(document, '.sidebar__toggle__icon', 'click', () => {
+Rails.delegate(document, '.sidebar__toggle__icon', 'click', () => {
+  toggleSidebar();
+});
+
+Rails.delegate(document, '.sidebar__toggle__icon', 'keydown', e => {
+  if (e.key === ' ' || e.key === 'Enter') {
+    e.preventDefault();
     toggleSidebar();
-  });
+  }
+});
 
-  Rails.delegate(document, '.sidebar__toggle__icon', 'keydown', e => {
-    if (e.key === ' ' || e.key === 'Enter') {
-      e.preventDefault();
-      toggleSidebar();
+Rails.delegate(document, '.custom-emoji', 'mouseover', ({ target }) => target.src = target.getAttribute('data-original'));
+Rails.delegate(document, '.custom-emoji', 'mouseout', ({ target }) => target.src = target.getAttribute('data-static'));
+
+// Empty the honeypot fields in JS in case something like an extension
+// automatically filled them.
+Rails.delegate(document, '#registration_new_user,#new_user', 'submit', () => {
+  ['user_website', 'user_confirm_password', 'registration_user_website', 'registration_user_confirm_password'].forEach(id => {
+    const field = document.getElementById(id);
+    if (field) {
+      field.value = '';
     }
   });
+});
 
-  // Empty the honeypot fields in JS in case something like an extension
-  // automatically filled them.
-  Rails.delegate(document, '#registration_new_user,#new_user', 'submit', () => {
-    ['user_website', 'user_confirm_password', 'registration_user_website', 'registration_user_confirm_password'].forEach(id => {
-      const field = document.getElementById(id);
-      if (field) {
-        field.value = '';
-      }
-    });
-  });
+function main() {
+  ready(loaded);
 }
 
 loadPolyfills()
