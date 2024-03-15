@@ -25,12 +25,14 @@ import { IconButton } from 'mastodon/components/icon_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { ShortNumber } from 'mastodon/components/short_number';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
-import { autoPlayGif, me, domain } from 'mastodon/initial_state';
+import { autoPlayGif, me, domain as localDomain } from 'mastodon/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import AccountNoteContainer from '../containers/account_note_container';
 import FollowRequestNoteContainer from '../containers/follow_request_note_container';
+
+import { DomainPill } from './domain_pill';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -78,7 +80,7 @@ const messages = defineMessages({
 
 const titleFromAccount = account => {
   const displayName = account.get('display_name');
-  const acct = account.get('acct') === account.get('username') ? `${account.get('username')}@${domain}` : account.get('acct');
+  const acct = account.get('acct') === account.get('username') ? `${account.get('username')}@${localDomain}` : account.get('acct');
   const prefix = displayName.trim().length === 0 ? account.get('username') : displayName;
 
   return `${prefix} (@${acct})`;
@@ -252,7 +254,7 @@ class Header extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, hidden, intl, domain } = this.props;
+    const { account, hidden, intl } = this.props;
     const { signedIn, permissions } = this.context.identity;
 
     if (!account) {
@@ -393,7 +395,8 @@ class Header extends ImmutablePureComponent {
     const displayNameHtml = { __html: account.get('display_name_html') };
     const fields          = account.get('fields');
     const isLocal         = account.get('acct').indexOf('@') === -1;
-    const acct            = isLocal && domain ? `${account.get('acct')}@${domain}` : account.get('acct');
+    const username        = account.get('acct').split('@')[0];
+    const domain          = isLocal ? localDomain : account.get('acct').split('@')[1];
     const isIndexable     = !account.get('noindex');
 
     const badges = [];
@@ -438,7 +441,9 @@ class Header extends ImmutablePureComponent {
             <h1>
               <span dangerouslySetInnerHTML={displayNameHtml} />
               <small>
-                <span>@{acct}</span> {lockedIcon}
+                <span>@{username}<span className='invisible'>@{domain}</span></span>
+                <DomainPill username={username} domain={domain} isSelf={me === account.get('id')} />
+                {lockedIcon}
               </small>
             </h1>
           </div>
