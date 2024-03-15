@@ -102,7 +102,7 @@ const getUnitDelay = (units: string) => {
 };
 
 export const timeAgoString = (
-  intl: IntlShape,
+  intl: Pick<IntlShape, 'formatDate' | 'formatMessage'>,
   date: Date,
   now: number,
   year: number,
