@@ -250,13 +250,13 @@ module Account::Interactions
   def followers_for_local_distribution
     followers.local
              .joins(:user)
-             .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
+             .merge(User.recently_active)
   end
 
   def lists_for_local_distribution
     scope = lists.joins(account: :user)
     scope.where.not(list_accounts: { follow_id: nil }).or(scope.where(account_id: id))
-         .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
+         .merge(User.recently_active)
   end
 
   def remote_followers_hash(url)
