@@ -29,10 +29,6 @@ class Api::V1::Crypto::EncryptedMessagesController < Api::BaseController
     @encrypted_messages = @current_device.encrypted_messages.to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def next_path
     api_v1_crypto_encrypted_messages_url pagination_params(max_id: pagination_max_id) if records_continue?
   end

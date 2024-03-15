@@ -34,10 +34,6 @@ class Api::V1::Trends::LinksController < Api::BaseController
     scope
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def pagination_params(core_params)
     params.slice(:limit).permit(:limit).merge(core_params)
   end
