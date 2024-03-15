@@ -23,11 +23,16 @@
               group_method: :last
 
   .fields-group
-    = f.input :custom_css, wrapper: :with_block_label, as: :text, input_html: { rows: 8 }
+    = f.input :custom_css,
+              as: :text,
+              input_html: { rows: 8 },
+              wrapper: :with_block_label
 
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :mascot, as: :file, wrapper: :with_block_label
+      = f.input :mascot,
+                as: :file,
+                wrapper: :with_block_label
 
     .fields-row__column.fields-row__column-6.fields-group
       - if @admin_settings.mascot.persisted?
