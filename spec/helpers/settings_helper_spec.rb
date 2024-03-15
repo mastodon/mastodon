@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 describe SettingsHelper do
+  describe 'filter_expires_in_options' do
+    it 'has 7 values' do
+      expect(helper.filter_expires_in_options.size).to eq(7)
+    end
+  end
+
   describe 'session_device_icon' do
     context 'with a mobile device' do
       let(:session) { SessionActivation.new(user_agent: 'Mozilla/5.0 (iPhone)') }
