@@ -11,9 +11,17 @@
   %p.lead= t('admin.settings.content_retention.preamble')
 
   .fields-group
-    = f.input :media_cache_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
-    = f.input :content_cache_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }, hint: false, warning_hint: t('simple_form.hints.form_admin_settings.content_cache_retention_period')
-    = f.input :backups_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
+    = f.input :media_cache_retention_period,
+              input_html: { pattern: '[0-9]+' },
+              wrapper: :with_block_label
+    = f.input :content_cache_retention_period,
+              hint: false,
+              input_html: { pattern: '[0-9]+' },
+              warning_hint: t('simple_form.hints.form_admin_settings.content_cache_retention_period'),
+              wrapper: :with_block_label
+    = f.input :backups_retention_period,
+              input_html: { pattern: '[0-9]+' },
+              wrapper: :with_block_label
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

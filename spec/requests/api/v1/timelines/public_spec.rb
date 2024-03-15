@@ -87,10 +87,11 @@ describe 'Public' do
         it 'sets the correct pagination headers', :aggregate_failures do
           subject
 
-          headers = response.headers['Link']
-
-          expect(headers.find_link(%w(rel prev)).href).to eq(api_v1_timelines_public_url(limit: 1, min_id: media_status.id.to_s))
-          expect(headers.find_link(%w(rel next)).href).to eq(api_v1_timelines_public_url(limit: 1, max_id: media_status.id.to_s))
+          expect(response)
+            .to include_pagination_headers(
+              prev: api_v1_timelines_public_url(limit: params[:limit], min_id: media_status.id),
+              next: api_v1_timelines_public_url(limit: params[:limit], max_id: media_status.id)
+            )
         end
       end
     end

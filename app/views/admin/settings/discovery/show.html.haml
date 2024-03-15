@@ -13,13 +13,20 @@
   %h4= t('admin.settings.discovery.trends')
 
   .fields-group
-    = f.input :trends, as: :boolean, wrapper: :with_label
+    = f.input :trends,
+              as: :boolean,
+              wrapper: :with_label
 
   .fields-group
-    = f.input :trends_as_landing_page, as: :boolean, wrapper: :with_label
+    = f.input :trends_as_landing_page,
+              as: :boolean,
+              wrapper: :with_label
 
   .fields-group
-    = f.input :trendable_by_default, as: :boolean, wrapper: :with_label, recommended: :not_recommended
+    = f.input :trendable_by_default,
+              as: :boolean,
+              wrapper: :with_label,
+              recommended: :not_recommended
 
   .fields-group
     = f.input :trending_status_cw, as: :boolean, wrapper: :with_label, label: t('admin.settings.trending_status_cw.title'), hint: t('admin.settings.trending_status_cw.desc_html'), glitch_only: true
@@ -27,35 +34,57 @@
   %h4= t('admin.settings.discovery.public_timelines')
 
   .fields-group
-    = f.input :timeline_preview, as: :boolean, wrapper: :with_label
+    = f.input :timeline_preview,
+              as: :boolean,
+              wrapper: :with_label
 
   .fields-group
-    = f.input :noindex, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_noindex.title'), hint: t('admin.settings.default_noindex.desc_html')
+    = f.input :noindex,
+              as: :boolean,
+              hint: t('admin.settings.default_noindex.desc_html'),
+              label: t('admin.settings.default_noindex.title'),
+              wrapper: :with_label
 
   %h4= t('admin.settings.discovery.publish_statistics')
 
   .fields-group
-    = f.input :activity_api_enabled, as: :boolean, wrapper: :with_label, recommended: :recommended
+    = f.input :activity_api_enabled,
+              as: :boolean,
+              wrapper: :with_label,
+              recommended: :recommended
 
   %h4= t('admin.settings.discovery.publish_discovered_servers')
 
   .fields-group
-    = f.input :peers_api_enabled, as: :boolean, wrapper: :with_label, recommended: :recommended
+    = f.input :peers_api_enabled,
+              as: :boolean,
+              wrapper: :with_label,
+              recommended: :recommended
 
   %h4= t('admin.settings.security.federation_authentication')
 
   .fields-group
-    = f.input :authorized_fetch, as: :boolean, wrapper: :with_label, label: t('admin.settings.security.authorized_fetch'), warning_hint: discovery_warning_hint_text, hint: discovery_hint_text, disabled: authorized_fetch_overridden?, recommended: discovery_recommended_value
+    = f.input :authorized_fetch,
+              as: :boolean,
+              disabled: authorized_fetch_overridden?,
+              hint: discovery_hint_text,
+              label: t('admin.settings.security.authorized_fetch'),
+              recommended: discovery_recommended_value,
+              warning_hint: discovery_warning_hint_text,
+              wrapper: :with_label
 
   %h4= t('admin.settings.discovery.follow_recommendations')
 
   .fields-group
-    = f.input :bootstrap_timeline_accounts, wrapper: :with_block_label
+    = f.input :bootstrap_timeline_accounts,
+              wrapper: :with_block_label
 
   %h4= t('admin.settings.discovery.profile_directory')
 
   .fields-group
-    = f.input :profile_directory, as: :boolean, wrapper: :with_label
+    = f.input :profile_directory,
+              as: :boolean,
+              wrapper: :with_label
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

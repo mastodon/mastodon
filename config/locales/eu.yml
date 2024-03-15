@@ -970,6 +970,9 @@ eu:
       title: Webhook-ak
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Duela gutxi moderatzaile gutxi aritu direla eta, %{instance} instantziako izen-emateek eskuzko berrikuspena beharko dute automatikoki, %{instance} instantzia eragile okerren plataforma gisa erabili dadin ekiditeko. Izen-emate irekiak berriro gai ditzakezu nahi duzunean.
+      subject: "%{instance} instantziako izen-emateek onarpena beharko dute orain"
     new_appeal:
       actions:
         delete_statuses: bidalketak ezabatzea

@@ -5,17 +5,34 @@
   = render 'shared/error_messages', object: @announcement
 
   .fields-group
-    = f.input :starts_at, include_blank: true, wrapper: :with_block_label, html5: true, input_html: { pattern: datetime_pattern, placeholder: datetime_placeholder }
-    = f.input :ends_at, include_blank: true, wrapper: :with_block_label, html5: true, input_html: { pattern: datetime_pattern, placeholder: datetime_placeholder }
+    = f.input :starts_at,
+              html5: true,
+              include_blank: true,
+              input_html: { pattern: datetime_pattern, placeholder: datetime_placeholder },
+              wrapper: :with_block_label
+    = f.input :ends_at,
+              html5: true,
+              include_blank: true,
+              input_html: { pattern: datetime_pattern, placeholder: datetime_placeholder },
+              wrapper: :with_block_label
 
   .fields-group
-    = f.input :all_day, as: :boolean, wrapper: :with_label
+    = f.input :all_day,
+              as: :boolean,
+              wrapper: :with_label
 
   .fields-group
-    = f.input :text, wrapper: :with_block_label
+    = f.input :text,
+              wrapper: :with_block_label
 
   .fields-group
-    = f.input :scheduled_at, include_blank: true, wrapper: :with_block_label, html5: true, input_html: { pattern: datetime_pattern, placeholder: datetime_placeholder }
+    = f.input :scheduled_at,
+              html5: true,
+              include_blank: true,
+              input_html: { pattern: datetime_pattern, placeholder: datetime_placeholder },
+              wrapper: :with_block_label
 
   .actions
-    = f.button :button, t('.create'), type: :submit
+    = f.button :button,
+               t('.create'),
+               type: :submit
