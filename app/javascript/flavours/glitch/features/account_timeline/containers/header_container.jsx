@@ -15,7 +15,7 @@ import {
   mentionCompose,
   directCompose,
 } from '../../../actions/compose';
-import { blockDomain, unblockDomain } from '../../../actions/domain_blocks';
+import { initDomainBlockModal, unblockDomain } from '../../../actions/domain_blocks';
 import { openModal } from '../../../actions/modal';
 import { initMuteModal } from '../../../actions/mutes';
 import { initReport } from '../../../actions/reports';
@@ -138,15 +138,8 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
-  onBlockDomain (domain) {
-    dispatch(openModal({
-      modalType: 'CONFIRM',
-      modalProps: {
-        message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.' values={{ domain: <strong>{domain}</strong> }} />,
-        confirm: intl.formatMessage(messages.blockDomainConfirm),
-        onConfirm: () => dispatch(blockDomain(domain)),
-      },
-    }));
+  onBlockDomain (account) {
+    dispatch(initDomainBlockModal(account));
   },
 
   onUnblockDomain (domain) {
