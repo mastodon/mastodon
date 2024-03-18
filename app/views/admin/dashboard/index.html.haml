@@ -15,20 +15,21 @@
           = link_to t("admin.system_checks.#{message.key}.action"), message.action
 
 .dashboard
-  .dashboard__item
-    = react_admin_component :counter, measure: 'new_users', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.new_users'), href: admin_accounts_path(origin: 'local')
+  - with_options start_at: @time_period.first, end_at: @time_period.last do |options|
+    .dashboard__item
+      = options.react_admin_component :counter, measure: 'new_users', label: t('admin.dashboard.new_users'), href: admin_accounts_path(origin: 'local')
 
-  .dashboard__item
-    = react_admin_component :counter, measure: 'active_users', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.active_users'), href: admin_accounts_path(origin: 'local')
+    .dashboard__item
+      = options.react_admin_component :counter, measure: 'active_users', label: t('admin.dashboard.active_users'), href: admin_accounts_path(origin: 'local')
 
-  .dashboard__item
-    = react_admin_component :counter, measure: 'interactions', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.interactions')
+    .dashboard__item
+      = options.react_admin_component :counter, measure: 'interactions', label: t('admin.dashboard.interactions')
 
-  .dashboard__item
-    = react_admin_component :counter, measure: 'opened_reports', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.opened_reports'), href: admin_reports_path
+    .dashboard__item
+      = options.react_admin_component :counter, measure: 'opened_reports', label: t('admin.dashboard.opened_reports'), href: admin_reports_path
 
-  .dashboard__item
-    = react_admin_component :counter, measure: 'resolved_reports', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.resolved_reports'), href: admin_reports_path(resolved: '1')
+    .dashboard__item
+      = options.react_admin_component :counter, measure: 'resolved_reports', label: t('admin.dashboard.resolved_reports'), href: admin_reports_path(resolved: '1')
 
   .dashboard__item
     = link_to admin_reports_path, class: 'dashboard__quick-access' do
@@ -46,23 +47,24 @@
     = link_to admin_disputes_appeals_path(status: 'pending'), class: 'dashboard__quick-access' do
       %span= t('admin.dashboard.pending_appeals_html', count: @pending_appeals_count)
       = fa_icon 'chevron-right fw'
-  .dashboard__item
-    = react_admin_component :dimension, dimension: 'sources', start_at: @time_period.first, end_at: @time_period.last, limit: 8, label: t('admin.dashboard.sources')
+  - with_options start_at: @time_period.first, end_at: @time_period.last do |options|
+    .dashboard__item
+      = options.react_admin_component :dimension, dimension: 'sources', limit: 8, label: t('admin.dashboard.sources')
 
-  .dashboard__item
-    = react_admin_component :dimension, dimension: 'languages', start_at: @time_period.first, end_at: @time_period.last, limit: 8, label: t('admin.dashboard.top_languages')
+    .dashboard__item
+      = options.react_admin_component :dimension, dimension: 'languages', limit: 8, label: t('admin.dashboard.top_languages')
 
-  .dashboard__item
-    = react_admin_component :dimension, dimension: 'servers', start_at: @time_period.first, end_at: @time_period.last, limit: 8, label: t('admin.dashboard.top_servers')
+    .dashboard__item
+      = options.react_admin_component :dimension, dimension: 'servers', limit: 8, label: t('admin.dashboard.top_servers')
 
-  .dashboard__item.dashboard__item--span-double-column
-    = react_admin_component :retention, start_at: @time_period.last - 6.months, end_at: @time_period.last, frequency: 'month'
+    .dashboard__item.dashboard__item--span-double-column
+      = react_admin_component :retention, start_at: @time_period.last - 6.months, end_at: @time_period.last, frequency: 'month'
 
-  .dashboard__item.dashboard__item--span-double-row
-    = react_admin_component :trends, limit: 7
+    .dashboard__item.dashboard__item--span-double-row
+      = react_admin_component :trends, limit: 7
 
-  .dashboard__item
-    = react_admin_component :dimension, dimension: 'software_versions', start_at: @time_period.first, end_at: @time_period.last, limit: 4, label: t('admin.dashboard.software')
+    .dashboard__item
+      = options.react_admin_component :dimension, dimension: 'software_versions', limit: 4, label: t('admin.dashboard.software')
 
-  .dashboard__item
-    = react_admin_component :dimension, dimension: 'space_usage', start_at: @time_period.first, end_at: @time_period.last, limit: 3, label: t('admin.dashboard.space')
+    .dashboard__item
+      = options.react_admin_component :dimension, dimension: 'space_usage', limit: 3, label: t('admin.dashboard.space')

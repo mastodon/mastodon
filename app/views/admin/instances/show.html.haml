@@ -13,22 +13,23 @@
       = t('admin.instances.totals_time_period_hint_html')
 
     .dashboard
-      .dashboard__item
-        = react_admin_component :counter, measure: 'instance_accounts', start_at: @time_period.first, end_at: @time_period.last, params: { domain: @instance.domain }, label: t('admin.instances.dashboard.instance_accounts_measure'), href: admin_accounts_path(origin: 'remote', by_domain: @instance.domain)
-      .dashboard__item
-        = react_admin_component :counter, measure: 'instance_statuses', start_at: @time_period.first, end_at: @time_period.last, params: { domain: @instance.domain }, label: t('admin.instances.dashboard.instance_statuses_measure')
-      .dashboard__item
-        = react_admin_component :counter, measure: 'instance_media_attachments', start_at: @time_period.first, end_at: @time_period.last, params: { domain: @instance.domain }, label: t('admin.instances.dashboard.instance_media_attachments_measure')
-      .dashboard__item
-        = react_admin_component :counter, measure: 'instance_follows', start_at: @time_period.first, end_at: @time_period.last, params: { domain: @instance.domain }, label: t('admin.instances.dashboard.instance_follows_measure')
-      .dashboard__item
-        = react_admin_component :counter, measure: 'instance_followers', start_at: @time_period.first, end_at: @time_period.last, params: { domain: @instance.domain }, label: t('admin.instances.dashboard.instance_followers_measure')
-      .dashboard__item
-        = react_admin_component :counter, measure: 'instance_reports', start_at: @time_period.first, end_at: @time_period.last, params: { domain: @instance.domain }, label: t('admin.instances.dashboard.instance_reports_measure'), href: admin_reports_path(by_target_domain: @instance.domain)
-      .dashboard__item
-        = react_admin_component :dimension, dimension: 'instance_accounts', start_at: @time_period.first, end_at: @time_period.last, params: { domain: @instance.domain }, limit: 8, label: t('admin.instances.dashboard.instance_accounts_dimension')
-      .dashboard__item
-        = react_admin_component :dimension, dimension: 'instance_languages', start_at: @time_period.first, end_at: @time_period.last, params: { domain: @instance.domain }, limit: 8, label: t('admin.instances.dashboard.instance_languages_dimension')
+      - with_options start_at: @time_period.first, end_at: @time_period.last, params: { domain: @instance.domain } do |options|
+        .dashboard__item
+          = options.react_admin_component :counter, measure: 'instance_accounts', label: t('admin.instances.dashboard.instance_accounts_measure'), href: admin_accounts_path(origin: 'remote', by_domain: @instance.domain)
+        .dashboard__item
+          = options.react_admin_component :counter, measure: 'instance_statuses', label: t('admin.instances.dashboard.instance_statuses_measure')
+        .dashboard__item
+          = options.react_admin_component :counter, measure: 'instance_media_attachments', label: t('admin.instances.dashboard.instance_media_attachments_measure')
+        .dashboard__item
+          = options.react_admin_component :counter, measure: 'instance_follows', label: t('admin.instances.dashboard.instance_follows_measure')
+        .dashboard__item
+          = options.react_admin_component :counter, measure: 'instance_followers', label: t('admin.instances.dashboard.instance_followers_measure')
+        .dashboard__item
+          = options.react_admin_component :counter, measure: 'instance_reports', label: t('admin.instances.dashboard.instance_reports_measure'), href: admin_reports_path(by_target_domain: @instance.domain)
+        .dashboard__item
+          = options.react_admin_component :dimension, dimension: 'instance_accounts', limit: 8, label: t('admin.instances.dashboard.instance_accounts_dimension')
+        .dashboard__item
+          = options.react_admin_component :dimension, dimension: 'instance_languages', limit: 8, label: t('admin.instances.dashboard.instance_languages_dimension')
   - else
     %p
       = t('admin.instances.unknown_instance')
