@@ -753,6 +753,7 @@ zh-HK:
         disabled: 給沒有人
         users: 所有已登入的帳號
       registrations:
+        moderation_recommandation: 在向所有人開放註冊之前，請確保擁有一個準備充足且反應迅速的審核團隊！
         preamble: 控制誰可在你的伺服器上建立帳號。
         title: 註冊
       registrations_mode:
@@ -760,6 +761,7 @@ zh-HK:
           approved: 註冊需要核准
           none: 沒有人可註冊
           open: 任何人皆能註冊
+        warning_hint: 我們建議你使用「需要審核註冊」的設定，除非你確信審核團隊能夠及時處理垃圾訊息和惡意註冊。
       security:
         authorized_fetch: 要求跨站驗證
         authorized_fetch_hint: 要求跨站驗證可更嚴謹地執行使用者級及伺服器級的封鎖。然而，這會犧牲性能，降低你回覆的觸及範圍，跨站服務亦可能出現兼容問題。此外，這並無法阻止他人蓄意擷取你的公開帖文和帳號。
@@ -948,6 +950,9 @@ zh-HK:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: 由於管理員最近較少活動，為防止 %{instance} 被惡意利用，註冊流程已自動改為手動審核。你可以隨時將它切換回開放註冊。
+      subject: "%{instance} 上的註冊已自動切換為需要審核批准"
     new_appeal:
       actions:
         delete_statuses: 刪除他們的帖文
@@ -1805,7 +1810,43 @@ zh-HK:
         silence: 賬戶已被限制
         suspend: 帳號已停用
     welcome:
+      apps_android_action: 從 Google Play 下載
+      apps_ios_action: 從 App Store 下載
+      apps_step: 下載官方應用程式。
+      apps_title: Mastodon 應用程式
+      checklist_subtitle: 讓我們帶你進入全新的社交領域：
+      checklist_title: 歡迎清單
+      edit_profile_action: 自訂
+      edit_profile_step: 完善個人檔案來促進互動。
+      edit_profile_title: 自訂你的個人檔案。
       explanation: 下面是幾個小貼士，希望它們能幫到你
+      feature_action: 了解更多
+      feature_audience: 在 Mastodon 上，無需仲介，你也可以管理受眾。將 Mastodon 部署在自己的基礎架構上，既可以追蹤來自其他 Mastodon 伺服器上的人，也可以被他們追蹤。完全不受他人控制，一切由你掌控。
+      feature_audience_title: 自信地建立受眾
+      feature_control: 由你決定首頁時間軸的內容，不讓演算法和廣告干擾你！你可以使用同一帳號追蹤 Mastodon 伺服器上的使用者，並按時序瀏覽帖文，打造你專屬的網絡世界，讓這角落更貼近你的喜好。
+      feature_control_title: 掌控自己的時間軸
+      feature_creativity: Mastodon 囊括多元格式，助你盡情表達自我：干台支援音訊、影片、圖片帖文、無障礙描述、投票、內容警告，還有動態頭像、自訂表情符號、縮圖裁剪控制等功能。無論你想發佈藝術作品、音樂還是 podcast，Mastodon 都是你的理想平台。
+      feature_creativity_title: 無與倫比的創意
+      feature_moderation: 在 Mastodon，一切由你掌控。每台伺服器都能各自制訂並實施自身守則，而非像企業社交媒體那樣由上而下。這讓 Mastodon 能夠靈活地滿足不同群體的需要。你可以加入你認同其規則的伺服器，也可以自行架設。
+      feature_moderation_title: 以應有的方式管理社群
+      follow_action: 追蹤
+      follow_step: 追蹤有趣的人正是 Mastodon 的核心所在。
+      follow_title: 自訂你的首頁時間軸
+      follows_subtitle: 追蹤知名帳號
+      follows_title: 追蹤對象
+      follows_view_more: 查看更多追蹤對象
+      hashtags_recent_count:
+        other: 過去兩天內有 %{people} 人
+      hashtags_subtitle: 查看過去兩天的流行話題
+      hashtags_title: 熱門標籤
+      hashtags_view_more: 查看更多熱門標籤
+      post_action: 撰寫
+      post_step: 用文字、相片、影片或投票跟大家打個招呼吧。
+      post_title: 發表你的第一則帖文
+      share_action: 分享
+      share_step: 讓你的朋友知道如何在 Mastodon 上找到你。
+      share_title: 分享你的 Mastodon 個人檔案
+      sign_in_action: 登入
       subject: 歡迎來到 Mastodon (萬象)
       title: 歡迎 %{name} 加入！
   users:

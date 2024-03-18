@@ -1931,7 +1931,11 @@ pl:
       follows_subtitle: Obserwuj dobrze znane konta
       follows_title: Kogo obserwować
       follows_view_more: Zobacz więcej osób do obserwowania
-      hashtags_recent_count: "%{people} osób w ostatnie %{days} dni"
+      hashtags_recent_count:
+        few: "%{people} osoby w ostatnie 2 dni"
+        many: "%{people} osób w ostatnie 2 dni"
+        one: "%{people} osoba w ostatnie 2 dni"
+        other: "%{people} osób w ostatnie 2 dni"
       hashtags_subtitle: Zobacz, co było popularne przez ostatnie 2 dni
       hashtags_title: Popularne hashtagi
       hashtags_view_more: Zobacz więcej popularnych hashtagów
