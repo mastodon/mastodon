@@ -35,10 +35,6 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
     params.slice(:limit, *AccountStatusesFilter::KEYS).permit(:limit, *AccountStatusesFilter::KEYS).merge(core_params)
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def next_path
     api_v1_account_statuses_url pagination_params(max_id: pagination_max_id) if records_continue?
   end

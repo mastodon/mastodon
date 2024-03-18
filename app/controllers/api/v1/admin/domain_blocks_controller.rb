@@ -72,10 +72,6 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
     params.permit(:severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate)
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def next_path
     api_v1_admin_domain_blocks_url(pagination_params(max_id: pagination_max_id)) if records_continue?
   end
