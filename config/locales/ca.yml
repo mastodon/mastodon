@@ -1582,7 +1582,7 @@ ca:
   rss:
     content_warning: 'Avís de contingut:'
     descriptions:
-      account: Publicacions des de @%{acct}
+      account: Publicacions públiques de @%{acct}
       tag: 'Tuts etiquetats #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Has superat el límit de %{limit} tuts programats per a avui
@@ -1729,7 +1729,7 @@ ca:
     keep_self_bookmark: Mantenir els tuts que has desat a les adreces d'interès
     keep_self_bookmark_hint: No esborra els teus propis tuts si els has desat en les adreces d'interès
     keep_self_fav: Mantenir els tuts que has afavorit
-    keep_self_fav_hint: No esborra els teus propis tuts si les has afavorit
+    keep_self_fav_hint: No esborra les teves publicacions si les has afavorit
     min_age:
       '1209600': 2 setmanes
       '15778476': 6 mesos
@@ -1867,7 +1867,9 @@ ca:
       follows_subtitle: Seguiu comptes populars
       follows_title: A qui seguir
       follows_view_more: Més persones a qui seguir
-      hashtags_recent_count: "%{people} persones en els últims %{days} dies"
+      hashtags_recent_count:
+        one: "%{people} persona en els 2 últims dies"
+        other: "%{people} persones en els 2 últims dies"
       hashtags_subtitle: Exploreu què és tendència des de fa 2 dies
       hashtags_title: Etiquetes en tendència
       hashtags_view_more: Més etiquetes en tendència

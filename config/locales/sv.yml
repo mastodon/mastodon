@@ -1867,7 +1867,9 @@ sv:
       follows_subtitle: Följ välkända konton
       follows_title: Rekommenderade profiler
       follows_view_more: Visa fler personer att följa
-      hashtags_recent_count: "%{people} personer under de senaste %{days} dagarna"
+      hashtags_recent_count:
+        one: "%{people} personer de senaste 2 dagarna"
+        other: "%{people} personer under de senaste 2 dagarna"
       hashtags_subtitle: Utforska vad som har trendat de senaste 2 dagarna
       hashtags_title: Trendande hashtaggar
       hashtags_view_more: Visa fler trendande hashtaggar

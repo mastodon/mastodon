@@ -778,7 +778,7 @@ hu:
         warning_hint: Javasoljuk a "Jóváhagyás szükséges a regisztrációhoz” lehetőség használatát, hacsak nem vagy biztos abban, hogy a moderátor csapatod időben tudja kezelni a szemetet és a rosszindulatú regisztrációkat.
       security:
         authorized_fetch: Hitelesítés szükséges a föderációs kiszolgálóktól
-        authorized_fetch_hint: A föderációs szerverek hitelesítésének szükségessége lehetővé teszi mind a felhasználói mind a szerver szintű blokkok szigorúbb végrehajtását. Ez azonban a teljesítménybüntetés árán jár, csökkenti a válaszok elérhetőségét és kompatibilitási problémákat vethet fel egyes föderációs szolgáltatásokkal. Emellett ez nem akadályozza meg a dedikált szereplőket abban, hogy nyilvános bejegyzéseiket és fiókjaikat letöltsék.
+        authorized_fetch_hint: A hitelesítés megkövetelése föderált kiszolgálók felé lehetővé teszi a felhasználó- és kiszolgáló szintű letiltások szigorúbb kikényszerítését. Azonban ennek az ára teljesítménycsökkenés, a válaszaid elérésének csökkenése, és vezethet kombatibilitási problémákhoz is bizonyos föderációs szolgáltatásokkal. Ráadásul ez nem akadályozza meg, hogy eltökélt aktorok letöltsék a nyilvános bejegyzéseidet és fiókjaidat.
         authorized_fetch_overridden_hint: Jelenleg nem lehet ezt a beállítást megváltoztatni, mert azt egy környezeti változó felülbírálja.
         federation_authentication: Föderációs hitelesítés kikényszerítése
       title: Kiszolgáló-beállítások
@@ -1452,9 +1452,9 @@ hu:
   moderation:
     title: Moderáció
   move_handler:
-    carry_blocks_over_text: Ez a fiók elköltözött innen %{acct}, melyet letiltottatok.
-    carry_mutes_over_text: Ez a fiók elköltözött innen %{acct}, melyet lenémítottatok.
-    copy_account_note_text: 'Ez a fiók elköltözött innen %{acct}, itt vannak a bejegyzéseitek róla:'
+    carry_blocks_over_text: 'Ez a felhasználó elköltözött innen: %{acct}, korábban letiltottad.'
+    carry_mutes_over_text: 'Ez a felhasználó elköltözött innen: %{acct}, korábban lenémítottad.'
+    copy_account_note_text: 'Ez a fiók elköltözött innen: %{acct}, itt vannak a bejegyzéseid róla:'
   navigation:
     toggle_menu: Menü be/ki
   notification_mailer:
@@ -1867,7 +1867,9 @@ hu:
       follows_subtitle: Jól ismert fiókok követése
       follows_title: Kit érdemes követni
       follows_view_more: További követendő személyek megtekintése
-      hashtags_recent_count: "%{people} személy az elmúlt %{days} napban"
+      hashtags_recent_count:
+        one: "%{people} személy az elmúlt 2 napban"
+        other: "%{people} személy az elmúlt 2 napban"
       hashtags_subtitle: Fedezd fel, mi felkapott az elmúlt 2 napban
       hashtags_title: Felkapott hashtagek
       hashtags_view_more: További felkapott hashtagek megtekintése
