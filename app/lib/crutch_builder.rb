@@ -9,6 +9,12 @@ class CrutchBuilder
   end
 
   def crutches
+    @crutches ||= build_crutches
+  end
+
+  private
+
+  def build_crutches
     {}.tap do |crutches|
       crutches[:active_mentions] = active_mentions_index
       crutches[:following] = following_index
@@ -21,8 +27,6 @@ class CrutchBuilder
       crutches[:exclusive_list_users] = exclusive_list_users_index
     end
   end
-
-  private
 
   def active_mentions_index
     Mention
