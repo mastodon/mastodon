@@ -28,10 +28,6 @@ module ApplicationHelper
     number_to_human(number, **options)
   end
 
-  def active_nav_class(*paths)
-    paths.any? { |path| current_page?(path) } ? 'active' : ''
-  end
-
   def open_registrations?
     Setting.registrations_mode == 'open'
   end
