@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import ArchiveIcon from '@/material-icons/400-24px/archive.svg?react';
+import InventoryIcon from '@/material-icons/400-24px/inventory_2.svg?react';
 import { fetchNotificationRequests, expandNotificationRequests } from 'mastodon/actions/notifications';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
@@ -43,7 +43,7 @@ export const NotificationRequests = ({ multiColumn }) => {
     <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
       <ColumnHeader
         icon='archive'
-        iconComponent={ArchiveIcon}
+        iconComponent={InventoryIcon}
         title={intl.formatMessage(messages.title)}
         onClick={handleHeaderClick}
         multiColumn={multiColumn}
