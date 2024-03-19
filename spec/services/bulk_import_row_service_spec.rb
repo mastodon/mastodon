@@ -110,7 +110,7 @@ RSpec.describe BulkImportRowService do
           end
 
           it 'adds the target account to the list' do
-            expect { subject.call(import_row) }.to change { ListAccount.joins(:list).exists?(account_id: target_account.id, list: { title: 'my list' }) }.from(false).to(true)
+            expect { subject.call(import_row) }.to add_target_account_to_list
           end
         end
 
@@ -124,7 +124,7 @@ RSpec.describe BulkImportRowService do
           end
 
           it 'adds the target account to the list' do
-            expect { subject.call(import_row) }.to change { ListAccount.joins(:list).exists?(account_id: target_account.id, list: { title: 'my list' }) }.from(false).to(true)
+            expect { subject.call(import_row) }.to add_target_account_to_list
           end
         end
 
@@ -134,7 +134,7 @@ RSpec.describe BulkImportRowService do
           end
 
           it 'adds the target account to the list' do
-            expect { subject.call(import_row) }.to change { ListAccount.joins(:list).exists?(account_id: target_account.id, list: { title: 'my list' }) }.from(false).to(true)
+            expect { subject.call(import_row) }.to add_target_account_to_list
           end
         end
 
@@ -146,8 +146,23 @@ RSpec.describe BulkImportRowService do
           end
 
           it 'adds the target account to the list' do
-            expect { subject.call(import_row) }.to change { ListAccount.joins(:list).exists?(account_id: target_account.id, list: { title: 'my list' }) }.from(false).to(true)
+            expect { subject.call(import_row) }.to add_target_account_to_list
           end
+        end
+
+        def add_target_account_to_list
+          change { target_account_on_list? }
+            .from(false)
+            .to(true)
+        end
+
+        def target_account_on_list?
+          ListAccount
+            .joins(:list)
+            .exists?(
+              account_id: target_account.id,
+              list: { title: 'my list' }
+            )
         end
       end
 

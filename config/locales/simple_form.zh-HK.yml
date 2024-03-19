@@ -39,12 +39,14 @@ zh-HK:
         text: 你每次只能提出一次申訴
       defaults:
         autofollow: 通過邀請網址註冊的用戶將會自動關注你
+        avatar: WEBP、PNG、GIF 或 JPG 格式圖片，最大為 %{size}，並將縮小至 %{dimensions} px
         bot: 這個帳號是機械人，所做的事情可能沒有經人為監察
         context: 過濾器應該套用的一項或多項條件
         current_password: 基於保安緣故，請輸入目前帳號的密碼
         current_username: 請輸入目前帳戶的使用者名稱以確認
         digest: 僅在你長時間未登錄，且收到了私信時發送
         email: 你將收到一封確認電郵
+        header: WEBP、PNG、GIF 或 JPG 格式圖片，最大為 %{size}，並將縮小至 %{dimensions} px
         inbox_url: 在你想要使用的中繼站首頁，複製它的網址
         irreversible: 文章過濾是不可還原的，即使日後過濾器被移除，也無法重新看到被它濾走的文章
         locale: 使用者介面、電郵和通知的語言
@@ -114,6 +116,7 @@ zh-HK:
           sign_up_requires_approval: 新登記申請正等候你審批
         severity: 請設定伺服器將如何處理來自這個 IP 位址的請求
       rule:
+        hint: 選填。提供有關規則的更多細節
         text: 請描述在此伺服器上用戶需要遵守的規則或要求。請盡量保持簡短易明。
       sessions:
         otp: 輸入你手機上生成的雙重認證碼，或者任意一個恢復代碼：
@@ -297,6 +300,7 @@ zh-HK:
           patch: 通知除錯更新
         trending_tag: 新趨勢須經過審核
       rule:
+        hint: 其他資訊
         text: 規則
       settings:
         indexable: 在搜尋引擎中顯示個人檔案

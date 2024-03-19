@@ -1729,8 +1729,6 @@ sr:
         other: "%{count} гласова"
       vote: Гласајте
     show_more: Прикажи још
-    show_newer: Никад не приказуј
-    show_older: Прикажи старије
     show_thread: Прикажи низ
     title: "%{name}: „%{quote}”"
     visibilities:
@@ -1899,7 +1897,10 @@ sr:
       follows_subtitle: Пратите добро познате налоге
       follows_title: Кога пратити
       follows_view_more: Погледајте још људи за праћење
-      hashtags_recent_count: "%{people} људи у прошлих %{days} дана"
+      hashtags_recent_count:
+        few: "%{people} особе у последња 2 дана"
+        one: "%{people} особа у последња 2 дана"
+        other: "%{people} особа у последња 2 дана"
       hashtags_subtitle: Истражите шта је у тренду у последња 2 дана
       hashtags_title: Хеш ознаке у тренду
       hashtags_view_more: Погледајте још хеш ознака у тренду

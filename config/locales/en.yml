@@ -597,6 +597,9 @@ en:
       actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an e-mail notification will be sent to them, except when the <strong>Spam</strong> category is selected.
       actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       add_to_report: Add more to report
+      already_suspended_badges:
+        local: Already suspended on this server
+        remote: Already suspended on their server
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
       assigned: Assigned moderator
@@ -1698,8 +1701,6 @@ en:
         other: "%{count} votes"
       vote: Vote
     show_more: Show more
-    show_newer: Show newer
-    show_older: Show older
     show_thread: Show thread
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1868,7 +1869,9 @@ en:
       follows_subtitle: Follow well-known accounts
       follows_title: Who to follow
       follows_view_more: View more people to follow
-      hashtags_recent_count: "%{people} people in the past %{days} days"
+      hashtags_recent_count:
+        one: "%{people} person in the past 2 days"
+        other: "%{people} people in the past 2 days"
       hashtags_subtitle: Explore what’s trending since past 2 days
       hashtags_title: Trending hashtags
       hashtags_view_more: View more trending hashtags

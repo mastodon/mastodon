@@ -45,16 +45,14 @@ RSpec.describe 'Favourites' do
         expect(body_as_json.size).to eq(params[:limit])
       end
 
-      it 'sets the correct pagination header for the prev path' do
+      it 'sets the correct pagination headers' do
         subject
 
-        expect(response.headers['Link'].find_link(%w(rel prev)).href).to eq(api_v1_favourites_url(limit: params[:limit], min_id: favourites.last.id))
-      end
-
-      it 'sets the correct pagination header for the next path' do
-        subject
-
-        expect(response.headers['Link'].find_link(%w(rel next)).href).to eq(api_v1_favourites_url(limit: params[:limit], max_id: favourites[1].id))
+        expect(response)
+          .to include_pagination_headers(
+            prev: api_v1_favourites_url(limit: params[:limit], min_id: favourites.last.id),
+            next: api_v1_favourites_url(limit: params[:limit], max_id: favourites.second.id)
+          )
       end
     end
 

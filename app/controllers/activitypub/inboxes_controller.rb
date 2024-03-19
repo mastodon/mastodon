@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class ActivityPub::InboxesController < ActivityPub::BaseController
-  include SignatureVerification
   include JsonLdHelper
-  include AccountOwnedConcern
 
   before_action :skip_unknown_actor_activity
   before_action :require_actor_signature!
