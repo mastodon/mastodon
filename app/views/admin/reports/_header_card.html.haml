@@ -1,5 +1,11 @@
 .report-header__card
   .account-card
+    - if report.target_account.suspended?
+      .account-card__warning-badge
+        - if report.target_account.suspension_origin_local?
+          = t('admin.reports.already_suspended_badges.local')
+        - else
+          = t('admin.reports.already_suspended_badges.remote')
     .account-card__header
       = image_tag report.target_account.header.url, alt: ''
     .account-card__title
