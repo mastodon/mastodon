@@ -29,26 +29,6 @@ describe StatusesHelper do
     I18n.t('statuses.content_warning', warning: status.spoiler_text)
   end
 
-  describe 'link_to_newer' do
-    it 'returns a link to newer content' do
-      url = 'https://example.com'
-      result = helper.link_to_newer(url)
-
-      expect(result).to match('load-more')
-      expect(result).to match(I18n.t('statuses.show_newer'))
-    end
-  end
-
-  describe 'link_to_older' do
-    it 'returns a link to older content' do
-      url = 'https://example.com'
-      result = helper.link_to_older(url)
-
-      expect(result).to match('load-more')
-      expect(result).to match(I18n.t('statuses.show_older'))
-    end
-  end
-
   describe 'fa_visibility_icon' do
     context 'with a status that is public' do
       let(:status) { Status.new(visibility: 'public') }

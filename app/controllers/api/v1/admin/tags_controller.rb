@@ -44,10 +44,6 @@ class Api::V1::Admin::TagsController < Api::BaseController
     params.permit(:display_name, :trendable, :usable, :listable)
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def next_path
     api_v1_admin_tags_url(pagination_params(max_id: pagination_max_id)) if records_continue?
   end

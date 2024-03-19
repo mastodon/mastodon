@@ -1667,8 +1667,6 @@ ko:
         other: "%{count}명 투표함"
       vote: 투표
     show_more: 더 보기
-    show_newer: 새로운 것 표시
-    show_older: 오래된 것 표시
     show_thread: 글타래 보기
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1824,6 +1822,7 @@ ko:
       explanation: 시작하기 전에 몇가지 팁들을 준비했습니다
       feature_action: 더 알아보기
       feature_audience: 마스토돈은 중개자 없이 청중을 관리할 수 있는 특별한 가능성을 제공합니다. 자체 인프라에 배포된 마스토돈을 사용하면 온라인에 있는 다른 마스토돈 서버에도 팔로우하거나 팔로우할 수 있으며, 본인 외에는 누구의 통제도 받지 않습니다.
+      feature_audience_title: 신뢰 있는 청중 구축
       feature_control_title: 내 타임라인에 대해 통제권을 유지하세요
       feature_creativity: 마스토돈은 오디오, 비디오, 사진, 접근성 설명(alt),  투표, 콘텐츠 주의 (블라인드), 움직이는 아바타, 커스텀 이모티콘, 썸네일 자르기, 그리고 더 많은 것들을 당신이 온라인에서 당신을 더 잘 드러낼 수 있도록 돕기위해 지원합니다. 당신이 그림이나 음악을 올리던, 팟캐스트 같은것을 진행하던 마스토돈이 함께합니다.
       feature_moderation: 마스토돈은 의사 결정권을 사용자에게 돌려줍니다. 각 서버는 기업 소셜 미디어처럼 하향식이 아닌 로컬에서 시행되는 자체 규칙과 규정을 만들 수 있어 다양한 그룹의 요구에 가장 유연하게 대응할 수 있습니다. 동의하는 규칙이 있는 서버에 가입하거나 직접 서버를 호스팅하세요.
@@ -1834,7 +1833,8 @@ ko:
       follows_subtitle: 잘 알려진 계정들을 팔로우
       follows_title: 누구를 팔로우 할 지
       follows_view_more: 팔로우 할 사람들 더 보기
-      hashtags_recent_count: 최근 %{days}일동안 %{people} 명
+      hashtags_recent_count:
+        other: 최근 2일동안 %{people} 명
       hashtags_subtitle: 최근 2일간 무엇이 유행했는지 둘러보기
       hashtags_title: 유행하는 해시태그
       hashtags_view_more: 유행하는 해시태그 더 보기

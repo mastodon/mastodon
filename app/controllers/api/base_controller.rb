@@ -104,6 +104,10 @@ class Api::BaseController < ApplicationController
 
   private
 
+  def insert_pagination_headers
+    set_pagination_headers(next_path, prev_path)
+  end
+
   def pagination_options_invalid?
     params.slice(:limit, :offset).values.map(&:to_i).any?(&:negative?)
   end
