@@ -52,26 +52,26 @@
       = link_to admin_tag_path(@tag.id), class: ['dashboard__quick-access', @tag.usable? ? 'positive' : 'negative'] do
         - if @tag.usable?
           %span= t('admin.trends.tags.usable')
-          = material_symbol 'check', class: 'fw'
+          = material_symbol 'check'
         - else
           %span= t('admin.trends.tags.not_usable')
-          = material_symbol 'lock', class: 'fw'
+          = material_symbol 'lock'
 
       = link_to admin_tag_path(@tag.id), class: ['dashboard__quick-access', @tag.trendable? ? 'positive' : 'negative'] do
         - if @tag.trendable?
           %span= t('admin.trends.tags.trendable')
-          = material_symbol 'check', class: 'fw'
+          = material_symbol 'check'
         - else
           %span= t('admin.trends.tags.not_trendable')
-          = material_symbol 'lock', class: 'fw'
+          = material_symbol 'lock'
 
       = link_to admin_tag_path(@tag.id), class: ['dashboard__quick-access', @tag.listable? ? 'positive' : 'negative'] do
         - if @tag.listable?
           %span= t('admin.trends.tags.listable')
-          = material_symbol 'check', class: 'fw'
+          = material_symbol 'check'
         - else
           %span= t('admin.trends.tags.not_listable')
-          = material_symbol 'lock', class: 'fw'
+          = material_symbol 'lock'
 
   %hr.spacer/
 
