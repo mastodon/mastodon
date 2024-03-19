@@ -17,15 +17,13 @@ const emojiFilenames = (emojis) => {
 const darkEmoji = emojiFilenames(['🎱', '🐜', '⚫', '🖤', '⬛', '◼️', '◾', '◼️', '✒️', '▪️', '💣', '🎳', '📷', '📸', '♣️', '🕶️', '✴️', '🔌', '💂‍♀️', '📽️', '🍳', '🦍', '💂', '🔪', '🕳️', '🕹️', '🕋', '🖊️', '🖋️', '💂‍♂️', '🎤', '🎓', '🎥', '🎼', '♠️', '🎩', '🦃', '📼', '📹', '🎮', '🐃', '🏴', '🐞', '🕺', '📱', '📲', '🚲', '🪮', '🐦‍⬛']);
 const lightEmoji = emojiFilenames(['👽', '⚾', '🐔', '☁️', '💨', '🕊️', '👀', '🍥', '👻', '🐐', '❕', '❔', '⛸️', '🌩️', '🔊', '🔇', '📃', '🌧️', '🐏', '🍚', '🍙', '🐓', '🐑', '💀', '☠️', '🌨️', '🔉', '🔈', '💬', '💭', '🏐', '🏳️', '⚪', '⬜', '◽', '◻️', '▫️', '🪽', '🪿']);
 
-const emojiFilenameInSystemLightMode = (filename) => {
-  const bodyClasses = document.body?.classList;
-  const borderedEmoji = bodyClasses.contains('theme-mastodon-light') || bodyClasses.contains('theme-system') ? lightEmoji : darkEmoji;
-  return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
-};
-
-const emojiFilenameInSystemDarkMode = (filename) => {
-  const bodyClasses = document.body?.classList;
-  const borderedEmoji = bodyClasses.contains('theme-mastodon-light') ? lightEmoji : darkEmoji;
+/**
+ * @param {string} filename
+ * @param {"light" | "dark" } theme
+ * @returns {string}
+ */
+const emojiFilename = (filename, theme) => {
+  const borderedEmoji = theme === "light" ? lightEmoji : darkEmoji;
   return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
 };
 
@@ -100,16 +98,28 @@ const emojifyTextNode = (node, customEmojis) => {
       const title = shortCode ? `:${shortCode}:` : '';
 
       replacement = document.createElement('picture');
-      let source = document.createElement('source');
-      source.setAttribute('media', '(prefers-color-scheme: dark)');
-      source.setAttribute('srcset', `${assetHost}/emoji/${emojiFilenameInSystemDarkMode(filename)}.svg`);
-      replacement.appendChild(source);
+
+      const isSystemTheme = !!document.body?.classList.contains('theme-system');
+
+      if(isSystemTheme) {
+        let source = document.createElement('source');
+        source.setAttribute('media', '(prefers-color-scheme: dark)');
+        source.setAttribute('srcset', `${assetHost}/emoji/${emojiFilename(filename, "dark")}.svg`);
+        replacement.appendChild(source);
+      }
+
       let img = document.createElement('img');
       img.setAttribute('draggable', 'false');
       img.setAttribute('class', 'emojione');
       img.setAttribute('alt', unicode_emoji);
       img.setAttribute('title', title);
-      img.setAttribute('src', `${assetHost}/emoji/${emojiFilenameInSystemLightMode(filename)}.svg`);
+
+      let theme = "light";
+
+      if(!isSystemTheme && !document.body?.classList.contains('theme-mastodon-light'))
+        theme = "dark";
+
+      img.setAttribute('src', `${assetHost}/emoji/${emojiFilename(filename, theme)}.svg`);
       replacement.appendChild(img);
     }
 
