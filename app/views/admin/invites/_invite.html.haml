@@ -12,7 +12,7 @@
 
   - if invite.valid_for_use?
     %td
-      = material_symbol 'person', class: 'fw'
+      = material_symbol 'person'
       = invite.uses
       = " / #{invite.max_uses}" unless invite.max_uses.nil?
     %td
