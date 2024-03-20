@@ -20,6 +20,7 @@ class CanonicalEmailBlock < ApplicationRecord
   validates :canonical_email_hash, presence: true, uniqueness: true
 
   scope :matching_email, ->(email) { where(canonical_email_hash: email_to_canonical_email_hash(email)) }
+  scope :matching_account, ->(account) { matching_email(account&.user_email).or(where(reference_account: account)) }
 
   def to_log_human_identifier
     canonical_email_hash
