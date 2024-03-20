@@ -20,7 +20,7 @@ class SeveredRelationship < ApplicationRecord
   belongs_to :local_account, class_name: 'Account'
   belongs_to :remote_account, class_name: 'Account'
 
-  enum direction: {
+  enum :direction, {
     passive: 0, # analogous to `local_account.passive_relationships`
     active: 1, # analogous to `local_account.active_relationships`
   }

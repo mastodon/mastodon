@@ -16,7 +16,7 @@ class RelationshipSeveranceEvent < ApplicationRecord
 
   has_many :severed_relationships, inverse_of: :relationship_severance_event, dependent: :delete_all
 
-  enum type: {
+  enum :type, {
     domain_block: 0,
     user_domain_block: 1,
     account_suspension: 2,
