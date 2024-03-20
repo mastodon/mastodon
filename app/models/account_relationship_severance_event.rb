@@ -8,6 +8,7 @@
 #  id                              :bigint(8)        not null, primary key
 #  account_id                      :bigint(8)        not null
 #  relationship_severance_event_id :bigint(8)        not null
+#  relationships_count             :integer          default(0), not null
 #  created_at                      :datetime         not null
 #  updated_at                      :datetime         not null
 #
