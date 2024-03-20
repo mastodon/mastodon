@@ -585,6 +585,9 @@ zh-CN:
       actions_description_html: 决定采取何种措施处理此举报。如果对被举报账号采取惩罚性措施，将向其发送一封电子邮件通知。但若选中<strong>垃圾信息</strong>类别则不会发送通知。
       actions_description_remote_html: 决定采取何种行动来解决此举报。 这只会影响<strong>您的</strong>服务器如何与该远程帐户的通信并处理其内容。
       add_to_report: 增加更多举报内容
+      already_suspended_badges:
+        local: 已经在此服务器上暂停
+        remote: 已在其所属服务器被封禁
       are_you_sure: 你确定吗？
       assign_to_self: 接管
       assigned: 已接管的监察员
@@ -1626,7 +1629,7 @@ zh-CN:
     import: 导入
     import_and_export: 导入和导出
     migrate: 账户迁移
-    notifications: 通知
+    notifications: 电子邮件通知
     preferences: 首选项
     profile: 个人资料
     relationships: 关注管理

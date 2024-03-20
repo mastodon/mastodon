@@ -597,6 +597,9 @@ es-MX:
       actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide qué medidas tomar para resolver este reporte. Esto solo afectará a la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y gestiona su contenido.
       add_to_report: Añadir más al reporte
+      already_suspended_badges:
+        local: Ya suspendido en este servidor
+        remote: Ya suspendido en su servidor
       are_you_sure: "¿Estás seguro?"
       assign_to_self: Asignármela a mí
       assigned: Moderador asignado
@@ -1652,7 +1655,7 @@ es-MX:
     import: Importar
     import_and_export: Importar y exportar
     migrate: Migración de cuenta
-    notifications: Notificaciones
+    notifications: Notificaciones por correo electrónico
     preferences: Preferencias
     profile: Perfil
     relationships: Siguiendo y seguidores
@@ -1865,6 +1868,9 @@ es-MX:
       follows_subtitle: Seguir cuentas conocidas
       follows_title: A quién seguir
       follows_view_more: Ver más personas para seguir
+      hashtags_recent_count:
+        one: "%{people} personas en los últimos 2 días"
+        other: "%{people} personas en los últimos 2 días"
       hashtags_subtitle: Explora las tendencias de los últimos 2 días
       hashtags_title: Etiquetas en tendencia
       hashtags_view_more: Ver más etiquetas en tendencia

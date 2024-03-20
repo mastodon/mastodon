@@ -4848,6 +4848,11 @@ a.status-card {
   position: relative;
   margin-top: 5px;
   z-index: 2;
+  background: var(--dropdown-background-color);
+  backdrop-filter: var(--background-filter);
+  border: 1px solid var(--dropdown-border-color);
+  box-shadow: var(--dropdown-shadow);
+  border-radius: 5px;
 
   .emoji-mart-scroll {
     transition: opacity 200ms ease;
@@ -8581,6 +8586,12 @@ noscript {
     color: $darker-text-color;
     margin-bottom: 15px;
     text-align: center;
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+    }
   }
 }
 
