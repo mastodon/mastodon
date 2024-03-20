@@ -11,6 +11,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
 
 import FlagIcon from '@/material-icons/400-24px/flag-fill.svg?react';
+import LinkOffIcon from '@/material-icons/400-24px/link_off.svg?react';
 import PersonIcon from '@/material-icons/400-24px/person-fill.svg?react';
 import PersonAddIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
@@ -22,10 +23,12 @@ import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 import FollowRequestContainer from '../containers/follow_request_container';
 import NotificationOverlayContainer from '../containers/overlay_container';
 
+import RelationshipsSeveranceEvent from './relationships_severance_event';
 import Report from './report';
 
 const messages = defineMessages({
   follow: { id: 'notification.follow', defaultMessage: '{name} followed you' },
+  severedRelationships: { id: 'notification.severed_relationships', defaultMessage: 'Relationships with {name} severed' },
   adminSignUp: { id: 'notification.admin.sign_up', defaultMessage: '{name} signed up' },
   adminReport: { id: 'notification.admin.report', defaultMessage: '{name} reported {target}' },
 });
@@ -303,6 +306,30 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
+  renderRelationshipsSevered (notification) {
+    const { intl, unread } = this.props;
+
+    if (!notification.get('event')) {
+      return null;
+    }
+
+    return (
+      <HotKeys handlers={this.getHandlers()}>
+        <div className={classNames('notification notification-severed-relationships focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.adminReport, { name: notification.getIn(['event', 'target_name']) }), notification.get('created_at'))}>
+          <div className='notification__message'>
+            <Icon id='unlink' icon={LinkOffIcon} />
+
+            <span title={notification.get('created_at')}>
+              <FormattedMessage id='notification.severedRelationships' defaultMessage='Relationships with {name} severed' values={{ name: notification.getIn(['event', 'target_name']) }} />
+            </span>
+          </div>
+
+          <RelationshipsSeveranceEvent event={notification.get('event')} />
+        </div>
+      </HotKeys>
+    );
+  }
+
   renderAdminSignUp (notification, account, link) {
     const { intl, unread } = this.props;
 
@@ -396,6 +423,8 @@ class Notification extends ImmutablePureComponent {
       return this.renderUpdate(notification);
     case 'poll':
       return this.renderPoll(notification);
+    case 'severed_relationships':
+      return this.renderRelationshipsSevered(notification);
     case 'admin.sign_up':
       return this.renderAdminSignUp(notification, account, link);
     case 'admin.report':
