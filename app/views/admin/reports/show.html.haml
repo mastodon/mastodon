@@ -20,7 +20,11 @@
 
 %p= t 'admin.reports.category_description_html'
 
-= react_admin_component :report_reason_selector, id: @report.id, category: @report.category, rule_ids: @report.rule_ids&.map(&:to_s), disabled: @report.action_taken?
+= react_admin_component :report_reason_selector,
+                        category: @report.category,
+                        disabled: @report.action_taken?,
+                        id: @report.id,
+                        rule_ids: @report.rule_ids&.map(&:to_s)
 
 - if @report.comment.present?
   = render 'admin/reports/comment', report: @report

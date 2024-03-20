@@ -128,7 +128,7 @@ module Admin
     def unblock_email
       authorize @account, :unblock_email?
 
-      CanonicalEmailBlock.where(reference_account: @account).delete_all
+      CanonicalEmailBlock.matching_account(@account).delete_all
 
       log_action :unblock_email, @account
 
