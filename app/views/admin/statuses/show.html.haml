@@ -47,15 +47,4 @@
 %h3= t('admin.statuses.history')
 
 %ol.history
-  - batched_ordered_status_edits.with_index do |status_edit, i|
-    %li
-      .history__entry
-        %h5
-          - if i.zero?
-            = t('admin.statuses.original_status')
-          - else
-            = t('admin.statuses.status_changed')
-          ·
-          %time.formatted{ datetime: status_edit.created_at.iso8601, title: l(status_edit.created_at) }= l(status_edit.created_at)
-
-        = render status_edit
+  = render partial: 'admin/status_edits/status_edit', collection: batched_ordered_status_edits

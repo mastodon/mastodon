@@ -68,15 +68,17 @@ export default class ColumnSettings extends PureComponent {
           <span className='warning-hint'><FormattedMessage id='notifications.permission_denied' defaultMessage='Desktop notifications are unavailable due to previously denied browser permissions request' /></span>
         )}
 
-        {alertsEnabled && browserSupport && browserPermission === 'default' && (
-          <span className='warning-hint'>
-            <FormattedMessage id='notifications.permission_required' defaultMessage='Desktop notifications are unavailable because the required permission has not been granted.' /> <GrantPermissionButton onClick={onRequestNotificationPermission} />
-          </span>
-        )}
-
         <section>
           <ClearColumnButton onClick={onClear} />
         </section>
+
+        {alertsEnabled && browserSupport && browserPermission === 'default' && (
+          <section>
+            <span className='warning-hint'>
+              <FormattedMessage id='notifications.permission_required' defaultMessage='Desktop notifications are unavailable because the required permission has not been granted.' /> <GrantPermissionButton onClick={onRequestNotificationPermission} />
+            </span>
+          </section>
+        )}
 
         <section>
           <h3><FormattedMessage id='notifications.policy.title' defaultMessage='Filter out notifications from…' /></h3>
