@@ -155,6 +155,8 @@ group :test do
   # Test harness fo rack components
   gem 'rack-test', '~> 2.1'
 
+  gem 'shoulda-matchers'
+
   # Coverage formatter for RSpec test if DISABLE_SIMPLECOV is false
   gem 'simplecov', '~> 0.22', require: false
   gem 'simplecov-lcov', '~> 0.8', require: false
