@@ -29,6 +29,6 @@ class AccountRelationshipSeveranceEvent < ApplicationRecord
   private
 
   def set_relationships_count!
-    self.relationships_count = severed_relationships.where(local_account: account).count
+    self.relationships_count = severed_relationships.about_local_account(account).count
   end
 end
