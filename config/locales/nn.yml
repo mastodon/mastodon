@@ -152,7 +152,7 @@ nn:
       suspend: Utvis og slett kontodata for godt
       suspended: Utvist
       suspension_irreversible: Data frå denne kontoen har blitt ikkje-reverserbart sletta. Du kan oppheve suspenderinga av kontoen for å bruke den, men det vil ikkje gjenopprette alle data den tidligare har hatt.
-      suspension_reversible_hint_html: Kontoen har blitt suspendert, og data vil bli fullstendig fjerna den %{date}. Fram til då kan kontoen gjenopprettes uten negative effekter. Om du ynskjer å fjerne kontodata no, kan du gjere det nedanfor.
+      suspension_reversible_hint_html: Kontoen har vorte stengd, og data vil bli fullstendig fjerna den %{date}. Fram til då kandu gjenoppretta kontoen utan negative konsekvensar. Om du ynskjer å fjerna kontodata no, kan du gjera det nedanfor.
       title: Kontoar
       unblock_email: Avblokker e-postadresse
       unblocked_email_msg: Avblokkerte %{username} si e-postadresse
@@ -221,7 +221,7 @@ nn:
         unblock_email_account: Avblokker e-postadresse
         unsensitive_account: Angr tving ømtolig konto
         unsilence_account: Angre avgrensing av konto
-        unsuspend_account: Opphev suspensjonen av kontoen
+        unsuspend_account: Opphev utestenginga av kontoen
         update_announcement: Oppdater kunngjøringen
         update_custom_emoji: Oppdater tilpassa emoji
         update_domain_block: Oppdater domene-sperring
@@ -385,9 +385,9 @@ nn:
       add_new: Lag ny
       confirm_suspension:
         cancel: Avbryt
-        confirm: Suspender
+        confirm: Utvis
         permanent_action: Å oppheve suspensjonen vil ikkje gjenopprette data eller koplingar.
-        preamble_html: Du er i ferd med å suspendera <strong>%{domain}</strong> inkludert underdomener.
+        preamble_html: Du er i ferd med å utestenga <strong>%{domain}</strong> inkludert underdomene.
         remove_all_data: Dette vil fjerna alt innhald, media og profildata for kontoar som tilhøyrer dette domenet frå din tenar.
         stop_communication: Tenaren din vil slutta å kommunisera med desse tenarane.
         title: Stadfest domeneblokkering for %{domain}
@@ -492,7 +492,7 @@ nn:
           reject_media: Avvis media
           reject_reports: Avvis rapporter
           silence: Begrens
-          suspend: Suspender
+          suspend: Utvis
         policy: Vilkår
         reason: Offentlig årsak
         title: Retningslinjer for innhold
@@ -597,6 +597,9 @@ nn:
       actions_description_html: Avgjer kva som skal gjerast med denne rapporteringa. Dersom du utfører straffetiltak mot den rapporterte kontoen, vil dei motta ein e-post – så sant du ikkje har valt kategorien <strong>Spam</strong>.
       actions_description_remote_html: Avgjer kva du vil gjera for å løysa denne rapporten. Dette påverkar berre korleis tenaren <strong>din</strong> kommuniserer med kontoen på ein annan tenar, og korleis tenaren din handterer innhald derifrå.
       add_to_report: Legg til i rapporten
+      already_suspended_badges:
+        local: Allereie utestengd på denne tenaren
+        remote: Allereie utestengd på tenaren deira
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
       assigned: Tilsett moderator
@@ -979,7 +982,7 @@ nn:
         none: en advarsel
         sensitive: å merke kontoen sin som følsom
         silence: for å begrense deres konto
-        suspend: for å suspendere kontoen deres
+        suspend: for å stenga kontoen deira
       body: "%{target} ankar på ei modereringsavgjerd av %{action_taken_by} den %{date}, som var %{type}. Dei skreiv:"
       next_steps: Du kan godkjenna anken for å endra modereringsavgjerda, eller du kan oversjå anken.
       subject: "%{username} ankar ei modereringsavgjer på %{instance}"
@@ -1189,7 +1192,7 @@ nn:
         none: Advarsel
         sensitive: Markering av konto som ømtolig
         silence: Begrensning av konto
-        suspend: Suspensjon av konto
+        suspend: Utestenging av konto
       your_appeal_approved: Din klage har blitt godkjent
       your_appeal_pending: Du har levert en klage
       your_appeal_rejected: Din klage har blitt avvist
@@ -1652,7 +1655,7 @@ nn:
     import: Hent inn
     import_and_export: Importer og eksporter
     migrate: Kontoflytting
-    notifications: Varsel
+    notifications: E-postvarslingar
     preferences: Innstillingar
     profile: Profil
     relationships: Fylgjar og fylgjarar
@@ -1820,7 +1823,7 @@ nn:
         mark_statuses_as_sensitive: Nokre av innlegga dine har vorte markerte som ømtolige av moderatorane ved %{instance}. Dette tyder at folk må trykkje på mediane i innlegga for å førehandsvise dei. Du kan markera media som ømtolig sjølv når du legg ut nye innlegg.
         sensitive: Frå no av vil alle dine opplasta mediefiler bli markert som ømtolig og skjult bak ei klikk-åtvaring.
         silence: Medan kontoen din er avgrensa, vil berre folk som allereie fylgjer deg sjå dine tutar på denne tenaren, og du kan bli ekskludert fra diverse offentlige oppføringer. Andre kan framleis fylgje deg manuelt.
-        suspend: Du kan ikkje lenger bruke kontoen din, og profilen og andre data er ikkje lenger tilgjengelege. Du kan framleis logge inn for å be om ein sikkerheitskopi av data før dei blir fullstendig sletta om omtrent 30 dagar, men vi beheld nokre grunnleggjande data for å forhindre deg å omgå suspenderinga.
+        suspend: Du kan ikkje lenger bruka kontoen din, og profilen og andre data er ikkje lenger tilgjengelege. Du kan framleis logga inn for å be om ein sikkerheitskopi av data før dei blir fullstendig sletta om omtrent 30 dagar, men me vil lagra nokre grunnleggjande data for å syta for at du ikkje omgår utestenginga.
       reason: 'Årsak:'
       statuses: 'Innlegg sitert:'
       subject:
@@ -1865,6 +1868,9 @@ nn:
       follows_subtitle: Fylg kjende folk
       follows_title: Kven du kan fylgja
       follows_view_more: Sjå fleire du kan fylgja
+      hashtags_recent_count:
+        one: "%{people} person dei siste to dagane"
+        other: "%{people} personar dei siste to dagane"
       hashtags_subtitle: Sjå kva som har vore populært dei siste to dagane
       hashtags_title: Populære emneknaggar
       hashtags_view_more: Sjå fleire populære emneknaggar
