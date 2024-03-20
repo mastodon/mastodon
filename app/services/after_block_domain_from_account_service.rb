@@ -9,18 +9,21 @@ class AfterBlockDomainFromAccountService < BaseService
   def call(account, domain)
     @account = account
     @domain  = domain
+    @domain_block_event = nil
 
     clear_notifications!
     remove_follows!
     reject_existing_followers!
     reject_pending_follow_requests!
+    notify_of_severed_relationships!
   end
 
   private
 
   def remove_follows!
-    @account.active_relationships.where(target_account: Account.where(domain: @domain)).includes(:target_account).reorder(nil).find_each do |follow|
-      UnfollowService.new.call(@account, follow.target_account)
+    @account.active_relationships.where(target_account: Account.where(domain: @domain)).includes(:target_account).reorder(nil).in_batches do |follows|
+      domain_block_event.import_from_active_follows!(follows)
+      follows.each { |follow| UnfollowService.new.call(@account, follow.target_account) }
     end
   end
 
@@ -29,8 +32,9 @@ class AfterBlockDomainFromAccountService < BaseService
   end
 
   def reject_existing_followers!
-    @account.passive_relationships.where(account: Account.where(domain: @domain)).includes(:account).reorder(nil).find_each do |follow|
-      reject_follow!(follow)
+    @account.passive_relationships.where(account: Account.where(domain: @domain)).includes(:account).reorder(nil).in_batches do |follows|
+      domain_block_event.import_from_passive_follows!(follows)
+      follows.each { |follow| reject_follow!(follow) }
     end
   end
 
@@ -46,5 +50,16 @@ class AfterBlockDomainFromAccountService < BaseService
     return unless follow.account.activitypub?
 
     ActivityPub::DeliveryWorker.perform_async(Oj.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer)), @account.id, follow.account.inbox_url)
+  end
+
+  def notify_of_severed_relationships!
+    return if @domain_block_event.nil?
+
+    event = AccountRelationshipSeveranceEvent.create!(account: @account, relationship_severance_event: @domain_block_event)
+    LocalNotificationWorker.perform_async(@account.id, event.id, 'AccountRelationshipSeveranceEvent', 'severed_relationships')
+  end
+
+  def domain_block_event
+    @domain_block_event ||= RelationshipSeveranceEvent.create!(type: :user_domain_block, target_name: @domain)
   end
 end
