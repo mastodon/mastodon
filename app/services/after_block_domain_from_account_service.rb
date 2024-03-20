@@ -55,7 +55,8 @@ class AfterBlockDomainFromAccountService < BaseService
   def notify_of_severed_relationships!
     return if @domain_block_event.nil?
 
-    LocalNotificationWorker.perform_async(@account.id, @domain_block_event.id, 'RelationshipSeveranceEvent', 'severed_relationships')
+    event = AccountRelationshipSeveranceEvent.create!(account: @account, relationship_severance_event: @domain_block_event)
+    LocalNotificationWorker.perform_async(@account.id, event.id, 'AccountRelationshipSeveranceEvent', 'severed_relationships')
   end
 
   def domain_block_event

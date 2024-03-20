@@ -49,7 +49,8 @@ class BlockDomainService < BaseService
 
     # TODO: check how efficient that query is, also check `push_bulk`/`perform_bulk`
     @domain_block_event.affected_local_accounts.reorder(nil).find_each do |account|
-      LocalNotificationWorker.perform_async(account.id, @domain_block_event.id, 'RelationshipSeveranceEvent', 'severed_relationships')
+      event = AccountRelationshipSeveranceEvent.create!(account: account, relationship_severance_event: @domain_block_event)
+      LocalNotificationWorker.perform_async(account.id, event.id, 'AccountRelationshipSeveranceEvent', 'severed_relationships')
     end
   end
 

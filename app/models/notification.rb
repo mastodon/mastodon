@@ -186,7 +186,7 @@ class Notification < ApplicationRecord
       self.from_account_id = activity&.status&.account_id
     when 'Account'
       self.from_account_id = activity&.id
-    when 'RelationshipSeveranceEvent'
+    when 'AccountRelationshipSeveranceEvent'
       # These do not really have an originating account, but this is mandatory
       # in the data model, and the recipient's account will by definition
       # always exist

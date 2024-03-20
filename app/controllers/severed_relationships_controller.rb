@@ -10,7 +10,7 @@ class SeveredRelationshipsController < ApplicationController
   before_action :set_event, only: [:following, :followers]
 
   def index
-    @events = RelationshipSeveranceEvent.about_local_account(current_account)
+    @events = AccountRelationshipSeveranceEvent.where(account: current_account)
   end
 
   def following
@@ -28,7 +28,7 @@ class SeveredRelationshipsController < ApplicationController
   private
 
   def set_event
-    @event = RelationshipSeveranceEvent.find(params[:id])
+    @event = AccountRelationshipSeveranceEvent.find(params[:id])
   end
 
   def following_data
