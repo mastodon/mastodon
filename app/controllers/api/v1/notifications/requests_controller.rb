@@ -53,10 +53,6 @@ class Api::V1::Notifications::RequestsController < Api::BaseController
     @request = NotificationRequest.where(account: current_account).find(params[:id])
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def next_path
     api_v1_notifications_requests_url pagination_params(max_id: pagination_max_id) unless @requests.empty?
   end

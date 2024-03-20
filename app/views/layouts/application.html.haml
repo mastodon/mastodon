@@ -51,5 +51,5 @@
     = content_for?(:content) ? yield(:content) : yield
 
     .logo-resources{ 'tabindex' => '-1', 'inert' => true, 'aria-hidden' => true }
-      = render_symbol :icon
-      = render_symbol :wordmark
+      = inline_svg_tag 'logo-symbol-icon.svg'
+      = inline_svg_tag 'logo-symbol-wordmark.svg'

@@ -39,12 +39,14 @@ pt-BR:
         text: Você só pode solicitar uma revisão uma vez
       defaults:
         autofollow: Pessoas que criarem conta através de seu convite te seguirão automaticamente
+        avatar: WEBP, PNG, GIF ou JPG. No máximo %{size}. Será reduzido para %{dimensions}px
         bot: Essa conta executa principalmente ações automatizadas e pode não ser monitorada
         context: Um ou mais contextos onde o filtro deve atuar
         current_password: Para fins de segurança, digite a senha da conta atual
         current_username: Para confirmar, digite o nome de usuário da conta atual
         digest: Enviado apenas após um longo período de inatividade com um resumo das menções recebidas durante ausência
         email: Você receberá um e-mail de confirmação
+        header: WEBP, PNG, GIF ou JPG. No máximo %{size}. Será reduzido para %{dimensions}px
         inbox_url: Copie o link da página inicial do repetidor que você deseja usar
         irreversible: As publicações filtradas desaparecerão irreversivelmente, mesmo se o filtro for removido depois
         locale: O idioma da interface do usuário, e-mails e notificações
@@ -297,6 +299,7 @@ pt-BR:
           patch: Notificar sobre atualizações de correções
         trending_tag: Uma nova tendência requer revisão
       rule:
+        hint: Informações adicionais
         text: Regra
       settings:
         indexable: Incluir página de perfil nos motores de busca

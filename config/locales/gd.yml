@@ -903,7 +903,7 @@ gd:
         message_html: "<strong>Chaidh stòras nan oibseactan agad a dhroch-rèiteachadh. Tha prìobhaideachd an luchd-cleachdaidh agad fo chunnart.</strong>"
     tags:
       review: Dèan lèirmheas air an staid
-      updated_msg: Chaidh roghainnean nan tagaichean hais ùrachadh
+      updated_msg: Chaidh roghainnean an taga hais ùrachadh
     title: Rianachd
     trends:
       allow: Ceadaich
@@ -1209,7 +1209,7 @@ gd:
       appealed_msg: Chaidh an t-ath-thagradh agad a chur a-null. Ma thèid aontachadh ris, gheibh thu brath mu dhèidhinn.
       appeals:
         submit: Cuir a-null an t-ath-thagradh
-      approve_appeal: Zatwierdź odwołanie
+      approve_appeal: Thoir aonta ris an ath-thagradh
       associated_report: An gearan co-cheangailte
       created_at: Ceann-là
       description_html: Seo na gnìomhan a chaidh a ghabhail an aghaidh a’ chunntais agad agus na rabhaidhean a chaidh a chur thugad le luchd-obrach %{instance}.
@@ -1761,8 +1761,6 @@ gd:
         two: "%{count} bhòt"
       vote: Bhòt
     show_more: Seall barrachd dheth
-    show_newer: Seall feadhainn as ùire
-    show_older: Seall feadhainn as sine
     show_thread: Seall an snàithlean
     title: "%{name}: “%{quote}”"
     visibilities:
@@ -1929,9 +1927,13 @@ gd:
       follow_step: Tha leantainn dhaoine inntinneach air cridhe Mhastodon.
       follow_title: Cuir dreach pearsanta air do dhachaigh
       follows_subtitle: Lean cunntasan cliùiteach
-      follows_title: Cò a leanas tu
+      follows_title: Molaidhean leantainn
       follows_view_more: Seall barrachd dhaoine ri leantainn
-      hashtags_recent_count: 'Daoine sna %{days} là(ithean) seo chaidh: %{people}'
+      hashtags_recent_count:
+        few: "%{people} daoine san 2 latha seo chaidh"
+        one: "%{people} neach san 2 latha seo chaidh"
+        other: "%{people} daoine san 2 latha seo chaidh"
+        two: "%{people} daoine san 2 latha seo chaidh"
       hashtags_subtitle: Rùraich na tha a’ treandadh san 2 latha seo chaidh
       hashtags_title: Tagaichean hais a’ treandadh
       hashtags_view_more: Seall barrachd thagaichean hais a’ treandadh
