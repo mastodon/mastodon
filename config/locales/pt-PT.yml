@@ -597,6 +597,9 @@ pt-PT:
       actions_description_html: Decida a ação a tomar para resolver esta denúncia. Se decidir por uma ação punitiva contra a conta denunciada, um e-mail de notificação será enviado, excetuando quando selecionada a categoria <strong>Spam</strong>.
       actions_description_remote_html: Decida quais as medidas a tomar para resolver esta denúncia. Isso apenas afetará como <strong>o seu</strong> servido comunica com esta conta remota e gere o seu conteúdo.
       add_to_report: Adicionar mais à denúncia
+      already_suspended_badges:
+        local: Já suspenso neste servidor
+        remote: Já suspenso no servidor deles
       are_you_sure: Tem a certeza?
       assign_to_self: Atribuída a mim
       assigned: Atribuída ao moderador
@@ -1652,7 +1655,7 @@ pt-PT:
     import: Importar
     import_and_export: Importar e exportar
     migrate: Migração de conta
-    notifications: Notificações
+    notifications: Notificações por e-mail
     preferences: Preferências
     profile: Perfil
     relationships: Seguindo e seguidores
@@ -1865,6 +1868,9 @@ pt-PT:
       follows_subtitle: Siga contas bem conhecidas
       follows_title: Quem seguir
       follows_view_more: Veja mais pessoas para seguir
+      hashtags_recent_count:
+        one: "%{people} pessoa nos últimos 2 dias"
+        other: "%{people} pessoas nos últimos 2 dias"
       hashtags_subtitle: Explore o que está em tendência desde os últimos 2 dias
       hashtags_title: Trending hashtags
       hashtags_view_more: Ver mais hashtags em alta
