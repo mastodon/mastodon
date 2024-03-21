@@ -26,6 +26,7 @@ class SeveredRelationship < ApplicationRecord
   }
 
   scope :about_local_account, ->(account) { where(local_account: account) }
+  scope :about_remote_account, ->(account) { where(remote_account: account) }
 
   scope :active, -> { where(direction: :active) }
   scope :passive, -> { where(direction: :passive) }

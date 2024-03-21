@@ -33,7 +33,7 @@ class SeveredRelationshipsController < ApplicationController
 
   def following_data
     CSV.generate(headers: ['Account address', 'Show boosts', 'Notify on new posts', 'Languages'], write_headers: true) do |csv|
-      @event.severed_relationships.active.where(local_account: current_account).includes(:remote_account).reorder(id: :desc).each do |follow|
+      @event.severed_relationships.active.about_local_account(current_account).includes(:remote_account).reorder(id: :desc).each do |follow|
         csv << [acct(follow.target_account), follow.show_reblogs, follow.notify, follow.languages&.join(', ')]
       end
     end
@@ -41,7 +41,7 @@ class SeveredRelationshipsController < ApplicationController
 
   def followers_data
     CSV.generate(headers: ['Account address'], write_headers: true) do |csv|
-      @event.severed_relationships.passive.where(local_account: current_account).includes(:remote_account).reorder(id: :desc).each do |follow|
+      @event.severed_relationships.passive.about_local_account(current_account).includes(:remote_account).reorder(id: :desc).each do |follow|
         csv << [acct(follow.account)]
       end
     end
