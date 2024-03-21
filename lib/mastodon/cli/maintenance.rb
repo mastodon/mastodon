@@ -39,7 +39,6 @@ module Mastodon::CLI
     class Webhook < ApplicationRecord; end
     class BulkImport < ApplicationRecord; end
     class SoftwareUpdate < ApplicationRecord; end
-    class SeveredRelationship < ApplicationRecord; end
 
     class DomainBlock < ApplicationRecord
       enum :severity, { silence: 0, suspend: 1, noop: 2 }
@@ -128,20 +127,6 @@ module Mastodon::CLI
         if db_table_exists?(:appeals)
           Appeal.where(account_warning_id: other_account.id).find_each do |record|
             record.update_attribute(:account_warning_id, id)
-          end
-        end
-
-        if db_table_exists?(:severed_relationships)
-          SeveredRelationship.where(local_account_id: other_account.id).reorder(nil).find_each do |record|
-            record.update_attribute(:local_account_id, id)
-          rescue ActiveRecord::RecordNotUnique
-            next
-          end
-
-          SeveredRelationship.where(remote_account_id: other_account.id).reorder(nil).find_each do |record|
-            record.update_attribute(:remote_account_id, id)
-          rescue ActiveRecord::RecordNotUnique
-            next
           end
         end
       end

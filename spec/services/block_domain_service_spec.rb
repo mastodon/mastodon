@@ -19,7 +19,7 @@ RSpec.describe BlockDomainService do
       bystander.follow!(local_account)
     end
 
-    it 'creates a domain block, suspends remote accounts with appropriate suspension date, records severed relationships', :aggregate_failures do
+    it 'creates a domain block, suspends remote accounts with appropriate suspension date', :aggregate_failures do
       subject.call(DomainBlock.create!(domain: 'evil.org', severity: :suspend))
 
       expect(DomainBlock.blocked?('evil.org')).to be true
@@ -36,12 +36,6 @@ RSpec.describe BlockDomainService do
       expect { bad_status_plain.reload }.to raise_exception ActiveRecord::RecordNotFound
       expect { bad_status_with_attachment.reload }.to raise_exception ActiveRecord::RecordNotFound
       expect { bad_attachment.reload }.to raise_exception ActiveRecord::RecordNotFound
-
-      # Records severed relationships
-      severed_relationships = local_account.severed_relationships.to_a
-      expect(severed_relationships.count).to eq 2
-      expect(severed_relationships[0].relationship_severance_event).to eq severed_relationships[1].relationship_severance_event
-      expect(severed_relationships.map { |rel| [rel.account, rel.target_account] }).to contain_exactly([bystander, local_account], [local_account, bad_account])
     end
   end
 

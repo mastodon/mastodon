@@ -20,7 +20,7 @@ RSpec.describe AfterBlockDomainFromAccountService do
     end
   end
 
-  it 'purges followers from blocked domain, sends them Reject->Follow, and records severed relationships', :aggregate_failures do
+  it 'purges followers from blocked domain, sends them Reject->Follow', :aggregate_failures do
     subject.call(alice, 'evil.org')
 
     expect(wolf.following?(alice)).to be false
@@ -28,10 +28,5 @@ RSpec.describe AfterBlockDomainFromAccountService do
       [a_string_including('"type":"Reject"'), alice.id, wolf.inbox_url],
       [a_string_including('"type":"Undo"'), alice.id, dog.inbox_url]
     )
-
-    severed_relationships = alice.severed_relationships.to_a
-    expect(severed_relationships.count).to eq 2
-    expect(severed_relationships[0].relationship_severance_event).to eq severed_relationships[1].relationship_severance_event
-    expect(severed_relationships.map { |rel| [rel.account, rel.target_account] }).to contain_exactly([wolf, alice], [alice, dog])
   end
 end
