@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-
-import ArchiveIcon from '@/material-icons/400-24px/archive.svg?react';
+import InventoryIcon from '@/material-icons/400-24px/inventory_2.svg?react';
 import { fetchNotificationPolicy } from 'mastodon/actions/notifications';
 import { Icon } from 'mastodon/components/icon';
 import { toCappedNumber } from 'mastodon/utils/numbers';
@@ -34,7 +33,7 @@ export const FilteredNotificationsBanner = () => {
 
   return (
     <Link className='filtered-notifications-banner' to='/notifications/requests'>
-      <Icon icon={ArchiveIcon} />
+      <Icon icon={InventoryIcon} />
 
       <div className='filtered-notifications-banner__text'>
         <strong><FormattedMessage id='filtered_notifications_banner.title' defaultMessage='Filtered notifications' /></strong>

@@ -30,7 +30,7 @@
 = render 'admin/accounts/counters', account: @account
 
 - if @account.local? && @account.user.nil?
-  = link_to t('admin.accounts.unblock_email'), unblock_email_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unblock_email, @account) && CanonicalEmailBlock.exists?(reference_account_id: @account.id)
+  = link_to t('admin.accounts.unblock_email'), unblock_email_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unblock_email, @account) && CanonicalEmailBlock.matching_account(@account).exists?
 - else
   .table-wrapper
     %table.table.inline-table

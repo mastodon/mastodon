@@ -14,20 +14,8 @@
 }
 
 .emoji-mart-bar {
-  border: 0 solid var(--dropdown-border-color);
-
   &:first-child {
-    border-bottom-width: 1px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     background: var(--dropdown-border-color);
-  }
-
-  &:last-child {
-    border-top-width: 1px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    display: none;
   }
 }
 
@@ -94,7 +82,6 @@
   height: 270px;
   max-height: 35vh;
   padding: 0 6px 6px;
-  background: var(--dropdown-background-color);
   will-change: transform;
 
   &::-webkit-scrollbar-track:hover,
@@ -106,7 +93,6 @@
 .emoji-mart-search {
   padding: 10px;
   padding-inline-end: 45px;
-  background: var(--dropdown-background-color);
   position: relative;
 
   input {
@@ -195,7 +181,6 @@
     width: 100%;
     font-weight: 500;
     padding: 5px 6px;
-    background: var(--dropdown-background-color);
   }
 }
 

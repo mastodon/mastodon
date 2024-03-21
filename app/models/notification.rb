@@ -54,6 +54,9 @@ class Notification < ApplicationRecord
     update: {
       filterable: false,
     }.freeze,
+    severed_relationships: {
+      filterable: false,
+    }.freeze,
     'admin.sign_up': {
       filterable: false,
     }.freeze,
@@ -86,6 +89,7 @@ class Notification < ApplicationRecord
     belongs_to :favourite, inverse_of: :notification
     belongs_to :poll, inverse_of: false
     belongs_to :report, inverse_of: false
+    belongs_to :account_relationship_severance_event, inverse_of: false
   end
 
   validates :type, inclusion: { in: TYPES }
@@ -182,6 +186,11 @@ class Notification < ApplicationRecord
       self.from_account_id = activity&.status&.account_id
     when 'Account'
       self.from_account_id = activity&.id
+    when 'AccountRelationshipSeveranceEvent'
+      # These do not really have an originating account, but this is mandatory
+      # in the data model, and the recipient's account will by definition
+      # always exist
+      self.from_account_id = account_id
     end
   end
 

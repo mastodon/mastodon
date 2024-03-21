@@ -9,15 +9,45 @@
 
   .dashboard
     .dashboard__item
-      = react_admin_component :counter, measure: 'tag_accounts', start_at: @time_period.first, end_at: @time_period.last, params: { id: @tag.id }, label: t('admin.trends.tags.dashboard.tag_accounts_measure'), href: tag_url(@tag), target: '_blank', rel: 'noopener noreferrer'
+      = react_admin_component :counter,
+                              end_at: @time_period.last,
+                              href: tag_url(@tag),
+                              label: t('admin.trends.tags.dashboard.tag_accounts_measure'),
+                              measure: 'tag_accounts',
+                              params: { id: @tag.id },
+                              rel: 'noopener noreferrer',
+                              start_at: @time_period.first,
+                              target: '_blank'
     .dashboard__item
-      = react_admin_component :counter, measure: 'tag_uses', start_at: @time_period.first, end_at: @time_period.last, params: { id: @tag.id }, label: t('admin.trends.tags.dashboard.tag_uses_measure')
+      = react_admin_component :counter,
+                              end_at: @time_period.last,
+                              label: t('admin.trends.tags.dashboard.tag_uses_measure'),
+                              measure: 'tag_uses',
+                              params: { id: @tag.id },
+                              start_at: @time_period.first
     .dashboard__item
-      = react_admin_component :counter, measure: 'tag_servers', start_at: @time_period.first, end_at: @time_period.last, params: { id: @tag.id }, label: t('admin.trends.tags.dashboard.tag_servers_measure')
+      = react_admin_component :counter,
+                              end_at: @time_period.last,
+                              label: t('admin.trends.tags.dashboard.tag_servers_measure'),
+                              measure: 'tag_servers',
+                              params: { id: @tag.id },
+                              start_at: @time_period.first
     .dashboard__item
-      = react_admin_component :dimension, dimension: 'tag_servers', start_at: @time_period.first, end_at: @time_period.last, params: { id: @tag.id }, limit: 8, label: t('admin.trends.tags.dashboard.tag_servers_dimension')
+      = react_admin_component :dimension,
+                              dimension: 'tag_servers',
+                              end_at: @time_period.last,
+                              label: t('admin.trends.tags.dashboard.tag_servers_dimension'),
+                              limit: 8,
+                              params: { id: @tag.id },
+                              start_at: @time_period.first
     .dashboard__item
-      = react_admin_component :dimension, dimension: 'tag_languages', start_at: @time_period.first, end_at: @time_period.last, params: { id: @tag.id }, limit: 8, label: t('admin.trends.tags.dashboard.tag_languages_dimension')
+      = react_admin_component :dimension,
+                              dimension: 'tag_languages',
+                              end_at: @time_period.last,
+                              label: t('admin.trends.tags.dashboard.tag_languages_dimension'),
+                              limit: 8,
+                              params: { id: @tag.id },
+                              start_at: @time_period.first
     .dashboard__item
       = link_to admin_tag_path(@tag.id), class: ['dashboard__quick-access', @tag.usable? ? 'positive' : 'negative'] do
         - if @tag.usable?
