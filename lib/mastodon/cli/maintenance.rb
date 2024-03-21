@@ -26,6 +26,9 @@ module Mastodon::CLI
     class ListAccount < ApplicationRecord; end
     class PollVote < ApplicationRecord; end
     class Mention < ApplicationRecord; end
+    class Notification < ApplicationRecord; end
+    class NotificationPermission < ApplicationRecord; end
+    class NotificationRequest < ApplicationRecord; end
     class AccountDomainBlock < ApplicationRecord; end
     class AnnouncementReaction < ApplicationRecord; end
     class FeaturedTag < ApplicationRecord; end
@@ -103,6 +106,18 @@ module Mastodon::CLI
         owned_classes.each do |klass|
           klass.where(account_id: other_account.id).find_each do |record|
             record.update_attribute(:account_id, id)
+          rescue ActiveRecord::RecordNotUnique
+            next
+          end
+        end
+
+        from_classes = [Notification]
+        from_classes << NotificationPermission if db_table_exists?(:notification_permissions)
+        from_classes << NotificationRequest if db_table_exists?(:notification_requests)
+
+        from_classes.each do |klass|
+          klass.where(from_account_id: other_account.id).find_each do |record|
+            record.update_attribute(:from_account_id, id)
           rescue ActiveRecord::RecordNotUnique
             next
           end

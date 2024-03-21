@@ -27,6 +27,16 @@ module Account::Merging
       end
     end
 
+    [
+      Notification, NotificationPermission, NotificationRequest
+    ].each do |klass|
+      klass.where(from_account_id: other_account.id).reorder(nil).find_each do |record|
+        record.update_attribute(:from_account_id, id)
+      rescue ActiveRecord::RecordNotUnique
+        next
+      end
+    end
+
     target_classes = [
       Follow, FollowRequest, Block, Mute, AccountModerationNote, AccountPin,
       AccountNote
