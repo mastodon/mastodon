@@ -1633,10 +1633,22 @@ zh-CN:
     preferences: 首选项
     profile: 个人资料
     relationships: 关注管理
+    severed_relationships: 已断开的关系
     statuses_cleanup: 自动删除嘟文
     strikes: 操作记录
     two_factor_authentication: 双因素认证
     webauthn_authentication: 安全密钥
+  severed_relationships:
+    download: 下载 (%{count})
+    event_type:
+      account_suspension: 账户被封禁 (%{target_name})
+      domain_block: 服务器被封禁 (%{target_name})
+      user_domain_block: 你屏蔽了 %{target_name}
+    lost_followers: 失去的关注者
+    lost_follows: 失去的关注
+    preamble: 当你屏蔽一个域名或你的管理员决定封禁一个外站服务器时，你可能会失去关注和粉丝。在这种情况下，你可以下载被切断的关系的列表，进行检查以便导入另一个服务器。
+    purged: 关于此服务器的信息已被你所在服务器的管理员清除。
+    type: 事件
   statuses:
     attached:
       audio:

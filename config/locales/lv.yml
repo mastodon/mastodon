@@ -16,9 +16,9 @@ lv:
     instance_actor_flash: Šis konts ir virtuāls aktieris, ko izmanto, lai pārstāvētu pašu serveri, nevis atsevišķu lietotāju. To izmanto federācijas nolūkos, un to nevajadzētu apturēt.
     last_active: pēdējā aktivitāte
     link_verified_on: Šīs saites piederība tika pārbaudīta %{date}
-    nothing_here: Te nekā nav!
+    nothing_here: Šeit nekā nav.
     pin_errors:
-      following: Tev jau ir jāseko personai, kuru vēlies apstiprināt
+      following: Tev ir jāseko personai, kuru vēlies atbalstīt
     posts:
       one: Ziņa
       other: Ziņas
@@ -575,7 +575,7 @@ lv:
     relays:
       add_new: Pievienot jaunu releju
       delete: Dzēst
-      description_html: "<strong>Federācijas relejs</strong> ir starpniekserveris, kas apmainās ar lielu publisko ziņu apjomu starp serveriem, kas to abonē un publicē. <strong>Tas var palīdzēt maziem un vidējiem serveriem atklāt saturu no federācijas</strong>, pretējā gadījumā vietējiem lietotājiem manuāli jāseko citām personām attālos serveros."
+      description_html: "<strong>Federācijas pārraidītājs</strong> ir starpniekserveris, kas apmainās ar lielu publisko ierakstu apjomu starp serveriem, kas to abonē un publicē tajā. <strong>Tas var palīdzēt maziem un vidējiem serveriem atklāt saturu fediversā</strong>, pretējā gadījumā vietējiem lietotājiem būtu pasrocīgi jāseko citiem cilvēkiem attālos serveros."
       disable: Atspējot
       disabled: Atspējots
       enable: Iespējot
@@ -659,7 +659,7 @@ lv:
         actions:
           delete_html: Noņemt aizskarošās ziņas
           mark_as_sensitive_html: Atzīmēt aizskarošo ziņu multivides saturu kā sensitīvu
-          silence_html: Ievērojami ierobežojiet <strong>@%{acct}</strong> sasniedzamību, padarot viņa profilu un saturu redzamu tikai personām, kas jau seko viņiem vai manuāli meklē profilu
+          silence_html: Ievērojami ierobežo <strong>@%{acct}</strong> sasniedzamību, padarot viņa profilu un saturu redzamu tikai cilvēkiem, kas jau seko tam vai pašrocīgi uzmeklē profilu
           suspend_html: Apturēt <strong>@%{acct}</strong>, padarot viņu profilu un saturu nepieejamu un neiespējamu mijiedarbību ar
         close_report: 'Atzīmēt ziņojumu #%{id} kā atrisinātu'
         close_reports_html: Atzīmējiet <strong>visus</strong> pārskatus par <strong>@%{acct}</strong> kā atrisinātus
@@ -902,9 +902,9 @@ lv:
         publishers:
           no_publisher_selected: Neviens publicētājs netika mainīts, jo neviens netika atlasīts
         shared_by_over_week:
-          one: Pēdējās nedēļas laikā kopīgoja viena persona
+          one: Pēdējās nedēļas laikā kopīgoja viens cilvēks
           other: Pēdējās nedēļas laikā kopīgoja %{count} cilvēki
-          zero: Pēdējās nedēļas laikā kopīgoja %{count} personas
+          zero: Pēdējās nedēļas laikā kopīgoja %{count} cilvēku
         title: Populārākās saites
         usage_comparison: Šodien kopīgots %{today} reizes, salīdzinot ar %{yesterday} vakar
       not_allowed_to_trend: Popularizešana nav atļauta
@@ -944,7 +944,7 @@ lv:
         not_trendable: Neparādīsies pie tendencēm
         not_usable: Nevar tikt lietots
         peaked_on_and_decaying: Sasniedza maksimumu %{date}, tagad samazinās
-        title: Populārākie tēmturi
+        title: Izplatīti tēmturi
         trendable: Var parādīsies pie tendencēm
         trending_rank: 'Populārākie #%{rank}'
         usable: Var tikt lietots
@@ -952,7 +952,7 @@ lv:
         used_by_over_week:
           one: Pēdējās nedēļas laikā izmantoja viens cilvēks
           other: Pēdējās nedēļas laikā izmantoja %{count} cilvēki
-          zero: Pēdējās nedēļas laikā izmantoja %{count} personas
+          zero: Pēdējās nedēļas laikā izmantoja %{count} cilvēku
       title: Tendences
       trending: Populārākie
     warning_presets:
@@ -1015,7 +1015,7 @@ lv:
       new_trending_statuses:
         title: Populārākās ziņas
       new_trending_tags:
-        title: Populārākie tēmturi
+        title: Izplatīti tēmturi
       subject: Tiek pārskatītas jaunas tendences %{instance}
   aliases:
     add_new: Izveidot aizstājvārdu
@@ -1040,7 +1040,7 @@ lv:
     salutation: "%{name},"
     settings: 'Mainīt e-pasta uztādījumus: %{link}'
     unsubscribe: Atcelt abonēšanu
-    view: 'Skatījums:'
+    view: 'Skatīt:'
     view_profile: Skatīt profilu
     view_status: Skatīt ziņu
   applications:
@@ -1119,7 +1119,7 @@ lv:
       title: Pierakstīties %{domain}
     sign_up:
       manual_review: Reģistrācijas domēnā %{domain} manuāli pārbauda mūsu moderatori. Lai palīdzētu mums apstrādāt tavu reģistrāciju, uzraksti mazliet par sevi un to, kāpēc vēlies kontu %{domain}.
-      preamble: Izmantojot kontu šajā Mastodon serverī, tu varēsi sekot jebkurai citai personai tīklā neatkarīgi no tā, kur tiek mitināts viņas konts.
+      preamble: Ar kontu šajā Mastodon serverī varēsi sekot jebkuram citam tīklā esošam cilvēkam neatkarīgi no tā, kur tiek mitināts viņa konts.
       title: Atļauj tevi iestatīt %{domain}.
     status:
       account_status: Konta statuss
@@ -1351,7 +1351,7 @@ lv:
       following_html: Tu gatavojies <strong>sekot</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
       lists_html: Tu gatavojies pievienot līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong> saviem <strong>sarakstiem</strong>. Jauni saraksti tiks izveidoti, ja nav saraksta, ko pievienot.
       muting_html: Tu gatavojies <strong>noklusināt</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
-    preface: Tu vari importēt datus, kurus esi eksportējis no cita servera, piemēram, to personu sarakstu, kurām tu seko vai kuras bloķē.
+    preface: Tu vari ievietot datus, kurus esi izguvis no cita servera, kā, piemēram, cilvēku sarakstu, kuriem Tu seko vai kurus bloķē.
     recent_imports: Nesen importēts
     states:
       finished: Pabeigts
@@ -1481,7 +1481,7 @@ lv:
       report:
         subject: "%{name} iesniedza ziņojumu"
       sign_up:
-        subject: "%{name} ir pierakstījies"
+        subject: "%{name} pierakstījās"
     favourite:
       body: 'Tavu ziņu izlasei pievienoja %{name}:'
       subject: "%{name} pievienoja tavu ziņu izlasei"
@@ -1708,9 +1708,9 @@ lv:
       reblog: Izceltu ierakstu nevar piespraust
     poll:
       total_people:
-        one: "%{count} persona"
+        one: "%{count} cilvēks"
         other: "%{count} cilvēki"
-        zero: "%{count} personu"
+        zero: "%{count} cilvēku"
       total_votes:
         one: "%{count} balss"
         other: "%{count} balsis"
@@ -1826,7 +1826,7 @@ lv:
       explanation:
         delete_statuses: Tika konstatēts, ka dažas no tavām ziņām pārkāpj vienu vai vairākas kopienas vadlīnijas, un rezultātā %{instance} moderatori tās noņēma.
         disable: Tu vairs nevari izmantot savu kontu, taču tavs profils un citi dati paliek neskarti. Tu vari pieprasīt savu datu dublējumu, mainīt konta iestatījumus vai dzēst kontu.
-        mark_statuses_as_sensitive: "%{instance} moderatori dažas no tavām ziņām ir atzīmējušas kā sensitīvas. Tas nozīmē, ka cilvēkiem būs jāpieskaras ziņās esošajai multividei, pirms tiek parādīts priekšskatījums. Tu arī pats vari atzīmēt mediju kā sensitīvu, kad tādu publicēsi turpmāk."
+        mark_statuses_as_sensitive: "%{instance} moderatori dažus no Taviem ierakstiem ir atzīmējuši kā jutīgus. Tas nozīmē, ka cilvēkiem būs jāpiesit ierakstos esošajiem informāijas nesējiem, pirms tiek attēlots priekšskatījums. Tu arī pats vari atzīmēt informācijas nesēju kā jutīgu, kad nākotnē tādu ievietosi."
         sensitive: No šī brīža visi augšupielādētie multivides faili tiks atzīmēti kā sensitīvi un paslēpti aiz klikšķa brīdinājuma.
         silence: Tu joprojām vari izmantot savu kontu, taču tikai tie cilvēki, kuri jau tev seko, redzēs tavas ziņas šajā serverī, un tev var tikt liegtas dažādas atklāšanas funkcijas. Tomēr citi joprojām var tev manuāli sekot.
         suspend: Tu vairs nevari izmantot savu kontu, un tavs profils un citi dati vairs nav pieejami. Tu joprojām vari pieteikties, lai pieprasītu savu datu dublēšanu, līdz dati tiks pilnībā noņemti aptuveni 30 dienu laikā, taču mēs saglabāsim dažus pamata datus, lai neļautu tev izvairīties no apturēšanas.
@@ -1849,8 +1849,15 @@ lv:
         silence: Konts ierobežots
         suspend: Konts apturēts
     welcome:
+      edit_profile_action: Pielāgot
+      edit_profile_title: Pielāgo savu profilu
       explanation: Šeit ir daži padomi, kā sākt darbu
       feature_creativity: Mastodon nodrošina skaņas, video un attēlu ierakstus, pieejamības aprakstus, aptaujas, satura brīdinājumus, animētus profila attēlus, pielāgotas emocijzīmes, sīktēlu apgriešanas vadīklas un vēl, lai palīdzētu Tev sevi izpaust tiešsaistē. Vai Tu izplati savu mākslu, mūziku vai aplādes, Mastodon ir šeit ar Tevi.
+      follow_title: Pielāgo savu mājas barotni
+      hashtags_recent_count:
+        one: "%{people} cilvēks pēdējās 2 dienās"
+        other: "%{people} cilvēki pēdējās 2 dienās"
+        zero: "%{people} cilvēku pēdējās divās dienās"
       subject: Laipni lūgts Mastodon
       title: Laipni lūgts uz borta, %{name}!
   users:
@@ -1859,11 +1866,11 @@ lv:
     invalid_otp_token: Nederīgs divfaktora kods
     otp_lost_help_html: Ja esi zaudējis piekļuvi abiem, tu vari sazināties ar %{email}
     seamless_external_login: Tu esi pieteicies, izmantojot ārēju pakalpojumu, tāpēc paroles un e-pasta iestatījumi nav pieejami.
-    signed_in_as: 'Pierakstījies kā:'
+    signed_in_as: 'Pieteicies kā:'
   verification:
-    extra_instructions_html: <strong>Padoms.</strong> saite tavā vietnē var būt neredzama. Svarīga daļa ir <code>rel="me"</code>, kas novērš uzdošanos vietnēs ar lietotāju ģenerētu saturu. Tu vari pat lapas galvenē izmantot tagu <code>link</code>, nevis <code>a</code>, taču HTML ir jābūt pieejamam, neizpildot JavaScript.
+    extra_instructions_html: <strong>Padoms:</strong> saite Tavā vietnē var būt neredzama. Svarīga daļa ir <code>rel="me"</code>, kas novērš uzdošanos vietnēs ar lietotāju izveidotu saturu. Tu pat vari lapas galvenē izmantot tagu <code>link</code>, nevis <code>a</code>, taču HTML ir jābūt pieejamam bez JavaScript izpildīšanas.
     here_is_how: Lūk, kā
-    hint_html: "<strong>Ikviens var apliecināt savu identitāti Mastodon.</strong> Pamatojoties uz atvērtiem tīmekļa standartiem, tagad un uz visiem laikiem bez maksas. Viss, kas tev nepieciešams, ir personīga vietne, pēc kuras cilvēki tevi atpazīst. Kad no sava profila izveidosi saiti uz šo vietni, mēs pārbaudīsim, vai vietne novirza atpakaļ uz tavu profilu, un tajā tiks parādīts vizuāls indikators."
+    hint_html: "<strong>Ikviens var apliecināt savu identitāti Mastodon.</strong> Balstīts uz atvērtiem tīmekļa standartiem, tagad un uz visiem laikiem bez maksas. Viss, kas Tev nepieciešams, ir personīga vietne, pēc kuras cilvēki Tevi atpazīst. Kad savā profilu sasaistīsi ar šo tīmekļvietni, mēs pārbaudīsim, vai tīmekļvietnei ir saite uz Tavu profilu, un tajā tiks parādīts redzama norāde."
     instructions_html: Ievieto starpliktuvē un ielīmē tālāk norādīto kodu savas tīmekļvietnes HTML! Tad pievieno savas tīmekļvietnes adresi vienā no papildu laukiem savā profila cilnē "Labot profilu" un saglabā izmaiņas!
     verification: Pārbaude
     verified_links: Tavas verifikācijas saites
