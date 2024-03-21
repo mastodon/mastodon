@@ -80,6 +80,11 @@ Metrics/CyclomaticComplexity:
 Metrics/ParameterLists:
   CountKeywordArgs: false
 
+# Reason: Prefer seeing a variable name
+# https://docs.rubocop.org/rubocop/cops_naming.html#namingblockforwarding
+Naming/BlockForwarding:
+  EnforcedStyle: explicit
+
 # Reason: Prevailing style is argument file paths
 # https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsfilepath
 Rails/FilePath:
