@@ -36,8 +36,8 @@ class MigrateInteractionSettingsToPolicy < ActiveRecord::Migration[7.1]
         requires_new_policy = true
       end
 
-      if deserialized_settings['interactions.must_be_following_dm']
-        policy.filter_private_mentions = true
+      unless deserialized_settings['interactions.must_be_following_dm']
+        policy.filter_private_mentions = false
         requires_new_policy = true
       end
 
