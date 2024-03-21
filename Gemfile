@@ -15,7 +15,7 @@ gem 'irb', '~> 1.8'
 gem 'haml-rails', '~>2.0'
 gem 'pg', '~> 1.5'
 gem 'pghero'
-gem 'dotenv-rails', '~> 2.8'
+gem 'dotenv-rails', '~> 3.0'
 
 gem 'aws-sdk-s3', '~> 1.123', require: false
 gem 'fog-core', '<= 2.4.0'
