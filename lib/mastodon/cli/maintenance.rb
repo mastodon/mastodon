@@ -42,7 +42,7 @@ module Mastodon::CLI
     class SeveredRelationship < ApplicationRecord; end
 
     class DomainBlock < ApplicationRecord
-      enum severity: { silence: 0, suspend: 1, noop: 2 }
+      enum :severity, { silence: 0, suspend: 1, noop: 2 }
       scope :by_severity, -> { in_order_of(:severity, %w(noop silence suspend)).order(:domain) }
     end
 
