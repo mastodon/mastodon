@@ -1655,14 +1655,26 @@ hu:
     import: Importálás
     import_and_export: Import és export
     migrate: Fiók átirányítása
-    notifications: E-mail értesítések
+    notifications: E-mail-értesítések
     preferences: Beállítások
     profile: Profil
     relationships: Követések és követők
+    severed_relationships: Megszakított kapcsolatok
     statuses_cleanup: Bejegyzések automatikus törlése
     strikes: Moderációs felrótt vétségek
     two_factor_authentication: Kétlépcsős hitelesítés
     webauthn_authentication: Biztonsági kulcsok
+  severed_relationships:
+    download: Letöltés (%{count})
+    event_type:
+      account_suspension: Fiók felfüggesztése (%{target_name})
+      domain_block: Kiszolgáló felfüggesztése (%{target_name})
+      user_domain_block: 'Blokkoltad ezt: %{target_name}'
+    lost_followers: Elvesztett követők
+    lost_follows: Elvesztett követések
+    preamble: Ha blokkolsz egy domaint, vagy ha a moderátorok úgy döntenek, hogy blokkolnak egy távoli kiszolgálót, akkor követőket és követéseket veszíthetsz. Amikor ez megtörténik, akkor letöltheted a megszakadt kapcsolatokat, hogy átvizsgáld őket, és esetleg egy másik kiszolgálón importáld őket.
+    purged: A kiszolgáló információit a kiszolgálód rendszergazdái véglegesen eltávolították.
+    type: Esemény
   statuses:
     attached:
       audio:

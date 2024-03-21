@@ -1659,10 +1659,22 @@ bg:
     preferences: Предпочитания
     profile: Профил
     relationships: Последвания и последователи
+    severed_relationships: Прекъснати връзки
     statuses_cleanup: Автоматично изтриване на публикации
     strikes: Модериране на предупреждения
     two_factor_authentication: Двустепенно удостоверяване
     webauthn_authentication: Ключове за сигурност
+  severed_relationships:
+    download: Изтегляне (%{count})
+    event_type:
+      account_suspension: Спиране на акаунта (%{target_name})
+      domain_block: Спиране на сървъра (%{target_name})
+      user_domain_block: Блокирахте %{target_name}
+    lost_followers: Загубени последователи
+    lost_follows: Загубени последвания
+    preamble: Може да загубите последванията и последователите, блокирайки домейн или когато модераторите ви решават да спрат отдалечен сървър. Случавайки се това, вие ще може да изтеглите списъците с прекъснати връзки, които да се проверят и възможно да се внесат на друг сървър.
+    purged: Сведенията за този сървър са били прочистени от администраторите на сървъра ви.
+    type: Събитие
   statuses:
     attached:
       audio:
