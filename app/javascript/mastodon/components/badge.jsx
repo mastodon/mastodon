@@ -7,8 +7,8 @@ import PersonIcon from '@/material-icons/400-24px/person.svg?react';
 import SmartToyIcon from '@/material-icons/400-24px/smart_toy.svg?react';
 
 
-export const Badge = ({ icon, label, domain }) => (
-  <div className='account-role'>
+export const Badge = ({ icon, label, domain, roleId }) => (
+  <div className='account-role' data-account-role-id={roleId}>
     {icon}
     {label}
     {domain && <span className='account-role__domain'>{domain}</span>}
@@ -19,6 +19,7 @@ Badge.propTypes = {
   icon: PropTypes.node,
   label: PropTypes.node,
   domain: PropTypes.node,
+  roleId: PropTypes.string
 };
 
 Badge.defaultProps = {
