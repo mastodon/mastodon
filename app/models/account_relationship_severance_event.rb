@@ -16,8 +16,9 @@ class AccountRelationshipSeveranceEvent < ApplicationRecord
   belongs_to :account
   belongs_to :relationship_severance_event
 
-  delegate :severed_relationships,
-           :type,
+  has_many :severed_relationships, through: :relationship_severance_event
+
+  delegate :type,
            :target_name,
            :purged,
            :purged?,
