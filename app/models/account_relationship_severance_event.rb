@@ -8,11 +8,16 @@
 #  id                              :bigint(8)        not null, primary key
 #  account_id                      :bigint(8)        not null
 #  relationship_severance_event_id :bigint(8)        not null
-#  relationships_count             :integer          default(0), not null
 #  created_at                      :datetime         not null
 #  updated_at                      :datetime         not null
+#  followers_count                 :integer          default(0), not null
+#  following_count                 :integer          default(0), not null
 #
 class AccountRelationshipSeveranceEvent < ApplicationRecord
+  self.ignored_columns += %w(
+    relationships_count
+  )
+
   belongs_to :account
   belongs_to :relationship_severance_event
 
@@ -29,6 +34,7 @@ class AccountRelationshipSeveranceEvent < ApplicationRecord
   private
 
   def set_relationships_count!
-    self.relationships_count = severed_relationships.about_local_account(account).count
+    self.followers_count = severed_relationships.about_local_account(account).passive.count
+    self.following_count = severed_relationships.about_local_account(account).active.count
   end
 end
