@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_21_160706) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_22_130318) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -93,9 +93,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_21_160706) do
   create_table "account_relationship_severance_events", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.bigint "relationship_severance_event_id", null: false
-    t.integer "relationships_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "followers_count", default: 0, null: false
+    t.integer "following_count", default: 0, null: false
     t.index ["account_id", "relationship_severance_event_id"], name: "idx_on_account_id_relationship_severance_event_id_7bd82bf20e", unique: true
     t.index ["account_id"], name: "index_account_relationship_severance_events_on_account_id"
     t.index ["relationship_severance_event_id"], name: "idx_on_relationship_severance_event_id_403f53e707"

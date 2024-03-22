@@ -35,7 +35,7 @@ const RelationshipsSeveranceEvent = ({ event, hidden }) => {
             <FormattedMessage
               id='relationship_severance_notification.relationships'
               defaultMessage='{count, plural, one {# relationship} other {# relationships}}'
-              values={{ count: event.get('relationships_count', 0) }}
+              values={{ count: event.get('followers_count', 0) + event.get('following_count', 0) }}
             />
           )}
           <br />
