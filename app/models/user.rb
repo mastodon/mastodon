@@ -14,7 +14,6 @@
 #  sign_in_count             :integer          default(0), not null
 #  current_sign_in_at        :datetime
 #  last_sign_in_at           :datetime
-#  admin                     :boolean          default(FALSE), not null
 #  confirmation_token        :string
 #  confirmed_at              :datetime
 #  confirmation_sent_at      :datetime
@@ -29,7 +28,6 @@
 #  otp_backup_codes          :string           is an Array
 #  account_id                :bigint(8)        not null
 #  disabled                  :boolean          default(FALSE), not null
-#  moderator                 :boolean          default(FALSE), not null
 #  invite_id                 :bigint(8)
 #  chosen_languages          :string           is an Array
 #  created_by_application_id :bigint(8)
