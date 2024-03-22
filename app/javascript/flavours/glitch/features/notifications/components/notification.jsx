@@ -11,7 +11,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
 
 import FlagIcon from '@/material-icons/400-24px/flag-fill.svg?react';
-import LinkOffIcon from '@/material-icons/400-24px/link_off.svg?react';
+import HeartBrokenIcon from '@/material-icons/400-24px/heart_broken-fill.svg?react';
 import PersonIcon from '@/material-icons/400-24px/person-fill.svg?react';
 import PersonAddIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
@@ -316,7 +316,7 @@ class Notification extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-severed-relationships focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.adminReport, { name: notification.getIn(['event', 'target_name']) }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='unlink' icon={LinkOffIcon} />
+            <Icon id='heart_broken' icon={HeartBrokenIcon} />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.severed_relationships' defaultMessage='Relationships with {name} severed' values={{ name: notification.getIn(['event', 'target_name']) }} />
