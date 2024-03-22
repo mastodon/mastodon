@@ -1659,10 +1659,22 @@ de:
     preferences: Einstellungen
     profile: Öffentliches Profil
     relationships: Follower und Folge ich
+    severed_relationships: Getrennte Beziehungen
     statuses_cleanup: Automatische Löschung
     strikes: Maßnahmen
     two_factor_authentication: Zwei-Faktor-Authentisierung (2FA)
     webauthn_authentication: Sicherheitsschlüssel
+  severed_relationships:
+    download: Herunterladen (%{count})
+    event_type:
+      account_suspension: Kontosperre (%{target_name})
+      domain_block: Serversperre (%{target_name})
+      user_domain_block: Du hast %{target_name} blockiert
+    lost_followers: Verlorene Follower
+    lost_follows: Konten entfolgt
+    preamble: Möglicherweise verlierst du Follower und entfolgst Konten, wenn du eine Domain blockierst oder Moderator*innen externe Server sperren. Sollte das der Fall sein, wirst du eine Liste mit den getrennten Beziehungen herunterladen können. Dadurch kannst du die Änderungen einsehen oder die Liste auf einen anderen Server importieren.
+    purged: Informationen über diesen Server wurden von deinen Server-Administrator*innen entfernt.
+    type: Ereignis
   statuses:
     attached:
       audio:

@@ -1659,10 +1659,22 @@ tr:
     preferences: Tercihler
     profile: Profil
     relationships: Takip edilenler ve takipçiler
+    severed_relationships: Kopmuş ilişkiler
     statuses_cleanup: Otomatik gönderi silme
     strikes: Moderasyon eylemleri
     two_factor_authentication: İki adımlı doğrulama
     webauthn_authentication: Güvenlik anahtarları
+  severed_relationships:
+    download: İndir (%{count})
+    event_type:
+      account_suspension: Hesap askıya alma (%{target_name})
+      domain_block: Sunucu askıya alma (%{target_name})
+      user_domain_block: 'Engellediniz: %{target_name}'
+    lost_followers: Kaybedilen takipçiler
+    lost_follows: Kaybedilen takipler
+    preamble: Bir alan adını engellediğinizde veya denetleyicileriniz uzak bir sunucuyu askıya almaya karar verdiğinde takipçilerinizi ve takiplerinizi kaybedebilirsiniz. Bu olduğunda, kopan ilişkilerin bir listesini, incelemek ve başka bir sunucuya aktarmak için indirebileceksiniz.
+    purged: Bu sunucu hakkındaki bilgiler, sunucunun yöneticileri tarafından temizlenmiş.
+    type: Olay
   statuses:
     attached:
       audio:
