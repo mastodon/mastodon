@@ -8183,11 +8183,6 @@ noscript {
   padding: 5px;
   padding-bottom: 0;
 
-  &:focus {
-    background: lighten($ui-base-color, 2%);
-    outline: 0;
-  }
-
   &__avatar {
     flex: 0 0 auto;
     padding: 10px;
@@ -8235,7 +8230,7 @@ noscript {
       flex-grow: 1;
 
       a {
-        color: $primary-text-color;
+        color: inherit;
         text-decoration: none;
 
         &:hover,
@@ -8252,19 +8247,7 @@ noscript {
   }
 
   &--unread {
-    background: lighten($ui-base-color, 2%);
-
-    &:focus {
-      background: lighten($ui-base-color, 4%);
-    }
-
-    .conversation__content__info {
-      font-weight: 700;
-    }
-
-    .conversation__content__relative-time {
-      color: $primary-text-color;
-    }
+    background: rgba($ui-highlight-color, 0.05);
   }
 }
 

@@ -49,7 +49,7 @@ const getAccounts = createSelector(
 
 const getStatus = makeGetStatus();
 
-export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) => {
+export const Conversation = ({ conversation, onMoveUp, onMoveDown }) => {
   const id = conversation.get('id');
   const unread = conversation.get('unread');
   const lastStatusId = conversation.get('last_status');
@@ -183,7 +183,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
 
   return (
     <HotKeys handlers={handlers}>
-      <div className={classNames('conversation focusable muted', { 'conversation--unread': unread })} tabIndex={0}>
+      <div className={classNames('conversation focusable', { 'conversation--unread': unread })} tabIndex={0}>
         <div className='conversation__avatar' onClick={handleClick} role='presentation'>
           <AvatarComposite accounts={accounts} size={48} />
         </div>
@@ -217,18 +217,15 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
           <div className='status__action-bar'>
             <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' iconComponent={ReplyIcon} onClick={handleReply} />
 
-            <div className='status__action-bar-dropdown'>
-              <DropdownMenuContainer
-                scrollKey={scrollKey}
-                status={lastStatus}
-                items={menu}
-                icon='ellipsis-h'
-                iconComponent={MoreHorizIcon}
-                size={18}
-                direction='right'
-                title={intl.formatMessage(messages.more)}
-              />
-            </div>
+            <DropdownMenuContainer
+              status={lastStatus}
+              items={menu}
+              icon='ellipsis-h'
+              iconComponent={MoreHorizIcon}
+              size={18}
+              direction='right'
+              title={intl.formatMessage(messages.more)}
+            />
           </div>
         </div>
       </div>
@@ -238,7 +235,6 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
 
 Conversation.propTypes = {
   conversation: ImmutablePropTypes.map.isRequired,
-  scrollKey: PropTypes.string,
   onMoveUp: PropTypes.func,
   onMoveDown: PropTypes.func,
 };
