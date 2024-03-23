@@ -38,7 +38,6 @@
  * @property {string} title
  * @property {boolean} show_trends
  * @property {boolean} trends_as_landing_page
- * @property {boolean} unfollow_modal
  * @property {boolean} use_blurhash
  * @property {boolean=} use_pending_items
  * @property {string} version
@@ -99,7 +98,6 @@ export const source_url = getMeta('source_url');
 export const timelinePreview = getMeta('timeline_preview');
 export const title = getMeta('title');
 export const trendsAsLanding = getMeta('trends_as_landing_page');
-export const unfollowModal = getMeta('unfollow_modal');
 export const useBlurhash = getMeta('use_blurhash');
 export const usePendingItems = getMeta('use_pending_items');
 export const version = getMeta('version');

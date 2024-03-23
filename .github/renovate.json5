@@ -125,6 +125,22 @@
       ],
       groupName: null, // We dont want them to belong to any group
     },
+    {
+      // Group all RuboCop packages with `rubocop` in the same PR
+      matchManagers: ['bundler'],
+      matchPackageNames: ['rubocop'],
+      matchPackagePrefixes: ['rubocop-'],
+      matchUpdateTypes: ['patch', 'minor'],
+      groupName: 'RuboCop (non-major)',
+    },
+    {
+      // Group all RSpec packages with `rspec` in the same PR
+      matchManagers: ['bundler'],
+      matchPackageNames: ['rspec'],
+      matchPackagePrefixes: ['rspec-'],
+      matchUpdateTypes: ['patch', 'minor'],
+      groupName: 'RSpec (non-major)',
+    },
     // Add labels depending on package manager
     { matchManagers: ['npm', 'nvm'], addLabels: ['javascript'] },
     { matchManagers: ['bundler', 'ruby-version'], addLabels: ['ruby'] },

@@ -1707,13 +1707,26 @@ he:
     import: יבוא
     import_and_export: יבוא ויצוא
     migrate: הגירת חשבון
+    notifications: התראות בדואל
     preferences: העדפות
     profile: פרופיל
     relationships: נעקבים ועוקבים
+    severed_relationships: קשרים שנותקו
     statuses_cleanup: מחיקת הודעות אוטומטית
     strikes: עבירות מנהלתיות
     two_factor_authentication: אימות דו-שלבי
     webauthn_authentication: מפתחות אבטחה
+  severed_relationships:
+    download: הורדה (%{count})
+    event_type:
+      account_suspension: השעיית חשבון (%{target_name})
+      domain_block: השעיית שרת (%{target_name})
+      user_domain_block: חסמת את %{target_name}
+    lost_followers: אובדן עוקבים
+    lost_follows: אובדן נעקבים
+    preamble: הנכם עשויים לאבד עוקבים ונעקבים כשתחסמו שרת או כשמנהליכם יחליטו להשעות שרת אחר. במקרה כזה, תוכלו להוריד רשימה של קשרי המעקב שנותקו, כדי לעבור עליהם ואם תרצו לייבא אותם לשרת אחר.
+    purged: מידע על שרת מרוחק זה נמחק על ידי מנהלי השרת שלך.
+    type: אירוע
   statuses:
     attached:
       audio:

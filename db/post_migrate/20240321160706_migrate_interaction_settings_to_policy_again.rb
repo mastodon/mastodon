@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MigrateInteractionSettingsToPolicy < ActiveRecord::Migration[7.1]
+class MigrateInteractionSettingsToPolicyAgain < ActiveRecord::Migration[7.1]
   disable_ddl_transaction!
 
   # Dummy classes, to make migration possible across version changes
@@ -23,7 +23,10 @@ class MigrateInteractionSettingsToPolicy < ActiveRecord::Migration[7.1]
 
       next if deserialized_settings.nil?
 
-      policy = user.account.notification_policy || user.account.build_notification_policy
+      # If the user has configured a notification policy, don't override it
+      next if user.account.notification_policy.present?
+
+      policy = user.account.build_notification_policy
       requires_new_policy = false
 
       if deserialized_settings['interactions.must_be_follower']
@@ -42,6 +45,8 @@ class MigrateInteractionSettingsToPolicy < ActiveRecord::Migration[7.1]
       end
 
       policy.save if requires_new_policy && policy.changed?
+    rescue ActiveRecord::RecordNotUnique
+      next
     end
   end
 

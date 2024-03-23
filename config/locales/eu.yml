@@ -1663,10 +1663,22 @@ eu:
     preferences: Hobespenak
     profile: Profila
     relationships: Jarraitutakoak eta jarraitzaileak
+    severed_relationships: Indartutako erlazioak
     statuses_cleanup: Bidalketak automatikoki ezabatzea
     strikes: Moderazio neurriak
     two_factor_authentication: Bi faktoreetako autentifikazioa
     webauthn_authentication: Segurtasun gakoak
+  severed_relationships:
+    download: Deskargatu (%{count})
+    event_type:
+      account_suspension: Kontua bertan behera uztea (%{target_name})
+      domain_block: Domeinua bertan behera uztea (%{target_name})
+      user_domain_block: "%{target_name} blokeatu duzu"
+    lost_followers: Galdutako jarraitzaileak
+    lost_follows: Jarraitzeari utzi diozun jendea
+    preamble: Jarraitzaileak gal ditzakezu, baita jendea jarraitzeari utzi domeinu bat blokeatzen duzunean edo moderatzaileek urruneko zerbitzari bat bertan behera uztea erabakitzen badute. Hau gertatzean, galdutako erlazioen zerrendak deskargatu ahalko dituzu, aztertzeko eta agian, beste zerbitzari batean inportatzeko.
+    purged: Zerbitzari honen informazioa kendu du zerbitzariko administratzaileak.
+    type: Gertaera
   statuses:
     attached:
       audio:

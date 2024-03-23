@@ -114,6 +114,7 @@ jobs:
           - '3.0'
           - '3.1'
           - '.ruby-version'
+          - '3.3'
     steps:
       - uses: actions/checkout@v4
 
@@ -189,6 +190,7 @@ jobs:
           - '3.0'
           - '3.1'
           - '.ruby-version'
+          - '3.3'
 
     steps:
       - uses: actions/checkout@v4
@@ -288,6 +290,7 @@ jobs:
           - '3.0'
           - '3.1'
           - '.ruby-version'
+          - '3.3'
         search-image:
           - docker.elastic.co/elasticsearch/elasticsearch:7.17.13
         include:

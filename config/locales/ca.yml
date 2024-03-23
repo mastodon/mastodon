@@ -1659,10 +1659,22 @@ ca:
     preferences: Preferències
     profile: Perfil
     relationships: Seguits i seguidors
+    severed_relationships: Relacions eliminades
     statuses_cleanup: Esborrat automàtic de tuts
     strikes: Accions de mediació
     two_factor_authentication: Autenticació de dos factors
     webauthn_authentication: Claus de seguretat
+  severed_relationships:
+    download: Baixa (%{count})
+    event_type:
+      account_suspension: Suspensió del compte (%{target_name})
+      domain_block: Suspensió del servidor (%{target_name})
+      user_domain_block: Heu blocat %{target_name}
+    lost_followers: Seguidors perduts
+    lost_follows: Seguiments perduts
+    preamble: Quan bloqueu un domini o els vostres moderadors decideixen suspendre un servidor remot, podeu perdre seguidors i seguiments. Si passa, podeu baixar la llista de relacions trencades per a revisar-la i, de cas, importar-la a un altre servidor.
+    purged: Els administradors del vostre servidor han purgat la informació relativa a aquest servidor.
+    type: Esdeveniment
   statuses:
     attached:
       audio:

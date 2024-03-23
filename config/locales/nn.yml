@@ -58,7 +58,7 @@ nn:
       demote: Degrader
       destroyed_msg: "%{username} sine data er no i slettekøa"
       disable: Slå av
-      disable_sign_in_token_auth: Slå av e-post token autentisering
+      disable_sign_in_token_auth: Slå av innlogging med epost-nykel
       disable_two_factor_authentication: Slå av 2FA
       disabled: Slege av
       display_name: Synleg namn
@@ -67,7 +67,7 @@ nn:
       email: E-post
       email_status: E-poststatus
       enable: Slå på
-      enable_sign_in_token_auth: Slå på e-post token autentisering
+      enable_sign_in_token_auth: Slå på innlogging med epost-nykel
       enabled: Aktivert
       enabled_msg: Gjenaktiverte %{username} sin konto
       followers: Fylgjarar
@@ -158,9 +158,9 @@ nn:
       unblocked_email_msg: Avblokkerte %{username} si e-postadresse
       unconfirmed_email: E-post utan stadfesting
       undo_sensitized: Angr tving ømtolig
-      undo_silenced: Angr målbinding
+      undo_silenced: Angre avgrensinga
       undo_suspension: Angr utvising
-      unsilenced_msg: Opphevde vellykket begrensningen av %{username} sin konto
+      unsilenced_msg: Oppheva avgrensinga av %{username} sin konto
       unsubscribe: Avmeld
       unsuspended_msg: Oppheving av utvisinga av %{username} sin konto var vellykka
       username: Brukarnamn
@@ -200,10 +200,10 @@ nn:
         destroy_user_role: Øydelegg rolle
         disable_2fa_user: Skruv av 2FA
         disable_custom_emoji: Skruv av tilpassa emoji
-        disable_sign_in_token_auth_user: Slå av e-post tokenautentisering for brukar
+        disable_sign_in_token_auth_user: Slå av innlogging med epost-nykel for brukaren
         disable_user: Skruv av brukar
         enable_custom_emoji: Skruv på tilpassa emoji
-        enable_sign_in_token_auth_user: Slå på e-post tokenautentisering for brukar
+        enable_sign_in_token_auth_user: Slå på innlogging med epost-nykel for brukaren
         enable_user: Skruv på brukar
         memorialize_account: Opprett minnekonto
         promote_user: Forfrem brukar
@@ -259,10 +259,10 @@ nn:
         destroy_user_role_html: "%{name} sletta rolla %{target}"
         disable_2fa_user_html: "%{name} tok vekk krav om tofaktorautentisering for brukaren %{target}"
         disable_custom_emoji_html: "%{name} deaktiverte emojien %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} deaktivert e-post token for godkjenning for %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} skrudde av innlogging med epost-nykel for %{target}"
         disable_user_html: "%{name} slo av innlogging for brukaren %{target}"
         enable_custom_emoji_html: "%{name} aktiverte emojien %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} aktiverte e-post token autentisering for %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} skrudde på innlogging med epost-nykel for %{target}"
         enable_user_html: "%{name} aktiverte innlogging for brukaren %{target}"
         memorialize_account_html: "%{name} endret %{target}s konto til en minneside"
         promote_user_html: "%{name} fremja brukaren %{target}"
@@ -274,7 +274,7 @@ nn:
         reset_password_user_html: "%{name} tilbakestilte passordet for brukaren %{target}"
         resolve_report_html: "%{name} løyste ein rapport %{target}"
         sensitive_account_html: "%{name} markerte %{target} sitt media som ømtolig"
-        silence_account_html: "%{name} begrensa %{target} sin konto"
+        silence_account_html: "%{name} avgrensa %{target} sin konto"
         suspend_account_html: "%{name} utviste %{target} sin konto"
         unassigned_report_html: "%{name} løyste ein rapport %{target}"
         unblock_email_account_html: "%{name} avblokkerte %{target} si e-postadresse"
@@ -391,32 +391,32 @@ nn:
         remove_all_data: Dette vil fjerna alt innhald, media og profildata for kontoar som tilhøyrer dette domenet frå din tenar.
         stop_communication: Tenaren din vil slutta å kommunisera med desse tenarane.
         title: Stadfest domeneblokkering for %{domain}
-        undo_relationships: Dette vil oppheve alle følgar-relasjonar mellom kontoane dine og kontoar på desse tenerane.
+        undo_relationships: Dette vil oppheve alle fylgjar-relasjonar mellom kontoane dine og kontoar på desse tenerane.
       created_msg: Domeneblokkering blir nå behandlet
       destroyed_msg: Domeneblokkering har nå blitt angret
       domain: Domene
       edit: Rediger domeneblokkering
-      existing_domain_block: Du har allerede pålagt strengere begrensninger på %{name}.
-      existing_domain_block_html: Du har allerede pålagt strengere begrensninger på %{name}, du kan være nødt til <a href="%{unblock_url}">oppheve blokkeringen av den</a> først.
+      existing_domain_block: Du har allereie gjort strengare avgrensingar av %{name}.
+      existing_domain_block_html: Du har allereie avgrensa kontoen til %{name} kraftig, det kan henda du må <a href="%{unblock_url}">oppheva blokkeringa</a> fyrst.
       export: Eksporter
       import: Importer
       new:
         create: Lag blokkering
         hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder på de kontoene.
         severity:
-          desc_html: "<strong>Målbind</strong> gjer kontoen sine postear usynlege for alle som ikkje følger den. <strong>Utvis</strong> fjernar alt innhald, media og profildata frå kontoen. Bruk <strong>Ingen</strong> viss du berre vil fjerne mediafiler."
+          desc_html: "<strong>Avgrens</strong> gjer innlegg frå kontoar på dette domenet usynlege for alle som ikkje fylgjer dei. <strong>Utvis</strong> fjernar alt innhald, media og profildata frå kontoar på dette domenet frå tenaren din. Bruk <strong>Ingen</strong> viss du berre vil avvisa mediafiler."
           noop: Ingen
-          silence: Målbind
+          silence: Avgrens
           suspend: Utvis
         title: Ny domeneblokkering
       no_domain_block_selected: Ingen domeneblokkeringar vart endra sidan ingen var valde
       not_permitted: Du har ikkje løyve til å utføra denne handlinga
       obfuscate: Obfuskere domenenavn
-      obfuscate_hint: Skjul deler av domenenavnet i listen hvis annonsering av listen over domenebegrensninger er slått på
+      obfuscate_hint: Gøym delar av domenenamnet i lista viss kunngjering av lista over domeneavgrensingar er påskrudd
       private_comment: Privat kommentar
-      private_comment_hint: Kommenter angående denne domenebegrensningen for internt bruk av moderatorene.
+      private_comment_hint: Kommentar om denne domeneavgrensinga til intern bruk for administratorane.
       public_comment: Offentleg kommentar
-      public_comment_hint: Kommenter angående denne domenebegrensningen for offentligheten, hvis publisering av domenebegrensningslisten er slått på.
+      public_comment_hint: Kommentar om denne domeneavgrensinga for publikum, viss kunngjering av lista over avgrensa domene er påskrudd.
       reject_media: Avvis mediefiler
       reject_media_hint: Fjernar mediefiler som er lagra lokalt og nektar å lasta ned andre i framtida. Har ikkje noko å seia for utvisingar
       reject_reports: Avvis rapportar
@@ -480,7 +480,7 @@ nn:
         title: Tilgjenge
         warning: Det siste forsøket på å koble til denne serveren lyktes ikke
       back_to_all: Alle
-      back_to_limited: Begrenset
+      back_to_limited: Avgrensa
       back_to_warning: Advarsel
       by_domain: Domene
       confirm_purge: Er du sikker på at du vil slette data permanent fra dette domenet?
@@ -491,7 +491,7 @@ nn:
         policies:
           reject_media: Avvis media
           reject_reports: Avvis rapporter
-          silence: Begrens
+          silence: Avgrens
           suspend: Utvis
         policy: Vilkår
         reason: Offentlig årsak
@@ -499,8 +499,8 @@ nn:
       dashboard:
         instance_accounts_dimension: Mest fylgde kontoar
         instance_accounts_measure: lagrede kontoer
-        instance_followers_measure: våre følgere der
-        instance_follows_measure: deres følgere her
+        instance_followers_measure: fylgjarane våre der
+        instance_follows_measure: fylgjarane deira her
         instance_languages_dimension: Mest brukte språk
         instance_media_attachments_measure: lagrede mediavedlegg
         instance_reports_measure: rapporter om dem
@@ -651,7 +651,7 @@ nn:
         actions:
           delete_html: Fjerna dei påtala innlegga
           mark_as_sensitive_html: Markera dei påtala mediefilene som sensitive
-          silence_html: Sterkt avgrensa korleis <strong>@%{acct}</strong> kan samhandla ved å gjera brukarprofilen og innhaldet synleg berre for folk som allereie fylgjer brukarkontoen eller søkjer han opp manuelt
+          silence_html: Avgrens kraftig korleis <strong>@%{acct}</strong> kan samhandla med andre ved å gjera brukarprofilen og innhaldet synleg berre for folk som allereie fylgjer brukarkontoen eller søkjer opp profilen manuelt
           suspend_html: Stengja brukarkontoen til <strong>@%{acct}</strong>, slik at brukarprofilen og innhaldet blir utilgjengeleg og umogleg å samhandla med
         close_report: Marker rapport nr. %{id} som løyst
         close_reports_html: Marker <strong>alle</strong> rapportane om <strong>@%{acct}</strong> som løyste
@@ -832,9 +832,9 @@ nn:
         mark_statuses_as_sensitive: "%{name} markerte %{target} sine innlegg som ømtålige"
         none: "%{name} sendte en advarsel til %{target}"
         sensitive: "%{name} markerte %{target} sin konto som ømtolig"
-        silence: "%{name} begrenset %{target}s konto"
+        silence: "%{name} avgrensa kontoen til %{target}"
         suspend: "%{name} utviste %{target} sin konto"
-      appeal_approved: Klage tatt til følge
+      appeal_approved: Anka
       appeal_pending: Klage behandles
       appeal_rejected: Anken er avvist
     system_checks:
@@ -981,7 +981,7 @@ nn:
         mark_statuses_as_sensitive: å merke innleggene sine som følsomme
         none: en advarsel
         sensitive: å merke kontoen sin som følsom
-        silence: for å begrense deres konto
+        silence: for å avgrensa kontoen deira
         suspend: for å stenga kontoen deira
       body: "%{target} ankar på ei modereringsavgjerd av %{action_taken_by} den %{date}, som var %{type}. Dei skreiv:"
       next_steps: Du kan godkjenna anken for å endra modereringsavgjerda, eller du kan oversjå anken.
@@ -1013,7 +1013,7 @@ nn:
     created_msg: Laga eit nytt kallenamn. No kan du setja i gang med flyttinga frå den gamle kontoen.
     deleted_msg: Fjerna kallenamnet. No vert det ikkje lenger mogeleg å flytta frå den andre kontoen til denne.
     empty: Du har inkje alias.
-    hint_html: Dersom du vil flytte fra en annen konto til den, kan du lage et alias her, som er påkrevd før du kan gå videre med å flytte følgere fra den gamle kontoen til den nye. Handlingen i seg selv er <strong>harmløs og reversibel</strong>. <strong>Kontoflyttingen har blitt satt i gang fra den gamle kontoen</strong>.
+    hint_html: Viss du vil flytta frå ein annan konto til denne, kan du laga eit alias her. Det treng du før du kan halda fram med å flytta fylgjarar frå den gamle kontoen til dnene. Denne handlinga er i seg sjølv <strong>harmlaus og kan angrast</strong>. <strong>Du har starta overføringa frå den gamle kontoen</strong>.
     remove: Fjern aliaslenking
   appearance:
     advanced_web_interface: Avansert nettgrensesnitt
@@ -1067,7 +1067,7 @@ nn:
     didnt_get_confirmation: Fekk du ikkje stadfestingslenka?
     dont_have_your_security_key: Har du ikke sikkerhetsnøkkelen din?
     forgot_password: Har du gløymt passordet ditt?
-    invalid_reset_password_token: Tilgangsnykelen er ugyldig eller utgått. Ver venleg å beda om ein ny ein.
+    invalid_reset_password_token: Tilgangsnykelen er ugyldig eller utgått. Ver venleg å be om ein ny ein.
     link_to_otp: Skriv inn en 2-trinnskode fra din 2-trinnspåloggingsenhet eller en gjenopprettingskode
     link_to_webauth: Bruk sikkerhetsnøkkel-enheten din
     log_in_with: Logg inn med
@@ -1110,7 +1110,7 @@ nn:
       title: Logg inn på %{domain}
     sign_up:
       manual_review: Når du lagar ein konto på %{domain}, vil moderatorane våre gå gjennom påmeldinga di manuelt. For å hjelpa oss med påmeldinga di, er det fint om du skriv litt om deg sjølv og kvifor du vil ha ein konto på %{domain}.
-      preamble: Med en konto på denne Mastodon-tjeneren vil du kunne følge andre personer på nettverket, uansett hvor kontoen deres holder til.
+      preamble: Med ein konto på denne Mastodon-tenaren kan du fylgja andre folk på nettverket, uansett kvar dei har brukarkontoen sin.
       title: La oss få deg satt i gang på %{domain}.
     status:
       account_status: Kontostatus
@@ -1170,7 +1170,7 @@ nn:
     strikes:
       action_taken: Handling utført
       appeal: Klage
-      appeal_approved: Denne advarselens klage ble tatt til følge og er ikke lenger gyldig
+      appeal_approved: Denne handlinga er anka og er ikkje lenger gyldig
       appeal_rejected: Klagen ble avvist
       appeal_submitted_at: Klage levert
       appealed_msg: Din klage har blitt levert. Du får beskjed om den blir godkjent.
@@ -1191,7 +1191,7 @@ nn:
         mark_statuses_as_sensitive: Markering av innlegg som ømtolige
         none: Advarsel
         sensitive: Markering av konto som ømtolig
-        silence: Begrensning av konto
+        silence: Avgrensing av konto
         suspend: Utestenging av konto
       your_appeal_approved: Din klage har blitt godkjent
       your_appeal_pending: Du har levert en klage
@@ -1424,7 +1424,7 @@ nn:
   migrations:
     acct: Flytta til
     cancel: Avbryt omdirigeringen
-    cancel_explanation: Å avbryte omdirigeringen vil reaktivere din nåværende konto, men vil ikke bringe tilbake følgere som har blitt flyttet til den kontoen.
+    cancel_explanation: Viss du avbryt omdirigeringa, vil det ta i bruk at den noverande kontoen din, men det vil ikkje få tilbake fylgjarar som er flytte til den andre kontoen.
     cancelled_msg: Avbrøt omdirigeringen med suksess.
     errors:
       already_moved: er den same kontoen som du allereie har flytta til
@@ -1435,7 +1435,7 @@ nn:
     followers_count: Fylgjarar då kontoen vart flytta
     incoming_migrations: Flyttar frå ein annan konto
     incoming_migrations_html: For å flytta frå ein annnan konto til denne må du fyrst <a href="%{path}">laga eit kallenamn til kontoen</a>.
-    moved_msg: Kontoen din omdirigeres nå til %{acct}, og følgerne dine blir flyttet over.
+    moved_msg: Kontoen din vidaresender no til %{acct}, og fylgjarane dine blir flytte over dit.
     not_redirecting: Kontoen din omdirigeres ikke til noen andre kontoer for øyeblikket.
     on_cooldown: Du har nylig overført kontoen din. Denne funksjonen blir tilgjengelig igjen om %{count} dager.
     past_migrations: Tidlegare vandringar
@@ -1448,7 +1448,7 @@ nn:
       before: 'Før du fortsetter, vennligst les disse notisene nøye:'
       cooldown: Etter flytting er det en nedkjølingsperiode der du ikke vil kunne flytte igjen
       disabled_account: Din nåværende konto vil ikke være fullt brukbar etterpå. Men du vil ha tilgang til dataeksportering såvel som reaktivering.
-      followers: Denne handlingen vil flytte alle følgere fra den nåværende kontoen til den nye kontoen
+      followers: Denne handlinga flyttar alle fylgjarar frå denne kontoen til den nye
       only_redirect_html: Alternativt kan du velge å <a href="%{path}">bare legge ut en omdirigering på profilen din</a>.
       other_data: Inkje anna data flyttast av seg sjølve
       redirect: Profilen til din nåværende konto vil bli oppdatert med en omdirigeringsnotis og bli fjernet fra søk
@@ -1510,9 +1510,9 @@ nn:
           trillion: Bil
   otp_authentication:
     code_hint: Skriv inn koden generert av autentiseringsappen din for å bekrefte
-    description_html: Hvis du skrur på <strong>2-trinnsautentisering</strong> ved hjelp av en autentiseringsapp, vil pålogging kreve at du er i besittelse av autentiseringsenheten din, som genererer sjetonger som du skal skrive inn.
+    description_html: Viss du skrur på <strong>tofaktorinnlogging</strong> med ein innloggingsapp, må du ha telefonen din klar når du loggar inn. Telefonen lagar innloggingsnyklar du må skriva inn.
     enable: Aktiver
-    instructions_html: "<strong>Skann denne QR-koden i Authy, Google Autentisering, eller en lignende TOTP-app på en av dine enheter</strong>. Fra nå av, vil den appen generere sjetonger som du vil måtte skrive inn når du logger på."
+    instructions_html: "<strong>Skann denne QR-koden i Google authenticator eller annan tofaktor-app på telefonen din</strong>. Frå no vil den appen laga tilgangsnyklar som du skriv inn når du vil logga inn."
     manual_instructions: 'Hvis du ikke kan skanne QR-koden og må skrive den inn manuelt, her er tekstkoden i ren tekst:'
     setup: Sett opp
     wrong_code: Den innskrevne koden var ugyldig! Er tjenertiden og enhetstiden riktige?
@@ -1564,7 +1564,7 @@ nn:
     dormant: I dvale
     follow_failure: Greidde ikkje fylgja alle kontoane du valde.
     follow_selected_followers: Følg valgte tilhengere
-    followers: Følgere
+    followers: Fylgjarar
     following: Følginger
     invited: Innboden
     last_active: Sist aktiv
@@ -1659,10 +1659,22 @@ nn:
     preferences: Innstillingar
     profile: Profil
     relationships: Fylgjar og fylgjarar
+    severed_relationships: Brotne forhold
     statuses_cleanup: Automatisert sletting av innlegg
     strikes: Modereringsadvarsler
     two_factor_authentication: Tostegsautorisering
     webauthn_authentication: Sikkerhetsnøkler
+  severed_relationships:
+    download: Last ned (%{count})
+    event_type:
+      account_suspension: Utestenging av konto (%{target_name})
+      domain_block: Tenarutestenging (%{target_name})
+      user_domain_block: Du blokkerte %{target_name}
+    lost_followers: Mista fylgjarar
+    lost_follows: Mista fylgjer
+    preamble: Du kan mista fylgjarar og folk du fylgjer når du blokkerer eit domene eller når moderatorar avgjer å utestenga ein annan tenar. Når det skjer, vil du kunne lasta ned ei liste over brotne forhold, slik at du kan sjå gjennom ho og kanskje importera ho på ein annan tenar.
+    purged: Informasjonen om denne tenaren er sletta av administratorane på tenaren din.
+    type: Hending
   statuses:
     attached:
       audio:
