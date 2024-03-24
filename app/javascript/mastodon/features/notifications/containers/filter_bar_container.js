@@ -5,7 +5,7 @@ import FilterBar from '../components/filter_bar';
 
 const makeMapStateToProps = state => ({
   selectedFilter: state.getIn(['settings', 'notifications', 'quickFilter', 'active']),
-  advancedMode: false,
+  advancedMode: state.getIn(['settings', 'notifications', 'quickFilter', 'advanced']),
 });
 
 const mapDispatchToProps = (dispatch) => ({
