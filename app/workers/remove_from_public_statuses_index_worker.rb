@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class RemoveFromPublicStatusesIndexWorker
-  include Sidekiq::Worker
-
+class RemoveFromPublicStatusesIndexWorker < ApplicationWorker
   def perform(account_id)
     account = Account.find(account_id)
 

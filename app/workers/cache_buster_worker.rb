@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class CacheBusterWorker
-  include Sidekiq::Worker
+class CacheBusterWorker < ApplicationWorker
   include RoutingHelper
 
   sidekiq_options queue: 'pull'

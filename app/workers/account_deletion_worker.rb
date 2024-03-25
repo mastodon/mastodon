@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class AccountDeletionWorker
-  include Sidekiq::Worker
-
+class AccountDeletionWorker < ApplicationWorker
   sidekiq_options queue: 'pull', lock: :until_executed, lock_ttl: 1.week.to_i
 
   def perform(account_id, options = {})

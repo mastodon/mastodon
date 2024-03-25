@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::ProcessingWorker
-  include Sidekiq::Worker
-
+class ActivityPub::ProcessingWorker < ApplicationWorker
   sidekiq_options queue: 'ingress', backtrace: true, retry: 8
 
   def perform(actor_id, body, delivered_to_account_id = nil, actor_type = 'Account')

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Scheduler::ScheduledStatusesScheduler
-  include Sidekiq::Worker
-
+class Scheduler::ScheduledStatusesScheduler < ApplicationWorker
   sidekiq_options retry: 0, lock: :until_executed, lock_ttl: 1.hour.to_i
 
   def perform

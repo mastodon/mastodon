@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class RedownloadMediaWorker
-  include Sidekiq::Worker
+class RedownloadMediaWorker < ApplicationWorker
   include ExponentialBackoff
   include JsonLdHelper
 

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class RefollowWorker
-  include Sidekiq::Worker
-
+class RefollowWorker < ApplicationWorker
   sidekiq_options queue: 'pull', retry: false
 
   def perform(target_account_id)

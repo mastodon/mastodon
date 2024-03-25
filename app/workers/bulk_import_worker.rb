@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class BulkImportWorker
-  include Sidekiq::Worker
-
+class BulkImportWorker < ApplicationWorker
   sidekiq_options queue: 'pull', retry: false
 
   def perform(import_id)

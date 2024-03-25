@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::RawDistributionWorker
-  include Sidekiq::Worker
+class ActivityPub::RawDistributionWorker < ApplicationWorker
   include Payloadable
 
   sidekiq_options queue: 'push'
