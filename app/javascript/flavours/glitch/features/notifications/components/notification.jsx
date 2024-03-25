@@ -11,7 +11,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
 
 import FlagIcon from '@/material-icons/400-24px/flag-fill.svg?react';
-import HeartBrokenIcon from '@/material-icons/400-24px/heart_broken-fill.svg?react';
 import PersonIcon from '@/material-icons/400-24px/person-fill.svg?react';
 import PersonAddIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
@@ -23,13 +22,14 @@ import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 import FollowRequestContainer from '../containers/follow_request_container';
 import NotificationOverlayContainer from '../containers/overlay_container';
 
-import RelationshipsSeveranceEvent from './relationships_severance_event';
+import { RelationshipsSeveranceEvent } from './relationships_severance_event';
 import Report from './report';
 
 const messages = defineMessages({
   follow: { id: 'notification.follow', defaultMessage: '{name} followed you' },
   adminSignUp: { id: 'notification.admin.sign_up', defaultMessage: '{name} signed up' },
   adminReport: { id: 'notification.admin.report', defaultMessage: '{name} reported {target}' },
+  relationshipsSevered: { id: 'notification.relationships_severance_event', defaultMessage: 'Lost connections with {name}' },
 });
 
 const notificationForScreenReader = (intl, message, timestamp) => {
@@ -306,24 +306,23 @@ class Notification extends ImmutablePureComponent {
   }
 
   renderRelationshipsSevered (notification) {
-    const { intl, unread } = this.props;
+    const { intl, unread, hidden } = this.props;
+    const event = notification.get('event');
 
-    if (!notification.get('event')) {
+    if (!event) {
       return null;
     }
 
     return (
       <HotKeys handlers={this.getHandlers()}>
-        <div className={classNames('notification notification-severed-relationships focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.adminReport, { name: notification.getIn(['event', 'target_name']) }), notification.get('created_at'))}>
-          <div className='notification__message'>
-            <Icon id='heart_broken' icon={HeartBrokenIcon} />
-
-            <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.severed_relationships' defaultMessage='Relationships with {name} severed' values={{ name: notification.getIn(['event', 'target_name']) }} />
-            </span>
-          </div>
-
-          <RelationshipsSeveranceEvent event={notification.get('event')} />
+        <div className={classNames('notification notification-severed-relationships focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.relationshipsSevered, { name: notification.getIn(['event', 'target_name']) }), notification.get('created_at'))}>
+          <RelationshipsSeveranceEvent
+            type={event.get('type')}
+            target={event.get('target_name')}
+            followersCount={event.get('followers_count')}
+            followingCount={event.get('following_count')}
+            hidden={hidden}
+          />
         </div>
       </HotKeys>
     );

@@ -2379,6 +2379,44 @@ a.account__display-name {
   }
 }
 
+.notification__relationships-severance-event {
+  display: flex;
+  gap: 16px;
+  color: $secondary-text-color;
+  text-decoration: none;
+  align-items: flex-start;
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--background-border-color);
+
+  &:hover {
+    color: $primary-text-color;
+  }
+
+  .icon {
+    padding: 2px;
+    color: $highlight-text-color;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    flex-grow: 1;
+    font-size: 16px;
+    line-height: 24px;
+
+    strong {
+      font-weight: 700;
+    }
+
+    .link-button {
+      font-size: inherit;
+      line-height: inherit;
+    }
+  }
+}
+
 .notification__message {
   padding: 8px 14px; // glitch: reduced padding
   padding-bottom: 0;
