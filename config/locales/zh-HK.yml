@@ -1626,13 +1626,26 @@ zh-HK:
     import: 匯入
     import_and_export: 匯入及匯出
     migrate: 帳戶遷移
+    notifications: 電郵通知
     preferences: 偏好設定
     profile: 個人資料
     relationships: 關注及追隨者
+    severed_relationships: 已切斷關係
     statuses_cleanup: 自動嘟文刪除
     strikes: 審核警告
     two_factor_authentication: 雙重認證
     webauthn_authentication: 安全鑰匙
+  severed_relationships:
+    download: 下載 (%{count})
+    event_type:
+      account_suspension: 停權帳號 (%{target_name})
+      domain_block: 停權伺服器 (%{target_name})
+      user_domain_block: 你封鎖了 %{target_name}
+    lost_followers: 已流失追蹤者
+    lost_follows: 已流失追蹤
+    preamble: 當你封鎖網域或你的管理員決定暫停遠端伺服器，可能會令你失去追蹤中的對象和追蹤者。屆時你可以下載紀錄了被切斷關係的對象的清單進行檢查，或將其匯入到另一台伺服器上。
+    purged: 有關此伺服器的資訊已被你伺服器的管理員清除。
+    type: 事件
   statuses:
     attached:
       audio:

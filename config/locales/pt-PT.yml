@@ -1659,10 +1659,22 @@ pt-PT:
     preferences: Preferências
     profile: Perfil
     relationships: Seguindo e seguidores
+    severed_relationships: Relações cessadas
     statuses_cleanup: Remoção automática da publicação
     strikes: Punições de moderação
     two_factor_authentication: Autenticação em duas etapas
     webauthn_authentication: Chaves de segurança
+  severed_relationships:
+    download: Transferir (%{count})
+    event_type:
+      account_suspension: Suspensão de conta (%{target_name})
+      domain_block: Suspensão de servidor (%{target_name})
+      user_domain_block: Bloqueou %{target_name}
+    lost_followers: Seguidores perdidos
+    lost_follows: Pessoas que segue perdidas
+    preamble: Pode perder seguidores e pessoas que segue quando bloqueia um domínio ou quando os seus moderadores decidem suspender um servidor remoto. Quando isso acontecer, poderá descarregar listas de relações cessadas, para serem inspeccionadas e possivelmente importadas para outro servidor.
+    purged: Informações sobre este servidor foram purgadas pelos administradores do seu servidor.
+    type: Evento
   statuses:
     attached:
       audio:
