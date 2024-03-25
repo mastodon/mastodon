@@ -3,9 +3,7 @@
 # NOTE: This is a deprecated worker, only kept to not break ongoing imports
 # on upgrade. See `Import::RowWorker` for its replacement.
 
-class Import::RelationshipWorker
-  include Sidekiq::Worker
-
+class Import::RelationshipWorker < ApplicationWorker
   sidekiq_options queue: 'pull', retry: 8, dead: false
 
   def perform(account_id, target_account_uri, relationship, options)

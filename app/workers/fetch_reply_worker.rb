@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class FetchReplyWorker
-  include Sidekiq::Worker
+class FetchReplyWorker < ApplicationWorker
   include ExponentialBackoff
 
   sidekiq_options queue: 'pull', retry: 3

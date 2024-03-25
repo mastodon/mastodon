@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class PushUpdateWorker
-  include Sidekiq::Worker
+class PushUpdateWorker < ApplicationWorker
   include Redisable
 
   def perform(account_id, status_id, timeline_id = nil, options = {})

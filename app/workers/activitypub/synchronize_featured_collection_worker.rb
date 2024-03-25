@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::SynchronizeFeaturedCollectionWorker
-  include Sidekiq::Worker
-
+class ActivityPub::SynchronizeFeaturedCollectionWorker < ApplicationWorker
   sidekiq_options queue: 'pull', lock: :until_executed, lock_ttl: 1.day.to_i
 
   def perform(account_id, options = {})

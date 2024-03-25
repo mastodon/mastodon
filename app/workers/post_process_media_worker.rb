@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class PostProcessMediaWorker
-  include Sidekiq::Worker
-
+class PostProcessMediaWorker < ApplicationWorker
   sidekiq_options retry: 1, dead: false
 
   sidekiq_retries_exhausted do |msg|

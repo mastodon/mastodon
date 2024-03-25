@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class ThreadResolveWorker
-  include Sidekiq::Worker
+class ThreadResolveWorker < ApplicationWorker
   include ExponentialBackoff
 
   sidekiq_options queue: 'pull', retry: 3

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class FeedInsertWorker
-  include Sidekiq::Worker
+class FeedInsertWorker < ApplicationWorker
   include DatabaseHelper
 
   def perform(status_id, id, type = 'home', options = {})
