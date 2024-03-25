@@ -67,17 +67,33 @@ RSpec.describe Form::Import do
       end
     end
 
-    context 'when importing more follows than allowed' do
+    context 'when the combination of existing follows and imported follows goes above the limit' do
       let(:import_type) { 'following' }
       let(:import_file) { 'imports.txt' }
 
       before do
-        allow(FollowLimitValidator).to receive(:limit_for_account).with(account).and_return(1)
+        account.follow!(Fabricate(:account))
+        allow(FollowLimitValidator).to receive(:limit_for_account).with(account).and_return(2)
       end
 
       it 'has errors' do
         subject.validate
-        expect(subject.errors[:data]).to include(I18n.t('users.follow_limit_reached', limit: 1))
+        expect(subject.errors[:data]).to include(I18n.t('users.follow_limit_reached', limit: 2))
+      end
+    end
+
+    context 'when the combination of existing follows and imported follows falls within the limit' do
+      let(:import_type) { 'following' }
+      let(:import_file) { 'imports.txt' }
+
+      before do
+        account.follow!(Fabricate(:account, username: 'user', domain: 'example.com'))
+        allow(FollowLimitValidator).to receive(:limit_for_account).with(account).and_return(2)
+      end
+
+      it 'is valid' do
+        subject.validate
+        expect(subject).to be_valid
       end
     end
 
