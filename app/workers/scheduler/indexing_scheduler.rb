@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class Scheduler::IndexingScheduler
-  include Sidekiq::Worker
+class Scheduler::IndexingScheduler < ApplicationWorker
   include Redisable
   include DatabaseHelper
 

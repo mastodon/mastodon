@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class PollExpirationNotifyWorker
-  include Sidekiq::Worker
-
+class PollExpirationNotifyWorker < ApplicationWorker
   sidekiq_options lock: :until_executing
 
   def perform(poll_id)

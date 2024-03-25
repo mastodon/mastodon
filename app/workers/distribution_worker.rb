@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class DistributionWorker
-  include Sidekiq::Worker
+class DistributionWorker < ApplicationWorker
   include Redisable
   include Lockable
 

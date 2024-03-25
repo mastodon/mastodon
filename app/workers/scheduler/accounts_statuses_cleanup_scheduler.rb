@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class Scheduler::AccountsStatusesCleanupScheduler
-  include Sidekiq::Worker
+class Scheduler::AccountsStatusesCleanupScheduler < ApplicationWorker
   include Redisable
 
   # This limit is mostly to be nice to the fediverse at large and not
