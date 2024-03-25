@@ -27,11 +27,7 @@
     %title= html_title
 
     = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
-    - if current_theme == 'system'
-      = stylesheet_pack_tag 'mastodon-light', media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous'
-      = stylesheet_pack_tag 'default', media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous'
-    - else
-      = stylesheet_pack_tag current_theme, media: 'all', crossorigin: 'anonymous'
+    = render('shared/theme_style_tags')
     -# Needed for the wicg-inert polyfill. It needs to be on it's own <style> tag, with this `id`
     = stylesheet_pack_tag 'inert', media: 'all', id: 'inert-style'
 

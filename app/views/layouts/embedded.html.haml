@@ -12,8 +12,7 @@
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
     = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
-    = stylesheet_pack_tag 'mastodon-light', media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous'
-    = stylesheet_pack_tag 'default', media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous'
+    = render('shared/theme_style_tags')
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
     = preload_pack_asset "locale/#{I18n.locale}-json.js"
     = render_initial_state

@@ -160,6 +160,10 @@ class ApplicationController < ActionController::Base
     return Setting.theme unless Themes.instance.names.include? current_user&.setting_theme
 
     current_user.setting_theme
+  rescue Devise::MissingWarden
+    # This happens when `current_theme` is called outside of a running web server
+    # For example, during assets precompilation when generating the static HTML files
+    Setting.theme
   end
 
   def body_class_string
