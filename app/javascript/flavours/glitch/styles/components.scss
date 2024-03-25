@@ -10322,18 +10322,24 @@ noscript {
   margin-top: 16px;
   display: flex;
   flex-wrap: wrap;
-  font-size: 14px;
-  line-height: 18px;
-  gap: 4px;
+  font-size: 12px;
+  line-height: 16px;
+  gap: 6px;
   color: $darker-text-color;
 
   a {
     display: inline-flex;
     color: inherit;
     text-decoration: none;
+    padding: 4px 12px;
+    background: $ui-base-color;
+    border-radius: 4px;
+    font-weight: 500;
 
-    &:hover span {
-      text-decoration: underline;
+    &:hover,
+    &:focus,
+    &:active {
+      background: lighten($ui-base-color, 4%);
     }
   }
 
