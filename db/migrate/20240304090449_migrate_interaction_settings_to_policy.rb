@@ -4,21 +4,14 @@ class MigrateInteractionSettingsToPolicy < ActiveRecord::Migration[7.1]
   disable_ddl_transaction!
 
   # Dummy classes, to make migration possible across version changes
-  class Account < ApplicationRecord
-    has_one :user, inverse_of: :account
-    has_one :notification_policy, inverse_of: :account
-  end
-
   class User < ApplicationRecord
-    belongs_to :account
+    belongs_to :notification_policy, foreign_key: 'account_id', primary_key: 'account_id', optional: true, inverse_of: false
   end
 
-  class NotificationPolicy < ApplicationRecord
-    belongs_to :account
-  end
+  class NotificationPolicy < ApplicationRecord; end
 
   def up
-    User.includes(account: :notification_policy).in_batches do |users|
+    User.includes(:notification_policy).in_batches do |users|
       NotificationPolicy.upsert_all(users.filter_map { |user| policy_for_user(user) })
     end
   end
@@ -34,7 +27,7 @@ class MigrateInteractionSettingsToPolicy < ActiveRecord::Migration[7.1]
     requires_new_policy = false
 
     policy = {
-      account_id: user.account.id,
+      account_id: user.account_id,
       filter_not_followers: false,
       filter_not_following: false,
       filter_private_mentions: true,
