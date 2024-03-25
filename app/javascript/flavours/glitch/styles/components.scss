@@ -10593,10 +10593,10 @@ noscript {
 .filtered-notifications-banner {
   display: flex;
   align-items: center;
-  background: $ui-base-color;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-  padding: 15px;
-  gap: 15px;
+  border: 1px solid var(--background-border-color);
+  border-top: 0;
+  padding: 24px 32px;
+  gap: 16px;
   color: $darker-text-color;
   text-decoration: none;
 
@@ -10604,15 +10604,12 @@ noscript {
   &:active,
   &:focus {
     color: $secondary-text-color;
-
-    .filtered-notifications-banner__badge {
-      background: $secondary-text-color;
-    }
   }
 
   .icon {
     width: 24px;
     height: 24px;
+    padding: 2px;
   }
 
   &__text {
@@ -10628,13 +10625,24 @@ noscript {
   }
 
   &__badge {
-    background: $darker-text-color;
-    color: $ui-base-color;
-    border-radius: 100px;
-    padding: 2px 8px;
+    display: flex;
+    align-items: center;
+    border-radius: 999px;
+    background: var(--background-border-color);
+    color: $darker-text-color;
+    padding: 4px;
+    padding-inline-end: 8px;
+    gap: 6px;
     font-weight: 500;
     font-size: 11px;
     line-height: 16px;
+
+    &__badge {
+      background: $ui-button-background-color;
+      color: $white;
+      border-radius: 100px;
+      padding: 2px 8px;
+    }
   }
 }
 
@@ -10643,7 +10651,7 @@ noscript {
   align-items: center;
   gap: 16px;
   padding: 15px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
 
   &__link {
     display: flex;
@@ -10691,7 +10699,7 @@ noscript {
 
     .icon-button {
       border-radius: 4px;
-      border: 1px solid lighten($ui-base-color, 8%);
+      border: 1px solid var(--background-border-color);
       padding: 5px;
     }
   }
