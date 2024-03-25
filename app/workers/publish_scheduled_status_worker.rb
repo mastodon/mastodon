@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class PublishScheduledStatusWorker
-  include Sidekiq::Worker
-
+class PublishScheduledStatusWorker < ApplicationWorker
   sidekiq_options lock: :until_executed, lock_ttl: 1.hour.to_i
 
   def perform(scheduled_status_id)

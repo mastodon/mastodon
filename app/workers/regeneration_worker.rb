@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class RegenerationWorker
-  include Sidekiq::Worker
+class RegenerationWorker < ApplicationWorker
   include DatabaseHelper
 
   sidekiq_options lock: :until_executed

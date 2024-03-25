@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class UnfilterNotificationsWorker
-  include Sidekiq::Worker
+class UnfilterNotificationsWorker < ApplicationWorker
   include Redisable
 
   # Earlier versions of the feature passed a `notification_request` ID

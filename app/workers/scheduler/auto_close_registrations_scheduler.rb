@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class Scheduler::AutoCloseRegistrationsScheduler
-  include Sidekiq::Worker
+class Scheduler::AutoCloseRegistrationsScheduler < ApplicationWorker
   include Redisable
 
   sidekiq_options retry: 0

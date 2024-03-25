@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Scheduler::IpCleanupScheduler
-  include Sidekiq::Worker
-
+class Scheduler::IpCleanupScheduler < ApplicationWorker
   IP_RETENTION_PERIOD = ENV.fetch('IP_RETENTION_PERIOD', 1.year).to_i.seconds.freeze
   SESSION_RETENTION_PERIOD = ENV.fetch('SESSION_RETENTION_PERIOD', 1.year).to_i.seconds.freeze
 

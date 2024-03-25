@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class TagUnmergeWorker
-  include Sidekiq::Worker
+class TagUnmergeWorker < ApplicationWorker
   include DatabaseHelper
 
   sidekiq_options queue: 'pull'

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class AddToPublicStatusesIndexWorker
-  include Sidekiq::Worker
+class AddToPublicStatusesIndexWorker < ApplicationWorker
   include DatabaseHelper
 
   sidekiq_options queue: 'pull'

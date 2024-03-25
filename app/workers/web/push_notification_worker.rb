@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Web::PushNotificationWorker
-  include Sidekiq::Worker
-
+class Web::PushNotificationWorker < ApplicationWorker
   sidekiq_options queue: 'push', retry: 5
 
   TTL     = 48.hours.to_s

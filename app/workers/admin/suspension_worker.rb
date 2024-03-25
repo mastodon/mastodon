@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::SuspensionWorker
-  include Sidekiq::Worker
-
+class Admin::SuspensionWorker < ApplicationWorker
   sidekiq_options queue: 'pull'
 
   def perform(account_id)

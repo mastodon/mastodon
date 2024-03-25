@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::DeliveryWorker
-  include Sidekiq::Worker
+class ActivityPub::DeliveryWorker < ApplicationWorker
   include RoutingHelper
   include JsonLdHelper
 

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class Scheduler::SelfDestructScheduler
-  include Sidekiq::Worker
+class Scheduler::SelfDestructScheduler < ApplicationWorker
   include SelfDestructHelper
 
   MAX_ENQUEUED = 10_000

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class PushConversationWorker
-  include Sidekiq::Worker
+class PushConversationWorker < ApplicationWorker
   include Redisable
 
   def perform(conversation_account_id)
