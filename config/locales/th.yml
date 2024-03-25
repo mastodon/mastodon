@@ -1633,10 +1633,21 @@ th:
     preferences: การกำหนดลักษณะ
     profile: โปรไฟล์สาธารณะ
     relationships: การติดตามและผู้ติดตาม
+    severed_relationships: ความสัมพันธ์ที่ตัดขาด
     statuses_cleanup: การลบโพสต์แบบอัตโนมัติ
     strikes: การดำเนินการการกลั่นกรอง
     two_factor_authentication: การรับรองความถูกต้องด้วยสองปัจจัย
     webauthn_authentication: กุญแจความปลอดภัย
+  severed_relationships:
+    download: ดาวน์โหลด (%{count})
+    event_type:
+      account_suspension: การระงับบัญชี (%{target_name})
+      domain_block: การระงับเซิร์ฟเวอร์ (%{target_name})
+      user_domain_block: คุณได้ปิดกั้น %{target_name}
+    lost_followers: ผู้ติดตามที่หายไป
+    lost_follows: การติดตามที่หายไป
+    purged: มีการล้างข้อมูลเกี่ยวกับเซิร์ฟเวอร์นี้โดยผู้ดูแลของเซิร์ฟเวอร์ของคุณ
+    type: เหตุการณ์
   statuses:
     attached:
       audio:
