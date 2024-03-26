@@ -15,7 +15,7 @@ Bundler/OrderedGems:
 
 Lint/NonLocalExitFromIterator:
   Exclude:
-    - 'app/helpers/jsonld_helper.rb'
+    - 'app/helpers/json_ld_helper.rb'
 
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
@@ -75,7 +75,7 @@ Rails/UniqueValidationWithoutIndex:
 # AllowedMethods: ==, equal?, eql?
 Style/ClassEqualityComparison:
   Exclude:
-    - 'app/helpers/jsonld_helper.rb'
+    - 'app/helpers/json_ld_helper.rb'
     - 'app/serializers/activitypub/outbox_serializer.rb'
 
 Style/ClassVars:
@@ -197,7 +197,7 @@ Style/NilLambda:
 Style/OptionalBooleanParameter:
   Exclude:
     - 'app/helpers/admin/account_moderation_notes_helper.rb'
-    - 'app/helpers/jsonld_helper.rb'
+    - 'app/helpers/json_ld_helper.rb'
     - 'app/lib/admin/system_check/message.rb'
     - 'app/lib/request.rb'
     - 'app/lib/webfinger.rb'
