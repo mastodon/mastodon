@@ -41,12 +41,6 @@ Layout/FirstHashElementIndentation:
 Layout/LineLength:
   Max: 320 # Default of 120 causes a duplicate entry in generated todo file
 
-# Reason:
-# https://docs.rubocop.org/rubocop/cops_lint.html#lintuselessaccessmodifier
-Lint/UselessAccessModifier:
-  ContextCreatingMethods:
-    - class_methods
-
 ## Disable most Metrics/*Length cops
 # Reason: those are often triggered and force significant refactors when this happend
 #         but the team feel they are not really improving the code quality.
