@@ -17,13 +17,15 @@ export const deployPictureInPictureAction =
 
 export const deployPictureInPicture = createAppAsyncThunk(
   'pip/deploy',
-  async (args: DeployParams, { dispatch, getState }) => {
+  (args: DeployParams, { dispatch, getState }) => {
+    const { statusId } = args;
+
     // Do not open a player for a toot that does not exist
 
     // @ts-expect-error state.statuses is not yet typed
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     if (getState().hasIn(['statuses', statusId])) {
-      await dispatch(deployPictureInPicture(args));
+      dispatch(deployPictureInPictureAction(args));
     }
   },
 );
