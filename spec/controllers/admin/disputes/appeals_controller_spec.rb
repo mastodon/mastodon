@@ -34,7 +34,7 @@ RSpec.describe Admin::Disputes::AppealsController do
 
     let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
-    it 'redirects back to the strike page and notifies target account about approved appeal', :sidekiq_inline do
+    it 'redirects back to the strike page and notifies target account about approved appeal', :inline_jobs do
       emails = capture_emails { subject }
 
       expect(response)
@@ -58,7 +58,7 @@ RSpec.describe Admin::Disputes::AppealsController do
 
     let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
-    it 'redirects back to the strike page and notifies target account about rejected appeal', :sidekiq_inline do
+    it 'redirects back to the strike page and notifies target account about rejected appeal', :inline_jobs do
       emails = capture_emails { subject }
 
       expect(response)

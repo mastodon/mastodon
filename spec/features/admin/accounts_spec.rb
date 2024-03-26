@@ -48,7 +48,7 @@ describe 'Admin::Accounts' do
       end
     end
 
-    context 'with action of `reject`', :sidekiq_inline do
+    context 'with action of `reject`', :inline_jobs do
       it 'rejects and removes the account' do
         batch_checkbox_for(unapproved_user_account).check
 

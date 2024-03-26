@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe RemoveStatusService, :sidekiq_inline do
+RSpec.describe RemoveStatusService, :inline_jobs do
   subject { described_class.new }
 
   let!(:alice)  { Fabricate(:account) }

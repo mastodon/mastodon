@@ -38,7 +38,7 @@ RSpec.describe ActivityPub::Activity::Move do
       subject.perform
     end
 
-    context 'when all conditions are met', :sidekiq_inline do
+    context 'when all conditions are met', :inline_jobs do
       it 'sets moved account on old account' do
         expect(old_account.reload.moved_to_account_id).to eq new_account.id
       end

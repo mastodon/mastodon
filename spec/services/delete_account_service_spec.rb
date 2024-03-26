@@ -62,7 +62,7 @@ RSpec.describe DeleteAccountService do
     end
   end
 
-  describe '#call on local account', :sidekiq_inline do
+  describe '#call on local account', :inline_jobs do
     before do
       stub_request(:post, remote_alice.inbox_url).to_return(status: 201)
       stub_request(:post, remote_bob.inbox_url).to_return(status: 201)
@@ -83,7 +83,7 @@ RSpec.describe DeleteAccountService do
     end
   end
 
-  describe '#call on remote account', :sidekiq_inline do
+  describe '#call on remote account', :inline_jobs do
     before do
       stub_request(:post, account.inbox_url).to_return(status: 201)
     end

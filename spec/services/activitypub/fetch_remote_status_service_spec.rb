@@ -225,7 +225,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
     end
   end
 
-  context 'with statuses referencing other statuses', :sidekiq_inline do
+  context 'with statuses referencing other statuses', :inline_jobs do
     before do
       stub_const 'ActivityPub::FetchRemoteStatusService::DISCOVERIES_PER_REQUEST', 5
     end
