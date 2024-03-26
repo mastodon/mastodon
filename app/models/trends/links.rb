@@ -86,8 +86,8 @@ class Trends::Links < Trends::Base
 
   def request_review
     PreviewCardTrend.pluck('distinct language').flat_map do |language|
-      score_at_threshold  = PreviewCardTrend.where(language: language, allowed: true).by_rank.ranked_below(options[:review_threshold]).first&.score || 0
-      preview_card_trends = PreviewCardTrend.where(language: language, allowed: false).joins(:preview_card)
+      score_at_threshold  = PreviewCardTrend.where(language: language).allowed.by_rank.ranked_below(options[:review_threshold]).first&.score || 0
+      preview_card_trends = PreviewCardTrend.where(language: language).not_allowed.joins(:preview_card)
 
       preview_card_trends.filter_map do |trend|
         preview_card = trend.preview_card
