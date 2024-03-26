@@ -121,19 +121,19 @@ RSpec.describe 'Media' do
       end
     end
 
-    context 'with image/jpeg', :paperclip_processing do
+    context 'with image/jpeg', :attachment_processing do
       let(:params) { { file: fixture_file_upload('attachment.jpg', 'image/jpeg'), description: 'jpeg image' } }
 
       it_behaves_like 'a successful media upload', 'image'
     end
 
-    context 'with image/gif', :paperclip_processing do
+    context 'with image/gif', :attachment_processing do
       let(:params) { { file: fixture_file_upload('attachment.gif', 'image/gif') } }
 
       it_behaves_like 'a successful media upload', 'image'
     end
 
-    context 'with video/webm', :paperclip_processing do
+    context 'with video/webm', :attachment_processing do
       let(:params) { { file: fixture_file_upload('attachment.webm', 'video/webm') } }
 
       it_behaves_like 'a successful media upload', 'gifv'
