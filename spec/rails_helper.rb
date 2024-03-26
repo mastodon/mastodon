@@ -137,7 +137,7 @@ RSpec.configure do |config|
   end
 
   config.before do |example|
-    unless example.metadata[:paperclip_processing]
+    unless example.metadata[:attachment_processing]
       allow_any_instance_of(Paperclip::Attachment).to receive(:post_process).and_return(true) # rubocop:disable RSpec/AnyInstance
     end
   end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'OCR', :js, :paperclip_processing, :sidekiq_inline, :streaming do
+describe 'OCR', :attachment_processing, :js, :sidekiq_inline, :streaming do
   include ProfileStories
 
   let(:email)               { 'test@example.com' }
