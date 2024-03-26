@@ -19,11 +19,11 @@ const lightEmoji = emojiFilenames(['👽', '⚾', '🐔', '☁️', '💨', '�
 
 /**
  * @param {string} filename
- * @param {"light" | "dark" } theme
+ * @param {"light" | "dark" } colorScheme
  * @returns {string}
  */
-const emojiFilename = (filename, theme) => {
-  const borderedEmoji = theme === "light" ? lightEmoji : darkEmoji;
+const emojiFilename = (filename, colorScheme) => {
+  const borderedEmoji = colorScheme === "light" ? lightEmoji : darkEmoji;
   return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
 };
 
