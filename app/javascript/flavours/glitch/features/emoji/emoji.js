@@ -17,8 +17,13 @@ const emojiFilenames = (emojis) => {
 const darkEmoji = emojiFilenames(['🎱', '🐜', '⚫', '🖤', '⬛', '◼️', '◾', '◼️', '✒️', '▪️', '💣', '🎳', '📷', '📸', '♣️', '🕶️', '✴️', '🔌', '💂‍♀️', '📽️', '🍳', '🦍', '💂', '🔪', '🕳️', '🕹️', '🕋', '🖊️', '🖋️', '💂‍♂️', '🎤', '🎓', '🎥', '🎼', '♠️', '🎩', '🦃', '📼', '📹', '🎮', '🐃', '🏴', '🐞', '🕺', '📱', '📲', '🚲', '🪮', '🐦‍⬛']);
 const lightEmoji = emojiFilenames(['👽', '⚾', '🐔', '☁️', '💨', '🕊️', '👀', '🍥', '👻', '🐐', '❕', '❔', '⛸️', '🌩️', '🔊', '🔇', '📃', '🌧️', '🐏', '🍚', '🍙', '🐓', '🐑', '💀', '☠️', '🌨️', '🔉', '🔈', '💬', '💭', '🏐', '🏳️', '⚪', '⬜', '◽', '◻️', '▫️', '🪽', '🪿']);
 
-const emojiFilename = (filename) => {
-  const borderedEmoji = (document.body && document.body.classList.contains('skin-mastodon-light')) ? lightEmoji : darkEmoji;
+/**
+ * @param {string} filename
+ * @param {"light" | "dark" } colorScheme
+ * @returns {string}
+ */
+const emojiFilename = (filename, colorScheme) => {
+  const borderedEmoji = colorScheme === "light" ? lightEmoji : darkEmoji;
   return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
 };
 
@@ -92,12 +97,30 @@ const emojifyTextNode = (node, customEmojis) => {
       const { filename, shortCode } = unicodeMapping[unicode_emoji];
       const title = shortCode ? `:${shortCode}:` : '';
 
-      replacement = document.createElement('img');
-      replacement.setAttribute('draggable', 'false');
-      replacement.setAttribute('class', 'emojione');
-      replacement.setAttribute('alt', unicode_emoji);
-      replacement.setAttribute('title', title);
-      replacement.setAttribute('src', `${assetHost}/emoji/${emojiFilename(filename)}.svg`);
+      replacement = document.createElement('picture');
+
+      const isSystemTheme = !!document.body?.classList.contains('theme-system');
+
+      if(isSystemTheme) {
+        let source = document.createElement('source');
+        source.setAttribute('media', '(prefers-color-scheme: dark)');
+        source.setAttribute('srcset', `${assetHost}/emoji/${emojiFilename(filename, "dark")}.svg`);
+        replacement.appendChild(source);
+      }
+
+      let img = document.createElement('img');
+      img.setAttribute('draggable', 'false');
+      img.setAttribute('class', 'emojione');
+      img.setAttribute('alt', unicode_emoji);
+      img.setAttribute('title', title);
+
+      let theme = "light";
+
+      if(!isSystemTheme && !document.body?.classList.contains('skin-mastodon-light'))
+        theme = "dark";
+
+      img.setAttribute('src', `${assetHost}/emoji/${emojiFilename(filename, theme)}.svg`);
+      replacement.appendChild(img);
     }
 
     // Add the processed-up-to-now string and the emoji replacement
