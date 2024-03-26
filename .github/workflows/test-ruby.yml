@@ -223,7 +223,7 @@ jobs:
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
-      - run: bin/rspec --tag paperclip_processing
+      - run: bin/rspec --tag attachment_processing
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'

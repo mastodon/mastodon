@@ -120,7 +120,7 @@ RSpec.configure do |config|
   end
 
   config.around do |example|
-    if example.metadata[:sidekiq_inline] == true
+    if example.metadata[:inline_jobs] == true
       Sidekiq::Testing.inline!
     else
       Sidekiq::Testing.fake!

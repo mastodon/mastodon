@@ -10,7 +10,7 @@ RSpec.describe 'Account actions' do
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   shared_examples 'a successful notification delivery' do
-    it 'notifies the user about the action taken', :sidekiq_inline do
+    it 'notifies the user about the action taken', :inline_jobs do
       emails = capture_emails { subject }
 
       expect(emails.size)
