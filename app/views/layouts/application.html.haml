@@ -27,7 +27,7 @@
     %title= html_title
 
     = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
-    = stylesheet_pack_tag current_theme, media: 'all', crossorigin: 'anonymous'
+    = theme_style_tags current_theme
     -# Needed for the wicg-inert polyfill. It needs to be on it's own <style> tag, with this `id`
     = stylesheet_pack_tag 'inert', media: 'all', id: 'inert-style'
 

@@ -10,20 +10,17 @@ RSpec.describe AfterBlockDomainFromAccountService do
   let(:alice) { Fabricate(:account, username: 'alice') }
 
   before do
+    NotificationPermission.create!(account: alice, from_account: wolf)
+
     wolf.follow!(alice)
     alice.follow!(dog)
   end
 
-  around do |example|
-    Sidekiq::Testing.fake! do
-      example.run
-    end
-  end
+  it 'purge followers from blocked domain, remove notification permissions, sends `Reject->Follow`, and records severed relationships', :aggregate_failures do
+    expect { subject.call(alice, 'evil.org') }
+      .to change { wolf.following?(alice) }.from(true).to(false)
+      .and change { NotificationPermission.exists?(account: alice, from_account: wolf) }.from(true).to(false)
 
-  it 'purges followers from blocked domain, sends them Reject->Follow, and records severed relationships', :aggregate_failures do
-    subject.call(alice, 'evil.org')
-
-    expect(wolf.following?(alice)).to be false
     expect(ActivityPub::DeliveryWorker.jobs.pluck('args')).to contain_exactly(
       [a_string_including('"type":"Reject"'), alice.id, wolf.inbox_url],
       [a_string_including('"type":"Undo"'), alice.id, dog.inbox_url]

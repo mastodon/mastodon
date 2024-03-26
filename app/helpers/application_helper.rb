@@ -160,6 +160,15 @@ module ApplicationHelper
     output.compact_blank.join(' ')
   end
 
+  def theme_style_tags(theme)
+    if theme == 'system'
+      concat stylesheet_pack_tag('mastodon-light', media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')
+      concat stylesheet_pack_tag('default', media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
+    else
+      stylesheet_pack_tag theme, media: 'all', crossorigin: 'anonymous'
+    end
+  end
+
   def cdn_host
     Rails.configuration.action_controller.asset_host
   end

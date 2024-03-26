@@ -11,11 +11,13 @@ RSpec.describe BlockService do
     let(:bob) { Fabricate(:account, username: 'bob') }
 
     before do
-      subject.call(sender, bob)
+      NotificationPermission.create!(account: sender, from_account: bob)
     end
 
-    it 'creates a blocking relation' do
-      expect(sender.blocking?(bob)).to be true
+    it 'creates a blocking relation and removes notification permissions' do
+      expect { subject.call(sender, bob) }
+        .to change { sender.blocking?(bob) }.from(false).to(true)
+        .and change { NotificationPermission.exists?(account: sender, from_account: bob) }.from(true).to(false)
     end
   end
 
