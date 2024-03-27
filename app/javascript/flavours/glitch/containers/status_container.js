@@ -282,7 +282,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   deployPictureInPicture (status, type, mediaProps) {
     dispatch((_, getState) => {
       if (getState().getIn(['local_settings', 'media', 'pop_in_player'])) {
-        dispatch(deployPictureInPicture(status.get('id'), status.getIn(['account', 'id']), type, mediaProps));
+        dispatch(deployPictureInPicture({statusId: status.get('id'), accountId: status.getIn(['account', 'id']), playerType: type, props: mediaProps}));
       }
     });
   },
