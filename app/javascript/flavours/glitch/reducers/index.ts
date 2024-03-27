@@ -22,7 +22,7 @@ import listAdder from './list_adder';
 import listEditor from './list_editor';
 import lists from './lists';
 import local_settings from './local_settings';
-import markers from './markers';
+import { markersReducer } from './markers';
 import media_attachments from './media_attachments';
 import meta from './meta';
 import { modalReducer } from './modal';
@@ -81,7 +81,7 @@ const reducers = {
   pinnedAccountsEditor,
   polls,
   trends,
-  markers,
+  markers: markersReducer,
   picture_in_picture,
   history,
   tags,
