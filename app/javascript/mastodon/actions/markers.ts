@@ -155,8 +155,10 @@ export const submitMarkers = createAppAsyncThunk(
 export const fetchMarkers = createAppAsyncThunk(
   'markers/fetch',
   async (_args, { getState }) => {
-    const response =
-      await api(getState).get<Record<string, MarkerJSON>>(`/api/v1/markers`);
+    const response = await api(getState).get<Record<string, MarkerJSON>>(
+      `/api/v1/markers`,
+      { params: { timeline: ['notifications'] } },
+    );
 
     return { markers: response.data };
   },
