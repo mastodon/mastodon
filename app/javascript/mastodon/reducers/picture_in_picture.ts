@@ -50,7 +50,7 @@ export const pictureInPictureReducer: Reducer<PIPState> = (
     };
   else if (removePictureInPicture.match(action)) return initialState;
   else if (action.type === TIMELINE_DELETE)
-    if (state.type && state.statusId === action.id) return { ...initialState };
+    if (state.type && state.statusId === action.id) return initialState;
 
   return state;
 };
