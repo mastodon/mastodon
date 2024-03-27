@@ -26,8 +26,8 @@ class TagFeed < PublicFeed
     scope = public_scope
 
     scope.merge!(tagged_with_any_scope)
-    scope.merge!(tagged_with_all_scope)
-    scope.merge!(tagged_with_none_scope)
+    scope.merge!(tagged_with_all_scope) if options[:all].present?
+    scope.merge!(tagged_with_none_scope) if options[:none].present?
     scope.merge!(local_only_scope) if local_only?
     scope.merge!(remote_only_scope) if remote_only?
     scope.merge!(account_filters_scope) if account?
