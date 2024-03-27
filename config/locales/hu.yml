@@ -57,27 +57,27 @@ hu:
       deleted: Törölve
       demote: Lefokozás
       destroyed_msg: A %{username} fiók adatai bekerültek a végleges törlése váró sorba
-      disable: Kikapcsolás
-      disable_sign_in_token_auth: Tokenes e-mail hitelesítés letiltása
+      disable: Befagyasztás
+      disable_sign_in_token_auth: Tokenes e-mail-hitelesítés letiltása
       disable_two_factor_authentication: Kétlépcsős hitelesítés kikapcsolása
-      disabled: Kikapcsolva
-      display_name: Megjelenített név
+      disabled: Befagyasztva
+      display_name: Megjelenítendő név
       domain: Domain
       edit: Szerkesztés
-      email: E-mail
+      email: E-mail-cím
       email_status: E-mail állapot
-      enable: Bekapcsolás
-      enable_sign_in_token_auth: Tokenes e-mail hitelesítés engedélyezése
+      enable: Kiolvasztás
+      enable_sign_in_token_auth: Tokenes e-mail-hitelesítés engedélyezése
       enabled: Bekapcsolva
-      enabled_msg: A %{username} fiók fagyasztását sikeresen visszavontuk
+      enabled_msg: "%{username} fiókja befagyasztása sikeresen visszavonva"
       followers: Követő
       follows: Követett
       header: Fejléc
-      inbox_url: Beérkezett üzenetek URL-je
+      inbox_url: Beérkezett üzenetek webcíme
       invite_request_text: Csatlakozás oka
       invited_by: Meghívta
-      ip: IP
-      joined: Csatlakozott
+      ip: IP-cím
+      joined: Csatlakozva
       location:
         all: Összes
         local: Helyi
@@ -1768,6 +1768,7 @@ hu:
     contrast: Mastodon (nagy kontrasztú)
     default: Mastodon (sötét)
     mastodon-light: Mastodon (világos)
+    system: Automatikus (rendszertéma használata)
   time:
     formats:
       default: "%Y. %b %d., %H:%M"
