@@ -28,7 +28,7 @@ import { modalReducer } from './modal';
 import { notificationPolicyReducer } from './notification_policy';
 import { notificationRequestsReducer } from './notification_requests';
 import notifications from './notifications';
-import picture_in_picture from './picture_in_picture';
+import { pictureInPictureReducer } from './picture_in_picture';
 import polls from './polls';
 import push_notifications from './push_notifications';
 import { relationshipsReducer } from './relationships';
@@ -78,7 +78,7 @@ const reducers = {
   polls,
   trends,
   markers: markersReducer,
-  picture_in_picture,
+  picture_in_picture: pictureInPictureReducer,
   history,
   tags,
   followed_tags,
