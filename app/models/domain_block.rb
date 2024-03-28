@@ -21,7 +21,7 @@ class DomainBlock < ApplicationRecord
   include DomainNormalizable
   include DomainMaterializable
 
-  enum :severity, { silence: 0, suspend: 1, noop: 2 }
+  enum :severity, { silence: 0, suspend: 1, noop: 2 }, validate: true
 
   validates :domain, presence: true, uniqueness: true, domain: true
 
