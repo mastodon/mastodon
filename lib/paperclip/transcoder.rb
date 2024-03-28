@@ -115,7 +115,11 @@ module Paperclip
     end
 
     def eligible_to_passthrough?(metadata)
-      @passthrough_options && @passthrough_options[:video_codecs].include?(metadata.video_codec) && @passthrough_options[:audio_codecs].include?(metadata.audio_codec) && @passthrough_options[:colorspaces].include?(metadata.colorspace)
+      return false if @passthrough_options.blank?
+
+      %i(video_codec audio_codec colorspace).all? do |attribute|
+        @passthrough_options["#{attribute}s".to_sym].nil? || @passthrough_options["#{attribute}s".to_sym].include?(metadata.public_send(attribute))
+      end
     end
 
     def update_attachment_type(metadata)
