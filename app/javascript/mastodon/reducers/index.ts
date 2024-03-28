@@ -28,7 +28,7 @@ import { notificationPolicyReducer } from './notification_policy';
 import { notificationRequestsReducer } from './notification_requests';
 import notifications from './notifications';
 import { pictureInPictureReducer } from './picture_in_picture';
-import polls from './polls';
+import { pollsReducer } from './polls';
 import push_notifications from './push_notifications';
 import { relationshipsReducer } from './relationships';
 import search from './search';
@@ -73,7 +73,7 @@ const reducers = {
   filters,
   conversations,
   suggestions,
-  polls,
+  polls: pollsReducer,
   trends,
   markers: markersReducer,
   picture_in_picture: pictureInPictureReducer,
