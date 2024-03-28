@@ -147,7 +147,7 @@ export function followAccount(id, options = { reblogs: true }) {
     dispatch(followAccountRequest({ id, locked }));
 
     api(getState).post(`/api/v1/accounts/${id}/follow`, options).then(response => {
-      dispatch(followAccountSuccess({relationship: response.data, alreadyFollowing}));
+      dispatch(followAccountSuccess({relationship: response.data, statuses: getState().get('statuses'), alreadyFollowing}));
     }).catch(error => {
       dispatch(followAccountFail({ id, error, locked }));
     });

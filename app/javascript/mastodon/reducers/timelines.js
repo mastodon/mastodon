@@ -3,7 +3,8 @@ import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrde
 import {
   blockAccountSuccess,
   muteAccountSuccess,
-  unfollowAccountSuccess
+  unfollowAccountSuccess,
+  followAccountSuccess
 } from '../actions/accounts';
 import {
   TIMELINE_UPDATE,
@@ -208,6 +209,7 @@ export default function timelines(state = initialState, action) {
   case blockAccountSuccess.type:
   case muteAccountSuccess.type:
     return filterTimelines(state, action.payload.relationship, action.payload.statuses);
+  case followAccountSuccess.type:
   case unfollowAccountSuccess.type:
     return filterTimeline('home', state, action.payload.relationship, action.payload.statuses);
   case TIMELINE_SCROLL_TOP:
