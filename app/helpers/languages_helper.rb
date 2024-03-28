@@ -215,6 +215,7 @@ module LanguagesHelper
   # but a language family in spite of sharing the main locale code
   # We need to be able to filter these
   ISO_639_1_REGIONAL = {
+    'nan-TW': ['Taiwanese (Hokkien)', '臺語（Hô-ló話）'].freeze,
     'zh-CN': ['Chinese (China)', '简体中文'].freeze,
     'zh-HK': ['Chinese (Hong Kong)', '繁體中文（香港）'].freeze,
     'zh-TW': ['Chinese (Taiwan)', '繁體中文（臺灣）'].freeze,
