@@ -80,6 +80,15 @@ class FetchLinkCardService < BaseService
              links.filter_map { |a| Addressable::URI.parse(a['href']) unless skip_link?(a) }.filter_map(&:normalize)
            end
 
+    url_hosts = urls.map(&:host)
+    unless EmailDomainBlock.where(domain: url_hosts).empty?
+      @report = ReportService.new.call(
+        Account.representative,
+        @status.account,
+        comment: 'Automatically flagged for malicious or spam link', category: :spam, forward: false, status_ids: [@status.id]
+      )
+    end
+
     urls.reject { |uri| bad_url?(uri) }.first
   end
 
