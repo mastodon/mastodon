@@ -72,8 +72,4 @@ class Api::V1::ConversationsController < Api::BaseController
   def records_continue?
     @conversations.size == limit_param(LIMIT)
   end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
-  end
 end

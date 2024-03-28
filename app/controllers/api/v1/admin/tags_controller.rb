@@ -12,7 +12,6 @@ class Api::V1::Admin::TagsController < Api::BaseController
   after_action :verify_authorized
 
   LIMIT = 100
-  PAGINATION_PARAMS = %i(limit).freeze
 
   def index
     authorize :tag, :index?
@@ -58,9 +57,5 @@ class Api::V1::Admin::TagsController < Api::BaseController
 
   def records_continue?
     @tags.size == limit_param(LIMIT)
-  end
-
-  def pagination_params(core_params)
-    params.slice(*PAGINATION_PARAMS).permit(*PAGINATION_PARAMS).merge(core_params)
   end
 end

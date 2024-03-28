@@ -43,8 +43,4 @@ class Api::V1::BlocksController < Api::BaseController
   def records_continue?
     paginated_blocks.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
   end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
-  end
 end
