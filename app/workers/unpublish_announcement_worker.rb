@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class UnpublishAnnouncementWorker
-  include Sidekiq::Worker
+class UnpublishAnnouncementWorker < ApplicationWorker
   include Redisable
 
   def perform(announcement_id)

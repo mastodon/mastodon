@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::PostUpgradeWorker
-  include Sidekiq::Worker
-
+class ActivityPub::PostUpgradeWorker < ApplicationWorker
   sidekiq_options queue: 'pull'
 
   def perform(domain)

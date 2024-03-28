@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Scheduler::UserCleanupScheduler
-  include Sidekiq::Worker
-
+class Scheduler::UserCleanupScheduler < ApplicationWorker
   sidekiq_options retry: 0, lock: :until_executed, lock_ttl: 1.day.to_i
 
   def perform

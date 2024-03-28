@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::FollowersSynchronizationWorker
-  include Sidekiq::Worker
-
+class ActivityPub::FollowersSynchronizationWorker < ApplicationWorker
   sidekiq_options queue: 'push', lock: :until_executed
 
   def perform(account_id, url)

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class LocalNotificationWorker
-  include Sidekiq::Worker
-
+class LocalNotificationWorker < ApplicationWorker
   def perform(receiver_account_id, activity_id = nil, activity_class_name = nil, type = nil)
     if activity_id.nil? && activity_class_name.nil?
       activity = Mention.find(receiver_account_id)

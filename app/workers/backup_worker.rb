@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class BackupWorker
-  include Sidekiq::Worker
-
+class BackupWorker < ApplicationWorker
   sidekiq_options queue: 'pull', backtrace: true, retry: 5, dead: false
 
   sidekiq_retries_exhausted do |msg|

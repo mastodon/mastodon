@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class UnfollowFollowWorker
-  include Sidekiq::Worker
-
+class UnfollowFollowWorker < ApplicationWorker
   sidekiq_options queue: 'pull'
 
   def perform(follower_account_id, old_target_account_id, new_target_account_id, bypass_locked = false)

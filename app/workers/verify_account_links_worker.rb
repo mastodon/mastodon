@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class VerifyAccountLinksWorker
-  include Sidekiq::Worker
-
+class VerifyAccountLinksWorker < ApplicationWorker
   sidekiq_options queue: 'default', retry: false, lock: :until_executed, lock_ttl: 1.hour.to_i
 
   def perform(account_id)

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class Webhooks::DeliveryWorker
-  include Sidekiq::Worker
+class Webhooks::DeliveryWorker < ApplicationWorker
   include JsonLdHelper
 
   sidekiq_options queue: 'push', retry: 16, dead: false

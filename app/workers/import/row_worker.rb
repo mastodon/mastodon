@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Import::RowWorker
-  include Sidekiq::Worker
-
+class Import::RowWorker < ApplicationWorker
   sidekiq_options queue: 'pull', retry: 6, dead: false
 
   sidekiq_retries_exhausted do |msg, _exception|
