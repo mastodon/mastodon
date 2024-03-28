@@ -192,7 +192,11 @@ class REST::StatusSerializer < ActiveModel::Serializer
     attributes :name, :url
 
     def url
-      tag_url(object)
+      tag_url(object.display_name)
+    end
+
+    def name
+      object.display_name
     end
   end
 end
