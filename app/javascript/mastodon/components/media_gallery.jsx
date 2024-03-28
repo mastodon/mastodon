@@ -43,18 +43,27 @@ class Item extends PureComponent {
 
   state = {
     loaded: false,
+    keyPlay: false,
+  };
+
+  handlePlay = (e) => {
+    e.target.play();
+  };
+
+  handlePause = (e) => {
+    e.target.pause();
+    e.target.currentTime = 0;
   };
 
   handleMouseEnter = (e) => {
     if (this.hoverToPlay()) {
-      e.target.play();
+      this.handlePlay(e);
     }
   };
 
   handleMouseLeave = (e) => {
     if (this.hoverToPlay()) {
-      e.target.pause();
-      e.target.currentTime = 0;
+      this.handlePause(e);
     }
   };
 
@@ -72,14 +81,28 @@ class Item extends PureComponent {
 
     if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       if (this.hoverToPlay()) {
-        e.target.pause();
-        e.target.currentTime = 0;
+        this.handlePause(e);
       }
       e.preventDefault();
       onClick(index);
     }
 
     e.stopPropagation();
+  };
+
+  handleKeyPress = (e) => {
+    const child = e.target.children[0];
+    if (e.code === "Space" || e.code === "Enter"){
+      this.keyPlay = !this.keyPlay;
+      if (this.keyPlay) {
+        this.handlePlay({target: child});
+      } else {
+        this.handlePause({target: child});
+      }
+    } else if (e.code === "Tab"){
+      this.keyPlay = false;
+      this.handlePause({target: child});
+    }
   };
 
   handleImageLoad = () => {
@@ -163,8 +186,9 @@ class Item extends PureComponent {
       badges.push(<span key='gif' className='media-gallery__gifv__label'>GIF</span>);
 
       thumbnail = (
-        <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
+        <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })} tabIndex={autoPlay ? '-1' : '0'} onKeyDown={this.handleKeyPress}>
           <video
+            tabIndex='-1'
             className='media-gallery__item-gifv-thumbnail'
             aria-label={description}
             title={description}
