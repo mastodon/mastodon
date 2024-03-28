@@ -9622,6 +9622,8 @@ noscript {
       border: 1px solid var(--background-border-color);
       color: $highlight-text-color;
       cursor: pointer;
+      border: unset;
+      width: 100%;
     }
 
     &.active &__title {
