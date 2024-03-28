@@ -157,7 +157,13 @@ Rails.application.configure do
     'Referrer-Policy' => 'same-origin',
   }
 
+  # TODO: Remove once devise-two-factor data migration complete
   config.x.otp_secret = ENV.fetch('OTP_SECRET')
+
+  # Supports ActiveRecord encryption used by devise-two-factor
+  config.active_record.encryption.primary_key = ENV.fetch('ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY')
+  config.active_record.encryption.deterministic_key = ENV.fetch('ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY')
+  config.active_record.encryption.key_derivation_salt = ENV.fetch('ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT')
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
