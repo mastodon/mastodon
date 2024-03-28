@@ -28,9 +28,23 @@ Rails.application.configure do
   end
 
   unless Rails.env.test?
+    response_app = ->(env) do
+      request = ActionDispatch::Request.new(env)
+
+      body = ApplicationController.renderer.render 'errors/blocked_host', layout: 'anonymous_error', locals: { host: request.host }, formats: [:html]
+
+      status  = 403
+      headers = {
+        'Content-Type' => "text/html; charset=#{ActionDispatch::Response.default_charset}",
+        'Content-Length' => body.bytesize.to_s,
+      }
+
+      [403, headers, [body]]
+    end
+
     config.hosts << host if host.present?
     config.hosts << web_host if web_host.present?
     config.hosts.concat(alternate_domains) if alternate_domains.present?
-    config.host_authorization = { exclude: ->(request) { request.path == '/health' } }
+    config.host_authorization = { response_app: response_app, exclude: ->(request) { request.path == '/health' } }
   end
 end
