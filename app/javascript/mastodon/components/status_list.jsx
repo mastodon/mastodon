@@ -52,13 +52,11 @@ export default class StatusList extends ImmutablePureComponent {
   };
 
   handleMoveUp = (id, featured) => {
-    const elementIndex = this.getCurrentStatusIndex(id, featured) - 1;
-    this._selectChild(elementIndex, true);
+    this._selectChild(id, featured, true);
   };
 
   handleMoveDown = (id, featured) => {
-    const elementIndex = this.getCurrentStatusIndex(id, featured) + 1;
-    this._selectChild(elementIndex, false);
+    this._selectChild(id, featured, false);
   };
 
   handleLoadOlder = debounce(() => {
@@ -66,18 +64,37 @@ export default class StatusList extends ImmutablePureComponent {
     onLoadMore(lastId || (statusIds.size > 0 ? statusIds.last() : undefined));
   }, 300, { leading: true });
 
-  _selectChild (index, align_top) {
+  _selectChild (id, featured, up) {
+    const align_top = up;
     const container = this.node.node;
-    const element = container.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
+    const elementIndex = this.getCurrentStatusIndex(id, featured);
+    const increment = up ? -1 : 1
+    let index = elementIndex;
 
-    if (element) {
-      if (align_top && container.scrollTop > element.offsetTop) {
-        element.scrollIntoView(true);
-      } else if (!align_top && container.scrollTop + container.clientHeight < element.offsetTop + element.offsetHeight) {
-        element.scrollIntoView(false);
+    let element = null;
+    while (element === null) {
+      index += increment;
+      const article = container.querySelector(`article:nth-of-type(${index + 1})`);
+      if (article === null) {
+        return;
       }
-      element.focus();
+      element = article.querySelector(".focusable");
+
+      // This happens when the article contains a LoadGap element. We just want
+      // to stop the navigation there so that the user does not erroneously skip
+      // over it.
+      if (element === null &&
+          article.querySelector(".load-more.load-gap") !== null) {
+        return;
+      }
     }
+
+    if (align_top && container.scrollTop > element.offsetTop) {
+      element.scrollIntoView(true);
+    } else if (!align_top && container.scrollTop + container.clientHeight < element.offsetTop + element.offsetHeight) {
+      element.scrollIntoView(false);
+    }
+    element.focus();
   }
 
   setRef = c => {
