@@ -128,7 +128,7 @@ RSpec.describe 'Media' do
     end
 
     context 'with image/gif', :paperclip_processing do
-      let(:params) { { file: fixture_file_upload('attachment.gif', 'image/gif') } }
+      let(:params) { { file: fixture_file_upload('600x400.gif', 'image/gif') } }
 
       it_behaves_like 'a successful media upload', 'image'
     end

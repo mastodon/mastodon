@@ -58,6 +58,7 @@ class MediaAttachment < ApplicationRecord
   ).freeze
 
   IMAGE_MIME_TYPES             = %w(image/jpeg image/png image/gif image/heic image/heif image/webp image/avif).freeze
+  IMAGE_ANIMATED_MIME_TYPES    = %w(image/png image/gif).freeze
   IMAGE_CONVERTIBLE_MIME_TYPES = %w(image/heic image/heif image/avif).freeze
   VIDEO_MIME_TYPES             = %w(video/webm video/mp4 video/quicktime video/ogg).freeze
   VIDEO_CONVERTIBLE_MIME_TYPES = %w(video/webm video/quicktime).freeze
@@ -102,7 +103,7 @@ class MediaAttachment < ApplicationRecord
         'preset' => 'veryfast',
         'movflags' => 'faststart', # Move metadata to start of file so playback can begin before download finishes
         'pix_fmt' => 'yuv420p', # Ensure color space for cross-browser compatibility
-        'vf' => 'crop=floor(iw/2)*2:floor(ih/2)*2', # h264 requires width and height to be even. Crop instead of scale to avoid blurring
+        'filter_complex' => 'drawbox=t=fill:c=white[bg];[bg][0]overlay,crop=trunc(iw/2)*2:trunc(ih/2)*2', # Remove transparency. h264 requires width and height to be even; crop instead of scale to avoid blurring
         'c:v' => 'h264',
         'c:a' => 'aac',
         'b:a' => '192k',
@@ -293,7 +294,7 @@ class MediaAttachment < ApplicationRecord
     private
 
     def file_styles(attachment)
-      if attachment.instance.file_content_type == 'image/gif' || VIDEO_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type)
+      if attachment.instance.animated_image? || VIDEO_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type)
         VIDEO_CONVERTED_STYLES
       elsif IMAGE_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type)
         IMAGE_CONVERTED_STYLES
@@ -307,8 +308,8 @@ class MediaAttachment < ApplicationRecord
     end
 
     def file_processors(instance)
-      if instance.file_content_type == 'image/gif'
-        [:gif_transcoder, :blurhash_transcoder]
+      if instance.animated_image?
+        [:gifv_transcoder, :blurhash_transcoder]
       elsif VIDEO_MIME_TYPES.include?(instance.file_content_type)
         [:transcoder, :blurhash_transcoder, :type_corrector]
       elsif AUDIO_MIME_TYPES.include?(instance.file_content_type)
@@ -316,6 +317,17 @@ class MediaAttachment < ApplicationRecord
       else
         [:lazy_thumbnail, :blurhash_transcoder, :type_corrector]
       end
+    end
+  end
+
+  def animated_image?
+    if processing_complete?
+      gifv?
+    elsif IMAGE_ANIMATED_MIME_TYPES.include?(file_content_type)
+      @animated_image = FastImage.animated?(file.queued_for_write[:original].path) unless defined?(@animated_image)
+      @animated_image
+    else
+      false
     end
   end
 
