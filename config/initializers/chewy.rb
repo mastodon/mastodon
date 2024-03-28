@@ -12,7 +12,8 @@ ca_file         = ENV.fetch('ES_CA_FILE', nil).presence
 transport_options = { ssl: { ca_file: ca_file } } if ca_file.present?
 
 Chewy.settings = {
-  host: "#{host}:#{port}",
+  host: host,
+  port: port.to_i,
   prefix: prefix,
   enabled: enabled,
   journal: false,
