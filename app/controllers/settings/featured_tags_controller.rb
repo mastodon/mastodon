@@ -38,7 +38,7 @@ class Settings::FeaturedTagsController < Settings::BaseController
   end
 
   def set_recently_used_tags
-    @recently_used_tags = Tag.recently_used(current_account).where.not(id: @featured_tags.map(&:id)).limit(10)
+    @recently_used_tags = Tag.suggestions_for_account(current_account).limit(10)
   end
 
   def featured_tag_params

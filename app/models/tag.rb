@@ -53,6 +53,8 @@ class Tag < ApplicationRecord
   scope :listable, -> { where(listable: [true, nil]) }
   scope :trendable, -> { Setting.trendable_by_default ? where(trendable: [true, nil]) : where(trendable: true) }
   scope :not_trendable, -> { where(trendable: false) }
+  scope :suggestions_for_account, ->(account) { recently_used(account).not_featured_by(account) }
+  scope :not_featured_by, ->(account) { where.not(id: account.featured_tags.select(:tag_id)) }
   scope :recently_used, lambda { |account|
                           joins(:statuses)
                             .where(statuses: { id: account.statuses.select(:id).limit(RECENT_STATUS_LIMIT) })
