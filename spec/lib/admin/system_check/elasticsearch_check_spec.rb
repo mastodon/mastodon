@@ -127,8 +127,8 @@ describe Admin::SystemCheck::ElasticsearchCheck do
   end
 
   def stub_elasticsearch_error
-    client = instance_double(Elasticsearch::Transport::Client)
-    allow(client).to receive(:info).and_raise(Elasticsearch::Transport::Transport::Error)
+    client = instance_double(Elasticsearch::Client)
+    allow(client).to receive(:info).and_raise(Elastic::Transport::Transport::Error)
     allow(Chewy).to receive(:client).and_return(client)
   end
 end
