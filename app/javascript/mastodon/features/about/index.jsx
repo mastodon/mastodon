@@ -19,15 +19,17 @@ import { ServerHeroImage } from 'mastodon/components/server_hero_image';
 import { Skeleton } from 'mastodon/components/skeleton';
 import Account from 'mastodon/containers/account_container';
 import LinkFooter from 'mastodon/features/ui/components/link_footer';
+import { domain, source_url } from 'mastodon/initial_state';
 
 const messages = defineMessages({
-  title: { id: 'column.about', defaultMessage: 'About' },
+  title: { id: 'column.about', defaultMessage: 'About {domain}' },
   rules: { id: 'about.rules', defaultMessage: 'Server rules' },
   blocks: { id: 'about.blocks', defaultMessage: 'Moderated servers' },
   silenced: { id: 'about.domain_blocks.silenced.title', defaultMessage: 'Limited' },
   silencedExplanation: { id: 'about.domain_blocks.silenced.explanation', defaultMessage: 'You will generally not see profiles and content from this server, unless you explicitly look it up or opt into it by following.' },
   suspended: { id: 'about.domain_blocks.suspended.title', defaultMessage: 'Suspended' },
   suspendedExplanation: { id: 'about.domain_blocks.suspended.explanation', defaultMessage: 'No data from this server will be processed, stored or exchanged, making any interaction or communication with users from this server impossible.' },
+  aboutMastodon: { id: 'about.mastodon.title', defaultMessage: 'About Mastodon' },
 });
 
 const severityMessages = {
@@ -118,11 +120,11 @@ class About extends PureComponent {
     const isLoading = server.get('isLoading');
 
     return (
-      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
+      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title, { domain })}>
         <div className='scrollable about'>
           <div className='about__header'>
             <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} srcSet={server.getIn(['thumbnail', 'versions'])?.map((value, key) => `${value} ${key.replace('@', '')}`).join(', ')} className='about__header__hero' />
-            <h1>{isLoading ? <Skeleton width='10ch' /> : server.get('domain')}</h1>
+            <h1>{isLoading ? <Skeleton width='10ch' /> : domain}</h1>
             <p><FormattedMessage id='about.powered_by' defaultMessage='Decentralized social media powered by {mastodon}' values={{ mastodon: <a href='https://joinmastodon.org' className='about__mail' target='_blank'>Mastodon</a> }} /></p>
           </div>
 
@@ -142,7 +144,7 @@ class About extends PureComponent {
             </div>
           </div>
 
-          <Section open title={intl.formatMessage(messages.title)}>
+          <Section open title={intl.formatMessage(messages.title, { domain })}>
             {extendedDescription.get('isLoading') ? (
               <>
                 <Skeleton width='100%' />
@@ -209,11 +211,16 @@ class About extends PureComponent {
             ))}
           </Section>
 
-          <LinkFooter />
+          <Section title={intl.formatMessage(messages.aboutMastodon)}>
+            <div className='prose'>
+              <p><FormattedMessage id='about.mastodon.version' defaultMessage='{domain} is powered by Mastodon v{version}.' values={{ domain, version: server.get('version') }} /></p>
+              <p><FormattedMessage id='about.mastodon.license' defaultMessage='Mastodon is free and open-source software, under the AGPLv3 licence. You can {download}.' values={{ download: <a href={source_url} target='_blank' rel='noopener noreferrer'><FormattedMessage id='about.mastodon.download' defaultMessage='download the source code' /></a>}} /></p>
+              <p><FormattedMessage id='about.mastodon.more' defaultMessage='For more information, please visit {link}.' values={{ link: <a href='https://joinmastodon.org' target='_blank'>joinmastodon.org</a> }} /></p>
+              <p><FormattedMessage id='about.mastodon.trademark' defaultMessage='“Mastodon” is a trademark of Mastodon gGmbH.' /></p>
+            </div>
+          </Section>
 
-          <div className='about__footer'>
-            <p><FormattedMessage id='about.disclaimer' defaultMessage='Mastodon is free, open-source software, and a trademark of Mastodon gGmbH.' /></p>
-          </div>
+          <LinkFooter />
         </div>
 
         <Helmet>
