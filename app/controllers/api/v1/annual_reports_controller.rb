@@ -9,12 +9,11 @@ class Api::V1::AnnualReportsController < Api::BaseController
   def index
     with_read_replica do
       @presenter = AnnualReportsPresenter.new(GeneratedAnnualReport.where(account_id: current_account.id).pending)
-      @relationships = StatusRelationshipsPresenter.new(@presenter.statuses, current_account.id)
     end
 
     render json: @presenter,
            serializer: REST::AnnualReportsSerializer,
-           relationships: @relationships
+           relationships: relationships
   end
 
   def read
@@ -23,6 +22,10 @@ class Api::V1::AnnualReportsController < Api::BaseController
   end
 
   private
+
+  def relationships
+    StatusRelationshipsPresenter.new(@presenter.statuses, current_account.id)
+  end
 
   def set_annual_report
     @annual_report = GeneratedAnnualReport.find_by!(account_id: current_account.id, year: params[:id])
