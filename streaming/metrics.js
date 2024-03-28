@@ -55,7 +55,7 @@ export function setupMetrics(channels, pgPool) {
   const connectedChannels = new metrics.Gauge({
     name: 'connected_channels',
     help: 'The number of channels the streaming server is streaming to',
-    labelNames: [ 'type', 'channel' ]
+    labelNames: ['type', 'channel'],
   });
 
   const redisSubscriptions = new metrics.Gauge({
@@ -65,13 +65,13 @@ export function setupMetrics(channels, pgPool) {
 
   const redisMessagesReceived = new metrics.Counter({
     name: 'redis_messages_received_total',
-    help: 'The total number of messages the streaming server has received from redis subscriptions'
+    help: 'The total number of messages the streaming server has received from redis subscriptions',
   });
 
   const messagesSent = new metrics.Counter({
     name: 'messages_sent_total',
     help: 'The total number of messages the streaming server sent to clients per connection type',
-    labelNames: [ 'type' ]
+    labelNames: ['type'],
   });
 
   // Prime the gauges so we don't loose metrics between restarts:
@@ -80,7 +80,7 @@ export function setupMetrics(channels, pgPool) {
   connectedClients.set({ type: 'eventsource' }, 0);
 
   // For each channel, initialize the gauges at zero; There's only a finite set of channels available
-  channels.forEach(( channel ) => {
+  channels.forEach((channel) => {
     connectedChannels.set({ type: 'websocket', channel }, 0);
     connectedChannels.set({ type: 'eventsource', channel }, 0);
   });

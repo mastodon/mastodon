@@ -31,18 +31,21 @@ function sanitizeRequestLog(req) {
   const log = pinoHttpSerializers.req(req);
   if (typeof log.url === 'string' && log.url.includes('access_token')) {
     // Doorkeeper uses SecureRandom.urlsafe_base64 per RFC 6749 / RFC 6750
-    log.url = log.url.replace(/(access_token)=([a-zA-Z0-9\-_]+)/gi, '$1=[Redacted]');
+    log.url = log.url.replace(
+      /(access_token)=([a-zA-Z0-9\-_]+)/gi,
+      '$1=[Redacted]',
+    );
   }
   return log;
 }
 
 export const logger = pino({
-  name: "streaming",
+  name: 'streaming',
   // Reformat the log level to a string:
   formatters: {
     level: (label) => {
       return {
-        level: label
+        level: label,
       };
     },
   },
@@ -54,17 +57,17 @@ export const logger = pino({
       'req.headers["sec-websocket-protocol"]',
       'req.headers.authorization',
       'req.headers.cookie',
-      'req.query.access_token'
-    ]
-  }
+      'req.query.access_token',
+    ],
+  },
 });
 
 export const httpLogger = pinoHttp({
   logger,
   genReqId: generateRequestId,
   serializers: {
-    req: sanitizeRequestLog
-  }
+    req: sanitizeRequestLog,
+  },
 });
 
 /**
@@ -90,11 +93,11 @@ export function createWebsocketLogger(request, resolvedAccount) {
 
   return logger.child({
     req: {
-      id: request.id
+      id: request.id,
     },
     account: {
-      id: resolvedAccount.accountId ?? null
-    }
+      id: resolvedAccount.accountId ?? null,
+    },
   });
 }
 
@@ -104,7 +107,10 @@ export function createWebsocketLogger(request, resolvedAccount) {
  * @param {string} environment
  */
 export function initializeLogLevel(env, environment) {
-  if (env.LOG_LEVEL && Object.keys(logger.levels.values).includes(env.LOG_LEVEL)) {
+  if (
+    env.LOG_LEVEL &&
+    Object.keys(logger.levels.values).includes(env.LOG_LEVEL)
+  ) {
     logger.level = env.LOG_LEVEL;
   } else if (environment === 'development') {
     logger.level = 'debug';
