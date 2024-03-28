@@ -18,7 +18,7 @@ class FeedManager
   # @yield [Account]
   # @return [void]
   def with_active_accounts(&block)
-    Account.joins(:user).where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago).find_each(&block)
+    Account.joins(:user).merge(User.signed_in_recently).find_each(&block)
   end
 
   # Redis key of a feed
