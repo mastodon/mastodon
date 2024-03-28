@@ -16,9 +16,13 @@ module Admin::ActionLogsHelper
     when 'Report'
       link_to "##{log.human_identifier.presence || log.target_id}", admin_report_path(log.target_id)
     when 'DomainBlock', 'DomainAllow', 'EmailDomainBlock', 'UnavailableDomain'
-      link_to log.human_identifier, "https://#{log.human_identifier.presence}"
+      link_to log.human_identifier, "https://#{log.human_identifier.presence}", data: { confirm: t('admin.action_logs.external_link', url: "https//#{log.human_identifier.presence}") }
     when 'Status'
-      link_to log.human_identifier, log.permalink
+      if log.permalink.blank? || TagManager.instance.local_url?(log.permalink)
+        link_to log.human_identifier, log.permalink
+      else
+        link_to log.human_identifier, log.permalink, data: { confirm: t('admin.action_logs.external_link', url: log.permalink) }
+      end
     when 'AccountWarning'
       link_to log.human_identifier, disputes_strike_path(log.target_id)
     when 'Announcement'
