@@ -12,6 +12,23 @@ class SearchQueryTransformer < Parslet::Transform
     in
   ).freeze
 
+  SUPPORTED_OPERATOR = %w(
+    +
+    -
+  ).freeze
+
+  SUPPORTED_PROPERTIES = %w(
+    image
+    video
+    audio
+    media
+    poll
+    link
+    embed
+    sensitive
+    reply
+  ).freeze
+
   class Query
     def initialize(clauses, options = {})
       raise ArgumentError if options[:current_account].nil?
@@ -154,6 +171,8 @@ class SearchQueryTransformer < Parslet::Transform
 
       case prefix
       when 'has', 'is'
+        raise "Unknown properties: #{term}" unless SUPPORTED_PROPERTIES.include?(term)
+
         @filter = :properties
         @type = :term
         @term = term
