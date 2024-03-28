@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe Admin::Metrics::Measure::TagAccountsMeasure do
-  subject(:measure) { described_class.new(start_at, end_at, params) }
+  subject { described_class.new(start_at, end_at, params) }
 
   let!(:tag) { Fabricate(:tag) }
 
@@ -12,8 +12,39 @@ describe Admin::Metrics::Measure::TagAccountsMeasure do
   let(:params) { ActionController::Parameters.new(id: tag.id) }
 
   describe '#data' do
-    it 'runs data query without error' do
-      expect { measure.data }.to_not raise_error
+    context 'with tagged accounts' do
+      let(:alice) { Fabricate(:account, domain: 'alice.example') }
+      let(:bob) { Fabricate(:account, domain: 'bob.example') }
+
+      before do
+        3.times do
+          travel_to(2.days.ago) { add_tag_history(alice) }
+        end
+
+        2.times do
+          travel_to(1.day.ago) do
+            add_tag_history(alice)
+            add_tag_history(bob)
+          end
+        end
+
+        add_tag_history(bob)
+      end
+
+      it 'returns correct tag_accounts counts' do
+        expect(subject.data.size)
+          .to eq(3)
+        expect(subject.data.map(&:symbolize_keys))
+          .to contain_exactly(
+            include(date: 2.days.ago.midnight.to_time, value: '1'),
+            include(date: 1.day.ago.midnight.to_time, value: '2'),
+            include(date: 0.days.ago.midnight.to_time, value: '1')
+          )
+      end
+
+      def add_tag_history(account)
+        tag.history.add(account.id)
+      end
     end
   end
 end
