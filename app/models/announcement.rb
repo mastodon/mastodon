@@ -59,11 +59,13 @@ class Announcement < ApplicationRecord
   end
 
   def statuses
-    @statuses ||= if status_ids.nil?
-                    []
-                  else
-                    Status.where(id: status_ids, visibility: [:public, :unlisted])
-                  end
+    @statuses ||= begin
+      if status_ids.nil?
+        []
+      else
+        Status.includes(:preloadable_poll, :media_attachments, :account, reblog: :account).where(id: status_ids, visibility: [:public, :unlisted])
+      end
+    end
   end
 
   def tags
