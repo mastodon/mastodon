@@ -683,14 +683,8 @@ describe Mastodon::CLI::Accounts do
           .and not_change(local_account, :updated_at)
 
         # One request from factory creation, one more from task
-        expect(a_request(:get, remote_com_avatar_url))
-          .to have_been_made.at_least_times(2)
-        expect(a_request(:get, remote_com_header_url))
-          .to have_been_made.at_least_times(2)
-        expect(a_request(:get, remote_net_avatar_url))
-          .to have_been_made.at_least_times(2)
-        expect(a_request(:get, remote_net_header_url))
-          .to have_been_made.at_least_times(2)
+        expect_asset_requests(remote_account_example_com, 2)
+        expect_asset_requests(account_example_net, 2)
       end
 
       context 'with --dry-run option' do
@@ -701,14 +695,8 @@ describe Mastodon::CLI::Accounts do
             .to output_results('Refreshed 2 accounts')
 
           # One request from factory creation, none from task due to dry run
-          expect(a_request(:get, remote_com_avatar_url))
-            .to have_been_made.once
-          expect(a_request(:get, remote_com_header_url))
-            .to have_been_made.once
-          expect(a_request(:get, remote_net_avatar_url))
-            .to have_been_made.once
-          expect(a_request(:get, remote_net_header_url))
-            .to have_been_made.once
+          expect_asset_requests(remote_account_example_com, 1)
+          expect_asset_requests(account_example_net, 1)
         end
       end
     end
@@ -857,20 +845,11 @@ describe Mastodon::CLI::Accounts do
           .to output_results('Refreshed 2 accounts')
 
         # One request from factory creation, one more from task
-        expect(a_request(:get, com_a_avatar_url))
-          .to have_been_made.at_least_times(2)
-        expect(a_request(:get, com_a_header_url))
-          .to have_been_made.at_least_times(2)
-        expect(a_request(:get, com_b_avatar_url))
-          .to have_been_made.at_least_times(2)
-        expect(a_request(:get, com_b_header_url))
-          .to have_been_made.at_least_times(2)
+        expect_asset_requests(account_example_com_a, 2)
+        expect_asset_requests(account_example_com_b, 2)
 
         # One request from factory creation, none from task
-        expect(a_request(:get, net_avatar_url))
-          .to have_been_made.once
-        expect(a_request(:get, net_header_url))
-          .to have_been_made.once
+        expect_asset_requests(account_example_net, 1)
       end
     end
 
@@ -879,6 +858,15 @@ describe Mastodon::CLI::Accounts do
         expect { subject }
           .to raise_error(Thor::Error, 'No account(s) given')
       end
+    end
+
+    private
+
+    def expect_asset_requests(account, count)
+      expect(a_request(:get, account.avatar_remote_url))
+        .to have_been_made.at_least_times(count)
+      expect(a_request(:get, account.header_remote_url))
+        .to have_been_made.at_least_times(count)
     end
   end
 
