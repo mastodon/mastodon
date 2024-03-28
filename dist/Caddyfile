@@ -1,0 +1,42 @@
+# This is a Caddyfile, i.e. a configuration file for Caddy.
+# Caddy (https://caddyserver.com) is a widely used open source web server,
+# which can replace Nginx as a reverse proxy in front of Mastodon.
+# If you decide to use Caddy with this configuration file, remember to replace
+# "example.com" with the URL of your Mastodon instance.
+
+example.com {
+	root * /home/mastodon/live/public
+
+	@staticfiles file
+	handle @staticfiles {
+		file_server
+	}
+
+	handle /api/v1/streaming* {
+		reverse_proxy localhost:4000
+	}
+
+	handle * {
+		reverse_proxy localhost:3000
+	}
+
+	encode gzip
+
+	@mastodonfiles {
+		path /sw.js */assets/* */avatars/* */emoji/* */headers/* */packs/* */shortcuts/* */sounds/* */system/*
+	}
+
+	header @mastodonfiles {
+		Cache-Control "public, max-age=2419200, must-revalidate"
+		Strict-Transport-Security "max-age=63072000; includeSubDomains"
+	}
+
+	header /api/v1/streaming* {
+		Strict-Transport-Security "max-age=63072000; includeSubDomains"
+	}
+
+	handle_errors {
+		rewrite 500.html
+		file_server
+	}
+}
