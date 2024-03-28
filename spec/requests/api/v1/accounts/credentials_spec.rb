@@ -28,6 +28,20 @@ RSpec.describe 'credentials API' do
         locked: true,
       })
     end
+
+    describe 'allows the read:me scope' do
+      let(:scopes) { 'read:me' }
+
+      it 'returns the response successfully' do
+        subject
+
+        expect(response).to have_http_status(200)
+
+        expect(body_as_json).to include({
+          locked: true,
+        })
+      end
+    end
   end
 
   describe 'PATCH /api/v1/accounts/update_credentials' do
