@@ -2,7 +2,7 @@
   "name": "Mastodon on GitHub Codespaces",
   "dockerComposeFile": "../docker-compose.yml",
   "service": "app",
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "workspaceFolder": "/mastodon",
 
   "features": {
     "ghcr.io/devcontainers/features/sshd:1": {}
@@ -36,7 +36,6 @@
     "LIBRE_TRANSLATE_ENDPOINT": ""
   },
 
-  "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
   "postCreateCommand": ".devcontainer/post-create.sh",
   "waitFor": "postCreateCommand",
 
