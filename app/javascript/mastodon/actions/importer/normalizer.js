@@ -2,6 +2,7 @@ import escapeTextContentForBrowser from 'escape-html';
 
 import emojify from '../../features/emoji/emoji';
 import { expandSpoilers } from '../../initial_state';
+import { sanitize } from '../../utils/sanitize';
 
 const domParser = new DOMParser();
 
@@ -66,8 +67,8 @@ export function normalizeStatus(status, normalOldStatus) {
     const emojiMap      = makeEmojiMap(normalStatus.emojis);
 
     normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
-    normalStatus.contentHtml  = emojify(normalStatus.content, emojiMap);
-    normalStatus.spoilerHtml  = emojify(escapeTextContentForBrowser(spoilerText), emojiMap);
+    normalStatus.contentHtml  = sanitize(emojify(normalStatus.content, emojiMap));
+    normalStatus.spoilerHtml  = sanitize(emojify(escapeTextContentForBrowser(spoilerText), emojiMap));
     normalStatus.hidden       = expandSpoilers ? false : spoilerText.length > 0 || normalStatus.sensitive;
   }
 
@@ -93,8 +94,8 @@ export function normalizeStatusTranslation(translation, status) {
     detected_source_language: translation.detected_source_language,
     language: translation.language,
     provider: translation.provider,
-    contentHtml: emojify(translation.content, emojiMap),
-    spoilerHtml: emojify(escapeTextContentForBrowser(translation.spoiler_text), emojiMap),
+    contentHtml: sanitize(emojify(translation.content, emojiMap)),
+    spoilerHtml: sanitize(emojify(escapeTextContentForBrowser(translation.spoiler_text), emojiMap)),
     spoiler_text: translation.spoiler_text,
   };
 
@@ -137,7 +138,7 @@ export function normalizeAnnouncement(announcement) {
   const normalAnnouncement = { ...announcement };
   const emojiMap = makeEmojiMap(normalAnnouncement.emojis);
 
-  normalAnnouncement.contentHtml = emojify(normalAnnouncement.content, emojiMap);
+  normalAnnouncement.contentHtml = sanitize(emojify(normalAnnouncement.content, emojiMap));
 
   return normalAnnouncement;
 }
