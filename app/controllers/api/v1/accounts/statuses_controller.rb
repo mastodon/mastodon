@@ -9,7 +9,8 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   def index
     cache_if_unauthenticated!
     @statuses = load_statuses
-    render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
+    return_source = params[:client_type] == 'editor'
+    render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id), source_requested: return_source
   end
 
   private
