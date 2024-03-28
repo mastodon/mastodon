@@ -30,6 +30,7 @@ module CacheConcern
 
     key        = options.delete(:key) || [[params[:controller], params[:action]].join('/'), options[:json].respond_to?(:cache_key) ? options[:json].cache_key : nil, options[:fields].nil? ? nil : options[:fields].join(',')].compact.join(':')
     expires_in = options.delete(:expires_in) || 3.minutes
+    is_public  = options.delete(:public) || false
     body       = Rails.cache.read(key, raw: true)
 
     if body
@@ -39,6 +40,12 @@ module CacheConcern
         options[:json] = yield
       elsif options[:json].is_a?(Symbol)
         options[:json] = send(options[:json])
+      end
+
+      if is_public
+        # Prevent `active_model_serializer`'s `ActionController::Serialization` from calling `current_user`
+        # and thus re-issuing session cookies
+        serialization_scope nil
       end
 
       render(options)
