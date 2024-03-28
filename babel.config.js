@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 module.exports = (api) => {
   const env = api.env();
 
@@ -7,8 +8,8 @@ module.exports = (api) => {
   };
 
   const envOptions = {
-    useBuiltIns: "usage",
-    corejs: { version: "3.30" },
+    useBuiltIns: 'usage',
+    corejs: { version: '3.30' },
     debug: false,
     include: [
       'transform-numeric-separator',
@@ -18,45 +19,42 @@ module.exports = (api) => {
     ],
   };
 
-  const plugins = [
-    ['formatjs'],
-    'preval',
-  ];
+  const plugins = [['formatjs'], 'preval'];
 
   switch (env) {
-  case 'production':
-    plugins.push(...[
-      'lodash',
-      [
-        'transform-react-remove-prop-types',
-        {
-          mode: 'remove',
-          removeImport: true,
-          additionalLibraries: [
-            'react-immutable-proptypes',
+    case 'production':
+      plugins.push(
+        ...[
+          'lodash',
+          [
+            'transform-react-remove-prop-types',
+            {
+              mode: 'remove',
+              removeImport: true,
+              additionalLibraries: ['react-immutable-proptypes'],
+            },
           ],
-        },
-      ],
-      '@babel/transform-react-inline-elements',
-      [
-        '@babel/transform-runtime',
-        {
-          helpers: true,
-          regenerator: false,
-          useESModules: true,
-        },
-      ],
-    ]);
-    break;
+          '@babel/transform-react-inline-elements',
+          [
+            '@babel/transform-runtime',
+            {
+              helpers: true,
+              regenerator: false,
+              useESModules: true,
+            },
+          ],
+        ],
+      );
+      break;
 
-  case 'development':
-    reactOptions.development = true;
-    envOptions.debug = true;
+    case 'development':
+      reactOptions.development = true;
+      envOptions.debug = true;
 
-    // We need Babel to not inject polyfills in dev, as this breaks `preval` files
-    envOptions.useBuiltIns = false;
-    envOptions.corejs = undefined;
-    break;
+      // We need Babel to not inject polyfills in dev, as this breaks `preval` files
+      envOptions.useBuiltIns = false;
+      envOptions.corejs = undefined;
+      break;
   }
 
   const config = {
@@ -69,9 +67,7 @@ module.exports = (api) => {
     overrides: [
       {
         test: /tesseract\.js/,
-        presets: [
-          ['@babel/env', { ...envOptions, modules: 'commonjs' }],
-        ],
+        presets: [['@babel/env', { ...envOptions, modules: 'commonjs' }]],
       },
     ],
   };
