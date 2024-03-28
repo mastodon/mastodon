@@ -14,7 +14,6 @@ Capybara.register_driver :headless_chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new
   options.add_argument '--headless=new'
   options.add_argument '--window-size=1680,1050'
-  options.browser_version = '120'
 
   Capybara::Selenium::Driver.new(
     app,
