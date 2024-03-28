@@ -67,3 +67,7 @@
       interval: 1 hour
       class: Scheduler::AutoCloseRegistrationsScheduler
       queue: scheduler
+    ip_spamlist_url_scheduler:
+      every: '24h'
+      class: Scheduler::IpSpamlistUrlsScheduler
+      queue: scheduler
