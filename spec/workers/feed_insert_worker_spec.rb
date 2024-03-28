@@ -32,7 +32,7 @@ describe FeedInsertWorker do
 
     context 'when there are real records' do
       it 'skips the push when there is a filter' do
-        instance = instance_double(FeedManager, push_to_home: nil, filter?: true)
+        instance = instance_double(FeedManager, push_to_home: nil, filter?: true, filter_notification?: true)
         allow(FeedManager).to receive(:instance).and_return(instance)
         result = subject.perform(status.id, follower.id)
 
@@ -41,7 +41,7 @@ describe FeedInsertWorker do
       end
 
       it 'pushes the status onto the home timeline without filter' do
-        instance = instance_double(FeedManager, push_to_home: nil, filter?: false)
+        instance = instance_double(FeedManager, push_to_home: nil, filter?: false, filter_notification?: false)
         allow(FeedManager).to receive(:instance).and_return(instance)
         result = subject.perform(status.id, follower.id, :home)
 
