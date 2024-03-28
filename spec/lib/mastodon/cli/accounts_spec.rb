@@ -1471,4 +1471,63 @@ describe Mastodon::CLI::Accounts do
       end
     end
   end
+
+  describe '#fix_duplicates' do
+    context 'when there are no duplicates' do
+      it 'does not raise any error' do
+        expect { cli.invoke(:fix_duplicates) }.to_not raise_error
+      end
+    end
+
+    context 'when there are duplicates' do
+      let(:new_example_com_uri)          { 'https://new.example.com/users/bob' }
+      let(:new_example_net_uri)          { 'https://new.example.net/users/fred' }
+      let(:fetch_remote_account_service) { instance_double(ActivityPub::FetchRemoteAccountService, call: nil) }
+
+      before do
+        allow(ActivityPub::FetchRemoteAccountService).to receive(:new).and_return(fetch_remote_account_service)
+        Fabricate(:account, username: 'bob', domain: 'old.example.com', uri: new_example_com_uri)
+        Fabricate(:account, username: 'bob', domain: 'new.example.com', uri: new_example_com_uri)
+        Fabricate(:account, username: 'fred', domain: 'old.example.net', uri: new_example_net_uri)
+        Fabricate(:account, username: 'fred', domain: 'new.example.net', uri: new_example_net_uri)
+      end
+
+      it 'merges duplicates found for each URI' do
+        cli.invoke(:fix_duplicates)
+
+        expect(fetch_remote_account_service).to have_received(:call).with(new_example_com_uri).once
+        expect(fetch_remote_account_service).to have_received(:call).with(new_example_net_uri).once
+      end
+
+      context 'with dry-run option' do
+        let(:options) { { dry_run: true } }
+
+        it 'does not merge the duplicates found' do
+          cli.invoke(:fix_duplicates, [], options)
+
+          expect(fetch_remote_account_service).to_not have_received(:call)
+        end
+      end
+
+      context 'when an error is raised during the processing of an URI' do
+        let(:error_message) { 'Error' }
+
+        before do
+          allow(fetch_remote_account_service).to receive(:call).with(new_example_com_uri).and_raise(error_message)
+        end
+
+        it 'displays an error message when processing an URI' do
+          expect { cli.invoke(:fix_duplicates) }.to output(
+            a_string_including("Error processing #{new_example_com_uri}: #{error_message}")
+          ).to_stdout
+        end
+
+        it 'continues to process URIs that did not raise any error' do
+          cli.invoke(:fix_duplicates)
+
+          expect(fetch_remote_account_service).to have_received(:call).with(new_example_net_uri).once
+        end
+      end
+    end
+  end
 end
