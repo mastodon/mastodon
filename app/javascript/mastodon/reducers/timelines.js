@@ -188,11 +188,21 @@ const reconnectTimeline = (state, usePendingItems) => {
   });
 };
 
+const mergePendingItems = (state, timeline) => {
+  return state.update(timeline, initialTimeline, map =>
+    map.update('items', (list) => {
+      const oldItems = list.take(40);
+      const newItems = ImmutableOrderedSet(map.get('pendingItems'));
+      newItems.subtract(oldItems);
+      return newItems.toList().concat(oldItems);
+    }).set('pendingItems', ImmutableList()).set('unread', 0)
+  );
+};
+
 export default function timelines(state = initialState, action) {
   switch(action.type) {
   case TIMELINE_LOAD_PENDING:
-    return state.update(action.timeline, initialTimeline, map =>
-      map.update('items', list => map.get('pendingItems').concat(list.take(40))).set('pendingItems', ImmutableList()).set('unread', 0));
+    return mergePendingItems(state, action.timeline);
   case TIMELINE_EXPAND_REQUEST:
     return state.update(action.timeline, initialTimeline, map => map.set('isLoading', true));
   case TIMELINE_EXPAND_FAIL:
