@@ -195,6 +195,7 @@ module LanguagesHelper
     csb: ['Kashubian', 'Kaszëbsczi'].freeze,
     jbo: ['Lojban', 'la .lojban.'].freeze,
     kab: ['Kabyle', 'Taqbaylit'].freeze,
+    lad: ['Ladino (Judeo-Spanish)', 'Ladino (Djudezmo)'].freeze,
     ldn: ['Láadan', 'Láadan'].freeze,
     lfn: ['Lingua Franca Nova', 'lingua franca nova'].freeze,
     moh: ['Mohawk', 'Kanienʼkéha'].freeze,
