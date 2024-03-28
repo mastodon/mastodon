@@ -2,6 +2,9 @@
 
 require 'doorkeeper/grape/authorization_decorator'
 
+ALLOWLISTED_IPS_ENV_VALUE = ENV.fetch('RATE_LIMIT_ALLOWLIST_IPS', '')
+ALLOWLISTED_IPS = ALLOWLISTED_IPS_ENV_VALUE.split(",")
+
 class Rack::Attack
   class Request
     def authenticated_token
@@ -60,6 +63,10 @@ class Rack::Attack
 
   Rack::Attack.safelist('allow from localhost') do |req|
     req.remote_ip == '127.0.0.1' || req.remote_ip == '::1'
+  end
+
+  Rack::Attack.safelist('allow from ips in the allowlist') do |req|
+    ALLOWLISTED_IPS.include?(req.remote_ip)
   end
 
   Rack::Attack.blocklist('deny from blocklist') do |req|
