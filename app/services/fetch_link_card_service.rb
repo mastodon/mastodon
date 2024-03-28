@@ -67,6 +67,7 @@ class FetchLinkCardService < BaseService
       PreviewCardsStatus.create(status: @status, preview_card: @card, url: @original_url)
       Rails.cache.delete(@status)
       Trends.links.register(@status)
+      DistributionWorker.perform_async(@status.id, { update: true })
     end
   end
 

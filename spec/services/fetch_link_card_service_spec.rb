@@ -6,6 +6,7 @@ RSpec.describe FetchLinkCardService do
   subject { described_class.new }
 
   let(:html) { '<!doctype html><title>Hello world</title>' }
+  let(:status) { Fabricate(:status, text: 'http://example.com/html') }
   let(:oembed_cache) { nil }
 
   before do
@@ -27,9 +28,20 @@ RSpec.describe FetchLinkCardService do
     stub_request(:get, 'http://example.com/koi8-r').to_return(request_fixture('koi8-r.txt'))
     stub_request(:get, 'http://example.com/windows-1251').to_return(request_fixture('windows-1251.txt'))
 
+    allow(DistributionWorker).to receive(:perform_async)
+    allow(Trends.links).to receive(:register)
+
     Rails.cache.write('oembed_endpoint:example.com', oembed_cache) if oembed_cache
 
     subject.call(status)
+  end
+
+  it 'registers trends' do
+    expect(Trends.links).to have_received(:register).with(status)
+  end
+
+  it 'redistributes status' do
+    expect(DistributionWorker).to have_received(:perform_async).with(status.id, { update: true })
   end
 
   context 'with a local status' do
