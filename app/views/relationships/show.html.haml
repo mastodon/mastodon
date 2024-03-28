@@ -56,3 +56,7 @@
         = render partial: 'account', collection: @accounts, locals: { f: f, relationships: @relationships }
 
 = paginate @accounts
+
+%hr.spacer/
+
+.flash-message= t('relationships.find_users_to_follow_hint')
