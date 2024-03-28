@@ -6,7 +6,11 @@ class InvitePolicy < ApplicationPolicy
   end
 
   def create?
-    role.can?(:invite_users)
+    role.can?(:invite_users) && (current_user.created_at <= InviteValidator::MIN_ACCOUNT_AGE.ago || unrestricted?)
+  end
+
+  def unrestricted?
+    role.can?(:bypass_invite_limits)
   end
 
   def deactivate_all?

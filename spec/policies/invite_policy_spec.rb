@@ -7,7 +7,7 @@ RSpec.describe InvitePolicy do
   subject { described_class }
 
   let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
-  let(:john)    { Fabricate(:user).account }
+  let(:john)    { Fabricate(:user, created_at: 7.days.ago).account }
 
   permissions :index? do
     context 'when staff?' do
@@ -35,6 +35,24 @@ RSpec.describe InvitePolicy do
 
       it 'denies' do
         expect(subject).to_not permit(john, Invite)
+      end
+    end
+  end
+
+  permissions :unrestricted? do
+    context 'without permission' do
+      it 'denies' do
+        expect(subject).to_not permit(john, Invite)
+      end
+    end
+
+    context 'with permission' do
+      before do
+        UserRole.everyone.update(permissions: UserRole::FLAGS[:bypass_invite_limits])
+      end
+
+      it 'permits' do
+        expect(subject).to permit(john, Invite)
       end
     end
   end

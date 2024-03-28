@@ -689,6 +689,8 @@ en:
       privileges:
         administrator: Administrator
         administrator_description: Users with this permission will bypass every permission
+        bypass_invite_limits: Bypass invite limits
+        bypass_invite_limits_descriptions: Allows users to immediately create unlimited amount of invites with adjustable uses.
         delete_user_data: Delete User Data
         delete_user_data_description: Allows users to delete other users' data without delay
         invite_users: Invite Users
@@ -1366,6 +1368,9 @@ en:
     upload: Upload
   invites:
     delete: Deactivate
+    errors:
+      daily_limit_reached: Daily limit of created invites reached
+      limit_reached: Maximum amount of active invites reached
     expired: Expired
     expires_in:
       '1800': 30 minutes

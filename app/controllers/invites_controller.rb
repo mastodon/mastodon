@@ -22,6 +22,8 @@ class InvitesController < ApplicationController
     @invite      = Invite.new(resource_params)
     @invite.user = current_user
 
+    @invite.max_uses = 1 unless policy(:invite).unrestricted?
+
     if @invite.save
       redirect_to invites_path
     else

@@ -36,6 +36,7 @@ class UserRole < ApplicationRecord
     manage_roles: (1 << 17),
     manage_user_access: (1 << 18),
     delete_user_data: (1 << 19),
+    bypass_invite_limits: (1 << 20),
   }.freeze
 
   EVERYONE_ROLE_ID = -99
@@ -50,6 +51,7 @@ class UserRole < ApplicationRecord
     CATEGORIES = {
       invites: %i(
         invite_users
+        bypass_invite_limits
       ).freeze,
 
       moderation: %i(
@@ -193,6 +195,6 @@ class UserRole < ApplicationRecord
   end
 
   def validate_dangerous_permissions
-    errors.add(:permissions_as_keys, :dangerous) if everyone? && Flags::DEFAULT & permissions != permissions
+    errors.add(:permissions_as_keys, :dangerous) if everyone? && (Flags::DEFAULT | FLAGS[:bypass_invite_limits]) & permissions != permissions
   end
 end
