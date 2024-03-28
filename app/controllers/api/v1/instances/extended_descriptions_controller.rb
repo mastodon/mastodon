@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::Instances::ExtendedDescriptionsController < Api::V1::Instances::BaseController
+  skip_before_action :require_authenticated_user!
   skip_around_action :set_locale
 
   before_action :set_extended_description
