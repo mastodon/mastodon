@@ -1,0 +1,115 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../..:/workspaces:cached
+    environment:
+      RAILS_ENV: development
+      NODE_ENV: development
+      BIND: 0.0.0.0
+      REDIS_SENTINEL: redis-sentinel
+      REDIS_PASSWORD: str0ng_passw0rd
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASS: postgres
+      DB_PORT: '5432'
+      ES_ENABLED: 'true'
+      ES_HOST: es
+      ES_PORT: '9200'
+      LIBRE_TRANSLATE_ENDPOINT: http://libretranslate:5000
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+    ports:
+      - '127.0.0.1:3000:3000'
+      - '127.0.0.1:3035:3035'
+      - '127.0.0.1:4000:4000'
+    networks:
+      - external_network
+      - internal_network
+
+  db:
+    image: postgres:14-alpine
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    networks:
+      - internal_network
+
+  # Redis Sentinel with one Replica for testing
+  redis:
+    image: 'bitnami/redis:latest'
+    environment:
+      - REDIS_REPLICATION_MODE=master
+      - REDIS_PASSWORD=str0ng_passw0rd
+    networks:
+      - internal_network
+    ports:
+      - '6379:6379'
+  redis-replica:
+    image: 'bitnami/redis:latest'
+    environment:
+      - REDIS_REPLICATION_MODE=slave
+      - REDIS_MASTER_HOST=redis
+      - REDIS_MASTER_PASSWORD=str0ng_passw0rd
+      - REDIS_PASSWORD=str0ng_passw0rd
+    networks:
+      - internal_network
+    ports:
+      - '6379:6379'
+  redis-sentinel:
+    image: 'bitnami/redis-sentinel:latest'
+    environment:
+      - REDIS_MASTER_PASSWORD=str0ng_passw0rd
+    ports:
+      - '26379:26379'
+    networks:
+      - internal_network
+    depends_on:
+      - redis
+      - redis-replica
+
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+    restart: unless-stopped
+    environment:
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+      cluster.name: es-mastodon
+      discovery.type: single-node
+      bootstrap.memory_lock: 'true'
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    networks:
+      - internal_network
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+  libretranslate:
+    image: libretranslate/libretranslate:v1.3.11
+    restart: unless-stopped
+    volumes:
+      - lt-data:/home/libretranslate/.local
+    networks:
+      - external_network
+      - internal_network
+
+volumes:
+  postgres-data:
+  redis-data:
+  es-data:
+  lt-data:
+
+networks:
+  external_network:
+  internal_network:
+    internal: true
