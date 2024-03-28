@@ -20,7 +20,7 @@ class Scheduler::SelfDestructScheduler
   private
 
   def sidekiq_overwhelmed?
-    redis_mem_info = Sidekiq.redis_info
+    redis_mem_info = Sidekiq.default_configuration.redis_info
 
     Sidekiq::Stats.new.enqueued > MAX_ENQUEUED || redis_mem_info['used_memory'].to_f > redis_mem_info['total_system_memory'].to_f * MAX_REDIS_MEM_USAGE
   end
