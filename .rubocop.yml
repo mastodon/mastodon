@@ -39,7 +39,7 @@ Layout/FirstHashElementIndentation:
 # Reason: Currently disabled in .rubocop_todo.yml
 # https://docs.rubocop.org/rubocop/cops_layout.html#layoutlinelength
 Layout/LineLength:
-  Max: 320 # Default of 120 causes a duplicate entry in generated todo file
+  Max: 300 # Default of 120 causes a duplicate entry in generated todo file
 
 ## Disable most Metrics/*Length cops
 # Reason: those are often triggered and force significant refactors when this happend
