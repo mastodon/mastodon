@@ -82,6 +82,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     process_tags
     process_audience
 
+    # Reject the status unless all the hashtags are usable:
+    return reject_payload! unless @tags.all?(&:usable?)
+
     ApplicationRecord.transaction do
       @status = Status.create!(@params)
       attach_tags(@status)
