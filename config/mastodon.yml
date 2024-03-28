@@ -1,0 +1,54 @@
+shared:
+  accounts:
+    max_featured_tags: 10
+
+  statuses:
+    max_characters: 500
+    url_placeholder_characters: 23
+
+  media_attachments:
+    file_size_limit:
+      image: 16777216 # 16 MiB
+      video: 103809024 # 99 MiB
+    max_description_length: 1500
+    mime_types:
+      image:
+        image/jpeg:
+        image/png:
+        image/gif:
+        image/heic:
+          should_convert: true
+        image/heif:
+          should_convert: true
+        image/webp:
+        image/avif:
+          should_convert: true
+      video:
+        video/webm:
+          should_convert: true
+        video/mp4:
+        video/quicktime:
+          should_convert: true
+        video/ogg:
+      audio:
+        audio/wave:
+        audio/wav:
+        audio/x-wav:
+        audio/x-pn-wave:
+        audio/vnd.wave:
+        audio/ogg:
+        audio/vorbis:
+        audio/mpeg:
+        audio/mp3:
+        audio/webm:
+        audio/flac:
+        audio/aac:
+        audio/m4a:
+        audio/x-m4a:
+        audio/mp4:
+        audio/3gpp:
+        video/x-ms-asf:
+
+  polls:
+    max_options: 4
+    max_option_characters: 50

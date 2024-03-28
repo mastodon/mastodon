@@ -53,27 +53,27 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       },
 
       accounts: {
-        max_featured_tags: FeaturedTag::LIMIT,
+        max_featured_tags: Rails.configuration.x.mastodon.accounts[:max_featured_tags],
       },
 
       statuses: {
-        max_characters: StatusLengthValidator::MAX_CHARS,
+        max_characters: Rails.configuration.x.mastodon.statuses[:max_characters],
         max_media_attachments: 4,
-        characters_reserved_per_url: StatusLengthValidator::URL_PLACEHOLDER_CHARS,
+        characters_reserved_per_url: Rails.configuration.x.mastodon.statuses[:url_placeholder_characters],
       },
 
       media_attachments: {
-        supported_mime_types: MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES + MediaAttachment::AUDIO_MIME_TYPES,
-        image_size_limit: MediaAttachment::IMAGE_LIMIT,
+        supported_mime_types: MediaAttachment.supported_mime_types,
+        image_size_limit: MediaAttachment.image_size_limit,
         image_matrix_limit: Attachmentable::MAX_MATRIX_LIMIT,
-        video_size_limit: MediaAttachment::VIDEO_LIMIT,
+        video_size_limit: MediaAttachment.video_size_limit,
         video_frame_rate_limit: MediaAttachment::MAX_VIDEO_FRAME_RATE,
         video_matrix_limit: MediaAttachment::MAX_VIDEO_MATRIX_LIMIT,
       },
 
       polls: {
-        max_options: PollValidator::MAX_OPTIONS,
-        max_characters_per_option: PollValidator::MAX_OPTION_CHARS,
+        max_options: Rails.configuration.x.mastodon.polls[:max_options],
+        max_characters_per_option: Rails.configuration.x.mastodon.polls[:max_option_characters],
         min_expiration: PollValidator::MIN_EXPIRATION,
         max_expiration: PollValidator::MAX_EXPIRATION,
       },

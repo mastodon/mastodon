@@ -33,7 +33,7 @@ class ActivityPub::FetchFeaturedTagsCollectionService < BaseService
 
       all_items.concat(items)
 
-      break if all_items.size >= FeaturedTag::LIMIT
+      break if all_items.size >= Rails.configuration.x.mastodon.accounts[:max_featured_tags]
 
       collection = collection['next'].present? ? fetch_collection(collection['next']) : nil
     end
@@ -49,7 +49,7 @@ class ActivityPub::FetchFeaturedTagsCollectionService < BaseService
   end
 
   def process_items(items)
-    names            = items.filter_map { |item| item['type'] == 'Hashtag' && item['name']&.delete_prefix('#') }.take(FeaturedTag::LIMIT)
+    names            = items.filter_map { |item| item['type'] == 'Hashtag' && item['name']&.delete_prefix('#') }.take(Rails.configuration.x.mastodon.accounts[:max_featured_tags])
     tags             = names.index_by { |name| HashtagNormalizer.new.normalize(name) }
     normalized_names = tags.keys
 

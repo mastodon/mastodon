@@ -37,11 +37,6 @@ class MediaAttachment < ApplicationRecord
   enum :type, { image: 0, gifv: 1, video: 2, unknown: 3, audio: 4 }
   enum :processing, { queued: 0, in_progress: 1, complete: 2, failed: 3 }, prefix: true
 
-  MAX_DESCRIPTION_LENGTH = 1_500
-
-  IMAGE_LIMIT = 16.megabytes
-  VIDEO_LIMIT = 99.megabytes
-
   MAX_VIDEO_MATRIX_LIMIT = 8_294_400 # 3840x2160px
   MAX_VIDEO_FRAME_RATE   = 120
   MAX_VIDEO_FRAMES       = 36_000 # Approx. 5 minutes at 120 fps
@@ -56,12 +51,6 @@ class MediaAttachment < ApplicationRecord
     original
     small
   ).freeze
-
-  IMAGE_MIME_TYPES             = %w(image/jpeg image/png image/gif image/heic image/heif image/webp image/avif).freeze
-  IMAGE_CONVERTIBLE_MIME_TYPES = %w(image/heic image/heif image/avif).freeze
-  VIDEO_MIME_TYPES             = %w(video/webm video/mp4 video/quicktime video/ogg).freeze
-  VIDEO_CONVERTIBLE_MIME_TYPES = %w(video/webm video/quicktime).freeze
-  AUDIO_MIME_TYPES             = %w(audio/wave audio/wav audio/x-wav audio/x-pn-wave audio/vnd.wave audio/ogg audio/vorbis audio/mpeg audio/mp3 audio/webm audio/flac audio/aac audio/m4a audio/x-m4a audio/mp4 audio/3gpp video/x-ms-asf).freeze
 
   BLURHASH_OPTIONS = {
     x_comp: 4,
@@ -174,6 +163,38 @@ class MediaAttachment < ApplicationRecord
     all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp -define jpeg:dct-method=float',
   }.freeze
 
+  def self.configs
+    Rails.configuration.x.mastodon.media_attachments
+  end
+
+  def self.image_size_limit
+    configs[:file_size_limit][:image]
+  end
+
+  def self.video_size_limit
+    configs[:file_size_limit][:video]
+  end
+
+  def self.mime_type_configs
+    configs[:mime_types]
+  end
+
+  def self.image_mime_types
+    mime_type_configs[:image].keys.map(&:to_s)
+  end
+
+  def self.video_mime_types
+    mime_type_configs[:video].keys.map(&:to_s)
+  end
+
+  def self.audio_mime_types
+    mime_type_configs[:audio].keys.map(&:to_s)
+  end
+
+  def self.supported_mime_types
+    image_mime_types + video_mime_types + audio_mime_types
+  end
+
   belongs_to :account,          inverse_of: :media_attachments, optional: true
   belongs_to :status,           inverse_of: :media_attachments, optional: true
   belongs_to :scheduled_status, inverse_of: :media_attachments, optional: true
@@ -186,21 +207,21 @@ class MediaAttachment < ApplicationRecord
   before_file_validate :set_type_and_extension
   before_file_validate :check_video_dimensions
 
-  validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
-  validates_attachment_size :file, less_than: ->(m) { m.larger_media_format? ? VIDEO_LIMIT : IMAGE_LIMIT }
-  remotable_attachment :file, VIDEO_LIMIT, suppress_errors: false, download_on_assign: false, attribute_name: :remote_url
+  validates_attachment_content_type :file, content_type: supported_mime_types
+  validates_attachment_size :file, less_than: ->(m) { m.larger_media_format? ? video_size_limit : image_size_limit }
+  remotable_attachment :file, video_size_limit, suppress_errors: false, download_on_assign: false, attribute_name: :remote_url
 
   has_attached_file :thumbnail,
                     styles: THUMBNAIL_STYLES,
                     processors: [:lazy_thumbnail, :blurhash_transcoder, :color_extractor],
                     convert_options: GLOBAL_CONVERT_OPTIONS
 
-  validates_attachment_content_type :thumbnail, content_type: IMAGE_MIME_TYPES
-  validates_attachment_size :thumbnail, less_than: IMAGE_LIMIT
-  remotable_attachment :thumbnail, IMAGE_LIMIT, suppress_errors: true, download_on_assign: false
+  validates_attachment_content_type :thumbnail, content_type: image_mime_types
+  validates_attachment_size :thumbnail, less_than: image_size_limit
+  remotable_attachment :thumbnail, video_size_limit, suppress_errors: true, download_on_assign: false
 
   validates :account, presence: true
-  validates :description, length: { maximum: MAX_DESCRIPTION_LENGTH }
+  validates :description, length: { maximum: Rails.configuration.x.mastodon.media_attachments[:max_description_length] }
   validates :file, presence: true, if: :local?
   validates :thumbnail, absence: true, if: -> { local? && !audio_or_video? }
 
@@ -282,10 +303,6 @@ class MediaAttachment < ApplicationRecord
   after_post_process :set_meta
 
   class << self
-    def supported_mime_types
-      IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
-    end
-
     def supported_file_extensions
       IMAGE_FILE_EXTENSIONS + VIDEO_FILE_EXTENSIONS + AUDIO_FILE_EXTENSIONS
     end
@@ -293,13 +310,13 @@ class MediaAttachment < ApplicationRecord
     private
 
     def file_styles(attachment)
-      if attachment.instance.file_content_type == 'image/gif' || VIDEO_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type)
+      if attachment.instance.file_content_type == 'image/gif' || mime_type_configs.dig(:video, attachment.instance.file_content_type.to_sym, :should_convert)
         VIDEO_CONVERTED_STYLES
-      elsif IMAGE_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type)
+      elsif mime_type_configs.dig(:image, attachment.instance.file_content_type.to_sym, :should_convert)
         IMAGE_CONVERTED_STYLES
-      elsif IMAGE_MIME_TYPES.include?(attachment.instance.file_content_type)
+      elsif image_mime_types.include?(attachment.instance.file_content_type)
         IMAGE_STYLES
-      elsif VIDEO_MIME_TYPES.include?(attachment.instance.file_content_type)
+      elsif video_mime_types.include?(attachment.instance.file_content_type)
         VIDEO_STYLES
       else
         AUDIO_STYLES
@@ -309,9 +326,9 @@ class MediaAttachment < ApplicationRecord
     def file_processors(instance)
       if instance.file_content_type == 'image/gif'
         [:gif_transcoder, :blurhash_transcoder]
-      elsif VIDEO_MIME_TYPES.include?(instance.file_content_type)
+      elsif video_mime_types.include?(instance.file_content_type)
         [:transcoder, :blurhash_transcoder, :type_corrector]
-      elsif AUDIO_MIME_TYPES.include?(instance.file_content_type)
+      elsif audio_mime_types.include?(instance.file_content_type)
         [:image_extractor, :transcoder, :type_corrector]
       else
         [:lazy_thumbnail, :blurhash_transcoder, :type_corrector]
@@ -327,9 +344,9 @@ class MediaAttachment < ApplicationRecord
 
   def set_type_and_extension
     self.type = begin
-      if VIDEO_MIME_TYPES.include?(file_content_type)
+      if self.class.video_mime_types.include?(file_content_type)
         :video
-      elsif AUDIO_MIME_TYPES.include?(file_content_type)
+      elsif self.class.audio_mime_types.include?(file_content_type)
         :audio
       else
         :image

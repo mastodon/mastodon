@@ -41,7 +41,7 @@ module Paperclip
         @output_options['vframes'] = 1
       when 'mp4'
         unless eligible_to_passthrough?(metadata)
-          size_limit_in_bits = MediaAttachment::VIDEO_LIMIT * 8
+          size_limit_in_bits = MediaAttachment.video_size_limit * 8
           desired_bitrate = (metadata.width * metadata.height * 30 * BITS_PER_PIXEL).floor
           duration = [metadata.duration, 1].max
           maximum_bitrate = (size_limit_in_bits / duration).floor - 192_000 # Leave some space for the audio stream
