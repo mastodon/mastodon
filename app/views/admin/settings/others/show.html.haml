@@ -1,0 +1,19 @@
+- content_for :page_title do
+  = t('admin.settings.others.title')
+
+- content_for :heading do
+  %h2= t('admin.settings.title')
+  = render partial: 'admin/settings/shared/links'
+
+= simple_form_for @admin_settings, url: admin_settings_others_path, html: { method: :patch } do |f|
+  = render 'shared/error_messages', object: @admin_settings
+
+  %p.lead= t('admin.settings.others.preamble')
+
+  %h4= t('admin.settings.others.activitypub')
+
+  .fields-group
+    = f.input :reject_pattern, wrapper: :with_block_label, as: :text, label: t('admin.settings.reject_pattern.title'), hint: t('admin.settings.reject_pattern.desc_html'), input_html: { rows: 8 }
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit

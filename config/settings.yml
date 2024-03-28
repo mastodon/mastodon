@@ -38,6 +38,7 @@ defaults: &defaults
   require_invite_text: false
   backups_retention_period: 7
   captcha_enabled: false
+  reject_pattern: ''
 
 development:
   <<: *defaults
