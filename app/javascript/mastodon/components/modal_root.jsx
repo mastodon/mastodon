@@ -148,7 +148,7 @@ class ModalRoot extends PureComponent {
     return (
       <div className='modal-root' ref={this.setRef}>
         <div style={{ pointerEvents: visible ? 'auto' : 'none' }}>
-          <div role='presentation' className='modal-root__overlay' onClick={onClose} style={{ backgroundColor: backgroundColor ? `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, 0.7)` : null }} />
+          <div role='presentation' className='modal-root__overlay' onClick={onClose} style={{ backgroundColor: backgroundColor ? `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, 0.9)` : null }} />
           <div role='dialog' className='modal-root__container'>{children}</div>
         </div>
       </div>
