@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
+import { Link } from 'react-router-dom';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
@@ -64,11 +66,10 @@ class Account extends ImmutablePureComponent {
     return (
       <div className='account'>
         <div className='account__wrapper'>
-          <div className='account__display-name'>
+          <Link key={account.get('id')} className='account__display-name' title={account.get('acct')} to={`/@${account.get('acct')}`}>
             <div className='account__avatar-wrapper'><Avatar account={account} size={36} /></div>
-            <DisplayName account={account} />
-          </div>
-
+            <div className='account__contents'><DisplayName account={account} /></div>
+          </Link>
           <div className='account__relationship'>
             {button}
           </div>
