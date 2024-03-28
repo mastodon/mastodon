@@ -280,6 +280,12 @@ code {
     }
   }
 
+  .input.with_block_label.doorkeeper_application_scopes ul {
+    @media screen and (width <= 1000px) {
+      column-count: unset;
+    }
+  }
+
   .input.with_block_label.user_role_permissions_as_keys ul {
     columns: unset;
   }
