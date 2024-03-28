@@ -22,12 +22,14 @@ describe 'Public' do
       get '/api/v1/timelines/public', headers: headers, params: params
     end
 
-    let!(:private_status) { Fabricate(:status, visibility: :private) } # rubocop:disable RSpec/LetSetup
     let!(:local_status)   { Fabricate(:status, account: Fabricate.build(:account, domain: nil)) }
     let!(:remote_status)  { Fabricate(:status, account: Fabricate.build(:account, domain: 'example.com')) }
     let!(:media_status)   { Fabricate(:status, media_attachments: [Fabricate.build(:media_attachment)]) }
-
     let(:params) { {} }
+
+    before do
+      Fabricate(:status, visibility: :private)
+    end
 
     context 'when the instance allows public preview' do
       let(:expected_statuses) { [local_status, remote_status, media_status] }
