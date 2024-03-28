@@ -12,11 +12,11 @@
   .back-link
     - if params[:report_id]
       = link_to admin_report_path(params[:report_id].to_i) do
-        = fa_icon 'chevron-left fw'
+        = material_symbol 'chevron_left'
         = t('admin.statuses.back_to_report')
     - else
       = link_to admin_account_path(@account.id) do
-        = fa_icon 'chevron-left fw'
+        = material_symbol 'chevron_left'
         = t('admin.statuses.back_to_account')
 
 %hr.spacer/

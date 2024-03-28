@@ -20,7 +20,7 @@
               %dd{ title: field.value, class: custom_field_classes(field) }
                 - if field.verified?
                   %span.verified__mark{ title: t('accounts.link_verified_on', date: l(field.verified_at)) }
-                    = fa_icon 'check'
+                    = material_symbol 'check'
                 = prerender_custom_emojis(account_field_value_format(field, with_rel_me: false), account.emojis)
 
     - if account.note.present?
