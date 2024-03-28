@@ -50,6 +50,11 @@ RSpec.describe NotifyService do
     expect { subject }.to_not change(Notification, :count)
   end
 
+  it 'does not notify when recipient is deleted' do
+    recipient.mark_deleted!
+    expect { subject }.to_not change(Notification, :count)
+  end
+
   describe 'reblogs' do
     let(:status)   { Fabricate(:status, account: Fabricate(:account)) }
     let(:activity) { Fabricate(:status, account: sender, reblog: status) }

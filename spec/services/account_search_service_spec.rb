@@ -78,8 +78,25 @@ describe AccountSearchService do
       expect(results).to eq [partial]
     end
 
+    it 'returns the fuzzy match first, and does not return deleted exacts' do
+      partial = Fabricate(:account, username: 'exactness')
+      Fabricate(:account, username: 'exact', deleted: true)
+      results = subject.call('exact', nil, limit: 10)
+
+      expect(results.size).to eq 1
+      expect(results).to eq [partial]
+    end
+
     it 'does not return suspended remote accounts' do
       Fabricate(:account, username: 'a', domain: 'remote', display_name: 'e', suspended: true)
+      results = subject.call('a@example.com', nil, limit: 2)
+
+      expect(results.size).to eq 0
+      expect(results).to eq []
+    end
+
+    it 'does not return deleted remote accounts' do
+      Fabricate(:account, username: 'a', domain: 'remote', display_name: 'e', deleted: true)
       results = subject.call('a@example.com', nil, limit: 2)
 
       expect(results.size).to eq 0

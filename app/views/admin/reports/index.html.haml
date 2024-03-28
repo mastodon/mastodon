@@ -37,6 +37,8 @@
         %br/
         - if target_account.suspended?
           %span.red= t('admin.accounts.suspended')
+        - elsif target_account.deleted?
+          %span.red= t('admin.accounts.deleted')
         - elsif target_account.silenced?
           %span.red= t('admin.accounts.silenced')
         - elsif target_account.user&.disabled?
