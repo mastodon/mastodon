@@ -54,4 +54,8 @@ module AccountOwnedConcern
     expires_in(3.minutes, public: true)
     forbidden
   end
+
+  def authorized_fetch_mode?
+    super || @account.domain_blocks.exists?
+  end
 end
