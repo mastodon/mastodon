@@ -72,7 +72,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
         expect(status).to_not be_nil
         expect(status.url).to eq 'https://foo.bar/watch?v=12345'
-        expect(strip_tags(status.text)).to eq 'Nyan Cat 10 hours remixhttps://foo.bar/watch?v=12345'
+        expect(strip_tags(status.text)).to eq "Nyan Cat 10 hours remix\n\nhttps://foo.bar/watch?v=12345"
       end
     end
 
@@ -105,7 +105,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
         expect(status).to_not be_nil
         expect(status.url).to eq 'https://foo.bar/watch?v=12345'
-        expect(strip_tags(status.text)).to eq 'Nyan Cat 10 hours remixhttps://foo.bar/watch?v=12345'
+        expect(strip_tags(status.text)).to eq "Nyan Cat 10 hours remix\n\nhttps://foo.bar/watch?v=12345"
       end
     end
 
@@ -125,7 +125,34 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
         expect(status).to_not be_nil
         expect(status.url).to eq 'https://foo.bar/@foo/1234'
-        expect(strip_tags(status.text)).to eq "Let's change the worldhttps://foo.bar/@foo/1234"
+        expect(strip_tags(status.text)).to eq "Let's change the world\n\nhttps://foo.bar/@foo/1234"
+      end
+    end
+
+    context 'with Event object that contains a summary' do
+      let(:object) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'https://foo.bar/@foo/1234',
+          type: 'Event',
+          name: "Let's change the world",
+          startTime: '2024-01-31T20:00:00.000+01:00',
+          location: {
+            type: 'Place',
+            name: 'FooBar – The not converted location',
+          },
+          content: 'The not converted description of the event object.',
+          summary: 'We meet on January 31st at 8pm in the FooBaar!',
+          attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+
+        expect(status).to_not be_nil
+        expect(status.url).to eq 'https://foo.bar/@foo/1234'
+        expect(strip_tags(status.text)).to eq "Let's change the world\n\nWe meet on January 31st at 8pm in the FooBaar!\n\nhttps://foo.bar/@foo/1234"
       end
     end
 
