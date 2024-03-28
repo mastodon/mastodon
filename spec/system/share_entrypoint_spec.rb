@@ -13,7 +13,7 @@ describe 'ShareEntrypoint' do
   let(:finished_onboarding) { true }
 
   before do
-    as_a_logged_in_user
+    sign_in as_a_registered_user
     visit share_path
   end
 

@@ -10,7 +10,7 @@ describe 'Profile' do
   let(:local_domain) { ENV['LOCAL_DOMAIN'] }
 
   before do
-    as_a_logged_in_user
+    sign_in as_a_registered_user
     with_alice_as_local_user
   end
 
