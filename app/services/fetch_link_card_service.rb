@@ -26,6 +26,7 @@ class FetchLinkCardService < BaseService
     with_redis_lock("fetch:#{@original_url}") do
       @card = PreviewCard.find_by(url: @url)
       process_url if @card.nil? || @card.updated_at <= 2.weeks.ago || @card.missing_image?
+      attach_local_resource_to_card!
     end
 
     attach_card if @card&.persisted?
@@ -60,6 +61,22 @@ class FetchLinkCardService < BaseService
     end
   end
 
+  def attach_local_resource_to_card!
+    return if @card.nil? || @card.target_account_id.present? || @card.target_status_id.present? || !TagManager.instance.local_url?(@card.url)
+
+    recognized_params = Rails.application.routes.recognize_path(@card.url)
+    return if recognized_params[:action] != 'show'
+
+    case recognized_params[:controller]
+    when 'accounts'
+      account = Account.find_local(recognized_params[:username])
+      @card.update!(target_account: account)
+    when 'statuses'
+      status = Status.find_by(id: recognized_params[:id])
+      @card.update!(target_status: status)
+    end
+  end
+
   def attach_card
     with_redis_lock("attach_card:#{@status.id}") do
       return if @status.with_preview_card?
@@ -85,7 +102,14 @@ class FetchLinkCardService < BaseService
 
   def bad_url?(uri)
     # Avoid local instance URLs and invalid URLs
-    uri.host.blank? || TagManager.instance.local_url?(uri.to_s) || !%w(http https).include?(uri.scheme)
+    uri.host.blank? || bad_local_url?(uri.to_s) || !%w(http https).include?(uri.scheme)
+  end
+
+  def bad_local_url?(uri)
+    return false unless TagManager.instance.local_url?(uri.to_s)
+
+    recognized_params = Rails.application.routes.recognize_path(uri)
+    recognized_params[:action] != 'show' || %w(accounts statuses).exclude?(recognized_params[:controller])
   end
 
   def mention_link?(anchor)
