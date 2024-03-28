@@ -10,9 +10,10 @@ RSpec.describe 'API V1 Polls Votes' do
 
   describe 'POST /api/v1/polls/:poll_id/votes' do
     let(:poll) { Fabricate(:poll) }
+    let(:params) { { choices: %w(1) } }
 
     before do
-      post "/api/v1/polls/#{poll.id}/votes", params: { choices: %w(1) }, headers: headers
+      post "/api/v1/polls/#{poll.id}/votes", params: params, headers: headers
     end
 
     it 'creates a vote', :aggregate_failures do
@@ -22,6 +23,14 @@ RSpec.describe 'API V1 Polls Votes' do
       expect(vote.choice).to eq 1
 
       expect(poll.reload.cached_tallies).to eq [0, 1]
+    end
+
+    context 'when the required choices param is not provided' do
+      let(:params) { {} }
+
+      it 'returns http bad request' do
+        expect(response).to have_http_status(400)
+      end
     end
 
     private
