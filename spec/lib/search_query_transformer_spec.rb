@@ -58,6 +58,26 @@ describe SearchQueryTransformer do
     end
   end
 
+  context 'with ":foo:"' do
+    let(:query) { ':foo:' }
+
+    it 'transforms clauses' do
+      expect(subject.send(:must_clauses).map(&:shortcode)).to contain_exactly('foo')
+      expect(subject.send(:must_not_clauses)).to be_empty
+      expect(subject.send(:filter_clauses)).to be_empty
+    end
+  end
+
+  context 'with "-:foo:"' do
+    let(:query) { '-:foo:' }
+
+    it 'transforms clauses' do
+      expect(subject.send(:must_clauses)).to be_empty
+      expect(subject.send(:must_not_clauses).map(&:shortcode)).to contain_exactly('foo')
+      expect(subject.send(:filter_clauses)).to be_empty
+    end
+  end
+
   context 'with \'"hello world"\'' do
     let(:query) { '"hello world"' }
 

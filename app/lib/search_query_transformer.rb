@@ -224,10 +224,29 @@ class SearchQueryTransformer < Parslet::Transform
     end
   end
 
+  class ShortCodeClause
+    attr_reader :operator, :prefix, :shortcode
+
+    def initialize(operator, shortcode)
+      @operator = Operator.symbol(operator)
+      @shortcode = shortcode
+    end
+
+    def to_query
+      { multi_match: { type: 'most_fields', query: @shortcode, fields: ['text', 'text.stemmed'], operator: 'and' } }
+    end
+  end
+
   rule(clause: subtree(:clause)) do
     prefix   = clause[:prefix][:term].to_s if clause[:prefix]
     operator = clause[:operator]&.to_s
-    term     = clause[:phrase] ? clause[:phrase].map { |term| term[:term].to_s }.join(' ') : clause[:term].to_s
+    term = if clause[:phrase]
+             clause[:phrase].map { |term| term[:term].to_s }.join(' ')
+           elsif clause[:shortcode]
+             clause[:shortcode][:term].to_s
+           else
+             clause[:term].to_s
+           end
 
     if clause[:prefix] && SUPPORTED_PREFIXES.include?(prefix)
       PrefixClause.new(prefix, operator, term, current_account: current_account)
@@ -237,6 +256,8 @@ class SearchQueryTransformer < Parslet::Transform
       TermClause.new(operator, term)
     elsif clause[:phrase]
       PhraseClause.new(operator, term)
+    elsif clause[:shortcode]
+      ShortCodeClause.new(operator, term)
     else
       raise "Unexpected clause type: #{clause}"
     end
