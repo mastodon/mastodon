@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 
-import { initBoostModal } from '../../../actions/boosts';
 import { mentionCompose } from '../../../actions/compose';
 import {
   reblog,
@@ -8,6 +7,7 @@ import {
   unreblog,
   unfavourite,
 } from '../../../actions/interactions';
+import { openModal } from '../../../actions/modal';
 import { boostModal } from '../../../initial_state';
 import { makeGetNotification, makeGetStatus, makeGetReport } from '../../../selectors';
 import Notification from '../components/notification';
@@ -46,7 +46,7 @@ const mapDispatchToProps = dispatch => ({
       if (e.shiftKey || !boostModal) {
         this.onModalReblog(status);
       } else {
-        dispatch(initBoostModal({ status, onReblog: this.onModalReblog }));
+        dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.onModalReblog } }));
       }
     }
   },

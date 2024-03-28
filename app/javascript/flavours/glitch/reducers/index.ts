@@ -7,7 +7,6 @@ import { accountsReducer } from './accounts';
 import accounts_map from './accounts_map';
 import alerts from './alerts';
 import announcements from './announcements';
-import boosts from './boosts';
 import compose from './compose';
 import contexts from './contexts';
 import conversations from './conversations';
@@ -63,7 +62,6 @@ const reducers = {
   settings,
   local_settings,
   push_notifications,
-  boosts,
   server,
   contexts,
   compose,

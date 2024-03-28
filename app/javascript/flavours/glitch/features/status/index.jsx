@@ -25,7 +25,6 @@ import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 import { initBlockModal } from '../../actions/blocks';
-import { initBoostModal } from '../../actions/boosts';
 import {
   replyCompose,
   mentionCompose,
@@ -362,11 +361,11 @@ class Status extends ImmutablePureComponent {
 
     if (signedIn) {
       if (settings.get('confirm_boost_missing_media_description') && status.get('media_attachments').some(item => !item.get('description')) && !status.get('reblogged')) {
-        dispatch(initBoostModal({ status, onReblog: this.handleModalReblog, missingMediaDescription: true }));
+        dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.handleModalReblog, missingMediaDescription: true } }));
       } else if ((e && e.shiftKey) || !boostModal) {
         this.handleModalReblog(status);
       } else {
-        dispatch(initBoostModal({ status, onReblog: this.handleModalReblog }));
+        dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.handleModalReblog } }));
       }
     } else {
       dispatch(openModal({
