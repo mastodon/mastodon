@@ -20,7 +20,7 @@ class Api::Web::EmbedsController < Api::Web::BaseController
       begin
         oembed[:html] = Sanitize.fragment(oembed[:html], Sanitize::Config::MASTODON_OEMBED)
       rescue ArgumentError
-        return not_found
+        not_found
       end
 
       render json: oembed
