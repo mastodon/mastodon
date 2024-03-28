@@ -8,6 +8,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
 
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
@@ -15,6 +16,7 @@ import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
 import NotificationsActiveIcon from '@/material-icons/400-24px/notifications_active-fill.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
+import { openModal } from 'mastodon/actions/modal';
 import { Avatar } from 'mastodon/components/avatar';
 import { Badge, AutomatedBadge, GroupBadge } from 'mastodon/components/badge';
 import { Button } from 'mastodon/components/button';
@@ -27,6 +29,7 @@ import { ShortNumber } from 'mastodon/components/short_number';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { autoPlayGif, me, domain as localDomain } from 'mastodon/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
+import { logOut } from 'mastodon/utils/log_out';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import AccountNoteContainer from '../containers/account_note_container';
@@ -76,6 +79,11 @@ const messages = defineMessages({
   admin_domain: { id: 'status.admin_domain', defaultMessage: 'Open moderation interface for {domain}' },
   languages: { id: 'account.languages', defaultMessage: 'Change subscribed languages' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
+  filters: { id: 'navigation_bar.filters', defaultMessage: 'Muted words' },
+  logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
+  bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
+  logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
+  logoutConfirm: { id: 'confirmations.logout.confirm', defaultMessage: 'Log out' },
 });
 
 const titleFromAccount = account => {
@@ -253,6 +261,19 @@ class Header extends ImmutablePureComponent {
     this._attachLinkEvents();
   }
 
+  handleLogoutClick() {
+    const { intl, dispatch } = this.props;
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.logoutMessage),
+        confirm: intl.formatMessage(messages.logoutConfirm),
+        closeWhenConfirm: false,
+        onConfirm: logOut,
+      },
+    }));
+  }
+
   render () {
     const { account, hidden, intl } = this.props;
     const { signedIn, permissions } = this.context.identity;
@@ -330,12 +351,16 @@ class Header extends ImmutablePureComponent {
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests' });
       menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites' });
+      menu.push({ text: intl.formatMessage(messages.bookmarks), to: '/bookmarks' });
       menu.push({ text: intl.formatMessage(messages.lists), to: '/lists' });
       menu.push({ text: intl.formatMessage(messages.followed_tags), to: '/followed_tags' });
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
       menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks' });
       menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
+      menu.push({ text: intl.formatMessage(messages.filters), href: '/filters' });
+      menu.push(null);
+      menu.push({ text: intl.formatMessage(messages.logout), action: this.handleLogoutClick.bind(this) });
     } else if (signedIn) {
       if (account.getIn(['relationship', 'following'])) {
         if (!account.getIn(['relationship', 'muting'])) {
@@ -516,4 +541,4 @@ class Header extends ImmutablePureComponent {
 
 }
 
-export default withRouter(injectIntl(Header));
+export default withRouter(connect()(injectIntl(Header)));
