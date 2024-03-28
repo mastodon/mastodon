@@ -46,8 +46,10 @@ class Api::V1::Admin::AccountsController < Api::BaseController
 
   def enable
     authorize @account.user, :enable?
-    @account.user.enable!
-    log_action :enable, @account.user
+    if @account.user.disabled
+      @account.user.enable!
+      log_action :enable, @account.user
+    end
     render json: @account, serializer: REST::Admin::AccountSerializer
   end
 
@@ -73,15 +75,19 @@ class Api::V1::Admin::AccountsController < Api::BaseController
 
   def unsensitive
     authorize @account, :unsensitive?
-    @account.unsensitize!
-    log_action :unsensitive, @account
+    if @account.sensitized?
+      @account.unsensitize!
+      log_action :unsensitive, @account
+    end
     render json: @account, serializer: REST::Admin::AccountSerializer
   end
 
   def unsilence
     authorize @account, :unsilence?
-    @account.unsilence!
-    log_action :unsilence, @account
+    if @account.silenced?
+      @account.unsilence!
+      log_action :unsilence, @account
+    end
     render json: @account, serializer: REST::Admin::AccountSerializer
   end
 
