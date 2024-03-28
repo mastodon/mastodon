@@ -33,7 +33,7 @@ RSpec.describe BlockService do
       expect(sender.blocking?(bob)).to be true
     end
 
-    it 'sends a block activity', :sidekiq_inline do
+    it 'sends a block activity', :inline_jobs do
       expect(a_request(:post, 'http://example.com/inbox')).to have_been_made.once
     end
   end

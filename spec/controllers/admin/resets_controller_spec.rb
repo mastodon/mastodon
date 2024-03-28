@@ -13,7 +13,7 @@ describe Admin::ResetsController do
     sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')), scope: :user
   end
 
-  describe 'POST #create', :sidekiq_inline do
+  describe 'POST #create', :inline_jobs do
     it 'redirects to admin accounts page' do
       emails = capture_emails { subject }
 

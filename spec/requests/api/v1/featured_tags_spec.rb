@@ -147,7 +147,7 @@ RSpec.describe 'FeaturedTags' do
       expect(body).to be_empty
     end
 
-    it 'deletes the featured tag', :sidekiq_inline do
+    it 'deletes the featured tag', :inline_jobs do
       delete "/api/v1/featured_tags/#{id}", headers: headers
 
       featured_tag = FeaturedTag.find_by(id: id)

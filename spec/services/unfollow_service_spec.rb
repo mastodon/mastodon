@@ -20,7 +20,7 @@ RSpec.describe UnfollowService do
     end
   end
 
-  describe 'remote ActivityPub', :sidekiq_inline do
+  describe 'remote ActivityPub', :inline_jobs do
     let(:bob) { Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 
     before do
@@ -38,7 +38,7 @@ RSpec.describe UnfollowService do
     end
   end
 
-  describe 'remote ActivityPub (reverse)', :sidekiq_inline do
+  describe 'remote ActivityPub (reverse)', :inline_jobs do
     let(:bob) { Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 
     before do
