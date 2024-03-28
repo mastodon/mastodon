@@ -74,7 +74,7 @@ class ActionBar extends PureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
-    relationship: ImmutablePropTypes.map,
+    relationship: ImmutablePropTypes.record,
     onReply: PropTypes.func.isRequired,
     onReblog: PropTypes.func.isRequired,
     onFavourite: PropTypes.func.isRequired,
