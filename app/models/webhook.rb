@@ -23,6 +23,9 @@ class Webhook < ApplicationRecord
     report.updated
     status.created
     status.updated
+    follow.removed
+    block.removed
+    mute.removed
   ).freeze
 
   attr_writer :current_account
@@ -58,10 +61,12 @@ class Webhook < ApplicationRecord
 
   def self.permission_for_event(event)
     case event
-    when 'account.approved', 'account.created', 'account.updated'
+    when 'account.approved', 'account.created', 'account.updated', 'follow.removed'
       :manage_users
     when 'report.created', 'report.updated'
       :manage_reports
+    when 'block.removed', 'mute.removed'
+      :manage_blocks
     when 'status.created', 'status.updated'
       :view_devops
     end
