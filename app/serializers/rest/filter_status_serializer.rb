@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::FilterStatusSerializer < ActiveModel::Serializer
+class REST::FilterStatusSerializer < REST::BaseSerializer
   attributes :id, :status_id
 
   def id

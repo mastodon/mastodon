@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::StatusSerializer < ActiveModel::Serializer
+class REST::StatusSerializer < REST::BaseSerializer
   include FormattingHelper
 
   attributes :id, :created_at, :in_reply_to_id, :in_reply_to_account_id,
@@ -40,10 +40,6 @@ class REST::StatusSerializer < ActiveModel::Serializer
 
   def in_reply_to_account_id
     object.in_reply_to_account_id&.to_s
-  end
-
-  def current_user?
-    !current_user.nil?
   end
 
   def show_application?
@@ -158,7 +154,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
     instance_options && instance_options[:relationships]
   end
 
-  class ApplicationSerializer < ActiveModel::Serializer
+  class ApplicationSerializer < REST::BaseSerializer
     attributes :name, :website
 
     def website
@@ -166,7 +162,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
     end
   end
 
-  class MentionSerializer < ActiveModel::Serializer
+  class MentionSerializer < REST::BaseSerializer
     attributes :id, :username, :url, :acct
 
     def id
@@ -186,7 +182,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
     end
   end
 
-  class TagSerializer < ActiveModel::Serializer
+  class TagSerializer < REST::BaseSerializer
     include RoutingHelper
 
     attributes :name, :url

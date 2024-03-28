@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::TagSerializer < ActiveModel::Serializer
+class REST::TagSerializer < REST::BaseSerializer
   include RoutingHelper
 
   attributes :name, :url, :history
@@ -21,9 +21,5 @@ class REST::TagSerializer < ActiveModel::Serializer
     else
       TagFollow.exists?(tag_id: object.id, account_id: current_user.account_id)
     end
-  end
-
-  def current_user?
-    !current_user.nil?
   end
 end

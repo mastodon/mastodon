@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::ExtendedDescriptionSerializer < ActiveModel::Serializer
+class REST::ExtendedDescriptionSerializer < REST::BaseSerializer
   attributes :updated_at, :content
 
   def updated_at

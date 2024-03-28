@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::MediaAttachmentSerializer < ActiveModel::Serializer
+class REST::MediaAttachmentSerializer < REST::BaseSerializer
   include RoutingHelper
 
   attributes :id, :type, :url, :preview_url,

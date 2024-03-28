@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::AnnouncementSerializer < ActiveModel::Serializer
+class REST::AnnouncementSerializer < REST::BaseSerializer
   include FormattingHelper
 
   attributes :id, :content, :starts_at, :ends_at, :all_day,
@@ -13,10 +13,6 @@ class REST::AnnouncementSerializer < ActiveModel::Serializer
   has_many :tags, serializer: REST::StatusSerializer::TagSerializer
   has_many :emojis, serializer: REST::CustomEmojiSerializer
   has_many :reactions, serializer: REST::ReactionSerializer
-
-  def current_user?
-    !current_user.nil?
-  end
 
   def id
     object.id.to_s
@@ -34,7 +30,7 @@ class REST::AnnouncementSerializer < ActiveModel::Serializer
     object.reactions(current_user&.account)
   end
 
-  class AccountSerializer < ActiveModel::Serializer
+  class AccountSerializer < REST::BaseSerializer
     attributes :id, :username, :url, :acct
 
     def id
@@ -50,7 +46,7 @@ class REST::AnnouncementSerializer < ActiveModel::Serializer
     end
   end
 
-  class StatusSerializer < ActiveModel::Serializer
+  class StatusSerializer < REST::BaseSerializer
     attributes :id, :url
 
     def id

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::ApplicationSerializer < ActiveModel::Serializer
+class REST::ApplicationSerializer < REST::BaseSerializer
   attributes :id, :name, :website, :scopes, :redirect_uri,
              :client_id, :client_secret
 

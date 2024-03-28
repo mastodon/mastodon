@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::FamiliarFollowersSerializer < ActiveModel::Serializer
+class REST::FamiliarFollowersSerializer < REST::BaseSerializer
   attribute :id
 
   has_many :accounts, serializer: REST::AccountSerializer

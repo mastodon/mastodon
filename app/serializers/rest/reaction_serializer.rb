@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::ReactionSerializer < ActiveModel::Serializer
+class REST::ReactionSerializer < REST::BaseSerializer
   include RoutingHelper
 
   attributes :name, :count
@@ -11,10 +11,6 @@ class REST::ReactionSerializer < ActiveModel::Serializer
 
   def count
     object.respond_to?(:count) ? object.count : 0
-  end
-
-  def current_user?
-    !current_user.nil?
   end
 
   def custom_emoji?

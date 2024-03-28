@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::MarkerSerializer < ActiveModel::Serializer
+class REST::MarkerSerializer < REST::BaseSerializer
   # Please update `app/javascript/mastodon/api_types/markers.ts` when making changes to the attributes
 
   attributes :last_read_id, :version, :updated_at

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::DomainBlockSerializer < ActiveModel::Serializer
+class REST::DomainBlockSerializer < REST::BaseSerializer
   attributes :domain, :digest, :severity, :comment
 
   def domain

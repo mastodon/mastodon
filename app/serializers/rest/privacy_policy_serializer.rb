@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class REST::PrivacyPolicySerializer < ActiveModel::Serializer
+class REST::PrivacyPolicySerializer < REST::BaseSerializer
   attributes :updated_at, :content
 
   def updated_at
