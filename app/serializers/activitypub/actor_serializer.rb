@@ -11,7 +11,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
                      :memorial, :indexable
 
   attributes :id, :type, :following, :followers,
-             :inbox, :outbox, :featured, :featured_tags,
+             :inbox, :outbox, :featured,
              :preferred_username, :name, :summary,
              :url, :manually_approves_followers,
              :discoverable, :indexable, :published, :memorial
@@ -81,10 +81,6 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
   def featured
     account_collection_url(object, :featured)
-  end
-
-  def featured_tags
-    account_collection_url(object, :tags)
   end
 
   def endpoints
