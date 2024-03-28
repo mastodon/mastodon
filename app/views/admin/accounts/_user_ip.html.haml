@@ -1,0 +1,5 @@
+%tr
+  - if user_ip_iteration.first?
+    %th{ rowspan: user_ip_iteration.size }= t('admin.accounts.most_recent_ip')
+  %td= user_ip.ip
+  %td= table_link_to 'search', t('admin.accounts.search_same_ip'), admin_accounts_path(ip: user_ip.ip)
