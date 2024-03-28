@@ -7,13 +7,10 @@ module.exports = {
   include: [
     settings.source_path,
     ...settings.resolved_paths,
-    'node_modules/@reduxjs'
-  ].map(p => resolve(p)),
-  exclude: function(modulePath) {
-    return (
-      /node_modules/.test(modulePath) &&
-      !/@reduxjs/.test(modulePath)
-    );
+    'node_modules/@reduxjs',
+  ].map((p) => resolve(p)),
+  exclude: function (modulePath) {
+    return /node_modules/.test(modulePath) && !/@reduxjs/.test(modulePath);
   },
   use: [
     {

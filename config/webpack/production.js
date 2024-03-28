@@ -42,24 +42,27 @@ module.exports = merge(sharedConfig, {
       cache: true,
       test: /\.(js|css|html|json|ico|svg|eot|otf|ttf|map)$/,
     }),
-    new BundleAnalyzerPlugin({ // generates report.html
+    new BundleAnalyzerPlugin({
+      // generates report.html
       analyzerMode: 'static',
       openAnalyzer: false,
       logLevel: 'silent', // do not bother Webpacker, who runs with --json and parses stdout
     }),
     new InjectManifest({
-      additionalManifestEntries: ['1f602.svg', 'sheet_13.png'].map((filename) => {
-        const path = resolve(root, 'public', 'emoji', filename);
-        const body = readFileSync(path);
-        const md5  = createHash('md5');
+      additionalManifestEntries: ['1f602.svg', 'sheet_13.png'].map(
+        (filename) => {
+          const path = resolve(root, 'public', 'emoji', filename);
+          const body = readFileSync(path);
+          const md5 = createHash('md5');
 
-        md5.update(body);
+          md5.update(body);
 
-        return {
-          revision: md5.digest('hex'),
-          url: `/emoji/${filename}`,
-        };
-      }),
+          return {
+            revision: md5.digest('hex'),
+            url: `/emoji/${filename}`,
+          };
+        },
+      ),
       exclude: [
         /(?:base|extra)_polyfills-.*\.js$/,
         /locale_.*\.js$/,
@@ -68,7 +71,14 @@ module.exports = merge(sharedConfig, {
       include: [/\.js$/, /\.css$/],
       maximumFileSizeToCacheInBytes: 2 * 1_024 * 1_024, // 2 MiB
       swDest: resolve(root, 'public', 'packs', 'sw.js'),
-      swSrc: resolve(root, 'app', 'javascript', 'mastodon', 'service_worker', 'entry.js'),
+      swSrc: resolve(
+        root,
+        'app',
+        'javascript',
+        'mastodon',
+        'service_worker',
+        'entry.js',
+      ),
     }),
   ],
 });
