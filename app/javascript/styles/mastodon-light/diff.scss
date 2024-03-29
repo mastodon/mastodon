@@ -408,7 +408,7 @@ html {
   }
 }
 
-.compose-form .compose-form__warning {
+.compose-form .compose-form__warning .search__input {
   border-color: $ui-highlight-color;
   background-color: rgba($ui-highlight-color, 0.1);
 
@@ -475,12 +475,13 @@ html {
   color: $white;
 }
 
-.compose-form .spoiler-input__input {
+.compose-form .spoiler-input__input .search__input {
   color: lighten($ui-highlight-color, 8%);
 }
 
 .compose-form .autosuggest-textarea__textarea,
 .compose-form__highlightable,
+.search__input,
 .poll__option input[type='text'] {
   background: darken($ui-base-color, 10%);
 }
