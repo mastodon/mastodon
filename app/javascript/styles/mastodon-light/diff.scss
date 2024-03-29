@@ -409,10 +409,7 @@ html {
   }
 }
 
-.compose-form,
-.compose-form__warning,
-.search__input,
-.search__popout {
+.compose-form .compose-form__warning .search__input .search__popout {
   border-color: $ui-highlight-color;
   background-color: rgba($ui-highlight-color, 0.1);
 
@@ -443,7 +440,8 @@ html {
 .directory__tag > div,
 .card > a,
 .page-header,
-.compose-form .compose-form__warning {
+.compose-form,
+.compose-form__warning {
   box-shadow: none;
 }
 
