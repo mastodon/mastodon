@@ -80,6 +80,7 @@ html {
 }
 
 .search__input,
+.search__popout,
 .setting-text,
 .report-dialog-modal__textarea,
 .audio-player {
@@ -408,7 +409,10 @@ html {
   }
 }
 
-.compose-form .compose-form__warning .search__input {
+.compose-form,
+.compose-form__warning,
+.search__input,
+.search__popout {
   border-color: $ui-highlight-color;
   background-color: rgba($ui-highlight-color, 0.1);
 
@@ -475,13 +479,17 @@ html {
   color: $white;
 }
 
-.compose-form .spoiler-input__input .search__input {
+.compose-form,
+.spoiler-input__input,
+.search__input,
+.search__popout {
   color: lighten($ui-highlight-color, 8%);
 }
 
 .compose-form .autosuggest-textarea__textarea,
 .compose-form__highlightable,
 .search__input,
+.search__popout,
 .poll__option input[type='text'] {
   background: darken($ui-base-color, 10%);
 }
