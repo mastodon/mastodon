@@ -24,7 +24,7 @@ class ColumnSettings extends PureComponent {
     alertsEnabled: PropTypes.bool,
     browserSupport: PropTypes.bool,
     browserPermission: PropTypes.string,
-    notificationPolicy: ImmutablePropTypes.map,
+    notificationPolicy: PropTypes.object.isRequired,
     onChangePolicy: PropTypes.func.isRequired,
   };
 
@@ -82,22 +82,22 @@ class ColumnSettings extends PureComponent {
           <h3><FormattedMessage id='notifications.policy.title' defaultMessage='Filter out notifications from…' /></h3>
 
           <div className='column-settings__row'>
-            <CheckboxWithLabel checked={notificationPolicy.get('filter_not_following')} onChange={this.handleFilterNotFollowing}>
+            <CheckboxWithLabel checked={notificationPolicy.filter_not_following} onChange={this.handleFilterNotFollowing}>
               <strong><FormattedMessage id='notifications.policy.filter_not_following_title' defaultMessage="People you don't follow" /></strong>
               <span className='hint'><FormattedMessage id='notifications.policy.filter_not_following_hint' defaultMessage='Until you manually approve them' /></span>
             </CheckboxWithLabel>
 
-            <CheckboxWithLabel checked={notificationPolicy.get('filter_not_followers')} onChange={this.handleFilterNotFollowers}>
+            <CheckboxWithLabel checked={notificationPolicy.filter_not_followers} onChange={this.handleFilterNotFollowers}>
               <strong><FormattedMessage id='notifications.policy.filter_not_followers_title' defaultMessage='People not following you' /></strong>
               <span className='hint'><FormattedMessage id='notifications.policy.filter_not_followers_hint' defaultMessage='Including people who have been following you fewer than {days, plural, one {one day} other {# days}}' values={{ days: 3 }} /></span>
             </CheckboxWithLabel>
 
-            <CheckboxWithLabel checked={notificationPolicy.get('filter_new_accounts')} onChange={this.handleFilterNewAccounts}>
+            <CheckboxWithLabel checked={notificationPolicy.filter_new_accounts} onChange={this.handleFilterNewAccounts}>
               <strong><FormattedMessage id='notifications.policy.filter_new_accounts_title' defaultMessage='New accounts' /></strong>
               <span className='hint'><FormattedMessage id='notifications.policy.filter_new_accounts.hint' defaultMessage='Created within the past {days, plural, one {one day} other {# days}}' values={{ days: 30 }} /></span>
             </CheckboxWithLabel>
 
-            <CheckboxWithLabel checked={notificationPolicy.get('filter_private_mentions')} onChange={this.handleFilterPrivateMentions}>
+            <CheckboxWithLabel checked={notificationPolicy.filter_private_mentions} onChange={this.handleFilterPrivateMentions}>
               <strong><FormattedMessage id='notifications.policy.filter_private_mentions_title' defaultMessage='Unsolicited private mentions' /></strong>
               <span className='hint'><FormattedMessage id='notifications.policy.filter_private_mentions_hint' defaultMessage="Filtered unless it's in reply to your own mention or if you follow the sender" /></span>
             </CheckboxWithLabel>

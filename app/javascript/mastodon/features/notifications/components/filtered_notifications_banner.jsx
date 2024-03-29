@@ -7,13 +7,13 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import InventoryIcon from '@/material-icons/400-24px/inventory_2.svg?react';
-import { fetchNotificationPolicy } from 'mastodon/actions/notifications';
+import { fetchNotificationPolicy } from 'mastodon/actions/notification_policies';
 import { Icon } from 'mastodon/components/icon';
 import { toCappedNumber } from 'mastodon/utils/numbers';
 
 export const FilteredNotificationsBanner = () => {
   const dispatch = useDispatch();
-  const policy = useSelector(state => state.get('notificationPolicy'));
+  const policy = useSelector(state => state.notificationPolicy);
 
   useEffect(() => {
     dispatch(fetchNotificationPolicy());
@@ -27,7 +27,7 @@ export const FilteredNotificationsBanner = () => {
     };
   }, [dispatch]);
 
-  if (policy === null || policy.getIn(['summary', 'pending_notifications_count']) === 0) {
+  if (policy === null || policy.summary.pending_notifications_count === 0) {
     return null;
   }
 
@@ -37,12 +37,12 @@ export const FilteredNotificationsBanner = () => {
 
       <div className='filtered-notifications-banner__text'>
         <strong><FormattedMessage id='filtered_notifications_banner.title' defaultMessage='Filtered notifications' /></strong>
-        <span><FormattedMessage id='filtered_notifications_banner.pending_requests' defaultMessage='Notifications from {count, plural, =0 {no one} one {one person} other {# people}} you may know' values={{ count: policy.getIn(['summary', 'pending_requests_count']) }} /></span>
+        <span><FormattedMessage id='filtered_notifications_banner.pending_requests' defaultMessage='Notifications from {count, plural, =0 {no one} one {one person} other {# people}} you may know' values={{ count: policy.summary.pending_requests_count }} /></span>
       </div>
 
       <div className='filtered-notifications-banner__badge'>
-        <div className='filtered-notifications-banner__badge__badge'>{toCappedNumber(policy.getIn(['summary', 'pending_notifications_count']))}</div>
-        <FormattedMessage id='filtered_notifications_banner.mentions' defaultMessage='{count, plural, one {mention} other {mentions}}' values={{ count: policy.getIn(['summary', 'pending_notifications_count']) }} />
+        <div className='filtered-notifications-banner__badge__badge'>{toCappedNumber(policy.summary.pending_notifications_count)}</div>
+        <FormattedMessage id='filtered_notifications_banner.mentions' defaultMessage='{count, plural, one {mention} other {mentions}}' values={{ count: policy.summary.pending_notifications_count }} />
       </div>
     </Link>
   );
