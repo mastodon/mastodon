@@ -127,6 +127,7 @@ gd:
         bookmarks: Comharran-lìn
         conversations: Còmhraidhean
         crypto: Crioptachadh o cheann gu ceann
+        favourites: Annsachdan
         filters: Criathragan
         follow: Leantainn, mùchaidhean is bacaidhean
         follows: Leantainn
@@ -146,47 +147,49 @@ gd:
       application:
         title: Tha feum air ùghdarrachadh OAuth
     scopes:
-      admin:read: dàta sam bith a leughadh air an fhrithealaiche
-      admin:read:accounts: fiosrachadh dìomhair air a h-uile cunntas a leughadh
-      admin:read:canonical_email_blocks: fiosrachadh dìomhair air a h-uile bacadh puist-d gnàthach a leughadh
-      admin:read:domain_allows: fiosrachadh dìomhair air a h-uile cead àrainne a leughadh
-      admin:read:domain_blocks: fiosrachadh dìomhair air a h-uile bacadh àrainne a leughadh
-      admin:read:email_domain_blocks: fiosrachadh dìomhair air a h-uile bacadh àrainn puist-d a leughadh
-      admin:read:ip_blocks: fiosrachadh dìomhair air a h-uile bacadh IP a leughadh
-      admin:read:reports: fiosrachadh dìomhair air a h-uile gearan is cunntasan a chaidh a ghearan mun dèidhinn a leughadh
-      admin:write: dàta sam bith atharrachadh air an fhrithealaiche
-      admin:write:accounts: gnìomhan na maorsainneachd a ghabhail air cunntasan
-      admin:write:canonical_email_blocks: gnìomhan na maorsainneachd a ghabhail air bacaidhean puist-d gnàthach
-      admin:write:domain_allows: gnìomhan na maorsainneachd a ghabhail air ceadan àrainn
-      admin:write:domain_blocks: gnìomhan na maorsainneachd a ghabhail air bacaidhean àrainne
-      admin:write:email_domain_blocks: gnìomhan na maorsainneachd a ghabhail air bacaidhean àrainn puist-d
-      admin:write:ip_blocks: gnìomhan na maorsainneachd a ghabhail air bacaidhean IP
-      admin:write:reports: gnìomhan na maorsainneachd a ghabhail air gearanan
-      crypto: crioptachadh o cheann gu ceann a chleachdadh
-      follow: dàimhean chunntasan atharrachadh
-      push: na brathan putaidh agad fhaighinn
-      read: dàta sam bith a’ cunntais agad a leughadh
-      read:accounts: fiosrachadh nan cunntasan fhaicinn
-      read:blocks: na bacaidhean agad fhaicinn
-      read:bookmarks: na comharran-lìn agad fhaicinn
-      read:filters: na criathragan agad fhaicinn
-      read:follows: faicinn cò a tha thu a’ leantainn
-      read:lists: na liostaichean agad fhaicinn
-      read:mutes: na mùchaidhean agad fhaicinn
-      read:notifications: na brathan agad faicinn
-      read:reports: na gearanan agad fhaicinn
-      read:search: lorg a dhèanamh às do leth
-      read:statuses: na postaichean uile fhaicinn
-      write: dàta sam bith a’ cunntais agad atharrachadh
-      write:accounts: a’ phròifil agad atharrachadh
-      write:blocks: cunntasan is àrainnean a bhacadh
-      write:bookmarks: comharran-lìn a dhèanamh de phostaichean
-      write:conversations: còmhraidhean a mhùchadh is a sguabadh às
-      write:filters: criathragan a chruthachadh
+      admin:read: leughadh dàta sam bith air an fhrithealaiche
+      admin:read:accounts: leughadh fiosrachaidh dhìomhair air a h-uile cunntas
+      admin:read:canonical_email_blocks: leughadh fiosrachaidh dhìomhair air a h-uile bacadh puist-d gnàthach
+      admin:read:domain_allows: leughadh fiosrachaidh dhìomhair air a h-uile cead àrainne
+      admin:read:domain_blocks: leughadh fiosrachaidh dhìomhair air a h-uile bacadh àrainne
+      admin:read:email_domain_blocks: leughadh fiosrachaidh dhìomhair air a h-uile bacadh àrainn puist-d
+      admin:read:ip_blocks: leughadh fiosrachaidh dhìomhair air a h-uile bacadh IP
+      admin:read:reports: leughadh fiosrachaidh dhìomhair air a h-uile gearan is cunntasan a chaidh a ghearan mun dèidhinn
+      admin:write: atharrachadh dàta sam bith air an fhrithealaiche
+      admin:write:accounts: gnìomhan na maorsainneachd air cunntasan
+      admin:write:canonical_email_blocks: gnìomhan na maorsainneachd air bacaidhean puist-d gnàthach
+      admin:write:domain_allows: gnìomhan na maorsainneachd air ceadan àrainn
+      admin:write:domain_blocks: gnìomhan na maorsainneachd air bacaidhean àrainne
+      admin:write:email_domain_blocks: gnìomhan na maorsainneachd air bacaidhean àrainn puist-d
+      admin:write:ip_blocks: gnìomhan na maorsainneachd air bacaidhean IP
+      admin:write:reports: gnìomhan na maorsainneachd air gearanan
+      crypto: cleachdadh crioptachaidh o cheann gu ceann
+      follow: atharrachadh dàimhean chunntasan
+      push: faighinn nam brathan putaidh agad
+      read: leughadh dàta sam bith a’ cunntais agad
+      read:accounts: sealltainn fiosrachadh nan cunntasan
+      read:blocks: sealltainn nam bacaidhean agad
+      read:bookmarks: sealltainn nan comharran-lìn agad
+      read:favourites: sealltainn nan annsachdan agad
+      read:filters: sealltainn nan criathragan agad
+      read:follows: sealltainn cò a tha thu a’ leantainn
+      read:lists: sealltainn nan liostaichean agad
+      read:mutes: sealltainn nam mùchaidhean agad
+      read:notifications: sealltainn nam brathan agad
+      read:reports: sealltainn nan gearanan agad
+      read:search: lorg às do leth
+      read:statuses: sealltainn nam postaichean uile
+      write: atharrachadh dàta sam bith a’ cunntais agad
+      write:accounts: atharrachadh na pròifile agad
+      write:blocks: bacadh chunntasan is àrainnean
+      write:bookmarks: cruthachadh chomharran-lìn de phostaichean
+      write:conversations: mùchadh is sguabadh às chòmhraidhean
+      write:favourites: cur phostaichean ris na h-annsachdan
+      write:filters: cruthachadh chriathragan
       write:follows: leantainn dhaoine
-      write:lists: liostaichean a chruthachadh
-      write:media: faidhlichean meadhain a luchdadh suas
-      write:mutes: daoine is còmhraidhean a mhùchadh
-      write:notifications: na brathan agad fhalamhachadh
-      write:reports: gearan a dhèanamh mu chàch
-      write:statuses: postaichean fhoillseachadh
+      write:lists: cruthachadh liostaichean
+      write:media: luchdadh suas fhaidhlichean meadhain
+      write:mutes: mùchadh dhaoine is chòmhraidhean
+      write:notifications: falamhachadh nam brathan agad
+      write:reports: gearan mu chàch
+      write:statuses: foillseachadh phostaichean

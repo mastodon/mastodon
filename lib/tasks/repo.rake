@@ -49,8 +49,8 @@ namespace :repo do
       File.open(path, 'r') do |file|
         file.each_line do |line|
           if line.start_with?('-')
-            new_line = line.gsub(/#([[:digit:]]+)*/) do |pull_request_reference|
-              pull_request_number = pull_request_reference[1..]
+            new_line = line.gsub(/[(]#([[:digit:]]+)[)]\Z/) do |pull_request_reference|
+              pull_request_number = pull_request_reference[2..-2]
               response = nil
 
               loop do
@@ -66,7 +66,7 @@ namespace :repo do
               end
 
               pull_request = Oj.load(response.to_s)
-              "[#{pull_request['user']['login']}](#{pull_request['html_url']})"
+              "([#{pull_request['user']['login']}](#{pull_request['html_url']}))"
             end
 
             tmp.puts new_line

@@ -22,7 +22,7 @@ class Admin::StatusBatchAction
   private
 
   def statuses
-    Status.with_discarded.where(id: status_ids)
+    Status.with_discarded.where(id: status_ids).reorder(nil)
   end
 
   def process_action!
@@ -74,7 +74,7 @@ class Admin::StatusBatchAction
 
     # Can't use a transaction here because UpdateStatusService queues
     # Sidekiq jobs
-    statuses.includes(:media_attachments, :preview_cards).find_each do |status|
+    statuses.includes(:media_attachments, preview_cards_status: :preview_card).find_each do |status|
       next if status.discarded? || !(status.with_media? || status.with_preview_card?)
 
       authorize([:admin, status], :update?)
@@ -140,6 +140,6 @@ class Admin::StatusBatchAction
   end
 
   def allowed_status_ids
-    AccountStatusesFilter.new(@report.target_account, current_account).results.with_discarded.where(id: status_ids).pluck(:id)
+    Admin::AccountStatusesFilter.new(@report.target_account, current_account).results.with_discarded.where(id: status_ids).pluck(:id)
   end
 end

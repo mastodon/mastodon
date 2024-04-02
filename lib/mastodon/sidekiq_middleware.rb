@@ -16,7 +16,7 @@ class Mastodon::SidekiqMiddleware
   private
 
   def limit_backtrace_and_raise(exception)
-    exception.set_backtrace(exception.backtrace.first(BACKTRACE_LIMIT))
+    exception.set_backtrace(exception.backtrace.first(BACKTRACE_LIMIT)) unless ENV['BACKTRACE']
     raise exception
   end
 

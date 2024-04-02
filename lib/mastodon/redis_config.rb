@@ -34,10 +34,12 @@ REDIS_CACHE_PARAMS = {
   driver: :hiredis,
   url: ENV['CACHE_REDIS_URL'],
   expires_in: 10.minutes,
-  namespace: cache_namespace,
-  pool_size: Sidekiq.server? ? Sidekiq[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
-  pool_timeout: 5,
+  namespace: "#{cache_namespace}:7.1",
   connect_timeout: 5,
+  pool: {
+    size: Sidekiq.server? ? Sidekiq[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
+    timeout: 5,
+  },
 }.freeze
 
 REDIS_SIDEKIQ_PARAMS = {

@@ -2,6 +2,14 @@
 nn:
   simple_form:
     hints:
+      account:
+        discoverable: Dei offentlege innlegga dine og profilen din kan dukka opp i tilrådingar på ulike stader på Mastodon, og profilen din kan bli føreslegen for andre folk.
+        display_name: Ditt fulle namn eller ditt tøysenamn.
+        fields: Heimesida di, pronomen, alder, eller kva du måtte ynskje.
+        indexable: Dei offentlege innlegga dine kan dukka opp i søkjeresultat på Mastodon. Folk som har reagert på oinnlegga dine kan uansett søkja gjennom dei.
+        note: 'Du kan @nemne folk eller #emneknaggar.'
+        show_collections: Andre kan sjå kven du følgjer og kven som følgjer deg. Dei du følgjer kan alltid sjå at du følgjer dei.
+        unlocked: Alle kan følgje deg utan å måtte spørje om det. Vel bort om du vil gå gjennom førespurnadar om å følgje deg og seie ja eller nei.
       account_alias:
         acct: Angi brukarnamn@domene til brukaren du ynskjer å flytta frå
       account_migration:
@@ -31,31 +39,26 @@ nn:
         text: Ei åtvaring kan kun ankast ein gong
       defaults:
         autofollow: Folk som lagar ein konto gjennom innbydinga fylgjer deg automatisk
-        avatar: PNG, GIF eller JPG. Maksimalt %{size}. Minkast til %{dimensions}px
+        avatar: WEBP, PNG, GIF eller JPG. Maks %{size}. Blir forminska til %{dimensions}pkt
         bot: Denne kontoen utfører i hovedsak automatiserte handlinger og blir kanskje ikke holdt øye med
         context: En eller flere sammenhenger der filteret skal gjelde
         current_password: For sikkerhetsgrunner, vennligst oppgi passordet til den nåværende bruker
         current_username: Skriv inn brukarnamnet til den noverande kontoen for å stadfesta
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
-        discoverable: La kontoen din bli oppdaga av ukjende gjennom anbefalingar, trendar og andre funksjonar
         email: Du får snart ein stadfestings-e-post
-        header: PNG, GIF eller JPG. Maksimalt %{size}. Minkast til %{dimensions}px
+        header: WEBP, PNG, GIF eller JPG. Maks %{size}. Blir forminska til %{dimensions}pkt
         inbox_url: Kopier URLen fra forsiden til overgangen du vil bruke
         irreversible: Filtrerte tut vil verta borte for evig, sjølv om filteret vert fjerna seinare
         locale: Språket til brukargrensesnittet, e-postar og push-varsel
-        locked: Krev at du manuelt godkjenner fylgjarar
         password: Nytt minst 8 teikn
         phrase: Vil bli samsvart med, uansett bruk av store/små bokstaver eller innholdsadvarselen til en tut
         scopes: API-ane som programmet vil få tilgjenge til. Ettersom du vel eit toppnivåomfang tarv du ikkje velja einskilde API-ar.
         setting_aggregate_reblogs: Ikkje vis nye framhevingar for tut som nyleg har vorte heva fram (Påverkar berre nylege framhevingar)
         setting_always_send_emails: Vanlegvis vil ikkje e-postvarsel bli sendt når du brukar Mastodon aktivt
-        setting_default_sensitive: Nærtakande media vert gøymd som standard og kan synast med eit klikk
-        setting_display_media_default: Gøym media som er merka som nærtakande
+        setting_default_sensitive: Sensitive media vert gøymde som standard, og du syner dei ved å klikka på dei
+        setting_display_media_default: Gøym media som er merka som sensitive
         setting_display_media_hide_all: Alltid skjul alt media
         setting_display_media_show_all: Vis alltid media
-        setting_hide_network: Kven du fylgjer og kven som fylgjer deg vert ikkje vist på profilen din
-        setting_noindex: Påverkar den offentlege profilen og statussidene dine
-        setting_show_application: Programmet du brukar for å tuta blir vist i den detaljerte visninga av tuta dine
         setting_use_blurhash: Overgangar er basert på fargane til skjulte grafikkelement, men gjer detaljar utydelege
         setting_use_pending_items: Gøym tidslineoppdateringar bak eit klikk, i staden for å rulla ned automatisk
         username: Du kan bruka bokstavar, tal og understrekar
@@ -113,10 +116,14 @@ nn:
           sign_up_requires_approval: Du må godkjenna nye registreringar
         severity: Vel kva som skal skje ved førespurnader frå denne IP
       rule:
+        hint: Valfritt. Gje meir informasjon om regelen
         text: Forklar ein regel eller eit krav for brukarar på denne tenaren. Prøv å skriva kort og lettfattleg
       sessions:
         otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
         webauthn: Om det er ein USB-nøkkel må du setja han inn og om nødvendig trykkja på han.
+      settings:
+        indexable: Profilsida di kan dukka opp søkjeresultat frå Google, Bing, Duckduckgo og andre.
+        show_application: Du vil uansett alltid kunna sjå kva app som la ut innlegga dine.
       tag:
         name: Du kan berre endra bruken av store/små bokstavar, t. d. for å gjera det meir leseleg
       user:
@@ -130,12 +137,17 @@ nn:
         position: Høgare rolle avgjer konfliktløysing i visse situasjonar. Visse handlingar kan kun utførast på rollar med lågare prioritet
       webhook:
         events: Vel hendingar å senda
+        template: Skriv di eiga JSON nyttelast ved å bruka variabel interpolering. La stå tom for standard JSON.
         url: Kvar hendingar skal sendast
     labels:
       account:
+        discoverable: Ta med profilen og innlegga i oppdagingsalgoritmar
         fields:
           name: Merkelapp
           value: Innhald
+        indexable: Ta med offentlege innlegg i søkjeresultat
+        show_collections: Vis følgjer og følgjare på profilen
+        unlocked: Godta nye følgjare automatisk
       account_alias:
         acct: Brukarnamnet på den gamle kontoen
       account_migration:
@@ -153,7 +165,7 @@ nn:
           none: Gjer inkje
           sensitive: Ømtolig
           silence: Togn
-          suspend: Utvis og slett kontodata for godt
+          suspend: Utvis
         warning_preset_id: Bruk åtvaringsoppsett
       announcement:
         all_day: Heildagshending
@@ -173,7 +185,6 @@ nn:
         context: Filtrer kontekstar
         current_password: Noverande passord
         data: Data
-        discoverable: Før denne kontoen opp i mappa
         display_name: Synleg namn
         email: E-post-adresse
         expires_in: Vert ugyldig etter
@@ -183,7 +194,6 @@ nn:
         inbox_url: URL-addressen til overgangsinnboksen
         irreversible: Forkast i staden for å gøyma
         locale: Språk
-        locked: Lås konto
         max_uses: Grense på brukartal
         new_password: Nytt passord
         note: Om meg
@@ -206,17 +216,15 @@ nn:
         setting_display_media_show_all: Vis alle
         setting_expand_spoilers: Vid alltid ut tut som er merka med innhaldsåtvaringar
         setting_hide_network: Gøym nettverket ditt
-        setting_noindex: Vel bort søkjemotorregistrering
         setting_reduce_motion: Minsk rørsle i animasjonar
-        setting_show_application: Avdekk programmet bruka for å senda tut
         setting_system_font_ui: Bruk standardskrifttypen på systemet
         setting_theme: Sidetema
         setting_trends: Vis kva som er populært i dag
         setting_unfollow_modal: Vis stadfesting før du sluttar å fylgja nokon
-        setting_use_blurhash: Vis fargerike overgangar for gøymt media
+        setting_use_blurhash: Vis fargerike overgangar for gøymde medium
         setting_use_pending_items: Saktemodus
         severity: Alvorsgrad
-        sign_in_token_attempt: Trygdenykel
+        sign_in_token_attempt: Innloggingsnykel
         title: Tittel
         type: Importtype
         username: Brukarnamn
@@ -228,8 +236,8 @@ nn:
         name: Emneknagg
       filters:
         actions:
-          hide: Gøym totalt
-          warn: Gøym med ei advarsel
+          hide: Gøym heilt
+          warn: Gøym med ei åtvaring
       form_admin_settings:
         activity_api_enabled: Legg ut samla statistikk om brukaraktiviteten i APIet
         backups_retention_period: Arkiveringsperiode for brukararkiv
@@ -259,9 +267,9 @@ nn:
         trends: Aktiver trendar
         trends_as_landing_page: Bruk trendar som startside
       interactions:
-        must_be_follower: Gøym varslingar frå folk som ikkje fylgjer deg
-        must_be_following: Gøym varslingar frå folk du ikkje fylgjer
-        must_be_following_dm: Gøym direktemeldinger frå folk du ikkje fylgjer
+        must_be_follower: Blokker varsel frå folk som ikkje fylgjer deg
+        must_be_following: Blokker varsel frå folk du ikkje fylgjer
+        must_be_following_dm: Blokker direktemeldinger frå folk du ikkje fylgjer
       invite:
         comment: Kommentar
       invite_request:
@@ -272,7 +280,7 @@ nn:
         severities:
           no_access: Blokker tilgang
           sign_up_block: Blokker registrering
-          sign_up_requires_approval: Begrens påmeldinger
+          sign_up_requires_approval: Avgrens påmeldingar
         severity: Oppføring
       notification_emails:
         appeal: Nokon klagar på ei moderatoravgjerd
@@ -284,9 +292,19 @@ nn:
         pending_account: Send e-post når ein ny konto treng gjennomgang
         reblog: Send e-post når nokon framhevar statusen din
         report: Ny rapport er sendt
+        software_updates:
+          all: Varsle om alle oppdateringar
+          critical: Varsle kun om kristiske oppdateringar
+          label: Ein ny versjon av Mastodon er tilgjengeleg
+          none: Aldri varsle om oppdateringar (ikkje anbefalt)
+          patch: Varsle om feilrettingsoppdateringar
         trending_tag: Ny trend krev gjennomgang
       rule:
+        hint: Meir informasjon
         text: Regler
+      settings:
+        indexable: Ta med profilsida i søkjemotorar
+        show_application: Vis kva app du brukte når du skreiv innlegg
       tag:
         listable: Tillat denne emneknaggen å synast i søk og i profilmappa
         name: Emneknagg
@@ -294,6 +312,7 @@ nn:
         usable: Gje tut lov til å nytta denne emneknaggen
       user:
         role: Rolle
+        time_zone: Tidssone
       user_role:
         color: Emblemfarge
         highlighted: Vis rolle som emblem på brukarprofil
@@ -302,9 +321,11 @@ nn:
         position: Prioritet
       webhook:
         events: Aktiverte hendingar
+        template: Nyttelastmal
         url: Endepunkts-URL
     'no': Nei
     not_recommended: Ikkje anbefalt
+    overridden: Overstyrt
     recommended: Tilrådt
     required:
       mark: "*"

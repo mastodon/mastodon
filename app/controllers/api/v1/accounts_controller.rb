@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::AccountsController < Api::BaseController
+  include RegistrationHelper
+
   before_action -> { authorize_if_got_token! :read, :'read:accounts' }, except: [:create, :follow, :unfollow, :remove_from_followers, :block, :unblock, :mute, :unmute]
   before_action -> { doorkeeper_authorize! :follow, :write, :'write:follows' }, only: [:follow, :unfollow, :remove_from_followers]
   before_action -> { doorkeeper_authorize! :follow, :write, :'write:mutes' }, only: [:mute, :unmute]
@@ -47,7 +49,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def mute
-    MuteService.new.call(current_user.account, @account, notifications: truthy_param?(:notifications), duration: (params[:duration]&.to_i || 0))
+    MuteService.new.call(current_user.account, @account, notifications: truthy_param?(:notifications), duration: params[:duration].to_i)
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships
   end
 
@@ -86,22 +88,18 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def relationships(**options)
-    AccountRelationshipsPresenter.new([@account.id], current_user.account_id, **options)
+    AccountRelationshipsPresenter.new([@account], current_user.account_id, **options)
   end
 
   def account_params
-    params.permit(:username, :email, :password, :agreement, :locale, :reason, :time_zone)
+    params.permit(:username, :email, :password, :agreement, :locale, :reason, :time_zone, :invite_code)
+  end
+
+  def invite
+    Invite.find_by(code: params[:invite_code]) if params[:invite_code].present?
   end
 
   def check_enabled_registrations
-    forbidden if single_user_mode? || omniauth_only? || !allowed_registrations?
-  end
-
-  def allowed_registrations?
-    Setting.registrations_mode != 'none'
-  end
-
-  def omniauth_only?
-    ENV['OMNIAUTH_ONLY'] == 'true'
+    forbidden unless allowed_registration?(request.remote_ip, invite)
   end
 end

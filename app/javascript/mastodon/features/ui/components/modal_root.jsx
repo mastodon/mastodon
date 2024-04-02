@@ -7,6 +7,7 @@ import Base from 'mastodon/components/modal_root';
 import {
   MuteModal,
   BlockModal,
+  DomainBlockModal,
   ReportModal,
   EmbedModal,
   ListEditor,
@@ -23,7 +24,7 @@ import BundleContainer from '../containers/bundle_container';
 
 import ActionsModal from './actions_modal';
 import AudioModal from './audio_modal';
-import BoostModal from './boost_modal';
+import { BoostModal } from './boost_modal';
 import BundleModalError from './bundle_modal_error';
 import ConfirmationModal from './confirmation_modal';
 import FocalPointModal from './focal_point_modal';
@@ -41,6 +42,7 @@ export const MODAL_COMPONENTS = {
   'CONFIRM': () => Promise.resolve({ default: ConfirmationModal }),
   'MUTE': MuteModal,
   'BLOCK': BlockModal,
+  'DOMAIN_BLOCK': DomainBlockModal,
   'REPORT': ReportModal,
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
   'EMBED': EmbedModal,
@@ -97,14 +99,7 @@ export default class ModalRoot extends PureComponent {
 
   handleClose = (ignoreFocus = false) => {
     const { onClose } = this.props;
-    let message = null;
-    try {
-      message = this._modal?.getWrappedInstance?.().getCloseConfirmationMessage?.();
-    } catch (_) {
-      // injectIntl defines `getWrappedInstance` but errors out if `withRef`
-      // isn't set.
-      // This would be much smoother with react-intl 3+ and `forwardRef`.
-    }
+    const message = this._modal?.getCloseConfirmationMessage?.();
     onClose(message, ignoreFocus);
   };
 
@@ -122,7 +117,10 @@ export default class ModalRoot extends PureComponent {
         {visible && (
           <>
             <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
-              {(SpecificComponent) => <SpecificComponent {...props} onChangeBackgroundColor={this.setBackgroundColor} onClose={this.handleClose} ref={this.setModalRef} />}
+              {(SpecificComponent) => {
+                const ref = typeof SpecificComponent !== 'function' ? this.setModalRef : undefined;
+                return <SpecificComponent {...props} onChangeBackgroundColor={this.setBackgroundColor} onClose={this.handleClose} ref={ref} />;
+              }}
             </BundleContainer>
 
             <Helmet>

@@ -33,14 +33,14 @@ module Admin
 
       # Disallow accidentally downgrading a domain block
       if existing_domain_block.present? && !@domain_block.stricter_than?(existing_domain_block)
-        @domain_block.save
+        @domain_block.validate
         flash.now[:alert] = I18n.t('admin.domain_blocks.existing_domain_block_html', name: existing_domain_block.domain, unblock_url: admin_domain_block_path(existing_domain_block)).html_safe
         @domain_block.errors.delete(:domain)
         return render :new
       end
 
       # Allow transparently upgrading a domain block
-      if existing_domain_block.present?
+      if existing_domain_block.present? && existing_domain_block.domain == TagManager.instance.normalize_domain(@domain_block.domain.strip)
         @domain_block = existing_domain_block
         @domain_block.assign_attributes(resource_params)
       end

@@ -1,7 +1,6 @@
 .emoji-mart {
   font-size: 13px;
   display: inline-block;
-  color: $inverted-text-color;
 
   &,
   * {
@@ -15,20 +14,8 @@
 }
 
 .emoji-mart-bar {
-  border: 0 solid darken($ui-secondary-color, 8%);
-
   &:first-child {
-    border-bottom-width: 1px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    background: $ui-secondary-color;
-  }
-
-  &:last-child {
-    border-top-width: 1px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    display: none;
+    background: var(--dropdown-border-color);
   }
 }
 
@@ -36,7 +23,6 @@
   display: flex;
   justify-content: space-between;
   padding: 0 6px;
-  color: $lighter-text-color;
   line-height: 0;
 }
 
@@ -50,9 +36,10 @@
   cursor: pointer;
   background: transparent;
   border: 0;
+  color: $darker-text-color;
 
   &:hover {
-    color: darken($lighter-text-color, 4%);
+    color: lighten($darker-text-color, 4%);
   }
 }
 
@@ -60,7 +47,7 @@
   color: $highlight-text-color;
 
   &:hover {
-    color: darken($highlight-text-color, 4%);
+    color: lighten($highlight-text-color, 4%);
   }
 
   .emoji-mart-anchor-bar {
@@ -95,7 +82,6 @@
   height: 270px;
   max-height: 35vh;
   padding: 0 6px 6px;
-  background: $simple-background-color;
   will-change: transform;
 
   &::-webkit-scrollbar-track:hover,
@@ -107,7 +93,6 @@
 .emoji-mart-search {
   padding: 10px;
   padding-inline-end: 45px;
-  background: $simple-background-color;
   position: relative;
 
   input {
@@ -118,9 +103,9 @@
     font-family: inherit;
     display: block;
     width: 100%;
-    background: rgba($ui-secondary-color, 0.3);
-    color: $inverted-text-color;
-    border: 1px solid $ui-secondary-color;
+    background: $ui-base-color;
+    color: $darker-text-color;
+    border: 1px solid lighten($ui-base-color, 8%);
     border-radius: 4px;
 
     &::-moz-focus-inner {
@@ -155,11 +140,10 @@
   &:disabled {
     cursor: default;
     pointer-events: none;
-    opacity: 0.3;
   }
 
   svg {
-    fill: $action-button-color;
+    fill: $darker-text-color;
   }
 }
 
@@ -180,7 +164,7 @@
     inset-inline-start: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba($ui-secondary-color, 0.7);
+    background-color: var(--dropdown-border-color);
     border-radius: 100%;
   }
 }
@@ -197,7 +181,6 @@
     width: 100%;
     font-weight: 500;
     padding: 5px 6px;
-    background: $simple-background-color;
   }
 }
 
@@ -241,7 +224,7 @@
 
 .emoji-mart-no-results {
   font-size: 14px;
-  color: $light-text-color;
+  color: $dark-text-color;
   text-align: center;
   padding: 5px 6px;
   padding-top: 70px;

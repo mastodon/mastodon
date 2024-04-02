@@ -46,10 +46,10 @@ $ui-button-focus-background-color: $blurple-600 !default;
 $ui-button-focus-outline-color: $blurple-400 !default;
 $ui-button-focus-outline: solid 2px $ui-button-focus-outline-color !default;
 
-$ui-button-secondary-color: $grey-100 !default;
-$ui-button-secondary-border-color: $grey-100 !default;
-$ui-button-secondary-focus-background-color: $grey-600 !default;
-$ui-button-secondary-focus-color: $white !default;
+$ui-button-secondary-color: $blurple-500 !default;
+$ui-button-secondary-border-color: $blurple-500 !default;
+$ui-button-secondary-focus-border-color: $blurple-300 !default;
+$ui-button-secondary-focus-color: $blurple-300 !default;
 
 $ui-button-tertiary-color: $blurple-300 !default;
 $ui-button-tertiary-border-color: $blurple-300 !default;
@@ -94,10 +94,16 @@ $font-display: 'mastodon-font-display' !default;
 $font-monospace: 'mastodon-font-monospace' !default;
 
 :root {
-  --dropdown-border-color: #{lighten($ui-base-color, 12%)};
-  --dropdown-background-color: #{lighten($ui-base-color, 4%)};
+  --dropdown-border-color: #{lighten($ui-base-color, 4%)};
+  --dropdown-background-color: #{rgba(darken($ui-base-color, 8%), 0.9)};
   --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)},
     0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
-  --modal-background-color: #{darken($ui-base-color, 4%)};
+  --modal-background-color: #{rgba(darken($ui-base-color, 8%), 0.7)};
+  --modal-background-variant-color: #{rgba($ui-base-color, 0.7)};
   --modal-border-color: #{lighten($ui-base-color, 4%)};
+  --background-border-color: #{lighten($ui-base-color, 4%)};
+  --background-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
+  --background-color: #{darken($ui-base-color, 8%)};
+  --background-color-tint: #{rgba(darken($ui-base-color, 8%), 0.9)};
+  --surface-background-color: #{darken($ui-base-color, 4%)};
 }

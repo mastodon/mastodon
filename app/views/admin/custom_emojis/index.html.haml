@@ -1,9 +1,6 @@
 - content_for :page_title do
   = t('admin.custom_emojis.title')
 
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-
 - if can?(:create, :custom_emoji)
   - content_for :heading_actions do
     = link_to t('admin.custom_emojis.upload'), new_admin_custom_emoji_path, class: 'button'
@@ -71,12 +68,19 @@
           .fields-group.fields-row__column.fields-row__column-6
             .input.select.optional
               .label_input
-                = f.select :category_id, options_from_collection_for_select(CustomEmojiCategory.all, 'id', 'name'), prompt: t('admin.custom_emojis.assign_category'), class: 'select optional', 'aria-label': t('admin.custom_emojis.assign_category')
+                = f.select :category_id,
+                           options_from_collection_for_select(CustomEmojiCategory.all, 'id', 'name'),
+                           'aria-label': t('admin.custom_emojis.assign_category'),
+                           class: 'select optional',
+                           prompt: t('admin.custom_emojis.assign_category')
 
           .fields-group.fields-row__column.fields-row__column-6
             .input.string.optional
               .label_input
-                = f.text_field :category_name, class: 'string optional', placeholder: t('admin.custom_emojis.create_new_category'), 'aria-label': t('admin.custom_emojis.create_new_category')
+                = f.text_field :category_name,
+                               'aria-label': t('admin.custom_emojis.create_new_category'),
+                               class: 'string optional',
+                               placeholder: t('admin.custom_emojis.create_new_category')
 
     .batch-table__body
       - if @custom_emojis.empty?

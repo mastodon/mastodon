@@ -10,8 +10,8 @@ RSpec.describe FeedManager do
     end
   end
 
-  it 'tracks at least as many statuses as reblogs', skip_stub: true do
-    expect(FeedManager::REBLOG_FALLOFF).to be <= FeedManager::MAX_ITEMS
+  it 'tracks at least as many statuses as reblogs', :skip_stub do
+    expect(described_class::REBLOG_FALLOFF).to be <= described_class::MAX_ITEMS
   end
 
   describe '#key' do
@@ -225,12 +225,12 @@ RSpec.describe FeedManager do
     it 'trims timelines if they will have more than FeedManager::MAX_ITEMS' do
       account = Fabricate(:account)
       status = Fabricate(:status)
-      members = Array.new(FeedManager::MAX_ITEMS) { |count| [count, count] }
+      members = Array.new(described_class::MAX_ITEMS) { |count| [count, count] }
       redis.zadd("feed:home:#{account.id}", members)
 
       described_class.instance.push_to_home(account, status)
 
-      expect(redis.zcard("feed:home:#{account.id}")).to eq FeedManager::MAX_ITEMS
+      expect(redis.zcard("feed:home:#{account.id}")).to eq described_class::MAX_ITEMS
     end
 
     context 'with reblogs' do
@@ -260,7 +260,7 @@ RSpec.describe FeedManager do
         described_class.instance.push_to_home(account, reblogged)
 
         # Fill the feed with intervening statuses
-        FeedManager::REBLOG_FALLOFF.times do
+        described_class::REBLOG_FALLOFF.times do
           described_class.instance.push_to_home(account, Fabricate(:status))
         end
 
@@ -321,7 +321,7 @@ RSpec.describe FeedManager do
         described_class.instance.push_to_home(account, reblogs.first)
 
         # Fill the feed with intervening statuses
-        FeedManager::REBLOG_FALLOFF.times do
+        described_class::REBLOG_FALLOFF.times do
           described_class.instance.push_to_home(account, Fabricate(:status))
         end
 
@@ -467,7 +467,7 @@ RSpec.describe FeedManager do
       status    = Fabricate(:status, reblog: reblogged)
 
       described_class.instance.push_to_home(receiver, reblogged)
-      FeedManager::REBLOG_FALLOFF.times { described_class.instance.push_to_home(receiver, Fabricate(:status)) }
+      described_class::REBLOG_FALLOFF.times { described_class.instance.push_to_home(receiver, Fabricate(:status)) }
       described_class.instance.push_to_home(receiver, status)
 
       # The reblogging status should show up under normal conditions.
@@ -522,6 +522,44 @@ RSpec.describe FeedManager do
 
       deletion = Oj.dump(event: :delete, payload: status.id.to_s)
       expect(redis).to have_received(:publish).with("timeline:#{receiver.id}", deletion)
+    end
+  end
+
+  describe '#unmerge_tag_from_home' do
+    let(:receiver) { Fabricate(:account) }
+    let(:tag) { Fabricate(:tag) }
+
+    it 'leaves a tagged status' do
+      status = Fabricate(:status)
+      status.tags << tag
+      described_class.instance.push_to_home(receiver, status)
+
+      described_class.instance.unmerge_tag_from_home(tag, receiver)
+
+      expect(redis.zrange("feed:home:#{receiver.id}", 0, -1)).to_not include(status.id.to_s)
+    end
+
+    it 'remains a tagged status written by receiver\'s followee' do
+      followee = Fabricate(:account)
+      receiver.follow!(followee)
+
+      status = Fabricate(:status, account: followee)
+      status.tags << tag
+      described_class.instance.push_to_home(receiver, status)
+
+      described_class.instance.unmerge_tag_from_home(tag, receiver)
+
+      expect(redis.zrange("feed:home:#{receiver.id}", 0, -1)).to include(status.id.to_s)
+    end
+
+    it 'remains a tagged status written by receiver' do
+      status = Fabricate(:status, account: receiver)
+      status.tags << tag
+      described_class.instance.push_to_home(receiver, status)
+
+      described_class.instance.unmerge_tag_from_home(tag, receiver)
+
+      expect(redis.zrange("feed:home:#{receiver.id}", 0, -1)).to include(status.id.to_s)
     end
   end
 

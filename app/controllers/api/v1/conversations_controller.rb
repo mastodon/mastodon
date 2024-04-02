@@ -41,20 +41,16 @@ class Api::V1::ConversationsController < Api::BaseController
                          account: :account_stat,
                          last_status: [
                            :media_attachments,
-                           :preview_cards,
                            :status_stat,
                            :tags,
                            {
+                             preview_cards_status: :preview_card,
                              active_mentions: [account: :account_stat],
                              account: :account_stat,
                            },
                          ]
                        )
                        .to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
-  end
-
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
   end
 
   def next_path

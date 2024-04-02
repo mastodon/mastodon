@@ -9,7 +9,7 @@ class ActivityPub::Activity::Move < ActivityPub::Activity
 
     target_account = ActivityPub::FetchRemoteAccountService.new.call(target_uri)
 
-    if target_account.nil? || target_account.suspended? || !target_account.also_known_as.include?(origin_account.uri)
+    if target_account.nil? || target_account.unavailable? || !target_account.also_known_as.include?(origin_account.uri)
       unmark_as_processing!
       return
     end

@@ -309,6 +309,7 @@ it:
       unpublish: Annulla la pubblicazione
       unpublished_msg: Annuncio ritirato!
       updated_msg: Annuncio aggiornato!
+    critical_update_pending: Aggiornamento critico in sospeso
     custom_emojis:
       assign_category: Assegna categoria
       by_domain: Dominio
@@ -424,6 +425,7 @@ it:
       view: Visualizza blocco di dominio
     email_domain_blocks:
       add_new: Aggiungi nuovo
+      allow_registrations_with_approval: Consenti registrazioni con approvazione
       attempts_over_week:
         one: "%{count} tentativo nell'ultima settimana"
         other: "%{count} tentativi di registrazione nell'ultima settimana"
@@ -533,6 +535,7 @@ it:
       total_reported: Segnalazioni su di loro
       total_storage: Media allegati
       totals_time_period_hint_html: I totali sotto visualizzati includono i dati per tutti i tempi.
+      unknown_instance: Al momento non c'è alcun documento di questo dominio su questo server.
     invites:
       deactivate_all: Disattiva tutto
       filter:
@@ -594,6 +597,9 @@ it:
       actions_description_html: Decidete quali azioni intraprendere per risolvere la segnalazione. Se si intraprende un'azione punitiva contro l'account segnalato, gli sarà inviata una notifica via e-mail, tranne quando è selezionata la categoria <strong>Spam</strong>.
       actions_description_remote_html: Decide quali azioni intraprendere per risolvere la relazione. Questo influenzerà solo come <strong>il tuo</strong> server comunica con questo account remoto e ne gestisce il contenuto.
       add_to_report: Aggiungi altro al report
+      already_suspended_badges:
+        local: Già sospeso su questo server
+        remote: Già sospeso sul loro server
       are_you_sure: Sei sicuro?
       assign_to_self: Assegna a me
       assigned: Moderatore assegnato
@@ -609,6 +615,7 @@ it:
       created_at: Segnalato
       delete_and_resolve: Cancella post
       forwarded: Inoltrato
+      forwarded_replies_explanation: Questa segnalazione proviene da un utente remoto e tratta di contenuti remoti. È stato inoltrato a voi perché il contenuto riportato è in risposta a uno dei vostri utenti.
       forwarded_to: Inoltrato a %{domain}
       mark_as_resolved: Segna come risolto
       mark_as_sensitive: Segna come sensibile
@@ -763,6 +770,7 @@ it:
         disabled: A nessuno
         users: Agli utenti locali connessi
       registrations:
+        moderation_recommandation: Assicurati di avere un team di moderazione adeguato e reattivo prima di aprire le registrazioni a tutti!
         preamble: Controlla chi può creare un account sul tuo server.
         title: Registrazioni
       registrations_mode:
@@ -770,10 +778,28 @@ it:
           approved: Approvazione richiesta per le iscrizioni
           none: Nessuno può iscriversi
           open: Chiunque può iscriversi
+        warning_hint: Ti consigliamo di utilizzare “Approvazione richiesta per la registrazione” a meno che tu non sia sicuro che il tuo team di moderazione possa gestire lo spam e le registrazioni dannose in modo tempestivo.
+      security:
+        authorized_fetch: Richiede l'autenticazione dai server federati
+        authorized_fetch_hint: La richiesta di autenticazione da server federati consente un'applicazione più rigorosa dei blocchi sia a livello di utente che a livello di server. Tuttavia, ciò comporta una riduzione delle prestazioni, riduce la portata delle tue risposte e potrebbe introdurre problemi di compatibilità con alcuni servizi federati. Inoltre, ciò non impedirà agli attori dedicati di recuperare i tuoi post pubblici e account.
+        authorized_fetch_overridden_hint: Al momento non puoi modificare questa impostazione perché è sostituita da una variabile di ambiente.
+        federation_authentication: Applicazione dell'autenticazione della federazione
       title: Impostazioni del server
     site_uploads:
       delete: Cancella il file caricato
       destroyed_msg: Caricamento sito eliminato!
+    software_updates:
+      critical_update: 'Critico: ti preghiamo di aggiornare rapidamente'
+      description: Si consiglia di mantenere aggiornata la tua installazione di Mastodon, per beneficiare delle ultime correzioni e funzionalità. Inoltre, talvolta, è cruciale aggiornare Mastodon tempestivamente, per evitare i problemi di sicurezza. Per questo, Mastodon verifica la presenza di aggiornamenti ogni 30 minuti e ti notificherà a seconda delle tue preferenze di notifica via email.
+      documentation_link: Scopri di più
+      release_notes: Note di rilascio
+      title: Aggiornamenti disponibili
+      type: Tipo
+      types:
+        major: Rilascio principale
+        minor: Rilascio secondario
+        patch: 'Patch: correzioni di bug e modifiche facili da applicare'
+      version: Versione
     statuses:
       account: Autore
       application: Applicazione
@@ -814,6 +840,20 @@ it:
     system_checks:
       database_schema_check:
         message_html: Ci sono migrazioni del database in attesa. Sei pregato di eseguirle per assicurarti che l'applicazione si comporti come previsto
+      elasticsearch_health_red:
+        message_html: Il cluster Elasticsearch non è integro (stato rosso), le funzionalità di ricerca non sono disponibili
+      elasticsearch_health_yellow:
+        message_html: Il cluster Elasticsearch non è integro (stato giallo), potresti voler indagare sul motivo
+      elasticsearch_index_mismatch:
+        message_html: Le mappature degli indici Elasticsearch sono obsolete. Si prega di eseguire <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Vedi la documentazione
+        message_html: Il tuo cluster Elasticsearch ha più di un nodo, ma Mastodon non è configurato per utilizzarli.
+      elasticsearch_preset_single_node:
+        action: Vedi la documentazione
+        message_html: Il tuo cluster Elasticsearch ha un solo nodo, <code>ES_PRESET</code> dovrebbe essere impostato su <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Il tuo sistema di indicizzazione Elasticsearch è obsoleto a causa di una modifica delle impostazioni. Si prega di eseguire <code>tootctl search deploy --reset-chewy</code> per aggiornarlo.
       elasticsearch_running_check:
         message_html: Impossibile connettersi a Elasticsearch. Verificare che sia in esecuzione o disabilitare la ricerca full-text
       elasticsearch_version_check:
@@ -824,6 +864,12 @@ it:
         message_html: Non hai definito alcuna regola del server.
       sidekiq_process_check:
         message_html: Nessun processo di Sidekiq in esecuzione per le code di %{value}. Sei pregato di revisionare la tua configurazione di Sidekiq
+      software_version_critical_check:
+        action: Visualizza gli aggiornamenti disponibili
+        message_html: Un aggiornamento critico di Mastodon è disponibile, ti preghiamo di aggiornare il più rapidamente possibile.
+      software_version_patch_check:
+        action: Visualizza gli aggiornamenti disponibili
+        message_html: È disponibile un aggiornamento di correzione dei bug di Mastodon.
       upload_check_privacy_error:
         action: Controlla qui per maggiori informazioni
         message_html: "<strong>Il tuo server web è mal configurato. La privacy dei tuoi utenti è a rischio.</strong>"
@@ -925,6 +971,9 @@ it:
       title: Webhook
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: A causa della mancanza di attività recente da parte dei moderatori, le registrazioni su %{instance} sono passate automaticamente alla richiesta di revisione manuale, per evitare che %{instance} venga utilizzata come piattaforma per potenziali malintenzionati. Puoi ripristinarlo per aprire le registrazioni in qualsiasi momento.
+      subject: Le registrazioni per %{instance} sono passate automaticamente alla richiesta di approvazione
     new_appeal:
       actions:
         delete_statuses: per cancellare i loro post
@@ -937,6 +986,9 @@ it:
       body: "%{target} sta facendo appello contro una decisione di moderazione di %{action_taken_by} da %{date}, che era %{type}. Ha scritto:"
       next_steps: Puoi approvare l'appello per annullare la decisione di moderazione, oppure ignorarlo.
       subject: "%{username} sta facendo appello contro una decisione di moderazione su %{instance}"
+    new_critical_software_updates:
+      body: Sono state rilasciate delle nuove versioni critiche di Mastodon, potresti volerlo aggiornare il prima possibile!
+      subject: Aggiornamenti critici di Mastodon disponibili per %{instance}!
     new_pending_account:
       body: I dettagli del nuovo account sono qui sotto. Puoi approvare o rifiutare questa richiesta.
       subject: Nuovo account pronto per la revisione su %{instance} (%{username})
@@ -944,6 +996,9 @@ it:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
       subject: Nuova segnalazione per %{instance} (#%{id})
+    new_software_updates:
+      body: Sono state rilasciate delle nuove versioni di Mastodon, potresti volerlo aggiornare!
+      subject: Sono disponibili delle nuove versioni di Mastodon per %{instance}!
     new_trends:
       body: 'I seguenti elementi necessitano di un controllo prima che possano essere visualizzati pubblicamente:'
       new_trending_links:
@@ -951,8 +1006,6 @@ it:
       new_trending_statuses:
         title: Post di tendenza
       new_trending_tags:
-        no_approved_tags: Attualmente non ci sono hashtag di tendenza approvati.
-        requirements: 'Ognuno di questi candidati potrebbe superare il #%{rank} hashtag di tendenza approvato, che è attualmente "%{lowest_tag_name}" con un punteggio di %{lowest_tag_score}.'
         title: Hashtag di tendenza
       subject: Nuove tendenze in attesa di controllo su %{instance}
   aliases:
@@ -998,6 +1051,14 @@ it:
       hint_html: Solamente un'altra cosa! Dobbiamo confermare che tu sia un essere umano (così possiamo tenere fuori lo spam!). Risolvi il CAPTCHA sottostante e fai clic su "Continua".
       title: Controllo di sicurezza
     confirmations:
+      awaiting_review: Il tuo indirizzo e-mail è confermato! Lo staff di %{domain} sta esaminando la tua registrazione. Riceverai una e-mail se il tuo account sarà approvato!
+      awaiting_review_title: La tua registrazione è in corso di revisione
+      clicking_this_link: cliccando su questo link
+      login_link: accedi
+      proceed_to_login_html: Ora puoi procedere con il %{login_link}.
+      redirect_to_app_html: Avresti dovuto essere reindirizzato all'app <strong>%{app_name}</strong>. Se ciò non fosse avvenuto, prova %{clicking_this_link} o torna manualmente all'app.
+      registration_complete: La tua registrazione su %{domain} è ora completata!
+      welcome_title: Benvenutə, %{name}!
       wrong_email_hint: Se l'indirizzo e-mail non è corretto, puoi modificarlo nelle impostazioni dell'account.
     delete_account: Elimina account
     delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo qui</a>. Ti sarà chiesta conferma.
@@ -1059,6 +1120,7 @@ it:
       functional: Il tuo profilo è completamente operativo.
       pending: La tua richiesta è in attesa di esame da parte del nostro staff. Potrebbe richiedere un po' di tempo. Riceverai una e-mail se la richiesta è approvata.
       redirecting_to: Il tuo account è inattivo perché attualmente reindirizza a %{acct}.
+      self_destruct: Poiché %{domain} sta chiudendo, otterrai solo un accesso limitato al tuo account.
       view_strikes: Visualizza le sanzioni precedenti prese nei confronti del tuo account
     too_fast: Modulo inviato troppo velocemente, riprova.
     use_security_key: Usa la chiave di sicurezza
@@ -1142,7 +1204,6 @@ it:
     basic_information: Informazioni di base
     hint_html: "<strong>Personalizza ciò che le persone vedono sul tuo profilo pubblico e accanto ai tuoi post.</strong> È più probabile che altre persone ti seguano e interagiscano con te quando hai un profilo compilato e un'immagine del profilo."
     other: Altro
-    safety_and_privacy: Sicurezza e privacy
   errors:
     '400': La richiesta che hai inviato non è valida o non è corretta.
     '403': Non sei autorizzato a visualizzare questa pagina.
@@ -1317,6 +1378,7 @@ it:
       '86400': 1 giorno
     expires_in_prompt: Mai
     generate: Genera
+    invalid: Questo invito non è valido
     invited_by: 'Sei stato invitato da:'
     max_uses:
       one: un uso
@@ -1435,9 +1497,9 @@ it:
     update:
       subject: "%{name} ha modificato un post"
   notifications:
+    administration_emails: Notifiche email amministratore
     email_events: Eventi per notifiche via email
     email_events_hint: 'Seleziona gli eventi per i quali vuoi ricevere le notifiche:'
-    other_settings: Altre impostazioni delle notifiche
   number:
     human:
       decimal_units:
@@ -1478,12 +1540,24 @@ it:
     other: Altro
     posting_defaults: Predefinite di pubblicazione
     public_timelines: Timeline pubbliche
+  privacy:
+    hint_html: "<strong>Personalizza il modo in cui vuoi che il tuo profilo e i tuoi post vengano trovati.</strong> Una varietà di funzionalità in Mastodon possono aiutarti a raggiungere un pubblico più ampio se abilitato. Prenditi un momento per rivedere queste impostazioni per assicurarti che si adattino al tuo caso d'uso."
+    privacy: Privacy
+    privacy_hint_html: Controlla quanto tu voglia mostrare a beneficio degli altri. Le persone scoprono profili interessanti e app fantastiche sfogliando il seguito di altre persone e vedendo da quali app pubblichino, ma potresti preferire tenerlo nascosto.
+    reach: Copertura
+    reach_hint_html: Controlla se vuoi essere scoperto e seguito da nuove persone. Vuoi che i tuoi post vengano visualizzati nella schermata Esplora? Vuoi che altre persone ti vedano tra i loro consigli di utenti da seguire? Vuoi accettare automaticamente tutti i nuovi seguaci o avere un controllo granulare su ciascuno di essi?
+    search: Cerca
+    search_hint_html: Controlla come vuoi essere trovato. Vuoi che le persone ti trovino in base a ciò che hai postato pubblicamente? Vuoi che le persone al di fuori di Mastodon trovino il tuo profilo durante la ricerca sul web? Si prega di notare che l'esclusione totale da tutti i motori di ricerca non può essere garantita per le informazioni pubbliche.
+    title: Privacy e copertura
   privacy_policy:
     title: Politica sulla privacy
   reactions:
     errors:
       limit_reached: Raggiunto il limite di reazioni diverse
       unrecognized_emoji: non è un emoji riconosciuto
+  redirects:
+    prompt: Se ti fidi di questo collegamento, fai clic su di esso per continuare.
+    title: Stai lasciando %{instance}.
   relationships:
     activity: Attività dell'account
     confirm_follow_selected_followers: Sei sicuro di voler seguire i follower selezionati?
@@ -1519,6 +1593,9 @@ it:
     over_daily_limit: Hai superato il limite di %{limit} post programmati per questo giorno
     over_total_limit: Hai superato il limite di %{limit} post programmati
     too_soon: La data di pubblicazione deve essere nel futuro
+  self_destruct:
+    lead_html: Sfortunatamente, <strong>%{domain}</strong> sta chiudendo definitivamente. Se hai un account lì, non potrai continuare a usarlo, ma puoi ancora richiedere un backup dei tuoi dati.
+    title: Questo server sta chiudendo
   sessions:
     activity: Ultima attività
     browser: Browser
@@ -1543,6 +1620,7 @@ it:
       unknown_browser: Browser sconosciuto
       weibo: Weibo
     current_session: Sessione corrente
+    date: Data
     description: "%{browser} su %{platform}"
     explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al tuo account Mastodon.
     ip: IP
@@ -1579,14 +1657,26 @@ it:
     import: Importa
     import_and_export: Importa ed esporta
     migrate: Migrazione dell'account
-    notifications: Notifiche
+    notifications: Notifiche e-mail
     preferences: Preferenze
     profile: Profilo
     relationships: Follows e followers
+    severed_relationships: Relazioni interrotte
     statuses_cleanup: Cancellazione automatica dei post
     strikes: Sanzioni di moderazione
     two_factor_authentication: Autenticazione a due fattori
     webauthn_authentication: Chiavi di sicurezza
+  severed_relationships:
+    download: Scarica (%{count})
+    event_type:
+      account_suspension: Sospensione dell'account (%{target_name})
+      domain_block: Sospensione del server (%{target_name})
+      user_domain_block: Hai bloccato %{target_name}
+    lost_followers: Seguaci persi
+    lost_follows: Account seguiti persi
+    preamble: Potresti perdere account seguiti e seguaci quando blocchi un dominio o quando i tuoi moderatori decidono di sospendere un server remoto. Quando ciò accadrà, potrai scaricare liste di relazioni interrotte, da consultare ed eventualmente importare su un altro server.
+    purged: Le informazioni su questo server sono state eliminate dagli amministratori del tuo server.
+    type: Evento
   statuses:
     attached:
       audio:
@@ -1624,8 +1714,6 @@ it:
         other: "%{count} voti"
       vote: Vota
     show_more: Mostra di più
-    show_newer: Mostra più nuovi
-    show_older: Mostra più vecchi
     show_thread: Mostra thread
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1682,11 +1770,17 @@ it:
     contrast: Mastodon (contrasto elevato)
     default: Mastodon (scuro)
     mastodon-light: Mastodon (chiaro)
+    system: Automatico (usa il tema di sistema)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: La quota di utilizzo del server per il servizio di traduzione è stata superata.
+      too_many_requests: Ci sono state troppe richieste al servizio di traduzione di recente.
   two_factor_authentication:
     add: Aggiungi
     disable: Disabilita
@@ -1704,18 +1798,27 @@ it:
     webauthn: Chiavi di sicurezza
   user_mailer:
     appeal_approved:
-      action: Vai al tuo account
+      action: Impostazioni account
       explanation: L'appello della sanzione contro il tuo account del %{strike_date} che hai inviato il %{appeal_date} è stato approvato. Il tuo account ha riottenuto la buona reputazione.
       subject: Il tuo appello del %{date} è stato approvato
+      subtitle: Il tuo account è ancora una volta in buona posizione.
       title: Appello approvato
     appeal_rejected:
       explanation: L'appello della sanzione contro il tuo account del %{strike_date} che hai inviato il %{appeal_date} è stato respinto.
       subject: Il tuo appello del %{date} è stato respinto
+      subtitle: Il tuo appello è stato respinto.
       title: Appello respinto
     backup_ready:
-      explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!
+      explanation: Hai richiesto un backup completo del tuo account Mastodon.
+      extra: Ora è pronto per il download!
       subject: Il tuo archivio è pronto per essere scaricato
       title: Esportazione archivio
+    failed_2fa:
+      details: 'Questi sono i dettagli del tentativo di accesso:'
+      explanation: Qualcuno ha tentato di accedere al tuo account ma ha fornito un secondo fattore di autenticazione non valido.
+      further_actions_html: Se non eri tu, ti consigliamo di %{action} immediatamente poiché potrebbe essere compromesso.
+      subject: Errore di autenticazione del secondo fattore
+      title: Autenticazione del secondo fattore non riuscita
     suspicious_sign_in:
       change_password: cambiare la tua password
       details: 'Questi sono i dettagli del tentativo di accesso:'
@@ -1755,13 +1858,44 @@ it:
         silence: Account limitato
         suspend: Account sospeso
     welcome:
-      edit_profile_action: Configura profilo
-      edit_profile_step: Puoi personalizzare il tuo profilo caricando un'immagine del profilo, cambiare il tuo nome e altro ancora. Puoi scegliere di esaminare i nuovi seguaci prima che loro siano autorizzati a seguirti.
+      apps_android_action: Scaricalo da Google Play
+      apps_ios_action: Scarica dall'App Store
+      apps_step: Scarica le nostre app ufficiali.
+      apps_title: App di Mastodon
+      checklist_subtitle: 'Iniziamo su questa nuova frontiera sociale:'
+      checklist_title: Lista di controllo di Benvenuto
+      edit_profile_action: Personalizza
+      edit_profile_step: Gli altri hanno maggiori probabilità di interagire con te se completi il tuo profilo.
+      edit_profile_title: Personalizza il tuo profilo
       explanation: Ecco alcuni suggerimenti per iniziare
-      final_action: Inizia a pubblicare
-      final_step: 'Inizia a pubblicare! Anche senza seguaci, i tuoi post pubblici possono essere visti da altri, ad esempio sulla timeline locale o negli hashtag. Potresti presentarti con l''hashtag #presentazione.'
-      full_handle: Il tuo nome utente completo
-      full_handle_hint: Questo è ciò che diresti ai tuoi amici in modo che possano seguirti o contattarti da un altro server.
+      feature_action: Scopri di più
+      feature_audience: Mastodon ti offre una possibilità unica di gestire il tuo pubblico senza intermediari. Mastodon, distribuito sulla tua stessa infrastruttura, ti permette di seguire e di essere seguito da qualsiasi altro server Mastodon online, e non è controllato da nessun altro, eccetto te.
+      feature_audience_title: Costruisci il tuo pubblico in sicurezza
+      feature_control: Tu sai cosa sia meglio vedere sul tuo home feed. Nessun algoritmo o annunci che sprechino il tuo tempo. Segui chiunque attraverso qualsiasi server Mastodon da un singolo account e ricevi i loro messaggi in ordine cronologico, e rendi il tuo angolo di internet un po' più come te.
+      feature_control_title: Rimani in controllo della tua timeline
+      feature_creativity: Mastodon supporta audio, filmati e post, descrizioni di accessibilità, sondaggi, avvisi di contenuto, avatar animati, emoji personalizzate, controllo del ritaglio delle miniature e altro ancora, per aiutarti a esprimerti online. Che tu stia pubblicando la tua arte, la tua musica o il tuo podcast, Mastodon è lì per te.
+      feature_creativity_title: Creatività senza precedenti
+      feature_moderation: Mastodon rimette il processo decisionale nelle tue mani. Ogni server crea le proprie regole che vengono applicate localmente e non dall'alto verso il basso come i social media aziendali, rendendo più flessibile il rispondere alle esigenze di diversi gruppi di persone. Unisciti a un server con regole con cui sei d'accordo o ospita il tuo.
+      feature_moderation_title: Moderazione come dovrebbe essere
+      follow_action: Segui
+      follow_step: Seguire persone interessanti è ciò che fa Mastodon.
+      follow_title: Personalizza il tuo home feed
+      follows_subtitle: Segui account ben noti
+      follows_title: Chi seguire
+      follows_view_more: Visualizza più persone da seguire
+      hashtags_recent_count:
+        one: "%{people} persona negli ultimi 2 giorni"
+        other: "%{people} persone negli ultimi 2 giorni"
+      hashtags_subtitle: Esplora le tendenze degli ultimi 2 giorni
+      hashtags_title: Hashtag di tendenza
+      hashtags_view_more: Visualizza altri hashtag di tendenza
+      post_action: Scrivi
+      post_step: Salutate il mondo con testo, foto, video o sondaggi.
+      post_title: Scrivi il tuo primo post
+      share_action: Condividi
+      share_step: Fai sapere ai tuoi amici come trovarti su Mastodon.
+      share_title: Condividi il tuo profilo Mastodon
+      sign_in_action: Accedi
       subject: Benvenuto/a su Mastodon
       title: Benvenuto a bordo, %{name}!
   users:
@@ -1769,6 +1903,7 @@ it:
     go_to_sso_account_settings: Vai alle impostazioni dell'account del tuo provider di identità
     invalid_otp_token: Codice d'accesso non valido
     otp_lost_help_html: Se perdessi l'accesso ad entrambi, puoi entrare in contatto con %{email}
+    rate_limited: Troppi tentativi di autenticazione, per favore riprova più tardi.
     seamless_external_login: Hai effettuato l'accesso tramite un servizio esterno, quindi le impostazioni di password e e-mail non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
   verification:

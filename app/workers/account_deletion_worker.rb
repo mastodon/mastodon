@@ -3,11 +3,11 @@
 class AccountDeletionWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'pull', lock: :until_executed
+  sidekiq_options queue: 'pull', lock: :until_executed, lock_ttl: 1.week.to_i
 
   def perform(account_id, options = {})
     account = Account.find(account_id)
-    return unless account.suspended?
+    return unless account.unavailable?
 
     reserve_username = options.with_indifferent_access.fetch(:reserve_username, true)
     skip_activitypub = options.with_indifferent_access.fetch(:skip_activitypub, false)

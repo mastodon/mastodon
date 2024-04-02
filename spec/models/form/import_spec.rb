@@ -30,7 +30,7 @@ RSpec.describe Form::Import do
 
       it 'has errors' do
         subject.validate
-        expect(subject.errors[:data]).to include(I18n.t('imports.errors.over_rows_processing_limit', count: Form::Import::ROWS_PROCESSING_LIMIT))
+        expect(subject.errors[:data]).to include(I18n.t('imports.errors.over_rows_processing_limit', count: described_class::ROWS_PROCESSING_LIMIT))
       end
     end
 
@@ -296,7 +296,7 @@ RSpec.describe Form::Import do
 
     it_behaves_like 'on successful import', 'following', 'merge', 'following_accounts.csv', [
       { 'acct' => 'user@example.com', 'show_reblogs' => true, 'notify' => false, 'languages' => nil },
-      { 'acct' => 'user@test.com', 'show_reblogs' => true, 'notify' => true, 'languages' => ['en', 'fr'] },
+      { 'acct' => 'user@test.com', 'show_reblogs' => true, 'notify' => true, 'languages' => %w(en fr) },
     ]
 
     it_behaves_like 'on successful import', 'muting', 'merge', 'muted_accounts.csv', [

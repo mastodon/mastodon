@@ -14,11 +14,8 @@ RSpec.describe Api::OEmbedController do
       get :show, params: { url: short_account_status_url(alice, status) }, format: :json
     end
 
-    it 'returns http success' do
+    it 'returns private cache control headers', :aggregate_failures do
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns private cache control headers' do
       expect(response.headers['Cache-Control']).to include('private, no-store')
     end
   end
