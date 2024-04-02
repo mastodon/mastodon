@@ -597,6 +597,9 @@ et:
       actions_description_html: Otsustus, mida raporti lahendamiseks ette võtta. Karistava tegevuse korral saadetakse e-postiga teade, välja arvatud kategooria <strong>rämpspost</strong> puhul.
       actions_description_remote_html: Otsusta, mida teha selle raporti lahendamiseks. See mõjutab ainult seda, kuidas <strong>Sinu</strong> server selle kaugkontoga suhtleb ning selle sisu käsitleb.
       add_to_report: Lisa raportile juurde
+      already_suspended_badges:
+        local: Juba kustutamisel selles serveris
+        remote: Juba kustutamisel tema serveris
       are_you_sure: Oled kindel?
       assign_to_self: Määra mulle
       assigned: Määratud moderaator
@@ -1652,13 +1655,26 @@ et:
     import: Impordi
     import_and_export: Import / eksport
     migrate: Konto kolimine
+    notifications: E-postiteavitused
     preferences: Eelistused
     profile: Profiil
     relationships: Jälgitud ja jälgijad
+    severed_relationships: Katkestatud seos
     statuses_cleanup: Automaatne kustutamine
     strikes: Modereerimisjuhtumid
     two_factor_authentication: Kaheastmeline autentimine
     webauthn_authentication: Turvavõtmed
+  severed_relationships:
+    download: Allalaadimine (%{count})
+    event_type:
+      account_suspension: Konto kustutamisel (%{target_name})
+      domain_block: Server kustutamisel (%{target_name})
+      user_domain_block: Blokeerisid %{target_name}
+    lost_followers: Kadunud jälgijad
+    lost_follows: Kaotatud jälgimised
+    preamble: Võid kaotada jälgijaid ja jälgitavaid, kui blokeerid domeeni või kui su moderaatorid otsustavad kustutada kaugserveri. Kui see juhtub, saad alla laadida katkestatud seoste loetelu, et see üle vaadata ja võib-olla teise serverisse üles laadida.
+    purged: Selle serveri info on sinu serveri administraatorite poolt tühjendatud.
+    type: Sündmus
   statuses:
     attached:
       audio:
@@ -1754,6 +1770,7 @@ et:
     contrast: Mastodon (Kõrge kontrast)
     default: Mastodon (Tume)
     mastodon-light: Mastodon (Hele)
+    system: Automaatne (kasuta süsteemi teemat)
   time:
     formats:
       default: "%d. %B, %Y. aastal, kell %H:%M"
@@ -1866,6 +1883,9 @@ et:
       follows_subtitle: Jälgi teada-tuntud kasutajaid
       follows_title: Keda jälgida
       follows_view_more: Vaata lähemalt, keda jälgida
+      hashtags_recent_count:
+        one: "%{people} isikut viimase 2 päeva jooksul"
+        other: "%{people} inimest viimase 2 päeva jooksul"
       hashtags_subtitle: Avasta, mis viimase 2 päeva jooksul on toimunud
       hashtags_title: Populaarsed märksõnad
       hashtags_view_more: Vaata teisi trendikaid märksõnu
