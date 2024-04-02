@@ -433,7 +433,7 @@ class FeedManager
   def filter_from_list?(status, list)
     if status.reply? && status.in_reply_to_account_id != status.account_id                                                       # Status is a reply to account other than status account
       should_filter = status.in_reply_to_account_id != list.account_id                                                           # Status replies to account id other than list account
-      should_filter &&= !list.show_followed?                                                                                     # List show_followed? is fale
+      should_filter &&= !list.show_followed?                                                                                     # List show_followed? is false
       should_filter &&= !(list.show_list? && ListAccount.exists?(list_id: list.id, account_id: status.in_reply_to_account_id))   # If show_list? true, check for a ListAccount with list and reply to account
 
       return !!should_filter
