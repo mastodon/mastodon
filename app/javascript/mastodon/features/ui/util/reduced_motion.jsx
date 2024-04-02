@@ -3,7 +3,7 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 
-import Motion from 'react-motion/lib/Motion';
+import { Motion } from 'react-motion';
 
 const stylesToKeep = ['opacity', 'backgroundOpacity'];
 
