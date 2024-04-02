@@ -3,7 +3,10 @@ import { PureComponent } from 'react';
 import { createPortal } from 'react-dom';
 
 import { fromJS } from 'immutable';
+import { Provider as ReduxProvider } from 'react-redux';
 
+import { fetchServer } from 'mastodon/actions/server';
+import { hydrateStore } from 'mastodon/actions/store';
 import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
 import MediaGallery from 'mastodon/components/media_gallery';
 import ModalRoot from 'mastodon/components/modal_root';
@@ -12,7 +15,9 @@ import Audio from 'mastodon/features/audio';
 import Card from 'mastodon/features/status/components/card';
 import MediaModal from 'mastodon/features/ui/components/media_modal';
 import Video from 'mastodon/features/video';
+import initialState from 'mastodon/initial_state';
 import { IntlProvider } from 'mastodon/locales';
+import {store} from 'mastodon/store';
 import { getScrollbarWidth } from 'mastodon/utils/scrollbar';
 
 const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll, Hashtag, Audio };
@@ -31,6 +36,11 @@ export default class MediaContainer extends PureComponent {
     backgroundColor: null,
     options: null,
   };
+
+  componentDidMount() {
+    store.dispatch(hydrateStore(initialState));
+    store.dispatch(fetchServer());
+  }
 
   handleOpenMedia = (media, index, lang) => {
     document.body.classList.add('with-modals--active');
@@ -78,49 +88,51 @@ export default class MediaContainer extends PureComponent {
     }
 
     return (
-      <IntlProvider>
-        <>
-          {Array.from(components).map((component, i) => {
-            const componentName = component.getAttribute('data-component');
-            const Component = MEDIA_COMPONENTS[componentName];
-            const { media, card, poll, hashtag, ...props } = JSON.parse(component.getAttribute('data-props'));
+      <ReduxProvider store={store}>
+        <IntlProvider>
+          <>
+            {Array.from(components).map((component, i) => {
+              const componentName = component.getAttribute('data-component');
+              const Component = MEDIA_COMPONENTS[componentName];
+              const { media, card, poll, hashtag, ...props } = JSON.parse(component.getAttribute('data-props'));
 
-            Object.assign(props, {
-              ...(media   ? { media:   fromJS(media)   } : {}),
-              ...(card    ? { card:    fromJS(card)    } : {}),
-              ...(poll    ? { poll:    fromJS(poll)    } : {}),
-              ...(hashtag ? { hashtag: fromJS(hashtag) } : {}),
+              Object.assign(props, {
+                ...(media   ? { media:   fromJS(media)   } : {}),
+                ...(card    ? { card:    fromJS(card)    } : {}),
+                ...(poll    ? { poll:    fromJS(poll)    } : {}),
+                ...(hashtag ? { hashtag: fromJS(hashtag) } : {}),
 
-              ...(componentName === 'Video' ? {
-                componentIndex: i,
-                onOpenVideo: handleOpenVideo,
-              } : {
-                onOpenMedia: this.handleOpenMedia,
-              }),
-            });
+                ...(componentName === 'Video' ? {
+                  componentIndex: i,
+                  onOpenVideo: handleOpenVideo,
+                } : {
+                  onOpenMedia: this.handleOpenMedia,
+                }),
+              });
 
-            return createPortal(
-              <Component {...props} key={`media-${i}`} />,
-              component,
-            );
-          })}
+              return createPortal(
+                <Component {...props} key={`media-${i}`} />,
+                component,
+              );
+            })}
 
-          <ModalRoot backgroundColor={this.state.backgroundColor} onClose={this.handleCloseMedia}>
-            {this.state.media && (
-              <MediaModal
-                media={this.state.media}
-                index={this.state.index || 0}
-                lang={this.state.lang}
-                currentTime={this.state.options?.startTime}
-                autoPlay={this.state.options?.autoPlay}
-                volume={this.state.options?.defaultVolume}
-                onClose={this.handleCloseMedia}
-                onChangeBackgroundColor={this.setBackgroundColor}
-              />
-            )}
-          </ModalRoot>
-        </>
-      </IntlProvider>
+            <ModalRoot backgroundColor={this.state.backgroundColor} onClose={this.handleCloseMedia}>
+              {this.state.media && (
+                <MediaModal
+                  media={this.state.media}
+                  index={this.state.index || 0}
+                  lang={this.state.lang}
+                  currentTime={this.state.options?.startTime}
+                  autoPlay={this.state.options?.autoPlay}
+                  volume={this.state.options?.defaultVolume}
+                  onClose={this.handleCloseMedia}
+                  onChangeBackgroundColor={this.setBackgroundColor}
+                />
+              )}
+            </ModalRoot>
+          </>
+        </IntlProvider>
+      </ReduxProvider>
     );
   }
 
