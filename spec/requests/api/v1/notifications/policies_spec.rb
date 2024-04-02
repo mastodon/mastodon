@@ -32,8 +32,8 @@ RSpec.describe 'Policies' do
           filter_new_accounts: false,
           filter_private_mentions: true,
           summary: a_hash_including(
-            pending_requests_count: '1',
-            pending_notifications_count: '0'
+            pending_requests_count: 1,
+            pending_notifications_count: 0
           )
         )
       end
@@ -60,8 +60,8 @@ RSpec.describe 'Policies' do
         filter_new_accounts: false,
         filter_private_mentions: true,
         summary: a_hash_including(
-          pending_requests_count: '0',
-          pending_notifications_count: '0'
+          pending_requests_count: 0,
+          pending_notifications_count: 0
         )
       )
     end
