@@ -480,7 +480,8 @@ html {
 .compose-form,
 .spoiler-input__input,
 .search__input,
-.search__popout {
+.search__popout,
+.emoji-mart-search {
   color: lighten($ui-highlight-color, 8%);
 }
 
@@ -488,6 +489,7 @@ html {
 .compose-form__highlightable,
 .search__input,
 .search__popout,
+.emoji-mart-search,
 .poll__option input[type='text'] {
   background: darken($ui-base-color, 10%);
 }
