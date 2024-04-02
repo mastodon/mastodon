@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Favourites' do
+RSpec.describe 'Favourites', :sidekiq_inline do
   let(:user)    { Fabricate(:user) }
   let(:scopes)  { 'write:favourites' }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
@@ -77,12 +77,6 @@ RSpec.describe 'Favourites' do
 
     let(:status) { Fabricate(:status) }
 
-    around do |example|
-      Sidekiq::Testing.fake! do
-        example.run
-      end
-    end
-
     it_behaves_like 'forbidden for wrong scope', 'read read:favourites'
 
     context 'with public status' do
@@ -94,9 +88,7 @@ RSpec.describe 'Favourites' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(user.account.favourited?(status)).to be true
 
-        UnfavouriteWorker.drain
         expect(user.account.favourited?(status)).to be false
       end
 
@@ -119,9 +111,7 @@ RSpec.describe 'Favourites' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(user.account.favourited?(status)).to be true
 
-        UnfavouriteWorker.drain
         expect(user.account.favourited?(status)).to be false
       end
 
