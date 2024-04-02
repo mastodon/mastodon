@@ -30,7 +30,11 @@
       %label.batch-table__toolbar__select.batch-checkbox-all
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
-        = f.button safe_join([fa_icon('lock'), t('admin.accounts.perform_full_suspension')]), name: :suspend, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        = f.button safe_join([fa_icon('lock'), t('admin.accounts.perform_full_suspension')]),
+                   class: 'table-action-link',
+                   data: { confirm: t('admin.reports.are_you_sure') },
+                   name: :suspend,
+                   type: :submit
     .batch-table__body
       - if @accounts.empty?
         = nothing_here 'nothing-here--under-tabs'

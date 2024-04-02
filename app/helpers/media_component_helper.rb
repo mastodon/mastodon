@@ -14,6 +14,7 @@ module MediaComponentHelper
       blurhash: video.blurhash,
       frameRate: meta.dig('original', 'frame_rate'),
       inline: true,
+      aspectRatio: "#{meta.dig('original', 'width')} / #{meta.dig('original', 'height')}",
       media: [
         serialize_media_attachment(video),
       ].as_json,

@@ -1,36 +1,39 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
+import { withRouter } from 'react-router-dom';
 
+import { createSelector } from '@reduxjs/toolkit';
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
 import { HotKeys } from 'react-hotkeys';
 
+import VisibilityIcon from '@/material-icons/400-24px/visibility.svg?react';
+import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollContainer from 'mastodon/containers/scroll_container';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import {
   unblockAccount,
   unmuteAccount,
 } from '../../actions/accounts';
 import { initBlockModal } from '../../actions/blocks';
-import { initBoostModal } from '../../actions/boosts';
 import {
   replyCompose,
   mentionCompose,
   directCompose,
 } from '../../actions/compose';
 import {
-  blockDomain,
+  initDomainBlockModal,
   unblockDomain,
 } from '../../actions/domain_blocks';
 import {
@@ -67,6 +70,7 @@ import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from
 
 import ActionBar from './components/action_bar';
 import DetailedStatus from './components/detailed_status';
+
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -187,7 +191,6 @@ const titleFromStatus = (intl, status) => {
 class Status extends ImmutablePureComponent {
 
   static contextTypes = {
-    router: PropTypes.object,
     identity: PropTypes.object,
   };
 
@@ -206,6 +209,7 @@ class Status extends ImmutablePureComponent {
       inUse: PropTypes.bool,
       available: PropTypes.bool,
     }),
+    ...WithRouterPropTypes
   };
 
   state = {
@@ -220,6 +224,8 @@ class Status extends ImmutablePureComponent {
 
   componentDidMount () {
     attachFullscreenListener(this.onFullScreenChange);
+
+    this._scrollStatusIntoView();
   }
 
   UNSAFE_componentWillReceiveProps (nextProps) {
@@ -277,11 +283,11 @@ class Status extends ImmutablePureComponent {
           modalProps: {
             message: intl.formatMessage(messages.replyMessage),
             confirm: intl.formatMessage(messages.replyConfirm),
-            onConfirm: () => dispatch(replyCompose(status, this.context.router.history)),
+            onConfirm: () => dispatch(replyCompose(status, this.props.history)),
           },
         }));
       } else {
-        dispatch(replyCompose(status, this.context.router.history));
+        dispatch(replyCompose(status, this.props.history));
       }
     } else {
       dispatch(openModal({
@@ -310,7 +316,7 @@ class Status extends ImmutablePureComponent {
         if ((e && e.shiftKey) || !boostModal) {
           this.handleModalReblog(status);
         } else {
-          dispatch(initBoostModal({ status, onReblog: this.handleModalReblog }));
+          dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.handleModalReblog } }));
         }
       }
     } else {
@@ -456,15 +462,8 @@ class Status extends ImmutablePureComponent {
     this.props.dispatch(unblockAccount(account.get('id')));
   };
 
-  handleBlockDomainClick = domain => {
-    this.props.dispatch(openModal({
-      modalType: 'CONFIRM',
-      modalProps: {
-        message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.' values={{ domain: <strong>{domain}</strong> }} />,
-        confirm: this.props.intl.formatMessage(messages.blockDomainConfirm),
-        onConfirm: () => this.props.dispatch(blockDomain(domain)),
-      },
-    }));
+  handleBlockDomainClick = account => {
+    this.props.dispatch(initDomainBlockModal(account));
   };
 
   handleUnblockDomainClick = domain => {
@@ -499,7 +498,7 @@ class Status extends ImmutablePureComponent {
   };
 
   handleHotkeyOpenProfile = () => {
-    this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
+    this.props.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
   };
 
   handleHotkeyToggleHidden = () => {
@@ -568,23 +567,27 @@ class Status extends ImmutablePureComponent {
         onMoveUp={this.handleMoveUp}
         onMoveDown={this.handleMoveDown}
         contextType='thread'
-        previousId={i > 0 && list.get(i - 1)}
+        previousId={i > 0 ? list.get(i - 1) : undefined}
         nextId={list.get(i + 1) || (ancestors && statusId)}
         rootId={statusId}
       />
     ));
   }
 
-  setRef = c => {
+  setContainerRef = c => {
     this.node = c;
   };
 
-  componentDidUpdate (prevProps) {
-    const { status, ancestorsIds, multiColumn } = this.props;
+  setStatusRef = c => {
+    this.statusNode = c;
+  };
 
-    if (status && (ancestorsIds.size > prevProps.ancestorsIds.size || prevProps.status?.get('id') !== status.get('id'))) {
-      window.requestAnimationFrame(() => {
-        this.node?.querySelector('.detailed-status__wrapper')?.scrollIntoView(true);
+  _scrollStatusIntoView () {
+    const { status, multiColumn } = this.props;
+
+    if (status) {
+      requestIdleCallback(() => {
+        this.statusNode?.scrollIntoView(true);
 
         // In the single-column interface, `scrollIntoView` will put the post behind the header,
         // so compensate for that.
@@ -599,12 +602,35 @@ class Status extends ImmutablePureComponent {
     }
   }
 
+  componentDidUpdate (prevProps) {
+    const { status, ancestorsIds } = this.props;
+
+    if (status && (ancestorsIds.size > prevProps.ancestorsIds.size || prevProps.status?.get('id') !== status.get('id'))) {
+      this._scrollStatusIntoView();
+    }
+  }
+
   componentWillUnmount () {
     detachFullscreenListener(this.onFullScreenChange);
   }
 
   onFullScreenChange = () => {
     this.setState({ fullscreen: isFullscreen() });
+  };
+
+  shouldUpdateScroll = (prevRouterProps, { location }) => {
+    // Do not change scroll when opening a modal
+    if (location.state?.mastodonModalKey !== prevRouterProps?.location?.state?.mastodonModalKey) {
+      return false;
+    }
+
+    // Scroll to focused post if it is loaded
+    if (this.statusNode) {
+      return [0, this.statusNode.offsetTop];
+    }
+
+    // Do not scroll otherwise, `componentDidUpdate` will take care of that
+    return false;
   };
 
   render () {
@@ -656,16 +682,16 @@ class Status extends ImmutablePureComponent {
           showBackButton
           multiColumn={multiColumn}
           extraButton={(
-            <button type='button' className='column-header__button' title={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll}><Icon id={status.get('hidden') ? 'eye-slash' : 'eye'} /></button>
+            <button type='button' className='column-header__button' title={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll}><Icon id={status.get('hidden') ? 'eye-slash' : 'eye'} icon={status.get('hidden') ? VisibilityOffIcon : VisibilityIcon} /></button>
           )}
         />
 
-        <ScrollContainer scrollKey='thread'>
-          <div className={classNames('scrollable', { fullscreen })} ref={this.setRef}>
+        <ScrollContainer scrollKey='thread' shouldUpdateScroll={this.shouldUpdateScroll}>
+          <div className={classNames('scrollable', { fullscreen })} ref={this.setContainerRef}>
             {ancestors}
 
             <HotKeys handlers={handlers}>
-              <div className={classNames('focusable', 'detailed-status__wrapper', `detailed-status__wrapper-${status.get('visibility')}`)} tabIndex={0} aria-label={textForScreenReader(intl, status, false)}>
+              <div className={classNames('focusable', 'detailed-status__wrapper', `detailed-status__wrapper-${status.get('visibility')}`)} tabIndex={0} aria-label={textForScreenReader(intl, status, false)} ref={this.setStatusRef}>
                 <DetailedStatus
                   key={`details-${status.get('id')}`}
                   status={status}
@@ -719,4 +745,4 @@ class Status extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(connect(makeMapStateToProps)(Status));
+export default withRouter(injectIntl(connect(makeMapStateToProps)(Status)));

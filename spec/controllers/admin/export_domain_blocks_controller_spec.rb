@@ -9,6 +9,14 @@ RSpec.describe Admin::ExportDomainBlocksController do
     sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')), scope: :user
   end
 
+  describe 'GET #new' do
+    it 'returns http success' do
+      get :new
+
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe 'GET #export' do
     it 'renders instances' do
       Fabricate(:domain_block, domain: 'bad.domain', severity: 'silence', public_comment: 'bad server')
@@ -18,7 +26,13 @@ RSpec.describe Admin::ExportDomainBlocksController do
 
       get :export, params: { format: :csv }
       expect(response).to have_http_status(200)
-      expect(response.body).to eq(File.read(File.join(file_fixture_path, 'domain_blocks.csv')))
+      expect(response.body).to eq(domain_blocks_csv_file)
+    end
+
+    private
+
+    def domain_blocks_csv_file
+      File.read(File.join(file_fixture_path, 'domain_blocks.csv'))
     end
   end
 

@@ -55,7 +55,7 @@ class ActivityPub::FetchFeaturedTagsCollectionService < BaseService
 
     FeaturedTag.includes(:tag).references(:tag).where(account: @account).where.not(tag: { name: normalized_names }).delete_all
 
-    FeaturedTag.includes(:tag).references(:tag).where(account: @account, tag: { name: normalized_names }).each do |featured_tag|
+    FeaturedTag.includes(:tag).references(:tag).where(account: @account, tag: { name: normalized_names }).find_each do |featured_tag|
       featured_tag.update(name: tags.delete(featured_tag.tag.name))
     end
 

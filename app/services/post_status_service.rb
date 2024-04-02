@@ -178,9 +178,6 @@ class PostStatusService < BaseService
     return if !@status.reply? || @account.id == @status.in_reply_to_account_id
 
     ActivityTracker.increment('activity:interactions')
-    return if @account.following?(@status.in_reply_to_account_id)
-
-    PotentialFriendshipTracker.record(@account.id, @status.in_reply_to_account_id, :reply)
   end
 
   def status_attributes

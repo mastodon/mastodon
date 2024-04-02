@@ -20,5 +20,9 @@ RSpec.describe Oauth::TokensController do
     it 'removes web push subscription for token' do
       expect(Web::PushSubscription.where(access_token: access_token).count).to eq 0
     end
+
+    it 'removes the web_push_subscription' do
+      expect { web_push_subscription.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    end
   end
 end

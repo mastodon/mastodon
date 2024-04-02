@@ -11,19 +11,5 @@
 #
 
 class FollowRecommendationSuppression < ApplicationRecord
-  include Redisable
-
   belongs_to :account
-
-  after_commit :remove_follow_recommendations, on: :create
-
-  private
-
-  def remove_follow_recommendations
-    redis.pipelined do |pipeline|
-      I18n.available_locales.each do |locale|
-        pipeline.zrem("follow_recommendations:#{locale}", account_id)
-      end
-    end
-  end
 end

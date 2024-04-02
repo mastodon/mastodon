@@ -56,6 +56,13 @@ describe 'Public' do
         it_behaves_like 'a successful request to the public timeline'
       end
 
+      context 'with local and remote params' do
+        let(:params) { { local: true, remote: true } }
+        let(:expected_statuses) { [local_status, remote_status, media_status] }
+
+        it_behaves_like 'a successful request to the public timeline'
+      end
+
       context 'with only_media param' do
         let(:params) { { only_media: true } }
         let(:expected_statuses) { [media_status] }
@@ -76,10 +83,11 @@ describe 'Public' do
         it 'sets the correct pagination headers', :aggregate_failures do
           subject
 
-          headers = response.headers['Link']
-
-          expect(headers.find_link(%w(rel prev)).href).to eq(api_v1_timelines_public_url(limit: 1, min_id: media_status.id.to_s))
-          expect(headers.find_link(%w(rel next)).href).to eq(api_v1_timelines_public_url(limit: 1, max_id: media_status.id.to_s))
+          expect(response)
+            .to include_pagination_headers(
+              prev: api_v1_timelines_public_url(limit: params[:limit], min_id: media_status.id),
+              next: api_v1_timelines_public_url(limit: params[:limit], max_id: media_status.id)
+            )
         end
       end
     end

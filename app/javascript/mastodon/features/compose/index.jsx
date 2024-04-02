@@ -11,6 +11,13 @@ import { connect } from 'react-redux';
 
 import spring from 'react-motion/lib/spring';
 
+import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
+import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
+import LogoutIcon from '@/material-icons/400-24px/logout.svg?react';
+import MenuIcon from '@/material-icons/400-24px/menu.svg?react';
+import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
+import PublicIcon from '@/material-icons/400-24px/public.svg?react';
+import SettingsIcon from '@/material-icons/400-24px/settings-fill.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import Column from 'mastodon/components/column';
 import { Icon }  from 'mastodon/components/icon';
@@ -23,7 +30,6 @@ import { isMobile } from '../../is_mobile';
 import Motion from '../ui/util/optional_motion';
 
 import ComposeFormContainer from './containers/compose_form_container';
-import NavigationContainer from './containers/navigation_container';
 import SearchContainer from './containers/search_container';
 import SearchResultsContainer from './containers/search_results_container';
 
@@ -101,29 +107,27 @@ class Compose extends PureComponent {
       return (
         <div className='drawer' role='region' aria-label={intl.formatMessage(messages.compose)}>
           <nav className='drawer__header'>
-            <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)} aria-label={intl.formatMessage(messages.start)}><Icon id='bars' fixedWidth /></Link>
+            <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)} aria-label={intl.formatMessage(messages.start)}><Icon id='bars' icon={MenuIcon} /></Link>
             {!columns.some(column => column.get('id') === 'HOME') && (
-              <Link to='/home' className='drawer__tab' title={intl.formatMessage(messages.home_timeline)} aria-label={intl.formatMessage(messages.home_timeline)}><Icon id='home' fixedWidth /></Link>
+              <Link to='/home' className='drawer__tab' title={intl.formatMessage(messages.home_timeline)} aria-label={intl.formatMessage(messages.home_timeline)}><Icon id='home' icon={HomeIcon} /></Link>
             )}
             {!columns.some(column => column.get('id') === 'NOTIFICATIONS') && (
-              <Link to='/notifications' className='drawer__tab' title={intl.formatMessage(messages.notifications)} aria-label={intl.formatMessage(messages.notifications)}><Icon id='bell' fixedWidth /></Link>
+              <Link to='/notifications' className='drawer__tab' title={intl.formatMessage(messages.notifications)} aria-label={intl.formatMessage(messages.notifications)}><Icon id='bell' icon={NotificationsIcon} /></Link>
             )}
             {!columns.some(column => column.get('id') === 'COMMUNITY') && (
-              <Link to='/public/local' className='drawer__tab' title={intl.formatMessage(messages.community)} aria-label={intl.formatMessage(messages.community)}><Icon id='users' fixedWidth /></Link>
+              <Link to='/public/local' className='drawer__tab' title={intl.formatMessage(messages.community)} aria-label={intl.formatMessage(messages.community)}><Icon id='users' icon={PeopleIcon} /></Link>
             )}
             {!columns.some(column => column.get('id') === 'PUBLIC') && (
-              <Link to='/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><Icon id='globe' fixedWidth /></Link>
+              <Link to='/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><Icon id='globe' icon={PublicIcon} /></Link>
             )}
-            <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)} aria-label={intl.formatMessage(messages.preferences)}><Icon id='cog' fixedWidth /></a>
-            <a href='/auth/sign_out' className='drawer__tab' title={intl.formatMessage(messages.logout)} aria-label={intl.formatMessage(messages.logout)} onClick={this.handleLogoutClick}><Icon id='sign-out' fixedWidth /></a>
+            <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)} aria-label={intl.formatMessage(messages.preferences)}><Icon id='cog' icon={SettingsIcon} /></a>
+            <a href='/auth/sign_out' className='drawer__tab' title={intl.formatMessage(messages.logout)} aria-label={intl.formatMessage(messages.logout)} onClick={this.handleLogoutClick}><Icon id='sign-out' icon={LogoutIcon} /></a>
           </nav>
 
           {multiColumn && <SearchContainer /> }
 
           <div className='drawer__pager'>
             <div className='drawer__inner' onFocus={this.onFocus}>
-              <NavigationContainer onClose={this.onBlur} />
-
               <ComposeFormContainer autoFocus={!isMobile(window.innerWidth)} />
 
               <div className='drawer__inner__mastodon'>
@@ -145,7 +149,6 @@ class Compose extends PureComponent {
 
     return (
       <Column onFocus={this.onFocus}>
-        <NavigationContainer onClose={this.onBlur} />
         <ComposeFormContainer />
 
         <Helmet>

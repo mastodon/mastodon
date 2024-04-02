@@ -45,11 +45,11 @@ class PublicFeed
   end
 
   def local_only?
-    options[:local]
+    options[:local] && !options[:remote]
   end
 
   def remote_only?
-    options[:remote]
+    options[:remote] && !options[:local]
   end
 
   def account?
@@ -61,7 +61,7 @@ class PublicFeed
   end
 
   def public_scope
-    Status.with_public_visibility.joins(:account).merge(Account.without_suspended.without_silenced)
+    Status.public_visibility.joins(:account).merge(Account.without_suspended.without_silenced)
   end
 
   def local_only_scope

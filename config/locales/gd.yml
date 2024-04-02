@@ -315,6 +315,7 @@ gd:
       unpublish: Neo-fhoillsich
       unpublished_msg: Chaidh am brath-fios a dhì-fhoillseachadh!
       updated_msg: Chaidh am brath-fios ùrachadh!
+    critical_update_pending: Ùrachadh èiginneach ri dhèiligeadh
     custom_emojis:
       assign_category: Iomruin roinn-seòrsa dha
       by_domain: Àrainn
@@ -438,6 +439,7 @@ gd:
       view: Seall bacadh na h-àrainne
     email_domain_blocks:
       add_new: Cuir tè ùr ris
+      allow_registrations_with_approval: Ceadaich clàradh le aontachadh
       attempts_over_week:
         few: "%{count} oidhirpean clàraidh rè na seachdain seo chaidh"
         one: "%{count} oidhirp clàraidh rè na seachdain seo chaidh"
@@ -457,7 +459,7 @@ gd:
       not_permitted: Chan eil seo ceadaichte
       resolved_dns_records_hint_html: Thèid ainm na h-àrainne fhuasgladh nan àrainnean MX a leanas agus an urra riutha-san gun gabh iad ri post-d. Ma bhacas tu àrainn MX, bacaidh seo an clàradh o sheòladh puist-d sam bith a chleachdas an aon àrainn MX fiù ’s ma bhios ainm àrainne eadar-dhealaichte ’ga sealltainn. <strong>Thoir an aire nach bac thu solaraichean puist-d mòra.</strong>
       resolved_through_html: Chaidh fuasgladh slighe %{domain}
-      title: Àrainnean puist-d ’gam bacadh
+      title: Bacadh àrainnean puist-d
     export_domain_allows:
       new:
         title: Ion-phortaich àrainnean ceadaichte
@@ -503,14 +505,14 @@ gd:
       by_domain: Àrainn
       confirm_purge: A bheil thu cinnteach gu bheil thu airson an dàta on àrainn seo a sguabadh às gu buan?
       content_policies:
-        comment: Nòta taobh a-staigh
+        comment: Nòta
         description_html: "’S urrainn dhut poileasaidhean susbainte a mhìneachadh a thèid a chur an sàs air a h-uile cunntas on àrainn seo ’s a fo-àrainnean-se."
         limited_federation_mode_description_html: "’S urrainn dhut taghadh an ceadaich thu co-nasgadh leis an àrainn seo gus nach ceadaich."
         policies:
-          reject_media: Diùlt meadhanan
-          reject_reports: Diùlt gearanan
-          silence: Cuingich
-          suspend: Cuir à rèim
+          reject_media: A’ diùltadh meadhanan
+          reject_reports: A’ diùltadh gearanan
+          silence: Cuingichte
+          suspend: À rèim
         policy: Poileasaidh
         reason: Adhbhar poblach
         title: Poileasaidhean susbainte
@@ -555,6 +557,7 @@ gd:
       total_reported: Gearanan mun dèidhinn
       total_storage: Ceanglachain mheadhanan
       totals_time_period_hint_html: Gabhaidh na h-iomlanan gu h-ìosal a-staigh an dàta o chian nan cian.
+      unknown_instance: Chan eil clàr dhen àrainn seo air an fhrithealaiche seo.
     invites:
       deactivate_all: Cuir na h-uile à gnìomh
       filter:
@@ -593,7 +596,7 @@ gd:
       pending: A’ feitheamh ri aontachadh an ath-sheachadain
       save_and_enable: Sàbhail ’s cuir an comas
       setup: Suidhich ceangal ri ath-sheachadain
-      signatures_not_enabled: Chan obraich ath-sheachadain mar bu chòir nuair a bhios am modh tèarainte no modh a’ cho-nasgaidh chuingichte an comas
+      signatures_not_enabled: Dh’fhaoidte nach obraich ath-sheachadain mar bu chòir nuair a bhios am modh tèarainte no modh a’ cho-nasgaidh chuingichte an comas
       status: Staid
       title: Ath-sheachadain
     report_notes:
@@ -618,6 +621,9 @@ gd:
       actions_description_html: Socraich dè a nì thu airson an gearan seo fhuasgladh. Ma chuireas tu peanas air a’ chunntas le gearan air, gheibh iad brath air a’ phost-d mura tagh thu an roinn-seòrsa <strong>Spama</strong>.
       actions_description_remote_html: Cuir romhad dè an gnìomh a ghabhas tu airson an gearan seo fhuasgladh. Cha bheir seo buaidh ach air mar a làimhsicheas am frithealaiche <strong>agadsa</strong> an cunntas cèin seo is mar a nì e conaltradh leis.
       add_to_report: Cuir barrachd ris a’ ghearan
+      already_suspended_badges:
+        local: Chaidh an cur à rèim air an fhrithealaiche seo mu thràth
+        remote: Chaidh an cur à rèim air an fhrithealaiche aca-san mu thràth
       are_you_sure: A bheil thu cinnteach?
       assign_to_self: Iomruin dhomh-sa
       assigned: Maor iomruinte
@@ -633,6 +639,7 @@ gd:
       created_at: Chaidh an gearan a dhèanamh
       delete_and_resolve: Sguab às na postaichean
       forwarded: Chaidh a shìneadh air adhart
+      forwarded_replies_explanation: Tha an gearan seo o chleachdaiche cèin agus mu shusbaint chèin. Chaidh a shìneadh air adhart thugad on as e freagairt do neach-cleachdaidh agad-sa a tha san t-susbaint a tha na cois.
       forwarded_to: Chaidh a shìneadh air adhart gu %{domain}
       mark_as_resolved: Cuir comharra gun deach fhuasgladh
       mark_as_sensitive: Cuir comharra gu bheil e frionasach
@@ -779,10 +786,10 @@ gd:
         title: Thoir air falbh ro-aonta nan cleachdaichean air inneacsadh le einnseanan-luirg mar a’ bhun-roghainn
       discovery:
         follow_recommendations: Molaidhean leantainn
-        preamble: Tha tighinn an uachdar susbainte inntinniche fìor-chudromach airson toiseach-tòiseachaidh an luchd-cleachdaidh ùr nach eil eòlach air duine sam bith air Mastodon, ma dh’fhaoidte. Stiùirich mar a dh’obraicheas gleusan an rannsachaidh air an fhrithealaiche agad.
+        preamble: Tha tighinn an uachdar susbainte inntinniche fìor-chudromach airson toiseach-tòiseachaidh an luchd-cleachdaidh ùr nach eil eòlach air duine sam bith air Mastodon, ma dh’fhaoidte. Stiùirich mar a dh’obraicheas gleusan an rùrachaidh air an fhrithealaiche agad.
         profile_directory: Eòlaire nam pròifil
         public_timelines: Loidhnichean-ama poblach
-        publish_discovered_servers: Foillsich na frithealaichean a chaidh a lorg
+        publish_discovered_servers: Foillsich na frithealaichean a chaidh a rùrachadh
         publish_statistics: Foillsich an stadastaireachd
         title: Rùrachadh
         trends: Treandaichean
@@ -791,6 +798,7 @@ gd:
         disabled: Na seall idir
         users: Dhan luchd-chleachdaidh a clàraich a-steach gu h-ionadail
       registrations:
+        moderation_recommandation: Dèan cinnteach gu bheil sgioba maoir deiseil is deònach agad mus fhosgail thu an clàradh dhan a h-uile duine!
         preamble: Stiùirich cò dh’fhaodas cunntas a chruthachadh air an fhrithealaiche agad.
         title: Clàraidhean
       registrations_mode:
@@ -798,9 +806,28 @@ gd:
           approved: Tha aontachadh riatanach airson clàradh
           none: Chan fhaod neach sam bith clàradh
           open: "’S urrainn do neach sam bith clàradh"
+        warning_hint: Mholamaid gun chleachd thu “Tha aontachadh riatanach airson clàradh” mur eil earbsa agad gur urrainn dhan sgioba agad spama agus clàraidhean droch-rùnach a làimhseachadh gu sgiobalta.
+      security:
+        authorized_fetch: Iarr dearbhadh o fhrithealaichean co-naisgte
+        authorized_fetch_hint: Ma dh’iarras tu dearbhadh o fhrithealaichean cho-naisgte, gheibh thu an comas gus bacaidhean èigneachadh nas teinne an dà chuid air ìre an luchd-cleachdaidh ’s an fhrithealaiche. Gidheadh, ceannaichidh tu an comas seo le dèanadas nas miosa is ruigsinn nas lugha nam freagairtean agad agus dh’fhaoidte gun èirich duilgheadasan co-chòrdalachd le cuid a sheirbheisean cho-naisgte. A bharrachd air sin, cha bhac seo an fheadhainn dian o fhaighinn nam postaichean is cunntasan poblach agad.
+        authorized_fetch_overridden_hint: Chan urrainn dhut an roghainn seo atharrachadh an-dràsta on a tha caochladair àrainne ’ga thar-àithneadh.
+        federation_authentication: Èigneachadh dearbhadh a’ cho-nasgaidh
+      title: Roghainnean an fhrithealaiche
     site_uploads:
       delete: Sguab às am faidhle a chaidh a luchdadh suas
       destroyed_msg: Chaidh an luchdadh suas dhan làrach a sguabadh às!
+    software_updates:
+      critical_update: Èiginneach – ùraich cho luath ’s a ghabhas
+      description: Mholamaid gun cùm thu an stàladh agad de Mhastodon ùraichte ach am faigh thu buannachd às na càraidhean ’s gleusan as ùire. A bharrachd air sin, bidh e èiginneach aig amannan gun ùraich thu Mastodon gun dàil airson duilgheadasan tèarainteachd a sheachnadh. Seo as adhbhar gun doir Mastodon sùil airson ùrachaidhean gach leth-uair a thìde ’s gun cuir e brath thugad a-rèir nan roghainnean puist-d agad.
+      documentation_link: Barrachd fiosrachaidh
+      release_notes: Nòtaichean sgaoilidh
+      title: Ùrachaidhean a tha ri fhaighinn
+      type: Seòrsa
+      types:
+        major: Sgaoileadh mòr
+        minor: Sgaoileadh beag
+        patch: Sgaoileadh brèide – càraidhean aig bugaichean ’s atharraichean a tha furasta a chur an sàs
+      version: Tionndadh
     statuses:
       account: Ùghdar
       application: Aplacaid
@@ -841,6 +868,20 @@ gd:
     system_checks:
       database_schema_check:
         message_html: Tha imrichean stòir-dhàta ri dhèiligeadh ann. Ruith iad a dhèanamh cinnteach gum bi giùlan na h-aplacaid mar a bhiodhte ’n dùil
+      elasticsearch_health_red:
+        message_html: Tha droch-shlàinte air bagaid Elasticsearch (staid dhearg), chan eil gleusan an luirg ri fhaighinn
+      elasticsearch_health_yellow:
+        message_html: Tha droch-shlàinte air bagaid Elasticsearch (staid bhuidhe), bu chòir dhut sgrùdadh carson
+      elasticsearch_index_mismatch:
+        message_html: Tha mapachaidhean nan inneacsan Elasticsearch ro shean. Ruith <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Faic an docamaideadh
+        message_html: Tha iomadh nòd aig a’ bhagaid Elasticsearch agad ach cha deach Mastodon a rèiteachadh gus an cleachdadh uile.
+      elasticsearch_preset_single_node:
+        action: Faic an docamaideadh
+        message_html: Chan eil ach aon nòd a-mhàin air a’ bhagaid Elasticsearch agad, bu chòir dhut <code>single_node_cluster</code> a chur air <code>ES_PRESET</code>.
+      elasticsearch_reset_chewy:
+        message_html: Tha inneacs siostam Elasticsearch ro shean ri linn atharrachadh roghainne. Ruith <code>tootctl search deploy --reset-chewy</code> airson ùrachadh.
       elasticsearch_running_check:
         message_html: Cha b’ urrainn dhuinn ceangal ri Elasticsearch. Dearbh thu bheil e a’ ruith no cuir an lorg làn-teacsa à comas
       elasticsearch_version_check:
@@ -851,6 +892,12 @@ gd:
         message_html: Cha do mhìnich thu riaghailtean an fhrithealaiche fhathast.
       sidekiq_process_check:
         message_html: Chan eil pròiseas Sidekiq sam bith a ruith dhan chiutha/dha na ciuthan %{value}. Thoir sùil air an rèiteachadh Sidekiq agad
+      software_version_critical_check:
+        action: Faic na h-ùrachaidhean a tha ri fhaighinn
+        message_html: Tha ùrachadh èiginneach air Mastodon ri fhaighinn, ùraich cho luath ’s a ghabhas.
+      software_version_patch_check:
+        action: Faic na h-ùrachaidhean a tha ri fhaighinn
+        message_html: Tha ùrachadh Mastodon le càraidhean ri fhaighinn.
       upload_check_privacy_error:
         action: Thoir sùil an-seo airson barrachd fiosrachaidh
         message_html: "<strong>Chaidh am frithealaiche agad a dhroch-rèiteachadh. Tha prìobhaideachd an luchd-cleachdaidh agad fo chunnart.</strong>"
@@ -859,7 +906,7 @@ gd:
         message_html: "<strong>Chaidh stòras nan oibseactan agad a dhroch-rèiteachadh. Tha prìobhaideachd an luchd-cleachdaidh agad fo chunnart.</strong>"
     tags:
       review: Dèan lèirmheas air an staid
-      updated_msg: Chaidh roghainnean nan tagaichean hais ùrachadh
+      updated_msg: Chaidh roghainnean an taga hais ùrachadh
     title: Rianachd
     trends:
       allow: Ceadaich
@@ -899,10 +946,10 @@ gd:
         no_status_selected: Cha deach post a’ treandadh sam bith atharrachadh o nach deach gin dhiubh a thaghadh
         not_discoverable: Cha do chuir an t-ùghdar roimhe gun gabh a rùrachadh
         shared_by:
-          few: Chaidh a cho-roinneadh no ’na annsachd %{friendly_count} tursan
-          one: Chaidh a cho-roinneadh no ’na annsachd %{friendly_count} turas
-          other: Chaidh a cho-roinneadh no ’na annsachd %{friendly_count} turas
-          two: Chaidh a cho-roinneadh no ’na annsachd %{friendly_count} thuras
+          few: Chaidh a cho-roinneadh no a chur ris na h-annsachdan %{friendly_count} tursan
+          one: Chaidh a cho-roinneadh no a chur ris na h-annsachdan %{friendly_count} turas
+          other: Chaidh a cho-roinneadh no a chur ris na h-annsachdan %{friendly_count} turas
+          two: Chaidh a cho-roinneadh no a chur ris na h-annsachdan %{friendly_count} thuras
         title: Postaichean a’ treandadh
       tags:
         current_score: Sgòr làithreach de %{score}
@@ -916,11 +963,11 @@ gd:
         listable: Gabhaidh a mholadh
         no_tag_selected: Cha deach taga sam bith atharrachadh o nach deach gin dhiubh a thaghadh
         not_listable: Cha dèid a mholadh
-        not_trendable: Cha nochd e am measg nan treandaichean
+        not_trendable: Na nochd sna treandaichean
         not_usable: Cha ghabh a chleachdadh
         peaked_on_and_decaying: Air a’ bhàrr %{date}, a’ crìonadh an-dràsta
         title: Tagaichean hais a’ treandadh
-        trendable: Faodaidh e nochdadh am measg nan treandaichean
+        trendable: Nochd sna treandaichean
         trending_rank: 'A’ treandadh #%{rank}'
         usable: Gabhaidh a chleachdadh
         usage_comparison: Chaidh a chleachdadh %{today} tura(i)s an-diugh an coimeas ri %{yesterday} an-dè
@@ -960,6 +1007,9 @@ gd:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Ri linn dìth gnìomhachd nam maor o chionn goirid, dh’atharraich Mastodon modh nan clàraidhean aig %{instance} ach am feum cunntasan ùra aontachadh a làimh leis an amas gun dèid %{instance} a dhìon o chleachdadh air dòighean droch-rùnach. ’S urrainn dhut na clàraidhean fhosgladh a-rithist uair sam bith.
+      subject: Feumaidh clàradh le %{instance} aontachadh a-nis
     new_appeal:
       actions:
         delete_statuses: sguabadh às nam postaichean aca
@@ -972,6 +1022,9 @@ gd:
       body: 'Tha %{target} ag ath-thagradh co-dhùnadh na maorsainneachd a thug %{action_taken_by} %{date} agus ’s e %{type} a bh’ ann. Sgrìobh iad:'
       next_steps: "’S urrainn dhut aontachadh ris an ath-thagradh air co-dhùnadh na maorsainneachd no a leigeil seachad."
       subject: Tha %{username} ag ath-thagradh co-dhùnadh na maorsainneachd air %{instance}
+    new_critical_software_updates:
+      body: Chaidh tionndaidhean èiginneach ùra de Mhastodon a sgaoileadh, bu chòir dhut ùrachadh cho luath ’s a ghabhas!
+      subject: Tha ùrachaidhean èiginneach air Mastodon ri fhaighinn dha %{instance}!
     new_pending_account:
       body: Chì thu mion-fhiosrachadh a’ chunntais ùir gu h-ìosal. ’S urrainn dhut gabhail ris an iarrtas seo no a dhiùltadh.
       subject: Tha cunntas ùr air %{instance} a’ feitheamh air lèirmheas (%{username})
@@ -979,6 +1032,9 @@ gd:
       body: Rinn %{reporter} gearan air %{target}
       body_remote: Rinn cuideigin o %{domain} gearan air %{target}
       subject: Tha gearan ùr aig %{instance} (#%{id})
+    new_software_updates:
+      body: Chaidh tionndaidhean ùra de Mhastodon a sgaoileadh, saoil an dèan thu ùrachadh?
+      subject: Tha tionndaidhean ùra de Mhastodon ri fhaighinn dha %{instance}!
     new_trends:
       body: 'Tha na nithean seo feumach air lèirmheas mus nochd iad gu poblach:'
       new_trending_links:
@@ -986,8 +1042,6 @@ gd:
       new_trending_statuses:
         title: Postaichean a’ treandadh
       new_trending_tags:
-        no_approved_tags: Chan eil taga hais a’ treandadh le aontachadh ann.
-        requirements: "’S urrainn do ghin dhe na tagraichean seo dol thairis air #%{rank} a tha aig an taga hais #%{lowest_tag_name} a’ treandadh as ìsle le aontachadh agus sgòr de %{lowest_tag_score} air."
         title: Tagaichean hais a’ treandadh
       subject: Tha treandaichean ùra a’ feitheamh air lèirmheas air %{instance}
   aliases:
@@ -1031,6 +1085,14 @@ gd:
       hint_html: Dìreach aon rud eile! Feumaidh sinn dearbhadh gu bheil thu daonna (ach am fàg sinn an spama aig an doras!). Fuasgail an CAPTCHA gu h-ìosal is briog air “Lean air adhart”.
       title: Deuchainn tèarainteachd
     confirmations:
+      awaiting_review: Chaidh am post-d agad a dhearbhadh! Nì an sgioba aig %{domain} lèirmheas air a’ chlàradh agad a-nis. Gheibh thu post-d nuair a bhios iad air aontachadh ris a’ chunntas agad!
+      awaiting_review_title: Tha an cunntas agad ’ga sgrùdadh
+      clicking_this_link: briogadh air a’ cheangal seo
+      login_link: clàradh a-steach
+      proceed_to_login_html: "’S urrainn dhut %{login_link} a-nis."
+      redirect_to_app_html: Bu chòir dhuinn d’ ath-stiùireadh gu aplacaid <strong>%{app_name}</strong>. Mur an do dh’obraich sin, feuch %{clicking_this_link} no till dhan aplacaid a làimh.
+      registration_complete: Tha an clàradh agad air %{domain} deiseil a-nis!
+      welcome_title: Fàilte ort, %{name}!
       wrong_email_hint: Mur eil an seòladh puist-d seo mar bu chòir, ’s urrainn dhut atharrachadh ann an roghainnean a’ chunntais.
     delete_account: Sguab às an cunntas
     delete_account_html: Nam bu mhiann leat an cunntas agad a sguabadh às, <a href="%{path}">nì thu an-seo e</a>. Thèid dearbhadh iarraidh ort.
@@ -1092,6 +1154,7 @@ gd:
       functional: Tha an cunntas agad ag obair gu slàn.
       pending: Feumaidh an sgioba againn lèirmheas a dhèanamh air d’ iarrtas. Dh’fhaoidte gun doir seo greis. Gheibh thu post-d nuair a bhios sinn air aontachadh ri d’ iarrtas.
       redirecting_to: Chan eil an cunntas gad gnìomhach on a tha e ’ga ath-stiùireadh gu %{acct}.
+      self_destruct: On a tha %{domain} gu bhith dùnadh, chan fhaigh thu ach inntrigeadh cuingichte dhan chunntas agad.
       view_strikes: Seall na rabhaidhean a fhuair an cunntas agad roimhe
     too_fast: Chaidh am foirm a chur a-null ro luath, feuch ris a-rithist.
     use_security_key: Cleachd iuchair tèarainteachd
@@ -1149,7 +1212,7 @@ gd:
       appealed_msg: Chaidh an t-ath-thagradh agad a chur a-null. Ma thèid aontachadh ris, gheibh thu brath mu dhèidhinn.
       appeals:
         submit: Cuir a-null an t-ath-thagradh
-      approve_appeal: Zatwierdź odwołanie
+      approve_appeal: Thoir aonta ris an ath-thagradh
       associated_report: An gearan co-cheangailte
       created_at: Ceann-là
       description_html: Seo na gnìomhan a chaidh a ghabhail an aghaidh a’ chunntais agad agus na rabhaidhean a chaidh a chur thugad le luchd-obrach %{instance}.
@@ -1175,7 +1238,6 @@ gd:
     basic_information: Fiosrachadh bunasach
     hint_html: "<strong>Gnàthaich na chithear air a’ phròifil phoblach agad is ri taobh nam postaichean agad.</strong> Bidh càch nas buailtiche do leantainn agus conaltradh leat nuair a bhios tu air a’ phròifil agad a lìonadh agus dealbh rithe."
     other: Eile
-    safety_and_privacy: Sàbhailteachd is prìobhaideachd
   errors:
     '400': Cha robh an t-iarrtas a chuir thu a-null dligheach no bha droch-chruth air.
     '403': Chan eil cead agad gus an duilleag seo a shealltainn.
@@ -1213,7 +1275,7 @@ gd:
     add_new: Cuir fear ùr ris
     errors:
       limit: Bhrosnaich thu an uiread as motha de thagaichean hais mu thràth
-    hint_html: "<strong>Dè th’ anns na tagaichean hais brosnaichte?</strong> Thèid an sealltainn gu follaiseach air a’ phròifil phoblach agad agus ’s urrainnear na postaichean poblach agad sa bheil na tagaichean hais sònraichte sin a bhrabhsadh leotha. ’S e deagh-acainn a th’ annta airson sùil a chumail air obair chruthachail no pròiseactan fada."
+    hint_html: "<strong>Brosnaich na tagaichean hais as cudromaiche agad air a’ phròifil agad.</strong> ’S e deagh-acainn a th’ annta airson sùil a chumail air an obair chruthachail no na pròiseactan fada agad on a thèid na tagaichean hais brosnaichte a shealltainn gu follaiseach air a’ phròifil agad agus ’s urrainnear na postaichean agad inntrigeadh gu luath leotha."
   filters:
     contexts:
       account: Pròifilean
@@ -1314,12 +1376,14 @@ gd:
       bookmarks_html: Tha thu an impis suas ri <strong>%{total_items} post(aichean)</strong> o <strong>%{filename}</strong> a chur <strong>an àite nan comharra-lìn</strong> agad.
       domain_blocking_html: Tha thu an impis suas ri <strong>%{total_items} àrainn(ean)</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean àrainne</strong> agad.
       following_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn duine sam bith eile</strong>.
+      lists_html: Tha thu an impis susbaint <strong>%{filename}</strong> a chur <strong>an àite nan liostaichean agad</strong>. Thèid suas ri <strong>%{total_items}cunntas(an)</strong> a chur ri liostaichean ùra.
       muting_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nan cunntasan mùchte</strong> agad.
     preambles:
       blocking_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> a <strong>bhacadh</strong>.
       bookmarks_html: Tha thu an impis suas ri <strong>%{total_items} post(aichean)</strong> o <strong>%{filename}</strong> a chur ris na h-<strong>annsachdan</strong> agad.
       domain_blocking_html: Tha thu an impis suas ri <strong>%{total_items} àrainn(ean)</strong> o <strong>%{filename}</strong> a <strong>bhacadh</strong>.
       following_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> a <strong>leantainn</strong>.
+      lists_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> a chur ris na <strong>liostaichean</strong> agad. Thèid liostaichean ùra a chruthachadh mur eil liostaichean ann airson nan cunntasan a chur ris.
       muting_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> a <strong>mhùchadh</strong>.
     preface: "’S urrainn dhut dàta ion-phortadh a dh’às-phortaich thu o fhrithealaiche eile, can liosta nan daoine a leanas tu no a tha thu a’ bacadh."
     recent_imports: Ion-phortaidhean o chionn goirid
@@ -1336,6 +1400,7 @@ gd:
       bookmarks: Ag ion-phortadh comharran-leabhair
       domain_blocking: Ag ion-phortadh àrainnean bacte
       following: Ion-phortaich cunntasan ’gan leantainn
+      lists: Ag ion-phortadh liostaichean
       muting: Ag ion-phortadh cunntasan mùchte
     type: Seòrsa an ion-phortaidh
     type_groups:
@@ -1346,6 +1411,7 @@ gd:
       bookmarks: Comharran-lìn
       domain_blocking: Liosta-bhacaidh àrainnean
       following: Liosta dhen fheadhainn a leanas tu
+      lists: Liostaichean
       muting: Liosta a’ mhùchaidh
     upload: Luchdaich suas
   invites:
@@ -1360,6 +1426,7 @@ gd:
       '86400': Latha
     expires_in_prompt: Chan ann idir
     generate: Gin ceangal cuiridh
+    invalid: Chan eil an cuireadh dligheach
     invited_by: 'Fhuair thu cuireadh o:'
     max_uses:
       few: "%{count} cleachdaichean"
@@ -1480,9 +1547,9 @@ gd:
     update:
       subject: Dheasaich %{name} post
   notifications:
+    administration_emails: Brathan puist-d na rianachd
     email_events: Tachartasan nam brathan puist-d
     email_events_hint: 'Tagh na tachartasan dhan a bheil thu airson brathan fhaighinn:'
-    other_settings: Roghainnean eile nam brathan
   number:
     human:
       decimal_units:
@@ -1523,12 +1590,24 @@ gd:
     other: Eile
     posting_defaults: Bun-roghainnean a’ phostaidh
     public_timelines: Loidhnichean-ama poblach
+  privacy:
+    hint_html: "<strong>Gnàthaich an dòigh air an dèid a’ phròifil ’s na postaichean agad a lorg.</strong> Tha grunn ghleusan aig Mastodon a chuidicheas ach an ruig thu èisteachd nas fharsainge nuair a bhios iad an comas. Thoir sùil air na roghainnean seo a dhèanamh cinnteach gum freagair iad ri d’ fheumalachdan."
+    privacy: Prìobhaideachd
+    privacy_hint_html: Stiùirich na tha thu airson foillseachadh do chàch. Gheibh daoine lorg air pròifilean inntinneach is deagh aplacaidean a’ brabhsadh cò tha daoine eile a’ leantainn ’s a’ faicinn nan aplacaidean a chleachdas iad airson postadh ach dh’fhaoidte gum b’ fheàrr leat seo a chumail falaichte.
+    reach: Ruigse
+    reach_hint_html: Stiùirich am bu mhiann leat gun rùraich ’s gun lean daoine ùra thu gus nach bu mhiann. A bheil thu airson ’s gun nochd na postaichean agad air duilleag an rùrachaidh? No gum faic càch thu am measg nam molaidhean leantainn aca? An gabh thu ri luchd-leantainn ùr sam bith gu fèin-obrachail no an cùm thu fhèin smachd air gach neach fa leth?
+    search: Lorg
+    search_hint_html: Stiùirich an dòigh air an dèid do lorg. Am bu mhiann leat gun lorg daoine thu leis na phostaich thu gu poblach? Am bu mhiann leat gun lorg daoine taobh a-muigh Mastodon a’ phròifil agad nuair a bhios iad a lorg an lìn? Thoir an aire nach urrainn dhuinn gealladh le cinnt gun dèid am fiosrachadh poblach agad a dhùnadh a-mach gu tur às gach einnsean-luirg poblach.
+    title: Prìobhaideachd ’s ruigse
   privacy_policy:
     title: Poileasaidh prìobhaideachd
   reactions:
     errors:
       limit_reached: Ràinig thu crìoch nam freagairtean eadar-dhealaichte
       unrecognized_emoji: "– chan aithne dhuinn an Emoji seo"
+  redirects:
+    prompt: Ma tha earbsa agad sa cheangal seo, briog airson leantainn air adhart.
+    title: Tha thu a’ fàgail %{instance}.
   relationships:
     activity: Gnìomhachd a’ chunntais
     confirm_follow_selected_followers: A bheil thu cinnteach gu bheil thu airson an luchd-leantainn a thagh thu a leantainn?
@@ -1564,6 +1643,9 @@ gd:
     over_daily_limit: Chaidh thu thar na crìoch de %{limit} post(aichean) sgeidealaichte an-diugh
     over_total_limit: Chaidh thu thar na crìoch de %{limit} post(aichean) sgeidealaichte
     too_soon: Feumaidh ceann-latha an sgeideil a bhith san àm ri teachd
+  self_destruct:
+    lead_html: Gu mì-fhortanach, thèid <strong>%{domain}</strong> a dhùnadh gu buan. Ma tha cunntas agad ann, chan urrainn dhut cumail a’ gol ’ga chleachdadh ach ’s urrainn dhut lethbhreac-glèidhidh dhen dàta agad iarraidh fhathast.
+    title: Tha am frithealaiche seo gu bhith dùnadh
   sessions:
     activity: A’ ghnìomhachd mu dheireadh
     browser: Brabhsair
@@ -1588,6 +1670,7 @@ gd:
       unknown_browser: Brabhsair nach aithne dhuinn
       weibo: Weibo
     current_session: An seisean làithreach
+    date: Ceann-là
     description: "%{browser} air %{platform}"
     explanation: Seo na bhrabhsairean-lìn a tha clàraichte a-staigh sa chunntas Mastodon agad aig an àm seo.
     ip: IP
@@ -1624,14 +1707,26 @@ gd:
     import: Ion-phortadh
     import_and_export: Ion-phortadh ⁊ às-phortadh
     migrate: Imrich cunntais
-    notifications: Brathan
+    notifications: Brathan puist-d
     preferences: Roghainnean
-    profile: Pròifil
+    profile: Pròifil phoblach
     relationships: Dàimhean leantainn
-    statuses_cleanup: Sguabadh às fèin-obrachail phostaichean
+    severed_relationships: Dàimhean dealaichte
+    statuses_cleanup: Sguabadh às phostaichean
     strikes: Rabhaidhean na maorsainneachd
     two_factor_authentication: Dearbhadh dà-cheumnach
     webauthn_authentication: Iuchraichean tèarainteachd
+  severed_relationships:
+    download: Luchdaich a-nuas (%{count})
+    event_type:
+      account_suspension: Cunntas à rèim (%{target_name})
+      domain_block: Frithealaiche à rèim (%{target_name})
+      user_domain_block: Bhac thu %{target_name}
+    lost_followers: An luchd-leantainn a chaill thu
+    lost_follows: Daoine nach lean thu tuilleadh
+    preamble: Dh’fhaoidte gun chaill thu dàimhean leantainn nuair a bhacas tu àrainn no nuair a chuireas na maoir romhpa gun cuir iad frithealaiche cèin à rèim. Nuair a thachras sin, ’s urrainn dhut liosta de na dàimhean dealaichte a luchdadh a-nuas airson sùil a thoirt orra agus an ion-phortadh gu frithealaiche eile ’s dòcha.
+    purged: Chaidh am fiosrachadh mun fhrithealaiche seo a phurgaideachadh le rianairean an fhrithealaiche agad.
+    type: Tachartas
   statuses:
     attached:
       audio:
@@ -1681,8 +1776,6 @@ gd:
         two: "%{count} bhòt"
       vote: Bhòt
     show_more: Seall barrachd dheth
-    show_newer: Seall feadhainn as ùire
-    show_older: Seall feadhainn as sine
     show_thread: Seall an snàithlean
     title: "%{name}: “%{quote}”"
     visibilities:
@@ -1712,7 +1805,7 @@ gd:
     keep_polls_hint: Cha dèid gin dhe na cunntasan-bheachd agad a sguabadh às
     keep_self_bookmark: Cùm na chuir thu ris comharran-lìn
     keep_self_bookmark_hint: Cha dèid gin dhe na postaichean agad fhèin a chuir thu ris na comharran-lìn agad a sguabadh às
-    keep_self_fav: Cùm na chuir thu ris na h-annsachdan
+    keep_self_fav: Cùm na postaichean a chuir thu ris na h-annsachdan
     keep_self_fav_hint: Cha dèid gin dhe na postaichean agad fhèin a chuir thu ris na h-annsachdan agad a sguabadh às
     min_age:
       '1209600': 2 sheachdain
@@ -1724,8 +1817,8 @@ gd:
       '63113904': 2 bhliadhna
       '7889238': 3 mìosan
     min_age_label: Stairsneach aoise
-    min_favs: Cùm na tha ’na annsachd aig co-dhiù
-    min_favs_hint: Cha dèid gin dhe na postaichean agad a sguabadh às a tha ’nan annsachd an àireamh de thursan seo air a char as lugha. Fàg seo bàn airson postaichean a sguabadh às ge b’ e co mheud turas a tha iad ’nan annsachd
+    min_favs: Cùm na postaichean a chaidh a chur ris na h-annsachdan co-dhiù
+    min_favs_hint: Cha dèid gin dhe na postaichean agad a sguabadh às a chaidh a chur ris na h-annsachdan an àireamh seo de thursan air a char as lugha. Fàg seo bàn airson na postaichean a sguabadh às ge b’ e co mheud neach a chuir ris na h-annsachdan iad
     min_reblogs: Cùm na tha ’ga bhrosnachadh le co-dhiù
     min_reblogs_hint: Cha dèid gin dhe na postaichean agad a sguabadh às a tha ’gam brosnachadh an àireamh de thursan seo air a char as lugha. Fàg seo bàn airson postaichean a sguabadh às ge b’ e co mheud turas a tha iad ’gam brosnachadh
   stream_entries:
@@ -1744,6 +1837,11 @@ gd:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d %b %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Chaidh am frithealaiche thar cuota cleachdadh seirbheis an eadar-theangachaidh.
+      too_many_requests: Rinneadh cus iarrtasan air seirbheis an eadar-theangachaidh o chionn goirid.
   two_factor_authentication:
     add: Cuir ris
     disable: Cuir an dearbhadh dà-cheumnach à comas
@@ -1761,18 +1859,27 @@ gd:
     webauthn: Iuchraichean tèarainteachd
   user_mailer:
     appeal_approved:
-      action: Tadhail air a’ chunntas agad
-      explanation: Chaidh aontachadh ris an ath-thagradh agad air an rabhadh o %{strike_date} a chuir thu a-null %{appeal_date}. Tha deagh chliù air a’ chunntas agad a-rithist.
+      action: Roghainnean a’ chunntais
+      explanation: Chaidh aontachadh ris an ath-thagradh agad air an rabhadh o %{strike_date} a chuir thu a-null %{appeal_date}. Tha an cunntas agad ann an deagh-chor a-rithist.
       subject: Chaidh aontachadh ris an ath-thagradh agad o %{date}
+      subtitle: Tha an cunntas agad ann an deagh-chor a-rithist.
       title: Chaidh aontachadh ri ath-thagradh
     appeal_rejected:
       explanation: Chaidh an t-ath-thagradh agad air an rabhadh o %{strike_date} a chuir thu a-null %{appeal_date} a dhiùltadh.
       subject: Chaidh an t-ath-thagradh agad o %{date} a dhiùltadh
+      subtitle: Chaidh an t-ath-thagradh agad a dhiùltadh.
       title: Chaidh ath-thagradh a dhiùltadh
     backup_ready:
-      explanation: Dh’iarr thu lethbhreac-glèidhidh slàn dhen chunntas Mastodon agad. Tha e deis ri luchdadh a-nuas a-nis!
+      explanation: Dh’iarr thu lethbhreac-glèidhidh slàn dhen chunntas Mastodon agad.
+      extra: Tha e deis ri luchdadh a-nuas a-nis!
       subject: Tha an tasg-lann agad deis ri luchdadh a-nuas
       title: Tasg-lann dhut
+    failed_2fa:
+      details: 'Seo mion-fhiosrachadh mun oidhirp air clàradh a-steach:'
+      explanation: Dh’fheuch cuideigin ri clàradh a-steach dhan chunntas agad ach thug iad seachad dàrna ceum mì-dhligheach dhan dearbhadh.
+      further_actions_html: Mur e thu fhèin a bh’ ann, mholamaid gun %{action} sa bhad on a chaidh briseadh a-steach dha ma dh’fhaoidte.
+      subject: Dh’fhàillig dàrna ceum an dearbhaidh
+      title: Dh’fhàillig dàrna ceum an dearbhaidh
     suspicious_sign_in:
       change_password: atharraich thu am facal-faire agad
       details: 'Seo mion-fhiosrachadh mun chlàradh a-steach:'
@@ -1812,13 +1919,46 @@ gd:
         silence: Cunntas cuingichte
         suspend: Cunntas à rèim
     welcome:
-      edit_profile_action: Suidhich a’ phròifil agad
-      edit_profile_step: "’S urrainn dhut a’ phròifil agad a ghnàthachadh is tu a’ luchdadh suas dealbh pròifil, ag atharrachadh d’ ainm-taisbeanaidh is a bharrachd. ’S urrainn dhut lèirmheas a dhèanamh air daoine mus fhaod iad ’gad leantainn ma thogras tu."
+      apps_android_action: Faigh aplacaid air Google Play
+      apps_ios_action: Luchdaich a-nuas aplacaid on App Store
+      apps_step: Luchdaich a-nuas na h-aplacaidean oifigeil againn.
+      apps_title: Aplacaidean Mastodon
+      checklist_subtitle: 'Seo toiseach-tòiseachaidh dhut air an t-saoghal shòisealta ùr:'
+      checklist_title: Liosta-chromagan fàilteachaidh
+      edit_profile_action: Cuir dreach pearsanta air
+      edit_profile_step: Brosnaich an conaltradh a gheibh thu le pròifil shlàn.
+      edit_profile_title: Cuir dreach pearsanta air a’ phròifil agad
       explanation: Seo gliocas no dhà gus tòiseachadh
-      final_action: Tòisich air postadh
-      final_step: 'Tòisich air postadh! Fiù ’s mur eil duine sam bith ’gad leantainn, chì cuid mhath na postaichean poblach agad, can air an loidhne-ama ionadail no le tagaichean hais. Saoil an innis thu beagan mu d’ dhèidhinn air an taga hais #fàilte?'
-      full_handle: D’ ainm-cleachdaiche slàn
-      full_handle_hint: Seo na bheir thu dha na caraidean agad ach an urrainn dhaibh teachdaireachd a chur thugad no ’gad leantainn o fhrithealaiche eile.
+      feature_action: Barrachd fiosrachaidh
+      feature_audience: Bheir Mastodon comas sònraichte dhut gun stiùirich thu d’ èisteachd gun eadar-mheadhanaich. Ma ruitheas tu Mastodon air a’ bhun-structar agad fhèin, ’s urrainn dhut frithealaiche Mastodon sam bith a leantainn air loidhne ’s an caochladh agus cha bhi smachd aig duine sam bith air ach agad fhèin.
+      feature_audience_title: Stèidhich d’ èisteachd le misneachd
+      feature_control: Chan eil duine sam bith nas eòlaiche air na bu mhiann leat fhaicinn air do dhachaigh na thu fhèin. Cha chaith algairim no sanasachd d’ ùine. Lean duine sam bith air frithealaiche Mastodon sam bith on aon chunntas agus faigh na postaichean aca ann an òrdugh na h-ama agus cuir dreach nas pearsanta air an oisean agad-sa dhen eadar-lìon.
+      feature_control_title: Cùm smachd air an loidhne-ama agad
+      feature_creativity: Cuiridh Mastodon taic ri postaichean le faidhlichean fuaime, videothan is dealbhan, tuairisgeulan so-ruigsinneachd, cunntasan-bheachd, rabhaidhean susbainte, avataran beòthaichte, emojis gnàthaichte, smachd air bearradh nan dealbhagan is mòran a bharrachd ach an cuir thu do bheachdan an cèill air loidhne. Ge b’ e a bheil thu a’ foillseachadh an obair-ealain, an ceòl no am pod-chraoladh agad, tha Mastodon ri làimh dhut.
+      feature_creativity_title: Cho cruthachail ’s a ghabhas
+      feature_moderation: Cuiridh Mastodon na co-dhùnaidhean ’nad làmhan fhèin. Cruthaichidh gach frithealaiche na riaghailtean aige fhèin a thèid a chur an gnìomh gu h-ionadail seach on àirde mar a thachras air meadhanan sòisealta corporra agus mar sin dheth, ’s urrainnear freagairt gu sùbailte do dh’fheumalachdan choimhearsnachdan eadar-dhealaichte. Faigh ballrachd air frithealaiche far a bheil thu ag aontachadh ris na riaghailtean ann no òstaich fear agad fhèin.
+      feature_moderation_title: Maorsainneachd mar gu chòir
+      follow_action: Lean
+      follow_step: Tha leantainn dhaoine inntinneach air cridhe Mhastodon.
+      follow_title: Cuir dreach pearsanta air do dhachaigh
+      follows_subtitle: Lean cunntasan cliùiteach
+      follows_title: Molaidhean leantainn
+      follows_view_more: Seall barrachd dhaoine ri leantainn
+      hashtags_recent_count:
+        few: "%{people} daoine san 2 latha seo chaidh"
+        one: "%{people} neach san 2 latha seo chaidh"
+        other: "%{people} daoine san 2 latha seo chaidh"
+        two: "%{people} daoine san 2 latha seo chaidh"
+      hashtags_subtitle: Rùraich na tha a’ treandadh san 2 latha seo chaidh
+      hashtags_title: Tagaichean hais a’ treandadh
+      hashtags_view_more: Seall barrachd thagaichean hais a’ treandadh
+      post_action: Sgrìobh
+      post_step: Cuir an aithne air an t-saoghal le teacsa, dealbhan, videothan no cunntasan-bheachd.
+      post_title: Cruthaich a’ chiad phost agad
+      share_action: Co-roinn
+      share_step: Leig fios dha do charaidean mar a gheibh iad grèim ort air Mastodon.
+      share_title: Co-roinn a’ phròifil Mastodon agad
+      sign_in_action: Clàraich a-steach
       subject: Fàilte gu Mastodon
       title: Fàilte air bòrd, %{name}!
   users:
@@ -1826,6 +1966,7 @@ gd:
     go_to_sso_account_settings: Tadhail air roghainnean cunntas solaraiche na dearbh-aithne agad
     invalid_otp_token: Còd dà-cheumnach mì-dhligheach
     otp_lost_help_html: Ma chaill thu an t-inntrigeadh dhan dà chuid diubh, ’s urrainn dhut fios a chur gu %{email}
+    rate_limited: Cus oidhirpean dearbhaidh, feuch ris a-rithist an ceann greis.
     seamless_external_login: Rinn thu clàradh a-steach le seirbheis on taobh a-muigh, mar sin chan eil roghainnean an fhacail-fhaire ’s a’ phuist-d ri làimh dhut.
     signed_in_as: 'Chlàraich thu a-steach mar:'
   verification:

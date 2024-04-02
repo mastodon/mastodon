@@ -34,7 +34,9 @@ class Importer::BaseImporter
   # Estimate the amount of documents that would be indexed. Not exact!
   # @returns [Integer]
   def estimate!
-    ActiveRecord::Base.connection_pool.with_connection { |connection| connection.select_one("SELECT reltuples AS estimate FROM pg_class WHERE relname = '#{index.adapter.target.table_name}'")['estimate'].to_i }
+    reltuples = ActiveRecord::Base.connection_pool.with_connection { |connection| connection.select_one("SELECT reltuples FROM pg_class WHERE relname = '#{index.adapter.target.table_name}'")['reltuples'].to_i }
+    # If the table has never yet been vacuumed or analyzed, reltuples contains -1
+    [reltuples, 0].max
   end
 
   # Import data from the database into the index
@@ -68,8 +70,16 @@ class Importer::BaseImporter
 
   protected
 
-  def in_work_unit(*args, &block)
-    work_unit = Concurrent::Promises.future_on(@executor, *args, &block)
+  def build_bulk_body(to_import)
+    # Specialize `Chewy::Index::Import::BulkBuilder#bulk_body` to avoid a few
+    # inefficiencies, as none of our fields or join fields and we do not need
+    # `BulkBuilder`'s versatility.
+    crutches = Chewy::Index::Crutch::Crutches.new index, to_import
+    to_import.map { |object| { index: { _id: object.id, data: index.compose(object, crutches, fields: []) } } }
+  end
+
+  def in_work_unit(...)
+    work_unit = Concurrent::Promises.future_on(@executor, ...)
 
     work_unit.on_fulfillment!(&@on_progress)
     work_unit.on_rejection!(&@on_failure)

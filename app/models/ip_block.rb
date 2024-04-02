@@ -19,11 +19,11 @@ class IpBlock < ApplicationRecord
   include Expireable
   include Paginable
 
-  enum severity: {
+  enum :severity, {
     sign_up_requires_approval: 5000,
     sign_up_block: 5500,
     no_access: 9999,
-  }
+  }, prefix: true
 
   validates :ip, :severity, presence: true
   validates :ip, uniqueness: true

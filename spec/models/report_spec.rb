@@ -110,9 +110,9 @@ describe Report do
     let(:status) { Fabricate(:status) }
 
     before do
-      Fabricate('Admin::ActionLog', target_type: 'Report', account_id: target_account.id, target_id: report.id, created_at: 2.days.ago)
-      Fabricate('Admin::ActionLog', target_type: 'Account', account_id: target_account.id, target_id: report.target_account_id, created_at: 2.days.ago)
-      Fabricate('Admin::ActionLog', target_type: 'Status', account_id: target_account.id, target_id: status.id, created_at: 2.days.ago)
+      Fabricate(:action_log, target_type: 'Report', account_id: target_account.id, target_id: report.id, created_at: 2.days.ago)
+      Fabricate(:action_log, target_type: 'Account', account_id: target_account.id, target_id: report.target_account_id, created_at: 2.days.ago)
+      Fabricate(:action_log, target_type: 'Status', account_id: target_account.id, target_id: status.id, created_at: 2.days.ago)
     end
 
     it 'returns right logs' do
@@ -132,6 +132,19 @@ describe Report do
     it 'is valid if comment is longer than 1000 characters and reporter is not local' do
       report = Fabricate.build(:report, account: remote_account, comment: Faker::Lorem.characters(number: 1001))
       expect(report.valid?).to be true
+    end
+
+    it 'is invalid if it references invalid rules' do
+      report = Fabricate.build(:report, category: :violation, rule_ids: [-1])
+      expect(report.valid?).to be false
+      expect(report).to model_have_error_on_field(:rule_ids)
+    end
+
+    it 'is invalid if it references rules but category is not "violation"' do
+      rule = Fabricate(:rule)
+      report = Fabricate.build(:report, category: :spam, rule_ids: rule.id)
+      expect(report.valid?).to be false
+      expect(report).to model_have_error_on_field(:rule_ids)
     end
   end
 end

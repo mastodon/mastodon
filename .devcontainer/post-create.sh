@@ -11,7 +11,8 @@ bundle install
 git checkout -- Gemfile.lock
 
 # Fetch Javascript dependencies
-yarn --frozen-lockfile
+corepack prepare
+yarn install --immutable
 
 # [re]create, migrate, and seed the test database
 RAILS_ENV=test ./bin/rails db:setup
@@ -23,4 +24,4 @@ RAILS_ENV=development ./bin/rails db:setup
 RAILS_ENV=development ./bin/rails assets:precompile
 
 # Precompile assets for test
-RAILS_ENV=test NODE_ENV=tests ./bin/rails assets:precompile
+RAILS_ENV=test ./bin/rails assets:precompile

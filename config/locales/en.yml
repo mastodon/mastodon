@@ -309,6 +309,7 @@ en:
       unpublish: Unpublish
       unpublished_msg: Announcement successfully unpublished!
       updated_msg: Announcement successfully updated!
+    critical_update_pending: Critical update pending
     custom_emojis:
       assign_category: Assign category
       by_domain: Domain
@@ -424,6 +425,7 @@ en:
       view: View domain block
     email_domain_blocks:
       add_new: Add new
+      allow_registrations_with_approval: Allow registrations with approval
       attempts_over_week:
         one: "%{count} attempt over the last week"
         other: "%{count} sign-up attempts over the last week"
@@ -533,6 +535,7 @@ en:
       total_reported: Reports about them
       total_storage: Media attachments
       totals_time_period_hint_html: The totals displayed below include data for all time.
+      unknown_instance: There is currently no record of this domain on this server.
     invites:
       deactivate_all: Deactivate all
       filter:
@@ -594,6 +597,9 @@ en:
       actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an e-mail notification will be sent to them, except when the <strong>Spam</strong> category is selected.
       actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       add_to_report: Add more to report
+      already_suspended_badges:
+        local: Already suspended on this server
+        remote: Already suspended on their server
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
       assigned: Assigned moderator
@@ -609,6 +615,7 @@ en:
       created_at: Reported
       delete_and_resolve: Delete posts
       forwarded: Forwarded
+      forwarded_replies_explanation: This report is from a remote user and about remote content. It has been forwarded to you because the reported content is in reply to one of your users.
       forwarded_to: Forwarded to %{domain}
       mark_as_resolved: Mark as resolved
       mark_as_sensitive: Mark as sensitive
@@ -763,6 +770,7 @@ en:
         disabled: To no one
         users: To logged-in local users
       registrations:
+        moderation_recommandation: Please make sure you have an adequate and reactive moderation team before you open registrations to everyone!
         preamble: Control who can create an account on your server.
         title: Registrations
       registrations_mode:
@@ -770,10 +778,28 @@ en:
           approved: Approval required for sign up
           none: Nobody can sign up
           open: Anyone can sign up
+        warning_hint: We recommend using “Approval required for sign up” unless you are confident your moderation team can handle spam and malicious registrations in a timely fashion.
+      security:
+        authorized_fetch: Require authentication from federated servers
+        authorized_fetch_hint: Requiring authentication from federated servers enables stricter enforcement of both user-level and server-level blocks. However, this comes at the cost of a performance penalty, reduces the reach of your replies, and may introduce compatibility issues with some federated services. In addition, this will not prevent dedicated actors from fetching your public posts and accounts.
+        authorized_fetch_overridden_hint: You are currently unable to change this setting because it is overridden by an environment variable.
+        federation_authentication: Federation authentication enforcement
       title: Server settings
     site_uploads:
       delete: Delete uploaded file
       destroyed_msg: Site upload successfully deleted!
+    software_updates:
+      critical_update: Critical — please update quickly
+      description: It is recommended to keep your Mastodon installation up to date to benefit from the latest fixes and features. Moreover, it is sometimes critical to update Mastodon in a timely manner to avoid security issues. For these reasons, Mastodon checks for updates every 30 minutes, and will notify you according to your e-mail notification preferences.
+      documentation_link: Learn more
+      release_notes: Release notes
+      title: Available updates
+      type: Type
+      types:
+        major: Major release
+        minor: Minor release
+        patch: Patch release — bugfixes and easy to apply changes
+      version: Version
     statuses:
       account: Author
       application: Application
@@ -814,6 +840,20 @@ en:
     system_checks:
       database_schema_check:
         message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
+      elasticsearch_health_red:
+        message_html: Elasticsearch cluster is unhealthy (red status), search features are unavailable
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch cluster is unhealthy (yellow status), you may want to investigate the reason
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch index mappings are outdated. Please run <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: See documentation
+        message_html: Your Elasticsearch cluster has more than one node, but Mastodon is not configured to use them.
+      elasticsearch_preset_single_node:
+        action: See documentation
+        message_html: Your Elasticsearch cluster has only one node, <code>ES_PRESET</code> should be set to <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Your Elasticsearch system index is outdated due to a setting change. Please run <code>tootctl search deploy --reset-chewy</code> to update it.
       elasticsearch_running_check:
         message_html: Could not connect to Elasticsearch. Please check that it is running, or disable full-text search
       elasticsearch_version_check:
@@ -824,6 +864,12 @@ en:
         message_html: You haven't defined any server rules.
       sidekiq_process_check:
         message_html: No Sidekiq process running for the %{value} queue(s). Please review your Sidekiq configuration
+      software_version_critical_check:
+        action: See available updates
+        message_html: A critical Mastodon update is available, please update as quickly as possible.
+      software_version_patch_check:
+        action: See available updates
+        message_html: A bugfix Mastodon update is available.
       upload_check_privacy_error:
         action: Check here for more information
         message_html: "<strong>Your web server is misconfigured. The privacy of your users is at risk.</strong>"
@@ -925,6 +971,9 @@ en:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Due to a lack of recent moderator activity, registrations on %{instance} have been automatically switched to requiring manual review, to prevent %{instance} from being used as a platform for potential bad actors. You can switch it back to open registrations at any time.
+      subject: Registrations for %{instance} have been automatically switched to requiring approval
     new_appeal:
       actions:
         delete_statuses: to delete their posts
@@ -937,6 +986,9 @@ en:
       body: "%{target} is appealing a moderation decision by %{action_taken_by} from %{date}, which was %{type}. They wrote:"
       next_steps: You can approve the appeal to undo the moderation decision, or ignore it.
       subject: "%{username} is appealing a moderation decision on %{instance}"
+    new_critical_software_updates:
+      body: New critical versions of Mastodon have been released, you may want to update as soon as possible!
+      subject: Critical Mastodon updates are available for %{instance}!
     new_pending_account:
       body: The details of the new account are below. You can approve or reject this application.
       subject: New account up for review on %{instance} (%{username})
@@ -944,6 +996,9 @@ en:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
       subject: New report for %{instance} (#%{id})
+    new_software_updates:
+      body: New Mastodon versions have been released, you may want to update!
+      subject: New Mastodon versions are available for %{instance}!
     new_trends:
       body: 'The following items need a review before they can be displayed publicly:'
       new_trending_links:
@@ -951,8 +1006,6 @@ en:
       new_trending_statuses:
         title: Trending posts
       new_trending_tags:
-        no_approved_tags: There are currently no approved trending hashtags.
-        requirements: 'Any of these candidates could surpass the #%{rank} approved trending hashtag, which is currently #%{lowest_tag_name} with a score of %{lowest_tag_score}.'
         title: Trending hashtags
       subject: New trends up for review on %{instance}
   aliases:
@@ -996,6 +1049,14 @@ en:
       hint_html: Just one more thing! We need to confirm you're a human (this is so we can keep the spam out!). Solve the CAPTCHA below and click "Continue".
       title: Security check
     confirmations:
+      awaiting_review: Your e-mail address is confirmed! The %{domain} staff is now reviewing your registration. You will receive an e-mail if they approve your account!
+      awaiting_review_title: Your registration is being reviewed
+      clicking_this_link: clicking this link
+      login_link: log in
+      proceed_to_login_html: You can now proceed to %{login_link}.
+      redirect_to_app_html: You should have been redirected to the <strong>%{app_name}</strong> app. If that did not happen, try %{clicking_this_link} or manually return to the app.
+      registration_complete: Your registration on %{domain} is now complete!
+      welcome_title: Welcome, %{name}!
       wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
@@ -1057,6 +1118,7 @@ en:
       functional: Your account is fully operational.
       pending: Your application is pending review by our staff. This may take some time. You will receive an e-mail if your application is approved.
       redirecting_to: Your account is inactive because it is currently redirecting to %{acct}.
+      self_destruct: As %{domain} is closing down, you will only get limited access to your account.
       view_strikes: View past strikes against your account
     too_fast: Form submitted too fast, try again.
     use_security_key: Use security key
@@ -1140,7 +1202,6 @@ en:
     basic_information: Basic information
     hint_html: "<strong>Customize what people see on your public profile and next to your posts.</strong> Other people are more likely to follow you back and interact with you when you have a filled out profile and a profile picture."
     other: Other
-    safety_and_privacy: Safety and privacy
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -1315,6 +1376,7 @@ en:
       '86400': 1 day
     expires_in_prompt: Never
     generate: Generate invite link
+    invalid: This invite is not valid
     invited_by: 'You were invited by:'
     max_uses:
       one: 1 use
@@ -1433,9 +1495,9 @@ en:
     update:
       subject: "%{name} edited a post"
   notifications:
+    administration_emails: Admin e-mail notifications
     email_events: Events for e-mail notifications
     email_events_hint: 'Select events that you want to receive notifications for:'
-    other_settings: Other notifications settings
   number:
     human:
       decimal_units:
@@ -1477,12 +1539,24 @@ en:
     other: Other
     posting_defaults: Posting defaults
     public_timelines: Public timelines
+  privacy:
+    hint_html: "<strong>Customize how you want your profile and your posts to be found.</strong> A variety of features in Mastodon can help you reach a wider audience when enabled. Take a moment to review these settings to make sure they fit your use case."
+    privacy: Privacy
+    privacy_hint_html: Control how much you want to disclose for the benefit of others. People discover interesting profiles and cool apps by browsing other people's follows and seeing which apps they post from, but you may prefer to keep it hidden.
+    reach: Reach
+    reach_hint_html: Control whether you want to be discovered and followed by new people. Do you want your posts to appear on the Explore screen? Do you want other people to see you in their follow recommendations? Do you want to accept all new followers automatically, or have granular control over each one?
+    search: Search
+    search_hint_html: Control how you want to be found. Do you want people to find you by what you've publicly posted about? Do you want people outside Mastodon to find your profile when searching the web? Please mind that total exclusion from all search engines cannot be guaranteed for public information.
+    title: Privacy and reach
   privacy_policy:
     title: Privacy Policy
   reactions:
     errors:
       limit_reached: Limit of different reactions reached
       unrecognized_emoji: is not a recognized emoji
+  redirects:
+    prompt: If you trust this link, click it to continue.
+    title: You are leaving %{instance}.
   relationships:
     activity: Account activity
     confirm_follow_selected_followers: Are you sure you want to follow selected followers?
@@ -1518,6 +1592,9 @@ en:
     over_daily_limit: You have exceeded the limit of %{limit} scheduled posts for today
     over_total_limit: You have exceeded the limit of %{limit} scheduled posts
     too_soon: The scheduled date must be in the future
+  self_destruct:
+    lead_html: Unfortunately, <strong>%{domain}</strong> is permanently closing down. If you had an account there, you will not be able to continue using it, but you can still request a backup of your data.
+    title: This server is closing down
   sessions:
     activity: Last activity
     browser: Browser
@@ -1542,6 +1619,7 @@ en:
       unknown_browser: Unknown Browser
       weibo: Weibo
     current_session: Current session
+    date: Date
     description: "%{browser} on %{platform}"
     explanation: These are the web browsers currently logged in to your Mastodon account.
     ip: IP
@@ -1578,14 +1656,26 @@ en:
     import: Import
     import_and_export: Import and export
     migrate: Account migration
-    notifications: Notifications
+    notifications: E-mail notifications
     preferences: Preferences
     profile: Public profile
     relationships: Follows and followers
+    severed_relationships: Severed relationships
     statuses_cleanup: Automated post deletion
     strikes: Moderation strikes
     two_factor_authentication: Two-factor Auth
     webauthn_authentication: Security keys
+  severed_relationships:
+    download: Download (%{count})
+    event_type:
+      account_suspension: Account suspension (%{target_name})
+      domain_block: Server suspension (%{target_name})
+      user_domain_block: You blocked %{target_name}
+    lost_followers: Lost followers
+    lost_follows: Lost follows
+    preamble: You may lose follows and followers when you block a domain or when your moderators decide to suspend a remote server. When that happens, you will be able to download lists of severed relationships, to be inspected and possibly imported on another server.
+    purged: Information about this server has been purged by your server's administrators.
+    type: Event
   statuses:
     attached:
       audio:
@@ -1623,8 +1713,6 @@ en:
         other: "%{count} votes"
       vote: Vote
     show_more: Show more
-    show_newer: Show newer
-    show_older: Show older
     show_thread: Show thread
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1681,11 +1769,17 @@ en:
     contrast: Mastodon (High contrast)
     default: Mastodon (Dark)
     mastodon-light: Mastodon (Light)
+    system: Automatic (use system theme)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: The server-wide usage quota for the translation service has been exceeded.
+      too_many_requests: There have been too many requests to the translation service recently.
   two_factor_authentication:
     add: Add
     disable: Disable 2FA
@@ -1703,18 +1797,27 @@ en:
     webauthn: Security keys
   user_mailer:
     appeal_approved:
-      action: Go to your account
+      action: Account Settings
       explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been approved. Your account is once again in good standing.
       subject: Your appeal from %{date} has been approved
+      subtitle: Your account is once again in good standing.
       title: Appeal approved
     appeal_rejected:
       explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been rejected.
       subject: Your appeal from %{date} has been rejected
+      subtitle: Your appeal has been rejected.
       title: Appeal rejected
     backup_ready:
-      explanation: You requested a full backup of your Mastodon account. It's now ready for download!
+      explanation: You requested a full backup of your Mastodon account.
+      extra: It's now ready for download!
       subject: Your archive is ready for download
       title: Archive takeout
+    failed_2fa:
+      details: 'Here are details of the sign-in attempt:'
+      explanation: Someone has tried to sign in to your account but provided an invalid second authentication factor.
+      further_actions_html: If this wasn't you, we recommend that you %{action} immediately as it may be compromised.
+      subject: Second factor authentication failure
+      title: Failed second factor authentication
     suspicious_sign_in:
       change_password: change your password
       details: 'Here are details of the sign-in:'
@@ -1754,13 +1857,44 @@ en:
         silence: Account limited
         suspend: Account suspended
     welcome:
-      edit_profile_action: Setup profile
-      edit_profile_step: You can customize your profile by uploading a profile picture, changing your display name and more. You can opt-in to review new followers before they’re allowed to follow you.
+      apps_android_action: Get it on Google Play
+      apps_ios_action: Download on the App Store
+      apps_step: Download our official apps.
+      apps_title: Mastodon apps
+      checklist_subtitle: 'Let''s get you started on this new social frontier:'
+      checklist_title: Welcome Checklist
+      edit_profile_action: Personalize
+      edit_profile_step: Boost your interactions by having a comprehensive profile.
+      edit_profile_title: Personalize your profile
       explanation: Here are some tips to get you started
-      final_action: Start posting
-      final_step: 'Start posting! Even without followers, your public posts may be seen by others, for example on the local timeline or in hashtags. You may want to introduce yourself on the #introductions hashtag.'
-      full_handle: Your full handle
-      full_handle_hint: This is what you would tell your friends so they can message or follow you from another server.
+      feature_action: Learn more
+      feature_audience: Mastodon provides you with a unique possibility of managing your audience without middlemen. Mastodon deployed on your own infrastructure allows you to follow and be followed from any other Mastodon server online and is under no one's control but yours.
+      feature_audience_title: Build your audience in confidence
+      feature_control: You know best what you want to see on your home feed. No algorithms or ads to waste your time. Follow anyone across any Mastodon server from a single account and receive their posts in chronological order, and make your corner of the internet a little more like you.
+      feature_control_title: Stay in control of your own timeline
+      feature_creativity: Mastodon supports audio, video and picture posts, accessibility descriptions, polls, content warnings, animated avatars, custom emojis, thumbnail crop control, and more, to help you express yourself online. Whether you're publishing your art, your music, or your podcast, Mastodon is there for you.
+      feature_creativity_title: Unparalleled creativity
+      feature_moderation: Mastodon puts decision making back in your hands. Each server creates their own rules and regulations, which are enforced locally and not top-down like corporate social media, making it the most flexible in responding to the needs of different groups of people. Join a server with the rules you agree with, or host your own.
+      feature_moderation_title: Moderating the way it should be
+      follow_action: Follow
+      follow_step: Following interesting people is what Mastodon is all about.
+      follow_title: Personalize your home feed
+      follows_subtitle: Follow well-known accounts
+      follows_title: Who to follow
+      follows_view_more: View more people to follow
+      hashtags_recent_count:
+        one: "%{people} person in the past 2 days"
+        other: "%{people} people in the past 2 days"
+      hashtags_subtitle: Explore what’s trending since past 2 days
+      hashtags_title: Trending hashtags
+      hashtags_view_more: View more trending hashtags
+      post_action: Compose
+      post_step: Say hello to the world with text, photos, videos, or polls.
+      post_title: Make your first post
+      share_action: Share
+      share_step: Let your friends know how to find you on Mastodon.
+      share_title: Share your Mastodon profile
+      sign_in_action: Sign in
       subject: Welcome to Mastodon
       title: Welcome aboard, %{name}!
   users:
@@ -1768,6 +1902,7 @@ en:
     go_to_sso_account_settings: Go to your identity provider's account settings
     invalid_otp_token: Invalid two-factor code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
+    rate_limited: Too many authentication attempts, try again later.
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
   verification:

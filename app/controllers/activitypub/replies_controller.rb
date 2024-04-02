@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class ActivityPub::RepliesController < ActivityPub::BaseController
-  include SignatureVerification
   include Authorization
-  include AccountOwnedConcern
 
   DESCENDANTS_LIMIT = 60
 

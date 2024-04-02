@@ -2,8 +2,10 @@ import { injectIntl, defineMessages } from 'react-intl';
 
 import { connect } from 'react-redux';
 
+import WarningIcon from '@/material-icons/400-20px/warning.svg?react';
+import { IconButton } from 'mastodon/components/icon_button';
+
 import { changeComposeSpoilerness } from '../../../actions/compose';
-import TextIconButton from '../components/text_icon_button';
 
 const messages = defineMessages({
   marked: { id: 'compose_form.spoiler.marked', defaultMessage: 'Text is hidden behind warning' },
@@ -11,10 +13,12 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = (state, { intl }) => ({
-  label: 'CW',
+  iconComponent: WarningIcon,
   title: intl.formatMessage(state.getIn(['compose', 'spoiler']) ? messages.marked : messages.unmarked),
   active: state.getIn(['compose', 'spoiler']),
   ariaControls: 'cw-spoiler-input',
+  size: 18,
+  inverted: true,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -25,4 +29,4 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
-export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(TextIconButton));
+export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(IconButton));

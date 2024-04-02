@@ -34,8 +34,8 @@ module AccountOwnedConcern
   end
 
   def check_account_suspension
-    if @account.suspended_permanently?
-      permanent_suspension_response
+    if @account.permanently_unavailable?
+      permanent_unavailability_response
     elsif @account.suspended? && !skip_temporary_suspension_response?
       temporary_suspension_response
     end
@@ -45,7 +45,7 @@ module AccountOwnedConcern
     false
   end
 
-  def permanent_suspension_response
+  def permanent_unavailability_response
     expires_in(3.minutes, public: true)
     gone
   end

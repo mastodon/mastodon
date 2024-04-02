@@ -1,9 +1,6 @@
 - content_for :page_title do
   = t('admin.trends.statuses.title')
 
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-
 %p= t('admin.trends.statuses.description_html')
 
 %hr.spacer/
@@ -34,10 +31,26 @@
       %label.batch-table__toolbar__select.batch-checkbox-all
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
-        = f.button safe_join([fa_icon('check'), t('admin.trends.statuses.allow')]), name: :approve, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
-        = f.button safe_join([fa_icon('check'), t('admin.trends.statuses.allow_account')]), name: :approve_accounts, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
-        = f.button safe_join([fa_icon('times'), t('admin.trends.statuses.disallow')]), name: :reject, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
-        = f.button safe_join([fa_icon('times'), t('admin.trends.statuses.disallow_account')]), name: :reject_accounts, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        = f.button safe_join([fa_icon('check'), t('admin.trends.statuses.allow')]),
+                   class: 'table-action-link',
+                   data: { confirm: t('admin.reports.are_you_sure') },
+                   name: :approve,
+                   type: :submit
+        = f.button safe_join([fa_icon('check'), t('admin.trends.statuses.allow_account')]),
+                   class: 'table-action-link',
+                   data: { confirm: t('admin.reports.are_you_sure') },
+                   name: :approve_accounts,
+                   type: :submit
+        = f.button safe_join([fa_icon('times'), t('admin.trends.statuses.disallow')]),
+                   class: 'table-action-link',
+                   data: { confirm: t('admin.reports.are_you_sure') },
+                   name: :reject,
+                   type: :submit
+        = f.button safe_join([fa_icon('times'), t('admin.trends.statuses.disallow_account')]),
+                   class: 'table-action-link',
+                   data: { confirm: t('admin.reports.are_you_sure') },
+                   name: :reject_accounts,
+                   type: :submit
     .batch-table__body
       - if @statuses.empty?
         = nothing_here 'nothing-here--under-tabs'
