@@ -115,8 +115,9 @@
     &:active,
     &:focus,
     &:hover {
-      border-width: 4px !important;
-      border-color: lighten($inverted-text-color, 15%);
+      outline: none !important;
+      border-width: 1px !important;
+      border-color: $ui-button-background-color;
     }
 
     &::-webkit-search-cancel-button {
