@@ -10,9 +10,7 @@ describe 'Using OAuth from an external app' do
 
     before do
       visit new_user_session_path
-      fill_in 'user_email', with: user.email
-      fill_in 'user_password', with: user.password
-      click_on I18n.t('auth.login')
+      fill_in_auth_details(user.email, user.password)
     end
 
     it 'when accepting the authorization request' do
@@ -167,20 +165,19 @@ describe 'Using OAuth from an external app' do
         expect(Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id)).to be false
       end
     end
-
-    private
-
-    def fill_in_auth_details(email, password)
-      fill_in 'user_email', with: email
-      fill_in 'user_password', with: password
-      click_on I18n.t('auth.login')
-    end
-
-    def fill_in_otp_details(value)
-      fill_in 'user_otp_attempt', with: value
-      click_on I18n.t('auth.login')
-    end
-
     # TODO: external auth
+  end
+
+  private
+
+  def fill_in_auth_details(email, password)
+    fill_in 'user_email', with: email
+    fill_in 'user_password', with: password
+    click_on I18n.t('auth.login')
+  end
+
+  def fill_in_otp_details(value)
+    fill_in 'user_otp_attempt', with: value
+    click_on I18n.t('auth.login')
   end
 end
