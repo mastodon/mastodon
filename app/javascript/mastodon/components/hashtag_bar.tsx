@@ -24,7 +24,7 @@ export type StatusLike = Record<{
 
 function normalizeHashtag(hashtag: string) {
   return (
-    hashtag && hashtag.startsWith('#') ? hashtag.slice(1) : hashtag
+    !!hashtag && hashtag.startsWith('#') ? hashtag.slice(1) : hashtag
   ).normalize('NFKC');
 }
 
