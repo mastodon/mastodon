@@ -26,6 +26,13 @@ class MediaProxyController < ApplicationController
     redirect_to full_asset_url(@media_attachment.file.url(version))
   end
 
+  def short
+    media_token = MediaToken.find(params[:id])
+    @media_attachment = media_token.media_attachment
+
+    redirect_to full_asset_url(@media_attachment.file.url(:original))
+  end
+
   private
 
   def redownload!

@@ -39,4 +39,15 @@ describe MediaProxyController do
       expect(response).to have_http_status(404)
     end
   end
+
+  describe '#short' do
+    it 'redirects to the original url' do
+      media_attachment = Fabricate(:media_attachment)
+      token = media_attachment.generate_token
+      get :short, params: { id: token.id }
+
+      expect(response).to have_http_status(302)
+      expect(response.headers['Location']).to match(media_attachment.file.url(:original))
+    end
+  end
 end

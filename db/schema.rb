@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_31_214139) do
+ActiveRecord::Schema.define(version: 2024_04_09_213344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -616,6 +616,12 @@ ActiveRecord::Schema.define(version: 2023_07_31_214139) do
     t.index ["scheduled_status_id"], name: "index_media_attachments_on_scheduled_status_id", where: "(scheduled_status_id IS NOT NULL)"
     t.index ["shortcode"], name: "index_media_attachments_on_shortcode", unique: true, opclass: :text_pattern_ops, where: "(shortcode IS NOT NULL)"
     t.index ["status_id"], name: "index_media_attachments_on_status_id"
+  end
+
+  create_table "media_tokens", force: :cascade do |t|
+    t.bigint "media_attachment_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "mentions", force: :cascade do |t|
