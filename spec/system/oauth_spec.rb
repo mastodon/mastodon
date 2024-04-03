@@ -3,13 +3,16 @@
 require 'rails_helper'
 
 describe 'Using OAuth from an external app' do
-  let(:client_app) { Doorkeeper::Application.create!(name: 'test', redirect_uri: 'http://localhost/', scopes: 'read') }
+  let(:client_app) { Doorkeeper::Application.create!(name: 'test', redirect_uri: 'http://localhost/health', scopes: 'read') }
 
   context 'when the user is already logged in' do
     let!(:user) { Fabricate(:user) }
 
     before do
-      sign_in user, scope: :user
+      visit new_user_session_path
+      fill_in 'user_email', with: user.email
+      fill_in 'user_password', with: user.password
+      click_on I18n.t('auth.login')
     end
 
     it 'when accepting the authorization request' do
