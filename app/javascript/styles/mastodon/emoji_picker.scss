@@ -112,10 +112,10 @@
       border: 0;
     }
 
-    &::-moz-focus-inner,
     &:focus,
     &:active {
       outline: 0 !important;
+      border-color: lighten($inverted-text-color, 15%);
     }
 
     &::-webkit-search-cancel-button {
