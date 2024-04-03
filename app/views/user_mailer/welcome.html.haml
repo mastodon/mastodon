@@ -68,7 +68,4 @@
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-extra-td
-      = render 'application/mailer/feature', feature: 'control', text_first_on_desktop: true
-      = render 'application/mailer/feature', feature: 'audience', text_first_on_desktop: false
-      = render 'application/mailer/feature', feature: 'moderation', text_first_on_desktop: true
-      = render 'application/mailer/feature', feature: 'creativity', text_first_on_desktop: false
+      = render partial: 'application/mailer/feature', collection: %w(control audience moderation creativity)
