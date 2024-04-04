@@ -46,11 +46,11 @@ class Admin::Metrics::Measure::TagServersMeasure < Admin::Metrics::Measure::Base
   end
 
   def earliest_status_id
-    Mastodon::Snowflake.id_at(@start_at, with_random: false)
+    Mastodon::Snowflake.id_at(@start_at.beginning_of_day, with_random: false)
   end
 
   def latest_status_id
-    Mastodon::Snowflake.id_at(@end_at, with_random: false)
+    Mastodon::Snowflake.id_at(@end_at.end_of_day, with_random: false)
   end
 
   def tag
