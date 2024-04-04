@@ -209,7 +209,7 @@ class DetailedStatus extends ImmutablePureComponent {
         );
       }
     } else if (status.get('spoiler_text').length === 0) {
-      media = <Card sensitive={status.get('sensitive')} onOpenMedia={this.props.onOpenMedia} card={status.get('card', null)} />;
+      media = <Card visible={this.props.showMedia} sensitive={status.get('sensitive')} onOpenMedia={this.props.onOpenMedia} card={status.get('card', null)}/>;
     }
 
     if (status.get('application')) {
