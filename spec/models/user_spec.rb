@@ -39,6 +39,12 @@ RSpec.describe User do
       expect(user.valid?).to be true
     end
 
+    it 'is valid with a localhost e-mail address' do
+      user = Fabricate.build(:user, email: 'admin@localhost')
+      user.valid?
+      expect(user.valid?).to be true
+    end
+
     it 'cleans out invalid locale' do
       user = Fabricate.build(:user, locale: 'toto')
       expect(user.valid?).to be true
