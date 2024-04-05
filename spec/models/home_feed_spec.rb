@@ -27,7 +27,6 @@ RSpec.describe HomeFeed do
         results = subject.get(3)
 
         expect(results.map(&:id)).to eq [3, 2]
-        expect(results.first.attributes.keys).to eq %w(id updated_at)
       end
     end
 

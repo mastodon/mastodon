@@ -47,19 +47,16 @@ module CacheConcern
   end
 
   def cache_collection(raw, klass)
-    return raw unless klass.respond_to?(:with_includes)
+    return raw unless klass.respond_to?(:preload_cacheable_associations)
 
-    raw = raw.cache_ids.to_a if raw.is_a?(ActiveRecord::Relation)
-    return [] if raw.empty?
+    records = raw.to_a
 
-    # TODO: instead of re-loading, we should just preload any missing
-    # relationship
-    loaded = klass.where(id: raw.map(&:id)).with_includes.index_by(&:id)
+    klass.preload_cacheable_associations(records)
 
-    raw.map { |item| loaded[item.id] }
+    records
   end
 
   def cache_collection_paginated_by_id(raw, klass, limit, options)
-    cache_collection raw.cache_ids.to_a_paginated_by_id(limit, options), klass
+    cache_collection raw.to_a_paginated_by_id(limit, options), klass
   end
 end
