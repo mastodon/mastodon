@@ -52,18 +52,11 @@ module CacheConcern
     raw = raw.cache_ids.to_a if raw.is_a?(ActiveRecord::Relation)
     return [] if raw.empty?
 
-    cached_keys_with_value = Rails.cache.read_multi(*raw).transform_keys(&:id)
+    # TODO: instead of re-loading, we should just preload any missing
+    # relationship
+    loaded = klass.where(id: raw.map(&:id)).with_includes.index_by(&:id)
 
-    uncached_ids = raw.map(&:id) - cached_keys_with_value.keys
-
-    klass.reload_stale_associations!(cached_keys_with_value.values) if klass.respond_to?(:reload_stale_associations!)
-
-    unless uncached_ids.empty?
-      uncached = klass.where(id: uncached_ids).with_includes.index_by(&:id)
-      Rails.cache.write_multi(uncached.values.to_h { |i| [i, i] })
-    end
-
-    raw.filter_map { |item| cached_keys_with_value[item.id] || uncached[item.id] }
+    raw.map { |item| loaded[item.id] }
   end
 
   def cache_collection_paginated_by_id(raw, klass, limit, options)
