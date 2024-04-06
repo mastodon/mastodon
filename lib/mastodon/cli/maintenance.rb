@@ -42,7 +42,7 @@ module Mastodon::CLI
     class SeveredRelationship < ApplicationRecord; end
 
     class DomainBlock < ApplicationRecord
-      enum severity: { silence: 0, suspend: 1, noop: 2 }
+      enum :severity, { silence: 0, suspend: 1, noop: 2 }
       scope :by_severity, -> { in_order_of(:severity, %w(noop silence suspend)).order(:domain) }
     end
 
@@ -131,7 +131,7 @@ module Mastodon::CLI
           end
         end
 
-        if ActiveRecord::Base.connection.table_exists?(:severed_relationships)
+        if db_table_exists?(:severed_relationships)
           SeveredRelationship.where(local_account_id: other_account.id).reorder(nil).find_each do |record|
             record.update_attribute(:local_account_id, id)
           rescue ActiveRecord::RecordNotUnique

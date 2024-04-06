@@ -21,13 +21,13 @@
               %td{ rowspan: 2 }= t('severed_relationships.purged')
             - else
               %td
-                - count = event.severed_relationships.active.where(local_account: current_account).count
+                - count = event.severed_relationships.active.about_local_account(current_account).count
                 - if count.zero?
                   = t('generic.none')
                 - else
                   = table_link_to 'download', t('severed_relationships.download', count: count), following_severed_relationship_path(event, format: :csv)
               %td
-                - count = event.severed_relationships.passive.where(local_account: current_account).count
+                - count = event.severed_relationships.passive.about_local_account(current_account).count
                 - if count.zero?
                   = t('generic.none')
                 - else

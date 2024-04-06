@@ -1711,10 +1711,22 @@ sl:
     preferences: Nastavitve
     profile: Profil
     relationships: Sledenja in sledilci
+    severed_relationships: Prekinjene veze
     statuses_cleanup: Samodejno brisanje objav
     strikes: Ukrepi morediranja
     two_factor_authentication: Dvofaktorsko overjanje
     webauthn_authentication: Varnostni ključi
+  severed_relationships:
+    download: Prejmi (%{count})
+    event_type:
+      account_suspension: Suspendiranje računa (%{target_name})
+      domain_block: Suspendiranje strežnika (%{target_name})
+      user_domain_block: Blokirali ste %{target_name}
+    lost_followers: Izgubljeni sledilci
+    lost_follows: Izgubljena sledeni
+    preamble: Če blokirate domeno ali če se vaši moderatorji odločijo suspendirati oddaljen strežnik, lahko izgubite sledene in sledilce. Ko se to zgodi, boste lahko prejeli sezname prekinjenih vez za pregled in morebitno uvažanje na drugem strežniku.
+    purged: Podatke o tem strežniku so očistili skrbniki vašega strežnika.
+    type: Dogodek
   statuses:
     attached:
       audio:

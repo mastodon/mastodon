@@ -1659,10 +1659,21 @@ da:
     preferences: Præferencer
     profile: Offentlig profil
     relationships: Følger og følgere
+    severed_relationships: Afbrudte forhold
     statuses_cleanup: Auto-indlægssletning
     strikes: Moderationsadvarsler
     two_factor_authentication: Tofaktorgodkendelse
     webauthn_authentication: Sikkerhedsnøgler
+  severed_relationships:
+    download: Download (%{count})
+    event_type:
+      account_suspension: Kontosuspendering (%{target_name})
+      domain_block: Serversuspendering (%{target_name})
+      user_domain_block: "%{target_name} blev blokeret"
+    lost_followers: Tabte følgere
+    preamble: Der kan mistes fulgte objekter og følgere, når et domæne blokeres eller moderatorerne beslutter at suspendere en ekstern server. Når det sker, kan der downloades lister over afbrudte relationer til inspektion og mulig import på anden server.
+    purged: Oplysninger om denne server er blevet renset af serveradministratoreren.
+    type: Begivenhed
   statuses:
     attached:
       audio:
