@@ -2,60 +2,44 @@ import PropTypes from 'prop-types';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import HeartBrokenIcon from '@/material-icons/400-24px/heart_broken-fill.svg?react';
+import { Icon }  from 'mastodon/components/icon';
+import { domain } from 'mastodon/initial_state';
 
-import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
-
-// This needs to be kept in sync with app/models/relationship_severance_event.rb
+// This needs to be kept in sync with app/models/relationships_severance_event.rb
 const messages = defineMessages({
-  account_suspension: { id: 'relationship_severance_notification.types.account_suspension', defaultMessage: 'Account has been suspended' },
-  domain_block: { id: 'relationship_severance_notification.types.domain_block', defaultMessage: 'Domain has been suspended' },
-  user_domain_block: { id: 'relationship_severance_notification.types.user_domain_block', defaultMessage: 'You blocked this domain' },
+  account_suspension: { id: 'notification.relationships_severance_event.account_suspension', defaultMessage: 'An admin from {from} has suspended {target}, which means you can no longer receive updates from them or interact with them.' },
+  domain_block: { id: 'notification.relationships_severance_event.domain_block', defaultMessage: 'An admin from {from} has blocked {target}, including {followersCount} of your followers and {followingCount, plural, one {# account} other {# accounts}} you follow.' },
+  user_domain_block: { id: 'notification.relationships_severance_event.user_domain_block', defaultMessage: 'You have blocked {target}, removing {followersCount} of your followers and {followingCount, plural, one {# account} other {# accounts}} you follow.' },
 });
 
-const RelationshipsSeveranceEvent = ({ event, hidden }) => {
+export const RelationshipsSeveranceEvent = ({ type, target, followingCount, followersCount, hidden }) => {
   const intl = useIntl();
 
-  if (hidden || !event) {
+  if (hidden) {
     return null;
   }
 
   return (
-    <div className='notification__report'>
-      <div className='notification__report__details'>
-        <div>
-          <RelativeTimestamp timestamp={event.get('created_at')} short={false} />
-          {' · '}
-          { event.get('purged') ? (
-            <FormattedMessage
-              id='relationship_severance_notification.purged_data'
-              defaultMessage='purged by administrators'
-            />
-          ) : (
-            <FormattedMessage
-              id='relationship_severance_notification.relationships'
-              defaultMessage='{count, plural, one {# relationship} other {# relationships}}'
-              values={{ count: event.get('followers_count', 0) + event.get('following_count', 0) }}
-            />
-          )}
-          <br />
-          <strong>{intl.formatMessage(messages[event.get('type')])}</strong>
-        </div>
+    <a href='/severed_relationships' target='_blank' rel='noopener noreferrer' className='notification__relationships-severance-event'>
+      <Icon id='heart_broken' icon={HeartBrokenIcon} />
 
-        <div className='notification__report__actions'>
-          <a href='/severed_relationships' className='button' target='_blank' rel='noopener noreferrer'>
-            <FormattedMessage id='relationship_severance_notification.view' defaultMessage='View' />
-          </a>
-        </div>
+      <div className='notification__relationships-severance-event__content'>
+        <p>{intl.formatMessage(messages[type], { from: <strong>{domain}</strong>, target: <strong>{target}</strong>, followingCount, followersCount })}</p>
+        <span className='link-button'><FormattedMessage id='notification.relationships_severance_event.learn_more' defaultMessage='Learn more' /></span>
       </div>
-    </div>
+    </a>
   );
-
 };
 
 RelationshipsSeveranceEvent.propTypes = {
-  event: ImmutablePropTypes.map.isRequired,
+  type: PropTypes.oneOf([
+    'account_suspension',
+    'domain_block',
+    'user_domain_block',
+  ]).isRequired,
+  target: PropTypes.string.isRequired,
+  followersCount: PropTypes.number.isRequired,
+  followingCount: PropTypes.number.isRequired,
   hidden: PropTypes.bool,
 };
-
-export default RelationshipsSeveranceEvent;
