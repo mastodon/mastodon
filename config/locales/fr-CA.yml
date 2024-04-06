@@ -597,6 +597,9 @@ fr-CA:
       actions_description_html: Décidez des mesures à prendre pour résoudre ce signalement. Si vous prenez des mesures punitives contre le compte signalé, une notification sera envoyée par e-mail, sauf si la catégorie <strong>Spam</strong> est sélectionnée.
       actions_description_remote_html: Décidez des mesures à prendre pour résoudre ce signalement. Cela n'affectera que la manière dont <strong>votre</strong> serveur communique avec ce compte distant et traite son contenu.
       add_to_report: Ajouter davantage au rapport
+      already_suspended_badges:
+        local: Déjà suspendu sur ce serveur
+        remote: Déjà suspendu sur le serveur distant
       are_you_sure: Voulez-vous vraiment faire ça ?
       assign_to_self: Me l’assigner
       assigned: Modérateur assigné
@@ -1652,13 +1655,26 @@ fr-CA:
     import: Import de données
     import_and_export: Import et export
     migrate: Migration de compte
+    notifications: Notifications par mail
     preferences: Préférences
     profile: Profil
     relationships: Abonnements et abonné·e·s
+    severed_relationships: Relations rompues
     statuses_cleanup: Suppression automatique de messages
     strikes: Sanctions de modération
     two_factor_authentication: Identification à deux facteurs
     webauthn_authentication: Clés de sécurité
+  severed_relationships:
+    download: Téléchargement (%{count})
+    event_type:
+      account_suspension: Suspension du compte (%{target_name})
+      domain_block: Suspension du serveur (%{target_name})
+      user_domain_block: Vous avez bloqué %{target_name}
+    lost_followers: Abonné·e·s perdu·e·s
+    lost_follows: Abonnements perdus
+    preamble: Vous pouvez perdre des abonnés et des abonnements lorsque vous bloquez un domaine ou lorsque vos modérateurs décident de suspendre un serveur distant. Lorsque cela arrive, vous êtes en mesure de télécharger une liste de vos relations rompues, afin de l'inspecter et d'éventuellement l'importer sur un autre serveur.
+    purged: Les informations sur ce serveur ont été purgées par les administrateurs du serveur.
+    type: Evènement
   statuses:
     attached:
       audio:
@@ -1864,6 +1880,9 @@ fr-CA:
       follows_subtitle: Suivez des comptes populaires
       follows_title: Qui suivre
       follows_view_more: Voir plus de personnes à suivre
+      hashtags_recent_count:
+        one: "%{people} personne dans les deux derniers jours"
+        other: "%{people} personnes dans les deux derniers jours"
       hashtags_subtitle: Explorez les tendances depuis les 2 derniers jours
       hashtags_title: Hashtags populaires
       hashtags_view_more: Voir plus de hashtags populaires

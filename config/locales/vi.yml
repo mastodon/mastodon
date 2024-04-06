@@ -1633,10 +1633,22 @@ vi:
     preferences: Chung
     profile: Hồ sơ
     relationships: Quan hệ
+    severed_relationships: Mối quan hệ bị cắt đứt
     statuses_cleanup: Tự động xóa tút cũ
     strikes: Lần cảnh cáo
     two_factor_authentication: Xác minh 2 bước
     webauthn_authentication: Khóa bảo mật
+  severed_relationships:
+    download: Tải xuống (%{count})
+    event_type:
+      account_suspension: Người bị vô hiệu hóa (%{target_name})
+      domain_block: Máy chủ bị vô hiệu hóa (%{target_name})
+      user_domain_block: Bạn đã chặn %{target_name}
+    lost_followers: Mất người theo dõi
+    lost_follows: Mất người đang theo dõi
+    preamble: Bạn có thể mất số lượt theo dõi và người theo dõi khi chặn một máy chủ hoặc khi kiểm duyệt viên của bạn quyết định tạm dừng máy chủ từ xa. Khi điều đó xảy ra, bạn sẽ có thể tải xuống danh sách các mối quan hệ đã bị cắt đứt, để kiểm tra và nhập vào máy chủ khác.
+    purged: Thông tin về máy chủ này đã bị quản trị viên máy chủ của bạn xóa sạch.
+    type: Sự kiện
   statuses:
     attached:
       audio:

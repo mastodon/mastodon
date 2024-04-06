@@ -1661,10 +1661,22 @@ it:
     preferences: Preferenze
     profile: Profilo
     relationships: Follows e followers
+    severed_relationships: Relazioni interrotte
     statuses_cleanup: Cancellazione automatica dei post
     strikes: Sanzioni di moderazione
     two_factor_authentication: Autenticazione a due fattori
     webauthn_authentication: Chiavi di sicurezza
+  severed_relationships:
+    download: Scarica (%{count})
+    event_type:
+      account_suspension: Sospensione dell'account (%{target_name})
+      domain_block: Sospensione del server (%{target_name})
+      user_domain_block: Hai bloccato %{target_name}
+    lost_followers: Seguaci persi
+    lost_follows: Account seguiti persi
+    preamble: Potresti perdere account seguiti e seguaci quando blocchi un dominio o quando i tuoi moderatori decidono di sospendere un server remoto. Quando ciò accadrà, potrai scaricare liste di relazioni interrotte, da consultare ed eventualmente importare su un altro server.
+    purged: Le informazioni su questo server sono state eliminate dagli amministratori del tuo server.
+    type: Evento
   statuses:
     attached:
       audio:
@@ -1870,6 +1882,9 @@ it:
       follows_subtitle: Segui account ben noti
       follows_title: Chi seguire
       follows_view_more: Visualizza più persone da seguire
+      hashtags_recent_count:
+        one: "%{people} persona negli ultimi 2 giorni"
+        other: "%{people} persone negli ultimi 2 giorni"
       hashtags_subtitle: Esplora le tendenze degli ultimi 2 giorni
       hashtags_title: Hashtag di tendenza
       hashtags_view_more: Visualizza altri hashtag di tendenza
