@@ -31,7 +31,6 @@ class UserSettings
     setting :disable_swiping, default: false
     setting :delete_modal, default: true
     setting :reblog_modal, default: false
-    setting :unfollow_modal, default: true
     setting :favourite_modal, default: false
     setting :reduce_motion, default: false
     setting :expand_content_warnings, default: false

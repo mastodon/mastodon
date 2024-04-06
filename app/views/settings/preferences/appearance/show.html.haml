@@ -59,7 +59,6 @@
     %h4= t 'appearance.confirmation_dialogs'
 
     .fields-group
-      = ff.input :'web.unfollow_modal', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_unfollow_modal')
       = ff.input :'web.reblog_modal', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_boost_modal')
       = ff.input :'web.favourite_modal', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_favourite_modal'), glitch_only: true
       = ff.input :'web.delete_modal', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_delete_modal')
