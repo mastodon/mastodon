@@ -89,7 +89,7 @@ class Notification < ApplicationRecord
     belongs_to :favourite, inverse_of: :notification
     belongs_to :poll, inverse_of: false
     belongs_to :report, inverse_of: false
-    belongs_to :relationship_severance_event, inverse_of: false
+    belongs_to :account_relationship_severance_event, inverse_of: false
   end
 
   validates :type, inclusion: { in: TYPES }
