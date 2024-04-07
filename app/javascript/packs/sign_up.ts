@@ -43,6 +43,6 @@ ready(() => {
 
       button.appendChild(container);
     });
-}).catch((e) => {
+}).catch((e: unknown) => {
   throw e;
 });

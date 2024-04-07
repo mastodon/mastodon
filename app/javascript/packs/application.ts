@@ -10,6 +10,6 @@ start();
 loadPolyfills()
   .then(loadLocale)
   .then(main)
-  .catch((e) => {
+  .catch((e: unknown) => {
     console.error(e);
   });

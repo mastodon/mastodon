@@ -13,6 +13,6 @@ ready(() => {
   image.addEventListener('mouseleave', () => {
     image.src = '/oops.png';
   });
-}).catch((e) => {
+}).catch((e: unknown) => {
   console.error(e);
 });

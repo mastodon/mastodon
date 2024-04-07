@@ -24,13 +24,13 @@ function loaded() {
 }
 
 function main() {
-  ready(loaded).catch((error) => {
+  ready(loaded).catch((error: unknown) => {
     throw error;
   });
 }
 
 loadPolyfills()
   .then(main)
-  .catch((error) => {
+  .catch((error: unknown) => {
     throw error;
   });
