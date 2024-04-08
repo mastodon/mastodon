@@ -88,7 +88,7 @@ sk:
         remote: Federované
         title: Umiestnenie
       login_status: Stav prihlásenia
-      media_attachments: Prílohy
+      media_attachments: Mediálne prílohy
       memorialize: Zmeň na "Navždy budeme spomínať"
       memorialized: Spomienka na
       memorialized_msg: Úspešne zmenené %{username} na spomienkové konto
@@ -175,6 +175,7 @@ sk:
         approve_user: Odobri užívateľa
         assigned_to_self_report: Priraď hlásenie
         change_email_user: Zmeň email pre užívateľa
+        change_role_user: Zmeň užívateľskú rolu
         confirm_user: Potvrď užívateľa
         create_account_warning: Vytvor výstrahu
         create_announcement: Vytvor oboznámenie
@@ -197,11 +198,14 @@ sk:
         destroy_ip_block: Vymaž IP pravidlo
         destroy_status: Vymaž príspevok
         destroy_unavailable_domain: Vymaž nedostupnú doménu
+        destroy_user_role: Zničiť rolu
         disable_2fa_user: Vypni dvoj-faktorové overovanie
         disable_custom_emoji: Vypni vlastné emotikony
+        disable_sign_in_token_auth_user: Zakázať používateľom overovanie e-mailovým tokenom
         disable_user: Deaktivuj užívateľa
         enable_custom_emoji: Povoľ vlastné emotikony
         enable_user: Povoľ užívateľa
+        memorialize_account: Zmena na „in memoriam“
         promote_user: Povýš užívateľskú rolu
         reject_appeal: Zamietni námietku
         reject_user: Zamietni užívateľa
@@ -251,15 +255,22 @@ sk:
         enable_user_html: "%{name} povolil/a prihlásenie pre používateľa %{target}"
         memorialize_account_html: "%{name} zmenil/a účet %{target} na pamätnú stránku"
         reject_appeal_html: "%{name} zamietol/la námietku moderovacieho rozhodnutia od %{target}"
+        remove_avatar_user_html: "%{name} vymazal/a %{target}/ov/in avatar"
         reopen_report_html: "%{name} znovu otvoril/a nahlásenie %{target}"
         resend_user_html: "%{name} znovu odoslal/a potvrdzovací email pre %{target}"
         reset_password_user_html: "%{name} resetoval/a heslo používateľa %{target}"
         resolve_report_html: "%{name} vyriešil/a nahlásenie %{target}"
-        sensitive_account_html: "%{name} označil médium od %{target} za chúlostivé"
+        sensitive_account_html: "%{name} označil/a médium od %{target} za chúlostivé"
         silence_account_html: "%{name} obmedzil/a účet %{target}"
         suspend_account_html: "%{name} zablokoval/a účet používateľa %{target}"
         unassigned_report_html: "%{name} odobral/a report od %{target}"
+        unsensitive_account_html: "%{name} odznačil/a médium od %{target} ako chúlostivé"
         unsuspend_account_html: "%{name} spojazdnil/a účet %{target}"
+        update_announcement_html: "%{name} aktualizoval/a oboznámenie %{target}"
+        update_custom_emoji_html: "%{name} aktualizoval/a emotikonu %{target}"
+        update_domain_block_html: "%{name} aktualizoval/a blokovanie domény pre %{target}"
+        update_ip_block_html: "%{name} zmenil/a pravidlo pre IP %{target}"
+        update_status_html: "%{name} aktualizoval/a príspevok od %{target}"
         update_user_role_html: "%{name} zmenil/a rolu pre %{target}"
       deleted_account: zmazaný účet
       empty: Žiadne záznamy nenájdené.
@@ -363,6 +374,7 @@ sk:
           silence: Obmedz
           suspend: Pozastav
         title: Nové blokovanie domény
+      no_domain_block_selected: Žiadne blokovanie domén nebolo zmenené, keďže žiadne neboli vybrané
       not_permitted: Nemáš povolenie na vykonanie tohto kroku
       obfuscate: Zatemniť názov domény
       private_comment: Súkromný komentár
@@ -438,10 +450,13 @@ sk:
         instance_statuses_measure: uložené príspevky
       delivery:
         all: Všetko
+        clear: Vymazať chyby doručovania
         failing: Zlyhávajúce
+        restart: Reštartovať doručovanie
         stop: Zastav doručenie
         unavailable: Nedostupné
       delivery_available: Je v dosahu doručovania
+      delivery_error_days: Dni chybného doručovania
       empty: Nenájdené žiadne domény.
       moderation:
         all: Všetky
@@ -570,6 +585,7 @@ sk:
         administration: Spravovanie
         invites: Pozvánky
         moderation: Moderácia
+        special: Špeciálne
       delete: Vymaž
       edit: Uprav postavenie %{name}
       everyone: Východzie oprávnenia
@@ -625,6 +641,7 @@ sk:
           approved: Pre registráciu je nutné povolenie
           none: Nikto sa nemôže registrovať
           open: Ktokoľvek sa môže zaregistrovať
+        warning_hint: Odporúčame používať "Pre registráciu je potrebné schválenie", pokiaľ si niesi istý/á, že tvoj moderovací tím vie zvládnuť spam a záškodné registrácie včas.
       title: Nastavenia servera
     site_uploads:
       delete: Vymaž nahratý súbor
@@ -723,15 +740,18 @@ sk:
       edit_preset: Uprav varovnú predlohu
       title: Spravuj varovné predlohy
     webhooks:
-      delete: Zmazať
+      delete: Vymaž
       disable: Vypni
       disabled: Vypnuté
       enable: Povoľ
       enabled: Aktívne
       status: Stav
   admin_mailer:
+    auto_close_registrations:
+      subject: Registrácie na %{instance} boli automaticky prepnuté na vyžadujúce schválenie
     new_appeal:
       actions:
+        delete_statuses: vymazať ich príspevky
         none: varovanie
         silence: obmedziť ich účet
     new_pending_account:
@@ -783,7 +803,9 @@ sk:
     captcha_confirmation:
       title: Bezpečnostná kontrola
     confirmations:
+      clicking_this_link: kliknutím na tento odkaz
       login_link: prihlás sa
+      proceed_to_login_html: Teraz môžeš pokračovať na %{login_link}.
       welcome_title: Vitaj, %{name}!
     delete_account: Vymaž účet
     delete_account_html: Pokiaľ chceš svoj účet odtiaľto vymazať, môžeš tak <a href="%{path}">urobiť tu</a>. Budeš požiadaný/á o potvrdenie tohto kroku.
@@ -791,6 +813,7 @@ sk:
       prefix_invited_by_user: "@%{name} ťa pozýva na tento Mastodon server!"
       prefix_sign_up: Zaregistruj sa na Mastodone už dnes!
       suffix: S pomocou účtu budeš môcť nasledovať ľudí, posielať príspevky, a vymieňať si správy s užívateľmi na hocijakom Mastodon serveri, ale aj na iných serveroch!
+    dont_have_your_security_key: Nemáš svoj bezpečnostný kľúč?
     forgot_password: Zabudnuté heslo?
     invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítaj si nový.
     log_in_with: Prihlás sa s
@@ -801,6 +824,8 @@ sk:
     or_log_in_with: Alebo prihlás s
     progress:
       confirm: Potvrď email
+      details: Tvoje údaje
+      rules: Súhlas s pravidlami
     register: Zaregistruj sa
     registration_closed: "%{instance} neprijíma nových členov"
     resend_confirmation: Odošli potvrdzovací odkaz znovu
@@ -861,6 +886,7 @@ sk:
       username_unavailable: Tvoja prezývka ostane neprístupná
   disputes:
     strikes:
+      action_taken: Vykonaný zákrok
       appeal: Namietni
       appeals:
         submit: Pošli námietku
@@ -1072,7 +1098,6 @@ sk:
   notifications:
     email_events: Udalosti oznamované emailom
     email_events_hint: 'Vyber si udalosti, pre ktoré chceš dostávať oboznámenia:'
-    other_settings: Ostatné oboznamovacie nastavenia
   otp_authentication:
     enable: Povoľ
   pagination:
@@ -1173,11 +1198,14 @@ sk:
     import: Importuj
     import_and_export: Import a export
     migrate: Presuň účet
-    notifications: Oboznámenia
+    notifications: Emailové upozornenia
     preferences: Voľby
     profile: Profil
     relationships: Sledovania a následovatelia
     two_factor_authentication: Dvojfázové overenie
+  severed_relationships:
+    lost_followers: Stratení nasledovatelia
+    lost_follows: Stratené sledovania
   statuses:
     attached:
       description: 'Priložené: %{attached}'
@@ -1275,11 +1303,14 @@ sk:
         silence: Účet bol obmedzený
         suspend: Tvoj účet bol vylúčený
     welcome:
-      edit_profile_action: Nastav profil
+      apps_title: Mastodon aplikácie
+      edit_profile_action: Prispôsob
       explanation: Tu nájdeš nejaké tipy do začiatku
-      final_action: Začni prispievať
-      full_handle: Adresa tvojho profilu v celom formáte
-      full_handle_hint: Toto je čo musíš dať vedieť svojím priateľom aby ti mohli posielať správy, alebo ťa následovať z iného serveru.
+      feature_action: Zisti viac
+      follow_action: Nasleduj
+      post_title: Vytvor svoj prvý príspevok
+      share_action: Zdieľaj
+      sign_in_action: Prihlás sa
       subject: Vitaj na Mastodone
       title: Vitaj na palube, %{name}!
   users:

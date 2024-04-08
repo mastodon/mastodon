@@ -32,21 +32,21 @@ lad:
       announcement:
         all_day: Kuando esta eskojido solo se amostraran las datas del rango de tiempo
         ends_at: Opsyonal. El pregon dezaparesera otomatikamente en este momento
-        scheduled_at: Deshar en blanko para publikar el pregon pishin
+        scheduled_at: Desha en blanko para publikar el pregon pishin
         starts_at: Opsyonal. En caso de ke tu pregon este atado a un intervalo de tiempo espesifiko
         text: Puedes kulanear la sintaksa de publikasyones. Por favor nota el espasyo ke okupara el pregon en el ekran del utilizador
       appeal:
         text: Solo puedes apelar un amonestamiento una vez
       defaults:
         autofollow: Los utilizadores ke se enrejistren por la envitasyon te segiran otomatikamente
-        avatar: PNG, GIF o JPG. Maksimo %{size}. Sera eskalado a %{dimensions}px
+        avatar: WEBP, PNG, GIF o JPG. Maksimo %{size}. Sera eskalado a %{dimensions}px
         bot: Indika ke este kuento egzekuta prinsipalmente aksyones otomatizadas i podria no ser monitorizada
         context: Uno o multiples kontekstos en los ke deve aplikarse el filtro
         current_password: Por razones de sigurita por favor ingresa el kod del kuento aktual
         current_username: Para konfirmar, por favor ingresa el nombre de utilizador del kuento aktual
         digest: Solo embiado dempues de un eluengo periodo de inaktivita i solo si tienes recibido mesajes personales durante tu ausensya
         email: Se te embiara konfirmasyon por posta elektronika
-        header: PNG, GIF o JPG. Maksimo %{size}. Sera eskalado a %{dimensions}px
+        header: WEBP, PNG, GIF o JPG. Maksimo %{size}. Sera eskalado a %{dimensions}px
         inbox_url: Kopia el URL de la pajina prinsipala del relevo ke keres utilizar
         irreversible: Las publikasyones filtradas dezapareseran irreversivlemente, inkluzo si este filtro es supremido mas adelante
         locale: La lingua de la enterfaz de utilizador, posta i avizos arrepushados
@@ -116,6 +116,7 @@ lad:
           sign_up_requires_approval: Muevas enrejistrasyones rekeriran tu achetasyon
         severity: Eskoje lo ke pasara kon las petisyones dizde este IP
       rule:
+        hint: Opsyonal. Adjusta mas detalyos sovre la regla
         text: Deskrive una norma o rekerensya para los utilizadores de este sirvidor. Aprova fazerla kurta i kolay
       sessions:
         otp: 'Introduse el kodiche de autentifikasyon de dos pasos djenerado por tu aplikasyon de telefon o uza uno de tus kodiches de recuperasyon:'
@@ -299,6 +300,7 @@ lad:
           patch: Avizame de aktualizasyones de yerros
         trending_tag: Un muevo trend nesesita revizyon
       rule:
+        hint: Enformasyon adisyonala
         text: Regla
       settings:
         indexable: Inkluye la pajina de profil en los bushkadores

@@ -14,7 +14,8 @@
 
   %hr.spacer
 
-  = react_admin_component :impact_report, domain: @domain_block.domain
+  = react_admin_component :impact_report,
+                          domain: @domain_block.domain
 
   .actions
     = link_to t('.cancel'), admin_instances_path, class: 'button button-tertiary'

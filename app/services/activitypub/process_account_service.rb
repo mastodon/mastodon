@@ -201,10 +201,15 @@ class ActivityPub::ProcessAccountService < BaseService
     value = first_of_value(@json[key])
 
     return if value.nil?
-    return value['url'] if value.is_a?(Hash)
 
-    image = fetch_resource_without_id_validation(value)
-    image['url'] if image
+    if value.is_a?(String)
+      value = fetch_resource_without_id_validation(value)
+      return if value.nil?
+    end
+
+    value = first_of_value(value['url']) if value.is_a?(Hash) && value['type'] == 'Image'
+    value = value['href'] if value.is_a?(Hash)
+    value if value.is_a?(String)
   end
 
   def public_key
@@ -277,7 +282,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def moved_account
     account   = ActivityPub::TagManager.instance.uri_to_resource(@json['movedTo'], Account)
-    account ||= ActivityPub::FetchRemoteAccountService.new.call(@json['movedTo'], id: true, break_on_redirect: true, request_id: @options[:request_id])
+    account ||= ActivityPub::FetchRemoteAccountService.new.call(@json['movedTo'], break_on_redirect: true, request_id: @options[:request_id])
     account
   end
 

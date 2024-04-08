@@ -1,16 +1,37 @@
 .fields-row
   .fields-row__column.fields-row__column-6.fields-group
-    = f.input :title, as: :string, wrapper: :with_label, hint: false
+    = f.input :title,
+              as: :string,
+              hint: false,
+              wrapper: :with_label
   .fields-row__column.fields-row__column-6.fields-group
-    = f.input :expires_in, wrapper: :with_label, collection: [30.minutes, 1.hour, 6.hours, 12.hours, 1.day, 1.week].map(&:to_i), label_method: ->(i) { I18n.t("invites.expires_in.#{i}") }, include_blank: I18n.t('invites.expires_in_prompt')
+    = f.input :expires_in,
+              collection: [30.minutes, 1.hour, 6.hours, 12.hours, 1.day, 1.week].map(&:to_i),
+              include_blank: I18n.t('invites.expires_in_prompt'),
+              label_method: ->(i) { I18n.t("invites.expires_in.#{i}") },
+              wrapper: :with_label
 
 .fields-group
-  = f.input :context, wrapper: :with_block_label, collection: CustomFilter::VALID_CONTEXTS, as: :check_boxes, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', label_method: ->(context) { I18n.t("filters.contexts.#{context}") }, include_blank: false
+  = f.input :context,
+            as: :check_boxes,
+            collection_wrapper_tag: 'ul',
+            collection: CustomFilter::VALID_CONTEXTS,
+            include_blank: false,
+            item_wrapper_tag: 'li',
+            label_method: ->(context) { I18n.t("filters.contexts.#{context}") },
+            wrapper: :with_block_label
 
 %hr.spacer/
 
 .fields-group
-  = f.input :filter_action, as: :radio_buttons, collection: %i(warn hide), include_blank: false, wrapper: :with_block_label, label_method: ->(action) { filter_action_label(action) }, hint: t('simple_form.hints.filters.action'), required: true
+  = f.input :filter_action,
+            as: :radio_buttons,
+            collection: %i(warn hide),
+            hint: t('simple_form.hints.filters.action'),
+            include_blank: false,
+            label_method: ->(action) { filter_action_label(action) },
+            required: true,
+            wrapper: :with_block_label
 
 %hr.spacer/
 

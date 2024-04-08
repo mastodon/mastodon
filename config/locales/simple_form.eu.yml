@@ -39,14 +39,14 @@ eu:
         text: Neurri bati apelazioa behin bakarrik jarri diezaiokezu
       defaults:
         autofollow: Gonbidapena erabiliz izena ematen dutenek automatikoki jarraituko dizute
-        avatar: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px neurrira eskalatuko da
+        avatar: WEBP, GIF edo JPG. Gehienez %{size}. %{dimensions}px neurrira eskalatuko da
         bot: Kontu honek nagusiki automatizatutako ekintzak burutzen ditu eta agian ez du inork monitorizatzen
         context: Iragazkia aplikatzeko testuinguru bat edo batzuk
         current_password: Segurtasunagatik sartu uneko kontuaren pasahitza
         current_username: Berresteko sartu uneko kontuaren erabiltzaile-izena
-        digest: Jarduerarik gabeko epe luze bat eta gero mezu pertsonalen bat jaso baduzu, besterik ez
+        digest: Jarduerarik gabeko epe luze bat eta gero mezu pertsonalen bat jaso baduzu soilik
         email: Baieztapen e-mail bat bidaliko zaizu
-        header: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px eskalara txikituko da
+        header: WEBP, GIF edo JPG. Gehienez %{size}. %{dimensions}px neurrira eskalatuko da
         inbox_url: Kopiatu erabili nahi duzun errelearen hasiera orriaren URLa
         irreversible: Iragazitako tootak betirako galduko dira, geroago iragazkia kentzen baduzu ere
         locale: Erabiltzaile-interfazea, e-mail mezuen eta jakinarazpenen hizkuntza
@@ -116,6 +116,7 @@ eu:
           sign_up_requires_approval: Izen emate berriek zure onarpena beharko dute
         severity: Aukeratu zer gertatuko den IP honetatik datozen eskaerekin
       rule:
+        hint: Aukerakoa. Eman arauari buruzko xehetasun gehiago.
         text: Deskribatu zerbitzari honetako erabiltzaileentzako arau edo betekizun bat. Saiatu labur eta sinple idazten
       sessions:
         otp: 'Sartu zure telefonoko aplikazioak sortutako bi faktoreetako kodea, edo erabili zure berreskuratze kodeetako bat:'
@@ -126,7 +127,7 @@ eu:
       tag:
         name: Letrak maiuskula/minuskulara aldatu ditzakezu besterik ez, adibidez irakurterrazago egiteko
       user:
-        chosen_languages: Ezer markatzekotan, hautatutako hizkuntzetan dauden tootak besterik ez dira erakutsiko
+        chosen_languages: Markatzean, hautatutako hizkuntzetan dauden tutak besterik ez dira erakutsiko.
         role: Rolak erabiltzaileak dituen baimenak kontrolatzen ditu
       user_role:
         color: Rolarentzat erabiltzaile interfazean erabiliko den kolorea, formatu hamaseitarreko RGB bezala
@@ -299,6 +300,7 @@ eu:
           patch: Jakinarazi akats zuzenketa eguneraketa guztiak
         trending_tag: Joera berriak berrikuspena behar du
       rule:
+        hint: Informazio gehigarria
         text: Araua
       settings:
         indexable: Gehitu profila bilaketa-motorretan

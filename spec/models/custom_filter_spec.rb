@@ -32,4 +32,12 @@ RSpec.describe CustomFilter do
       expect(record).to model_have_error_on_field(:context)
     end
   end
+
+  describe 'Normalizations' do
+    it 'cleans up context values' do
+      record = described_class.new(context: ['home', 'notifications', 'public    ', ''])
+
+      expect(record.context).to eq(%w(home notifications public))
+    end
+  end
 end

@@ -39,14 +39,14 @@ sq:
         text: Një paralajmërim mund ta apeloni vetëm një herë
       defaults:
         autofollow: Personat që regjistrohen përmes ftesës do t’ju ndjekin vetvetiu
-        avatar: PNG, GIF ose JPG. Maksimumi %{size}. Do të zvogëlohen në %{dimensions}px
+        avatar: WEBP, PNG, GIF ose JPG. E shumta %{size}. Do të zvogëlohet në %{dimensions}px
         bot: Kjo llogari kryesisht bën veprime të automatizuara dhe mund të mos mbikëqyret dot
         context: Një ose disa kontekste kur duhet të zbatohet filtri
         current_password: Për qëllime sigurie, ju lutemi, jepni fjalëkalimin e llogarisë së tanishme
         current_username: Që ta ripohoni, ju lutemi, jepni emrin e përdoruesit të llogarisë së tanishme
         digest: I dërguar vetëm pas një periudhe të gjatë pasiviteti dhe vetëm nëse keni marrë ndonjë mesazh personal gjatë mungesës tuaj
         email: Do t’ju dërgohet një email ripohimi
-        header: PNG, GIF ose JPG. E shumta %{size}. Do të ripërmasohet në %{dimensions}px
+        header: WEBP, PNG, GIF ose JPG. E shumta %{size}. Do të zvogëlohet në %{dimensions}px
         inbox_url: Kopjoni URL-në prej faqes ballore të relesë që doni të përdorni
         irreversible: Mesazhet e filtruar do të zhduken në mënyrë të pakthyeshme, edhe nëse filtri hiqet më vonë
         locale: Gjuha e ndërfaqes së përdoruesit, email-eve dhe njoftimeve <em>push</em>
@@ -116,6 +116,7 @@ sq:
           sign_up_requires_approval: Regjistrime të reja do të duan miratimin tuaj
         severity: Zgjidhni ç’do të ndodhë me kërkesa nga kjo IP
       rule:
+        hint: Opsionale. Jepni më tepër hollësi rreth këtij rregulli
         text: Përshkruani një rregull ose një domosdoshmëri për përdoruesit në këtë shërbyes. Përpiquni të jetë i shkurtër dhe i thjeshtë
       sessions:
         otp: 'Jepni kodin dyfaktorësh të prodhuar nga aplikacioni i telefonit tuaj ose përdorni një nga kodet tuaj të rikthimeve:'
@@ -299,6 +300,7 @@ sq:
           patch: Njofto për ndreqje të metash
         trending_tag: Për gjëra të reja në modë lypset shqyrtim
       rule:
+        hint: Informacion shtesë
         text: Rregull
       settings:
         indexable: Përfshi faqe profili në motorë kërkimesh

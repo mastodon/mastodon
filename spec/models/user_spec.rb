@@ -38,6 +38,12 @@ RSpec.describe User do
       user.save(validate: false)
       expect(user.valid?).to be true
     end
+
+    it 'is valid with a localhost e-mail address' do
+      user = Fabricate.build(:user, email: 'admin@localhost')
+      user.valid?
+      expect(user.valid?).to be true
+    end
   end
 
   describe 'Normalizations' do
@@ -420,7 +426,10 @@ RSpec.describe User do
     let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
     let!(:web_push_subscription) { Fabricate(:web_push_subscription, access_token: access_token) }
 
+    let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
+
     before do
+      allow(redis).to receive(:pipelined).and_yield(redis_pipeline_stub)
       user.reset_password!
     end
 
@@ -437,6 +446,10 @@ RSpec.describe User do
       expect(Doorkeeper::AccessToken.active_for(user).count).to eq 0
     end
 
+    it 'revokes streaming access for all access tokens' do
+      expect(redis_pipeline_stub).to have_received(:publish).with("timeline:access_token:#{access_token.id}", Oj.dump(event: :kill)).once
+    end
+
     it 'removes push subscriptions' do
       expect(Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count).to eq 0
       expect { web_push_subscription.reload }.to raise_error(ActiveRecord::RecordNotFound)
@@ -444,36 +457,35 @@ RSpec.describe User do
   end
 
   describe '#mark_email_as_confirmed!' do
-    subject(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
+    subject { user.mark_email_as_confirmed! }
 
-    before do
-      ActionMailer::Base.deliveries.clear
-      user.mark_email_as_confirmed!
-    end
-
-    after { ActionMailer::Base.deliveries.clear }
+    let!(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
 
     context 'when user is new' do
       let(:confirmed_at) { nil }
 
-      it 'confirms user' do
-        expect(user.confirmed_at).to be_present
-      end
+      it 'confirms user and delivers welcome email', :sidekiq_inline do
+        emails = capture_emails { subject }
 
-      it 'delivers mails', :sidekiq_inline do
-        expect(ActionMailer::Base.deliveries.count).to eq 2
+        expect(user.confirmed_at).to be_present
+        expect(emails.size)
+          .to eq(1)
+        expect(emails.first)
+          .to have_attributes(
+            to: contain_exactly(user.email),
+            subject: eq(I18n.t('user_mailer.welcome.subject'))
+          )
       end
     end
 
     context 'when user is not new' do
       let(:confirmed_at) { Time.zone.now }
 
-      it 'confirms user' do
-        expect(user.confirmed_at).to be_present
-      end
+      it 'confirms user but does not deliver welcome email' do
+        emails = capture_emails { subject }
 
-      it 'does not deliver mail' do
-        expect(ActionMailer::Base.deliveries.count).to eq 0
+        expect(user.confirmed_at).to be_present
+        expect(emails).to be_empty
       end
     end
   end

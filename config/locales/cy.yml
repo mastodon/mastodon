@@ -823,6 +823,7 @@ cy:
         disabled: I neb
         users: I ddefnyddwyr lleol wedi'u mewngofnodi
       registrations:
+        moderation_recommandation: Gwnewch yn siŵr bod gennych chi dîm cymedroli digonol ac adweithiol cyn i chi agor cofrestriadau i bawb!
         preamble: Rheoli pwy all greu cyfrif ar eich gweinydd.
         title: Cofrestriadau
       registrations_mode:
@@ -830,6 +831,7 @@ cy:
           approved: Mae angen cymeradwyaeth i gofrestru
           none: Nid oes neb yn gallu cofrestru
           open: Gall unrhyw un cofrestru
+        warning_hint: Rydym yn argymell defnyddio “Mae angen cymeradwyaeth ar gyfer cofrestru” oni bai eich bod yn hyderus y gall eich tîm cymedroli ymdrin â chofrestriadau sbam a rhai maleisus mewn modd amserol.
       security:
         authorized_fetch: Mae angen dilysu gan weinyddion ffederal
         authorized_fetch_hint: Mae gofyn am ddilysiad gan weinyddion ffederal yn galluogi gorfodi llymach ar flociau lefel defnyddiwr a lefel gweinydd. Fodd bynnag, daw hyn ar gost perfformiad arafach, mae'n lleihau cyrhaeddiad eich atebion, a gall gyflwyno materion cydnawsedd gyda rhai gwasanaethau ffederal. Yn ogystal, ni fydd hyn yn atal actorion ymroddedig rhag estyn eich postiadau a'ch cyfrifon cyhoeddus.
@@ -1038,6 +1040,9 @@ cy:
       title: Bachau Gwe
       webhook: Bachyn Gwe
   admin_mailer:
+    auto_close_registrations:
+      body: Oherwydd diffyg gweithgarwch cymedrolwr diweddar, mae cofrestriadau ar %{instance} wedi'u newid yn awtomatig i'r angen i gael adolygiad â llaw, er mwyn atal %{instance} rhag cael ei ddefnyddio fel llwyfan ar gyfer actorion drwg posibl. Gallwch ei newid yn ôl i agor cofrestriadau ar unrhyw adeg.
+      subject: Mae cofrestriadau ar gyfer %{instance} wedi'u newid yn awtomatig i'r angen i gael cymeradwyaeth
     new_appeal:
       actions:
         delete_statuses: i ddileu eu postiadau
@@ -1594,7 +1599,6 @@ cy:
     administration_emails: Hysbysiadau e-bost gweinyddol
     email_events: Digwyddiadau ar gyfer hysbysiadau e-bost
     email_events_hint: 'Dewiswch ddigwyddiadau yr ydych am dderbyn hysbysiadau ar eu cyfer:'
-    other_settings: Gosodiadau hysbysiadau arall
   number:
     human:
       decimal_units:
@@ -1650,6 +1654,9 @@ cy:
     errors:
       limit_reached: Cyrhaeddwyd terfyn y gwahanol adweithiau
       unrecognized_emoji: nid yw'n emoji cydnabyddedig
+  redirects:
+    prompt: Os ydych chi'n ymddiried yn y ddolen hon, cliciwch arni i barhau.
+    title: Rydych chi'n gadael %{instance}.
   relationships:
     activity: Gweithgareddau cyfrif
     confirm_follow_selected_followers: Ydych chi'n siŵr eich bod am ddilyn y dilynwyr a ddewiswyd?
@@ -1749,7 +1756,6 @@ cy:
     import: Mewnforio
     import_and_export: Mewnforio ac allforio
     migrate: Mudo cyfrif
-    notifications: Hysbysiadau
     preferences: Dewisiadau
     profile: Proffil cyhoeddus
     relationships: Yn dilyn a dilynwyr
@@ -1818,8 +1824,6 @@ cy:
         zero: "%{count} o bleidleisiau"
       vote: Pleidlais
     show_more: Dangos mwy
-    show_newer: Dangos y diweddaraf
-    show_older: Dangos pethau hŷn
     show_thread: Dangos edefyn
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1911,13 +1915,19 @@ cy:
     appeal_rejected:
       explanation: Mae apêl y rhybudd yn erbyn eich cyfrif ar %{strike_date} a gyflwynwyd gennych ar %{appeal_date} wedi'i gwrthod.
       subject: Mae eich apêl ar %{date} wedi'i gwrthod
-      subtitle: Mae eich apêl wedi'i gwrthod
+      subtitle: Mae eich apêl wedi'i gwrthod.
       title: Mae'r apêl wedi'i gwrthod
     backup_ready:
       explanation: Rydych wedi gofyn am gopi wrth gefn llawn o'ch cyfrif Mastodon.
       extra: Mae nawr yn barod i'w lwytho i lawr!
       subject: Mae eich archif yn barod i'w lawrlwytho
       title: Allfudo archif
+    failed_2fa:
+      details: 'Dyma fanylion yr ymgais i fewngofnodi:'
+      explanation: Mae rhywun wedi ceisio mewngofnodi i'ch cyfrif ond wedi darparu ail ffactor dilysu annilys.
+      further_actions_html: Os nad chi oedd hwn, rydym yn argymell eich bod yn %{action} ar unwaith oherwydd gall fod o dan fygythiad.
+      subject: Methiant dilysu ail ffactor
+      title: Wedi methu dilysu ail ffactor
     suspicious_sign_in:
       change_password: newidiwch eich cyfrinair
       details: 'Dyma fanylion y mewngofnodi:'
@@ -1957,13 +1967,41 @@ cy:
         silence: Cyfrif cyfyngedig
         suspend: Cyfrif wedi'i atal
     welcome:
-      edit_profile_action: Sefydlu proffil
-      edit_profile_step: Gallwch addasu'ch proffil trwy lwytho llun proffil, newid eich enw dangos a mwy. Gallwch ddewis i adolygu dilynwyr newydd cyn iddyn nhw gael caniatâd i'ch dilyn.
+      apps_android_action: Ar gael ar Google Play
+      apps_ios_action: Ei lwytho i lawr o'r App Store
+      apps_step: Llwythwch i awr ein apiau swyddogol.
+      apps_title: Apiau Mastodon
+      checklist_subtitle: 'Gadewch i ni eich rhoi ar ben ffordd ar y datblygiad cymdeithasol newydd hon:'
+      checklist_title: Rhestr Wirio Croeso
+      edit_profile_action: Personoli
+      edit_profile_step: Rhowch hwb i'ch rhyngweithiadau trwy gael proffil cynhwysfawr.
+      edit_profile_title: Personoli'ch proffil
       explanation: Dyma ambell nodyn i'ch helpu i ddechrau
-      final_action: Dechrau postio
-      final_step: 'Dechreuwch bostio! Hyd yn oed heb ddilynwyr, efallai y bydd eraill yn gweld eich postiadau cyhoeddus, er enghraifft ar y ffrwd leol neu mewn hashnodau. Efallai y byddwch am gyflwyno eich hun ar yr hashnod #cyflwyniadau neu/a #introductions.'
-      full_handle: Eich enw llawn
-      full_handle_hint: Dyma beth fyddech chi'n ei ddweud wrth eich ffrindiau fel y gallant anfon neges neu eich dilyn o weinydd arall.
+      feature_action: Dysgu mwy
+      feature_audience: Mae Mastodon yn rhoi posibilrwydd unigryw i chi reoli'ch cynulleidfa'n ddirwystr. Mae'r Mastodon sy'n cael ei ddefnyddio ar eich seilwaith eich hun yn caniatáu ichi ddilyn a chael eich dilyn o unrhyw weinydd Mastodon arall ar-lein ac nid yw o dan reolaeth neb ond eich un chi.
+      feature_audience_title: Adeiladu eich cynulleidfa gyda hyder
+      feature_control: Chi sy'n gwybod orau beth rydych chi am ei weld ar eich llif cartref. Dim algorithmau na hysbysebion i wastraffu'ch amser. Dilynwch unrhyw un ar draws unrhyw weinydd Mastodon o gyfrif sengl a derbyn eu postiadau mewn trefn gronolegol, a gwnewch eich cornel chi o'r rhyngrwyd ychydig yn debycach i chi.
+      feature_control_title: Cadwch reolaeth ar eich llinell amser eich hun
+      feature_creativity: Mae Mastodon yn cefnogi postiadau sain, fideo a llun, disgrifiadau hygyrchedd, arolygon barn, rhybuddion cynnwys, afatarau animeiddiedig, emojis wedi'u teilwra, rheolaeth lluniau bach a mwy, i'ch helpu chi i fynegi'ch hun ar-lein. P'un a ydych chi'n cyhoeddi'ch celf, eich cerddoriaeth, neu'ch podlediad, mae Mastodon yno i chi.
+      feature_creativity_title: Creadigrwydd heb ei ail
+      feature_moderation: Mae Mastodon yn gosod penderfyniadau'n ôl yn eich dwylo chi. Mae pob gweinydd yn creu eu rheolau a'u rheoliadau eu hunain, sy'n cael eu gorfodi'n lleol ac nid o'r top i lawr fel cyfryngau cymdeithasol corfforaethol, gan ei wneud yn fwyaf hyblyg wrth ymateb i anghenion gwahanol grwpiau o bobl. Ymunwch â gweinydd gyda'r rheolau rydych chi'n cytuno â nhw, neu gwesteiwch eich un chi.
+      feature_moderation_title: Cymedroli'r ffordd y dylai fod
+      follow_action: Dilyn
+      follow_step: Dilyn pobl ddiddorol yw hanfod Mastodon.
+      follow_title: Personoli eich llif cartref
+      follows_subtitle: Dilynwch gyfrifon adnabyddus
+      follows_title: Pwy i ddilyn
+      follows_view_more: Gweld mwy o bobl i ddilyn
+      hashtags_subtitle: Gweld beth sy'n tueddu dros y 2 ddiwrnod diwethaf
+      hashtags_title: Hashnodau tuedd
+      hashtags_view_more: Gweld mwy o hashnodau tuedd
+      post_action: Creu
+      post_step: Dywedwch helo wrth y byd gyda thestun, lluniau, fideos neu arolygon barn.
+      post_title: Creu'ch postiad cyntaf
+      share_action: Rhannu
+      share_step: Gadewch i'ch ffrindiau wybod sut i ddod o hyd i chi ar Mastodon!
+      share_title: Rhannwch eich proffil Mastodon
+      sign_in_action: Mewngofnodi
       subject: Croeso i Mastodon
       title: Croeso, %{name}!
   users:
@@ -1971,6 +2009,7 @@ cy:
     go_to_sso_account_settings: Ewch i osodiadau cyfrif eich darparwr hunaniaeth
     invalid_otp_token: Côd dau-ffactor annilys
     otp_lost_help_html: Os colloch chi fynediad i'r ddau, mae modd i chi gysylltu a %{email}
+    rate_limited: Gormod o geisiadau dilysu, ceisiwch eto yn nes ymlaen.
     seamless_external_login: Yr ydych wedi'ch mewngofnodi drwy wasanaeth allanol, felly nid yw gosodiadau cyfrinair ac e-bost ar gael.
     signed_in_as: 'Wedi mewngofnodi fel:'
   verification:

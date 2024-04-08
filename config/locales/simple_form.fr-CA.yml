@@ -39,14 +39,14 @@ fr-CA:
         text: Vous ne pouvez faire appel d'une sanction qu'une seule fois
       defaults:
         autofollow: Les personnes qui s’inscrivent grâce à l’invitation vous suivront automatiquement
-        avatar: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
+        avatar: WEBP, PNG, GIF ou JPG. Au plus %{size}. Sera réduit à %{dimensions}px
         bot: Signale aux autres que ce compte exécute principalement des actions automatisées et pourrait ne pas être surveillé
         context: Un ou plusieurs contextes où le filtre devrait s’appliquer
         current_password: Par mesure de sécurité, veuillez saisir le mot de passe de ce compte
         current_username: Pour confirmer, veuillez saisir le nom d'utilisateur de ce compte
         digest: Uniquement envoyé après une longue période d’inactivité en cas de messages personnels reçus pendant votre absence
         email: Vous recevrez un courriel de confirmation
-        header: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
+        header: WEBP, PNG, GIF ou JPG. Au plus %{size}. Sera réduit à %{dimensions}px
         inbox_url: Copiez l’URL depuis la page d’accueil du relai que vous souhaitez utiliser
         irreversible: Les messages filtrés disparaîtront irrévocablement, même si le filtre est supprimé plus tard
         locale: La langue de l’interface, des courriels et des notifications
@@ -116,6 +116,7 @@ fr-CA:
           sign_up_requires_approval: Les nouvelles inscriptions nécessiteront votre approbation
         severity: Choisir ce qui se passera avec les requêtes de cette adresse IP
       rule:
+        hint: Optionnel. Fournissez plus de détails sur la règle
         text: Décrivez une règle ou une exigence pour les utilisateurs sur ce serveur. Essayez de la garder courte et simple
       sessions:
         otp: 'Entrez le code d’authentification à deux facteurs généré par l’application de votre téléphone ou utilisez un de vos codes de récupération :'
@@ -299,6 +300,7 @@ fr-CA:
           patch: Notifier pour des mises à jour de corrections de bug
         trending_tag: Nouvelle tendance nécessitant supervision
       rule:
+        hint: Information supplémentaire
         text: Règle
       settings:
         indexable: Inclure la page de profil dans les moteurs de recherches

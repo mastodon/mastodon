@@ -22,10 +22,6 @@ class Api::V1::FollowedTagsController < Api::BaseController
     )
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def next_path
     api_v1_followed_tags_url pagination_params(max_id: pagination_max_id) if records_continue?
   end
@@ -34,12 +30,8 @@ class Api::V1::FollowedTagsController < Api::BaseController
     api_v1_followed_tags_url pagination_params(since_id: pagination_since_id) unless @results.empty?
   end
 
-  def pagination_max_id
-    @results.last.id
-  end
-
-  def pagination_since_id
-    @results.first.id
+  def pagination_collection
+    @results
   end
 
   def records_continue?

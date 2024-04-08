@@ -8,7 +8,7 @@ describe PrivacyPolicy do
       it 'has the privacy text' do
         policy = described_class.current
 
-        expect(policy.text).to eq(PrivacyPolicy::DEFAULT_PRIVACY_POLICY)
+        expect(policy.text).to eq(described_class::DEFAULT_PRIVACY_POLICY)
       end
     end
 

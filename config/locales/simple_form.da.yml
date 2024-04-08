@@ -39,14 +39,14 @@ da:
         text: En advarsel kan kun appelleres én gang
       defaults:
         autofollow: Personer tilmeldt via invitationen vil automatisk blive følgere
-        avatar: PNG, GIF eller JPG. Maks. %{size}. Auto-nedskaleres til %{dimensions}px
+        avatar: WEBP, PNG, GIF eller JPG. Maks. %{size}. Nedskaleres til %{dimensions}px
         bot: Signalér til andre, at denne konto primært udfører automatiserede handlinger og muligvis ikke monitoreres
         context: En eller flere kontekster, hvor filteret skal anvendes
         current_password: Angiv af sikkerhedsårsager adgangskoden til den aktuelle konto
         current_username: For at bekræfte, angiv brugernavnet for den aktuelle konto
         digest: Sendes kun efter en lang inaktivitetsperiode, og kun hvis du har modtaget personlige beskeder under fraværet
         email: En bekræftelses-e-mail fremsendes
-        header: PNG, GIF eller JPG. Maks. %{size}. Auto-nedskaleres til %{dimensions}px
+        header: WEBP, PNG, GIF eller JPG. Maks. %{size}. Nedskaleres til %{dimensions}px
         inbox_url: Kopiér URL'en fra forsiden af den videreformidler, der skal anvendes
         irreversible: Filtrerede indlæg forsvinder permanent, selv hvis filteret senere fjernes
         locale: Sprog til brug for brugerflade, e-mails og push-notifikationer
@@ -116,6 +116,7 @@ da:
           sign_up_requires_approval: Nye tilmeldinger kræver din godkendelse
         severity: Afgør, hvordan forespørgsler fra denne IP behandles
       rule:
+        hint: Valgfrit. Oplys yderligere detaljer om reglen
         text: Beskriv på en kort og enkel form en regel/krav for brugere på denne server
       sessions:
         otp: 'Angiv tofaktorkoden generet af din mobil-app eller brug en af genoprettelseskoderne:'
@@ -299,6 +300,7 @@ da:
           patch: Notificér om fejlrettelsesopdateringer
         trending_tag: Ny tendens kræver revidering
       rule:
+        hint: Yderligere oplysninger
         text: Regel
       settings:
         indexable: Inkludér profilside i søgemaskiner

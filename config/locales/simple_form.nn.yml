@@ -39,14 +39,14 @@ nn:
         text: Ei åtvaring kan kun ankast ein gong
       defaults:
         autofollow: Folk som lagar ein konto gjennom innbydinga fylgjer deg automatisk
-        avatar: PNG, GIF eller JPG. Maksimalt %{size}. Minkast til %{dimensions}px
+        avatar: WEBP, PNG, GIF eller JPG. Maks %{size}. Blir forminska til %{dimensions}pkt
         bot: Denne kontoen utfører i hovedsak automatiserte handlinger og blir kanskje ikke holdt øye med
         context: En eller flere sammenhenger der filteret skal gjelde
         current_password: For sikkerhetsgrunner, vennligst oppgi passordet til den nåværende bruker
         current_username: Skriv inn brukarnamnet til den noverande kontoen for å stadfesta
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
         email: Du får snart ein stadfestings-e-post
-        header: PNG, GIF eller JPG. Maksimalt %{size}. Minkast til %{dimensions}px
+        header: WEBP, PNG, GIF eller JPG. Maks %{size}. Blir forminska til %{dimensions}pkt
         inbox_url: Kopier URLen fra forsiden til overgangen du vil bruke
         irreversible: Filtrerte tut vil verta borte for evig, sjølv om filteret vert fjerna seinare
         locale: Språket til brukargrensesnittet, e-postar og push-varsel
@@ -55,8 +55,8 @@ nn:
         scopes: API-ane som programmet vil få tilgjenge til. Ettersom du vel eit toppnivåomfang tarv du ikkje velja einskilde API-ar.
         setting_aggregate_reblogs: Ikkje vis nye framhevingar for tut som nyleg har vorte heva fram (Påverkar berre nylege framhevingar)
         setting_always_send_emails: Vanlegvis vil ikkje e-postvarsel bli sendt når du brukar Mastodon aktivt
-        setting_default_sensitive: Nærtakande media vert gøymd som standard og kan synast med eit klikk
-        setting_display_media_default: Gøym media som er merka som nærtakande
+        setting_default_sensitive: Sensitive media vert gøymde som standard, og du syner dei ved å klikka på dei
+        setting_display_media_default: Gøym media som er merka som sensitive
         setting_display_media_hide_all: Alltid skjul alt media
         setting_display_media_show_all: Vis alltid media
         setting_use_blurhash: Overgangar er basert på fargane til skjulte grafikkelement, men gjer detaljar utydelege
@@ -116,6 +116,7 @@ nn:
           sign_up_requires_approval: Du må godkjenna nye registreringar
         severity: Vel kva som skal skje ved førespurnader frå denne IP
       rule:
+        hint: Valfritt. Gje meir informasjon om regelen
         text: Forklar ein regel eller eit krav for brukarar på denne tenaren. Prøv å skriva kort og lettfattleg
       sessions:
         otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
@@ -164,7 +165,7 @@ nn:
           none: Gjer inkje
           sensitive: Ømtolig
           silence: Togn
-          suspend: Utvis og slett kontodata for godt
+          suspend: Utvis
         warning_preset_id: Bruk åtvaringsoppsett
       announcement:
         all_day: Heildagshending
@@ -220,10 +221,10 @@ nn:
         setting_theme: Sidetema
         setting_trends: Vis kva som er populært i dag
         setting_unfollow_modal: Vis stadfesting før du sluttar å fylgja nokon
-        setting_use_blurhash: Vis fargerike overgangar for gøymt media
+        setting_use_blurhash: Vis fargerike overgangar for gøymde medium
         setting_use_pending_items: Saktemodus
         severity: Alvorsgrad
-        sign_in_token_attempt: Trygdenykel
+        sign_in_token_attempt: Innloggingsnykel
         title: Tittel
         type: Importtype
         username: Brukarnamn
@@ -235,8 +236,8 @@ nn:
         name: Emneknagg
       filters:
         actions:
-          hide: Gøym totalt
-          warn: Gøym med ei advarsel
+          hide: Gøym heilt
+          warn: Gøym med ei åtvaring
       form_admin_settings:
         activity_api_enabled: Legg ut samla statistikk om brukaraktiviteten i APIet
         backups_retention_period: Arkiveringsperiode for brukararkiv
@@ -266,9 +267,9 @@ nn:
         trends: Aktiver trendar
         trends_as_landing_page: Bruk trendar som startside
       interactions:
-        must_be_follower: Gøym varslingar frå folk som ikkje fylgjer deg
-        must_be_following: Gøym varslingar frå folk du ikkje fylgjer
-        must_be_following_dm: Gøym direktemeldinger frå folk du ikkje fylgjer
+        must_be_follower: Blokker varsel frå folk som ikkje fylgjer deg
+        must_be_following: Blokker varsel frå folk du ikkje fylgjer
+        must_be_following_dm: Blokker direktemeldinger frå folk du ikkje fylgjer
       invite:
         comment: Kommentar
       invite_request:
@@ -279,7 +280,7 @@ nn:
         severities:
           no_access: Blokker tilgang
           sign_up_block: Blokker registrering
-          sign_up_requires_approval: Begrens påmeldinger
+          sign_up_requires_approval: Avgrens påmeldingar
         severity: Oppføring
       notification_emails:
         appeal: Nokon klagar på ei moderatoravgjerd
@@ -299,6 +300,7 @@ nn:
           patch: Varsle om feilrettingsoppdateringar
         trending_tag: Ny trend krev gjennomgang
       rule:
+        hint: Meir informasjon
         text: Regler
       settings:
         indexable: Ta med profilsida i søkjemotorar

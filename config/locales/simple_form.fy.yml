@@ -39,14 +39,14 @@ fy:
         text: Jo kinne mar ien kear beswier yntsjinje tsjin in fêststelde oertrêding
       defaults:
         autofollow: Minsken dy’t harren fia de útnûging registrearre hawwe, folgje jo automatysk
-        avatar: PNG, GIF of JPG. Maksimaal %{size}. Wurdt weromskeald nei %{dimensions}px
+        avatar: WEBP, PNG, GIF of JPG. Maksimaal %{size}. Wurdt ferlytse nei %{dimensions}px
         bot: Sinjaal nei oare brûkers ta dat dizze account yn haadsaak automatisearre berjochten stjoert en mooglik net kontrolearre wurdt
         context: Ien of meardere lokaasjes wêr’t it filter aktyf wêze moat
         current_password: Fier foar feilichheidsredenen it wachtwurd fan jo aktuele account yn
         current_username: Fier ta befêstiging de brûkersnamme fan jo aktuele account yn
         digest: Wurdt allinnich nei in lange perioade fan ynaktiviteit ferstjoerd en allinnich wannear’t jo wylst jo ôfwêzigens persoanlike berjochten ûntfongen hawwe
         email: Jo krije in befêstigings-e-mailberjocht
-        header: PNG, GIF of JPG. Maksimaal %{size}. Wurdt weromskeald nei %{dimensions}px
+        header: WEBP, PNG, GIF of JPG. Maksimaal %{size}. Wurdt ferlytse nei %{dimensions}px
         inbox_url: Kopiearje de URL fan de foarside fan de relayserver dy’t jo brûke wolle
         irreversible: Filtere berjochten ferdwine definityf, sels as it filter letter fuortsmiten wurdt
         locale: De taal fan de brûkersomjouwing, e-mailberjochten en pushmeldingen
@@ -116,6 +116,7 @@ fy:
           sign_up_requires_approval: Nije registraasjes fereaskje jo goedkarring
         severity: Kies wat der barre moat mei oanfragen fan dit IP-adres
       rule:
+        hint: Opsjoneel. Jou mear details oer de rigel
         text: Omskriuw in rigel of eask foar brûkers op dizze server. Probearje it koart en simpel te hâlden
       sessions:
         otp: 'Fier de twa-stapstagongskoade fan jo mobile telefoan ôf yn of brûk ien fan jo werstelkoaden:'
@@ -299,6 +300,7 @@ fy:
           patch: Meldingen by bugfix-fernijingen
         trending_tag: Nije trend beoardieling fereasket
       rule:
+        hint: Oanfoljende ynformaasje
         text: Regel
       settings:
         indexable: Sykmasinen jo profylside fine litte

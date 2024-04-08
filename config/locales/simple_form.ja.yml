@@ -39,14 +39,14 @@ ja:
         text: 一度だけ異議を申し立てることができます
       defaults:
         autofollow: 招待から登録した人が自動的にあなたをフォローするようになります
-        avatar: "%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます"
+        avatar: "%{size}までのWEBP、PNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます"
         bot: このアカウントは主に自動で動作し、人が見ていない可能性があります
         context: フィルターを適用する対象 (複数選択可)
         current_password: 現在のアカウントのパスワードを入力してください
         current_username: 確認のため、現在のアカウントのユーザー名を入力してください
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
         email: 確認のメールが送信されます
-        header: "%{size}までのPNG、GIF、JPGが利用可能です。 %{dimensions}pxまで縮小されます"
+        header: "%{size}までのWEBP、PNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます"
         inbox_url: 使用したいリレーサーバーのトップページからURLをコピーします
         irreversible: フィルターが後で削除されても、除外された投稿は元に戻せなくなります
         locale: ユーザーインターフェース、メールやプッシュ通知の言語
@@ -116,6 +116,7 @@ ja:
           sign_up_requires_approval: 承認するまで新規登録が完了しなくなります
         severity: このIPに対する措置を選択してください
       rule:
+        hint: ルールについての具体的な説明を追加できます (任意)
         text: ユーザーのためのルールや要件を記述してください。短くシンプルにしてください。
       sessions:
         otp: '携帯電話のアプリで生成された二要素認証コードを入力するか、リカバリーコードを使用してください:'
@@ -294,11 +295,12 @@ ja:
         software_updates:
           all: すべてのアップデートを通知する
           critical: 緊急のアップデートのみ通知する
-          label: 新しいMastodonバージョンが利用可能です
+          label: 新しいMastodonバージョンが利用可能になった時
           none: 通知しない (非推奨)
           patch: 緊急のアップデートとバグ修正アップデートを通知する
         trending_tag: 新しいトレンドのレビューをする必要がある時
       rule:
+        hint: ルールの補足説明
         text: ルール
       settings:
         indexable: 検索エンジンからアクセスできるようにする

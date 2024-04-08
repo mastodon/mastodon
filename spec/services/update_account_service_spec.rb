@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UpdateAccountService, type: :service do
+RSpec.describe UpdateAccountService do
   subject { described_class.new }
 
   describe 'switching form locked to unlocked accounts', :sidekiq_inline do

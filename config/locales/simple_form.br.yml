@@ -3,8 +3,8 @@ br:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF pe JPG. Brasoc'h eget %{size}. A vo izelaet betek %{dimensions}px
-        header: PNG, GIF pe JPG. Brasoc'h eget %{size}. A vo izelaet betek %{dimensions}px
+        avatar: WEBP, PNG, GIF pe JPG. Bihanoc'h eget %{size}. A vo izelaet betek %{dimensions}px
+        header: WEBP, PNG, GIF pe JPG. Bihanoc'h eget %{size}. A vo izelaet betek %{dimensions}px
         password: Implijit 8 lizherennoù d'an neubeutañ
         setting_default_sensitive: Ar mediaoù kizidik a zo kuzhet dre ziouer ha gallout a reont bezañ diguzhet dre ur c'hlik
         setting_display_media_default: Kuzhat mediaoù aroueziet evel kizidik
@@ -41,7 +41,7 @@ br:
         email: Chomlec'h postel
         expires_in: Mont war e dermen goude
         header: Talbenn
-        locale: Yezh ar c'hetal
+        locale: Yezh an etrefas
         new_password: Ger-tremen nevez
         note: Kinnig
         password: Ger-tremen
@@ -49,6 +49,7 @@ br:
         setting_display_media_default: Dre ziouer
         setting_display_media_hide_all: Kuzhat pep tra
         setting_display_media_show_all: Diskouez pep tra
+        setting_theme: Neuz al lec'hienn
         setting_use_pending_items: Mod gorrek
         title: Titl
         username: Anv
@@ -66,6 +67,7 @@ br:
       notification_emails:
         follow: Heuliañ a ra {name} ac'hanoc'h
       rule:
+        hint: Titouroù ouzhpenn
         text: Reolenn
       tag:
         name: Hashtag
@@ -73,6 +75,7 @@ br:
         usable: Aotren an embannadurioù da implijout an hashtag-mañ
       user:
         role: Roll
+        time_zone: Gwerzhid eur
       user_role:
         name: Anv
     'no': Ket

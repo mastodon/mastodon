@@ -31,7 +31,7 @@ class CustomFilter < ApplicationRecord
   include Expireable
   include Redisable
 
-  enum action: { warn: 0, hide: 1 }, _suffix: :action
+  enum :action, { warn: 0, hide: 1 }, suffix: :action
 
   belongs_to :account
   has_many :keywords, class_name: 'CustomFilterKeyword', inverse_of: :custom_filter, dependent: :destroy
@@ -41,7 +41,7 @@ class CustomFilter < ApplicationRecord
   validates :title, :context, presence: true
   validate :context_must_be_valid
 
-  before_validation :clean_up_contexts
+  normalizes :context, with: ->(context) { context.map(&:strip).filter_map(&:presence) }
 
   before_save :prepare_cache_invalidation!
   before_destroy :prepare_cache_invalidation!
@@ -113,10 +113,6 @@ class CustomFilter < ApplicationRecord
   end
 
   private
-
-  def clean_up_contexts
-    self.context = Array(context).map(&:strip).filter_map(&:presence)
-  end
 
   def context_must_be_valid
     errors.add(:context, I18n.t('filters.errors.invalid_context')) if invalid_context_value?

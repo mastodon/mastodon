@@ -10,7 +10,7 @@ module ProfileStories
       account: Fabricate(:account, username: 'bob')
     )
 
-    Web::Setting.where(user: bob).first_or_initialize(user: bob).update!(data: { introductionVersion: 201812160442020 }) if finished_onboarding # rubocop:disable Style/NumericLiterals
+    Web::Setting.where(user: bob).first_or_initialize(user: bob).update!(data: { introductionVersion: 2018_12_16_044202 }) if finished_onboarding
   end
 
   def as_a_logged_in_user
@@ -19,6 +19,12 @@ module ProfileStories
     fill_in 'user_email', with: email
     fill_in 'user_password', with: password
     click_on I18n.t('auth.login')
+  end
+
+  def as_a_logged_in_admin
+    # This is a bit awkward, but this avoids code duplication.
+    as_a_logged_in_user
+    bob.update!(role: UserRole.find_by!(name: 'Admin'))
   end
 
   def with_alice_as_local_user

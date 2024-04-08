@@ -597,6 +597,9 @@ gl:
       actions_description_html: Decide que acción tomar respecto desta denuncia. Se tomas accións punitivas contra a conta denunciada, enviaráselles un email coa notificación, excepto se está seleccionada a categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide a acción a tomar para resolver a denuncia. Isto só lle afecta ao xeito en que o <strong>teu</strong> servidor se comunica con esta conta remota e xestiona o seu contido.
       add_to_report: Engadir máis á denuncia
+      already_suspended_badges:
+        local: Xa está suspendida neste servidor
+        remote: Xa está suspendida no seu servidor
       are_you_sure: Tes certeza?
       assign_to_self: Asignarme
       assigned: Moderador asignado
@@ -767,6 +770,7 @@ gl:
         disabled: Para ninguén
         users: Para usuarias locais conectadas
       registrations:
+        moderation_recommandation: Por favor, pon interese en crear un equipo de moderación competente e reactivo antes de permitir que calquera poida crear unha conta!
         preamble: Xestiona quen pode crear unha conta no teu servidor.
         title: Rexistros
       registrations_mode:
@@ -774,6 +778,7 @@ gl:
           approved: Precisa aprobación para rexistrarse
           none: Rexistro pechado
           open: Rexistro aberto
+        warning_hint: Recomendamos utilizar "Requerir aprobación para o rexistro" a menos que confíes en que o equipo de moderación é quen de xestionar áxilmente o spam e a creación de contas maliciosas.
       security:
         authorized_fetch: Require autenticación desde os servidores federados
         authorized_fetch_hint: Ao requerir autenticación desde os servidores federados activas un reforzamento das políticas de bloqueo a nivel usuaria e nivel servidor. Este proceder ten un custo no rendemento, reducindo o alcance das túas respostas e podería introducir problemas de compatibilidade con algúns servizos federados. Ademais, non evitará que contas con tal propósito vexan as túas publicacións públicas e contas.
@@ -905,7 +910,7 @@ gl:
       statuses:
         allow: Permitir publicación
         allow_account: Permitir autora
-        description_html: Estas son publicacións que o teu servidor coñece que están sendo compartidas e favorecidas en gran número neste intre. Pode ser útil para as persoas recén chegadas e as que retornan para que atopen persoas a quen seguir. Non se mostran publicamente a menos que aprobes a autora, e a autora permita que a súa conta sexa suxerida a outras. Tamén podes rexeitar ou aprobar publicacións individuais.
+        description_html: Estas son publicacións que o teu servidor coñece que están sendo compartidas e favorecidas en gran número neste intre. Pode ser útil para as persoas recén chegadas e para as que retornan para que atopen persoas a quen seguir. Non se mostran publicamente a menos que aprobes a autora, e a autora permita que a súa conta sexa suxerida a outras. Tamén podes rexeitar ou aprobar publicacións individuais.
         disallow: Rexeitar publicación
         disallow_account: Rexeitar autora
         no_status_selected: Non se cambiou ningunha publicación en voga xa que non había ningunha seleccionada
@@ -966,6 +971,9 @@ gl:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Debido á falta de actividade recente de moderación, a creación de contas en %{instance} mudou ao modo de revisión manual das solicitudes, para evitar que %{instance} sexa usada como plataforma por actores maliciosos. Podes volver ao rexistro aberto en calquera momento.
+      subject: O modo de creación de contas en %{instance} mudou automáticamente a aprobación manual
     new_appeal:
       actions:
         delete_statuses: borrar as súas publicacións
@@ -1400,7 +1408,7 @@ gl:
       confirmation_html: Tes a certeza de querer retirar a subscrición a Mastodon en %{domain} para recibir %{type} no teu correo electrónico en %{email}? Poderás volver a subscribirte desde os <a href="%{settings_path}">axustes de notificacións por correo</a>.
       emails:
         notification_emails:
-          favourite: notificacións de favoritos
+          favourite: notificacións de favorecidas
           follow: notificacións de seguimentos
           follow_request: notificacións de solicitudes de seguimento
           mention: notificacións de mencións
@@ -1459,7 +1467,7 @@ gl:
       sign_up:
         subject: "%{name} rexistrouse"
     favourite:
-      body: 'A túa publicación foi marcada como favorita por %{name}:'
+      body: 'A túa publicación foi favorecida por %{name}:'
       subject: "%{name} marcou como favorita a túa publicación"
       title: Nova favorita
     follow:
@@ -1490,7 +1498,6 @@ gl:
     administration_emails: Notificacións de Admin por correo electrónico
     email_events: Eventos para os correos de notificación
     email_events_hint: 'Escolle os eventos sobre os que queres recibir notificacións:'
-    other_settings: Outros axustes das notificacións
   number:
     human:
       decimal_units:
@@ -1648,14 +1655,26 @@ gl:
     import: Importar
     import_and_export: Importar e exportar
     migrate: Migrar conta
-    notifications: Notificacións
+    notifications: Notificacións por correo
     preferences: Preferencias
     profile: Perfil
     relationships: Seguindo e seguidoras
+    severed_relationships: Relacións cortadas
     statuses_cleanup: Borrado automático da publicación
     strikes: Avisos da moderación
     two_factor_authentication: Validar Dobre Factor
     webauthn_authentication: Chaves de seguridade
+  severed_relationships:
+    download: Descargar (%{count})
+    event_type:
+      account_suspension: Suspensión da conta (%{target_name})
+      domain_block: Suspensión do servidor (%{target_name})
+      user_domain_block: Bloqueaches a %{target_name}
+    lost_followers: Seguidoras perdidas
+    lost_follows: Seguimentos perdidos
+    preamble: Pode acontecer que perdas seguidoras e seguimentos ao bloquear un dominio ou cando a Moderación do teu servidor decide suspender un servidor remoto. Se acontecese isto, podes descargar unha lista coas relacións cortadas para revisala e, se queres, importala noutro servidor.
+    purged: A administración do teu servidor purgou a información acerca deste servidor.
+    type: Evento
   statuses:
     attached:
       audio:
@@ -1693,8 +1712,6 @@ gl:
         other: "%{count} votos"
       vote: Votar
     show_more: Mostrar máis
-    show_newer: Mostrar o máis novo
-    show_older: Mostrar o máis vello
     show_thread: Amosar fío
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1713,7 +1730,7 @@ gl:
     ignore_favs: Ignorar favoritas
     ignore_reblogs: Ignorar promocións
     interaction_exceptions: Excepcións baseadas en interaccións
-    interaction_exceptions_explanation: Ten en conta de que non hai garantía de que se eliminen as túas publicacións se non superan o límite de promocións e favorecementos aínda que algunha vez o tivesen superado.
+    interaction_exceptions_explanation: Ten en conta que non hai garantía de que se eliminen as túas publicacións se baixan do límite de promocións e favorecementos se nalgún momento o superaron.
     keep_direct: Manter mensaxes directas
     keep_direct_hint: Non borrar ningunha das túas mensaxes directas
     keep_media: Manter publicacións que conteñen multimedia
@@ -1724,7 +1741,7 @@ gl:
     keep_polls_hint: Non eliminar ningunha das túas enquisas
     keep_self_bookmark: Manter as publicacións engadidas a marcadores
     keep_self_bookmark_hint: Non elimina as publicacións se as engadiches aos marcadores
-    keep_self_fav: Manter as publicacións que marcaches como favoritas
+    keep_self_fav: Manter as publicacións que favoreceches
     keep_self_fav_hint: Non elimina as túas propias publicacións se as marcaches como favoritas
     min_age:
       '1209600': 2 semanas
@@ -1736,7 +1753,7 @@ gl:
       '63113904': 2 anos
       '7889238': 3 meses
     min_age_label: Límite temporal
-    min_favs: Manter as publicacións favoritas máis de
+    min_favs: Manter as publicacións favorecidas polo menos
     min_favs_hint: Non elimina ningunha das túas publicacións que recibiron alomenos esta cantidade de favorecementos. Deixa en branco para eliminar publicacións independentemente do número de favorecementos
     min_reblogs: Manter publicacións promovidas máis de
     min_reblogs_hint: Non elimina ningunha das túas publicacións se foron promovidas máis deste número de veces. Deixa en branco para eliminar publicacións independentemente do seu número de promocións
@@ -1751,6 +1768,7 @@ gl:
     contrast: Mastodon (Alto contraste)
     default: Mastodon (Escuro)
     mastodon-light: Mastodon (Claro)
+    system: Automático (seguir ao sistema)
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
@@ -1838,13 +1856,44 @@ gl:
         silence: Conta limitada
         suspend: Conta suspendida
     welcome:
-      edit_profile_action: Configurar perfil
-      edit_profile_step: Podes personalizar o teu perfil subindo unha imaxe de perfil, cambiar o nome público e moito máis. Podes elexir revisar as solicitudes de seguimento recibidas antes de permitirlles que te sigan.
+      apps_android_action: Descarga desde Google Play
+      apps_ios_action: Descarga desde App Store
+      apps_step: Descarga as apps oficiais.
+      apps_title: Apps de Mastodon
+      checklist_subtitle: 'Ímoste guiar no comezo nesta nova experiencia social:'
+      checklist_title: Lista de comprobación
+      edit_profile_action: Personalizar
+      edit_profile_step: Aumenta as túas interaccións grazas a un perfil descriptivo.
+      edit_profile_title: Personaliza o teu perfil
       explanation: Aquí tes algunhas endereitas para ir aprendendo
-      final_action: Comeza a publicar
-      final_step: 'Publica! Incluso sen seguidoras, as túas mensaxes públicas serán vistas por outras persoas, por exemplo na cronoloxía local e nos cancelos. Poderías presentarte ao #fediverso utilizando o cancelo #introductions.'
-      full_handle: O teu alcume completo
-      full_handle_hint: Compárteo coas túas amizades para que poidan seguirte ou enviarche mensaxes desde outros servidores.
+      feature_action: Saber máis
+      feature_audience: Mastodon dache a oportunidade de xestionar sen intermediarios as túas relacións. Incluso se usas o teu propio servidor Mastodon poderás seguir e ser seguida desde calquera outro servidor Mastodon conectado á rede e estará baixo o teu control exclusivo.
+      feature_audience_title: Crea a túa audiencia con tranquilidade
+      feature_control: Sabes mellor ca ninguén o que queres ver na cronoloxía. Non hai algoritmos nin publicidade facéndoche perder o tempo. Segue cunha soa conta a outras persoas en servidores Mastodon diferentes ao teu, recibirás as publicacións en orde cronolóxica, e farás deste curruchiño de internet un lugar para ti.
+      feature_control_title: Tes o control da túa cronoloxía
+      feature_creativity: Mastodon ten soporte para audio, vídeo e imaxes nas publicacións, descricións para mellorar a accesibilidade, enquisas, avisos sobre o contido, avatares animados, emojis personalizados, control sobre o recorte de miniaturas, e moito máis, para axudarche a expresarte en internet. Tanto se publicas o teu arte, música ou podcast, Mastodon está aquí para ti.
+      feature_creativity_title: Creatividade incomparable
+      feature_moderation: Mastodon pon nas túas mans a toma de decisións. Cada servidor crea as súas propia regras e normas, que son de cumprimento nel e non impostas como nos medios sociais corporativos, facéndoo máis flexible e respondendo ás necesidades dos diferentes grupos de persoas. Únete a un servidor con normas que compartes, ou instala o teu propio servidor.
+      feature_moderation_title: A moderación tal como debe ser
+      follow_action: Seguir
+      follow_step: Mastodon consiste en seguir a persoas interesantes.
+      follow_title: Personaliza a túa cronoloxía
+      follows_subtitle: Sigue estas contas populares
+      follows_title: A quen seguir
+      follows_view_more: Ver máis persoas para seguir
+      hashtags_recent_count:
+        one: "%{people} persoa nos últimos 2 días"
+        other: "%{people} persoas nos últimos 2 días"
+      hashtags_subtitle: Descubre os temas en voga nos últimos 2 días
+      hashtags_title: Cancelos en voga
+      hashtags_view_more: Ver máis cancelos en voga
+      post_action: Escribir
+      post_step: Saúda a todo o mundo con texto, fotos, vídeos ou enquisas.
+      post_title: Escribe a túa primeira publicación
+      share_action: Compartir
+      share_step: Dille ás amizades como poden atoparte en Mastodon.
+      share_title: Comparte o teu perfil en Mastodon
+      sign_in_action: Acceder
       subject: Benvida a Mastodon
       title: Benvida, %{name}!
   users:

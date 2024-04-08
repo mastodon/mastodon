@@ -39,14 +39,14 @@ is:
         text: Þú getur aðeins áfrýjað refsingu einu sinni
       defaults:
         autofollow: Fólk sem skráir sig í gegnum boðið mun sjálfkrafa fylgjast með þér
-        avatar: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
+        avatar: WEBP, PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
         bot: Þessi aðgangur er aðallega til að framkvæma sjálfvirkar aðgerðir og gæti verið án þess að hann sé vaktaður reglulega
         context: Eitt eða fleiri samhengi þar sem sían ætti að gilda
         current_password: Í öryggisskyni skaltu setja inn lykilorðið fyrir þennan notandaaðgang
         current_username: Til að staðfesta skaltu setja inn notandanafnið fyrir þennan notandaaðgang
         digest: Er aðeins sent eftir lengri tímabil án virkni og þá aðeins ef þú hefur fengið persónuleg skilaboð á meðan þú hefur ekki verið á línunni
         email: Þú munt fá sendan staðfestingarpóst
-        header: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
+        header: WEBP, PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
         inbox_url: Afritaðu slóðina af forsíðu endurvarpans sem þú vilt nota
         irreversible: Síaðar færslur munu hverfa óendurkræft, jafnvel þó sían sé seinna fjarlægð
         locale: Tungumál notandaviðmótsins, tölvupósts og ýti-tilkynninga
@@ -116,6 +116,7 @@ is:
           sign_up_requires_approval: Nýskráningar munu þurfa samþykki þitt
         severity: Veldu hvað munir gerast við beiðnir frá þessu IP-vistfangi
       rule:
+        hint: Valkvætt. Gefðu nánari upplýsingar um regluna
         text: Lýstu reglum eða kröfum sem gerðar eru til notenda á þessum netþjóni. Reyndu að hafa þetta skýrt og skorinort
       sessions:
         otp: 'Settu inn tveggja-þátta kóðann sem farsímaforritið útbjó eða notaðu einn af endurheimtukóðunum þínum:'
@@ -299,6 +300,7 @@ is:
           patch: Láta vita við uppfærslur með lagfæringum
         trending_tag: Nýtt vinsælt efni krefst yfirferðar
       rule:
+        hint: Viðbótarupplýsingar
         text: Regla
       settings:
         indexable: Hafa notandasnið með í leitarvélum

@@ -18,8 +18,6 @@ import AutosuggestInput from 'mastodon/components/autosuggest_input';
 
 const messages = defineMessages({
   option_placeholder: { id: 'compose_form.poll.option_placeholder', defaultMessage: 'Option {number}' },
-  add_option: { id: 'compose_form.poll.add_option', defaultMessage: 'Add option' },
-  remove_option: { id: 'compose_form.poll.remove_option', defaultMessage: 'Remove this option' },
   duration: { id: 'compose_form.poll.duration', defaultMessage: 'Poll length' },
   type: { id: 'compose_form.poll.type', defaultMessage: 'Style' },
   switchToMultiple: { id: 'compose_form.poll.switch_to_multiple', defaultMessage: 'Change poll to allow multiple choices' },
@@ -60,10 +58,11 @@ const Option = ({ multipleChoice, index, title, autoFocus }) => {
   const dispatch = useDispatch();
   const suggestions = useSelector(state => state.getIn(['compose', 'suggestions']));
   const lang = useSelector(state => state.getIn(['compose', 'language']));
+  const maxOptions = useSelector(state => state.getIn(['server', 'server', 'configuration', 'polls', 'max_options']));
 
   const handleChange = useCallback(({ target: { value } }) => {
-    dispatch(changePollOption(index, value));
-  }, [dispatch, index]);
+    dispatch(changePollOption(index, value, maxOptions));
+  }, [dispatch, index, maxOptions]);
 
   const handleSuggestionsFetchRequested = useCallback(token => {
     dispatch(fetchComposeSuggestions(token));

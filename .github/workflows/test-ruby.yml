@@ -114,6 +114,7 @@ jobs:
           - '3.0'
           - '3.1'
           - '.ruby-version'
+          - '3.3'
     steps:
       - uses: actions/checkout@v4
 
@@ -139,7 +140,7 @@ jobs:
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           files: coverage/lcov/mastodon.lcov
 
@@ -189,6 +190,7 @@ jobs:
           - '3.0'
           - '3.1'
           - '.ruby-version'
+          - '3.3'
 
     steps:
       - uses: actions/checkout@v4
@@ -224,7 +226,7 @@ jobs:
         if: failure()
         with:
           name: e2e-screenshots
-          path: tmp/screenshots/
+          path: tmp/capybara/
 
   test-search:
     name: Elastic Search integration testing
@@ -288,6 +290,7 @@ jobs:
           - '3.0'
           - '3.1'
           - '.ruby-version'
+          - '3.3'
         search-image:
           - docker.elastic.co/elasticsearch/elasticsearch:7.17.13
         include:
@@ -328,4 +331,4 @@ jobs:
         if: failure()
         with:
           name: test-search-screenshots
-          path: tmp/screenshots/
+          path: tmp/capybara/

@@ -102,6 +102,16 @@ RSpec.configure do |config|
     self.use_transactional_tests = false
 
     DatabaseCleaner.cleaning do
+      # NOTE: we switched registrations mode to closed by default, but the specs
+      # very heavily rely on having it enabled by default, as it relies on users
+      # being approved by default except in select cases where explicitly testing
+      # other registration modes
+      # Also needs to be set per-example here because of the database cleaner.
+      Setting.registrations_mode = 'open'
+
+      # Load seeds so we have the default roles otherwise cleared by `DatabaseCleaner`
+      Rails.application.load_seed
+
       example.run
     end
 

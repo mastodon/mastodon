@@ -50,7 +50,7 @@ namespace :tests do
         exit(1)
       end
 
-      if Account.find(-99).private_key.blank?
+      if Account.find(Account::INSTANCE_ACTOR_ID).private_key.blank?
         puts 'Instance actor does not have a private key'
         exit(1)
       end
@@ -102,6 +102,12 @@ namespace :tests do
 
       unless Account.find_local('qcuser').user.locale == 'fr-CA'
         puts 'Locale for fr-QC users not updated to fr-CA as expected'
+        exit(1)
+      end
+
+      policy = NotificationPolicy.find_by(account: User.find(1).account)
+      unless policy.filter_private_mentions == false && policy.filter_not_following == true
+        puts 'Notification policy not migrated as expected'
         exit(1)
       end
 
@@ -181,7 +187,8 @@ namespace :tests do
         INSERT INTO "settings"
           (id, thing_type, thing_id, var, value, created_at, updated_at)
         VALUES
-          (5, 'User', 4, 'default_language', E'--- kmr\n', now(), now());
+          (5, 'User', 4, 'default_language', E'--- kmr\n', now(), now()),
+          (6, 'User', 1, 'interactions', E'--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nmust_be_follower: false\nmust_be_following: true\nmust_be_following_dm: false\n', now(), now());
       SQL
     end
 

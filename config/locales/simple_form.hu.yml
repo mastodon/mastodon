@@ -39,14 +39,14 @@ hu:
         text: Egy vétséget csak egyszer fellebbezhetsz meg
       defaults:
         autofollow: Akik meghívón keresztül regisztrálnak, automatikusan követni fognak téged
-        avatar: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
+        avatar: WEBP, PNG, GIF vagy JPG. Legfeljebb %{size}. Át lesz méretezve %{dimensions} képpontosra.
         bot: Ez a fiók automatikus műveleteket végez és valószínűleg nem figyeljük
         context: Kontextusok, ahol a szűrőnek működnie kell
         current_password: Biztonsági okok miatt kérlek, írd be a jelenlegi fiók jelszavát
         current_username: A jóváhagyáshoz írd be a jelenlegi fiók felhasználói nevét
         digest: Csak hosszú távollét esetén küldődik és csak ha személyes üzenetet kaptál távollétedben
         email: Kapsz egy megerősítő e-mailt
-        header: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
+        header: WEBP, PNG, GIF vagy JPG. Legfeljebb %{size}. Át lesz méretezve %{dimensions} képpontosra.
         inbox_url: Másold ki a használandó relé szerver kezdőoldalának URL-jét
         irreversible: A kiszűrt bejegyzések visszafordíthatatlanul eltűnnek, a szűrő későbbi törlése esetén is
         locale: A felhasználói felület, e-mailek, push üzenetek nyelve
@@ -54,11 +54,11 @@ hu:
         phrase: Illeszkedni fog kis/nagybetű függetlenül, és tartalmi figyelmeztetések mögött is
         scopes: Mely API-kat érheti el az alkalmazás. Ha felső szintű hatáskört választasz, nem kell egyesével kiválasztanod az alatta lévőeket.
         setting_aggregate_reblogs: Ne mutassunk megtolásokat olyan bejegyzésekhez, melyeket nemrég toltak meg (csak új megtolásokra lép életbe)
-        setting_always_send_emails: Alapesetben nem küldünk e-mail értesítéseket, ha aktívan használod a Mastodont
+        setting_always_send_emails: Alapesetben nem küldünk e-mail-értesítéseket, ha aktívan használod a Mastodont
         setting_default_sensitive: A kényes médiatartalmat alapesetben elrejtjük, de egyetlen kattintással előhozható
         setting_display_media_default: Kényes tartalomnak jelölt média elrejtése
-        setting_display_media_hide_all: Mindig minden média elrejtése
-        setting_display_media_show_all: Mindig mutasd a szenzitív tartalomként jelölt médiát
+        setting_display_media_hide_all: Média elrejtése mindig
+        setting_display_media_show_all: Média megjelenítése mindig
         setting_use_blurhash: A kihomályosítás az eredeti képből történik, de minden részletet elrejt
         setting_use_pending_items: Idővonal frissítése csak kattintásra automatikus görgetés helyett
         username: Betűk, számok és alávonások használhatók
@@ -116,6 +116,7 @@ hu:
           sign_up_requires_approval: Új regisztrációk csak a jóváhagyásoddal történhetnek majd meg
         severity: Válaszd ki, mi történjen a kérésekkel erről az IP-ről
       rule:
+        hint: Nem kötelező. Adj meg további részleteket a szabályról.
         text: Írd le, mi a szabály vagy elvárás ezen a kiszolgálón a felhasználók felé. Próbálj röviden, egyszerűen fogalmazni.
       sessions:
         otp: 'Add meg a telefonodon generált kétlépcsős azonosító kódodat vagy használd az egyik tartalék bejelentkező kódot:'
@@ -145,12 +146,12 @@ hu:
           name: Címke
           value: Tartalom
         indexable: Nyilvános bejegyzések szerepeltetése a keresési eredményekben
-        show_collections: Követők és követettek megjelnítése a profilban
+        show_collections: Követők és követettek megjelenítése a profilban
         unlocked: Új követők automatikus elfogadása
       account_alias:
-        acct: Régi fiók kezelése
+        acct: A régi fiók fiókneve
       account_migration:
-        acct: Új fiók kezelése
+        acct: Az új fiók fiókneve
       account_warning_preset:
         text: Figyelmeztető szöveg
         title: Cím
@@ -186,7 +187,7 @@ hu:
         data: Adatok
         display_name: Megjelenített név
         email: E-mail cím
-        expires_in: Elévül
+        expires_in: Elévülés dátuma
         fields: Profil metaadatai
         header: Fejléc
         honeypot: "%{label} (ne töltsd ki)"
@@ -201,7 +202,7 @@ hu:
         phrase: Kulcsszó vagy kifejezés
         setting_advanced_layout: Speciális webes felület engedélyezése
         setting_aggregate_reblogs: Megtolások csoportosítása az idővonalakon
-        setting_always_send_emails: E-mail értesítések küldése mindig
+        setting_always_send_emails: E-mail-értesítések küldése mindig
         setting_auto_play_gif: GIF-ek automatikus lejátszása
         setting_boost_modal: Megerősítés kérése megtolás előtt
         setting_default_language: Bejegyzések nyelve
@@ -251,7 +252,7 @@ hu:
         registrations_mode: Ki regisztrálhat
         require_invite_text: Indok megkövetelése a csatlakozáshoz
         show_domain_blocks: Domain tiltások megjelenitése
-        show_domain_blocks_rationale: A domainok blokkolásának okának megjelenítése
+        show_domain_blocks_rationale: A domainek letiltási okainak megjelenítése
         site_contact_email: Kapcsolattartó e-mail
         site_contact_username: Kapcsolattartó felhasználóneve
         site_extended_description: Bővített leírás
@@ -299,6 +300,7 @@ hu:
           patch: Értesítés hibajavítási frissítésekről
         trending_tag: Új trend felülvizsgálatra vár
       rule:
+        hint: További információk
         text: Szabály
       settings:
         indexable: A profiloldal szerepeltetése a keresőmotorokban

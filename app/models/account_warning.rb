@@ -17,7 +17,7 @@
 #
 
 class AccountWarning < ApplicationRecord
-  enum action: {
+  enum :action, {
     none: 0,
     disable: 1_000,
     mark_statuses_as_sensitive: 1_250,
@@ -25,7 +25,9 @@ class AccountWarning < ApplicationRecord
     sensitive: 2_000,
     silence: 3_000,
     suspend: 4_000,
-  }, _suffix: :action
+  }, suffix: :action
+
+  RECENT_PERIOD = 3.months.freeze
 
   normalizes :text, with: ->(text) { text.to_s }, apply_to_nil: true
 
@@ -37,7 +39,7 @@ class AccountWarning < ApplicationRecord
 
   scope :latest, -> { order(id: :desc) }
   scope :custom, -> { where.not(text: '') }
-  scope :recent, -> { where('account_warnings.created_at >= ?', 3.months.ago) }
+  scope :recent, -> { where(created_at: RECENT_PERIOD.ago..) }
 
   def statuses
     Status.with_discarded.where(id: status_ids || [])

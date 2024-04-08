@@ -50,7 +50,7 @@ class Status < ApplicationRecord
   update_index('statuses', :proper)
   update_index('public_statuses', :proper)
 
-  enum visibility: { public: 0, unlisted: 1, private: 2, direct: 3, limited: 4 }, _suffix: :visibility
+  enum :visibility, { public: 0, unlisted: 1, private: 2, direct: 3, limited: 4 }, suffix: :visibility
 
   belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
 
@@ -108,10 +108,9 @@ class Status < ApplicationRecord
   scope :with_accounts, ->(ids) { where(id: ids).includes(:account) }
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where(statuses: { reblog_of_id: nil }) }
-  scope :with_public_visibility, -> { where(visibility: :public) }
   scope :tagged_with, ->(tag_ids) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag_ids }) }
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
-  scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).where('accounts.domain IS NULL OR accounts.domain NOT IN (?)', account.excluded_from_timeline_domains) }
+  scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).merge(Account.not_domain_blocked_by_account(account)) }
   scope :tagged_with_all, lambda { |tag_ids|
     Array(tag_ids).map(&:to_i).reduce(self) do |result, id|
       result.where(<<~SQL.squish, tag_id: id)
@@ -443,7 +442,6 @@ class Status < ApplicationRecord
   def set_visibility
     self.visibility = reblog.visibility if reblog? && visibility.nil?
     self.visibility = (account.locked? ? :private : :public) if visibility.nil?
-    self.sensitive  = false if sensitive.nil?
   end
 
   def set_conversation

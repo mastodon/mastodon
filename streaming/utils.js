@@ -16,11 +16,9 @@ const FALSE_VALUES = [
  * @param {any} value
  * @returns {boolean}
  */
-const isTruthy = value =>
-  value && !FALSE_VALUES.includes(value);
-
-exports.isTruthy = isTruthy;
-
+export function isTruthy(value) {
+  return value && !FALSE_VALUES.includes(value);
+}
 
 /**
  * See app/lib/ascii_folder.rb for the canon definitions
@@ -33,7 +31,7 @@ const EQUIVALENT_ASCII_CHARS = 'AAAAAAaaaaaaAaAaAaCcCcCcCcCcDdDdDdEEEEeeeeEeEeEe
  * @param {string} str
  * @returns {string}
  */
-function foldToASCII(str) {
+export function foldToASCII(str) {
   const regex = new RegExp(NON_ASCII_CHARS.split('').join('|'), 'g');
 
   return str.replace(regex, function(match) {
@@ -42,28 +40,22 @@ function foldToASCII(str) {
   });
 }
 
-exports.foldToASCII = foldToASCII;
-
 /**
  * @param {string} str
  * @returns {string}
  */
-function normalizeHashtag(str) {
+export function normalizeHashtag(str) {
   return foldToASCII(str.normalize('NFKC').toLowerCase()).replace(/[^\p{L}\p{N}_\u00b7\u200c]/gu, '');
 }
-
-exports.normalizeHashtag = normalizeHashtag;
 
 /**
  * @param {string|string[]} arrayOrString
  * @returns {string}
  */
-function firstParam(arrayOrString) {
+export function firstParam(arrayOrString) {
   if (Array.isArray(arrayOrString)) {
     return arrayOrString[0];
   } else {
     return arrayOrString;
   }
 }
-
-exports.firstParam = firstParam;

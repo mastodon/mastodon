@@ -12,11 +12,15 @@ SimpleNavigation::Configuration.run do |navigation|
 
     n.item :preferences, safe_join([fa_icon('cog fw'), t('settings.preferences')]), settings_preferences_path, if: -> { current_user.functional? && !self_destruct } do |s|
       s.item :appearance, safe_join([fa_icon('desktop fw'), t('settings.appearance')]), settings_preferences_appearance_path
-      s.item :notifications, safe_join([fa_icon('bell fw'), t('settings.notifications')]), settings_preferences_notifications_path
+      s.item :notifications, safe_join([fa_icon('envelope fw'), t('settings.notifications')]), settings_preferences_notifications_path
       s.item :other, safe_join([fa_icon('cog fw'), t('preferences.other')]), settings_preferences_other_path
     end
 
-    n.item :relationships, safe_join([fa_icon('users fw'), t('settings.relationships')]), relationships_path, if: -> { current_user.functional? && !self_destruct }
+    n.item :relationships, safe_join([fa_icon('users fw'), t('settings.relationships')]), relationships_path, if: -> { current_user.functional? && !self_destruct } do |s|
+      s.item :current, safe_join([fa_icon('users fw'), t('settings.relationships')]), relationships_path
+      s.item :severed_relationships, safe_join([fa_icon('unlink fw'), t('settings.severed_relationships')]), severed_relationships_path
+    end
+
     n.item :filters, safe_join([fa_icon('filter fw'), t('filters.index.title')]), filters_path, highlights_on: %r{/filters}, if: -> { current_user.functional? && !self_destruct }
     n.item :statuses_cleanup, safe_join([fa_icon('history fw'), t('settings.statuses_cleanup')]), statuses_cleanup_path, if: -> { current_user.functional_or_moved? && !self_destruct }
 

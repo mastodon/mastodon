@@ -39,14 +39,14 @@ gl:
         text: Só podes apelar a decisión unha vez
       defaults:
         autofollow: As persoas que se conectaron a través dun convite seguirante automáticamente
-        avatar: PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
+        avatar: WEBP, PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
         bot: Advirte ás usuarias de que esta conta realiza principalmente accións automatizadas e podería non estar monitorizada
         context: Un ou varios contextos onde se debería aplicar o filtro
         current_password: Por razóns de seguridade, introduce o contrasinal da conta actual
         current_username: Para confirmar, introduce o nome de usuaria da conta actual
         digest: Enviar só tras un longo período de inactividade e só se recibiches algunha mensaxe directa na tua ausencia
         email: Ímosche enviar un correo de confirmación
-        header: PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
+        header: WEBP, PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
         inbox_url: Copiar o URL desde a páxina de inicio do repetidor que queres utilizar
         irreversible: As publicacións filtradas desaparecerán de xeito irreversible, incluso se despois se elimina o filtro
         locale: O idioma da interface de usuaria, correos e notificacións
@@ -116,6 +116,7 @@ gl:
           sign_up_requires_approval: Os novos rexistros requerirán a túa aprobación
         severity: Escolle que acontecerá coas peticións desde este IP
       rule:
+        hint: Optativo. Proporciona máis detalles acerca da regra
         text: Describe unha regra ou requerimento para as usuarias deste servidor. Intenta que sexa curta e simple
       sessions:
         otp: 'Escribe o código do segundo factor creado pola aplicación do teu móbil ou usa un dos códigos de recuperación:'
@@ -299,6 +300,7 @@ gl:
           patch: Notificar as actualizacións de arranxos
         trending_tag: Hai que revisar unha nova tendencia
       rule:
+        hint: Información adicional
         text: Regra
       settings:
         indexable: Incluír páxina de perfil nos motores de busca

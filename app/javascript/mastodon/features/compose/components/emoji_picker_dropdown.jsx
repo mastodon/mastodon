@@ -10,7 +10,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
-import MoodIcon from 'mastodon/../material-icons/400-24px/mood.svg?react';
+import MoodIcon from '@/material-icons/400-20px/mood.svg?react';
 import { IconButton } from 'mastodon/components/icon_button';
 import { assetHost } from 'mastodon/utils/config';
 
@@ -164,6 +164,7 @@ class EmojiPickerMenuImpl extends PureComponent {
     intl: PropTypes.object.isRequired,
     skinTone: PropTypes.number.isRequired,
     onSkinTone: PropTypes.func.isRequired,
+    pickerButtonRef: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -178,7 +179,7 @@ class EmojiPickerMenuImpl extends PureComponent {
   };
 
   handleDocumentClick = e => {
-    if (this.node && !this.node.contains(e.target)) {
+    if (this.node && !this.node.contains(e.target) && !this.props.pickerButtonRef.contains(e.target)) {
       this.props.onClose();
     }
   };
@@ -233,6 +234,7 @@ class EmojiPickerMenuImpl extends PureComponent {
       emoji.native = emoji.colons;
     }
     if (!(event.ctrlKey || event.metaKey)) {
+
       this.props.onClose();
     }
     this.props.onPick(emoji);
@@ -328,6 +330,7 @@ class EmojiPickerDropdown extends PureComponent {
   state = {
     active: false,
     loading: false,
+    placement: 'bottom',
   };
 
   setRef = (c) => {
@@ -379,10 +382,14 @@ class EmojiPickerDropdown extends PureComponent {
     return this.target;
   };
 
+  handleOverlayEnter = (state) => {
+    this.setState({ placement: state.placement });
+  };
+
   render () {
     const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis } = this.props;
     const title = intl.formatMessage(messages.emoji);
-    const { active, loading } = this.state;
+    const { active, loading, placement } = this.state;
 
     return (
       <div className='emoji-picker-dropdown' onKeyDown={this.handleKeyDown} ref={this.setTargetRef}>
@@ -395,7 +402,7 @@ class EmojiPickerDropdown extends PureComponent {
           inverted
         />
 
-        <Overlay show={active} placement={'bottom'} target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
+        <Overlay show={active} placement={placement} flip target={this.findTarget} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
           {({ props, placement })=> (
             <div {...props} style={{ ...props.style }}>
               <div className={`dropdown-animation ${placement}`}>
@@ -407,6 +414,7 @@ class EmojiPickerDropdown extends PureComponent {
                   onSkinTone={onSkinTone}
                   skinTone={skinTone}
                   frequentlyUsedEmojis={frequentlyUsedEmojis}
+                  pickerButtonRef={this.target}
                 />
               </div>
             </div>

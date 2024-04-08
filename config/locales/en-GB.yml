@@ -425,6 +425,7 @@ en-GB:
       view: View domain block
     email_domain_blocks:
       add_new: Add new
+      allow_registrations_with_approval: Allow registrations with approval
       attempts_over_week:
         one: "%{count} attempt over the last week"
         other: "%{count} sign-up attempts over the last week"
@@ -1489,7 +1490,6 @@ en-GB:
     administration_emails: Admin e-mail notifications
     email_events: Events for e-mail notifications
     email_events_hint: 'Select events that you want to receive notifications for:'
-    other_settings: Other notifications settings
   number:
     human:
       decimal_units:
@@ -1545,6 +1545,9 @@ en-GB:
     errors:
       limit_reached: Limit of different reactions reached
       unrecognized_emoji: is not a recognised emoji
+  redirects:
+    prompt: If you trust this link, click it to continue.
+    title: You are leaving %{instance}.
   relationships:
     activity: Account activity
     confirm_follow_selected_followers: Are you sure you want to follow selected followers?
@@ -1607,6 +1610,7 @@ en-GB:
       unknown_browser: Unknown Browser
       weibo: Weibo
     current_session: Current session
+    date: Date
     description: "%{browser} on %{platform}"
     explanation: These are the web browsers currently logged in to your Mastodon account.
     ip: IP
@@ -1643,7 +1647,6 @@ en-GB:
     import: Import
     import_and_export: Import and export
     migrate: Account migration
-    notifications: Notifications
     preferences: Preferences
     profile: Profile
     relationships: Follows and followers
@@ -1688,8 +1691,6 @@ en-GB:
         other: "%{count} votes"
       vote: Vote
     show_more: Show more
-    show_newer: Show newer
-    show_older: Show older
     show_thread: Show thread
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1773,16 +1774,27 @@ en-GB:
     webauthn: Security keys
   user_mailer:
     appeal_approved:
+      action: Account Settings
       explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been approved. Your account is once again in good standing.
       subject: Your appeal from %{date} has been approved
+      subtitle: Your account is once again in good standing.
       title: Appeal approved
     appeal_rejected:
       explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been rejected.
       subject: Your appeal from %{date} has been rejected
+      subtitle: Your appeal has been rejected.
       title: Appeal rejected
     backup_ready:
+      explanation: You requested a full backup of your Mastodon account.
+      extra: It's now ready for download!
       subject: Your archive is ready for download
       title: Archive takeout
+    failed_2fa:
+      details: 'Here are details of the sign-in attempt:'
+      explanation: Someone has tried to sign in to your account but provided an invalid second authentication factor.
+      further_actions_html: If this wasn't you, we recommend that you %{action} immediately as it may be compromised.
+      subject: Second factor authentication failure
+      title: Failed second factor authentication
     suspicious_sign_in:
       change_password: change your password
       details: 'Here are details of the login:'
@@ -1822,13 +1834,7 @@ en-GB:
         silence: Account limited
         suspend: Account suspended
     welcome:
-      edit_profile_action: Setup profile
-      edit_profile_step: You can customise your profile by uploading a profile picture, changing your display name and more. You can opt-in to review new followers before they’re allowed to follow you.
       explanation: Here are some tips to get you started
-      final_action: Start posting
-      final_step: 'Start posting! Even without followers, your public posts may be seen by others, for example on the local timeline or in hashtags. You may want to introduce yourself on the #introductions hashtag.'
-      full_handle: Your full handle
-      full_handle_hint: This is what you would tell your friends so they can message or follow you from another server.
       subject: Welcome to Mastodon
       title: Welcome aboard, %{name}!
   users:
@@ -1836,6 +1842,7 @@ en-GB:
     go_to_sso_account_settings: Go to your identity provider's account settings
     invalid_otp_token: Invalid two-factor code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
+    rate_limited: Too many authentication attempts, try again later.
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Logged in as:'
   verification:

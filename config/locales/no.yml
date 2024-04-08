@@ -966,6 +966,8 @@
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      subject: Registreringer for %{instance} har blitt automatisk byttet til å kreve godkjenning
     new_appeal:
       actions:
         delete_statuses: å slette sine innlegg
@@ -1490,7 +1492,6 @@
     administration_emails: Administrators e-postvarslinger
     email_events: E-postvarslinger for hendelser
     email_events_hint: 'Velg hendelser som du vil motta varslinger for:'
-    other_settings: Andre varslingsinnstillinger
   number:
     human:
       decimal_units:
@@ -1648,7 +1649,6 @@
     import: Importér
     import_and_export: Importer og eksporter
     migrate: Kontomigrering
-    notifications: Varslinger
     preferences: Innstillinger
     profile: Profil
     relationships: Følginger og følgere
@@ -1693,8 +1693,6 @@
         other: "%{count} stemmer"
       vote: Stem
     show_more: Vis mer
-    show_newer: Vis nyere
-    show_older: Vis eldre
     show_thread: Vis tråden
     title: "%{name}: «%{quote}»"
     visibilities:
@@ -1838,13 +1836,29 @@
         silence: Kontoen er begrenset
         suspend: Kontoen er suspendert
     welcome:
-      edit_profile_action: Sett opp profil
-      edit_profile_step: Du kan tilpasse profilen din ved å laste opp et profilbilde, endre visningsnavnet ditt og mer. Du kan velge at nye følgere må godkjennes av deg før de får lov til å følge deg.
+      apps_android_action: Få den på Google Play
+      apps_ios_action: Last ned på App Store
+      apps_step: Last ned våre offisielle apper.
+      apps_title: Mastodon-apper
+      checklist_title: Velkomst-sjekkliste
+      edit_profile_action: Tilpass
+      edit_profile_title: Tilpass profilen din
       explanation: Her er noen tips for å komme i gang
-      final_action: Start postingen
-      final_step: 'Skriv innlegg! Selv uten følgere kan dine offentlige innlegg bli sett av andre, for eksempel på den lokale tidslinjen og i emneknagger. Du kan introdusere deg selv ved å bruke emneknaggen #introduksjon.'
-      full_handle: Ditt fullstendige brukernavn
-      full_handle_hint: Dette er hva du forteller venner slik at de kan sende melding eller følge deg fra en annen instanse.
+      feature_action: Lær mer
+      feature_moderation_title: Moderering slik det burde være
+      follow_action: Følg
+      follow_title: Tilpass tidslinjen din
+      follows_subtitle: Følg godt kjente kontoer
+      follows_title: Hvem å følge
+      follows_view_more: Vis flere personer å følge
+      hashtags_title: Populære emneknagger
+      hashtags_view_more: Vis flere populære emneknagger
+      post_step: Si hallo til verdenen med tekst, bilder, videoer, eller meningsmålinger.
+      post_title: Lag ditt første innlegg
+      share_action: Del
+      share_step: La vennene dine vite hvordan finne deg på Mastodon.
+      share_title: Del Mastadon-profilen din
+      sign_in_action: Logg inn
       subject: Velkommen til Mastodon
       title: Velkommen ombord, %{name}!
   users:

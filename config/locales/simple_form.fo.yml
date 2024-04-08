@@ -39,14 +39,14 @@ fo:
         text: Tú kanst bara kæra eina atsókn eina ferð
       defaults:
         autofollow: Fólk, sum tilmelda seg gjøgnum innbjóðingina, fylgja tær sjálvvirkandi
-        avatar: PNG, GIF ella JPG. Ikki størri enn %{size}. Verður minkað til %{dimensions}px
+        avatar: WEBP, PNG, GIF ella JPG. Í mesta lagi %{size}. Verður minkað til %{dimensions}px
         bot: Tekin til onnur, at kontan í høvuðsheitum ger sjálvvirkandi atgerðir og møguliga ikki verður yvirvakað
         context: Ein ella fleiri kontekstir, har sum filtrið skal brúkast
         current_password: Av trygdarávum vinarliga les inn loyniorðið hjá verandi kontu
         current_username: Fyri at vátta, vinarliga les inn brúkaranavnið á verandi kontu
         digest: Einans sent eftir eitt langt tíðarskeið við óvirkni og einans um tú hevur móttikið persónlig boð meðan tú var burtur
         email: Tú fær sendandi ein váttanarteldupost
-        header: PNG, GIF ella JPG. Ikki størri enn %{size}. Verður minkað til %{dimensions}px
+        header: WEBP, PNG, GIF ella JPG. Í mesta lagi %{size}. Verður minkað til %{dimensions}px
         inbox_url: Avrita URL'in frá forsíðuni hjá reiðlagnum, sum tú vilt brúka
         irreversible: Filtreraðir postar blíva burtur med alla, eisini sjálvt um filtrið seinni verður strikað
         locale: Málið, sum verður brúkt í brúkaramarkamótinum, teldupostum og skumpiboðum
@@ -116,6 +116,7 @@ fo:
           sign_up_requires_approval: Nýggjar tilmeldingar fara at krevja tína góðkenning
         severity: Vel, hvat skal henda við umbønum frá hesari IP adressuni
       rule:
+        hint: Valfrítt. Gev fleiri smálutir um regluna
         text: Lýs eina reglu ella eitt krav fyri brúkarar á hesum ambætaranum. Ger tað stutt og einfalt
       sessions:
         otp: 'Skriva tvey-faktor koduna frá telefon-appini ella brúka eina av tínum endurgerðskodum:'
@@ -299,6 +300,7 @@ fo:
           patch: Gev fráboðan um feilrættingardagføringar
         trending_tag: Broytt rák skal kannast
       rule:
+        hint: Fleiri upplýsingar
         text: Regla
       settings:
         indexable: Lat vangasíðu vera tøka í leitimaskinum

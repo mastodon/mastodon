@@ -1490,7 +1490,6 @@ fy:
     administration_emails: E-mailmeldingen behearder
     email_events: E-mailmeldingen foar eveneminten
     email_events_hint: 'Selektearje eveneminten wêrfoar’t jo meldingen ûntfange wolle:'
-    other_settings: Oare meldingsynstellingen
   number:
     human:
       decimal_units:
@@ -1546,6 +1545,9 @@ fy:
     errors:
       limit_reached: Limyt fan ferskate emoji-reaksjes berikt
       unrecognized_emoji: is gjin besteande emoji-reaksje
+  redirects:
+    prompt: As jo dizze keppeling fertrouwe, klik der dan op om troch te gean.
+    title: Jo ferlitte %{instance}.
   relationships:
     activity: Accountaktiviteit
     confirm_follow_selected_followers: Binne jo wis dat jo de selektearre folgers folgje wolle?
@@ -1645,7 +1647,6 @@ fy:
     import: Ymportearje
     import_and_export: Ymportearje en eksportearje
     migrate: Accountmigraasje
-    notifications: Meldingen
     preferences: Ynstellingen
     profile: Profyl
     relationships: Folgers en folgjenden
@@ -1690,8 +1691,6 @@ fy:
         other: "%{count} stimmen"
       vote: Stimme
     show_more: Mear toane
-    show_newer: Nijere toane
-    show_older: Aldere toane
     show_thread: Petear toane
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1835,13 +1834,27 @@ fy:
         silence: Account beheind
         suspend: Account beskoattele
     welcome:
-      edit_profile_action: Profyl ynstelle
-      edit_profile_step: Jo kinne jo profyl oanpasse troch in profylfoto op te laden, jo werjeftenamme oan te passen en mear. Jo kinne it hânmjittich goedkarren fan folgers ynstelle.
+      apps_android_action: Fia Google Play downloade
+      apps_ios_action: Fia de App Store downloade
+      apps_step: Us offisjele apps downloade
+      apps_title: Mastodon-apps
+      edit_profile_action: Personalisearje
+      edit_profile_title: Jo profyl personalisearje
       explanation: Hjir binne inkelde tips om jo op wei te helpen
-      final_action: Begjin mei berjochten te pleatsen
-      final_step: 'Begjin berjochten te pleatsen! Sels sûnder folgers kinne jo iepenbiere berjochten troch oaren besjoen wurde, bygelyks op de lokale tiidline en ûnder hashtags. Jo kinne josels foarstelle mei it gebrûk fan de hashtag #introductions.'
-      full_handle: Jo folsleine Mastodon-adres
-      full_handle_hint: Dit jouwe jo oan jo freonen, sadat se jo berjochten stjoere kinne of (fan in oare Mastodon-server ôf) folgje kinne.
+      feature_action: Mear ynfo
+      follow_action: Folgje
+      follows_title: Wa te folgjen
+      follows_view_more: Mear minsken om te folgjen besjen
+      hashtags_subtitle: Wat der yn de ôfrûne 2 dagen bard is ferkenne
+      hashtags_title: Populêre hashtags
+      hashtags_view_more: Mear populêre hashtags besjen
+      post_action: Opstelle
+      post_step: Sis hallo tsjin de wrâld mei tekst, foto’s, fideo’s of peilingen.
+      post_title: Jo earste berjocht meitsje
+      share_action: Diele
+      share_step: Lit jo freonen witte hoe’t jo te finen binne op Mastodon.
+      share_title: Jo Mastodon-profyl diele
+      sign_in_action: Oanmelde
       subject: Wolkom op Mastodon
       title: Wolkom oan board %{name}!
   users:

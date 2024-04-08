@@ -83,6 +83,11 @@ module Account::Interactions
     has_many :following, -> { order('follows.id desc') }, through: :active_relationships,  source: :target_account
     has_many :followers, -> { order('follows.id desc') }, through: :passive_relationships, source: :account
 
+    with_options class_name: 'SeveredRelationship', dependent: :destroy do
+      has_many :severed_relationships, foreign_key: 'local_account_id', inverse_of: :local_account
+      has_many :remote_severed_relationships, foreign_key: 'remote_account_id', inverse_of: :remote_account
+    end
+
     # Account notes
     has_many :account_notes, dependent: :destroy
 
@@ -178,7 +183,7 @@ module Account::Interactions
   end
 
   def unblock_domain!(other_domain)
-    block = domain_blocks.find_by(domain: other_domain)
+    block = domain_blocks.find_by(domain: normalized_domain(other_domain))
     block&.destroy
   end
 
@@ -242,10 +247,6 @@ module Account::Interactions
     status_pins.exists?(status: status)
   end
 
-  def endorsed?(account)
-    account_pins.exists?(target_account: account)
-  end
-
   def status_matches_filters(status)
     active_filters = CustomFilter.cached_filters_for(id)
     CustomFilter.apply_cached_filters(active_filters, status)
@@ -299,5 +300,9 @@ module Account::Interactions
       muting: Account.muting_map(account_ids, id),
       domain_blocking_by_domain: Account.domain_blocking_map_by_domain(domains, id),
     })
+  end
+
+  def normalized_domain(domain)
+    TagManager.instance.normalize_domain(domain)
   end
 end

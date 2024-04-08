@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UnfollowService, type: :service do
+RSpec.describe UnfollowService do
   subject { described_class.new }
 
   let(:sender) { Fabricate(:account, username: 'alice') }

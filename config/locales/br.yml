@@ -3,6 +3,7 @@ br:
   about:
     contact_missing: Andermenet
     contact_unavailable: N'eus ket
+    hosted_on: Servijer Mastodon herberc'hiet war %{domain}
     title: Diwar-benn
   accounts:
     follow: Heuliañ
@@ -135,6 +136,9 @@ br:
     disputes:
       appeals:
         title: Galvoù
+    domain_allows:
+      export: Ezporzhiañ
+      import: Enporzhiañ
     domain_blocks:
       domain: Domani
       new:
@@ -151,6 +155,8 @@ br:
       domain: Domani
       new:
         create: Ouzhpenniñ un domani
+    export_domain_allows:
+      no_file: Restr ebet diuzet
     follow_recommendations:
       status: Statud
       suppressed: Dilamet
@@ -265,10 +271,12 @@ br:
         delete_statuses: Dilamet eo bet toudoù %{target} gant %{name}
     trends:
       allow: Aotren
+      approved: Aprouet
       links:
         allow: Aotren al liamm
       preview_card_providers:
         title: Embannerien·ezed
+      rejected: Nac'het
       statuses:
         allow: Aotren ar c'hannad
       tags:
@@ -297,6 +305,9 @@ br:
         title: Hashtagoù diouzh ar c'hiz
   appearance:
     discovery: Dizoloadur
+    localization:
+      body: Gant tud a-youl vat eo troet Mastodon.
+      guide_link: https://crowdin.com/project/mastodon
   application_mailer:
     view: 'Sellet :'
     view_status: Gwelet ar c'hannad
@@ -373,10 +384,12 @@ br:
         title: Toudoù silet
   generic:
     all: Pep tra
+    changes_saved_msg: Enrollet eo bet ar cheñchamantoù gant berzh!
     copy: Eilañ
     delete: Dilemel
     none: Hini ebet
     order_by: Urzhiañ dre
+    save_changes: Enrollañ ar cheñchamantoù
     today: hiziv
   imports:
     modes:
@@ -488,6 +501,7 @@ br:
   settings:
     account: Kont
     account_settings: Arventennoù ar gont
+    back: Distreiñ da vMastodon
     development: Diorren
     edit_profile: Kemmañ ar profil
     featured_tags: Hashtagoù pennañ
@@ -521,13 +535,14 @@ br:
       '604800': 1 sizhunvezh
       '63113904': 2 vloavezh
   themes:
-    default: Mastodoñ (Teñval)
-    mastodon-light: Mastodoñ (Sklaer)
+    default: Mastodon (Teñval)
+    mastodon-light: Mastodon (Sklaer)
   time:
     formats:
       default: "%d a viz %b %Y, %H:%M"
       month: Miz %b %Y
       time: "%H:%M"
+      with_time_zone: "%d a viz %b %Y, %H:%M %Z"
   two_factor_authentication:
     add: Ouzhpennañ
     disable: Diweredekaat
@@ -545,8 +560,17 @@ br:
       title:
         none: Diwall
     welcome:
-      edit_profile_action: Kefluniañ ar profil
-      subject: Donemat e Mastodoñ
+      apps_android_action: Tapit anezhañ war Google Play
+      apps_ios_action: Pellgargañ war an App Store
+      apps_step: Pellgargit hon arloadoù ofisiel.
+      apps_title: Arloadoù Mastodon
+      edit_profile_action: Personelaat
+      edit_profile_title: Personelaat ho profil
+      feature_action: Gouzout hiroc'h
+      follow_action: Heuliañ
+      share_action: Rannañ
+      sign_in_action: Kevreañ
+      subject: Donemat e Mastodon
       title: Degemer mat e bourzh, %{name}!
   users:
     follow_limit_reached: N'hallit ket heulian muioc'h eget %{limit} a zen

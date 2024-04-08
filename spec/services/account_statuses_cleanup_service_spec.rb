@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AccountStatusesCleanupService, type: :service do
+describe AccountStatusesCleanupService do
   let(:account)           { Fabricate(:account, username: 'alice', domain: nil) }
   let(:account_policy)    { Fabricate(:account_statuses_cleanup_policy, account: account) }
   let!(:unrelated_status) { Fabricate(:status, created_at: 3.years.ago) }

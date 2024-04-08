@@ -781,13 +781,15 @@ sr-Latn:
         disabled: Nikome
         users: Prijavljenim lokalnim korisnicima
       registrations:
+        moderation_recommandation: Uverite se da imate adekvatan i reaktivan moderatorski tim pre nego što otvorite registraciju za sve!
         preamble: Kontrolišite ko sme da napravi nalog na Vašem serveru.
         title: Registracije
       registrations_mode:
         modes:
-          approved: Odobrenje neophodno za registraciju
+          approved: Neophodno je odobrenje za registraciju
           none: Niko ne može da se registruje
           open: Bilo ko može da se registruje
+        warning_hint: Preporučujemo da koristite „Neophodno je odobrenje za registraciju” osim ako niste sigurni da vaš moderatorski tim može blagovremeno da obradi neželjenu poštu i zlonamerne registracije.
       security:
         authorized_fetch: Zahtevaj autentifikaciju sa združenih servera
         authorized_fetch_hint: Zahtevanje autentifikacije sa združenih servera omogućuje strožiju primenu blokova i na nivou korisnika i na nivou servera. Međutim, ovo dolazi po cenu smanjenja performansi, smanjuje domet vaših odgovora i može dovesti do problema kompatibilnosti sa nekim združenim uslugama. Pored toga, ovo neće sprečiti posvećene aktere da preuzimaju vaše javne objave i naloge.
@@ -984,6 +986,9 @@ sr-Latn:
       title: Veb-presretač
       webhook: Veb-presretač
   admin_mailer:
+    auto_close_registrations:
+      body: Zbog nedostatka nedavnih aktivnosti moderatora, registracije na %{instance} su automatski prebačene na zahtevanje ručnog pregleda, kako bi se sprečilo da se %{instance} koristi kao platforma za potencijalne loše aktere. Možete ih vratiti na otvorene registracije u bilo kom trenutku.
+      subject: Registracije za %{instance} su automatski prebačene na zahtevanje odobrenja
     new_appeal:
       actions:
         delete_statuses: obrisati objave korisnika
@@ -1059,7 +1064,7 @@ sr-Latn:
       hint_html: Samo još jedna stvar! Moramo da potvrdimo da ste ljudsko biće (ovo je da bismo sprečili neželjenu poštu!). Rešite CAPTCHA ispod i kliknite na „Nastavi”.
       title: Bezbedonosna provera
     confirmations:
-      awaiting_review: Vaša adresa e-pošte je potvrđena! Osoblje %{domain} sada pregleda vašu registraciju. Dobićete e-poštu ako odobre vaš nalog!
+      awaiting_review: Vaša adresa e-pošte je potvrđena! Osoblje %{domain} sada pregleda vašu registraciju. Dobićete e-poštu ako odobre vaš nalog!
       awaiting_review_title: Vaša registracija se pregleda
       clicking_this_link: klikom na ovu vezu
       login_link: prijavi se
@@ -1128,7 +1133,7 @@ sr-Latn:
       functional: Vaš nalog je potpuno operativan.
       pending: Vaš zahtev je na čekanju za pregled od strane našeg osoblja. Ovo može potrajati neko vreme. Primićete imejl poruku ukoliko Vam zahtev bude odobren.
       redirecting_to: Vaš nalog je neaktivan jer preusmerava na %{acct}.
-      self_destruct: Pošto se %{domain} zatvara, dobićete samo ograničen pristup svom nalogu.
+      self_destruct: Pošto se %{domain} zatvara, dobićete samo ograničen pristup svom nalogu.
       view_strikes: Pogledajte prethodne prestupe upisane na Vaše ime
     too_fast: Formular je podnet prebrzo, pokušajte ponovo.
     use_security_key: Koristite sigurnosni ključ
@@ -1393,7 +1398,7 @@ sr-Latn:
       '86400': 1 dan
     expires_in_prompt: Nikad
     generate: Generiši
-    invalid: Ova pozivnica nije važeća
+    invalid: Ova pozivnica nije važeća
     invited_by: 'Pozvao Vas je:'
     max_uses:
       few: "%{count} korišćenja"
@@ -1516,7 +1521,6 @@ sr-Latn:
     administration_emails: Obaveštenja e-poštom od administratora
     email_events: Događaji za obaveštenja e-poštom
     email_events_hint: 'Izaberite dešavanja za koja želite da primate obaveštenja:'
-    other_settings: Ostala podešavanja obaveštenja
   number:
     human:
       decimal_units:
@@ -1611,7 +1615,7 @@ sr-Latn:
     over_total_limit: Prekoračili ste granicu od %{limit} planiranih objava
     too_soon: Planirani datum mora biti u budućnosti
   self_destruct:
-    lead_html: Nažalost, <strong>%{domain}</strong> se trajno zatvara. Ako ste tamo imali nalog, nećete moći da nastavite da ga koristite, ali i dalje možete da zatražite rezervnu kopiju svojih podataka.
+    lead_html: Nažalost, <strong>%{domain}</strong> se trajno zatvara. Ako ste tamo imali nalog, nećete moći da nastavite da ga koristite, ali i dalje možete da zatražite rezervnu kopiju svojih podataka.
     title: Ovaj server se zatvara
   sessions:
     activity: Poslednja aktivnost
@@ -1674,7 +1678,6 @@ sr-Latn:
     import: Uvoz
     import_and_export: Uvoz i izvoz
     migrate: Prebacivanje naloga
-    notifications: Obaveštenja
     preferences: Podešavanja
     profile: Javni profil
     relationships: Praćenja i pratioci
@@ -1725,8 +1728,6 @@ sr-Latn:
         other: "%{count} glasova"
       vote: Glasajte
     show_more: Prikaži još
-    show_newer: Nikad ne prikazuj
-    show_older: Prikaži starije
     show_thread: Prikaži niz
     title: "%{name}: „%{quote}”"
     visibilities:
@@ -1781,8 +1782,8 @@ sr-Latn:
     does_not_match_previous_name: ne poklapa se sa prethodnim imenom
   themes:
     contrast: Veliki kontrast
-    default: Mastodon (tamno)
-    mastodon-light: Mastodon (svetlo)
+    default: Mastodon (tamna)
+    mastodon-light: Mastodon (svetla)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -1827,7 +1828,7 @@ sr-Latn:
       title: Izvoz arhive
     failed_2fa:
       details: 'Evo detalja o pokušaju prijavljivanja:'
-      explanation: Neko je pokušao da se prijavi na vaš nalog ali je dao nevažeći drugi faktor autentifikacije.
+      explanation: Neko je pokušao da se prijavi na vaš nalog ali je dao nevažeći drugi faktor autentifikacije.
       further_actions_html: Ako to niste bili vi, preporučujemo vam da odmah %{action} jer može biti ugrožena.
       subject: Neuspeh drugog faktora autentifikacije
       title: Nije uspeo drugi faktor autentifikacije
@@ -1870,13 +1871,41 @@ sr-Latn:
         silence: Nalog ograničen
         suspend: Nalog suspendovan
     welcome:
-      edit_profile_action: Podesi nalog
-      edit_profile_step: Možete prilagoditi svoj profil tako što ćete postaviti profilnu sliku, promeniti ime za prikaz i tako dalje. Možete dati saglasnost da pregledate nove pratioce pre nego što im dozvolite da Vas zaprate.
+      apps_android_action: Nabavite na Google Play
+      apps_ios_action: Preuzmite sa App Store
+      apps_step: Preuzmite naše zvanične aplikacije.
+      apps_title: Mastodon aplikacije
+      checklist_subtitle: 'Započnimo na ovoj novoj društvenoj granici:'
+      checklist_title: Koraci dobrodošlice
+      edit_profile_action: Personalizujte
+      edit_profile_step: Povećajte svoje interakcije tako što ćete imati sveobuhvatan profil.
+      edit_profile_title: Personalizujte svoj profil
       explanation: Evo nekoliko saveta za početak
-      final_action: Počnite objavljivati
-      final_step: 'Počnite da objavljujete! Čak i bez pratilaca, Vaše javne objave su vidljive drugim ljudima, na primer na lokalnoj vremenskoj liniji ili u heš oznakama. Možda želite da se predstavite sa heš oznakom #introductions ili #predstavljanja.'
-      full_handle: Vaš pun nadimak
-      full_handle_hint: Ovo biste rekli svojim prijateljima kako bi vam oni poslali poruku, ili zapratili sa druge instance.
+      feature_action: Saznajte više
+      feature_audience: Mastodon vam pruža jedinstvenu mogućnost upravljanja svojom publikom bez posrednika. Mastodon raspoređen na vašoj sopstvenoj infrastrukturi vam omogućuje da pratite i budete praćeni sa bilo kog drugog Mastodon servera na mreži i nije ni pod čijom kontrolom osim vaše.
+      feature_audience_title: Izgradite svoju publiku u poverenju
+      feature_control: Vi najbolje znate šta želite da vidite na svojoj poetnoj stranici. Nema algoritama ili reklama da troše vaše vreme. Pratite bilo koga na bilo kom Mastodon serveru sa jednog naloga i primajte njihove objave hronološkim redosledom i učinite svoj kutak interneta malo sličnijim vama.
+      feature_control_title: Držite kontrolu nad sopstvenom vremenskom linijom
+      feature_creativity: Mastodon podržava audio, video i slikovne objave, opise pristupačnosti, ankete, upozorenja o sadržaju, animirane avatare, prilagođene emodžije, kontrolu isecanja sličica i još mnogo toga, kako bi vam pomogao da se izrazite na mreži. Bilo da objavljujete svoju umetnost, muziku ili podkast, Mastodon je tu za vas.
+      feature_creativity_title: Kreativnost bez premca
+      feature_moderation: Mastodon vraća donošenje odluka u vaše ruke. Svaki server kreira sopstvena pravila i propise, koji se primenjuju lokalno, a ne odozgo prema dole kao korporativni društveni mediji, što ga čini najfleksibilnijim u odgovaranju na potrebe različitih grupa ljudi. Pridružite se serveru sa pravilima sa kojima se slažete ili hostujte svoja.
+      feature_moderation_title: Moderacija onakva kakva bi trebalo da bude
+      follow_action: Pratite
+      follow_step: Praćenje zanimljivih ljudi je ono o čemu se radi u Mastodon-u.
+      follow_title: Personalizujte svoju početnu stranicu
+      follows_subtitle: Pratite dobro poznate naloge
+      follows_title: Koga pratiti
+      follows_view_more: Pogledajte još ljudi za praćenje
+      hashtags_subtitle: Istražite šta je u trendu u poslednja 2 dana
+      hashtags_title: Heš oznake u trendu
+      hashtags_view_more: Pogledajte još heš oznaka u trendu
+      post_action: Napišite
+      post_step: Pozdravite svet tekstom, fotografijama, video zapisima ili anketama.
+      post_title: Napišite svoju prvu objavu
+      share_action: Podelite
+      share_step: Neka vaši prijatelji znaju kako da vas pronađu na Mastodon-u.
+      share_title: Podelite svoj Mastodon profil
+      sign_in_action: Prijavite se
       subject: Dobro došli na Mastodon
       title: Dobro došli, %{name}!
   users:

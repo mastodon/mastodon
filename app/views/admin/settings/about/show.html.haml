@@ -11,7 +11,10 @@
   %p.lead= t('admin.settings.about.preamble')
 
   .fields-group
-    = f.input :site_extended_description, wrapper: :with_block_label, as: :text, input_html: { rows: 8 }
+    = f.input :site_extended_description,
+              as: :text,
+              input_html: { rows: 8 },
+              wrapper: :with_block_label
 
     %p.hint
       = t 'admin.settings.about.rules_hint'
@@ -19,15 +22,32 @@
 
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :show_domain_blocks, wrapper: :with_label, collection: %i(disabled users all), label_method: ->(value) { t("admin.settings.domain_blocks.#{value}") }, include_blank: false, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+      = f.input :show_domain_blocks,
+                collection_wrapper_tag: 'ul',
+                collection: %i(disabled users all),
+                include_blank: false,
+                item_wrapper_tag: 'li',
+                label_method: ->(value) { t("admin.settings.domain_blocks.#{value}") },
+                wrapper: :with_label
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :show_domain_blocks_rationale, wrapper: :with_label, collection: %i(disabled users all), label_method: ->(value) { t("admin.settings.domain_blocks.#{value}") }, include_blank: false, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+      = f.input :show_domain_blocks_rationale,
+                collection_wrapper_tag: 'ul',
+                collection: %i(disabled users all),
+                include_blank: false,
+                item_wrapper_tag: 'li',
+                label_method: ->(value) { t("admin.settings.domain_blocks.#{value}") },
+                wrapper: :with_label
 
   .fields-group
-    = f.input :status_page_url, wrapper: :with_block_label, input_html: { placeholder: "https://status.#{Rails.configuration.x.local_domain}" }
+    = f.input :status_page_url,
+              input_html: { placeholder: "https://status.#{Rails.configuration.x.local_domain}" },
+              wrapper: :with_block_label
 
   .fields-group
-    = f.input :site_terms, wrapper: :with_block_label, as: :text, input_html: { rows: 8 }
+    = f.input :site_terms,
+              as: :text,
+              input_html: { rows: 8 },
+              wrapper: :with_block_label
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

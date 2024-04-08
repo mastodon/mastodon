@@ -30,7 +30,7 @@ RSpec.describe Form::Import do
 
       it 'has errors' do
         subject.validate
-        expect(subject.errors[:data]).to include(I18n.t('imports.errors.over_rows_processing_limit', count: Form::Import::ROWS_PROCESSING_LIMIT))
+        expect(subject.errors[:data]).to include(I18n.t('imports.errors.over_rows_processing_limit', count: described_class::ROWS_PROCESSING_LIMIT))
       end
     end
 

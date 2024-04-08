@@ -7,6 +7,7 @@ import Base from 'mastodon/components/modal_root';
 import {
   MuteModal,
   BlockModal,
+  DomainBlockModal,
   ReportModal,
   EmbedModal,
   ListEditor,
@@ -23,7 +24,7 @@ import BundleContainer from '../containers/bundle_container';
 
 import ActionsModal from './actions_modal';
 import AudioModal from './audio_modal';
-import BoostModal from './boost_modal';
+import { BoostModal } from './boost_modal';
 import BundleModalError from './bundle_modal_error';
 import ConfirmationModal from './confirmation_modal';
 import FocalPointModal from './focal_point_modal';
@@ -41,6 +42,7 @@ export const MODAL_COMPONENTS = {
   'CONFIRM': () => Promise.resolve({ default: ConfirmationModal }),
   'MUTE': MuteModal,
   'BLOCK': BlockModal,
+  'DOMAIN_BLOCK': DomainBlockModal,
   'REPORT': ReportModal,
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
   'EMBED': EmbedModal,

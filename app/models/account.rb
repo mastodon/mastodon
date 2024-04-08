@@ -64,6 +64,7 @@ class Account < ApplicationRecord
   )
 
   BACKGROUND_REFRESH_INTERVAL = 1.week.freeze
+  INSTANCE_ACTOR_ID = -99
 
   USERNAME_RE   = /[a-z0-9_]+([a-z0-9_.-]+[a-z0-9_]+)?/i
   MENTION_RE    = %r{(?<![=/[:word:]])@((#{USERNAME_RE})(?:@[[:word:].-]+[[:word:]]+)?)}i
@@ -85,8 +86,8 @@ class Account < ApplicationRecord
   include DomainNormalizable
   include Paginable
 
-  enum protocol: { ostatus: 0, activitypub: 1 }
-  enum suspension_origin: { local: 0, remote: 1 }, _prefix: true
+  enum :protocol, { ostatus: 0, activitypub: 1 }
+  enum :suspension_origin, { local: 0, remote: 1 }, prefix: true
 
   validates :username, presence: true
   validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
@@ -110,6 +111,7 @@ class Account < ApplicationRecord
 
   normalizes :username, with: ->(username) { username.squish }
 
+  scope :without_internal, -> { where(id: 1...) }
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
@@ -118,7 +120,7 @@ class Account < ApplicationRecord
   scope :sensitized, -> { where.not(sensitized_at: nil) }
   scope :without_suspended, -> { where(suspended_at: nil) }
   scope :without_silenced, -> { where(silenced_at: nil) }
-  scope :without_instance_actor, -> { where.not(id: -99) }
+  scope :without_instance_actor, -> { where.not(id: INSTANCE_ACTOR_ID) }
   scope :recent, -> { reorder(id: :desc) }
   scope :bots, -> { where(actor_type: %w(Application Service)) }
   scope :groups, -> { where(actor_type: 'Group') }
@@ -130,12 +132,13 @@ class Account < ApplicationRecord
   scope :auditable, -> { where(id: Admin::ActionLog.select(:account_id).distinct) }
   scope :searchable, -> { without_unapproved.without_suspended.where(moved_to_account_id: nil) }
   scope :discoverable, -> { searchable.without_silenced.where(discoverable: true).joins(:account_stat) }
-  scope :by_recent_status, -> { includes(:account_stat).merge(AccountStat.order('last_status_at DESC NULLS LAST')).references(:account_stat) }
+  scope :by_recent_status, -> { includes(:account_stat).merge(AccountStat.by_recent_status).references(:account_stat) }
   scope :by_recent_activity, -> { left_joins(:user, :account_stat).order(coalesced_activity_timestamps.desc).order(id: :desc) }
   scope :popular, -> { order('account_stats.followers_count desc') }
   scope :by_domain_and_subdomains, ->(domain) { where(domain: Instance.by_domain_and_subdomains(domain).select(:domain)) }
   scope :not_excluded_by_account, ->(account) { where.not(id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { where(arel_table[:domain].eq(nil).or(arel_table[:domain].not_in(account.excluded_from_timeline_domains))) }
+  scope :dormant, -> { joins(:account_stat).merge(AccountStat.without_recent_activity) }
 
   after_update_commit :trigger_update_webhooks
 
@@ -176,7 +179,7 @@ class Account < ApplicationRecord
   end
 
   def instance_actor?
-    id == -99
+    id == INSTANCE_ACTOR_ID
   end
 
   alias bot bot?
@@ -440,7 +443,7 @@ class Account < ApplicationRecord
     end
 
     def inboxes
-      urls = reorder(nil).where(protocol: :activitypub).group(:preferred_inbox_url).pluck(Arel.sql("coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url) AS preferred_inbox_url"))
+      urls = reorder(nil).activitypub.group(:preferred_inbox_url).pluck(Arel.sql("coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url) AS preferred_inbox_url"))
       DeliveryFailureTracker.without_unavailable(urls)
     end
 

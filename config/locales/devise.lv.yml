@@ -6,12 +6,13 @@ lv:
       send_instructions: Pēc dažām minūtēm saņemsi e-pastu ar norādījumiem, kā apstiprināt savu e-pasta adresi. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.
       send_paranoid_instructions: Ja tava e-pasta adrese ir mūsu datu bāzē, pēc dažām minūtēm saņemsi e-pastu ar norādījumiem, kā apstiprināt savu e-pasta adresi. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.
     failure:
-      already_authenticated: Jau esi pierakstījies.
+      already_authenticated: Tu jau esi pieteicies.
       inactive: Tavs konts vēl nav aktivizēts.
       invalid: Nederīga %{authentication_keys} vai parole.
       last_attempt: Tev ir vēl viens mēģinājums, pirms tavs konts tiks bloķēts.
       locked: Tavs konts ir bloķēts.
       not_found_in_database: Nederīga %{authentication_keys} vai parole.
+      omniauth_user_creation_failure: Kļūda šīs identitātes konta izveidošanā.
       pending: Tavs konts joprojām tiek pārskatīts.
       timeout: Tava sesija ir beigusies. Lūdzu, pieraksties vēlreiz, lai turpinātu.
       unauthenticated: Lai turpinātu, tev ir jāpierakstās vai jāreģistrējas.
@@ -21,7 +22,7 @@ lv:
         action: Apstiprini savu e-pasta adresi
         action_with_app: Apstiprināt un atgriezties %{app}
         explanation: Ar šo e-pasta adresi esi izveidojis kontu vietnē %{host}. Tu esi viena klikšķa attālumā no tā aktivizēšanas. Ja tas nebiji tu, lūdzu, ignorē šo e-pasta ziņojumu.
-        explanation_when_pending: Tu pieteicies uzaicinājumam uz %{host} ar šo e-pasta adresi. Kad būsi apstiprinājis savu e-pasta adresi, mēs izskatīsim pieteikumu. Tu vari pierakstīties, lai mainītu savu informāciju vai dzēstu savu kontu, taču nevari piekļūt lielākajai daļai funkciju, kamēr tavs konts nav apstiprināts. Ja tavs pieteikums tiks noraidīts, tavi dati tiks noņemti, tāpēc tev nebūs jāveic nekādas darbības. Ja tas nebiji tu, lūdzu, ignorē šo e-pasta ziņojumu.
+        explanation_when_pending: Tu pieteicies uzaicinājumam uz %{host} ar šo e-pasta adresi. Kad būsi apstiprinājis savu e-pasta adresi, mēs izskatīsim pieteikumu. Tu vari pieteikties, lai mainītu savu informāciju vai izdzēstu savu kontu, taču Tu nevari piekļūt lielākajai daļai iespēju, kamēr Tavs konts nav apstiprināts. Ja Tavs pieteikums tiks noraidīts, Tavi dati tiks noņemti, tāpēc Tev nebūs jāveic nekādas darbības. Ja tas nebiji Tu, lūgums neņemt vērā šo e-pasta ziņojumu.
         extra_html: Lūdzu, pārskati arī <a href="%{terms_path}">servera noteikumus</a> un <a href="%{policy_path}"> mūsu pakalpojumu sniegšanas noteikumus</a>.
         subject: 'Mastodon: Apstiprināšanas norādījumi %{instance}'
         title: Apstiprini savu e-pasta adresi
@@ -37,7 +38,7 @@ lv:
         title: Parole nomainīta
       reconfirmation_instructions:
         explanation: Apstiprini jauno adresi, lai mainītu savu e-pastu.
-        extra: Ja šīs izmaiņas neesi veicis tu, lūdzu, ignorē šo e-pasta ziņojumu. Mastodon konta e-pasta adrese nemainīsies, kamēr nebūsi piekļuvis iepriekš norādītajai saitei.
+        extra: Ja šīs izmaiņas neveici Tu, lūgums neņemt vērā šo e-pasta ziņojumu. Mastodon konta e-pasta adrese netiks mainīta, līdz Tu izmantosi augstāk esošo saiti.
         subject: 'Mastodon: Apstiprini e-pastu %{instance}'
         title: Apstiprini e-pasta adresi
       reset_password_instructions:
@@ -47,14 +48,19 @@ lv:
         subject: 'Mastodon: Norādījumi paroles atiestatīšanai'
         title: Paroles atiestatīšana
       two_factor_disabled:
+        explanation: Pieteikšanās tagad ir iespējama izmantojot tikai e-pasta adresi un paroli.
         subject: 'Mastodon: Divfaktoru autentifikācija atspējota'
+        subtitle: Tavam kontam tika atspējota divpakāpju autentifikācija.
         title: 2FA atspējota
       two_factor_enabled:
+        explanation: Būs nepieciešams TOTP lietotnes izveidots kods, lai pieteiktos.
         subject: 'Mastodon: Divfaktoru autentifikācija iespējota'
+        subtitle: Tavam kontam tika iespējota divpakāpju autentifikācija.
         title: 2FA iespējota
       two_factor_recovery_codes_changed:
         explanation: Iepriekšējie atkopšanas kodi ir atzīti par nederīgiem un ģenerēti jauni.
         subject: 'Mastodon: Divfaktoru atkopšanas kodi pārģenerēti'
+        subtitle: Iepriekšējie atkopšanas kodi tika padarīti par nederīgiem, un tika izveidoti jauni.
         title: 2FA atkopšanas kodi mainīti
       unlock_instructions:
         subject: 'Mastodon: Norādījumi atbloķēšanai'
@@ -68,9 +74,13 @@ lv:
           subject: 'Mastodon: Drošības atslēga izdzēsta'
           title: Viena no tavām drošības atslēgām tika izdzēsta
       webauthn_disabled:
+        explanation: Tavam kontam tika atspējota autentifikācija ar drošības atslēgām.
+        extra: Pieteikšanās tagad ir iespējama izmantojot tikai TOTP lietotnes izveidotu kodu.
         subject: 'Mastodon: Autentifikācija ar drošības atslēgām ir atspējota'
         title: Drošības atslēgas atspējotas
       webauthn_enabled:
+        explanation: Tavam kontam tika iespējota drošības atslēgas autentifikācija.
+        extra: Drošības atslēgu tagad var izmantot, lai pieteiktos.
         subject: 'Mastodon: Drošības atslēgas autentifikācija iespējota'
         title: Drošības atslēgas iespējotas
     omniauth_callbacks:
@@ -80,7 +90,7 @@ lv:
       no_token: Tu nevari piekļūt šai lapai, ja neesi saņēmis paroles atiestatīšanas e-pasta ziņojumu. Ja ienāci no paroles atiestatīšanas e-pasta, lūdzu, pārliecinies, vai izmanto visu norādīto URL.
       send_instructions: Ja tava e-pasta adrese ir mūsu datu bāzē, pēc dažām minūtēm uz savu e-pasta adresi saņemsi paroles atkopšanas saiti. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.
       send_paranoid_instructions: Ja tava e-pasta adrese ir mūsu datu bāzē, pēc dažām minūtēm uz savu e-pasta adresi saņemsi paroles atkopšanas saiti. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.
-      updated: Tava parole ir veiksmīgi nomainīta. Tagad tu esi pierakstījies.
+      updated: Tava parole tika veiksmīgi nomainīta. Tu tagad esi pieteicies.
       updated_not_active: Tava parole ir veiksmīgi nomainīta.
     registrations:
       destroyed: Visu labu! Tavs konts ir veiksmīgi atcelts. Mēs ceram tevi drīz atkal redzēt.
@@ -93,7 +103,7 @@ lv:
       updated: Tavs konts ir veiksmīgi atjaunināts.
     sessions:
       already_signed_out: Veiksmīgi izrakstījies.
-      signed_in: Veiksmīgi pierakstījies.
+      signed_in: Veiksmīgi pieteicies.
       signed_out: Veiksmīgi izrakstījies.
     unlocks:
       send_instructions: Pēc dažām minūtēm tu saņemsi e-pastu ar norādījumiem, kā atbloķēt savu kontu. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.

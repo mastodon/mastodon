@@ -12,21 +12,18 @@ RSpec.describe InstanceActorsController do
           get :show, params: { format: format }
         end
 
-        it 'returns http success with correct media type, headers, and session values' do
-          expect(response).to have_http_status(200)
-
-          expect(response.media_type).to eq 'application/activity+json'
-
-          expect(response.cookies).to be_empty
-          expect(response.headers['Set-Cookies']).to be_nil
-
-          expect(session).to be_empty
-
-          expect(response.headers['Cache-Control']).to include 'public'
+        it 'returns http success with correct media type and body' do
+          expect(response)
+            .to have_http_status(200)
+            .and have_attributes(
+              media_type: eq('application/activity+json')
+            )
 
           expect(body_as_json)
             .to include(:id, :type, :preferredUsername, :inbox, :publicKey, :inbox, :outbox, :url)
         end
+
+        it_behaves_like 'cacheable response'
       end
 
       before do
@@ -41,6 +38,14 @@ RSpec.describe InstanceActorsController do
 
       context 'with authorized fetch mode' do
         let(:authorized_fetch_mode) { true }
+
+        it_behaves_like 'shared behavior'
+      end
+
+      context 'with a suspended instance actor' do
+        let(:authorized_fetch_mode) { false }
+
+        before { Account.representative.update(suspended_at: 10.days.ago) }
 
         it_behaves_like 'shared behavior'
       end

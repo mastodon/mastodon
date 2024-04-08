@@ -39,14 +39,14 @@ es-MX:
         text: Sólo puede apelar una amonestación a la vez
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
-        avatar: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
+        avatar: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         bot: Esta cuenta ejecuta principalmente acciones automatizadas y podría no ser monitorizada
         context: Uno o múltiples contextos en los que debe aplicarse el filtro
         current_password: Por razones de seguridad por favor ingrese la contraseña de la cuenta actual
         current_username: Para confirmar, por favor ingrese el nombre de usuario de la cuenta actual
         digest: Solo enviado tras un largo periodo de inactividad y solo si has recibido mensajes personales durante tu ausencia
         email: Se le enviará un correo de confirmación
-        header: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
+        header: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         inbox_url: Copia la URL de la página principal del relés que quieres utilizar
         irreversible: Los toots filtrados desaparecerán irreversiblemente, incluso si este filtro es eliminado más adelante
         locale: El idioma de la interfaz de usuario, correos y notificaciones push
@@ -116,6 +116,7 @@ es-MX:
           sign_up_requires_approval: Nuevos registros requerirán su aprobación
         severity: Elegir lo que pasará con las peticiones desde esta IP
       rule:
+        hint: Opcional. Proporciona más detalles sobre la regla
         text: Describe una norma o requisito para los usuarios de este servidor. Intenta hacerla corta y sencilla
       sessions:
         otp: 'Introduce el código de autenticación de dos factores generado por tu aplicación de teléfono o usa uno de tus códigos de recuperación:'
@@ -299,6 +300,7 @@ es-MX:
           patch: Notificar en actualizaciones de errores
         trending_tag: La nueva tendencia requiere de revisión
       rule:
+        hint: Información adicional
         text: Norma
       settings:
         indexable: Incluir la página de perfil en los motores de búsqueda

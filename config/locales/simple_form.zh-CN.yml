@@ -39,14 +39,14 @@ zh-CN:
         text: 你仅能对单次处罚提交一次申诉
       defaults:
         autofollow: 通过邀请链接注册的用户将会自动关注你
-        avatar: 文件大小限制 %{size}，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 %{dimensions}px
+        avatar: 支持WEBP、PNG、GIF 或 JPG。最大 %{size}。将缩小到 %{dimensions}px
         bot: 来自这个账户的绝大多数操作都是自动进行的，并且可能无人监控
         context: 过滤器的应用环境
         current_password: 为了安全起见，请输入当前账号的密码
         current_username: 请输入当前账号的用户名以确认
         digest: 仅在你长时间未登录，且收到了私信时发送
         email: 我们会向你发送一封确认邮件
-        header: 文件大小限制 %{size}，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 %{dimensions}px
+        header: 支持WEBP、PNG、GIF 或 JPG。最大 %{size}。将缩小到 %{dimensions}px
         inbox_url: 从你想要使用的中继站的主页上复制 URL
         irreversible: 已过滤的嘟文会不可逆转地消失，即便移除过滤器之后也一样
         locale: 用户界面、电子邮件和推送通知中使用的语言
@@ -116,6 +116,7 @@ zh-CN:
           sign_up_requires_approval: 新注册需要你的批准
         severity: 选择如何处理来自此 IP 的请求。
       rule:
+        hint: 选填。提供关于这条规则的更多详情
         text: 描述这个服务器上的用户规则或要求。尽量确保简洁、清晰易懂
       sessions:
         otp: 输入你手机应用上生成的双因素认证代码，或者任意一个恢复代码：
@@ -299,6 +300,7 @@ zh-CN:
           patch: 通知错误修复更新
         trending_tag: 新热门待审核
       rule:
+        hint: 补充信息
         text: 规则
       settings:
         indexable: 允许搜索引擎索引个人资料页面

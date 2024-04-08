@@ -39,14 +39,14 @@ it:
         text: Puoi appellarti solo una volta
       defaults:
         autofollow: Le persone che si iscrivono attraverso l'invito ti seguiranno automaticamente
-        avatar: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
+        avatar: WEBP, PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
         bot: Questo account esegue principalmente operazioni automatiche e potrebbe non essere tenuto sotto controllo da una persona
         context: Uno o più contesti nei quali il filtro dovrebbe essere applicato
         current_password: Per motivi di sicurezza inserisci la password dell'account attuale
         current_username: Per confermare, inserisci il nome utente dell'account attuale
         digest: Inviata solo dopo un lungo periodo di inattività e solo se hai ricevuto qualche messaggio personale in tua assenza
         email: Ti manderemo una email di conferma
-        header: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
+        header: WEBP, PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
         inbox_url: Copia la URL dalla pagina iniziale del ripetitore che vuoi usare
         irreversible: I post filtrati scompariranno in modo irreversibile, anche se il filtro viene eliminato
         locale: La lingua dell'interfaccia utente, di email e notifiche push
@@ -116,6 +116,7 @@ it:
           sign_up_requires_approval: Le nuove iscrizioni richiederanno la tua approvazione
         severity: Scegli cosa accadrà con le richieste da questo IP
       rule:
+        hint: Opzionale. Fornisce maggiori dettagli sulla regola
         text: Descrivi una regola o un requisito per gli utenti su questo server. Prova a mantenerla breve e semplice
       sessions:
         otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
@@ -299,6 +300,7 @@ it:
           patch: Notifica sulle correzioni di bug
         trending_tag: La nuova tendenza richiede un controllo
       rule:
+        hint: Informazioni aggiuntive
         text: Regola
       settings:
         indexable: Includi la pagina del profilo nei motori di ricerca

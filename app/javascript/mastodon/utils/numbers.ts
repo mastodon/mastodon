@@ -69,3 +69,11 @@ export function pluralReady(
 export function roundTo10(num: number): number {
   return Math.round(num * 0.1) / 0.1;
 }
+
+export function toCappedNumber(num: number, max = 99): string {
+  if (num > max) {
+    return `${max}+`;
+  } else {
+    return num.toString();
+  }
+}

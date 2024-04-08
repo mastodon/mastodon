@@ -39,14 +39,14 @@ de:
         text: Du kannst nur einmal Einspruch gegen eine Maßnahme einlegen
       defaults:
         autofollow: Personen, die sich über deine Einladung registrieren, folgen automatisch deinem Profil
-        avatar: PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
+        avatar: WEBP, PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
         bot: Signalisiert, dass dieses Konto hauptsächlich automatisierte Aktionen durchführt und möglicherweise nicht persönlich betreut wird
         context: Orte, an denen der Filter aktiv sein soll
         current_password: Gib aus Sicherheitsgründen bitte das Passwort des aktuellen Kontos ein
         current_username: Um das zu bestätigen, gib den Profilnamen des aktuellen Kontos ein
         digest: Wenn du eine längere Zeit inaktiv bist oder du während deiner Abwesenheit in einer privaten Nachricht erwähnt worden bist
         email: Du wirst eine E-Mail zur Verifizierung dieser E-Mail-Adresse erhalten
-        header: PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
+        header: WEBP, PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
         inbox_url: Kopiere die URL von der Startseite des gewünschten Relays
         irreversible: Bereinigte Beiträge verschwinden unwiderruflich für dich, auch dann, wenn dieser Filter zu einem späteren wieder entfernt wird
         locale: Die Sprache der Bedienoberfläche, E-Mails und Push-Benachrichtigungen
@@ -116,6 +116,7 @@ de:
           sign_up_requires_approval: Neue Registrierungen müssen genehmigt werden
         severity: Wähle aus, was mit Anfragen von dieser IP-Adresse geschehen soll
       rule:
+        hint: "(Optional) Gib weitere Details zu dieser Regel an"
         text: Führe eine Regel oder Auflage für Profile auf diesem Server ein. Bleib dabei kurz und knapp
       sessions:
         otp: 'Gib den Zwei-Faktor-Code von deinem Smartphone ein oder verwende einen deiner Wiederherstellungscodes:'
@@ -148,7 +149,7 @@ de:
         show_collections: Follower und „Folge ich“ im Profil anzeigen
         unlocked: Neue Follower automatisch akzeptieren
       account_alias:
-        acct: Profilname des alten Kontos
+        acct: Adresse des alten Kontos
       account_migration:
         acct: Adresse des neuen Kontos
       account_warning_preset:
@@ -299,6 +300,7 @@ de:
           patch: Über Fehlerbehebungen informieren
         trending_tag: Neuer Trend erfordert eine Überprüfung
       rule:
+        hint: Zusätzliche Informationen
         text: Regel
       settings:
         indexable: Profilseite in Suchmaschinen einbeziehen

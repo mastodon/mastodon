@@ -14,7 +14,6 @@
 #  sign_in_count             :integer          default(0), not null
 #  current_sign_in_at        :datetime
 #  last_sign_in_at           :datetime
-#  admin                     :boolean          default(FALSE), not null
 #  confirmation_token        :string
 #  confirmed_at              :datetime
 #  confirmation_sent_at      :datetime
@@ -29,7 +28,6 @@
 #  otp_backup_codes          :string           is an Array
 #  account_id                :bigint(8)        not null
 #  disabled                  :boolean          default(FALSE), not null
-#  moderator                 :boolean          default(FALSE), not null
 #  invite_id                 :bigint(8)
 #  chosen_languages          :string           is an Array
 #  created_by_application_id :bigint(8)
@@ -51,6 +49,8 @@ class User < ApplicationRecord
     last_sign_in_ip
     skip_sign_in_token
     filtered_languages
+    admin
+    moderator
   )
 
   include LanguagesHelper
@@ -94,6 +94,8 @@ class User < ApplicationRecord
   has_one :invite_request, class_name: 'UserInviteRequest', inverse_of: :user, dependent: :destroy
   accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? && !Setting.require_invite_text }
   validates :invite_request, presence: true, on: :create, if: :invite_text_required?
+
+  validates :email, presence: true, email_address: true
 
   validates_with BlacklistedEmailValidator, if: -> { ENV['EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION'] == 'true' || !confirmed? }
   validates_with EmailMxValidator, if: :validate_email_dns?
@@ -342,6 +344,16 @@ class User < ApplicationRecord
     Doorkeeper::AccessToken.by_resource_owner(self).in_batches do |batch|
       batch.update_all(revoked_at: Time.now.utc)
       Web::PushSubscription.where(access_token_id: batch).delete_all
+
+      # Revoke each access token for the Streaming API, since `update_all``
+      # doesn't trigger ActiveRecord Callbacks:
+      # TODO: #28793 Combine into a single topic
+      payload = Oj.dump(event: :kill)
+      redis.pipelined do |pipeline|
+        batch.ids.each do |id|
+          pipeline.publish("timeline:access_token:#{id}", payload)
+        end
+      end
     end
   end
 
@@ -434,7 +446,7 @@ class User < ApplicationRecord
   end
 
   def sign_up_from_ip_requires_approval?
-    sign_up_ip.present? && IpBlock.sign_up_requires_approval.exists?(['ip >>= ?', sign_up_ip.to_s])
+    sign_up_ip.present? && IpBlock.severity_sign_up_requires_approval.exists?(['ip >>= ?', sign_up_ip.to_s])
   end
 
   def sign_up_email_requires_approval?
@@ -478,7 +490,7 @@ class User < ApplicationRecord
     BootstrapTimelineWorker.perform_async(account_id)
     ActivityTracker.increment('activity:accounts:local')
     ActivityTracker.record('activity:logins', id)
-    UserMailer.welcome(self).deliver_later
+    UserMailer.welcome(self).deliver_later(wait: 1.hour)
     TriggerWebhookWorker.perform_async('account.approved', 'Account', account_id)
   end
 

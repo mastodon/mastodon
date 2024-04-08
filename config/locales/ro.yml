@@ -122,6 +122,8 @@ ro:
       removed_header_msg: S-a îndepărtat cu succes coperta utilizatorului %{username}
       resend_confirmation:
         already_confirmed: Acest utilizator este deja confirmat
+        send: Retrimite link-ul de confirmare
+        success: Link-ul de confirmare a fost trimis cu succes!
       reset: Resetează
       reset_password: Resetează parola
       resubscribe: Resubscrie-te
@@ -129,6 +131,7 @@ ro:
       search: Caută
       search_same_email_domain: Alţi utilizatori cu acelaşi domeniu de e-mail
       search_same_ip: Alţi utilizatori cu acelaşi IP
+      security: Securitate
       security_measures:
         only_password: Doar parola
         password_and_2fa: Parolă și Conectarea în 2 pași
@@ -189,6 +192,7 @@ ro:
         destroy_ip_block: Șterge regula IP
         destroy_status: Șterge starea
         destroy_unavailable_domain: Șterge Domeniul Indisponibil
+        destroy_user_role: Distruge Rolul
         disable_2fa_user: Dezactivează 2FA
         disable_custom_emoji: Dezactivează Emoji-urile Personalizate
         disable_sign_in_token_auth_user: Dezactivează Autentificarea prin Token E-mail pentru Utilizator
@@ -202,6 +206,7 @@ ro:
         reject_user: Respinge Utilizatorul
         remove_avatar_user: Elimină avatar
         reopen_report: Redeschide Raport
+        resend_user: Retrimite E-Mail-ul de Confirmare
         reset_password_user: Resetează Parola
         resolve_report: Rezolvă Raport
         sensitive_account: Cont Sensibil
@@ -213,7 +218,9 @@ ro:
         unsuspend_account: Anulează Suspendarea Contului
         update_announcement: Actualizare Anunț
         update_custom_emoji: Actualizare Emoji Personalizat
+        update_ip_block: Actualizați regula IP
         update_status: Actualizează Starea
+        update_user_role: Actualizare Rol
       actions:
         create_custom_emoji_html: "%{name} a încărcat noi emoji %{target}"
       deleted_account: cont șters
@@ -238,6 +245,7 @@ ro:
       unpublish: Revocă publicarea
       unpublished_msg: Publicarea anunțului a fost revocată cu succes!
       updated_msg: Anunț actualizat cu succes!
+    critical_update_pending: Actualizare critică în așteptare
     custom_emojis:
       assign_category: Atribuie o categorie
       by_domain: Domeniu
@@ -272,6 +280,37 @@ ro:
       update_failed_msg: Nu s-a putut actualiza emoticonul respectiv
       updated_msg: Emoticon actualizat cu succes!
       upload: Încarcă
+    dashboard:
+      active_users: utilizatori activi
+      interactions: interacțiuni
+      media_storage: Stocare media
+      new_users: utilizatori noi
+      opened_reports: rapoarte deschise
+      resolved_reports: rapoarte rezolvate
+      software: Software
+      sources: Surse de înscriere
+      space: Utilizare spațiu
+      title: Tablou de bord
+      top_languages: Limbi active de top
+      top_servers: Top servere active
+      website: Site web
+    disputes:
+      appeals:
+        empty: Niciun recurs găsit.
+        title: Recursuri
+    domain_allows:
+      export: Exportare
+      import: Importare
+    domain_blocks:
+      confirm_suspension:
+        cancel: Anulare
+        confirm: Suspendă
+        permanent_action: Anularea suspendării nu va restabili nicio dată sau relație.
+        preamble_html: Sunteți pe cale să suspendați <strong>%{domain}</strong> și subdomeniile sale.
+        remove_all_data: Acest lucru va elimina tot conținutul, media și datele profilului contului acestui domeniu de pe server.
+        stop_communication: Serverul tău nu va mai comunica cu aceste servere.
+        title: Confirmați blocarea domeniului pentru %{domain}
+        undo_relationships: Această acțiune va anula orice relație de urmărire între conturile acestor servere și ale tale.
     email_domain_blocks:
       delete: Șterge
       dns:
@@ -707,11 +746,7 @@ ro:
         silence: Cont limitat
         suspend: Cont suspendat
     welcome:
-      edit_profile_action: Configurare profil
       explanation: Iată câteva sfaturi pentru a începe
-      final_action: Începe să postezi
-      full_handle: Numele tău complet
-      full_handle_hint: Asta este ceea ce vei putea spune prietenilor pentru a te putea contacta sau pentru a te urmării de pe un alt server.
       subject: Bine ai venit
       title: Bine ai venit la bord, %{name}!
   users:
