@@ -46,6 +46,7 @@ module CacheConcern
     end
   end
 
+  # TODO: Rename this method, as it does not perform any caching anymore.
   def cache_collection(raw, klass)
     return raw unless klass.respond_to?(:preload_cacheable_associations)
 
@@ -56,6 +57,7 @@ module CacheConcern
     records
   end
 
+  # TODO: Rename this method, as it does not perform any caching anymore.
   def cache_collection_paginated_by_id(raw, klass, limit, options)
     cache_collection raw.to_a_paginated_by_id(limit, options), klass
   end
