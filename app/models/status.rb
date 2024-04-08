@@ -338,38 +338,6 @@ class Status < ApplicationRecord
       StatusPin.select('status_id').where(status_id: status_ids).where(account_id: account_id).each_with_object({}) { |p, h| h[p.status_id] = true }
     end
 
-    def reload_stale_associations!(cached_items)
-      account_ids = []
-
-      cached_items.each do |item|
-        account_ids << item.account_id
-        account_ids << item.reblog.account_id if item.reblog?
-      end
-
-      account_ids.uniq!
-
-      status_ids = cached_items.map { |item| item.reblog? ? item.reblog_of_id : item.id }.uniq
-
-      return if account_ids.empty?
-
-      accounts = Account.where(id: account_ids).includes(:account_stat, :user).index_by(&:id)
-
-      status_stats = StatusStat.where(status_id: status_ids).index_by(&:status_id)
-
-      cached_items.each do |item|
-        item.account = accounts[item.account_id]
-        item.reblog.account = accounts[item.reblog.account_id] if item.reblog?
-
-        if item.reblog?
-          status_stat = status_stats[item.reblog.id]
-          item.reblog.status_stat = status_stat if status_stat.present?
-        else
-          status_stat = status_stats[item.id]
-          item.status_stat = status_stat if status_stat.present?
-        end
-      end
-    end
-
     def from_text(text)
       return [] if text.blank?
 
