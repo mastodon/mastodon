@@ -45,6 +45,9 @@ processors:
         value: 'mastodon'
         action: upsert
 
+connectors:
+    datadog/connector:
+
 exporters:
   datadog:
     api:
@@ -57,13 +60,13 @@ exporters:
 service:
   pipelines:
     metrics:
-      receivers: [otlp]
+      receivers: [otlp, datadog/connector]
       processors: [batch, resourcedetection, resource, memory_limiter]
       exporters: [datadog]
     traces:
       receivers: [otlp]
       processors: [batch, resourcedetection, resource, memory_limiter]
-      exporters: [datadog]
+      exporters: [datadog, datadog/connector]
     logs:
       receivers: [otlp]
       processors: [batch, resourcedetection, resource, memory_limiter]

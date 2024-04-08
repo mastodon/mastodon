@@ -9,7 +9,7 @@ ARG TARGETARCH
 # sends telemetry data to the OTLP endpoint configured in
 # otelcol-config.yml.
 ARG TELEMETRY_BACKEND=default
-ARG BUILDER_VERSION=0.93.0
+ARG BUILDER_VERSION=0.97.0
 
 RUN curl -L -o /builder https://github.com/open-telemetry/opentelemetry-collector/releases/download/cmd%2Fbuilder%2Fv${BUILDER_VERSION}/ocb_${BUILDER_VERSION}_linux_${TARGETARCH}
 RUN chmod +x /builder
