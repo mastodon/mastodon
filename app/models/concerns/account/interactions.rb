@@ -83,6 +83,11 @@ module Account::Interactions
     has_many :following, -> { order('follows.id desc') }, through: :active_relationships,  source: :target_account
     has_many :followers, -> { order('follows.id desc') }, through: :passive_relationships, source: :account
 
+    with_options class_name: 'SeveredRelationship', dependent: :destroy do
+      has_many :severed_relationships, foreign_key: 'local_account_id', inverse_of: :local_account
+      has_many :remote_severed_relationships, foreign_key: 'remote_account_id', inverse_of: :remote_account
+    end
+
     # Account notes
     has_many :account_notes, dependent: :destroy
 

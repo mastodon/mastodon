@@ -1,0 +1,34 @@
+- content_for :page_title do
+  = t('settings.severed_relationships')
+
+%p.muted-hint= t('severed_relationships.preamble')
+
+- unless @events.empty?
+  .table-wrapper
+    %table.table
+      %thead
+        %tr
+          %th= t('exports.archive_takeout.date')
+          %th= t('severed_relationships.type')
+          %th= t('severed_relationships.lost_follows')
+          %th= t('severed_relationships.lost_followers')
+      %tbody
+        - @events.each do |event|
+          %tr
+            %td= l event.created_at
+            %td= t("severed_relationships.event_type.#{event.type}", target_name: event.target_name)
+            - if event.purged?
+              %td{ rowspan: 2 }= t('severed_relationships.purged')
+            - else
+              %td
+                - count = event.following_count
+                - if count.zero?
+                  = t('generic.none')
+                - else
+                  = table_link_to 'download', t('severed_relationships.download', count: count), following_severed_relationship_path(event, format: :csv)
+              %td
+                - count = event.followers_count
+                - if count.zero?
+                  = t('generic.none')
+                - else
+                  = table_link_to 'download', t('severed_relationships.download', count: count), followers_severed_relationship_path(event, format: :csv)

@@ -22,12 +22,14 @@ import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 import FollowRequestContainer from '../containers/follow_request_container';
 import NotificationOverlayContainer from '../containers/overlay_container';
 
+import { RelationshipsSeveranceEvent } from './relationships_severance_event';
 import Report from './report';
 
 const messages = defineMessages({
   follow: { id: 'notification.follow', defaultMessage: '{name} followed you' },
   adminSignUp: { id: 'notification.admin.sign_up', defaultMessage: '{name} signed up' },
   adminReport: { id: 'notification.admin.report', defaultMessage: '{name} reported {target}' },
+  relationshipsSevered: { id: 'notification.relationships_severance_event', defaultMessage: 'Lost connections with {name}' },
 });
 
 const notificationForScreenReader = (intl, message, timestamp) => {
@@ -303,6 +305,29 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
+  renderRelationshipsSevered (notification) {
+    const { intl, unread, hidden } = this.props;
+    const event = notification.get('event');
+
+    if (!event) {
+      return null;
+    }
+
+    return (
+      <HotKeys handlers={this.getHandlers()}>
+        <div className={classNames('notification notification-severed-relationships focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.relationshipsSevered, { name: notification.getIn(['event', 'target_name']) }), notification.get('created_at'))}>
+          <RelationshipsSeveranceEvent
+            type={event.get('type')}
+            target={event.get('target_name')}
+            followersCount={event.get('followers_count')}
+            followingCount={event.get('following_count')}
+            hidden={hidden}
+          />
+        </div>
+      </HotKeys>
+    );
+  }
+
   renderAdminSignUp (notification, account, link) {
     const { intl, unread } = this.props;
 
@@ -396,6 +421,8 @@ class Notification extends ImmutablePureComponent {
       return this.renderUpdate(notification);
     case 'poll':
       return this.renderPoll(notification);
+    case 'severed_relationships':
+      return this.renderRelationshipsSevered(notification);
     case 'admin.sign_up':
       return this.renderAdminSignUp(notification, account, link);
     case 'admin.report':

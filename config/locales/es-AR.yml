@@ -597,6 +597,9 @@ es-AR:
       actions_description_html: Decidí qué medidas tomar para resolver esta denuncia. Si tomás una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decidí qué medidas tomar para resolver esta denuncia. Esto sólo afectará la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y maneja su contenido.
       add_to_report: Agregar más a la denuncia
+      already_suspended_badges:
+        local: Ya suspendido en este servidor
+        remote: Ya suspendido en su servidor
       are_you_sure: "¿Estás seguro?"
       assign_to_self: Asignármela a mí
       assigned: Moderador asignado
@@ -1043,7 +1046,7 @@ es-AR:
     apply_for_account: Solicitar una cuenta
     captcha_confirmation:
       help_html: Si tenés problemas resolviendo la CAPTCHA, podés ponerte en contacto con nosotros a través de %{email} y te vamos a ayudar.
-      hint_html: ¡Sólo una cosa más! Necesitamos confirmar que sos humano (¡esto es para que podamos mantener el spam fuera!). Resuelvé la CAPTCHA abajo y hacé clic en "Continuar".
+      hint_html: ¡Solo una cosa más! Necesitamos confirmar que sos humano (¡esto es para que podamos mantener el spam fuera!). Resolvé la CAPTCHA abajo y hacé clic en "Continuar".
       title: Comprobación de seguridad
     confirmations:
       awaiting_review: "¡Tu dirección de correo electrónico fue confirmada! El equipo de %{domain} está revisando tu registro. ¡Recibirás un correo electrónico si aprueban tu cuenta!"
@@ -1656,10 +1659,22 @@ es-AR:
     preferences: Configuración
     profile: Perfil público
     relationships: Seguimientos
+    severed_relationships: Relaciones cortadas
     statuses_cleanup: Eliminación auto. de mensajes
     strikes: Moderación de incumplimientos
     two_factor_authentication: Aut. de dos factores
     webauthn_authentication: Llaves de seguridad
+  severed_relationships:
+    download: Descargar (%{count})
+    event_type:
+      account_suspension: Suspensión de cuenta (%{target_name})
+      domain_block: Suspensión de cuenta (%{target_name})
+      user_domain_block: Bloqueaste a %{target_name}
+    lost_followers: Seguidores perdidos
+    lost_follows: Cuentas seguidas perdidas
+    preamble: Podés perder seguidores y cuentas seguidas cuando bloqueás un dominio o cuando tus moderadores deciden suspender un servidor remoto. Cuando esto suceda, vas a poder descargar listas de relaciones cortadas, que serán inspectadas y posiblemente importadas en otro servidor.
+    purged: La información sobre este servidor fue purgada por los administradores de tu servidor.
+    type: Evento
   statuses:
     attached:
       audio:

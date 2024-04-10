@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 
+import DeleteIcon from '@/material-icons/400-24px/delete.svg?react';
 import DoneIcon from '@/material-icons/400-24px/done.svg?react';
-import VolumeOffIcon from '@/material-icons/400-24px/volume_off.svg?react';
 import { acceptNotificationRequest, dismissNotificationRequest } from 'flavours/glitch/actions/notifications';
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { IconButton } from 'flavours/glitch/components/icon_button';
@@ -51,7 +51,7 @@ export const NotificationRequest = ({ id, accountId, notificationsCount }) => {
       </Link>
 
       <div className='notification-request__actions'>
-        <IconButton iconComponent={VolumeOffIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
+        <IconButton iconComponent={DeleteIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
         <IconButton iconComponent={DoneIcon} onClick={handleAccept} title={intl.formatMessage(messages.accept)} />
       </div>
     </div>

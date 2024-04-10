@@ -14,7 +14,7 @@ ko:
     instance_actor_flash: 이 계정은 서버 자신을 나타내기 위한 가상의 계정이며 개인 사용자가 아닙니다. 이 계정은 연합을 위해 사용되며 정지되지 않아야 합니다.
     last_active: 최근 활동
     link_verified_on: "%{date}에 이 링크의 소유가 확인되었습니다"
-    nothing_here: 텅 비어있네요!
+    nothing_here: 아무 것도 없습니다!
     pin_errors:
       following: 추천하려는 사람을 팔로우 하고 있어야 합니다
     posts:
@@ -1635,10 +1635,22 @@ ko:
     preferences: 환경설정
     profile: 공개 프로필
     relationships: 팔로잉과 팔로워
+    severed_relationships: 단절된 관계들
     statuses_cleanup: 게시물 자동 삭제
     strikes: 중재 기록
     two_factor_authentication: 2단계 인증
     webauthn_authentication: 보안 키
+  severed_relationships:
+    download: 다운로드 (%{count})
+    event_type:
+      account_suspension: 계정 정지 (%{target_name})
+      domain_block: 서버 정지 (%{target_name})
+      user_domain_block: 내가 %{target_name}을 차단했습니다
+    lost_followers: 잃은 팔로워
+    lost_follows: 잃은 팔로우
+    preamble: 내가 도메인을 차단하거나 중재진이 다른 서버를 정지하기로 결정했다면 내 팔로우와 팔로워를 잃게 됩니다. 그런 일이 일어났다면 그로 인해 단절된 관계들의 목록을 다운로드 받아 확인하고 다른 서버에서 불러올 수 있습니다.
+    purged: 이 서버에 대한 정보는 관리자에 의해 삭제되었습니다.
+    type: 이벤트
   statuses:
     attached:
       audio:

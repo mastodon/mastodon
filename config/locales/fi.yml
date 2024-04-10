@@ -1659,10 +1659,22 @@ fi:
     preferences: Ominaisuudet
     profile: Julkinen profiili
     relationships: Seuratut ja seuraajat
+    severed_relationships: Katkenneet suhteet
     statuses_cleanup: Autom. julkaisujen poisto
     strikes: Valvontavaroitukset
     two_factor_authentication: Kaksivaiheinen todennus
     webauthn_authentication: Suojausavaimet
+  severed_relationships:
+    download: Lataa (%{count})
+    event_type:
+      account_suspension: Tilin jäädytys (%{target_name})
+      domain_block: Palvelimen jäädytys (%{target_name})
+      user_domain_block: Estit käyttäjän %{target_name}
+    lost_followers: Menetetyt seuraajat
+    lost_follows: Menetetyt seuratut
+    preamble: Voit menettää seurattusi ja seuraajasi, kun estät verkkotunnuksen tai kun valvojasi päättävät jäädyttää etäpalvelimen. Kun näin tapahtuu, voit ladata luetteloita katkenneista suhteista, jotta voit tarkastella niitä ja mahdollisesti viedä ne toiselle palvelimelle.
+    purged: Palvelimesi ylläpitäjät ovat tyhjentäneet tämän palvelimen tiedot.
+    type: Tapahtuma
   statuses:
     attached:
       audio:

@@ -621,6 +621,9 @@ gd:
       actions_description_html: Socraich dè a nì thu airson an gearan seo fhuasgladh. Ma chuireas tu peanas air a’ chunntas le gearan air, gheibh iad brath air a’ phost-d mura tagh thu an roinn-seòrsa <strong>Spama</strong>.
       actions_description_remote_html: Cuir romhad dè an gnìomh a ghabhas tu airson an gearan seo fhuasgladh. Cha bheir seo buaidh ach air mar a làimhsicheas am frithealaiche <strong>agadsa</strong> an cunntas cèin seo is mar a nì e conaltradh leis.
       add_to_report: Cuir barrachd ris a’ ghearan
+      already_suspended_badges:
+        local: Chaidh an cur à rèim air an fhrithealaiche seo mu thràth
+        remote: Chaidh an cur à rèim air an fhrithealaiche aca-san mu thràth
       are_you_sure: A bheil thu cinnteach?
       assign_to_self: Iomruin dhomh-sa
       assigned: Maor iomruinte
@@ -1704,13 +1707,26 @@ gd:
     import: Ion-phortadh
     import_and_export: Ion-phortadh ⁊ às-phortadh
     migrate: Imrich cunntais
+    notifications: Brathan puist-d
     preferences: Roghainnean
     profile: Pròifil phoblach
     relationships: Dàimhean leantainn
+    severed_relationships: Dàimhean dealaichte
     statuses_cleanup: Sguabadh às phostaichean
     strikes: Rabhaidhean na maorsainneachd
     two_factor_authentication: Dearbhadh dà-cheumnach
     webauthn_authentication: Iuchraichean tèarainteachd
+  severed_relationships:
+    download: Luchdaich a-nuas (%{count})
+    event_type:
+      account_suspension: Cunntas à rèim (%{target_name})
+      domain_block: Frithealaiche à rèim (%{target_name})
+      user_domain_block: Bhac thu %{target_name}
+    lost_followers: An luchd-leantainn a chaill thu
+    lost_follows: Daoine nach lean thu tuilleadh
+    preamble: Dh’fhaoidte gun chaill thu dàimhean leantainn nuair a bhacas tu àrainn no nuair a chuireas na maoir romhpa gun cuir iad frithealaiche cèin à rèim. Nuair a thachras sin, ’s urrainn dhut liosta de na dàimhean dealaichte a luchdadh a-nuas airson sùil a thoirt orra agus an ion-phortadh gu frithealaiche eile ’s dòcha.
+    purged: Chaidh am fiosrachadh mun fhrithealaiche seo a phurgaideachadh le rianairean an fhrithealaiche agad.
+    type: Tachartas
   statuses:
     attached:
       audio:

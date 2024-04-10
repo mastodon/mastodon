@@ -13,7 +13,7 @@ import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react'
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
 import { Icon }  from 'flavours/glitch/components/icon';
-import { ButtonInTabsBar, useColumnsContext } from 'flavours/glitch/features/ui/util/columns_context';
+import { ButtonInTabsBar } from 'flavours/glitch/features/ui/util/columns_context';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 import { useAppHistory } from './router';
@@ -26,10 +26,9 @@ const messages = defineMessages({
   back: { id: 'column_back_button.label', defaultMessage: 'Back' },
 });
 
-const BackButton = ({ pinned, show, onlyIcon }) => {
+const BackButton = ({ onlyIcon }) => {
   const history = useAppHistory();
   const intl = useIntl();
-  const { multiColumn } = useColumnsContext();
 
   const handleBackClick = useCallback(() => {
     if (history.location?.state?.fromMastodon) {
@@ -38,10 +37,6 @@ const BackButton = ({ pinned, show, onlyIcon }) => {
       history.push('/');
     }
   }, [history]);
-
-  const showButton = history && !pinned && ((multiColumn && history.location?.state?.fromMastodon) || show);
-
-  if (!showButton) return null;
 
   return (
     <button onClick={handleBackClick} className={classNames('column-header__back-button', { 'compact': onlyIcon })} aria-label={intl.formatMessage(messages.back)}>
@@ -52,8 +47,6 @@ const BackButton = ({ pinned, show, onlyIcon }) => {
 };
 
 BackButton.propTypes = {
-  pinned: PropTypes.bool,
-  show: PropTypes.bool,
   onlyIcon: PropTypes.bool,
 };
 
@@ -118,7 +111,7 @@ class ColumnHeader extends PureComponent {
   };
 
   render () {
-    const { title, icon, iconComponent, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues } = this.props;
+    const { title, icon, iconComponent, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues, history } = this.props;
     const { collapsed, animating } = this.state;
 
     const wrapperClassName = classNames('column-header__wrapper', {
@@ -161,7 +154,9 @@ class ColumnHeader extends PureComponent {
       pinButton = <button className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' icon={AddIcon} /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
     }
 
-    backButton = <BackButton pinned={pinned} show={showBackButton} onlyIcon={!!title} />;
+    if (history && !pinned && ((multiColumn && history.location?.state?.fromMastodon) || showBackButton)) {
+      backButton = <BackButton onlyIcon={!!title} />;
+    }
 
     const collapsedContent = [
       extraContent,
@@ -199,16 +194,16 @@ class ColumnHeader extends PureComponent {
         <h1 className={buttonClassName}>
           {hasTitle && (
             <>
-              {showBackButton && backButton}
+              {backButton}
 
               <button onClick={this.handleTitleClick} className='column-header__title'>
-                {!showBackButton && <Icon id={icon} icon={iconComponent} className='column-header__icon' />}
+                {!backButton && <Icon id={icon} icon={iconComponent} className='column-header__icon' />}
                 {title}
               </button>
             </>
           )}
 
-          {!hasTitle && showBackButton && backButton}
+          {!hasTitle && backButton}
 
           <div className='column-header__buttons'>
             {extraButton}

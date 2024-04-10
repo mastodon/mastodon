@@ -139,7 +139,7 @@ hu:
         only_password: Csak jelszó
         password_and_2fa: Jelszó és kétlépcsős hitelesítés
       sensitive: Kényes
-      sensitized: kényesnek jelölve
+      sensitized: Kényesnek jelölve
       shared_inbox_url: Megosztott bejövő üzenetek URL
       show:
         created_reports: Létrehozott jelentések
@@ -257,7 +257,7 @@ hu:
         destroy_status_html: "%{name} eltávolította %{target} felhasználó bejegyzését"
         destroy_unavailable_domain_html: "%{name} újraindította a kézbesítést a %{target} domainbe"
         destroy_user_role_html: "%{name} törölte a(z) %{target} szerepkört"
-        disable_2fa_user_html: "%{name} kikapcsolta a kétlépcsős azonosítást %{target} felhasználó fiókján"
+        disable_2fa_user_html: "%{name} kikapcsolta a kétlépcsős hitelesítést %{target} felhasználó fiókján"
         disable_custom_emoji_html: "%{name} letiltotta az emodzsit: %{target}"
         disable_sign_in_token_auth_user_html: "%{name} letiltotta a tokenes e-mail hitelesítést %{target} felhasználóra"
         disable_user_html: "%{name} letiltotta %{target} felhasználó bejelentkezését"
@@ -716,7 +716,7 @@ hu:
         manage_taxonomies: Taxonómiák kezelése
         manage_taxonomies_description: Lehetővé teszi, hogy a felhasználó átnézze a felkapott tartalmakat és frissítse a hashtagek beállításait
         manage_user_access: Felhasználói hozzáférések kezelése
-        manage_user_access_description: Lehetővé teszi, hogy a felhasználó letiltsa mások kétlépcsős azonosítását, megváltoztassa az email címüket, és alaphelyzetbe állítsa a jelszavukat
+        manage_user_access_description: Lehetővé teszi, hogy a felhasználó letiltsa mások kétlépcsős hitelesítését, megváltoztassa az e-mail-címüket, és alaphelyzetbe állítsa a jelszavukat
         manage_users: Felhasználók kezelése
         manage_users_description: Lehetővé teszi, hogy a felhasználó megtekintse mások részletes adatait és moderálja őket
         manage_webhooks: Webhookok kezelése
@@ -1057,7 +1057,7 @@ hu:
       redirect_to_app_html: Át kellett volna irányítsunk a <strong>%{app_name}</strong> alkalmazáshoz. Ha ez nem történt meg, próbálkozz a %{clicking_this_link} lehetőséggel vagy térj vissza manuálisan az alkalmazáshoz.
       registration_complete: A regisztrációd %{domain} domainen befejeződött!
       welcome_title: Üdvözlet, %{name}!
-      wrong_email_hint: Ha az emailcím nem helyes, a fiókbeállításokban megváltoztathatod.
+      wrong_email_hint: Ha az e-mail-cím nem helyes, a fiókbeállításokban megváltoztathatod.
     delete_account: Felhasználói fiók törlése
     delete_account_html: Felhasználói fiókod törléséhez <a href="%{path}">kattints ide</a>. A rendszer újbóli megerősítést fog kérni.
     description:
@@ -1074,7 +1074,7 @@ hu:
     login: Bejelentkezés
     logout: Kijelentkezés
     migrate_account: Felhasználói fiók költöztetése
-    migrate_account_html: Ha szeretnéd átirányítani ezt a fiókodat egy másikra, a beállításokat <a href="%{path}">itt találod meg</a>.
+    migrate_account_html: Ha át szeretnéd irányítani ezt a fiókodat egy másikra, akkor <a href="%{path}">itt állíthatod be</a>.
     or_log_in_with: Vagy jelentkezz be ezzel
     privacy_policy_agreement_html: Elolvastam és egyetértek az <a href="%{privacy_policy_path}" target="_blank">adatvédemi nyilatkozattal</a>
     progress:
@@ -1133,7 +1133,7 @@ hu:
       invalid_signature: érvénytelen Ed25519 aláírás
   date:
     formats:
-      default: "%Y.%b.%d."
+      default: "%Y. %b %d."
       with_month_name: "%Y. %B %d"
   datetime:
     distance_in_words:
@@ -1223,17 +1223,17 @@ hu:
   exports:
     archive_takeout:
       date: Dátum
-      download: Archív letöltése
+      download: Archívum letöltése
       hint_html: Itt kérhető egy archív az összes <strong>feltöltött bejegyzésedről és médiádról</strong>. Az exportált adatok ActivityPub formátumban lesznek, melyet bármilyen szabványos program tud olvasni. 7 naponként kérhetsz ilyen archívot.
-      in_progress: Archív összeállítása...
-      request: Archív kérése
+      in_progress: Archívum összeállítása…
+      request: Archívum kérése
       size: Méret
-    blocks: Tiltólistádon
-    bookmarks: Könyvjelzők
+    blocks: Tiltás
+    bookmarks: Könyvjelző
     csv: CSV
-    domain_blocks: Tiltott domainjeid
-    lists: Listáid
-    mutes: Némításaid
+    domain_blocks: Tiltott domain
+    lists: Lista
+    mutes: Némítás
     storage: Médiatároló
   featured_tags:
     add_new: Új hozzáadása
@@ -1413,7 +1413,7 @@ hu:
           follow_request: követési kérelemről email értesítő
           mention: megemlítésről email értesítő
           reblog: megtolásról email értesítő
-      resubscribe_html: Ha tévedésből iratkoztál le, újra feliratkozhatsz az <a href="%{settings_path}">email értesítések beállításainál</a>.
+      resubscribe_html: Ha tévedésből iratkoztál le, újra feliratkozhatsz az <a href="%{settings_path}">e-mail-értesítések beállításainál</a>.
       success_html: 'Mostantól nem kapsz %{type} típusú üzeneket a(z) %{domain} Mastodon-kiszolgálón erre a címedre: %{email}.'
       title: Leiratkozás
   media_attachments:
@@ -1496,7 +1496,7 @@ hu:
       subject: "%{name} szerkesztett egy bejegyzést"
   notifications:
     administration_emails: Adminisztrátori e-mail-értesítések
-    email_events: Események email értesítésekhez
+    email_events: Az e-mail-értesítések eseményei
     email_events_hint: 'Válaszd ki azokat az eseményeket, melyekről értesítést szeretnél:'
   number:
     human:
@@ -1510,7 +1510,7 @@ hu:
           trillion: T
   otp_authentication:
     code_hint: Jóváhagyáshoz írd be a hitelesítő alkalmazás által generált kódot
-    description_html: Ha engedélyezed a <strong>kétlépcsős azonosítást</strong>, a bejelentkezéshez szükséged lesz a telefonodra és egy alkalmazásra, amely hozzáférési kódot generál számodra.
+    description_html: Ha engedélyezed a <strong>kétlépcsős hitelesítést</strong>, akkor a bejelentkezéshez szükséged lesz a telefonodra és egy alkalmazásra, amely hozzáférési kódokat állít elő a belépéshez.
     enable: Engedélyezés
     instructions_html: "<strong>Olvasd be ezt a QR-kódot a telefonodon futó Google Authenticator vagy egyéb TOTP alkalmazással</strong>. A jövőben ez az alkalmazás fog számodra hozzáférési kódot generálni a belépéshez."
     manual_instructions: 'Ha nem sikerült a QR-kód beolvasása, itt a szöveges kulcs, amelyet manuálisan kell begépelned:'
@@ -1639,10 +1639,10 @@ hu:
     revoke: Visszavonás
     revoke_success: Munkamenet sikeresen visszavonva
     title: Munkamenetek
-    view_authentication_history: Fiókod hitelesítési történetének megtekintése
+    view_authentication_history: Fiók hitelesítési előzményeinek megtekintése
   settings:
     account: Fiók
-    account_settings: Fiók beállítások
+    account_settings: Fiókbeállítások
     aliases: Fiók aliasok
     appearance: Megjelenés
     authorized_apps: Jóváhagyott alkalmazások
@@ -1655,14 +1655,26 @@ hu:
     import: Importálás
     import_and_export: Import és export
     migrate: Fiók átirányítása
-    notifications: E-mail értesítések
+    notifications: E-mail-értesítések
     preferences: Beállítások
     profile: Profil
     relationships: Követések és követők
+    severed_relationships: Megszakított kapcsolatok
     statuses_cleanup: Bejegyzések automatikus törlése
     strikes: Moderációs felrótt vétségek
     two_factor_authentication: Kétlépcsős hitelesítés
     webauthn_authentication: Biztonsági kulcsok
+  severed_relationships:
+    download: Letöltés (%{count})
+    event_type:
+      account_suspension: Fiók felfüggesztése (%{target_name})
+      domain_block: Kiszolgáló felfüggesztése (%{target_name})
+      user_domain_block: 'Blokkoltad ezt: %{target_name}'
+    lost_followers: Elvesztett követők
+    lost_follows: Elvesztett követések
+    preamble: Ha blokkolsz egy domaint, vagy ha a moderátorok úgy döntenek, hogy blokkolnak egy távoli kiszolgálót, akkor követőket és követéseket veszíthetsz. Amikor ez megtörténik, akkor letöltheted a megszakadt kapcsolatokat, hogy átvizsgáld őket, és esetleg egy másik kiszolgálón importáld őket.
+    purged: A kiszolgáló információit a kiszolgálód rendszergazdái véglegesen eltávolították.
+    type: Esemény
   statuses:
     attached:
       audio:
@@ -1728,7 +1740,7 @@ hu:
     keep_polls: Szavazások megtartása
     keep_polls_hint: Egyetlen szavazásodat sem törli
     keep_self_bookmark: Általad könyvjelzőzött bejegyzések megtartása
-    keep_self_bookmark_hint: Egyetlen olyan bejegyzésedet sem törli, melyet könyvjelzővel láttál el
+    keep_self_bookmark_hint: Egyetlen olyan bejegyzésedet sem törli, melyet könyvjelzőztél
     keep_self_fav: Kedvenc bejegyzések megtartása
     keep_self_fav_hint: Nem törli azon bejegyzéseidet, melyeket kedvencnek jelöltél
     min_age:
@@ -1769,10 +1781,10 @@ hu:
   two_factor_authentication:
     add: Hozzáadás
     disable: Kikapcsolás
-    disabled_success: A kétlépcsős azonosítást sikeresen letiltottuk
+    disabled_success: A kétlépcsős hitelesítés sikeresen letiltva
     edit: Szerkesztés
-    enabled: Kétlépcsős azonosítás engedélyezve
-    enabled_success: A kétlépcsős azonosítást sikeresen engedélyezted
+    enabled: Kétlépcsős hitelesítés engedélyezve
+    enabled_success: A kétlépcsős hitelesítés sikeresen engedélyezve
     generate_recovery_codes: Visszaállítási kódok generálása
     lost_recovery_codes: A visszaállítási kódok segítségével tudsz belépni, ha elveszítenéd a telefonod. Ha a visszaállítási kódjaidat hagytad el, itt generálhatsz újakat. A régi kódokat ebben az esetben érvénytelenítjük.
     methods: Kétlépcsős eljárások
@@ -1913,5 +1925,5 @@ hu:
     nickname_hint: Írd be az új biztonsági kulcsod becenevét
     not_enabled: Még nem engedélyezted a WebAuthn-t
     not_supported: Ez a böngésző nem támogatja a biztonsági kulcsokat
-    otp_required: A biztonsági kulcsok használatához először engedélyezd a kétlépcsős azonosítást.
+    otp_required: A biztonsági kulcsok használatához először engedélyezd a kétlépcsős hitelesítést.
     registered_on: 'Regisztráció ekkor: %{date}'

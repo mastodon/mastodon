@@ -22,7 +22,11 @@ SimpleNavigation::Configuration.run do |navigation|
       end
     end
 
-    n.item :relationships, safe_join([fa_icon('users fw'), t('settings.relationships')]), relationships_path, if: -> { current_user.functional? && !self_destruct }
+    n.item :relationships, safe_join([fa_icon('users fw'), t('settings.relationships')]), relationships_path, if: -> { current_user.functional? && !self_destruct } do |s|
+      s.item :current, safe_join([fa_icon('users fw'), t('settings.relationships')]), relationships_path
+      s.item :severed_relationships, safe_join([fa_icon('unlink fw'), t('settings.severed_relationships')]), severed_relationships_path
+    end
+
     n.item :filters, safe_join([fa_icon('filter fw'), t('filters.index.title')]), filters_path, highlights_on: %r{/filters}, if: -> { current_user.functional? && !self_destruct }
     n.item :statuses_cleanup, safe_join([fa_icon('history fw'), t('settings.statuses_cleanup')]), statuses_cleanup_path, if: -> { current_user.functional_or_moved? && !self_destruct }
 

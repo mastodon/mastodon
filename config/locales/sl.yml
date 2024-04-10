@@ -1259,17 +1259,17 @@ sl:
   exports:
     archive_takeout:
       date: Datum
-      download: Prenesi svoj arhiv
-      hint_html: Zahtevate lahko arhiv vaših <strong>objav in naloženih medijev</strong>. Izvoženi podatki bodo v zapisu ActivityPub, ki ga bo mogoče brati s poljubno skladno programsko opremo. Arhiv lahko zahtevate vsakih 7 dni.
-      in_progress: Prevajanje arhiva...
+      download: Prenesite svoj arhiv
+      hint_html: Zahtevate lahko arhiv svojih <strong>objav in naloženih medijev</strong>. Izvoženi podatki bodo v zapisu ActivityPub, ki ga bo mogoče brati s poljubno skladno programsko opremo. Arhiv lahko zahtevate vsakih 7 dni.
+      in_progress: Pripravljanje vašega arhiva …
       request: Zahtevajte svoj arhiv
       size: Velikost
-    blocks: Blokirate
+    blocks: Blokirani
     bookmarks: Zaznamki
     csv: CSV
-    domain_blocks: Bloki domene
+    domain_blocks: Blokirane domene
     lists: Seznami
-    mutes: Utišate
+    mutes: Utišani
     storage: Shranjeni mediji
   featured_tags:
     add_new: Dodaj novo
@@ -1613,17 +1613,17 @@ sl:
     confirm_follow_selected_followers: Ali ste prepričani, da želite slediti izbranim sledilcem?
     confirm_remove_selected_followers: Ali ste prepričani, da želite odstraniti izbrane sledilce?
     confirm_remove_selected_follows: Ali ste prepričani, da želite odstraniti izbrana sledenja?
-    dormant: Skrit
+    dormant: Nedejavno
     follow_failure: Nekaterim od izbranih računov ni bilo mogoče slediti.
     follow_selected_followers: Sledi izbranim sledilcem
     followers: Sledilci
-    following: Sledi
+    following: Sledeni
     invited: Vabljeni
     last_active: Zadnja dejavnost
-    most_recent: Najnovejša
+    most_recent: Najnovejše
     moved: Prestavljeno
-    mutual: Vzajemna
-    primary: Primarna
+    mutual: Vzajemno
+    primary: Primarno
     relationship: Razmerje
     remove_selected_domains: Odstrani vse sledilce iz izbranih domen
     remove_selected_followers: Odstrani izbrane sledilce
@@ -1711,10 +1711,22 @@ sl:
     preferences: Nastavitve
     profile: Profil
     relationships: Sledenja in sledilci
+    severed_relationships: Prekinjene veze
     statuses_cleanup: Samodejno brisanje objav
     strikes: Ukrepi morediranja
     two_factor_authentication: Dvofaktorsko overjanje
     webauthn_authentication: Varnostni ključi
+  severed_relationships:
+    download: Prejmi (%{count})
+    event_type:
+      account_suspension: Suspendiranje računa (%{target_name})
+      domain_block: Suspendiranje strežnika (%{target_name})
+      user_domain_block: Blokirali ste %{target_name}
+    lost_followers: Izgubljeni sledilci
+    lost_follows: Izgubljena sledeni
+    preamble: Če blokirate domeno ali če se vaši moderatorji odločijo suspendirati oddaljen strežnik, lahko izgubite sledene in sledilce. Ko se to zgodi, boste lahko prejeli sezname prekinjenih vez za pregled in morebitno uvažanje na drugem strežniku.
+    purged: Podatke o tem strežniku so očistili skrbniki vašega strežnika.
+    type: Dogodek
   statuses:
     attached:
       audio:

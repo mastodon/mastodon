@@ -560,7 +560,7 @@ nl:
       no_ip_block_selected: Er zijn geen IP-regels veranderd, omdat er geen een was geselecteerd
       title: IP-regels
     relationships:
-      title: Relaties van %{acct}
+      title: Volgrelaties van %{acct}
     relays:
       add_new: Nieuwe relayserver toevoegen
       delete: Verwijderen
@@ -1572,7 +1572,7 @@ nl:
     moved: Verhuisd
     mutual: Wederzijds
     primary: Primair
-    relationship: Relatie
+    relationship: Volgrelatie
     remove_selected_domains: Alle volgers van de geselecteerde domeinen verwijderen
     remove_selected_followers: Geselecteerde volgers verwijderen
     remove_selected_follows: Geselecteerde gebruikers ontvolgen
@@ -1659,10 +1659,22 @@ nl:
     preferences: Voorkeuren
     profile: Openbaar profiel
     relationships: Volgers en gevolgde accounts
+    severed_relationships: Verbroken volgrelaties
     statuses_cleanup: Automatisch berichten verwijderen
     strikes: Vastgestelde overtredingen
     two_factor_authentication: Tweestapsverificatie
     webauthn_authentication: Beveiligingssleutels
+  severed_relationships:
+    download: Downloaden (%{count})
+    event_type:
+      account_suspension: Accountschorsing (%{target_name})
+      domain_block: Serverschorsing (%{target_name})
+      user_domain_block: Je hebt %{target_name} geblokkeerd
+    lost_followers: Verloren volgers
+    lost_follows: Verloren gevolgde accounts
+    preamble: Je kan gevolgde accounts en volgers verliezen wanneer je een domein blokkeert of wanneer de moderators van jouw server beslissen om een externe server op te schorten. Wanneer dat gebeurt, kun je lijsten van verbroken volgrelaties downloaden, deze inspecteren en mogelijk importeren op een andere server.
+    purged: Informatie over deze server is verwijderd door de beheerders van jouw server.
+    type: Gebeurtenis
   statuses:
     attached:
       audio:
