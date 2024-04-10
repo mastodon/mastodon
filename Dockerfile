@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.4
-FROM ghcr.io/mastodon/mastodon:v4.1.14
+FROM ghcr.io/mastodon/mastodon:v4.1.15
 
 WORKDIR /opt/mastodon
 COPY ./ ./
