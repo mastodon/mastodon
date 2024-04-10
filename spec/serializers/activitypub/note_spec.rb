@@ -5,11 +5,11 @@ require 'rails_helper'
 describe ActivityPub::NoteSerializer do
   let!(:account) { Fabricate(:account) }
   let!(:other)   { Fabricate(:account) }
-  let!(:parent)  { Fabricate(:status, account: account, visibility: :public) }
-  let!(:reply1)  { Fabricate(:status, account: account, thread: parent, visibility: :public) }
-  let!(:reply2)  { Fabricate(:status, account: account, thread: parent, visibility: :public) }
-  let!(:reply3)  { Fabricate(:status, account: other, thread: parent, visibility: :public) }
-  let!(:reply4)  { Fabricate(:status, account: account, thread: parent, visibility: :public) }
+  let!(:parent)  { Fabricate(:status, account: account, media_attachments: [Fabricate(:media_attachment)]) }
+  let!(:reply1)  { Fabricate(:status, account: account, thread: parent) }
+  let!(:reply2)  { Fabricate(:status, account: account, thread: parent) }
+  let!(:reply3)  { Fabricate(:status, account: other, thread: parent) }
+  let!(:reply4)  { Fabricate(:status, account: account, thread: parent) }
   let!(:reply5)  { Fabricate(:status, account: account, thread: parent, visibility: :direct) }
 
   before(:each) do
@@ -40,5 +40,10 @@ describe ActivityPub::NoteSerializer do
 
   it 'does not include replies with direct visibility in its replies collection' do
     expect(subject['replies']['first']['items']).to_not include(reply5.uri)
+  end
+
+  it 'returns media attachments with short urls' do
+    expect(subject['attachment']).to be_kind_of(Array)
+    expect(subject['attachment'].first['url']).to match(%r{media\/short\/\d+\/original})
   end
 end
