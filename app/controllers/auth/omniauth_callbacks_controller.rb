@@ -24,6 +24,9 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         session["devise.#{provider}_data"] = request.env['omniauth.auth']
         redirect_to new_user_registration_url
       end
+    rescue ActiveRecord::RecordInvalid
+      flash[:alert] = I18n.t('devise.failure.omniauth_user_creation_failure') if is_navigational_format?
+      redirect_to new_user_session_url
     end
   end
 
