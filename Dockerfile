@@ -2,7 +2,7 @@
 FROM ghcr.io/mastodon/mastodon:v4.1.14
 
 WORKDIR /opt/mastodon
-COPY . .
+COPY ./ ./
 
 RUN bundle config set --local deployment 'true' && \
     bundle config set --local without 'development test' && \
