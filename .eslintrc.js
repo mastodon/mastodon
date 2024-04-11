@@ -196,6 +196,7 @@ module.exports = defineConfig({
       {
         devDependencies: [
           '.eslintrc.js',
+          'vite.config.mts',
           'config/webpack/**',
           'app/javascript/mastodon/performance.js',
           'app/javascript/mastodon/test_setup.js',
@@ -382,9 +383,20 @@ module.exports = defineConfig({
         '**/__tests__/*.jsx',
       ],
 
-      env: {
-        jest: true,
-      },
+      globals: {
+        suite: true,
+        test: true,
+        describe: true,
+        it: true,
+        expect: true,
+        assert: true,
+        vitest: true,
+        vi: true,
+        beforeAll: true,
+        afterAll: true,
+        beforeEach: true,
+        afterEach: true,
+      }
     }
   ],
 });
