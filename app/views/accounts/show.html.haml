@@ -11,7 +11,7 @@
   - @account.fields.select(&:verifiable?).each do |field|
     %link{ rel: 'me', type: 'text/html', href: field.value }/
 
-  = opengraph 'og:type', 'profile'
+  %meta{ name: 'description', content: account_description(@account) }/
   = render 'og', account: @account, url: short_account_url(@account, only_path: false)
 
 = render partial: 'shared/web_app'
