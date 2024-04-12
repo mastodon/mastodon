@@ -30,6 +30,7 @@ jobs:
       BUNDLE_WITH: ${{ matrix.mode }}
       OTP_SECRET: precompile_placeholder
       SECRET_KEY_BASE: precompile_placeholder
+      VITE_RUBY_SKIP_ASSETS_PRECOMPILE_EXTENSION: true
 
     steps:
       - uses: actions/checkout@v4
