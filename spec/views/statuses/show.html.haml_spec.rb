@@ -8,18 +8,18 @@ describe 'statuses/show.html.haml', :without_verify_partial_doubles do
     allow(view).to receive(:local_time)
     allow(view).to receive(:local_time_ago)
     assign(:instance_presenter, InstancePresenter.new)
+
+    Fabricate(:media_attachment, account: alice, status: status, type: :video)
+
+    assign(:status, status)
+    assign(:account, alice)
+    assign(:descendant_threads, [])
   end
 
   let(:alice) { Fabricate(:account, username: 'alice', display_name: 'Alice') }
   let(:status) { Fabricate(:status, account: alice, text: 'Hello World') }
 
   it 'has valid opengraph tags' do
-    Fabricate(:media_attachment, account: alice, status: status, type: :video)
-
-    assign(:status, status)
-    assign(:account, alice)
-    assign(:descendant_threads, [])
-
     render
 
     expect(header_tags)
@@ -30,12 +30,6 @@ describe 'statuses/show.html.haml', :without_verify_partial_doubles do
   end
 
   it 'has twitter player tag' do
-    Fabricate(:media_attachment, account: alice, status: status, type: :video)
-
-    assign(:status, status)
-    assign(:account, alice)
-    assign(:descendant_threads, [])
-
     render
 
     expect(header_tags)
