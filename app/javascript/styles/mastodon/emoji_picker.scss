@@ -112,10 +112,11 @@
       border: 0;
     }
 
-    &::-moz-focus-inner,
-    &:focus,
-    &:active {
-      outline: 0 !important;
+    &:active,
+    &:focus {
+      outline: none !important;
+      border-width: 1px !important;
+      border-color: $ui-button-background-color;
     }
 
     &::-webkit-search-cancel-button {

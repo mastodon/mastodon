@@ -27,7 +27,7 @@ export const FilteredNotificationsBanner = () => {
     };
   }, [dispatch]);
 
-  if (policy === null || policy.getIn(['summary', 'pending_notifications_count']) * 1 === 0) {
+  if (policy === null || policy.getIn(['summary', 'pending_notifications_count']) === 0) {
     return null;
   }
 
@@ -41,7 +41,8 @@ export const FilteredNotificationsBanner = () => {
       </div>
 
       <div className='filtered-notifications-banner__badge'>
-        {toCappedNumber(policy.getIn(['summary', 'pending_notifications_count']))}
+        <div className='filtered-notifications-banner__badge__badge'>{toCappedNumber(policy.getIn(['summary', 'pending_notifications_count']))}</div>
+        <FormattedMessage id='filtered_notifications_banner.private_mentions' defaultMessage='{count, plural, one {private mention} other {private mentions}}' values={{ count: policy.getIn(['summary', 'pending_notifications_count']) }} />
       </div>
     </Link>
   );

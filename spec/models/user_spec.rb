@@ -38,6 +38,12 @@ RSpec.describe User do
       user.save(validate: false)
       expect(user.valid?).to be true
     end
+
+    it 'is valid with a localhost e-mail address' do
+      user = Fabricate.build(:user, email: 'admin@localhost')
+      user.valid?
+      expect(user.valid?).to be true
+    end
   end
 
   describe 'Normalizations' do
@@ -101,12 +107,36 @@ RSpec.describe User do
       end
     end
 
-    describe 'inactive' do
-      it 'returns a relation of inactive users' do
-        specified = Fabricate(:user, current_sign_in_at: 15.days.ago)
-        Fabricate(:user, current_sign_in_at: 6.days.ago)
+    describe 'signed_in_recently' do
+      it 'returns a relation of users who have signed in during the recent period' do
+        recent_sign_in_user = Fabricate(:user, current_sign_in_at: within_duration_window_days.ago)
+        Fabricate(:user, current_sign_in_at: exceed_duration_window_days.ago)
 
-        expect(described_class.inactive).to contain_exactly(specified)
+        expect(described_class.signed_in_recently)
+          .to contain_exactly(recent_sign_in_user)
+      end
+    end
+
+    describe 'not_signed_in_recently' do
+      it 'returns a relation of users who have not signed in during the recent period' do
+        no_recent_sign_in_user = Fabricate(:user, current_sign_in_at: exceed_duration_window_days.ago)
+        Fabricate(:user, current_sign_in_at: within_duration_window_days.ago)
+
+        expect(described_class.not_signed_in_recently)
+          .to contain_exactly(no_recent_sign_in_user)
+      end
+    end
+
+    describe 'account_not_suspended' do
+      it 'returns with linked accounts that are not suspended' do
+        suspended_account = Fabricate(:account, suspended_at: 10.days.ago)
+        non_suspended_account = Fabricate(:account, suspended_at: nil)
+        suspended_user = Fabricate(:user, account: suspended_account)
+        non_suspended_user = Fabricate(:user, account: non_suspended_account)
+
+        expect(described_class.account_not_suspended)
+          .to include(non_suspended_user)
+          .and not_include(suspended_user)
       end
     end
 
@@ -130,6 +160,14 @@ RSpec.describe User do
 
         expect(described_class.matches_ip('2160:2160::/32')).to contain_exactly(user1)
       end
+    end
+
+    def exceed_duration_window_days
+      described_class::ACTIVE_DURATION + 2.days
+    end
+
+    def within_duration_window_days
+      described_class::ACTIVE_DURATION - 2.days
     end
   end
 

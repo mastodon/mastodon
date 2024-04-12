@@ -1,31 +1,53 @@
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { useRef, useCallback } from 'react';
 
-import UploadContainer from '../containers/upload_container';
-import UploadProgressContainer from '../containers/upload_progress_container';
+import { useSelector, useDispatch } from 'react-redux';
 
-export default class UploadForm extends ImmutablePureComponent {
+import { changeMediaOrder } from 'mastodon/actions/compose';
 
-  static propTypes = {
-    mediaIds: ImmutablePropTypes.list.isRequired,
-  };
+import { Upload } from './upload';
+import { UploadProgress } from './upload_progress';
 
-  render () {
-    const { mediaIds } = this.props;
+export const UploadForm = () => {
+  const dispatch = useDispatch();
+  const mediaIds = useSelector(state => state.getIn(['compose', 'media_attachments']).map(item => item.get('id')));
+  const active = useSelector(state => state.getIn(['compose', 'is_uploading']));
+  const progress = useSelector(state => state.getIn(['compose', 'progress']));
+  const isProcessing = useSelector(state => state.getIn(['compose', 'is_processing']));
 
-    return (
-      <>
-        <UploadProgressContainer />
+  const dragItem = useRef();
+  const dragOverItem = useRef();
 
-        {mediaIds.size > 0 && (
-          <div className='compose-form__uploads'>
-            {mediaIds.map(id => (
-              <UploadContainer id={id} key={id} />
-            ))}
-          </div>
-        )}
-      </>
-    );
-  }
+  const handleDragStart = useCallback(id => {
+    dragItem.current = id;
+  }, [dragItem]);
 
-}
+  const handleDragEnter = useCallback(id => {
+    dragOverItem.current = id;
+  }, [dragOverItem]);
+
+  const handleDragEnd = useCallback(() => {
+    dispatch(changeMediaOrder(dragItem.current, dragOverItem.current));
+    dragItem.current = null;
+    dragOverItem.current = null;
+  }, [dispatch, dragItem, dragOverItem]);
+
+  return (
+    <>
+      <UploadProgress active={active} progress={progress} isProcessing={isProcessing} />
+
+      {mediaIds.size > 0 && (
+        <div className='compose-form__uploads'>
+          {mediaIds.map(id => (
+            <Upload
+              key={id}
+              id={id}
+              onDragStart={handleDragStart}
+              onDragEnter={handleDragEnter}
+              onDragEnd={handleDragEnd}
+            />
+          ))}
+        </div>
+      )}
+    </>
+  );
+};

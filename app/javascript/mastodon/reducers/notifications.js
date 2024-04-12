@@ -13,7 +13,7 @@ import {
   unfocusApp,
 } from '../actions/app';
 import {
-  MARKERS_FETCH_SUCCESS,
+  fetchMarkers,
 } from '../actions/markers';
 import {
   notificationsUpdate,
@@ -255,8 +255,8 @@ const recountUnread = (state, last_read_id) => {
 
 export default function notifications(state = initialState, action) {
   switch(action.type) {
-  case MARKERS_FETCH_SUCCESS:
-    return action.markers.notifications ? recountUnread(state, action.markers.notifications.last_read_id) : state;
+  case fetchMarkers.fulfilled.type:
+    return action.payload.markers.notifications ? recountUnread(state, action.payload.markers.notifications.last_read_id) : state;
   case NOTIFICATIONS_MOUNT:
     return updateMounted(state);
   case NOTIFICATIONS_UNMOUNT:

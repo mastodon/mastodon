@@ -410,9 +410,9 @@ lt:
           silence: Riboti
           suspend: Pristabdyti
         title: Naujos domeno blokas
-      reject_media: Atmesti medijos failai
+      reject_media: Atmesti medijos failus
       reject_media_hint: Panaikina lokaliai saugomus medijos failus bei atsisako jų parsisiuntimo ateityje. Neliečia užblokavimu
-      reject_reports: Atmesti skundai
+      reject_reports: Atmesti ataskaitas
       reject_reports_hint: Ignoruoti visus skundus, kurie siunčiami iš šio domeno. Neliečia užblokavimu
       undo: Atkurti domeno bloką
     email_domain_blocks:
@@ -509,7 +509,7 @@ lt:
     software_updates:
       description: Rekomenduojama nuolat atnaujinti Mastodon diegyklę, kad galėtum naudotis naujausiais pataisymais ir funkcijomis. Be to, kartais labai svarbu laiku naujinti Mastodon, kad būtų išvengta saugumo problemų. Dėl šių priežasčių Mastodon kas 30 minučių tikrina, ar yra atnaujinimų, ir praneša tau apie tai pagal tavo el. pašto pranešimų parinktis.
     statuses:
-      back_to_account: Atgal į paskyros puslapį
+      back_to_account: Grįžti į paskyros puslapį
       media:
         title: Medija
       no_status_selected: Jokie statusai nebuvo pakeisti, nes niekas nepasirinkta
@@ -741,16 +741,24 @@ lt:
     browser: Naršyklė
     browsers:
       generic: Nežinoma naršyklė
-    current_session: Dabartinė sesija
+    current_session: Dabartinis seansas
     date: Data
     description: "%{browser} ant %{platform}"
     explanation: Čia rodomos web naršyklės prijungtos prie Jūsų Mastodon paskyros.
+    platforms:
+      android: Android
+      ios: iOS
+      kai_os: KaiOS
+      mac: macOS
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Atšaukti
-    revoke_success: Sesija sėkmingai atšaukta
-    title: Sesijos
+    revoke_success: Seansas sėkmingai panaikintas.
+    title: Seansai
   settings:
     authorized_apps: Autorizuotos aplikacijos
-    back: Atgal į Mastodon
+    back: Grįžti į Mastodon
     delete: Paskyros trynimas
     development: Plėtojimas
     edit_profile: Keisti profilį
@@ -758,6 +766,7 @@ lt:
     featured_tags: Rodomi saitažodžiai(#)
     import: Importuoti
     migrate: Paskyros migracija
+    notifications: El. laiško pranešimai
     preferences: Preferencijos
     two_factor_authentication: Dviejų veiksnių autentikacija
   statuses:
@@ -790,6 +799,7 @@ lt:
     contrast: Mastodon (Didelio Kontrasto)
     default: Mastodon (Tamsus)
     mastodon-light: Mastodon (Šviesus)
+    system: Automatinis (naudoti sistemos temą)
   two_factor_authentication:
     disable: Išjungti
     enabled: Dviejų veiksnių autentikacija įjungta

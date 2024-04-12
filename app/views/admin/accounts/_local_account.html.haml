@@ -62,13 +62,7 @@
   %td
     %time.formatted{ datetime: account.created_at.iso8601, title: l(account.created_at) }= l account.created_at
   %td
-- recent_ips = account.user.ips.order(used_at: :desc).to_a
-- recent_ips.each_with_index do |recent_ip, i|
-  %tr
-    - if i.zero?
-      %th{ rowspan: recent_ips.size }= t('admin.accounts.most_recent_ip')
-    %td= recent_ip.ip
-    %td= table_link_to 'search', t('admin.accounts.search_same_ip'), admin_accounts_path(ip: recent_ip.ip)
+  = render partial: 'admin/accounts/user_ip', collection: account.user.ips.by_latest_used
 %tr
   %th= t('admin.accounts.most_recent_activity')
   %td

@@ -111,12 +111,14 @@ class Form::Import
     csv_converter = lambda do |field, field_info|
       case field_info.header
       when 'Show boosts', 'Notify on new posts', 'Hide notifications'
-        ActiveModel::Type::Boolean.new.cast(field)
+        ActiveModel::Type::Boolean.new.cast(field&.downcase)
       when 'Languages'
         field&.split(',')&.map(&:strip)&.presence
       when 'Account address'
         field.strip.gsub(/\A@/, '')
-      when '#domain', '#uri', 'List name'
+      when '#domain'
+        field&.strip&.downcase
+      when '#uri', 'List name'
         field.strip
       else
         field

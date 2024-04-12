@@ -12,6 +12,7 @@ class AfterBlockDomainFromAccountService < BaseService
     @domain_block_event = nil
 
     clear_notifications!
+    clear_notification_permissions!
     remove_follows!
     reject_existing_followers!
     reject_pending_follow_requests!
@@ -29,6 +30,10 @@ class AfterBlockDomainFromAccountService < BaseService
 
   def clear_notifications!
     Notification.where(account: @account).where(from_account: Account.where(domain: @domain)).in_batches.delete_all
+  end
+
+  def clear_notification_permissions!
+    NotificationPermission.where(account: @account, from_account: Account.where(domain: @domain)).in_batches.delete_all
   end
 
   def reject_existing_followers!

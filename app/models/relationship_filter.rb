@@ -114,7 +114,7 @@ class RelationshipFilter
   def activity_scope(value)
     case value
     when 'dormant'
-      Account.joins(:account_stat).where(account_stat: { last_status_at: [nil, ...1.month.ago] })
+      Account.dormant
     else
       raise Mastodon::InvalidParameterError, "Unknown activity: #{value}"
     end
