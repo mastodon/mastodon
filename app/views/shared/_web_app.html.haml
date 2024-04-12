@@ -1,14 +1,15 @@
 - content_for :header_tags do
   - if user_signed_in?
-    = preload_pack_asset 'features/compose.js'
-    = preload_pack_asset 'features/home_timeline.js'
-    = preload_pack_asset 'features/notifications.js'
+    -#
+      = preload_pack_asset 'features/compose.js'
+      = preload_pack_asset 'features/home_timeline.js'
+      = preload_pack_asset 'features/notifications.js'
     %meta{ name: 'initialPath', content: request.path }
 
   %meta{ name: 'applicationServerKey', content: Rails.configuration.x.vapid_public_key }
 
   = render_initial_state
-  = javascript_pack_tag 'application', crossorigin: 'anonymous'
+  = vite_typescript_tag 'application.ts', crossorigin: 'anonymous'
 
 .notranslate.app-holder#mastodon{ data: { props: Oj.dump(default_props) } }
   %noscript

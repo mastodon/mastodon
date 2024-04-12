@@ -1,4 +1,3 @@
-import './public-path';
 import main from 'mastodon/main';
 
 import { start } from '../mastodon/common';

@@ -1,6 +1,6 @@
 - content_for :header_tags do
   = render_initial_state
-  = javascript_pack_tag 'public', crossorigin: 'anonymous'
+  = vite_typescript_tag 'public.tsx', crossorigin: 'anonymous'
 
 :ruby
   meta = @media_attachment.file.meta || {}

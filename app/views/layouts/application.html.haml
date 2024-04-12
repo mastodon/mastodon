@@ -26,17 +26,17 @@
 
     %title= html_title
 
-    = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
+    = vite_client_tag
+    = vite_react_refresh_tag
     = theme_style_tags current_theme
     -# Needed for the wicg-inert polyfill. It needs to be on it's own <style> tag, with this `id`
-    = stylesheet_pack_tag 'inert', media: 'all', id: 'inert-style'
+    = vite_stylesheet_tag 'styles/inert.scss', media: 'all', id: 'inert-style'
 
-    = javascript_pack_tag 'common', crossorigin: 'anonymous'
-    = preload_pack_asset "locale/#{I18n.locale}-json.js"
+    -# = preload_pack_asset "locale/#{I18n.locale}-json.js"
     = csrf_meta_tags unless skip_csrf_meta_tags?
     %meta{ name: 'style-nonce', content: request.content_security_policy_nonce }
 
-    = stylesheet_link_tag custom_css_path, skip_pipeline: true, host: root_url, media: 'all'
+    -# = stylesheet_link_tag custom_css_path, skip_pipeline: true, host: root_url, media: 'all'
 
     = yield :header_tags
 

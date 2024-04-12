@@ -4,6 +4,9 @@
     "additionalEntrypoints": ["~/{icons,images}/**/*", "~/styles/*.scss"],
     "watchAdditionalPaths": []
   },
+  "production": {
+    "publicOutputDir": "packs"
+  },
   "development": {
     "autoBuild": true,
     "publicOutputDir": "vite-dev",

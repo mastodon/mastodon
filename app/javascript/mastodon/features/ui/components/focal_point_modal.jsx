@@ -12,9 +12,9 @@ import { connect } from 'react-redux';
 import Textarea from 'react-textarea-autosize';
 import { length } from 'stringz';
 // eslint-disable-next-line import/extensions
-import tesseractWorkerPath from 'tesseract.js/dist/worker.min.js';
+import tesseractWorkerPath from 'tesseract.js/dist/worker.min.js?url';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js';
+import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js?url';
 
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { Button } from 'mastodon/components/button';

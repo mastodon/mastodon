@@ -53,7 +53,7 @@ jobs:
 
       - name: Archive asset artifacts
         run: |
-          tar --exclude={"*.br","*.gz"} -zcf artifacts.tar.gz public/assets public/packs*
+          tar --exclude={"*.br","*.gz"} -zcf artifacts.tar.gz public/assets public/packs
 
       - uses: actions/upload-artifact@v4
         if: matrix.mode == 'test'

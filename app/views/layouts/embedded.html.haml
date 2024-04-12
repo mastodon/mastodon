@@ -11,12 +11,12 @@
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
-    = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
+    = vite_client_tag
+    = vite_react_refresh_tag
     = theme_style_tags Setting.theme # Use the admin-configured theme here, even if logged in
-    = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
-    = preload_pack_asset "locale/#{I18n.locale}-json.js"
     = render_initial_state
-    = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+    -# = preload_pack_asset "locale/#{I18n.locale}-json.js"
+    = vite_typescript_tag 'public.tsx', crossorigin: 'anonymous'
   %body.embed
     = yield
 

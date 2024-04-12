@@ -1,10 +1,7 @@
-/* eslint-disable import/no-commonjs --
-   We need to use CommonJS here as its imported into a preval file (`emoji_compressed.js`) */
-
 /* @preval */
 
-const fs   = require('fs');
-const path = require('path');
+import fs  from 'fs';
+import path from 'path';
 
 const filtered  = {};
 const filenames = fs.readdirSync(path.resolve(__dirname, '../locales'));
@@ -35,4 +32,6 @@ filenames.forEach(filename => {
   };
 });
 
-module.exports = JSON.parse(JSON.stringify(filtered));
+const locales = JSON.parse(JSON.stringify(filtered));
+
+export default locales;

@@ -1,9 +1,8 @@
 /** @type {import('postcss-load-config').Config} */
-const config = ({ env }) => ({
+const config = () => ({
   plugins: [
     require('postcss-preset-env'),
-    require('autoprefixer'),
-    env === 'production' ? require('cssnano') : '',
+    require('autoprefixer')
   ],
 });
 
