@@ -1,7 +1,10 @@
-module.exports = ({ env }) => ({
+/** @type {import('postcss-load-config').Config} */
+const config = ({ env }) => ({
   plugins: [
-    'postcss-preset-env',
-    'autoprefixer',
-    env === 'production' ? 'cssnano' : '',
+    require('postcss-preset-env'),
+    require('autoprefixer'),
+    env === 'production' ? require('cssnano') : '',
   ],
 });
+
+module.exports = config;
