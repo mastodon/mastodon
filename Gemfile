@@ -93,6 +93,7 @@ gem 'strong_migrations', '1.8.0'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2023'
+gem 'vite_rails'
 gem 'webpacker', '~> 5.4'
 gem 'webpush', github: 'ClearlyClaire/webpush', ref: 'f14a4d52e201128b1b00245d11b6de80d6cfdcd9'
 gem 'webauthn', '~> 3.0'
