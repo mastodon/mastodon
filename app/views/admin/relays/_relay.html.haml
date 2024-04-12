@@ -4,7 +4,7 @@
   %td
     - if relay.accepted?
       %span.positive-hint
-        = material_symbol 'check'
+        = material_symbol('check')
         &nbsp;
         = t 'admin.relays.enabled'
     - elsif relay.pending?
