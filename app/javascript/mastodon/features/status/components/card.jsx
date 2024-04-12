@@ -14,12 +14,12 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import DescriptionIcon from '@/material-icons/400-24px/description-fill.svg?react';
 import OpenInNewIcon from '@/material-icons/400-24px/open_in_new.svg?react';
 import PlayArrowIcon from '@/material-icons/400-24px/play_arrow-fill.svg?react';
+import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon }  from 'mastodon/components/icon';
 import { MoreFromAuthor } from 'mastodon/components/more_from_author';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import { displayMedia, useBlurhash } from 'mastodon/initial_state';
-import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 
 const IDNA_PREFIX = 'xn--';
 
@@ -86,7 +86,7 @@ export default class Card extends PureComponent {
 
     if (nextProps.visible === undefined) {
       this.setState({ visible: displayMedia !== 'hide_all' && !nextProps.sensitive || displayMedia === 'show_all' });
-    } else if (!is(nextProps.visible, this.props.visible) && nextProps.visible !== undefined) {
+    } else if (!Immutable.is(nextProps.visible, this.props.visible) && nextProps.visible !== undefined) {
       this.setState({ visible: nextProps.visible });
     }
   }
@@ -204,7 +204,7 @@ export default class Card extends PureComponent {
       spoilerButton = (
         <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'>
           <span className='spoiler-button__overlay__label'>
-            {revealed ? <FormattedMessage id='status.status_hidden' defaultMessage='Status hidden' /> : <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />}
+            {revealed ? <FormattedMessage id='status.media_hidden' defaultMessage='Midea hidden' /> : <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />}
             <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.show' defaultMessage='Click to show' /></span>
           </span>
         </button>
