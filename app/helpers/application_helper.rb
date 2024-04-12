@@ -115,7 +115,7 @@ module ApplicationHelper
 
   def material_symbol(icon, attributes = {})
     inline_svg_tag(
-      "#{icon}.svg",
+      "400-24px/#{icon}.svg",
       class: %w(icon).concat(attributes[:class].to_s.split),
       role: :img
     )

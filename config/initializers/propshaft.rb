@@ -4,4 +4,4 @@
 Rails.application.config.assets.paths << Rails.root.join('app', 'javascript', 'images')
 
 # Tell propshaft where the material design icons are
-Rails.application.config.assets.paths << Rails.root.join('app', 'javascript', 'material-icons', '400-24px')
+Rails.application.config.assets.paths << Rails.root.join('app', 'javascript', 'material-icons')
