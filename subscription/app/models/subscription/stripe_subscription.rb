@@ -8,6 +8,8 @@ module Subscription
     validates :status, presence: true
     before_validation :set_invite
 
+    scope :active, -> { where(status: 'active') }
+
     def retrieve
       @stripe_sub ||= ::Stripe::Subscription.retrieve(subscription_id)
     end
