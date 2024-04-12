@@ -6,7 +6,7 @@ class Web::NotificationSerializer < ActiveModel::Serializer
   include ActionView::Helpers::SanitizeHelper
 
   attributes :access_token, :preferred_locale, :notification_id,
-             :notification_type, :icon, :title, :body
+             :notification_type, :icon, :display_name, :title, :body
 
   def access_token
     current_push_subscription.associated_access_token
