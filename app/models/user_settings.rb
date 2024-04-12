@@ -13,13 +13,15 @@ class UserSettings
   setting :noindex, default: -> { ::Setting.noindex }
   setting :show_application, default: true
   setting :default_language, default: nil
-  setting :default_sensitive, default: false
+  setting :default_sensitive, default: true
+  setting :auto_play, default: true
   setting :default_privacy, default: nil, in: %w(public unlisted private)
 
   setting_inverse_alias :indexable, :noindex
 
   namespace :web do
     setting :advanced_layout, default: false
+    setting :auto_play_gif, default: true
     setting :trends, default: true
     setting :use_blurhash, default: true
     setting :use_pending_items, default: false
