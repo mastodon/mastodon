@@ -204,7 +204,7 @@ export default class Card extends PureComponent {
       spoilerButton = (
         <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'>
           <span className='spoiler-button__overlay__label'>
-            {revealed ? <FormattedMessage id='status.media_hidden' defaultMessage='Midea hidden' /> : <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />}
+            {revealed ? <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' /> : <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />}
             <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.show' defaultMessage='Click to show' /></span>
           </span>
         </button>
