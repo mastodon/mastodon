@@ -115,6 +115,7 @@ module Mastodon
       Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
       Doorkeeper::Application.include ApplicationExtension
+      Doorkeeper::AccessGrant.include AccessGrantExtension
       Doorkeeper::AccessToken.include AccessTokenExtension
       Devise::FailureApp.include AbstractController::Callbacks
       Devise::FailureApp.include Localized
