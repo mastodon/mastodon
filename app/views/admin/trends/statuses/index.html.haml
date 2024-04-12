@@ -41,12 +41,12 @@
                    data: { confirm: t('admin.reports.are_you_sure') },
                    name: :approve_accounts,
                    type: :submit
-        = f.button safe_join([material_symbol('times'), t('admin.trends.statuses.disallow')]),
+        = f.button safe_join([material_symbol('close'), t('admin.trends.statuses.disallow')]),
                    class: 'table-action-link',
                    data: { confirm: t('admin.reports.are_you_sure') },
                    name: :reject,
                    type: :submit
-        = f.button safe_join([material_symbol('times'), t('admin.trends.statuses.disallow_account')]),
+        = f.button safe_join([material_symbol('close'), t('admin.trends.statuses.disallow_account')]),
                    class: 'table-action-link',
                    data: { confirm: t('admin.reports.are_you_sure') },
                    name: :reject_accounts,

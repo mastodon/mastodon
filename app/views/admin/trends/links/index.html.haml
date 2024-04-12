@@ -47,12 +47,12 @@
                    data: { confirm: t('admin.reports.are_you_sure') },
                    name: :approve_providers,
                    type: :submit
-        = f.button safe_join([material_symbol('times'), t('admin.trends.links.disallow')]),
+        = f.button safe_join([material_symbol('close'), t('admin.trends.links.disallow')]),
                    class: 'table-action-link',
                    data: { confirm: t('admin.reports.are_you_sure') },
                    name: :reject,
                    type: :submit
-        = f.button safe_join([material_symbol('times'), t('admin.trends.links.disallow_provider')]),
+        = f.button safe_join([material_symbol('close'), t('admin.trends.links.disallow_provider')]),
                    class: 'table-action-link',
                    data: { confirm: t('admin.reports.are_you_sure') },
                    name: :reject_providers,
