@@ -2,7 +2,7 @@ version: '3'
 services:
   db:
     restart: always
-    image: postgres:14-alpine
+    image: postgres:15-alpine
     shm_size: 256mb
     networks:
       - internal_network
@@ -25,7 +25,7 @@ services:
 
   # es:
   #   restart: always
-  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.9
   #   environment:
   #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true"
   #     - "xpack.license.self_generated.type=basic"
@@ -56,7 +56,7 @@ services:
 
   web:
     build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.7
+    image: ghcr.io/mastodon/mastodon:v4.2.8
     restart: always
     env_file: .env.production
     command: bundle exec puma -C config/puma.rb
@@ -77,7 +77,7 @@ services:
 
   streaming:
     build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.7
+    image: ghcr.io/mastodon/mastodon:v4.2.8
     restart: always
     env_file: .env.production
     command: node ./streaming
@@ -95,7 +95,7 @@ services:
 
   sidekiq:
     build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.7
+    image: ghcr.io/mastodon/mastodon:v4.2.8
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq
