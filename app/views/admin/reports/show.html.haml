@@ -41,7 +41,7 @@
 %p
   = t 'admin.reports.statuses_description_html'
   —
-  = link_to safe_join([material_symbol('plus'), t('admin.reports.add_to_report')]),
+  = link_to safe_join([material_symbol('add'), t('admin.reports.add_to_report')]),
             admin_account_statuses_path(@report.target_account_id, report_id: @report.id),
             class: 'table-action-link'
 
