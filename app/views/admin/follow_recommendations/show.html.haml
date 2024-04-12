@@ -37,7 +37,7 @@
                      name: :suppress,
                      type: :submit
         - if params[:status] == 'suppressed' && can?(:unsuppress, :follow_recommendation)
-          = f.button safe_join([material_symbol('plus'), t('admin.follow_recommendations.unsuppress')]),
+          = f.button safe_join([material_symbol('add'), t('admin.follow_recommendations.unsuppress')]),
                      class: 'table-action-link',
                      name: :unsuppress,
                      type: :submit
