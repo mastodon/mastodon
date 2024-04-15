@@ -546,6 +546,14 @@ body > [data-popper-placement] {
         text-decoration: none;
       }
     }
+
+    & > span {
+      display: block;
+
+      &:not(:first-child) {
+        margin-top: 0.5em;
+      }
+    }
   }
 
   .spoiler-input {
