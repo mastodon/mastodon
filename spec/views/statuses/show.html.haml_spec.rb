@@ -3,22 +3,23 @@
 require 'rails_helper'
 
 describe 'statuses/show.html.haml', :without_verify_partial_doubles do
+  let(:alice) { Fabricate(:account, username: 'alice', display_name: 'Alice') }
+  let(:status) { Fabricate(:status, account: alice, text: 'Hello World') }
+
   before do
     allow(view).to receive_messages(api_oembed_url: '', site_title: 'example site', site_hostname: 'example.com', full_asset_url: '//asset.host/image.svg', current_account: nil, single_user_mode?: false)
     allow(view).to receive(:local_time)
     allow(view).to receive(:local_time_ago)
     assign(:instance_presenter, InstancePresenter.new)
-  end
 
-  it 'has valid opengraph tags' do
-    alice  = Fabricate(:account, username: 'alice', display_name: 'Alice')
-    status = Fabricate(:status, account: alice, text: 'Hello World')
     Fabricate(:media_attachment, account: alice, status: status, type: :video)
 
     assign(:status, status)
     assign(:account, alice)
     assign(:descendant_threads, [])
+  end
 
+  it 'has valid opengraph tags' do
     render
 
     expect(header_tags)
@@ -29,14 +30,6 @@ describe 'statuses/show.html.haml', :without_verify_partial_doubles do
   end
 
   it 'has twitter player tag' do
-    alice  = Fabricate(:account, username: 'alice', display_name: 'Alice')
-    status = Fabricate(:status, account: alice, text: 'Hello World')
-    Fabricate(:media_attachment, account: alice, status: status, type: :video)
-
-    assign(:status, status)
-    assign(:account, alice)
-    assign(:descendant_threads, [])
-
     render
 
     expect(header_tags)
