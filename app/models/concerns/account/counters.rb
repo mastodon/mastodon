@@ -35,7 +35,7 @@ module Account::Counters
     raise ArgumentError, "Invalid key #{key}" unless ALLOWED_COUNTER_KEYS.include?(key)
     raise ArgumentError, 'Do not call update_count! on dirty objects' if association(:account_stat).loaded? && account_stat&.changed? && account_stat.changed_attribute_names_to_save == %w(id)
 
-    result = updated_account_stat(key, value)
+    result = updated_account_stat(key, value.to_i)
 
     # Reload account_stat if it was loaded, taking into account newly-created unsaved records
     if association(:account_stat).loaded?
