@@ -49,7 +49,7 @@
           %tr
             %td= t("imports.types.#{import.type}")
             %td
-              - if import.unconfirmed?
+              - if import.state_unconfirmed?
                 = link_to t("imports.states.#{import.state}"), settings_import_path(import)
               - else
                 = t("imports.states.#{import.state}")
@@ -59,7 +59,7 @@
             %td
               - num_failed = import.processed_items - import.imported_items
               - if num_failed.positive?
-                - if import.finished?
+                - if import.state_finished?
                   = link_to num_failed, failures_settings_import_path(import, format: 'csv')
                 - else
                   = num_failed
