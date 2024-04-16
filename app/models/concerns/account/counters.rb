@@ -53,7 +53,9 @@ module Account::Counters
   def updated_account_stat(key, value)
     AccountStat.upsert(
       initial_values(key, value),
-      on_duplicate: duplicate_values(key, value),
+      on_duplicate: Arel.sql(
+        duplicate_values(key, value).join(', ')
+      ),
       unique_by: :account_id
     )
   end
@@ -65,11 +67,9 @@ module Account::Counters
   end
 
   def duplicate_values(key, value)
-    Arel.sql(
-      ["#{key} = (account_stats.#{key} + #{value})", 'updated_at = CURRENT_TIMESTAMP'].tap do |values|
-        values << 'last_status_at = CURRENT_TIMESTAMP' if key == :statuses_count && value.positive?
-      end.join(', ')
-    )
+    ["#{key} = (account_stats.#{key} + #{value})", 'updated_at = CURRENT_TIMESTAMP'].tap do |values|
+      values << 'last_status_at = CURRENT_TIMESTAMP' if key == :statuses_count && value.positive?
+    end
   end
 
   def save_account_stat
