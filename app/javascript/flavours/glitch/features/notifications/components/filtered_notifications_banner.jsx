@@ -42,7 +42,7 @@ export const FilteredNotificationsBanner = () => {
 
       <div className='filtered-notifications-banner__badge'>
         <div className='filtered-notifications-banner__badge__badge'>{toCappedNumber(policy.getIn(['summary', 'pending_notifications_count']))}</div>
-        <FormattedMessage id='filtered_notifications_banner.private_mentions' defaultMessage='{count, plural, one {private mention} other {private mentions}}' values={{ count: policy.getIn(['summary', 'pending_notifications_count']) }} />
+        <FormattedMessage id='filtered_notifications_banner.mentions' defaultMessage='{count, plural, one {mention} other {mentions}}' values={{ count: policy.getIn(['summary', 'pending_notifications_count']) }} />
       </div>
     </Link>
   );
