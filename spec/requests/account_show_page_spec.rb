@@ -9,10 +9,16 @@ describe 'The account show page' do
 
     get '/@alice'
 
+    expect(head_link_icons.size).to eq(4) # One general favicon and three with sizes
+
     expect(head_meta_content('og:title')).to match alice.display_name
     expect(head_meta_content('og:type')).to eq 'profile'
     expect(head_meta_content('og:image')).to match '.+'
     expect(head_meta_content('og:url')).to match 'http://.+'
+  end
+
+  def head_link_icons
+    head_section.css('link[rel=icon]')
   end
 
   def head_meta_content(property)

@@ -97,7 +97,6 @@ Style/FetchEnvVar:
     - 'config/initializers/paperclip.rb'
     - 'config/initializers/vapid.rb'
     - 'lib/mastodon/redis_config.rb'
-    - 'lib/premailer_webpack_strategy.rb'
     - 'lib/tasks/repo.rake'
     - 'spec/features/profile_spec.rb'
 
@@ -249,11 +248,6 @@ Style/SignalException:
   Exclude:
     - 'lib/devise/strategies/two_factor_ldap_authenticatable.rb'
     - 'lib/devise/strategies/two_factor_pam_authenticatable.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Style/SingleArgumentDig:
-  Exclude:
-    - 'lib/webpacker/manifest_extensions.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: Mode.
