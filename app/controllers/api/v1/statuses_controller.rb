@@ -47,6 +47,17 @@ class Api::V1::StatusesController < Api::BaseController
       ancestors_limit         = ANCESTORS_LIMIT
       descendants_limit       = DESCENDANTS_LIMIT
       descendants_depth_limit = DESCENDANTS_DEPTH_LIMIT
+    else
+      collection = @status['replies']
+
+      unless collection.nil? && @status.local?
+        ActivityPub::FetchRepliesService.new.call(
+          value_or_id(@status),
+          value_or_id(collection),
+          allow_synchronous_requests: true,
+          all_replies: true
+        )
+      end
     end
 
     ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(ancestors_limit, current_account)
