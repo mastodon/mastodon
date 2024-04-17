@@ -4,8 +4,6 @@ class Api::BaseController < ApplicationController
   DEFAULT_STATUSES_LIMIT = 20
   DEFAULT_ACCOUNTS_LIMIT = 40
 
-  PAGINATION_PARAMS = %i(limit).freeze
-
   include Api::RateLimitHeaders
   include Api::AccessTokenTrackingConcern
   include Api::CachingConcern
@@ -36,13 +34,6 @@ class Api::BaseController < ApplicationController
     return default_limit unless params[:limit]
 
     [params[:limit].to_i.abs, default_limit * 2].min
-  end
-
-  def pagination_params(core_params)
-    params
-      .slice(*PAGINATION_PARAMS)
-      .permit(*PAGINATION_PARAMS)
-      .merge(core_params)
   end
 
   def params_slice(*keys)
