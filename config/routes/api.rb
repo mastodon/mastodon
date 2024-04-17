@@ -327,6 +327,18 @@ namespace :api, format: false do
     end
   end
 
+  namespace :v2_alpha do
+    resources :notifications, only: [:index, :show] do
+      collection do
+        post :clear
+      end
+
+      member do
+        post :dismiss
+      end
+    end
+  end
+
   namespace :web do
     resource :settings, only: [:update]
     resources :embeds, only: [:show]
