@@ -246,8 +246,8 @@ describe Mastodon::CLI::Accounts do
       end
 
       context 'with --email option' do
-        let(:user) { Fabricate(:user, email: 'old_email@email.com') }
-        let(:options) { { email: 'new_email@email.com' } }
+        let(:user) { Fabricate(:user, email: 'old_email@example.com') }
+        let(:options) { { email: 'new_email@example.com' } }
 
         it "sets the user's unconfirmed email to the provided email address" do
           expect { subject }
@@ -260,12 +260,12 @@ describe Mastodon::CLI::Accounts do
           expect { subject }
             .to output_results('OK')
 
-          expect(user.reload.email).to eq('old_email@email.com')
+          expect(user.reload.email).to eq('old_email@example.com')
         end
 
         context 'with --confirm option' do
-          let(:user) { Fabricate(:user, email: 'old_email@email.com', confirmed_at: nil) }
-          let(:options) { { email: 'new_email@email.com', confirm: true } }
+          let(:user) { Fabricate(:user, email: 'old_email@example.com', confirmed_at: nil) }
+          let(:options) { { email: 'new_email@example.com', confirm: true } }
 
           it "updates the user's email address to the provided email" do
             expect { subject }
