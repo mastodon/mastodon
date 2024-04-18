@@ -216,7 +216,6 @@ gem 'opentelemetry-instrumentation-action_pack', '~> 0.9.0', require: false
 gem 'opentelemetry-instrumentation-action_view', '~> 0.7.0', require: false
 gem 'opentelemetry-instrumentation-active_job', '~> 0.7.1', require: false
 gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.20.1', require: false
-gem 'opentelemetry-instrumentation-active_record', '~> 0.7.1', require: false
 gem 'opentelemetry-instrumentation-active_support', '~> 0.5.1', require: false
 gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.21.2', require: false
 gem 'opentelemetry-instrumentation-excon', '~> 0.22.0', require: false
