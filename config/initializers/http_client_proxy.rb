@@ -7,7 +7,7 @@ Rails.application.configure do
     proxy = URI.parse(ENV['http_proxy'])
 
     raise "Unsupported proxy type: #{proxy.scheme}" unless %w(http https).include? proxy.scheme
-    raise "No proxy host" unless proxy.host
+    raise 'No proxy host' unless proxy.host
 
     host = proxy.host
     host = host[1...-1] if host[0] == '[' # for IPv6 address
@@ -24,7 +24,7 @@ Rails.application.configure do
     proxy = URI.parse(ENV['http_hidden_proxy'])
 
     raise "Unsupported proxy type: #{proxy.scheme}" unless %w(http https).include? proxy.scheme
-    raise "No proxy host" unless proxy.host
+    raise 'No proxy host' unless proxy.host
 
     host = proxy.host
     host = host[1...-1] if host[0] == '[' # for IPv6 address
