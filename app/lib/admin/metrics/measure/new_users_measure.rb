@@ -21,19 +21,13 @@ class Admin::Metrics::Measure::NewUsersMeasure < Admin::Metrics::Measure::BaseMe
     [sql_query_string, { start_at: @start_at, end_at: @end_at }]
   end
 
-  def sql_query_string
-    <<~SQL.squish
-      SELECT axis.*, (
-        WITH new_users AS (
-          SELECT users.id
-          FROM users
-          WHERE date_trunc('day', users.created_at)::date = axis.period
-        )
-        SELECT count(*) FROM new_users
-      ) AS value
-      FROM (
-        #{generated_series_days}
-      ) AS axis
-    SQL
+  def data_source_query
+    User
+      .select(:id)
+      .where(
+        <<~SQL.squish
+          DATE_TRUNC('day', users.created_at)::date = axis.period
+        SQL
+      ).to_sql
   end
 end

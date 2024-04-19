@@ -15,12 +15,22 @@ module Admin::Metrics::Measure::QueryHelper
     ActiveRecord::Base.sanitize_sql_array(sql_array)
   end
 
-  def generated_series_days
-    Arel.sql(
-      <<~SQL.squish
+  def sql_query_string
+    <<~SQL.squish
+      SELECT axis.*, (
+        WITH data_source AS (#{data_source_query})
+        SELECT #{select_target} FROM data_source
+      ) AS value
+      FROM (
         SELECT generate_series(:start_at::timestamp, :end_at::timestamp, '1 day')::date AS period
-      SQL
-    )
+      ) AS axis
+    SQL
+  end
+
+  def select_target
+    <<~SQL.squish
+      COUNT(*)
+    SQL
   end
 
   def account_domain_sql(include_subdomains)
