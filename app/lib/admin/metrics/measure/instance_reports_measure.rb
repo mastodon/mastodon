@@ -31,22 +31,16 @@ class Admin::Metrics::Measure::InstanceReportsMeasure < Admin::Metrics::Measure:
     [sql_query_string, { start_at: @start_at, end_at: @end_at, domain: params[:domain] }]
   end
 
-  def sql_query_string
-    <<~SQL.squish
-      SELECT axis.*, (
-        WITH new_reports AS (
-          SELECT reports.id
-          FROM reports
-          INNER JOIN accounts ON accounts.id = reports.target_account_id
-          WHERE date_trunc('day', reports.created_at)::date = axis.period
+  def data_source_query
+    Report
+      .select(:id)
+      .joins(:target_account)
+      .where(
+        <<~SQL.squish
+          DATE_TRUNC('day', reports.created_at)::date = axis.period
             AND #{account_domain_sql(params[:include_subdomains])}
-        )
-        SELECT count(*) FROM new_reports
-      ) AS value
-      FROM (
-        #{generated_series_days}
-      ) AS axis
-    SQL
+        SQL
+      ).to_sql
   end
 
   def params
