@@ -21,19 +21,13 @@ class Admin::Metrics::Measure::OpenedReportsMeasure < Admin::Metrics::Measure::B
     [sql_query_string, { start_at: @start_at, end_at: @end_at }]
   end
 
-  def sql_query_string
-    <<~SQL.squish
-      SELECT axis.*, (
-        WITH new_reports AS (
-          SELECT reports.id
-          FROM reports
-          WHERE date_trunc('day', reports.created_at)::date = axis.period
-        )
-        SELECT count(*) FROM new_reports
-      ) AS value
-      FROM (
-        #{generated_series_days}
-      ) AS axis
-    SQL
+  def data_source_query
+    Report
+      .select(:id)
+      .where(
+        <<~SQL.squish
+          DATE_TRUNC('day', reports.created_at)::date = axis.period
+        SQL
+      ).to_sql
   end
 end
