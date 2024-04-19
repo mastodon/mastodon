@@ -89,6 +89,7 @@ gem 'sidekiq-unique-jobs', '~> 7.1'
 gem 'simple_form', '~> 5.2'
 gem 'simple-navigation', '~> 4.4'
 gem 'stoplight', '~> 4.1'
+gem 'stringio', '3.0.4'
 gem 'strong_migrations', '1.8.0'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
