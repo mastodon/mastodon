@@ -3,10 +3,6 @@
 class MigrateDeviseTwoFactorSecrets < ActiveRecord::Migration[7.1]
   disable_ddl_transaction!
 
-  class MigrationUser < ApplicationRecord
-    self.table_name = :users
-  end
-
   def up
     users_with_otp_enabled.find_each do |user|
       # Gets the new value on already-updated users
@@ -27,7 +23,6 @@ class MigrateDeviseTwoFactorSecrets < ActiveRecord::Migration[7.1]
   private
 
   def users_with_otp_enabled
-    MigrationUser
-      .where(otp_required_for_login: true)
+    User.where(otp_required_for_login: true)
   end
 end
