@@ -13,8 +13,8 @@ set :migration_role, :app
 append :linked_files, '.env.production', 'public/robots.txt'
 append :linked_dirs, 'vendor/bundle', 'node_modules', 'public/system'
 
-SYSTEMD_SERVICES = %i[sidekiq streaming web].freeze
-SERVICE_ACTIONS = %i[reload restart status].freeze
+SYSTEMD_SERVICES = %i(sidekiq streaming web).freeze
+SERVICE_ACTIONS = %i(reload restart status).freeze
 
 namespace :systemd do
   SYSTEMD_SERVICES.each do |service|
