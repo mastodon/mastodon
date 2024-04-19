@@ -73,7 +73,7 @@ if ENV['S3_ENABLED'] == 'true'
   if ENV.has_key?('S3_ENDPOINT')
     Paperclip::Attachment.default_options[:s3_options].merge!(
       endpoint: ENV['S3_ENDPOINT'],
-      force_path_style: ENV['S3_OVERRIDE_PATH_STYLE'] != 'true',
+      force_path_style: ENV['S3_OVERRIDE_PATH_STYLE'] != 'true'
     )
 
     Paperclip::Attachment.default_options[:url] = ':s3_path_url'
@@ -159,7 +159,7 @@ else
   Paperclip::Attachment.default_options.merge!(
     storage: :filesystem,
     path: File.join(ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system')), ':prefix_path:class', ':attachment', ':id_partition', ':style', ':filename'),
-    url: ENV.fetch('PAPERCLIP_ROOT_URL', '/system') + '/:prefix_url:class/:attachment/:id_partition/:style/:filename',
+    url: ENV.fetch('PAPERCLIP_ROOT_URL', '/system') + '/:prefix_url:class/:attachment/:id_partition/:style/:filename'
   )
 end
 
