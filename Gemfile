@@ -89,7 +89,20 @@ gem 'sidekiq-unique-jobs', '~> 7.1'
 gem 'simple_form', '~> 5.2'
 gem 'simple-navigation', '~> 4.4'
 gem 'stoplight', '~> 4.1'
-gem 'stringio', '3.0.4'
+
+# TODO: This is because though currently Ruby has the StringIO embedded, `irb` is requiring `rdoc` which has the
+# `stringio` gem as a dependency without constraints on the Ruby version. Using a gem with a version different from
+# the one, embedded in Ruby,can lead tospurios errors, like <TypeError: wrong argument type strio (expected strio)>,
+# see https://github.com/mastodon/mastodon/pull/30013
+if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.4.0')
+  gem 'stringio', '3.1.1'
+elsif Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.3.0')
+  gem 'stringio', '3.1.0'
+elsif Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.2.0')
+  gem 'stringio', '3.0.4'
+elsif Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.1.0')
+  gem 'stringio', '3.0.1'
+end
 gem 'strong_migrations', '1.8.0'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
