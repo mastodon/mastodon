@@ -16,6 +16,7 @@ import EditNoteIcon from '@/material-icons/400-24px/edit_note.svg?react';
 import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
 import { focusCompose } from 'mastodon/actions/compose';
 import { Icon }  from 'mastodon/components/icon';
+
 import Column from 'mastodon/features/ui/components/column';
 import { me } from 'mastodon/initial_state';
 import { useAppSelector } from 'mastodon/store';
@@ -25,6 +26,7 @@ import { Step } from './components/step';
 import { Follows } from './follows';
 import { Profile } from './profile';
 import { Share } from './share';
+import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
 
 const messages = defineMessages({
   template: { id: 'onboarding.compose.template', defaultMessage: 'Hello #Mastodon!' },
@@ -42,6 +44,7 @@ const Onboarding = () => {
 
   return (
     <Column>
+    {account ? (
       <Switch>
         <Route path='/start' exact>
           <div className='scrollable privacy-policy'>
@@ -78,6 +81,7 @@ const Onboarding = () => {
         <Route path='/start/follows' component={Follows} />
         <Route path='/start/share' component={Share} />
       </Switch>
+    ) : <NotSignedInIndicator />}
 
       <Helmet>
         <meta name='robots' content='noindex' />
