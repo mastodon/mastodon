@@ -98,6 +98,8 @@ To set up **MacOS** for native development, complete the following steps:
     `.yarn/releases` folder
 - Run `npm install -g yarn --force` to ensure Yarn is installed globally
 - Run `corepack enable && corepack prepare`
+- Run `bundle install`
+- Run `yarn install`
 - Run `bundle exec rails db:setup` (optionally prepend `RAILS_ENV=development` to target the dev environment)
 - Finally, run `bin/dev` which will launch the local services via `overmind` (if installed) or `foreman`
 
