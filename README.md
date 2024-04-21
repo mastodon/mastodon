@@ -93,6 +93,10 @@ To set up **MacOS** for native development, complete the following steps:
 - Use a Ruby version manager to install the specified version from `.ruby-version`
 - Run `brew install postgresql@14 redis imagemagick libidn` to install required dependencies
 - Navigate to Mastodon's root directory and run `brew install nvm` then `nvm use` to use the version from `.nvmrc`
+- Ensure Yarn isn't set globally with a package manager like `asdf`, i.e. remove yarn from `~/.tool-versions`
+  - This is necessary because the `asdf` Yarn plugin will mess with `corepack`, forcing it to download new Yarn into the
+    `.yarn/releases` folder
+- Run `npm install -g yarn --force` to ensure Yarn is installed globally
 - Run `corepack enable && corepack prepare`
 - Run `bundle exec rails db:setup` (optionally prepend `RAILS_ENV=development` to target the dev environment)
 - Finally, run `bin/dev` which will launch the local services via `overmind` (if installed) or `foreman`
