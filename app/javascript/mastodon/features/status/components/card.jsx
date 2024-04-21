@@ -144,7 +144,7 @@ export default class Card extends PureComponent {
           {card.get('published_at') && <> · <RelativeTimestamp timestamp={card.get('published_at')} /></>}
         </span>
 
-        <strong className='status-card__title' title={card.get('title')} lang={language}>{card.get('title')}</strong>
+        <strong className='status-card__title' title={card.get('title').trim()} lang={language}>{card.get('title').trim()}</strong>
 
         {card.get('author_name').length > 0 ? <span className='status-card__author'><FormattedMessage id='link_preview.author' defaultMessage='By {name}' values={{ name: <strong>{card.get('author_name')}</strong> }} /></span> : <span className='status-card__description' lang={language}>{card.get('description')}</span>}
       </div>
