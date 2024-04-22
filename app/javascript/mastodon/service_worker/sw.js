@@ -1,5 +1,5 @@
 import { ExpirationPlugin } from 'workbox-expiration';
-import { precacheAndRoute } from 'workbox-precaching';
+import { precacheAndRoute, cleanupOutdatedCaches } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { CacheFirst } from 'workbox-strategies';
 
@@ -15,10 +15,11 @@ function fetchRoot() {
   return fetch('/', { credentials: 'include', redirect: 'manual' });
 }
 
+cleanupOutdatedCaches();
 precacheAndRoute(self.__WB_MANIFEST);
 
 registerRoute(
-  /locale_.*\.js$/,
+  /intl\/.*\.js$/,
   new CacheFirst({
     cacheName: `${CACHE_NAME_PREFIX}locales`,
     plugins: [
@@ -46,7 +47,7 @@ registerRoute(
 registerRoute(
   ({ request }) => request.destination === 'image',
   new CacheFirst({
-    cacheName: `m${CACHE_NAME_PREFIX}media`,
+    cacheName: `${CACHE_NAME_PREFIX}media`,
     plugins: [
       new ExpirationPlugin({
         maxAgeSeconds: 7 * 24 * 60 * 60, // 1 week
@@ -56,8 +57,8 @@ registerRoute(
   }),
 );
 
-// Cause a new version of a registered Service Worker to replace an existing one
-// that is already installed, and replace the currently active worker on open pages.
+// // Cause a new version of a registered Service Worker to replace an existing one
+// // that is already installed, and replace the currently active worker on open pages.
 self.addEventListener('install', function(event) {
   event.waitUntil(Promise.all([openWebCache(), fetchRoot()]).then(([cache, root]) => cache.put('/', root)));
 });

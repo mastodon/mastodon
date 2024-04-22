@@ -7,10 +7,13 @@ import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { analyzer } from 'vite-bundle-analyzer';
+import { VitePWA } from 'vite-plugin-pwa';
 import RailsPlugin from 'vite-plugin-rails';
 import svgr from 'vite-plugin-svgr';
 import { configDefaults } from 'vitest/config';
 import GithubActionsReporter from 'vitest-github-actions-reporter';
+
+import { MastodonServiceWorkerLocales } from './config/vite/plugins/sw-locales';
 
 const sourceCodeDir = 'app/javascript';
 const items = fs.readdirSync(sourceCodeDir);
@@ -80,11 +83,46 @@ export default defineConfig({
         ],
       },
     }),
+    MastodonServiceWorkerLocales(),
+    VitePWA({
+      mode: 'development',
+      strategies: 'injectManifest',
+      srcDir: 'mastodon/service_worker',
+      filename: 'sw.js',
+      manifest: false,
+      injectRegister: null,
+      injectManifest: {
+        buildPlugins: {
+          vite: [
+            // Provide a virtual import with only the locales used in the ServiceWorker
+            MastodonServiceWorkerLocales(),
+          ],
+        },
+        globIgnores: [
+          // Do not preload those files
+          'intl/*.js',
+          'extra_polyfills-*.js',
+          'polyfill-force-*.js',
+          'assets/mailer-*.{js,css}',
+        ],
+        maximumFileSizeToCacheInBytes: 2 * 1_024 * 1_024, // 2 MiB
+      },
+      devOptions: {
+        enabled: true,
+        type: 'module',
+      },
+    }),
     svgr(),
     // @ts-expect-error the types for the plugin are not up-to-date
     optimizeLodashImports(),
     !!process.env.ANALYZE_BUNDLE_SIZE && analyzer({ analyzerMode: 'static' }),
   ],
+  server: {
+    headers: {
+      // This is needed in dev environment because we load the worker from `/dev-sw/dev-sw.js`, but it needs to be scoped to the whole domain
+      'Service-Worker-Allowed': '/',
+    },
+  },
   test: {
     environment: 'jsdom',
     include: [

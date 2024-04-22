@@ -7,7 +7,10 @@ import * as perf from 'mastodon/performance';
 import ready from 'mastodon/ready';
 import { store } from 'mastodon/store';
 
-import { isProduction } from './utils/environment';
+
+import { isDevelopment, isProduction } from './utils/environment';
+
+const enableServiceWorker = isProduction();
 
 /**
  * @returns {Promise<void>}
@@ -23,9 +26,9 @@ function main() {
     root.render(<Mastodon {...props} />);
     store.dispatch(setupBrowserNotifications());
 
-    if (isProduction() && me && 'serviceWorker' in navigator) {
+    if (enableServiceWorker && me && 'serviceWorker' in navigator) {
       const { Workbox } = await import('workbox-window');
-      const wb = new Workbox('/sw.js');
+      const wb = new Workbox(isDevelopment() ? '/vite-dev/dev-sw.js?dev-sw' : '/sw.js', { type: 'module', scope: '/' });
       /** @type {ServiceWorkerRegistration} */
       let registration;
 
