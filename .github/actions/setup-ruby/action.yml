@@ -20,4 +20,22 @@ runs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ inputs.ruby-version }}
-        bundler-cache: true
+        bundler-cache: false
+
+    - run: bundle update stringio
+
+    - uses: actions/cache@v4
+      with:
+        path: ./vendor/bundle
+        key: ${{ runner.os }}-${{ inputs.ruby-version }}-gems-${{ github.ref }}-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-${{ inputs.ruby-version }}-gems-${{ github.ref }}
+          ${{ runner.os }}-${{ inputs.ruby-version }}-gems-master
+          ${{ runner.os }}-${{ inputs.ruby-version }}-gems-
+
+    - name: bundle install
+      run: |
+        bundle config --local path $PWD/vendor/bundle
+        bundle config --local deployment true
+        bundle install --jobs 4 --retry 3
+        bundle clean
