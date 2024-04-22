@@ -127,6 +127,14 @@ namespace :tests do
         exit(1)
       end
 
+      # This is checking the attribute rather than the method, to avoid the legacy fallback
+      # and ensure the data has been migrated
+      unless Account.find_local('qcuser').user[:otp_secret] == 'anotpsecretthatshouldbeencrypted'
+        puts "DEBUG: #{Account.find_local('qcuser').user.inspect}"
+        puts 'OTP secret for user not preserved as expected'
+        exit(1)
+      end
+
       puts 'No errors found. Database state is consistent with a successful migration process.'
     end
 
@@ -213,9 +221,15 @@ namespace :tests do
           (4, 10, 'kmruser@localhost', now(), now(), false, 'ku', '{en,kmr,ku,ckb}');
 
         INSERT INTO "users"
-          (id, account_id, email, created_at, updated_at, locale)
+          (id, account_id, email, created_at, updated_at, locale,
+           encrypted_otp_secret, encrypted_otp_secret_iv, encrypted_otp_secret_salt,
+           otp_required_for_login)
         VALUES
-          (5, 11, 'qcuser@localhost', now(), now(), 'fr-QC');
+          (5, 11, 'qcuser@localhost', now(), now(), 'fr-QC',
+           E'Fttsy7QAa0edaDfdfSz094rRLAxc8cJweDQ4BsWH/zozcdVA8o9GLqcKhn2b\nGi/V\n',
+           'rys3THICkr60BoWC',
+           '_LMkAGvdg7a+sDIKjI3mR2Q==',
+           true);
 
         INSERT INTO "settings"
           (id, thing_type, thing_id, var, value, created_at, updated_at)
