@@ -54,15 +54,6 @@ Rails/OutputSafety:
   Exclude:
     - 'config/initializers/simple_form.rb'
 
-# Configuration parameters: Include.
-# Include: app/models/**/*.rb
-Rails/UniqueValidationWithoutIndex:
-  Exclude:
-    - 'app/models/account_alias.rb'
-    - 'app/models/custom_filter_status.rb'
-    - 'app/models/identity.rb'
-    - 'app/models/webauthn_credential.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 # AllowedMethods: ==, equal?, eql?
