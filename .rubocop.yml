@@ -199,6 +199,11 @@ Style/NumericLiterals:
   AllowedPatterns:
     - \d{4}_\d{2}_\d{2}_\d{6} # For DB migration date version number readability
 
+# Reason: Prevailing style choice
+# https://docs.rubocop.org/rubocop/cops_style.html#styleoptionalbooleanparameter
+Style/OptionalBooleanParameter:
+  Enabled: false
+
 # Reason:
 # https://docs.rubocop.org/rubocop/cops_style.html#stylepercentliteraldelimiters
 Style/PercentLiteralDelimiters:
