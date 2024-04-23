@@ -22,6 +22,7 @@ ia:
   admin:
     account_moderation_notes:
       create: Lassar un nota
+      created_msg: Nota de moderation create con successo!
     accounts:
       add_email_domain_block: Blocar dominio de e-mail
       are_you_sure: Es tu secur?
@@ -74,13 +75,19 @@ ia:
       security_measures:
         only_password: Solmente contrasigno
         password_and_2fa: Contrasigno e 2FA
+      show:
+        created_reports: Reportos facite
+        targeted_reports: Signalate per alteres
       silenced: Limitate
       statuses: Messages
       subscribe: Subscriber
+      suspended: Suspendite
       title: Contos
       unblock_email: Disblocar adresse de e-mail
       unblocked_email_msg: Adresse de e-mail de %{username} disblocate con successo
       unconfirmed_email: E-mail non confirmate
+      undo_silenced: Disfacer le limite
+      undo_suspension: Disfacer le suspension
       username: Nomine de usator
       view_domain: Vider summario de dominio
     action_logs:
@@ -100,6 +107,9 @@ ia:
         enable_user: Activar le usator
         promote_user: Promover usator
         reset_password_user: Reinitialisar contrasigno
+        silence_account: Limitar conto
+        unblock_email_account: Disblocar adresse de e-mail
+        unsilence_account: Disfacer le limite de conto
         update_announcement: Actualisar annuncio
         update_custom_emoji: Actualisar emoji personalisate
         update_ip_block: Actualisar le regula IP
@@ -133,6 +143,7 @@ ia:
       enabled_msg: Emoji activate con successo
       new:
         title: Adder nove emoji personalisate
+      title: Emojis personalisate
       upload: Incargar
     dashboard:
       active_users: usatores active
@@ -150,6 +161,7 @@ ia:
     domain_blocks:
       confirm_suspension:
         cancel: Cancellar
+        stop_communication: Tu servitor stoppara le communication con iste servitores.
       domain: Dominio
       edit: Modificar un bloco de dominio
       export: Exportar

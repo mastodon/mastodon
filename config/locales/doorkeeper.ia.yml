@@ -5,9 +5,16 @@ ia:
       doorkeeper/application:
         name: Nomine de application
         website: Sito web de application
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              invalid_uri: debe esser un URI valide.
   doorkeeper:
     applications:
       buttons:
+        authorize: Autorisar
         cancel: Cancellar
         edit: Modificar
       confirmations:
@@ -28,6 +35,8 @@ ia:
         actions: Actiones
         title: 'Application: %{name}'
     authorizations:
+      buttons:
+        authorize: Autorisar
       error:
         title: Ocurreva un error
     authorized_applications:
@@ -50,14 +59,17 @@ ia:
       title:
         accounts: Contos
         admin/accounts: Gestion de contos
+        admin/reports: Gestion de reportos
         all: Accesso plen a tu conto de Mastodon
         bookmarks: Marcapaginas
         conversations: Conversationes
         favourites: Favoritos
+        filters: Filtros
         lists: Listas
         mutes: Silentiates
         notifications: Notificationes
         push: Notificationes push
+        reports: Reportos
         search: Cercar
         statuses: Messages
     layouts:
@@ -67,16 +79,21 @@ ia:
           oauth2_provider: Fornitor OAuth2
     scopes:
       admin:read: leger tote le datos in le servitor
+      admin:write: modificar tote le datos in le servitor
       read: leger tote le datos de tu conto
       read:accounts: vider informationes de conto
+      read:bookmarks: vider tu marcapaginas
       read:favourites: vider tu favoritos
       read:filters: vider tu filtros
+      read:follows: vider tu sequites
       read:lists: vider tu listas
       read:notifications: vider tu notificationes
       read:reports: vider tu reportos
       read:statuses: vider tote le messages
+      write: modificar tote le datos de tu conto
       write:accounts: modificar tu profilo
       write:blocks: blocar contos e dominios
+      write:bookmarks: adder messages al marcapaginas
       write:conversations: silentiar e deler conversationes
       write:favourites: messages favorite
       write:filters: crear filtros
@@ -85,4 +102,5 @@ ia:
       write:media: incargar files de medios
       write:mutes: silentiar personas e conversationes
       write:notifications: rader tu notificationes
+      write:reports: signalar altere personas
       write:statuses: publicar messages
