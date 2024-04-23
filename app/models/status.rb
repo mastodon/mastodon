@@ -288,15 +288,15 @@ class Status < ApplicationRecord
   end
 
   def replies_count
-    status_stat&.replies_count || 0
+    status_stat&.replies_count || StatusStat::MINIMUM_COUNT
   end
 
   def reblogs_count
-    status_stat&.reblogs_count || 0
+    status_stat&.reblogs_count || StatusStat::MINIMUM_COUNT
   end
 
   def favourites_count
-    status_stat&.favourites_count || 0
+    status_stat&.favourites_count || StatusStat::MINIMUM_COUNT
   end
 
   def increment_count!(key)

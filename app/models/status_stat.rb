@@ -14,17 +14,19 @@
 #
 
 class StatusStat < ApplicationRecord
+  MINIMUM_COUNT = 0
+
   belongs_to :status, inverse_of: :status_stat
 
   def replies_count
-    [attributes['replies_count'], 0].max
+    [attributes['replies_count'], MINIMUM_COUNT].max
   end
 
   def reblogs_count
-    [attributes['reblogs_count'], 0].max
+    [attributes['reblogs_count'], MINIMUM_COUNT].max
   end
 
   def favourites_count
-    [attributes['favourites_count'], 0].max
+    [attributes['favourites_count'], MINIMUM_COUNT].max
   end
 end
