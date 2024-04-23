@@ -24,7 +24,7 @@
     .back-link
       = link_to admin_trends_links_preview_card_providers_path do
         = t('admin.trends.preview_card_providers.title')
-        = fa_icon 'chevron-right fw'
+        = material_symbol 'chevron_right'
 
 = form_for(@form, url: batch_admin_trends_links_path) do |f|
   = hidden_field_tag :page, params[:page] || 1
@@ -37,22 +37,22 @@
       %label.batch-table__toolbar__select.batch-checkbox-all
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
-        = f.button safe_join([fa_icon('check'), t('admin.trends.links.allow')]),
+        = f.button safe_join([material_symbol('check'), t('admin.trends.links.allow')]),
                    class: 'table-action-link',
                    data: { confirm: t('admin.reports.are_you_sure') },
                    name: :approve,
                    type: :submit
-        = f.button safe_join([fa_icon('check'), t('admin.trends.links.allow_provider')]),
+        = f.button safe_join([material_symbol('check'), t('admin.trends.links.allow_provider')]),
                    class: 'table-action-link',
                    data: { confirm: t('admin.reports.are_you_sure') },
                    name: :approve_providers,
                    type: :submit
-        = f.button safe_join([fa_icon('times'), t('admin.trends.links.disallow')]),
+        = f.button safe_join([material_symbol('close'), t('admin.trends.links.disallow')]),
                    class: 'table-action-link',
                    data: { confirm: t('admin.reports.are_you_sure') },
                    name: :reject,
                    type: :submit
-        = f.button safe_join([fa_icon('times'), t('admin.trends.links.disallow_provider')]),
+        = f.button safe_join([material_symbol('close'), t('admin.trends.links.disallow_provider')]),
                    class: 'table-action-link',
                    data: { confirm: t('admin.reports.are_you_sure') },
                    name: :reject_providers,
