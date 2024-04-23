@@ -71,8 +71,8 @@ RSpec.describe WebauthnCredential do
       expect(webauthn_credential).to model_have_error_on_field(:sign_count)
     end
 
-    it 'is invalid if sign_count is greater 2**63 - 1' do
-      webauthn_credential = Fabricate.build(:webauthn_credential, sign_count: 2**63)
+    it 'is invalid if sign_count is greater than the limit' do
+      webauthn_credential = Fabricate.build(:webauthn_credential, sign_count: (described_class::SIGN_COUNT_LIMIT * 2))
 
       webauthn_credential.valid?
 
