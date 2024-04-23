@@ -25,6 +25,18 @@
 
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
+      = f.input :favicon,
+                as: :file,
+                wrapper: :with_block_label
+
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :app_icon,
+                as: :file,
+                wrapper: :with_block_label
+
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
       = f.input :mascot,
                 as: :file,
                 wrapper: :with_block_label
