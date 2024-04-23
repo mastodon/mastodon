@@ -183,6 +183,11 @@ Style/FormatStringToken:
     - redirect_with_vary
 
 # Reason: Prevailing style choice
+# https://docs.rubocop.org/rubocop/cops_style.html#styleguardclause
+Style/GuardClause:
+  Enabled: false
+
+# Reason: Prevailing style choice
 # https://docs.rubocop.org/rubocop/cops_style.html#stylehashaslastarrayitem
 Style/HashAsLastArrayItem:
   Enabled: false

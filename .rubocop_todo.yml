@@ -87,35 +87,6 @@ Style/GlobalStdStream:
     - 'config/environments/development.rb'
     - 'config/environments/production.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
-Style/GuardClause:
-  Exclude:
-    - 'app/lib/activitypub/activity/block.rb'
-    - 'app/lib/request.rb'
-    - 'app/lib/request_pool.rb'
-    - 'app/lib/webfinger.rb'
-    - 'app/lib/webfinger_resource.rb'
-    - 'app/models/concerns/account/counters.rb'
-    - 'app/models/concerns/user/ldap_authenticable.rb'
-    - 'app/models/tag.rb'
-    - 'app/models/user.rb'
-    - 'app/services/fan_out_on_write_service.rb'
-    - 'app/services/post_status_service.rb'
-    - 'app/services/process_hashtags_service.rb'
-    - 'app/workers/move_worker.rb'
-    - 'app/workers/redownload_avatar_worker.rb'
-    - 'app/workers/redownload_header_worker.rb'
-    - 'app/workers/redownload_media_worker.rb'
-    - 'app/workers/remote_account_refresh_worker.rb'
-    - 'config/initializers/devise.rb'
-    - 'lib/devise/strategies/two_factor_ldap_authenticatable.rb'
-    - 'lib/devise/strategies/two_factor_pam_authenticatable.rb'
-    - 'lib/mastodon/cli/accounts.rb'
-    - 'lib/mastodon/cli/maintenance.rb'
-    - 'lib/mastodon/cli/media.rb'
-    - 'lib/tasks/repo.rake'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/HashTransformValues:
   Exclude:
