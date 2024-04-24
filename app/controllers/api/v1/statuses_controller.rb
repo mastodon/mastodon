@@ -27,7 +27,7 @@ class Api::V1::StatusesController < Api::BaseController
 
   def index
     @statuses = cache_collection(@statuses, Status)
-    render json: @statuses.map { |status| ActiveModelSerializers::SerializableResource.new(status, serializer: REST::StatusSerializer, scope: current_user, scope_name: :current_user).as_json }.index_by { |status| status[:id] }
+    render json: @statuses, each_serializer: REST::StatusSerializer
   end
 
   def show

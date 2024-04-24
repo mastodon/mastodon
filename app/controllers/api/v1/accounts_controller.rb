@@ -22,7 +22,7 @@ class Api::V1::AccountsController < Api::BaseController
   override_rate_limit_headers :follow, family: :follows
 
   def index
-    render json: @accounts.map { |account| ActiveModelSerializers::SerializableResource.new(account, serializer: REST::AccountSerializer, scope: current_user, scope_name: :current_user).as_json }.index_by { |account| account[:id] }
+    render json: @accounts, each_serializer: REST::AccountSerializer
   end
 
   def show

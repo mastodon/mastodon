@@ -18,9 +18,9 @@ describe '/api/v1/statuses' do
         get '/api/v1/statuses', headers: headers, params: { ids: [status.id, other_status.id, 123_123] }
 
         expect(response).to have_http_status(200)
-        expect(body_as_json.with_indifferent_access).to include(
-          status.id.to_s => include(id: status.id.to_s),
-          other_status.id.to_s => include(id: other_status.id.to_s)
+        expect(body_as_json).to contain_exactly(
+          hash_including(id: status.id.to_s),
+          hash_including(id: other_status.id.to_s)
         )
       end
     end

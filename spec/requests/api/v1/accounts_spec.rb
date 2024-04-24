@@ -17,9 +17,9 @@ describe '/api/v1/accounts' do
       get '/api/v1/accounts', headers: headers, params: { ids: [account.id, other_account.id, 123_123] }
 
       expect(response).to have_http_status(200)
-      expect(body_as_json.with_indifferent_access).to include(
-        account.id.to_s.to_s => include(id: account.id.to_s),
-        other_account.id.to_s => include(id: other_account.id.to_s)
+      expect(body_as_json).to contain_exactly(
+        hash_including(id: account.id.to_s),
+        hash_including(id: other_account.id.to_s)
       )
     end
   end
