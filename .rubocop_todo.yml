@@ -46,14 +46,6 @@ Rails/OutputSafety:
   Exclude:
     - 'config/initializers/simple_form.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: AllowedMethods, AllowedPatterns.
-# AllowedMethods: ==, equal?, eql?
-Style/ClassEqualityComparison:
-  Exclude:
-    - 'app/helpers/jsonld_helper.rb'
-    - 'app/serializers/activitypub/outbox_serializer.rb'
-
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowedVars.
 Style/FetchEnvVar:
