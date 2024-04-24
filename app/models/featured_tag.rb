@@ -74,6 +74,6 @@ class FeaturedTag < ApplicationRecord
   end
 
   def visible_tagged_account_statuses
-    account.statuses.where(visibility: %i(public unlisted)).tagged_with(tag)
+    account.statuses.distributable_visibility.tagged_with(tag)
   end
 end

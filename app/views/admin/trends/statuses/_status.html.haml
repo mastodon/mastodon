@@ -11,7 +11,7 @@
 
         - status.ordered_media_attachments.each do |media_attachment|
           %abbr{ title: media_attachment.description }
-            = fa_icon 'link'
+            = material_symbol 'link'
             = media_attachment.file_file_name
 
     = t 'admin.trends.statuses.shared_by',

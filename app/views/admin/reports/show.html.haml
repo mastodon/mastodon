@@ -41,7 +41,7 @@
 %p
   = t 'admin.reports.statuses_description_html'
   —
-  = link_to safe_join([fa_icon('plus'), t('admin.reports.add_to_report')]),
+  = link_to safe_join([material_symbol('add'), t('admin.reports.add_to_report')]),
             admin_account_statuses_path(@report.target_account_id, report_id: @report.id),
             class: 'table-action-link'
 
@@ -52,7 +52,7 @@
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
         - if !@statuses.empty? && @report.unresolved?
-          = f.button safe_join([fa_icon('times'), t('admin.statuses.batch.remove_from_report')]), name: :remove_from_report, class: 'table-action-link', type: :submit
+          = f.button safe_join([material_symbol('close'), t('admin.statuses.batch.remove_from_report')]), name: :remove_from_report, class: 'table-action-link', type: :submit
     .batch-table__body
       - if @statuses.empty?
         = nothing_here 'nothing-here--under-tabs'

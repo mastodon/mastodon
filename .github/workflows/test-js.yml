@@ -38,5 +38,5 @@ jobs:
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
 
-      - name: Jest testing
+      - name: JavaScript testing
         run: yarn jest --reporters github-actions summary

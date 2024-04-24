@@ -6,13 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: TreatCommentsAsGroupSeparators, ConsiderPunctuation, Include.
-# Include: **/*.gemfile, **/Gemfile, **/gems.rb
-Bundler/OrderedGems:
-  Exclude:
-    - 'Gemfile'
-
 Lint/NonLocalExitFromIterator:
   Exclude:
     - 'app/helpers/jsonld_helper.rb'
@@ -61,15 +54,6 @@ Rails/OutputSafety:
   Exclude:
     - 'config/initializers/simple_form.rb'
 
-# Configuration parameters: Include.
-# Include: app/models/**/*.rb
-Rails/UniqueValidationWithoutIndex:
-  Exclude:
-    - 'app/models/account_alias.rb'
-    - 'app/models/custom_filter_status.rb'
-    - 'app/models/identity.rb'
-    - 'app/models/webauthn_credential.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 # AllowedMethods: ==, equal?, eql?
@@ -97,7 +81,6 @@ Style/FetchEnvVar:
     - 'config/initializers/paperclip.rb'
     - 'config/initializers/vapid.rb'
     - 'lib/mastodon/redis_config.rb'
-    - 'lib/premailer_webpack_strategy.rb'
     - 'lib/tasks/repo.rake'
     - 'spec/features/profile_spec.rb'
 
@@ -205,13 +188,6 @@ Style/OptionalBooleanParameter:
     - 'app/workers/unfollow_follow_worker.rb'
     - 'lib/mastodon/redis_config.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'config/deploy.rb'
-    - 'config/initializers/doorkeeper.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: short, verbose
@@ -251,42 +227,10 @@ Style/SignalException:
     - 'lib/devise/strategies/two_factor_pam_authenticatable.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
-Style/SingleArgumentDig:
-  Exclude:
-    - 'lib/webpacker/manifest_extensions.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: Mode.
 Style/StringConcatenation:
   Exclude:
     - 'config/initializers/paperclip.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Exclude:
-    - 'config/environments/production.rb'
-    - 'config/initializers/backtrace_silencers.rb'
-    - 'config/initializers/http_client_proxy.rb'
-    - 'config/initializers/rack_attack.rb'
-    - 'config/initializers/webauthn.rb'
-    - 'config/routes.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInArguments:
-  Exclude:
-    - 'config/initializers/paperclip.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInHashLiteral:
-  Exclude:
-    - 'config/environments/production.rb'
-    - 'config/environments/test.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: WordRegex.

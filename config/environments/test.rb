@@ -88,7 +88,7 @@ if ENV['PAM_ENABLED'] == 'true'
       usernames: Set['pam_user1', 'pam_user2'],
       servicenames: Set['pam_test', 'pam_test_controlled'],
       password: '123456',
-      env: { email: 'pam@example.com' }
+      env: { email: 'pam@example.com' },
     }
 end
 

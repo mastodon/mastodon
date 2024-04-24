@@ -291,7 +291,7 @@ RSpec.describe BulkImportService do
 
       it 'marks the import as finished' do
         subject.call(import)
-        expect(import.reload.finished?).to be true
+        expect(import.reload.state_finished?).to be true
       end
     end
 
@@ -319,7 +319,7 @@ RSpec.describe BulkImportService do
 
       it 'marks the import as finished' do
         subject.call(import)
-        expect(import.reload.finished?).to be true
+        expect(import.reload.state_finished?).to be true
       end
     end
 
