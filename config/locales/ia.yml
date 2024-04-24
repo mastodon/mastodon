@@ -15,17 +15,27 @@ ia:
     instance_actor_flash: Iste conto es un agente virtual usate pro representar le servitor mesme e non alcun usator individual. Illo es usate pro le federation e non debe esser suspendite.
     last_active: ultime activitate
     link_verified_on: Le proprietate de iste ligamine ha essite verificate le %{date}
+    nothing_here: Il ha nihil ci!
+    pin_errors:
+      following: Tu debe primo sequer le persona que tu vole indorsar
     posts:
       one: Message
       other: Messages
     posts_tab_heading: Messages
   admin:
+    account_actions:
+      action: Exequer action
+      title: Exequer action de moderation sur %{acct}
     account_moderation_notes:
       create: Lassar un nota
       created_msg: Nota de moderation create con successo!
+      destroyed_msg: Nota de moderation destruite con successo!
     accounts:
       add_email_domain_block: Blocar dominio de e-mail
+      approve: Approbar
+      approved_msg: Demanda de inscription de %{username} approbate con successo
       are_you_sure: Es tu secur?
+      avatar: Avatar
       by_domain: Dominio
       change_email:
         changed_msg: Email cambiate con successo!
@@ -34,6 +44,11 @@ ia:
         new_email: Nove e-mail
         submit: Cambiar e-mail
         title: Cambiar e-mail pro %{username}
+      change_role:
+        changed_msg: Rolo cambiate con successo!
+        label: Cambiar rolo
+        no_role: Necun rolo
+        title: Cambiar rolo pro %{username}
       confirm: Confirmar
       confirmed: Confirmate
       confirming: In confirmation
@@ -42,25 +57,59 @@ ia:
       deleted: Delite
       demote: Degradar
       destroyed_msg: Le datos de %{username} ora es in cauda pro su imminente deletion
+      disable: Gelar
+      disable_sign_in_token_auth: Disactivar le authentication per token in e-mail
       disable_two_factor_authentication: Disactivar 2FA
+      disabled: Gelate
       display_name: Nomine visibile
       domain: Dominio
       edit: Modificar
       email: E-mail
       email_status: Stato de e-mail
+      enable: Disgelar
+      enable_sign_in_token_auth: Activar le authentication per token in e-mail
       enabled: Activate
+      enabled_msg: Conto de %{username} disgelate con successo
       followers: Sequitores
+      follows: Sequites
+      header: Capite
+      inbox_url: URL de cassa de entrata
+      invite_request_text: Motivos pro le inscription
+      invited_by: Invitate per
+      ip: IP
+      joined: Inscription
       location:
         all: Toto
+        local: Local
+        remote: Remote
         title: Location
+      login_status: Stato de session
+      media_attachments: Annexos multimedial
+      memorialize: Render commemorative
+      memorialized: Conto commemorative
+      memorialized_msg: "%{username} ha essite convertite in un conto commemorative"
       moderation:
         active: Active
         all: Toto
         disabled: Disactivate
+        pending: In tractamento
+        silenced: Limitate
+        suspended: Suspendite
+        title: Moderation
       moderation_notes: Notas de moderation
       most_recent_activity: Activitate plus recente
       most_recent_ip: IP plus recente
+      no_account_selected: Necun conto ha essite cambiate perque necun ha essite seligite
+      no_limits_imposed: Necun limite imponite
+      no_role_assigned: Necun rolo assignate
+      not_subscribed: Non subscribite
+      pending: Attende revision
+      perform_full_suspension: Suspender
+      previous_strikes: Previe admonitiones
+      promote: Promover
+      protocol: Protocollo
       public: Public
+      push_subscription_expires: Subscription PuSH expira le
       redownload: Actualisar profilo
       resend_confirmation:
         already_confirmed: Iste usator jam es confirmate
@@ -237,6 +286,9 @@ ia:
       updated_at: Actualisate
       view_profile: Vider profilo
     roles:
+      assigned_users:
+        one: "%{count} usator"
+        other: "%{count} usatores"
       everyone: Permissiones predefinite
       privileges:
         delete_user_data: Deler le datos de usator
