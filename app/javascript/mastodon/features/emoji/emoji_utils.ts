@@ -2,22 +2,26 @@
 // https://github.com/missive/emoji-mart/blob/5f2ffcc/src/utils/index.js
 
 /* eslint-disable */
-// @ts-nocheck
 
 import * as data from './emoji_mart_data_light';
 
+// @ts-expect-error
 const buildSearch = (data) => {
+  // @ts-expect-error
   const search = [];
 
+  // @ts-expect-error
   let addToSearch = (strings, split) => {
     if (!strings) {
       return;
     }
 
     (Array.isArray(strings) ? strings : [strings]).forEach((string) => {
+      // @ts-expect-error
       (split ? string.split(/[-|_|\s]+/) : [string]).forEach((s) => {
         s = s.toLowerCase();
 
+        // @ts-expect-error
         if (search.indexOf(s) === -1) {
           search.push(s);
         }
@@ -30,6 +34,7 @@ const buildSearch = (data) => {
   addToSearch(data.keywords, false);
   addToSearch(data.emoticons, false);
 
+  // @ts-expect-error
   return search.join(',');
 };
 
@@ -82,13 +87,16 @@ const _JSON = JSON;
 const COLONS_REGEX = /^(?::([^:]+):)(?::skin-tone-(\d):)?$/;
 const SKINS = ['1F3FA', '1F3FB', '1F3FC', '1F3FD', '1F3FE', '1F3FF'];
 
+// @ts-expect-error
 function unifiedToNative(unified) {
   let unicodes = unified.split('-'),
+    // @ts-expect-error
     codePoints = unicodes.map((u) => `0x${u}`);
 
   return stringFromCodePoint.apply(null, codePoints);
 }
 
+// @ts-expect-error
 function sanitize(emoji) {
   let {
       name,
@@ -130,9 +138,11 @@ function sanitize(emoji) {
 }
 
 function getSanitizedData() {
+  // @ts-expect-error
   return sanitize(getData(...arguments));
 }
 
+// @ts-expect-error
 function getData(emoji, skin, set) {
   let emojiData = {};
 
@@ -167,45 +177,60 @@ function getData(emoji, skin, set) {
 
   if (!Object.keys(emojiData).length) {
     emojiData = emoji;
+    // @ts-expect-error
     emojiData.custom = true;
 
+    // @ts-expect-error
     if (!emojiData.search) {
+      // @ts-expect-error
       emojiData.search = buildSearch(emoji);
     }
   }
 
+  // @ts-expect-error
   emojiData.emoticons = emojiData.emoticons || [];
+  // @ts-expect-error
   emojiData.variations = emojiData.variations || [];
 
+  // @ts-expect-error
   if (emojiData.skin_variations && skin > 1 && set) {
     emojiData = JSON.parse(_JSON.stringify(emojiData));
 
     let skinKey = SKINS[skin - 1],
+      // @ts-expect-error
       variationData = emojiData.skin_variations[skinKey];
 
+    // @ts-expect-error
     if (!variationData.variations && emojiData.variations) {
+      // @ts-expect-error
       delete emojiData.variations;
     }
 
     if (variationData[`has_img_${set}`]) {
+      // @ts-expect-error
       emojiData.skin_tone = skin;
 
       for (let k in variationData) {
         let v = variationData[k];
+        // @ts-expect-error
         emojiData[k] = v;
       }
     }
   }
 
+  // @ts-expect-error
   if (emojiData.variations && emojiData.variations.length) {
     emojiData = JSON.parse(_JSON.stringify(emojiData));
+    // @ts-expect-error
     emojiData.unified = emojiData.variations.shift();
   }
 
   return emojiData;
 }
 
+// @ts-expect-error
 function uniq(arr) {
+  // @ts-expect-error
   return arr.reduce((acc, item) => {
     if (acc.indexOf(item) === -1) {
       acc.push(item);
@@ -214,13 +239,16 @@ function uniq(arr) {
   }, []);
 }
 
+// @ts-expect-error
 function intersect(a, b) {
   const uniqA = uniq(a);
   const uniqB = uniq(b);
 
+  // @ts-expect-error
   return uniqA.filter((item) => uniqB.indexOf(item) >= 0);
 }
 
+// @ts-expect-error
 function deepMerge(a, b) {
   let o = {};
 
@@ -236,6 +264,7 @@ function deepMerge(a, b) {
       value = deepMerge(originalValue, value);
     }
 
+    // @ts-expect-error
     o[key] = value;
   }
 
