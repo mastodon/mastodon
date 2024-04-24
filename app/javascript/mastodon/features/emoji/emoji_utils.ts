@@ -52,6 +52,12 @@ function unifiedToNative(unified: Emoji['unified']) {
   return String.fromCodePoint(...codePoints);
 }
 
+/*
+ * `skin_tone` is used [here]{@link node_modules/emoji-mart/dist-es/utils/index.js#19}, but is not found in the [type definition]{@link node_modules/@types/emoji-mart/dist-es/utils/emoji-index/nimble-emoji-index.d.ts}.
+ * `emoji-mart` does not come with a built-in type, so you need to add a separate type with DefinitelyTyped.
+ * The type and implementation have different maintainers and packages, so the installed versions of `@types/emoji-mart` and `emoji-mart` may not match.
+ */
+
 function sanitize(
   emoji: BaseEmoji &
     CustomEmoji &
