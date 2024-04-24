@@ -1,28 +1,25 @@
 // This code is largely borrowed from:
 // https://github.com/missive/emoji-mart/blob/5f2ffcc/src/utils/index.js
 
-/* eslint-disable */
+import type { Emoji } from 'emoji-mart/dist-es/utils/data';
 
 import * as data from './emoji_mart_data_light';
 
-// @ts-expect-error
-const buildSearch = (data) => {
-  // @ts-expect-error
-  const search = [];
+type Data = Pick<Emoji, 'short_names' | 'name' | 'keywords' | 'emoticons'>;
 
-  // @ts-expect-error
-  let addToSearch = (strings, split) => {
+const buildSearch = (data: Data) => {
+  const search: string[] = [];
+
+  const addToSearch = (strings: Data[keyof Data], split: boolean) => {
     if (!strings) {
       return;
     }
 
     (Array.isArray(strings) ? strings : [strings]).forEach((string) => {
-      // @ts-expect-error
       (split ? string.split(/[-|_|\s]+/) : [string]).forEach((s) => {
         s = s.toLowerCase();
 
-        // @ts-expect-error
-        if (search.indexOf(s) === -1) {
+        if (!search.includes(s)) {
           search.push(s);
         }
       });
@@ -34,9 +31,10 @@ const buildSearch = (data) => {
   addToSearch(data.keywords, false);
   addToSearch(data.emoticons, false);
 
-  // @ts-expect-error
   return search.join(',');
 };
+
+/* eslint-disable */
 
 const _String = String;
 
