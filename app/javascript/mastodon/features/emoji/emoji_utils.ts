@@ -1,6 +1,12 @@
 // This code is largely borrowed from:
 // https://github.com/missive/emoji-mart/blob/5f2ffcc/src/utils/index.js
 
+import type {
+  BaseEmoji,
+  CustomEmoji,
+  EmojiSkin,
+  PickerProps,
+} from 'emoji-mart';
 import type { Emoji } from 'emoji-mart/dist-es/utils/data';
 
 import * as data from './emoji_mart_data_light';
@@ -46,22 +52,27 @@ function unifiedToNative(unified: Emoji['unified']) {
   return String.fromCodePoint(...codePoints);
 }
 
-/* eslint-disable */
+function sanitize(
+  emoji: BaseEmoji &
+    CustomEmoji &
+    Pick<Emoji, 'skin_variations'> &
+    Pick<PickerProps, 'custom'> & { skin_tone?: EmojiSkin },
+):
+  | BaseEmoji
+  | (Omit<CustomEmoji, 'short_names'> & Pick<PickerProps, 'custom'>) {
+  const {
+    name = '',
+    short_names = [],
+    skin_tone,
+    skin_variations,
+    emoticons = [],
+    unified = '',
+    custom,
+    imageUrl,
+  } = emoji;
+  const id = emoji.id || short_names[0];
 
-// @ts-expect-error
-function sanitize(emoji) {
-  let {
-      name,
-      short_names,
-      skin_tone,
-      skin_variations,
-      emoticons,
-      unified,
-      custom,
-      imageUrl,
-    } = emoji,
-    id = emoji.id || short_names[0],
-    colons = `:${id}:`;
+  let colons = `:${id}:`;
 
   if (custom) {
     return {
@@ -84,10 +95,12 @@ function sanitize(emoji) {
     colons,
     emoticons,
     unified: unified.toLowerCase(),
-    skin: skin_tone || (skin_variations ? 1 : null),
+    skin: skin_tone ?? (skin_variations ? 1 : null),
     native: unifiedToNative(unified),
   };
 }
+
+/* eslint-disable */
 
 function getSanitizedData() {
   // @ts-expect-error
