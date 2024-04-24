@@ -2904,7 +2904,7 @@ __metadata:
     jsdom: "npm:^24.0.0"
     pg: "npm:^8.5.0"
     pg-connection-string: "npm:^2.6.0"
-    pino: "npm:^8.17.2"
+    pino: "npm:^9.0.0"
     pino-http: "npm:^9.0.0"
     pino-pretty: "npm:^11.0.0"
     prom-client: "npm:^15.0.0"
@@ -12920,13 +12920,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino-abstract-transport@npm:^1.0.0, pino-abstract-transport@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "pino-abstract-transport@npm:1.1.0"
+"pino-abstract-transport@npm:^1.0.0, pino-abstract-transport@npm:^1.1.0, pino-abstract-transport@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "pino-abstract-transport@npm:1.2.0"
   dependencies:
     readable-stream: "npm:^4.0.0"
     split2: "npm:^4.0.0"
-  checksum: 10c0/6e9b9d5a2c0a37f91ecaf224d335daae1ae682b1c79a05b06ef9e0f0a5d289f8e597992217efc857796dae6f1067e9b4882f95c6228ff433ddc153532cae8aca
+  checksum: 10c0/b4ab59529b7a91f488440147fc58ee0827a6c1c5ca3627292339354b1381072c1a6bfa9b46d03ad27872589e8477ecf74da12cf286e1e6b665ac64a3b806bf07
   languageName: node
   linkType: hard
 
@@ -12973,7 +12973,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino@npm:^8.17.1, pino@npm:^8.17.2":
+"pino@npm:^8.17.1":
   version: 8.20.0
   resolution: "pino@npm:8.20.0"
   dependencies:
@@ -12991,6 +12991,27 @@ __metadata:
   bin:
     pino: bin.js
   checksum: 10c0/6b973474160e1fa01fa150de0f69b7db9c6c06ae15f992d369669751825c8f2af3bb5600348eaf9be65b4952326bbdfa226f51e425820eb511f0f594fbddbaa7
+  languageName: node
+  linkType: hard
+
+"pino@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "pino@npm:9.0.0"
+  dependencies:
+    atomic-sleep: "npm:^1.0.0"
+    fast-redact: "npm:^3.1.1"
+    on-exit-leak-free: "npm:^2.1.0"
+    pino-abstract-transport: "npm:^1.2.0"
+    pino-std-serializers: "npm:^6.0.0"
+    process-warning: "npm:^3.0.0"
+    quick-format-unescaped: "npm:^4.0.3"
+    real-require: "npm:^0.2.0"
+    safe-stable-stringify: "npm:^2.3.1"
+    sonic-boom: "npm:^3.7.0"
+    thread-stream: "npm:^2.6.0"
+  bin:
+    pino: bin.js
+  checksum: 10c0/10ef10aee0cf80af8ed83468cff2e29d642b6794b53cf641e1abcaf9e9958d8bcbc6e09d62757054aef3b4415c45d66a5018da11d43b81a23ba299ef5dc4e8b1
   languageName: node
   linkType: hard
 
@@ -16703,12 +16724,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"thread-stream@npm:^2.0.0":
-  version: 2.4.1
-  resolution: "thread-stream@npm:2.4.1"
+"thread-stream@npm:^2.0.0, thread-stream@npm:^2.6.0":
+  version: 2.6.0
+  resolution: "thread-stream@npm:2.6.0"
   dependencies:
     real-require: "npm:^0.2.0"
-  checksum: 10c0/ce29265810b9550ce896726301ff006ebfe96b90292728f07cfa4c379740585583046e2a8018afc53aca66b18fed12b33a84f3883e7ebc317185f6682898b8f8
+  checksum: 10c0/276e2545b33273232eb2c22c53fc11844951c1322f8a78c522477af716ebcfe0d106ccf1fbc455f6e48d928e93231fed6377ce91fdcb3885086e8ffa1f011c88
   languageName: node
   linkType: hard
 
