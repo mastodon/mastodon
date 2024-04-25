@@ -52,7 +52,7 @@ class Admin::AccountAction
       process_reports!
     end
 
-    process_email!
+    process_notification!
     process_queue!
   end
 
@@ -158,8 +158,11 @@ class Admin::AccountAction
     queue_suspension_worker! if type == 'suspend'
   end
 
-  def process_email!
-    UserMailer.warning(target_account.user, warning).deliver_later! if warnable?
+  def process_notification!
+    return unless warnable?
+
+    UserMailer.warning(target_account.user, warning).deliver_later!
+    LocalNotificationWorker.perform_async(target_account.id, warning.id, 'AccountWarning', 'moderation_warning')
   end
 
   def warnable?
