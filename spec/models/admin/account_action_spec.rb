@@ -75,10 +75,10 @@ RSpec.describe Admin::AccountAction do
       end.to change(Admin::ActionLog, :count).by 1
     end
 
-    it 'calls process_email!' do
-      allow(account_action).to receive(:process_email!)
+    it 'calls process_notification!' do
+      allow(account_action).to receive(:process_notification!)
       subject
-      expect(account_action).to have_received(:process_email!)
+      expect(account_action).to have_received(:process_notification!)
     end
 
     it 'calls process_reports!' do
