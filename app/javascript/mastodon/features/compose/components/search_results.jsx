@@ -8,6 +8,7 @@ import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { expandSearch } from 'mastodon/actions/search';
 import { Icon }  from 'mastodon/components/icon';
 import { LoadMore } from 'mastodon/components/load_more';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { SearchSection } from 'mastodon/features/explore/components/search_section';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
@@ -27,6 +28,7 @@ const withoutLastResult = list => {
 
 export const SearchResults = () => {
   const results = useAppSelector((state) => state.getIn(['search', 'results']));
+  const isLoading = useAppSelector((state) => state.getIn(['search', 'isLoading']));
 
   const dispatch = useAppDispatch();
 
@@ -73,6 +75,15 @@ export const SearchResults = () => {
 
   return (
     <div className='search-results'>
+      {!accounts && !hashtags && !statuses && (
+        isLoading ? (
+          <LoadingIndicator />
+        ) : (
+          <div className='empty-column-indicator'>
+            <FormattedMessage id='search_results.nothing_found' defaultMessage='Could not find anything for these search terms' />
+          </div>
+        )
+      )}
       {accounts}
       {hashtags}
       {statuses}
