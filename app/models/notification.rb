@@ -57,6 +57,9 @@ class Notification < ApplicationRecord
     severed_relationships: {
       filterable: false,
     }.freeze,
+    moderation_warning: {
+      filterable: false,
+    }.freeze,
     'admin.sign_up': {
       filterable: false,
     }.freeze,
@@ -90,6 +93,7 @@ class Notification < ApplicationRecord
     belongs_to :poll, inverse_of: false
     belongs_to :report, inverse_of: false
     belongs_to :account_relationship_severance_event, inverse_of: false
+    belongs_to :account_warning, inverse_of: false
   end
 
   validates :type, inclusion: { in: TYPES }
@@ -180,7 +184,7 @@ class Notification < ApplicationRecord
     return unless new_record?
 
     case activity_type
-    when 'Status', 'Follow', 'Favourite', 'FollowRequest', 'Poll', 'Report'
+    when 'Status', 'Follow', 'Favourite', 'FollowRequest', 'Poll', 'Report', 'AccountWarning'
       self.from_account_id = activity&.account_id
     when 'Mention'
       self.from_account_id = activity&.status&.account_id
