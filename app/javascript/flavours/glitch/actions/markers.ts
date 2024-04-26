@@ -3,7 +3,7 @@ import { List as ImmutableList } from 'immutable';
 import { debounce } from 'lodash';
 
 import type { MarkerJSON } from 'flavours/glitch/api_types/markers';
-import type { RootState } from 'flavours/glitch/store';
+import type { AppDispatch, RootState } from 'flavours/glitch/store';
 import { createAppAsyncThunk } from 'flavours/glitch/store/typed_functions';
 
 import api, { authorizationTokenFromState } from '../api';
@@ -72,18 +72,21 @@ interface MarkerParam {
 }
 
 function getLastHomeId(state: RootState): string | undefined {
-  /* eslint-disable @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return (
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     state
       // @ts-expect-error state.timelines is not yet typed
       .getIn(['timelines', 'home', 'items'], ImmutableList())
       // @ts-expect-error state.timelines is not yet typed
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       .find((item) => item !== null)
   );
 }
 
 function getLastNotificationId(state: RootState): string | undefined {
   // @ts-expect-error state.notifications is not yet typed
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
   return state.getIn(['notifications', 'lastReadId']);
 }
 
@@ -132,8 +135,8 @@ export const submitMarkersAction = createAppAsyncThunk<{
 });
 
 const debouncedSubmitMarkers = debounce(
-  (dispatch) => {
-    dispatch(submitMarkersAction());
+  (dispatch: AppDispatch) => {
+    void dispatch(submitMarkersAction());
   },
   300000,
   {
