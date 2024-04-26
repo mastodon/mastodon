@@ -184,13 +184,13 @@ class Notification < ApplicationRecord
     return unless new_record?
 
     case activity_type
-    when 'Status', 'Follow', 'Favourite', 'FollowRequest', 'Poll', 'Report', 'AccountWarning'
+    when 'Status', 'Follow', 'Favourite', 'FollowRequest', 'Poll', 'Report'
       self.from_account_id = activity&.account_id
     when 'Mention'
       self.from_account_id = activity&.status&.account_id
     when 'Account'
       self.from_account_id = activity&.id
-    when 'AccountRelationshipSeveranceEvent'
+    when 'AccountRelationshipSeveranceEvent', 'AccountWarning'
       # These do not really have an originating account, but this is mandatory
       # in the data model, and the recipient's account will by definition
       # always exist
