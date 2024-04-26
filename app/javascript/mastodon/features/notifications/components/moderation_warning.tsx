@@ -1,6 +1,6 @@
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import WarningIcon from '@/material-icons/400-24px/warning-fill.svg?react';
+import GavelIcon from '@/material-icons/400-24px/gavel.svg?react';
 import { Icon } from 'mastodon/components/icon';
 
 // This needs to be kept in sync with app/models/account_warning.rb
@@ -62,7 +62,7 @@ export const ModerationWarning: React.FC<Props> = ({ action, id, hidden }) => {
       rel='noopener noreferrer'
       className='notification__moderation-warning'
     >
-      <Icon id='warning' icon={WarningIcon} />
+      <Icon id='warning' icon={GavelIcon} />
 
       <div className='notification__moderation-warning__content'>
         <p>{intl.formatMessage(messages[action])}</p>
