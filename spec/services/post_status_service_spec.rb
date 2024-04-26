@@ -54,6 +54,13 @@ RSpec.describe PostStatusService, type: :service do
     it 'does not change statuses count' do
       expect { subject.call(account, text: 'Hi future!', scheduled_at: future, thread: previous_status) }.to_not(change { [account.statuses_count, previous_status.replies_count] })
     end
+
+    it 'returns existing status when used twice with idempotency key' do
+      account = Fabricate(:account)
+      status1 = subject.call(account, text: 'test', idempotency: 'meepmeep', scheduled_at: future)
+      status2 = subject.call(account, text: 'test', idempotency: 'meepmeep', scheduled_at: future)
+      expect(status2.id).to eq status1.id
+    end
   end
 
   it 'creates response to the original status of boost' do
