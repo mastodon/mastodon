@@ -59,6 +59,7 @@ class User < ApplicationRecord
   include User::LdapAuthenticable
   include User::Omniauthable
   include User::PamAuthenticable
+  include NoImplicitSerialization
 
   # The home and list feeds will be stored in Redis for this amount
   # of time, and status fan-out to followers will include only people
