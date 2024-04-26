@@ -232,6 +232,13 @@ module ApplicationHelper
     EmojiFormatter.new(html, custom_emojis, other_options.merge(animate: prefers_autoplay?)).to_s
   end
 
+  def site_favicon_path(size = :'32')
+    favicon = SiteUpload.find_by(var: 'favicon')
+    return nil unless favicon
+
+    favicon.file.url(size)
+  end
+
   private
 
   def storage_host_var

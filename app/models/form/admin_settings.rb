@@ -37,6 +37,7 @@ class Form::AdminSettings
     status_page_url
     captcha_enabled
     authorized_fetch
+    favicon
   ).freeze
 
   INTEGER_KEYS = %i(
@@ -63,6 +64,7 @@ class Form::AdminSettings
   UPLOAD_KEYS = %i(
     thumbnail
     mascot
+    favicon
   ).freeze
 
   OVERRIDEN_SETTINGS = {

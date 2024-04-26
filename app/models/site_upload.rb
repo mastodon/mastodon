@@ -20,6 +20,11 @@ class SiteUpload < ApplicationRecord
   include Attachmentable
 
   STYLES = {
+    favicon: {
+      '16': '16x16#',
+      '32': '32x32#',
+      '48': '48x48#',
+    }.freeze,
     thumbnail: {
       '@1x': {
         format: 'png',
