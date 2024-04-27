@@ -22,26 +22,31 @@ describe StatusLengthValidator do
       expect(status).to_not have_received(:errors)
     end
 
-    it 'adds an error when content warning is over 500 characters' do
-      status = instance_double(Status, spoiler_text: 'a' * 520, text: '', errors: activemodel_errors, local?: true, reblog?: false)
+    it 'adds an error when content warning is over MAX_CHARS characters' do
+      chars = StatusLengthValidator::MAX_CHARS + 1
+      status = instance_double(Status, spoiler_text: 'a' * chars, text: '', errors: activemodel_errors, local?: true, reblog?: false)
       subject.validate(status)
       expect(status.errors).to have_received(:add)
     end
 
-    it 'adds an error when text is over 500 characters' do
-      status = instance_double(Status, spoiler_text: '', text: 'a' * 520, errors: activemodel_errors, local?: true, reblog?: false)
+    it 'adds an error when text is over MAX_CHARS characters' do
+      chars = StatusLengthValidator::MAX_CHARS + 1
+      status = instance_double(Status, spoiler_text: '', text: 'a' * chars, errors: activemodel_errors, local?: true, reblog?: false)
       subject.validate(status)
       expect(status.errors).to have_received(:add)
     end
 
-    it 'adds an error when text and content warning are over 500 characters total' do
-      status = instance_double(Status, spoiler_text: 'a' * 250, text: 'b' * 251, errors: activemodel_errors, local?: true, reblog?: false)
+    it 'adds an error when text and content warning are over MAX_CHARS characters total' do
+      chars1 = 20
+      chars2 = StatusLengthValidator::MAX_CHARS + 1 - chars1
+      status = instance_double(Status, spoiler_text: 'a' * chars1, text: 'b' * chars2, errors: activemodel_errors, local?: true, reblog?: false)
       subject.validate(status)
       expect(status.errors).to have_received(:add)
     end
 
     it 'counts URLs as 23 characters flat' do
-      text   = ('a' * 476) + " http://#{'b' * 30}.com/example"
+      chars = StatusLengthValidator::MAX_CHARS - 1 - 23
+      text   = ('a' * chars) + " http://#{'b' * 30}.com/example"
       status = instance_double(Status, spoiler_text: '', text: text, errors: activemodel_errors, local?: true, reblog?: false)
 
       subject.validate(status)
@@ -64,7 +69,9 @@ describe StatusLengthValidator do
     end
 
     it 'counts only the front part of remote usernames' do
-      text   = ('a' * 475) + " @alice@#{'b' * 30}.com"
+      username = '@alice'
+      chars = StatusLengthValidator::MAX_CHARS - 1 - username.length
+      text   = ('a' * chars) + " #{username}@#{'b' * 30}.com"
       status = instance_double(Status, spoiler_text: '', text: text, errors: activemodel_errors, local?: true, reblog?: false)
 
       subject.validate(status)
