@@ -36,12 +36,7 @@ function reducePacks (data, into = {}) {
     const skin = data.skin[skinName];
     if (!skin) continue;
 
-    for (const entry in skin) {
-      const packFile = skin[entry];
-      if (!packFile) continue;
-
-      into[`skins/${data.name}/${skinName}/${entry}`] = resolve(packFile);
-    }
+    into[`skins/${data.name}/${skinName}`] = resolve(skin);
   }
 
   return into;

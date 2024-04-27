@@ -1,9 +1,8 @@
+/* This file is a hack to have something more reliable than the upstream `common` tag
+  that is implicitly generated as the common chunk through webpack's `splitChunks` config */
+
 import 'packs/public-path';
 import 'font-awesome/css/font-awesome.css';
-import Rails from '@rails/ujs';
-import 'flavours/glitch/styles/index.scss';
 
-Rails.start();
-
-//  This ensures that webpack compiles our images.
+// This is a hack to ensures that webpack compiles our images.
 require.context('../images', true);

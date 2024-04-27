@@ -8,6 +8,14 @@ namespace :assets do
         def current_user
           nil
         end
+
+        def current_flavour
+          Setting.default_settings['flavour']
+        end
+
+        def current_skin
+          Setting.default_settings['skin']
+        end
       end
 
       html = renderer.render(action, opts)

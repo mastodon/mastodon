@@ -10,6 +10,7 @@ import Rails from '@rails/ujs';
 import axios from 'axios';
 import { throttle } from 'lodash';
 
+import { start } from 'flavours/glitch/common';
 import { timeAgoString } from 'flavours/glitch/components/relative_timestamp';
 import emojify from 'flavours/glitch/features/emoji/emoji';
 import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
@@ -18,6 +19,8 @@ import { loadPolyfills } from 'flavours/glitch/polyfills';
 import ready from 'flavours/glitch/ready';
 
 import 'cocoon-js-vanilla';
+
+start();
 
 const messages = defineMessages({
   usernameTaken: {

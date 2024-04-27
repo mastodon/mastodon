@@ -1,7 +1,7 @@
 // Common configuration for webpacker loaded from config/webpacker.yml
 
 const { lstatSync, readFileSync } = require('fs');
-const { basename, dirname, extname, join, resolve } = require('path');
+const { basename, dirname, join, resolve } = require('path');
 const { env } = require('process');
 
 const glob = require('glob');
@@ -37,12 +37,13 @@ skinFiles.forEach((skinFile) => {
   const data = flavours[name].skin;
   if (lstatSync(skinFile).isDirectory()) {
     data[skin] = {};
-    const skinPacks = glob.sync(join(skinFile, '*.{css,scss}'));
+    // TODO: more cleanly take the first match
+    const skinPacks = glob.sync(join(skinFile, '{common,index,application}.{css,scss}'));
     skinPacks.forEach((pack) => {
-      data[skin][basename(pack, extname(pack))] = pack;
+      data[skin] = pack;
     });
   } else if ((skin = skin.match(/^(.*)\.s?css$/i))) {
-    data[skin[1]] = { common: skinFile };
+    data[skin[1]] = skinFile;
   }
 });
 
