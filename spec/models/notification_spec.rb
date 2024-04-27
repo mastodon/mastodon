@@ -138,6 +138,17 @@ RSpec.describe Notification do
         expect(notification.account).to eq(account)
       end
     end
+
+    context 'when activity_type is an AccountWarning' do
+      it 'sets the notification from_account to the recipient of the notification' do
+        account = Fabricate(:account)
+        account_warning = Fabricate(:account_warning, target_account: account)
+
+        notification = Fabricate.build(:notification, activity_type: 'AccountWarning', activity: account_warning, account: account)
+
+        expect(notification.from_account).to eq(account)
+      end
+    end
   end
 
   describe '.preload_cache_collection_target_statuses' do
