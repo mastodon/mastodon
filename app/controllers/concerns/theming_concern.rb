@@ -24,7 +24,6 @@ module ThemingConcern
 
   def nil_pack(data)
     {
-      use_common: true,
       flavour: data['name'],
       pack: nil,
       preload: nil,
@@ -35,7 +34,6 @@ module ThemingConcern
 
   def pack(data, pack_name, skin)
     pack_data = {
-      use_common: true,
       flavour: data['name'],
       pack: pack_name,
       preload: nil,
@@ -45,7 +43,6 @@ module ThemingConcern
 
     return pack_data unless data['pack'][pack_name].is_a?(Hash)
 
-    pack_data[:use_common] = false if data['pack'][pack_name]['use_common'] == false
     pack_data[:pack] = nil unless data['pack'][pack_name]['filename']
 
     preloads = data['pack'][pack_name]['preload']
@@ -62,15 +59,12 @@ module ThemingConcern
   end
 
   def resolve_pack(data, pack_name, skin)
-    return pack(data, pack_name, skin) if valid_pack_data?(data, pack_name)
-    return if data['name'].blank?
-
-    nil
+    pack(data, pack_name, skin) if valid_pack_data?(data, pack_name)
   end
 
   def resolve_pack_with_common(data, pack_name, skin = 'default')
     result = resolve_pack(data, pack_name, skin) || nil_pack(data)
-    result[:common] = resolve_pack(data, 'common', skin) if result.delete(:use_common)
+    result[:common] = resolve_pack(data, 'common', skin)
     result
   end
 end
