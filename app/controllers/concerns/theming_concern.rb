@@ -65,18 +65,6 @@ module ThemingConcern
     return pack(data, pack_name, skin) if valid_pack_data?(data, pack_name)
     return if data['name'].blank?
 
-    fallbacks = []
-    if data.key?('fallback')
-      fallbacks = data['fallback'] if data['fallback'].is_a?(Array)
-      fallbacks = [data['fallback']] if data['fallback'].is_a?(String)
-    elsif data['name'] != Setting.default_settings['flavour']
-      fallbacks = [Setting.default_settings['flavour']]
-    end
-
-    fallbacks.each do |fallback|
-      return resolve_pack(Themes.instance.flavour(fallback), pack_name, skin) if Themes.instance.flavour(fallback)
-    end
-
     nil
   end
 

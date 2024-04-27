@@ -46,15 +46,8 @@ screenshot: flavours/glitch/images/glitch-preview.png
 #  but in the case of the vanilla Mastodon flavour the pack files are
 #  somewhere else.
 pack_directory: app/javascript/flavours/glitch/packs
-
 #  (OPTIONAL) The directory which contains the pack files.
 #  Defaults to the theme directory (`app/javascript/themes/[theme]`),
 #  which should be sufficient for like 99% of use-cases lol.
 
 #      pack_directory: app/javascript/packs
-
-#  (OPTIONAL) By default the theme will fallback to the default theme
-#  if a particular pack is not provided. You can specify different
-#  fallbacks here, or disable fallback behaviours altogether by
-#  specifying a `null` value.
-fallback:
