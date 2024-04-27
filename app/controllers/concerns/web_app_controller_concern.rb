@@ -39,6 +39,6 @@ module WebAppControllerConcern
   end
 
   def set_pack
-    use_pack 'home'
+    use_pack 'application'
   end
 end
