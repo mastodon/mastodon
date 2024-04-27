@@ -4,7 +4,6 @@ module ThemingConcern
   extend ActiveSupport::Concern
 
   def use_pack(pack_name)
-    @core = resolve_pack_with_common(Themes.instance.core, pack_name)
     @theme = resolve_pack_with_common(Themes.instance.flavour(current_flavour), pack_name, current_skin)
   end
 

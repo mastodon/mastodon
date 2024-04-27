@@ -1,9 +1,7 @@
-import 'packs/public-path';
-
 import * as WebAuthnJSON from '@github/webauthn-json';
 import axios from 'axios';
 
-import ready from '../mastodon/ready';
+import ready from 'flavours/glitch/ready';
 import 'regenerator-runtime/runtime';
 
 function getCSRFToken() {

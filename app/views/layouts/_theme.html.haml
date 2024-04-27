@@ -1,7 +1,7 @@
 - if theme
   = render partial: 'layouts/theme', object: theme[:common] if theme[:pack] != 'common' && theme[:common]
   - if theme[:pack]
-    - pack_path = theme[:flavour] ? "flavours/#{theme[:flavour]}/#{theme[:pack]}" : "core/#{theme[:pack]}"
+    - pack_path = "flavours/#{theme[:flavour]}/#{theme[:pack]}"
     = javascript_pack_tag pack_path, crossorigin: 'anonymous'
     - if theme[:skin]
       - if !theme[:flavour] || theme[:skin] == 'default'

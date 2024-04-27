@@ -29,7 +29,7 @@
     = javascript_pack_tag 'common', crossorigin: 'anonymous'
 
     -# Needed for the wicg-inert polyfill. It needs to be on it's own <style> tag, with this `id`
-    = stylesheet_pack_tag 'core/inert', media: 'all', id: 'inert-style'
+    = stylesheet_pack_tag 'flavours/vanilla/inert', media: 'all', id: 'inert-style'
 
     - if @theme
       - if @theme[:supported_locales].include? I18n.locale.to_s
@@ -42,7 +42,6 @@
     = yield :header_tags
 
     -# These must come after :header_tags to ensure our initial state has been defined.
-    = render partial: 'layouts/theme', object: @core
     = render partial: 'layouts/theme', object: @theme
 
     = stylesheet_link_tag custom_css_path, skip_pipeline: true, host: root_url, media: 'all'

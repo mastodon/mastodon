@@ -7,7 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const AssetsManifestPlugin = require('webpack-assets-manifest');
 
-const { env, settings, core, flavours, output } = require('./configuration');
+const { env, settings, flavours, output } = require('./configuration');
 const rules = require('./rules');
 
 function reducePacks (data, into = {}) {
@@ -26,7 +26,7 @@ function reducePacks (data, into = {}) {
       packFiles = [pack.filename];
 
     if (packFiles) {
-      into[data.name ? `flavours/${data.name}/${entry}` : `core/${entry}`] = packFiles.map(packFile => resolve(data.pack_directory, packFile));
+      into[`flavours/${data.name}/${entry}`] = packFiles.map(packFile => resolve(data.pack_directory, packFile));
     }
   }
 
@@ -48,7 +48,6 @@ function reducePacks (data, into = {}) {
 }
 
 const entries = Object.assign(
-  reducePacks(core),
   Object.values(flavours).reduce((map, data) => reducePacks(data, map), {}),
 );
 

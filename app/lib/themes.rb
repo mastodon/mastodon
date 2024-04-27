@@ -7,9 +7,6 @@ class Themes
   include Singleton
 
   def initialize
-    core = YAML.load_file(Rails.root.join('app', 'javascript', 'core', 'theme.yml'))
-    core['pack'] = {} unless core['pack']
-
     result = {}
     Rails.root.glob('app/javascript/flavours/*/theme.yml') do |pathname|
       data = YAML.load_file(pathname)
@@ -61,11 +58,8 @@ class Themes
       result[name]['skin'][skin] = pack if skin != 'default'
     end
 
-    @core = core
     @conf = result
   end
-
-  attr_reader :core
 
   def flavour(name)
     @conf[name]

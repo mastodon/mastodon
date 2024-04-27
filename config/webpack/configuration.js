@@ -13,15 +13,6 @@ const flavourFiles = glob.sync('app/javascript/flavours/*/theme.yml');
 const skinFiles = glob.sync('app/javascript/skins/*/*');
 const flavours = {};
 
-const core = function () {
-  const coreFile = resolve('app', 'javascript', 'core', 'theme.yml');
-  const data = load(readFileSync(coreFile), 'utf8');
-  if (!data.pack_directory) {
-    data.pack_directory = dirname(coreFile);
-  }
-  return data.pack ? data : {};
-}();
-
 flavourFiles.forEach((flavourFile) => {
   const data = load(readFileSync(flavourFile), 'utf8');
   data.name = basename(dirname(flavourFile));
@@ -62,7 +53,6 @@ const output = {
 
 module.exports = {
   settings,
-  core,
   flavours,
   env: {
     NODE_ENV: env.NODE_ENV,

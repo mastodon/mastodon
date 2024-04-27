@@ -6,7 +6,6 @@
       = preload_pack_asset "locales/#{@theme[:flavour]}/#{I18n.locale}-json.js"
     - elsif @theme[:supported_locales].include? 'en'
       = preload_pack_asset "locales/#{@theme[:flavour]}/en-json.js"
-  = render partial: 'layouts/theme', object: @core
   = render partial: 'layouts/theme', object: @theme
 
 :ruby
