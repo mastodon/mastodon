@@ -2,7 +2,7 @@
 // to share the same assets regardless of instance configuration.
 // See https://webpack.js.org/guides/public-path/#on-the-fly
 
-function removeOuterSlashes(string) {
+function removeOuterSlashes(string: string) {
   return string.replace(/^\/*/, '').replace(/\/*$/, '');
 }
 
@@ -15,7 +15,9 @@ function formatPublicPath(host = '', path = '') {
   return `${formattedHost}/${formattedPath}/`;
 }
 
-const cdnHost = document.querySelector('meta[name=cdn-host]');
+const cdnHost = document.querySelector<HTMLMetaElement>('meta[name=cdn-host]');
 
-// eslint-disable-next-line no-undef
-__webpack_public_path__ = formatPublicPath(cdnHost ? cdnHost.content : '', process.env.PUBLIC_OUTPUT_PATH);
+__webpack_public_path__ = formatPublicPath(
+  cdnHost ? cdnHost.content : '',
+  process.env.PUBLIC_OUTPUT_PATH,
+);
