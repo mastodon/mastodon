@@ -1,32 +1,12 @@
-#  (REQUIRED) The location of the pack files inside `pack_directory`.
-pack:
-  admin:
-    - admin.tsx
-    - public.tsx
-  auth:
-    - public.tsx
-    - two_factor_authentication.js
-  common:
-    filename: common.js
-    stylesheet: true
-  error: error.js
-  application:
-    filename: application.js
-    preload:
-      - features/compose
-      - features/home_timeline
-      - features/notifications
-  inert:
-    filename: inert.js
-    stylesheet: true
-  mailer:
-    filename: mailer.js
-    stylesheet: true
-  public: public.tsx
-  settings: public.tsx
-  sign_up: sign_up.js
-  share: share.jsx
-  remote_interaction_helper: remote_interaction_helper.ts
+#  (REQUIRED) The directory which contains the pack files.
+pack_directory: app/javascript/packs
+
+#  (OPTIONAL) Define files to be preloaded when a logged-in user is
+#  visiting the main web app.
+signed_in_preload:
+  - features/compose.js
+  - features/home_timeline.js
+  - features/notifications.js
 
 #  (OPTIONAL) The directory which contains localization files for
 #  the flavour, relative to this directory.
@@ -35,9 +15,3 @@ locales: ../../mastodon/locales
 #  (OPTIONAL) A file to use as the preview screenshot for the flavour,
 #  or an array thereof. These are the full path from `app/javascript/`.
 screenshot: images/screenshot.png
-
-#  (OPTIONAL) The directory which contains the pack files.
-#  Defaults to this directory (`app/javascript/flavour/[flavour]`),
-#  but in the case of the vanilla Mastodon flavour the pack files are
-#  somewhere else.
-pack_directory: app/javascript/packs

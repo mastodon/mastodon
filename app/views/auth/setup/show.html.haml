@@ -1,6 +1,8 @@
 - content_for :page_title do
   = t('auth.setup.title')
 
+= flavoured_javascript_pack_tag 'sign_up', crossorigin: 'anonymous'
+
 = simple_form_for(@user, url: auth_setup_path) do |f|
   = render 'auth/shared/progress', stage: 'confirm'
 

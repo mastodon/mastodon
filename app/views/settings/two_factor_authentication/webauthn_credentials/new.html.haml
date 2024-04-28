@@ -12,3 +12,5 @@
 
   .actions
     = f.button :button, t('webauthn_credentials.add'), class: 'js-webauthn', type: :submit
+
+= flavoured_javascript_pack_tag 'two_factor_authentication', crossorigin: 'anonymous'

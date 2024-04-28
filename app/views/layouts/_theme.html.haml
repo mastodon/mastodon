@@ -1,5 +1,0 @@
-- if theme && theme[:pack]
-  - pack_path = "flavours/#{theme[:flavour]}/#{theme[:pack]}"
-  = javascript_pack_tag pack_path, crossorigin: 'anonymous'
-  - theme[:preload]&.each do |link|
-    %link{ href: asset_pack_path("#{link}.js"), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/

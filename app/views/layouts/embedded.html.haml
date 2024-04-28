@@ -14,14 +14,9 @@
     = stylesheet_pack_tag 'flavours/vanilla/common', media: 'all', crossorigin: 'anonymous' # upstream uses `common` but that's implicitly defined
     = stylesheet_pack_tag current_theme, media: 'all', crossorigin: 'anonymous'
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
-    - if @theme
-      - if @theme[:supported_locales].include? I18n.locale.to_s
-        = preload_pack_asset "locales/#{@theme[:flavour]}/#{I18n.locale}-json.js"
-      - elsif @theme[:supported_locales].include? 'en'
-        = preload_pack_asset "locales/#{@theme[:flavour]}/en-json.js"
-    = preload_pack_asset "locale/#{I18n.locale}-json.js"
+    = preload_locale_pack
     = render_initial_state
-    = render partial: 'layouts/theme', object: @theme
+    = flavoured_javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
 
   %body.embed
     = yield

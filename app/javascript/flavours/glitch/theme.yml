@@ -1,32 +1,12 @@
-#  (REQUIRED) The location of the pack files.
-pack:
-  admin:
-    - admin.tsx
-    - public.tsx
-  auth:
-    - public.tsx
-    - two_factor_authentication.js
-  common:
-    filename: common.js
-    stylesheet: true
-  error: error.js
-  application:
-    filename: application.js
-    preload:
-      - flavours/glitch/async/compose
-      - flavours/glitch/async/home_timeline
-      - flavours/glitch/async/notifications
-  inert:
-    filename: inert.js
-    stylesheet: true
-  mailer:
-    filename: mailer.js
-    stylesheet: true
-  public: public.tsx
-  settings: public.tsx
-  sign_up: sign_up.js
-  share: share.jsx
-  remote_interaction_helper: remote_interaction_helper.ts
+#  (REQUIRED) The directory which contains the entry point files.
+pack_directory: app/javascript/flavours/glitch/packs
+
+#  (OPTIONAL) Define files to be preloaded when a logged-in user is
+#  visiting the main web app.
+signed_in_preload:
+  - flavours/glitch/async/compose.js
+  - flavours/glitch/async/home_timeline.js
+  - flavours/glitch/async/notifications.js
 
 #  (OPTIONAL) The directory which contains localization files for
 #  the flavour, relative to this directory. The contents of this
@@ -40,14 +20,3 @@ inherit_locales: vanilla
 #  (OPTIONAL) A file to use as the preview screenshot for the flavour,
 #  or an array thereof. These are the full path from `app/javascript/`.
 screenshot: flavours/glitch/images/glitch-preview.png
-
-#  (OPTIONAL) The directory which contains the pack files.
-#  Defaults to this directory (`app/javascript/flavour/[flavour]`),
-#  but in the case of the vanilla Mastodon flavour the pack files are
-#  somewhere else.
-pack_directory: app/javascript/flavours/glitch/packs
-#  (OPTIONAL) The directory which contains the pack files.
-#  Defaults to the theme directory (`app/javascript/themes/[theme]`),
-#  which should be sufficient for like 99% of use-cases lol.
-
-#      pack_directory: app/javascript/packs

@@ -12,7 +12,6 @@ class Auth::SessionsController < Devise::SessionsController
   skip_before_action :require_functional!
   skip_before_action :update_user_sign_in
 
-  prepend_before_action :set_pack
   prepend_before_action :check_suspicious!, only: [:create]
 
   include Auth::TwoFactorAuthenticationConcern
@@ -103,10 +102,6 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   private
-
-  def set_pack
-    use_pack 'auth'
-  end
 
   def set_body_classes
     @body_classes = 'lighter'

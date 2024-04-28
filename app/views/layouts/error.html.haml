@@ -8,7 +8,7 @@
     = stylesheet_pack_tag 'flavours/vanilla/common', media: 'all', crossorigin: 'anonymous' # upstream uses `common` but that's implicitly defined
     = stylesheet_pack_tag current_theme, media: 'all', crossorigin: 'anonymous'
     = javascript_pack_tag 'common', crossorigin: 'anonymous'
-    = render partial: 'layouts/theme', object: @theme || { pack: 'error', flavour: 'glitch', common: { pack: 'common', flavour: 'glitch', skin: 'default' } }
+    = flavoured_javascript_pack_tag 'error', crossorigin: 'anonymous'
   %body.error
     .dialog
       .dialog__illustration

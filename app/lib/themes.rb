@@ -11,7 +11,7 @@ class Themes
 
     Rails.root.glob('app/javascript/flavours/*/theme.yml') do |pathname|
       data = YAML.load_file(pathname)
-      next unless data['pack']
+      next unless data['pack_directory']
 
       dir = pathname.dirname
       name = dir.basename.to_s

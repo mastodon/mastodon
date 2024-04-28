@@ -165,10 +165,7 @@ class ApplicationController < ActionController::Base
 
   def respond_with_error(code)
     respond_to do |format|
-      format.any do
-        use_pack 'error'
-        render "errors/#{code}", layout: 'error', status: code, formats: [:html]
-      end
+      format.any  { render "errors/#{code}", layout: 'error', status: code, formats: [:html] }
       format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code }
     end
   end
@@ -177,10 +174,7 @@ class ApplicationController < ActionController::Base
     return unless self_destruct?
 
     respond_to do |format|
-      format.any do
-        use_pack 'error'
-        render 'errors/self_destruct', layout: 'auth', status: 410, formats: [:html]
-      end
+      format.any  { render 'errors/self_destruct', layout: 'auth', status: 410, formats: [:html] }
       format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[410] }, status: 410 }
     end
   end

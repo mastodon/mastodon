@@ -83,8 +83,6 @@ module Auth::TwoFactorAuthenticationConcern
   def prompt_for_two_factor(user)
     register_attempt_in_session(user)
 
-    use_pack 'auth'
-
     @body_classes     = 'lighter'
     @webauthn_enabled = user.webauthn_enabled?
     @scheme_type      = if user.webauthn_enabled? && user_params[:otp_attempt].blank?
