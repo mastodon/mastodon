@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { domain } from 'mastodon/initial_state';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
@@ -38,16 +39,12 @@ const mapStateToProps = (state, { columnId }) => {
 };
 
 class CommunityTimeline extends PureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static defaultProps = {
     onlyMedia: false,
   };
 
   static propTypes = {
+    identity: identityContextPropShape,
     dispatch: PropTypes.func.isRequired,
     columnId: PropTypes.string,
     intl: PropTypes.object.isRequired,
@@ -77,7 +74,7 @@ class CommunityTimeline extends PureComponent {
 
   componentDidMount () {
     const { dispatch, onlyMedia } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     dispatch(expandCommunityTimeline({ onlyMedia }));
 
@@ -87,7 +84,7 @@ class CommunityTimeline extends PureComponent {
   }
 
   componentDidUpdate (prevProps) {
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (prevProps.onlyMedia !== this.props.onlyMedia) {
       const { dispatch, onlyMedia } = this.props;
@@ -161,4 +158,4 @@ class CommunityTimeline extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(CommunityTimeline));
+export default withIdentity(connect(mapStateToProps)(injectIntl(CommunityTimeline)));

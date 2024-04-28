@@ -13,6 +13,7 @@ import { fetchServer } from 'mastodon/actions/server';
 import { Avatar } from 'mastodon/components/avatar';
 import { Icon } from 'mastodon/components/icon';
 import { WordmarkLogo, SymbolLogo } from 'mastodon/components/logo';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { registrationsOpen, me, sso_redirect } from 'mastodon/initial_state';
 
 const Account = connect(state => ({
@@ -41,12 +42,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Header extends PureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     openClosedRegistrationsModal: PropTypes.func,
     location: PropTypes.object,
     signupUrl: PropTypes.string.isRequired,
@@ -60,7 +57,7 @@ class Header extends PureComponent {
   }
 
   render () {
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
     const { location, openClosedRegistrationsModal, signupUrl, intl } = this.props;
 
     let content;
@@ -121,4 +118,4 @@ class Header extends PureComponent {
 
 }
 
-export default injectIntl(withRouter(connect(mapStateToProps, mapDispatchToProps)(Header)));
+export default injectIntl(withRouter(withIdentity(connect(mapStateToProps, mapDispatchToProps)(Header))));

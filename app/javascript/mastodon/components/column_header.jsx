@@ -14,7 +14,9 @@ import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 import { ButtonInTabsBar } from 'mastodon/features/ui/util/columns_context';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
+
 
 import { useAppHistory } from './router';
 
@@ -51,12 +53,8 @@ BackButton.propTypes = {
 };
 
 class ColumnHeader extends PureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     intl: PropTypes.object.isRequired,
     title: PropTypes.node,
     icon: PropTypes.string,
@@ -171,7 +169,7 @@ class ColumnHeader extends PureComponent {
       );
     }
 
-    if (this.context.identity.signedIn && (children || (multiColumn && this.props.onPin))) {
+    if (this.props.identity.signedIn && (children || (multiColumn && this.props.onPin))) {
       collapseButton = (
         <button
           className={collapsibleButtonClassName}
@@ -232,4 +230,4 @@ class ColumnHeader extends PureComponent {
 
 }
 
-export default injectIntl(withRouter(ColumnHeader));
+export default injectIntl(withIdentity(withRouter(ColumnHeader)));
