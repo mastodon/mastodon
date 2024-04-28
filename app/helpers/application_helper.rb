@@ -243,6 +243,10 @@ module ApplicationHelper
     javascript_pack_tag("flavours/#{current_flavour}/#{pack_name}", **options)
   end
 
+  def flavoured_stylesheet_pack_tag(pack_name, **options)
+    stylesheet_pack_tag("flavours/#{current_flavour}/#{pack_name}", **options)
+  end
+
   def preload_signed_in_js_packs
     preload_files = Themes.instance.flavour(current_flavour)&.fetch('signed_in_preload', nil) || []
     safe_join(preload_files.map { |entry| preload_pack_asset entry })

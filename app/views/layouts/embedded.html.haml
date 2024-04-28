@@ -11,7 +11,7 @@
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
-    = stylesheet_pack_tag 'flavours/vanilla/common', media: 'all', crossorigin: 'anonymous' # upstream uses `common` but that's implicitly defined
+    = flavoured_stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous' # upstream uses `common` but that's implicitly defined
     = stylesheet_pack_tag current_theme, media: 'all', crossorigin: 'anonymous'
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
     = preload_locale_pack
