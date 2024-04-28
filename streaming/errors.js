@@ -29,7 +29,7 @@ export class RequestError extends Error {
    */
   constructor(message) {
     super(message);
-    this.name = "RequestError";
+    this.name = 'RequestError';
     this.status = 400;
   }
 }
@@ -40,7 +40,7 @@ export class AuthenticationError extends Error {
    */
   constructor(message) {
     super(message);
-    this.name = "AuthenticationError";
+    this.name = 'AuthenticationError';
     this.status = 401;
   }
 }

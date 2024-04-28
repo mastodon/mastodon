@@ -1,10 +1,10 @@
 import api, { getLinks } from '../api';
 
-import { blockDomainSuccess, unblockDomainSuccess } from "./domain_blocks_typed";
+import { blockDomainSuccess, unblockDomainSuccess } from './domain_blocks_typed';
 import { openModal } from './modal';
 
 
-export * from "./domain_blocks_typed";
+export * from './domain_blocks_typed';
 
 export const DOMAIN_BLOCK_REQUEST = 'DOMAIN_BLOCK_REQUEST';
 export const DOMAIN_BLOCK_FAIL    = 'DOMAIN_BLOCK_FAIL';

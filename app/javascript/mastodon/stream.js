@@ -150,7 +150,7 @@ export const connectStream = (channelName, params, callbacks) => (dispatch, getS
   const accessToken = getAccessToken();
   const { onConnect, onReceive, onDisconnect } = callbacks(dispatch, getState);
 
-  if(!accessToken) throw new Error("Trying to connect to the streaming server but no access token is available.");
+  if(!accessToken) throw new Error('Trying to connect to the streaming server but no access token is available.');
 
   // If we cannot use a websockets connection, we must fall back
   // to using individual connections for each channel
