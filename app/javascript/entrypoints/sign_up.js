@@ -3,18 +3,17 @@ import axios from 'axios';
 
 import ready from '../mastodon/ready';
 
+async function checkConfirmation() {
+  const response = await axios.get('/api/v1/emails/check_confirmation');
+
+  if (response.data) {
+    window.location.href = '/start';
+  }
+}
+
 ready(() => {
   setInterval(() => {
-    axios
-      .get('/api/v1/emails/check_confirmation')
-      .then((response) => {
-        if (response.data) {
-          window.location = '/start';
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    checkConfirmation();
   }, 5000);
 
   document.querySelectorAll('.timer-button').forEach((button) => {
@@ -42,4 +41,6 @@ ready(() => {
 
     button.appendChild(container);
   });
+}).catch((e) => {
+  throw e;
 });
