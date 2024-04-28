@@ -5,7 +5,7 @@ import { toServerSideType } from 'mastodon/utils/filters';
 
 import { me } from '../initial_state';
 
-export { makeGetAccount } from "./accounts";
+export { makeGetAccount } from './accounts';
 
 const getFilters = (state, { contextType }) => {
   if (!contextType) return null;

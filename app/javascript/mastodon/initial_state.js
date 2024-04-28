@@ -67,7 +67,7 @@ const element = document.getElementById('initial-state');
 const initialState = element?.textContent && JSON.parse(element.textContent);
 
 /** @type {string} */
-const initialPath = document.querySelector("head meta[name=initialPath]")?.getAttribute("content") ?? '';
+const initialPath = document.querySelector('head meta[name=initialPath]')?.getAttribute('content') ?? '';
 /** @type {boolean} */
 export const hasMultiColumnPath = initialPath === '/'
   || initialPath === '/getting-started'

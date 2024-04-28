@@ -18,11 +18,11 @@ import {
   importFetchedStatuses,
 } from './importer';
 import { submitMarkers } from './markers';
-import { notificationsUpdate } from "./notifications_typed";
+import { notificationsUpdate } from './notifications_typed';
 import { register as registerPushNotifications } from './push_notifications';
 import { saveSettings } from './settings';
 
-export * from "./notifications_typed";
+export * from './notifications_typed';
 
 export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
 
