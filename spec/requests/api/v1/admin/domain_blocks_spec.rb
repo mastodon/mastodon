@@ -130,7 +130,7 @@ RSpec.describe 'Domain Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns expected domain name and severity', :aggregate_failures do
+    it 'creates a domain block with the expected domain name and severity', :aggregate_failures do
       subject
 
       body = body_as_json
@@ -146,7 +146,44 @@ RSpec.describe 'Domain Blocks' do
       expect(DomainBlock.find_by(domain: 'foo.bar.com')).to be_present
     end
 
-    context 'when a stricter domain block already exists' do
+    context 'when a looser domain block already exists on a higher level domain' do
+      let(:params) { { domain: 'foo.bar.com', severity: :suspend } }
+
+      before do
+        Fabricate(:domain_block, domain: 'bar.com', severity: :silence)
+      end
+
+      it 'creates a domain block with the expected domain name and severity', :aggregate_failures do
+        subject
+
+        body = body_as_json
+
+        expect(response).to have_http_status(200)
+        expect(body).to match a_hash_including(
+          {
+            domain: 'foo.bar.com',
+            severity: 'suspend',
+          }
+        )
+
+        expect(DomainBlock.find_by(domain: 'foo.bar.com')).to be_present
+      end
+    end
+
+    context 'when a domain block already exists on the same domain' do
+      before do
+        Fabricate(:domain_block, domain: 'foo.bar.com', severity: :silence)
+      end
+
+      it 'returns existing domain block in error', :aggregate_failures do
+        subject
+
+        expect(response).to have_http_status(422)
+        expect(body_as_json[:existing_domain_block][:domain]).to eq('foo.bar.com')
+      end
+    end
+
+    context 'when a stricter domain block already exists on a higher level domain' do
       before do
         Fabricate(:domain_block, domain: 'bar.com', severity: :suspend)
       end
