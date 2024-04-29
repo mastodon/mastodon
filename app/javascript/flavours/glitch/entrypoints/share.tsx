@@ -16,7 +16,7 @@ function loaded() {
 
     if (!attr) return;
 
-    const props = JSON.parse(attr);
+    const props = JSON.parse(attr) as object;
     const root = createRoot(mountNode);
 
     root.render(<ComposeContainer {...props} />);
@@ -24,9 +24,13 @@ function loaded() {
 }
 
 function main() {
-  ready(loaded);
+  ready(loaded).catch((error: unknown) => {
+    console.error(error);
+  });
 }
 
-loadPolyfills().then(main).catch(error => {
-  console.error(error);
-});
+loadPolyfills()
+  .then(main)
+  .catch((error: unknown) => {
+    console.error(error);
+  });
