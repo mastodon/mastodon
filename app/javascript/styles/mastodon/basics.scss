@@ -292,6 +292,15 @@ button {
   z-index: -1000;
 }
 
+ul {
+  list-style: none;
+  margin: 0;
+}
+
+li::marker {
+  content: '⬩ ';
+}
+
 // NoScript adds a __ns__pop2top class to the full ancestry of blocked elements,
 // to set the z-index to a high value, which messes with modals and dropdowns.
 // Blocked elements can in theory only be media and frames/embeds, so they

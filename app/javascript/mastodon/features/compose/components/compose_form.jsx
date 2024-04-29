@@ -294,7 +294,8 @@ class ComposeForm extends ImmutablePureComponent {
 
             <div className='compose-form__actions'>
               <div className='compose-form__buttons'>
-                <UploadButtonContainer />
+                { /* disable attachment */ }
+                { /*<UploadButtonContainer />*/ }
                 <PollButtonContainer />
                 <SpoilerButtonContainer />
                 <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
