@@ -131,6 +131,7 @@ class Account < ApplicationRecord
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
+  scope :migrated, -> { where.not(moved_to_account_id: nil) }
   scope :without_instance_actor, -> { where.not(id: INSTANCE_ACTOR_ID) }
   scope :recent, -> { reorder(id: :desc) }
   scope :bots, -> { where(actor_type: AUTOMATED_ACTOR_TYPES) }
