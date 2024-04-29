@@ -21,8 +21,10 @@
 
 class Tag < ApplicationRecord
   include Paginable
+  # rubocop:disable Rails/HasAndBelongsToMany
   has_and_belongs_to_many :statuses
   has_and_belongs_to_many :accounts
+  # rubocop:enable Rails/HasAndBelongsToMany
 
   has_many :passive_relationships, class_name: 'TagFollow', inverse_of: :tag, dependent: :destroy
   has_many :featured_tags, dependent: :destroy, inverse_of: :tag
