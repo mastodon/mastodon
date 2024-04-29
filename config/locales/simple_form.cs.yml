@@ -77,13 +77,13 @@ cs:
           warn: Schovat filtrovaný obsah za varováním zmiňujicím název filtru
       form_admin_settings:
         activity_api_enabled: Počty lokálně zveřejnělých příspěvků, aktivních uživatelů a nových registrací v týdenních intervalech
-        backups_retention_period: Zachovat generované uživatelské archivy pro zadaný počet dní.
+        backups_retention_period: Uživatelé mají možnost vytvářet archivy svých příspěvků, které si mohou stáhnout později. Pokud je nastaveno na kladnou hodnotu, budou tyto archivy po zadaném počtu dní automaticky odstraněny z úložiště.
         bootstrap_timeline_accounts: Tyto účty budou připnuty na vrchol nových uživatelů podle doporučení.
         closed_registrations_message: Zobrazeno při zavření registrace
-        content_cache_retention_period: Příspěvky z jiných serverů budou odstraněny po zadaném počtu dní, pokud je nastavena kladná hodnota. To může být nevratné.
+        content_cache_retention_period: Všechny příspěvky z jiných serverů (včetně boostů a odpovědí) budou po uplynutí stanoveného počtu dní smazány bez ohledu na interakci místního uživatele s těmito příspěvky. To se týká i příspěvků, které místní uživatel přidal do záložek nebo oblíbených. Soukromé zmínky mezi uživateli z různých instancí budou rovněž ztraceny a nebude možné je obnovit. Použití tohoto nastavení je určeno pro instance pro speciální účely a při implementaci pro obecné použití porušuje mnohá očekávání uživatelů.
         custom_css: Můžete použít vlastní styly ve verzi Mastodonu.
         mascot: Přepíše ilustraci v pokročilém webovém rozhraní.
-        media_cache_retention_period: Stažené mediální soubory budou po zadaném počtu dní odstraněny, pokud je nastavena kladná hodnota, a na požádání znovu staženy.
+        media_cache_retention_period: Mediální soubory z příspěvků vzdálených uživatelů se ukládají do mezipaměti na vašem serveru. Pokud je nastaveno na kladnou hodnotu, budou média po zadaném počtu dní odstraněna. Pokud jsou mediální data vyžádána po jejich odstranění, budou znovu stažena, pokud je zdrojový obsah stále k dispozici. Vzhledem k omezením týkajícím se četnosti dotazů karet náhledů odkazů na weby třetích stran se doporučuje nastavit tuto hodnotu alespoň na 14 dní, jinak nebudou karty náhledů odkazů na vyžádání aktualizovány dříve.
         peers_api_enabled: Seznam názvů domén se kterými se tento server setkal ve fediversu. Neobsahuje žádná data o tom, zda jste federovali s daným serverem, pouze že o něm váš server ví. Toto je využíváno službami, které sbírají o federování statistiku v obecném smyslu.
         profile_directory: Adresář profilu obsahuje seznam všech uživatelů, kteří se přihlásili, aby mohli být nalezeni.
         require_invite_text: Pokud přihlášení vyžaduje ruční schválení, měl by být textový vstup „Proč se chcete připojit?“ povinný spíše než volitelný
@@ -243,7 +243,7 @@ cs:
         backups_retention_period: Doba uchovávání archivu uživatelů
         bootstrap_timeline_accounts: Vždy doporučovat tyto účty novým uživatelům
         closed_registrations_message: Vlastní zpráva, když přihlášení není k dispozici
-        content_cache_retention_period: Doba uchování mezipaměti obsahu
+        content_cache_retention_period: Doba uchovávání vzdáleného obsahu
         custom_css: Vlastní CSS
         mascot: Vlastní maskot (zastaralé)
         media_cache_retention_period: Doba uchovávání mezipaměti médií
