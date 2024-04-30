@@ -4,6 +4,8 @@ require 'rails_helper'
 
 describe StatusLengthValidator do
   describe '#validate' do
+    before { stub_const("#{described_class}::MAX_CHARS", 500) } # Example values below are relative to this baseline
+
     it 'does not add errors onto remote statuses' do
       status = instance_double(Status, local?: false)
       allow(status).to receive(:errors)
