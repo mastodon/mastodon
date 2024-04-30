@@ -41,16 +41,30 @@ namespace :branding do
     app_icon_source = Rails.root.join('app', 'javascript', 'images', 'app-icon.svg')
     output_dest     = Rails.root.join('app', 'javascript', 'icons')
 
+    rsvg_convert = Terrapin::CommandLine.new('rsvg-convert', '-w :size -h :size --keep-aspect-ratio :input -o :output')
+    convert = Terrapin::CommandLine.new('convert', ':input :output', environment: { 'MAGICK_CONFIGURE_PATH' => nil })
+
     favicon_sizes      = [16, 32, 48]
     apple_icon_sizes   = [57, 60, 72, 76, 114, 120, 144, 152, 167, 180, 1024]
     android_icon_sizes = [36, 48, 72, 96, 144, 192, 256, 384, 512]
 
-    # Generate favicons
-    IconGenerator.generate_favicons(favicon_source, output_dest, favicon_sizes)
+    favicons = []
 
-    # Generate app icons
-    IconGenerator.generate_app_icons(app_icon_source, output_dest, apple_icon_sizes, 'apple-touch-icon')
-    IconGenerator.generate_app_icons(app_icon_source, output_dest, android_icon_sizes, 'android-chrome')
+    favicon_sizes.each do |size|
+      output_path = output_dest.join("favicon-#{size}x#{size}.png")
+      favicons << output_path
+      rsvg_convert.run(size: size, input: favicon_source, output: output_path)
+    end
+
+    convert.run(input: favicons, output: Rails.public_path.join('favicon.ico'))
+
+    apple_icon_sizes.each do |size|
+      rsvg_convert.run(size: size, input: app_icon_source, output: output_dest.join("apple-touch-icon-#{size}x#{size}.png"))
+    end
+
+    android_icon_sizes.each do |size|
+      rsvg_convert.run(size: size, input: app_icon_source, output: output_dest.join("android-chrome-#{size}x#{size}.png"))
+    end
   end
 
   desc 'Generate badge icon from SVG source files'
