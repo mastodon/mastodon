@@ -645,6 +645,9 @@ cy:
       actions_description_html: Penderfynwch pa gamau i'w cymryd i ddatrys yr adroddiad hwn. Os byddwch yn cymryd camau cosbol yn erbyn y cyfrif a adroddwyd, bydd hysbysiad e-bost yn cael ei anfon atyn nhw, ac eithrio pan fydd y categori <strong>Sbam</strong> yn cael ei ddewis.
       actions_description_remote_html: Penderfynwch pa gamau i'w cymryd i ddatrys yr adroddiad hwn. Bydd hyn ond yn effeithio ar sut <strong>mae'ch</strong> gweinydd yn cyfathrebu â'r cyfrif hwn o bell ac yn trin ei gynnwys.
       add_to_report: Ychwanegu rhagor i adroddiad
+      already_suspended_badges:
+        local: Wedi atal dros dro ar y gweinydd hwn yn barod
+        remote: Wedi'i atal eisoes ar eu gweinydd
       are_you_sure: Ydych chi'n siŵr?
       assign_to_self: Neilltuo i mi
       assigned: Cymedrolwr wedi'i neilltuo
@@ -804,6 +807,7 @@ cy:
         desc_html: Mae hyn yn dibynnu ar sgriptiau allanol gan hCaptcha, a all fod yn bryder diogelwch a phreifatrwydd. Yn ogystal, <strong>gall hyn wneud y broses gofrestru yn llawer llai hygyrch i rai pobl (yn enwedig yr anabl)</strong>. Am y rhesymau hyn, ystyriwch fesurau eraill fel cofrestru ar sail cymeradwyaeth neu ar sail gwahoddiad.
         title: Ei gwneud yn ofynnol i ddefnyddwyr newydd ddatrys CAPTCHA i gadarnhau eu cyfrif
       content_retention:
+        danger_zone: Parth perygl
         preamble: Rheoli sut mae cynnwys sy'n cael ei gynhyrchu gan ddefnyddwyr yn cael ei storio yn Mastodon.
         title: Cadw cynnwys
       default_noindex:
@@ -1756,13 +1760,26 @@ cy:
     import: Mewnforio
     import_and_export: Mewnforio ac allforio
     migrate: Mudo cyfrif
+    notifications: Hysbysiadau e-bost
     preferences: Dewisiadau
     profile: Proffil cyhoeddus
     relationships: Yn dilyn a dilynwyr
+    severed_relationships: Perthynasau wedi'u torri
     statuses_cleanup: Dileu postiadau'n awtomatig
     strikes: Rhybuddion cymedroli
     two_factor_authentication: Dilysu dau-ffactor
     webauthn_authentication: Allweddi diogelwch
+  severed_relationships:
+    download: Llwytho i lawr (%{count})
+    event_type:
+      account_suspension: Atal cyfrif (%{target_name})
+      domain_block: Ataliad gweinydd (%{target_name})
+      user_domain_block: Rydych wedi rhwystro %{target_name}
+    lost_followers: Dilynwyr coll
+    lost_follows: Yn dilyn coll
+    preamble: Efallai y byddwch yn colli dilynwyr a'r rhai rydych yn eu dilyn pan fyddwch yn rhwystro parth neu pan fydd eich cymedrolwyr yn penderfynu atal gweinydd o bell. Pan fydd hynny'n digwydd, byddwch yn gallu llwytho i lawr rhestrau o berthnasoedd wedi'u torri, i'w harchwilio ac o bosibl eu mewnforio ar weinydd arall.
+    purged: Mae gwybodaeth am y gweinydd hwn wedi'i dynnu gan weinyddwyr eich gweinydd.
+    type: Digwyddiad
   statuses:
     attached:
       audio:
@@ -1880,6 +1897,7 @@ cy:
     contrast: Mastodon (Cyferbyniad uchel)
     default: Mastodon (Tywyll)
     mastodon-light: Mastodon (Golau)
+    system: Awtomatig (defnyddio thema system)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -1992,6 +2010,13 @@ cy:
       follows_subtitle: Dilynwch gyfrifon adnabyddus
       follows_title: Pwy i ddilyn
       follows_view_more: Gweld mwy o bobl i ddilyn
+      hashtags_recent_count:
+        few: "%{people} o bobl yn y 2 ddiwrnod diwethaf"
+        many: "%{people} o bobl yn y 2 ddiwrnod diwethaf"
+        one: "%{people} person yn ystod y 2 ddiwrnod diwethaf"
+        other: "%{people} o bobl yn y 2 ddiwrnod diwethaf"
+        two: "%{people} o bobl yn y 2 ddiwrnod diwethaf"
+        zero: "%{people} o bobl yn y 2 ddiwrnod diwethaf"
       hashtags_subtitle: Gweld beth sy'n tueddu dros y 2 ddiwrnod diwethaf
       hashtags_title: Hashnodau tuedd
       hashtags_view_more: Gweld mwy o hashnodau tuedd
@@ -1999,7 +2024,7 @@ cy:
       post_step: Dywedwch helo wrth y byd gyda thestun, lluniau, fideos neu arolygon barn.
       post_title: Creu'ch postiad cyntaf
       share_action: Rhannu
-      share_step: Gadewch i'ch ffrindiau wybod sut i ddod o hyd i chi ar Mastodon!
+      share_step: Gadewch i'ch ffrindiau wybod sut i ddod o hyd i chi ar Mastodon.
       share_title: Rhannwch eich proffil Mastodon
       sign_in_action: Mewngofnodi
       subject: Croeso i Mastodon
