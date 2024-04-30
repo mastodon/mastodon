@@ -21,9 +21,10 @@ RSpec.describe Settings::ImportsController do
 
     it 'assigns the expected imports', :aggregate_failures do
       expect(response).to have_http_status(200)
-      expect(assigns(:recent_imports)).to eq [import]
-      expect(assigns(:recent_imports)).to_not include(other_import)
       expect(response.headers['Cache-Control']).to include('private, no-store')
+      expect(response.body)
+        .to include("bulk_import_#{import.id}")
+        .and not_include("bulk_import_#{other_import.id}")
     end
   end
 
@@ -261,7 +262,8 @@ RSpec.describe Settings::ImportsController do
       it 'does not creates an unconfirmed bulk_import', :aggregate_failures do
         expect { subject }.to_not(change { user.account.bulk_imports.count })
 
-        expect(assigns(:import).errors).to_not be_empty
+        expect(response.body)
+          .to include('field_with_errors')
       end
     end
 
