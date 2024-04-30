@@ -18,7 +18,8 @@ describe Admin::InvitesController do
 
     it 'renders index page' do
       expect(subject).to render_template :index
-      expect(assigns(:invites)).to include invite
+      expect(response.body)
+        .to include(invite.code)
     end
   end
 
