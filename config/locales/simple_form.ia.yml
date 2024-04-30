@@ -5,8 +5,10 @@ ia:
       account:
         note: 'Tu pote @mentionar altere personas o #hashtags.'
       defaults:
+        password: Usa al minus 8 characteres
         setting_display_media_hide_all: Sempre celar le medios
         setting_display_media_show_all: Sempre monstrar le medios
+        username: Tu pote usar litteras, numeros e tractos de sublineamento
       webhook:
         events: Selige le eventos a inviar
         url: Ubi le eventos essera inviate
@@ -24,7 +26,10 @@ ia:
       admin_account_action:
         type: Action
         types:
+          disable: Gelar
           none: Inviar un advertimento
+          silence: Limitar
+          suspend: Suspender
       announcement:
         text: Annuncio
       defaults:
