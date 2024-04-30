@@ -40,14 +40,15 @@ RSpec.describe Admin::AccountsController do
 
       expect(response)
         .to have_http_status(200)
-      expect(assigns(:accounts))
-        .to have_attributes(
-          count: eq(1),
-          klass: be(Account)
-        )
+      expect(accounts_table_rows.size)
+        .to eq(1)
       expect(AccountFilter)
         .to have_received(:new)
         .with(hash_including(params))
+    end
+
+    def accounts_table_rows
+      Nokogiri::Slop(response.body).css('table.accounts-table tr')
     end
   end
 
