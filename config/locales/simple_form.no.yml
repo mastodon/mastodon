@@ -77,13 +77,10 @@
           warn: Skjul det filtrerte innholdet bak et varsel som omtaler filterets tittel
       form_admin_settings:
         activity_api_enabled: Teller med lokale publiserte innlegg, aktive brukere og nye registreringer i ukentlige bøtter
-        backups_retention_period: Behold genererte brukerarkiv i det angitte antall dager.
         bootstrap_timeline_accounts: Disse kontoene vil bli festet til toppen av nye brukeres følge-anbefalinger.
         closed_registrations_message: Vises når det er stengt for registrering
-        content_cache_retention_period: Innlegg fra andre tjenere vil slettes etter det angitte antall dager når det er satt til en positiv verdi. Dette kan være irreversibelt.
         custom_css: Du kan bruke egendefinerte stiler på nettversjonen av Mastodon.
         mascot: Overstyrer illustrasjonen i det avanserte webgrensesnittet.
-        media_cache_retention_period: Mediafiler som lastes ned vil bli slettet etter det angitte antall dager når det settes til en positiv verdi, og blir lastet ned på nytt ved behov.
         peers_api_enabled: En liste over domenenavn denne serveren har oppstått i fødiverset. Det finnes ikke data om du føderer med en gitt server, for akkurat det serveren din vet om. Dette brukes av tjenester som i all hovedsak innhenter føderasjonsstatistikk.
         profile_directory: Profilkatalogen viser alle brukere som har valgt å kunne bli oppdaget.
         require_invite_text: Når registreringer krever manuell godkjenning, må du gjøre «Hvorfor vil du bli med?»-tekstinput obligatorisk i stedet for valgfritt
@@ -242,7 +239,6 @@
         backups_retention_period: Brukers oppbevaringsperiode for arkiv
         bootstrap_timeline_accounts: Anbefaler alltid disse kontoene til nye brukere
         closed_registrations_message: Egendefinert melding når registrering ikke er tilgjengelig
-        content_cache_retention_period: Oppbevaringsperiode for innholdsbuffer
         custom_css: Egendefinert CSS
         mascot: Egendefinert maskot (legacy)
         media_cache_retention_period: Oppbevaringsperiode for mediebuffer

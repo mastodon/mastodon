@@ -5,8 +5,10 @@ ia:
       account:
         note: 'Tu pote @mentionar altere personas o #hashtags.'
       defaults:
+        password: Usa al minus 8 characteres
         setting_display_media_hide_all: Sempre celar le medios
         setting_display_media_show_all: Sempre monstrar le medios
+        username: Tu pote usar litteras, numeros e tractos de sublineamento
       webhook:
         events: Selige le eventos a inviar
         url: Ubi le eventos essera inviate
@@ -24,12 +26,16 @@ ia:
       admin_account_action:
         type: Action
         types:
+          disable: Gelar
           none: Inviar un advertimento
+          silence: Limitar
+          suspend: Suspender
       announcement:
         text: Annuncio
       defaults:
         autofollow: Invitar a sequer tu conto
         avatar: Pictura de profilo
+        chosen_languages: Filtrar linguas
         confirm_new_password: Confirmar nove contrasigno
         confirm_password: Confirmar contrasigno
         current_password: Contrasigno actual
@@ -39,6 +45,7 @@ ia:
         new_password: Nove contrasigno
         password: Contrasigno
         setting_advanced_layout: Activar le interfacie web avantiate
+        setting_always_send_emails: Sempre inviar notificationes per e-mail
         setting_default_language: Lingua de publication
         setting_display_media_default: Predefinite
         setting_display_media_hide_all: Celar toto

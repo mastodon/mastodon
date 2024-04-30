@@ -74,7 +74,9 @@ lt:
           warn: Slėpti filtruojamą turinį po įspėjimu, paminint filtro pavadinimą
       form_admin_settings:
         activity_api_enabled: Vietinių paskelbtų įrašų, aktyvių naudotojų ir naujų registracijų skaičiai kas savaitę
-        backups_retention_period: Laikyti sukurtus naudotojų archyvus nurodytą dienų skaičių.
+        backups_retention_period: Naudotojai gali generuoti savo įrašų archyvus, kuriuos vėliau galės atsisiųsti. Nustačius teigiamą reikšmę, šie archyvai po nurodyto dienų skaičiaus bus automatiškai ištrinti iš saugyklos.
+        content_cache_retention_period: Visi įrašai iš kitų serverių (įskaitant pakėlimus ir atsakymus) bus ištrinti po nurodyto dienų skaičiaus, neatsižvelgiant į bet kokią vietinio naudotojo sąveiką su tais įrašais. Tai taikoma ir tiems įrašams, kuriuos vietinis naudotojas yra pažymėjęs kaip žymes ar mėgstamus. Privačios paminėjimai tarp naudotojų iš skirtingų instancijų taip pat bus prarastos ir jų bus neįmanoma atkurti. Šis nustatymas skirtas naudoti ypatingos paskirties instancijose, o įgyvendinus jį bendram naudojimui, pažeidžiami daugelio naudotojų lūkesčiai.
+        media_cache_retention_period: Nuotolinių naudotojų įrašytų įrašų medijos failai talpinami tavo serveryje. Nustačius teigiamą reikšmę, medijos bus ištrinamos po nurodyto dienų skaičiaus. Jei medijos duomenų bus paprašyta po to, kai jie bus ištrinti, jie bus atsiųsti iš naujo, jei šaltinio turinys vis dar prieinamas. Dėl apribojimų, susijusių su nuorodų peržiūros kortelių apklausos dažnumu trečiųjų šalių svetainėse, rekomenduojama nustatyti šią reikšmę ne trumpesnę kaip 14 dienų, kitaip nuorodų peržiūros kortelės nebus atnaujinamos pagal pareikalavimą iki to laiko.
         peers_api_enabled: Domenų pavadinimų sąrašas, su kuriais šis serveris susidūrė fediverse. Čia nėra duomenų apie tai, ar tu bendrauji su tam tikru serveriu, tik apie tai, kad tavo serveris apie jį žino. Tai naudojama tarnybose, kurios renka federacijos statistiką bendrąja prasme.
         site_contact_email: Kaip žmonės gali su tavimi susisiekti teisiniais ar pagalbos užklausimais.
         site_contact_username: Kaip žmonės gali tave pasiekti Mastodon.
@@ -146,7 +148,7 @@ lt:
       form_admin_settings:
         activity_api_enabled: Skelbti suvestinį statistiką apie naudotojų veiklą per API
         bootstrap_timeline_accounts: Visada rekomenduoti šias paskyras naujiems naudotojams
-        content_cache_retention_period: Turinio talpyklos išlaikymo laikotarpis
+        content_cache_retention_period: Nuotolinio turinio saugojimo laikotarpis
         custom_css: Pasirinktinis CSS
         mascot: Pasirinktinis talismanas (pasenęs)
         registrations_mode: Kas gali užsiregistruoti

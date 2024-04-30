@@ -1671,6 +1671,9 @@ pt-BR:
       domain_block: Suspensão do servidor (%{target_name})
       user_domain_block: Você bloqueou %{target_name}
     lost_followers: Seguidores perdidos
+    lost_follows: Seguidores perdidos
+    preamble: Você poderá perder seguidores e seguidores quando bloquear um domínio ou quando os seus moderadores decidirem suspender um servidor remoto. Quando isso acontecer, você poderá baixar listas de relações desfeitas, a serem inspecionadas e possivelmente importadas para outro servidor.
+    purged: As informações sobre este servidor foram eliminadas pelos administradores do seu servidor.
     type: Evento
   statuses:
     attached:
@@ -1765,6 +1768,7 @@ pt-BR:
     contrast: Mastodon  (Alto contraste)
     default: Mastodon (Noturno)
     mastodon-light: Mastodon (Diurno)
+    system: Automático (usar tema do sistema)
   time:
     formats:
       default: "%H:%M em %d de %b de %Y"

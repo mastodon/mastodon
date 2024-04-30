@@ -6,7 +6,7 @@
               wrapper: :with_label
   .fields-row__column.fields-row__column-6.fields-group
     = f.input :expires_in,
-              collection: [30.minutes, 1.hour, 6.hours, 12.hours, 1.day, 1.week].map(&:to_i),
+              collection: CustomFilter::EXPIRATION_DURATIONS.map(&:to_i),
               include_blank: I18n.t('invites.expires_in_prompt'),
               label_method: ->(i) { I18n.t("invites.expires_in.#{i}") },
               wrapper: :with_label

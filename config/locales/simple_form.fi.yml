@@ -77,13 +77,11 @@ fi:
           warn: Piilota suodatettu sisältö varoituksen taakse, jossa mainitaan suodattimen nimi
       form_admin_settings:
         activity_api_enabled: Paikallisesti julkaistujen julkaisujen, aktiivisten käyttäjien ja rekisteröitymisten viikoittainen määrä
-        backups_retention_period: Säilytä luodut arkistot määritetyn määrän päiviä.
+        backups_retention_period: Käyttäjillä on mahdollisuus arkistoida julkaisujaan myöhemmin ladattaviksi. Kun tämä on asetettu positiiviseksi arvoksi, nämä arkistot poistetaan automaattisesti asetetun päivien määrän jälkeen.
         bootstrap_timeline_accounts: Nämä tilit kiinnitetään uusien käyttäjien seuraamissuosituslistojen alkuun.
         closed_registrations_message: Näkyy, kun rekisteröityminen on suljettu
-        content_cache_retention_period: Kaikki julkaisut ja tehostukset muilta palvelimilta poistetaan, kun määritelty määrä päiviä on kulunut. Osaa julkaisuista voi olla mahdoton palauttaa. Kaikki julkaisuihin liittyvät kirjanmerkit, suosikit ja tehostukset menetetään, eikä niitä voi palauttaa.
         custom_css: Voit käyttää mukautettuja tyylejä Mastodonin verkkoversiossa.
         mascot: Ohittaa kuvituksen edistyneessä selainkäyttöliittymässä.
-        media_cache_retention_period: Ladatut mediatiedostot poistetaan määritetyn määrän päiviä jälkeen, kun arvo on positiivinen ja ladataan uudelleen pyynnöstä.
         peers_api_enabled: Luettelo verkkotunnuksista, jotka tämä palvelin on kohdannut fediversumissa. Se ei kerro, oletko liitossa tietyn palvelimen kanssa, vaan että palvelimesi on ylipäätään tietoinen siitä. Tätä tietoa käytetään palveluissa, jotka keräävät tilastoja federoinnista yleisellä tasolla.
         profile_directory: Profiilihakemisto lueteloi kaikki käyttäjät, jotka ovat ilmoittaneet olevansa löydettävissä.
         require_invite_text: Kun rekisteröityminen vaatii manuaalisen hyväksynnän, tee ”Miksi haluat liittyä?” -tekstikentästä pakollinen vapaaehtoisen sijaan
@@ -243,7 +241,7 @@ fi:
         backups_retention_period: Käyttäjän arkiston säilytysaika
         bootstrap_timeline_accounts: Suosittele aina näitä tilejä uusille käyttäjille
         closed_registrations_message: Mukautettu viesti, kun rekisteröityminen ei ole saatavilla
-        content_cache_retention_period: Sisällön välimuistin säilytysaika
+        content_cache_retention_period: Etäsisällön säilytysaika
         custom_css: Mukautettu CSS
         mascot: Mukautettu maskotti (vanhentunut ominaisuus)
         media_cache_retention_period: Mediasisältövälimuistin säilytysaika

@@ -2,6 +2,6 @@
   = t('admin.webhooks.new')
 
 = simple_form_for @webhook, url: admin_webhooks_path do |form|
-  = render partial: 'form', object: form
+  = render form
   .actions
     = form.button :button, t('admin.webhooks.add_new'), type: :submit
