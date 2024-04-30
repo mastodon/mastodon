@@ -7,13 +7,11 @@ class Themes
   include Singleton
 
   def initialize
-    core = YAML.load_file(Rails.root.join('app', 'javascript', 'core', 'theme.yml'))
-    core['pack'] = {} unless core['pack']
+    @flavours = {}
 
-    result = {}
     Rails.root.glob('app/javascript/flavours/*/theme.yml') do |pathname|
       data = YAML.load_file(pathname)
-      next unless data['pack']
+      next unless data['pack_directory']
 
       dir = pathname.dirname
       name = dir.basename.to_s
@@ -38,45 +36,34 @@ class Themes
       data['name'] = name
       data['locales'] = locales
       data['screenshot'] = screenshots
-      data['skin'] = { 'default' => [] }
-      result[name] = data
+      data['skins'] = []
+      @flavours[name] = data
     end
 
     Rails.root.glob('app/javascript/skins/*/*') do |pathname|
       ext = pathname.extname.to_s
       skin = pathname.basename.to_s
       name = pathname.dirname.basename.to_s
-      next unless result[name]
+      next unless @flavours[name]
 
       if pathname.directory?
-        pack = []
-        pathname.glob('*.{css,scss}') do |sheet|
-          pack.push(sheet.basename(sheet.extname).to_s)
-        end
+        @flavours[name]['skins'] << skin if pathname.glob('{common,index,application}.{css,scss}').any?
       elsif /^\.s?css$/i.match?(ext)
-        skin = pathname.basename(ext).to_s
-        pack = ['common']
+        @flavours[name]['skins'] << pathname.basename(ext).to_s
       end
-
-      result[name]['skin'][skin] = pack if skin != 'default'
     end
-
-    @core = core
-    @conf = result
   end
 
-  attr_reader :core
-
   def flavour(name)
-    @conf[name]
+    @flavours[name]
   end
 
   def flavours
-    @conf.keys
+    @flavours.keys
   end
 
   def skins_for(name)
-    @conf[name]['skin'].keys
+    @flavours[name]['skins']
   end
 
   def flavours_and_skins

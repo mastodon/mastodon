@@ -1,6 +1,8 @@
 - content_for :page_title do
   = t('auth.login')
 
+= flavoured_javascript_pack_tag 'two_factor_authentication', crossorigin: 'anonymous'
+
 - if webauthn_enabled?
   = render partial: 'auth/sessions/two_factor/webauthn_form', locals: { hidden: @scheme_type != 'webauthn' }
 

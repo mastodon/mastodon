@@ -1,10 +1,12 @@
 - content_for :header_tags do
   - if user_signed_in?
+    = preload_signed_in_js_packs
     %meta{ name: 'initialPath', content: request.path }
 
   %meta{ name: 'applicationServerKey', content: Rails.configuration.x.vapid_public_key }
 
   = render_initial_state
+  = flavoured_javascript_pack_tag 'application', crossorigin: 'anonymous'
 
 .notranslate.app-holder#mastodon{ data: { props: Oj.dump(default_props) } }
   %noscript

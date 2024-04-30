@@ -85,10 +85,6 @@ module Settings
 
       private
 
-      def set_pack
-        use_pack 'auth'
-      end
-
       def redirect_invalid_otp
         flash[:error] = t('webauthn_credentials.otp_required')
         redirect_to settings_two_factor_authentication_methods_path

@@ -6,7 +6,6 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
   layout 'auth'
 
   before_action :set_body_classes
-  before_action :set_pack
   before_action :set_confirmation_user!, only: [:show, :confirm_captcha]
   before_action :redirect_confirmed_user, if: :signed_in_confirmed_user?
 
@@ -64,10 +63,6 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
 
   def captcha_user_bypass?
     @confirmation_user.nil? || @confirmation_user.confirmed?
-  end
-
-  def set_pack
-    use_pack 'auth'
   end
 
   def redirect_confirmed_user

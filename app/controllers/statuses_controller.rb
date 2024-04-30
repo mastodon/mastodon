@@ -41,7 +41,6 @@ class StatusesController < ApplicationController
   end
 
   def embed
-    use_pack 'embed'
     return not_found if @status.hidden? || @status.reblog?
 
     expires_in 180, public: true

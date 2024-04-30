@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_session
   helper_method :current_flavour
   helper_method :current_skin
+  helper_method :current_theme
   helper_method :single_user_mode?
   helper_method :use_seamless_external_login?
   helper_method :omniauth_only?
@@ -164,10 +165,7 @@ class ApplicationController < ActionController::Base
 
   def respond_with_error(code)
     respond_to do |format|
-      format.any do
-        use_pack 'error'
-        render "errors/#{code}", layout: 'error', status: code, formats: [:html]
-      end
+      format.any  { render "errors/#{code}", layout: 'error', status: code, formats: [:html] }
       format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code }
     end
   end
@@ -176,10 +174,7 @@ class ApplicationController < ActionController::Base
     return unless self_destruct?
 
     respond_to do |format|
-      format.any do
-        use_pack 'error'
-        render 'errors/self_destruct', layout: 'auth', status: 410, formats: [:html]
-      end
+      format.any  { render 'errors/self_destruct', layout: 'auth', status: 410, formats: [:html] }
       format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[410] }, status: 410 }
     end
   end

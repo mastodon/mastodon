@@ -1,26 +1,12 @@
-#  (REQUIRED) The location of the pack files.
-pack:
-  admin:
-    - packs/admin.tsx
-    - packs/public.tsx
-  auth: packs/public.tsx
-  common:
-    filename: packs/common.js
-    stylesheet: true
-  embed: packs/public.tsx
-  error: packs/error.js
-  home:
-    filename: packs/home.js
-    preload:
-      - flavours/glitch/async/compose
-      - flavours/glitch/async/home_timeline
-      - flavours/glitch/async/notifications
-  mailer:
-  modal:
-  public: packs/public.tsx
-  settings: packs/public.tsx
-  sign_up: packs/sign_up.js
-  share: packs/share.jsx
+#  (REQUIRED) The directory which contains the entry point files.
+pack_directory: app/javascript/flavours/glitch/packs
+
+#  (OPTIONAL) Define files to be preloaded when a logged-in user is
+#  visiting the main web app.
+signed_in_preload:
+  - flavours/glitch/async/compose.js
+  - flavours/glitch/async/home_timeline.js
+  - flavours/glitch/async/notifications.js
 
 #  (OPTIONAL) The directory which contains localization files for
 #  the flavour, relative to this directory. The contents of this
@@ -34,15 +20,3 @@ inherit_locales: vanilla
 #  (OPTIONAL) A file to use as the preview screenshot for the flavour,
 #  or an array thereof. These are the full path from `app/javascript/`.
 screenshot: flavours/glitch/images/glitch-preview.png
-
-#  (OPTIONAL) The directory which contains the pack files.
-#  Defaults to the theme directory (`app/javascript/themes/[theme]`),
-#  which should be sufficient for like 99% of use-cases lol.
-
-#      pack_directory: app/javascript/packs
-
-#  (OPTIONAL) By default the theme will fallback to the default theme
-#  if a particular pack is not provided. You can specify different
-#  fallbacks here, or disable fallback behaviours altogether by
-#  specifying a `null` value.
-fallback:

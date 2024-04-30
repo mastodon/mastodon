@@ -18,7 +18,7 @@
       <o:PixelsPerInch>96</o:PixelsPerInch>
       </o:OfficeDocumentSettings>
       </xml>
-    = stylesheet_pack_tag 'core/mailer'
+    = stylesheet_pack_tag "flavours/#{Setting.default_settings['flavour'] || 'glitch'}/mailer"
   %body
     .email{ dir: locale_direction }
       %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }

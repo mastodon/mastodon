@@ -233,6 +233,25 @@ module ApplicationHelper
     EmojiFormatter.new(html, custom_emojis, other_options.merge(animate: prefers_autoplay?)).to_s
   end
 
+  # glitch-soc addition to handle the multiple flavors
+  def preload_locale_pack
+    supported_locales = Themes.instance.flavour(current_flavour)['locales']
+    preload_pack_asset "locales/#{current_flavour}/#{I18n.locale}-json.js" if supported_locales.include?(I18n.locale.to_s)
+  end
+
+  def flavoured_javascript_pack_tag(pack_name, **options)
+    javascript_pack_tag("flavours/#{current_flavour}/#{pack_name}", **options)
+  end
+
+  def flavoured_stylesheet_pack_tag(pack_name, **options)
+    stylesheet_pack_tag("flavours/#{current_flavour}/#{pack_name}", **options)
+  end
+
+  def preload_signed_in_js_packs
+    preload_files = Themes.instance.flavour(current_flavour)&.fetch('signed_in_preload', nil) || []
+    safe_join(preload_files.map { |entry| preload_pack_asset entry })
+  end
+
   private
 
   def storage_host_var

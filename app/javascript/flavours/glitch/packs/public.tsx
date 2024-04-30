@@ -10,6 +10,7 @@ import Rails from '@rails/ujs';
 import axios from 'axios';
 import { throttle } from 'lodash';
 
+import { start } from 'flavours/glitch/common';
 import { timeAgoString } from 'flavours/glitch/components/relative_timestamp';
 import emojify from 'flavours/glitch/features/emoji/emoji';
 import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
@@ -18,6 +19,8 @@ import { loadPolyfills } from 'flavours/glitch/polyfills';
 import ready from 'flavours/glitch/ready';
 
 import 'cocoon-js-vanilla';
+
+start();
 
 const messages = defineMessages({
   usernameTaken: {
@@ -32,6 +35,43 @@ const messages = defineMessages({
     id: 'password_confirmation.mismatching',
     defaultMessage: 'Password confirmation does not match',
   },
+});
+
+interface SetHeightMessage {
+  type: 'setHeight';
+  id: string;
+  height: number;
+}
+
+function isSetHeightMessage(data: unknown): data is SetHeightMessage {
+  if (
+    data &&
+    typeof data === 'object' &&
+    'type' in data &&
+    data.type === 'setHeight'
+  )
+    return true;
+  else return false;
+}
+
+window.addEventListener('message', (e) => {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- typings are not correct, it can be null in very rare cases
+  if (!e.data || !isSetHeightMessage(e.data) || !window.parent) return;
+
+  const data = e.data;
+
+  ready(() => {
+    window.parent.postMessage(
+      {
+        type: 'setHeight',
+        id: data.id,
+        height: document.getElementsByTagName('html')[0].scrollHeight,
+      },
+      '*',
+    );
+  }).catch((e) => {
+    console.error('Error in setHeightMessage postMessage', e);
+  });
 });
 
 function loaded() {
@@ -284,6 +324,72 @@ function loaded() {
       ).format() as string;
     });
 }
+
+Rails.delegate(
+  document,
+  '#edit_profile input[type=file]',
+  'change',
+  ({ target }) => {
+    if (!(target instanceof HTMLInputElement)) return;
+
+    const avatar = document.querySelector<HTMLImageElement>(
+      `img#${target.id}-preview`,
+    );
+
+    if (!avatar) return;
+
+    let file: File | undefined;
+    if (target.files) file = target.files[0];
+
+    const url = file ? URL.createObjectURL(file) : avatar.dataset.originalSrc;
+
+    if (url) avatar.src = url;
+  },
+);
+
+Rails.delegate(document, '.input-copy input', 'click', ({ target }) => {
+  if (!(target instanceof HTMLInputElement)) return;
+
+  target.focus();
+  target.select();
+  target.setSelectionRange(0, target.value.length);
+});
+
+Rails.delegate(document, '.input-copy button', 'click', ({ target }) => {
+  if (!(target instanceof HTMLButtonElement)) return;
+
+  const input = target.parentNode?.querySelector<HTMLInputElement>(
+    '.input-copy__wrapper input',
+  );
+
+  if (!input) return;
+
+  const oldReadOnly = input.readOnly;
+
+  input.readOnly = false;
+  input.focus();
+  input.select();
+  input.setSelectionRange(0, input.value.length);
+
+  try {
+    if (document.execCommand('copy')) {
+      input.blur();
+
+      const parent = target.parentElement;
+
+      if (!parent) return;
+      parent.classList.add('copied');
+
+      setTimeout(() => {
+        parent.classList.remove('copied');
+      }, 700);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+
+  input.readOnly = oldReadOnly;
+});
 
 const toggleSidebar = () => {
   const sidebar = document.querySelector<HTMLUListElement>('.sidebar ul');

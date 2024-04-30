@@ -1,5 +1,7 @@
 - content_for :header_tags do
   = render_initial_state
+  = flavoured_javascript_pack_tag 'public', crossorigin: 'anonymous'
+  = flavoured_javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
 
 - content_for :content do
   .admin-wrapper

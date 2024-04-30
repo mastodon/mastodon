@@ -7,7 +7,6 @@ module WebAppControllerConcern
     vary_by 'Accept, Accept-Language, Cookie'
 
     before_action :redirect_unauthenticated_to_permalinks!
-    before_action :set_pack
     before_action :set_app_body_class
   end
 
@@ -36,9 +35,5 @@ module WebAppControllerConcern
         redirect_to(permalink_redirector.redirect_uri, allow_other_host: true)
       end
     end
-  end
-
-  def set_pack
-    use_pack 'home'
   end
 end
