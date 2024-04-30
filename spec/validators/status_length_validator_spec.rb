@@ -22,19 +22,19 @@ describe StatusLengthValidator do
       expect(status).to_not have_received(:errors)
     end
 
-    it 'adds an error when content warning is over 500 characters' do
+    it 'adds an error when content warning is over character limit' do
       status = instance_double(Status, spoiler_text: 'a' * 520, text: '', errors: activemodel_errors, local?: true, reblog?: false)
       subject.validate(status)
       expect(status.errors).to have_received(:add)
     end
 
-    it 'adds an error when text is over 500 characters' do
+    it 'adds an error when text is over character limit' do
       status = instance_double(Status, spoiler_text: '', text: 'a' * 520, errors: activemodel_errors, local?: true, reblog?: false)
       subject.validate(status)
       expect(status.errors).to have_received(:add)
     end
 
-    it 'adds an error when text and content warning are over 500 characters total' do
+    it 'adds an error when text and content warning are over character limit total' do
       status = instance_double(Status, spoiler_text: 'a' * 250, text: 'b' * 251, errors: activemodel_errors, local?: true, reblog?: false)
       subject.validate(status)
       expect(status.errors).to have_received(:add)
