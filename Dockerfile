@@ -95,7 +95,7 @@ RUN \
   apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
-    ffmpeg \
+    # ffmpeg \
     file \
     imagemagick \
     libjemalloc2 \
@@ -111,6 +111,10 @@ RUN \
   apt-get purge -y \
     patchelf \
   ;
+
+# Import FFmpeg
+COPY --from=mwader/static-ffmpeg:latest /ffmpeg /usr/local/bin/
+COPY --from=mwader/static-ffmpeg:latest /ffprobe /usr/local/bin/
 
 # Create temporary build layer from base image
 FROM ruby as build
