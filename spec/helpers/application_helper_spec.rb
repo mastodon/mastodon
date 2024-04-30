@@ -291,7 +291,7 @@ describe ApplicationHelper do
       let!(:favicon) { Fabricate(:site_upload, var: 'favicon') }
 
       it 'returns the URL of the icon' do
-        expect(helper.site_icon_path('favicon')).to eq(favicon.file.url('32'))
+        expect(helper.site_icon_path('favicon')).to eq(favicon.file.url('48'))
       end
 
       it 'returns the URL of the icon with size parameter' do

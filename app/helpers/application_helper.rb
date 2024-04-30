@@ -232,7 +232,7 @@ module ApplicationHelper
     EmojiFormatter.new(html, custom_emojis, other_options.merge(animate: prefers_autoplay?)).to_s
   end
 
-  def site_icon_path(type, size = :'32')
+  def site_icon_path(type, size = '48')
     icon = SiteUpload.find_by(var: type)
     return nil unless icon
 
