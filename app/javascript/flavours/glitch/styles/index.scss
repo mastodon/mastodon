@@ -1,0 +1,5 @@
+/* This is a compat file so that third-party themes do not have to immediately
+  update their implementation, as the previous `index.scss` has been renamed
+  to `application.scss`. */
+
+@import 'application';
