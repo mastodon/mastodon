@@ -19,12 +19,9 @@
 class SiteUpload < ApplicationRecord
   include Attachmentable
 
+  FAVICON_SIZES = [16, 32, 48].freeze
   STYLES = {
-    favicon: {
-      '16': '16x16#',
-      '32': '32x32#',
-      '48': '48x48#',
-    }.freeze,
+    favicon: FAVICON_SIZES.each_with_object({}) { |size, hash| hash[size.to_s.to_sym] = "#{size}x#{size}#" }.freeze,
     thumbnail: {
       '@1x': {
         format: 'png',

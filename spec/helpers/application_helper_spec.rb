@@ -286,26 +286,26 @@ describe ApplicationHelper do
     end
   end
 
-  describe '#site_favicon_path' do
+  describe '#site_icon_path' do
     context 'when favicon exists' do
       let!(:favicon) { Fabricate(:site_upload, var: 'favicon') }
 
       it 'returns the URL of the favicon' do
-        expect(helper.site_favicon_path).to eq(favicon.file.url('32'))
+        expect(helper.site_icon_path('favicon')).to eq(favicon.file.url('32'))
       end
 
       it 'returns the URL of the favicon with size parameter' do
-        expect(helper.site_favicon_path(16)).to eq(favicon.file.url('16'))
+        expect(helper.site_icon_path('favicon', 16)).to eq(favicon.file.url('16'))
       end
     end
 
     context 'when favicon does not exist' do
       it 'returns nil' do
-        expect(helper.site_favicon_path).to be_nil
+        expect(helper.site_icon_path('favicon')).to be_nil
       end
 
       it 'returns nil with size parameter' do
-        expect(helper.site_favicon_path(16)).to be_nil
+        expect(helper.site_icon_path('favicon', 16)).to be_nil
       end
     end
   end
