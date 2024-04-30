@@ -61,10 +61,10 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
             expect { post_create_with_options }
               .to change { user.reload.otp_secret }.to 'thisisasecretforthespecofnewview'
 
-            expect(assigns(:recovery_codes)).to eq otp_backup_codes
             expect(flash[:notice]).to eq 'Two-factor authentication successfully enabled'
             expect(response).to have_http_status(200)
             expect(response).to render_template('settings/two_factor_authentication/recovery_codes/index')
+            expect(response.body).to include(*otp_backup_codes)
           end
         end
 
