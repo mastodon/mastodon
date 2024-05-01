@@ -38,6 +38,12 @@ RSpec.describe User do
       user.save(validate: false)
       expect(user.valid?).to be true
     end
+
+    it 'is valid with a localhost e-mail address' do
+      user = Fabricate.build(:user, email: 'admin@localhost')
+      user.valid?
+      expect(user.valid?).to be true
+    end
   end
 
   describe 'Normalizations' do
