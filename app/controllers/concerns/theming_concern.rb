@@ -12,13 +12,13 @@ module ThemingConcern
   def current_skin
     @current_skin ||= begin
       skins = Themes.instance.skins_for(current_flavour)
-      [current_user&.setting_skin, Setting.skin, 'default'].find { |skin| skins.include?(skin) }
+      [current_user&.setting_skin, Setting.skin, 'system', 'default'].find { |skin| skins.include?(skin) }
     end
   end
 
   def current_theme
     # NOTE: this is slightly different from upstream, as it's a derived value used
     # for the sole purpose of pointing to the appropriate stylesheet pack
-    "skins/#{current_flavour}/#{current_skin}"
+    [current_flavour, current_skin]
   end
 end

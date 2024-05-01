@@ -6,7 +6,7 @@
     %title= safe_join([yield(:page_title), Setting.default_settings['site_title']], ' - ')
     %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }/
     = flavoured_stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous' # upstream uses `common` but that's implicitly defined
-    = stylesheet_pack_tag current_theme, media: 'all', crossorigin: 'anonymous'
+    = theme_style_tags current_theme
     = javascript_pack_tag 'common', crossorigin: 'anonymous'
     = flavoured_javascript_pack_tag 'error', crossorigin: 'anonymous'
   %body.error

@@ -27,7 +27,7 @@
     %title= html_title
 
     = flavoured_stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous' # upstream uses `common` but that's implicitly defined
-    = stylesheet_pack_tag current_theme, media: 'all', crossorigin: 'anonymous'
+    = theme_style_tags current_theme
 
     -# Needed for the wicg-inert polyfill. It needs to be on it's own <style> tag, with this `id`
     = flavoured_stylesheet_pack_tag 'inert', media: 'all', id: 'inert-style'

@@ -161,6 +161,17 @@ module ApplicationHelper
     output.compact_blank.join(' ')
   end
 
+  def theme_style_tags(flavour_and_skin)
+    flavour, theme = flavour_and_skin
+
+    if theme == 'system'
+      concat stylesheet_pack_tag("skins/#{flavour}/mastodon-light", media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')
+      concat stylesheet_pack_tag("skins/#{flavour}/default", media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
+    else
+      stylesheet_pack_tag "skins/#{flavour}/#{theme}", media: 'all', crossorigin: 'anonymous'
+    end
+  end
+
   def cdn_host
     Rails.configuration.action_controller.asset_host
   end
