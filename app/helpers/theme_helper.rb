@@ -5,10 +5,10 @@ module ThemeHelper
     flavour, theme = flavour_and_skin
 
     if theme == 'system'
-      concat stylesheet_pack_tag("skins/#{flavour}/mastodon-light", media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')
-      concat stylesheet_pack_tag("skins/#{flavour}/default", media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
+      stylesheet_pack_tag("skins/#{flavour}/mastodon-light", media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous') +
+        stylesheet_pack_tag("skins/#{flavour}/default", media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
     else
-      concat stylesheet_pack_tag "skins/#{flavour}/#{theme}", media: 'all', crossorigin: 'anonymous'
+      stylesheet_pack_tag "skins/#{flavour}/#{theme}", media: 'all', crossorigin: 'anonymous'
     end
   end
 
@@ -16,8 +16,8 @@ module ThemeHelper
     _, theme = flavour_and_skin
 
     if theme == 'system'
-      concat tag.meta(name: 'theme-color', content: Themes::THEME_COLORS[:dark], media: '(prefers-color-scheme: dark)')
-      concat tag.meta(name: 'theme-color', content: Themes::THEME_COLORS[:light], media: '(prefers-color-scheme: light)')
+      tag.meta(name: 'theme-color', content: Themes::THEME_COLORS[:dark], media: '(prefers-color-scheme: dark)') +
+        tag.meta(name: 'theme-color', content: Themes::THEME_COLORS[:light], media: '(prefers-color-scheme: light)')
     else
       tag.meta name: 'theme-color', content: theme_color_for(theme)
     end

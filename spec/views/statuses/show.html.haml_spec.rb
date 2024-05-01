@@ -21,12 +21,11 @@ describe 'statuses/show.html.haml', :without_verify_partial_doubles do
 
     render
 
-    header_tags = view.content_for(:header_tags)
-
-    expect(header_tags).to match(/<meta content=".+" property="og:title">/)
-    expect(header_tags).to match(/<meta content="article" property="og:type">/)
-    expect(header_tags).to match(/<meta content=".+" property="og:image">/)
-    expect(header_tags).to match(%r{<meta content="http://.+" property="og:url">})
+    expect(header_tags)
+      .to match(/<meta content=".+" property="og:title">/)
+      .and match(/<meta content="article" property="og:type">/)
+      .and match(/<meta content=".+" property="og:image">/)
+      .and match(%r{<meta content="http://.+" property="og:url">})
   end
 
   it 'has twitter player tag' do
@@ -40,9 +39,12 @@ describe 'statuses/show.html.haml', :without_verify_partial_doubles do
 
     render
 
-    header_tags = view.content_for(:header_tags)
+    expect(header_tags)
+      .to match(%r{<meta content="http://.+/media/.+/player" property="twitter:player">})
+      .and match(/<meta content="player" property="twitter:card">/)
+  end
 
-    expect(header_tags).to match(%r{<meta content="http://.+/media/.+/player" property="twitter:player">})
-    expect(header_tags).to match(/<meta content="player" property="twitter:card">/)
+  def header_tags
+    view.content_for(:header_tags)
   end
 end
