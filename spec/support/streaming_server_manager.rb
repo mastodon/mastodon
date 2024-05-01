@@ -125,6 +125,6 @@ RSpec.configure do |config|
   end
 
   def streaming_examples_present?
-    RUN_SYSTEM_SPECS
+    RSpec.world.filtered_examples.values.flatten.any? { |example| example.metadata[:fullstack] == true }
   end
 end
