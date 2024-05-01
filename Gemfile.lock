@@ -318,11 +318,12 @@ GEM
     hiredis (0.6.3)
     hkdf (0.3.0)
     htmlentities (4.3.4)
-    http (5.1.1)
+    http (5.2.0)
       addressable (~> 2.8)
+      base64 (~> 0.1)
       http-cookie (~> 1.0)
       http-form_data (~> 2.2)
-      llhttp-ffi (~> 0.4.0)
+      llhttp-ffi (~> 0.5.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
     http-form_data (2.3.0)
@@ -403,7 +404,7 @@ GEM
       railties (>= 5.2)
       rexml
     link_header (0.0.8)
-    llhttp-ffi (0.4.0)
+    llhttp-ffi (0.5.0)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
     lograge (0.14.0)
@@ -643,7 +644,7 @@ GEM
       rspec-mocks (~> 3.0)
       sidekiq (>= 5, < 8)
     rspec-support (3.13.1)
-    rubocop (1.63.2)
+    rubocop (1.63.3)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -860,7 +861,7 @@ DEPENDENCIES
   hcaptcha (~> 7.1)
   hiredis (~> 0.6)
   htmlentities (~> 4.3)
-  http (~> 5.1)
+  http (~> 5.2.0)
   http_accept_language (~> 2.1)
   httplog (~> 1.6.2)
   i18n (= 1.14.1)
@@ -951,7 +952,7 @@ DEPENDENCIES
   xorcist (~> 1.1)
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 3.2.3p157
 
 BUNDLED WITH
-   2.5.7
+   2.5.9

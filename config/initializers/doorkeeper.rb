@@ -89,6 +89,7 @@ Doorkeeper.configure do
                   :'write:reports',
                   :'write:statuses',
                   :read,
+                  :'read:me',
                   :'read:accounts',
                   :'read:blocks',
                   :'read:bookmarks',
