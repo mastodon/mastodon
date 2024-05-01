@@ -27,7 +27,7 @@ export const FilteredNotificationsBanner = () => {
     };
   }, [dispatch]);
 
-  if (policy === null || policy.getIn(['summary', 'pending_notifications_count']) * 1 === 0) {
+  if (policy === null || policy.getIn(['summary', 'pending_notifications_count']) === 0) {
     return null;
   }
 

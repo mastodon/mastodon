@@ -30,7 +30,8 @@ function isActionWithmaybeAlertParams(
   return isAction(action);
 }
 
-export const errorsMiddleware: Middleware<Record<string, never>, RootState> =
+// eslint-disable-next-line @typescript-eslint/ban-types -- we need to use `{}` here to ensure the dispatch types can be merged
+export const errorsMiddleware: Middleware<{}, RootState> =
   ({ dispatch }) =>
   (next) =>
   (action) => {
