@@ -1,27 +1,5 @@
-@import 'mixins';
-@import 'variables';
-@import 'styles/fonts/roboto';
-@import 'styles/fonts/roboto-mono';
+/* This is a compat file so that third-party themes do not have to immediately
+  update their implementation, as the previous `index.scss` has been renamed
+  to `application.scss`. */
 
-@import 'reset';
-@import 'basics';
-@import 'branding';
-@import 'containers';
-@import 'lists';
-@import 'modal';
-@import 'widgets';
-@import 'forms';
-@import 'accounts';
-@import 'statuses';
-@import 'components';
-@import 'polls';
-@import 'emoji_picker';
-@import 'about';
-@import 'tables';
-@import 'admin';
-@import 'accessibility';
-@import 'rtl';
-@import 'dashboard';
-@import 'rich_text';
-@import 'glitch_local_settings';
-@import 'glitch_doodle';
+@import 'application';
