@@ -46,7 +46,7 @@ class AccountsController < ApplicationController
   end
 
   def default_statuses
-    @account.statuses.not_local_only.where(visibility: [:public, :unlisted])
+    @account.statuses.not_local_only.distributable_visibility
   end
 
   def only_media_scope

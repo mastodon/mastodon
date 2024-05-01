@@ -609,6 +609,9 @@ sr:
       actions_description_html: Одлучите коју радњу да спроведете ради решавања ове пријаве. Уколико спроведете казнену радњу против пријављеног налога, власник налога ће бити обавештен путем и-мејла, осим уколико ознака <strong>„Непожељне поруке”</strong> није одабрана.
       actions_description_remote_html: Одлучите коју радњу да предузмете ради решавања ове пријаве. Ово ће утицати само на то како <strong>Ваш</strong> сервер комуницира са овим удаљеним налогом и обрађује његов садржај.
       add_to_report: Додај још у пријаву
+      already_suspended_badges:
+        local: Већ суспендован на овом серверу
+        remote: Већ суспендован на њиховом серверу
       are_you_sure: Да ли сте сигурни?
       assign_to_self: Додели мени
       assigned: Додељени модератор
@@ -1678,13 +1681,26 @@ sr:
     import: Увоз
     import_and_export: Увоз и извоз
     migrate: Пребацивање налога
+    notifications: Обавештења е-поштом
     preferences: Подешавања
     profile: Јавни профил
     relationships: Праћења и пратиоци
+    severed_relationships: Прекинуте везе
     statuses_cleanup: Аутоматско брисање објава
     strikes: Модерацијски преступи
     two_factor_authentication: Двофакторска идентификација
     webauthn_authentication: Сигурносни кључеви
+  severed_relationships:
+    download: Преузми (%{count})
+    event_type:
+      account_suspension: Суспензија налога (%{target_name})
+      domain_block: Суспензија сервера (%{target_name})
+      user_domain_block: Блокирали сте %{target_name}
+    lost_followers: Изгубљени пратиоци
+    lost_follows: Изгубљена праћења
+    preamble: Можете изгубити праћења и пратиоце када блокирате домен или када ваши модератори одлуче да суспендују удаљени сервер. Када се то деси, моћи ћете да преузмете листе прекинутих веза, које треба прегледати и евентуално увести на други сервер.
+    purged: Администратори вашег сервера су обрисали информације о овом серверу.
+    type: Догађај
   statuses:
     attached:
       audio:
@@ -1784,6 +1800,7 @@ sr:
     contrast: Велики контраст
     default: Mastodon (тамна)
     mastodon-light: Mastodon (светла)
+    system: Аутоматски (коришћење системске теме)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
