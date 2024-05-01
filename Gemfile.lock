@@ -245,7 +245,7 @@ GEM
       tzinfo
     excon (0.110.0)
     fabrication (2.31.0)
-    faker (3.3.0)
+    faker (3.3.1)
       i18n (>= 1.8.11, < 2)
     faraday (1.10.3)
       faraday-em_http (~> 1.0)
@@ -509,7 +509,6 @@ GEM
     pg (1.5.6)
     pghero (3.4.1)
       activerecord (>= 6)
-    posix-spawn (0.3.15)
     premailer (1.23.0)
       addressable
       css_parser (>= 1.12.0)
@@ -733,7 +732,7 @@ GEM
     smart_properties (1.17.0)
     stackprof (0.2.26)
     statsd-ruby (1.5.0)
-    stoplight (3.0.2)
+    stoplight (4.1.0)
       redlock (~> 1.0)
     stringio (3.1.0)
     strong_migrations (1.8.0)
@@ -899,7 +898,6 @@ DEPENDENCIES
   parslet
   pg (~> 1.5)
   pghero
-  posix-spawn
   premailer-rails
   private_address_check (~> 0.5)
   propshaft
@@ -941,7 +939,7 @@ DEPENDENCIES
   simplecov (~> 0.22)
   simplecov-lcov (~> 0.8)
   stackprof
-  stoplight (~> 3.0.1)
+  stoplight (~> 4.1)
   strong_migrations (= 1.8.0)
   test-prof
   thor (~> 1.2)

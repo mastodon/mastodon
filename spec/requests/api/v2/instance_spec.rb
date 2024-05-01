@@ -18,6 +18,7 @@ describe 'Instances' do
         expect(body_as_json)
           .to be_present
           .and include(title: 'Mastodon Glitch Edition')
+          .and include_configuration_limits
       end
     end
 
@@ -31,7 +32,26 @@ describe 'Instances' do
         expect(body_as_json)
           .to be_present
           .and include(title: 'Mastodon Glitch Edition')
+          .and include_configuration_limits
       end
+    end
+
+    def include_configuration_limits
+      include(
+        configuration: include(
+          accounts: include(
+            max_featured_tags: FeaturedTag::LIMIT,
+            max_pinned_statuses: StatusPinValidator::PIN_LIMIT
+          ),
+          statuses: include(
+            max_characters: StatusLengthValidator::MAX_CHARS,
+            max_media_attachments: 4 # TODO, move to constant somewhere
+          ),
+          polls: include(
+            max_options: PollValidator::MAX_OPTIONS
+          )
+        )
+      )
     end
   end
 end
