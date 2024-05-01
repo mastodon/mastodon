@@ -585,6 +585,9 @@ zh-HK:
       actions_description_html: 決定對此檢舉採取哪種措施。如果對被檢舉帳號採取懲罰措施，除非選取了<strong>垃圾訊息</strong>分類，否則將向他們發送一封電郵通知。
       actions_description_remote_html: 決定對此檢舉採取哪種動作。這只會影響<strong>你的伺服器</strong>與此遠端帳號的通訊和處理其內容的方式。
       add_to_report: 加入更多到檢舉
+      already_suspended_badges:
+        local: 已在此伺服器被停權
+        remote: 已在他們的伺服器被停權
       are_you_sure: 你確認嗎？
       assign_to_self: 指派給自己
       assigned: 指派版主
@@ -1733,6 +1736,7 @@ zh-HK:
     contrast: 高對比
     default: 萬象
     mastodon-light: 萬象（亮色主題）
+    system: 自動（使用系統主題）
   time:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
