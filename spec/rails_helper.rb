@@ -2,13 +2,9 @@
 
 ENV['RAILS_ENV'] ||= 'test'
 
-# This needs to be defined before Rails is initialized
-RUN_SYSTEM_SPECS = ENV.fetch('RUN_SYSTEM_SPECS', false)
-
-if RUN_SYSTEM_SPECS
-  STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
-  ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
-end
+# This needs to be defined before Rails is initialized (used by full stack system specs)
+STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
+ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
 
 require File.expand_path('../config/environment', __dir__)
 
@@ -26,7 +22,7 @@ require 'test_prof/recipes/rspec/before_all'
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
-WebMock.disable_net_connect!(allow: Chewy.settings[:host], allow_localhost: RUN_SYSTEM_SPECS)
+WebMock.disable_net_connect!(allow: Chewy.settings[:host], allow_localhost: true)
 Sidekiq.logger = nil
 
 # System tests config
@@ -49,13 +45,9 @@ Devise::Test::ControllerHelpers.module_eval do
 end
 
 RSpec.configure do |config|
-  # This is set before running spec:system, see lib/tasks/tests.rake
-  config.filter_run_excluding type: lambda { |type|
-    case type
-    when :system
-      !RUN_SYSTEM_SPECS
-    end
-  }
+  # By default, skip "full stack" specs with higher startup cost (streaming
+  # server spin up) and slower execution (full JS browser). Run from CI only.
+  config.filter_run_excluding fullstack: true
 
   # By default, skip the elastic search integration specs
   config.filter_run_excluding search: true
@@ -78,10 +70,15 @@ RSpec.configure do |config|
     metadata[:search] = true
   end
 
+  # Set `fullstack` metadata true for all specs in spec/system/fullstack/
+  config.define_derived_metadata(file_path: Regexp.new('spec/system/fullstack/*')) do |metadata|
+    metadata[:fullstack] = true
+  end
+
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :helper
   config.include Devise::Test::ControllerHelpers, type: :view
-  config.include Devise::Test::IntegrationHelpers, type: :feature
+  config.include Devise::Test::IntegrationHelpers, type: :system
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include ActionMailer::TestHelper
   config.include Paperclip::Shoulda::Matchers
@@ -109,10 +106,6 @@ RSpec.configure do |config|
 
   config.before :each, type: :cli do
     stub_reset_connection_pools
-  end
-
-  config.before :each, type: :feature do
-    Capybara.current_driver = :rack_test
   end
 
   config.before do |example|
