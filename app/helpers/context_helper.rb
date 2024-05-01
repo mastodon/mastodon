@@ -49,13 +49,11 @@ module ContextHelper
   end
 
   def serialized_context(named_contexts_map, context_extensions_map)
-    context_array = []
-
     named_contexts     = named_contexts_map.keys
     context_extensions = context_extensions_map.keys
 
-    named_contexts.each do |key|
-      context_array << NAMED_CONTEXT_MAP[key]
+    context_array = named_contexts.map do |key|
+      NAMED_CONTEXT_MAP[key]
     end
 
     extensions = context_extensions.each_with_object({}) do |key, h|

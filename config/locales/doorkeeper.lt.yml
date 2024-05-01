@@ -19,7 +19,7 @@ lt:
   doorkeeper:
     applications:
       buttons:
-        authorize: Įgalinti
+        authorize: Leisti
         cancel: Atšaukti
         destroy: Sunaikinti
         edit: Redaguoti
@@ -55,14 +55,14 @@ lt:
         title: 'Programėlė: %{name}'
     authorizations:
       buttons:
-        authorize: Įgalinti
+        authorize: Leisti
         deny: Atmesti
       error:
         title: Įvyko klaida.
       new:
-        prompt_html: "%{client_name} norėtų gauti leidimą prieigos prie tavo paskyros. Tai trečiosios šalies programėlė. <strong>Jei ja nepasitiki, neturėtum jai leisti.</strong>"
+        prompt_html: "%{client_name} norėtų gauti leidimą prieigos prie tavo paskyros. Tai trečiosios šalies programėlė. <strong>Jei ja nepasitiki, neturėtum leisti.</strong>"
         review_permissions: Peržiūrėti leidimus
-        title: Reikalingas įgaliojimas
+        title: Reikalingas leidimas
       show:
         title: Nukopijuok šį įgaliojimo kodą ir įklijuok jį į programėlę.
     authorized_applications:
@@ -77,7 +77,7 @@ lt:
         never_used: Niekada nenaudotas
         scopes: Leidimai
         superapp: Vidinis
-        title: Tavo įgaliotos programėlės
+        title: Tavo leidžiamos programėlės
     errors:
       messages:
         access_denied: Išteklių savininkas (-ė) arba įgaliojimų serveris atmetė užklausą.
@@ -145,7 +145,7 @@ lt:
           applications: Programėlės
           oauth2_provider: OAuth2 teikėjas
       application:
-        title: Reikalingas OAuth įgaliojimas
+        title: Reikalingas OAuth leidimas
     scopes:
       admin:read: skaityti visus serveryje esančius duomenis
       admin:read:accounts: skaityti neskelbtiną visų paskyrų informaciją
