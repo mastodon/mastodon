@@ -1,4 +1,4 @@
-- accounts = hashtag.statuses.with_public_visibility.joins(:account).merge(Account.without_suspended.without_silenced).includes(:account).limit(3).map(&:account)
+- accounts = hashtag.statuses.public_visibility.joins(:account).merge(Account.without_suspended.without_silenced).includes(:account).limit(3).map(&:account)
 
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr

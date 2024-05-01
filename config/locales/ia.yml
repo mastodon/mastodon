@@ -15,17 +15,40 @@ ia:
     instance_actor_flash: Iste conto es un agente virtual usate pro representar le servitor mesme e non alcun usator individual. Illo es usate pro le federation e non debe esser suspendite.
     last_active: ultime activitate
     link_verified_on: Le proprietate de iste ligamine ha essite verificate le %{date}
+    posts:
+      one: Message
+      other: Messages
+    posts_tab_heading: Messages
   admin:
+    account_moderation_notes:
+      create: Lassar un nota
     accounts:
+      add_email_domain_block: Blocar dominio de e-mail
       are_you_sure: Es tu secur?
       by_domain: Dominio
+      change_email:
+        changed_msg: Email cambiate con successo!
+        current_email: E-mail actual
+        label: Cambiar e-mail
+        new_email: Nove e-mail
+        submit: Cambiar e-mail
+        title: Cambiar e-mail pro %{username}
+      confirm: Confirmar
+      confirmed: Confirmate
+      confirming: In confirmation
       custom: Personalisate
       delete: Deler datos
       deleted: Delite
+      demote: Degradar
+      destroyed_msg: Le datos de %{username} ora es in cauda pro su imminente deletion
       disable_two_factor_authentication: Disactivar 2FA
       display_name: Nomine visibile
       domain: Dominio
+      edit: Modificar
+      email: E-mail
+      email_status: Stato de e-mail
       enabled: Activate
+      followers: Sequitores
       location:
         all: Toto
         title: Location
@@ -34,31 +57,50 @@ ia:
       most_recent_activity: Activitate plus recente
       most_recent_ip: IP plus recente
       public: Public
+      redownload: Actualisar profilo
+      resend_confirmation:
+        already_confirmed: Iste usator jam es confirmate
+        send: Reinviar ligamine de confirmation
+        success: Ligamine de confirmation inviate con successo!
       reset: Reinitialisar
       reset_password: Reinitialisar contrasigno
       search: Cercar
+      search_same_email_domain: Altere usatores con le mesme dominio de e-mail
+      search_same_ip: Altere usatores con le mesme IP
       security: Securitate
       security_measures:
         only_password: Solmente contrasigno
         password_and_2fa: Contrasigno e 2FA
+      silenced: Limitate
       statuses: Messages
+      subscribe: Subscriber
       title: Contos
+      unblock_email: Disblocar adresse de e-mail
+      unblocked_email_msg: Adresse de e-mail de %{username} disblocate con successo
+      unconfirmed_email: E-mail non confirmate
       username: Nomine de usator
+      view_domain: Vider summario de dominio
     action_logs:
       action_types:
+        confirm_user: Confirmar le usator
         create_announcement: Crear annuncio
         destroy_ip_block: Deler le regula IP
         destroy_status: Deler le message
         destroy_unavailable_domain: Deler le dominio non disponibile
+        disable_2fa_user: Disactivar 2FA
         disable_user: Disactivar le usator
         enable_user: Activar le usator
         reset_password_user: Reinitialisar contrasigno
         update_announcement: Actualisar annuncio
         update_custom_emoji: Actualisar emoji personalisate
+        update_ip_block: Actualisar le regula IP
+        update_status: Actualisar le message
       actions:
         change_email_user_html: "%{name} cambiava le adresse de e-mail address del usator %{target}"
         create_announcement_html: "%{name} creava un nove annuncio %{target}"
+      deleted_account: conto delite
     announcements:
+      destroyed_msg: Annuncio delite con successo!
       edit:
         title: Modificar annuncio
       empty: Necun annuncios trovate.
@@ -80,6 +122,7 @@ ia:
       enabled_msg: Emoji activate con successo
       new:
         title: Adder nove emoji personalisate
+      upload: Incargar
     dashboard:
       active_users: usatores active
       media_storage: Immagazinage de medios

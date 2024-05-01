@@ -112,10 +112,9 @@
       border: 0;
     }
 
-    &::-moz-focus-inner,
     &:focus,
     &:active {
-      outline: 0 !important;
+      outline: none !important;
     }
 
     &::-webkit-search-cancel-button {
