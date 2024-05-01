@@ -52,7 +52,7 @@ require_relative '../lib/active_record/batches'
 require_relative '../lib/simple_navigation/item_extensions'
 require_relative '../lib/http_extensions'
 
-Dotenv::Railtie.load
+Dotenv::Rails.load
 
 Bundler.require(:pam_authentication) if ENV['PAM_ENABLED'] == 'true'
 
