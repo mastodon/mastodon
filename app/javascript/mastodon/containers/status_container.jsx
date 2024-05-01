@@ -262,7 +262,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   },
 
   deployPictureInPicture (status, type, mediaProps) {
-    dispatch(deployPictureInPicture(status.get('id'), status.getIn(['account', 'id']), type, mediaProps));
+    dispatch(deployPictureInPicture({statusId: status.get('id'), accountId: status.getIn(['account', 'id']), playerType: type, props: mediaProps}));
   },
 
   onInteractionModal (type, status) {

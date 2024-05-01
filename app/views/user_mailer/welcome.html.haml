@@ -23,11 +23,11 @@
     %td.email-body-huge-padding-td
       %h2.email-h2= t('user_mailer.welcome.checklist_title')
       %p.email-h-sub= t('user_mailer.welcome.checklist_subtitle')
-      = render 'application/mailer/checklist', key: 'edit_profile_step', title: t('user_mailer.welcome.edit_profile_title'), text: t('user_mailer.welcome.edit_profile_step'), checked: @has_account_fields, button_text: t('user_mailer.welcome.edit_profile_action'), button_url: web_url('start/profile')
-      = render 'application/mailer/checklist', key: 'follow_step', title: t('user_mailer.welcome.follow_title'), text: t('user_mailer.welcome.follow_step'), checked: @has_active_relationships, button_text: t('user_mailer.welcome.follow_action'), button_url: web_url('start/follows')
-      = render 'application/mailer/checklist', key: 'post_step', title: t('user_mailer.welcome.post_title'), text: t('user_mailer.welcome.post_step'), checked: @has_statuses, button_text: t('user_mailer.welcome.post_action'), button_url: web_url
-      = render 'application/mailer/checklist', key: 'share_step', title: t('user_mailer.welcome.share_title'), text: t('user_mailer.welcome.share_step'), checked: false, button_text: t('user_mailer.welcome.share_action'), button_url: web_url('start/share')
-      = render 'application/mailer/checklist', key: 'apps_step', title: t('user_mailer.welcome.apps_title'), text: t('user_mailer.welcome.apps_step'), checked: false, show_apps_buttons: true
+      = render 'application/mailer/checklist', key: 'edit_profile', checked: @has_account_fields, button_text: t('user_mailer.welcome.edit_profile_action'), button_url: web_url('start/profile')
+      = render 'application/mailer/checklist', key: 'follow', checked: @has_active_relationships, button_text: t('user_mailer.welcome.follow_action'), button_url: web_url('start/follows')
+      = render 'application/mailer/checklist', key: 'post', checked: @has_statuses, button_text: t('user_mailer.welcome.post_action'), button_url: web_url
+      = render 'application/mailer/checklist', key: 'share', checked: false, button_text: t('user_mailer.welcome.share_action'), button_url: web_url('start/share')
+      = render 'application/mailer/checklist', key: 'apps', checked: false, show_apps_buttons: true
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-body-columns-td
