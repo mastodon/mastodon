@@ -25,9 +25,6 @@ ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!(allow: Chewy.settings[:host], allow_localhost: true)
 Sidekiq.logger = nil
 
-# System tests config
-DatabaseCleaner.strategy = [:deletion]
-
 Devise::Test::ControllerHelpers.module_eval do
   alias_method :original_sign_in, :sign_in
 
@@ -121,6 +118,10 @@ RSpec.configure do |config|
   config.after do
     Rails.cache.clear
     redis.del(redis.keys)
+  end
+
+  config.before fullstack: true do
+    DatabaseCleaner.strategy = [:deletion]
   end
 
   # Assign types based on dir name for non-inferred types
