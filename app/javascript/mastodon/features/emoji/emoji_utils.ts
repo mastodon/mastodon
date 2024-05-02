@@ -60,12 +60,14 @@ interface SkinTone {
   skin_tone?: EmojiSkin;
 }
 
+type RawEmoji = BaseEmoji &
+  CustomEmoji &
+  Pick<Emoji, 'skin_variations'> &
+  Pick<PickerProps, 'custom'> &
+  SkinTone;
+
 function sanitize(
-  emoji: BaseEmoji &
-    CustomEmoji &
-    Pick<Emoji, 'skin_variations'> &
-    Pick<PickerProps, 'custom'> &
-    SkinTone,
+  emoji: RawEmoji,
 ):
   | BaseEmoji
   | (Omit<CustomEmoji, 'short_names'> & Pick<PickerProps, 'custom'>) {
@@ -109,27 +111,17 @@ function sanitize(
   };
 }
 
-function getSanitizedData(
-  ...args: [
-    emoji: BaseEmoji | string,
-    skin: EmojiSkin | null,
-    set?:
-      | 'apple'
-      | 'google'
-      | 'twitter'
-      | 'facebook'
-      | 'emojione'
-      | 'messenger',
-  ]
-) {
-  return sanitize(getData(...args));
-}
-
-function getData(
+type GetDataArgs = [
   emoji: BaseEmoji | string,
   skin: EmojiSkin | null,
   set?: 'apple' | 'google' | 'twitter' | 'facebook' | 'emojione' | 'messenger',
-) {
+];
+
+function getSanitizedData(...args: GetDataArgs) {
+  return sanitize(getData(...args));
+}
+
+function getData(...[emoji, skin, set]: GetDataArgs) {
   /* eslint-disable @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return */
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   let emojiData: any = {};
@@ -199,11 +191,7 @@ function getData(
     emojiData.unified = emojiData.variations.shift();
   }
 
-  return emojiData as BaseEmoji &
-    CustomEmoji &
-    Pick<Emoji, 'skin_variations'> &
-    Pick<PickerProps, 'custom'> &
-    SkinTone;
+  return emojiData as RawEmoji;
 
   /* eslint-enable @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return */
 }
