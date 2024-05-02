@@ -29,10 +29,11 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
   def create
     authorize :domain_block, :create?
 
+    @domain_block = DomainBlock.new(resource_params)
     existing_domain_block = resource_params[:domain].present? ? DomainBlock.rule_for(resource_params[:domain]) : nil
-    return render json: existing_domain_block, serializer: REST::Admin::ExistingDomainBlockErrorSerializer, status: 422 if existing_domain_block.present?
+    return render json: existing_domain_block, serializer: REST::Admin::ExistingDomainBlockErrorSerializer, status: 422 if conflicts_with_existing_block?(@domain_block, existing_domain_block)
 
-    @domain_block = DomainBlock.create!(resource_params)
+    @domain_block.save!
     DomainBlockWorker.perform_async(@domain_block.id)
     log_action :create, @domain_block
     render json: @domain_block, serializer: REST::Admin::DomainBlockSerializer
@@ -54,6 +55,10 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
   end
 
   private
+
+  def conflicts_with_existing_block?(domain_block, existing_domain_block)
+    existing_domain_block.present? && (existing_domain_block.domain == TagManager.instance.normalize_domain(domain_block.domain) || !domain_block.stricter_than?(existing_domain_block))
+  end
 
   def set_domain_blocks
     @domain_blocks = filtered_domain_blocks.order(id: :desc).to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
