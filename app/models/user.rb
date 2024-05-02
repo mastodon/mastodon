@@ -44,14 +44,17 @@
 
 class User < ApplicationRecord
   self.ignored_columns += %w(
+    admin
+    current_sign_in_ip
+    encrypted_otp_secret
+    encrypted_otp_secret_iv
+    encrypted_otp_secret_salt
+    filtered_languages
+    last_sign_in_ip
+    moderator
     remember_created_at
     remember_token
-    current_sign_in_ip
-    last_sign_in_ip
     skip_sign_in_token
-    filtered_languages
-    admin
-    moderator
   )
 
   include LanguagesHelper
@@ -72,8 +75,6 @@ class User < ApplicationRecord
 
   devise :two_factor_authenticatable,
          otp_secret_encryption_key: Rails.configuration.x.otp_secret
-
-  include LegacyOtpSecret # Must be after the above `devise` line in order to override the legacy method
 
   devise :two_factor_backupable,
          otp_number_of_backup_codes: 10
