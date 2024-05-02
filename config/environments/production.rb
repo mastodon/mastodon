@@ -157,6 +157,7 @@ Rails.application.configure do
     'Referrer-Policy' => 'same-origin',
   }
 
+  # TODO: Remove once devise-two-factor data migration complete
   config.x.otp_secret = ENV.fetch('OTP_SECRET')
 
   # Enable DNS rebinding protection and other `Host` header attacks.
