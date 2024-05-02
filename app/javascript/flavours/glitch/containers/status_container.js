@@ -3,7 +3,6 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { initBlockModal } from 'flavours/glitch/actions/blocks';
-import { initBoostModal } from 'flavours/glitch/actions/boosts';
 import {
   replyCompose,
   mentionCompose,
@@ -126,11 +125,11 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     dispatch((_, getState) => {
       let state = getState();
       if (state.getIn(['local_settings', 'confirm_boost_missing_media_description']) && status.get('media_attachments').some(item => !item.get('description')) && !status.get('reblogged')) {
-        dispatch(initBoostModal({ status, onReblog: this.onModalReblog, missingMediaDescription: true }));
+        dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.onModalReblog, missingMediaDescription: true } }));
       } else if (e.shiftKey || !boostModal) {
         this.onModalReblog(status);
       } else {
-        dispatch(initBoostModal({ status, onReblog: this.onModalReblog }));
+        dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.onModalReblog } }));
       }
     });
   },
@@ -282,7 +281,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   deployPictureInPicture (status, type, mediaProps) {
     dispatch((_, getState) => {
       if (getState().getIn(['local_settings', 'media', 'pop_in_player'])) {
-        dispatch(deployPictureInPicture(status.get('id'), status.getIn(['account', 'id']), type, mediaProps));
+        dispatch(deployPictureInPicture({statusId: status.get('id'), accountId: status.getIn(['account', 'id']), playerType: type, props: mediaProps}));
       }
     });
   },

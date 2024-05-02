@@ -597,6 +597,9 @@ sv:
       actions_description_html: Välj vilken åtgärd som skall vidtas för att lösa denna rapport. Om du vidtar en bestraffningsåtgärd mot det rapporterade kontot kommer en e-postnotis att skickas till dem, förutom om du valt kategorin <strong>Skräppost</strong>.
       actions_description_remote_html: Bestäm vilka åtgärder som ska vidtas för att lösa denna rapport. Detta kommer bara att påverka hur <strong>din</strong> server kommunicerar med detta fjärrkonto och hanterar dess innehåll.
       add_to_report: Lägg till mer i rapporten
+      already_suspended_badges:
+        local: Redan avstängd på denna server
+        remote: Redan avstängd på deras server
       are_you_sure: Är du säker?
       assign_to_self: Tilldela till mig
       assigned: Tilldelad moderator
@@ -1656,12 +1659,21 @@ sv:
     preferences: Inställningar
     profile: Profil
     relationships: Följer och följare
+    severed_relationships: Avbrutna relationer
     statuses_cleanup: Automatisk radering av inlägg
     strikes: Modereringsprickar
     two_factor_authentication: Tvåfaktorsautentisering
     webauthn_authentication: Säkerhetsnycklar
   severed_relationships:
+    download: Hämta (%{count})
+    event_type:
+      account_suspension: Kontoavstängning (%{target_name})
+      domain_block: Serveravstängning (%{target_name})
+      user_domain_block: Du blockerade %{target_name}
+    lost_followers: Förlorade följare
     lost_follows: Förlorade följare
+    preamble: Du kan förlora följer och följare när du blockerar en domän eller när din moderator väljer att stänga av en fjärrserver. När det händer kommer du kunna hämta listor över avbrutna relationer som kan inspekteras och eventuellt importeras på en annan server.
+    purged: Information om denna server har rensats av din servers administratörer.
     type: Händelse
   statuses:
     attached:
@@ -1756,6 +1768,7 @@ sv:
     contrast: Hög kontrast
     default: Mastodon
     mastodon-light: Mastodon (ljust)
+    system: Automatisk (använd systemtema)
   time:
     formats:
       default: "%d %b %Y, %H:%M"

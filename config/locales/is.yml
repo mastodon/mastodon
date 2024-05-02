@@ -1659,15 +1659,25 @@ is:
     import: Flytja inn
     import_and_export: Inn- og útflutningur
     migrate: Yfirfærsla notandaaðgangs
+    notifications: Tilkynningar í tölvupósti
     preferences: Kjörstillingar
     profile: Notandasnið
     relationships: Fylgist með og fylgjendur
+    severed_relationships: Rofin tengsl
     statuses_cleanup: Sjálfvirk eyðing færslna
     strikes: Umsýsla refsinga
     two_factor_authentication: Tveggja-þátta auðkenning
     webauthn_authentication: Öryggislyklar
   severed_relationships:
     download: Sækja (%{count})
+    event_type:
+      account_suspension: Frysting notandaaðgangsins (%{target_name})
+      domain_block: Frysting netþjónsins (%{target_name})
+      user_domain_block: Þú útilokaðir %{target_name}
+    lost_followers: Tapaðir fylgjendur
+    lost_follows: Tapað sem þú fylgist með
+    preamble: Þú gætir misst einhverja sem þú fylgist með og eins fylgjendur þegar þú útilokar lén eða þegar umsjónarmenn netþjónsins þíns ákveða að frysta fjartengdan netþjón. Þegar slíkt gerist, geturðu sótt lista yfir slík skemmd tengsl, til að yfirfara og mögulega flytja inn á öðrum netþjóni.
+    purged: Upplýsingum um þennan netþjón hefur verið eytt af stjórnendum netþjónsins þíns.
     type: Atburður
   statuses:
     attached:
@@ -1762,6 +1772,7 @@ is:
     contrast: Mastodon (mikil birtuskil)
     default: Mastodon (dökkt)
     mastodon-light: Mastodon (ljóst)
+    system: Sjálfvirkt (nota þema kerfis)
   time:
     formats:
       default: "%d. %b, %Y, %H:%M"

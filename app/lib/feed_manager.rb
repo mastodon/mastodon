@@ -18,7 +18,7 @@ class FeedManager
   # @yield [Account]
   # @return [void]
   def with_active_accounts(&block)
-    Account.joins(:user).where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago).find_each(&block)
+    Account.joins(:user).merge(User.signed_in_recently).find_each(&block)
   end
 
   # Redis key of a feed
@@ -134,7 +134,7 @@ class FeedManager
   def merge_into_home(from_account, into_account)
     timeline_key = key(:home, into_account.id)
     aggregate    = into_account.user&.aggregates_reblogs?
-    query        = from_account.statuses.where(visibility: [:public, :unlisted, :private]).includes(:preloadable_poll, :media_attachments, reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
+    query        = from_account.statuses.list_eligible_visibility.includes(:preloadable_poll, :media_attachments, reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
 
     if redis.zcard(timeline_key) >= FeedManager::MAX_ITEMS / 4
       oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
@@ -160,7 +160,7 @@ class FeedManager
   def merge_into_list(from_account, list)
     timeline_key = key(:list, list.id)
     aggregate    = list.account.user&.aggregates_reblogs?
-    query        = from_account.statuses.where(visibility: [:public, :unlisted, :private]).includes(:preloadable_poll, :media_attachments, reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
+    query        = from_account.statuses.list_eligible_visibility.includes(:preloadable_poll, :media_attachments, reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
 
     if redis.zcard(timeline_key) >= FeedManager::MAX_ITEMS / 4
       oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
@@ -299,7 +299,7 @@ class FeedManager
         next if last_status_score < oldest_home_score
       end
 
-      statuses = target_account.statuses.where(visibility: [:public, :unlisted, :private]).includes(:preloadable_poll, :media_attachments, :account, reblog: :account).limit(limit)
+      statuses = target_account.statuses.list_eligible_visibility.includes(:preloadable_poll, :media_attachments, :account, reblog: :account).limit(limit)
       crutches = build_crutches(account.id, statuses)
 
       statuses.each do |status|
@@ -491,10 +491,10 @@ class FeedManager
   # @param [List] list
   # @return [Boolean]
   def filter_from_list?(status, list)
-    if status.reply? && status.in_reply_to_account_id != status.account_id
-      should_filter = status.in_reply_to_account_id != list.account_id
-      should_filter &&= !list.show_followed?
-      should_filter &&= !(list.show_list? && ListAccount.exists?(list_id: list.id, account_id: status.in_reply_to_account_id))
+    if status.reply? && status.in_reply_to_account_id != status.account_id                                                       # Status is a reply to account other than status account
+      should_filter = status.in_reply_to_account_id != list.account_id                                                           # Status replies to account id other than list account
+      should_filter &&= !list.show_followed?                                                                                     # List show_followed? is false
+      should_filter &&= !(list.show_list? && ListAccount.exists?(list_id: list.id, account_id: status.in_reply_to_account_id))   # If show_list? true, check for a ListAccount with list and reply to account
 
       return !!should_filter
     end
@@ -509,7 +509,11 @@ class FeedManager
   # @param [Hash] crutches
   # @return [Boolean]
   def filter_from_tags?(status, receiver_id, crutches)
-    receiver_id == status.account_id || ((crutches[:active_mentions][status.id] || []) + [status.account_id]).any? { |target_account_id| crutches[:blocking][target_account_id] || crutches[:muting][target_account_id] } || crutches[:blocked_by][status.account_id] || crutches[:domain_blocking][status.account.domain]
+    receiver_id == status.account_id ||                                                                                          # Receiver is status account?
+      ((crutches[:active_mentions][status.id] || []) + [status.account_id])                                                      # For mentioned accounts or status account:
+        .any? { |target_account_id| crutches[:blocking][target_account_id] || crutches[:muting][target_account_id] } ||          #   - Target account is muted or blocked?
+      crutches[:blocked_by][status.account_id] ||                                                                                # Blocked by status account?
+      crutches[:domain_blocking][status.account.domain]                                                                          # Blocking domain of status account?
   end
 
   # Adds a status to an account's feed, returning true if a status was

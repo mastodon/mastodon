@@ -29,9 +29,14 @@ const setCSRFHeader = () => {
 
 void ready(setCSRFHeader);
 
+export const authorizationTokenFromState = (getState?: GetState) => {
+  return (
+    getState && (getState().meta.get('access_token', '') as string | false)
+  );
+};
+
 const authorizationHeaderFromState = (getState?: GetState) => {
-  const accessToken =
-    getState && (getState().meta.get('access_token', '') as string);
+  const accessToken = authorizationTokenFromState(getState);
 
   if (!accessToken) {
     return {};

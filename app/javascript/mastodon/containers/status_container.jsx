@@ -8,7 +8,6 @@ import {
 } from '../actions/accounts';
 import { showAlertForError } from '../actions/alerts';
 import { initBlockModal } from '../actions/blocks';
-import { initBoostModal } from '../actions/boosts';
 import {
   replyCompose,
   mentionCompose,
@@ -107,7 +106,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     if ((e && e.shiftKey) || !boostModal) {
       this.onModalReblog(status);
     } else {
-      dispatch(initBoostModal({ status, onReblog: this.onModalReblog }));
+      dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.onModalReblog } }));
     }
   },
 
@@ -262,7 +261,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   },
 
   deployPictureInPicture (status, type, mediaProps) {
-    dispatch(deployPictureInPicture(status.get('id'), status.getIn(['account', 'id']), type, mediaProps));
+    dispatch(deployPictureInPicture({statusId: status.get('id'), accountId: status.getIn(['account', 'id']), playerType: type, props: mediaProps}));
   },
 
   onInteractionModal (type, status) {

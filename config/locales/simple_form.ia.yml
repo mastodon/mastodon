@@ -1,20 +1,45 @@
 ---
 ia:
   simple_form:
+    hints:
+      account:
+        note: 'Tu pote @mentionar altere personas o #hashtags.'
+      defaults:
+        setting_display_media_hide_all: Sempre celar le medios
+        setting_display_media_show_all: Sempre monstrar le medios
+      webhook:
+        events: Selige le eventos a inviar
+        url: Ubi le eventos essera inviate
     labels:
       account:
+        discoverable: Evidentiar le profilo e messages in le algorithmos de discoperta
         fields:
           name: Etiquetta
           value: Contento
+        indexable: Includer messages public in le resultatos de recerca
+        show_collections: Monstrar sequites e sequitores in le profilo
+        unlocked: Acceptar automaticamente nove sequitores
+      account_warning_preset:
+        title: Titulo
       admin_account_action:
         type: Action
+        types:
+          none: Inviar un advertimento
+      announcement:
+        text: Annuncio
       defaults:
+        autofollow: Invitar a sequer tu conto
         avatar: Pictura de profilo
         confirm_new_password: Confirmar nove contrasigno
         confirm_password: Confirmar contrasigno
         current_password: Contrasigno actual
+        display_name: Nomine a monstrar
+        email: Adresse de e-mail
+        locale: Lingua de interfacie
         new_password: Nove contrasigno
         password: Contrasigno
+        setting_advanced_layout: Activar le interfacie web avantiate
+        setting_default_language: Lingua de publication
         setting_display_media_default: Predefinite
         setting_display_media_hide_all: Celar toto
         setting_display_media_show_all: Monstrar toto
@@ -25,23 +50,50 @@ ia:
         title: Titulo
         username: Nomine de usator
         username_or_email: Nomine de usator o e-mail
+      featured_tag:
+        name: Hashtag
+      filters:
+        actions:
+          hide: Celar completemente
+          warn: Celar con un advertimento
       form_admin_settings:
         bootstrap_timeline_accounts: Recommenda sempre iste contos a nove usatores
         custom_css: CSS personalisate
         profile_directory: Activar directorio de profilos
         site_contact_email: Adresse de e-mail de contacto
         site_contact_username: Nomine de usator de contacto
+        site_short_description: Description de servitor
         site_terms: Politica de confidentialitate
         site_title: Nomine de servitor
+        status_page_url: URL del pagina de stato
         theme: Thema predefinite
         trends: Activar tendentias
+      ip_block:
+        comment: Commento
+        severity: Regula
       notification_emails:
         software_updates:
+          all: Notificar sur tote le actualisationes
+          critical: Notificar solmente sur actualisationes critic
           label: Un nove version de Mastodon es disponibile
+          none: Nunquam notificar sur actualisationes (non recommendate)
+      rule:
+        hint: Information additional
+        text: Regula
+      settings:
+        indexable: Includer pagina de profilo in le motores de recerca
+      tag:
+        listable: Permitter a iste hashtag apparer in le recercas e suggestiones
+        name: Hashtag
+        usable: Permitter al messages usar iste hashtag
       user:
         time_zone: Fuso horari
       user_role:
         name: Nomine
         permissions_as_keys: Permissiones
         position: Prioritate
+    not_recommended: Non recommendate
+    recommended: Recommendate
+    required:
+      text: requirite
     'yes': Si

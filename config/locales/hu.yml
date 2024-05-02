@@ -25,27 +25,27 @@ hu:
   admin:
     account_actions:
       action: Művelet végrehajtása
-      title: "%{acct} moderálása"
+      title: 'Moderálási művelet végrehajtása ezen: %{acct}'
     account_moderation_notes:
-      create: Új moderációs bejegyzés
-      created_msg: Moderációs bejegyzés létrehozva!
-      destroyed_msg: Moderációs bejegyzés törölve!
+      create: Megjegyzés hagyása
+      created_msg: A moderációs megjegyzés sikeresen létrehozva!
+      destroyed_msg: A moderációs megjegyzés sikeresen törölve!
     accounts:
-      add_email_domain_block: Email domain tiltólistára vétele
+      add_email_domain_block: E-mail-domain tiltólistára vétele
       approve: Jóváhagyás
-      approved_msg: A %{username} fiók regisztrációs kérelmét sikeresen elfogadtuk
+      approved_msg: "%{username} regisztrációja sikeresen elfogadva"
       are_you_sure: Biztos vagy benne?
       avatar: Profilkép
       by_domain: Domain
       change_email:
-        changed_msg: Az emailt sikeresen megváltoztattuk!
-        current_email: Jelenlegi e-mail
-        label: E-mail megváltoztatása
-        new_email: Új e-mail
-        submit: E-mail megváltoztatása
-        title: "%{username} felhasználó e-mail változás"
+        changed_msg: Az e-mail-cím sikeresen megváltozott!
+        current_email: Jelenlegi e-mail-cím
+        label: E-mail-cím megváltoztatása
+        new_email: Új e-mail-cím
+        submit: E-mail-cím megváltoztatása
+        title: "%{username} e-mail-címének megváltoztatása"
       change_role:
-        changed_msg: A szerepet sikeresen megváltoztattuk!
+        changed_msg: A szerep sikeresen megváltoztatva!
         label: Szerep megváltoztatása
         no_role: Nincs szerep
         title: "%{username} szerepének megváltoztatása"
@@ -57,27 +57,27 @@ hu:
       deleted: Törölve
       demote: Lefokozás
       destroyed_msg: A %{username} fiók adatai bekerültek a végleges törlése váró sorba
-      disable: Kikapcsolás
-      disable_sign_in_token_auth: Tokenes e-mail hitelesítés letiltása
+      disable: Befagyasztás
+      disable_sign_in_token_auth: Tokenes e-mail-hitelesítés letiltása
       disable_two_factor_authentication: Kétlépcsős hitelesítés kikapcsolása
-      disabled: Kikapcsolva
-      display_name: Megjelenített név
+      disabled: Befagyasztva
+      display_name: Megjelenítendő név
       domain: Domain
       edit: Szerkesztés
-      email: E-mail
+      email: E-mail-cím
       email_status: E-mail állapot
-      enable: Bekapcsolás
-      enable_sign_in_token_auth: Tokenes e-mail hitelesítés engedélyezése
+      enable: Kiolvasztás
+      enable_sign_in_token_auth: Tokenes e-mail-hitelesítés engedélyezése
       enabled: Bekapcsolva
-      enabled_msg: A %{username} fiók fagyasztását sikeresen visszavontuk
+      enabled_msg: "%{username} fiókja befagyasztása sikeresen visszavonva"
       followers: Követő
       follows: Követett
       header: Fejléc
-      inbox_url: Beérkezett üzenetek URL-je
+      inbox_url: Beérkezett üzenetek webcíme
       invite_request_text: Csatlakozás oka
       invited_by: Meghívta
-      ip: IP
-      joined: Csatlakozott
+      ip: IP-cím
+      joined: Csatlakozva
       location:
         all: Összes
         local: Helyi
@@ -1224,7 +1224,7 @@ hu:
     archive_takeout:
       date: Dátum
       download: Archívum letöltése
-      hint_html: Itt kérhető egy archív az összes <strong>feltöltött bejegyzésedről és médiádról</strong>. Az exportált adatok ActivityPub formátumban lesznek, melyet bármilyen szabványos program tud olvasni. 7 naponként kérhetsz ilyen archívot.
+      hint_html: Itt kérhetsz egy archívumot az összes <strong>bejegyzésedről és médiáfájlodról</strong>. Az exportált adatok ActivityPub formátumban lesznek, mely bármilyen szabványos programmal olvasható. 7 naponta kérhetsz ilyen archívumot.
       in_progress: Archívum összeállítása…
       request: Archívum kérése
       size: Méret
@@ -1768,6 +1768,7 @@ hu:
     contrast: Mastodon (nagy kontrasztú)
     default: Mastodon (sötét)
     mastodon-light: Mastodon (világos)
+    system: Automatikus (rendszertéma használata)
   time:
     formats:
       default: "%Y. %b %d., %H:%M"

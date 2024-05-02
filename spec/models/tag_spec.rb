@@ -142,6 +142,25 @@ RSpec.describe Tag do
     end
   end
 
+  describe '.not_featured_by' do
+    let!(:account) { Fabricate(:account) }
+    let!(:fun) { Fabricate(:tag, name: 'fun') }
+    let!(:games) { Fabricate(:tag, name: 'games') }
+
+    before do
+      Fabricate :featured_tag, account: account, name: 'games'
+      Fabricate :featured_tag, name: 'fun'
+    end
+
+    it 'returns tags not featured by the account' do
+      results = described_class.not_featured_by(account)
+
+      expect(results)
+        .to include(fun)
+        .and not_include(games)
+    end
+  end
+
   describe '.matches_name' do
     it 'returns tags for multibyte case-insensitive names' do
       upcase_string   = 'abcABCａｂｃＡＢＣやゆよ'

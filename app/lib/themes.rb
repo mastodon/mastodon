@@ -6,6 +6,11 @@ require 'yaml'
 class Themes
   include Singleton
 
+  THEME_COLORS = {
+    dark: '#191b22',
+    light: '#f3f5f7',
+  }.freeze
+
   def initialize
     @flavours = {}
 
@@ -63,7 +68,8 @@ class Themes
   end
 
   def skins_for(name)
-    @flavours[name]['skins']
+    skins = @flavours[name]['skins']
+    skins.include?('default') && skins.include?('mastodon-light') ? ['system'] + skins : skins
   end
 
   def flavours_and_skins

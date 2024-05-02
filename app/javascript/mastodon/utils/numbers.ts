@@ -70,10 +70,10 @@ export function roundTo10(num: number): number {
   return Math.round(num * 0.1) / 0.1;
 }
 
-export function toCappedNumber(num: string): string {
-  if (parseInt(num) > 99) {
-    return '99+';
+export function toCappedNumber(num: number, max = 99): string {
+  if (num > max) {
+    return `${max}+`;
   } else {
-    return num;
+    return num.toString();
   }
 }

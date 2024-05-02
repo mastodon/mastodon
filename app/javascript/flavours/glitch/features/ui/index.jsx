@@ -16,7 +16,7 @@ import { changeLayout } from 'flavours/glitch/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/glitch/actions/markers';
 import { INTRODUCTION_VERSION } from 'flavours/glitch/actions/onboarding';
 import { Permalink } from 'flavours/glitch/components/permalink';
-import PictureInPicture from 'flavours/glitch/features/picture_in_picture';
+import { PictureInPicture } from 'flavours/glitch/features/picture_in_picture';
 import { layoutFromWindow } from 'flavours/glitch/is_mobile';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
@@ -96,7 +96,7 @@ const mapStateToProps = state => ({
 const keyMap = {
   help: '?',
   new: 'n',
-  search: 's',
+  search: ['s', '/'],
   forceNew: 'option+n',
   toggleComposeSpoilers: 'option+x',
   focusColumn: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],

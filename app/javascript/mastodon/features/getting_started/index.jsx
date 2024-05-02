@@ -82,7 +82,7 @@ class GettingStarted extends ImmutablePureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
-    myAccount: ImmutablePropTypes.map,
+    myAccount: ImmutablePropTypes.record,
     multiColumn: PropTypes.bool,
     fetchFollowRequests: PropTypes.func.isRequired,
     unreadFollowRequests: PropTypes.number,

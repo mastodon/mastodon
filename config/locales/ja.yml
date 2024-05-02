@@ -1629,13 +1629,26 @@ ja:
     import: データのインポート
     import_and_export: インポート・エクスポート
     migrate: アカウントの引っ越し
+    notifications: メール通知
     preferences: ユーザー設定
     profile: プロフィール
     relationships: フォロー・フォロワー
+    severed_relationships: 途切れたフォロー関係
     statuses_cleanup: 投稿の自動削除
     strikes: モデレーションストライク
     two_factor_authentication: 二要素認証
     webauthn_authentication: セキュリティキー
+  severed_relationships:
+    download: 取り出す (%{count}件)
+    event_type:
+      account_suspension: アカウントの停止 (%{target_name})
+      domain_block: 管理者によるサーバーの停止 (%{target_name})
+      user_domain_block: ユーザーによるドメインブロック (%{target_name})
+    lost_followers: 解除されたフォロワー
+    lost_follows: 解除されたフォロー
+    preamble: ドメインをブロックしたりモデレーターによってリモートのサーバーが停止された場合、巻き込みでフォロー・フォロワー関係が失われることがあります。このようにして解除されたフォロー・フォロワーはリスト形式で取り出して内容を確認したり、対応している場合は他のサーバーでインポートできます。
+    purged: 管理者がサーバーの情報を削除したため表示できません。
+    type: 理由
   statuses:
     attached:
       audio:
@@ -1723,6 +1736,7 @@ ja:
     contrast: Mastodon (ハイコントラスト)
     default: Mastodon (ダーク)
     mastodon-light: Mastodon (ライト)
+    system: 自動 (システムのテーマを使用)
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
@@ -1835,6 +1849,8 @@ ja:
       follows_subtitle: 人気アカウントをフォロー
       follows_title: フォローを増やしてみませんか？
       follows_view_more: フォローするユーザーを探す
+      hashtags_recent_count:
+        other: 過去 2 日間で %{people} 人が共有
       hashtags_subtitle: 過去2日間のトレンドを見る
       hashtags_title: トレンドのハッシュタグ
       hashtags_view_more: トレンドのハッシュタグをもっと見る

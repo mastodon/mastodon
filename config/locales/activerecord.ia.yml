@@ -2,8 +2,58 @@
 ia:
   activerecord:
     attributes:
+      poll:
+        expires_at: Data limite
+        options: Optiones
       user:
+        agreement: Accordo de servicio
         email: Adresse de e-mail
+        locale: Region
         password: Contrasigno
       user/account:
         username: Nomine de usator
+      user/invite_request:
+        text: Motivo
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: debe continer solmente litteras, numeros e tractos de sublineamento
+              reserved: es reservate
+        admin/webhook:
+          attributes:
+            url:
+              invalid: non es un URL valide
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: non es un URL valide
+        import:
+          attributes:
+            data:
+              malformed: es mal formate
+        status:
+          attributes:
+            reblog:
+              taken: del message jam existe
+        user:
+          attributes:
+            email:
+              blocked: usa un fornitor de e-mail prohibite
+              unreachable: non pare exister
+            role_id:
+              elevated: non pote esser superior a tu rolo actual
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: includer permissiones non secur pro le rolo de base
+              elevated: non pote includer permissiones que tu rolo actual non possede
+              own_role: non pote esser cambiate con tu rolo actual
+            position:
+              elevated: non pote esser superior a tu rolo actual
+              own_role: non pote esser cambiate con tu rolo actual
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: non pote includer eventos pro le quales tu non ha le derectos

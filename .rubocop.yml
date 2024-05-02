@@ -9,12 +9,13 @@ inherit_mode:
 require:
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-rspec_rails
   - rubocop-performance
   - rubocop-capybara
   - ./lib/linter/rubocop_middle_dot
 
 AllCops:
-  TargetRubyVersion: 3.0 # Set to minimum supported version of CI
+  TargetRubyVersion: 3.1 # Set to minimum supported version of CI
   DisplayCopNames: true
   DisplayStyleGuide: true
   ExtraDetails: true
@@ -39,13 +40,7 @@ Layout/FirstHashElementIndentation:
 # Reason: Currently disabled in .rubocop_todo.yml
 # https://docs.rubocop.org/rubocop/cops_layout.html#layoutlinelength
 Layout/LineLength:
-  Max: 320 # Default of 120 causes a duplicate entry in generated todo file
-
-# Reason:
-# https://docs.rubocop.org/rubocop/cops_lint.html#lintuselessaccessmodifier
-Lint/UselessAccessModifier:
-  ContextCreatingMethods:
-    - class_methods
+  Max: 300 # Default of 120 causes a duplicate entry in generated todo file
 
 ## Disable most Metrics/*Length cops
 # Reason: those are often triggered and force significant refactors when this happend
@@ -85,6 +80,11 @@ Metrics/CyclomaticComplexity:
 # https://docs.rubocop.org/rubocop/cops_metrics.html#metricsparameterlists
 Metrics/ParameterLists:
   CountKeywordArgs: false
+
+# Reason: Prefer seeing a variable name
+# https://docs.rubocop.org/rubocop/cops_naming.html#namingblockforwarding
+Naming/BlockForwarding:
+  EnforcedStyle: explicit
 
 # Reason: Prevailing style is argument file paths
 # https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsfilepath
@@ -148,11 +148,6 @@ RSpec/NamedSubject:
 RSpec/NotToNot:
   EnforcedStyle: to_not
 
-# Reason: Prevailing style uses numeric status codes, matches Rails/HttpStatus
-# https://docs.rubocop.org/rubocop-rspec/cops_rspec_rails.html#rspecrailshttpstatus
-RSpec/Rails/HttpStatus:
-  EnforcedStyle: numeric
-
 # Reason: Match overrides from Rspec/FilePath rule above
 # https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecspecfilepathformat
 RSpec/SpecFilePathFormat:
@@ -162,6 +157,11 @@ RSpec/SpecFilePathFormat:
     FetchOEmbedService: fetch_oembed_service
     OEmbedController: oembed_controller
     OStatus: ostatus
+
+# Reason: Prevailing style uses numeric status codes, matches Rails/HttpStatus
+# https://docs.rubocop.org/rubocop-rspec/cops_rspec_rails.html#rspecrailshttpstatus
+RSpecRails/HttpStatus:
+  EnforcedStyle: numeric
 
 # Reason:
 # https://docs.rubocop.org/rubocop/cops_style.html#styleclassandmodulechildren
@@ -186,6 +186,7 @@ Style/FormatStringToken:
 # https://docs.rubocop.org/rubocop/cops_style.html#stylehashsyntax
 Style/HashSyntax:
   EnforcedStyle: ruby19_no_mixed_keys
+  EnforcedShorthandSyntax: either
 
 # Reason:
 # https://docs.rubocop.org/rubocop/cops_style.html#stylenumericliterals

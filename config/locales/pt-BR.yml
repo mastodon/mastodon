@@ -597,6 +597,9 @@ pt-BR:
       actions_description_html: Decida que medidas tomar para resolver esta denúncia. Se você decidir punir a conta denunciada, ela receberá uma notificação por e-mail, exceto quando for selecionada a categoria <strong>spam</strong> for selecionada.
       actions_description_remote_html: Decida quais medidas tomará para resolver esta denúncia. Isso só afetará como <strong>seu servidor</strong> se comunica com esta conta remota e manipula seu conteúdo.
       add_to_report: Adicionar mais à denúncia
+      already_suspended_badges:
+        local: Já suspenso neste servidor
+        remote: Já suspenso em seu servidor
       are_you_sure: Você tem certeza?
       assign_to_self: Atribuir para si
       assigned: Moderador responsável
@@ -1652,13 +1655,23 @@ pt-BR:
     import: Importar
     import_and_export: Importar e exportar
     migrate: Migração de conta
+    notifications: Notificações por e-mail
     preferences: Preferências
     profile: Perfil
     relationships: Seguindo e seguidores
+    severed_relationships: Relacionamentos rompidos
     statuses_cleanup: Exclusão automatizada de publicações
     strikes: Avisos de moderação
     two_factor_authentication: Autenticação de dois fatores
     webauthn_authentication: Chaves de segurança
+  severed_relationships:
+    download: Download  %{count}
+    event_type:
+      account_suspension: Suspensão da conta (%{target_name})
+      domain_block: Suspensão do servidor (%{target_name})
+      user_domain_block: Você bloqueou %{target_name}
+    lost_followers: Seguidores perdidos
+    type: Evento
   statuses:
     attached:
       audio:
@@ -1864,6 +1877,9 @@ pt-BR:
       follows_subtitle: Siga contas conhecidas
       follows_title: Quem seguir
       follows_view_more: Veja mais pessoas para seguir
+      hashtags_recent_count:
+        one: "%{people} Pessoas nos últimos 2 dias"
+        other: "%{people} pessoas nos últimos 2 dias"
       hashtags_subtitle: Explorar o que está em alta nos últimos 2 dias
       hashtags_title: Hashtags em alta
       hashtags_view_more: Ver mais hashtags em alta

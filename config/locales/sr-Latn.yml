@@ -609,6 +609,9 @@ sr-Latn:
       actions_description_html: Odlučite koju radnju da sprovedete radi rešavanja ove prijave. Ukoliko sprovedete kaznenu radnju protiv prijavljenog naloga, vlasnik naloga će biti obavešten putem i-mejla, osim ukoliko oznaka <strong>„Nepoželjne poruke”</strong> nije odabrana.
       actions_description_remote_html: Odlučite koju radnju da preduzmete radi rešavanja ove prijave. Ovo će uticati samo na to kako <strong>Vaš</strong> server komunicira sa ovim udaljenim nalogom i obrađuje njegov sadržaj.
       add_to_report: Dodaj još u prijavu
+      already_suspended_badges:
+        local: Već suspendovan na ovom serveru
+        remote: Već suspendovan na njihovom serveru
       are_you_sure: Da li ste sigurni?
       assign_to_self: Dodeli meni
       assigned: Dodeljeni moderator
@@ -1396,7 +1399,7 @@ sr-Latn:
       '43200': 12 sati
       '604800': 1 nedelja
       '86400': 1 dan
-    expires_in_prompt: Nikad
+    expires_in_prompt: Nikada
     generate: Generiši
     invalid: Ova pozivnica nije važeća
     invited_by: 'Pozvao Vas je:'
@@ -1678,13 +1681,26 @@ sr-Latn:
     import: Uvoz
     import_and_export: Uvoz i izvoz
     migrate: Prebacivanje naloga
+    notifications: Obaveštenja e-poštom
     preferences: Podešavanja
     profile: Javni profil
     relationships: Praćenja i pratioci
+    severed_relationships: Prekinute veze
     statuses_cleanup: Automatsko brisanje objava
     strikes: Moderacijski prestupi
     two_factor_authentication: Dvofaktorska identifikacija
     webauthn_authentication: Sigurnosni ključevi
+  severed_relationships:
+    download: Preuzmi (%{count})
+    event_type:
+      account_suspension: Suspenzija naloga (%{target_name})
+      domain_block: Suspenzija servera (%{target_name})
+      user_domain_block: Blokirali ste %{target_name}
+    lost_followers: Izgubljeni pratioci
+    lost_follows: Izgubljena praćenja
+    preamble: Možete izgubiti praćenja i pratioce kada blokirate domen ili kada vaši moderatori odluče da suspenduju udaljeni server. Kada se to desi, moći ćete da preuzmete liste prekinutih veza, koje treba pregledati i eventualno uvesti na drugi server.
+    purged: Administratori vašeg servera su obrisali informacije o ovom serveru.
+    type: Događaj
   statuses:
     attached:
       audio:
@@ -1784,6 +1800,7 @@ sr-Latn:
     contrast: Veliki kontrast
     default: Mastodon (tamna)
     mastodon-light: Mastodon (svetla)
+    system: Automatski (korišćenje sistemske teme)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -1896,6 +1913,10 @@ sr-Latn:
       follows_subtitle: Pratite dobro poznate naloge
       follows_title: Koga pratiti
       follows_view_more: Pogledajte još ljudi za praćenje
+      hashtags_recent_count:
+        few: "%{people} osobe u poslednja 2 dana"
+        one: "%{people} osoba u poslednja 2 dana"
+        other: "%{people} osoba u poslednja 2 dana"
       hashtags_subtitle: Istražite šta je u trendu u poslednja 2 dana
       hashtags_title: Heš oznake u trendu
       hashtags_view_more: Pogledajte još heš oznaka u trendu

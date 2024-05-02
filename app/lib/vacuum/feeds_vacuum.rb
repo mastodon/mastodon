@@ -28,7 +28,7 @@ class Vacuum::FeedsVacuum
   end
 
   def inactive_users
-    User.confirmed.inactive
+    User.confirmed.not_signed_in_recently
   end
 
   def inactive_users_lists

@@ -1,8 +1,21 @@
 ---
 ia:
   devise:
+    confirmations:
+      confirmed: Tu conto de e-mail ha essite confirmate con successo.
+      send_instructions: Tu recipera un e-mail con instructiones pro confirmar tu adresse de e-mail in poc minutas. Per favor verifica tu dossier de spam si tu non lo recipe.
+      send_paranoid_instructions: Si tu adresse de e-mail existe in nostre base de datos, tu recipera un e-mail con instructiones pro confirmar tu adresse de e-mail in poc minutas. Per favor verifica tu dossier de spam si tu non lo recipe.
     failure:
+      already_authenticated: Tu jam initiava le session.
+      inactive: Tu conto ancora non es activate.
+      invalid: "%{authentication_keys} o contrasigno non valide."
+      last_attempt: Tu ha solmente un altere tentativa ante que tu conto es serrate.
       locked: Tu conto es blocate.
+      not_found_in_database: "%{authentication_keys} o contrasigno non valide."
+      omniauth_user_creation_failure: Error creante un conto pro iste identitate.
+      pending: Tu conto es ancora sub revision.
+      timeout: Tu session ha expirate. Per favor reaperi session pro continuar.
+      unauthenticated: Es necessari aperir session o crear un conto ante de continuar.
     mailer:
       confirmation_instructions:
         action: Verificar adresse de e-mail

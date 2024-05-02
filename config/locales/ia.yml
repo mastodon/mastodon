@@ -1,51 +1,125 @@
 ---
 ia:
   about:
+    about_mastodon_html: 'Le rete social del futuro: nulle publicitate, nulle surveliantia corporative, conception ethic, e decentralisation! Mantene le controlo de tu datos con Mastodon!'
     contact_missing: Non definite
+    contact_unavailable: N/D
+    hosted_on: Mastodon albergate sur %{domain}
+    title: A proposito
+  accounts:
+    follow: Sequer
+    followers:
+      one: Sequitor
+      other: Sequitores
+    following: Sequente
+    instance_actor_flash: Iste conto es un agente virtual usate pro representar le servitor mesme e non alcun usator individual. Illo es usate pro le federation e non debe esser suspendite.
+    last_active: ultime activitate
+    link_verified_on: Le proprietate de iste ligamine ha essite verificate le %{date}
+    posts:
+      one: Message
+      other: Messages
+    posts_tab_heading: Messages
   admin:
+    account_moderation_notes:
+      create: Lassar un nota
+      created_msg: Nota de moderation create con successo!
     accounts:
+      add_email_domain_block: Blocar dominio de e-mail
       are_you_sure: Es tu secur?
       by_domain: Dominio
+      change_email:
+        changed_msg: Email cambiate con successo!
+        current_email: E-mail actual
+        label: Cambiar e-mail
+        new_email: Nove e-mail
+        submit: Cambiar e-mail
+        title: Cambiar e-mail pro %{username}
+      confirm: Confirmar
+      confirmed: Confirmate
+      confirming: In confirmation
       custom: Personalisate
       delete: Deler datos
       deleted: Delite
+      demote: Degradar
+      destroyed_msg: Le datos de %{username} ora es in cauda pro su imminente deletion
       disable_two_factor_authentication: Disactivar 2FA
       display_name: Nomine visibile
       domain: Dominio
+      edit: Modificar
+      email: E-mail
+      email_status: Stato de e-mail
       enabled: Activate
+      followers: Sequitores
       location:
         all: Toto
         title: Location
       moderation:
+        active: Active
+        all: Toto
         disabled: Disactivate
+      moderation_notes: Notas de moderation
       most_recent_activity: Activitate plus recente
       most_recent_ip: IP plus recente
       public: Public
+      redownload: Actualisar profilo
+      resend_confirmation:
+        already_confirmed: Iste usator jam es confirmate
+        send: Reinviar ligamine de confirmation
+        success: Ligamine de confirmation inviate con successo!
       reset: Reinitialisar
       reset_password: Reinitialisar contrasigno
       search: Cercar
+      search_same_email_domain: Altere usatores con le mesme dominio de e-mail
+      search_same_ip: Altere usatores con le mesme IP
       security: Securitate
       security_measures:
         only_password: Solmente contrasigno
         password_and_2fa: Contrasigno e 2FA
+      show:
+        created_reports: Reportos facite
+        targeted_reports: Signalate per alteres
+      silenced: Limitate
       statuses: Messages
+      subscribe: Subscriber
+      suspended: Suspendite
       title: Contos
+      unblock_email: Disblocar adresse de e-mail
+      unblocked_email_msg: Adresse de e-mail de %{username} disblocate con successo
+      unconfirmed_email: E-mail non confirmate
+      undo_silenced: Disfacer le limite
+      undo_suspension: Disfacer le suspension
       username: Nomine de usator
+      view_domain: Vider summario de dominio
     action_logs:
       action_types:
+        confirm_user: Confirmar le usator
+        create_account_warning: Crear un advertimento
         create_announcement: Crear annuncio
+        create_ip_block: Crear un regula IP
+        destroy_announcement: Deler annuncio
         destroy_ip_block: Deler le regula IP
         destroy_status: Deler le message
         destroy_unavailable_domain: Deler le dominio non disponibile
+        disable_2fa_user: Disactivar 2FA
+        disable_custom_emoji: Disactivar emoji personalisate
         disable_user: Disactivar le usator
+        enable_custom_emoji: Activar emoji personalisate
         enable_user: Activar le usator
+        promote_user: Promover usator
         reset_password_user: Reinitialisar contrasigno
+        silence_account: Limitar conto
+        unblock_email_account: Disblocar adresse de e-mail
+        unsilence_account: Disfacer le limite de conto
         update_announcement: Actualisar annuncio
         update_custom_emoji: Actualisar emoji personalisate
+        update_ip_block: Actualisar le regula IP
+        update_status: Actualisar le message
       actions:
         change_email_user_html: "%{name} cambiava le adresse de e-mail address del usator %{target}"
         create_announcement_html: "%{name} creava un nove annuncio %{target}"
+      deleted_account: conto delite
     announcements:
+      destroyed_msg: Annuncio delite con successo!
       edit:
         title: Modificar annuncio
       empty: Necun annuncios trovate.
@@ -57,8 +131,10 @@ ia:
       title: Annuncios
     custom_emojis:
       by_domain: Dominio
+      copied_msg: Copia local del emoji create con successo
       copy: Copiar
       create_new_category: Crear nove categoria
+      created_msg: Emoji create con successo!
       delete: Deler
       disable: Disactivar
       disabled: Disactivate
@@ -67,18 +143,27 @@ ia:
       enabled_msg: Emoji activate con successo
       new:
         title: Adder nove emoji personalisate
+      title: Emojis personalisate
+      upload: Incargar
     dashboard:
       active_users: usatores active
+      interactions: interactiones
       media_storage: Immagazinage de medios
       new_users: nove usatores
       opened_reports: reportos aperte
+      top_languages: Linguas le plus active
+      top_servers: Servitores le plus active
       website: Sito web
     domain_allows:
       add_new: Permitter federation con dominio
+      export: Exportar
+      import: Importar
     domain_blocks:
       confirm_suspension:
         cancel: Cancellar
+        stop_communication: Tu servitor stoppara le communication con iste servitores.
       domain: Dominio
+      edit: Modificar un bloco de dominio
       export: Exportar
       import: Importar
       private_comment: Commento private
@@ -89,19 +174,31 @@ ia:
       domain: Dominio
       new:
         create: Adder un dominio
+        title: Blocar un nove dominio de e-mail
+      title: Dominios de e-mail blocate
     export_domain_allows:
+      no_file: Necun file seligite
+    export_domain_blocks:
       no_file: Necun file seligite
     follow_recommendations:
       language: Per lingua
       status: Stato
+      title: Sequer le recommendationes
     instances:
+      back_to_warning: Advertimento
+      by_domain: Dominio
+      content_policies:
+        reason: Ration public
       dashboard:
+        instance_accounts_dimension: Contos le plus sequite
         instance_languages_dimension: Linguas principal
       delivery:
         unavailable: Non disponibile
       empty: Necun dominios trovate.
       private_comment: Commento private
       public_comment: Commento public
+      total_blocked_by_us: Blocate per nos
+      total_followed_by_us: Sequite per nos
     invites:
       deactivate_all: Disactivar toto
       filter:
@@ -123,12 +220,17 @@ ia:
       disabled: Disactivate
       enable: Activar
       enabled: Activate
+      save_and_enable: Salveguardar e activar
+      status: Stato
     reports:
       add_to_report: Adder plus al reporto
       are_you_sure: Es tu secur?
       cancel: Cancellar
+      category: Categoria
+      confirm: Confirmar
       delete_and_resolve: Deler le messages
       notes:
+        create: Adder un nota
         delete: Deler
       skip_to_actions: Saltar al actiones
       status: Stato
@@ -137,6 +239,11 @@ ia:
     roles:
       everyone: Permissiones predefinite
       privileges:
+        delete_user_data: Deler le datos de usator
+        manage_announcements: Gerer le annuncios
+        manage_invites: Gerer le invitationes
+        manage_rules: Gerer le regulas
+        manage_settings: Gerer le parametros
         manage_users: Gerer usatores
     rules:
       delete: Deler
@@ -238,6 +345,13 @@ ia:
       not_found: non poterea esser trovate
   preferences:
     public_timelines: Chronologias public
+  statuses:
+    poll:
+      vote: Votar
+    show_more: Monstrar plus
+    visibilities:
+      private_long: Solmente monstrar a sequitores
+      public: Public
   statuses_cleanup:
     min_age:
       '1209600': 2 septimanas
@@ -251,11 +365,26 @@ ia:
   themes:
     default: Mastodon (Obscur)
     mastodon-light: Mastodon (Clar)
+    system: Automatic (usar thema del systema)
   two_factor_authentication:
     add: Adder
     disable: Disactivar 2FA
+    edit: Modificar
   user_mailer:
+    appeal_approved:
+      action: Parametros de conto
     welcome:
+      apps_android_action: Obtene lo sur Google Play
+      apps_ios_action: Discargar sur le App Store
+      apps_step: Discarga nostre applicationes official.
+      apps_title: Applicationes de Mastodon
+      edit_profile_action: Personalisar
+      edit_profile_title: Personalisar tu profilo
+      feature_action: Apprender plus
+      share_title: Compartir tu profilo de Mastodon
       subject: Benvenite in Mastodon
+  verification:
+    verified_links: Tu ligamines verificate
   webauthn_credentials:
+    add: Adder un nove clave de securitate
     delete: Deler

@@ -14,7 +14,7 @@ import { HotKeys } from 'react-hotkeys';
 import { focusApp, unfocusApp, changeLayout } from 'mastodon/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'mastodon/actions/markers';
 import { INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
-import PictureInPicture from 'mastodon/features/picture_in_picture';
+import { PictureInPicture } from 'mastodon/features/picture_in_picture';
 import { layoutFromWindow } from 'mastodon/is_mobile';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
@@ -89,7 +89,7 @@ const mapStateToProps = state => ({
 const keyMap = {
   help: '?',
   new: 'n',
-  search: 's',
+  search: ['s', '/'],
   forceNew: 'option+n',
   toggleComposeSpoilers: 'option+x',
   focusColumn: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],

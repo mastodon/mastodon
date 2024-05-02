@@ -979,7 +979,7 @@ ko:
     new_report:
       body: "%{reporter} 님이 %{target}를 신고했습니다"
       body_remote: "%{domain}의 누군가가 %{target}을 신고했습니다"
-      subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
+      subject: "%{instance}의 새로운 신고(#%{id})"
     new_software_updates:
       body: 새 마스토돈 버전이 릴리스되었습니다. 업데이트 할 수 있습니다!
       subject: "%{instance}에 대해 새 마스토돈 버전이 사용 가능합니다!"
@@ -1118,7 +1118,7 @@ ko:
   date:
     formats:
       default: "%Y-%m-%d"
-      with_month_name: "%Y년 %f월 %e일"
+      with_month_name: "%Y년 %B %d일"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}시간"
@@ -1738,10 +1738,11 @@ ko:
     contrast: 마스토돈 (고대비)
     default: 마스토돈 (어두움)
     mastodon-light: 마스토돈 (밝음)
+    system: 자동 선택 (시스템 테마 이용)
   time:
     formats:
       default: "%Y-%m-%d %H:%M"
-      month: "%Y년 %f월"
+      month: "%Y년 %b"
       time: "%H:%M"
       with_time_zone: "%Y-%m-%d %H:%M %Z"
   translation:
@@ -1895,4 +1896,4 @@ ko:
     not_enabled: 아직 WebAuthn을 활성화 하지 않았습니다.
     not_supported: 이 브라우저는 보안 키를 지원하지 않습니다
     otp_required: 보안 키를 사용하기 위해서는 2단계 인증을 먼저 활성화 해 주세요
-    registered_on: "%{date} 에 등록됨"
+    registered_on: "%{date}에 등록됨"

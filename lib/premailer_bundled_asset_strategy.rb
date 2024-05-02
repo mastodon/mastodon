@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module PremailerWebpackStrategy
+module PremailerBundledAssetStrategy
   def load(url)
-    asset_host = ENV['CDN_HOST'] || ENV['WEB_DOMAIN'] || ENV['LOCAL_DOMAIN']
+    asset_host = ENV['CDN_HOST'] || ENV['WEB_DOMAIN'] || ENV.fetch('LOCAL_DOMAIN', nil)
 
     if Webpacker.dev_server.running?
       asset_host = "#{Webpacker.dev_server.protocol}://#{Webpacker.dev_server.host_with_port}"

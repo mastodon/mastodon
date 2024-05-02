@@ -7,8 +7,14 @@ import type { AppDispatch, RootState } from './store';
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 export const useAppSelector = useSelector.withTypes<RootState>();
 
+export interface AsyncThunkRejectValue {
+  skipAlert?: boolean;
+  skipNotFound?: boolean;
+  error?: unknown;
+}
+
 export const createAppAsyncThunk = createAsyncThunk.withTypes<{
   state: RootState;
   dispatch: AppDispatch;
-  rejectValue: string;
+  rejectValue: AsyncThunkRejectValue;
 }>();

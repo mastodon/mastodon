@@ -380,6 +380,7 @@ module.exports = defineConfig({
             "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
           }
         ],
+        "@typescript-eslint/restrict-template-expressions": ['warn', { allowNumber: true }],
         'jsdoc/require-jsdoc': 'off',
 
         // Those rules set stricter rules for TS files

@@ -844,10 +844,10 @@ sq:
       elasticsearch_index_mismatch:
         message_html: Përshoqërimet e treguesit të Elasticsearch-it janë të vjetruara. Ju lutemi, xhironi <code>tootctl search deploy --only=%{value}</code>
       elasticsearch_preset:
-        action: Shihni documentimin
+        action: Shihni dokumentimin
         message_html: Grupi i instancave tuaja Elasticsearch ka më shumë se një nyjë, por Mastodon-i s’është formësuar t’i përdorë ato.
       elasticsearch_preset_single_node:
-        action: Shihni documentimin
+        action: Shihni dokumentimin
         message_html: Grupi i instancave tuaja Elasticsearch ka vetëm një nyjë, <code>ES_PRESET</code> i duhet dhënë vlera <code>single_node_cluster</code>.
       elasticsearch_reset_chewy:
         message_html: Treguesi juaj i sistemit Elasticsearch është i vjetruar, për shkak të një ndryshimi rregullimesh. Për ta përditësuar, ju lutemi, xhironi <code>tootctl search deploy --reset-chewy</code>.
@@ -1666,6 +1666,8 @@ sq:
       account_suspension: Pezullim llogarie (%{target_name})
       domain_block: Pezullim shërbyesi (%{target_name})
       user_domain_block: Bllokuat %{target_name}
+    lost_followers: Ndjekës të humbur
+    lost_follows: Ndjekje të humbura
     preamble: Mund të humbni ndjekje dhe ndjekës, kur bllokoni një përkatësi, ose kur moderatorët tuaj vendosin të pezullojnë një shërbyes të largët. Kur kjo ndodh, do të jeni në gjendje të shkarkoni lista marrëdhëniesh të dëmtuara, për t’i shqyrtuar dhe mundet për t’i importuar në një shërbyes tjetër.
     purged: Hollësitë rreth këtij shërbyesi janë spastuar nga përgjegjësit e shërbyesit tuaj.
     type: Akt
@@ -1762,6 +1764,7 @@ sq:
     contrast: Mastodon (Me shumë kontrast)
     default: Mastodon (I errët)
     mastodon-light: Mastodon (I çelët)
+    system: E automatizuar (përdor temë sistemi)
   time:
     formats:
       default: "%d %b, %Y, %H:%M"

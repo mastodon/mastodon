@@ -770,7 +770,7 @@ fi:
         disabled: Ei kenellekkään
         users: Kirjautuneille paikallisille käyttäjille
       registrations:
-        moderation_recommandation: Varmista, että sinulla on riittävä ja toimintavalmis joukko moderaattoreita ennen kuin avaat rekisteröitymiset kaikille!
+        moderation_recommandation: Varmista, että sinulla on riittävä ja toimintavalmis joukko moderaattoreita, ennen kuin vapautat rekisteröitymismenettelyn kaikille!
         preamble: Määritä, kuka voi luoda tilin palvelimellesi.
         title: Rekisteröityminen
       registrations_mode:
@@ -972,7 +972,7 @@ fi:
       webhook: Webhook
   admin_mailer:
     auto_close_registrations:
-      body: Viimeaikaisen moderaattoritoiminnan puutteen vuoksi palvelimen %{instance} rekisteröitymiset on vaihdettu automaattisesti manuaaliseen tarkasteluun, jotta palvelinta %{instance} ei käytetä mahdollisten huonojen toimijoiden alustana. Voit vaihtaa takaisin avoimiin rekisteröitymisiin milloin tahansa.
+      body: Palvelimen %{instance} moderaattorit eivät ole olleet viime aikoina aktiivisia. Tästä syystä rekisteröitymismenettely on automaattisesti vaihdettu erillishyväksyntöjä edellyttäväksi. Näin vähennetään riskiä palvelimen %{instance} käyttöön haitallisten toimijoiden alustana. Voit koska tahansa palauttaa käyttöön vapaat rekisteröitymiset.
       subject: Rekisteröitymiset palvelimelle %{instance} on automaattisesti vaihdettu vaatimaan hyväksyntää
     new_appeal:
       actions:
@@ -1765,9 +1765,10 @@ fi:
   tags:
     does_not_match_previous_name: ei vastaa edellistä nimeä
   themes:
-    contrast: Mastodon (Korkea kontrasti)
-    default: Mastodon (Tumma)
-    mastodon-light: Mastodon (Vaalea)
+    contrast: Mastodon (suuri kontrasti)
+    default: Mastodon (tumma)
+    mastodon-light: Mastodon (vaalea)
+    system: Automaattinen (käytä järjestelmän teemaa)
   time:
     formats:
       default: "%d.%m.%Y klo %H.%M"
@@ -1881,8 +1882,8 @@ fi:
       follows_title: Ehdotuksia seurattavaksi
       follows_view_more: Näytä lisää seurattavia henkilöitä
       hashtags_recent_count:
-        one: "%{people} henkilö viimeisenä 2 päivänä"
-        other: "%{people} henkilöä viimeisenä 2 päivänä"
+        one: "%{people} henkilö viimeisen 2 päivän aikana"
+        other: "%{people} henkilöä viimeisen 2 päivän aikana"
       hashtags_subtitle: Tutki, mikä on ollut suosittua viimeisenä 2 päivänä
       hashtags_title: Suositut aihetunnisteet
       hashtags_view_more: Näytä lisää suosittuja aihetunnisteita

@@ -1,5 +1,3 @@
-- instance_presenter = InstancePresenter.new
-
 = content_for :heading do
   .email-desktop-flex
     .email-header-left
@@ -25,11 +23,11 @@
     %td.email-body-huge-padding-td
       %h2.email-h2= t('user_mailer.welcome.checklist_title')
       %p.email-h-sub= t('user_mailer.welcome.checklist_subtitle')
-      = render 'application/mailer/checklist', key: 'edit_profile_step', title: t('user_mailer.welcome.edit_profile_title'), text: t('user_mailer.welcome.edit_profile_step'), checked: @has_account_fields, button_text: t('user_mailer.welcome.edit_profile_action'), button_url: web_url('start/profile')
-      = render 'application/mailer/checklist', key: 'follow_step', title: t('user_mailer.welcome.follow_title'), text: t('user_mailer.welcome.follow_step'), checked: @has_active_relationships, button_text: t('user_mailer.welcome.follow_action'), button_url: web_url('start/follows')
-      = render 'application/mailer/checklist', key: 'post_step', title: t('user_mailer.welcome.post_title'), text: t('user_mailer.welcome.post_step'), checked: @has_statuses, button_text: t('user_mailer.welcome.post_action'), button_url: web_url
-      = render 'application/mailer/checklist', key: 'share_step', title: t('user_mailer.welcome.share_title'), text: t('user_mailer.welcome.share_step'), checked: false, button_text: t('user_mailer.welcome.share_action'), button_url: web_url('start/share')
-      = render 'application/mailer/checklist', key: 'apps_step', title: t('user_mailer.welcome.apps_title'), text: t('user_mailer.welcome.apps_step'), checked: false, show_apps_buttons: true
+      = render 'application/mailer/checklist', key: 'edit_profile', checked: @has_account_fields, button_text: t('user_mailer.welcome.edit_profile_action'), button_url: web_url('start/profile')
+      = render 'application/mailer/checklist', key: 'follow', checked: @has_active_relationships, button_text: t('user_mailer.welcome.follow_action'), button_url: web_url('start/follows')
+      = render 'application/mailer/checklist', key: 'post', checked: @has_statuses, button_text: t('user_mailer.welcome.post_action'), button_url: web_url
+      = render 'application/mailer/checklist', key: 'share', checked: false, button_text: t('user_mailer.welcome.share_action'), button_url: web_url('start/share')
+      = render 'application/mailer/checklist', key: 'apps', checked: false, show_apps_buttons: true
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-body-columns-td
@@ -70,7 +68,4 @@
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-extra-td
-      = render 'application/mailer/feature', key: 'feature_control', feature_title: t('user_mailer.welcome.feature_control_title'), feature_text: t('user_mailer.welcome.feature_control'), text_first_on_desktop: true
-      = render 'application/mailer/feature', key: 'feature_audience', feature_title: t('user_mailer.welcome.feature_audience_title'), feature_text: t('user_mailer.welcome.feature_audience'), text_first_on_desktop: false
-      = render 'application/mailer/feature', key: 'feature_moderation', feature_title: t('user_mailer.welcome.feature_moderation_title'), feature_text: t('user_mailer.welcome.feature_moderation'), text_first_on_desktop: true
-      = render 'application/mailer/feature', key: 'feature_creativity', feature_title: t('user_mailer.welcome.feature_creativity_title'), feature_text: t('user_mailer.welcome.feature_creativity'), text_first_on_desktop: false
+      = render partial: 'application/mailer/feature', collection: %w(control audience moderation creativity)

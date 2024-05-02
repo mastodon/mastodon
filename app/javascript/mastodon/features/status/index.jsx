@@ -27,7 +27,6 @@ import {
   unmuteAccount,
 } from '../../actions/accounts';
 import { initBlockModal } from '../../actions/blocks';
-import { initBoostModal } from '../../actions/boosts';
 import {
   replyCompose,
   mentionCompose,
@@ -317,7 +316,7 @@ class Status extends ImmutablePureComponent {
         if ((e && e.shiftKey) || !boostModal) {
           this.handleModalReblog(status);
         } else {
-          dispatch(initBoostModal({ status, onReblog: this.handleModalReblog }));
+          dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.handleModalReblog } }));
         }
       }
     } else {

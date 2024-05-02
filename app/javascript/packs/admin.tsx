@@ -363,6 +363,6 @@ ready(() => {
   document.querySelectorAll('[data-admin-component]').forEach((element) => {
     void mountReactComponent(element);
   });
-}).catch((reason) => {
+}).catch((reason: unknown) => {
   throw reason;
 });
