@@ -9,8 +9,15 @@ module WellKnown
     serialization_scope nil
 
     def show
-      expires_in 3.days, public: true
-      render_with_cache json: ::OauthMetadataPresenter.new, serializer: ::OauthMetadataSerializer, content_type: 'application/json'
+      # Due to this document potentially changing between Mastodon versions (as
+      # new OAuth scopes are added), we don't use expires_in to cache upstream,
+      # instead just caching in the rails cache:
+      render_with_cache(
+        json: ::OauthMetadataPresenter.new,
+        serializer: ::OauthMetadataSerializer,
+        content_type: 'application/json',
+        expires_in: 15.minutes
+      )
     end
   end
 end
