@@ -22,7 +22,10 @@ require 'test_prof/recipes/rspec/before_all'
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
-WebMock.disable_net_connect!(allow: Chewy.settings[:host], allow_localhost: true)
+WebMock.disable_net_connect!(
+  allow_localhost: true,
+  allow: Chewy.settings[:host]
+)
 Sidekiq.logger = nil
 
 DatabaseCleaner.strategy = [:deletion]
