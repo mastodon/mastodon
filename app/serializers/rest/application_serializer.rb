@@ -19,6 +19,7 @@ class REST::ApplicationSerializer < ActiveModel::Serializer
     object.secret
   end
 
+  # We should consider this property deprecated for 4.3.0
   def redirect_uri
     # Doorkeeper stores the redirect_uri value as a newline delimeted list in
     # the database, as we may have more than one redirect URI, return the first:
