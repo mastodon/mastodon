@@ -200,6 +200,7 @@ function getData(...[emoji, skin, set]: GetDataArgs) {
   /* eslint-enable @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return */
 }
 
+// TODO: General array operations not related to emojis. Consider separating them into separate files.
 function uniq(arr: []) {
   return arr.reduce((acc, item) => {
     if (!acc.includes(item)) {
@@ -209,6 +210,7 @@ function uniq(arr: []) {
   }, []);
 }
 
+// TODO: General array operations not related to emojis. Consider separating them into separate files.
 function intersect(a: [], b: []) {
   const uniqA = uniq(a);
   const uniqB = uniq(b);
