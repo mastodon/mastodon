@@ -216,31 +216,6 @@ function intersect(a: [], b: []) {
   return uniqA.filter((item) => uniqB.includes(item));
 }
 
-/* eslint-disable */
-
-// @ts-expect-error
-function deepMerge(a, b) {
-  let o = {};
-
-  for (let key in a) {
-    let originalValue = a[key],
-      value = originalValue;
-
-    if (Object.hasOwn(b, key)) {
-      value = b[key];
-    }
-
-    if (typeof value === 'object') {
-      value = deepMerge(originalValue, value);
-    }
-
-    // @ts-expect-error
-    o[key] = value;
-  }
-
-  return o;
-}
-
 // https://github.com/sonicdoe/measure-scrollbar
 function measureScrollbar() {
   const div = document.createElement('div');
@@ -263,7 +238,6 @@ export {
   getSanitizedData,
   uniq,
   intersect,
-  deepMerge,
   unifiedToNative,
   measureScrollbar,
 };
