@@ -310,8 +310,8 @@ GEM
       json
     highline (3.0.1)
     hiredis (0.6.3)
-    hiredis-client (0.14.1)
-      redis-client (= 0.14.1)
+    hiredis-client (0.22.1)
+      redis-client (= 0.22.1)
     hkdf (0.3.0)
     htmlentities (4.3.4)
     http (5.2.0)
@@ -681,7 +681,7 @@ GEM
       psych (>= 4.0.0)
     redcarpet (3.6.0)
     redis (4.8.1)
-    redis-client (0.14.1)
+    redis-client (0.22.1)
       connection_pool
     redis-namespace (1.11.0)
       redis (>= 4)
@@ -787,11 +787,11 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
-    sidekiq (7.2.0)
+    sidekiq (7.2.4)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
-      redis-client (>= 0.14.0)
+      redis-client (>= 0.19.0)
     sidekiq-bulk (0.2.0)
       sidekiq
     sidekiq-scheduler (5.0.6)
