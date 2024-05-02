@@ -16,6 +16,8 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :controller do
     let(:scopes) { wrong_scope }
 
     it 'returns http forbidden' do
+      subject
+
       expect(response).to have_http_status(403)
     end
   end
@@ -24,6 +26,8 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :controller do
     let(:role) { UserRole.find_by(name: wrong_role) }
 
     it 'returns http forbidden' do
+      subject
+
       expect(response).to have_http_status(403)
     end
   end
@@ -140,39 +144,70 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :controller do
 
   describe 'POST #create' do
     let(:existing_block_domain) { 'example.com' }
+    let(:params) { { domain: 'foo.bar.com', severity: :silence } }
     let!(:block) { Fabricate(:domain_block, domain: existing_block_domain, severity: :suspend) }
 
-    before do
-      post :create, params: { domain: 'foo.bar.com', severity: :silence }
+    subject do
+      post :create, params: params
     end
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns http success' do
+    it 'creates a domain block and returns expected domain name', :aggregate_failures do
+      subject
+
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns expected domain name' do
-      json = body_as_json
-      expect(json[:domain]).to eq 'foo.bar.com'
-    end
-
-    it 'creates a domain block' do
+      expect(body_as_json[:domain]).to eq 'foo.bar.com'
       expect(DomainBlock.find_by(domain: 'foo.bar.com')).to_not be_nil
     end
 
-    context 'when a stricter domain block already exists' do
-      let(:existing_block_domain) { 'bar.com' }
+    context 'when a looser domain block already exists on a higher level domain' do
+      let(:params) { { domain: 'foo.bar.com', severity: :suspend } }
 
-      it 'returns http unprocessable entity' do
-        expect(response).to have_http_status(422)
+      before do
+        Fabricate(:domain_block, domain: 'bar.com', severity: :silence)
       end
 
-      it 'renders existing domain block in error' do
-        json = body_as_json
-        expect(json[:existing_domain_block][:domain]).to eq existing_block_domain
+      it 'creates a domain block with the expected domain name and severity', :aggregate_failures do
+        subject
+
+        body = body_as_json
+
+        expect(response).to have_http_status(200)
+        expect(body).to match a_hash_including(
+          {
+            domain: 'foo.bar.com',
+            severity: 'suspend',
+          }
+        )
+
+        expect(DomainBlock.find_by(domain: 'foo.bar.com')).to be_present
+      end
+    end
+
+    context 'when a domain block already exists on the same domain' do
+      before do
+        Fabricate(:domain_block, domain: 'foo.bar.com', severity: :silence)
+      end
+
+      it 'returns existing domain block in error', :aggregate_failures do
+        subject
+
+        expect(response).to have_http_status(422)
+        expect(body_as_json[:existing_domain_block][:domain]).to eq('foo.bar.com')
+      end
+    end
+
+    context 'when a stricter domain block already exists on a higher level domain' do
+      let(:existing_block_domain) { 'bar.com' }
+
+      it 'returns http unprocessable entity with existing domain block in error', :aggregate_reblogs do
+        subject
+
+        expect(response).to have_http_status(422)
+        expect(body_as_json[:existing_domain_block][:domain]).to eq existing_block_domain
       end
     end
   end
