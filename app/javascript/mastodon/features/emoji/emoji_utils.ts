@@ -209,15 +209,14 @@ function uniq(arr: []) {
   }, []);
 }
 
-/* eslint-disable */
-
-// @ts-expect-error
-function intersect(a, b) {
+function intersect(a: [], b: []) {
   const uniqA = uniq(a);
   const uniqB = uniq(b);
 
-  return uniqA.filter((item) => uniqB.indexOf(item) >= 0);
+  return uniqA.filter((item) => uniqB.includes(item));
 }
+
+/* eslint-disable */
 
 // @ts-expect-error
 function deepMerge(a, b) {
