@@ -122,6 +122,10 @@ function getSanitizedData(...args: GetDataArgs) {
 }
 
 function getData(...[emoji, skin, set]: GetDataArgs) {
+  /*
+   The version of [the referenced source code]{@link https://github.com/missive/emoji-mart/blob/5f2ffcc/src/utils/index.js} does not match that of DefinitelyTyped.
+   It is also old, and non-existent properties have been added or removed, making it difficult to achieve type consistency.
+   */
   /* eslint-disable @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return */
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   let emojiData: any = {};
