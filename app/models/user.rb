@@ -19,9 +19,6 @@
 #  confirmation_sent_at      :datetime
 #  unconfirmed_email         :string
 #  locale                    :string
-#  encrypted_otp_secret      :string
-#  encrypted_otp_secret_iv   :string
-#  encrypted_otp_secret_salt :string
 #  consumed_timestep         :integer
 #  otp_required_for_login    :boolean          default(FALSE), not null
 #  last_emailed_at           :datetime
