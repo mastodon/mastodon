@@ -597,6 +597,9 @@ fy:
       actions_description_html: Beslis hokker maatregel nommen wurde moat om dizze rapportaazje op te lossen. Wannear’t jo in (straf)maatregel tsjin it rapportearre account nimme, kriget de account in e-mailmelding, behalve wannear’t de <strong>spam</strong>-kategory keazen is.
       actions_description_remote_html: Beslút hokker aksje nommen wurde moat om dizze rapportaazje ôf te hanneljen. Dit hat allinnich ynfloed op hoe’t <strong>jo</strong> server kommunisearret mei dizze eksterne account en omgiet mei de ynhâld.
       add_to_report: Mear oan de rapportaazje tafoegje
+      already_suspended_badges:
+        local: Al opskoarte op dizze server
+        remote: Al opskoarte op harren server
       are_you_sure: Binne jo wis?
       assign_to_self: Oan my tawize
       assigned: Tawizen moderator
@@ -748,6 +751,7 @@ fy:
         desc_html: Dit is ôfhinklik fan eksterne scripts fan hCaptcha, wat feilichheids- en privacyrisiko’s meibringe kin. Boppe dat kin <strong>dit it registraasjeproses bot minder tagonklik meitsje foar guon (foaral handicapte) minsken</strong>. Om dizze redenen kinne jo it beste alternative maatregels oerweagje, lykas registraasje op basis fan goedkarring of op útnûging.
         title: Nije brûkers moatte in CAPTCHA oplosse om harren account te befêstigjen
       content_retention:
+        danger_zone: Gefaresône
         preamble: Tafersjoch hâlde op hoe’t berjochten en media fan brûkers op Mastodon bewarre wurde.
         title: Bewartermyn berjochten
       default_noindex:
@@ -767,6 +771,7 @@ fy:
         disabled: Oan net ien
         users: Oan oanmelde lokale brûkers
       registrations:
+        moderation_recommandation: Soargje derfoar dat jo in adekwaat en responsyf moderaasjeteam hawwe eardat jo registraasjes foar elkenien iepenstelle!
         preamble: Tafersjoch hâlde op wa’t in account op dizze server registrearje kin.
         title: Registraasjes
       registrations_mode:
@@ -1647,13 +1652,24 @@ fy:
     import: Ymportearje
     import_and_export: Ymportearje en eksportearje
     migrate: Accountmigraasje
+    notifications: E-mailmeldingen
     preferences: Ynstellingen
     profile: Profyl
     relationships: Folgers en folgjenden
+    severed_relationships: Ferbrutsen folchrelaasjes
     statuses_cleanup: Automatysk berjochten fuortsmite
     strikes: Fêststelde skeiningen
     two_factor_authentication: Twa-stapsferifikaasje
     webauthn_authentication: Befeiligingskaaien
+  severed_relationships:
+    download: Downloade (%{count})
+    event_type:
+      account_suspension: Accountopskoarting (%{target_name})
+      domain_block: Serveropskoarting (%{target_name})
+      user_domain_block: Jo hawwe %{target_name} blokkearre
+    lost_followers: Ferlerne folgers
+    lost_follows: Ferlerne folge accounts
+    type: Barren
   statuses:
     attached:
       audio:
@@ -1747,6 +1763,7 @@ fy:
     contrast: Mastodon (heech kontrast)
     default: Mastodon (donker)
     mastodon-light: Mastodon (ljocht)
+    system: Automatysk (systeemtema brûke)
   time:
     formats:
       default: "%d %B %Y om %H:%M"
@@ -1838,13 +1855,30 @@ fy:
       apps_ios_action: Fia de App Store downloade
       apps_step: Us offisjele apps downloade
       apps_title: Mastodon-apps
+      checklist_subtitle: 'Litte wy oan dit nije sosjale aventoer begjinne:'
+      checklist_title: Wolkomstkontrôlelist
       edit_profile_action: Personalisearje
+      edit_profile_step: Wannear’t jo mear oer josels fertelle, krije jo mear ynteraksje mei oare minsken.
       edit_profile_title: Jo profyl personalisearje
       explanation: Hjir binne inkelde tips om jo op wei te helpen
       feature_action: Mear ynfo
+      feature_audience: Mastodon biedt jo in unike mooglikheid om jo publyk te behearen sûnder tuskenpersoanen. Mastodon, ymplemintearre yn jo eigen ynfrastruktuer, stelt jo yn steat om elke oare Mastodon-server online te folgjen en troch harren folge te wurden, en stiet ûnder kontrôle fan net ien, útsein dy fan jo.
+      feature_audience_title: Bou jo publyk yn fertrouwen op
+      feature_control: Jo witte sels it bêste wat jo op jo tiidline sjen wolle. Gjin algoritmen of advertinsjes om jo tiid te fergriemen. Folgje elkenien op elke Mastodon-server fan ien account ôf en ûntfang harren berjochten yn gronologyske folchoarder, en meitsje jo hoekje op it ynternet in bytsje mear as josels.
+      feature_control_title: Hâld kontrôle oer jo eigen tiidline
+      feature_creativity: Mastodon stipet audio-, fideo- en fotoberjochten, tagonklikheidsbeskriuwingen, enkêten, ynhâldswarskôgingen, animearre avatars, oanpaste emoji, kontrôle oer it bywurkjen fan miniatueren en mear, om jo te helpen josels online te uterjen. Oft jo no jo keunst, muzyk of podcast publisearje, Mastodon stiet foar jo klear.
+      feature_creativity_title: Bjusterbaarlike kreativiteit
+      feature_moderation: Mastodon leit de beslútfoarming wer yn jo hannen. Elke server makket harren eigen rigels en foarskriften, dy’t lokaal hanthavene wurde en net fan boppe ôf, lykas sosjale media fan bedriuwen, wêrtroch it it meast fleksibel is yn it reagearjen op de behoeften fan ferskate groepen minsken. Wurd lid fan in server mei de rigels wêrmei’t jo akkoard geane, of host jo eigen.
+      feature_moderation_title: Moderaasje sa as it heart
       follow_action: Folgje
+      follow_step: Op Mastodon draait it hielendal om it folgjen fan ynteressante minsken.
+      follow_title: Personalisearje jo starttiidline
+      follows_subtitle: Folgje bekende accounts
       follows_title: Wa te folgjen
       follows_view_more: Mear minsken om te folgjen besjen
+      hashtags_recent_count:
+        one: "%{people} persoan yn de ôfrûne 2 dagen"
+        other: "%{people} persoanen yn de ôfrûne 2 dagen"
       hashtags_subtitle: Wat der yn de ôfrûne 2 dagen bard is ferkenne
       hashtags_title: Populêre hashtags
       hashtags_view_more: Mear populêre hashtags besjen
