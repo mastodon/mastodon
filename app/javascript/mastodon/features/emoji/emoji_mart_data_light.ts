@@ -8,7 +8,7 @@ import type { Search, ShortCodesToEmojiData } from './emoji_compressed';
 import emojiCompressed from './emoji_compressed';
 import { unicodeToUnifiedName } from './unicode_to_unified_name';
 
-type Emojis = {
+export type Emojis = {
   [key in NonNullable<keyof ShortCodesToEmojiData>]: {
     native: BaseEmoji['native'];
     search: Search;

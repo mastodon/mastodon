@@ -7,7 +7,7 @@ import type {
   EmojiSkin,
   PickerProps,
 } from 'emoji-mart';
-import type { Emoji } from 'emoji-mart/dist-es/utils/data';
+import type { Emoji, SkinVariation } from 'emoji-mart/dist-es/utils/data';
 
 import * as data from './emoji_mart_data_light';
 
@@ -58,11 +58,16 @@ function unifiedToNative(unified: Emoji['unified']) {
  * The type and implementation have different maintainers and packages, so the installed versions of `@types/emoji-mart` and `emoji-mart` may not match.
  */
 
+interface SkinTone {
+  skin_tone?: EmojiSkin;
+}
+
 function sanitize(
   emoji: BaseEmoji &
     CustomEmoji &
     Pick<Emoji, 'skin_variations'> &
-    Pick<PickerProps, 'custom'> & { skin_tone?: EmojiSkin },
+    Pick<PickerProps, 'custom'> &
+    SkinTone,
 ):
   | BaseEmoji
   | (Omit<CustomEmoji, 'short_names'> & Pick<PickerProps, 'custom'>) {
@@ -106,25 +111,45 @@ function sanitize(
   };
 }
 
-/* eslint-disable */
-
-function getSanitizedData() {
-  // @ts-expect-error
-  return sanitize(getData(...arguments));
+function getSanitizedData(
+  ...args: [
+    emoji: BaseEmoji | string,
+    skin: EmojiSkin | null,
+    set?:
+      | 'apple'
+      | 'google'
+      | 'twitter'
+      | 'facebook'
+      | 'emojione'
+      | 'messenger',
+  ]
+) {
+  return sanitize(getData(...args));
 }
 
-// @ts-expect-error
-function getData(emoji, skin, set) {
-  let emojiData = {};
+function getData(
+  emoji: BaseEmoji | string,
+  skin: EmojiSkin | null,
+  set?: 'apple' | 'google' | 'twitter' | 'facebook' | 'emojione' | 'messenger',
+) {
+  /* eslint-disable @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return */
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+  let emojiData: any = {};
 
   if (typeof emoji === 'string') {
-    let matches = emoji.match(COLONS_REGEX);
+    const matches = emoji.match(COLONS_REGEX);
 
     if (matches) {
       emoji = matches[1];
 
-      if (matches[2]) {
-        skin = parseInt(matches[2]);
+      const int = parseInt(matches[2]);
+      const isValid = (value: number): value is EmojiSkin =>
+        ([1, 2, 3, 4, 5, 6] satisfies EmojiSkin[]).some(
+          (skin) => skin === value,
+        );
+
+      if (isValid(int)) {
+        skin = int;
       }
     }
 
@@ -142,62 +167,50 @@ function getData(emoji, skin, set) {
 
     if (Object.hasOwn(data.emojis, emoji.id)) {
       emojiData = data.emojis[emoji.id];
-      skin = skin || emoji.skin;
+      skin = skin ?? emoji.skin;
     }
   }
 
-  if (!Object.keys(emojiData).length) {
+  if (!Object.keys(emojiData).length && typeof emoji === 'object') {
     emojiData = emoji;
-    // @ts-expect-error
     emojiData.custom = true;
 
-    // @ts-expect-error
     if (!emojiData.search) {
-      // @ts-expect-error
       emojiData.search = buildSearch(emoji);
     }
   }
 
-  // @ts-expect-error
   emojiData.emoticons = emojiData.emoticons || [];
-  // @ts-expect-error
   emojiData.variations = emojiData.variations || [];
 
-  // @ts-expect-error
-  if (emojiData.skin_variations && skin > 1 && set) {
-    emojiData = JSON.parse(_JSON.stringify(emojiData));
-
-    let skinKey = SKINS[skin - 1],
-      // @ts-expect-error
-      variationData = emojiData.skin_variations[skinKey];
-
-    // @ts-expect-error
-    if (!variationData.variations && emojiData.variations) {
-      // @ts-expect-error
-      delete emojiData.variations;
-    }
+  if (emojiData.skin_variations && skin && skin > 1 && set) {
+    const skinKey = SKINS[skin - 1];
+    const variationData = emojiData.skin_variations[skinKey];
 
     if (variationData[`has_img_${set}`]) {
-      // @ts-expect-error
       emojiData.skin_tone = skin;
 
-      for (let k in variationData) {
-        let v = variationData[k];
-        // @ts-expect-error
-        emojiData[k] = v;
+      for (const k in variationData) {
+        type K = keyof typeof emojiData;
+        emojiData[k as K] = variationData[k as keyof SkinVariation];
       }
     }
   }
 
-  // @ts-expect-error
-  if (emojiData.variations && emojiData.variations.length) {
-    emojiData = JSON.parse(_JSON.stringify(emojiData));
-    // @ts-expect-error
+  if (emojiData.variations.length) {
     emojiData.unified = emojiData.variations.shift();
   }
 
-  return emojiData;
+  return emojiData as BaseEmoji &
+    CustomEmoji &
+    Pick<Emoji, 'skin_variations'> &
+    Pick<PickerProps, 'custom'> &
+    SkinTone;
+
+  /* eslint-enable @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return */
 }
+
+/* eslint-disable */
 
 // @ts-expect-error
 function uniq(arr) {
