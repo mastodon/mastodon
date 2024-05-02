@@ -4,12 +4,17 @@ class OauthMetadataPresenter < ActiveModelSerializers::Model
   include RoutingHelper
 
   attributes :issuer, :authorization_endpoint, :token_endpoint,
-             :registration_endpoint, :revocation_endpoint, :scopes_supported,
+             :revocation_endpoint, :scopes_supported,
              :response_types_supported, :response_modes_supported,
-             :grant_types_supported, :token_endpoint_auth_methods_supported
+             :grant_types_supported, :token_endpoint_auth_methods_supported,
+             :service_documentation, :app_registration_endpoint
 
   def issuer
     root_url
+  end
+
+  def service_documentation
+    'https://docs.joinmastodon.org/'
   end
 
   def authorization_endpoint
@@ -20,11 +25,11 @@ class OauthMetadataPresenter < ActiveModelSerializers::Model
     oauth_token_url
   end
 
-  # NOTE: the api_v1_apps route doesn't technically conform to the
-  # specification for OAuth 2.0 Dynamic Client Registration defined in
-  # https://datatracker.ietf.org/doc/html/rfc7591
-  # But for Mastodon, this is the API Endpoint that you would want for this property
-  def registration_endpoint
+  # As the api_v1_apps route doesn't technically conform to the specification
+  # for OAuth 2.0 Dynamic Client Registration defined in RFC 7591 we use a
+  # non-standard property for now to indicate the mastodon specific registration
+  # endpoint. See: https://datatracker.ietf.org/doc/html/rfc7591
+  def app_registration_endpoint
     api_v1_apps_url
   end
 

@@ -23,13 +23,15 @@ describe 'The /.well-known/oauth-authorization-server request' do
 
     expect(body_as_json).to include(
       issuer: root_url(protocol: protocol),
+      service_documentation: 'https://docs.joinmastodon.org/',
       authorization_endpoint: oauth_authorization_url(protocol: protocol),
       token_endpoint: oauth_token_url(protocol: protocol),
-      registration_endpoint: api_v1_apps_url(protocol: protocol),
       revocation_endpoint: oauth_revoke_url(protocol: protocol),
       scopes_supported: Doorkeeper.configuration.scopes.map(&:to_s),
       response_types_supported: Doorkeeper.configuration.authorization_response_types,
-      grant_types_supported: grant_types_supported
+      grant_types_supported: grant_types_supported,
+      # non-standard extension:
+      app_registration_endpoint: api_v1_apps_url(protocol: protocol)
     )
   end
 end
