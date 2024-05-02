@@ -200,25 +200,22 @@ function getData(...[emoji, skin, set]: GetDataArgs) {
   /* eslint-enable @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return */
 }
 
-/* eslint-disable */
-
-// @ts-expect-error
-function uniq(arr) {
-  // @ts-expect-error
+function uniq(arr: []) {
   return arr.reduce((acc, item) => {
-    if (acc.indexOf(item) === -1) {
+    if (!acc.includes(item)) {
       acc.push(item);
     }
     return acc;
   }, []);
 }
 
+/* eslint-disable */
+
 // @ts-expect-error
 function intersect(a, b) {
   const uniqA = uniq(a);
   const uniqB = uniq(b);
 
-  // @ts-expect-error
   return uniqA.filter((item) => uniqB.indexOf(item) >= 0);
 }
 
