@@ -6,9 +6,9 @@
   ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY
 ).each do |key|
   ENV.fetch(key) do
-    raise <<~MESSAGE
+    abort <<~MESSAGE
 
-      The ActiveRecord encryption feature requires that these variables are set:
+      Mastodon now requires that these variables are set:
 
         - ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY
         - ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT
