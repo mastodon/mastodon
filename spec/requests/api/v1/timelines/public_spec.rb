@@ -22,12 +22,14 @@ describe 'Public' do
       get '/api/v1/timelines/public', headers: headers, params: params
     end
 
-    let!(:private_status) { Fabricate(:status, visibility: :private) } # rubocop:disable RSpec/LetSetup
     let!(:local_status)   { Fabricate(:status, account: Fabricate.build(:account, domain: nil)) }
     let!(:remote_status)  { Fabricate(:status, account: Fabricate.build(:account, domain: 'example.com')) }
     let!(:media_status)   { Fabricate(:status, media_attachments: [Fabricate.build(:media_attachment)]) }
-
     let(:params) { {} }
+
+    before do
+      Fabricate(:status, visibility: :private)
+    end
 
     context 'when the instance allows public preview' do
       let(:expected_statuses) { [local_status, remote_status, media_status] }
@@ -83,10 +85,11 @@ describe 'Public' do
         it 'sets the correct pagination headers', :aggregate_failures do
           subject
 
-          headers = response.headers['Link']
-
-          expect(headers.find_link(%w(rel prev)).href).to eq(api_v1_timelines_public_url(limit: 1, min_id: media_status.id.to_s))
-          expect(headers.find_link(%w(rel next)).href).to eq(api_v1_timelines_public_url(limit: 1, max_id: media_status.id.to_s))
+          expect(response)
+            .to include_pagination_headers(
+              prev: api_v1_timelines_public_url(limit: params[:limit], min_id: media_status.id),
+              next: api_v1_timelines_public_url(limit: params[:limit], max_id: media_status.id)
+            )
         end
       end
     end

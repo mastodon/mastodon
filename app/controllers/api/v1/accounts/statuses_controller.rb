@@ -4,7 +4,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }
   before_action :set_account
 
-  after_action :insert_pagination_headers, unless: -> { truthy_param?(:pinned) }
+  after_action :insert_pagination_headers
 
   def index
     cache_if_unauthenticated!
@@ -35,10 +35,6 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
     params.slice(:limit, *AccountStatusesFilter::KEYS).permit(:limit, *AccountStatusesFilter::KEYS).merge(core_params)
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def next_path
     api_v1_account_statuses_url pagination_params(max_id: pagination_max_id) if records_continue?
   end
@@ -51,11 +47,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
     @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
   end
 
-  def pagination_max_id
-    @statuses.last.id
-  end
-
-  def pagination_since_id
-    @statuses.first.id
+  def pagination_collection
+    @statuses
   end
 end

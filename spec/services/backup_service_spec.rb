@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe BackupService, type: :service do
+RSpec.describe BackupService do
   subject(:service_call) { described_class.new.call(backup) }
 
   let!(:user)           { Fabricate(:user) }

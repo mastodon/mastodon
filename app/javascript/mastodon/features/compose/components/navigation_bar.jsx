@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Permalink from '../../../components/permalink';
 
-import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { cancelReplyCompose } from 'mastodon/actions/compose';
 import Account from 'mastodon/components/account';
 import { IconButton } from 'mastodon/components/icon_button';

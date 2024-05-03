@@ -92,9 +92,9 @@ nn:
         invalid_resource_owner: Ressurseigardetaljane er ikkje gyldige, eller så er det ikkje mogleg å finna eigaren
         invalid_scope: Det etterspurte omfanget er ugyldig, ukjent eller har feil struktur.
         invalid_token:
-          expired: Tilgangsbeviset har gått ut på dato
-          revoked: Tilgangsbeviset har blitt oppheva
-          unknown: Tilgangsbeviset er ugyldig
+          expired: Innloggingsnykelen har gått ut på dato
+          revoked: Innloggingsnykelen er oppheva
+          unknown: Innloggngsnykelen er ugyldig
         resource_owner_authenticator_not_configured: Ressurseigar kunne ikkje finnast fordi Doorkeeper.configure.resource_owner_authenticator ikkje er konfigurert.
         server_error: Autoriseringstenaren støtte på ei uventa hending som hindra han i å svara på førespurnaden.
         temporarily_unavailable: Autoriseringstenaren kan ikkje hansama førespurnaden grunna kortvarig overbelastning eller tenarvedlikehald.
@@ -129,11 +129,11 @@ nn:
         crypto: Ende-til-ende-kryptering
         favourites: Favorittar
         filters: Filter
-        follow: Dei du fylgjer, målbind og blokkerer
+        follow: Dei du fylgjer, dempar og blokkerer
         follows: Fylgjer
         lists: Lister
         media: Mediavedlegg
-        mutes: Målbindingar
+        mutes: Dempingar
         notifications: Varsel
         push: Pushvarsel
         reports: Rapportar
@@ -174,6 +174,7 @@ nn:
       read:filters: sjå filtera dine
       read:follows: sjå fylgjarane dine
       read:lists: sjå listene dine
+      read:me: les berre kontoen din sin grunnleggjande informasjon
       read:mutes: sjå kven du har målbunde
       read:notifications: sjå varsla dine
       read:reports: sjå rapportane dine
@@ -183,13 +184,13 @@ nn:
       write:accounts: redigera profilen din
       write:blocks: blokker kontoar og domene
       write:bookmarks: bokmerk innlegg
-      write:conversations: målbind og slett samtalar
+      write:conversations: demp og slett samtalar
       write:favourites: favorittmarker innlegg
       write:filters: lag filter
       write:follows: fylg folk
       write:lists: lag lister
       write:media: last opp mediefiler
-      write:mutes: målbind folk og samtalar
+      write:mutes: demp folk og samtalar
       write:notifications: tøm varsla dine
       write:reports: rapporter andre folk
       write:statuses: publiser innlegg

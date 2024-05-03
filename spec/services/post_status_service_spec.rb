@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PostStatusService, type: :service do
+RSpec.describe PostStatusService do
   subject { described_class.new }
 
   it 'creates a new status' do
@@ -53,6 +53,13 @@ RSpec.describe PostStatusService, type: :service do
       expect { subject.call(account, text: 'Hi future!', scheduled_at: future, thread: previous_status) }
         .to not_change { account.statuses_count }
         .and(not_change { previous_status.replies_count })
+    end
+
+    it 'returns existing status when used twice with idempotency key' do
+      account = Fabricate(:account)
+      status1 = subject.call(account, text: 'test', idempotency: 'meepmeep', scheduled_at: future)
+      status2 = subject.call(account, text: 'test', idempotency: 'meepmeep', scheduled_at: future)
+      expect(status2.id).to eq status1.id
     end
   end
 
@@ -150,7 +157,7 @@ RSpec.describe PostStatusService, type: :service do
 
     expect do
       subject.call(account, text: '@alice hm, @bob is really annoying lately', allowed_mentions: [mentioned_account.id])
-    end.to raise_error(an_instance_of(PostStatusService::UnexpectedMentionsError).and(having_attributes(accounts: [unexpected_mentioned_account])))
+    end.to raise_error(an_instance_of(described_class::UnexpectedMentionsError).and(having_attributes(accounts: [unexpected_mentioned_account])))
   end
 
   it 'processes duplicate mentions correctly' do

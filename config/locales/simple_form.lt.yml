@@ -39,14 +39,14 @@ lt:
         text: Gali pateikti apeliaciją dėl streiko tik vieną kartą
       defaults:
         autofollow: Žmonės, kurie užsiregistruos per kvietimą, automatiškai seks tave
-        avatar: PNG, GIF arba JPG. Ne daugiau kaip %{size}. Bus sumažintas iki %{dimensions} tšk.
+        avatar: WEBP, PNG, GIF arba JPG. Ne daugiau kaip %{size}. Bus sumažintas iki %{dimensions} tšk.
         bot: Signalizuoti kitiems, kad paskyroje daugiausia atliekami automatiniai veiksmai ir kad ji gali būti nestebima
         context: Vienas arba keli kontekstai, kuriems turėtų būti taikomas filtras
         current_password: Saugumo sumetimais įvesk dabartinės paskyros slaptažodį
         current_username: Kad patvirtintum, įvesk dabartinės paskyros naudotojo vardą
         digest: Siunčiama tik po ilgo neaktyvumo laikotarpio ir tik tuo atveju, jei negavai jokių asmeninių žinučių
         email: Tau bus išsiųstas patvirtinimo el. laiškas
-        header: PNG, GIF arba JPG. Ne daugiau kaip %{size}. Bus sumažintas iki %{dimensions} tšk.
+        header: WEBP, PNG, GIF arba JPG. Ne daugiau kaip %{size}. Bus sumažintas iki %{dimensions} tšk.
         inbox_url: Nukopijuok URL adresą iš pradinio puslapio perdavėjo, kurį nori naudoti
         irreversible: Filtruoti įrašai išnyks negrįžtamai, net jei vėliau filtras bus pašalintas
         locale: Naudotojo sąsajos kalba, el. laiškai ir stumiamieji pranešimai
@@ -74,7 +74,9 @@ lt:
           warn: Slėpti filtruojamą turinį po įspėjimu, paminint filtro pavadinimą
       form_admin_settings:
         activity_api_enabled: Vietinių paskelbtų įrašų, aktyvių naudotojų ir naujų registracijų skaičiai kas savaitę
-        backups_retention_period: Laikyti sukurtus naudotojų archyvus nurodytą dienų skaičių.
+        backups_retention_period: Naudotojai gali generuoti savo įrašų archyvus, kuriuos vėliau galės atsisiųsti. Nustačius teigiamą reikšmę, šie archyvai po nurodyto dienų skaičiaus bus automatiškai ištrinti iš saugyklos.
+        content_cache_retention_period: Visi įrašai iš kitų serverių (įskaitant pakėlimus ir atsakymus) bus ištrinti po nurodyto dienų skaičiaus, neatsižvelgiant į bet kokią vietinio naudotojo sąveiką su tais įrašais. Tai taikoma ir tiems įrašams, kuriuos vietinis naudotojas yra pažymėjęs kaip žymes ar mėgstamus. Privačios paminėjimai tarp naudotojų iš skirtingų instancijų taip pat bus prarastos ir jų bus neįmanoma atkurti. Šis nustatymas skirtas naudoti ypatingos paskirties instancijose, o įgyvendinus jį bendram naudojimui, pažeidžiami daugelio naudotojų lūkesčiai.
+        media_cache_retention_period: Nuotolinių naudotojų įrašytų įrašų medijos failai talpinami tavo serveryje. Nustačius teigiamą reikšmę, medijos bus ištrinamos po nurodyto dienų skaičiaus. Jei medijos duomenų bus paprašyta po to, kai jie bus ištrinti, jie bus atsiųsti iš naujo, jei šaltinio turinys vis dar prieinamas. Dėl apribojimų, susijusių su nuorodų peržiūros kortelių apklausos dažnumu trečiųjų šalių svetainėse, rekomenduojama nustatyti šią reikšmę ne trumpesnę kaip 14 dienų, kitaip nuorodų peržiūros kortelės nebus atnaujinamos pagal pareikalavimą iki to laiko.
         peers_api_enabled: Domenų pavadinimų sąrašas, su kuriais šis serveris susidūrė fediverse. Čia nėra duomenų apie tai, ar tu bendrauji su tam tikru serveriu, tik apie tai, kad tavo serveris apie jį žino. Tai naudojama tarnybose, kurios renka federacijos statistiką bendrąja prasme.
         site_contact_email: Kaip žmonės gali su tavimi susisiekti teisiniais ar pagalbos užklausimais.
         site_contact_username: Kaip žmonės gali tave pasiekti Mastodon.
@@ -82,6 +84,8 @@ lt:
         thumbnail: Maždaug 2:1 dydžio vaizdas, rodomas šalia tavo serverio informacijos.
         timeline_preview: Atsijungę lankytojai galės naršyti naujausius viešus įrašus, esančius serveryje.
         trends: Trendai rodo, kurios įrašai, saitažodžiai ir naujienų istorijos tavo serveryje sulaukia didžiausio susidomėjimo.
+      rule:
+        hint: Pasirinktinai. Pateik daugiau informacijos apie taisyklę.
       sessions:
         otp: 'Įvesk telefono programėlėje sugeneruotą dviejų tapatybės kodą arba naudok vieną iš atkūrimo kodų:'
         webauthn: Jei tai USB raktas, būtinai jį įkišk ir, jei reikia, paspausk.
@@ -144,7 +148,7 @@ lt:
       form_admin_settings:
         activity_api_enabled: Skelbti suvestinį statistiką apie naudotojų veiklą per API
         bootstrap_timeline_accounts: Visada rekomenduoti šias paskyras naujiems naudotojams
-        content_cache_retention_period: Turinio talpyklos išlaikymo laikotarpis
+        content_cache_retention_period: Nuotolinio turinio saugojimo laikotarpis
         custom_css: Pasirinktinis CSS
         mascot: Pasirinktinis talismanas (pasenęs)
         registrations_mode: Kas gali užsiregistruoti
@@ -168,6 +172,7 @@ lt:
           label: Yra nauja Mastodon versija
           patch: Pranešti apie klaidų ištaisymo atnaujinimus
       rule:
+        hint: Papildoma informacija
         text: Taisyklė
       settings:
         show_application: Rodyti, iš kurios programėles išsiuntei įrašą

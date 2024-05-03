@@ -2,15 +2,15 @@
 
 class Admin::Metrics::Dimension
   DIMENSIONS = {
-    languages: Admin::Metrics::Dimension::LanguagesDimension,
-    sources: Admin::Metrics::Dimension::SourcesDimension,
-    servers: Admin::Metrics::Dimension::ServersDimension,
-    space_usage: Admin::Metrics::Dimension::SpaceUsageDimension,
-    software_versions: Admin::Metrics::Dimension::SoftwareVersionsDimension,
-    tag_servers: Admin::Metrics::Dimension::TagServersDimension,
-    tag_languages: Admin::Metrics::Dimension::TagLanguagesDimension,
-    instance_accounts: Admin::Metrics::Dimension::InstanceAccountsDimension,
-    instance_languages: Admin::Metrics::Dimension::InstanceLanguagesDimension,
+    languages: LanguagesDimension,
+    sources: SourcesDimension,
+    servers: ServersDimension,
+    space_usage: SpaceUsageDimension,
+    software_versions: SoftwareVersionsDimension,
+    tag_servers: TagServersDimension,
+    tag_languages: TagLanguagesDimension,
+    instance_accounts: InstanceAccountsDimension,
+    instance_languages: InstanceLanguagesDimension,
   }.freeze
 
   def self.retrieve(dimension_keys, start_at, end_at, limit, params)

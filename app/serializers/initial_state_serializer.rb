@@ -103,7 +103,6 @@ class InitialStateSerializer < ActiveModel::Serializer
   def current_account_settings
     {
       me: object.current_account.id.to_s,
-      unfollow_modal: object_account_user.setting_unfollow_modal,
       boost_modal: object_account_user.setting_boost_modal,
       delete_modal: object_account_user.setting_delete_modal,
       auto_play_gif: object_account_user.setting_auto_play_gif,

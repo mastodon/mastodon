@@ -70,7 +70,7 @@ class DomainBlock < ApplicationRecord
       segments = uri.normalized_host.split('.')
       variants = segments.map.with_index { |_, i| segments[i..].join('.') }
 
-      where(domain: variants).order(Arel.sql('char_length(domain) desc')).first
+      where(domain: variants).by_domain_length.first
     rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
       nil
     end

@@ -3,9 +3,6 @@
 class ActivityPub::OutboxesController < ActivityPub::BaseController
   LIMIT = 20
 
-  include SignatureVerification
-  include AccountOwnedConcern
-
   vary_by -> { 'Signature' if authorized_fetch_mode? || page_requested? }
 
   before_action :require_account_signature!, if: :authorized_fetch_mode?

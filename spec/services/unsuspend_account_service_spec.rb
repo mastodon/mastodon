@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UnsuspendAccountService, type: :service do
+RSpec.describe UnsuspendAccountService do
   shared_context 'with common context' do
     subject { described_class.new.call(account) }
 

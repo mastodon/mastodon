@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe FetchLinkCardService, type: :service do
+RSpec.describe FetchLinkCardService do
   subject { described_class.new }
 
   let(:html) { '<!doctype html><title>Hello world</title>' }

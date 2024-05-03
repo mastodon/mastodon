@@ -12,6 +12,8 @@ class AccountSuggestions::Source
   def base_account_scope(account)
     Account
       .searchable
+      .where(discoverable: true)
+      .without_silenced
       .where.not(follows_sql, id: account.id)
       .where.not(follow_requests_sql, id: account.id)
       .not_excluded_by_account(account)

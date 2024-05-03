@@ -20,7 +20,7 @@
               %dd{ title: field.value, class: custom_field_classes(field) }
                 - if field.verified?
                   %span.verified__mark{ title: t('accounts.link_verified_on', date: l(field.verified_at)) }
-                    = fa_icon 'check'
+                    = material_symbol 'check'
                 = prerender_custom_emojis(account_field_value_format(field, with_rel_me: false), account.emojis)
 
     - if account.note.present?
@@ -30,7 +30,7 @@
 = render 'admin/accounts/counters', account: @account
 
 - if @account.local? && @account.user.nil?
-  = link_to t('admin.accounts.unblock_email'), unblock_email_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unblock_email, @account) && CanonicalEmailBlock.exists?(reference_account_id: @account.id)
+  = link_to t('admin.accounts.unblock_email'), unblock_email_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unblock_email, @account) && CanonicalEmailBlock.matching_account(@account).exists?
 - else
   .table-wrapper
     %table.table.inline-table

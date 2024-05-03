@@ -277,7 +277,7 @@ module Mastodon::CLI
 
     desc 'usage', 'Calculate disk space consumed by Mastodon'
     def usage
-      say("Attachments:\t#{number_to_human_size(MediaAttachment.sum(Arel.sql('COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)')))} (#{number_to_human_size(MediaAttachment.where(account: Account.local).sum(Arel.sql('COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)')))} local)")
+      say("Attachments:\t#{number_to_human_size(media_attachment_storage_size)} (#{number_to_human_size(local_media_attachment_storage_size)} local)")
       say("Custom emoji:\t#{number_to_human_size(CustomEmoji.sum(:image_file_size))} (#{number_to_human_size(CustomEmoji.local.sum(:image_file_size))} local)")
       say("Preview cards:\t#{number_to_human_size(PreviewCard.sum(:image_file_size))}")
       say("Avatars:\t#{number_to_human_size(Account.sum(:avatar_file_size))} (#{number_to_human_size(Account.local.sum(:avatar_file_size))} local)")
@@ -316,6 +316,22 @@ module Mastodon::CLI
     end
 
     private
+
+    def media_attachment_storage_size
+      MediaAttachment.sum(file_and_thumbnail_size_sql)
+    end
+
+    def local_media_attachment_storage_size
+      MediaAttachment.where(account: Account.local).sum(file_and_thumbnail_size_sql)
+    end
+
+    def file_and_thumbnail_size_sql
+      Arel.sql(
+        <<~SQL.squish
+          COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)
+        SQL
+      )
+    end
 
     PRELOAD_MODEL_WHITELIST = %w(
       Account

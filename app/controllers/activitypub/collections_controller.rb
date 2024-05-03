@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class ActivityPub::CollectionsController < ActivityPub::BaseController
-  include SignatureVerification
-  include AccountOwnedConcern
-
   vary_by -> { 'Signature' if authorized_fetch_mode? }
 
   before_action :require_account_signature!, if: :authorized_fetch_mode?

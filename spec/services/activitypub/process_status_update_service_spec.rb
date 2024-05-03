@@ -6,7 +6,7 @@ def poll_option_json(name, votes)
   { type: 'Note', name: name, replies: { type: 'Collection', totalItems: votes } }
 end
 
-RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
+RSpec.describe ActivityPub::ProcessStatusUpdateService do
   subject { described_class.new }
 
   let!(:status) { Fabricate(:status, text: 'Hello world', account: Fabricate(:account, domain: 'example.com')) }

@@ -39,14 +39,12 @@ ms:
         text: Anda boleh membuat rayuan terhadap pelanggaran sekali sahaja
       defaults:
         autofollow: Orang yang mendaftar melalui undangan akan mengikuti anda secara automatik
-        avatar: PNG, GIF atau JPG. Kebanyakannya %{size}. Saiz akan dikecilkan kepada %{dimensions}px
         bot: Memberi isyarat kepada orang lain bahawa akaun itu kebanyakannya melakukan tindakan automatik dan mungkin tidak dipantau
         context: Satu atau berbilang konteks di mana penapis harus digunakan
         current_password: Untuk tujuan keselamatan sila masukkan kata laluan akaun semasa
         current_username: Untuk mengesahkan, sila masukkan nama pengguna akaun semasa
         digest: Hanya dihantar selepas tempoh yang lama tidak aktif dan hanya jika anda telah menerima sebarang mesej peribadi semasa ketiadaan anda
         email: Anda akan dihantar e-mel pengesahan
-        header: PNG, GIF atau JPG. Paling banyak %{size}. Akan diturunkan skala kepada %{dimensions}px
         inbox_url: Salin URL dari muka depan geganti yang anda mahu gunakan
         irreversible: Siaran yang ditapis akan hilang secara tidak dapat dipulihkan, walaupun penapis dialih keluar kemudian
         locale: Bahasa untuk antara muka pengguna, e-mel dan pemberitahuan segera
@@ -77,13 +75,10 @@ ms:
           warn: Sembunyikan kandungan yang ditapis di sebalik amaran yang menyebut tajuk penapis
       form_admin_settings:
         activity_api_enabled: Kiraan siaran tempatan yang diterbitkan, pengguna aktif dan pendaftaran baharu dalam baldi mingguan
-        backups_retention_period: Simpan arkib pengguna yang dijana untuk bilangan hari yang ditentukan.
         bootstrap_timeline_accounts: Akaun ini akan disematkan pada bahagian atas cadangan ikutan pengguna baharu.
         closed_registrations_message: Dipaparkan semasa pendaftaran ditutup
-        content_cache_retention_period: Semua pos dan rangsangan daripada server lain akan dipadamkan selepas bilangan hari yang ditentukan. Sesetengah siaran mungkin tidak boleh dipulihkan. Semua penanda halaman, kegemaran dan rangsangan yang berkaitan juga akan hilang dan mustahil untuk dibuat asal.
         custom_css: Anda boleh menggunakan gaya tersuai pada versi web Mastodon.
         mascot: Mengatasi ilustrasi dalam antara muka web lanjutan.
-        media_cache_retention_period: Fail media yang dimuat turun akan dipadamkan selepas bilangan hari yang ditetapkan apabila ditetapkan kepada nilai positif dan dimuat turun semula atas permintaan.
         peers_api_enabled: Senarai nama domain yang pernah ditemui oleh server ini dalam fediverse. Tiada data disertakan di sini tentang sama ada anda bersekutu dengan server tertentu, cuma server anda mengetahuinya. Ini digunakan oleh perkhidmatan yang mengumpul statistik mengenai persekutuan dalam pengertian umum.
         profile_directory: Direktori profil menyenaraikan semua pengguna yang telah mengikut serta untuk ditemui.
         require_invite_text: Apabila pendaftaran memerlukan kelulusan manual, buat "Mengapa anda mahu menyertai?" input teks wajib dan bukannya pilihan
@@ -242,7 +237,6 @@ ms:
         backups_retention_period: Tempoh pengekalan arkib pengguna
         bootstrap_timeline_accounts: Sentiasa mengesyorkan akaun ini kepada pengguna baharu
         closed_registrations_message: Mesej tersuai apabila pendaftaran tidak tersedia
-        content_cache_retention_period: Tempoh pengekalan cache kandungan
         custom_css: CSS tersuai
         mascot: Maskot tersuai (warisan)
         media_cache_retention_period: Tempoh pengekalan cache media

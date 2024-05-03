@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe Sanitize::Config do
   describe '::MASTODON_STRICT' do
-    subject { Sanitize::Config::MASTODON_STRICT }
+    subject { described_class::MASTODON_STRICT }
 
     it 'converts h1 to p strong' do
       expect(Sanitize.fragment('<h1>Foo</h1>', subject)).to eq '<p><strong>Foo</strong></p>'

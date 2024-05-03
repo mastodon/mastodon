@@ -36,6 +36,15 @@ namespace :mastodon do
         env[key] = SecureRandom.hex(64)
       end
 
+      # Required by ActiveRecord encryption feature
+      %w(
+        ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY
+        ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT
+        ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY
+      ).each do |key|
+        env[key] = SecureRandom.alphanumeric(32)
+      end
+
       vapid_key = Webpush.generate_key
 
       env['VAPID_PRIVATE_KEY'] = vapid_key.private_key
@@ -544,6 +553,7 @@ namespace :mastodon do
           owner_role = UserRole.find_by(name: 'Owner')
           user = User.new(email: email, password: password, confirmed_at: Time.now.utc, account_attributes: { username: username }, bypass_invite_request_check: true, role: owner_role)
           user.save(validate: false)
+          user.approve!
 
           Setting.site_contact_username = username
 

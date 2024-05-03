@@ -14,7 +14,7 @@ class Rack::Attack
     end
 
     def remote_ip
-      @remote_ip ||= (@env["action_dispatch.remote_ip"] || ip).to_s
+      @remote_ip ||= (@env['action_dispatch.remote_ip'] || ip).to_s
     end
 
     def throttleable_remote_ip
