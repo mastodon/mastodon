@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
 class Api::V1::Push::SubscriptionsController < Api::BaseController
+  include Redisable
+  include Lockable
+
   before_action -> { doorkeeper_authorize! :push }
   before_action :require_user!
-  before_action :set_push_subscription
+  before_action :set_push_subscription, only: [:show, :update]
   before_action :check_push_subscription, only: [:show, :update]
 
   def show
@@ -11,16 +14,18 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
   end
 
   def create
-    @push_subscription&.destroy!
+    with_redis_lock("push_subscription:#{current_user.id}") do
+      Web::PushSubscription.where(access_token_id: doorkeeper_token.id).destroy_all
 
-    @push_subscription = Web::PushSubscription.create!(
-      endpoint: subscription_params[:endpoint],
-      key_p256dh: subscription_params[:keys][:p256dh],
-      key_auth: subscription_params[:keys][:auth],
-      data: data_params,
-      user_id: current_user.id,
-      access_token_id: doorkeeper_token.id
-    )
+      @push_subscription = Web::PushSubscription.create!(
+        endpoint: subscription_params[:endpoint],
+        key_p256dh: subscription_params[:keys][:p256dh],
+        key_auth: subscription_params[:keys][:auth],
+        data: data_params,
+        user_id: current_user.id,
+        access_token_id: doorkeeper_token.id
+      )
+    end
 
     render json: @push_subscription, serializer: REST::WebPushSubscriptionSerializer
   end
@@ -31,7 +36,7 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
   end
 
   def destroy
-    @push_subscription&.destroy!
+    Web::PushSubscription.where(access_token_id: doorkeeper_token.id).destroy_all
     render_empty
   end
 
