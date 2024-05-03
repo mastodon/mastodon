@@ -22,7 +22,7 @@ module User::LdapAuthenticable
         safe_username = safe_username.gsub(keys, replacement)
       end
 
-      resource = joins(:account).find_by(accounts: { username: safe_username })
+      resource = joins(:account).merge(Account.where(Account.arel_table[:username].lower.eq safe_username.downcase)).take
 
       if resource.blank?
         resource = new(
