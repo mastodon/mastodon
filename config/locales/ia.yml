@@ -159,42 +159,94 @@ ia:
       undo_suspension: Disfacer le suspension
       unsilenced_msg: Le limite del conto de %{username} ha essite cancellate
       unsubscribe: Desubscriber
+      unsuspended_msg: Annullate suspension del conto %{username} con successo
       username: Nomine de usator
       view_domain: Vider summario de dominio
       warn: Avisar
       web: Web
+      whitelisted: Permittite pro federation
     action_logs:
       action_types:
+        approve_appeal: Approbar appello
+        approve_user: Approbar usator
+        assigned_to_self_report: Assignar reporto
         change_email_user: Cambiar e-mail pro le usator
         change_role_user: Cambiar le rolo del usator
         confirm_user: Confirmar le usator
         create_account_warning: Crear un advertimento
         create_announcement: Crear annuncio
+        create_canonical_email_block: Crear blocada de email
+        create_custom_emoji: Crear emoticone personalisate
+        create_domain_allow: Crear permisso de dominio
+        create_domain_block: Crear blocada de dominio
+        create_email_domain_block: Crear blocada de dominio email
         create_ip_block: Crear un regula IP
+        create_unavailable_domain: Crear dominio indisponibile
         create_user_role: Crear un rolo
+        demote_user: Degradar usator
         destroy_announcement: Deler annuncio
+        destroy_canonical_email_block: Deler blocada de email
+        destroy_custom_emoji: Deler emoticone personalisate
+        destroy_domain_allow: Deler permisso de dominio
+        destroy_domain_block: Deler blocada de dominio
+        destroy_email_domain_block: Crear blocada de dominio email
+        destroy_instance: Purgar dominio
         destroy_ip_block: Deler le regula IP
         destroy_status: Deler le message
         destroy_unavailable_domain: Deler le dominio non disponibile
+        destroy_user_role: Destruer rolo
         disable_2fa_user: Disactivar 2FA
         disable_custom_emoji: Disactivar emoji personalisate
+        disable_sign_in_token_auth_user: Disactivar le authentication per testimonio via email pro usator
         disable_user: Disactivar le usator
         enable_custom_emoji: Activar emoji personalisate
+        enable_sign_in_token_auth_user: Activar le authentication per testimonio via email pro usator
         enable_user: Activar le usator
+        memorialize_account: Commemorar conto
         promote_user: Promover usator
+        reject_appeal: Rejectar appello
+        reject_user: Rejectar usator
+        remove_avatar_user: Remover avatar
+        reopen_report: Reaperir reporto
         resend_user: Reinviar message de confirmation
         reset_password_user: Reinitialisar contrasigno
+        resolve_report: Resolver reporto
+        sensitive_account: Marcar como sensibile le medios del conto
         silence_account: Limitar conto
+        suspend_account: Suspender conto
+        unassigned_report: Disassignar reporto
         unblock_email_account: Disblocar adresse de e-mail
+        unsensitive_account: Dismarcar como sensibile le medios del conto
         unsilence_account: Disfacer le limite de conto
+        unsuspend_account: Annullar suspension de conto
         update_announcement: Actualisar annuncio
         update_custom_emoji: Actualisar emoji personalisate
+        update_domain_block: Actualisar blocada de dominio
         update_ip_block: Actualisar le regula IP
         update_status: Actualisar le message
         update_user_role: Actualisar rolo
       actions:
+        approve_appeal_html: "%{name} approbava appello del decision de moderation de %{target}"
+        approve_user_html: "%{name} approbava inscription de %{target}"
+        assigned_to_self_report_html: "%{name} assignava reporto %{target} a se mesme"
         change_email_user_html: "%{name} cambiava le adresse de e-mail address del usator %{target}"
+        change_role_user_html: "%{name} cambiava rolo de %{target}"
+        confirm_user_html: "%{name} confirmava le adresse email del usator %{target}"
+        create_account_warning_html: "%{name} inviava un advertimento a %{target}"
         create_announcement_html: "%{name} creava un nove annuncio %{target}"
+        create_canonical_email_block_html: "%{name} blocava email con le hash %{target}"
+        create_custom_emoji_html: "%{name} cargava nove emoticone %{target}"
+        create_domain_allow_html: "%{name} permitteva federation con dominio %{target}"
+        create_domain_block_html: "%{name} blocava dominio %{target}"
+        create_email_domain_block_html: "%{name} blocava dominio email %{target}"
+        create_ip_block_html: "%{name} creava regula pro IP %{target}"
+        create_unavailable_domain_html: "%{name} stoppava consignation a dominio %{target}"
+        create_user_role_html: "%{name} creava rolo de %{target}"
+        demote_user_html: "%{name} degradava usator %{target}"
+        destroy_announcement_html: "%{name} deleva annuncio %{target}"
+        destroy_custom_emoji_html: "%{name} deleva emoji %{target}"
+        destroy_domain_block_html: "%{name} disblocava dominio %{target}"
+        destroy_user_role_html: "%{name} deleva le rolo de %{target}"
       deleted_account: conto delite
     announcements:
       destroyed_msg: Annuncio delite con successo!
