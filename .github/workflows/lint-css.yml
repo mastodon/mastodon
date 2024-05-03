@@ -38,9 +38,5 @@ jobs:
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
 
-      - uses: xt0rted/stylelint-problem-matcher@v1
-
-      - run: echo "::add-matcher::.github/stylelint-matcher.json"
-
       - name: Stylelint
-        run: yarn lint:css
+        run: yarn lint:css -f github
