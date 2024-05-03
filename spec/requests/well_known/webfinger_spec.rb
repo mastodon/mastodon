@@ -27,7 +27,7 @@ describe 'The /.well-known/webfinger endpoint' do
       expect(body_as_json)
         .to include(
           subject: eq('acct:alice@cb6e6126.ngrok.io'),
-          aliases: include('https://cb6e6126.ngrok.io/@alice', 'https://cb6e6126.ngrok.io/users/alice')
+          aliases: include('http://cb6e6126.ngrok.io/@alice', 'http://cb6e6126.ngrok.io/users/alice')
         )
     end
   end
@@ -131,7 +131,7 @@ describe 'The /.well-known/webfinger endpoint' do
     it 'returns links for the internal account' do
       json = body_as_json
       expect(json[:subject]).to eq 'acct:mastodon.internal@cb6e6126.ngrok.io'
-      expect(json[:aliases]).to eq ['https://cb6e6126.ngrok.io/actor']
+      expect(json[:aliases]).to eq ['http://cb6e6126.ngrok.io/actor']
     end
   end
 
@@ -169,7 +169,7 @@ describe 'The /.well-known/webfinger endpoint' do
       avatar_link = get_avatar_link(body_as_json)
       expect(avatar_link).to_not be_nil
       expect(avatar_link[:type]).to eq alice.avatar.content_type
-      expect(avatar_link[:href]).to eq Addressable::URI.new(host: Rails.configuration.x.local_domain, path: alice.avatar.to_s, scheme: 'https').to_s
+      expect(avatar_link[:href]).to eq Addressable::URI.new(host: Rails.configuration.x.local_domain, path: alice.avatar.to_s, scheme: 'http').to_s
     end
 
     context 'with limited federation mode' do

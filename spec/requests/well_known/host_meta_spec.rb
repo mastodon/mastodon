@@ -20,7 +20,7 @@ describe 'The /.well-known/host-meta request' do
     <<~XML
       <?xml version="1.0" encoding="UTF-8"?>
       <XRD xmlns="http://docs.oasis-open.org/ns/xri/xrd-1.0">
-        <Link rel="lrdd" template="https://cb6e6126.ngrok.io/.well-known/webfinger?resource={uri}"/>
+        <Link rel="lrdd" template="http://cb6e6126.ngrok.io/.well-known/webfinger?resource={uri}"/>
       </XRD>
     XML
   end

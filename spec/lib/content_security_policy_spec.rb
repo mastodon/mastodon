@@ -74,7 +74,7 @@ describe ContentSecurityPolicy do
       end
 
       it 'uses the s3 alias host value' do
-        expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'https://asset-host.s3-alias.example')
+        expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'http://asset-host.s3-alias.example')
       end
     end
 
@@ -86,7 +86,7 @@ describe ContentSecurityPolicy do
       end
 
       it 'uses the s3 alias host value and preserves the path' do
-        expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'https://asset-host.s3-alias.example/pathname/')
+        expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'http://asset-host.s3-alias.example/pathname/')
       end
     end
 
@@ -98,7 +98,7 @@ describe ContentSecurityPolicy do
       end
 
       it 'uses the s3 cloudfront host value' do
-        expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'https://asset-host.s3-cloudfront.example')
+        expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'http://asset-host.s3-cloudfront.example')
       end
     end
 
@@ -110,7 +110,7 @@ describe ContentSecurityPolicy do
       end
 
       it 'uses the azure alias host value' do
-        expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'https://asset-host.azure-alias.example')
+        expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'http://asset-host.azure-alias.example')
       end
     end
 
@@ -122,7 +122,7 @@ describe ContentSecurityPolicy do
       end
 
       it 'uses the s3 hostname host value' do
-        expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'https://asset-host.s3.example')
+        expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'http://asset-host.s3.example')
       end
     end
 

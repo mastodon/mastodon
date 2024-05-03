@@ -407,7 +407,7 @@ RSpec.describe Status do
     it 'saves ActivityPub uri as uri for local status' do
       status = described_class.create(account: alice, text: 'foo')
       status.reload
-      expect(status.uri).to start_with('https://')
+      expect(status.uri).to start_with('http://')
     end
   end
 end

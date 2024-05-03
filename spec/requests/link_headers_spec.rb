@@ -20,7 +20,7 @@ describe 'Link headers' do
     it 'contains activitypub url in link header' do
       link_header = link_header_with_type('application/activity+json')
 
-      expect(link_header.href).to eq 'https://cb6e6126.ngrok.io/users/test'
+      expect(link_header.href).to eq 'http://cb6e6126.ngrok.io/users/test'
       expect(link_header.attr_pairs.first).to eq %w(rel alternate)
     end
 

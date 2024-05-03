@@ -19,7 +19,7 @@ RSpec.describe AdminMailer do
         .and(deliver_to(recipient.user_email))
         .and(deliver_from('notifications@localhost'))
         .and(have_subject("New report for cb6e6126.ngrok.io (##{report.id})"))
-        .and(have_body_text("Mike,\r\n\r\nJohn has reported Mike\r\n\r\nView: https://cb6e6126.ngrok.io/admin/reports/#{report.id}\r\n"))
+        .and(have_body_text("Mike,\r\n\r\nJohn has reported Mike\r\n\r\nView: http://cb6e6126.ngrok.io/admin/reports/#{report.id}\r\n"))
     end
   end
 

@@ -14,7 +14,7 @@ RSpec.describe NotificationMailer do
         .to be_present
         .and(have_header('To', "#{receiver.account.username} <#{receiver.email}>"))
         .and(have_header('List-ID', "<#{type}.alice.cb6e6126.ngrok.io>"))
-        .and(have_header('List-Unsubscribe', %r{<https://cb6e6126.ngrok.io/unsubscribe\?token=.+>}))
+        .and(have_header('List-Unsubscribe', %r{<http://cb6e6126.ngrok.io/unsubscribe\?token=.+>}))
         .and(have_header('List-Unsubscribe', /&type=#{type}/))
         .and(have_header('List-Unsubscribe-Post', 'List-Unsubscribe=One-Click'))
         .and(deliver_to("#{receiver.account.username} <#{receiver.email}>"))

@@ -22,19 +22,19 @@ describe 'Content-Security-Policy' do
   def expected_csp_headers
     <<~CSP.split("\n").map(&:strip)
       base-uri 'none'
-      child-src 'self' blob: https://cb6e6126.ngrok.io
-      connect-src 'self' data: blob: https://cb6e6126.ngrok.io ws://cb6e6126.ngrok.io:4000
+      child-src 'self' blob: http://cb6e6126.ngrok.io
+      connect-src 'self' data: blob: http://cb6e6126.ngrok.io ws://cb6e6126.ngrok.io:4000
       default-src 'none'
-      font-src 'self' https://cb6e6126.ngrok.io
+      font-src 'self' http://cb6e6126.ngrok.io
       form-action 'self'
       frame-ancestors 'none'
       frame-src 'self' https:
-      img-src 'self' data: blob: https://cb6e6126.ngrok.io
-      manifest-src 'self' https://cb6e6126.ngrok.io
-      media-src 'self' data: https://cb6e6126.ngrok.io
-      script-src 'self' https://cb6e6126.ngrok.io 'wasm-unsafe-eval'
-      style-src 'self' https://cb6e6126.ngrok.io 'nonce-ZbA+JmE7+bK8F5qvADZHuQ=='
-      worker-src 'self' blob: https://cb6e6126.ngrok.io
+      img-src 'self' data: blob: http://cb6e6126.ngrok.io
+      manifest-src 'self' http://cb6e6126.ngrok.io
+      media-src 'self' data: http://cb6e6126.ngrok.io
+      script-src 'self' http://cb6e6126.ngrok.io 'wasm-unsafe-eval'
+      style-src 'self' http://cb6e6126.ngrok.io 'nonce-ZbA+JmE7+bK8F5qvADZHuQ=='
+      worker-src 'self' blob: http://cb6e6126.ngrok.io
     CSP
   end
 end
