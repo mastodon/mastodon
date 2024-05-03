@@ -77,13 +77,10 @@ sv:
           warn: Dölj det filtrerade innehållet bakom en varning som visar filtrets rubrik
       form_admin_settings:
         activity_api_enabled: Antalet lokalt publicerade inlägg, aktiva användare och nya registrerade konton per vecka
-        backups_retention_period: Behåll genererade användararkiv i det angivna antalet dagar.
         bootstrap_timeline_accounts: Dessa konton kommer fästas högst upp i nya användares följrekommendationer.
         closed_registrations_message: Visas när nyregistreringar är avstängda
-        content_cache_retention_period: Inlägg från andra servrar kommer att raderas efter det angivna antalet dagar när detta är inställt på ett positivt värde. Åtgärden kan vara oåterkallelig.
         custom_css: Du kan använda anpassade stilar på webbversionen av Mastodon.
         mascot: Åsidosätter illustrationen i det avancerade webbgränssnittet.
-        media_cache_retention_period: Nedladdade mediefiler kommer raderas efter det angivna antalet dagar, om inställt till ett positivt värde, och laddas ned på nytt vid behov.
         peers_api_enabled: En lista över domänen den här servern har stött på i fediversum. Ingen data inkluderas om du har federerat med servern, bara att din server känner till den. Detta används av tjänster som samlar statistik om federering i allmänhet.
         profile_directory: Profilkatalogen visar alla användare som har samtyckt till att bli upptäckbara.
         require_invite_text: Gör fältet "Varför vill du gå med?" obligatoriskt när nyregistreringar kräver manuellt godkännande
@@ -243,7 +240,6 @@ sv:
         backups_retention_period: Lagringsperiod för användararkivet
         bootstrap_timeline_accounts: Rekommendera alltid dessa konton till nya användare
         closed_registrations_message: Anpassat meddelande när nyregistreringar inte är tillgängliga
-        content_cache_retention_period: Tid för bibehållande av innehållscache
         custom_css: Anpassad CSS
         mascot: Anpassad maskot (tekniskt arv)
         media_cache_retention_period: Tid för bibehållande av mediecache
