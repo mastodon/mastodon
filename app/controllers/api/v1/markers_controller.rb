@@ -7,7 +7,9 @@ class Api::V1::MarkersController < Api::BaseController
   before_action :require_user!
 
   def index
-    @markers = current_user_markers
+    with_read_replica do
+      @markers = current_user_markers
+    end
     render json: marker_timeline_presenter, serializer: REST::MarkerTimelineSerializer
   end
 
@@ -25,9 +27,7 @@ class Api::V1::MarkersController < Api::BaseController
   end
 
   def current_user_markers
-    with_read_replica do
-      current_user.markers.where(timeline: Array(params[:timeline]))
-    end
+    current_user.markers.where(timeline: Array(params[:timeline]))
   end
 
   def create_markers_from_params
