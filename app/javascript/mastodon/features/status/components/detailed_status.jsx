@@ -272,7 +272,7 @@ class DetailedStatus extends ImmutablePureComponent {
               <FormattedMessage id='status.direct_indicator' defaultMessage='Private mention' />
             </div>
           )}
-          <a href={`/@${status.getIn(['account', 'acct'])}`} onClick={this.handleAccountClick} className='detailed-status__display-name'>
+          <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='detailed-status__display-name'>
             <div className='detailed-status__display-avatar'><Avatar account={status.get('account')} size={46} /></div>
             <DisplayName account={status.get('account')} localDomain={this.props.domain} />
           </a>
@@ -291,7 +291,7 @@ class DetailedStatus extends ImmutablePureComponent {
 
           <div className='detailed-status__meta'>
             <div className='detailed-status__meta__line'>
-              <a className='detailed-status__datetime' href={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`} target='_blank' rel='noopener noreferrer'>
+              <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener noreferrer'>
                 <FormattedDate value={new Date(status.get('created_at'))} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
               </a>
 
