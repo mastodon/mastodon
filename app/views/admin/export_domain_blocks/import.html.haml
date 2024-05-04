@@ -12,7 +12,7 @@
       %label.batch-table__toolbar__select.batch-checkbox-all
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
-        = f.button safe_join([fa_icon('copy'), t('admin.domain_blocks.import')]),
+        = f.button safe_join([material_symbol('content_copy'), t('admin.domain_blocks.import')]),
                    class: 'table-action-link',
                    data: { confirm: t('admin.reports.are_you_sure') },
                    name: :save,

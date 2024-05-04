@@ -15,7 +15,7 @@
       %li= filter_link_to safe_join([t('admin.accounts.moderation.pending'), "(#{PreviewCardProvider.pending_review.count})"], ' '), status: 'pending_review'
   .back-link
     = link_to admin_trends_links_path do
-      = fa_icon 'chevron-left fw'
+      = material_symbol 'chevron_left'
       = t('admin.trends.links.title')
 
 %hr.spacer/
@@ -31,12 +31,12 @@
       %label.batch-table__toolbar__select.batch-checkbox-all
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
-        = f.button safe_join([fa_icon('check'), t('admin.trends.allow')]),
+        = f.button safe_join([material_symbol('check'), t('admin.trends.allow')]),
                    class: 'table-action-link',
                    data: { confirm: t('admin.reports.are_you_sure') },
                    name: :approve,
                    type: :submit
-        = f.button safe_join([fa_icon('times'), t('admin.trends.disallow')]),
+        = f.button safe_join([material_symbol('close'), t('admin.trends.disallow')]),
                    class: 'table-action-link',
                    data: { confirm: t('admin.reports.are_you_sure') },
                    name: :reject,

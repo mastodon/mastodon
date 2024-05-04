@@ -1,4 +1,4 @@
-import 'packs/public-path';
+import '@/entrypoints/public-path';
 import axios from 'axios';
 
 import ready from 'flavours/glitch/ready';

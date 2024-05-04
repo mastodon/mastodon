@@ -113,6 +113,14 @@ module ApplicationHelper
     content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
   end
 
+  def material_symbol(icon, attributes = {})
+    inline_svg_tag(
+      "400-24px/#{icon}.svg",
+      class: %w(icon).concat(attributes[:class].to_s.split),
+      role: :img
+    )
+  end
+
   def check_icon
     inline_svg_tag 'check.svg'
   end

@@ -1,4 +1,4 @@
-import 'packs/public-path';
+import '@/entrypoints/public-path';
 
 import { start } from 'flavours/glitch/common';
 import { loadLocale } from 'flavours/glitch/locales';

@@ -8,7 +8,7 @@ and performs no other task.
 
 */
 
-import 'packs/public-path';
+import '@/entrypoints/public-path';
 
 import axios from 'axios';
 
