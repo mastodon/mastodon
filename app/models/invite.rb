@@ -19,12 +19,14 @@
 class Invite < ApplicationRecord
   include Expireable
 
+  COMMENT_SIZE_LIMIT = 420
+
   belongs_to :user, inverse_of: :invites
   has_many :users, inverse_of: :invite, dependent: nil
 
   scope :available, -> { where(expires_at: nil).or(where('expires_at >= ?', Time.now.utc)) }
 
-  validates :comment, length: { maximum: 420 }
+  validates :comment, length: { maximum: COMMENT_SIZE_LIMIT }
 
   before_validation :set_code
 

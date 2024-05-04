@@ -182,6 +182,11 @@ Style/FormatStringToken:
   AllowedMethods:
     - redirect_with_vary
 
+# Reason: Prevailing style choice
+# https://docs.rubocop.org/rubocop/cops_style.html#stylehashaslastarrayitem
+Style/HashAsLastArrayItem:
+  Enabled: false
+
 # Reason: Enforce modern Ruby style
 # https://docs.rubocop.org/rubocop/cops_style.html#stylehashsyntax
 Style/HashSyntax:
