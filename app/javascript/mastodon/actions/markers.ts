@@ -1,5 +1,3 @@
-import { List as ImmutableList } from 'immutable';
-
 import { debounce } from 'lodash';
 
 import type { MarkerJSON } from 'mastodon/api_types/markers';
@@ -71,19 +69,6 @@ interface MarkerParam {
   last_read_id?: string;
 }
 
-function getLastHomeId(state: RootState): string | undefined {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  return (
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    state
-      // @ts-expect-error state.timelines is not yet typed
-      .getIn(['timelines', 'home', 'items'], ImmutableList())
-      // @ts-expect-error state.timelines is not yet typed
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      .find((item) => item !== null)
-  );
-}
-
 function getLastNotificationId(state: RootState): string | undefined {
   // @ts-expect-error state.notifications is not yet typed
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
@@ -93,14 +78,7 @@ function getLastNotificationId(state: RootState): string | undefined {
 const buildPostMarkersParams = (state: RootState) => {
   const params = {} as { home?: MarkerParam; notifications?: MarkerParam };
 
-  const lastHomeId = getLastHomeId(state);
   const lastNotificationId = getLastNotificationId(state);
-
-  if (lastHomeId && compareId(lastHomeId, state.markers.home) > 0) {
-    params.home = {
-      last_read_id: lastHomeId,
-    };
-  }
 
   if (
     lastNotificationId &&

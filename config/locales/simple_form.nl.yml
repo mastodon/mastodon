@@ -77,13 +77,13 @@ nl:
           warn: Verberg de gefilterde inhoud achter een waarschuwing, met de titel van het filter als waarschuwingstekst
       form_admin_settings:
         activity_api_enabled: Aantallen lokaal gepubliceerde berichten, actieve gebruikers en nieuwe registraties per week
-        backups_retention_period: De aangemaakte gebruikersarchieven voor het opgegeven aantal dagen behouden.
+        backups_retention_period: Gebruikers hebben de mogelijkheid om archieven van hun berichten te genereren om later te downloaden. Indien ingesteld op een positieve waarde, worden deze archieven automatisch verwijderd uit jouw opslag na het opgegeven aantal dagen.
         bootstrap_timeline_accounts: Deze accounts worden bovenaan de aanbevelingen aan nieuwe gebruikers getoond. Meerdere gebruikersnamen met komma's scheiden.
         closed_registrations_message: Weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld
-        content_cache_retention_period: Alle berichten van andere servers worden na het opgegeven aantal dagen verwijderd. Deze berichten kunnen daarna hoogstwaarschijnlijk niet meer worden hersteld. Alle gerelateerde bladwijzers, favorieten en boosts worden eveneens onomkeerbaar verwijderd.
+        content_cache_retention_period: Alle berichten van andere servers (inclusief boosts en reacties) worden verwijderd na het opgegeven aantal dagen, ongeacht enige lokale gebruikersinteractie met die berichten. Dit betreft ook berichten die een lokale gebruiker aan diens bladwijzers heeft toegevoegd of als favoriet heeft gemarkeerd. Privéberichten tussen gebruikers van verschillende servers gaan ook verloren en zijn onmogelijk te herstellen. Het gebruik van deze instelling is bedoeld voor servers die een speciaal doel dienen en overtreedt veel gebruikersverwachtingen wanneer deze voor algemeen gebruik wordt geïmplementeerd.
         custom_css: Je kunt aangepaste CSS toepassen op de webversie van deze Mastodon-server.
         mascot: Overschrijft de illustratie in de geavanceerde webomgeving.
-        media_cache_retention_period: Mediabestanden die van andere servers zijn gedownload worden na het opgegeven aantal dagen verwijderd en worden op verzoek opnieuw gedownload.
+        media_cache_retention_period: Mediabestanden van berichten van externe gebruikers worden op jouw server in de cache opgeslagen. Indien ingesteld op een positieve waarde, worden media verwijderd na het opgegeven aantal dagen. Als de mediagegevens worden opgevraagd nadat ze zijn verwijderd, worden ze opnieuw gedownload wanneer de originele inhoud nog steeds beschikbaar is. Vanwege beperkingen op hoe vaak linkvoorbeelden sites van derden raadplegen, wordt aanbevolen om deze waarde in te stellen op ten minste 14 dagen. Anders worden linkvoorbeelden niet op aanvraag bijgewerkt.
         peers_api_enabled: Een lijst met domeinnamen die deze server heeft aangetroffen in de fediverse. Er zijn hier geen gegevens inbegrepen over de vraag of je verbonden bent met een bepaalde server, alleen dat je server er van weet. Dit wordt gebruikt door diensten die statistieken over de federatie in algemene zin verzamelen.
         profile_directory: De gebruikersgids bevat een lijst van alle gebruikers die ervoor gekozen hebben om ontdekt te kunnen worden.
         require_invite_text: Maak het invullen van "Waarom wil je je hier registreren?" verplicht in plaats van optioneel, wanneer registraties handmatig moeten worden goedgekeurd
@@ -243,7 +243,7 @@ nl:
         backups_retention_period: Bewaartermijn gebruikersarchief
         bootstrap_timeline_accounts: Accounts die altijd aan nieuwe gebruikers worden aanbevolen
         closed_registrations_message: Aangepast bericht wanneer registratie is uitgeschakeld
-        content_cache_retention_period: Bewaartermijn berichtencache
+        content_cache_retention_period: Bewaartermijn voor externe inhoud
         custom_css: Aangepaste CSS
         mascot: Aangepaste mascotte (legacy)
         media_cache_retention_period: Bewaartermijn mediacache
