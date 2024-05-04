@@ -51,7 +51,6 @@ class CustomFilter < ApplicationRecord
   after_commit :invalidate_cache!
 
   def expires_in
-    return @expires_in if defined?(@expires_in)
     return nil if expires_at.nil?
 
     EXPIRATION_DURATIONS.find { |expires_in| expires_in.from_now >= expires_at }
