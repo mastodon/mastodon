@@ -1199,6 +1199,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_161611) do
     t.bigint "role_id"
     t.text "settings"
     t.string "time_zone"
+    t.string "otp_secret"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["created_by_application_id"], name: "index_users_on_created_by_application_id", where: "(created_by_application_id IS NOT NULL)"

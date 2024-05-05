@@ -236,10 +236,12 @@ sk:
         confirm_user_html: "%{name} potvrdil/a emailovú adresu používateľa %{target}"
         create_account_warning_html: "%{name} poslal/a upozornenie užívateľovi %{target}"
         create_announcement_html: "%{name} vytvoril/a nové oboznámenie %{target}"
+        create_canonical_email_block_html: "%{name} zablokoval/a email s hašom %{target}"
         create_custom_emoji_html: "%{name} nahral/a novú emotikonu %{target}"
         create_domain_allow_html: "%{name} povolil/a federáciu s doménou %{target}"
         create_domain_block_html: "%{name} zablokoval/a doménu %{target}"
         create_email_domain_block_html: "%{name} zablokoval/a e-mailovú doménu %{target}"
+        create_ip_block_html: "%{name} vytvoril/a pravidlo pre IP %{target}"
         create_user_role_html: "%{name} vytvoril/a rolu pre %{target}"
         demote_user_html: "%{name} degradoval/a užívateľa %{target}"
         destroy_announcement_html: "%{name} vymazal/a oboznámenie %{target}"
@@ -621,6 +623,7 @@ sk:
       branding:
         title: Značka
       content_retention:
+        danger_zone: Riziková zóna
         title: Ponechanie obsahu
       discovery:
         follow_recommendations: Odporúčania pre nasledovanie
@@ -726,10 +729,16 @@ sk:
       tags:
         dashboard:
           tag_accounts_measure: unikátnych použití
+          tag_languages_dimension: Najpoužívanejšie jazyky
+          tag_servers_dimension: Najpoužívanejšie servery
           tag_servers_measure: iné servery
           tag_uses_measure: užívateľov celkovo
+        listable: Môže byť navrhnutý
+        not_listable: Nebude navrhnutý
+        not_trendable: Neobjaví sa medzi trendmi
         not_usable: Nemôže byť použitý
         title: Populárne štítky
+        trendable: Môže sa objaviť medzi trendmi
         trending_rank: 'Populárne #%{rank}'
         usable: Môže byť použitý
       title: Trendy
@@ -752,6 +761,7 @@ sk:
     new_appeal:
       actions:
         delete_statuses: vymazať ich príspevky
+        disable: zmraziť ich účet
         none: varovanie
         silence: obmedziť ich účet
     new_pending_account:
@@ -888,14 +898,21 @@ sk:
     strikes:
       action_taken: Vykonaný zákrok
       appeal: Namietni
+      appeal_submitted_at: Námietka odoslaná
       appeals:
         submit: Pošli námietku
       approve_appeal: Schváľ námietku
       created_at: Dátumom
       recipient: Adresované pre
+      reject_appeal: Zamietni námietku
       title_actions:
+        disable: Zmrazenie účtu
+        mark_statuses_as_sensitive: Označenie príspevkov za chúlostivé
         none: Varovanie
+        sensitive: Označenie účtu ako chúlostivý
         silence: Obmedzenie účtu
+      your_appeal_approved: Tvoja námietka bola schválená
+      your_appeal_pending: Odoslal si námietku
   domain_validator:
     invalid_domain: nieje správny tvar domény
   edit_profile:
@@ -956,7 +973,11 @@ sk:
       expires_on: Expiruje dňa %{date}
       title: Triedenia
     new:
+      save: Uložiť nový filter
       title: Pridaj nové triedenie
+    statuses:
+      batch:
+        remove: Odstrániť z filtrovania
   generic:
     all: Všetko
     cancel: Zruš
@@ -975,15 +996,28 @@ sk:
   imports:
     errors:
       over_rows_processing_limit: obsahuje viac než %{count} riadkov
+      too_large: Súbor je príliš veľký
+    failures: Zlyhaní(a)
+    imported: Nahrané
     modes:
       merge: Spoj dohromady
       merge_long: Ponechaj existujúce záznamy a pridaj k nim nové
       overwrite: Prepíš
       overwrite_long: Nahraď súčasné záznamy novými
     preface: Môžeš nahrať dáta ktoré si exportoval/a z iného Mastodon serveru, ako sú napríklad zoznamy ľudí ktorých sleduješ, alebo blokuješ.
+    recent_imports: Nedávne nahrania
+    states:
+      finished: Dokončené
+      unconfirmed: Nepotvrdených
+    status: Stav
     success: Tvoje dáta boli nahraté úspešne, a teraz budú spracované v danom čase
+    titles:
+      bookmarks: Nahrávanie záložiek
+      domain_blocking: Nahrávanie blokovaných domén
+      lists: Nahrávanie zoznamov
     type_groups:
       constructive: Sledovania a záložky
+      destructive: Blokovania a utíšenia
     types:
       blocking: Zoznam blokovaných
       bookmarks: Záložky
@@ -1026,6 +1060,9 @@ sk:
       sign_in_token: emailovým bezpečtnostným kódom
       webauthn: bezpečnostnými kľúčmi
     title: História overení
+  mail_subscriptions:
+    unsubscribe:
+      title: Ukonči odber
   media_attachments:
     validations:
       images_and_video: K príspevku ktorý už obsahuje obrázky nemôžeš priložiť video
@@ -1121,7 +1158,11 @@ sk:
     posting_defaults: Východiskové nastavenia príspevkov
     public_timelines: Verejné časové osi
   privacy:
+    privacy: Súkromie
+    search: Vyhľadávanie
     title: Súkromie a dosah
+  privacy_policy:
+    title: Pravidlá ochrany súkromia
   reactions:
     errors:
       limit_reached: Maximálny počet rôznorodých reakcií bol dosiahnutý
@@ -1152,6 +1193,11 @@ sk:
     status: Stav účtu
   remote_follow:
     missing_resource: Nemožno nájsť potrebnú presmerovaciu adresu k tvojmu účtu
+  rss:
+    content_warning: 'Varovanie o obsahu:'
+    descriptions:
+      account: Verejné príspevky od @%{acct}
+      tag: 'Verejné príspevky otagované #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Prekročil/a si denný limit %{limit} predplánovaných príspevkov
     over_total_limit: Prekročil/a si limit %{limit} predplánovaných príspevkov
@@ -1203,6 +1249,7 @@ sk:
     profile: Profil
     relationships: Sledovania a následovatelia
     two_factor_authentication: Dvojfázové overenie
+    webauthn_authentication: Bezpečnostné kľúče
   severed_relationships:
     lost_followers: Stratení nasledovatelia
     lost_follows: Stratené sledovania
@@ -1216,11 +1263,13 @@ sk:
         other: "%{count} obrázky"
     boosted_from_html: Vyzdvihnuté od %{acct_link}
     content_warning: 'Varovanie o obsahu: %{warning}'
+    default_language: Rovnaký ako jazyk rozhrania
     disallowed_hashtags:
       few: 'obsah nepovolených haštagov: %{tags}'
       many: 'obsah nepovolených haštagov: %{tags}'
       one: 'obsahoval nepovolený haštag: %{tags}'
       other: 'obsahoval nepovolené haštagy: %{tags}'
+    edited_at_html: Upravené %{date}
     errors:
       in_reply_not_found: Príspevok, na ktorý sa snažíš odpovedať, pravdepodobne neexistuje.
     open_in_web: Otvor v okne na webe
@@ -1245,6 +1294,7 @@ sk:
     show_thread: Ukáž diskusné vlákno
     title: '%{name}: „%{quote}"'
     visibilities:
+      direct: Súkromne
       private: Iba pre sledovateľov
       private_long: Ukáž iba následovateľom
       public: Verejné
@@ -1252,10 +1302,24 @@ sk:
       unlisted: Nezaradené
       unlisted_long: Všetci môžu vidieť, ale nieje zaradené do verejnej osi
   statuses_cleanup:
+    exceptions: Výnimky
+    ignore_favs: Ignoruj obľúbené
+    ignore_reblogs: Ignoruj vyzdvihnutia
+    keep_direct: Ponechaj súkromné správy
     keep_pinned: Ponechaj pripnuté príspevky
     keep_pinned_hint: Nevymaže žiadne s tvojich pripnutých príspevkov
+    keep_polls: Ponechaj ankety
     keep_self_bookmark: Ponechaj príspevky, ktoré sú záložkami
     keep_self_fav: Ponechať príspevky, ktoré si si obľúbil/a
+    min_age:
+      '1209600': 2 týždne
+      '15778476': 6 mesačné
+      '2629746': 1 mesačné
+      '31556952': 1 ročné
+      '5259492': 2 mesačné
+      '604800': 1 týždeň
+      '63113904': 2 ročné
+      '7889238': 3 mesačné
   stream_entries:
     sensitive_content: Senzitívny obsah
   tags:
@@ -1282,8 +1346,10 @@ sk:
   user_mailer:
     appeal_approved:
       action: Nastavenia účtu
+      title: Námietka schválená
     appeal_rejected:
       subtitle: Tvoje odvolanie bolo zamietnuté.
+      title: Námietka zamietnutá
     backup_ready:
       explanation: Vyžiadal/a si si úplnú zálohu svojho Mastodon účtu.
       extra: Teraz je pripravená na stiahnutie!
@@ -1291,23 +1357,36 @@ sk:
       title: Odber archívu
     failed_2fa:
       details: 'Tu sú podrobnosti o pokuse o prihlásenie:'
+    suspicious_sign_in:
+      change_password: zmeň svoje heslo
+      title: Nové prihlásenie
     warning:
+      appeal: Pošli námietku
+      reason: 'Dôvod:'
       subject:
         disable: Tvoj účet %{acct} bol zamrazený
         none: Varovanie pre %{acct}
         silence: Tvoj účet %{acct} bol obmedzený
         suspend: Tvoj účet %{acct} bol vylúčený
       title:
+        delete_statuses: Príspevky vymazané
         disable: Účet bol zamrazený
+        mark_statuses_as_sensitive: Príspevky označené za chúlostivé
         none: Varovanie
+        sensitive: Účet označený za chúlostivý
         silence: Účet bol obmedzený
         suspend: Tvoj účet bol vylúčený
     welcome:
+      apps_android_action: Získaj ju na Google Play
+      apps_ios_action: Stiahni z App Store
+      apps_step: Stiahni naše oficiálne aplikácie.
       apps_title: Mastodon aplikácie
       edit_profile_action: Prispôsob
+      edit_profile_title: Prispôsob si svoj profil
       explanation: Tu nájdeš nejaké tipy do začiatku
       feature_action: Zisti viac
       follow_action: Nasleduj
+      follows_title: Koho nasledovať
       post_title: Vytvor svoj prvý príspevok
       share_action: Zdieľaj
       sign_in_action: Prihlás sa
