@@ -31,13 +31,13 @@
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
         - if params[:status].blank? && can?(:suppress, :follow_recommendation)
-          = f.button safe_join([fa_icon('times'), t('admin.follow_recommendations.suppress')]),
+          = f.button safe_join([material_symbol('close'), t('admin.follow_recommendations.suppress')]),
                      class: 'table-action-link',
                      data: { confirm: t('admin.reports.are_you_sure') },
                      name: :suppress,
                      type: :submit
         - if params[:status] == 'suppressed' && can?(:unsuppress, :follow_recommendation)
-          = f.button safe_join([fa_icon('plus'), t('admin.follow_recommendations.unsuppress')]),
+          = f.button safe_join([material_symbol('add'), t('admin.follow_recommendations.unsuppress')]),
                      class: 'table-action-link',
                      name: :unsuppress,
                      type: :submit

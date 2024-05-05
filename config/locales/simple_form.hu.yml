@@ -77,13 +77,13 @@ hu:
           warn: A szűrt tartalom a szűrő címét említő figyelmeztetés mögé rejtése
       form_admin_settings:
         activity_api_enabled: Helyi bejegyzések, aktív felhasználók és új regisztrációk száma heti bontásban
-        backups_retention_period: Az előállított felhasználói archívumok megtartása a megadott napokig.
+        backups_retention_period: A felhasználók archívumokat állíthatnak elő a bejegyzéseikből, hogy később letöltsék azokat. Ha pozitív értékre van állítva, akkor a megadott számú nap után automatikusan törölve lesznek a tárhelyedről.
         bootstrap_timeline_accounts: Ezek a fiókok ki lesznek tűzve az új felhasználók követési javaslatainak élére.
         closed_registrations_message: Akkor jelenik meg, amikor a regisztráció le van zárva
-        content_cache_retention_period: A más kiszolgálókról származó bejegyzések megadott számú nap után törölve lesznek, ha pozitív értékre van állítva. Ez lehet, hogy nem fordítható vissza.
+        content_cache_retention_period: Minden más kiszolgálóról származó bejegyzés (megtolásokkal és válaszokkal együtt) törölve lesz a megadott számú nap elteltével, függetlenül a helyi felhasználók ezekkel a bejegyzésekkel történő interakcióitól. Ebben azok a bejegyzések is benne vannak, melyeket a helyi felhasználó könyvjelzőzött vagy kedvencnek jelölt. A különböző kiszolgálók felhasználói közötti privát üzenetek is el fognak veszni visszaállíthatatlanul. Ennek a beállításnak a használata különleges felhasználási esetekre javasolt, mert számos felhasználói elvárás fog eltörni, ha általános céllal használják.
         custom_css: A Mastodon webes verziójában használhatsz egyéni stílusokat.
         mascot: Felülbírálja a speciális webes felületen található illusztrációt.
-        media_cache_retention_period: A letöltött médiafájlok megadott számú nap után törölve lesznek, ha pozitív értékre van állítva, és igény szerint újból le lesznek töltve.
+        media_cache_retention_period: A távoli felhasználók bejegyzéseinek médiatartalmait a kiszolgálód gyorsítótárazza. Ha pozitív értékre állítják, ezek a médiatartalmak a megadott számú nap után törölve lesznek. Ha a médiát újra lekérik, miután törlődött, újra le fogjuk tölteni, ha az eredeti még elérhető. A hivatkozások előnézeti kártyáinak harmadik fél weboldalai felé történő hivatkozásaira alkalmazott megkötései miatt javasolt, hogy ezt az értéket legalább 14 napra állítsuk, ellenkező esetben a hivatkozások előnézeti kártyái szükség esetén nem fognak tudni frissülni ezen idő előtt.
         peers_api_enabled: Azon domainek listája, melyekkel ez a kiszolgáló találkozott a fediverzumban. Nem csatolunk adatot arról, hogy föderált kapcsolatban vagy-e az adott kiszolgálóval, csak arról, hogy a kiszolgálód tud a másikról. Ezt olyan szolgáltatások használják, melyek általában a föderációról készítenek statisztikákat.
         profile_directory: A profilok jegyzéke minden olyan felhasználót felsorol, akik engedélyezték a felfedezhetőségüket.
         require_invite_text: Ha a regisztrációhoz manuális jóváhagyásra van szükség, akkor a „Miért akarsz csatlakozni?” válasz kitöltése legyen kötelező, és ne opcionális
@@ -243,7 +243,7 @@ hu:
         backups_retention_period: Felhasználói archívum megtartási időszaka
         bootstrap_timeline_accounts: Mindig javasoljuk ezeket a fiókokat az új felhasználók számára
         closed_registrations_message: A feliratkozáskor megjelenő egyéni üzenet nem érhető el
-        content_cache_retention_period: Tartalom-gyorsítótár megtartási időszaka
+        content_cache_retention_period: Távoli tartalmak megtartási időszaka
         custom_css: Egyéni CSS
         mascot: Egyéni kabala (örökölt)
         media_cache_retention_period: Média-gyorsítótár megtartási időszaka

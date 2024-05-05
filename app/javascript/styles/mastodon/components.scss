@@ -2015,7 +2015,22 @@ a .account__avatar {
   white-space: nowrap;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
+}
+
+.account__relationship,
+.explore__suggestions__card {
+  .icon-button {
+    border: 1px solid var(--background-border-color);
+    border-radius: 4px;
+    box-sizing: content-box;
+    padding: 5px;
+
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
 }
 
 .account-authorize {
@@ -2165,7 +2180,8 @@ a.account__display-name {
   }
 }
 
-.notification__relationships-severance-event {
+.notification__relationships-severance-event,
+.notification__moderation-warning {
   display: flex;
   gap: 16px;
   color: $secondary-text-color;
@@ -2950,6 +2966,75 @@ $ui-header-logo-wordmark-width: 99px;
 
 .explore__search-header {
   display: none;
+}
+
+.explore__suggestions__card {
+  padding: 12px 16px;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--background-border-color);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &__source {
+    padding-inline-start: 60px;
+    font-size: 13px;
+    line-height: 16px;
+    color: $dark-text-color;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &__body {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    &__main {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+
+      &__name-button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        &__name {
+          display: block;
+          color: inherit;
+          text-decoration: none;
+          flex: 1 1 auto;
+          min-width: 0;
+        }
+
+        .button {
+          min-width: 80px;
+        }
+
+        .display-name {
+          font-size: 15px;
+          line-height: 20px;
+          color: $secondary-text-color;
+
+          strong {
+            font-weight: 700;
+          }
+
+          &__account {
+            color: $darker-text-color;
+            display: block;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: $no-gap-breakpoint - 1px) {
@@ -5531,7 +5616,7 @@ a.status-card {
   user-select: text;
   display: flex;
 
-  @media screen and (max-width: $no-gap-breakpoint) {
+  @media screen and (width <= 630px) {
     margin-top: auto;
   }
 }
@@ -7281,10 +7366,11 @@ a.status-card {
         content: '';
         position: absolute;
         bottom: -1px;
-        left: 0;
-        width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
         height: 3px;
-        border-radius: 4px;
+        border-radius: 4px 4px 0 0;
         background: $highlight-text-color;
       }
     }
@@ -10059,6 +10145,7 @@ noscript {
     font-weight: 500;
     font-size: 11px;
     line-height: 16px;
+    word-break: keep-all;
 
     &__badge {
       background: $ui-button-background-color;

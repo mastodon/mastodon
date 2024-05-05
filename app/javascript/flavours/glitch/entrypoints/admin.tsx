@@ -1,4 +1,4 @@
-import 'packs/public-path';
+import '@/entrypoints/public-path';
 import { createRoot } from 'react-dom/client';
 
 import Rails from '@rails/ujs';

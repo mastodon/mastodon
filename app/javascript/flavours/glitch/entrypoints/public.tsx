@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 
-import 'packs/public-path';
+import '@/entrypoints/public-path';
 
 import { IntlMessageFormat } from 'intl-messageformat';
 import type { MessageDescriptor, PrimitiveType } from 'react-intl';

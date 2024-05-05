@@ -26,6 +26,8 @@ class Report < ApplicationRecord
   include Paginable
   include RateLimitable
 
+  COMMENT_SIZE_LIMIT = 1_000
+
   rate_limit by: :account, family: :reports
 
   belongs_to :account
@@ -46,7 +48,7 @@ class Report < ApplicationRecord
   # A report is considered local if the reporter is local
   delegate :local?, to: :account
 
-  validates :comment, length: { maximum: 1_000 }, if: :local?
+  validates :comment, length: { maximum: COMMENT_SIZE_LIMIT }, if: :local?
   validates :rule_ids, absence: true, if: -> { (category_changed? || rule_ids_changed?) && !violation? }
 
   validate :validate_rule_ids, if: -> { (category_changed? || rule_ids_changed?) && violation? }

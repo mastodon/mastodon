@@ -77,13 +77,10 @@ en-GB:
           warn: Hide the filtered content behind a warning mentioning the filter's title
       form_admin_settings:
         activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
-        backups_retention_period: Keep generated user archives for the specified number of days.
         bootstrap_timeline_accounts: These accounts will be pinned to the top of new users' follow recommendations.
         closed_registrations_message: Displayed when sign-ups are closed
-        content_cache_retention_period: Posts from other servers will be deleted after the specified number of days when set to a positive value. This may be irreversible.
         custom_css: You can apply custom styles on the web version of Mastodon.
         mascot: Overrides the illustration in the advanced web interface.
-        media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
         peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: The profile directory lists all users who have opted-in to be discoverable.
         require_invite_text: When sign-ups require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
@@ -243,7 +240,6 @@ en-GB:
         backups_retention_period: User archive retention period
         bootstrap_timeline_accounts: Always recommend these accounts to new users
         closed_registrations_message: Custom message when sign-ups are not available
-        content_cache_retention_period: Content cache retention period
         custom_css: Custom CSS
         mascot: Custom mascot (legacy)
         media_cache_retention_period: Media cache retention period

@@ -77,13 +77,10 @@ pt-BR:
           warn: Ocultar o conteúdo filtrado por trás de um aviso mencionando o título do filtro
       form_admin_settings:
         activity_api_enabled: Contagem de publicações locais, usuários ativos e novos usuários semanais
-        backups_retention_period: Manter os arquivos de usuário gerados pelo número de dias especificados.
         bootstrap_timeline_accounts: Estas contas serão fixadas no topo das recomendações de novos usuários para seguir.
         closed_registrations_message: Exibido quando as inscrições estiverem fechadas
-        content_cache_retention_period: Postagens de outros servidores serão excluídas após o número de dias especificados, quando definido com um valor positivo. Isso pode ser irreversível.
         custom_css: Você pode aplicar estilos personalizados na versão da web do Mastodon.
         mascot: Substitui a ilustração na interface web avançada.
-        media_cache_retention_period: Os arquivos de mídia baixados serão excluídos após o número especificado de dias, quando definido para um valor positivo, e baixados novamente na demanda.
         peers_api_enabled: Uma lista de nomes de domínio que este servidor encontrou no "fediverse". Nenhum dado é incluído aqui sobre se você concorda com os padroes operacionais de um determinado servidor, apenas que o seu servidor sabe disso. Esta ferramenta é utilizado por serviços que recolhem estatísticas sob as normas da federação (grupo de empresas que concordam sob paramentros operacionais específicos), em termos gerais.
         profile_directory: O diretório de perfis lista todos os usuários que optaram por permitir que suas contas sejam descobertas.
         require_invite_text: 'Quando o cadastro de novas contas exigir aprovação manual, tornar obrigatório, ao invés de opcional, o texto de solicitação de convite: "Por que você deseja ingressar nessa comunidade?"'
@@ -116,6 +113,7 @@ pt-BR:
           sign_up_requires_approval: Novas inscrições exigirão sua aprovação
         severity: Escolha o que acontecerá com as solicitações deste IP
       rule:
+        hint: Opcional. Forneça mais detalhes sobre a regra
         text: Descreva uma regra ou requisito para os usuários neste servidor. Tente mantê-la curta e simples.
       sessions:
         otp: 'Digite o código de dois fatores gerado pelo aplicativo no seu celular ou use um dos códigos de recuperação:'
@@ -242,7 +240,7 @@ pt-BR:
         backups_retention_period: Período de retenção do arquivo de usuário
         bootstrap_timeline_accounts: Sempre recomendar essas contas para novos usuários
         closed_registrations_message: Mensagem personalizada quando inscrições não estão disponíveis
-        content_cache_retention_period: Período de retenção do cachê de conteúdo
+        content_cache_retention_period: Período de retenção de conteúdo remoto
         custom_css: CSS personalizável
         mascot: Mascote personalizado (legado)
         media_cache_retention_period: Período de retenção do cachê de mídia

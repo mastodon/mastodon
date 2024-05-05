@@ -14,7 +14,7 @@
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
         - if can?(:destroy, :ip_block)
-          = f.button safe_join([fa_icon('times'), t('admin.ip_blocks.delete')]),
+          = f.button safe_join([material_symbol('close'), t('admin.ip_blocks.delete')]),
                      class: 'table-action-link',
                      data: { confirm: t('admin.reports.are_you_sure') },
                      name: :delete,

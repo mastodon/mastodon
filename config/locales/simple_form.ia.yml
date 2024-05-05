@@ -3,10 +3,96 @@ ia:
   simple_form:
     hints:
       account:
+        discoverable: Tu messages public e tu profilo pote esser consiliate o recommendate in varie areas de Mastodon e tu profilo pote esser suggerite a altere usatores.
+        display_name: Tu prenomine e nomine de familia o tu pseudonymo.
+        fields: Tu pagina principal, pronomines, etate, toto lo que tu vole.
+        indexable: Tu messages public pote apparer in resultatos del recerca sur Mastodon. Illes qui ha interagite con tu messages totevia pote cercar les.
         note: 'Tu pote @mentionar altere personas o #hashtags.'
+        show_collections: Le personas potera navigar per tu sequites e sequaces. Le personas potera navigar per tu sequites e sequaces.
+        unlocked: Le personas potera sequer te sin requestar approbation. Dismarca si tu desira revider le requestas de sequer e selige si acceptar o rejectar nove sequaces.
+      account_alias:
+        acct: Specifica le nomine_de_usator@dominio del conto ab que tu vole mover
+      account_migration:
+        acct: Specifica le nomine_de_usator@dominio del conto a que tu vole mover
+      account_warning_preset:
+        text: Tu pote usar le syntaxe de message, tal como URLs, hashtags e mentiones
+        title: Optional. Non visibile al destinatario
+      admin_account_action:
+        include_statuses: Le usator videra que messages ha causate le action o aviso de moderation
+        send_email_notification: Le usator recipera un explication de cosa eveniva con lor conto
+        text_html: Optional. Tu pote usar le syntaxe de message. Tu pote <a href="%{path}">adder avisos preconfigurate</a> pro sparniar tempore
+        type_html: Selige lo que tu vole facer con <strong>%{acct}</strong>
+        types:
+          disable: Impedir al usator de usar lor conto, sin deler o celar lor contentos.
+          none: Usar lo pro inviar un aviso al usator, sin discatenar ulle altere action.
+          sensitive: Fortiar tote le annexos multimedial de iste usator a esser signalate como sensibile.
+          silence: Impedir al usator de poter publicar messages con public visibilitate, celar lor messages e notificationes ab gente non sequente illes. Clauder tote le reportos contra iste conto.
+          suspend: Impedir ulle interaction de o a iste conto e deler su contentos. Reversibile intra 30 dies. Clauder tote le reportos contra iste conto.
+        warning_preset_id: Optional. Tu pote ancora adder personal texto a fin del preconfigurate
+      announcement:
+        all_day: Si marcate, solo le datas del campo tempore sera monstrate
+        ends_at: Le annuncio sera automaticamente obscurate a iste tempore
+        scheduled_at: Lassar blanc pro publicar le annuncio immediatemente
+        starts_at: Optional. In caso tu annuncio es ligate con un specific campo tempore
+        text: Tu pote usar le syntaxe de message. Presta attention al spatio que le annuncio occupara sur le schermo de usator
+      appeal:
+        text: Tu pote solo appellar te un vice
       defaults:
+        autofollow: Illes qui se inscribe per le invitation automaticamente devenira tu sequaces
+        avatar: WEBP, PNG, GIF or JPG. Al maximo %{size}. Sera diminuite a %{dimensions}px
+        bot: Signala a alteres que le conto principalmente exeque actiones automatisate e poterea non esser surveliate
+        context: Un o plure contextos ubi le filtro deberea applicar se
+        current_password: Pro propositos de securitate insere le contrasigno del conto actual
+        current_username: Pro confirmar, insere le nomine de usator del conto actual
+        digest: Solo inviate post un longe periodo de inactivitate e solo si tu ha recipite alcun messages personal in tu absentia
+        email: Te sera inviate un email de confirmation
+        header: WEBP, PNG, GIF or JPG. Al maximo %{size}. Sera diminuite a %{dimensions}px
+        inbox_url: Copia le URL ab le pagina principal del repetitor que tu vole usar
+        irreversible: Le messages filtrate disparera irreversibilemente, mesmo si le filtro es plus tarde removite
+        locale: Le lingua del interfacie de usator, del emails e del notificationes pulsate
+        password: Usa al minus 8 characteres
+        phrase: Sera concordate ignorante majuscule/minuscule in le texto o avisos de contento de un message
+        scopes: A que APIs sera permittite acceder al application. Si tu selige un ambito de maxime nivello, tu non besonia de seliger los singulemente.
+        setting_aggregate_reblogs: Non monstra nove stimulos pro messages que ha essite recentemente stimulate (stimulos solo affice los novemente recipite)
+        setting_always_send_emails: Normalmente le avisos de email non sera inviate quando tu activemente usa Mastodon
+        setting_default_sensitive: Le medios sensibile es celate de ordinario e pote esser revelate con un clic
+        setting_display_media_default: Celar le medios marcate como sensibile
         setting_display_media_hide_all: Sempre celar le medios
         setting_display_media_show_all: Sempre monstrar le medios
+        setting_use_blurhash: Le imagines degradate es basate sur le colores del medios visual celate, ma illos offusca qualcunque detalios
+        setting_use_pending_items: Celar le classification temporal detra un clic in vice que automaticamente rolante le fluxo
+        username: Tu pote usar litteras, numeros e tractos de sublineamento
+        whole_word: Quando le parola o expression clave es solo alphanumeric, illo sera solo applicate si illo concorda con tote le parola
+      domain_allow:
+        domain: Iste dominio potera reportar datos ab iste servitor e le datos in ingresso ab illo sera processate e immagazinate
+      email_domain_block:
+        domain: Isto pote esser le nomine de dominio que apparera in le adresse email o le registration MX que illo usa. Illos sera verificate durante le inscription.
+        with_dns_records: Un tentativa sera facite pro resolver le registrationes de DNS del dominio date e le resultatos sera alsi blocate
+      featured_tag:
+        name: 'Ecce alcun del hashtags que tu usava le plus recentemente:'
+      filters:
+        action: Selige que action exequer quando un message concorda con le filtro
+        actions:
+          hide: Completemente celar le contento filtrate, comportar se como si illo non existerea
+          warn: Celar le contento filtrate detra un aviso citante le titulo del filtro
+      form_admin_settings:
+        activity_api_enabled: Numeros de messages localmente publicate, usatores active, e nove registrationes in gruppos septimanal
+        backups_retention_period: Le usatores pote generar archivos de lor messages pro discargar los plus tarde. Quando predefinite a un valor positive, iste archivos sera automaticamente delite de tu immagazinage post le specificate numero de dies.
+        bootstrap_timeline_accounts: Iste contos sera appunctate al summitate del recommendationes a sequer del nove usatores.
+        closed_registrations_message: Monstrate quando le inscriptiones es claudite
+        content_cache_retention_period: Tote messages de altere servitores (includite stimulos e responsas) sera delite post le specificate numero de dies, sin considerar alcun interaction de usator local con ille messages. Isto include messages ubi un usator local los ha marcate como marcapaginas o favoritos. Mentiones private inter usatores de differente instantias sera alsi perdite e impossibile a restaurar. Le uso de iste parametros es intendite pro specific instantias e infringe multe expectationes de usator quando implementate pro uso general.
+        custom_css: Tu pote applicar stilos personalisate sur le version de web de Mastodon.
+        mascot: Illo substitue le illustration in le interfacie web avantiate.
+        media_cache_retention_period: Le files multimedial de messages producite per usatores remote es in cache sur tu servitor. Quando predefinite a un valor positive, le medios sera delite post le numero de dies specificate. Le datos multimedial requirite post que illo es delite, sera re-discargate, si le contento original sera ancora disponibile. Per limitationes sur le frequentia con que le schedas de pre-visualisation de ligamine scruta le sitos de tertie partes, il es recommendate de predefinir iste valor a al minus 14 dies, o le schedas de pre-visualisation de ligamine non sera actualisate sur demanda ante ille tempore.
+        peers_api_enabled: Un lista de nomines de dominio que iste servitor ha incontrate in le fediverso. Nulle datos es includite ci re tu federation con un date servitor, justo que tu servitor lo cognosce. Isto es usate per servicios que collige statistica re le federation in senso general.
+        profile_directory: Le directorio de profilo lista tote le usatores qui ha optate pro esser detectabile.
+        require_invite_text: Quando le inscriptiones require approbation manual, rende obligatori, plus tosto que optional, le entrata de texto “Perque vole tu junger te?”
+        site_contact_email: Como pote contactar te le personas pro questiones legal o de supporto.
+        site_contact_username: Como pote contactar te le personas re Mastodon.
+        site_extended_description: Qualcunque information additional que pote esser utile al visitatores e a tu usatores. Pote esser structurate con syntaxe de markdown.
+      ip_block:
+        severities:
+          no_access: Blocar accesso a tote le ressources
       webhook:
         events: Selige le eventos a inviar
         url: Ubi le eventos essera inviate
@@ -20,36 +106,62 @@ ia:
         show_collections: Monstrar sequites e sequitores in le profilo
         unlocked: Acceptar automaticamente nove sequitores
       account_warning_preset:
+        text: Texto predefinite
         title: Titulo
       admin_account_action:
+        send_email_notification: Notificar le usator per e-mail
+        text: Advertimento personalisate
         type: Action
         types:
+          disable: Gelar
           none: Inviar un advertimento
+          sensitive: Sensibile
+          silence: Limitar
+          suspend: Suspender
       announcement:
+        starts_at: Initio del evento
         text: Annuncio
       defaults:
         autofollow: Invitar a sequer tu conto
         avatar: Pictura de profilo
+        chosen_languages: Filtrar linguas
         confirm_new_password: Confirmar nove contrasigno
         confirm_password: Confirmar contrasigno
+        context: Contextos del filtro
         current_password: Contrasigno actual
+        data: Datos
         display_name: Nomine a monstrar
         email: Adresse de e-mail
+        expires_in: Expira post
+        fields: Campos extra
+        header: Imagine titulo
+        honeypot: "%{label} (non compilar)"
+        inbox_url: URL del cassa de ingresso de repetitor
         locale: Lingua de interfacie
+        max_uses: Numero max de usos
         new_password: Nove contrasigno
+        note: Bio
+        otp_attempt: Codice a duo factores
         password: Contrasigno
+        phrase: Parola o phrase clave
         setting_advanced_layout: Activar le interfacie web avantiate
+        setting_always_send_emails: Sempre inviar notificationes per e-mail
         setting_default_language: Lingua de publication
+        setting_display_media: Visualisation de medios
         setting_display_media_default: Predefinite
         setting_display_media_hide_all: Celar toto
         setting_display_media_show_all: Monstrar toto
         setting_system_font_ui: Usar typo de litteras predefinite del systema
         setting_theme: Thema de sito
         setting_trends: Monstrar le tendentias de hodie
+        setting_use_pending_items: Modo lente
+        severity: Severitate
         sign_in_token_attempt: Codice de securitate
         title: Titulo
+        type: Importar le typo
         username: Nomine de usator
         username_or_email: Nomine de usator o e-mail
+        whole_word: Parola integre
       featured_tag:
         name: Hashtag
       filters:
@@ -67,11 +179,18 @@ ia:
         site_title: Nomine de servitor
         status_page_url: URL del pagina de stato
         theme: Thema predefinite
+        thumbnail: Miniatura de servitor
         trends: Activar tendentias
+      invite:
+        comment: Commento
       ip_block:
         comment: Commento
+        ip: IP
+        severities:
+          no_access: Blocar le accesso
         severity: Regula
       notification_emails:
+        digest: Inviar emails compendio
         software_updates:
           all: Notificar sur tote le actualisationes
           critical: Notificar solmente sur actualisationes critic
@@ -87,13 +206,18 @@ ia:
         name: Hashtag
         usable: Permitter al messages usar iste hashtag
       user:
+        role: Rolo
         time_zone: Fuso horari
       user_role:
         name: Nomine
         permissions_as_keys: Permissiones
         position: Prioritate
+      webhook:
+        events: Eventos activate
+    'no': 'No'
     not_recommended: Non recommendate
     recommended: Recommendate
     required:
+      mark: "*"
       text: requirite
     'yes': Si

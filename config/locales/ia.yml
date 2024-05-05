@@ -15,17 +15,27 @@ ia:
     instance_actor_flash: Iste conto es un agente virtual usate pro representar le servitor mesme e non alcun usator individual. Illo es usate pro le federation e non debe esser suspendite.
     last_active: ultime activitate
     link_verified_on: Le proprietate de iste ligamine ha essite verificate le %{date}
+    nothing_here: Il ha nihil ci!
+    pin_errors:
+      following: Tu debe primo sequer le persona que tu vole indorsar
     posts:
       one: Message
       other: Messages
     posts_tab_heading: Messages
   admin:
+    account_actions:
+      action: Exequer action
+      title: Exequer action de moderation sur %{acct}
     account_moderation_notes:
       create: Lassar un nota
       created_msg: Nota de moderation create con successo!
+      destroyed_msg: Nota de moderation destruite con successo!
     accounts:
       add_email_domain_block: Blocar dominio de e-mail
+      approve: Approbar
+      approved_msg: Demanda de inscription de %{username} approbate con successo
       are_you_sure: Es tu secur?
+      avatar: Avatar
       by_domain: Dominio
       change_email:
         changed_msg: Email cambiate con successo!
@@ -34,6 +44,11 @@ ia:
         new_email: Nove e-mail
         submit: Cambiar e-mail
         title: Cambiar e-mail pro %{username}
+      change_role:
+        changed_msg: Rolo cambiate con successo!
+        label: Cambiar rolo
+        no_role: Necun rolo
+        title: Cambiar rolo pro %{username}
       confirm: Confirmar
       confirmed: Confirmate
       confirming: In confirmation
@@ -42,32 +57,77 @@ ia:
       deleted: Delite
       demote: Degradar
       destroyed_msg: Le datos de %{username} ora es in cauda pro su imminente deletion
+      disable: Gelar
+      disable_sign_in_token_auth: Disactivar le authentication per token in e-mail
       disable_two_factor_authentication: Disactivar 2FA
+      disabled: Gelate
       display_name: Nomine visibile
       domain: Dominio
       edit: Modificar
       email: E-mail
       email_status: Stato de e-mail
+      enable: Disgelar
+      enable_sign_in_token_auth: Activar le authentication per token in e-mail
       enabled: Activate
+      enabled_msg: Conto de %{username} disgelate con successo
       followers: Sequitores
+      follows: Sequites
+      header: Capite
+      inbox_url: URL de cassa de entrata
+      invite_request_text: Motivos pro le inscription
+      invited_by: Invitate per
+      ip: IP
+      joined: Inscription
       location:
         all: Toto
+        local: Local
+        remote: Remote
         title: Location
+      login_status: Stato de session
+      media_attachments: Annexos multimedial
+      memorialize: Render commemorative
+      memorialized: Conto commemorative
+      memorialized_msg: "%{username} ha essite convertite in un conto commemorative"
       moderation:
         active: Active
         all: Toto
         disabled: Disactivate
+        pending: In tractamento
+        silenced: Limitate
+        suspended: Suspendite
+        title: Moderation
       moderation_notes: Notas de moderation
       most_recent_activity: Activitate plus recente
       most_recent_ip: IP plus recente
+      no_account_selected: Necun conto ha essite cambiate perque necun ha essite seligite
+      no_limits_imposed: Necun limite imponite
+      no_role_assigned: Necun rolo assignate
+      not_subscribed: Non subscribite
+      pending: Attende revision
+      perform_full_suspension: Suspender
+      previous_strikes: Previe admonitiones
+      promote: Promover
+      protocol: Protocollo
       public: Public
+      push_subscription_expires: Subscription PuSH expira le
       redownload: Actualisar profilo
+      redownloaded_msg: Le profilo de %{username} ha essite actualisate desde le origine
+      reject: Rejectar
+      rejected_msg: Le demanda de inscription de %{username} ha essite rejectate
+      remote_suspension_irreversible: Le datos de iste conto ha essite irreversibilemente delite.
+      remote_suspension_reversible_hint_html: Le conto ha essite suspendite sur su servitor, e le datos essera removite completemente le %{date}. Usque alora, le servitor remote pote restaurar iste conto sin effectos negative. Si tu vole remover immediatemente tote le datos del conto, tu pote facer lo hic infra.
+      remove_avatar: Remover avatar
+      remove_header: Remover capite
+      removed_avatar_msg: Le imagine de avatar de %{username} ha essite removite
+      removed_header_msg: Le imagine de capite de %{username} ha essite removite
       resend_confirmation:
         already_confirmed: Iste usator jam es confirmate
         send: Reinviar ligamine de confirmation
         success: Ligamine de confirmation inviate con successo!
       reset: Reinitialisar
       reset_password: Reinitialisar contrasigno
+      resubscribe: Resubscriber
+      role: Rolo
       search: Cercar
       search_same_email_domain: Altere usatores con le mesme dominio de e-mail
       search_same_ip: Altere usatores con le mesme IP
@@ -75,48 +135,118 @@ ia:
       security_measures:
         only_password: Solmente contrasigno
         password_and_2fa: Contrasigno e 2FA
+      sensitive: Fortiar sensibile
+      sensitized: Marcate como sensibile
+      shared_inbox_url: URL del cassa de entrata condividite
       show:
         created_reports: Reportos facite
         targeted_reports: Signalate per alteres
+      silence: Limitar
       silenced: Limitate
       statuses: Messages
+      strikes: Previe admonitiones
       subscribe: Subscriber
+      suspend: Suspender
       suspended: Suspendite
+      suspension_irreversible: Le datos de iste conto ha essite irreversibilemente delite. Tu pote disfacer le suspension de iste conto pro render lo usabile, ma isto non recuperara alcun datos precedente.
+      suspension_reversible_hint_html: Le conto ha essite suspendite, e le datos essera removite completemente le %{date}. Usque alora, le conto pote esser restaurate sin effectos negative. Si tu vole remover immediatemente tote le datos del conto, tu pote facer lo hic infra.
       title: Contos
       unblock_email: Disblocar adresse de e-mail
       unblocked_email_msg: Adresse de e-mail de %{username} disblocate con successo
       unconfirmed_email: E-mail non confirmate
+      undo_sensitized: Non plus fortiar sensibile
       undo_silenced: Disfacer le limite
       undo_suspension: Disfacer le suspension
+      unsilenced_msg: Le limite del conto de %{username} ha essite cancellate
+      unsubscribe: Desubscriber
+      unsuspended_msg: Annullate suspension del conto %{username} con successo
       username: Nomine de usator
       view_domain: Vider summario de dominio
+      warn: Avisar
+      web: Web
+      whitelisted: Permittite pro federation
     action_logs:
       action_types:
+        approve_appeal: Approbar appello
+        approve_user: Approbar usator
+        assigned_to_self_report: Assignar reporto
+        change_email_user: Cambiar e-mail pro le usator
+        change_role_user: Cambiar le rolo del usator
         confirm_user: Confirmar le usator
         create_account_warning: Crear un advertimento
         create_announcement: Crear annuncio
+        create_canonical_email_block: Crear blocada de email
+        create_custom_emoji: Crear emoticone personalisate
+        create_domain_allow: Crear permisso de dominio
+        create_domain_block: Crear blocada de dominio
+        create_email_domain_block: Crear blocada de dominio email
         create_ip_block: Crear un regula IP
+        create_unavailable_domain: Crear dominio indisponibile
+        create_user_role: Crear un rolo
+        demote_user: Degradar usator
         destroy_announcement: Deler annuncio
+        destroy_canonical_email_block: Deler blocada de email
+        destroy_custom_emoji: Deler emoticone personalisate
+        destroy_domain_allow: Deler permisso de dominio
+        destroy_domain_block: Deler blocada de dominio
+        destroy_email_domain_block: Crear blocada de dominio email
+        destroy_instance: Purgar dominio
         destroy_ip_block: Deler le regula IP
         destroy_status: Deler le message
         destroy_unavailable_domain: Deler le dominio non disponibile
+        destroy_user_role: Destruer rolo
         disable_2fa_user: Disactivar 2FA
         disable_custom_emoji: Disactivar emoji personalisate
+        disable_sign_in_token_auth_user: Disactivar le authentication per testimonio via email pro usator
         disable_user: Disactivar le usator
         enable_custom_emoji: Activar emoji personalisate
+        enable_sign_in_token_auth_user: Activar le authentication per testimonio via email pro usator
         enable_user: Activar le usator
+        memorialize_account: Commemorar conto
         promote_user: Promover usator
+        reject_appeal: Rejectar appello
+        reject_user: Rejectar usator
+        remove_avatar_user: Remover avatar
+        reopen_report: Reaperir reporto
+        resend_user: Reinviar message de confirmation
         reset_password_user: Reinitialisar contrasigno
+        resolve_report: Resolver reporto
+        sensitive_account: Marcar como sensibile le medios del conto
         silence_account: Limitar conto
+        suspend_account: Suspender conto
+        unassigned_report: Disassignar reporto
         unblock_email_account: Disblocar adresse de e-mail
+        unsensitive_account: Dismarcar como sensibile le medios del conto
         unsilence_account: Disfacer le limite de conto
+        unsuspend_account: Annullar suspension de conto
         update_announcement: Actualisar annuncio
         update_custom_emoji: Actualisar emoji personalisate
+        update_domain_block: Actualisar blocada de dominio
         update_ip_block: Actualisar le regula IP
         update_status: Actualisar le message
+        update_user_role: Actualisar rolo
       actions:
+        approve_appeal_html: "%{name} approbava appello del decision de moderation de %{target}"
+        approve_user_html: "%{name} approbava inscription de %{target}"
+        assigned_to_self_report_html: "%{name} assignava reporto %{target} a se mesme"
         change_email_user_html: "%{name} cambiava le adresse de e-mail address del usator %{target}"
+        change_role_user_html: "%{name} cambiava rolo de %{target}"
+        confirm_user_html: "%{name} confirmava le adresse email del usator %{target}"
+        create_account_warning_html: "%{name} inviava un advertimento a %{target}"
         create_announcement_html: "%{name} creava un nove annuncio %{target}"
+        create_canonical_email_block_html: "%{name} blocava email con le hash %{target}"
+        create_custom_emoji_html: "%{name} cargava nove emoticone %{target}"
+        create_domain_allow_html: "%{name} permitteva federation con dominio %{target}"
+        create_domain_block_html: "%{name} blocava dominio %{target}"
+        create_email_domain_block_html: "%{name} blocava dominio email %{target}"
+        create_ip_block_html: "%{name} creava regula pro IP %{target}"
+        create_unavailable_domain_html: "%{name} stoppava consignation a dominio %{target}"
+        create_user_role_html: "%{name} creava rolo de %{target}"
+        demote_user_html: "%{name} degradava usator %{target}"
+        destroy_announcement_html: "%{name} deleva annuncio %{target}"
+        destroy_custom_emoji_html: "%{name} deleva emoji %{target}"
+        destroy_domain_block_html: "%{name} disblocava dominio %{target}"
+        destroy_user_role_html: "%{name} deleva le rolo de %{target}"
       deleted_account: conto delite
     announcements:
       destroyed_msg: Annuncio delite con successo!
@@ -138,6 +268,7 @@ ia:
       delete: Deler
       disable: Disactivar
       disabled: Disactivate
+      disabled_msg: Emoji disactivate con successo
       enable: Activar
       enabled: Activate
       enabled_msg: Emoji activate con successo
@@ -151,6 +282,7 @@ ia:
       media_storage: Immagazinage de medios
       new_users: nove usatores
       opened_reports: reportos aperte
+      software: Software
       top_languages: Linguas le plus active
       top_servers: Servitores le plus active
       website: Sito web
@@ -166,6 +298,10 @@ ia:
       edit: Modificar un bloco de dominio
       export: Exportar
       import: Importar
+      new:
+        severity:
+          silence: Limitar
+          suspend: Suspender
       private_comment: Commento private
       public_comment: Commento public
     email_domain_blocks:
@@ -185,9 +321,16 @@ ia:
       status: Stato
       title: Sequer le recommendationes
     instances:
+      back_to_all: Toto
+      back_to_limited: Limitate
       back_to_warning: Advertimento
       by_domain: Dominio
       content_policies:
+        comment: Nota interne
+        policies:
+          silence: Limitar
+          suspend: Suspender
+        policy: Politica
         reason: Ration public
       dashboard:
         instance_accounts_dimension: Contos le plus sequite
@@ -195,14 +338,23 @@ ia:
       delivery:
         unavailable: Non disponibile
       empty: Necun dominios trovate.
+      moderation:
+        all: Toto
+        limited: Limitate
+        title: Moderation
       private_comment: Commento private
       public_comment: Commento public
+      title: Federation
       total_blocked_by_us: Blocate per nos
       total_followed_by_us: Sequite per nos
     invites:
       deactivate_all: Disactivar toto
       filter:
+        all: Toto
         available: Disponibile
+        expired: Expirate
+        title: Filtro
+      title: Invitationes
     ip_blocks:
       add_new: Crear regula
       delete: Deler
@@ -210,15 +362,19 @@ ia:
         '1209600': 2 septimanas
         '15778476': 6 menses
         '2629746': 1 mense
+        '31556952': 1 anno
         '86400': 1 die
+        '94670856': 3 annos
       new:
         title: Crear un nove regula IP
       title: Regulas IP
     relays:
       delete: Deler
+      description_html: Un <strong>repetitor de federation</strong> es un servitor intermediari que excambia grande volumines de messages public inter le servitores que se inscribe e publica a illo. <strong>Illo pote adjutar le servitores micre e medie a discoperir le contento del fediverso</strong>, sin requirer que le usatores local seque manualmente altere personas sur servitores distante.
       disable: Disactivar
       disabled: Disactivate
       enable: Activar
+      enable_hint: Un vice activate, tu servitor se inscribera a tote le messages public de iste repetitor, e comenciara a inviar le messages public de iste servitor a illo.
       enabled: Activate
       save_and_enable: Salveguardar e activar
       status: Stato
@@ -229,14 +385,24 @@ ia:
       category: Categoria
       confirm: Confirmar
       delete_and_resolve: Deler le messages
+      no_one_assigned: Nemo
       notes:
         create: Adder un nota
         delete: Deler
+        title: Notas
       skip_to_actions: Saltar al actiones
       status: Stato
       updated_at: Actualisate
       view_profile: Vider profilo
     roles:
+      assigned_users:
+        one: "%{count} usator"
+        other: "%{count} usatores"
+      categories:
+        invites: Invitationes
+        moderation: Moderation
+        special: Special
+      delete: Deler
       everyone: Permissiones predefinite
       privileges:
         delete_user_data: Deler le datos de usator
@@ -245,6 +411,7 @@ ia:
         manage_rules: Gerer le regulas
         manage_settings: Gerer le parametros
         manage_users: Gerer usatores
+      title: Rolos
     rules:
       delete: Deler
     settings:
@@ -260,8 +427,25 @@ ia:
       title: Parametros de servitor
     site_uploads:
       delete: Deler file incargate
+    software_updates:
+      documentation_link: Pro saper plus
+      title: Actualisationes disponibile
+      type: Typo
+      types:
+        major: Version major
+        minor: Version minor
+      version: Version
     statuses:
+      account: Autor
+      application: Application
+      batch:
+        report: Reporto
+      deleted: Delite
+      favourites: Favoritos
+      history: Chronologia del versiones
       language: Lingua
+      media:
+        title: Medios
       metadata: Metadatos
       open: Aperir message
       original_status: Message original
@@ -280,6 +464,8 @@ ia:
         action: Vider le actualisationes disponibile
       upload_check_privacy_error:
         action: Verifica hic pro plus de information
+  application_mailer:
+    unsubscribe: Desubscriber
   edit_profile:
     other: Alteres
   existing_username_validator:
@@ -340,6 +526,21 @@ ia:
   login_activities:
     authentication_methods:
       password: contrasigno
+  mail_subscriptions:
+    unsubscribe:
+      action: Si, desubscriber
+      complete: Desubscribite
+      confirmation_html: Es tu secur de voler cancellar le subscription al %{type} de Mastodon sur %{domain} pro tu adresse de e-mail %{email}? Tu pote sempre resubscriber te a partir del <a href="%{settings_path}">parametros de notification in e-mail</a>.
+      emails:
+        notification_emails:
+          favourite: notificationes de favorites in e-mail
+          follow: notificationes de sequimento in e-mail
+          follow_request: requestas de sequimento in e-mail
+          mention: notificationes de mentiones in e-mail
+          reblog: notificationes de impulsos in e-mail
+      resubscribe_html: Si tu ha cancellate le subscription in error, tu pote resubscriber te a partir del <a href="%{settings_path}">parametros de notification in e-mail</a>.
+      success_html: Tu non recipera plus %{type} pro Mastodon sur %{domain} a tu adresse de e-mail %{email}.
+      title: Desubcriber
   migrations:
     errors:
       not_found: non poterea esser trovate

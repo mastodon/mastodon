@@ -1,9 +1,7 @@
-import { List as ImmutableList } from 'immutable';
-
 import { debounce } from 'lodash';
 
 import type { MarkerJSON } from 'flavours/glitch/api_types/markers';
-import type { RootState } from 'flavours/glitch/store';
+import type { AppDispatch, RootState } from 'flavours/glitch/store';
 import { createAppAsyncThunk } from 'flavours/glitch/store/typed_functions';
 
 import api, { authorizationTokenFromState } from '../api';
@@ -71,33 +69,16 @@ interface MarkerParam {
   last_read_id?: string;
 }
 
-function getLastHomeId(state: RootState): string | undefined {
-  /* eslint-disable @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
-  return (
-    state
-      // @ts-expect-error state.timelines is not yet typed
-      .getIn(['timelines', 'home', 'items'], ImmutableList())
-      // @ts-expect-error state.timelines is not yet typed
-      .find((item) => item !== null)
-  );
-}
-
 function getLastNotificationId(state: RootState): string | undefined {
   // @ts-expect-error state.notifications is not yet typed
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
   return state.getIn(['notifications', 'lastReadId']);
 }
 
 const buildPostMarkersParams = (state: RootState) => {
   const params = {} as { home?: MarkerParam; notifications?: MarkerParam };
 
-  const lastHomeId = getLastHomeId(state);
   const lastNotificationId = getLastNotificationId(state);
-
-  if (lastHomeId && compareId(lastHomeId, state.markers.home) > 0) {
-    params.home = {
-      last_read_id: lastHomeId,
-    };
-  }
 
   if (
     lastNotificationId &&
@@ -132,8 +113,8 @@ export const submitMarkersAction = createAppAsyncThunk<{
 });
 
 const debouncedSubmitMarkers = debounce(
-  (dispatch) => {
-    dispatch(submitMarkersAction());
+  (dispatch: AppDispatch) => {
+    void dispatch(submitMarkersAction());
   },
   300000,
   {

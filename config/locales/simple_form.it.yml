@@ -77,13 +77,13 @@ it:
           warn: Nascondi il contenuto filtrato e mostra invece un avviso, citando il titolo del filtro
       form_admin_settings:
         activity_api_enabled: Conteggi di post pubblicati localmente, utenti attivi e nuove registrazioni in gruppi settimanali
-        backups_retention_period: Conserva gli archivi utente generati per il numero di giorni specificato.
+        backups_retention_period: Gli utenti hanno la possibilità di generare archivi dei propri post da scaricare successivamente. Se impostati su un valore positivo, questi archivi verranno automaticamente eliminati dallo spazio di archiviazione dopo il numero di giorni specificato.
         bootstrap_timeline_accounts: Questi account verranno aggiunti in cima ai consigli da seguire dei nuovi utenti.
         closed_registrations_message: Visualizzato alla chiusura delle iscrizioni
-        content_cache_retention_period: I post da altri server verranno eliminati dopo il numero di giorni specificato se impostato su un valore positivo. Questo potrebbe essere irreversibile.
+        content_cache_retention_period: Tutti i post da altri server (inclusi booster e risposte) verranno eliminati dopo il numero specificato di giorni, senza tener conto di eventuali interazioni con gli utenti locali con tali post. Questo include i post in cui un utente locale ha contrassegnato come segnalibri o preferiti. Anche le menzioni private tra utenti di diverse istanze andranno perse e impossibile da ripristinare. L'uso di questa impostazione è inteso per casi di scopo speciale e rompe molte aspettative dell'utente quando implementato per uso generale.
         custom_css: È possibile applicare stili personalizzati sulla versione web di Mastodon.
         mascot: Sostituisce l'illustrazione nell'interfaccia web avanzata.
-        media_cache_retention_period: I file multimediali scaricati verranno eliminati dopo il numero di giorni specificato se impostati su un valore positivo e scaricati nuovamente su richiesta.
+        media_cache_retention_period: I file multimediali da post fatti da utenti remoti sono memorizzati nella cache sul tuo server. Quando impostato a un valore positivo, i media verranno eliminati dopo il numero specificato di giorni. Se i dati multimediali sono richiesti dopo che sono stati eliminati, saranno nuovamente scaricati, se il contenuto sorgente è ancora disponibile. A causa di restrizioni su quanto spesso link anteprima carte sondaggio siti di terze parti, si consiglia di impostare questo valore ad almeno 14 giorni, o le schede di anteprima link non saranno aggiornate su richiesta prima di quel tempo.
         peers_api_enabled: Un elenco di nomi di dominio che questo server ha incontrato nel fediverse. Qui non sono inclusi dati sul fatto se si federano con un dato server, solo che il server ne è a conoscenza. Questo viene utilizzato dai servizi che raccolgono statistiche sulla federazione in senso generale.
         profile_directory: La directory del profilo elenca tutti gli utenti che hanno acconsentito ad essere individuabili.
         require_invite_text: 'Quando le iscrizioni richiedono l''approvazione manuale, rendi la domanda: "Perché vuoi unirti?" obbligatoria anziché facoltativa'
@@ -243,7 +243,7 @@ it:
         backups_retention_period: Periodo di conservazione dell'archivio utente
         bootstrap_timeline_accounts: Consiglia sempre questi account ai nuovi utenti
         closed_registrations_message: Messaggio personalizzato quando le iscrizioni non sono disponibili
-        content_cache_retention_period: Periodo di conservazione della cache dei contenuti
+        content_cache_retention_period: Periodo di ritenzione del contenuto remoto
         custom_css: Personalizza CSS
         mascot: Personalizza mascotte (legacy)
         media_cache_retention_period: Periodo di conservazione della cache multimediale

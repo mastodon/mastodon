@@ -77,13 +77,13 @@ fy:
           warn: Ferstopje de filtere ynhâld efter in warskôging, mei de titel fan it filter as warskôgingstekst
       form_admin_settings:
         activity_api_enabled: Tal lokaal publisearre artikelen, aktive brûkers en nije registraasjes yn wyklikse werjefte
-        backups_retention_period: De oanmakke brûkersargiven foar it opjûne oantal dagen behâlde.
+        backups_retention_period: Brûkers hawwe de mooglikheid om argiven fan harren berjochten te generearjen om letter te downloaden. Wannear ynsteld op in positive wearde, wurde dizze argiven automatysk fuortsmiten út jo ûnthâld nei it opjûne oantal dagen.
         bootstrap_timeline_accounts: Dizze accounts wurde boppe oan de oanrekommandaasjes oan nije brûkers toand. Meardere brûkersnammen troch komma’s skiede.
         closed_registrations_message: Werjûn wannear’t registraasje fan nije accounts útskeakele is
-        content_cache_retention_period: 'Berjochten fan oare servers wurde nei it opjûne oantal dagen fuortsmiten. Let op: Dit is definityf.'
+        content_cache_retention_period: Alle berjochten fan oare servers (ynklusyf boosts en reaksjes) wurde fuortsmiten nei it opjûne oantal dagen, nettsjinsteande iennige lokale brûkersynteraksje mei dy berjochten. Dit oanbelanget ek berjochten dy’t in lokale brûker oan harren blêdwizers tafoege hat of as favoryt markearre hat. Priveeberjochten tusken brûkers fan ferskate servers gean ek ferlern en binne ûnmooglik te werstellen. It gebrûk fan dizze ynstelling is bedoeld foar servers dy’t in spesjaal doel tsjinje en oertrêdet in protte brûkersferwachtingen wannear’t dizze foar algemien gebrûk ymplemintearre wurdt.
         custom_css: Jo kinne oanpaste CSS tapasse op de webferzje fan dizze Mastodon-server.
         mascot: Oerskriuwt de yllustraasje yn de avansearre webomjouwing.
-        media_cache_retention_period: Mediabestannen dy’t fan oare servers download binne wurde nei it opjûne oantal dagen fuortsmiten en wurde op fersyk opnij download.
+        media_cache_retention_period: Mediabestannen fan berjochten fan eksterne brûkers wurde op jo server yn de buffer bewarre. Wannear ynsteld op in positive wearde, wurde media fuortsmiten nei it opjûne oantal dagen. As de mediagegevens opfrege wurde neidat se fuortsmiten binne, wurde se opnij download wannear de orizjinele ynhâld noch hieltyd beskikber is. Fanwegen beheiningen op hoe faak keppelingsfoarbylden websites fan tredden rieplachtsje, wurdt oanrekommandearre om dizze wearde yn te stellen op op syn minste 14 dagen. Oars wurde keppelingsfoarbylden net op oanfraach bywurke.
         peers_api_enabled: In list mei domeinnammen, dêr’t dizze server yn fediverse kontakt hân mei hat. Hjir wurdt gjin data dield, oft jo mei in bepaalde server federearrest, mar alinnich, dat jo server dat wit. Dit wurdt foar tsjinsten brûkt, dy’t statistiken oer federaasje yn algemiene sin sammelet.
         profile_directory: De brûkersgids befettet in list fan alle brûkers dy¥t derfoar keazen hawwe om ûntdekt wurde te kinnen.
         require_invite_text: Meitsje it ynfoljen fan ‘Wêrom wolle jo jo hjir registrearje?’ ferplicht yn stee fan opsjoneel, wannear’t registraasjes hânmjittich goedkard wurde moatte
@@ -243,7 +243,7 @@ fy:
         backups_retention_period: Bewartermyn brûkersargyf
         bootstrap_timeline_accounts: Accounts dy’t altyd oan nije brûkers oanrekommandearre wurde
         closed_registrations_message: Oanpast berjocht wannear registraasje útskeakele is
-        content_cache_retention_period: Bewartermyn berjochtebuffer
+        content_cache_retention_period: Bewartermyn foar eksterne ynhâld
         custom_css: Oanpaste CSS
         mascot: Oanpaste maskotte (legacy)
         media_cache_retention_period: Bewartermyn mediabuffer

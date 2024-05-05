@@ -74,7 +74,7 @@ eo:
       follows: Sekvatoj
       header: Kapa bildo
       inbox_url: Enira URL
-      invite_request_text: 가입하려는 이유
+      invite_request_text: Kialoj por aliĝi
       invited_by: Invitita de
       ip: IP
       joined: Aliĝis
@@ -104,7 +104,7 @@ eo:
       no_role_assigned: Sen rolo
       not_subscribed: Ne abonita
       pending: Pritraktata recenzo
-      perform_full_suspension: Suspendi
+      perform_full_suspension: Haltigi
       previous_strikes: Antaǔaj admonoj
       previous_strikes_description_html:
         one: Ĉi tiu konto havas <strong>unu</strong> admonon.
@@ -121,7 +121,7 @@ eo:
       remote_suspension_reversible_hint_html: La konto estas suspendita, kaj la datumoj estos komplete forigitaj je %{date}. Ĝis tiam, la konto povas esti malsuspendita sen flankefiko. Se vi deziras tuj forigi ĉiujn datumojn de la konto, vi povas fari tion sube.
       remove_avatar: Forigi la profilbildon
       remove_header: Forigi kapan bildon
-      removed_avatar_msg: La rolfiguro de %{username} estas sukcese forigita
+      removed_avatar_msg: La profilbildo de %{username} estas sukcese forigita
       removed_header_msg: Kapbildo de %{username} suksece forigita
       resend_confirmation:
         already_confirmed: Ĉi tiu uzanto jam estas konfirmita
@@ -184,7 +184,7 @@ eo:
         create_domain_block: Krei Blokadon De Domajno
         create_email_domain_block: Krei Blokadon De Retpoŝta Domajno
         create_ip_block: Krei IP-regulon
-        create_unavailable_domain: Krei nehaveblan domajnon
+        create_unavailable_domain: Krei Nehaveblan Domajnon
         create_user_role: Krei Rolon
         demote_user: Malpromocii Uzanton
         destroy_announcement: Forigi Anoncon
@@ -193,9 +193,9 @@ eo:
         destroy_domain_allow: Forigi Domajnan Permeson
         destroy_domain_block: Forigi blokadon de domajno
         destroy_email_domain_block: Forigi blokadon de retpoŝta domajno
-        destroy_instance: Forigi domajnon
+        destroy_instance: Forigi Domajnon
         destroy_ip_block: Forigi IP-regulon
-        destroy_status: Forigi mesaĝon
+        destroy_status: Forigi Afiŝon
         destroy_unavailable_domain: Forigi Nehaveblan Domajnon
         destroy_user_role: Detrui Rolon
         disable_2fa_user: Malebligi 2FA
@@ -285,7 +285,7 @@ eo:
         update_custom_emoji_html: "%{name} ĝisdatigis la emoĝion %{target}"
         update_domain_block_html: "%{name} ĝisdatigis domajnblokon por %{target}"
         update_ip_block_html: "%{name} ŝanĝis regulon por IP %{target}"
-        update_status_html: "%{name} ĝisdatigis mesaĝon de %{target}"
+        update_status_html: "%{name} ĝisdatigis afiŝon de %{target}"
         update_user_role_html: "%{name} ŝanĝis la rolon %{target}"
       deleted_account: forigita konto
       empty: Neniu ĵurnalo trovita.
@@ -567,7 +567,7 @@ eo:
       disable: Malebligi
       disabled: Malebligita
       enable: Ebligi
-      enable_hint: Post ebligo, via servilo abonos ĉiujn publikajn mesaĝojn de tiu ripetilo, kaj komencos sendi publikajn mesaĝojn de la servilo al ĝi.
+      enable_hint: Post ebligo, via servilo abonos ĉiujn publikajn mesaĝojn de tiu ripetilo, kaj komencos sendi publikajn afiŝojn de la servilo al ĝi.
       enabled: Ebligita
       inbox_url: URL de la ripetilo
       pending: Atendante aprobon de la ripetilo
@@ -587,7 +587,7 @@ eo:
       action_log: Ĵurnalo de revizo
       action_taken_by: Ago farita de
       actions:
-        delete_description_html: Raportitaj mesaĝoj forigotas kaj admono rekorditas.
+        delete_description_html: Raportitaj afiŝoj estos forigita kaj admono estos rekordita por helpi vin indiki estontajn afiŝojn de la sama konto kontraŭ reguloj.
         mark_as_sensitive_description_html: La audovidaĵo en la raportita mesaĝo markotas kiel sentema kaj admono rekorditas.
         other_description_html: Vidu pli da ebloj por regi la sintenon de la konto kaj por personigi la komunikadon kun la raportita konto.
         resolve_description_html: Nenio okazotas al la raportita konto kaj la raporto fermotas.
@@ -634,7 +634,7 @@ eo:
       resolved: Solvitaj
       resolved_msg: Signalo sukcese solvita!
       skip_to_actions: Salti al agoj
-      status: Mesaĝoj
+      status: Afiŝo
       statuses: Raportita enhavo
       statuses_description_html: Sentema enhavo referencitas kun la raportita konto
       summary:
@@ -787,6 +787,7 @@ eo:
       types:
         major: Ĉefa eldono
         minor: Neĉefa eldono
+      version: Versio
     statuses:
       account: Skribanto
       application: Aplikaĵo
@@ -803,12 +804,12 @@ eo:
       media:
         title: Aŭdovidaĵoj
       metadata: Metadatumoj
-      no_status_selected: Neniu mesaĝo estis ŝanĝita ĉar neniu estis elektita
+      no_status_selected: Neniu afiŝo estis ŝanĝita ĉar neniu estis elektita
       open: Malfermi afiŝojn
       original_status: Originala afiŝo
       reblogs: Reblogaĵoj
       status_changed: Afiŝo ŝanĝiĝis
-      title: Mesaĝoj de la konto
+      title: Afiŝoj de la konto
       trending: Popularaĵoj
       visibility: Videbleco
       with_media: Kun aŭdovidaĵoj
@@ -816,7 +817,7 @@ eo:
       actions:
         delete_statuses: "%{name} forigis afiŝojn de %{target}"
         disable: "%{name} frostigis la konton de %{target}"
-        mark_statuses_as_sensitive: "%{name} markis mesaĝojn de %{target} kiel sentemaj"
+        mark_statuses_as_sensitive: "%{name} markis afiŝojn de %{target} kiel tiklan"
         none: "%{name} sendis averton al %{target}"
         sensitive: "%{name} markis konton de %{target} kiel sentema"
         silence: "%{name} limigis la konton de %{target}"
@@ -827,6 +828,8 @@ eo:
     system_checks:
       database_schema_check:
         message_html: Estas pritraktataj datumbazaj migradoj. Bonvolu ekzekuti ilin por certigi, ke la apliko kondutas kiel atendite
+      elasticsearch_preset:
+        action: Legi dokumentaron
       elasticsearch_running_check:
         message_html: Ne eblas konekti Elasticsearch. Bonvolu kontroli ke ĝi funkcias, aǔ malŝaltu plentekstan serĉon
       elasticsearch_version_check:
@@ -940,7 +943,7 @@ eo:
   admin_mailer:
     new_appeal:
       actions:
-        delete_statuses: por forigi iliajn mesaĝojn
+        delete_statuses: por forigi iliajn afiŝojn
         disable: por frostigi ties konton
         mark_statuses_as_sensitive: por marki iliajn mesaĝojn kiel sentemaj
         none: averto
@@ -991,7 +994,7 @@ eo:
     unsubscribe: Malabonu
     view: 'Vidi:'
     view_profile: Vidi profilon
-    view_status: Vidi mesaĝon
+    view_status: Vidi afiŝon
   applications:
     created: Aplikaĵo sukcese kreita
     destroyed: Aplikaĵo sukcese forigita
@@ -1131,7 +1134,7 @@ eo:
       recipient: Senditas por
       reject_appeal: Malakcepti apelacion
       status: 'Afiŝo #%{id}'
-      status_removed: Mesaĝo jam forigitas de sistemo
+      status_removed: Afiŝo jam estas forigita de sistemo
       title: "%{action} de %{date}"
       title_actions:
         delete_statuses: Forigo de afiŝo
@@ -1199,8 +1202,8 @@ eo:
     edit:
       add_keyword: Aldoni ĉefvorton
       keywords: Ĉefvortoj
-      statuses: Individuaj mesaĝoj
-      statuses_hint_html: Ĉi tiu filtrilo kongruas kelkajn mesaĝojn. <a href="%{path}">Kontrolu mesaĝojn de la filtrilo</a>.
+      statuses: Individuaj afiŝoj
+      statuses_hint_html: Ĉi tiu filtrilo kongruas kelkajn afiŝojn. <a href="%{path}">Kontroli afiŝojn de la filtrilo</a>.
       title: Ŝanĝi filtrilojn
     errors:
       deprecated_api_multiple_keywords: Ĉi tiuj parametroj ne povas ŝanĝitis de ĉi tiu programaro. Uzu pli novan programaron.
@@ -1218,8 +1221,8 @@ eo:
         one: "%{count} afiŝo"
         other: "%{count} afiŝoj"
       statuses_long:
-        one: "%{count} mesaĝo kaŝita"
-        other: "%{count} mesaĝoj kaŝita"
+        one: "%{count} afiŝo estas kaŝita"
+        other: "%{count} afiŝoj estas kaŝitaj"
       title: Filtriloj
     new:
       save: Konservi novan filtrilon
@@ -1230,7 +1233,7 @@ eo:
         remove: Forigi de filtrilo
       index:
         hint: Ĉi tiu filtrilo kongruas kelkaj mesaĝoj sendepende de aliaj kriterioj.
-        title: Filtritaj mesaĝoj
+        title: Filtritaj afiŝoj
   generic:
     all: Ĉio
     all_items_on_page_selected_html:
@@ -1644,16 +1647,16 @@ eo:
     interaction_exceptions_explanation: Sciu ke estas neniu garantio ke mesaĝo estos forigita se ĝi iras sub la limo de diskonigoj aŭ stelumoj post atingi ĝin.
     keep_direct: Konservi rektajn mesaĝojn
     keep_direct_hint: Ne forigos viajn rektajn mesagôjn
-    keep_media: Konservi mesaĝojn kun aŭdovidaj aldonaĵoj
+    keep_media: Konservi afiŝojn kun aŭdovidaj aldonaĵoj
     keep_media_hint: Ne forigi mesaĝojn kiuj enhavas aŭdovidajn aldonaĵojn
-    keep_pinned: Konservi alpinglitajn mesaĝojn
+    keep_pinned: Konservi alpinglitajn afiŝojn
     keep_pinned_hint: Ne forigi viajn ajn alpinglitajn mesaĝojn
     keep_polls: Konservi enketojn
     keep_polls_hint: Ne forigi viajn ajn enketojn
-    keep_self_bookmark: Konservi mesaĝojn kiun vi legsignis
+    keep_self_bookmark: Konservi afiŝojn kiun vi legsignis
     keep_self_bookmark_hint: Ne forigi viajn siajn mesaĝojn se vi legsignis ilin
-    keep_self_fav: Konservi mesaĝojn kiujn vi stelumis
-    keep_self_fav_hint: Ne forigi proprajn mesaĝojn se vi stelumis ilin
+    keep_self_fav: Konservi afiŝojn kiujn vi stelumis
+    keep_self_fav_hint: Ne forigi proprajn afiŝojn se vi stelumis ilin
     min_age:
       '1209600': 2 semajnoj
       '15778476': 6 monatoj
@@ -1664,7 +1667,7 @@ eo:
       '63113904': 2 jaroj
       '7889238': 3 monatoj
     min_age_label: Aĝlimo
-    min_favs: Konservi mesaĝojn stelumitajn almenaŭ
+    min_favs: Konservi afiŝojn stelumitajn almenaŭ
     min_favs_hint: Oni ne forigas viajn afiŝojn, kiuj estas diskonigitaj almenaŭ ĉi tiun nombron da fojoj. Lasu malplena por forigi afiŝojn sendepende de iliaj nombroj da diskonigoj
     min_reblogs: Konservi diskonitajn mesaĝojn almenau
     min_reblogs_hint: Oni ne forigas viajn afiŝojn kiuj estas diskonigitaj almenaŭ ĉi tiun nombron da fojoj. Lasu malplena por forigi afiŝojn sendepende de iliaj nombroj da diskonigoj
@@ -1738,11 +1741,11 @@ eo:
         silence: Vi ankorau povas uzi vian konton, sed nur personoj kiuj jam sekvas vin vidos viajn mesaĝojn en tiu ĉi servilo, kaj vi eble estos ekskluzive el diversaj malkovrigaj funkcioj. Tamen, aliaj ankoraŭ povas permane eksekvi vin.
         suspend: Vi ne povas uzi vian konton plu, kaj via profilo kaj aliaj datumoj ne estas disponeblaj plu.
       reason: 'Kialo:'
-      statuses: 'Mesaĝoj ripetitaj:'
+      statuses: 'Afiŝoj citataj:'
       subject:
-        delete_statuses: Viaj mesaĝoj ĉe %{acct} forigitas
+        delete_statuses: Viaj afiŝoj ĉe %{acct} estas forigitaj
         disable: Via konto %{acct} estas frostigita
-        mark_statuses_as_sensitive: Viaj mesaĝoj ĉe %{acct} markitas kiel sentemaj
+        mark_statuses_as_sensitive: Viaj afiŝoj ĉe %{acct} estas markitaj kiel tiklemaj
         none: Averto por %{acct}
         sensitive: Viaj mesaĝoj ĉe %{acct} markitas kiel sentemaj malantau ol nun
         silence: Oni limigis vian konton %{acct}
