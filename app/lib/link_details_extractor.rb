@@ -282,6 +282,6 @@ class LinkDetailsExtractor
   end
 
   def html_entities
-    @html_entities ||= HTMLEntities.new
+    @html_entities ||= HTMLEntities.new(:expanded)
   end
 end
