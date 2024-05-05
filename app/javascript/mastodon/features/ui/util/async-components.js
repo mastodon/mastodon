@@ -1,203 +1,203 @@
 export function EmojiPicker () {
-  return import(/* webpackChunkName: "emoji_picker" */'../../emoji/emoji_picker');
+  return import('../../emoji/emoji_picker');
 }
 
 export function Compose () {
-  return import(/* webpackChunkName: "features/compose" */'../../compose');
+  return import('../../compose');
 }
 
 export function Notifications () {
-  return import(/* webpackChunkName: "features/notifications" */'../../notifications');
+  return import('../../notifications');
 }
 
 export function HomeTimeline () {
-  return import(/* webpackChunkName: "features/home_timeline" */'../../home_timeline');
+  return import('../../home_timeline');
 }
 
 export function PublicTimeline () {
-  return import(/* webpackChunkName: "features/public_timeline" */'../../public_timeline');
+  return import('../../public_timeline');
 }
 
 export function CommunityTimeline () {
-  return import(/* webpackChunkName: "features/community_timeline" */'../../community_timeline');
+  return import('../../community_timeline');
 }
 
 export function Firehose () {
-  return import(/* webpackChunkName: "features/firehose" */'../../firehose');
+  return import('../../firehose');
 }
 
 export function HashtagTimeline () {
-  return import(/* webpackChunkName: "features/hashtag_timeline" */'../../hashtag_timeline');
+  return import('../../hashtag_timeline');
 }
 
 export function DirectTimeline() {
-  return import(/* webpackChunkName: "features/direct_timeline" */'../../direct_timeline');
+  return import('../../direct_timeline');
 }
 
 export function ListTimeline () {
-  return import(/* webpackChunkName: "features/list_timeline" */'../../list_timeline');
+  return import('../../list_timeline');
 }
 
 export function Lists () {
-  return import(/* webpackChunkName: "features/lists" */'../../lists');
+  return import('../../lists');
 }
 
 export function Status () {
-  return import(/* webpackChunkName: "features/status" */'../../status');
+  return import('../../status');
 }
 
 export function GettingStarted () {
-  return import(/* webpackChunkName: "features/getting_started" */'../../getting_started');
+  return import('../../getting_started');
 }
 
 export function KeyboardShortcuts () {
-  return import(/* webpackChunkName: "features/keyboard_shortcuts" */'../../keyboard_shortcuts');
+  return import('../../keyboard_shortcuts');
 }
 
 export function PinnedStatuses () {
-  return import(/* webpackChunkName: "features/pinned_statuses" */'../../pinned_statuses');
+  return import('../../pinned_statuses');
 }
 
 export function AccountTimeline () {
-  return import(/* webpackChunkName: "features/account_timeline" */'../../account_timeline');
+  return import('../../account_timeline');
 }
 
 export function AccountGallery () {
-  return import(/* webpackChunkName: "features/account_gallery" */'../../account_gallery');
+  return import('../../account_gallery');
 }
 
 export function Followers () {
-  return import(/* webpackChunkName: "features/followers" */'../../followers');
+  return import('../../followers');
 }
 
 export function Following () {
-  return import(/* webpackChunkName: "features/following" */'../../following');
+  return import('../../following');
 }
 
 export function Reblogs () {
-  return import(/* webpackChunkName: "features/reblogs" */'../../reblogs');
+  return import('../../reblogs');
 }
 
 export function Favourites () {
-  return import(/* webpackChunkName: "features/favourites" */'../../favourites');
+  return import('../../favourites');
 }
 
 export function FollowRequests () {
-  return import(/* webpackChunkName: "features/follow_requests" */'../../follow_requests');
+  return import('../../follow_requests');
 }
 
 export function FavouritedStatuses () {
-  return import(/* webpackChunkName: "features/favourited_statuses" */'../../favourited_statuses');
+  return import('../../favourited_statuses');
 }
 
 export function FollowedTags () {
-  return import(/* webpackChunkName: "features/followed_tags" */'../../followed_tags');
+  return import('../../followed_tags');
 }
 
 export function BookmarkedStatuses () {
-  return import(/* webpackChunkName: "features/bookmarked_statuses" */'../../bookmarked_statuses');
+  return import('../../bookmarked_statuses');
 }
 
 export function Blocks () {
-  return import(/* webpackChunkName: "features/blocks" */'../../blocks');
+  return import('../../blocks');
 }
 
 export function DomainBlocks () {
-  return import(/* webpackChunkName: "features/domain_blocks" */'../../domain_blocks');
+  return import('../../domain_blocks');
 }
 
 export function Mutes () {
-  return import(/* webpackChunkName: "features/mutes" */'../../mutes');
+  return import('../../mutes');
 }
 
 export function MuteModal () {
-  return import(/* webpackChunkName: "modals/mute_modal" */'../components/mute_modal');
+  return import('../components/mute_modal');
 }
 
 export function BlockModal () {
-  return import(/* webpackChunkName: "modals/block_modal" */'../components/block_modal');
+  return import('../components/block_modal');
 }
 
 export function DomainBlockModal () {
-  return import(/* webpackChunkName: "modals/domain_block_modal" */'../components/domain_block_modal');
+  return import('../components/domain_block_modal');
 }
 
 export function ReportModal () {
-  return import(/* webpackChunkName: "modals/report_modal" */'../components/report_modal');
+  return import('../components/report_modal');
 }
 
 export function MediaGallery () {
-  return import(/* webpackChunkName: "status/media_gallery" */'../../../components/media_gallery');
+  return import('../../../components/media_gallery');
 }
 
 export function Video () {
-  return import(/* webpackChunkName: "features/video" */'../../video');
+  return import('../../video');
 }
 
 export function EmbedModal () {
-  return import(/* webpackChunkName: "modals/embed_modal" */'../components/embed_modal');
+  return import('../components/embed_modal');
 }
 
 export function ListEditor () {
-  return import(/* webpackChunkName: "features/list_editor" */'../../list_editor');
+  return import('../../list_editor');
 }
 
 export function ListAdder () {
-  return import(/*webpackChunkName: "features/list_adder" */'../../list_adder');
+  return import('../../list_adder');
 }
 
 export function Tesseract () {
-  return import(/*webpackChunkName: "tesseract" */'tesseract.js');
+  return import('tesseract.js');
 }
 
 export function Audio () {
-  return import(/* webpackChunkName: "features/audio" */'../../audio');
+  return import('../../audio');
 }
 
 export function Directory () {
-  return import(/* webpackChunkName: "features/directory" */'../../directory');
+  return import('../../directory');
 }
 
 export function Onboarding () {
-  return import(/* webpackChunkName: "features/onboarding" */'../../onboarding');
+  return import('../../onboarding');
 }
 
 export function CompareHistoryModal () {
-  return import(/*webpackChunkName: "modals/compare_history_modal" */'../components/compare_history_modal');
+  return import('../components/compare_history_modal');
 }
 
 export function Explore () {
-  return import(/* webpackChunkName: "features/explore" */'../../explore');
+  return import('../../explore');
 }
 
 export function FilterModal () {
-  return import(/*webpackChunkName: "modals/filter_modal" */'../components/filter_modal');
+  return import('../components/filter_modal');
 }
 
 export function InteractionModal () {
-  return import(/*webpackChunkName: "modals/interaction_modal" */'../../interaction_modal');
+  return import('../../interaction_modal');
 }
 
 export function SubscribedLanguagesModal () {
-  return import(/*webpackChunkName: "modals/subscribed_languages_modal" */'../../subscribed_languages_modal');
+  return import('../../subscribed_languages_modal');
 }
 
 export function ClosedRegistrationsModal () {
-  return import(/*webpackChunkName: "modals/closed_registrations_modal" */'../../closed_registrations_modal');
+  return import('../../closed_registrations_modal');
 }
 
 export function About () {
-  return import(/*webpackChunkName: "features/about" */'../../about');
+  return import('../../about');
 }
 
 export function PrivacyPolicy () {
-  return import(/*webpackChunkName: "features/privacy_policy" */'../../privacy_policy');
+  return import('../../privacy_policy');
 }
 
 export function NotificationRequests () {
-  return import(/*webpackChunkName: "features/notifications/requests" */'../../notifications/requests');
+  return import('../../notifications/requests');
 }
 
 export function NotificationRequest () {
-  return import(/*webpackChunkName: "features/notifications/request" */'../../notifications/request');
+  return import('../../notifications/request');
 }

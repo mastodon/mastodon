@@ -5,7 +5,7 @@
 import { loadIntlPolyfills } from './intl';
 
 function importExtraPolyfills() {
-  return import(/* webpackChunkName: "extra_polyfills" */ './extra_polyfills');
+  return import('./extra_polyfills');
 }
 
 export function loadPolyfills() {

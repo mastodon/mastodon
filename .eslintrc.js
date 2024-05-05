@@ -197,7 +197,6 @@ module.exports = defineConfig({
         devDependencies: [
           '.eslintrc.js',
           'vite.config.mts',
-          'config/webpack/**',
           'app/javascript/mastodon/performance.js',
           'app/javascript/mastodon/test_setup.js',
           'app/javascript/**/__tests__/**',
@@ -210,7 +209,6 @@ module.exports = defineConfig({
     'import/no-relative-packages': 'error',
     'import/no-self-import': 'error',
     'import/no-useless-path-segments': 'error',
-    'import/no-webpack-loader-syntax': 'error',
 
     'import/order': [
       'error',
@@ -306,7 +304,6 @@ module.exports = defineConfig({
         '*.config.js',
         '.*rc.js',
         'ide-helper.js',
-        'config/webpack/**/*',
         'config/formatjs-formatter.js',
       ],
 
