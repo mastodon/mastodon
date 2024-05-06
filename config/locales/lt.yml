@@ -410,6 +410,8 @@ lt:
           silence: Riboti
           suspend: Pristabdyti
         title: Naujos domeno blokas
+      public_comment: Viešas komentaras
+      public_comment_hint: Komentaras apie šį domeno apribojimą plačiajai visuomenei, jei įjungtas domenų apribojimų sąrašo reklamavimas.
       reject_media: Atmesti medijos failus
       reject_media_hint: Panaikina lokaliai saugomus medijos failus bei atsisako jų parsisiuntimo ateityje. Neliečia užblokavimu
       reject_reports: Atmesti ataskaitas
@@ -427,11 +429,14 @@ lt:
       title: El pašto juodasis sąrašas
     instances:
       by_domain: Domenas
+      content_policies:
+        reason: Viešoji priežastis
       delivery_available: Pristatymas galimas
       moderation:
         all: Visi
         limited: Limituotas
         title: Moderacija
+      public_comment: Viešas komentaras
       title: Federacija
       total_blocked_by_us: Mes užblokavome
       total_followed_by_them: Jų sekami
@@ -449,11 +454,11 @@ lt:
     relays:
       add_new: Pridėti naują pamainą
       delete: Ištrinti
-      description_html: "<strong>Federacijos perjungėjas</strong> tai tarpinis serveris, kuris apsikeičia didelios apimties informacija tarp kitų serverių. <strong> Tai gali padėti mažesniems serveriams atrasti turinį iš fedi-visatos</strong>, kuris kitaip reikalautų vartotojų lokaliai sekti kitus žmones naudojantis kitus tolimus serverius."
+      description_html: "<strong>Federacijos perdavimas</strong> – tai tarpinis serveris, kuris keičiasi dideliais viešų įrašų kiekiais tarp jį prenumeruojančių ir skelbiančių serverių. <strong>Jis gali padėti mažiems ir vidutiniams serveriams atrasti fediverse esantį turinį</strong>, nes priešingu atveju vietiniams naudotojams reikėtų rankiniu būdu sekti kitus žmones iš nutolusių serverių."
       disable: Išjungti
       disabled: Išjungtas
       enable: Įjungti
-      enable_hint: Kai įjungta, Jūsų serveris prenumeruos visas viešas žinutes iš šio tinklo, ir pradės siųsti šio serverio viešas žinutes į tinklą.
+      enable_hint: Kai bus įjungtas, tavo serveris užsiprenumeruos visus šio perdavimo viešus įrašus ir pradės į jį siųsti šio serverio viešus įrašus.
       enabled: Įjungtas
       inbox_url: Perdavimo URL
       pending: Laukiama perdavimo patvirtinimo
@@ -504,6 +509,8 @@ lt:
         desc_html: Tai priklauso nuo hCaptcha išorinių skriptų, kurie gali kelti susirūpinimą dėl saugumo ir privatumo. Be to, <strong>dėl to registracijos procesas kai kuriems žmonėms (ypač neįgaliesiems) gali būti gerokai sunkiau prieinami</strong>. Dėl šių priežasčių apsvarstyk alternatyvias priemones, pavyzdžiui, patvirtinimu arba kvietimu grindžiamą registraciją.
       content_retention:
         danger_zone: Pavojinga zona
+      discovery:
+        public_timelines: Viešieji laiko skalės
       domain_blocks:
         all: Visiems
       registrations:
@@ -543,7 +550,7 @@ lt:
       body: Mastodon verčia savanoriai.
       guide_link_text: Visi gali prisidėti.
   application_mailer:
-    notification_preferences: Keisti el pašto parinktis
+    notification_preferences: Keisti el. pašto nuostatas
     settings: 'Keisti el. pašto nuostatas: %{link}'
     view: 'Peržiūra:'
     view_profile: Peržiurėti profilį
@@ -635,7 +642,7 @@ lt:
     contexts:
       home: Namų laiko juosta
       notifications: Priminimai
-      public: Viešos laiko juostos
+      public: Viešieji laiko skalės
       thread: Pokalbiai
     edit:
       title: Keisti filtrą
@@ -727,6 +734,8 @@ lt:
     prev: Ankstesnis
   preferences:
     other: Kita
+    posting_defaults: Skelbimo numatytosios nuostatos
+    public_timelines: Viešieji laiko skalės
   privacy:
     hint_html: "<strong>Tikrink, kaip nori, kad tavo profilis ir įrašai būtų randami.</strong> Įjungus įvairias Mastodon funkcijas, jos gali padėti pasiekti platesnę auditoriją. Akimirką peržiūrėk šiuos nustatymus, kad įsitikintum, jog jie atitinka tavo naudojimo būdą."
   redirects:
@@ -769,7 +778,8 @@ lt:
     import: Importuoti
     migrate: Paskyros migracija
     notifications: El. laiško pranešimai
-    preferences: Preferencijos
+    preferences: Nuostatos
+    profile: Viešas profilis
     two_factor_authentication: Dviejų veiksnių autentikacija
   statuses:
     attached:
