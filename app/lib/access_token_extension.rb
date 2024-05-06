@@ -6,6 +6,8 @@ module AccessTokenExtension
   included do
     include Redisable
 
+    has_many :web_push_subscriptions, class_name: 'Web::PushSubscription', inverse_of: :access_token
+
     after_commit :push_to_streaming_api
   end
 
