@@ -36,6 +36,10 @@ RSpec.describe Tag do
       expect(subject.match('https://gcc.gnu.org/bugzilla/show_bug.cgi?id=111895#c4')).to be_nil
     end
 
+    it 'does not match URLs with hashtag-like anchors after a non-ascii character' do
+      expect(subject.match('https://example.org/testé#foo')).to be_nil
+    end
+
     it 'does not match URLs with hashtag-like anchors after an empty query parameter' do
       expect(subject.match('https://en.wikipedia.org/wiki/Ghostbusters_(song)?foo=#Lawsuit')).to be_nil
     end
