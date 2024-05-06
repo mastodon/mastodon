@@ -15,7 +15,7 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
 
   def create
     with_redis_lock("push_subscription:#{current_user.id}") do
-      Web::PushSubscription.where(access_token_id: doorkeeper_token.id).destroy_all
+      destroy_web_push_subscriptions!
 
       @push_subscription = Web::PushSubscription.create!(
         endpoint: subscription_params[:endpoint],
@@ -36,11 +36,15 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
   end
 
   def destroy
-    Web::PushSubscription.where(access_token_id: doorkeeper_token.id).destroy_all
+    destroy_web_push_subscriptions!
     render_empty
   end
 
   private
+
+  def destroy_web_push_subscriptions!
+    Web::PushSubscription.where(access_token_id: doorkeeper_token.id).destroy_all
+  end
 
   def set_push_subscription
     @push_subscription = Web::PushSubscription.find_by(access_token_id: doorkeeper_token.id)
