@@ -43,11 +43,11 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
   private
 
   def destroy_web_push_subscriptions!
-    Web::PushSubscription.where(access_token_id: doorkeeper_token.id).destroy_all
+    doorkeeper_token.web_push_subscriptions.destroy_all
   end
 
   def set_push_subscription
-    @push_subscription = Web::PushSubscription.find_by(access_token_id: doorkeeper_token.id)
+    @push_subscription = doorkeeper_token.web_push_subscriptions.first
   end
 
   def check_push_subscription
