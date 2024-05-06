@@ -42,9 +42,7 @@ if ENV['S3_ENABLED'] == 'true'
   s3_protocol = ENV.fetch('S3_PROTOCOL') { 'https' }
   s3_hostname = ENV.fetch('S3_HOSTNAME') { "s3-#{s3_region}.amazonaws.com" }
 
-  if ENV.has_key?('S3_KEY_PREFIX')
-    Paperclip::Attachment.default_options[:path] = ENV.fetch('S3_KEY_PREFIX') + "/#{PATH}"
-  end
+  Paperclip::Attachment.default_options[:path] = ENV.fetch('S3_KEY_PREFIX') + "/#{PATH}" if ENV.has_key?('S3_KEY_PREFIX')
 
   Paperclip::Attachment.default_options.merge!(
     storage: :s3,
