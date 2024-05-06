@@ -241,6 +241,13 @@ module ApplicationHelper
     EmojiFormatter.new(html, custom_emojis, other_options.merge(animate: prefers_autoplay?)).to_s
   end
 
+  def site_icon_path(type, size = '48')
+    icon = SiteUpload.find_by(var: type)
+    return nil unless icon
+
+    icon.file.url(size)
+  end
+
   # glitch-soc addition to handle the multiple flavors
   def preload_locale_pack
     supported_locales = Themes.instance.flavour(current_flavour)['locales']

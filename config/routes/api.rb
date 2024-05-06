@@ -6,7 +6,7 @@ namespace :api, format: false do
 
   # JSON / REST API
   namespace :v1 do
-    resources :statuses, only: [:create, :show, :update, :destroy] do
+    resources :statuses, only: [:index, :create, :show, :update, :destroy] do
       scope module: :statuses do
         resources :reblogged_by, controller: :reblogged_by_accounts, only: :index
         resources :favourited_by, controller: :favourited_by_accounts, only: :index
@@ -184,7 +184,7 @@ namespace :api, format: false do
       resources :familiar_followers, only: :index
     end
 
-    resources :accounts, only: [:create, :show] do
+    resources :accounts, only: [:index, :create, :show] do
       scope module: :accounts do
         resources :statuses, only: :index
         resources :followers, only: :index, controller: :follower_accounts
