@@ -428,9 +428,12 @@ lt:
         title: Naujas el pašto juodojo sąrašo įtraukimas
       title: El pašto juodasis sąrašas
     instances:
+      back_to_all: Visi
       by_domain: Domenas
       content_policies:
         reason: Viešoji priežastis
+      delivery:
+        all: Visi
       delivery_available: Pristatymas galimas
       moderation:
         all: Visi
@@ -537,6 +540,8 @@ lt:
       delete: Ištrinti
       edit_preset: Keisti įspėjimo nustatymus
       title: Valdyti įspėjimo nustatymus
+    webhooks:
+      events: Įvykiai
   admin_mailer:
     auto_close_registrations:
       body: Dėl pastarojo meto peržiūrėtojų aktyvumo trūkumo %{instance} registracija buvo automatiškai pakeista į reikalaujančią rankinės būdo peržiūros, kad %{instance} nebūtų naudojama kaip platforma potencialiems blogiems veikėjams. Bet kuriuo metu gali ją vėl perjungti į atvirą registraciją.
@@ -546,9 +551,15 @@ lt:
       body_remote: Kažkas iš %{domain} parašė skundą apie %{target}
       subject: Naujas skundas %{instance} (#%{id})
   appearance:
+    advanced_web_interface: Išplėstinė žiniatinklio sąsaja
+    advanced_web_interface_hint: 'Jei nori išnaudoti visą ekrano plotį, išplėstinė žiniatinklio sąsaja leidžia sukonfigūruoti daug skirtingų stulpelių, kad vienu metu matytum tiek informacijos, kiek tik nori: Pagrindinis, pranešimai, federacinė laiko skalė, bet kokie sąrašai ir saitažodžiai.'
+    animations_and_accessibility: Animacijos ir pritaikymas neįgaliesiems
+    confirmation_dialogs: Patvirtinimo dialogai
+    discovery: Atradimas
     localization:
       body: Mastodon verčia savanoriai.
       guide_link_text: Visi gali prisidėti.
+    sensitive_content: Jautrus turinys
   application_mailer:
     notification_preferences: Keisti el. pašto nuostatas
     settings: 'Keisti el. pašto nuostatas: %{link}'
@@ -581,6 +592,7 @@ lt:
     security: Apsauga
     set_new_password: Nustatyti naują slaptažodį
     status:
+      account_status: Paskyros būsena
       redirecting_to: Tavo paskyra yra neaktyvi, nes šiuo metu ji nukreipiama į %{acct}.
       self_destruct: Kadangi %{domain} uždaromas, turėsi tik ribotą prieigą prie savo paskyros.
       view_strikes: Peržiūrėti ankstesnius savo paskyros pažeidimus
@@ -611,13 +623,15 @@ lt:
       your_appeal_approved: Tavo apeliacija buvo patvirtinta
       your_appeal_pending: Pateikei apeliaciją
       your_appeal_rejected: Tavo apeliacija buvo atmesta
+  edit_profile:
+    hint_html: "<strong>Tinkink tai, ką žmonės mato tavo viešame profilyje ir šalia įrašų.</strong> Kiti žmonės labiau linkę sekti atgal ir bendrauti su tavimi, jei tavo profilis yra užpildytas ir turi profilio nuotrauką."
   errors:
     '403': Jūs neturie prieigos matyti šiam puslapiui.
     '404': Puslapis nerastas.
     '410': Puslapis neegzistuoja.
     '422':
-      content: Apsaugos patvirtinmas klaidingas. Ar jūs blokuojate sausainius?
-      title: Apsaugos patvirtinimas nepavyko
+      content: Nepavyko saugumo patvirtinimas. Ar blokuoji slapukus?
+      title: Nepavyko saugumo patvirtinimas
     '429': Stabdomas
     '500':
       content: Atsiprašome, tačiau mūsų pusėje įvyko klaida.
@@ -638,6 +652,7 @@ lt:
     storage: Medijos sandėlis
   featured_tags:
     add_new: Pridėti naują
+    hint_html: "<strong>Savo profilyje parodyk svarbiausius saitažodžius.</strong> Tai puikus įrankis kūrybiniams darbams ir ilgalaikiams projektams sekti, todėl svarbiausios saitažodžiai rodomi matomoje vietoje profilyje ir leidžia greitai pasiekti tavo paties įrašus."
   filters:
     contexts:
       home: Namų laiko juosta
@@ -654,8 +669,10 @@ lt:
     new:
       title: Pridėti naują filtrą
   generic:
+    all: Visi
     changes_saved_msg: Pakeitimai sėkmingai išsaugoti!
     copy: Kopijuoti
+    order_by: Tvarkyti pagal
     save_changes: Išsaugoti pakeitimus
   imports:
     modes:
@@ -686,10 +703,10 @@ lt:
     invalid: Šis kvietimas negalioja.
     invited_by: 'Jus pakvietė:'
     max_uses:
-      few: "%{count} panaudojimai"
-      many: "%{count} panaudojimo"
-      one: 1 panaudojimas
-      other: "%{count} panaudojimų"
+      few: "%{count} naudojimai"
+      many: "%{count} naudojimo"
+      one: 1 naudojimas
+      other: "%{count} naudojimų"
     max_uses_prompt: Nėra limito
     prompt: Generuok ir bendrink nuorodas su kitais, kad suteiktum prieigą prie šio serverio
     table:
@@ -727,6 +744,9 @@ lt:
       body: 'Tavo įrašą pakėlė %{name}:'
       subject: "%{name} pakėlė tavo įrašą"
       title: Naujas pakėlimas
+  notifications:
+    email_events: Įvykiai, skirti el. laiško pranešimams
+    email_events_hint: 'Pasirink įvykius, apie kuriuos nori gauti pranešimus:'
   pagination:
     newer: Naujesnis
     next: Kitas
@@ -738,9 +758,30 @@ lt:
     public_timelines: Viešieji laiko skalės
   privacy:
     hint_html: "<strong>Tikrink, kaip nori, kad tavo profilis ir įrašai būtų randami.</strong> Įjungus įvairias Mastodon funkcijas, jos gali padėti pasiekti platesnę auditoriją. Akimirką peržiūrėk šiuos nustatymus, kad įsitikintum, jog jie atitinka tavo naudojimo būdą."
+    privacy: Privatumas
+    privacy_hint_html: Valdyk, kiek informacijos norėtum atskleisti kitų labui. Žmonės atranda įdomių profilių ir šaunių programėlių, naršydami kitų žmonių sekamus profilius ir žiūrėdami, iš kokių programėlių jie skelbia įrašus, bet tu galbūt norėsi tai slėpti.
+    reach: Pasiekiamumas
+    reach_hint_html: Valdyk, ar norėtum, kad tave atrastų ir sektų nauji žmonės. Ar nori, kad įrašai būtų rodomi Naršyti ekrane? Ar nori, kad kiti žmonės tave matytų savo sekimo rekomendacijose? Ar nori automatiškai priimti visus naujus sekėjus, ar detaliai valdyti kiekvieną iš jų?
+    search: Paieška
+    search_hint_html: Valdyk, kaip norėtum būti surastas. Ar nori, kad žmonės tave rastų pagal tai, apie ką viešai paskelbi? Ar nori, kad ne Mastodon žmonės, ieškantys profilio internete, rastų tavo profilį? Atmink, kad visiško pašalinimo iš visų paieškos variklių viešai skelbiamai informacijai užtikrinti negalima.
+    title: Privatumas ir pasiekiamumas
+  privacy_policy:
+    title: Privatumo politika
   redirects:
     prompt: Jei pasitiki šia nuoroda, spustelėk ją, kad tęstum.
     title: Palieki %{instance}
+  relationships:
+    activity: Paskyros aktyvumas
+    dormant: Neaktyvus
+    followers: Sekėjai
+    following: Sekama
+    last_active: Paskutinį kartą aktyvus
+    most_recent: Naujausias
+    moved: Perkelta
+    mutual: Bendri
+    primary: Pirminis
+    relationship: Sąryšis
+    status: Paskyros būsena
   remote_follow:
     missing_resource: Jūsų paskyros nukreipimo URL nerasta
   scheduled_statuses:
@@ -774,13 +815,17 @@ lt:
     development: Plėtojimas
     edit_profile: Keisti profilį
     export: Informacijos eksportas
-    featured_tags: Rodomi saitažodžiai(#)
+    featured_tags: Rodomi saitažodžiai
     import: Importuoti
     migrate: Paskyros migracija
     notifications: El. laiško pranešimai
     preferences: Nuostatos
     profile: Viešas profilis
+    relationships: Sekimai ir sekėjai
+    severed_relationships: Nutrūkę sąryšiai
     two_factor_authentication: Dviejų veiksnių autentikacija
+  severed_relationships:
+    preamble: Užblokavus domeną arba prižiūrėtojams nusprendus pristabdyti nuotolinio serverio veiklą, gali prarasti sekimus ir sekėjus. Kai taip atsitiks, galėsi atsisiųsti nutrauktų sąryšių sąrašus, kad juos patikrinti ir galbūt importuoti į kitą serverį.
   statuses:
     attached:
       description: 'Pridėta: %{attached}'
@@ -795,11 +840,11 @@ lt:
     show_more: Daugiau
     visibilities:
       private: Tik sekėjams
-      private_long: Rodyti tik sekėjams
+      private_long: rodyti tik sekėjams
       public: Viešas
-      public_long: Visi gali matyti
+      public_long: visi gali matyti
       unlisted: Neįtrauktas į sąrašus
-      unlisted_long: Matyti gali visi, tačiau nėra įtraukti į viešąsias laiko skales
+      unlisted_long: matyti gali visi, bet nėra išvardyti į viešąsias laiko skales
   statuses_cleanup:
     enabled_hint: Automatiškai ištrina įrašus, kai jie pasiekia nustatytą amžiaus ribą, nebent jie atitinka vieną iš toliau nurodytų išimčių
     keep_polls_hint: Neištrina jokių tavo apklausų
@@ -808,9 +853,9 @@ lt:
   stream_entries:
     sensitive_content: Jautrus turinys
   themes:
-    contrast: Mastodon (Didelio Kontrasto)
-    default: Mastodon (Tamsus)
-    mastodon-light: Mastodon (Šviesus)
+    contrast: Mastodon (didelis kontrastas)
+    default: Mastodon (tamsi)
+    mastodon-light: Mastodon (šviesi)
     system: Automatinis (naudoti sistemos temą)
   two_factor_authentication:
     disable: Išjungti
@@ -876,7 +921,7 @@ lt:
       follows_title: Ką sekti
       follows_view_more: Peržiūrėti daugiau sekamų žmonių
       hashtags_subtitle: Naršyk, kas tendencinga per pastarąsias 2 dienas.
-      hashtags_title: Tendencijos saitažodžiai
+      hashtags_title: Trendingiausi saitažodžiai
       hashtags_view_more: Peržiūrėti daugiau tendencingų saitažodžių
       post_action: Sukurti
       post_step: Sakyk labas pasauliui tekstu, nuotraukomis, vaizdo įrašais arba apklausomis.
@@ -896,9 +941,10 @@ lt:
     seamless_external_login: Esi prisijungęs (-usi) per išorinę paslaugą, todėl slaptažodžio ir el. pašto nustatymai nepasiekiami.
     signed_in_as: 'Prisijungta kaip:'
   verification:
-    extra_instructions_html: <strong>Patarimas:</strong> nuoroda tavo svetainėje gali būti nematoma. Svarbi dalis – tai, kas <code>rel="me"</code> neleidžia apsimesti interneto svetainėse, kuriose yra naudotojų sukurto turinio. Vietoj to gali naudoti net <code>nuorodą</code> puslapio antraštėje esančią žymę <code>a</code>, tačiau HTML turi būti pasiekiamas nevykdant JavaScript.
+    extra_instructions_html: <strong>Patarimas:</strong> nuoroda tavo svetainėje gali būti nematoma. Svarbi dalis – tai, kad <code>rel="me"</code> neleidžia apsimesti interneto svetainėse, kuriose yra naudotojų sukurto turinio. Vietoj to gali naudoti net <code>nuorodą</code> puslapio antraštėje esančią žymę <code>a</code>, tačiau HTML turi būti pasiekiamas nevykdant JavaScript.
+    here_is_how: Štai kaip
     hint_html: "<strong>Savo tapatybės patvirtinimas Mastodon skirtas visiems.</strong> Remiantis atviraisiais žiniatinklio standartais, dabar ir visam laikui nemokamas. Viskas, ko tau reikia, yra asmeninė svetainė, pagal kurią žmonės tave atpažįsta. Kai iš savo profilio pateiksi nuorodą į šią svetainę, patikrinsime, ar svetainėje yra nuoroda į tavo profilį, ir parodysime vizualinį indikatorių."
-    instructions_html: Nukopijuok ir įklijuok toliau pateiktą kodą į savo svetainės HTML. Tada į vieną iš papildomų profilio laukų skirtuke „Redaguoti profilį“ įrašyk savo svetainės adresą ir išsaugok pakeitimus.
+    instructions_html: Nukopijuok ir įklijuok toliau pateiktą kodą į savo svetainės HTML. Tada į vieną iš papildomų profilio laukų skirtuke Redaguoti profilį įrašyk savo svetainės adresą ir išsaugok pakeitimus.
     verification: Patvirtinimas
     verified_links: Tavo patikrintos nuorodos
   webauthn_credentials:

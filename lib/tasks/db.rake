@@ -6,7 +6,7 @@ Rake::Task['db:encryption:init'].clear
 namespace :db do
   namespace :encryption do
     desc 'Generate a set of keys for configuring Active Record encryption in a given environment'
-    task init: :environment do
+    task :init do # rubocop:disable Rails/RakeEnvironment
       puts <<~MSG
         Add these environment variables to your Mastodon environment:#{' '}
 

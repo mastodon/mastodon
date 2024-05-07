@@ -77,11 +77,13 @@ pl:
           warn: Ukryj filtrowaną zawartość za ostrzeżeniem wskazującym tytuł filtra
       form_admin_settings:
         activity_api_enabled: Liczby opublikowanych lokalnych postów, aktywnych użytkowników i nowych rejestracji w tygodniowych przedziałach
+        app_icon: WEBP, PNG, GIF, albo JPEG. Nadpisuje domyślną ikonę aplikacji na urządzeniach mobilnych.
         backups_retention_period: Użytkownicy mogą generować archiwa wpisów do późniejszego pobrania. Jeżeli ta wartość jest dodatnia, te archiwa zostaną automatycznie usunięte z twojego serwera po danej liczbie dni.
         bootstrap_timeline_accounts: Te konta zostaną przypięte na górze rekomendacji obserwacji nowych użytkowników.
         closed_registrations_message: Wyświetlane po zamknięciu rejestracji
         content_cache_retention_period: Wszystkie wpisy z innych serwerów (w tym podbicia i odpowiedzi) zostaną usunięte po danej liczbie dni, bez względu na interakcje z nimi twoich użytkowników. Zawierają się w tym wpisy, które twoi użytkownicy dodali do zakładek lub ulubionych. Prywatne wzmianki od innych instancji zostaną utracone i będą nieprzywracalne. To ustawienie jest przeznaczone dla instancji zastosowania specjalnego i jest niezgodne z wieloma oczekiwaniami użytkowników.
         custom_css: Możesz zastosować niestandardowe style w internetowej wersji Mastodon.
+        favicon: WEBP, PNG, GIF, albo JPEG. Nadpisuje domyślną faviconę Mastodona.
         mascot: Nadpisuje ilustrację w zaawansowanym interfejsie internetowym.
         media_cache_retention_period: Media z wpisów od obcych użytkowników są cache'owane na twoim serwerze. Kiedy dana wartość jest dodatnia, media te będą usunięte po tylu dniach. Jeżeli usunięte media zostaną potem zażądane, oryginał zostanie ponownie pobrany (o ile jest dalej dostępny). Z powodu ograniczeń dot. częstotliwości z jaką karty podglądu linków dopytują się o dane od stron trzecich, zalecana wartość to min. 14 dni, bo karty podglądu linków nie będą wcześniej odświeżane na żądane.
         peers_api_enabled: Lista nazw domen, z którymi ten serwer spotkał się w fediverse. Nie są tu zawarte żadne dane o tym, czy użytkownik dokonuje federacji z danym serwerem, a jedynie, że jego serwer o tym wie. Jest to wykorzystywane przez serwisy, które zbierają statystyki dotyczące federacji w ogólnym sensie.

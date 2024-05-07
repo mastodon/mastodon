@@ -77,11 +77,13 @@ vi:
           warn: Ẩn nội dung đã lọc đằng sau một cảnh báo đề cập đến tiêu đề của bộ lọc
       form_admin_settings:
         activity_api_enabled: Số lượng tút được đăng trong máy chủ, người dùng đang hoạt động và đăng ký mới hàng tuần
+        app_icon: WEBP, PNG, GIF hoặc JPG. Dùng biểu tượng tùy chỉnh trên thiết bị di động.
         backups_retention_period: Người dùng có khả năng tạo bản sao lưu các tút của họ để tải xuống sau. Các bản sao lưu này sẽ tự động bị xóa khỏi bộ nhớ của bạn sau số ngày được chỉ định.
         bootstrap_timeline_accounts: Những người này sẽ được ghim vào đầu các gợi ý theo dõi của người mới.
         closed_registrations_message: Được hiển thị khi đóng đăng ký
         content_cache_retention_period: Tất cả tút từ các máy chủ khác (bao gồm cả đăng lại và trả lời) sẽ bị xóa sau số ngày được chỉ định mà không tính đến bất kỳ tương tác nào của người dùng cục bộ với các tút đó. Điều này bao gồm các tút mà người dùng cục bộ đã đánh dấu nó là dấu trang hoặc mục yêu thích. Những lượt nhắc riêng tư giữa những người dùng từ các máy chủ khác nhau cũng sẽ bị mất và không thể khôi phục. Việc sử dụng cài đặt này dành cho các trường hợp có mục đích đặc biệt và phá vỡ nhiều kỳ vọng của người dùng khi được triển khai cho mục đích sử dụng chung.
         custom_css: Bạn có thể tùy chỉnh phong cách trên bản web của Mastodon.
+        favicon: WEBP, PNG, GIF hoặc JPG. Dùng favicon Maston tùy chỉnh.
         mascot: Ghi đè hình minh họa trong giao diện web nâng cao.
         media_cache_retention_period: Các tệp phương tiện từ các tút do người dùng máy chủ khác thực hiện sẽ được lưu vào bộ đệm trên máy chủ của bạn. Khi được đặt thành giá trị dương, phương tiện sẽ bị xóa sau số ngày được chỉ định. Nếu dữ liệu phương tiện được yêu cầu sau khi bị xóa, dữ liệu đó sẽ được tải xuống lại nếu nội dung nguồn vẫn còn. Do những hạn chế về tần suất thẻ xem trước liên kết thăm dò ý kiến ​​các trang web của bên thứ ba, bạn nên đặt giá trị này thành ít nhất 14 ngày, nếu không thẻ xem trước liên kết sẽ không được cập nhật theo yêu cầu trước thời gian đó.
         peers_api_enabled: Danh sách các máy chủ khác mà máy chủ này đã liên hợp. Không có dữ liệu nào được đưa vào đây về việc bạn có liên kết với một máy chủ nhất định hay không, chỉ là máy chủ của bạn biết về nó. Điều này được sử dụng bởi các dịch vụ thu thập số liệu thống kê về liên kết theo nghĩa chung.
