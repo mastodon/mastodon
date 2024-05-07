@@ -97,7 +97,7 @@ RUN \
     curl \
     ffmpeg \
     file \
-    imagemagick \
+    # imagemagick \
     libjemalloc2 \
     patchelf \
     procps \
@@ -143,7 +143,40 @@ RUN \
     make \
     shared-mime-info \
     zlib1g-dev \
+  # libvips components
+    build-essential \
+    ninja-build \
+    meson \
+    pkg-config \
+    libexpat1-dev \
+    librsvg2-dev \
+    libjpeg62-turbo-dev \
+    libtiff-dev \
+    libspng-dev \
+    libexif-dev \
+    libcgif-dev \
+    liblcms2-dev \
+    libwebp-dev \
+    libheif-dev \
+    libgirepository1.0-dev \
+    liborc-dev \
   ;
+
+ARG VIPS_VERSION=8.15.2
+ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
+
+WORKDIR /usr/local/src
+
+RUN curl -sSL -o vips-${VIPS_VERSION}.tar.xz ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz
+
+RUN tar xf vips-${VIPS_VERSION}.tar.xz \
+  && cd vips-${VIPS_VERSION} \
+  && meson setup build --libdir=lib -Dintrospection=disabled \
+  && cd build \
+  && ninja \
+  && ninja install
+
+WORKDIR /opt/mastodon
 
 RUN \
 # Configure Corepack
@@ -235,6 +268,19 @@ RUN \
     libidn12 \
     libreadline8 \
     libyaml-0-2 \
+  # libvips components
+    librsvg2-2 \
+    libjpeg62-turbo \
+    libtiff6 \
+    libspng0 \
+    libexif12 \
+    libcgif0 \
+    liblcms2-2 \
+    libwebp7 \
+    libwebpmux3 \
+    libwebpdemux2 \
+    libheif1 \
+    liborc-0.4-0 \
   ;
 
 # Copy Mastodon sources into final layer
@@ -245,6 +291,14 @@ COPY --from=precompiler /opt/mastodon/public/packs /opt/mastodon/public/packs
 COPY --from=precompiler /opt/mastodon/public/assets /opt/mastodon/public/assets
 # Copy bundler components to layer
 COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
+# Copy libvips components to layer
+COPY --from=build /usr/local/bin/vips* /usr/local/bin
+COPY --from=build /usr/local/lib/libvips* /usr/local/lib
+COPY --from=build /usr/local/lib/vips* /usr/local/lib
+COPY --from=build /usr/local/lib/pkgconfig/vips* /usr/local/lib/pkgconfig
+
+ENV LD_LIBRARY_PATH /usr/local/lib
+ENV PKG_CONFIG_PATH /usr/local/lib/pkgconfig
 
 RUN \
 # Precompile bootsnap code for faster Rails startup
