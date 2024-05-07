@@ -47,12 +47,14 @@ Devise::Test::ControllerHelpers.module_eval do
 end
 
 RSpec.configure do |config|
-  # By default, skip "full stack" specs with higher startup cost (streaming
-  # server spin up) and slower execution (full JS browser). Run from CI only.
-  config.filter_run_excluding fullstack: true
+  # By default, skip specs that need full JS browser
+  config.filter_run_excluding :js
 
-  # By default, skip the elastic search integration specs
-  config.filter_run_excluding search: true
+  # By default, skip specs that need elastic search server
+  config.filter_run_excluding :search
+
+  # By default, skip specs that need the streaming server
+  config.filter_run_excluding :streaming
 
   config.fixture_paths = [
     Rails.root.join('spec', 'fixtures'),
@@ -70,11 +72,6 @@ RSpec.configure do |config|
   # Set `search` metadata true for all specs in spec/search/
   config.define_derived_metadata(file_path: Regexp.new('spec/search/*')) do |metadata|
     metadata[:search] = true
-  end
-
-  # Set `fullstack` metadata true for all specs in spec/system/fullstack/
-  config.define_derived_metadata(file_path: Regexp.new('spec/system/fullstack/*')) do |metadata|
-    metadata[:fullstack] = true
   end
 
   config.include Devise::Test::ControllerHelpers, type: :controller

@@ -217,7 +217,7 @@ jobs:
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
-      - run: bin/rspec spec/system --tag fullstack
+      - run: bin/rspec spec/system --tag streaming --tag js
 
       - name: Archive logs
         uses: actions/upload-artifact@v4
