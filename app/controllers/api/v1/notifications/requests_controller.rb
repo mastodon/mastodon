@@ -41,7 +41,7 @@ class Api::V1::Notifications::RequestsController < Api::BaseController
     )
 
     NotificationRequest.preload_cache_collection(requests) do |statuses|
-      cache_collection(statuses, Status)
+      preload_collection(statuses, Status)
     end
   end
 

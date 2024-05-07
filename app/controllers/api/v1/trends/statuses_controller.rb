@@ -20,7 +20,7 @@ class Api::V1::Trends::StatusesController < Api::BaseController
 
   def set_statuses
     @statuses = if enabled?
-                  cache_collection(statuses_from_trends.offset(offset_param).limit(limit_param(DEFAULT_STATUSES_LIMIT)), Status)
+                  preload_collection(statuses_from_trends.offset(offset_param).limit(limit_param(DEFAULT_STATUSES_LIMIT)), Status)
                 else
                   []
                 end

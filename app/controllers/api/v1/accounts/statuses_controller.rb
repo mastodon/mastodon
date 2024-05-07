@@ -19,10 +19,10 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def load_statuses
-    @account.unavailable? ? [] : cached_account_statuses
+    @account.unavailable? ? [] : preloaded_account_statuses
   end
 
-  def cached_account_statuses
+  def preloaded_account_statuses
     preload_collection_paginated_by_id(
       AccountStatusesFilter.new(@account, current_account, params).results,
       Status,
