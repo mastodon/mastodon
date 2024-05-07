@@ -140,7 +140,7 @@ RSpec.describe 'Apps' do
 
         body = body_as_json
 
-        expect(body[:redirect_uri]).to eq 'https://redirect1.example/'
+        expect(body[:redirect_uri]).to eq redirect_uris
         expect(body[:redirect_uris]).to eq redirect_uris.split
       end
     end
@@ -160,7 +160,7 @@ RSpec.describe 'Apps' do
 
         body = body_as_json
 
-        expect(body[:redirect_uri]).to eq 'https://redirect1.example/'
+        expect(body[:redirect_uri]).to eq redirect_uris.join "\n"
         expect(body[:redirect_uris]).to eq redirect_uris
       end
     end
