@@ -242,6 +242,48 @@ RSpec.describe Status do
     end
   end
 
+  describe '#reported?' do
+    context 'when the status is not reported' do
+      it 'returns false' do
+        expect(subject.reported?).to be false
+      end
+    end
+
+    context 'when the status is part of an open report' do
+      before do
+        Fabricate(:report, target_account: subject.account, status_ids: [subject.id])
+      end
+
+      it 'returns true' do
+        expect(subject.reported?).to be true
+      end
+    end
+
+    context 'when the status is part of a closed report with an account warning mentioning the account' do
+      before do
+        report = Fabricate(:report, target_account: subject.account, status_ids: [subject.id])
+        report.resolve!(Fabricate(:account))
+        Fabricate(:account_warning, target_account: subject.account, status_ids: [subject.id], report: report)
+      end
+
+      it 'returns true' do
+        expect(subject.reported?).to be true
+      end
+    end
+
+    context 'when the status is part of a closed report with an account warning not mentioning the account' do
+      before do
+        report = Fabricate(:report, target_account: subject.account, status_ids: [subject.id])
+        report.resolve!(Fabricate(:account))
+        Fabricate(:account_warning, target_account: subject.account, report: report)
+      end
+
+      it 'returns false' do
+        expect(subject.reported?).to be false
+      end
+    end
+  end
+
   describe '.mutes_map' do
     subject { described_class.mutes_map([status.conversation.id], account) }
 

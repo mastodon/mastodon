@@ -21,14 +21,19 @@ ia:
       confirmation_instructions:
         action: Verificar adresse de e-mail
         action_with_app: Confirmar e retornar a %{app}
+        subject: 'Mastodon: Instructiones de confirmation pro %{instance}'
         title: Verificar adresse de e-mail
       email_changed:
+        explanation: 'Le adresse de e-mail pro tu conto essera cambiate a:'
+        subject: 'Mastodon: E-mail cambiate'
         title: Nove adresse de e-mail
       password_change:
+        explanation: Le contrasigno de tu conto ha essite cambiate.
         subject: 'Mastodon: Contrasigno cambiate'
         title: Contrasigno cambiate
       reconfirmation_instructions:
         explanation: Confirma le nove adresse pro cambiar tu email.
+        subject: 'Mastodon: Confirmar e-mail pro %{instance}'
         title: Verificar adresse de e-mail
       reset_password_instructions:
         action: Cambiar contrasigno

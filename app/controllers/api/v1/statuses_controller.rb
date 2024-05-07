@@ -5,9 +5,11 @@ class Api::V1::StatusesController < Api::BaseController
 
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :update, :destroy]
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :update, :destroy]
-  before_action :require_user!, except:  [:show, :context]
-  before_action :set_status, only:       [:show, :context]
-  before_action :set_thread, only:       [:create]
+  before_action :require_user!, except:      [:index, :show, :context]
+  before_action :set_statuses, only:         [:index]
+  before_action :set_status, only:           [:show, :context]
+  before_action :set_thread, only:           [:create]
+  before_action :check_statuses_limit, only: [:index]
 
   override_rate_limit_headers :create, family: :statuses
   override_rate_limit_headers :update, family: :statuses
@@ -22,6 +24,11 @@ class Api::V1::StatusesController < Api::BaseController
   ANCESTORS_LIMIT         = 40
   DESCENDANTS_LIMIT       = 60
   DESCENDANTS_DEPTH_LIMIT = 20
+
+  def index
+    @statuses = cache_collection(@statuses, Status)
+    render json: @statuses, each_serializer: REST::StatusSerializer
+  end
 
   def show
     cache_if_unauthenticated!
@@ -113,6 +120,10 @@ class Api::V1::StatusesController < Api::BaseController
 
   private
 
+  def set_statuses
+    @statuses = Status.permitted_statuses_from_ids(status_ids, current_account)
+  end
+
   def set_status
     @status = Status.find(params[:id])
     authorize @status, :show?
@@ -125,6 +136,18 @@ class Api::V1::StatusesController < Api::BaseController
     authorize(@thread, :show?) if @thread.present?
   rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     render json: { error: I18n.t('statuses.errors.in_reply_not_found') }, status: 404
+  end
+
+  def check_statuses_limit
+    raise(Mastodon::ValidationError) if status_ids.size > DEFAULT_STATUSES_LIMIT
+  end
+
+  def status_ids
+    Array(statuses_params[:ids]).uniq.map(&:to_i)
+  end
+
+  def statuses_params
+    params.permit(ids: [])
   end
 
   def status_params
