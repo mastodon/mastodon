@@ -45,18 +45,4 @@ module CacheConcern
       Rails.cache.write(key, response.body, expires_in: expires_in, raw: true)
     end
   end
-
-  def preload_collection(raw, klass)
-    return raw unless klass.respond_to?(:preload_cacheable_associations)
-
-    records = raw.to_a
-
-    klass.preload_cacheable_associations(records)
-
-    records
-  end
-
-  def preload_collection_paginated_by_id(raw, klass, limit, options)
-    preload_collection raw.to_a_paginated_by_id(limit, options), klass
-  end
 end

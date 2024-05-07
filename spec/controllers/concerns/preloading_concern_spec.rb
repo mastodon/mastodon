@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe CacheConcern do
+RSpec.describe PreloadingConcern do
   controller(ApplicationController) do
-    include CacheConcern
+    include PreloadingConcern
 
     def empty_array
       render plain: preload_collection([], Status).size
