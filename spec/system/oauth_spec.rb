@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'Using OAuth from an external app' do
-  let(:client_app) { Doorkeeper::Application.create!(name: 'test', redirect_uri: 'http://localhost/health', scopes: 'read') }
+  let(:client_app) { Doorkeeper::Application.create!(name: 'test', redirect_uri: about_url(host: Rails.application.config.x.local_domain), scopes: 'read') }
 
   context 'when the user is already logged in' do
     let!(:user) { Fabricate(:user) }
