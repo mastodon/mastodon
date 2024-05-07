@@ -26,8 +26,23 @@ class SiteUpload < ApplicationRecord
   APP_ICON_SIZES = (APPLE_ICON_SIZES + ANDROID_ICON_SIZES).uniq.freeze
 
   STYLES = {
-    app_icon: APP_ICON_SIZES.each_with_object({}) { |size, hash| hash[size.to_s.to_sym] = "#{size}x#{size}#" }.freeze,
-    favicon: FAVICON_SIZES.each_with_object({}) { |size, hash| hash[size.to_s.to_sym] = "#{size}x#{size}#" }.freeze,
+    app_icon:
+      APP_ICON_SIZES.to_h do |size|
+        [:"#{size}", { format: 'png', geometry: "#{size}x#{size}#", file_geometry_parser: FastGeometryParser }]
+      end.freeze,
+
+    favicon: {
+      ico: {
+        format: 'ico',
+        geometry: '48x48#',
+        file_geometry_parser: FastGeometryParser,
+      }.freeze,
+    }.merge(
+      FAVICON_SIZES.to_h do |size|
+        [:"#{size}", { format: 'png', geometry: "#{size}x#{size}#", file_geometry_parser: FastGeometryParser }]
+      end
+    ).freeze,
+
     thumbnail: {
       '@1x': {
         format: 'png',
