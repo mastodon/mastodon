@@ -211,6 +211,11 @@ Style/PercentLiteralDelimiters:
 Style/RedundantBegin:
   Enabled: false
 
+# Reason: Prevailing style choice
+# https://docs.rubocop.org/rubocop/cops_style.html#styleredundantfetchblock
+Style/RedundantFetchBlock:
+  Enabled: false
+
 # Reason: Overridden to reduce implicit StandardError rescues
 # https://docs.rubocop.org/rubocop/cops_style.html#stylerescuestandarderror
 Style/RescueStandardError:
