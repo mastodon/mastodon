@@ -58,7 +58,7 @@ module CacheConcern
   end
 
   # TODO: Rename this method, as it does not perform any caching anymore.
-  def cache_collection_paginated_by_id(raw, klass, limit, options)
+  def preload_collection_paginated_by_id(raw, klass, limit, options)
     cache_collection raw.to_a_paginated_by_id(limit, options), klass
   end
 end

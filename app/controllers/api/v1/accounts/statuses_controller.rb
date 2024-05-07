@@ -23,7 +23,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def cached_account_statuses
-    cache_collection_paginated_by_id(
+    preload_collection_paginated_by_id(
       AccountStatusesFilter.new(@account, current_account, params).results,
       Status,
       limit_param(DEFAULT_STATUSES_LIMIT),

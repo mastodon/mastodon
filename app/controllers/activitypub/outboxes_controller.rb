@@ -60,7 +60,7 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
   def set_statuses
     return unless page_requested?
 
-    @statuses = cache_collection_paginated_by_id(
+    @statuses = preload_collection_paginated_by_id(
       AccountStatusesFilter.new(@account, signed_request_account).results,
       Status,
       LIMIT,
