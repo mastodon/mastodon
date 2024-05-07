@@ -740,9 +740,18 @@ ia:
         title: Require que nove usatores solve un CAPTCHA pro confirmar lor conto
       content_retention:
         danger_zone: Zona periculose
+        preamble: Controlar como contento generate per le usator es immagazinate in Mastodon.
+        title: Retention de contento
+      default_noindex:
+        desc_html: Affice tote le usatores qui non ha cambiate iste parametro per se mesme
+        title: Refusar de ordinario le indexation del usatores per le motores de recerca
       discovery:
+        follow_recommendations: Sequer le recommendationes
+        preamble: Presentar contento interessante es instrumental in introducer nove usatores qui pote non cognoscer alcuno de Mastodon.
         profile_directory: Directorio de profilos
         public_timelines: Chronologias public
+        publish_discovered_servers: Publicar servitores discoperite
+        publish_statistics: Publicar statistica
         title: Discoperi
         trends: Tendentias
       domain_blocks:
@@ -750,18 +759,27 @@ ia:
         disabled: A necuno
         users: A usators local in session
       registrations:
+        moderation_recommandation: Per favor verifica que tu ha un adequate e reactive equipa de moderation ante que tu aperi registrationes a quicunque!
+        preamble: Controla qui pote crear un conto sur tu servitor.
         title: Registrationes
       registrations_mode:
         modes:
+          approved: Approbation necessari pro le inscription
           none: Nemo pote inscriber se
           open: Quicunque pote inscriber se
+        warning_hint: Nos consilia usar “Approbation necessari pro le inscription” si tu non crede que tu equipa de moderation pote tractar spam e registrationes maligne in un modo opportun.
       security:
+        authorized_fetch: Require authentication ab servitores federate
         authorized_fetch_hint: Requirer authentication de servitores federate permitte un application plus stricte de blocadas a nivello de usator e de servitor. Nonobstante, isto diminue le prestationes del servitor, reduce le portata de tu responsas e pote introducer problemas de compatibilitate con certe servicios federate. In plus, isto non impedira le actores dedicate a recuperar tu messages public e tu contos.
+        authorized_fetch_overridden_hint: Tu actualmente non pote cambiar iste parametros perque il es superate per un variabile de ambiente.
+        federation_authentication: Application del authentication de federation
       title: Parametros de servitor
     site_uploads:
       delete: Deler file incargate
       destroyed_msg: Incarga de sito delite con successo!
     software_updates:
+      critical_update: Critic! Actualisa tosto
+      description: Il es recommendate de mantener actualisate tu installation de Mastodon pro beneficiar del ultime reparationes e functiones. In ultra, il es aliquando critic actualisar Mastodon in maniera opportun pro evitar problemas de securitate. Pro iste rationes, Mastodon controla pro actualisationes cata 30 minutas, e te notificara secundo tu preferentias de notificationes per email.
       documentation_link: Pro saper plus
       release_notes: Notas de version
       title: Actualisationes disponibile
@@ -769,11 +787,15 @@ ia:
       types:
         major: Version major
         minor: Version minor
+        patch: 'Version de pecias: remedios de bugs e cambiamentos facile a applicar'
       version: Version
     statuses:
       account: Autor
       application: Application
+      back_to_account: Retro al pagina de conto
+      back_to_report: Retro al pagina de reporto
       batch:
+        remove_from_report: Remover ab reporto
         report: Reporto
       deleted: Delite
       favourites: Favoritos
@@ -783,8 +805,10 @@ ia:
       media:
         title: Medios
       metadata: Metadatos
+      no_status_selected: Nulle messages era cambiate perque necun era seligite
       open: Aperir message
       original_status: Message original
+      reblogs: Promotiones
       status_changed: Messages cambiate
       title: Messages del conto
       trending: Tendentias
@@ -803,35 +827,127 @@ ia:
       appeal_pending: Appello pendente
       appeal_rejected: Appello rejectate
     system_checks:
+      database_schema_check:
+        message_html: Il ha migrationes de base de datos pendente. Per favor exeque los pro assecurar que le application se comporta como expectate
+      elasticsearch_health_red:
+        message_html: Le aggregation Elasticsearch es malsan (stato rubie), le functiones de recerca es indisponibile
+      elasticsearch_health_yellow:
+        message_html: Le aggregation Elasticsearch es malsan (stato jalne), tu poterea voler investigar le ration
+      elasticsearch_index_mismatch:
+        message_html: Le mappas de indice Elasticsearch es obsolete. Per favor exeque <code>tootctl search deploy --only=%{value}</code>
       elasticsearch_preset:
         action: Vide documentation
+        message_html: Tu aggregation Elasticsearch ha plus que un nodo, ma Mastodon non es configurate a usar los.
       elasticsearch_preset_single_node:
         action: Vide documentation
+        message_html: Tu aggregation Elasticsearch ha un sol nodo, <code>ES_PRESET</code> deberea esser predefinite a <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Le indexation de tu systema Elasticsearch es obsolete per un cambio de configuration. Per cfavor exeque <code>tootctl search deploy --reset-chewy</code> pro actualisar lo.
+      elasticsearch_running_check:
+        message_html: Impossibile connecter se a Elasticsearch. Verifica que illo flue, o disactiva le recerca a plen texto
+      elasticsearch_version_check:
+        message_html: 'Version de Elasticsearch incompatibile: %{value}'
+        version_comparison: Elasticsearch %{running_version} es currente dum %{required_version} es necesse
       rules_check:
         action: Gerer le regulas del servitor
+        message_html: Tu non ha definite ulle regulas de servitor.
+      sidekiq_process_check:
+        message_html: Nulle processo Sidekiq currente pro le %{value} cauda(s). Controla tu configuration de Sidekiq
       software_version_critical_check:
         action: Vider le actualisationes disponibile
         message_html: Un actualisation critic de Mastodon es disponibile, actualisa lo le plus rapide possibile.
       software_version_patch_check:
         action: Vider le actualisationes disponibile
+        message_html: Un actualisation de remedio de bug pro Mastodon es disponibile.
       upload_check_privacy_error:
         action: Verifica hic pro plus de information
+        message_html: "<strong>Tu servitor de web es mal-configurate. Le confidentialitate de tu usatores es a risco.</strong>"
       upload_check_privacy_error_object_storage:
         action: Verifica hic pro plus de information
+        message_html: "<strong>Tu immagazinage de objectos es mal-configurate. Le confidentialitate de tu usatores es a risco.</strong>"
+    tags:
+      review: Revide le stato
+      updated_msg: Parametros de hashtag actualisate con successo
+    title: Administration
     trends:
+      allow: Permitter
       approved: Approbate
+      disallow: Impedir
+      links:
+        allow: Permitter ligamine
+        allow_provider: Permitter editor
+        description_html: Istos es ligamines que es actualmente multo compartite per contos de que tu servitor vide messages. Illo pote adjutar tu usatores a discoperir lo que eveni in le mundo. Nulle ligamines es monstrate publicamente usque tu non approba le editor. Tu alsi pote permitter o rejectar ligamines singule.
+        disallow: Impedir ligamine
+        disallow_provider: Impedir editor
+        no_link_selected: Nulle ligamine era cambiate perque nulle era seligite
+        publishers:
+          no_publisher_selected: Nulle editores era cambiate perque nemo era seligite
+        shared_by_over_week:
+          one: Compartite per un persona le septimana passate
+          other: Compartite per %{count} personas le septimana passate
+        title: Ligamines de tendentia
+      not_allowed_to_trend: Non permittite haber tendentia
+      only_allowed: Solo permittite
+      pending_review: Attende revision
+      preview_card_providers:
+        allowed: Ligamines ab iste editor pote haber tendentia
+        description_html: Il ha dominios ab que ligamines es sovente compartite sur tu servitor. Ligamines non habera publicamente tendentia salvo que le dominio del ligamine es approbate. Tu approbation (o rejection) se extende al sub-dominios.
+        rejected: Ligamines ab iste editor non habera tendentia
+        title: Editores
       rejected: Rejectate
+      statuses:
+        allow: Permitter message
+        allow_account: Permitter autor
+        description_html: Istos es messages que tu servitor cognosce perque illos es al momento multo compartite e favorite. Isto pote adjutar tu nove e renovate usatores a trovar altere personas a sequer. Nulle messages es monstrate publicamente usque tu approba le autor, e le autor permitte que su conto es suggerite a alteres. Tu alsi pote permitter o rejectar messages singule.
+        disallow: Impedir message
+        disallow_account: Impedir autor
+        no_status_selected: Nulle messages era cambiate perque nulle era seligite
+        not_discoverable: Le autor non ha optate pro esser detectabile
+        shared_by:
+          one: Compartite e favorite un tempore
+          other: Compartite e favorite %{friendly_count} tempores
+        title: Messages de tendentia
       tags:
+        current_score: Punctuage actual %{score}
+        dashboard:
+          tag_accounts_measure: usos unic
+          tag_languages_dimension: Linguas principal
+          tag_servers_dimension: Servitores principal
+          tag_servers_measure: servitores differente
+          tag_uses_measure: usos total
+        listable: Pote esser suggerite
+        no_tag_selected: Nulle placas era cambiate perque nulle era seligite
+        not_listable: Non sera suggerite
+        not_trendable: Non apparera sub tendentias
         not_usable: Non pote esser usate
+        peaked_on_and_decaying: Habeva un picco %{date}, ora decade
+        title: Hashtags de tendentia
+        trendable: Pote apparer sub tendentias
+        trending_rank: 'De tendentia #%{rank}'
+        usable: Pote esser usate
+        usage_comparison: Usate %{today} vices hodie, al contrario del %{yesterday} de heri
+        used_by_over_week:
+          one: Usate per un persona le ultime septimana
+          other: Usate per %{count} personas le ultime septimana
       title: Tendentias
+      trending: Tendentias
     warning_presets:
       add_new: Adder nove
       delete: Deler
+      edit_preset: Rediger aviso predefinite
+      empty: Tu non ha ancora definite alcun avisos predefinite.
+      title: Gerer avisos predefinite
     webhooks:
+      add_new: Adder terminal
       delete: Deler
       disable: Disactivar
       disabled: Disactivate
+      edit: Rediger terminal
       enable: Activar
+      enabled: Active
+      enabled_events:
+        one: 1 evento activate
+        other: "%{count} eventos activate"
       events: Eventos
       status: Stato
   admin_mailer:
@@ -839,11 +955,19 @@ ia:
       subject: Actualisationes critic de Mastodon es disponibile pro %{instance}!
     new_software_updates:
       subject: Nove versiones de Mastodon es disponibile pro %{instance}!
+  aliases:
+    add_new: Crear alias
   appearance:
     advanced_web_interface: Interfacie web avantiate
+    confirmation_dialogs: Dialogos de confirmation
+    discovery: Discoperta
+    localization:
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Totes pote contribuer.
     sensitive_content: Contento sensibile
   application_mailer:
     notification_preferences: Cambiar preferentias de e-mail
+    salutation: "%{name},"
     settings: 'Cambiar preferentias de e-mail: %{link}'
     unsubscribe: Desubscriber
     view: 'Vider:'
@@ -853,25 +977,65 @@ ia:
     created: Application create con successo
     destroyed: Application delite con successo
     logout: Clauder le session
+    regenerate_token: Regenerar testimonio de accesso
+    token_regenerated: Testimonio de accesso regenerate con successo
+    warning: Sia multo attente con iste datos. Jammais compartir los con quicunque!
+    your_token: Tu testimonio de accesso
   auth:
+    apply_for_account: Peter un conto
+    captcha_confirmation:
+      hint_html: Justo un altere cosa! Nos debe confirmar que tu es un human (isto es assi proque nos pote mantener foras le spam!). Solve le CAPTCHA infra e clicca "Continuar".
+      title: Controlo de securitate
     confirmations:
+      awaiting_review_title: Tu registration es revidite
+      clicking_this_link: cliccante iste ligamine
+      login_link: acceder
+      proceed_to_login_html: Ora tu pote continuar a %{login_link}.
       welcome_title: Benvenite, %{name}!
     delete_account: Deler le conto
+    description:
+      prefix_sign_up: Inscribe te sur Mastodon hodie!
+    didnt_get_confirmation: Non recipeva tu un ligamine de confirmation?
+    dont_have_your_security_key: Non ha tu le clave de securitate?
+    forgot_password: Contrasigno oblidate?
+    invalid_reset_password_token: Pete un nove.
+    link_to_webauth: Usa tu apparato clave de securitate
+    log_in_with: Accede con
+    login: Accede
     logout: Clauder le session
+    migrate_account: Move a un conto differente
+    or_log_in_with: O accede con
     progress:
+      confirm: Confirma le email
       details: Tu detalios
+      review: Nostre revision
+      rules: Accepta le regulas
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Inscribe te
+    resend_confirmation: Reinviar ligamine de confirmation
+    reset_password: Remontar le contrasigno
+    rules:
+      accept: Acceptar
+      back: Retro
+      title: Alcun regulas base.
+    security: Securitate
     set_new_password: Definir un nove contrasigno
     status:
       account_status: Stato del conto
       view_strikes: Examinar le admonitiones passate contra tu conto
   challenge:
     invalid_password: Contrasigno non valide
+    prompt: Confirma le contrasigno pro continuar
   deletes:
+    confirm_password: Insere tu contrasigno actual pro verificar tu identitate
     proceed: Deler le conto
     success_msg: Tu conto esseva delite con successo
     warning:
       data_removal: Tu messages e altere datos essera removite permanentemente
       email_change_html: Tu pote <a href="%{path}">cambiar tu adresse de e-mail</a> sin deler tu conto
+      username_available: Tu nomine de usator essera disponibile novemente
   disputes:
     strikes:
       action_taken: Action prendite
@@ -908,6 +1072,7 @@ ia:
   errors:
     '422':
       content: Le verification de securitate ha fallite. Bloca tu le cookies?
+      title: Falleva le verification de securitate
   existing_username_validator:
     not_found_multiple: non poteva trovar %{usernames}
   exports:
@@ -937,6 +1102,9 @@ ia:
       title: Modificar filtro
     index:
       delete: Deler
+      statuses:
+        one: "%{count} message"
+        other: "%{count} messages"
       title: Filtros
     new:
       save: Salveguardar nove filtro
@@ -970,6 +1138,7 @@ ia:
       blocking: Importation de contos blocate
       bookmarks: Importation de marcapaginas
       domain_blocking: Importation de dominios blocate
+      following: Importation de contos sequite
       lists: Importation de listas
       muting: Importation de contos silentiate
     type: Typo de importation
@@ -993,6 +1162,7 @@ ia:
       '604800': 1 septimana
       '86400': 1 die
     expires_in_prompt: Nunquam
+    title: Invitar personas
   login_activities:
     authentication_methods:
       password: contrasigno
@@ -1137,6 +1307,7 @@ ia:
     warning:
       appeal: Submitter un appello
       subject:
+        disable: Tu conto %{acct} ha essite gelate
         none: Advertimento pro %{acct}
         sensitive: Tu messages sur %{acct} essera marcate como sensibile a partir de ora
         silence: Tu conto %{acct} ha essite limitate
