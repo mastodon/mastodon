@@ -2,7 +2,7 @@
 
 ENV['RAILS_ENV'] ||= 'test'
 
-# This needs to be defined before Rails is initialized (used by full stack system specs)
+# This needs to be defined before Rails is initialized
 STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
 ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
 
