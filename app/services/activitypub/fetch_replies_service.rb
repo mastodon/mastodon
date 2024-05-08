@@ -15,6 +15,9 @@ class ActivityPub::FetchRepliesService < BaseService
     @allow_synchronous_requests = allow_synchronous_requests
 
     @items = collection_items(collection_or_uri)
+    logger = Logger.new(STDOUT)
+    logger.warn 'collection items'
+    logger.warn @items
     return if @items.nil?
 
     FetchReplyWorker.push_bulk(filtered_replies) { |reply_uri| [reply_uri, { 'request_id' => request_id }] }
@@ -25,11 +28,19 @@ class ActivityPub::FetchRepliesService < BaseService
   private
 
   def collection_items(collection_or_uri)
+    logger = Logger.new(STDOUT)
     collection = fetch_collection(collection_or_uri)
+    logger.warn 'first collection'
+    logger.warn collection
     return unless collection.is_a?(Hash)
 
     collection = fetch_collection(collection['first']) if collection['first'].present?
+    logger.warn 'second collection'
+    logger.warn collection
     return unless collection.is_a?(Hash)
+
+    # Need to do another "next" here. see https://neuromatch.social/users/jonny/statuses/112401738180959195/replies for example
+    # then we are home free (stopping for tonight tho.)
 
     case collection['type']
     when 'Collection', 'CollectionPage'
