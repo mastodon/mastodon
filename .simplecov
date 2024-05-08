@@ -9,6 +9,8 @@ else
 end
 
 SimpleCov.start 'rails' do
+  command_name "examples#{ENV.fetch('TEST_ENV_NUMBER', nil)}"
+
   enable_coverage :branch
 
   add_filter 'lib/linter'
