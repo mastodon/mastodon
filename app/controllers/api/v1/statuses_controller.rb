@@ -2,6 +2,7 @@
 
 class Api::V1::StatusesController < Api::BaseController
   include Authorization
+  include JsonLdHelper
 
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :update, :destroy]
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :update, :destroy]
@@ -48,15 +49,24 @@ class Api::V1::StatusesController < Api::BaseController
       descendants_limit       = DESCENDANTS_LIMIT
       descendants_depth_limit = DESCENDANTS_DEPTH_LIMIT
     else
-      collection = @status['replies']
+      unless @status.local?
+         json_status = fetch_resource(@status.uri, true, @current_account)
 
-      unless collection.nil? && @status.local?
-        ActivityPub::FetchRepliesService.new.call(
-          value_or_id(@status),
-          value_or_id(collection),
-          allow_synchronous_requests: true,
-          all_replies: true
-        )
+         logger.warn "json status"
+         logger.warn json_status
+         # rescue this whole block on failure, don't want to fail the whole context request if we can't do this
+         collection = json_status['replies']
+         logger.warn "replies uri"
+         logger.warn collection
+
+         unless collection.nil?
+           ActivityPub::FetchRepliesService.new.call(
+             @status,
+             collection,
+             allow_synchronous_requests: true,
+             all_replies: true
+           )
+         end
       end
     end
 
