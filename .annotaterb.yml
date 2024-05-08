@@ -9,13 +9,13 @@
 :position_in_test: before
 :classified_sort: true
 :exclude_controllers: true
-:exclude_factories: false
-:exclude_fixtures: false
+:exclude_factories: true
+:exclude_fixtures: true
 :exclude_helpers: true
 :exclude_scaffolds: true
-:exclude_serializers: false
-:exclude_sti_subclasses: false
-:exclude_tests: false
+:exclude_serializers: true
+:exclude_sti_subclasses: true
+:exclude_tests: true
 :force: false
 :format_markdown: false
 :format_rdoc: false
@@ -25,8 +25,8 @@
 :ignore_unknown_models: false
 :include_version: false
 :show_complete_foreign_keys: false
-:show_foreign_keys: true
-:show_indexes: true
+:show_foreign_keys: false
+:show_indexes: false
 :simple_indexes: false
 :sort: false
 :timestamp: false
@@ -38,7 +38,7 @@
 :command:
 :debug: false
 :hide_default_column_types: ''
-:hide_limit_column_types: ''
+:hide_limit_column_types: 'integer,boolean'
 :ignore_columns:
 :ignore_routes:
 :models: true
