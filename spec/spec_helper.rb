@@ -1,7 +1,27 @@
 # frozen_string_literal: true
 
 unless ENV['DISABLE_SIMPLECOV'] == 'true'
-  require 'simplecov' # Configuration details loaded from .simplecov
+  require 'simplecov'
+
+  SimpleCov.start 'rails' do
+    if ENV['CI']
+      require 'simplecov-cobertura'
+      formatter SimpleCov::Formatter::CoberturaFormatter
+    else
+      formatter SimpleCov::Formatter::HTMLFormatter
+    end
+
+    enable_coverage :branch
+
+    add_filter 'lib/linter'
+
+    add_group 'Libraries', 'lib'
+    add_group 'Policies', 'app/policies'
+    add_group 'Presenters', 'app/presenters'
+    add_group 'Serializers', 'app/serializers'
+    add_group 'Services', 'app/services'
+    add_group 'Validators', 'app/validators'
+  end
 end
 
 RSpec.configure do |config|
