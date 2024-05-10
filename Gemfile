@@ -103,6 +103,24 @@ gem 'rdf-normalize', '~> 0.5'
 
 gem 'private_address_check', '~> 0.5'
 
+group :opentelemetry do
+  gem 'opentelemetry-exporter-otlp', '~> 0.26.3', require: false
+  gem 'opentelemetry-instrumentation-active_job', '~> 0.7.1', require: false
+  gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.20.1', require: false
+  gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.21.2', require: false
+  gem 'opentelemetry-instrumentation-excon', '~> 0.22.0', require: false
+  gem 'opentelemetry-instrumentation-faraday', '~> 0.24.1', require: false
+  gem 'opentelemetry-instrumentation-http', '~> 0.23.2', require: false
+  gem 'opentelemetry-instrumentation-http_client', '~> 0.22.3', require: false
+  gem 'opentelemetry-instrumentation-net_http', '~> 0.22.4', require: false
+  gem 'opentelemetry-instrumentation-pg', '~> 0.27.1', require: false
+  gem 'opentelemetry-instrumentation-rack', '~> 0.24.1', require: false
+  gem 'opentelemetry-instrumentation-rails', '~> 0.30.0', require: false
+  gem 'opentelemetry-instrumentation-redis', '~> 0.25.3', require: false
+  gem 'opentelemetry-instrumentation-sidekiq', '~> 0.25.2', require: false
+  gem 'opentelemetry-sdk', '~> 1.4', require: false
+end
+
 group :test do
   # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
   gem 'rspec-github', '~> 2.4', require: false
