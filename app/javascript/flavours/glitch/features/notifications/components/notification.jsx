@@ -31,7 +31,7 @@ const messages = defineMessages({
   adminSignUp: { id: 'notification.admin.sign_up', defaultMessage: '{name} signed up' },
   adminReport: { id: 'notification.admin.report', defaultMessage: '{name} reported {target}' },
   relationshipsSevered: { id: 'notification.relationships_severance_event', defaultMessage: 'Lost connections with {name}' },
-  moderationWarning: { id: 'notification.moderation_warning', defaultMessage: 'Your have received a moderation warning' },
+  moderationWarning: { id: 'notification.moderation_warning', defaultMessage: 'You have received a moderation warning' },
 });
 
 const notificationForScreenReader = (intl, message, timestamp) => {
