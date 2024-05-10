@@ -4,10 +4,8 @@ SimpleCov.start 'rails' do
   command_name "examples#{ENV.fetch('TEST_ENV_NUMBER', nil)}"
 
   if ENV['CI']
-    require 'simplecov-lcov'
-    SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
-    formatter SimpleCov::Formatter::LcovFormatter
-    # formatter SimpleCov::Formatter::SimpleFormatter
+    require 'simplecov-cobertura'
+    formatter SimpleCov::Formatter::CoberturaFormatter
   else
     formatter SimpleCov::Formatter::HTMLFormatter
   end

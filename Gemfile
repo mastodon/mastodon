@@ -158,7 +158,7 @@ group :test do
 
   # Coverage formatter for RSpec test if DISABLE_SIMPLECOV is false
   gem 'simplecov', '~> 0.22', require: false
-  gem 'simplecov-lcov', '~> 0.8', require: false
+  gem 'simplecov-cobertura'
 
   # Stub web requests for specs
   gem 'webmock', '~> 3.18'

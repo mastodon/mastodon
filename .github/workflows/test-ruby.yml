@@ -145,8 +145,6 @@ jobs:
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
         uses: codecov/codecov-action@v4
-        with:
-          files: coverage/lcov/mastodon.lcov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 

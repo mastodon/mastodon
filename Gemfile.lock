@@ -814,8 +814,10 @@ GEM
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
+    simplecov-cobertura (2.1.0)
+      rexml
+      simplecov (~> 0.19)
     simplecov-html (0.12.3)
-    simplecov-lcov (0.8.0)
     simplecov_json_formatter (0.1.4)
     stackprof (0.2.26)
     statsd-ruby (1.5.0)
@@ -1041,7 +1043,7 @@ DEPENDENCIES
   simple-navigation (~> 4.4)
   simple_form (~> 5.2)
   simplecov (~> 0.22)
-  simplecov-lcov (~> 0.8)
+  simplecov-cobertura
   stackprof
   stoplight (~> 4.1)
   strong_migrations (= 1.8.0)
