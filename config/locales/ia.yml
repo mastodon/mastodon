@@ -886,6 +886,7 @@ ia:
           one: Compartite per un persona le septimana passate
           other: Compartite per %{count} personas le septimana passate
         title: Ligamines de tendentia
+        usage_comparison: Compartite %{today} vices hodie, comparate al %{yesterday} de heri
       not_allowed_to_trend: Non permittite haber tendentia
       only_allowed: Solo permittite
       pending_review: Attende revision
@@ -915,6 +916,7 @@ ia:
           tag_servers_dimension: Servitores principal
           tag_servers_measure: servitores differente
           tag_uses_measure: usos total
+        description_html: Istos es hashtags que actualmente appare in tante messages que tu servitor vide. Illo pote adjutar tu usatores a discoperir re que le personas parla plus al momento. Nulle hashtags es monstrate publicamente usque tu los approba.
         listable: Pote esser suggerite
         no_tag_selected: Nulle placas era cambiate perque nulle era seligite
         not_listable: Non sera suggerite
@@ -940,21 +942,47 @@ ia:
     webhooks:
       add_new: Adder terminal
       delete: Deler
+      description_html: Un <strong>croc web</strong> habilita Mastodon a transmitter <strong>notificationes in tempore real</strong> re eventos seligite pro tu pro activar application, assi tu application pote <strong>automaticamente discatenar reactiones</strong>.
       disable: Disactivar
       disabled: Disactivate
       edit: Rediger terminal
+      empty: Tu ancora non ha configurate alcun punctos final de web croc.
       enable: Activar
       enabled: Active
       enabled_events:
         one: 1 evento activate
         other: "%{count} eventos activate"
       events: Eventos
+      new: Nove croc web
+      rotate_secret: Rotar secrete
+      secret: Firmante secrete
       status: Stato
+      title: Crocs web
+      webhook: Crocs web
   admin_mailer:
+    auto_close_registrations:
+      subject: Le registrationes pro %{instance} ha essite automaticamente mutate a besoniante de approbation
+    new_appeal:
+      actions:
+        delete_statuses: pro deler lor messages
+        disable: pro gelar lor conto
+        mark_statuses_as_sensitive: pro marcar lor messages como sensibile
+        none: pro advertir
+        sensitive: a marcar lor conto como sensibile
+        silence: pro limitar lor conto
+        suspend: pro suspender lor conto
+      body: "%{target} appella un decision de moderation per %{action_taken_by} ab le %{date}, que era %{type}. Ille scribeva:"
     new_critical_software_updates:
       subject: Actualisationes critic de Mastodon es disponibile pro %{instance}!
     new_software_updates:
       subject: Nove versiones de Mastodon es disponibile pro %{instance}!
+    new_trends:
+      new_trending_links:
+        title: Ligamines de tendentia
+      new_trending_statuses:
+        title: Messages de tendentia
+      new_trending_tags:
+        title: Hashtags de tendentia
   aliases:
     add_new: Crear alias
   appearance:
@@ -962,6 +990,7 @@ ia:
     confirmation_dialogs: Dialogos de confirmation
     discovery: Discoperta
     localization:
+      body: Mastodon es traducite per voluntarios.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Totes pote contribuer.
     sensitive_content: Contento sensibile
@@ -1026,8 +1055,16 @@ ia:
       account_status: Stato del conto
       view_strikes: Examinar le admonitiones passate contra tu conto
   challenge:
+    confirm: Continuar
     invalid_password: Contrasigno non valide
     prompt: Confirma le contrasigno pro continuar
+  datetime:
+    distance_in_words:
+      half_a_minute: Justo ora
+      less_than_x_seconds: Justo ora
+      over_x_years: "%{count}a"
+      x_days: "%{count}d"
+      x_minutes: "%{count} m"
   deletes:
     confirm_password: Insere tu contrasigno actual pro verificar tu identitate
     proceed: Deler le conto
@@ -1206,6 +1243,10 @@ ia:
     activity: Activitate del conto
     most_recent: Plus recente
     status: Stato del conto
+  rss:
+    content_warning: 'Advertimento de contento:'
+    descriptions:
+      account: Messages public de @%{acct}
   sessions:
     activity: Ultime activitate
     browser: Navigator
@@ -1253,6 +1294,7 @@ ia:
     delete: Deletion de conto
     development: Disveloppamento
     edit_profile: Modificar profilo
+    featured_tags: Hashtags eminente
     import: Importar
     migrate: Migration de conto
     notifications: Notificationes de e-mail
@@ -1261,7 +1303,9 @@ ia:
     relationships: Sequites e sequitores
     strikes: Admonitiones de moderation
   severed_relationships:
+    download: Discargar (%{count})
     event_type:
+      account_suspension: Suspension del conto (%{target_name})
       domain_block: Suspension del servitor (%{target_name})
       user_domain_block: Tu ha blocate %{target_name}
     preamble: Tu pote perder sequites e sequitores quando tu bloca un dominio o quando tu moderatores decide suspender un servitor remote. Quando isto occurre, tu potera discargar listas de relationes rumpite, a inspectar e eventualmente importar in un altere servitor.
