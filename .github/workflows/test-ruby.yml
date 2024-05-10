@@ -186,6 +186,8 @@ jobs:
       DISABLE_SIMPLECOV: true
       RAILS_ENV: test
       BUNDLE_WITH: test
+      LOCAL_DOMAIN: localhost:3000
+      LOCAL_HTTPS: false
 
     strategy:
       fail-fast: false
@@ -215,7 +217,7 @@ jobs:
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
-      - run: bundle exec rake spec:system
+      - run: bin/rspec spec/system --tag streaming --tag js
 
       - name: Archive logs
         uses: actions/upload-artifact@v4
