@@ -27,6 +27,15 @@ describe Settings::DeletesController do
           expect(response.headers['Cache-Control']).to include('private, no-store')
         end
       end
+
+      context 'when already deleted' do
+        let(:user) { Fabricate(:user, account_attributes: { deleted_at: Time.now.utc }) }
+
+        it 'returns http forbidden' do
+          get :show
+          expect(response).to have_http_status(403)
+        end
+      end
     end
 
     context 'when not signed in' do
@@ -53,12 +62,20 @@ describe Settings::DeletesController do
         it 'removes user record and redirects', :aggregate_failures, :sidekiq_inline do
           expect(response).to redirect_to '/auth/sign_in'
           expect(User.find_by(id: user.id)).to be_nil
-          expect(user.account.reload).to be_suspended
+          expect(user.account.reload).to be_deleted
           expect(CanonicalEmailBlock.block?(user.email)).to be false
         end
 
         context 'when suspended' do
           let(:user) { Fabricate(:user, account_attributes: { suspended_at: Time.now.utc }) }
+
+          it 'returns http forbidden' do
+            expect(response).to have_http_status(403)
+          end
+        end
+
+        context 'when already deleted' do
+          let(:user) { Fabricate(:user, account_attributes: { deleted_at: Time.now.utc }) }
 
           it 'returns http forbidden' do
             expect(response).to have_http_status(403)

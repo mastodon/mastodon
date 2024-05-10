@@ -34,6 +34,31 @@ describe StatusesController do
       end
     end
 
+    context 'when account is permanently deleted' do
+      before do
+        account.mark_deleted!
+        account.deletion_request.destroy
+
+        get :show, params: { account_username: account.username, id: status.id }
+      end
+
+      it 'returns http gone' do
+        expect(response).to have_http_status(410)
+      end
+    end
+
+    context 'when account is temporarily deleted' do
+      before do
+        account.mark_deleted!
+
+        get :show, params: { account_username: account.username, id: status.id }
+      end
+
+      it 'returns http forbidden' do
+        expect(response).to have_http_status(403)
+      end
+    end
+
     context 'when status is a reblog' do
       let(:original_account) { Fabricate(:account, domain: 'example.com') }
       let(:original_status) { Fabricate(:status, account: original_account, url: 'https://example.com/123') }

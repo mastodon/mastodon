@@ -36,12 +36,16 @@ module AccountOwnedConcern
   def check_account_suspension
     if @account.permanently_unavailable?
       permanent_unavailability_response
-    elsif @account.suspended? && !skip_temporary_suspension_response?
+    elsif (@account.suspended? && !skip_temporary_suspension_response?) || (@account.deleted? && !skip_pending_deletion_response?)
       temporary_suspension_response
     end
   end
 
   def skip_temporary_suspension_response?
+    false
+  end
+
+  def skip_pending_deletion_response?
     false
   end
 

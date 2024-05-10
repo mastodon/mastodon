@@ -45,6 +45,31 @@ describe '/api/v1/accounts' do
       end
     end
 
+    context 'when requesting a permanently deleted account' do
+      let(:other_account) { Fabricate(:account, deleted: true) }
+
+      before do
+        get "/api/v1/accounts/#{other_account.id}"
+      end
+
+      it 'returns http not found' do
+        expect(response).to have_http_status(404)
+      end
+    end
+
+    context 'when requesting an account pending deletion' do
+      let(:other_account) { Fabricate(:account) }
+
+      before do
+        other_account.mark_deleted!
+        get "/api/v1/accounts/#{other_account.id}"
+      end
+
+      it 'returns http not found' do
+        expect(response).to have_http_status(404)
+      end
+    end
+
     context 'when logged in' do
       subject do
         get "/api/v1/accounts/#{account.id}", headers: headers

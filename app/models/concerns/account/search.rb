@@ -57,7 +57,7 @@ module Account::Search
     LEFT JOIN users ON accounts.id = users.account_id
     LEFT JOIN account_stats AS s ON accounts.id = s.account_id
     WHERE to_tsquery('simple', :tsquery) @@ #{TEXT_SEARCH_RANKS}
-      AND accounts.suspended_at IS NULL
+      AND accounts.suspended_at IS NULL AND accounts.deleted_at IS NULL
       AND accounts.moved_to_account_id IS NULL
       AND (accounts.domain IS NOT NULL OR (users.approved = TRUE AND users.confirmed_at IS NOT NULL))
     ORDER BY rank DESC
@@ -80,7 +80,7 @@ module Account::Search
     LEFT JOIN account_stats AS s ON accounts.id = s.account_id
     WHERE accounts.id IN (SELECT * FROM first_degree)
       AND to_tsquery('simple', :tsquery) @@ #{TEXT_SEARCH_RANKS}
-      AND accounts.suspended_at IS NULL
+      AND accounts.suspended_at IS NULL AND accounts.deleted_at IS NULL
       AND accounts.moved_to_account_id IS NULL
     GROUP BY accounts.id, s.id
     ORDER BY rank DESC
@@ -98,7 +98,7 @@ module Account::Search
     LEFT JOIN users ON accounts.id = users.account_id
     LEFT JOIN account_stats AS s ON accounts.id = s.account_id
     WHERE to_tsquery('simple', :tsquery) @@ #{TEXT_SEARCH_RANKS}
-      AND accounts.suspended_at IS NULL
+      AND accounts.suspended_at IS NULL AND accounts.deleted_at IS NULL
       AND accounts.moved_to_account_id IS NULL
       AND (accounts.domain IS NOT NULL OR (users.approved = TRUE AND users.confirmed_at IS NOT NULL))
     GROUP BY accounts.id, s.id

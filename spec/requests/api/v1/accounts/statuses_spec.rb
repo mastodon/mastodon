@@ -137,6 +137,35 @@ describe 'API V1 Accounts Statuses' do
         end
       end
     end
+
+    context 'when requested account is permanently deleted' do
+      let(:account) { Fabricate(:account) }
+
+      before do
+        account.mark_deleted!
+        account.deletion_request.destroy
+      end
+
+      it 'returns http not found' do
+        get "/api/v1/accounts/#{account.id}/statuses", params: { limit: 2 }, headers: headers
+
+        expect(response).to have_http_status(404)
+      end
+    end
+
+    context 'when requested account is pending deletion' do
+      let(:account) { Fabricate(:account) }
+
+      before do
+        account.mark_deleted!
+      end
+
+      it 'returns http not found' do
+        get "/api/v1/accounts/#{account.id}/statuses", params: { limit: 2 }, headers: headers
+
+        expect(response).to have_http_status(404)
+      end
+    end
   end
 
   private

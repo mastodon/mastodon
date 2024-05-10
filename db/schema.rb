@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_22_161611) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_27_145507) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -200,6 +200,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_161611) do
     t.datetime "reviewed_at", precision: nil
     t.datetime "requested_review_at", precision: nil
     t.boolean "indexable", default: false, null: false
+    t.datetime "deleted_at", precision: nil
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), COALESCE(lower((domain)::text), ''::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["domain", "id"], name: "index_accounts_on_domain_and_id"
@@ -1449,7 +1450,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_161611) do
             WHERE ((statuses.account_id = accounts.id) AND (statuses.deleted_at IS NULL) AND (statuses.reblog_of_id IS NULL))
             ORDER BY statuses.id DESC
            LIMIT 20) t0)
-    WHERE ((accounts.suspended_at IS NULL) AND (accounts.silenced_at IS NULL) AND (accounts.moved_to_account_id IS NULL) AND (accounts.discoverable = true) AND (accounts.locked = false))
+    WHERE ((accounts.suspended_at IS NULL) AND (accounts.deleted_at IS NULL) AND (accounts.silenced_at IS NULL) AND (accounts.moved_to_account_id IS NULL) AND (accounts.discoverable = true) AND (accounts.locked = false))
     GROUP BY accounts.id;
   SQL
   add_index "account_summaries", ["account_id", "language", "sensitive"], name: "idx_on_account_id_language_sensitive_250461e1eb"

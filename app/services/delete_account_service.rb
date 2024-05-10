@@ -225,9 +225,14 @@ class DeleteAccountService < BaseService
 
     return unless keep_account_record?
 
+    if @options[:suspended_at]
+      @account.suspended_at      = @options[:suspended_at]
+      @account.suspension_origin = :local
+    else
+      @account.deleted_at = Time.now.utc
+    end
+
     @account.silenced_at         = nil
-    @account.suspended_at        = @options[:suspended_at] || Time.now.utc
-    @account.suspension_origin   = :local
     @account.locked              = false
     @account.memorial            = false
     @account.discoverable        = false

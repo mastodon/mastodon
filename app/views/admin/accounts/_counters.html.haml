@@ -22,12 +22,12 @@
   %div
     = link_to admin_action_logs_path(target_account_id: account.id) do
       .dashboard__counters__text
-        - if account.local? && account.user.nil?
+        - if account.suspended?
+          = t('admin.accounts.suspended')
+        - elsif account.deleted? || (account.local? && account.user.nil?)
           = t('admin.accounts.deleted')
         - elsif account.memorial?
           = t('admin.accounts.memorialized')
-        - elsif account.suspended?
-          = t('admin.accounts.suspended')
         - elsif account.silenced?
           = t('admin.accounts.silenced')
         - elsif account.local? && account.user&.disabled?
