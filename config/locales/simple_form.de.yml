@@ -77,13 +77,13 @@ de:
           warn: Den gefilterten Beitrag hinter einer Warnung, die den Filtertitel beinhaltet, ausblenden
       form_admin_settings:
         activity_api_enabled: Anzahl der wöchentlichen Beiträge, aktiven Profile und Registrierungen auf diesem Server
-        app_icon: WEBP, PNG, GIF oder JPG Überschreibt das Standard-App-Symbol auf mobilen Geräten mit einem benutzerdefinierten Symbol.
+        app_icon: WEBP, PNG, GIF oder JPG. Überschreibt das Standard-App-Symbol auf mobilen Geräten mit einem eigenen Symbol.
         backups_retention_period: Nutzer*innen haben die Möglichkeit, Archive ihrer Beiträge zu erstellen, die sie später herunterladen können. Wenn ein positiver Wert gesetzt ist, werden diese Archive nach der festgelegten Anzahl von Tagen automatisch aus deinem Speicher gelöscht.
         bootstrap_timeline_accounts: Diese Konten werden bei den Follower-Empfehlungen für neu registrierte Nutzer*innen oben angeheftet.
         closed_registrations_message: Wird angezeigt, wenn Registrierungen deaktiviert sind
         content_cache_retention_period: Sämtliche Beiträge von anderen Servern (einschließlich geteilte Beiträge und Antworten) werden, unabhängig von der Interaktion der lokalen Nutzer*innen mit diesen Beiträgen, nach der festgelegten Anzahl von Tagen gelöscht. Das betrifft auch Beiträge, die von lokalen Nutzer*innen favorisiert oder als Lesezeichen gespeichert wurden. Private Erwähnungen zwischen Nutzer*innen von verschiedenen Servern werden ebenfalls verloren gehen und können nicht wiederhergestellt werden. Das Verwenden dieser Option richtet sich ausschließlich an Server für spezielle Zwecke und wird die allgemeine Nutzungserfahrung beeinträchtigen, wenn sie für den allgemeinen Gebrauch aktiviert ist.
         custom_css: Du kannst benutzerdefinierte Stile auf die Web-Version von Mastodon anwenden.
-        favicon: WEBP, PNG, GIF oder JPG überschreibt das Standard-Mastodon favicon mit einem benutzerdefinierten Icon.
+        favicon: WEBP, PNG, GIF oder JPG. Überschreibt das Standard-Mastodon-Favicon mit einem eigenen Symbol.
         mascot: Überschreibt die Abbildung in der erweiterten Weboberfläche.
         media_cache_retention_period: Mediendateien aus Beiträgen von externen Nutzer*innen werden auf deinem Server zwischengespeichert. Wenn ein positiver Wert gesetzt ist, werden die Medien nach der festgelegten Anzahl von Tagen gelöscht. Sollten die Medien nach dem Löschvorgang wieder angefragt werden, werden sie erneut heruntergeladen, sofern der ursprüngliche Inhalt noch vorhanden ist. Es wird empfohlen, diesen Wert auf mindestens 14 Tage festzulegen, da die Häufigkeit der Abfrage von Linkvorschaukarten für Websites von Dritten begrenzt ist und die Linkvorschaukarten sonst nicht vor Ablauf dieser Zeit aktualisiert werden.
         peers_api_enabled: Eine Liste von Domains, die diesem Server im Fediverse begegnet sind. Hierbei werden keine Angaben darüber gemacht, ob du mit einem bestimmten Server föderierst, sondern nur, dass dein Server davon weiß. Dies wird von Diensten verwendet, die allgemein Statistiken übers Ferdiverse sammeln.

@@ -77,10 +77,15 @@ pt-BR:
           warn: Ocultar o conteúdo filtrado por trás de um aviso mencionando o título do filtro
       form_admin_settings:
         activity_api_enabled: Contagem de publicações locais, usuários ativos e novos usuários semanais
+        app_icon: WEBP, PNG, GIF ou JPG. Sobrescrever o ícone padrão do aplicativo em dispositivos móveis com um ícone personalizado.
+        backups_retention_period: Os usuários têm a capacidade de gerar arquivos de suas postagens para baixar mais tarde. Quando definido como um valor positivo, esses arquivos serão automaticamente excluídos do seu armazenamento após o número especificado de dias.
         bootstrap_timeline_accounts: Estas contas serão fixadas no topo das recomendações de novos usuários para seguir.
         closed_registrations_message: Exibido quando as inscrições estiverem fechadas
+        content_cache_retention_period: Todas as postagens de outros servidores (incluindo boosts e respostas) serão excluídas após o número especificado de dias, sem levar a qualquer interação do usuário local com esses posts. Isto inclui postagens onde um usuário local o marcou como favorito ou favoritos. Menções privadas entre usuários de diferentes instâncias também serão perdidas e impossíveis de restaurar. O uso desta configuração destina-se a instâncias especiais de propósitos e quebra muitas expectativas dos usuários quando implementadas para uso de propósito geral.
         custom_css: Você pode aplicar estilos personalizados na versão da web do Mastodon.
+        favicon: WEBP, PNG, GIF ou JPG. Sobrescreve o favicon padrão do Mastodon com um ícone personalizado.
         mascot: Substitui a ilustração na interface web avançada.
+        media_cache_retention_period: Arquivos de mídia de mensagens de usuários remotos são armazenados em cache no seu servidor. Quando definido como valor positivo, a mídia será excluída após o número especificado de dias. Se os dados da mídia forem solicitados depois de excluídos, eles serão baixados novamente, se o conteúdo fonte ainda estiver disponível. Devido a restrições de quantas vezes os cartões de visualização de links sondam sites de terceiros, é recomendado definir este valor em pelo menos 14 dias, ou pré-visualização de links não serão atualizados a pedido antes desse tempo.
         peers_api_enabled: Uma lista de nomes de domínio que este servidor encontrou no "fediverse". Nenhum dado é incluído aqui sobre se você concorda com os padroes operacionais de um determinado servidor, apenas que o seu servidor sabe disso. Esta ferramenta é utilizado por serviços que recolhem estatísticas sob as normas da federação (grupo de empresas que concordam sob paramentros operacionais específicos), em termos gerais.
         profile_directory: O diretório de perfis lista todos os usuários que optaram por permitir que suas contas sejam descobertas.
         require_invite_text: 'Quando o cadastro de novas contas exigir aprovação manual, tornar obrigatório, ao invés de opcional, o texto de solicitação de convite: "Por que você deseja ingressar nessa comunidade?"'

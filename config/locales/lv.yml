@@ -761,6 +761,7 @@ lv:
         desc_html: Tas balstās uz ārējiem skriptiem no hCaptcha, kas var radīt bažas par drošību un privātumu. Turklāt <strong>tas var padarīt reģistrācijas procesu ievērojami mazāk pieejamu dažiem cilvēkiem (īpaši invalīdiem)</strong>. Šo iemeslu dēļ, lūdzu, apsver alternatīvus pasākumus, piemēram, reģistrāciju, kas balstīta uz apstiprinājumu vai uzaicinājumu.
         title: Pieprasīt jaunajiem lietotājiem atrisināt CAPTCHA, lai apstiprinātu savu kontu
       content_retention:
+        danger_zone: Bīstama sadaļa
         preamble: Kontrolē, kā Mastodon tiek glabāts lietotāju ģenerēts saturs.
         title: Satura saglabāšana
       default_noindex:
@@ -1631,6 +1632,7 @@ lv:
       unknown_browser: Nezināms Pārlūks
       weibo: Weibo
     current_session: Pašreizējā sesija
+    date: Datums
     description: "%{browser} uz %{platform}"
     explanation: Šie ir tīmekļa pārlūki, kuros šobrīd esi pieteicies savā Mastodon kontā.
     ip: IP
@@ -1667,6 +1669,7 @@ lv:
     import: Imports
     import_and_export: Imports un eksports
     migrate: Konta migrācija
+    notifications: E-pasta paziņojumi
     preferences: Iestatījumi
     profile: Profils
     relationships: Sekojamie un sekotāji
@@ -1674,6 +1677,9 @@ lv:
     strikes: Moderācijas aizrādījumi
     two_factor_authentication: Divpakāpju autentifikācija
     webauthn_authentication: Drošības atslēgas
+  severed_relationships:
+    download: Lejupielādēt (%{count})
+    type: Notikums
   statuses:
     attached:
       audio:
@@ -1800,6 +1806,7 @@ lv:
     webauthn: Drošības atslēgas
   user_mailer:
     appeal_approved:
+      action: Konta iestatījumi
       explanation: Apelācija par brīdinājumu jūsu kontam %{strike_date}, ko iesniedzāt %{appeal_date}, ir apstiprināta. Jūsu konts atkal ir labā stāvoklī.
       subject: Jūsu %{date} apelācija ir apstiprināta
       title: Apelācija apstiprināta
@@ -1849,15 +1856,28 @@ lv:
         silence: Konts ierobežots
         suspend: Konts apturēts
     welcome:
+      apps_android_action: Iegūt to Google Play
+      apps_title: Mastodon lietotnes
       edit_profile_action: Pielāgot
       edit_profile_title: Pielāgo savu profilu
       explanation: Šeit ir daži padomi, kā sākt darbu
+      feature_action: Uzzināt vairāk
       feature_creativity: Mastodon nodrošina skaņas, video un attēlu ierakstus, pieejamības aprakstus, aptaujas, satura brīdinājumus, animētus profila attēlus, pielāgotas emocijzīmes, sīktēlu apgriešanas vadīklas un vēl, lai palīdzētu Tev sevi izpaust tiešsaistē. Vai Tu izplati savu mākslu, mūziku vai aplādes, Mastodon ir šeit ar Tevi.
+      follow_action: Sekot
       follow_title: Pielāgo savu mājas barotni
+      follows_title: Kam sekot
+      follows_view_more: Rādīt vairāk cilvēku, kuriem sekot
       hashtags_recent_count:
         one: "%{people} cilvēks pēdējās 2 dienās"
         other: "%{people} cilvēki pēdējās 2 dienās"
         zero: "%{people} cilvēku pēdējās divās dienās"
+      post_action: Rakstīt
+      post_step: Pasveicini pasauli ar tekstu, fotoattēliem, video vai aptaujām!
+      post_title: Izveido savu pirmo ierakstu
+      share_action: Kopīgot
+      share_step: Dari saviem draugiem zināmu, kā Tevi atrast Mastodon!
+      share_title: Kopīgo savu Mastodon profilu
+      sign_in_action: Pieteikties
       subject: Laipni lūgts Mastodon
       title: Laipni lūgts uz borta, %{name}!
   users:
@@ -1865,6 +1885,7 @@ lv:
     go_to_sso_account_settings: Dodies uz sava identitātes nodrošinātāja konta iestatījumiem
     invalid_otp_token: Nederīgs divfaktora kods
     otp_lost_help_html: Ja esi zaudējis piekļuvi abiem, tu vari sazināties ar %{email}
+    rate_limited: Pārāk daudz autentifikācijas mēģinājumu, vēlāk jāmēģina vēlreiz.
     seamless_external_login: Tu esi pieteicies, izmantojot ārēju pakalpojumu, tāpēc paroles un e-pasta iestatījumi nav pieejami.
     signed_in_as: 'Pieteicies kā:'
   verification:
