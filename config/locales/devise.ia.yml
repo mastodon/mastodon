@@ -21,28 +21,47 @@ ia:
       confirmation_instructions:
         action: Verificar adresse de e-mail
         action_with_app: Confirmar e retornar a %{app}
+        explanation: Tu ha create un conto sur %{host} con iste adresse de e-mail. Tu es a un sol clic de activar lo. Si isto non esseva tu, per favor ignora iste e-mail.
+        explanation_when_pending: Tu ha sollicitate un invitation a %{host} con iste adresse de e-mail. Post que tu confirma tu adresse de e-mail, nos va revider tu demanda. Tu pote aperir session pro cambiar tu detalios o eliminar tu conto, ma tu non pote acceder al majoritate del functiones usque tu conto es approbate. Si tu demanda es rejectate, tu datos essera removite e nulle action ulterior essera requirite de te. Si isto non esseva tu, per favor ignora iste message de e-mail.
+        extra_html: Per favor consulta tamben <a href="%{terms_path}">le regulas del servitor</a> e <a href="%{policy_path}">nostre conditiones de servicio</a>.
         subject: 'Mastodon: Instructiones de confirmation pro %{instance}'
         title: Verificar adresse de e-mail
       email_changed:
         explanation: 'Le adresse de e-mail pro tu conto essera cambiate a:'
+        extra: Si tu non ha cambiate de adresse de e-mail, es probabile que alcuno ha ganiate le accesso a tu conto. Per favor cambia immediatemente tu contrasigno o contacta le administrator del servitor si tu non pote acceder a tu conto.
         subject: 'Mastodon: E-mail cambiate'
         title: Nove adresse de e-mail
       password_change:
         explanation: Le contrasigno de tu conto ha essite cambiate.
+        extra: Si tu non ha cambiate tu contrasigno, es probabile que alcuno ha ganiate le accesso a tu conto. Per favor cambia immediatemente tu contrasigno o contacta le administrator del servitor si tu non pote acceder a tu conto.
         subject: 'Mastodon: Contrasigno cambiate'
         title: Contrasigno cambiate
       reconfirmation_instructions:
         explanation: Confirma le nove adresse pro cambiar tu email.
+        extra: Si non es tu qui ha initiate iste cambiamento, per favor ignora iste e-mail. Le adresse de e-mail pro le conto de Mastodon non cambiara usque tu accede al ligamine hic supra.
         subject: 'Mastodon: Confirmar e-mail pro %{instance}'
         title: Verificar adresse de e-mail
       reset_password_instructions:
         action: Cambiar contrasigno
+        explanation: Tu ha requestate un nove contrasigno pro tu conto.
+        extra: Si tu non ha requestate isto, per favor ignora iste e-mail. Tu contrasigno non cambiara usque tu accede al ligamine hic supra e crea un nove.
         subject: 'Mastodon: Instructiones pro reinitialisar le contrasigno'
         title: Reinitialisar contrasigno
       two_factor_disabled:
+        explanation: Ora es possibile aperir session con solmente le adresse de e-mail e contrasigno.
+        subject: 'Mastodon: Authentication bifactorial disactivate'
+        subtitle: Le authentication bifactorial ha essite disactivate pro tu conto.
         title: 2FA disactivate
       two_factor_enabled:
+        explanation: Pro le apertura de session essera necessari un token generate per le application TOTP accopulate.
+        subject: 'Mastodon: Authentication bifactorial activate'
+        subtitle: Le authentication bifactorial ha essite activate pro tu conto.
         title: 2FA activate
+      two_factor_recovery_codes_changed:
+        explanation: Le ancian codices de recuperation ha essite invalidate e nove codices ha essite generate.
+        subject: 'Mastodon: Codices de recuperation regenerate'
+        subtitle: Le ancian codices de recuperation ha essite invalidate e nove codices ha essite generate.
+        title: Codices de recuperation cambiate
       unlock_instructions:
         subject: 'Mastodon: Instructiones pro disblocar'
       webauthn_credential:
@@ -53,9 +72,15 @@ ia:
         deleted:
           explanation: Le sequente clave de securitate esseva delite de tu conto
           subject: 'Mastodon: Clave de securitate delite'
+          title: Un de tu claves de securitate ha essite delite
       webauthn_disabled:
+        explanation: Le authentication con claves de securitate ha essite disactivate pro tu conto.
+        extra: Ora es possibile aperir session usante solmente le token generate per le application TOTP accopulate.
+        subject: 'Mastodon: Le authentication con claves de securitate es disactivate'
         title: Claves de securitate disactivate
       webauthn_enabled:
+        explanation: Le authentication con claves de securitate ha essite activate pro tu conto.
+        extra: Tu clave de securitate pote ora esser usate pro aperir session.
         title: Claves de securitate activate
     registrations:
       destroyed: A revider! Tu conto esseva cancellate con successo. Nos spera vider te novemente tosto.

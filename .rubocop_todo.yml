@@ -54,10 +54,6 @@ Style/ClassEqualityComparison:
     - 'app/helpers/jsonld_helper.rb'
     - 'app/serializers/activitypub/outbox_serializer.rb'
 
-Style/ClassVars:
-  Exclude:
-    - 'config/initializers/devise.rb'
-
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowedVars.
 Style/FetchEnvVar:
@@ -74,7 +70,7 @@ Style/FetchEnvVar:
     - 'config/initializers/vapid.rb'
     - 'lib/mastodon/redis_config.rb'
     - 'lib/tasks/repo.rake'
-    - 'spec/features/profile_spec.rb'
+    - 'spec/system/profile_spec.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, MaxUnannotatedPlaceholdersAllowed, AllowedMethods, AllowedPatterns.

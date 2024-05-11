@@ -86,7 +86,7 @@ Mastodon acts as an OAuth2 provider, so 3rd party apps can use the REST and Stre
 - **PostgreSQL** 12+
 - **Redis** 4+
 - **Ruby** 3.1+
-- **Node.js** 16+
+- **Node.js** 18+
 
 The repository includes deployment configurations for **Docker and docker-compose** as well as specific platforms like **Heroku**, **Scalingo**, and **Nanobox**. For Helm charts, reference the [mastodon/chart repository](https://github.com/mastodon/chart). The [**standalone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the documentation.
 
@@ -107,10 +107,12 @@ A **Vagrant** configuration is included for development purposes. To use it, com
 To set up **MacOS** for native development, complete the following steps:
 
 - Use a Ruby version manager to install the specified version from `.ruby-version`
+- Run `bundle` to install required gems
 - Run `brew install postgresql@14 redis imagemagick libidn` to install required dependencies
 - Navigate to Mastodon's root directory and run `brew install nvm` then `nvm use` to use the version from `.nvmrc`
+- Run `yarn` to install required packages
 - Run `corepack enable && corepack prepare`
-- Run `bundle exec rails db:setup` (optionally prepend `RAILS_ENV=development` to target the dev environment)
+- Run `RAILS_ENV=development bundle exec rails db:setup`
 - Finally, run `bin/dev` which will launch the local services via `overmind` (if installed) or `foreman`
 
 ### Docker
