@@ -171,11 +171,11 @@ de:
     action_logs:
       action_types:
         approve_appeal: Einspruch zulassen
-        approve_user: Benutzer*in genehmigen
+        approve_user: Benutzer genehmigen
         assigned_to_self_report: Meldung zuweisen
         change_email_user: E-Mail-Adresse des Kontos ändern
         change_role_user: Rolle des Profils ändern
-        confirm_user: Benutzer*in bestätigen
+        confirm_user: Benutzer bestätigen
         create_account_warning: Warnung erstellen
         create_announcement: Ankündigung erstellen
         create_canonical_email_block: E-Mail-Sperre erstellen
@@ -186,7 +186,7 @@ de:
         create_ip_block: IP-Regel erstellen
         create_unavailable_domain: Nicht verfügbare Domain erstellen
         create_user_role: Rolle erstellen
-        demote_user: Benutzer*in herabstufen
+        demote_user: Benutzer herabstufen
         destroy_announcement: Ankündigung löschen
         destroy_canonical_email_block: E-Mail-Sperre entfernen
         destroy_custom_emoji: Eigenes Emojis löschen
@@ -201,14 +201,14 @@ de:
         disable_2fa_user: 2FA deaktivieren
         disable_custom_emoji: Eigenes Emoji deaktivieren
         disable_sign_in_token_auth_user: E-Mail-Token-Authentisierung für dieses Konto deaktivieren
-        disable_user: Benutzer*in deaktivieren
+        disable_user: Benutzer deaktivieren
         enable_custom_emoji: Eigenes Emoji aktivieren
         enable_sign_in_token_auth_user: E-Mail-Token-Authentisierung für dieses Konto aktivieren
-        enable_user: Benutzer*in aktivieren
+        enable_user: Benutzer aktivieren
         memorialize_account: Gedenkkonto
-        promote_user: Benutzer*in hochstufen
+        promote_user: Benutzer hochstufen
         reject_appeal: Einspruch ablehnen
-        reject_user: Benutzer*in ablehnen
+        reject_user: Benutzer ablehnen
         remove_avatar_user: Profilbild entfernen
         reopen_report: Meldung wieder eröffnen
         resend_user: Bestätigungs-E-Mail erneut senden
@@ -290,7 +290,7 @@ de:
       deleted_account: gelöschtes Konto
       empty: Protokolle nicht gefunden.
       filter_by_action: Nach Aktion filtern
-      filter_by_user: Nach Benutzer*in filtern
+      filter_by_user: Nach Benutzer filtern
       title: Protokoll
     announcements:
       destroyed_msg: Ankündigung erfolgreich gelöscht!
@@ -360,8 +360,8 @@ de:
         one: "<strong>%{count}</strong> ungeprüfter Hashtag"
         other: "<strong>%{count}</strong> ungeprüfte Hashtags"
       pending_users_html:
-        one: "<strong>%{count}</strong> unerledigte*r Benutzer*in"
-        other: "<strong>%{count}</strong> unerledigte Benutzer*innen"
+        one: "<strong>%{count}</strong> unerledigter Benutzer
+        other: "<strong>%{count}</strong> unerledigte Benutzern
       resolved_reports: geklärte Meldungen
       software: Programme
       sources: Registrierungsort
@@ -414,7 +414,7 @@ de:
       obfuscate: Domain-Name verschleiern
       obfuscate_hint: Den Domain-Namen öffentlich nur teilweise bekannt geben, sofern die Liste der Domain-Beschränkungen aktiviert ist
       private_comment: Interne bzw. nicht-öffentliche Notiz
-      private_comment_hint: Kommentar zu dieser Domain-Beschränkung für die interne Nutzung durch die Moderator*innen.
+      private_comment_hint: Kommentar zu dieser Domain-Beschränkung für die interne Nutzung durch die Moderatoren.
       public_comment: Öffentliche Notiz
       public_comment_hint: Öffentlicher Hinweis zu dieser Domain-Beschränkung, sofern das Veröffentlichen von Sperrlisten grundsätzlich aktiviert ist.
       reject_media: Mediendateien ablehnen
@@ -460,7 +460,7 @@ de:
         title: Domains importieren
       no_file: Keine Datei ausgewählt
     follow_recommendations:
-      description_html: "<strong>Follower-Empfehlungen helfen neuen Nutzer*innen, interessante Inhalte schnell zu finden</strong>. Wenn ein*e Nutzer*in noch nicht genug mit anderen interagiert hat, um personalisierte Follower-Empfehlungen zu erhalten, werden stattdessen diese Profile vorgeschlagen. Sie werden täglich, basierend auf einer Mischung aus am meisten interagierenden Konten und jenen mit den meisten Followern für eine bestimmte Sprache neu berechnet."
+      description_html: "<strong>Follower-Empfehlungen helfen neuen Nutzernen, interessante Inhalte schnell zu finden</strong>. Wenn ein*e Nutzer noch nicht genug mit anderen interagiert hat, um personalisierte Follower-Empfehlungen zu erhalten, werden stattdessen diese Profile vorgeschlagen. Sie werden täglich, basierend auf einer Mischung aus am meisten interagierenden Konten und jenen mit den meisten Followern für eine bestimmte Sprache neu berechnet."
       language: Für Sprache
       status: Status
       suppress: Folgeempfehlung unterbinden
@@ -564,7 +564,7 @@ de:
     relays:
       add_new: Neues Relay hinzufügen
       delete: Entfernen
-      description_html: Ein <strong>Föderierungsrelay</strong> ist ein vermittelnder Server, der eine große Anzahl öffentlicher Beiträge zwischen Servern, die das Relay abonnieren und zu ihm veröffentlichen, austauscht.<strong> Es kann kleinen und mittleren Servern dabei helfen, Inhalte des Fediverse zu entdecken</strong>, was andernfalls das manuelle Folgen anderer Leute auf externen Servern durch lokale Nutzer*innen erfordern würde.
+      description_html: Ein <strong>Föderierungsrelay</strong> ist ein vermittelnder Server, der eine große Anzahl öffentlicher Beiträge zwischen Servern, die das Relay abonnieren und zu ihm veröffentlichen, austauscht.<strong> Es kann kleinen und mittleren Servern dabei helfen, Inhalte des Fediverse zu entdecken</strong>, was andernfalls das manuelle Folgen anderer Leute auf externen Servern durch lokale Nutzernen erfordern würde.
       disable: Ausschalten
       disabled: Ausgeschaltet
       enable: Einschalten
@@ -602,7 +602,7 @@ de:
         remote: Auf dem anderen Server bereits gesperrt
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
-      assigned: Zugewiesene*r Moderator*in
+      assigned: Zugewiesener Moderator
       by_target_domain: Domain des gemeldeten Kontos
       cancel: Abbrechen
       category: Kategorie
@@ -628,7 +628,7 @@ de:
         delete: Löschen
         placeholder: Bitte beschreibe, welche Maßnahmen bzw. Sanktionen ergriffen worden sind, und führe alles auf, was es Erwähnenswertes zu diesem Profil zu berichten gibt …
         title: Notizen
-      notes_description_html: Notiz an dich und andere Moderator*innen hinterlassen
+      notes_description_html: Notiz an dich und andere Moderatoren hinterlassen
       processed_msg: Meldung Nr. %{id} erfolgreich bearbeitet
       quick_actions_description_html: 'Führe eine schnelle Aktion aus oder scrolle nach unten, um gemeldete Inhalte zu sehen:'
       remote_user_placeholder: das externe Profil von %{instance}
@@ -679,54 +679,54 @@ de:
         moderation: Moderation
         special: Besonderheit
       delete: Entfernen
-      description_html: Mit <strong>Rollen</strong> kannst du die Funktionen und Bereiche von Mastodon anpassen, auf die deine Benutzer*innen zugreifen können.
+      description_html: Mit <strong>Rollen</strong> kannst du die Funktionen und Bereiche von Mastodon anpassen, auf die deine Benutzern zugreifen können.
       edit: Rolle „%{name}“ bearbeiten
       everyone: Standard
-      everyone_full_description_html: Das ist die <strong>Basis-Rolle</strong>, die für <strong>alle Benutzer*innen</strong> gilt – auch für diejenigen ohne zugewiesene Rolle. Alle anderen Rollen erben Berechtigungen davon.
+      everyone_full_description_html: Das ist die <strong>Basis-Rolle</strong>, die für <strong>alle Benutzern</strong> gilt – auch für diejenigen ohne zugewiesene Rolle. Alle anderen Rollen erben Berechtigungen davon.
       permissions_count:
         one: "%{count} Berechtigung"
         other: "%{count} Berechtigungen"
       privileges:
-        administrator: Administrator*in
-        administrator_description: Benutzer*innen mit dieser Berechtigung werden alle Beschränkungen umgehen
+        administrator: Administrator
+        administrator_description: Benutzern mit dieser Berechtigung werden alle Beschränkungen umgehen
         delete_user_data: Kontodaten löschen
-        delete_user_data_description: Erlaubt Benutzer*innen, die Daten anderer Benutzer*innen sofort zu löschen
+        delete_user_data_description: Erlaubt Benutzern, die Daten anderer Benutzern sofort zu löschen
         invite_users: Leute einladen
-        invite_users_description: Erlaubt bereits registrierten Benutzer*innen, neue Leute zum Server einzuladen
+        invite_users_description: Erlaubt bereits registrierten Benutzern, neue Leute zum Server einzuladen
         manage_announcements: Ankündigungen verwalten
         manage_announcements_description: Erlaubt Profilen, Ankündigungen auf dem Server zu verwalten
         manage_appeals: Einsprüche verwalten
-        manage_appeals_description: Erlaubt es Benutzer*innen, Entscheidungen der Moderator*innen zu widersprechen
+        manage_appeals_description: Erlaubt es Benutzern, Entscheidungen der Moderatoren zu widersprechen
         manage_blocks: Sperrungen verwalten
-        manage_blocks_description: Erlaubt Benutzer*innen das Sperren von E-Mail-Providern und IP-Adressen
+        manage_blocks_description: Erlaubt Benutzern das Sperren von E-Mail-Providern und IP-Adressen
         manage_custom_emojis: Eigene Emojis verwalten
-        manage_custom_emojis_description: Erlaubt es Benutzer*innen, eigene Emojis auf dem Server zu verwalten
+        manage_custom_emojis_description: Erlaubt es Benutzern, eigene Emojis auf dem Server zu verwalten
         manage_federation: Föderation verwalten
-        manage_federation_description: Erlaubt Benutzer*innen, Domains anderer Mastodon-Server zu sperren oder zuzulassen – und die Zustellbarkeit zu steuern
+        manage_federation_description: Erlaubt Benutzern, Domains anderer Mastodon-Server zu sperren oder zuzulassen – und die Zustellbarkeit zu steuern
         manage_invites: Einladungen verwalten
-        manage_invites_description: Erlaubt es Benutzer*innen, Einladungslinks zu durchsuchen und zu deaktivieren
+        manage_invites_description: Erlaubt es Benutzern, Einladungslinks zu durchsuchen und zu deaktivieren
         manage_reports: Meldungen verwalten
-        manage_reports_description: Erlaubt es Benutzer*innen, Meldungen zu überprüfen und Vorfälle zu moderieren
+        manage_reports_description: Erlaubt es Benutzern, Meldungen zu überprüfen und Vorfälle zu moderieren
         manage_roles: Rollen verwalten
-        manage_roles_description: Erlaubt es Benutzer*innen, Rollen, die sich unterhalb der eigenen Rolle befinden, zu verwalten und zuzuweisen
+        manage_roles_description: Erlaubt es Benutzern, Rollen, die sich unterhalb der eigenen Rolle befinden, zu verwalten und zuzuweisen
         manage_rules: Serverregeln verwalten
-        manage_rules_description: Erlaubt es Benutzer*innen, Serverregeln zu ändern
+        manage_rules_description: Erlaubt es Benutzern, Serverregeln zu ändern
         manage_settings: Einstellungen verwalten
-        manage_settings_description: Erlaubt Nutzer*innen, Einstellungen dieses Servers zu ändern
+        manage_settings_description: Erlaubt Nutzernen, Einstellungen dieses Servers zu ändern
         manage_taxonomies: Hashtags verwalten
-        manage_taxonomies_description: Ermöglicht Benutzer*innen, die Trends zu überprüfen und die Hashtag-Einstellungen zu aktualisieren
+        manage_taxonomies_description: Ermöglicht Benutzern, die Trends zu überprüfen und die Hashtag-Einstellungen zu aktualisieren
         manage_user_access: Kontozugriff verwalten
-        manage_user_access_description: Erlaubt es Benutzer*innen, die Zwei-Faktor-Authentisierung (2FA) anderer zu deaktivieren, ihre E-Mail-Adresse zu ändern und ihr Passwort zurückzusetzen
+        manage_user_access_description: Erlaubt es Benutzern, die Zwei-Faktor-Authentisierung (2FA) anderer zu deaktivieren, ihre E-Mail-Adresse zu ändern und ihr Passwort zurückzusetzen
         manage_users: Konten verwalten
-        manage_users_description: Erlaubt es Benutzer*innen, die Details anderer Profile einzusehen und diese Accounts zu moderieren
+        manage_users_description: Erlaubt es Benutzern, die Details anderer Profile einzusehen und diese Accounts zu moderieren
         manage_webhooks: Webhooks verwalten
-        manage_webhooks_description: Erlaubt es Benutzer*innen, Webhooks für administrative Vorkommnisse einzurichten
+        manage_webhooks_description: Erlaubt es Benutzern, Webhooks für administrative Vorkommnisse einzurichten
         view_audit_log: Audit-Log anzeigen
-        view_audit_log_description: Erlaubt es Benutzer*innen, den Verlauf der administrativen Handlungen auf diesem Server einzusehen
+        view_audit_log_description: Erlaubt es Benutzern, den Verlauf der administrativen Handlungen auf diesem Server einzusehen
         view_dashboard: Dashboard anzeigen
-        view_dashboard_description: Gewährt Benutzer*innen den Zugriff auf das Dashboard und verschiedene Metriken
+        view_dashboard_description: Gewährt Benutzern den Zugriff auf das Dashboard und verschiedene Metriken
         view_devops: DevOps
-        view_devops_description: Erlaubt es Benutzer*innen, auf die Sidekiq- und pgHero-Dashboards zuzugreifen
+        view_devops_description: Erlaubt es Benutzern, auf die Sidekiq- und pgHero-Dashboards zuzugreifen
       title: Rollen
     rules:
       add_new: Regel hinzufügen
@@ -739,7 +739,7 @@ de:
       about:
         manage_rules: Serverregeln verwalten
         preamble: Schildere ausführlich, wie dein Server betrieben, moderiert und finanziert wird.
-        rules_hint: Es gibt einen eigenen Bereich für Regeln, die deine Benutzer*innen einhalten müssen.
+        rules_hint: Es gibt einen eigenen Bereich für Regeln, die deine Benutzern einhalten müssen.
         title: Über
       appearance:
         preamble: Passe das Webinterface von Mastodon an.
@@ -749,10 +749,10 @@ de:
         title: Branding
       captcha_enabled:
         desc_html: Dies beruht auf externen Skripten von hCaptcha, die ein Sicherheits- und Datenschutzproblem darstellen könnten. Darüber hinaus <strong>kann das den Registrierungsprozess für manche Menschen (insbesondere für Menschen mit Behinderung) erheblich erschweren</strong>. Aus diesen Gründen solltest du alternative Maßnahmen in Betracht ziehen, z. B. eine Registrierung basierend auf einer Einladung oder auf Genehmigungen.
-        title: Neue Nutzer*innen müssen ein CAPTCHA lösen, um das Konto zu bestätigen
+        title: Neue Nutzernen müssen ein CAPTCHA lösen, um das Konto zu bestätigen
       content_retention:
         danger_zone: Gefahrenzone
-        preamble: Lege fest, wie lange Inhalte von Nutzer*innen auf deinem Mastodon-Server gespeichert bleiben.
+        preamble: Lege fest, wie lange Inhalte von Nutzernen auf deinem Mastodon-Server gespeichert bleiben.
         title: Cache & Archive
       default_noindex:
         desc_html: Betrifft alle Profile, die diese Einstellung bei sich nicht geändert haben
@@ -769,7 +769,7 @@ de:
       domain_blocks:
         all: Allen
         disabled: Niemandem
-        users: Für angemeldete lokale Benutzer*innen
+        users: Für angemeldete lokale Benutzern
       registrations:
         moderation_recommandation: Bitte vergewissere dich, dass du ein geeignetes und reaktionsschnelles Moderationsteam hast, bevor du die Registrierungen uneingeschränkt zulässt!
         preamble: Lege fest, wer auf deinem Server ein Konto erstellen darf.
@@ -782,7 +782,7 @@ de:
         warning_hint: Wir empfehlen die Einstellung „Registrierung muss genehmigt werden“ zu verwenden, es sei denn, du bist dir sicher, dass dein Moderationsteam Spam und böswillige Registrierungen rechtzeitig bearbeiten kann.
       security:
         authorized_fetch: Authentisierung von föderierten Servern erforderlich machen
-        authorized_fetch_hint: Das Anfordern einer Authentisierung von föderierten Servern ermöglicht ein strengeres Durchsetzen von Sperren sowohl auf Ebene der Benutzer*innen als auch des Servers. Allerdings ist das mit Leistungseinbußen verbunden, reduziert die Reichweite deiner Antworten und kann zu Kompatibilitätsproblemen mit einigen föderierten Diensten führen. Darüber hinaus wird das Abrufen deiner öffentlichen Beiträge und Konten durch spezialisierte Akteur*innen nicht verhindert.
+        authorized_fetch_hint: Das Anfordern einer Authentisierung von föderierten Servern ermöglicht ein strengeres Durchsetzen von Sperren sowohl auf Ebene der Benutzern als auch des Servers. Allerdings ist das mit Leistungseinbußen verbunden, reduziert die Reichweite deiner Antworten und kann zu Kompatibilitätsproblemen mit einigen föderierten Diensten führen. Darüber hinaus wird das Abrufen deiner öffentlichen Beiträge und Konten durch spezialisierte Akteurnen nicht verhindert.
         authorized_fetch_overridden_hint: Diese Einstellung wird derzeit von einer Umgebungsvariable überschrieben und kann daher nicht geändert werden.
         federation_authentication: Authentisierung von föderierten Servern durchsetzen
       title: Servereinstellungen
@@ -802,7 +802,7 @@ de:
         patch: Revision — Fehlerbehebungen und einfach zu implementierende Änderungen
       version: Version
     statuses:
-      account: Autor*in
+      account: Autor
       application: Anwendung
       back_to_account: Zurück zum Konto
       back_to_report: Zurück zur Seite mit den Meldungen
@@ -873,10 +873,10 @@ de:
         message_html: Ein Mastodon-Update für Fehlerbehebungen ist verfügbar.
       upload_check_privacy_error:
         action: Für weitere Informationen hier klicken
-        message_html: "<strong>Die Konfiguration deines Servers ist fehlerhaft. Die Privatsphäre deiner Benutzer*innen ist gefährdet.</strong>"
+        message_html: "<strong>Die Konfiguration deines Servers ist fehlerhaft. Die Privatsphäre deiner Benutzern ist gefährdet.</strong>"
       upload_check_privacy_error_object_storage:
         action: Für weitere Informationen hier klicken
-        message_html: "<strong>Die Konfiguration deines Objektspeichers ist fehlerhaft. Die Privatsphäre deiner Benutzer*innen ist gefährdet.</strong>"
+        message_html: "<strong>Die Konfiguration deines Objektspeichers ist fehlerhaft. Die Privatsphäre deiner Benutzern ist gefährdet.</strong>"
     tags:
       review: Prüfstatus
       updated_msg: Hashtag-Einstellungen erfolgreich aktualisiert
@@ -887,13 +887,13 @@ de:
       disallow: Verbieten
       links:
         allow: Link erlauben
-        allow_provider: Herausgeber*in erlauben
-        description_html: Dies sind Links, die derzeit von zahlreichen Konten geteilt werden und die deinem Server aufgefallen sind. Die Benutzer*innen können darüber herausfinden, was in der Welt vor sich geht. Die Links werden allerdings erst dann öffentlich vorgeschlagen, wenn du die Herausgeber*innen genehmigt hast. Du kannst alternativ aber auch nur einzelne URLs zulassen oder ablehnen.
+        allow_provider: Herausgeber erlauben
+        description_html: Dies sind Links, die derzeit von zahlreichen Konten geteilt werden und die deinem Server aufgefallen sind. Die Benutzern können darüber herausfinden, was in der Welt vor sich geht. Die Links werden allerdings erst dann öffentlich vorgeschlagen, wenn du die Herausgebernen genehmigt hast. Du kannst alternativ aber auch nur einzelne URLs zulassen oder ablehnen.
         disallow: Link verbieten
-        disallow_provider: Herausgeber*in verbieten
+        disallow_provider: Herausgeber verbieten
         no_link_selected: Keine Links wurden geändert, da keine ausgewählt wurden
         publishers:
-          no_publisher_selected: Keine Herausgeber*innen wurden geändert, da keine ausgewählt wurden
+          no_publisher_selected: Keine Herausgebernen wurden geändert, da keine ausgewählt wurden
         shared_by_over_week:
           one: In den vergangenen 7 Tagen von einem Profil geteilt
           other: In den vergangenen 7 Tagen von %{count} Profilen geteilt
@@ -903,9 +903,9 @@ de:
       only_allowed: Nur Genehmigte
       pending_review: Überprüfung ausstehend
       preview_card_providers:
-        allowed: Links von diesem/dieser Herausgeber*in können im Trend liegen
+        allowed: Links von diesem/dieser Herausgeber können im Trend liegen
         description_html: Dies sind Domains, von denen Links oft auf deinem Server geteilt werden. Links werden nicht öffentlich trenden, es sei denn, die Domain des Links wird genehmigt. Deine Zustimmung (oder Ablehnung) erstreckt sich auf Subdomains.
-        rejected: Links von diesem/dieser Herausgeber*in werden nicht im Trend liegen
+        rejected: Links von diesem/dieser Herausgeber werden nicht im Trend liegen
         title: Herausgeber
       rejected: Abgelehnt
       statuses:
@@ -915,7 +915,7 @@ de:
         disallow: Beitrag verbieten
         disallow_account: Profil verweigern
         no_status_selected: Die im Trend liegenden Beiträge wurden nicht geändert, da keine ausgewählt wurden
-        not_discoverable: Autor*in hat sich dafür entschieden, nicht entdeckt zu werden
+        not_discoverable: Autor hat sich dafür entschieden, nicht entdeckt zu werden
         shared_by:
           one: Einmal geteilt oder favorisiert
           other: "%{friendly_count}-mal geteilt oder favorisiert"
@@ -928,7 +928,7 @@ de:
           tag_servers_dimension: Aktivste Server
           tag_servers_measure: Server
           tag_uses_measure: insgesamt
-        description_html: Diese Hashtags werden derzeit in vielen Beiträgen verwendet, die dein Server sieht. Dies kann deinen Nutzer*innen helfen, herauszufinden, worüber die Leute im Moment am meisten schreiben. Hashtags werden erst dann öffentlich angezeigt, wenn du sie genehmigst.
+        description_html: Diese Hashtags werden derzeit in vielen Beiträgen verwendet, die dein Server sieht. Dies kann deinen Nutzernen helfen, herauszufinden, worüber die Leute im Moment am meisten schreiben. Hashtags werden erst dann öffentlich angezeigt, wenn du sie genehmigst.
         listable: Kann vorgeschlagen werden
         no_tag_selected: Keine Hashtags wurden geändert, da keine ausgewählt wurden
         not_listable: Wird nicht vorgeschlagen
@@ -973,7 +973,7 @@ de:
       webhook: Webhook
   admin_mailer:
     auto_close_registrations:
-      body: Aufgrund fehlender Aktivität von Moderator*innen müssen neue Registrierungen auf %{instance} jetzt manuell genehmigt werden. Dies wurde automatisch umgestellt, damit %{instance} nicht als Plattform für Böswillige missbraucht werden kann. Du kannst jederzeit auf uneingeschränkte Registrierungen zurückwechseln.
+      body: Aufgrund fehlender Aktivität von Moderatoren müssen neue Registrierungen auf %{instance} jetzt manuell genehmigt werden. Dies wurde automatisch umgestellt, damit %{instance} nicht als Plattform für Böswillige missbraucht werden kann. Du kannst jederzeit auf uneingeschränkte Registrierungen zurückwechseln.
       subject: Registrierungen auf %{instance} müssen ab jetzt manuell genehmigt werden (automatisch umgestellt)
     new_appeal:
       actions:
@@ -1094,8 +1094,8 @@ de:
       accept: Akzeptieren
       back: Zurück
       invited_by: 'Du kannst %{domain} beitreten – dank der Einladung von:'
-      preamble: Diese werden von den Moderator*innen von %{domain} festgelegt und durchgesetzt.
-      preamble_invited: Bevor du fortfährst, beachte bitte die Grundregeln der Moderator*innen von %{domain}.
+      preamble: Diese werden von den Moderator von %{domain} festgelegt und durchgesetzt.
+      preamble_invited: Bevor du fortfährst, beachte bitte die Grundregeln der Moderatoren von %{domain}.
       title: Einige Grundregeln.
       title_invited: Du wurdest eingeladen.
     security: Sicherheit
@@ -1110,7 +1110,7 @@ de:
       preamble_html: Melde dich mit deinen Zugangsdaten für <strong>%{domain}</strong> an. Solltest du dein Konto auf einem anderen Server registriert haben, ist eine Anmeldung hier nicht möglich.
       title: Bei %{domain} anmelden
     sign_up:
-      manual_review: Registrierungen für den Server %{domain} werden manuell durch unsere Moderator*innen überprüft. Um uns dabei zu unterstützen, schreibe etwas über dich und sage uns, weshalb du ein Konto auf %{domain} anlegen möchtest.
+      manual_review: Registrierungen für den Server %{domain} werden manuell durch unsere Moderatoren überprüft. Um uns dabei zu unterstützen, schreibe etwas über dich und sage uns, weshalb du ein Konto auf %{domain} anlegen möchtest.
       preamble: Mit einem Konto auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Konto registriert ist.
       title: Lass uns dein Konto auf %{domain} einrichten.
     status:
@@ -1180,7 +1180,7 @@ de:
       approve_appeal: Einspruch annehmen
       associated_report: Zugehörige Meldung
       created_at: Datum
-      description_html: Dies sind Maßnahmen, die gegen dein Konto ergriffen worden sind, und Warnungen, die dir die Mitarbeiter*innen von %{instance} gesendet haben.
+      description_html: Dies sind Maßnahmen, die gegen dein Konto ergriffen worden sind, und Warnungen, die dir die Mitarbeiternen von %{instance} gesendet haben.
       recipient: Adressiert an
       reject_appeal: Einspruch ablehnen
       status: "%{id}. Beitrag"
@@ -1673,8 +1673,8 @@ de:
       user_domain_block: Du hast %{target_name} blockiert
     lost_followers: Verlorene Follower
     lost_follows: Konten entfolgt
-    preamble: Möglicherweise verlierst du Follower und entfolgst Konten, wenn du eine Domain blockierst oder Moderator*innen externe Server sperren. Sollte das der Fall sein, wirst du eine Liste mit den getrennten Beziehungen herunterladen können. Dadurch kannst du die Änderungen einsehen oder die Liste auf einen anderen Server importieren.
-    purged: Informationen über diesen Server wurden von deinen Server-Administrator*innen entfernt.
+    preamble: Möglicherweise verlierst du Follower und entfolgst Konten, wenn du eine Domain blockierst oder Moderatoren externe Server sperren. Sollte das der Fall sein, wirst du eine Liste mit den getrennten Beziehungen herunterladen können. Dadurch kannst du die Änderungen einsehen oder die Liste auf einen anderen Server importieren.
+    purged: Informationen über diesen Server wurden von deinen Server-Administratoren entfernt.
     type: Ereignis
   statuses:
     attached:
@@ -1832,9 +1832,9 @@ de:
         spam: Spam
         violation: Inhalt verstößt gegen die folgenden Serverregeln
       explanation:
-        delete_statuses: Einige deiner Beiträge haben gegen eine oder mehrere Serverregeln verstoßen und wurden daher von den Moderator*innen von %{instance} entfernt.
+        delete_statuses: Einige deiner Beiträge haben gegen eine oder mehrere Serverregeln verstoßen und wurden daher von den Moderatoren von %{instance} entfernt.
         disable: Du kannst dein Konto nicht mehr verwenden, aber dein Profil und deine anderen Daten bleiben erhalten. Du kannst eine Sicherung deiner Daten anfordern, die Kontoeinstellungen ändern oder dein Konto löschen.
-        mark_statuses_as_sensitive: Ein oder mehrere deiner Beiträge wurden von den Moderator*innen von %{instance} mit einer Inhaltswarnung versehen. Das bedeutet, dass die Medien in den Beiträgen erst angeklickt werden müssen, bevor sie angezeigt werden. Beim Verfassen der nächsten Beiträge kannst du auch selbst eine Inhaltswarnung für hochgeladene Medien festlegen.
+        mark_statuses_as_sensitive: Ein oder mehrere deiner Beiträge wurden von den Moderatoren von %{instance} mit einer Inhaltswarnung versehen. Das bedeutet, dass die Medien in den Beiträgen erst angeklickt werden müssen, bevor sie angezeigt werden. Beim Verfassen der nächsten Beiträge kannst du auch selbst eine Inhaltswarnung für hochgeladene Medien festlegen.
         sensitive: Von nun an werden alle deine hochgeladenen Mediendateien mit einer Inhaltswarnung versehen und hinter einer Warnung versteckt.
         silence: Du kannst dein Konto weiterhin verwenden, aber nur Personen, die dir bereits folgen, sehen deine Beiträge auf diesem Server. Ebenso kannst du aus verschiedenen Suchfunktionen ausgeschlossen werden. Andere können dir jedoch weiterhin manuell folgen.
         suspend: Du kannst dein Konto nicht mehr verwenden und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um eine Sicherung deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
@@ -1870,7 +1870,7 @@ de:
       feature_action: Mehr erfahren
       feature_audience: Mastodon bietet dir eine einzigartige Möglichkeit, deine Reichweite ohne Mittelsperson zu verwalten. Auf deiner eigenen Infrastruktur bereitgestellt, ermöglicht Mastodon es dir, jedem anderen Mastodon-Server zu folgen und von jedem anderen Server aus gefolgt zu werden. Ebenso steht Mastodon unter deiner Kontrolle.
       feature_audience_title: Baue deine Reichweite mit Vertrauen auf
-      feature_control: Du weißt am besten, was du auf deiner Startseite sehen möchtest. Keine Algorithmen oder Werbung, die deine Zeit verschwenden. Folge Nutzer*innen von jedem Mastodon-Server von einem einzelnen Konto aus und empfange deren Beiträge in chronologischer Reihenfolge. Mache Mastodon zu deinem ganz persönlichen Fleckchen im Internet.
+      feature_control: Du weißt am besten, was du auf deiner Startseite sehen möchtest. Keine Algorithmen oder Werbung, die deine Zeit verschwenden. Folge Nutzernen von jedem Mastodon-Server von einem einzelnen Konto aus und empfange deren Beiträge in chronologischer Reihenfolge. Mache Mastodon zu deinem ganz persönlichen Fleckchen im Internet.
       feature_control_title: Behalte die Kontrolle über deine eigene Timeline
       feature_creativity: Mastodon unterstützt Audio-, Video- und Bildbeiträge, Beschreibungen, Umfragen, Inhaltswarnungen, animierte Avatare, benutzerdefinierte Emojis, das Zuschneiden von Vorschaubildern und vieles mehr, um dir zu helfen, dich online zu entfalten. Egal, ob du deine Kunst, deine Musik oder deinen Podcast veröffentlichst – Mastodon ist für dich da.
       feature_creativity_title: Einzigartige Kreativität
@@ -1892,7 +1892,7 @@ de:
       post_step: Begrüße die Welt mit Text, Fotos, Videos oder Umfragen.
       post_title: Erstelle deinen ersten Beitrag
       share_action: Teilen
-      share_step: Lass deine Freund*innen wissen, wie sie dich auf Mastodon finden können.
+      share_step: Lass deine Freundnen wissen, wie sie dich auf Mastodon finden können.
       share_title: Teile dein Mastodon-Profil
       sign_in_action: Anmelden
       subject: Willkommen bei Mastodon!
