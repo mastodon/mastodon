@@ -5,17 +5,16 @@ require 'i18n/tasks'
 
 describe 'I18n' do
   # Copied from $(bundle exec i18n-tasks gem-path)/templates/rspec/i18n_spec.rb
-  describe I18n do
+  describe 'i18n-tasks' do
     let(:i18n) { I18n::Tasks::BaseTask.new }
-    let(:missing_keys) { i18n.missing_keys }
+    let(:missing_keys_en) { i18n.missing_keys(locales: ['en']) }
     let(:unused_keys) { i18n.unused_keys }
     let(:inconsistent_interpolations) { i18n.inconsistent_interpolations }
 
-    # Fails because only EN files are currently enforced
-    # it 'does not have missing keys' do
-    #   expect(missing_keys).to be_empty,
-    #                           "Missing #{missing_keys.leaves.count} i18n keys, run `i18n-tasks missing' to show them"
-    # end
+    it 'does not have missing keys in English' do
+      expect(missing_keys_en).to be_empty,
+                                 "Missing #{missing_keys_en.leaves.count} i18n keys, run `i18n-tasks missing' to show them"
+    end
 
     it 'does not have unused keys' do
       expect(unused_keys).to be_empty,
