@@ -535,12 +535,16 @@ lt:
       elasticsearch_preset_single_node:
         message_html: Tavo Elasticsearch klasteris turi tik vieną mazgą, <code>ES_PRESET</code> turėtų būti nustatyta į <code>single_node_cluster</code>.
     title: Administracija
+    trends:
+      preview_card_providers:
+        title: Leidėjai
     warning_presets:
       add_new: Pridėti naują
       delete: Ištrinti
       edit_preset: Keisti įspėjimo nustatymus
       title: Valdyti įspėjimo nustatymus
     webhooks:
+      description_html: "<strong>Webhook</strong> leidžia Mastodon siųsti <strong>realaus laiko pranešimus</strong> apie pasirinktus įvykius į tavo programą, kad programa galėtų <strong>automatiškai paleisti reakcijas</strong>."
       events: Įvykiai
   admin_mailer:
     auto_close_registrations:
@@ -665,6 +669,7 @@ lt:
       invalid_context: Jokio arba netinkamas pateiktas kontekstas
     index:
       delete: Ištrinti
+      empty: Neturi jokių filtrų.
       title: Filtrai
     new:
       title: Pridėti naują filtrą

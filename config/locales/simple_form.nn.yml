@@ -77,12 +77,13 @@ nn:
           warn: Skjul det filtrerte innhaldet bak ei åtvaring som nemner tittelen på filteret
       form_admin_settings:
         activity_api_enabled: Tal på lokale innlegg, aktive brukarar og nyregistreringar kvar veke
-        app_icon: WEBP, PNG, GIF eller JPG. Overstyrer standard-ikonet på mobile einingar med eit tilpassa ikon.
+        app_icon: WEBP, PNG, GIF eller JPG. Overstyrer standard-app-ikonet på mobile einingar med eit eigendefinert ikon.
         backups_retention_period: Brukarar har moglegheit til å generere arkiv av sine innlegg for å laste ned seinare. Når sett til ein positiv verdi, blir desse arkiva automatisk sletta frå lagringa etter eit gitt antal dagar.
         bootstrap_timeline_accounts: Desse kontoane vil bli festa øverst på fylgjaranbefalingane til nye brukarar.
         closed_registrations_message: Vist når det er stengt for registrering
         content_cache_retention_period: Alle innlegg frå andre serverar (inkludert boostar og svar) vil bli sletta etter dei gitte antal dagar, uten hensyn til lokale brukarinteraksjonar med desse innlegga. Dette inkluderer innlegg der ein lokal brukar har merka det som bokmerker eller som favorittar. Òg private nemningar mellom brukarar frå ulike førekomstar vil gå tapt og vere umogleg å gjenskape. Bruk av denne innstillinga er rekna på spesielle førekomstar og bryt mange brukarforventingar når dette blir tatt i generell bruk.
         custom_css: Du kan bruka eigendefinerte stilar på nettversjonen av Mastodon.
+        favicon: WEBP, PNG, GIF eller JPG. Overstyrer det standarde Mastodon-favikonet med eit eigendefinert ikon.
         mascot: Overstyrer illustrasjonen i det avanserte webgrensesnittet.
         media_cache_retention_period: Mediafiler frå innlegg laga av eksterne brukarar blir bufra på serveren din. Når sett til ein positiv verdi, slettast media etter eit gitt antal dagar. Viss mediedata blir førespurt etter det er sletta, vil dei bli lasta ned på nytt viss kjelda sitt innhald framleis er tilgjengeleg. På grunn av restriksjonar på kor ofte lenkeførehandsvisningskort lastar tredjepart-nettstadar, rådast det til å setje denne verdien til minst 14 dagar, eller at førehandsvisningskort ikkje blir oppdatert på førespurnad før det tidspunktet.
         peers_api_enabled: Ei liste over domenenamn denne tenaren har møtt på i allheimen. Det står ingenting om tenaren din samhandlar med ein annan tenar, berre om tenaren din veit om den andre. Dette blir brukt av tenester som samlar statistikk om føderering i det heile.

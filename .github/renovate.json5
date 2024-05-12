@@ -141,6 +141,13 @@
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'RSpec (non-major)',
     },
+    {
+      // Group all opentelemetry-ruby packages in the same PR
+      matchManagers: ['bundler'],
+      matchPackagePrefixes: ['opentelemetry-'],
+      matchUpdateTypes: ['patch', 'minor'],
+      groupName: 'opentelemetry-ruby (non-major)',
+    },
     // Add labels depending on package manager
     { matchManagers: ['npm', 'nvm'], addLabels: ['javascript'] },
     { matchManagers: ['bundler', 'ruby-version'], addLabels: ['ruby'] },

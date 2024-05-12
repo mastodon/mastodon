@@ -31,8 +31,8 @@ lt:
       form:
         error: Ups! Patikrink, ar formoje nėra galimų klaidų.
       help:
-        native_redirect_uri: Naudoti %{native_redirect_uri} vietiniams bandymams
-        redirect_uri: Naudoti po vieną eilutę kiekvienam URI
+        native_redirect_uri: Naudok %{native_redirect_uri} vietiniams bandymams.
+        redirect_uri: Naudok po vieną eilutę kiekvienam URI.
         scopes: Atskirk aprėptis tarpais. Palik tuščią, jei nori naudoti numatytąsias aprėtis.
       index:
         application: Programėlė
@@ -90,7 +90,7 @@ lt:
           request_not_authorized: Užklausą reikia įgalioti. Reikalingo parametro užklausai įgalioti trūksta arba jis netinkamas.
           unknown: Užklausoje trūksta privalomo parametro, turi nepalaikomą parametro reikšmę arba yra kitaip netinkamai suformuota.
         invalid_resource_owner: Pateikti išteklių savininko įgaliojimai yra netinkami arba išteklių savininko negalima surasti.
-        invalid_scope: Užklausos aprėptis yra netinkama, nežinoma arba netinkamai suformuota.
+        invalid_scope: Užklausos aprėptis yra netinkama, nežinoma arba netaisyklingas.
         invalid_token:
           expired: Baigėsi prieigos rakto galiojimas.
           revoked: Prieigos raktas buvo panaikintas.
@@ -133,9 +133,9 @@ lt:
         follows: Sekimai
         lists: Sąrašai
         media: Medijos priedai
-        mutes: Užtildymai
+        mutes: Nutildymai
         notifications: Pranešimai
-        push: Stumdomieji pranešimai
+        push: Tiesioginiai pranešimai
         reports: Ataskaitos
         search: Paieška
         statuses: Įrašai
@@ -147,30 +147,30 @@ lt:
       application:
         title: Reikalingas OAuth leidimas
     scopes:
-      admin:read: skaityti visus serveryje esančius duomenis
-      admin:read:accounts: skaityti neskelbtiną visų paskyrų informaciją
-      admin:read:canonical_email_blocks: skaityti neskelbtiną visų kanoninių el. laiško blokavimų informaciją
-      admin:read:domain_allows: skaityti neskelbtiną visų domeno leidimus informaciją
-      admin:read:domain_blocks: skaityti neskelbtiną visų domeno blokavimų informaciją
-      admin:read:email_domain_blocks: skaityti neskelbtiną visų el. laiško domeno blokavimų informaciją
-      admin:read:ip_blocks: skaityti neskelbtiną visų IP blokavimų informaciją
-      admin:read:reports: skaityti neskelbtiną visų ataskaitų ir praneštų paskyrų informaciją
-      admin:write: modifikuoti visus serveryje esančius duomenis
+      admin:read: skaityti visus duomenis serveryje
+      admin:read:accounts: skaityti slaptą visų paskyrų informaciją
+      admin:read:canonical_email_blocks: skaityti slaptą visų kanoninių el. laiško blokavimų informaciją
+      admin:read:domain_allows: skaityti slaptą visų domeno leidimus informaciją
+      admin:read:domain_blocks: skaityti slaptą visų domeno blokavimų informaciją
+      admin:read:email_domain_blocks: skaityti slaptą visų el. laiško domeno blokavimų informaciją
+      admin:read:ip_blocks: skaityti slaptą visų IP blokavimų informaciją
+      admin:read:reports: skaityti slaptą visų ataskaitų ir praneštų paskyrų informaciją
+      admin:write: modifikuoti visus duomenis serveryje
       admin:write:accounts: atlikti paskyrų prižiūrėjimo veiksmus
       admin:write:canonical_email_blocks: atlikti kanoninių el. laiško blokavimų prižiūrėjimo veiksmus
-      admin:write:domain_allows: atlikti prižiūrėjimo veiksmus su domeno leidimais
-      admin:write:domain_blocks: atlikti prižiūrėjimo veiksmus su domenų blokavimais
-      admin:write:email_domain_blocks: atlikti prižiūrėjimo veiksmus su el. laiško domenų blokavimais
-      admin:write:ip_blocks: atlikti prižiūrėjimo veiksmus su IP blokavimais
-      admin:write:reports: atlikti paskyrų prižiūrėjimo veiksmus atsakaitams
+      admin:write:domain_allows: atlikti domeno leidimų prižiūrėjimo veiksmus
+      admin:write:domain_blocks: atlikti domeno blokavimų prižiūrėjimo veiksmus
+      admin:write:email_domain_blocks: atlikti el. laiško domenų blokavimų prižiūrėjimo veiksmus
+      admin:write:ip_blocks: atlikti IP blokavimų prižiūrėjimo veiksmus
+      admin:write:reports: atlikti ataskaitų prižiūrėjimo veiksmus
       crypto: naudoti visapusį šifravimą
       follow: modifikuoti paskyros sąryšius
-      push: gauti tavo stumiamuosius pranešimus
-      read: skaityti tavo visus paskyros duomenis
+      push: gauti tiesioginius pranešimus
+      read: skaityti visus paskyros duomenis
       read:accounts: matyti paskyrų informaciją
       read:blocks: matyti tavo blokavimus
       read:bookmarks: matyti tavo žymes
-      read:favourites: matyti tavo mėgstamiausius
+      read:favourites: matyti tavo mėgstamus
       read:filters: matyti tavo filtrus
       read:follows: matyti tavo sekimus
       read:lists: matyti tavo sąrašus
@@ -183,14 +183,14 @@ lt:
       write: modifikuoti visus tavo paskyros duomenis
       write:accounts: modifikuoti tavo profilį
       write:blocks: blokuoti paskyras ir domenus
-      write:bookmarks: įrašyti įrašus
+      write:bookmarks: pridėti į žymes įrašus
       write:conversations: nutildyti ir ištrinti pokalbius
-      write:favourites: mėgti įrašai
+      write:favourites: pamėgti įrašus
       write:filters: sukurti filtrus
       write:follows: sekti žmones
       write:lists: sukurti sąrašus
       write:media: įkelti medijos failus
       write:mutes: nutildyti žmones ir pokalbius
       write:notifications: išvalyti tavo pranešimus
-      write:reports: pranešti kitus asmenus
+      write:reports: pranešti apie kitus žmones
       write:statuses: skelbti įrašus
