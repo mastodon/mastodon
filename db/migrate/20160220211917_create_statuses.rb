@@ -7,7 +7,7 @@ class CreateStatuses < ActiveRecord::Migration[4.2]
       t.integer :account_id, null: false
       t.text :text, null: false, default: ''
 
-      t.timestamps null: false
+      t.timestamps null: true
     end
 
     add_index :statuses, :uri, unique: true
