@@ -17,7 +17,7 @@
     "fix": "yarn fix:js && yarn fix:css",
     "format": "prettier --write --log-level warn .",
     "format:check": "prettier --check --ignore-unknown .",
-    "i18n:extract": "formatjs extract 'app/javascript/**/*.{js,jsx,ts,tsx}' '--ignore=**/*.d.ts' --out-file app/javascript/mastodon/locales/en.json --format config/formatjs-formatter.js",
+    "i18n:extract": "formatjs extract 'app/javascript/**/*.{js,jsx,ts,tsx}' --ignore '**/*.d.ts' --out-file app/javascript/mastodon/locales/en.json --format config/formatjs-formatter.js",
     "jest": "cross-env NODE_ENV=test jest",
     "lint:js": "eslint . --ext=.js,.jsx,.ts,.tsx --cache --report-unused-disable-directives",
     "lint:css": "stylelint \"**/*.{css,scss}\"",
