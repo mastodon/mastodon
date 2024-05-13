@@ -14,7 +14,6 @@ function render(
   const fakeIdentity = {
     signedIn: signedIn,
     accountId: '123',
-    accessToken: 'test-access-token',
     disabledAccountId: undefined,
     permissions: 0,
   };

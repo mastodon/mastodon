@@ -9,7 +9,6 @@ export interface IdentityContextType {
   signedIn: boolean;
   accountId: string | undefined;
   disabledAccountId: string | undefined;
-  accessToken: string | undefined;
   permissions: number;
 }
 
@@ -17,14 +16,12 @@ export const identityContextPropShape = PropTypes.shape({
   signedIn: PropTypes.bool.isRequired,
   accountId: PropTypes.string,
   disabledAccountId: PropTypes.string,
-  accessToken: PropTypes.string,
 }).isRequired;
 
 export const createIdentityContext = (state: InitialState) => ({
   signedIn: !!state.meta.me,
   accountId: state.meta.me,
   disabledAccountId: state.meta.disabled_account_id,
-  accessToken: state.meta.access_token,
   permissions: state.role?.permissions ?? 0,
 });
 
@@ -33,7 +30,6 @@ export const IdentityContext = createContext<IdentityContextType>({
   permissions: 0,
   accountId: undefined,
   disabledAccountId: undefined,
-  accessToken: undefined,
 });
 
 export const useIdentity = () => useContext(IdentityContext);
