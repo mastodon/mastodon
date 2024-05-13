@@ -13042,13 +13042,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino-std-serializers@npm:^6.0.0":
-  version: 6.2.2
-  resolution: "pino-std-serializers@npm:6.2.2"
-  checksum: 10c0/8f1c7f0f0d8f91e6c6b5b2a6bfb48f06441abeb85f1c2288319f736f9c6d814fbeebe928d2314efc2ba6018fa7db9357a105eca9fc99fc1f28945a8a8b28d3d5
-  languageName: node
-  linkType: hard
-
 "pino-std-serializers@npm:^7.0.0":
   version: 7.0.0
   resolution: "pino-std-serializers@npm:7.0.0"
@@ -13057,23 +13050,23 @@ __metadata:
   linkType: hard
 
 "pino@npm:^9.0.0":
-  version: 9.0.0
-  resolution: "pino@npm:9.0.0"
+  version: 9.1.0
+  resolution: "pino@npm:9.1.0"
   dependencies:
     atomic-sleep: "npm:^1.0.0"
     fast-redact: "npm:^3.1.1"
     on-exit-leak-free: "npm:^2.1.0"
     pino-abstract-transport: "npm:^1.2.0"
-    pino-std-serializers: "npm:^6.0.0"
+    pino-std-serializers: "npm:^7.0.0"
     process-warning: "npm:^3.0.0"
     quick-format-unescaped: "npm:^4.0.3"
     real-require: "npm:^0.2.0"
     safe-stable-stringify: "npm:^2.3.1"
-    sonic-boom: "npm:^3.7.0"
-    thread-stream: "npm:^2.6.0"
+    sonic-boom: "npm:^4.0.1"
+    thread-stream: "npm:^3.0.0"
   bin:
     pino: bin.js
-  checksum: 10c0/10ef10aee0cf80af8ed83468cff2e29d642b6794b53cf641e1abcaf9e9958d8bcbc6e09d62757054aef3b4415c45d66a5018da11d43b81a23ba299ef5dc4e8b1
+  checksum: 10c0/d060530ae2e4e8f21d04bb0f44f009f94d207d7f4337f508f618416514214ddaf1b29f8c5c265153a19ce3b6480b451461f40020f916ace9d53a5aa07624b79c
   languageName: node
   linkType: hard
 
@@ -15822,12 +15815,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sonic-boom@npm:^3.0.0, sonic-boom@npm:^3.7.0":
+"sonic-boom@npm:^3.0.0":
   version: 3.7.0
   resolution: "sonic-boom@npm:3.7.0"
   dependencies:
     atomic-sleep: "npm:^1.0.0"
   checksum: 10c0/57a3d560efb77f4576db111168ee2649c99e7869fda6ce0ec2a4e5458832d290ba58d74b073ddb5827d9a30f96d23cff79157993d919e1a6d5f28d8b6391c7f0
+  languageName: node
+  linkType: hard
+
+"sonic-boom@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "sonic-boom@npm:4.0.1"
+  dependencies:
+    atomic-sleep: "npm:^1.0.0"
+  checksum: 10c0/7b467f2bc8af7ff60bf210382f21c59728cc4b769af9b62c31dd88723f5cc472752d2320736cc366acc7c765ddd5bec3072c033b0faf249923f576a7453ba9d3
   languageName: node
   linkType: hard
 
@@ -16776,12 +16778,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"thread-stream@npm:^2.6.0":
-  version: 2.6.0
-  resolution: "thread-stream@npm:2.6.0"
+"thread-stream@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "thread-stream@npm:3.0.0"
   dependencies:
     real-require: "npm:^0.2.0"
-  checksum: 10c0/276e2545b33273232eb2c22c53fc11844951c1322f8a78c522477af716ebcfe0d106ccf1fbc455f6e48d928e93231fed6377ce91fdcb3885086e8ffa1f011c88
+  checksum: 10c0/1f4da5a8c93b170cdc7c1ad774af49bb2af43f73cfd9a7f8fb02b766255b483eb6d0b734502c880397baa95c0ce3490088b9a487cff32d4e481aab6fe76560f5
   languageName: node
   linkType: hard
 
