@@ -507,6 +507,8 @@ lt:
     roles:
       everyone: Numatytieji leidimai
       everyone_full_description_html: Tai – <strong>bazinis vaidmuo</strong>, turintis įtakos <strong>visiems naudotojams</strong>, net ir tiems, kurie neturi priskirto vaidmens. Visi kiti vaidmenys iš jo paveldi teises.
+      privileges:
+        manage_taxonomies_description: Leidžia naudotojams peržiūrėti tendencingą turinį ir atnaujinti saitažodžių nustatymus
     settings:
       captcha_enabled:
         desc_html: Tai priklauso nuo hCaptcha išorinių skriptų, kurie gali kelti susirūpinimą dėl saugumo ir privatumo. Be to, <strong>dėl to registracijos procesas kai kuriems žmonėms (ypač neįgaliesiems) gali būti gerokai sunkiau prieinami</strong>. Dėl šių priežasčių apsvarstyk alternatyvias priemones, pavyzdžiui, patvirtinimu arba kvietimu grindžiamą registraciją.
@@ -514,6 +516,7 @@ lt:
         danger_zone: Pavojinga zona
       discovery:
         public_timelines: Viešieji laiko skalės
+        trends: Tendencijos
       domain_blocks:
         all: Visiems
       registrations:
@@ -526,6 +529,7 @@ lt:
         title: Medija
       no_status_selected: Jokie statusai nebuvo pakeisti, nes niekas nepasirinkta
       title: Paskyros statusai
+      trending: Tendencinga
       with_media: Su medija
     system_checks:
       elasticsearch_health_yellow:
@@ -536,8 +540,45 @@ lt:
         message_html: Tavo Elasticsearch klasteris turi tik vieną mazgą, <code>ES_PRESET</code> turėtų būti nustatyta į <code>single_node_cluster</code>.
     title: Administracija
     trends:
+      allow: Leisti
+      approved: Patvirtinta
+      disallow: Neleisti
+      links:
+        allow: Leisti nuorodą
+        allow_provider: Leisti leidėją
+        description_html: Tai – nuorodos, kuriomis šiuo metu daug bendrinasi paskyros, iš kurių tavo serveris mato įrašus. Tai gali padėti naudotojams sužinoti, kas vyksta pasaulyje. Jokios nuorodos nerodomos viešai, kol nepatvirtinai leidėjo. Taip pat gali leisti arba atmesti atskiras nuorodas.
+        disallow: Neleisti nuorodą
+        disallow_provider: Neleisti leidėją
+        no_link_selected: Jokios nuorodos nebuvo pakeistos, nes nebuvo pasirinkta nė viena
+        publishers:
+          no_publisher_selected: Jokie leidėjai nebuvo pakeisti, nes nė vienas nebuvo pasirinktas
+        title: Tendencingos nuorodos
+        usage_comparison: Bendrinta %{today} kartų šiandien, palyginti su %{yesterday} vakar
+      not_allowed_to_trend: Neleidžiama tendencinguoti
+      only_allowed: Leidžiama tik
+      pending_review: Laukiama peržiūros
       preview_card_providers:
+        allowed: Nuorodos iš šio leidėjo gali tendencinguoti
+        description_html: Tai – domenai, iš kurių dažnai bendrinamos nuorodos tavo serveryje. Nuorodos netendencinguos, nebent nuorodos domenas yra patvirtintas. Tavo patvirtinimas (arba atmetimas) apima ir subdomenus.
+        rejected: Nuorodos iš šio leidėjo netendencinguos
         title: Leidėjai
+      rejected: Atmesta
+      statuses:
+        allow: Leisti įrašą
+        allow_account: Leisti autorių (-ę)
+        description_html: Tai – įrašai, apie kuriuos žino tavo serveris ir kuriais šiuo metu daug bendrinamasi ir kurie yra mėgstami. Tai gali padėti naujiems ir grįžtantiems naudotojams rasti daugiau žmonių, kuriuos galima sekti. Jokie įrašai nerodomi viešai, kol nepatvirtinai autoriaus (-ės), o autorius (-ė) leidžia savo paskyrą siūlyti kitiems. Taip pat gali leisti arba atmesti atskirus įrašus.
+        disallow: Neleisti įrašą
+        disallow_account: Neleisti autorių (-ę)
+        no_status_selected: Jokie tendencingi įrašai nebuvo pakeisti, nes nė vienas iš jų nebuvo pasirinktas
+        not_discoverable: Autorius (-ė) nesutiko, kad būtų galima juos atrasti
+        title: Tendencingi įrašai
+      tags:
+        not_trendable: Nepasirodys tendencijose
+        title: Tendencingos saitažodžiai
+        trendable: Gali pasirodyti tendencijose
+        trending_rank: 'Tendencinga #%{rank}'
+      title: Tendencijos
+      trending: Tendencinga
     warning_presets:
       add_new: Pridėti naują
       delete: Ištrinti
@@ -554,6 +595,14 @@ lt:
       body: "%{reporter} parašė skundą apie %{target}"
       body_remote: Kažkas iš %{domain} parašė skundą apie %{target}
       subject: Naujas skundas %{instance} (#%{id})
+    new_trends:
+      new_trending_links:
+        title: Tendencingos nuorodos
+      new_trending_statuses:
+        title: Tendencingi įrašai
+      new_trending_tags:
+        title: Tendencingos saitažodžiai
+      subject: Naujos tendencijos peržiūrimos %{instance}
   appearance:
     advanced_web_interface: Išplėstinė žiniatinklio sąsaja
     advanced_web_interface_hint: 'Jei nori išnaudoti visą ekrano plotį, išplėstinė žiniatinklio sąsaja leidžia sukonfigūruoti daug skirtingų stulpelių, kad vienu metu matytum tiek informacijos, kiek tik nori: Pagrindinis, pranešimai, federacinė laiko skalė, bet kokie sąrašai ir saitažodžiai.'
@@ -925,8 +974,8 @@ lt:
       follows_subtitle: Sek gerai žinomas paskyras.
       follows_title: Ką sekti
       follows_view_more: Peržiūrėti daugiau sekamų žmonių
-      hashtags_subtitle: Naršyk, kas tendencinga per pastarąsias 2 dienas.
-      hashtags_title: Trendingiausi saitažodžiai
+      hashtags_subtitle: Naršyk, kas tendencinga per pastarąsias 2 dienas
+      hashtags_title: Tendencingos saitažodžiai
       hashtags_view_more: Peržiūrėti daugiau tendencingų saitažodžių
       post_action: Sukurti
       post_step: Sakyk labas pasauliui tekstu, nuotraukomis, vaizdo įrašais arba apklausomis.
