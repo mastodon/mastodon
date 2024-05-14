@@ -62,6 +62,10 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
         max_featured_tags: FeaturedTag::LIMIT,
       },
 
+      vapid: {
+        public_key: Rails.configuration.x.vapid_public_key,
+      },
+
       statuses: {
         max_characters: StatusLengthValidator::MAX_CHARS,
         max_media_attachments: 4,
