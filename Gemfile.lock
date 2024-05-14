@@ -264,6 +264,11 @@ GEM
     ffi-compiler (1.3.2)
       ffi (>= 1.15.5)
       rake
+    flatware (2.2.1)
+      thor (< 2.0)
+    flatware-rspec (2.2.1)
+      flatware (= 2.2.1)
+      rspec (>= 3.6)
     fog-core (2.4.0)
       builder
       excon (~> 0.71)
@@ -701,6 +706,10 @@ GEM
       chunky_png (~> 1.0)
       rqrcode_core (~> 1.0)
     rqrcode_core (1.2.0)
+    rspec (3.13.0)
+      rspec-core (~> 3.13.0)
+      rspec-expectations (~> 3.13.0)
+      rspec-mocks (~> 3.13.0)
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.1)
@@ -933,6 +942,7 @@ DEPENDENCIES
   faker (~> 3.2)
   fast_blank (~> 1.0)
   fastimage
+  flatware-rspec
   fog-core (<= 2.4.0)
   fog-openstack (~> 1.0)
   fuubar (~> 2.5)
