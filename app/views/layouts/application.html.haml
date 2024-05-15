@@ -11,13 +11,13 @@
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
-    %link{ rel: 'icon', href: site_icon_path('favicon', 'ico') || '/favicon.ico', type: 'image/x-icon' }/
+    %link{ rel: 'icon', href: favicon_path('ico') || '/favicon.ico', type: 'image/x-icon' }/
 
     - SiteUpload::FAVICON_SIZES.each do |size|
-      %link{ rel: 'icon', sizes: "#{size}x#{size}", href: site_icon_path('favicon', size.to_i) || frontend_asset_path("icons/favicon-#{size}x#{size}.png"), type: 'image/png' }/
+      %link{ rel: 'icon', sizes: "#{size}x#{size}", href: favicon_path(size.to_i) || frontend_asset_path("icons/favicon-#{size}x#{size}.png"), type: 'image/png' }/
 
     - SiteUpload::APPLE_ICON_SIZES.each do |size|
-      %link{ rel: 'apple-touch-icon', sizes: "#{size}x#{size}", href: site_icon_path('app_icon', size.to_i) || frontend_asset_path("icons/apple-touch-icon-#{size}x#{size}.png") }/
+      %link{ rel: 'apple-touch-icon', sizes: "#{size}x#{size}", href: app_icon_path(size.to_i) || frontend_asset_path("icons/apple-touch-icon-#{size}x#{size}.png") }/
 
     %link{ rel: 'mask-icon', href: frontend_asset_path('images/logo-symbol-icon.svg'), color: '#6364FF' }/
     %link{ rel: 'manifest', href: manifest_path(format: :json) }/
