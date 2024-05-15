@@ -4602,11 +4602,19 @@ a.status-card {
     outline: $ui-button-focus-outline;
   }
 
+  .no-reduce-motion .icon {
+    transition: transform 0.15s ease-in-out;
+  }
+
   &.active {
     color: $primary-text-color;
 
     &:hover {
       color: $primary-text-color;
+    }
+
+    .icon {
+      transform: rotate(60deg);
     }
   }
 

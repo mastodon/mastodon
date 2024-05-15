@@ -350,6 +350,18 @@ ia:
       media_storage: Immagazinage de medios
       new_users: nove usatores
       opened_reports: reportos aperte
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> appello pendente"
+        other: "<strong>%{count}</strong> appellos pendente"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> reporto pendente"
+        other: "<strong>%{count}</strong> reportos pendente"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> hashtag pendente"
+        other: "<strong>%{count}</strong> hashtags pendente"
+      pending_users_html:
+        one: "<strong>%{count}</strong> usator pendente"
+        other: "<strong>%{count}</strong> usatores pendente"
       resolved_reports: reportos resolvite
       software: Software
       sources: Fontes de inscription
@@ -972,21 +984,40 @@ ia:
         silence: pro limitar lor conto
         suspend: pro suspender lor conto
       body: "%{target} appella un decision de moderation per %{action_taken_by} ab le %{date}, que era %{type}. Ille scribeva:"
+      next_steps: Tu pote approbar le appello a disfacer le decision de moderation, o ignorar lo.
+      subject: "%{username} appella un decision de moderation sur %{instance}"
     new_critical_software_updates:
+      body: Nove versiones critic de Mastodon ha essite publicate, tu poterea voler actualisar al plus tosto possibile!
       subject: Actualisationes critic de Mastodon es disponibile pro %{instance}!
+    new_pending_account:
+      body: Le detalios del nove conto es infra.
+      subject: Nove conto preste a revider sur %{instance} (%{username})
+    new_report:
+      body: "%{reporter} ha reportate %{target}"
+      body_remote: Alcuno de %{domain} ha reportate %{target}
+      subject: Nove reporto pro %{instance} (#%{id})
     new_software_updates:
       subject: Nove versiones de Mastodon es disponibile pro %{instance}!
     new_trends:
+      body: 'Le sequente elementos besoniar de un recension ante que illos pote esser monstrate publicamente:'
       new_trending_links:
         title: Ligamines de tendentia
       new_trending_statuses:
         title: Messages de tendentia
       new_trending_tags:
         title: Hashtags de tendentia
+      subject: Nove tendentias pro recenser sur %{instance}
   aliases:
     add_new: Crear alias
+    created_msg: Create con successo un nove alias. Ora tu pote initiar le motion ab le vetere conto.
+    deleted_msg: Removite con successo le alias. Mover de ille conto a isto non sera plus possibile.
+    empty: Tu non ha aliases.
+    hint_html: Si tu desira mover ab un altere conto a isto, ci tu pote crear un alias, que es requirite ante que tu pote continuar con mover sequaces ab le vetere conto a isto. Iste action per se mesme es <strong>innocue e reversibile</strong>. <strong>Le migration de conto es initiate ab le vetere conto</strong>.
+    remove: Disligar alias
   appearance:
     advanced_web_interface: Interfacie web avantiate
+    advanced_web_interface_hint: 'Si tu desira facer uso de tu integre largessa de schermo, le interfacie web avantiate te permitte de configurar plure columnas differente pro vider al mesme tempore tante informationes como tu vole: pagina principal, notificationes, chronogramma federate, ulle numero de listas e hashtags.'
+    animations_and_accessibility: Animationes e accessibilitate
     confirmation_dialogs: Dialogos de confirmation
     discovery: Discoperta
     localization:
@@ -1013,6 +1044,7 @@ ia:
   auth:
     apply_for_account: Peter un conto
     captcha_confirmation:
+      help_html: Si tu ha problemas a solver le CAPTCHA, tu pote contactar nos per %{email} e nos pote assister te.
       hint_html: Justo un altere cosa! Nos debe confirmar que tu es un human (isto es assi proque nos pote mantener foras le spam!). Solve le CAPTCHA infra e clicca "Continuar".
       title: Controlo de securitate
     confirmations:
@@ -1054,6 +1086,7 @@ ia:
     status:
       account_status: Stato del conto
       view_strikes: Examinar le admonitiones passate contra tu conto
+    use_security_key: Usar clave de securitate
   challenge:
     confirm: Continuar
     invalid_password: Contrasigno non valide
@@ -1066,13 +1099,22 @@ ia:
       x_days: "%{count}d"
       x_minutes: "%{count} m"
   deletes:
+    challenge_not_passed: Le informationes que tu ha inserite non era correcte
     confirm_password: Insere tu contrasigno actual pro verificar tu identitate
+    confirm_username: Insere tu actual contrasigno pro verificar tu identitate
     proceed: Deler le conto
     success_msg: Tu conto esseva delite con successo
     warning:
+      before: 'Insere tu nomine de usator pro confirmar le procedura:'
+      caches: Contente que ha essite in cache per altere servitores pote persister
       data_removal: Tu messages e altere datos essera removite permanentemente
       email_change_html: Tu pote <a href="%{path}">cambiar tu adresse de e-mail</a> sin deler tu conto
+      email_contact_html: Si illo ancora non arriva, tu pote inviar email a <a href="mailto:%{email}">%{email}</a> pro peter adjuta
+      email_reconfirmation_html: Si tu non recipe le email de confirmation, tu pote <a href="%{path}>requirer lo ancora</a>
+      irreversible: Tu non potera restaurar o reactivar tu conto
+      more_details_html: Pro altere detalios, vide le <a href="%{terms_path}">politica de confidentialitate</a>.
       username_available: Tu nomine de usator essera disponibile novemente
+      username_unavailable: Tu nomine de usator remanera indisponibile
   disputes:
     strikes:
       action_taken: Action prendite
@@ -1103,24 +1145,41 @@ ia:
       your_appeal_approved: Tu appello ha essite approbate
       your_appeal_pending: Tu ha submittite un appello
       your_appeal_rejected: Tu appello ha essite rejectate
+  domain_validator:
+    invalid_domain: non es un nomine de dominio valide
   edit_profile:
     basic_information: Information basic
     other: Alteres
   errors:
+    '400': Le requesta que tu inviava era non valide o mal formate.
+    '403': Tu non ha le permisso pro acceder a iste pagina.
+    '404': Le pagina que tu cerca non es ci.
+    '406': Iste pagina non es disponibile in le formato requirite.
+    '410': Le pagina que tu cercava non plus existe ci.
     '422':
       content: Le verification de securitate ha fallite. Bloca tu le cookies?
       title: Falleva le verification de securitate
+    '429': Troppe requestas
+    '500':
+      content: Nos lo regretta, ma alco errate eveniva sur nostre extremo.
+      title: Iste pagina non es correcte
+    '503': Le pagina non poteva esser servite per un panna de servitor temporari.
+    noscript_html: A usar le application web Mastodon, activa JavaScript. In alternativa, tenta un del <a href="%{apps_path}">apps native</a> de Mastodon pro tu platteforma.
   existing_username_validator:
+    not_found: impossibile trovar un usator local con ille nomine de usator
     not_found_multiple: non poteva trovar %{usernames}
   exports:
     archive_takeout:
       date: Data
       download: Discargar tu archivo
+      hint_html: Tu pote requirer un archivo de tu <strong>messages e medios cargate</strong>. Le datos exportate sera in le formato ActivityPub, legibile per ulle software conforme.
+      in_progress: Compilante tu archivo...
       size: Dimension
     blocks: Tu ha blocate
     bookmarks: Marcapaginas
     csv: CSV
     domain_blocks: Blocadas de dominio
+    lists: Listas
     mutes: Tu ha silentiate
     storage: Immagazinage de medios
   featured_tags:
@@ -1146,6 +1205,9 @@ ia:
     new:
       save: Salveguardar nove filtro
       title: Adder nove filtro
+    statuses:
+      index:
+        title: Messages filtrate
   generic:
     all: Toto
     cancel: Cancellar
@@ -1153,6 +1215,7 @@ ia:
     confirm: Confirmar
     copy: Copiar
     delete: Deler
+    none: Nemo
     order_by: Ordinar per
     save_changes: Salvar le cambios
     today: hodie
@@ -1162,6 +1225,8 @@ ia:
       invalid_csv_file: 'File CSV non valide. Error: %{error}'
       too_large: Le file es troppo longe
     failures: Fallimentos
+    modes:
+      overwrite_long: Reimplaciar registros actual con le noves
     overwrite_preambles:
       blocking_html: Tu es sur le puncto de <strong>reimplaciar tu lista de blocadas</strong> per usque a <strong>%{total_items} contos</strong> proveniente de <strong>%{filename}</strong>.
       domain_blocking_html: Tu es sur le puncto de <strong>reimplaciar tu lista de blocadas de dominio</strong> per usque a <strong>%{total_items} dominios</strong> proveniente de <strong>%{filename}</strong>.
@@ -1170,7 +1235,14 @@ ia:
       domain_blocking_html: Tu es sur le puncto de <strong>blocar</strong> usque a <strong>%{total_items} dominios</strong> a partir de <strong>%{filename}</strong>.
     preface: Tu pote importar datos que tu ha exportate de un altere servitor, como un lista de personas que tu seque o bloca.
     recent_imports: Importationes recente
+    states:
+      finished: Terminate
+      in_progress: In curso
+      scheduled: Planificate
+      unconfirmed: Non confirmate
     status: Stato
+    success: Tu datos era cargate con successo e sera processate in tempore debite
+    time_started: Initiate le
     titles:
       blocking: Importation de contos blocate
       bookmarks: Importation de marcapaginas
@@ -1186,7 +1258,9 @@ ia:
       blocking: Lista de blocadas
       bookmarks: Marcapaginas
       domain_blocking: Lista de dominios blocate
+      following: Sequente lista
       lists: Listas
+      muting: Lista del silentiates
     upload: Incargar
   invites:
     delete: Disactivar
@@ -1199,10 +1273,16 @@ ia:
       '604800': 1 septimana
       '86400': 1 die
     expires_in_prompt: Nunquam
+    generate: Generar ligamine de invitation
+    invalid: Iste invitation non es valide
+    max_uses:
+      one: un uso
+      other: "%{count} usos"
     title: Invitar personas
   login_activities:
     authentication_methods:
       password: contrasigno
+      webauthn: claves de securitate
   mail_subscriptions:
     unsubscribe:
       action: Si, desubscriber
@@ -1220,10 +1300,16 @@ ia:
       title: Desubcriber
   migrations:
     errors:
+      move_to_self: non pote esser le conto actual
       not_found: non poterea esser trovate
+  moderation:
+    title: Moderation
   move_handler:
     carry_blocks_over_text: Iste usator ha cambiate de conto desde %{acct}, que tu habeva blocate.
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} se ha inscribite"
     follow:
       title: Nove sequitor
     follow_request:
@@ -1232,16 +1318,25 @@ ia:
       action: Responder
     poll:
       subject: Un inquesta de %{name} ha finite
+  otp_authentication:
+    enable: Activar
   pagination:
     next: Sequente
   preferences:
     other: Altere
     public_timelines: Chronologias public
+  privacy:
+    privacy: Confidentialitate
+    search: Cercar
   privacy_policy:
     title: Politica de confidentialitate
   relationships:
     activity: Activitate del conto
+    invited: Invitate
     most_recent: Plus recente
+    moved: Movite
+    mutual: Mutue
+    primary: Primari
     status: Stato del conto
   rss:
     content_warning: 'Advertimento de contento:'
@@ -1273,6 +1368,7 @@ ia:
     current_session: Session actual
     date: Data
     description: "%{browser} sur %{platform}"
+    ip: IP
     platforms:
       adobe_air: Adobe Air
       android: Android
@@ -1287,6 +1383,7 @@ ia:
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
+    title: Sessiones
   settings:
     account: Conto
     account_settings: Parametros de conto
@@ -1316,6 +1413,7 @@ ia:
       vote: Votar
     show_more: Monstrar plus
     visibilities:
+      direct: Directe
       private_long: Solmente monstrar a sequitores
       public: Public
   statuses_cleanup:
@@ -1342,6 +1440,7 @@ ia:
     add: Adder
     disable: Disactivar 2FA
     edit: Modificar
+    generate_recovery_codes: Generar codices de recuperation
   user_mailer:
     appeal_approved:
       action: Parametros de conto
@@ -1350,8 +1449,11 @@ ia:
       explanation: Le appello contra le admonition contra tu conto del %{strike_date}, que tu ha submittite le %{appeal_date}, ha essite rejectate.
     warning:
       appeal: Submitter un appello
+      categories:
+        spam: Spam
       subject:
         disable: Tu conto %{acct} ha essite gelate
+        mark_statuses_as_sensitive: Tu messages sur %{acct} ha essite marcate como sensibile
         none: Advertimento pro %{acct}
         sensitive: Tu messages sur %{acct} essera marcate como sensibile a partir de ora
         silence: Tu conto %{acct} ha essite limitate
@@ -1370,8 +1472,12 @@ ia:
       apps_step: Discarga nostre applicationes official.
       apps_title: Applicationes de Mastodon
       edit_profile_action: Personalisar
+      edit_profile_step: Impulsa tu interactiones con un profilo comprehensive.
       edit_profile_title: Personalisar tu profilo
+      explanation: Ecce alcun consilios pro initiar
       feature_action: Apprender plus
+      feature_audience_title: Crea tu auditorio in fiducia
+      feature_moderation_title: Moderation como deberea esser
       follow_action: Sequer
       post_title: Face tu prime message
       share_action: Compartir
