@@ -68,7 +68,7 @@
     = render 'shared/error_messages', object: @account_moderation_note
 
     .field-group
-      = form.input :content, input_html: { placeholder: t('admin.reports.notes.placeholder', characters: AccountModerationNote::CONTENT_SIZE_LIMIT), maxlength: AccountModerationNote::CONTENT_SIZE_LIMIT, rows: 6, autofocus: @account_moderation_note.errors.any? }
+      = form.input :content, input_html: { placeholder: t('admin.reports.notes.placeholder'), maxlength: AccountModerationNote::CONTENT_SIZE_LIMIT, rows: 6, autofocus: @account_moderation_note.errors.any? }
 
     .actions
       = form.button :button, t('admin.account_moderation_notes.create'), type: :submit

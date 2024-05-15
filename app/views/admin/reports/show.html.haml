@@ -89,7 +89,7 @@
   = render 'shared/error_messages', object: @report_note
 
   .field-group
-    = form.input :content, input_html: { placeholder: t('admin.reports.notes.placeholder', characters: ReportNote::CONTENT_SIZE_LIMIT), maxlength: ReportNote::CONTENT_SIZE_LIMIT, rows: 6, autofocus: @report_note.errors.any? }
+    = form.input :content, input_html: { placeholder: t('admin.reports.notes.placeholder'), maxlength: ReportNote::CONTENT_SIZE_LIMIT, rows: 6, autofocus: @report_note.errors.any? }
 
   .actions
     - if @report.unresolved?
