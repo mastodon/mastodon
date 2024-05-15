@@ -27,8 +27,12 @@ RSpec.describe 'Apps' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(Doorkeeper::Application.find_by(name: client_name)).to be_present
-        expect(Doorkeeper::Application.find_by(name: client_name).scopes.to_s).to eq 'read write'
+
+        app = Doorkeeper::Application.find_by(name: client_name)
+
+        expect(app).to be_present
+        expect(app.scopes.to_s).to eq 'read write'
+        expect(app.redirect_uris).to eq [redirect_uris]
 
         body = body_as_json
 
@@ -137,6 +141,7 @@ RSpec.describe 'Apps' do
 
         expect(app).to be_present
         expect(app.redirect_uri).to eq redirect_uris
+        expect(app.redirect_uris).to eq redirect_uris.split
 
         body = body_as_json
 
@@ -157,6 +162,7 @@ RSpec.describe 'Apps' do
 
         expect(app).to be_present
         expect(app.redirect_uri).to eq redirect_uris.join "\n"
+        expect(app.redirect_uris).to eq redirect_uris
 
         body = body_as_json
 

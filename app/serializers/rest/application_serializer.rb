@@ -22,12 +22,6 @@ class REST::ApplicationSerializer < ActiveModel::Serializer
   # We should consider this property deprecated for 4.3.0
   delegate :redirect_uri, to: :object
 
-  def redirect_uris
-    # Doorkeeper stores the redirect_uri value as a newline delimeted list in
-    # the database:
-    object.redirect_uri.split
-  end
-
   def website
     object.website.presence
   end

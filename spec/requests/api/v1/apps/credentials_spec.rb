@@ -24,6 +24,7 @@ describe 'Credentials' do
             website: token.application.website,
             vapid_key: Rails.configuration.x.vapid_public_key,
             scopes: token.application.scopes.map(&:to_s),
+            redirect_uris: token.application.redirect_uris,
             client_id: token.application.uid
           )
         )
@@ -50,6 +51,7 @@ describe 'Credentials' do
             website: token.application.website,
             vapid_key: Rails.configuration.x.vapid_public_key,
             scopes: token.application.scopes.map(&:to_s),
+            redirect_uris: token.application.redirect_uris,
             client_id: token.application.uid
           )
         )
