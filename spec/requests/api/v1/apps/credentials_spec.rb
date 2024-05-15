@@ -29,6 +29,18 @@ describe 'Credentials' do
           )
         )
       end
+
+      it 'does not expose the client_secret' do
+        subject
+
+        expect(response).to have_http_status(200)
+
+        expect(body_as_json).to_not match(
+          a_hash_including(
+            client_secret: token.application.secret
+          )
+        )
+      end
     end
 
     context 'with a non-read scoped oauth token' do
