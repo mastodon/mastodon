@@ -14,7 +14,7 @@ describe Scheduler::UserCleanupScheduler do
     before do
       # Need to update the already-existing users because their initialization overrides confirmation_sent_at
       new_unconfirmed_user.update!(confirmed_at: nil, confirmation_sent_at: Time.now.utc)
-      old_unconfirmed_user.update!(confirmed_at: nil, confirmation_sent_at: 1.week.ago)
+      old_unconfirmed_user.update!(confirmed_at: nil, confirmation_sent_at: 10.days.ago)
       confirmed_user.update!(confirmed_at: 1.day.ago)
     end
 
