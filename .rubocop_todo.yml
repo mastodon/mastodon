@@ -170,16 +170,6 @@ Style/RedundantConstantBase:
     - 'config/initializers/sidekiq.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: SafeForConstants.
-Style/RedundantFetchBlock:
-  Exclude:
-    - 'config/initializers/1_hosts.rb'
-    - 'config/initializers/chewy.rb'
-    - 'config/initializers/devise.rb'
-    - 'config/initializers/paperclip.rb'
-    - 'config/puma.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods, MaxChainLength.
 # AllowedMethods: present?, blank?, presence, try, try!
 Style/SafeNavigation:
