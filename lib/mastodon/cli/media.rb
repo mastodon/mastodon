@@ -134,7 +134,7 @@ module Mastodon::CLI
 
             model_name      = path_segments.first.classify
             attachment_name = path_segments[1].singularize
-            record_id       = path_segments[2..-2].join.to_i
+            record_id       = path_segments[2...-2].join.to_i
             file_name       = path_segments.last
             record          = record_map.dig(model_name, record_id)
             attachment      = record&.public_send(attachment_name)
@@ -180,7 +180,7 @@ module Mastodon::CLI
           end
 
           model_name      = path_segments.first.classify
-          record_id       = path_segments[2..-2].join.to_i
+          record_id       = path_segments[2...-2].join.to_i
           attachment_name = path_segments[1].singularize
           file_name       = path_segments.last
 
@@ -311,7 +311,7 @@ module Mastodon::CLI
       end
 
       model_name = path_segments.first.classify
-      record_id  = path_segments[2..-2].join.to_i
+      record_id  = path_segments[2...-2].join.to_i
 
       unless PRELOAD_MODEL_WHITELIST.include?(model_name)
         say("Cannot find corresponding model: #{model_name}", :red)
@@ -361,7 +361,7 @@ module Mastodon::CLI
         next unless VALID_PATH_SEGMENTS_SIZE.include?(segments.size)
 
         model_name = segments.first.classify
-        record_id  = segments[2..-2].join.to_i
+        record_id  = segments[2...-2].join.to_i
 
         next unless PRELOAD_MODEL_WHITELIST.include?(model_name)
 
