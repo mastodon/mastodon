@@ -167,6 +167,16 @@ Doorkeeper.configure do
 
   grant_flows %w(authorization_code client_credentials)
 
+  # If the client is not a confidential client, it should not be able to use the
+  # client_credentials grant flow, since it cannot keep a secret.
+  allow_grant_flow_for_client do |grant_flow, client|
+    if grant_flow == Doorkeeper::OAuth::CLIENT_CREDENTIALS
+      client.confidential?
+    else
+      true
+    end
+  end
+
   # Under some circumstances you might want to have applications auto-approved,
   # so that the user skips the authorization step.
   # For example if dealing with a trusted application.
