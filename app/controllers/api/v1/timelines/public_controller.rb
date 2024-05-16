@@ -18,11 +18,11 @@ class Api::V1::Timelines::PublicController < Api::V1::Timelines::BaseController
   end
 
   def load_statuses
-    cached_public_statuses_page
+    preloaded_public_statuses_page
   end
 
-  def cached_public_statuses_page
-    cache_collection(public_statuses, Status)
+  def preloaded_public_statuses_page
+    preload_collection(public_statuses, Status)
   end
 
   def public_statuses

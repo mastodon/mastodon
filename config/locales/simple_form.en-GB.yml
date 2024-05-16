@@ -77,10 +77,15 @@ en-GB:
           warn: Hide the filtered content behind a warning mentioning the filter's title
       form_admin_settings:
         activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
+        app_icon: WEBP, PNG, GIF or JPG. Overrides the default app icon on mobile devices with a custom icon.
+        backups_retention_period: Users have the ability to generate archives of their posts to download later. When set to a positive value, these archives will be automatically deleted from your storage after the specified number of days.
         bootstrap_timeline_accounts: These accounts will be pinned to the top of new users' follow recommendations.
         closed_registrations_message: Displayed when sign-ups are closed
+        content_cache_retention_period: All posts from other servers (including boosts and replies) will be deleted after the specified number of days, without regard to any local user interaction with those posts. This includes posts where a local user has marked it as bookmarks or favorites. Private mentions between users from different instances will also be lost and impossible to restore. Use of this setting is intended for special purpose instances and breaks many user expectations when implemented for general purpose use.
         custom_css: You can apply custom styles on the web version of Mastodon.
+        favicon: WEBP, PNG, GIF or JPG. Overrides the default Mastodon favicon with a custom icon.
         mascot: Overrides the illustration in the advanced web interface.
+        media_cache_retention_period: Media files from posts made by remote users are cached on your server. When set to a positive value, media will be deleted after the specified number of days. If the media data is requested after it is deleted, it will be re-downloaded, if the source content is still available. Due to restrictions on how often link preview cards poll third-party sites, it is recommended to set this value to at least 14 days, or link preview cards will not be updated on demand before that time.
         peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: The profile directory lists all users who have opted-in to be discoverable.
         require_invite_text: When sign-ups require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
@@ -240,6 +245,7 @@ en-GB:
         backups_retention_period: User archive retention period
         bootstrap_timeline_accounts: Always recommend these accounts to new users
         closed_registrations_message: Custom message when sign-ups are not available
+        content_cache_retention_period: Remote content retention period
         custom_css: Custom CSS
         mascot: Custom mascot (legacy)
         media_cache_retention_period: Media cache retention period

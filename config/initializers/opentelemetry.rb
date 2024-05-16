@@ -53,10 +53,12 @@ if ENV.keys.any? { |name| name.match?(/OTEL_.*_ENDPOINT/) }
       },
     })
 
+    prefix = ENV.fetch('OTEL_SERVICE_NAME_PREFIX', 'mastodon')
+
     c.service_name =  case $PROGRAM_NAME
-                      when /puma/ then 'mastodon/web'
+                      when /puma/ then "#{prefix}/web"
                       else
-                        "mastodon/#{$PROGRAM_NAME.split('/').last}"
+                        "#{prefix}/#{$PROGRAM_NAME.split('/').last}"
                       end
     c.service_version = Mastodon::Version.to_s
   end
