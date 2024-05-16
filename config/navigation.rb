@@ -36,7 +36,7 @@ SimpleNavigation::Configuration.run do |navigation|
     end
 
     n.item :invites, safe_join([fa_icon('user-plus fw'), t('invites.title')]), invites_path, if: -> { current_user.can?(:invite_users) && current_user.functional? && !self_destruct }
-    n.item :development, safe_join([fa_icon('code fw'), t('settings.development')]), settings_applications_path, if: -> { current_user.functional? && !self_destruct }
+    n.item :development, safe_join([fa_icon('code fw'), t('settings.development')]), settings_applications_path, highlights_on: %r{/settings/applications}, if: -> { current_user.functional? && !self_destruct }
 
     n.item :trends, safe_join([fa_icon('fire fw'), t('admin.trends.title')]), admin_trends_statuses_path, if: -> { current_user.can?(:manage_taxonomies) && !self_destruct } do |s|
       s.item :statuses, safe_join([fa_icon('comments-o fw'), t('admin.trends.statuses.title')]), admin_trends_statuses_path, highlights_on: %r{/admin/trends/statuses}
