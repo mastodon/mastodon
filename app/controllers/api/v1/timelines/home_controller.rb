@@ -21,11 +21,11 @@ class Api::V1::Timelines::HomeController < Api::V1::Timelines::BaseController
   private
 
   def load_statuses
-    cached_home_statuses
+    preloaded_home_statuses
   end
 
-  def cached_home_statuses
-    cache_collection home_statuses, Status
+  def preloaded_home_statuses
+    preload_collection home_statuses, Status
   end
 
   def home_statuses

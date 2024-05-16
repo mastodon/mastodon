@@ -2,20 +2,20 @@
 
 require 'rails_helper'
 
-RSpec.describe CacheConcern do
+RSpec.describe PreloadingConcern do
   controller(ApplicationController) do
-    include CacheConcern
+    include PreloadingConcern
 
     def empty_array
-      render plain: cache_collection([], Status).size
+      render plain: preload_collection([], Status).size
     end
 
     def empty_relation
-      render plain: cache_collection(Status.none, Status).size
+      render plain: preload_collection(Status.none, Status).size
     end
 
     def account_statuses_favourites
-      render plain: cache_collection(Status.where(account_id: params[:id]), Status).map(&:favourites_count)
+      render plain: preload_collection(Status.where(account_id: params[:id]), Status).map(&:favourites_count)
     end
   end
 
@@ -27,7 +27,7 @@ RSpec.describe CacheConcern do
     end
   end
 
-  describe '#cache_collection' do
+  describe '#preload_collection' do
     context 'when given an empty array' do
       it 'returns an empty array' do
         get :empty_array
