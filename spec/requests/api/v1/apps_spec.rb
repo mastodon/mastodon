@@ -10,7 +10,8 @@ RSpec.describe 'Apps' do
 
     let(:client_name)   { 'Test app' }
     let(:scopes)        { 'read write' }
-    let(:redirect_uris) { 'urn:ietf:wg:oauth:2.0:oob' }
+    let(:redirect_uri)  { 'urn:ietf:wg:oauth:2.0:oob' }
+    let(:redirect_uris) { [redirect_uri] }
     let(:website)       { nil }
 
     let(:params) do
@@ -31,16 +32,23 @@ RSpec.describe 'Apps' do
         app = Doorkeeper::Application.find_by(name: client_name)
 
         expect(app).to be_present
-        expect(app.scopes.to_s).to eq 'read write'
-        expect(app.redirect_uris).to eq [redirect_uris]
+        expect(app.scopes.to_s).to eq scopes
+        expect(app.redirect_uris).to eq redirect_uris
 
-        body = body_as_json
-
-        expect(body[:id]).to eq app.id.to_s
-        expect(body[:client_id]).to be_present
-        expect(body[:client_secret]).to be_present
-        expect(body[:scopes]).to eq ['read', 'write']
-        expect(body[:redirect_uris]).to eq [redirect_uris]
+        expect(body_as_json).to match(
+          a_hash_including(
+            id: app.id.to_s,
+            client_id: app.uid,
+            client_secret: app.secret,
+            name: client_name,
+            website: website,
+            scopes: ['read', 'write'],
+            redirect_uris: redirect_uris,
+            # Deprecated properties as of 4.3:
+            redirect_uri: redirect_uri,
+            vapid_key: Rails.configuration.x.vapid_public_key
+          )
+        )
       end
     end
 
