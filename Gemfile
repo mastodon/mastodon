@@ -132,7 +132,7 @@ group :test do
   gem 'email_spec'
 
   # Extra RSpec extension methods and helpers for sidekiq
-  gem 'rspec-sidekiq', '~> 4.0'
+  gem 'rspec-sidekiq', '~> 5.0'
 
   # Browser integration testing
   gem 'capybara', '~> 3.39'
