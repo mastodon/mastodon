@@ -31,10 +31,19 @@ Doorkeeper.configure do
   # If you want to disable expiration, set this to nil.
   access_token_expires_in nil
 
-  # Assign a custom TTL for implicit grants.
-  # custom_access_token_expires_in do |oauth_client|
-  #   oauth_client.application.additional_settings.implicit_oauth_expiration
-  # end
+  # context.grant_type to compare with Doorkeeper::OAUTH grant type constants
+  # context.client for client (Doorkeeper::Application)
+  # context.scopes for scopes
+  custom_access_token_expires_in do |context|
+    # If the client is confidential (all clients pre 4.3), then we don't want to
+    # expire access tokens. Applications created by users are also considered
+    # confidential.
+    if context.client.confidential?
+      nil
+    else
+      15.minutes.to_i
+    end
+  end
 
   # Use a custom class for generating the access token.
   # https://github.com/doorkeeper-gem/doorkeeper#custom-access-token-generator
