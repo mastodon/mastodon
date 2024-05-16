@@ -27,7 +27,7 @@ class Scheduler::AutoCloseRegistrationsScheduler
     Setting.registrations_mode = 'approved'
 
     User.those_who_can(:manage_settings).includes(:account).find_each do |user|
-      AdminMailer.auto_close_registrations(recipient: user.account).deliver_later
+      AdminMailer.auto_close_registrations(user.account).deliver_later
     end
   end
 end
