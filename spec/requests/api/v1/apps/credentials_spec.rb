@@ -38,11 +38,7 @@ describe 'Credentials' do
 
         expect(response).to have_http_status(200)
 
-        expect(body_as_json).to_not match(
-          a_hash_including(
-            client_secret: token.application.secret
-          )
-        )
+        expect(body_as_json[:client_secret]).to_not be_present
       end
     end
 
