@@ -149,3 +149,5 @@ jobs:
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
+
+      - run: bin/rspec
