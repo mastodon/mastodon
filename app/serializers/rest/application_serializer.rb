@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 class REST::ApplicationSerializer < ActiveModel::Serializer
-  attributes :id, :name, :website, :scopes, :redirect_uri, :redirect_uris,
+  attributes :id, :name, :website, :scopes, :redirect_uris,
              :client_id, :client_secret
 
   # NOTE: Deprecated in 4.3.0, needs to be removed in 5.0.0
   attribute :vapid_key
+
+  # We should consider this property deprecated for 4.3.0
+  attribute :redirect_uri
 
   def id
     object.id.to_s
@@ -18,9 +21,6 @@ class REST::ApplicationSerializer < ActiveModel::Serializer
   def client_secret
     object.secret
   end
-
-  # We should consider this property deprecated for 4.3.0
-  delegate :redirect_uri, to: :object
 
   def website
     object.website.presence

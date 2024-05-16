@@ -20,12 +20,15 @@ describe 'Credentials' do
 
         expect(body_as_json).to match(
           a_hash_including(
+            id: token.application.id.to_s,
+            client_id: token.application.uid,
             name: token.application.name,
             website: token.application.website,
-            vapid_key: Rails.configuration.x.vapid_public_key,
             scopes: token.application.scopes.map(&:to_s),
             redirect_uris: token.application.redirect_uris,
-            client_id: token.application.uid
+            # Deprecated properties as of 4.3:
+            redirect_uri: token.application.redirect_uri.split.first,
+            vapid_key: Rails.configuration.x.vapid_public_key
           )
         )
       end
@@ -59,12 +62,15 @@ describe 'Credentials' do
 
         expect(body_as_json).to match(
           a_hash_including(
+            id: token.application.id.to_s,
+            client_id: token.application.uid,
             name: token.application.name,
             website: token.application.website,
-            vapid_key: Rails.configuration.x.vapid_public_key,
             scopes: token.application.scopes.map(&:to_s),
             redirect_uris: token.application.redirect_uris,
-            client_id: token.application.uid
+            # Deprecated properties as of 4.3:
+            redirect_uri: token.application.redirect_uri.split.first,
+            vapid_key: Rails.configuration.x.vapid_public_key
           )
         )
       end

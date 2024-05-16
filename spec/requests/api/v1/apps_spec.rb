@@ -36,6 +36,7 @@ RSpec.describe 'Apps' do
 
         body = body_as_json
 
+        expect(body[:id]).to eq app.id.to_s
         expect(body[:client_id]).to be_present
         expect(body[:client_secret]).to be_present
         expect(body[:scopes]).to eq ['read', 'write']
@@ -119,8 +120,19 @@ RSpec.describe 'Apps' do
       end
     end
 
-    context 'with a too-long redirect_uris' do
-      let(:redirect_uris) { "https://foo.bar/#{'hoge' * 2_000}" }
+    context 'with a too-long redirect_uri' do
+      let(:redirect_uris) { "https://app.example/#{'hoge' * 2_000}" }
+
+      it 'returns http unprocessable entity' do
+        subject
+
+        expect(response).to have_http_status(422)
+      end
+    end
+
+    # NOTE: This spec currently tests the same as the "with a too-long redirect_uri test case"
+    context 'with too many redirect_uris' do
+      let(:redirect_uris) { (0...500).map { |i| "https://app.example/#{i}/callback" } }
 
       it 'returns http unprocessable entity' do
         subject
