@@ -240,6 +240,10 @@ module ApplicationHelper
     EmojiFormatter.new(html, custom_emojis, other_options.merge(animate: prefers_autoplay?)).to_s
   end
 
+  def mascot_url
+    full_asset_url(instance_presenter.mascot&.file&.url || frontend_asset_path('images/elephant_ui_plane.svg'))
+  end
+
   def instance_presenter
     @instance_presenter ||= InstancePresenter.new
   end
