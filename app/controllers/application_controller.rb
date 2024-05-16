@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   include UserTrackingConcern
   include SessionTrackingConcern
   include CacheConcern
+  include PreloadingConcern
   include DomainControlHelper
   include ThemingConcern
   include DatabaseHelper

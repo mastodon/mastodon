@@ -15,11 +15,11 @@ class Api::V1::Timelines::DirectController < Api::BaseController
   private
 
   def load_statuses
-    cached_direct_statuses
+    preloaded_direct_statuses
   end
 
-  def cached_direct_statuses
-    cache_collection direct_statuses, Status
+  def preloaded_direct_statuses
+    preload_collection direct_statuses, Status
   end
 
   def direct_statuses

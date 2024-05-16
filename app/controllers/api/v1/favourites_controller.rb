@@ -13,11 +13,11 @@ class Api::V1::FavouritesController < Api::BaseController
   private
 
   def load_statuses
-    cached_favourites
+    preloaded_favourites
   end
 
-  def cached_favourites
-    cache_collection(results.map(&:status), Status)
+  def preloaded_favourites
+    preload_collection(results.map(&:status), Status)
   end
 
   def results

@@ -4,6 +4,7 @@ ia:
     attributes:
       doorkeeper/application:
         name: Nomine de application
+        scopes: Ambitos
         website: Sito web de application
     errors:
       models:
@@ -28,12 +29,14 @@ ia:
         empty: Tu non ha applicationes.
         name: Nomine
         new: Nove application
+        scopes: Ambitos
         show: Monstrar
         title: Tu applicationes
       new:
         title: Nove application
       show:
         actions: Actiones
+        application_id: Clave del cliente
         scopes: Ambitos
         title: 'Application: %{name}'
     authorizations:
@@ -42,13 +45,20 @@ ia:
         deny: Negar
       error:
         title: Ocurreva un error
+      new:
+        review_permissions: Revisionar le permissos
+        title: Autorisation necessari
     authorized_applications:
+      buttons:
+        revoke: Revocar
       confirmations:
         revoke: Es tu secur?
       index:
+        authorized_at: Autorisate le %{date}
         last_used_at: Ultime uso in %{date}
         never_used: Nunquam usate
         scopes: Permissiones
+        superapp: Interne
         title: Tu applicationes autorisate
     flash:
       applications:
@@ -58,12 +68,21 @@ ia:
           notice: Application delite.
         update:
           notice: Application actualisate.
+      authorized_applications:
+        destroy:
+          notice: Application revocate.
     grouped_scopes:
+      access:
+        read: Accesso de sol lectura
+        read/write: Accesso de lectura e scriptura
+        write: Accesso de sol scriptura
       title:
         accounts: Contos
         admin/accounts: Gestion de contos
+        admin/all: Tote le functiones administrative
         admin/reports: Gestion de reportos
         all: Accesso plen a tu conto de Mastodon
+        blocks: Blocadas
         bookmarks: Marcapaginas
         conversations: Conversationes
         favourites: Favoritos
@@ -84,7 +103,9 @@ ia:
           oauth2_provider: Fornitor OAuth2
     scopes:
       admin:read: leger tote le datos in le servitor
+      admin:read:accounts: leger information sensibile de tote le contos
       admin:write: modificar tote le datos in le servitor
+      follow: modificar relationes del contos
       read: leger tote le datos de tu conto
       read:accounts: vider informationes de conto
       read:bookmarks: vider tu marcapaginas

@@ -18,7 +18,7 @@ class ActivityPub::CollectionsController < ActivityPub::BaseController
   def set_items
     case params[:id]
     when 'featured'
-      @items = for_signed_account { cache_collection(@account.pinned_statuses.not_local_only, Status) }
+      @items = for_signed_account { preload_collection(@account.pinned_statuses.not_local_only, Status) }
       @items = @items.map { |item| item.distributable? ? item : ActivityPub::TagManager.instance.uri_for(item) }
     when 'tags'
       @items = for_signed_account { @account.featured_tags }

@@ -26,13 +26,13 @@ class Api::V1::StatusesController < Api::BaseController
   DESCENDANTS_DEPTH_LIMIT = 20
 
   def index
-    @statuses = cache_collection(@statuses, Status)
+    @statuses = preload_collection(@statuses, Status)
     render json: @statuses, each_serializer: REST::StatusSerializer
   end
 
   def show
     cache_if_unauthenticated!
-    @status = cache_collection([@status], Status).first
+    @status = preload_collection([@status], Status).first
     render json: @status, serializer: REST::StatusSerializer
   end
 
@@ -51,8 +51,8 @@ class Api::V1::StatusesController < Api::BaseController
 
     ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(ancestors_limit, current_account)
     descendants_results = @status.descendants(descendants_limit, current_account, descendants_depth_limit)
-    loaded_ancestors    = cache_collection(ancestors_results, Status)
-    loaded_descendants  = cache_collection(descendants_results, Status)
+    loaded_ancestors    = preload_collection(ancestors_results, Status)
+    loaded_descendants  = preload_collection(descendants_results, Status)
 
     @context = Context.new(ancestors: loaded_ancestors, descendants: loaded_descendants)
     statuses = [@status] + @context.ancestors + @context.descendants
