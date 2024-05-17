@@ -59,6 +59,7 @@ class Admin::ActionLogFilter
     unsuspend_account: { target_type: 'Account', action: 'unsuspend' }.freeze,
     update_announcement: { target_type: 'Announcement', action: 'update' }.freeze,
     update_custom_emoji: { target_type: 'CustomEmoji', action: 'update' }.freeze,
+    update_report: { target_type: 'Report', action: 'update' }.freeze,
     update_status: { target_type: 'Status', action: 'update' }.freeze,
     update_user_role: { target_type: 'UserRole', action: 'update' }.freeze,
     update_ip_block: { target_type: 'IpBlock', action: 'update' }.freeze,
