@@ -23,6 +23,12 @@ module ApplicationExtension
     redirect_uri.lines.first.strip
   end
 
+  def redirect_uris
+    # Doorkeeper stores the redirect_uri value as a newline delimeted list in
+    # the database:
+    redirect_uri.split
+  end
+
   def push_to_streaming_api
     # TODO: #28793 Combine into a single topic
     payload = Oj.dump(event: :kill)
