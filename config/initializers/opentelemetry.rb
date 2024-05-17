@@ -51,6 +51,9 @@ if ENV.keys.any? { |name| name.match?(/OTEL_.*_ENDPOINT/) }
         use_rack_events: false, # instead of events, use middleware; allows for untraced_endpoints to ignore child spans
         untraced_endpoints: ['/health'],
       },
+      'OpenTelemetry::Instrumentation::Sidekiq' => {
+        span_naming: :job_class, # Use the job class as the span name, otherwise this is the queue name and not very helpful
+      },
     })
 
     prefix = ENV.fetch('OTEL_SERVICE_NAME_PREFIX', 'mastodon')
