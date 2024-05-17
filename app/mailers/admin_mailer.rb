@@ -47,4 +47,13 @@ class AdminMailer < ApplicationMailer
       mail to: @me.user_email, subject: I18n.t('admin_mailer.new_trends.subject', instance: @instance)
     end
   end
+
+  def auto_close_registrations(recipient)
+    @me       = recipient
+    @instance = Rails.configuration.x.local_domain
+
+    locale_for_account(@me) do
+      mail to: @me.user_email, subject: I18n.t('admin_mailer.auto_close_registrations.subject', instance: @instance)
+    end
+  end
 end

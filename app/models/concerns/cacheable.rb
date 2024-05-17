@@ -14,6 +14,10 @@ module Cacheable
       includes(@cache_associated)
     end
 
+    def preload_cacheable_associations(records)
+      ActiveRecord::Associations::Preloader.new.preload(records, @cache_associated)
+    end
+
     def cache_ids
       select(:id, :updated_at)
     end

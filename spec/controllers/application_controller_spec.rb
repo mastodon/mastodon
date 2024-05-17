@@ -242,37 +242,4 @@ describe ApplicationController, type: :controller do
 
     include_examples 'respond_with_error', 422
   end
-
-  describe 'cache_collection' do
-    class C < ApplicationController
-      public :cache_collection
-    end
-
-    shared_examples 'receives :with_includes' do |fabricator, klass|
-      it 'uses raw if it is not an ActiveRecord::Relation' do
-        record = Fabricate(fabricator)
-        expect(C.new.cache_collection([record], klass)).to eq [record]
-      end
-    end
-
-    shared_examples 'cacheable' do |fabricator, klass|
-      include_examples 'receives :with_includes', fabricator, klass
-
-      it 'calls cache_ids of raw if it is an ActiveRecord::Relation' do
-        record = Fabricate(fabricator)
-        relation = klass.none
-        allow(relation).to receive(:cache_ids).and_return([record])
-        expect(C.new.cache_collection(relation, klass)).to eq [record]
-      end
-    end
-
-    it 'returns raw unless class responds to :with_includes' do
-      raw = Object.new
-      expect(C.new.cache_collection(raw, Object)).to eq raw
-    end
-
-    context 'Status' do
-      include_examples 'cacheable', :status, Status
-    end
-  end
 end
