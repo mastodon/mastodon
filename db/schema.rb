@@ -551,19 +551,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_094856) do
     t.index ["user_id"], name: "index_identities_on_user_id"
   end
 
-  create_table "imports", force: :cascade do |t|
-    t.integer "type", null: false
-    t.boolean "approved", default: false, null: false
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.string "data_file_name"
-    t.string "data_content_type"
-    t.integer "data_file_size"
-    t.datetime "data_updated_at", precision: nil
-    t.bigint "account_id", null: false
-    t.boolean "overwrite", default: false, null: false
-  end
-
   create_table "invites", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "code", default: "", null: false
@@ -1321,7 +1308,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_094856) do
   add_foreign_key "follows", "accounts", name: "fk_32ed1b5560", on_delete: :cascade
   add_foreign_key "generated_annual_reports", "accounts"
   add_foreign_key "identities", "users", name: "fk_bea040f377", on_delete: :cascade
-  add_foreign_key "imports", "accounts", name: "fk_6db1b6e408", on_delete: :cascade
   add_foreign_key "invites", "users", on_delete: :cascade
   add_foreign_key "list_accounts", "accounts", on_delete: :cascade
   add_foreign_key "list_accounts", "follow_requests", on_delete: :cascade
