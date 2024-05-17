@@ -163,7 +163,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
       def cleanable_statuses_count
         Status
           .where(account_id: [account_alice, account_chris, account_erin]) # Accounts with enabled policies
-          .where('created_at < ?', 2.weeks.ago) # Policy defaults is 2.weeks
+          .where(created_at: ...2.weeks.ago) # Policy defaults is 2.weeks
           .count
       end
     end
