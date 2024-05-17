@@ -5,7 +5,6 @@ class UserMailer < Devise::Mailer
 
   helper :accounts
   helper :application
-  helper :mascot
   helper :formatting
   helper :instance
   helper :routing
