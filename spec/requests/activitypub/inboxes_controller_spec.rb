@@ -34,12 +34,14 @@ RSpec.describe ActivityPub::InboxesController do
       -----END RSA PRIVATE KEY-----
     PEM_TEXT
   end
+  let(:remote_actor_original_username) { 'original_username' }
   let(:remote_actor) do
     Fabricate(:account,
               domain: 'remote.domain',
               uri: 'https://remote.domain/users/bob',
               private_key: nil,
               public_key: remote_actor_keypair.public_key.to_pem,
+              username: remote_actor_original_username,
               protocol: 1) # activitypub
   end
   let(:local_actor) { Fabricate(:account) }
@@ -90,12 +92,13 @@ RSpec.describe ActivityPub::InboxesController do
   end
 
   context 'when remote actor username has changed' do
+    let(:remote_actor_new_username) { 'new_username' }
     let(:remote_actor_json) do
       {
         '@context': 'https://www.w3.org/ns/activitystreams',
         id: remote_actor.uri,
         type: 'Person',
-        preferredUsername: 'new_username',
+        preferredUsername: remote_actor_new_username,
         inbox: "#{remote_actor.uri}#inbox",
         publicKey: {
           id: "#{remote_actor.uri}#main-key",
@@ -129,6 +132,8 @@ RSpec.describe ActivityPub::InboxesController do
       post "/users/#{local_actor.username}/inbox", params: json.to_json, headers: headers
       expect(response).to have_http_status(202)
       expect(Status.exists?(uri: object_json[:id])).to be(true)
+      # we don't expect the remote actor username to change
+      expect(remote_actor.reload.username).to eq(remote_actor_original_username)
     end
   end
 
