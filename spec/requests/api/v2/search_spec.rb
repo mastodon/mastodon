@@ -93,6 +93,82 @@ RSpec.describe 'Search API' do
             expect(response.parsed_body[:accounts].pluck(:id)).to contain_exactly(ana.id.to_s)
           end
         end
+
+        context 'when a remote actor username has changed' do
+          let(:remote_actor_original_username) { 'original_username' }
+          let(:remote_actor) do
+            Fabricate(:account,
+                      domain: 'remote.domain',
+                      uri: 'https://remote.domain/users/bob',
+                      private_key: nil,
+                      username: remote_actor_original_username,
+                      protocol: 1) # activitypub
+          end
+          let(:remote_actor_new_username) { 'new_username' }
+          let(:remote_actor_json) do
+            {
+              '@context': 'https://www.w3.org/ns/activitystreams',
+              id: remote_actor.uri,
+              type: 'Person',
+              preferredUsername: remote_actor_new_username,
+              inbox: "#{remote_actor.uri}#inbox",
+            }.with_indifferent_access
+          end
+          let(:remote_actor_new_handle) { "#{remote_actor_new_username}@remote.domain" }
+          let(:params) { { q: remote_actor_new_handle, resolve: '1' } }
+          let(:webfinger_response) do
+            {
+              subject: "acct:#{remote_actor_new_handle}",
+              links: [
+                {
+                  rel: 'self',
+                  type: 'application/activity+json',
+                  href: remote_actor.uri,
+                },
+              ],
+            }
+          end
+
+          before do
+            sign_in(user)
+            stub_request(:get, "https://remote.domain/.well-known/webfinger?resource=acct:#{remote_actor_new_handle}")
+              .to_return(
+                body: webfinger_response.to_json,
+                headers: {
+                  'Content-Type' => 'application/json',
+                },
+                status: 200
+              )
+            stub_request(:get, remote_actor.uri)
+              .to_return(
+                body: remote_actor_json.to_json,
+                headers: {
+                  'Content-Type' => 'application/activity+json',
+                },
+                status: 200
+              )
+          end
+
+          it 'does not increase the number of accounts' do
+            Sidekiq::Testing.inline!
+            expect do
+              get '/api/v2/search', headers: headers, params: params
+            end.to(not_change { Account.count })
+          end
+
+          it 'merges the old account with the new account' do
+            Sidekiq::Testing.inline!
+            tom.follow!(remote_actor)
+            get '/api/v2/search', headers: headers, params: params
+            expect(Account.exists?(id: remote_actor.id)).to be(false)
+            new_remote_actor = Account.find_by(
+              uri: remote_actor.uri,
+              username: remote_actor_new_username
+            )
+            expect(new_remote_actor.present?).to be(true)
+            expect(tom.following?(new_remote_actor)).to be(true)
+          end
+        end
       end
 
       context 'when search raises syntax error' do
