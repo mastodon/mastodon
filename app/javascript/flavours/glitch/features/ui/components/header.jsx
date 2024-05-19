@@ -14,6 +14,7 @@ import { Avatar } from 'flavours/glitch/components/avatar';
 import { Icon } from 'flavours/glitch/components/icon';
 import { WordmarkLogo, SymbolLogo } from 'flavours/glitch/components/logo';
 import { Permalink } from 'flavours/glitch/components/permalink';
+import { identityContextPropShape, withIdentity } from 'flavours/glitch/identity_context';
 import { registrationsOpen, me, sso_redirect } from 'flavours/glitch/initial_state';
 
 const Account = connect(state => ({
@@ -42,12 +43,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Header extends PureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     openClosedRegistrationsModal: PropTypes.func,
     location: PropTypes.object,
     signupUrl: PropTypes.string.isRequired,
@@ -61,7 +58,7 @@ class Header extends PureComponent {
   }
 
   render () {
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
     const { location, openClosedRegistrationsModal, signupUrl, intl } = this.props;
 
     let content;
@@ -122,4 +119,4 @@ class Header extends PureComponent {
 
 }
 
-export default injectIntl(withRouter(connect(mapStateToProps, mapDispatchToProps)(Header)));
+export default injectIntl(withRouter(withIdentity(connect(mapStateToProps, mapDispatchToProps)(Header))));

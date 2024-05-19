@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
 import { Helmet } from 'react-helmet';
@@ -15,6 +14,7 @@ import { connectUserStream } from 'flavours/glitch/actions/streaming';
 import ErrorBoundary from 'flavours/glitch/components/error_boundary';
 import { Router } from 'flavours/glitch/components/router';
 import UI from 'flavours/glitch/features/ui';
+import { IdentityContext, createIdentityContext } from 'flavours/glitch/identity_context';
 import initialState, { title as siteTitle } from 'flavours/glitch/initial_state';
 import { IntlProvider } from 'flavours/glitch/locales';
 import { store } from 'flavours/glitch/store';
@@ -33,32 +33,8 @@ if (initialState.meta.me) {
   store.dispatch(fetchCustomEmojis());
 }
 
-const createIdentityContext = state => ({
-  signedIn: !!state.meta.me,
-  accountId: state.meta.me,
-  disabledAccountId: state.meta.disabled_account_id,
-  accessToken: state.meta.access_token,
-  permissions: state.role ? state.role.permissions : 0,
-});
-
 export default class Mastodon extends PureComponent {
-
-  static childContextTypes = {
-    identity: PropTypes.shape({
-      signedIn: PropTypes.bool.isRequired,
-      accountId: PropTypes.string,
-      disabledAccountId: PropTypes.string,
-      accessToken: PropTypes.string,
-    }).isRequired,
-  };
-
   identity = createIdentityContext(initialState);
-
-  getChildContext() {
-    return {
-      identity: this.identity,
-    };
-  }
 
   componentDidMount() {
     if (this.identity.signedIn) {
@@ -79,19 +55,21 @@ export default class Mastodon extends PureComponent {
 
   render () {
     return (
-      <IntlProvider>
-        <ReduxProvider store={store}>
-          <ErrorBoundary>
-            <Router>
-              <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
-                <Route path='/' component={UI} />
-              </ScrollContext>
-            </Router>
+      <IdentityContext.Provider value={this.identity}>
+        <IntlProvider>
+          <ReduxProvider store={store}>
+            <ErrorBoundary>
+              <Router>
+                <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
+                  <Route path='/' component={UI} />
+                </ScrollContext>
+              </Router>
 
-            <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
-          </ErrorBoundary>
-        </ReduxProvider>
-      </IntlProvider>
+              <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
+            </ErrorBoundary>
+          </ReduxProvider>
+        </IntlProvider>
+      </IdentityContext.Provider>
     );
   }
 
