@@ -56,7 +56,7 @@ class FetchLinkCardService < BaseService
 
       @html_charset = res.charset
 
-      res.body_with_limit
+      res.truncated_body
     end
   end
 
