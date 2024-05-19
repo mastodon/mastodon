@@ -224,18 +224,16 @@ class Request
       contents = String.new(encoding: encoding)
 
       while (chunk = readpartial)
+        break if contents.bytesize + chunk.bytesize > limit
+
         contents << chunk
         chunk.clear
-
-        break if contents.bytesize > limit
       end
 
       contents
     end
 
     def body_with_limit(limit = 1.megabyte)
-      raise Mastodon::LengthValidationError if content_length.present? && content_length > limit
-
       contents = truncated_body(limit)
       raise Mastodon::LengthValidationError if contents.bytesize > limit
 
