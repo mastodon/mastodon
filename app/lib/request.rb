@@ -235,13 +235,11 @@ class Request
 
     def body_with_limit(limit = 1.megabyte)
       contents = truncated_body(limit)
-
       begin
         raise Mastodon::LengthValidationError if contents.bytesize > limit
       rescue Mastodon::LengthValidationError
-        # Raise but continue
+        # Raise but continue and return contents
       end
-    
       contents
     end
   end
