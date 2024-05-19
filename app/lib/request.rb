@@ -224,10 +224,10 @@ class Request
       contents = String.new(encoding: encoding)
 
       while (chunk = readpartial)
-        break if contents.bytesize + chunk.bytesize > limit
-
         contents << chunk
         chunk.clear
+
+        break if contents.bytesize > limit
       end
 
       contents
