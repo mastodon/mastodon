@@ -18,7 +18,13 @@ class MigrateDeviseTwoFactorSecrets < ActiveRecord::Migration[7.1]
     users_with_otp_enabled.find_each do |user|
       # Gets the new value on already-updated users
       # Falls back to legacy value on not-yet-migrated users
-      otp_secret = user.otp_secret
+      otp_secret = begin
+        user.otp_secret
+      rescue OpenSSL::OpenSSLError
+        next if ENV['MIGRATION_IGNORE_INVALID_OTP_SECRET'] == 'true'
+
+        abort_with_decryption_error(user)
+      end
 
       Rails.logger.debug { "Processing #{user.email}" }
 
@@ -35,5 +41,23 @@ class MigrateDeviseTwoFactorSecrets < ActiveRecord::Migration[7.1]
 
   def users_with_otp_enabled
     MigrationUser.where(otp_required_for_login: true, otp_secret: nil)
+  end
+
+  def abort_with_decryption_error(user)
+    abort <<~MESSAGE
+
+      ERROR: Unable to decrypt OTP secret for user #{user.id}.
+
+      This is most likely because you have changed the value of `OTP_SECRET` at some point in
+      time after the user configured 2FA.
+
+      In this case, their OTP secret had already been lost with the change to `OTP_SECRET`, and
+      proceeding with this migration will not make the situation worse.
+
+      Please double-check that you have not accidentally changed `OTP_SECRET` just for this
+      migration, and re-run the migration with `MIGRATION_IGNORE_INVALID_OTP_SECRET=true`.
+
+      Migration aborted.
+    MESSAGE
   end
 end
