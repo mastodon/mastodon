@@ -13,7 +13,7 @@ describe Rack::Attack, type: :request do
       # to avoid crossing period boundaries.
 
       # The code Rack::Attack uses to set periods is the following:
-      # https://github.com/rack/rack-attack/blob/v6.6.1/lib/rack/attack/cache.rb#L64-L66
+      # https://github.com/rack/rack-attack/blob/v6.7.0/lib/rack/attack/cache.rb#L70-L72
       # So we want to minimize `Time.now.to_i % period`
 
       travel_to Time.zone.at(counter_prefix * period.seconds)

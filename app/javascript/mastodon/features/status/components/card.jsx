@@ -92,6 +92,10 @@ export default class Card extends PureComponent {
     this.setState({ embedded: true });
   };
 
+  handleExternalLinkClick = (e) => {
+    e.stopPropagation();
+  };
+
   setRef = c => {
     this.node = c;
   };
@@ -201,7 +205,7 @@ export default class Card extends PureComponent {
               <div className='status-card__actions' onClick={this.handleEmbedClick} role='none'>
                 <div>
                   <button type='button' onClick={this.handleEmbedClick}><Icon id='play' icon={PlayArrowIcon} /></button>
-                  <a href={card.get('url')} target='_blank' rel='noopener noreferrer'><Icon id='external-link' icon={OpenInNewIcon} /></a>
+                  <a href={card.get('url')} onClick={this.handleExternalLinkClick} target='_blank' rel='noopener noreferrer'><Icon id='external-link' icon={OpenInNewIcon} /></a>
                 </div>
               </div>
             ) : spoilerButton}

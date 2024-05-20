@@ -40,6 +40,7 @@ require_relative '../lib/mastodon/rack_middleware'
 require_relative '../lib/public_file_server_middleware'
 require_relative '../lib/devise/strategies/two_factor_ldap_authenticatable'
 require_relative '../lib/devise/strategies/two_factor_pam_authenticatable'
+require_relative '../lib/elasticsearch/client_extensions'
 require_relative '../lib/chewy/settings_extensions'
 require_relative '../lib/chewy/index_extensions'
 require_relative '../lib/chewy/strategy/mastodon'
@@ -50,13 +51,8 @@ require_relative '../lib/rails/engine_extensions'
 require_relative '../lib/active_record/database_tasks_extensions'
 require_relative '../lib/active_record/batches'
 require_relative '../lib/simple_navigation/item_extensions'
-require_relative '../lib/http_extensions'
-
-Dotenv::Railtie.load
 
 Bundler.require(:pam_authentication) if ENV['PAM_ENABLED'] == 'true'
-
-require_relative '../lib/mastodon/redis_config'
 
 module Mastodon
   class Application < Rails::Application
@@ -97,6 +93,10 @@ module Mastodon
 
     initializer :deprecator do |app|
       app.deprecators[:mastodon] = ActiveSupport::Deprecation.new('4.3', 'mastodon/mastodon')
+    end
+
+    config.before_configuration do
+      require 'mastodon/redis_config'
     end
 
     config.to_prepare do

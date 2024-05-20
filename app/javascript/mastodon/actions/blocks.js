@@ -12,8 +12,6 @@ export const BLOCKS_EXPAND_REQUEST = 'BLOCKS_EXPAND_REQUEST';
 export const BLOCKS_EXPAND_SUCCESS = 'BLOCKS_EXPAND_SUCCESS';
 export const BLOCKS_EXPAND_FAIL    = 'BLOCKS_EXPAND_FAIL';
 
-export const BLOCKS_INIT_MODAL = 'BLOCKS_INIT_MODAL';
-
 export function fetchBlocks() {
   return (dispatch, getState) => {
     dispatch(fetchBlocksRequest());
@@ -90,11 +88,12 @@ export function expandBlocksFail(error) {
 
 export function initBlockModal(account) {
   return dispatch => {
-    dispatch({
-      type: BLOCKS_INIT_MODAL,
-      account,
-    });
-
-    dispatch(openModal({ modalType: 'BLOCK' }));
+    dispatch(openModal({
+      modalType: 'BLOCK',
+      modalProps: {
+        accountId: account.get('id'),
+        acct: account.get('acct'),
+      },
+    }));
   };
 }

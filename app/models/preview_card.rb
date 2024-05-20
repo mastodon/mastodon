@@ -47,8 +47,8 @@ class PreviewCard < ApplicationRecord
 
   self.inheritance_column = false
 
-  enum type: { link: 0, photo: 1, video: 2, rich: 3 }
-  enum link_type: { unknown: 0, article: 1 }
+  enum :type, { link: 0, photo: 1, video: 2, rich: 3 }
+  enum :link_type, { unknown: 0, article: 1 }
 
   has_many :preview_cards_statuses, dependent: :delete_all, inverse_of: :preview_card
   has_many :statuses, through: :preview_cards_statuses

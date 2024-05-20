@@ -72,11 +72,7 @@ class Header extends ImmutablePureComponent {
   };
 
   handleBlockDomain = () => {
-    const domain = this.props.account.get('acct').split('@')[1];
-
-    if (!domain) return;
-
-    this.props.onBlockDomain(domain);
+    this.props.onBlockDomain(this.props.account);
   };
 
   handleUnblockDomain = () => {

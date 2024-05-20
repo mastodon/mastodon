@@ -2,7 +2,7 @@
 af:
   about:
     contact_missing: Nie ingestel nie
-    contact_unavailable: NVT
+    contact_unavailable: n.v.t
     hosted_on: Mastodon gehuisves op %{domain}
     title: Aangaande
   accounts:
@@ -23,13 +23,18 @@ af:
     account_moderation_notes:
       create: Los nota
     accounts:
+      email: E-pos
+      ip: IP
       location:
         local: Plaaslik
       moderation:
         silenced: Beperk
+      reset_password: Herstel wagwoord
       search: Soek
       silenced: Beperk
     action_logs:
+      action_types:
+        reset_password_user: Herstel Wagwoord
       actions:
         silence_account_html: "%{name} het %{target} se rekening beperk"
       deleted_account: geskrapte rekening
@@ -97,6 +102,7 @@ af:
   auth:
     apply_for_account: Doen aansoek om ’n rekening
     logout: Teken uit
+    reset_password: Herstel wagwoord
   datetime:
     distance_in_words:
       about_x_hours: "%{count} uur"
@@ -121,6 +127,8 @@ af:
     invalid: Hierdie uitnodiging is nie geldig nie
     title: Nooi ander
   login_activities:
+    authentication_methods:
+      password: wagwoord
     description_html: Indien jy onbekende aktiwiteite gewaar, oorweeg dit om jou wagwoord te verander en tweefaktorverifikasie te aktiveer.
   navigation:
     toggle_menu: Wisselkieslys
@@ -165,5 +173,3 @@ af:
     warning:
       title:
         silence: Rekening beperk
-    welcome:
-      edit_profile_action: Stel profiel op

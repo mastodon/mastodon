@@ -41,7 +41,7 @@ class Api::V1::NotificationsController < Api::BaseController
     )
 
     Notification.preload_cache_collection_target_statuses(notifications) do |target_statuses|
-      cache_collection(target_statuses, Status)
+      preload_collection(target_statuses, Status)
     end
   end
 
@@ -49,16 +49,13 @@ class Api::V1::NotificationsController < Api::BaseController
     current_account.notifications.without_suspended.browserable(
       types: Array(browserable_params[:types]),
       exclude_types: Array(browserable_params[:exclude_types]),
-      from_account_id: browserable_params[:account_id]
+      from_account_id: browserable_params[:account_id],
+      include_filtered: truthy_param?(:include_filtered)
     )
   end
 
   def target_statuses_from_notifications
     @notifications.reject { |notification| notification.target_status.nil? }.map(&:target_status)
-  end
-
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
   end
 
   def next_path
@@ -69,19 +66,15 @@ class Api::V1::NotificationsController < Api::BaseController
     api_v1_notifications_url pagination_params(min_id: pagination_since_id) unless @notifications.empty?
   end
 
-  def pagination_max_id
-    @notifications.last.id
-  end
-
-  def pagination_since_id
-    @notifications.first.id
+  def pagination_collection
+    @notifications
   end
 
   def browserable_params
-    params.permit(:account_id, types: [], exclude_types: [])
+    params.permit(:account_id, :include_filtered, types: [], exclude_types: [])
   end
 
   def pagination_params(core_params)
-    params.slice(:limit, :account_id, :types, :exclude_types).permit(:limit, :account_id, types: [], exclude_types: []).merge(core_params)
+    params.slice(:limit, :account_id, :types, :exclude_types, :include_filtered).permit(:limit, :account_id, :include_filtered, types: [], exclude_types: []).merge(core_params)
   end
 end

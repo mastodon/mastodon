@@ -9,6 +9,22 @@ describe '/api/v1/statuses' do
     let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, application: client_app, scopes: scopes) }
     let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
+    describe 'GET /api/v1/statuses?ids[]=:id' do
+      let(:status) { Fabricate(:status) }
+      let(:other_status) { Fabricate(:status) }
+      let(:scopes) { 'read:statuses' }
+
+      it 'returns expected response' do
+        get '/api/v1/statuses', headers: headers, params: { ids: [status.id, other_status.id, 123_123] }
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json).to contain_exactly(
+          hash_including(id: status.id.to_s),
+          hash_including(id: other_status.id.to_s)
+        )
+      end
+    end
+
     describe 'GET /api/v1/statuses/:id' do
       subject do
         get "/api/v1/statuses/#{status.id}", headers: headers
@@ -165,6 +181,16 @@ describe '/api/v1/statuses' do
           expect(response).to have_http_status(429)
           expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
           expect(response.headers['X-RateLimit-Remaining']).to eq '0'
+        end
+      end
+
+      context 'with missing thread' do
+        let(:params) { { status: 'Hello world', in_reply_to_id: 0 } }
+
+        it 'returns http not found' do
+          subject
+
+          expect(response).to have_http_status(404)
         end
       end
     end

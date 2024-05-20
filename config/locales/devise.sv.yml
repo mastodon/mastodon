@@ -12,6 +12,7 @@ sv:
       last_attempt: Du har ytterligare ett försök innan ditt konto är låst.
       locked: Ditt konto är låst.
       not_found_in_database: Ogiltigt %{authentication_keys} eller lösenord.
+      omniauth_user_creation_failure: Fel vid skapande av ett konto för denna identitet.
       pending: Ditt konto granskas fortfarande.
       timeout: Din session har avslutats. Vänligen logga in igen för att fortsätta.
       unauthenticated: Du måste logga in eller registrera dig innan du fortsätter.
@@ -74,9 +75,11 @@ sv:
           title: En av dina säkerhetsnycklar har raderats
       webauthn_disabled:
         explanation: Autentisering med säkerhetsnycklar har inaktiverats för ditt konto.
+        extra: Inloggning är nu möjligt med endast den token som genereras av den parade TOTP-appen.
         subject: 'Mastodon: Autentisering med säkerhetsnycklar är inaktiverat'
         title: Säkerhetsnycklar inaktiverade
       webauthn_enabled:
+        explanation: Autentisering med säkerhetsnyckel har aktiverats för ditt konto.
         extra: Din säkerhetsnyckel kan nu användas för inloggning.
         subject: 'Mastodon: Autentisering med säkerhetsnyckel är aktiverat'
         title: Säkerhetsnycklar aktiverade

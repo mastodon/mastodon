@@ -45,6 +45,7 @@ import {
   INIT_MEDIA_EDIT_MODAL,
   COMPOSE_CHANGE_MEDIA_DESCRIPTION,
   COMPOSE_CHANGE_MEDIA_FOCUS,
+  COMPOSE_CHANGE_MEDIA_ORDER,
   COMPOSE_SET_STATUS,
   COMPOSE_FOCUS,
 } from '../actions/compose';
@@ -280,12 +281,12 @@ const updateSuggestionTags = (state, token) => {
   });
 };
 
-const updatePoll = (state, index, value) => state.updateIn(['poll', 'options'], options => {
+const updatePoll = (state, index, value, maxOptions) => state.updateIn(['poll', 'options'], options => {
   const tmp = options.set(index, value).filterNot(x => x.trim().length === 0);
 
   if (tmp.size === 0) {
     return tmp.push('').push('');
-  } else if (tmp.size < 4) {
+  } else if (tmp.size < maxOptions) {
     return tmp.push('');
   }
 
@@ -315,8 +316,8 @@ export default function compose(state = initialState, action) {
       map.set('spoiler', !state.get('spoiler'));
       map.set('idempotencyKey', uuid());
 
-      if (!state.get('sensitive') && state.get('media_attachments').size >= 1) {
-        map.set('sensitive', true);
+      if (state.get('media_attachments').size >= 1 && !state.get('default_sensitive')) {
+        map.set('sensitive', !state.get('spoiler'));
       }
     });
   case COMPOSE_SPOILER_TEXT_CHANGE:
@@ -529,13 +530,21 @@ export default function compose(state = initialState, action) {
   case COMPOSE_POLL_REMOVE:
     return state.set('poll', null);
   case COMPOSE_POLL_OPTION_CHANGE:
-    return updatePoll(state, action.index, action.title);
+    return updatePoll(state, action.index, action.title, action.maxOptions);
   case COMPOSE_POLL_SETTINGS_CHANGE:
     return state.update('poll', poll => poll.set('expires_in', action.expiresIn).set('multiple', action.isMultiple));
   case COMPOSE_LANGUAGE_CHANGE:
     return state.set('language', action.language);
   case COMPOSE_FOCUS:
     return state.set('focusDate', new Date()).update('text', text => text.length > 0 ? text : action.defaultText);
+  case COMPOSE_CHANGE_MEDIA_ORDER:
+    return state.update('media_attachments', list => {
+      const indexA = list.findIndex(x => x.get('id') === action.a);
+      const moveItem = list.get(indexA);
+      const indexB = list.findIndex(x => x.get('id') === action.b);
+
+      return list.splice(indexA, 1).splice(indexB, 0, moveItem);
+    });
   default:
     return state;
   }

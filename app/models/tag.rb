@@ -21,8 +21,10 @@
 
 class Tag < ApplicationRecord
   include Paginable
+  # rubocop:disable Rails/HasAndBelongsToMany
   has_and_belongs_to_many :statuses
   has_and_belongs_to_many :accounts
+  # rubocop:enable Rails/HasAndBelongsToMany
 
   has_many :passive_relationships, class_name: 'TagFollow', inverse_of: :tag, dependent: :destroy
   has_many :featured_tags, dependent: :destroy, inverse_of: :tag
@@ -35,7 +37,7 @@ class Tag < ApplicationRecord
   HASHTAG_LAST_SEQUENCE = '([[:word:]_]*[[:alpha:]][[:word:]_]*)'
   HASHTAG_NAME_PAT = "#{HASHTAG_FIRST_SEQUENCE}|#{HASHTAG_LAST_SEQUENCE}"
 
-  HASHTAG_RE = %r{(?<![=/)\w])#(#{HASHTAG_NAME_PAT})}i
+  HASHTAG_RE = %r{(?<![=/)\p{Alnum}])#(#{HASHTAG_NAME_PAT})}i
   HASHTAG_NAME_RE = /\A(#{HASHTAG_NAME_PAT})\z/i
   HASHTAG_INVALID_CHARS_RE = /[^[:alnum:]\u0E47-\u0E4E#{HASHTAG_SEPARATORS}]/
 
@@ -53,6 +55,8 @@ class Tag < ApplicationRecord
   scope :listable, -> { where(listable: [true, nil]) }
   scope :trendable, -> { Setting.trendable_by_default ? where(trendable: [true, nil]) : where(trendable: true) }
   scope :not_trendable, -> { where(trendable: false) }
+  scope :suggestions_for_account, ->(account) { recently_used(account).not_featured_by(account) }
+  scope :not_featured_by, ->(account) { where.not(id: account.featured_tags.select(:tag_id)) }
   scope :recently_used, lambda { |account|
                           joins(:statuses)
                             .where(statuses: { id: account.statuses.select(:id).limit(RECENT_STATUS_LIMIT) })
