@@ -55,6 +55,9 @@ services:
     #   dockerfile: Dockerfile
     image: ghcr.io/mastodon/mastodon-streaming:nightly
     env_file: .env.production
+    environment:
+      - PORT=4000
+      - BIND=127.0.0.1
     restart: always
     command: node ./streaming/index.js
     healthcheck:
