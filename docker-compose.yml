@@ -19,7 +19,11 @@ services:
     restart: always
     command: bundle exec puma -C config/puma.rb
     healthcheck:
-      test: ['CMD-SHELL', "curl -s --noproxy localhost localhost:3000/health | grep -q 'OK' || exit 1"]
+      test:
+        [
+          'CMD-SHELL',
+          "curl -s --noproxy localhost localhost:3000/health | grep -q 'OK' || exit 1",
+        ]
     networks:
       - external_network
       - internal_network
@@ -64,7 +68,11 @@ services:
     restart: always
     command: node ./streaming/index.js
     healthcheck:
-      test: ['CMD-SHELL', "curl -s --noproxy localhost localhost:4000/api/v1/streaming/health | grep -q 'OK' || exit 1"]
+      test:
+        [
+          'CMD-SHELL',
+          "curl -s --noproxy localhost localhost:4000/api/v1/streaming/health | grep -q 'OK' || exit 1",
+        ]
     networks:
       - external_network
       - internal_network
@@ -100,16 +108,16 @@ services:
   es:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.21
     environment:
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true"
-      - "xpack.license.self_generated.type=basic"
-      - "xpack.security.enabled=false"
-      - "xpack.watcher.enabled=false"
-      - "xpack.graph.enabled=false"
-      - "xpack.ml.enabled=false"
-      - "bootstrap.memory_lock=true"
-      - "cluster.name=es-mastodon"
-      - "discovery.type=single-node"
-      - "thread_pool.write.queue_size=1000"
+      - 'ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true'
+      - 'xpack.license.self_generated.type=basic'
+      - 'xpack.security.enabled=false'
+      - 'xpack.watcher.enabled=false'
+      - 'xpack.graph.enabled=false'
+      - 'xpack.ml.enabled=false'
+      - 'bootstrap.memory_lock=true'
+      - 'cluster.name=es-mastodon'
+      - 'discovery.type=single-node'
+      - 'thread_pool.write.queue_size=1000'
     ulimits:
       memlock:
         soft: -1
@@ -119,14 +127,18 @@ services:
         hard: 65536
     restart: always
     healthcheck:
-       test: ['CMD-SHELL', "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
+      test:
+        [
+          'CMD-SHELL',
+          'curl --silent --fail localhost:9200/_cluster/health || exit 1',
+        ]
     networks:
-       - external_network
-       - internal_network
+      - external_network
+      - internal_network
     ports:
       - '127.0.0.1:9200:9200'
     volumes:
-       - ./elasticsearch:/usr/share/elasticsearch/data
+      - ./elasticsearch:/usr/share/elasticsearch/data
 
   # Uncomment the following section to enable Tor
   # tor:
