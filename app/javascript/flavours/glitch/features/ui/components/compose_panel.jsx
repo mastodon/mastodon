@@ -7,16 +7,13 @@ import { mountCompose, unmountCompose } from 'flavours/glitch/actions/compose';
 import ServerBanner from 'flavours/glitch/components/server_banner';
 import ComposeFormContainer from 'flavours/glitch/features/compose/containers/compose_form_container';
 import SearchContainer from 'flavours/glitch/features/compose/containers/search_container';
+import { identityContextPropShape, withIdentity } from 'flavours/glitch/identity_context';
 
 import LinkFooter from './link_footer';
 
 class ComposePanel extends PureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object.isRequired,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     dispatch: PropTypes.func.isRequired,
   };
 
@@ -31,7 +28,7 @@ class ComposePanel extends PureComponent {
   }
 
   render() {
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     return (
       <div className='compose-panel'>
@@ -55,4 +52,4 @@ class ComposePanel extends PureComponent {
 
 }
 
-export default connect()(ComposePanel);
+export default connect()(withIdentity(ComposePanel));

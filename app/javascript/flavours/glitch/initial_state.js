@@ -51,11 +51,21 @@
  */
 
 /**
+ * @typedef Role
+ * @property {string} id
+ * @property {string} name
+ * @property {string} permissions
+ * @property {string} color
+ * @property {boolean} highlighted
+ */
+
+/**
  * @typedef InitialState
  * @property {Record<string, import("./api_types/accounts").ApiAccountJSON>} accounts
  * @property {InitialStateLanguage[]} languages
  * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta
+ * @property {Role?} role
  * @property {object} local_settings
  * @property {number} max_feed_hashtags
  * @property {number} poll_limits

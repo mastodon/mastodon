@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { identityContextPropShape, withIdentity } from 'flavours/glitch/identity_context';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_REPORTS } from 'flavours/glitch/permissions';
 
 import { CheckboxWithLabel } from './checkbox_with_label';
@@ -13,13 +14,9 @@ import GrantPermissionButton from './grant_permission_button';
 import PillBarButton from './pill_bar_button';
 import SettingToggle from './setting_toggle';
 
-export default class ColumnSettings extends PureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
+class ColumnSettings extends PureComponent {
   static propTypes = {
+    identity: identityContextPropShape,
     settings: ImmutablePropTypes.map.isRequired,
     pushSettings: ImmutablePropTypes.map.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -216,7 +213,7 @@ export default class ColumnSettings extends PureComponent {
           </div>
         </section>
 
-        {((this.context.identity.permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) && (
+        {((this.props.identity.permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) && (
           <section role='group' aria-labelledby='notifications-admin-sign-up'>
             <h3 id='notifications-status'><FormattedMessage id='notifications.column_settings.admin.sign_up' defaultMessage='New sign-ups:' /></h3>
 
@@ -229,7 +226,7 @@ export default class ColumnSettings extends PureComponent {
           </section>
         )}
 
-        {((this.context.identity.permissions & PERMISSION_MANAGE_REPORTS) === PERMISSION_MANAGE_REPORTS) && (
+        {((this.props.identity.permissions & PERMISSION_MANAGE_REPORTS) === PERMISSION_MANAGE_REPORTS) && (
           <section role='group' aria-labelledby='notifications-admin-report'>
             <h3 id='notifications-status'><FormattedMessage id='notifications.column_settings.admin.report' defaultMessage='New reports:' /></h3>
 
@@ -246,3 +243,5 @@ export default class ColumnSettings extends PureComponent {
   }
 
 }
+
+export default withIdentity(ColumnSettings);

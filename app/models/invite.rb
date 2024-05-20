@@ -24,7 +24,7 @@ class Invite < ApplicationRecord
   belongs_to :user, inverse_of: :invites
   has_many :users, inverse_of: :invite, dependent: nil
 
-  scope :available, -> { where(expires_at: nil).or(where('expires_at >= ?', Time.now.utc)) }
+  scope :available, -> { where(expires_at: nil).or(where(expires_at: Time.now.utc..)) }
 
   validates :comment, length: { maximum: COMMENT_SIZE_LIMIT }
 

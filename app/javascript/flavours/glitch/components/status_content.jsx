@@ -15,6 +15,7 @@ import LinkIcon from '@/material-icons/400-24px/link.svg?react';
 import MovieIcon from '@/material-icons/400-24px/movie.svg?react';
 import MusicNoteIcon from '@/material-icons/400-24px/music_note.svg?react';
 import { Icon } from 'flavours/glitch/components/icon';
+import { identityContextPropShape, withIdentity } from 'flavours/glitch/identity_context';
 import { autoPlayGif, languages as preloadedLanguages } from 'flavours/glitch/initial_state';
 import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
 
@@ -126,12 +127,8 @@ const mapStateToProps = state => ({
 });
 
 class StatusContent extends PureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     status: ImmutablePropTypes.map.isRequired,
     statusContent: PropTypes.string,
     expanded: PropTypes.bool,
@@ -349,7 +346,7 @@ class StatusContent extends PureComponent {
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
     const contentLocale = intl.locale.replace(/[_-].*/, '');
     const targetLanguages = this.props.languages?.get(status.get('language') || 'und');
-    const renderTranslate = this.props.onTranslate && this.context.identity.signedIn && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('search_index').trim().length > 0 && targetLanguages?.includes(contentLocale);
+    const renderTranslate = this.props.onTranslate && this.props.identity.signedIn && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('search_index').trim().length > 0 && targetLanguages?.includes(contentLocale);
 
     const content = { __html: statusContent ?? getStatusContent(status) };
     const spoilerContent = { __html: status.getIn(['translation', 'spoilerHtml']) || status.get('spoilerHtml') };
@@ -503,4 +500,4 @@ class StatusContent extends PureComponent {
 
 }
 
-export default withRouter(connect(mapStateToProps)(injectIntl(StatusContent)));
+export default withRouter(withIdentity(connect(mapStateToProps)(injectIntl(StatusContent))));

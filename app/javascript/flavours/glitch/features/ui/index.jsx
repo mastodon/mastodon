@@ -17,6 +17,7 @@ import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavour
 import { INTRODUCTION_VERSION } from 'flavours/glitch/actions/onboarding';
 import { Permalink } from 'flavours/glitch/components/permalink';
 import { PictureInPicture } from 'flavours/glitch/features/picture_in_picture';
+import { identityContextPropShape, withIdentity } from 'flavours/glitch/identity_context';
 import { layoutFromWindow } from 'flavours/glitch/is_mobile';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
@@ -129,12 +130,8 @@ const keyMap = {
 };
 
 class SwitchingColumnsArea extends PureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     children: PropTypes.node,
     location: PropTypes.object,
     singleColumn: PropTypes.bool,
@@ -169,7 +166,7 @@ class SwitchingColumnsArea extends PureComponent {
 
   render () {
     const { children, singleColumn } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
     const pathName = this.props.location.pathname;
 
     let redirect;
@@ -262,12 +259,8 @@ class SwitchingColumnsArea extends PureComponent {
 }
 
 class UI extends PureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object.isRequired,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
     isWide: PropTypes.bool,
@@ -323,7 +316,7 @@ class UI extends PureComponent {
       this.dragTargets.push(e.target);
     }
 
-    if (e.dataTransfer && Array.from(e.dataTransfer.types).includes('Files') && this.props.canUploadMore && this.context.identity.signedIn) {
+    if (e.dataTransfer && Array.from(e.dataTransfer.types).includes('Files') && this.props.canUploadMore && this.props.identity.signedIn) {
       this.setState({ draggingOver: true });
     }
   };
@@ -351,7 +344,7 @@ class UI extends PureComponent {
     this.setState({ draggingOver: false });
     this.dragTargets = [];
 
-    if (e.dataTransfer && e.dataTransfer.files.length >= 1 && this.props.canUploadMore && this.context.identity.signedIn) {
+    if (e.dataTransfer && e.dataTransfer.files.length >= 1 && this.props.canUploadMore && this.props.identity.signedIn) {
       this.props.dispatch(uploadCompose(e.dataTransfer.files));
     }
   };
@@ -403,7 +396,7 @@ class UI extends PureComponent {
   };
 
   componentDidMount () {
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     window.addEventListener('beforeunload', this.handleBeforeUnload, false);
     window.addEventListener('resize', this.handleResize, { passive: true });
@@ -649,7 +642,7 @@ class UI extends PureComponent {
 
           <Header />
 
-          <SwitchingColumnsArea location={location} singleColumn={layout === 'mobile' || layout === 'single-column'}>
+          <SwitchingColumnsArea identity={this.props.identity} location={location} singleColumn={layout === 'mobile' || layout === 'single-column'}>
             {children}
           </SwitchingColumnsArea>
 
@@ -665,4 +658,4 @@ class UI extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(withRouter(UI)));
+export default connect(mapStateToProps)(injectIntl(withRouter(withIdentity(UI))));
