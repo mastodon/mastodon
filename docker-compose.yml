@@ -1,5 +1,5 @@
 # This docker-compose.yml sets up a deployment of Mastodon's web (Puma), Sidekiq, and streaming containers,
-# as well as the required Postgres and Redis components. Optionally, you can enable Elastic Search and Tor by
+# as well as the required Postgres, Redis and Elastic Search  components. Optionally, you can enable Privoxy and Tor by
 # removing the comments (#) from those blocks.
 
 # You should check the Docker image tag used for the web, sidekiq, and streaming containers to make sure you are running
@@ -30,7 +30,7 @@ services:
     depends_on:
       - db
       - redis
-      # - es
+      - es
 
   sidekiq:
     # build:
@@ -50,7 +50,7 @@ services:
     depends_on:
       - db
       - redis
-      # - es
+      - es
 
   streaming:
     # build:
@@ -75,7 +75,7 @@ services:
       - redis
 
   db:
-    image: postgres:14-alpine
+    image: postgres:16-alpine
     restart: always
     healthcheck:
       test: ['CMD', 'pg_isready', '-U', 'postgres']
@@ -83,7 +83,7 @@ services:
     networks:
       - internal_network
     volumes:
-      - ./postgres14:/var/lib/postgresql/data
+      - ./postgres16:/var/lib/postgresql/data
     environment:
       - 'POSTGRES_HOST_AUTH_METHOD=trust'
 
@@ -97,45 +97,45 @@ services:
     volumes:
       - ./redis:/data
 
-  # Uncomment to enable Elastic Search
-  # es:
-  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
-  #   environment:
-  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true"
-  #     - "xpack.license.self_generated.type=basic"
-  #     - "xpack.security.enabled=false"
-  #     - "xpack.watcher.enabled=false"
-  #     - "xpack.graph.enabled=false"
-  #     - "xpack.ml.enabled=false"
-  #     - "bootstrap.memory_lock=true"
-  #     - "cluster.name=es-mastodon"
-  #     - "discovery.type=single-node"
-  #     - "thread_pool.write.queue_size=1000"
-  #   ulimits:
-  #     memlock:
-  #       soft: -1
-  #       hard: -1
-  #     nofile:
-  #       soft: 65536
-  #       hard: 65536
-  #   restart: always
-  #   healthcheck:
-  #      test: ['CMD-SHELL', "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
-  #   networks:
-  #      - external_network
-  #      - internal_network
-  #   ports:
-  #     - '127.0.0.1:9200:9200'
-  #   volumes:
-  #      - ./elasticsearch:/usr/share/elasticsearch/data
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.21
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true"
+      - "xpack.license.self_generated.type=basic"
+      - "xpack.security.enabled=false"
+      - "xpack.watcher.enabled=false"
+      - "xpack.graph.enabled=false"
+      - "xpack.ml.enabled=false"
+      - "bootstrap.memory_lock=true"
+      - "cluster.name=es-mastodon"
+      - "discovery.type=single-node"
+      - "thread_pool.write.queue_size=1000"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    restart: always
+    healthcheck:
+       test: ['CMD-SHELL', "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
+    networks:
+       - external_network
+       - internal_network
+    ports:
+      - '127.0.0.1:9200:9200'
+    volumes:
+       - ./elasticsearch:/usr/share/elasticsearch/data
 
-  ## Uncomment to enable Tor and Privoxy
+  # Uncomment the following section to enable Tor
   # tor:
   #   image: sirboops/tor
   #   networks:
   #      - external_network
   #      - internal_network
-  #
+
+  # Uncomment the following section to enable Privoxy
   # privoxy:
   #   image: sirboops/privoxy
   #   networks:
