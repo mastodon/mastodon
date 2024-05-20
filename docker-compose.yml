@@ -13,6 +13,9 @@ services:
     #   dockerfile: Dockerfile
     image: ghcr.io/mastodon/mastodon:nightly
     env_file: .env.production
+    environment:
+      - PORT=3000
+      - BIND=127.0.0.1
     restart: always
     command: bundle exec puma -C config/puma.rb
     healthcheck:
