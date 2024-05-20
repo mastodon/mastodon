@@ -28,7 +28,7 @@ describe 'Filters' do
 
       click_on filter_title
 
-      fill_in 'Title', with: new_title
+      fill_in filter_title_field, with: new_title
       click_on I18n.t('generic.save_changes')
 
       expect(page).to have_content(new_title)
@@ -58,11 +58,15 @@ describe 'Filters' do
   end
 
   def fill_in_filter_form
-    fill_in 'Title', with: filter_title
+    fill_in filter_title_field, with: filter_title
     check I18n.t('filters.contexts.home')
     within('.custom_filter_keywords_keyword') do
       fill_in with: 'Keyword'
     end
     click_on I18n.t('filters.new.save')
+  end
+
+  def filter_title_field
+    I18n.t('simple_form.labels.defaults.title')
   end
 end
