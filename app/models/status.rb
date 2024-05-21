@@ -344,23 +344,23 @@ class Status < ApplicationRecord
 
       # _from_me part does not require any timeline filters
       query_from_me = where(account_id: account.id)
-                      .where(Status.arel_table[:visibility].eq(3))
+                      .direct_visibility
                       .limit(limit)
-                      .order('statuses.id DESC')
+                      .order(id: :desc)
 
       # _to_me part requires mute and block filter.
       # FIXME: may we check mutes.hide_notifications?
       query_to_me = Status
+                    .direct_visibility
                     .joins(:mentions)
-                    .merge(Mention.where(account_id: account.id))
-                    .where(Status.arel_table[:visibility].eq(3))
+                    .where(mentions: { account_id: account.id })
                     .limit(limit)
                     .order('mentions.status_id DESC')
                     .not_excluded_by_account(account)
 
       if max_id.present?
-        query_from_me = query_from_me.where('statuses.id < ?', max_id)
-        query_to_me = query_to_me.where('mentions.status_id < ?', max_id)
+        query_from_me = query_from_me.where(id: ...max_id)
+        query_to_me = query_to_me.where(mentions: { status_id: ...max_id })
       end
 
       if since_id.present?
@@ -368,9 +368,9 @@ class Status < ApplicationRecord
         query_to_me = query_to_me.where('mentions.status_id > ?', since_id)
       end
 
-      # returns ActiveRecord.Relation
-      items = (query_from_me.select(:id).to_a + query_to_me.select(:id).to_a).uniq(&:id).sort_by(&:id).reverse.take(limit)
-      Status.where(id: items.map(&:id))
+      # TODO: use a single query?
+      ids = (query_from_me.pluck(:id) + query_to_me.pluck(:id)).sort.uniq.reverse.take(limit)
+      Status.where(id: ids)
     end
 
     def favourites_map(status_ids, account_id)
