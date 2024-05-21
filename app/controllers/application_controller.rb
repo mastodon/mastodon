@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
   rescue_from Mastodon::RateLimitExceededError, with: :too_many_requests
 
-  rescue_from HTTP::Error, OpenSSL::SSL::SSLError, with: :internal_server_error
+  rescue_from(*Mastodon::HTTP_CONNECTION_ERRORS, with: :internal_server_error)
   rescue_from Mastodon::RaceConditionError, Stoplight::Error::RedLight, ActiveRecord::SerializationFailure, with: :service_unavailable
 
   rescue_from Seahorse::Client::NetworkingError do |e|

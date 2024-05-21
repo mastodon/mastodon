@@ -22,7 +22,7 @@ class SoftwareUpdateCheckService < BaseService
     Request.new(:get, "#{api_url}?version=#{version}").add_headers('Accept' => 'application/json', 'User-Agent' => 'Mastodon update checker').perform do |res|
       return Oj.load(res.body_with_limit, mode: :strict) if res.code == 200
     end
-  rescue HTTP::Error, OpenSSL::SSL::SSLError, Oj::ParseError
+  rescue *Mastodon::HTTP_CONNECTION_ERRORS, Oj::ParseError
     nil
   end
 
