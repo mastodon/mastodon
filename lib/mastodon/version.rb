@@ -25,7 +25,7 @@ module Mastodon
     end
 
     def build_metadata
-      ENV.fetch('MASTODON_VERSION_METADATA', nil)
+      ['r1', ENV.fetch('MASTODON_VERSION_METADATA', nil)].compact_blank.join('.')
     end
 
     def to_a
@@ -44,7 +44,7 @@ module Mastodon
     end
 
     def repository
-      ENV.fetch('GITHUB_REPOSITORY', 'mastodon/mastodon')
+      ENV.fetch('GITHUB_REPOSITORY', 'palebluevoyager/MSR')
     end
 
     def source_base_url
