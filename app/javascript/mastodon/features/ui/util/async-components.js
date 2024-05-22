@@ -10,6 +10,10 @@ export function Notifications () {
   return import(/* webpackChunkName: "features/notifications" */'../../notifications');
 }
 
+export function Notifications_v2 () {
+  return import(/* webpackChunkName: "features/notifications_v2" */'../../notifications_v2');
+}
+
 export function HomeTimeline () {
   return import(/* webpackChunkName: "features/home_timeline" */'../../home_timeline');
 }

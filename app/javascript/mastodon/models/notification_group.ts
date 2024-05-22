@@ -4,14 +4,16 @@ import type {
   NotificationType,
   NotificationWithStatusType,
 } from 'mastodon/api_types/notifications';
-import type { ApiStatusJSON } from 'mastodon/api_types/statuses';
 
-type BaseNotificationGroup = BaseNotificationGroupJSON;
+interface BaseNotificationGroup
+  extends Omit<BaseNotificationGroupJSON, 'sample_accounts'> {
+  sampleAccountsIds: string[];
+}
 
 interface BaseNotificationWithStatus<Type extends NotificationWithStatusType>
   extends BaseNotificationGroup {
   type: Type;
-  status: ApiStatusJSON;
+  statusId: string;
 }
 
 interface BaseNotification<Type extends NotificationType>
@@ -54,6 +56,20 @@ export type NotificationGroup =
 export function createNotificationGroupFromJSON(
   groupJson: NotificationGroupJSON,
 ): NotificationGroup {
-  // @ts-expect-error -- FIXME: properly convert the special notifications here
-  return groupJson;
+  const { sample_accounts, ...group } = groupJson;
+  const sampleAccountsIds = sample_accounts.map((account) => account.id);
+
+  if ('status' in group) {
+    const { status, ...groupWithoutStatus } = group;
+    return {
+      statusId: status.id,
+      sampleAccountsIds,
+      ...groupWithoutStatus,
+    };
+  }
+
+  return {
+    sampleAccountsIds,
+    ...group,
+  };
 }
