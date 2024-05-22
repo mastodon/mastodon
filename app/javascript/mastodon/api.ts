@@ -40,11 +40,11 @@ const authorizationTokenFromInitialState = (): RawAxiosRequestHeaders => {
 };
 
 // eslint-disable-next-line import/no-default-export
-export default function api() {
+export default function api(withAuthorization = true) {
   return axios.create({
     headers: {
       ...csrfHeader,
-      ...authorizationTokenFromInitialState(),
+      ...(withAuthorization ? authorizationTokenFromInitialState() : {}),
     },
 
     transformResponse: [
