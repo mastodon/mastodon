@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     /conversations
     /lists/(*any)
     /notifications/(*any)
+    /notifications_v2/(*any)
     /favourites
     /bookmarks
     /pinned

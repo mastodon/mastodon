@@ -7,7 +7,7 @@ import { importFetchedAccounts, importFetchedStatuses } from './importer';
 
 export const fetchNotifications = createDataLoadingThunk(
   'notificationGroups/fetch',
-  apiFetchNotifications,
+  () => apiFetchNotifications(),
   (notifications, { dispatch }) => {
     const fetchedAccounts: ApiAccountJSON[] = [];
     const fetchedStatuses: ApiStatusJSON[] = [];
@@ -21,8 +21,8 @@ export const fetchNotifications = createDataLoadingThunk(
       //   fetchedAccounts.push(...notification.report.target_account);
       // }
 
-      if ('target_status' in notification) {
-        fetchedStatuses.push(notification.target_status);
+      if ('status' in notification) {
+        fetchedStatuses.push(notification.status);
       }
     });
 

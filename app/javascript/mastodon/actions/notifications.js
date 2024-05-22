@@ -178,7 +178,7 @@ const noOp = () => {};
 
 let expandNotificationsController = new AbortController();
 
-export function expandNotifications({ maxId, forceLoad } = {}, done = noOp) {
+export function expandNotifications({ maxId, forceLoad = false } = {}, done = noOp) {
   return (dispatch, getState) => {
     const activeFilter = getState().getIn(['settings', 'notifications', 'quickFilter', 'active']);
     const notifications = getState().get('notifications');
