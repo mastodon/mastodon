@@ -16,7 +16,7 @@
 #
 
 class FollowRequest < ApplicationRecord
-  include ActivityPubPayloadGeneration
+  include ActivityPub::Identifier
   include Paginable
   include RelationshipCacheable
   include RateLimitable
