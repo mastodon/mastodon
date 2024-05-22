@@ -1,19 +1,24 @@
 import { debounce } from 'lodash';
 
 import type { MarkerJSON } from 'flavours/glitch/api_types/markers';
+import { getAccessToken } from 'flavours/glitch/initial_state';
 import type { AppDispatch, RootState } from 'flavours/glitch/store';
 import { createAppAsyncThunk } from 'flavours/glitch/store/typed_functions';
 
-import api, { authorizationTokenFromState } from '../api';
+import api from '../api';
 import { compareId } from '../compare_id';
 
 export const synchronouslySubmitMarkers = createAppAsyncThunk(
   'markers/submit',
   async (_args, { getState }) => {
-    const accessToken = authorizationTokenFromState(getState);
+    const accessToken = getAccessToken();
     const params = buildPostMarkersParams(getState());
 
-    if (Object.keys(params).length === 0 || !accessToken) {
+    if (
+      Object.keys(params).length === 0 ||
+      !accessToken ||
+      accessToken === ''
+    ) {
       return;
     }
 
@@ -97,14 +102,14 @@ export const submitMarkersAction = createAppAsyncThunk<{
   home: string | undefined;
   notifications: string | undefined;
 }>('markers/submitAction', async (_args, { getState }) => {
-  const accessToken = authorizationTokenFromState(getState);
+  const accessToken = getAccessToken();
   const params = buildPostMarkersParams(getState());
 
-  if (Object.keys(params).length === 0 || accessToken === '') {
+  if (Object.keys(params).length === 0 || !accessToken || accessToken === '') {
     return { home: undefined, notifications: undefined };
   }
 
-  await api(getState).post<MarkerJSON>('/api/v1/markers', params);
+  await api().post<MarkerJSON>('/api/v1/markers', params);
 
   return {
     home: params.home?.last_read_id,
@@ -134,14 +139,11 @@ export const submitMarkers = createAppAsyncThunk(
   },
 );
 
-export const fetchMarkers = createAppAsyncThunk(
-  'markers/fetch',
-  async (_args, { getState }) => {
-    const response = await api(getState).get<Record<string, MarkerJSON>>(
-      `/api/v1/markers`,
-      { params: { timeline: ['notifications'] } },
-    );
+export const fetchMarkers = createAppAsyncThunk('markers/fetch', async () => {
+  const response = await api().get<Record<string, MarkerJSON>>(
+    `/api/v1/markers`,
+    { params: { timeline: ['notifications'] } },
+  );
 
-    return { markers: response.data };
-  },
-);
+  return { markers: response.data };
+});

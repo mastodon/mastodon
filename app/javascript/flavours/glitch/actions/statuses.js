@@ -59,7 +59,7 @@ export function fetchStatus(id, forceFetch = false) {
 
     dispatch(fetchStatusRequest(id, skipLoading));
 
-    api(getState).get(`/api/v1/statuses/${id}`).then(response => {
+    api().get(`/api/v1/statuses/${id}`).then(response => {
       dispatch(importFetchedStatus(response.data));
       dispatch(fetchStatusSuccess(skipLoading));
     }).catch(error => {
@@ -103,7 +103,7 @@ export const editStatus = (id, routerHistory) => (dispatch, getState) => {
 
   dispatch(fetchStatusSourceRequest());
 
-  api(getState).get(`/api/v1/statuses/${id}/source`).then(response => {
+  api().get(`/api/v1/statuses/${id}/source`).then(response => {
     dispatch(fetchStatusSourceSuccess());
     ensureComposeIsVisible(getState, routerHistory);
     dispatch(setComposeToStatus(status, response.data.text, response.data.spoiler_text, response.data.content_type));
@@ -135,7 +135,7 @@ export function deleteStatus(id, routerHistory, withRedraft = false) {
 
     dispatch(deleteStatusRequest(id));
 
-    api(getState).delete(`/api/v1/statuses/${id}`).then(response => {
+    api().delete(`/api/v1/statuses/${id}`).then(response => {
       dispatch(deleteStatusSuccess(id));
       dispatch(deleteFromTimelines(id));
       dispatch(importFetchedAccount(response.data.account));
@@ -176,10 +176,10 @@ export const updateStatus = status => dispatch =>
   dispatch(importFetchedStatus(status));
 
 export function fetchContext(id) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(fetchContextRequest(id));
 
-    api(getState).get(`/api/v1/statuses/${id}/context`).then(response => {
+    api().get(`/api/v1/statuses/${id}/context`).then(response => {
       dispatch(importFetchedStatuses(response.data.ancestors.concat(response.data.descendants)));
       dispatch(fetchContextSuccess(id, response.data.ancestors, response.data.descendants));
 
@@ -220,10 +220,10 @@ export function fetchContextFail(id, error) {
 }
 
 export function muteStatus(id) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(muteStatusRequest(id));
 
-    api(getState).post(`/api/v1/statuses/${id}/mute`).then(() => {
+    api().post(`/api/v1/statuses/${id}/mute`).then(() => {
       dispatch(muteStatusSuccess(id));
     }).catch(error => {
       dispatch(muteStatusFail(id, error));
@@ -254,10 +254,10 @@ export function muteStatusFail(id, error) {
 }
 
 export function unmuteStatus(id) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(unmuteStatusRequest(id));
 
-    api(getState).post(`/api/v1/statuses/${id}/unmute`).then(() => {
+    api().post(`/api/v1/statuses/${id}/unmute`).then(() => {
       dispatch(unmuteStatusSuccess(id));
     }).catch(error => {
       dispatch(unmuteStatusFail(id, error));
@@ -317,10 +317,10 @@ export function toggleStatusCollapse(id, isCollapsed) {
   };
 }
 
-export const translateStatus = id => (dispatch, getState) => {
+export const translateStatus = id => (dispatch) => {
   dispatch(translateStatusRequest(id));
 
-  api(getState).post(`/api/v1/statuses/${id}/translate`).then(response => {
+  api().post(`/api/v1/statuses/${id}/translate`).then(response => {
     dispatch(translateStatusSuccess(id, response.data));
   }).catch(error => {
     dispatch(translateStatusFail(id, error));
