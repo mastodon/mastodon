@@ -114,7 +114,7 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
 
     dispatch(expandTimelineRequest(timelineId, isLoadingMore));
 
-    api(getState).get(path, { params }).then(response => {
+    api().get(path, { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
       dispatch(importFetchedStatuses(response.data));
