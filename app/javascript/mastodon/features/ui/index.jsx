@@ -50,6 +50,7 @@ import {
   DirectTimeline,
   HashtagTimeline,
   Notifications,
+  Notifications_v2,
   NotificationRequests,
   NotificationRequest,
   FollowRequests,
@@ -206,6 +207,7 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/links/:url' component={LinkTimeline} content={children} />
             <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
             <WrappedRoute path='/notifications' component={Notifications} content={children} exact />
+            <WrappedRoute path='/notifications_v2' component={Notifications_v2} content={children} exact />
             <WrappedRoute path='/notifications/requests' component={NotificationRequests} content={children} exact />
             <WrappedRoute path='/notifications/requests/:id' component={NotificationRequest} content={children} exact />
             <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />

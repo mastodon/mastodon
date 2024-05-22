@@ -33,7 +33,7 @@ export interface BaseNotificationGroupJSON {
 
 interface NotificationGroupWithStatusJSON extends BaseNotificationGroupJSON {
   type: NotificationWithStatusType;
-  target_status: ApiStatusJSON;
+  status: ApiStatusJSON;
 }
 
 interface ReportNotificationGroupJSON extends BaseNotificationGroupJSON {
