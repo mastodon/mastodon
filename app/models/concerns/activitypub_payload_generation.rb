@@ -14,6 +14,6 @@ module ActivityPubPayloadGeneration
   def generate_payload_uri
     self.uri = ActivityPub::TagManager
                .instance
-               .generate_uri_for(self)
+               .generate_activity_uri
   end
 end
