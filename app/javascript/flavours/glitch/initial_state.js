@@ -143,4 +143,11 @@ export const pollLimits = (initialState && initialState.poll_limits);
 export const defaultContentType = getMeta('default_content_type');
 export const useSystemEmojiFont = getMeta('system_emoji_font');
 
+/**
+ * @returns {string | undefined}
+ */
+export function getAccessToken() {
+  return getMeta('access_token');
+}
+
 export default initialState;
