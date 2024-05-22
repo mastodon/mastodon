@@ -12,6 +12,14 @@ class PublicFileServerMiddleware
   end
 
   def call(env)
+    # Moments Specific: Start
+    if ENV["PROTECT_PUBLIC_SYSTEM"] == "true" && env["REQUEST_PATH"].start_with?(paperclip_root_url)
+      if !env['warden'].authenticated?(:user)
+        return [403, { 'Content-Type' => 'text/plain' }, ['403 Forbidden']]
+      end
+    end
+    # Moments Specific: End
+
     file = @file_handler.attempt(env)
 
     # If the request is not a static file, move on!
