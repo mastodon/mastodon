@@ -44,7 +44,7 @@ RSpec.describe ActivityPub::InboxesController do
               private_key: nil,
               public_key: remote_actor_keypair.public_key.to_pem,
               username: remote_actor_original_username,
-              protocol: 1, # activitypub
+              protocol: :activitypub,
               inbox_url: remote_actor_inbox_url)
   end
   let!(:local_actor) { Fabricate(:account) }
