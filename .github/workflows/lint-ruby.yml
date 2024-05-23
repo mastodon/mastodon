@@ -38,7 +38,7 @@ jobs:
         uses: r7kamura/rubocop-problem-matchers-action@v1
 
       - name: Run rubocop
-        run: bundle exec rubocop
+        run: bin/rubocop
 
       - name: Run brakeman
         if: always() # Run both checks, even if the first failed
