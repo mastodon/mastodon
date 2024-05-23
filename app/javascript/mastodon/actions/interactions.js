@@ -3,10 +3,6 @@ import api, { getLinks } from '../api';
 import { fetchRelationships } from './accounts';
 import { importFetchedAccounts, importFetchedStatus } from './importer';
 
-export const REBLOG_REQUEST = 'REBLOG_REQUEST';
-export const REBLOG_SUCCESS = 'REBLOG_SUCCESS';
-export const REBLOG_FAIL    = 'REBLOG_FAIL';
-
 export const REBLOGS_EXPAND_REQUEST = 'REBLOGS_EXPAND_REQUEST';
 export const REBLOGS_EXPAND_SUCCESS = 'REBLOGS_EXPAND_SUCCESS';
 export const REBLOGS_EXPAND_FAIL = 'REBLOGS_EXPAND_FAIL';
@@ -14,10 +10,6 @@ export const REBLOGS_EXPAND_FAIL = 'REBLOGS_EXPAND_FAIL';
 export const FAVOURITE_REQUEST = 'FAVOURITE_REQUEST';
 export const FAVOURITE_SUCCESS = 'FAVOURITE_SUCCESS';
 export const FAVOURITE_FAIL    = 'FAVOURITE_FAIL';
-
-export const UNREBLOG_REQUEST = 'UNREBLOG_REQUEST';
-export const UNREBLOG_SUCCESS = 'UNREBLOG_SUCCESS';
-export const UNREBLOG_FAIL    = 'UNREBLOG_FAIL';
 
 export const UNFAVOURITE_REQUEST = 'UNFAVOURITE_REQUEST';
 export const UNFAVOURITE_SUCCESS = 'UNFAVOURITE_SUCCESS';
@@ -51,83 +43,7 @@ export const UNBOOKMARK_REQUEST = 'UNBOOKMARKED_REQUEST';
 export const UNBOOKMARK_SUCCESS = 'UNBOOKMARKED_SUCCESS';
 export const UNBOOKMARK_FAIL    = 'UNBOOKMARKED_FAIL';
 
-export function reblog(status, visibility) {
-  return function (dispatch) {
-    dispatch(reblogRequest(status));
-
-    api().post(`/api/v1/statuses/${status.get('id')}/reblog`, { visibility }).then(function (response) {
-      // The reblog API method returns a new status wrapped around the original. In this case we are only
-      // interested in how the original is modified, hence passing it skipping the wrapper
-      dispatch(importFetchedStatus(response.data.reblog));
-      dispatch(reblogSuccess(status));
-    }).catch(function (error) {
-      dispatch(reblogFail(status, error));
-    });
-  };
-}
-
-export function unreblog(status) {
-  return (dispatch) => {
-    dispatch(unreblogRequest(status));
-
-    api().post(`/api/v1/statuses/${status.get('id')}/unreblog`).then(response => {
-      dispatch(importFetchedStatus(response.data));
-      dispatch(unreblogSuccess(status));
-    }).catch(error => {
-      dispatch(unreblogFail(status, error));
-    });
-  };
-}
-
-export function reblogRequest(status) {
-  return {
-    type: REBLOG_REQUEST,
-    status: status,
-    skipLoading: true,
-  };
-}
-
-export function reblogSuccess(status) {
-  return {
-    type: REBLOG_SUCCESS,
-    status: status,
-    skipLoading: true,
-  };
-}
-
-export function reblogFail(status, error) {
-  return {
-    type: REBLOG_FAIL,
-    status: status,
-    error: error,
-    skipLoading: true,
-  };
-}
-
-export function unreblogRequest(status) {
-  return {
-    type: UNREBLOG_REQUEST,
-    status: status,
-    skipLoading: true,
-  };
-}
-
-export function unreblogSuccess(status) {
-  return {
-    type: UNREBLOG_SUCCESS,
-    status: status,
-    skipLoading: true,
-  };
-}
-
-export function unreblogFail(status, error) {
-  return {
-    type: UNREBLOG_FAIL,
-    status: status,
-    error: error,
-    skipLoading: true,
-  };
-}
+export * from "./interactions_typed";
 
 export function favourite(status) {
   return function (dispatch) {

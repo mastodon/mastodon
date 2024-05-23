@@ -1,4 +1,4 @@
-import type { AxiosResponse, RawAxiosRequestHeaders } from 'axios';
+import type { AxiosResponse, Method, RawAxiosRequestHeaders } from 'axios';
 import axios from 'axios';
 import LinkHeader from 'http-link-header';
 
@@ -57,4 +57,18 @@ export default function api(withAuthorization = true) {
       },
     ],
   });
+}
+
+export async function apiRequest<ApiResponse = unknown>(
+  method: Method,
+  url: string,
+  params?: Record<string, unknown>,
+) {
+  const { data } = await api().request<ApiResponse>({
+    method,
+    url: '/api/' + url,
+    data: params,
+  });
+
+  return data;
 }

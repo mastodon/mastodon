@@ -299,7 +299,7 @@ class Status extends ImmutablePureComponent {
   };
 
   handleModalReblog = (status, privacy) => {
-    this.props.dispatch(reblog(status, privacy));
+    this.props.dispatch(reblog({ statusId: status.get('id'), visibility: privacy }));
   };
 
   handleReblogClick = (status, e) => {
@@ -308,7 +308,7 @@ class Status extends ImmutablePureComponent {
 
     if (signedIn) {
       if (status.get('reblogged')) {
-        dispatch(unreblog(status));
+        dispatch(unreblog({ statusId: status.get('id') }));
       } else {
         if ((e && e.shiftKey) || !boostModal) {
           this.handleModalReblog(status);
