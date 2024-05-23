@@ -11,10 +11,11 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
   def index
     with_read_replica do
       @notifications = load_notifications
+      @group_metadata = load_group_metadata
       @relationships = StatusRelationshipsPresenter.new(target_statuses_from_notifications, current_user&.account_id)
     end
 
-    render json: @notifications.map { |notification| NotificationGroup.from_notification(notification) }, each_serializer: REST::NotificationGroupSerializer, relationships: @relationships
+    render json: @notifications.map { |notification| NotificationGroup.from_notification(notification) }, each_serializer: REST::NotificationGroupSerializer, relationships: @relationships, group_metadata: @group_metadata
   end
 
   def show
@@ -43,6 +44,17 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
     Notification.preload_cache_collection_target_statuses(notifications) do |target_statuses|
       preload_collection(target_statuses, Status)
     end
+  end
+
+  def load_group_metadata
+    return {} if @notifications.empty?
+
+    browserable_account_notifications
+      .where(group_key: @notifications.filter_map(&:group_key))
+      .where(id: (@notifications.last.id)..(@notifications.first.id))
+      .group(:group_key)
+      .pluck(:group_key, 'min(notifications.id) as min_id', 'max(notifications.id) as max_id')
+      .to_h { |group_key, min_id, max_id| [group_key, { min_id: min_id, max_id: max_id }] }
   end
 
   def browserable_account_notifications
