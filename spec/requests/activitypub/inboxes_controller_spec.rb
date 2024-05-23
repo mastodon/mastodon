@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::InboxesController do
+RSpec.describe ActivityPub::InboxesController, :sidekiq_inline do
   let!(:current_datetime) { 'Wed, 20 Dec 2023 10:00:00 GMT' }
   let!(:remote_actor_keypair) do
     OpenSSL::PKey.read(<<~PEM_TEXT)
@@ -65,7 +65,6 @@ RSpec.describe ActivityPub::InboxesController do
   end
 
   before do
-    Sidekiq::Testing.inline!
     travel_to current_datetime
   end
 
