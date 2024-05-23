@@ -125,7 +125,7 @@ class Footer extends ImmutablePureComponent {
 
   _performReblog = (status, privacy) => {
     const { dispatch } = this.props;
-    dispatch(reblog(status, privacy));
+    dispatch(reblog(status.id, privacy));
   };
 
   handleReblogClick = e => {
@@ -134,7 +134,7 @@ class Footer extends ImmutablePureComponent {
 
     if (signedIn) {
       if (status.get('reblogged')) {
-        dispatch(unreblog(status));
+        dispatch(unreblog(status.id));
       } else if ((e && e.shiftKey) || !boostModal) {
         this._performReblog(status);
       } else {
