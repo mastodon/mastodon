@@ -39,12 +39,12 @@ const mapDispatchToProps = dispatch => ({
   },
 
   onModalReblog (status, privacy) {
-    dispatch(reblog(status, privacy));
+    dispatch(reblog(status.id, privacy));
   },
 
   onReblog (status, e) {
     if (status.get('reblogged')) {
-      dispatch(unreblog(status));
+      dispatch(unreblog(status.id));
     } else {
       if (e.shiftKey || !boostModal) {
         this.onModalReblog(status);
