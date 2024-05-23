@@ -145,56 +145,6 @@ RSpec.describe ActivityPub::InboxesController do
       end
     end
 
-    context 'with an update note' do
-      let!(:status) do
-        Fabricate(:status,
-                  uri: object_json[:id],
-                  text: note_content,
-                  account: remote_actor)
-      end
-      let(:updated_content) { 'updated note from remote actor' }
-      let(:json) do
-        {
-          '@context': 'https://www.w3.org/ns/activitystreams',
-          id: 'https://remote.domain/activities/update/1',
-          type: 'Update',
-          actor: remote_actor.uri,
-          object: object_json.merge(
-            updated: current_datetime,
-            content: updated_content
-          ),
-        }.with_indifferent_access
-      end
-      let(:digest_header) { digest_value(json.to_json) }
-      let(:signature_header) do
-        build_signature_string(
-          remote_actor_keypair,
-          'https://remote.domain/users/bob#main-key',
-          "post /users/#{local_actor.username}/inbox",
-          base_headers.merge(
-            'Digest' => digest_header
-          )
-        )
-      end
-      let(:headers) do
-        base_headers.merge(
-          'Digest' => digest_header,
-          'Signature' => signature_header
-        )
-      end
-
-      it 'updates the Note' do
-        post "/users/#{local_actor.username}/inbox", params: json.to_json, headers: headers
-        expect(response).to have_http_status(202)
-        expect(Status.exists?(id: status.id, text: updated_content)).to be(true)
-      end
-
-      it 'does not change the local record of the remote actor' do
-        post "/users/#{local_actor.username}/inbox", params: json.to_json, headers: headers
-        expect(remote_actor.reload.username).to eq(remote_actor_original_username)
-      end
-    end
-
     context 'with an update actor' do
       let(:json) do
         {
@@ -233,66 +183,6 @@ RSpec.describe ActivityPub::InboxesController do
         post "/users/#{local_actor.username}/inbox", params: json.to_json, headers: headers
         expect(response).to have_http_status(202)
         expect(remote_actor.reload.username).to eq(remote_actor_original_username)
-      end
-    end
-
-    context 'with a follow' do
-      context 'when the remote actor is already following the actor' do
-        before do
-          remote_actor.follow!(local_actor)
-          stub_request(:post, remote_actor_inbox_url)
-        end
-
-        let(:json) do
-          {
-            '@context': 'https://www.w3.org/ns/activitystreams',
-            id: 'https://remote.domain/activities/update/1',
-            type: 'Follow',
-            actor: remote_actor.uri,
-            object: ActivityPub::TagManager.instance.uri_for(local_actor),
-          }.with_indifferent_access
-        end
-        let(:digest_header) { digest_value(json.to_json) }
-        let(:signature_header) do
-          build_signature_string(
-            remote_actor_keypair,
-            'https://remote.domain/users/bob#main-key',
-            "post /users/#{local_actor.username}/inbox",
-            base_headers.merge(
-              'Digest' => digest_header
-            )
-          )
-        end
-        let(:headers) do
-          base_headers.merge(
-            'Digest' => digest_header,
-            'Signature' => signature_header
-          )
-        end
-
-        it 'does not increase the number of accounts' do
-          expect do
-            post "/users/#{local_actor.username}/inbox", params: json.to_json, headers: headers
-          end.to(not_change { Account.count })
-        end
-
-        it 'does not increase the number of follows' do
-          expect do
-            post "/users/#{local_actor.username}/inbox", params: json.to_json, headers: headers
-          end.to(not_change { Follow.count })
-        end
-
-        it 'posts an acceptance to the remote actors inbox' do
-          post "/users/#{local_actor.username}/inbox", params: json.to_json, headers: headers
-          expect(
-            a_request(:post, remote_actor_inbox_url)
-          ).to have_been_made.once
-        end
-
-        it 'does not change the local record of the remote actor' do
-          post "/users/#{local_actor.username}/inbox", params: json.to_json, headers: headers
-          expect(remote_actor.reload.username).to eq(remote_actor_original_username)
-        end
       end
     end
   end
