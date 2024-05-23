@@ -346,9 +346,9 @@ class Status extends ImmutablePureComponent {
     const { dispatch } = this.props;
 
     if (status.get('reblogged')) {
-      dispatch(unreblog(status));
+      dispatch(unreblog({ statusId: status.get('id') }));
     } else {
-      dispatch(reblog(status, privacy));
+      dispatch(reblog({ statusId: status.get('id'), visibility: privacy }));
     }
   };
 
