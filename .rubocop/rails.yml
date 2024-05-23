@@ -1,0 +1,27 @@
+---
+Rails/FilePath:
+  EnforcedStyle: arguments
+
+Rails/HttpStatus:
+  EnforcedStyle: numeric
+
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - app/controllers/auth/*
+
+Rails/NegateInclude:
+  Enabled: false
+
+Rails/RakeEnvironment:
+  Exclude:
+    - lib/tasks/auto_annotate_models.rake
+    - lib/tasks/emojis.rake
+    - lib/tasks/mastodon.rake
+    - lib/tasks/repo.rake
+    - lib/tasks/statistics.rake
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/UnusedIgnoredColumns:
+  Enabled: false
