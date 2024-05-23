@@ -7,7 +7,7 @@ Style/Documentation:
 
 Style/FormatStringToken:
   AllowedMethods:
-    - redirect_with_vary
+    - redirect_with_vary # Route redirects are not token-formatted
   inherit_mode:
     merge:
       - AllowedMethods

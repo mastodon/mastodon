@@ -7,13 +7,13 @@ Rails/HttpStatus:
 
 Rails/LexicallyScopedActionFilter:
   Exclude:
-    - app/controllers/auth/*
+    - app/controllers/auth/* # Conflicts with `Lint/UselessMethodDefinition` for inherited controller actions
 
 Rails/NegateInclude:
   Enabled: false
 
 Rails/RakeEnvironment:
-  Exclude:
+  Exclude: # Tasks are doing local work which do not need full env loaded
     - lib/tasks/auto_annotate_models.rake
     - lib/tasks/emojis.rake
     - lib/tasks/mastodon.rake
@@ -24,4 +24,4 @@ Rails/SkipsModelValidations:
   Enabled: false
 
 Rails/UnusedIgnoredColumns:
-  Enabled: false
+  Enabled: false # Preserve ability to migrate from arbitrary old versions
