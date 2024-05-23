@@ -6,8 +6,13 @@ import { importFetchedStatus } from './importer';
 
 export const reblog = createDataLoadingThunk(
   'status/reblog',
-  (statusId: string, visibility: StatusVisibility) =>
-    apiReblog(statusId, visibility),
+  ({
+    statusId,
+    visibility,
+  }: {
+    statusId: string;
+    visibility: StatusVisibility;
+  }) => apiReblog(statusId, visibility),
   (data, { dispatch, discardLoadData }) => {
     // The reblog API method returns a new status wrapped around the original. In this case we are only
     // interested in how the original is modified, hence passing it skipping the wrapper
@@ -20,7 +25,7 @@ export const reblog = createDataLoadingThunk(
 
 export const unreblog = createDataLoadingThunk(
   'status/unreblog',
-  (statusId: string) => apiUnreblog(statusId),
+  ({ statusId }: { statusId: string }) => apiUnreblog(statusId),
   (data, { dispatch, discardLoadData }) => {
     dispatch(importFetchedStatus(data));
 
