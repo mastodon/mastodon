@@ -3,7 +3,8 @@ import { createDataLoadingThunk } from 'flavours/glitch/store/typed_functions';
 
 export const submitAccountNote = createDataLoadingThunk(
   'account_note/submit',
-  (accountId: string, note: string) => apiSubmitAccountNote(accountId, note),
+  ({ accountId, note }: { accountId: string; note: string }) =>
+    apiSubmitAccountNote(accountId, note),
   (relationship) => ({ relationship }),
   { skipLoading: true },
 );

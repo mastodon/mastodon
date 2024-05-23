@@ -115,9 +115,9 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
 
   onModalReblog (status, privacy) {
     if (status.get('reblogged')) {
-      dispatch(unreblog(status.id));
+      dispatch(unreblog({ statusId: status.get('id') }));
     } else {
-      dispatch(reblog(status.id, privacy));
+      dispatch(reblog({ statusId: status.get('id'), visibility: privacy }));
     }
   },
 

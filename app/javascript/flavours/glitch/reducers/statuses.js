@@ -122,13 +122,13 @@ export default function statuses(state = initialState, action) {
     return statusTranslateUndo(state, action.id);
   default:
     if(reblog.pending.match(action))
-      return state.setIn([action.meta.params.statusId, 'reblogged'], true);
+      return state.setIn([action.meta.arg.statusId, 'reblogged'], true);
     else if(reblog.rejected.match(action))
-      return state.get(action.meta.params.statusId) === undefined ? state : state.setIn([action.meta.params.statusId, 'reblogged'], false);
+      return state.get(action.meta.arg.statusId) === undefined ? state : state.setIn([action.meta.arg.statusId, 'reblogged'], false);
     else if(unreblog.pending.match(action))
-      return state.setIn([action.meta.params.statusId, 'reblogged'], false);
+      return state.setIn([action.meta.arg.statusId, 'reblogged'], false);
     else if(unreblog.rejected.match(action))
-      return state.get(action.meta.params.statusId) === undefined ? state : state.setIn([action.meta.params.statusId, 'reblogged'], true);
+      return state.get(action.meta.arg.statusId) === undefined ? state : state.setIn([action.meta.arg.statusId, 'reblogged'], true);
     else
       return state;
   }

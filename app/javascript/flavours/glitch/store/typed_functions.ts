@@ -92,20 +92,20 @@ type OnData<LoadDataResult, ReturnedData> = (
 // Overload when there is no `onData` method, the payload is the `onData` result
 export function createDataLoadingThunk<
   LoadDataResult,
-  Args extends readonly unknown[],
+  Args extends Record<string, unknown>,
 >(
   name: string,
-  loadData: (...args: Args) => Promise<LoadDataResult>,
+  loadData: (args: Args) => Promise<LoadDataResult>,
   thunkOptions?: AppThunkOptions,
 ): ReturnType<typeof createThunk<Args, LoadDataResult>>;
 
 // Overload when the `onData` method returns discardLoadDataInPayload, then the payload is empty
 export function createDataLoadingThunk<
   LoadDataResult,
-  Args extends readonly unknown[],
+  Args extends Record<string, unknown>,
 >(
   name: string,
-  loadData: (...args: Args) => Promise<LoadDataResult>,
+  loadData: (args: Args) => Promise<LoadDataResult>,
   onDataOrThunkOptions?:
     | AppThunkOptions
     | OnData<LoadDataResult, DiscardLoadData>,
@@ -115,10 +115,10 @@ export function createDataLoadingThunk<
 // Overload when the `onData` method returns nothing, then the mayload is the `onData` result
 export function createDataLoadingThunk<
   LoadDataResult,
-  Args extends readonly unknown[],
+  Args extends Record<string, unknown>,
 >(
   name: string,
-  loadData: (...args: Args) => Promise<LoadDataResult>,
+  loadData: (args: Args) => Promise<LoadDataResult>,
   onDataOrThunkOptions?: AppThunkOptions | OnData<LoadDataResult, void>,
   thunkOptions?: AppThunkOptions,
 ): ReturnType<typeof createThunk<Args, LoadDataResult>>;
@@ -126,11 +126,11 @@ export function createDataLoadingThunk<
 // Overload when there is an `onData` method returning something
 export function createDataLoadingThunk<
   LoadDataResult,
-  Args extends readonly unknown[],
+  Args extends Record<string, unknown>,
   Returned,
 >(
   name: string,
-  loadData: (...args: Args) => Promise<LoadDataResult>,
+  loadData: (args: Args) => Promise<LoadDataResult>,
   onDataOrThunkOptions?: AppThunkOptions | OnData<LoadDataResult, Returned>,
   thunkOptions?: AppThunkOptions,
 ): ReturnType<typeof createThunk<Args, Returned>>;
@@ -142,7 +142,7 @@ export function createDataLoadingThunk<
  *
  * It is a wrapper around RTK's [`createAsyncThunk`](https://redux-toolkit.js.org/api/createAsyncThunk)
  * @param name Prefix for the actions types
- * @param loadData Function that loads the data. It's arguments will become the thunk's arguments
+ * @param loadData Function that loads the data. It's (object) argument will become the thunk's argument
  * @param onDataOrThunkOptions
  *   Callback called on the results from `loadData`.
  *
@@ -162,11 +162,11 @@ export function createDataLoadingThunk<
  */
 export function createDataLoadingThunk<
   LoadDataResult,
-  Args extends readonly unknown[],
+  Args extends Record<string, unknown>,
   Returned,
 >(
   name: string,
-  loadData: (...args: Args) => Promise<LoadDataResult>,
+  loadData: (args: Args) => Promise<LoadDataResult>,
   onDataOrThunkOptions?: AppThunkOptions | OnData<LoadDataResult, Returned>,
   maybeThunkOptions?: AppThunkOptions,
 ) {
@@ -184,7 +184,7 @@ export function createDataLoadingThunk<
   return createThunk<Args, Returned>(
     name,
     async (arg, { getState, dispatch }) => {
-      const data = await loadData(...arg);
+      const data = await loadData(arg);
 
       if (!onData) return data as Returned;
 
