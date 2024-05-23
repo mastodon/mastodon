@@ -27,7 +27,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @options[:request_id] ||= "#{Time.now.utc.to_i}-#{username}@#{domain}"
 
     with_redis_lock("process_account:#{@uri}") do
-      @account            = Account.remote.find_by(uri: @uri) if @options[:only_key]
+      @account            = Account.remote.find_by(uri: @uri) if find_remote_account_by_uri?
       @account          ||= Account.find_remote(@username, @domain)
       @old_public_key     = @account&.public_key
       @old_protocol       = @account&.protocol
@@ -68,6 +68,10 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   private
+
+  def find_remote_account_by_uri?
+    @options[:only_key] || @options[:allow_username_update]
+  end
 
   def create_account
     @account = Account.new
@@ -131,6 +135,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.indexable               = @json['indexable'] || false
     @account.memorial                = @json['memorial'] || false
     @account.attribution_domains     = as_array(@json['attributionDomains'] || []).map { |item| value_or_id(item) }
+    @account.username                = @json['preferredUsername'] if @options[:allow_username_update]
   end
 
   def set_fetchable_key!

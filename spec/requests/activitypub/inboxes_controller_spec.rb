@@ -178,10 +178,10 @@ RSpec.describe ActivityPub::InboxesController, :sidekiq_inline do
         end.to(not_change { Account.count })
       end
 
-      it 'does not update the remote actors username' do
+      it 'updates the remote actors username' do
         post "/users/#{local_actor.username}/inbox", params: json.to_json, headers: headers
         expect(response).to have_http_status(202)
-        expect(remote_actor.reload.username).to eq(remote_actor_original_username)
+        expect(remote_actor.reload.username).to eq(remote_actor_new_username)
       end
     end
   end
