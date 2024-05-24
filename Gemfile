@@ -103,6 +103,8 @@ gem 'rdf-normalize', '~> 0.5'
 
 gem 'private_address_check', '~> 0.5'
 
+gem 'opentelemetry-api', '~> 1.2.5'
+
 group :opentelemetry do
   gem 'opentelemetry-exporter-otlp', '~> 0.26.3', require: false
   gem 'opentelemetry-instrumentation-active_job', '~> 0.7.1', require: false

@@ -23,7 +23,7 @@ module Attachmentable
 
   included do
     def self.has_attached_file(name, options = {}) # rubocop:disable Naming/PredicateName
-      super(name, options)
+      super
 
       send(:"before_#{name}_validate", prepend: true) do
         attachment = send(name)
