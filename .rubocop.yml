@@ -25,6 +25,7 @@ inherit_from:
   - .rubocop/rspec-rails.yml
   - .rubocop/rspec.yml
   - .rubocop/style.yml
+  - .rubocop/custom.yml
   - .rubocop_todo.yml
   - .rubocop/strict.yml
 
@@ -38,4 +39,3 @@ require:
   - rubocop-rspec_rails
   - rubocop-performance
   - rubocop-capybara
-  - ./lib/linter/rubocop_middle_dot
