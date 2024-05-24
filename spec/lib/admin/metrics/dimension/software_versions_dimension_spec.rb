@@ -14,8 +14,16 @@ describe Admin::Metrics::Dimension::SoftwareVersionsDimension do
     it 'reports on the running software' do
       expect(subject.data.map(&:symbolize_keys))
         .to include(
-          include(key: 'mastodon', value: Mastodon::Version.to_s),
-          include(key: 'ruby', value: include(RUBY_VERSION))
+          include(
+            human_value: Mastodon::Version.to_s,
+            key: 'mastodon',
+            value: Mastodon::Version.gem_version.to_s
+          ),
+          include(
+            human_value: include(RUBY_DESCRIPTION),
+            key: 'ruby',
+            value: include(RUBY_VERSION)
+          )
         )
     end
   end

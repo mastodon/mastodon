@@ -14,13 +14,11 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   end
 
   def mastodon_version
-    value = Mastodon::Version.to_s
-
     {
       key: 'mastodon',
       human_key: 'Mastodon',
-      value: value,
-      human_value: value,
+      value: Mastodon::Version.gem_version.to_s,
+      human_value: Mastodon::Version.to_s,
     }
   end
 
@@ -34,24 +32,27 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   end
 
   def postgresql_version
-    value = ActiveRecord::Base.connection.execute('SELECT VERSION()').first['version'].match(/\A(?:PostgreSQL |)([^\s]+).*\z/)[1]
-
     {
       key: 'postgresql',
       human_key: 'PostgreSQL',
-      value: value,
-      human_value: value,
+      value: ActiveRecord::Base
+        .connection
+        .execute('SELECT VERSION()')
+        .first['version']
+        .match(/\A(?:PostgreSQL |)([^\s]+).*\z/)[1],
+      human_value: ActiveRecord::Base
+        .connection
+        .execute('SHOW server_version')
+        .first['server_version'],
     }
   end
 
   def redis_version
-    value = redis_info['redis_version']
-
     {
       key: 'redis',
       human_key: 'Redis',
-      value: value,
-      human_value: value,
+      value: redis_info['redis_version'],
+      human_value: "#{redis_info['redis_version']} (build #{redis_info['redis_build_id']})",
     }
   end
 
