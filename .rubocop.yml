@@ -18,7 +18,6 @@ AllCops:
   UseCache: true
 
 inherit_from:
-  - .rubocop_todo.yml
   - .rubocop/layout.yml
   - .rubocop/metrics.yml
   - .rubocop/naming.yml
@@ -26,6 +25,8 @@ inherit_from:
   - .rubocop/rspec-rails.yml
   - .rubocop/rspec.yml
   - .rubocop/style.yml
+  - .rubocop_todo.yml
+  - .rubocop/strict.yml
 
 inherit_mode:
   merge:

@@ -1,0 +1,23 @@
+# Inherit from TODO here to make sure we enforce the rules below (and TODO is ignored)
+inherit_from:
+  - ../.rubocop_todo.yml
+
+Lint/Debugger: # Remove any `binding.pry`
+  Enabled: true
+  Exclude: []
+
+RSpec/Focus: # Require full spec run on CI
+  Enabled: true
+  Exclude: []
+
+Rails/Output: # Remove any `puts` debugging
+  Enabled: true
+  Exclude: []
+
+Rails/FindEach: # Using `each` could impact performance, use `find_each`
+  Enabled: true
+  Exclude: []
+
+Rails/UniqBeforePluck: # Require `uniq.pluck` and not `pluck.uniq`
+  Enabled: true
+  Exclude: []
