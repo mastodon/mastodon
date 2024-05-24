@@ -55,12 +55,56 @@ RSpec.describe ActivityPub::Activity::Update do
         stub_request(:get, actor_json[:following]).to_return(status: 404)
         stub_request(:get, actor_json[:featured]).to_return(status: 404)
         stub_request(:get, actor_json[:featuredTags]).to_return(status: 404)
-
-        subject.perform
       end
 
       it 'updates profile' do
+        subject.perform
         expect(sender.reload.display_name).to eq 'Totally modified now'
+      end
+
+      context 'when Actor username changes' do
+        let!(:original_username) { sender.username }
+        let!(:updated_username) { 'updated_username' }
+        let(:updated_username_json) { actor_json.merge(preferredUsername: updated_username) }
+        let(:json) do
+          {
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            id: 'foo',
+            type: 'Update',
+            actor: sender.uri,
+            object: updated_username_json,
+          }.with_indifferent_access
+        end
+
+        it 'updates profile' do
+          subject.perform
+          expect(sender.reload.display_name).to eq 'Totally modified now'
+        end
+
+        it 'updates username' do
+          subject.perform
+          expect(sender.reload.username).to eq updated_username
+        end
+
+        context 'when updated username is not unique for domain' do
+          before do
+            Fabricate(:account,
+                      username: updated_username,
+                      domain: 'example.com',
+                      inbox_url: "https://example.com/#{updated_username}/inbox",
+                      outbox_url: "https://example.com/#{updated_username}/outbox")
+          end
+
+          it 'updates profile' do
+            subject.perform
+            expect(sender.reload.display_name).to eq 'Totally modified now'
+          end
+
+          it 'does not update username' do
+            subject.perform
+            expect(sender.reload.username).to eq original_username
+          end
+        end
       end
     end
 

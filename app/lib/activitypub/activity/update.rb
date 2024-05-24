@@ -20,7 +20,19 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
   def update_account
     return reject_payload! if @account.uri != object_uri
 
-    ActivityPub::ProcessAccountService.new.call(@account.username, @account.domain, @object, signed_with_known_key: true, request_id: @options[:request_id], allow_username_update: true)
+    opts = {
+      signed_with_known_key: true,
+      request_id: @options[:request_id],
+    }
+
+    if @account.username != @object['preferredUsername']
+      account_proxy = @account.dup
+      account_proxy.username = @object['preferredUsername']
+      UniqueUsernameValidator.new.validate(account_proxy)
+      opts[:allow_username_update] = true if account_proxy.errors.blank?
+    end
+
+    ActivityPub::ProcessAccountService.new.call(@account.username, @account.domain, @object, opts)
   end
 
   def update_status
