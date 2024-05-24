@@ -38,7 +38,7 @@ module ActiveRecord
         end
       end
 
-      super(direction, migrations, schema_migration, internal_metadata, target_version)
+      super
     end
   end
 
