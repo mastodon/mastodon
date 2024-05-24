@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { FormattedNumber } from 'react-intl';
-
 import api from 'mastodon/api';
 import { Skeleton } from 'mastodon/components/skeleton';
 import { roundTo10 } from 'mastodon/utils/numbers';
@@ -74,7 +72,7 @@ export default class Dimension extends PureComponent {
                 </td>
 
                 <td className='dimension__item__value'>
-                  {typeof item.human_value !== 'undefined' ? item.human_value : <FormattedNumber value={item.value} />}
+                  <span title={item.human_value}>{item.value}</span>
                 </td>
               </tr>
             ))}
