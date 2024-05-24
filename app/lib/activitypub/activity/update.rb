@@ -29,7 +29,7 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
       account_proxy = @account.dup
       account_proxy.username = @object['preferredUsername']
       UniqueUsernameValidator.new.validate(account_proxy)
-      opts[:allow_username_update] = true if account_proxy.errors.blank?
+      opts[:allow_username_update] = account_proxy.errors.blank?
     end
 
     ActivityPub::ProcessAccountService.new.call(@account.username, @account.domain, @object, opts)
