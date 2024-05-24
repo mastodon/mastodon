@@ -22,7 +22,13 @@ class ListAccount < ApplicationRecord
 
   before_validation :set_follow
 
+  after_create :backfill_list
+
   private
+
+  def backfill_list
+    FeedManager.instance.merge_into_list(account, list)
+  end
 
   def set_follow
     return if list.account_id == account.id
