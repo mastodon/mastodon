@@ -4,7 +4,7 @@ ko:
     confirmations:
       confirmed: 이메일이 성공적으로 승인 되었습니다.
       send_instructions: 몇 분 이내로 확인 이메일이 발송 됩니다. 이메일을 받지 못 한 경우, 스팸 폴더를 확인하세요.
-      send_paranoid_instructions: 당신의 이메일이 우리의 DB에 있을 경우 몇 분 이내로 확인 메일이 발송 됩니다. 이메일을 받지 못 한 경우, 스팸 폴더를 확인하세요.
+      send_paranoid_instructions: 이메일 주소가 저희 데이터베이스에 있는 경우, 몇 분 내에 이메일 주소를 확인하는 방법에 대한 안내가 포함된 이메일을 받을 수 있습니다. 이 이메일을 받지 못했다면 스팸 폴더를 확인해 주세요.
     failure:
       already_authenticated: 이미 로그인 된 상태입니다.
       inactive: 계정이 아직 활성화 되지 않았습니다.
@@ -13,7 +13,7 @@ ko:
       locked: 계정이 잠겼습니다.
       not_found_in_database: 올바르지 않은 %{authentication_keys} 혹은 암호입니다.
       pending: 이 계정은 아직 검토 중입니다.
-      timeout: 세션이 만료 되었습니다. 다시 로그인 해 주세요.
+      timeout: 세션이 만료되었습니다. 다시 로그인 하세요.
       unauthenticated: 계속 하려면 로그인을 해야 합니다.
       unconfirmed: 계속 하려면 이메일을 확인 받아야 합니다.
     mailer:
@@ -82,8 +82,8 @@ ko:
       success: "%{kind} 계정을 성공적으로 인증했습니다."
     passwords:
       no_token: 이 페이지는 암호 재설정 이메일을 거쳐야 접근할 수 있습니다. 만약 암호 재설정 이메일 거치지 않았다면 입력한 URL이 맞는지 확인 바랍니다.
-      send_instructions: 당신의 이메일 주소가 우리의 DB에 있다면 패스워드 복구 링크가 몇 분 이내에 메일로 발송 됩니다. 만약 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
-      send_paranoid_instructions: 당신의 이메일 주소가 우리의 DB에 있다면 패스워드 복구 링크가 몇 분 이내에 메일로 발송 됩니다. 만약 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
+      send_instructions: 이메일 주소가 저희 데이터베이스에 있는 경우, 몇 분 내에 이메일 주소로 비밀번호 복구 링크를 받을 수 있습니다. 이 이메일을 받지 못했다면 스팸 폴더를 확인해 주세요.
+      send_paranoid_instructions: 이메일 주소가 저희 데이터베이스에 있는 경우, 몇 분 내에 이메일 주소로 비밀번호 복구 링크를 받을 수 있습니다. 이 이메일을 받지 못했다면 스팸 폴더를 확인해 주세요.
       updated: 암호를 잘 바꾸었습니다. 현재 로그인 상태입니다.
       updated_not_active: 암호를 잘 변경하였습니다.
     registrations:

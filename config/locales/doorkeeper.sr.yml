@@ -122,16 +122,18 @@ sr:
         admin/accounts: Администрација налога
         admin/all: Све функције администрације
         admin/reports: Администрација пријава
+        all: Потпуни приступ вашем Mastodon налогу
         blocks: Блокирани
         bookmarks: Обележивачи
         conversations: Разговори
         crypto: End-to-end енкрипција
-        favourites: Омиљени
+        favourites: Омиљено
         filters: Филтери
+        follow: Праћења, игнорисања и блокирања
         follows: Праћени
         lists: Листе
         media: Мултимедијални прилози
-        mutes: Утишани
+        mutes: Игнорисани
         notifications: Обавештења
         push: Прослеђена обавештења
         reports: Пријаве
@@ -147,17 +149,22 @@ sr:
     scopes:
       admin:read: читање свих података на серверу
       admin:read:accounts: читање осетљивих података за све налоге
+      admin:read:canonical_email_blocks: прочитај осетљиве информације и канонске имејл блокове
       admin:read:domain_allows: прочитај осетљиве информације за све дозволе домена
       admin:read:domain_blocks: прочитај осетљиве информације за све блокове домена
+      admin:read:email_domain_blocks: прочитај осетљиве информације свих блокова имејл домена
       admin:read:ip_blocks: прочитај осетљиве информације за све IP блокове
       admin:read:reports: читање осетљивих података свих извештаја и пријављених налога
       admin:write: мењање свих података на серверу
       admin:write:accounts: вршење модераторских активности над налозима
+      admin:write:canonical_email_blocks: изврши модерацијске радње над канонским имејл блоковима
+      admin:write:domain_allows: изврши модерацијске радње над дозволама домена
       admin:write:domain_blocks: изврши модераторске активности на блоковима домена
+      admin:write:email_domain_blocks: изврши модерацијске радње над блоковима имејл домена
       admin:write:ip_blocks: изврши модераторске активности на IP блоковима
       admin:write:reports: вршење модераторских активности над извештајима
       crypto: коришћење end-to-end енкрипције
-      follow: прати, блокира, одблокира и отпрати налоге
+      follow: мења односе налога
       push: примање прослеђених обавештења
       read: чита податке Вашег налога
       read:accounts: погледај информације о налозима
@@ -167,7 +174,7 @@ sr:
       read:filters: погледај своје филтере
       read:follows: погледај кога пратиш
       read:lists: погледај своје листе
-      read:mutes: погледај своје утишане
+      read:mutes: погледај игнорисања
       read:notifications: погледај своја обавештења
       read:reports: погледај своје пријаве
       read:search: претражи у своје име
@@ -176,13 +183,13 @@ sr:
       write:accounts: измени свој профил
       write:blocks: блокирај налоге и домене
       write:bookmarks: обележи објаве
-      write:conversations: утишај и обриши разговоре
+      write:conversations: игнориши и избриши разговоре
       write:favourites: омиљене објаве
       write:filters: креирај филтере
       write:follows: прати кориснике
       write:lists: креирај листе
       write:media: отпреми медијске датотеке
-      write:mutes: утишај коринсике и разговоре
+      write:mutes: игнориши кориснике и разговоре
       write:notifications: обриши своја обавештења
       write:reports: пријави друге кориснике
       write:statuses: објави објаве

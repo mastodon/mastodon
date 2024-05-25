@@ -2,7 +2,7 @@
 
 <% @statuses.each do |status| %>
 - <%= ActivityPub::TagManager.instance.url_for(status) %>
-  <%= standard_locale_name(status.language) %> • <%= raw t('admin.trends.tags.current_score', score: status.trend.score.round(2)) %>
+  <%= standard_locale_name(status.language) %> · <%= raw t('admin.trends.tags.current_score', score: status.trend.score.round(2)) %>
 <% end %>
 
 <%= raw t('application_mailer.view')%> <%= admin_trends_statuses_url %>

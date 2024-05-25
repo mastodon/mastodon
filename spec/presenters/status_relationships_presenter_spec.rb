@@ -12,13 +12,13 @@ RSpec.describe StatusRelationshipsPresenter do
       allow(Status).to receive(:pins_map).with(anything, current_account_id).and_return(default_map)
     end
 
-    let(:presenter)          { StatusRelationshipsPresenter.new(statuses, current_account_id, **options) }
+    let(:presenter)          { described_class.new(statuses, current_account_id, **options) }
     let(:current_account_id) { Fabricate(:account).id }
     let(:statuses)           { [Fabricate(:status)] }
-    let(:status_ids)         { statuses.map(&:id) + statuses.map(&:reblog_of_id).compact }
+    let(:status_ids)         { statuses.map(&:id) + statuses.filter_map(&:reblog_of_id) }
     let(:default_map)        { { 1 => true } }
 
-    context 'options are not set' do
+    context 'when options are not set' do
       let(:options) { {} }
 
       it 'sets default maps' do
@@ -30,7 +30,7 @@ RSpec.describe StatusRelationshipsPresenter do
       end
     end
 
-    context 'options[:reblogs_map] is set' do
+    context 'when options[:reblogs_map] is set' do
       let(:options) { { reblogs_map: { 2 => true } } }
 
       it 'sets @reblogs_map merged with default_map and options[:reblogs_map]' do
@@ -38,7 +38,7 @@ RSpec.describe StatusRelationshipsPresenter do
       end
     end
 
-    context 'options[:favourites_map] is set' do
+    context 'when options[:favourites_map] is set' do
       let(:options) { { favourites_map: { 3 => true } } }
 
       it 'sets @favourites_map merged with default_map and options[:favourites_map]' do
@@ -46,7 +46,7 @@ RSpec.describe StatusRelationshipsPresenter do
       end
     end
 
-    context 'options[:bookmarks_map] is set' do
+    context 'when options[:bookmarks_map] is set' do
       let(:options) { { bookmarks_map: { 4 => true } } }
 
       it 'sets @bookmarks_map merged with default_map and options[:bookmarks_map]' do
@@ -54,7 +54,7 @@ RSpec.describe StatusRelationshipsPresenter do
       end
     end
 
-    context 'options[:mutes_map] is set' do
+    context 'when options[:mutes_map] is set' do
       let(:options) { { mutes_map: { 5 => true } } }
 
       it 'sets @mutes_map merged with default_map and options[:mutes_map]' do
@@ -62,7 +62,7 @@ RSpec.describe StatusRelationshipsPresenter do
       end
     end
 
-    context 'options[:pins_map] is set' do
+    context 'when options[:pins_map] is set' do
       let(:options) { { pins_map: { 6 => true } } }
 
       it 'sets @pins_map merged with default_map and options[:pins_map]' do

@@ -59,7 +59,7 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
   grid-gap: 10px;
 
-  @media screen and (max-width: 1350px) {
+  @media screen and (width <= 1350px) {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
@@ -81,7 +81,7 @@
     display: flex;
     align-items: baseline;
     border-radius: 4px;
-    background: darken($ui-highlight-color, 2%);
+    background: $ui-button-background-color;
     color: $primary-text-color;
     transition: all 100ms ease-in;
     font-size: 14px;
@@ -94,7 +94,7 @@
     &:active,
     &:focus,
     &:hover {
-      background-color: $ui-highlight-color;
+      background-color: $ui-button-focus-background-color;
       transition: all 200ms ease-out;
     }
 

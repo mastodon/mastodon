@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Api::V1::AccountsController, type: :controller do
+RSpec.describe Api::V1::AccountsController do
   render_views
 
   let(:user)   { Fabricate(:user) }
@@ -9,14 +11,6 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
-  end
-
-  shared_examples 'forbidden for wrong scope' do |wrong_scope|
-    let(:scopes) { wrong_scope }
-
-    it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
-    end
   end
 
   describe 'POST #create' do
@@ -28,7 +22,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
       post :create, params: { username: 'test', password: '12345678', email: 'hello@world.tld', agreement: agreement }
     end
 
-    context 'given truthy agreement' do
+    context 'when given truthy agreement' do
       let(:agreement) { 'true' }
 
       it 'returns http success' do
@@ -46,32 +40,18 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
       end
     end
 
-    context 'given no agreement' do
+    context 'when given no agreement' do
       it 'returns http unprocessable entity' do
         expect(response).to have_http_status(422)
       end
     end
   end
 
-  describe 'GET #show' do
-    let(:scopes) { 'read:accounts' }
-
-    before do
-      get :show, params: { id: user.account.id }
-    end
-
-    it 'returns http success' do
-      expect(response).to have_http_status(200)
-    end
-
-    it_behaves_like 'forbidden for wrong scope', 'write:statuses'
-  end
-
   describe 'POST #follow' do
     let(:scopes) { 'write:follows' }
     let(:other_account) { Fabricate(:account, username: 'bob', locked: locked) }
 
-    context do
+    context 'when posting to an other account' do
       before do
         post :follow, params: { id: other_account.id }
       end
@@ -119,7 +99,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
       end
     end
 
-    context 'modifying follow options' do
+    context 'when modifying follow options' do
       let(:locked) { false }
 
       before do

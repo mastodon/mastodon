@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Admin::RolesController do
@@ -18,7 +20,7 @@ describe Admin::RolesController do
 
     context 'when user does not have permission to manage roles' do
       it 'returns http forbidden' do
-        expect(response).to have_http_status(:forbidden)
+        expect(response).to have_http_status(403)
       end
     end
 
@@ -38,7 +40,7 @@ describe Admin::RolesController do
 
     context 'when user does not have permission to manage roles' do
       it 'returns http forbidden' do
-        expect(response).to have_http_status(:forbidden)
+        expect(response).to have_http_status(403)
       end
     end
 
@@ -128,7 +130,7 @@ describe Admin::RolesController do
 
     context 'when user does not have permission to manage roles' do
       it 'returns http forbidden' do
-        expect(response).to have_http_status(:forbidden)
+        expect(response).to have_http_status(403)
       end
     end
 
@@ -145,7 +147,7 @@ describe Admin::RolesController do
         let(:role_position) { current_role.position + 1 }
 
         it 'returns http forbidden' do
-          expect(response).to have_http_status(:forbidden)
+          expect(response).to have_http_status(403)
         end
       end
     end
@@ -165,7 +167,7 @@ describe Admin::RolesController do
 
     context 'when user does not have permission to manage roles' do
       it 'returns http forbidden' do
-        expect(response).to have_http_status(:forbidden)
+        expect(response).to have_http_status(403)
       end
 
       it 'does not update the role' do
@@ -203,7 +205,7 @@ describe Admin::RolesController do
           let(:role_position) { current_role.position + 1 }
 
           it 'returns http forbidden' do
-            expect(response).to have_http_status(:forbidden)
+            expect(response).to have_http_status(403)
           end
 
           it 'does not update the role' do
@@ -224,7 +226,7 @@ describe Admin::RolesController do
 
     context 'when user does not have permission to manage roles' do
       it 'returns http forbidden' do
-        expect(response).to have_http_status(:forbidden)
+        expect(response).to have_http_status(403)
       end
     end
 
@@ -241,7 +243,7 @@ describe Admin::RolesController do
         let(:role_position) { current_role.position + 1 }
 
         it 'returns http forbidden' do
-          expect(response).to have_http_status(:forbidden)
+          expect(response).to have_http_status(403)
         end
       end
     end

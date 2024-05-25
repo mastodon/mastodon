@@ -15,15 +15,15 @@ class Vacuum::MediaAttachmentsVacuum
   private
 
   def vacuum_cached_files!
-    media_attachments_past_retention_period.find_each do |media_attachment|
-      media_attachment.file.destroy
-      media_attachment.thumbnail.destroy
-      media_attachment.save
+    media_attachments_past_retention_period.find_in_batches do |media_attachments|
+      AttachmentBatch.new(MediaAttachment, media_attachments).clear
     end
   end
 
   def vacuum_orphaned_records!
-    orphaned_media_attachments.in_batches.destroy_all
+    orphaned_media_attachments.find_in_batches do |media_attachments|
+      AttachmentBatch.new(MediaAttachment, media_attachments).delete
+    end
   end
 
   def media_attachments_past_retention_period

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import { openDropdownMenu, closeDropdownMenu } from 'mastodon/actions/dropdown_menu';
 import { fetchHistory } from 'mastodon/actions/history';
 import DropdownMenu from 'mastodon/components/dropdown_menu';

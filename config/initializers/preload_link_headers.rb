@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Since Rails 6.1, ActionView adds preload links for javascript files
 # in the Links header per default.
 

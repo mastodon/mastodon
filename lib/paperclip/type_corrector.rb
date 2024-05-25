@@ -7,7 +7,7 @@ module Paperclip
     def make
       return @file unless options[:format]
 
-      target_extension = '.' + options[:format]
+      target_extension = ".#{options[:format]}"
       extension        = File.extname(attachment.instance_read(:file_name))
 
       return @file unless options[:style] == :original && target_extension && extension != target_extension

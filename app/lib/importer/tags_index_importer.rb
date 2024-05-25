@@ -4,10 +4,10 @@ class Importer::TagsIndexImporter < Importer::BaseImporter
   def import!
     index.adapter.default_scope.find_in_batches(batch_size: @batch_size) do |tmp|
       in_work_unit(tmp) do |tags|
-        bulk = Chewy::Index::Import::BulkBuilder.new(index, to_index: tags).bulk_body
+        bulk = build_bulk_body(tags)
 
-        indexed = bulk.select { |entry| entry[:index] }.size
-        deleted = bulk.select { |entry| entry[:delete] }.size
+        indexed = bulk.size
+        deleted = 0
 
         Chewy::Index::Import::BulkRequest.new(index).perform(bulk)
 

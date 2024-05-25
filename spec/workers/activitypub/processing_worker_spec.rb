@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe ActivityPub::ProcessingWorker do
@@ -7,7 +9,8 @@ describe ActivityPub::ProcessingWorker do
 
   describe '#perform' do
     it 'delegates to ActivityPub::ProcessCollectionService' do
-      allow(ActivityPub::ProcessCollectionService).to receive(:new).and_return(double(:service, call: nil))
+      allow(ActivityPub::ProcessCollectionService).to receive(:new)
+        .and_return(instance_double(ActivityPub::ProcessCollectionService, call: nil))
       subject.perform(account.id, '')
       expect(ActivityPub::ProcessCollectionService).to have_received(:new)
     end

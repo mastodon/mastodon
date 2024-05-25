@@ -4,12 +4,13 @@ require 'rails_helper'
 require 'pundit/rspec'
 
 RSpec.describe InvitePolicy do
-  let(:subject) { described_class }
+  subject { described_class }
+
   let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
   let(:john)    { Fabricate(:user).account }
 
   permissions :index? do
-    context 'staff?' do
+    context 'when staff?' do
       it 'permits' do
         expect(subject).to permit(admin, Invite)
       end
@@ -17,7 +18,7 @@ RSpec.describe InvitePolicy do
   end
 
   permissions :create? do
-    context 'has privilege' do
+    context 'with privilege' do
       before do
         UserRole.everyone.update(permissions: UserRole::FLAGS[:invite_users])
       end
@@ -27,7 +28,7 @@ RSpec.describe InvitePolicy do
       end
     end
 
-    context 'does not have privilege' do
+    context 'when does not have privilege' do
       before do
         UserRole.everyone.update(permissions: UserRole::Flags::NONE)
       end
@@ -39,13 +40,13 @@ RSpec.describe InvitePolicy do
   end
 
   permissions :deactivate_all? do
-    context 'admin?' do
+    context 'when admin?' do
       it 'permits' do
         expect(subject).to permit(admin, Invite)
       end
     end
 
-    context 'not admin?' do
+    context 'when not admin?' do
       it 'denies' do
         expect(subject).to_not permit(john, Invite)
       end
@@ -53,20 +54,20 @@ RSpec.describe InvitePolicy do
   end
 
   permissions :destroy? do
-    context 'owner?' do
+    context 'when owner?' do
       it 'permits' do
         expect(subject).to permit(john, Fabricate(:invite, user: john.user))
       end
     end
 
-    context 'not owner?' do
-      context 'admin?' do
+    context 'when not owner?' do
+      context 'when admin?' do
         it 'permits' do
           expect(subject).to permit(admin, Fabricate(:invite))
         end
       end
 
-      context 'not admin?' do
+      context 'when not admin?' do
         it 'denies' do
           expect(subject).to_not permit(john, Fabricate(:invite))
         end

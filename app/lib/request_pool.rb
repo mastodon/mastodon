@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './connection_pool/shared_connection_pool'
+require_relative 'connection_pool/shared_connection_pool'
 
 class RequestPool
   def self.current
@@ -28,8 +28,9 @@ class RequestPool
   end
 
   MAX_IDLE_TIME = 30
-  WAIT_TIMEOUT  = 5
   MAX_POOL_SIZE = ENV.fetch('MAX_REQUEST_POOL_SIZE', 512).to_i
+  REAPER_FREQUENCY = 30
+  WAIT_TIMEOUT = 5
 
   class Connection
     attr_reader :site, :last_used_at, :created_at, :in_use, :dead, :fresh
@@ -64,7 +65,7 @@ class RequestPool
           retries     += 1
           retry
         end
-      rescue StandardError
+      rescue
         # If this connection raises errors of any kind, it's
         # better if it gets reaped as soon as possible
 
@@ -98,7 +99,7 @@ class RequestPool
 
   def initialize
     @pool   = ConnectionPool::SharedConnectionPool.new(size: MAX_POOL_SIZE, timeout: WAIT_TIMEOUT) { |site| Connection.new(site) }
-    @reaper = Reaper.new(self, 30)
+    @reaper = Reaper.new(self, REAPER_FREQUENCY)
     @reaper.run
   end
 

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 Fabricator(:status) do
-  account
-  text "Lorem ipsum dolor sit amet"
+  account { Fabricate.build(:account) }
+  text 'Lorem ipsum dolor sit amet'
   visibility "private"
 
   after_build do |status|

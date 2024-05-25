@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Conversation, type: :model do
+RSpec.describe Conversation do
   describe '#local?' do
     it 'returns true when URI is nil' do
       expect(Fabricate(:conversation).local?).to be true

@@ -5,7 +5,7 @@
   = link_to t('doorkeeper.applications.index.new'), new_settings_application_path, class: 'button'
 
 - if @applications.empty?
-  %div.muted-hint.center-text=t 'doorkeeper.applications.index.empty'
+  .muted-hint.center-text= t 'doorkeeper.applications.index.empty'
 - else
   .table-wrapper
     %table.table

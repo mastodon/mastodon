@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MigrateSettings < ActiveRecord::Migration[4.2]
   def up
     remove_index :settings, [:target_type, :target_id, :var]

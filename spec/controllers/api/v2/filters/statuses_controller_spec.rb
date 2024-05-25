@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Api::V2::Filters::StatusesController, type: :controller do
+RSpec.describe Api::V2::Filters::StatusesController do
   render_views
 
   let(:user)         { Fabricate(:user) }
@@ -64,7 +66,7 @@ RSpec.describe Api::V2::Filters::StatusesController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:scopes)  { 'read:filters' }
+    let(:scopes) { 'read:filters' }
     let!(:status_filter) { Fabricate(:custom_filter_status, custom_filter: filter) }
 
     before do
@@ -90,7 +92,7 @@ RSpec.describe Api::V2::Filters::StatusesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let(:scopes)  { 'write:filters' }
+    let(:scopes) { 'write:filters' }
     let(:status_filter) { Fabricate(:custom_filter_status, custom_filter: filter) }
 
     before do

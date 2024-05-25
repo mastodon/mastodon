@@ -11,6 +11,10 @@ on:
         type: boolean
       push_to_images:
         type: string
+      version_prerelease:
+        type: string
+      version_metadata:
+        type: string
       flavor:
         type: string
       tags:
@@ -23,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: docker/setup-qemu-action@v2
         if: contains(inputs.platforms, 'linux/arm64') && !inputs.use_native_arm64_builder
@@ -82,6 +86,9 @@ jobs:
       - uses: docker/build-push-action@v4
         with:
           context: .
+          build-args: |
+            MASTODON_VERSION_PRERELEASE=${{ inputs.version_prerelease }}
+            MASTODON_VERSION_METADATA=${{ inputs.version_metadata }}
           platforms: ${{ inputs.platforms }}
           provenance: false
           builder: ${{ steps.buildx.outputs.name || steps.buildx-native.outputs.name }}

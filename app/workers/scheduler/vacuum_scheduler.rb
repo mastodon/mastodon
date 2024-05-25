@@ -3,7 +3,7 @@
 class Scheduler::VacuumScheduler
   include Sidekiq::Worker
 
-  sidekiq_options retry: 0, lock: :until_executed
+  sidekiq_options retry: 0, lock: :until_executed, lock_ttl: 1.day.to_i
 
   def perform
     vacuum_operations.each do |operation|
@@ -22,7 +22,9 @@ class Scheduler::VacuumScheduler
       preview_cards_vacuum,
       backups_vacuum,
       access_tokens_vacuum,
+      applications_vacuum,
       feeds_vacuum,
+      imports_vacuum,
     ]
   end
 
@@ -48,6 +50,14 @@ class Scheduler::VacuumScheduler
 
   def feeds_vacuum
     Vacuum::FeedsVacuum.new
+  end
+
+  def imports_vacuum
+    Vacuum::ImportsVacuum.new
+  end
+
+  def applications_vacuum
+    Vacuum::ApplicationsVacuum.new
   end
 
   def content_retention_policy

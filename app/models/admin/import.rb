@@ -56,6 +56,7 @@ class Admin::Import
 
   def validate_data
     return if data.nil?
+
     errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: ROWS_PROCESSING_LIMIT)) if csv_row_count > ROWS_PROCESSING_LIMIT
   rescue CSV::MalformedCSVError => e
     errors.add(:data, I18n.t('imports.errors.invalid_csv_file', error: e.message))

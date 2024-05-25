@@ -4,11 +4,11 @@ require 'rails_helper'
 
 RSpec.describe FamiliarFollowersPresenter do
   describe '#accounts' do
+    subject { described_class.new(requested_accounts, account.id) }
+
     let(:account) { Fabricate(:account) }
     let(:familiar_follower) { Fabricate(:account) }
     let(:requested_accounts) { Fabricate.times(2, :account) }
-
-    subject { described_class.new(requested_accounts, account.id) }
 
     before do
       familiar_follower.follow!(requested_accounts.first)
@@ -24,7 +24,7 @@ RSpec.describe FamiliarFollowersPresenter do
 
       expect(result).to_not be_nil
       expect(result.id).to eq requested_accounts.first.id
-      expect(result.accounts).to match_array([familiar_follower])
+      expect(result.accounts).to contain_exactly(familiar_follower)
     end
 
     context 'when requested account hides followers' do

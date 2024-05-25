@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.describe SessionActivation, type: :model do
+RSpec.describe SessionActivation do
   describe '#detection' do
     let(:session_activation) { Fabricate(:session_activation, user_agent: 'Chrome/62.0.3202.89') }
 
     it 'sets a Browser instance as detection' do
-      expect(session_activation.detection).to be_kind_of Browser::Chrome
+      expect(session_activation.detection).to be_a Browser::Chrome
     end
   end
 
@@ -16,7 +16,7 @@ RSpec.describe SessionActivation, type: :model do
       allow(session_activation).to receive(:detection).and_return(detection)
     end
 
-    let(:detection)          { double(id: 1) }
+    let(:detection)          { instance_double(Browser::Chrome, id: 1) }
     let(:session_activation) { Fabricate(:session_activation) }
 
     it 'returns detection.id' do
@@ -30,7 +30,7 @@ RSpec.describe SessionActivation, type: :model do
     end
 
     let(:session_activation) { Fabricate(:session_activation) }
-    let(:detection)          { double(platform: double(id: 1)) }
+    let(:detection)          { instance_double(Browser::Chrome, platform: instance_double(Browser::Platform, id: 1)) }
 
     it 'returns detection.platform.id' do
       expect(session_activation.platform).to be 1
@@ -40,31 +40,31 @@ RSpec.describe SessionActivation, type: :model do
   describe '.active?' do
     subject { described_class.active?(id) }
 
-    context 'id is absent' do
+    context 'when id is absent' do
       let(:id) { nil }
 
       it 'returns nil' do
-        is_expected.to be nil
+        expect(subject).to be_nil
       end
     end
 
-    context 'id is present' do
+    context 'when id is present' do
       let(:id) { '1' }
       let!(:session_activation) { Fabricate(:session_activation, session_id: id) }
 
-      context 'id exists as session_id' do
+      context 'when id exists as session_id' do
         it 'returns true' do
-          is_expected.to be true
+          expect(subject).to be true
         end
       end
 
-      context 'id does not exist as session_id' do
+      context 'when id does not exist as session_id' do
         before do
           session_activation.update!(session_id: '2')
         end
 
         it 'returns false' do
-          is_expected.to be false
+          expect(subject).to be false
         end
       end
     end
@@ -80,20 +80,20 @@ RSpec.describe SessionActivation, type: :model do
     end
 
     it 'returns an instance of SessionActivation' do
-      expect(described_class.activate(**options)).to be_kind_of SessionActivation
+      expect(described_class.activate(**options)).to be_a described_class
     end
   end
 
   describe '.deactivate' do
-    context 'id is absent' do
+    context 'when id is absent' do
       let(:id) { nil }
 
       it 'returns nil' do
-        expect(described_class.deactivate(id)).to be nil
+        expect(described_class.deactivate(id)).to be_nil
       end
     end
 
-    context 'id exists' do
+    context 'when id exists' do
       let(:id) { '1' }
 
       it 'calls where.destroy_all' do

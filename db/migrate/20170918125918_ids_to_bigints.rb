@@ -1,7 +1,11 @@
-require Rails.root.join('lib', 'mastodon', 'migration_helpers')
+# frozen_string_literal: true
+
+require_relative '../../lib/mastodon/migration_helpers'
+require_relative '../../lib/mastodon/migration_warning'
 
 class IdsToBigints < ActiveRecord::Migration[5.1]
   include Mastodon::MigrationHelpers
+  include Mastodon::MigrationWarning
 
   disable_ddl_transaction!
 
@@ -69,24 +73,12 @@ class IdsToBigints < ActiveRecord::Migration[5.1]
     ]
     included_columns << [:deprecated_preview_cards, :id] if table_exists?(:deprecated_preview_cards)
 
-    # Print out a warning that this will probably take a while.
-    if $stdout.isatty
-      say ''
-      say 'WARNING: This migration may take a *long* time for large instances'
-      say 'It will *not* lock tables for any significant time, but it may run'
-      say 'for a very long time. We will pause for 10 seconds to allow you to'
-      say 'interrupt this migration if you are not ready.'
-      say ''
-      say 'This migration has some sections that can be safely interrupted'
-      say 'and restarted later, and will tell you when those are occurring.'
-      say ''
-      say 'For more information, see https://github.com/mastodon/mastodon/pull/5088'
+    migration_duration_warning(<<~EXPLANATION)
+      This migration has some sections that can be safely interrupted
+      and restarted later, and will tell you when those are occurring.
 
-      10.downto(1) do |i|
-        say "Continuing in #{i} second#{i == 1 ? '' : 's'}...", true
-        sleep 1
-      end
-    end
+      For more information, see https://github.com/mastodon/mastodon/pull/5088
+    EXPLANATION
 
     tables = included_columns.map(&:first).uniq
     table_sizes = {}

@@ -1,7 +1,3 @@
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-  = javascript_pack_tag 'public', async: true, crossorigin: 'anonymous'
-
 - content_for :page_title do
   = t('admin.reports.report', id: @report.id)
 
@@ -92,7 +88,7 @@
             = t('simple_form.yes')
           - else
             = t('simple_form.no')
-    - if !@report.action_taken_by_account.nil?
+    - if @report.action_taken_by_account.present?
       .report-header__details__item
         .report-header__details__item__header
           %strong= t('admin.reports.action_taken_by')

@@ -25,7 +25,7 @@ class ActivityPub::RawDistributionWorker
   def distribute!
     return if inboxes.empty?
 
-    ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
+    ActivityPub::DeliveryWorker.push_bulk(inboxes, limit: 1_000) do |inbox_url|
       [payload, source_account_id, inbox_url, options]
     end
   end

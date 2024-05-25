@@ -8,14 +8,14 @@ class Settings::ApplicationsController < Settings::BaseController
     @applications = current_user.applications.order(id: :desc).page(params[:page])
   end
 
+  def show; end
+
   def new
     @application = Doorkeeper::Application.new(
       redirect_uri: Doorkeeper.configuration.native_redirect_uri,
       scopes: 'read write follow'
     )
   end
-
-  def show; end
 
   def create
     @application = current_user.applications.build(application_params)

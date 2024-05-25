@@ -91,6 +91,7 @@ sv:
       moderation:
         active: Aktiv
         all: Alla
+        disabled: Inaktiverad
         pending: Väntande
         silenced: Begränsad
         suspended: Avstängda
@@ -124,8 +125,8 @@ sv:
       removed_header_msg: Tog bort %{username}s sidhuvudsbild
       resend_confirmation:
         already_confirmed: Den här användaren är redan bekräftad
-        send: Skicka om e-postbekräftelse
-        success: Bekräftelsemeddelande skickades framgångsrikt!
+        send: Skicka bekräftelselänken igen
+        success: Bekräftelselänken har skickats!
       reset: Återställ
       reset_password: Återställ lösenord
       resubscribe: Starta en ny prenumeration
@@ -133,6 +134,7 @@ sv:
       search: Sök
       search_same_email_domain: Andra användare med samma e-postdomän
       search_same_ip: Annan användare med samma IP-adress
+      security: Säkerhet
       security_measures:
         only_password: Endast lösenord
         password_and_2fa: Lösenord och 2FA
@@ -213,7 +215,7 @@ sv:
         reset_password_user: Återställ lösenord
         resolve_report: Lös rapport
         sensitive_account: Markera mediet i ditt konto som känsligt
-        silence_account: Tysta konto
+        silence_account: Begränsa konto
         suspend_account: Stäng av konto
         unassigned_report: Återkalla rapport
         unblock_email_account: Avblockera e-postadress
@@ -307,6 +309,7 @@ sv:
       unpublish: Avpublicera
       unpublished_msg: Kungörelsen raderades!
       updated_msg: Kungörelsen uppdaterades!
+    critical_update_pending: Kritisk uppdatering väntar
     custom_emojis:
       assign_category: Tilldela kategori
       by_domain: Domän
@@ -380,6 +383,15 @@ sv:
       undo: Tag bort från vitlistan
     domain_blocks:
       add_new: Lägg till ny
+      confirm_suspension:
+        cancel: Avbryt
+        confirm: Pausa
+        permanent_action: Att ångra avstängningen kommer inte att återställa några uppgifter eller relationer.
+        preamble_html: Du håller på att stänga av <strong>%{domain}</strong> och dess underdomäner.
+        remove_all_data: Detta kommer att ta bort allt innehåll, all media och all profildata för domänens konton från din server.
+        stop_communication: Din server kommer att sluta kommunicera med dessa servrar.
+        title: Bekräfta blockering av domänen %{domain}
+        undo_relationships: Detta kommer att återställa följförhållanden mellan konton på dessa servrar och dina.
       created_msg: Domänblocket behandlas nu
       destroyed_msg: Domänblockering har återtagits
       domain: Domän
@@ -427,6 +439,7 @@ sv:
         resolve: Slå upp domän
         title: Blockera ny e-postdomän
       no_email_domain_block_selected: Inga blockeringar av e-postdomäner ändrades eftersom inga valdes
+      not_permitted: Ej tillåtet
       resolved_dns_records_hint_html: Domännamnet ger uppslag till följande MX-domäner, vilka är ytterst ansvariga för att e-post tas emot. Att blockera en MX-domän blockerar även registreringar från alla e-postadresser som använder samma MX-domän, även om det synliga domännamnet är annorlunda. <strong>Var noga med att inte blockera stora e-postleverantörer.</strong>
       resolved_through_html: Uppslagen genom %{domain}
       title: Blockerade e-postdomäner
@@ -473,6 +486,7 @@ sv:
       content_policies:
         comment: Intern anteckning
         description_html: Du kan definiera innehållspolicyer som kommer tillämpas på alla konton från denna domän samt alla dess underdomäner.
+        limited_federation_mode_description_html: Du kan välja om du vill tillåta federering med den här domänen.
         policies:
           reject_media: Avvisa media
           reject_reports: Avvisa rapporter
@@ -585,11 +599,13 @@ sv:
       assign_to_self: Tilldela till mig
       assigned: Tilldelad moderator
       by_target_domain: Domän för rapporterat konto
+      cancel: Avbryt
       category: Kategori
       category_description_html: Anledningen till att kontot och/eller innehållet rapporterades kommer att visas i kommunikation med det rapporterade kontot
       comment:
         none: Ingen
       comment_description_html: 'För att ge mer information, skrev %{name}:'
+      confirm: Bekräfta
       confirm_action: Bekräfta modereringsåtgärd mot @%{acct}
       created_at: Anmäld
       delete_and_resolve: Ta bort inlägg
@@ -628,9 +644,20 @@ sv:
           suspend_html: 'Du håller på att <strong>stänga av</strong> <strong>@%{acct}</strong>s konto. Detta kommer:'
         actions:
           delete_html: Ta bort kränkande inlägg
+          mark_as_sensitive_html: Markera de anmälda inläggens media som känslig
+          silence_html: Begränsa kraftigt <strong>@%{acct}</strong> räckvidd genom att göra deras profil och innehåll bara synligt till folk som redan följer dom eller som manuellt söker upp deras profil
+          suspend_html: Stäng av <strong>@%{acct}</strong>, vilket gör deras profil och innehåll oåtkomligt och omöjligt att interagera med
+        close_report: 'Markera anmälningen #%{id} som löst'
+        close_reports_html: Markera <strong>alla</strong> anmälningar mot <strong>@%{acct}</strong> som lösta
+        delete_data_html: Ta bort <strong>@%{acct}</strong>s profil och innehåll om 30 dagar ifall deras avstängning inte tagits bort under tiden
+        preview_preamble_html: "<strong>@%{acct}</strong> kommer få en varning med följande innehåll:"
+        record_strike_html: Registrera en varning mot <strong>@%{acct}</strong> för att hjälpa dig eskalera vid framtida överträdelser från detta konto
+        send_email_html: Skicka <strong>@%{acct}</strong> ett varningsmejl
+        warning_placeholder: Valfri ytterligare resonemang för modereringsåtgärd.
       target_origin: Ursprung för anmält konto
       title: Anmälningar
       unassign: Otilldela
+      unknown_action_msg: 'Okänd åtgärd: %{action}'
       unresolved: Olösta
       updated_at: Uppdaterad
       view_profile: Visa profil
@@ -714,6 +741,9 @@ sv:
       branding:
         preamble: Din servers profilering differentierar den från andra servrar på nätverket. Denna information kan visas i en mängd olika miljöer, så som Mastodons webbgränssnitt, nativapplikationer, länkförhandsvisningar på andra webbsidor och i meddelandeapplikationer och så vidare. Av dessa anledningar är det bäst att hålla informationen tydlig, kort och koncis.
         title: Profilering
+      captcha_enabled:
+        desc_html: Detta bygger på externa skript från hCaptcha vilket kan vara ett säkerhets- och integritetsproblem. Dessutom,<strong>kan detta göra registreringsprocessen betydligt mindre tillgänglig för vissa personer (särskilt funktionsnedsatta)</strong>. Av dessa skäl bör du överväga alternativa åtgärder såsom godkänningsbaserad eller inbjudningsbaserad registrering.
+        title: Kräv att nya användare löser en CAPTCHA för att erkänna sitt konto
       content_retention:
         preamble: Kontrollera hur användargenererat innehåll lagras i Mastodon.
         title: Bibehållande av innehåll
@@ -741,10 +771,27 @@ sv:
           approved: Godkännande krävs för registrering
           none: Ingen kan registrera
           open: Alla kan registrera
+      security:
+        authorized_fetch: Kräv autentisering från federerade servrar
+        authorized_fetch_hint: Att kräva autentisering från federerade servrar möjliggör striktare tillämpning av både blockering på användarnivå och servernivå. Detta sker dock på bekostnad av prestanda, minskar räckvidden på dina svar, och kan införa kompatibilitet problem med vissa federerade tjänster. Dessutom kommer detta inte att hindra dedikerade aktörer från att hämta dina offentliga inlägg och konton.
+        authorized_fetch_overridden_hint: Du kan för närvarande inte ändra den här inställningen eftersom den åsidosätts av en miljövariabel.
+        federation_authentication: Federationen autentisering verkställighet
       title: Serverinställningar
     site_uploads:
       delete: Radera uppladdad fil
       destroyed_msg: Webbplatsuppladdningen har raderats!
+    software_updates:
+      critical_update: Kritiskt — vänligen uppdatera omgående
+      description: Det rekommenderas att hålla din Mastodon-installation uppdaterad för att ta nytta av de senaste fixarna och funktionerna. Dessutom är det ibland viktigt att uppdatera Mastodon i tid för att undvika säkerhetsproblem. Av dessa skäl kontrollerar Mastodon efter uppdateringar var 30:e minut och meddelar dig i enlighet med dina e-postaviseringsinställningar.
+      documentation_link: Läs mer
+      release_notes: Ändringslogg
+      title: Tillgängliga uppdateringar
+      type: Typ
+      types:
+        major: Större release
+        minor: Mindre release
+        patch: Patch release — buggfixar och enkla att tillämpa ändringar
+      version: Version
     statuses:
       account: Författare
       application: Applikation
@@ -781,9 +828,24 @@ sv:
         suspend: "%{name} stängde av %{target}s konto"
       appeal_approved: Överklagad
       appeal_pending: Överklagande väntar
+      appeal_rejected: Överklagan avslagen
     system_checks:
       database_schema_check:
         message_html: Det finns väntande databasmigreringar. Vänligen kör dem för att säkerställa att programmet beter sig som förväntat
+      elasticsearch_health_red:
+        message_html: Elasticsearch kluster är ohälsosamt (röd status), sökfunktioner är otillgängliga
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch kluster är ohälsosamt (gul status), du kanske vill undersöka orsaken
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch index mappningar är föråldrade. Vänligen kör <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Se dokumentation
+        message_html: Din Elasticsearch-kluster har mer än en nod, men Mastodon är inte konfigurerad att använda dem.
+      elasticsearch_preset_single_node:
+        action: Se dokumentation
+        message_html: Ditt Elasticsearch-kluster har bara en nod, <code>ES_PRESET</code> borde vara satt till <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Ditt systemindex för Elasticsearch är föråldrat på grund av en inställningsändring. Vänligen kör <code>tootctl search deploy --reset-chewy</code> för att uppdatera det.
       elasticsearch_running_check:
         message_html: Kunde inte ansluta till Elasticsearch. Kontrollera att det körs, eller inaktivera fulltextsökning
       elasticsearch_version_check:
@@ -794,6 +856,18 @@ sv:
         message_html: Du har inte definierat några serverregler.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-process körs för kön/köerna %{value}. Vänligen kontrollera din Sidekiq-konfiguration
+      software_version_critical_check:
+        action: Se tillgängliga uppdateringar
+        message_html: En kritisk uppdatering för Mastodon är tillgänglig. Uppdatera så snart som möjligt.
+      software_version_patch_check:
+        action: Se tillgängliga uppdateringar
+        message_html: En buggfix Mastodon-uppdatering är tillgänglig.
+      upload_check_privacy_error:
+        action: Kolla här för mer information
+        message_html: "<strong>Din webbserver är felkonfigurerad. Sekretessen för dina användare är i fara.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Kolla här för mer information
+        message_html: "<strong>Din objektlagring är felkonfigurerad. Sekretessen för dina användare är i riskzonen.</strong>"
     tags:
       review: Granskningsstatus
       updated_msg: Hashtagg-inställningarna har uppdaterats
@@ -816,6 +890,7 @@ sv:
           other: Delad av %{count} personer under den senaste veckan
         title: Trendande länkar
         usage_comparison: Delade %{today} gånger idag, jämfört med %{yesterday} igår
+      not_allowed_to_trend: Inte tillåtet att trenda
       only_allowed: Endast tillåtna
       pending_review: Väntar på granskning
       preview_card_providers:
@@ -900,6 +975,9 @@ sv:
       body: "%{target} överklagade ett modereringsbeslut av typen %{type}, taget av %{action_taken_by} den %{date}. De skrev:"
       next_steps: Du kan godkänna överklagan för att ångra modereringsbeslutet, eller ignorera det.
       subject: "%{username} överklagar ett modereringsbeslut på %{instance}"
+    new_critical_software_updates:
+      body: En kritisk uppdatering för Mastodon har släppts. Du bör uppdatera så snart som möjligt!
+      subject: Kritiska uppdateringar för Mastodon är tillgängliga för %{instance}!
     new_pending_account:
       body: Detaljerna för det nya kontot finns nedan. Du kan godkänna eller avvisa denna ansökan.
       subject: Nytt konto flaggat för granskning på %{instance} (%{username})
@@ -907,6 +985,9 @@ sv:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
       subject: Ny rapport för %{instance} (#%{id})
+    new_software_updates:
+      body: Nya Mastodon-versioner har släppts, du kanske vill uppdatera!
+      subject: Nya Mastodon-versioner finns tillgängliga för %{instance}!
     new_trends:
       body: 'Följande objekt behöver granskas innan de kan visas publikt:'
       new_trending_links:
@@ -936,31 +1017,37 @@ sv:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Alla kan bidra.
     sensitive_content: Känsligt innehåll
-    toot_layout: Inläggslayout
   application_mailer:
     notification_preferences: Ändra e-postinställningar
     salutation: "%{name},"
     settings: 'Ändra e-postinställningar: %{link}'
+    unsubscribe: Avprenumerera
     view: 'Granska:'
     view_profile: Visa profil
     view_status: Visa inlägg
   applications:
     created: Ansökan är framgångsrikt skapad
     destroyed: Ansökan är framgångsrikt borttagen
+    logout: Logga ut
     regenerate_token: Regenerera access token
     token_regenerated: Access token lyckades regenereras
     warning: Var mycket försiktig med denna data. Dela aldrig den med någon!
     your_token: Din access token
   auth:
     apply_for_account: Ansök om konto
-    change_password: Lösenord
+    captcha_confirmation:
+      help_html: Om du har problem med att lösa CAPTCHA ska du kontakta oss via %{email} och vi kan hjälpa dig.
+      hint_html: En sista sak till! Vi måste bekräfta att du är en människa (för att hålla borta skräpinlägg!). Lös CAPTCHA nedan och klicka på "Fortsätt".
+      title: Säkerhetskontroll
+    confirmations:
+      wrong_email_hint: Om e-postadressen inte är rätt, kan du ändra den i kontoinställningarna.
     delete_account: Radera konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
     description:
       prefix_invited_by_user: "@%{name} bjuder in dig att gå med i en Mastodon-server!"
       prefix_sign_up: Registrera dig på Mastodon idag!
       suffix: Med ett konto kommer du att kunna följa personer, göra inlägg och utbyta meddelanden med användare från andra Mastodon-servrar, och ännu mer!
-    didnt_get_confirmation: Fick du inte instruktioner om bekräftelse?
+    didnt_get_confirmation: Fick du ingen bekräftelselänk?
     dont_have_your_security_key: Har du inte din säkerhetsnyckel?
     forgot_password: Glömt ditt lösenord?
     invalid_reset_password_token: Lösenordsåterställningstoken är ogiltig eller utgått. Vänligen be om en ny.
@@ -973,26 +1060,39 @@ sv:
     migrate_account_html: Om du vill omdirigera detta konto till ett annat, kan du <a href="%{path}">konfigurera det här</a>.
     or_log_in_with: Eller logga in med
     privacy_policy_agreement_html: Jag har läst och godkänner <a href="%{privacy_policy_path}" target="_blank">integritetspolicyn</a>
+    progress:
+      confirm: Bekräfta e-postadress
+      details: Dina uppgifter
+      review: Vår recension
+      rules: Acceptera regler
     providers:
       cas: CAS
       saml: SAML
     register: Registrera
     registration_closed: "%{instance} accepterar inte nya medlemmar"
-    resend_confirmation: Skicka instruktionerna om bekräftelse igen
+    resend_confirmation: Skicka bekräftelselänken igen
     reset_password: Återställ lösenord
     rules:
+      accept: Godkänn
+      back: Tillbaka
+      invited_by: 'Du kan gå med i %{domain} tack vare den inbjudan du har fått från:'
       preamble: Dessa bestäms och upprätthålls av moderatorerna för %{domain}.
+      preamble_invited: Innan du fortsätter bör du överväga grundreglerna som fastställts av moderatorerna för %{domain}.
       title: Några grundregler.
+      title_invited: Du har blivit inbjuden.
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
     setup:
-      email_below_hint_html: Om nedanstående e-postadress är felaktig kan du ändra den här, och få ett nytt bekräftelsemeddelande.
-      email_settings_hint_html: E-postmeddelande för verifiering skickades till %{email}. Om e-postadressen inte stämmer kan du ändra den i kontoinställningarna.
-      title: Ställ in
+      email_below_hint_html: Kolla din skräppost-mapp eller begär en annan. Du kan korrigera din e-postadress om den är fel.
+      email_settings_hint_html: Klicka på länken som vi har skickat till dig för att bekräfta %{email}. Vi väntar här.
+      link_not_received: Fick du ingen länk?
+      new_confirmation_instructions_sent: Du får e-post med bekräftelselänk om några minuter!
+      title: Kolla din inkorg
     sign_in:
       preamble_html: Logga in med dina användaruppgifter på <strong>%{domain}</strong>. Om ditt konto finns på en annan server kommer du inte att kunna logga in här.
       title: Logga in på %{domain}
     sign_up:
+      manual_review: Registreringar på %{domain} går igenom manuell granskning av våra moderatorer. För att hjälpa oss att hantera din registrering, skriv lite om dig själv och varför du vill ha ett konto på %{domain}.
       preamble: Med ett konto på denna Mastodon-server kan du följa alla andra personer på nätverket, oavsett vilken server deras konto tillhör.
       title: Låt oss få igång dig på %{domain}.
     status:
@@ -1004,18 +1104,6 @@ sv:
       view_strikes: Visa tidigare prickar på ditt konto
     too_fast: Formuläret har skickats för snabbt, försök igen.
     use_security_key: Använd säkerhetsnyckel
-  authorize_follow:
-    already_following: Du följer redan detta konto
-    already_requested: Du har redan skickat en vänförfrågan till det kontot
-    error: Tyvärr inträffade ett fel när vi kontrollerade fjärrkontot
-    follow: Följ
-    follow_request: 'Du har skickat en följaförfrågan till:'
-    following: 'Succé! Du följer nu:'
-    post_follow:
-      close: Eller så kan du stänga detta fönster.
-      return: Visa användarens profil
-      web: Gå till webb
-    title: Följ %{acct}
   challenge:
     confirm: Fortsätt
     hint_html: "<strong>Tips:</strong> Vi frågar dig inte efter ditt lösenord igen under nästkommande timme."
@@ -1092,6 +1180,10 @@ sv:
       your_appeal_rejected: Din överklagan har avvisats
   domain_validator:
     invalid_domain: är inte ett giltigt domännamn
+  edit_profile:
+    basic_information: Allmän information
+    hint_html: "<strong>Anpassa vad folk ser på din offentliga profil och bredvid dina inlägg.</strong> Andra personer är mer benägna att följa dig och interagera med dig när du har en ifylld profil och en profilbild."
+    other: Övrigt
   errors:
     '400': Förfrågningen som du skickade in var ogiltig eller felaktigt utformad.
     '403': Du har inte behörighet att visa den här sidan.
@@ -1128,7 +1220,7 @@ sv:
   featured_tags:
     add_new: Lägg till ny
     errors:
-      limit: Du har redan det maximala antalet utvalda hashtaggar
+      limit: Du har redan fäst det maximala antalet hashtags
     hint_html: "<strong>Vad är utvalda hashtaggar?</strong> De visas tydligt på din offentliga profil och låter andra bläddra bland dina offentliga inlägg specifikt under dessa hashtaggar. De är ett bra verktyg för att hålla reda på kreativa arbeten eller långsiktiga projekt."
   filters:
     contexts:
@@ -1172,8 +1264,6 @@ sv:
       index:
         hint: Detta filter gäller för att välja enskilda inlägg oavsett andra kriterier. Du kan lägga till fler inlägg till detta filter från webbgränssnittet.
         title: Filtrerade inlägg
-  footer:
-    trending_now: Trendar nu
   generic:
     all: Alla
     all_items_on_page_selected_html:
@@ -1182,7 +1272,9 @@ sv:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> objekt som matchar din sökning är valt."
       other: "<strong>%{count}</strong> objekt som matchar din sökning är valda."
+    cancel: Avbryt
     changes_saved_msg: Ändringar sparade!
+    confirm: Bekräfta
     copy: Kopiera
     delete: Radera
     deselect: Avmarkera alla
@@ -1196,24 +1288,62 @@ sv:
     validation_errors:
       one: Något är inte riktigt rätt ännu! Kontrollera felet nedan
       other: Något är inte riktigt rätt ännu! Kontrollera dom %{count} felen nedan
-  html_validator:
-    invalid_markup: 'innehåller ogiltig HTML: %{error}'
   imports:
     errors:
+      empty: Tom CSV-fil
+      incompatible_type: Inkompatibel med den valda importtypen
       invalid_csv_file: 'Ogiltig CSV-fil. Felmeddelande: %{error}'
       over_rows_processing_limit: innehåller fler än %{count} rader
+      too_large: Filen är för stor
+    failures: Misslyckanden
+    imported: Importerade
+    mismatched_types_warning: Det verkar som om du har valt fel typ för denna import. Var god dubbelkolla.
     modes:
       merge: Slå ihop
       merge_long: Behåll befintliga uppgifter och lägg till nya
       overwrite: Skriv över
       overwrite_long: Ersätt de nuvarande uppgifterna med de nya
+    overwrite_preambles:
+      blocking_html: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{total_items} konton</strong> från <strong>%{filename}</strong>.
+      bookmarks_html: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{total_items} inlägg</strong> från <strong>%{filename}</strong>.
+      domain_blocking_html: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{total_items} domäner</strong> från <strong>%{filename}</strong>.
+      following_html: Du är på väg till <strong>följ</strong> upp till <strong>%{total_items} konton</strong> från <strong>%{filename}</strong> och <strong>sluta följa någon annan</strong>.
+      lists_html: Du är på väg att <strong>ersätta dina listor</strong> med innehållet i <strong>%{filename}</strong>. Upp till <strong>%{total_items} konton</strong> kommer att läggas till i nya listor.
+      muting_html: Du är på väg att <strong>ersätta din lista med tystade konton</strong> med upp till <strong>%{total_items} konton</strong> från <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Du är på väg att <strong>blockera</strong> med upp till <strong>%{total_items} konton</strong> från <strong>%{filename}</strong>.
+      bookmarks_html: Du håller på att lägga upp till <strong>%{total_items} inlägg</strong> från <strong>%{filename}</strong> till dina <strong>bokmärken</strong>.
+      domain_blocking_html: Du är på väg att <strong>blockera</strong> upp till <strong>%{total_items} domäner</strong> från <strong>%{filename}</strong>.
+      following_html: Du är på väg att <strong>följa</strong> upp till <strong>%{total_items} konton</strong> från <strong>%{filename}</strong>.
+      lists_html: Du håller på att lägga upp till <strong>%{total_items} konton</strong> från <strong>%{filename}</strong> till dina <strong>listor</strong>. Nya listor kommer att skapas om det inte finns någon lista att lägga till.
+      muting_html: Du är på väg att <strong>tysta</strong> upp till <strong>%{total_items} konton</strong> från <strong>%{filename}</strong>.
     preface: Du kan importera data som du exporterat från en annan instans, till exempel en lista över personer du följer eller blockerar.
+    recent_imports: Nyligen importerade
+    states:
+      finished: Klar
+      in_progress: Pågår
+      scheduled: Planerad
+      unconfirmed: Obekräftade
+    status: Status
     success: Dina uppgifter har laddats upp och kommer att behandlas snarast
+    time_started: Började vid
+    titles:
+      blocking: Importerar blockerade konton
+      bookmarks: Importerar bokmärken
+      domain_blocking: Importerar blockerade domäner
+      following: Importerar följda konton
+      lists: Importerar listor
+      muting: Importerar tystade konton
+    type: Typ av import
+    type_groups:
+      constructive: Följer & bokmärken
+      destructive: Blockeringar & tystade
     types:
       blocking: Lista av blockerade
       bookmarks: Bokmärken
       domain_blocking: Domänblockeringslista
       following: Lista av följare
+      lists: Listor
       muting: Lista av nertystade
     upload: Ladda upp
   invites:
@@ -1252,6 +1382,21 @@ sv:
     failed_sign_in_html: Misslyckat inloggningsförsök med %{method} från %{ip} (%{browser})
     successful_sign_in_html: Lyckad inloggning med %{method} från %{ip} (%{browser})
     title: Autentiseringshistorik
+  mail_subscriptions:
+    unsubscribe:
+      action: Ja, avsluta prenumerationen
+      complete: Prenumeration avslutad
+      confirmation_html: Är du säker på att du vill avregistrera dig från att ta emot %{type} för Mastodon på %{domain} till din e-post på %{email}? Du kan alltid återprenumerera på dina <a href="%{settings_path}">e-postmeddelandeinställningar</a>.
+      emails:
+        notification_emails:
+          favourite: favoritaviseringsmejl
+          follow: följaviseringsmejl
+          follow_request: följbegärningsmejl
+          mention: aviseringsmejl för inlägg där du nämns
+          reblog: aviseringsmejl för boostade inlägg
+      resubscribe_html: Om du slutat prenumerera av misstag kan du återprenumerera i dina <a href="%{settings_path}">e-postaviseringsinställningar</a>.
+      success_html: Du får inte längre %{type} för Mastodon på %{domain} till din e-post på %{email}.
+      title: Avsluta prenumeration
   media_attachments:
     validations:
       images_and_video: Det går inte att bifoga en video till ett inlägg som redan innehåller bilder
@@ -1331,6 +1476,7 @@ sv:
     update:
       subject: "%{name} redigerade ett inlägg"
   notifications:
+    administration_emails: Admin e-postaviseringar
     email_events: Händelser för e-postnotiser
     email_events_hint: 'Välj händelser som du vill ta emot aviseringar för:'
     other_settings: Andra aviseringsinställningar
@@ -1367,12 +1513,22 @@ sv:
       expired: Undersökningen har redan avslutats
       invalid_choice: Det valda röstalternativet finns inte
       over_character_limit: kan inte vara längre än %{max} tecken var
+      self_vote: Du kan inte rösta i dina egna omröstningar
       too_few_options: måste ha mer än ett objekt
       too_many_options: kan inte innehålla mer än %{max} objekt
   preferences:
     other: Annat
     posting_defaults: Standardinställningar för inlägg
     public_timelines: Publika tidslinjer
+  privacy:
+    hint_html: "<strong>Anpassa hur du vill att din profil och dina inlägg ska hittas.</strong> En mängd funktioner i Mastodon kan hjälpa dig att nå en bredare publik när den är aktiverad. Ta en stund att granska dessa inställningar för att se att de passar ditt användningsfall."
+    privacy: Integritet
+    privacy_hint_html: Kontrollera hur mycket du vill avslöja till förmån för andra. Andra upptäcker intressanta profiler och coola appar genom att bläddra bland vad andra följer och se vilka appar de lägger upp från, men du kanske föredrar att hålla det dolt.
+    reach: Räckvidd
+    reach_hint_html: Kontrollera om du vill bli upptäckt och följd av nya människor. Vill du att dina inlägg ska visas på Utforska-skärmen? Vill du att andra människor ska se dig i sina rekommendationer av andra att följa? Vill du acceptera alla nya följare automatiskt, eller ha detaljerad kontroll över varenda en?
+    search: Sök
+    search_hint_html: Styr hur du vill bli funnen. Vill du att folk ska hitta dig efter vad du publicerat om? Vill du att personer utanför Mastodon ska hitta din profil när du söker på webben? Observera att total uteslutning från alla sökmotorer inte kan garanteras för offentlig information.
+    title: Integritet och räckvidd
   privacy_policy:
     title: Integritetspolicy
   reactions:
@@ -1381,7 +1537,11 @@ sv:
       unrecognized_emoji: är inte en igenkänd emoji
   relationships:
     activity: Kontoaktivitet
+    confirm_follow_selected_followers: Är du säker på att du vill följa valda följare?
+    confirm_remove_selected_followers: Är du säker på att du vill ta bort valda följare?
+    confirm_remove_selected_follows: Är du säker på att du vill ta bort valda följare?
     dormant: Vilande
+    follow_failure: Kan inte följa några av de valda kontona.
     follow_selected_followers: Följ valda personer
     followers: Följare
     following: Följer
@@ -1421,6 +1581,7 @@ sv:
       electron: Electron
       firefox: Firefox
       generic: Okänd browser
+      huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1430,6 +1591,7 @@ sv:
       qq: QQ browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Okänd browser
       weibo: Weibo
     current_session: Nuvarande session
     description: "%{browser} på %{platform}"
@@ -1442,9 +1604,10 @@ sv:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: okänd plattform
+      unknown_platform: Okänd plattform
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1515,7 +1678,6 @@ sv:
     show_newer: Visa nyare
     show_older: Visa äldre
     show_thread: Visa tråd
-    sign_in_to_participate: Logga in för att delta i konversationen
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkt
@@ -1557,12 +1719,10 @@ sv:
       '7889238': 3 månader
     min_age_label: Åldersgräns
     min_favs: Behåll favoritmarkerade inlägg i minst
-    min_favs_hint: Raderar inte något av dina inlägg som har blivit favoritmarkerat minst detta antal gånger. Lämna tomt för att radera inlägg oavsett antal favoritmarkeringar
+    min_favs_hint: Raderar inte några av dina inlägg som har fått minst detta antalet av favoritmarkeringar. Lämna tomt för att ta bort inlägg oavsett hur många favoritmarkeringar de har fått
     min_reblogs: Behåll boostade inlägg i minst
     min_reblogs_hint: Raderar inte något av dina inlägg som har blivit boostat minst detta antal gånger. Lämna tomt för att radera inlägg oavsett antal boostar
   stream_entries:
-    pinned: Fäst inlägg
-    reblogged: boostad
     sensitive_content: Känsligt innehåll
   strikes:
     errors:
@@ -1575,9 +1735,14 @@ sv:
     mastodon-light: Mastodon (ljust)
   time:
     formats:
-      default: "%b %d, %Y, %H:%M"
+      default: "%d %b %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d %b %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Den server-omfattande användningskvoten för översättningstjänsten har överskridits.
+      too_many_requests: Det har nyligen kommit för många förfrågningar till översättningstjänsten.
   two_factor_authentication:
     add: Lägg till
     disable: Inaktivera
@@ -1657,13 +1822,18 @@ sv:
       title: Välkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan inte följa fler än %{limit} personer
+    go_to_sso_account_settings: Gå till din identitetsleverantörs kontoinställningar
     invalid_otp_token: Ogiltig tvåfaktorskod
     otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
     seamless_external_login: Du är inloggad via en extern tjänst, inställningar för lösenord och e-post är därför inte tillgängliga.
     signed_in_as: 'Inloggad som:'
   verification:
-    explanation_html: 'Du kan <strong>verifiera dig själv som ägare av länkar i din profilmetadata</strong>, genom att på den länkade webbplatsen även länka tillbaka till din Mastodon-profil. Länken tillbaka <strong>måste</strong> ha attributet <code>rel="me"</code>. Textinnehållet i länken spelar ingen roll. Här är ett exempel:'
+    extra_instructions_html: <strong>Tips:</strong> Länken på din webbplats kan vara osynlig. Den viktiga delen är <code>rel="me"</code> som förhindrar personifiering på webbplatser med användargenererat innehåll. Du kan även använda en <code>länk</code> tagg i huvudet på sidan istället för <code>en</code>, men HTML:en måste vara tillgänglig utan att exekvera JavaScript.
+    here_is_how: Så här gör du
+    hint_html: "<strong>Verifiera din identitet på Mastodon är för alla.</strong> Baserat på öppna webbstandarder, nu och för evigt fria. Allt du behöver är en personlig webbplats som folk känner igen dig med. När du länkar till denna webbplats från din profil kommer vi att kontrollera att webbplatsen länkar tillbaka till din profil och visa en visuell indikator på den."
+    instructions_html: Kopiera och klistra in koden nedan in i HTML-koden på din webbplats. Lägg sedan till adressen till din webbplats i ett av de extra fälten på din profil från fliken "Redigera profil" och spara ändringar.
     verification: Bekräftelse
+    verified_links: Dina verifierade länkar
   webauthn_credentials:
     add: Lägg till ny säkerhetsnyckel
     create:

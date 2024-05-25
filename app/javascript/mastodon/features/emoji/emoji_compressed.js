@@ -1,3 +1,5 @@
+/* eslint-disable import/no-commonjs --
+   We need to use CommonJS here due to preval */
 // @preval
 // http://www.unicode.org/Public/emoji/5.0/emoji-test.txt
 // This file contains the compressed version of the emoji data from
@@ -5,13 +7,14 @@
 // It's designed to be emitted in an array format to take up less space
 // over the wire.
 
-const { unicodeToFilename } = require('./unicode_to_filename');
-const { unicodeToUnifiedName } = require('./unicode_to_unified_name');
-const emojiMap = require('./emoji_map.json');
 const { emojiIndex } = require('emoji-mart');
+let data = require('emoji-mart/data/all.json');
 const { uncompress: emojiMartUncompress } = require('emoji-mart/dist/utils/data');
 
-let data = require('emoji-mart/data/all.json');
+const emojiMap = require('./emoji_map.json');
+const { unicodeToFilename } = require('./unicode_to_filename');
+const { unicodeToUnifiedName } = require('./unicode_to_unified_name');
+
 
 if(data.compressed) {
   data = emojiMartUncompress(data);
@@ -115,6 +118,16 @@ Object.keys(emojiIndex.emojis).forEach(key => {
 // inconsistent behavior in dev mode
 module.exports = JSON.parse(JSON.stringify([
   shortCodesToEmojiData,
+  /*
+   * The property `skins` is not found in the current context.
+   * This could potentially lead to issues when interacting with modules or data structures
+   * that expect the presence of `skins` property.
+   * Currently, no definitions or references to `skins` property can be found in:
+   * - {@link node_modules/emoji-mart/dist/utils/data.js}
+   * - {@link node_modules/emoji-mart/data/all.json}
+   * - {@link app/javascript/mastodon/features/emoji/emoji_compressed.d.ts#Skins}
+   * Future refactorings or updates should consider adding definitions or handling for `skins` property.
+   */
   emojiMartData.skins,
   emojiMartData.categories,
   emojiMartData.aliases,

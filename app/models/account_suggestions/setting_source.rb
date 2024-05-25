@@ -48,14 +48,14 @@ class AccountSuggestions::SettingSource < AccountSuggestions::Source
   end
 
   def setting_to_usernames_and_domains
-    setting.split(',').map do |str|
+    setting.split(',').filter_map do |str|
       username, domain = str.strip.gsub(/\A@/, '').split('@', 2)
       domain           = nil if TagManager.instance.local_domain?(domain)
 
       next if username.blank?
 
       [username.downcase, domain&.downcase]
-    end.compact
+    end
   end
 
   def setting

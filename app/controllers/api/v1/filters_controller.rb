@@ -11,16 +11,16 @@ class Api::V1::FiltersController < Api::BaseController
     render json: @filters, each_serializer: REST::V1::FilterSerializer
   end
 
+  def show
+    render json: @filter, serializer: REST::V1::FilterSerializer
+  end
+
   def create
     ApplicationRecord.transaction do
       filter_category = current_account.custom_filters.create!(filter_params)
       @filter = filter_category.keywords.create!(keyword_params)
     end
 
-    render json: @filter, serializer: REST::V1::FilterSerializer
-  end
-
-  def show
     render json: @filter, serializer: REST::V1::FilterSerializer
   end
 

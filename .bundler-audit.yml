@@ -1,0 +1,6 @@
+---
+ignore:
+  # devise-two-factor advisory about brute-forcing TOTP
+  # We have rate-limits on authentication endpoints in place (including second
+  # factor verification) since Mastodon v3.2.0
+  - CVE-2024-0227

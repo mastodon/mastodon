@@ -1,3 +1,5 @@
+import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
+
 import {
   COMPOSE_MOUNT,
   COMPOSE_UNMOUNT,
@@ -47,19 +49,14 @@ import {
   COMPOSE_CHANGE_MEDIA_DESCRIPTION,
   COMPOSE_CHANGE_MEDIA_FOCUS,
   COMPOSE_SET_STATUS,
+  COMPOSE_FOCUS,
 } from '../actions/compose';
-import { TIMELINE_DELETE } from '../actions/timelines';
-import { STORE_HYDRATE } from '../actions/store';
 import { REDRAFT } from '../actions/statuses';
-import {
-  Map as ImmutableMap,
-  List as ImmutableList,
-  OrderedSet as ImmutableOrderedSet,
-  fromJS,
-} from 'immutable';
-import uuid from '../uuid';
+import { STORE_HYDRATE } from '../actions/store';
+import { TIMELINE_DELETE } from '../actions/timelines';
 import { me } from '../initial_state';
 import { unescapeHTML } from '../utils/html';
+import { uuid } from '../uuid';
 
 const initialState = ImmutableMap({
   mounted: 0,
@@ -240,14 +237,9 @@ const ignoreSuggestion = (state, position, token, completion, path) => {
 };
 
 const sortHashtagsByUse = (state, tags) => {
-  const personalHistory = state
-    .get('tagHistory')
-    .map((tag) => tag.toLowerCase());
+  const personalHistory = state.get('tagHistory').map(tag => tag.toLowerCase());
 
-  const tagsWithLowercase = tags.map((t) => ({
-    ...t,
-    lowerName: t.name.toLowerCase(),
-  }));
+  const tagsWithLowercase = tags.map(t => ({ ...t, lowerName: t.name.toLowerCase() }));
   const sorted = tagsWithLowercase.sort((a, b) => {
     const usedA = personalHistory.includes(a.lowerName);
     const usedB = personalHistory.includes(b.lowerName);
@@ -260,7 +252,7 @@ const sortHashtagsByUse = (state, tags) => {
       return 1;
     }
   });
-  sorted.forEach((tag) => delete tag.lowerName);
+  sorted.forEach(tag => delete tag.lowerName);
   return sorted;
 };
 
@@ -730,7 +722,94 @@ export default function compose(state = initialState, action) {
       );
     case COMPOSE_LANGUAGE_CHANGE:
       return state.set('language', action.language);
-    default:
-      return state;
+  case COMPOSE_EMOJI_INSERT:
+    return insertEmoji(state, action.position, action.emoji, action.needsSpace);
+  case COMPOSE_UPLOAD_CHANGE_SUCCESS:
+    return state
+      .set('is_changing_upload', false)
+      .setIn(['media_modal', 'dirty'], false)
+      .update('media_attachments', list => list.map(item => {
+        if (item.get('id') === action.media.id) {
+          return fromJS(action.media).set('unattached', !action.attached);
+        }
+
+        return item;
+      }));
+  case REDRAFT:
+    return state.withMutations(map => {
+      map.set('text', action.raw_text || unescapeHTML(expandMentions(action.status)));
+      map.set('in_reply_to', action.status.get('in_reply_to_id'));
+      map.set('privacy', action.status.get('visibility'));
+      map.set('media_attachments', action.status.get('media_attachments').map((media) => media.set('unattached', true)));
+      map.set('focusDate', new Date());
+      map.set('caretPosition', null);
+      map.set('idempotencyKey', uuid());
+      map.set('sensitive', action.status.get('sensitive'));
+      map.set('language', action.status.get('language'));
+      map.set('id', null);
+
+      if (action.status.get('spoiler_text').length > 0) {
+        map.set('spoiler', true);
+        map.set('spoiler_text', action.status.get('spoiler_text'));
+      } else {
+        map.set('spoiler', false);
+        map.set('spoiler_text', '');
+      }
+
+      if (action.status.get('poll')) {
+        map.set('poll', ImmutableMap({
+          options: action.status.getIn(['poll', 'options']).map(x => x.get('title')),
+          multiple: action.status.getIn(['poll', 'multiple']),
+          expires_in: expiresInFromExpiresAt(action.status.getIn(['poll', 'expires_at'])),
+        }));
+      }
+    });
+  case COMPOSE_SET_STATUS:
+    return state.withMutations(map => {
+      map.set('id', action.status.get('id'));
+      map.set('text', action.text);
+      map.set('in_reply_to', action.status.get('in_reply_to_id'));
+      map.set('privacy', action.status.get('visibility'));
+      map.set('media_attachments', action.status.get('media_attachments'));
+      map.set('focusDate', new Date());
+      map.set('caretPosition', null);
+      map.set('idempotencyKey', uuid());
+      map.set('sensitive', action.status.get('sensitive'));
+      map.set('language', action.status.get('language'));
+
+      if (action.spoiler_text.length > 0) {
+        map.set('spoiler', true);
+        map.set('spoiler_text', action.spoiler_text);
+      } else {
+        map.set('spoiler', false);
+        map.set('spoiler_text', '');
+      }
+
+      if (action.status.get('poll')) {
+        map.set('poll', ImmutableMap({
+          options: action.status.getIn(['poll', 'options']).map(x => x.get('title')),
+          multiple: action.status.getIn(['poll', 'multiple']),
+          expires_in: expiresInFromExpiresAt(action.status.getIn(['poll', 'expires_at'])),
+        }));
+      }
+    });
+  case COMPOSE_POLL_ADD:
+    return state.set('poll', initialPoll);
+  case COMPOSE_POLL_REMOVE:
+    return state.set('poll', null);
+  case COMPOSE_POLL_OPTION_ADD:
+    return state.updateIn(['poll', 'options'], options => options.push(action.title));
+  case COMPOSE_POLL_OPTION_CHANGE:
+    return state.setIn(['poll', 'options', action.index], action.title);
+  case COMPOSE_POLL_OPTION_REMOVE:
+    return state.updateIn(['poll', 'options'], options => options.delete(action.index));
+  case COMPOSE_POLL_SETTINGS_CHANGE:
+    return state.update('poll', poll => poll.set('expires_in', action.expiresIn).set('multiple', action.isMultiple));
+  case COMPOSE_LANGUAGE_CHANGE:
+    return state.set('language', action.language);
+  case COMPOSE_FOCUS:
+    return state.set('focusDate', new Date()).update('text', text => text.length > 0 ? text : action.defaultText);
+  default:
+    return state;
   }
 }

@@ -6,6 +6,8 @@ class Trends::PreviewCardFilter
     locale
   ).freeze
 
+  IGNORED_PARAMS = %w(page).freeze
+
   attr_reader :params
 
   def initialize(params)
@@ -16,7 +18,7 @@ class Trends::PreviewCardFilter
     scope = initial_scope
 
     params.each do |key, value|
-      next if %w(page).include?(key.to_s)
+      next if IGNORED_PARAMS.include?(key.to_s)
 
       scope.merge!(scope_for(key, value.to_s.strip)) if value.present?
     end

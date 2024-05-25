@@ -18,13 +18,6 @@ class Api::V1::Admin::IpBlocksController < Api::BaseController
     limit
   ).freeze
 
-  def create
-    authorize :ip_block, :create?
-    @ip_block = IpBlock.create!(resource_params)
-    log_action :create, @ip_block
-    render json: @ip_block, serializer: REST::Admin::IpBlockSerializer
-  end
-
   def index
     authorize :ip_block, :index?
     render json: @ip_blocks, each_serializer: REST::Admin::IpBlockSerializer
@@ -32,6 +25,13 @@ class Api::V1::Admin::IpBlocksController < Api::BaseController
 
   def show
     authorize @ip_block, :show?
+    render json: @ip_block, serializer: REST::Admin::IpBlockSerializer
+  end
+
+  def create
+    authorize :ip_block, :create?
+    @ip_block = IpBlock.create!(resource_params)
+    log_action :create, @ip_block
     render json: @ip_block, serializer: REST::Admin::IpBlockSerializer
   end
 

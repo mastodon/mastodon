@@ -3,12 +3,12 @@
 require 'rails_helper'
 
 describe UnfollowFollowWorker do
-  let(:local_follower)   { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', locked: false)).account }
-  let(:source_account)   { Fabricate(:account, locked: false) }
-  let(:target_account)   { Fabricate(:account, locked: false) }
-  let(:show_reblogs)     { true }
-
   subject { described_class.new }
+
+  let(:local_follower)   { Fabricate(:account) }
+  let(:source_account)   { Fabricate(:account) }
+  let(:target_account)   { Fabricate(:account) }
+  let(:show_reblogs)     { true }
 
   before do
     local_follower.follow!(source_account, reblogs: show_reblogs)

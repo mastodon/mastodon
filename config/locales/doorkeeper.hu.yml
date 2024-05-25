@@ -5,7 +5,7 @@ hu:
       doorkeeper/application:
         name: Alkalmazás neve
         redirect_uri: Átirányító URI
-        scopes: Hatáskör
+        scopes: Hatókör
         website: Az alkalmazás weboldala
     errors:
       models:
@@ -19,7 +19,7 @@ hu:
   doorkeeper:
     applications:
       buttons:
-        authorize: Engedélyezés
+        authorize: Hitelesítés
         cancel: Mégsem
         destroy: Törlés
         edit: Szerkesztés
@@ -31,38 +31,38 @@ hu:
       form:
         error: Hoppá! Ellenőrizd az űrlapot az esetleges hibák miatt
       help:
-        native_redirect_uri: Használj %{native_redirect_uri} a helyi tesztekhez
+        native_redirect_uri: "%{native_redirect_uri} használata a helyi tesztekhez"
         redirect_uri: Egy sor URI-nként
-        scopes: A hatásköröket szóközzel válaszd el. Hagyd üresen az alapértelmezett hatáskörökhöz.
+        scopes: A hatóköröket szóközzel válaszd el. Hagyd üresen az alapértelmezett hatókörök használatához.
       index:
         application: Alkalmazás
         callback_url: Visszahívási URL
         delete: Eltávolítás
-        empty: Nincsenek alkalmazásaid.
+        empty: Nincsenek saját alkalmazások.
         name: Név
         new: Új alkalmazás
-        scopes: Hatáskör
-        show: Mutat
+        scopes: Hatókörök
+        show: Megjelenítés
         title: Alkalmazásaid
       new:
         title: Új alkalmazás
       show:
         actions: Műveletek
-        application_id: Alkalmazás azonosító
-        callback_urls: Callback URL-ek
+        application_id: Ügyfélkulcs
+        callback_urls: Visszahívási URL-ek
         scopes: Hatáskörök
-        secret: Titok
+        secret: Ügyfél titkos kulcs
         title: 'Alkalmazás: %{name}'
     authorizations:
       buttons:
-        authorize: Engedélyezés
+        authorize: Hitelesítés
         deny: Tiltás
       error:
         title: Hiba történt
       new:
         prompt_html: "%{client_name} szeretné elérni a fiókodat. Ez egy harmadik féltől származó alkalmazás. <strong>Ha nem bízol meg benne, ne addj felhatalmazást neki.</strong>"
-        review_permissions: Engedélyek áttekintése
-        title: Engedély szükséges
+        review_permissions: Jogosultságok áttekintése
+        title: Hitelesítés szükséges
       show:
         title: Másold le ezt az engedélyező kódot és írd be az alkalmazásba.
     authorized_applications:
@@ -71,13 +71,13 @@ hu:
       confirmations:
         revoke: Biztos vagy benne?
       index:
-        authorized_at: 'Felhatalmazva ekkor: %{date}'
+        authorized_at: 'Hitelesítés: %{date}'
         description_html: Ezek olyan alkalmazások, melyek API-n keresztül érhetik el a fiókodat. Ha vannak itt olyanok, melyeket nem ismersz fel, vagy valamelyik alkalmazás rosszul működik, visszavonhatod az engedélyét.
-        last_used_at: 'Utoljára ekkor használva: %{date}'
+        last_used_at: 'Utolsó használat: %{date}'
         never_used: Soha sem volt használva
-        scopes: Engedélyek
+        scopes: Jogosultságok
         superapp: Belső
-        title: Engedélyezett alkalmazásaid
+        title: Hitelesített alkalmazásaid
     errors:
       messages:
         access_denied: Az erőforrás tulajdonosa vagy az engedélyező kiszolgáló elutasította a kérést.
@@ -92,10 +92,10 @@ hu:
         invalid_resource_owner: A biztosított erőforrás tulajdonosának hitelesítő adatai nem valósak, vagy az erőforrás tulajdonosa nem található.
         invalid_scope: A kért nézet érvénytelen, ismeretlen, vagy hibás.
         invalid_token:
-          expired: Hozzáférési kulcs lejárt
-          revoked: Hozzáférési kulcsot visszavonták
-          unknown: Hozzáférési kulcs érvénytelen
-        resource_owner_authenticator_not_configured: Erőforrás tulajdonos keresés megszakadt, ugyanis a Doorkeeper.configure.resource_owner_authenticator beállítatlan.
+          expired: A hozzáférési kulcs lejárt
+          revoked: A hozzáférési kulcsot visszavonták
+          unknown: A hozzáférési kulcs érvénytelen
+        resource_owner_authenticator_not_configured: Az erőforrás-tulajdonos keresése megszakadt, ugyanis a Doorkeeper.configure.resource_owner_authenticator nem lett beállítva.
         server_error: Az engedélyező kiszolgáló váratlan körülménybe ütközött, ami megakadályozta, hogy teljesítse a kérést.
         temporarily_unavailable: Az engedélyezési kiszolgáló jelenleg nem tudja kezelni a kérelmet a kiszolgáló ideiglenes túlterhelése vagy karbantartása miatt.
         unauthorized_client: A kliens nincs feljogosítva erre a kérésre.
@@ -104,14 +104,14 @@ hu:
     flash:
       applications:
         create:
-          notice: Alkalmazás létrehozva.
+          notice: Az alkalmazás létrehozva.
         destroy:
-          notice: Alkalmazás törölve.
+          notice: Az alkalmazás törlésre került.
         update:
           notice: Alkalmazás frissítve.
       authorized_applications:
         destroy:
-          notice: Alkalmazás visszavonva.
+          notice: Az alkalmazás visszavonásra került.
     grouped_scopes:
       access:
         read: Csak olvasási elérés
@@ -164,9 +164,9 @@ hu:
       admin:write:ip_blocks: moderáció végrehajtása IP-blokkokon
       admin:write:reports: moderációs műveletek végzése bejelentéseken
       crypto: végpontok közti titkosítás használata
-      follow: fiókok követése, letiltása, tiltás feloldása és követés abbahagyása
+      follow: fiókkapcsolatok módosítása
       push: push értesítések fogadása
-      read: fiókod adatainak olvasása
+      read: saját fiók adatainak olvasása
       read:accounts: fiók adatainak megtekintése
       read:blocks: letiltások megtekintése
       read:bookmarks: könyvjelzőid megtekintése
@@ -177,10 +177,10 @@ hu:
       read:mutes: némítások megtekintése
       read:notifications: értesítések megtekintése
       read:reports: bejelentések megtekintése
-      read:search: nevedben keresés
+      read:search: keresés a saját nevedben
       read:statuses: bejegyzések megtekintése
       write: fiókod adatainak megváltoztatása
-      write:accounts: profilod megváltoztatása
+      write:accounts: saját profilod megváltoztatása
       write:blocks: fiókok és domainek letiltása
       write:bookmarks: bejegyzések könyvjelzőzése
       write:conversations: beszélgetések némítása és törlése

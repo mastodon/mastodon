@@ -1,4 +1,5 @@
 import api, { getLinks } from '../api';
+
 import { fetchRelationships } from './accounts';
 import { importFetchedAccounts } from './importer';
 import { openModal } from './modal';
@@ -96,7 +97,7 @@ export function initMuteModal(account) {
       account,
     });
 
-    dispatch(openModal('MUTE'));
+    dispatch(openModal({ modalType: 'MUTE' }));
   };
 }
 

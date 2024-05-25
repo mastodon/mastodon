@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: account_stats
@@ -15,7 +16,7 @@
 
 class AccountStat < ApplicationRecord
   self.locking_column = nil
-  self.ignored_columns = %w(lock_version)
+  self.ignored_columns += %w(lock_version)
 
   belongs_to :account, inverse_of: :account_stat
 

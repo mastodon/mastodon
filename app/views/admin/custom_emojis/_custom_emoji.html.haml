@@ -9,7 +9,7 @@
       %samp= ":#{custom_emoji.shortcode}:"
 
       - if custom_emoji.local?
-        %span.account-role.bot= custom_emoji.category&.name || t('admin.custom_emojis.uncategorized')
+        %span.information-badge= custom_emoji.category&.name || t('admin.custom_emojis.uncategorized')
 
     .batch-table__row__content__extra
       - if custom_emoji.local?

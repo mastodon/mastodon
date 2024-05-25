@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddForeignKeysForAccounts < ActiveRecord::Migration[5.1]
   def change
     add_foreign_key :statuses, :accounts, on_delete: :cascade

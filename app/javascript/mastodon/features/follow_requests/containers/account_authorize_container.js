@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
+
+import { authorizeFollowRequest, rejectFollowRequest } from '../../../actions/accounts';
 import { makeGetAccount } from '../../../selectors';
 import AccountAuthorize from '../components/account_authorize';
-import { authorizeFollowRequest, rejectFollowRequest } from '../../../actions/accounts';
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();

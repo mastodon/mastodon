@@ -15,7 +15,7 @@ class UnfollowService < BaseService
     @target_account = target_account
     @options        = options
 
-    with_lock("relationship:#{[source_account.id, target_account.id].sort.join(':')}") do
+    with_redis_lock("relationship:#{[source_account.id, target_account.id].sort.join(':')}") do
       unfollow! || undo_follow_request!
     end
   end

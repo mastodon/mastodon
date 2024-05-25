@@ -14,21 +14,4 @@
         %th= t 'sessions.activity'
         %th
     %tbody
-      - @sessions.each do |session|
-        %tr
-          %td
-            %span{ title: session.user_agent }<
-              = fa_icon "#{session_device_icon(session)} fw", 'aria-label': session_device_icon(session)
-              = ' '
-              = t 'sessions.description', browser: t("sessions.browsers.#{session.browser}", default: "#{session.browser}"), platform: t("sessions.platforms.#{session.platform}", default: "#{session.platform}")
-          %td
-            %samp= session.ip
-          %td
-            - if current_session.session_id == session.session_id
-              = t 'sessions.current_session'
-            - else
-              %time.time-ago{ datetime: session.updated_at.iso8601, title: l(session.updated_at) }= l(session.updated_at)
-          %td
-            - if current_session.session_id != session.session_id && !current_account.suspended?
-              = table_link_to 'times', t('sessions.revoke'), settings_session_path(session), method: :delete
-
+      = render partial: 'session', collection: sessions

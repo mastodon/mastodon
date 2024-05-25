@@ -22,7 +22,7 @@ class VideoMetadataExtractor
   private
 
   def ffmpeg_command_output
-    command = Terrapin::CommandLine.new('ffprobe', '-i :path -print_format :format -show_format -show_streams -show_error -loglevel :loglevel')
+    command = Terrapin::CommandLine.new(Rails.configuration.x.ffprobe_binary, '-i :path -print_format :format -show_format -show_streams -show_error -loglevel :loglevel')
     command.run(path: @path, format: 'json', loglevel: 'fatal')
   end
 

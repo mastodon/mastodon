@@ -10,15 +10,17 @@ ast:
       last_attempt: Quédate un intentu más enantes de bloquiar la cuenta.
       locked: La cuenta ta bloquiada.
       pending: La cuenta sigue en revisión.
-      timeout: La sesión caducó. Volvi aniciala pa siguir.
+      timeout: La sesión caduco. Volvi aniciar la sesión pa siguir.
       unauthenticated: Tienes d'aniciar la sesión o rexistrate enantes de siguir.
       unconfirmed: Tienes de confirmar la direición de corréu electrónicu enantes de siguir.
     mailer:
       confirmation_instructions:
+        action: Verificar la direición de corréu electrónicu
         explanation: Creesti una cuenta en %{host} con esta direición de corréu electrónicu ya tas a un calcu d'activala. Si nun fixesti esta aición, inora esti mensaxe.
         explanation_when_pending: Solicitesti una invitación a %{host} con esta direición de corréu electrónicu. Namás que confirmes la direición de corréu electrónicu, vamos revisar la solicitú. Entrín ya non, pues aniciar la sesión pa camudar los detalles o desaniciar la cuenta, mas nun pues acceder a la mayoría de funciones hasta que la cuenta nun tea aprobada. Si se refuga la solicitú, nun ye necesario que faigas nada más o si, per otra parte, tu nun fixesti esta aición, inora esti mensaxe.
-        extra_html: Revisa tamién <a href="%{terms_path}">les regles del sirvidor</a> ya <a href="%{policy_path}">los nuesos términos del serviciu</a>.
+        extra_html: Revisa tamién <a href="%{terms_path}">les normes del sirvidor</a> ya <a href="%{policy_path}">los nuesos términos del serviciu</a>.
         subject: 'Mastodon: instrucciones de confirmación de «%{instance}»'
+        title: Verificación de la direición de corréu electrónicu
       email_changed:
         explanation: 'La direición de corréu electrónicu de la cuenta camudó a:'
         extra: Si nun camudesti la direición de corréu electrónicu, ye probable que daquién accediere a la cuenta. Camuda la contraseña agora mesmo o ponte en contautu cola alministración del sirvidor si nun yes a acceder a la cuenta.

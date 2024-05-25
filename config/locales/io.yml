@@ -122,8 +122,6 @@ io:
       removed_header_msg: Sucesoze efacis kapimajo di %{username}
       resend_confirmation:
         already_confirmed: Ca uzanto ja konfirmesis
-        send: Risendez konfirmretposto
-        success: Konfirmretposto sucesoze sendesas!
       reset: Richanjez
       reset_password: Richanjez pasvorto
       resubscribe: Riabonez
@@ -700,7 +698,6 @@ io:
           approved: Aprobo bezonesas por registro
           none: Nulu povas registrar
           open: Irgu povas registrar
-      title: Servilopcioni
     site_uploads:
       delete: Efacez adchargita failo
       destroyed_msg: Sitadchargito sucesoze efacesis!
@@ -882,7 +879,6 @@ io:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Omnu povas kontributar.
     sensitive_content: Sentoza kontenajo
-    toot_layout: Postostrukturo
   application_mailer:
     notification_preferences: Chanjez retpostopreferaji
     salutation: "%{name},"
@@ -898,14 +894,12 @@ io:
     warning: Sorgemez per ca informi. Ne partigez kun irgu!
     your_token: Vua acesficho
   auth:
-    change_password: Pasvorto
     delete_account: Efacez konto
     delete_account_html: Se vu volas efacar vua konto, vu povas <a href="%{path}">irar hike</a>. Vu demandesos konfirmar.
     description:
       prefix_invited_by_user: "@%{name} invitas vu juntar ca servilo di Mastodon!"
       prefix_sign_up: Registrez che Mastodon hodie!
       suffix: Per konto, vu povos sequar personi, postigar novaji e interchanjar mesaji kun uzanti de irga servilo di Mastodon e pluse!
-    didnt_get_confirmation: Ka tu ne recevis la instrucioni por konfirmar?
     dont_have_your_security_key: Ka vu ne havas sekuresklefo?
     forgot_password: Pasvorto obliviita?
     invalid_reset_password_token: Pasvorto richanjoficho esas nevalida o expirita. Demandez novo.
@@ -923,17 +917,12 @@ io:
       saml: SAML
     register: Membreskar
     registration_closed: "%{instance} ne aceptas nova membri"
-    resend_confirmation: Risendar la instrucioni por konfirmar
     reset_password: Chanjar la pasvorto
     rules:
       preamble: Co igesas e exekutesas da jereri di %{domain}.
       title: Kelka bazala reguli.
     security: Chanjar pasvorto
     set_new_password: Selektar nova pasvorto
-    setup:
-      email_below_hint_html: Se suba retpostoadreso esas nekorekta, vu povas chanjar hike e ganar nova konfirmretposto.
-      email_settings_hint_html: Konfirmretposto sendesis a %{email}. Se ta retpostoadreso ne esas korekta, vu povas chanjar en kontoopcioni.
-      title: Komencoprocedo
     sign_up:
       preamble: Per konto en ca servilo di Mastodon, on povas sequar irga persono en ca reto, ne ye ube ona konto hostagisas.
       title: Ni komencigez vu en %{domain}.
@@ -946,18 +935,6 @@ io:
       view_strikes: Videz antea streki kontre vua konto
     too_fast: Formulario sendesis tro rapide, probez itere.
     use_security_key: Uzes sekuresklefo
-  authorize_follow:
-    already_following: Vu ja sequis ca konto
-    already_requested: Vu ja sendis sequodemando a ta konto
-    error: Regretinde, eventis eraro probante konsultar la fora konto
-    follow: Sequar
-    follow_request: 'Vu sendis sequodemando a:'
-    following: 'Suceso! Vu nun sequas:'
-    post_follow:
-      close: O, vu volas jus klozar ca panelo.
-      return: Montrez priflo de uzanti
-      web: Irez a interreto
-    title: Sequar %{acct}
   challenge:
     confirm: Durez
     hint_html: "<strong>Guidilo:</strong> Ni ne demandos vua pasvorto itere til 1 horo."
@@ -1069,8 +1046,6 @@ io:
     storage: Konservado di kontenajo
   featured_tags:
     add_new: Insertez novo
-    errors:
-      limit: Vu ja estelis maxima hashtagi
     hint_html: "<strong>Quo esas estelita hashtagi?</strong> Ol montresas eminente che vua publika profilo e povigas personi vidar vua publika posti partikulare kun ta hashtagi. Oli esas bona utensilo por jeretar kreiva agaji e longa projetaji."
   filters:
     contexts:
@@ -1114,8 +1089,6 @@ io:
       index:
         hint: Ca filtrilo aplikesas a selektita posti ne segun altra kriterio. Vu povas pozar plu multa posti a ca filtrilo de retintervizajo.
         title: Filtrita posti
-  footer:
-    trending_now: Nuna tendenco
   generic:
     all: Omna
     all_items_on_page_selected_html:
@@ -1138,8 +1111,6 @@ io:
     validation_errors:
       one: Ulo ne eventis senprobleme! Voluntez konsultar la suba eror-raporto
       other: Ulo ne eventis senprobleme! Voluntez konsultar la suba %{count} eror-raporti
-  html_validator:
-    invalid_markup: 'kontenas nevalida kompozuro di HTML: %{error}'
   imports:
     errors:
       over_rows_processing_limit: kontenas plu kam %{count} horizontala lineo
@@ -1179,9 +1150,6 @@ io:
       expires_at: Expiros
       uses: Uzi
     title: Invitez personi
-  lists:
-    errors:
-      limit: Vu astingas maxima listi
   login_activities:
     authentication_methods:
       otp: 2-faktoryurizessoftwaro
@@ -1385,7 +1353,6 @@ io:
       ios: iOS
       linux: Linux
       mac: macOS
-      other: nesavata platformo
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1456,7 +1423,6 @@ io:
     show_newer: Montrez plu nova kozo
     show_older: Montrez plu olda kozo
     show_thread: Montrez postaro
-    sign_in_to_participate: Registrez por partoprenar en konverso
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direta
@@ -1498,12 +1464,9 @@ io:
       '7889238': 3 monati
     min_age_label: Oldeslimito
     min_favs: Retenez favorizita posti mine
-    min_favs_hint: Ne efacas irga vua posti quo ganis mine ca favorizquanto. Restez quale vakua por efacar posti sen suciar olia favorizquanto
     min_reblogs: Retenez bustita posti mine
     min_reblogs_hint: Ne efacas irga vua posti quo bustigesos mine ca foyoquanto. Restez quale vakua por efacar posti sen suciar olia foyoquanto
   stream_entries:
-    pinned: Pinglagita posto
-    reblogged: diskonocigita
     sensitive_content: Titiliva kontenajo
   strikes:
     errors:
@@ -1603,7 +1566,6 @@ io:
     seamless_external_login: Vu enirar tra externa serveso, do pasvorto e retpostoopcioni ne esas disponebla.
     signed_in_as: 'Eniris quale:'
   verification:
-    explanation_html: 'Vu povas <strong>verifikar su kom proprietero di ligili en vua profilmetainformi</strong>. En ta kazo, ligita retsito <strong>mustas</strong> havar <code>rel="me"</code> atributo. Textokontenajo di ligilo ne esas importanta. Co esas exemplo:'
     verification: Verifikeso
   webauthn_credentials:
     add: Insertez nova sekuresklefo

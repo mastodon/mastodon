@@ -1,0 +1,25 @@
+- progress_index = { rules: 0, details: 1, confirm: 2 }[stage.to_sym]
+
+%ol.progress-tracker
+  %li{ class: progress_index.positive? ? 'completed' : 'active' }
+    .circle
+      - if progress_index.positive?
+        = check_icon
+    .label= t('auth.progress.rules')
+  %li.separator{ class: progress_index.positive? ? 'completed' : nil }
+  %li{ class: [progress_index > 1 && 'completed', progress_index == 1 && 'active'] }
+    .circle
+      - if progress_index > 1
+        = check_icon
+    .label= t('auth.progress.details')
+  %li.separator{ class: progress_index > 1 ? 'completed' : nil }
+  %li{ class: [progress_index > 2 && 'completed', progress_index == 2 && 'active'] }
+    .circle
+      - if progress_index > 2
+        = check_icon
+    .label= t('auth.progress.confirm')
+  - if approved_registrations?
+    %li.separator{ class: progress_index > 2 ? 'completed' : nil }
+    %li
+      .circle
+      .label= t('auth.progress.review')

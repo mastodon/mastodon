@@ -3,9 +3,11 @@ on:
   push:
     branches-ignore:
       - 'dependabot/**'
+      - 'renovate/**'
     paths:
       - 'package.json'
       - 'yarn.lock'
+      - '.nvmrc'
       - '.prettier*'
       - '**/*.yaml'
       - '**/*.yml'
@@ -16,6 +18,7 @@ on:
     paths:
       - 'package.json'
       - 'yarn.lock'
+      - '.nvmrc'
       - '.prettier*'
       - '**/*.yaml'
       - '**/*.yml'
@@ -28,15 +31,16 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           cache: yarn
+          node-version-file: '.nvmrc'
 
       - name: Install all yarn packages
         run: yarn --frozen-lockfile
 
       - name: Prettier
-        run: yarn prettier --check "**/*.{yml,yaml}"
+        run: yarn lint:yml
