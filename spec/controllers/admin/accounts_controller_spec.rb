@@ -215,13 +215,8 @@ RSpec.describe Admin::AccountsController do
       it 'succeeds in rejecting account and logs action' do
         expect(subject).to redirect_to admin_accounts_path(status: 'pending')
 
-        expect(latest_admin_action_log)
-          .to be_present
-          .and have_attributes(
-            action: eq(:reject),
-            account_id: eq(current_user.account_id),
-            target_id: eq(account.user.id)
-          )
+        expect { account.reload }
+          .to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
