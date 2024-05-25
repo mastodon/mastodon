@@ -19,10 +19,24 @@ RSpec.describe AccountableConcern do
   let(:hoge)   { hoge_class.new(user) }
 
   describe '#log_action' do
-    it 'creates Admin::ActionLog' do
-      expect do
-        hoge.log_action(:create, target)
-      end.to change(Admin::ActionLog, :count).by(1)
+    subject { hoge.log_action(:create, target) }
+
+    before { target.reload } # Ensure changes from creation cleared
+
+    context 'when target has changed' do
+      before { target.update!(username: 'new_value') }
+
+      it 'creates Admin::ActionLog' do
+        expect { subject }
+          .to change(Admin::ActionLog, :count).by(1)
+      end
+    end
+
+    context 'when target has not changed' do
+      it 'does not create Admin::ActionLog' do
+        expect { subject }
+          .to_not change(Admin::ActionLog, :count)
+      end
     end
   end
 end
