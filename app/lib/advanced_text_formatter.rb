@@ -31,7 +31,7 @@ class AdvancedTextFormatter < TextFormatter
   # @option options [String] :content_type
   def initialize(text, options = {})
     @content_type = options.delete(:content_type)
-    super(text, options)
+    super
 
     @text = format_markdown(text) if content_type == 'text/markdown'
   end
