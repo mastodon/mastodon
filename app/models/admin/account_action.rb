@@ -124,26 +124,26 @@ class Admin::AccountAction
 
   def handle_disable!
     authorize(target_account.user, :disable?)
-    log_action(:disable, target_account.user)
     target_account.user&.disable!
+    log_action(:disable, target_account.user)
   end
 
   def handle_sensitive!
     authorize(target_account, :sensitive?)
-    log_action(:sensitive, target_account)
     target_account.sensitize!
+    log_action(:sensitive, target_account)
   end
 
   def handle_silence!
     authorize(target_account, :silence?)
-    log_action(:silence, target_account)
     target_account.silence!
+    log_action(:silence, target_account)
   end
 
   def handle_suspend!
     authorize(target_account, :suspend?)
-    log_action(:suspend, target_account)
     target_account.suspend!(origin: :local)
+    log_action(:suspend, target_account)
   end
 
   def text_for_warning
