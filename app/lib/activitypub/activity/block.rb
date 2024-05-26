@@ -15,9 +15,9 @@ class ActivityPub::Activity::Block < ActivityPub::Activity
     UnfollowService.new.call(target_account, @account) if target_account.following?(@account)
     RejectFollowService.new.call(target_account, @account) if target_account.requested?(@account)
 
-    unless delete_arrived_first?(@json['id'])
-      BlockWorker.perform_async(@account.id, target_account.id)
-      @account.block!(target_account, uri: @json['id'])
-    end
+    return if delete_arrived_first?(@json['id'])
+
+    BlockWorker.perform_async(@account.id, target_account.id)
+    @account.block!(target_account, uri: @json['id'])
   end
 end

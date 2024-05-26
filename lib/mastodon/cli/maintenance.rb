@@ -146,18 +146,18 @@ module Mastodon::CLI
           end
         end
 
-        if db_table_exists?(:severed_relationships)
-          SeveredRelationship.where(local_account_id: other_account.id).reorder(nil).find_each do |record|
-            record.update_attribute(:local_account_id, id)
-          rescue ActiveRecord::RecordNotUnique
-            next
-          end
+        return unless db_table_exists?(:severed_relationships)
 
-          SeveredRelationship.where(remote_account_id: other_account.id).reorder(nil).find_each do |record|
-            record.update_attribute(:remote_account_id, id)
-          rescue ActiveRecord::RecordNotUnique
-            next
-          end
+        SeveredRelationship.where(local_account_id: other_account.id).reorder(nil).find_each do |record|
+          record.update_attribute(:local_account_id, id)
+        rescue ActiveRecord::RecordNotUnique
+          next
+        end
+
+        SeveredRelationship.where(remote_account_id: other_account.id).reorder(nil).find_each do |record|
+          record.update_attribute(:remote_account_id, id)
+        rescue ActiveRecord::RecordNotUnique
+          next
         end
       end
     end
@@ -331,14 +331,14 @@ module Mastodon::CLI
     end
 
     def deduplicate_users_process_remember_token
-      if migrator_version < 2022_01_18_183010
-        duplicate_record_ids_without_nulls(:users, 'remember_token').each do |row|
-          users = User.where(id: row['ids'].split(',')).order(updated_at: :desc).to_a.drop(1)
-          say "Unsetting remember token for those accounts: #{users.map { |user| user.account.acct }.join(', ')}", :yellow
+      return unless migrator_version < 2022_01_18_183010
 
-          users.each do |user|
-            user.update!(remember_token: nil)
-          end
+      duplicate_record_ids_without_nulls(:users, 'remember_token').each do |row|
+        users = User.where(id: row['ids'].split(',')).order(updated_at: :desc).to_a.drop(1)
+        say "Unsetting remember token for those accounts: #{users.map { |user| user.account.acct }.join(', ')}", :yellow
+
+        users.each do |user|
+          user.update!(remember_token: nil)
         end
       end
     end

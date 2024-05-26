@@ -58,13 +58,11 @@ class RequestPool
 
         close
 
-        if @fresh || retries.positive?
-          raise
-        else
-          @http_client = http_client
-          retries     += 1
-          retry
-        end
+        raise if @fresh || retries.positive?
+
+        @http_client = http_client
+        retries     += 1
+        retry
       rescue
         # If this connection raises errors of any kind, it's
         # better if it gets reaped as soon as possible
