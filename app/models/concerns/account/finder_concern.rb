@@ -52,15 +52,15 @@ module Account::FinderConcern
     end
 
     def with_usernames
-      Account.where.not(Account.arel_table[:username].lower.eq '')
+      Account.without_blank_username
     end
 
     def matching_username
-      Account.where(Account.arel_table[:username].lower.eq username.to_s.downcase)
+      Account.with_username(username)
     end
 
     def matching_domain
-      Account.where(Account.arel_table[:domain].lower.eq(domain.nil? ? nil : domain.to_s.downcase))
+      Account.with_domain(domain)
     end
   end
 end
