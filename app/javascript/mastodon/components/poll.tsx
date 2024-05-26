@@ -154,7 +154,7 @@ export const Poll: React.FC<{
   lang: string;
   disabled?: boolean;
   refresh?: () => void;
-  onVote: (votes: string[]) => void;
+  onVote?: (votes: string[]) => void;
   onInteractionModal: (interactionType: string, status: Status) => void;
 }> = ({
   poll,
@@ -218,13 +218,11 @@ export const Poll: React.FC<{
     }
 
     if (signedIn) {
-      onVote(Array.from(selected));
+      onVote?.(Array.from(selected));
     } else {
       onInteractionModal('vote', status);
     }
-
-    onVote(Array.from(selected));
-  }, [disabled, onVote, selected, signedIn, onInteractionModal, status]);
+  }, [disabled, onVote, selected, signedIn, status, onInteractionModal]);
 
   useEffect(() => {
     if (expired || !expires_at) return () => undefined;
@@ -290,7 +288,7 @@ export const Poll: React.FC<{
               multiple={poll.multiple}
               voted={option.voted || poll.own_votes?.includes(i) || false}
               leading={poll.options
-                .filterNot((other) => other.title === option.title)
+                .filter((other) => other.title !== option.title)
                 .every((other) => option.votes_count >= other.votes_count)}
               percent={percent}
               disabled={disabled || selected.size === 0}
