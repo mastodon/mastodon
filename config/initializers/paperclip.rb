@@ -13,7 +13,7 @@ end
 
 Paperclip.interpolates :prefix_path do |attachment, _style|
   if attachment.storage_schema_version >= 1 && attachment.instance.respond_to?(:local?) && !attachment.instance.local?
-    'cache' + File::SEPARATOR
+    "cache#{File::SEPARATOR}"
   else
     ''
   end
@@ -159,7 +159,7 @@ else
   Paperclip::Attachment.default_options.merge!(
     storage: :filesystem,
     path: File.join(ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system')), ':prefix_path:class', ':attachment', ':id_partition', ':style', ':filename'),
-    url: ENV.fetch('PAPERCLIP_ROOT_URL', '/system') + '/:prefix_url:class/:attachment/:id_partition/:style/:filename'
+    url: "#{ENV.fetch('PAPERCLIP_ROOT_URL', '/system')}/:prefix_url:class/:attachment/:id_partition/:style/:filename"
   )
 end
 
