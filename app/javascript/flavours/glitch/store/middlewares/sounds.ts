@@ -74,8 +74,9 @@ export const soundsMiddleware = (): Middleware<
     if (isActionWithMetaSound(action)) {
       const sound = action.meta.sound;
 
-      if (sound && Object.hasOwn(soundCache, sound)) {
-        play(soundCache[sound]);
+      if (sound) {
+        const s = soundCache[sound];
+        if (s) play(s);
       }
     }
 
