@@ -11,10 +11,10 @@ export const DIRECTORY_EXPAND_REQUEST = 'DIRECTORY_EXPAND_REQUEST';
 export const DIRECTORY_EXPAND_SUCCESS = 'DIRECTORY_EXPAND_SUCCESS';
 export const DIRECTORY_EXPAND_FAIL    = 'DIRECTORY_EXPAND_FAIL';
 
-export const fetchDirectory = params => (dispatch, getState) => {
+export const fetchDirectory = params => (dispatch) => {
   dispatch(fetchDirectoryRequest());
 
-  api(getState).get('/api/v1/directory', { params: { ...params, limit: 20 } }).then(({ data }) => {
+  api().get('/api/v1/directory', { params: { ...params, limit: 20 } }).then(({ data }) => {
     dispatch(importFetchedAccounts(data));
     dispatch(fetchDirectorySuccess(data));
     dispatch(fetchRelationships(data.map(x => x.id)));
@@ -40,7 +40,7 @@ export const expandDirectory = params => (dispatch, getState) => {
 
   const loadedItems = getState().getIn(['user_lists', 'directory', 'items']).size;
 
-  api(getState).get('/api/v1/directory', { params: { ...params, offset: loadedItems, limit: 20 } }).then(({ data }) => {
+  api().get('/api/v1/directory', { params: { ...params, offset: loadedItems, limit: 20 } }).then(({ data }) => {
     dispatch(importFetchedAccounts(data));
     dispatch(expandDirectorySuccess(data));
     dispatch(fetchRelationships(data.map(x => x.id)));

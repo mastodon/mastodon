@@ -4371,12 +4371,20 @@ a.status-card {
     &:hover {
       color: $primary-text-color;
     }
+
+    .icon-sliders {
+      transform: rotate(60deg);
+    }
   }
 
   &:disabled {
     color: $dark-text-color;
     cursor: default;
   }
+}
+
+.no-reduce-motion .column-header__button .icon-sliders {
+  transition: transform 150ms ease-in-out;
 }
 
 .column-header__collapsible {

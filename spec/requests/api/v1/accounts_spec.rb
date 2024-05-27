@@ -8,6 +8,22 @@ describe '/api/v1/accounts' do
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
+  describe 'GET /api/v1/accounts?ids[]=:id' do
+    let(:account) { Fabricate(:account) }
+    let(:other_account) { Fabricate(:account) }
+    let(:scopes) { 'read:accounts' }
+
+    it 'returns expected response' do
+      get '/api/v1/accounts', headers: headers, params: { ids: [account.id, other_account.id, 123_123] }
+
+      expect(response).to have_http_status(200)
+      expect(body_as_json).to contain_exactly(
+        hash_including(id: account.id.to_s),
+        hash_including(id: other_account.id.to_s)
+      )
+    end
+  end
+
   describe 'GET /api/v1/accounts/:id' do
     context 'when logged out' do
       let(:account) { Fabricate(:account) }

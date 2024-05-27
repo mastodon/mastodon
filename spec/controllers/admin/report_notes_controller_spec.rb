@@ -22,7 +22,7 @@ describe Admin::ReportNotesController do
         let(:account_id) { nil }
 
         context 'when create_and_resolve flag is on' do
-          let(:params) { { report_note: { content: 'test content', report_id: report.id }, create_and_resolve: nil } }
+          let(:params) { { report_note: { report_id: report.id, content: 'test content' }, create_and_resolve: nil } }
 
           it 'creates a report note and resolves report' do
             expect { subject }.to change(ReportNote, :count).by(1)
@@ -32,7 +32,7 @@ describe Admin::ReportNotesController do
         end
 
         context 'when create_and_resolve flag is false' do
-          let(:params) { { report_note: { content: 'test content', report_id: report.id } } }
+          let(:params) { { report_note: { report_id: report.id, content: 'test content' } } }
 
           it 'creates a report note and does not resolve report' do
             expect { subject }.to change(ReportNote, :count).by(1)
@@ -47,7 +47,7 @@ describe Admin::ReportNotesController do
         let(:account_id) { user.account.id }
 
         context 'when create_and_unresolve flag is on' do
-          let(:params) { { report_note: { content: 'test content', report_id: report.id }, create_and_unresolve: nil } }
+          let(:params) { { report_note: { report_id: report.id, content: 'test content' }, create_and_unresolve: nil } }
 
           it 'creates a report note and unresolves report' do
             expect { subject }.to change(ReportNote, :count).by(1)
@@ -57,7 +57,7 @@ describe Admin::ReportNotesController do
         end
 
         context 'when create_and_unresolve flag is false' do
-          let(:params) { { report_note: { content: 'test content', report_id: report.id } } }
+          let(:params) { { report_note: { report_id: report.id, content: 'test content' } } }
 
           it 'creates a report note and does not unresolve report' do
             expect { subject }.to change(ReportNote, :count).by(1)
@@ -68,12 +68,24 @@ describe Admin::ReportNotesController do
       end
     end
 
-    context 'when parameter is invalid' do
-      let(:params) { { report_note: { content: '', report_id: report.id } } }
+    context 'when content is too short' do
+      let(:params) { { report_note: { report_id: report.id, content: '' } } }
       let(:action_taken) { nil }
       let(:account_id) { nil }
 
       it 'renders admin/reports/show' do
+        expect { subject }.to_not change(ReportNote, :count)
+        expect(subject).to render_template 'admin/reports/show'
+      end
+    end
+
+    context 'when content is too long' do
+      let(:params) { { report_note: { report_id: report.id, content: 'test' * ReportNote::CONTENT_SIZE_LIMIT } } }
+      let(:action_taken) { nil }
+      let(:account_id) { nil }
+
+      it 'renders admin/reports/show' do
+        expect { subject }.to_not change(ReportNote, :count)
         expect(subject).to render_template 'admin/reports/show'
       end
     end

@@ -39,6 +39,8 @@ class Status < ApplicationRecord
   include Status::SnapshotConcern
   include Status::ThreadingConcern
 
+  MEDIA_ATTACHMENTS_LIMIT = 4
+
   rate_limit by: :account, family: :statuses
 
   self.discard_column = :deleted_at
@@ -266,7 +268,7 @@ class Status < ApplicationRecord
   end
 
   def reported?
-    @reported ||= Report.where(target_account: account).unresolved.exists?(['? = ANY(status_ids)', id])
+    @reported ||= account.targeted_reports.unresolved.exists?(['? = ANY(status_ids)', id]) || account.strikes.exists?(['? = ANY(status_ids)', id.to_s])
   end
 
   def emojis

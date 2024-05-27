@@ -1,7 +1,3 @@
-import PropTypes from 'prop-types';
-import type { PropsWithChildren } from 'react';
-import { Component } from 'react';
-
 import { IntlProvider } from 'react-intl';
 
 import { MemoryRouter } from 'react-router';
@@ -9,44 +5,26 @@ import { MemoryRouter } from 'react-router';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { render as rtlRender } from '@testing-library/react';
 
-class FakeIdentityWrapper extends Component<
-  PropsWithChildren<{ signedIn: boolean }>
-> {
-  static childContextTypes = {
-    identity: PropTypes.shape({
-      signedIn: PropTypes.bool.isRequired,
-      accountId: PropTypes.string,
-      disabledAccountId: PropTypes.string,
-      accessToken: PropTypes.string,
-    }).isRequired,
-  };
-
-  getChildContext() {
-    return {
-      identity: {
-        signedIn: this.props.signedIn,
-        accountId: '123',
-        accessToken: 'test-access-token',
-      },
-    };
-  }
-
-  render() {
-    return this.props.children;
-  }
-}
+import { IdentityContext } from './identity_context';
 
 function render(
   ui: React.ReactElement,
   { locale = 'en', signedIn = true, ...renderOptions } = {},
 ) {
+  const fakeIdentity = {
+    signedIn: signedIn,
+    accountId: '123',
+    disabledAccountId: undefined,
+    permissions: 0,
+  };
+
   const Wrapper = (props: { children: React.ReactNode }) => {
     return (
       <MemoryRouter>
         <IntlProvider locale={locale}>
-          <FakeIdentityWrapper signedIn={signedIn}>
+          <IdentityContext.Provider value={fakeIdentity}>
             {props.children}
-          </FakeIdentityWrapper>
+          </IdentityContext.Provider>
         </IntlProvider>
       </MemoryRouter>
     );

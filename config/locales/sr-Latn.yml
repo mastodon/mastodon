@@ -288,6 +288,7 @@ sr-Latn:
         update_custom_emoji_html: "%{name} je ažurirao/-la emodži %{target}"
         update_domain_block_html: "%{name} je ažurirao/-la blok domena %{target}"
         update_ip_block_html: "%{name} je promenio/-la IP uslov za %{target}"
+        update_report_html: "%{name} je ažurirao izveštaj %{target}"
         update_status_html: "%{name} je ažurirao/-la objavu korisnika %{target}"
         update_user_role_html: "%{name} je promenio/-la poziciju %{target}"
       deleted_account: obrisan nalog
@@ -868,7 +869,7 @@ sr-Latn:
         action: Pogledaj dokumentaciju
         message_html: Vaš Elasticsearch klaster ima samo jedan čvor, <code>ES_PRESET</code>treba postaviti na<code>single_node_cluster</code>.
       elasticsearch_reset_chewy:
-        message_html: Vaš Elasticsearch klaster ima samo jedan čvor, <code>ES_PRESET</code>treba postaviti na<code>single_node_cluster</code>.
+        message_html: Indeks Elasticsearch sistema je zastareo zbog promene podešavanja. Pokrenite <code>tootctl search deploy --reset-chewy</code>da biste ga ažurirali.
       elasticsearch_running_check:
         message_html: Povezivanje na Elasticsearch nije bilo moguće. Molimo Vas proverite da li je pokrenut, ili onemogućite pretragu celog teksta
       elasticsearch_version_check:
@@ -965,9 +966,9 @@ sr-Latn:
     warning_presets:
       add_new: Dodaj novi
       delete: Izbriši
-      edit_preset: Uredi preset upozorenja
-      empty: Još uvek niste definisali nijedan šablon upozorenja.
-      title: Upravljaj presetima upozorenja
+      edit_preset: Uredi predefinisana upozorenja
+      empty: Još uvek niste definisali nijedno upozorenje.
+      title: Predefinisana upozorenja
     webhooks:
       add_new: Dodaj krajnju tačku
       delete: Izbriši

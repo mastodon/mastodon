@@ -145,6 +145,8 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           files: coverage/lcov/mastodon.lcov
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   test-e2e:
     name: End to End testing
@@ -184,6 +186,8 @@ jobs:
       DISABLE_SIMPLECOV: true
       RAILS_ENV: test
       BUNDLE_WITH: test
+      LOCAL_DOMAIN: localhost:3000
+      LOCAL_HTTPS: false
 
     strategy:
       fail-fast: false
@@ -213,7 +217,7 @@ jobs:
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
-      - run: bundle exec rake spec:system
+      - run: bin/rspec spec/system --tag streaming --tag js
 
       - name: Archive logs
         uses: actions/upload-artifact@v4
@@ -260,11 +264,25 @@ jobs:
         ports:
           - 6379:6379
 
-      search:
-        image: ${{ matrix.search-image }}
+      elasticsearch:
+        image: ${{ contains(matrix.search-image, 'elasticsearch') && matrix.search-image || '' }}
         env:
           discovery.type: single-node
           xpack.security.enabled: false
+        options: >-
+          --health-cmd "curl http://localhost:9200/_cluster/health"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+        ports:
+          - 9200:9200
+
+      opensearch:
+        image: ${{ contains(matrix.search-image, 'opensearch') && matrix.search-image || '' }}
+        env:
+          discovery.type: single-node
+          DISABLE_INSTALL_DEMO_CONFIG: true
+          DISABLE_SECURITY_PLUGIN: true
         options: >-
           --health-cmd "curl http://localhost:9200/_cluster/health"
           --health-interval 10s
@@ -296,6 +314,8 @@ jobs:
         include:
           - ruby-version: '.ruby-version'
             search-image: docker.elastic.co/elasticsearch/elasticsearch:8.10.2
+          - ruby-version: '.ruby-version'
+            search-image: opensearchproject/opensearch:2
 
     steps:
       - uses: actions/checkout@v4

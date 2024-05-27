@@ -282,6 +282,7 @@ ja:
         update_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を更新しました"
         update_domain_block_html: "%{name}さんが%{target}のドメインブロックを更新しました"
         update_ip_block_html: "%{name} さんがIP %{target} のルールを更新しました"
+        update_report_html: "%{name}さんが通報 %{target} を更新しました"
         update_status_html: "%{name}さんが%{target}さんの投稿を更新しました"
         update_user_role_html: "%{name}さんがロール『%{target}』を変更しました"
       deleted_account: 削除されたアカウント
@@ -737,6 +738,7 @@ ja:
         desc_html: この機能は hCaptcha による外部スクリプトを使用しますが、hCaptcha にはセキュリティとプライバシーの懸念が考えられます。また、<strong>CAPTCHAにより新規登録のアクセシビリティが大幅に損なわれる可能性があり、身体および精神障害者においては特に顕著です。</strong>以上の理由から、承認制や招待制を基本とするなど、代わりの登録手順を提供することを検討してください。
         title: 新規ユーザーのアカウント確認にCHAPCHAを要求する
       content_retention:
+        danger_zone: 危険な操作
         preamble: ユーザーが生成したコンテンツがどのように Mastodon に保存されるかを管理します。
         title: コンテンツの保持
       default_noindex:
@@ -932,7 +934,7 @@ ja:
       delete: 削除
       edit_preset: プリセット警告文を編集
       empty: まだプリセット警告文が作成されていません。
-      title: プリセット警告文を管理
+      title: プリセット警告文
     webhooks:
       add_new: エンドポイントを追加
       delete: 削除
