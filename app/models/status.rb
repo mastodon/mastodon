@@ -39,6 +39,8 @@ class Status < ApplicationRecord
   include Status::SnapshotConcern
   include Status::ThreadingConcern
 
+  MEDIA_ATTACHMENTS_LIMIT = 4
+
   rate_limit by: :account, family: :statuses
 
   self.discard_column = :deleted_at
