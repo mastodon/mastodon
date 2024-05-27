@@ -3571,6 +3571,42 @@ $ui-header-logo-wordmark-width: 99px;
   }
 }
 
+.button-scroll-list-container {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.button-scroll-list {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex-grow: 1;
+  white-space: nowrap;
+}
+
+.button-scroll-list::-webkit-scrollbar {
+  display: none;
+}
+
+.followed-tags-list {
+  overflow: hidden;
+  flex: 0 1 auto;
+}
+
+.hashtag-wrapper {
+  border-bottom: none;
+}
+
 .column-back-button {
   box-sizing: border-box;
   width: 100%;
