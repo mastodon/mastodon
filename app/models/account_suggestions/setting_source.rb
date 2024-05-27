@@ -26,8 +26,8 @@ class AccountSuggestions::SettingSource < AccountSuggestions::Source
   def setting_to_where_condition
     usernames_and_domains.map do |(username, domain)|
       Arel::Nodes::Grouping.new(
-        Account.with_username(username).and(
-          Account.with_domain(domain)
+        Account.arel_table[:username].lower.eq(username.downcase).and(
+          Account.arel_table[:domain].lower.eq(domain&.downcase)
         )
       )
     end.reduce(:or)
