@@ -176,12 +176,6 @@ Style/SafeNavigation:
   Exclude:
     - 'app/models/concerns/account/finder_concern.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: Mode.
-Style/StringConcatenation:
-  Exclude:
-    - 'config/initializers/paperclip.rb'
-
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: WordRegex.
 # SupportedStyles: percent, brackets
