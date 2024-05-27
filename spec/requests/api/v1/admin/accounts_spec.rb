@@ -223,6 +223,18 @@ RSpec.describe 'Accounts' do
             target_id: eq(account.user.id)
           )
       end
+
+      it 'logs action', :aggregate_failures do
+        subject
+
+        expect(latest_admin_action_log)
+          .to be_present
+          .and have_attributes(
+            action: eq(:reject),
+            account_id: eq(user.account_id),
+            target_id: eq(account.user.id)
+          )
+      end
     end
 
     context 'when account is already approved' do
