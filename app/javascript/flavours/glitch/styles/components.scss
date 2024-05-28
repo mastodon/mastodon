@@ -4133,6 +4133,10 @@ input.glitch-setting-text {
   border: 1px solid var(--background-border-color);
   border-radius: 8px;
 
+  &.bottomless {
+    border-radius: 8px 8px 0 0;
+  }
+
   &__actions {
     bottom: 0;
     inset-inline-start: 0;
@@ -10808,6 +10812,45 @@ noscript {
       border-radius: 4px;
       border: 1px solid var(--background-border-color);
       padding: 5px;
+    }
+  }
+}
+
+.more-from-author {
+  font-size: 14px;
+  color: $darker-text-color;
+  background: var(--surface-background-color);
+  border: 1px solid var(--background-border-color);
+  border-top: 0;
+  border-radius: 0 0 8px 8px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .logo {
+    height: 16px;
+    color: $darker-text-color;
+  }
+
+  & > span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+    color: $primary-text-color;
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $highlight-text-color;
     }
   }
 }
