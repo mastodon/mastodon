@@ -144,7 +144,6 @@ class Account < ApplicationRecord
   scope :dormant, -> { joins(:account_stat).merge(AccountStat.without_recent_activity) }
   scope :with_username, ->(value) { where arel_table[:username].lower.eq(value.to_s.downcase) }
   scope :with_domain, ->(value) { where arel_table[:domain].lower.eq(value&.to_s&.downcase) }
-  scope :without_blank_username, -> { where.not arel_table[:username].lower.eq('') }
 
   after_update_commit :trigger_update_webhooks
 
