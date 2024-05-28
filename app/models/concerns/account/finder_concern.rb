@@ -25,42 +25,11 @@ module Account::FinderConcern
     end
 
     def find_remote(username, domain)
-      AccountFinder.new(username, domain).account
-    end
-  end
-
-  class AccountFinder
-    attr_reader :username, :domain
-
-    def initialize(username, domain)
-      @username = username
-      @domain = domain
-    end
-
-    def account
-      scoped_accounts.order(id: :asc).take
-    end
-
-    private
-
-    def scoped_accounts
-      Account.unscoped.tap do |scope|
-        scope.merge! with_usernames
-        scope.merge! matching_username
-        scope.merge! matching_domain
-      end
-    end
-
-    def with_usernames
-      Account.without_blank_username
-    end
-
-    def matching_username
-      Account.with_username(username)
-    end
-
-    def matching_domain
-      Account.with_domain(domain)
+      Account
+        .with_username(username)
+        .with_domain(domain)
+        .order(id: :asc)
+        .take
     end
   end
 end
