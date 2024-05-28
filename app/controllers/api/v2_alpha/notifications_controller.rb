@@ -53,8 +53,8 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
       .where(group_key: @notifications.filter_map(&:group_key))
       .where(id: (@notifications.last.id)..(@notifications.first.id))
       .group(:group_key)
-      .pluck(:group_key, 'min(notifications.id) as min_id', 'max(notifications.id) as max_id')
-      .to_h { |group_key, min_id, max_id| [group_key, { min_id: min_id, max_id: max_id }] }
+      .pluck(:group_key, 'min(notifications.id) as min_id', 'max(notifications.id) as max_id', 'max(notifications.created_at) as latest_notification_at')
+      .to_h { |group_key, min_id, max_id, latest_notification_at| [group_key, { min_id: min_id, max_id: max_id, latest_notification_at: latest_notification_at }] }
   end
 
   def browserable_account_notifications

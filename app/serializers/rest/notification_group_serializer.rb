@@ -5,6 +5,7 @@ class REST::NotificationGroupSerializer < ActiveModel::Serializer
 
   attribute :page_min_id, if: :paginated?
   attribute :page_max_id, if: :paginated?
+  attribute :latest_page_notification_at, if: :paginated?
 
   has_many :sample_accounts, serializer: REST::AccountSerializer
   belongs_to :target_status, key: :status, if: :status_type?, serializer: REST::StatusSerializer
@@ -31,6 +32,11 @@ class REST::NotificationGroupSerializer < ActiveModel::Serializer
   def page_max_id
     range = instance_options[:group_metadata][object.group_key]
     range.present? ? range[:max_id].to_s : object.notification.id.to_s
+  end
+
+  def latest_page_notification_at
+    range = instance_options[:group_metadata][object.group_key]
+    range.present? ? range[:latest_notification_at] : object.notification.created_at
   end
 
   def paginated?
