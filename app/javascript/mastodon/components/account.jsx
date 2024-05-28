@@ -172,7 +172,6 @@ Account.propTypes = {
   onBlock: PropTypes.func,
   onMute: PropTypes.func,
   onMuteNotifications: PropTypes.func,
-  intl: PropTypes.object.isRequired,
   hidden: PropTypes.bool,
   minimal: PropTypes.bool,
   defaultAction: PropTypes.string,

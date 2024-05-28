@@ -78,12 +78,14 @@ fi:
       form_admin_settings:
         activity_api_enabled: Paikallisesti julkaistujen julkaisujen, aktiivisten käyttäjien ja rekisteröitymisten viikoittainen määrä
         app_icon: WEBP, PNG, GIF tai JPG. Korvaa oletusarvoisen mobiililaitteiden sovelluskuvakkeen omalla kuvakkeella.
-        backups_retention_period: Käyttäjillä on mahdollisuus arkistoida julkaisujaan myöhemmin ladattaviksi. Kun tämä on asetettu positiiviseksi arvoksi, nämä arkistot poistetaan automaattisesti asetetun päivien määrän jälkeen.
+        backups_retention_period: Käyttäjillä on mahdollisuus arkistoida julkaisujaan myöhemmin ladattaviksi. Kun arvo on positiivinen, nämä arkistot poistuvat automaattisesti, kun määritetty määrä päiviä on kulunut.
         bootstrap_timeline_accounts: Nämä tilit kiinnitetään uusien käyttäjien seuraamissuosituslistojen alkuun.
         closed_registrations_message: Näkyy, kun rekisteröityminen on suljettu
+        content_cache_retention_period: Kaikki muiden palvelinten julkaisut (mukaan lukien tehostukset ja vastaukset) poistuvat, kun määritetty määrä päiviä on kulunut, ottamatta huomioon paikallisen käyttäjän vuorovaikutusta näiden julkaisujen kanssa. Sisältää julkaisut, jotka paikallinen käyttäjä on merkinnyt kirjanmerkiksi tai suosikiksi. Myös yksityiset maininnat eri palvelinten käyttäjien välillä menetetään, eikä niitä voi palauttaa. Tämä asetus on tarkoitettu käytettäväksi erityistapauksissa ja rikkoo monia käyttäjien odotuksia, kun sitä käytetään yleistarkoituksiin.
         custom_css: Voit käyttää mukautettuja tyylejä Mastodonin verkkoversiossa.
         favicon: WEBP, PNG, GIF tai JPG. Korvaa oletusarvoisen Mastodonin suosikkikuvakkeen omalla kuvakkeella.
         mascot: Ohittaa kuvituksen edistyneessä selainkäyttöliittymässä.
+        media_cache_retention_period: Käyttäjien tekemien julkaisujen mediatiedostot ovat välimuistissa palvelimellasi. Kun arvo on positiivinen, media poistuu, kun määritetty määrä päiviä on kulunut. Jos mediaa pyydetään sen poistamisen jälkeen, se ladataan uudelleen, jos lähdesisältö on vielä saatavilla. Koska linkkien esikatselun kyselyitä kolmansien osapuolien sivustoille on rajoitettu, on suositeltavaa asettaa tämä arvo vähintään 14 päivään, tai linkkien kortteja ei päivitetä pyynnöstä ennen tätä ajankohtaa.
         peers_api_enabled: Luettelo verkkotunnuksista, jotka tämä palvelin on kohdannut fediversumissa. Se ei kerro, oletko liitossa tietyn palvelimen kanssa, vaan että palvelimesi on ylipäätään tietoinen siitä. Tätä tietoa käytetään palveluissa, jotka keräävät tilastoja federoinnista yleisellä tasolla.
         profile_directory: Profiilihakemisto lueteloi kaikki käyttäjät, jotka ovat ilmoittaneet olevansa löydettävissä.
         require_invite_text: Kun rekisteröityminen vaatii manuaalisen hyväksynnän, tee ”Miksi haluat liittyä?” -tekstikentästä pakollinen vapaaehtoisen sijaan

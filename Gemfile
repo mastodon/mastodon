@@ -103,6 +103,8 @@ gem 'rdf-normalize', '~> 0.5'
 
 gem 'private_address_check', '~> 0.5'
 
+gem 'opentelemetry-api', '~> 1.2.5'
+
 group :opentelemetry do
   gem 'opentelemetry-exporter-otlp', '~> 0.26.3', require: false
   gem 'opentelemetry-instrumentation-active_job', '~> 0.7.1', require: false
@@ -132,7 +134,7 @@ group :test do
   gem 'email_spec'
 
   # Extra RSpec extension methods and helpers for sidekiq
-  gem 'rspec-sidekiq', '~> 4.0'
+  gem 'rspec-sidekiq', '~> 5.0'
 
   # Browser integration testing
   gem 'capybara', '~> 3.39'
@@ -178,7 +180,7 @@ group :development do
 
   # Preview mail in the browser
   gem 'letter_opener', '~> 1.8'
-  gem 'letter_opener_web', '~> 2.0'
+  gem 'letter_opener_web', '~> 3.0'
 
   # Security analysis CLI tools
   gem 'brakeman', '~> 6.0', require: false

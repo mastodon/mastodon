@@ -20,7 +20,7 @@ sr-Latn:
       admin_account_action:
         include_statuses: Korisnik će videti koje su objave prouzrokovale moderacijsku radnju ili upozorenje
         send_email_notification: Korisnik će dobiti objašnjenje toga šta mu se desilo sa nalogom
-        text_html: Opcionalno. Možete koristiti sintaksu objava. Možete <a href="%{path}">dodati unapred određene postavke upozorenja</a> za uštedu vremena
+        text_html: Opciono. Možete koristiti sintaksu objava. Možete <a href="%{path}">dodati predefinisana upozorenja</a> za uštedu vremena
         type_html: Izaberite šta da radite sa <strong>%{acct}</strong>
         types:
           disable: Sprečava korisnika da koristi svoj nalog, ali ne briše niti sakriva njegove sadržaje.
@@ -28,7 +28,7 @@ sr-Latn:
           sensitive: Učini da svi medijski prilozi ovog korisnika prisilno budu označeni kao osetljivi.
           silence: Sprečava korisnika da pravi javne objave, sakriva njegove objave i obaveštenja od ljudi koji ga ne prate. Zatvara sve prijave podnete protiv ovog naloga.
           suspend: Sprečava svu interakciju od ovog naloga i ka ovom nalogu i briše njegov sadržaj. Opozivo u roku od 30 dana. Zatvara sve prijave podnete protiv ovog naloga.
-        warning_preset_id: Opcionalno. Možete i dalje dodati prilagođeni tekst na kraj preseta
+        warning_preset_id: Opciono. Možete i dalje dodati prilagođeni tekst na kraj predefinisane vrednosti
       announcement:
         all_day: Kada je ova opcija označena, samo datumi iz vremenskog opsega će biti prikazani
         ends_at: Opciono. Objava će biti automatski opozvana u ovom trenutku
@@ -118,7 +118,7 @@ sr-Latn:
           sign_up_requires_approval: Nove registracije će zahtevati Vaše odobrenje
         severity: Izaberite šta će se desiti sa zahtevima sa ove IP adrese
       rule:
-        hint: Opcionalno. Pružite više detalja o pravilu
+        hint: Opciono. Pružite više detalja o pravilu
         text: Opišite pravilo ili uslov za korisnike na ovom serveru. Potrudite se da opis bude kratak i jednostavan
       sessions:
         otp: 'Unesite dvofaktorski kod sa Vašeg telefona ili koristite jedan od kodova za oporavak:'
@@ -155,7 +155,7 @@ sr-Latn:
       account_migration:
         acct: Ručica (@) novog naloga
       account_warning_preset:
-        text: Tekst preseta
+        text: Tekst predefinisane vrednosti
         title: Naslov
       admin_account_action:
         include_statuses: Uključi prijavljene objave u e-poštu
@@ -168,7 +168,7 @@ sr-Latn:
           sensitive: Osetljivo
           silence: Utišaj
           suspend: Obustavite i nepovratno izbrišite podatke o nalogu
-        warning_preset_id: Koristi upozoravajući preset
+        warning_preset_id: Koristi predefinisano upozorenje
       announcement:
         all_day: Celodnevni događaj
         ends_at: Kraj događaja

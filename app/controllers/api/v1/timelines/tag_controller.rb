@@ -23,11 +23,11 @@ class Api::V1::Timelines::TagController < Api::V1::Timelines::BaseController
   end
 
   def load_statuses
-    cached_tagged_statuses
+    preloaded_tagged_statuses
   end
 
-  def cached_tagged_statuses
-    @tag.nil? ? [] : cache_collection(tag_timeline_statuses, Status)
+  def preloaded_tagged_statuses
+    @tag.nil? ? [] : preload_collection(tag_timeline_statuses, Status)
   end
 
   def tag_timeline_statuses

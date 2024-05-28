@@ -13,11 +13,11 @@ class Api::V1::BookmarksController < Api::BaseController
   private
 
   def load_statuses
-    cached_bookmarks
+    preloaded_bookmarks
   end
 
-  def cached_bookmarks
-    cache_collection(results.map(&:status), Status)
+  def preloaded_bookmarks
+    preload_collection(results.map(&:status), Status)
   end
 
   def results

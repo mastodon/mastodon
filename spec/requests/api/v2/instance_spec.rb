@@ -45,7 +45,7 @@ describe 'Instances' do
           ),
           statuses: include(
             max_characters: StatusLengthValidator::MAX_CHARS,
-            max_media_attachments: 4 # TODO, move to constant somewhere
+            max_media_attachments: Status::MEDIA_ATTACHMENTS_LIMIT
           ),
           polls: include(
             max_options: PollValidator::MAX_OPTIONS

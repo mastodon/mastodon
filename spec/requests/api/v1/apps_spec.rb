@@ -9,8 +9,9 @@ RSpec.describe 'Apps' do
     end
 
     let(:client_name)   { 'Test app' }
-    let(:scopes)        { nil }
-    let(:redirect_uris) { 'urn:ietf:wg:oauth:2.0:oob' }
+    let(:scopes)        { 'read write' }
+    let(:redirect_uri)  { 'urn:ietf:wg:oauth:2.0:oob' }
+    let(:redirect_uris) { [redirect_uri] }
     let(:website)       { nil }
 
     let(:params) do
@@ -27,12 +28,62 @@ RSpec.describe 'Apps' do
         subject
 
         expect(response).to have_http_status(200)
+
+        app = Doorkeeper::Application.find_by(name: client_name)
+
+        expect(app).to be_present
+        expect(app.scopes.to_s).to eq scopes
+        expect(app.redirect_uris).to eq redirect_uris
+
+        expect(body_as_json).to match(
+          a_hash_including(
+            id: app.id.to_s,
+            client_id: app.uid,
+            client_secret: app.secret,
+            name: client_name,
+            website: website,
+            scopes: ['read', 'write'],
+            redirect_uris: redirect_uris,
+            # Deprecated properties as of 4.3:
+            redirect_uri: redirect_uri,
+            vapid_key: Rails.configuration.x.vapid_public_key
+          )
+        )
+      end
+    end
+
+    context 'without scopes being supplied' do
+      let(:scopes) { nil }
+
+      it 'creates an OAuth App with the default scope' do
+        subject
+
+        expect(response).to have_http_status(200)
         expect(Doorkeeper::Application.find_by(name: client_name)).to be_present
 
         body = body_as_json
 
-        expect(body[:client_id]).to be_present
-        expect(body[:client_secret]).to be_present
+        expect(body[:scopes]).to eq Doorkeeper.config.default_scopes.to_a
+      end
+    end
+
+    # FIXME: This is a bug: https://github.com/mastodon/mastodon/issues/30152
+    context 'with scopes as an array' do
+      let(:scopes) { %w(read write follow) }
+
+      it 'creates an OAuth App with the default scope' do
+        subject
+
+        expect(response).to have_http_status(200)
+
+        app = Doorkeeper::Application.find_by(name: client_name)
+
+        expect(app).to be_present
+        expect(app.scopes.to_s).to eq 'read'
+
+        body = body_as_json
+
+        expect(body[:scopes]).to eq ['read']
       end
     end
 
@@ -77,8 +128,8 @@ RSpec.describe 'Apps' do
       end
     end
 
-    context 'with a too-long redirect_uris' do
-      let(:redirect_uris) { "https://foo.bar/#{'hoge' * 2_000}" }
+    context 'with a too-long redirect_uri' do
+      let(:redirect_uris) { "https://app.example/#{'hoge' * 2_000}" }
 
       it 'returns http unprocessable entity' do
         subject
@@ -87,14 +138,111 @@ RSpec.describe 'Apps' do
       end
     end
 
-    context 'without required params' do
-      let(:client_name)   { '' }
+    # NOTE: This spec currently tests the same as the "with a too-long redirect_uri test case"
+    context 'with too many redirect_uris' do
+      let(:redirect_uris) { (0...500).map { |i| "https://app.example/#{i}/callback" } }
+
+      it 'returns http unprocessable entity' do
+        subject
+
+        expect(response).to have_http_status(422)
+      end
+    end
+
+    context 'with multiple redirect_uris as a string' do
+      let(:redirect_uris) { "https://redirect1.example/\napp://redirect2.example/" }
+
+      it 'creates an OAuth application with multiple redirect URIs' do
+        subject
+
+        expect(response).to have_http_status(200)
+
+        app = Doorkeeper::Application.find_by(name: client_name)
+
+        expect(app).to be_present
+        expect(app.redirect_uri).to eq redirect_uris
+        expect(app.redirect_uris).to eq redirect_uris.split
+
+        body = body_as_json
+
+        expect(body[:redirect_uri]).to eq redirect_uris
+        expect(body[:redirect_uris]).to eq redirect_uris.split
+      end
+    end
+
+    context 'with multiple redirect_uris as an array' do
+      let(:redirect_uris) { ['https://redirect1.example/', 'app://redirect2.example/'] }
+
+      it 'creates an OAuth application with multiple redirect URIs' do
+        subject
+
+        expect(response).to have_http_status(200)
+
+        app = Doorkeeper::Application.find_by(name: client_name)
+
+        expect(app).to be_present
+        expect(app.redirect_uri).to eq redirect_uris.join "\n"
+        expect(app.redirect_uris).to eq redirect_uris
+
+        body = body_as_json
+
+        expect(body[:redirect_uri]).to eq redirect_uris.join "\n"
+        expect(body[:redirect_uris]).to eq redirect_uris
+      end
+    end
+
+    context 'with an empty redirect_uris array' do
+      let(:redirect_uris) { [] }
+
+      it 'returns http unprocessable entity' do
+        subject
+
+        expect(response).to have_http_status(422)
+      end
+    end
+
+    context 'with just a newline as the redirect_uris string' do
+      let(:redirect_uris) { "\n" }
+
+      it 'returns http unprocessable entity' do
+        subject
+
+        expect(response).to have_http_status(422)
+      end
+    end
+
+    context 'with an empty redirect_uris string' do
       let(:redirect_uris) { '' }
 
       it 'returns http unprocessable entity' do
         subject
 
         expect(response).to have_http_status(422)
+      end
+    end
+
+    context 'without a required param' do
+      let(:client_name) { '' }
+
+      it 'returns http unprocessable entity' do
+        subject
+
+        expect(response).to have_http_status(422)
+      end
+    end
+
+    context 'with a website' do
+      let(:website) { 'https://app.example/' }
+
+      it 'creates an OAuth application with the website specified' do
+        subject
+
+        expect(response).to have_http_status(200)
+
+        app = Doorkeeper::Application.find_by(name: client_name)
+
+        expect(app).to be_present
+        expect(app.website).to eq website
       end
     end
   end

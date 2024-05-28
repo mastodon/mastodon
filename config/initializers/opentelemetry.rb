@@ -51,13 +51,20 @@ if ENV.keys.any? { |name| name.match?(/OTEL_.*_ENDPOINT/) }
         use_rack_events: false, # instead of events, use middleware; allows for untraced_endpoints to ignore child spans
         untraced_endpoints: ['/health'],
       },
+      'OpenTelemetry::Instrumentation::Sidekiq' => {
+        span_naming: :job_class, # Use the job class as the span name, otherwise this is the queue name and not very helpful
+      },
     })
 
+    prefix = ENV.fetch('OTEL_SERVICE_NAME_PREFIX', 'mastodon')
+
     c.service_name =  case $PROGRAM_NAME
-                      when /puma/ then 'mastodon/web'
+                      when /puma/ then "#{prefix}/web"
                       else
-                        "mastodon/#{$PROGRAM_NAME.split('/').last}"
+                        "#{prefix}/#{$PROGRAM_NAME.split('/').last}"
                       end
     c.service_version = Mastodon::Version.to_s
   end
 end
+
+MastodonOTELTracer = OpenTelemetry.tracer_provider.tracer('mastodon')

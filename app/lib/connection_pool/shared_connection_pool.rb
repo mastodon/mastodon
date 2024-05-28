@@ -5,7 +5,7 @@ require_relative 'shared_timed_stack'
 
 class ConnectionPool::SharedConnectionPool < ConnectionPool
   def initialize(options = {}, &block)
-    super(options, &block)
+    super
 
     @available = ConnectionPool::SharedTimedStack.new(@size, &block)
   end

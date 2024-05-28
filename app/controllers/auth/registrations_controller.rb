@@ -44,7 +44,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def build_resource(hash = nil)
-    super(hash)
+    super
 
     resource.locale                 = I18n.locale
     resource.invite_code            = @invite&.code if resource.invite_code.blank?

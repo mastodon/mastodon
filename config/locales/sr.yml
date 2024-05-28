@@ -288,6 +288,7 @@ sr:
         update_custom_emoji_html: "%{name} је ажурирао/-ла емоџи %{target}"
         update_domain_block_html: "%{name} је ажурирао/-ла блок домена %{target}"
         update_ip_block_html: "%{name} је променио/-ла IP услов за %{target}"
+        update_report_html: "%{name} је ажурирао извештај %{target}"
         update_status_html: "%{name} је ажурирао/-ла објаву корисника %{target}"
         update_user_role_html: "%{name} је променио/-ла позицију %{target}"
       deleted_account: обрисан налог
@@ -868,7 +869,7 @@ sr:
         action: Погледај документацију
         message_html: Ваш Elasticsearch кластер има само један чвор, <code>ES_PRESET</code>треба поставити на<code>single_node_cluster</code>.
       elasticsearch_reset_chewy:
-        message_html: Ваш Elasticsearch кластер има само један чвор, <code>ES_PRESET</code>треба поставити на<code>single_node_cluster</code>.
+        message_html: Индекс Elasticsearch система је застарео због промене подешавања. Покрените <code>tootctl search deploy --reset-chewy</code>да бисте га ажурирали.
       elasticsearch_running_check:
         message_html: Повезивање на Elasticsearch није било могуће. Молимо Вас проверите да ли је покренут, или онемогућите претрагу целог текста
       elasticsearch_version_check:
@@ -965,9 +966,9 @@ sr:
     warning_presets:
       add_new: Додај нови
       delete: Избриши
-      edit_preset: Уреди пресет упозорења
-      empty: Још увек нисте дефинисали ниједан шаблон упозорења.
-      title: Управљај пресетима упозорења
+      edit_preset: Уреди предефинисана упозорења
+      empty: Још увек нисте дефинисали ниједно упозорење.
+      title: Предефинисна упозорења
     webhooks:
       add_new: Додај крајњу тачку
       delete: Избриши

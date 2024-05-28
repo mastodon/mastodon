@@ -18,6 +18,7 @@ import { replyCompose } from 'mastodon/actions/compose';
 import { reblog, favourite, unreblog, unfavourite } from 'mastodon/actions/interactions';
 import { openModal } from 'mastodon/actions/modal';
 import { IconButton } from 'mastodon/components/icon_button';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { me, boostModal } from 'mastodon/initial_state';
 import { makeGetStatus } from 'mastodon/selectors';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
@@ -47,12 +48,8 @@ const makeMapStateToProps = () => {
 };
 
 class Footer extends ImmutablePureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     statusId: PropTypes.string.isRequired,
     status: ImmutablePropTypes.map.isRequired,
     intl: PropTypes.object.isRequired,
@@ -75,7 +72,7 @@ class Footer extends ImmutablePureComponent {
 
   handleReplyClick = () => {
     const { dispatch, askReplyConfirmation, status, intl } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (askReplyConfirmation) {
@@ -104,7 +101,7 @@ class Footer extends ImmutablePureComponent {
 
   handleFavouriteClick = () => {
     const { dispatch, status } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (status.get('favourited')) {
@@ -126,16 +123,16 @@ class Footer extends ImmutablePureComponent {
 
   _performReblog = (status, privacy) => {
     const { dispatch } = this.props;
-    dispatch(reblog(status, privacy));
+    dispatch(reblog({ statusId: status.get('id'), visibility: privacy }));
   };
 
   handleReblogClick = e => {
     const { dispatch, status } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (status.get('reblogged')) {
-        dispatch(unreblog(status));
+        dispatch(unreblog({ statusId: status.get('id') }));
       } else if ((e && e.shiftKey) || !boostModal) {
         this._performReblog(status);
       } else {
@@ -209,4 +206,4 @@ class Footer extends ImmutablePureComponent {
 
 }
 
-export default  connect(makeMapStateToProps)(withRouter(injectIntl(Footer)));
+export default  connect(makeMapStateToProps)(withIdentity(withRouter(injectIntl(Footer))));

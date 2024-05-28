@@ -3,53 +3,104 @@ ia:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Nomine de application
-        website: Sito web de application
+        name: Nomine del application
+        redirect_uri: URI de redirection
+        scopes: Ambitos
+        website: Sito web del application
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
+              fragment_present: non pote continer un fragmento.
               invalid_uri: debe esser un URI valide.
+              relative_uri: debe esser un URI absolute.
+              secured_uri: debe esser un URI HTTPS/SSL.
   doorkeeper:
     applications:
       buttons:
         authorize: Autorisar
         cancel: Cancellar
+        destroy: Destruer
         edit: Modificar
         submit: Submitter
       confirmations:
         destroy: Es tu secur?
       edit:
         title: Modificar application
+      form:
+        error: Oops! Verifica tu formulario pro possibile errores
+      help:
+        native_redirect_uri: Usar %{native_redirect_uri} pro tests local
+        redirect_uri: Usar un linea per URI
+        scopes: Separa ambitos con spatios. Lassa vacue pro usar le ambitos predefinite.
       index:
         application: Application
+        callback_url: URL de retorno
         delete: Deler
         empty: Tu non ha applicationes.
         name: Nomine
         new: Nove application
+        scopes: Ambitos
         show: Monstrar
         title: Tu applicationes
       new:
         title: Nove application
       show:
         actions: Actiones
+        application_id: Clave del cliente
+        callback_urls: URLs de retorno
         scopes: Ambitos
+        secret: Secreto del application
         title: 'Application: %{name}'
     authorizations:
       buttons:
         authorize: Autorisar
         deny: Negar
       error:
-        title: Ocurreva un error
+        title: Un error ha occurrite
+      new:
+        prompt_html: "%{client_name} vole haber le permission de acceder a tu conto. Illo es un application tertie. <strong>Si tu non confide in illo, alora tu non deberea autorisar lo.</strong>"
+        review_permissions: Revisionar le permissos
+        title: Autorisation necessari
+      show:
+        title: Copia iste codice de autorisation e colla lo in le application.
     authorized_applications:
+      buttons:
+        revoke: Revocar
       confirmations:
         revoke: Es tu secur?
       index:
+        authorized_at: Autorisate le %{date}
+        description_html: Ecce applicationes que pote acceder tu conto per le API. Si il ha applicationes que tu non recognosce ci, o un application que se comporta mal, tu pote revocar su accesso.
         last_used_at: Ultime uso in %{date}
         never_used: Nunquam usate
         scopes: Permissiones
+        superapp: Interne
         title: Tu applicationes autorisate
+    errors:
+      messages:
+        access_denied: Le proprietario del ressource o servitor de autorisation ha refusate le requesta.
+        credential_flow_not_configured: Le processo de credentiales de contrasigno del proprietario del ressource ha fallite perque Doorkeeper.configure.resource_owner_from_credentials non es configurate.
+        invalid_client: Le authentication del cliente ha fallite perque le cliente es incognite, necun authentication de cliente es includite, o le methodo de authentication non es supportate.
+        invalid_grant: Le concession de autorisation fornite es invalide, expirate, revocate, non corresponde al URI de redirection usate in le requesta de autorisation, o ha essite emittite a un altere cliente.
+        invalid_redirect_uri: Le URI de redirection includite non es valide.
+        invalid_request:
+          missing_param: 'Parametro requirite mancante: %{value}.'
+          request_not_authorized: Le requesta debe esser autorisate. Un parametro requirite pro autorisar le requesta manca o non es valide.
+          unknown: Le requesta non include un parametro requirite, include un valor de parametro non supportate, o es alteremente mal formate.
+        invalid_resource_owner: Le credentiales del proprietario del ressource fornite non es valide, o le proprietario del ressource non pote esser trovate
+        invalid_scope: Le ambito requirite es invalide, incognite, o mal formate.
+        invalid_token:
+          expired: Le token de accesso ha expirate
+          revoked: Le token de accesso ha essite revocate
+          unknown: Le token de accesso non es valide
+        resource_owner_authenticator_not_configured: Impossibile trovar le proprietario del ressource perque Doorkeeper.configure.resource_owner_authenticator non es configurate.
+        server_error: Le servitor de autorisation ha incontrate un condition impreviste que lo ha impedite de complir le requesta.
+        temporarily_unavailable: Le servitor de autorisation actualmente non pote gerer le requesta a causa de un supercarga temporari o de mantenentia del servitor.
+        unauthorized_client: Le application non es autorisate a exequer iste requesta usante iste methodo.
+        unsupported_grant_type: Le typo de concession de autorisation non es supportate per le servitor de autorisation.
+        unsupported_response_type: Le servitor de autorisation non supporta iste typo de responsa.
     flash:
       applications:
         create:
@@ -58,16 +109,27 @@ ia:
           notice: Application delite.
         update:
           notice: Application actualisate.
+      authorized_applications:
+        destroy:
+          notice: Application revocate.
     grouped_scopes:
+      access:
+        read: Accesso de lectura sol
+        read/write: Accesso de lectura e scriptura
+        write: Accesso de scriptura sol
       title:
         accounts: Contos
         admin/accounts: Gestion de contos
+        admin/all: Tote le functiones administrative
         admin/reports: Gestion de reportos
-        all: Accesso plen a tu conto de Mastodon
+        all: Accesso complete a tu conto de Mastodon
+        blocks: Blocadas
         bookmarks: Marcapaginas
         conversations: Conversationes
-        favourites: Favoritos
+        crypto: Cryptation de puncta a puncta
+        favourites: Favorites
         filters: Filtros
+        follow: Sequites, silentiates e blocates
         follows: Sequites
         lists: Listas
         media: Annexos multimedial
@@ -82,19 +144,41 @@ ia:
         nav:
           applications: Applicationes
           oauth2_provider: Fornitor OAuth2
+      application:
+        title: Autorisation OAuth necessari
     scopes:
       admin:read: leger tote le datos in le servitor
+      admin:read:accounts: leger information sensibile de tote le contos
+      admin:read:canonical_email_blocks: leger datos sensibile de tote le blocadas de email canonic
+      admin:read:domain_allows: leger informationes sensibile de tote le dominios permittite
+      admin:read:domain_blocks: leger informationes sensibile de tote le blocadas de dominio
+      admin:read:email_domain_blocks: leger informationes sensibile de tote le blocadas de dominio email
+      admin:read:ip_blocks: leger informationes sensibile de tote le blocadas de IP
+      admin:read:reports: leger information sensibile de tote le reportos e contos signalate
       admin:write: modificar tote le datos in le servitor
+      admin:write:accounts: exequer action de moderation sur contos
+      admin:write:canonical_email_blocks: exequer actiones de moderation sur blocadas de email canonic
+      admin:write:domain_allows: exequer actiones de moderation sur dominios permittite
+      admin:write:domain_blocks: exequer actiones de moderation sur blocadas de dominio
+      admin:write:email_domain_blocks: exequer actiones de moderation sur blocadas de dominio email
+      admin:write:ip_blocks: exequer actiones de moderation sur blocadas de IP
+      admin:write:reports: exequer action de moderation sur reportos
+      crypto: usar cryptation de extremo-a-extremo
+      follow: modificar relationes del contos
+      push: reciper tu notificationes push
       read: leger tote le datos de tu conto
       read:accounts: vider informationes de conto
+      read:blocks: vider tu blocadas
       read:bookmarks: vider tu marcapaginas
       read:favourites: vider tu favoritos
       read:filters: vider tu filtros
       read:follows: vider tu sequites
       read:lists: vider tu listas
       read:me: leger solmente le information basic de tu conto
+      read:mutes: vider tu silentiates
       read:notifications: vider tu notificationes
       read:reports: vider tu reportos
+      read:search: cercar in tu nomine
       read:statuses: vider tote le messages
       write: modificar tote le datos de tu conto
       write:accounts: modificar tu profilo

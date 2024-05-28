@@ -285,6 +285,7 @@ nn:
         update_custom_emoji_html: "%{name} oppdaterte emojien %{target}"
         update_domain_block_html: "%{name} oppdaterte domeneblokkeringa for %{target}"
         update_ip_block_html: "%{name} endret regel for IP %{target}"
+        update_report_html: "%{name} oppdaterte rapporten %{target}"
         update_status_html: "%{name} oppdaterte innlegg av %{target}"
         update_user_role_html: "%{name} endret %{target} -rolle"
       deleted_account: sletta konto
@@ -460,13 +461,13 @@ nn:
         title: Importer domeneblokkeringar
       no_file: Inga fil vald
     follow_recommendations:
-      description_html: "<strong>Følgjeforslag hjelper nye brukarar å raskt finna interessant innhald</strong>. Om ein brukar ikkje har interagera nok med andre til å danne personlege følgjeforslag, vert disse kontiane føreslått i staden. Dei vert gjenkalkulert på dagleg basis ut frå ei blanding av dei konti med flest nylege engasjement og flest lokale følgjarar for eit gitt språk."
+      description_html: "<strong>Fylgjeforslag hjelper nye brukarar å finna interessant innhald raskt</strong>. Om ein brukar ikkje har samhandla nok med andre til å få tilpassa fylgjeforslag, blir desse kontoane føreslått i staden. Dei blir rekna ut på nytt kvar dag ut frå ei blanding av kva kontoar som har mykje nyleg aktivitet og høgast tal på fylgjarar på eit bestemt språk."
       language: For språk
       status: Status
       suppress: Demp følgjeforslag
       suppressed: Dempa
-      title: Følgjeforslag
-      unsuppress: Tilbakestill følgjeforslag
+      title: Fylgjeforslag
+      unsuppress: Nullstill fylgjeforslag
     instances:
       availability:
         description_html:
@@ -745,7 +746,7 @@ nn:
         preamble: Tilpasse web-grensesnittet.
         title: Utsjånad
       branding:
-        preamble: Profileringa av tenaren din skil den frå andre tenarar i nettverket. Informasjonen kan bli vist ulike stadar, til dømes i Mastodon sitt web-grensesnitt, i eigne applikasjonar, i førehandsvisningar på andre nettsider, i meldingsappar og så bortetter. På grunn av dette er det best å halde informasjonen enkel, kort og treffande.
+        preamble: Profileringa av tenaren din skil den frå andre tenarar i nettverket. Informasjonen kan bli vist ulike stader, til dømes i Mastodon sitt web-grensesnitt, i eigne applikasjonar, i førehandsvisningar på andre nettsider, i meldingsappar og så bortetter. På grunn av dette er det best at denne informasjonen er enkel, kort og treffande.
         title: Profilering
       captcha_enabled:
         desc_html: Dette baserer seg på eksterne skript frå hCaptcha, noko som kan vera eit tryggleiks- og personvernsproblem. <strong>I tillegg kan dette gjera registreringsprosessen monaleg mindre tilgjengeleg (særleg for folk med nedsett funksjonsevne)</strong>. Dette gjer at du bør du vurdera alternative tiltak, som til dømes godkjennings- eller invitasjonsbasert registrering.
@@ -758,7 +759,7 @@ nn:
         desc_html: Påverkar alle brukarar som ikkje har justert denne innstillinga sjølve
         title: Ikkje la brukarar indekserast av søkjemotorar som standard
       discovery:
-        follow_recommendations: Følgjeforslag
+        follow_recommendations: Fylgjeforslag
         preamble: Å framheva interessant innhald er vitalt i mottakinga av nye brukarar som ikkje nødvendigvis kjenner nokon på Mastodon. Kontroller korleis oppdagingsfunksjonane på tenaren din fungerar.
         profile_directory: Profilkatalog
         public_timelines: Offentlege tidsliner
@@ -950,7 +951,7 @@ nn:
       delete: Slett
       edit_preset: Endr åtvaringsoppsett
       empty: Du har ikke definert noen forhåndsinnstillinger for advarsler enda.
-      title: Handsam åtvaringsoppsett
+      title: Førehandsinnstillingar for varsel
     webhooks:
       add_new: Legg til endepunkt
       delete: Slett
@@ -1561,7 +1562,7 @@ nn:
     activity: Kontoaktivitet
     confirm_follow_selected_followers: Er du sikker på at du ynskjer å fylgja dei valde fylgjarane?
     confirm_remove_selected_followers: Er du sikker på at du ynskjer å fjerna dei valde fylgjarane?
-    confirm_remove_selected_follows: Er du sikker på at du ynskjer å fjerna det valde følgjet?
+    confirm_remove_selected_follows: Er du sikker på at du ikkje vil fylgja desse?
     dormant: I dvale
     follow_failure: Greidde ikkje fylgja alle kontoane du valde.
     follow_selected_followers: Følg valgte tilhengere

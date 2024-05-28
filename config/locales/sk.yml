@@ -254,9 +254,12 @@ sk:
         destroy_status_html: "%{name} zmazal/a príspevok od %{target}"
         destroy_unavailable_domain_html: "%{name} znova spustil/a doručovanie pre doménu %{target}"
         destroy_user_role_html: "%{name} vymazal/a rolu pre %{target}"
+        enable_custom_emoji_html: "%{name} povolil/a emotikonu %{target}"
         enable_user_html: "%{name} povolil/a prihlásenie pre používateľa %{target}"
         memorialize_account_html: "%{name} zmenil/a účet %{target} na pamätnú stránku"
+        promote_user_html: "%{name} povýšil/a užívateľa %{target}"
         reject_appeal_html: "%{name} zamietol/la námietku moderovacieho rozhodnutia od %{target}"
+        reject_user_html: "%{name} odmietol/la registráciu od %{target}"
         remove_avatar_user_html: "%{name} vymazal/a %{target}/ov/in avatar"
         reopen_report_html: "%{name} znovu otvoril/a nahlásenie %{target}"
         resend_user_html: "%{name} znovu odoslal/a potvrdzovací email pre %{target}"
@@ -266,7 +269,9 @@ sk:
         silence_account_html: "%{name} obmedzil/a účet %{target}"
         suspend_account_html: "%{name} zablokoval/a účet používateľa %{target}"
         unassigned_report_html: "%{name} odobral/a report od %{target}"
+        unblock_email_account_html: "%{name} odblokoval/a %{target}ovu/inu emailovú adresu"
         unsensitive_account_html: "%{name} odznačil/a médium od %{target} ako chúlostivé"
+        unsilence_account_html: "%{name} zrušil/a obmedzenie %{target}ovho/inho účtu"
         unsuspend_account_html: "%{name} spojazdnil/a účet %{target}"
         update_announcement_html: "%{name} aktualizoval/a oboznámenie %{target}"
         update_custom_emoji_html: "%{name} aktualizoval/a emotikonu %{target}"
@@ -529,6 +534,9 @@ sk:
       actions:
         suspend_description_html: Tento účet a všetok jeho obsah bude nedostupný a nakoniec zmazaný, interaktovať s ním bude nemožné. Zvrátiteľné v rámci 30 dní. Uzatvára všetky hlásenia voči tomuto účtu.
       add_to_report: Pridaj viac do hlásenia
+      already_suspended_badges:
+        local: Na tomto serveri už vylúčený/á
+        remote: Už vylúčený/á na ich serveri
       are_you_sure: Si si istý/á?
       assign_to_self: Priraď sebe
       assigned: Priradený moderátor
@@ -538,6 +546,7 @@ sk:
       comment:
         none: Žiadne
       confirm: Potvrď
+      confirm_action: Potvrď moderovací úkon proti @%{acct}
       created_at: Nahlásené
       delete_and_resolve: Vymaž príspevky
       forwarded: Preposlané
@@ -592,8 +601,14 @@ sk:
       delete: Vymaž
       edit: Uprav postavenie %{name}
       everyone: Východzie oprávnenia
+      permissions_count:
+        few: "%{count} povolení"
+        many: "%{count} povolení"
+        one: "%{count} povolenie"
+        other: "%{count} povolenia"
       privileges:
         administrator: Správca
+        administrator_description: Užívatelia s týmto povolením, obídu všetky povolenia
         delete_user_data: Vymaž užívateľské dáta
         invite_users: Pozvi užívateľov
         manage_announcements: Spravuj oboznámenia
@@ -748,7 +763,6 @@ sk:
       add_new: Pridaj nové
       delete: Vymaž
       edit_preset: Uprav varovnú predlohu
-      title: Spravuj varovné predlohy
     webhooks:
       delete: Vymaž
       disable: Vypni
