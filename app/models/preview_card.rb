@@ -32,6 +32,7 @@
 #  link_type                    :integer
 #  published_at                 :datetime
 #  image_description            :string           default(""), not null
+#  author_account_id            :bigint(8)
 #
 
 class PreviewCard < ApplicationRecord
@@ -54,6 +55,7 @@ class PreviewCard < ApplicationRecord
   has_many :statuses, through: :preview_cards_statuses
 
   has_one :trend, class_name: 'PreviewCardTrend', inverse_of: :preview_card, dependent: :destroy
+  belongs_to :author_account, class_name: 'Account', optional: true
 
   has_attached_file :image, processors: [:thumbnail, :blurhash_transcoder], styles: ->(f) { image_styles(f) }, convert_options: { all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp' }, validate_media_type: false
 
