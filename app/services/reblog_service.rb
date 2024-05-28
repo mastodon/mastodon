@@ -26,7 +26,16 @@ class ReblogService < BaseService
                    options[:visibility] || account.user&.setting_default_privacy
                  end
 
-    reblog = account.statuses.create!(reblog: reblogged_status, text: '', visibility: visibility, rate_limit: options[:with_rate_limit])
+    reblogged_status.with_lock do # Ensure status not discarded while reblog is created
+      reblog = account
+               .statuses
+               .create!(
+                 reblog: reblogged_status,
+                 text: '',
+                 visibility: visibility,
+                 rate_limit: options[:with_rate_limit]
+               )
+    end
 
     Trends.register!(reblog)
     DistributionWorker.perform_async(reblog.id)

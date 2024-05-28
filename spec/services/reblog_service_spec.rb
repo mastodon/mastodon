@@ -34,30 +34,24 @@ RSpec.describe ReblogService do
     end
   end
 
-  context 'when the reblogged status is discarded in the meantime' do
+  context 'with a mid creation data update' do
     let(:status) { Fabricate(:status, account: alice, visibility: :public, text: 'discard-status-text') }
 
-    # Add a callback to discard the status being reblogged after the
-    # validations pass but before the database commit is executed.
     before do
-      Status.class_eval do
-        before_save :discard_status
-        def discard_status
-          Status
-            .where(id: reblog_of_id)
-            .where(text: 'discard-status-text')
-            .update_all(deleted_at: Time.now.utc)
-        end
-      end
+      allow(status).to receive(:with_lock).and_yield
     end
 
-    # Remove race condition simulating `discard_status` callback.
-    after do
-      Status._save_callbacks.delete(:discard_status)
+    it 'creates a reblog using a row locked status' do
+      expect { subject.call(alice, status) }
+        .to change(Status, :count).by(1)
+      expect(status)
+        .to have_received(:with_lock)
+      expect(latest_reblog_status)
+        .to eq(status.reblogs.first)
     end
 
-    it 'raises an exception' do
-      expect { subject.call(alice, status) }.to raise_error ActiveRecord::ActiveRecordError
+    def latest_reblog_status
+      Status.where.not(reblog_of_id: nil).last
     end
   end
 
