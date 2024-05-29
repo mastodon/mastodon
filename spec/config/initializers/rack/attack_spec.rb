@@ -135,7 +135,7 @@ describe Rack::Attack, type: :request do
   describe 'throttle excessive oauth application registration requests by IP address' do
     let(:throttle) { 'throttle_oauth_application_registrations/ip' }
     let(:limit)  { 5 }
-    let(:period) { 30.minutes }
+    let(:period) { 10.minutes }
     let(:path)   { '/api/v1/apps' }
     let(:params) do
       {
