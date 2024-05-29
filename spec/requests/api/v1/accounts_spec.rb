@@ -8,13 +8,13 @@ describe '/api/v1/accounts' do
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  describe 'GET /api/v1/accounts?ids[]=:id' do
+  describe 'GET /api/v1/accounts?id[]=:id' do
     let(:account) { Fabricate(:account) }
     let(:other_account) { Fabricate(:account) }
     let(:scopes) { 'read:accounts' }
 
     it 'returns expected response' do
-      get '/api/v1/accounts', headers: headers, params: { ids: [account.id, other_account.id, 123_123] }
+      get '/api/v1/accounts', headers: headers, params: { id: [account.id, other_account.id, 123_123] }
 
       expect(response).to have_http_status(200)
       expect(body_as_json).to contain_exactly(

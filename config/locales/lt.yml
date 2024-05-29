@@ -291,6 +291,7 @@ lt:
         update_custom_emoji_html: "%{name} atnaujino jaustuką %{target}"
         update_domain_block_html: "%{name} atnaujino domeno bloką %{target}"
         update_ip_block_html: "%{name} pakeitė taisyklę IP %{target}"
+        update_report_html: "%{name} atnaujino ataskaitą %{target}"
         update_status_html: "%{name} atnaujino įrašą %{target}"
         update_user_role_html: "%{name} pakeitė %{target} vaidmenį"
       deleted_account: ištrinta paskyra
@@ -344,6 +345,8 @@ lt:
       shortcode: Trumpas kodas
       shortcode_hint: Bent du ženklai, tik raidiniai skaitmeniniai ženklai bei akcentai(_)
       title: Asmeniniai jaustukai
+      uncategorized: Be kategorijos
+      unlist: Išbraukti iš sąrašo
       unlisted: Neįtrauktas į sąrašą
       update_failed_msg: Jaustukas negalėjo būti pakeistas
       updated_msg: Jaustukas sėkmingai pakeistas!
@@ -391,8 +394,16 @@ lt:
       created_msg: Domenas buvo sėkmingai leistas federacijai.
       destroyed_msg: Domenas buvo neleistas federacijai.
       export: Eksportuoti
+      import: Importuoti
+      undo: Neleisti federavimo su domenu
     domain_blocks:
       add_new: Pridėti naują domeno bloką
+      confirm_suspension:
+        cancel: Atšaukti
+        confirm: Pristabdyti
+        permanent_action: Atšaukus pristabdymą jokie duomenys ar sąryšiai nebus atkurti.
+        preamble_html: Jūs pristabdysite <strong>%{domain}</strong> ir jo subdomenus.
+        remove_all_data: Taip iš serverio bus pašalintas visas šio domeno paskyrų turinys, medija ir profilio duomenys.
       created_msg: Domeno užblokavimas nagrinėjamas
       destroyed_msg: Domeno blokas pašalintas
       domain: Domenas
@@ -410,6 +421,7 @@ lt:
           silence: Riboti
           suspend: Pristabdyti
         title: Naujos domeno blokas
+      private_comment: Privatus komentaras
       public_comment: Viešas komentaras
       public_comment_hint: Komentaras apie šį domeno apribojimą plačiajai visuomenei, jei įjungtas domenų apribojimų sąrašo reklamavimas.
       reject_media: Atmesti medijos failus
@@ -417,6 +429,7 @@ lt:
       reject_reports: Atmesti ataskaitas
       reject_reports_hint: Ignoruoti visus skundus, kurie siunčiami iš šio domeno. Neliečia užblokavimu
       undo: Atkurti domeno bloką
+      view: Peržiūrėti domeno bloką
     email_domain_blocks:
       add_new: Pridėti naują
       allow_registrations_with_approval: Leisti registracijas su patvirtinimu
@@ -428,10 +441,16 @@ lt:
         title: Naujas el pašto juodojo sąrašo įtraukimas
       title: El pašto juodasis sąrašas
     instances:
+      availability:
+        title: Prieinamumas
       back_to_all: Visi
+      back_to_limited: Apribotas
+      back_to_warning: Įspėjimas
       by_domain: Domenas
       content_policies:
+        policy: Politika
         reason: Viešoji priežastis
+        title: Turinio politika
       delivery:
         all: Visi
       delivery_available: Pristatymas galimas
@@ -624,6 +643,7 @@ lt:
       add_new: Pridėti naują
       delete: Ištrinti
       edit_preset: Keisti įspėjimo nustatymus
+      title: Įspėjamieji numatytieji
     webhooks:
       description_html: "<strong>Webhook</strong> leidžia Mastodon siųsti <strong>realaus laiko pranešimus</strong> apie pasirinktus įvykius į tavo programą, kad programa galėtų <strong>automatiškai paleisti reakcijas</strong>."
       events: Įvykiai
