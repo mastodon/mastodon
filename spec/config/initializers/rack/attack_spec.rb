@@ -56,7 +56,7 @@ describe Rack::Attack, type: :request do
     end
 
     def throttle_count
-      described_class.cache.read("#{counter_prefix}:#{throttle}:#{remote_ip}") || 0
+      described_class.cache.read("#{counter_prefix}:#{throttle}:#{discriminator}") || 0
     end
 
     def counter_prefix
@@ -64,11 +64,12 @@ describe Rack::Attack, type: :request do
     end
 
     def increment_counter
-      described_class.cache.count("#{throttle}:#{remote_ip}", period)
+      described_class.cache.count("#{throttle}:#{discriminator}", period)
     end
   end
 
   let(:remote_ip) { '1.2.3.5' }
+  let(:discriminator) { remote_ip }
 
   describe 'throttle excessive sign-up requests by IP address' do
     context 'when accessed through the website' do
@@ -146,6 +147,32 @@ describe Rack::Attack, type: :request do
     end
 
     let(:request) { -> { post path, params: params, headers: { 'REMOTE_ADDR' => remote_ip } } }
+
+    it_behaves_like 'throttled endpoint'
+  end
+
+  describe 'throttle excessive password change requests by account' do
+    let(:user) { Fabricate(:user, email: 'user@host.example') }
+    let(:throttle) { 'throttle_password_change/account' }
+    let(:limit) { 10 }
+    let(:period) { 10.minutes }
+    let(:request) { -> { put path, headers: { 'REMOTE_ADDR' => remote_ip } } }
+    let(:path) { '/auth' }
+    let(:discriminator) { user.id }
+
+    before do
+      sign_in user, scope: :user
+
+      # Unfortunately, devise's `sign_in` helper causes the `session` to be
+      # loaded in the next request regardless of whether it's actually accessed
+      # by the client code.
+      #
+      # So, we make an extra query to clear issue a session cookie instead.
+      #
+      # A less resource-intensive way to deal with that would be to generate the
+      # session cookie manually, but this seems pretty involved.
+      get '/'
+    end
 
     it_behaves_like 'throttled endpoint'
   end
