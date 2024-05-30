@@ -291,6 +291,7 @@ lt:
         update_custom_emoji_html: "%{name} atnaujino jaustuką %{target}"
         update_domain_block_html: "%{name} atnaujino domeno bloką %{target}"
         update_ip_block_html: "%{name} pakeitė taisyklę IP %{target}"
+        update_report_html: "%{name} atnaujino ataskaitą %{target}"
         update_status_html: "%{name} atnaujino įrašą %{target}"
         update_user_role_html: "%{name} pakeitė %{target} vaidmenį"
       deleted_account: ištrinta paskyra
@@ -344,6 +345,8 @@ lt:
       shortcode: Trumpas kodas
       shortcode_hint: Bent du ženklai, tik raidiniai skaitmeniniai ženklai bei akcentai(_)
       title: Asmeniniai jaustukai
+      uncategorized: Be kategorijos
+      unlist: Išbraukti iš sąrašo
       unlisted: Neįtrauktas į sąrašą
       update_failed_msg: Jaustukas negalėjo būti pakeistas
       updated_msg: Jaustukas sėkmingai pakeistas!
@@ -391,8 +394,16 @@ lt:
       created_msg: Domenas buvo sėkmingai leistas federacijai.
       destroyed_msg: Domenas buvo neleistas federacijai.
       export: Eksportuoti
+      import: Importuoti
+      undo: Neleisti federavimo su domenu
     domain_blocks:
       add_new: Pridėti naują domeno bloką
+      confirm_suspension:
+        cancel: Atšaukti
+        confirm: Pristabdyti
+        permanent_action: Atšaukus pristabdymą jokie duomenys ar sąryšiai nebus atkurti.
+        preamble_html: Jūs pristabdysite <strong>%{domain}</strong> ir jo subdomenus.
+        remove_all_data: Taip iš serverio bus pašalintas visas šio domeno paskyrų turinys, medija ir profilio duomenys.
       created_msg: Domeno užblokavimas nagrinėjamas
       destroyed_msg: Domeno blokas pašalintas
       domain: Domenas
@@ -410,6 +421,7 @@ lt:
           silence: Riboti
           suspend: Pristabdyti
         title: Naujos domeno blokas
+      private_comment: Privatus komentaras
       public_comment: Viešas komentaras
       public_comment_hint: Komentaras apie šį domeno apribojimą plačiajai visuomenei, jei įjungtas domenų apribojimų sąrašo reklamavimas.
       reject_media: Atmesti medijos failus
@@ -417,6 +429,7 @@ lt:
       reject_reports: Atmesti ataskaitas
       reject_reports_hint: Ignoruoti visus skundus, kurie siunčiami iš šio domeno. Neliečia užblokavimu
       undo: Atkurti domeno bloką
+      view: Peržiūrėti domeno bloką
     email_domain_blocks:
       add_new: Pridėti naują
       allow_registrations_with_approval: Leisti registracijas su patvirtinimu
@@ -428,10 +441,16 @@ lt:
         title: Naujas el pašto juodojo sąrašo įtraukimas
       title: El pašto juodasis sąrašas
     instances:
+      availability:
+        title: Prieinamumas
       back_to_all: Visi
+      back_to_limited: Apribotas
+      back_to_warning: Įspėjimas
       by_domain: Domenas
       content_policies:
+        policy: Politika
         reason: Viešoji priežastis
+        title: Turinio politika
       delivery:
         all: Visi
       delivery_available: Pristatymas galimas
@@ -451,7 +470,7 @@ lt:
       filter:
         all: Visi
         available: Pasiekiamas
-        expired: Pasibaigęs
+        expired: Nebegaliojantis
         title: Filtras
       title: Kvietimai
     relays:
@@ -505,9 +524,15 @@ lt:
       unresolved: Neišspręsti
       updated_at: Atnaujinti
     roles:
+      categories:
+        invites: Kvietimai
       everyone: Numatytieji leidimai
       everyone_full_description_html: Tai – <strong>bazinis vaidmuo</strong>, turintis įtakos <strong>visiems naudotojams</strong>, net ir tiems, kurie neturi priskirto vaidmens. Visi kiti vaidmenys iš jo paveldi teises.
       privileges:
+        invite_users: Kviesti naudotojus
+        invite_users_description: Leidžia naudotojams pakviesti naujus žmones į serverį.
+        manage_invites: Tvarkyti kvietimus
+        manage_invites_description: Leidžia naudotojams naršyti ir deaktyvuoti kvietimų nuorodas.
         manage_taxonomies_description: Leidžia naudotojams peržiūrėti tendencingą turinį ir atnaujinti saitažodžių nustatymus
     settings:
       captcha_enabled:
@@ -522,12 +547,34 @@ lt:
       registrations:
         moderation_recommandation: Prieš atidarant registraciją visiems, įsitikink, kad turi tinkamą ir reaguojančią prižiūrėjimo komandą!
     software_updates:
-      description: Rekomenduojama nuolat atnaujinti Mastodon diegyklę, kad galėtum naudotis naujausiais pataisymais ir funkcijomis. Be to, kartais labai svarbu laiku naujinti Mastodon, kad būtų išvengta saugumo problemų. Dėl šių priežasčių Mastodon kas 30 minučių tikrina, ar yra atnaujinimų, ir praneša tau apie tai pagal tavo el. pašto pranešimų parinktis.
+      description: Rekomenduojama nuolat atnaujinti Mastodon diegyklę, kad galėtum naudotis naujausiais pataisymais ir funkcijomis. Be to, kartais labai svarbu laiku atnaujinti Mastodon, kad būtų išvengta saugumo problemų. Dėl šių priežasčių Mastodon kas 30 minučių tikrina, ar yra naujinimų, ir praneša tau apie tai pagal tavo el. pašto pranešimų parinktis.
+      documentation_link: Sužinoti daugiau
+      release_notes: Leidimo informacija
+      title: Galimi naujinimai
+      type: Tipas
+      types:
+        major: Pagrindinis leidimas
+        minor: Nedidelis leidimas
+        patch: Pataiso leidimas – riktų taisymai ir lengvai pritaikomi pakeitimai
+      version: Versija
     statuses:
+      account: Autorius (-ė)
+      application: Programa
       back_to_account: Grįžti į paskyros puslapį
+      back_to_report: Grįžti į ataskaitos puslapį
+      batch:
+        remove_from_report: Pašalinti iš ataskaitos
+      deleted: Ištrinta
+      favourites: Mėgstami
+      history: Versijų istorija
+      in_reply_to: Atsakydant į
+      language: Kalba
       media:
         title: Medija
-      no_status_selected: Jokie statusai nebuvo pakeisti, nes niekas nepasirinkta
+      metadata: Metaduomenys
+      no_status_selected: Jokie įrašai nebuvo pakeisti, nes nė vienas buvo pasirinktas
+      open: Atidaryti įrašą
+      original_status: Originalus įrašas
       title: Paskyros statusai
       trending: Tendencinga
       with_media: Su medija
@@ -537,6 +584,7 @@ lt:
       elasticsearch_preset:
         message_html: Tavo Elasticsearch klasteris turi daugiau nei vieną mazgą, bet Mastodon nėra sukonfigūruotas juos naudoti.
       elasticsearch_preset_single_node:
+        action: Žiūrėti dokumentaciją
         message_html: Tavo Elasticsearch klasteris turi tik vieną mazgą, <code>ES_PRESET</code> turėtų būti nustatyta į <code>single_node_cluster</code>.
     title: Administracija
     trends:
@@ -571,8 +619,20 @@ lt:
         disallow_account: Neleisti autorių (-ę)
         no_status_selected: Jokie tendencingi įrašai nebuvo pakeisti, nes nė vienas iš jų nebuvo pasirinktas
         not_discoverable: Autorius (-ė) nesutiko, kad būtų galima juos atrasti
+        shared_by:
+          few: Bendrinta arba pamėgta %{friendly_count} kartus
+          many: Bendrinta arba pamėgta %{friendly_count} karto
+          one: Bendrinta arba pamėgta vieną kartą
+          other: Bendrinta arba pamėgta %{friendly_count} kartų
         title: Tendencingi įrašai
       tags:
+        dashboard:
+          tag_accounts_measure: unikalūs naudojimai
+          tag_languages_dimension: Populiariausios kalbos
+          tag_servers_dimension: Populiariausi serveriai
+          tag_servers_measure: skirtingi serveriai
+          tag_uses_measure: bendri naudojimai
+        listable: Gali būti siūloma
         not_trendable: Nepasirodys tendencijose
         title: Tendencingos saitažodžiai
         trendable: Gali pasirodyti tendencijose
@@ -583,7 +643,7 @@ lt:
       add_new: Pridėti naują
       delete: Ištrinti
       edit_preset: Keisti įspėjimo nustatymus
-      title: Valdyti įspėjimo nustatymus
+      title: Įspėjamieji numatytieji
     webhooks:
       description_html: "<strong>Webhook</strong> leidžia Mastodon siųsti <strong>realaus laiko pranešimus</strong> apie pasirinktus įvykius į tavo programą, kad programa galėtų <strong>automatiškai paleisti reakcijas</strong>."
       events: Įvykiai
@@ -618,7 +678,7 @@ lt:
     settings: 'Keisti el. pašto nuostatas: %{link}'
     view: 'Peržiūra:'
     view_profile: Peržiurėti profilį
-    view_status: Peržiūrėti statusą
+    view_status: Peržiūrėti įrašą
   applications:
     created: Aplikacija sėkmingai sukurta
     destroyed: Aplikacija sėkmingai ištrinta
@@ -627,21 +687,32 @@ lt:
     warning: Būkite atsargūs su šia informacija. Niekada jos nesidalinkite!
     your_token: Tavo prieigos raktas
   auth:
+    confirmations:
+      welcome_title: Sveiki, %{name}!
     delete_account: Ištrinti paskyrą
     delete_account_html: Jeigu norite ištrinti savo paskyrą, galite eiti <a href="%{path}">čia</a>. Jūsų prašys patvirtinti pasirinkimą.
+    description:
+      prefix_invited_by_user: "@%{name} kviečia prisijungti prie šio Mastodon serverio!"
+      prefix_sign_up: Užsiregistruok Mastodon šiandien!
+    didnt_get_confirmation: Negavai patvirtinimo nuorodos?
     dont_have_your_security_key: Neturi saugumo rakto?
-    forgot_password: Pamiršote slaptažodį?
-    invalid_reset_password_token: Slaptažodžio atkūrimo žetonas netinkamas arba jo galiojimo laikas pasibaigęs. Prašykite naujo žetono.
+    forgot_password: Pamiršai slaptažodį?
+    invalid_reset_password_token: Slaptažodžio atkūrimo raktas yra netinkamas arba nebegaliojantis. Paprašyk naujo.
+    log_in_with: Prisijungti su
     login: Prisijungti
     logout: Atsijungti
     migrate_account: Prisijungti prie kitos paskyros
     migrate_account_html: Jeigu norite nukreipti šią paskyrą į kita, galite tai <a href="%{path}">konfiguruoti čia</a>.
     or_log_in_with: Arba prisijungti su
+    providers:
+      cas: CAS
+      saml: SAML
     register: Užsiregistruoti
     reset_password: Atstatyti slaptažodį
     rules:
       invited_by: 'Gali prisijungti prie %{domain} pagal kvietimą, kurį gavai iš:'
       preamble_invited: Prieš tęsiant, atsižvelk į pagrindines taisykles, kurias nustatė %{domain} prižiūrėtojai.
+      title_invited: Esi pakviestas.
     security: Apsauga
     set_new_password: Nustatyti naują slaptažodį
     status:
@@ -673,6 +744,9 @@ lt:
     success_msg: Tavo paskyra buvo sėkmingai ištrinta
   disputes:
     strikes:
+      created_at: Data
+      title_actions:
+        none: Įspėjimas
       your_appeal_approved: Tavo apeliacija buvo patvirtinta
       your_appeal_pending: Pateikei apeliaciją
       your_appeal_rejected: Tavo apeliacija buvo atmesta
@@ -699,6 +773,8 @@ lt:
       request: Prašyti savo archyvo
       size: Dydis
     blocks: Jūs blokuojate
+    bookmarks: Žymės
+    csv: CSV
     domain_blocks: Domeno blokai
     lists: Sąrašai
     mutes: Jūs tildote
@@ -708,11 +784,14 @@ lt:
     hint_html: "<strong>Savo profilyje parodyk svarbiausius saitažodžius.</strong> Tai puikus įrankis kūrybiniams darbams ir ilgalaikiams projektams sekti, todėl svarbiausios saitažodžiai rodomi matomoje vietoje profilyje ir leidžia greitai pasiekti tavo paties įrašus."
   filters:
     contexts:
-      home: Namų laiko juosta
-      notifications: Priminimai
+      account: Profiliai
+      home: Pagrindinis ir sąrašai
+      notifications: Pranešimai
       public: Viešieji laiko skalės
       thread: Pokalbiai
     edit:
+      add_keyword: Pridėti raktažodį
+      keywords: Raktažodžiai
       title: Keisti filtrą
     errors:
       invalid_context: Jokio arba netinkamas pateiktas kontekstas
@@ -726,9 +805,14 @@ lt:
     all: Visi
     changes_saved_msg: Pakeitimai sėkmingai išsaugoti!
     copy: Kopijuoti
+    delete: Ištrinti
+    deselect: Panaikinti visus žymėjimus
     order_by: Tvarkyti pagal
     save_changes: Išsaugoti pakeitimus
+    today: šiandien
   imports:
+    errors:
+      too_large: Failas per didelis.
     modes:
       merge: Sulieti
       merge_long: Išsaugoti esančius įrašus ir pridėti naujus
@@ -744,7 +828,7 @@ lt:
     upload: Įkelti
   invites:
     delete: Deaktyvuoti
-    expired: Pasibaigė
+    expired: Nebegaliojantis
     expires_in:
       '1800': 30 minučių
       '21600': 6 valandų
@@ -753,32 +837,33 @@ lt:
       '604800': 1 savaitės
       '86400': 1 dienos
     expires_in_prompt: Niekada
-    generate: Generuoti
+    generate: Generuoti kvietimo nuorodą
     invalid: Šis kvietimas negalioja.
-    invited_by: 'Jus pakvietė:'
+    invited_by: 'Tave pakvietė:'
     max_uses:
       few: "%{count} naudojimai"
       many: "%{count} naudojimo"
       one: 1 naudojimas
       other: "%{count} naudojimų"
-    max_uses_prompt: Nėra limito
+    max_uses_prompt: Nėra ribojimo
     prompt: Generuok ir bendrink nuorodas su kitais, kad suteiktum prieigą prie šio serverio
     table:
       expires_at: Baigsis
       uses: Naudojimai
-    title: Pakviesti žmones
+    title: Kviesti žmones
   media_attachments:
     validations:
       images_and_video: Negalima pridėti video prie statuso, kuris jau turi nuotrauką
       too_many: Negalima pridėti daugiau nei 4 failų
   migrations:
-    acct: slapyvardis@domenas naujam vartotojui
+    acct: Perkelta į
+    cancel: Atšaukti nukreipimą
   moderation:
-    title: Moderacija
+    title: Prižiūrėjimas
   notification_mailer:
     favourite:
-      body: 'Jūsų statusą pamėgo %{name}:'
-      subject: "%{name} pamėgo Jūsų statusą"
+      body: 'Tavo įrašą pamėgo %{name}:'
+      subject: "%{name} pamėgo tavo įrašą"
       title: Naujas mėgstamas
     follow:
       body: "%{name} pradėjo jus sekti!"
@@ -801,11 +886,19 @@ lt:
   notifications:
     email_events: Įvykiai, skirti el. laiško pranešimams
     email_events_hint: 'Pasirink įvykius, apie kuriuos nori gauti pranešimus:'
+  number:
+    human:
+      decimal_units:
+        units:
+          billion: mlrd.
+          million: mln.
+          thousand: tūkst.
   pagination:
     newer: Naujesnis
     next: Kitas
     older: Senesnis
     prev: Ankstesnis
+    truncate: "&hellip;"
   preferences:
     other: Kita
     posting_defaults: Skelbimo numatytosios nuostatos
@@ -829,6 +922,7 @@ lt:
     dormant: Neaktyvus
     followers: Sekėjai
     following: Sekama
+    invited: Pakviestas
     last_active: Paskutinį kartą aktyvus
     most_recent: Naujausias
     moved: Perkelta
@@ -851,24 +945,35 @@ lt:
     date: Data
     description: "%{browser} ant %{platform}"
     explanation: Čia rodomos web naršyklės prijungtos prie Jūsų Mastodon paskyros.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
       ios: iOS
       kai_os: KaiOS
+      linux: Linux
       mac: macOS
+      unknown_platform: Nežinoma platforma
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
-    revoke: Atšaukti
+    revoke: Naikinti
     revoke_success: Seansas sėkmingai panaikintas.
     title: Seansai
   settings:
-    authorized_apps: Autorizuotos aplikacijos
+    account: Paskyra
+    account_settings: Paskyros nustatymai
+    aliases: Paskyros pseudonimai
+    appearance: Išvaizda
+    authorized_apps: Leidžiamos programėlės
     back: Grįžti į Mastodon
     delete: Paskyros trynimas
-    development: Plėtojimas
-    edit_profile: Keisti profilį
-    export: Informacijos eksportas
+    development: Kūrimas
+    edit_profile: Redaguoti profilį
+    export: Duomenų eksportas
     featured_tags: Rodomi saitažodžiai
     import: Importuoti
     migrate: Paskyros migracija
@@ -879,10 +984,22 @@ lt:
     severed_relationships: Nutrūkę sąryšiai
     two_factor_authentication: Dviejų veiksnių autentikacija
   severed_relationships:
+    download: Atsisiųsti (%{count})
     preamble: Užblokavus domeną arba prižiūrėtojams nusprendus pristabdyti nuotolinio serverio veiklą, gali prarasti sekimus ir sekėjus. Kai taip atsitiks, galėsi atsisiųsti nutrauktų sąryšių sąrašus, kad juos patikrinti ir galbūt importuoti į kitą serverį.
+    type: Įvykis
   statuses:
     attached:
+      audio:
+        few: "%{count} garso įrašai"
+        many: "%{count} garso įrašo"
+        one: "%{count} garso įrašas"
+        other: "%{count} garso įrašų"
       description: 'Pridėta: %{attached}'
+      image:
+        few: "%{count} vaizdai"
+        many: "%{count} vaizdo"
+        one: "%{count} vaizdas"
+        other: "%{count} vaizdų"
     boosted_from_html: Pakelta iš %{acct_link}
     content_warning: 'Turinio įspėjimas: %{warning}'
     open_in_web: Atidaryti naudojan Web
@@ -891,11 +1008,14 @@ lt:
       limit: Jūs jau prisegėte maksimalų toot'ų skaičų
       ownership: Kitų vartotojų toot'ai negali būti prisegti
       reblog: Pakeltos žinutės negali būti prisegtos
-    show_more: Daugiau
+    poll:
+      vote: Balsuoti
+    show_more: Rodyti daugiau
+    show_thread: Rodyti giją
     visibilities:
       private: Tik sekėjams
       private_long: rodyti tik sekėjams
-      public: Viešas
+      public: Vieša
       public_long: visi gali matyti
       unlisted: Neįtrauktas į sąrašus
       unlisted_long: matyti gali visi, bet nėra išvardyti į viešąsias laiko skales
@@ -904,6 +1024,7 @@ lt:
     keep_polls_hint: Neištrina jokių tavo apklausų
     keep_self_bookmark: Laikyti įrašus, kuriuos pažymėjai
     keep_self_bookmark_hint: Neištrina tavo pačių įrašų, jei esi juos pažymėjęs (-usi)
+    keep_self_fav_hint: Neištrina tavo pačių įrašų, jei esi juos pamėgęs (-usi)
   stream_entries:
     sensitive_content: Jautrus turinys
   themes:
@@ -912,7 +1033,8 @@ lt:
     mastodon-light: Mastodon (šviesi)
     system: Automatinis (naudoti sistemos temą)
   two_factor_authentication:
-    disable: Išjungti
+    add: Pridėti
+    disable: Išjungti 2FA
     enabled: Dviejų veiksnių autentikacija įjungta
     enabled_success: Dviejų veiksnių autentikacija sėkmingai įjungta
     generate_recovery_codes: Sugeneruoti atkūrimo kodus

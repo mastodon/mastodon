@@ -74,11 +74,14 @@ lt:
           warn: Slėpti filtruojamą turinį po įspėjimu, paminint filtro pavadinimą
       form_admin_settings:
         activity_api_enabled: Vietinių paskelbtų įrašų, aktyvių naudotojų ir naujų registracijų skaičiai kas savaitę
+        app_icon: WEBP, PNG, GIF arba JPG. Pakeičia numatytąją programos piktogramą mobiliuosiuose įrenginiuose pasirinktine piktograma.
         backups_retention_period: Naudotojai gali generuoti savo įrašų archyvus, kuriuos vėliau galės atsisiųsti. Nustačius teigiamą reikšmę, šie archyvai po nurodyto dienų skaičiaus bus automatiškai ištrinti iš saugyklos.
         content_cache_retention_period: Visi įrašai iš kitų serverių (įskaitant pakėlimus ir atsakymus) bus ištrinti po nurodyto dienų skaičiaus, neatsižvelgiant į bet kokią vietinio naudotojo sąveiką su tais įrašais. Tai taikoma ir tiems įrašams, kuriuos vietinis naudotojas yra pažymėjęs kaip žymes ar mėgstamus. Privačios paminėjimai tarp naudotojų iš skirtingų instancijų taip pat bus prarastos ir jų bus neįmanoma atkurti. Šis nustatymas skirtas naudoti ypatingos paskirties instancijose, o įgyvendinus jį bendram naudojimui, pažeidžiami daugelio naudotojų lūkesčiai.
+        favicon: WEBP, PNG, GIF arba JPG. Pakeičia numatytąją Mastodon svetaines piktogramą pasirinktine piktograma.
         mascot: Pakeičia išplėstinės žiniatinklio sąsajos iliustraciją.
         media_cache_retention_period: Nuotolinių naudotojų įrašytų įrašų medijos failai talpinami tavo serveryje. Nustačius teigiamą reikšmę, medijos bus ištrinamos po nurodyto dienų skaičiaus. Jei medijos duomenų bus paprašyta po to, kai jie bus ištrinti, jie bus atsiųsti iš naujo, jei šaltinio turinys vis dar prieinamas. Dėl apribojimų, susijusių su nuorodų peržiūros kortelių apklausos dažnumu trečiųjų šalių svetainėse, rekomenduojama nustatyti šią reikšmę ne trumpesnę kaip 14 dienų, kitaip nuorodų peržiūros kortelės nebus atnaujinamos pagal pareikalavimą iki to laiko.
         peers_api_enabled: Domenų pavadinimų sąrašas, su kuriais šis serveris susidūrė fediverse. Čia nėra duomenų apie tai, ar tu bendrauji su tam tikru serveriu, tik apie tai, kad tavo serveris apie jį žino. Tai naudojama tarnybose, kurios renka federacijos statistiką bendrąja prasme.
+        require_invite_text: Kai registraciją reikia patvirtinti rankiniu būdu, teksto įvesties laukelį „Kodėl nori prisijungti?“ padaryk privalomą, o ne pasirenkamą
         site_contact_email: Kaip žmonės gali su tavimi susisiekti teisiniais ar pagalbos užklausimais.
         site_contact_username: Kaip žmonės gali tave pasiekti Mastodon.
         site_extended_description: Bet kokia papildoma informacija, kuri gali būti naudinga lankytojams ir naudotojams. Gali būti struktūrizuota naudojant Markdown sintaksę.
@@ -86,6 +89,8 @@ lt:
         timeline_preview: Atsijungę lankytojai galės naršyti naujausius viešus įrašus, esančius serveryje.
         trends: Trendai rodo, kurios įrašai, saitažodžiai ir naujienų istorijos tavo serveryje sulaukia didžiausio susidomėjimo.
         trends_as_landing_page: Rodyti tendencingą turinį atsijungusiems naudotojams ir lankytojams vietoj šio serverio aprašymo. Reikia, kad tendencijos būtų įjungtos.
+      invite_request:
+        text: Tai padės mums peržiūrėti tavo paraišką
       rule:
         hint: Pasirinktinai. Pateik daugiau informacijos apie taisyklę.
       sessions:
@@ -108,6 +113,7 @@ lt:
       admin_account_action:
         include_statuses: Įtraukti praneštus įrašus į el. laišką
       defaults:
+        autofollow: Kviesti sekti tavo paskyrą
         avatar: Profilio nuotrauka
         bot: Tai automatinė paskyra
         chosen_languages: Filtruoti kalbas
@@ -163,6 +169,7 @@ lt:
         custom_css: Pasirinktinis CSS
         mascot: Pasirinktinis talismanas (pasenęs)
         registrations_mode: Kas gali užsiregistruoti
+        require_invite_text: Reikalauti priežasties prisijungti
         show_domain_blocks_rationale: Rodyti, kodėl domenai buvo užblokuoti
         site_extended_description: Išplėstas aprašymas
         site_short_description: Serverio aprašymas
@@ -173,6 +180,8 @@ lt:
         trendable_by_default: Leisti tendencijas be išankstinės peržiūros
         trends: Įjungti tendencijas
         trends_as_landing_page: Naudoti tendencijas kaip nukreipimo puslapį
+      invite:
+        comment: Komentuoti
       invite_request:
         text: Kodėl nori prisijungti?
       notification_emails:

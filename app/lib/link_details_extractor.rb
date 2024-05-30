@@ -195,6 +195,10 @@ class LinkDetailsExtractor
     structured_data&.author_url
   end
 
+  def author_account
+    opengraph_tag('fediverse:creator')
+  end
+
   def embed_url
     valid_url_or_nil(opengraph_tag('twitter:player:stream'))
   end

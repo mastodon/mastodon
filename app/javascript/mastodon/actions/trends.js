@@ -18,10 +18,10 @@ export const TRENDS_STATUSES_EXPAND_REQUEST = 'TRENDS_STATUSES_EXPAND_REQUEST';
 export const TRENDS_STATUSES_EXPAND_SUCCESS = 'TRENDS_STATUSES_EXPAND_SUCCESS';
 export const TRENDS_STATUSES_EXPAND_FAIL    = 'TRENDS_STATUSES_EXPAND_FAIL';
 
-export const fetchTrendingHashtags = () => (dispatch, getState) => {
+export const fetchTrendingHashtags = () => (dispatch) => {
   dispatch(fetchTrendingHashtagsRequest());
 
-  api(getState)
+  api()
     .get('/api/v1/trends/tags')
     .then(({ data }) => dispatch(fetchTrendingHashtagsSuccess(data)))
     .catch(err => dispatch(fetchTrendingHashtagsFail(err)));
@@ -45,10 +45,10 @@ export const fetchTrendingHashtagsFail = error => ({
   skipAlert: true,
 });
 
-export const fetchTrendingLinks = () => (dispatch, getState) => {
+export const fetchTrendingLinks = () => (dispatch) => {
   dispatch(fetchTrendingLinksRequest());
 
-  api(getState)
+  api()
     .get('/api/v1/trends/links')
     .then(({ data }) => dispatch(fetchTrendingLinksSuccess(data)))
     .catch(err => dispatch(fetchTrendingLinksFail(err)));
@@ -79,7 +79,7 @@ export const fetchTrendingStatuses = () => (dispatch, getState) => {
 
   dispatch(fetchTrendingStatusesRequest());
 
-  api(getState).get('/api/v1/trends/statuses').then(response => {
+  api().get('/api/v1/trends/statuses').then(response => {
     const next = getLinks(response).refs.find(link => link.rel === 'next');
     dispatch(importFetchedStatuses(response.data));
     dispatch(fetchTrendingStatusesSuccess(response.data, next ? next.uri : null));
@@ -115,7 +115,7 @@ export const expandTrendingStatuses = () => (dispatch, getState) => {
 
   dispatch(expandTrendingStatusesRequest());
 
-  api(getState).get(url).then(response => {
+  api().get(url).then(response => {
     const next = getLinks(response).refs.find(link => link.rel === 'next');
     dispatch(importFetchedStatuses(response.data));
     dispatch(expandTrendingStatusesSuccess(response.data, next ? next.uri : null));
