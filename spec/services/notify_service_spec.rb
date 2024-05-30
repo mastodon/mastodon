@@ -309,6 +309,19 @@ RSpec.describe NotifyService do
               expect(subject.filter?).to be false
             end
           end
+
+          context 'when the sender is mentioned in an unrelated message chain' do
+            before do
+              original_status = Fabricate(:status, visibility: :direct)
+              intermediary_status = Fabricate(:status, visibility: :direct, thread: original_status)
+              notification.target_status.update(thread: intermediary_status)
+              Fabricate(:mention, status: original_status, account: notification.from_account)
+            end
+
+            it 'returns true' do
+              expect(subject.filter?).to be true
+            end
+          end
         end
       end
     end
