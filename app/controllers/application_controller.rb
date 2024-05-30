@@ -80,7 +80,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(_resource_or_scope)
-    if ENV['OMNIAUTH_ONLY'] == 'true' && ENV['OIDC_ENABLED'] == 'true'
+    if Rails.configuration.omniauth.only && Rails.configuration.omniauth.oidc_enabled
       '/auth/auth/openid_connect/logout'
     else
       new_user_session_path
@@ -138,7 +138,7 @@ class ApplicationController < ActionController::Base
   end
 
   def omniauth_only?
-    ENV['OMNIAUTH_ONLY'] == 'true'
+    Rails.configuration.omniauth.only
   end
 
   def sso_account_settings

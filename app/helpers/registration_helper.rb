@@ -12,7 +12,7 @@ module RegistrationHelper
   end
 
   def omniauth_only?
-    ENV['OMNIAUTH_ONLY'] == 'true'
+    Rails.configuration.omniauth.only
   end
 
   def ip_blocked?(remote_ip)

@@ -129,15 +129,15 @@ describe 'OmniAuth callbacks' do
     end
   end
 
-  describe '#openid_connect', if: ENV['OIDC_ENABLED'] == 'true' && ENV['OIDC_SCOPE'].present? do
+  describe '#openid_connect', if: Rails.configuration.omniauth.oidc_enabled && Rails.configuration.omniauth.oidc[:scope].present? do
     include_examples 'omniauth provider callbacks', :openid_connect
   end
 
-  describe '#cas', if: ENV['CAS_ENABLED'] == 'true' do
+  describe '#cas', if: Rails.configuration.omniauth.cas_enabled do
     include_examples 'omniauth provider callbacks', :cas
   end
 
-  describe '#saml', if: ENV['SAML_ENABLED'] == 'true' do
+  describe '#saml', if: Rails.configuration.omniauth.saml_enabled do
     include_examples 'omniauth provider callbacks', :saml
   end
 end

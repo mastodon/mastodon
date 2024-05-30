@@ -88,9 +88,10 @@ describe ApplicationHelper do
 
     context 'when in omniauth only mode' do
       around do |example|
-        ClimateControl.modify OMNIAUTH_ONLY: 'true' do
-          example.run
-        end
+        original = Rails.configuration.omniauth.only
+        Rails.configuration.omniauth.only = true
+        example.run
+        Rails.configuration.omniauth.only = original
       end
 
       it 'redirects to joinmastodon site' do
@@ -106,11 +107,12 @@ describe ApplicationHelper do
   end
 
   describe 'omniauth_only?' do
-    context 'when env var is set to true' do
+    context 'when configuration is set to true' do
       around do |example|
-        ClimateControl.modify OMNIAUTH_ONLY: 'true' do
-          example.run
-        end
+        original = Rails.configuration.omniauth.only
+        Rails.configuration.omniauth.only = true
+        example.run
+        Rails.configuration.omniauth.only = original
       end
 
       it 'returns true' do
@@ -118,11 +120,12 @@ describe ApplicationHelper do
       end
     end
 
-    context 'when env var is not set' do
+    context 'when configuration is false' do
       around do |example|
-        ClimateControl.modify OMNIAUTH_ONLY: nil do
-          example.run
-        end
+        original = Rails.configuration.omniauth.only
+        Rails.configuration.omniauth.only = false
+        example.run
+        Rails.configuration.omniauth.only = original
       end
 
       it 'returns false' do

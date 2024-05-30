@@ -1,0 +1,85 @@
+---
+shared:
+  only: <%= ENV.fetch('OMNIAUTH_ONLY', 'false') == 'true' %>
+  cas_enabled: <%= ENV.fetch('CAS_ENABLED', 'false') == 'true' %>
+  oidc_enabled: <%= ENV.fetch('OIDC_ENABLED', 'false') == 'true' %>
+  saml_enabled: <%= ENV.fetch('SAML_ENABLED', 'false') == 'true' %>
+  cas:
+    display_name: <%= ENV.fetch('CAS_DISPLAY_NAME', nil) %>
+    url: <%= ENV.fetch('CAS_URL', nil) %>
+    host: <%= ENV.fetch('CAS_HOST', nil) %>
+    port: <%= ENV.fetch('CAS_PORT', nil) %>
+    ssl: <%= ENV.fetch('SAS_SSL', 'false') == 'true' %>
+    service_validate_url: <%= ENV.fetch('CAS_VALIDATE_URL', nil) %>
+    callback_url: <%= ENV.fetch('CAS_CALLBACK_URL', nil) %>
+    logout_url: <%= ENV.fetch('CAS_LOGOUT_URL', nil) %>
+    login_url: <%= ENV.fetch('CAS_LOGIN_URL', nil) %>
+    uid_field: <%= ENV.fetch('CAS_UID_FIELD', 'user') %>
+    ca_path: <%= ENV.fetch('CAS_CA_PATH', nil) %>
+    disable_ssl_verification: <%= ENV.fetch('CAS_DISABLE_SSL_VERIFICATION', 'false') == 'true' %>
+    uid_key: <%= ENV.fetch('CAS_UID_KEY', 'user') %>
+    name_key: <%= ENV.fetch('CAS_NAME_KEY', 'name') %>
+    email_key: <%= ENV.fetch('CAS_EMAIL_KEY', 'email') %>
+    nickname_key: <%= ENV.fetch('CAS_NICKNAME_KEY', 'nickname') %>
+    first_name_key: <%= ENV.fetch('CAS_FIRST_NAME_KEY', 'firstname') %>
+    last_name_key: <%= ENV.fetch('CAS_LAST_NAME_KEY', 'lastname') %>
+    location_key: <%= ENV.fetch('CAS_LOCATION_KEY', 'location') %>
+    image_key: <%= ENV.fetch('CAS_IMAGE_KEY', 'image') %>
+    phone_key: <%= ENV.fetch('CAS_PHONE_KEY', 'phone') %>
+    security:
+      assume_email_is_verified: <%= ENV.fetch('CAS_SECURITY_ASSUME_EMAIL_IS_VERIFIED', 'false') == 'true' %>
+  saml:
+    display_name: <%= ENV.fetch('SAML_DISPLAY_NAME', nil) %>
+    assertion_consumer_service_url: <%= ENV.fetch('SAML_ACS_URL', nil) %>
+    issuer: <%= ENV.fetch('SAML_ISSUER', nil) %>
+    idp_sso_target_url: <%= ENV.fetch('SAML_IDP_SSO_TARGET_URL', nil) %>
+    idp_sso_target_url_runtime_params: <%= ENV.fetch('SAML_IDP_SSO_TARGET_PARAMS', nil) %> # FIXME: Should be parsable Hash
+    idp_cert: <%= ENV.fetch('SAML_IDP_CERT', nil) %>
+    idp_cert_fingerprint: <%= ENV.fetch('SAML_IDP_CERT_FINGERPRINT', nil) %>
+    idp_cert_fingerprint_validator: <%= ENV.fetch('SAML_IDP_CERT_FINGERPRINT_VALIDATOR', nil) %> # FIXME: Should be Lambda { |fingerprint| }
+    name_identifier_format: <%= ENV.fetch('SAML_NAME_IDENTIFIER_FORMAT', nil) %>
+    request_attributes: {}
+    certificate: <%= ENV.fetch('SAML_CERT', nil) %>
+    private_key: <%= ENV.fetch('SAML_PRIVATE_KEY', nil) %>
+    security:
+      want_assertions_signed: <%= ENV.fetch('SAML_SECURITY_WANT_ASSERTION_SIGNED', 'false') == 'true' %>
+      want_assertions_encrypted: <%= ENV.fetch('SAML_SECURITY_WANT_ASSERTION_ENCRYPTED', 'false') == 'true' %>
+      assume_email_is_verified: <%= ENV.fetch('SAML_SECURITY_ASSUME_EMAIL_IS_VERIFIED', 'false') == 'true' %>
+    attribute_statements:
+      uid: <%= [ENV.fetch('SAML_ATTRIBUTES_STATEMENTS_UID', nil)] %>
+      email: <%= [ENV.fetch('SAML_ATTRIBUTES_STATEMENTS_EMAIL', nil)] %>
+      full_name: <%= [ENV.fetch('SAML_ATTRIBUTES_STATEMENTS_FULL_NAME', nil)] %>
+      first_name: <%= [ENV.fetch('SAML_ATTRIBUTES_STATEMENTS_FIRST_NAME', nil)] %>
+      last_name: <%= [ENV.fetch('SAML_ATTRIBUTES_STATEMENTS_LAST_NAME', nil)] %>
+      verified: <%= [ENV.fetch('SAML_ATTRIBUTES_STATEMENTS_VERIFIED', nil)] %>
+      verified_email: <%= [ENV.fetch('SAML_ATTRIBUTES_STATEMENTS_VERIFIED_EMAIL', nil)] %>
+    uid_attribute: <%= ENV.fetch('SAML_UID_ATTRIBUTE', nil) %>
+    allowed_clock_drift: <%= ENV.fetch('SAML_ALLOWED_CLOCK_DRIFT', nil) %>
+  oidc:
+    display_name: <%= ENV.fetch('OIDC_DISPLAY_NAME', nil) %> # OPTIONAL
+    issuer: <%= ENV.fetch('OIDC_ISSUER', nil) %> # NEED
+    discovery: <%= ENV.fetch('OIDC_DISCOVERY', 'false') == 'true' %> # OPTIONAL (default: false)
+    client_auth_method: <%= ENV.fetch('OIDC_CLIENT_AUTH_METHOD', nil) %> # OPTIONAL (default: basic)
+    scope: <%= ENV.fetch('OIDC_SCOPE', '').split(',').map(&:to_sym) %>
+    response_type: <%= ENV.fetch('OIDC_RESPONSE_TYPE', nil) %> # OPTIONAL (default: code)
+    response_mode: <%= ENV.fetch('OIDC_RESPONSE_MODE', nil) %> # OPTIONAL (default: query)
+    display: <%= ENV.fetch('OIDC_DISPLAY', nil) %> # OPTIONAL (default: page)
+    prompt: <%= ENV.fetch('OIDC_PROMPT', nil) %> # OPTIONAL
+    send_nonce: <%= ENV.fetch('OIDC_SEND_NONCE', 'true') == 'true' %> # OPTIONAL (default: true)
+    send_scope_to_token_endpoint: <%= ENV.fetch('OIDC_SEND_SCOPE_TO_TOKEN_ENDPOINT', 'true') == 'true' %> # OPTIONAL (default: true)
+    post_logout_redirect_uri: <%= ENV.fetch('OIDC_IDP_LOGOUT_REDIRECT_URI', nil) %> # OPTIONAL
+    uid_field: <%= ENV.fetch('OIDC_UID_FIELD', nil) %> # NEED
+    client_options:
+      identifier: <%= ENV.fetch('OIDC_CLIENT_ID', nil) %> # NEED
+      secret: <%= ENV.fetch('OIDC_CLIENT_SECRET', nil) %> # NEED
+      redirect_uri: <%= ENV.fetch('OIDC_REDIRECT_URI', nil) %> # NEED
+      scheme: <%= ENV.fetch('OIDC_HTTP_SCHEME', nil) %> # OPTIONAL (default: https)
+      host: <%= ENV.fetch('OIDC_HOST', nil) %> # OPTIONAL
+      port: <%= ENV.fetch('OIDC_PORT', nil) %> # OPTIONAL
+      authorization_endpoint: <%= ENV.fetch('OIDC_AUTH_ENDPOINT', nil) %> # NEED when discovery != true
+      token_endpoint: <%= ENV.fetch('OIDC_TOKEN_ENDPOINT', nil) %> # NEED when discovery != true
+      userinfo_endpoint: <%= ENV.fetch('OIDC_USER_INFO_ENDPOINT', nil) %> # NEED when discovery != true
+      jwks_uri: <%= ENV.fetch('OIDC_JWKS_URI', nil) %> # NEED when discovery != true
+      end_session_endpoint: <%= ENV.fetch('OIDC_END_SESSION_ENDPOINT', nil) %> # OPTIONAL
+    security:
+      assume_email_is_verified: <%= ENV.fetch('OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED', 'false') == 'true' %> # OPTIONAL
