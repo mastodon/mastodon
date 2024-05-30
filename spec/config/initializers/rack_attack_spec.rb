@@ -121,4 +121,28 @@ describe Rack::Attack, type: :request do
 
     it_behaves_like 'throttled endpoint'
   end
+
+  describe 'throttle excessive password change requests by account' do
+    let(:user) { Fabricate(:user, email: 'user@host.example') }
+    let(:limit) { 10 }
+    let(:period) { 10.minutes }
+    let(:request) { -> { put path, headers: { 'REMOTE_ADDR' => remote_ip } } }
+    let(:path) { '/auth' }
+
+    before do
+      sign_in user, scope: :user
+
+      # Unfortunately, devise's `sign_in` helper causes the `session` to be
+      # loaded in the next request regardless of whether it's actually accessed
+      # by the client code.
+      #
+      # So, we make an extra query to clear issue a session cookie instead.
+      #
+      # A less resource-intensive way to deal with that would be to generate the
+      # session cookie manually, but this seems pretty involved.
+      get '/'
+    end
+
+    it_behaves_like 'throttled endpoint'
+  end
 end
