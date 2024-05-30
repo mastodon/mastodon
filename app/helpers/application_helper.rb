@@ -49,7 +49,7 @@ module ApplicationHelper
   end
 
   def omniauth_only?
-    ENV['OMNIAUTH_ONLY'] == 'true'
+    Rails.configuration.omniauth.only
   end
 
   def link_to_login(name = nil, html_options = nil, &block)
