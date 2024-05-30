@@ -29,7 +29,10 @@ const emojis: Emojis = {};
 
 // decompress
 Object.keys(shortCodesToEmojiData).forEach((shortCode) => {
-  const [_filenameData, searchData] = shortCodesToEmojiData[shortCode];
+  const emojiData = shortCodesToEmojiData[shortCode];
+  if (!emojiData) return;
+
+  const [_filenameData, searchData] = emojiData;
   const [native, short_names, search, unified] = searchData;
 
   emojis[shortCode] = {

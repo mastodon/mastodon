@@ -89,21 +89,17 @@ type OnData<LoadDataResult, ReturnedData> = (
   },
 ) => ReturnedData | DiscardLoadData | Promise<ReturnedData | DiscardLoadData>;
 
+type ArgsType = Record<string, unknown> | undefined;
+
 // Overload when there is no `onData` method, the payload is the `onData` result
-export function createDataLoadingThunk<
-  LoadDataResult,
-  Args extends Record<string, unknown>,
->(
+export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
   name: string,
   loadData: (args: Args) => Promise<LoadDataResult>,
   thunkOptions?: AppThunkOptions,
 ): ReturnType<typeof createThunk<Args, LoadDataResult>>;
 
 // Overload when the `onData` method returns discardLoadDataInPayload, then the payload is empty
-export function createDataLoadingThunk<
-  LoadDataResult,
-  Args extends Record<string, unknown>,
->(
+export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
   name: string,
   loadData: (args: Args) => Promise<LoadDataResult>,
   onDataOrThunkOptions?:
@@ -113,10 +109,7 @@ export function createDataLoadingThunk<
 ): ReturnType<typeof createThunk<Args, void>>;
 
 // Overload when the `onData` method returns nothing, then the mayload is the `onData` result
-export function createDataLoadingThunk<
-  LoadDataResult,
-  Args extends Record<string, unknown>,
->(
+export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
   name: string,
   loadData: (args: Args) => Promise<LoadDataResult>,
   onDataOrThunkOptions?: AppThunkOptions | OnData<LoadDataResult, void>,
@@ -126,7 +119,7 @@ export function createDataLoadingThunk<
 // Overload when there is an `onData` method returning something
 export function createDataLoadingThunk<
   LoadDataResult,
-  Args extends Record<string, unknown>,
+  Args extends ArgsType,
   Returned,
 >(
   name: string,
@@ -162,7 +155,7 @@ export function createDataLoadingThunk<
  */
 export function createDataLoadingThunk<
   LoadDataResult,
-  Args extends Record<string, unknown>,
+  Args extends ArgsType,
   Returned,
 >(
   name: string,

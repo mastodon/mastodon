@@ -41,6 +41,8 @@ class Status < ApplicationRecord
   include Status::SnapshotConcern
   include Status::ThreadingConcern
 
+  MEDIA_ATTACHMENTS_LIMIT = 4
+
   rate_limit by: :account, family: :statuses
 
   self.discard_column = :deleted_at
@@ -162,9 +164,9 @@ class Status < ApplicationRecord
                    :status_stat,
                    :tags,
                    :preloadable_poll,
-                   preview_cards_status: [:preview_card],
+                   preview_cards_status: { preview_card: { author_account: [:account_stat, user: :role] } },
                    account: [:account_stat, user: :role],
-                   active_mentions: { account: :account_stat },
+                   active_mentions: :account,
                    reblog: [
                      :application,
                      :tags,
@@ -172,11 +174,11 @@ class Status < ApplicationRecord
                      :conversation,
                      :status_stat,
                      :preloadable_poll,
-                     preview_cards_status: [:preview_card],
+                     preview_cards_status: { preview_card: { author_account: [:account_stat, user: :role] } },
                      account: [:account_stat, user: :role],
-                     active_mentions: { account: :account_stat },
+                     active_mentions: :account,
                    ],
-                   thread: { account: :account_stat }
+                   thread: :account
 
   delegate :domain, to: :account, prefix: true
 

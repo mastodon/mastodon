@@ -8,6 +8,8 @@ class REST::PreviewCardSerializer < ActiveModel::Serializer
              :provider_url, :html, :width, :height,
              :image, :image_description, :embed_url, :blurhash, :published_at
 
+  has_one :author_account, serializer: REST::AccountSerializer, if: -> { object.author_account.present? }
+
   def url
     object.original_url.presence || object.url
   end

@@ -52,7 +52,10 @@ function uniqueHashtagsWithCaseHandling(hashtags: string[]) {
   );
 
   return Object.values(groups).map((tags) => {
-    if (tags.length === 1) return tags[0];
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- we know that the array has at least one element
+    const firstTag = tags[0]!;
+
+    if (tags.length === 1) return firstTag;
 
     // The best match is the one where we have the less difference between upper and lower case letter count
     const best = minBy(tags, (tag) => {
@@ -66,7 +69,7 @@ function uniqueHashtagsWithCaseHandling(hashtags: string[]) {
       return Math.abs(lowerCase - upperCase);
     });
 
-    return best ?? tags[0];
+    return best ?? firstTag;
   });
 }
 
