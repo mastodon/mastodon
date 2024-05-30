@@ -30,7 +30,7 @@ class Rack::Attack
     end
 
     def authenticated_user_id
-      authenticated_token&.resource_owner_id || warden_user_id
+      authenticated_token&.resource_owner_id
     end
 
     def authenticated_token_id
@@ -138,7 +138,7 @@ class Rack::Attack
   end
 
   throttle('throttle_password_change/account', limit: 10, period: 10.minutes) do |req|
-    req.authenticated_user_id if req.put? || (req.patch? && req.path_matches?('/auth'))
+    req.warden_user_id if req.put? || (req.patch? && req.path_matches?('/auth'))
   end
 
   self.throttled_responder = lambda do |request|
