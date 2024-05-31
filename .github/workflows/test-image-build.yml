@@ -20,8 +20,7 @@ jobs:
     uses: ./.github/workflows/build-container-image.yml
     with:
       file_to_build: Dockerfile
-      platforms: linux/amd64,linux/arm64
-      use_native_arm64_builder: true
+      platforms: linux/arm64
       cache: true
 
   build-image-streaming:
@@ -32,6 +31,5 @@ jobs:
     uses: ./.github/workflows/build-container-image.yml
     with:
       file_to_build: streaming/Dockerfile
-      platforms: linux/amd64,linux/arm64
-      use_native_arm64_builder: true
+      platforms: linux/arm64
       cache: true
