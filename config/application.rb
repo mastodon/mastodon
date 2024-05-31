@@ -27,7 +27,13 @@ require_relative '../lib/sanitize_ext/sanitize_config'
 require_relative '../lib/redis/namespace_extensions'
 require_relative '../lib/paperclip/url_generator_extensions'
 require_relative '../lib/paperclip/attachment_extensions'
-require_relative '../lib/paperclip/lazy_thumbnail'
+
+if ENV['MASTODON_USE_LIBVIPS'] == 'true'
+  require_relative '../lib/paperclip/vips_lazy_thumbnail'
+else
+  require_relative '../lib/paperclip/lazy_thumbnail'
+end
+
 require_relative '../lib/paperclip/gif_transcoder'
 require_relative '../lib/paperclip/media_type_spoof_detector_extensions'
 require_relative '../lib/paperclip/transcoder'
