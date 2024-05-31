@@ -22,7 +22,7 @@ FROM docker.io/ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} as ruby
 # Example: v4.2.0-nightly.2023.11.09+something
 # Overwrite existence of 'alpha.0' in version.rb [--build-arg MASTODON_VERSION_PRERELEASE="nightly.2023.11.09"]
 ARG MASTODON_VERSION_PRERELEASE=""
-# Append build metadata or fork information to version.rb [--build-arg MASTODON_VERSION_METADATA="something"]
+# Append build metadata or fork information to version.rb [--build-arg MASTODON_VERSION_METADATA="PR-12345"]
 ARG MASTODON_VERSION_METADATA=""
 
 # Allow Ruby on Rails to serve static files
