@@ -9,7 +9,8 @@ import { Redirect, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
-import { HotKeys } from 'react-hotkeys';
+import HotKeys from 'mastodon/components/hotkeys';
+// import { HotKeys } from 'react-hotkeys';
 
 import { focusApp, unfocusApp, changeLayout } from 'mastodon/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'mastodon/actions/markers';
