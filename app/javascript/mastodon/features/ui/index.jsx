@@ -410,9 +410,9 @@ class UI extends PureComponent {
       setTimeout(() => this.props.dispatch(fetchServer()), 3000);
     }
 
-    this.hotkeys.__mousetrap__.stopCallback = (e, element) => {
-      return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);
-    };
+    // this.hotkeys.__mousetrap__.stopCallback = (e, element) => {
+    //   return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);
+    // };
   }
 
   componentWillUnmount () {
@@ -577,7 +577,7 @@ class UI extends PureComponent {
     };
 
     return (
-      <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
+      <HotKeys handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
           <Header />
 
