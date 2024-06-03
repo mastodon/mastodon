@@ -3,6 +3,9 @@
 class NotifyService < BaseService
   include Redisable
 
+  MAXIMUM_GROUP_SPAN_HOURS = 12
+  MAXIMUM_GROUP_GAP_TIME = 4.hours.to_i
+
   NON_EMAIL_TYPES = %i(
     admin.report
     admin.sign_up
@@ -183,6 +186,7 @@ class NotifyService < BaseService
     return if dismiss?
 
     @notification.filtered = filter?
+    @notification.group_key = notification_group_key
     @notification.save!
 
     # It's possible the underlying activity has been deleted
@@ -201,6 +205,24 @@ class NotifyService < BaseService
   end
 
   private
+
+  def notification_group_key
+    return nil if @notification.filtered || %i(favourite reblog).exclude?(@notification.type)
+
+    type_prefix = "#{@notification.type}-#{@notification.target_status.id}"
+    redis_key   = "notif-group/#{@recipient.id}/#{type_prefix}"
+    hour_bucket = @notification.activity.created_at.utc.to_i / 1.hour.to_i
+
+    # Reuse previous group if it does not span too large an amount of time
+    previous_bucket = redis.get(redis_key).to_i
+    hour_bucket = previous_bucket if hour_bucket < previous_bucket + MAXIMUM_GROUP_SPAN_HOURS
+
+    # Do not track groups past a given inactivity time
+    # We do not concern ourselves with race conditions since we use hour buckets
+    redis.set(redis_key, hour_bucket, ex: MAXIMUM_GROUP_GAP_TIME)
+
+    "#{type_prefix}-#{hour_bucket}"
+  end
 
   def dismiss?
     DismissCondition.new(@notification).dismiss?
