@@ -13,6 +13,7 @@ module Mastodon::CLI
     option :remove_headers, type: :boolean, default: false
     option :include_follows, type: :boolean, default: false
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :verbose, type: :boolean, default: false, aliases: [:v]
     option :dry_run, type: :boolean, default: false
     desc 'remove', 'Remove remote media files, headers or avatars'
     long_desc <<-DESC
