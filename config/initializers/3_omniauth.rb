@@ -27,13 +27,9 @@ Devise.setup do |config|
 
   # OpenID Connect Strategy
   if Rails.configuration.omniauth.oidc_enabled
-    oidc_options = Rails.configuration.omniauth.oidc
-
     config.omniauth(
       :openid_connect,
-      oidc_options.merge(
-        scope: oidc_options[:scope].split(',').map(&:to_sym) # Convert scope to symbol array
-      )
+      Rails.configuration.omniauth.oidc
     )
   end
 end
