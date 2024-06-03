@@ -13,7 +13,7 @@ module Paperclip
     private
 
     def blurhash_params
-      if ENV['MASTODON_USE_LIBVIPS'] == 'true'
+      if Rails.configuration.x.use_vips
         image = Vips::Image.thumbnail(@file.path, 100)
         [image.width, image.height, image.extract_band(0, n: 3).to_a.flatten]
       else

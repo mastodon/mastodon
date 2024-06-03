@@ -72,7 +72,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   end
 
   def libvips_version
-    return unless ENV['MASTODON_USE_LIBVIPS'] == 'true'
+    return unless Rails.configuration.x.use_vips
 
     {
       key: 'libvips',

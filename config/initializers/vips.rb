@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if ENV['MASTODON_USE_LIBVIPS'] == 'true'
+if Rails.configuration.x.use_vips
   ENV['VIPS_BLOCK_UNTRUSTED'] = 'true'
 
   require 'vips'

@@ -10,7 +10,7 @@ module Paperclip
     BINS = 10
 
     def make
-      background_palette, foreground_palette = ENV['MASTODON_USE_LIBVIPS'] == 'true' ? palettes_from_libvips : palettes_from_imagemagick
+      background_palette, foreground_palette = Rails.configuration.x.use_vips ? palettes_from_libvips : palettes_from_imagemagick
 
       background_color   = background_palette.first || foreground_palette.first
       foreground_colors  = []
