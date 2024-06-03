@@ -147,7 +147,7 @@ Doorkeeper.configure do
   force_ssl_in_redirect_uri false
 
   # Specify what redirect URI's you want to block during Application creation.
-  # Any redirect URI is whitelisted by default.
+  # Any redirect URI is allowed by default.
   #
   # You can use this option in order to forbid URI's with 'javascript' scheme
   # for example.
