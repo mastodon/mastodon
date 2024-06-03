@@ -9,7 +9,7 @@ shared:
     url: <%= ENV.fetch('CAS_URL', nil) %>
     host: <%= ENV.fetch('CAS_HOST', nil) %>
     port: <%= ENV.fetch('CAS_PORT', nil) %>
-    ssl: <%= ENV.fetch('SAS_SSL', 'false') == 'true' %>
+    ssl: <%= ENV.fetch('CAS_SSL', 'false') == 'true' %>
     service_validate_url: <%= ENV.fetch('CAS_VALIDATE_URL', nil) %>
     callback_url: <%= ENV.fetch('CAS_CALLBACK_URL', nil) %>
     logout_url: <%= ENV.fetch('CAS_LOGOUT_URL', nil) %>
