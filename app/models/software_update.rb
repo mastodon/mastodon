@@ -24,7 +24,7 @@ class SoftwareUpdate < ApplicationRecord
 
   class << self
     def check_enabled?
-      ENV['UPDATE_CHECK_URL'] != ''
+      Rails.configuration.x.mastodon.software_update_url.present?
     end
 
     def pending_to_a

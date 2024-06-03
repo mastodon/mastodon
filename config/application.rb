@@ -110,6 +110,7 @@ module Mastodon
     end
 
     config.x.captcha = config_for(:captcha)
+    config.x.mastodon = config_for(:mastodon)
     config.x.translation = config_for(:translation)
 
     config.to_prepare do
