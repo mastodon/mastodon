@@ -97,6 +97,7 @@ RUN \
     curl \
     ffmpeg \
     file \
+    imagemagick \
     libvips42 \
     libjemalloc2 \
     patchelf \
