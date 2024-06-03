@@ -177,7 +177,7 @@ module Mastodon::CLI
           attachment_name = path_segments[1].singularize
           file_name       = path_segments.last
 
-          next unless PRELOAD_MODEL_WHITELIST.include?(model_name)
+          next unless PRELOADED_MODELS.include?(model_name)
 
           record     = model_name.constantize.find_by(id: record_id)
           attachment = record&.public_send(attachment_name)
@@ -300,7 +300,7 @@ module Mastodon::CLI
       model_name = path_segments.first.classify
       record_id  = path_segments[2...-2].join.to_i
 
-      fail_with_message "Cannot find corresponding model: #{model_name}" unless PRELOAD_MODEL_WHITELIST.include?(model_name)
+      fail_with_message "Cannot find corresponding model: #{model_name}" unless PRELOADED_MODELS.include?(model_name)
 
       record = model_name.constantize.find_by(id: record_id)
       record = record.status if record.respond_to?(:status)
@@ -334,7 +334,7 @@ module Mastodon::CLI
       )
     end
 
-    PRELOAD_MODEL_WHITELIST = %w(
+    PRELOADED_MODELS = %w(
       Account
       Backup
       CustomEmoji
@@ -356,7 +356,7 @@ module Mastodon::CLI
         model_name = segments.first.classify
         record_id  = segments[2...-2].join.to_i
 
-        next unless PRELOAD_MODEL_WHITELIST.include?(model_name)
+        next unless PRELOADED_MODELS.include?(model_name)
 
         preload_map[model_name] << record_id
       end
