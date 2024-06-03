@@ -28,7 +28,9 @@ require_relative '../lib/redis/namespace_extensions'
 require_relative '../lib/paperclip/url_generator_extensions'
 require_relative '../lib/paperclip/attachment_extensions'
 
-if ENV['MASTODON_USE_LIBVIPS'] == 'true'
+MASTODON_USE_LIBVIPS = ENV['MASTODON_USE_LIBVIPS'] == 'true'
+
+if MASTODON_USE_LIBVIPS
   require_relative '../lib/paperclip/vips_lazy_thumbnail'
 else
   require_relative '../lib/paperclip/lazy_thumbnail'
@@ -85,7 +87,7 @@ module Mastodon
     # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
-    config.x.use_vips = ENV['MASTODON_USE_LIBVIPS'] == 'true'
+    config.x.use_vips = MASTODON_USE_LIBVIPS
 
     config.active_job.queue_adapter = :sidekiq
 
