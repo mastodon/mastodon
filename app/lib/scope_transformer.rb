@@ -2,23 +2,18 @@
 
 class ScopeTransformer < Parslet::Transform
   class Scope
-    PROFILE_TERM   = 'profile'
     DEFAULT_TERM   = 'all'
     DEFAULT_ACCESS = %w(read write).freeze
-    READ_ONLY_ACCESS = %w(read).freeze
 
     attr_reader :namespace, :term
 
     def initialize(scope)
       @namespace = scope[:namespace]&.to_s
+      @access    = scope[:access] ? [scope[:access].to_s] : DEFAULT_ACCESS.dup
       @term      = scope[:term]&.to_s || DEFAULT_TERM
 
-      # override for profile scope which is read only
-      @access = if @term == PROFILE_TERM
-                  READ_ONLY_ACCESS.dup
-                else
-                  scope[:access] ? [scope[:access].to_s] : DEFAULT_ACCESS.dup
-                end
+      # # override for profile scope which is read only
+      @access = %w(read) if @term == 'profile'
     end
 
     def key
