@@ -203,7 +203,9 @@ RSpec.describe MediaAttachment, :paperclip_processing do
       expect(media.type).to eq 'audio'
       expect(media.file.meta['original']['duration']).to be_within(0.05).of(0.235102)
       expect(media.thumbnail.present?).to be true
-      expect(media.file.meta['colors']['background']).to eq '#268cd9'
+
+      # NOTE: Our libvips and ImageMagick implementations currently have different results
+      expect(media.file.meta['colors']['background']).to eq(ENV['MASTODON_USE_LIBVIPS'] ? '#268cd9' : '#3088d4')
       expect(media.file_file_name).to_not eq 'boop.ogg'
     end
   end
