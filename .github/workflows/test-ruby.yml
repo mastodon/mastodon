@@ -150,7 +150,7 @@ jobs:
 
   test-libvips:
     name: Libvips tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     needs:
       - build
@@ -220,7 +220,7 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg libpam-dev
+          additional-system-dependencies: ffmpeg libpam-dev libyaml-dev
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
