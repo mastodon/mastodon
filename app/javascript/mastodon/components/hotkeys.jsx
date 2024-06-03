@@ -1,20 +1,7 @@
-<<<<<<< HEAD
-import React, { forwardRef, useEffect } from 'react';
+import React, { useRef, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { useHotkeys } from 'react-hotkeys-hook';
 
-const HotKeys = forwardRef(({ handlers, options, children }, ref) => {
-  // Custom hook to register multiple hotkeys
-  const useMultipleHotkeys = (handlers, options) => {
-    Object.entries(handlers).forEach(([key, handler]) => {
-      useHotkeys(key, handler, options);
-    });
-  };
-
-  useMultipleHotkeys(handlers, options);
-
-  return <div ref={ref}>{children}</div>;
-=======
 import React, { useRef, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { useHotkeys } from 'react-hotkeys-hook';
@@ -85,16 +72,11 @@ const HotKeys = forwardRef(({ handlers, attach, children }, ref) => {
   });
 
   return <div ref={attachRef}>{children}</div>;
->>>>>>> a2bfd6e9c (Create HotKeys component)
 });
 
 HotKeys.propTypes = {
   handlers: PropTypes.object.isRequired,
-<<<<<<< HEAD
-  options: PropTypes.object,
-=======
   attach: PropTypes.object,
->>>>>>> a2bfd6e9c (Create HotKeys component)
   children: PropTypes.node,
 };
 
