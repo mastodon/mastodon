@@ -25,6 +25,8 @@ class Web::PushSubscription < ApplicationRecord
   validates :key_p256dh, presence: true
   validates :key_auth, presence: true
 
+  validates_with WebPushKeyValidator
+
   delegate :locale, to: :associated_user
 
   def encrypt(payload)
