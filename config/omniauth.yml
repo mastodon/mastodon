@@ -60,7 +60,9 @@ shared:
     issuer: <%= ENV.fetch('OIDC_ISSUER', nil) %> # NEED
     discovery: <%= ENV.fetch('OIDC_DISCOVERY', 'false') == 'true' %> # OPTIONAL (default: false)
     client_auth_method: <%= ENV.fetch('OIDC_CLIENT_AUTH_METHOD', nil) %> # OPTIONAL (default: basic)
-    scope: <%= ENV.fetch('OIDC_SCOPE', '') %>
+    scope: <% ENV.fetch('OIDC_SCOPE', '').split(',').each do |value| %>
+      - !ruby/symbol <%= value %>
+      <% end %>
     response_type: <%= ENV.fetch('OIDC_RESPONSE_TYPE', nil) %> # OPTIONAL (default: code)
     response_mode: <%= ENV.fetch('OIDC_RESPONSE_MODE', nil) %> # OPTIONAL (default: query)
     display: <%= ENV.fetch('OIDC_DISPLAY', nil) %> # OPTIONAL (default: page)
