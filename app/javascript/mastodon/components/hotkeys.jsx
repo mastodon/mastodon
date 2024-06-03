@@ -2,10 +2,6 @@ import React, { useRef, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { useHotkeys } from 'react-hotkeys-hook';
 
-import React, { useRef, forwardRef } from 'react';
-import PropTypes from 'prop-types';
-import { useHotkeys } from 'react-hotkeys-hook';
-
 const keyMap = {
   help: '?',
   new: 'n',
@@ -45,10 +41,6 @@ const HotKeys = forwardRef(({ handlers, attach, children }, ref) => {
     return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);
   }
 
-  // TODO: Review attach and refs
-  const attachRef = ref || internalRef;
-  const target = attachRef.current || attachRef;
-
   Object.keys(handlers).forEach((action) => {
     const keys = Array.isArray(keyMap[action]) ? keyMap[action] : [keyMap[action]];
     if (!keys) {
@@ -67,11 +59,11 @@ const HotKeys = forwardRef(({ handlers, attach, children }, ref) => {
         if (!stopCallback(event, element)) {
           handlers[action](event);
         }
-      }, { enableOnTags: ['INPUT', 'SELECT', 'TEXTAREA'], element: target });
+      });
     });
   });
 
-  return <div ref={attachRef}>{children}</div>;
+  return <div>{children}</div>;
 });
 
 HotKeys.propTypes = {
