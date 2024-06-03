@@ -34,10 +34,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_json_types).to include 'reblog'
-        expect(body_json_types).to include 'mention'
-        expect(body_json_types).to include 'favourite'
-        expect(body_json_types).to include 'follow'
+        expect(body_json_types).to include('reblog', 'mention', 'favourite', 'follow')
       end
     end
 
