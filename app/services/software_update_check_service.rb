@@ -27,7 +27,7 @@ class SoftwareUpdateCheckService < BaseService
   end
 
   def api_url
-    ENV.fetch('UPDATE_CHECK_URL', 'https://api.joinmastodon.org/update-check')
+    Rails.configuration.x.mastodon.software_update_url
   end
 
   def version
