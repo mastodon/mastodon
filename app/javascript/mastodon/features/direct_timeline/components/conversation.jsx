@@ -11,8 +11,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-import { HotKeys } from 'react-hotkeys';
-
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import { replyCompose } from 'mastodon/actions/compose';
@@ -21,6 +19,7 @@ import { openModal } from 'mastodon/actions/modal';
 import { muteStatus, unmuteStatus, revealStatus, hideStatus } from 'mastodon/actions/statuses';
 import AttachmentList from 'mastodon/components/attachment_list';
 import AvatarComposite from 'mastodon/components/avatar_composite';
+import HotKeys from 'mastodon/components/hotkeys';
 import { IconButton } from 'mastodon/components/icon_button';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import StatusContent from 'mastodon/components/status_content';

@@ -12,10 +12,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { HotKeys } from 'react-hotkeys';
 
 import VisibilityIcon from '@/material-icons/400-24px/visibility.svg?react';
 import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
+import HotKeys from 'mastodon/components/hotkeys';
 import { Icon }  from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollContainer from 'mastodon/containers/scroll_container';

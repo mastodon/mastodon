@@ -9,11 +9,11 @@ import { Redirect, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
-import { HotKeys } from 'react-hotkeys';
 
 import { focusApp, unfocusApp, changeLayout } from 'mastodon/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'mastodon/actions/markers';
 import { INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
+import HotKeys from 'mastodon/components/hotkeys';
 import { PictureInPicture } from 'mastodon/features/picture_in_picture';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { layoutFromWindow } from 'mastodon/is_mobile';
@@ -86,39 +86,6 @@ const mapStateToProps = state => ({
   firstLaunch: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
   username: state.getIn(['accounts', me, 'username']),
 });
-
-const keyMap = {
-  help: '?',
-  new: 'n',
-  search: ['s', '/'],
-  forceNew: 'option+n',
-  toggleComposeSpoilers: 'option+x',
-  focusColumn: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
-  reply: 'r',
-  favourite: 'f',
-  boost: 'b',
-  mention: 'm',
-  open: ['enter', 'o'],
-  openProfile: 'p',
-  moveDown: ['down', 'j'],
-  moveUp: ['up', 'k'],
-  back: 'backspace',
-  goToHome: 'g h',
-  goToNotifications: 'g n',
-  goToLocal: 'g l',
-  goToFederated: 'g t',
-  goToDirect: 'g d',
-  goToStart: 'g s',
-  goToFavourites: 'g f',
-  goToPinned: 'g p',
-  goToProfile: 'g u',
-  goToBlocked: 'g b',
-  goToMuted: 'g m',
-  goToRequests: 'g r',
-  toggleHidden: 'x',
-  toggleSensitive: 'h',
-  openMedia: 'e',
-};
 
 class SwitchingColumnsArea extends PureComponent {
   static propTypes = {
@@ -407,10 +374,6 @@ class UI extends PureComponent {
 
       setTimeout(() => this.props.dispatch(fetchServer()), 3000);
     }
-
-    this.hotkeys.__mousetrap__.stopCallback = (e, element) => {
-      return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);
-    };
   }
 
   componentWillUnmount () {
@@ -575,7 +538,7 @@ class UI extends PureComponent {
     };
 
     return (
-      <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
+      <HotKeys handlers={handlers} ref={this.setHotkeysRef}>
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef}>
           <Header />
 

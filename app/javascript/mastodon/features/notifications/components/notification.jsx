@@ -8,7 +8,6 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { HotKeys } from 'react-hotkeys';
 
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import FlagIcon from '@/material-icons/400-24px/flag-fill.svg?react';
@@ -18,6 +17,7 @@ import PersonIcon from '@/material-icons/400-24px/person-fill.svg?react';
 import PersonAddIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
 import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
+import HotKeys from 'mastodon/components/hotkeys';
 import { Icon }  from 'mastodon/components/icon';
 import AccountContainer from 'mastodon/containers/account_container';
 import StatusContainer from 'mastodon/containers/status_container';
