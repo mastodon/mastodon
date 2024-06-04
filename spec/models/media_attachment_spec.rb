@@ -139,6 +139,12 @@ RSpec.describe MediaAttachment, :paperclip_processing do
     it_behaves_like 'static 600x400 image', 'image/png', '.png'
   end
 
+  describe 'monochrome jpg' do
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('monochrome.png')) }
+
+    it_behaves_like 'static 600x400 image', 'image/png', '.png'
+  end
+
   describe 'webp' do
     let(:media) { Fabricate(:media_attachment, file: attachment_fixture('600x400.webp')) }
 
