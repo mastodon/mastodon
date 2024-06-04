@@ -48,12 +48,10 @@ module Paperclip
         end
 
         # The only situation where we use crop on GIFs is cropping them to a square
-        # aspect ratio, so this is the only special case we implement. If cropping
-        # ever becomes necessary for other situations, this will need to be expanded.
-        if @target_geometry&.square?
-          crop_width = [target_width, target_height].min
-          crop_height = [target_width, target_height].min
-        end
+        # aspect ratio, such as for avatars, so this is the only special case we
+        # implement. If cropping ever becomes necessary for other situations, this will
+        # need to be expanded.
+        crop_width = crop_height = [target_width, target_height].min if @target_geometry&.square?
 
         filter = begin
           if @crop
