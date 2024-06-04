@@ -147,8 +147,8 @@ class FetchLinkCardService < BaseService
     return if html.nil?
 
     link_details_extractor = LinkDetailsExtractor.new(@url, @html, @html_charset)
-    provider = PreviewCardProvider.matching_domain(Addressable::URI.parse(link_details_extractor.canonical_url).normalized_host)
-    linked_account = ResolveAccountService.new.call(link_details_extractor.author_account, suppress_errors: true) if link_details_extractor.author_account.present? && provider&.trendable?
+    provider_trendable = Trends.skip_review? || PreviewCardProvider.matching_domain(Addressable::URI.parse(link_details_extractor.canonical_url).normalized_host)&.trendable?
+    linked_account = ResolveAccountService.new.call(link_details_extractor.author_account, suppress_errors: true) if link_details_extractor.author_account.present? && provider_trendable
 
     @card = PreviewCard.find_or_initialize_by(url: link_details_extractor.canonical_url) if link_details_extractor.canonical_url != @card.url
     @card.assign_attributes(link_details_extractor.to_preview_card_attributes)
