@@ -105,11 +105,7 @@ module Paperclip
     def downscaled_image
       image = Vips::Image.new_from_file(@file.path, access: :random).thumbnail_image(100)
 
-      if image.bands == 4
-        image.extract_band(0, n: 3)
-      else
-        image
-      end
+      image.colourspace(:srgb).extract_band(0, n: 3)
     end
 
     def palette_from_image(image)
