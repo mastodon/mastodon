@@ -42,7 +42,7 @@ module Paperclip
           target_width = 'iw'
           target_height = 'ih'
         else
-          scale = [@target_geometry.width.to_f / @current_geometry.width, @target_geometry.height.to_f / @target_geometry.height].min
+          scale = [@target_geometry.width.to_f / @current_geometry.width, @target_geometry.height.to_f / @current_geometry.height].min
           target_width = (@current_geometry.width * scale).round
           target_height = (@current_geometry.height * scale).round
         end
