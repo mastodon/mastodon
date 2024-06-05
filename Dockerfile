@@ -43,8 +43,6 @@ ENV \
 # Apply Mastodon version information
   MASTODON_VERSION_PRERELEASE="${MASTODON_VERSION_PRERELEASE}" \
   MASTODON_VERSION_METADATA="${MASTODON_VERSION_METADATA}" \
-# Enable libvips
-  MASTODON_USE_LIBVIPS=true \
 # Apply Mastodon static files and YJIT options
   RAILS_SERVE_STATIC_FILES=${RAILS_SERVE_STATIC_FILES} \
   RUBY_YJIT_ENABLE=${RUBY_YJIT_ENABLE} \
@@ -62,7 +60,9 @@ ENV \
   DEBIAN_FRONTEND="noninteractive" \
   PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin" \
 # Optimize jemalloc 5.x performance
-  MALLOC_CONF="narenas:2,background_thread:true,thp:never,dirty_decay_ms:1000,muzzy_decay_ms:0"
+  MALLOC_CONF="narenas:2,background_thread:true,thp:never,dirty_decay_ms:1000,muzzy_decay_ms:0" \
+# Enable libvips, should not be changed
+  MASTODON_USE_LIBVIPS=true
 
 # Set default shell used for running commands
 SHELL ["/bin/bash", "-o", "pipefail", "-o", "errexit", "-c"]
@@ -99,7 +99,6 @@ RUN \
     curl \
     ffmpeg \
     file \
-    libvips42 \
     libjemalloc2 \
     patchelf \
     procps \
@@ -133,19 +132,55 @@ RUN \
 --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
 # Install build tools and bundler dependencies from APT
   apt-get install -y --no-install-recommends \
-    g++ \
-    gcc \
+    build-essential \
     git \
     libgdbm-dev \
+    libglib2.0-dev \
     libgmp-dev \
     libicu-dev \
     libidn-dev \
     libpq-dev \
     libssl-dev \
-    make \
+    meson \
+    pkg-config \
     shared-mime-info \
-    zlib1g-dev \
+	# libvips components
+    libcgif-dev \
+    libexif-dev \
+    libexpat1-dev \
+    libgirepository1.0-dev \
+    libheif-dev \
+    libimagequant-dev \
+    libjpeg62-turbo-dev \
+    liblcms2-dev \
+    liborc-dev \
+    libspng-dev \
+    libtiff-dev \
+    libwebp-dev \
   ;
+
+# libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
+ARG VIPS_VERSION=8.15.2
+# libvips sha256 hash of downloaded archive, change with [--build-arg VIPS_SHA256="a1b2c3..."]
+ARG VIPS_SHA256=a2ab15946776ca7721d11cae3215f20f1f097b370ff580cd44fc0f19387aee84
+# libvips download URL, change with [--build-arg VIPS_URL="https://github.com/libvips/libvips/releases/download"]
+ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
+
+WORKDIR /usr/local/src
+
+RUN \
+  curl -sSL -o vips-${VIPS_VERSION}.tar.xz ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz; \
+  echo "$VIPS_SHA256 vips-${VIPS_VERSION}.tar.xz" | sha256sum --check || exit 1;
+
+RUN \
+  tar xf vips-${VIPS_VERSION}.tar.xz; \
+  cd vips-${VIPS_VERSION}; \
+  meson setup build --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false; \
+  cd build; \
+  ninja; \
+  ninja install;
+
+WORKDIR /opt/mastodon
 
 RUN \
 # Configure Corepack
@@ -231,12 +266,27 @@ RUN \
 --mount=type=cache,id=yarn-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/yarn,sharing=locked \
 # Apt update install non-dev versions of necessary components
   apt-get install -y --no-install-recommends \
-    libssl3 \
-    libpq5 \
+    libexpat1 \
+    libglib2.0-0 \
     libicu72 \
     libidn12 \
+    libpq5 \
     libreadline8 \
+    libssl3 \
     libyaml-0-2 \
+  # libvips components
+    libcgif0 \
+    libexif12 \
+    libheif1 \
+    libimagequant0 \
+    libjpeg62-turbo \
+    liblcms2-2 \
+    liborc-0.4-0 \
+    libspng0 \
+    libtiff6 \
+    libwebp7 \
+    libwebpdemux2 \
+    libwebpmux3 \
   ;
 
 # Copy Mastodon sources into final layer
@@ -247,6 +297,23 @@ COPY --from=precompiler /opt/mastodon/public/packs /opt/mastodon/public/packs
 COPY --from=precompiler /opt/mastodon/public/assets /opt/mastodon/public/assets
 # Copy bundler components to layer
 COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
+# Copy libvips components to layer
+COPY --from=build /usr/local/bin/vips* /usr/local/bin
+COPY --from=build /usr/local/lib/libvips* /usr/local/lib
+COPY --from=build /usr/local/lib/pkgconfig/vips* /usr/local/lib/pkgconfig
+
+RUN \
+# Symlink libvips components
+  ln -sf /usr/local/lib/libvips.so.42.17.2 /usr/local/lib/libvips.so.42; \
+  ln -sf /usr/local/lib/libvips.so.42.17.2 /usr/local/lib/libvips.so; \
+  ln -sf /usr/local/lib/libvips-cpp.so.42.17.2 /usr/local/lib/libvips-cpp.so.42; \
+  ln -sf /usr/local/lib/libvips-cpp.so.42.17.2 /usr/local/lib/libvips-cpp.so; \
+  ldconfig \
+  ;
+
+RUN \
+# Smoketest media processors
+  vips -v;
 
 RUN \
 # Precompile bootsnap code for faster Rails startup
