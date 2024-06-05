@@ -21,14 +21,14 @@ export const RelationshipsSeveranceEvent = ({ type, target, followingCount, foll
   }
 
   return (
-    <a href='/severed_relationships' target='_blank' rel='noopener noreferrer' className='notification__relationships-severance-event'>
-      <Icon id='heart_broken' icon={HeartBrokenIcon} />
+    <div className='notification-group notification-group--link notification-group--relationships-severance-event focusable' tabIndex='0'>
+      <div className='notification-group__icon'><Icon id='heart_broken' icon={HeartBrokenIcon} /></div>
 
-      <div className='notification__relationships-severance-event__content'>
+      <div className='notification-group__main'>
         <p>{intl.formatMessage(messages[type], { from: <strong>{domain}</strong>, target: <strong>{target}</strong>, followingCount, followersCount })}</p>
-        <span className='link-button'><FormattedMessage id='notification.relationships_severance_event.learn_more' defaultMessage='Learn more' /></span>
+        <a href='/severed_relationships' target='_blank' rel='noopener noreferrer' className='link-button'><FormattedMessage id='notification.relationships_severance_event.learn_more' defaultMessage='Learn more' /></a>
       </div>
-    </a>
+    </div>
   );
 };
 
