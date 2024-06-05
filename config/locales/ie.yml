@@ -751,6 +751,7 @@ ie:
         desc_html: To ci usa extern scrites de hCaptcha, quel posse esser ínquietant pro rasones de securitá e privatie. In plu, <strong>it posse far li processu de registration mult plu desfacil (particularimen por tis con deshabilitás)</strong>. Pro ti rasones, ples considerar alternativ mesuras, tales quam registration per aprobation o invitation.
         title: Exige que nov usatores solue un CAPTCHA por confirmar lor conto
       content_retention:
+        danger_zone: Zone de dangere
         preamble: Decider qualmen usator-generat contenete es inmagasinat in Mastodon.
         title: Retention de contenete
       default_noindex:
@@ -949,7 +950,6 @@ ie:
       delete: Deleter
       edit_preset: Modificar prefiguration de avise
       empty: Vu ancor ha definit null prefigurationes de avise.
-      title: Modificar prefigurationes de avise
     webhooks:
       add_new: Adjunter punctu terminal
       delete: Deleter
@@ -1659,6 +1659,7 @@ ie:
     preferences: Preferenties
     profile: Public profil
     relationships: Sequetes e sequitores
+    severed_relationships: Detranchat relationes
     statuses_cleanup: Automatisat deletion de postas
     strikes: Admonimentes moderatori
     two_factor_authentication: 2-factor autentication
@@ -1667,9 +1668,12 @@ ie:
     download: Descargar (%{count})
     event_type:
       account_suspension: Suspension del conto (%{target_name})
+      domain_block: Suspension del servitor (%{target_name})
       user_domain_block: Tu bloccat %{target_name}
     lost_followers: Perdit sequitores
+    lost_follows: Perdit sequetes
     preamble: Tu posse perdir tis queles tu seque e tui sequitores quande tu blocca un domonia o quande tui moderatores decide suspender un lontan servitor. Tande, tu va posser descargar listes de dejuntet relationes, a inspecter e possibilmen importar sur un altri servitor.
+    purged: Information pri ti-ci servitor ha esset purgat per li administratores de tui servitor.
     type: Eveniment
   statuses:
     attached:

@@ -83,15 +83,17 @@
 .report-notes
   = render @report_notes
 
-= simple_form_for @report_note, url: admin_report_notes_path do |f|
-  = f.input :report_id, as: :hidden
+= simple_form_for @report_note, url: admin_report_notes_path do |form|
+  = form.input :report_id, as: :hidden
+
+  = render 'shared/error_messages', object: @report_note
 
   .field-group
-    = f.input :content, placeholder: t('admin.reports.notes.placeholder'), rows: 6
+    = form.input :content, input_html: { placeholder: t('admin.reports.notes.placeholder'), maxlength: ReportNote::CONTENT_SIZE_LIMIT, rows: 6, autofocus: @report_note.errors.any? }
 
   .actions
     - if @report.unresolved?
-      = f.button :button, t('admin.reports.notes.create_and_resolve'), name: :create_and_resolve, type: :submit
+      = form.button :button, t('admin.reports.notes.create_and_resolve'), name: :create_and_resolve, type: :submit
     - else
-      = f.button :button, t('admin.reports.notes.create_and_unresolve'), name: :create_and_unresolve, type: :submit
-    = f.button :button, t('admin.reports.notes.create'), type: :submit
+      = form.button :button, t('admin.reports.notes.create_and_unresolve'), name: :create_and_unresolve, type: :submit
+    = form.button :button, t('admin.reports.notes.create'), type: :submit

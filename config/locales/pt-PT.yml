@@ -285,6 +285,7 @@ pt-PT:
         update_custom_emoji_html: "%{name} atualizou o emoji %{target}"
         update_domain_block_html: "%{name} atualizou o bloqueio de domínio para %{target}"
         update_ip_block_html: "%{name} alterou regra para IP %{target}"
+        update_report_html: "%{name} atualizou a denúncia %{target}"
         update_status_html: "%{name} atualizou o estado de %{target}"
         update_user_role_html: "%{name} alterou a função %{target}"
       deleted_account: conta apagada
@@ -751,6 +752,7 @@ pt-PT:
         desc_html: Isto depende de scripts externos da hCaptcha, o que pode ser uma preocupação de segurança e privacidade. Além disso, <strong>isto pode tornar o processo de registo menos acessível para algumas pessoas (especialmente as com limitações físicas)</strong>. Por isso, considere medidas alternativas tais como registo mediante aprovação ou sob convite.
         title: Requerer que novos utilizadores resolvam um CAPTCHA para confirmar a sua conta
       content_retention:
+        danger_zone: Zona de perigo
         preamble: Controle como o conteúdo gerado pelos utilizadores é armazenado no Mastodon.
         title: Retenção de conteúdo
       default_noindex:
@@ -949,7 +951,7 @@ pt-PT:
       delete: Eliminar
       edit_preset: Editar o aviso predefinido
       empty: Ainda não definiu nenhum aviso predefinido.
-      title: Gerir os avisos predefinidos
+      title: Predefinições de aviso
     webhooks:
       add_new: Adicionar endpoint
       delete: Eliminar

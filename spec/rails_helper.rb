@@ -2,13 +2,34 @@
 
 ENV['RAILS_ENV'] ||= 'test'
 
-# This needs to be defined before Rails is initialized
-RUN_SYSTEM_SPECS = ENV.fetch('RUN_SYSTEM_SPECS', false)
+unless ENV['DISABLE_SIMPLECOV'] == 'true'
+  require 'simplecov'
 
-if RUN_SYSTEM_SPECS
-  STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
-  ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
+  SimpleCov.start 'rails' do
+    if ENV['CI']
+      require 'simplecov-lcov'
+      formatter SimpleCov::Formatter::LcovFormatter
+      formatter.config.report_with_single_file = true
+    else
+      formatter SimpleCov::Formatter::HTMLFormatter
+    end
+
+    enable_coverage :branch
+
+    add_filter 'lib/linter'
+
+    add_group 'Libraries', 'lib'
+    add_group 'Policies', 'app/policies'
+    add_group 'Presenters', 'app/presenters'
+    add_group 'Serializers', 'app/serializers'
+    add_group 'Services', 'app/services'
+    add_group 'Validators', 'app/validators'
+  end
 end
+
+# This needs to be defined before Rails is initialized
+STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
+ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
 
 require File.expand_path('../config/environment', __dir__)
 
@@ -26,10 +47,12 @@ require 'test_prof/recipes/rspec/before_all'
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
-WebMock.disable_net_connect!(allow: Chewy.settings[:host], allow_localhost: RUN_SYSTEM_SPECS)
+WebMock.disable_net_connect!(
+  allow_localhost: true,
+  allow: Chewy.settings[:host]
+)
 Sidekiq.logger = nil
 
-# System tests config
 DatabaseCleaner.strategy = [:deletion]
 
 Devise::Test::ControllerHelpers.module_eval do
@@ -49,16 +72,14 @@ Devise::Test::ControllerHelpers.module_eval do
 end
 
 RSpec.configure do |config|
-  # This is set before running spec:system, see lib/tasks/tests.rake
-  config.filter_run_excluding type: lambda { |type|
-    case type
-    when :system
-      !RUN_SYSTEM_SPECS
-    end
-  }
+  # By default, skip specs that need full JS browser
+  config.filter_run_excluding :js
 
-  # By default, skip the elastic search integration specs
-  config.filter_run_excluding search: true
+  # By default, skip specs that need elastic search server
+  config.filter_run_excluding :search
+
+  # By default, skip specs that need the streaming server
+  config.filter_run_excluding :streaming
 
   config.fixture_paths = [
     Rails.root.join('spec', 'fixtures'),
@@ -81,7 +102,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :helper
   config.include Devise::Test::ControllerHelpers, type: :view
-  config.include Devise::Test::IntegrationHelpers, type: :feature
+  config.include Devise::Test::IntegrationHelpers, type: :system
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include ActionMailer::TestHelper
   config.include Paperclip::Shoulda::Matchers
@@ -109,10 +130,6 @@ RSpec.configure do |config|
 
   config.before :each, type: :cli do
     stub_reset_connection_pools
-  end
-
-  config.before :each, type: :feature do
-    Capybara.current_driver = :rack_test
   end
 
   config.before do |example|

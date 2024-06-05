@@ -30,7 +30,7 @@
 = render 'admin/accounts/counters', account: @account
 
 - if @account.local? && @account.user.nil?
-  = link_to t('admin.accounts.unblock_email'), unblock_email_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unblock_email, @account) && CanonicalEmailBlock.matching_account(@account).exists?
+  = link_to t('admin.accounts.unblock_email'), unblock_email_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unblock_email, @account) && CanonicalEmailBlock.exists?(reference_account_id: @account.id)
 - else
   .table-wrapper
     %table.table.inline-table
@@ -62,14 +62,16 @@
   .report-notes
     = render partial: 'admin/report_notes/report_note', collection: @moderation_notes
 
-  = simple_form_for @account_moderation_note, url: admin_account_moderation_notes_path do |f|
-    = f.hidden_field :target_account_id
+  = simple_form_for @account_moderation_note, url: admin_account_moderation_notes_path do |form|
+    = form.hidden_field :target_account_id
+
+    = render 'shared/error_messages', object: @account_moderation_note
 
     .field-group
-      = f.input :content, placeholder: t('admin.reports.notes.placeholder'), rows: 6
+      = form.input :content, input_html: { placeholder: t('admin.reports.notes.placeholder'), maxlength: AccountModerationNote::CONTENT_SIZE_LIMIT, rows: 6, autofocus: @account_moderation_note.errors.any? }
 
     .actions
-      = f.button :button, t('admin.account_moderation_notes.create'), type: :submit
+      = form.button :button, t('admin.account_moderation_notes.create'), type: :submit
 
   %hr.spacer/
 

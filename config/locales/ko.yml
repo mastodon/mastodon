@@ -282,6 +282,7 @@ ko:
         update_custom_emoji_html: "%{name} 님이 에모지 %{target}를 업데이트 했습니다"
         update_domain_block_html: "%{name} 님이 %{target}에 대한 도메인 차단을 갱신했습니다"
         update_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 수정했습니다"
+        update_report_html: "%{name} 님이 신고 %{target}를 업데이트 했습니다"
         update_status_html: "%{name} 님이 %{target}의 게시물을 업데이트했습니다"
         update_user_role_html: "%{name} 님이 %{target} 역할을 수정했습니다"
       deleted_account: 계정을 삭제했습니다
@@ -739,6 +740,7 @@ ko:
         desc_html: 이것은 hCaptcha의 외부 스크립트에 의존합니다, 이것은 개인정보 보호에 위협을 가할 수도 있습니다. 추가적으로, <strong>이것은 몇몇 사람들(특히나 장애인들)에게 가입 절차의 접근성을 심각하게 떨어트릴 수 있습니다</strong>. 이러한 이유로, 대체제로 승인 전용이나 초대제를 통한 가입을 고려해보세요.
         title: 새로운 사용자가 계정 확인을 위해서는 CAPTCHA를 풀어야 하도록 합니다
       content_retention:
+        danger_zone: 위험한 영역
         preamble: 마스토돈에 저장된 사용자 콘텐츠를 어떻게 다룰지 제어합니다.
         title: 콘텐츠 보존기한
       default_noindex:
@@ -934,7 +936,7 @@ ko:
       delete: 삭제
       edit_preset: 경고 프리셋 편집
       empty: 아직 어떤 경고 틀도 정의되지 않았습니다.
-      title: 경고 틀 관리
+      title: 경고 프리셋
     webhooks:
       add_new: 엔드포인트 추가
       delete: 삭제

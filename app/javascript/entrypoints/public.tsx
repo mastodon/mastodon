@@ -65,7 +65,7 @@ window.addEventListener('message', (e) => {
       {
         type: 'setHeight',
         id: data.id,
-        height: document.getElementsByTagName('html')[0].scrollHeight,
+        height: document.getElementsByTagName('html')[0]?.scrollHeight,
       },
       '*',
     );
@@ -135,7 +135,7 @@ function loaded() {
     );
   };
   const todayFormat = new IntlMessageFormat(
-    localeData['relative_format.today'] || 'Today at {time}',
+    localeData['relative_format.today'] ?? 'Today at {time}',
     locale,
   );
 
@@ -288,13 +288,13 @@ function loaded() {
       if (statusEl.dataset.spoiler === 'expanded') {
         statusEl.dataset.spoiler = 'folded';
         this.textContent = new IntlMessageFormat(
-          localeData['status.show_more'] || 'Show more',
+          localeData['status.show_more'] ?? 'Show more',
           locale,
         ).format() as string;
       } else {
         statusEl.dataset.spoiler = 'expanded';
         this.textContent = new IntlMessageFormat(
-          localeData['status.show_less'] || 'Show less',
+          localeData['status.show_less'] ?? 'Show less',
           locale,
         ).format() as string;
       }
@@ -316,8 +316,8 @@ function loaded() {
 
       const message =
         statusEl.dataset.spoiler === 'expanded'
-          ? localeData['status.show_less'] || 'Show less'
-          : localeData['status.show_more'] || 'Show more';
+          ? localeData['status.show_less'] ?? 'Show less'
+          : localeData['status.show_more'] ?? 'Show more';
       spoilerLink.textContent = new IntlMessageFormat(
         message,
         locale,

@@ -285,6 +285,7 @@ pt-BR:
         update_custom_emoji_html: "%{name} atualizou o emoji %{target}"
         update_domain_block_html: "%{name} atualizou o bloqueio de domínio de %{target}"
         update_ip_block_html: "%{name} alterou a regra para o IP %{target}"
+        update_report_html: "%{name} atualizou o relatório %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
         update_user_role_html: "%{name} alterou o cargo %{target}"
       deleted_account: conta excluída
@@ -751,6 +752,7 @@ pt-BR:
         desc_html: Isso é baseado em scripts externos de hCaptcha, o que pode ser uma preocupação de segurança e privacidade. Além disso, <strong>isso pode tornar o processo de registro significativamente menos acessível para algumas pessoas (especialmente deficientes)</strong>. Por estas razões, favor considerar medidas alternativas como o registro baseado em aprovação ou em convite.
         title: Exigir que novos usuários resolvam um CAPTCHA para confirmar sua conta
       content_retention:
+        danger_zone: Zona de perigo
         preamble: Controlar como o conteúdo gerado pelo usuário é armazenado no Mastodon.
         title: Retenção de conteúdo
       default_noindex:
@@ -949,7 +951,7 @@ pt-BR:
       delete: Excluir
       edit_preset: Editar o aviso pré-definido
       empty: Você ainda não definiu nenhuma predefinição de alerta.
-      title: Gerenciar os avisos pré-definidos
+      title: Predefinições de aviso
     webhooks:
       add_new: Adicionar endpoint
       delete: Excluir

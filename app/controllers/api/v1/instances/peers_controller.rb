@@ -5,7 +5,7 @@ class Api::V1::Instances::PeersController < Api::V1::Instances::BaseController
 
   skip_around_action :set_locale
 
-  # Override `current_user` to avoid reading session cookies unless in whitelist mode
+  # Override `current_user` to avoid reading session cookies unless in limited federation mode
   def current_user
     super if limited_federation_mode?
   end

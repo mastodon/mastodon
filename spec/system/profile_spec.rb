@@ -7,7 +7,7 @@ describe 'Profile' do
 
   subject { page }
 
-  let(:local_domain) { ENV['LOCAL_DOMAIN'] }
+  let(:local_domain) { Rails.configuration.x.local_domain }
 
   before do
     as_a_logged_in_user

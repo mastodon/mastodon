@@ -24,10 +24,19 @@ RSpec.describe Admin::AccountModerationNotesController do
       end
     end
 
-    context 'when parameters are invalid' do
+    context 'when the content is too short' do
       let(:params) { { account_moderation_note: { target_account_id: target_account.id, content: '' } } }
 
-      it 'falls to create a note' do
+      it 'fails to create a note' do
+        expect { subject }.to_not change(AccountModerationNote, :count)
+        expect(response).to render_template 'admin/accounts/show'
+      end
+    end
+
+    context 'when the content is too long' do
+      let(:params) { { account_moderation_note: { target_account_id: target_account.id, content: 'test' * AccountModerationNote::CONTENT_SIZE_LIMIT } } }
+
+      it 'fails to create a note' do
         expect { subject }.to_not change(AccountModerationNote, :count)
         expect(response).to render_template 'admin/accounts/show'
       end

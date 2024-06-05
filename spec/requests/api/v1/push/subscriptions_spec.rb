@@ -4,10 +4,11 @@ require 'rails_helper'
 
 describe 'API V1 Push Subscriptions' do
   let(:user) { Fabricate(:user) }
+  let(:endpoint) { 'https://fcm.googleapis.com/fcm/send/fiuH06a27qE:APA91bHnSiGcLwdaxdyqVXNDR9w1NlztsHb6lyt5WDKOC_Z_Q8BlFxQoR8tWFSXUIDdkyw0EdvxTu63iqamSaqVSevW5LfoFwojws8XYDXv_NRRLH6vo2CdgiN4jgHv5VLt2A8ah6lUX' }
   let(:create_payload) do
     {
       subscription: {
-        endpoint: 'https://fcm.googleapis.com/fcm/send/fiuH06a27qE:APA91bHnSiGcLwdaxdyqVXNDR9w1NlztsHb6lyt5WDKOC_Z_Q8BlFxQoR8tWFSXUIDdkyw0EdvxTu63iqamSaqVSevW5LfoFwojws8XYDXv_NRRLH6vo2CdgiN4jgHv5VLt2A8ah6lUX',
+        endpoint: endpoint,
         keys: {
           p256dh: 'BEm_a0bdPDhf0SOsrnB2-ategf1hHoCnpXgQsFj5JCkcoMrMt2WHoPfEYOYPzOIs9mZE8ZUaD7VA5vouy0kEkr8=',
           auth: 'eH_C8rq2raXqlcBVDa1gLg==',
@@ -62,6 +63,18 @@ describe 'API V1 Push Subscriptions' do
 
       expect(endpoint_push_subscriptions.count)
         .to eq(1)
+    end
+
+    context 'with invalid endpoint URL' do
+      let(:endpoint) { 'app://example.foo' }
+
+      it 'returns a validation error' do
+        subject
+
+        expect(response).to have_http_status(422)
+        expect(endpoint_push_subscriptions.count).to eq(0)
+        expect(endpoint_push_subscription).to be_nil
+      end
     end
   end
 

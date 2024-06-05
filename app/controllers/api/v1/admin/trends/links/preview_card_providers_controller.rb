@@ -12,8 +12,6 @@ class Api::V1::Admin::Trends::Links::PreviewCardProvidersController < Api::BaseC
   after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
-  PAGINATION_PARAMS = %i(limit).freeze
-
   def index
     authorize :preview_card_provider, :index?
 
@@ -56,9 +54,5 @@ class Api::V1::Admin::Trends::Links::PreviewCardProvidersController < Api::BaseC
 
   def records_continue?
     @providers.size == limit_param(LIMIT)
-  end
-
-  def pagination_params(core_params)
-    params.slice(*PAGINATION_PARAMS).permit(*PAGINATION_PARAMS).merge(core_params)
   end
 end

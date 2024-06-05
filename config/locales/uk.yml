@@ -291,6 +291,7 @@ uk:
         update_custom_emoji_html: "%{name} оновлює емодзі %{target}"
         update_domain_block_html: "%{name} оновлює блокування домену для %{target}"
         update_ip_block_html: "%{name} змінює правило для IP %{target}"
+        update_report_html: "%{name} оновлений звіт %{target}"
         update_status_html: "%{name} оновлює допис %{target}"
         update_user_role_html: "%{name} змінює роль %{target}"
       deleted_account: видалений обліковий запис
@@ -671,7 +672,7 @@ uk:
           delete_html: 'Ви збираєтеся <strong>вилучити</strong> деякі з дописів <strong>@%{acct}</strong>. Це буде:'
           mark_as_sensitive_html: 'Ви збираєтеся <strong>позначити</strong> деякі з дописів <strong>@%{acct}</strong> <strong>делікатними</strong>. Це буде:'
           silence_html: 'Ви збираєтеся <strong>обмежити</strong> обліковий запис <strong>@%{acct}</strong>. Це буде:'
-          suspend_html: 'Ви збираєтесь <strong>призупинити</strong> обліковий запис <strong>@%%{acct}</strong>. Це буде:'
+          suspend_html: 'Ви збираєтесь <strong>призупинити</strong> обліковий запис <strong>@%{acct}</strong>. Це буде:'
         actions:
           delete_html: Вилучити образливі дописи
           mark_as_sensitive_html: Позначити медіа образливих дописів делікатними
@@ -984,7 +985,7 @@ uk:
       delete: Видалити
       edit_preset: Редагувати шаблон попередження
       empty: Ви ще не визначили жодних попереджень.
-      title: Керування шаблонами попереджень
+      title: Попереджувальні пресети
     webhooks:
       add_new: Додати кінцеву точку
       delete: Видалити

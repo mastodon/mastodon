@@ -77,11 +77,13 @@ is:
           warn: Fela síað efni á bakvið aðvörun sem tekur fram titil síunnar
       form_admin_settings:
         activity_api_enabled: Fjöldi staðværra stöðufærslna, virkra notenda og nýskráninga í vikulegum skömmtum
+        app_icon: WEBP, PNG, GIF eða JPG. Tekur yfir sjálfgefna táknmynd forrits á snjalltækjum með sérsniðinni táknmynd.
         backups_retention_period: Notendur hafa kost á að útbúa safnskrár með færslunum sínum til að sækja svo síðar. Þegar þetta er stillt á jákvætt gildi, verður þessum safnskrám eytt sjáfkrafa eftir þeim tiltekna fjölda daga.
         bootstrap_timeline_accounts: Þessir notendaaðgangar verða festir efst í meðmælum til nýrra notenda um að fylgjast með þeim.
         closed_registrations_message: Birtist þegar lokað er á nýskráningar
         content_cache_retention_period: Öllum færslum af öðrum netþjónum (þar með taldar endurbirtingar og svör) verður eytt eftir uppgefinn fjölda daga, án tillits til gagnvirkni staðværra notenda við þessar færslur. Þetta á einnig við um færslur sem notandinn hefur merkt sem bókamerki eða eftirlæti. Beinar tilvísanir (einkaspjall) milli notenda af mismunandi netþjónum munu einnig tapast og er engin leið til að endurheimta þær. Notkun á þessari stillingu er einungis ætluð sérstilltum netþjónum og mun skemma fyrir notendum ef þetta er sett upp fyrir almenna notkun.
         custom_css: Þú getur virkjað sérsniðna stíla í vefútgáfu Mastodon.
+        favicon: WEBP, PNG, GIF eða JPG. Tekur yfir sjálfgefna Mastodon favicon-táknmynd með sérsniðinni táknmynd.
         mascot: Þetta tekyr yfir myndskreytinguna í ítarlega vefviðmótinu.
         media_cache_retention_period: Myndefnisskrár úr færslum sem gerðar eru af fjartengdum notendum eru geymdar á netþjóninum þínum. Þegar þetta er stillt á jákvætt gildi, verður þessum skrám eytt sjáfkrafa eftir þeim tiltekna fjölda daga. Ef beðið er um myndefnið eftir að því er eytt, mun það verða sótt aftur ef frumgögnin eru ennþá aðgengileg. Vegna takmarkana á hversu oft forskoðunarspjöld tengla eru sótt á utanaðkomandi netþjóna, þá er mælt með því að setja þetta gildi á að minnsta kosti 14 daga, annars gæti mistekist að uppfæra forskoðunarspjöld tengla eftir þörfum fyrir þann tíma.
         peers_api_enabled: Listi yfir þau lénaheiti sem þessi netþjónn hefur rekist á í skýjasambandinu. Engin gögn eru hér sem gefa til kynna hvort þú sért í sambandi við tiltekinn netþjón, bara að netþjónninn þinn viti um hann. Þetta er notað af þjónustum sem safna tölfræði um skýjasambönd á almennan hátt.

@@ -21,7 +21,7 @@ class Web::PushSubscription < ApplicationRecord
 
   has_one :session_activation, foreign_key: 'web_push_subscription_id', inverse_of: :web_push_subscription, dependent: nil
 
-  validates :endpoint, presence: true
+  validates :endpoint, presence: true, url: true
   validates :key_p256dh, presence: true
   validates :key_auth, presence: true
 

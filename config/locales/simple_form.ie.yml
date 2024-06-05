@@ -77,10 +77,15 @@ ie:
           warn: Celar li contenete filtrat detra un avise mentionant li titul del filtre
       form_admin_settings:
         activity_api_enabled: Númeres de postas publicat localmen, activ usatores, e nov adhesiones in periodes semanal
+        app_icon: WEBP, PNG, GIF o JPG. Remplazza li predenifit favicon Mastodon sur mobiles con un icon customisat.
+        backups_retention_period: Usatores posse generar archives de lor postas por adcargar plu tard. Si on specifica un valore positiv, li archives va esser automaticmen deletet de tui magazinage pos li specificat quantitá de dies.
         bootstrap_timeline_accounts: Ti-ci contos va esser pinglat al parte superiori del recomandationes por nov usatores.
         closed_registrations_message: Monstrat quande adhesiones es cludet
+        content_cache_retention_period: Omni postas de altri servitores (includente boosts e responses) va esser deletet pos li specificat quantitá de dies, sin egard a local usator-interactiones con les. To vale anc por postas queles un local usator ha marcat o favoritat it. Anc privat mentiones ínter usatores de diferent instanties va esser perdit e ínrestorabil. Talmen, ti-ci parametre es intentet por scopes special pro que it posse ruptes li expectationes de usatores.
         custom_css: On posse aplicar customisat stiles al web-version de Mastodon.
+        favicon: WEBP, PNG, GIF oo JPG. Remplazza li predenifit favicon Mastodon con in icon customisat.
         mascot: Substitue li ilustration in li avansat interfacie web.
+        media_cache_retention_period: Files de medie de postas creat de lontan usatores es cachat sur tui servitor. Si on specifica un valore positiv, ili va esser automaticmen deletet pos li specificat quantitá de dies. Si on peti li data del medie pos deletion, it va esser re-descargat si li original fonte es disponibil. Restrictiones pri li frequentie de ligament-previsiones posse exister sur altri situs, e pro to it es recomandat que on usa un valore de adminim 14 dies; altrimen, li ligament-previsiones ne va esser actualisat secun demande ante ti témpor.
         peers_api_enabled: Un liste de nómines de dominia queles ti-ci servitor ha incontrat in li fediverse. Ci null data es includet pri ca tu confedera con un cert servitor o ne; it indica solmen que tui servitor conosse it. Usat per servicies colectent general statisticas pri federation.
         profile_directory: Li profilarium monstra omni usatores volent esser decovribil.
         require_invite_text: Quande registrationes besona manual aprobation, fa que li textu "Pro quo tu vole registrar te?" es obligatori vice facultativ
@@ -240,6 +245,7 @@ ie:
         backups_retention_period: Periode de retener archives de usator
         bootstrap_timeline_accounts: Sempre recomandar ti-ci contos a nov usatores
         closed_registrations_message: Customisat missage quande registration ne disponibil
+        content_cache_retention_period: Periode de retention por contenete lontan
         custom_css: Custom CSS
         mascot: Customisat mascot (hereditat)
         media_cache_retention_period: Periode de retention por cachat medie
