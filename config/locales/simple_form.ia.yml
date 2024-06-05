@@ -3,40 +3,40 @@ ia:
   simple_form:
     hints:
       account:
-        discoverable: Tu messages public e tu profilo pote esser consiliate o recommendate in varie areas de Mastodon e tu profilo pote esser suggerite a altere usatores.
+        discoverable: Tu messages public e tu profilo pote esser mittite in evidentia o recommendate in varie areas de Mastodon e tu profilo pote esser suggerite a altere usatores.
         display_name: Tu prenomine e nomine de familia o tu pseudonymo.
-        fields: Tu pagina principal, pronomines, etate, toto lo que tu vole.
-        indexable: Tu messages public pote apparer in resultatos del recerca sur Mastodon. Illes qui ha interagite con tu messages totevia pote cercar les.
+        fields: Tu pagina principal, pronomines, etate, tote lo que tu vole.
+        indexable: Tu messages public pote apparer in le resultatos de recerca sur Mastodon. Le personas qui ha interagite con tu messages pote cercar los in omne caso.
         note: 'Tu pote @mentionar altere personas o #hashtags.'
-        show_collections: Le personas potera navigar per tu sequites e sequaces. Le personas potera navigar per tu sequites e sequaces.
-        unlocked: Le personas potera sequer te sin requestar approbation. Dismarca si tu desira revider le requestas de sequer e selige si acceptar o rejectar nove sequaces.
+        show_collections: Le personas potera percurrer tu sequites e sequitores. Le personas que tu seque videra que tu les seque in omne caso.
+        unlocked: Le personas potera sequer te sin requestar approbation. Dismarca si tu vole revider le requestas de sequimento e seliger si acceptar o rejectar nove sequitores.
       account_alias:
-        acct: Specifica le nomine_de_usator@dominio del conto ab que tu vole mover
+        acct: Specifica le nomine_de_usator@dominio del conto desde le qual tu vole migrar
       account_migration:
-        acct: Specifica le nomine_de_usator@dominio del conto a que tu vole mover
+        acct: Specifica le nomine_de_usator@dominio del conto al qual tu vole migrar
       account_warning_preset:
-        text: Tu pote usar le syntaxe de message, tal como URLs, hashtags e mentiones
+        text: Tu pote usar le syntaxe de messages, como URLs, hashtags e mentiones
         title: Optional. Non visibile al destinatario
       admin_account_action:
-        include_statuses: Le usator videra que messages ha causate le action o aviso de moderation
-        send_email_notification: Le usator recipera un explication de cosa eveniva con lor conto
-        text_html: Optional. Tu pote usar le syntaxe de message. Tu pote <a href="%{path}">adder avisos preconfigurate</a> pro sparniar tempore
-        type_html: Selige lo que tu vole facer con <strong>%{acct}</strong>
+        include_statuses: Le usator videra qual messages ha causate le action o advertimento de moderation
+        send_email_notification: Le usator recipera un explication de lo que ha evenite con su conto
+        text_html: Optional. Tu pote usar le syntaxe de messages. Tu pote <a href="%{path}">adder advertimentos preconfigurate</a> pro sparniar tempore
+        type_html: Selige lo que facer con <strong>%{acct}</strong>
         types:
-          disable: Impedir al usator de usar lor conto, sin deler o celar lor contentos.
-          none: Usar lo pro inviar un aviso al usator, sin discatenar ulle altere action.
-          sensitive: Fortiar tote le annexos multimedial de iste usator a esser signalate como sensibile.
-          silence: Impedir al usator de poter publicar messages con public visibilitate, celar lor messages e notificationes ab gente non sequente illes. Clauder tote le reportos contra iste conto.
-          suspend: Impedir ulle interaction de o a iste conto e deler su contentos. Reversibile intra 30 dies. Clauder tote le reportos contra iste conto.
-        warning_preset_id: Optional. Tu pote ancora adder personal texto a fin del preconfigurate
+          disable: Impedir al usator de usar su conto, sin deler o celar su contento.
+          none: Usa isto pro inviar un advertimento al usator, sin prender alcun altere mesura.
+          sensitive: Fortiar tote le annexos multimedial de iste usator a esser marcate como sensibile.
+          silence: Impedir al usator de publicar messages con visibilitate public, celante su messages e notificationes a qui non le seque. Claude tote le reportos contra iste conto.
+          suspend: Impedir tote interaction desde o verso iste conto e deler su contento. Reversibile intra 30 dies. Claude tote le reportos contra iste conto.
+        warning_preset_id: Optional. Tu pote ancora adder texto personalisate al fin del preconfigurate
       announcement:
-        all_day: Si marcate, solo le datas del campo tempore sera monstrate
-        ends_at: Le annuncio sera automaticamente obscurate a iste tempore
-        scheduled_at: Lassar blanc pro publicar le annuncio immediatemente
-        starts_at: Optional. In caso tu annuncio es ligate con un specific campo tempore
-        text: Tu pote usar le syntaxe de message. Presta attention al spatio que le annuncio occupara sur le schermo de usator
+        all_day: Si marcate, solmente le datas del intervallo de tempore essera monstrate
+        ends_at: Optional. Le annuncio essera automaticamente retirate del publication a iste tempore
+        scheduled_at: Lassa vacue pro publicar le annuncio immediatemente
+        starts_at: Optional. In caso que tu annuncio es ligate a un intervallo specific de tempore
+        text: Tu pote usar le syntaxe de messages. Presta attention al spatio que le annuncio occupara sur le schermo del usator
       appeal:
-        text: Tu pote solo appellar te un vice
+        text: Tu pote solo appellar contra un sanction un vice
       defaults:
         autofollow: Illes qui se inscribe per le invitation automaticamente devenira tu sequaces
         avatar: WEBP, PNG, GIF or JPG. Al maximo %{size}. Sera diminuite a %{dimensions}px
@@ -64,7 +64,7 @@ ia:
         username: Tu pote usar litteras, numeros e tractos de sublineamento
         whole_word: Quando le parola o expression clave es solo alphanumeric, illo sera solo applicate si illo concorda con tote le parola
       domain_allow:
-        domain: Iste dominio potera reportar datos ab iste servitor e le datos in ingresso ab illo sera processate e immagazinate
+        domain: Iste dominio potera extraher datos de iste servitor e le datos entrante de illo essera processate e immagazinate
       email_domain_block:
         domain: Isto pote esser le nomine de dominio que apparera in le adresse email o le registration MX que illo usa. Illos sera verificate durante le inscription.
         with_dns_records: Un tentativa sera facite pro resolver le registrationes de DNS del dominio date e le resultatos sera alsi blocate
@@ -158,7 +158,7 @@ ia:
         text: Texto predefinite
         title: Titulo
       admin_account_action:
-        include_statuses: Includer messages reportate in le email
+        include_statuses: Includer le messages reportate in le e-mail
         send_email_notification: Notificar le usator per e-mail
         text: Advertimento personalisate
         type: Action
