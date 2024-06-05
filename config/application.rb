@@ -27,7 +27,7 @@ require_relative '../lib/sanitize_ext/sanitize_config'
 require_relative '../lib/redis/namespace_extensions'
 require_relative '../lib/paperclip/url_generator_extensions'
 require_relative '../lib/paperclip/attachment_extensions'
-require_relative '../lib/paperclip/lazy_thumbnail'
+
 require_relative '../lib/paperclip/gif_transcoder'
 require_relative '../lib/paperclip/media_type_spoof_detector_extensions'
 require_relative '../lib/paperclip/transcoder'
@@ -100,6 +100,14 @@ module Mastodon
 
     config.before_configuration do
       require 'mastodon/redis_config'
+
+      config.x.use_vips = ENV['MASTODON_USE_LIBVIPS'] == 'true'
+
+      if config.x.use_vips
+        require_relative '../lib/paperclip/vips_lazy_thumbnail'
+      else
+        require_relative '../lib/paperclip/lazy_thumbnail'
+      end
     end
 
     config.to_prepare do
