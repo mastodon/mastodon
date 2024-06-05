@@ -1,5 +1,8 @@
 # syntax=docker/dockerfile:1.7
 
+# This Dockerfile is designed for production deployment, not local development.
+# For a containerized dev environment, use Dev Containers: https://github.com/mastodon/mastodon/blob/main/README.md#docker
+
 # Please see https://docs.docker.com/engine/reference/builder for information about
 # the extended buildx capabilities used in this file.
 # Make sure multiarch TARGETPLATFORM is available for interpolation
