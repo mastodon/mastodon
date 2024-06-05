@@ -56,23 +56,18 @@ export const ModerationWarning: React.FC<Props> = ({ action, id, hidden }) => {
   }
 
   return (
-    <a
-      href={`/disputes/strikes/${id}`}
-      target='_blank'
-      rel='noopener noreferrer'
-      className='notification__moderation-warning'
-    >
-      <Icon id='warning' icon={GavelIcon} />
+    <div className='notification-group notification-group--link notification-group--moderation-warning focusable' tabIndex='0'>
+      <div className='notification-group__icon'><Icon id='warning' icon={GavelIcon} /></div>
 
-      <div className='notification__moderation-warning__content'>
+      <div className='notification-group__main'>
         <p>{intl.formatMessage(messages[action])}</p>
-        <span className='link-button'>
+        <a href={`/disputes/strikes/${id}`} target='_blank' rel='noopener noreferrer' className='link-button'>
           <FormattedMessage
             id='notification.moderation-warning.learn_more'
             defaultMessage='Learn more'
           />
-        </span>
+        </a>
       </div>
-    </a>
+    </div>
   );
 };
