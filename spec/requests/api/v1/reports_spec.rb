@@ -33,30 +33,28 @@ RSpec.describe 'Reports' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:reports'
 
-    it 'creates a report', :aggregate_failures do
-      perform_enqueued_jobs do
-        emails = capture_emails { subject }
+    it 'creates a report', :aggregate_failures, :sidekiq_inline do
+      emails = capture_emails { subject }
 
-        expect(response).to have_http_status(200)
-        expect(body_as_json).to match(
-          a_hash_including(
-            status_ids: [status.id.to_s],
-            category: category,
-            comment: 'reasons'
-          )
+      expect(response).to have_http_status(200)
+      expect(body_as_json).to match(
+        a_hash_including(
+          status_ids: [status.id.to_s],
+          category: category,
+          comment: 'reasons'
         )
+      )
 
-        expect(target_account.targeted_reports).to_not be_empty
-        expect(target_account.targeted_reports.first.comment).to eq 'reasons'
+      expect(target_account.targeted_reports).to_not be_empty
+      expect(target_account.targeted_reports.first.comment).to eq 'reasons'
 
-        expect(emails.size)
-          .to eq(1)
-        expect(emails.first)
-          .to have_attributes(
-            to: contain_exactly(admin.email),
-            subject: eq(I18n.t('admin_mailer.new_report.subject', instance: Rails.configuration.x.local_domain, id: target_account.targeted_reports.first.id))
-          )
-      end
+      expect(emails.size)
+        .to eq(1)
+      expect(emails.first)
+        .to have_attributes(
+          to: contain_exactly(admin.email),
+          subject: eq(I18n.t('admin_mailer.new_report.subject', instance: Rails.configuration.x.local_domain, id: target_account.targeted_reports.first.id))
+        )
     end
 
     context 'when a status does not belong to the reported account' do
