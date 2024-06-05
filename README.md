@@ -101,7 +101,9 @@ To set up **MacOS** for native development, complete the following steps:
 
 ### Docker
 
-For development with **Docker**, complete the following steps:
+For production hosting and deployment with **Docker**, use the `Dockerfile` and
+`docker-compose.yml` in the project root directory. To create a local
+development environment with **Docker**, complete the following steps:
 
 - Install Docker Desktop
 - Run `docker compose -f .devcontainer/docker-compose.yml up -d`
