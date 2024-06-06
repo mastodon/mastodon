@@ -13,7 +13,7 @@ RSpec.describe Admin::SystemCheck::DatabaseSchemaCheck do
     context 'when database needs migration' do
       before do
         context = instance_double(ActiveRecord::MigrationContext, needs_migration?: true)
-        allow(ActiveRecord::Base.connection).to receive(:migration_context).and_return(context)
+        allow(ActiveRecord::Base.connection_pool).to receive(:migration_context).and_return(context)
       end
 
       it 'returns false' do
@@ -24,7 +24,7 @@ RSpec.describe Admin::SystemCheck::DatabaseSchemaCheck do
     context 'when database does not need migration' do
       before do
         context = instance_double(ActiveRecord::MigrationContext, needs_migration?: false)
-        allow(ActiveRecord::Base.connection).to receive(:migration_context).and_return(context)
+        allow(ActiveRecord::Base.connection_pool).to receive(:migration_context).and_return(context)
       end
 
       it 'returns true' do
