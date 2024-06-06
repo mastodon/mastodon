@@ -1,18 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import React from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
-import Icon from '../../../components/icon';
-import { openModal } from '../../../actions/modal';
+
+import { connect } from 'react-redux';
+
 import { deleteCircle } from '../../../actions/circles';
+import { openModal } from '../../../actions/modal';
+import Icon from '../../../components/icon';
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_circle.message', defaultMessage: 'Are you sure you want to permanently delete this circle?' },
   deleteConfirm: { id: 'confirmations.delete_circle.confirm', defaultMessage: 'Delete' },
 });
 
-export default @connect()
-@injectIntl
+const MapStateToProps = (state, { circleId }) => ({
+  circle: state.get('circles').get(circleId),
+});
+
 class Circle extends React.PureComponent {
 
   static propTypes = {
@@ -23,20 +28,20 @@ class Circle extends React.PureComponent {
   };
 
   handleEditClick = () => {
-    this.props.dispatch(openModal('CIRCLE_EDITOR', { circleId: this.props.id }));
+    this.props.dispatch(openModal({ modalType: 'CIRCLE_EDITOR', modalProps: { circleId: this.props.id }}));
   }
 
   handleDeleteClick = () => {
     const { dispatch, intl } = this.props;
     const { id } = this.props;
 
-    dispatch(openModal('CONFIRM', {
+    dispatch(openModal({ modalType: 'CONFIRM', modalProps: {
       message: intl.formatMessage(messages.deleteMessage),
       confirm: intl.formatMessage(messages.deleteConfirm),
       onConfirm: () => {
         dispatch(deleteCircle(id));
       },
-    }));
+    }}));
   }
 
   render() {
@@ -56,3 +61,4 @@ class Circle extends React.PureComponent {
   }
 
 }
+export default connect(MapStateToProps)(injectIntl(Circle));
