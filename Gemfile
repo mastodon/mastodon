@@ -6,7 +6,7 @@ ruby '>= 3.1.0'
 gem 'propshaft'
 gem 'puma', '~> 6.3'
 gem 'rack', '~> 2.2.7'
-gem 'rails', '~> 7.1.1'
+gem 'rails', '7.2.0.beta3'
 gem 'thor', '~> 1.2'
 
 gem 'dotenv'
@@ -63,6 +63,7 @@ gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'mime-types', '~> 3.5.0', require: 'mime/types/columnar'
+gem 'mutex_m'
 gem 'nokogiri', '~> 1.15'
 gem 'nsa'
 gem 'oj', '~> 3.14'
@@ -141,7 +142,7 @@ group :test do
   gem 'selenium-webdriver'
 
   # Used to reset the database between system tests
-  gem 'database_cleaner-active_record'
+  gem 'database_cleaner-active_record', github: 'DatabaseCleaner/database_cleaner-active_record' # TODO: Release version?
 
   # Used to mock environment variables
   gem 'climate_control'
