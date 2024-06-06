@@ -151,6 +151,66 @@ RSpec.describe Notification do
     end
   end
 
+  describe '.paginate_groups_by_max_id' do
+    let(:account) { Fabricate(:account) }
+
+    let!(:notifications) do
+      ['group-1', 'group-1', nil, 'group-2', nil, 'group-1', 'group-2', 'group-1']
+        .map { |group_key| Fabricate(:notification, account: account, group_key: group_key) }
+    end
+
+    context 'without since_id or max_id' do
+      it 'returns the most recent notifications, only keeping one notification per group' do
+        expect(described_class.without_suspended.paginate_groups_by_max_id(4).pluck(:id))
+          .to eq [notifications[7], notifications[6], notifications[4], notifications[2]].pluck(:id)
+      end
+    end
+
+    context 'with since_id' do
+      it 'returns the most recent notifications, only keeping one notification per group' do
+        expect(described_class.without_suspended.paginate_groups_by_max_id(4, since_id: notifications[4].id).pluck(:id))
+          .to eq [notifications[7], notifications[6]].pluck(:id)
+      end
+    end
+
+    context 'with max_id' do
+      it 'returns the most recent notifications after max_id, only keeping one notification per group' do
+        expect(described_class.without_suspended.paginate_groups_by_max_id(4, max_id: notifications[7].id).pluck(:id))
+          .to eq [notifications[6], notifications[5], notifications[4], notifications[2]].pluck(:id)
+      end
+    end
+  end
+
+  describe '.paginate_groups_by_min_id' do
+    let(:account) { Fabricate(:account) }
+
+    let!(:notifications) do
+      ['group-1', 'group-1', nil, 'group-2', nil, 'group-1', 'group-2', 'group-1']
+        .map { |group_key| Fabricate(:notification, account: account, group_key: group_key) }
+    end
+
+    context 'without min_id or max_id' do
+      it 'returns the oldest notifications, only keeping one notification per group' do
+        expect(described_class.without_suspended.paginate_groups_by_min_id(4).pluck(:id))
+          .to eq [notifications[0], notifications[2], notifications[3], notifications[4]].pluck(:id)
+      end
+    end
+
+    context 'with max_id' do
+      it 'returns the oldest notifications, stopping at max_id, only keeping one notification per group' do
+        expect(described_class.without_suspended.paginate_groups_by_min_id(4, max_id: notifications[4].id).pluck(:id))
+          .to eq [notifications[0], notifications[2], notifications[3]].pluck(:id)
+      end
+    end
+
+    context 'with min_id' do
+      it 'returns the most oldest notifications after min_id, only keeping one notification per group' do
+        expect(described_class.without_suspended.paginate_groups_by_min_id(4, min_id: notifications[0].id).pluck(:id))
+          .to eq [notifications[1], notifications[2], notifications[3], notifications[4]].pluck(:id)
+      end
+    end
+  end
+
   describe '.preload_cache_collection_target_statuses' do
     subject do
       described_class.preload_cache_collection_target_statuses(notifications) do |target_statuses|

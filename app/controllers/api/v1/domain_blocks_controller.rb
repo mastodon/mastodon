@@ -54,10 +54,6 @@ class Api::V1::DomainBlocksController < Api::BaseController
     @blocks.size == limit_param(BLOCK_LIMIT)
   end
 
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
-  end
-
   def domain_block_params
     params.permit(:domain)
   end

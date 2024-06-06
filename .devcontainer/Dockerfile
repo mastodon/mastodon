@@ -1,5 +1,5 @@
 # For details, see https://github.com/devcontainers/images/tree/main/src/ruby
-FROM mcr.microsoft.com/devcontainers/ruby:1-3.2-bullseye
+FROM mcr.microsoft.com/devcontainers/ruby:1-3.3-bookworm
 
 # Install Rails
 # RUN gem install rails webdrivers
@@ -9,7 +9,7 @@ RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSI
 
 # [Optional] Uncomment this section to install additional OS packages.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends libicu-dev libidn11-dev ffmpeg imagemagick libpam-dev
+    && apt-get -y install --no-install-recommends libicu-dev libidn11-dev ffmpeg imagemagick libvips42 libpam-dev
 
 # [Optional] Uncomment this line to install additional gems.
 RUN gem install foreman

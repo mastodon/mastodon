@@ -74,7 +74,8 @@ Doorkeeper.configure do
   # For more information go to
   # https://github.com/doorkeeper-gem/doorkeeper/wiki/Using-Scopes
   default_scopes  :read
-  optional_scopes :write,
+  optional_scopes :profile,
+                  :write,
                   :'write:accounts',
                   :'write:blocks',
                   :'write:bookmarks',
@@ -89,7 +90,6 @@ Doorkeeper.configure do
                   :'write:reports',
                   :'write:statuses',
                   :read,
-                  :'read:me',
                   :'read:accounts',
                   :'read:blocks',
                   :'read:bookmarks',

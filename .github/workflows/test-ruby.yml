@@ -133,12 +133,99 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg imagemagick libpam-dev
+          additional-system-dependencies: ffmpeg libpam-dev
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
       - run: bin/rspec
+
+      - name: Upload coverage reports to Codecov
+        if: matrix.ruby-version == '.ruby-version'
+        uses: codecov/codecov-action@v4
+        with:
+          files: coverage/lcov/mastodon.lcov
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  test-libvips:
+    name: Libvips tests
+    runs-on: ubuntu-24.04
+
+    needs:
+      - build
+
+    services:
+      postgres:
+        image: postgres:14-alpine
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    env:
+      DB_HOST: localhost
+      DB_USER: postgres
+      DB_PASS: postgres
+      DISABLE_SIMPLECOV: ${{ matrix.ruby-version != '.ruby-version' }}
+      RAILS_ENV: test
+      ALLOW_NOPAM: true
+      PAM_ENABLED: true
+      PAM_DEFAULT_SERVICE: pam_test
+      PAM_CONTROLLED_SERVICE: pam_test_controlled
+      OIDC_ENABLED: true
+      OIDC_SCOPE: read
+      SAML_ENABLED: true
+      CAS_ENABLED: true
+      BUNDLE_WITH: 'pam_authentication test'
+      GITHUB_RSPEC: ${{ matrix.ruby-version == '.ruby-version' && github.event.pull_request && 'true' }}
+      MASTODON_USE_LIBVIPS: true
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-version:
+          - '3.1'
+          - '3.2'
+          - '.ruby-version'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: './'
+          name: ${{ github.sha }}
+
+      - name: Expand archived asset artifacts
+        run: |
+          tar xvzf artifacts.tar.gz
+
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
+        with:
+          ruby-version: ${{ matrix.ruby-version}}
+          additional-system-dependencies: ffmpeg libpam-dev libyaml-dev
+
+      - name: Load database schema
+        run: './bin/rails db:create db:schema:load db:seed'
+
+      - run: bin/rspec --tag paperclip_processing
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
@@ -209,7 +296,7 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg imagemagick
+          additional-system-dependencies: ffmpeg
 
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
@@ -329,7 +416,7 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg imagemagick
+          additional-system-dependencies: ffmpeg
 
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript

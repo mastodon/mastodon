@@ -27,7 +27,7 @@ require_relative '../lib/sanitize_ext/sanitize_config'
 require_relative '../lib/redis/namespace_extensions'
 require_relative '../lib/paperclip/url_generator_extensions'
 require_relative '../lib/paperclip/attachment_extensions'
-require_relative '../lib/paperclip/lazy_thumbnail'
+
 require_relative '../lib/paperclip/gif_transcoder'
 require_relative '../lib/paperclip/media_type_spoof_detector_extensions'
 require_relative '../lib/paperclip/transcoder'
@@ -51,6 +51,8 @@ require_relative '../lib/rails/engine_extensions'
 require_relative '../lib/action_dispatch/remote_ip_extensions'
 require_relative '../lib/active_record/database_tasks_extensions'
 require_relative '../lib/active_record/batches'
+require_relative '../lib/active_record/with_recursive'
+require_relative '../lib/arel/union_parenthesizing'
 require_relative '../lib/simple_navigation/item_extensions'
 
 Bundler.require(:pam_authentication) if ENV['PAM_ENABLED'] == 'true'
@@ -98,6 +100,14 @@ module Mastodon
 
     config.before_configuration do
       require 'mastodon/redis_config'
+
+      config.x.use_vips = ENV['MASTODON_USE_LIBVIPS'] == 'true'
+
+      if config.x.use_vips
+        require_relative '../lib/paperclip/vips_lazy_thumbnail'
+      else
+        require_relative '../lib/paperclip/lazy_thumbnail'
+      end
     end
 
     config.to_prepare do

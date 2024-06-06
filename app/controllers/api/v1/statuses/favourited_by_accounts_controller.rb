@@ -53,8 +53,4 @@ class Api::V1::Statuses::FavouritedByAccountsController < Api::V1::Statuses::Bas
   def records_continue?
     @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
   end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
-  end
 end
