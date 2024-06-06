@@ -38,6 +38,7 @@ class Status < ApplicationRecord
   include RateLimitable
   include StatusSafeReblogInsert
   include StatusSearchConcern
+  include Redisable
 
   rate_limit by: :account, family: :statuses
 
@@ -419,16 +420,14 @@ class Status < ApplicationRecord
 
     self.reply = !(in_reply_to_id.nil? && thread.nil?) unless reply
 
-    if reply? && !thread.nil?
-      self.in_reply_to_account_id = carried_over_reply_to_account_id
-    end
+    self.in_reply_to_account_id = carried_over_reply_to_account_id if reply? && !thread.nil?
 
-    if conversation_id.nil?
-      if reply? && !thread.nil? && circle.nil?
-        self.conversation_id = thread.conversation_id
-      else
-        build_owned_conversation
-      end
+    return unless conversation_id.nil?
+
+    if reply? && !thread.nil? && circle.nil?
+      self.conversation_id = thread.conversation_id
+    else
+      build_owned_conversation
     end
   end
 

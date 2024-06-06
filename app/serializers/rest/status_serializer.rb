@@ -2,6 +2,7 @@
 
 class REST::StatusSerializer < ActiveModel::Serializer
   include FormattingHelper
+  include Redisable
 
   attributes :id, :created_at, :in_reply_to_id, :in_reply_to_account_id,
              :sensitive, :spoiler_text, :visibility, :language,
@@ -83,7 +84,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def circle_id
-    Redis.current.get("statuses/#{object.id}/circle_id")
+    redis.get("statuses/#{object.id}/circle_id")
   end
 
   def uri
