@@ -2,4 +2,6 @@
 
 🛠️ Your environment is fully setup with all the required software.
 
-💥 To start a development environment, simply launch `bin/dev` in a terminal to start the application processes.
+💥 Run `bin/dev` to start the application processes.
+
+🥼 Run `RAILS_ENV=test bin/rails assets:precompile && RAILS_ENV=test bin/rspec` to run the test suite.
