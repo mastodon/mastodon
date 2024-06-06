@@ -191,8 +191,4 @@ class Api::V1::StatusesController < Api::BaseController
   def serialized_accounts(accounts)
     ActiveModel::Serializer::CollectionSerializer.new(accounts, serializer: REST::AccountSerializer)
   end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
-  end
 end

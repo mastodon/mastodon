@@ -20,6 +20,12 @@ describe ScopeTransformer do
       end
     end
 
+    context 'with scope "profile"' do
+      let(:input) { 'profile' }
+
+      it_behaves_like 'a scope', nil, 'profile', 'read'
+    end
+
     context 'with scope "read"' do
       let(:input) { 'read' }
 

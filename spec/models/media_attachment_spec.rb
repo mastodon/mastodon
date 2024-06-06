@@ -139,6 +139,12 @@ RSpec.describe MediaAttachment, :paperclip_processing do
     it_behaves_like 'static 600x400 image', 'image/png', '.png'
   end
 
+  describe 'monochrome jpg' do
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('monochrome.png')) }
+
+    it_behaves_like 'static 600x400 image', 'image/png', '.png'
+  end
+
   describe 'webp' do
     let(:media) { Fabricate(:media_attachment, file: attachment_fixture('600x400.webp')) }
 
@@ -203,7 +209,9 @@ RSpec.describe MediaAttachment, :paperclip_processing do
       expect(media.type).to eq 'audio'
       expect(media.file.meta['original']['duration']).to be_within(0.05).of(0.235102)
       expect(media.thumbnail.present?).to be true
-      expect(media.file.meta['colors']['background']).to eq '#3088d4'
+
+      # NOTE: Our libvips and ImageMagick implementations currently have different results
+      expect(media.file.meta['colors']['background']).to eq(ENV['MASTODON_USE_LIBVIPS'] ? '#268cd9' : '#3088d4')
       expect(media.file_file_name).to_not eq 'boop.ogg'
     end
   end

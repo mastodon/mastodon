@@ -44,6 +44,6 @@
   %body{ class: body_classes }
     = content_for?(:content) ? yield(:content) : yield
 
-    .logo-resources{ 'tabindex' => '-1', 'inert' => true, 'aria-hidden' => true }
+    .logo-resources{ 'tabindex' => '-1', 'inert' => true, 'aria-hidden' => 'true' }
       = inline_svg_tag 'logo-symbol-icon.svg'
       = inline_svg_tag 'logo-symbol-wordmark.svg'
