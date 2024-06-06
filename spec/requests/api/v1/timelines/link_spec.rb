@@ -96,6 +96,10 @@ describe 'Link' do
     end
 
     context 'when the instance allows public preview' do
+      before do
+        Setting.timeline_preview = true
+      end
+
       context 'with an authorized user' do
         it_behaves_like 'a successful request to the link timeline'
       end
