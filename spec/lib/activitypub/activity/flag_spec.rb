@@ -36,6 +36,7 @@ RSpec.describe ActivityPub::Activity::Flag do
         expect(report).to_not be_nil
         expect(report.comment).to eq 'Boo!!'
         expect(report.status_ids).to eq [status.id]
+        expect(report.application).to be_nil
       end
     end
 

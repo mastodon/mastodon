@@ -10,7 +10,7 @@ class Api::V1::ReportsController < Api::BaseController
     @report = ReportService.new.call(
       current_account,
       reported_account,
-      report_params
+      report_params.merge(application: doorkeeper_token.application)
     )
 
     render json: @report, serializer: REST::ReportSerializer
