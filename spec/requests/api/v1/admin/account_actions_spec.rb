@@ -10,10 +10,16 @@ RSpec.describe 'Account actions' do
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   shared_examples 'a successful notification delivery' do
-    it 'notifies the user about the action taken' do
-      expect { subject }
-        .to have_enqueued_job(ActionMailer::MailDeliveryJob)
-        .with('UserMailer', 'warning', 'deliver_now!', args: [User, AccountWarning])
+    it 'notifies the user about the action taken', :sidekiq_inline do
+      emails = capture_emails { subject }
+
+      expect(emails.size)
+        .to eq(1)
+
+      expect(emails.first)
+        .to have_attributes(
+          to: contain_exactly(target_account.user.email)
+        )
     end
   end
 
