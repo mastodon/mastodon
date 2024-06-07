@@ -171,7 +171,7 @@ class PostStatusService < BaseService
   end
 
   def scheduled_in_the_past?
-    @scheduled_at.present? && @scheduled_at <= Time.now.utc + MIN_SCHEDULE_OFFSET
+    @scheduled_at.present? && @scheduled_at <= Time.now.utc
   end
 
   def bump_potential_friendship!
