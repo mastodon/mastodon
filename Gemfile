@@ -107,7 +107,7 @@ gem 'private_address_check', '~> 0.5'
 gem 'opentelemetry-api', '~> 1.2.5'
 
 group :opentelemetry do
-  gem 'opentelemetry-exporter-otlp', '~> 0.26.3', require: false
+  gem 'opentelemetry-exporter-otlp', '~> 0.27.0', require: false
   gem 'opentelemetry-instrumentation-active_job', '~> 0.7.1', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.20.1', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.21.2', require: false
