@@ -1,6 +1,5 @@
-# This docker-compose.yml sets up a deployment of Mastodon's web (Puma), Sidekiq, and streaming containers,
-# as well as the required Postgres, Redis and Elastic Search  components. Optionally, you can enable Privoxy and Tor by
-# removing the comments (#) from those blocks.
+# This file is designed for production server deployment, not local development work
+# For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/README.md#docker
 
 # You should check the Docker image tag used for the web, sidekiq, and streaming containers to make sure you are running
 # the appropriate version for your deployment. Using `nightly` will deploy the in-development version of Mastodon, which is

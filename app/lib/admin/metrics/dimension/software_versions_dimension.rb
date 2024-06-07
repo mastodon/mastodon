@@ -10,7 +10,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   protected
 
   def perform_query
-    [mastodon_version, ruby_version, postgresql_version, redis_version, elasticsearch_version].compact
+    [mastodon_version, ruby_version, postgresql_version, redis_version, elasticsearch_version, libvips_version].compact
   end
 
   def mastodon_version
@@ -69,6 +69,17 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
     }
   rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error
     nil
+  end
+
+  def libvips_version
+    return unless Rails.configuration.x.use_vips
+
+    {
+      key: 'libvips',
+      human_key: 'libvips',
+      value: Vips.version_string,
+      human_value: Vips.version_string,
+    }
   end
 
   def redis_info

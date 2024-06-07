@@ -43,10 +43,6 @@ class Api::V1::ScheduledStatusesController < Api::BaseController
     params.permit(:scheduled_at)
   end
 
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
-  end
-
   def next_path
     api_v1_scheduled_statuses_url pagination_params(max_id: pagination_max_id) if records_continue?
   end

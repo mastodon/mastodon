@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   app:
     working_dir: /workspaces/mastodon/
@@ -7,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ../..:/workspaces:cached
+      - ..:/workspaces/mastodon:cached
     environment:
       RAILS_ENV: development
       NODE_ENV: development

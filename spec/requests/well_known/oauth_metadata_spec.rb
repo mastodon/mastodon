@@ -6,7 +6,7 @@ describe 'The /.well-known/oauth-authorization-server request' do
   let(:protocol) { ENV.fetch('LOCAL_HTTPS', true) ? :https : :http }
 
   before do
-    host! ENV.fetch('LOCAL_DOMAIN')
+    host! Rails.configuration.x.local_domain
   end
 
   it 'returns http success with valid JSON response' do

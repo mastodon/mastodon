@@ -7,15 +7,10 @@ module Paperclip
     MIN_CONTRAST        = 3.0
     ACCENT_MIN_CONTRAST = 2.0
     FREQUENCY_THRESHOLD = 0.01
+    BINS = 10
 
     def make
-      depth = 8
-
-      # Determine background palette by getting colors close to the image's edge only
-      background_palette = palette_from_histogram(convert(':source -alpha set -gravity Center -region 75%x75% -fill None -colorize 100% -alpha transparent +region -format %c -colors :quantity -depth :depth histogram:info:', source: File.expand_path(@file.path), quantity: 10, depth: depth), 10)
-
-      # Determine foreground palette from the whole image
-      foreground_palette = palette_from_histogram(convert(':source -format %c -colors :quantity -depth :depth histogram:info:', source: File.expand_path(@file.path), quantity: 10, depth: depth), 10)
+      background_palette, foreground_palette = Rails.configuration.x.use_vips ? palettes_from_libvips : palettes_from_imagemagick
 
       background_color   = background_palette.first || foreground_palette.first
       foreground_colors  = []
@@ -78,6 +73,75 @@ module Paperclip
 
     private
 
+    def palettes_from_libvips
+      image = downscaled_image
+      block_edge_dim = (image.height * 0.25).floor
+      line_edge_dim = (image.width * 0.25).floor
+
+      edge_image = begin
+        top = image.crop(0, 0, image.width, block_edge_dim)
+        bottom = image.crop(0, image.height - block_edge_dim, image.width, block_edge_dim)
+        left = image.crop(0, block_edge_dim, line_edge_dim, image.height - (block_edge_dim * 2))
+        right = image.crop(image.width - line_edge_dim, block_edge_dim, line_edge_dim, image.height - (block_edge_dim * 2))
+        top.join(bottom, :vertical).join(left, :horizontal).join(right, :horizontal)
+      end
+
+      background_palette = palette_from_image(edge_image)
+      foreground_palette = palette_from_image(image)
+      [background_palette, foreground_palette]
+    end
+
+    def palettes_from_imagemagick
+      depth = 8
+
+      # Determine background palette by getting colors close to the image's edge only
+      background_palette = palette_from_im_histogram(convert(':source -alpha set -gravity Center -region 75%x75% -fill None -colorize 100% -alpha transparent +region -format %c -colors :quantity -depth :depth histogram:info:', source: File.expand_path(@file.path), quantity: 10, depth: depth), 10)
+
+      # Determine foreground palette from the whole image
+      foreground_palette = palette_from_im_histogram(convert(':source -format %c -colors :quantity -depth :depth histogram:info:', source: File.expand_path(@file.path), quantity: 10, depth: depth), 10)
+      [background_palette, foreground_palette]
+    end
+
+    def downscaled_image
+      image = Vips::Image.new_from_file(@file.path, access: :random).thumbnail_image(100)
+
+      image.colourspace(:srgb).extract_band(0, n: 3)
+    end
+
+    def palette_from_image(image)
+      # `hist_find_ndim` will create a BINS×BINS×BINS 3D histogram of the image
+      # represented as an image of size BINS×BINS with `BINS` bands.
+      # The number of occurrences of a color (r, g, b) is thus encoded in band `b` at pixel position `(r, g)`
+      histogram = image.hist_find_ndim(bins: BINS)
+
+      # `histogram.max` returns an array of maxima with their pixel positions, but we don't know in which
+      # band they are
+      _, colors = histogram.max(size: 10, out_array: true, x_array: true, y_array: true)
+
+      colors['out_array'].zip(colors['x_array'], colors['y_array']).map do |v, x, y|
+        rgb_from_xyv(histogram, x, y, v)
+      end.reverse
+    end
+
+    # rubocop:disable Naming/MethodParameterName
+    def rgb_from_xyv(image, x, y, v)
+      pixel = image.getpoint(x, y)
+
+      # Unfortunately, we only have the first 2 dimensions, so try to
+      # guess the third one by looking up the value
+
+      # NOTE: this means that if multiple bins with the same `r` and `g`
+      # components have the same number of occurrences, we will always return
+      # the one with the lowest `b` value. This means that in case of a tie,
+      # we will return the same color twice and skip the ones it tied with.
+      z = pixel.find_index(v)
+
+      r = (x + 0.5) * 256 / BINS
+      g = (y + 0.5) * 256 / BINS
+      b = (z + 0.5) * 256 / BINS
+      ColorDiff::Color::RGB.new(r, g, b)
+    end
+
     def w3c_contrast(color1, color2)
       luminance1 = (color1.to_xyz.y * 0.01) + 0.05
       luminance2 = (color2.to_xyz.y * 0.01) + 0.05
@@ -89,7 +153,6 @@ module Paperclip
       end
     end
 
-    # rubocop:disable Naming/MethodParameterName
     def rgb_to_hsl(r, g, b)
       r /= 255.0
       g /= 255.0
@@ -170,7 +233,7 @@ module Paperclip
       ColorDiff::Color::RGB.new(*hsl_to_rgb(hue, saturation, light))
     end
 
-    def palette_from_histogram(result, quantity)
+    def palette_from_im_histogram(result, quantity)
       frequencies       = result.scan(/([0-9]+):/).flatten.map(&:to_f)
       hex_values        = result.scan(/\#([0-9A-Fa-f]{6,8})/).flatten
       total_frequencies = frequencies.sum.to_f

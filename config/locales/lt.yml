@@ -265,10 +265,10 @@ lt:
         destroy_user_role_html: "%{name} ištrynė %{target} vaidmenį"
         disable_2fa_user_html: "%{name} išjungė dviejų veiksnių reikalavimą naudotojui %{target}"
         disable_custom_emoji_html: "%{name} išjungė jaustuką %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} išjungė el. pašto prieigos tapatybės nustatymą %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} išjungė el. pašto prieigos tapatybės nustatymą naudotojui %{target}"
         disable_user_html: "%{name} išjungė prisijungimą naudotojui %{target}"
         enable_custom_emoji_html: "%{name} įjungė jaustuką %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} įjungė el. pašto prieigos tapatybės nustatymą %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} įjungė el. pašto prieigos tapatybės nustatymą naudotojui %{target}"
         enable_user_html: "%{name} įjungė prisijungimą naudotojui %{target}"
         memorialize_account_html: "%{name} pavertė %{target} paskyrą į atminimo puslapį"
         promote_user_html: "%{name} paaukštino naudotoją %{target}"
@@ -440,9 +440,13 @@ lt:
         create: Pridėto domeną
         title: Naujas el pašto juodojo sąrašo įtraukimas
       title: El pašto juodasis sąrašas
+    export_domain_blocks:
+      import:
+        description_html: Netrukus importuosi domenų blokavimų sąrašą. Labai atidžiai peržiūrėk šį sąrašą, ypač jei ne tu jį sudarei.
     instances:
       availability:
         title: Prieinamumas
+        warning: Paskutinis bandymas prisijungti prie šio serverio buvo nesėkmingas
       back_to_all: Visi
       back_to_limited: Apribotas
       back_to_warning: Įspėjimas
@@ -485,7 +489,7 @@ lt:
       inbox_url: Perdavimo URL
       pending: Laukiama perdavimo patvirtinimo
       save_and_enable: Išsaugoti ir įjungti
-      setup: Sukurti perdavimo ryšį
+      setup: Nustatyti perdavimo ryšį
       status: Statusas
       title: Perdavimai
     report_notes:
@@ -493,6 +497,7 @@ lt:
       destroyed_msg: Skundo žinutė sekmingai ištrinta!
     reports:
       action_taken_by: Veiksmo ėmėsi
+      actions_description_html: Nuspręsk, kokių veiksmų imtis, kad išspręstum šią ataskaitą. Jei imsis baudžiamųjų veiksmų prieš paskyrą, apie kurią pranešta, jiems bus išsiųstas el. laiško pranešimas, išskyrus atvejus, kai pasirinkta kategorija <strong>Šlamštas</strong>.
       already_suspended_badges:
         local: Jau sustabdytas šiame serveryje
         remote: Jau sustabdytas jų serveryje
@@ -534,6 +539,7 @@ lt:
         manage_invites: Tvarkyti kvietimus
         manage_invites_description: Leidžia naudotojams naršyti ir deaktyvuoti kvietimų nuorodas.
         manage_taxonomies_description: Leidžia naudotojams peržiūrėti tendencingą turinį ir atnaujinti saitažodžių nustatymus
+        manage_user_access_description: Leidžia naudotojams išjungti kitų naudotojų dvigubo tapatybės nustatymą, pakeisti el. pašto adresą ir iš naujo nustatyti slaptažodį.
     settings:
       captcha_enabled:
         desc_html: Tai priklauso nuo hCaptcha išorinių skriptų, kurie gali kelti susirūpinimą dėl saugumo ir privatumo. Be to, <strong>dėl to registracijos procesas kai kuriems žmonėms (ypač neįgaliesiems) gali būti gerokai sunkiau prieinami</strong>. Dėl šių priežasčių apsvarstyk alternatyvias priemones, pavyzdžiui, patvirtinimu arba kvietimu grindžiamą registraciją.
@@ -546,6 +552,15 @@ lt:
         all: Visiems
       registrations:
         moderation_recommandation: Prieš atidarant registraciją visiems, įsitikink, kad turi tinkamą ir reaguojančią prižiūrėjimo komandą!
+      registrations_mode:
+        modes:
+          approved: Registracijai privalomas patvirtinimas
+        warning_hint: Rekomenduojame naudoti „Registracijai privalomas patvirtinimas“, nebent esi tikras (-a), kad tavo prižiūrėjimo komanda gali laiku apdoroti šlamštus ir kenkėjiškas registracijas.
+      security:
+        authorized_fetch: Reikalauti tapatybės nustatymo iš federacinių serverių
+        authorized_fetch_hint: Reikalauti tapatybės nustatymo iš federacinių serverių leidžia griežčiau užtikrinti tiek naudotojo, tiek serverio lygio blokų vykdymą. Tačiau dėl to nukenčia našumas, sumažėja atsakymų pasiekiamumas ir gali kilti suderinamumo su kai kuriomis federacinėmis paslaugomis problemų. Be to, tai nesutrukdys skirtiems dalyviams gauti tavo viešų įrašų ir paskyrų.
+        authorized_fetch_overridden_hint: Šiuo metu negali pakeisti šio nustatymo, nes jį pakeičia aplinkos kintamasis.
+        federation_authentication: Federacijos tapatybės nustatymo vykdymas
     software_updates:
       description: Rekomenduojama nuolat atnaujinti Mastodon diegyklę, kad galėtum naudotis naujausiais pataisymais ir funkcijomis. Be to, kartais labai svarbu laiku atnaujinti Mastodon, kad būtų išvengta saugumo problemų. Dėl šių priežasčių Mastodon kas 30 minučių tikrina, ar yra naujinimų, ir praneša tau apie tai pagal tavo el. pašto pranešimų parinktis.
       documentation_link: Sužinoti daugiau
@@ -586,6 +601,8 @@ lt:
       elasticsearch_preset_single_node:
         action: Žiūrėti dokumentaciją
         message_html: Tavo Elasticsearch klasteris turi tik vieną mazgą, <code>ES_PRESET</code> turėtų būti nustatyta į <code>single_node_cluster</code>.
+      elasticsearch_running_check:
+        message_html: Nepavyko prijungti prie Elasticsearch. Patikrink, ar ji veikia, arba išjunk viso teksto paiešką.
     title: Administracija
     trends:
       allow: Leisti
@@ -687,34 +704,71 @@ lt:
     warning: Būkite atsargūs su šia informacija. Niekada jos nesidalinkite!
     your_token: Tavo prieigos raktas
   auth:
+    apply_for_account: Prašyti paskyros
+    captcha_confirmation:
+      help_html: Jei turi problemų išsprendžiant CAPTCHA, gali susisiekti su mumis per %{email} ir mes tau padėsime.
+      hint_html: Dar vienas dalykas! Turime patvirtinti, kad esi žmogus (kad galėtume išvengti šlamšto). Išspręsk toliau pateiktą CAPTCHA ir spausk Tęsti.
+      title: Saugumo patikrinimas
     confirmations:
+      awaiting_review: Tavo el. pašto adresas yra patvirtintas! Domeno %{domain} personalas dabar tikrina tavo registraciją. Jei jie patvirtins tavo paskyrą, gausi el. laišką.
+      awaiting_review_title: Peržiūrima tavo registracija
+      clicking_this_link: paspausti šį nuorodą
+      login_link: prisijungti
+      proceed_to_login_html: Dabar gali pereiti prie %{login_link}.
+      redirect_to_app_html: Turėjei būti nukreiptas (-a) į <strong>%{app_name}</strong> programėlę. Jei taip neatsitiko, pabandyk %{clicking_this_link} arba rankiniu būdu grįžk į programėlę.
+      registration_complete: Tavo registracija domene %{domain} baigta!
       welcome_title: Sveiki, %{name}!
+      wrong_email_hint: Jei šis el. pašto adresas neteisingas, gali jį pakeisti paskyros nustatymuose.
     delete_account: Ištrinti paskyrą
-    delete_account_html: Jeigu norite ištrinti savo paskyrą, galite eiti <a href="%{path}">čia</a>. Jūsų prašys patvirtinti pasirinkimą.
+    delete_account_html: Jei nori ištrinti savo paskyrą, gali <a href="%{path}">tęsti čia</a>. Tavęs bus paprašyta patvirtinimo.
     description:
       prefix_invited_by_user: "@%{name} kviečia prisijungti prie šio Mastodon serverio!"
-      prefix_sign_up: Užsiregistruok Mastodon šiandien!
+      prefix_sign_up: Užsiregistruok sistemoje Mastodon šiandien!
+      suffix: Su paskyra galėsi sekti žmones, skelbti naujienas ir keistis žinutėmis su bet kurio Mastodon serverio naudotojais ir dar daugiau!
     didnt_get_confirmation: Negavai patvirtinimo nuorodos?
     dont_have_your_security_key: Neturi saugumo rakto?
     forgot_password: Pamiršai slaptažodį?
     invalid_reset_password_token: Slaptažodžio atkūrimo raktas yra netinkamas arba nebegaliojantis. Paprašyk naujo.
+    link_to_otp: Įvesk dvigubą kodą iš telefono arba atkūrimo kodą
+    link_to_webauth: Naudoti saugumo rakto įrenginį
     log_in_with: Prisijungti su
     login: Prisijungti
     logout: Atsijungti
-    migrate_account: Prisijungti prie kitos paskyros
-    migrate_account_html: Jeigu norite nukreipti šią paskyrą į kita, galite tai <a href="%{path}">konfiguruoti čia</a>.
+    migrate_account: Persikelti prie kitos paskyros
+    migrate_account_html: Jei nori šią paskyrą nukreipti į kitą, gali <a href="%{path}">sukonfigūruoti ją čia</a>.
     or_log_in_with: Arba prisijungti su
+    privacy_policy_agreement_html: Perskaičiau ir sutinku su <a href="%{privacy_policy_path}" target="_blank">privatumo politika</a>
+    progress:
+      confirm: Patvirtinti el. paštą
+      details: Tavo duomenys
+      review: Mūsų peržiūra
+      rules: Priimti taisykles
     providers:
       cas: CAS
       saml: SAML
     register: Užsiregistruoti
-    reset_password: Atstatyti slaptažodį
+    registration_closed: "%{instance} nepriima naujų narių"
+    resend_confirmation: Iš naujo siųsti patvirtinimo nuorodą
+    reset_password: Nustatyti iš naujo slaptažodį
     rules:
+      accept: Priimti
+      back: Grįžti
       invited_by: 'Gali prisijungti prie %{domain} pagal kvietimą, kurį gavai iš:'
+      preamble: Tai nustatė ir taiko %{domain} prižiūrėtojai.
       preamble_invited: Prieš tęsiant, atsižvelk į pagrindines taisykles, kurias nustatė %{domain} prižiūrėtojai.
+      title: Kelios pagrindinės taisyklės.
       title_invited: Esi pakviestas.
     security: Apsauga
     set_new_password: Nustatyti naują slaptažodį
+    setup:
+      email_below_hint_html: Patikrink šlamšto aplanką arba paprašyk kito. Gali ištaisyti savo el. pašto adresą, jei jis neteisingas.
+      email_settings_hint_html: Spustelėk mūsų atsiųstą nuorodą, kad patikrintum %{email}. Mes lauksime čia.
+      link_not_received: Negavai nuorodos?
+      new_confirmation_instructions_sent: Po kelių minučių gausi naują el. laišką su patvirtinimo nuoroda!
+      title: Patikrinti pašto dėžutę
+    sign_in:
+      preamble_html: Prisijunk su savo <strong>%{domain}</strong> kredencialais. Jei tavo yra kitame serveryje, čia prisijungti negalėsi.
+      title: Prisijungti prie %{domain}
     status:
       account_status: Paskyros būsena
       redirecting_to: Tavo paskyra yra neaktyvi, nes šiuo metu ji nukreipiama į %{acct}.
@@ -851,6 +905,12 @@ lt:
       expires_at: Baigsis
       uses: Naudojimai
     title: Kviesti žmones
+  login_activities:
+    authentication_methods:
+      otp: dvigubas tapatybės nustatymo programėlė
+    description_html: Jei pastebėjei neatpažįstamą veiklą, apsvarstyk galimybę pakeisti slaptažodį ir įjungti dvigubą tapatybės nustatymą.
+    empty: Tapatybės nustatymas istorijos nėra
+    title: Tapatybės nustatymo istorija
   media_attachments:
     validations:
       images_and_video: Negalima pridėti video prie statuso, kuris jau turi nuotrauką
@@ -893,6 +953,10 @@ lt:
           billion: mlrd.
           million: mln.
           thousand: tūkst.
+  otp_authentication:
+    code_hint: Įvesk autentifikatoriaus programėlės sugeneruotą kodą, kad patvirtintum
+    description_html: Jei įjungsi <strong>dvigubo tapatybės nustatymą</strong> naudojant autentifikatoriaus programėlę, prisijungiant reikės turėti telefoną, kuris generuos prieigos raktos, kuriuos turėsi įvesti.
+    instructions_html: "<strong>Nuskenuok šį QR kodą į Google Authenticator arba panašią TOTP programėlę savo telefone</strong>. Nuo šiol ši programėlė generuos prieigos raktus, kuriuos turėsi įvesti prisijungiant."
   pagination:
     newer: Naujesnis
     next: Kitas
@@ -963,6 +1027,7 @@ lt:
     revoke: Naikinti
     revoke_success: Seansas sėkmingai panaikintas.
     title: Seansai
+    view_authentication_history: Peržiūrėti paskyros tapatybės nustatymo istoriją
   settings:
     account: Paskyra
     account_settings: Paskyros nustatymai
@@ -982,7 +1047,7 @@ lt:
     profile: Viešas profilis
     relationships: Sekimai ir sekėjai
     severed_relationships: Nutrūkę sąryšiai
-    two_factor_authentication: Dviejų veiksnių autentikacija
+    two_factor_authentication: Dvigubas tapatybės nustatymas
   severed_relationships:
     download: Atsisiųsti (%{count})
     preamble: Užblokavus domeną arba prižiūrėtojams nusprendus pristabdyti nuotolinio serverio veiklą, gali prarasti sekimus ir sekėjus. Kai taip atsitiks, galėsi atsisiųsti nutrauktų sąryšių sąrašus, kad juos patikrinti ir galbūt importuoti į kitą serverį.
@@ -1035,10 +1100,12 @@ lt:
   two_factor_authentication:
     add: Pridėti
     disable: Išjungti 2FA
-    enabled: Dviejų veiksnių autentikacija įjungta
-    enabled_success: Dviejų veiksnių autentikacija sėkmingai įjungta
+    disabled_success: Dvigubas tapatybės nustatymas sėkmingai išjungtas
+    enabled: Dvigubas tapatybės nustatymas įjungtas
+    enabled_success: Dvigubas tapatybės nustatymas sėkmingai įjungtas
     generate_recovery_codes: Sugeneruoti atkūrimo kodus
     lost_recovery_codes: Atkūrimo kodai jums leidžia atgauti prisijungimą prie Jūsų paskyros, jeigu prarandate telefoną. Jeigu praradote atkūrimo kodus, juos galite sugeneruoti čia. Jūsų senieji atkūrimo kodai nebeveiks.
+    otp: Autentifikatoriaus programėlė
     recovery_codes: Atsarginio atkūrimo kodai
     recovery_codes_regenerated: Atkūrimo kodai sėkmingai sugeneruoti
     recovery_instructions_html: Jeigu prarandate prieiga prie telefono, jūs galite naudoti atkūrimo kodus esančius žemiau, kad atgautumėte priega prie savo paskyros.<strong>Laikykite atkūrimo kodus saugiai</strong> Pavyzdžiui, galite norėti juos išspausdinti, ir laikyti kartu su kitais svarbiais dokumentais.
@@ -1055,11 +1122,15 @@ lt:
       title: Archyvas išimtas
     failed_2fa:
       details: 'Štai išsami informacija apie bandymą prisijungti:'
-      explanation: Kažkas bandė prisijungti prie tavo paskyros, bet nurodė netinkamą antrąjį tapatybės nustatymo veiksnį.
+      explanation: Kažkas bandė prisijungti prie tavo paskyros, bet nurodė netinkamą dvigubą tapatybės nustatymą.
       further_actions_html: Jei tai buvo ne tu, rekomenduojame nedelsiant imtis %{action}, nes jis gali būti pažeistas.
-      subject: Antrojo veiksnio tapatybės nustatymas nesėkmingai
-      title: Nepavyko atlikti antrojo veiksnio tapatybės nustatymo
+      subject: Dvigubas tapatybės nustatymas nesėkmingai
+      title: Nepavyko atlikti dvigubo tapatybės nustatymo
+    suspicious_sign_in:
+      further_actions_html: Jei tai buvai ne tu, rekomenduojame nedelsiant %{action} ir įjungti dvigubą tapatybės nustatymą, kad tavo paskyra būtų saugi.
     warning:
+      categories:
+        spam: Šlamštas
       subject:
         disable: Jūsų paskyra %{acct} buvo užšaldyta
         none: Įspėjmas vartotojui %{acct}
@@ -1134,3 +1205,4 @@ lt:
       success: Tavo saugumo raktas buvo sėkmingai ištrintas.
     nickname_hint: Įvesk naujojo saugumo rakto slapyvardį
     not_enabled: Dar neįjungei WebAuthn
+    otp_required: Norint naudoti saugumo raktus, pirmiausia įjunk dvigubą tapatybės nustatymą.

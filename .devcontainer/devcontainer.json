@@ -23,12 +23,14 @@
     }
   },
 
+  "remoteUser": "root",
+
   "otherPortsAttributes": {
     "onAutoForward": "silent"
   },
 
   "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
-  "postCreateCommand": ".devcontainer/post-create.sh",
+  "postCreateCommand": "bin/setup",
   "waitFor": "postCreateCommand",
 
   "customizations": {
