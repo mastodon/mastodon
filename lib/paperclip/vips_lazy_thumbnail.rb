@@ -68,7 +68,7 @@ module Paperclip
       end
 
       dst
-    rescue Terrapin::ExitStatusError => e
+    rescue Vips::Error, Terrapin::ExitStatusError => e
       raise Paperclip::Error, "Error while optimizing #{@basename}: #{e}"
     rescue Terrapin::CommandNotFoundError
       raise Paperclip::Errors::CommandNotFoundError, 'Could not run the `ffmpeg` command. Please install ffmpeg.'
