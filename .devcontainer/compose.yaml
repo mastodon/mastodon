@@ -2,8 +2,8 @@ services:
   app:
     working_dir: /workspaces/mastodon/
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
     volumes:
       - ..:/workspaces/mastodon:cached
     environment:
