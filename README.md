@@ -102,26 +102,35 @@ To set up **MacOS** for native development, complete the following steps:
 ### Docker
 
 For production hosting and deployment with **Docker**, use the `Dockerfile` and
-`docker-compose.yml` in the project root directory. To create a local
-development environment with **Docker**, complete the following steps:
+`docker-compose.yml` in the project root directory.
 
-- Install Docker Desktop
-- Run `docker compose -f .devcontainer/docker-compose.yml up -d`
-- Run `docker compose -f .devcontainer/docker-compose.yml exec app bin/setup`
-- Finally, run `docker compose -f .devcontainer/docker-compose.yml exec app bin/dev`
+For local development, install and launch [Docker], and run:
 
-If you are using an IDE with [support for the Development Container specification](https://containers.dev/supporting), it will run the above `docker compose` commands automatically. For **Visual Studio Code** this requires the [Dev Container extension](https://containers.dev/supporting#dev-containers).
+```shell
+docker compose -f .devcontainer/compose.yaml up -d
+docker compose -f .devcontainer/compose.yaml exec app bin/setup
+docker compose -f .devcontainer/compose.yaml exec app bin/dev
+```
+
+### Dev Containers
+
+Within IDEs that support the [Development Containers] specification, start the
+"Mastodon on local machine" container from the editor. The necessary `docker
+compose` commands to build and setup the container should run automatically. For
+**Visual Studio Code** this requires installing the [Dev Container extension].
 
 ### GitHub Codespaces
 
-To get you coding in just a few minutes, GitHub Codespaces provides a web-based version of Visual Studio Code and a cloud-hosted development environment fully configured with the software needed for this project..
+[GitHub Codespaces] provides a web-based version of VS Code and a cloud hosted
+development environment configured with the software needed for this project.
 
-- Click this button to create a new codespace:<br>
-  [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=52281283&devcontainer_path=.devcontainer%2Fcodespaces%2Fdevcontainer.json)
-- Wait for the environment to build. This will take a few minutes.
-- When the editor is ready, run `bin/dev` in the terminal.
-- After a few seconds, a popup will appear with a button labeled _Open in Browser_. This will open Mastodon.
-- On the _Ports_ tab, right click on the “stream” row and select _Port visibility_ → _Public_.
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)][codespace]
+
+- Click the button to create a new codespace, and confirm the options
+- Wait for the environment to build (takes a few minutes)
+- When the editor is ready, run `bin/dev` in the terminal
+- Wait for an _Open in Browser_ prompt. This will open Mastodon
+- On the _Ports_ tab "stream" setting change _Port visibility_ → _Public_
 
 ## Contributing
 
@@ -140,3 +149,9 @@ This program is free software: you can redistribute it and/or modify it under th
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+[codespace]: https://codespaces.new/mastodon/mastodon?quickstart=1&devcontainer_path=.devcontainer%2Fcodespaces%2Fdevcontainer.json
+[Dev Container extension]: https://containers.dev/supporting#dev-containers
+[Development Containers]: https://containers.dev/supporting
+[Docker]: https://docs.docker.com
+[GitHub Codespaces]: https://docs.github.com/en/codespaces
