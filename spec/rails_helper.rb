@@ -14,8 +14,6 @@ unless ENV['DISABLE_SIMPLECOV'] == 'true'
       formatter SimpleCov::Formatter::HTMLFormatter
     end
 
-    enable_coverage :branch
-
     add_filter 'lib/linter'
 
     add_group 'Libraries', 'lib'
