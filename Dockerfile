@@ -187,7 +187,6 @@ RUN \
 # Download and install required Gems
   bundle install -j"$(nproc)";
 
-# Create temporary libvibs specific build layer from build layer
 FROM build as libvips
 
 # libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
