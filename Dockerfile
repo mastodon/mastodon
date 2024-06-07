@@ -159,6 +159,25 @@ RUN \
     libwebp-dev \
   ;
 
+# libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
+# renovate: datasource=github-releases depName=libvips packageName=libvips/libvips
+ARG VIPS_VERSION=8.15.2
+# libvips download URL, change with [--build-arg VIPS_URL="https://github.com/libvips/libvips/releases/download"]
+ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
+
+WORKDIR /usr/local/src
+
+RUN \
+  curl -sSL -o vips-${VIPS_VERSION}.tar.xz ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz; \
+  tar xf vips-${VIPS_VERSION}.tar.xz; \
+  cd vips-${VIPS_VERSION}; \
+  meson setup build --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false; \
+  cd build; \
+  ninja; \
+  ninja install;
+
+WORKDIR /opt/mastodon
+
 RUN \
 # Configure Corepack
   rm /usr/local/bin/yarn*; \
@@ -186,25 +205,6 @@ RUN \
   bundle config set silence_root_warning "true"; \
 # Download and install required Gems
   bundle install -j"$(nproc)";
-
-FROM build as libvips
-
-# libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
-# renovate: datasource=github-releases depName=libvips packageName=libvips/libvips
-ARG VIPS_VERSION=8.15.2
-# libvips download URL, change with [--build-arg VIPS_URL="https://github.com/libvips/libvips/releases/download"]
-ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
-
-WORKDIR /usr/local/src
-
-RUN \
-  curl -sSL -o vips-${VIPS_VERSION}.tar.xz ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz; \
-  tar xf vips-${VIPS_VERSION}.tar.xz; \
-  cd vips-${VIPS_VERSION}; \
-  meson setup build --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false; \
-  cd build; \
-  ninja; \
-  ninja install;
 
 # Create temporary node specific build layer from build layer
 FROM build as yarn
@@ -294,9 +294,9 @@ COPY --from=precompiler /opt/mastodon/public/assets /opt/mastodon/public/assets
 # Copy bundler components to layer
 COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
 # Copy libvips components to layer
-COPY --from=libvips /usr/local/bin/vips* /usr/local/bin
-COPY --from=libvips /usr/local/lib/libvips* /usr/local/lib
-COPY --from=libvips /usr/local/lib/pkgconfig/vips* /usr/local/lib/pkgconfig
+COPY --from=build /usr/local/bin/vips* /usr/local/bin
+COPY --from=build /usr/local/lib/libvips* /usr/local/lib
+COPY --from=build /usr/local/lib/pkgconfig/vips* /usr/local/lib/pkgconfig
 
 RUN \
 # Symlink libvips components
