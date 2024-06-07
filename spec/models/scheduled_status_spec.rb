@@ -29,12 +29,16 @@ RSpec.describe ScheduledStatus do
     end
 
     context 'when account has reached daily limit' do
-      subject { Fabricate.build(:scheduled_status, account: account, scheduled_at: Time.current.tomorrow + 10.minutes) }
+      subject { Fabricate.build(:scheduled_status, account: account, scheduled_at: base_time + 10.minutes) }
+
+      let(:base_time) { Time.current.change(hour: 12) }
 
       before do
         stub_const('ScheduledStatus::DAILY_LIMIT', 3)
 
-        Fabricate.times(ScheduledStatus::DAILY_LIMIT, :scheduled_status, account: account, scheduled_at: Time.current.tomorrow.beginning_of_day)
+        travel_to base_time do
+          Fabricate.times(ScheduledStatus::DAILY_LIMIT, :scheduled_status, account: account, scheduled_at: base_time + 1.hour)
+        end
       end
 
       it 'is not valid', :aggregate_failures do
