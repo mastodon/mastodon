@@ -175,9 +175,8 @@ RUN \
   ;
 
 # libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
+# renovate: datasource=github-releases depName=libvips packageName=libvips/libvips
 ARG VIPS_VERSION=8.15.2
-# libvips sha256 hash of downloaded archive, change with [--build-arg VIPS_SHA256="a1b2c3..."]
-ARG VIPS_SHA256=a2ab15946776ca7721d11cae3215f20f1f097b370ff580cd44fc0f19387aee84
 # libvips download URL, change with [--build-arg VIPS_URL="https://github.com/libvips/libvips/releases/download"]
 ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
 
@@ -185,9 +184,6 @@ WORKDIR /usr/local/src
 
 RUN \
   curl -sSL -o vips-${VIPS_VERSION}.tar.xz ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz; \
-  echo "$VIPS_SHA256 vips-${VIPS_VERSION}.tar.xz" | sha256sum --check || exit 1;
-
-RUN \
   tar xf vips-${VIPS_VERSION}.tar.xz; \
   cd vips-${VIPS_VERSION}; \
   meson setup build --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false; \
@@ -206,9 +202,8 @@ RUN \
 FROM build as ffmpeg
 
 # ffmpeg version to compile, change with [--build-arg FFMPEG_VERSION="7.0.x"]
+# renovate: datasource=repology depName=ffmpeg packageName=openpkg_current/ffmpeg
 ARG FFMPEG_VERSION=7.0.1
-# ffmpeg sha256 hash of downloaded archive, change with [--build-arg FFMPEG_SHA256="a1b2c3..."]
-ARG FFMPEG_SHA256=bce9eeb0f17ef8982390b1f37711a61b4290dc8c2a0c1a37b5857e85bfb0e4ff
 # ffmpeg download URL, change with [--build-arg FFMPEG_URL="https://ffmpeg.org/releases"]
 ARG FFMPEG_URL=https://ffmpeg.org/releases
 
@@ -216,9 +211,6 @@ WORKDIR /usr/local/src
 
 RUN \
   curl -sSL -o ffmpeg-${FFMPEG_VERSION}.tar.xz ${FFMPEG_URL}/ffmpeg-${FFMPEG_VERSION}.tar.xz; \
-  echo "$FFMPEG_SHA256 ffmpeg-${FFMPEG_VERSION}.tar.xz" | sha256sum --check || exit 1;
-
-RUN \
   tar xf ffmpeg-${FFMPEG_VERSION}.tar.xz; \
   cd ffmpeg-${FFMPEG_VERSION}; \
   mkdir -p /opt/ffmpeg; \
