@@ -6,15 +6,15 @@
     ':prConcurrentLimitNone', // Remove limit for open PRs at any time.
     ':prHourlyLimit2', // Rate limit PR creation to a maximum of two per hour.
   ],
-  "customManagers": [
+  customManagers: [
     {
-      "customType": "regex",
-      "description": "Update _VERSION variables in Dockerfiles",
-      "fileMatch": ["(^|/|\\.)Dockerfile$", "(^|/)Dockerfile\\.[^/]*$"],
-      "matchStrings": [
-        "# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))?\\s(?:ENV|ARG) .+?_VERSION=(?<currentValue>.+?)\\s"
-      ]
-    }
+      customType: 'regex',
+      description: 'Update _VERSION variables in Dockerfiles',
+      fileMatch: ['(^|/|\\.)Dockerfile$', '(^|/)Dockerfile\\.[^/]*$'],
+      matchStrings: [
+        '# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))?\\s(?:ENV|ARG) .+?_VERSION=(?<currentValue>.+?)\\s',
+      ],
+    },
   ],
   minimumReleaseAge: '3', // Wait 3 days after the package has been published before upgrading it
   // packageRules order is important, they are applied from top to bottom and are merged,
