@@ -174,10 +174,18 @@ RUN \
     libx265-dev \
   ;
 
+RUN \
+# Configure Corepack
+  rm /usr/local/bin/yarn*; \
+  corepack enable; \
+  corepack prepare --activate;
+
+# Create temporary libvibs specific build layer from build layer
+FROM build as libvips
+
 # libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
+# renovate: datasource=github-releases depName=libvips packageName=libvips/libvips
 ARG VIPS_VERSION=8.15.2
-# libvips sha256 hash of downloaded archive, change with [--build-arg VIPS_SHA256="a1b2c3..."]
-ARG VIPS_SHA256=a2ab15946776ca7721d11cae3215f20f1f097b370ff580cd44fc0f19387aee84
 # libvips download URL, change with [--build-arg VIPS_URL="https://github.com/libvips/libvips/releases/download"]
 ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
 
@@ -185,9 +193,6 @@ WORKDIR /usr/local/src
 
 RUN \
   curl -sSL -o vips-${VIPS_VERSION}.tar.xz ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz; \
-  echo "$VIPS_SHA256 vips-${VIPS_VERSION}.tar.xz" | sha256sum --check || exit 1;
-
-RUN \
   tar xf vips-${VIPS_VERSION}.tar.xz; \
   cd vips-${VIPS_VERSION}; \
   meson setup build --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false; \
@@ -195,14 +200,7 @@ RUN \
   ninja; \
   ninja install;
 
-WORKDIR /opt/mastodon
-
-RUN \
-# Configure Corepack
-  rm /usr/local/bin/yarn*; \
-  corepack enable; \
-  corepack prepare --activate;
-
+# Create temporary libvibs specific build layer from build layer
 FROM build as ffmpeg
 
 # ffmpeg version to compile, change with [--build-arg FFMPEG_VERSION="7.0.x"]
@@ -367,9 +365,9 @@ COPY --from=precompiler /opt/mastodon/public/assets /opt/mastodon/public/assets
 # Copy bundler components to layer
 COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
 # Copy libvips components to layer
-COPY --from=build /usr/local/bin/vips* /usr/local/bin
-COPY --from=build /usr/local/lib/libvips* /usr/local/lib
-COPY --from=build /usr/local/lib/pkgconfig/vips* /usr/local/lib/pkgconfig
+COPY --from=libvips /usr/local/bin/vips* /usr/local/bin
+COPY --from=libvips /usr/local/lib/libvips* /usr/local/lib
+COPY --from=libvips /usr/local/lib/pkgconfig/vips* /usr/local/lib/pkgconfig
 # Copy ffpmeg components to layer
 COPY --from=ffmpeg /opt/ffmpeg/bin* /usr/local/bin
 COPY --from=ffmpeg /opt/ffmpeg/lib* /usr/local/lib
