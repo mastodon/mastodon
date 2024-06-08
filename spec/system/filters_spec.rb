@@ -46,7 +46,7 @@ describe 'Filters' do
         click_on I18n.t('filters.index.delete')
       end.to change(CustomFilter, :count).by(-1)
 
-      expect(page).to_not have_content(filter_title)
+      expect(page).to have_no_content(filter_title)
     end
   end
 
