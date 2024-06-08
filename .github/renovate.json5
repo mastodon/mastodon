@@ -59,7 +59,7 @@
       dependencyDashboardApproval: true,
     },
     {
-      // Update Github Actions and Docker images weekly
+      // Update GitHub Actions and Docker images weekly
       matchManagers: ['github-actions', 'dockerfile', 'docker-compose'],
       extends: ['schedule:weekly'],
     },
