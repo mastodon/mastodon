@@ -5,13 +5,13 @@ on:
     branches:
       - main
     paths:
-      - crowdin.yml
-      - app/javascript/mastodon/locales/en.json
-      - config/locales/en.yml
-      - config/locales/simple_form.en.yml
-      - config/locales/activerecord.en.yml
-      - config/locales/devise.en.yml
-      - config/locales/doorkeeper.en.yml
+      - crowdin-glitch.yml
+      - app/javascript/flavours/glitch/locales/en.json
+      - config/locales-glitch/en.yml
+      - config/locales-glitch/simple_form.en.yml
+      - config/locales-glitch/activerecord.en.yml
+      - config/locales-glitch/devise.en.yml
+      - config/locales-glitch/doorkeeper.en.yml
       - .github/workflows/crowdin-upload.yml
 
 jobs:
