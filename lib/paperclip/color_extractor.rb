@@ -69,6 +69,8 @@ module Paperclip
       attachment.instance.file.instance_write(:meta, (attachment.instance.file.instance_read(:meta) || {}).merge(meta))
 
       @file
+    rescue Vips::Error => e
+      raise Paperclip::Error, "Error while extracting colors for #{@basename}: #{e}"
     end
 
     private

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe AppealService do
+RSpec.describe AppealService, :sidekiq_inline do
   describe '#call' do
     let!(:admin) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
