@@ -62,7 +62,7 @@ Mastodon acts as an OAuth2 provider, so 3rd party apps can use the REST and Stre
 ### Tech stack
 
 - **Ruby on Rails** powers the REST API and other web pages
-- **React.js** and Redux are used for the dynamic parts of the interface
+- **React.js** and **Redux** are used for the dynamic parts of the interface
 - **Node.js** powers the streaming API
 
 ### Requirements
