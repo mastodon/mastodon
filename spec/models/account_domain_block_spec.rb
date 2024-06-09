@@ -10,7 +10,7 @@ RSpec.describe AccountDomainBlock do
 
     described_class.create!(account: account, domain: 'a.domain.blocked.later')
 
-    expect(Rails.cache.exist?("exclude_domains_for:#{account.id}")).to be false
+    expect(account_has_exclude_domains_cache?).to be false
   end
 
   it 'removes blocking cache after destruction' do
@@ -19,6 +19,10 @@ RSpec.describe AccountDomainBlock do
 
     block.destroy!
 
-    expect(Rails.cache.exist?("exclude_domains_for:#{account.id}")).to be false
+    expect(account_has_exclude_domains_cache?).to be false
+  end
+
+  def account_has_exclude_domains_cache?
+    Rails.cache.exist?("exclude_domains_for:#{account.id}")
   end
 end
