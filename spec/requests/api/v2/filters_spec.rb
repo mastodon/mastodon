@@ -8,16 +8,6 @@ RSpec.describe 'Filters' do
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  shared_examples 'unauthorized for invalid token' do
-    let(:headers) { { 'Authorization' => '' } }
-
-    it 'returns http unauthorized' do
-      subject
-
-      expect(response).to have_http_status(401)
-    end
-  end
-
   describe 'GET /api/v2/filters' do
     subject do
       get '/api/v2/filters', headers: headers
