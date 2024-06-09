@@ -8,21 +8,22 @@ RSpec.describe AccountDomainBlock do
   it 'removes blocking cache after creation' do
     Rails.cache.write("exclude_domains_for:#{account.id}", 'a.domain.already.blocked')
 
-    expect do
-      Fabricate(
-        :account_domain_block,
-        account: account,
-        domain: 'a.domain.blocked.later'
-      )
-    end.to change { account_has_exclude_domains_cache? }.to(false)
+    expect { build_account_domain_block('a.domain.blocked.later') }
+      .to change { account_has_exclude_domains_cache? }.to(false)
   end
 
   it 'removes blocking cache after destruction' do
-    block = Fabricate(:account_domain_block, account: account, domain: 'domain')
+    block = build_account_domain_block('domain')
     Rails.cache.write("exclude_domains_for:#{account.id}", 'domain')
 
     expect { block.destroy! }
       .to change { account_has_exclude_domains_cache? }.to(false)
+  end
+
+  private
+
+  def build_account_domain_block(domain)
+    Fabricate(:account_domain_block, account: account, domain: domain)
   end
 
   def account_has_exclude_domains_cache?
