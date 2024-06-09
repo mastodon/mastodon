@@ -105,6 +105,18 @@ describe 'Public' do
         it_behaves_like 'a successful request to the public timeline'
       end
 
+      context 'with an authenticated application' do
+        let(:client_app) { Fabricate(:application) }
+        let(:token) { Fabricate(:accessible_access_token, application: client_app, scopes: scopes) }
+
+        # it_behaves_like 'a successful request to the public timeline'
+        it 'returns http unprocessable entity' do
+          subject
+
+          expect(response).to have_http_status(422)
+        end
+      end
+
       context 'with an unauthenticated user' do
         let(:headers) { {} }
 
