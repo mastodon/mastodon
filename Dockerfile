@@ -171,7 +171,7 @@ RUN \
   curl -sSL -o vips-${VIPS_VERSION}.tar.xz ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz; \
   tar xf vips-${VIPS_VERSION}.tar.xz; \
   cd vips-${VIPS_VERSION}; \
-  meson setup build --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false; \
+  meson setup build --prefix /usr/local/libvips --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false; \
   cd build; \
   ninja; \
   ninja install;
@@ -294,25 +294,16 @@ COPY --from=precompiler /opt/mastodon/public/assets /opt/mastodon/public/assets
 # Copy bundler components to layer
 COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
 # Copy libvips components to layer
-COPY --from=build /usr/local/bin/vips* /usr/local/bin
-COPY --from=build /usr/local/lib/libvips* /usr/local/lib
-COPY --from=build /usr/local/lib/pkgconfig/vips* /usr/local/lib/pkgconfig
+COPY --from=build /usr/local/libvips/bin /usr/local/bin
+COPY --from=build /usr/local/libvips/lib /usr/local/lib
 
 RUN \
-# Symlink libvips components
-  ln -sf /usr/local/lib/libvips.so.42.17.2 /usr/local/lib/libvips.so.42; \
-  ln -sf /usr/local/lib/libvips.so.42.17.2 /usr/local/lib/libvips.so; \
-  ln -sf /usr/local/lib/libvips-cpp.so.42.17.2 /usr/local/lib/libvips-cpp.so.42; \
-  ln -sf /usr/local/lib/libvips-cpp.so.42.17.2 /usr/local/lib/libvips-cpp.so; \
-  ldconfig \
-  ;
-
-RUN \
+  ldconfig; \
 # Smoketest media processors
   vips -v;
 
 RUN \
-# Precompile bootsnap code for faster Rails startup
+  # Precompile bootsnap code for faster Rails startup
   bundle exec bootsnap precompile --gemfile app/ lib/;
 
 RUN \
