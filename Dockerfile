@@ -174,19 +174,22 @@ RUN \
     libx265-dev \
   ;
 
+# Create temporary libvips specific build layer from build layer
+FROM build as libvips
+
 # libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
 # renovate: datasource=github-releases depName=libvips packageName=libvips/libvips
 ARG VIPS_VERSION=8.15.2
 # libvips download URL, change with [--build-arg VIPS_URL="https://github.com/libvips/libvips/releases/download"]
 ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
 
-WORKDIR /usr/local/src
+WORKDIR /usr/local/libvips/src
 
 RUN \
   curl -sSL -o vips-${VIPS_VERSION}.tar.xz ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz; \
   tar xf vips-${VIPS_VERSION}.tar.xz; \
   cd vips-${VIPS_VERSION}; \
-  meson setup build --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false; \
+  meson setup build --prefix /usr/local/libvips --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false; \
   cd build; \
   ninja; \
   ninja install;
@@ -199,6 +202,7 @@ RUN \
   corepack enable; \
   corepack prepare --activate;
 
+# Create temporary ffmpeg specific build layer from build layer
 FROM build as ffmpeg
 
 # ffmpeg version to compile, change with [--build-arg FFMPEG_VERSION="7.0.x"]
@@ -287,10 +291,14 @@ COPY . /opt/mastodon/
 COPY --from=yarn /opt/mastodon /opt/mastodon/
 COPY --from=bundler /opt/mastodon /opt/mastodon/
 COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
+# Copy libvips components to layer for precompiler
+COPY --from=libvips /usr/local/libvips/bin /usr/local/bin
+COPY --from=libvips /usr/local/libvips/lib /usr/local/lib
 
 ARG TARGETPLATFORM
 
 RUN \
+  ldconfig; \
 # Use Ruby on Rails to create Mastodon assets
   ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY=precompile_placeholder \
   ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT=precompile_placeholder \
@@ -359,23 +367,14 @@ COPY --from=precompiler /opt/mastodon/public/assets /opt/mastodon/public/assets
 # Copy bundler components to layer
 COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
 # Copy libvips components to layer
-COPY --from=build /usr/local/bin/vips* /usr/local/bin
-COPY --from=build /usr/local/lib/libvips* /usr/local/lib
-COPY --from=build /usr/local/lib/pkgconfig/vips* /usr/local/lib/pkgconfig
+COPY --from=libvips /usr/local/libvips/bin /usr/local/bin
+COPY --from=libvips /usr/local/libvips/lib /usr/local/lib
 # Copy ffpmeg components to layer
 COPY --from=ffmpeg /opt/ffmpeg/bin* /usr/local/bin
 COPY --from=ffmpeg /opt/ffmpeg/lib* /usr/local/lib
 
 RUN \
-# Symlink libvips components
-  ln -sf /usr/local/lib/libvips.so.42.17.2 /usr/local/lib/libvips.so.42; \
-  ln -sf /usr/local/lib/libvips.so.42.17.2 /usr/local/lib/libvips.so; \
-  ln -sf /usr/local/lib/libvips-cpp.so.42.17.2 /usr/local/lib/libvips-cpp.so.42; \
-  ln -sf /usr/local/lib/libvips-cpp.so.42.17.2 /usr/local/lib/libvips-cpp.so; \
-  ldconfig \
-  ;
-
-RUN \
+  ldconfig; \
 # Smoketest media processors
   vips -v; \
   ffmpeg -version; \
