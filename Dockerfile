@@ -174,6 +174,12 @@ RUN \
     libx265-dev \
   ;
 
+RUN \
+  # Configure Corepack
+    rm /usr/local/bin/yarn*; \
+    corepack enable; \
+    corepack prepare --activate;
+
 # Create temporary libvips specific build layer from build layer
 FROM build as libvips
 
@@ -193,14 +199,6 @@ RUN \
   cd build; \
   ninja; \
   ninja install;
-
-WORKDIR /opt/mastodon
-
-RUN \
-# Configure Corepack
-  rm /usr/local/bin/yarn*; \
-  corepack enable; \
-  corepack prepare --activate;
 
 # Create temporary ffmpeg specific build layer from build layer
 FROM build as ffmpeg
