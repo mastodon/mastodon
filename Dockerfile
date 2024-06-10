@@ -174,9 +174,13 @@ ARG VIPS_VERSION=8.15.2
 # libvips download URL, change with [--build-arg VIPS_URL="https://github.com/libvips/libvips/releases/download"]
 ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
 
+ARG TARGETPLATFORM
+
 WORKDIR /usr/local/libvips/src
 
 RUN \
+# Mount libvips from Docker buildx caches
+--mount=type=cache,id=libvips-cache-${TARGETPLATFORM},target=/usr/local/libvips,sharing=locked \
   curl -sSL -o vips-${VIPS_VERSION}.tar.xz ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz; \
   tar xf vips-${VIPS_VERSION}.tar.xz; \
   cd vips-${VIPS_VERSION}; \
