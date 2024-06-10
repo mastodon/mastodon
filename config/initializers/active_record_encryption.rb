@@ -5,6 +5,11 @@
   ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT
   ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY
 ).each do |key|
+  if ENV['SECRET_KEY_BASE_DUMMY']
+    # Use placeholder value during production env asset compilation
+    ENV[key] = SecureRandom.hex(64)
+  end
+
   value = ENV.fetch(key) do
     abort <<~MESSAGE
 
