@@ -159,13 +159,22 @@ RUN \
     libwebp-dev \
   ;
 
+RUN \
+# Configure Corepack
+  rm /usr/local/bin/yarn*; \
+  corepack enable; \
+  corepack prepare --activate;
+
+# Create temporary libvips specific build layer from build layer
+FROM build as libvips
+
 # libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
 # renovate: datasource=github-releases depName=libvips packageName=libvips/libvips
 ARG VIPS_VERSION=8.15.2
 # libvips download URL, change with [--build-arg VIPS_URL="https://github.com/libvips/libvips/releases/download"]
 ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
 
-WORKDIR /usr/local/src
+WORKDIR /usr/local/libvips/src
 
 RUN \
   curl -sSL -o vips-${VIPS_VERSION}.tar.xz ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz; \
@@ -175,14 +184,6 @@ RUN \
   cd build; \
   ninja; \
   ninja install;
-
-WORKDIR /opt/mastodon
-
-RUN \
-# Configure Corepack
-  rm /usr/local/bin/yarn*; \
-  corepack enable; \
-  corepack prepare --activate;
 
 # Create temporary bundler specific build layer from build layer
 FROM build as bundler
@@ -233,10 +234,14 @@ COPY . /opt/mastodon/
 COPY --from=yarn /opt/mastodon /opt/mastodon/
 COPY --from=bundler /opt/mastodon /opt/mastodon/
 COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
+# Copy libvips components to layer for precompiler
+COPY --from=libvips /usr/local/libvips/bin /usr/local/bin
+COPY --from=libvips /usr/local/libvips/lib /usr/local/lib
 
 ARG TARGETPLATFORM
 
 RUN \
+  ldconfig; \
 # Use Ruby on Rails to create Mastodon assets
   ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY=precompile_placeholder \
   ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT=precompile_placeholder \
@@ -294,8 +299,8 @@ COPY --from=precompiler /opt/mastodon/public/assets /opt/mastodon/public/assets
 # Copy bundler components to layer
 COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
 # Copy libvips components to layer
-COPY --from=build /usr/local/libvips/bin /usr/local/bin
-COPY --from=build /usr/local/libvips/lib /usr/local/lib
+COPY --from=libvips /usr/local/libvips/bin /usr/local/bin
+COPY --from=libvips /usr/local/libvips/lib /usr/local/lib
 
 RUN \
   ldconfig; \
