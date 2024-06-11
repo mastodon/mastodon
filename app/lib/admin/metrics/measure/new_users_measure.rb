@@ -21,7 +21,7 @@ class Admin::Metrics::Measure::NewUsersMeasure < Admin::Metrics::Measure::BaseMe
     [sql_query_string, { start_at: @start_at, end_at: @end_at }]
   end
 
-  def data_source_query
+  def data_source
     User
       .select(:id)
       .where(daily_period(:users))

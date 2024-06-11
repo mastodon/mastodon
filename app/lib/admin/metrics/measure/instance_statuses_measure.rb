@@ -27,7 +27,7 @@ class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure
     nil
   end
 
-  def data_source_query
+  def data_source
     Status
       .select(:id)
       .joins(:account)

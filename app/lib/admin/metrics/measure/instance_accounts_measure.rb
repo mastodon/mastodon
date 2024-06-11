@@ -27,7 +27,7 @@ class Admin::Metrics::Measure::InstanceAccountsMeasure < Admin::Metrics::Measure
     nil
   end
 
-  def data_source_query
+  def data_source
     Account
       .select(:id)
       .where(account_domain_sql, domain: params[:domain])
