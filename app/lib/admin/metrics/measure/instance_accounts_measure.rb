@@ -34,10 +34,10 @@ class Admin::Metrics::Measure::InstanceAccountsMeasure < Admin::Metrics::Measure
   def data_source_query
     Account
       .select(:id)
+      .where(account_domain_sql(params[:include_subdomains]))
       .where(
         <<~SQL.squish
           DATE_TRUNC('day', accounts.created_at)::date = axis.period
-            AND #{account_domain_sql(params[:include_subdomains])}
         SQL
       ).to_sql
   end

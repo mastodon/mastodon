@@ -35,10 +35,10 @@ class Admin::Metrics::Measure::InstanceReportsMeasure < Admin::Metrics::Measure:
     Report
       .select(:id)
       .joins(:target_account)
+      .where(account_domain_sql(params[:include_subdomains]))
       .where(
         <<~SQL.squish
           DATE_TRUNC('day', reports.created_at)::date = axis.period
-            AND #{account_domain_sql(params[:include_subdomains])}
         SQL
       ).to_sql
   end

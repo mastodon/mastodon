@@ -35,11 +35,15 @@ class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure
     Status
       .select(:id)
       .joins(:account)
+      .where(account_domain_sql(params[:include_subdomains]))
       .where(
         <<~SQL.squish
           statuses.id BETWEEN :earliest_status_id AND :latest_status_id
-          AND #{account_domain_sql(params[:include_subdomains])}
-          AND date_trunc('day', statuses.created_at)::date = axis.period
+        SQL
+      )
+      .where(
+        <<~SQL.squish
+          date_trunc('day', statuses.created_at)::date = axis.period
         SQL
       ).to_sql
   end
