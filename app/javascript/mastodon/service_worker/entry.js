@@ -2,6 +2,7 @@ import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { CacheFirst } from 'workbox-strategies';
+
 import { handleNotificationClick, handlePush } from './web_push_notifications';
 
 const CACHE_NAME_PREFIX = 'mastodon-';

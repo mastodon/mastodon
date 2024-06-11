@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe VerifyLinkService, type: :service do
   subject { described_class.new }
 
-  context 'given a local account' do
+  context 'when given a local account' do
     let(:account) { Fabricate(:account, username: 'alice') }
     let(:field)   { Account::Field.new(account, 'name' => 'Website', 'value' => 'http://example.com') }
 
@@ -78,24 +80,25 @@ RSpec.describe VerifyLinkService, type: :service do
         "
           <!doctype html>
           <body>
+            <a rel=\"me\" href=\"#{ActivityPub::TagManager.instance.url_for(account)}\">
+        "
+      end
+
+      it 'marks the field as verified' do
+        expect(field.verified?).to be true
+      end
+    end
+
+    context 'when a link tag might be truncated' do
+      let(:html) do
+        "
+          <!doctype html>
+          <body>
             <a rel=\"me\" href=\"#{ActivityPub::TagManager.instance.url_for(account)}\"
         "
       end
 
       it 'marks the field as not verified' do
-        expect(field.verified?).to be false
-      end
-    end
-
-    context 'when a link back might be truncated' do
-      let(:html) do
-        "
-          <!doctype html>
-          <body>
-            <a rel=\"me\" href=\"#{ActivityPub::TagManager.instance.url_for(account)}"
-      end
-
-      it 'does not mark the field as verified' do
         expect(field.verified?).to be false
       end
     end
@@ -127,7 +130,7 @@ RSpec.describe VerifyLinkService, type: :service do
     end
   end
 
-  context 'given a remote account' do
+  context 'when given a remote account' do
     let(:account) { Fabricate(:account, username: 'alice', domain: 'example.com', url: 'https://profile.example.com/alice') }
     let(:field)   { Account::Field.new(account, 'name' => 'Website', 'value' => '<a href="http://example.com" rel="me"><span class="invisible">http://</span><span class="">example.com</span><span class="invisible"></span></a>') }
 

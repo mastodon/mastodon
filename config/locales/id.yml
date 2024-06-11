@@ -121,8 +121,6 @@ id:
       removed_header_msg: Berhasil menghapus gambar header %{username}
       resend_confirmation:
         already_confirmed: Pengguna ini sudah dikonfirmasi
-        send: Kirim ulang email konfirmasi
-        success: Email konfirmasi berhasil dikirim!
       reset: Atur ulang
       reset_password: Reset kata sandi
       resubscribe: Langganan ulang
@@ -712,7 +710,6 @@ id:
           approved: Persetujuan diperlukan untuk mendaftar
           none: Tidak ada yang dapat mendaftar
           open: Siapa pun dapat mendaftar
-      title: Pengaturan Server
     site_uploads:
       delete: Hapus berkas yang diunggah
       destroyed_msg: Situs yang diunggah berhasil dihapus!
@@ -903,7 +900,6 @@ id:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Siapa saja bisa berkontribusi.
     sensitive_content: Konten sensitif
-    toot_layout: Tata letak kiriman
   application_mailer:
     notification_preferences: Ubah pilihan email
     salutation: "%{name},"
@@ -920,14 +916,12 @@ id:
     your_token: Token akses Anda
   auth:
     apply_for_account: Permintaan akun
-    change_password: Kata sandi
     delete_account: Hapus akun
     delete_account_html: Jika Anda ingin menghapus akun Anda, Anda dapat <a href="%{path}">memproses ini</a>. Anda akan dikonfirmasi.
     description:
       prefix_invited_by_user: "@%{name} mengundang Anda untuk bergabung di server Mastodon ini!"
       prefix_sign_up: Daftar ke Mastodon hari ini!
       suffix: Dengan sebuah akun, Anda dapat mengikuti orang, mengirim pembaruan, dan bertukar pesan dengan pengguna dari server Mastodon mana pun dan lainnya!
-    didnt_get_confirmation: Tidak menerima petunjuk konfirmasi?
     dont_have_your_security_key: Tidak memiliki kunci keamanan?
     forgot_password: Lupa kata sandi?
     invalid_reset_password_token: Token reset kata sandi tidak valid atau kedaluwarsa. Silakan minta yang baru.
@@ -945,17 +939,12 @@ id:
       saml: SAML
     register: Daftar
     registration_closed: "%{instance} tidak menerima anggota baru"
-    resend_confirmation: Kirim ulang email konfirmasi
     reset_password: Reset kata sandi
     rules:
       preamble: Ini diatur dan ditetapkan oleh moderator %{domain}.
       title: Beberapa aturan dasar.
     security: Identitas
     set_new_password: Tentukan kata sandi baru
-    setup:
-      email_below_hint_html: Jika alamat email di bawah tidak benar, Anda dapat menggantinya di sini dan menerima email konfirmasi baru.
-      email_settings_hint_html: Email konfirmasi telah dikirim ke %{email}. Jika alamat email tidak benar, Anda dapat mengubahnya di pengaturan akun.
-      title: Atur
     sign_in:
       title: Masuk ke %{domain}
     sign_up:
@@ -970,18 +959,6 @@ id:
       view_strikes: Lihat hukuman lalu yang pernah terjadi kepada akun Anda
     too_fast: Formulir dikirim terlalu cepat, coba lagi.
     use_security_key: Gunakan kunci keamanan
-  authorize_follow:
-    already_following: Anda sudah mengikuti akun ini
-    already_requested: Anda sudah mengirimkan permintaan untuk mengikuti akun tersebut
-    error: Sayangnya, ada error saat melihat akun remote
-    follow: Ikuti
-    follow_request: 'Anda telah mengirim permintaan untuk mengikuti ke:'
-    following: 'Berhasil! Anda sekarang mengikuti:'
-    post_follow:
-      close: Atau Anda dapat menutup jendela ini.
-      return: Tampilkan profil pengguna
-      web: Ke web
-    title: Mengikuti %{acct}
   challenge:
     confirm: Lanjut
     hint_html: "<strong>Tip:</strong> Kami tidak akan meminta kata sandi Anda lagi untuk beberapa jam ke depan."
@@ -1093,8 +1070,6 @@ id:
     storage: Penyimpanan media
   featured_tags:
     add_new: Tambah baru
-    errors:
-      limit: Anda sudah menampilkan tagar unggulan dengan jumlah maksimum
     hint_html: "<strong>Apa itu tagar yang diunggulkan?</strong> Mereka ditampilkan secara mencolok di profil publik Anda dan mengizinkan orang-orang untuk menjelajahi kiriman publik khususnya yang ada di bawah tagar tersebut. Mereka adalah alat yang bagus untuk melacak pekerjaan kreatif atau proyek jangka panjang."
   filters:
     contexts:
@@ -1135,8 +1110,6 @@ id:
       index:
         hint: Saringan ini diterapkan ke beberapa kiriman individu tanpa memengaruhi oleh kriteria lain. Anda dapat menambahkan lebih banyak kiriman ke saringan ini dari antarmuka web.
         title: Kiriman yang disaring
-  footer:
-    trending_now: Sedang tren
   generic:
     all: Semua
     all_items_on_page_selected_html:
@@ -1155,8 +1128,6 @@ id:
     today: hari ini
     validation_errors:
       other: Ada yang belum benar! Silakan tinjau %{count} kesalahan di bawah ini
-  html_validator:
-    invalid_markup: 'berisi markup HTML yang tidak valid: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Berkas CVS tidak sah. Kesalahan: %{error}'
@@ -1196,9 +1167,6 @@ id:
       expires_at: Kedaluwarsa
       uses: Penggunaan
     title: Undang orang
-  lists:
-    errors:
-      limit: Daftar Anda telah mencapai jumlah maksimum
   login_activities:
     authentication_methods:
       otp: aplikasi otentikasi dua-faktor
@@ -1402,7 +1370,6 @@ id:
       ios: iOS
       linux: Linux
       mac: Mac
-      other: platform yang tidak diketahui
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1467,7 +1434,6 @@ id:
     show_newer: Tampilkan lebih baru
     show_older: Tampilkan lebih lama
     show_thread: Tampilkan utas
-    sign_in_to_participate: Masuk untuk mengikuti percakapan
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Langsung
@@ -1509,12 +1475,9 @@ id:
       '7889238': 3 bulan
     min_age_label: Batas usia
     min_favs: Simpan kiriman favorit lebih dari
-    min_favs_hint: Tidak menghapus kiriman Anda yang mendapatkan sekian favorit. Kosongkan bila ingin menghapus kiriman tanpa peduli jumlah favoritnya
     min_reblogs: Simpan kiriman yang di-boost lebih dari
     min_reblogs_hint: Tidak menghapus kiriman Anda yang di-boost lebih dari sekian kali. Kosongkan bila ingin menghapus kiriman tanpa peduli jumlah boost-nya
   stream_entries:
-    pinned: Kiriman tersemat
-    reblogged: di-boost-kan
     sensitive_content: Konten sensitif
   strikes:
     errors:
@@ -1614,7 +1577,6 @@ id:
     seamless_external_login: Anda masuk via layanan eksternal, sehingga pengaturan kata sandi dan email tidak tersedia.
     signed_in_as: 'Masuk sebagai:'
   verification:
-    explanation_html: 'Anda dapat <strong>memverifikasi diri Anda sebagai pemiliki tautan pada metadata profil</strong>. Situsweb yang ditautkan haruslah berisi tautan ke profil Mastodon Anda. Tautan tersebut <strong>harus</strong> memiliki atribut <code>rel="me"</code>. Isi teks tautan tidaklah penting. Ini contohnya:'
     verification: Verifikasi
   webauthn_credentials:
     add: Tambahkan kunci keamanan baru

@@ -5,7 +5,7 @@
         = fa_icon 'warning'
     .log-entry__content
       .log-entry__title
-        = t(account_warning.action, scope: 'admin.strikes.actions', name: content_tag(:span, account_warning.account.username, class: 'username'), target: content_tag(:span, account_warning.target_account.pretty_acct, class: 'target')).html_safe
+        = t(account_warning.action, scope: 'admin.strikes.actions', name: content_tag(:span, account_warning.account ? account_warning.account.username : I18n.t('admin.action_logs.deleted_account'), class: 'username'), target: content_tag(:span, account_warning.target_account.pretty_acct, class: 'target')).html_safe
       .log-entry__timestamp
         %time.formatted{ datetime: account_warning.created_at.iso8601 }
           = l(account_warning.created_at)

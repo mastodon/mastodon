@@ -9,7 +9,7 @@ class PushEncryptedMessageWorker
     message           = InlineRenderer.render(encrypted_message, nil, :encrypted_message)
     timeline_id       = "timeline:#{encrypted_message.device.account_id}:#{encrypted_message.device.device_id}"
 
-    redis.publish(timeline_id, Oj.dump(event: :encrypted_message, payload: message, queued_at: (Time.now.to_f * 1000.0).to_i))
+    redis.publish(timeline_id, Oj.dump(event: :encrypted_message, payload: message))
   rescue ActiveRecord::RecordNotFound
     true
   end

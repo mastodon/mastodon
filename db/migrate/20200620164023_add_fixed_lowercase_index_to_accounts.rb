@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require Rails.root.join('lib', 'mastodon', 'migration_helpers')
 
 class AddFixedLowercaseIndexToAccounts < ActiveRecord::Migration[5.2]
@@ -16,7 +18,7 @@ class AddFixedLowercaseIndexToAccounts < ActiveRecord::Migration[5.2]
       add_index :accounts, "lower (username), COALESCE(lower(domain), '')", name: 'index_accounts_on_username_and_domain_lower', unique: true, algorithm: :concurrently
     rescue ActiveRecord::RecordNotUnique
       remove_index :accounts, name: 'index_accounts_on_username_and_domain_lower'
-      raise CorruptionError.new('index_accounts_on_username_and_domain_lower')
+      raise CorruptionError, 'index_accounts_on_username_and_domain_lower'
     end
 
     remove_index :accounts, name: 'old_index_accounts_on_username_and_domain_lower' if index_name_exists?(:accounts, 'old_index_accounts_on_username_and_domain_lower')

@@ -7,7 +7,7 @@ class HomeController < ApplicationController
 
   def index
     @logo = @instance_presenter.logo&.file&.url(:'@2x')
-    expires_in 0, public: true unless user_signed_in?
+    expires_in(15.seconds, public: true, stale_while_revalidate: 30.seconds, stale_if_error: 1.day) unless user_signed_in?
   end
 
   private

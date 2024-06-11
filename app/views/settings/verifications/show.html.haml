@@ -1,0 +1,30 @@
+- content_for :page_title do
+  = t('verification.verification')
+
+- content_for :heading do
+  %h2= t('settings.profile')
+  = render partial: 'settings/shared/profile_navigation'
+
+.simple_form
+  %p.lead= t('verification.hint_html')
+
+  %h4= t('verification.here_is_how')
+
+  %p.lead= t('verification.instructions_html')
+
+  .input-copy.lead
+    .input-copy__wrapper
+      %input{ type: :text, maxlength: '999', spellcheck: 'false', readonly: 'true', value: link_to('Mastodon', ActivityPub::TagManager.instance.url_for(@account), rel: 'me').to_str }
+    %button{ type: :button }= t('generic.copy')
+
+  %p.lead= t('verification.extra_instructions_html')
+
+  - if @verified_links.any?
+    %h4= t('verification.verified_links')
+
+    %ul.lead
+      - @verified_links.each do |field|
+        %li
+          %span.verified-badge
+            = fa_icon 'check', class: 'verified-badge__mark'
+            %span= field.value

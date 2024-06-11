@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.describe AdminMailer, type: :mailer do
+RSpec.describe AdminMailer do
   describe '.new_report' do
     let(:sender)    { Fabricate(:account, username: 'John') }
     let(:recipient) { Fabricate(:account, username: 'Mike') }
     let(:report)    { Fabricate(:report, account: sender, target_account: recipient) }
-    let(:mail)      { described_class.new_report(recipient, report) }
+    let(:mail)      { described_class.with(recipient: recipient).new_report(report) }
 
     before do
       recipient.user.update(locale: :en)
@@ -21,6 +21,110 @@ RSpec.describe AdminMailer, type: :mailer do
 
     it 'renders the body' do
       expect(mail.body.encoded).to eq("Mike,\r\n\r\nJohn has reported Mike\r\n\r\nView: https://cb6e6126.ngrok.io/admin/reports/#{report.id}\r\n")
+    end
+  end
+
+  describe '.new_appeal' do
+    let(:appeal) { Fabricate(:appeal) }
+    let(:recipient) { Fabricate(:account, username: 'Kurt') }
+    let(:mail)      { described_class.with(recipient: recipient).new_appeal(appeal) }
+
+    before do
+      recipient.user.update(locale: :en)
+    end
+
+    it 'renders the headers' do
+      expect(mail.subject).to eq("#{appeal.account.username} is appealing a moderation decision on cb6e6126.ngrok.io")
+      expect(mail.to).to eq [recipient.user_email]
+      expect(mail.from).to eq ['notifications@localhost']
+    end
+
+    it 'renders the body' do
+      expect(mail.body.encoded).to match "#{appeal.account.username} is appealing a moderation decision by #{appeal.strike.account.username}"
+    end
+  end
+
+  describe '.new_pending_account' do
+    let(:recipient) { Fabricate(:account, username: 'Barklums') }
+    let(:user) { Fabricate(:user) }
+    let(:mail) { described_class.with(recipient: recipient).new_pending_account(user) }
+
+    before do
+      recipient.user.update(locale: :en)
+    end
+
+    it 'renders the headers' do
+      expect(mail.subject).to eq("New account up for review on cb6e6126.ngrok.io (#{user.account.username})")
+      expect(mail.to).to eq [recipient.user_email]
+      expect(mail.from).to eq ['notifications@localhost']
+    end
+
+    it 'renders the body' do
+      expect(mail.body.encoded).to match 'The details of the new account are below. You can approve or reject this application.'
+    end
+  end
+
+  describe '.new_trends' do
+    let(:recipient) { Fabricate(:account, username: 'Snurf') }
+    let(:links) { [] }
+    let(:statuses) { [] }
+    let(:tags) { [] }
+    let(:mail) { described_class.with(recipient: recipient).new_trends(links, tags, statuses) }
+
+    before do
+      recipient.user.update(locale: :en)
+    end
+
+    it 'renders the headers' do
+      expect(mail.subject).to eq('New trends up for review on cb6e6126.ngrok.io')
+      expect(mail.to).to eq [recipient.user_email]
+      expect(mail.from).to eq ['notifications@localhost']
+    end
+
+    it 'renders the body' do
+      expect(mail.body.encoded).to match 'The following items need a review before they can be displayed publicly'
+    end
+  end
+
+  describe '.new_software_updates' do
+    let(:recipient) { Fabricate(:account, username: 'Bob') }
+    let(:mail) { described_class.with(recipient: recipient).new_software_updates }
+
+    before do
+      recipient.user.update(locale: :en)
+    end
+
+    it 'renders the headers' do
+      expect(mail.subject).to eq('New Mastodon versions are available for cb6e6126.ngrok.io!')
+      expect(mail.to).to eq [recipient.user_email]
+      expect(mail.from).to eq ['notifications@localhost']
+    end
+
+    it 'renders the body' do
+      expect(mail.body.encoded).to match 'New Mastodon versions have been released, you may want to update!'
+    end
+  end
+
+  describe '.new_critical_software_updates' do
+    let(:recipient) { Fabricate(:account, username: 'Bob') }
+    let(:mail) { described_class.with(recipient: recipient).new_critical_software_updates }
+
+    before do
+      recipient.user.update(locale: :en)
+    end
+
+    it 'renders the headers', :aggregate_failures do
+      expect(mail.subject).to eq('Critical Mastodon updates are available for cb6e6126.ngrok.io!')
+      expect(mail.to).to eq [recipient.user_email]
+      expect(mail.from).to eq ['notifications@localhost']
+
+      expect(mail['Importance'].value).to eq 'high'
+      expect(mail['Priority'].value).to eq 'urgent'
+      expect(mail['X-Priority'].value).to eq '1'
+    end
+
+    it 'renders the body' do
+      expect(mail.body.encoded).to match 'New critical versions of Mastodon have been released, you may want to update as soon as possible!'
     end
   end
 end

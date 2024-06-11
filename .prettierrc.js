@@ -1,3 +1,4 @@
 module.exports = {
-  singleQuote: true
+  singleQuote: true,
+  jsxSingleQuote: true
 }

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: preview_card_providers
@@ -17,6 +18,7 @@
 #
 
 class PreviewCardProvider < ApplicationRecord
+  include Paginable
   include DomainNormalizable
   include Attachmentable
 
@@ -52,6 +54,6 @@ class PreviewCardProvider < ApplicationRecord
 
   def self.matching_domain(domain)
     segments = domain.split('.')
-    where(domain: segments.map.with_index { |_, i| segments[i..-1].join('.') }).order(Arel.sql('char_length(domain) desc')).first
+    where(domain: segments.map.with_index { |_, i| segments[i..].join('.') }).order(Arel.sql('char_length(domain) desc')).first
   end
 end

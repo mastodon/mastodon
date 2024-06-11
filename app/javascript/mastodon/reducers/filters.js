@@ -1,6 +1,7 @@
-import { FILTERS_IMPORT } from '../actions/importer';
-import { FILTERS_FETCH_SUCCESS, FILTERS_CREATE_SUCCESS } from '../actions/filters';
 import { Map as ImmutableMap, is, fromJS } from 'immutable';
+
+import { FILTERS_FETCH_SUCCESS, FILTERS_CREATE_SUCCESS } from '../actions/filters';
+import { FILTERS_IMPORT } from '../actions/importer';
 
 const normalizeFilter = (state, filter) => {
   const normalizedFilter = fromJS({

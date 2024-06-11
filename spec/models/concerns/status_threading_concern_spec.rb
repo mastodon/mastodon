@@ -8,40 +8,40 @@ describe StatusThreadingConcern do
     let!(:bob)    { Fabricate(:account, username: 'bob', domain: 'example.com') }
     let!(:jeff)   { Fabricate(:account, username: 'jeff') }
     let!(:status) { Fabricate(:status, account: alice) }
-    let!(:reply1) { Fabricate(:status, thread: status, account: jeff) }
-    let!(:reply2) { Fabricate(:status, thread: reply1, account: bob) }
-    let!(:reply3) { Fabricate(:status, thread: reply2, account: alice) }
+    let!(:reply_to_status) { Fabricate(:status, thread: status, account: jeff) }
+    let!(:reply_to_first_reply) { Fabricate(:status, thread: reply_to_status, account: bob) }
+    let!(:reply_to_second_reply) { Fabricate(:status, thread: reply_to_first_reply, account: alice) }
     let!(:viewer) { Fabricate(:account, username: 'viewer') }
 
     it 'returns conversation history' do
-      expect(reply3.ancestors(4)).to include(status, reply1, reply2)
+      expect(reply_to_second_reply.ancestors(4)).to include(status, reply_to_status, reply_to_first_reply)
     end
 
     it 'does not return conversation history user is not allowed to see' do
-      reply1.update(visibility: :private)
+      reply_to_status.update(visibility: :private)
       status.update(visibility: :direct)
 
-      expect(reply3.ancestors(4, viewer)).to_not include(reply1, status)
+      expect(reply_to_second_reply.ancestors(4, viewer)).to_not include(reply_to_status, status)
     end
 
     it 'does not return conversation history from blocked users' do
       viewer.block!(jeff)
-      expect(reply3.ancestors(4, viewer)).to_not include(reply1)
+      expect(reply_to_second_reply.ancestors(4, viewer)).to_not include(reply_to_status)
     end
 
     it 'does not return conversation history from muted users' do
       viewer.mute!(jeff)
-      expect(reply3.ancestors(4, viewer)).to_not include(reply1)
+      expect(reply_to_second_reply.ancestors(4, viewer)).to_not include(reply_to_status)
     end
 
     it 'does not return conversation history from silenced and not followed users' do
       jeff.silence!
-      expect(reply3.ancestors(4, viewer)).to_not include(reply1)
+      expect(reply_to_second_reply.ancestors(4, viewer)).to_not include(reply_to_status)
     end
 
     it 'does not return conversation history from blocked domains' do
       viewer.block_domain!('example.com')
-      expect(reply3.ancestors(4, viewer)).to_not include(reply2)
+      expect(reply_to_second_reply.ancestors(4, viewer)).to_not include(reply_to_first_reply)
     end
 
     it 'ignores deleted records' do
@@ -83,40 +83,40 @@ describe StatusThreadingConcern do
     let!(:bob)    { Fabricate(:account, username: 'bob', domain: 'example.com') }
     let!(:jeff)   { Fabricate(:account, username: 'jeff') }
     let!(:status) { Fabricate(:status, account: alice) }
-    let!(:reply1) { Fabricate(:status, thread: status, account: alice) }
-    let!(:reply2) { Fabricate(:status, thread: status, account: bob) }
-    let!(:reply3) { Fabricate(:status, thread: reply1, account: jeff) }
+    let!(:reply_to_status_from_alice) { Fabricate(:status, thread: status, account: alice) }
+    let!(:reply_to_status_from_bob) { Fabricate(:status, thread: status, account: bob) }
+    let!(:reply_to_alice_reply_from_jeff) { Fabricate(:status, thread: reply_to_status_from_alice, account: jeff) }
     let!(:viewer) { Fabricate(:account, username: 'viewer') }
 
     it 'returns replies' do
-      expect(status.descendants(4)).to include(reply1, reply2, reply3)
+      expect(status.descendants(4)).to include(reply_to_status_from_alice, reply_to_status_from_bob, reply_to_alice_reply_from_jeff)
     end
 
     it 'does not return replies user is not allowed to see' do
-      reply1.update(visibility: :private)
-      reply3.update(visibility: :direct)
+      reply_to_status_from_alice.update(visibility: :private)
+      reply_to_alice_reply_from_jeff.update(visibility: :direct)
 
-      expect(status.descendants(4, viewer)).to_not include(reply1, reply3)
+      expect(status.descendants(4, viewer)).to_not include(reply_to_status_from_alice, reply_to_alice_reply_from_jeff)
     end
 
     it 'does not return replies from blocked users' do
       viewer.block!(jeff)
-      expect(status.descendants(4, viewer)).to_not include(reply3)
+      expect(status.descendants(4, viewer)).to_not include(reply_to_alice_reply_from_jeff)
     end
 
     it 'does not return replies from muted users' do
       viewer.mute!(jeff)
-      expect(status.descendants(4, viewer)).to_not include(reply3)
+      expect(status.descendants(4, viewer)).to_not include(reply_to_alice_reply_from_jeff)
     end
 
     it 'does not return replies from silenced and not followed users' do
       jeff.silence!
-      expect(status.descendants(4, viewer)).to_not include(reply3)
+      expect(status.descendants(4, viewer)).to_not include(reply_to_alice_reply_from_jeff)
     end
 
     it 'does not return replies from blocked domains' do
       viewer.block_domain!('example.com')
-      expect(status.descendants(4, viewer)).to_not include(reply2)
+      expect(status.descendants(4, viewer)).to_not include(reply_to_status_from_bob)
     end
 
     it 'promotes self-replies to the top while leaving the rest in order' do

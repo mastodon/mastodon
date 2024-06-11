@@ -10,6 +10,12 @@ describe Api::V1::Statuses::ReblogsController do
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'write:statuses', application: app) }
 
   context 'with an oauth token' do
+    around do |example|
+      Sidekiq::Testing.fake! do
+        example.run
+      end
+    end
+
     before do
       allow(controller).to receive(:doorkeeper_token) { token }
     end

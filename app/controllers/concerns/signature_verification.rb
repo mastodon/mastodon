@@ -128,6 +128,8 @@ module SignatureVerification
   private
 
   def fail_with!(message, **options)
+    Rails.logger.debug { "Signature verification failed: #{message}" }
+
     @signature_verification_failure_reason = { error: message }.merge(options)
     @signed_request_actor = nil
   end
@@ -147,7 +149,7 @@ module SignatureVerification
   end
 
   def signed_headers
-    signature_params.fetch('headers', signature_algorithm == 'hs2019' ? '(created)' : 'date').downcase.split(' ')
+    signature_params.fetch('headers', signature_algorithm == 'hs2019' ? '(created)' : 'date').downcase.split
   end
 
   def verify_signature_strength!
@@ -174,6 +176,7 @@ module SignatureVerification
     end
 
     raise SignatureVerificationError, "Invalid Digest value. The provided Digest value is not a SHA-256 digest. Given digest: #{sha256[1]}" if digest_size != 32
+
     raise SignatureVerificationError, "Invalid Digest value. Computed SHA-256 digest: #{body_digest}; given: #{sha256[1]}"
   end
 
@@ -260,7 +263,7 @@ module SignatureVerification
     end
 
     if key_id.start_with?('acct:')
-      stoplight_wrap_request { ResolveAccountService.new.call(key_id.gsub(/\Aacct:/, ''), suppress_errors: false) }
+      stoplight_wrap_request { ResolveAccountService.new.call(key_id.delete_prefix('acct:'), suppress_errors: false) }
     elsif !ActivityPub::TagManager.instance.local_uri?(key_id)
       account   = ActivityPub::TagManager.instance.uri_to_actor(key_id)
       account ||= stoplight_wrap_request { ActivityPub::FetchRemoteKeyService.new.call(key_id, suppress_errors: false) }

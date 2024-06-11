@@ -1,4 +1,5 @@
 import api from '../api';
+
 import { openModal } from './modal';
 
 export const FILTERS_FETCH_REQUEST = 'FILTERS_FETCH_REQUEST';
@@ -14,9 +15,12 @@ export const FILTERS_CREATE_SUCCESS = 'FILTERS_CREATE_SUCCESS';
 export const FILTERS_CREATE_FAIL    = 'FILTERS_CREATE_FAIL';
 
 export const initAddFilter = (status, { contextType }) => dispatch =>
-  dispatch(openModal('FILTER', {
-    statusId: status?.get('id'),
-    contextType: contextType,
+  dispatch(openModal({
+    modalType: 'FILTER',
+    modalProps: {
+      statusId: status?.get('id'),
+      contextType: contextType,
+    },
   }));
 
 export const fetchFilters = () => (dispatch, getState) => {

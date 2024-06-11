@@ -124,8 +124,6 @@ an:
       removed_header_msg: S'ha eliminau con exito la imachen de capitero de %{username}
       resend_confirmation:
         already_confirmed: Este usuario ya ye confirmau
-        send: Reninviar lo correu electronico de confirmación
-        success: Correu electronico de confirmación ninviau con exito!
       reset: Reiniciar
       reset_password: Reiniciar clau
       resubscribe: Re-suscribir
@@ -730,7 +728,6 @@ an:
           approved: Se requiere aprebación pa rechistrar-se
           none: Dengún puede rechistrar-se
           open: Qualsequiera puede rechistrar-se
-      title: Achustes d'o Servidor
     site_uploads:
       delete: Eliminar fichero puyau
       destroyed_msg: Carga d'o puesto eliminada con exito!
@@ -925,7 +922,6 @@ an:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Totz pueden contribuyir.
     sensitive_content: Conteniu sensible
-    toot_layout: Disenyo d'as publicacions
   application_mailer:
     notification_preferences: Cambiar preferencias de correu electronico
     salutation: "%{name}:"
@@ -942,14 +938,12 @@ an:
     your_token: Lo tuyo token d'acceso
   auth:
     apply_for_account: Solicitar una cuenta
-    change_password: Clau
     delete_account: Borrar cuenta
     delete_account_html: Si deseya eliminar la suya cuenta, puede <a href="%{path}">proceder aquí</a>. Será pediu d'una confirmación.
     description:
       prefix_invited_by_user: "@%{name} te convida a unir-te a este servidor de Mastodon!"
       prefix_sign_up: Une-te a Mastodon hue!
       suffix: Con una cuenta podrás seguir a chent, publicar novedatz y intercambiar mensaches con usuarios de qualsequier servidor de Mastodon y mas!
-    didnt_get_confirmation: No recibió lo correu de confirmación?
     dont_have_your_security_key: No tiens la tuya clau de seguranza?
     forgot_password: Ixuplidés la tuya clau?
     invalid_reset_password_token: Lo token de reinicio de clau ye invalido u expiró. Per favor pide un nuevo.
@@ -967,17 +961,12 @@ an:
       saml: SAML
     register: Rechistrar-se
     registration_closed: "%{instance} no ye acceptando nuevos miembros"
-    resend_confirmation: Tornar a ninviar lo correu de confirmación
     reset_password: Restablir clau
     rules:
       preamble: Estas son establidas y aplicadas per los moderadors de %{domain}.
       title: Qualques reglas basicas.
     security: Cambiar clau
     set_new_password: Establir nueva clau
-    setup:
-      email_below_hint_html: Si l'adreza de correu electronico que amaneixe contino ye incorrecta, se puede cambiar-la aquí y recibir un nuevo correu electronico de confirmación.
-      email_settings_hint_html: Lo correu electronico de confirmación estió ninviau a %{email}. Si ixa adreza de correu electronico no sía correcta, se puede cambiar-la en a configuración d'a cuenta.
-      title: Configuración
     sign_in:
       preamble_html: Inicia sesión con as tuys credencials <strong>%{domain}</strong>. Si la tuya cuenta se troba en un servidor diferent, no podrás iniciar aquí una sesión.
       title: Iniciar sesión en %{domain}
@@ -993,18 +982,6 @@ an:
       view_strikes: Veyer amonestacions pasadas contra la tuya cuenta
     too_fast: Formulario ninviau masiau rapido, lo intente de nuevo.
     use_security_key: Usar la clau de seguranza
-  authorize_follow:
-    already_following: Ya yes seguindo a esta cuenta
-    already_requested: Ya has ninviau una solicitut de seguimiento a ixa cuenta
-    error: Desafortunadament, ha ocurriu una error buscando la cuenta remota
-    follow: Seguir
-    follow_request: 'Tiens una solicitut de seguimiento de:'
-    following: 'Exito! Agora yes seguindo a:'
-    post_follow:
-      close: U, puetz simplament zarrar esta finestra.
-      return: Tornar ta lo perfil de l'usuario
-      web: Ir ta lo puesto web
-    title: Seguir a %{acct}
   challenge:
     confirm: Continar
     hint_html: "<strong>Tip:</strong> No tornaremos a preguntar-te per la clau entre la siguient hora."
@@ -1116,8 +1093,6 @@ an:
     storage: Almagazenamiento
   featured_tags:
     add_new: Anyadir nuevo
-    errors:
-      limit: Ya has aconseguiu la cantidat maxima de hashtags
     hint_html: "<strong>Qué son las etiquetas destacadas?</strong> S'amuestran de forma prominent en o tuyo perfil publico y permiten a los usuarios navegar per las tuyas publicacions publicas especificament baixo ixas etiquetas. Son una gran ferramienta pa fer un seguimiento de treballos creativos u prochectos a largo plazo."
   filters:
     contexts:
@@ -1161,8 +1136,6 @@ an:
       index:
         hint: Este filtro s'aplica a la selección de publicacions individuals independientment d'atros criterios. Puede anyadir mas publicacions a este filtro dende la interficie web.
         title: Publicacions filtradas
-  footer:
-    trending_now: Tendencia agora
   generic:
     all: Totz
     all_items_on_page_selected_html:
@@ -1185,8 +1158,6 @@ an:
     validation_errors:
       one: Bella cosa no ye bien! Per favor, revisa la error
       other: Bella cosa no ye bien! Per favor, revise %{count} errors mas abaixo
-  html_validator:
-    invalid_markup: 'contiene codigo HTML no valido: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Fichero CSV no valido. Error: %{error}'
@@ -1227,9 +1198,6 @@ an:
       expires_at: Expira
       uses: Usos
     title: Convidar a chent
-  lists:
-    errors:
-      limit: Has aconseguiu la cantidat maxima de listas
   login_activities:
     authentication_methods:
       otp: aplicación d'autenticación en dos pasos
@@ -1436,7 +1404,6 @@ an:
       ios: iOS
       linux: Linux
       mac: Mac
-      other: plataforma desconoixida
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1507,7 +1474,6 @@ an:
     show_newer: Amostrar mas recients
     show_older: Amostrar mas antigos
     show_thread: Amostrar discusión
-    sign_in_to_participate: Rechistra-te pa participar en a conversación
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Directa
@@ -1549,12 +1515,9 @@ an:
       '7889238': 3 meses
     min_age_label: Branquil de tiempo
     min_favs: Mantener mensaches con un numero de favoritos mayor que
-    min_favs_hint: No borra garra d'as publicacions que haigan recibiu mas d'esta cantidat de favoritos. Deixa en blanco pa eliminar publicacions sin importar lo numero de favoritos
     min_reblogs: Mantener publicacions reblogueadas mas de
     min_reblogs_hint: No borra garra d'as publicacions que haigan estau reblogueadas mas d'este numero de vegadas. Deixa en blanco pa eliminar publicacions sin importar lo numero de reblogueos
   stream_entries:
-    pinned: Publicación fixada
-    reblogged: retutau
     sensitive_content: Conteniu sensible
   strikes:
     errors:
@@ -1654,7 +1617,6 @@ an:
     seamless_external_login: Has iniciau sesión dende un servicio externo, asinas que los achustes de clau y correu no son disponibles.
     signed_in_as: 'Sesión iniciada como:'
   verification:
-    explanation_html: 'Puetz <strong> verificar-te a tu mesmo como lo duenyo d''os links en os metadatos d''o tuyo perfil </strong>. Pa ixo, lo puesto vinculau ha de contener un vinclo a lo tuyo perfil de Mastodon. Lo vinclo en o tuyo puesto <strong> debe </strong> tener un atributo <code> rel="me"</code>. Lo texto d''o vinclo no importa. Aquí un eixemplo:'
     verification: Verificación
   webauthn_credentials:
     add: Adhibir nueva clau de seguranza

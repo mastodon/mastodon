@@ -1,17 +1,27 @@
 name: PR Needs Rebase
 
 on:
-  push:
-  pull_request_target:
-    types: [synchronize]
+  schedule:
+    - cron: '0 * * * *'
+
+permissions:
+  pull-requests: write
 
 jobs:
   label-rebase-needed:
     runs-on: ubuntu-latest
+
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+
     steps:
       - name: Check for merge conflicts
         uses: eps1lon/actions-label-merge-conflict@releases/2.x
         with:
           dirtyLabel: 'rebase needed :construction:'
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          commentOnClean: This pull request has resolved merge conflicts and is ready for review.
           commentOnDirty: This pull request has merge conflicts that must be resolved before it can be merged.
+          retryMax: 30
+          continueOnMissingPermissions: false

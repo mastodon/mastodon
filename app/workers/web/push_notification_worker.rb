@@ -19,18 +19,18 @@ class Web::PushNotificationWorker
     return expo_send if @subscription.expo?
 
     payload = @subscription.encrypt(push_notification_json)
-     
+
     request_pool.with(@subscription.audience) do |http_client|
       request = Request.new(:post, @subscription.endpoint, body: payload.fetch(:ciphertext), http_client: http_client)
 
       request.add_headers(
-        'Content-Type'     => 'application/octet-stream',
-        'Ttl'              => TTL,
-        'Urgency'          => URGENCY,
+        'Content-Type' => 'application/octet-stream',
+        'Ttl' => TTL,
+        'Urgency' => URGENCY,
         'Content-Encoding' => 'aesgcm',
-        'Encryption'       => "salt=#{Webpush.encode64(payload.fetch(:salt)).delete('=')}",
-        'Crypto-Key'       => "dh=#{Webpush.encode64(payload.fetch(:server_public_key)).delete('=')};#{@subscription.crypto_key_header}",
-        'Authorization'    => @subscription.authorization_header
+        'Encryption' => "salt=#{Webpush.encode64(payload.fetch(:salt)).delete('=')}",
+        'Crypto-Key' => "dh=#{Webpush.encode64(payload.fetch(:server_public_key)).delete('=')};#{@subscription.crypto_key_header}",
+        'Authorization' => @subscription.authorization_header
       )
 
       request.perform do |response|
@@ -40,7 +40,7 @@ class Web::PushNotificationWorker
         # and must be removed
 
         if (400..499).cover?(response.code) && ![408, 429].include?(response.code)
-          raise Mastodon::UnexpectedResponseError, response
+          @subscription.destroy
         elsif !(200...300).cover?(response.code)
           raise Mastodon::UnexpectedResponseError, response
         end
@@ -55,22 +55,20 @@ class Web::PushNotificationWorker
   def expo_send
     request_pool.with(@subscription.audience) do |http_client|
       body = push_notification_json
-      
+
       request = Request.new(:post, @subscription.endpoint, body: body, http_client: http_client)
 
       request.add_headers(
-        'Content-Type'     => 'application/json',
+        'Content-Type' => 'application/json',
         'Accept' => 'application/json',
         'Accept-Encoding' => 'gzip, deflate',
         'Host' => 'exp.host',
-        'Ttl'              => TTL,
-        'Urgency'          => URGENCY,
+        'Ttl' => TTL,
+        'Urgency' => URGENCY
       )
 
       request.perform do |response|
-        if !(200...300).cover?(response.code)
-          raise Mastodon::UnexpectedResponseError, response
-        end
+        raise Mastodon::UnexpectedResponseError, response unless (200...300).cover?(response.code)
       end
     end
   end
@@ -85,7 +83,7 @@ class Web::PushNotificationWorker
       ).as_json
     end
 
-    if (@subscription.expo?)
+    if @subscription.expo?
       json.delete :access_token
       json.delete :preferred_locale
       json.delete :notification_id

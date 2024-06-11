@@ -95,6 +95,7 @@ be:
       moderation:
         active: Актыўны
         all: Усе
+        disabled: Адключана
         pending: Чакаюць
         silenced: Абмежаваны
         suspended: Прыпынены
@@ -130,8 +131,8 @@ be:
       removed_header_msg: Выява загалоўку %{username} выдаленая
       resend_confirmation:
         already_confirmed: Гэты карыстальнік ужо пацверджаны
-        send: Даслаць пацвярджальны ліст зноў
-        success: Ліст з пацвярджэннем паспяхова дасланы!
+        send: Даслаць пацвярджальную спасылку зноў
+        success: Ліст з пацвярджальнай спасылкай паспяхова дасланы!
       reset: Скінуць
       reset_password: Скід паролю
       resubscribe: Аднавіць падпіску
@@ -139,6 +140,7 @@ be:
       search: Пошук
       search_same_email_domain: Іншыя карыстальнікі з такім жа даменам эл. пошты
       search_same_ip: Іншыя карыстальнікі з гэтым IP
+      security: Бяспека
       security_measures:
         only_password: Толькі пароль
         password_and_2fa: Пароль і 2FA
@@ -295,7 +297,7 @@ be:
       empty: Логі не знойдзены.
       filter_by_action: Фільтраваць па дзеянню
       filter_by_user: Адфільтраваць па карыстальніку
-      title: Правер логі
+      title: Аўдыт
     announcements:
       destroyed_msg: Аб'ява паспяхова выдалена!
       edit:
@@ -313,6 +315,7 @@ be:
       unpublish: Зняць з публікацыі
       unpublished_msg: Аб'ява паспяхова схована!
       updated_msg: Аб'ява паспяхова адноўлена!
+    critical_update_pending: Чакаецца абнаўленне
     custom_emojis:
       assign_category: Прызначыць катэгорыю
       by_domain: Дамен
@@ -394,6 +397,15 @@ be:
       undo: Забараніць федэрацыю з даменам
     domain_blocks:
       add_new: Дадаць новы блок дамену
+      confirm_suspension:
+        cancel: Скасаваць
+        confirm: Прыпыніць
+        permanent_action: Адмена прыпынення не прывядзе да аднаўлення даных або зносін.
+        preamble_html: Вы збіраецеся прыпыніць <strong>%{domain}</strong> і яго паддамены.
+        remove_all_data: Гэта прывядзе да выдалення ўсяго змесціва, мультымедыя і даных профіляў з вашага сервера для ўліковых запісаў гэтага дамена.
+        stop_communication: Ваш сервер спыніць сувязь з гэтымі серверамі.
+        title: Пацвердзіць блакіроўку дамена %{domain}
+        undo_relationships: Гэта прывядзе да адмены любых падпісак паміж уліковымі запісамі гэтых сервераў і вашым.
       created_msg: Даменны блок быў апрацаваны
       destroyed_msg: Даменны блок быў адменены
       domain: Дамен
@@ -443,6 +455,7 @@ be:
         resolve: Вызначыць дамен
         title: Заблакіраваць новы дамен эл. пошты
       no_email_domain_block_selected: Блакіроўкі даменаў эл. пошты не былі змененыя, таму што ні адзін з іх не быў выбраны
+      not_permitted: Забаронена
       resolved_dns_records_hint_html: Даменнае імя ператвараецца ў наступныя дамены MX, якія ў канчатковым выніку адказваюць за прыём электроннай пошты. Блакаванне дамена MX заблакуе рэгістрацыю з любога адраса электроннай пошты, які выкарыстоўвае той жа дамен MX, нават калі бачнае імя дамена адрозніваецца. <strong>Будзьце асцярожныя, каб не заблакіраваць асноўных пастаўшчыкоў электроннай пошты.</strong>
       resolved_through_html: Вызначына каля %{domain}
       title: Заблакаваныя паштовыя дамены
@@ -493,6 +506,7 @@ be:
       content_policies:
         comment: Унутраная нататка
         description_html: Вы можаце вызначыць палітыку кантэнту, якая будзе прымяняцца да ўсіх уліковых запісаў гэтага дамена і любога з яго субдаменаў.
+        limited_federation_mode_description_html: Вы можаце выбраць ці дазволіць уваходзіць у федэрацыю з гэтым даменам.
         policies:
           reject_media: Адхіліць мультымедыя
           reject_reports: Адхіліць справаздачы
@@ -609,11 +623,13 @@ be:
       assign_to_self: Прызначыць мне
       assigned: Прызначаны мадэратар
       by_target_domain: Дамен уліковага запісу, на які падаецца скарга
+      cancel: Скасаваць
       category: Катэгорыя
       category_description_html: Прычына паведамлення аб гэтым уліковым запісе і/або кантэнце будзе згадана ў сувязі з уліковым запісам, на які пададзена скарга
       comment:
         none: Пуста
       comment_description_html: 'Каб даць больш інфармацыі, %{name} напісаў:'
+      confirm: Пацвердзіць
       confirm_action: Пацвердзіць мадэрацыю супраць @%{acct}
       created_at: Створана
       delete_and_resolve: Выдаліць допісы
@@ -645,14 +661,21 @@ be:
       statuses: Змесціва, на якое паскардзіліся
       statuses_description_html: Крыўднае змесціва будзе згадвацца ў зносінах з уліковым запісам, на які пададзена скарга
       summary:
+        action_preambles:
+          delete_html: 'Вы збіраецеся <strong>выдаліць</strong> некаторыя з допісаў <strong>@%{acct}</strong>. Гэта будуць:'
+          mark_as_sensitive_html: 'Вы збіраецеся <strong>пазначыць</strong> некаторыя з допісаў <strong>@%{acct}</strong> як <strong>уражальныя</strong>. Гэта будуць:'
+          silence_html: 'Вы збіраецеся <strong>абмежаваць</strong> уліковы запіс <strong>@%{acct}</strong>. Гэта будзе:'
+          suspend_html: 'Вы збіраецеся <strong>прыпыніць</strong> уліковы запіс <strong>@%{acct}</strong>. Гэта будзе:'
         actions:
           delete_html: Выдаліць абразлівы допіс
           mark_as_sensitive_html: Пазначыць медыя абразлівага допіса як далікатнае
+          silence_html: Значна абмежаваць ахоп <strong>@%{acct}</strong>, зрабіўшы профіль і змесціва бачнымі толькі для людзей, якія ўжо падпісаныя, альбо шукае яго ўручную
           suspend_html: Прыпыніць <strong>@%{acct}</strong>, зрабіць профіль і змесціва недаступным і не даваць магчымасці ўзаемадзейнічаць з імі
         close_report: 'Пазначыць скаргу #%{id} як вырашаную'
         close_reports_html: Адзначыць <strong>усе</strong> скаргі супраць <strong>@%{acct}</strong> як вырашаныя
         delete_data_html: Выдаліць профіль <strong>@%{acct}</strong> і змесціва праз 30 дзён, калі тым часам гэтае дзеянне не будзе адменена
         preview_preamble_html: "<strong>@%{acct}</strong> атрымае папярэджанне наступнага зместу:"
+        record_strike_html: Зарэгістраваць папярэджанне <strong>@%{acct}</strong>, каб дапамагчы вам эскаліраваць наступныя парушэнні з боку таго ж уліковага запісу
         send_email_html: Адправіць <strong>@%{acct}</strong> папярэджанне па электроннай пошце
         warning_placeholder: Неабавязковае дадатковае абгрунтаванне мадэрацыі.
       target_origin: Крыніца уліковага запісу на які пададзена скарга
@@ -746,6 +769,9 @@ be:
       branding:
         preamble: Брэндынг вашага сервера адрознівае яго ад іншых сервераў у сетцы. Гэтая інфармацыя можа адлюстроўвацца ў розных асяроддзях, напрыклад, у вэб-інтэрфейсе Mastodon, уласных праграмах, у папярэднім праглядзе спасылак на іншых вэб-сайтах і ў праграмах абмену паведамленнямі і гэтак далей. Па гэтай прычыне лепш трымаць гэтую інфармацыю яснай, кароткай і сціслай.
         title: Брэндынг
+      captcha_enabled:
+        desc_html: Гэта функцыянальнасць залежыць ад знешніх скрыптоў hCaptcha, што можа быць праблемай бяспекі і прыватнасці. Акрамя таго, <strong>гэта можа зрабіць працэс рэгістрацыі значна менш даступным для некаторых людзей, асабліва інвалідаў</strong>. Па гэтых прычынах, калі ласка, разгледзьце альтэрнатыўныя меры, такія як рэгістрацыя на аснове зацвярджэння або запрашэння.
+        title: Патрабаваць ад новых карыстальнікаў рашэння CAPTCHA для пацверджання іх уліковага запісу
       content_retention:
         preamble: Кантралюйце, як створаны карыстальнікамі кантэнт захоўваецца ў Mastodon.
         title: Утрыманне кантэнту
@@ -773,10 +799,27 @@ be:
           approved: Для рэгістрацыі патрабуецца пацвярджэнне
           none: Нікому не магчыма зарэгістравацца
           open: Любому магчыма зарэгістравацца
+      security:
+        authorized_fetch: Патрабаваць аўтэнтыфікацыю ад федэратыўных сервераў
+        authorized_fetch_hint: Патрабаванне аўтэнтыфікацыі ад федэратыўных сервераў дазваляе больш строга выконваць блакіроўкі як на ўзроўні карыстача, так і на ўзроўні сервера. Аднак пры гэтым зніжаецца прадукцыйнасць, памяншаецца ахоп вашых адказаў на допісы і могуць узнікнуць праблемы сумяшчальнасці з некаторымі федэратыўнымі сэрвісамі. Акрамя таго, гэта не перашкодзіць атрымліваць вашыя публічныя допісы і ўліковыя запісы.
+        authorized_fetch_overridden_hint: Вы не можаце змяніць гэты параметр, паколькі ён перавызначаны зменнай асяроддзя.
+        federation_authentication: Патрабаванне аўтэнтыфікацыі ад федэратыўных сэрвісаў
       title: Налады сервера
     site_uploads:
       delete: Выдаліць запампаваны файл
       destroyed_msg: Загрузка сайту паспяхова выдалена!
+    software_updates:
+      critical_update: Крытычна - зрабіце абнаўленне як мага хутчэй
+      description: Рэкамендуецца падтрымліваць усталёўку Mastodon у актуальным стане, каб карыстацца апошнімі выпраўленнямі і магчымасцямі. Акрамя таго, часам вельмі важна своечасова абнаўляць Mastodon, каб пазбегнуць праблем з бяспекай. Па гэтых прычынах Mastodon правярае наяўнасць абнаўленняў кожныя 30 хвілін і паведамляе вам пра гэта ў адпаведнасці з вашымі наладамі апавяшчэнняў па электроннай пошце.
+      documentation_link: Даведацца больш
+      release_notes: Журнал змен
+      title: Даступныя абнаўленні
+      type: Тып
+      types:
+        major: Буйны рэліз
+        minor: Малы рэліз
+        patch: Патч-рэліз — выпраўленні памылак і простыя ва ўжыванні змены
+      version: Версія
     statuses:
       account: Аўтар
       application: Праграма
@@ -813,9 +856,24 @@ be:
         suspend: Уліковы запіс %{target} выключаны %{name}
       appeal_approved: Абскарджана
       appeal_pending: Апеляцыя разглядаецца
+      appeal_rejected: Абскарджанне адхілена
     system_checks:
       database_schema_check:
         message_html: Ёсць незавершаныя міграцыі базы дадзеных. Калі ласка, запусціце іх, каб пераканацца, што дадатак паводзіць сябе належным чынам
+      elasticsearch_health_red:
+        message_html: Кластар Elasticsearch нездаровы (чырвоны статус), функцыі пошуку недаступныя
+      elasticsearch_health_yellow:
+        message_html: Кластар Elasticsearch нездаровы (жоўты статус), магчыма, неабходна высветліць прычыну
+      elasticsearch_index_mismatch:
+        message_html: Супастаўленне індэксаў Elasticsearch састарэла. Калі ласка, выканайце каманду <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Падрабязней у дакументацыі
+        message_html: Ваш кластар Elasticsearch мае больш за адзін вузел, але Mastodon не наладжаны на іх выкарыстанне.
+      elasticsearch_preset_single_node:
+        action: Падрабязней у дакументацыі
+        message_html: Ваш кластар Elasticsearch мае толькі адзін вузел, <code>ES_PRESET</code> варта ўсталяваць у значэнне <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Ваш сістэмны індэкс Elasticsearch састарэлы з-за змены налад. Для яго абнаўлення выканайце каманду <code>tootctl search deploy --reset-chewy</code>.
       elasticsearch_running_check:
         message_html: Немагчыма падключыцца да Elasticsearch. Калі ласка, праверце, што ён запушчаны, або адключыце паўнатэкставы пошук
       elasticsearch_version_check:
@@ -826,6 +884,18 @@ be:
         message_html: Вы не вызначылі ніякіх правілаў сервера.
       sidekiq_process_check:
         message_html: Не працуе працэс Sidekiq для %{value} чаргі. Калі ласка праверце вашу канфігурацыю Sidekiq
+      software_version_critical_check:
+        action: Прагледзець даступныя абнаўленні
+        message_html: Даступна крытычнае абнаўленне Mastodon, калі ласка, зрабіце абнаўленне як мага хутчэй.
+      software_version_patch_check:
+        action: Прагледзець даступныя абнаўленні
+        message_html: Даступна абнаўленне Mastodon з выпраўленнем памылак.
+      upload_check_privacy_error:
+        action: Для падрабязнасцей націсніце тут
+        message_html: "<strong>Ваш сервер не наладжаны. Прыватнасць карыстальнікаў пад пагрозай.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Для падрабязнасцей націсніце тут
+        message_html: "<strong>Ваша сховішча не наладжана. Прыватнасць карыстальнікаў пад пагрозай.</strong>"
     tags:
       review: Стан праверкі
       updated_msg: Налады хэштэгаў паспяхова змененыя
@@ -850,6 +920,7 @@ be:
           other: Абагулілі %{count} чалавек за апошні тыдзень
         title: Актуальныя спасылкі
         usage_comparison: Выкарыстоўвалася %{today} разоў сёння, у параўнанні з %{yesterday} учора
+      not_allowed_to_trend: Забаронена выходзіць у актуальныя
       only_allowed: Толькі дазволенае
       pending_review: Чакае праверкі
       preview_card_providers:
@@ -940,6 +1011,9 @@ be:
       body: "%{target} абскарджвае рашэнне мадэратара %{action_taken_by} ад %{date}, якая была %{type}. Яны напісалі:"
       next_steps: Вы можаце ўхваліць апеляцыю каб адмяніць рашэнне мадэратараў ці ігнараваць яе.
       subject: "%{username} абскарджвае рашэнне мадэратараў на %{instance}"
+    new_critical_software_updates:
+      body: Выпушчаны новыя крытычныя версіі Mastodon, неабходна абнавіцца як мага хутчэй!
+      subject: Даступны крытычныя абнаўленні Mastodon для %{instance}!
     new_pending_account:
       body: Падрабязнасці новага ўліковага запісу прыведзены ніжэй. Вы можаце зацвердзіць або адхіліць гэтую заяўку.
       subject: Новы ўліковы запіс для разгляду ў %{instance} (%{username})
@@ -947,6 +1021,9 @@ be:
       body: "%{reporter} паскардзіўся на %{target}"
       body_remote: Нехта з %{domain} паскардзіўся на %{target}
       subject: Новая скарга на %{instance} (#%{id})
+    new_software_updates:
+      body: Выйшлі новыя версіі Mastodon, магчыма, вам варта абнавіцца!
+      subject: Новыя версіі Mastodon даступныя для %{instance}!
     new_trends:
       body: 'Гэтыя элементы трэба праверыць, перш чым публікаваць:'
       new_trending_links:
@@ -976,24 +1053,28 @@ be:
       guide_link: https://be.crowdin.com/project/mastodon/be
       guide_link_text: Кожны можа зрабіць унёсак.
     sensitive_content: Далікатны змест
-    toot_layout: Макет допісу
   application_mailer:
     notification_preferences: Змяніць налады эл. пошты
     salutation: "%{name},"
     settings: 'Змяніць налады эл. пошты: %{link}'
+    unsubscribe: Адпісацца
     view: 'Паглядзець:'
     view_profile: Паглядзець профіль
     view_status: Паглядзець допіс
   applications:
     created: Праграма паспяхова створана
     destroyed: Праграма паспяхова выдалена
+    logout: Выйсці
     regenerate_token: Стварыць новы токен доступу
     token_regenerated: Новы токен доступу паспяхова створаны
     warning: Будзьце вельмі асцярожныя з гэтымі данымі. Ніколі нікому не паведамляйце іх!
     your_token: Ваш токен доступу
   auth:
     apply_for_account: Пакінуць заяўку
-    change_password: Пароль
+    captcha_confirmation:
+      help_html: Калі ў вас узніклі праблемы з вырашэннем CAPTCHA, вы можаце звязацца з намі праз %{email}, каб мы вам дапамаглі.
+      hint_html: Засталася яшчэ адна рэч! Каб не дапусціць спаму, нам трэба пацвердзіць, што вы чалавек. Разгадайце CAPTCHA ніжэй і націсніце «Працягнуць».
+      title: Праверка бяспекі
     confirmations:
       wrong_email_hint: Калі гэты адрас электроннай пошты памылковы, вы можаце змяніць яго ў наладах уліковага запісу.
     delete_account: Выдаліць уліковы запіс
@@ -1002,7 +1083,7 @@ be:
       prefix_invited_by_user: "@%{name} запрашае вас далучыцца да гэтага сервера ў Mastodon!"
       prefix_sign_up: Зарэгістравацца ў Mastodon сёння!
       suffix: Маючы ўліковы запіс, вы зможаце падпісвацца на іншых людзей, дзяліцца навінамі і абменьвацца паведамленнямі з карыстальнікамі з любога сервера Mastodon і шмат што яшчэ!
-    didnt_get_confirmation: Не атрымалі інструкцыю пацвярджэння?
+    didnt_get_confirmation: Не атрымалі пацвярджальную спасылку?
     dont_have_your_security_key: Не маеце ключа бяспекі?
     forgot_password: Забылі свой пароль?
     invalid_reset_password_token: Токен для скідвання пароля несапраўдны або састарэў. Зрабіце запыт на новы.
@@ -1015,26 +1096,39 @@ be:
     migrate_account_html: Калі вы хочаце перанакіраваць гэты ўліковы запіс на іншы, то можаце <a href="%{path}">наладзіць яго тут</a>.
     or_log_in_with: Або ўвайсці з дапамогай
     privacy_policy_agreement_html: Я азнаёміўся і пагаджаюся з <a href="%{privacy_policy_path}" target="_blank">палітыкай канфідэнцыйнасці</a>
+    progress:
+      confirm: Пацвердзіць email
+      details: Вашы дадзеныя
+      review: Наш водгук
+      rules: Прыняць правілы
     providers:
       cas: CAS
       saml: SAML
     register: Зарэгістравацца
     registration_closed: "%{instance} больш не прымае новых удзельнікаў"
-    resend_confirmation: Адправіць інструкцыю пацвярджэння зноў
+    resend_confirmation: Даслаць пацвярджальную спасылку зноў
     reset_password: Скінуць пароль
     rules:
+      accept: Прыняць
+      back: Назад
+      invited_by: 'Вы можаце далучыцца да %{domain} дзякуючы запрашэнню, якое вы атрымалі ад:'
       preamble: Правілы вызначаныя мадэратарамі дамена %{domain}.
+      preamble_invited: Перш чым працягнуць, азнаёмцеся з асноўнымі правіламі, усталяванымі мадэратарамі %{domain}.
       title: Некалькі базавых правілаў.
+      title_invited: Вас запрасілі.
     security: Бяспека
     set_new_password: Прызначыць новы пароль
     setup:
-      email_below_hint_html: Калі прыведзены ніжэй адрас эл. пошты няправільны, вы можаце змяніць яго тут і атрымаць новае пацвярджэнне па эл. пошце.
-      email_settings_hint_html: Ліст з пацвярджэннем быў адпраўлены на %{email}. Калі гэты адрас эл. пошты няправільны, вы можаце змяніць яго ў наладах уліковага запісу.
-      title: Налады
+      email_below_hint_html: Праверце папку са спамам або зрабіце новы запыт. Вы можаце выправіць свой email, калі ён няправільны.
+      email_settings_hint_html: Націсніце на спасылку, якую мы адправілі, каб спраўдзіць %{email}. Мы вас пачакаем тут.
+      link_not_received: Не атрымалі спасылку?
+      new_confirmation_instructions_sent: Праз некалькі хвілін вы атрымаеце новы ліст на email са спасылкай для пацверджання!
+      title: Праверце вашу пошту
     sign_in:
       preamble_html: Уваход з уліковымі дадзенымі <strong>%{domain}</strong>. Калі ваш уліковы запіс знаходзіцца на іншым серверы, у вас не атрымаецца ўвайсці тут.
       title: Уваход у %{domain}
     sign_up:
+      manual_review: Рэгістрацыі на %{domain} праходзяць ручную праверку нашымі мадэратарамі. Каб дапамагчы нам апрацаваць вашу рэгістрацыю, напішыце крыху пра сябе і чаму вы хочаце мець уліковы запіс на %{domain}.
       preamble: Маючы ўліковы запіс на гэтым серверы Mastodon, вы будзеце мець магчымасць падпісацца на кожнага чалавека ў сетцы, незалежна ад таго, на якім серверы размешчаны ягоны ўліковы запіс.
       title: Наладзьма вас на %{domain}.
     status:
@@ -1046,18 +1140,6 @@ be:
       view_strikes: Праглядзець мінулыя папярэджанні для вашага ўліковага запісу
     too_fast: Форма адпраўлена занадта хутка, паспрабуйце яшчэ раз.
     use_security_key: Выкарыстаеце ключ бяспекі
-  authorize_follow:
-    already_following: Вы ўжо падпісаныя на гэты ўліковы запіс
-    already_requested: Вы ўжо адправілі запыт на гэты ўліковы запіс
-    error: На жаль, падчас пошуку аддаленага ўліковага запісу здарылася памылка
-    follow: Падпісацца
-    follow_request: 'Вы адправілі запыт на падпіску:'
-    following: 'Поспех! Цяпер вы падпісаны на:'
-    post_follow:
-      close: Або, вы можаце проста закрыць гэтае акно.
-      return: Паказаць профіль карыстальніка
-      web: Перайсці ў вэб-версію
-    title: Падпісацца на %{acct}
   challenge:
     confirm: Працягнуць
     hint_html: "<strong>Парада:</strong> Мы не будзем запытваць ваш пароль зноўку на працягу наступнай гадзіны."
@@ -1134,6 +1216,10 @@ be:
       your_appeal_rejected: Ваша абскарджанне было адхілена
   domain_validator:
     invalid_domain: не з'яўляецца сапраўдным даменным імем
+  edit_profile:
+    basic_information: Асноўная інфармацыя
+    hint_html: "<strong>Наладзьце тое, што людзі будуць бачыць у вашым профілі і побач з вашымі паведамленнямі.</strong> Іншыя людзі з большай верагоднасцю будуць сачыць і ўзаемадзейнічаць з вамі, калі ў вас ёсць запоўнены профіль і фота профілю."
+    other: Іншае
   errors:
     '400': Запыт, які вы адправілі, памылковы або няправільны.
     '403': У вас няма дазволу на прагляд гэтай старонкі.
@@ -1220,8 +1306,6 @@ be:
       index:
         hint: Гэты фільтр прымяняецца для выбару асобных допісаў незалежна ад іншых крытэрыяў. Вы можаце дадаць больш допісаў у гэты фільтр з вэб-інтэрфейсу.
         title: Адфільтраваныя допісы
-  footer:
-    trending_now: Актуальнае
   generic:
     all: Усе
     all_items_on_page_selected_html:
@@ -1234,7 +1318,9 @@ be:
       many: Абраныя ўсе <strong>%{count}</strong> элементаў, якія адпавядаюць вашаму пошуку.
       one: Абраны <strong>%{count}</strong> элемент, які адпавядае вашаму пошуку.
       other: Абраныя <strong>%{count}</strong> элементаў, якія адпавядаюць вашаму пошуку.
+    cancel: Скасаваць
     changes_saved_msg: Змены паспяхова захаваны!
+    confirm: Пацвердзіць
     copy: Скапіяваць
     delete: Выдаліць
     deselect: Зняць вылучэнне з усіх
@@ -1252,24 +1338,62 @@ be:
       many: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце %{count} памылак ніжэй
       one: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце памылку ніжэй
       other: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце %{count} памылак ніжэй
-  html_validator:
-    invalid_markup: 'змяшчае несапраўдную разметку HTML: %{error}'
   imports:
     errors:
+      empty: Пусты CSV файл
+      incompatible_type: Несумяшчальны з выбраным тыпам імпарту
       invalid_csv_file: 'Несапраўдны файл CSV. Памылка: %{error}'
       over_rows_processing_limit: колькасць радкоў большая за %{count}
+      too_large: Файл занадта вялікі
+    failures: Няўдала
+    imported: Імпартавана
+    mismatched_types_warning: Здаецца, вы выбралі няправільны тып для гэтага імпарту, праверце яшчэ раз.
     modes:
       merge: Аб'яднаць
       merge_long: Захаваць існуючыя запісы і дадаць новыя
       overwrite: Перазапісаць
       overwrite_long: Замяніць бягучыя запісы на новыя
+    overwrite_preambles:
+      blocking_html: Вы збіраецеся <strong>замяніць свой спіс блакіровак</strong> на <strong>%{total_items} уліковых запісаў</strong> з файла <strong>%{filename}</strong>.
+      bookmarks_html: Вы збіраецеся <strong>замяніць свае закладкі</strong> на <strong>%{total_items} допісаў</strong> з файла <strong>%{filename}</strong>.
+      domain_blocking_html: Вы збіраецеся <strong>замяніць свой спіс блакіроўкі даменаў</strong> на <strong>%{total_items} даменаў</strong> з файла <strong>%{filename}</strong>.
+      following_html: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{total_items} уліковых запісаў</strong> з файла <strong>%{filename}</strong> і <strong> адпісацца ад усіх іншых карыстальнікаў</strong>.
+      lists_html: Вы збіраецеся <strong>замяніць свае спісы</strong> змесцівам з <strong>%{filename}</strong>. Да <strong>%{total_items} уліковых запісаў</strong> будуць дададзены ў новыя спісы.
+      muting_html: Вы збіраецеся <strong>замяніць свой спіс ігнараваных уліковых запісаў</strong> на <strong>%{total_items} уліковых запісаў</strong> з файла <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Вы збіраецеся <strong>заблакіраваць</strong> да <strong>%{total_items} уліковых запісаў</strong> з файла<strong>%{filename}</strong>.
+      bookmarks_html: Вы збіраецеся дадаць да <strong>%{total_items} паведамленняў</strong> з файла <strong>%{filename}</strong> у вашы <strong>закладкі</strong>.
+      domain_blocking_html: Вы збіраецеся <strong>заблакіраваць</strong> да <strong>%{total_items} даменаў</strong> з файла <strong>%{filename}</strong>.
+      following_html: Вы збіраецеся <strong>падпісацца </strong> на<strong>%{total_items} уліковых запісаў</strong> з файла <strong>%{filename}</strong>.
+      lists_html: Вы збіраецеся дадаць да <strong>%{total_items} уліковых запісаў</strong> з <strong>%{filename}</strong> у вашы <strong>спісы</strong>. Новыя спісы будуць створаны, калі іх няма.
+      muting_html: Вы збіраецеся <strong>ігнараваць</strong> да <strong>%{total_items} уліковых запісаў</strong> з файла <strong>%{filename}</strong>.
     preface: Вы можаце імпартаваць даныя, экспартаваныя вамі з іншага сервера, напрыклад, спіс людзей, на якіх вы падпісаны або якіх блакуеце.
+    recent_imports: Нядаўнія імпарты
+    states:
+      finished: Завершана
+      in_progress: Выконваецца
+      scheduled: Запланавана
+      unconfirmed: Непацверджана
+    status: Стан
     success: Вашы даныя паспяхова запампаваныя і будуць неўзабаве апрацаваны
+    time_started: Пачатак
+    titles:
+      blocking: Імпарт заблакіраваных уліковых запісаў
+      bookmarks: Імпарт закладак
+      domain_blocking: Імпарт заблакіраваных даменаў
+      following: Імпарт падпісаных уліковых запісаў
+      lists: Імпартаванне спісаў
+      muting: Імпарт ігнараваных уліковых запісаў
+    type: Тып імпарту
+    type_groups:
+      constructive: Падпіскі і закладкі
+      destructive: Блакіроўкі і ігнараванні
     types:
       blocking: Спіс заблакіраваных
       bookmarks: Закладкі
       domain_blocking: Спіс заблакіраваных даменаў
       following: Падпіскі
+      lists: Спісы
       muting: Спіс ігнаравання
     upload: Запампаваць
   invites:
@@ -1310,6 +1434,21 @@ be:
     failed_sign_in_html: Няўдалая спроба ўваходу праз %{method} з %{ip} (%{browser})
     successful_sign_in_html: Паспяховы ўваход праз %{method} з %{ip} (%{browser})
     title: Гісторыя ўваходаў
+  mail_subscriptions:
+    unsubscribe:
+      action: Так, адпісацца
+      complete: Адпісаны
+      confirmation_html: Вы ўпэўнены, што жадаеце адмовіцца ад %{type} з Mastodon на дамене %{domain} на вашу электронную пошту %{email}? Вы заўсёды можаце паўторна падпісацца у <a href="%{settings_path}">наладах апавяшчэнняў па электроннай пошце</a>.
+      emails:
+        notification_emails:
+          favourite: апавяшчэнні на пошту пра упадабанае
+          follow: апавяшчэнні на пошту пра падпіскі
+          follow_request: апавяшчэнні на пошту пра запыты на падпіску
+          mention: апавяшчэнні на пошту пра згадванні
+          reblog: апавяшчэнні на пошту пра пашырэнні
+      resubscribe_html: Калі вы адмовіліся ад падпіскі памылкова, вы можаце зноў падпісацца ў <a href="%{settings_path}">наладах апавяшчэнняў па электроннай пошце</a>.
+      success_html: Вы больш не будзеце атрымліваць %{type} на сваю электронную пошту %{email} ад Mastodon на дамене %{domain}.
+      title: Адпісацца
   media_attachments:
     validations:
       images_and_video: Немагчыма прымацаваць відэа да допісу, які ўжо змяшчае выявы
@@ -1389,6 +1528,7 @@ be:
     update:
       subject: "%{name} адрэдагаваў допіс"
   notifications:
+    administration_emails: Апавяшчэнні эл. пошты для адміністратара
     email_events: Падзеі для апавяшчэнняў эл. пошты
     email_events_hint: 'Выберыце падзеі, аб якіх вы хочаце атрымліваць апавяшчэнні:'
     other_settings: Іншыя налады апавяшчэнняў
@@ -1425,12 +1565,22 @@ be:
       expired: Апытанне ўжо скончана
       invalid_choice: Абраны варыянт апытання не існуе
       over_character_limit: не можа быць даўжэй за %{max} сімвалаў кожны
+      self_vote: Вы не можаце галасаваць ва ўласных апытаннях
       too_few_options: павінна быць болей за адзін варыянт
       too_many_options: колькасць варыянтаў не можа перавышаць %{max}
   preferences:
     other: Іншае
     posting_defaults: Публікаваць па змаўчанні
     public_timelines: Публічныя стужкі
+  privacy:
+    hint_html: "<strong>Наладзьце тое, якім чынам ваш профіль і вашы паведамленні могуць быць знойдзеныя.</strong> Розныя функцыі ў Mastodon могуць дапамагчы вам ахапіць шырэйшую аўдыторыю. Удзяліце час гэтым наладам, каб пераканацца, што яны падыходзяць вам."
+    privacy: Прыватнасць
+    privacy_hint_html: Кантралюйце, колькі інфармацыі вы хочаце раскрыць для карысці іншых. Людзі адкрываюць для сябе цікавыя профілі і класныя праграмы, праглядаючы допісы іншых людзей і даведваючыся, з якіх праграм яны пішуць, але, магчыма, вы аддаеце перавагу трымаць гэта ў таямніцы.
+    reach: Дасяжнасць
+    reach_hint_html: Кантралюйце, ці вы хочаце, каб пра вас даведваліся і на вас падпісваліся новыя людзі. Ці вы хочаце, каб вашы паведамленні з'яўляліся на старонцы "агляд"? Ці вы хочаце, каб іншыя людзі бачылі вас у сваіх рэкамендацыях? Ці вы хочаце аўтаматычна прымаць усіх новых падпісчыкаў або мець магчымасць дэталёва кантраляваць кожнага з іх?
+    search: Пошук
+    search_hint_html: Кантралюйце тое, якім чынам вас можна знайсці. Ці хочаце вы, каб людзі знаходзілі вас па тым, пра што вы публічна апублікавалі? Ці вы хочаце, каб людзі за межамі Mastodon знаходзілі ваш профіль пры пошуку ў Інтэрнэце? Трэба памятаць, што поўнае выключэнне з усіх пошукавых сістэм не можа быць гарантавана для публічнай інфармацыі.
+    title: Прыватнасць і дасяжнасць
   privacy_policy:
     title: Палітыка канфідэнцыйнасці
   reactions:
@@ -1443,6 +1593,7 @@ be:
     confirm_remove_selected_followers: Вы ўпэўнены, што жадаеце выдаліць выбраных падпісчыкаў?
     confirm_remove_selected_follows: Вы ўпэўнены, што жадаеце выдаліць выбраныя падпіскі?
     dormant: Занядбаны
+    follow_failure: Вы не можаце падпісацца на некаторыя акаўнты.
     follow_selected_followers: Падпісацца на выбраных падпісчыкаў
     followers: Падпісчыкі
     following: Падпісаны
@@ -1482,6 +1633,7 @@ be:
       electron: Electron
       firefox: Firefox
       generic: Невядомы браўзер
+      huawei_browser: Браўзер Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1491,6 +1643,7 @@ be:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Невядомы браўзер
       weibo: Weibo
     current_session: Бягучая сесія
     description: "%{browser} на %{platform}"
@@ -1503,9 +1656,10 @@ be:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: невядомай платформе
+      unknown_platform: Невядомая платформа
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1532,7 +1686,7 @@ be:
     preferences: Налады
     profile: Профіль
     relationships: Падпіскі і падпісчыкі
-    statuses_cleanup: Аўтаматычнае выдаленне допісаў
+    statuses_cleanup: Аўтавыдаленне допісаў
     strikes: Папярэджанні мадэратараў
     two_factor_authentication: Двухфактарная аўтэнтыфікацыя
     webauthn_authentication: Ключы бяспекі
@@ -1588,7 +1742,6 @@ be:
     show_newer: Паказаць навейшыя
     show_older: Паказаць старэйшыя
     show_thread: Паказаць ланцуг
-    sign_in_to_participate: Зарэгіструйцеся каб удзельнічаць у абмеркаванні
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Асабіста
@@ -1634,8 +1787,6 @@ be:
     min_reblogs: Захаваць допісы, якія пашырылі хаця б
     min_reblogs_hint: Не выдаляе вашыя допісы, якія пашырыла прынамсі вызначаная колькасць людзей. Пакіньце гэтае поле пустым, каб допісы выдаляліся незалежна ад гэтай колькасці
   stream_entries:
-    pinned: Замацаваны допіс
-    reblogged: пашыраны
     sensitive_content: Далікатны змест
   strikes:
     errors:
@@ -1651,6 +1802,11 @@ be:
       default: "%d.%m.%Y %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Сервер перавысіў квоту на выкарыстанне службы перакладу.
+      too_many_requests: Занадта шмат запытаў у сервіс перакладаў.
   two_factor_authentication:
     add: Дадаць
     disable: Адключыць 2FA
@@ -1730,13 +1886,18 @@ be:
       title: Рады вітаць вас, %{name}!
   users:
     follow_limit_reached: Вы не можаце падпісацца на большую колькасць людзей чым %{limit}
+    go_to_sso_account_settings: Перайдзіце ў налады ідэнтыфікацыі вашага ўліковага запісу
     invalid_otp_token: Няправільны код двухфактарнай аўтэнтыфікацыі
     otp_lost_help_html: Калі вы страцілі доступ да абодвух, вы можаце скарыстацца %{email}
     seamless_external_login: Вы ўвайшлі праз знешні сэрвіс, таму налады пароля і эл. пошты недаступныя.
     signed_in_as: 'Увайшлі як:'
   verification:
-    explanation_html: 'Вы можаце <strong>пацвердзіць сябе як уладальніка спасылак у метададзеных вашага профілю</strong>. Для гэтага спасылка на вэб-сайт павінна ўтрымліваць спасылку на ваш профіль Mastodon. Зваротная спасылка <strong>павінна</strong> мець атрыбут <code>rel="me"</code>. Тэкставы змест спасылкі не мае значэння. Вось прыклад:'
+    extra_instructions_html: <strong>Парада:</strong> спасылка на вашым сайце можа быць нябачнай. Важнай часткай з'яўляецца <code>rel="me"</code>, якая прадухіляе імперсанацыю на сайтах з карыстальніцкім кантэнтам. Вы нават можаце выкарыстоўваць тэг <code>link</code> у загалоўку старонкі замест <code>a</code>, але HTML павінен быць даступны без выканання JavaScript.
+    here_is_how: Як гэта зрабіць
+    hint_html: "<strong>Пацвярджэнне асобы на Mastodon даступна кожнаму.</strong> Заснавана на адкрытых вэб-стандартах, зараз і заўсёды бясплатна. Усё, што вам трэба, гэта асабісты сайт, па якім людзі вас пазнаюць. Калі вы спасылаецеся на гэты вэб-сайт са свайго профілю, мы правяраем, што вэб-сайт у сваю чаргу спасылаецца на ваш профіль, і паказваем на ім візуальны індыкатар."
+    instructions_html: Скапіруйце прыведзены ніжэй код і ўстаўце ў HTML вашага сайта. Затым дадайце адрас вашага сайта ў адно з дадатковых палёў вашага профілю на ўкладцы «рэдагаваць профіль» і захавайце змены.
     verification: Верыфікацыя
+    verified_links: Вашыя правераныя спасылкі
   webauthn_credentials:
     add: Дадаць новы ключ бяспекі
     create:

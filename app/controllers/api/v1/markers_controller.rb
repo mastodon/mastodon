@@ -7,7 +7,10 @@ class Api::V1::MarkersController < Api::BaseController
   before_action :require_user!
 
   def index
-    @markers = current_user.markers.where(timeline: Array(params[:timeline])).index_by(&:timeline)
+    with_read_replica do
+      @markers = current_user.markers.where(timeline: Array(params[:timeline])).index_by(&:timeline)
+    end
+
     render json: serialize_map(@markers)
   end
 

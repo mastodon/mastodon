@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe FastIpMap do
   describe '#include?' do
-    subject { described_class.new([IPAddr.new('20.4.0.0/16'), IPAddr.new('145.22.30.0/24'), IPAddr.new('189.45.86.3')])}
+    subject { described_class.new([IPAddr.new('20.4.0.0/16'), IPAddr.new('145.22.30.0/24'), IPAddr.new('189.45.86.3')]) }
 
     it 'returns true for an exact match' do
       expect(subject.include?(IPAddr.new('189.45.86.3'))).to be true

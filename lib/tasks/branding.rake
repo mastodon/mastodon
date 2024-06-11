@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :branding do
   desc 'Generate necessary graphic assets for branding from source SVG files'
   task generate: :environment do

@@ -1,33 +1,40 @@
 {
-  "name": "Mastodon",
+  "name": "Mastodon on local machine",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
-  "workspaceFolder": "/mastodon",
-
-  // Set *default* container specific settings.json values on container create.
-  "settings": {},
-
-  // Add the IDs of extensions you want installed when the container is created.
-  "extensions": [
-    "EditorConfig.EditorConfig",
-    "dbaeumer.vscode-eslint",
-    "rebornix.Ruby",
-    "webben.browserslist"
-  ],
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
   "features": {
-    "ghcr.io/devcontainers/features/sshd:1": {
-      "version": "latest"
+    "ghcr.io/devcontainers/features/sshd:1": {}
+  },
+
+  "forwardPorts": [3000, 4000],
+
+  "portsAttributes": {
+    "3000": {
+      "label": "web",
+      "onAutoForward": "notify",
+      "requireLocalPort": true
+    },
+    "4000": {
+      "label": "stream",
+      "onAutoForward": "silent",
+      "requireLocalPort": true
     }
   },
 
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // This can be used to network with other containers or the host.
-  "forwardPorts": [3000, 4000],
+  "otherPortsAttributes": {
+    "onAutoForward": "silent"
+  },
 
-  // Use 'postCreateCommand' to run commands after the container is created.
+  "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
   "postCreateCommand": ".devcontainer/post-create.sh",
+  "waitFor": "postCreateCommand",
 
-  // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "vscode"
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": ["EditorConfig.EditorConfig", "webben.browserslist"]
+    }
+  }
 }

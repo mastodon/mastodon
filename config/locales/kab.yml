@@ -95,14 +95,13 @@ kab:
       remove_header: Kkes tacacit
       resend_confirmation:
         already_confirmed: Amseqdac-agi yettwasentem yakan
-        send: Azen tikelt-nniḍen imayl n usentem
-        success: Imayl n usentem yettwazen mebla ugur!
       reset: Wennez
       reset_password: Beddel awal uffir
       resubscribe: Ales ajerred
       search: Nadi
       search_same_email_domain: Iseqdacen-nniḍen s yiwet n taɣult n yimayl
       search_same_ip: Imseqdacen-nniḍen s tansa IP am tinn-ik
+      security: Taɣellist
       security_measures:
         only_password: Awal uffir kan
         password_and_2fa: Awal uffir d 2FA
@@ -255,6 +254,8 @@ kab:
       undo: Kkes seg tebdart tamellalt
     domain_blocks:
       add_new: Rni iḥder amaynut n taɣult
+      confirm_suspension:
+        cancel: Sefsex
       domain: Taγult
       export: Sifeḍ
       import: Kter
@@ -285,6 +286,7 @@ kab:
     instances:
       back_to_all: Akk
       back_to_limited: Ɣur-s talast
+      back_to_warning: Γur-wat
       by_domain: Taγult
       content_policies:
         policy: Tasertit
@@ -355,6 +357,7 @@ kab:
       category: Taggayt
       comment:
         none: Ula yiwen
+      confirm: Sentem
       mark_as_resolved: Creḍ-it yefra
       mark_as_unresolved: Creḍ-it ur yefra ara
       notes:
@@ -403,13 +406,13 @@ kab:
         modes:
           none: Yiwen·t ur yzmir ad izeddi
           open: Zemren akk ad jerden
-      title: Iɣewwaṛen n uqeddac
     site_uploads:
       delete: Kkes afaylu yulin
     statuses:
       application: Asnas
       back_to_account: Tuγalin γer usebter n umiḍan
       deleted: Yettwakkes
+      favourites: Imenyafen
       language: Tutlayt
       media:
         title: Taγwalt
@@ -440,10 +443,11 @@ kab:
     view_profile: Ssken-d amaɣnu
     view_status: Ssken-d tasuffiɣt
   applications:
+    logout: Ffeɣ
     token_regenerated: Ajuṭu n unekcum yettusirew i tikkelt-nniḍen akken iwata
     your_token: Ajiṭun-ik·im n unekcum
   auth:
-    change_password: Awal uffir
+    apply_for_account: Suter amiḍan
     delete_account: Kkes amiḍan
     description:
       prefix_invited_by_user: "@%{name} inced-ik·ikem ad ternuḍ ɣer uqeddac-a n Mastodon!"
@@ -460,21 +464,13 @@ kab:
     register: Jerred
     registration_closed: "%{instance} ur yeqbil ara imttekkiyen imaynuten"
     reset_password: Wennez awal uffir
+    rules:
+      back: Tuɣalin
     security: Taγellist
     set_new_password: Egr-d awal uffir amaynut
-    setup:
-      title: Sbadu
     status:
       account_status: Addad n umiḍan
     use_security_key: Seqdec tasarut n teɣlist
-  authorize_follow:
-    already_following: Teṭafareḍ ya kan amiḍan-a
-    follow: Ḍfeṛ
-    following: 'Igerrez! Aqlik teṭafareḍ tura:'
-    post_follow:
-      return: Ssken-d amaɣnu n useqdac
-      web: Ddu γer Web
-    title: Ḍfeṛ %{acct}
   challenge:
     confirm: Kemmel
     invalid_password: Yir awal uffir
@@ -503,15 +499,8 @@ kab:
       username_available: Isem-ik·im n useqdac ad yuɣal yella i tikkelt-nniḍen
       username_unavailable: Isem-ik·im n useqdac ad yeqqim ulac-it
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
-    '429': Too many requests
     '500':
       title: Asebter-ayi d arameγtu
-    '503': The page could not be served due to a temporary server failure.
   existing_username_validator:
     not_found_multiple: ur yezmir ara ad yaf %{usernames}
   exports:
@@ -543,8 +532,6 @@ kab:
       back_to_filter: Tuɣalin ɣer umsizdeg
       batch:
         remove: Kkes seg umsizdeg
-  footer:
-    trending_now: Ayen mucaɛen tura
   generic:
     all: Akk
     changes_saved_msg: Ttwaskelsen ibelliden-ik·im akken ilaq!
@@ -629,8 +616,6 @@ kab:
     prev: Win iɛeddan
   preferences:
     other: Wiyaḍ
-    posting_defaults: Posting defaults
-    public_timelines: Public timelines
   privacy_policy:
     title: Tasertit tabaḍnit
   relationships:
@@ -673,7 +658,6 @@ kab:
       ios: iOS
       linux: Linux
       mac: macOS
-      other: anagraw arussin
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Tiliγri Windows Phone
@@ -723,7 +707,6 @@ kab:
     show_more: Ssken-d ugar
     show_newer: Ssken-d timaynutin
     show_thread: Ssken-d lxiḍ
-    sign_in_to_participate: Qqen i waken ad tzeddiḍ deg udiwenni
     title: '%{name} : "%{quote}"'
     visibilities:
       direct: Usrid
@@ -743,7 +726,6 @@ kab:
       '63113904': 2 n yiseggasen
       '7889238': 3 n wayyuren
   stream_entries:
-    pinned: Tijewwiqt yettwasentḍen
     sensitive_content: Agbur amḥulfu
   themes:
     contrast: Maṣṭudun (agnil awriran)

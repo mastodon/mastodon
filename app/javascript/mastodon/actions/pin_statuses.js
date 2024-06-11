@@ -1,11 +1,11 @@
 import api from '../api';
+import { me } from '../initial_state';
+
 import { importFetchedStatuses } from './importer';
 
 export const PINNED_STATUSES_FETCH_REQUEST = 'PINNED_STATUSES_FETCH_REQUEST';
 export const PINNED_STATUSES_FETCH_SUCCESS = 'PINNED_STATUSES_FETCH_SUCCESS';
 export const PINNED_STATUSES_FETCH_FAIL = 'PINNED_STATUSES_FETCH_FAIL';
-
-import { me } from '../initial_state';
 
 export function fetchPinnedStatuses() {
   return (dispatch, getState) => {

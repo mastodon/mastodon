@@ -15,7 +15,7 @@ class Settings::ExportsController < Settings::BaseController
   def create
     backup = nil
 
-    with_lock("backup:#{current_user.id}") do
+    with_redis_lock("backup:#{current_user.id}") do
       authorize :backup, :create?
       backup = current_user.backups.create!
     end

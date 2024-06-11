@@ -2,6 +2,14 @@
 zh-HK:
   simple_form:
     hints:
+      account:
+        discoverable: 你的公開帖文和個人檔案可能會在 Mastodon 的各處被推薦或設為精選，並且可能把你的檔案推薦給其他使用者。
+        display_name: 你的全名或暱稱。
+        fields: 你的主頁、代名詞、年齡，任何你想顯示的資訊。
+        indexable: 你的公開帖文可能會出現在 Mastodon 的搜尋結果中。無論如何，與你帖文互動過的人都能搜尋到它。
+        note: '你可以 @提及他人 或使用 #主題標籤。'
+        show_collections: 大家可瀏覽你追蹤的人和你的追蹤者。你追蹤的人無論如何都會看到你追蹤了他們。
+        unlocked: 大家毋須獲得批准即可追蹤你。如果你想審核追蹤請求，來接受或拒絕新追蹤者，請取消勾選。
       account_alias:
         acct: 指定欲移動之帳戶的「使用者名稱@域名」
       account_migration:
@@ -18,6 +26,8 @@ zh-HK:
           disable: 禁止該使用者使用他們的帳號，但是不刪除或隱藏他們的內容。
           none: 用這個來警告該使用者，而不進行其他操作。
           sensitive: 強制標記此用戶的所有媒體附件為敏感內容。
+          silence: 禁止該使用者發佈公開帖文，沒有追蹤他們的人不會看到其帖文和通知。關閉所有對該帳號的檢舉報告。
+          suspend: 禁止與該帳號的所有互動，並移除其內容。可於 30 天內撤銷此動作。關閉所有對此帳號的檢舉報告。
         warning_preset_id: 選用。你仍可在預設訊息的結尾加入自訂文字
       announcement:
         all_day: 勾選後，只會顯示出時間範圍中的日期部分
@@ -35,14 +45,11 @@ zh-HK:
         current_password: 基於保安緣故，請輸入目前帳號的密碼
         current_username: 請輸入目前帳戶的使用者名稱以確認
         digest: 僅在你長時間未登錄，且收到了私信時發送
-        discoverable: 允許陌生人從推薦、趨勢及其他功能發現你的帳號
         email: 你將收到一封確認電郵
-        fields: 個人資料頁可顯示多至 4 個項目
         header: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會縮裁成 %{dimensions}px
         inbox_url: 在你想要使用的中繼站首頁，複製它的網址
         irreversible: 文章過濾是不可還原的，即使日後過濾器被移除，也無法重新看到被它濾走的文章
         locale: 使用者介面、電郵和通知的語言
-        locked: 你必須手動審核每個人對你的關注請求
         password: 使用至少 8 個字元
         phrase: 過濾器會閱讀文章和內容警告標語的字眼，然後決定過濾與否
         scopes: 選擇應用程式可以存取的 API。 若你選擇最高階的權限範圍，則無須選擇個別項目。
@@ -52,12 +59,9 @@ zh-HK:
         setting_display_media_default: 隱藏標為敏感的媒體
         setting_display_media_hide_all: 總是隱藏所有媒體
         setting_display_media_show_all: 總是顯示標為敏感的媒體
-        setting_hide_network: 你所關注的人，和關注你的人，將不會在你的個人資料頁上顯示
-        setting_noindex: 此設定會影響到你的公開個人資料以及文章頁面
-        setting_show_application: 你用來發表文章的應用程式，將會顯示在你文章的詳細檢視中
         setting_use_blurhash: 漸變圖樣會基於隱藏媒體內容產生，但所有細節會變得模糊
         setting_use_pending_items: 關閉自動滾動更新，時間軸會在點擊後更新
-        username: 你的使用者名稱在 %{domain} 將是獨一無二的
+        username: 你可以使用字母、數字及底線
         whole_word: 如果關鍵字或詞組僅有字母與數字，則其將只在符合整個單字的時候才會套用
       domain_allow:
         domain: 此網域將能從此站獲取資料，而此站發出的數據也會被處理和存儲。
@@ -72,6 +76,7 @@ zh-HK:
           hide: 完全隱藏被篩選的內容，猶如它不存在般。
           warn: 將已篩選的內容隱藏在篩選器標題的警告後面。
       form_admin_settings:
+        activity_api_enabled: 每週本站發佈的帖文、活躍使用者及新註冊的數量
         backups_retention_period: 繼續封存生成的使用者到指定的天數。
         bootstrap_timeline_accounts: 這些帳號會被置頂在新使用者的追蹤建議上。
         closed_registrations_message: 關閉註冊時顯示
@@ -79,6 +84,7 @@ zh-HK:
         custom_css: 你可以在 Mastodon 網頁版套用自訂樣式。
         mascot: 覆蓋進階網頁介面中的插圖。
         media_cache_retention_period: 當設定為正數時，已下載的媒體檔案將在指定天數後被刪除，並視乎需要重新下載。
+        peers_api_enabled: 本伺服器於聯邦宇宙相遇的網域名單。這裏不包括你與某伺服器有否聯網的數據，僅表示你的伺服器已知的網域。這是供收集一般跨站數據的服務使用。
         profile_directory: 個人檔案目錄羅列了所有選擇被發現的使用者。
         require_invite_text: 如果需要手動審核註冊，請將「為何你想加入？」文字欄設定為必填，而非選填。
         site_contact_email: 大家如何聯絡你有關法律或支援的查詢。
@@ -87,11 +93,13 @@ zh-HK:
         site_short_description: 用作辨別你的伺服器的一段簡短描述。誰營運它，它為誰服務的？
         site_terms: 使用你的私隱政策，或者留空使用預設的，可以用 Markdown 語法編寫。
         site_title: 除了域名以外，其他人會如何指稱你的伺服器。
+        status_page_url: 可在服務中斷期間，查看此伺服器狀態的網頁網址
         theme: 未登入訪客和新使用者看到的主題。
         thumbnail: 一幅約 2:1 的圖片顯示在你的伺服器資訊的旁邊。
         timeline_preview: 未登入的訪客能夠瀏覽伺服器上最新的公開帖文。
         trendable_by_default: 跳過對趨勢內容的手動審查，事後仍可從趨勢中刪除個別項目。
         trends: 趨勢顯示哪些帖文、標籤和新聞故事在你的伺服器上較有吸引力。
+        trends_as_landing_page: 向未登入的使用者及訪客展示趨勢內容，而非只有此伺服器的描述。需要啟用趨勢。
       form_challenge:
         current_password: 你正要進入安全區域
       imports:
@@ -112,6 +120,9 @@ zh-HK:
       sessions:
         otp: 輸入你手機上生成的雙重認證碼，或者任意一個恢復代碼：
         webauthn: 如果它是 USB 安全鑰匙的話，請先插入電腦。如鑰匙設計有需要，請按鍵啟用。
+      settings:
+        indexable: 你的個人檔案可能會出現在 Google 和 Bing 等搜尋引擎的搜尋結果中。
+        show_application: 你總能看到哪個應用程式發佈你的帖文。
       tag:
         name: 你只能變更大小寫（以使其更易讀）。
       user:
@@ -125,12 +136,17 @@ zh-HK:
         position: 在某些情況下，由較高階的角色決定如何解決衝突。某些動作只能對優先度較低的角色執行
       webhook:
         events: 選取要傳送的事件
+        template: 使用變量插值撰寫你的 JSON payload。若要使用預設的 JSON，請留空。
         url: 事件將被傳送至何處
     labels:
       account:
+        discoverable: 探索演算法推薦的個人檔案和帖文
         fields:
           name: 標籤
           value: 內容
+        indexable: 搜尋結果包含公開帖文
+        show_collections: 於個人檔案顯示追蹤中及追蹤者
+        unlocked: 自動接受新追蹤者
       account_alias:
         acct: 舊帳號名稱
       account_migration:
@@ -168,7 +184,6 @@ zh-HK:
         context: 所過濾情境
         current_password: 目前密碼
         data: 資料
-        discoverable: 在目錄列出此帳號
         display_name: 顯示名稱
         email: 電郵地址
         expires_in: 失效時間
@@ -178,7 +193,6 @@ zh-HK:
         inbox_url: 中繼收件匣的 URL
         irreversible: 丟棄而非隱藏
         locale: 介面語言
-        locked: 將帳號轉為「私人」
         max_uses: 最大使用次數
         new_password: 新密碼
         note: 簡介
@@ -190,7 +204,6 @@ zh-HK:
         setting_always_send_emails: 總是傳送電郵通知
         setting_auto_play_gif: 自動播放 GIF
         setting_boost_modal: 在轉推前詢問我
-        setting_crop_images: 將未展開文章中的圖片裁剪到 16x9
         setting_default_language: 文章語言
         setting_default_privacy: 文章預設為
         setting_default_sensitive: 預設我的內容為敏感內容
@@ -202,9 +215,7 @@ zh-HK:
         setting_display_media_show_all: 全部顯示
         setting_expand_spoilers: 永遠展開標有內容警告的文章
         setting_hide_network: 隱藏你的社交網絡
-        setting_noindex: 聲明本站不希望搜尋器讓外界搜尋
         setting_reduce_motion: 減少動畫效果
-        setting_show_application: 顯示用來發表文章的應用程式
         setting_system_font_ui: 使用系統預設字型
         setting_theme: 網站主題
         setting_trends: 顯示今天的趨勢
@@ -227,6 +238,7 @@ zh-HK:
           hide: 完全隱藏
           warn: 警告並隱藏
       form_admin_settings:
+        activity_api_enabled: 在 API 中發佈使用者活動的匯總統計數據
         backups_retention_period: 封存使用者保留期
         bootstrap_timeline_accounts: 總是向新使用者推薦這些帳號
         closed_registrations_message: 無法註冊時的自訂訊息
@@ -234,6 +246,7 @@ zh-HK:
         custom_css: 自訂 CSS
         mascot: 自訂吉祥物 (舊版)
         media_cache_retention_period: 媒體快取保留期
+        peers_api_enabled: 在 API 中發佈已知的伺服器名單
         profile_directory: 啟用個人檔案目錄
         registrations_mode: 誰能註冊
         require_invite_text: 提供一個加入的理由
@@ -245,11 +258,13 @@ zh-HK:
         site_short_description: 伺服器描述
         site_terms: 私隱政策
         site_title: 伺服器名稱
+        status_page_url: 狀態頁網址
         theme: 預設主題
         thumbnail: 伺服器縮圖
         timeline_preview: 允許未經認證的人存取公共時間軸
         trendable_by_default: 允許未經審核的趨勢
         trends: 啟用趨勢
+        trends_as_landing_page: 使用趨勢作為登陸頁面
       interactions:
         must_be_follower: 隱藏你關注者以外的人的通知
         must_be_following: 隱藏你不關注的人的通知
@@ -276,9 +291,18 @@ zh-HK:
         pending_account: 有新帳號需要審核時
         reblog: 當有人轉推你的文章時
         report: 新檢舉已提交
+        software_updates:
+          all: 通知所有更新
+          critical: 只通知關鍵更新
+          label: 有新的 Mastodon 版本
+          none: 永不通知更新（不推薦）
+          patch: 通知除錯更新
         trending_tag: 新趨勢須經過審核
       rule:
         text: 規則
+      settings:
+        indexable: 在搜尋引擎中顯示個人檔案
+        show_application: 顯示發佈帖文所用的應用程式
       tag:
         listable: 允許此主題標籤在搜尋及個人檔案目錄中顯示
         name: 主題標籤
@@ -286,6 +310,7 @@ zh-HK:
         usable: 允許文章使用此主題標籤
       user:
         role: 角色
+        time_zone: 時區
       user_role:
         color: 徽章顏色
         highlighted: 在使用者個人檔案上以徽章顯示角色
@@ -294,9 +319,11 @@ zh-HK:
         position: 優先權
       webhook:
         events: 已啟用事件
+        template: Payload 範本
         url: 端點網址
     'no': 否
     not_recommended: 不推薦
+    overridden: 已覆寫
     recommended: 建議
     required:
       mark: "*"

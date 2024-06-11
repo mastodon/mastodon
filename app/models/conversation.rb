@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: conversations
@@ -41,6 +42,6 @@ class Conversation < ApplicationRecord
   end
 
   def set_conversation_on_parent_status
-    parent_status.update_column(:conversation_id, id) if parent_status.present?
+    parent_status.update(:conversation_id, id) if parent_status.present?
   end
 end

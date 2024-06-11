@@ -1,6 +1,3 @@
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-
 - content_for :page_title do
   = t('statuses.title', name: display_name(@account), quote: truncate(@status.spoiler_text.presence || @status.text, length: 50, omission: '…', escape: false))
 

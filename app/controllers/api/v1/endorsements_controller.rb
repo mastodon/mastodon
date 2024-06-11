@@ -35,17 +35,13 @@ class Api::V1::EndorsementsController < Api::BaseController
   def next_path
     return if unlimited?
 
-    if records_continue?
-      api_v1_endorsements_url pagination_params(max_id: pagination_max_id)
-    end
+    api_v1_endorsements_url pagination_params(max_id: pagination_max_id) if records_continue?
   end
 
   def prev_path
     return if unlimited?
 
-    unless @accounts.empty?
-      api_v1_endorsements_url pagination_params(since_id: pagination_since_id)
-    end
+    api_v1_endorsements_url pagination_params(since_id: pagination_since_id) unless @accounts.empty?
   end
 
   def pagination_max_id

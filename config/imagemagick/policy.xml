@@ -22,6 +22,6 @@
 
   <!-- Disallow any coder by default, and only enable ones required by Mastodon -->
   <policy domain="coder" rights="none" pattern="*" />
-  <policy domain="coder" rights="read | write" pattern="{PNG,JPEG,GIF,HEIC,WEBP}" />
+  <policy domain="coder" rights="read | write" pattern="{JPEG,PNG,GIF,WEBP,HEIC,AVIF}" />
   <policy domain="coder" rights="write" pattern="{HISTOGRAM,RGB,INFO}" />
 </policymap>

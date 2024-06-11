@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: preview_cards
@@ -29,6 +30,8 @@
 #  max_score_at                 :datetime
 #  trendable                    :boolean
 #  link_type                    :integer
+#  published_at                 :datetime
+#  image_description            :string           default(""), not null
 #
 
 class PreviewCard < ApplicationRecord
@@ -44,8 +47,8 @@ class PreviewCard < ApplicationRecord
 
   self.inheritance_column = false
 
-  enum type: [:link, :photo, :video, :rich]
-  enum link_type: [:unknown, :article]
+  enum type: { link: 0, photo: 1, video: 2, rich: 3 }
+  enum link_type: { unknown: 0, article: 1 }
 
   has_and_belongs_to_many :statuses
   has_one :trend, class_name: 'PreviewCardTrend', inverse_of: :preview_card, dependent: :destroy

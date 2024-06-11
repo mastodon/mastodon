@@ -1,4 +1,8 @@
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+
+import { ACCOUNT_BLOCK_SUCCESS, ACCOUNT_MUTE_SUCCESS } from 'mastodon/actions/accounts';
+import { DOMAIN_BLOCK_SUCCESS } from 'mastodon/actions/domain_blocks';
+
 import {
   CONVERSATIONS_MOUNT,
   CONVERSATIONS_UNMOUNT,
@@ -9,9 +13,7 @@ import {
   CONVERSATIONS_READ,
   CONVERSATIONS_DELETE_SUCCESS,
 } from '../actions/conversations';
-import { ACCOUNT_BLOCK_SUCCESS, ACCOUNT_MUTE_SUCCESS } from 'mastodon/actions/accounts';
-import { DOMAIN_BLOCK_SUCCESS } from 'mastodon/actions/domain_blocks';
-import compareId from '../compare_id';
+import { compareId } from '../compare_id';
 
 const initialState = ImmutableMap({
   items: ImmutableList(),

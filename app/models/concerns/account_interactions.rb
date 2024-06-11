@@ -60,12 +60,6 @@ module AccountInteractions
       end
     end
 
-    def domain_blocking_map(target_account_ids, account_id)
-      accounts_map    = Account.where(id: target_account_ids).select('id, domain').each_with_object({}) { |a, h| h[a.id] = a.domain }
-      blocked_domains = domain_blocking_map_by_domain(accounts_map.values.compact, account_id)
-      accounts_map.reduce({}) { |h, (id, domain)| h.merge(id => blocked_domains[domain]) }
-    end
-
     def domain_blocking_map_by_domain(target_domains, account_id)
       follow_mapping(AccountDomainBlock.where(account_id: account_id, domain: target_domains), :domain)
     end
@@ -81,8 +75,10 @@ module AccountInteractions
     # Follow relations
     has_many :follow_requests, dependent: :destroy
 
-    has_many :active_relationships,  class_name: 'Follow', foreign_key: 'account_id',        dependent: :destroy
-    has_many :passive_relationships, class_name: 'Follow', foreign_key: 'target_account_id', dependent: :destroy
+    with_options class_name: 'Follow', dependent: :destroy do
+      has_many :active_relationships,  foreign_key: 'account_id', inverse_of: :account
+      has_many :passive_relationships, foreign_key: 'target_account_id', inverse_of: :target_account
+    end
 
     has_many :following, -> { order('follows.id desc') }, through: :active_relationships,  source: :target_account
     has_many :followers, -> { order('follows.id desc') }, through: :passive_relationships, source: :account
@@ -91,15 +87,19 @@ module AccountInteractions
     has_many :account_notes, dependent: :destroy
 
     # Block relationships
-    has_many :block_relationships, class_name: 'Block', foreign_key: 'account_id', dependent: :destroy
+    with_options class_name: 'Block', dependent: :destroy do
+      has_many :block_relationships, foreign_key: 'account_id', inverse_of: :account
+      has_many :blocked_by_relationships, foreign_key: :target_account_id, inverse_of: :target_account
+    end
     has_many :blocking, -> { order('blocks.id desc') }, through: :block_relationships, source: :target_account
-    has_many :blocked_by_relationships, class_name: 'Block', foreign_key: :target_account_id, dependent: :destroy
     has_many :blocked_by, -> { order('blocks.id desc') }, through: :blocked_by_relationships, source: :account
 
     # Mute relationships
-    has_many :mute_relationships, class_name: 'Mute', foreign_key: 'account_id', dependent: :destroy
+    with_options class_name: 'Mute', dependent: :destroy do
+      has_many :mute_relationships, foreign_key: 'account_id', inverse_of: :account
+      has_many :muted_by_relationships, foreign_key: :target_account_id, inverse_of: :target_account
+    end
     has_many :muting, -> { order('mutes.id desc') }, through: :mute_relationships, source: :target_account
-    has_many :muted_by_relationships, class_name: 'Mute', foreign_key: :target_account_id, dependent: :destroy
     has_many :muted_by, -> { order('mutes.id desc') }, through: :muted_by_relationships, source: :account
     has_many :conversation_mutes, dependent: :destroy
     has_many :domain_blocks, class_name: 'AccountDomainBlock', dependent: :destroy
@@ -153,9 +153,7 @@ module AccountInteractions
     remove_potential_friendship(other_account)
 
     # When toggling a mute between hiding and allowing notifications, the mute will already exist, so the find_or_create_by! call will return the existing Mute without updating the hide_notifications attribute. Therefore, we check that hide_notifications? is what we want and set it if it isn't.
-    if mute.hide_notifications? != notifications
-      mute.update!(hide_notifications: notifications)
-    end
+    mute.update!(hide_notifications: notifications) if mute.hide_notifications? != notifications
 
     mute
   end
@@ -189,7 +187,7 @@ module AccountInteractions
   end
 
   def unblock_domain!(other_domain)
-    block = domain_blocks.find_by(domain: other_domain)
+    block = domain_blocks.find_by(domain: normalized_domain(other_domain))
     block&.destroy
   end
 
@@ -269,7 +267,8 @@ module AccountInteractions
   end
 
   def lists_for_local_distribution
-    lists.joins(account: :user)
+    scope = lists.joins(account: :user)
+    scope.where.not(list_accounts: { follow_id: nil }).or(scope.where(account_id: id))
          .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
   end
 
@@ -282,7 +281,7 @@ module AccountInteractions
       followers.where(Account.arel_table[:uri].matches("#{Account.sanitize_sql_like(url_prefix)}/%", false, true)).or(followers.where(uri: url_prefix)).pluck_each(:uri) do |uri|
         Xorcist.xor!(digest, Digest::SHA256.digest(uri))
       end
-      digest.unpack('H*')[0]
+      digest.unpack1('H*')
     end
   end
 
@@ -292,8 +291,23 @@ module AccountInteractions
       followers.where(domain: nil).pluck_each(:username) do |username|
         Xorcist.xor!(digest, Digest::SHA256.digest(ActivityPub::TagManager.instance.uri_for_username(username)))
       end
-      digest.unpack('H*')[0]
+      digest.unpack1('H*')
     end
+  end
+
+  def relations_map(account_ids, domains = nil, **options)
+    relations = {
+      blocked_by: Account.blocked_by_map(account_ids, id),
+      following: Account.following_map(account_ids, id),
+    }
+
+    return relations if options[:skip_blocking_and_muting]
+
+    relations.merge!({
+      blocking: Account.blocking_map(account_ids, id),
+      muting: Account.muting_map(account_ids, id),
+      domain_blocking_by_domain: Account.domain_blocking_map_by_domain(domains, id),
+    })
   end
 
   private
@@ -304,5 +318,9 @@ module AccountInteractions
 
   def remove_potential_friendship(other_account)
     PotentialFriendshipTracker.remove(id, other_account.id)
+  end
+
+  def normalized_domain(domain)
+    TagManager.instance.normalize_domain(domain)
   end
 end

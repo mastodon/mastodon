@@ -257,11 +257,11 @@ class DeleteAccountService < BaseService
   end
 
   def delete_actor!
-    ActivityPub::DeliveryWorker.push_bulk(delivery_inboxes) do |inbox_url|
+    ActivityPub::DeliveryWorker.push_bulk(delivery_inboxes, limit: 1_000) do |inbox_url|
       [delete_actor_json, @account.id, inbox_url]
     end
 
-    ActivityPub::LowPriorityDeliveryWorker.push_bulk(low_priority_delivery_inboxes) do |inbox_url|
+    ActivityPub::LowPriorityDeliveryWorker.push_bulk(low_priority_delivery_inboxes, limit: 1_000) do |inbox_url|
       [delete_actor_json, @account.id, inbox_url]
     end
   end

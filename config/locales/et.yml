@@ -91,6 +91,7 @@ et:
       moderation:
         active: Aktiivne
         all: Kõik
+        disabled: Keelatud
         pending: Ootel
         silenced: Vaigistatud
         suspended: Kustutatud
@@ -124,8 +125,8 @@ et:
       removed_header_msg: "%{username} päisepilt eemaldatud"
       resend_confirmation:
         already_confirmed: See kasutaja on juba kinnitatud
-        send: Saada kinnituskiri uuesti
-        success: Kinnituskiri saadetud edukalt!
+        send: Saada kinnituslink uuesti
+        success: Kinnituslink saadetud edukalt!
       reset: Lähtesta
       reset_password: Salasõna lähtestamine
       resubscribe: Telli taas
@@ -133,6 +134,7 @@ et:
       search: Otsi
       search_same_email_domain: Muud kasutajad sama e-posti domeeniga
       search_same_ip: Teised kasutajad, kellel on sama IP
+      security: Turvalisus
       security_measures:
         only_password: Ainult salasõna
         password_and_2fa: Salasõna ja 2-etapine autentimine (2FA)
@@ -307,6 +309,7 @@ et:
       unpublish: Tühista avaldamine
       unpublished_msg: Teadaande eemaldamine avalikkusest õnnestus!
       updated_msg: Teadaande uuendamine õnnestus!
+    critical_update_pending: Kriitiline turvauuendus ootel
     custom_emojis:
       assign_category: Määra kategooria
       by_domain: Domeen
@@ -380,6 +383,15 @@ et:
       undo: Eemalda lubatute nimekirjast
     domain_blocks:
       add_new: Lisa uus domeeniblokeering
+      confirm_suspension:
+        cancel: Tühista
+        confirm: Peata
+        permanent_action: Peatamise tühistamine ei taasta andmeid ega seoseid.
+        preamble_html: Oled peatamas domeeni <strong>%{domain}</strong> ja selle alamdomeene.
+        remove_all_data: See eemaldab sinu serverist selle domeeni kontode kogu sisu, meedia ja profiilide info.
+        stop_communication: Sinu server lõpetab infovahetuse nende serveritega.
+        title: Kinnita domeeni %{domain} blokeerimine
+        undo_relationships: See tühistab kõik sinu ja nende serverite kontode vahel loodud jälgimisseosed.
       created_msg: Domeeni blokeeringut töödeldakse
       destroyed_msg: Domeeniblokeering on tagasi võetud
       domain: Domeen
@@ -427,6 +439,7 @@ et:
         resolve: Domeeni lahendamine
         title: Blokeeri uus e-posti domeen
       no_email_domain_block_selected: Ühtegi e-posti domeeni keeldu ei muudetud, kuna midagi polnud valitud
+      not_permitted: Ei ole lubatud
       resolved_dns_records_hint_html: Domeeninimi lahendub järgnevateks MX-domeenideks, mis vastutavad e-kirjade vastuvõtmise eest. MX-domeeni blokeerimine blokeerib liitumistaotlused kõigilt e-postiaadressidelt, mis kasutavad sama MX-domeeni, kuigi kasutatav domeeninimi on erinev. <strong>Ole tähelepanelik, et mitte blokeerida suuremaid e-postiteenuse pakkujaid.</strong>
       resolved_through_html: Lahendatud %{domain} kaudu
       title: E-posti keelunimekiri
@@ -473,6 +486,7 @@ et:
       content_policies:
         comment: Sisemine märge
         description_html: On võimalik kirjeldada sisureeglid kõigile kontodele sellelt domeenilt ja alamdomeenidelt.
+        limited_federation_mode_description_html: Saad valida, kas selle domeeniga on födereerumine lubatud.
         policies:
           reject_media: Meedia hülgamine
           reject_reports: Lükka raportid tagasi
@@ -585,16 +599,18 @@ et:
       assign_to_self: Määra mulle
       assigned: Määratud moderaator
       by_target_domain: Teavitatud konto domeen
+      cancel: Tühista
       category: Kategooria
       category_description_html: Põhjus, miks sellest kontost ja/või sisust teatati, kaasatakse raporteeritud kontoga suhtlemisel
       comment:
         none: Pole
       comment_description_html: 'Täiendava infona kirjutas %{name}:'
+      confirm: Kinnita
       confirm_action: Kinnita @%{acct} modereering
       created_at: Teavitatud
       delete_and_resolve: Kustuta postitused
       forwarded: Edastatud
-      forwarded_to: Edastatud domeenile %{domain}
+      forwarded_to: Edastatud %{domain} domeeni
       mark_as_resolved: Märgi lahendatuks
       mark_as_sensitive: Märgi kui tundlik sisu
       mark_as_unresolved: Märgi lahendamata
@@ -725,6 +741,9 @@ et:
       branding:
         preamble: Serveri bränding eristab seda teistest serveritest võrgus. Seda teavet võidakse kuvada erinevates keskkondades, näiteks Mastodoni veebiliideses, rakendustes, viitade eelvaadetes teistel veebisaitidel, sõnumsiderakendustes jne. Sel põhjusel on kõige parem hoida see teave selge, lühike ja ülevaatlik.
         title: Märgistus
+      captcha_enabled:
+        desc_html: See tugineb välistele hCaptcha skriptidele, mis võib olla turvalisuse ja privaatsuse probleem. Lisaks <strong>võib see muuta registreerimisprotsessi mõnede inimeste (eriti puudega inimeste) jaoks, oluliselt vähem ligipääsetavaks.</strong> Neil põhjustel kaalu palun teisi võimalusi, näiteks kinnitamis- või kutsepõhiseid registreerimislahendusi.
+        title: Nõua uutelt kasutajatelt konto kinnitamiseks CAPTCHA lahendamist
       content_retention:
         preamble: Määra, kuidas kasutajate loodud sisu Mastodonis talletatakse.
         title: Sisu talletamine
@@ -752,10 +771,27 @@ et:
           approved: Kinnitus vajalik konto loomisel
           none: Keegi ei saa kontoid luua
           open: Kõik võivad kontoid luua
-      title: Serveri seadistused
+      security:
+        authorized_fetch: Nõua föderatiivse serveripoolset autoriseerimist
+        authorized_fetch_hint: Föderatiivsete serverite poolse autoriseerimise nõudmine võimaldab nii kasutaja- kui ka serveritasandi blokeeringute rangemat jõustamist. See toob aga kaasa jõudluse vähenemise, vähendab vastuste ulatust ja võib tekitada ühilduvusprobleeme mõne ühendatud teenusega. Lisaks ei takista see teatud kasutajatel sinu avalike postituste ja kontode kättesaamist.
+        authorized_fetch_overridden_hint: Sa ei saa hetkel seda seadistust muuta, sest see on keskkonnamuutuja poolt alistatud.
+        federation_authentication: Föderatiivse autentimise jõustamine
+      title: Serveri seaded
     site_uploads:
       delete: Kustuta üleslaetud fail
       destroyed_msg: Üleslaetud fail edukalt kustutatud!
+    software_updates:
+      critical_update: Kriitiline — uuenda kiiresti
+      description: On soovitav hoida oma Mastodoni paigaldus kõige uuemal kujul, et saada kasu kõige värskematest parandustest ja oskustest. Lisaks, vahel on Mastodoni kiire uuendamine kriitiline, et vältida turvaprobleeme. Neil põhjustel kontrollib Mastodon uuendusi iga 30 minuti tagant ja teavitab sind vastavalt su e-posti teavituste eelistustele.
+      documentation_link: Saa rohkem teada
+      release_notes: Väljalaskemärkused
+      title: Saadaval uuendused
+      type: Tüüp
+      types:
+        major: Suur uuendus
+        minor: Väike uuendus
+        patch: Parandusuuendus — veaparandused ja hõlpsalt rakendatavad muudatused
+      version: Versioon
     statuses:
       account: Autor
       application: Rakendus
@@ -792,6 +828,7 @@ et:
         suspend: "%{name} kustutas %{target} konto"
       appeal_approved: Vaidlustatud
       appeal_pending: Vaidlustus on ootel
+      appeal_rejected: Vaidlustus tagasi lükatud
     system_checks:
       database_schema_check:
         message_html: On ootel andmebaasi migreerimisi. Rakenduse ootuspäraseks toimimiseks palun käivita need
@@ -805,6 +842,18 @@ et:
         message_html: Serverireegleid pole defineeritud.
       sidekiq_process_check:
         message_html: Ühtegi Sidekiq protsessi pole %{value} järjekorra jaoks. Sidekiq seadistus vajab üle vaatamist
+      software_version_critical_check:
+        action: Vaata saadaolevaid uuendusi
+        message_html: Saadaval on Mastodoni kriitiline uuendus, uuenda nii kiiresti kui võimalik.
+      software_version_patch_check:
+        action: Vaata saadaolevaid uuendusi
+        message_html: Saadaval on Mastodoni veaparandusuuendus.
+      upload_check_privacy_error:
+        action: Klõpsa lisainfo saamiseks siia
+        message_html: "<strong>Veebiserver on valesti seadistatud. Kasutajate privaatsus on ohustatud.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Klõpsa lisainfo saamiseks siia
+        message_html: "<strong>Objektihoidla on valesti seadistatud. Kasutajate privaatsus on ohustatud.</strong>"
     tags:
       review: Vaata olek üle
       updated_msg: Sildi sätted edukalt uuendatud
@@ -827,6 +876,7 @@ et:
           other: Jagatud %{count} kasutaja poolt viimase nädala jooksul
         title: Trendikad viited
         usage_comparison: Jagatud %{today} korda täna, eile %{yesterday} korda
+      not_allowed_to_trend: Trend ei ole lubatud
       only_allowed: Ainult lubatud
       pending_review: Ootab ülevaatust
       preview_card_providers:
@@ -911,6 +961,9 @@ et:
       body: "%{target} vaidlustab %{action_taken_by} modereerimisotsuse kuupäevaga %{date}: %{type}. Põhjendus:"
       next_steps: Võid modereeringu tagasi pööramiseks vaidlustuse rahuldada, või ka mitte.
       subject: "%{username} on vaidlustanud %{instance} modereerimisotsuse"
+    new_critical_software_updates:
+      body: Avaldatud on Mastodoni uus kriitiline versioon, sa võiksid selle paigaldada nii ruttu kui võimalik!
+      subject: Saadaval on Mastodoni kriitilised uuendused %{instance} jaoks!
     new_pending_account:
       body: Uue konto üksikasjad on allpool. Saad taotluse vastu võtta või tagasi lükata.
       subject: Uus konto valmis ülevaatluseks serveril %{instance} (%{username})
@@ -918,6 +971,9 @@ et:
       body: "%{reporter} teavitas kasutajast %{target}"
       body_remote: Keegi domeenist %{domain} teavitas kasutajast %{target}
       subject: Uus teavitus %{instance}-ile (#%{id})
+    new_software_updates:
+      body: Avaldatud on Mastodoni uued versioonid. Sa võiksid uuendada!
+      subject: Saadaval on Mastodoni uued versioonid %{instance} jaoks!
     new_trends:
       body: 'Järgmised üksused vajavad enne avalikustamist ülevaatust:'
       new_trending_links:
@@ -947,33 +1003,37 @@ et:
       guide_link: https://crowdin.com/project/mastodon/et
       guide_link_text: Panustada võib igaüks!
     sensitive_content: Tundlik sisu
-    toot_layout: Postituse väljanägemine
   application_mailer:
     notification_preferences: Muuda e-kirjade eelistusi
     salutation: "%{name}!"
     settings: 'Muuda e-kirjade eelistusi: %{link}'
+    unsubscribe: Loobu tellimisest
     view: 'Vaade:'
     view_profile: Vaata profiili
     view_status: Vaata postitust
   applications:
     created: Rakenduse loomine õnnestus
     destroyed: Rakenduse kustutamine õnnestus
+    logout: Logi välja
     regenerate_token: Loo uus access token
     token_regenerated: Access tokeni loomine õnnestus
     warning: Ole nende andmetega ettevaatlikud. Ära jaga neid kellegagi!
     your_token: Su juurdepääsutunnus
   auth:
     apply_for_account: Konto taotluse esitamine
-    change_password: Salasõna
+    captcha_confirmation:
+      help_html: Kui sul on probleeme CAPTCHA lahendamisega, saad meiega kontakti võta %{email} kaudu ja saame pakkuda sulle tuge.
+      hint_html: Üks asi veel! Me peame veenduma, et oled inimene (et me saaksime spämmi väljaspoole jätta!). Lahenda allpool olev CAPTCHA ja klõpsa "Jätka".
+      title: Turvalisuse kontroll
     confirmations:
       wrong_email_hint: Kui see e-postiaadress pole korrektne, saad seda kontosätetes muuta.
     delete_account: Konto kustutamine
     delete_account_html: Kui soovid oma konto kustutada, siis <a href="%{path}">jätka siit</a>. Pead kustutamise eraldi kinnitama.
     description:
-      prefix_invited_by_user: "@%{name} kutsub Teid liituma selle Mastodoni serveriga!"
+      prefix_invited_by_user: "@%{name} kutsub sind liituma selle Mastodoni serveriga!"
       prefix_sign_up: Loo Mastodoni konto juba täna!
       suffix: Kasutajakontoga saad jälgida inimesi, postitada uudiseid ning pidada kirjavahetust ükskõik millise Mastodoni serveri kasutajatega ja muudki!
-    didnt_get_confirmation: Ei saanud kinnituse juhendeid?
+    didnt_get_confirmation: Ei saanud kinnituslinki?
     dont_have_your_security_key: Pole turvavõtit?
     forgot_password: Salasõna ununenud?
     invalid_reset_password_token: Salasõna lähtestusvõti on vale või aegunud. Palun taotle uus.
@@ -986,26 +1046,39 @@ et:
     migrate_account_html: Kui soovid konto siit ära kolida, <a href="%{path}">saad seda teha siin</a>.
     or_log_in_with: Või logi sisse koos
     privacy_policy_agreement_html: Olen tutvunud <a href="%{privacy_policy_path}" target="_blank">isikuandmete kaitse põhimõtetega</a> ja nõustun nendega
+    progress:
+      confirm: Kinnita e-post
+      details: Sinu üksikasjad
+      review: Meie ülevaatamine
+      rules: Nõustu reeglitega
     providers:
       cas: CAS
       saml: SAML
     register: Loo konto
     registration_closed: "%{instance} ei võta vastu uusi liikmeid"
-    resend_confirmation: Saada kinnitusjuhendid uuesti
+    resend_confirmation: Saada kinnituslink uuesti
     reset_password: Salasõna lähtestamine
     rules:
+      accept: Nõus
+      back: Tagasi
+      invited_by: 'Saad ühineda paigaga %{domain} tänu saadud kutsele, mille said kohast:'
       preamble: Neist kinnipidamist jälgivad %{domain} moderaatorid.
+      preamble_invited: Enne jätkamist kaalu põhireegleid, mille on kehtestanud %{domain} moderaatorid.
       title: Mõned põhireeglid.
+      title_invited: Oled kutsutud.
     security: Turvalisus
     set_new_password: Uue salasõna määramine
     setup:
-      email_below_hint_html: Kui allolev e-posti aadress on vale, saad seda muuta siin. Seejärel saadetakse uus kinnituskiri.
-      email_settings_hint_html: Kinnituskiri saadeti e-posti aadressile %{email}. Kui see aadress pole õige, saad muuta seda oma konto sätetest.
-      title: Seadistamine
+      email_below_hint_html: Kontrolli rämpspostikausta või taotle uut. Saad parandada e-postiaadressi, kui see on vale.
+      email_settings_hint_html: Klõpsa linki, mis saadeti sulle, et kinnitada %{email}. Seni me ootame.
+      link_not_received: Kas ei saanud linki?
+      new_confirmation_instructions_sent: Saad mõne minutiga uue kinnituslingiga e-kirja!
+      title: Kontrolli sisendkasti
     sign_in:
       preamble_html: Logi sisse oma <strong>%{domain}</strong> volitustega. Kui konto asub teises serveris, ei saa siin sisse logida.
       title: Logi sisse kohta %{domain}
     sign_up:
+      manual_review: Liitumised kohas %{domain} vaadatakse meie moderaatorite poolt käsitsi läbi. Aitamaks meil sinu taotlust läbi vaadata, kirjuta palun natuke endast ja miks soovid kontot kohas %{domain}.
       preamble: Selle kontoga saad jälgida ja suhelda kõigi teiste kasutajatega erinevates Mastodoni serverites.
       title: Loo konto serverisse  %{domain}.
     status:
@@ -1017,18 +1090,6 @@ et:
       view_strikes: Vaata enda eelnevaid juhtumeid
     too_fast: Vorm esitatud liiga kiirelt, proovi uuesti.
     use_security_key: Kasuta turvavõtit
-  authorize_follow:
-    already_following: Juba jälgid seda kontot
-    already_requested: Saatsid juba sellele kontole jälgimistaotluse
-    error: Kahjuks ilmus viga kasutaja kaugserverist otsimisel
-    follow: Jälgi
-    follow_request: 'Oled saatnud jälgimistaotluse kasutajale:'
-    following: 'Õnnestus! Jälgid nüüd kasutajat:'
-    post_follow:
-      close: Või sulge lihtsalt see aken.
-      return: Näita kasutaja profiili
-      web: Mine veebi
-    title: Jälgi %{acct}
   challenge:
     confirm: Jätka
     hint_html: "<strong>Nõuanne:</strong> Me ei küsi salasõna uuesti järgmise tunni jooksul."
@@ -1105,6 +1166,10 @@ et:
       your_appeal_rejected: Vaidlustus on tagasi lükatud
   domain_validator:
     invalid_domain: ei ole sobiv domeeni nimi
+  edit_profile:
+    basic_information: Põhiinfo
+    hint_html: "<strong>Kohanda, mida inimesed näevad su avalikul profiilil ja postituste kõrval.</strong> Inimesed alustavad tõenäolisemalt sinu jälgimist ja interakteeruvad sinuga, kui sul on täidetud profiil ja profiilipilt."
+    other: Muu
   errors:
     '400': Esitatud päring oli vigane või valesti vormindatud.
     '403': Sul puudub õigus seda lehte vaadata.
@@ -1185,8 +1250,6 @@ et:
       index:
         hint: See filter kehtib üksikute postituste valimisel, sõltumata muudest kriteeriumidest. Sellesse filtrisse saab veebiliidese kaudu rohkem postitusi lisada.
         title: Filtreeritud postitused
-  footer:
-    trending_now: Praegu trendikad
   generic:
     all: Kõik
     all_items_on_page_selected_html:
@@ -1195,7 +1258,9 @@ et:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> otsinguvaste valitud."
       other: Kõik <strong>%{count}</strong> otsinguvastet valitud.
+    cancel: Tühista
     changes_saved_msg: Muudatuste salvestamine õnnestus!
+    confirm: Kinnita
     copy: Kopeeri
     delete: Kustuta
     deselect: Ära vali midagi
@@ -1209,24 +1274,62 @@ et:
     validation_errors:
       one: Midagi pole ikka õigesti! Palun vaata allolev veateade üle
       other: Midagi pole ikka õigesti! Palun vaata all olevad %{count} veateadet üle
-  html_validator:
-    invalid_markup: 'sisaldab valet HTMLi süntaksi: %{error}'
   imports:
     errors:
+      empty: Tühi CSV-fail
+      incompatible_type: Ei sobi kokku valitud importimistüübiga
       invalid_csv_file: 'Vigane CSV-fail. Tõrge: %{error}'
       over_rows_processing_limit: sisaldab rohkem, kui %{count} rida
+      too_large: Fail on liiga suur
+    failures: Ebaõnnestumised
+    imported: Imporditud
+    mismatched_types_warning: Näib, et oled selle importimise jaoks valinud vale tüübi. Palun kontrolli üle.
     modes:
       merge: Lõimi
       merge_long: Hoia olemasolevad andmed ja lisa uusi
       overwrite: Kirjuta üle
       overwrite_long: Vaheta praegused andmed uute vastu
+    overwrite_preambles:
+      blocking_html: Oled <strong>asendamas oma blokeeringute loetelu</strong> kuni <strong>%{total_items} kontoga </strong> kohast <strong>%{filename}</strong>.
+      bookmarks_html: Oled <strong>asendamas oma järjehoidjaid</strong> kuni <strong>%{total_items} postitusega </strong> kohast <strong>%{filename}</strong>.
+      domain_blocking_html: Oled <strong>asendamas oma domeenide blokeeringute loetelu </strong> kuni <strong>%{total_items} domeeniga </strong> kohast <strong>%{filename}</strong>.
+      following_html: Oled <strong>jälgima hakkamas</strong> kuni <strong>%{total_items} kontot</strong> kohast <strong>%{filename}</strong> ja <strong>lõpetad kõigi teiste jälgimise</strong>.
+      lists_html: Oled <strong>asendamas oma loetelusid</strong> faili <strong>%{filename}</strong> sisuga. Uutesse loeteludesse lisatakse kuni <strong>%{total_items} kontot</strong>.
+      muting_html: Oled <strong>asendamas oma vaigistatud kontode loetelu</strong> kuni <strong>%{total_items} kontoga </strong> kohast <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Oled <strong>blokeerimas</strong> kuni <strong>%{total_items} kontoga </strong> kohast <strong>%{filename}</strong>.
+      bookmarks_html: Oled lisamas kuni <strong>%{total_items} postitust</strong> kohast <strong>%{filename}</strong> to your <strong>bookmarks</strong>.
+      domain_blocking_html: Oled <strong>blokeerimas</strong> kuni <strong>%{total_items} domeeni</strong> kohast <strong>%{filename}</strong>.
+      following_html: Oled <strong>jälgima hakkamas</strong> kuni <strong>%{total_items} kontot</strong> kohast <strong>%{filename}</strong>.
+      lists_html: Oled lisamas oma <strong>loeteludesse</strong> failist <strong>%{filename}</strong> kuni <strong>%{total_items} kontot</strong>. Kui pole loetelusi, kuhu lisada, luuakse uued loetelud.
+      muting_html: Oled <strong>vaigistamas</strong> kuni <strong>%{total_items} kontot</strong> kohast <strong>%{filename}</strong>.
     preface: Saad importida mistahes andmeid, mis on eksporditud teisest serverist. Näiteks nimekirja inimestest, keda jälgid ja keda blokeerid.
+    recent_imports: Viimati imporditud
+    states:
+      finished: Valmis
+      in_progress: Töös
+      scheduled: Ajastatud
+      unconfirmed: Kinnitamata
+    status: Olek
     success: Andmete üleslaadimine õnnestus ning neid töödeldakse
+    time_started: Algus
+    titles:
+      blocking: Blokeeritud kontode importimine
+      bookmarks: Järjehoidjate importimine
+      domain_blocking: Blokeeritud domeenide importimine
+      following: Jälgitavate kontode importimine
+      lists: Loetelude importimine
+      muting: Vaigistatud kontode importimine
+    type: Importimise tüüp
+    type_groups:
+      constructive: Jälgimised & Järjehoidjad
+      destructive: Blokeerimised & Vaigistamised
     types:
       blocking: Blokeeringute nimekiri
       bookmarks: Järjehoidjad
       domain_blocking: Domeeniblokeeringute nimekiri
       following: Jälgimiste nimekiri
+      lists: Loetelud
       muting: Vaigistuse nimekiri
     upload: Lae üles
   invites:
@@ -1241,7 +1344,7 @@ et:
       '86400': 1 päev
     expires_in_prompt: Mitte kunagi
     generate: Loo
-    invited_by: 'Teid kutsus:'
+    invited_by: 'Sind kutsus:'
     max_uses:
       one: 1 kasutus
       other: "%{count} kasutust"
@@ -1265,6 +1368,21 @@ et:
     failed_sign_in_html: Nurjunud sisenemine meetodiga %{method} aadressilt %{ip} (%{browser})
     successful_sign_in_html: Edukas sisenemine meetodiga %{method} aadressilt %{ip} (%{browser})
     title: Autentimise ajalugu
+  mail_subscriptions:
+    unsubscribe:
+      action: Jah, lõpeta tellimine
+      complete: Tellimine lõpetatud
+      confirmation_html: Oled kindel, et soovid lõpetada domeenilt %{domain} Mastodoni %{type} teadete tellimise oma e-postile %{email}? Saad alati neid teavitusi uuesti tellida oma <a href="%{settings_path}">e-posti teavituste seadetest</a>.
+      emails:
+        notification_emails:
+          favourite: lemmikuks märkimise e-kirjad
+          follow: jälgimisest teatamise e-kirjad
+          follow_request: jälgimise taotluse e-kirjad
+          mention: mainimistest teatamise e-kirjad
+          reblog: jagamise teavitamise e-kirjad
+      resubscribe_html: Kui loobusid tellimisest ekslikult, saad uuesti tellida oma <a href="%{settings_path}">e-posti teavituste seadetest</a>.
+      success_html: Sa ei saa rohkem %{domain} Mastodoni jaoks %{type} teavitusi e-postiaadressile %{email}.
+      title: Loobu tellimisest
   media_attachments:
     validations:
       images_and_video: Ei saa lisada video postitusele, milles on juba pildid
@@ -1325,13 +1443,13 @@ et:
       title: Uus jälgija
     follow_request:
       action: Halda jälgimistaotlusi
-      body: "%{name} soovib Teid jälgida"
+      body: "%{name} soovib sind jälgida"
       subject: 'Ootav jälgija: %{name}'
       title: Uus jälgimistaotlus
     mention:
       action: Vasta
-      body: "%{name} mainis Teid:"
-      subject: "%{name} mainis Teid"
+      body: "%{name} mainis sind:"
+      subject: "%{name} mainis sind"
       title: Uus mainimine
     poll:
       subject: "%{name} küsitlus lõppes"
@@ -1344,6 +1462,7 @@ et:
     update:
       subject: "%{name} muutis postitust"
   notifications:
+    administration_emails: Admini e-postiteavitused
     email_events: E-posti teadete sündmused
     email_events_hint: 'Vali sündmused, mille kohta soovid teavitusi:'
     other_settings: Muud teadete sätted
@@ -1380,12 +1499,22 @@ et:
       expired: See küsitlus on juba lõppenud
       invalid_choice: Valitud küsitluse valikut pole olemas
       over_character_limit: igaüks ei saa olla rohkem kui %{max} tähemärki
+      self_vote: Sa ei saa enda hääletustel hääletada
       too_few_options: peab olema rohkem kui üks vastus
       too_many_options: ei saa sisaldada rohkem kui %{max} vastust
   preferences:
     other: Muu
     posting_defaults: Postitamise vaikesätted
     public_timelines: Avalikud ajajooned
+  privacy:
+    hint_html: "<strong>Kohanda, kuidas peaks su postitused ja profiil leitav olema.</strong> Mastodonis olevad paljud oskused võimaldavad jõuda sul rohkemate inimesteni, kui need lubada. Võta üks hetk, et vaadata need üle, et veenduda, kas sinu puhul need sobivad."
+    privacy: Privaatsus
+    privacy_hint_html: Määra, kui palju soovid teiste heaks infot avaldada. Inimesed leiavad huvitavaid profiile ning lahedaid äppe sirvides teiste inimeste jälgimisi ja vaadates, milliste äppidega nad postitavad, kuid sa võid soovida hoida seda varjatuna.
+    reach: Ulatus
+    reach_hint_html: Määra, kas soovid olla leitav ja jälgitav uute inimeste poolt. Kas soovid, et su postitused ilmuksid uurimise ekraanil? Kas soovid, et teised inimesed näeksid sind oma jälgitavate soovituste hulgas? Kas soovid nõustuda kõigi uute jälgijatega automaatselt või soovid igaühe puhul täpsemaid valikuid?
+    search: Otsi
+    search_hint_html: Määra, kuidas sind leitakse. Kas soovid, et inimesed leiavad sind su avalike postituste alusel? Kas soovid, et väljaspool Mastodoni olevad inimesed leiavad veebis otsides su profiili? Pea meeles, et avaliku info puhul pole kõigist otsimootoritest info välistamine tagatav.
+    title: Privaatsus ja ulatus
   privacy_policy:
     title: Isikuandmete kaitse
   reactions:
@@ -1398,6 +1527,7 @@ et:
     confirm_remove_selected_followers: Oled kindel, et soovid eemaldada valitud jälgijad?
     confirm_remove_selected_follows: Oled kindel, et soovid eemaldada valitud jälgitavad?
     dormant: Seisev
+    follow_failure: Mõne valitud konto jälgimine polnud võimalik.
     follow_selected_followers: Valitud jälgijate jälgimine
     followers: Jälgijad
     following: Jälgib
@@ -1437,6 +1567,7 @@ et:
       electron: Electron
       firefox: Firefox
       generic: Tundmatu veebilehitseja
+      huawei_browser: Huawei veebilehitseja
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1446,6 +1577,7 @@ et:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Tundmatu veebilehitseja
       weibo: Weibo
     current_session: Praegune seanss
     description: "%{browser} platvormil %{platform}"
@@ -1458,9 +1590,10 @@ et:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: tundmatu platvorm
+      unknown_platform: Tundmatu platvorm
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1531,7 +1664,6 @@ et:
     show_newer: Uuemate kuvamine
     show_older: Vanemate kuvamine
     show_thread: Kuva lõim
-    sign_in_to_participate: Logi sisse, et liituda vestlusega
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Otsene
@@ -1573,12 +1705,12 @@ et:
       '7889238': 3 kuud
     min_age_label: Ajalimiit
     min_favs: Säilita postitused, meeldimistega vähemalt
-    min_favs_hint: Ei kustuta ühtegi postitust, mis on saanud vähemalt nii palju lemmikuks märkimist. Postituste kustutamiseks olenemata nende lemmikuks märkimise arvust, jäta tühjaks
+    min_favs_hint: |-
+      Ei kustuta ühtegi postitust, mis on saanud vähemalt nii palju lemmikuks märkimist. Postituste kustutamiseks olenemata nende lemmikuks märkimise arvust,
+      jäta tühjaks
     min_reblogs: Säilita postitused jagatud vähemalt
     min_reblogs_hint: Ei kustuta postitusi, kui need on jagatud vähemalt nii mitu korda. Tühjaks jättes kustuvad postitused olenemata jagamistest
   stream_entries:
-    pinned: Kinnitatud postitus
-    reblogged: jagatud
     sensitive_content: Tundlik sisu
   strikes:
     errors:
@@ -1594,6 +1726,11 @@ et:
       default: "%d. %B, %Y. aastal, kell %H:%M"
       month: "%B %Y"
       time: "%H:%M"
+      with_time_zone: "%b. %d %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Üle-serveriline tõlketeenuse kasutuskvoot on ületatud.
+      too_many_requests: Viimane aeg on tõlketeenusele esitatud liiga palju taotlusi.
   two_factor_authentication:
     add: Lisa
     disable: Keela 2FA
@@ -1676,13 +1813,18 @@ et:
       title: Tere tulemast, %{name}!
   users:
     follow_limit_reached: Ei saa jälgida rohkem kui %{limit} inimest
+    go_to_sso_account_settings: Mine oma idenditeedipakkuja kontosätetesse
     invalid_otp_token: Vale kaheastmeline võti
     otp_lost_help_html: Kui kaotasid ligipääsu mõlemale, saad võtta ühendust %{email}-iga
     seamless_external_login: Välise teenuse kaudu sisse logides pole salasõna ja e-posti sätted saadaval.
     signed_in_as: 'Sisse logitud kasutajana:'
   verification:
-    explanation_html: 'Saad <strong>kinnitada ennast oma profiili veebiviidete omanikuna</strong>. Selleks peab viidatud veebilehel olema link tagasi su Mastodoni profiilile. Tagasi saatval lingil <strong>peab</strong> olema <code>rel="me"</code> atribuut. Lingi tekstiline sisu ei ole oluline. Siin on üks näide:'
+    extra_instructions_html: <strong>Soovitus:</strong> Sinu kodulehel olev link võib olla nähtamatu. Oluline osa on <code>rel="me"</code>, mis väldib kasutaja loodud sisuga lehtedel libaisikustamist. Sa saad isegi kasutada lehe HEADER osas silti <code>link</code> sildi <code>a</code> asemel, kuid HTML peab olema kättesaadav ilma JavaScripti käivitamata.
+    here_is_how: Siin on, kuidas
+    hint_html: "<strong>Oma isiku tuvastamine on Mastodonis kõigi jaoks.</strong> Toetub avatud veebistandarditele, nüüd ja igavesti tasuta. Kõik, mida vajad, on isiklik veebileht, mille järgi inimesed sind tunnevad. Kui lingid oma profiililt sellele veebilehele, kontrollime me, et see veebileht lingib tagasi sinu profiilile ning näitame profiilil visuaalset tähist."
+    instructions_html: Kopeeri ja kleebi allpool olev kood oma lehe HTML lähtekoodi. Seejärel lisa oma kodulehe aadress profiili "Muuda profiili" taabi ühte lisavälja ning salvesta muudatused.
     verification: Kinnitamine
+    verified_links: Sinu kontrollitud lingid
   webauthn_credentials:
     add: Uue turvavõtme lisamine
     create:

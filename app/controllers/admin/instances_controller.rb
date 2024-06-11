@@ -22,15 +22,6 @@ module Admin
       redirect_to admin_instances_path, notice: I18n.t('admin.instances.destroyed_msg', domain: @instance.domain)
     end
 
-    def destroy
-      authorize :instance, :destroy?
-
-      Admin::DomainPurgeWorker.perform_async(@instance.domain)
-
-      log_action :destroy, @instance
-      redirect_to admin_instances_path, notice: I18n.t('admin.instances.destroyed_msg', domain: @instance.domain)
-    end
-
     def clear_delivery_errors
       authorize :delivery, :clear_delivery_errors?
       @instance.delivery_failure_tracker.clear_failures!
@@ -74,7 +65,7 @@ module Admin
     end
 
     def filtered_instances
-      InstanceFilter.new(whitelist_mode? ? { allowed: true } : filter_params).results
+      InstanceFilter.new(limited_federation_mode? ? { allowed: true } : filter_params).results
     end
 
     def filter_params

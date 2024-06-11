@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Trends::TagsController, type: :controller do
+RSpec.describe Api::V1::Trends::TagsController do
   render_views
 
   describe 'GET #index' do

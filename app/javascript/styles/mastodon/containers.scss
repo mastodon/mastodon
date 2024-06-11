@@ -2,7 +2,7 @@
   width: 700px;
   margin: 0 auto;
 
-  @media screen and (max-width: 740px) {
+  @media screen and (width <= 740px) {
     width: 100%;
     margin: 0;
   }
@@ -18,7 +18,7 @@
 
     .logo {
       height: 42px;
-      margin-right: 10px;
+      margin-inline-end: 10px;
     }
 
     a {
@@ -44,7 +44,7 @@
     margin-top: 40px;
     box-sizing: border-box;
 
-    @media screen and (max-width: 400px) {
+    @media screen and (width <= 400px) {
       width: 100%;
       margin-top: 0;
       padding: 20px;
@@ -64,7 +64,7 @@
   margin-bottom: 10px;
   border-bottom: 1px solid $ui-base-color;
 
-  @media screen and (max-width: 440px) {
+  @media screen and (width <= 440px) {
     width: 100%;
     margin: 0;
     padding: 20px;
@@ -73,7 +73,7 @@
   .avatar {
     width: 40px;
     height: 40px;
-    margin-right: 10px;
+    margin-inline-end: 10px;
 
     img {
       width: 100%;
@@ -101,6 +101,6 @@
     display: block;
     font-size: 32px;
     line-height: 40px;
-    margin-left: 10px;
+    margin-inline-start: 10px;
   }
 }

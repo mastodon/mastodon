@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: relays
@@ -14,7 +15,7 @@
 class Relay < ApplicationRecord
   validates :inbox_url, presence: true, uniqueness: true, url: true, if: :will_save_change_to_inbox_url?
 
-  enum state: [:idle, :pending, :accepted, :rejected]
+  enum state: { idle: 0, pending: 1, accepted: 2, rejected: 3 }
 
   scope :enabled, -> { accepted }
 

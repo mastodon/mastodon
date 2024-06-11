@@ -10,14 +10,6 @@ class ClearDomainMediaService < BaseService
 
   private
 
-  def invalidate_association_caches!(status_ids)
-    # Normally, associated models of a status are immutable (except for accounts)
-    # so they are aggressively cached. After updating the media attachments to no
-    # longer point to a local file, we need to clear the cache to make those
-    # changes appear in the API and UI
-    Rails.cache.delete_multi(status_ids.map { |id| "statuses/#{id}" })
-  end
-
   def clear_media!
     clear_account_images!
     clear_account_attachments!
@@ -25,31 +17,21 @@ class ClearDomainMediaService < BaseService
   end
 
   def clear_account_images!
-    blocked_domain_accounts.reorder(nil).find_each do |account|
-      account.avatar.destroy if account.avatar&.exists?
-      account.header.destroy if account.header&.exists?
-      account.save
+    blocked_domain_accounts.reorder(nil).find_in_batches do |accounts|
+      AttachmentBatch.new(Account, accounts).clear
     end
   end
 
   def clear_account_attachments!
     media_from_blocked_domain.reorder(nil).find_in_batches do |attachments|
-      affected_status_ids = []
-
-      attachments.each do |attachment|
-        affected_status_ids << attachment.status_id if attachment.status_id.present?
-
-        attachment.file.destroy if attachment.file&.exists?
-        attachment.type = :unknown
-        attachment.save
-      end
-
-      invalidate_association_caches!(affected_status_ids) unless affected_status_ids.empty?
+      AttachmentBatch.new(MediaAttachment, attachments).clear
     end
   end
 
   def clear_emojos!
-    emojis_from_blocked_domains.destroy_all
+    emojis_from_blocked_domains.find_in_batches do |custom_emojis|
+      AttachmentBatch.new(CustomEmoji, custom_emojis).delete
+    end
   end
 
   def blocked_domain

@@ -141,9 +141,9 @@ class UpdateStatusService < BaseService
     poll = @status.preloadable_poll
 
     # If the poll had no expiration date set but now has, or now has a sooner
-    # expiration date, and people have voted, schedule a notification
+    # expiration date, schedule a notification
 
-    return unless poll.present? && poll.expires_at.present? && poll.votes.exists?
+    return unless poll.present? && poll.expires_at.present?
 
     PollExpirationNotifyWorker.remove_from_scheduled(poll.id) if @previous_expires_at.present? && @previous_expires_at > poll.expires_at
     PollExpirationNotifyWorker.perform_at(poll.expires_at + 5.minutes, poll.id)
