@@ -14,6 +14,13 @@ class Api::V1::Admin::IpBlocksController < Api::BaseController
   after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
+  PERMITTED_PARAMS = %i(
+    comment
+    expires_in
+    ip
+    severity
+  ).freeze
+
   def index
     authorize :ip_block, :index?
     render json: @ip_blocks, each_serializer: REST::Admin::IpBlockSerializer
@@ -56,7 +63,9 @@ class Api::V1::Admin::IpBlocksController < Api::BaseController
   end
 
   def resource_params
-    params.permit(:ip, :severity, :comment, :expires_in)
+    params
+      .slice(*PERMITTED_PARAMS)
+      .permit(*PERMITTED_PARAMS)
   end
 
   def next_path

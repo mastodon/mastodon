@@ -8,6 +8,10 @@ class Api::V2::Filters::StatusesController < Api::BaseController
   before_action :set_status_filters, only: :index
   before_action :set_status_filter, only: [:show, :destroy]
 
+  PERMITTED_PARAMS = %i(
+    status_id
+  ).freeze
+
   def index
     render json: @status_filters, each_serializer: REST::FilterStatusSerializer
   end
@@ -39,6 +43,8 @@ class Api::V2::Filters::StatusesController < Api::BaseController
   end
 
   def resource_params
-    params.permit(:status_id)
+    params
+      .slice(*PERMITTED_PARAMS)
+      .permit(*PERMITTED_PARAMS)
   end
 end

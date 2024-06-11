@@ -8,6 +8,11 @@ class Api::V2::Filters::KeywordsController < Api::BaseController
   before_action :set_keywords, only: :index
   before_action :set_keyword, only: [:show, :update, :destroy]
 
+  PERMITTED_PARAMS = %i(
+    keyword
+    whole_word
+  ).freeze
+
   def index
     render json: @keywords, each_serializer: REST::FilterKeywordSerializer
   end
@@ -45,6 +50,8 @@ class Api::V2::Filters::KeywordsController < Api::BaseController
   end
 
   def resource_params
-    params.permit(:keyword, :whole_word)
+    params
+      .slice(*PERMITTED_PARAMS)
+      .permit(*PERMITTED_PARAMS)
   end
 end

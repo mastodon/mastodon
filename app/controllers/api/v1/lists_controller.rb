@@ -11,6 +11,12 @@ class Api::V1::ListsController < Api::BaseController
     render json: { error: e.to_s }, status: 422
   end
 
+  PERMITTED_PARAMS = %i(
+    exclusive
+    replies_policy
+    title
+  ).freeze
+
   def index
     @lists = List.where(account: current_account).all
     render json: @lists, each_serializer: REST::ListSerializer
@@ -42,6 +48,8 @@ class Api::V1::ListsController < Api::BaseController
   end
 
   def list_params
-    params.permit(:title, :replies_policy, :exclusive)
+    params
+      .slice(*PERMITTED_PARAMS)
+      .permit(*PERMITTED_PARAMS)
   end
 end

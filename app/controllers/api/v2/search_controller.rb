@@ -5,6 +5,17 @@ class Api::V2::SearchController < Api::BaseController
 
   RESULTS_LIMIT = 20
 
+  SEARCH_PARAMS = %i(
+    account_id
+    following
+    max_id
+    min_id
+    offset
+    q
+    resolve
+    type
+  ).freeze
+
   before_action -> { authorize_if_got_token! :read, :'read:search' }
   before_action :validate_search_params!
 
@@ -63,6 +74,7 @@ class Api::V2::SearchController < Api::BaseController
   end
 
   def search_params
-    params.permit(:type, :offset, :min_id, :max_id, :account_id, :following)
+    params
+      .permit(*SEARCH_PARAMS)
   end
 end
