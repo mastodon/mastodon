@@ -112,6 +112,9 @@ module Mastodon
       end
     end
 
+    # Load config/omniauth.yml settings
+    config.x.omniauth = config_for(:omniauth)
+
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
