@@ -3,6 +3,14 @@
 class Api::V1::Admin::AccountActionsController < Api::BaseController
   include Authorization
 
+  PERMITTED_PARAMS = %i(
+    report_id
+    send_email_notification
+    text
+    type
+    warning_preset_id
+  ).freeze
+
   before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:accounts' }
   before_action :set_account
 
@@ -26,12 +34,8 @@ class Api::V1::Admin::AccountActionsController < Api::BaseController
   end
 
   def resource_params
-    params.permit(
-      :type,
-      :report_id,
-      :warning_preset_id,
-      :text,
-      :send_email_notification
-    )
+    params
+      .slice(*PERMITTED_PARAMS)
+      .permit(*PERMITTED_PARAMS)
   end
 end
