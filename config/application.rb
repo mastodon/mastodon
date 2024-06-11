@@ -113,7 +113,7 @@ module Mastodon
     end
 
     # Load config/omniauth.yml settings
-    config.omniauth = config_for(:omniauth)
+    config.x.omniauth = config_for(:omniauth)
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'
