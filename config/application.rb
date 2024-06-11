@@ -106,6 +106,7 @@ module Mastodon
 
     config.x.captcha = config_for(:captcha)
     config.x.mastodon = config_for(:mastodon)
+    config.x.omniauth = config_for(:omniauth)
     config.x.translation = config_for(:translation)
 
     config.to_prepare do
