@@ -37,11 +37,8 @@ class Admin::Metrics::Measure::TagServersMeasure < Admin::Metrics::Measure::Base
           AND statuses.id BETWEEN :earliest_status_id AND :latest_status_id
         SQL
       )
-      .where(
-        <<~SQL.squish
-          date_trunc('day', statuses.created_at)::date = axis.period
-        SQL
-      ).to_sql
+      .where(daily_period(:statuses))
+      .to_sql
   end
 
   def earliest_status_id
