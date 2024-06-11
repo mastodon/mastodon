@@ -32,11 +32,7 @@ class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure
       .select(:id)
       .joins(:account)
       .where(account_domain_sql, domain: params[:domain])
-      .where(
-        <<~SQL.squish, earliest_status_id: earliest_status_id, latest_status_id: latest_status_id
-          statuses.id BETWEEN :earliest_status_id AND :latest_status_id
-        SQL
-      )
+      .where(status_range_sql, earliest_status_id: earliest_status_id, latest_status_id: latest_status_id)
       .where(daily_period(:statuses))
   end
 
