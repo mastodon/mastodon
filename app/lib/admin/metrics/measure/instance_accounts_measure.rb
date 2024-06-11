@@ -34,7 +34,7 @@ class Admin::Metrics::Measure::InstanceAccountsMeasure < Admin::Metrics::Measure
   def data_source_query
     Account
       .select(:id)
-      .where(account_domain_sql(params[:include_subdomains]))
+      .where(account_domain_sql)
       .where(daily_period(:accounts))
   end
 
