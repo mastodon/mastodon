@@ -111,6 +111,8 @@ module Mastodon
       end
     end
 
+    config.x.mastodon = config_for(:mastodon)
+
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
