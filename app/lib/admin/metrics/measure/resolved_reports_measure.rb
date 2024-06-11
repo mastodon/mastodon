@@ -25,6 +25,5 @@ class Admin::Metrics::Measure::ResolvedReportsMeasure < Admin::Metrics::Measure:
     Report
       .select(:id)
       .where(daily_period(:reports, :action_taken_at))
-      .to_sql
   end
 end

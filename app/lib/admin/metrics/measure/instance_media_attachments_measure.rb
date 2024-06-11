@@ -46,7 +46,6 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
       .joins(:account)
       .where(account_domain_sql(params[:include_subdomains]))
       .where(daily_period(:media_attachments))
-      .to_sql
   end
 
   def select_target

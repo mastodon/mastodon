@@ -25,6 +25,5 @@ class Admin::Metrics::Measure::NewUsersMeasure < Admin::Metrics::Measure::BaseMe
     User
       .select(:id)
       .where(daily_period(:users))
-      .to_sql
   end
 end
