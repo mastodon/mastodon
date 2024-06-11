@@ -122,26 +122,28 @@ module Paperclip
 
       colors['out_array'].zip(colors['x_array'], colors['y_array']).map do |v, x, y|
         rgb_from_xyv(histogram, x, y, v)
-      end.reverse
+      end.flatten.reverse.uniq
     end
 
     # rubocop:disable Naming/MethodParameterName
     def rgb_from_xyv(image, x, y, v)
       pixel = image.getpoint(x, y)
 
-      # Unfortunately, we only have the first 2 dimensions, so try to
-      # guess the third one by looking up the value
+      # As we only have the first 2 dimensions for this maximum, we
+      # can't distinguish with different maxima with the same `r` and `g`
+      # values but different `b` values.
+      #
+      # Therefore, we return an array of maxima, which is always non-empty,
+      # but may contain multiple colors with the same values.
 
-      # NOTE: this means that if multiple bins with the same `r` and `g`
-      # components have the same number of occurrences, we will always return
-      # the one with the lowest `b` value. This means that in case of a tie,
-      # we will return the same color twice and skip the ones it tied with.
-      z = pixel.find_index(v)
+      pixel.filter_map.with_index do |pv, z|
+        next if pv != v
 
-      r = (x + 0.5) * 256 / BINS
-      g = (y + 0.5) * 256 / BINS
-      b = (z + 0.5) * 256 / BINS
-      ColorDiff::Color::RGB.new(r, g, b)
+        r = (x + 0.5) * 256 / BINS
+        g = (y + 0.5) * 256 / BINS
+        b = (z + 0.5) * 256 / BINS
+        ColorDiff::Color::RGB.new(r, g, b)
+      end
     end
 
     def w3c_contrast(color1, color2)
