@@ -35,7 +35,7 @@ class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure
     Status
       .select(:id)
       .joins(:account)
-      .where(account_domain_sql(params[:include_subdomains]))
+      .where(account_domain_sql)
       .where(
         <<~SQL.squish
           statuses.id BETWEEN :earliest_status_id AND :latest_status_id

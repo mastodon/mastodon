@@ -35,7 +35,7 @@ class Admin::Metrics::Measure::InstanceReportsMeasure < Admin::Metrics::Measure:
     Report
       .select(:id)
       .joins(:target_account)
-      .where(account_domain_sql(params[:include_subdomains]))
+      .where(account_domain_sql)
       .where(daily_period(:reports))
   end
 
