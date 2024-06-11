@@ -109,8 +109,8 @@ module Mastodon
       end
     end
 
-    config.omniauth = config_for(:omniauth)
     config.x.captcha = config_for(:captcha)
+    config.x.omniauth = config_for(:omniauth)
     config.x.translation = config_for(:translation)
 
     config.to_prepare do
