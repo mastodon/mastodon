@@ -66,6 +66,8 @@ RSpec.describe InstancePresenter do
 
   describe '#source_url' do
     context 'with the GITHUB_REPOSITORY env variable set' do
+      before { Rails.configuration.x.mastodon = Rails.application.config_for(:mastodon) }
+
       around do |example|
         ClimateControl.modify GITHUB_REPOSITORY: 'other/repo' do
           example.run

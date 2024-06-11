@@ -50,16 +50,16 @@ module Mastodon
     end
 
     def repository
-      ENV.fetch('GITHUB_REPOSITORY', 'mastodon/mastodon')
+      source_configuration[:repository]
     end
 
     def source_base_url
-      ENV.fetch('SOURCE_BASE_URL', "https://github.com/#{repository}")
+      source_configuration[:base_url] || "https://github.com/#{repository}"
     end
 
     # specify git tag or commit hash here
     def source_tag
-      ENV.fetch('SOURCE_TAG', nil)
+      source_configuration[:tag]
     end
 
     def source_url
@@ -79,7 +79,15 @@ module Mastodon
     end
 
     def version_configuration
-      Rails.configuration.x.mastodon.version
+      mastodon_configuration.version
+    end
+
+    def source_configuration
+      mastodon_configuration.source
+    end
+
+    def mastodon_configuration
+      Rails.configuration.x.mastodon
     end
   end
 end
