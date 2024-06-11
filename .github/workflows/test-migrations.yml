@@ -75,44 +75,17 @@ jobs:
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
 
-      # "One step migrations" flow -- db/migrate and db/post_migrate in one run
-      - name: Create database
-        run: |
-          bin/rails db:create
-
-      - name: Prepare historical data
-        run: |
-          bin/rails tests:migrations:prepare_database
-
-      - name: Run all migrations
-        run: |
-          bin/rails db:migrate
-
-      - name: Check results
-        run: |
-          bin/rails tests:migrations:check_database
-
-      # "Two step migrations" flow -- delay db/post_migrate until the end
-      - name: Drop and re-create database
+      - name: Test "one step migration" flow
         run: |
           bin/rails db:drop && bin/rails db:create
-
-      - name: Prepare historical data (skip post-deployment)
-        run: |
           bin/rails tests:migrations:prepare_database
-        env:
-          SKIP_POST_DEPLOYMENT_MIGRATIONS: true
-
-      - name: Run all migrations (skip post-deployment)
-        run: |
           bin/rails db:migrate
-        env:
-          SKIP_POST_DEPLOYMENT_MIGRATIONS: true
+          bin/rails tests:migrations:check_database
 
-      - name: Run all post-deployment migrations
+      - name: Test "two step migration" flow
         run: |
+          bin/rails db:drop && bin/rails db:create
+          SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails tests:migrations:prepare_database
+          SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails db:migrate
           bin/rails db:migrate
-
-      - name: Check results
-        run: |
           bin/rails tests:migrations:check_database
