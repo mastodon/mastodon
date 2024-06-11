@@ -57,7 +57,6 @@ jobs:
           - 6379:6379
 
     env:
-      CONTINUOUS_INTEGRATION: true
       DB_HOST: localhost
       DB_USER: postgres
       DB_PASS: postgres
