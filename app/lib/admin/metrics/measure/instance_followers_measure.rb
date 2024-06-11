@@ -37,7 +37,6 @@ class Admin::Metrics::Measure::InstanceFollowersMeasure < Admin::Metrics::Measur
       .joins(:account)
       .where(account_domain_sql(params[:include_subdomains]))
       .where(daily_period(:follows))
-      .to_sql
   end
 
   def params

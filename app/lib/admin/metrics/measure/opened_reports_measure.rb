@@ -25,6 +25,5 @@ class Admin::Metrics::Measure::OpenedReportsMeasure < Admin::Metrics::Measure::B
     Report
       .select(:id)
       .where(daily_period(:reports))
-      .to_sql
   end
 end

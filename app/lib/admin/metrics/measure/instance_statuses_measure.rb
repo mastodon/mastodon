@@ -42,7 +42,6 @@ class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure
         SQL
       )
       .where(daily_period(:statuses))
-      .to_sql
   end
 
   def earliest_status_id

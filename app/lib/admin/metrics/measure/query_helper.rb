@@ -18,7 +18,7 @@ module Admin::Metrics::Measure::QueryHelper
   def sql_query_string
     <<~SQL.squish
       SELECT axis.*, (
-        WITH data_source AS (#{data_source_query})
+        WITH data_source AS (#{data_source_query.to_sql})
         SELECT #{select_target} FROM data_source
       ) AS value
       FROM (
