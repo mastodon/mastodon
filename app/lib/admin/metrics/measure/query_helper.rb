@@ -15,6 +15,14 @@ module Admin::Metrics::Measure::QueryHelper
     ActiveRecord::Base.sanitize_sql_array(sql_array)
   end
 
+  def sql_array
+    [sql_query_string, { start_at: @start_at, end_at: @end_at }.merge(extra_sql_params)]
+  end
+
+  def extra_sql_params
+    {}
+  end
+
   def sql_query_string
     <<~SQL.squish
       SELECT axis.*, (

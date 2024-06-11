@@ -21,8 +21,8 @@ class Admin::Metrics::Measure::TagServersMeasure < Admin::Metrics::Measure::Base
     tag.statuses.where('statuses.id BETWEEN ? AND ?', Mastodon::Snowflake.id_at(@start_at - length_of_period, with_random: false), Mastodon::Snowflake.id_at(@end_at - length_of_period, with_random: false)).joins(:account).count('distinct accounts.domain')
   end
 
-  def sql_array
-    [sql_query_string, { start_at: @start_at, end_at: @end_at, tag_id: tag.id, earliest_status_id: earliest_status_id, latest_status_id: latest_status_id }]
+  def extra_sql_params
+    { tag_id: tag.id, earliest_status_id: earliest_status_id, latest_status_id: latest_status_id }
   end
 
   def data_source_query

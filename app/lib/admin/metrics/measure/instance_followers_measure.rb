@@ -27,15 +27,11 @@ class Admin::Metrics::Measure::InstanceFollowersMeasure < Admin::Metrics::Measur
     nil
   end
 
-  def sql_array
-    [sql_query_string, { start_at: @start_at, end_at: @end_at, domain: params[:domain] }]
-  end
-
   def data_source_query
     Follow
       .select(:id)
       .joins(:account)
-      .where(account_domain_sql)
+      .where(account_domain_sql, domain: params[:domain])
       .where(daily_period(:follows))
   end
 
