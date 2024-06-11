@@ -38,7 +38,6 @@ class Admin::Metrics::Measure::TagServersMeasure < Admin::Metrics::Measure::Base
         SQL
       )
       .where(daily_period(:statuses))
-      .to_sql
   end
 
   def earliest_status_id
