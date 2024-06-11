@@ -38,11 +38,7 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
 
   def data_source
     MediaAttachment
-      .select(
-        <<~SQL.squish
-          COALESCE(media_attachments.file_file_size, 0) + COALESCE(media_attachments.thumbnail_file_size, 0) AS size
-        SQL
-      )
+      .select(media_size_total)
       .joins(:account)
       .where(account_domain_sql, domain: params[:domain])
       .where(daily_period(:media_attachments))
@@ -51,6 +47,12 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
   def select_target
     <<~SQL.squish
       COALESCE(SUM(size), 0)
+    SQL
+  end
+
+  def media_size_total
+    <<~SQL.squish
+      COALESCE(media_attachments.file_file_size, 0) + COALESCE(media_attachments.thumbnail_file_size, 0) AS size
     SQL
   end
 
