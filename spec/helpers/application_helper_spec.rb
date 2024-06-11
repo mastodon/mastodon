@@ -100,10 +100,10 @@ RSpec.describe ApplicationHelper do
 
     context 'when in omniauth only mode' do
       around do |example|
-        original = Rails.configuration.omniauth.only
-        Rails.configuration.omniauth.only = true
+        original = Rails.configuration.x.omniauth.only
+        Rails.configuration.x.omniauth.only = true
         example.run
-        Rails.configuration.omniauth.only = original
+        Rails.configuration.x.omniauth.only = original
       end
 
       it 'redirects to joinmastodon site' do
@@ -121,10 +121,10 @@ RSpec.describe ApplicationHelper do
   describe 'omniauth_only?' do
     context 'when configuration is set to true' do
       around do |example|
-        original = Rails.configuration.omniauth.only
-        Rails.configuration.omniauth.only = true
+        original = Rails.configuration.x.omniauth.only
+        Rails.configuration.x.omniauth.only = true
         example.run
-        Rails.configuration.omniauth.only = original
+        Rails.configuration.x.omniauth.only = original
       end
 
       it 'returns true' do
@@ -134,10 +134,10 @@ RSpec.describe ApplicationHelper do
 
     context 'when configuration is false' do
       around do |example|
-        original = Rails.configuration.omniauth.only
-        Rails.configuration.omniauth.only = false
+        original = Rails.configuration.x.omniauth.only
+        Rails.configuration.x.omniauth.only = false
         example.run
-        Rails.configuration.omniauth.only = original
+        Rails.configuration.x.omniauth.only = original
       end
 
       it 'returns false' do

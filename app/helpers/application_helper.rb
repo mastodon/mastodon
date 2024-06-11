@@ -43,7 +43,7 @@ module ApplicationHelper
   end
 
   def omniauth_only?
-    Rails.configuration.omniauth.only
+    Rails.configuration.x.omniauth.only
   end
 
   def link_to_login(name = nil, html_options = nil, &block)

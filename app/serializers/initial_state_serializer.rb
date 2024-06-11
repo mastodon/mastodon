@@ -125,6 +125,6 @@ class InitialStateSerializer < ActiveModel::Serializer
   end
 
   def sso_redirect
-    "/auth/auth/#{Devise.omniauth_providers[0]}" if ENV['ONE_CLICK_SSO_LOGIN'] == 'true' && Rails.configuration.omniauth.only && Devise.omniauth_providers.length == 1
+    "/auth/auth/#{Devise.omniauth_providers[0]}" if ENV['ONE_CLICK_SSO_LOGIN'] == 'true' && Rails.configuration.x.omniauth.only && Devise.omniauth_providers.length == 1
   end
 end

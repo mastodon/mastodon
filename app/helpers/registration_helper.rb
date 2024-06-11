@@ -12,7 +12,7 @@ module RegistrationHelper
   end
 
   def omniauth_only?
-    Rails.configuration.omniauth.only
+    Rails.configuration.x.omniauth.only
   end
 
   def ip_blocked?(remote_ip)

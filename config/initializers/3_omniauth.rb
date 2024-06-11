@@ -10,26 +10,26 @@ end
 
 Devise.setup do |config|
   # CAS strategy
-  if Rails.configuration.omniauth.cas_enabled
+  if Rails.configuration.x.omniauth.cas_enabled
     config.omniauth(
       :cas,
-      Rails.configuration.omniauth.cas
+      Rails.configuration.x.omniauth.cas
     )
   end
 
   # SAML strategy
-  if Rails.configuration.omniauth.saml_enabled
+  if Rails.configuration.x.omniauth.saml_enabled
     config.omniauth(
       :saml,
-      Rails.configuration.omniauth.saml
+      Rails.configuration.x.omniauth.saml
     )
   end
 
   # OpenID Connect Strategy
-  if Rails.configuration.omniauth.oidc_enabled
+  if Rails.configuration.x.omniauth.oidc_enabled
     config.omniauth(
       :openid_connect,
-      Rails.configuration.omniauth.oidc
+      Rails.configuration.x.omniauth.oidc
     )
   end
 end
