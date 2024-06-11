@@ -133,11 +133,6 @@ Rails/NegateInclude:
 RSpec/ExampleLength:
   CountAsOne: ['array', 'heredoc', 'method_call']
 
-# Reason: Deprecated cop, will be removed in 3.0, replaced by SpecFilePathFormat
-# https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecfilepath
-RSpec/FilePath:
-  Enabled: false
-
 # Reason:
 # https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecnamedsubject
 RSpec/NamedSubject:
