@@ -24,10 +24,7 @@ class Admin::Metrics::Measure::OpenedReportsMeasure < Admin::Metrics::Measure::B
   def data_source_query
     Report
       .select(:id)
-      .where(
-        <<~SQL.squish
-          DATE_TRUNC('day', reports.created_at)::date = axis.period
-        SQL
-      ).to_sql
+      .where(daily_period(:reports))
+      .to_sql
   end
 end
