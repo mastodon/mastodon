@@ -26,15 +26,22 @@ class Admin::Metrics::Measure::TagServersMeasure < Admin::Metrics::Measure::Base
   end
 
   def data_source_query
-    <<~SQL.squish
-      SELECT DISTINCT accounts.domain
-      FROM statuses
-      INNER JOIN statuses_tags ON statuses.id = statuses_tags.status_id
-      INNER JOIN accounts ON statuses.account_id = accounts.id
-      WHERE statuses_tags.tag_id = :tag_id
-        AND statuses.id BETWEEN :earliest_status_id AND :latest_status_id
-        AND date_trunc('day', statuses.created_at)::date = axis.period
-    SQL
+    Status
+      .select('accounts.domain')
+      .distinct
+      .reorder(nil)
+      .joins(:tags, :account)
+      .where(
+        <<~SQL.squish
+          statuses_tags.tag_id = :tag_id
+          AND statuses.id BETWEEN :earliest_status_id AND :latest_status_id
+        SQL
+      )
+      .where(
+        <<~SQL.squish
+          date_trunc('day', statuses.created_at)::date = axis.period
+        SQL
+      ).to_sql
   end
 
   def earliest_status_id
