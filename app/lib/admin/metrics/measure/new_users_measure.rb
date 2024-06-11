@@ -24,10 +24,7 @@ class Admin::Metrics::Measure::NewUsersMeasure < Admin::Metrics::Measure::BaseMe
   def data_source_query
     User
       .select(:id)
-      .where(
-        <<~SQL.squish
-          DATE_TRUNC('day', users.created_at)::date = axis.period
-        SQL
-      ).to_sql
+      .where(daily_period(:users))
+      .to_sql
   end
 end

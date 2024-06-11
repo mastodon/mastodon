@@ -35,11 +35,8 @@ class Admin::Metrics::Measure::InstanceAccountsMeasure < Admin::Metrics::Measure
     Account
       .select(:id)
       .where(account_domain_sql(params[:include_subdomains]))
-      .where(
-        <<~SQL.squish
-          DATE_TRUNC('day', accounts.created_at)::date = axis.period
-        SQL
-      ).to_sql
+      .where(daily_period(:accounts))
+      .to_sql
   end
 
   def params
