@@ -41,13 +41,15 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
   end
 
   def data_source_query
-    <<~SQL.squish
-      SELECT COALESCE(media_attachments.file_file_size, 0) + COALESCE(media_attachments.thumbnail_file_size, 0) AS size
-      FROM media_attachments
-      INNER JOIN accounts ON accounts.id = media_attachments.account_id
-      WHERE date_trunc('day', media_attachments.created_at)::date = axis.period
-        AND #{account_domain_sql(params[:include_subdomains])}
-    SQL
+    MediaAttachment
+      .select('COALESCE(media_attachments.file_file_size, 0) + COALESCE(media_attachments.thumbnail_file_size, 0) AS size')
+      .joins(:account)
+      .where(account_domain_sql(params[:include_subdomains]))
+      .where(
+        <<~SQL.squish
+          DATE_TRUNC('day', media_attachments.created_at)::date = axis.period
+        SQL
+      ).to_sql
   end
 
   def select_target
