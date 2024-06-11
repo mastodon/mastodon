@@ -26,12 +26,18 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+
+    env:
+      BUNDLE_ONLY: development
+
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
 
-      - name: Set up Ruby environment
-        uses: ./.github/actions/setup-ruby
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
 
       - name: Run haml-lint
         run: |

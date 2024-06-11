@@ -16,11 +16,16 @@ jobs:
   check-i18n:
     runs-on: ubuntu-22.04
 
+    env:
+      BUNDLE_ONLY: development
+
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Ruby environment
-        uses: ./.github/actions/setup-ruby
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
 
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
