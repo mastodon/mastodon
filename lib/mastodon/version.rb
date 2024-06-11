@@ -21,11 +21,11 @@ module Mastodon
     end
 
     def prerelease
-      ENV['MASTODON_VERSION_PRERELEASE'].presence || default_prerelease
+      configuration.version[:prerelease] || default_prerelease
     end
 
     def build_metadata
-      ENV.fetch('MASTODON_VERSION_METADATA', nil)
+      configuration.version[:metadata]
     end
 
     def to_a
@@ -50,16 +50,16 @@ module Mastodon
     end
 
     def repository
-      ENV.fetch('GITHUB_REPOSITORY', 'mastodon/mastodon')
+      configuration.source[:repository]
     end
 
     def source_base_url
-      ENV.fetch('SOURCE_BASE_URL', "https://github.com/#{repository}")
+      configuration.source[:base_url] || "https://github.com/#{repository}"
     end
 
     # specify git tag or commit hash here
     def source_tag
-      ENV.fetch('SOURCE_TAG', nil)
+      configuration.source[:tag]
     end
 
     def source_url
@@ -72,6 +72,10 @@ module Mastodon
 
     def user_agent
       @user_agent ||= "Mastodon/#{Version} (#{HTTP::Request::USER_AGENT}; +http#{Rails.configuration.x.use_https ? 's' : ''}://#{Rails.configuration.x.web_domain}/)"
+    end
+
+    def configuration
+      Rails.configuration.x.mastodon
     end
   end
 end
