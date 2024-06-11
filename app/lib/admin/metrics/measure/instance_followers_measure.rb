@@ -35,10 +35,10 @@ class Admin::Metrics::Measure::InstanceFollowersMeasure < Admin::Metrics::Measur
     Follow
       .select(:id)
       .joins(:account)
+      .where(account_domain_sql(params[:include_subdomains]))
       .where(
         <<~SQL.squish
           DATE_TRUNC('day', follows.created_at)::date = axis.period
-            AND #{account_domain_sql(params[:include_subdomains])}
         SQL
       ).to_sql
   end
