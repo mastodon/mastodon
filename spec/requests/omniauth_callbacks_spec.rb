@@ -129,15 +129,15 @@ RSpec.describe 'OmniAuth callbacks' do
     end
   end
 
-  describe '#openid_connect', if: Rails.configuration.omniauth.oidc_enabled && Rails.configuration.omniauth.oidc[:scope].present? do
+  describe '#openid_connect', if: Rails.configuration.x.omniauth.oidc_enabled && Rails.configuration.x.omniauth.oidc[:scope].present? do
     include_examples 'omniauth provider callbacks', :openid_connect
   end
 
-  describe '#cas', if: Rails.configuration.omniauth.cas_enabled do
+  describe '#cas', if: Rails.configuration.x.omniauth.cas_enabled do
     include_examples 'omniauth provider callbacks', :cas
   end
 
-  describe '#saml', if: Rails.configuration.omniauth.saml_enabled do
+  describe '#saml', if: Rails.configuration.x.omniauth.saml_enabled do
     include_examples 'omniauth provider callbacks', :saml
   end
 end
