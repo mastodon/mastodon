@@ -27,7 +27,7 @@ class Admin::Metrics::Measure::InstanceFollowsMeasure < Admin::Metrics::Measure:
     nil
   end
 
-  def data_source_query
+  def data_source
     Follow
       .select(:id)
       .joins(:target_account)

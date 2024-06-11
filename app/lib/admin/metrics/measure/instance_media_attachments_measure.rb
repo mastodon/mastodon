@@ -36,7 +36,7 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
     nil
   end
 
-  def data_source_query
+  def data_source
     MediaAttachment
       .select(
         <<~SQL.squish

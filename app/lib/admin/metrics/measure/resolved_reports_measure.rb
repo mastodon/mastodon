@@ -17,7 +17,7 @@ class Admin::Metrics::Measure::ResolvedReportsMeasure < Admin::Metrics::Measure:
     Report.resolved.where(action_taken_at: previous_time_period).count
   end
 
-  def data_source_query
+  def data_source
     Report
       .select(:id)
       .where(daily_period(:reports, :action_taken_at))
