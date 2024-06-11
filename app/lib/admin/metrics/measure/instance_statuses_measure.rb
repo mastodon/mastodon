@@ -27,15 +27,15 @@ class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure
     nil
   end
 
-  def sql_array
-    [sql_query_string, { start_at: @start_at, end_at: @end_at, domain: params[:domain], earliest_status_id: earliest_status_id, latest_status_id: latest_status_id }]
+  def extra_sql_params
+    { earliest_status_id: earliest_status_id, latest_status_id: latest_status_id }
   end
 
   def data_source_query
     Status
       .select(:id)
       .joins(:account)
-      .where(account_domain_sql)
+      .where(account_domain_sql, domain: params[:domain])
       .where(
         <<~SQL.squish
           statuses.id BETWEEN :earliest_status_id AND :latest_status_id
