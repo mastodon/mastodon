@@ -77,14 +77,16 @@ jobs:
 
       - name: Test "one step migration" flow
         run: |
-          bin/rails db:drop && bin/rails db:create
+          bin/rails db:drop
+          bin/rails db:create
           bin/rails tests:migrations:prepare_database
           bin/rails db:migrate
           bin/rails tests:migrations:check_database
 
       - name: Test "two step migration" flow
         run: |
-          bin/rails db:drop && bin/rails db:create
+          bin/rails db:drop
+          bin/rails db:create
           SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails tests:migrations:prepare_database
           SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails db:migrate
           bin/rails db:migrate
