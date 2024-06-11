@@ -35,7 +35,7 @@ class Admin::Metrics::Measure::InstanceFollowersMeasure < Admin::Metrics::Measur
     Follow
       .select(:id)
       .joins(:account)
-      .where(account_domain_sql(params[:include_subdomains]))
+      .where(account_domain_sql)
       .where(daily_period(:follows))
   end
 

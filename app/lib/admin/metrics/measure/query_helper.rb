@@ -39,8 +39,8 @@ module Admin::Metrics::Measure::QueryHelper
     SQL
   end
 
-  def account_domain_sql(include_subdomains)
-    if include_subdomains
+  def account_domain_sql
+    if params[:include_subdomains]
       "accounts.domain IN (SELECT domain FROM instances WHERE reverse('.' || domain) LIKE reverse('.' || :domain::text))"
     else
       'accounts.domain = :domain::text'
