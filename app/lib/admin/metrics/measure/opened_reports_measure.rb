@@ -21,7 +21,7 @@ class Admin::Metrics::Measure::OpenedReportsMeasure < Admin::Metrics::Measure::B
     [sql_query_string, { start_at: @start_at, end_at: @end_at }]
   end
 
-  def data_source_query
+  def data_source
     Report
       .select(:id)
       .where(daily_period(:reports))
