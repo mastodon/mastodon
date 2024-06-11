@@ -28,9 +28,13 @@ class Admin::Metrics::Measure::TagServersMeasure < Admin::Metrics::Measure::Base
       .reorder(nil)
       .joins(:tags, :account)
       .where(
-        <<~SQL.squish, tag_id: tag.id, earliest_status_id: earliest_status_id, latest_status_id: latest_status_id
+        <<~SQL.squish, tag_id: tag.id
           statuses_tags.tag_id = :tag_id
-          AND statuses.id BETWEEN :earliest_status_id AND :latest_status_id
+        SQL
+      )
+      .where(
+        <<~SQL.squish, earliest_status_id: earliest_status_id, latest_status_id: latest_status_id
+          statuses.id BETWEEN :earliest_status_id AND :latest_status_id
         SQL
       )
       .where(daily_period(:statuses))
