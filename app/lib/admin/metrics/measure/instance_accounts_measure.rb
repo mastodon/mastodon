@@ -27,14 +27,10 @@ class Admin::Metrics::Measure::InstanceAccountsMeasure < Admin::Metrics::Measure
     nil
   end
 
-  def sql_array
-    [sql_query_string, { start_at: @start_at, end_at: @end_at, domain: params[:domain] }]
-  end
-
   def data_source_query
     Account
       .select(:id)
-      .where(account_domain_sql)
+      .where(account_domain_sql, domain: params[:domain])
       .where(daily_period(:accounts))
   end
 
