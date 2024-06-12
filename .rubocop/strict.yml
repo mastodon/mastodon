@@ -1,7 +1,3 @@
-# Inherit from TODO here to make sure we enforce the rules below (and TODO is ignored)
-inherit_from:
-  - ../.rubocop_todo.yml
-
 Lint/Debugger: # Remove any `binding.pry`
   Enabled: true
   Exclude: []
