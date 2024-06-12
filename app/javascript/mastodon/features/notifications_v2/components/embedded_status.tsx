@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
 import type { List } from 'immutable';
@@ -9,16 +11,24 @@ import { DisplayName } from 'mastodon/components/display_name';
 import { Icon } from 'mastodon/components/icon';
 import type { Status } from 'mastodon/models/status';
 import { useAppSelector } from 'mastodon/store';
+import { EmbeddedStatusContent } from './embedded_status_content';
 
 export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   statusId,
 }) => {
+  const history = useHistory();
+
   const status = useAppSelector(
     (state) => state.statuses.get(statusId) as Status | undefined,
   );
+
   const account = useAppSelector((state) =>
     state.accounts.get(status?.get('account') as string),
   );
+
+  const handleClick = useCallback(() => {
+    history.push(`/@${account.acct}/${statusId}`);
+  }, [statusId, account, history]);
 
   if (!status) {
     return null;
@@ -27,11 +37,11 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   // Assign status attributes to variables with a forced type, as status is not yet properly typed
   const contentHtml = status.get('contentHtml') as string;
   const poll = status.get('poll');
+  const language = status.get('language') as string;
+  const mentions = status.get('mentions');
   const mediaAttachmentsSize = (
     status.get('media_attachments') as List<unknown>
   ).size;
-
-  const content = { __html: contentHtml };
 
   return (
     <div className='notification-group__embedded-status'>
@@ -40,9 +50,12 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
         <DisplayName account={account} />
       </div>
 
-      <div
+      <EmbeddedStatusContent
         className='notification-group__embedded-status__content reply-indicator__content translate'
-        dangerouslySetInnerHTML={content}
+        content={contentHtml}
+        language={language}
+        mentions={mentions}
+        onClick={handleClick}
       />
 
       {(poll || mediaAttachmentsSize > 0) && (

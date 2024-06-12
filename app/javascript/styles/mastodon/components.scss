@@ -10355,8 +10355,8 @@ noscript {
     }
   }
 
-  &__follow &__icon,
-  &__follow-request &__icon {
+  &--follow &__icon,
+  &--follow-request &__icon {
     color: $highlight-text-color;
   }
 
@@ -10447,9 +10447,15 @@ noscript {
     }
 
     &__content {
+      display: -webkit-box;
       font-size: 15px;
       line-height: 22px;
       color: $dark-text-color;
+      cursor: pointer;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      max-height: 4 * 22px;
+      overflow: hidden;
 
       p,
       a {
