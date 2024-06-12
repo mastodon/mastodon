@@ -21,6 +21,7 @@ export const NotificationReblog: React.FC<{
   <NotificationGroupWithStatus
     type='reblog'
     icon={RepeatIcon}
+    iconId='repeat'
     accountIds={notification.sampleAccountsIds}
     statusId={notification.statusId}
     timestamp={notification.latest_page_notification_at}

@@ -1,8 +1,10 @@
 import { useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+
 import { FormattedMessage } from 'react-intl';
 
-import type { List } from 'immutable';
+import { useHistory } from 'react-router-dom';
+
+import type { List as ImmutableList, RecordOf } from 'immutable';
 
 import BarChart4BarsIcon from '@/material-icons/400-24px/bar_chart_4_bars.svg?react';
 import PhotoLibraryIcon from '@/material-icons/400-24px/photo_library.svg?react';
@@ -11,7 +13,10 @@ import { DisplayName } from 'mastodon/components/display_name';
 import { Icon } from 'mastodon/components/icon';
 import type { Status } from 'mastodon/models/status';
 import { useAppSelector } from 'mastodon/store';
+
 import { EmbeddedStatusContent } from './embedded_status_content';
+
+export type Mention = RecordOf<{ url: string; acct: string }>;
 
 export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   statusId,
@@ -27,6 +32,8 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   );
 
   const handleClick = useCallback(() => {
+    if (!account) return;
+
     history.push(`/@${account.acct}/${statusId}`);
   }, [statusId, account, history]);
 
@@ -38,9 +45,9 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   const contentHtml = status.get('contentHtml') as string;
   const poll = status.get('poll');
   const language = status.get('language') as string;
-  const mentions = status.get('mentions');
+  const mentions = status.get('mentions') as ImmutableList<Mention>;
   const mediaAttachmentsSize = (
-    status.get('media_attachments') as List<unknown>
+    status.get('media_attachments') as ImmutableList<unknown>
   ).size;
 
   return (
@@ -62,7 +69,7 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
         <div className='notification-group__embedded-status__attachments reply-indicator__attachments'>
           {!!poll && (
             <>
-              <Icon icon={BarChart4BarsIcon} />
+              <Icon icon={BarChart4BarsIcon} id='bar-chart-4-bars' />
               <FormattedMessage
                 id='reply_indicator.poll'
                 defaultMessage='Poll'
@@ -71,7 +78,7 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
           )}
           {mediaAttachmentsSize > 0 && (
             <>
-              <Icon icon={PhotoLibraryIcon} />
+              <Icon icon={PhotoLibraryIcon} id='photo-library' />
               <FormattedMessage
                 id='reply_indicator.attachments'
                 defaultMessage='{count, plural, one {# attachment} other {# attachments}}'

@@ -1,9 +1,12 @@
 import type {
+  ApiAccountRelationshipSeveranceEventJSON,
+  ApiAccountWarningJSON,
   BaseNotificationGroupJSON,
   NotificationGroupJSON,
   NotificationType,
   NotificationWithStatusType,
 } from 'mastodon/api_types/notifications';
+import type { ApiReportJSON } from 'mastodon/api_types/reports';
 
 interface BaseNotificationGroup
   extends Omit<BaseNotificationGroupJSON, 'sample_accounts'> {
@@ -32,12 +35,39 @@ export type NotificationGroupFollow = BaseNotification<'follow'>;
 export type NotificationGroupFollowRequest = BaseNotification<'follow_request'>;
 export type NotificationGroupAdminSignUp = BaseNotification<'admin.sign_up'>;
 
-// TODO: those two will need special types
-export type NotificationGroupModerationWarning =
-  BaseNotification<'moderation_warning'>;
-export type NotificationGroupAdminReport = BaseNotification<'admin.report'>;
-export type NotificationGroupSeveredRelationships =
-  BaseNotification<'severed_relationships'>;
+export type AccountWarningAction =
+  | 'none'
+  | 'disable'
+  | 'mark_statuses_as_sensitive'
+  | 'delete_statuses'
+  | 'sensitive'
+  | 'silence'
+  | 'suspend';
+export interface AccountWarning
+  extends Omit<ApiAccountWarningJSON, 'target_account'> {
+  targetAccountId: string;
+}
+
+export interface NotificationGroupModerationWarning
+  extends BaseNotification<'moderation_warning'> {
+  moderationWarning: AccountWarning;
+}
+
+type AccountRelationshipSeveranceEvent =
+  ApiAccountRelationshipSeveranceEventJSON;
+export interface NotificationGroupSeveredRelationships
+  extends BaseNotification<'severed_relationships'> {
+  event: AccountRelationshipSeveranceEvent;
+}
+
+interface Report extends Omit<ApiReportJSON, 'target_account'> {
+  targetAccountId: string;
+}
+
+export interface NotificationGroupAdminReport
+  extends BaseNotification<'admin.report'> {
+  report: Report;
+}
 
 export type NotificationGroup =
   | NotificationGroupFavourite
@@ -52,6 +82,30 @@ export type NotificationGroup =
   | NotificationGroupSeveredRelationships
   | NotificationGroupAdminSignUp
   | NotificationGroupAdminReport;
+
+function createReportFromJSON(reportJSON: ApiReportJSON): Report {
+  const { target_account, ...report } = reportJSON;
+  return {
+    targetAccountId: target_account.id,
+    ...report,
+  };
+}
+
+function createAccountWarningFromJSON(
+  warningJSON: ApiAccountWarningJSON,
+): AccountWarning {
+  const { target_account, ...warning } = warningJSON;
+  return {
+    targetAccountId: target_account.id,
+    ...warning,
+  };
+}
+
+function createAccountRelationshipSeveranceEventFromJSON(
+  eventJson: ApiAccountRelationshipSeveranceEventJSON,
+): AccountRelationshipSeveranceEvent {
+  return eventJson;
+}
 
 export function createNotificationGroupFromJSON(
   groupJson: NotificationGroupJSON,
@@ -68,8 +122,36 @@ export function createNotificationGroupFromJSON(
     };
   }
 
-  return {
-    sampleAccountsIds,
-    ...group,
-  };
+  if ('report' in group) {
+    const { report, ...groupWithoutTargetAccount } = group;
+    return {
+      report: createReportFromJSON(report),
+      sampleAccountsIds,
+      ...groupWithoutTargetAccount,
+    };
+  }
+
+  switch (group.type) {
+    case 'severed_relationships':
+      return {
+        ...group,
+        event: createAccountRelationshipSeveranceEventFromJSON(group.event),
+        sampleAccountsIds,
+      };
+
+    case 'moderation_warning': {
+      const { moderation_warning, ...groupWithoutModerationWarning } = group;
+      return {
+        ...groupWithoutModerationWarning,
+        moderationWarning: createAccountWarningFromJSON(moderation_warning),
+        sampleAccountsIds,
+      };
+    }
+    // This is commented out because all group types are covered in the previous statement and have their returns
+    // default:
+    //   return {
+    //     sampleAccountsIds,
+    //     ...group,
+    //   };
+  }
 }

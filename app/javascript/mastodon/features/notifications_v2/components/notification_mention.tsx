@@ -21,6 +21,7 @@ export const NotificationMention: React.FC<{
   <NotificationWithStatus
     type='mention'
     icon={ReplyIcon}
+    iconId='reply'
     accountIds={notification.sampleAccountsIds}
     count={notification.notifications_count}
     statusId={notification.statusId}

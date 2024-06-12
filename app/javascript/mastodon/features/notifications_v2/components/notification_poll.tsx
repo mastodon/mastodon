@@ -27,6 +27,7 @@ export const NotificationPoll: React.FC<{
   <NotificationWithStatus
     type='poll'
     icon={BarChart4BarsIcon}
+    iconId='bar-chart-4-bars'
     accountIds={notification.sampleAccountsIds}
     count={notification.notifications_count}
     statusId={notification.statusId}

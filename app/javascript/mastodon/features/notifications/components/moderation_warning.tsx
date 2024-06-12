@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import GavelIcon from '@/material-icons/400-24px/gavel.svg?react';
 import { Icon } from 'mastodon/components/icon';
+import type { AccountWarningAction } from 'mastodon/models/notification_group';
 
 // This needs to be kept in sync with app/models/account_warning.rb
 const messages = defineMessages({
@@ -38,17 +39,10 @@ const messages = defineMessages({
 });
 
 interface Props {
-  action:
-    | 'none'
-    | 'disable'
-    | 'mark_statuses_as_sensitive'
-    | 'delete_statuses'
-    | 'sensitive'
-    | 'silence'
-    | 'suspend';
+  action: AccountWarningAction;
   id: string;
-  hidden: boolean;
-  unread: boolean;
+  hidden?: boolean;
+  unread?: boolean;
 }
 
 export const ModerationWarning: React.FC<Props> = ({
@@ -70,7 +64,7 @@ export const ModerationWarning: React.FC<Props> = ({
         'notification-group notification-group--link notification-group--moderation-warning focusable',
         { 'notification-group--unread': unread },
       )}
-      tabIndex='0'
+      tabIndex={0}
     >
       <div className='notification-group__icon'>
         <Icon id='warning' icon={GavelIcon} />
