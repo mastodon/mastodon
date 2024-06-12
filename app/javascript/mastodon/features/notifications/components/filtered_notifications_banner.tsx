@@ -35,7 +35,9 @@ export const FilteredNotificationsBanner: React.FC = () => {
       className='filtered-notifications-banner'
       to='/notifications/requests'
     >
-      <Icon icon={InventoryIcon} id='filtered-notifications' />
+      <div className='notification-group__icon'>
+        <Icon icon={InventoryIcon} id='filtered-notifications' />
+      </div>
 
       <div className='filtered-notifications-banner__text'>
         <strong>
