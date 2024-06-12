@@ -1,4 +1,5 @@
-name: Test one step migrations
+name: Historical data migration test
+
 on:
   push:
     branches-ignore:
@@ -17,7 +18,7 @@ jobs:
       - id: skip_check
         uses: fkirc/skip-duplicate-actions@v5
         with:
-          paths: '["Gemfile*", ".ruby-version", "**/*.rb", ".github/workflows/test-migrations-one-step.yml", "lib/tasks/tests.rake"]'
+          paths: '["Gemfile*", ".ruby-version", "**/*.rb", ".github/workflows/test-migrations.yml", "lib/tasks/tests.rake"]'
 
   test:
     runs-on: ubuntu-latest
@@ -64,7 +65,7 @@ jobs:
       RAILS_ENV: test
       BUNDLE_CLEAN: true
       BUNDLE_FROZEN: true
-      BUNDLE_WITHOUT: 'development production'
+      BUNDLE_WITHOUT: 'development:production'
       BUNDLE_JOBS: 3
       BUNDLE_RETRY: 3
 
@@ -74,14 +75,19 @@ jobs:
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
 
-      - name: Create database
-        run: './bin/rails db:create'
+      - name: Test "one step migration" flow
+        run: |
+          bin/rails db:drop
+          bin/rails db:create
+          bin/rails tests:migrations:prepare_database
+          bin/rails db:migrate
+          bin/rails tests:migrations:check_database
 
-      - name: Run historical migrations with data population
-        run: './bin/rails tests:migrations:prepare_database'
-
-      - name: Run all remaining migrations
-        run: './bin/rails db:migrate'
-
-      - name: Check migration result
-        run: './bin/rails tests:migrations:check_database'
+      - name: Test "two step migration" flow
+        run: |
+          bin/rails db:drop
+          bin/rails db:create
+          SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails tests:migrations:prepare_database
+          SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails db:migrate
+          bin/rails db:migrate
+          bin/rails tests:migrations:check_database
