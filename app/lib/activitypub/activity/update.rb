@@ -52,7 +52,12 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
   end
 
   def updated_username_confirmed?
-    webfinger = Webfinger.new("acct:#{@object['preferredUsername']}@#{@account.domain}").perform
+    begin
+      webfinger = Webfinger.new("acct:#{@object['preferredUsername']}@#{@account.domain}").perform
+    rescue Webfinger::Error
+      return false
+    end
+
     confirmed_username, confirmed_domain = webfinger.subject.delete_prefix('acct:').split('@')
     confirmed_username == @object['preferredUsername'] && confirmed_domain == @account.domain
   end

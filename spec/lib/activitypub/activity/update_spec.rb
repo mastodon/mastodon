@@ -77,38 +77,41 @@ RSpec.describe ActivityPub::Activity::Update do
             object: updated_username_json,
           }.with_indifferent_access
         end
-        let(:webfinger_response) do
-          {
-            subject: "acct:#{updated_handle}",
-            links: [
-              {
-                rel: 'self',
-                type: 'application/activity+json',
-                href: sender.uri,
-              },
-            ],
-          }
-        end
 
         before do
-          stub_request(:get, "https://example.com/.well-known/webfinger?resource=acct:#{updated_handle}")
-            .to_return(
-              body: webfinger_response.to_json,
-              headers: {
-                'Content-Type' => 'application/json',
-              },
-              status: 200
-            )
+          stub_request(:get, 'https://example.com/.well-known/host-meta').to_return(status: 404)
         end
 
-        it 'updates profile' do
-          subject.perform
-          expect(sender.reload.display_name).to eq 'Totally modified now'
-        end
+        context 'when updated username is unique and confirmed' do
+          before do
+            stub_request(:get, "https://example.com/.well-known/webfinger?resource=acct:#{updated_handle}")
+              .to_return(
+                body: {
+                  subject: "acct:#{updated_handle}",
+                  links: [
+                    {
+                      rel: 'self',
+                      type: 'application/activity+json',
+                      href: sender.uri,
+                    },
+                  ],
+                }.to_json,
+                headers: {
+                  'Content-Type' => 'application/json',
+                },
+                status: 200
+              )
+          end
 
-        it 'updates username' do
-          subject.perform
-          expect(sender.reload.username).to eq updated_username
+          it 'updates profile' do
+            subject.perform
+            expect(sender.reload.display_name).to eq 'Totally modified now'
+          end
+
+          it 'updates username' do
+            subject.perform
+            expect(sender.reload.username).to eq updated_username
+          end
         end
 
         context 'when updated username is not unique for domain' do
@@ -131,18 +134,42 @@ RSpec.describe ActivityPub::Activity::Update do
           end
         end
 
-        context 'when updated username is not confirmed via webfinger' do
-          let(:webfinger_response) do
-            {
-              subject: "acct:#{original_handle}",
-              links: [
-                {
-                  rel: 'self',
-                  type: 'application/activity+json',
-                  href: sender.uri,
+        context 'when webfinger of updated username does not contain updated username' do
+          before do
+            stub_request(:get, "https://example.com/.well-known/webfinger?resource=acct:#{updated_handle}")
+              .to_return(
+                body: {
+                  subject: "acct:#{original_handle}",
+                  links: [
+                    {
+                      rel: 'self',
+                      type: 'application/activity+json',
+                      href: sender.uri,
+                    },
+                  ],
+                }.to_json,
+                headers: {
+                  'Content-Type' => 'application/json',
                 },
-              ],
-            }
+                status: 200
+              )
+          end
+
+          it 'updates profile' do
+            subject.perform
+            expect(sender.reload.display_name).to eq 'Totally modified now'
+          end
+
+          it 'does not update username' do
+            subject.perform
+            expect(sender.reload.username).to eq original_username
+          end
+        end
+
+        context 'when webfinger request of updated username fails' do
+          before do
+            stub_request(:get, "https://example.com/.well-known/webfinger?resource=acct:#{updated_handle}")
+              .to_return(status: 404)
           end
 
           it 'updates profile' do
