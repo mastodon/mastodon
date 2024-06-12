@@ -5,7 +5,6 @@ import { HotKeys } from 'react-hotkeys';
 import type { NotificationGroup as NotificationGroupModel } from 'mastodon/models/notification_group';
 import { useAppSelector } from 'mastodon/store';
 
-
 import { NotificationAdminReport } from './notification_admin_report';
 import { NotificationAdminSignUp } from './notification_admin_sign_up';
 import { NotificationFavourite } from './notification_favourite';
@@ -24,22 +23,25 @@ export const NotificationGroup: React.FC<{
   unread: boolean;
   onMoveUp: unknown;
   onMoveDown: unknown;
-}> = ({ notificationGroupId, onMoveUp, onMoveDown }) => {
+}> = ({ notificationGroupId, unread, onMoveUp, onMoveDown }) => {
   const notificationGroup = useAppSelector((state) =>
     state.notificationsGroups.groups.find(
       (item) => item.type !== 'gap' && item.group_key === notificationGroupId,
     ),
   );
 
-  const handlers = useMemo(() => ({
-    moveUp: () => {
-      onMoveUp(notificationGroupId);
-    },
+  const handlers = useMemo(
+    () => ({
+      moveUp: () => {
+        onMoveUp(notificationGroupId);
+      },
 
-    moveDown: () => {
-      onMoveDown(notificationGroupId);
-    },
-  }), [notificationGroupId, onMoveUp, onMoveDown]);
+      moveDown: () => {
+        onMoveDown(notificationGroupId);
+      },
+    }),
+    [notificationGroupId, onMoveUp, onMoveDown],
+  );
 
   if (!notificationGroup || notificationGroup.type === 'gap') return null;
 
@@ -47,48 +49,86 @@ export const NotificationGroup: React.FC<{
 
   switch (notificationGroup.type) {
     case 'reblog':
-      content = <NotificationReblog notification={notificationGroup} />;
+      content = (
+        <NotificationReblog unread={unread} notification={notificationGroup} />
+      );
       break;
     case 'favourite':
-      content = <NotificationFavourite notification={notificationGroup} />;
+      content = (
+        <NotificationFavourite
+          unread={unread}
+          notification={notificationGroup}
+        />
+      );
       break;
     case 'severed_relationships':
-      content = <NotificationSeveredRelationships notification={notificationGroup} />;
+      content = (
+        <NotificationSeveredRelationships
+          unread={unread}
+          notification={notificationGroup}
+        />
+      );
       break;
     case 'mention':
-      content = <NotificationMention notification={notificationGroup} />;
+      content = (
+        <NotificationMention unread={unread} notification={notificationGroup} />
+      );
       break;
     case 'follow':
-      content = <NotificationFollow notification={notificationGroup} />;
+      content = (
+        <NotificationFollow unread={unread} notification={notificationGroup} />
+      );
       break;
     case 'follow_request':
-      content = <NotificationFollowRequest notification={notificationGroup} />;
+      content = (
+        <NotificationFollowRequest
+          unread={unread}
+          notification={notificationGroup}
+        />
+      );
       break;
     case 'poll':
-      content = <NotificationPoll notification={notificationGroup} />;
+      content = (
+        <NotificationPoll unread={unread} notification={notificationGroup} />
+      );
       break;
     case 'status':
-      content = <NotificationStatus notification={notificationGroup} />;
+      content = (
+        <NotificationStatus unread={unread} notification={notificationGroup} />
+      );
       break;
     case 'update':
-      content = <NotificationUpdate notification={notificationGroup} />;
+      content = (
+        <NotificationUpdate unread={unread} notification={notificationGroup} />
+      );
       break;
     case 'admin.sign_up':
-      content = <NotificationAdminSignUp notification={notificationGroup} />;
+      content = (
+        <NotificationAdminSignUp
+          unread={unread}
+          notification={notificationGroup}
+        />
+      );
       break;
     case 'admin.report':
-      content = <NotificationAdminReport notification={notificationGroup} />;
+      content = (
+        <NotificationAdminReport
+          unread={unread}
+          notification={notificationGroup}
+        />
+      );
       break;
     case 'moderation_warning':
-      content = <NotificationModerationWarning notification={notificationGroup} />;
+      content = (
+        <NotificationModerationWarning
+          unread={unread}
+          notification={notificationGroup}
+        />
+      );
       break;
     default:
       return null;
   }
 
-  return (
-    <HotKeys handlers={handlers}>
-      {content}
-    </HotKeys>
-  );
+  return <HotKeys handlers={handlers}>{content}</HotKeys>;
 };

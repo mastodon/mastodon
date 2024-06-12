@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import classNames from 'classnames';
 
 import type { IconProp } from 'mastodon/components/icon';
 import { Icon } from 'mastodon/components/icon';
@@ -22,6 +22,7 @@ export const NotificationGroupWithStatus: React.FC<{
   timestamp: string;
   labelRenderer: LabelRenderer;
   type: string;
+  unread: boolean;
 }> = ({
   icon,
   timestamp,
@@ -30,6 +31,7 @@ export const NotificationGroupWithStatus: React.FC<{
   statusId,
   labelRenderer,
   type,
+  unread,
 }) => {
   const label = useMemo(
     () =>
@@ -41,7 +43,11 @@ export const NotificationGroupWithStatus: React.FC<{
 
   return (
     <div
-      className={`notification-group focusable notification-group--${type}`}
+      role='button'
+      className={classNames(
+        `notification-group focusable notification-group--${type}`,
+        { 'notification-group--unread': unread },
+      )}
       tabIndex='0'
     >
       <div className='notification-group__icon'>

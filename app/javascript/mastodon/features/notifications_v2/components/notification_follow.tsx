@@ -16,7 +16,8 @@ const labelRenderer: LabelRenderer = (values) => (
 
 export const NotificationFollow: React.FC<{
   notification: NotificationGroupFollow;
-}> = ({ notification }) => (
+  unread: boolean;
+}> = ({ notification, unread }) => (
   <NotificationGroupWithStatus
     type='follow'
     icon={PersonAddIcon}
@@ -24,5 +25,6 @@ export const NotificationFollow: React.FC<{
     timestamp={notification.latest_page_notification_at}
     count={notification.notifications_count}
     labelRenderer={labelRenderer}
+    unread={unread}
   />
 );

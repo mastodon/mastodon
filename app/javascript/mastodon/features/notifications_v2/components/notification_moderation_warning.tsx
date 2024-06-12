@@ -3,9 +3,7 @@ import type { NotificationGroupModerationWarning } from 'mastodon/models/notific
 
 export const NotificationModerationWarning: React.FC<{
   notification: NotificationGroupModerationWarning;
-}> = ({ notification: { event } }) => (
-  <ModerationWarning
-    action={event.action}
-    id={event.id}
-  />
+  unread: boolean;
+}> = ({ notification: { event }, unread }) => (
+  <ModerationWarning action={event.action} id={event.id} unread={unread} />
 );

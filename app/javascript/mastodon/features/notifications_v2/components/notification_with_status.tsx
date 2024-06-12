@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 
 import type { IconProp } from 'mastodon/components/icon';
 import { Icon } from 'mastodon/components/icon';
+import classNames from 'classnames';
 import Status from 'mastodon/containers/status_container';
 
 import { NamesList } from './names_list';
@@ -14,7 +15,8 @@ export const NotificationWithStatus: React.FC<{
   statusId: string;
   count: number;
   labelRenderer: LabelRenderer;
-}> = ({ icon, accountIds, statusId, count, labelRenderer, type }) => {
+  unread: boolean;
+}> = ({ icon, accountIds, statusId, count, labelRenderer, type, unread }) => {
   const label = useMemo(
     () =>
       labelRenderer({
@@ -25,7 +27,11 @@ export const NotificationWithStatus: React.FC<{
 
   return (
     <div
-      className={`notification-ungrouped focusable notification-ungrouped--${type}`}
+      role='button'
+      className={classNames(
+        `notification-ungrouped focusable notification-ungrouped--${type}`,
+        { 'notification-ungrouped--unread': unread },
+      )}
       tabIndex='0'
     >
       <div className='notification-ungrouped__header'>

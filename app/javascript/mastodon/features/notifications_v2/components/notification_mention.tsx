@@ -16,7 +16,8 @@ const labelRenderer: LabelRenderer = (values) => (
 
 export const NotificationMention: React.FC<{
   notification: NotificationGroupMention;
-}> = ({ notification }) => (
+  unread: boolean;
+}> = ({ notification, unread }) => (
   <NotificationWithStatus
     type='mention'
     icon={ReplyIcon}
@@ -24,5 +25,6 @@ export const NotificationMention: React.FC<{
     count={notification.notifications_count}
     statusId={notification.statusId}
     labelRenderer={labelRenderer}
+    unread={unread}
   />
 );

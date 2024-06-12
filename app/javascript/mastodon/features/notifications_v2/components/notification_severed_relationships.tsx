@@ -3,11 +3,13 @@ import type { NotificationGroupSeveredRelationships } from 'mastodon/models/noti
 
 export const NotificationSeveredRelationships: React.FC<{
   notification: NotificationGroupSeveredRelationships;
-}> = ({ notification: { event } }) => (
+  unread: boolean;
+}> = ({ notification: { event }, unread }) => (
   <RelationshipsSeveranceEvent
     type={event.type}
     target={event.target_name}
     followersCount={event.followers_count}
     followingCount={event.following_count}
+    unread={unread}
   />
 );

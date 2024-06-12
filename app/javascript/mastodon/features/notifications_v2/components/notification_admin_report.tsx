@@ -1,33 +1,37 @@
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
+import classNames from 'classnames';
+
 import FlagIcon from '@/material-icons/400-24px/flag-fill.svg?react';
 import { Icon } from 'mastodon/components/icon';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import type { NotificationGroupAdminReport } from 'mastodon/models/notification_group';
 import { useAppSelector } from 'mastodon/store';
 
-import { NamesList } from './names_list';
-
 // This needs to be kept in sync with app/models/report.rb
 const messages = defineMessages({
   other: {
-    id: 'report_notification.categories.other',
-    defaultMessage: 'Other',
+    id: 'report_notification.categories.other_sentence',
+    defaultMessage: 'other',
   },
-  spam: { id: 'report_notification.categories.spam', defaultMessage: 'Spam' },
+  spam: {
+    id: 'report_notification.categories.spam_sentence',
+    defaultMessage: 'spam',
+  },
   legal: {
-    id: 'report_notification.categories.legal',
-    defaultMessage: 'Legal',
+    id: 'report_notification.categories.legal_sentence',
+    defaultMessage: 'illegal content',
   },
   violation: {
-    id: 'report_notification.categories.violation',
-    defaultMessage: 'Rule violation',
+    id: 'report_notification.categories.violation_sentence',
+    defaultMessage: 'rule violation',
   },
 });
 
 export const NotificationAdminReport: React.FC<{
   notification: NotificationGroupAdminReport;
-}> = ({ notification, notification: { report } }) => {
+  unread: boolean;
+}> = ({ notification, notification: { report }, unread }) => {
   const intl = useIntl();
   const targetAccount = useAppSelector((state) =>
     state.getIn(['accounts', report.target_account.id]),
@@ -97,8 +101,10 @@ export const NotificationAdminReport: React.FC<{
       href={`/admin/reports/${report.id}`}
       target='_blank'
       rel='noopener noreferrer'
-      className='notification-group notification-group--link notification-group--admin-report focusable'
-      tabIndex={0}
+      className={classNames(
+        'notification-group notification-group--link notification-group--admin-report focusable',
+        { 'notification-group--unread': unread },
+      )}
     >
       <div className='notification-group__icon'>
         <Icon id='flag' icon={FlagIcon} />

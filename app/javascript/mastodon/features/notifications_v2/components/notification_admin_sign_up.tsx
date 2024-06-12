@@ -16,7 +16,8 @@ const labelRenderer: LabelRenderer = (values) => (
 
 export const NotificationAdminSignUp: React.FC<{
   notification: NotificationGroupAdminSignUp;
-}> = ({ notification }) => (
+  unread: boolean;
+}> = ({ notification, unread }) => (
   <NotificationGroupWithStatus
     type='admin-sign-up'
     icon={PersonAddIcon}
@@ -24,5 +25,6 @@ export const NotificationAdminSignUp: React.FC<{
     timestamp={notification.latest_page_notification_at}
     count={notification.notifications_count}
     labelRenderer={labelRenderer}
+    unread={unread}
   />
 );
