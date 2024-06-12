@@ -64,7 +64,9 @@ RSpec.describe ActivityPub::Activity::Update do
 
       context 'when Actor username changes' do
         let!(:original_username) { sender.username }
+        let!(:original_handle) { "#{original_username}@#{sender.domain}" }
         let!(:updated_username) { 'updated_username' }
+        let!(:updated_handle) { "#{updated_username}@#{sender.domain}" }
         let(:updated_username_json) { actor_json.merge(preferredUsername: updated_username) }
         let(:json) do
           {
@@ -74,6 +76,29 @@ RSpec.describe ActivityPub::Activity::Update do
             actor: sender.uri,
             object: updated_username_json,
           }.with_indifferent_access
+        end
+        let(:webfinger_response) do
+          {
+            subject: "acct:#{updated_handle}",
+            links: [
+              {
+                rel: 'self',
+                type: 'application/activity+json',
+                href: sender.uri,
+              },
+            ],
+          }
+        end
+
+        before do
+          stub_request(:get, "https://example.com/.well-known/webfinger?resource=acct:#{updated_handle}")
+            .to_return(
+              body: webfinger_response.to_json,
+              headers: {
+                'Content-Type' => 'application/json',
+              },
+              status: 200
+            )
         end
 
         it 'updates profile' do
@@ -93,6 +118,31 @@ RSpec.describe ActivityPub::Activity::Update do
                       domain: 'example.com',
                       inbox_url: "https://example.com/#{updated_username}/inbox",
                       outbox_url: "https://example.com/#{updated_username}/outbox")
+          end
+
+          it 'updates profile' do
+            subject.perform
+            expect(sender.reload.display_name).to eq 'Totally modified now'
+          end
+
+          it 'does not update username' do
+            subject.perform
+            expect(sender.reload.username).to eq original_username
+          end
+        end
+
+        context 'when updated username is not confirmed via webfinger' do
+          let(:webfinger_response) do
+            {
+              subject: "acct:#{original_handle}",
+              links: [
+                {
+                  rel: 'self',
+                  type: 'application/activity+json',
+                  href: sender.uri,
+                },
+              ],
+            }
           end
 
           it 'updates profile' do
