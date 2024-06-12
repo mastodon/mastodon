@@ -110,6 +110,7 @@ module Mastodon
     end
 
     config.x.captcha = config_for(:captcha)
+    config.x.storage = config_for(:storage)
     config.x.translation = config_for(:translation)
 
     config.to_prepare do
