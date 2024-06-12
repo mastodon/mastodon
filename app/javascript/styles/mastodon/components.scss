@@ -10184,8 +10184,8 @@ noscript {
   align-items: center;
   border: 1px solid var(--background-border-color);
   border-top: 0;
-  padding: 24px 32px;
-  gap: 16px;
+  padding: 16px;
+  gap: 8px;
   color: $darker-text-color;
   text-decoration: none;
 
@@ -10195,10 +10195,8 @@ noscript {
     color: $secondary-text-color;
   }
 
-  .icon {
-    width: 24px;
-    height: 24px;
-    padding: 2px;
+  .notification-group__icon {
+    color: inherit;
   }
 
   &__text {
@@ -10349,12 +10347,17 @@ noscript {
     align-items: center;
     justify-content: center;
     flex: 0 0 auto;
-    color: $highlight-text-color;
+    color: $dark-text-color;
 
     .icon {
       width: 28px;
       height: 28px;
     }
+  }
+
+  &__follow &__icon,
+  &__follow-request &__icon {
+    color: $highlight-text-color;
   }
 
   &--favourite &__icon {
