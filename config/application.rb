@@ -109,6 +109,8 @@ module Mastodon
       end
     end
 
+    config.x.search = config_for(:search)
+
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
