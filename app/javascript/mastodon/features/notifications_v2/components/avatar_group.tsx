@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { Avatar } from 'mastodon/components/avatar';
 import { useAppSelector } from 'mastodon/store';
 
-const AvatarWrapper = ({ accountId }) => {
-  const account = useAppSelector(state => state.getIn(['accounts', accountId]));
+const AvatarWrapper: React.FC<{ accountId: string }> = ({ accountId }) => {
+  const account = useAppSelector((state) => state.accounts.get(accountId));
+
+  if (!account) return null;
 
   return (
     <Link to={`/@${account.get('acct')}`} title={`@${account.get('acct')}`}>
@@ -13,8 +15,12 @@ const AvatarWrapper = ({ accountId }) => {
   );
 };
 
-export const AvatarGroup = ({ accountIds }) => (
+export const AvatarGroup: React.FC<{ accountIds: string[] }> = ({
+  accountIds,
+}) => (
   <div className='notification-group__avatar-group'>
-    {accountIds.map(accountId => <AvatarWrapper key={accountId} accountId={accountId} />)}
+    {accountIds.map((accountId) => (
+      <AvatarWrapper key={accountId} accountId={accountId} />
+    ))}
   </div>
 );
