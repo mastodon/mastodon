@@ -116,8 +116,11 @@ RSpec.describe ContentSecurityPolicy do
 
     context 'when s3_enabled is configured' do
       around do |example|
-        ClimateControl.modify S3_ENABLED: 'true', S3_HOSTNAME: 'asset-host.s3.example' do
+        ClimateControl.modify S3_HOSTNAME: 'asset-host.s3.example' do
+          original = Rails.configuration.x.storage.s3_enabled
+          Rails.configuration.x.storage.s3_enabled = true
           example.run
+          Rails.configuration.x.storage.s3_enabled = original
         end
       end
 
