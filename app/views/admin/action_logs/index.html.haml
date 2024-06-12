@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('admin.action_logs.title')
 
-= form_tag admin_action_logs_url, method: 'GET', class: 'simple_form' do
+= form_with url: admin_action_logs_url, method: :get, class: :simple_form do
   = hidden_field_tag :target_account_id, params[:target_account_id] if params[:target_account_id].present?
 
   .filters

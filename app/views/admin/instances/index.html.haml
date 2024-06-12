@@ -28,7 +28,7 @@
       %li= filter_link_to t('admin.instances.delivery.unavailable'), availability: 'unavailable'
 
 - unless limited_federation_mode?
-  = form_tag admin_instances_url, method: 'GET', class: 'simple_form' do
+  = form_with url: admin_instances_url, method: :get, class: :simple_form do
     .fields-group
       - InstanceFilter::KEYS.each do |key|
         = hidden_field_tag key, params[key] if params[key].present?

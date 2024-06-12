@@ -10,7 +10,7 @@
         email: content_tag(:strong, @user.email),
         settings_path: settings_preferences_notifications_path
 
-  = form_tag unsubscribe_path, method: :post do
+  = form_with url: unsubscribe_path, method: :post do
     = hidden_field_tag :token, params[:token]
     = hidden_field_tag :type, params[:type]
     = button_tag t('mail_subscriptions.unsubscribe.action'), type: :submit

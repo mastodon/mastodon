@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('auth.captcha_confirmation.title')
 
-= form_tag auth_captcha_confirmation_url, method: 'POST', class: 'simple_form' do
+= form_with url: auth_captcha_confirmation_url, method: :post, class: :simple_form do
   = render 'auth/shared/progress', stage: 'confirm'
 
   = hidden_field_tag :confirmation_token, params[:confirmation_token]

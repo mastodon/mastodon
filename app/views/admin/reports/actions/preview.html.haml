@@ -4,7 +4,7 @@
 - content_for :page_title do
   = t('admin.reports.confirm_action', acct: target_acct)
 
-= form_tag admin_report_actions_path(@report), class: 'simple_form', method: :post do
+= form_with url: admin_report_actions_path(@report), method: :post, class: :simple_form do
   = hidden_field_tag :moderation_action, @moderation_action
 
   %p.hint= t("admin.reports.summary.action_preambles.#{@moderation_action}_html", acct: target_acct)

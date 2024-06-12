@@ -5,7 +5,7 @@
 
 %hr.spacer/
 
-= form_tag admin_trends_statuses_path, method: 'GET', class: 'simple_form' do
+= form_with url: admin_trends_statuses_path, method: :get, class: :simple_form do
   - Trends::StatusFilter::KEYS.each do |key|
     = hidden_field_tag key, params[key] if params[key].present?
 

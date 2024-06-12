@@ -21,7 +21,7 @@
               = t(scope.access, scope: [:doorkeeper, :grouped_scopes, :access])
 
     .actions
-      = form_tag oauth_authorization_path, method: :post do
+      = form_with url: oauth_authorization_path, method: :post do
         = hidden_field_tag :client_id, @pre_auth.client.uid
         = hidden_field_tag :redirect_uri, @pre_auth.redirect_uri
         = hidden_field_tag :state, @pre_auth.state
@@ -29,7 +29,7 @@
         = hidden_field_tag :scope, @pre_auth.scope
         = button_tag t('doorkeeper.authorizations.buttons.authorize'), type: :submit
 
-      = form_tag oauth_authorization_path, method: :delete do
+      = form_with url: oauth_authorization_path, method: :delete do
         = hidden_field_tag :client_id, @pre_auth.client.uid
         = hidden_field_tag :redirect_uri, @pre_auth.redirect_uri
         = hidden_field_tag :state, @pre_auth.state
