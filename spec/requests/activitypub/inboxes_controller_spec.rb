@@ -70,6 +70,7 @@ RSpec.describe ActivityPub::InboxesController, :sidekiq_inline do
 
   context 'when remote actor username has changed' do
     let(:remote_actor_new_username) { 'new_username' }
+    let(:remote_actor_new_handle) { "#{remote_actor_new_username}@#{remote_actor.domain}" }
     let(:updated_remote_actor_json) do
       {
         '@context': 'https://www.w3.org/ns/activitystreams',
@@ -83,6 +84,18 @@ RSpec.describe ActivityPub::InboxesController, :sidekiq_inline do
           publicKeyPem: remote_actor.public_key,
         },
       }.with_indifferent_access
+    end
+    let(:remote_actor_webfinger_response) do
+      {
+        subject: "acct:#{remote_actor_new_handle}",
+        links: [
+          {
+            rel: 'self',
+            type: 'application/activity+json',
+            href: remote_actor.uri,
+          },
+        ],
+      }
     end
 
     before do
@@ -99,6 +112,14 @@ RSpec.describe ActivityPub::InboxesController, :sidekiq_inline do
           body: updated_remote_actor_json.to_json,
           headers: {
             'Content-Type' => 'application/activity+json',
+          },
+          status: 200
+        )
+      stub_request(:get, "https://remote.domain/.well-known/webfinger?resource=acct:#{remote_actor_new_handle}")
+        .to_return(
+          body: remote_actor_webfinger_response.to_json,
+          headers: {
+            'Content-Type' => 'application/json',
           },
           status: 200
         )
