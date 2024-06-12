@@ -1,0 +1,8 @@
+shared:
+  ca_file: <%= ENV.fetch('ES_CA_FILE', nil).presence %>
+  enabled: <%= ENV.fetch('ES_ENABLED', 'false') %>
+  host: <%= ENV.fetch('ES_HOST', 'localhost') %>:<%= ENV.fetch('ES_PORT', '9200') %>
+  password: <%= ENV.fetch('ES_PASS', nil).presence %>
+  prefix: <%= ENV.fetch('ES_PREFIX') { ENV.fetch('REDIS_NAMESPACE', nil).presence } %>
+  preset: <%= ENV.fetch('ES_PRESET', 'single_node_cluster') %>
+  user: <%= ENV.fetch('ES_USER', nil).presence %>

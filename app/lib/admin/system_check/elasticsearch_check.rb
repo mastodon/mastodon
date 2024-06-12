@@ -116,7 +116,7 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
   end
 
   def es_preset
-    ENV.fetch('ES_PRESET', 'single_node_cluster')
+    Rails.configuration.x.search.preset
   end
 
   def preset_matches?
