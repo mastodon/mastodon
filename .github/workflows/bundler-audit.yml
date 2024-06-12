@@ -6,14 +6,12 @@ on:
     paths:
       - 'Gemfile*'
       - '.ruby-version'
-      - '.bundler-audit.yml'
       - '.github/workflows/bundler-audit.yml'
 
   pull_request:
     paths:
       - 'Gemfile*'
       - '.ruby-version'
-      - '.bundler-audit.yml'
       - '.github/workflows/bundler-audit.yml'
 
   schedule:
