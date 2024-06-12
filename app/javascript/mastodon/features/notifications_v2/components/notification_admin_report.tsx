@@ -30,15 +30,18 @@ const messages = defineMessages({
 
 export const NotificationAdminReport: React.FC<{
   notification: NotificationGroupAdminReport;
-  unread: boolean;
+  unread?: boolean;
 }> = ({ notification, notification: { report }, unread }) => {
   const intl = useIntl();
   const targetAccount = useAppSelector((state) =>
-    state.getIn(['accounts', report.target_account.id]),
+    state.accounts.get(report.targetAccountId),
   );
   const account = useAppSelector((state) =>
-    state.getIn(['accounts', notification.sampleAccountsIds[0]]),
+    state.accounts.get(notification.sampleAccountsIds[0] ?? '0'),
   );
+
+  if (!account || !targetAccount) return null;
+
   const values = {
     name: (
       <bdi

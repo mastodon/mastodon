@@ -21,6 +21,7 @@ export const NotificationFavourite: React.FC<{
   <NotificationGroupWithStatus
     type='favourite'
     icon={StarIcon}
+    iconId='star'
     accountIds={notification.sampleAccountsIds}
     statusId={notification.statusId}
     timestamp={notification.latest_page_notification_at}

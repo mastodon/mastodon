@@ -21,6 +21,7 @@ export const NotificationFollowRequest: React.FC<{
   <NotificationGroupWithStatus
     type='follow-request'
     icon={PersonAddIcon}
+    iconId='person-add'
     accountIds={notification.sampleAccountsIds}
     timestamp={notification.latest_page_notification_at}
     count={notification.notifications_count}

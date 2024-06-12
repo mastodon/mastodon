@@ -1,6 +1,9 @@
 // See app/serializers/rest/notification_group_serializer.rb
 
+import type { AccountWarningAction } from 'mastodon/models/notification_group';
+
 import type { ApiAccountJSON } from './accounts';
+import type { ApiReportJSON } from './reports';
 import type { ApiStatusJSON } from './statuses';
 
 // See app/model/notification.rb
@@ -26,7 +29,7 @@ export interface BaseNotificationGroupJSON {
   notifications_count: number;
   type: NotificationType;
   sample_accounts: ApiAccountJSON[];
-  latest_page_notification_at?: string;
+  latest_page_notification_at: string; // FIXME: This will only be present if the notification group is returned in a paginated list, not requested directly
   page_min_id?: string;
   page_max_id?: string;
 }
@@ -38,19 +41,39 @@ interface NotificationGroupWithStatusJSON extends BaseNotificationGroupJSON {
 
 interface ReportNotificationGroupJSON extends BaseNotificationGroupJSON {
   type: 'admin.report';
-  report: unknown;
+  report: ApiReportJSON;
+}
+
+export interface ApiAccountWarningJSON {
+  id: string;
+  action: AccountWarningAction;
+  text: string;
+  status_ids: string[];
+  created_at: string;
+  target_account: ApiAccountJSON;
+  appeal: unknown;
 }
 
 interface ModerationWarningNotificationGroupJSON
   extends BaseNotificationGroupJSON {
   type: 'moderation_warning';
-  moderation_warning: unknown;
+  moderation_warning: ApiAccountWarningJSON;
+}
+
+export interface ApiAccountRelationshipSeveranceEventJSON {
+  id: string;
+  type: 'account_suspension' | 'domain_block' | 'user_domain_block';
+  purged: boolean;
+  target_name: string;
+  followers_count: number;
+  following_count: number;
+  created_at: string;
 }
 
 interface AccountRelationshipSeveranceNotificationGroupJSON
   extends BaseNotificationGroupJSON {
   type: 'severed_relationships';
-  account_relationship_severance_event: unknown;
+  event: ApiAccountRelationshipSeveranceEventJSON;
 }
 
 export type NotificationGroupJSON =

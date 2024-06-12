@@ -21,6 +21,7 @@ export const NotificationUpdate: React.FC<{
   <NotificationWithStatus
     type='update'
     icon={EditIcon}
+    iconId='edit'
     accountIds={notification.sampleAccountsIds}
     count={notification.notifications_count}
     statusId={notification.statusId}

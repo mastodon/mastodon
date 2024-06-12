@@ -16,6 +16,7 @@ export type LabelRenderer = (
 
 export const NotificationGroupWithStatus: React.FC<{
   icon: IconProp;
+  iconId: string;
   statusId?: string;
   count: number;
   accountIds: string[];
@@ -25,6 +26,7 @@ export const NotificationGroupWithStatus: React.FC<{
   unread: boolean;
 }> = ({
   icon,
+  iconId,
   timestamp,
   accountIds,
   count,
@@ -48,10 +50,10 @@ export const NotificationGroupWithStatus: React.FC<{
         `notification-group focusable notification-group--${type}`,
         { 'notification-group--unread': unread },
       )}
-      tabIndex='0'
+      tabIndex={0}
     >
       <div className='notification-group__icon'>
-        <Icon icon={icon} />
+        <Icon icon={icon} id={iconId} />
       </div>
 
       <div className='notification-group__main'>

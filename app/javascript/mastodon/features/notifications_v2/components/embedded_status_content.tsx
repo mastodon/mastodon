@@ -1,14 +1,29 @@
 import { useCallback, useRef } from 'react';
+
 import { useHistory } from 'react-router-dom';
 
-const handleMentionClick = (history: unknown, mention: unknown, e: Event) => {
+import type { List } from 'immutable';
+
+import type { History } from 'history';
+
+import type { Mention } from './embedded_status';
+
+const handleMentionClick = (
+  history: History,
+  mention: Mention,
+  e: MouseEvent,
+) => {
   if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
     e.preventDefault();
     history.push(`/@${mention.get('acct')}`);
   }
 };
 
-const handleHashtagClick = (history: unknown, hashtag: string, e: Event) => {
+const handleHashtagClick = (
+  history: History,
+  hashtag: string,
+  e: MouseEvent,
+) => {
   if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
     e.preventDefault();
     history.push(`/tags/${hashtag.replace(/^#/, '')}`);
@@ -17,22 +32,22 @@ const handleHashtagClick = (history: unknown, hashtag: string, e: Event) => {
 
 export const EmbeddedStatusContent: React.FC<{
   content: string;
-  mentions: unknown;
+  mentions: List<Mention>;
   language: string;
-  onClick?: unknown;
+  onClick?: () => void;
   className?: string;
 }> = ({ content, mentions, language, onClick, className }) => {
-  const clickCoordinatesRef = useRef();
+  const clickCoordinatesRef = useRef<[number, number] | null>();
   const history = useHistory();
 
-  const handleMouseDown = useCallback(
+  const handleMouseDown = useCallback<React.MouseEventHandler<HTMLDivElement>>(
     ({ clientX, clientY }) => {
       clickCoordinatesRef.current = [clientX, clientY];
     },
     [clickCoordinatesRef],
   );
 
-  const handleMouseUp = useCallback(
+  const handleMouseUp = useCallback<React.MouseEventHandler<HTMLDivElement>>(
     ({ clientX, clientY, target, button }) => {
       const [startX, startY] = clickCoordinatesRef.current ?? [0, 0];
       const [deltaX, deltaY] = [
@@ -40,7 +55,7 @@ export const EmbeddedStatusContent: React.FC<{
         Math.abs(clientY - startY),
       ];
 
-      let element = target;
+      let element: HTMLDivElement | null = target as HTMLDivElement;
 
       while (element) {
         if (
@@ -51,7 +66,7 @@ export const EmbeddedStatusContent: React.FC<{
           return;
         }
 
-        element = element.parentNode;
+        element = element.parentNode as HTMLDivElement | null;
       }
 
       if (deltaX + deltaY < 5 && button === 0 && onClick) {
@@ -63,29 +78,39 @@ export const EmbeddedStatusContent: React.FC<{
     [clickCoordinatesRef, onClick],
   );
 
-  const handleMouseEnter = useCallback(({ currentTarget }) => {
-    const emojis = currentTarget.querySelectorAll('.custom-emoji');
+  const handleMouseEnter = useCallback<React.MouseEventHandler<HTMLDivElement>>(
+    ({ currentTarget }) => {
+      const emojis =
+        currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
 
-    for (const emoji of emojis) {
-      emoji.src = emoji.getAttribute('data-original');
-    }
-  }, []);
+      for (const emoji of emojis) {
+        const newSrc = emoji.getAttribute('data-original');
+        if (newSrc) emoji.src = newSrc;
+      }
+    },
+    [],
+  );
 
-  const handleMouseLeave = useCallback(({ currentTarget }) => {
-    const emojis = currentTarget.querySelectorAll('.custom-emoji');
+  const handleMouseLeave = useCallback<React.MouseEventHandler<HTMLDivElement>>(
+    ({ currentTarget }) => {
+      const emojis =
+        currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
 
-    for (const emoji of emojis) {
-      emoji.src = emoji.getAttribute('data-static');
-    }
-  }, []);
+      for (const emoji of emojis) {
+        const newSrc = emoji.getAttribute('data-static');
+        if (newSrc) emoji.src = newSrc;
+      }
+    },
+    [],
+  );
 
   const handleContentRef = useCallback(
-    (node) => {
+    (node: HTMLDivElement | null) => {
       if (!node) {
         return;
       }
 
-      const links = node.querySelectorAll('a');
+      const links = node.querySelectorAll<HTMLAnchorElement>('a');
 
       for (const link of links) {
         if (link.classList.contains('status-link')) {
@@ -105,12 +130,8 @@ export const EmbeddedStatusContent: React.FC<{
           link.setAttribute('title', `@${mention.get('acct')}`);
           link.setAttribute('href', `/@${mention.get('acct')}`);
         } else if (
-          link.textContent[0] === '#' ||
-          (link.previousSibling &&
-            link.previousSibling.textContent &&
-            link.previousSibling.textContent[
-              link.previousSibling.textContent.length - 1
-            ] === '#')
+          link.textContent?.[0] === '#' ||
+          link.previousSibling?.textContent?.endsWith('#')
         ) {
           link.addEventListener(
             'click',
@@ -130,7 +151,7 @@ export const EmbeddedStatusContent: React.FC<{
   return (
     <div
       role='button'
-      tabIndex='0'
+      tabIndex={0}
       className={className}
       ref={handleContentRef}
       lang={language}

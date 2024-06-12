@@ -17,9 +17,13 @@ export const fetchNotifications = createDataLoadingThunk(
         fetchedAccounts.push(...notification.sample_accounts);
       }
 
-      // if (notification.type === 'admin.report') {
-      //   fetchedAccounts.push(...notification.report.target_account);
-      // }
+      if (notification.type === 'admin.report') {
+        fetchedAccounts.push(notification.report.target_account);
+      }
+
+      if (notification.type === 'moderation_warning') {
+        fetchedAccounts.push(notification.moderation_warning.target_account);
+      }
 
       if ('status' in notification) {
         fetchedStatuses.push(notification.status);

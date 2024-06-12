@@ -21,8 +21,8 @@ import { NotificationUpdate } from './notification_update';
 export const NotificationGroup: React.FC<{
   notificationGroupId: NotificationGroupModel['group_key'];
   unread: boolean;
-  onMoveUp: unknown;
-  onMoveDown: unknown;
+  onMoveUp: (groupId: string) => void;
+  onMoveDown: (groupId: string) => void;
 }> = ({ notificationGroupId, unread, onMoveUp, onMoveDown }) => {
   const notificationGroup = useAppSelector((state) =>
     state.notificationsGroups.groups.find(
