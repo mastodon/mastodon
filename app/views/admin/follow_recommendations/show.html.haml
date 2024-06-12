@@ -5,16 +5,16 @@
 
 %hr.spacer/
 
-= form_with url: admin_follow_recommendations_path, method: :get, class: :simple_form do
+= form_with url: admin_follow_recommendations_path, method: :get, class: :simple_form do |form|
   - RelationshipFilter::KEYS.each do |key|
-    = hidden_field_tag key, params[key] if params[key].present?
+    = form.hidden_field key, value: params[key] if params[key].present?
 
   .filters
     .filter-subset.filter-subset--with-select
       %strong= t('admin.follow_recommendations.language')
       .input.select.optional
-        = select_tag :language,
-                     options_for_select(Trends.available_locales.map { |key| [standard_locale_name(key), key] }, @language)
+        = form.select :language,
+                      options_for_select(Trends.available_locales.map { |key| [standard_locale_name(key), key] }, @language)
     .filter-subset
       %strong= t('admin.follow_recommendations.status')
       %ul
