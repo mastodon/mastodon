@@ -166,6 +166,8 @@ RUN \
     libdav1d-dev \
     liblzma-dev \
     libmp3lame-dev \
+    libopencore-amrnb-dev \
+    libopencore-amrwb-dev \
     libopus-dev \
     libtheora-dev \
     libvorbis-dev \
@@ -209,15 +211,21 @@ ARG FFMPEG_VERSION=7.0.1
 # ffmpeg download URL, change with [--build-arg FFMPEG_URL="https://ffmpeg.org/releases"]
 ARG FFMPEG_URL=https://ffmpeg.org/releases
 
-WORKDIR /usr/local/src
+WORKDIR /usr/local/ffmpeg/src
 
 RUN \
   curl -sSL -o ffmpeg-${FFMPEG_VERSION}.tar.xz ${FFMPEG_URL}/ffmpeg-${FFMPEG_VERSION}.tar.xz; \
   tar xf ffmpeg-${FFMPEG_VERSION}.tar.xz; \
   cd ffmpeg-${FFMPEG_VERSION}; \
-  mkdir -p /opt/ffmpeg; \
   ./configure \
-    --prefix=/opt/ffmpeg \
+    --prefix=/usr/local/ffmpeg \
+    --toolchain=hardened \
+    --disable-doc \
+    --disable-network \
+    --disable-static \
+    --disable-debug \
+    --disable-ffplay \
+    --disable-devices \
     --enable-rpath \
     --enable-gpl \
     --enable-version3 \
@@ -233,9 +241,9 @@ RUN \
     --enable-libvpx \
     --enable-libx264 \
     --enable-libx265 \
-    --disable-doc \
-    --disable-network \
-    --disable-static \
+    --enable-libopencore-amrnb \
+    --enable-libopencore-amrwb \
+    --enable-libwebp \
   ; \
   make -j$(nproc); \
   make install;
@@ -346,6 +354,8 @@ RUN \
   # ffmpeg components
     libdav1d6 \
     libmp3lame0 \
+    libopencore-amrnb0 \
+    libopencore-amrwb0 \
     libopus0 \
     libtheora0 \
     libvorbis0a \
@@ -368,8 +378,8 @@ COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
 COPY --from=libvips /usr/local/libvips/bin /usr/local/bin
 COPY --from=libvips /usr/local/libvips/lib /usr/local/lib
 # Copy ffpmeg components to layer
-COPY --from=ffmpeg /opt/ffmpeg/bin* /usr/local/bin
-COPY --from=ffmpeg /opt/ffmpeg/lib* /usr/local/lib
+COPY --from=ffmpeg /usr/local/ffmpeg/bin /usr/local/bin
+COPY --from=ffmpeg /usr/local/ffmpeg/lib /usr/local/lib
 
 RUN \
   ldconfig; \
