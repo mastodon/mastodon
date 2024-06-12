@@ -5,8 +5,12 @@ import type { NotificationGroupPoll } from 'mastodon/models/notification_group';
 
 import { NotificationWithStatus } from './notification_with_status';
 
-const labelRenderer = values =>
-  <FormattedMessage id='notification.poll' defaultMessage='A poll you have voted in has ended' />;
+const labelRenderer = () => (
+  <FormattedMessage
+    id='notification.poll'
+    defaultMessage='A poll you have voted in has ended'
+  />
+);
 
 export const NotificationPoll: React.FC<{
   notification: NotificationGroupPoll;
