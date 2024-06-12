@@ -27,7 +27,7 @@ export const NamesList: React.FC<{ accountIds: string[]; total: number }> = ({
 
   return (
     <FormattedMessage
-      id=''
+      id='name_and_others'
       defaultMessage='{name} and {count, plural, one {# other} other {# others}}'
       values={{ name: displayedName, count: total - 1 }}
     />

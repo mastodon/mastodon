@@ -1612,13 +1612,17 @@ body > [data-popper-placement] {
   }
 }
 
-.status__wrapper-direct {
+.status__wrapper-direct,
+.notification-group--unread,
+.notification-ungrouped--unread {
   background: rgba($ui-highlight-color, 0.05);
 
   &:focus {
-    background: rgba($ui-highlight-color, 0.05);
+    background: rgba($ui-highlight-color, 0.1);
   }
+}
 
+.status__wrapper-direct {
   .status__prepend {
     color: $highlight-text-color;
   }

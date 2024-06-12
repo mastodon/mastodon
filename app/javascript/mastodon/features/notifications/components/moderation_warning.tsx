@@ -1,5 +1,7 @@
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import classNames from 'classnames';
+
 import GavelIcon from '@/material-icons/400-24px/gavel.svg?react';
 import { Icon } from 'mastodon/components/icon';
 
@@ -46,9 +48,15 @@ interface Props {
     | 'suspend';
   id: string;
   hidden: boolean;
+  unread: boolean;
 }
 
-export const ModerationWarning: React.FC<Props> = ({ action, id, hidden }) => {
+export const ModerationWarning: React.FC<Props> = ({
+  action,
+  id,
+  hidden,
+  unread,
+}) => {
   const intl = useIntl();
 
   if (hidden) {
@@ -56,12 +64,26 @@ export const ModerationWarning: React.FC<Props> = ({ action, id, hidden }) => {
   }
 
   return (
-    <div className='notification-group notification-group--link notification-group--moderation-warning focusable' tabIndex='0'>
-      <div className='notification-group__icon'><Icon id='warning' icon={GavelIcon} /></div>
+    <div
+      role='button'
+      className={classNames(
+        'notification-group notification-group--link notification-group--moderation-warning focusable',
+        { 'notification-group--unread': unread },
+      )}
+      tabIndex='0'
+    >
+      <div className='notification-group__icon'>
+        <Icon id='warning' icon={GavelIcon} />
+      </div>
 
       <div className='notification-group__main'>
         <p>{intl.formatMessage(messages[action])}</p>
-        <a href={`/disputes/strikes/${id}`} target='_blank' rel='noopener noreferrer' className='link-button'>
+        <a
+          href={`/disputes/strikes/${id}`}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='link-button'
+        >
           <FormattedMessage
             id='notification.moderation-warning.learn_more'
             defaultMessage='Learn more'

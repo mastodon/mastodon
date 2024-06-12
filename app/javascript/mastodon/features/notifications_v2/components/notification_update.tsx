@@ -16,7 +16,8 @@ const labelRenderer: LabelRenderer = (values) => (
 
 export const NotificationUpdate: React.FC<{
   notification: NotificationGroupUpdate;
-}> = ({ notification }) => (
+  unread: boolean;
+}> = ({ notification, unread }) => (
   <NotificationWithStatus
     type='update'
     icon={EditIcon}
@@ -24,5 +25,6 @@ export const NotificationUpdate: React.FC<{
     count={notification.notifications_count}
     statusId={notification.statusId}
     labelRenderer={labelRenderer}
+    unread={unread}
   />
 );
