@@ -1411,10 +1411,15 @@ body > [data-popper-placement] {
     .audio-player,
     .attachment-list,
     .picture-in-picture-placeholder,
+    .more-from-author,
     .status-card,
     .hashtag-bar {
       margin-inline-start: $thread-margin;
-      width: calc(100% - ($thread-margin));
+      width: calc(100% - $thread-margin);
+    }
+
+    .more-from-author {
+      width: calc(100% - $thread-margin + 2px);
     }
 
     .status__content__read-more-button {
@@ -4125,6 +4130,13 @@ a.status-card {
 .status-card.expanded .status-card__image-image,
 .status-card.expanded .status-card__image-preview {
   border-start-end-radius: 8px;
+  border-end-end-radius: 0;
+  border-end-start-radius: 0;
+}
+
+.status-card.bottomless .status-card__image,
+.status-card.bottomless .status-card__image-image,
+.status-card.bottomless .status-card__image-preview {
   border-end-end-radius: 0;
   border-end-start-radius: 0;
 }
@@ -10229,6 +10241,7 @@ noscript {
 }
 
 .more-from-author {
+  box-sizing: border-box;
   font-size: 14px;
   color: $darker-text-color;
   background: var(--surface-background-color);
