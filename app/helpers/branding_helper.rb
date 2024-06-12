@@ -12,16 +12,14 @@ module BrandingHelper
 
   def _logo_as_symbol_wordmark
     logo_url = InstancePresenter.new.logo&.file&.url
-    tag = logo_url.present? ? tag.img('src' => logo_url) : nil
-    tag || content_tag(:svg, tag.use(href: '#decodon-logo'), viewBox: '0 0 376 102', class: 'logo logo--wordmark')
-    # content_tag(:svg, tag.use(href: '#logo-symbol-wordmark'), viewBox: '0 0 261 66', class: 'logo logo--wordmark')
+    logo = logo_url.present? ? tag.img('src' => logo_url) : nil
+    logo || content_tag(:svg, tag.use(href: '#decodon-logo'), viewBox: '0 0 376 102', class: 'logo logo--wordmark')
   end
 
   def _logo_as_symbol_icon
     logo_url = InstancePresenter.new.logo&.file&.url
-    tag = logo_url.present? ? tag.img('src' => logo_url) : nil
-    tag || content_tag(:svg, tag.use(href: '#decodon-flower-logo'), viewBox: '0 0 150 150', class: 'logo logo--icon')
-    # content_tag(:svg, tag.use(href: '#logo-symbol-icon'), viewBox: '0 0 79 79', class: 'logo logo--icon')
+    logo = logo_url.present? ? tag.img('src' => logo_url) : nil
+    logo || content_tag(:svg, tag.use(href: '#decodon-flower-logo'), viewBox: '0 0 150 150', class: 'logo logo--icon')
   end
 
   def render_logo
