@@ -114,15 +114,7 @@ RSpec.describe ActivityPub::Activity::Update do
           end
         end
 
-        context 'when updated username is not unique for domain' do
-          before do
-            Fabricate(:account,
-                      username: updated_username,
-                      domain: 'example.com',
-                      inbox_url: "https://example.com/#{updated_username}/inbox",
-                      outbox_url: "https://example.com/#{updated_username}/outbox")
-          end
-
+        shared_examples 'does not update username' do
           it 'updates profile' do
             subject.perform
             expect(sender.reload.display_name).to eq 'Totally modified now'
@@ -132,6 +124,18 @@ RSpec.describe ActivityPub::Activity::Update do
             subject.perform
             expect(sender.reload.username).to eq original_username
           end
+        end
+
+        context 'when updated username is not unique for domain' do
+          before do
+            Fabricate(:account,
+                      username: updated_username,
+                      domain: 'example.com',
+                      inbox_url: "https://example.com/#{updated_username}/inbox",
+                      outbox_url: "https://example.com/#{updated_username}/outbox")
+          end
+
+          include_examples 'does not update username'
         end
 
         context 'when webfinger of updated username does not contain updated username' do
@@ -155,15 +159,7 @@ RSpec.describe ActivityPub::Activity::Update do
               )
           end
 
-          it 'updates profile' do
-            subject.perform
-            expect(sender.reload.display_name).to eq 'Totally modified now'
-          end
-
-          it 'does not update username' do
-            subject.perform
-            expect(sender.reload.username).to eq original_username
-          end
+          include_examples 'does not update username'
         end
 
         context 'when webfinger request of updated username fails' do
@@ -172,15 +168,7 @@ RSpec.describe ActivityPub::Activity::Update do
               .to_return(status: 404)
           end
 
-          it 'updates profile' do
-            subject.perform
-            expect(sender.reload.display_name).to eq 'Totally modified now'
-          end
-
-          it 'does not update username' do
-            subject.perform
-            expect(sender.reload.username).to eq original_username
-          end
+          include_examples 'does not update username'
         end
       end
     end
