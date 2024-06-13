@@ -1,0 +1,47 @@
+---
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FormatStringToken:
+  AllowedMethods:
+    - redirect_with_vary # Route redirects are not token-formatted
+  inherit_mode:
+    merge:
+      - AllowedMethods
+
+Style/HashAsLastArrayItem:
+  Enabled: false
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: either
+  EnforcedStyle: ruby19_no_mixed_keys
+
+Style/NumericLiterals:
+  AllowedPatterns:
+    - \d{4}_\d{2}_\d{2}_\d{6}
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%i': ()
+    '%w': ()
+
+Style/RedundantBegin:
+  Enabled: false
+
+Style/RedundantFetchBlock:
+  Enabled: false
+
+Style/RescueStandardError:
+  EnforcedStyle: implicit
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
