@@ -182,10 +182,10 @@ RUN \
   ;
 
 RUN \
-  # Configure Corepack
-    rm /usr/local/bin/yarn*; \
-    corepack enable; \
-    corepack prepare --activate;
+# Configure Corepack
+  rm /usr/local/bin/yarn*; \
+  corepack enable; \
+  corepack prepare --activate;
 
 # Create temporary libvips specific build layer from build layer
 FROM build as libvips
