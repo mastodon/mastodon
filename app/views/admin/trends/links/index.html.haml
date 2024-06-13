@@ -26,7 +26,7 @@
         = t('admin.trends.preview_card_providers.title')
         = material_symbol 'chevron_right'
 
-= form_for(@form, url: batch_admin_trends_links_path) do |f|
+= form_with model: @form, url: batch_admin_trends_links_path do |f|
   = hidden_field_tag :page, params[:page] || 1
 
   - Trends::PreviewCardFilter::KEYS.each do |key|
