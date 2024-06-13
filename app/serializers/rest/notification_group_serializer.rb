@@ -45,6 +45,6 @@ class REST::NotificationGroupSerializer < ActiveModel::Serializer
   end
 
   def paginated?
-    instance_options[:group_metadata].present?
+    !instance_options[:group_metadata].nil?
   end
 end
