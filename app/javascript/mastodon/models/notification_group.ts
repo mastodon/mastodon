@@ -113,25 +113,28 @@ export function createNotificationGroupFromJSON(
   const { sample_accounts, ...group } = groupJson;
   const sampleAccountsIds = sample_accounts.map((account) => account.id);
 
-  if ('status' in group) {
-    const { status, ...groupWithoutStatus } = group;
-    return {
-      statusId: status.id,
-      sampleAccountsIds,
-      ...groupWithoutStatus,
-    };
-  }
-
-  if ('report' in group) {
-    const { report, ...groupWithoutTargetAccount } = group;
-    return {
-      report: createReportFromJSON(report),
-      sampleAccountsIds,
-      ...groupWithoutTargetAccount,
-    };
-  }
-
   switch (group.type) {
+    case 'favourite':
+    case 'reblog':
+    case 'status':
+    case 'mention':
+    case 'poll':
+    case 'update': {
+      const { status, ...groupWithoutStatus } = group;
+      return {
+        statusId: status.id,
+        sampleAccountsIds,
+        ...groupWithoutStatus,
+      };
+    }
+    case 'admin.report': {
+      const { report, ...groupWithoutTargetAccount } = group;
+      return {
+        report: createReportFromJSON(report),
+        sampleAccountsIds,
+        ...groupWithoutTargetAccount,
+      };
+    }
     case 'severed_relationships':
       return {
         ...group,
@@ -147,11 +150,10 @@ export function createNotificationGroupFromJSON(
         sampleAccountsIds,
       };
     }
-    // This is commented out because all group types are covered in the previous statement and have their returns
-    // default:
-    //   return {
-    //     sampleAccountsIds,
-    //     ...group,
-    //   };
+    default:
+      return {
+        sampleAccountsIds,
+        ...group,
+      };
   }
 }
