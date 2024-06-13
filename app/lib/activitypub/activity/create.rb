@@ -125,7 +125,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       sensitive: @account.sensitized? || @status_parser.sensitive || false,
       visibility: @status_parser.visibility,
       thread: replied_to_status,
-      conversation: conversation_from_uri(@object['conversation']),
+      conversation: conversation_from_uri,
       media_attachment_ids: process_attachments.take(4).map(&:id),
       poll: process_poll,
     }
@@ -344,7 +344,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     ActivityPub::FetchRepliesWorker.perform_async(status.id, uri, { 'request_id' => @options[:request_id] }) unless uri.nil?
   end
 
-  def conversation_from_context
+  def conversation_from_uri
     atom_uri = @object['conversation']
 
     conversation = begin
