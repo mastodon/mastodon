@@ -253,26 +253,6 @@ RUN \
   make -j$(nproc); \
   make install;
 
-# Create temporary libvips specific build layer from build layer
-FROM build as libvips
-
-# libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
-# renovate: datasource=github-releases depName=libvips packageName=libvips/libvips
-ARG VIPS_VERSION=8.15.2
-# libvips download URL, change with [--build-arg VIPS_URL="https://github.com/libvips/libvips/releases/download"]
-ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
-
-WORKDIR /usr/local/libvips/src
-
-RUN \
-  curl -sSL -o vips-${VIPS_VERSION}.tar.xz ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz; \
-  tar xf vips-${VIPS_VERSION}.tar.xz; \
-  cd vips-${VIPS_VERSION}; \
-  meson setup build --prefix /usr/local/libvips --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false; \
-  cd build; \
-  ninja; \
-  ninja install;
-
 # Create temporary bundler specific build layer from build layer
 FROM build as bundler
 
