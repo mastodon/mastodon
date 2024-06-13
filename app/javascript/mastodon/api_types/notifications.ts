@@ -44,6 +44,10 @@ interface ReportNotificationGroupJSON extends BaseNotificationGroupJSON {
   report: ApiReportJSON;
 }
 
+interface SimpleNotificationGroupJSON extends BaseNotificationGroupJSON {
+  type: 'follow' | 'follow_request' | 'admin.sign_up';
+}
+
 export interface ApiAccountWarningJSON {
   id: string;
   action: AccountWarningAction;
@@ -77,6 +81,7 @@ interface AccountRelationshipSeveranceNotificationGroupJSON
 }
 
 export type NotificationGroupJSON =
+  | SimpleNotificationGroupJSON
   | ReportNotificationGroupJSON
   | AccountRelationshipSeveranceNotificationGroupJSON
   | NotificationGroupWithStatusJSON
