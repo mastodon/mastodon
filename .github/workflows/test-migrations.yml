@@ -41,9 +41,9 @@ jobs:
           POSTGRES_USER: postgres
         options: >-
           --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          --health-interval 10ms
+          --health-timeout 3s
+          --health-retries 50
         ports:
           - 5432:5432
 
@@ -51,9 +51,9 @@ jobs:
         image: redis:7-alpine
         options: >-
           --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          --health-interval 10ms
+          --health-timeout 3s
+          --health-retries 50
         ports:
           - 6379:6379
 
