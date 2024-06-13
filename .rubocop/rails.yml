@@ -5,10 +5,6 @@ Rails/FilePath:
 Rails/HttpStatus:
   EnforcedStyle: numeric
 
-Rails/LexicallyScopedActionFilter:
-  Exclude:
-    - app/controllers/auth/* # Conflicts with `Lint/UselessMethodDefinition` for inherited controller actions
-
 Rails/NegateInclude:
   Enabled: false
 
