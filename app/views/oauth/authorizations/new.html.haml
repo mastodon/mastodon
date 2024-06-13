@@ -21,7 +21,7 @@
               = t(scope.access, scope: [:doorkeeper, :grouped_scopes, :access])
 
     .actions
-      = form_with url: oauth_authorization_path, method: :post do |form|
+      = form_with url: oauth_authorization_path do |form|
         = form.hidden_field :client_id,
                             value: @pre_auth.client.uid
         = form.hidden_field :redirect_uri,
