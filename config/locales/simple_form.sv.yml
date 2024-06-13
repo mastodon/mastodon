@@ -77,11 +77,13 @@ sv:
           warn: Dölj det filtrerade innehållet bakom en varning som visar filtrets rubrik
       form_admin_settings:
         activity_api_enabled: Antalet lokalt publicerade inlägg, aktiva användare och nya registrerade konton per vecka
+        app_icon: WEBP, PNG, GIF eller JPG. Använd istället för appens egna ikon på mobila enheter.
         backups_retention_period: Användare har möjlighet att generera arkiv av sina inlägg för att ladda ned senare. När det sätts till ett positivt värde raderas dessa arkiv automatiskt från din lagring efter det angivna antalet dagar.
         bootstrap_timeline_accounts: Dessa konton kommer fästas högst upp i nya användares följrekommendationer.
         closed_registrations_message: Visas när nyregistreringar är avstängda
         content_cache_retention_period: Alla inlägg från andra servrar (inklusive booster och svar) kommer att raderas efter det angivna antalet dagar, utan hänsyn till någon lokal användarinteraktion med dessa inlägg. Detta inkluderar inlägg där en lokal användare har markerat det som bokmärke eller favoriter. Privata omnämnanden mellan användare från olika instanser kommer också att gå förlorade och blir omöjliga att återställa. Användningen av denna inställning är avsedd för specialfall och bryter många användarförväntningar när de implementeras för allmänt bruk.
         custom_css: Du kan använda anpassade stilar på webbversionen av Mastodon.
+        favicon: WEBP, PNG, GIF eller JPG. Används på mobila enheter istället för appens egen ikon.
         mascot: Åsidosätter illustrationen i det avancerade webbgränssnittet.
         media_cache_retention_period: Mediafiler från inlägg som gjorts av fjärranvändare cachas på din server. När inställd på ett positivt värde kommer media att raderas efter det angivna antalet dagar. Om mediadatat begärs efter att det har raderats, kommer det att laddas ned igen om källinnehållet fortfarande är tillgängligt. På grund av begränsningar för hur ofta förhandsgranskningskort för länkar hämtas från tredjepartswebbplatser, rekommenderas det att ange detta värde till minst 14 dagar, annars kommer förhandsgranskningskorten inte att uppdateras på begäran före den tiden.
         peers_api_enabled: En lista över domänen den här servern har stött på i fediversum. Ingen data inkluderas om du har federerat med servern, bara att din server känner till den. Detta används av tjänster som samlar statistik om federering i allmänhet.
