@@ -33,7 +33,8 @@ export const fetchNotifications = createDataLoadingThunk(
     if (fetchedAccounts.length > 0)
       dispatch(importFetchedAccounts(fetchedAccounts));
 
-    if (fetchedStatuses.length > 0) importFetchedStatuses(fetchedStatuses);
+    if (fetchedStatuses.length > 0)
+      dispatch(importFetchedStatuses(fetchedStatuses));
 
     // dispatch(submitMarkers());
   },
