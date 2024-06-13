@@ -61,6 +61,16 @@ RSpec.describe PostStatusService do
       status2 = subject.call(account, text: 'test', idempotency: 'meepmeep', scheduled_at: future)
       expect(status2.id).to eq status1.id
     end
+
+    context 'when scheduled_at is less than min offset' do
+      let(:invalid_scheduled_time) { 4.minutes.from_now }
+
+      it 'raises invalid record error' do
+        expect do
+          subject.call(account, text: 'Hi future!', scheduled_at: invalid_scheduled_time)
+        end.to raise_error(ActiveRecord::RecordInvalid)
+      end
+    end
   end
 
   it 'creates response to the original status of boost' do

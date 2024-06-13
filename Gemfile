@@ -57,7 +57,7 @@ gem 'hiredis', '~> 0.6'
 gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 5.2.0'
 gem 'http_accept_language', '~> 2.1'
-gem 'httplog', '~> 1.6.2'
+gem 'httplog', '~> 1.7.0'
 gem 'i18n'
 gem 'idn-ruby', require: 'idn'
 gem 'inline_svg'
@@ -107,7 +107,7 @@ gem 'private_address_check', '~> 0.5'
 gem 'opentelemetry-api', '~> 1.2.5'
 
 group :opentelemetry do
-  gem 'opentelemetry-exporter-otlp', '~> 0.26.3', require: false
+  gem 'opentelemetry-exporter-otlp', '~> 0.27.0', require: false
   gem 'opentelemetry-instrumentation-active_job', '~> 0.7.1', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.20.1', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.21.2', require: false
@@ -171,6 +171,7 @@ group :development do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec_rails', require: false
 
   # Annotates modules with schema
   gem 'annotate', '~> 3.2'

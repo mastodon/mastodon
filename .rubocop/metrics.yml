@@ -1,0 +1,23 @@
+---
+Metrics/AbcSize:
+  Exclude:
+    - lib/mastodon/cli/*.rb
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - lib/mastodon/cli/*.rb
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/ParameterLists:
+  CountKeywordArgs: false

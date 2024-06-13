@@ -3,8 +3,8 @@ ia:
   devise:
     confirmations:
       confirmed: Tu conto de e-mail ha essite confirmate con successo.
-      send_instructions: Tu recipera un e-mail con instructiones pro confirmar tu adresse de e-mail in poc minutas. Per favor verifica tu dossier de spam si tu non lo recipe.
-      send_paranoid_instructions: Si tu adresse de e-mail existe in nostre base de datos, tu recipera un e-mail con instructiones pro confirmar tu adresse de e-mail in poc minutas. Per favor verifica tu dossier de spam si tu non lo recipe.
+      send_instructions: Tu recipera un e-mail con instructiones pro confirmar tu adresse de e-mail in poc minutas. Per favor consulta tu dossier de spam si tu non lo recipe.
+      send_paranoid_instructions: Si tu adresse de e-mail existe in nostre base de datos, tu recipera un e-mail con instructiones pro confirmar tu adresse de e-mail in poc minutas. Per favor consulta tu dossier de spam si tu non lo recipe.
     failure:
       already_authenticated: Tu ha jam aperite session.
       inactive: Tu conto non es ancora activate.
@@ -27,7 +27,7 @@ ia:
         subject: 'Mastodon: Instructiones de confirmation pro %{instance}'
         title: Verificar adresse de e-mail
       email_changed:
-        explanation: 'Le adresse de e-mail pro tu conto essera cambiate a:'
+        explanation: 'Le adresse de e-mail pro tu conto se cambia in:'
         extra: Si tu non ha cambiate de adresse de e-mail, es probabile que alcuno ha ganiate le accesso a tu conto. Per favor cambia immediatemente tu contrasigno o contacta le administrator del servitor si tu non pote acceder a tu conto.
         subject: 'Mastodon: E-mail cambiate'
         title: Nove adresse de e-mail
@@ -37,8 +37,8 @@ ia:
         subject: 'Mastodon: Contrasigno cambiate'
         title: Contrasigno cambiate
       reconfirmation_instructions:
-        explanation: Confirma le nove adresse pro cambiar tu email.
-        extra: Si non es tu qui ha initiate iste cambiamento, per favor ignora iste e-mail. Le adresse de e-mail pro le conto de Mastodon non cambiara usque tu accede al ligamine hic supra.
+        explanation: Confirma le nove adresse pro cambiar tu adresse de e-mail.
+        extra: Si non es tu qui ha initiate iste cambiamento, per favor ignora iste e-mail. Le adresse de e-mail pro le conto de Mastodon non cambiara usque tu accede al ligamine supra.
         subject: 'Mastodon: Confirmar e-mail pro %{instance}'
         title: Verificar adresse de e-mail
       reset_password_instructions:
@@ -49,19 +49,19 @@ ia:
         title: Reinitialisar contrasigno
       two_factor_disabled:
         explanation: Ora es possibile aperir session con solmente le adresse de e-mail e contrasigno.
-        subject: 'Mastodon: Authentication bifactorial disactivate'
-        subtitle: Le authentication bifactorial ha essite disactivate pro tu conto.
+        subject: 'Mastodon: Authentication a duo factores disactivate'
+        subtitle: Le authentication a duo factores ha essite disactivate pro tu conto.
         title: A2F disactivate
       two_factor_enabled:
         explanation: Pro le apertura de session essera necessari un token generate per le application TOTP accopulate.
-        subject: 'Mastodon: Authentication bifactorial activate'
-        subtitle: Le authentication bifactorial ha essite activate pro tu conto.
+        subject: 'Mastodon: Authentication a duo factores activate'
+        subtitle: Le authentication a duo factores ha essite activate pro tu conto.
         title: A2F activate
       two_factor_recovery_codes_changed:
         explanation: Le ancian codices de recuperation ha essite invalidate e nove codices ha essite generate.
-        subject: 'Mastodon: Codices de recuperation regenerate'
+        subject: 'Mastodon: Codices de recuperation A2F regenerate'
         subtitle: Le ancian codices de recuperation ha essite invalidate e nove codices ha essite generate.
-        title: Codices de recuperation cambiate
+        title: Codices de recuperation A2F cambiate
       unlock_instructions:
         subject: 'Mastodon: Instructiones pro disblocar'
       webauthn_credential:
@@ -84,11 +84,11 @@ ia:
         subject: 'Mastodon: authentication de clave de securitate activate'
         title: Claves de securitate activate
     omniauth_callbacks:
-      failure: Impossibile authenticar te ab %{kind} perque “%{reason}”.
-      success: Authenticate con successo ab conto %{kind}.
+      failure: Non poteva authenticar te desde %{kind} perque “%{reason}”.
+      success: Authenticate correctemente desde le conto %{kind}.
     passwords:
-      no_token: Tu non pote acceder iste pagina sin venir ab un email de redefinition de contrasigno. Si tu veni ab un email de redefinition de contrasigno, verifica que tu usava le integre URL fornite.
-      send_instructions: Si tu adresse de e-mail existe in nostre base de datos, tu recipera un ligamine de recuperation de contrasigno in tu adresse de e-mail in poc minutas. Per favor verifica tu dossier de spam si tu non lo recipe.
+      no_token: Non es possibile acceder a iste pagina sin venir de un e-mail de redefinition de contrasigno. Si tu veni de un e-mail de redefinition de contrasigno, per favor assecura te de haber usate le URL complete fornite.
+      send_instructions: Si tu adresse de e-mail existe in nostre base de datos, tu recipera un ligamine de recuperation de contrasigno a tu adresse de e-mail in poc minutas. Per favor consulta tu dossier de spam si tu non lo recipe.
       send_paranoid_instructions: Si tu adresse de e-mail existe in nostre base de datos, tu recipera un ligamine de recuperation de contrasigno in tu adresse de e-mail in poc minutas. Per favor verifica tu dossier de spam si tu non lo recipe.
       updated: Tu contrasigno ha essite cambiate. Tu ha ora aperite session.
       updated_not_active: Tu contrasigno ha essite cambiate.
@@ -98,17 +98,17 @@ ia:
       signed_up_but_inactive: Tu te ha inscribite con successo. Nonobstante, nos non poteva aperir tu session perque tu conto non es ancora activate.
       signed_up_but_locked: Tu te ha inscribite con successo. Nonobstante, nos non poteva aperir tu session perque tu conto es serrate.
       signed_up_but_pending: Un message con un ligamine de confirmation ha essite inviate a tu adresse de email. Post que tu clicca sur le ligamine, nos revidera tu demanda. Tu essera notificate si illo es approbate.
-      signed_up_but_unconfirmed: Un message con un ligamine de confirmation ha essite inviate a tu adresse de e-mail. Per favor seque le ligamine pro activar tu conto. Verifica tu dossier de spam si tu non recipe iste e-mail.
-      update_needs_confirmation: Tu ha actualisate tu conto con successo, ma nos debe verificar tu nove adresse de e-mail. Accede a tu e-mail e seque le ligamine de confirmation pro confirmar tu nove adresse de e-mail. Verifica tu dossier de spam si tu non recipe iste e-mail.
+      signed_up_but_unconfirmed: Un message con un ligamine de confirmation ha essite inviate a tu adresse de e-mail. Per favor seque le ligamine pro activar tu conto. Consulta tu dossier de spam si tu non recipe iste e-mail.
+      update_needs_confirmation: Tu ha actualisate tu conto con successo, ma nos debe verificar tu nove adresse de e-mail. Accede a tu e-mail e seque le ligamine de confirmation pro confirmar tu nove adresse de e-mail. Consulta tu dossier de spam si tu non recipe iste e-mail.
       updated: Tu conto ha essite actualisate con successo.
     sessions:
       already_signed_out: Session claudite con successo.
       signed_in: Session aperite con successo.
       signed_out: Session claudite con successo.
     unlocks:
-      send_instructions: Tu recipera un e-mail con instructiones explicante como disserrar tu conto in alcun minutas. Verifica tu dossier de spam si tu non recipe iste e-mail.
+      send_instructions: Tu recipera un e-mail con instructiones explicante como disserrar tu conto in alcun minutas. Consulta tu dossier de spam si tu non recipe iste e-mail.
       send_paranoid_instructions: Si tu conto existe, tu recipera un email con instructiones explicante como disserrar lo in alcun minutas. Verifica tu dossier de spam si tu non recipe iste e-mail.
-      unlocked: Tu conto ha essite disserrate con successo. Aperi session pro continuar.
+      unlocked: Tu conto ha essite disserrate con successo. Per favor aperi session pro continuar.
   errors:
     messages:
       already_confirmed: jam esseva confirmate, tenta aperir session
