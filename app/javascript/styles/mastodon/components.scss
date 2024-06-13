@@ -8796,24 +8796,12 @@ noscript {
   display: flex;
   align-items: center;
   color: $primary-text-color;
-  text-decoration: none;
-  padding: 15px;
+  padding: 16px;
   border-bottom: 1px solid var(--background-border-color);
-  gap: 15px;
+  gap: 16px;
 
   &:last-child {
     border-bottom: 0;
-  }
-
-  &:hover,
-  &:active,
-  &:focus {
-    color: $highlight-text-color;
-
-    .story__details__publisher,
-    .story__details__shared {
-      color: $highlight-text-color;
-    }
   }
 
   &__details {
@@ -8822,17 +8810,66 @@ noscript {
     &__publisher {
       color: $darker-text-color;
       margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 20px;
     }
 
     &__title {
+      display: block;
       font-size: 19px;
       line-height: 24px;
       font-weight: 500;
       margin-bottom: 8px;
+      text-decoration: none;
+      color: $primary-text-color;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $highlight-text-color;
+      }
     }
 
     &__shared {
+      display: flex;
+      align-items: center;
       color: $darker-text-color;
+      gap: 8px;
+      justify-content: space-between;
+      font-size: 14px;
+      line-height: 20px;
+
+      & > span {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      &__pill {
+        background: var(--surface-variant-background-color);
+        border-radius: 4px;
+        color: inherit;
+        text-decoration: none;
+        padding: 4px 12px;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 16px;
+      }
+
+      &__author-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        color: $primary-text-color;
+        font-weight: 500;
+        text-decoration: none;
+
+        &:hover,
+        &:active,
+        &:focus {
+          color: $highlight-text-color;
+        }
+      }
     }
 
     strong {
@@ -9903,14 +9940,14 @@ noscript {
     color: inherit;
     text-decoration: none;
     padding: 4px 12px;
-    background: $ui-base-color;
+    background: var(--surface-variant-background-color);
     border-radius: 4px;
     font-weight: 500;
 
     &:hover,
     &:focus,
     &:active {
-      background: lighten($ui-base-color, 4%);
+      background: var(--surface-variant-active-background-color);
     }
   }
 

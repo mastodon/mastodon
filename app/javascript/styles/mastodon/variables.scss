@@ -106,4 +106,6 @@ $font-monospace: 'mastodon-font-monospace' !default;
   --background-color: #{darken($ui-base-color, 8%)};
   --background-color-tint: #{rgba(darken($ui-base-color, 8%), 0.9)};
   --surface-background-color: #{darken($ui-base-color, 4%)};
+  --surface-variant-background-color: #{$ui-base-color};
+  --surface-variant-active-background-color: #{lighten($ui-base-color, 4%)};
 }
