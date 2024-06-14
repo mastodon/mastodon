@@ -50,6 +50,6 @@ class Api::V1::Statuses::ReblogsController < Api::V1::Statuses::BaseController
   end
 
   def reblog_params
-    params.permit(:visibility)
+    params_slice(:visibility)
   end
 end
