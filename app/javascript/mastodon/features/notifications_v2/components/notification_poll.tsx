@@ -9,7 +9,7 @@ import { NotificationWithStatus } from './notification_with_status';
 const labelRendererOther = () => (
   <FormattedMessage
     id='notification.poll'
-    defaultMessage='A poll you have voted in has ended'
+    defaultMessage='A poll you voted in has ended'
   />
 );
 
