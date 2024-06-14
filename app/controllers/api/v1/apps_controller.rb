@@ -20,10 +20,12 @@ class Api::V1::AppsController < Api::BaseController
   end
 
   def app_scopes_or_default
-    app_params[:scopes] || Doorkeeper.configuration.default_scopes
+    Array(app_params[:scopes]).first || Doorkeeper.configuration.default_scopes
   end
 
   def app_params
-    params.permit(:client_name, :scopes, :website, :redirect_uris, redirect_uris: [])
+    params
+      .slice(:client_name, :scopes, :website, :redirect_uris, :redirect_uris)
+      .permit(:client_name, :scopes, :website, :redirect_uris, redirect_uris: [], scopes: [])
   end
 end
