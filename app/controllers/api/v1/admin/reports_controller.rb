@@ -82,7 +82,9 @@ class Api::V1::Admin::ReportsController < Api::BaseController
   end
 
   def report_params
-    params.permit(:category, rule_ids: [])
+    params
+      .slice(:category, :rule_ids)
+      .permit(:category, rule_ids: [])
   end
 
   def filter_params
