@@ -30,7 +30,7 @@ namespace         = ENV.fetch('REDIS_NAMESPACE', nil)
 cache_namespace   = namespace ? "#{namespace}_cache" : 'cache'
 sidekiq_namespace = namespace
 
-redis_driver = ENV.fetch('REDIS_DRIVER', 'ruby') == 'hiredis' ? :hiredis : :ruby
+redis_driver = ENV.fetch('REDIS_DRIVER', 'hiredis') == 'ruby' ? :ruby : :hiredis
 
 REDIS_CACHE_PARAMS = {
   driver: redis_driver,

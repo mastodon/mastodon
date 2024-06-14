@@ -43,7 +43,7 @@ class RedisConfiguration
   end
 
   def redis_driver
-    ENV.fetch('REDIS_DRIVER', 'ruby') == 'hiredis' ? :hiredis : :ruby
+    ENV.fetch('REDIS_DRIVER', 'hiredis') == 'ruby' ? :ruby : :hiredis
   end
 
   private
