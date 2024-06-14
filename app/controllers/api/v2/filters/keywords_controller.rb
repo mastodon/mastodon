@@ -45,6 +45,6 @@ class Api::V2::Filters::KeywordsController < Api::BaseController
   end
 
   def resource_params
-    params.permit(:keyword, :whole_word)
+    params_slice(:keyword, :whole_word)
   end
 end
