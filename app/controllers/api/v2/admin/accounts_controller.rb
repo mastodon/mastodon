@@ -12,6 +12,7 @@ class Api::V2::Admin::AccountsController < Api::V1::Admin::AccountsController
     ip
     invited_by
     role_ids
+    role_ids: []
   ).freeze
 
   PAGINATION_PARAMS = (%i(limit) + FILTER_PARAMS).freeze
@@ -39,7 +40,7 @@ class Api::V2::Admin::AccountsController < Api::V1::Admin::AccountsController
   end
 
   def filter_params
-    params.permit(*FILTER_PARAMS, role_ids: [])
+    params_slice(*FILTER_PARAMS)
   end
 
   def pagination_params(core_params)
