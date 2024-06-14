@@ -53,7 +53,7 @@ export const NotificationWithStatus: React.FC<{
       </div>
 
       {/* @ts-expect-error -- <Status> is not yet typed */}
-      <Status id={statusId} contextType='notifications' withDismiss />
+      <Status id={statusId} contextType='notifications' withDismiss skipPrepend avatarSize={40} />
     </div>
   );
 };
