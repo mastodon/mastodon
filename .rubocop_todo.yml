@@ -27,21 +27,6 @@ Metrics/CyclomaticComplexity:
 Metrics/PerceivedComplexity:
   Max: 27
 
-# Configuration parameters: CountAsOne.
-RSpec/ExampleLength:
-  Max: 18
-
-RSpec/MultipleExpectations:
-  Max: 7
-
-# Configuration parameters: AllowSubject.
-RSpec/MultipleMemoizedHelpers:
-  Max: 17
-
-# Configuration parameters: AllowedGroups.
-RSpec/NestedGroups:
-  Max: 6
-
 Rails/OutputSafety:
   Exclude:
     - 'config/initializers/simple_form.rb'
