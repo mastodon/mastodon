@@ -43,7 +43,7 @@
 
 %hr.spacer/
 
-= form_for(@form, url: batch_admin_accounts_path) do |f|
+= form_with model: @form, url: batch_admin_accounts_path do |f|
   = hidden_field_tag :page, params[:page] || 1
   = hidden_field_tag :select_all_matching, '0'
 

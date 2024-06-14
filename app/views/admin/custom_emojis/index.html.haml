@@ -37,7 +37,7 @@
       %button.button= t('admin.accounts.search')
       = link_to t('admin.accounts.reset'), admin_custom_emojis_path, class: 'button negative'
 
-= form_for(@form, url: batch_admin_custom_emojis_path) do |f|
+= form_with model: @form, url: batch_admin_custom_emojis_path do |f|
   = hidden_field_tag :page, params[:page] || 1
 
   - CustomEmojiFilter::KEYS.each do |key|

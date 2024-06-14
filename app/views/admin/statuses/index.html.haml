@@ -21,7 +21,7 @@
 
 %hr.spacer/
 
-= form_for(@status_batch_action, url: batch_admin_account_statuses_path(@account.id)) do |f|
+= form_with model: @status_batch_action, url: batch_admin_account_statuses_path(@account.id) do |f|
   = hidden_field_tag :page, params[:page] || 1
 
   - Admin::StatusFilter::KEYS.each do |key|

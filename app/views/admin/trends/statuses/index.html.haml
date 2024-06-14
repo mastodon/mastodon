@@ -22,7 +22,7 @@
         %li= filter_link_to t('generic.all'), trending: nil
         %li= filter_link_to t('admin.trends.only_allowed'), trending: 'allowed'
 
-= form_for(@form, url: batch_admin_trends_statuses_path) do |f|
+= form_with model: @form, url: batch_admin_trends_statuses_path do |f|
   = hidden_field_tag :page, params[:page] || 1
 
   - Trends::StatusFilter::KEYS.each do |key|
