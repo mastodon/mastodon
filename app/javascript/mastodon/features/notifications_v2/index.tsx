@@ -5,8 +5,6 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { Helmet } from 'react-helmet';
 
 import { createSelector } from '@reduxjs/toolkit';
-import type { Map as ImmutableMap } from 'immutable';
-import { List as ImmutableList } from 'immutable';
 
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -17,6 +15,13 @@ import { compareId } from 'mastodon/compare_id';
 import { Icon } from 'mastodon/components/icon';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
 import { useIdentity } from 'mastodon/identity_context';
+import {
+  selectNeedsNotificationPermission,
+  selectSettingsNotificationsExcludedTypes,
+  selectSettingsNotificationsQuickFilterActive,
+  selectSettingsNotificationsQuickFilterShow,
+  selectSettingsNotificationsShowUnread,
+} from 'mastodon/selectors/settings';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 import type { RootState } from 'mastodon/store';
 
@@ -37,9 +42,9 @@ import ScrollableList from '../../components/scrollable_list';
 import { FilteredNotificationsBanner } from '../notifications/components/filtered_notifications_banner';
 import NotificationsPermissionBanner from '../notifications/components/notifications_permission_banner';
 import ColumnSettingsContainer from '../notifications/containers/column_settings_container';
-import FilterBarContainer from '../notifications/containers/filter_bar_container';
 
 import { NotificationGroup } from './components/notification_group';
+import { FilterBar } from './filter_bar';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
@@ -49,46 +54,11 @@ const messages = defineMessages({
   },
 });
 
-/* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
-// state.settings is not yet typed, so we disable some ESLint checks for those selectors
-const selectSettingsNotificationsShow = (state: RootState) =>
-  state.settings.getIn(['notifications', 'shows']) as ImmutableMap<
-    string,
-    boolean
-  >;
-
-const selectSettingsNotificationsQuickFilterShow = (state: RootState) =>
-  state.settings.getIn(['notifications', 'quickFilter', 'show']) as boolean;
-
-const selectSettingsNotificationsQuickFilterActive = (state: RootState) =>
-  state.settings.getIn(['notifications', 'quickFilter', 'active']) as string;
-
-const selectSettingsNotificationsShowUnread = (state: RootState) =>
-  state.settings.getIn(['notifications', 'showUnread']) as boolean;
-
-const selectNeedsNotificationPermission = (state: RootState) =>
-  (state.settings.getIn(['notifications', 'alerts']).includes(true) &&
-    state.notifications.get('browserSupport') &&
-    state.notifications.get('browserPermission') === 'default' &&
-    !state.settings.getIn([
-      'notifications',
-      'dismissPermissionBanner',
-    ])) as boolean;
-
-/* eslint-enable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
-
-const getExcludedTypes = createSelector(
-  [selectSettingsNotificationsShow],
-  (shows) => {
-    return ImmutableList(shows.filter((item) => !item).keys());
-  },
-);
-
 const getNotifications = createSelector(
   [
     selectSettingsNotificationsQuickFilterShow,
     selectSettingsNotificationsQuickFilterActive,
-    getExcludedTypes,
+    selectSettingsNotificationsExcludedTypes,
     (state: RootState) => state.notificationsGroups.groups,
   ],
   (showFilterBar, allowedType, excludedTypes, notifications) => {
@@ -97,11 +67,11 @@ const getNotifications = createSelector(
       // otherwise a list of notifications will come pre-filtered from the backend
       // we need to turn it off for FilterBar in order not to block ourselves from seeing a specific category
       return notifications.filter(
-        (item) => item.type !== 'gap' || !excludedTypes.includes(item.type),
+        (item) => item.type === 'gap' || !excludedTypes.includes(item.type),
       );
     }
     return notifications.filter(
-      (item) => item.type !== 'gap' || allowedType === item.type,
+      (item) => item.type === 'gap' || allowedType === item.type,
     );
   },
 );
@@ -195,8 +165,9 @@ export const Notifications: React.FC<{
   }, [dispatch]);
 
   const handleLoadGap = useCallback(
-    (maxId: string) => {
-      dispatch(expandNotifications({ maxId }));
+    (loadUrl: string) => {
+      // TODO: this should not be fetch (as this overrides the existing notifications), but expand?
+      void dispatch(fetchNotifications({ url: loadUrl }));
     },
     [dispatch],
   );
@@ -288,7 +259,7 @@ export const Notifications: React.FC<{
 
   const { signedIn } = useIdentity();
 
-  const filterBarContainer = signedIn ? <FilterBarContainer /> : null;
+  const filterBar = signedIn ? <FilterBar /> : null;
 
   const scrollableContent = useMemo(() => {
     if (notifications.length === 0 && !hasMore) return null;
@@ -296,9 +267,9 @@ export const Notifications: React.FC<{
     return notifications.map((item) =>
       item.type === 'gap' ? (
         <LoadGap
-          key={item.id}
+          key={item.loadUrl}
           disabled={isLoading}
-          maxId={item.maxId}
+          maxId={item.loadUrl}
           onClick={handleLoadGap}
         />
       ) : (
@@ -379,7 +350,7 @@ export const Notifications: React.FC<{
         <ColumnSettingsContainer />
       </ColumnHeader>
 
-      {filterBarContainer}
+      {filterBar}
 
       <FilteredNotificationsBanner />
 

@@ -1,16 +1,48 @@
 import { apiFetchNotifications } from 'mastodon/api/notifications';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
+import type { NotificationGroupJSON } from 'mastodon/api_types/notifications';
+import { allNotificationTypes } from 'mastodon/api_types/notifications';
 import type { ApiStatusJSON } from 'mastodon/api_types/statuses';
-import { createDataLoadingThunk } from 'mastodon/store/typed_functions';
+import type { NotificationGap } from 'mastodon/reducers/notifications_groups';
+import {
+  selectSettingsNotificationsExcludedTypes,
+  selectSettingsNotificationsQuickFilterActive,
+} from 'mastodon/selectors/settings';
+import {
+  createAppAsyncThunk,
+  createDataLoadingThunk,
+} from 'mastodon/store/typed_functions';
 
 import { importFetchedAccounts, importFetchedStatuses } from './importer';
+import { NOTIFICATIONS_FILTER_SET } from './notifications';
+import { saveSettings } from './settings';
+
+function excludeAllTypesExcept(filter: string) {
+  return allNotificationTypes.filter((item) => item !== filter);
+}
 
 export const fetchNotifications = createDataLoadingThunk(
   'notificationGroups/fetch',
-  () => apiFetchNotifications(),
-  (notifications, { dispatch }) => {
+  async (params: { url?: string } | undefined, { getState }) => {
+    if (params?.url) return apiFetchNotifications({}, params.url);
+
+    const activeFilter =
+      selectSettingsNotificationsQuickFilterActive(getState());
+
+    return apiFetchNotifications({
+      exclude_types:
+        activeFilter === 'all'
+          ? selectSettingsNotificationsExcludedTypes(getState())
+          : excludeAllTypesExcept(activeFilter),
+    });
+  },
+  ({ notifications, links }, { dispatch }) => {
     const fetchedAccounts: ApiAccountJSON[] = [];
     const fetchedStatuses: ApiStatusJSON[] = [];
+
+    // We ignore the previous link, as it will always be here but we know there are no more
+    // recent notifications when doing the initial load
+    const nextLink = links.refs.find((link) => link.rel === 'next');
 
     notifications.forEach((notification) => {
       if ('sample_accounts' in notification) {
@@ -36,6 +68,25 @@ export const fetchNotifications = createDataLoadingThunk(
     if (fetchedStatuses.length > 0)
       dispatch(importFetchedStatuses(fetchedStatuses));
 
+    const payload: (NotificationGroupJSON | NotificationGap)[] = notifications;
+
+    if (nextLink) payload.push({ type: 'gap', loadUrl: nextLink.uri });
+
+    return payload;
     // dispatch(submitMarkers());
+  },
+);
+
+export const setNotificationsFilter = createAppAsyncThunk(
+  'notifications/filter/set',
+  ({ filterType }: { filterType: string }, { dispatch }) => {
+    dispatch({
+      type: NOTIFICATIONS_FILTER_SET,
+      path: ['notifications', 'quickFilter', 'active'],
+      value: filterType,
+    });
+    // dispatch(expandNotifications({ forceLoad: true }));
+    void dispatch(fetchNotifications());
+    dispatch(saveSettings());
   },
 );

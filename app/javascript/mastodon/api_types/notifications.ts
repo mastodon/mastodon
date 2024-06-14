@@ -7,6 +7,21 @@ import type { ApiReportJSON } from './reports';
 import type { ApiStatusJSON } from './statuses';
 
 // See app/model/notification.rb
+export const allNotificationTypes = [
+  'follow',
+  'follow_request',
+  'favourite',
+  'reblog',
+  'mention',
+  'poll',
+  'status',
+  'update',
+  'admin.sign_up',
+  'admin.report',
+  'moderation_warning',
+  'severed_relationships',
+];
+
 export type NotificationWithStatusType =
   | 'favourite'
   | 'reblog'
