@@ -42,9 +42,18 @@ class RedisConfiguration
     ENV['REDIS_URL']
   end
 
+  def redis_driver
+    ENV['REDIS_DRIVER']
+    when 'hiredis'
+      :hiredis
+    else
+      :ruby
+    end
+  end
+
   private
 
   def raw_connection
-    Redis.new(url: url, driver: :hiredis)
+    Redis.new(url: url, driver: redis_driver)
   end
 end
