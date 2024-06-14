@@ -13,6 +13,10 @@ class REST::NotificationSerializer < ActiveModel::Serializer
     object.id.to_s
   end
 
+  def group_key
+    object.group_key || "ungrouped-#{object.id}"
+  end
+
   def status_type?
     [:favourite, :reblog, :status, :mention, :poll, :update].include?(object.type)
   end
