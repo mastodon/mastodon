@@ -10,11 +10,15 @@ import { useDebouncedCallback } from 'use-debounce';
 
 import DoneAllIcon from '@/material-icons/400-24px/done_all.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
-import { fetchNotifications } from 'mastodon/actions/notification_groups';
+import {
+  fetchNotifications,
+  fetchNotificationsGap,
+} from 'mastodon/actions/notification_groups';
 import { compareId } from 'mastodon/compare_id';
 import { Icon } from 'mastodon/components/icon';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
 import { useIdentity } from 'mastodon/identity_context';
+import type { NotificationGap } from 'mastodon/reducers/notifications_groups';
 import {
   selectNeedsNotificationPermission,
   selectSettingsNotificationsExcludedTypes,
@@ -165,9 +169,8 @@ export const Notifications: React.FC<{
   }, [dispatch]);
 
   const handleLoadGap = useCallback(
-    (loadUrl: string) => {
-      // TODO: this should not be fetch (as this overrides the existing notifications), but expand?
-      void dispatch(fetchNotifications({ url: loadUrl }));
+    (gap: NotificationGap) => {
+      void dispatch(fetchNotificationsGap({ gap }));
     },
     [dispatch],
   );
@@ -269,7 +272,7 @@ export const Notifications: React.FC<{
         <LoadGap
           key={item.loadUrl}
           disabled={isLoading}
-          maxId={item.loadUrl}
+          param={item}
           onClick={handleLoadGap}
         />
       ) : (

@@ -8,6 +8,7 @@ import {
   selectSettingsNotificationsExcludedTypes,
   selectSettingsNotificationsQuickFilterActive,
 } from 'mastodon/selectors/settings';
+import type { AppDispatch } from 'mastodon/store';
 import {
   createAppAsyncThunk,
   createDataLoadingThunk,
@@ -21,11 +22,41 @@ function excludeAllTypesExcept(filter: string) {
   return allNotificationTypes.filter((item) => item !== filter);
 }
 
+function dispatchAssociatedRecords(
+  dispatch: AppDispatch,
+  notifications: NotificationGroupJSON[],
+) {
+  const fetchedAccounts: ApiAccountJSON[] = [];
+  const fetchedStatuses: ApiStatusJSON[] = [];
+
+  notifications.forEach((notification) => {
+    if ('sample_accounts' in notification) {
+      fetchedAccounts.push(...notification.sample_accounts);
+    }
+
+    if (notification.type === 'admin.report') {
+      fetchedAccounts.push(notification.report.target_account);
+    }
+
+    if (notification.type === 'moderation_warning') {
+      fetchedAccounts.push(notification.moderation_warning.target_account);
+    }
+
+    if ('status' in notification) {
+      fetchedStatuses.push(notification.status);
+    }
+  });
+
+  if (fetchedAccounts.length > 0)
+    dispatch(importFetchedAccounts(fetchedAccounts));
+
+  if (fetchedStatuses.length > 0)
+    dispatch(importFetchedStatuses(fetchedStatuses));
+}
+
 export const fetchNotifications = createDataLoadingThunk(
   'notificationGroups/fetch',
-  async (params: { url?: string } | undefined, { getState }) => {
-    if (params?.url) return apiFetchNotifications({}, params.url);
-
+  async (_params, { getState }) => {
     const activeFilter =
       selectSettingsNotificationsQuickFilterActive(getState());
 
@@ -37,36 +68,11 @@ export const fetchNotifications = createDataLoadingThunk(
     });
   },
   ({ notifications, links }, { dispatch }) => {
-    const fetchedAccounts: ApiAccountJSON[] = [];
-    const fetchedStatuses: ApiStatusJSON[] = [];
+    dispatchAssociatedRecords(dispatch, notifications);
 
     // We ignore the previous link, as it will always be here but we know there are no more
     // recent notifications when doing the initial load
     const nextLink = links.refs.find((link) => link.rel === 'next');
-
-    notifications.forEach((notification) => {
-      if ('sample_accounts' in notification) {
-        fetchedAccounts.push(...notification.sample_accounts);
-      }
-
-      if (notification.type === 'admin.report') {
-        fetchedAccounts.push(notification.report.target_account);
-      }
-
-      if (notification.type === 'moderation_warning') {
-        fetchedAccounts.push(notification.moderation_warning.target_account);
-      }
-
-      if ('status' in notification) {
-        fetchedStatuses.push(notification.status);
-      }
-    });
-
-    if (fetchedAccounts.length > 0)
-      dispatch(importFetchedAccounts(fetchedAccounts));
-
-    if (fetchedStatuses.length > 0)
-      dispatch(importFetchedStatuses(fetchedStatuses));
 
     const payload: (NotificationGroupJSON | NotificationGap)[] = notifications;
 
@@ -74,6 +80,20 @@ export const fetchNotifications = createDataLoadingThunk(
 
     return payload;
     // dispatch(submitMarkers());
+  },
+);
+
+export const fetchNotificationsGap = createDataLoadingThunk(
+  'notificationGroups/fetchGat',
+  async (params: { gap: NotificationGap }) =>
+    apiFetchNotifications({}, params.gap.loadUrl),
+
+  ({ notifications, links }, { dispatch }) => {
+    dispatchAssociatedRecords(dispatch, notifications);
+
+    const nextLink = links.refs.find((link) => link.rel === 'next');
+
+    return { notifications, nextLink };
   },
 );
 
