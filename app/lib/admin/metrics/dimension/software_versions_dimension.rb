@@ -28,8 +28,8 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
     {
       key: 'ruby',
       human_key: 'Ruby',
-      value: "#{RUBY_VERSION}p#{RUBY_PATCHLEVEL}",
-      human_value: RUBY_DESCRIPTION,
+      value: RUBY_DESCRIPTION,
+      human_value: "#{RUBY_VERSION}p#{RUBY_PATCHLEVEL}",
     }
   end
 
