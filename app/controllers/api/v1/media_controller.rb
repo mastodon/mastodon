@@ -40,11 +40,11 @@ class Api::V1::MediaController < Api::BaseController
   end
 
   def media_attachment_params
-    params.permit(:file, :thumbnail, :description, :focus)
+    params_slice(:file, :thumbnail, :description, :focus)
   end
 
   def updateable_media_attachment_params
-    params.permit(:thumbnail, :description, :focus)
+    params_slice(:thumbnail, :description, :focus)
   end
 
   def file_type_error
