@@ -9,6 +9,10 @@ import type {
 } from 'mastodon/api_types/notifications';
 import type { ApiReportJSON } from 'mastodon/api_types/reports';
 
+// Maximum number of avatars displayed in a notification group
+// This corresponds to the max lenght of `group.sampleAccountsIds`
+export const NOTIFICATIONS_GROUP_MAX_AVATARS = 6;
+
 interface BaseNotificationGroup
   extends Omit<BaseNotificationGroupJSON, 'sample_accounts'> {
   sampleAccountsIds: string[];

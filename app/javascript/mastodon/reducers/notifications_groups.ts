@@ -6,6 +6,7 @@ import {
   processNewNotificationForGroups,
 } from 'mastodon/actions/notification_groups';
 import {
+  NOTIFICATIONS_GROUP_MAX_AVATARS,
   createNotificationGroupFromJSON,
   createNotificationGroupFromNotificationJSON,
 } from 'mastodon/models/notification_group';
@@ -84,8 +85,11 @@ export const notificationsGroupsReducer =
 
           if (existingGroup && existingGroup.type !== 'gap') {
             // Update the existing group
-            existingGroup.sampleAccountsIds.unshift(notification.account.id);
-            existingGroup.sampleAccountsIds.pop();
+            if (
+              existingGroup.sampleAccountsIds.unshift(notification.account.id) >
+              NOTIFICATIONS_GROUP_MAX_AVATARS
+            )
+              existingGroup.sampleAccountsIds.pop();
 
             existingGroup.most_recent_notification_id = notification.id;
             existingGroup.page_max_id = notification.id;
