@@ -10505,12 +10505,11 @@ noscript {
     &__avatar {
       width: 40px;
       height: 40px;
-
-      .account__avatar {
-        width: 40px !important;
-        height: 40px !important;
-      }
     }
+  }
+
+  .status__wrapper-direct {
+    background: transparent;
   }
 
   $icon-margin: 48px; // 40px avatar + 8px gap
