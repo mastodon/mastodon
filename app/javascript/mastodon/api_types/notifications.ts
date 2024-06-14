@@ -39,6 +39,14 @@ export type NotificationType =
   | 'admin.sign_up'
   | 'admin.report';
 
+export interface BaseNotificationJSON {
+  id: string;
+  type: NotificationType;
+  created_at: string;
+  group_key: string;
+  account: ApiAccountJSON;
+}
+
 export interface BaseNotificationGroupJSON {
   group_key: string;
   notifications_count: number;
@@ -55,13 +63,28 @@ interface NotificationGroupWithStatusJSON extends BaseNotificationGroupJSON {
   status: ApiStatusJSON;
 }
 
+interface NotificationWithStatusJSON extends BaseNotificationJSON {
+  type: NotificationWithStatusType;
+  status: ApiStatusJSON;
+}
+
 interface ReportNotificationGroupJSON extends BaseNotificationGroupJSON {
   type: 'admin.report';
   report: ApiReportJSON;
 }
 
+interface ReportNotificationJSON extends BaseNotificationJSON {
+  type: 'admin.report';
+  report: ApiReportJSON;
+}
+
+type SimpleNotificationTypes = 'follow' | 'follow_request' | 'admin.sign_up';
 interface SimpleNotificationGroupJSON extends BaseNotificationGroupJSON {
-  type: 'follow' | 'follow_request' | 'admin.sign_up';
+  type: SimpleNotificationTypes;
+}
+
+interface SimpleNotificationJSON extends BaseNotificationJSON {
+  type: SimpleNotificationTypes;
 }
 
 export interface ApiAccountWarningJSON {
@@ -76,6 +99,11 @@ export interface ApiAccountWarningJSON {
 
 interface ModerationWarningNotificationGroupJSON
   extends BaseNotificationGroupJSON {
+  type: 'moderation_warning';
+  moderation_warning: ApiAccountWarningJSON;
+}
+
+interface ModerationWarningNotificationJSON extends BaseNotificationJSON {
   type: 'moderation_warning';
   moderation_warning: ApiAccountWarningJSON;
 }
@@ -95,6 +123,19 @@ interface AccountRelationshipSeveranceNotificationGroupJSON
   type: 'severed_relationships';
   event: ApiAccountRelationshipSeveranceEventJSON;
 }
+
+interface AccountRelationshipSeveranceNotificationJSON
+  extends BaseNotificationJSON {
+  type: 'severed_relationships';
+  event: ApiAccountRelationshipSeveranceEventJSON;
+}
+
+export type NotificationJSON =
+  | SimpleNotificationJSON
+  | ReportNotificationJSON
+  | AccountRelationshipSeveranceNotificationJSON
+  | NotificationWithStatusJSON
+  | ModerationWarningNotificationJSON;
 
 export type NotificationGroupJSON =
   | SimpleNotificationGroupJSON

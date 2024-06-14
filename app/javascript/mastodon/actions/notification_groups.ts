@@ -1,6 +1,9 @@
 import { apiFetchNotifications } from 'mastodon/api/notifications';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
-import type { NotificationGroupJSON } from 'mastodon/api_types/notifications';
+import type {
+  NotificationGroupJSON,
+  NotificationJSON,
+} from 'mastodon/api_types/notifications';
 import { allNotificationTypes } from 'mastodon/api_types/notifications';
 import type { ApiStatusJSON } from 'mastodon/api_types/statuses';
 import type { NotificationGap } from 'mastodon/reducers/notifications_groups';
@@ -24,7 +27,7 @@ function excludeAllTypesExcept(filter: string) {
 
 function dispatchAssociatedRecords(
   dispatch: AppDispatch,
-  notifications: NotificationGroupJSON[],
+  notifications: NotificationGroupJSON[] | NotificationJSON[],
 ) {
   const fetchedAccounts: ApiAccountJSON[] = [];
   const fetchedStatuses: ApiStatusJSON[] = [];
@@ -94,6 +97,15 @@ export const fetchNotificationsGap = createDataLoadingThunk(
     const nextLink = links.refs.find((link) => link.rel === 'next');
 
     return { notifications, nextLink };
+  },
+);
+
+export const processNewNotificationForGroups = createAppAsyncThunk(
+  'notificationsGroups/processNew',
+  (notification: NotificationJSON, { dispatch }) => {
+    dispatchAssociatedRecords(dispatch, [notification]);
+
+    return notification;
   },
 );
 
