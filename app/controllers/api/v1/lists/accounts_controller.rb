@@ -52,7 +52,7 @@ class Api::V1::Lists::AccountsController < Api::BaseController
   end
 
   def resource_params
-    params.permit(account_ids: [])
+    params.slice(:account_ids).permit(account_ids: [])
   end
 
   def next_path
