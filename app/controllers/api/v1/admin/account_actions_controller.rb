@@ -26,7 +26,7 @@ class Api::V1::Admin::AccountActionsController < Api::BaseController
   end
 
   def resource_params
-    params.permit(
+    params_slice(
       :type,
       :report_id,
       :warning_preset_id,
