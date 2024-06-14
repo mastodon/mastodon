@@ -84,6 +84,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
 
   def imagemagick_version
     return if Rails.configuration.x.use_vips
+  
     version = `convert -version`.match(/Version: ImageMagick ([\d\.]+)/)[1]
 
     {
