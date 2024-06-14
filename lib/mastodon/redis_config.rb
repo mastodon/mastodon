@@ -45,7 +45,7 @@ REDIS_CACHE_PARAMS = {
 }.freeze
 
 REDIS_SIDEKIQ_PARAMS = {
-  driver: :redis_driver,
+  driver: redis_driver,
   url: ENV['SIDEKIQ_REDIS_URL'],
   namespace: sidekiq_namespace,
 }.freeze
