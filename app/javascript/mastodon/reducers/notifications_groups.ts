@@ -4,14 +4,13 @@ import { fetchNotifications } from 'mastodon/actions/notification_groups';
 import { createNotificationGroupFromJSON } from 'mastodon/models/notification_group';
 import type { NotificationGroup } from 'mastodon/models/notification_group';
 
-interface Gap {
+export interface NotificationGap {
   type: 'gap';
-  id: string;
-  maxId: string;
+  loadUrl: string;
 }
 
 interface NotificationGroupsState {
-  groups: (NotificationGroup | Gap)[];
+  groups: (NotificationGroup | NotificationGap)[];
   unread: number;
   isLoading: boolean;
   hasMore: boolean;
@@ -35,7 +34,7 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
 
     builder.addCase(fetchNotifications.fulfilled, (state, action) => {
       state.groups = action.payload.map((json) =>
-        createNotificationGroupFromJSON(json),
+        json.type === 'gap' ? json : createNotificationGroupFromJSON(json),
       );
       state.isLoading = false;
     });
