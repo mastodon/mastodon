@@ -15,7 +15,7 @@ module Admin::FilterHelper
     AnnouncementFilter::KEYS,
     Admin::ActionLogFilter::KEYS,
     Admin::StatusFilter::KEYS,
-  ].flatten.freeze
+  ].flatten.uniq.freeze
 
   def filter_link_to(text, link_to_params, link_class_params = link_to_params)
     new_url   = filtered_url_for(link_to_params)
@@ -48,6 +48,6 @@ module Admin::FilterHelper
   end
 
   def controller_request_params
-    params.permit(FILTERS)
+    params.slice(FILTERS).permit(FILTERS)
   end
 end
