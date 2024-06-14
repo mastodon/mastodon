@@ -3,6 +3,7 @@ import type {
   ApiAccountWarningJSON,
   BaseNotificationGroupJSON,
   NotificationGroupJSON,
+  NotificationJSON,
   NotificationType,
   NotificationWithStatusType,
 } from 'mastodon/api_types/notifications';
@@ -155,5 +156,48 @@ export function createNotificationGroupFromJSON(
         sampleAccountsIds,
         ...group,
       };
+  }
+}
+
+export function createNotificationGroupFromNotificationJSON(
+  notification: NotificationJSON,
+) {
+  const group = {
+    sampleAccountsIds: [notification.account.id],
+    group_key: notification.group_key,
+    notifications_count: 1,
+    type: notification.type,
+    most_recent_notification_id: notification.id,
+    page_min_id: notification.id,
+    page_max_id: notification.id,
+    latest_page_notification_at: notification.created_at,
+  } as NotificationGroup;
+
+  switch (notification.type) {
+    case 'favourite':
+    case 'reblog':
+    case 'status':
+    case 'mention':
+    case 'poll':
+    case 'update':
+      return { ...group, statusId: notification.status.id };
+    case 'admin.report':
+      return { ...group, report: createReportFromJSON(notification.report) };
+    case 'severed_relationships':
+      return {
+        ...group,
+        event: createAccountRelationshipSeveranceEventFromJSON(
+          notification.event,
+        ),
+      };
+    case 'moderation_warning':
+      return {
+        ...group,
+        moderationWarning: createAccountWarningFromJSON(
+          notification.moderation_warning,
+        ),
+      };
+    default:
+      return group;
   }
 }

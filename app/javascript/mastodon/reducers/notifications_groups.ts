@@ -3,8 +3,12 @@ import { createReducer, isAnyOf } from '@reduxjs/toolkit';
 import {
   fetchNotifications,
   fetchNotificationsGap,
+  processNewNotificationForGroups,
 } from 'mastodon/actions/notification_groups';
-import { createNotificationGroupFromJSON } from 'mastodon/models/notification_group';
+import {
+  createNotificationGroupFromJSON,
+  createNotificationGroupFromNotificationJSON,
+} from 'mastodon/models/notification_group';
 import type { NotificationGroup } from 'mastodon/models/notification_group';
 
 export interface NotificationGap {
@@ -28,9 +32,8 @@ const initialState: NotificationGroupsState = {
   readMarkerId: '0',
 };
 
-export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
-  initialState,
-  (builder) => {
+export const notificationsGroupsReducer =
+  createReducer<NotificationGroupsState>(initialState, (builder) => {
     builder
       .addCase(fetchNotifications.fulfilled, (state, action) => {
         state.groups = action.payload.map((json) =>
@@ -69,6 +72,36 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
 
         state.isLoading = false;
       })
+      .addCase(processNewNotificationForGroups.fulfilled, (state, action) => {
+        const notification = action.payload;
+        const existingGroupIndex = state.groups.findIndex(
+          (group) =>
+            group.type !== 'gap' && group.group_key === notification.group_key,
+        );
+
+        if (existingGroupIndex > -1) {
+          const existingGroup = state.groups[existingGroupIndex];
+
+          if (existingGroup && existingGroup.type !== 'gap') {
+            // Update the existing group
+            existingGroup.sampleAccountsIds.unshift(notification.account.id);
+            existingGroup.sampleAccountsIds.pop();
+
+            existingGroup.most_recent_notification_id = notification.id;
+            existingGroup.page_max_id = notification.id;
+            existingGroup.latest_page_notification_at = notification.created_at;
+            existingGroup.notifications_count += 1;
+
+            state.groups.splice(existingGroupIndex, 1);
+            state.groups.unshift(existingGroup);
+          }
+        } else {
+          // Create a new group
+          state.groups.unshift(
+            createNotificationGroupFromNotificationJSON(notification),
+          );
+        }
+      })
       .addMatcher(
         isAnyOf(fetchNotifications.pending, fetchNotificationsGap.pending),
         (state) => {
@@ -81,5 +114,4 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
           state.isLoading = false;
         },
       );
-  },
-);
+  });

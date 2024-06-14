@@ -27,7 +27,7 @@ import { modalReducer } from './modal';
 import { notificationPolicyReducer } from './notification_policy';
 import { notificationRequestsReducer } from './notification_requests';
 import notifications from './notifications';
-import { notificationGroupsReducer } from './notifications_groups';
+import { notificationsGroupsReducer } from './notifications_groups';
 import { pictureInPictureReducer } from './picture_in_picture';
 import polls from './polls';
 import push_notifications from './push_notifications';
@@ -66,7 +66,7 @@ const reducers = {
   search,
   media_attachments,
   notifications,
-  notificationsGroups: notificationGroupsReducer,
+  notificationsGroups: notificationsGroupsReducer,
   height_cache,
   custom_emojis,
   lists,
