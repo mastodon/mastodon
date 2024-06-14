@@ -56,7 +56,7 @@ class Api::V1::Admin::IpBlocksController < Api::BaseController
   end
 
   def resource_params
-    params.permit(:ip, :severity, :comment, :expires_in)
+    params_slice(:ip, :severity, :comment, :expires_in)
   end
 
   def next_path
