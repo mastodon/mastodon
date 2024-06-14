@@ -86,7 +86,7 @@ class Api::V1::Admin::ReportsController < Api::BaseController
   end
 
   def filter_params
-    params.permit(*FILTER_PARAMS)
+    params_slice(*FILTER_PARAMS)
   end
 
   def next_path
