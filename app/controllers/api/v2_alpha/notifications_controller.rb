@@ -125,11 +125,16 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
   end
 
   def browserable_params
-    params.slice(:include_filtered, :types, :exclude_types, :grouped_types).permit(:include_filtered, types: [], exclude_types: [], grouped_types: [])
+    params
+      .slice(:include_filtered, :types, :exclude_types, :grouped_types)
+      .permit(:include_filtered, types: [], exclude_types: [], grouped_types: [])
   end
 
   def pagination_params(core_params)
-    params.slice(:limit, :include_filtered, :types, :exclude_types, :grouped_types).permit(:limit, :include_filtered, types: [], exclude_types: [], grouped_types: []).merge(core_params)
+    params
+      .slice(:limit, :include_filtered, :types, :exclude_types, :grouped_types)
+      .permit(:limit, :include_filtered, types: [], exclude_types: [], grouped_types: [])
+      .merge(core_params)
   end
 
   def expand_accounts_param
