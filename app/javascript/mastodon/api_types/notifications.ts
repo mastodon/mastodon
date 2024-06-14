@@ -45,6 +45,7 @@ export interface BaseNotificationGroupJSON {
   type: NotificationType;
   sample_accounts: ApiAccountJSON[];
   latest_page_notification_at: string; // FIXME: This will only be present if the notification group is returned in a paginated list, not requested directly
+  most_recent_notification_id: string;
   page_min_id?: string;
   page_max_id?: string;
 }
