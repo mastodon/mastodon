@@ -9,6 +9,8 @@ class PublishScheduledStatusWorker
     scheduled_status = ScheduledStatus.find(scheduled_status_id)
     scheduled_status.destroy!
 
+    return true if scheduled_status.account.user.disabled?
+
     PostStatusService.new.call(
       scheduled_status.account,
       options_with_objects(scheduled_status.params.with_indifferent_access)
