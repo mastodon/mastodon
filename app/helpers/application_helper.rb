@@ -256,6 +256,10 @@ module ApplicationHelper
     instance_presenter.app_icon&.file&.url(size)
   end
 
+  def use_mask_icon?
+    instance_presenter.app_icon.blank?
+  end
+
   private
 
   def storage_host_var
