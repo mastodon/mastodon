@@ -1,10 +1,22 @@
 import { createReducer, isAnyOf } from '@reduxjs/toolkit';
 
 import {
+  authorizeFollowRequestSuccess,
+  blockAccountSuccess,
+  muteAccountSuccess,
+  rejectFollowRequestSuccess,
+} from 'mastodon/actions/accounts_typed';
+import { blockDomainSuccess } from 'mastodon/actions/domain_blocks_typed';
+import {
+  clearNotifications,
   fetchNotifications,
   fetchNotificationsGap,
   processNewNotificationForGroups,
 } from 'mastodon/actions/notification_groups';
+import {
+  disconnectTimeline,
+  timelineDelete,
+} from 'mastodon/actions/timelines_typed';
 import {
   NOTIFICATIONS_GROUP_MAX_AVATARS,
   createNotificationGroupFromJSON,
@@ -32,6 +44,48 @@ const initialState: NotificationGroupsState = {
   hasMore: false,
   readMarkerId: '0',
 };
+
+function removeNotificationsForAccounts(
+  state: NotificationGroupsState,
+  accountIds: string[],
+  onlyForType?: string,
+) {
+  state.groups = state.groups
+    .map((group) => {
+      if (
+        group.type !== 'gap' &&
+        (!onlyForType || group.type === onlyForType)
+      ) {
+        const previousLength = group.sampleAccountsIds.length;
+
+        group.sampleAccountsIds = group.sampleAccountsIds.filter(
+          (id) => !accountIds.includes(id),
+        );
+
+        const newLength = group.sampleAccountsIds.length;
+        const removed = previousLength - newLength;
+
+        group.notifications_count -= removed;
+      }
+
+      return group;
+    })
+    .filter(
+      (group) => group.type === 'gap' || group.sampleAccountsIds.length > 0,
+    );
+}
+
+function removeNotificationsForStatus(
+  state: NotificationGroupsState,
+  statusId: string,
+) {
+  state.groups = state.groups.filter(
+    (group) =>
+      group.type === 'gap' ||
+      !('statusId' in group) ||
+      group.statusId !== statusId,
+  );
+}
 
 export const notificationsGroupsReducer =
   createReducer<NotificationGroupsState>(initialState, (builder) => {
@@ -106,6 +160,46 @@ export const notificationsGroupsReducer =
           );
         }
       })
+      .addCase(disconnectTimeline, (state, action) => {
+        if (action.payload.timeline === 'home')
+          state.groups.unshift({
+            type: 'gap',
+            loadUrl: 'TODO_LOAD_URL_TOP_OF_TL', // TODO
+          });
+      })
+      .addCase(timelineDelete, (state, action) => {
+        removeNotificationsForStatus(state, action.payload.statusId);
+      })
+      .addCase(clearNotifications.pending, (state) => {
+        state.groups = [];
+        state.unread = 0;
+        state.hasMore = false;
+      })
+      .addCase(blockAccountSuccess, (state, action) => {
+        removeNotificationsForAccounts(state, [action.payload.relationship.id]);
+      })
+      .addCase(muteAccountSuccess, (state, action) => {
+        if (action.payload.relationship.muting_notifications)
+          removeNotificationsForAccounts(state, [
+            action.payload.relationship.id,
+          ]);
+      })
+      .addCase(blockDomainSuccess, (state, action) => {
+        removeNotificationsForAccounts(
+          state,
+          action.payload.accounts.map((account) => account.id),
+        );
+      })
+      .addMatcher(
+        isAnyOf(authorizeFollowRequestSuccess, rejectFollowRequestSuccess),
+        (state, action) => {
+          removeNotificationsForAccounts(
+            state,
+            [action.payload.id],
+            'follow_request',
+          );
+        },
+      )
       .addMatcher(
         isAnyOf(fetchNotifications.pending, fetchNotificationsGap.pending),
         (state) => {

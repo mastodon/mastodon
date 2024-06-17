@@ -1,4 +1,7 @@
-import { apiFetchNotifications } from 'mastodon/api/notifications';
+import {
+  apiClearNotifications,
+  apiFetchNotifications,
+} from 'mastodon/api/notifications';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import type {
   ApiNotificationGroupJSON,
@@ -103,7 +106,7 @@ export const fetchNotificationsGap = createDataLoadingThunk(
 
 export const processNewNotificationForGroups = createAppAsyncThunk(
   'notificationsGroups/processNew',
-  (notification: NotificationJSON, { dispatch }) => {
+  (notification: ApiNotificationJSON, { dispatch }) => {
     dispatchAssociatedRecords(dispatch, [notification]);
 
     return notification;
@@ -122,4 +125,9 @@ export const setNotificationsFilter = createAppAsyncThunk(
     void dispatch(fetchNotifications());
     dispatch(saveSettings());
   },
+);
+
+export const clearNotifications = createDataLoadingThunk(
+  'notifications/clear',
+  () => apiClearNotifications(),
 );

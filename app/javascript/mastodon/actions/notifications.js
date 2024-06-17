@@ -24,6 +24,8 @@ import { saveSettings } from './settings';
 
 export * from "./notifications_typed";
 
+export { clearNotifications } from "./notification_groups";
+
 export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
 
 export const NOTIFICATIONS_EXPAND_REQUEST = 'NOTIFICATIONS_EXPAND_REQUEST';
@@ -32,7 +34,6 @@ export const NOTIFICATIONS_EXPAND_FAIL    = 'NOTIFICATIONS_EXPAND_FAIL';
 
 export const NOTIFICATIONS_FILTER_SET = 'NOTIFICATIONS_FILTER_SET';
 
-export const NOTIFICATIONS_CLEAR        = 'NOTIFICATIONS_CLEAR';
 export const NOTIFICATIONS_SCROLL_TOP   = 'NOTIFICATIONS_SCROLL_TOP';
 export const NOTIFICATIONS_LOAD_PENDING = 'NOTIFICATIONS_LOAD_PENDING';
 
@@ -254,16 +255,6 @@ export function expandNotificationsFail(error, isLoadingMore) {
     error,
     skipLoading: !isLoadingMore,
     skipAlert: !isLoadingMore || error.name === 'AbortError',
-  };
-}
-
-export function clearNotifications() {
-  return (dispatch) => {
-    dispatch({
-      type: NOTIFICATIONS_CLEAR,
-    });
-
-    api().post('/api/v1/notifications/clear');
   };
 }
 
