@@ -2,8 +2,8 @@ import type {
   ApiAccountRelationshipSeveranceEventJSON,
   ApiAccountWarningJSON,
   BaseNotificationGroupJSON,
-  NotificationGroupJSON,
-  NotificationJSON,
+  ApiNotificationGroupJSON,
+  ApiNotificationJSON,
   NotificationType,
   NotificationWithStatusType,
 } from 'mastodon/api_types/notifications';
@@ -113,7 +113,7 @@ function createAccountRelationshipSeveranceEventFromJSON(
 }
 
 export function createNotificationGroupFromJSON(
-  groupJson: NotificationGroupJSON,
+  groupJson: ApiNotificationGroupJSON,
 ): NotificationGroup {
   const { sample_accounts, ...group } = groupJson;
   const sampleAccountsIds = sample_accounts.map((account) => account.id);
@@ -164,7 +164,7 @@ export function createNotificationGroupFromJSON(
 }
 
 export function createNotificationGroupFromNotificationJSON(
-  notification: NotificationJSON,
+  notification: ApiNotificationJSON,
 ) {
   const group = {
     sampleAccountsIds: [notification.account.id],

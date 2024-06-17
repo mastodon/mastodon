@@ -1,5 +1,5 @@
 import api, { getLinks } from 'mastodon/api';
-import type { NotificationGroupJSON } from 'mastodon/api_types/notifications';
+import type { ApiNotificationGroupJSON } from 'mastodon/api_types/notifications';
 
 export const apiFetchNotifications = async (
   params?: {
@@ -7,7 +7,7 @@ export const apiFetchNotifications = async (
   },
   forceUrl?: string,
 ) => {
-  const response = await api().request<NotificationGroupJSON[]>({
+  const response = await api().request<ApiNotificationGroupJSON[]>({
     method: 'GET',
     url: forceUrl ?? '/api/v2_alpha/notifications',
     params,
