@@ -621,6 +621,9 @@ gd:
       actions_description_html: Socraich dè a nì thu airson an gearan seo fhuasgladh. Ma chuireas tu peanas air a’ chunntas le gearan air, gheibh iad brath air a’ phost-d mura tagh thu an roinn-seòrsa <strong>Spama</strong>.
       actions_description_remote_html: Cuir romhad dè an gnìomh a ghabhas tu airson an gearan seo fhuasgladh. Cha bheir seo buaidh ach air mar a làimhsicheas am frithealaiche <strong>agadsa</strong> an cunntas cèin seo is mar a nì e conaltradh leis.
       add_to_report: Cuir barrachd ris a’ ghearan
+      already_suspended_badges:
+        local: Chaidh an cur à rèim air an fhrithealaiche seo mu thràth
+        remote: Chaidh an cur à rèim air an fhrithealaiche aca-san mu thràth
       are_you_sure: A bheil thu cinnteach?
       assign_to_self: Iomruin dhomh-sa
       assigned: Maor iomruinte
@@ -903,7 +906,7 @@ gd:
         message_html: "<strong>Chaidh stòras nan oibseactan agad a dhroch-rèiteachadh. Tha prìobhaideachd an luchd-cleachdaidh agad fo chunnart.</strong>"
     tags:
       review: Dèan lèirmheas air an staid
-      updated_msg: Chaidh roghainnean nan tagaichean hais ùrachadh
+      updated_msg: Chaidh roghainnean an taga hais ùrachadh
     title: Rianachd
     trends:
       allow: Ceadaich
@@ -980,7 +983,6 @@ gd:
       delete: Sguab às
       edit_preset: Deasaich rabhadh ro-shuidhichte
       empty: Cha do mhìnich thu ro-sheataichean rabhaidhean fhathast.
-      title: Stiùirich na rabhaidhean ro-shuidhichte
     webhooks:
       add_new: Cuir puing-dheiridh ris
       delete: Sguab às
@@ -1209,7 +1211,7 @@ gd:
       appealed_msg: Chaidh an t-ath-thagradh agad a chur a-null. Ma thèid aontachadh ris, gheibh thu brath mu dhèidhinn.
       appeals:
         submit: Cuir a-null an t-ath-thagradh
-      approve_appeal: Zatwierdź odwołanie
+      approve_appeal: Thoir aonta ris an ath-thagradh
       associated_report: An gearan co-cheangailte
       created_at: Ceann-là
       description_html: Seo na gnìomhan a chaidh a ghabhail an aghaidh a’ chunntais agad agus na rabhaidhean a chaidh a chur thugad le luchd-obrach %{instance}.
@@ -1704,14 +1706,26 @@ gd:
     import: Ion-phortadh
     import_and_export: Ion-phortadh ⁊ às-phortadh
     migrate: Imrich cunntais
-    notifications: Brathan
+    notifications: Brathan puist-d
     preferences: Roghainnean
     profile: Pròifil phoblach
     relationships: Dàimhean leantainn
+    severed_relationships: Dàimhean dealaichte
     statuses_cleanup: Sguabadh às phostaichean
     strikes: Rabhaidhean na maorsainneachd
     two_factor_authentication: Dearbhadh dà-cheumnach
     webauthn_authentication: Iuchraichean tèarainteachd
+  severed_relationships:
+    download: Luchdaich a-nuas (%{count})
+    event_type:
+      account_suspension: Cunntas à rèim (%{target_name})
+      domain_block: Frithealaiche à rèim (%{target_name})
+      user_domain_block: Bhac thu %{target_name}
+    lost_followers: An luchd-leantainn a chaill thu
+    lost_follows: Daoine nach lean thu tuilleadh
+    preamble: Dh’fhaoidte gun chaill thu dàimhean leantainn nuair a bhacas tu àrainn no nuair a chuireas na maoir romhpa gun cuir iad frithealaiche cèin à rèim. Nuair a thachras sin, ’s urrainn dhut liosta de na dàimhean dealaichte a luchdadh a-nuas airson sùil a thoirt orra agus an ion-phortadh gu frithealaiche eile ’s dòcha.
+    purged: Chaidh am fiosrachadh mun fhrithealaiche seo a phurgaideachadh le rianairean an fhrithealaiche agad.
+    type: Tachartas
   statuses:
     attached:
       audio:
@@ -1761,8 +1775,6 @@ gd:
         two: "%{count} bhòt"
       vote: Bhòt
     show_more: Seall barrachd dheth
-    show_newer: Seall feadhainn as ùire
-    show_older: Seall feadhainn as sine
     show_thread: Seall an snàithlean
     title: "%{name}: “%{quote}”"
     visibilities:
@@ -1819,6 +1831,7 @@ gd:
     contrast: Mastodon (iomsgaradh àrd)
     default: Mastodon (dorcha)
     mastodon-light: Mastodon (soilleir)
+    system: Fèin-obrachail (cleachd ùrlar an t-siostaim)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -1929,9 +1942,13 @@ gd:
       follow_step: Tha leantainn dhaoine inntinneach air cridhe Mhastodon.
       follow_title: Cuir dreach pearsanta air do dhachaigh
       follows_subtitle: Lean cunntasan cliùiteach
-      follows_title: Cò a leanas tu
+      follows_title: Molaidhean leantainn
       follows_view_more: Seall barrachd dhaoine ri leantainn
-      hashtags_recent_count: 'Daoine sna %{days} là(ithean) seo chaidh: %{people}'
+      hashtags_recent_count:
+        few: "%{people} daoine san 2 latha seo chaidh"
+        one: "%{people} neach san 2 latha seo chaidh"
+        other: "%{people} daoine san 2 latha seo chaidh"
+        two: "%{people} daoine san 2 latha seo chaidh"
       hashtags_subtitle: Rùraich na tha a’ treandadh san 2 latha seo chaidh
       hashtags_title: Tagaichean hais a’ treandadh
       hashtags_view_more: Seall barrachd thagaichean hais a’ treandadh

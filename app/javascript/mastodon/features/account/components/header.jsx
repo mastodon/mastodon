@@ -25,6 +25,7 @@ import { IconButton } from 'mastodon/components/icon_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { ShortNumber } from 'mastodon/components/short_number';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { autoPlayGif, me, domain as localDomain } from 'mastodon/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
@@ -111,6 +112,7 @@ const dateFormatOptions = {
 class Header extends ImmutablePureComponent {
 
   static propTypes = {
+    identity: identityContextPropShape,
     account: ImmutablePropTypes.record,
     identity_props: ImmutablePropTypes.list,
     onFollow: PropTypes.func.isRequired,
@@ -134,10 +136,6 @@ class Header extends ImmutablePureComponent {
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
     ...WithRouterPropTypes,
-  };
-
-  static contextTypes = {
-    identity: PropTypes.object,
   };
 
   setRef = c => {
@@ -255,7 +253,7 @@ class Header extends ImmutablePureComponent {
 
   render () {
     const { account, hidden, intl } = this.props;
-    const { signedIn, permissions } = this.context.identity;
+    const { signedIn, permissions } = this.props.identity;
 
     if (!account) {
       return null;
@@ -408,7 +406,7 @@ class Header extends ImmutablePureComponent {
     }
 
     account.get('roles', []).forEach((role) => {
-      badges.push(<Badge key={`role-badge-${role.get('id')}`} label={<span>{role.get('name')}</span>} domain={domain} />);
+      badges.push(<Badge key={`role-badge-${role.get('id')}`} label={<span>{role.get('name')}</span>} domain={domain} roleId={role.get('id')} />);
     });
 
     return (
@@ -516,4 +514,4 @@ class Header extends ImmutablePureComponent {
 
 }
 
-export default withRouter(injectIntl(Header));
+export default withRouter(withIdentity(injectIntl(Header)));

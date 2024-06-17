@@ -282,6 +282,7 @@ vi:
         update_custom_emoji_html: "%{name} đã cập nhật emoji %{target}"
         update_domain_block_html: "%{name} cập nhật chặn máy chủ %{target}"
         update_ip_block_html: "%{name} cập nhật chặn IP %{target}"
+        update_report_html: "%{name} cập nhật báo cáo %{target}"
         update_status_html: "%{name} cập nhật tút của %{target}"
         update_user_role_html: "%{name} đã thay đổi vai trò %{target}"
       deleted_account: tài khoản đã xóa
@@ -289,6 +290,7 @@ vi:
       filter_by_action: Theo hành động
       filter_by_user: Theo người
       title: Nhật ký kiểm duyệt
+      unavailable_instance: "(tên máy chủ không khả dụng)"
     announcements:
       destroyed_msg: Xóa thông báo thành công!
       edit:
@@ -585,6 +587,9 @@ vi:
       actions_description_html: Nếu áp đặt trừng phạt, một email thông báo sẽ được gửi cho người này, ngoại trừ <strong>Spam</strong>.
       actions_description_remote_html: Chọn hành động cần thực hiện để xử lý báo cáo này. Điều này sẽ chỉ ảnh hưởng đến cách máy chủ <strong>của bạn</strong> giao tiếp với tài khoản này và xử lý nội dung của nó.
       add_to_report: Bổ sung báo cáo
+      already_suspended_badges:
+        local: Đã vô hiệu hóa trên máy chủ này
+        remote: Đã vô hiệu hóa trên máy chủ khác
       are_you_sure: Bạn có chắc không?
       assign_to_self: Giao cho tôi
       assigned: Người xử lý
@@ -734,6 +739,7 @@ vi:
         desc_html: Điều này phụ thuộc vào các mã lệnh bên ngoài từ hCaptcha, đây có thể là mối lo ngại về bảo mật và quyền riêng tư. Thêm vào đó, <strong>điều này có thể làm cho quá trình đăng ký khó hơn đối với một số người (đặc biệt là người khuyết tật)</strong>. Vì những lý do này, vui lòng xem xét các biện pháp thay thế như duyệt đăng ký thủ công hoặc tạo thư mời.
         title: Yêu cầu người dùng mới dùng CAPTCHA để xác minh tài khoản của họ
       content_retention:
+        danger_zone: Khu vực nguy hiểm
         preamble: Kiểm soát cách lưu trữ nội dung cá nhân trong Mastodon.
         title: Lưu giữ nội dung
       default_noindex:
@@ -929,7 +935,7 @@ vi:
       delete: Xóa bỏ
       edit_preset: Sửa mẫu có sẵn
       empty: Bạn chưa thêm mẫu cảnh cáo nào cả.
-      title: Quản lý mẫu cảnh cáo
+      title: Cảnh báo cài sẵn
     webhooks:
       add_new: Thêm endpoint
       delete: Xóa bỏ
@@ -1626,14 +1632,26 @@ vi:
     import: Nhập dữ liệu
     import_and_export: Dữ liệu
     migrate: Chuyển tài khoản sang máy chủ khác
-    notifications: Thông báo
+    notifications: Thông báo email
     preferences: Chung
     profile: Hồ sơ
     relationships: Quan hệ
+    severed_relationships: Mối quan hệ bị cắt đứt
     statuses_cleanup: Tự động xóa tút cũ
     strikes: Lần cảnh cáo
     two_factor_authentication: Xác minh 2 bước
     webauthn_authentication: Khóa bảo mật
+  severed_relationships:
+    download: Tải xuống (%{count})
+    event_type:
+      account_suspension: Người bị vô hiệu hóa (%{target_name})
+      domain_block: Máy chủ bị vô hiệu hóa (%{target_name})
+      user_domain_block: Bạn đã chặn %{target_name}
+    lost_followers: Mất người theo dõi
+    lost_follows: Mất người đang theo dõi
+    preamble: Bạn có thể mất số lượt theo dõi và người theo dõi khi chặn một máy chủ hoặc khi kiểm duyệt viên của bạn quyết định tạm dừng máy chủ từ xa. Khi điều đó xảy ra, bạn sẽ có thể tải xuống danh sách các mối quan hệ đã bị cắt đứt, để kiểm tra và nhập vào máy chủ khác.
+    purged: Thông tin về máy chủ này đã bị quản trị viên máy chủ của bạn xóa sạch.
+    type: Sự kiện
   statuses:
     attached:
       audio:
@@ -1665,8 +1683,6 @@ vi:
         other: "%{count} người bình chọn"
       vote: Bình chọn
     show_more: Đọc thêm
-    show_newer: Mới hơn
-    show_older: Cũ hơn
     show_thread: Nội dung gốc
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1723,6 +1739,7 @@ vi:
     contrast: Mastodon (Tương phản)
     default: Mastodon (Tối)
     mastodon-light: Mastodon (Sáng)
+    system: Tự động (chủ đề hệ thống)
   time:
     formats:
       default: "%-d.%m.%Y %H:%M"
@@ -1835,7 +1852,8 @@ vi:
       follows_subtitle: Theo dõi những người thú vị
       follows_title: Gợi ý theo dõi
       follows_view_more: Xem thêm những người khác
-      hashtags_recent_count: "%{people} người dùng trong %{days} ngày qua"
+      hashtags_recent_count:
+        other: "%{people} người dùng trong 2 ngày qua"
       hashtags_subtitle: Khám phá xu hướng 2 ngày qua
       hashtags_title: Hashtag xu hướng
       hashtags_view_more: Xem thêm hashtag xu hướng

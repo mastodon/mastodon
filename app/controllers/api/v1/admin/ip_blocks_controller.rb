@@ -14,10 +14,6 @@ class Api::V1::Admin::IpBlocksController < Api::BaseController
   after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
-  PAGINATION_PARAMS = %i(
-    limit
-  ).freeze
-
   def index
     authorize :ip_block, :index?
     render json: @ip_blocks, each_serializer: REST::Admin::IpBlockSerializer
@@ -63,10 +59,6 @@ class Api::V1::Admin::IpBlocksController < Api::BaseController
     params.permit(:ip, :severity, :comment, :expires_in)
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def next_path
     api_v1_admin_ip_blocks_url(pagination_params(max_id: pagination_max_id)) if records_continue?
   end
@@ -81,9 +73,5 @@ class Api::V1::Admin::IpBlocksController < Api::BaseController
 
   def records_continue?
     @ip_blocks.size == limit_param(LIMIT)
-  end
-
-  def pagination_params(core_params)
-    params.slice(*PAGINATION_PARAMS).permit(*PAGINATION_PARAMS).merge(core_params)
   end
 end

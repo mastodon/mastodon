@@ -285,6 +285,7 @@ lad:
         update_custom_emoji_html: "%{name} aktualizo el emoji %{target}"
         update_domain_block_html: "%{name} aktualizo el bloko de domeno para %{target}"
         update_ip_block_html: "\"%{name} troko la regla de IP %{target}"
+        update_report_html: "%{name} aktualizo el raporto %{target}"
         update_status_html: "%{name} aktualizo la publikasyon de %{target}"
         update_user_role_html: "%{name} troko el rolo %{target}"
       deleted_account: kuento supremido
@@ -597,6 +598,9 @@ lad:
       actions_description_html: Dechide kualas mizuras tomar para rezolver esta denunsia. Si tomas una aksion punitiva kontra el kuento denunsiada, se le embiara a dicho kuento un avizo por posta elektronika, ekseptado kuando se eskoja la kategoria <strong>Spam</strong>.
       actions_description_remote_html: Dechide ke fazer para rezolver este raporto. Esto solo va afektar komo <strong>tu</strong> sirvidor komunike kon este kuento remoto i ke faze kon su kontenido.
       add_to_report: Adjusta mas al raporto
+      already_suspended_badges:
+        local: Ya suspendido en este sirvidor
+        remote: Ya suspendido en sus sirvidor
       are_you_sure: Estas siguro?
       assign_to_self: Asinyamela a mi
       assigned: Moderador asinyado
@@ -946,7 +950,6 @@ lad:
       delete: Efasa
       edit_preset: Edita avizo predeterminado
       empty: Ainda no tienes definido ningun avizo predeterminado.
-      title: Edita konfigurasyon predeterminada de avizos
     webhooks:
       add_new: Adjusta endpoint
       delete: Efasa
@@ -1652,7 +1655,7 @@ lad:
     import: Importo
     import_and_export: Importo i eksporto
     migrate: Migrasyon de kuento
-    notifications: Avizos
+    notifications: Avizos por posta elektronika
     preferences: Preferensyas
     profile: Profil publiko
     relationships: Segidos i suivantes
@@ -1660,6 +1663,13 @@ lad:
     strikes: Amonestamientos de moderasyon
     two_factor_authentication: Autentifikasyon en dos pasos
     webauthn_authentication: Yaves de sigurita
+  severed_relationships:
+    download: Abasha (%{count})
+    event_type:
+      user_domain_block: Blokates a %{target_name}
+    lost_followers: Suivantes pedridos
+    lost_follows: Segimyentos pedridos
+    type: Evenimiento
   statuses:
     attached:
       audio:
@@ -1697,8 +1707,6 @@ lad:
         other: "%{count} votos"
       vote: Vota
     show_more: Amostra mas
-    show_newer: Amostra mas muevos
-    show_older: Amostra mas viejos
     show_thread: Amostra diskusyon
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1857,11 +1865,14 @@ lad:
       feature_creativity_title: Kreativita sin paralelas
       feature_moderation_title: La moderasyon komo deveria ser
       follow_action: Sige
+      follow_step: El buto de Mastodon es segir a djente interesante.
       follow_title: Personaliza tu linya prinsipala
       follows_subtitle: Sige kuentos konesidos
       follows_title: A ken segir
       follows_view_more: Ve mas personas para segir
-      hashtags_recent_count: "%{people} personas en los ultimos %{days} diyas"
+      hashtags_recent_count:
+        one: "%{people} persona en los ultimos 2 diyas"
+        other: "%{people} personas en los ultimos 2 diyas"
       hashtags_subtitle: Eksplora los trendes de los ultimos 2 diyas
       hashtags_title: Etiketas en trend
       hashtags_view_more: Ve mas etiketas en trend

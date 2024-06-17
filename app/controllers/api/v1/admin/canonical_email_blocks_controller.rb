@@ -16,8 +16,6 @@ class Api::V1::Admin::CanonicalEmailBlocksController < Api::BaseController
   after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
-  PAGINATION_PARAMS = %i(limit).freeze
-
   def index
     authorize :canonical_email_block, :index?
     render json: @canonical_email_blocks, each_serializer: REST::Admin::CanonicalEmailBlockSerializer
@@ -65,10 +63,6 @@ class Api::V1::Admin::CanonicalEmailBlocksController < Api::BaseController
     @canonical_email_block = CanonicalEmailBlock.find(params[:id])
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def next_path
     api_v1_admin_canonical_email_blocks_url(pagination_params(max_id: pagination_max_id)) if records_continue?
   end
@@ -83,9 +77,5 @@ class Api::V1::Admin::CanonicalEmailBlocksController < Api::BaseController
 
   def records_continue?
     @canonical_email_blocks.size == limit_param(LIMIT)
-  end
-
-  def pagination_params(core_params)
-    params.slice(*PAGINATION_PARAMS).permit(*PAGINATION_PARAMS).merge(core_params)
   end
 end

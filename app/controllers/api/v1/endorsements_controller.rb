@@ -28,10 +28,6 @@ class Api::V1::EndorsementsController < Api::BaseController
     current_account.endorsed_accounts.includes(:account_stat, :user).without_suspended
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def next_path
     return if unlimited?
 
@@ -50,10 +46,6 @@ class Api::V1::EndorsementsController < Api::BaseController
 
   def records_continue?
     @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-  end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
   end
 
   def unlimited?

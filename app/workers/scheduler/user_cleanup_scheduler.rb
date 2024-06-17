@@ -3,6 +3,9 @@
 class Scheduler::UserCleanupScheduler
   include Sidekiq::Worker
 
+  UNCONFIRMED_ACCOUNTS_MAX_AGE_DAYS = 7
+  DISCARDED_STATUSES_MAX_AGE_DAYS = 30
+
   sidekiq_options retry: 0, lock: :until_executed, lock_ttl: 1.day.to_i
 
   def perform
@@ -13,7 +16,7 @@ class Scheduler::UserCleanupScheduler
   private
 
   def clean_unconfirmed_accounts!
-    User.where('confirmed_at is NULL AND confirmation_sent_at <= ?', 2.days.ago).reorder(nil).find_in_batches do |batch|
+    User.where('confirmed_at is NULL AND confirmation_sent_at <= ?', UNCONFIRMED_ACCOUNTS_MAX_AGE_DAYS.days.ago).reorder(nil).find_in_batches do |batch|
       # We have to do it separately because of missing database constraints
       AccountModerationNote.where(target_account_id: batch.map(&:account_id)).delete_all
       Account.where(id: batch.map(&:account_id)).delete_all
@@ -22,7 +25,7 @@ class Scheduler::UserCleanupScheduler
   end
 
   def clean_discarded_statuses!
-    Status.unscoped.discarded.where('deleted_at <= ?', 30.days.ago).find_in_batches do |statuses|
+    Status.unscoped.discarded.where(deleted_at: ..DISCARDED_STATUSES_MAX_AGE_DAYS.days.ago).find_in_batches do |statuses|
       RemovalWorker.push_bulk(statuses) do |status|
         [status.id, { 'immediate' => true, 'skip_streaming' => true }]
       end

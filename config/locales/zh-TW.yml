@@ -282,6 +282,7 @@ zh-TW:
         update_custom_emoji_html: "%{name} 已更新自訂 emoji 表情符號 %{target}"
         update_domain_block_html: "%{name} 已更新 %{target} 之網域封鎖"
         update_ip_block_html: "%{name} 已變更 IP %{target} 之規則"
+        update_report_html: "%{name} 已更新 %{target} 的檢舉"
         update_status_html: "%{name} 已更新 %{target} 的嘟文"
         update_user_role_html: "%{name} 已變更 %{target} 角色"
       deleted_account: 已刪除帳號
@@ -289,6 +290,7 @@ zh-TW:
       filter_by_action: 按動作過濾
       filter_by_user: 按使用者過濾
       title: 營運日誌
+      unavailable_instance: "（該域名無法使用）"
     announcements:
       destroyed_msg: 成功刪除公告！
       edit:
@@ -585,6 +587,9 @@ zh-TW:
       actions_description_html: 決定應對此報告採取何種行動。若您對檢舉之帳號採取懲罰措施，則將對他們發送 e-mail 通知，如非選擇了 <strong>垃圾郵件</strong> 類別。
       actions_description_remote_html: 決定將對此檢舉報告採取何種動作。這將僅作用於<strong>您的伺服器</strong>與此遠端帳號及其內容之通訊行為。
       add_to_report: 加入更多至報告
+      already_suspended_badges:
+        local: 已自此伺服器停權
+        remote: 已自該伺服器停權
       are_you_sure: 您確定嗎？
       assign_to_self: 指派給自己
       assigned: 指派站務
@@ -736,6 +741,7 @@ zh-TW:
           此外，<strong>這將大幅降低註冊流程對某些族群之易用性，特別是無障礙需求人士</strong>。基於此因，請考慮其他替代性方案，例如審核制或是邀請制之註冊流程。
         title: 要求新使用者完成 CAPTCHA 挑戰以確認帳號
       content_retention:
+        danger_zone: 危險區域！
         preamble: 控制使用者產生內容如何儲存於 Mastodon 上。
         title: 內容保留期間
       default_noindex:
@@ -931,7 +937,7 @@ zh-TW:
       delete: 刪除
       edit_preset: 編輯預設警告
       empty: 您尚未定義任何預設警告。
-      title: 管理預設警告
+      title: 預設警告內容
     webhooks:
       add_new: 新增端點
       delete: 刪除
@@ -1328,7 +1334,7 @@ zh-TW:
       muting: 正在匯入已靜音帳號
     type: 匯入類型
     type_groups:
-      constructive: 跟隨者與書籤
+      constructive: 跟隨中與書籤
       destructive: 封鎖與靜音
     types:
       blocking: 您封鎖的使用者列表
@@ -1628,14 +1634,26 @@ zh-TW:
     import: 匯入
     import_and_export: 匯入及匯出
     migrate: 帳號搬遷
-    notifications: 通知
+    notifications: 電子郵件通知
     preferences: 偏好設定
     profile: 個人檔案
     relationships: 跟隨中與跟隨者
+    severed_relationships: 已斷絕服務關係
     statuses_cleanup: 自動嘟文刪除
     strikes: 管理警告
     two_factor_authentication: 兩階段驗證
     webauthn_authentication: 安全金鑰
+  severed_relationships:
+    download: 下載 (%{count} 份)
+    event_type:
+      account_suspension: 停權帳號 (%{target_name})
+      domain_block: 停權伺服器 (%{target_name})
+      user_domain_block: 您已封鎖 %{target_name}
+    lost_followers: 失去之跟隨者
+    lost_follows: 失去之跟隨中
+    preamble: 當您封鎖網域或您的管理員決定停權遠端伺服器時，您可能失去跟隨中或跟隨者。當此發生時，您能下載斷絕服務關係之列表並於其他伺服器中檢視或匯入資料。
+    purged: 關於此伺服器已被您的伺服器管理員清除之資訊
+    type: 事件
   statuses:
     attached:
       audio:
@@ -1667,8 +1685,6 @@ zh-TW:
         other: "%{count} 票"
       vote: 投票
     show_more: 顯示更多
-    show_newer: 顯示較新嘟文
-    show_older: 顯示較舊嘟文
     show_thread: 顯示討論串
     title: "%{name}：「%{quote}」"
     visibilities:
@@ -1725,6 +1741,7 @@ zh-TW:
     contrast: Mastodon（高對比）
     default: Mastodon（深色）
     mastodon-light: Mastodon（亮色）
+    system: 自動（使用系統佈景主題）
   time:
     formats:
       default: "%Y 年 %b 月 %d 日 %H:%M"
@@ -1837,7 +1854,8 @@ zh-TW:
       follows_subtitle: 跟隨家喻戶曉的熱門帳號
       follows_title: 推薦跟隨帳號
       follows_view_more: 檢視更多人以跟隨
-      hashtags_recent_count: 於過去 %{days} 天 %{people} 人
+      hashtags_recent_count:
+        other: 於過去二天 %{people} 人
       hashtags_subtitle: 探索過去兩天內的熱門主題標籤
       hashtags_title: 熱門主題標籤
       hashtags_view_more: 檢視更多熱門主題標籤

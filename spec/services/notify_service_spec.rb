@@ -129,6 +129,35 @@ RSpec.describe NotifyService do
     end
   end
 
+  describe NotifyService::DismissCondition do
+    subject { described_class.new(notification) }
+
+    let(:activity) { Fabricate(:mention, status: Fabricate(:status)) }
+    let(:notification) { Fabricate(:notification, type: :mention, activity: activity, from_account: activity.status.account, account: activity.account) }
+
+    describe '#dismiss?' do
+      context 'when sender is silenced' do
+        before do
+          notification.from_account.silence!
+        end
+
+        it 'returns false' do
+          expect(subject.dismiss?).to be false
+        end
+      end
+
+      context 'when recipient has blocked sender' do
+        before do
+          notification.account.block!(notification.from_account)
+        end
+
+        it 'returns true' do
+          expect(subject.dismiss?).to be true
+        end
+      end
+    end
+  end
+
   describe NotifyService::FilterCondition do
     subject { described_class.new(notification) }
 
@@ -307,6 +336,19 @@ RSpec.describe NotifyService do
 
             it 'returns false' do
               expect(subject.filter?).to be false
+            end
+          end
+
+          context 'when the sender is mentioned in an unrelated message chain' do
+            before do
+              original_status = Fabricate(:status, visibility: :direct)
+              intermediary_status = Fabricate(:status, visibility: :direct, thread: original_status)
+              notification.target_status.update(thread: intermediary_status)
+              Fabricate(:mention, status: original_status, account: notification.from_account)
+            end
+
+            it 'returns true' do
+              expect(subject.filter?).to be true
             end
           end
         end

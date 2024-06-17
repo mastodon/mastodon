@@ -77,13 +77,15 @@ es:
           warn: Ocultar el contenido filtrado detrás de una advertencia mencionando el título del filtro
       form_admin_settings:
         activity_api_enabled: Conteo de publicaciones publicadas localmente, usuarios activos y registros nuevos cada semana
-        backups_retention_period: Mantener los archivos de usuario generados durante el número de días especificado.
+        app_icon: WEBP, PNG, GIF o JPG. Reemplaza el icono de aplicación predeterminado en dispositivos móviles con un icono personalizado.
+        backups_retention_period: Los usuarios tienen la capacidad de generar archivos de sus mensajes para descargar más adelante. Cuando se establece un valor positivo, estos archivos se eliminarán automáticamente del almacenamiento después del número de días especificado.
         bootstrap_timeline_accounts: Estas cuentas aparecerán en la parte superior de las recomendaciones de los nuevos usuarios.
         closed_registrations_message: Mostrado cuando los registros están cerrados
-        content_cache_retention_period: Las publicaciones de otros servidores se eliminarán después del número especificado de días cuando se establezca un valor positivo. Esto puede ser irreversible.
+        content_cache_retention_period: Todas las publicaciones de otros servidores (incluso impulsos y respuestas) se eliminarán después del número de días especificado, sin tener en cuenta la interacción del usuario local con esos mensajes. Esto incluye mensajes donde un usuario local los ha marcado como marcadores o favoritos. Las menciones privadas entre usuarios de diferentes instancias también se perderán sin posibilidad de recuperación. El uso de esta configuración está destinado a instancias de propósito especial, y rompe muchas expectativas de los usuarios cuando se implementa para un uso de propósito general.
         custom_css: Puedes aplicar estilos personalizados a la versión web de Mastodon.
+        favicon: WEBP, PNG, GIF o JPG. Reemplaza el favicon predeterminado de Mastodon con un icono personalizado.
         mascot: Reemplaza la ilustración en la interfaz web avanzada.
-        media_cache_retention_period: Los archivos multimedia descargados se eliminarán después del número especificado de días cuando se establezca un valor positivo, y se redescargarán bajo demanda.
+        media_cache_retention_period: Los archivos multimedia de las publicaciones creadas por usuarios remotos se almacenan en caché en tu servidor. Cuando se establece un valor positivo, estos archivos se eliminarán después del número especificado de días. Si los datos multimedia se solicitan después de eliminarse, se volverán a descargar, si el contenido fuente todavía está disponible. Debido a restricciones en la frecuencia con la que las tarjetas de previsualización de enlaces realizan peticiones a sitios de terceros, se recomienda establecer este valor a al menos 14 días, o las tarjetas de previsualización de enlaces no se actualizarán bajo demanda antes de ese momento.
         peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el Fediverso. Aquí no se incluye ningún dato sobre si federas con un servidor determinado, solo que tu servidor lo conoce. Esto es utilizado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado por que su cuenta pueda ser descubierta.
         require_invite_text: Cuando los registros requieren aprobación manual, hace obligatoria la entrada de texto "¿Por qué quieres unirte?" en lugar de opcional
@@ -243,7 +245,7 @@ es:
         backups_retention_period: Período de retención del archivo de usuario
         bootstrap_timeline_accounts: Recomendar siempre estas cuentas a nuevos usuarios
         closed_registrations_message: Mensaje personalizado cuando los registros no están disponibles
-        content_cache_retention_period: Período de retención de caché de contenido
+        content_cache_retention_period: Período de retención de contenido remoto
         custom_css: CSS personalizado
         mascot: Mascota personalizada (legado)
         media_cache_retention_period: Período de retención de caché multimedia

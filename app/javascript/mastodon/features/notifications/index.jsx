@@ -17,6 +17,7 @@ import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?
 import { compareId } from 'mastodon/compare_id';
 import { Icon }  from 'mastodon/components/icon';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { submitMarkers } from '../../actions/markers';
@@ -77,12 +78,8 @@ const mapStateToProps = state => ({
 });
 
 class Notifications extends PureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     columnId: PropTypes.string,
     notifications: ImmutablePropTypes.list.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -190,7 +187,7 @@ class Notifications extends PureComponent {
     const { intl, notifications, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, lastReadId, canMarkAsRead, needsNotificationPermission } = this.props;
     const pinned = !!columnId;
     const emptyMessage = <FormattedMessage id='empty_column.notifications' defaultMessage="You don't have any notifications yet. When other people interact with you, you will see it here." />;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     let scrollableContent = null;
 
@@ -299,4 +296,4 @@ class Notifications extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(Notifications));
+export default connect(mapStateToProps)(withIdentity(injectIntl(Notifications)));

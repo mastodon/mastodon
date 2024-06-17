@@ -22,10 +22,6 @@ class Api::V1::FollowedTagsController < Api::BaseController
     )
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def next_path
     api_v1_followed_tags_url pagination_params(max_id: pagination_max_id) if records_continue?
   end
@@ -40,9 +36,5 @@ class Api::V1::FollowedTagsController < Api::BaseController
 
   def records_continue?
     @results.size == limit_param(TAGS_LIMIT)
-  end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
   end
 end

@@ -285,6 +285,7 @@ it:
         update_custom_emoji_html: "%{name} ha aggiornato emoji %{target}"
         update_domain_block_html: "%{name} ha aggiornato il blocco dominio per %{target}"
         update_ip_block_html: "%{name} ha cambiato la regola per l'IP %{target}"
+        update_report_html: "%{name} ha aggiornato la segnalazione %{target}"
         update_status_html: "%{name} ha aggiornato lo status di %{target}"
         update_user_role_html: "%{name} ha modificato il ruolo %{target}"
       deleted_account: account eliminato
@@ -292,6 +293,7 @@ it:
       filter_by_action: Filtra per azione
       filter_by_user: Filtra per utente
       title: Registro di controllo
+      unavailable_instance: "(nome di dominio non disponibile)"
     announcements:
       destroyed_msg: Annuncio eliminato!
       edit:
@@ -597,6 +599,9 @@ it:
       actions_description_html: Decidete quali azioni intraprendere per risolvere la segnalazione. Se si intraprende un'azione punitiva contro l'account segnalato, gli sarà inviata una notifica via e-mail, tranne quando è selezionata la categoria <strong>Spam</strong>.
       actions_description_remote_html: Decide quali azioni intraprendere per risolvere la relazione. Questo influenzerà solo come <strong>il tuo</strong> server comunica con questo account remoto e ne gestisce il contenuto.
       add_to_report: Aggiungi altro al report
+      already_suspended_badges:
+        local: Già sospeso su questo server
+        remote: Già sospeso sul loro server
       are_you_sure: Sei sicuro?
       assign_to_self: Assegna a me
       assigned: Moderatore assegnato
@@ -748,6 +753,7 @@ it:
         desc_html: Questo si basa su script esterni da hCaptcha, che possono rappresentare un problema di sicurezza e privacy. Inoltre, <strong>questo può rendere il processo di registrazione significativamente meno accessibile ad alcune persone (soprattutto disabili)</strong>. Per questi motivi, prendi in considerazione misure alternative come la registrazione basata su approvazione o su invito.
         title: Richiedi ai nuovi utenti di risolvere un CAPTCHA per confermare il loro account
       content_retention:
+        danger_zone: Zona pericolosa
         preamble: Controlla come vengono memorizzati i contenuti generati dall'utente in Mastodon.
         title: Conservazione dei contenuti
       default_noindex:
@@ -946,7 +952,7 @@ it:
       delete: Cancella
       edit_preset: Modifica avviso predefinito
       empty: Non hai ancora definito alcun avviso preimpostato.
-      title: Gestisci avvisi predefiniti
+      title: Preimpostazioni di avviso
     webhooks:
       add_new: Aggiungi endpoint
       delete: Elimina
@@ -1231,7 +1237,7 @@ it:
     bookmarks: Segnalibri
     csv: CSV
     domain_blocks: Blocchi di dominio
-    lists: Liste
+    lists: Elenchi
     mutes: Stai silenziando
     storage: Archiviazione media
   featured_tags:
@@ -1654,14 +1660,26 @@ it:
     import: Importa
     import_and_export: Importa ed esporta
     migrate: Migrazione dell'account
-    notifications: Notifiche
+    notifications: Notifiche e-mail
     preferences: Preferenze
     profile: Profilo
     relationships: Follows e followers
+    severed_relationships: Relazioni interrotte
     statuses_cleanup: Cancellazione automatica dei post
     strikes: Sanzioni di moderazione
     two_factor_authentication: Autenticazione a due fattori
     webauthn_authentication: Chiavi di sicurezza
+  severed_relationships:
+    download: Scarica (%{count})
+    event_type:
+      account_suspension: Sospensione dell'account (%{target_name})
+      domain_block: Sospensione del server (%{target_name})
+      user_domain_block: Hai bloccato %{target_name}
+    lost_followers: Seguaci persi
+    lost_follows: Account seguiti persi
+    preamble: Potresti perdere account seguiti e seguaci quando blocchi un dominio o quando i tuoi moderatori decidono di sospendere un server remoto. Quando ciò accadrà, potrai scaricare liste di relazioni interrotte, da consultare ed eventualmente importare su un altro server.
+    purged: Le informazioni su questo server sono state eliminate dagli amministratori del tuo server.
+    type: Evento
   statuses:
     attached:
       audio:
@@ -1699,8 +1717,6 @@ it:
         other: "%{count} voti"
       vote: Vota
     show_more: Mostra di più
-    show_newer: Mostra più nuovi
-    show_older: Mostra più vecchi
     show_thread: Mostra thread
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1757,6 +1773,7 @@ it:
     contrast: Mastodon (contrasto elevato)
     default: Mastodon (scuro)
     mastodon-light: Mastodon (chiaro)
+    system: Automatico (usa il tema di sistema)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -1869,7 +1886,9 @@ it:
       follows_subtitle: Segui account ben noti
       follows_title: Chi seguire
       follows_view_more: Visualizza più persone da seguire
-      hashtags_recent_count: "%{people} persone negli ultimi %{days} giorni"
+      hashtags_recent_count:
+        one: "%{people} persona negli ultimi 2 giorni"
+        other: "%{people} persone negli ultimi 2 giorni"
       hashtags_subtitle: Esplora le tendenze degli ultimi 2 giorni
       hashtags_title: Hashtag di tendenza
       hashtags_view_more: Visualizza altri hashtag di tendenza

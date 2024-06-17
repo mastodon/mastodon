@@ -77,13 +77,15 @@ gl:
           warn: Agochar o contido filtrado tras un aviso que conteña o nome do filtro
       form_admin_settings:
         activity_api_enabled: Conta do número de publicacións locais, usuarias activas, e novos rexistros en acumulados semanais
-        backups_retention_period: Gardar os arquivos xerados pola usuaria durante o número de días indicado.
+        app_icon: WEBP, PNG, GIF ou JPG. Sobrescribe a icona por defecto da aplicación nos dispositivos móbiles cunha icona personalizada.
+        backups_retention_period: As usuarias poden crear arquivos das súas publicacións para descargalos. Cando se establece un valor positivo, estes arquivos serán borrados automáticamente da túa almacenaxe despois do número de días establecido.
         bootstrap_timeline_accounts: Estas contas aparecerán fixas na parte superior das recomendacións para as usuarias.
         closed_registrations_message: Móstrase cando non se admiten novas usuarias
-        content_cache_retention_period: As publicacións desde outros servidores serán eliminadas despois do número de días indicados ao poñer un valor positivo. É unha acción irreversible.
+        content_cache_retention_period: Todas as publicacións procedentes de outros servidores (incluído promocións e respostas) van ser eliminadas despois do número de días indicado, sen importar as interaccións das usuarias locais con esas publicacións. Esto inclúe publicacións que a usuaria local marcou como favoritas ou incluíu nos marcadores. As mencións privadas entre usuarias de diferentes instancias tamén se eliminarán e non se poderán restablecer. O uso desta ferramenta esta orientado a situacións especiais e estraga moitas das expectativas das usuarias ao implementala cun propósito de uso xeral.
         custom_css: Podes aplicar deseños personalizados na versión web de Mastodon.
+        favicon: WEBP, PNG, GIF ou JPG. Sobrescribe a icona de favoritos de Mastodon por defecto cunha icona personalizada.
         mascot: Sobrescribe a ilustración na interface web avanzada.
-        media_cache_retention_period: Os ficheiros multimedia descargados serán eliminados despois do número de días indicado ao establecer un valor positivo, e voltos a descargar baixo petición.
+        media_cache_retention_period: Os ficheiros multimedia de publicacións de usuarias remotas están almacenados no teu servidor. Ao establecer un valor positivo, o multimedia vaise eliminar despois do número de días establecido. Se o multimedia fose requerido após ser eliminado entón descargaríase outra vez, se aínda está dispoñible na orixe. Debido a restricións sobre a frecuencia en que o servizo de vista previa trae recursos de terceiras partes, é recomendable establecer este valor polo menos en 14 días, ou as tarxetas de vista previa non se actualizarán baixo demanda para casos anteriores a ese prazo.
         peers_api_enabled: Unha lista dos nomes de dominio que este servidor atopou no fediverso. Non se inclúen aquí datos acerca de se estás a federar con eles ou non, só que o teu servidor os recoñeceu. Ten utilidade para servizos que recollen estatísticas acerca da federación nun amplo senso.
         profile_directory: O directorio de perfís inclúe a tódalas usuarias que optaron por ser descubribles.
         require_invite_text: Cando os rexistros requiren aprobación manual, facer que o texto "Por que te queres rexistrar?" do convite sexa obrigatorio en lugar de optativo
@@ -243,7 +245,7 @@ gl:
         backups_retention_period: Período de retención do arquivo da usuaria
         bootstrap_timeline_accounts: Recomendar sempre estas contas ás novas usuarias
         closed_registrations_message: Mensaxe personalizada para cando o rexistro está pechado
-        content_cache_retention_period: Período de retención da caché do contido
+        content_cache_retention_period: Período de retención de contido remoto
         custom_css: CSS personalizado
         mascot: Mascota propia (herdado)
         media_cache_retention_period: Período de retención da caché multimedia

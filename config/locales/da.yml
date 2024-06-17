@@ -285,6 +285,7 @@ da:
         update_custom_emoji_html: "%{name} opdaterede emoji %{target}"
         update_domain_block_html: "%{name} opdaterede domæneblokeringen for %{target}"
         update_ip_block_html: "%{name} ændrede reglen for IP'en %{target}"
+        update_report_html: "%{name} opdaterede rapporten %{target}"
         update_status_html: "%{name} opdaterede indlægget fra %{target}"
         update_user_role_html: "%{name} ændrede %{target}-rolle"
       deleted_account: slettet konto
@@ -292,6 +293,7 @@ da:
       filter_by_action: Filtrér efter handling
       filter_by_user: Filtrér efter bruger
       title: Revisionslog
+      unavailable_instance: "(domænenavn utilgængeligt)"
     announcements:
       destroyed_msg: Bekendtgørelsen er slettet!
       edit:
@@ -597,6 +599,9 @@ da:
       actions_description_html: Afgør, hvilke foranstaltning, der skal træffes for at løse denne anmeldelse. Træffes en straffende foranstaltning mod den anmeldte konto, fremsendes en e-mailnotifikation, undtagen når kategorien <strong>Spam</strong> er valgt.
       actions_description_remote_html: Fastslå en nødvendig handling mhp. at løse denne anmeldelse. Dette vil kun påvirke <strong>din</strong> servers kommunikation med, og indholdshåndtering for, fjernkontoen.
       add_to_report: Føj mere til anmeldelse
+      already_suspended_badges:
+        local: Allerede suspenderet på denne server
+        remote: Allerede suspenderet på vedkommendes server
       are_you_sure: Sikker?
       assign_to_self: Tildel til mig
       assigned: Tildelt moderator
@@ -748,6 +753,7 @@ da:
         desc_html: Dette er afhængig af eksterne scripts fra hCaptcha, som kan være en sikkerhed og privatlivets fred. Derudover kan <strong>dette gøre registreringsprocessen betydeligt mindre tilgængelig for nogle (især deaktiveret) personer</strong>. Af disse grunde bedes De overveje alternative foranstaltninger såsom godkendelsesbaseret eller inviteret til at blive registreret.
         title: Kræv nye brugere for at løse en CAPTCHA for at bekræfte deres konto
       content_retention:
+        danger_zone: Farezone
         preamble: Styr, hvordan Mastodon gemmer brugergenereret indhold.
         title: Indholdsopbevaring
       default_noindex:
@@ -946,7 +952,7 @@ da:
       delete: Slet
       edit_preset: Redigér advarselsforvalg
       empty: Ingen advarselsforvalg defineret endnu.
-      title: Håndtérr advarselsforvalg
+      title: Præindstillinger for advarsel
     webhooks:
       add_new: Tilføj endepunkt
       delete: Slet
@@ -1652,14 +1658,26 @@ da:
     import: Import
     import_and_export: Import og eksport
     migrate: Kontomigrering
-    notifications: Notifikationer
+    notifications: E-mailnotifikationer
     preferences: Præferencer
     profile: Offentlig profil
     relationships: Følger og følgere
+    severed_relationships: Afbrudte forhold
     statuses_cleanup: Auto-indlægssletning
     strikes: Moderationsadvarsler
     two_factor_authentication: Tofaktorgodkendelse
     webauthn_authentication: Sikkerhedsnøgler
+  severed_relationships:
+    download: Download (%{count})
+    event_type:
+      account_suspension: Kontosuspendering (%{target_name})
+      domain_block: Serversuspendering (%{target_name})
+      user_domain_block: "%{target_name} blev blokeret"
+    lost_followers: Tabte følgere
+    lost_follows: Mistet følger
+    preamble: Der kan mistes fulgte objekter og følgere, når et domæne blokeres eller moderatorerne beslutter at suspendere en ekstern server. Når det sker, kan der downloades lister over afbrudte relationer til inspektion og mulig import på anden server.
+    purged: Oplysninger om denne server er blevet renset af serveradministratoreren.
+    type: Begivenhed
   statuses:
     attached:
       audio:
@@ -1697,8 +1715,6 @@ da:
         other: "%{count} stemmer"
       vote: Stem
     show_more: Vis flere
-    show_newer: Vis nyere
-    show_older: Vis ældre
     show_thread: Vis tråd
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1755,6 +1771,7 @@ da:
     contrast: Mastodon (høj kontrast)
     default: Mastodont (mørkt)
     mastodon-light: Mastodon (lyst)
+    system: Automatisk (benyt systemtema)
   time:
     formats:
       default: "%d. %b %Y, %H:%M"
@@ -1867,7 +1884,9 @@ da:
       follows_subtitle: Følg velkendte konti
       follows_title: Hvem, som skal følges
       follows_view_more: Vis nogle personer at følge
-      hashtags_recent_count: "%{people} personer de seneste %{days} dage"
+      hashtags_recent_count:
+        one: "%{people} person de seneste 2 dage"
+        other: "%{people} personer de seneste 2 dage"
       hashtags_subtitle: Udforsk de seneste 2 dages tendenser
       hashtags_title: Populære hashtags
       hashtags_view_more: Se flere populære hashtags

@@ -77,13 +77,15 @@ is:
           warn: Fela síað efni á bakvið aðvörun sem tekur fram titil síunnar
       form_admin_settings:
         activity_api_enabled: Fjöldi staðværra stöðufærslna, virkra notenda og nýskráninga í vikulegum skömmtum
-        backups_retention_period: Halda safni notandans í tiltekinn fjölda daga.
+        app_icon: WEBP, PNG, GIF eða JPG. Tekur yfir sjálfgefna táknmynd forrits á snjalltækjum með sérsniðinni táknmynd.
+        backups_retention_period: Notendur hafa kost á að útbúa safnskrár með færslunum sínum til að sækja svo síðar. Þegar þetta er stillt á jákvætt gildi, verður þessum safnskrám eytt sjáfkrafa eftir þeim tiltekna fjölda daga.
         bootstrap_timeline_accounts: Þessir notendaaðgangar verða festir efst í meðmælum til nýrra notenda um að fylgjast með þeim.
         closed_registrations_message: Birtist þegar lokað er á nýskráningar
-        content_cache_retention_period: Færslum af öðrum netþjónum verður eytt eftir tiltekinn fjölda daga þegar þetta er jákvætt gildi. Þetta gæti verið óafturkallanleg aðgerð.
+        content_cache_retention_period: Öllum færslum af öðrum netþjónum (þar með taldar endurbirtingar og svör) verður eytt eftir uppgefinn fjölda daga, án tillits til gagnvirkni staðværra notenda við þessar færslur. Þetta á einnig við um færslur sem notandinn hefur merkt sem bókamerki eða eftirlæti. Beinar tilvísanir (einkaspjall) milli notenda af mismunandi netþjónum munu einnig tapast og er engin leið til að endurheimta þær. Notkun á þessari stillingu er einungis ætluð sérstilltum netþjónum og mun skemma fyrir notendum ef þetta er sett upp fyrir almenna notkun.
         custom_css: Þú getur virkjað sérsniðna stíla í vefútgáfu Mastodon.
+        favicon: WEBP, PNG, GIF eða JPG. Tekur yfir sjálfgefna Mastodon favicon-táknmynd með sérsniðinni táknmynd.
         mascot: Þetta tekyr yfir myndskreytinguna í ítarlega vefviðmótinu.
-        media_cache_retention_period: Sóttu myndefni verður eytt eftir tiltekinn fjölda daga þegar þetta er jákvætt gildi og síðan sótt aftur eftir þörfum.
+        media_cache_retention_period: Myndefnisskrár úr færslum sem gerðar eru af fjartengdum notendum eru geymdar á netþjóninum þínum. Þegar þetta er stillt á jákvætt gildi, verður þessum skrám eytt sjáfkrafa eftir þeim tiltekna fjölda daga. Ef beðið er um myndefnið eftir að því er eytt, mun það verða sótt aftur ef frumgögnin eru ennþá aðgengileg. Vegna takmarkana á hversu oft forskoðunarspjöld tengla eru sótt á utanaðkomandi netþjóna, þá er mælt með því að setja þetta gildi á að minnsta kosti 14 daga, annars gæti mistekist að uppfæra forskoðunarspjöld tengla eftir þörfum fyrir þann tíma.
         peers_api_enabled: Listi yfir þau lénaheiti sem þessi netþjónn hefur rekist á í skýjasambandinu. Engin gögn eru hér sem gefa til kynna hvort þú sért í sambandi við tiltekinn netþjón, bara að netþjónninn þinn viti um hann. Þetta er notað af þjónustum sem safna tölfræði um skýjasambönd á almennan hátt.
         profile_directory: Notendamappan telur upp alla þá notendur sem hafa valið að vera uppgötvanlegir.
         require_invite_text: Þegar nýskráningar krefjast handvirks samþykkis, þá skal gera textann í “Hvers vegna viltu taka þátt?” að kröfu en ekki valkvæðan
@@ -243,7 +245,7 @@ is:
         backups_retention_period: Tímalengd sem safni notandans er haldið eftir
         bootstrap_timeline_accounts: Alltaf mæla með þessum notendaaðgöngum fyrir nýja notendur
         closed_registrations_message: Sérsniðin skilaboð þegar ekki er hægt að nýskrá
-        content_cache_retention_period: Tímalengd sem haldið er í biðminni
+        content_cache_retention_period: Tímabil sem á að geyma fjartengt efni
         custom_css: Sérsniðið CSS
         mascot: Sérsniðið gæludýr (eldra)
         media_cache_retention_period: Tímalengd sem myndefni haldið

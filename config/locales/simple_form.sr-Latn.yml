@@ -20,7 +20,7 @@ sr-Latn:
       admin_account_action:
         include_statuses: Korisnik će videti koje su objave prouzrokovale moderacijsku radnju ili upozorenje
         send_email_notification: Korisnik će dobiti objašnjenje toga šta mu se desilo sa nalogom
-        text_html: Opcionalno. Možete koristiti sintaksu objava. Možete <a href="%{path}">dodati unapred određene postavke upozorenja</a> za uštedu vremena
+        text_html: Opciono. Možete koristiti sintaksu objava. Možete <a href="%{path}">dodati predefinisana upozorenja</a> za uštedu vremena
         type_html: Izaberite šta da radite sa <strong>%{acct}</strong>
         types:
           disable: Sprečava korisnika da koristi svoj nalog, ali ne briše niti sakriva njegove sadržaje.
@@ -28,7 +28,7 @@ sr-Latn:
           sensitive: Učini da svi medijski prilozi ovog korisnika prisilno budu označeni kao osetljivi.
           silence: Sprečava korisnika da pravi javne objave, sakriva njegove objave i obaveštenja od ljudi koji ga ne prate. Zatvara sve prijave podnete protiv ovog naloga.
           suspend: Sprečava svu interakciju od ovog naloga i ka ovom nalogu i briše njegov sadržaj. Opozivo u roku od 30 dana. Zatvara sve prijave podnete protiv ovog naloga.
-        warning_preset_id: Opcionalno. Možete i dalje dodati prilagođeni tekst na kraj preseta
+        warning_preset_id: Opciono. Možete i dalje dodati prilagođeni tekst na kraj predefinisane vrednosti
       announcement:
         all_day: Kada je ova opcija označena, samo datumi iz vremenskog opsega će biti prikazani
         ends_at: Opciono. Objava će biti automatski opozvana u ovom trenutku
@@ -77,13 +77,15 @@ sr-Latn:
           warn: Sakrij filtrirani sadržaj iza upozorenja u kome se navodi naziv filtera
       form_admin_settings:
         activity_api_enabled: Brojevi lokalno postavljenih objava, aktivnih korisnika i novih registracija na nedeljnoj bazi
-        backups_retention_period: Čuvaj generisane korisničke arhive navedeni broj dana.
+        app_icon: WEBP, PNG, GIF ili JPG. Zamenjuje podrazumevanu ikonicu aplikacije na mobilnim uređajima prilagođenom ikonicom.
+        backups_retention_period: Korisnici imaju mogućnost da generišu arhive svojih objava za kasnije preuzimanje. Kada se podese na pozitivnu vrednost, ove arhive će se automatski izbrisati iz vašeg skladišta nakon navedenog broja dana.
         bootstrap_timeline_accounts: Ovi nalozi će biti zakačeni na vrh preporuka za praćenje novih korisnika.
         closed_registrations_message: Prikazuje se kada su registracije zatvorene
-        content_cache_retention_period: Sve objave i podržavanja sa drugih servera će biti izbrisani nakon navedenog broja dana. Neke objave se možda neće moći oporaviti. Svi povezani obeleživači, omiljeni i podržavanja će takođe biti izgubljeni i nemoguće je opozvati radnju.
+        content_cache_retention_period: Sve objave sa drugih servera (uključujući podržavanja i odgovore) će biti izbrisane nakon navedenog broja dana, bez obzira na bilo kakvu interakciju lokalnog korisnika sa tim objavama. Ovo uključuje objave u kojima ih je lokalni korisnik označio kao obeleživače ili omiljene. Privatna pominjanja između korisnika sa različitih instanci će takođe biti izgubljena i nemoguće ih je vratiti. Korišćenje ove postavke je namenjeno za slučajeve posebne namene i krši mnoga očekivanja korisnika kada se primeni za upotrebu opšte namene.
         custom_css: Možete da primenite prilagođene stilove na veb verziji Mastodon-a.
+        favicon: WEBP, PNG, GIF ili JPG. Zamenjuje podrazumevani Mastodon favikon prilagođenom ikonicom.
         mascot: Zamenjuje ilustraciju u naprednom veb okruženju.
-        media_cache_retention_period: Kada se postavi na pozitivnu vrednost, preuzete medijske datoteke će biti izbrisane nakon navedenog broja dana, i ponovo preuzete na zahtev.
+        media_cache_retention_period: Medijske datoteke iz objava udaljenih korisnika se keširaju na vašem serveru. Kada se podesi na pozitivnu vrednost, mediji će biti izbrisani nakon navedenog broja dana. Ako se medijski podaci zahtevaju nakon brisanja, biće ponovo preuzeti, ako je izvorni sadržaj i dalje dostupan. Zbog ograničenja koliko često kartice za pregled veza anketiraju sajtove trećih strana, preporučuje se da ovu vrednost postavite na najmanje 14 dana, inače kartice za pregled veza neće biti ažurirane na zahtev pre tog vremena.
         peers_api_enabled: Lista domena sa kojima se ovaj server susreo u fediverzumu. Ovde nisu sadržani podaci o tome da li se Vaš server federiše sa drugim serverima, već samo da Vaš server zna za njih. Ove informacije koriste servisi koji prikupljaju podatke i vode statistiku o federaciji u širem smislu.
         profile_directory: Direktorijum profila navodi sve korisnike koji su se opredelili da budu vidljivi.
         require_invite_text: Kada registracije zahtevaju ručno odobrenje, postavite da odgovor na „Zašto želite da se pridružite?“ bude obavezan, a ne opcionalan
@@ -116,7 +118,7 @@ sr-Latn:
           sign_up_requires_approval: Nove registracije će zahtevati Vaše odobrenje
         severity: Izaberite šta će se desiti sa zahtevima sa ove IP adrese
       rule:
-        hint: Opcionalno. Pružite više detalja o pravilu
+        hint: Opciono. Pružite više detalja o pravilu
         text: Opišite pravilo ili uslov za korisnike na ovom serveru. Potrudite se da opis bude kratak i jednostavan
       sessions:
         otp: 'Unesite dvofaktorski kod sa Vašeg telefona ili koristite jedan od kodova za oporavak:'
@@ -153,7 +155,7 @@ sr-Latn:
       account_migration:
         acct: Ručica (@) novog naloga
       account_warning_preset:
-        text: Tekst preseta
+        text: Tekst predefinisane vrednosti
         title: Naslov
       admin_account_action:
         include_statuses: Uključi prijavljene objave u e-poštu
@@ -166,7 +168,7 @@ sr-Latn:
           sensitive: Osetljivo
           silence: Utišaj
           suspend: Obustavite i nepovratno izbrišite podatke o nalogu
-        warning_preset_id: Koristi upozoravajući preset
+        warning_preset_id: Koristi predefinisano upozorenje
       announcement:
         all_day: Celodnevni događaj
         ends_at: Kraj događaja
@@ -243,7 +245,7 @@ sr-Latn:
         backups_retention_period: Period čuvanja korisničke arhive
         bootstrap_timeline_accounts: Uvek preporuči ove naloge novim korisnicima
         closed_registrations_message: Prilagođena poruka kada prijave nisu moguće
-        content_cache_retention_period: Period čuvanja keša sadržaja
+        content_cache_retention_period: Period zadržavanja udaljenog sadržaja
         custom_css: Prilagođeni CSS
         mascot: Prilagođena maskota (nasleđe)
         media_cache_retention_period: Period čuvanja keša medija

@@ -285,6 +285,7 @@ tr:
         update_custom_emoji_html: "%{name}, %{target} emojisini güncelledi"
         update_domain_block_html: "%{name}, %{target} alan adının engelini güncelledi"
         update_ip_block_html: "%{name}, %{target} IP adresi için kuralı güncelledi"
+        update_report_html: "%{name}, %{target} raporunu güncelledi"
         update_status_html: "%{name}, %{target} kullanıcısının gönderisini güncelledi"
         update_user_role_html: "%{name}, %{target} rolünü değiştirdi"
       deleted_account: hesap silindi
@@ -292,6 +293,7 @@ tr:
       filter_by_action: Eyleme göre filtre
       filter_by_user: Kullanıcıya göre filtre
       title: Denetim günlüğü
+      unavailable_instance: "(alan adı mevcut değil)"
     announcements:
       destroyed_msg: Duyuru başarıyla silindi!
       edit:
@@ -597,6 +599,9 @@ tr:
       actions_description_html: Bu bildirimi çözmek için ne yapılması gerektiğine karar verin. Bildirilen hesap için ceza işlemi yaparsanız, <strong>İstenmeyen</strong> kategorisi seçilmemişse, onlara bir e-posta duyurusu gönderilecektir.
       actions_description_remote_html: Bu bildirimi çözmek için hangi eylemi yapmak istediğinize karar verin. Bu yalnızca <strong>sizin</strong> sunucunuzun bu uzak hesapla nasıl etkileşeğini ve içeriğiyle ne yapacağını etkiler.
       add_to_report: Bildirime daha fazlasını ekle
+      already_suspended_badges:
+        local: Bu sunucuda zaten askıya alınmış
+        remote: Sunucularında zaten askıya alınmış
       are_you_sure: Emin misiniz?
       assign_to_self: Bana ata
       assigned: Denetleyici atandı
@@ -748,6 +753,7 @@ tr:
         desc_html: Bu, güvenlik ve gizlilikle ilgili bir endişe kaynağı olabilecek hCaptcha'nın harici komut dosyalarına dayanır. Ayrıca <strong>bu, kayıt sürecini bazı (özellikle engelli) kişiler için önemli ölçüde daha az erişilebilir hale getirebilir</strong>. Bu nedenlerle, lütfen onaya dayalı veya davete dayalı kayıt gibi alternatif önlemleri göz önünde bulundurun.
         title: Yeni kullanıcıların hesaplarını doğrulamaları için bir CAPTCHA çözmelerini gerektir
       content_retention:
+        danger_zone: Tehlikeli bölge
         preamble: Kullanıcıların ürettiği içeriğin Mastodon'da nasıl saklanacağını denetleyin.
         title: İçerik saklama
       default_noindex:
@@ -946,7 +952,7 @@ tr:
       delete: Sil
       edit_preset: Uyarı ön-ayarını düzenle
       empty: Henüz önceden ayarlanmış bir uyarı tanımlanmadı.
-      title: Uyarı ön-ayarlarını yönet
+      title: Uyarı Önayarları
     webhooks:
       add_new: Uç nokta ekle
       delete: Sil
@@ -1652,14 +1658,26 @@ tr:
     import: İçe aktar
     import_and_export: İçe ve dışa aktar
     migrate: Hesap taşıma
-    notifications: Bildirimler
+    notifications: E-posta bildirimleri
     preferences: Tercihler
     profile: Profil
     relationships: Takip edilenler ve takipçiler
+    severed_relationships: Kopmuş ilişkiler
     statuses_cleanup: Otomatik gönderi silme
     strikes: Moderasyon eylemleri
     two_factor_authentication: İki adımlı doğrulama
     webauthn_authentication: Güvenlik anahtarları
+  severed_relationships:
+    download: İndir (%{count})
+    event_type:
+      account_suspension: Hesap askıya alma (%{target_name})
+      domain_block: Sunucu askıya alma (%{target_name})
+      user_domain_block: 'Engellediniz: %{target_name}'
+    lost_followers: Kaybedilen takipçiler
+    lost_follows: Kaybedilen takipler
+    preamble: Bir alan adını engellediğinizde veya denetleyicileriniz uzak bir sunucuyu askıya almaya karar verdiğinde takipçilerinizi ve takiplerinizi kaybedebilirsiniz. Bu olduğunda, kopan ilişkilerin bir listesini, incelemek ve başka bir sunucuya aktarmak için indirebileceksiniz.
+    purged: Bu sunucu hakkındaki bilgiler, sunucunun yöneticileri tarafından temizlenmiş.
+    type: Olay
   statuses:
     attached:
       audio:
@@ -1697,8 +1715,6 @@ tr:
         other: "%{count} oylar"
       vote: Oy Ver
     show_more: Daha fazlasını göster
-    show_newer: Yenileri göster
-    show_older: Eskileri göster
     show_thread: Konuyu göster
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1755,6 +1771,7 @@ tr:
     contrast: Mastodon (Yüksek karşıtlık)
     default: Mastodon (Karanlık)
     mastodon-light: Mastodon (Açık)
+    system: Otomatik (sistem temasını kullan)
   time:
     formats:
       default: "%d %b %Y %H:%M"
@@ -1867,7 +1884,9 @@ tr:
       follows_subtitle: Tanınmış hesapları takip edin
       follows_title: Takip edebileceklerin
       follows_view_more: Takip edecek daha fazla kişi görüntüleyin
-      hashtags_recent_count: "%{days} günde %{people} kişi"
+      hashtags_recent_count:
+        one: Son 2 günde %{people} kişi
+        other: Son 2 günde %{people} kişi
       hashtags_subtitle: Son 2 günde öne çıkanları keşfedin
       hashtags_title: Öne çıkan etiketler
       hashtags_view_more: Daha fazla öne çıkan etiket görüntüleyin

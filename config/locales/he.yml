@@ -291,6 +291,7 @@ he:
         update_custom_emoji_html: "%{name} עדכן/ה אמוג'י %{target}"
         update_domain_block_html: "%{name} עדכן/ה חסימת דומיין עבור %{target}"
         update_ip_block_html: "%{name} שינה כלל עבור IP %{target}"
+        update_report_html: '%{name} עדכן/ה דו"ח %{target}'
         update_status_html: "%{name} עדכן/ה הודעה של %{target}"
         update_user_role_html: "%{name} שינה את התפקיד של %{target}"
       deleted_account: חשבון מחוק
@@ -298,6 +299,7 @@ he:
       filter_by_action: סינון לפי פעולה
       filter_by_user: סינון לפי משתמש
       title: ביקורת יומן
+      unavailable_instance: "(שם מתחם לא זמין)"
     announcements:
       destroyed_msg: הכרזה נמחקה בהצלחה!
       edit:
@@ -621,6 +623,9 @@ he:
       actions_description_html: בחר/י איזו פעולה לבצע על מנת לפתור את הדו"ח. אם תופעל פעולת ענישה כנגד החשבון המדווח, הודעת דוא"ל תשלח אליהם, אלא אם נבחרה קטגוריית ה<strong>ספאם</strong>.
       actions_description_remote_html: בחרו איזו פעולה לבצע כדי לפתור את הדיווח שהוגש. פעולה זו תשפיע רק על התקשורת מול השרת <strong>שלך</strong> עם החשבון המרוחק ותוכנו.
       add_to_report: הוספת פרטים לדיווח
+      already_suspended_badges:
+        local: כבר הודח בשרת זה
+        remote: כבר הודח בשרת שלו
       are_you_sure: 100% על בטוח?
       assign_to_self: הקצה אלי
       assigned: מנחה מוקצה
@@ -776,6 +781,7 @@ he:
         desc_html: אפשרות זו ניסמכת על קטעי קוד חיצוניים של hCaptcha שעלולים להיות סיכון אבטחה ופרטיות. בנוסף, <strong>זה עשוי להפוך את תהליך ההרשמה לבלתי נגיש לא.נשים, במיוחד בעלות ובעלי מוגבלויות</strong>. מסיבות אלו, כדאי לשקול חלופות כמו אשרור מנהלים ידני או הרשמה רק על בסיס הזמנה.
         title: לדרוש פתרון CAPTCHA כדי לאשרר למשתמשים את חשבונם
       content_retention:
+        danger_zone: אזור מסוכן
         preamble: שליטה על דרך אחסון תוכן המשתמשים במסטודון.
         title: תקופת השמירה של תכנים
       default_noindex:
@@ -980,7 +986,7 @@ he:
       delete: למחוק
       edit_preset: ערוך/י טקסט מוכן מראש לאזהרה
       empty: לא הגדרת עדיין שום טקסט מוכן מראש לאזהרה.
-      title: ניהול טקסטים מוכנים מראש לאזהרות
+      title: תצורת אזהרות
     webhooks:
       add_new: הוספת נקודת קצה
       delete: מחיקה
@@ -1704,14 +1710,26 @@ he:
     import: יבוא
     import_and_export: יבוא ויצוא
     migrate: הגירת חשבון
-    notifications: התראות
+    notifications: התראות בדואל
     preferences: העדפות
     profile: פרופיל
     relationships: נעקבים ועוקבים
+    severed_relationships: קשרים שנותקו
     statuses_cleanup: מחיקת הודעות אוטומטית
     strikes: עבירות מנהלתיות
     two_factor_authentication: אימות דו-שלבי
     webauthn_authentication: מפתחות אבטחה
+  severed_relationships:
+    download: הורדה (%{count})
+    event_type:
+      account_suspension: השעיית חשבון (%{target_name})
+      domain_block: השעיית שרת (%{target_name})
+      user_domain_block: חסמת את %{target_name}
+    lost_followers: אובדן עוקבים
+    lost_follows: אובדן נעקבים
+    preamble: הנכם עשויים לאבד עוקבים ונעקבים כשתחסמו שרת או כשמנהליכם יחליטו להשעות שרת אחר. במקרה כזה, תוכלו להוריד רשימה של קשרי המעקב שנותקו, כדי לעבור עליהם ואם תרצו לייבא אותם לשרת אחר.
+    purged: מידע על שרת מרוחק זה נמחק על ידי מנהלי השרת שלך.
+    type: אירוע
   statuses:
     attached:
       audio:
@@ -1761,8 +1779,6 @@ he:
         two: "%{count} קולות"
       vote: הצבעה
     show_more: עוד
-    show_newer: הצג חדשים יותר
-    show_older: הצג ישנים יותר
     show_thread: הצג שרשור
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1819,6 +1835,7 @@ he:
     contrast: מסטודון (ניגודיות גבוהה)
     default: מסטודון (כהה)
     mastodon-light: מסטודון (בהיר)
+    system: אוטומטי (לפי המערכת)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -1931,7 +1948,11 @@ he:
       follows_subtitle: לעקיבה אחרי חלשבונות ידועים
       follows_title: אחרי מי לעקוב
       follows_view_more: ראו עוד א.נשים לעקוב אחריהן.ם
-      hashtags_recent_count: "%{people} אנשים ב־%{days} ימים"
+      hashtags_recent_count:
+        many: "%{people} אנשים ביומיים האחרונים"
+        one: איש אחד ביומיים האחרונים
+        other: "%{people} אנשים ביומיים האחרונים"
+        two: שני אנשים ביומיים האחרונים
       hashtags_subtitle: לחקור מהם הנושאים החמים ביומיים האחרונים
       hashtags_title: תגיות חמות
       hashtags_view_more: צפיה בעוד תגיות שכרגע חוזרות הרבה

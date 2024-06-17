@@ -191,7 +191,7 @@ const timeRemainingString = (
 interface Props {
   intl: IntlShape;
   timestamp: string;
-  year: number;
+  year?: number;
   futureDate?: boolean;
   short?: boolean;
 }
@@ -201,11 +201,6 @@ interface States {
 class RelativeTimestamp extends Component<Props, States> {
   state = {
     now: Date.now(),
-  };
-
-  static defaultProps = {
-    year: new Date().getFullYear(),
-    short: true,
   };
 
   _timer: number | undefined;
@@ -257,7 +252,13 @@ class RelativeTimestamp extends Component<Props, States> {
   }
 
   render() {
-    const { timestamp, intl, year, futureDate, short } = this.props;
+    const {
+      timestamp,
+      intl,
+      futureDate,
+      year = new Date().getFullYear(),
+      short = true,
+    } = this.props;
 
     const timeGiven = timestamp.includes('T');
     const date = new Date(timestamp);

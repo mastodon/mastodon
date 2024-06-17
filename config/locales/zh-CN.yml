@@ -282,6 +282,7 @@ zh-CN:
         update_custom_emoji_html: "%{name} 更新了自定义表情 %{target}"
         update_domain_block_html: "%{name} 更新了对 %{target} 的域名屏蔽"
         update_ip_block_html: "%{name} 修改了对 IP %{target} 的规则"
+        update_report_html: "%{name} 更新了举报 %{target}"
         update_status_html: "%{name} 刷新了 %{target} 的嘟文"
         update_user_role_html: "%{name} 更改了 %{target} 角色"
       deleted_account: 账号已注销
@@ -289,6 +290,7 @@ zh-CN:
       filter_by_action: 根据行为过滤
       filter_by_user: 根据用户过滤
       title: 运营日志
+      unavailable_instance: "(域名不可用)"
     announcements:
       destroyed_msg: 公告已删除！
       edit:
@@ -585,6 +587,9 @@ zh-CN:
       actions_description_html: 决定采取何种措施处理此举报。如果对被举报账号采取惩罚性措施，将向其发送一封电子邮件通知。但若选中<strong>垃圾信息</strong>类别则不会发送通知。
       actions_description_remote_html: 决定采取何种行动来解决此举报。 这只会影响<strong>您的</strong>服务器如何与该远程帐户的通信并处理其内容。
       add_to_report: 增加更多举报内容
+      already_suspended_badges:
+        local: 已经在此服务器上暂停
+        remote: 已在其所属服务器被封禁
       are_you_sure: 你确定吗？
       assign_to_self: 接管
       assigned: 已接管的监察员
@@ -734,6 +739,7 @@ zh-CN:
         desc_html: 这依赖于来自hCaptcha的外部脚本，可能会带来安全和隐私问题。此外，<strong>这可能使注册过程对某些人（尤其是残疾人）的注册简易程度大幅下降</strong>。出于这些原因，请考虑采取其他措施，如基于批准或邀请的注册方式。
         title: 要求新用户输入验证码以确认他们的账户
       content_retention:
+        danger_zone: 危险操作区
         preamble: 控制用户生成的内容在 Mastodon 中如何存储。
         title: 内容保留
       default_noindex:
@@ -929,7 +935,7 @@ zh-CN:
       delete: 删除
       edit_preset: 编辑预置警告
       empty: 你尚未定义任何警告预设。
-      title: 管理预设警告
+      title: 预设警告
     webhooks:
       add_new: 新增对端
       delete: 删除
@@ -1626,14 +1632,26 @@ zh-CN:
     import: 导入
     import_and_export: 导入和导出
     migrate: 账户迁移
-    notifications: 通知
+    notifications: 电子邮件通知
     preferences: 首选项
     profile: 个人资料
     relationships: 关注管理
+    severed_relationships: 已断开的关系
     statuses_cleanup: 自动删除嘟文
     strikes: 操作记录
     two_factor_authentication: 双因素认证
     webauthn_authentication: 安全密钥
+  severed_relationships:
+    download: 下载 (%{count})
+    event_type:
+      account_suspension: 账户被封禁 (%{target_name})
+      domain_block: 服务器被封禁 (%{target_name})
+      user_domain_block: 你屏蔽了 %{target_name}
+    lost_followers: 失去的关注者
+    lost_follows: 失去的关注
+    preamble: 当你屏蔽一个域名或你的管理员决定封禁一个外站服务器时，你可能会失去关注和粉丝。在这种情况下，你可以下载被切断的关系的列表，进行检查以便导入另一个服务器。
+    purged: 关于此服务器的信息已被你所在服务器的管理员清除。
+    type: 事件
   statuses:
     attached:
       audio:
@@ -1665,8 +1683,6 @@ zh-CN:
         other: "%{count} 票"
       vote: 投票
     show_more: 显示更多
-    show_newer: 显示更新内容
-    show_older: 显示更早内容
     show_thread: 显示全部对话
     title: "%{name}：“%{quote}”"
     visibilities:
@@ -1723,6 +1739,7 @@ zh-CN:
     contrast: Mastodon（高对比度）
     default: Mastodon（暗色主题）
     mastodon-light: Mastodon（亮色主题）
+    system: 自动切换（使用系统主题）
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
@@ -1835,7 +1852,8 @@ zh-CN:
       follows_subtitle: 关注知名账户
       follows_title: 推荐关注
       follows_view_more: 查看更多可关注的人
-      hashtags_recent_count: 在过去的 %{days} 天中有 %{people} 人
+      hashtags_recent_count:
+        other: 过去2天内有 %{people} 人
       hashtags_subtitle: 探索过去2天以来的热门内容
       hashtags_title: 热门话题标签
       hashtags_view_more: 查看更多热门话题标签

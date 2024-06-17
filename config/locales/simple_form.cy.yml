@@ -77,13 +77,15 @@ cy:
           warn: Cuddiwch y cynnwys wedi'i hidlo y tu ôl i rybudd sy'n sôn am deitl yr hidlydd
       form_admin_settings:
         activity_api_enabled: Cyfrif o bostiadau a gyhoeddir yn lleol, defnyddwyr gweithredol, a chofrestriadau newydd mewn bwcedi wythnosol
-        backups_retention_period: Cadw archifau defnyddwyr a gynhyrchwyd am y nifer penodedig o ddyddiau.
+        app_icon: WEBP, PNG, GIF neu JPG. Yn diystyru'r eicon ap rhagosodedig ar ddyfeisiau symudol gydag eicon cyfaddas.
+        backups_retention_period: Mae gan ddefnyddwyr y gallu i gynhyrchu archifau o'u postiadau i'w llwytho i lawr yn ddiweddarach. Pan gânt eu gosod i werth positif, bydd yr archifau hyn yn cael eu dileu'n awtomatig o'ch storfa ar ôl y nifer penodedig o ddyddiau.
         bootstrap_timeline_accounts: Bydd y cyfrifon hyn yn cael eu pinio i frig argymhellion dilynol defnyddwyr newydd.
         closed_registrations_message: Yn cael eu dangos pan fydd cofrestriadau wedi cau
-        content_cache_retention_period: Bydd postiadau o weinyddion eraill yn cael eu dileu ar ôl y nifer penodedig o ddyddiau pan fyddan nhw wedi'u gosod i werth positif. Gall nad oes modd dadwneud hyn.
+        content_cache_retention_period: Bydd yr holl bostiadau gan weinyddion eraill (gan gynnwys hwb ac atebion) yn cael eu dileu ar ôl y nifer penodedig o ddyddiau, heb ystyried unrhyw ryngweithio defnyddiwr lleol â'r postiadau hynny. Mae hyn yn cynnwys postiadau lle mae defnyddiwr lleol wedi ei farcio fel nodau tudalen neu ffefrynnau. Bydd cyfeiriadau preifat rhwng defnyddwyr o wahanol achosion hefyd yn cael eu colli ac yn amhosibl eu hadfer. Mae'r defnydd o'r gosodiad hwn wedi'i fwriadu ar gyfer achosion pwrpas arbennig ac mae'n torri llawer o ddisgwyliadau defnyddwyr pan gaiff ei weithredu at ddibenion cyffredinol.
         custom_css: Gallwch gymhwyso arddulliau cyfaddas ar fersiwn gwe Mastodon.
+        favicon: WEBP, PNG, GIF neu JPG. Yn diystyru'r favicon Mastodon rhagosodedig gydag eicon cyfaddas.
         mascot: Yn diystyru'r darlun yn y rhyngwyneb gwe uwch.
-        media_cache_retention_period: Bydd ffeiliau cyfryngau wedi'u llwytho i lawr yn cael eu dileu ar ôl y nifer penodedig o ddyddiau pan gânt eu gosod i werth cadarnhaol, a'u hail-lwytho i lawr ar alw.
+        media_cache_retention_period: Mae ffeiliau cyfryngau o bostiadau a wneir gan ddefnyddwyr o bell yn cael eu storio ar eich gweinydd. Pan gaiff ei osod i werth positif, bydd y cyfryngau yn cael eu dileu ar ôl y nifer penodedig o ddyddiau. Os gofynnir am y data cyfryngau ar ôl iddo gael ei ddileu, caiff ei ail-lwytho i lawr, os yw'r cynnwys ffynhonnell yn dal i fod ar gael. Oherwydd cyfyngiadau ar ba mor aml y mae cardiau rhagolwg cyswllt yn pleidleisio i wefannau trydydd parti, argymhellir gosod y gwerth hwn i o leiaf 14 diwrnod, neu ni fydd cardiau rhagolwg cyswllt yn cael eu diweddaru ar alw cyn yr amser hwnnw.
         peers_api_enabled: Rhestr o enwau parth y mae'r gweinydd hwn wedi dod ar eu traws yn y ffediws. Nid oes unrhyw ddata wedi'i gynnwys yma ynghylch a ydych chi'n ffedereiddio â gweinydd penodol, dim ond bod eich gweinydd yn gwybod amdano. Defnyddir hwn gan wasanaethau sy'n casglu ystadegau ar ffedereiddio mewn ystyr cyffredinol.
         profile_directory: Mae'r cyfeiriadur proffil yn rhestru'r holl ddefnyddwyr sydd wedi dewis i fod yn ddarganfyddiadwy.
         require_invite_text: Pan fydd angen cymeradwyaeth â llaw ar gyfer cofrestriadau, gwnewch y “Pam ydych chi am ymuno?” mewnbwn testun yn orfodol yn hytrach na dewisol
@@ -243,7 +245,7 @@ cy:
         backups_retention_period: Cyfnod cadw archif defnyddwyr
         bootstrap_timeline_accounts: Argymhellwch y cyfrifon hyn i ddefnyddwyr newydd bob amser
         closed_registrations_message: Neges bersonol pan nad yw cofrestriadau ar gael
-        content_cache_retention_period: Cyfnod cadw storfa cynnwys
+        content_cache_retention_period: Cyfnod cadw cynnwys o bell
         custom_css: CSS cyfaddas
         mascot: Mascot cyfaddas (hen)
         media_cache_retention_period: Cyfnod cadw storfa cyfryngau

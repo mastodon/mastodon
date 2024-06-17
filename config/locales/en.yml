@@ -285,6 +285,7 @@ en:
         update_custom_emoji_html: "%{name} updated emoji %{target}"
         update_domain_block_html: "%{name} updated domain block for %{target}"
         update_ip_block_html: "%{name} changed rule for IP %{target}"
+        update_report_html: "%{name} updated report %{target}"
         update_status_html: "%{name} updated post by %{target}"
         update_user_role_html: "%{name} changed %{target} role"
       deleted_account: deleted account
@@ -292,6 +293,7 @@ en:
       filter_by_action: Filter by action
       filter_by_user: Filter by user
       title: Audit log
+      unavailable_instance: "(domain name unavailable)"
     announcements:
       destroyed_msg: Announcement successfully deleted!
       edit:
@@ -597,6 +599,9 @@ en:
       actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an e-mail notification will be sent to them, except when the <strong>Spam</strong> category is selected.
       actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       add_to_report: Add more to report
+      already_suspended_badges:
+        local: Already suspended on this server
+        remote: Already suspended on their server
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
       assigned: Assigned moderator
@@ -748,6 +753,7 @@ en:
         desc_html: This relies on external scripts from hCaptcha, which may be a security and privacy concern. In addition, <strong>this can make the registration process significantly less accessible to some (especially disabled) people</strong>. For these reasons, please consider alternative measures such as approval-based or invite-based registration.
         title: Require new users to solve a CAPTCHA to confirm their account
       content_retention:
+        danger_zone: Danger zone
         preamble: Control how user-generated content is stored in Mastodon.
         title: Content retention
       default_noindex:
@@ -946,7 +952,7 @@ en:
       delete: Delete
       edit_preset: Edit warning preset
       empty: You haven't defined any warning presets yet.
-      title: Manage warning presets
+      title: Warning presets
     webhooks:
       add_new: Add endpoint
       delete: Delete
@@ -1653,14 +1659,26 @@ en:
     import: Import
     import_and_export: Import and export
     migrate: Account migration
-    notifications: Notifications
+    notifications: E-mail notifications
     preferences: Preferences
     profile: Public profile
     relationships: Follows and followers
+    severed_relationships: Severed relationships
     statuses_cleanup: Automated post deletion
     strikes: Moderation strikes
     two_factor_authentication: Two-factor Auth
     webauthn_authentication: Security keys
+  severed_relationships:
+    download: Download (%{count})
+    event_type:
+      account_suspension: Account suspension (%{target_name})
+      domain_block: Server suspension (%{target_name})
+      user_domain_block: You blocked %{target_name}
+    lost_followers: Lost followers
+    lost_follows: Lost follows
+    preamble: You may lose follows and followers when you block a domain or when your moderators decide to suspend a remote server. When that happens, you will be able to download lists of severed relationships, to be inspected and possibly imported on another server.
+    purged: Information about this server has been purged by your server's administrators.
+    type: Event
   statuses:
     attached:
       audio:
@@ -1698,8 +1716,6 @@ en:
         other: "%{count} votes"
       vote: Vote
     show_more: Show more
-    show_newer: Show newer
-    show_older: Show older
     show_thread: Show thread
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1756,6 +1772,7 @@ en:
     contrast: Mastodon (High contrast)
     default: Mastodon (Dark)
     mastodon-light: Mastodon (Light)
+    system: Automatic (use system theme)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -1868,7 +1885,9 @@ en:
       follows_subtitle: Follow well-known accounts
       follows_title: Who to follow
       follows_view_more: View more people to follow
-      hashtags_recent_count: "%{people} people in the past %{days} days"
+      hashtags_recent_count:
+        one: "%{people} person in the past 2 days"
+        other: "%{people} people in the past 2 days"
       hashtags_subtitle: Explore what’s trending since past 2 days
       hashtags_title: Trending hashtags
       hashtags_view_more: View more trending hashtags

@@ -77,13 +77,15 @@ zh-CN:
           warn: 在警告中提及过滤器标题后，隐藏过滤内容
       form_admin_settings:
         activity_api_enabled: 本站每周的嘟文数、活跃用户数和新注册用户数
-        backups_retention_period: 将在指定天数内保留生成的用户存档。
+        app_icon: WEBP、PNG、GIF 或 JPG。使用自定义图标覆盖移动设备上的默认应用图标。
+        backups_retention_period: 用户可以生成其嘟文存档以供之后下载。当该值被设为正值时，这些存档将在指定的天数后自动从您的存储中删除。
         bootstrap_timeline_accounts: 这些账号将在新用户关注推荐中置顶。
         closed_registrations_message: 在关闭注册时显示
-        content_cache_retention_period: 设为正数值时，来自其他服务器的嘟文将在指定天数后被删除。删除有可能会是不可逆的。
+        content_cache_retention_period: 来自其它实例的所有嘟文（包括转嘟与回复）都将在指定天数后被删除，不论本实例用户是否与这些嘟文产生过交互。这包括被本实例用户喜欢和收藏的嘟文。实例间用户的私下提及也将丢失并无法恢复。此设置针对的是特殊用途的实例，用于一般用途时会打破许多用户的期望。
         custom_css: 你可以为网页版 Mastodon 应用自定义样式。
+        favicon: WEBP、PNG、GIF 或 JPG。使用自定义图标覆盖 Mastodon 的默认图标。
         mascot: 覆盖高级网页界面中的绘图形象。
-        media_cache_retention_period: 设为正数值时，来自其他服务器的媒体文件将在指定天数后被删除，并在需要时再次下载。
+        media_cache_retention_period: 来自外站用户嘟文的媒体文件将被缓存到你的实例上。当该值被设为正值时，缓存的媒体文件将在指定天数后被清除。如果媒体文件在被清除后重新被请求，且源站内容仍然可用，它将被重新下载。由于链接预览卡拉取第三方站点的频率受到限制，建议将此值设置为至少 14 天，如果小于该值，链接预览卡将不会按需更新。
         peers_api_enabled: 此服务器在联邦宇宙中遇到的域名列表。 这里不包含关于您是否与给定服务器联合的数据，只是您的服务器知道它。 这由收集一般意义上的联邦统计信息的服务使用。
         profile_directory: 个人资料目录会列出所有选择可被发现的用户。
         require_invite_text: 当注册需要手动批准时，将“你为什么想要加入？”设为必填项
@@ -243,7 +245,7 @@ zh-CN:
         backups_retention_period: 用户存档保留期
         bootstrap_timeline_accounts: 推荐新用户关注以下账号
         closed_registrations_message: 在关闭注册时显示的自定义消息
-        content_cache_retention_period: 内容缓存保留期
+        content_cache_retention_period: 外站内容保留期
         custom_css: 自定义 CSS
         mascot: 自定义吉祥物（旧）
         media_cache_retention_period: 媒体缓存保留期

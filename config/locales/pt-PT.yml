@@ -285,6 +285,7 @@ pt-PT:
         update_custom_emoji_html: "%{name} atualizou o emoji %{target}"
         update_domain_block_html: "%{name} atualizou o bloqueio de domínio para %{target}"
         update_ip_block_html: "%{name} alterou regra para IP %{target}"
+        update_report_html: "%{name} atualizou a denúncia %{target}"
         update_status_html: "%{name} atualizou o estado de %{target}"
         update_user_role_html: "%{name} alterou a função %{target}"
       deleted_account: conta apagada
@@ -292,6 +293,7 @@ pt-PT:
       filter_by_action: Filtrar por ação
       filter_by_user: Filtrar por utilizador
       title: Registo de auditoria
+      unavailable_instance: "(nome de domínio indisponível)"
     announcements:
       destroyed_msg: Comunicado correctamente eliminado!
       edit:
@@ -597,6 +599,9 @@ pt-PT:
       actions_description_html: Decida a ação a tomar para resolver esta denúncia. Se decidir por uma ação punitiva contra a conta denunciada, um e-mail de notificação será enviado, excetuando quando selecionada a categoria <strong>Spam</strong>.
       actions_description_remote_html: Decida quais as medidas a tomar para resolver esta denúncia. Isso apenas afetará como <strong>o seu</strong> servido comunica com esta conta remota e gere o seu conteúdo.
       add_to_report: Adicionar mais à denúncia
+      already_suspended_badges:
+        local: Já suspenso neste servidor
+        remote: Já suspenso no servidor deles
       are_you_sure: Tem a certeza?
       assign_to_self: Atribuída a mim
       assigned: Atribuída ao moderador
@@ -748,6 +753,7 @@ pt-PT:
         desc_html: Isto depende de scripts externos da hCaptcha, o que pode ser uma preocupação de segurança e privacidade. Além disso, <strong>isto pode tornar o processo de registo menos acessível para algumas pessoas (especialmente as com limitações físicas)</strong>. Por isso, considere medidas alternativas tais como registo mediante aprovação ou sob convite.
         title: Requerer que novos utilizadores resolvam um CAPTCHA para confirmar a sua conta
       content_retention:
+        danger_zone: Zona de perigo
         preamble: Controle como o conteúdo gerado pelos utilizadores é armazenado no Mastodon.
         title: Retenção de conteúdo
       default_noindex:
@@ -946,7 +952,7 @@ pt-PT:
       delete: Eliminar
       edit_preset: Editar o aviso predefinido
       empty: Ainda não definiu nenhum aviso predefinido.
-      title: Gerir os avisos predefinidos
+      title: Predefinições de aviso
     webhooks:
       add_new: Adicionar endpoint
       delete: Eliminar
@@ -1652,14 +1658,26 @@ pt-PT:
     import: Importar
     import_and_export: Importar e exportar
     migrate: Migração de conta
-    notifications: Notificações
+    notifications: Notificações por e-mail
     preferences: Preferências
     profile: Perfil
     relationships: Seguindo e seguidores
+    severed_relationships: Relações cessadas
     statuses_cleanup: Remoção automática da publicação
     strikes: Punições de moderação
     two_factor_authentication: Autenticação em duas etapas
     webauthn_authentication: Chaves de segurança
+  severed_relationships:
+    download: Transferir (%{count})
+    event_type:
+      account_suspension: Suspensão de conta (%{target_name})
+      domain_block: Suspensão de servidor (%{target_name})
+      user_domain_block: Bloqueou %{target_name}
+    lost_followers: Seguidores perdidos
+    lost_follows: Pessoas que segue perdidas
+    preamble: Pode perder seguidores e pessoas que segue quando bloqueia um domínio ou quando os seus moderadores decidem suspender um servidor remoto. Quando isso acontecer, poderá descarregar listas de relações cessadas, para serem inspeccionadas e possivelmente importadas para outro servidor.
+    purged: Informações sobre este servidor foram purgadas pelos administradores do seu servidor.
+    type: Evento
   statuses:
     attached:
       audio:
@@ -1697,8 +1715,6 @@ pt-PT:
         other: "%{count} votos"
       vote: Votar
     show_more: Mostrar mais
-    show_newer: Mostrar mais recentes
-    show_older: Mostrar mais antigos
     show_thread: Mostrar conversa
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1755,6 +1771,7 @@ pt-PT:
     contrast: Mastodon (Elevado contraste)
     default: Mastodon (Escuro)
     mastodon-light: Mastodon (Claro)
+    system: Automático (usar tema do sistema)
   time:
     formats:
       default: "%H:%M em %d de %b de %Y"
@@ -1867,7 +1884,9 @@ pt-PT:
       follows_subtitle: Siga contas bem conhecidas
       follows_title: Quem seguir
       follows_view_more: Veja mais pessoas para seguir
-      hashtags_recent_count: "%{people} pessoas nos últimos %{days} dias"
+      hashtags_recent_count:
+        one: "%{people} pessoa nos últimos 2 dias"
+        other: "%{people} pessoas nos últimos 2 dias"
       hashtags_subtitle: Explore o que está em tendência desde os últimos 2 dias
       hashtags_title: Trending hashtags
       hashtags_view_more: Ver mais hashtags em alta

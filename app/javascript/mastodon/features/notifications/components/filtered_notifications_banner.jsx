@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-
-import ArchiveIcon from '@/material-icons/400-24px/archive.svg?react';
+import InventoryIcon from '@/material-icons/400-24px/inventory_2.svg?react';
 import { fetchNotificationPolicy } from 'mastodon/actions/notifications';
 import { Icon } from 'mastodon/components/icon';
 import { toCappedNumber } from 'mastodon/utils/numbers';
@@ -28,13 +27,13 @@ export const FilteredNotificationsBanner = () => {
     };
   }, [dispatch]);
 
-  if (policy === null || policy.getIn(['summary', 'pending_notifications_count']) * 1 === 0) {
+  if (policy === null || policy.getIn(['summary', 'pending_notifications_count']) === 0) {
     return null;
   }
 
   return (
     <Link className='filtered-notifications-banner' to='/notifications/requests'>
-      <Icon icon={ArchiveIcon} />
+      <Icon icon={InventoryIcon} />
 
       <div className='filtered-notifications-banner__text'>
         <strong><FormattedMessage id='filtered_notifications_banner.title' defaultMessage='Filtered notifications' /></strong>
@@ -42,7 +41,8 @@ export const FilteredNotificationsBanner = () => {
       </div>
 
       <div className='filtered-notifications-banner__badge'>
-        {toCappedNumber(policy.getIn(['summary', 'pending_notifications_count']))}
+        <div className='filtered-notifications-banner__badge__badge'>{toCappedNumber(policy.getIn(['summary', 'pending_notifications_count']))}</div>
+        <FormattedMessage id='filtered_notifications_banner.mentions' defaultMessage='{count, plural, one {mention} other {mentions}}' values={{ count: policy.getIn(['summary', 'pending_notifications_count']) }} />
       </div>
     </Link>
   );

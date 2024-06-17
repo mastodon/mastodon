@@ -82,15 +82,10 @@ RSpec.describe 'Requests' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:notifications'
 
-    it 'returns http success' do
+    it 'returns http success and dismisses the notification request', :aggregate_failures do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'dismisses the notification request' do
-      subject
-
       expect(notification_request.reload.dismissed?).to be true
     end
 

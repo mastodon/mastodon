@@ -285,6 +285,7 @@ es-MX:
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
         update_ip_block_html: "%{name} cambió la regla para la IP %{target}"
+        update_report_html: "%{name} actualizó el informe %{target}"
         update_status_html: "%{name} actualizó el estado de %{target}"
         update_user_role_html: "%{name} cambió el rol %{target}"
       deleted_account: cuenta eliminada
@@ -292,6 +293,7 @@ es-MX:
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuario
       title: Log de auditoría
+      unavailable_instance: "(nombre de dominio no disponible)"
     announcements:
       destroyed_msg: "¡Anuncio eliminado con éxito!"
       edit:
@@ -597,6 +599,9 @@ es-MX:
       actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide qué medidas tomar para resolver este reporte. Esto solo afectará a la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y gestiona su contenido.
       add_to_report: Añadir más al reporte
+      already_suspended_badges:
+        local: Ya suspendido en este servidor
+        remote: Ya suspendido en su servidor
       are_you_sure: "¿Estás seguro?"
       assign_to_self: Asignármela a mí
       assigned: Moderador asignado
@@ -748,6 +753,7 @@ es-MX:
         desc_html: Esto se basa en scripts externos de hCaptcha, que pueden suponer una preocupación de seguridad y privacidad. Además, <strong>esto puede volver el proceso de registro significativamente menos accesible para algunas personas (especialmente con discapacidades)</strong>. Por estas razones, por favor, considera medidas alternativas como el registro por aprobación manual o con invitación.
         title: Solicita a los nuevos usuarios que resuelvan un CAPTCHA para confirmar su cuenta
       content_retention:
+        danger_zone: Zona peligrosa
         preamble: Controlar cómo el contenido generado por el usuario se almacena en Mastodon.
         title: Retención de contenido
       default_noindex:
@@ -946,7 +952,7 @@ es-MX:
       delete: Borrar
       edit_preset: Editar aviso predeterminado
       empty: Aún no has definido ningún preajuste de advertencia.
-      title: Editar configuración predeterminada de avisos
+      title: Preajustes de advertencia
     webhooks:
       add_new: Añadir endpoint
       delete: Eliminar
@@ -1652,14 +1658,26 @@ es-MX:
     import: Importar
     import_and_export: Importar y exportar
     migrate: Migración de cuenta
-    notifications: Notificaciones
+    notifications: Notificaciones por correo electrónico
     preferences: Preferencias
     profile: Perfil
     relationships: Siguiendo y seguidores
+    severed_relationships: Relaciones cortadas
     statuses_cleanup: Eliminación automática de publicaciones
     strikes: Amonestaciones de moderación
     two_factor_authentication: Autenticación de dos factores
     webauthn_authentication: Claves de seguridad
+  severed_relationships:
+    download: Descargar (%{count})
+    event_type:
+      account_suspension: Suspensión de cuenta (%{target_name})
+      domain_block: Suspensión del servidor (%{target_name})
+      user_domain_block: Bloqueaste %{target_name}
+    lost_followers: Seguidores perdidos
+    lost_follows: Cuentas seguidas perdidas
+    preamble: Puedes perder cuentas seguidas y seguidores cuando bloqueas un dominio o cuando tus moderadores deciden suspender un servidor remoto. Cuando esto suceda, podrás descargar listas de relaciones cortadas, para ser inspeccionadas y posiblemente importadas en otro servidor.
+    purged: La información sobre este servidor ha sido purgada por los administradores de tu servidor.
+    type: Evento
   statuses:
     attached:
       audio:
@@ -1697,8 +1715,6 @@ es-MX:
         other: "%{count} votos"
       vote: Vota
     show_more: Mostrar más
-    show_newer: Mostrar más recientes
-    show_older: Mostrar más antiguos
     show_thread: Mostrar discusión
     title: "%{name}: «%{quote}»"
     visibilities:
@@ -1755,6 +1771,7 @@ es-MX:
     contrast: Alto contraste
     default: Mastodon
     mastodon-light: Mastodon (claro)
+    system: Automático (usar tema del sistema)
   time:
     formats:
       default: "%d de %b del %Y, %H:%M"
@@ -1867,7 +1884,9 @@ es-MX:
       follows_subtitle: Seguir cuentas conocidas
       follows_title: A quién seguir
       follows_view_more: Ver más personas para seguir
-      hashtags_recent_count: "%{people} personas en los últimos %{days} días"
+      hashtags_recent_count:
+        one: "%{people} personas en los últimos 2 días"
+        other: "%{people} personas en los últimos 2 días"
       hashtags_subtitle: Explora las tendencias de los últimos 2 días
       hashtags_title: Etiquetas en tendencia
       hashtags_view_more: Ver más etiquetas en tendencia

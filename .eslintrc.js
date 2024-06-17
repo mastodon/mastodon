@@ -349,6 +349,9 @@ module.exports = defineConfig({
         // Disable formatting rules that have been enabled in the base config
         'indent': 'off',
 
+        // This is not needed as we use noImplicitReturns, which handles this in addition to understanding types
+        'consistent-return': 'off',
+
         'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
 
         '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
@@ -363,6 +366,7 @@ module.exports = defineConfig({
             "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
           }
         ],
+        "@typescript-eslint/restrict-template-expressions": ['warn', { allowNumber: true }],
         'jsdoc/require-jsdoc': 'off',
 
         // Those rules set stricter rules for TS files

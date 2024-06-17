@@ -21,18 +21,31 @@
               = t(scope.access, scope: [:doorkeeper, :grouped_scopes, :access])
 
     .actions
-      = form_tag oauth_authorization_path, method: :post do
-        = hidden_field_tag :client_id, @pre_auth.client.uid
-        = hidden_field_tag :redirect_uri, @pre_auth.redirect_uri
-        = hidden_field_tag :state, @pre_auth.state
-        = hidden_field_tag :response_type, @pre_auth.response_type
-        = hidden_field_tag :scope, @pre_auth.scope
-        = button_tag t('doorkeeper.authorizations.buttons.authorize'), type: :submit
+      = form_with url: oauth_authorization_path do |form|
+        = form.hidden_field :client_id,
+                            value: @pre_auth.client.uid
+        = form.hidden_field :redirect_uri,
+                            value: @pre_auth.redirect_uri
+        = form.hidden_field :state,
+                            value: @pre_auth.state
+        = form.hidden_field :response_type,
+                            value: @pre_auth.response_type
+        = form.hidden_field :scope,
+                            value: @pre_auth.scope
+        = form.button t('doorkeeper.authorizations.buttons.authorize'),
+                      type: :submit
 
-      = form_tag oauth_authorization_path, method: :delete do
-        = hidden_field_tag :client_id, @pre_auth.client.uid
-        = hidden_field_tag :redirect_uri, @pre_auth.redirect_uri
-        = hidden_field_tag :state, @pre_auth.state
-        = hidden_field_tag :response_type, @pre_auth.response_type
-        = hidden_field_tag :scope, @pre_auth.scope
-        = button_tag t('doorkeeper.authorizations.buttons.deny'), type: :submit, class: 'negative'
+      = form_with url: oauth_authorization_path, method: :delete do |form|
+        = form.hidden_field :client_id,
+                            value: @pre_auth.client.uid
+        = form.hidden_field :redirect_uri,
+                            value: @pre_auth.redirect_uri
+        = form.hidden_field :state,
+                            value: @pre_auth.state
+        = form.hidden_field :response_type,
+                            value: @pre_auth.response_type
+        = form.hidden_field :scope,
+                            value: @pre_auth.scope
+        = form.button t('doorkeeper.authorizations.buttons.deny'),
+                      type: :submit,
+                      class: 'negative'

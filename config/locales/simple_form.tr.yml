@@ -77,13 +77,15 @@ tr:
           warn: Süzgeçlenmiş içeriği, süzgecinin başlığından söz eden bir uyarının arkasında gizle
       form_admin_settings:
         activity_api_enabled: Yerel olarak yayınlanan gönderi, etkin kullanıcı ve yeni kayıtların haftalık sayıları
-        backups_retention_period: Üretilen kullanıcı arşivlerini belirli gün sayısı kadar sakla.
+        app_icon: WEBP, PNG, GIF veya JPG. Mobil aygıtlarda varsayılan uygulama simgesini isteğe bağlı bir simgeyle değiştirir.
+        backups_retention_period: Kullanıcılar, gönderilerinin arşivlerini daha sonra indirmek üzere oluşturabilirler. Pozitif bir değer verdilğinde bu arşivler verilmiş olan gün sonunda deponuzdan otomatik olarak silinecektir.
         bootstrap_timeline_accounts: Bu hesaplar, yeni kullanıcıların takip önerilerinin tepesinde sabitlenecektir.
         closed_registrations_message: Kayıt olma kapalıyken görüntülenir
-        content_cache_retention_period: Pozitif bir sayı girildiğinde, diğer sunuculardan gelen gönderiler belirli bir gün sonra silinecektir. Silme geri alınamayabilir.
+        content_cache_retention_period: Diğer sunuculardaki (öne çıkarma ve yanıtlar da dahil olmak üzere) tüm gönderiler belirlenen gün sonunda, yerel bir kullanıcının etkileşimine bakılmadan, silinecektir. Yerel bir kullanıcının yerimlerine veya favorilerine eklediği gönderiler de dahildir. Farklı sunuculardaki kullanıcılar arasındaki özel bahsetmeler de kaybolacak ve geri getirilmeleri mümkün olmayacaktır. Bu ayarın kullanımı özel amaçlı sunucular içindir ve genel amaçlı kullanımda etkinleştirildiğinde kullanıcı beklentilerini karşılamayabilir.
         custom_css: Mastodon'un web sürümüne özel biçimler uygulayabilirsiniz.
+        favicon: WEBP, PNG, GIF veya JPG. Varsayılan Mastodon simgesini isteğe bağlı bir simgeyle değiştirir.
         mascot: Gelişmiş web arayüzündeki illüstrasyonu geçersiz kılar.
-        media_cache_retention_period: Pozitif bir sayı girildiğinde, diğer sunuculardan indirilen medya dosyaları belirli bir gün sonra silinecektir, isteğe bağlı olarak tekrar indirilebilir.
+        media_cache_retention_period: Uzak kullanıcıların gönderilerindeki ortam dosyaları sunucunuzda önbelleklenir. Pozitif bir değer verildiğinde, ortam dosyaları belirlenen gün sonunda silinecektir. Eğer ortam dosyaları silindikten sonra istenirse, kaynak içerik hala mevcutsa, tekrar indirilecektir. Bağlantı önizleme kartlarının üçüncü parti siteleri yoklamasına ilişkin kısıtlamalar nedeniyle, bu değeri en azından 14 gün olarak ayarlamanız önerilir, yoksa bağlantı önizleme kartları bu süreden önce isteğe bağlı olarak güncellenmeyecektir.
         peers_api_enabled: Bu sunucunun fediverse'te karşılaştığı alan adlarının bir listesi. İlgili sunucuyla birleştirme mi yapıyorsunuz yoksa sunucunuz sadece onu biliyor mu hakkında bir bilgi burada yok. Bu blgi genel olarak federasyın hakkında istatistik toplamak isteyen hizmetler tarafından kullanılıyor.
         profile_directory: Profil dizini keşfedilebilir olmayı kabul eden tüm kullanıcıları listeler.
         require_invite_text: Kayıt olmak elle doğrulama gerektiriyorsa, "Neden katılmak istiyorsunuz?" metin girdisini isteğe bağlı yerine zorunlu yapın
@@ -228,7 +230,7 @@ tr:
         title: Başlık
         type: İçeri aktarma türü
         username: Kullanıcı adı
-        username_or_email: Kullanıcı adı ya da e-posta
+        username_or_email: Kullanıcı adı veya e-posta
         whole_word: Tam sözcük
       email_domain_block:
         with_dns_records: Alan adının MX kayıtlarını ve IP'lerini ekleyin
@@ -243,7 +245,7 @@ tr:
         backups_retention_period: Kullanıcı arşivi saklama süresi
         bootstrap_timeline_accounts: Bu hesapları yeni kullanıcılara her zaman öner
         closed_registrations_message: Kayıt olma mevcut değilken gösterilen özel ileti
-        content_cache_retention_period: İçerik önbelleği saklama süresi
+        content_cache_retention_period: Uzak içerik saklama süresi
         custom_css: Özel CSS
         mascot: Özel maskot (eski)
         media_cache_retention_period: Medya önbelleği saklama süresi
@@ -269,7 +271,7 @@ tr:
       interactions:
         must_be_follower: Takipçim olmayan kişilerden gelen bildirimleri engelle
         must_be_following: Takip etmediğim kişilerden gelen bildirimleri engelle
-        must_be_following_dm: Takip etmediğiniz kişilerden gelen direkt mesajları engelle
+        must_be_following_dm: Takip etmediğiniz kişilerden gelen doğrudan iletileri engelle
       invite:
         comment: Yorum
       invite_request:

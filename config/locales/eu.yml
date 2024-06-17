@@ -599,6 +599,9 @@ eu:
       actions_description_html: Erabaki txosten hau konpontzeko ze ekintza hartu. Salatutako kontuaren aurka zigor ekintza bat hartzen baduzu, eposta jakinarazpen bat bidaliko zaie, <strong>Spam</strong> kategoria hautatzean ezik.
       actions_description_remote_html: Hautatu txosten honi konponbidea aurkitzeko zein neurri hartu. Hau soilik <strong>zure</strong> zerbitzaria urruneko kontu honekin nola komunikatu eta bere edukia nola maneiatzeko da.
       add_to_report: Gehitu gehiago txostenera
+      already_suspended_badges:
+        local: Dagoeneko kanporatu da zerbitzari honetatik
+        remote: Dagoeneko kanporatu da bere zerbitzaritik
       are_you_sure: Ziur zaude?
       assign_to_self: Esleitu niri
       assigned: Esleitutako moderatzailea
@@ -750,6 +753,7 @@ eu:
         desc_html: Hori egiteko hCaptcha-ko scriptak behar dira, hirugarrenenak izanik, segurtasun eta pribatutasun arazoak ekarri ditzaketeenak. Horrez gain, <strong>script horiengatik nabarmen zailagoa egiten zaie pertsona batzuei izena ematea (batez ere desgaitasunen bat duenei)</strong>. Hori dela eta, hausnartu beste neurri batzuk hartu ditzakezun, esaterako onarpenean oinarritutako izen ematea, edo gonbidapenen bidezkoa.
         title: Eskatu erabiltzaile berriei CAPTCHA bat ebazteko beren kontua berresteko
       content_retention:
+        danger_zone: Eremu arriskutsua
         preamble: Kontrolatu erabiltzaileek sortutako edukia nola biltegiratzen den Mastodonen.
         title: Edukia atxikitzea
       default_noindex:
@@ -948,7 +952,6 @@ eu:
       delete: Ezabatu
       edit_preset: Editatu abisu aurre-ezarpena
       empty: Ez duzu abisu aurrezarpenik definitu oraindik.
-      title: Kudeatu abisu aurre-ezarpenak
     webhooks:
       add_new: Gehitu amaiera-puntua
       delete: Ezabatu
@@ -1238,7 +1241,7 @@ eu:
     add_new: Gehitu berria
     errors:
       limit: Gehienezko traola kopurua erakutsi duzu jada
-    hint_html: "<strong>Zer dira nabarmendutako traolak?</strong> Zure profilean toki nabarmendu batean agertzen dira eta jendeari traola hau daukaten bidalketa publikoak arakatzea ahalbidetzen diote. Sormen lana edo epe luzerako proiektuak jarraitzeko primerakoak dira."
+    hint_html: "<strong>Zer dira nabarmendutako traolak?</strong> Zure profileko toki nabarmendu batean agertzen dira eta jendeari traola haue dituzten bidalketa publikoak arakatzea ahalbidetzen diote. Sormen-lanak edo epe luzerako proiektuak jarraitzeko primerakoak dira."
   filters:
     contexts:
       account: Profilak
@@ -1656,14 +1659,26 @@ eu:
     import: Inportazioa
     import_and_export: Inportatu eta esportatu
     migrate: Kontuaren migrazioa
-    notifications: Jakinarazpenak
+    notifications: Posta bidezko jakinarazpenak
     preferences: Hobespenak
     profile: Profila
     relationships: Jarraitutakoak eta jarraitzaileak
+    severed_relationships: Indartutako erlazioak
     statuses_cleanup: Bidalketak automatikoki ezabatzea
     strikes: Moderazio neurriak
     two_factor_authentication: Bi faktoreetako autentifikazioa
     webauthn_authentication: Segurtasun gakoak
+  severed_relationships:
+    download: Deskargatu (%{count})
+    event_type:
+      account_suspension: Kontua bertan behera uztea (%{target_name})
+      domain_block: Domeinua bertan behera uztea (%{target_name})
+      user_domain_block: "%{target_name} blokeatu duzu"
+    lost_followers: Galdutako jarraitzaileak
+    lost_follows: Jarraitzeari utzi diozun jendea
+    preamble: Jarraitzaileak gal ditzakezu, baita jendea jarraitzeari utzi domeinu bat blokeatzen duzunean edo moderatzaileek urruneko zerbitzari bat bertan behera uztea erabakitzen badute. Hau gertatzean, galdutako erlazioen zerrendak deskargatu ahalko dituzu, aztertzeko eta agian, beste zerbitzari batean inportatzeko.
+    purged: Zerbitzari honen informazioa kendu du zerbitzariko administratzaileak.
+    type: Gertaera
   statuses:
     attached:
       audio:
@@ -1701,8 +1716,6 @@ eu:
         other: "%{count} boto"
       vote: Bozkatu
     show_more: Erakutsi gehiago
-    show_newer: Erakutsi berriagoak
-    show_older: Erakutsi zaharragoak
     show_thread: Erakutsi haria
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1759,6 +1772,7 @@ eu:
     contrast: Mastodon (Kontraste altua)
     default: Mastodon (Iluna)
     mastodon-light: Mastodon (Argia)
+    system: Automatikoa (erabili sistemaren gaia)
   time:
     formats:
       default: "%Y(e)ko %b %d, %H:%M"
@@ -1871,7 +1885,9 @@ eu:
       follows_subtitle: Jarraitu kontu ospetsuak
       follows_title: Nor jarraitu
       follows_view_more: Ikusi jarrai dezakezun jende gehiago
-      hashtags_recent_count: "%{people} pertsona azken %{days} egunetan"
+      hashtags_recent_count:
+        one: Pertson %{people} azken 2 egunetan
+        other: "%{people} pertson azken 2 egunetan"
       hashtags_subtitle: Arakatu azken 2 egunetan pil-pilean dagoena
       hashtags_title: Pil-pilean dauden traolak
       hashtags_view_more: Ikusi pil-pilean dauden traol gehiago
@@ -1894,7 +1910,7 @@ eu:
     signed_in_as: 'Saioa honela hasita:'
   verification:
     extra_instructions_html: <strong>Aholkua:</strong> webguneko esteka ikusezina izan daiteke. Muina <code>rel="me"</code> da, erabiltzaileak sortutako edukia duten webguneetan beste inor zure burutzat aurkeztea eragozten duena. <code>a</code> beharrean <code>esteka</code> motako etiketa bat ere erabil dezakezu orriaren goiburuan, baina HTMLak erabilgarri egon behar du JavaScript exekutatu gabe.
-    here_is_how: Hemen duzu nola
+    here_is_how: Argibidea
     hint_html: "<strong>Mastodonen nortasun-egiaztapena guztiontzat da.</strong> Web estandar irekietan oinarritua, orain eta betiko doan. Behar duzun guztia jendeak ezagutzen duen webgune pertsonal bat da. Mastodon profiletik webgune honetara estekatzen duzunean, webguneak Mastodon profilera estekatzen duela egiaztatuko dugu eta adierazle bat erakutsiko du."
     instructions_html: Kopiatu eta itsatsi ondoko kodea zure webguneko HTMLan. Ondoren, gehitu zure webgunearen helbidea zure profileko eremu gehigarrietako batean, "Editatu profila" fitxatik eta gorde aldaketak.
     verification: Egiaztaketa

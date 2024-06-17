@@ -21,7 +21,6 @@ import { initDomainBlockModal, unblockDomain } from '../../../actions/domain_blo
 import { openModal } from '../../../actions/modal';
 import { initMuteModal } from '../../../actions/mutes';
 import { initReport } from '../../../actions/reports';
-import { unfollowModal } from '../../../initial_state';
 import { makeGetAccount, getAccountHidden } from '../../../selectors';
 import Header from '../components/header';
 
@@ -47,31 +46,23 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onFollow (account) {
     if (account.getIn(['relationship', 'following'])) {
-      if (unfollowModal) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-            confirm: intl.formatMessage(messages.unfollowConfirm),
-            onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
-          },
-        }));
-      } else {
-        dispatch(unfollowAccount(account.get('id')));
-      }
+      dispatch(openModal({
+        modalType: 'CONFIRM',
+        modalProps: {
+          message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+          confirm: intl.formatMessage(messages.unfollowConfirm),
+          onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+        },
+      }));
     } else if (account.getIn(['relationship', 'requested'])) {
-      if (unfollowModal) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: <FormattedMessage id='confirmations.cancel_follow_request.message' defaultMessage='Are you sure you want to withdraw your request to follow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-            confirm: intl.formatMessage(messages.cancelFollowRequestConfirm),
-            onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
-          },
-        }));
-      } else {
-        dispatch(unfollowAccount(account.get('id')));
-      }
+      dispatch(openModal({
+        modalType: 'CONFIRM',
+        modalProps: {
+          message: <FormattedMessage id='confirmations.cancel_follow_request.message' defaultMessage='Are you sure you want to withdraw your request to follow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+          confirm: intl.formatMessage(messages.cancelFollowRequestConfirm),
+          onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+        },
+      }));
     } else {
       dispatch(followAccount(account.get('id')));
     }

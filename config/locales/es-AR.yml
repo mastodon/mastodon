@@ -285,6 +285,7 @@ es-AR:
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
         update_ip_block_html: "%{name} cambió la regla para la dirección IP %{target}"
+        update_report_html: "%{name} actualizó la denuncia %{target}"
         update_status_html: "%{name} actualizó el mensaje de %{target}"
         update_user_role_html: "%{name} cambió el rol %{target}"
       deleted_account: cuenta eliminada
@@ -292,6 +293,7 @@ es-AR:
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuario
       title: Registro de auditoría
+      unavailable_instance: "[nombre de dominio no disponible]"
     announcements:
       destroyed_msg: "¡Anuncio eliminado exitosamente!"
       edit:
@@ -597,6 +599,9 @@ es-AR:
       actions_description_html: Decidí qué medidas tomar para resolver esta denuncia. Si tomás una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decidí qué medidas tomar para resolver esta denuncia. Esto sólo afectará la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y maneja su contenido.
       add_to_report: Agregar más a la denuncia
+      already_suspended_badges:
+        local: Ya suspendido en este servidor
+        remote: Ya suspendido en su servidor
       are_you_sure: "¿Estás seguro?"
       assign_to_self: Asignármela a mí
       assigned: Moderador asignado
@@ -748,6 +753,7 @@ es-AR:
         desc_html: Esto depende de scripts externos de hCaptcha, que pueden ser una preocupación de seguridad y privacidad. Además, <strong>esto puede hacer el proceso de registro significativamente menos accesible para algunas personas (especialmente para gente con discapacidades)</strong>. Por estas razones, por favor, considerá medidas alternativas, como el registro basado en la aprobación o la invitación.
         title: Solicitar a los nuevos usuarios que resuelvan una CAPTCHA para confirmar su cuenta
       content_retention:
+        danger_zone: Zona de peligro
         preamble: Controlá cómo el contenido generado por el usuario se almacena en Mastodon.
         title: Retención de contenido
       default_noindex:
@@ -946,7 +952,7 @@ es-AR:
       delete: Eliminar
       edit_preset: Editar preajuste de advertencia
       empty: Aún no ha definido ningún preajuste de advertencia.
-      title: Administrar preajustes de advertencia
+      title: Preajustes de advertencia
     webhooks:
       add_new: Agregar punto final
       delete: Eliminar
@@ -1043,7 +1049,7 @@ es-AR:
     apply_for_account: Solicitar una cuenta
     captcha_confirmation:
       help_html: Si tenés problemas resolviendo la CAPTCHA, podés ponerte en contacto con nosotros a través de %{email} y te vamos a ayudar.
-      hint_html: ¡Sólo una cosa más! Necesitamos confirmar que sos humano (¡esto es para que podamos mantener el spam fuera!). Resuelvé la CAPTCHA abajo y hacé clic en "Continuar".
+      hint_html: ¡Solo una cosa más! Necesitamos confirmar que sos humano (¡esto es para que podamos mantener el spam fuera!). Resolvé la CAPTCHA abajo y hacé clic en "Continuar".
       title: Comprobación de seguridad
     confirmations:
       awaiting_review: "¡Tu dirección de correo electrónico fue confirmada! El equipo de %{domain} está revisando tu registro. ¡Recibirás un correo electrónico si aprueban tu cuenta!"
@@ -1652,14 +1658,26 @@ es-AR:
     import: Importar
     import_and_export: Importación y exportación
     migrate: Migración de la cuenta
-    notifications: Notificaciones
+    notifications: Notificaciones por correo electrónico
     preferences: Configuración
     profile: Perfil público
     relationships: Seguimientos
+    severed_relationships: Relaciones cortadas
     statuses_cleanup: Eliminación auto. de mensajes
     strikes: Moderación de incumplimientos
     two_factor_authentication: Aut. de dos factores
     webauthn_authentication: Llaves de seguridad
+  severed_relationships:
+    download: Descargar (%{count})
+    event_type:
+      account_suspension: Suspensión de cuenta (%{target_name})
+      domain_block: Suspensión de cuenta (%{target_name})
+      user_domain_block: Bloqueaste a %{target_name}
+    lost_followers: Seguidores perdidos
+    lost_follows: Cuentas seguidas perdidas
+    preamble: Podés perder seguidores y cuentas seguidas cuando bloqueás un dominio o cuando tus moderadores deciden suspender un servidor remoto. Cuando esto suceda, vas a poder descargar listas de relaciones cortadas, que serán inspectadas y posiblemente importadas en otro servidor.
+    purged: La información sobre este servidor fue purgada por los administradores de tu servidor.
+    type: Evento
   statuses:
     attached:
       audio:
@@ -1697,8 +1715,6 @@ es-AR:
         other: "%{count} votos"
       vote: Votar
     show_more: Mostrar más
-    show_newer: Mostrar más recientes
-    show_older: Mostrar más antiguos
     show_thread: Mostrar hilo
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1755,6 +1771,7 @@ es-AR:
     contrast: Alto contraste
     default: Oscuro
     mastodon-light: Claro
+    system: Automático (usar tema del sistema)
   time:
     formats:
       default: "%Y.%b.%d, %H:%M"
@@ -1867,7 +1884,9 @@ es-AR:
       follows_subtitle: Seguí cuentas populares
       follows_title: A quién seguir
       follows_view_more: Encontrá más cuentas para seguir
-      hashtags_recent_count: "%{people} cuentas en los últimos %{days} días"
+      hashtags_recent_count:
+        one: "%{people} cuenta en los últimos 2 días"
+        other: "%{people} cuenta en los últimos 2 días"
       hashtags_subtitle: Explora las tendencias de los últimos 2 días
       hashtags_title: Etiquetas en tendencia
       hashtags_view_more: Ver más etiquetas en tendencias

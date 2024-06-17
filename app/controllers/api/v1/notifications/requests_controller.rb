@@ -41,7 +41,7 @@ class Api::V1::Notifications::RequestsController < Api::BaseController
     )
 
     NotificationRequest.preload_cache_collection(requests) do |statuses|
-      cache_collection(statuses, Status)
+      preload_collection(statuses, Status)
     end
   end
 
@@ -51,10 +51,6 @@ class Api::V1::Notifications::RequestsController < Api::BaseController
 
   def set_request
     @request = NotificationRequest.where(account: current_account).find(params[:id])
-  end
-
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
   end
 
   def next_path

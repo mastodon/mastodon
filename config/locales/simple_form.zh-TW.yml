@@ -77,13 +77,15 @@ zh-TW:
           warn: 隱藏過濾內容於過濾器標題之警告後
       form_admin_settings:
         activity_api_enabled: 本站使用者的嘟文數量，以及本站的活躍使用者與一週內新使用者數量
-        backups_retention_period: 將已產生的使用者封存資料保存特定天數。
+        app_icon: WEBP、PNG、GIF、或 JPG。於行動裝置上使用自訂圖示替代預設應用程式圖示。
+        backups_retention_period: 使用者能產生他們嘟文的備份以便日後下載。當設定為正值時，這些嘟文備份將於指定之天數後自您的儲存空間中自動刪除。
         bootstrap_timeline_accounts: 這些帳號將被釘選於新帳號跟隨推薦之上。
         closed_registrations_message: 於註冊關閉時顯示
-        content_cache_retention_period: 所有來自其他伺服器之嘟文及轉嘟將於指定天數後被刪除。這項操作可能是不可逆的。所有相關之書籤、最愛、轉嘟將會遺失並且無法回復。
+        content_cache_retention_period: 所有來自其他伺服器之嘟文（包括轉嘟與回嘟）將於指定之天數後自動刪除，不論這些嘟文與本地使用者間的任何互動。這將包含本地使用者已標記為書籤或最愛之嘟文。不同站點使用者間之私訊亦將遺失且不可回復。此設定應適用於特殊情況，若常規使用將超乎多數使用者預期。
         custom_css: 您於 Mastodon 網頁版本中能套用客製化風格。
+        favicon: WEBP、PNG、GIF、或 JPG。使用自訂圖示替代預設 Mastodon favicon 圖示。
         mascot: 覆寫進階網頁介面中的圖例。
-        media_cache_retention_period: 當設定成正值時，已下載的多媒體檔案會於指定天數後被刪除，並且視需要重新下載。
+        media_cache_retention_period: 來自遠端伺服器嘟文中之多媒體內容將快取於您的伺服器。當設定為正值時，這些多媒體內容將於指定之天數後自您的儲存空間中自動刪除。若多媒體資料於刪除後被請求，且原始內容仍可存取，它們將被重新下載。由於連結預覽中第三方網站查詢頻率限制，建議將其設定為至少 14 日，否則於此之前連結預覽將不被即時更新。
         peers_api_enabled: 浩瀚聯邦宇宙中與此伺服器曾經擦肩而過的網域列表。不包含關於您是否與此伺服器是否有與之串連，僅僅表示您的伺服器已知此網域。這是供收集聯邦宇宙中一般性統計資料服務使用。
         profile_directory: 個人檔案目錄將會列出那些有選擇被發現的使用者。
         require_invite_text: 如果已設定為手動審核註冊，請將「為什麼想要加入呢？」設定為必填項目。
@@ -243,7 +245,7 @@ zh-TW:
         backups_retention_period: 使用者封存資料保留期間
         bootstrap_timeline_accounts: 永遠推薦這些帳號給新使用者
         closed_registrations_message: 當註冊關閉時的客製化訊息
-        content_cache_retention_period: 內容快取資料保留期間
+        content_cache_retention_period: 遠端內容保留期限
         custom_css: 自訂 CSS
         mascot: 自訂吉祥物 (legacy)
         media_cache_retention_period: 多媒體快取資料保留期間

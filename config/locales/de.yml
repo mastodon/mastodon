@@ -285,6 +285,7 @@ de:
         update_custom_emoji_html: "%{name} bearbeitete das Emoji %{target}"
         update_domain_block_html: "%{name} aktualisierte die Domain-Sperre für %{target}"
         update_ip_block_html: "%{name} änderte die Regel für die IP-Adresse %{target}"
+        update_report_html: "%{name} überarbeitete die Meldung %{target}"
         update_status_html: "%{name} überarbeitete einen Beitrag von %{target}"
         update_user_role_html: "%{name} änderte die Rolle von %{target}"
       deleted_account: gelöschtes Konto
@@ -292,6 +293,7 @@ de:
       filter_by_action: Nach Aktion filtern
       filter_by_user: Nach Benutzer*in filtern
       title: Protokoll
+      unavailable_instance: "(Server nicht verfügbar)"
     announcements:
       destroyed_msg: Ankündigung erfolgreich gelöscht!
       edit:
@@ -597,6 +599,9 @@ de:
       actions_description_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Wenn du eine Strafmaßnahme gegen das gemeldete Konto ergreifst, wird eine E-Mail-Benachrichtigung an dieses gesendet, außer wenn die <strong>Spam</strong>-Kategorie ausgewählt ist.
       actions_description_remote_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Dies wirkt sich lediglich darauf aus, wie <strong>dein</strong> Server mit diesem externen Konto kommuniziert und dessen Inhalt handhabt.
       add_to_report: Meldung ergänzen
+      already_suspended_badges:
+        local: Auf diesem Server bereits gesperrt
+        remote: Auf dem anderen Server bereits gesperrt
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
       assigned: Zugewiesene*r Moderator*in
@@ -612,7 +617,7 @@ de:
       created_at: Gemeldet
       delete_and_resolve: Beiträge löschen
       forwarded: Weitergeleitet
-      forwarded_replies_explanation: Diese Meldung stammt von einem externen Profil und betrifft einen externen Inhalt. Der Inhalt wurde an Dich weitergeleitet, weil er eine Antwort auf ein bei Dir registriertes Profil ist.
+      forwarded_replies_explanation: Diese Meldung stammt von einem externen Profil und betrifft einen externen Inhalt. Der Inhalt wurde an dich weitergeleitet, weil er eine Antwort auf ein bei dir registriertes Profil ist.
       forwarded_to: Weitergeleitet an %{domain}
       mark_as_resolved: Als geklärt markieren
       mark_as_sensitive: Mit einer Inhaltswarnung versehen
@@ -748,6 +753,7 @@ de:
         desc_html: Dies beruht auf externen Skripten von hCaptcha, die ein Sicherheits- und Datenschutzproblem darstellen könnten. Darüber hinaus <strong>kann das den Registrierungsprozess für manche Menschen (insbesondere für Menschen mit Behinderung) erheblich erschweren</strong>. Aus diesen Gründen solltest du alternative Maßnahmen in Betracht ziehen, z. B. eine Registrierung basierend auf einer Einladung oder auf Genehmigungen.
         title: Neue Nutzer*innen müssen ein CAPTCHA lösen, um das Konto zu bestätigen
       content_retention:
+        danger_zone: Gefahrenzone
         preamble: Lege fest, wie lange Inhalte von Nutzer*innen auf deinem Mastodon-Server gespeichert bleiben.
         title: Cache & Archive
       default_noindex:
@@ -946,7 +952,7 @@ de:
       delete: Löschen
       edit_preset: Warnvorlage bearbeiten
       empty: Du hast noch keine Warnvorlagen hinzugefügt.
-      title: Warnvorlagen verwalten
+      title: Warnvorlagen
     webhooks:
       add_new: Endpunkt hinzufügen
       delete: Löschen
@@ -1043,7 +1049,7 @@ de:
     apply_for_account: Konto beantragen
     captcha_confirmation:
       help_html: Falls du Probleme beim Lösen des CAPTCHA hast, dann kannst uns über %{email} kontaktieren und wir werden versuchen, dir zu helfen.
-      hint_html: Fast geschafft! Wir müssen uns vergewissern, dass du ein Mensch bist (damit wir Spam verhindern können!). Bitte löse das CAPTCHA und klicke auf „Weiter“.
+      hint_html: Fast geschafft! Wir müssen uns vergewissern, dass du ein Mensch bist (damit wir Spam verhindern können!). Bitte löse das CAPTCHA und klicke auf „Fortfahren“.
       title: Sicherheitsüberprüfung
     confirmations:
       awaiting_review: Deine E-Mail-Adresse wurde bestätigt und das Team von %{domain} überprüft nun deine Registrierung. Sobald es dein Konto genehmigt, wirst du eine E-Mail erhalten.
@@ -1446,7 +1452,7 @@ de:
       cooldown: Nach dem Umzug wird es eine Weile dauern, bis du erneut umziehen darfst
       disabled_account: Dein altes Konto ist nur noch eingeschränkt nutzbar. Du kannst jedoch deine Daten exportieren und das Konto wieder reaktivieren.
       followers: Alle Follower werden vom alten zum neuen Konto übertragen
-      only_redirect_html: Alternativ kannst du auch <a href="%{path}">nur eine Weiterleitung zu deinem neuen Profil</a> einrichten, ohne die Follower zu übertragen.
+      only_redirect_html: Alternativ kannst du auch <a href="%{path}">nur eine Weiterleitung zu deinem neuen Konto</a> einrichten, ohne die Follower zu übertragen.
       other_data: Keine anderen Daten werden automatisch zum neuen Konto übertragen
       redirect: Dein altes Konto wird einen Hinweis erhalten, dass du umgezogen bist. Außerdem wird das Profil von Suchanfragen ausgeschlossen
   moderation:
@@ -1652,14 +1658,26 @@ de:
     import: Importieren
     import_and_export: Importieren und exportieren
     migrate: Kontoumzug
-    notifications: Benachrichtigungen
+    notifications: E-Mail-Benachrichtigungen
     preferences: Einstellungen
     profile: Öffentliches Profil
     relationships: Follower und Folge ich
+    severed_relationships: Getrennte Beziehungen
     statuses_cleanup: Automatische Löschung
     strikes: Maßnahmen
     two_factor_authentication: Zwei-Faktor-Authentisierung (2FA)
     webauthn_authentication: Sicherheitsschlüssel
+  severed_relationships:
+    download: Herunterladen (%{count})
+    event_type:
+      account_suspension: Kontosperre (%{target_name})
+      domain_block: Serversperre (%{target_name})
+      user_domain_block: Du hast %{target_name} blockiert
+    lost_followers: Verlorene Follower
+    lost_follows: Konten entfolgt
+    preamble: Möglicherweise verlierst du Follower und entfolgst Konten, wenn du eine Domain blockierst oder Moderator*innen externe Server sperren. Sollte das der Fall sein, wirst du eine Liste mit den getrennten Beziehungen herunterladen können. Dadurch kannst du die Änderungen einsehen oder die Liste auf einen anderen Server importieren.
+    purged: Informationen über diesen Server wurden von deinen Server-Administrator*innen entfernt.
+    type: Ereignis
   statuses:
     attached:
       audio:
@@ -1697,8 +1715,6 @@ de:
         other: "%{count} Stimmen"
       vote: Abstimmen
     show_more: Mehr anzeigen
-    show_newer: Neuere anzeigen
-    show_older: Ältere anzeigen
     show_thread: Thread anzeigen
     title: "%{name}: „%{quote}“"
     visibilities:
@@ -1755,6 +1771,7 @@ de:
     contrast: Mastodon (Hoher Kontrast)
     default: Mastodon (Dunkel)
     mastodon-light: Mastodon (Hell)
+    system: Automatisch (mit System synchronisieren)
   time:
     formats:
       default: "%d. %b %Y, %H:%M Uhr"
@@ -1831,7 +1848,7 @@ de:
         mark_statuses_as_sensitive: Deine Beiträge von %{acct} wurden mit einer Inhaltswarnung versehen
         none: Warnung für %{acct}
         sensitive: Deine Beiträge von %{acct} werden künftig mit einer Inhaltswarnung versehen
-        silence: Dein Konto %{acct} wurde stummgeschaltet
+        silence: Dein Konto %{acct} wurde eingeschränkt
         suspend: Dein Konto %{acct} wurde gesperrt
       title:
         delete_statuses: Beiträge entfernt
@@ -1867,8 +1884,10 @@ de:
       follows_subtitle: Folge bekannten Profilen
       follows_title: Empfohlene Profile
       follows_view_more: Weitere Profile zum Folgen entdecken
-      hashtags_recent_count: "%{people} Personen in den letzten %{days} Tagen"
-      hashtags_subtitle: Entdecke, was in den letzten 2 Tagen angesagt war
+      hashtags_recent_count:
+        one: "%{people} Profil in den vergangenen 2 Tagen"
+        other: "%{people} Profile in den vergangenen 2 Tagen"
+      hashtags_subtitle: Entdecke, was in den vergangenen 2 Tagen angesagt war
       hashtags_title: Angesagte Hashtags
       hashtags_view_more: Weitere angesagte Hashtags entdecken
       post_action: Verfassen

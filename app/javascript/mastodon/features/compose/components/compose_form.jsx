@@ -21,7 +21,6 @@ import PollButtonContainer from '../containers/poll_button_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import UploadButtonContainer from '../containers/upload_button_container';
-import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
 import { countableText } from '../util/counter';
 
@@ -30,6 +29,7 @@ import { EditIndicator } from './edit_indicator';
 import { NavigationBar } from './navigation_bar';
 import { PollForm } from "./poll_form";
 import { ReplyIndicator } from './reply_indicator';
+import { UploadForm } from './upload_form';
 
 const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 
@@ -283,7 +283,7 @@ class ComposeForm extends ImmutablePureComponent {
             />
           </div>
 
-          <UploadFormContainer />
+          <UploadForm />
           <PollForm />
 
           <div className='compose-form__footer'>

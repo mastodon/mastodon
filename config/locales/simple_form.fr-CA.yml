@@ -77,13 +77,10 @@ fr-CA:
           warn: Cacher le contenu filtré derrière un avertissement mentionnant le nom du filtre
       form_admin_settings:
         activity_api_enabled: Nombre de messages publiés localement, de comptes actifs et de nouvelles inscriptions par tranche hebdomadaire
-        backups_retention_period: Conserve les archives générées par l'utilisateur selon le nombre de jours spécifié.
         bootstrap_timeline_accounts: Ces comptes seront épinglés en tête de liste des recommandations pour les nouveaux utilisateurs.
         closed_registrations_message: Affiché lorsque les inscriptions sont fermées
-        content_cache_retention_period: Les publications depuis d'autres serveurs seront supprimées après un nombre de jours spécifiés lorsque défini sur une valeur positive. Cela peut être irréversible.
         custom_css: Vous pouvez appliquer des styles personnalisés sur la version Web de Mastodon.
         mascot: Remplace l'illustration dans l'interface Web avancée.
-        media_cache_retention_period: Les fichiers multimédias téléchargés seront supprimés après le nombre de jours spécifiés lorsque la valeur est positive, et seront téléchargés à nouveau sur demande.
         peers_api_enabled: Une liste de noms de domaine que ce serveur a rencontrés dans le fédiverse. Aucune donnée indiquant si vous vous fédérez ou non avec un serveur particulier n'est incluse ici, seulement l'information que votre serveur connaît un autre serveur. Cette option est utilisée par les services qui collectent des statistiques sur la fédération en général.
         profile_directory: L'annuaire des profils répertorie tous les utilisateurs qui ont opté pour être découverts.
         require_invite_text: Lorsque les inscriptions nécessitent une approbation manuelle, rendre le texte de l’invitation "Pourquoi voulez-vous vous inscrire ?" obligatoire plutôt que facultatif
@@ -116,6 +113,7 @@ fr-CA:
           sign_up_requires_approval: Les nouvelles inscriptions nécessiteront votre approbation
         severity: Choisir ce qui se passera avec les requêtes de cette adresse IP
       rule:
+        hint: Optionnel. Fournissez plus de détails sur la règle
         text: Décrivez une règle ou une exigence pour les utilisateurs sur ce serveur. Essayez de la garder courte et simple
       sessions:
         otp: 'Entrez le code d’authentification à deux facteurs généré par l’application de votre téléphone ou utilisez un de vos codes de récupération :'
@@ -242,7 +240,6 @@ fr-CA:
         backups_retention_period: Période d'archivage utilisateur
         bootstrap_timeline_accounts: Toujours recommander ces comptes aux nouveaux utilisateurs
         closed_registrations_message: Message personnalisé lorsque les inscriptions ne sont pas disponibles
-        content_cache_retention_period: Durée de rétention du contenu dans le cache
         custom_css: CSS personnalisé
         mascot: Mascotte personnalisée (héritée)
         media_cache_retention_period: Durée de rétention des médias dans le cache
@@ -299,6 +296,7 @@ fr-CA:
           patch: Notifier pour des mises à jour de corrections de bug
         trending_tag: Nouvelle tendance nécessitant supervision
       rule:
+        hint: Information supplémentaire
         text: Règle
       settings:
         indexable: Inclure la page de profil dans les moteurs de recherches

@@ -73,13 +73,17 @@ class RedisConfiguration
     ENV.include? 'REDIS_SENTINEL'
   end
 
+  def redis_driver
+    ENV.fetch('REDIS_DRIVER', 'hiredis') == 'ruby' ? :ruby : :hiredis
+  end
+
   private
 
   def raw_connection
     if sentinel_mode?
-      Redis.new(url: url, driver: :hiredis, sentinels: sentinels, master_name: master_name)
+      Redis.new(url: url, driver: redis_driver, sentinels: sentinels, master_name: master_name)
     else
-      Redis.new(url: url, driver: :hiredis)
+      Redis.new(url: url, driver: redis_driver)
     end
   end
 end

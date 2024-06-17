@@ -9,8 +9,8 @@ class REST::NotificationPolicySerializer < ActiveModel::Serializer
 
   def summary
     {
-      pending_requests_count: object.pending_requests_count.to_s,
-      pending_notifications_count: object.pending_notifications_count.to_s,
+      pending_requests_count: object.pending_requests_count.to_i,
+      pending_notifications_count: object.pending_notifications_count.to_i,
     }
   end
 end

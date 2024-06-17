@@ -391,6 +391,7 @@ kab:
         invites: Iɛeṛṛuḍen
         moderation: Aseɣyed
       delete: Kkes
+      everyone: Tisirag timezwura
       privileges:
         administrator: Anedbal
     rules:
@@ -441,6 +442,10 @@ kab:
     system_checks:
       rules_check:
         action: Sefrek ilugan n uqeddac
+      software_version_critical_check:
+        action: Wali ileqqman yellan
+      software_version_patch_check:
+        action: Wali ileqqman yellan
     title: Tadbelt
     trends:
       allow: Sireg
@@ -602,6 +607,8 @@ kab:
       notifications: Ilɣa
       thread: Idiwenniyen
     edit:
+      add_keyword: Rnu awal tasarut
+      keywords: Awalen n tsarut
       title: Ẓreg amzizdig
     index:
       delete: Kkes
@@ -640,6 +647,7 @@ kab:
       blocking: Tabdart n yimiḍanen iweḥlen
       bookmarks: Ticraḍ
       following: Tabdert n wid teṭṭafareḍ
+      lists: Tibdarin
       muting: Tabdert n wid tesgugmeḍ
     upload: Sali
   invites:
@@ -750,6 +758,7 @@ kab:
       phantom_js: PhantomJS
       qq: Iminig QQ
       safari: Safari
+      unknown_browser: Iminig arussin
       weibo: Weibo
     current_session: Tiɣimit tamirant
     date: Azemz
@@ -784,7 +793,6 @@ kab:
     import: Kter
     import_and_export: Taktert d usifeḍ
     migrate: Tunigin n umiḍan
-    notifications: Ilɣa
     preferences: Imenyafen
     profile: Ameɣnu
     relationships: Imeḍfaṛen akked wid i teṭṭafaṛeḍ
@@ -813,8 +821,6 @@ kab:
         other: "%{count} n yedɣaren"
       vote: Dɣeṛ
     show_more: Ssken-d ugar
-    show_newer: Ssken-d timaynutin
-    show_older: Ssken-d tiqburin
     show_thread: Ssken-d lxiḍ
     title: '%{name} : "%{quote}"'
     visibilities:
@@ -876,8 +882,11 @@ kab:
       follows_title: Anwa ara ḍefṛeḍ
       follows_view_more: Ssken-d ugar n medden ay tzemred ad tḍefred
       post_step: Ini-as azul i umaḍal s uḍris, s tiwlafin, s tividyutin neɣ s tefranin.
+      post_title: Aru tasuffeɣt-inek·inem tamezwarut
       share_action: Bḍu
       share_step: Init-asen i yimeddukal-nwen amek ara ken-id-afen deg Mastodon.
+      share_title: Bḍu amaɣnu-inek·inem n Mastodon
+      sign_in_action: Qqen
       subject: Ansuf ɣer Maṣṭudun
       title: Ansuf yessek·em, %{name}!
   users:

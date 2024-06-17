@@ -1,4 +1,7 @@
-# syntax=docker/dockerfile:1.4
+# syntax=docker/dockerfile:1.7
+
+# This file is designed for production server deployment, not local development work
+# For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/README.md#docker
 
 # Please see https://docs.docker.com/engine/reference/builder for information about
 # the extended buildx capabilities used in this file.
@@ -7,29 +10,31 @@
 ARG TARGETPLATFORM=${TARGETPLATFORM}
 ARG BUILDPLATFORM=${BUILDPLATFORM}
 
-# Ruby image to use for base image, change with [--build-arg RUBY_VERSION="3.2.3"]
-ARG RUBY_VERSION="3.2.3"
+# Ruby image to use for base image, change with [--build-arg RUBY_VERSION="3.3.x"]
+# renovate: datasource=docker depName=docker.io/ruby
+ARG RUBY_VERSION="3.3.3"
 # # Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
+# renovate: datasource=node-version depName=node
 ARG NODE_MAJOR_VERSION="20"
 # Debian image to use for base image, change with [--build-arg DEBIAN_VERSION="bookworm"]
 ARG DEBIAN_VERSION="bookworm"
 # Node image to use for base image based on combined variables (ex: 20-bookworm-slim)
 FROM docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim as node
-# Ruby image to use for base image based on combined variables (ex: 3.2.3-slim-bookworm)
+# Ruby image to use for base image based on combined variables (ex: 3.3.x-slim-bookworm)
 FROM docker.io/ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} as ruby
 
 # Resulting version string is vX.X.X-MASTODON_VERSION_PRERELEASE+MASTODON_VERSION_METADATA
 # Example: v4.2.0-nightly.2023.11.09+something
 # Overwrite existence of 'alpha.0' in version.rb [--build-arg MASTODON_VERSION_PRERELEASE="nightly.2023.11.09"]
 ARG MASTODON_VERSION_PRERELEASE=""
-# Append build metadata or fork information to version.rb [--build-arg MASTODON_VERSION_METADATA="something"]
+# Append build metadata or fork information to version.rb [--build-arg MASTODON_VERSION_METADATA="pr-12345"]
 ARG MASTODON_VERSION_METADATA=""
 
 # Allow Ruby on Rails to serve static files
 # See: https://docs.joinmastodon.org/admin/config/#rails_serve_static_files
 ARG RAILS_SERVE_STATIC_FILES="true"
 # Allow to use YJIT compiler
-# See: https://github.com/ruby/ruby/blob/v3_2_3/doc/yjit/yjit.md
+# See: https://github.com/ruby/ruby/blob/v3_2_4/doc/yjit/yjit.md
 ARG RUBY_YJIT_ENABLE="1"
 # Timezone used by the Docker container and runtime, change with [--build-arg TZ=Europe/Berlin]
 ARG TZ="Etc/UTC"
@@ -60,7 +65,9 @@ ENV \
   DEBIAN_FRONTEND="noninteractive" \
   PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin" \
 # Optimize jemalloc 5.x performance
-  MALLOC_CONF="narenas:2,background_thread:true,thp:never,dirty_decay_ms:1000,muzzy_decay_ms:0"
+  MALLOC_CONF="narenas:2,background_thread:true,thp:never,dirty_decay_ms:1000,muzzy_decay_ms:0" \
+# Enable libvips, should not be changed
+  MASTODON_USE_LIBVIPS=true
 
 # Set default shell used for running commands
 SHELL ["/bin/bash", "-o", "pipefail", "-o", "errexit", "-c"]
@@ -97,7 +104,6 @@ RUN \
     curl \
     ffmpeg \
     file \
-    imagemagick \
     libjemalloc2 \
     patchelf \
     procps \
@@ -131,18 +137,31 @@ RUN \
 --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
 # Install build tools and bundler dependencies from APT
   apt-get install -y --no-install-recommends \
-    g++ \
-    gcc \
+    build-essential \
     git \
     libgdbm-dev \
+    libglib2.0-dev \
     libgmp-dev \
     libicu-dev \
     libidn-dev \
     libpq-dev \
     libssl-dev \
-    make \
+    meson \
+    pkg-config \
     shared-mime-info \
-    zlib1g-dev \
+	# libvips components
+    libcgif-dev \
+    libexif-dev \
+    libexpat1-dev \
+    libgirepository1.0-dev \
+    libheif-dev \
+    libimagequant-dev \
+    libjpeg62-turbo-dev \
+    liblcms2-dev \
+    liborc-dev \
+    libspng-dev \
+    libtiff-dev \
+    libwebp-dev \
   ;
 
 RUN \
@@ -150,6 +169,26 @@ RUN \
   rm /usr/local/bin/yarn*; \
   corepack enable; \
   corepack prepare --activate;
+
+# Create temporary libvips specific build layer from build layer
+FROM build as libvips
+
+# libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
+# renovate: datasource=github-releases depName=libvips packageName=libvips/libvips
+ARG VIPS_VERSION=8.15.2
+# libvips download URL, change with [--build-arg VIPS_URL="https://github.com/libvips/libvips/releases/download"]
+ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
+
+WORKDIR /usr/local/libvips/src
+
+RUN \
+  curl -sSL -o vips-${VIPS_VERSION}.tar.xz ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz; \
+  tar xf vips-${VIPS_VERSION}.tar.xz; \
+  cd vips-${VIPS_VERSION}; \
+  meson setup build --prefix /usr/local/libvips --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false; \
+  cd build; \
+  ninja; \
+  ninja install;
 
 # Create temporary bundler specific build layer from build layer
 FROM build as bundler
@@ -200,12 +239,17 @@ COPY . /opt/mastodon/
 COPY --from=yarn /opt/mastodon /opt/mastodon/
 COPY --from=bundler /opt/mastodon /opt/mastodon/
 COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
+# Copy libvips components to layer for precompiler
+COPY --from=libvips /usr/local/libvips/bin /usr/local/bin
+COPY --from=libvips /usr/local/libvips/lib /usr/local/lib
 
 ARG TARGETPLATFORM
 
 RUN \
+  ldconfig; \
 # Use Ruby on Rails to create Mastodon assets
-  OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:precompile; \
+  SECRET_KEY_BASE_DUMMY=1 \
+  bundle exec rails assets:precompile; \
 # Cleanup temporary files
   rm -fr /opt/mastodon/tmp;
 
@@ -224,12 +268,27 @@ RUN \
 --mount=type=cache,id=yarn-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/yarn,sharing=locked \
 # Apt update install non-dev versions of necessary components
   apt-get install -y --no-install-recommends \
-    libssl3 \
-    libpq5 \
+    libexpat1 \
+    libglib2.0-0 \
     libicu72 \
     libidn12 \
+    libpq5 \
     libreadline8 \
+    libssl3 \
     libyaml-0-2 \
+  # libvips components
+    libcgif0 \
+    libexif12 \
+    libheif1 \
+    libimagequant0 \
+    libjpeg62-turbo \
+    liblcms2-2 \
+    liborc-0.4-0 \
+    libspng0 \
+    libtiff6 \
+    libwebp7 \
+    libwebpdemux2 \
+    libwebpmux3 \
   ;
 
 # Copy Mastodon sources into final layer
@@ -240,9 +299,17 @@ COPY --from=precompiler /opt/mastodon/public/packs /opt/mastodon/public/packs
 COPY --from=precompiler /opt/mastodon/public/assets /opt/mastodon/public/assets
 # Copy bundler components to layer
 COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
+# Copy libvips components to layer
+COPY --from=libvips /usr/local/libvips/bin /usr/local/bin
+COPY --from=libvips /usr/local/libvips/lib /usr/local/lib
 
 RUN \
-# Precompile bootsnap code for faster Rails startup
+  ldconfig; \
+# Smoketest media processors
+  vips -v;
+
+RUN \
+  # Precompile bootsnap code for faster Rails startup
   bundle exec bootsnap precompile --gemfile app/ lib/;
 
 RUN \

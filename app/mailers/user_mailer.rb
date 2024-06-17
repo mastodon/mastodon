@@ -5,10 +5,10 @@ class UserMailer < Devise::Mailer
 
   helper :accounts
   helper :application
-  helper :instance
-  helper :statuses
   helper :formatting
+  helper :instance
   helper :routing
+  helper :statuses
 
   before_action :set_instance
 

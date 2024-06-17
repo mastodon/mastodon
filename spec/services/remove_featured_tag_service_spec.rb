@@ -29,7 +29,7 @@ RSpec.describe RemoveFeaturedTagService do
           expect { featured_tag.reload }
             .to raise_error(ActiveRecord::RecordNotFound)
           expect(ActivityPub::AccountRawDistributionWorker)
-            .to_not have_enqueued_sidekiq_job
+            .to_not have_enqueued_sidekiq_job(any_args)
         end
       end
     end

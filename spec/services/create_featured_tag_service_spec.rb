@@ -24,7 +24,7 @@ RSpec.describe CreateFeaturedTagService do
         expect { subject.call(account, tag) }
           .to change(FeaturedTag, :count).by(1)
         expect(ActivityPub::AccountRawDistributionWorker)
-          .to_not have_enqueued_sidekiq_job
+          .to_not have_enqueued_sidekiq_job(any_args)
       end
     end
   end

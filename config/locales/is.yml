@@ -285,6 +285,7 @@ is:
         update_custom_emoji_html: "%{name} uppfærði tjáningartáknið %{target}"
         update_domain_block_html: "%{name} uppfærði útilokun lénsins %{target}"
         update_ip_block_html: "%{name} breytti reglu fyrir IP-vistfangið %{target}"
+        update_report_html: "%{name} uppfærði kæru %{target}"
         update_status_html: "%{name} uppfærði færslu frá %{target}"
         update_user_role_html: "%{name} breytti hlutverki %{target}"
       deleted_account: eyddur notandaaðgangur
@@ -292,6 +293,7 @@ is:
       filter_by_action: Sía eftir aðgerð
       filter_by_user: Sía eftir notanda
       title: Atvikaskrá
+      unavailable_instance: "(heiti léns ekki tiltækt)"
     announcements:
       destroyed_msg: Það tókst að eyða auglýsingunni!
       edit:
@@ -597,6 +599,9 @@ is:
       actions_description_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Ef þú ákveður að refsa kærða notandaaðgangnum, verður viðkomandi send tilkynning í tölvupósti, nema ef flokkurinn <strong>Ruslpóstur</strong> sé valinn.
       actions_description_remote_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Þetta mun aðeins hafa áhrif á hvernig <strong>netþjónninn þinn</strong> meðhöndlar þennan fjartengda aðgang og efnið á honum.
       add_to_report: Bæta fleiru í kæru
+      already_suspended_badges:
+        local: Þegar frystur á þessum netþjóni
+        remote: Þegar frystur á hinum netþjóninum
       are_you_sure: Ertu viss?
       assign_to_self: Úthluta mér
       assigned: Úthlutaður umsjónarmaður
@@ -750,6 +755,7 @@ is:
           Aukinheldur <strong> gæti þetta gert nýskráningarferlið óaðgengilegra sumum (sérstaklega fyrir fatlaða)</strong>. Þess vegna er rétt að skoða aðra valmöguleika svo sem nýskráningar háðar samþykki eða boði.
         title: Nýir notendur munu þurfa að standast Turing skynpróf til að staðfesta notendaaðganginn
       content_retention:
+        danger_zone: Hættusvæði
         preamble: Stýrðu hvernig efni frá notendum sé geymt í Mastodon.
         title: Geymsla efnis
       default_noindex:
@@ -948,7 +954,7 @@ is:
       delete: Eyða
       edit_preset: Breyta forstilltri aðvörun
       empty: Þú hefur ekki enn skilgreint neinar aðvaranaforstillingar.
-      title: Sýsla með forstilltar aðvaranir
+      title: Forstilltar aðvaranir
     webhooks:
       add_new: Bæta við endapunkti
       delete: Eyða
@@ -1656,14 +1662,26 @@ is:
     import: Flytja inn
     import_and_export: Inn- og útflutningur
     migrate: Yfirfærsla notandaaðgangs
-    notifications: Tilkynningar
+    notifications: Tilkynningar í tölvupósti
     preferences: Kjörstillingar
     profile: Notandasnið
     relationships: Fylgist með og fylgjendur
+    severed_relationships: Rofin tengsl
     statuses_cleanup: Sjálfvirk eyðing færslna
     strikes: Umsýsla refsinga
     two_factor_authentication: Tveggja-þátta auðkenning
     webauthn_authentication: Öryggislyklar
+  severed_relationships:
+    download: Sækja (%{count})
+    event_type:
+      account_suspension: Frysting notandaaðgangsins (%{target_name})
+      domain_block: Frysting netþjónsins (%{target_name})
+      user_domain_block: Þú útilokaðir %{target_name}
+    lost_followers: Tapaðir fylgjendur
+    lost_follows: Tapað sem þú fylgist með
+    preamble: Þú gætir misst einhverja sem þú fylgist með og eins fylgjendur þegar þú útilokar lén eða þegar umsjónarmenn netþjónsins þíns ákveða að frysta fjartengdan netþjón. Þegar slíkt gerist, geturðu sótt lista yfir slík skemmd tengsl, til að yfirfara og mögulega flytja inn á öðrum netþjóni.
+    purged: Upplýsingum um þennan netþjón hefur verið eytt af stjórnendum netþjónsins þíns.
+    type: Atburður
   statuses:
     attached:
       audio:
@@ -1701,8 +1719,6 @@ is:
         other: "%{count} atkvæði"
       vote: Greiða atkvæði
     show_more: Sýna meira
-    show_newer: Sýna nýrri
-    show_older: Sýna eldri
     show_thread: Birta þráð
     title: "%{name}: „%{quote}‟"
     visibilities:
@@ -1759,6 +1775,7 @@ is:
     contrast: Mastodon (mikil birtuskil)
     default: Mastodon (dökkt)
     mastodon-light: Mastodon (ljóst)
+    system: Sjálfvirkt (nota þema kerfis)
   time:
     formats:
       default: "%d. %b, %Y, %H:%M"
@@ -1871,7 +1888,9 @@ is:
       follows_subtitle: Fylgstu með vel þekktum notendum
       follows_title: Hverjum ætti að fylgjast með
       follows_view_more: Skoða fleira fólk til að fylgjast með
-      hashtags_recent_count: "%{people} manns á síðustu %{days} dögum"
+      hashtags_recent_count:
+        one: "%{people} aðili síðustu 2 daga"
+        other: "%{people} manns á síðustu 2 dögum"
       hashtags_subtitle: Skoðaðu hvað sé búið að vera í umræðunni síðustu 2 dagana
       hashtags_title: Vinsæl myllumerki
       hashtags_view_more: Sjá fleiri vinsæl myllumerki

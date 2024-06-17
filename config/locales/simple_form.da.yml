@@ -77,13 +77,15 @@ da:
           warn: Skjul filtreret indhold bag en advarsel, der nævner filterets titel
       form_admin_settings:
         activity_api_enabled: Antal lokalt opslåede indlæg, aktive brugere samt nye tilmeldinger i ugentlige opdelinger
-        backups_retention_period: Behold genererede brugerarkiver i det angivne antal dage.
+        app_icon: WEBP, PNG, GIF eller JPG. Tilsidesætter standard app-ikonet på mobilenheder med et tilpasset ikon.
+        backups_retention_period: Brugere har mulighed for at generere arkiver af deres indlæg til senere downloade. Når sat til positiv værdi, vil disse arkiver automatisk blive slettet fra lagerpladsen efter det angivne antal dage.
         bootstrap_timeline_accounts: Disse konti fastgøres øverst på nye brugeres følg-anbefalinger.
         closed_registrations_message: Vises, når tilmeldinger er lukket
-        content_cache_retention_period: Indlæg fra andre servere slettes efter det angivne antal dage, når sat til en positiv værdi. Dette kan være irreversibelt.
+        content_cache_retention_period: Alle indlæg fra andre servere (herunder boosts og besvarelser) slettes efter det angivne antal dage uden hensyn til lokal brugerinteraktion med disse indlæg. Dette omfatter indlæg, hvor en lokal bruger har markeret dem som bogmærker eller favoritter. Private omtaler mellem brugere fra forskellige instanser vil også være tabt og umulige at gendanne. Brugen af denne indstilling er beregnet til særlige formål instanser og bryder mange brugerforventninger ved implementering til almindelig brug.
         custom_css: Man kan anvende tilpassede stilarter på Mastodon-webversionen.
+        favicon: WEBP, PNG, GIF eller JPG. Tilsidesætter standard Mastodon favikonet på mobilenheder med et tilpasset ikon.
         mascot: Tilsidesætter illustrationen i den avancerede webgrænseflade.
-        media_cache_retention_period: Downloadede mediefiler slettes efter det angivne antal dage, når sat til en positiv værdi, og gendownloades på forlangende.
+        media_cache_retention_period: Mediefiler fra indlæg oprettet af eksterne brugere er cachet på din server. Når sat til positiv værdi, slettes medier efter det angivne antal dage. Anmodes om mediedata efter de er slettet, gendownloades de, hvis kildeindholdet stadig er tilgængeligt. Grundet begrænsninger på, hvor ofte linkforhåndsvisningskort forespørger tredjeparts websteder, anbefales det at sætte denne værdi til mindst 14 dage, ellers opdateres linkforhåndsvisningskort ikke efter behov før det tidspunkt.
         peers_api_enabled: En liste med domænenavne, som denne server har stødt på i fediverset. Ingen data inkluderes her om, hvorvidt der fødereres med en given server, blot at din server kender til det. Dette bruges af tjenester, som indsamler generelle føderationsstatistikker.
         profile_directory: Profilmappen oplister alle brugere, som har valgt at kunne opdages.
         require_invite_text: Når tilmelding kræver manuel godkendelse, så gør “Hvorfor ønsker du at deltage?” tekstinput obligatorisk i stedet for valgfrit
@@ -243,7 +245,7 @@ da:
         backups_retention_period: Brugerarkivs opbevaringsperiode
         bootstrap_timeline_accounts: Anbefal altid disse konti til nye brugere
         closed_registrations_message: Tilpasset besked, når tilmelding er utilgængelig
-        content_cache_retention_period: Indholds-cache opbevaringsperiode
+        content_cache_retention_period: Opbevaringsperiode for eksternt indhold
         custom_css: Tilpasset CSS
         mascot: Tilpasset maskot (ældre funktion)
         media_cache_retention_period: Media-cache opbevaringsperiode

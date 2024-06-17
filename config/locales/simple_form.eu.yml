@@ -3,7 +3,7 @@ eu:
   simple_form:
     hints:
       account:
-        discoverable: Zure bidalketa publikoak eta profila nabarmendu edo gomendatu egin daitezke Mastodoneko hainbat eremutan eta zure profila beste erabiltzaile batzuei iradoki dakieke.
+        discoverable: Zure bidalketa publikoak eta profila nabarmendu edo gomendatu egin daitezke Mastodon-go hainbat eremutan eta zure profila beste erabiltzaile batzuei iradoki dakieke.
         display_name: Zure izena edo ezizena.
         fields: Zure webgunea, izenordainak, adina, nahi duzun guztia.
         indexable: Zure argitalpen publikoak bilaketa-emaitzetan ager daitezke Mastodonen. Zure argitalpenekin elkarregin duten jendeak ikusi ahal izango dituzte, hala ere.
@@ -77,13 +77,15 @@ eu:
           warn: Ezkutatu iragazitako edukia iragazkiaren izenburua duen abisu batekin
       form_admin_settings:
         activity_api_enabled: Lokalki argitaratutako bidalketak, erabiltzaile aktiboak, eta izen-emateen kopuruak astero zenbatzen ditu
-        backups_retention_period: Mantendu sortutako erabiltzailearen artxiboa zehazturiko egun kopuruan.
+        app_icon: WEBP, PNG, GIF edo JPG. Aplikazioaren ikono lehenetsia gainidazten du ikono pertsonalizatu batekin gailu mugikorretan.
+        backups_retention_period: Erabiltzaileek geroago deskarga dezaketen beren argitalpenen artxiboak sor ditzakete. Balio positibo bat ezartzean, artxibo hauek biltegiratzetik automatikoki ezabatuko dira zehazturiko egunen buruan.
         bootstrap_timeline_accounts: Kontu hauek erabiltzaile berrien jarraitzeko gomendioen goiko aldean ainguratuko dira.
         closed_registrations_message: Izen-ematea itxia dagoenean bistaratua
-        content_cache_retention_period: Balio positibo bat ezarriz gero, egun kopuru horretara iristean beste zerbitzarietako bidalketak ezabatuko dira. Hau ezin da desegin.
+        content_cache_retention_period: Beste zerbitzarietako argitalpen guztiak (bultzadak eta erantzunak barne) ezabatuko dira zehazturiko egunen buruan, argitalpen horiek izan ditzaketen erabiltzaile lokalaren interakzioa kontuan izanik gabe. Instantzia desberdinetako erabiltzaileen arteko aipamen pribatuak ere galdu egingo dira eta ezin izango dira berreskuratu. Ezarpen honen erabilera xede berezia duten instantziei zuzendua dago eta erabiltzaileen itxaropena hausten da orotariko erabilerarako inplementatzean.
         custom_css: Estilo pertsonalizatuak aplikatu ditzakezu Mastodonen web bertsioan.
+        favicon: WEBP, PNG, GIF or JPG. Mastodon-en favicon-a gainidazten du ikono pertsonalizatu batekin.
         mascot: Web interfaze aurreratuko ilustrazioa gainidazten du.
-        media_cache_retention_period: Balio positibo bat ezarriz gero, egun kopuru horretara iristean beste zerbitzarietatik deskargatutako multimedia fitxategiak ezabatuko dira. Ondoren, eskatu ahala deskargatuko dira berriz.
+        media_cache_retention_period: Multimedia-fitxategiak dituzten urruneko erabiltzaileen argitalpenak zure zerbitzarian gordetzen dira cachean. Balio positiboa ezartzean, multimedia zehazturiko egunen buruan ezabatuko da. Multimedia-datuak eskatzen badira ezabatu ostean, berriro deskargatuko dira, iturburuko edukia oraindik erabilgarri badago. Estekaren aurrebistako txartelek hirugarrenen guneei zenbatetan dei diezaieketen mugatzen dieten murrizketak direla eta, balio honi, gutxienez, 14 egunen balioa ezartzea gomendatzen da, bestela, esteken aurrebistako txartelak ez dira eguneratuko eskatu ahala denbora horren aurretik.
         peers_api_enabled: Zerbitzari honek fedibertsoan ikusi dituen zerbitzarien domeinu-izenen zerrenda. Ez da daturik ematen zerbitzari jakin batekin federatzearen ala ez federatzearen inguruan, zerbitzariak haien berri duela soilik. Federazioari buruzko estatistika orokorrak biltzen dituzten zerbitzuek erabiltzen dute hau.
         profile_directory: Profilen direktorioan ikusgai egotea aukeratu duten erabiltzaile guztiak zerrendatzen dira.
         require_invite_text: Izen emateak eskuz onartu behar direnean, "Zergatik elkartu nahi duzu?" testu sarrera derrigorrezko bezala ezarri, ez hautazko
@@ -243,7 +245,7 @@ eu:
         backups_retention_period: Erabiltzailearen artxiboa gordetzeko epea
         bootstrap_timeline_accounts: Gomendatu beti kontu hauek erabiltzaile berriei
         closed_registrations_message: Izen-emateak itxita daudenerako mezu pertsonalizatua
-        content_cache_retention_period: Edukiaren cache-a atxikitzeko epea
+        content_cache_retention_period: Urruneko edukiaren atxikipen-aldia
         custom_css: CSS pertsonalizatua
         mascot: Maskota pertsonalizatua (zaharkitua)
         media_cache_retention_period: Multimediaren cachea atxikitzeko epea

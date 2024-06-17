@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import BookmarksActiveIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
 import BookmarksIcon from '@/material-icons/400-24px/bookmarks.svg?react';
+import ExploreActiveIcon from '@/material-icons/400-24px/explore-fill.svg?react';
 import ExploreIcon from '@/material-icons/400-24px/explore.svg?react';
 import HomeActiveIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home.svg?react';
@@ -30,6 +31,7 @@ import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { WordmarkLogo } from 'mastodon/components/logo';
 import { NavigationPortal } from 'mastodon/components/navigation_portal';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { timelinePreview, trendsEnabled } from 'mastodon/initial_state';
 import { transientSingleColumn } from 'mastodon/is_mobile';
 
@@ -96,12 +98,8 @@ const FollowRequestsLink = () => {
 };
 
 class NavigationPanel extends Component {
-
-  static contextTypes = {
-    identity: PropTypes.object.isRequired,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     intl: PropTypes.object.isRequired,
   };
 
@@ -111,7 +109,7 @@ class NavigationPanel extends Component {
 
   render () {
     const { intl } = this.props;
-    const { signedIn, disabledAccountId } = this.context.identity;
+    const { signedIn, disabledAccountId } = this.props.identity;
 
     let banner = undefined;
 
@@ -145,7 +143,7 @@ class NavigationPanel extends Component {
         )}
 
         {trendsEnabled ? (
-          <ColumnLink transparent to='/explore' icon='explore' iconComponent={ExploreIcon} text={intl.formatMessage(messages.explore)} />
+          <ColumnLink transparent to='/explore' icon='explore' iconComponent={ExploreIcon} activeIconComponent={ExploreActiveIcon} text={intl.formatMessage(messages.explore)} />
         ) : (
           <ColumnLink transparent to='/search' icon='search' iconComponent={SearchIcon} text={intl.formatMessage(messages.search)} />
         )}
@@ -188,4 +186,4 @@ class NavigationPanel extends Component {
 
 }
 
-export default injectIntl(NavigationPanel);
+export default injectIntl(withIdentity(NavigationPanel));

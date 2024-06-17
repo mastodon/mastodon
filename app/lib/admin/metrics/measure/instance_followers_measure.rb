@@ -44,7 +44,7 @@ class Admin::Metrics::Measure::InstanceFollowersMeasure < Admin::Metrics::Measur
         SELECT count(*) FROM new_followers
       ) AS value
       FROM (
-        SELECT generate_series(date_trunc('day', :start_at::timestamp)::date, date_trunc('day', :end_at::timestamp)::date, interval '1 day') AS period
+        #{generated_series_days}
       ) AS axis
     SQL
   end

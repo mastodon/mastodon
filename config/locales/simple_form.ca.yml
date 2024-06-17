@@ -77,13 +77,15 @@ ca:
           warn: Oculta el contingut filtrat darrere d'un avís mencionant el títol del filtre
       form_admin_settings:
         activity_api_enabled: Contador de tuts publicats localment, usuaris actius i registres nous en períodes setmanals
-        backups_retention_period: Manté els arxius d'usuari generats durant el nombre de dies especificats.
+        app_icon: WEBP, PNG, GIF o JPG. Canvia la icona per defecte de l'app en dispositius mòbils per una de personalitzada.
+        backups_retention_period: Els usuaris poden generar arxius de les seves publicacions per a baixar-los més endavant. Quan tingui un valor positiu, els arxius s'esborraran del vostre emmagatzematge després del nombre donat de dies.
         bootstrap_timeline_accounts: Aquests comptes es fixaran en la part superior de les recomanacions de seguiment dels nous usuaris.
         closed_registrations_message: Es mostra quan el registres estan tancats
-        content_cache_retention_period: Els tuts d'altres servidors se suprimiran després del nombre de dies especificat quan s'estableix un valor positiu. Això pot ser irreversible.
+        content_cache_retention_period: S'esborraran totes les publicacions d'altres servidors (impulsos i respostes inclosos) passats els dies indicats, sense tenir en consideració les interaccions d'usuaris locals amb aquestes publicacions. Això inclou les publicacions que un usuari local hagi marcat com a favorites. També es perdran, i no es podran recuperar, les mencions privades entre usuaris d'instàncies diferents. Aquest paràmetre està pensat per a instàncies amb un propòsit especial i trencarà les expectatives dels usuaris si s'utilitza en una instància convencional.
         custom_css: Pots aplicar estils personalitzats en la versió web de Mastodon.
+        favicon: WEBP, PNG, GIF o JPG. Canvia la icona per defecte de Mastodon a la pestanya del navegador per una de personalitzada.
         mascot: Anul·la la il·lustració en la interfície web avançada.
-        media_cache_retention_period: Els fitxers multimèdia descarregats s'esborraran després del nombre de dies especificat quan el valor configurat és positiu, i tornats a descarregats sota demanda.
+        media_cache_retention_period: El vostre servidor conserva una còpia dels fitxers multimèdia de les publicacions dels usuaris remots. Si s'indica un valor positiu, s'esborraran passats els dies indicats. Si el fitxer es torna a demanar un cop esborrat, es tornarà a baixar si el contingut origen segueix disponible. Per causa de les restriccions en la freqüència amb què es poden demanar les targetes de previsualització d'altres servidors, es recomana definir aquest valor com a mínim a 14 dies, o les targetes de previsualització no s'actualizaran a demanda abans d'aquest termini.
         peers_api_enabled: Una llista de noms de domini que aquest servidor ha trobat al fedivers. No inclou cap dada sobre si estàs federat amb un servidor determinat, només si el teu en sap res. La fan servir, en un sentit general, serveis que recol·lecten estadístiques sobre la federació.
         profile_directory: El directori de perfils llista tots els usuaris que tenen activat ser descoberts.
         require_invite_text: Quan el registre requereixi aprovació manual, fes que sigui obligatori en lloc d'opcional d'escriure el text de la sol·licitud d'invitació "Per què vols unir-te?"
@@ -243,7 +245,7 @@ ca:
         backups_retention_period: Període de retenció del arxiu d'usuari
         bootstrap_timeline_accounts: Recomana sempre aquests comptes als nous usuaris
         closed_registrations_message: Missatge personalitzat quan el registre no és accessible
-        content_cache_retention_period: Període de retenció de la memòria cau de contingut
+        content_cache_retention_period: Període de retenció del contingut remot
         custom_css: CSS personalitzat
         mascot: Mascota personalitzada (llegat)
         media_cache_retention_period: Període de retenció del cau multimèdia

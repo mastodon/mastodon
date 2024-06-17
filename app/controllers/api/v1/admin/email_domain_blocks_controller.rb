@@ -14,10 +14,6 @@ class Api::V1::Admin::EmailDomainBlocksController < Api::BaseController
   after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
-  PAGINATION_PARAMS = %i(
-    limit
-  ).freeze
-
   def index
     authorize :email_domain_block, :index?
     render json: @email_domain_blocks, each_serializer: REST::Admin::EmailDomainBlockSerializer
@@ -58,10 +54,6 @@ class Api::V1::Admin::EmailDomainBlocksController < Api::BaseController
     params.permit(:domain, :allow_with_approval)
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def next_path
     api_v1_admin_email_domain_blocks_url(pagination_params(max_id: pagination_max_id)) if records_continue?
   end
@@ -76,9 +68,5 @@ class Api::V1::Admin::EmailDomainBlocksController < Api::BaseController
 
   def records_continue?
     @email_domain_blocks.size == limit_param(LIMIT)
-  end
-
-  def pagination_params(core_params)
-    params.slice(*PAGINATION_PARAMS).permit(*PAGINATION_PARAMS).merge(core_params)
   end
 end

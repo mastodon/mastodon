@@ -13,11 +13,11 @@ class Api::V1::FavouritesController < Api::BaseController
   private
 
   def load_statuses
-    cached_favourites
+    preloaded_favourites
   end
 
-  def cached_favourites
-    cache_collection(results.map(&:status), Status)
+  def preloaded_favourites
+    preload_collection(results.map(&:status), Status)
   end
 
   def results
@@ -29,10 +29,6 @@ class Api::V1::FavouritesController < Api::BaseController
 
   def account_favourites
     current_account.favourites
-  end
-
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
   end
 
   def next_path
@@ -49,9 +45,5 @@ class Api::V1::FavouritesController < Api::BaseController
 
   def records_continue?
     results.size == limit_param(DEFAULT_STATUSES_LIMIT)
-  end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
   end
 end

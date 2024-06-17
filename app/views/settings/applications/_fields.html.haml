@@ -11,6 +11,7 @@
 .fields-group
   = f.input :redirect_uri,
             label: t('activerecord.attributes.doorkeeper/application.redirect_uri'), hint: t('doorkeeper.applications.help.redirect_uri'),
+            required: true,
             wrapper: :with_block_label
 
   %p.hint= t('doorkeeper.applications.help.native_redirect_uri', native_redirect_uri: content_tag(:code, Doorkeeper.configuration.native_redirect_uri)).html_safe

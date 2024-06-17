@@ -40,7 +40,7 @@ lt:
       defaults:
         autofollow: Žmonės, kurie užsiregistruos per kvietimą, automatiškai seks tave
         avatar: WEBP, PNG, GIF arba JPG. Ne daugiau kaip %{size}. Bus sumažintas iki %{dimensions} tšk.
-        bot: Signalizuoti kitiems, kad paskyroje daugiausia atliekami automatiniai veiksmai ir kad ji gali būti nestebima
+        bot: Signalizuoti kitiems, kad paskyroje daugiausia atliekami automatiniai veiksmai ir kad ji gali būti nestebima.
         context: Vienas arba keli kontekstai, kuriems turėtų būti taikomas filtras
         current_password: Saugumo sumetimais įvesk dabartinės paskyros slaptažodį
         current_username: Kad patvirtintum, įvesk dabartinės paskyros naudotojo vardą
@@ -49,18 +49,18 @@ lt:
         header: WEBP, PNG, GIF arba JPG. Ne daugiau kaip %{size}. Bus sumažintas iki %{dimensions} tšk.
         inbox_url: Nukopijuok URL adresą iš pradinio puslapio perdavėjo, kurį nori naudoti
         irreversible: Filtruoti įrašai išnyks negrįžtamai, net jei vėliau filtras bus pašalintas
-        locale: Naudotojo sąsajos kalba, el. laiškai ir stumiamieji pranešimai
+        locale: Naudotojo sąsajos kalba, el. laiškai ir tiesioginiai pranešimai
         password: Naudok bent 8 simbolius
         phrase: Bus suderinta, neatsižvelgiant į teksto lygį arba įrašo turinio įspėjimą
         scopes: Prie kurių API programai bus leidžiama pasiekti. Pasirinkus aukščiausio lygio sritį, atskirų sričių pasirinkti nereikia.
-        setting_aggregate_reblogs: Nerodyti naujų pakėlimų įrašams, kurie neseniai buvo pakelti (taikoma tik naujai gautiems pakėlimams)
-        setting_always_send_emails: Paprastai pranešimai el. paštu nebus siunčiami, kai aktyviai naudoji Mastodon
-        setting_default_sensitive: Jautrioji medija pagal numatytuosius nustatymus yra paslėpta ir gali būti atskleista paspaudus
+        setting_aggregate_reblogs: Nerodyti naujų pakėlimų įrašams, kurie neseniai buvo pakelti (taikoma tik naujai gautiems pakėlimams).
+        setting_always_send_emails: Paprastai el. laiško pranešimai nebus siunčiami, kai aktyviai naudoji Mastodon.
+        setting_default_sensitive: Jautrioji medija pagal numatytuosius nustatymus yra paslėpta ir gali būti atskleista spustelėjus.
         setting_display_media_default: Slėpti mediją, pažymėtą kaip jautrią
         setting_display_media_hide_all: Visada slėpti mediją
         setting_display_media_show_all: Visada rodyti mediją
-        setting_use_blurhash: Gradientai pagrįsti paslėptų vaizdų spalvomis, tačiau užgožia bet kokias detales
-        setting_use_pending_items: Slėpti laiko skalės naujienas po paspaudimo, vietoj automatinio kanalo slinkimo
+        setting_use_blurhash: Gradientai pagrįsti paslėptų vizualizacijų spalvomis, bet užgožia bet kokias detales.
+        setting_use_pending_items: Slėpti laiko skalės naujienas po paspaudimo, vietoj automatinio srauto slinkimo.
         username: Gali naudoti raides, skaičius ir pabraukimus
         whole_word: Kai raktažodis ar frazė yra tik raidinis ir skaitmeninis, jis bus taikomas tik tada, jei atitiks visą žodį
       email_domain_block:
@@ -74,14 +74,23 @@ lt:
           warn: Slėpti filtruojamą turinį po įspėjimu, paminint filtro pavadinimą
       form_admin_settings:
         activity_api_enabled: Vietinių paskelbtų įrašų, aktyvių naudotojų ir naujų registracijų skaičiai kas savaitę
-        backups_retention_period: Laikyti sukurtus naudotojų archyvus nurodytą dienų skaičių.
+        app_icon: WEBP, PNG, GIF arba JPG. Pakeičia numatytąją programos piktogramą mobiliuosiuose įrenginiuose pasirinktine piktograma.
+        backups_retention_period: Naudotojai gali generuoti savo įrašų archyvus, kuriuos vėliau galės atsisiųsti. Nustačius teigiamą reikšmę, šie archyvai po nurodyto dienų skaičiaus bus automatiškai ištrinti iš saugyklos.
+        content_cache_retention_period: Visi įrašai iš kitų serverių (įskaitant pakėlimus ir atsakymus) bus ištrinti po nurodyto dienų skaičiaus, neatsižvelgiant į bet kokią vietinio naudotojo sąveiką su tais įrašais. Tai taikoma ir tiems įrašams, kuriuos vietinis naudotojas yra pažymėjęs kaip žymes ar mėgstamus. Privačios paminėjimai tarp naudotojų iš skirtingų instancijų taip pat bus prarastos ir jų bus neįmanoma atkurti. Šis nustatymas skirtas naudoti ypatingos paskirties instancijose, o įgyvendinus jį bendram naudojimui, pažeidžiami daugelio naudotojų lūkesčiai.
+        favicon: WEBP, PNG, GIF arba JPG. Pakeičia numatytąją Mastodon svetaines piktogramą pasirinktine piktograma.
+        mascot: Pakeičia išplėstinės žiniatinklio sąsajos iliustraciją.
+        media_cache_retention_period: Nuotolinių naudotojų įrašytų įrašų medijos failai talpinami tavo serveryje. Nustačius teigiamą reikšmę, medijos bus ištrinamos po nurodyto dienų skaičiaus. Jei medijos duomenų bus paprašyta po to, kai jie bus ištrinti, jie bus atsiųsti iš naujo, jei šaltinio turinys vis dar prieinamas. Dėl apribojimų, susijusių su nuorodų peržiūros kortelių apklausos dažnumu trečiųjų šalių svetainėse, rekomenduojama nustatyti šią reikšmę ne trumpesnę kaip 14 dienų, kitaip nuorodų peržiūros kortelės nebus atnaujinamos pagal pareikalavimą iki to laiko.
         peers_api_enabled: Domenų pavadinimų sąrašas, su kuriais šis serveris susidūrė fediverse. Čia nėra duomenų apie tai, ar tu bendrauji su tam tikru serveriu, tik apie tai, kad tavo serveris apie jį žino. Tai naudojama tarnybose, kurios renka federacijos statistiką bendrąja prasme.
+        require_invite_text: Kai registraciją reikia patvirtinti rankiniu būdu, teksto įvesties laukelį „Kodėl nori prisijungti?“ padaryk privalomą, o ne pasirenkamą
         site_contact_email: Kaip žmonės gali su tavimi susisiekti teisiniais ar pagalbos užklausimais.
         site_contact_username: Kaip žmonės gali tave pasiekti Mastodon.
         site_extended_description: Bet kokia papildoma informacija, kuri gali būti naudinga lankytojams ir naudotojams. Gali būti struktūrizuota naudojant Markdown sintaksę.
         thumbnail: Maždaug 2:1 dydžio vaizdas, rodomas šalia tavo serverio informacijos.
         timeline_preview: Atsijungę lankytojai galės naršyti naujausius viešus įrašus, esančius serveryje.
         trends: Trendai rodo, kurios įrašai, saitažodžiai ir naujienų istorijos tavo serveryje sulaukia didžiausio susidomėjimo.
+        trends_as_landing_page: Rodyti tendencingą turinį atsijungusiems naudotojams ir lankytojams vietoj šio serverio aprašymo. Reikia, kad tendencijos būtų įjungtos.
+      invite_request:
+        text: Tai padės mums peržiūrėti tavo paraišką
       rule:
         hint: Pasirinktinai. Pateik daugiau informacijos apie taisyklę.
       sessions:
@@ -89,11 +98,13 @@ lt:
         webauthn: Jei tai USB raktas, būtinai jį įkišk ir, jei reikia, paspausk.
       settings:
         indexable: Tavo profilio puslapis gali būti rodomas paieškos rezultatuose Google, Bing ir kituose.
+        show_application: Neatsižvelgiant į tai, visada galėsi matyti, kuri programėlė paskelbė tavo įrašą.
       user:
-        chosen_languages: Kai pažymėta, viešose laiko skalėse bus rodomi tik įrašai pasirinktomis kalbomis
+        chosen_languages: Kai pažymėta, viešose laiko skalėse bus rodomi tik įrašai pasirinktomis kalbomis.
         role: Vaidmuo valdo, kokius leidimus naudotojas (-a) turi
     labels:
       account:
+        discoverable: Rekomenduoti profilį ir įrašus į atradimo algoritmus
         indexable: Įtraukti viešus įrašus į paieškos rezultatus
         show_collections: Rodyti sekimus ir sekėjus profilyje
         unlocked: Automatiškai priimti naujus sekėjus
@@ -102,6 +113,7 @@ lt:
       admin_account_action:
         include_statuses: Įtraukti praneštus įrašus į el. laišką
       defaults:
+        autofollow: Kviesti sekti tavo paskyrą
         avatar: Profilio nuotrauka
         bot: Tai automatinė paskyra
         chosen_languages: Filtruoti kalbas
@@ -116,19 +128,26 @@ lt:
         note: Biografija
         password: Slaptažodis
         phrase: Raktažodis arba frazė
+        setting_advanced_layout: Įjungti išplėstinę žiniatinklio sąsają
+        setting_aggregate_reblogs: Grupuoti pakėlimus laiko skalėse
+        setting_always_send_emails: Visada siųsti el. laiško pranešimus
         setting_auto_play_gif: Automatiškai leisti animuotų GIF
         setting_boost_modal: Rodyti patvirtinimo dialogą prieš pakėliant įrašą
         setting_default_language: Skelbimo kalba
         setting_default_privacy: Skelbimo privatumas
         setting_default_sensitive: Visada žymėti mediją kaip jautrią
         setting_delete_modal: Rodyti patvirtinimo dialogą prieš ištrinant įrašą
+        setting_disable_swiping: Išjungti perbraukimo judėjimus
         setting_display_media: Medijos rodymas
         setting_display_media_hide_all: Slėpti viską
         setting_display_media_show_all: Rodyti viską
         setting_expand_spoilers: Visada išplėsti įrašus, pažymėtus turinio įspėjimais
         setting_hide_network: Slėpti savo socialinę diagramą
+        setting_reduce_motion: Sumažinti judėjimą animacijose
         setting_system_font_ui: Naudoti numatytąjį sistemos šriftą
         setting_theme: Svetainės tema
+        setting_trends: Rodyti šiandienos trendus
+        setting_use_blurhash: Rodyti spalvingus paslėptos medijos gradientus
         setting_use_pending_items: Lėtas režimas
         title: Pavadinimas
         type: Importo tipas
@@ -146,10 +165,11 @@ lt:
       form_admin_settings:
         activity_api_enabled: Skelbti suvestinį statistiką apie naudotojų veiklą per API
         bootstrap_timeline_accounts: Visada rekomenduoti šias paskyras naujiems naudotojams
-        content_cache_retention_period: Turinio talpyklos išlaikymo laikotarpis
+        content_cache_retention_period: Nuotolinio turinio saugojimo laikotarpis
         custom_css: Pasirinktinis CSS
         mascot: Pasirinktinis talismanas (pasenęs)
         registrations_mode: Kas gali užsiregistruoti
+        require_invite_text: Reikalauti priežasties prisijungti
         show_domain_blocks_rationale: Rodyti, kodėl domenai buvo užblokuoti
         site_extended_description: Išplėstas aprašymas
         site_short_description: Serverio aprašymas
@@ -157,6 +177,11 @@ lt:
         site_title: Serverio pavadinimas
         theme: Numatytoji tema
         thumbnail: Serverio miniatūra
+        trendable_by_default: Leisti tendencijas be išankstinės peržiūros
+        trends: Įjungti tendencijas
+        trends_as_landing_page: Naudoti tendencijas kaip nukreipimo puslapį
+      invite:
+        comment: Komentuoti
       invite_request:
         text: Kodėl nori prisijungti?
       notification_emails:
@@ -169,10 +194,12 @@ lt:
         software_updates:
           label: Yra nauja Mastodon versija
           patch: Pranešti apie klaidų ištaisymo atnaujinimus
+        trending_tag: Reikia peržiūros naujam tendencijai
       rule:
         hint: Papildoma informacija
         text: Taisyklė
       settings:
+        indexable: Įtraukti profilio puslapį į paieškos variklius
         show_application: Rodyti, iš kurios programėles išsiuntei įrašą
       tag:
         listable: Leisti šį saitažodį rodyti paieškose ir pasiūlymuose

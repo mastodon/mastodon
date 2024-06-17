@@ -285,6 +285,7 @@ ca:
         update_custom_emoji_html: "%{name} ha actualitzat l'emoji %{target}"
         update_domain_block_html: "%{name} ha actualitzat el bloqueig de domini per a %{target}"
         update_ip_block_html: "%{name} ha canviat la norma per la IP %{target}"
+        update_report_html: "%{name} ha actualitzat l'informe %{target}"
         update_status_html: "%{name} ha actualitzat l'estat de %{target}"
         update_user_role_html: "%{name} ha canviat el rol %{target}"
       deleted_account: compte eliminat
@@ -292,6 +293,7 @@ ca:
       filter_by_action: Filtra per acció
       filter_by_user: Filtra per usuari
       title: Registre d'auditoria
+      unavailable_instance: "(nom de domini no disponible)"
     announcements:
       destroyed_msg: L’anunci s’ha esborrat amb èxit!
       edit:
@@ -465,7 +467,7 @@ ca:
       status: Estat
       suppress: Suprimeix les recomanacions de seguiment
       suppressed: Suprimit
-      title: Seguir les recomanacions
+      title: Recomanacions de comptes a seguir
       unsuppress: Restaurar les recomanacions de seguiment
     instances:
       availability:
@@ -597,6 +599,9 @@ ca:
       actions_description_html: Decideix quina acció a prendre per a resoldre aquest informe. Si prens un acció punitiva contra el compte denunciat, se li enviarà una notificació per correu electrònic, excepte quan se selecciona la categoria <strong>Spam</strong>.
       actions_description_remote_html: Decideix quina acció prendre per a resoldre aquest informe. Això només afectarà com <strong>el teu</strong> servidor es comunica amb aquest compte remot i en gestiona el contingut.
       add_to_report: Afegir més al informe
+      already_suspended_badges:
+        local: Ja és suspès en aquest servidor
+        remote: Ja és suspès al seu servidor
       are_you_sure: Segur?
       assign_to_self: Assigna'm
       assigned: Moderador assignat
@@ -748,6 +753,7 @@ ca:
         desc_html: Això es basa en scripts externs de hCaptcha, que poden ser un problema de privacitat i seguretat. A més, <strong>això pot fer que el procés de registre sigui significativament menys accesible per algunes (especialment discapacitades) persones</strong>. Per aquestes raons, si us plau considera alternatives com ara registre amb aprovació necessària o basada en invitacions.
         title: Demana als nous usuaris que resolguin un CAPTCHA per a confirmar el seu compte
       content_retention:
+        danger_zone: Zona de perill
         preamble: Controla com es desa a Mastodon el contingut generat per l'usuari.
         title: Retenció de contingut
       default_noindex:
@@ -946,7 +952,7 @@ ca:
       delete: Elimina
       edit_preset: Edita l'avís predeterminat
       empty: Encara no has definit cap preavís.
-      title: Gestiona les configuracions predefinides dels avisos
+      title: Predefinicions d'avís
     webhooks:
       add_new: Afegir extrem
       delete: Elimina
@@ -1582,7 +1588,7 @@ ca:
   rss:
     content_warning: 'Avís de contingut:'
     descriptions:
-      account: Publicacions des de @%{acct}
+      account: Publicacions públiques de @%{acct}
       tag: 'Tuts etiquetats #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Has superat el límit de %{limit} tuts programats per a avui
@@ -1652,14 +1658,26 @@ ca:
     import: Importació
     import_and_export: Importació i exportació
     migrate: Migració del compte
-    notifications: Notificacions
+    notifications: Notificacions per correu electrònic
     preferences: Preferències
     profile: Perfil
     relationships: Seguits i seguidors
+    severed_relationships: Relacions eliminades
     statuses_cleanup: Esborrat automàtic de tuts
     strikes: Accions de mediació
     two_factor_authentication: Autenticació de dos factors
     webauthn_authentication: Claus de seguretat
+  severed_relationships:
+    download: Baixa (%{count})
+    event_type:
+      account_suspension: Suspensió del compte (%{target_name})
+      domain_block: Suspensió del servidor (%{target_name})
+      user_domain_block: Heu blocat %{target_name}
+    lost_followers: Seguidors perduts
+    lost_follows: Seguiments perduts
+    preamble: Quan bloqueu un domini o els vostres moderadors decideixen suspendre un servidor remot, podeu perdre seguidors i seguiments. Si passa, podeu baixar la llista de relacions trencades per a revisar-la i, de cas, importar-la a un altre servidor.
+    purged: Els administradors del vostre servidor han purgat la informació relativa a aquest servidor.
+    type: Esdeveniment
   statuses:
     attached:
       audio:
@@ -1697,8 +1715,6 @@ ca:
         other: "%{count} vots"
       vote: Vota
     show_more: Mostra'n més
-    show_newer: Mostra els més nous
-    show_older: Mostra els més vells
     show_thread: Mostra el fil
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1729,7 +1745,7 @@ ca:
     keep_self_bookmark: Mantenir els tuts que has desat a les adreces d'interès
     keep_self_bookmark_hint: No esborra els teus propis tuts si els has desat en les adreces d'interès
     keep_self_fav: Mantenir els tuts que has afavorit
-    keep_self_fav_hint: No esborra els teus propis tuts si les has afavorit
+    keep_self_fav_hint: No esborra les teves publicacions si les has afavorit
     min_age:
       '1209600': 2 setmanes
       '15778476': 6 mesos
@@ -1755,6 +1771,7 @@ ca:
     contrast: Mastodon (alt contrast)
     default: Mastodon (fosc)
     mastodon-light: Mastodon (clar)
+    system: Automàtic (utilitza el tema del sistema)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -1867,7 +1884,9 @@ ca:
       follows_subtitle: Seguiu comptes populars
       follows_title: A qui seguir
       follows_view_more: Més persones a qui seguir
-      hashtags_recent_count: "%{people} persones en els últims %{days} dies"
+      hashtags_recent_count:
+        one: "%{people} persona en els 2 últims dies"
+        other: "%{people} persones en els 2 últims dies"
       hashtags_subtitle: Exploreu què és tendència des de fa 2 dies
       hashtags_title: Etiquetes en tendència
       hashtags_view_more: Més etiquetes en tendència
