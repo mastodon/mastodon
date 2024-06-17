@@ -1,4 +1,4 @@
-import api, { getLinks } from 'mastodon/api';
+import api, { apiRequest, getLinks } from 'mastodon/api';
 import type { ApiNotificationGroupJSON } from 'mastodon/api_types/notifications';
 
 export const apiFetchNotifications = async (
@@ -15,3 +15,6 @@ export const apiFetchNotifications = async (
 
   return { notifications: response.data, links: getLinks(response) };
 };
+
+export const apiClearNotifications = () =>
+  apiRequest<undefined>('POST', 'v1/notifications/clear');
