@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe Block do
   describe 'validations' do
-    it { is_expected.to belong_to(:account) }
-    it { is_expected.to belong_to(:target_account) }
+    it { is_expected.to belong_to(:account).required }
+    it { is_expected.to belong_to(:target_account).required }
   end
 
   it 'removes blocking cache after creation' do
