@@ -101,7 +101,9 @@ export const HoverCard: React.FC = () => {
   }, [handleAnchorMouseEnter, handleAnchorMouseLeave]);
 
   useEffect(() => {
-    dispatch(fetchAccount(accountId));
+    if (accountId) {
+      dispatch(fetchAccount(accountId));
+    }
   }, [dispatch, accountId]);
 
   if (!accountId) return null;
