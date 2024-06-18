@@ -167,15 +167,11 @@ RUN \
     libtiff-dev \
     libwebp-dev \
   # ffmpeg components
-    libbz2-dev \
     libdav1d-dev \
     liblzma-dev \
     libmp3lame-dev \
-    libopencore-amrnb-dev \
-    libopencore-amrwb-dev \
     libopus-dev \
     libsnappy-dev \
-    libtheora-dev \
     libvorbis-dev \
     libvpx-dev \
     libx264-dev \
@@ -232,10 +228,8 @@ RUN \
     --disable-debug \
     --disable-ffplay \
     --disable-devices \
-    --enable-rpath \
     --enable-gpl \
     --enable-version3 \
-    --enable-nonfree \
     --enable-shared \
     --enable-ffmpeg \
     --enable-ffprobe \
@@ -243,13 +237,10 @@ RUN \
     --enable-libmp3lame \
     --enable-libopus \
     --enable-libsnappy \
-    --enable-libtheora \
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libx264 \
     --enable-libx265 \
-    --enable-libopencore-amrnb \
-    --enable-libopencore-amrwb \
     --enable-libwebp \
   ; \
   make -j$(nproc); \
