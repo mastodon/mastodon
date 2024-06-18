@@ -161,11 +161,15 @@ export const notificationsGroupsReducer =
         }
       })
       .addCase(disconnectTimeline, (state, action) => {
-        if (action.payload.timeline === 'home')
+        if (action.payload.timeline === 'home') {
+          if (state.groups.length > 0 && state.groups[0]?.type === 'gap')
+            state.groups.shift();
+
           state.groups.unshift({
             type: 'gap',
             loadUrl: 'TODO_LOAD_URL_TOP_OF_TL', // TODO
           });
+        }
       })
       .addCase(timelineDelete, (state, action) => {
         removeNotificationsForStatus(state, action.payload.statusId);
