@@ -1,7 +1,6 @@
 ---
 AllCops:
   CacheRootDirectory: tmp
-  DisplayCopNames: true
   DisplayStyleGuide: true
   Exclude:
     - Vagrantfile
@@ -10,7 +9,6 @@ AllCops:
   ExtraDetails: true
   NewCops: enable
   TargetRubyVersion: 3.1 # Oldest supported ruby version
-  UseCache: true
 
 inherit_from:
   - .rubocop/layout.yml
