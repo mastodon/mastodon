@@ -7,7 +7,6 @@ import classNames from 'classnames';
 
 import { is } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
@@ -207,10 +206,6 @@ class Item extends PureComponent {
 
 }
 
-const mapStateToProps = state => ({
-  maxMediaAttachments: state.getIn(['server', 'server', 'configuration', 'statuses', 'max_media_attachments']),
-});
-
 class MediaGallery extends PureComponent {
 
   static propTypes = {
@@ -226,7 +221,6 @@ class MediaGallery extends PureComponent {
     visible: PropTypes.bool,
     autoplay: PropTypes.bool,
     onToggleVisibility: PropTypes.func,
-    maxMediaAttachments: PropTypes.number,
   };
 
   state = {
@@ -297,7 +291,7 @@ class MediaGallery extends PureComponent {
   }
 
   render () {
-    const { media, lang, intl, sensitive, defaultWidth, autoplay, maxMediaAttachments } = this.props;
+    const { media, lang, intl, sensitive, defaultWidth, autoplay } = this.props;
     const { visible } = this.state;
     const width = this.state.width || defaultWidth;
 
@@ -311,13 +305,13 @@ class MediaGallery extends PureComponent {
       style.aspectRatio = '3 / 2';
     }
 
-    const size     = media.take(maxMediaAttachments).size;
+    const size     = media.size;
     const uncached = media.every(attachment => attachment.get('type') === 'unknown');
 
     if (this.isFullSizeEligible()) {
       children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} lang={lang} displayWidth={width} visible={visible} />;
     } else {
-      children = media.take(maxMediaAttachments).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
+      children = media.map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
     }
 
     if (uncached) {
@@ -355,4 +349,4 @@ class MediaGallery extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(MediaGallery));
+export default injectIntl(MediaGallery);
