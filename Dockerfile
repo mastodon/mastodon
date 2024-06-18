@@ -222,26 +222,26 @@ RUN \
   ./configure \
     --prefix=/usr/local/ffmpeg \
     --toolchain=hardened \
+    --disable-debug \
+    --disable-devices \
     --disable-doc \
+    --disable-ffplay \
     --disable-network \
     --disable-static \
-    --disable-debug \
-    --disable-ffplay \
-    --disable-devices \
-    --enable-gpl \
-    --enable-version3 \
-    --enable-shared \
     --enable-ffmpeg \
     --enable-ffprobe \
+    --enable-gpl \
     --enable-libdav1d \
     --enable-libmp3lame \
     --enable-libopus \
     --enable-libsnappy \
     --enable-libvorbis \
     --enable-libvpx \
+    --enable-libwebp \
     --enable-libx264 \
     --enable-libx265 \
-    --enable-libwebp \
+    --enable-shared \
+    --enable-version3 \
   ; \
   make -j$(nproc); \
   make install;
