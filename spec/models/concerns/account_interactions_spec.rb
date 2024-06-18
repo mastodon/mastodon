@@ -4,6 +4,7 @@ require 'rails_helper'
 
 describe AccountInteractions do
   let(:account)            { Fabricate(:account, username: 'account') }
+  let(:remote_account)     { Fabricate(:account, username: 'account', domain: 'example.com') }
   let(:account_id)         { account.id }
   let(:account_ids)        { [account_id] }
   let(:target_account)     { Fabricate(:account, username: 'target') }
@@ -725,9 +726,13 @@ describe AccountInteractions do
   end
 
   describe 'default circle' do
-    it 'creates an inner circle for new accounts' do
+    it 'creates an inner circle for new local accounts' do
       expect(account.owned_circles.count).to eq 1
       expect(account.owned_circles.first.title).to eq 'inner circle'
+    end
+
+    it 'does not create a circle for new remote accounts' do
+      expect(remote_account.owned_circles.count).to eq 0
     end
   end
 
