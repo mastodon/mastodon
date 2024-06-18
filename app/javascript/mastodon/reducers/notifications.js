@@ -16,6 +16,7 @@ import {
 import {
   fetchMarkers,
 } from '../actions/markers';
+import { clearNotifications } from '../actions/notification_groups';
 import {
   notificationsUpdate,
   NOTIFICATIONS_EXPAND_SUCCESS,
@@ -29,7 +30,6 @@ import {
   NOTIFICATIONS_MARK_AS_READ,
   NOTIFICATIONS_SET_BROWSER_SUPPORT,
   NOTIFICATIONS_SET_BROWSER_PERMISSION,
-  clearNotifications,
 } from '../actions/notifications';
 import { disconnectTimeline } from '../actions/timelines';
 import { compareId } from '../compare_id';
