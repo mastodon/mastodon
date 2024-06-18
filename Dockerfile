@@ -174,6 +174,7 @@ RUN \
     libopencore-amrnb-dev \
     libopencore-amrwb-dev \
     libopus-dev \
+    libsnappy-dev \
     libtheora-dev \
     libvorbis-dev \
     libvpx-dev \
@@ -241,6 +242,7 @@ RUN \
     --enable-libdav1d \
     --enable-libmp3lame \
     --enable-libopus \
+    --enable-libsnappy \
     --enable-libtheora \
     --enable-libvorbis \
     --enable-libvpx \
@@ -358,6 +360,7 @@ RUN \
     libopencore-amrnb0 \
     libopencore-amrwb0 \
     libopus0 \
+    libsnappy1v5 \
     libtheora0 \
     libvorbis0a \
     libvorbisenc2 \
