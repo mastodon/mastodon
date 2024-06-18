@@ -133,7 +133,11 @@ export const notificationsGroupsReducer =
         if (existingGroupIndex > -1) {
           const existingGroup = state.groups[existingGroupIndex];
 
-          if (existingGroup && existingGroup.type !== 'gap') {
+          if (
+            existingGroup &&
+            existingGroup.type !== 'gap' &&
+            !existingGroup.sampleAccountsIds.includes(notification.account.id) // This can happen for example if you like, then unlike, then like again the same post
+          ) {
             // Update the existing group
             if (
               existingGroup.sampleAccountsIds.unshift(notification.account.id) >
