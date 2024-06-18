@@ -9,9 +9,6 @@ gem 'rack', '~> 2.2.7'
 gem 'rails', '~> 7.1.1'
 gem 'thor', '~> 1.2'
 
-# For why irb is in the Gemfile, see: https://ruby.social/@st0012/111444685161478182
-gem 'irb', '~> 1.8'
-
 gem 'dotenv'
 gem 'haml-rails', '~>2.0'
 gem 'pg', '~> 1.5'
@@ -61,6 +58,7 @@ gem 'httplog', '~> 1.7.0'
 gem 'i18n'
 gem 'idn-ruby', require: 'idn'
 gem 'inline_svg'
+gem 'irb', '~> 1.8'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
