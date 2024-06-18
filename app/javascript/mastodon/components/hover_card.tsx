@@ -38,9 +38,10 @@ export const HoverCard: React.FC = () => {
     (e: MouseEvent) => {
       const { target } = e;
 
-      if (!(target instanceof HTMLElement)) return;
-
-      if (target.matches('[data-hover-card]')) {
+      if (
+        target instanceof HTMLElement &&
+        target.matches('[data-hover-card]')
+      ) {
         clearTimeout(leaveTimerRef.current);
         clearTimeout(enterTimerRef.current);
 
@@ -84,18 +85,18 @@ export const HoverCard: React.FC = () => {
   }, [setOpen]);
 
   useEffect(() => {
-    window.addEventListener('mouseenter', handleAnchorMouseEnter, {
+    document.body.addEventListener('mouseenter', handleAnchorMouseEnter, {
       passive: true,
       capture: true,
     });
-    window.addEventListener('mouseleave', handleAnchorMouseLeave, {
+    document.body.addEventListener('mouseleave', handleAnchorMouseLeave, {
       passive: true,
       capture: true,
     });
 
     return () => {
-      window.removeEventListener('mouseenter', handleAnchorMouseEnter);
-      window.removeEventListener('mouseleave', handleAnchorMouseLeave);
+      document.body.removeEventListener('mouseenter', handleAnchorMouseEnter);
+      document.body.removeEventListener('mouseleave', handleAnchorMouseLeave);
     };
   }, [handleAnchorMouseEnter, handleAnchorMouseLeave]);
 
