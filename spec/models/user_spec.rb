@@ -32,7 +32,7 @@ RSpec.describe User do
   end
 
   describe 'validations' do
-    it { is_expected.to belong_to(:account) }
+    it { is_expected.to belong_to(:account).required }
 
     it 'is invalid without a valid email' do
       user = Fabricate.build(:user, email: 'john@')
