@@ -24,8 +24,6 @@ import { saveSettings } from './settings';
 
 export * from "./notifications_typed";
 
-export { clearNotifications } from "./notification_groups";
-
 export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
 
 export const NOTIFICATIONS_EXPAND_REQUEST = 'NOTIFICATIONS_EXPAND_REQUEST';
