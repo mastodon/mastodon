@@ -78,7 +78,6 @@ Source.propTypes = {
 const Card = ({ id, sources }) => {
   const intl = useIntl();
   const account = useSelector(state => state.getIn(['accounts', id]));
-  const relationship = useSelector(state => state.getIn(['relationships', id]));
   const firstVerifiedField = account.get('fields').find(item => !!item.get('verified_at'));
   const dispatch = useDispatch();
 

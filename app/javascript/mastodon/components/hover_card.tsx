@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import Overlay from 'react-overlays/Overlay';
+import type { OffsetValue } from 'react-overlays/esm/usePopper';
 
 import { fetchAccount } from 'mastodon/actions/accounts';
 import { AccountBio } from 'mastodon/components/account_bio';
@@ -17,34 +18,40 @@ import { ShortNumber } from 'mastodon/components/short_number';
 import { domain } from 'mastodon/initial_state';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
-const offset = [-12, 4];
+const offset = [-12, 4] as OffsetValue;
 const enterDelay = 100;
 const leaveDelay = 500;
 
 export const HoverCard: React.FC = () => {
   const [open, setOpen] = useState(false);
-  const [accountId, setAccountId] = useState();
-  const cardRef = useRef();
-  const anchorRef = useRef();
+  const [accountId, setAccountId] = useState<string | undefined>();
+  const cardRef = useRef<HTMLDivElement>(null);
+  const anchorRef = useRef<HTMLElement | null>(null);
   const dispatch = useAppDispatch();
-  const account = useAppSelector((state) => state.accounts.get(accountId));
-  const leaveTimerRef = useRef();
-  const enterTimerRef = useRef();
+  const account = useAppSelector((state) =>
+    accountId ? state.accounts.get(accountId) : undefined,
+  );
+  const leaveTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const enterTimerRef = useRef<ReturnType<typeof setTimeout>>();
 
   const handleAnchorMouseEnter = useCallback(
-    (e) => {
-      if (e.target.matches('[data-hover-card]')) {
+    (e: MouseEvent) => {
+      const { target } = e;
+
+      if (!(target instanceof HTMLElement)) return;
+
+      if (target.matches('[data-hover-card]')) {
         clearTimeout(leaveTimerRef.current);
         clearTimeout(enterTimerRef.current);
 
         enterTimerRef.current = setTimeout(() => {
-          anchorRef.current = e.target;
+          anchorRef.current = target;
           setOpen(true);
-          setAccountId(e.target.getAttribute('data-hover-card'));
+          setAccountId(target.getAttribute('data-hover-card') ?? undefined);
         }, enterDelay);
       }
 
-      if (e.target === cardRef.current?.parentNode) {
+      if (target === cardRef.current?.parentNode) {
         clearTimeout(leaveTimerRef.current);
       }
     },
@@ -52,7 +59,7 @@ export const HoverCard: React.FC = () => {
   );
 
   const handleAnchorMouseLeave = useCallback(
-    (e) => {
+    (e: MouseEvent) => {
       if (
         e.target === anchorRef.current ||
         e.target === cardRef.current?.parentNode
@@ -95,6 +102,8 @@ export const HoverCard: React.FC = () => {
   useEffect(() => {
     dispatch(fetchAccount(accountId));
   }, [dispatch, accountId]);
+
+  if (!accountId) return null;
 
   return (
     <Overlay

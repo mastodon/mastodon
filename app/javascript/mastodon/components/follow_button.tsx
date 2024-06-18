@@ -2,7 +2,6 @@ import { useCallback, useEffect } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
-
 import {
   fetchRelationships,
   followAccount,
@@ -11,7 +10,7 @@ import {
 import { Button } from 'mastodon/components/button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { me } from 'mastodon/initial_state';
-import { useAppDispatch , useAppSelector } from 'mastodon/store';
+import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -35,6 +34,7 @@ export const FollowButton: React.FC<{
   }, [dispatch, accountId]);
 
   const handleClick = useCallback(() => {
+    if (!relationship) return;
     if (accountId === me) {
       return;
     } else if (relationship.following || relationship.requested) {

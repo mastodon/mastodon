@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useCallback } from 'react';
 
 import classNames from 'classnames';
@@ -6,35 +5,45 @@ import { useHistory } from 'react-router-dom';
 
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 import { openURL } from 'mastodon/actions/search';
-import type { ApiAccountFieldJSON } from 'mastodon/api_types/accounts';
 import { Icon } from 'mastodon/components/icon';
+import type { Account } from 'mastodon/models/account';
 import { useAppDispatch } from 'mastodon/store';
 
 export const AccountFields: React.FC<{
-  fields: ApiAccountFieldJSON[];
+  fields: Account['fields'];
 }> = ({ fields }) => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const history = useHistory();
   const dispatch = useAppDispatch();
 
   const handleHashtagClick = useCallback(
-    (e) => {
+    (e: MouseEvent) => {
+      const { currentTarget } = e;
+      if (!(currentTarget instanceof HTMLElement)) return;
+
       if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+        const { textContent } = currentTarget;
+        if (!textContent) return;
+
         e.preventDefault();
-        history.push(`/tags/${e.currentTarget.textContent.replace(/^#/, '')}`);
+        history.push(`/tags/${textContent.replace(/^#/, '')}`);
       }
     },
     [history],
   );
 
   const handleMentionClick = useCallback(
-    (e) => {
+    (e: MouseEvent) => {
+      const { currentTarget } = e;
+
+      if (!(currentTarget instanceof HTMLAnchorElement)) return;
+
       if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
         e.preventDefault();
 
         dispatch(
-          openURL(e.currentTarget.href, history, () => {
-            window.location = e.currentTarget.href;
+          openURL(currentTarget.href, history, () => {
+            window.location.href = currentTarget.href;
           }),
         );
       }
@@ -43,19 +52,16 @@ export const AccountFields: React.FC<{
   );
 
   useEffect(() => {
-    if (ref.current === null) {
+    if (!ref.current) {
       return;
     }
 
-    const links = ref.current.querySelectorAll('a');
+    const links = ref.current.querySelectorAll<HTMLAnchorElement>('a');
 
     for (const link of links) {
       if (
-        link.textContent[0] === '#' ||
-        (link.previousSibling?.textContent &&
-          link.previousSibling.textContent[
-            link.previousSibling.textContent.length - 1
-          ] === '#')
+        link.textContent?.[0] === '#' ||
+        link.previousSibling?.textContent?.endsWith('#')
       ) {
         link.addEventListener('click', handleHashtagClick, false);
       } else if (link.classList.contains('mention')) {
@@ -66,11 +72,8 @@ export const AccountFields: React.FC<{
     return () => {
       for (const link of links) {
         if (
-          link.textContent[0] === '#' ||
-          (link.previousSibling?.textContent &&
-            link.previousSibling.textContent[
-              link.previousSibling.textContent.length - 1
-            ] === '#')
+          link.textContent?.[0] === '#' ||
+          link.previousSibling?.textContent?.endsWith('#')
         ) {
           link.removeEventListener('click', handleHashtagClick);
         } else if (link.classList.contains('mention')) {
@@ -96,7 +99,7 @@ export const AccountFields: React.FC<{
             className='translate'
           />
 
-          <dd className='translate' title={pair.get('value_plain')}>
+          <dd className='translate' title={pair.get('value_plain') ?? ''}>
             {pair.get('verified_at') && (
               <Icon id='check' icon={CheckIcon} className='verified__mark' />
             )}

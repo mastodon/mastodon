@@ -9,28 +9,35 @@ export const AccountBio: React.FC<{
   note: string;
   className: string;
 }> = ({ note, className }) => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const history = useHistory();
   const dispatch = useAppDispatch();
 
   const handleHashtagClick = useCallback(
-    (e) => {
-      if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+    (e: MouseEvent) => {
+      const { currentTarget } = e;
+      if (!(currentTarget instanceof HTMLElement)) return;
+      const { textContent } = currentTarget;
+
+      if (textContent && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
         e.preventDefault();
-        history.push(`/tags/${e.currentTarget.textContent.replace(/^#/, '')}`);
+        history.push(`/tags/${textContent.replace(/^#/, '')}`);
       }
     },
     [history],
   );
 
   const handleMentionClick = useCallback(
-    (e) => {
+    (e: MouseEvent) => {
+      const { currentTarget } = e;
+      if (!(currentTarget instanceof HTMLAnchorElement)) return;
+
       if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
         e.preventDefault();
 
         dispatch(
-          openURL(e.currentTarget.href, history, () => {
-            window.location = e.currentTarget.href;
+          openURL(currentTarget.href, history, () => {
+            window.location.href = currentTarget.href;
           }),
         );
       }
@@ -43,15 +50,12 @@ export const AccountBio: React.FC<{
       return;
     }
 
-    const links = ref.current.querySelectorAll('a');
+    const links = ref.current.querySelectorAll<HTMLAnchorElement>('a');
 
     for (const link of links) {
       if (
-        link.textContent[0] === '#' ||
-        (link.previousSibling?.textContent &&
-          link.previousSibling.textContent[
-            link.previousSibling.textContent.length - 1
-          ] === '#')
+        link.textContent?.[0] === '#' ||
+        link.previousSibling?.textContent?.endsWith('#')
       ) {
         link.addEventListener('click', handleHashtagClick, false);
       } else if (link.classList.contains('mention')) {
@@ -62,11 +66,8 @@ export const AccountBio: React.FC<{
     return () => {
       for (const link of links) {
         if (
-          link.textContent[0] === '#' ||
-          (link.previousSibling?.textContent &&
-            link.previousSibling.textContent[
-              link.previousSibling.textContent.length - 1
-            ] === '#')
+          link.textContent?.[0] === '#' ||
+          link.previousSibling?.textContent?.endsWith('#')
         ) {
           link.removeEventListener('click', handleHashtagClick);
         } else if (link.classList.contains('mention')) {
