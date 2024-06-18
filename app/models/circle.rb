@@ -19,7 +19,7 @@ class Circle < ApplicationRecord
   has_many :circle_accounts, inverse_of: :circle, dependent: :destroy
   has_many :accounts, through: :circle_accounts
 
-  belongs_to :list, optional: true
+  belongs_to :list, optional: true, dependent: :destroy
 
   validates :title, presence: true
 
