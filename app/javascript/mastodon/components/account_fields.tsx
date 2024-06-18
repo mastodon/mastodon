@@ -7,7 +7,8 @@ import type { Account } from 'mastodon/models/account';
 
 export const AccountFields: React.FC<{
   fields: Account['fields'];
-}> = ({ fields }) => {
+  limit: number;
+}> = ({ fields, limit = -1 }) => {
   const ref = useLinks(fields);
 
   if (fields.size === 0) {
@@ -16,7 +17,7 @@ export const AccountFields: React.FC<{
 
   return (
     <div className='account-fields' ref={ref}>
-      {fields.map((pair, i) => (
+      {fields.take(limit).map((pair, i) => (
         <dl
           key={i}
           className={classNames({ verified: pair.get('verified_at') })}

@@ -138,7 +138,7 @@ export const HoverCard: React.FC = () => {
                     note={account.note_emojified}
                     className='hover-card__bio'
                   />
-                  <AccountFields fields={account.fields} />
+                  <AccountFields fields={account.fields} limit={2} />
                 </div>
 
                 <div className='hover-card__number'>
