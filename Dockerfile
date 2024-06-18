@@ -24,10 +24,10 @@ FROM docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim as node
 FROM docker.io/ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} as ruby
 
 # Resulting version string is vX.X.X-MASTODON_VERSION_PRERELEASE+MASTODON_VERSION_METADATA
-# Example: v4.2.0-nightly.2023.11.09+something
-# Overwrite existence of 'alpha.0' in version.rb [--build-arg MASTODON_VERSION_PRERELEASE="nightly.2023.11.09"]
+# Example: v4.3.0-nightly.2023.11.09+pr-123456
+# Overwrite existence of 'alpha.X' in version.rb [--build-arg MASTODON_VERSION_PRERELEASE="nightly.2023.11.09"]
 ARG MASTODON_VERSION_PRERELEASE=""
-# Append build metadata or fork information to version.rb [--build-arg MASTODON_VERSION_METADATA="pr-12345"]
+# Append build metadata or fork information to version.rb [--build-arg MASTODON_VERSION_METADATA="pr-123456"]
 ARG MASTODON_VERSION_METADATA=""
 
 # Allow Ruby on Rails to serve static files
@@ -100,9 +100,7 @@ RUN \
   apt-get dist-upgrade -yq; \
 # Install jemalloc, curl and other necessary components
   apt-get install -y --no-install-recommends \
-    ca-certificates \
     curl \
-    ffmpeg \
     file \
     libjemalloc2 \
     patchelf \
@@ -137,7 +135,10 @@ RUN \
 --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
 # Install build tools and bundler dependencies from APT
   apt-get install -y --no-install-recommends \
+    autoconf \
+    automake \
     build-essential \
+    cmake \
     git \
     libgdbm-dev \
     libglib2.0-dev \
@@ -146,9 +147,12 @@ RUN \
     libidn-dev \
     libpq-dev \
     libssl-dev \
+    libtool \
     meson \
+    nasm \
     pkg-config \
     shared-mime-info \
+    xz-utils \
 	# libvips components
     libcgif-dev \
     libexif-dev \
@@ -162,6 +166,16 @@ RUN \
     libspng-dev \
     libtiff-dev \
     libwebp-dev \
+  # ffmpeg components
+    libdav1d-dev \
+    liblzma-dev \
+    libmp3lame-dev \
+    libopus-dev \
+    libsnappy-dev \
+    libvorbis-dev \
+    libvpx-dev \
+    libx264-dev \
+    libx265-dev \
   ;
 
 RUN \
@@ -189,6 +203,48 @@ RUN \
   cd build; \
   ninja; \
   ninja install;
+
+# Create temporary ffmpeg specific build layer from build layer
+FROM build as ffmpeg
+
+# ffmpeg version to compile, change with [--build-arg FFMPEG_VERSION="7.0.x"]
+# renovate: datasource=repology depName=ffmpeg packageName=openpkg_current/ffmpeg
+ARG FFMPEG_VERSION=7.0.1
+# ffmpeg download URL, change with [--build-arg FFMPEG_URL="https://ffmpeg.org/releases"]
+ARG FFMPEG_URL=https://ffmpeg.org/releases
+
+WORKDIR /usr/local/ffmpeg/src
+
+RUN \
+  curl -sSL -o ffmpeg-${FFMPEG_VERSION}.tar.xz ${FFMPEG_URL}/ffmpeg-${FFMPEG_VERSION}.tar.xz; \
+  tar xf ffmpeg-${FFMPEG_VERSION}.tar.xz; \
+  cd ffmpeg-${FFMPEG_VERSION}; \
+  ./configure \
+    --prefix=/usr/local/ffmpeg \
+    --toolchain=hardened \
+    --disable-debug \
+    --disable-devices \
+    --disable-doc \
+    --disable-ffplay \
+    --disable-network \
+    --disable-static \
+    --enable-ffmpeg \
+    --enable-ffprobe \
+    --enable-gpl \
+    --enable-libdav1d \
+    --enable-libmp3lame \
+    --enable-libopus \
+    --enable-libsnappy \
+    --enable-libvorbis \
+    --enable-libvpx \
+    --enable-libwebp \
+    --enable-libx264 \
+    --enable-libx265 \
+    --enable-shared \
+    --enable-version3 \
+  ; \
+  make -j$(nproc); \
+  make install;
 
 # Create temporary bundler specific build layer from build layer
 FROM build as bundler
@@ -289,6 +345,20 @@ RUN \
     libwebp7 \
     libwebpdemux2 \
     libwebpmux3 \
+  # ffmpeg components
+    libdav1d6 \
+    libmp3lame0 \
+    libopencore-amrnb0 \
+    libopencore-amrwb0 \
+    libopus0 \
+    libsnappy1v5 \
+    libtheora0 \
+    libvorbis0a \
+    libvorbisenc2 \
+    libvorbisfile3 \
+    libvpx7 \
+    libx264-164 \
+    libx265-199 \
   ;
 
 # Copy Mastodon sources into final layer
@@ -302,11 +372,16 @@ COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
 # Copy libvips components to layer
 COPY --from=libvips /usr/local/libvips/bin /usr/local/bin
 COPY --from=libvips /usr/local/libvips/lib /usr/local/lib
+# Copy ffpmeg components to layer
+COPY --from=ffmpeg /usr/local/ffmpeg/bin /usr/local/bin
+COPY --from=ffmpeg /usr/local/ffmpeg/lib /usr/local/lib
 
 RUN \
   ldconfig; \
 # Smoketest media processors
-  vips -v;
+  vips -v; \
+  ffmpeg -version; \
+  ffprobe -version;
 
 RUN \
   # Precompile bootsnap code for faster Rails startup
