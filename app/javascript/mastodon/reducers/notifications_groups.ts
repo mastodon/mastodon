@@ -31,18 +31,14 @@ export interface NotificationGap {
 
 interface NotificationGroupsState {
   groups: (NotificationGroup | NotificationGap)[];
-  unread: number;
   isLoading: boolean;
   hasMore: boolean;
-  readMarkerId: string;
 }
 
 const initialState: NotificationGroupsState = {
   groups: [],
-  unread: 0,
   isLoading: false,
   hasMore: false,
-  readMarkerId: '0',
 };
 
 function removeNotificationsForAccounts(
@@ -172,7 +168,6 @@ export const notificationsGroupsReducer =
       })
       .addCase(clearNotifications.pending, (state) => {
         state.groups = [];
-        state.unread = 0;
         state.hasMore = false;
       })
       .addCase(blockAccountSuccess, (state, action) => {

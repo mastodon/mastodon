@@ -19,6 +19,7 @@ import { Icon } from 'mastodon/components/icon';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
 import { useIdentity } from 'mastodon/identity_context';
 import type { NotificationGap } from 'mastodon/reducers/notifications_groups';
+import { selectUnreadNotificationsGroupsCount } from 'mastodon/selectors/notifications';
 import {
   selectNeedsNotificationPermission,
   selectSettingsNotificationsExcludedTypes,
@@ -35,8 +36,8 @@ import {
   expandNotifications,
   scrollTopNotifications,
   loadPending,
-  mountNotifications,
-  unmountNotifications,
+  // mountNotifications,
+  // unmountNotifications,
   markNotificationsAsRead,
 } from '../../actions/notifications';
 import Column from '../../components/column';
@@ -81,52 +82,35 @@ const getNotifications = createSelector(
 );
 
 // const mapStateToProps = (state) => ({
-//   isUnread:
-//     state.getIn(['notifications', 'unread']) > 0 ||
-//     state.getIn(['notifications', 'pendingItems']).size > 0,
 //   numPending: state.getIn(['notifications', 'pendingItems'], ImmutableList())
 //     .size,
-//   canMarkAsRead:
-//     state.getIn(['settings', 'notifications', 'showUnread']) &&
-//     state.getIn(['notifications', 'readMarkerId']) !== '0' &&
-//     getNotifications(state).some(
-//       (item) =>
-//         item !== null &&
-//         compareId(
-//           item.get('id'),
-//           state.getIn(['notifications', 'readMarkerId']),
-//         ) > 0,
-//     ),
 // });
 
 export const Notifications: React.FC<{
   columnId?: string;
-  isUnread?: boolean;
   multiColumn?: boolean;
   numPending: number;
-}> = ({ isUnread, columnId, multiColumn, numPending }) => {
+}> = ({ columnId, multiColumn, numPending }) => {
   const intl = useIntl();
   const notifications = useAppSelector(getNotifications);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector((s) => s.notificationsGroups.isLoading);
   const hasMore = useAppSelector((s) => s.notificationsGroups.hasMore);
-  const readMarkerId = useAppSelector(
-    (s) => s.notificationsGroups.readMarkerId,
-  );
+
   const lastReadId = useAppSelector((s) =>
-    selectSettingsNotificationsShowUnread(s)
-      ? s.notificationsGroups.readMarkerId
-      : '0',
+    selectSettingsNotificationsShowUnread(s) ? s.markers.notifications : '0',
   );
-  const canMarkAsRead = useAppSelector(
-    (s) =>
-      selectSettingsNotificationsShowUnread(s) &&
-      s.notificationsGroups.readMarkerId !== '0' &&
-      notifications.some(
-        (item) =>
-          item.type !== 'gap' && compareId(item.group_key, readMarkerId) > 0,
-      ),
+
+  const unreadNotificationsCount = useAppSelector(
+    selectUnreadNotificationsGroupsCount,
   );
+
+  const isUnread = unreadNotificationsCount > 0;
+
+  const canMarkAsRead =
+    useAppSelector(selectSettingsNotificationsShowUnread) &&
+    unreadNotificationsCount > 0;
+
   const needsNotificationPermission = useAppSelector(
     selectNeedsNotificationPermission,
   );
@@ -157,14 +141,14 @@ export const Notifications: React.FC<{
   }, []);
 
   useEffect(() => {
-    dispatch(mountNotifications());
+    // dispatch(mountNotifications());
 
     // FIXME: remove once this becomes the main implementation
     void dispatch(fetchNotifications());
 
     return () => {
-      dispatch(unmountNotifications());
-      dispatch(scrollTopNotifications(false));
+      // dispatch(unmountNotifications());
+      // dispatch(scrollTopNotifications(false));
     };
   }, [dispatch]);
 
@@ -282,7 +266,9 @@ export const Notifications: React.FC<{
           onMoveUp={handleMoveUp}
           onMoveDown={handleMoveDown}
           unread={
-            lastReadId !== '0' && compareId(item.group_key, lastReadId) > 0
+            lastReadId !== '0' &&
+            !!item.page_max_id &&
+            compareId(item.page_max_id, lastReadId) > 0
           }
         />
       ),
