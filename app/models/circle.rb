@@ -23,7 +23,7 @@ class Circle < ApplicationRecord
 
   validates :title, presence: true
 
-  after_commit :create_corresponding_list, on: :create
+  before_create :create_corresponding_list
 
   private
 
