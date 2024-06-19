@@ -19,8 +19,8 @@ import { domain } from 'mastodon/initial_state';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 const offset = [-12, 4] as OffsetValue;
-const enterDelay = 100;
-const leaveDelay = 500;
+const enterDelay = 250;
+const leaveDelay = 300;
 
 export const HoverCard: React.FC = () => {
   const [open, setOpen] = useState(false);
