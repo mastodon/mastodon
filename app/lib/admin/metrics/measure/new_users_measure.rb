@@ -17,10 +17,6 @@ class Admin::Metrics::Measure::NewUsersMeasure < Admin::Metrics::Measure::BaseMe
     User.where(created_at: previous_time_period).count
   end
 
-  def sql_array
-    [sql_query_string, { start_at: @start_at, end_at: @end_at }]
-  end
-
   def data_source
     User
       .select(:id)
