@@ -17,10 +17,6 @@ class Admin::Metrics::Measure::OpenedReportsMeasure < Admin::Metrics::Measure::B
     Report.where(created_at: previous_time_period).count
   end
 
-  def sql_array
-    [sql_query_string, { start_at: @start_at, end_at: @end_at }]
-  end
-
   def data_source
     Report
       .select(:id)
