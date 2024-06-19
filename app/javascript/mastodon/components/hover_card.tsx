@@ -25,8 +25,8 @@ const leaveDelay = 500;
 export const HoverCard: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [accountId, setAccountId] = useState<string | undefined>();
+  const [anchor, setAnchor] = useState<HTMLElement | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
-  const anchorRef = useRef<HTMLElement | null>(null);
   const dispatch = useAppDispatch();
   const account = useAppSelector((state) =>
     accountId ? state.accounts.get(accountId) : undefined,
@@ -46,7 +46,7 @@ export const HoverCard: React.FC = () => {
         clearTimeout(enterTimerRef.current);
 
         enterTimerRef.current = setTimeout(() => {
-          anchorRef.current = target;
+          setAnchor(target);
           setOpen(true);
           setAccountId(target.getAttribute('data-hover-card') ?? undefined);
         }, enterDelay);
@@ -56,33 +56,30 @@ export const HoverCard: React.FC = () => {
         clearTimeout(leaveTimerRef.current);
       }
     },
-    [setOpen, setAccountId],
+    [setOpen, setAccountId, setAnchor],
   );
 
   const handleAnchorMouseLeave = useCallback(
     (e: MouseEvent) => {
-      if (
-        e.target === anchorRef.current ||
-        e.target === cardRef.current?.parentNode
-      ) {
+      if (e.target === anchor || e.target === cardRef.current?.parentNode) {
         clearTimeout(leaveTimerRef.current);
         clearTimeout(enterTimerRef.current);
 
         leaveTimerRef.current = setTimeout(() => {
           setOpen(false);
-          anchorRef.current = null;
+          setAnchor(null);
         }, leaveDelay);
       }
     },
-    [setOpen],
+    [setOpen, setAnchor, anchor],
   );
 
   const handleClose = useCallback(() => {
     clearTimeout(leaveTimerRef.current);
     clearTimeout(enterTimerRef.current);
     setOpen(false);
-    anchorRef.current = null;
-  }, [setOpen]);
+    setAnchor(null);
+  }, [setOpen, setAnchor]);
 
   useEffect(() => {
     document.body.addEventListener('mouseenter', handleAnchorMouseEnter, {
@@ -113,7 +110,7 @@ export const HoverCard: React.FC = () => {
       rootClose
       onHide={handleClose}
       show={open}
-      target={anchorRef.current}
+      target={anchor}
       placement='bottom-start'
       flip
       offset={offset}
