@@ -46,6 +46,7 @@ export const HoverCard: React.FC = () => {
         clearTimeout(enterTimerRef.current);
 
         enterTimerRef.current = setTimeout(() => {
+          target.setAttribute('aria-describedby', 'hover-card');
           setAnchor(target);
           setOpen(true);
           setAccountId(target.getAttribute('data-hover-card') ?? undefined);
@@ -66,12 +67,46 @@ export const HoverCard: React.FC = () => {
         clearTimeout(enterTimerRef.current);
 
         leaveTimerRef.current = setTimeout(() => {
+          anchor?.removeAttribute('aria-describedby');
           setOpen(false);
           setAnchor(null);
         }, leaveDelay);
       }
     },
     [setOpen, setAnchor, anchor],
+  );
+
+  const handleFocus = useCallback(
+    (e: FocusEvent) => {
+      const { target } = e;
+
+      if (
+        target instanceof HTMLElement &&
+        target.matches('[data-hover-card]')
+      ) {
+        target.setAttribute('aria-describedby', 'hover-card');
+        setAnchor(target);
+        setOpen(true);
+        setAccountId(target.getAttribute('data-hover-card') ?? undefined);
+      }
+    },
+    [setAnchor, setOpen, setAccountId],
+  );
+
+  const handleBlur = useCallback(
+    (e: FocusEvent) => {
+      const { target } = e;
+
+      if (
+        target instanceof HTMLElement &&
+        target.matches('[data-hover-card]')
+      ) {
+        target.removeAttribute('aria-describedby');
+        setOpen(false);
+        setAnchor(null);
+      }
+    },
+    [setOpen, setAnchor],
   );
 
   const handleClose = useCallback(() => {
@@ -90,12 +125,22 @@ export const HoverCard: React.FC = () => {
       passive: true,
       capture: true,
     });
+    document.body.addEventListener('focus', handleFocus, {
+      passive: true,
+      capture: true,
+    });
+    document.body.addEventListener('blur', handleBlur, {
+      passive: true,
+      capture: true,
+    });
 
     return () => {
       document.body.removeEventListener('mouseenter', handleAnchorMouseEnter);
       document.body.removeEventListener('mouseleave', handleAnchorMouseLeave);
+      document.body.removeEventListener('focus', handleFocus);
+      document.body.removeEventListener('blur', handleBlur);
     };
-  }, [handleAnchorMouseEnter, handleAnchorMouseLeave]);
+  }, [handleAnchorMouseEnter, handleAnchorMouseLeave, handleFocus, handleBlur]);
 
   useEffect(() => {
     if (accountId) {
@@ -118,7 +163,9 @@ export const HoverCard: React.FC = () => {
       {({ props }) => (
         <div {...props}>
           <div
+            id='hover-card'
             ref={cardRef}
+            role='tooltip'
             className={classNames('hover-card dropdown-animation', {
               'hover-card--loading': !account,
             })}
