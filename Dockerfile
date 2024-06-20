@@ -13,7 +13,9 @@ ENV DEBIAN_FRONTEND="noninteractive" \
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 WORKDIR /opt/mastodon
-COPY . /opt/mastodon/
+COPY Gemfile* package.json yarn.lock /opt/mastodon/
+RUN mkdir -p /opt/mastodon/subscription
+COPY subscription/ /opt/mastodon/subscription
 
 # hadolint ignore=DL3008
 RUN apt-get update && \
