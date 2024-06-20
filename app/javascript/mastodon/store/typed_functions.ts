@@ -82,9 +82,10 @@ export function createThunk<Arg = void, Returned = void>(
 const discardLoadDataInPayload = Symbol('discardLoadDataInPayload');
 type DiscardLoadData = typeof discardLoadDataInPayload;
 
-type OnData<LoadDataResult, ReturnedData> = (
+type OnData<ActionArg, LoadDataResult, ReturnedData> = (
   data: LoadDataResult,
   api: AppThunkApi & {
+    actionArg: ActionArg;
     discardLoadData: DiscardLoadData;
   },
 ) => ReturnedData | DiscardLoadData | Promise<ReturnedData | DiscardLoadData>;
@@ -109,7 +110,7 @@ export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
   loadData: LoadData<Args, LoadDataResult>,
   onDataOrThunkOptions?:
     | AppThunkOptions
-    | OnData<LoadDataResult, DiscardLoadData>,
+    | OnData<Args, LoadDataResult, DiscardLoadData>,
   thunkOptions?: AppThunkOptions,
 ): ReturnType<typeof createThunk<Args, void>>;
 
@@ -117,7 +118,7 @@ export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
 export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
   name: string,
   loadData: LoadData<Args, LoadDataResult>,
-  onDataOrThunkOptions?: AppThunkOptions | OnData<LoadDataResult, void>,
+  onDataOrThunkOptions?: AppThunkOptions | OnData<Args, LoadDataResult, void>,
   thunkOptions?: AppThunkOptions,
 ): ReturnType<typeof createThunk<Args, LoadDataResult>>;
 
@@ -129,7 +130,9 @@ export function createDataLoadingThunk<
 >(
   name: string,
   loadData: LoadData<Args, LoadDataResult>,
-  onDataOrThunkOptions?: AppThunkOptions | OnData<LoadDataResult, Returned>,
+  onDataOrThunkOptions?:
+    | AppThunkOptions
+    | OnData<Args, LoadDataResult, Returned>,
   thunkOptions?: AppThunkOptions,
 ): ReturnType<typeof createThunk<Args, Returned>>;
 
@@ -165,10 +168,12 @@ export function createDataLoadingThunk<
 >(
   name: string,
   loadData: LoadData<Args, LoadDataResult>,
-  onDataOrThunkOptions?: AppThunkOptions | OnData<LoadDataResult, Returned>,
+  onDataOrThunkOptions?:
+    | AppThunkOptions
+    | OnData<Args, LoadDataResult, Returned>,
   maybeThunkOptions?: AppThunkOptions,
 ) {
-  let onData: OnData<LoadDataResult, Returned> | undefined;
+  let onData: OnData<Args, LoadDataResult, Returned> | undefined;
   let thunkOptions: AppThunkOptions | undefined;
 
   if (typeof onDataOrThunkOptions === 'function') onData = onDataOrThunkOptions;
@@ -193,6 +198,7 @@ export function createDataLoadingThunk<
         dispatch,
         getState,
         discardLoadData: discardLoadDataInPayload,
+        actionArg: arg,
       });
 
       // if there is no return in `onData`, we return the `onData` result
