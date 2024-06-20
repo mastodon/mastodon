@@ -159,7 +159,7 @@ const filterTimelines = (state, relationship, statuses) => {
       return;
     }
 
-    references = statuses.filter(item => item.get('reblog') === status.get('id')).map(item => item.get('id'));
+    references = statuses.filter(item => item.get('reblog') === status.get('id')).map(item => item.get('id')).valueSeq().toJSON();
     state      = deleteStatus(state, status.get('id'), references, relationship.id);
   });
 
