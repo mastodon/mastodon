@@ -313,7 +313,7 @@ module AccountInteractions
   private
 
   def create_default_circle
-    owned_circles.create(title: 'inner circle')
+    owned_circles.create(title: 'inner circle') if local?
   end
 
   def remove_potential_friendship(other_account)
