@@ -63,10 +63,10 @@ export function updateTimeline(timeline, status, accept) {
 export function deleteFromTimelines(id) {
   return (dispatch, getState) => {
     const accountId  = getState().getIn(['statuses', id, 'account']);
-    const references = getState().get('statuses').filter(status => status.get('reblog') === id).map(status => status.get('id')).toJSON();
+    const references = getState().get('statuses').filter(status => status.get('reblog') === id).map(status => status.get('id')).valueSeq().toJSON();
     const reblogOf   = getState().getIn(['statuses', id, 'reblog'], null);
 
-    dispatch(timelineDelete(id, accountId, references, reblogOf));
+    dispatch(timelineDelete({ statusId: id, accountId, references, reblogOf }));
   };
 }
 
