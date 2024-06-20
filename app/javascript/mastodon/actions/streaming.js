@@ -77,7 +77,7 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
       },
 
       onDisconnect() {
-        dispatch(disconnectTimeline(timelineId));
+        dispatch(disconnectTimeline({ timeline: timelineId }));
 
         if (options.fallback) {
           // @ts-expect-error
