@@ -29,5 +29,6 @@ class NotificationGroup < ActiveModelSerializers::Model
            :target_status,
            :report,
            :account_relationship_severance_event,
+           :account_warning,
            to: :notification, prefix: false
 end
