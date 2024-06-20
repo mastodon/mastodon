@@ -25,11 +25,13 @@ class CircleAccount < ApplicationRecord
   private
 
   def add_list_account
-    circle.list.list_accounts.create!(account_id: account_id)
+    circle.list.list_accounts.create(account_id: account_id)
+  rescue ActiveRecord::RecordNotFound
+    # Do nothing
   end
 
   def remove_list_account
-    circle.list.list_accounts.find_by(account_id: account_id).destroy!
+    circle.list.list_accounts.find_by(account_id: account_id)&.destroy
   end
 
   def set_follow
