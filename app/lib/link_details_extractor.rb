@@ -269,14 +269,31 @@ class LinkDetailsExtractor
   end
 
   def document
-    @document ||= Nokogiri::HTML(@html, nil, encoding)
+    @document ||= begin
+      encoding = detect_encoding || parse_encoding || header_encoding || 'UTF-8'
+      @document || Nokogiri::HTML(@html, nil, encoding)
+    end
   end
 
-  def encoding
-    @encoding ||= begin
-      guess = detector.detect(@html, @html_charset)
-      guess&.fetch(:confidence, 0).to_i > 60 ? guess&.fetch(:encoding, nil) : nil
-    end
+  def detect_encoding
+    guess = detector.detect(@html, @html_charset)
+    guess&.fetch(:confidence, 0).to_i > 60 ? guess&.fetch(:encoding, nil) : nil
+  end
+
+  def parse_encoding
+    parsed_document = Nokogiri::HTML(@html)
+    source_with_detected_encoding = parsed_document.to_s
+    return unless source_with_detected_encoding.valid_encoding?
+
+    @document = parsed_document
+    source_with_detected_encoding.encoding.name
+  end
+
+  def header_encoding
+    return unless @html_charset
+
+    @html.force_encoding(@html_charset)
+    @html_charset if @html.valid_encoding?
   end
 
   def detector

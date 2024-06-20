@@ -26,6 +26,7 @@ RSpec.describe FetchLinkCardService do
     stub_request(:get, 'http://example.com/sjis_with_wrong_charset').to_return(request_fixture('sjis_with_wrong_charset.txt'))
     stub_request(:get, 'http://example.com/koi8-r').to_return(request_fixture('koi8-r.txt'))
     stub_request(:get, 'http://example.com/windows-1251').to_return(request_fixture('windows-1251.txt'))
+    stub_request(:get, 'http://example.com/low_confidence_latin1').to_return(request_fixture('low_confidence_latin1.txt'))
 
     Rails.cache.write('oembed_endpoint:example.com', oembed_cache) if oembed_cache
 
@@ -145,6 +146,14 @@ RSpec.describe FetchLinkCardService do
 
       it 'decodes the HTML' do
         expect(status.preview_card.title).to eq('сэмпл текст')
+      end
+    end
+
+    context 'with a URL of a page in ISO-8859-1 encoding, that charlock_holmes cannot detect' do
+      let(:status) { Fabricate(:status, text: 'Check out http://example.com/low_confidence_latin1') }
+
+      it 'decodes the HTML' do
+        expect(status.preview_card.title).to eq("Tofu á l'orange")
       end
     end
 
