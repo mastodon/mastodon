@@ -159,7 +159,6 @@ GEM
     case_transform (0.2)
       activesupport
     cbor (0.5.9.8)
-    charlock_holmes (0.7.7)
     chewy (7.6.0)
       activesupport (>= 5.2)
       elasticsearch (>= 7.14.0, < 8)
@@ -264,6 +263,8 @@ GEM
     ffi-compiler (1.3.2)
       ffi (>= 1.15.5)
       rake
+    ffi-icu (0.5.3)
+      ffi (~> 1.0, >= 1.0.9)
     fog-core (2.4.0)
       builder
       excon (~> 0.71)
@@ -909,7 +910,6 @@ DEPENDENCIES
   browser
   bundler-audit (~> 0.9)
   capybara (~> 3.39)
-  charlock_holmes (~> 0.7.7)
   chewy (~> 7.3)
   climate_control
   cocoon (~> 1.2)
@@ -931,6 +931,7 @@ DEPENDENCIES
   faker (~> 3.2)
   fast_blank (~> 1.0)
   fastimage
+  ffi-icu (~> 0.5)
   fog-core (<= 2.4.0)
   fog-openstack (~> 1.0)
   fuubar (~> 2.5)
