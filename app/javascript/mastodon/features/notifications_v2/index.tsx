@@ -33,7 +33,6 @@ import type { RootState } from 'mastodon/store';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { submitMarkers } from '../../actions/markers';
 import {
-  expandNotifications,
   scrollTopNotifications,
   loadPending,
   // mountNotifications,
@@ -95,7 +94,7 @@ export const Notifications: React.FC<{
   const notifications = useAppSelector(getNotifications);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector((s) => s.notificationsGroups.isLoading);
-  const hasMore = useAppSelector((s) => s.notificationsGroups.hasMore);
+  const hasMore = notifications.at(-1)?.type === 'gap';
 
   const lastReadId = useAppSelector((s) =>
     selectSettingsNotificationsShowUnread(s) ? s.markers.notifications : '0',
@@ -159,12 +158,10 @@ export const Notifications: React.FC<{
     [dispatch],
   );
 
-  // TODO: fix this, probably incorrect
   const handleLoadOlder = useDebouncedCallback(
     () => {
-      const last = notifications[notifications.length - 1];
-      if (last && last.type !== 'gap')
-        dispatch(expandNotifications({ maxId: last.group_key }));
+      const gap = notifications.at(-1);
+      if (gap?.type === 'gap') void dispatch(fetchNotificationsGap({ gap }));
     },
     300,
     { leading: true },
@@ -254,7 +251,7 @@ export const Notifications: React.FC<{
     return notifications.map((item) =>
       item.type === 'gap' ? (
         <LoadGap
-          key={item.loadUrl}
+          key={`${item.maxId}-${item.sinceId}`}
           disabled={isLoading}
           param={item}
           onClick={handleLoadGap}

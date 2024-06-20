@@ -73,17 +73,15 @@ export const fetchNotifications = createDataLoadingThunk(
           : excludeAllTypesExcept(activeFilter),
     });
   },
-  ({ notifications, links }, { dispatch }) => {
+  ({ notifications }, { dispatch }) => {
     dispatchAssociatedRecords(dispatch, notifications);
-
-    // We ignore the previous link, as it will always be here but we know there are no more
-    // recent notifications when doing the initial load
-    const nextLink = links.refs.find((link) => link.rel === 'next');
-
     const payload: (ApiNotificationGroupJSON | NotificationGap)[] =
       notifications;
 
-    if (nextLink) payload.push({ type: 'gap', loadUrl: nextLink.uri });
+    // TODO: might be worth not using gaps for that…
+    // if (nextLink) payload.push({ type: 'gap', loadUrl: nextLink.uri });
+    if (notifications.length > 1)
+      payload.push({ type: 'gap', maxId: notifications.at(-1)?.page_min_id });
 
     return payload;
     // dispatch(submitMarkers());
@@ -93,14 +91,12 @@ export const fetchNotifications = createDataLoadingThunk(
 export const fetchNotificationsGap = createDataLoadingThunk(
   'notificationGroups/fetchGat',
   async (params: { gap: NotificationGap }) =>
-    apiFetchNotifications({}, params.gap.loadUrl),
+    apiFetchNotifications({ max_id: params.gap.maxId }),
 
-  ({ notifications, links }, { dispatch }) => {
+  ({ notifications }, { dispatch }) => {
     dispatchAssociatedRecords(dispatch, notifications);
 
-    const nextLink = links.refs.find((link) => link.rel === 'next');
-
-    return { notifications, nextLink };
+    return { notifications };
   },
 );
 
