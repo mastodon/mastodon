@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe DeleteAccountService, type: :service do
+RSpec.describe DeleteAccountService do
   shared_examples 'common behavior' do
     subject { described_class.new.call(account) }
 

@@ -80,7 +80,7 @@ fa:
       joined: عضو شده در
       location:
         all: همه
-        local: محلّی
+        local: محلی
         remote: کارسازهای دیگر
         title: مکان
       login_status: وضعیت ورود
@@ -415,13 +415,14 @@ fa:
       public_comment: یادداشت عمومی
       public_comment_hint: یادداشتی دربارهٔ محدودیت روی این دامین برای عموم، در صورتی که فهرست دامین‌های محدود شده منتشر شود.
       reject_media: نپذیرفتن پرونده‌های رسانه‌ای
-      reject_media_hint: پرونده‌های رسانه‌ای ذخیره‌شدهٔ محلّی را پاک کرده و از بارگیریشان در آینده خودداری می‌کند. بی‌تأثیر روی معلق‌ها
+      reject_media_hint: پرونده‌های رسانه‌ای ذخیره‌شدهٔ محلی را پاک کرده و از بارگیریشان در آینده خودداری می‌کند. بی‌تأثیر روی معلّق‌ها
       reject_reports: نپذیرفتن گزارش‌ها
       reject_reports_hint: گزارش‌هایی را که از این دامنه می‌آید نادیده می‌گیرد. بی‌تأثیر برای معلق‌شده‌ها
       undo: واگردانی مسدودسازی دامین
       view: دیدن مسدودسازی دامنه
     email_domain_blocks:
       add_new: افزودن تازه
+      allow_registrations_with_approval: اجازهٔ ثبت‌نام با تأیید
       attempts_over_week:
         one: "%{count} تلاش در هفتهٔ گذشته"
         other: "%{count} تلاش ورود در هفتهٔ گذشته"
@@ -507,7 +508,7 @@ fa:
       private_comment: یادداشت خصوصی
       public_comment: یادداشت عمومی
       purge: پاکسازی
-      title: ارتباط میان‌سروری
+      title: ارتباط همگانی
       total_blocked_by_us: مسدودشده از طرف ما
       total_followed_by_them: ما را پی می‌گیرند
       total_followed_by_us: ما پیگیرشان هستیم
@@ -672,7 +673,7 @@ fa:
         follow_recommendations: پیروی از پیشنهادها
         profile_directory: شاخهٔ نمایه
         public_timelines: خط زمانی‌های عمومی
-        publish_discovered_servers: انتشار سرورهای یافته‌شده
+        publish_discovered_servers: انتشار کارسازهای کشف شده
         publish_statistics: انتشار آمار
         title: کشف
         trends: پرطرفدارها
@@ -807,7 +808,6 @@ fa:
       delete: زدودن
       edit_preset: ویرایش هشدار پیش‌فرض
       empty: هنز هیچ پیش‌تنظیم هشداری را تعریف نکرده‌اید.
-      title: مدیریت هشدارهای پیش‌فرض
     webhooks:
       add_new: افزودن نقطهٔ پایانی
       delete: حذف
@@ -897,7 +897,7 @@ fa:
     description:
       prefix_invited_by_user: "@%{name} شما را به عضویت در این کارساز ماستودون دعوت کرده است!"
       prefix_sign_up: همین امروز عضو ماستودون شوید!
-      suffix: با داشتن حساب می‌توانید دیگران را پی بگیرید، نوشته‌های تازه منتشر کنید، و با کاربران دیگر از هر سرور ماستودون دیگری و حتی سرورهای دیگر در ارتباط باشید!
+      suffix: با داشتن حساب می‌توانید دیگران را پی گرفته، نوشته‌هایی منتشر کرده و با کاربرانی از هر کارساز ماستودن دیگری در ارتباط باشید!
     didnt_get_confirmation: یک پیوند تأیید را دریافت نکردید؟
     dont_have_your_security_key: کلید امنیتیتان را ندارید؟
     forgot_password: گذرواژه خود را فراموش کرده‌اید؟
@@ -920,7 +920,7 @@ fa:
       cas: CAS
       saml: SAML
     register: عضو شوید
-    registration_closed: سرور %{instance} عضو تازه‌ای نمی‌پذیرد
+    registration_closed: کارساز %{instance} عضو تازه‌ای نمی‌پذیرد
     resend_confirmation: ارسال مجدد پیوند تایید
     reset_password: بازنشانی گذرواژه
     rules:
@@ -1270,7 +1270,6 @@ fa:
   notifications:
     email_events: رویدادها برای آگاهی‌های رایانامه‌ای
     email_events_hint: 'گزینش رویدادهایی که می‌خواهید برایشان آگاهی دریافت کنید:'
-    other_settings: سایر تنظیمات آگاهی‌ها
   number:
     human:
       decimal_units:
@@ -1416,7 +1415,6 @@ fa:
     import: درون‌ریزی
     import_and_export: درون‌ریزی و برون‌بری
     migrate: انتقال حساب
-    notifications: آگاهی‌ها
     preferences: ترجیحات
     profile: نمایه
     relationships: پیگیری‌ها و پیگیران
@@ -1461,8 +1459,6 @@ fa:
         other: "%{count} رأی"
       vote: رأی
     show_more: نمایش
-    show_newer: نمایش جدیدتر
-    show_older: نمایش قدیمی‌تر
     show_thread: نمایش رشته
     title: "%{name}: «%{quote}»"
     visibilities:
@@ -1575,13 +1571,7 @@ fa:
         silence: حساب محدود شده است
         suspend: حساب معلق شده است
     welcome:
-      edit_profile_action: تنظیم نمایه
-      edit_profile_step: می‌توانید نمایه‌تان را با بارگذاری تصویر نمایه، تغییر نام نمایشی و بیش از این‌‌ها سفارشی کنید. می‌توانید تعیین کنید که پی‌گیران جدید را پیش‌از این که بتوانند دنبالتان کنند بازبینی کنید.
       explanation: نکته‌هایی که برای آغاز کار به شما کمک می‌کنند
-      final_action: چیزی منتشر کنید
-      final_step: 'چیزی بنویسید! حتا بدون پی‌گیر ممکن است فرسته‌های عمومیتان دیده شود. برای مثال روی خط زمانی محلی یا در برچسب‌ها. شاید بخواهید با برچسب #معرفی خودتان را معرّفی کنید.'
-      full_handle: نام کاربری کامل شما
-      full_handle_hint: این چیزی است که باید به دوستانتان بگویید تا بتوانند از کارسازی دیگر به شما پیام داده یا پی‌گیرتان شوند.
       subject: به ماستودون خوش آمدید
       title: خوش آمدید، کاربر %{name}!
   users:

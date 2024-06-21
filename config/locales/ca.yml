@@ -285,6 +285,7 @@ ca:
         update_custom_emoji_html: "%{name} ha actualitzat l'emoji %{target}"
         update_domain_block_html: "%{name} ha actualitzat el bloqueig de domini per a %{target}"
         update_ip_block_html: "%{name} ha canviat la norma per la IP %{target}"
+        update_report_html: "%{name} ha actualitzat l'informe %{target}"
         update_status_html: "%{name} ha actualitzat l'estat de %{target}"
         update_user_role_html: "%{name} ha canviat el rol %{target}"
       deleted_account: compte eliminat
@@ -292,6 +293,7 @@ ca:
       filter_by_action: Filtra per acció
       filter_by_user: Filtra per usuari
       title: Registre d'auditoria
+      unavailable_instance: "(nom de domini no disponible)"
     announcements:
       destroyed_msg: L’anunci s’ha esborrat amb èxit!
       edit:
@@ -465,7 +467,7 @@ ca:
       status: Estat
       suppress: Suprimeix les recomanacions de seguiment
       suppressed: Suprimit
-      title: Seguir les recomanacions
+      title: Recomanacions de comptes a seguir
       unsuppress: Restaurar les recomanacions de seguiment
     instances:
       availability:
@@ -597,6 +599,9 @@ ca:
       actions_description_html: Decideix quina acció a prendre per a resoldre aquest informe. Si prens un acció punitiva contra el compte denunciat, se li enviarà una notificació per correu electrònic, excepte quan se selecciona la categoria <strong>Spam</strong>.
       actions_description_remote_html: Decideix quina acció prendre per a resoldre aquest informe. Això només afectarà com <strong>el teu</strong> servidor es comunica amb aquest compte remot i en gestiona el contingut.
       add_to_report: Afegir més al informe
+      already_suspended_badges:
+        local: Ja és suspès en aquest servidor
+        remote: Ja és suspès al seu servidor
       are_you_sure: Segur?
       assign_to_self: Assigna'm
       assigned: Moderador assignat
@@ -748,6 +753,7 @@ ca:
         desc_html: Això es basa en scripts externs de hCaptcha, que poden ser un problema de privacitat i seguretat. A més, <strong>això pot fer que el procés de registre sigui significativament menys accesible per algunes (especialment discapacitades) persones</strong>. Per aquestes raons, si us plau considera alternatives com ara registre amb aprovació necessària o basada en invitacions.
         title: Demana als nous usuaris que resolguin un CAPTCHA per a confirmar el seu compte
       content_retention:
+        danger_zone: Zona de perill
         preamble: Controla com es desa a Mastodon el contingut generat per l'usuari.
         title: Retenció de contingut
       default_noindex:
@@ -767,6 +773,7 @@ ca:
         disabled: Per a ningú
         users: Per als usuaris locals en línia
       registrations:
+        moderation_recommandation: Assegureu-vos de tenir un equip de moderadors adient i actiu abans d'obrir l'alta de comptes al públic!
         preamble: Controla qui pot crear un compte en el teu servidor.
         title: Registres
       registrations_mode:
@@ -774,6 +781,7 @@ ca:
           approved: Cal l’aprovació per a registrar-se
           none: No es pot registrar ningú
           open: Qualsevol pot registrar-se
+        warning_hint: Recomanem utilitzar l'opció "Es requereix aprovació per a donar-se d'alta" si no teniu un equip de moderadors que puguin gestionar els enviaments de brossa o maliciosos en un temps raonable.
       security:
         authorized_fetch: Requereix autenticació dels servidors federats
         authorized_fetch_hint: Requerir l'autenticació dels servidors federats permet una aplicació més estricta dels bloqueigs a nivell d'usuari i a nivell de servidor. Tanmateix, això provoca una penalització del rendiment, redueix l'abast de les seves respostes i pot introduir problemes de compatibilitat amb alguns serveis federats. A més, això no impedirà que els actors dedicats busquin les teves publicacions i comptes públics.
@@ -944,7 +952,7 @@ ca:
       delete: Elimina
       edit_preset: Edita l'avís predeterminat
       empty: Encara no has definit cap preavís.
-      title: Gestiona les configuracions predefinides dels avisos
+      title: Predefinicions d'avís
     webhooks:
       add_new: Afegir extrem
       delete: Elimina
@@ -966,6 +974,9 @@ ca:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: A causa de la manca d'activitat recent dels moderadors, s'ha passat el procés d'alta de %{instance} al mode de revisió manual, a fi d'evitar que malfactors l'utilitzin com a plataforma. Podeu obrir el procés de registre en qualsevol moment.
+      subject: S'ha passat el procés d'alta de %{instance} al mode de validació manual
     new_appeal:
       actions:
         delete_statuses: eliminar els seus tuts
@@ -1490,7 +1501,6 @@ ca:
     administration_emails: Notificacions per correu-e de l'Admin
     email_events: Esdeveniments per a notificacions de correu electrònic
     email_events_hint: 'Selecciona els esdeveniments per als quals vols rebre notificacions:'
-    other_settings: Altres opcions de notificació
   number:
     human:
       decimal_units:
@@ -1548,7 +1558,7 @@ ca:
       unrecognized_emoji: no és un emoji reconegut
   redirects:
     prompt: Si confieu en aquest enllaç, feu-hi clic per a continuar.
-    title: Esteu sortint de %{instance}.
+    title: Deixeu %{instance}.
   relationships:
     activity: Activitat del compte
     confirm_follow_selected_followers: Segur que vols seguir els seguidors seleccionats?
@@ -1578,7 +1588,7 @@ ca:
   rss:
     content_warning: 'Avís de contingut:'
     descriptions:
-      account: Publicacions des de @%{acct}
+      account: Publicacions públiques de @%{acct}
       tag: 'Tuts etiquetats #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Has superat el límit de %{limit} tuts programats per a avui
@@ -1648,14 +1658,26 @@ ca:
     import: Importació
     import_and_export: Importació i exportació
     migrate: Migració del compte
-    notifications: Notificacions
+    notifications: Notificacions per correu electrònic
     preferences: Preferències
     profile: Perfil
     relationships: Seguits i seguidors
+    severed_relationships: Relacions eliminades
     statuses_cleanup: Esborrat automàtic de tuts
     strikes: Accions de mediació
     two_factor_authentication: Autenticació de dos factors
     webauthn_authentication: Claus de seguretat
+  severed_relationships:
+    download: Baixa (%{count})
+    event_type:
+      account_suspension: Suspensió del compte (%{target_name})
+      domain_block: Suspensió del servidor (%{target_name})
+      user_domain_block: Heu blocat %{target_name}
+    lost_followers: Seguidors perduts
+    lost_follows: Seguiments perduts
+    preamble: Quan bloqueu un domini o els vostres moderadors decideixen suspendre un servidor remot, podeu perdre seguidors i seguiments. Si passa, podeu baixar la llista de relacions trencades per a revisar-la i, de cas, importar-la a un altre servidor.
+    purged: Els administradors del vostre servidor han purgat la informació relativa a aquest servidor.
+    type: Esdeveniment
   statuses:
     attached:
       audio:
@@ -1693,8 +1715,6 @@ ca:
         other: "%{count} vots"
       vote: Vota
     show_more: Mostra'n més
-    show_newer: Mostra els més nous
-    show_older: Mostra els més vells
     show_thread: Mostra el fil
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1725,7 +1745,7 @@ ca:
     keep_self_bookmark: Mantenir els tuts que has desat a les adreces d'interès
     keep_self_bookmark_hint: No esborra els teus propis tuts si els has desat en les adreces d'interès
     keep_self_fav: Mantenir els tuts que has afavorit
-    keep_self_fav_hint: No esborra els teus propis tuts si les has afavorit
+    keep_self_fav_hint: No esborra les teves publicacions si les has afavorit
     min_age:
       '1209600': 2 setmanes
       '15778476': 6 mesos
@@ -1751,6 +1771,7 @@ ca:
     contrast: Mastodon (alt contrast)
     default: Mastodon (fosc)
     mastodon-light: Mastodon (clar)
+    system: Automàtic (utilitza el tema del sistema)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -1838,13 +1859,44 @@ ca:
         silence: Compte limitat
         suspend: Compte suspès
     welcome:
-      edit_profile_action: Configura el perfil
-      edit_profile_step: Pots personalitzar el teu perfil pujant-hi un avatar, canviant el teu nom de visualització i molt més. Si ho prefereixes, pots revisar els seguidors nous abans que et puguin seguir.
+      apps_android_action: Obteniu-lo a Google Play
+      apps_ios_action: Descarregueu-la de la botiga d'aplicacions
+      apps_step: Descarregueu-vos les aplicacions oficials.
+      apps_title: Aplicacions de Mastodon
+      checklist_subtitle: 'Inicieu-vos en aquesta nova frontera social:'
+      checklist_title: Control inicial
+      edit_profile_action: Personalitzeu
+      edit_profile_step: Augmenteu les vostres interaccions amb un perfil complet.
+      edit_profile_title: Personalitzeu el perfil
       explanation: Aquests són alguns consells per a començar
-      final_action: Comença a publicar
-      final_step: 'Comença a publicar! Fins i tot sense seguidors, els altres poden veure els teus missatges públics, per exemple, a la línia de temps local i a les etiquetes. És possible que vulguis presentar-te amb l''etiqueta #introductions.'
-      full_handle: El teu nom d'usuari sencer
-      full_handle_hint: Això és el que has de dir als teus amics perquè puguin enviar-te missatges o seguir-te des d'un altre servidor.
+      feature_action: Per a saber-ne més
+      feature_audience: Mastodon us proporciona una possibilitat única de gestionar la vostra audiència sense intermediaris. Instal·lat a la vostra pròpia infraestructura us permet seguir i ser seguit només per altres servidors Mastodon i ningú més que vosaltres el controla.
+      feature_audience_title: Construïu la vostra audiència en confiança
+      feature_control: Sabeu perfectament què voleu veure a la línia temporal. Sense algorismes ni anuncis que us facin malbaratar el temps. Seguiu qualsevol persona de qualsevol servidor Mastodon des d'un sol compte en ordre cronològic i feu-vos a mida un racó d'internet.
+      feature_control_title: Tingueu el control de la vostra línia temporal
+      feature_creativity: Mastodon us permet de publicar àudio, vídeo i imatges, descripcions d'accessibilitat, enquestes, avisos de contingut, avatars animats, emojis personalitzats, retallar miniatures i més, a fi d'ajudar-vos a expressar-vos en línia. Tant si publiqueu el vostre art, música o un podcast, Mastodon us ajudarà.
+      feature_creativity_title: Creativitat incomparable
+      feature_moderation: Mastodon posa les decisions a les vostres mans. Cada servidor crea les seves pròpies regles, que només s'apliquen als usuaris locals, a diferència de les xarxes socials corporatives, permetent una flexibilitat que s'adapta a tota mena de grups. Uniu-vos a un servidor si esteu d'acord amb les seves regles, o creeu-ne un.
+      feature_moderation_title: Moderant com ha de ser
+      follow_action: Seguiu
+      follow_step: Mastodon va de seguir gent interessant.
+      follow_title: Personalitzeu la pantalla d'inici
+      follows_subtitle: Seguiu comptes populars
+      follows_title: A qui seguir
+      follows_view_more: Més persones a qui seguir
+      hashtags_recent_count:
+        one: "%{people} persona en els 2 últims dies"
+        other: "%{people} persones en els 2 últims dies"
+      hashtags_subtitle: Exploreu què és tendència des de fa 2 dies
+      hashtags_title: Etiquetes en tendència
+      hashtags_view_more: Més etiquetes en tendència
+      post_action: Redacteu
+      post_step: Saludeu el món amb text, fotos, vídeos o enquestes.
+      post_title: Feu la primera publicació
+      share_action: Compartiu
+      share_step: Permeteu als vostres amics de saber com trobar-vos a Mastodon.
+      share_title: Compartiu el perfil
+      sign_in_action: Inicieu sessió
       subject: Et donem la benvinguda a Mastodon
       title: Benvingut a bord, %{name}!
   users:

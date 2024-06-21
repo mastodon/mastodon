@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe FollowService, type: :service do
+RSpec.describe FollowService do
   subject { described_class.new }
 
   let(:sender) { Fabricate(:account, username: 'alice') }

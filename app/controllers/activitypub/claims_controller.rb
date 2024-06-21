@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class ActivityPub::ClaimsController < ActivityPub::BaseController
-  include SignatureVerification
-  include AccountOwnedConcern
-
   skip_before_action :authenticate_user!
 
   before_action :require_account_signature!

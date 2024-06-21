@@ -50,7 +50,7 @@ RSpec.describe ActivityPub::Activity::Add do
         end
 
         it 'fetches the status and pins it' do
-          allow(service_stub).to receive(:call) do |uri, id: true, on_behalf_of: nil, request_id: nil| # rubocop:disable Lint/UnusedBlockArgument
+          allow(service_stub).to receive(:call) do |uri, id: true, on_behalf_of: nil, **|
             expect(uri).to eq 'https://example.com/unknown'
             expect(id).to be true
             expect(on_behalf_of&.following?(sender)).to be true
@@ -64,7 +64,7 @@ RSpec.describe ActivityPub::Activity::Add do
 
       context 'when there is no local follower' do
         it 'tries to fetch the status' do
-          allow(service_stub).to receive(:call) do |uri, id: true, on_behalf_of: nil, request_id: nil| # rubocop:disable Lint/UnusedBlockArgument
+          allow(service_stub).to receive(:call) do |uri, id: true, on_behalf_of: nil, **|
             expect(uri).to eq 'https://example.com/unknown'
             expect(id).to be true
             expect(on_behalf_of).to be_nil

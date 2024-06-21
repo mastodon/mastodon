@@ -6,7 +6,7 @@ module SignedRequestHelpers
 
     headers ||= {}
     headers['Date'] = Time.now.utc.httpdate
-    headers['Host'] = ENV.fetch('LOCAL_DOMAIN')
+    headers['Host'] = Rails.configuration.x.local_domain
     signed_headers = headers.merge('(request-target)' => "get #{path}").slice('(request-target)', 'Host', 'Date')
 
     key_id = ActivityPub::TagManager.instance.key_uri_for(sign_with)

@@ -5,16 +5,30 @@
   = render 'shared/error_messages', object: @ip_block
 
   .fields-group
-    = f.input :ip, as: :string, wrapper: :with_block_label, input_html: { placeholder: '192.0.2.0/24' }
+    = f.input :ip,
+              as: :string,
+              input_html: { placeholder: '192.0.2.0/24' },
+              wrapper: :with_block_label
 
   .fields-group
-    = f.input :expires_in, wrapper: :with_block_label, collection: [1.day, 2.weeks, 1.month, 6.months, 1.year, 3.years].map(&:to_i), label_method: ->(i) { I18n.t("admin.ip_blocks.expires_in.#{i}") }, prompt: I18n.t('invites.expires_in_prompt')
+    = f.input :expires_in,
+              collection: [1.day, 2.weeks, 1.month, 6.months, 1.year, 3.years].map(&:to_i),
+              label_method: ->(i) { I18n.t("admin.ip_blocks.expires_in.#{i}") },
+              prompt: I18n.t('invites.expires_in_prompt'),
+              wrapper: :with_block_label
 
   .fields-group
-    = f.input :severity, as: :radio_buttons, collection: IpBlock.severities.keys, include_blank: false, wrapper: :with_block_label, label_method: ->(severity) { ip_blocks_severity_label(severity) }
+    = f.input :severity,
+              as: :radio_buttons,
+              collection: IpBlock.severities.keys,
+              include_blank: false,
+              label_method: ->(severity) { ip_blocks_severity_label(severity) },
+              wrapper: :with_block_label
 
   .fields-group
-    = f.input :comment, as: :string, wrapper: :with_block_label
+    = f.input :comment,
+              as: :string,
+              wrapper: :with_block_label
 
   .actions
     = f.button :button, t('admin.ip_blocks.add_new'), type: :submit

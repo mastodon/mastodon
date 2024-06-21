@@ -91,20 +91,15 @@ RSpec.describe MediaAttachment, :paperclip_processing do
     end
 
     it 'saves media attachment with correct file metadata' do
-      expect(media.persisted?).to be true
-      expect(media.file).to_not be_nil
-
-      # completes processing
-      expect(media.processing_complete?).to be true
-
-      # sets type
-      expect(media.type).to eq 'image'
-
-      # sets content type
-      expect(media.file_content_type).to eq content_type
-
-      # sets file extension
-      expect(media.file_file_name).to end_with extension
+      expect(media)
+        .to be_persisted
+        .and be_processing_complete
+        .and have_attributes(
+          file: be_present,
+          type: eq('image'),
+          file_content_type: eq(content_type),
+          file_file_name: end_with(extension)
+        )
 
       # Rack::Mime (used by PublicFileServerMiddleware) recognizes file extension
       expect(Rack::Mime.mime_type(extension, nil)).to eq content_type
@@ -112,17 +107,23 @@ RSpec.describe MediaAttachment, :paperclip_processing do
 
     it 'saves media attachment with correct size metadata' do
       # strips original file name
-      expect(media.file_file_name).to_not start_with '600x400'
+      expect(media.file_file_name)
+        .to_not start_with '600x400'
 
-      # sets meta for original
-      expect(media.file.meta['original']['width']).to eq 600
-      expect(media.file.meta['original']['height']).to eq 400
-      expect(media.file.meta['original']['aspect']).to eq 1.5
-
-      # sets meta for thumbnail
-      expect(media.file.meta['small']['width']).to eq 588
-      expect(media.file.meta['small']['height']).to eq 392
-      expect(media.file.meta['small']['aspect']).to eq 1.5
+      # sets meta for original and thumbnail
+      expect(media.file.meta.deep_symbolize_keys)
+        .to include(
+          original: include(
+            width: eq(600),
+            height: eq(400),
+            aspect: eq(1.5)
+          ),
+          small: include(
+            width: eq(588),
+            height: eq(392),
+            aspect: eq(1.5)
+          )
+        )
     end
   end
 
@@ -134,6 +135,12 @@ RSpec.describe MediaAttachment, :paperclip_processing do
 
   describe 'png' do
     let(:media) { Fabricate(:media_attachment, file: attachment_fixture('600x400.png')) }
+
+    it_behaves_like 'static 600x400 image', 'image/png', '.png'
+  end
+
+  describe 'monochrome jpg' do
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('monochrome.png')) }
 
     it_behaves_like 'static 600x400 image', 'image/png', '.png'
   end
@@ -202,7 +209,9 @@ RSpec.describe MediaAttachment, :paperclip_processing do
       expect(media.type).to eq 'audio'
       expect(media.file.meta['original']['duration']).to be_within(0.05).of(0.235102)
       expect(media.thumbnail.present?).to be true
-      expect(media.file.meta['colors']['background']).to eq '#3088d4'
+
+      # NOTE: Our libvips and ImageMagick implementations currently have different results
+      expect(media.file.meta['colors']['background']).to eq(ENV['MASTODON_USE_LIBVIPS'] ? '#268cd9' : '#3088d4')
       expect(media.file_file_name).to_not eq 'boop.ogg'
     end
   end

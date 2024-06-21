@@ -285,6 +285,7 @@ is:
         update_custom_emoji_html: "%{name} uppfærði tjáningartáknið %{target}"
         update_domain_block_html: "%{name} uppfærði útilokun lénsins %{target}"
         update_ip_block_html: "%{name} breytti reglu fyrir IP-vistfangið %{target}"
+        update_report_html: "%{name} uppfærði kæru %{target}"
         update_status_html: "%{name} uppfærði færslu frá %{target}"
         update_user_role_html: "%{name} breytti hlutverki %{target}"
       deleted_account: eyddur notandaaðgangur
@@ -292,6 +293,7 @@ is:
       filter_by_action: Sía eftir aðgerð
       filter_by_user: Sía eftir notanda
       title: Atvikaskrá
+      unavailable_instance: "(heiti léns ekki tiltækt)"
     announcements:
       destroyed_msg: Það tókst að eyða auglýsingunni!
       edit:
@@ -597,6 +599,9 @@ is:
       actions_description_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Ef þú ákveður að refsa kærða notandaaðgangnum, verður viðkomandi send tilkynning í tölvupósti, nema ef flokkurinn <strong>Ruslpóstur</strong> sé valinn.
       actions_description_remote_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Þetta mun aðeins hafa áhrif á hvernig <strong>netþjónninn þinn</strong> meðhöndlar þennan fjartengda aðgang og efnið á honum.
       add_to_report: Bæta fleiru í kæru
+      already_suspended_badges:
+        local: Þegar frystur á þessum netþjóni
+        remote: Þegar frystur á hinum netþjóninum
       are_you_sure: Ertu viss?
       assign_to_self: Úthluta mér
       assigned: Úthlutaður umsjónarmaður
@@ -750,6 +755,7 @@ is:
           Aukinheldur <strong> gæti þetta gert nýskráningarferlið óaðgengilegra sumum (sérstaklega fyrir fatlaða)</strong>. Þess vegna er rétt að skoða aðra valmöguleika svo sem nýskráningar háðar samþykki eða boði.
         title: Nýir notendur munu þurfa að standast Turing skynpróf til að staðfesta notendaaðganginn
       content_retention:
+        danger_zone: Hættusvæði
         preamble: Stýrðu hvernig efni frá notendum sé geymt í Mastodon.
         title: Geymsla efnis
       default_noindex:
@@ -769,6 +775,7 @@ is:
         disabled: Til engra
         users: Til innskráðra staðværra notenda
       registrations:
+        moderation_recommandation: Tryggðu að þú hafir hæft og aðgengilegt umsjónarteymi til taks áður en þú opnar á skráningar fyrir alla!
         preamble: Stýrðu því hverjir geta útbúið notandaaðgang á netþjóninum þínum.
         title: Nýskráningar
       registrations_mode:
@@ -776,6 +783,7 @@ is:
           approved: Krafist er samþykkt nýskráningar
           none: Enginn getur nýskráð sig
           open: Allir geta nýskráð sig
+        warning_hint: Við mælum með því að nota "Krafist er samþykkt nýskráningar" nema ef þú sért viss um að umsjónarteymið þitt geti brugðist tímanlega við ruslpósti og skráningum í misjöfnum tilgangi.
       security:
         authorized_fetch: Krefjast auðkenningar frá netþjónum í skýjasambandi
         authorized_fetch_hint: Að krefjast auðkenningar frá netþjónum í skýjasambandi kallar fram strangari útfærslu á útilokunum, bæði varðandi notendur og netþjóna. Hins vegar kemur þetta niður á afköstum, minnkar útbreiðslu á svörum þínum og gæti valdið samhæfnivandamálum við sumar sambandsþjónustur. Að auki kemur þetta ekki í veg fyrir að aðilar sem ætla sér að ná í opinberar færslur og notendaaðganga frá þér geri það.
@@ -946,7 +954,7 @@ is:
       delete: Eyða
       edit_preset: Breyta forstilltri aðvörun
       empty: Þú hefur ekki enn skilgreint neinar aðvaranaforstillingar.
-      title: Sýsla með forstilltar aðvaranir
+      title: Forstilltar aðvaranir
     webhooks:
       add_new: Bæta við endapunkti
       delete: Eyða
@@ -968,6 +976,9 @@ is:
       title: Webhook-vefkrækjur
       webhook: Webhook-vefkrækja
   admin_mailer:
+    auto_close_registrations:
+      body: Vegna skorts á virkni umsjónaraðila að undanförnu, hafa nýskráningar á %{instance} sjálfkrafa verið stilltar á að þarfnast samþykktar umsjónaraðila, til að koma í veg fyrir að %{instance} verði mögulega misnotað af óprúttnum aðilum. Þú getur skipt hvenær sem er aftur yfir í opnar nýskráningar.
+      subject: Nýskráningar á %{instance} hafa sjálfkrafa verið stilltar á að krefjast samþykktar
     new_appeal:
       actions:
         delete_statuses: að eyða færslum viðkomandi
@@ -1494,7 +1505,6 @@ is:
     administration_emails: Kerfisstjórnunartilkynningar í tölvupósti
     email_events: Atburðir fyrir tilkynningar í tölvupósti
     email_events_hint: 'Veldu þá atburði sem þú vilt fá tilkynningar í tölvupósti þegar þeir koma upp:'
-    other_settings: Aðrar stillingar varðandi tilkynningar
   number:
     human:
       decimal_units:
@@ -1652,14 +1662,26 @@ is:
     import: Flytja inn
     import_and_export: Inn- og útflutningur
     migrate: Yfirfærsla notandaaðgangs
-    notifications: Tilkynningar
+    notifications: Tilkynningar í tölvupósti
     preferences: Kjörstillingar
     profile: Notandasnið
     relationships: Fylgist með og fylgjendur
+    severed_relationships: Rofin tengsl
     statuses_cleanup: Sjálfvirk eyðing færslna
     strikes: Umsýsla refsinga
     two_factor_authentication: Tveggja-þátta auðkenning
     webauthn_authentication: Öryggislyklar
+  severed_relationships:
+    download: Sækja (%{count})
+    event_type:
+      account_suspension: Frysting notandaaðgangsins (%{target_name})
+      domain_block: Frysting netþjónsins (%{target_name})
+      user_domain_block: Þú útilokaðir %{target_name}
+    lost_followers: Tapaðir fylgjendur
+    lost_follows: Tapað sem þú fylgist með
+    preamble: Þú gætir misst einhverja sem þú fylgist með og eins fylgjendur þegar þú útilokar lén eða þegar umsjónarmenn netþjónsins þíns ákveða að frysta fjartengdan netþjón. Þegar slíkt gerist, geturðu sótt lista yfir slík skemmd tengsl, til að yfirfara og mögulega flytja inn á öðrum netþjóni.
+    purged: Upplýsingum um þennan netþjón hefur verið eytt af stjórnendum netþjónsins þíns.
+    type: Atburður
   statuses:
     attached:
       audio:
@@ -1697,8 +1719,6 @@ is:
         other: "%{count} atkvæði"
       vote: Greiða atkvæði
     show_more: Sýna meira
-    show_newer: Sýna nýrri
-    show_older: Sýna eldri
     show_thread: Birta þráð
     title: "%{name}: „%{quote}‟"
     visibilities:
@@ -1755,6 +1775,7 @@ is:
     contrast: Mastodon (mikil birtuskil)
     default: Mastodon (dökkt)
     mastodon-light: Mastodon (ljóst)
+    system: Sjálfvirkt (nota þema kerfis)
   time:
     formats:
       default: "%d. %b, %Y, %H:%M"
@@ -1842,13 +1863,44 @@ is:
         silence: Notandaaðgangur takmarkaður
         suspend: Notandaaðgangur í frysti
     welcome:
-      edit_profile_action: Setja upp notandasnið
-      edit_profile_step: Þú getur sérsniðið notandasniðið þitt með því að setja inn auðkennismynd þína, breyta birtingarnafninu þínu og ýmislegt fleira. Þú getur valið að yfirfara nýja fylgjendur áður en þú leyfir þeim að fylgjast með þér.
+      apps_android_action: Fáðu það á Google Play
+      apps_ios_action: Sækja í App Store
+      apps_step: Sæktu opinberu forritin okkar.
+      apps_title: Mastodon-forrit
+      checklist_subtitle: 'Komum þér í gang á þessum nýja samfélagsmiðli:'
+      checklist_title: Til minnis í upphafi
+      edit_profile_action: Sérsníða
+      edit_profile_step: Annað fólk er líklegra til að eiga samskipti við þig ef þý setur einhverjar áhugaverðar upplýsingar í notandasniðið þitt.
+      edit_profile_title: Sérsníddu notandasniðið þitt
       explanation: Hér eru nokkrar ábendingar til að koma þér í gang
-      final_action: Byrjaðu að skrifa
-      final_step: 'Byrjaðu að tjá þig! Jafnvel án fylgjenda geta aðrir séð opinberar færslur frá þér, til dæmis á staðværu tímalínunni eða í myllumerkjum. Þú gætir jafnvel viljað kynna þig á myllumerkinu #introductions.'
-      full_handle: Fullt auðkenni þitt
-      full_handle_hint: Þetta er það sem þú myndir gefa upp við vini þína svo þeir geti sent þér skilaboð eða fylgst með þér af öðrum netþjóni.
+      feature_action: Kanna nánar
+      feature_audience: Mastodon gefur þér einstakt tækifæri til að eiga í samskiptum við áhorfendur þína milliliðalaust. Mastodon-netþjónn sem settur er upp á þínu eigin kerfi er ekki undir neins stjórn nema þinnar og gerir þér kleift að fylgjast með og eiga fylgjendur á hverjum þeim Mastodon-netþjóni sem er tengdur við internetið.
+      feature_audience_title: Byggðu upp orðspor þitt og áheyrendafjölda
+      feature_control: Þú veist best hvað þú vilt sjá í heimastreyminu þínu. Engin reiknirit eða auglýsingar að þvælast fyrir. Fylgstu af einum aðgangi með hverjum sem er á milli Mastodon-netþjóna og fáðu færslurnar þeirra í tímaröð, þannig geturðu útbúið þitt eigið lítið horn á internetinu þar sem hlutirnir eru að þínu skapi.
+      feature_control_title: Hafðu stjórn á þinni eigin tímalínu
+      feature_creativity: Mastodon styður færslur með hljóði, myndum og myndskeiðum, lýsingum fyrir aukið aðgengi, kannanir, aðvörunum vegna efnis, hreyanlegum auðkennismyndum, sérsniðnum tjáningartáknum, utanskurði smámynda ásamt fleiru; til að hjálpa þér við að tjá þig á netinu. Hvort sem þú sért að gefa út listina þína, tónlist eða hlaðvarp, þá er Mastodon til staðar fyrir þig.
+      feature_creativity_title: Óviðjafnanleg sköpunargleði
+      feature_moderation: Mastodon setur ákvarðanatökur aftur í þínar hendur. Hver netþjónn býr til sínar eigin reglur og venjur, sem gilda fyrir þann netþjón en eru ekki boðaðar með valdi að ofan og niður líkt og á samfélagsnetum stórfyrirtækja. Á þennan hátt svarar samfélagsmiðillinn þörfum mismunandi hópa. Taktu þátt á netþjóni með reglum sem þú samþykkir, eða hýstu þinn eigin.
+      feature_moderation_title: Umsjón með efni eins og slík á að vera
+      follow_action: Fylgjast með
+      follow_step: Að fylgjast með áhugaverðu fólki er það sem Mastodon snýst um.
+      follow_title: Aðlagaðu heimastreymið þitt eftir þínu höfði
+      follows_subtitle: Fylgstu með vel þekktum notendum
+      follows_title: Hverjum ætti að fylgjast með
+      follows_view_more: Skoða fleira fólk til að fylgjast með
+      hashtags_recent_count:
+        one: "%{people} aðili síðustu 2 daga"
+        other: "%{people} manns á síðustu 2 dögum"
+      hashtags_subtitle: Skoðaðu hvað sé búið að vera í umræðunni síðustu 2 dagana
+      hashtags_title: Vinsæl myllumerki
+      hashtags_view_more: Sjá fleiri vinsæl myllumerki
+      post_action: Skrifa
+      post_step: Heilsaðu heiminum með texta, ljósmyndum, myndskeiðum eða könnunum.
+      post_title: Gerðu fyrstu færsluna þína
+      share_action: Deila
+      share_step: Láttu vini þína vita hvernig þeir geta fundið þig á Mastodon.
+      share_title: Deildu notandasniðinu þínu
+      sign_in_action: Skrá inn
       subject: Velkomin í Mastodon
       title: Velkomin/n um borð, %{name}!
   users:

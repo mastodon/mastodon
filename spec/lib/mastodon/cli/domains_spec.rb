@@ -15,6 +15,23 @@ describe Mastodon::CLI::Domains do
   describe '#purge' do
     let(:action) { :purge }
 
+    context 'with invalid limited federation mode argument' do
+      let(:arguments) { ['example.host'] }
+      let(:options) { { limited_federation_mode: true } }
+
+      it 'warns about usage and exits' do
+        expect { subject }
+          .to raise_error(Thor::Error, /DOMAIN parameter not supported/)
+      end
+    end
+
+    context 'without a domains argument' do
+      it 'warns about usage and exits' do
+        expect { subject }
+          .to raise_error(Thor::Error, 'No domain(s) given')
+      end
+    end
+
     context 'with accounts from the domain' do
       let(:domain) { 'host.example' }
       let!(:account) { Fabricate(:account, domain: domain) }

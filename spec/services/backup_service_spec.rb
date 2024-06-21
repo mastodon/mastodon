@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe BackupService, type: :service do
+RSpec.describe BackupService do
   subject(:service_call) { described_class.new.call(backup) }
 
   let!(:user)           { Fabricate(:user) }
@@ -55,9 +55,11 @@ RSpec.describe BackupService, type: :service do
   end
 
   def expect_outbox_export
-    json = export_json(:outbox)
+    body = export_json_raw(:outbox)
+    json = Oj.load(body)
 
     aggregate_failures do
+      expect(body.scan('@context').count).to eq 1
       expect(json['@context']).to_not be_nil
       expect(json['type']).to eq 'OrderedCollection'
       expect(json['totalItems']).to eq 2
@@ -85,8 +87,12 @@ RSpec.describe BackupService, type: :service do
     end
   end
 
+  def export_json_raw(type)
+    read_zip_file(backup, "#{type}.json")
+  end
+
   def export_json(type)
-    Oj.load(read_zip_file(backup, "#{type}.json"))
+    Oj.load(export_json_raw(type))
   end
 
   def include_create_item(status)

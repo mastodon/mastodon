@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UnallowDomainService, type: :service do
+RSpec.describe UnallowDomainService do
   subject { described_class.new }
 
   let(:bad_domain) { 'evil.org' }

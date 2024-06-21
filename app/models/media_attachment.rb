@@ -34,8 +34,8 @@ class MediaAttachment < ApplicationRecord
 
   include Attachmentable
 
-  enum type: { image: 0, gifv: 1, video: 2, unknown: 3, audio: 4 }
-  enum processing: { queued: 0, in_progress: 1, complete: 2, failed: 3 }, _prefix: true
+  enum :type, { image: 0, gifv: 1, video: 2, unknown: 3, audio: 4 }
+  enum :processing, { queued: 0, in_progress: 1, complete: 2, failed: 3 }, prefix: true
 
   MAX_DESCRIPTION_LENGTH = 1_500
 

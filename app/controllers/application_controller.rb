@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   include UserTrackingConcern
   include SessionTrackingConcern
   include CacheConcern
+  include PreloadingConcern
   include DomainControlHelper
   include DatabaseHelper
   include AuthorizedFetchHelper
@@ -129,7 +130,7 @@ class ApplicationController < ActionController::Base
   end
 
   def single_user_mode?
-    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.where('id > 0').exists?
+    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.without_internal.exists?
   end
 
   def use_seamless_external_login?
@@ -178,7 +179,7 @@ class ApplicationController < ActionController::Base
 
     respond_to do |format|
       format.any  { render 'errors/self_destruct', layout: 'auth', status: 410, formats: [:html] }
-      format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[410] }, status: code }
+      format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[410] }, status: 410 }
     end
   end
 

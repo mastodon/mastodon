@@ -291,6 +291,7 @@ sl:
         update_custom_emoji_html: "%{name} je posodobil/a emotikone %{target}"
         update_domain_block_html: "%{name} je posodobil/a domenski blok za %{target}"
         update_ip_block_html: "%{name} je spremenil/a pravilo za IP %{target}"
+        update_report_html: "%{name} je posodobil poročilo %{target}"
         update_status_html: "%{name} je posodobil/a objavo uporabnika %{target}"
         update_user_role_html: "%{name} je spremenil/a vlogo %{target}"
       deleted_account: izbrisan račun
@@ -298,6 +299,7 @@ sl:
       filter_by_action: Filtriraj po dejanjih
       filter_by_user: Filtriraj po uporabnikih
       title: Dnevnik revizije
+      unavailable_instance: "(ime domene ni na voljo)"
     announcements:
       destroyed_msg: Obvestilo je bilo uspešno izbrisano!
       edit:
@@ -621,6 +623,9 @@ sl:
       actions_description_html: Odločite se, katere ukrepe boste sprejeli za rešitev te prijave. Če sprejmete kazenski ukrep proti prijavljenemu računu, mu bo poslano e-poštno obvestilo, razen če je izbrana kategorija <strong>Neželena pošta</strong>.
       actions_description_remote_html: Odločite se za dejanje, ki bo odločilo o tej prijavi. To bo vplivalo le na to, kako <strong>vaš</strong> strežnik komunicira s tem oddaljenim računom in obravnava njegovo vsebino.
       add_to_report: Dodaj več v prijavo
+      already_suspended_badges:
+        local: Že suspendiran na tem strežniku
+        remote: Že suspendiran na njihovem strežniku
       are_you_sure: Ali ste prepričani?
       assign_to_self: Dodeli meni
       assigned: Dodeljen moderator
@@ -776,6 +781,7 @@ sl:
         desc_html: To se zanaša na zunanje skripte hCaptcha in lahko predstavlja tveganje za varnost in zasebnost. Poleg tega <strong>to lahko nekaterim ljudem (posebno invalidom) občutno oteži dostopnost registracijskega postopka</strong>. Zato svetujemo, da razmislite o drugih ukrepih, kot je na primer registracija na podlagi odobritve ali povabila.
         title: Od novih uporabnikov zahtevaj reševanje CAPTCHA za potrditev računov
       content_retention:
+        danger_zone: Območje nevarnosti
         preamble: Nazdor nad hrambo vsebine uporabnikov v Mastodonu.
         title: Hramba vsebin
       default_noindex:
@@ -795,6 +801,7 @@ sl:
         disabled: Nikomur
         users: Prijavljenim krajevnim uporabnikom
       registrations:
+        moderation_recommandation: Preden prijave odprete za vse poskrbite, da imate v ekipi moderatorjev zadosti aktivnih članov.
         preamble: Nadzirajte, kdo lahko ustvari račun na vašem strežniku.
         title: Registracije
       registrations_mode:
@@ -802,6 +809,7 @@ sl:
           approved: Potrebna je odobritev za prijavo
           none: Nihče se ne more prijaviti
           open: Vsakdo se lahko prijavi
+        warning_hint: Priporočamo uporabo možnosti »Potrebna je odobritev za prijavo«, razen če ste gotovi, da se bo vaša ekipa moderatorjev res zmožna hitro odzvati na neželene vsebine in škodoželjne prijave.
       security:
         authorized_fetch: Od drugih strežnikov v federaciji zahtevaj overitev pristnosti
         authorized_fetch_hint: Zahtevanje overitve pristnosti od drugih strežnikov v federaciji omogoči strožje uveljavljanje uporabniških in strežniških blokad. Vendar je cena za to počasnejše delovanje, zmanjšanje dosega vaših odgovorov in morebitne težave z združljivostjo z nekaterimi storitvami v federaciji. Poleg tega to odločenim akterjem ne bo preprečilo pridobivanja vaših javnih objav in računov.
@@ -978,7 +986,7 @@ sl:
       delete: Izbriši
       edit_preset: Uredi prednastavitev opozoril
       empty: Zaenkrat še niste določili nobenih opozorilnih prednastavitev.
-      title: Upravljaj prednastavitev opozoril
+      title: Pred-nastavitve opozoril
     webhooks:
       add_new: Dodaj končno točko
       delete: Izbriši
@@ -1002,6 +1010,9 @@ sl:
       title: Spletne zanke
       webhook: Spletna zanka
   admin_mailer:
+    auto_close_registrations:
+      body: Zaradi pomanjkanja moderiranja v zadnjem času, se je za strežnik %{instance} samodejno vklopilo ročno preverjanje in potrjevanje prijav. S tem se prepreči morebitno zlorabo strežnika %{instance}. Prijave lahko kadarkoli spet spremenite nazaj v odprte.
+      subject: Za strežnik %{instance} se je samodejno vklopilo ročno potrjevanje prijav
     new_appeal:
       actions:
         delete_statuses: brisanje njihovih objav,
@@ -1251,17 +1262,17 @@ sl:
   exports:
     archive_takeout:
       date: Datum
-      download: Prenesi svoj arhiv
-      hint_html: Zahtevate lahko arhiv vaših <strong>objav in naloženih medijev</strong>. Izvoženi podatki bodo v zapisu ActivityPub, ki ga bo mogoče brati s poljubno skladno programsko opremo. Arhiv lahko zahtevate vsakih 7 dni.
-      in_progress: Prevajanje arhiva...
+      download: Prenesite svoj arhiv
+      hint_html: Zahtevate lahko arhiv svojih <strong>objav in naloženih medijev</strong>. Izvoženi podatki bodo v zapisu ActivityPub, ki ga bo mogoče brati s poljubno skladno programsko opremo. Arhiv lahko zahtevate vsakih 7 dni.
+      in_progress: Pripravljanje vašega arhiva …
       request: Zahtevajte svoj arhiv
       size: Velikost
-    blocks: Blokirate
+    blocks: Blokirani
     bookmarks: Zaznamki
     csv: CSV
-    domain_blocks: Bloki domene
+    domain_blocks: Blokirane domene
     lists: Seznami
-    mutes: Utišate
+    mutes: Utišani
     storage: Shranjeni mediji
   featured_tags:
     add_new: Dodaj novo
@@ -1542,7 +1553,6 @@ sl:
     administration_emails: E-poštna obvestila skrbnika
     email_events: Dogodki za e-obvestila
     email_events_hint: 'Izberite dogodke, za katere želite prejmati obvestila:'
-    other_settings: Druge nastavitve obvestil
   number:
     human:
       decimal_units:
@@ -1598,22 +1608,25 @@ sl:
     errors:
       limit_reached: Dosežena omejitev različnih reakcij/odzivov
       unrecognized_emoji: ni prepoznan emotikon
+  redirects:
+    prompt: Če zaupate tej povezavi, jo kliknite za nadaljevanje.
+    title: Zapuščate %{instance}.
   relationships:
     activity: Dejavnost računa
     confirm_follow_selected_followers: Ali ste prepričani, da želite slediti izbranim sledilcem?
     confirm_remove_selected_followers: Ali ste prepričani, da želite odstraniti izbrane sledilce?
     confirm_remove_selected_follows: Ali ste prepričani, da želite odstraniti izbrana sledenja?
-    dormant: Skrit
+    dormant: Nedejavno
     follow_failure: Nekaterim od izbranih računov ni bilo mogoče slediti.
     follow_selected_followers: Sledi izbranim sledilcem
     followers: Sledilci
-    following: Sledi
+    following: Sledeni
     invited: Vabljeni
     last_active: Zadnja dejavnost
-    most_recent: Najnovejša
+    most_recent: Najnovejše
     moved: Prestavljeno
-    mutual: Vzajemna
-    primary: Primarna
+    mutual: Vzajemno
+    primary: Primarno
     relationship: Razmerje
     remove_selected_domains: Odstrani vse sledilce iz izbranih domen
     remove_selected_followers: Odstrani izbrane sledilce
@@ -1697,14 +1710,26 @@ sl:
     import: Uvozi
     import_and_export: Uvoz in izvoz
     migrate: Selitev računa
-    notifications: Obvestila
+    notifications: Obvestila po e-pošti
     preferences: Nastavitve
     profile: Profil
     relationships: Sledenja in sledilci
+    severed_relationships: Prekinjene veze
     statuses_cleanup: Samodejno brisanje objav
     strikes: Ukrepi morediranja
     two_factor_authentication: Dvofaktorsko overjanje
     webauthn_authentication: Varnostni ključi
+  severed_relationships:
+    download: Prejmi (%{count})
+    event_type:
+      account_suspension: Suspendiranje računa (%{target_name})
+      domain_block: Suspendiranje strežnika (%{target_name})
+      user_domain_block: Blokirali ste %{target_name}
+    lost_followers: Izgubljeni sledilci
+    lost_follows: Izgubljena sledeni
+    preamble: Če blokirate domeno ali če se vaši moderatorji odločijo suspendirati oddaljen strežnik, lahko izgubite sledene in sledilce. Ko se to zgodi, boste lahko prejeli sezname prekinjenih vez za pregled in morebitno uvažanje na drugem strežniku.
+    purged: Podatke o tem strežniku so očistili skrbniki vašega strežnika.
+    type: Dogodek
   statuses:
     attached:
       audio:
@@ -1754,8 +1779,6 @@ sl:
         two: "%{count} glasova"
       vote: Glasuj
     show_more: Pokaži več
-    show_newer: Pokaži novejše
-    show_older: Pokaži starejše
     show_thread: Pokaži nit
     title: "%{name}: »%{quote}«"
     visibilities:
@@ -1812,6 +1835,7 @@ sl:
     contrast: Mastodon (Visok kontrast)
     default: Mastodon (Temna)
     mastodon-light: Mastodon (Svetla)
+    system: Samodejno (uporabi sistemsko temo)
   time:
     formats:
       default: "%b %d %Y, %H:%M"
@@ -1854,6 +1878,12 @@ sl:
       extra: Zdaj je na voljo za prenos!
       subject: Vaš arhiv je pripravljen za prenos
       title: Prevzem arhiva
+    failed_2fa:
+      details: 'Tukaj so podrobnosti poskusa prijave:'
+      explanation: Nekdo se je poskusil prijaviti v vaš račun, vendar ni podal veljavnega drugega faktorja preverjanja pristnosti.
+      further_actions_html: Če to niste bili vi, priporočamo, da takoj %{action}, ker je lahko ogrožena varnost.
+      subject: Napaka preverjanja pristnosti z drugim faktorjem
+      title: Preverjanje pristnosti z drugim faktorjem je spodletelo
     suspicious_sign_in:
       change_password: spremenite svoje geslo
       details: 'Tukaj so podrobnosti prijave:'
@@ -1893,13 +1923,46 @@ sl:
         silence: Račun je omejen
         suspend: Račun je suspendiran
     welcome:
-      edit_profile_action: Nastavitve profila
-      edit_profile_step: Profil lahko prilagodite tako, da naložite sliko profila, spremenite pojavno ime in drugo. Lahko izberete, da želite pregledati nove sledilce, preden jim dovolite sledenje.
+      apps_android_action: Na voljo v Google Play
+      apps_ios_action: Prenesi iz trgovine App Store
+      apps_step: Prenesite naše uradne aplikacije.
+      apps_title: Programi za Mastodon
+      checklist_subtitle: 'Naj vas pripravimo na doživetja na tej novi družabni meji:'
+      checklist_title: Seznam dobrodošlice
+      edit_profile_action: Poosebite
+      edit_profile_step: Okrepite svoje interakcije z razumljivim profilom.
+      edit_profile_title: Prilagodite svoj profil
       explanation: Tu je nekaj nasvetov za začetek
-      final_action: Začnite objavljati
-      final_step: 'Začnite objavljati! Tudi brez sledilcev bodo vaše javne objave videli drugi, npr. na krajevni časovnici ali v ključnikih. Morda se želite predstaviti s ključnikom #introductions.'
-      full_handle: Vaša polna ročica
-      full_handle_hint: To bi povedali svojim prijateljem, da vam lahko pošljejo sporočila ali vam sledijo iz drugega strežnika.
+      feature_action: Več o tem
+      feature_audience: Mastodon zagotavlja enkratno možnost upravljanja s svojim občinstvom brez posrednika. Mastodon na lastni infrastrukturi omogoča sledenje drugih in drugim na in s poljubljnega povezanega strežnika Masodon in je zgolj pod vašim nadzorom.
+      feature_audience_title: Zaupno razvijajte svoje občinstvo
+      feature_control: Sami najbolje veste, kaj želite videti v svojem viru. Brez algoritmov ali oglasov, ki bi predstavljali izgubo vašega časa. Sledite komur koli prek poljubnega strežnika Mastodon na enem samem računu in prejmite njihove objave v kronološkem zaporedju ter ustvarite svoj kotiček interneta malce bolj po svoji meri in okusu.
+      feature_control_title: Ohranite nadzor nad svojo časovnico
+      feature_creativity: Mastodon podpira zvokovne, video in slikovne objave, opise za dostopnost, ankete, opozorila za vsebino, animirane avatarje, čustvenčke po meri, nadzor na obrezavo oglednih sličic in še veliko drugega. Tako se lahko povsem izrazite na spletu. Najsi želite objaviti svoja likovna dela, glasbo ali podkast, Mastodon vam stoji ob strani.
+      feature_creativity_title: Edinstvena ustvarjalnost
+      feature_moderation: Mastodon vrača odločanje v vaše roke. Vsak strežnik ustvari lastna pravila in predpise, ki se uveljavljajo krajevno in ne od zgoraj navzdol, kot to velja za korporacijske družabne medije. Zato je kar se da prilagodljiv pri odzivanju na potrebe različnih skupin ljudi. Pridružite se strežniku s pravili, s katerimi se strinjate, ali gostite lastnega.
+      feature_moderation_title: Moderiranje, kot bi moralo biti
+      follow_action: Sledite
+      follow_step: Sledenje zanimivim osebam je bistvo Mastodona.
+      follow_title: Poosebite svoj domači vir
+      follows_subtitle: Sledite dobro znanim računom
+      follows_title: Komu slediti
+      follows_view_more: Pokaži več oseb za sledenje
+      hashtags_recent_count:
+        few: "%{people} osebe v zadnjih dveh dneh"
+        one: "%{people} oseba v zadnjih dveh dneh"
+        other: "%{people} oseb v zadnjih dveh dneh"
+        two: "%{people} osebi v zadnjih dveh dneh"
+      hashtags_subtitle: Raziščite, kaj je v trendu zadnja dva dni
+      hashtags_title: Ključniki v trendu
+      hashtags_view_more: Pokaži več ključnikov v trendu
+      post_action: Sestavi
+      post_step: Pozdravite cel svet z besedilom, fotografijami, videoposnetki ali anketami.
+      post_title: Ustvarite svojo prvo objavo
+      share_action: Delite
+      share_step: Naj prijatelji izvejo, kako vas najdejo na Mastodonu.
+      share_title: Delite svoj profil Mastodon z drugimi
+      sign_in_action: Prijava
       subject: Dobrodošli na Mastodon
       title: Dobrodošli, %{name}!
   users:

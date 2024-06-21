@@ -8,7 +8,6 @@ RSpec.describe 'API V2 Admin Accounts' do
   let(:scopes) { 'admin:read admin:write' }
   let(:token)  { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
-  let(:account) { Fabricate(:account) }
 
   describe 'GET #index' do
     let!(:remote_account)       { Fabricate(:account, domain: 'example.org') }

@@ -9,14 +9,25 @@ RSpec.describe User do
 
   it_behaves_like 'two_factor_backupable'
 
-  describe 'otp_secret' do
+  describe 'legacy_otp_secret' do
     it 'is encrypted with OTP_SECRET environment variable' do
       user = Fabricate(:user,
                        encrypted_otp_secret: "Fttsy7QAa0edaDfdfSz094rRLAxc8cJweDQ4BsWH/zozcdVA8o9GLqcKhn2b\nGi/V\n",
                        encrypted_otp_secret_iv: 'rys3THICkr60BoWC',
                        encrypted_otp_secret_salt: '_LMkAGvdg7a+sDIKjI3mR2Q==')
 
-      expect(user.otp_secret).to eq 'anotpsecretthatshouldbeencrypted'
+      expect(user.send(:legacy_otp_secret)).to eq 'anotpsecretthatshouldbeencrypted'
+    end
+  end
+
+  describe 'otp_secret' do
+    it 'encrypts the saved value' do
+      user = Fabricate(:user, otp_secret: '123123123')
+
+      user.reload
+
+      expect(user.otp_secret).to eq '123123123'
+      expect(user.attributes_before_type_cast[:otp_secret]).to_not eq '123123123'
     end
   end
 
@@ -36,6 +47,12 @@ RSpec.describe User do
     it 'is valid with an invalid e-mail that has already been saved' do
       user = Fabricate.build(:user, email: 'invalid-email')
       user.save(validate: false)
+      expect(user.valid?).to be true
+    end
+
+    it 'is valid with a localhost e-mail address' do
+      user = Fabricate.build(:user, email: 'admin@localhost')
+      user.valid?
       expect(user.valid?).to be true
     end
   end
@@ -101,12 +118,36 @@ RSpec.describe User do
       end
     end
 
-    describe 'inactive' do
-      it 'returns a relation of inactive users' do
-        specified = Fabricate(:user, current_sign_in_at: 15.days.ago)
-        Fabricate(:user, current_sign_in_at: 6.days.ago)
+    describe 'signed_in_recently' do
+      it 'returns a relation of users who have signed in during the recent period' do
+        recent_sign_in_user = Fabricate(:user, current_sign_in_at: within_duration_window_days.ago)
+        Fabricate(:user, current_sign_in_at: exceed_duration_window_days.ago)
 
-        expect(described_class.inactive).to contain_exactly(specified)
+        expect(described_class.signed_in_recently)
+          .to contain_exactly(recent_sign_in_user)
+      end
+    end
+
+    describe 'not_signed_in_recently' do
+      it 'returns a relation of users who have not signed in during the recent period' do
+        no_recent_sign_in_user = Fabricate(:user, current_sign_in_at: exceed_duration_window_days.ago)
+        Fabricate(:user, current_sign_in_at: within_duration_window_days.ago)
+
+        expect(described_class.not_signed_in_recently)
+          .to contain_exactly(no_recent_sign_in_user)
+      end
+    end
+
+    describe 'account_not_suspended' do
+      it 'returns with linked accounts that are not suspended' do
+        suspended_account = Fabricate(:account, suspended_at: 10.days.ago)
+        non_suspended_account = Fabricate(:account, suspended_at: nil)
+        suspended_user = Fabricate(:user, account: suspended_account)
+        non_suspended_user = Fabricate(:user, account: non_suspended_account)
+
+        expect(described_class.account_not_suspended)
+          .to include(non_suspended_user)
+          .and not_include(suspended_user)
       end
     end
 
@@ -130,6 +171,14 @@ RSpec.describe User do
 
         expect(described_class.matches_ip('2160:2160::/32')).to contain_exactly(user1)
       end
+    end
+
+    def exceed_duration_window_days
+      described_class::ACTIVE_DURATION + 2.days
+    end
+
+    def within_duration_window_days
+      described_class::ACTIVE_DURATION - 2.days
     end
   end
 
@@ -420,7 +469,10 @@ RSpec.describe User do
     let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
     let!(:web_push_subscription) { Fabricate(:web_push_subscription, access_token: access_token) }
 
+    let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
+
     before do
+      allow(redis).to receive(:pipelined).and_yield(redis_pipeline_stub)
       user.reset_password!
     end
 
@@ -437,6 +489,10 @@ RSpec.describe User do
       expect(Doorkeeper::AccessToken.active_for(user).count).to eq 0
     end
 
+    it 'revokes streaming access for all access tokens' do
+      expect(redis_pipeline_stub).to have_received(:publish).with("timeline:access_token:#{access_token.id}", Oj.dump(event: :kill)).once
+    end
+
     it 'removes push subscriptions' do
       expect(Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count).to eq 0
       expect { web_push_subscription.reload }.to raise_error(ActiveRecord::RecordNotFound)
@@ -444,36 +500,35 @@ RSpec.describe User do
   end
 
   describe '#mark_email_as_confirmed!' do
-    subject(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
+    subject { user.mark_email_as_confirmed! }
 
-    before do
-      ActionMailer::Base.deliveries.clear
-      user.mark_email_as_confirmed!
-    end
-
-    after { ActionMailer::Base.deliveries.clear }
+    let!(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
 
     context 'when user is new' do
       let(:confirmed_at) { nil }
 
-      it 'confirms user' do
-        expect(user.confirmed_at).to be_present
-      end
+      it 'confirms user and delivers welcome email', :sidekiq_inline do
+        emails = capture_emails { subject }
 
-      it 'delivers mails', :sidekiq_inline do
-        expect(ActionMailer::Base.deliveries.count).to eq 2
+        expect(user.confirmed_at).to be_present
+        expect(emails.size)
+          .to eq(1)
+        expect(emails.first)
+          .to have_attributes(
+            to: contain_exactly(user.email),
+            subject: eq(I18n.t('user_mailer.welcome.subject'))
+          )
       end
     end
 
     context 'when user is not new' do
       let(:confirmed_at) { Time.zone.now }
 
-      it 'confirms user' do
-        expect(user.confirmed_at).to be_present
-      end
+      it 'confirms user but does not deliver welcome email' do
+        emails = capture_emails { subject }
 
-      it 'does not deliver mail' do
-        expect(ActionMailer::Base.deliveries.count).to eq 0
+        expect(user.confirmed_at).to be_present
+        expect(emails).to be_empty
       end
     end
   end

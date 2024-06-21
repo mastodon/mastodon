@@ -13,7 +13,7 @@
 
 %hr.spacer/
 
-= form_for(@status_filter_batch_action, url: batch_filter_statuses_path(@filter.id)) do |f|
+= form_with model: @status_filter_batch_action, url: batch_filter_statuses_path(@filter.id) do |f|
   = hidden_field_tag :page, params[:page] || 1
 
   - Admin::StatusFilter::KEYS.each do |key|

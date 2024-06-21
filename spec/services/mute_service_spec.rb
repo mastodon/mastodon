@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe MuteService, type: :service do
+RSpec.describe MuteService do
   subject { described_class.new.call(account, target_account) }
 
   let(:account) { Fabricate(:account) }

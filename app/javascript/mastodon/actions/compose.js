@@ -75,6 +75,7 @@ export const INIT_MEDIA_EDIT_MODAL = 'INIT_MEDIA_EDIT_MODAL';
 
 export const COMPOSE_CHANGE_MEDIA_DESCRIPTION = 'COMPOSE_CHANGE_MEDIA_DESCRIPTION';
 export const COMPOSE_CHANGE_MEDIA_FOCUS       = 'COMPOSE_CHANGE_MEDIA_FOCUS';
+export const COMPOSE_CHANGE_MEDIA_ORDER       = 'COMPOSE_CHANGE_MEDIA_ORDER';
 
 export const COMPOSE_SET_STATUS = 'COMPOSE_SET_STATUS';
 export const COMPOSE_FOCUS = 'COMPOSE_FOCUS';
@@ -195,7 +196,7 @@ export function submitCompose(routerHistory) {
       });
     }
 
-    api(getState).request({
+    api().request({
       url: statusId === null ? '/api/v1/statuses' : `/api/v1/statuses/${statusId}`,
       method: statusId === null ? 'post' : 'put',
       data: {
@@ -303,7 +304,7 @@ export function uploadCompose(files) {
       const data = new FormData();
       data.append('file', file);
 
-      api(getState).post('/api/v2/media', data, {
+      api().post('/api/v2/media', data, {
         onUploadProgress: function({ loaded }){
           progress[i] = loaded;
           dispatch(uploadComposeProgress(progress.reduce((a, v) => a + v, 0), total));
@@ -320,7 +321,7 @@ export function uploadCompose(files) {
           let tryCount = 1;
 
           const poll = () => {
-            api(getState).get(`/api/v1/media/${data.id}`).then(response => {
+            api().get(`/api/v1/media/${data.id}`).then(response => {
               if (response.status === 200) {
                 dispatch(uploadComposeSuccess(response.data, file));
               } else if (response.status === 206) {
@@ -342,7 +343,7 @@ export const uploadComposeProcessing = () => ({
   type: COMPOSE_UPLOAD_PROCESSING,
 });
 
-export const uploadThumbnail = (id, file) => (dispatch, getState) => {
+export const uploadThumbnail = (id, file) => (dispatch) => {
   dispatch(uploadThumbnailRequest());
 
   const total = file.size;
@@ -350,7 +351,7 @@ export const uploadThumbnail = (id, file) => (dispatch, getState) => {
 
   data.append('thumbnail', file);
 
-  api(getState).put(`/api/v1/media/${id}`, data, {
+  api().put(`/api/v1/media/${id}`, data, {
     onUploadProgress: ({ loaded }) => {
       dispatch(uploadThumbnailProgress(loaded, total));
     },
@@ -433,7 +434,7 @@ export function changeUploadCompose(id, params) {
 
       dispatch(changeUploadComposeSuccess(data, true));
     } else {
-      api(getState).put(`/api/v1/media/${id}`, params).then(response => {
+      api().put(`/api/v1/media/${id}`, params).then(response => {
         dispatch(changeUploadComposeSuccess(response.data, false));
       }).catch(error => {
         dispatch(changeUploadComposeFail(id, error));
@@ -521,7 +522,7 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => 
 
   fetchComposeSuggestionsAccountsController = new AbortController();
 
-  api(getState).get('/api/v1/accounts/search', {
+  api().get('/api/v1/accounts/search', {
     signal: fetchComposeSuggestionsAccountsController.signal,
 
     params: {
@@ -555,7 +556,7 @@ const fetchComposeSuggestionsTags = throttle((dispatch, getState, token) => {
 
   fetchComposeSuggestionsTagsController = new AbortController();
 
-  api(getState).get('/api/v2/search', {
+  api().get('/api/v2/search', {
     signal: fetchComposeSuggestionsTagsController.signal,
 
     params: {
@@ -786,11 +787,12 @@ export function addPollOption(title) {
   };
 }
 
-export function changePollOption(index, title) {
+export function changePollOption(index, title, maxOptions) {
   return {
     type: COMPOSE_POLL_OPTION_CHANGE,
     index,
     title,
+    maxOptions,
   };
 }
 
@@ -808,3 +810,9 @@ export function changePollSettings(expiresIn, isMultiple) {
     isMultiple,
   };
 }
+
+export const changeMediaOrder = (a, b) => ({
+  type: COMPOSE_CHANGE_MEDIA_ORDER,
+  a,
+  b,
+});

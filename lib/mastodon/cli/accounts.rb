@@ -295,7 +295,7 @@ module Mastodon::CLI
       skip_threshold = 7.days.ago
       skip_domains   = Concurrent::Set.new
 
-      query = Account.remote.where(protocol: :activitypub)
+      query = Account.remote.activitypub
       query = query.where(domain: domains) unless domains.empty?
 
       processed, culled = parallelize_with_progress(query.partitioned) do |account|

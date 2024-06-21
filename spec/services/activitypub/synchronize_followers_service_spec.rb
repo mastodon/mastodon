@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::SynchronizeFollowersService, type: :service do
+RSpec.describe ActivityPub::SynchronizeFollowersService do
   subject { described_class.new }
 
   let(:actor)          { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/account', inbox_url: 'http://example.com/inbox') }
@@ -60,7 +60,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService, type: :service do
   describe '#call' do
     context 'when the endpoint is a Collection of actor URIs' do
       before do
-        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload))
+        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'synchronizes followers'
@@ -77,7 +77,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService, type: :service do
       end
 
       before do
-        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload))
+        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'synchronizes followers'
@@ -98,7 +98,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService, type: :service do
       end
 
       before do
-        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload))
+        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'synchronizes followers'
