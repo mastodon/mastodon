@@ -19,9 +19,9 @@ ARG NODE_MAJOR_VERSION="20"
 # Debian image to use for base image, change with [--build-arg DEBIAN_VERSION="bookworm"]
 ARG DEBIAN_VERSION="bookworm"
 # Node image to use for base image based on combined variables (ex: 20-bookworm-slim)
-FROM docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim as node
+FROM docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim AS node
 # Ruby image to use for base image based on combined variables (ex: 3.3.x-slim-bookworm)
-FROM docker.io/ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} as ruby
+FROM docker.io/ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} AS ruby
 
 # Resulting version string is vX.X.X-MASTODON_VERSION_PRERELEASE+MASTODON_VERSION_METADATA
 # Example: v4.3.0-nightly.2023.11.09+pr-123456
@@ -117,7 +117,7 @@ RUN \
   ;
 
 # Create temporary build layer from base image
-FROM ruby as build
+FROM ruby AS build
 
 # Copy Node package configuration files into working directory
 COPY package.json yarn.lock .yarnrc.yml /opt/mastodon/
@@ -185,7 +185,7 @@ RUN \
   corepack prepare --activate;
 
 # Create temporary libvips specific build layer from build layer
-FROM build as libvips
+FROM build AS libvips
 
 # libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
 # renovate: datasource=github-releases depName=libvips packageName=libvips/libvips
@@ -205,7 +205,7 @@ RUN \
   ninja install;
 
 # Create temporary ffmpeg specific build layer from build layer
-FROM build as ffmpeg
+FROM build AS ffmpeg
 
 # ffmpeg version to compile, change with [--build-arg FFMPEG_VERSION="7.0.x"]
 # renovate: datasource=repology depName=ffmpeg packageName=openpkg_current/ffmpeg
@@ -247,7 +247,7 @@ RUN \
   make install;
 
 # Create temporary bundler specific build layer from build layer
-FROM build as bundler
+FROM build AS bundler
 
 ARG TARGETPLATFORM
 
@@ -269,7 +269,7 @@ RUN \
   bundle install -j"$(nproc)";
 
 # Create temporary node specific build layer from build layer
-FROM build as yarn
+FROM build AS yarn
 
 ARG TARGETPLATFORM
 
@@ -286,7 +286,7 @@ RUN \
   yarn workspaces focus --production @mastodon/mastodon;
 
 # Create temporary assets build layer from build layer
-FROM build as precompiler
+FROM build AS precompiler
 
 # Copy Mastodon sources into precompiler layer
 COPY . /opt/mastodon/
@@ -310,7 +310,7 @@ RUN \
   rm -fr /opt/mastodon/tmp;
 
 # Prep final Mastodon Ruby layer
-FROM ruby as mastodon
+FROM ruby AS mastodon
 
 ARG TARGETPLATFORM
 
