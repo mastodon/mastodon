@@ -2,7 +2,13 @@
 
 RSpec.configure do |config|
   config.after(:each, :js, type: :system) do
-    errors = page.driver.browser.logs.get(:browser)
+    ignored_errors = [
+      /icon from the Manifest/,
+    ]
+    errors = page.driver.browser.logs.get(:browser).reject do |error|
+      ignored_errors.any? { |pattern| pattern.match(error.message) }
+    end
+
     if errors.present?
       aggregate_failures 'javascript errrors' do
         errors.each do |error|
