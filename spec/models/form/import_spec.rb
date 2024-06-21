@@ -265,7 +265,7 @@ RSpec.describe Form::Import do
         end
 
         it 'matches the subject overwrite value' do
-          expect(bulk_import.overwrite?).to eq !!subject.overwrite # rubocop:disable Style/DoubleNegation
+          expect(bulk_import.overwrite?).to eq !!subject.overwrite
         end
 
         it 'has zero processed items' do
