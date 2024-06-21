@@ -2,7 +2,7 @@
 
 class AddAttachmentDataToImports < ActiveRecord::Migration[4.2]
   def up
-    change_table :imports do |t|
+    change_table :imports, bulk: true do |t|
       # The following corresponds to `t.attachment :data` in an older version of Paperclip
       t.string :data_file_name
       t.string :data_content_type

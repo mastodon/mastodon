@@ -27,14 +27,16 @@ class AddDeviseToUsers < ActiveRecord::Migration[4.2]
   def down
     remove_index :users, :reset_password_token
 
-    remove_column :users, :encrypted_password
-    remove_column :users, :reset_password_token
-    remove_column :users, :reset_password_sent_at
-    remove_column :users, :remember_created_at
-    remove_column :users, :sign_in_count
-    remove_column :users, :current_sign_in_at
-    remove_column :users, :current_sign_in_ip
-    remove_column :users, :last_sign_in_at
-    remove_column :users, :last_sign_in_ip
+    change_table :users, bulk: true do |t|
+      t.remove :encrypted_password
+      t.remove :reset_password_token
+      t.remove :reset_password_sent_at
+      t.remove :remember_created_at
+      t.remove :sign_in_count
+      t.remove :current_sign_in_at
+      t.remove :current_sign_in_ip
+      t.remove :last_sign_in_at
+      t.remove :last_sign_in_ip
+    end
   end
 end

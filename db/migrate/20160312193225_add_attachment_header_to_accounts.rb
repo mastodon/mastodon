@@ -2,7 +2,7 @@
 
 class AddAttachmentHeaderToAccounts < ActiveRecord::Migration[4.2]
   def up
-    change_table :accounts do |t|
+    change_table :accounts, bulk: true do |t|
       # The following corresponds to `t.attachment :header` in an older version of Paperclip
       t.string :header_file_name
       t.string :header_content_type

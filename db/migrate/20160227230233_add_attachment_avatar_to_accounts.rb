@@ -2,7 +2,7 @@
 
 class AddAttachmentAvatarToAccounts < ActiveRecord::Migration[4.2]
   def up
-    change_table :accounts do |t|
+    change_table :accounts, bulk: true do |t|
       # The following corresponds to `t.attachment :avatar` in an older version of Paperclip
       t.string :avatar_file_name
       t.string :avatar_content_type
