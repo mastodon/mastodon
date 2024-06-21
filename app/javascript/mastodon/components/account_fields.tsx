@@ -9,14 +9,14 @@ export const AccountFields: React.FC<{
   fields: Account['fields'];
   limit: number;
 }> = ({ fields, limit = -1 }) => {
-  const ref = useLinks(fields);
+  const handleClick = useLinks();
 
   if (fields.size === 0) {
     return null;
   }
 
   return (
-    <div className='account-fields' ref={ref}>
+    <div className='account-fields' onClickCapture={handleClick}>
       {fields.take(limit).map((pair, i) => (
         <dl
           key={i}

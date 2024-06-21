@@ -4,7 +4,7 @@ export const AccountBio: React.FC<{
   note: string;
   className: string;
 }> = ({ note, className }) => {
-  const ref = useLinks(note);
+  const handleClick = useLinks();
 
   if (note.length === 0 || note === '<p></p>') {
     return null;
@@ -12,9 +12,9 @@ export const AccountBio: React.FC<{
 
   return (
     <div
-      ref={ref}
       className={`${className} translate`}
       dangerouslySetInnerHTML={{ __html: note }}
+      onClickCapture={handleClick}
     />
   );
 };
