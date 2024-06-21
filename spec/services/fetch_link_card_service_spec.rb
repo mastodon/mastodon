@@ -13,6 +13,7 @@ RSpec.describe FetchLinkCardService, type: :service do
     stub_request(:get, 'http://example.com/test?data=file.gpx%5E1').to_return(status: 200)
     stub_request(:get, 'http://example.com/test-').to_return(request_fixture('idn.txt'))
     stub_request(:get, 'http://example.com/windows-1251').to_return(request_fixture('windows-1251.txt'))
+    stub_request(:get, 'http://example.com/low_confidence_latin1').to_return(request_fixture('low_confidence_latin1.txt'))
 
     subject.call(status)
   end
@@ -62,7 +63,15 @@ RSpec.describe FetchLinkCardService, type: :service do
       end
     end
 
-    context do
+    context 'with a URL of a page in ISO-8859-1 encoding, that charlock_holmes cannot detect' do
+      let(:status) { Fabricate(:status, text: 'Check out http://example.com/low_confidence_latin1') }
+
+      it 'decodes the HTML' do
+        expect(status.preview_card.title).to eq("Tofu á l'orange")
+      end
+    end
+
+    context 'with a Japanese path URL' do
       let(:status) { Fabricate(:status, text: 'テストhttp://example.com/日本語') }
 
       it 'works with Japanese path string' do
