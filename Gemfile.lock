@@ -380,6 +380,7 @@ GEM
       railties (>= 6.1)
       rexml
     link_header (0.0.8)
+    lint_roller (1.1.0)
     llhttp-ffi (0.5.0)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
@@ -790,6 +791,21 @@ GEM
     simplecov-lcov (0.8.0)
     simplecov_json_formatter (0.1.4)
     stackprof (0.2.26)
+    standard (1.40.0)
+      language_server-protocol (~> 3.17.0.2)
+      lint_roller (~> 1.0)
+      rubocop (~> 1.65.0)
+      standard-custom (~> 1.0.0)
+      standard-performance (~> 1.4)
+    standard-custom (1.0.2)
+      lint_roller (~> 1.0)
+      rubocop (~> 1.50)
+    standard-performance (1.4.0)
+      lint_roller (~> 1.1)
+      rubocop-performance (~> 1.21.0)
+    standard-rails (1.1.0)
+      lint_roller (~> 1.0)
+      rubocop-rails (~> 2.25.0)
     stoplight (4.1.0)
       redlock (~> 1.0)
     stringio (3.1.2)
@@ -994,10 +1010,7 @@ DEPENDENCIES
   rspec-github (~> 2.4)
   rspec-rails (~> 7.0)
   rspec-sidekiq (~> 5.0)
-  rubocop
   rubocop-capybara
-  rubocop-performance
-  rubocop-rails
   rubocop-rspec
   rubocop-rspec_rails
   ruby-prof
@@ -1017,6 +1030,9 @@ DEPENDENCIES
   simplecov (~> 0.22)
   simplecov-lcov (~> 0.8)
   stackprof
+  standard
+  standard-performance
+  standard-rails
   stoplight (~> 4.1)
   strong_migrations
   test-prof

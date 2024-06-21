@@ -164,12 +164,12 @@ end
 
 group :development do
   # Code linting CLI and plugins
-  gem 'rubocop', require: false
   gem 'rubocop-capybara', require: false
-  gem 'rubocop-performance', require: false
-  gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'rubocop-rspec_rails', require: false
+  gem 'standard'
+  gem 'standard-performance'
+  gem 'standard-rails'
 
   # Annotates modules with schema
   gem 'annotaterb', '~> 4.13'
