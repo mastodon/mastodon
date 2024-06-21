@@ -20,7 +20,7 @@ class HtmlAwareFormatter
     if local?
       linkify
     else
-      reformat.html_safe # rubocop:disable Rails/OutputSafety
+      reformat.html_safe
     end
   rescue ArgumentError
     ''.html_safe
