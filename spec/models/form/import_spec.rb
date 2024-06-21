@@ -249,7 +249,7 @@ RSpec.describe Form::Import do
               type: eq(subject.type),
               original_filename: eq(subject.data.original_filename),
               likely_mismatched?: eq(subject.likely_mismatched?),
-              overwrite?: eq(!!subject.overwrite), # rubocop:disable Style/DoubleNegation
+              overwrite?: eq(!!subject.overwrite),
               processed_items: eq(0),
               imported_items: eq(0),
               total_items: eq(bulk_import.rows.count),

@@ -52,7 +52,7 @@ class TextFormatter
       end
     end
 
-    html.html_safe # rubocop:disable Rails/OutputSafety
+    html.html_safe
   end
 
   class << self

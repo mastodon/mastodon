@@ -16,7 +16,7 @@ module Devise
         if resource && !resource.otp_required_for_login?
           success!(resource)
         else
-          fail(:invalid) # rubocop:disable Style/SignalException -- method is from Warden::Strategies::Base
+          fail(:invalid)
         end
       end
 

@@ -22,7 +22,7 @@ module Attachmentable
   ).freeze
 
   included do
-    def self.has_attached_file(name, options = {}) # rubocop:disable Naming/PredicateName
+    def self.has_attached_file(name, options = {})
       super
 
       send(:"before_#{name}_validate", prepend: true) do
@@ -37,13 +37,13 @@ module Attachmentable
 
   private
 
-  def set_file_content_type(attachment) # rubocop:disable Naming/AccessorMethodName
+  def set_file_content_type(attachment)
     return if attachment.blank? || attachment.queued_for_write[:original].blank? || !INCORRECT_CONTENT_TYPES.include?(attachment.instance_read(:content_type))
 
     attachment.instance_write :content_type, calculated_content_type(attachment)
   end
 
-  def set_file_extension(attachment) # rubocop:disable Naming/AccessorMethodName
+  def set_file_extension(attachment)
     return if attachment.blank?
 
     attachment.instance_write :file_name, [Paperclip::Interpolations.basename(attachment, :original), appropriate_extension(attachment)].compact_blank!.join('.')
