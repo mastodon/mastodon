@@ -15,13 +15,6 @@ ARG DEBIAN_VERSION="bookworm"
 # Node image to use for base image based on combined variables (ex: 20-bookworm-slim)
 FROM docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim AS streaming
 
-# Resulting version string is vX.X.X-MASTODON_VERSION_PRERELEASE+MASTODON_VERSION_METADATA
-# Example: v4.3.0-nightly.2023.11.09+pr-123456
-# Overwrite existence of 'alpha.X' in version.rb [--build-arg MASTODON_VERSION_PRERELEASE="nightly.2023.11.09"]
-ARG MASTODON_VERSION_PRERELEASE=""
-# Append build metadata or fork information to version.rb [--build-arg MASTODON_VERSION_METADATA="pr-123456"]
-ARG MASTODON_VERSION_METADATA=""
-
 # Timezone used by the Docker container and runtime, change with [--build-arg TZ=Europe/Berlin]
 ARG TZ="Etc/UTC"
 # Linux UID (user id) for the mastodon user, change with [--build-arg UID=1234]
@@ -31,9 +24,6 @@ ARG GID="991"
 
 # Apply Mastodon build options based on options above
 ENV \
-# Apply Mastodon version information
-  MASTODON_VERSION_PRERELEASE="${MASTODON_VERSION_PRERELEASE}" \
-  MASTODON_VERSION_METADATA="${MASTODON_VERSION_METADATA}" \
 # Apply timezone
   TZ=${TZ}
 
