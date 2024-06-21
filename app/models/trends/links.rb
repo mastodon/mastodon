@@ -51,8 +51,8 @@ class Trends::Links < Trends::Base
     original_status = status.proper
 
     return unless (original_status.public_visibility? && status.public_visibility?) &&
-                  !(original_status.account.silenced? || status.account.silenced?) &&
-                  !(original_status.spoiler_text? || original_status.sensitive?)
+      !(original_status.account.silenced? || status.account.silenced?) &&
+      !(original_status.spoiler_text? || original_status.sensitive?)
 
     add(original_status.preview_card, status.account_id, at_time) if original_status.preview_card&.appropriate_for_trends?
   end

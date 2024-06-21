@@ -9,9 +9,9 @@ module Extractor
 
   def extract_entities_with_indices(text, options = {}, &block)
     entities = extract_urls_with_indices(text, options) +
-               extract_hashtags_with_indices(text, check_url_overlap: false) +
-               extract_mentions_or_lists_with_indices(text) +
-               extract_extra_uris_with_indices(text)
+      extract_hashtags_with_indices(text, check_url_overlap: false) +
+      extract_mentions_or_lists_with_indices(text) +
+      extract_extra_uris_with_indices(text)
 
     return [] if entities.empty?
 
