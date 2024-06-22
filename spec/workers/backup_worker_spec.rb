@@ -15,12 +15,17 @@ describe BackupWorker do
     let!(:other_backup) { Fabricate(:backup, user: backup.user) }
 
     it 'sends the backup to the service and removes other backups', :sidekiq_inline do
-      expect do
-        worker.perform(backup.id)
-      end.to change(UserMailer.deliveries, :size).by(1)
+      emails = capture_emails { worker.perform(backup.id) }
 
       expect(service).to have_received(:call).with(backup)
       expect { other_backup.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect(emails.size)
+        .to eq(1)
+      expect(emails.first)
+        .to have_attributes(
+          to: contain_exactly(backup.user.email),
+          subject: I18n.t('user_mailer.backup_ready.subject')
+        )
     end
 
     context 'when sidekiq retries are exhausted' do

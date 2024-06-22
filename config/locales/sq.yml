@@ -188,7 +188,7 @@ sq:
         create_user_role: Krijoni Rol
         demote_user: Zhgradoje Përdoruesin
         destroy_announcement: Fshije Lajmërimin
-        destroy_canonical_email_block: Fshi Bllokim El-esh
+        destroy_canonical_email_block: Fshi Bllokim Email-esh
         destroy_custom_emoji: Fshi Emotikon Vetjak
         destroy_domain_allow: Fshi Lejim Përkatësie
         destroy_domain_block: Fshi Bllokim Përkatësie
@@ -283,8 +283,9 @@ sq:
         unsuspend_account_html: "%{name} hoqi pezullimin për llogarinë e %{target}"
         update_announcement_html: "%{name} përditësoi lajmërimin %{target}"
         update_custom_emoji_html: "%{name} përditësoi emoxhin %{target}"
-        update_domain_block_html: "%{name} përditësoi bllokimin e përkatësish për %{target}"
+        update_domain_block_html: "%{name} përditësoi bllokim përkatësish për %{target}"
         update_ip_block_html: "%{name} ndryshoi rregull për IP-në %{target}"
+        update_report_html: "%{name} përditësoi raportimin %{target}"
         update_status_html: "%{name} përditësoi gjendjen me %{target}"
         update_user_role_html: "%{name} ndryshoi rolin për %{target}"
       deleted_account: fshiu llogarinë
@@ -596,6 +597,9 @@ sq:
       actions_description_html: Vendosni cili veprim të kryhet për të zgjidhur këtë raportim. Nëse ndërmerrni një veprim ndëshkues kundër llogarisë së raportuar, atyre do t’u dërgohet një njoftim me email, hiq rastin kur përzgjidhet kategoria <strong>I padëshiruar</strong>.
       actions_description_remote_html: Vendosni cili veprim të ndërmerret për zgjidhjen e këtij raportimi. Kjo do të prekë vetëm mënyrën se si shërbyesi <strong>juaj</strong> komunikon me këtë llogari të largët dhe se si e trajtojnë lëndën e saj.
       add_to_report: Shtoni më tepër te raportimi
+      already_suspended_badges:
+        local: Tashmë i pezulluar në këtë shërbyes
+        remote: Tashmë i pezulluar në shërbyesin e vet
       are_you_sure: A jeni i sigurt?
       assign_to_self: Caktojani vetes
       assigned: Iu caktua moderator
@@ -745,6 +749,7 @@ sq:
         desc_html: Kjo bazohet në programthe të jashtëm prej hCaptcha, çka mund të përbëjë një shqetësim për sigurinë dhe privatësinë. Veç kësaj, <strong>kjo mund ta bëjë procesin e regjistrimit në shkallë të madhe më pak të përdorshëm për disa persona (veçanërisht ata me paaftësi)</strong>. Për këto arsye, ju lutemi, shihni mundësinë e masave alternative, fjala vjen, bazuar në miratim, ose regjistrim vetëm me ftesa.
         title: Kërko prej përdoruesve të rinj të zgjidhin një CAPTCHA, si ripohim të llogarisë të tyre
       content_retention:
+        danger_zone: Zonë rreziku
         preamble: Kontrolloni se si depozitohen në Mastodon lënda e prodhuar nga përdoruesit.
         title: Mbajtje lënde
       default_noindex:
@@ -764,6 +769,7 @@ sq:
         disabled: Për askënd
         users: Për përdorues vendorë që kanë bërë hyrjen
       registrations:
+        moderation_recommandation: Ju lutemi, sigurohuni si keni një ekip adekuat dhe reagues moderimi, përpara se të hapni regjistrimet për këdo!
         preamble: Kontrolloni cilët mund të krijojnë llogari në shërbyesin tuaj.
         title: Regjistrime
       registrations_mode:
@@ -771,6 +777,7 @@ sq:
           approved: Për regjistrim, lypset miratimi
           none: S’mund të regjistrohet ndokush
           open: Mund të regjistrohet gjithkush
+        warning_hint: Rekomandojmë përdorimin e “Për regjistrim lypset miratim”. veç nëse jeni i bindur se ekipi juaj i moderimit mund të trajtojë në kohë mesazhe të padëshiruar dhe regjistrime dashakeqe.
       security:
         authorized_fetch: Kërko doemos mirëfilltësim prej shërbyes të federuar
         authorized_fetch_hint: Kërkimi doemos i kryerjes së mirëfilltësimit për shërbyes të federuar aktivizon detyrim më strikt të bllokimeve si në shkallë përdoruesi, ashtu edhe në shkallë shërbyesi. Por kjo vjen me koston e një keqësimi të funksionimit, redukton përhapjen e përgjigjeve tuaja dhe mund të sjellë probleme përputhshmërie me disa shërbime të federuara. Veç kësaj, kjo s’do t’ua pengojë, aktorëve vënë kësaj, të sjellin postimet dhe llogaritë tuaja publike.
@@ -839,10 +846,10 @@ sq:
       elasticsearch_index_mismatch:
         message_html: Përshoqërimet e treguesit të Elasticsearch-it janë të vjetruara. Ju lutemi, xhironi <code>tootctl search deploy --only=%{value}</code>
       elasticsearch_preset:
-        action: Shihni documentimin
+        action: Shihni dokumentimin
         message_html: Grupi i instancave tuaja Elasticsearch ka më shumë se një nyjë, por Mastodon-i s’është formësuar t’i përdorë ato.
       elasticsearch_preset_single_node:
-        action: Shihni documentimin
+        action: Shihni dokumentimin
         message_html: Grupi i instancave tuaja Elasticsearch ka vetëm një nyjë, <code>ES_PRESET</code> i duhet dhënë vlera <code>single_node_cluster</code>.
       elasticsearch_reset_chewy:
         message_html: Treguesi juaj i sistemit Elasticsearch është i vjetruar, për shkak të një ndryshimi rregullimesh. Për ta përditësuar, ju lutemi, xhironi <code>tootctl search deploy --reset-chewy</code>.
@@ -940,7 +947,7 @@ sq:
       delete: Fshije
       edit_preset: Përpunoni sinjalizim të paracaktuar
       empty: S’keni përcaktuar ende sinjalizime të gatshme.
-      title: Administroni sinjalizime të paracaktuara
+      title: Paracaktime sinjalizimesh
     webhooks:
       add_new: Shtoni pikëmbarim
       delete: Fshije
@@ -962,6 +969,9 @@ sq:
       title: Webhook-ë
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Për shkak mungese veprimtarie moderatori së fundi, regjistrimet te %{instance} janë kaluar automatikisht të kërkojnë shqyrtim dorazi, për të penguar përdorimin e %{instance} si një platformë për aktorë të këqij. Mund të kaloni kurdo te regjistrime të hapura.
+      subject: Regjistrimet te %{instance} janë kaluar automatikisht të kërkojnë miratim
     new_appeal:
       actions:
         delete_statuses: fshirje e postimeve të tij
@@ -1486,7 +1496,6 @@ sq:
     administration_emails: Njoftime email për përgjegjësin
     email_events: Akte për njoftim me email
     email_events_hint: 'Përzgjidhni akte për të cilët doni të merrni njoftime:'
-    other_settings: Rregullimet të tjera njoftimesh
   number:
     human:
       decimal_units:
@@ -1644,14 +1653,26 @@ sq:
     import: Importo
     import_and_export: Importim dhe eksportim
     migrate: Migrim llogarie
-    notifications: Njoftime
+    notifications: Njoftime me email
     preferences: Parapëlqime
     profile: Profil
     relationships: Ndjekje dhe ndjekës
+    severed_relationships: Marrëdhënie të ndërprera
     statuses_cleanup: Fshirje e automatizuar postimesh
     strikes: Paralajmërime nga moderimi
     two_factor_authentication: Mirëfilltësim Dyfaktorësh
     webauthn_authentication: Kyçe sigurie
+  severed_relationships:
+    download: Shkarkim (%{count})
+    event_type:
+      account_suspension: Pezullim llogarie (%{target_name})
+      domain_block: Pezullim shërbyesi (%{target_name})
+      user_domain_block: Bllokuat %{target_name}
+    lost_followers: Ndjekës të humbur
+    lost_follows: Ndjekje të humbura
+    preamble: Mund të humbni ndjekje dhe ndjekës, kur bllokoni një përkatësi, ose kur moderatorët tuaj vendosin të pezullojnë një shërbyes të largët. Kur kjo ndodh, do të jeni në gjendje të shkarkoni lista marrëdhëniesh të dëmtuara, për t’i shqyrtuar dhe mundet për t’i importuar në një shërbyes tjetër.
+    purged: Hollësitë rreth këtij shërbyesi janë spastuar nga përgjegjësit e shërbyesit tuaj.
+    type: Akt
   statuses:
     attached:
       audio:
@@ -1689,8 +1710,6 @@ sq:
         other: "%{count} vota"
       vote: Votë
     show_more: Shfaq më tepër
-    show_newer: Shfaq më të reja
-    show_older: Shfaq më të vjetra
     show_thread: Shfaq rrjedhën
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1747,6 +1766,7 @@ sq:
     contrast: Mastodon (Me shumë kontrast)
     default: Mastodon (I errët)
     mastodon-light: Mastodon (I çelët)
+    system: E automatizuar (përdor temë sistemi)
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
@@ -1834,13 +1854,44 @@ sq:
         silence: Llogari e kufizuar
         suspend: Llogari e pezulluar
     welcome:
-      edit_profile_action: Ujdisje profili
-      edit_profile_step: Profilin tuaj mund ta përshtatni duke ngarkuar një figurë, duke ndryshuar emrin tuaj në ekran, etj. Mund të zgjidhni të shqyrtoni ndjekës të rinj, para se të jenë lejuar t’ju ndjekin.
+      apps_android_action: Merreni në Google Play
+      apps_ios_action: Shkarkojeni nga App Store
+      apps_step: Shkarkoni aplikacionet tona zyrtare.
+      apps_title: Aplikacione Mastodon
+      checklist_subtitle: 'Le t’ju vëmë në udhë drejt këtij horizonti të ri rrjetesh shoqërorë:'
+      checklist_title: Listë hapash mirëseardhjeje
+      edit_profile_action: Personalizojeni
+      edit_profile_step: Përforconi ndërveprimet tuaja, duke pasur një profil shterues.
+      edit_profile_title: Personalizoni profilin tuaj
       explanation: Ja disa ndihmëza, sa për t’ia filluar
-      final_action: Filloni të postoni
-      final_step: 'Filloni të postoni! Edhe pa ndjekës, postimet tuaja publike mund të shihen nga të tjerët, për shembull, në rrjedhën kohore vendore, ose në hashtag-ë. Mund të doni të prezantoni veten përmes hashtag-ut #introductions.'
-      full_handle: Identifikuesi juaj i plotë
-      full_handle_hint: Kjo është ajo çka do të duhej t’u tregonit shokëve tuaj, që të mund t’ju dërgojnë mesazhe ose t’ju ndjekin nga një shërbyes tjetër.
+      feature_action: Mësoni më tepër
+      feature_audience: Mastodon-i ju sjell një mundësi unike për administrimin e publikut tuaj pa të tjerë në mes. Mastodon-i i sendërtuar në infrastrukturë tuajën ju lejon të ndiqni dhe të ndiqeni nga cilido shërbyes tjetër Mastodon në internet dhe është nën kontroll vetëm nga ju dhe askush tjetër.
+      feature_audience_title: Krijoni me vetëbesim publikun tuaj
+      feature_control: E dini më mirë se kushdo se ç’doni të shihni në prurjen tuaj të kreut. Pa algoritme apo reklama që ju hanë kot kohën. Ndiqni këdo, në çfarëdo shërbyesi Mastodon, që nga një llogari e vetme dhe merrni postimet e tyre në rend kohor dhe bëjeni këndin tuaj të internetit pak më tepër si ju.
+      feature_control_title: Mbani kontrollin e rrjedhës tuaj kohore
+      feature_creativity: Mastodon-i mbulon postime audio, video dhe foto, përshkrime për persona me aftësi të kufizuara, pyetësorë, sinjalizime rreth lënde, avatarë të animuar, emoxhi vetjake, kontroll qethjeje miniaturash, etj, për t’ju ndihmuar të shpreheni në internet. Qoftë kur po botoni art tuajin, muzikë tuajën apo podkastin tuaj, Mastodon-i është gati.
+      feature_creativity_title: Frymë krijuese e pashoqe
+      feature_moderation: Mastodon-i e rikthen marrjen e vendimeve në duart tuaja. Çdo shërbyes krijon rregullat dhe rregulloren e vet, të cilat vihen në zbatim lokalisht dhe jo nga sipër, si me mediat shoqërore të korporatave, duke e bërë më të zhdërvjellëtin për t’iu përgjigjur nevojave të grupeve të ndryshme të personave. Bëhuni pjesë e një shërbyesi me rregullat e të cilit pajtoheni, ose strehojeni ju vetë një të tillë.
+      feature_moderation_title: Moderim ashtu si duhet bërë
+      follow_action: Ndiqeni
+      follow_step: Ndjekje personash interesantë është ajo çka përbën thelbin e Mastodon-it.
+      follow_title: Personalizoni prurjen tuaj të kreut
+      follows_subtitle: Ndiqni llogari të mirënjohura
+      follows_title: Cilët të ndiqen
+      follows_view_more: Shihni më tepër vetë për ndjekje
+      hashtags_recent_count:
+        one: "%{people} person në 2 ditët e shkuara"
+        other: "%{people} vetë në 2 ditët e shkuara"
+      hashtags_subtitle: Eksploroni ç’është në modëë që prej 2 ditëve të fundit
+      hashtags_title: Hashtag-ë në modë
+      hashtags_view_more: Shihni më tepër hashtagë në modë
+      post_action: Hartoni
+      post_step: Përshëndetni botën me tekst, foto, video, ose pyetësorë.
+      post_title: Shkruani postimin tuaj të parë
+      share_action: Ndajeni me të tjerë
+      share_step: Bëjuni të ditur shokëve si t’ju gjejnë në Mastodon.
+      share_title: Ndani me të tjerët profilin tuaj Mastodon
+      sign_in_action: Hyni
       subject: Mirë se vini te Mastodon-i
       title: Mirë se vini, %{name}!
   users:

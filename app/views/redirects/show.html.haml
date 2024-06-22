@@ -1,3 +1,7 @@
+- content_for :header_tags do
+  %meta{ name: 'robots', content: 'noindex, noarchive' }/
+  %link{ rel: 'canonical', href: @redirect_path }
+
 .redirect
   .redirect__logo
     = link_to render_logo, root_path

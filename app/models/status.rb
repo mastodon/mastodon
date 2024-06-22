@@ -39,6 +39,8 @@ class Status < ApplicationRecord
   include Status::SnapshotConcern
   include Status::ThreadingConcern
 
+  MEDIA_ATTACHMENTS_LIMIT = 4
+
   rate_limit by: :account, family: :statuses
 
   self.discard_column = :deleted_at
@@ -50,7 +52,7 @@ class Status < ApplicationRecord
   update_index('statuses', :proper)
   update_index('public_statuses', :proper)
 
-  enum visibility: { public: 0, unlisted: 1, private: 2, direct: 3, limited: 4 }, _suffix: :visibility
+  enum :visibility, { public: 0, unlisted: 1, private: 2, direct: 3, limited: 4 }, suffix: :visibility
 
   belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
 
@@ -82,7 +84,7 @@ class Status < ApplicationRecord
   has_many :local_reblogged, -> { merge(Account.local) }, through: :reblogs, source: :account
   has_many :local_bookmarked, -> { merge(Account.local) }, through: :bookmarks, source: :account
 
-  has_and_belongs_to_many :tags
+  has_and_belongs_to_many :tags # rubocop:disable Rails/HasAndBelongsToMany
 
   has_one :preview_cards_status, inverse_of: :status, dependent: :delete
 
@@ -106,12 +108,13 @@ class Status < ApplicationRecord
   scope :remote, -> { where(local: false).where.not(uri: nil) }
   scope :local,  -> { where(local: true).or(where(uri: nil)) }
   scope :with_accounts, ->(ids) { where(id: ids).includes(:account) }
-  scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
+  scope :without_replies, -> { not_reply.or(reply_to_account) }
+  scope :not_reply, -> { where(reply: false) }
+  scope :reply_to_account, -> { where(arel_table[:in_reply_to_account_id].eq arel_table[:account_id]) }
   scope :without_reblogs, -> { where(statuses: { reblog_of_id: nil }) }
-  scope :with_public_visibility, -> { where(visibility: :public) }
   scope :tagged_with, ->(tag_ids) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag_ids }) }
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
-  scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).where('accounts.domain IS NULL OR accounts.domain NOT IN (?)', account.excluded_from_timeline_domains) }
+  scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).merge(Account.not_domain_blocked_by_account(account)) }
   scope :tagged_with_all, lambda { |tag_ids|
     Array(tag_ids).map(&:to_i).reduce(self) do |result, id|
       result.where(<<~SQL.squish, tag_id: id)
@@ -122,6 +125,8 @@ class Status < ApplicationRecord
   scope :tagged_with_none, lambda { |tag_ids|
     where('NOT EXISTS (SELECT * FROM statuses_tags forbidden WHERE forbidden.status_id = statuses.id AND forbidden.tag_id IN (?))', tag_ids)
   }
+  scope :distributable_visibility, -> { where(visibility: %i(public unlisted)) }
+  scope :list_eligible_visibility, -> { where(visibility: %i(public unlisted private)) }
 
   after_create_commit :trigger_create_webhooks
   after_update_commit :trigger_update_webhooks
@@ -152,9 +157,9 @@ class Status < ApplicationRecord
                    :status_stat,
                    :tags,
                    :preloadable_poll,
-                   preview_cards_status: [:preview_card],
+                   preview_cards_status: { preview_card: { author_account: [:account_stat, user: :role] } },
                    account: [:account_stat, user: :role],
-                   active_mentions: { account: :account_stat },
+                   active_mentions: :account,
                    reblog: [
                      :application,
                      :tags,
@@ -162,11 +167,11 @@ class Status < ApplicationRecord
                      :conversation,
                      :status_stat,
                      :preloadable_poll,
-                     preview_cards_status: [:preview_card],
+                     preview_cards_status: { preview_card: { author_account: [:account_stat, user: :role] } },
                      account: [:account_stat, user: :role],
-                     active_mentions: { account: :account_stat },
+                     active_mentions: :account,
                    ],
-                   thread: { account: :account_stat }
+                   thread: :account
 
   delegate :domain, to: :account, prefix: true
 
@@ -263,7 +268,7 @@ class Status < ApplicationRecord
   end
 
   def reported?
-    @reported ||= Report.where(target_account: account).unresolved.exists?(['? = ANY(status_ids)', id])
+    @reported ||= account.targeted_reports.unresolved.exists?(['? = ANY(status_ids)', id]) || account.strikes.exists?(['? = ANY(status_ids)', id.to_s])
   end
 
   def emojis
@@ -347,38 +352,6 @@ class Status < ApplicationRecord
       StatusPin.select('status_id').where(status_id: status_ids).where(account_id: account_id).each_with_object({}) { |p, h| h[p.status_id] = true }
     end
 
-    def reload_stale_associations!(cached_items)
-      account_ids = []
-
-      cached_items.each do |item|
-        account_ids << item.account_id
-        account_ids << item.reblog.account_id if item.reblog?
-      end
-
-      account_ids.uniq!
-
-      status_ids = cached_items.map { |item| item.reblog? ? item.reblog_of_id : item.id }.uniq
-
-      return if account_ids.empty?
-
-      accounts = Account.where(id: account_ids).includes(:account_stat, :user).index_by(&:id)
-
-      status_stats = StatusStat.where(status_id: status_ids).index_by(&:status_id)
-
-      cached_items.each do |item|
-        item.account = accounts[item.account_id]
-        item.reblog.account = accounts[item.reblog.account_id] if item.reblog?
-
-        if item.reblog?
-          status_stat = status_stats[item.reblog.id]
-          item.reblog.status_stat = status_stat if status_stat.present?
-        else
-          status_stat = status_stats[item.id]
-          item.status_stat = status_stat if status_stat.present?
-        end
-      end
-    end
-
     def from_text(text)
       return [] if text.blank?
 
@@ -443,7 +416,6 @@ class Status < ApplicationRecord
   def set_visibility
     self.visibility = reblog.visibility if reblog? && visibility.nil?
     self.visibility = (account.locked? ? :private : :public) if visibility.nil?
-    self.sensitive  = false if sensitive.nil?
   end
 
   def set_conversation

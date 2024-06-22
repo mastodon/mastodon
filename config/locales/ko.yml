@@ -1,7 +1,7 @@
 ---
 ko:
   about:
-    about_mastodon_html: '미래의 소셜 네트워크: 광고 없음, 기업 감시 없음, 윤리적 설계, 탈중앙화! 여러분만의 데이터를 Mastodon으로 소유하세요!'
+    about_mastodon_html: '미래의 소셜 네트워크: 광고 없음, 기업 감시 없음, 윤리적 설계, 탈중앙화! 여러분만의 데이터를 Mastodon으로 보호하고 누리세요!'
     contact_missing: 미설정
     contact_unavailable: 없음
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
@@ -67,7 +67,7 @@ ko:
       enable: 동결 해제
       enable_sign_in_token_auth: 이메일 토큰 인증 활성화
       enabled: 활성
-      enabled_msg: "%{username}의 계정을 성공적으로 얼리기 해제하였습니다"
+      enabled_msg: "%{username}의 동결을 성공적으로 해제 했습니다."
       followers: 팔로워
       follows: 팔로우
       header: 헤더
@@ -75,7 +75,7 @@ ko:
       invite_request_text: 가입하려는 이유
       invited_by: 초대자
       ip: IP
-      joined: 가입
+      joined: 가입 날짜
       location:
         all: 전체
         local: 로컬
@@ -93,7 +93,7 @@ ko:
         pending: 대기 중
         silenced: 제한됨
         suspended: 정지
-        title: 중재
+        title: 관리
       moderation_notes: 중재 참고사항
       most_recent_activity: 최근 활동
       most_recent_ip: 최근 IP
@@ -103,7 +103,7 @@ ko:
       not_subscribed: 구독하지 않음
       pending: 심사 대기
       perform_full_suspension: 정지
-      previous_strikes: 이전의 처벌들
+      previous_strikes: 과거 처벌
       previous_strikes_description_html:
         other: 이 계정에는 <strong>%{count}</strong>번의 처벌이 있었습니다.
       promote: 승급
@@ -116,7 +116,7 @@ ko:
       rejected_msg: 성공적으로 %{username}의 가입 신청서를 반려하였습니다
       remote_suspension_irreversible: 이 계정의 데이터는 되돌릴 수 없도록 삭제되었습니다.
       remote_suspension_reversible_hint_html: 이 계정은 계정이 속한 서버에서 정지되었습니다, 그리고 %{date}에 데이터가 완전히 삭제될 것입니다. 그 때까지는 해당 서버에서 계정을 그대로 복구할 수 있습니다. 만약 지금 당장 이 계정의 모든 데이터를 삭제하고 싶다면, 아래에서 실행할 수 있습니다.
-      remove_avatar: 아바타 지우기
+      remove_avatar: 아바타 삭제
       remove_header: 헤더 삭제
       removed_avatar_msg: 성공적으로 %{username}의 아바타 이미지를 삭제하였습니다
       removed_header_msg: 성공적으로 %{username}의 헤더 이미지를 삭제하였습니다
@@ -282,6 +282,7 @@ ko:
         update_custom_emoji_html: "%{name} 님이 에모지 %{target}를 업데이트 했습니다"
         update_domain_block_html: "%{name} 님이 %{target}에 대한 도메인 차단을 갱신했습니다"
         update_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 수정했습니다"
+        update_report_html: "%{name} 님이 신고 %{target}를 업데이트 했습니다"
         update_status_html: "%{name} 님이 %{target}의 게시물을 업데이트했습니다"
         update_user_role_html: "%{name} 님이 %{target} 역할을 수정했습니다"
       deleted_account: 계정을 삭제했습니다
@@ -289,6 +290,7 @@ ko:
       filter_by_action: 행동으로 거르기
       filter_by_user: 사용자로 거르기
       title: 감사 로그
+      unavailable_instance: "(도메인네임 사용불가)"
     announcements:
       destroyed_msg: 공지가 성공적으로 삭제되었습니다!
       edit:
@@ -525,7 +527,7 @@ ko:
       total_followed_by_us: 우리가 한 팔로우
       total_reported: 이들에 대한 신고
       total_storage: 미디어 첨부
-      totals_time_period_hint_html: 아래에 표시된 총계에는 모든 시간에 대한 데이터가 포함됩니다.
+      totals_time_period_hint_html: 아래에 표시된 총계는 역대 데이터에 대한 것입니다.
       unknown_instance: 현재 이 서버에서 해당 도메인에 대한 기록은 없습니다.
     invites:
       deactivate_all: 전부 비활성화
@@ -587,6 +589,9 @@ ko:
       actions_description_html: 이 신고를 해결하기 위해 취해야 할 조치를 지정해주세요. 신고된 계정에 대해 처벌 조치를 취하면, <strong>스팸</strong> 카테고리가 선택된 경우를 제외하고 해당 계정으로 이메일 알림이 전송됩니다.
       actions_description_remote_html: 이 신고를 해결하기 위해 실행할 행동을 결정하세요. 이 결정은 이 원격 계정과 그 콘텐츠를 다루는 방식에 대해 <strong>이 서버</strong>에서만 영향을 끼칩니다
       add_to_report: 신고에 더 추가하기
+      already_suspended_badges:
+        local: 이 서버에서 이미 정지되었습니다
+        remote: 저 서버에서 이미 정지되었습니다
       are_you_sure: 확실합니까?
       assign_to_self: 나에게 할당하기
       assigned: 할당된 중재자
@@ -736,6 +741,7 @@ ko:
         desc_html: 이것은 hCaptcha의 외부 스크립트에 의존합니다, 이것은 개인정보 보호에 위협을 가할 수도 있습니다. 추가적으로, <strong>이것은 몇몇 사람들(특히나 장애인들)에게 가입 절차의 접근성을 심각하게 떨어트릴 수 있습니다</strong>. 이러한 이유로, 대체제로 승인 전용이나 초대제를 통한 가입을 고려해보세요.
         title: 새로운 사용자가 계정 확인을 위해서는 CAPTCHA를 풀어야 하도록 합니다
       content_retention:
+        danger_zone: 위험한 영역
         preamble: 마스토돈에 저장된 사용자 콘텐츠를 어떻게 다룰지 제어합니다.
         title: 콘텐츠 보존기한
       default_noindex:
@@ -755,6 +761,7 @@ ko:
         disabled: 아무에게도 안 함
         users: 로그인 한 사용자에게
       registrations:
+        moderation_recommandation: 모두에게 가입을 열기 전에 적절하고 반응이 빠른 중재 팀을 데리고 있는지 확인해 주세요!
         preamble: 누가 이 서버에 계정을 만들 수 있는지 제어합니다.
         title: 가입
       registrations_mode:
@@ -762,6 +769,7 @@ ko:
           approved: 가입하려면 승인이 필요함
           none: 아무도 가입 할 수 없음
           open: 누구나 가입 할 수 있음
+        warning_hint: 당신의 중재 팀이 스팸이나 악의적인 가입을 시기적절하게 처리할 수 있다고 자신할 수 없다면 "가입이 승인을 요구하도록" 설정하는 것을 추천합니다.
       security:
         authorized_fetch: 연합된 서버들에게서 인증 필수
         authorized_fetch_hint: 연합된 서버들에게서 인증을 요구하는 것은 사용자 레벨과 서버 레벨의 차단을 좀 더 확실하게 해줍니다. 한편으로는 성능적인 페널티, 답글의 전달 범위 감소, 몇몇 연합된 서비스들과의 호환성 문제가 있을 가능성이 있습니다. 추가적으로 이 기능은 전용 액터가 공개된 게시물이나 계정을 페치하는 것은 막지 않습니다.
@@ -929,7 +937,7 @@ ko:
       delete: 삭제
       edit_preset: 경고 프리셋 편집
       empty: 아직 어떤 경고 틀도 정의되지 않았습니다.
-      title: 경고 틀 관리
+      title: 경고 프리셋
     webhooks:
       add_new: 엔드포인트 추가
       delete: 삭제
@@ -950,6 +958,9 @@ ko:
       title: 웹훅
       webhook: 웹훅
   admin_mailer:
+    auto_close_registrations:
+      body: 최근 모더레이터 활동 부족으로, %{instance}가 안좋은 일에 사용되는 것을 방지하기 위해 %{instance}의 가입이 수동 심사를 요구하도록 자동으로 변경되었습니다. 언제든지 가입을 다시 열 수 있습니다.
+      subject: "%{instance}의 가입이 승인을 필요로 하도록 자동으로 변경되었습니다"
     new_appeal:
       actions:
         delete_statuses: 게시물을 삭제하는 것
@@ -971,7 +982,7 @@ ko:
     new_report:
       body: "%{reporter} 님이 %{target}를 신고했습니다"
       body_remote: "%{domain}의 누군가가 %{target}을 신고했습니다"
-      subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
+      subject: "%{instance}의 새로운 신고(#%{id})"
     new_software_updates:
       body: 새 마스토돈 버전이 릴리스되었습니다. 업데이트 할 수 있습니다!
       subject: "%{instance}에 대해 새 마스토돈 버전이 사용 가능합니다!"
@@ -1110,7 +1121,7 @@ ko:
   date:
     formats:
       default: "%Y-%m-%d"
-      with_month_name: "%Y년 %f월 %e일"
+      with_month_name: "%Y년 %B %d일"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}시간"
@@ -1466,7 +1477,6 @@ ko:
     administration_emails: 관리자 이메일 알림
     email_events: 이메일 알림에 대한 이벤트
     email_events_hint: '알림 받을 이벤트를 선택해주세요:'
-    other_settings: 기타 알림 설정
   number:
     human:
       decimal_units:
@@ -1624,14 +1634,26 @@ ko:
     import: 데이터 가져오기
     import_and_export: 가져오기 & 내보내기
     migrate: 계정 이동
-    notifications: 알림
+    notifications: 이메일 알림
     preferences: 환경설정
     profile: 공개 프로필
     relationships: 팔로잉과 팔로워
+    severed_relationships: 단절된 관계들
     statuses_cleanup: 게시물 자동 삭제
     strikes: 중재 기록
     two_factor_authentication: 2단계 인증
     webauthn_authentication: 보안 키
+  severed_relationships:
+    download: 다운로드 (%{count})
+    event_type:
+      account_suspension: 계정 정지 (%{target_name})
+      domain_block: 서버 정지 (%{target_name})
+      user_domain_block: 내가 %{target_name}을 차단했습니다
+    lost_followers: 잃은 팔로워
+    lost_follows: 잃은 팔로우
+    preamble: 내가 도메인을 차단하거나 중재진이 다른 서버를 정지하기로 결정했다면 내 팔로우와 팔로워를 잃게 됩니다. 그런 일이 일어났다면 그로 인해 단절된 관계들의 목록을 다운로드 받아 확인하고 다른 서버에서 불러올 수 있습니다.
+    purged: 이 서버에 대한 정보는 관리자에 의해 삭제되었습니다.
+    type: 이벤트
   statuses:
     attached:
       audio:
@@ -1663,8 +1685,6 @@ ko:
         other: "%{count}명 투표함"
       vote: 투표
     show_more: 더 보기
-    show_newer: 새로운 것 표시
-    show_older: 오래된 것 표시
     show_thread: 글타래 보기
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1721,10 +1741,11 @@ ko:
     contrast: 마스토돈 (고대비)
     default: 마스토돈 (어두움)
     mastodon-light: 마스토돈 (밝음)
+    system: 자동 선택 (시스템 테마 이용)
   time:
     formats:
       default: "%Y-%m-%d %H:%M"
-      month: "%Y년 %f월"
+      month: "%Y년 %b"
       time: "%H:%M"
       with_time_zone: "%Y-%m-%d %H:%M %Z"
   translation:
@@ -1808,13 +1829,43 @@ ko:
         silence: 계정 제한 됨
         suspend: 계정 정지 됨
     welcome:
-      edit_profile_action: 프로필 설정
-      edit_profile_step: 프로필 사진을 업로드하거나 사람들에게 표시할 이름을 바꾸는 것 등으로 자신의 프로필을 커스텀 할 수 있습니다. 새로운 팔로워를 검토 후에 허용하도록 할 수도 있습니다.
+      apps_android_action: Google Play에서 다운로드
+      apps_ios_action: App Store에서 다운로드
+      apps_step: 공식 앱을 다운로드해보세요.
+      apps_title: Mastodon 앱
+      checklist_subtitle: '이 새로운 소셜미디어를 시작해봅시다:'
+      checklist_title: 환영 체크리스트
+      edit_profile_action: 개인 맞춤
+      edit_profile_step: 의미있는 프로필을 작성해 상호작용을 늘려보세요.
+      edit_profile_title: 프로필 꾸미기
       explanation: 시작하기 전에 몇가지 팁들을 준비했습니다
-      final_action: 포스팅 시작하기
-      final_step: '게시물을 올리세요! 팔로워가 없더라도, 공개 게시물들은 다른 사람에게 보여질 수 있습니다, 예를 들자면 로컬이나 연합 타임라인 등이 있습니다. 사람들에게 자신을 소개하고 싶다면 #툿친소 해시태그를 이용해보세요.'
-      full_handle: 당신의 풀 핸들은 다음과 같습니다
-      full_handle_hint: 이것을 당신의 친구들에게 알려주면 다른 서버에서 팔로우 하거나 메시지를 보낼 수 있습니다.
+      feature_action: 더 알아보기
+      feature_audience: 마스토돈은 중개자 없이 청중을 관리할 수 있는 특별한 가능성을 제공합니다. 자체 인프라에 배포된 마스토돈을 사용하면 온라인에 있는 다른 마스토돈 서버에도 팔로우하거나 팔로우할 수 있으며, 본인 외에는 누구의 통제도 받지 않습니다.
+      feature_audience_title: 신뢰 있는 청중 구축
+      feature_control: 내가 홈 피드에서 무엇을 보고 싶은지는 내가 제일 잘 압니다. 알고리즘이나 시간을 낭비하게 만드는 광고는 없습니다. 계정 하나로 다른 마스토돈 서버에 있는 누구나 팔로우 하여 그들의 게시물을 시간순으로 받아보고 인터넷의 한 구석을 좀 더 나답게 만들어 보세요.
+      feature_control_title: 내 타임라인에 대해 통제권을 유지하세요
+      feature_creativity: 마스토돈은 오디오, 비디오, 사진, 접근성 설명(alt),  투표, 콘텐츠 주의 (블라인드), 움직이는 아바타, 커스텀 이모티콘, 썸네일 자르기, 그리고 더 많은 것들을 당신이 온라인에서 당신을 더 잘 드러낼 수 있도록 돕기위해 지원합니다. 당신이 그림이나 음악을 올리던, 팟캐스트 같은것을 진행하던 마스토돈이 함께합니다.
+      feature_creativity_title: 독보적인 창의성
+      feature_moderation: 마스토돈은 의사 결정권을 사용자에게 돌려줍니다. 각 서버는 기업 소셜 미디어처럼 하향식이 아닌 로컬에서 시행되는 자체 규칙과 규정을 만들 수 있어 다양한 그룹의 요구에 가장 유연하게 대응할 수 있습니다. 동의하는 규칙이 있는 서버에 가입하거나 직접 서버를 호스팅하세요.
+      feature_moderation_title: 올바른 중재
+      follow_action: 팔로우
+      follow_step: 흥미로운 사람들을 팔로우하는 것이 마스토돈의 전부입니다.
+      follow_title: 내게 맞는 홈 피드 꾸미기
+      follows_subtitle: 잘 알려진 계정들을 팔로우
+      follows_title: 누구를 팔로우 할 지
+      follows_view_more: 팔로우 할 사람들 더 보기
+      hashtags_recent_count:
+        other: 최근 2일동안 %{people} 명
+      hashtags_subtitle: 최근 2일간 무엇이 유행했는지 둘러보기
+      hashtags_title: 유행하는 해시태그
+      hashtags_view_more: 유행하는 해시태그 더 보기
+      post_action: 작성
+      post_step: 글, 사진, 영상, 또는 투표로 세상에 인사해보세요.
+      post_title: 첫번째 게시물 쓰기
+      share_action: 공유
+      share_step: 친구에게 마스토돈에서 나를 찾을 수 있는 방법을 알려주세요.
+      share_title: 마스토돈 프로필을 공유하세요
+      sign_in_action: 로그인
       subject: 마스토돈에 오신 것을 환영합니다
       title: 환영합니다 %{name} 님!
   users:
@@ -1848,4 +1899,4 @@ ko:
     not_enabled: 아직 WebAuthn을 활성화 하지 않았습니다.
     not_supported: 이 브라우저는 보안 키를 지원하지 않습니다
     otp_required: 보안 키를 사용하기 위해서는 2단계 인증을 먼저 활성화 해 주세요
-    registered_on: "%{date} 에 등록됨"
+    registered_on: "%{date}에 등록됨"

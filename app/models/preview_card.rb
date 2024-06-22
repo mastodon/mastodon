@@ -32,6 +32,7 @@
 #  link_type                    :integer
 #  published_at                 :datetime
 #  image_description            :string           default(""), not null
+#  author_account_id            :bigint(8)
 #
 
 class PreviewCard < ApplicationRecord
@@ -47,15 +48,20 @@ class PreviewCard < ApplicationRecord
 
   self.inheritance_column = false
 
-  enum type: { link: 0, photo: 1, video: 2, rich: 3 }
-  enum link_type: { unknown: 0, article: 1 }
+  enum :type, { link: 0, photo: 1, video: 2, rich: 3 }
+  enum :link_type, { unknown: 0, article: 1 }
 
   has_many :preview_cards_statuses, dependent: :delete_all, inverse_of: :preview_card
   has_many :statuses, through: :preview_cards_statuses
 
   has_one :trend, class_name: 'PreviewCardTrend', inverse_of: :preview_card, dependent: :destroy
+  belongs_to :author_account, class_name: 'Account', optional: true
 
-  has_attached_file :image, processors: [:thumbnail, :blurhash_transcoder], styles: ->(f) { image_styles(f) }, convert_options: { all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp' }, validate_media_type: false
+  has_attached_file :image,
+                    processors: [Rails.configuration.x.use_vips ? :lazy_thumbnail : :thumbnail, :blurhash_transcoder],
+                    styles: ->(f) { image_styles(f) },
+                    convert_options: { all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp' },
+                    validate_media_type: false
 
   validates :url, presence: true, uniqueness: true, url: true
   validates_attachment_content_type :image, content_type: IMAGE_MIME_TYPES

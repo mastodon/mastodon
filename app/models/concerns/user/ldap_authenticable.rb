@@ -22,10 +22,18 @@ module User::LdapAuthenticable
         safe_username = safe_username.gsub(keys, replacement)
       end
 
-      resource = joins(:account).find_by(accounts: { username: safe_username })
+      resource = joins(:account).merge(Account.with_username(safe_username)).take
 
       if resource.blank?
-        resource = new(email: attributes[Devise.ldap_mail.to_sym].first, agreement: true, account_attributes: { username: safe_username }, admin: false, external: true, confirmed_at: Time.now.utc)
+        resource = new(
+          email: attributes[Devise.ldap_mail.to_sym].first,
+          agreement: true,
+          account_attributes: {
+            username: safe_username,
+          },
+          external: true,
+          confirmed_at: Time.now.utc
+        )
         resource.save!
       end
 

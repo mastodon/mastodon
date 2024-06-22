@@ -24,7 +24,7 @@ class BulkImport < ApplicationRecord
   belongs_to :account
   has_many :rows, class_name: 'BulkImportRow', inverse_of: :bulk_import, dependent: :delete_all
 
-  enum type: {
+  enum :type, {
     following: 0,
     blocking: 1,
     muting: 2,
@@ -33,12 +33,12 @@ class BulkImport < ApplicationRecord
     lists: 5,
   }
 
-  enum state: {
+  enum :state, {
     unconfirmed: 0,
     scheduled: 1,
     in_progress: 2,
     finished: 3,
-  }
+  }, prefix: true
 
   validates :type, presence: true
 

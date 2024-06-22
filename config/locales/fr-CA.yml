@@ -425,7 +425,7 @@ fr-CA:
       view: Afficher les blocages de domaines
     email_domain_blocks:
       add_new: Ajouter
-      allow_registrations_with_approval: Autoriser les inscriptions avec approbation
+      allow_registrations_with_approval: Permettre les inscriptions avec l'approuvement
       attempts_over_week:
         one: "%{count} tentative au cours de la dernière semaine"
         other: "%{count} tentatives au cours de la dernière semaine"
@@ -597,6 +597,9 @@ fr-CA:
       actions_description_html: Décidez des mesures à prendre pour résoudre ce signalement. Si vous prenez des mesures punitives contre le compte signalé, une notification sera envoyée par e-mail, sauf si la catégorie <strong>Spam</strong> est sélectionnée.
       actions_description_remote_html: Décidez des mesures à prendre pour résoudre ce signalement. Cela n'affectera que la manière dont <strong>votre</strong> serveur communique avec ce compte distant et traite son contenu.
       add_to_report: Ajouter davantage au rapport
+      already_suspended_badges:
+        local: Déjà suspendu sur ce serveur
+        remote: Déjà suspendu sur le serveur distant
       are_you_sure: Voulez-vous vraiment faire ça ?
       assign_to_self: Me l’assigner
       assigned: Modérateur assigné
@@ -767,6 +770,7 @@ fr-CA:
         disabled: À personne
         users: Aux utilisateur·rice·s connecté·e·s localement
       registrations:
+        moderation_recommandation: Veuillez vous assurer d'avoir une équipe de modération adéquate et réactive avant d'ouvrir les inscriptions à tout le monde!
         preamble: Affecte qui peut créer un compte sur votre serveur.
         title: Inscriptions
       registrations_mode:
@@ -774,6 +778,7 @@ fr-CA:
           approved: Approbation requise pour s’inscrire
           none: Personne ne peut s’inscrire
           open: N’importe qui peut s’inscrire
+        warning_hint: Nous vous recommandons d’utiliser « Approbation requise pour s’inscrire » à moins que vous n’ayez confiance dans la capacité de votre équipe de modération à gérer les messages indésirables et les inscriptions malveillantes suffisamment rapidement.
       security:
         authorized_fetch: Exiger une authentification de la part des serveurs fédérés
         authorized_fetch_hint: Exiger l’authentification des serveurs fédérés permet une application plus stricte des blocages définis par les utilisateurs et le serveur. Cependant, cela entraîne une baisse des performances, réduit la portée de vos réponses et peut poser des problèmes de compatibilité avec certains services fédérés. En outre, cela n’empêchera pas les acteurs déterminés d’aller chercher vos messages et comptes publics.
@@ -944,7 +949,6 @@ fr-CA:
       delete: Supprimer
       edit_preset: Éditer les avertissements prédéfinis
       empty: Vous n'avez pas encore créé de paramètres prédéfinis pour les avertissements.
-      title: Gérer les avertissements prédéfinis
     webhooks:
       add_new: Ajouter un point de terminaison
       delete: Supprimer
@@ -966,6 +970,9 @@ fr-CA:
       title: Points d’ancrage web
       webhook: Point d’ancrage web
   admin_mailer:
+    auto_close_registrations:
+      body: En raison du manque d'activité récente des modérateurs, les inscriptions à %{instance} ont été automatiquement changées pour nécessiter une revue manuelle afin d'éviter que votre instance %{instance} ne soit utilisée comme plate-forme pour des acteurs potentiellement malveillants. Vous pouvez ré-ouvrir les inscriptions à tout moment.
+      subject: Les inscriptions à %{instance} ont été automatiquement changées pour requérir une approbation
     new_appeal:
       actions:
         delete_statuses: effacer les messages
@@ -1490,7 +1497,6 @@ fr-CA:
     administration_emails: Notifications par e-mail de l’admin
     email_events: Événements pour les notifications par courriel
     email_events_hint: 'Sélectionnez les événements pour lesquels vous souhaitez recevoir des notifications :'
-    other_settings: Autres paramètres de notifications
   number:
     human:
       decimal_units:
@@ -1648,14 +1654,26 @@ fr-CA:
     import: Import de données
     import_and_export: Import et export
     migrate: Migration de compte
-    notifications: Notifications
+    notifications: Notifications par mail
     preferences: Préférences
     profile: Profil
     relationships: Abonnements et abonné·e·s
+    severed_relationships: Relations rompues
     statuses_cleanup: Suppression automatique de messages
     strikes: Sanctions de modération
     two_factor_authentication: Identification à deux facteurs
     webauthn_authentication: Clés de sécurité
+  severed_relationships:
+    download: Téléchargement (%{count})
+    event_type:
+      account_suspension: Suspension du compte (%{target_name})
+      domain_block: Suspension du serveur (%{target_name})
+      user_domain_block: Vous avez bloqué %{target_name}
+    lost_followers: Abonné·e·s perdu·e·s
+    lost_follows: Abonnements perdus
+    preamble: Vous pouvez perdre des abonnés et des abonnements lorsque vous bloquez un domaine ou lorsque vos modérateurs décident de suspendre un serveur distant. Lorsque cela arrive, vous êtes en mesure de télécharger une liste de vos relations rompues, afin de l'inspecter et d'éventuellement l'importer sur un autre serveur.
+    purged: Les informations sur ce serveur ont été purgées par les administrateurs du serveur.
+    type: Evènement
   statuses:
     attached:
       audio:
@@ -1693,8 +1711,6 @@ fr-CA:
         other: "%{count} votes"
       vote: Voter
     show_more: Déplier
-    show_newer: Plus récents
-    show_older: Plus anciens
     show_thread: Afficher le fil de discussion
     title: "%{name} : « %{quote} »"
     visibilities:
@@ -1751,6 +1767,7 @@ fr-CA:
     contrast: Mastodon (Contraste élevé)
     default: Mastodon (Sombre)
     mastodon-light: Mastodon (Clair)
+    system: Automatique (utiliser le thème système)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -1838,13 +1855,44 @@ fr-CA:
         silence: Compte limité
         suspend: Compte suspendu
     welcome:
-      edit_profile_action: Configuration du profil
-      edit_profile_step: Vous pouvez personnaliser votre profil en téléchargeant une photo de profil, en changant votre nom d'utilisateur, etc. Vous pouvez opter pour le passage en revue de chaque nouvelle demande d'abonnement à chaque fois qu'un utilisateur essaie de s'abonner à votre compte.
+      apps_android_action: Disponible sur Google Play
+      apps_ios_action: Télécharger sur l'App Store
+      apps_step: Téléchargez nos applications officielles.
+      apps_title: Applications Mastodon
+      checklist_subtitle: 'Commencez votre aventure sur le web social:'
+      checklist_title: Premières étapes
+      edit_profile_action: Personnaliser
+      edit_profile_step: Améliorez vos interactions avec un profil plus complet.
+      edit_profile_title: Personnaliser votre profil
       explanation: Voici quelques conseils pour vous aider à démarrer
-      final_action: Commencez à publier
-      final_step: 'Commencez à publier ! Même si vous n''avez pas encore d''abonnés, vos publications sont publiques et sont accessibles par les autres, par exemple grâce à la zone horaire locale ou par les hashtags. Vous pouvez vous présenter sur le hashtag #introductions.'
-      full_handle: Votre identifiant complet
-      full_handle_hint: C’est ce que vous diriez à vos ami·e·s pour leur permettre de vous envoyer un message ou vous suivre à partir d’un autre serveur.
+      feature_action: En savoir plus
+      feature_audience: Mastodon vous offre une possibilité unique de gérer votre audience sans intermédiaires. Mastodon peut être déployé sur votre propre infrastructure, ce qui vous permet de suivre et d'être suivi depuis n'importe quel autre serveur Mastodon et de n'être contrôlé par personne d'autre que vous.
+      feature_audience_title: Construisez votre audience en toute confiance
+      feature_control: Vous savez mieux que quiconque ce que vous voulez voir sur votre fil principal. Personne ne veut d'un algorithme qui décide à vote place ou de publicité qui vous fera perdre votre temps. Suivez n'importe qui, sur n'importe quel serveur Mastodon, depuis votre compte. Recevez les publications du monde entier dans l'ordre chronologique et créez-vous votre chez-vous numérique qui vous ressemble.
+      feature_control_title: Gardez le contrôle de votre fil
+      feature_creativity: Mastodon prend en charge les messages audio, vidéo et photo, les descriptions d'accessibilité, les sondages, les avertissements de contenu, les avatars animés, les émojis personnalisés, le contrôle des vignettes et bien plus encore pour vous aider à vous exprimer en ligne. Que vous publiiez votre art, votre musique ou votre podcast, Mastodon est là pour vous.
+      feature_creativity_title: Créativité inégalée
+      feature_moderation: Mastodon vous redonne le contrôle. Chaque serveur établit ses propres règles, appliquées localement et non pas de manière verticale comme sur les médias sociaux commerciaux, donnant davantage de souplesse pour répondre aux besoins de différentes communautés. Rejoignez un serveur avec des règles qui vous conviennent, ou bien hébergez le vôtre.
+      feature_moderation_title: La modération comme elle doit être
+      follow_action: Suivre
+      follow_step: Suivre des personnes intéressantes est l'essence de Mastodon.
+      follow_title: Personnaliser votre fil principal
+      follows_subtitle: Suivez des comptes populaires
+      follows_title: Qui suivre
+      follows_view_more: Voir plus de personnes à suivre
+      hashtags_recent_count:
+        one: "%{people} personne dans les deux derniers jours"
+        other: "%{people} personnes dans les deux derniers jours"
+      hashtags_subtitle: Explorez les tendances depuis les 2 derniers jours
+      hashtags_title: Hashtags populaires
+      hashtags_view_more: Voir plus de hashtags populaires
+      post_action: Rédiger
+      post_step: Dites bonjour au monde avec du texte, des photos, des vidéos ou des sondages.
+      post_title: Rédiger votre premier message
+      share_action: Partager
+      share_step: Faites savoir à vos ami·e·s comment vous trouver sur Mastodon.
+      share_title: Partager votre profil Mastodon
+      sign_in_action: Se connecter
       subject: Bienvenue sur Mastodon
       title: Bienvenue à bord, %{name} !
   users:

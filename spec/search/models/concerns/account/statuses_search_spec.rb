@@ -21,7 +21,7 @@ describe Account::StatusesSearch, :sidekiq_inline do
         account.indexable = true
         account.save!
 
-        expect(PublicStatusesIndex.filter(term: { account_id: account.id }).count).to eq(account.statuses.where(visibility: :public).count)
+        expect(PublicStatusesIndex.filter(term: { account_id: account.id }).count).to eq(account.statuses.public_visibility.count)
         expect(StatusesIndex.filter(term: { account_id: account.id }).count).to eq(account.statuses.count)
       end
     end
@@ -32,7 +32,7 @@ describe Account::StatusesSearch, :sidekiq_inline do
 
     context 'when picking an indexable account' do
       it 'has statuses in the PublicStatusesIndex' do
-        expect(PublicStatusesIndex.filter(term: { account_id: account.id }).count).to eq(account.statuses.where(visibility: :public).count)
+        expect(PublicStatusesIndex.filter(term: { account_id: account.id }).count).to eq(account.statuses.public_visibility.count)
       end
 
       it 'has statuses in the StatusesIndex' do

@@ -285,6 +285,7 @@ de:
         update_custom_emoji_html: "%{name} bearbeitete das Emoji %{target}"
         update_domain_block_html: "%{name} aktualisierte die Domain-Sperre für %{target}"
         update_ip_block_html: "%{name} änderte die Regel für die IP-Adresse %{target}"
+        update_report_html: "%{name} überarbeitete die Meldung %{target}"
         update_status_html: "%{name} überarbeitete einen Beitrag von %{target}"
         update_user_role_html: "%{name} änderte die Rolle von %{target}"
       deleted_account: gelöschtes Konto
@@ -292,6 +293,7 @@ de:
       filter_by_action: Nach Aktion filtern
       filter_by_user: Nach Benutzer*in filtern
       title: Protokoll
+      unavailable_instance: "(Server nicht verfügbar)"
     announcements:
       destroyed_msg: Ankündigung erfolgreich gelöscht!
       edit:
@@ -425,7 +427,7 @@ de:
       view: Domain-Sperre ansehen
     email_domain_blocks:
       add_new: Neue hinzufügen
-      allow_registrations_with_approval: Registrierungen mit Genehmigung erlauben
+      allow_registrations_with_approval: Registrierungen mit Genehmigung zulassen
       attempts_over_week:
         one: "%{count} Registrierungsversuch in der vergangenen Woche"
         other: "%{count} Registrierungsversuche in der vergangenen Woche"
@@ -597,6 +599,9 @@ de:
       actions_description_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Wenn du eine Strafmaßnahme gegen das gemeldete Konto ergreifst, wird eine E-Mail-Benachrichtigung an dieses gesendet, außer wenn die <strong>Spam</strong>-Kategorie ausgewählt ist.
       actions_description_remote_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Dies wirkt sich lediglich darauf aus, wie <strong>dein</strong> Server mit diesem externen Konto kommuniziert und dessen Inhalt handhabt.
       add_to_report: Meldung ergänzen
+      already_suspended_badges:
+        local: Auf diesem Server bereits gesperrt
+        remote: Auf dem anderen Server bereits gesperrt
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
       assigned: Zugewiesene*r Moderator*in
@@ -612,7 +617,7 @@ de:
       created_at: Gemeldet
       delete_and_resolve: Beiträge löschen
       forwarded: Weitergeleitet
-      forwarded_replies_explanation: Diese Meldung stammt von einem externen Profil und betrifft einen externen Inhalt. Der Inhalt wurde an Dich weitergeleitet, weil er eine Antwort auf ein bei Dir registriertes Profil ist.
+      forwarded_replies_explanation: Diese Meldung stammt von einem externen Profil und betrifft einen externen Inhalt. Der Inhalt wurde an dich weitergeleitet, weil er eine Antwort auf ein bei dir registriertes Profil ist.
       forwarded_to: Weitergeleitet an %{domain}
       mark_as_resolved: Als geklärt markieren
       mark_as_sensitive: Mit einer Inhaltswarnung versehen
@@ -748,6 +753,7 @@ de:
         desc_html: Dies beruht auf externen Skripten von hCaptcha, die ein Sicherheits- und Datenschutzproblem darstellen könnten. Darüber hinaus <strong>kann das den Registrierungsprozess für manche Menschen (insbesondere für Menschen mit Behinderung) erheblich erschweren</strong>. Aus diesen Gründen solltest du alternative Maßnahmen in Betracht ziehen, z. B. eine Registrierung basierend auf einer Einladung oder auf Genehmigungen.
         title: Neue Nutzer*innen müssen ein CAPTCHA lösen, um das Konto zu bestätigen
       content_retention:
+        danger_zone: Gefahrenzone
         preamble: Lege fest, wie lange Inhalte von Nutzer*innen auf deinem Mastodon-Server gespeichert bleiben.
         title: Cache & Archive
       default_noindex:
@@ -767,6 +773,7 @@ de:
         disabled: Niemandem
         users: Für angemeldete lokale Benutzer*innen
       registrations:
+        moderation_recommandation: Bitte vergewissere dich, dass du ein geeignetes und reaktionsschnelles Moderationsteam hast, bevor du die Registrierungen uneingeschränkt zulässt!
         preamble: Lege fest, wer auf deinem Server ein Konto erstellen darf.
         title: Registrierungen
       registrations_mode:
@@ -774,6 +781,7 @@ de:
           approved: Registrierung muss genehmigt werden
           none: Niemand darf sich registrieren
           open: Alle können sich registrieren
+        warning_hint: Wir empfehlen die Einstellung „Registrierung muss genehmigt werden“ zu verwenden, es sei denn, du bist dir sicher, dass dein Moderationsteam Spam und böswillige Registrierungen rechtzeitig bearbeiten kann.
       security:
         authorized_fetch: Authentisierung von föderierten Servern erforderlich machen
         authorized_fetch_hint: Das Anfordern einer Authentisierung von föderierten Servern ermöglicht ein strengeres Durchsetzen von Sperren sowohl auf Ebene der Benutzer*innen als auch des Servers. Allerdings ist das mit Leistungseinbußen verbunden, reduziert die Reichweite deiner Antworten und kann zu Kompatibilitätsproblemen mit einigen föderierten Diensten führen. Darüber hinaus wird das Abrufen deiner öffentlichen Beiträge und Konten durch spezialisierte Akteur*innen nicht verhindert.
@@ -944,7 +952,7 @@ de:
       delete: Löschen
       edit_preset: Warnvorlage bearbeiten
       empty: Du hast noch keine Warnvorlagen hinzugefügt.
-      title: Warnvorlagen verwalten
+      title: Warnvorlagen
     webhooks:
       add_new: Endpunkt hinzufügen
       delete: Löschen
@@ -966,6 +974,9 @@ de:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Aufgrund fehlender Aktivität von Moderator*innen müssen neue Registrierungen auf %{instance} jetzt manuell genehmigt werden. Dies wurde automatisch umgestellt, damit %{instance} nicht als Plattform für Böswillige missbraucht werden kann. Du kannst jederzeit auf uneingeschränkte Registrierungen zurückwechseln.
+      subject: Registrierungen auf %{instance} müssen ab jetzt manuell genehmigt werden (automatisch umgestellt)
     new_appeal:
       actions:
         delete_statuses: das Löschen der Beiträge
@@ -979,7 +990,7 @@ de:
       next_steps: Du kannst dem Einspruch zustimmen, um die Moderationsentscheidung rückgängig zu machen, oder ihn ignorieren.
       subject: "%{username} hat Einspruch gegen eine Moderationsentscheidung auf %{instance} erhoben"
     new_critical_software_updates:
-      body: Kritische Updates wurden für Mastodon veröffentlicht – du solltest so schnell wie möglich aktualisieren!
+      body: ein neues Sicherheitsupdate wurde veröffentlicht. Du solltest Mastodon so schnell wie möglich aktualisieren!
       subject: Kritische Mastodon-Updates sind für %{instance} verfügbar!
     new_pending_account:
       body: Die Details von diesem neuem Konto sind unten. Du kannst die Anfrage akzeptieren oder ablehnen.
@@ -1023,7 +1034,7 @@ de:
     salutation: "%{name},"
     settings: 'E-Mail-Einstellungen ändern: %{link}'
     unsubscribe: Abbestellen
-    view: 'Hier überprüfen:'
+    view: 'Siehe:'
     view_profile: Profil anzeigen
     view_status: Beitrag anschauen
   applications:
@@ -1038,7 +1049,7 @@ de:
     apply_for_account: Konto beantragen
     captcha_confirmation:
       help_html: Falls du Probleme beim Lösen des CAPTCHA hast, dann kannst uns über %{email} kontaktieren und wir werden versuchen, dir zu helfen.
-      hint_html: Fast geschafft! Wir müssen uns vergewissern, dass du ein Mensch bist (damit wir Spam verhindern können!). Bitte löse das CAPTCHA und klicke auf „Weiter“.
+      hint_html: Fast geschafft! Wir müssen uns vergewissern, dass du ein Mensch bist (damit wir Spam verhindern können!). Bitte löse das CAPTCHA und klicke auf „Fortfahren“.
       title: Sicherheitsüberprüfung
     confirmations:
       awaiting_review: Deine E-Mail-Adresse wurde bestätigt und das Team von %{domain} überprüft nun deine Registrierung. Sobald es dein Konto genehmigt, wirst du eine E-Mail erhalten.
@@ -1441,7 +1452,7 @@ de:
       cooldown: Nach dem Umzug wird es eine Weile dauern, bis du erneut umziehen darfst
       disabled_account: Dein altes Konto ist nur noch eingeschränkt nutzbar. Du kannst jedoch deine Daten exportieren und das Konto wieder reaktivieren.
       followers: Alle Follower werden vom alten zum neuen Konto übertragen
-      only_redirect_html: Alternativ kannst du auch <a href="%{path}">nur eine Weiterleitung zu deinem neuen Profil</a> einrichten, ohne die Follower zu übertragen.
+      only_redirect_html: Alternativ kannst du auch <a href="%{path}">nur eine Weiterleitung zu deinem neuen Konto</a> einrichten, ohne die Follower zu übertragen.
       other_data: Keine anderen Daten werden automatisch zum neuen Konto übertragen
       redirect: Dein altes Konto wird einen Hinweis erhalten, dass du umgezogen bist. Außerdem wird das Profil von Suchanfragen ausgeschlossen
   moderation:
@@ -1490,7 +1501,6 @@ de:
     administration_emails: Admin-E-Mail-Benachrichtigungen
     email_events: Benachrichtigungen per E-Mail
     email_events_hint: 'Bitte die Ereignisse auswählen, für die du Benachrichtigungen per E-Mail erhalten möchtest:'
-    other_settings: Weitere Benachrichtigungseinstellungen
   number:
     human:
       decimal_units:
@@ -1648,14 +1658,26 @@ de:
     import: Importieren
     import_and_export: Importieren und exportieren
     migrate: Kontoumzug
-    notifications: Benachrichtigungen
+    notifications: E-Mail-Benachrichtigungen
     preferences: Einstellungen
     profile: Öffentliches Profil
     relationships: Follower und Folge ich
+    severed_relationships: Getrennte Beziehungen
     statuses_cleanup: Automatische Löschung
     strikes: Maßnahmen
     two_factor_authentication: Zwei-Faktor-Authentisierung (2FA)
     webauthn_authentication: Sicherheitsschlüssel
+  severed_relationships:
+    download: Herunterladen (%{count})
+    event_type:
+      account_suspension: Kontosperre (%{target_name})
+      domain_block: Serversperre (%{target_name})
+      user_domain_block: Du hast %{target_name} blockiert
+    lost_followers: Verlorene Follower
+    lost_follows: Konten entfolgt
+    preamble: Möglicherweise verlierst du Follower und entfolgst Konten, wenn du eine Domain blockierst oder Moderator*innen externe Server sperren. Sollte das der Fall sein, wirst du eine Liste mit den getrennten Beziehungen herunterladen können. Dadurch kannst du die Änderungen einsehen oder die Liste auf einen anderen Server importieren.
+    purged: Informationen über diesen Server wurden von deinen Server-Administrator*innen entfernt.
+    type: Ereignis
   statuses:
     attached:
       audio:
@@ -1693,8 +1715,6 @@ de:
         other: "%{count} Stimmen"
       vote: Abstimmen
     show_more: Mehr anzeigen
-    show_newer: Neuere anzeigen
-    show_older: Ältere anzeigen
     show_thread: Thread anzeigen
     title: "%{name}: „%{quote}“"
     visibilities:
@@ -1751,6 +1771,7 @@ de:
     contrast: Mastodon (Hoher Kontrast)
     default: Mastodon (Dunkel)
     mastodon-light: Mastodon (Hell)
+    system: Automatisch (mit System synchronisieren)
   time:
     formats:
       default: "%d. %b %Y, %H:%M Uhr"
@@ -1827,7 +1848,7 @@ de:
         mark_statuses_as_sensitive: Deine Beiträge von %{acct} wurden mit einer Inhaltswarnung versehen
         none: Warnung für %{acct}
         sensitive: Deine Beiträge von %{acct} werden künftig mit einer Inhaltswarnung versehen
-        silence: Dein Konto %{acct} wurde stummgeschaltet
+        silence: Dein Konto %{acct} wurde eingeschränkt
         suspend: Dein Konto %{acct} wurde gesperrt
       title:
         delete_statuses: Beiträge entfernt
@@ -1838,13 +1859,44 @@ de:
         silence: Konto stummgeschaltet
         suspend: Konto gesperrt
     welcome:
-      edit_profile_action: Profil einrichten
-      edit_profile_step: Du kannst dein Profil anpassen, indem du ein Profilbild hochlädst, deinen Anzeigenamen änderst und vieles mehr. Du kannst dich dafür entscheiden, neue Follower zu überprüfen, bevor sie dir folgen dürfen.
+      apps_android_action: Aus dem Google Play Store herunterladen
+      apps_ios_action: Im App Store herunterladen
+      apps_step: Lade unsere offiziellen Apps herunter.
+      apps_title: Mastodon-Apps
+      checklist_subtitle: 'Fangen wir an, diese neue soziale Dimension zu erkunden:'
+      checklist_title: Willkommensleitfaden
+      edit_profile_action: Personalisieren
+      edit_profile_step: Mit einem vollständigen Profil interagieren andere eher mit dir.
+      edit_profile_title: Personalisiere dein Profil
       explanation: Hier sind ein paar Tipps, um loszulegen
-      final_action: Mit erstem Beitrag starten
-      final_step: 'Fang jetzt an zu posten! Selbst ohne Follower werden deine öffentlichen Beiträge von anderen gesehen, zum Beispiel in der lokalen Timeline oder über die Hashtags. Möglicherweise möchtest du dich allen mit dem Hashtag #neuhier vorstellen.'
-      full_handle: Dein vollständiger Profilname
-      full_handle_hint: Deinen vollständigen Profilnamen kannst du deinen Freund*innen mitteilen, damit sie dich anschreiben oder dir von einem anderen Server folgen können.
+      feature_action: Mehr erfahren
+      feature_audience: Mastodon bietet dir eine einzigartige Möglichkeit, deine Reichweite ohne Mittelsperson zu verwalten. Auf deiner eigenen Infrastruktur bereitgestellt, ermöglicht Mastodon es dir, jedem anderen Mastodon-Server zu folgen und von jedem anderen Server aus gefolgt zu werden. Ebenso steht Mastodon unter deiner Kontrolle.
+      feature_audience_title: Baue deine Reichweite mit Vertrauen auf
+      feature_control: Du weißt am besten, was du auf deiner Startseite sehen möchtest. Keine Algorithmen oder Werbung, die deine Zeit verschwenden. Folge Nutzer*innen von jedem Mastodon-Server von einem einzelnen Konto aus und empfange deren Beiträge in chronologischer Reihenfolge. Mache Mastodon zu deinem ganz persönlichen Fleckchen im Internet.
+      feature_control_title: Behalte die Kontrolle über deine eigene Timeline
+      feature_creativity: Mastodon unterstützt Audio-, Video- und Bildbeiträge, Beschreibungen, Umfragen, Inhaltswarnungen, animierte Avatare, benutzerdefinierte Emojis, das Zuschneiden von Vorschaubildern und vieles mehr, um dir zu helfen, dich online zu entfalten. Egal, ob du deine Kunst, deine Musik oder deinen Podcast veröffentlichst – Mastodon ist für dich da.
+      feature_creativity_title: Einzigartige Kreativität
+      feature_moderation: Mastodon legt die Entscheidungskraft zurück in deine Hände. Jeder Server erstellt eigene Regeln und Vorschriften, die nur lokal, pro einzelnem Server durchgesetzt werden – und nicht von oben herab, wie es bei den kommerziellen sozialen Medien der Fall ist. Dadurch ist Mastodon viel anpassungsfähiger für verschiedene Gruppen von Menschen. Registriere dich bei einem Server, dessen Regeln du magst, oder hoste deinen eigenen Server.
+      feature_moderation_title: Moderation so, wie sie sein sollte
+      follow_action: Folgen
+      follow_step: Interessanten Profilen zu folgen ist das, was Mastodon ausmacht.
+      follow_title: Personalisiere deine Startseite
+      follows_subtitle: Folge bekannten Profilen
+      follows_title: Empfohlene Profile
+      follows_view_more: Weitere Profile zum Folgen entdecken
+      hashtags_recent_count:
+        one: "%{people} Profil in den vergangenen 2 Tagen"
+        other: "%{people} Profile in den vergangenen 2 Tagen"
+      hashtags_subtitle: Entdecke, was in den vergangenen 2 Tagen angesagt war
+      hashtags_title: Angesagte Hashtags
+      hashtags_view_more: Weitere angesagte Hashtags entdecken
+      post_action: Verfassen
+      post_step: Begrüße die Welt mit Text, Fotos, Videos oder Umfragen.
+      post_title: Erstelle deinen ersten Beitrag
+      share_action: Teilen
+      share_step: Lass deine Freund*innen wissen, wie sie dich auf Mastodon finden können.
+      share_title: Teile dein Mastodon-Profil
+      sign_in_action: Anmelden
       subject: Willkommen bei Mastodon!
       title: Willkommen an Bord, %{name}!
   users:

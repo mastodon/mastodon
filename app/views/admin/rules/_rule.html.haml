@@ -5,7 +5,7 @@
 
   .announcements-list__item__action-bar
     .announcements-list__item__meta
-      = rule.text
+      = rule.hint
 
     %div
       = table_link_to 'trash', t('admin.rules.delete'), admin_rule_path(rule), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, rule)

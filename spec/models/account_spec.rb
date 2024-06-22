@@ -678,7 +678,7 @@ RSpec.describe Account do
   end
 
   describe 'MENTION_RE' do
-    subject { Account::MENTION_RE }
+    subject { described_class::MENTION_RE }
 
     it 'matches usernames in the middle of a sentence' do
       expect(subject.match('Hello to @alice from me')[1]).to eq 'alice'
@@ -746,13 +746,13 @@ RSpec.describe Account do
       end
 
       it 'is valid if we are creating an instance actor account with a period' do
-        account = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
+        account = Fabricate.build(:account, id: described_class::INSTANCE_ACTOR_ID, actor_type: 'Application', locked: true, username: 'example.com')
         expect(account.valid?).to be true
       end
 
       it 'is valid if we are creating a possibly-conflicting instance actor account' do
         _account = Fabricate(:account, username: 'examplecom')
-        instance_account = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
+        instance_account = Fabricate.build(:account, id: described_class::INSTANCE_ACTOR_ID, actor_type: 'Application', locked: true, username: 'example.com')
         expect(instance_account.valid?).to be true
       end
 
@@ -768,20 +768,20 @@ RSpec.describe Account do
         expect(account).to model_have_error_on_field(:username)
       end
 
-      it 'is invalid if the username is longer than 30 characters' do
-        account = Fabricate.build(:account, username: Faker::Lorem.characters(number: 31))
+      it 'is invalid if the username is longer than the character limit' do
+        account = Fabricate.build(:account, username: username_over_limit)
         account.valid?
         expect(account).to model_have_error_on_field(:username)
       end
 
-      it 'is invalid if the display name is longer than 30 characters' do
-        account = Fabricate.build(:account, display_name: Faker::Lorem.characters(number: 31))
+      it 'is invalid if the display name is longer than the character limit' do
+        account = Fabricate.build(:account, display_name: username_over_limit)
         account.valid?
         expect(account).to model_have_error_on_field(:display_name)
       end
 
-      it 'is invalid if the note is longer than 500 characters' do
-        account = Fabricate.build(:account, note: Faker::Lorem.characters(number: 501))
+      it 'is invalid if the note is longer than the character limit' do
+        account = Fabricate.build(:account, note: account_note_over_limit)
         account.valid?
         expect(account).to model_have_error_on_field(:note)
       end
@@ -814,23 +814,31 @@ RSpec.describe Account do
         expect(account).to model_have_error_on_field(:username)
       end
 
-      it 'is valid even if the username is longer than 30 characters' do
-        account = Fabricate.build(:account, domain: 'domain', username: Faker::Lorem.characters(number: 31))
+      it 'is valid even if the username is longer than the character limit' do
+        account = Fabricate.build(:account, domain: 'domain', username: username_over_limit)
         account.valid?
         expect(account).to_not model_have_error_on_field(:username)
       end
 
-      it 'is valid even if the display name is longer than 30 characters' do
-        account = Fabricate.build(:account, domain: 'domain', display_name: Faker::Lorem.characters(number: 31))
+      it 'is valid even if the display name is longer than the character limit' do
+        account = Fabricate.build(:account, domain: 'domain', display_name: username_over_limit)
         account.valid?
         expect(account).to_not model_have_error_on_field(:display_name)
       end
 
-      it 'is valid even if the note is longer than 500 characters' do
-        account = Fabricate.build(:account, domain: 'domain', note: Faker::Lorem.characters(number: 501))
+      it 'is valid even if the note is longer than the character limit' do
+        account = Fabricate.build(:account, domain: 'domain', note: account_note_over_limit)
         account.valid?
         expect(account).to_not model_have_error_on_field(:note)
       end
+    end
+
+    def username_over_limit
+      'a' * described_class::USERNAME_LENGTH_LIMIT * 2
+    end
+
+    def account_note_over_limit
+      'a' * described_class::NOTE_LENGTH_LIMIT * 2
     end
   end
 
@@ -888,7 +896,7 @@ RSpec.describe Account do
           { username: 'b', domain: 'b' },
         ].map(&method(:Fabricate).curry(2).call(:account))
 
-        expect(described_class.where('id > 0').alphabetic).to eq matches
+        expect(described_class.without_internal.alphabetic).to eq matches
       end
     end
 
@@ -939,7 +947,7 @@ RSpec.describe Account do
       it 'returns an array of accounts who do not have a domain' do
         local_account = Fabricate(:account, domain: nil)
         _account_with_domain = Fabricate(:account, domain: 'example.com')
-        expect(described_class.where('id > 0').local).to contain_exactly(local_account)
+        expect(described_class.without_internal.local).to contain_exactly(local_account)
       end
     end
 
@@ -950,14 +958,14 @@ RSpec.describe Account do
           matches[index] = Fabricate(:account, domain: matches[index])
         end
 
-        expect(described_class.where('id > 0').partitioned).to match_array(matches)
+        expect(described_class.without_internal.partitioned).to match_array(matches)
       end
     end
 
     describe 'recent' do
       it 'returns a relation of accounts sorted by recent creation' do
         matches = Array.new(2) { Fabricate(:account) }
-        expect(described_class.where('id > 0').recent).to match_array(matches)
+        expect(described_class.without_internal.recent).to match_array(matches)
       end
     end
 
@@ -1035,18 +1043,9 @@ RSpec.describe Account do
     it 'increments the count in multi-threaded an environment when account_stat is not yet initialized' do
       subject
 
-      increment_by   = 15
-      wait_for_start = true
-
-      threads = Array.new(increment_by) do
-        Thread.new do
-          true while wait_for_start
-          described_class.find(subject.id).increment_count!(:followers_count)
-        end
+      multi_threaded_execution(15) do
+        described_class.find(subject.id).increment_count!(:followers_count)
       end
-
-      wait_for_start = false
-      threads.each(&:join)
 
       expect(subject.reload.followers_count).to eq 15
     end

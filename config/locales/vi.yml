@@ -282,6 +282,7 @@ vi:
         update_custom_emoji_html: "%{name} đã cập nhật emoji %{target}"
         update_domain_block_html: "%{name} cập nhật chặn máy chủ %{target}"
         update_ip_block_html: "%{name} cập nhật chặn IP %{target}"
+        update_report_html: "%{name} cập nhật báo cáo %{target}"
         update_status_html: "%{name} cập nhật tút của %{target}"
         update_user_role_html: "%{name} đã thay đổi vai trò %{target}"
       deleted_account: tài khoản đã xóa
@@ -289,6 +290,7 @@ vi:
       filter_by_action: Theo hành động
       filter_by_user: Theo người
       title: Nhật ký kiểm duyệt
+      unavailable_instance: "(tên máy chủ không khả dụng)"
     announcements:
       destroyed_msg: Xóa thông báo thành công!
       edit:
@@ -585,6 +587,9 @@ vi:
       actions_description_html: Nếu áp đặt trừng phạt, một email thông báo sẽ được gửi cho người này, ngoại trừ <strong>Spam</strong>.
       actions_description_remote_html: Chọn hành động cần thực hiện để xử lý báo cáo này. Điều này sẽ chỉ ảnh hưởng đến cách máy chủ <strong>của bạn</strong> giao tiếp với tài khoản này và xử lý nội dung của nó.
       add_to_report: Bổ sung báo cáo
+      already_suspended_badges:
+        local: Đã vô hiệu hóa trên máy chủ này
+        remote: Đã vô hiệu hóa trên máy chủ khác
       are_you_sure: Bạn có chắc không?
       assign_to_self: Giao cho tôi
       assigned: Người xử lý
@@ -734,6 +739,7 @@ vi:
         desc_html: Điều này phụ thuộc vào các mã lệnh bên ngoài từ hCaptcha, đây có thể là mối lo ngại về bảo mật và quyền riêng tư. Thêm vào đó, <strong>điều này có thể làm cho quá trình đăng ký khó hơn đối với một số người (đặc biệt là người khuyết tật)</strong>. Vì những lý do này, vui lòng xem xét các biện pháp thay thế như duyệt đăng ký thủ công hoặc tạo thư mời.
         title: Yêu cầu người dùng mới dùng CAPTCHA để xác minh tài khoản của họ
       content_retention:
+        danger_zone: Khu vực nguy hiểm
         preamble: Kiểm soát cách lưu trữ nội dung cá nhân trong Mastodon.
         title: Lưu giữ nội dung
       default_noindex:
@@ -753,6 +759,7 @@ vi:
         disabled: Không ai
         users: Để đăng nhập người cục bộ
       registrations:
+        moderation_recommandation: Vui lòng đảm bảo rằng bạn có một đội ngũ kiểm duyệt và phản ứng nhanh trước khi mở đăng ký cho mọi người!
         preamble: Kiểm soát những ai có thể tạo tài khoản trên máy chủ của bạn.
         title: Đăng ký
       registrations_mode:
@@ -760,6 +767,7 @@ vi:
           approved: Yêu cầu phê duyệt để đăng ký
           none: Không ai có thể đăng ký
           open: Bất cứ ai cũng có thể đăng ký
+        warning_hint: Chúng tôi khuyên bạn nên sử dụng "Duyệt đăng ký thủ công" trừ khi bạn tin tưởng đội ngũ kiểm duyệt của mình có thể xử lý kịp thời các đăng ký spam và độc hại.
       security:
         authorized_fetch: Yêu cầu xác thực từ các máy chủ liên hợp
         authorized_fetch_hint: Yêu cầu xác thực từ các máy chủ liên hợp cho phép thực thi chặt chẽ hơn việc chặn cấp độ người dùng và cấp độ máy chủ. Tuy nhiên, điều này phải trả giá bằng một hình phạt về hiệu suất, làm giảm phạm vi tiếp cận của các lượt trả lời của bạn và có thể gây ra các vấn đề về khả năng tương thích với một số dịch vụ được liên hợp. Ngoài ra, điều này sẽ không ngăn cản các tác nhân chuyên dụng tìm nạp các tút và tài khoản công khai của bạn.
@@ -927,7 +935,7 @@ vi:
       delete: Xóa bỏ
       edit_preset: Sửa mẫu có sẵn
       empty: Bạn chưa thêm mẫu cảnh cáo nào cả.
-      title: Quản lý mẫu cảnh cáo
+      title: Cảnh báo cài sẵn
     webhooks:
       add_new: Thêm endpoint
       delete: Xóa bỏ
@@ -948,6 +956,9 @@ vi:
       title: Webhook
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Do gần đây thiếu kiểm duyệt viên nên việc đăng ký trên %{instance} sẽ tự động chuyển thành duyệt thủ công, để tránh %{instance} bị sử dụng làm nền tảng cho những kẻ xấu. Bạn có thể chuyển nó trở lại trạng thái đăng ký mở bất kỳ lúc nào.
+      subject: Đăng ký mới %{instance} đã được tự động chuyển sang duyệt thủ công
     new_appeal:
       actions:
         delete_statuses: xóa tút của họ
@@ -1464,7 +1475,6 @@ vi:
     administration_emails: Email thông báo admin
     email_events: Email
     email_events_hint: 'Chọn những hoạt động sẽ gửi thông báo qua email:'
-    other_settings: Chặn thông báo từ
   number:
     human:
       decimal_units:
@@ -1622,14 +1632,26 @@ vi:
     import: Nhập dữ liệu
     import_and_export: Dữ liệu
     migrate: Chuyển tài khoản sang máy chủ khác
-    notifications: Thông báo
+    notifications: Thông báo email
     preferences: Chung
     profile: Hồ sơ
     relationships: Quan hệ
+    severed_relationships: Mối quan hệ bị cắt đứt
     statuses_cleanup: Tự động xóa tút cũ
     strikes: Lần cảnh cáo
     two_factor_authentication: Xác minh 2 bước
     webauthn_authentication: Khóa bảo mật
+  severed_relationships:
+    download: Tải xuống (%{count})
+    event_type:
+      account_suspension: Người bị vô hiệu hóa (%{target_name})
+      domain_block: Máy chủ bị vô hiệu hóa (%{target_name})
+      user_domain_block: Bạn đã chặn %{target_name}
+    lost_followers: Mất người theo dõi
+    lost_follows: Mất người đang theo dõi
+    preamble: Bạn có thể mất số lượt theo dõi và người theo dõi khi chặn một máy chủ hoặc khi kiểm duyệt viên của bạn quyết định tạm dừng máy chủ từ xa. Khi điều đó xảy ra, bạn sẽ có thể tải xuống danh sách các mối quan hệ đã bị cắt đứt, để kiểm tra và nhập vào máy chủ khác.
+    purged: Thông tin về máy chủ này đã bị quản trị viên máy chủ của bạn xóa sạch.
+    type: Sự kiện
   statuses:
     attached:
       audio:
@@ -1661,8 +1683,6 @@ vi:
         other: "%{count} người bình chọn"
       vote: Bình chọn
     show_more: Đọc thêm
-    show_newer: Mới hơn
-    show_older: Cũ hơn
     show_thread: Nội dung gốc
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1719,6 +1739,7 @@ vi:
     contrast: Mastodon (Tương phản)
     default: Mastodon (Tối)
     mastodon-light: Mastodon (Sáng)
+    system: Tự động (chủ đề hệ thống)
   time:
     formats:
       default: "%-d.%m.%Y %H:%M"
@@ -1770,8 +1791,8 @@ vi:
     suspicious_sign_in:
       change_password: đổi mật khẩu của bạn
       details: 'Chi tiết thông tin đăng nhập:'
-      explanation: Chúng tôi phát hiện lần đăng nhập bất thường tài khoản của bạn từ một địa chỉ IP mới.
-      further_actions_html: Nếu đó không phải là bạn, chúng tôi khuyến nghị %{action} lập tức và bật xác minh hai bước để giữ tài khoản được an toàn.
+      explanation: Chúng tôi phát hiện tài khoản của bạn đăng nhập bất thường từ một địa chỉ IP mới.
+      further_actions_html: Nếu đây không phải là bạn, hãy %{action} lập tức và bật xác minh hai bước để giữ tài khoản được an toàn.
       subject: Đăng nhập tài khoản từ địa chỉ IP mới
       title: Lần đăng nhập mới
     warning:
@@ -1806,13 +1827,43 @@ vi:
         silence: Tài khoản bị hạn chế
         suspend: Tài khoản bị vô hiệu hóa
     welcome:
-      edit_profile_action: Cài đặt trang hồ sơ
-      edit_profile_step: Bạn có thể chỉnh sửa trang hồ sơ của mình bằng cách tải lên ảnh đại diện, ảnh bìa, đổi biệt danh và hơn thế nữa. Bạn cũng có thể tự phê duyệt những người theo dõi mới.
+      apps_android_action: Tải trên Google Play
+      apps_ios_action: Tải trên App Store
+      apps_step: Tải ứng dụng chính thức.
+      apps_title: Ứng dụng Mastodon
+      checklist_subtitle: 'Hãy bắt đầu trên mạng xã hội mới này:'
+      checklist_title: Danh sách việc cần làm
+      edit_profile_action: Cá nhân hoá
+      edit_profile_step: Tạo sự tương tác bằng một hồ sơ hoàn chỉnh.
+      edit_profile_title: Tùy biến hồ sơ
       explanation: Dưới đây là một số mẹo để giúp bạn bắt đầu
-      final_action: Soạn tút mới
-      final_step: 'Viết tút mới! Ngay cả khi chưa có người theo dõi, người khác vẫn có thể xem tút công khai của bạn trên bảng tin máy chủ và qua hashtag. Hãy giới thiệu bản thân với hashtag #introductions.'
-      full_handle: Tên đầy đủ của bạn
-      full_handle_hint: Đây cũng là địa chỉ được dùng để giao tiếp với tất cả mọi người.
+      feature_action: Tìm hiểu
+      feature_audience: Mastodon cung cấp cho bạn khả năng độc đáo để quản lý người theo dõi của bạn mà không cần bên trung gian. Mastodon có thể triển khai trên cơ sở hạ tầng của riêng bạn, cho phép bạn theo dõi và được theo dõi từ bất kỳ máy chủ Mastodon nào khác và không nằm dưới sự kiểm soát của ai ngoài bạn.
+      feature_audience_title: Tạo cộng đồng của riêng bạn
+      feature_control: Bạn biết rõ nhất những gì bạn muốn xem trên bảng tin. Không có thuật toán hoặc quảng cáo để lãng phí thời gian của bạn. Theo dõi bất kỳ ai trên bất kỳ máy chủ Mastodon nào từ một tài khoản và nhận các tút của họ theo thứ tự thời gian — làm cho góc internet của bạn là của bạn.
+      feature_control_title: Kiểm soát bảng tin của bạn
+      feature_creativity: Mastodon hỗ trợ đăng âm thanh, video, hình ảnh, mô tả trợ năng, thăm dò ý kiến, cảnh báo nội dung, hình đại diện Gif, emoji tùy chỉnh, kiểm soát cắt hình thu nhỏ... để giúp bạn thể hiện cá tính. Cho dù bạn đang xuất bản tác phẩm nghệ thuật, âm nhạc hay podcast của mình, Mastodon luôn hợp cho bạn.
+      feature_creativity_title: Sáng tạo không giới hạn
+      feature_moderation: Mastodon giành quyền tự quyết về tay bạn. Mỗi máy chủ tạo ra các nội quy của riêng họ, được thực thi nội bộ chứ không phải từ trên xuống như dịch vụ mạng xã hội của Big Tech, giúp linh hoạt trong việc đáp ứng nhu cầu của các nhóm người dùng khác nhau. Tham gia một máy chủ với các quy tắc bạn đồng ý hoặc tự chạy máy chủ của riêng bạn.
+      feature_moderation_title: Kiểm duyệt đúng nghĩa
+      follow_action: Theo dõi
+      follow_step: Theo dõi những người thú vị trên Mastodon.
+      follow_title: Cá nhân hóa bảng tin của bạn
+      follows_subtitle: Theo dõi những người thú vị
+      follows_title: Gợi ý theo dõi
+      follows_view_more: Xem thêm những người khác
+      hashtags_recent_count:
+        other: "%{people} người dùng trong 2 ngày qua"
+      hashtags_subtitle: Khám phá xu hướng 2 ngày qua
+      hashtags_title: Hashtag xu hướng
+      hashtags_view_more: Xem thêm hashtag xu hướng
+      post_action: Soạn tút
+      post_step: Chào cộng đồng bằng lời nói, ảnh hoặc video.
+      post_title: Đăng tút đầu tiên
+      share_action: Chia sẻ
+      share_step: Hãy để bạn bè của bạn biết cách tìm thấy bạn trên Mastodon.
+      share_title: Chia sẻ hồ sơ Mastodon của bạn
+      sign_in_action: Đăng nhập
       subject: Chào mừng đến với Mastodon
       title: Xin chào %{name}!
   users:

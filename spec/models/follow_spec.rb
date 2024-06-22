@@ -36,16 +36,15 @@ RSpec.describe Follow do
     end
   end
 
-  describe 'recent' do
-    it 'sorts so that more recent follows comes earlier' do
-      follow0 = described_class.create!(account: alice, target_account: bob)
-      follow1 = described_class.create!(account: bob, target_account: alice)
+  describe '.recent' do
+    let!(:follow_earlier) { Fabricate(:follow) }
+    let!(:follow_later) { Fabricate(:follow) }
 
-      a = described_class.recent.to_a
+    it 'sorts with most recent follows first' do
+      results = described_class.recent
 
-      expect(a.size).to eq 2
-      expect(a[0]).to eq follow1
-      expect(a[1]).to eq follow0
+      expect(results.size).to eq 2
+      expect(results).to eq [follow_later, follow_earlier]
     end
   end
 

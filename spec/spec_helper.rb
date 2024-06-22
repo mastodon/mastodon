@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-unless ENV['DISABLE_SIMPLECOV'] == 'true'
-  require 'simplecov' # Configuration details loaded from .simplecov
-end
-
 RSpec.configure do |config|
   config.example_status_persistence_file_path = 'tmp/rspec/examples.txt'
   config.expect_with :rspec do |expectations|
@@ -23,6 +19,12 @@ RSpec.configure do |config|
   config.before :suite do
     Rails.application.load_seed
     Chewy.strategy(:bypass)
+
+    # NOTE: we switched registrations mode to closed by default, but the specs
+    # very heavily rely on having it enabled by default, as it relies on users
+    # being approved by default except in select cases where explicitly testing
+    # other registration modes
+    Setting.registrations_mode = 'open'
   end
 
   config.after :suite do

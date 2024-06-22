@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.configure do |config|
-  config.after(:each, type: :system) do
+  config.after(:each, :js, type: :system) do
     errors = page.driver.browser.logs.get(:browser)
     if errors.present?
       aggregate_failures 'javascript errrors' do

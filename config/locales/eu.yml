@@ -336,7 +336,7 @@ eu:
       not_permitted: Ez daukazu ekintza hau burutzeko baimenik
       overwrite: Gainidatzi
       shortcode: Laster-kodea
-      shortcode_hint: Gutxienez 2 karaktere, alfanumerikoak eta azpimarra  besterik ez
+      shortcode_hint: Gutxienez 2 karaktere, alfanumerikoak eta azpimarrak soilik
       title: Emoji pertsonalak
       uncategorized: Kategoriarik gabe
       unlist: Kendu zerrendatik
@@ -597,8 +597,11 @@ eu:
         silence_description_html: Kontua soilik honen jarraitzaile edo espresuki bilatzen dutenentzat izango da ikusgarri, kontuaren irisgarritasuna gogorki mugatzen delarik.
         suspend_description_html: Kontua bera eta honen edukiak eskuraezinak izango dira, eta azkenean, ezabatuak. Kontu honekin erlazionatzea ezinezkoa izango da. Prozesua 30 egunez itzulgarria izango da. Kontu honen aurkako txosten guztiak baztertuko lirateke.
       actions_description_html: Erabaki txosten hau konpontzeko ze ekintza hartu. Salatutako kontuaren aurka zigor ekintza bat hartzen baduzu, eposta jakinarazpen bat bidaliko zaie, <strong>Spam</strong> kategoria hautatzean ezik.
-      actions_description_remote_html: Txosten honi konponbidea aurkitzeko zein ekintza egin hautatu. Hau soilik <strong>zure</strong> zerbitzaria kontu honekin nola komunikatu eta bere edukia nola maneiatzeko da.
+      actions_description_remote_html: Hautatu txosten honi konponbidea aurkitzeko zein neurri hartu. Hau soilik <strong>zure</strong> zerbitzaria urruneko kontu honekin nola komunikatu eta bere edukia nola maneiatzeko da.
       add_to_report: Gehitu gehiago txostenera
+      already_suspended_badges:
+        local: Dagoeneko kanporatu da zerbitzari honetatik
+        remote: Dagoeneko kanporatu da bere zerbitzaritik
       are_you_sure: Ziur zaude?
       assign_to_self: Esleitu niri
       assigned: Esleitutako moderatzailea
@@ -750,6 +753,7 @@ eu:
         desc_html: Hori egiteko hCaptcha-ko scriptak behar dira, hirugarrenenak izanik, segurtasun eta pribatutasun arazoak ekarri ditzaketeenak. Horrez gain, <strong>script horiengatik nabarmen zailagoa egiten zaie pertsona batzuei izena ematea (batez ere desgaitasunen bat duenei)</strong>. Hori dela eta, hausnartu beste neurri batzuk hartu ditzakezun, esaterako onarpenean oinarritutako izen ematea, edo gonbidapenen bidezkoa.
         title: Eskatu erabiltzaile berriei CAPTCHA bat ebazteko beren kontua berresteko
       content_retention:
+        danger_zone: Eremu arriskutsua
         preamble: Kontrolatu erabiltzaileek sortutako edukia nola biltegiratzen den Mastodonen.
         title: Edukia atxikitzea
       default_noindex:
@@ -769,6 +773,7 @@ eu:
         disabled: Inori ez
         users: Saioa hasita duten erabiltzaile lokalei
       registrations:
+        moderation_recommandation: Mesedez, ziurtatu moderazio-talde egokia eta erreaktiboa duzula erregistroak guztiei ireki aurretik!
         preamble: Kontrolatu nork sortu dezakeen kontua zerbitzarian.
         title: Izen emateak
       registrations_mode:
@@ -776,6 +781,7 @@ eu:
           approved: Izena emateko onarpena behar da
           none: Ezin du inork izena eman
           open: Edonork eman dezake izena
+        warning_hint: "“Izena emateko onarpena behar da” erabiltzea gomendatzen dugu, baldin eta ez badakizu ziur zure moderazio-taldeak spama eta erregistro maltzurrak arrazoizko denboran erantzun ditzakeela."
       security:
         authorized_fetch: Eskatu autentifikazioa federatutako zerbitzarietatik
         authorized_fetch_hint: Zerbitzari federatuen autentifikazioa eskatzeak erabiltzaile-mailako zein zerbitzari-mailako blokeak zorrotzago betearaztea ahalbidetzen du. Hala ere, horrek errendimendu galera dakar, zure erantzunen irismena murrizten du eta baliteke federatutako zerbitzu batzuekin bateragarritasun-arazoak sortu ahal izatea. Horrez gain, horrek ez du eragotziko aktore dedikatuek zure mezu eta kontu publikoak eskuratzea.
@@ -946,7 +952,6 @@ eu:
       delete: Ezabatu
       edit_preset: Editatu abisu aurre-ezarpena
       empty: Ez duzu abisu aurrezarpenik definitu oraindik.
-      title: Kudeatu abisu aurre-ezarpenak
     webhooks:
       add_new: Gehitu amaiera-puntua
       delete: Ezabatu
@@ -968,6 +973,9 @@ eu:
       title: Webhook-ak
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Duela gutxi moderatzaile gutxi aritu direla eta, %{instance} instantziako izen-emateek eskuzko berrikuspena beharko dute automatikoki, %{instance} instantzia eragile okerren plataforma gisa erabili dadin ekiditeko. Izen-emate irekiak berriro gai ditzakezu nahi duzunean.
+      subject: "%{instance} instantziako izen-emateek onarpena beharko dute orain"
     new_appeal:
       actions:
         delete_statuses: bidalketak ezabatzea
@@ -1233,7 +1241,7 @@ eu:
     add_new: Gehitu berria
     errors:
       limit: Gehienezko traola kopurua erakutsi duzu jada
-    hint_html: "<strong>Zer dira nabarmendutako traolak?</strong> Zure profilean toki nabarmendu batean agertzen dira eta jendeari traola hau daukaten bidalketa publikoak arakatzea ahalbidetzen diote. Sormen lana edo epe luzerako proiektuak jarraitzeko primerakoak dira."
+    hint_html: "<strong>Zer dira nabarmendutako traolak?</strong> Zure profileko toki nabarmendu batean agertzen dira eta jendeari traola haue dituzten bidalketa publikoak arakatzea ahalbidetzen diote. Sormen-lanak edo epe luzerako proiektuak jarraitzeko primerakoak dira."
   filters:
     contexts:
       account: Profilak
@@ -1494,7 +1502,6 @@ eu:
     administration_emails: Administratzailearen posta elektroniko bidezko jakinarazpenak
     email_events: E-mail jakinarazpenentzako gertaerak
     email_events_hint: 'Hautatu jaso nahi dituzun gertaeren jakinarazpenak:'
-    other_settings: Bezte jakinarazpen konfigurazioak
   number:
     human:
       decimal_units:
@@ -1652,14 +1659,26 @@ eu:
     import: Inportazioa
     import_and_export: Inportatu eta esportatu
     migrate: Kontuaren migrazioa
-    notifications: Jakinarazpenak
+    notifications: Posta bidezko jakinarazpenak
     preferences: Hobespenak
     profile: Profila
     relationships: Jarraitutakoak eta jarraitzaileak
+    severed_relationships: Indartutako erlazioak
     statuses_cleanup: Bidalketak automatikoki ezabatzea
     strikes: Moderazio neurriak
     two_factor_authentication: Bi faktoreetako autentifikazioa
     webauthn_authentication: Segurtasun gakoak
+  severed_relationships:
+    download: Deskargatu (%{count})
+    event_type:
+      account_suspension: Kontua bertan behera uztea (%{target_name})
+      domain_block: Domeinua bertan behera uztea (%{target_name})
+      user_domain_block: "%{target_name} blokeatu duzu"
+    lost_followers: Galdutako jarraitzaileak
+    lost_follows: Jarraitzeari utzi diozun jendea
+    preamble: Jarraitzaileak gal ditzakezu, baita jendea jarraitzeari utzi domeinu bat blokeatzen duzunean edo moderatzaileek urruneko zerbitzari bat bertan behera uztea erabakitzen badute. Hau gertatzean, galdutako erlazioen zerrendak deskargatu ahalko dituzu, aztertzeko eta agian, beste zerbitzari batean inportatzeko.
+    purged: Zerbitzari honen informazioa kendu du zerbitzariko administratzaileak.
+    type: Gertaera
   statuses:
     attached:
       audio:
@@ -1697,14 +1716,12 @@ eu:
         other: "%{count} boto"
       vote: Bozkatu
     show_more: Erakutsi gehiago
-    show_newer: Erakutsi berriagoak
-    show_older: Erakutsi zaharragoak
     show_thread: Erakutsi haria
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Zuzena
-      private: Jarraitzaileak besterik ez
-      private_long: Erakutsi jarraitzaileei besterik ez
+      private: Jarraitzaileak soilik
+      private_long: Erakutsi jarraitzaileei soilik
       public: Publikoa
       public_long: Edonork ikusi dezake
       unlisted: Zerrendatu gabea
@@ -1755,6 +1772,7 @@ eu:
     contrast: Mastodon (Kontraste altua)
     default: Mastodon (Iluna)
     mastodon-light: Mastodon (Argia)
+    system: Automatikoa (erabili sistemaren gaia)
   time:
     formats:
       default: "%Y(e)ko %b %d, %H:%M"
@@ -1842,13 +1860,44 @@ eu:
         silence: Kontu murriztua
         suspend: Kontu kanporatua
     welcome:
-      edit_profile_action: Ezarri profila
-      edit_profile_step: Pertsonalizatu profila abatar bat igoz, zure pantaila-izena aldatuz eta gehiago. Jarraitzaile berriak onartu aurretik berrikusi nahi badituzu, kontuari giltzarrapoa jarri diezaiokezu.
+      apps_android_action: Eskuratu Google Play-en
+      apps_ios_action: Deskargatu App Store-n
+      apps_step: Deskargatu gure aplikazio ofizialak.
+      apps_title: Mastodon-en aplikazioak
+      checklist_subtitle: 'Murgil zaitez sare sozialen aro berri honetan:'
+      checklist_title: Ongietorrien kontrol-zerrenda
+      edit_profile_action: Pertsonalizatu
+      edit_profile_step: Handiagotu elkarreragina profil ulerkor bat sortuz.
+      edit_profile_title: Pertsonalizatu profila
       explanation: Hona hasteko aholku batzuk
-      final_action: Hasi bidalketak argitaratzen
-      final_step: 'Hasi argitaratzen! Jarraitzailerik ez baduzu ere zure bidalketa publikoak besteek ikusi ditzakete, esaterako denbora-lerro lokalean eta traoletan. Zure burua aurkeztu nahi baduzu #aurkezpenak traola erabili zenezake.'
-      full_handle: Zure erabiltzaile-izen osoa
-      full_handle_hint: Hau da lagunei esango zeniekeena beste zerbitzari batetik zu jarraitzeko edo zuri mezuak bidaltzeko.
+      feature_action: Informazio gehiago
+      feature_audience: Mastodon-ek hartzaileak kudeatzeko aukera paregabea eskaintzen dizu tartean inor egon gabe. Mastodon zeure azpiegituran inplementatua izanik, lineako beste edozein Mastodon zerbitzarko edonor jarrai dezakezu, baita edonork zeu jarraitu ere. Soilik zeure kontrolpean.
+      feature_audience_title: Bildu hartzaileak uste osoarekin
+      feature_control: Aski ondo dakizu zer ikusi nahi duzun hasierako jarioan. Denbora galarazten duten algoritmorik edo iragarkirik gabe. Jarraitu beste Mastodon zerbitzarietako edozein kontu bakarretik eta jaso bere argitalpenak ordena kronologikoan. Zure interneteko txokoa zu bezala izan dadila.
+      feature_control_title: Egon zure denbora-lerroaren kontrolpean
+      feature_creativity: Mastodon-ek audioa, bideoa edo irudia duen argitalpenak, erabilerraztasun-azalpenak, inkestak, edukiaren abisuak, abatar animatuak, emoji pertsonalizatuak, miniaturen mozketaren kontrola eta funtzio gehiago onartzen ditu, linean aditzera eman zaitezen laguntzeko. Artea, musika edo podcastak partekatzen badituzu, Mastodon hortxe duzu.
+      feature_creativity_title: Sormen paregabea
+      feature_moderation: Mastodon-ek erabakiak hartzeko ahalmena dakar bueltan. Zerbitzari bakoitzak bere arau eta murrizketa propioak sortzen ditu, lokalki indarrean jartzen dira eta ez orokorki korporazioen sare-sozialen gisa. Era honetara, jende talde ezberdinen mesedeak asetzeko malguago bilakatzen da. Batu bertako arauekin ados zauden zerbitzari batera edo ostatatu zeurea.
+      feature_moderation_title: Moderazioa behar lukeen bezalaxe
+      follow_action: Jarraitu
+      follow_step: Jende interesgarria jarraitzean datza Mastodon.
+      follow_title: Pertsonalizatu hasierako jarioa
+      follows_subtitle: Jarraitu kontu ospetsuak
+      follows_title: Nor jarraitu
+      follows_view_more: Ikusi jarrai dezakezun jende gehiago
+      hashtags_recent_count:
+        one: Pertson %{people} azken 2 egunetan
+        other: "%{people} pertson azken 2 egunetan"
+      hashtags_subtitle: Arakatu azken 2 egunetan pil-pilean dagoena
+      hashtags_title: Pil-pilean dauden traolak
+      hashtags_view_more: Ikusi pil-pilean dauden traol gehiago
+      post_action: Idatzi
+      post_step: Agurtu munduari testu, argazki, bideo zein inkesta batekin.
+      post_title: Idatzi zeure lehen argitalpena
+      share_action: Partekatu
+      share_step: Esaiezu lagunei nola aurki zaitzaketen Mastodon-en.
+      share_title: Partekatu Mastodon profila
+      sign_in_action: Hasi saioa
       subject: Ongi etorri Mastodon-era
       title: Ongi etorri, %{name}!
   users:
@@ -1861,7 +1910,7 @@ eu:
     signed_in_as: 'Saioa honela hasita:'
   verification:
     extra_instructions_html: <strong>Aholkua:</strong> webguneko esteka ikusezina izan daiteke. Muina <code>rel="me"</code> da, erabiltzaileak sortutako edukia duten webguneetan beste inor zure burutzat aurkeztea eragozten duena. <code>a</code> beharrean <code>esteka</code> motako etiketa bat ere erabil dezakezu orriaren goiburuan, baina HTMLak erabilgarri egon behar du JavaScript exekutatu gabe.
-    here_is_how: Hemen duzu nola
+    here_is_how: Argibidea
     hint_html: "<strong>Mastodonen nortasun-egiaztapena guztiontzat da.</strong> Web estandar irekietan oinarritua, orain eta betiko doan. Behar duzun guztia jendeak ezagutzen duen webgune pertsonal bat da. Mastodon profiletik webgune honetara estekatzen duzunean, webguneak Mastodon profilera estekatzen duela egiaztatuko dugu eta adierazle bat erakutsiko du."
     instructions_html: Kopiatu eta itsatsi ondoko kodea zure webguneko HTMLan. Ondoren, gehitu zure webgunearen helbidea zure profileko eremu gehigarrietako batean, "Editatu profila" fitxatik eta gorde aldaketak.
     verification: Egiaztaketa

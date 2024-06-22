@@ -32,21 +32,21 @@ lad:
       announcement:
         all_day: Kuando esta eskojido solo se amostraran las datas del rango de tiempo
         ends_at: Opsyonal. El pregon dezaparesera otomatikamente en este momento
-        scheduled_at: Deshar en blanko para publikar el pregon pishin
+        scheduled_at: Desha en blanko para publikar el pregon pishin
         starts_at: Opsyonal. En caso de ke tu pregon este atado a un intervalo de tiempo espesifiko
         text: Puedes kulanear la sintaksa de publikasyones. Por favor nota el espasyo ke okupara el pregon en el ekran del utilizador
       appeal:
         text: Solo puedes apelar un amonestamiento una vez
       defaults:
         autofollow: Los utilizadores ke se enrejistren por la envitasyon te segiran otomatikamente
-        avatar: PNG, GIF o JPG. Maksimo %{size}. Sera eskalado a %{dimensions}px
+        avatar: WEBP, PNG, GIF o JPG. Maksimo %{size}. Sera eskalado a %{dimensions}px
         bot: Indika ke este kuento egzekuta prinsipalmente aksyones otomatizadas i podria no ser monitorizada
         context: Uno o multiples kontekstos en los ke deve aplikarse el filtro
         current_password: Por razones de sigurita por favor ingresa el kod del kuento aktual
         current_username: Para konfirmar, por favor ingresa el nombre de utilizador del kuento aktual
         digest: Solo embiado dempues de un eluengo periodo de inaktivita i solo si tienes recibido mesajes personales durante tu ausensya
         email: Se te embiara konfirmasyon por posta elektronika
-        header: PNG, GIF o JPG. Maksimo %{size}. Sera eskalado a %{dimensions}px
+        header: WEBP, PNG, GIF o JPG. Maksimo %{size}. Sera eskalado a %{dimensions}px
         inbox_url: Kopia el URL de la pajina prinsipala del relevo ke keres utilizar
         irreversible: Las publikasyones filtradas dezapareseran irreversivlemente, inkluzo si este filtro es supremido mas adelante
         locale: La lingua de la enterfaz de utilizador, posta i avizos arrepushados
@@ -77,13 +77,10 @@ lad:
           warn: Eskonde el kontenido filtrado detras de una avertensya enmentando el titolo del filtro
       form_admin_settings:
         activity_api_enabled: Numero de publikasyones publikadas lokalmente, utilizadores activos i enrejistrasyones muevas kada semana
-        backups_retention_period: Manten las dosyas de utilizador djeneradas durante el numero de diyas espesifikado.
         bootstrap_timeline_accounts: Estos kuentos apareseran en la parte superior de las rekomendasiones de los muevos utilizadores.
         closed_registrations_message: Amostrado kuando las enrejistrasyones estan serrados
-        content_cache_retention_period: Las publikasyones de otros sirvidores se supremiran dempues del numero espesifikado de diyas kuando se establezka una valuta pozitiva. Esto puede ser irreversivle.
         custom_css: Puedes aplikar estilos personalizados a la version web de Mastodon.
         mascot: Reemplaza la ilustrasyon en la enterfaz web avanzada.
-        media_cache_retention_period: Las dosyas de multimedia abashadas se supremiran dempues del numero espesifikado de diyas kuando se establezka una valuta pozitiva, i se reabasharan basho demanda.
         peers_api_enabled: Una lista de nombres de domeno ke este sirvidor tiene topado en el Fediverso. Aki no se inkluye dingun dato sovre si federas kon un sirvidor determinado, solo ke tu sirvidor lo konese. Esto es utilizado por los servisyos ke rekopilan estatistikas sovre la federasyon en un senso djeneral.
         profile_directory: El katalogo de profiles lista a todos los utilizadores ke tienen optado por ke sus kuento pueda ser deskuvierto.
         require_invite_text: Kuando las enrejistrasyones rekieren achetasyon manuala, faze obligatoria la entrada de teksto "Por ke keres unirte?" en lugar de ser opsyonal
@@ -116,6 +113,7 @@ lad:
           sign_up_requires_approval: Muevas enrejistrasyones rekeriran tu achetasyon
         severity: Eskoje lo ke pasara kon las petisyones dizde este IP
       rule:
+        hint: Opsyonal. Adjusta mas detalyos sovre la regla
         text: Deskrive una norma o rekerensya para los utilizadores de este sirvidor. Aprova fazerla kurta i kolay
       sessions:
         otp: 'Introduse el kodiche de autentifikasyon de dos pasos djenerado por tu aplikasyon de telefon o uza uno de tus kodiches de recuperasyon:'
@@ -242,7 +240,6 @@ lad:
         backups_retention_period: Periodo de retensyon de la dosya de utilizador
         bootstrap_timeline_accounts: Rekomenda siempre estos kuentos a muevos utilizadores
         closed_registrations_message: Mesaj personalizado kuando las enrejistrasyones no estan desponivles
-        content_cache_retention_period: Periodo de retensyon de kashe de kontenido
         custom_css: CSS personalizado
         mascot: Maskota personalizada (legado)
         media_cache_retention_period: Periodo de retensyon de kashe multimedia
@@ -299,6 +296,7 @@ lad:
           patch: Avizame de aktualizasyones de yerros
         trending_tag: Un muevo trend nesesita revizyon
       rule:
+        hint: Enformasyon adisyonala
         text: Regla
       settings:
         indexable: Inkluye la pajina de profil en los bushkadores

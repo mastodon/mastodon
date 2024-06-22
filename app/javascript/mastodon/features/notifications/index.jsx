@@ -17,6 +17,7 @@ import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?
 import { compareId } from 'mastodon/compare_id';
 import { Icon }  from 'mastodon/components/icon';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { submitMarkers } from '../../actions/markers';
@@ -33,6 +34,7 @@ import ColumnHeader from '../../components/column_header';
 import { LoadGap } from '../../components/load_gap';
 import ScrollableList from '../../components/scrollable_list';
 
+import { FilteredNotificationsBanner } from './components/filtered_notifications_banner';
 import NotificationsPermissionBanner from './components/notifications_permission_banner';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import FilterBarContainer from './containers/filter_bar_container';
@@ -65,7 +67,6 @@ const getNotifications = createSelector([
 });
 
 const mapStateToProps = state => ({
-  showFilterBar: state.getIn(['settings', 'notifications', 'quickFilter', 'show']),
   notifications: getNotifications(state),
   isLoading: state.getIn(['notifications', 'isLoading'], 0) > 0,
   isUnread: state.getIn(['notifications', 'unread']) > 0 || state.getIn(['notifications', 'pendingItems']).size > 0,
@@ -77,15 +78,10 @@ const mapStateToProps = state => ({
 });
 
 class Notifications extends PureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     columnId: PropTypes.string,
     notifications: ImmutablePropTypes.list.isRequired,
-    showFilterBar: PropTypes.bool.isRequired,
     dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     isLoading: PropTypes.bool,
@@ -188,14 +184,14 @@ class Notifications extends PureComponent {
   };
 
   render () {
-    const { intl, notifications, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, showFilterBar, lastReadId, canMarkAsRead, needsNotificationPermission } = this.props;
+    const { intl, notifications, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, lastReadId, canMarkAsRead, needsNotificationPermission } = this.props;
     const pinned = !!columnId;
     const emptyMessage = <FormattedMessage id='empty_column.notifications' defaultMessage="You don't have any notifications yet. When other people interact with you, you will see it here." />;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     let scrollableContent = null;
 
-    const filterBarContainer = (signedIn && showFilterBar)
+    const filterBarContainer = signedIn
       ? (<FilterBarContainer />)
       : null;
 
@@ -285,6 +281,9 @@ class Notifications extends PureComponent {
         </ColumnHeader>
 
         {filterBarContainer}
+
+        <FilteredNotificationsBanner />
+
         {scrollContainer}
 
         <Helmet>
@@ -297,4 +296,4 @@ class Notifications extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(Notifications));
+export default connect(mapStateToProps)(withIdentity(injectIntl(Notifications)));
