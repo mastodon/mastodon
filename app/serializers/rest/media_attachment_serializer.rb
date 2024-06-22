@@ -3,6 +3,8 @@
 class REST::MediaAttachmentSerializer < ActiveModel::Serializer
   include RoutingHelper
 
+  # Please update `app/javascript/mastodon/api_types/media_attachments.ts` when making changes to the attributes
+
   attributes :id, :type, :url, :preview_url,
              :remote_url, :preview_remote_url, :text_url, :meta,
              :description, :blurhash

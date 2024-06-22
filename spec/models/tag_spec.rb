@@ -22,7 +22,7 @@ RSpec.describe Tag do
   end
 
   describe 'HASHTAG_RE' do
-    subject { Tag::HASHTAG_RE }
+    subject { described_class::HASHTAG_RE }
 
     it 'does not match URLs with anchors with non-hashtag characters' do
       expect(subject.match('Check this out https://medium.com/@alice/some-article#.abcdef123')).to be_nil
@@ -34,6 +34,10 @@ RSpec.describe Tag do
 
     it 'does not match URLs with hashtag-like anchors after a numeral' do
       expect(subject.match('https://gcc.gnu.org/bugzilla/show_bug.cgi?id=111895#c4')).to be_nil
+    end
+
+    it 'does not match URLs with hashtag-like anchors after a non-ascii character' do
+      expect(subject.match('https://example.org/testé#foo')).to be_nil
     end
 
     it 'does not match URLs with hashtag-like anchors after an empty query parameter' do
@@ -139,6 +143,25 @@ RSpec.describe Tag do
 
       tag = Fabricate(:tag, name: HashtagNormalizer.new.normalize(downcase_string))
       expect(described_class.find_normalized(upcase_string)).to eq tag
+    end
+  end
+
+  describe '.not_featured_by' do
+    let!(:account) { Fabricate(:account) }
+    let!(:fun) { Fabricate(:tag, name: 'fun') }
+    let!(:games) { Fabricate(:tag, name: 'games') }
+
+    before do
+      Fabricate :featured_tag, account: account, name: 'games'
+      Fabricate :featured_tag, name: 'fun'
+    end
+
+    it 'returns tags not featured by the account' do
+      results = described_class.not_featured_by(account)
+
+      expect(results)
+        .to include(fun)
+        .and not_include(games)
     end
   end
 

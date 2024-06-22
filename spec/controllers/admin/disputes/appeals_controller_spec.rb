@@ -35,7 +35,7 @@ RSpec.describe Admin::Disputes::AppealsController do
     let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
     it 'redirects back to the strike page and notifies target account about approved appeal', :sidekiq_inline do
-      subject
+      emails = capture_emails { subject }
 
       expect(response)
         .to redirect_to(disputes_strike_path(appeal.strike))
@@ -43,9 +43,13 @@ RSpec.describe Admin::Disputes::AppealsController do
       expect(target_account.reload)
         .to_not be_suspended
 
-      expect(UserMailer.deliveries.size).to eq(1)
-      expect(UserMailer.deliveries.first.to.first).to eq(target_account.user.email)
-      expect(UserMailer.deliveries.first.subject).to eq(I18n.t('user_mailer.appeal_approved.subject', date: I18n.l(appeal.created_at)))
+      expect(emails.size)
+        .to eq(1)
+      expect(emails.first)
+        .to have_attributes(
+          to: contain_exactly(target_account.user.email),
+          subject: eq(I18n.t('user_mailer.appeal_approved.subject', date: I18n.l(appeal.created_at)))
+        )
     end
   end
 
@@ -55,14 +59,19 @@ RSpec.describe Admin::Disputes::AppealsController do
     let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
     it 'redirects back to the strike page and notifies target account about rejected appeal', :sidekiq_inline do
-      subject
+      emails = capture_emails { subject }
 
       expect(response)
         .to redirect_to(disputes_strike_path(appeal.strike))
 
-      expect(UserMailer.deliveries.size).to eq(1)
-      expect(UserMailer.deliveries.first.to.first).to eq(target_account.user.email)
-      expect(UserMailer.deliveries.first.subject).to eq(I18n.t('user_mailer.appeal_rejected.subject', date: I18n.l(appeal.created_at)))
+      expect(emails.size)
+        .to eq(1)
+
+      expect(emails.first)
+        .to have_attributes(
+          to: contain_exactly(target_account.user.email),
+          subject: eq(I18n.t('user_mailer.appeal_rejected.subject', date: I18n.l(appeal.created_at)))
+        )
     end
   end
 end

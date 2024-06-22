@@ -42,6 +42,7 @@ Rails.application.configure do
     :hu,
     :hy,
     :id,
+    :ie,
     :ig,
     :io,
     :is,

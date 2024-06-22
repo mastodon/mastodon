@@ -31,7 +31,7 @@ es:
       created_msg: "¡Nota de moderación creada con éxito!"
       destroyed_msg: "¡Nota de moderación destruida con éxito!"
     accounts:
-      add_email_domain_block: Poner en lista negra el dominio del correo
+      add_email_domain_block: Bloquear el dominio del correo
       approve: Aprobar
       approved_msg: La solicitud de registro de %{username} ha sido aprobada correctamente
       are_you_sure: "¿Estás seguro?"
@@ -214,12 +214,12 @@ es:
         resend_user: Reenviar Correo de Confirmación
         reset_password_user: Restablecer Contraseña
         resolve_report: Resolver Reporte
-        sensitive_account: Marcar multimedia en tu cuenta como sensible
+        sensitive_account: Marcar cuenta como sensible
         silence_account: Silenciar Cuenta
         suspend_account: Suspender Cuenta
         unassigned_report: Desasignar Reporte
         unblock_email_account: Desbloquear dirección de correo
-        unsensitive_account: Desmarcar multimedia en tu cuenta como sensible
+        unsensitive_account: Desmarcar cuenta como sensible
         unsilence_account: Dejar de Silenciar Cuenta
         unsuspend_account: Dejar de Suspender Cuenta
         update_announcement: Actualizar Anuncio
@@ -285,6 +285,7 @@ es:
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
         update_ip_block_html: "%{name} cambió la regla para la IP %{target}"
+        update_report_html: "%{name} actualizó el informe %{target}"
         update_status_html: "%{name} actualizó la publicación de %{target}"
         update_user_role_html: "%{name} cambió el rol %{target}"
       deleted_account: cuenta eliminada
@@ -292,6 +293,7 @@ es:
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuario
       title: Log de auditoría
+      unavailable_instance: "(nombre de dominio no disponible)"
     announcements:
       destroyed_msg: "¡Anuncio eliminado con éxito!"
       edit:
@@ -597,6 +599,9 @@ es:
       actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide qué medidas tomar para resolver este informe. Esto solo afectará a la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y gestiona su contenido.
       add_to_report: Añadir más al reporte
+      already_suspended_badges:
+        local: Ya suspendido en este servidor
+        remote: Ya suspendido en su servidor
       are_you_sure: "¿Estás seguro?"
       assign_to_self: Asignármela a mí
       assigned: Moderador asignado
@@ -748,6 +753,7 @@ es:
         desc_html: Esto se basa en scripts externos de hCaptcha, que pueden suponer una preocupación de seguridad y privacidad. Además, <strong>esto puede volver el proceso de registro significativamente menos accesible para algunas personas (especialmente con discapacidades)</strong>. Por estas razones, por favor, considera medidas alternativas como el registro por aprobación manual o con invitación.
         title: Solicita a los nuevos usuarios que resuelvan un CAPTCHA para confirmar su cuenta
       content_retention:
+        danger_zone: Zona peligrosa
         preamble: Controlar cómo el contenido generado por el usuario se almacena en Mastodon.
         title: Retención de contenido
       default_noindex:
@@ -767,6 +773,7 @@ es:
         disabled: A nadie
         users: Para los usuarios locales que han iniciado sesión
       registrations:
+        moderation_recommandation: Por favor, ¡asegúrate de tener un equipo de moderación adecuado y reactivo antes de abrir los registros a todo el mundo!
         preamble: Controla quién puede crear una cuenta en tu servidor.
         title: Registros
       registrations_mode:
@@ -774,6 +781,7 @@ es:
           approved: Se requiere aprobación para registrarse
           none: Nadie puede registrarse
           open: Cualquiera puede registrarse
+        warning_hint: Recomendamos el uso de “Se requiere aprobación para registrarse” a menos que estés seguro de que tu equipo de moderación puede manejar el spam y los registros maliciosos en un tiempo razonable.
       security:
         authorized_fetch: Requerir autenticación de servidores federados
         authorized_fetch_hint: Requerir autenticación de servidores federados permite un cumplimiento más estricto tanto de los bloqueos a nivel de usuario como a nivel de servidor. Sin embargo, esto se produce a costa de una penalización en el rendimiento, reduce el alcance de tus respuestas y puede introducir problemas de compatibilidad con algunos servicios federados. Además, esto no impedirá que actores dedicados obtengan tus cuentas y publicaciones públicas.
@@ -944,7 +952,7 @@ es:
       delete: Borrar
       edit_preset: Editar aviso predeterminado
       empty: Aún no has definido ningún preajuste de advertencia.
-      title: Editar configuración predeterminada de avisos
+      title: Preajustes de advertencia
     webhooks:
       add_new: Añadir endpoint
       delete: Eliminar
@@ -966,6 +974,9 @@ es:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Debido a la falta de moderadores activos, los registros en %{instance} han sido cambiados automáticamente para requerir revisión manual, para evitar que %{instance} se utilice potencialmente como plataforma por malos actores. Puedes volver a cambiarlo para abrir los registros en cualquier momento.
+      subject: Se ha cambiado automáticamente el registro de %{instance} para requerir aprobación
     new_appeal:
       actions:
         delete_statuses: para eliminar sus mensajes
@@ -1490,7 +1501,6 @@ es:
     administration_emails: Notificaciones de administración por correo electrónico
     email_events: Eventos para notificaciones por correo electrónico
     email_events_hint: 'Selecciona los eventos para los que deseas recibir notificaciones:'
-    other_settings: Otros ajustes de notificaciones
   number:
     human:
       decimal_units:
@@ -1648,14 +1658,26 @@ es:
     import: Importar
     import_and_export: Importar y exportar
     migrate: Migración de cuenta
-    notifications: Notificaciones
+    notifications: Notificaciones por correo electrónico
     preferences: Preferencias
     profile: Perfil
     relationships: Siguiendo y seguidores
+    severed_relationships: Relaciones cortadas
     statuses_cleanup: Eliminación automática de publicaciones
     strikes: Amonestaciones de moderación
     two_factor_authentication: Autenticación de dos factores
     webauthn_authentication: Claves de seguridad
+  severed_relationships:
+    download: Descargar (%{count})
+    event_type:
+      account_suspension: Suspensión de cuenta (%{target_name})
+      domain_block: Suspensión del servidor (%{target_name})
+      user_domain_block: Bloqueaste %{target_name}
+    lost_followers: Seguidores perdidos
+    lost_follows: Cuentas seguidas perdidas
+    preamble: Puedes perder cuentas seguidas y seguidores cuando bloqueas un dominio o cuando tus moderadores deciden suspender un servidor remoto. Cuando esto suceda, podrás descargar listas de relaciones cortadas, para ser inspeccionadas y posiblemente importadas en otro servidor.
+    purged: La información sobre este servidor ha sido purgada por los administradores de tu servidor.
+    type: Suceso
   statuses:
     attached:
       audio:
@@ -1693,17 +1715,15 @@ es:
         other: "%{count} votos"
       vote: Vota
     show_more: Mostrar más
-    show_newer: Mostrar más recientes
-    show_older: Mostrar más antiguos
     show_thread: Mostrar discusión
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Directa
       private: Sólo mostrar a seguidores
       private_long: Solo mostrar a tus seguidores
-      public: Público
+      public: Pública
       public_long: Todos pueden ver
-      unlisted: Público, pero no mostrar en la historia federada
+      unlisted: Pública, pero no mostrar en la historia federada
       unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo públicas
   statuses_cleanup:
     enabled: Borrar automáticamente publicaciones antiguas
@@ -1751,6 +1771,7 @@ es:
     contrast: Alto contraste
     default: Mastodon
     mastodon-light: Mastodon (claro)
+    system: Automático (usar tema del sistema)
   time:
     formats:
       default: "%d de %b del %Y, %H:%M"
@@ -1838,13 +1859,44 @@ es:
         silence: Cuenta limitada
         suspend: Cuenta suspendida
     welcome:
-      edit_profile_action: Configurar el perfil
-      edit_profile_step: Puedes personalizar tu perfil subiendo una foto de perfil, cambiando tu nombre de usuario y mucho más. Puedes optar por revisar a los nuevos seguidores antes de que puedan seguirte.
+      apps_android_action: Consíguela en Google Play
+      apps_ios_action: Descargar en la App Store
+      apps_step: Descarga nuestras aplicaciones oficiales.
+      apps_title: Aplicaciones para Mastodon
+      checklist_subtitle: 'Vamos a empezar en esta nueva frontera social:'
+      checklist_title: Lista de bienvenida
+      edit_profile_action: Personalizar
+      edit_profile_step: Aumenta tus interacciones completando tu perfil.
+      edit_profile_title: Personaliza tu perfil
       explanation: Aquí hay algunos consejos para empezar
-      final_action: Empezar a publicar
-      final_step: "¡Empieza a publicar! Incluso sin seguidores, tus publicaciones públicas pueden ser vistas por otros, por ejemplo en la línea de tiempo local o en etiquetas. Tal vez quieras presentarte con la etiqueta de #introducciones."
-      full_handle: Su sobrenombre completo
-      full_handle_hint: Esto es lo que le dirías a tus amigos para que ellos puedan enviarte mensajes o seguirte desde otra instancia.
+      feature_action: Saber más
+      feature_audience: Mastodon te ofrece una posibilidad única de gestionar tu audiencia sin intermediarios. Mastodon desplegado en tu propia infraestructura te permite seguir y ser seguido desde cualquier otro servidor Mastodon en línea y no está bajo el control de ningún tercero.
+      feature_audience_title: Construye tu audiencia con confianza
+      feature_control: Tú sabes lo que quieres ver en tu página principal. Nada de algoritmos y publicidad para desperdiciar tu tiempo. Sigue a quien quieras a través de cualquier servidor de Mastodon y recibe sus publicaciones en orden cronológico. Haz tu rincón de internet un poco más como tú.
+      feature_control_title: Mantente en control de tu línea de tiempo
+      feature_creativity: Mastodon soporta mensajes de audio, vídeo e imágenes, descripciones de accesibilidad, encuestas, advertencias de contenido, avatares animados, emojis personalizados, recortes de miniatura, y más, para ayudarte a expresarte en línea. Ya sea publicando tu arte, tu música o tu podcast, Mastodon está ahí para ti.
+      feature_creativity_title: Creatividad inigualable
+      feature_moderation: Mastodon vuelve a poner la toma de decisiones en tus manos. Cada servidor crea sus propias reglas y reglamentos, que se aplican localmente y no globalmente como en redes sociales corporativas, lo que resulta en la mayor flexibilidad para responder a las necesidades de diferentes grupos de personas. Únete a un servidor con las reglas con las que esté sde acuerdo, o aloja el tuyo propio.
+      feature_moderation_title: La moderación como debería ser
+      follow_action: Seguir
+      follow_step: Seguir a personas interesantes es de lo que trata Mastodon.
+      follow_title: Personaliza tu línea de inicio
+      follows_subtitle: Seguir cuentas conocidas
+      follows_title: A quién seguir
+      follows_view_more: Ver más personas para seguir
+      hashtags_recent_count:
+        one: "%{people} persona en los últimos 2 días"
+        other: "%{people} personas en los últimos 2 días"
+      hashtags_subtitle: Explora las tendencias de los últimos 2 días
+      hashtags_title: Etiquetas en tendencia
+      hashtags_view_more: Ver más etiquetas en tendencia
+      post_action: Redactar
+      post_step: Di hola al mundo con texto, fotos, vídeos o encuestas.
+      post_title: Escribe tu primera publicación
+      share_action: Compartir
+      share_step: Dile a tus amigos cómo encontrarte en Mastodon.
+      share_title: Comparte tu perfil de Mastodon
+      sign_in_action: Regístrate
       subject: Bienvenido a Mastodon
       title: Te damos la bienvenida a bordo, %{name}!
   users:

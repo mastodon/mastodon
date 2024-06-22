@@ -613,9 +613,10 @@ code {
       font-family: inherit;
       pointer-events: none;
       cursor: default;
-      max-width: 140px;
+      max-width: 50%;
       white-space: nowrap;
       overflow: hidden;
+      text-overflow: ellipsis;
 
       &::after {
         content: '';
@@ -1078,6 +1079,7 @@ code {
 
       &__type {
         color: $darker-text-color;
+        word-break: break-word;
       }
     }
 
@@ -1310,6 +1312,12 @@ code {
       strong {
         color: $primary-text-color;
         font-weight: 600;
+      }
+
+      .hint {
+        display: block;
+        font-size: 14px;
+        color: $darker-text-color;
       }
 
       .recommended {

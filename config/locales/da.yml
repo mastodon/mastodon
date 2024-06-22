@@ -285,6 +285,7 @@ da:
         update_custom_emoji_html: "%{name} opdaterede emoji %{target}"
         update_domain_block_html: "%{name} opdaterede domæneblokeringen for %{target}"
         update_ip_block_html: "%{name} ændrede reglen for IP'en %{target}"
+        update_report_html: "%{name} opdaterede rapporten %{target}"
         update_status_html: "%{name} opdaterede indlægget fra %{target}"
         update_user_role_html: "%{name} ændrede %{target}-rolle"
       deleted_account: slettet konto
@@ -292,6 +293,7 @@ da:
       filter_by_action: Filtrér efter handling
       filter_by_user: Filtrér efter bruger
       title: Revisionslog
+      unavailable_instance: "(domænenavn utilgængeligt)"
     announcements:
       destroyed_msg: Bekendtgørelsen er slettet!
       edit:
@@ -500,7 +502,7 @@ da:
         instance_accounts_dimension: Mest fulgte konti
         instance_accounts_measure: gemte konti
         instance_followers_measure: vores følgere dér
-        instance_follows_measure: deres følgere dér
+        instance_follows_measure: deres følgere her
         instance_languages_dimension: Topsprog
         instance_media_attachments_measure: gemte medievedhæftninger
         instance_reports_measure: anmeldelser af dem
@@ -597,6 +599,9 @@ da:
       actions_description_html: Afgør, hvilke foranstaltning, der skal træffes for at løse denne anmeldelse. Træffes en straffende foranstaltning mod den anmeldte konto, fremsendes en e-mailnotifikation, undtagen når kategorien <strong>Spam</strong> er valgt.
       actions_description_remote_html: Fastslå en nødvendig handling mhp. at løse denne anmeldelse. Dette vil kun påvirke <strong>din</strong> servers kommunikation med, og indholdshåndtering for, fjernkontoen.
       add_to_report: Føj mere til anmeldelse
+      already_suspended_badges:
+        local: Allerede suspenderet på denne server
+        remote: Allerede suspenderet på vedkommendes server
       are_you_sure: Sikker?
       assign_to_self: Tildel til mig
       assigned: Tildelt moderator
@@ -748,6 +753,7 @@ da:
         desc_html: Dette er afhængig af eksterne scripts fra hCaptcha, som kan være en sikkerhed og privatlivets fred. Derudover kan <strong>dette gøre registreringsprocessen betydeligt mindre tilgængelig for nogle (især deaktiveret) personer</strong>. Af disse grunde bedes De overveje alternative foranstaltninger såsom godkendelsesbaseret eller inviteret til at blive registreret.
         title: Kræv nye brugere for at løse en CAPTCHA for at bekræfte deres konto
       content_retention:
+        danger_zone: Farezone
         preamble: Styr, hvordan Mastodon gemmer brugergenereret indhold.
         title: Indholdsopbevaring
       default_noindex:
@@ -767,6 +773,7 @@ da:
         disabled: Til ingen
         users: Til indloggede lokale brugere
       registrations:
+        moderation_recommandation: Sørg for, at der er et tilstrækkeligt og reaktivt moderationsteam, før registrering åbnes for alle!
         preamble: Styr, hvem der kan oprette en konto på serveren.
         title: Registreringer
       registrations_mode:
@@ -774,6 +781,7 @@ da:
           approved: Tilmeldingsgodkendelse kræves
           none: Ingen kan tilmelde sig
           open: Alle kan tilmelde sig
+        warning_hint: Brug af "Godkendelse kræves ved tilmelding" anbefales, medmindre man er sikker på, at moderationsteamet kan håndtere spam og ondsindede registreringer i tide.
       security:
         authorized_fetch: Kræver godkendelse fra fødererede servere
         authorized_fetch_hint: Krav om godkendelse fra fødererede servere muliggør strengere håndhævelse af både bruger- og serverniveaublokeringer. Omkostningen er dog en ydelsesreduktion, reduceret udstrækning af dine svar samt potentielle kompatibilitetsproblemer med visse fødererede tjenester. Derudover vil dette ikke hindre målrettede aktører i at hente dine offentlige indlæg og konti.
@@ -944,7 +952,7 @@ da:
       delete: Slet
       edit_preset: Redigér advarselsforvalg
       empty: Ingen advarselsforvalg defineret endnu.
-      title: Håndtérr advarselsforvalg
+      title: Præindstillinger for advarsel
     webhooks:
       add_new: Tilføj endepunkt
       delete: Slet
@@ -966,6 +974,9 @@ da:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Grundet manglende nylig moderatoraktivitet er registreringsproceduren på %{instance} automatisk ændret til at kræve manuel gennemgang for at forhindre, at %{instance} bruges som platform for potentielle dårlige aktører. Proceduren kan til enhver tid ændre igen til åbne registreringer.
+      subject: Registreringsproceduren for %{instance} er automatisk ændret til at kræve godkendelse
     new_appeal:
       actions:
         delete_statuses: for sletning af vedkommendes indlæg
@@ -1440,7 +1451,7 @@ da:
       before: 'Inder der fortsættes, læs venligst disse notater omhyggeligt:'
       cooldown: Efter flytningen er der en venteperiode, hvor kontoen ikke kan flyttes igen
       disabled_account: Efterfølgende er din nuværende konto ikke fuldt funktionsdygtig, der er dog adgang til dataeksport samt genaktivering.
-      followers: Denne handling vil flytte alle følgere fra den aktuelle konto til den nye ditto
+      followers: Denne handling vil flytte alle følgere fra den aktuelle konto til den nye konto
       only_redirect_html: Alternativt kan du <a href="%{path}">oprette en omdirigering for din profil alene</a>.
       other_data: Ingen øvrige data flyttes automatisk
       redirect: Din nuværende kontoprofil opdateres med en omdirigeringsnotits og ekskluderes fra søgninger
@@ -1490,7 +1501,6 @@ da:
     administration_emails: Admin e-mailnotifikationer
     email_events: Begivenheder for e-mailnotifikationer
     email_events_hint: 'Vælg begivenheder, for hvilke notifikationer skal modtages:'
-    other_settings: Andre notifikationsindstillinger
   number:
     human:
       decimal_units:
@@ -1648,14 +1658,26 @@ da:
     import: Import
     import_and_export: Import og eksport
     migrate: Kontomigrering
-    notifications: Notifikationer
+    notifications: E-mailnotifikationer
     preferences: Præferencer
     profile: Offentlig profil
     relationships: Følger og følgere
+    severed_relationships: Afbrudte forhold
     statuses_cleanup: Auto-indlægssletning
     strikes: Moderationsadvarsler
     two_factor_authentication: Tofaktorgodkendelse
     webauthn_authentication: Sikkerhedsnøgler
+  severed_relationships:
+    download: Download (%{count})
+    event_type:
+      account_suspension: Kontosuspendering (%{target_name})
+      domain_block: Serversuspendering (%{target_name})
+      user_domain_block: "%{target_name} blev blokeret"
+    lost_followers: Tabte følgere
+    lost_follows: Mistet følger
+    preamble: Der kan mistes fulgte objekter og følgere, når et domæne blokeres eller moderatorerne beslutter at suspendere en ekstern server. Når det sker, kan der downloades lister over afbrudte relationer til inspektion og mulig import på anden server.
+    purged: Oplysninger om denne server er blevet renset af serveradministratoreren.
+    type: Begivenhed
   statuses:
     attached:
       audio:
@@ -1693,8 +1715,6 @@ da:
         other: "%{count} stemmer"
       vote: Stem
     show_more: Vis flere
-    show_newer: Vis nyere
-    show_older: Vis ældre
     show_thread: Vis tråd
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1751,6 +1771,7 @@ da:
     contrast: Mastodon (høj kontrast)
     default: Mastodont (mørkt)
     mastodon-light: Mastodon (lyst)
+    system: Automatisk (benyt systemtema)
   time:
     formats:
       default: "%d. %b %Y, %H:%M"
@@ -1838,13 +1859,44 @@ da:
         silence: Konto begrænset
         suspend: Konto suspenderet
     welcome:
-      edit_profile_action: Opsæt profil
-      edit_profile_step: Man kan tilpasse sin profil ved at uploade profilfoto, overskrift, ændre visningsnavn mv. Ønskes nye følgere vurderet, før de må følge dig, kan kontoen låses.
+      apps_android_action: Hent den fra Google Play
+      apps_ios_action: Download i App Store
+      apps_step: Download vores officielle apps.
+      apps_title: Mastodon apps
+      checklist_subtitle: 'Kom i gang på denne nye sociale frontløber:'
+      checklist_title: Velkomsttjekliste
+      edit_profile_action: Personliggør
+      edit_profile_step: Andre er mere tilbøjelige til at interagere med brugere med udfyldte profiler.
+      edit_profile_title: Personliggør din profil
       explanation: Her er nogle råd for at få dig i gang
-      final_action: Begynd at poste
-      final_step: 'Begynd at poste! Selv uden følgere vil offentlige indlæg kunne ses af andre f.eks. på den lokale tidslinje og i hashtags. Man kan introducere sig selv via hastagget #introductions.'
-      full_handle: Dit fulde brugernavn
-      full_handle_hint: Dette er, hvad du oplyser til dine venner, så de kan sende dig beskeder eller følge dig fra andre servere.
+      feature_action: Læs mere
+      feature_audience: Mastodon giver brugeren en unik mulighed for at styre sit publikum uden mellemled. Mastodon udrullet på egen infrastruktur giver mulighed for at følge og blive fulgt fra enhver anden Mastodon-server online, kontrolleret/styret alene af brugen selv.
+      feature_audience_title: Opbyg et publikum i tillid
+      feature_control: Man ved selv bedst, hvad man ønsker at se på sit hjemmefeed. Ingen algoritmer eller annoncer til at spilde tiden. Følg alle på tværs af enhver Mastodon-server fra en enkelt konto og modtag deres indlæg i kronologisk rækkefølge, og gør dette hjørne af internet lidt mere personligt.
+      feature_control_title: Hold styr på egen tidslinje
+      feature_creativity: Mastodon understøtter indlæg med lyd, video og billede, tilgængelighedsbeskrivelser, meningsmålinger, indhold advarsler, animerede avatarer, tilpassede emojis, miniaturebeskæringskontrol og mere, for at gøre det lettere at udtrykke sig online. Uanset om man udgiver sin kunst, musik eller podcast, så står Mastodon til rådighed.
+      feature_creativity_title: Uovertruffen kreativitet
+      feature_moderation: Mastodon lægger beslutningstagning tilbage i brugerens hænder. Hver server opretter deres egne regler og reguleringer, som håndhæves lokalt og ikke ovenfra som virksomhedernes sociale medier, hvilket gør det til den mest fleksible mht. at reagere på behovene hos forskellige persongrupper. Deltag på en server med de regler, man er enige med, eller driv en egen server.
+      feature_moderation_title: Moderering af måden, tingene bør være på
+      follow_action: Følg
+      follow_step: At følge interessante personer, det er, hvad Mastodon handler om.
+      follow_title: Personliggør hjemmefeedet
+      follows_subtitle: Følg velkendte konti
+      follows_title: Hvem, som skal følges
+      follows_view_more: Vis nogle personer at følge
+      hashtags_recent_count:
+        one: "%{people} person de seneste 2 dage"
+        other: "%{people} personer de seneste 2 dage"
+      hashtags_subtitle: Udforsk de seneste 2 dages tendenser
+      hashtags_title: Populære hashtags
+      hashtags_view_more: Se flere populære hashtags
+      post_action: Skriv
+      post_step: Sig hej til verden med tekst, fotos, videoer eller afstemninger.
+      post_title: Opret det første indlæg
+      share_action: Del
+      share_step: Lad vennerne vide, hvor man kan findes på Mastodon.
+      share_title: Del Mastodon-profilen
+      sign_in_action: Log ind
       subject: Velkommen til Mastodon
       title: Velkommen ombord, %{name}!
   users:

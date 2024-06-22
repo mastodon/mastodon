@@ -54,7 +54,7 @@ RSpec.describe ActivityPub::Activity::Flag do
         }.with_indifferent_access, sender)
       end
 
-      let(:long_comment) { Faker::Lorem.characters(number: 6000) }
+      let(:long_comment) { 'a' * described_class::COMMENT_SIZE_LIMIT * 2 }
 
       before do
         subject.perform
@@ -63,10 +63,12 @@ RSpec.describe ActivityPub::Activity::Flag do
       it 'creates a report but with a truncated comment' do
         report = Report.find_by(account: sender, target_account: flagged)
 
-        expect(report).to_not be_nil
-        expect(report.comment.length).to eq 5000
-        expect(report.comment).to eq long_comment[0...5000]
-        expect(report.status_ids).to eq [status.id]
+        expect(report)
+          .to be_present
+          .and have_attributes(status_ids: [status.id])
+        expect(report.comment)
+          .to have_attributes(length: described_class::COMMENT_SIZE_LIMIT)
+          .and eq(long_comment[0...described_class::COMMENT_SIZE_LIMIT])
       end
     end
 

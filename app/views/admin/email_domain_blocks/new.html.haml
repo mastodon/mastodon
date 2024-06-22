@@ -5,10 +5,16 @@
   = render 'shared/error_messages', object: @email_domain_block
 
   .fields-group
-    = f.input :domain, wrapper: :with_block_label, label: t('admin.email_domain_blocks.domain'), input_html: { readonly: defined?(@resolved_records) }
+    = f.input :domain,
+              input_html: { readonly: defined?(@resolved_records) },
+              label: t('admin.email_domain_blocks.domain'),
+              wrapper: :with_block_label
 
   .fields-group
-    = f.input :allow_with_approval, wrapper: :with_label, hint: false, label: I18n.t('admin.email_domain_blocks.allow_registrations_with_approval')
+    = f.input :allow_with_approval,
+              hint: false,
+              label: I18n.t('admin.email_domain_blocks.allow_registrations_with_approval'),
+              wrapper: :with_label
 
   - if defined?(@resolved_records)
     %p.hint= t('admin.email_domain_blocks.resolved_dns_records_hint_html')
@@ -22,7 +28,11 @@
         - @resolved_records.each do |record|
           .batch-table__row
             %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
-              = f.input_field :other_domains, as: :boolean, checked_value: record.exchange.to_s, include_hidden: false, multiple: true
+              = f.input_field :other_domains,
+                              as: :boolean,
+                              checked_value: record.exchange.to_s,
+                              include_hidden: false,
+                              multiple: true
             .batch-table__row__content.pending-account
               .pending-account__header
                 %samp= record.exchange.to_s

@@ -282,6 +282,7 @@ ja:
         update_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を更新しました"
         update_domain_block_html: "%{name}さんが%{target}のドメインブロックを更新しました"
         update_ip_block_html: "%{name} さんがIP %{target} のルールを更新しました"
+        update_report_html: "%{name}さんが通報 %{target} を更新しました"
         update_status_html: "%{name}さんが%{target}さんの投稿を更新しました"
         update_user_role_html: "%{name}さんがロール『%{target}』を変更しました"
       deleted_account: 削除されたアカウント
@@ -585,6 +586,9 @@ ja:
       actions_description_html: このレポートを解決するために取るアクションを決定します。 報告されたアカウントに対して懲罰的な措置を取った場合、メール通知が送信されますが<strong>スパム</strong>カテゴリが選択されている場合を除きます。
       actions_description_remote_html: この通報を解決するためのアクションを選択してください。これは<strong>あなたの</strong>サーバーがこのリモートアカウントと通信し、そのコンテンツを処理する時のみ影響します。
       add_to_report: 通報にさらに追加
+      already_suspended_badges:
+        local: このサーバーで停止済み
+        remote: リモートのサーバーで停止済み
       are_you_sure: 本当に実行しますか？
       assign_to_self: 担当になる
       assigned: 担当者
@@ -734,6 +738,7 @@ ja:
         desc_html: この機能は hCaptcha による外部スクリプトを使用しますが、hCaptcha にはセキュリティとプライバシーの懸念が考えられます。また、<strong>CAPTCHAにより新規登録のアクセシビリティが大幅に損なわれる可能性があり、身体および精神障害者においては特に顕著です。</strong>以上の理由から、承認制や招待制を基本とするなど、代わりの登録手順を提供することを検討してください。
         title: 新規ユーザーのアカウント確認にCHAPCHAを要求する
       content_retention:
+        danger_zone: 危険な操作
         preamble: ユーザーが生成したコンテンツがどのように Mastodon に保存されるかを管理します。
         title: コンテンツの保持
       default_noindex:
@@ -753,6 +758,7 @@ ja:
         disabled: 誰にも許可しない
         users: ログイン済みローカルユーザーのみ許可
       registrations:
+        moderation_recommandation: 登録受付を開始する前に、迅速かつ適切にモデレーションを行うチームを編成しましょう！
         preamble: あなたのサーバー上でアカウントを作成できるユーザーを制御します。
         title: アカウント作成
       registrations_mode:
@@ -760,6 +766,7 @@ ja:
           approved: 登録には承認が必要
           none: 誰にも許可しない
           open: 誰でも登録可
+        warning_hint: モデレーションチームがスパムや悪意のある登録を迅速に処理できる自信がない限り、サインアップを承認制にすることをお勧めします。
       security:
         authorized_fetch: 連合サーバーによる署名なしでの情報取得を拒否する
         authorized_fetch_hint: ほかの連合サーバーから受け付けるリクエストに署名を必須にすることで、ユーザーによるブロックおよびドメインブロック両方の効果をより強力にします。ただし連合の処理コストが増えてパフォーマンス面で不利になるほか、このサーバーから送られた反応が届く範囲が狭まったり、連合における互換性の問題を招く可能性もあります。また、この機能は公開投稿やプロフィールへのアクセスをブロックした相手から完全に遮断できるものではありません。
@@ -927,7 +934,7 @@ ja:
       delete: 削除
       edit_preset: プリセット警告文を編集
       empty: まだプリセット警告文が作成されていません。
-      title: プリセット警告文を管理
+      title: プリセット警告文
     webhooks:
       add_new: エンドポイントを追加
       delete: 削除
@@ -948,6 +955,9 @@ ja:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: "%{instance} のモデレーターによる活動がしばらくなかったため、%{instance} のアカウント作成は手動での承認を必要とするように自動的に変更されました。これには %{instance} が悪意ある者の踏み台として使われることを防ぐ役割があります。アカウント作成は必要に応じていつでも再び開放できます。"
+      subject: "%{instance} のアカウント作成は自動的に承認制に変更されました"
     new_appeal:
       actions:
         delete_statuses: 投稿を削除する
@@ -1464,7 +1474,6 @@ ja:
     administration_emails: 管理にかかわるメール通知
     email_events: メールによる通知
     email_events_hint: '受信する通知を選択:'
-    other_settings: その他の通知設定
   number:
     human:
       decimal_units:
@@ -1622,14 +1631,26 @@ ja:
     import: データのインポート
     import_and_export: インポート・エクスポート
     migrate: アカウントの引っ越し
-    notifications: 通知
+    notifications: メール通知
     preferences: ユーザー設定
     profile: プロフィール
     relationships: フォロー・フォロワー
+    severed_relationships: 途切れたフォロー関係
     statuses_cleanup: 投稿の自動削除
     strikes: モデレーションストライク
     two_factor_authentication: 二要素認証
     webauthn_authentication: セキュリティキー
+  severed_relationships:
+    download: 取り出す (%{count}件)
+    event_type:
+      account_suspension: アカウントの停止 (%{target_name})
+      domain_block: 管理者によるサーバーの停止 (%{target_name})
+      user_domain_block: ユーザーによるドメインブロック (%{target_name})
+    lost_followers: 解除されたフォロワー
+    lost_follows: 解除されたフォロー
+    preamble: ドメインをブロックしたりモデレーターによってリモートのサーバーが停止された場合、巻き込みでフォロー・フォロワー関係が失われることがあります。このようにして解除されたフォロー・フォロワーはリスト形式で取り出して内容を確認したり、対応している場合は他のサーバーでインポートできます。
+    purged: 管理者がサーバーの情報を削除したため表示できません。
+    type: 理由
   statuses:
     attached:
       audio:
@@ -1661,8 +1682,6 @@ ja:
         other: "%{count}票"
       vote: 投票
     show_more: もっと見る
-    show_newer: 新しいものを表示
-    show_older: 古いものを表示
     show_thread: スレッドを表示
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1719,6 +1738,7 @@ ja:
     contrast: Mastodon (ハイコントラスト)
     default: Mastodon (ダーク)
     mastodon-light: Mastodon (ライト)
+    system: 自動 (システムのテーマを使用)
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
@@ -1806,15 +1826,43 @@ ja:
         silence: アカウントがサイレンスにされました
         suspend: アカウントが停止されました
     welcome:
-      edit_profile_action: プロフィールを設定
-      edit_profile_step: |-
-        プロフィール画像をアップロードしたり、表示名を変更したりして、プロフィールをカスタマイズできます。
-        新しいフォロワーからフォローリクエストを承認する前に、オプトインで確認できます。
+      apps_android_action: Google Play で手に入れよう
+      apps_ios_action: App Store からダウンロード
+      apps_step: 公式アプリのダウンロード
+      apps_title: Mastodon アプリ
+      checklist_subtitle: 新世代のSNSが始まります
+      checklist_title: 最初のステップはここから
+      edit_profile_action: プロフィール設定
+      edit_profile_step: ほかのユーザーが親しみやすいように、プロフィールを整えましょう。
+      edit_profile_title: プロフィールを設定しましょう
       explanation: 始めるにあたってのアドバイスです
-      final_action: 始めましょう
-      final_step: 'さあ、始めましょう！ たとえフォロワーがまだいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどを通じて誰かの目にとまるはずです。自己紹介をしたいときには #introductions ハッシュタグが便利かもしれません。'
-      full_handle: あなたの正式なユーザーID
-      full_handle_hint: 別のサーバーの友達とフォローやメッセージをやり取りする際には、これを伝えることになります。
+      feature_action: もっと詳しく
+      feature_audience: Mastodonでは、誰の仲介もなく、あなた自身でオーディエンスの管理を行うことができます。あなたのインフラストラクチャー上にデプロイされたMastodon上でも、ほかのどんなMastodonサーバーのアカウントをフォローすることも、フォローされることもでき、それらはもちろんあなた自身で制御できます。
+      feature_audience_title: 自信を持ってオーディエンスを構築
+      feature_control: ホームフィードで見たいものは、あなたが一番よく知っています。時間を無駄にするアルゴリズムや広告はありません。ひとつのアカウントからすべてのMastodonサーバーの投稿を時系列で受け取り、インターネットの隅っこをもう少しあなたらしくしましょう。
+      feature_control_title: 自分のタイムラインを管理
+      feature_creativity: Mastodonでは、自己表現を多様にするため、音声・動画・画像の投稿や、アクセシビリティ用説明、投票・コンテンツ警告・動くアバター・カスタム絵文字・サムネイル切り抜き設定などをサポートしています。アートや音楽、ポッドキャストを投稿したいあなたにもMastodonはピッタリです。
+      feature_creativity_title: 比類なきクリエイティビティ
+      feature_moderation: Mastodonでは意思決定はあなたの手にあります。それぞれのサーバーで適用されるルールや規則を策定できます。これらは、企業運営のソーシャルメディアとは違いサーバー単位でローカルに適用されるため、さまざまなグループのニーズに最も柔軟に対応することができるのです。
+      feature_moderation_title: サーバー運営をあるべき姿で
+      follow_action: フォロー
+      follow_step: ユーザーをフォローしてみましょう。これがMastodonを楽しむ基本です。
+      follow_title: 自分のホームタイムラインを作る
+      follows_subtitle: 人気アカウントをフォロー
+      follows_title: フォローを増やしてみませんか？
+      follows_view_more: フォローするユーザーを探す
+      hashtags_recent_count:
+        other: 過去 2 日間で %{people} 人が共有
+      hashtags_subtitle: 過去2日間のトレンドを見る
+      hashtags_title: トレンドのハッシュタグ
+      hashtags_view_more: トレンドのハッシュタグをもっと見る
+      post_action: 作成
+      post_step: 試しになにか書いてみましょう。写真、ビデオ、アンケートなど、なんでも大丈夫です.
+      post_title: はじめての投稿
+      share_action: 共有
+      share_step: Mastodon アカウントをほかの人に紹介しましょう。
+      share_title: プロフィールをシェアする
+      sign_in_action: ログイン
       subject: Mastodonへようこそ
       title: ようこそ、%{name}さん！
   users:

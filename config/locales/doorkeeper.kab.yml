@@ -12,7 +12,7 @@ kab:
           attributes:
             redirect_uri:
               fragment_present: ur yezmir ad yegber afrur.
-              invalid_uri: ilaq ad tili d tansa URL tameγtut.
+              invalid_uri: ilaq ad tili d tansa URL tameɣtut.
               relative_uri: ilaq ad yili d URI amagdaz.
               secured_uri: ilaq URI ad yili HTTPS/SSL.
   doorkeeper:
@@ -40,7 +40,7 @@ kab:
         name: Isem
         new: Asnas amaynut
         show: Ẓer
-        title: Isnasen-ik
+        title: Isnasen-ik·im
       new:
         title: Asnas amaynut
       show:
@@ -64,6 +64,8 @@ kab:
       confirmations:
         revoke: Tetḥeqqeḍ?
       index:
+        description_html: Ha-t-an yisnasen i izemren ad kecmen ɣer umiḍan-ik·im, s useqdec n API. Ma llan yisnasen ur teεqileḍ ara da, neɣ kra n wesnas ur iteddu ara akken ilaq, tzemreḍ ad tekkseḍ anekcum-is.
+        last_used_at: Yettwaseqdec i tikkelt taneggarut ass n %{date}
         title: Isnasen-ik·im yettusirgen
     errors:
       messages:
@@ -98,7 +100,7 @@ kab:
       application:
         title: Tlaq tsiregt n OAuth
     scopes:
-      admin:read: γeṛ akk isefka γef uqeddac
+      admin:read: ad iɣeṛ akk isefka ɣef uqeddac
       admin:write: ẓreg akk isefka γef uqeddac
       follow: beddel assaγen n umiḍan
       push: ṭṭef-d tilγa-ik yettwademren
@@ -106,19 +108,19 @@ kab:
       read:accounts: ẓer isallen n yimiḍanen
       read:blocks: ẓer imiḍanen i tesḥebseḍ
       read:bookmarks: ẓer ticraḍ-ik
-      read:filters: ẓer imsizedgen-ik
+      read:filters: ad iẓer imsizdigen-ik·im
       read:follows: ẓer imeḍfaṛen-ik
       read:lists: ẓer tibdarin-ik·im
       read:mutes: ẓer wid i tesgugmeḍ
-      read:notifications: ẓer tilγa-ik
+      read:notifications: ad ẓer tilɣa-inek·inem
       read:reports: ẓer ineqqisen-ik·im
       read:search: anadi deg umkan-ik·im
       read:statuses: ẓer meṛṛa tisuffaɣ
       write: beddel meṛṛa isefka n umiḍan-ik
-      write:accounts: ẓreg amaγnu-ik
+      write:accounts: ad iẓreg amaɣnu-ik·im
       write:blocks: seḥbes imiḍanen d tγula
       write:bookmarks: ad yernu tisuffaɣ ɣer ticraḍ
-      write:filters: rnu-d imsizedgen
+      write:filters: ad isnulfu imsizedgen
       write:follows: ḍfeṛ imdanen
       write:lists: ad yesnulfu tibdarin
       write:media: ad yessali ifuyla n umidya

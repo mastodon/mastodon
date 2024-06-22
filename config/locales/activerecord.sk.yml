@@ -7,11 +7,11 @@ sk:
         options: Voľby
       user:
         agreement: Dohoda o poskytovaní služieb
-        email: Emailová adresa
+        email: E-mailová adresa
         locale: Jazyk
         password: Heslo
       user/account:
-        username: Meno používateľa
+        username: Používateľské meno
       user/invite_request:
         text: Dôvod
     errors:
@@ -41,9 +41,9 @@ sk:
           attributes:
             email:
               blocked: používa nepovoleného poskytovateľa e-mailu
-              unreachable: zdá sa, že neexistuje
+              unreachable: vyzerá, že neexistuje
             role_id:
-              elevated: nemôže byť vyššia ako vaša súčasná rola
+              elevated: nemôže byť viac ako vaša súčasná rola
         user_role:
           attributes:
             permissions_as_keys:
@@ -51,9 +51,9 @@ sk:
               elevated: nemôže obsahovať povolenia, ktoré vaša aktuálna rola nemá
               own_role: nie je možné zmeniť s vašou aktuálnou rolou
             position:
-              elevated: nemôže byť vyššia ako vaša súčasná rola
+              elevated: nemôže byť viac ako vaša súčasná rola
               own_role: nie je možné zmeniť s vašou aktuálnou rolou
         webhook:
           attributes:
             events:
-              invalid_permissions: nemožno zahrnúť udalosti, ku ktorým nemáte práva
+              invalid_permissions: nemôže zahrnúť udalosti, ku ktorým nemáte práva

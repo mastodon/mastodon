@@ -151,13 +151,23 @@ class AccountSearchService < BaseService
   end
 
   def call(query, account = nil, options = {})
-    @query   = query&.strip&.gsub(/\A@/, '')
-    @limit   = options[:limit].to_i
-    @offset  = options[:offset].to_i
-    @options = options
-    @account = account
+    MastodonOTELTracer.in_span('AccountSearchService#call') do |span|
+      @query   = query&.strip&.gsub(/\A@/, '')
+      @limit   = options[:limit].to_i
+      @offset  = options[:offset].to_i
+      @options = options
+      @account = account
 
-    search_service_results.compact.uniq
+      span.add_attributes(
+        'search.offset' => @offset,
+        'search.limit' => @limit,
+        'search.backend' => Chewy.enabled? ? 'elasticsearch' : 'database'
+      )
+
+      search_service_results.compact.uniq.tap do |results|
+        span.set_attribute('search.results.count', results.size)
+      end
+    end
   end
 
   private

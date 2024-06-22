@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe Admin::Metrics::Measure::InstanceStatusesMeasure do
-  subject(:measure) { described_class.new(start_at, end_at, params) }
+  subject { described_class.new(start_at, end_at, params) }
 
   let(:domain) { 'example.com' }
 
@@ -21,10 +21,10 @@ describe Admin::Metrics::Measure::InstanceStatusesMeasure do
     Fabricate(:status, account: Fabricate(:account, domain: "bar.#{domain}"))
   end
 
-  describe 'total' do
+  describe '#total' do
     context 'without include_subdomains' do
       it 'returns the expected number of accounts' do
-        expect(measure.total).to eq 2
+        expect(subject.total).to eq 2
       end
     end
 
@@ -32,14 +32,21 @@ describe Admin::Metrics::Measure::InstanceStatusesMeasure do
       let(:params) { ActionController::Parameters.new(domain: domain, include_subdomains: 'true') }
 
       it 'returns the expected number of accounts' do
-        expect(measure.total).to eq 5
+        expect(subject.total).to eq 5
       end
     end
   end
 
   describe '#data' do
-    it 'runs data query without error' do
-      expect { measure.data }.to_not raise_error
+    it 'returns correct instance_statuses counts' do
+      expect(subject.data.size)
+        .to eq(3)
+      expect(subject.data.map(&:symbolize_keys))
+        .to contain_exactly(
+          include(date: 2.days.ago.midnight.to_time, value: '0'),
+          include(date: 1.day.ago.midnight.to_time, value: '0'),
+          include(date: 0.days.ago.midnight.to_time, value: '2')
+        )
     end
   end
 end

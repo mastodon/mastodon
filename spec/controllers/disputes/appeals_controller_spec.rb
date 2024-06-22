@@ -18,9 +18,15 @@ RSpec.describe Disputes::AppealsController do
       let(:params) { { strike_id: strike.id, appeal: { text: 'Foo' } } }
 
       it 'notifies staff about new appeal and redirects back to strike page', :sidekiq_inline do
-        subject
+        emails = capture_emails { subject }
 
-        expect(ActionMailer::Base.deliveries.first.to).to eq([admin.email])
+        expect(emails.size)
+          .to eq(1)
+        expect(emails.first)
+          .to have_attributes(
+            to: contain_exactly(admin.email),
+            subject: eq(I18n.t('admin_mailer.new_appeal.subject', username: current_user.account.acct, instance: Rails.configuration.x.local_domain))
+          )
         expect(response).to redirect_to(disputes_strike_path(strike.id))
       end
     end
@@ -31,9 +37,9 @@ RSpec.describe Disputes::AppealsController do
       let(:params) { { strike_id: strike.id, appeal: { text: '' } } }
 
       it 'does not send email and renders strike show page', :sidekiq_inline do
-        subject
+        emails = capture_emails { subject }
 
-        expect(ActionMailer::Base.deliveries.size).to eq(0)
+        expect(emails).to be_empty
         expect(response).to render_template('disputes/strikes/show')
       end
     end

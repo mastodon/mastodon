@@ -1,16 +1,78 @@
 <%= t 'user_mailer.welcome.title', name: @resource.account.username %> <%= t 'user_mailer.welcome.explanation' %>
 
-===
+---
 
-<%= t 'user_mailer.welcome.full_handle' %> (<%= "@#{@resource.account.local_username_and_domain}" %>)
-<%= t 'user_mailer.welcome.full_handle_hint', instance: @instance %>
+<%= t('user_mailer.welcome.sign_in_action') %>
+===
+<%= new_user_session_url %>
 
 ---
 
-<%= t 'user_mailer.welcome.edit_profile_step' %>
+<%= t('user_mailer.welcome.checklist_title') %>
+===
+<%= t('user_mailer.welcome.checklist_subtitle') %>
 
-=> <%= settings_profile_url %>
+1. <%= t('user_mailer.welcome.edit_profile_title') %>
+   <%= t('user_mailer.welcome.edit_profile_step') %>
+   * <%= web_url('start/profile') %>
 
-<%= t 'user_mailer.welcome.final_step' %>
+2. <%= t('user_mailer.welcome.follow_title') %>
+   <%= t('user_mailer.welcome.follow_step') %>
+   * <%= web_url('start/follows') %>
 
-=> <%= web_url %>
+3. <%= t('user_mailer.welcome.post_title') %>
+   <%= t('user_mailer.welcome.post_step') %>
+   * <%= web_url %>
+
+4. <%= t('user_mailer.welcome.share_title') %>
+   <%= t('user_mailer.welcome.share_step') %>
+   * <%= web_url('start/share') %>
+
+5. <%= t('user_mailer.welcome.apps_title') %>
+   <%= t('user_mailer.welcome.apps_step') %>
+   * iOS: https://apps.apple.com/app/mastodon-for-iphone-and-ipad/id1571998974
+   * Android: https://play.google.com/store/apps/details?id=org.joinmastodon.android
+
+---
+
+<%= t('user_mailer.welcome.follows_title') %>
+===
+<%= t('user_mailer.welcome.follows_subtitle') %>
+
+<%- @suggestions.each do |suggestion| %>
+* <%= suggestion.account.display_name.presence || suggestion.account.username %> · @<%= suggestion.account.pretty_acct %>
+  <%= web_url("@#{suggestion.account.acct}") %>
+<%- end %>
+
+<%= web_url('explore/suggestions') %>
+
+---
+
+<%= t('user_mailer.welcome.hashtags_title') %>
+===
+<%= t('user_mailer.welcome.hashtags_subtitle') %>
+
+<%- @tags.each do |tag| %>
+* #<%= tag.display_name %> · <%= t('user_mailer.welcome.hashtags_recent_count', people: number_with_delimiter(tag.history.aggregate(2.days.ago.to_date..Time.zone.today).accounts)) %>
+  <%= tag_url(tag) %>
+<%- end %>
+
+<%= web_url('explore/tags') %>
+
+---
+
+<%= t('user_mailer.welcome.feature_control_title') %>
+===
+<%= word_wrap t('user_mailer.welcome.feature_control') %>
+
+<%= t('user_mailer.welcome.feature_audience_title') %>
+===
+<%= word_wrap t('user_mailer.welcome.feature_audience') %>
+
+<%= t('user_mailer.welcome.feature_moderation_title') %>
+===
+<%= word_wrap t('user_mailer.welcome.feature_moderation') %>
+
+<%= t('user_mailer.welcome.feature_creativity_title') %>
+===
+<%= word_wrap t('user_mailer.welcome.feature_creativity') %>

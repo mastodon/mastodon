@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples 'cacheable response' do |expects_vary: false|
-  it 'sets correct cache and vary headers and does not set cookies or session' do
+  it 'sets correct cache and vary headers and does not set cookies or session', :aggregate_failures do
     expect(response.cookies).to be_empty
     expect(response.headers['Set-Cookies']).to be_nil
 

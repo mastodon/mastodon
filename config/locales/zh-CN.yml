@@ -282,6 +282,7 @@ zh-CN:
         update_custom_emoji_html: "%{name} 更新了自定义表情 %{target}"
         update_domain_block_html: "%{name} 更新了对 %{target} 的域名屏蔽"
         update_ip_block_html: "%{name} 修改了对 IP %{target} 的规则"
+        update_report_html: "%{name} 更新了举报 %{target}"
         update_status_html: "%{name} 刷新了 %{target} 的嘟文"
         update_user_role_html: "%{name} 更改了 %{target} 角色"
       deleted_account: 账号已注销
@@ -289,6 +290,7 @@ zh-CN:
       filter_by_action: 根据行为过滤
       filter_by_user: 根据用户过滤
       title: 运营日志
+      unavailable_instance: "(域名不可用)"
     announcements:
       destroyed_msg: 公告已删除！
       edit:
@@ -585,6 +587,9 @@ zh-CN:
       actions_description_html: 决定采取何种措施处理此举报。如果对被举报账号采取惩罚性措施，将向其发送一封电子邮件通知。但若选中<strong>垃圾信息</strong>类别则不会发送通知。
       actions_description_remote_html: 决定采取何种行动来解决此举报。 这只会影响<strong>您的</strong>服务器如何与该远程帐户的通信并处理其内容。
       add_to_report: 增加更多举报内容
+      already_suspended_badges:
+        local: 已经在此服务器上暂停
+        remote: 已在其所属服务器被封禁
       are_you_sure: 你确定吗？
       assign_to_self: 接管
       assigned: 已接管的监察员
@@ -734,6 +739,7 @@ zh-CN:
         desc_html: 这依赖于来自hCaptcha的外部脚本，可能会带来安全和隐私问题。此外，<strong>这可能使注册过程对某些人（尤其是残疾人）的注册简易程度大幅下降</strong>。出于这些原因，请考虑采取其他措施，如基于批准或邀请的注册方式。
         title: 要求新用户输入验证码以确认他们的账户
       content_retention:
+        danger_zone: 危险操作区
         preamble: 控制用户生成的内容在 Mastodon 中如何存储。
         title: 内容保留
       default_noindex:
@@ -753,6 +759,7 @@ zh-CN:
         disabled: 不对任何人
         users: 对本地已登录用户
       registrations:
+        moderation_recommandation: 在向所有人开放注册之前，请确保您拥有一个人手足够且反应迅速的管理团队！
         preamble: 控制谁可以在你的服务器上创建账号。
         title: 注册
       registrations_mode:
@@ -760,6 +767,7 @@ zh-CN:
           approved: 注册时需要批准
           none: 关闭注册
           open: 开放注册
+        warning_hint: 我们建议使用“注册必须经过批准”，除非您确信您的管理团队能够及时处理骚扰和恶意注册。
       security:
         authorized_fetch: 需要跨站认证
         authorized_fetch_hint: 要求外站请求通过验证能够使用户级别与服务器级别的封锁更为严格。然而，这将带来额外的性能负担、减少回复触达范围、并可能导致与一些联邦宇宙服务的兼容性问题。此外，这并不能阻止他人针对性地获取公开嘟文与账户。
@@ -772,13 +780,13 @@ zh-CN:
     software_updates:
       critical_update: 紧急 — 请尽快更新
       description: 建议您及时更新Mastodon实例，以便获得最新修复和功能。此外，为避免安全问题，有时候及时更新Mastodon是至关重要的。出于这些原因，Mastodon每30分钟检查一次更新，并根据您的电子邮件通知偏好向您发送通知。
-      documentation_link: 了解详情
-      release_notes: 更新日志
+      documentation_link: 详细了解
+      release_notes: 发行说明
       title: 可用的更新
       type: 类型
       types:
-        major: 大版本更新
-        minor: 小版本更新
+        major: 重大更新
+        minor: 次要更新
         patch: 补丁级更新 - 修复了错误并进行了易于应用的更改
       version: 版本
     statuses:
@@ -927,7 +935,7 @@ zh-CN:
       delete: 删除
       edit_preset: 编辑预置警告
       empty: 你尚未定义任何警告预设。
-      title: 管理预设警告
+      title: 预设警告
     webhooks:
       add_new: 新增对端
       delete: 删除
@@ -948,6 +956,9 @@ zh-CN:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: 由于近期缺乏管理员活动， %{instance} 上的注册已自动切换为需要手动审核，以防止 %{instance} 被潜在的不良行为者用作平台。您可以随时将其切换回开放注册。
+      subject: "%{instance} 的注册已自动切换为需要批准"
     new_appeal:
       actions:
         delete_statuses: 删除其嘟文
@@ -1464,7 +1475,6 @@ zh-CN:
     administration_emails: 管理员电子邮件通知
     email_events: 电子邮件通知事件
     email_events_hint: 选择你想要收到通知的事件：
-    other_settings: 其它通知设置
   number:
     human:
       decimal_units:
@@ -1622,14 +1632,26 @@ zh-CN:
     import: 导入
     import_and_export: 导入和导出
     migrate: 账户迁移
-    notifications: 通知
+    notifications: 电子邮件通知
     preferences: 首选项
     profile: 个人资料
     relationships: 关注管理
+    severed_relationships: 已断开的关系
     statuses_cleanup: 自动删除嘟文
     strikes: 操作记录
     two_factor_authentication: 双因素认证
     webauthn_authentication: 安全密钥
+  severed_relationships:
+    download: 下载 (%{count})
+    event_type:
+      account_suspension: 账户被封禁 (%{target_name})
+      domain_block: 服务器被封禁 (%{target_name})
+      user_domain_block: 你屏蔽了 %{target_name}
+    lost_followers: 失去的关注者
+    lost_follows: 失去的关注
+    preamble: 当你屏蔽一个域名或你的管理员决定封禁一个外站服务器时，你可能会失去关注和粉丝。在这种情况下，你可以下载被切断的关系的列表，进行检查以便导入另一个服务器。
+    purged: 关于此服务器的信息已被你所在服务器的管理员清除。
+    type: 事件
   statuses:
     attached:
       audio:
@@ -1661,8 +1683,6 @@ zh-CN:
         other: "%{count} 票"
       vote: 投票
     show_more: 显示更多
-    show_newer: 显示更新内容
-    show_older: 显示更早内容
     show_thread: 显示全部对话
     title: "%{name}：“%{quote}”"
     visibilities:
@@ -1719,6 +1739,7 @@ zh-CN:
     contrast: Mastodon（高对比度）
     default: Mastodon（暗色主题）
     mastodon-light: Mastodon（亮色主题）
+    system: 自动切换（使用系统主题）
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
@@ -1806,13 +1827,43 @@ zh-CN:
         silence: 账户被隐藏
         suspend: 账号被封禁
     welcome:
-      edit_profile_action: 设置个人资料
-      edit_profile_step: 您可以通过上传个人资料图片、更改您的昵称等来自定义您的个人资料。 您可以选择在新关注者关注您之前对其进行审核。
+      apps_android_action: 从 Google Play 下载
+      apps_ios_action: 从 App Store 下载
+      apps_step: 下载我们的官方应用。
+      apps_title: Mastodon应用
+      checklist_subtitle: 让我们带您开启这片社交新天地：
+      checklist_title: 欢迎清单
+      edit_profile_action: 个性化
+      edit_profile_step: 完善个人资料，提升您的互动体验。
+      edit_profile_title: 个性化您的个人资料
       explanation: 下面是几个小贴士，希望它们能帮到你
-      final_action: 开始嘟嘟
-      final_step: '开始发布嘟文！ 即使没有关注者，您的公开嘟文也可能会被其他人看到，例如在本地时间轴或话题标签中。 您可能想在 #introductions 话题标签上介绍自己。'
-      full_handle: 你的完整用户地址
-      full_handle_hint: 你需要把这个告诉你的朋友们，这样他们就能从另一台服务器向你发送信息或者关注你。
+      feature_action: 了解更多
+      feature_audience: Mastodon为您提供了无需中间商即可管理受众的独特可能。Mastodon可被部署在您自己的基础设施上，允许您关注其它任何Mastodon在线服务器的用户，或被任何其他在线 Mastodon 服务器的用户关注，并且不受您之外的任何人控制。
+      feature_audience_title: 放手去建立起您的受众
+      feature_control: 您最清楚您想在你自己的主页中看到什么动态。没有算法或广告浪费您的时间。您可以用一个账号关注任何 Mastodon 服务器上的任何人，并按时间顺序获得他们发布的嘟文，让您的互联网的角落更合自己的心意。
+      feature_control_title: 掌控自己的时间线
+      feature_creativity: Mastodon支持音频、视频和图片、无障碍描述、投票、内容警告， 动画头像、自定义表情包、缩略图裁剪控制等功能，帮助您在网上尽情表达自己。无论您是要发布您的艺术作品、音乐还是播客，Mastodon 都能为您服务。
+      feature_creativity_title: 无与伦比的创造力
+      feature_moderation: Mastodon将决策权交还给您。每个服务器都会创建自己的规则和条例，并在站点内施行，而不是像企业社交媒体那样居高临下，这使得它可以最灵活地响应不同人群的需求。加入一个您认同其规则的服务器，或托管您自己的服务器。
+      feature_moderation_title: 管理，本应如此
+      follow_action: 关注
+      follow_step: 关注有趣的人，这就是Mastodon的意义所在。
+      follow_title: 个性化您的首页动态
+      follows_subtitle: 关注知名账户
+      follows_title: 推荐关注
+      follows_view_more: 查看更多可关注的人
+      hashtags_recent_count:
+        other: 过去2天内有 %{people} 人
+      hashtags_subtitle: 探索过去2天以来的热门内容
+      hashtags_title: 热门话题标签
+      hashtags_view_more: 查看更多热门话题标签
+      post_action: 撰写
+      post_step: 向世界打个招呼吧。
+      post_title: 发布您的第一条嘟文
+      share_action: 分享
+      share_step: 让您的朋友知道如何在Mastodon找到你。
+      share_title: 分享您的Mastodon个人资料
+      sign_in_action: 登录
       subject: 欢迎来到 Mastodon
       title: "%{name}，欢迎你的加入！"
   users:

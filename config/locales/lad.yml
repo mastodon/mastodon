@@ -285,6 +285,7 @@ lad:
         update_custom_emoji_html: "%{name} aktualizo el emoji %{target}"
         update_domain_block_html: "%{name} aktualizo el bloko de domeno para %{target}"
         update_ip_block_html: "\"%{name} troko la regla de IP %{target}"
+        update_report_html: "%{name} aktualizo el raporto %{target}"
         update_status_html: "%{name} aktualizo la publikasyon de %{target}"
         update_user_role_html: "%{name} troko el rolo %{target}"
       deleted_account: kuento supremido
@@ -597,6 +598,9 @@ lad:
       actions_description_html: Dechide kualas mizuras tomar para rezolver esta denunsia. Si tomas una aksion punitiva kontra el kuento denunsiada, se le embiara a dicho kuento un avizo por posta elektronika, ekseptado kuando se eskoja la kategoria <strong>Spam</strong>.
       actions_description_remote_html: Dechide ke fazer para rezolver este raporto. Esto solo va afektar komo <strong>tu</strong> sirvidor komunike kon este kuento remoto i ke faze kon su kontenido.
       add_to_report: Adjusta mas al raporto
+      already_suspended_badges:
+        local: Ya suspendido en este sirvidor
+        remote: Ya suspendido en sus sirvidor
       are_you_sure: Estas siguro?
       assign_to_self: Asinyamela a mi
       assigned: Moderador asinyado
@@ -767,6 +771,7 @@ lad:
         disabled: A dinguno
         users: Para los utilizadores lokales ke entrado en su kuento
       registrations:
+        moderation_recommandation: Por favor, asigurate ke tyenes una taifa de moderasyon adekuada i reaktiva antes de avrir los enrejistramyentos a todos!
         preamble: Kontrola ken puede kriyar un kuento en tu sirvidor.
         title: Enrejistramientos
       registrations_mode:
@@ -774,6 +779,7 @@ lad:
           approved: Se rekiere achetasion para enrejistrarse
           none: Permete a los utilizadores trokar la konfigurasyon del sitio
           open: Kualkiera puede enrejistrarse
+        warning_hint: Rekomendamos el uzo de "Se rekiere achetasion para enrejistrarse" a manko ke estes siguro ke tu taifa de moderasyon puede moderar el spam i los enrejistramyentos malisiozos en un tyempo razonavle.
       security:
         authorized_fetch: Rekere autentifikasyon de sirvidores federados
         authorized_fetch_hint: Rekerir autentifikasyon de sirvidores federados permite un forsamyento mas estrikto de los blokos a nivel de utilizador i a nivel de sirvidor. Malgrado esto, el koste de esto es una penalizasyon de efisyensya, reduksyon del alkanse de tus repuestas i puede introduzir problemas de kompatibilita kon algunos sirvisyos federados. Ademas, esto no impidira ke aktores dedikados obtengan tus kuentos publikos i publikasyones publikas.
@@ -944,7 +950,6 @@ lad:
       delete: Efasa
       edit_preset: Edita avizo predeterminado
       empty: Ainda no tienes definido ningun avizo predeterminado.
-      title: Edita konfigurasyon predeterminada de avizos
     webhooks:
       add_new: Adjusta endpoint
       delete: Efasa
@@ -966,6 +971,9 @@ lad:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Por la falta de moderadores aktivos, los enrejistramyentos en %{instance} tyenen sido trokados otomatikamente para rekerir revizyon manuala, para ke %{instance} no se utilize potensyalmente komo platforma por malos aktores. Puedes trokarlo de muevo para avrir los enrejistramyentos en kualseker momento.
+      subject: Enrejistramyentos de %{instance} fueron otomatikamente trokados i agora nesesitan aprovasyon
     new_appeal:
       actions:
         delete_statuses: para supremir sus mesajes
@@ -1490,7 +1498,6 @@ lad:
     administration_emails: Avizos de administrasyon por posta
     email_events: Evenimyentos para avizos por posta
     email_events_hint: 'Eskoje los evenimientos para los kualos keres risivir avizos:'
-    other_settings: Otras preferensyas de avizos
   number:
     human:
       decimal_units:
@@ -1648,7 +1655,7 @@ lad:
     import: Importo
     import_and_export: Importo i eksporto
     migrate: Migrasyon de kuento
-    notifications: Avizos
+    notifications: Avizos por posta elektronika
     preferences: Preferensyas
     profile: Profil publiko
     relationships: Segidos i suivantes
@@ -1656,6 +1663,13 @@ lad:
     strikes: Amonestamientos de moderasyon
     two_factor_authentication: Autentifikasyon en dos pasos
     webauthn_authentication: Yaves de sigurita
+  severed_relationships:
+    download: Abasha (%{count})
+    event_type:
+      user_domain_block: Blokates a %{target_name}
+    lost_followers: Suivantes pedridos
+    lost_follows: Segimyentos pedridos
+    type: Evenimiento
   statuses:
     attached:
       audio:
@@ -1693,8 +1707,6 @@ lad:
         other: "%{count} votos"
       vote: Vota
     show_more: Amostra mas
-    show_newer: Amostra mas muevos
-    show_older: Amostra mas viejos
     show_thread: Amostra diskusyon
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1838,13 +1850,39 @@ lad:
         silence: Kuento limitado
         suspend: Kuento suspendido
     welcome:
-      edit_profile_action: Konfigurasyon de profil
-      edit_profile_step: Puedes personalizar tu profil kargando una foto de profil, trokando tu nombre de utilizador i muncho mas. Puedes optar por revizar a los muevos suivantes antes de ke puedan segirte.
+      apps_android_action: Abasha en Google Play
+      apps_ios_action: Abasha en App Store
+      apps_step: Abasha muestras aplikasyones ofisyalas.
+      apps_title: Aplikasyones de Mastodon
+      checklist_title: Lista de bienvenida
+      edit_profile_action: Personaliza
+      edit_profile_step: Kompleta tu profil para aumentar tus enteraksyones.
+      edit_profile_title: Personaliza tu profil
       explanation: Aki ay algunos konsejos para ampesar
-      final_action: Ampesa a publikar
-      final_step: 'Ampesa a publikar! Inkluzo sin suivantes, tus publikasyones publikas pueden ser vistas por otros, por enshemplo en la linya de tiempo lokal o en etiketas. Tal vez keras aprezentarte kon la etiketa de #introduksiones.'
-      full_handle: Tu sovrenombre kompleto
-      full_handle_hint: Esto es lo ke le dirias a tus haverim para ke eyos puedan embiarte mesajes o segirte dizde otra instansya.
+      feature_action: Ambezate mas
+      feature_audience_title: Konstruye tu audyensya kon konfyansa
+      feature_control_title: Manten kontrol de tu linya de tyempo
+      feature_creativity_title: Kreativita sin paralelas
+      feature_moderation_title: La moderasyon komo deveria ser
+      follow_action: Sige
+      follow_step: El buto de Mastodon es segir a djente interesante.
+      follow_title: Personaliza tu linya prinsipala
+      follows_subtitle: Sige kuentos konesidos
+      follows_title: A ken segir
+      follows_view_more: Ve mas personas para segir
+      hashtags_recent_count:
+        one: "%{people} persona en los ultimos 2 diyas"
+        other: "%{people} personas en los ultimos 2 diyas"
+      hashtags_subtitle: Eksplora los trendes de los ultimos 2 diyas
+      hashtags_title: Etiketas en trend
+      hashtags_view_more: Ve mas etiketas en trend
+      post_action: Eskrive
+      post_step: Puedes introdusirte al mundo kon teksto, fotos, videos o anketas.
+      post_title: Eskrive tu primera publikasyon
+      share_action: Partaja
+      share_step: Informa a tus amigos komo toparte en Mastodon.
+      share_title: Partaja tu profil de Mastodon
+      sign_in_action: Konektate
       subject: Bienvenido a Mastodon
       title: Bienvenido, %{name}!
   users:

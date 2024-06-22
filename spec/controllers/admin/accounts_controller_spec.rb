@@ -53,11 +53,32 @@ RSpec.describe Admin::AccountsController do
 
   describe 'GET #show' do
     let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
-    let(:account) { Fabricate(:account) }
 
-    it 'returns http success' do
-      get :show, params: { id: account.id }
-      expect(response).to have_http_status(200)
+    context 'with a remote account' do
+      let(:account) { Fabricate(:account, domain: 'example.com') }
+
+      it 'returns http success' do
+        get :show, params: { id: account.id }
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'with a local account' do
+      let(:account) { Fabricate(:account, domain: nil) }
+
+      it 'returns http success' do
+        get :show, params: { id: account.id }
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'with a local deleted account' do
+      let(:account) { Fabricate(:account, domain: nil, user: nil) }
+
+      it 'returns http success' do
+        get :show, params: { id: account.id }
+        expect(response).to have_http_status(200)
+      end
     end
   end
 

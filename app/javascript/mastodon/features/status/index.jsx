@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
@@ -20,6 +20,7 @@ import { Icon }  from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollContainer from 'mastodon/containers/scroll_container';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import {
@@ -27,14 +28,13 @@ import {
   unmuteAccount,
 } from '../../actions/accounts';
 import { initBlockModal } from '../../actions/blocks';
-import { initBoostModal } from '../../actions/boosts';
 import {
   replyCompose,
   mentionCompose,
   directCompose,
 } from '../../actions/compose';
 import {
-  blockDomain,
+  initDomainBlockModal,
   unblockDomain,
 } from '../../actions/domain_blocks';
 import {
@@ -190,12 +190,8 @@ const titleFromStatus = (intl, status) => {
 };
 
 class Status extends ImmutablePureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     status: ImmutablePropTypes.map,
@@ -245,7 +241,7 @@ class Status extends ImmutablePureComponent {
 
   handleFavouriteClick = (status) => {
     const { dispatch } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (status.get('favourited')) {
@@ -275,7 +271,7 @@ class Status extends ImmutablePureComponent {
 
   handleReplyClick = (status) => {
     const { askReplyConfirmation, dispatch, intl } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (askReplyConfirmation) {
@@ -303,21 +299,21 @@ class Status extends ImmutablePureComponent {
   };
 
   handleModalReblog = (status, privacy) => {
-    this.props.dispatch(reblog(status, privacy));
+    this.props.dispatch(reblog({ statusId: status.get('id'), visibility: privacy }));
   };
 
   handleReblogClick = (status, e) => {
     const { dispatch } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (status.get('reblogged')) {
-        dispatch(unreblog(status));
+        dispatch(unreblog({ statusId: status.get('id') }));
       } else {
         if ((e && e.shiftKey) || !boostModal) {
           this.handleModalReblog(status);
         } else {
-          dispatch(initBoostModal({ status, onReblog: this.handleModalReblog }));
+          dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.handleModalReblog } }));
         }
       }
     } else {
@@ -463,15 +459,8 @@ class Status extends ImmutablePureComponent {
     this.props.dispatch(unblockAccount(account.get('id')));
   };
 
-  handleBlockDomainClick = domain => {
-    this.props.dispatch(openModal({
-      modalType: 'CONFIRM',
-      modalProps: {
-        message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.' values={{ domain: <strong>{domain}</strong> }} />,
-        confirm: this.props.intl.formatMessage(messages.blockDomainConfirm),
-        onConfirm: () => this.props.dispatch(blockDomain(domain)),
-      },
-    }));
+  handleBlockDomainClick = account => {
+    this.props.dispatch(initDomainBlockModal(account));
   };
 
   handleUnblockDomainClick = domain => {
@@ -753,4 +742,4 @@ class Status extends ImmutablePureComponent {
 
 }
 
-export default withRouter(injectIntl(connect(makeMapStateToProps)(Status)));
+export default withRouter(injectIntl(connect(makeMapStateToProps)(withIdentity(Status))));

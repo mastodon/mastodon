@@ -291,6 +291,7 @@ pl:
         update_custom_emoji_html: Zaktualizowane emoji %{target} przez %{name}
         update_domain_block_html: Zaktualizowano blokadę domeny dla %{target} przez %{name}
         update_ip_block_html: "%{name} stworzył(a) regułę dla IP %{target}"
+        update_report_html: "%{target} zaktualizowany przez %{name}"
         update_status_html: "%{name} zaktualizował(a) wpis użytkownika %{target}"
         update_user_role_html: "%{name} zmienił rolę %{target}"
       deleted_account: usunięte konto
@@ -298,6 +299,7 @@ pl:
       filter_by_action: Filtruj według działania
       filter_by_user: Filtruj według użytkownika
       title: Dziennik działań administracyjnych
+      unavailable_instance: "(domena niedostępna)"
     announcements:
       destroyed_msg: Pomyślnie usunięto ogłoszenie!
       edit:
@@ -621,6 +623,9 @@ pl:
       actions_description_html: Zdecyduj, jakie działania należy podjąć, aby rozstrzygnąć niniejsze zgłoszenie. Jeśli podejmiesz działania karne przeciwko zgłoszonemu kontowi, zostanie do nich wysłane powiadomienie e-mail, chyba że wybrano kategorię <strong>Spam</strong>.
       actions_description_remote_html: Zdecyduj, jakie działanie należy podjąć, aby rozwiązać to zgłoszenie. Będzie to miało wpływ jedynie na sposób, w jaki <strong>Twój</strong> serwer komunikuje się z tym kontem zdalnym i obsługuje jego zawartość.
       add_to_report: Dodaj więcej do zgłoszenia
+      already_suspended_badges:
+        local: Już zawieszono na tym serwerze
+        remote: Już zawieszono na ich serwerze
       are_you_sure: Czy na pewno?
       assign_to_self: Przypisz do siebie
       assigned: Przypisany moderator
@@ -776,6 +781,7 @@ pl:
         desc_html: Wymaga użycia zewnętrznych skryptów hCaptcha, co może negatywnie wpływać na bezpieczeństwo i prywatność. <strong>Może również przyczynić się do znaczącego utrudnienia procesu rejestracji niektórym, np. niepełnosprawnym, osobom.</strong> Dlatego sugeruje się używanie zaproszeń bądź ręcznie potwierdzanie kont.
         title: W celu potwierdzenia ich kont wymagaj rozwiązania zadania CAPTCHA przez nowych użytkowników
       content_retention:
+        danger_zone: Strefa niebezpieczeństwa
         preamble: Kontroluj, jak treści generowane przez użytkownika są przechowywane w Mastodon.
         title: Retencja treści
       default_noindex:
@@ -795,6 +801,7 @@ pl:
         disabled: Nikomu
         users: Zalogowanym lokalnym użytkownikom
       registrations:
+        moderation_recommandation: Upewnij się, że masz adekwatny i szybko reagujący zespół moderacyjny przed otwarciem rejestracji!
         preamble: Kontroluj, kto może utworzyć konto na Twoim serwerze.
         title: Rejestracje
       registrations_mode:
@@ -802,6 +809,7 @@ pl:
           approved: Przyjęcie jest wymagane do rejestracji
           none: Nikt nie może się zarejestrować
           open: Każdy może się zarejestrować
+        warning_hint: Polecamy "Przyjęcie jest wymagane do rejestracji" chyba że masz pewność, że twój zespół moderacyjny może szybko obsłużyć spam i złośliwe rejestracje.
       security:
         authorized_fetch: Wymagaj uwierzytelnienia od sfederowanych serwerów
         authorized_fetch_hint: Wymaganie uwierzytelnienia ze sfederowanych serwerów pozwala na ściślejsze wymuszanie bloków z poziomu użytkowników i serwera, ale jest wolniejsze, redukuje zasięg odpowiedzi, i może być niekompatybilne z niektórymi sfederowanymi usługami. Nie chroni również publicznych kont i wpisów przed oddanymi użytkownikami.
@@ -978,7 +986,7 @@ pl:
       delete: Usuń
       edit_preset: Edytuj szablon ostrzeżenia
       empty: Nie zdefiniowano jeszcze żadnych szablonów ostrzegawczych.
-      title: Zarządzaj szablonami ostrzeżeń
+      title: Zapisane ostrzeżenia
     webhooks:
       add_new: Dodaj punkt końcowy
       delete: Usuń
@@ -1002,6 +1010,9 @@ pl:
       title: Webhooki
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Z powodu braku niedawnych działań moderacyjnych, rejestracje na %{instance} wymagają ręcznej weryfikacji (by uniknąć dystrybucji spamu itp.). W dowolnym momencie możesz przywrócić politykę otwartej rejestracji.
+      subject: "%{instance} zostało automatycznie przełączone na zatwierdzanie rejestracji"
     new_appeal:
       actions:
         delete_statuses: aby usunąć ich wpisy
@@ -1542,7 +1553,6 @@ pl:
     administration_emails: Administracyjne powiadomienia e-mail
     email_events: 'Powiadamiaj e-mailem o:'
     email_events_hint: 'Wybierz wydarzenia, o których chcesz otrzymywać powiadomienia:'
-    other_settings: Inne ustawienia powiadomień
   number:
     human:
       decimal_units:
@@ -1700,14 +1710,26 @@ pl:
     import: Importowanie danych
     import_and_export: Import i eksport
     migrate: Migracja konta
-    notifications: Powiadomienia
+    notifications: Powiadomienia e-mail
     preferences: Preferencje
     profile: Profil
     relationships: Obserwowani i obserwujący
+    severed_relationships: Zerwane związki
     statuses_cleanup: Automatyczne usuwanie wpisów
     strikes: Ostrzeżenia moderacyjne
     two_factor_authentication: Uwierzytelnianie dwuetapowe
     webauthn_authentication: Klucze bezpieczeństwa
+  severed_relationships:
+    download: Pobierz (%{count})
+    event_type:
+      account_suspension: Zawieszenie konta (%{target_name})
+      domain_block: Zawieszenie serwera (%{target_name})
+      user_domain_block: Zablokowano %{target_name}
+    lost_followers: Utraceni obserwujący
+    lost_follows: Utracone obserwowania
+    preamble: Możesz stracić obserwowania i obserwujących kiedy zablokujesz domenę albo kiedy twoi moderatorzy postanowią zawiesić obcy serwer. W tym wypadku będziesz móc pobrać listę zerwanych związków do przejrzenia i potencjalnego importu na innym serwerze.
+    purged: Informacje o tym serwerze zostały wyczyszczone przez administratora twojego serwera.
+    type: Zdarzenie
   statuses:
     attached:
       audio:
@@ -1757,8 +1779,6 @@ pl:
         other: "%{count} głosy"
       vote: Głosuj
     show_more: Pokaż więcej
-    show_newer: Pokaż nowsze
-    show_older: Pokaż starsze
     show_thread: Pokaż wątek
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1815,6 +1835,7 @@ pl:
     contrast: Mastodon (Wysoki kontrast)
     default: Mastodon (Ciemny)
     mastodon-light: Mastodon (Jasny)
+    system: Automatyczny (odpowiadający motywowi systemu)
   time:
     formats:
       default: "%d. %b %Y, %H:%M"
@@ -1902,13 +1923,46 @@ pl:
         silence: Konto ograniczone
         suspend: Konto zawieszone
     welcome:
-      edit_profile_action: Skonfiguruj profil
-      edit_profile_step: Możesz dostosować profil wysyłając awatar, zmieniając wyświetlaną nazwę i o wiele więcej. Jeżeli chcesz, możesz również włączyć przeglądanie i ręczne akceptowanie nowych próśb o możliwość obserwacji Twojego profilu.
+      apps_android_action: Pobierz z Google Play
+      apps_ios_action: Pobierz z App Store
+      apps_step: Pobierz oficjalne aplikacje.
+      apps_title: Aplikacje Mastodon
+      checklist_subtitle: 'Aby porządnie rozpocząć użytkowanie Mastodona:'
+      checklist_title: Powitalna lista kontrolna
+      edit_profile_action: Personalizuj
+      edit_profile_step: Inni użytkownicy są bardziej skłonni do interakcji z Tobą jeśli posiadasz wypełniony profil.
+      edit_profile_title: Spersonalizuj swój profil
       explanation: Kilka wskazówek, które pomogą Ci rozpocząć
-      final_action: Zacznij pisać
-      final_step: 'Zacznij tworzyć! Nawet jeżeli nikt Cię nie obserwuje, Twoje publiczne wiadomości będą widziane przez innych, na przykład na lokalnej osi czasu i w hashtagach. Możesz też utworzyć wpis wprowadzający używając hashtagu #introductions.'
-      full_handle: Twój pełny adres
-      full_handle_hint: Ten adres możesz podać znajomym, aby mogli skontaktować się z Tobą lub zacząć obserwować z innego serwera.
+      feature_action: Dowiedz się więcej
+      feature_audience: Mastodon zapewnia ci unikalne możliwości docierania do twojego grona odbiorców bez żadnych pośredników. Postawiony na własnej infrastrukturze, Mastodon pozwala ci obserwować i być obserwowanym z dowolnego innego serwera Mastodona. Nikt, poza tobą samym(-ą), nie ma nad tym kontroli.
+      feature_audience_title: Buduj swoją publiczność z pewnością
+      feature_control: Sam(a) wiesz najlepiej, co chcesz widzieć na swojej osi czasu. Brak algorytmów i reklam, które marnują twój cenny czas. Obserwuj dowolne osoby z dowolnego serwera Mastodona przy pomocy jednego konta i otrzymuj ich wpisy w kolejności chronologicznej. Każdy zasługuje na własny kąt w internecie.
+      feature_control_title: Miej kontrolę nad swoją osią czasu
+      feature_creativity: Mastodon obsługuje wpisy audio, wideo oraz zdjęcia, jak również opisy zdjęć na potrzeby dostępności, ankiety, ostrzeżenia dotyczące treści, animowane awatary, niestandardowe emoji, kontrolę miniatur zdjęć i więcej, aby pomóc Ci wyrażać siebie. Bez względu na to, czy dzielisz się swoją sztuką, muzyką czy podcastem, Mastodon jest dla ciebie.
+      feature_creativity_title: Niezrównana kreatywność
+      feature_moderation: Mastodon oddaje w twoje ręce prawo podejmowania decyzji. Każdy serwer tworzy własne zasady i regulacje, które są egzekwowane lokalnie a nie odgórnie jak w przypadku korporacyjnych mediów społecznościowych. Czyni to Mastodona najbardziej elastyczną platformą dla różnych grup ludzi z różnymi potrzebami. Dołącz do serwera, z którego zasadami zgadzasz się najbardziej, lub stwórz swój własny.
+      feature_moderation_title: Moderacja we właściwy sposób
+      follow_action: Obserwuj
+      follow_step: Zarządzasz swoim własnym kanałem. Wypełnij go interesującymi ludźmi.
+      follow_title: Spersonalizuj swoją stronę główną
+      follows_subtitle: Obserwuj dobrze znane konta
+      follows_title: Kogo obserwować
+      follows_view_more: Zobacz więcej osób do obserwowania
+      hashtags_recent_count:
+        few: "%{people} osoby w ostatnie 2 dni"
+        many: "%{people} osób w ostatnie 2 dni"
+        one: "%{people} osoba w ostatnie 2 dni"
+        other: "%{people} osób w ostatnie 2 dni"
+      hashtags_subtitle: Zobacz, co było popularne przez ostatnie 2 dni
+      hashtags_title: Popularne hashtagi
+      hashtags_view_more: Zobacz więcej popularnych hashtagów
+      post_action: Utwórz wpis
+      post_step: Przywitaj się ze światem.
+      post_title: Utwórz swój pierwszy post
+      share_action: Udostępnij
+      share_step: Poinformuj swoich przyjaciół jak znaleźć cię na Mastodonie.
+      share_title: Udostępnij swój profil
+      sign_in_action: Zaloguj się
       subject: Witaj w Mastodonie
       title: Witaj na pokładzie, %{name}!
   users:

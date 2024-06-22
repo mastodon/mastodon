@@ -5,10 +5,10 @@ class UserMailer < Devise::Mailer
 
   helper :accounts
   helper :application
-  helper :instance
-  helper :statuses
   helper :formatting
+  helper :instance
   helper :routing
+  helper :statuses
 
   before_action :set_instance
 
@@ -134,6 +134,12 @@ class UserMailer < Devise::Mailer
     @resource = user
 
     return unless @resource.active_for_authentication?
+
+    @suggestions = AccountSuggestions.new(@resource.account).get(5)
+    @tags = Trends.tags.query.allowed.limit(5)
+    @has_account_fields = @resource.account.display_name.present? || @resource.account.note.present? || @resource.account.avatar.present?
+    @has_active_relationships = @resource.account.active_relationships.exists?
+    @has_statuses = @resource.account.statuses.exists?
 
     I18n.with_locale(locale) do
       mail subject: default_i18n_subject

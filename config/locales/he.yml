@@ -291,6 +291,7 @@ he:
         update_custom_emoji_html: "%{name} עדכן/ה אמוג'י %{target}"
         update_domain_block_html: "%{name} עדכן/ה חסימת דומיין עבור %{target}"
         update_ip_block_html: "%{name} שינה כלל עבור IP %{target}"
+        update_report_html: '%{name} עדכן/ה דו"ח %{target}'
         update_status_html: "%{name} עדכן/ה הודעה של %{target}"
         update_user_role_html: "%{name} שינה את התפקיד של %{target}"
       deleted_account: חשבון מחוק
@@ -298,6 +299,7 @@ he:
       filter_by_action: סינון לפי פעולה
       filter_by_user: סינון לפי משתמש
       title: ביקורת יומן
+      unavailable_instance: "(שם מתחם לא זמין)"
     announcements:
       destroyed_msg: הכרזה נמחקה בהצלחה!
       edit:
@@ -621,6 +623,9 @@ he:
       actions_description_html: בחר/י איזו פעולה לבצע על מנת לפתור את הדו"ח. אם תופעל פעולת ענישה כנגד החשבון המדווח, הודעת דוא"ל תשלח אליהם, אלא אם נבחרה קטגוריית ה<strong>ספאם</strong>.
       actions_description_remote_html: בחרו איזו פעולה לבצע כדי לפתור את הדיווח שהוגש. פעולה זו תשפיע רק על התקשורת מול השרת <strong>שלך</strong> עם החשבון המרוחק ותוכנו.
       add_to_report: הוספת פרטים לדיווח
+      already_suspended_badges:
+        local: כבר הודח בשרת זה
+        remote: כבר הודח בשרת שלו
       are_you_sure: 100% על בטוח?
       assign_to_self: הקצה אלי
       assigned: מנחה מוקצה
@@ -776,6 +781,7 @@ he:
         desc_html: אפשרות זו ניסמכת על קטעי קוד חיצוניים של hCaptcha שעלולים להיות סיכון אבטחה ופרטיות. בנוסף, <strong>זה עשוי להפוך את תהליך ההרשמה לבלתי נגיש לא.נשים, במיוחד בעלות ובעלי מוגבלויות</strong>. מסיבות אלו, כדאי לשקול חלופות כמו אשרור מנהלים ידני או הרשמה רק על בסיס הזמנה.
         title: לדרוש פתרון CAPTCHA כדי לאשרר למשתמשים את חשבונם
       content_retention:
+        danger_zone: אזור מסוכן
         preamble: שליטה על דרך אחסון תוכן המשתמשים במסטודון.
         title: תקופת השמירה של תכנים
       default_noindex:
@@ -795,6 +801,7 @@ he:
         disabled: לאף אחד
         users: למשתמשים מקומיים מחוברים
       registrations:
+        moderation_recommandation: יש לוודא שלאתר יש צוות מנחות ומנחי שיחה מספק ושירותי בטרם תבחרו לפתוח הרשמה לכולם!
         preamble: שליטה בהרשאות יצירת חשבון בשרת שלך.
         title: הרשמות
       registrations_mode:
@@ -802,6 +809,7 @@ he:
           approved: נדרש אישור הרשמה
           none: אף אחד לא יכול להרשם
           open: כל אחד יכול להרשם
+        warning_hint: אנו ממליצים להפעיל דרישה לאישור ידני של הרשמה אלא אם אתם מאמינים שצוות הנחיית השיחות שלכם יוכל להסתדר בזריזות עם מפיצי תכנים פוגעניים או פרסומיים על בסיס קבוע.
       security:
         authorized_fetch: לדרוש הזדהות מול שרתים בפדרציה
         authorized_fetch_hint: הדרישה להזדהות מול שרתים בפדרציה מאפשרת חסימה יותר יעילה ברמת המשתמש וברמת שרת. עם זאת, הדרישה באה עם מחיר של נפילת ביצועים, מקטינה את מעגל התפוצה של התשובות שלך, ועשויה ליצור אי תאימות מול שירותים אחרים בפדרציה. בנוסף, זה לא ימנע מצדדים החלטיים לקבל גישת קריאה להודעות ופרופילים ציבוריים.
@@ -978,7 +986,7 @@ he:
       delete: למחוק
       edit_preset: ערוך/י טקסט מוכן מראש לאזהרה
       empty: לא הגדרת עדיין שום טקסט מוכן מראש לאזהרה.
-      title: ניהול טקסטים מוכנים מראש לאזהרות
+      title: תצורת אזהרות
     webhooks:
       add_new: הוספת נקודת קצה
       delete: מחיקה
@@ -1002,6 +1010,9 @@ he:
       title: התליות רשת
       webhook: התליית רשת
   admin_mailer:
+    auto_close_registrations:
+      body: עקב חוסר פעילות מנחים, הרשמות אל %{instance} עברו אוטומטית למצב אישור ידני, כדי למנוע משרת %{instance} לשמש לכר פעילות לגורמים עוינים. ניתן תמיד לחזור להרשמה פתוחה.
+      subject: הרשמות אל %{instance} הועברו אוטומטית לדרישה לאישור ידני
     new_appeal:
       actions:
         delete_statuses: כדי למחוק את הודעותיהם
@@ -1542,7 +1553,6 @@ he:
     administration_emails: התראות לדוא"ל חשבון מנהל
     email_events: ארועים להתראות דוא"ל
     email_events_hint: 'בחר/י ארועים עבורים תרצה/י לקבל התראות:'
-    other_settings: הגדרות התראות אחרות
   number:
     human:
       decimal_units:
@@ -1700,14 +1710,26 @@ he:
     import: יבוא
     import_and_export: יבוא ויצוא
     migrate: הגירת חשבון
-    notifications: התראות
+    notifications: התראות בדואל
     preferences: העדפות
     profile: פרופיל
     relationships: נעקבים ועוקבים
+    severed_relationships: קשרים שנותקו
     statuses_cleanup: מחיקת הודעות אוטומטית
     strikes: עבירות מנהלתיות
     two_factor_authentication: אימות דו-שלבי
     webauthn_authentication: מפתחות אבטחה
+  severed_relationships:
+    download: הורדה (%{count})
+    event_type:
+      account_suspension: השעיית חשבון (%{target_name})
+      domain_block: השעיית שרת (%{target_name})
+      user_domain_block: חסמת את %{target_name}
+    lost_followers: אובדן עוקבים
+    lost_follows: אובדן נעקבים
+    preamble: הנכם עשויים לאבד עוקבים ונעקבים כשתחסמו שרת או כשמנהליכם יחליטו להשעות שרת אחר. במקרה כזה, תוכלו להוריד רשימה של קשרי המעקב שנותקו, כדי לעבור עליהם ואם תרצו לייבא אותם לשרת אחר.
+    purged: מידע על שרת מרוחק זה נמחק על ידי מנהלי השרת שלך.
+    type: אירוע
   statuses:
     attached:
       audio:
@@ -1757,8 +1779,6 @@ he:
         two: "%{count} קולות"
       vote: הצבעה
     show_more: עוד
-    show_newer: הצג חדשים יותר
-    show_older: הצג ישנים יותר
     show_thread: הצג שרשור
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1815,6 +1835,7 @@ he:
     contrast: מסטודון (ניגודיות גבוהה)
     default: מסטודון (כהה)
     mastodon-light: מסטודון (בהיר)
+    system: אוטומטי (לפי המערכת)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -1902,13 +1923,46 @@ he:
         silence: חשבון מוגבל
         suspend: חשבון מושעה
     welcome:
-      edit_profile_action: הגדרת פרופיל
-      edit_profile_step: תוכל.י להתאים אישית את הפרופיל באמצעות העלאת יצגן (אוואטר), כותרת, שינוי כינוי ועוד. אם תרצה.י לסקור את עוקביך/ייך החדשים לפני שתרשה.י להם לעקוב אחריך/ייך.
+      apps_android_action: זמין ב־Google Play
+      apps_ios_action: זמין ב־App Store
+      apps_step: התקינו את היישומונים הרשמיים.
+      apps_title: יישומונים של מסטודון
+      checklist_subtitle: 'נעזור לך לצאת למסע אל האופק החברתי החדש:'
+      checklist_title: רשימת פריטים לקבלת הפנים
+      edit_profile_action: התאמה אישית
+      edit_profile_step: כדאי להשלים את הפרופיל כדי לעודד אחרים ליצירת קשר.
+      edit_profile_title: התאמה אישית של הפרופיל
       explanation: הנה כמה טיפים לעזור לך להתחיל
-      final_action: התחל/ילי לחצרץ
-      final_step: 'התחל/ילי לחצצר! אפילו ללא עוקבים ייתכן שהחצרוצים הפומביים שלך יראו ע"י אחרים, למשל בציר הזמן המקומי או בתגיות הקבצה (האשתגים). כדאי להציג את עצמך תחת התגית #introductions או #היכרות'
-      full_handle: שם המשתמש המלא שלך
-      full_handle_hint: זה מה שתאמר.י לחברייך כדי שיוכלו לשלוח לך הודעה או לעקוב אחרייך ממופע אחר.
+      feature_action: מידע נוסף
+      feature_audience: מסטודון מספקת לך אפשרות ייחודית של ניהול הקהל ללא מתווכים. מסטודון מותקן על שרת משלך יאפשר לך לעקוב ולהעקב מכל שרת מסטודון ברשת בשליטתך הבלעדית.
+      feature_audience_title: בנו את הקהל שלכםן בבטחה
+      feature_control: אתםן יודעיםות בדיוק מה תרצו לראות בפיד הבית. אין פה פרסומות ואלגוריתמים שיבזבזו את זמנכם. עקבו אחרי כל משתמשי מסטודון משלל שרתים מתוך חשבון אחד וקבלו את ההודעות שלהםן לפי סדר הפרסום, וכך תצרו לכם את פינת האינטרנט המתאימה לכן אישית.
+      feature_control_title: השארו בשליטה על ציר הזמן שלכם
+      feature_creativity: מסטודון תומך בהודעות עם שמע, חוזי ותמונות, עם תאורים למוגבלי ראייה, משאלים, אזהרות תוכן, אווטרים מונפשים, אמוג'י מותאמים אישית, שליטה בחיתוך תמונות מוקטנות ועוד, כדי שתוכלו לבטא את עצמכןם ברשת. בין אם תפרסמו אמנות, מוזיקה או פודקסטים אישיים, מסטודון פה בשבילכם.
+      feature_creativity_title: יצירתיות ללא פשרות
+      feature_moderation: מסטודון מחזיר לידיכן את ההחלטות. כל שרת יוצר לעצמו את חוקיו, שנאכפים מקומית ולא "מלמעלה" כמו באתרים מסחריים, מה שהופך אותו לגמיש ביותר בשירות הרצונות והצרכים של קבוצות שונות. הצטרפו לשרת שאתםן מסכימותים עם חוקיו, או הקימו משלכןם.
+      feature_moderation_title: ניהול דיונים כמו שצריך
+      follow_action: לעקוב
+      follow_step: עקיבה אחרי אנשים מעניינים זו מטרתו של מסטודון.
+      follow_title: התאימו אישית את ציר זמן הבית שלכםן
+      follows_subtitle: לעקיבה אחרי חלשבונות ידועים
+      follows_title: אחרי מי לעקוב
+      follows_view_more: ראו עוד א.נשים לעקוב אחריהן.ם
+      hashtags_recent_count:
+        many: "%{people} אנשים ביומיים האחרונים"
+        one: איש אחד ביומיים האחרונים
+        other: "%{people} אנשים ביומיים האחרונים"
+        two: שני אנשים ביומיים האחרונים
+      hashtags_subtitle: לחקור מהם הנושאים החמים ביומיים האחרונים
+      hashtags_title: תגיות חמות
+      hashtags_view_more: צפיה בעוד תגיות שכרגע חוזרות הרבה
+      post_action: חיבור הודעה
+      post_step: ברכו לשלום את העולם עם מלל, תמונות, חוזי או משאלים.
+      post_title: כתבו את הפוסט הראשון שלכםן
+      share_action: שיתוף
+      share_step: ספרו לחברים איך למצוא אתכם במסטודון.
+      share_title: שיתוף פרופיל מסטודון
+      sign_in_action: התחברות
       subject: ברוכים הבאים למסטודון
       title: ברוך/ה הבא/ה, %{name} !
   users:
