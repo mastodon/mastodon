@@ -54,10 +54,14 @@
 %h3= t('admin.statuses.contents')
 
 .status__card
-  - if @status.reblog?
+  - if @status.reblog? || @status.reply?
     .status__prepend
-      = fa_icon('retweet fw')
-      = t('statuses.boosted_from_html', acct_link: admin_account_inline_link_to(@status.proper.account))
+      - if @status.reblog?
+        = fa_icon('retweet fw')
+        = t('statuses.boosted_from_html', acct_link: admin_account_inline_link_to(@status.proper.account))
+      - elsif @status.reply?
+        = fa_icon('reply fw')
+        = t('admin.statuses.replied_to_html', acct_link: admin_account_inline_link_to(@status.in_reply_to_account, path: admin_account_status_path(@status.thread.account_id, @status.in_reply_to_id)))
   .status__content><
     - if @status.proper.spoiler_text.blank?
       = prerender_custom_emojis(status_content_format(@status.proper), @status.proper.emojis)
