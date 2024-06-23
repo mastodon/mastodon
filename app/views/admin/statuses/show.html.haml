@@ -1,5 +1,5 @@
 - content_for :page_title do
-  = t('admin.statuses.status_title', name: display_name(@account))
+  = t('admin.statuses.status_title', name: @account.pretty_acct)
 
 - content_for :heading_actions do
   = form_with model: @status_batch_action, url: batch_admin_account_statuses_path(@account.id) do |f|
