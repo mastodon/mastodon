@@ -18,7 +18,8 @@
       - if status.application
         = status.application.name
         ·
-      = link_to ActivityPub::TagManager.instance.url_for(status.proper), class: 'detailed-status__datetime', target: stream_link_target, rel: 'noopener noreferrer' do
+
+      = link_to admin_account_status_path(status.account.id, status), class: 'detailed-status__datetime' do
         %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
       - if status.edited?
         ·
@@ -35,6 +36,9 @@
       - else
         = material_symbol visibility_icon(status)
         = t("statuses.visibilities.#{status.visibility}")
+      ·
+      = link_to ActivityPub::TagManager.instance.url_for(status.proper), class: 'detailed-status__datetime', target: stream_link_target, rel: 'noopener noreferrer' do
+        = t('statuses.view_publicly')
       - if status.proper.sensitive?
         ·
         = material_symbol('visibility_off')
