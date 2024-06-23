@@ -33,7 +33,7 @@ describe Admin::StatusesController do
 
     context 'when filtering by media' do
       before do
-        get :index, params: { account_id: account.id, media: '1' }
+        get :index, params: { account_id: account.id, media: true }
       end
 
       it 'returns http success' do
