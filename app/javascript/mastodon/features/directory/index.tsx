@@ -84,7 +84,7 @@ export const Directory: React.FC<{
   );
 
   useEffect(() => {
-    dispatch(fetchDirectory({ order, local }));
+    void dispatch(fetchDirectory({ order, local }));
   }, [dispatch, order, local]);
 
   const handleMove = useCallback(
@@ -123,7 +123,7 @@ export const Directory: React.FC<{
   );
 
   const handleLoadMore = useCallback(() => {
-    dispatch(expandDirectory({ order, local }));
+    void dispatch(expandDirectory({ order, local }));
   }, [dispatch, order, local]);
 
   const pinned = !!columnId;
