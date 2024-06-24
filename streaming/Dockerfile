@@ -110,4 +110,4 @@ USER mastodon
 # Expose default Streaming ports
 EXPOSE 4000
 # Run streaming when started
-CMD [ node ./streaming/index.js ]
+CMD [ "node", "./streaming/index.js" ]
