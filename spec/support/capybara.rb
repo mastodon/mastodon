@@ -14,6 +14,7 @@ Capybara.register_driver :headless_chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new
   options.add_argument '--headless=new'
   options.add_argument '--window-size=1680,1050'
+  options.add_option('goog:loggingPrefs', { performance: 'ALL' })
 
   Capybara::Selenium::Driver.new(
     app,
