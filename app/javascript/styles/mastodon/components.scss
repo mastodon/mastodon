@@ -120,8 +120,27 @@
       text-decoration: none;
     }
 
-    &:disabled {
-      opacity: 0.5;
+    &.button--destructive {
+      &:active,
+      &:focus,
+      &:hover {
+        border-color: $ui-button-destructive-focus-background-color;
+        color: $ui-button-destructive-focus-background-color;
+      }
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 0.7;
+      border-color: $ui-primary-color;
+      color: $ui-primary-color;
+
+      &:active,
+      &:focus,
+      &:hover {
+        border-color: $ui-primary-color;
+        color: $ui-primary-color;
+      }
     }
   }
 

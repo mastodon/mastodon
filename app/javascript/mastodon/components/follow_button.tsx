@@ -17,6 +17,10 @@ const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   followBack: { id: 'account.follow_back', defaultMessage: 'Follow back' },
   mutual: { id: 'account.mutual', defaultMessage: 'Mutual' },
+  cancel_follow_request: {
+    id: 'account.cancel_follow_request',
+    defaultMessage: 'Withdraw follow request',
+  },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
 });
 
@@ -28,6 +32,7 @@ export const FollowButton: React.FC<{
   const relationship = useAppSelector((state) =>
     state.relationships.get(accountId),
   );
+  const following = relationship?.following || relationship?.requested;
 
   useEffect(() => {
     dispatch(fetchRelationships([accountId]));
@@ -50,6 +55,8 @@ export const FollowButton: React.FC<{
     label = intl.formatMessage(messages.edit_profile);
   } else if (!relationship) {
     label = <LoadingIndicator />;
+  } else if (relationship.requested) {
+    label = intl.formatMessage(messages.cancel_follow_request);
   } else if (relationship.following && relationship.followed_by) {
     label = intl.formatMessage(messages.mutual);
   } else if (!relationship.following && relationship.followed_by) {
@@ -76,7 +83,9 @@ export const FollowButton: React.FC<{
   return (
     <Button
       onClick={handleClick}
-      secondary={relationship?.following || relationship?.requested}
+      disabled={relationship?.blocked_by || relationship?.blocking}
+      secondary={following}
+      className={following ? 'button--destructive' : undefined}
     >
       {label}
     </Button>
