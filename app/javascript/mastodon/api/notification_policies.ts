@@ -7,4 +7,6 @@ export const apiGetNotificationPolicy = () =>
 export const apiUpdateNotificationsPolicy = (
   policy: Partial<NotificationPolicyJSON>,
 ) =>
-  apiRequest<NotificationPolicyJSON>('PUT', '/v1/notifications/policy', policy);
+  apiRequest<NotificationPolicyJSON>('PUT', '/v1/notifications/policy', {
+    data: policy,
+  });
