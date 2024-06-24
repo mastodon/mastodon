@@ -39,6 +39,21 @@ describe Admin::StatusesController do
     end
   end
 
+  describe 'GET #show' do
+    before do
+      status.media_attachments << Fabricate(:media_attachment, type: :image, account: status.account)
+      status.save!
+      status.snapshot!(at_time: status.created_at, rate_limit: false)
+      status.update!(text: 'Hello, this is an edited post')
+      status.snapshot!(rate_limit: false)
+      get :show, params: { account_id: account.id, id: status.id }
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe 'POST #batch' do
     subject { post :batch, params: { :account_id => account.id, action => '', :admin_status_batch_action => { status_ids: status_ids } } }
 
