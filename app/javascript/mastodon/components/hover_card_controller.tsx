@@ -1,13 +1,19 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 
+import { useLocation } from 'react-router-dom';
+
 import Overlay from 'react-overlays/Overlay';
-import type { OffsetValue } from 'react-overlays/esm/usePopper';
+import type {
+  OffsetValue,
+  UsePopperOptions,
+} from 'react-overlays/esm/usePopper';
 
 import { HoverCardAccount } from 'mastodon/components/hover_card_account';
 
 const offset = [-12, 4] as OffsetValue;
 const enterDelay = 500;
-const leaveDelay = 500;
+const leaveDelay = 250;
+const popperConfig = { strategy: 'fixed' } as UsePopperOptions;
 
 const isHoverCardAnchor = (element: HTMLElement) =>
   element.matches('[data-hover-card-account]');
@@ -19,6 +25,7 @@ export const HoverCardController: React.FC = () => {
   const cardRef = useRef<HTMLDivElement>(null);
   const leaveTimerRef = useRef<ReturnType<typeof setTimeout>>();
   const enterTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const location = useLocation();
 
   const handleAnchorMouseEnter = useCallback(
     (e: MouseEvent) => {
@@ -61,41 +68,24 @@ export const HoverCardController: React.FC = () => {
     [setOpen, setAnchor, anchor],
   );
 
-  const handleFocus = useCallback(
-    (e: FocusEvent) => {
-      const { target } = e;
-
-      if (target instanceof HTMLElement && isHoverCardAnchor(target)) {
-        target.setAttribute('aria-describedby', 'hover-card');
-        setAnchor(target);
-        setOpen(true);
-        setAccountId(
-          target.getAttribute('data-hover-card-account') ?? undefined,
-        );
-      }
-    },
-    [setAnchor, setOpen, setAccountId],
-  );
-
-  const handleBlur = useCallback(
-    (e: FocusEvent) => {
-      const { target } = e;
-
-      if (target instanceof HTMLElement && isHoverCardAnchor(target)) {
-        target.removeAttribute('aria-describedby');
-        setOpen(false);
-        setAnchor(null);
-      }
-    },
-    [setOpen, setAnchor],
-  );
-
   const handleClose = useCallback(() => {
     clearTimeout(leaveTimerRef.current);
     clearTimeout(enterTimerRef.current);
     setOpen(false);
     setAnchor(null);
   }, [setOpen, setAnchor]);
+
+  const handleScroll = useCallback(() => {
+    clearTimeout(leaveTimerRef.current);
+    clearTimeout(enterTimerRef.current);
+  }, []);
+
+  useEffect(() => {
+    clearTimeout(leaveTimerRef.current);
+    clearTimeout(enterTimerRef.current);
+    setOpen(false);
+    setAnchor(null);
+  }, [setOpen, setAnchor, location]);
 
   useEffect(() => {
     document.body.addEventListener('mouseenter', handleAnchorMouseEnter, {
@@ -106,22 +96,17 @@ export const HoverCardController: React.FC = () => {
       passive: true,
       capture: true,
     });
-    document.body.addEventListener('focus', handleFocus, {
+    document.body.addEventListener('scroll', handleScroll, {
       passive: true,
-      capture: true,
-    });
-    document.body.addEventListener('blur', handleBlur, {
-      passive: true,
-      capture: true,
+      capture: false,
     });
 
     return () => {
       document.body.removeEventListener('mouseenter', handleAnchorMouseEnter);
       document.body.removeEventListener('mouseleave', handleAnchorMouseLeave);
-      document.body.removeEventListener('focus', handleFocus);
-      document.body.removeEventListener('blur', handleBlur);
+      document.body.removeEventListener('scroll', handleScroll);
     };
-  }, [handleAnchorMouseEnter, handleAnchorMouseLeave, handleFocus, handleBlur]);
+  }, [handleAnchorMouseEnter, handleAnchorMouseLeave, handleScroll]);
 
   if (!accountId) return null;
 
@@ -134,9 +119,10 @@ export const HoverCardController: React.FC = () => {
       placement='bottom-start'
       flip
       offset={offset}
+      popperConfig={popperConfig}
     >
       {({ props }) => (
-        <div {...props}>
+        <div {...props} className='hover-card-controller'>
           <HoverCardAccount accountId={accountId} ref={cardRef} />
         </div>
       )}
