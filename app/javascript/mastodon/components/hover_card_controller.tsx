@@ -8,10 +8,11 @@ import type {
   UsePopperOptions,
 } from 'react-overlays/esm/usePopper';
 
+import { useTimeout } from 'mastodon/../hooks/useTimeout';
 import { HoverCardAccount } from 'mastodon/components/hover_card_account';
 
 const offset = [-12, 4] as OffsetValue;
-const enterDelay = 500;
+const enterDelay = 650;
 const leaveDelay = 250;
 const popperConfig = { strategy: 'fixed' } as UsePopperOptions;
 
@@ -23,8 +24,8 @@ export const HoverCardController: React.FC = () => {
   const [accountId, setAccountId] = useState<string | undefined>();
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
-  const leaveTimerRef = useRef<ReturnType<typeof setTimeout>>();
-  const enterTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const [setLeaveTimeout, cancelLeaveTimeout] = useTimeout();
+  const [setEnterTimeout, cancelEnterTimeout] = useTimeout();
   const location = useLocation();
 
   const handleAnchorMouseEnter = useCallback(
@@ -32,10 +33,9 @@ export const HoverCardController: React.FC = () => {
       const { target } = e;
 
       if (target instanceof HTMLElement && isHoverCardAnchor(target)) {
-        clearTimeout(leaveTimerRef.current);
-        clearTimeout(enterTimerRef.current);
+        cancelLeaveTimeout();
 
-        enterTimerRef.current = setTimeout(() => {
+        setEnterTimeout(() => {
           target.setAttribute('aria-describedby', 'hover-card');
           setAnchor(target);
           setOpen(true);
@@ -46,46 +46,40 @@ export const HoverCardController: React.FC = () => {
       }
 
       if (target === cardRef.current?.parentNode) {
-        clearTimeout(leaveTimerRef.current);
+        cancelLeaveTimeout();
       }
     },
-    [setOpen, setAccountId, setAnchor],
+    [cancelLeaveTimeout, setEnterTimeout, setOpen, setAccountId, setAnchor],
   );
 
   const handleAnchorMouseLeave = useCallback(
     (e: MouseEvent) => {
       if (e.target === anchor || e.target === cardRef.current?.parentNode) {
-        clearTimeout(leaveTimerRef.current);
-        clearTimeout(enterTimerRef.current);
+        cancelEnterTimeout();
 
-        leaveTimerRef.current = setTimeout(() => {
+        setLeaveTimeout(() => {
           anchor?.removeAttribute('aria-describedby');
           setOpen(false);
           setAnchor(null);
         }, leaveDelay);
       }
     },
-    [setOpen, setAnchor, anchor],
+    [cancelEnterTimeout, setLeaveTimeout, setOpen, setAnchor, anchor],
   );
 
   const handleClose = useCallback(() => {
-    clearTimeout(leaveTimerRef.current);
-    clearTimeout(enterTimerRef.current);
+    cancelEnterTimeout();
+    cancelLeaveTimeout();
     setOpen(false);
     setAnchor(null);
-  }, [setOpen, setAnchor]);
-
-  const handleScroll = useCallback(() => {
-    clearTimeout(leaveTimerRef.current);
-    clearTimeout(enterTimerRef.current);
-  }, []);
+  }, [cancelEnterTimeout, cancelLeaveTimeout, setOpen, setAnchor]);
 
   useEffect(() => {
-    clearTimeout(leaveTimerRef.current);
-    clearTimeout(enterTimerRef.current);
+    cancelEnterTimeout();
+    cancelLeaveTimeout();
     setOpen(false);
     setAnchor(null);
-  }, [setOpen, setAnchor, location]);
+  }, [cancelEnterTimeout, cancelLeaveTimeout, setOpen, setAnchor, location]);
 
   useEffect(() => {
     document.body.addEventListener('mouseenter', handleAnchorMouseEnter, {
@@ -96,17 +90,12 @@ export const HoverCardController: React.FC = () => {
       passive: true,
       capture: true,
     });
-    document.body.addEventListener('scroll', handleScroll, {
-      passive: true,
-      capture: false,
-    });
 
     return () => {
       document.body.removeEventListener('mouseenter', handleAnchorMouseEnter);
       document.body.removeEventListener('mouseleave', handleAnchorMouseLeave);
-      document.body.removeEventListener('scroll', handleScroll);
     };
-  }, [handleAnchorMouseEnter, handleAnchorMouseLeave, handleScroll]);
+  }, [handleAnchorMouseEnter, handleAnchorMouseLeave]);
 
   if (!accountId) return null;
 
