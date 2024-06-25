@@ -21,7 +21,6 @@ export const fetchDirectory = createDataLoadingThunk(
 export const expandDirectory = createDataLoadingThunk(
   'directory/expand',
   async (params: Parameters<typeof apiGetDirectory>[0], { getState }) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     const loadedItems = getState().user_lists.getIn([
       'directory',
       'items',

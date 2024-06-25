@@ -71,7 +71,6 @@ export const Directory: React.FC<{
   const domain = useAppSelector((s) => s.meta.get('domain') as string);
   const accountIds = useAppSelector(
     (state) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
       state.user_lists.getIn(
         ['directory', 'items'],
         ImmutableList(),
@@ -79,7 +78,6 @@ export const Directory: React.FC<{
   );
   const isLoading = useAppSelector(
     (state) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
       state.user_lists.getIn(['directory', 'isLoading'], true) as boolean,
   );
 
