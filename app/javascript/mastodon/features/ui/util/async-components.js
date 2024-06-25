@@ -201,3 +201,7 @@ export function NotificationRequests () {
 export function NotificationRequest () {
   return import(/*webpackChunkName: "features/notifications/request" */'../../notifications/request');
 }
+
+export function LinkTimeline () {
+  return import(/*webpackChunkName: "features/link_timeline" */'../../link_timeline');
+}
