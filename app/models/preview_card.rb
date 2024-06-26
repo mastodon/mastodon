@@ -128,6 +128,22 @@ class PreviewCard < ApplicationRecord
     @history ||= Trends::History.new('links', id)
   end
 
+  def authors
+    @authors ||= [PreviewCard::Author.new(self)]
+  end
+
+  class Author < ActiveModelSerializers::Model
+    attributes :name, :url, :account
+
+    def initialize(preview_card)
+      super(
+        name: preview_card.author_name,
+        url: preview_card.author_url,
+        account: preview_card.author_account,
+      )
+    end
+  end
+
   class << self
     private
 
