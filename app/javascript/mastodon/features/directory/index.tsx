@@ -16,7 +16,7 @@ import {
 } from 'mastodon/actions/columns';
 import { fetchDirectory, expandDirectory } from 'mastodon/actions/directory';
 import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { ColumnHeader } from 'mastodon/components/column_header';
 import { LoadMore } from 'mastodon/components/load_more';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RadioButton } from 'mastodon/components/radio_button';
@@ -86,7 +86,7 @@ export const Directory: React.FC<{
   }, [dispatch, order, local]);
 
   const handleMove = useCallback(
-    (dir: string) => {
+    (dir: number) => {
       dispatch(moveColumn(columnId, dir));
     },
     [dispatch, columnId],
@@ -185,7 +185,6 @@ export const Directory: React.FC<{
       label={intl.formatMessage(messages.title)}
     >
       <ColumnHeader
-        // @ts-expect-error ColumnHeader is not properly typed yet
         icon='address-book-o'
         iconComponent={PeopleIcon}
         title={intl.formatMessage(messages.title)}
