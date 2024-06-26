@@ -75,11 +75,8 @@ export const HoverCardController: React.FC = () => {
   }, [cancelEnterTimeout, cancelLeaveTimeout, setOpen, setAnchor]);
 
   useEffect(() => {
-    cancelEnterTimeout();
-    cancelLeaveTimeout();
-    setOpen(false);
-    setAnchor(null);
-  }, [cancelEnterTimeout, cancelLeaveTimeout, setOpen, setAnchor, location]);
+    handleClose();
+  }, [handleClose, location]);
 
   useEffect(() => {
     document.body.addEventListener('mouseenter', handleAnchorMouseEnter, {

@@ -40,7 +40,7 @@ export const HoverCardAccount = forwardRef<
         'hover-card--loading': !account,
       })}
     >
-      {account && (
+      {account ? (
         <>
           <Link to={`/@${account.acct}`} className='hover-card__name'>
             <Avatar account={account} size={46} />
@@ -64,9 +64,9 @@ export const HoverCardAccount = forwardRef<
 
           <FollowButton accountId={accountId} />
         </>
+      ) : (
+        <LoadingIndicator />
       )}
-
-      {!account && <LoadingIndicator />}
     </div>
   );
 });
