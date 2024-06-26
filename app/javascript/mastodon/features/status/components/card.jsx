@@ -138,7 +138,7 @@ export default class Card extends PureComponent {
     const interactive = card.get('type') === 'video';
     const language    = card.get('language') || '';
     const largeImage  = (card.get('image')?.length > 0 && card.get('width') > card.get('height')) || interactive;
-    const showAuthor  = !!card.get('author_account');
+    const showAuthor  = !!card.getIn(['authors', 0, 'accountId']);
 
     const description = (
       <div className='status-card__content'>
@@ -244,7 +244,7 @@ export default class Card extends PureComponent {
           {description}
         </a>
 
-        {showAuthor && <MoreFromAuthor accountId={card.get('author_account')} />}
+        {showAuthor && <MoreFromAuthor accountId={card.getIn(['authors', 0, 'accountId'])} />}
       </>
     );
   }
