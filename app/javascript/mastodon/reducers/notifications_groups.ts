@@ -12,12 +12,15 @@ import {
   fetchNotifications,
   fetchNotificationsGap,
   processNewNotificationForGroups,
+  loadPending,
 } from 'mastodon/actions/notification_groups';
 import {
   disconnectTimeline,
   timelineDelete,
 } from 'mastodon/actions/timelines_typed';
+import type { ApiNotificationJSON } from 'mastodon/api_types/notifications';
 import { compareId } from 'mastodon/compare_id';
+import { usePendingItems } from 'mastodon/initial_state';
 import {
   NOTIFICATIONS_GROUP_MAX_AVATARS,
   createNotificationGroupFromJSON,
@@ -33,20 +36,22 @@ export interface NotificationGap {
 
 interface NotificationGroupsState {
   groups: (NotificationGroup | NotificationGap)[];
+  pendingGroups: (NotificationGroup | NotificationGap)[];
   isLoading: boolean;
 }
 
 const initialState: NotificationGroupsState = {
   groups: [],
+  pendingGroups: [], // holds pending groups in slow mode
   isLoading: false,
 };
 
-function removeNotificationsForAccounts(
-  state: NotificationGroupsState,
+function filterNotificationsForAccounts(
+  groups: NotificationGroupsState['groups'],
   accountIds: string[],
   onlyForType?: string,
 ) {
-  state.groups = state.groups
+  groups = groups
     .map((group) => {
       if (
         group.type !== 'gap' &&
@@ -69,20 +74,50 @@ function removeNotificationsForAccounts(
     .filter(
       (group) => group.type === 'gap' || group.sampleAccountsIds.length > 0,
     );
-  mergeGaps(state.groups);
+  mergeGaps(groups);
+  return groups;
+}
+
+function filterNotificationsForStatus(
+  groups: NotificationGroupsState['groups'],
+  statusId: string,
+) {
+  groups = groups.filter(
+    (group) =>
+      group.type === 'gap' ||
+      !('statusId' in group) ||
+      group.statusId !== statusId,
+  );
+  mergeGaps(groups);
+  return groups;
+}
+
+function removeNotificationsForAccounts(
+  state: NotificationGroupsState,
+  accountIds: string[],
+  onlyForType?: string,
+) {
+  state.groups = filterNotificationsForAccounts(
+    state.groups,
+    accountIds,
+    onlyForType,
+  );
+  state.pendingGroups = filterNotificationsForAccounts(
+    state.pendingGroups,
+    accountIds,
+    onlyForType,
+  );
 }
 
 function removeNotificationsForStatus(
   state: NotificationGroupsState,
   statusId: string,
 ) {
-  state.groups = state.groups.filter(
-    (group) =>
-      group.type === 'gap' ||
-      !('statusId' in group) ||
-      group.statusId !== statusId,
+  state.groups = filterNotificationsForStatus(state.groups, statusId);
+  state.pendingGroups = filterNotificationsForStatus(
+    state.pendingGroups,
+    statusId,
   );
-  mergeGaps(state.groups);
 }
 
 function isNotificationGroup(
@@ -136,6 +171,52 @@ function mergeGapsAround(
         sinceId: potentialSecondGap.sinceId,
       });
     }
+  }
+}
+
+function processNewNotification(
+  groups: NotificationGroupsState['groups'],
+  notification: ApiNotificationJSON,
+) {
+  const existingGroupIndex = groups.findIndex(
+    (group) =>
+      group.type !== 'gap' && group.group_key === notification.group_key,
+  );
+
+  // In any case, we are going to add a group at the top
+  // If there is currently a gap at the top, now is the time to update it
+  if (groups.length > 0 && groups[0]?.type === 'gap') {
+    groups[0].maxId = notification.id;
+  }
+
+  if (existingGroupIndex > -1) {
+    const existingGroup = groups[existingGroupIndex];
+
+    if (
+      existingGroup &&
+      existingGroup.type !== 'gap' &&
+      !existingGroup.sampleAccountsIds.includes(notification.account.id) // This can happen for example if you like, then unlike, then like again the same post
+    ) {
+      // Update the existing group
+      if (
+        existingGroup.sampleAccountsIds.unshift(notification.account.id) >
+        NOTIFICATIONS_GROUP_MAX_AVATARS
+      )
+        existingGroup.sampleAccountsIds.pop();
+
+      existingGroup.most_recent_notification_id = notification.id;
+      existingGroup.page_max_id = notification.id;
+      existingGroup.latest_page_notification_at = notification.created_at;
+      existingGroup.notifications_count += 1;
+
+      groups.splice(existingGroupIndex, 1);
+      mergeGapsAround(groups, existingGroupIndex);
+
+      groups.unshift(existingGroup);
+    }
+  } else {
+    // Create a new group
+    groups.unshift(createNotificationGroupFromNotificationJSON(notification));
   }
 }
 
@@ -230,48 +311,10 @@ export const notificationsGroupsReducer =
       })
       .addCase(processNewNotificationForGroups.fulfilled, (state, action) => {
         const notification = action.payload;
-        const existingGroupIndex = state.groups.findIndex(
-          (group) =>
-            group.type !== 'gap' && group.group_key === notification.group_key,
+        processNewNotification(
+          usePendingItems ? state.pendingGroups : state.groups,
+          notification,
         );
-
-        // In any case, we are going to add a group at the top
-        // If there is currently a gap at the top, now is the time to update it
-        if (state.groups.length > 0 && state.groups[0]?.type === 'gap') {
-          state.groups[0].maxId = notification.id;
-        }
-
-        if (existingGroupIndex > -1) {
-          const existingGroup = state.groups[existingGroupIndex];
-
-          if (
-            existingGroup &&
-            existingGroup.type !== 'gap' &&
-            !existingGroup.sampleAccountsIds.includes(notification.account.id) // This can happen for example if you like, then unlike, then like again the same post
-          ) {
-            // Update the existing group
-            if (
-              existingGroup.sampleAccountsIds.unshift(notification.account.id) >
-              NOTIFICATIONS_GROUP_MAX_AVATARS
-            )
-              existingGroup.sampleAccountsIds.pop();
-
-            existingGroup.most_recent_notification_id = notification.id;
-            existingGroup.page_max_id = notification.id;
-            existingGroup.latest_page_notification_at = notification.created_at;
-            existingGroup.notifications_count += 1;
-
-            state.groups.splice(existingGroupIndex, 1);
-            mergeGapsAround(state.groups, existingGroupIndex);
-
-            state.groups.unshift(existingGroup);
-          }
-        } else {
-          // Create a new group
-          state.groups.unshift(
-            createNotificationGroupFromNotificationJSON(notification),
-          );
-        }
       })
       .addCase(disconnectTimeline, (state, action) => {
         if (action.payload.timeline === 'home') {
@@ -288,6 +331,7 @@ export const notificationsGroupsReducer =
       })
       .addCase(clearNotifications.pending, (state) => {
         state.groups = [];
+        state.pendingGroups = [];
       })
       .addCase(blockAccountSuccess, (state, action) => {
         removeNotificationsForAccounts(state, [action.payload.relationship.id]);
@@ -303,6 +347,32 @@ export const notificationsGroupsReducer =
           state,
           action.payload.accounts.map((account) => account.id),
         );
+      })
+      .addCase(loadPending, (state) => {
+        // First, remove any existing group and merge data
+        state.pendingGroups.forEach((group) => {
+          if (group.type !== 'gap') {
+            const existingGroupIndex = state.groups.findIndex(
+              (groupOrGap) =>
+                isNotificationGroup(groupOrGap) &&
+                groupOrGap.group_key === group.group_key,
+            );
+            if (existingGroupIndex > -1) {
+              const existingGroup = state.groups[existingGroupIndex];
+              if (existingGroup && existingGroup.type !== 'gap') {
+                group.notifications_count += existingGroup.notifications_count;
+                group.sampleAccountsIds = group.sampleAccountsIds
+                  .concat(existingGroup.sampleAccountsIds)
+                  .slice(0, NOTIFICATIONS_GROUP_MAX_AVATARS);
+                state.groups.splice(existingGroupIndex, 1);
+              }
+            }
+          }
+        });
+
+        // Then build the consolidated list and clear pending groups
+        state.groups = state.pendingGroups.concat(state.groups);
+        state.pendingGroups = [];
       })
       .addMatcher(
         isAnyOf(authorizeFollowRequestSuccess, rejectFollowRequestSuccess),

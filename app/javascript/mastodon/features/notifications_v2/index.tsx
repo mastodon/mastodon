@@ -13,13 +13,17 @@ import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?
 import {
   fetchNotifications,
   fetchNotificationsGap,
+  loadPending,
 } from 'mastodon/actions/notification_groups';
 import { compareId } from 'mastodon/compare_id';
 import { Icon } from 'mastodon/components/icon';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
 import { useIdentity } from 'mastodon/identity_context';
 import type { NotificationGap } from 'mastodon/reducers/notifications_groups';
-import { selectUnreadNotificationsGroupsCount } from 'mastodon/selectors/notifications';
+import {
+  selectUnreadNotificationsGroupsCount,
+  selectPendingNotificationsGroupsCount,
+} from 'mastodon/selectors/notifications';
 import {
   selectNeedsNotificationPermission,
   selectSettingsNotificationsExcludedTypes,
@@ -34,7 +38,6 @@ import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { submitMarkers } from '../../actions/markers';
 import {
   scrollTopNotifications,
-  loadPending,
   // mountNotifications,
   // unmountNotifications,
   markNotificationsAsRead,
@@ -80,16 +83,10 @@ const getNotifications = createSelector(
   },
 );
 
-// const mapStateToProps = (state) => ({
-//   numPending: state.getIn(['notifications', 'pendingItems'], ImmutableList())
-//     .size,
-// });
-
 export const Notifications: React.FC<{
   columnId?: string;
   multiColumn?: boolean;
-  numPending: number;
-}> = ({ columnId, multiColumn, numPending }) => {
+}> = ({ columnId, multiColumn }) => {
   const intl = useIntl();
   const notifications = useAppSelector(getNotifications);
   const dispatch = useAppDispatch();
@@ -99,6 +96,8 @@ export const Notifications: React.FC<{
   const lastReadId = useAppSelector((s) =>
     selectSettingsNotificationsShowUnread(s) ? s.markers.notifications : '0',
   );
+
+  const numPending = useAppSelector(selectPendingNotificationsGroupsCount);
 
   const unreadNotificationsCount = useAppSelector(
     selectUnreadNotificationsGroupsCount,

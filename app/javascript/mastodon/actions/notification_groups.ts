@@ -1,3 +1,5 @@
+import { createAction } from '@reduxjs/toolkit';
+
 import {
   apiClearNotifications,
   apiFetchNotifications,
@@ -108,6 +110,8 @@ export const processNewNotificationForGroups = createAppAsyncThunk(
     return notification;
   },
 );
+
+export const loadPending = createAction('notificationGroups/loadPending');
 
 export const setNotificationsFilter = createAppAsyncThunk(
   'notifications/filter/set',
