@@ -10,7 +10,11 @@ const AvatarWrapper: React.FC<{ accountId: string }> = ({ accountId }) => {
   if (!account) return null;
 
   return (
-    <Link to={`/@${account.acct}`} title={`@${account.acct}`}>
+    <Link
+      to={`/@${account.acct}`}
+      title={`@${account.acct}`}
+      data-hover-card-account={account.id}
+    >
       <Avatar account={account} size={28} />
     </Link>
   );
