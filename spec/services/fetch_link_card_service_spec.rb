@@ -95,6 +95,19 @@ RSpec.describe FetchLinkCardService, type: :service do
         expect(a_request(:get, 'http://example.com/test?data=file.gpx%5E1')).to have_been_made.once
       end
     end
+
+    context 'with an URL too long for PostgreSQL unique indexes' do
+      let(:url) { "http://example.com/#{'a' * 2674}" }
+      let(:status) { Fabricate(:status, text: url) }
+
+      it 'does not fetch the URL' do
+        expect(a_request(:get, url)).to_not have_been_made
+      end
+
+      it 'does not create a preview card' do
+        expect(status.preview_card).to be_nil
+      end
+    end
   end
 
   context 'in a remote status' do
