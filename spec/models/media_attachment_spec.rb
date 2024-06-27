@@ -210,9 +210,13 @@ RSpec.describe MediaAttachment, :paperclip_processing do
       expect(media.file.meta['original']['duration']).to be_within(0.05).of(0.235102)
       expect(media.thumbnail.present?).to be true
 
-      # NOTE: Our libvips and ImageMagick implementations currently have different results
-      expect(media.file.meta['colors']['background']).to eq(ENV['MASTODON_USE_LIBVIPS'] ? '#268cd9' : '#3088d4')
+      expect(media.file.meta['colors']['background']).to eq(expected_background_color)
       expect(media.file_file_name).to_not eq 'boop.ogg'
+    end
+
+    def expected_background_color
+      # The libvips and ImageMagick implementations produce different results
+      Rails.configuration.x.use_vips ? '#268cd9' : '#3088d4'
     end
   end
 
