@@ -60,30 +60,21 @@ const messages = defineMessages({
 });
 
 const NotificationsLink = () => {
+  const optedInGroupedNotifications = useSelector((state) => state.getIn(['settings', 'notifications', 'groupingBeta'], false));
   const count = useSelector(state => state.getIn(['notifications', 'unread']));
   const intl = useIntl();
 
   const newCount = useSelector(selectUnreadNotificationsGroupsCount);
 
   return (
-    <>
-      <ColumnLink
-        key='notifications'
-        transparent
-        to='/notifications'
-        icon={<IconWithBadge id='bell' icon={NotificationsIcon} count={count} className='column-link__icon' />}
-        activeIcon={<IconWithBadge id='bell' icon={NotificationsActiveIcon} count={count} className='column-link__icon' />}
-        text={intl.formatMessage(messages.notifications)}
-      />
-      <ColumnLink
-        key='notifications-v2'
-        transparent
-        to='/notifications_v2'
-        icon={<IconWithBadge id='bell' icon={NotificationsIcon} count={newCount} className='column-link__icon' />}
-        activeIcon={<IconWithBadge id='bell' icon={NotificationsActiveIcon} count={newCount} className='column-link__icon' />}
-        text={"New Notifications"}
-      />
-    </>
+    <ColumnLink
+      key='notifications'
+      transparent
+      to='/notifications'
+      icon={<IconWithBadge id='bell' icon={NotificationsIcon} count={optedInGroupedNotifications ? newCount : count} className='column-link__icon' />}
+      activeIcon={<IconWithBadge id='bell' icon={NotificationsActiveIcon} count={optedInGroupedNotifications ? newCount : count} className='column-link__icon' />}
+      text={intl.formatMessage(messages.notifications)}
+    />
   );
 };
 
