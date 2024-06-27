@@ -1,17 +1,6 @@
 # frozen_string_literal: true
 
 class SearchQueryTransformer < Parslet::Transform
-  SUPPORTED_PREFIXES = %w(
-    has
-    is
-    language
-    from
-    before
-    after
-    during
-    in
-  ).freeze
-
   class Query
     def initialize(clauses, options = {})
       raise ArgumentError if options[:current_account].nil?
@@ -225,14 +214,12 @@ class SearchQueryTransformer < Parslet::Transform
   end
 
   rule(clause: subtree(:clause)) do
-    prefix   = clause[:prefix][:term].to_s if clause[:prefix]
+    prefix   = clause[:prefix][:prefix_operator].to_s if clause[:prefix]
     operator = clause[:operator]&.to_s
-    term     = clause[:phrase] ? clause[:phrase].map { |term| term[:term].to_s }.join(' ') : clause[:term].to_s
+    term     = clause[:phrase] ? clause[:phrase].to_s : clause[:term].to_s
 
-    if clause[:prefix] && SUPPORTED_PREFIXES.include?(prefix)
+    if clause[:prefix]
       PrefixClause.new(prefix, operator, term, current_account: current_account)
-    elsif clause[:prefix]
-      TermClause.new(operator, "#{prefix} #{term}")
     elsif clause[:term]
       TermClause.new(operator, term)
     elsif clause[:phrase]
@@ -240,10 +227,6 @@ class SearchQueryTransformer < Parslet::Transform
     else
       raise "Unexpected clause type: #{clause}"
     end
-  end
-
-  rule(junk: subtree(:junk)) do
-    nil
   end
 
   rule(query: sequence(:clauses)) do

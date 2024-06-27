@@ -10,11 +10,19 @@ describe SearchQueryParser do
     it 'consumes "hello"' do
       expect(parser.term).to parse('hello')
     end
+
+    it 'consumes "foo:"' do
+      expect(parser.term).to parse('foo:')
+    end
+
+    it 'consumes ":foo:"' do
+      expect(parser.term).to parse(':foo:')
+    end
   end
 
   context 'with prefix' do
-    it 'consumes "foo:"' do
-      expect(parser.prefix).to parse('foo:')
+    it 'consumes "is:"' do
+      expect(parser.prefix).to parse('is:')
     end
   end
 
@@ -28,15 +36,17 @@ describe SearchQueryParser do
     end
   end
 
-  context 'with shortcode' do
-    it 'consumes ":foo:"' do
-      expect(parser.shortcode).to parse(':foo:')
-    end
-  end
-
   context 'with phrase' do
     it 'consumes "hello world"' do
       expect(parser.phrase).to parse('"hello world"')
+    end
+
+    it 'consumes "hello “new” world"' do
+      expect(parser.phrase).to parse('"hello “new” world"')
+    end
+
+    it 'consumes “hello « hi » world”' do
+      expect(parser.phrase).to parse('“hello « hi » world”')
     end
   end
 
@@ -55,14 +65,6 @@ describe SearchQueryParser do
 
     it 'consumes "-foo:bar"' do
       expect(parser.clause).to parse('-foo:bar')
-    end
-
-    it 'consumes \'foo:"hello world"\'' do
-      expect(parser.clause).to parse('foo:"hello world"')
-    end
-
-    it 'consumes \'-foo:"hello world"\'' do
-      expect(parser.clause).to parse('-foo:"hello world"')
     end
 
     it 'consumes "foo:"' do
@@ -93,6 +95,14 @@ describe SearchQueryParser do
 
     it 'consumes "foo:bar bar: hello"' do
       expect(parser.query).to parse('foo:bar bar: hello')
+    end
+
+    it 'consumes \'foo:"hello world"\'' do
+      expect(parser.query).to parse('foo:"hello world"')
+    end
+
+    it 'consumes \'-foo:"hello world"\'' do
+      expect(parser.query).to parse('-foo:"hello world"')
     end
   end
 end
