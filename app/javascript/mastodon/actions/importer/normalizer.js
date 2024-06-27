@@ -36,8 +36,15 @@ export function normalizeStatus(status, normalOldStatus) {
     normalStatus.poll = status.poll.id;
   }
 
-  if (status.card?.author_account) {
-    normalStatus.card = { ...status.card, author_account: status.card.author_account.id };
+  if (status.card) {
+    normalStatus.card = {
+      ...status.card,
+      authors: status.card.authors.map(author => ({
+        ...author,
+        accountId: author.account?.id,
+        account: undefined,
+      })),
+    };
   }
 
   if (status.filtered) {
