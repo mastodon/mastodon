@@ -5,7 +5,11 @@ if Rails.configuration.x.use_vips
 
   require 'vips'
 
-  abort('Incompatible libvips version, please install libvips >= 8.13') unless Vips.at_least_libvips?(8, 13)
+  unless Vips.at_least_libvips?(8, 13)
+    abort <<~ERROR.squish
+      Incompatible libvips version (#{Vips.version_string}), please install libvips >= 8.13
+    ERROR
+  end
 
   Vips.block('VipsForeign', true)
 
