@@ -25,3 +25,11 @@ if Rails.configuration.x.use_vips
 
   Vips.block_untrusted(true)
 end
+
+# In some places of the code, we rescue this exception, but we don't always
+# load libvips, so it may be an undefined constant:
+unless defined?(Vips)
+  module Vips
+    class Error < StandardError; end
+  end
+end
