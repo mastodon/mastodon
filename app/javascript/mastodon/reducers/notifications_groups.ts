@@ -13,6 +13,7 @@ import {
   fetchNotificationsGap,
   processNewNotificationForGroups,
   loadPending,
+  updateScrollPosition,
 } from 'mastodon/actions/notification_groups';
 import {
   disconnectTimeline,
@@ -28,6 +29,8 @@ import {
 } from 'mastodon/models/notification_group';
 import type { NotificationGroup } from 'mastodon/models/notification_group';
 
+const NOTIFICATIONS_TRIM_LIMIT = 50;
+
 export interface NotificationGap {
   type: 'gap';
   maxId?: string;
@@ -37,12 +40,14 @@ export interface NotificationGap {
 interface NotificationGroupsState {
   groups: (NotificationGroup | NotificationGap)[];
   pendingGroups: (NotificationGroup | NotificationGap)[];
+  scrolledToTop: boolean;
   isLoading: boolean;
 }
 
 const initialState: NotificationGroupsState = {
   groups: [],
   pendingGroups: [], // holds pending groups in slow mode
+  scrolledToTop: false,
   isLoading: false,
 };
 
@@ -220,6 +225,13 @@ function processNewNotification(
   }
 }
 
+function trimNotifications(state: NotificationGroupsState) {
+  // TODO: is there more to it?
+  if (state.scrolledToTop) {
+    state.groups.splice(NOTIFICATIONS_TRIM_LIMIT);
+  }
+}
+
 export const notificationsGroupsReducer =
   createReducer<NotificationGroupsState>(initialState, (builder) => {
     builder
@@ -315,6 +327,7 @@ export const notificationsGroupsReducer =
           usePendingItems ? state.pendingGroups : state.groups,
           notification,
         );
+        trimNotifications(state);
       })
       .addCase(disconnectTimeline, (state, action) => {
         if (action.payload.timeline === 'home') {
@@ -368,11 +381,16 @@ export const notificationsGroupsReducer =
               }
             }
           }
+          trimNotifications(state);
         });
 
         // Then build the consolidated list and clear pending groups
         state.groups = state.pendingGroups.concat(state.groups);
         state.pendingGroups = [];
+      })
+      .addCase(updateScrollPosition, (state, action) => {
+        state.scrolledToTop = action.payload.top;
+        trimNotifications(state);
       })
       .addMatcher(
         isAnyOf(authorizeFollowRequestSuccess, rejectFollowRequestSuccess),

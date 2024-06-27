@@ -113,6 +113,10 @@ export const processNewNotificationForGroups = createAppAsyncThunk(
 
 export const loadPending = createAction('notificationGroups/loadPending');
 
+export const updateScrollPosition = createAction<{ top: boolean }>(
+  'notificationGroups/updateScrollPosition',
+);
+
 export const setNotificationsFilter = createAppAsyncThunk(
   'notifications/filter/set',
   ({ filterType }: { filterType: string }, { dispatch }) => {

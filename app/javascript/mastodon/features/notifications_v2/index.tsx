@@ -13,6 +13,7 @@ import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?
 import {
   fetchNotifications,
   fetchNotificationsGap,
+  updateScrollPosition,
   loadPending,
 } from 'mastodon/actions/notification_groups';
 import { compareId } from 'mastodon/compare_id';
@@ -37,7 +38,6 @@ import type { RootState } from 'mastodon/store';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { submitMarkers } from '../../actions/markers';
 import {
-  scrollTopNotifications,
   // mountNotifications,
   // unmountNotifications,
   markNotificationsAsRead,
@@ -146,7 +146,7 @@ export const Notifications: React.FC<{
 
     return () => {
       // dispatch(unmountNotifications());
-      // dispatch(scrollTopNotifications(false));
+      // dispatch(updateScrollPosition({ top: false }));
     };
   }, [dispatch]);
 
@@ -171,11 +171,11 @@ export const Notifications: React.FC<{
   }, [dispatch]);
 
   const handleScrollToTop = useDebouncedCallback(() => {
-    dispatch(scrollTopNotifications(true));
+    dispatch(updateScrollPosition({ top: true }));
   }, 100);
 
   const handleScroll = useDebouncedCallback(() => {
-    dispatch(scrollTopNotifications(false));
+    dispatch(updateScrollPosition({ top: false }));
   }, 100);
 
   useEffect(() => {
