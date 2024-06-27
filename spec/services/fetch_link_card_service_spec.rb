@@ -27,6 +27,7 @@ RSpec.describe FetchLinkCardService do
     stub_request(:get, 'http://example.com/koi8-r').to_return(request_fixture('koi8-r.txt'))
     stub_request(:get, 'http://example.com/windows-1251').to_return(request_fixture('windows-1251.txt'))
     stub_request(:get, 'http://example.com/low_confidence_latin1').to_return(request_fixture('low_confidence_latin1.txt'))
+    stub_request(:get, 'http://example.com/aergerliche-umlaute').to_return(request_fixture('redirect_with_utf8_url.txt'))
 
     Rails.cache.write('oembed_endpoint:example.com', oembed_cache) if oembed_cache
 
@@ -95,6 +96,14 @@ RSpec.describe FetchLinkCardService do
         expect(a_request(:get, 'http://example.com/redirect-to-404')).to have_been_made.once
         expect(a_request(:get, 'http://example.com/not-found')).to have_been_made.once
       end
+
+      it 'does not create a preview card' do
+        expect(status.preview_card).to be_nil
+      end
+    end
+
+    context 'with a redirect URL with faulty encoding' do
+      let(:status) { Fabricate(:status, text: 'http://example.com/aergerliche-umlaute') }
 
       it 'does not create a preview card' do
         expect(status.preview_card).to be_nil
