@@ -132,15 +132,17 @@ jobs:
           additional-system-dependencies: ffmpeg libpam-dev
 
       - name: Load database schema
-        run: './bin/rails db:create db:schema:load db:seed'
+        run: |
+          bin/rails db:setup
+          bin/flatware fan bin/rails db:test:prepare
 
-      - run: bin/rspec
+      - run: bin/flatware rspec -r ./spec/flatware_helper.rb
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
         uses: codecov/codecov-action@v4
         with:
-          files: coverage/lcov/mastodon.lcov
+          files: coverage/lcov/*.lcov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
