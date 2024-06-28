@@ -116,34 +116,23 @@ module Paperclip
       # The number of occurrences of a color (r, g, b) is thus encoded in band `b` at pixel position `(r, g)`
       histogram = image.hist_find_ndim(bins: BINS)
 
-      # `histogram.max` returns an array of maxima with their pixel positions, but we don't know in which
-      # band they are
+      # With `bandunfold`, we get back to a (BINS*BINS)×BINS 2D image with a single band.
+      # The number of occurrences of a color (r, g, b) is thus encoded at pixel position `(r * BINS + b, g)`
+      histogram = histogram.bandunfold
+
       _, colors = histogram.max(size: 10, out_array: true, x_array: true, y_array: true)
 
-      colors['out_array'].zip(colors['x_array'], colors['y_array']).map do |v, x, y|
-        rgb_from_xyv(histogram, x, y, v)
-      end.flatten.reverse.uniq
+      colors['x_array'].zip(colors['y_array']).map do |x, y|
+        rgb_from_hist_xy(x, y)
+      end.flatten.reverse
     end
 
     # rubocop:disable Naming/MethodParameterName
-    def rgb_from_xyv(image, x, y, v)
-      pixel = image.getpoint(x, y)
-
-      # As we only have the first 2 dimensions for this maximum, we
-      # can't distinguish with different maxima with the same `r` and `g`
-      # values but different `b` values.
-      #
-      # Therefore, we return an array of maxima, which is always non-empty,
-      # but may contain multiple colors with the same values.
-
-      pixel.filter_map.with_index do |pv, z|
-        next if pv != v
-
-        r = (x + 0.5) * 256 / BINS
-        g = (y + 0.5) * 256 / BINS
-        b = (z + 0.5) * 256 / BINS
-        ColorDiff::Color::RGB.new(r, g, b)
-      end
+    def rgb_from_hist_xy(x, y)
+      r = ((x / BINS) + 0.5) * 256 / BINS
+      g = (y + 0.5) * 256 / BINS
+      b = ((x % BINS) + 0.5) * 256 / BINS
+      ColorDiff::Color::RGB.new(r, g, b)
     end
 
     def w3c_contrast(color1, color2)
