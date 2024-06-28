@@ -256,7 +256,11 @@ export const ColumnHeader: React.FC<Props> = ({
           <>
             {backButton}
 
-            <button onClick={handleTitleClick} className='column-header__title' style={{ overflow: 'visible', paddingRight: '15px' }}>
+            <button
+              onClick={handleTitleClick}
+              className='column-header__title'
+              style={{ overflow: 'visible', paddingRight: '15px' }}
+            >
               {!backButton && (
                 <Icon
                   id={icon}
@@ -269,9 +273,7 @@ export const ColumnHeader: React.FC<Props> = ({
           </>
         )}
 
-        { icon === 'home' ? (
-            <FollowedTagsList />
-          ) : null }
+        {icon === 'home' ? <FollowedTagsList /> : null}
 
         {!hasTitle && backButton}
 

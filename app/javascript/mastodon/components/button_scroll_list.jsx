@@ -46,7 +46,6 @@ class ButtonScrollList extends Component {
           React.Children.count(children) - 1,
           this.slide + 1,
         );
-      } else {
       }
     }
   };
