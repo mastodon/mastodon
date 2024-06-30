@@ -1,6 +1,7 @@
 .batch-table__row{ class: [tag.requires_review? && 'batch-table__row--attention', !tag.requires_review? && !tag.trendable? && 'batch-table__row--muted'] }
-  %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
-    = f.check_box :tag_ids, { multiple: true, include_hidden: false }, tag.id
+  - unless f.nil?
+    %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
+      = f.check_box :tag_ids, { multiple: true, include_hidden: false }, tag.id
 
   .batch-table__row__content.pending-account
     .pending-account__header

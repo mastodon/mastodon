@@ -133,7 +133,8 @@ class Tag < ApplicationRecord
     def search_for(term, limit = 5, offset = 0, options = {})
       stripped_term = term.strip
 
-      query = Tag.listable.matches_name(stripped_term)
+      query = Tag.matches_name(stripped_term)
+      query = query.merge(Tag.listable) unless options[:include_unlistable]
       query = query.merge(matching_name(stripped_term).or(where.not(reviewed_at: nil))) if options[:exclude_unreviewed]
 
       query.order(Arel.sql('length(name) ASC, name ASC'))

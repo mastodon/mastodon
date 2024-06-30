@@ -660,12 +660,21 @@ body,
       text-decoration: underline;
     }
   }
+
+  .content__heading__actions & {
+    margin-bottom: 0;
+  }
 }
 
 .special-action-button,
 .back-link {
   text-align: end;
   flex: 1 1 auto;
+}
+
+.time-period {
+  flex: 1 1 auto;
+  text-align: end;
 }
 
 .action-buttons {
@@ -676,6 +685,11 @@ body,
 
 .spacer {
   flex: 1 1 auto;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
 }
 
 .log-entry {
