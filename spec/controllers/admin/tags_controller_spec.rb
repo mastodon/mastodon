@@ -9,6 +9,43 @@ RSpec.describe Admin::TagsController do
     sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin'))
   end
 
+  describe 'GET #index' do
+    before do
+      Fabricate(:tag)
+
+      tag_filter = instance_double(Admin::TagFilter, results: Tag.all)
+      allow(Admin::TagFilter).to receive(:new).and_return(tag_filter)
+    end
+
+    let(:params) { { order: 'newest' } }
+
+    it 'returns http success' do
+      get :index
+
+      expect(response).to have_http_status(200)
+      expect(response).to render_template(:index)
+
+      expect(Admin::TagFilter)
+        .to have_received(:new)
+        .with(hash_including(params))
+    end
+
+    describe 'with filters' do
+      let(:params) { { order: 'newest', name: 'test' } }
+
+      it 'returns http success' do
+        get :index, params: { name: 'test' }
+
+        expect(response).to have_http_status(200)
+        expect(response).to render_template(:index)
+
+        expect(Admin::TagFilter)
+          .to have_received(:new)
+          .with(hash_including(params))
+      end
+    end
+  end
+
   describe 'GET #show' do
     let!(:tag) { Fabricate(:tag) }
 
