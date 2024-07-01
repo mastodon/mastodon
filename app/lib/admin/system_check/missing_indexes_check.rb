@@ -19,7 +19,7 @@ class Admin::SystemCheck::MissingIndexesCheck < Admin::SystemCheck::BaseCheck
     @missing_indexes ||= begin
       expected_indexes_by_table.flat_map do |table, indexes|
         expected_indexes = indexes.map(&:name)
-        (expected_indexes - existing_indexes_for(table)).compact
+        expected_indexes - existing_indexes_for(table)
       end
     end
   end
