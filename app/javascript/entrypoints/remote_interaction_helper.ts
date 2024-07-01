@@ -71,7 +71,8 @@ const isValidDomain = (value: unknown) => {
   if (typeof value !== 'string') return false;
 
   const url = new URL('https:///path');
-  return url.hostname;
+  url.hostname = value;
+  return url.hostname === value;
 };
 
 // Attempt to find a remote interaction URL from a domain
