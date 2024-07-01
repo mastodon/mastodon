@@ -15,7 +15,7 @@ import DeleteIcon from '@/material-icons/400-24px/delete.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
-import { fetchList, deleteList, updateList } from 'mastodon/actions/lists';
+import { fetchList, updateList } from 'mastodon/actions/lists';
 import { openModal } from 'mastodon/actions/modal';
 import { connectListStream } from 'mastodon/actions/streaming';
 import { expandListTimeline } from 'mastodon/actions/timelines';
@@ -26,6 +26,7 @@ import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RadioButton } from 'mastodon/components/radio_button';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import StatusListContainer from 'mastodon/features/ui/containers/status_list_container';
+import { confirmDeleteList } from 'mastodon/utils/confirmations';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 const messages = defineMessages({
@@ -128,22 +129,7 @@ class ListTimeline extends PureComponent {
     const { dispatch, columnId, intl } = this.props;
     const { id } = this.props.params;
 
-    dispatch(openModal({
-      modalType: 'CONFIRM',
-      modalProps: {
-        message: intl.formatMessage(messages.deleteMessage),
-        confirm: intl.formatMessage(messages.deleteConfirm),
-        onConfirm: () => {
-          dispatch(deleteList(id));
-
-          if (columnId) {
-            dispatch(removeColumn(columnId));
-          } else {
-            this.props.history.push('/lists');
-          }
-        },
-      },
-    }));
+    confirmDeleteList(dispatch, intl, id, columnId);
   };
 
   handleRepliesPolicyChange = ({ target }) => {
