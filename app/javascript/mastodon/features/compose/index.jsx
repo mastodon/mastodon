@@ -86,8 +86,6 @@ class Compose extends PureComponent {
         onConfirm: () => logOut(),
       },
     }));
-
-    return false;
   };
 
   onFocus = () => {
