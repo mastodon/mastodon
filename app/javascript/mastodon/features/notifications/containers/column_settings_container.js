@@ -47,7 +47,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       dispatch(changeSetting(['notifications', ...path], checked));
       dispatch(setFilter('all'));
     } else if (path[0] === 'alerts' && checked && typeof window.Notification !== 'undefined' && Notification.permission !== 'granted') {
-      if (checked && typeof window.Notification !== 'undefined' && Notification.permission !== 'granted') {
+      if (Notification.permission !== 'granted') {
         dispatch(requestBrowserPermission((permission) => {
           if (permission === 'granted') {
             dispatch(changeSetting(['notifications', ...path], checked));
