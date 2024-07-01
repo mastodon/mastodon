@@ -44,6 +44,7 @@ export interface ApiPreviewCardJSON {
   type: string;
   author_name: string;
   author_url: string;
+  author_account?: ApiAccountJSON;
   provider_name: string;
   provider_url: string;
   html: string;
