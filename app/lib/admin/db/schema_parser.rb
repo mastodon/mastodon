@@ -1,7 +1,16 @@
 # frozen_string_literal: true
 
 class Admin::Db::SchemaParser
-  Index = Data.define(:name, :table_name, :columns, :options)
+  class Index
+    attr_reader :name, :table_name, :columns, :options
+
+    def initialize(name:, table_name:, columns:, options:)
+      @name = name
+      @table_name = table_name
+      @columns = columns
+      @options = options
+    end
+  end
 
   attr_reader :indexes_by_table
 
