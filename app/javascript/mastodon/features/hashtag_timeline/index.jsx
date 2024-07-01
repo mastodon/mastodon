@@ -101,8 +101,8 @@ class HashtagTimeline extends PureComponent {
     let all  = (tags.all || []).map(tag => tag.value);
     let none = (tags.none || []).map(tag => tag.value);
 
-    return [id, ...any].map(tag => {
-      return this.disconnects.push(dispatch(connectHashtagStream(id, tag, local, status => {
+    [id, ...any].map(tag => {
+      this.disconnects.push(dispatch(connectHashtagStream(id, tag, local, status => {
         let tags = status.tags.map(tag => tag.name);
 
         return all.filter(tag => tags.includes(tag)).length === all.length &&
