@@ -27,7 +27,7 @@ const messages = defineMessages({
 });
 
 export const FollowButton: React.FC<{
-  accountId: string;
+  accountId?: string;
 }> = ({ accountId }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
@@ -36,7 +36,7 @@ export const FollowButton: React.FC<{
     accountId ? state.accounts.get(accountId) : undefined,
   );
   const relationship = useAppSelector((state) =>
-    state.relationships.get(accountId),
+    accountId ? state.relationships.get(accountId) : undefined,
   );
   const following = relationship?.following || relationship?.requested;
 

@@ -10468,12 +10468,14 @@ noscript {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        text-align: end;
       }
 
       &.verified {
         dd {
           display: flex;
           align-items: center;
+          justify-content: flex-end;
           gap: 4px;
           overflow: hidden;
           white-space: nowrap;

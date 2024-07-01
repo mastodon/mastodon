@@ -17,7 +17,7 @@ import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 export const HoverCardAccount = forwardRef<
   HTMLDivElement,
-  { accountId: string }
+  { accountId?: string }
 >(({ accountId }, ref) => {
   const dispatch = useAppDispatch();
 

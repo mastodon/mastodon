@@ -12,8 +12,8 @@ import { useTimeout } from 'mastodon/../hooks/useTimeout';
 import { HoverCardAccount } from 'mastodon/components/hover_card_account';
 
 const offset = [-12, 4] as OffsetValue;
-const enterDelay = 650;
-const leaveDelay = 250;
+const enterDelay = 750;
+const leaveDelay = 150;
 const popperConfig = { strategy: 'fixed' } as UsePopperOptions;
 
 const isHoverCardAnchor = (element: HTMLElement) =>
@@ -23,49 +23,11 @@ export const HoverCardController: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [accountId, setAccountId] = useState<string | undefined>();
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement | null>(null);
   const [setLeaveTimeout, cancelLeaveTimeout] = useTimeout();
-  const [setEnterTimeout, cancelEnterTimeout] = useTimeout();
+  const [setEnterTimeout, cancelEnterTimeout, delayEnterTimeout] = useTimeout();
+  const [setScrollTimeout] = useTimeout();
   const location = useLocation();
-
-  const handleAnchorMouseEnter = useCallback(
-    (e: MouseEvent) => {
-      const { target } = e;
-
-      if (target instanceof HTMLElement && isHoverCardAnchor(target)) {
-        cancelLeaveTimeout();
-
-        setEnterTimeout(() => {
-          target.setAttribute('aria-describedby', 'hover-card');
-          setAnchor(target);
-          setOpen(true);
-          setAccountId(
-            target.getAttribute('data-hover-card-account') ?? undefined,
-          );
-        }, enterDelay);
-      }
-
-      if (target === cardRef.current?.parentNode) {
-        cancelLeaveTimeout();
-      }
-    },
-    [cancelLeaveTimeout, setEnterTimeout, setOpen, setAccountId, setAnchor],
-  );
-
-  const handleAnchorMouseLeave = useCallback(
-    (e: MouseEvent) => {
-      if (e.target === anchor || e.target === cardRef.current?.parentNode) {
-        cancelEnterTimeout();
-
-        setLeaveTimeout(() => {
-          anchor?.removeAttribute('aria-describedby');
-          setOpen(false);
-          setAnchor(null);
-        }, leaveDelay);
-      }
-    },
-    [cancelEnterTimeout, setLeaveTimeout, setOpen, setAnchor, anchor],
-  );
 
   const handleClose = useCallback(() => {
     cancelEnterTimeout();
@@ -79,22 +41,119 @@ export const HoverCardController: React.FC = () => {
   }, [handleClose, location]);
 
   useEffect(() => {
-    document.body.addEventListener('mouseenter', handleAnchorMouseEnter, {
+    let isScrolling = false;
+    let currentAnchor: HTMLElement | null = null;
+
+    const open = (target: HTMLElement) => {
+      target.setAttribute('aria-describedby', 'hover-card');
+      setOpen(true);
+      setAnchor(target);
+      setAccountId(target.getAttribute('data-hover-card-account') ?? undefined);
+    };
+
+    const close = () => {
+      currentAnchor?.removeAttribute('aria-describedby');
+      currentAnchor = null;
+      setOpen(false);
+      setAnchor(null);
+      setAccountId(undefined);
+    };
+
+    const handleMouseEnter = (e: MouseEvent) => {
+      const { target } = e;
+
+      // We've exited the window
+      if (!(target instanceof HTMLElement)) {
+        close();
+        return;
+      }
+
+      // We've entered an anchor
+      if (!isScrolling && isHoverCardAnchor(target)) {
+        cancelLeaveTimeout();
+
+        currentAnchor?.removeAttribute('aria-describedby');
+        currentAnchor = target;
+
+        setEnterTimeout(() => {
+          open(target);
+        }, enterDelay);
+      }
+
+      // We've entered the hover card
+      if (
+        !isScrolling &&
+        (target === currentAnchor || target === cardRef.current)
+      ) {
+        cancelLeaveTimeout();
+      }
+    };
+
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (!currentAnchor) {
+        return;
+      }
+
+      if (e.target === currentAnchor || e.target === cardRef.current) {
+        cancelEnterTimeout();
+
+        setLeaveTimeout(() => {
+          close();
+        }, leaveDelay);
+      }
+    };
+
+    const handleScrollEnd = () => {
+      isScrolling = false;
+    };
+
+    const handleScroll = () => {
+      isScrolling = true;
+      cancelEnterTimeout();
+      setScrollTimeout(handleScrollEnd, 100);
+    };
+
+    const handleMouseMove = () => {
+      delayEnterTimeout(enterDelay);
+    };
+
+    document.body.addEventListener('mouseenter', handleMouseEnter, {
       passive: true,
       capture: true,
     });
-    document.body.addEventListener('mouseleave', handleAnchorMouseLeave, {
+
+    document.body.addEventListener('mousemove', handleMouseMove, {
+      passive: true,
+      capture: false,
+    });
+
+    document.body.addEventListener('mouseleave', handleMouseLeave, {
+      passive: true,
+      capture: true,
+    });
+
+    document.addEventListener('scroll', handleScroll, {
       passive: true,
       capture: true,
     });
 
     return () => {
-      document.body.removeEventListener('mouseenter', handleAnchorMouseEnter);
-      document.body.removeEventListener('mouseleave', handleAnchorMouseLeave);
+      document.body.removeEventListener('mouseenter', handleMouseEnter);
+      document.body.removeEventListener('mousemove', handleMouseMove);
+      document.body.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('scroll', handleScroll);
     };
-  }, [handleAnchorMouseEnter, handleAnchorMouseLeave]);
-
-  if (!accountId) return null;
+  }, [
+    setEnterTimeout,
+    setLeaveTimeout,
+    setScrollTimeout,
+    cancelEnterTimeout,
+    cancelLeaveTimeout,
+    delayEnterTimeout,
+    setOpen,
+    setAccountId,
+    setAnchor,
+  ]);
 
   return (
     <Overlay
