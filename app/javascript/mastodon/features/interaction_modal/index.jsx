@@ -42,8 +42,7 @@ const PERSISTENCE_KEY = 'mastodon_home';
 
 const isValidDomain = value => {
   const url = new URL('https:///path');
-  url.hostname = value;
-  return url.hostname === value;
+  return url.hostname;
 };
 
 const valueToDomain = value => {
