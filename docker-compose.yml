@@ -1,133 +1,159 @@
 # This file is designed for production server deployment, not local development work
 # For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/README.md#docker
 
+# You should check the Docker image tag used for the web, sidekiq, and streaming containers to make sure you are running
+# the appropriate version for your deployment. Using `nightly` will deploy the in-development version of Mastodon, which is
+# not considered a stable release. Visit https://github.com/mastodon/mastodon/releases for currently released versions and tags.
+
 services:
-  db:
-    restart: always
-    image: postgres:14-alpine
-    shm_size: 256mb
-    networks:
-      - internal_network
-    healthcheck:
-      test: ['CMD', 'pg_isready', '-U', 'postgres']
-    volumes:
-      - ./postgres14:/var/lib/postgresql/data
-    environment:
-      - 'POSTGRES_HOST_AUTH_METHOD=trust'
-
-  redis:
-    restart: always
-    image: redis:7-alpine
-    networks:
-      - internal_network
-    healthcheck:
-      test: ['CMD', 'redis-cli', 'ping']
-    volumes:
-      - ./redis:/data
-
-  # es:
-  #   restart: always
-  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
-  #   environment:
-  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true"
-  #     - "xpack.license.self_generated.type=basic"
-  #     - "xpack.security.enabled=false"
-  #     - "xpack.watcher.enabled=false"
-  #     - "xpack.graph.enabled=false"
-  #     - "xpack.ml.enabled=false"
-  #     - "bootstrap.memory_lock=true"
-  #     - "cluster.name=es-mastodon"
-  #     - "discovery.type=single-node"
-  #     - "thread_pool.write.queue_size=1000"
-  #   networks:
-  #      - external_network
-  #      - internal_network
-  #   healthcheck:
-  #      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
-  #   volumes:
-  #      - ./elasticsearch:/usr/share/elasticsearch/data
-  #   ulimits:
-  #     memlock:
-  #       soft: -1
-  #       hard: -1
-  #     nofile:
-  #       soft: 65536
-  #       hard: 65536
-  #   ports:
-  #     - '127.0.0.1:9200:9200'
-
   web:
-    build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.9
-    restart: always
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: ghcr.io/mastodon/mastodon:nightly
     env_file: .env.production
+    environment:
+      - PORT=3000
+      - BIND=127.0.0.1
+    restart: always
     command: bundle exec puma -C config/puma.rb
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          "curl -s --noproxy localhost localhost:3000/health | grep -q 'OK' || exit 1",
+        ]
     networks:
       - external_network
       - internal_network
-    healthcheck:
-      # prettier-ignore
-      test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:3000/health || exit 1']
     ports:
       - '127.0.0.1:3000:3000'
+    volumes:
+      - ./public/system:/mastodon/public/system
     depends_on:
       - db
       - redis
-      # - es
-    volumes:
-      - ./public/system:/mastodon/public/system
+      - es
 
-  streaming:
-    build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.9
-    restart: always
+  sidekiq:
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: ghcr.io/mastodon/mastodon:nightly
     env_file: .env.production
-    command: node ./streaming
+    restart: always
+    command: bundle exec sidekiq
+    healthcheck:
+      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
     networks:
       - external_network
       - internal_network
+    volumes:
+      - ./public/system:/mastodon/public/system
+    depends_on:
+      - db
+      - redis
+      - es
+
+  streaming:
+    # build:
+    #   context: ./streaming
+    #   dockerfile: Dockerfile
+    image: ghcr.io/mastodon/mastodon-streaming:nightly
+    env_file: .env.production
+    environment:
+      - PORT=4000
+      - BIND=127.0.0.1
+    restart: always
+    command: node ./streaming/index.js
     healthcheck:
-      # prettier-ignore
-      test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1']
+      test:
+        [
+          'CMD-SHELL',
+          "curl -s --noproxy localhost localhost:4000/api/v1/streaming/health | grep -q 'OK' || exit 1",
+        ]
+    networks:
+      - external_network
+      - internal_network
     ports:
       - '127.0.0.1:4000:4000'
     depends_on:
       - db
       - redis
 
-  sidekiq:
-    build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.9
+  db:
+    image: postgres:16-alpine
     restart: always
-    env_file: .env.production
-    command: bundle exec sidekiq
-    depends_on:
-      - db
-      - redis
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'postgres']
+    shm_size: 256mb
+    networks:
+      - internal_network
+    volumes:
+      - ./postgres16:/var/lib/postgresql/data
+    environment:
+      - 'POSTGRES_HOST_AUTH_METHOD=trust'
+
+  redis:
+    restart: always
+    image: redis:7-alpine
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+    networks:
+      - internal_network
+    volumes:
+      - ./redis:/data
+
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.21
+    environment:
+      - 'ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true'
+      - 'xpack.license.self_generated.type=basic'
+      - 'xpack.security.enabled=false'
+      - 'xpack.watcher.enabled=false'
+      - 'xpack.graph.enabled=false'
+      - 'xpack.ml.enabled=false'
+      - 'bootstrap.memory_lock=true'
+      - 'cluster.name=es-mastodon'
+      - 'discovery.type=single-node'
+      - 'thread_pool.write.queue_size=1000'
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    restart: always
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'curl --silent --fail localhost:9200/_cluster/health || exit 1',
+        ]
     networks:
       - external_network
       - internal_network
+    ports:
+      - '127.0.0.1:9200:9200'
     volumes:
-      - ./public/system:/mastodon/public/system
-    healthcheck:
-      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
+      - ./elasticsearch:/usr/share/elasticsearch/data
 
-  ## Uncomment to enable federation with tor instances along with adding the following ENV variables
-  ## http_hidden_proxy=http://privoxy:8118
-  ## ALLOW_ACCESS_TO_HIDDEN_SERVICE=true
+  # Uncomment the following section to enable Tor
   # tor:
   #   image: sirboops/tor
   #   networks:
   #      - external_network
   #      - internal_network
-  #
+
+  # Uncomment the following section to enable Privoxy
   # privoxy:
   #   image: sirboops/privoxy
-  #   volumes:
-  #     - ./priv-config:/opt/config
   #   networks:
   #     - external_network
   #     - internal_network
+  #   volumes:
+  #     - ./priv-config:/opt/config
 
 networks:
   external_network:
