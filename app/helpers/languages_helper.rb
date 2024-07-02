@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 module LanguagesHelper
-  ISO_639_1 = {
+  # These locales can be selected as posting languages and filtered for by users.
+  # When adding a locale, prefer using a ISO-639-1 (2-letter) locale over
+  # using a ISO-639-3 (3-letter) locale if available for the language.
+  SUPPORTED_LOCALES = {
     aa: ['Afar', 'Afaraf'].freeze,
     ab: ['Abkhaz', 'аҧсуа бызшәа'].freeze,
     ae: ['Avestan', 'avesta'].freeze,
@@ -11,6 +14,7 @@ module LanguagesHelper
     an: ['Aragonese', 'aragonés'].freeze,
     ar: ['Arabic', 'اللغة العربية'].freeze,
     as: ['Assamese', 'অসমীয়া'].freeze,
+    ast: ['Asturian', 'Asturianu'].freeze,
     av: ['Avaric', 'авар мацӀ'].freeze,
     ay: ['Aymara', 'aymar aru'].freeze,
     az: ['Azerbaijani', 'azərbaycan dili'].freeze,
@@ -27,9 +31,13 @@ module LanguagesHelper
     ca: ['Catalan', 'Català'].freeze,
     ce: ['Chechen', 'нохчийн мотт'].freeze,
     ch: ['Chamorro', 'Chamoru'].freeze,
+    chr: ['Cherokee', 'ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ'].freeze,
+    ckb: ['Sorani (Kurdish)', 'سۆرانی'].freeze,
     co: ['Corsican', 'corsu'].freeze,
+    cnr: ['Montenegrin', 'crnogorski'].freeze,
     cr: ['Cree', 'ᓀᐦᐃᔭᐍᐏᐣ'].freeze,
     cs: ['Czech', 'čeština'].freeze,
+    csb: ['Kashubian', 'Kaszëbsczi'].freeze,
     cu: ['Old Church Slavonic', 'ѩзыкъ словѣньскъ'].freeze,
     cv: ['Chuvash', 'чӑваш чӗлхи'].freeze,
     cy: ['Welsh', 'Cymraeg'].freeze,
@@ -76,8 +84,10 @@ module LanguagesHelper
     it: ['Italian', 'Italiano'].freeze,
     iu: ['Inuktitut', 'ᐃᓄᒃᑎᑐᑦ'].freeze,
     ja: ['Japanese', '日本語'].freeze,
+    jbo: ['Lojban', 'la .lojban.'].freeze,
     jv: ['Javanese', 'basa Jawa'].freeze,
     ka: ['Georgian', 'ქართული'].freeze,
+    kab: ['Kabyle', 'Taqbaylit'].freeze,
     kg: ['Kongo', 'Kikongo'].freeze,
     ki: ['Kikuyu', 'Gĩkũyũ'].freeze,
     kj: ['Kwanyama', 'Kuanyama'].freeze,
@@ -94,6 +104,8 @@ module LanguagesHelper
     ky: ['Kyrgyz', 'Кыргызча'].freeze,
     la: ['Latin', 'latine'].freeze,
     lb: ['Luxembourgish', 'Lëtzebuergesch'].freeze,
+    ldn: ['Láadan', 'Láadan'].freeze,
+    lfn: ['Lingua Franca Nova', 'lingua franca nova'].freeze,
     lg: ['Ganda', 'Luganda'].freeze,
     li: ['Limburgish', 'Limburgs'].freeze,
     ln: ['Lingala', 'Lingála'].freeze,
@@ -107,6 +119,7 @@ module LanguagesHelper
     mk: ['Macedonian', 'македонски јазик'].freeze,
     ml: ['Malayalam', 'മലയാളം'].freeze,
     mn: ['Mongolian', 'Монгол хэл'].freeze,
+    moh: ['Mohawk', 'Kanienʼkéha'].freeze,
     mr: ['Marathi', 'मराठी'].freeze,
     ms: ['Malay', 'Bahasa Melayu'].freeze,
     'ms-Arab': ['Jawi Malay', 'بهاس ملايو'].freeze,
@@ -115,6 +128,7 @@ module LanguagesHelper
     na: ['Nauru', 'Ekakairũ Naoero'].freeze,
     nb: ['Norwegian Bokmål', 'Norsk bokmål'].freeze,
     nd: ['Northern Ndebele', 'isiNdebele'].freeze,
+    nds: ['Low German', 'Plattdüütsch'].freeze,
     ne: ['Nepali', 'नेपाली'].freeze,
     ng: ['Ndonga', 'Owambo'].freeze,
     nl: ['Dutch', 'Nederlands'].freeze,
@@ -129,6 +143,7 @@ module LanguagesHelper
     or: ['Oriya', 'ଓଡ଼ିଆ'].freeze,
     os: ['Ossetian', 'ирон æвзаг'].freeze,
     pa: ['Punjabi', 'ਪੰਜਾਬੀ'].freeze,
+    pdc: ['Pennsylvania Dutch', 'Pennsilfaani-Deitsch'].freeze,
     pi: ['Pāli', 'पाऴि'].freeze,
     pl: ['Polish', 'Polski'].freeze,
     ps: ['Pashto', 'پښتو'].freeze,
@@ -141,12 +156,15 @@ module LanguagesHelper
     rw: ['Kinyarwanda', 'Ikinyarwanda'].freeze,
     sa: ['Sanskrit', 'संस्कृतम्'].freeze,
     sc: ['Sardinian', 'sardu'].freeze,
+    sco: ['Scots', 'Scots'].freeze,
     sd: ['Sindhi', 'सिन्धी'].freeze,
     se: ['Northern Sami', 'Davvisámegiella'].freeze,
     sg: ['Sango', 'yângâ tî sängö'].freeze,
     si: ['Sinhala', 'සිංහල'].freeze,
     sk: ['Slovak', 'slovenčina'].freeze,
     sl: ['Slovenian', 'slovenščina'].freeze,
+    sma: ['Southern Sami', 'Åarjelsaemien Gïele'].freeze,
+    smj: ['Lule Sami', 'Julevsámegiella'].freeze,
     sn: ['Shona', 'chiShona'].freeze,
     so: ['Somali', 'Soomaaliga'].freeze,
     sq: ['Albanian', 'Shqip'].freeze,
@@ -156,6 +174,7 @@ module LanguagesHelper
     su: ['Sundanese', 'Basa Sunda'].freeze,
     sv: ['Swedish', 'Svenska'].freeze,
     sw: ['Swahili', 'Kiswahili'].freeze,
+    szl: ['Silesian', 'ślůnsko godka'].freeze,
     ta: ['Tamil', 'தமிழ்'].freeze,
     te: ['Telugu', 'తెలుగు'].freeze,
     tg: ['Tajik', 'тоҷикӣ'].freeze,
@@ -165,6 +184,7 @@ module LanguagesHelper
     tl: ['Tagalog', 'Wikang Tagalog'].freeze,
     tn: ['Tswana', 'Setswana'].freeze,
     to: ['Tonga', 'faka Tonga'].freeze,
+    tok: ['Toki Pona', 'toki pona'].freeze,
     tr: ['Turkish', 'Türkçe'].freeze,
     ts: ['Tsonga', 'Xitsonga'].freeze,
     tt: ['Tatar', 'татар теле'].freeze,
@@ -174,76 +194,50 @@ module LanguagesHelper
     uk: ['Ukrainian', 'Українська'].freeze,
     ur: ['Urdu', 'اردو'].freeze,
     uz: ['Uzbek', 'Ўзбек'].freeze,
+    vai: ['Vai', 'ꕙꔤ'].freeze,
     ve: ['Venda', 'Tshivenḓa'].freeze,
     vi: ['Vietnamese', 'Tiếng Việt'].freeze,
     vo: ['Volapük', 'Volapük'].freeze,
     wa: ['Walloon', 'walon'].freeze,
     wo: ['Wolof', 'Wollof'].freeze,
+    xal: ['Kalmyk', 'Хальмг келн'].freeze,
     xh: ['Xhosa', 'isiXhosa'].freeze,
     yi: ['Yiddish', 'ייִדיש'].freeze,
     yo: ['Yoruba', 'Yorùbá'].freeze,
     za: ['Zhuang', 'Saɯ cueŋƅ'].freeze,
-    zh: ['Chinese', '中文'].freeze,
-    zu: ['Zulu', 'isiZulu'].freeze,
-  }.freeze
-
-  ISO_639_3 = {
-    ast: ['Asturian', 'Asturianu'].freeze,
-    chr: ['Cherokee', 'ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ'].freeze,
-    ckb: ['Sorani (Kurdish)', 'سۆرانی'].freeze,
-    cnr: ['Montenegrin', 'crnogorski'].freeze,
-    csb: ['Kashubian', 'Kaszëbsczi'].freeze,
-    jbo: ['Lojban', 'la .lojban.'].freeze,
-    kab: ['Kabyle', 'Taqbaylit'].freeze,
-    ldn: ['Láadan', 'Láadan'].freeze,
-    lfn: ['Lingua Franca Nova', 'lingua franca nova'].freeze,
-    moh: ['Mohawk', 'Kanienʼkéha'].freeze,
-    nds: ['Low German', 'Plattdüütsch'].freeze,
-    pdc: ['Pennsylvania Dutch', 'Pennsilfaani-Deitsch'].freeze,
-    sco: ['Scots', 'Scots'].freeze,
-    sma: ['Southern Sami', 'Åarjelsaemien Gïele'].freeze,
-    smj: ['Lule Sami', 'Julevsámegiella'].freeze,
-    szl: ['Silesian', 'ślůnsko godka'].freeze,
-    tok: ['Toki Pona', 'toki pona'].freeze,
-    vai: ['Vai', 'ꕙꔤ'].freeze,
-    xal: ['Kalmyk', 'Хальмг келн'].freeze,
     zba: ['Balaibalan', 'باليبلن'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
-  }.freeze
-
-  # e.g. For Chinese, which is not a language,
-  # but a language family in spite of sharing the main locale code
-  # We need to be able to filter these
-  ISO_639_1_REGIONAL = {
+    zh: ['Chinese', '中文'].freeze,
+    # "Chinese" is not a language, but a language family in spite of
+    # sharing the main locale code.
     'zh-CN': ['Chinese (China)', '简体中文'].freeze,
     'zh-HK': ['Chinese (Hong Kong)', '繁體中文（香港）'].freeze,
     'zh-TW': ['Chinese (Taiwan)', '繁體中文（臺灣）'].freeze,
     'zh-YUE': ['Cantonese', '廣東話'].freeze,
+    zu: ['Zulu', 'isiZulu'].freeze,
   }.freeze
 
-  SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_1_REGIONAL).merge(ISO_639_3).freeze
-
-  # For ISO-639-1 and ISO-639-3 language codes, we have their official
-  # names, but for some translations, we need the names of the
-  # regional variants specifically
-  REGIONAL_LOCALE_NAMES = {
-    'en-GB': 'English (British)',
-    'es-AR': 'Español (Argentina)',
-    'es-MX': 'Español (México)',
-    'fr-CA': 'Français (Canadien)',
-    'pt-BR': 'Português (Brasil)',
-    'pt-PT': 'Português (Portugal)',
-    'sr-Latn': 'Srpski (latinica)',
+  # These locales are being translated on Crowdin and are available in the UI,
+  # but for presenting posting and filtering languages, we drop the country code and
+  # fall back to the language code, thus skipping these locales there.
+  UI_ONLY_REGIONAL_LOCALES = {
+    'en-GB': ['English (British)', 'English (British)'].freeze,
+    'es-AR': ['Spanish (Argentina)', 'Español (Argentina)'].freeze,
+    'es-MX': ['Spanish (Mexico)', 'Español (México)'].freeze,
+    'fr-CA': ['French (Canadian)', 'Français (Canadien)'].freeze,
+    'pt-BR': ['Portuguese (Brasil)', 'Português (Brasil)'].freeze,
+    'pt-PT': ['Portuguese (Portugal)', 'Português (Portugal)'].freeze,
+    'sr-Latn': ['Serbian (Latin)', 'Srpski (latinica)'].freeze,
   }.freeze
+
+  KNOWN_LOCALES = {}.merge(SUPPORTED_LOCALES).merge(UI_ONLY_REGIONAL_LOCALES).freeze
 
   # Helper for self.sorted_locale_keys
   private_class_method def self.locale_name_for_sorting(locale)
     if locale.blank? || locale == 'und'
       '000'
-    elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
-      ASCIIFolding.new.fold(supported_locale[1]).downcase
-    elsif (regional_locale = REGIONAL_LOCALE_NAMES[locale.to_sym])
-      ASCIIFolding.new.fold(regional_locale).downcase
+    elsif (known_locale = KNOWN_LOCALES[locale.to_sym])
+      ASCIIFolding.new.fold(known_locale[1]).downcase
     else
       locale
     end
@@ -257,10 +251,8 @@ module LanguagesHelper
   def native_locale_name(locale)
     if locale.blank? || locale == 'und'
       I18n.t('generic.none')
-    elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
-      supported_locale[1]
-    elsif (regional_locale = REGIONAL_LOCALE_NAMES[locale.to_sym])
-      regional_locale
+    elsif (known_locale = KNOWN_LOCALES[locale.to_sym])
+      known_locale[1]
     else
       locale
     end
@@ -269,8 +261,8 @@ module LanguagesHelper
   def standard_locale_name(locale)
     if locale.blank?
       I18n.t('generic.none')
-    elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
-      supported_locale[0]
+    elsif (known_locale = KNOWN_LOCALES[locale.to_sym])
+      known_locale[0]
     else
       locale
     end
