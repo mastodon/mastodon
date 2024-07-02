@@ -19,7 +19,7 @@ class Api::V1::Timelines::TagController < Api::V1::Timelines::BaseController
   end
 
   def load_tag
-    @tag = Tag.find_normalized(params[:id])
+    @tag = Tag.usable.find_normalized(params[:id])
   end
 
   def load_statuses
