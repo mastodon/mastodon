@@ -35,4 +35,17 @@ module Mastodon
       super()
     end
   end
+
+  HTTP_CONNECTION_ERRORS = [
+    Addressable::URI::InvalidURIError,
+    HostValidationError,
+    HTTP::ConnectionError,
+    HTTP::Error,
+    HTTP::TimeoutError,
+    IPAddr::AddressFamilyError,
+    LengthValidationError,
+    OpenSSL::SSL::SSLError,
+    PrivateNetworkAddressError,
+    UnexpectedResponseError,
+  ].freeze
 end
