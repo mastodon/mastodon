@@ -82,6 +82,13 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       translation: {
         enabled: TranslationService.configured?,
       },
+
+      search: {
+        enabled: Chewy.enabled?,
+        supported_prefix: SearchQueryTransformer::SUPPORTED_PREFIXES,
+        supported_properties: SearchQueryTransformer::SUPPORTED_PROPERTIES,
+        supported_operator: SearchQueryTransformer::SUPPORTED_OPERATOR,
+      },
     }
   end
 
