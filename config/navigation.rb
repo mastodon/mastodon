@@ -6,7 +6,11 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |n|
     n.item :web, safe_join([fa_icon('chevron-left fw'), t('settings.back')]), root_path
 
-    n.item :software_updates, safe_join([fa_icon('exclamation-circle fw'), t('admin.critical_update_pending')]), admin_software_updates_path, if: -> { ENV['UPDATE_CHECK_URL'] != '' && current_user.can?(:view_devops) && SoftwareUpdate.urgent_pending? }, html: { class: 'warning' }
+    n.item :software_updates,
+           safe_join([fa_icon('exclamation-circle fw'), t('admin.critical_update_pending')]),
+           admin_software_updates_path,
+           if: -> { Rails.configuration.x.mastodon.software_update_url.present? && current_user.can?(:view_devops) && SoftwareUpdate.urgent_pending? },
+           html: { class: 'warning' }
 
     n.item :profile, safe_join([fa_icon('user fw'), t('settings.profile')]), settings_profile_path, if: -> { current_user.functional? && !self_destruct }, highlights_on: %r{/settings/profile|/settings/featured_tags|/settings/verification|/settings/privacy}
 
