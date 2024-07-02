@@ -116,7 +116,7 @@ class NavigationPanel extends Component {
     if(transientSingleColumn)
       banner = (<div className='switch-to-advanced'>
         {intl.formatMessage(messages.openedInClassicInterface)}
-        {" "}
+        {' '}
         <a href={`/deck${location.pathname}`} className='switch-to-advanced__toggle'>
           {intl.formatMessage(messages.advancedInterface)}
         </a>

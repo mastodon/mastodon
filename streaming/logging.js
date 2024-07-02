@@ -37,7 +37,7 @@ function sanitizeRequestLog(req) {
 }
 
 export const logger = pino({
-  name: "streaming",
+  name: 'streaming',
   // Reformat the log level to a string:
   formatters: {
     level: (label) => {

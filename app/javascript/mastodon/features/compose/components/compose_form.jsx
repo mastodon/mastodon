@@ -27,7 +27,7 @@ import { countableText } from '../util/counter';
 import { CharacterCounter } from './character_counter';
 import { EditIndicator } from './edit_indicator';
 import { NavigationBar } from './navigation_bar';
-import { PollForm } from "./poll_form";
+import { PollForm } from './poll_form';
 import { ReplyIndicator } from './reply_indicator';
 import { UploadForm } from './upload_form';
 

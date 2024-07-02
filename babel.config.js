@@ -7,8 +7,8 @@ module.exports = (api) => {
   };
 
   const envOptions = {
-    useBuiltIns: "usage",
-    corejs: { version: "3.30" },
+    useBuiltIns: 'usage',
+    corejs: { version: '3.30' },
     debug: false,
     include: [
       'transform-numeric-separator',
