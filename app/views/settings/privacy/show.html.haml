@@ -2,8 +2,7 @@
   = t('privacy.title')
 
 - content_for :heading do
-  %h2= t('settings.profile')
-  = render partial: 'settings/shared/profile_navigation'
+  %h2= t('privacy.title')
 
 = simple_form_for @account, url: settings_privacy_path, html: { method: :put } do |f|
   = render 'shared/error_messages', object: @account
