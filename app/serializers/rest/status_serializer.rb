@@ -192,9 +192,18 @@ class REST::StatusSerializer < ActiveModel::Serializer
     include RoutingHelper
 
     attributes :name, :url
+    attribute :following, if: :current_user?
 
     def url
       tag_url(object)
+    end
+
+    def following
+      TagFollow.exists?(tag_id: object.id, account_id: current_user.account_id)
+    end
+
+    def current_user?
+      !current_user.nil?
     end
   end
 end
