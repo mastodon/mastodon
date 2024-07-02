@@ -40,6 +40,7 @@ class Status < ApplicationRecord
   include Status::ThreadingConcern
 
   MEDIA_ATTACHMENTS_LIMIT = 4
+  REMOTE_MEDIA_ATTACHMENTS_LIMIT = 16
 
   rate_limit by: :account, family: :statuses
 
