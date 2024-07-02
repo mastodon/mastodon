@@ -160,7 +160,7 @@ class Report < ApplicationRecord
   private
 
   def set_uri
-    self.uri = ActivityPub::TagManager.instance.generate_uri_for(self) if uri.nil? && account.local?
+    self.uri = ActivityPub::TagManager.instance.generate_activity_uri if uri.nil? && account.local?
   end
 
   def validate_rule_ids

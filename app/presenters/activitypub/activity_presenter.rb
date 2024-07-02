@@ -29,7 +29,7 @@ class ActivityPub::ActivityPresenter < ActiveModelSerializers::Model
 
     def from_encrypted_message(encrypted_message)
       new.tap do |presenter|
-        presenter.id = ActivityPub::TagManager.instance.generate_uri_for(nil)
+        presenter.id = ActivityPub::TagManager.instance.generate_activity_uri
         presenter.type = 'Create'
         presenter.actor = ActivityPub::TagManager.instance.uri_for(encrypted_message.source_account)
         presenter.published = Time.now.utc
