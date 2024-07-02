@@ -203,7 +203,7 @@ RSpec.describe TranslateStatusService do
     end
   end
 
-  describe '#wrap_emoji_shortcodes' do
+  describe '#wrap_emoji_and_tags' do
     before do
       service.instance_variable_set(:@status, status)
     end
@@ -212,22 +212,22 @@ RSpec.describe TranslateStatusService do
       let(:text) { ':highfive:' }
 
       it 'renders the emoji' do
-        html = service.send(:wrap_emoji_shortcodes, 'Hello :highfive:'.html_safe)
-        expect(html).to eq 'Hello <span translate="no">:highfive:</span>'
+        html = service.send(:wrap_emoji_and_tags, 'Hello :highfive: <a class="hashtag">#<span>hashtag</span></a>'.html_safe)
+        expect(html).to eq 'Hello <span translate="no">:highfive:</span> <a class="hashtag" translate="no">#<span>hashtag</span></a>'
       end
     end
   end
 
-  describe '#unwrap_emoji_shortcodes' do
+  describe '#unwrap_emoji_and_tags' do
     describe 'string contains custom emoji' do
       it 'inserts the shortcode' do
-        fragment = service.send(:unwrap_emoji_shortcodes, '<p>Hello <span translate="no">:highfive:</span>!</p>')
-        expect(fragment.to_html).to eq '<p>Hello :highfive:!</p>'
+        fragment = service.send(:unwrap_emoji_and_tags, '<p>Hello <span translate="no">:highfive:</span>! <a class="hashtag" translate="no">#<span>hashtag</span></a></p>')
+        expect(fragment.to_html).to eq '<p>Hello :highfive:! <a class="hashtag">#<span>hashtag</span></a></p>'
       end
 
       it 'preserves other attributes than translate=no' do
-        fragment = service.send(:unwrap_emoji_shortcodes, '<p>Hello <span translate="no" class="foo">:highfive:</span>!</p>')
-        expect(fragment.to_html).to eq '<p>Hello <span class="foo">:highfive:</span>!</p>'
+        fragment = service.send(:unwrap_emoji_and_tags, '<p>Hello <span translate="no" class="foo">:highfive:</span>! <a class="mention hashtag" translate="no">#<span>hashtag</span></a></p>')
+        expect(fragment.to_html).to eq '<p>Hello <span class="foo">:highfive:</span>! <a class="mention hashtag">#<span>hashtag</span></a></p>'
       end
     end
   end

@@ -45,11 +45,11 @@ class TranslateStatusService < BaseService
 
   def source_texts
     texts = {}
-    texts[:content] = wrap_emoji_shortcodes(status_content_format(@status)) if @status.content.present?
-    texts[:spoiler_text] = wrap_emoji_shortcodes(html_escape(@status.spoiler_text)) if @status.spoiler_text.present?
+    texts[:content] = wrap_emoji_and_tags(status_content_format(@status)) if @status.content.present?
+    texts[:spoiler_text] = wrap_emoji_and_tags(html_escape(@status.spoiler_text)) if @status.spoiler_text.present?
 
     @status.preloadable_poll&.loaded_options&.each do |option|
-      texts[option] = wrap_emoji_shortcodes(html_escape(option.title))
+      texts[option] = wrap_emoji_and_tags(html_escape(option.title))
     end
 
     @status.media_attachments.each do |media_attachment|
@@ -75,14 +75,14 @@ class TranslateStatusService < BaseService
 
       case source
       when :content
-        node = unwrap_emoji_shortcodes(translation.text)
+        node = unwrap_emoji_and_tags(translation.text)
         Sanitize.node!(node, Sanitize::Config::MASTODON_STRICT)
         status_translation.content = node.to_html
       when :spoiler_text
-        status_translation.spoiler_text = unwrap_emoji_shortcodes(translation.text).content
+        status_translation.spoiler_text = unwrap_emoji_and_tags(translation.text).content
       when Poll::Option
         status_translation.poll_options << Translation::Option.new(
-          title: unwrap_emoji_shortcodes(translation.text).content
+          title: unwrap_emoji_and_tags(translation.text).content
         )
       when MediaAttachment
         status_translation.media_attachments << Translation::MediaAttachment.new(
@@ -95,13 +95,18 @@ class TranslateStatusService < BaseService
     status_translation
   end
 
-  def wrap_emoji_shortcodes(text)
-    EmojiFormatter.new(text, @status.emojis, { raw_shortcode: true }).to_s
+  def wrap_emoji_and_tags(text)
+    html = EmojiFormatter.new(text, @status.emojis, { raw_shortcode: true }).to_s
+    fragment = Nokogiri::HTML.fragment(html)
+    fragment.css('.hashtag').each do |element|
+      element['translate'] = 'no'
+    end
+    fragment.to_s
   end
 
-  def unwrap_emoji_shortcodes(html)
+  def unwrap_emoji_and_tags(html)
     fragment = Nokogiri::HTML.fragment(html)
-    fragment.css('span[translate="no"]').each do |element|
+    fragment.css('span[translate="no"],.hashtag[translate="no"]').each do |element|
       element.remove_attribute('translate')
       element.replace(element.children) if element.attributes.empty?
     end
