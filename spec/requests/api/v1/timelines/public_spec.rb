@@ -95,25 +95,28 @@ describe 'Public' do
     end
 
     context 'when the instance does not allow public preview' do
+      let(:expected_statuses) { [local_status, remote_status, media_status] }
+
       before do
         Form::AdminSettings.new(timeline_preview: false).save
       end
 
       context 'with an authenticated user' do
-        let(:expected_statuses) { [local_status, remote_status, media_status] }
+        it_behaves_like 'a successful request to the public timeline'
+      end
+
+      context 'with an authenticated user but using the wrong scope' do
+        it_behaves_like 'forbidden for wrong scope', 'follow'
+      end
+
+      context 'with an authenticated application' do
+        let(:client_app) { Fabricate(:application) }
+        let(:token) { Fabricate(:accessible_access_token, application: client_app, scopes: scopes) }
 
         it_behaves_like 'a successful request to the public timeline'
       end
 
-      context 'with an unauthenticated user' do
-        let(:headers) { {} }
-
-        it 'returns http unprocessable entity' do
-          subject
-
-          expect(response).to have_http_status(422)
-        end
-      end
+      it_behaves_like 'unauthorized for invalid token'
     end
   end
 end
