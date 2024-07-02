@@ -11,6 +11,10 @@ class Api::V1::Statuses::ReblogsController < Api::V1::Statuses::BaseController
 
   override_rate_limit_headers :create, family: :statuses
 
+  PERMITTED_PARAMS = %i(
+    visibility
+  ).freeze
+
   def create
     with_redis_lock("reblog:#{current_account.id}:#{@reblog.id}") do
       @status = ReblogService.new.call(current_account, @reblog, reblog_params)
@@ -50,6 +54,8 @@ class Api::V1::Statuses::ReblogsController < Api::V1::Statuses::BaseController
   end
 
   def reblog_params
-    params.permit(:visibility)
+    params
+      .slice(*PERMITTED_PARAMS)
+      .permit(*PERMITTED_PARAMS)
   end
 end
