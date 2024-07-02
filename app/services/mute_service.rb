@@ -6,6 +6,8 @@ class MuteService < BaseService
 
     mute = account.mute!(target_account, notifications: notifications, duration: duration)
 
+    TriggerWebhookWorker.perform_async('mute.created', 'Mute', mute.id)
+
     if mute.hide_notifications?
       BlockWorker.perform_async(account.id, target_account.id)
     else
