@@ -75,7 +75,7 @@
       = ff.input :'web.display_media',
                  as: :radio_buttons,
                  collection_wrapper_tag: 'ul',
-                 collection: %w(default show_all hide_all),
+                 collection: %w(show_all default hide_all),
                  hint: false,
                  item_wrapper_tag: 'li',
                  label_method: ->(item) { t("simple_form.hints.defaults.setting_display_media_#{item}") },
