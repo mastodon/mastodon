@@ -17,7 +17,6 @@ class StreamingServerManager
     @running_thread = Thread.new do
       Open3.popen2e(
         {
-          'REDIS_NAMESPACE' => ENV.fetch('REDIS_NAMESPACE'),
           'DB_NAME' => "#{ENV.fetch('DB_NAME', 'mastodon')}_test#{ENV.fetch('TEST_ENV_NUMBER', '')}",
           'RAILS_ENV' => ENV.fetch('RAILS_ENV', 'test'),
           'NODE_ENV' => ENV.fetch('STREAMING_NODE_ENV', 'development'),
