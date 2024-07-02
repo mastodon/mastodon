@@ -692,6 +692,10 @@ RSpec.describe Account do
       expect(subject.match('@alice@example.com')[1]).to eq 'alice@example.com'
     end
 
+    it 'matches full usernames with unicode domain names' do
+      expect(subject.match('@alice@🌈🌈🌈.st')[1]).to eq 'alice@🌈🌈🌈.st'
+    end
+
     it 'matches full usernames with a dot at the end' do
       expect(subject.match('Hello @alice@example.com.')[1]).to eq 'alice@example.com'
     end
