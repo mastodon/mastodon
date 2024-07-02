@@ -41,7 +41,7 @@ RSpec.describe AuthorizeFollowService do
       expect(bob.following?(sender)).to be true
     end
 
-    it 'sends an accept activity', :sidekiq_inline do
+    it 'sends an accept activity', :inline_jobs do
       expect(a_request(:post, bob.inbox_url)).to have_been_made.once
     end
   end

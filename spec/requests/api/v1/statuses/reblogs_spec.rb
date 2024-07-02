@@ -41,7 +41,7 @@ describe 'API V1 Statuses Reblogs' do
       end
     end
 
-    describe 'POST /api/v1/statuses/:status_id/unreblog', :sidekiq_inline do
+    describe 'POST /api/v1/statuses/:status_id/unreblog', :inline_jobs do
       context 'with public status' do
         let(:status) { Fabricate(:status, account: user.account) }
 

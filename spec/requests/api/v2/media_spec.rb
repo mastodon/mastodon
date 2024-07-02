@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Media API', :paperclip_processing do
+RSpec.describe 'Media API', :attachment_processing do
   let(:user)    { Fabricate(:user) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:scopes)  { 'write' }

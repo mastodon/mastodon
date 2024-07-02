@@ -123,7 +123,7 @@ RSpec.describe Auth::SessionsController do
           user.update(current_sign_in_at: 1.month.ago)
         end
 
-        it 'logs the user in and sends suspicious email and redirects home', :sidekiq_inline do
+        it 'logs the user in and sends suspicious email and redirects home', :inline_jobs do
           emails = capture_emails { subject }
 
           expect(response)
@@ -263,7 +263,7 @@ RSpec.describe Auth::SessionsController do
             travel_to '2023-12-20T10:00:00Z'
           end
 
-          it 'does not log the user in, sets a flash message, and sends a suspicious sign in email', :sidekiq_inline do
+          it 'does not log the user in, sets a flash message, and sends a suspicious sign in email', :inline_jobs do
             emails = capture_emails do
               Auth::SessionsController::MAX_2FA_ATTEMPTS_PER_HOUR.times do
                 post :create, params: { user: { otp_attempt: '1234' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }

@@ -49,7 +49,7 @@ RSpec.describe BlockDomainService do
   end
 
   describe 'for a silence with reject media' do
-    it 'does not mark the domain as blocked, but silences accounts with an appropriate silencing date, clears media', :aggregate_failures, :sidekiq_inline do
+    it 'does not mark the domain as blocked, but silences accounts with an appropriate silencing date, clears media', :aggregate_failures, :inline_jobs do
       subject.call(DomainBlock.create!(domain: 'evil.org', severity: :silence, reject_media: true))
 
       expect(DomainBlock.blocked?('evil.org')).to be false
