@@ -39,6 +39,6 @@ class Api::V2::Filters::StatusesController < Api::BaseController
   end
 
   def resource_params
-    params.permit(:status_id)
+    params_slice(:status_id)
   end
 end

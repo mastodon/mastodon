@@ -22,6 +22,6 @@ class Api::V1::Polls::VotesController < Api::BaseController
   end
 
   def vote_params
-    params.permit(choices: [])
+    params.slice(:choices).permit(choices: [])
   end
 end
