@@ -444,6 +444,29 @@ class Header extends ImmutablePureComponent {
             </h1>
           </div>
 
+          <div className='account__header__extra__links'>
+                <NavLink isActive={this.isStatusesPageActive} activeClassName='active' to={`/@${account.get('acct')}`} title={intl.formatNumber(account.get('statuses_count'))}>
+                  <ShortNumber
+                    value={account.get('statuses_count')}
+                    renderer={StatusesCounter}
+                  />
+                </NavLink>
+
+                <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/following`} title={intl.formatNumber(account.get('following_count'))}>
+                  <ShortNumber
+                    value={account.get('following_count')}
+                    renderer={FollowingCounter}
+                  />
+                </NavLink>
+
+                <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/followers`} title={intl.formatNumber(account.get('followers_count'))}>
+                  <ShortNumber
+                    value={account.get('followers_count')}
+                    renderer={FollowersCounter}
+                  />
+                </NavLink>
+              </div>
+              
           {badges.length > 0 && (
             <div className='account__header__badges'>
               {badges}
@@ -473,29 +496,6 @@ class Header extends ImmutablePureComponent {
                     </dl>
                   ))}
                 </div>
-              </div>
-
-              <div className='account__header__extra__links'>
-                <NavLink isActive={this.isStatusesPageActive} activeClassName='active' to={`/@${account.get('acct')}`} title={intl.formatNumber(account.get('statuses_count'))}>
-                  <ShortNumber
-                    value={account.get('statuses_count')}
-                    renderer={StatusesCounter}
-                  />
-                </NavLink>
-
-                <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/following`} title={intl.formatNumber(account.get('following_count'))}>
-                  <ShortNumber
-                    value={account.get('following_count')}
-                    renderer={FollowingCounter}
-                  />
-                </NavLink>
-
-                <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/followers`} title={intl.formatNumber(account.get('followers_count'))}>
-                  <ShortNumber
-                    value={account.get('followers_count')}
-                    renderer={FollowersCounter}
-                  />
-                </NavLink>
               </div>
             </div>
           )}
