@@ -18,10 +18,9 @@ import MenuIcon from '@/material-icons/400-24px/menu.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings-fill.svg?react';
-import { openModal } from 'mastodon/actions/modal';
 import Column from 'mastodon/components/column';
 import { Icon }  from 'mastodon/components/icon';
-import { logOut } from 'mastodon/utils/log_out';
+import { confirmLogOut } from 'mastodon/utils/confirmations';
 
 import elephantUIPlane from '../../../images/elephant_ui_plane.svg';
 import { changeComposing, mountCompose, unmountCompose } from '../../actions/compose';
@@ -42,8 +41,6 @@ const messages = defineMessages({
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
   compose: { id: 'navigation_bar.compose', defaultMessage: 'Compose new post' },
-  logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
-  logoutConfirm: { id: 'confirmations.logout.confirm', defaultMessage: 'Log out' },
 });
 
 const mapStateToProps = (state, ownProps) => ({
@@ -77,15 +74,7 @@ class Compose extends PureComponent {
     e.preventDefault();
     e.stopPropagation();
 
-    dispatch(openModal({
-      modalType: 'CONFIRM',
-      modalProps: {
-        message: intl.formatMessage(messages.logoutMessage),
-        confirm: intl.formatMessage(messages.logoutConfirm),
-        closeWhenConfirm: false,
-        onConfirm: () => logOut(),
-      },
-    }));
+    confirmLogOut(dispatch, intl);
 
     return false;
   };

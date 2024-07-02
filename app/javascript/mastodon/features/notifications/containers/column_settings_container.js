@@ -2,17 +2,16 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
+import { confirmClearNotifications } from 'mastodon/utils/confirmations';
+
 import { showAlert } from '../../../actions/alerts';
-import { openModal } from '../../../actions/modal';
 import { updateNotificationsPolicy } from '../../../actions/notification_policies';
-import { setFilter, clearNotifications, requestBrowserPermission } from '../../../actions/notifications';
+import { setFilter, requestBrowserPermission } from '../../../actions/notifications';
 import { changeAlerts as changePushNotifications } from '../../../actions/push_notifications';
 import { changeSetting } from '../../../actions/settings';
 import ColumnSettings from '../components/column_settings';
 
 const messages = defineMessages({
-  clearMessage: { id: 'notifications.clear_confirmation', defaultMessage: 'Are you sure you want to permanently clear all your notifications?' },
-  clearConfirm: { id: 'notifications.clear', defaultMessage: 'Clear notifications' },
   permissionDenied: { id: 'notifications.permission_denied_alert', defaultMessage: 'Desktop notifications can\'t be enabled, as browser permission has been denied before' },
 });
 
@@ -64,14 +63,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onClear () {
-    dispatch(openModal({
-      modalType: 'CONFIRM',
-      modalProps: {
-        message: intl.formatMessage(messages.clearMessage),
-        confirm: intl.formatMessage(messages.clearConfirm),
-        onConfirm: () => dispatch(clearNotifications()),
-      },
-    }));
+    confirmClearNotifications(dispatch, intl);
   },
 
   onRequestNotificationPermission () {

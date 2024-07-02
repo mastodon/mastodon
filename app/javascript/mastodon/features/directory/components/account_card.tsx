@@ -8,11 +8,9 @@ import { Link } from 'react-router-dom';
 
 import {
   followAccount,
-  unfollowAccount,
   unblockAccount,
   unmuteAccount,
 } from 'mastodon/actions/accounts';
-import { openModal } from 'mastodon/actions/modal';
 import { Avatar } from 'mastodon/components/avatar';
 import { Button } from 'mastodon/components/button';
 import { DisplayName } from 'mastodon/components/display_name';
@@ -21,6 +19,7 @@ import { autoPlayGif, me } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
 import { makeGetAccount } from 'mastodon/selectors';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
+import { confirmUnfollow } from 'mastodon/utils/confirmations';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -29,20 +28,12 @@ const messages = defineMessages({
     id: 'account.cancel_follow_request',
     defaultMessage: 'Withdraw follow request',
   },
-  cancelFollowRequestConfirm: {
-    id: 'confirmations.cancel_follow_request.confirm',
-    defaultMessage: 'Withdraw request',
-  },
   requested: {
     id: 'account.requested',
     defaultMessage: 'Awaiting approval. Click to cancel follow request',
   },
   unblock: { id: 'account.unblock_short', defaultMessage: 'Unblock' },
   unmute: { id: 'account.unmute_short', defaultMessage: 'Unmute' },
-  unfollowConfirm: {
-    id: 'confirmations.unfollow.confirm',
-    defaultMessage: 'Unfollow',
-  },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
 });
 
@@ -89,44 +80,11 @@ export const AccountCard: React.FC<{ accountId: string }> = ({ accountId }) => {
   const handleFollow = useCallback(() => {
     if (!account) return;
 
-    if (account.getIn(['relationship', 'following'])) {
-      dispatch(
-        openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: (
-              <FormattedMessage
-                id='confirmations.unfollow.message'
-                defaultMessage='Are you sure you want to unfollow {name}?'
-                values={{ name: <strong>@{account.get('acct')}</strong> }}
-              />
-            ),
-            confirm: intl.formatMessage(messages.unfollowConfirm),
-            onConfirm: () => {
-              dispatch(unfollowAccount(account.get('id')));
-            },
-          },
-        }),
-      );
-    } else if (account.getIn(['relationship', 'requested'])) {
-      dispatch(
-        openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: (
-              <FormattedMessage
-                id='confirmations.cancel_follow_request.message'
-                defaultMessage='Are you sure you want to withdraw your request to follow {name}?'
-                values={{ name: <strong>@{account.get('acct')}</strong> }}
-              />
-            ),
-            confirm: intl.formatMessage(messages.cancelFollowRequestConfirm),
-            onConfirm: () => {
-              dispatch(unfollowAccount(account.get('id')));
-            },
-          },
-        }),
-      );
+    if (
+      account.getIn(['relationship', 'following']) ||
+      account.getIn(['relationship', 'requested'])
+    ) {
+      confirmUnfollow(dispatch, intl, account as Account);
     } else {
       dispatch(followAccount(account.get('id')));
     }

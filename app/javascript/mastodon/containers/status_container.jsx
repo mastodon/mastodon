@@ -1,6 +1,8 @@
-import { defineMessages, injectIntl } from 'react-intl';
+import { injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
+
+import { confirmDeleteStatus, confirmReply, confirmEdit } from 'mastodon/utils/confirmations';
 
 import {
   unmuteAccount,
@@ -49,18 +51,6 @@ import Status from '../components/status';
 import { boostModal, deleteModal } from '../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../selectors';
 
-const messages = defineMessages({
-  deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
-  deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
-  redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
-  redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favorites and boosts will be lost, and replies to the original post will be orphaned.' },
-  replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
-  replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
-  editConfirm: { id: 'confirmations.edit.confirm', defaultMessage: 'Edit' },
-  editMessage: { id: 'confirmations.edit.message', defaultMessage: 'Editing now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
-  blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Block entire domain' },
-});
-
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
   const getPictureInPicture = makeGetPictureInPicture();
@@ -81,13 +71,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
       let state = getState();
 
       if (state.getIn(['compose', 'text']).trim().length !== 0) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: intl.formatMessage(messages.replyMessage),
-            confirm: intl.formatMessage(messages.replyConfirm),
-            onConfirm: () => dispatch(replyCompose(status, router)) },
-        }));
+        confirmReply(dispatch, intl, router, status);
       } else {
         dispatch(replyCompose(status, router));
       }
@@ -148,14 +132,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     if (!deleteModal) {
       dispatch(deleteStatus(status.get('id'), history, withRedraft));
     } else {
-      dispatch(openModal({
-        modalType: 'CONFIRM',
-        modalProps: {
-          message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
-          confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
-          onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
-        },
-      }));
+      confirmDeleteStatus(dispatch, intl, history, status.get('id'), withRedraft);
     }
   },
 
@@ -163,14 +140,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     dispatch((_, getState) => {
       let state = getState();
       if (state.getIn(['compose', 'text']).trim().length !== 0) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: intl.formatMessage(messages.editMessage),
-            confirm: intl.formatMessage(messages.editConfirm),
-            onConfirm: () => dispatch(editStatus(status.get('id'), history)),
-          },
-        }));
+        confirmEdit(dispatch, intl, history, status.get('id'));
       } else {
         dispatch(editStatus(status.get('id'), history));
       }

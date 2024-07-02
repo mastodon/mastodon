@@ -26,7 +26,7 @@ import ActionsModal from './actions_modal';
 import AudioModal from './audio_modal';
 import { BoostModal } from './boost_modal';
 import BundleModalError from './bundle_modal_error';
-import ConfirmationModal from './confirmation_modal';
+import { ConfirmationModal } from './confirmation_modal';
 import FocalPointModal from './focal_point_modal';
 import ImageModal from './image_modal';
 import MediaModal from './media_modal';
