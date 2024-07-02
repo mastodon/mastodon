@@ -241,16 +241,16 @@ const redisConfigFromEnv = (env) => {
   // which means we can't use it. But this is something that should be looked into.
   const redisPrefix = env.REDIS_NAMESPACE ? `${env.REDIS_NAMESPACE}:` : '';
 
-  let redisPort = parseIntFromEnv(env.REDIS_PORT, 6379, 'REDIS_PORT');
-  let redisDatabase = parseIntFromEnv(env.REDIS_DB, 0, 'REDIS_DB');
+    
 
   /** @type {import('ioredis').RedisOptions} */
-  const redisParams = {
+  const redisParams = typeof env.REDIS_URL !== 'string' ? {
     host: env.REDIS_HOST || '127.0.0.1',
-    port: redisPort,
-    db: redisDatabase,
+    port: parseIntFromEnv(env.REDIS_PORT, 6379, 'REDIS_PORT'),
+    db: parseIntFromEnv(env.REDIS_DB, 0, 'REDIS_DB'),
     password: env.REDIS_PASSWORD || undefined,
-  };
+  } : {};
+  
 
   // redisParams.path takes precedence over host and port.
   if (env.REDIS_URL && env.REDIS_URL.startsWith('unix://')) {
