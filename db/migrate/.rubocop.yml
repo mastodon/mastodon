@@ -2,3 +2,7 @@ inherit_from: ../../.rubocop.yml
 
 Naming/VariableNumber:
   CheckSymbols: false
+
+Rails/CreateTableWithTimestamps:
+  Include:
+    - '*.rb'
