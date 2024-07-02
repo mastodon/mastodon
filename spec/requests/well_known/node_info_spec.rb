@@ -19,6 +19,10 @@ describe 'The well-known node-info endpoints' do
             include(
               rel: 'http://nodeinfo.diaspora.software/ns/schema/2.0',
               href: include('nodeinfo/2.0')
+            ),
+            include(
+              rel: 'https://www.w3.org/ns/activitystreams#Application',
+              href: end_with('/actor')
             )
           )
         )
