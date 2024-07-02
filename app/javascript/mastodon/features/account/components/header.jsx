@@ -235,10 +235,18 @@ class Header extends ImmutablePureComponent {
     for (var i = 0; i < links.length; ++i) {
       link = links[i];
 
+      if (link.classList.contains('status-link')) {
+        continue;
+      }
+
+      link.classList.add('status-link');
+
       if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.handleHashtagClick, false);
       } else if (link.classList.contains('mention')) {
         link.addEventListener('click', this.handleMentionClick, false);
+      } else {
+        link.setAttribute('href', `/redirect?url=${encodeURIComponent(link.href)}`);
       }
     }
   }
