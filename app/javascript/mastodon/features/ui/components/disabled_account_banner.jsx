@@ -49,8 +49,6 @@ class DisabledAccountBanner extends PureComponent {
     e.stopPropagation();
 
     this.props.onLogout();
-
-    return false;
   };
 
   render () {

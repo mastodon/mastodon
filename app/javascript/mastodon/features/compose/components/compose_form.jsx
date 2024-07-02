@@ -84,7 +84,7 @@ class ComposeForm extends ImmutablePureComponent {
 
   constructor(props) {
     super(props);
-    this.textareaRef = createRef(null);
+    this.textareaRef = createRef();
   }
 
   handleChange = (e) => {
