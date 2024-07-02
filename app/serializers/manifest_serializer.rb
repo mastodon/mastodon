@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ManifestSerializer < ActiveModel::Serializer
-  include ApplicationHelper
+  include InstanceHelper
   include RoutingHelper
   include ActionView::Helpers::TextHelper
 
