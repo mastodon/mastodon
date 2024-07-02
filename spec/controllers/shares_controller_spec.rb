@@ -10,13 +10,16 @@ describe SharesController do
   before { sign_in user }
 
   describe 'GET #show' do
-    subject(:body_classes) { assigns(:body_classes) }
-
     before { get :show, params: { title: 'test title', text: 'test text', url: 'url1 url2' } }
 
     it 'returns http success' do
       expect(response).to have_http_status 200
-      expect(body_classes).to eq 'modal-layout compose-standalone'
+      expect(body_class_values)
+        .to include('modal-layout', 'compose-standalone')
+    end
+
+    def body_class_values
+      Nokogiri::Slop(response.body).css('body').first.classes
     end
   end
 end
