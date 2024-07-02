@@ -95,8 +95,8 @@
     {
       // Group all eslint-related packages with `eslint` in the same PR
       matchManagers: ['npm'],
-      matchPackageNames: ['eslint'],
-      matchPackagePrefixes: ['eslint-', '@typescript-eslint/'],
+      matchPackageNames: ['eslint', 'typescript-eslint'],
+      matchPackagePrefixes: ['eslint-'],
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'eslint (non-major)',
     },
