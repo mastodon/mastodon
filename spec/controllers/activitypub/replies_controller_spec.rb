@@ -8,6 +8,13 @@ RSpec.describe ActivityPub::RepliesController do
   let(:remote_reply_id) { 'https://foobar.com/statuses/1234' }
   let(:remote_querier) { nil }
 
+  let!(:reply1) { Fabricate(:status, thread: status, visibility: :public) }
+  let!(:reply2) { Fabricate(:status, thread: status, visibility: :public) }
+  let!(:reply3) { Fabricate(:status, thread: status, visibility: :private) }
+  let!(:reply4) { Fabricate(:status, account: status.account, thread: status, visibility: :public) }
+  let!(:reply5) { Fabricate(:status, account: status.account, thread: status, visibility: :private) }
+  let!(:reply6) { Fabricate(:status, account: remote_account, thread: status, visibility: :public, uri: remote_reply_id) }
+
   shared_examples 'common behavior' do
     context 'when status is private' do
       let(:parent_visibility) { :private }
@@ -109,6 +116,17 @@ RSpec.describe ActivityPub::RepliesController do
       context 'with only_other_accounts' do
         let(:only_other_accounts) { 'true' }
 
+        context 'when blocking some of the repliers' do
+          before do
+            status.account.block!(reply1.account)
+            status.account.block!(reply6.account)
+          end
+
+          it "does not list the blocked user's replies" do
+            expect(page_json[:items].map { |item| item.is_a?(String) ? item : item[:id] }).to match_array([ActivityPub::TagManager.instance.uri_for(reply2)])
+          end
+        end
+
         it 'returns items with other public or unlisted replies' do
           expect(page_json).to be_a Hash
           expect(page_json[:items]).to be_an Array
@@ -152,14 +170,6 @@ RSpec.describe ActivityPub::RepliesController do
   before do
     stub_const 'ActivityPub::RepliesController::DESCENDANTS_LIMIT', 5
     allow(controller).to receive(:signed_request_actor).and_return(remote_querier)
-
-    Fabricate(:status, thread: status, visibility: :public)
-    Fabricate(:status, thread: status, visibility: :public)
-    Fabricate(:status, thread: status, visibility: :private)
-    Fabricate(:status, account: status.account, thread: status, visibility: :public)
-    Fabricate(:status, account: status.account, thread: status, visibility: :private)
-
-    Fabricate(:status, account: remote_account, thread: status, visibility: :public, uri: remote_reply_id)
   end
 
   describe 'GET #index' do
