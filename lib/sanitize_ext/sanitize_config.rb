@@ -64,6 +64,43 @@ class Sanitize
       current_node.wrap('<p></p>')
     end
 
+    # We assume that incomming <math> nodes are of the form
+    # <math><semantics>...<annotation>...</annotation></semantics></math>
+    # according to the [FEP]. We try to grab the most relevant plain-text
+    # annotation from the semantics node, and use it to display a representation
+    # of the mathematics.
+    #
+    # FEP: https://codeberg.org/fediverse/fep/src/branch/main/fep/dc88/fep-dc88.md
+    MATH_TRANSFORMER = lambda do |env|
+      math = env[:node]
+      return if env[:is_allowlisted]
+      return unless math.element? && env[:node_name] == 'math'
+
+      semantics = math.element_children[0]
+      return if semantics.nil? || semantics.name != 'semantics'
+
+      # next, we find the plain-text description
+      is_annotation_with_encoding = lambda do |encoding, node|
+        return false unless node.name == 'annotation'
+
+        node.attributes['encoding'].value == encoding
+      end
+
+      annotation = semantics.children.find(&is_annotation_with_encoding.curry['application/x-tex'])
+      if annotation
+        if math.attributes['display']&.value == 'block'
+          math.swap("$$#{annotation.content}$$")
+        else
+          math.swap("$#{annotation.content}$")
+        end
+        return
+      end
+      # Don't bother surrounding 'text/plain' annotations with dollar signs,
+      # since it isn't LaTeX
+      annotation = semantics.children.find(&is_annotation_with_encoding.curry['text/plain'])
+      math.swap(annotation.content) unless annotation.nil?
+    end
+
     MASTODON_STRICT = freeze_config(
       elements: %w(p br span a del pre blockquote code b strong u i em ul ol li),
 
@@ -86,6 +123,7 @@ class Sanitize
       transformers: [
         CLASS_WHITELIST_TRANSFORMER,
         TRANSLATE_TRANSFORMER,
+        MATH_TRANSFORMER,
         UNSUPPORTED_ELEMENTS_TRANSFORMER,
         UNSUPPORTED_HREF_TRANSFORMER,
       ]
