@@ -14,7 +14,7 @@ media_hosts = policy.media_hosts
 
 def sso_host
   return unless ENV['ONE_CLICK_SSO_LOGIN'] == 'true'
-  return unless ENV['OMNIAUTH_ONLY'] == 'true'
+  return unless Rails.configuration.omniauth.only
   return unless Devise.omniauth_providers.length == 1
 
   provider = Devise.omniauth_configs[Devise.omniauth_providers[0]]
