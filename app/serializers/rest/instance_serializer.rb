@@ -15,6 +15,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   has_one :contact, serializer: ContactSerializer
   has_many :rules, serializer: REST::RuleSerializer
+  has_many :report_categories, serializer: REST::ReportCategorySerializer
 
   def thumbnail
     if object.thumbnail
