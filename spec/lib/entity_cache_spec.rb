@@ -18,4 +18,12 @@ RSpec.describe EntityCache do
       end
     end
   end
+  describe '#to_emoji' do
+
+    context 'when input shortcode has cases' do
+      it 'returns emoji with cases preserved' do
+        expect(described_class.instance.to_emoji(:emoji, 'FooBar', 'example.org')).to eq 'emoji:FooBar:example.org'
+      end
+    end
+  end
 end
