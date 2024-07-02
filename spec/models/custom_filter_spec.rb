@@ -4,19 +4,8 @@ require 'rails_helper'
 
 RSpec.describe CustomFilter do
   describe 'Validations' do
-    it 'requires presence of title' do
-      record = described_class.new(title: '')
-      record.valid?
-
-      expect(record).to model_have_error_on_field(:title)
-    end
-
-    it 'requires presence of context' do
-      record = described_class.new(context: nil)
-      record.valid?
-
-      expect(record).to model_have_error_on_field(:context)
-    end
+    it { is_expected.to validate_presence_of(:title) }
+    it { is_expected.to validate_presence_of(:context) }
 
     it 'requires non-empty of context' do
       record = described_class.new(context: [])
