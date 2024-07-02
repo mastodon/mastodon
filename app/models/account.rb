@@ -86,6 +86,7 @@ class Account < ApplicationRecord
   include Account::Merging
   include Account::Search
   include Account::StatusesSearch
+  include Account::Suspensions
   include DomainMaterializable
   include DomainNormalizable
   include Paginable
@@ -120,9 +121,7 @@ class Account < ApplicationRecord
   scope :local, -> { where(domain: nil) }
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
   scope :silenced, -> { where.not(silenced_at: nil) }
-  scope :suspended, -> { where.not(suspended_at: nil) }
   scope :sensitized, -> { where.not(sensitized_at: nil) }
-  scope :without_suspended, -> { where(suspended_at: nil) }
   scope :without_silenced, -> { where(silenced_at: nil) }
   scope :without_instance_actor, -> { where.not(id: INSTANCE_ACTOR_ID) }
   scope :recent, -> { reorder(id: :desc) }
@@ -243,37 +242,6 @@ class Account < ApplicationRecord
 
   def unsilence!
     update!(silenced_at: nil)
-  end
-
-  def suspended?
-    suspended_at.present? && !instance_actor?
-  end
-
-  def suspended_permanently?
-    suspended? && deletion_request.nil?
-  end
-
-  def suspended_temporarily?
-    suspended? && deletion_request.present?
-  end
-
-  alias unavailable? suspended?
-  alias permanently_unavailable? suspended_permanently?
-
-  def suspend!(date: Time.now.utc, origin: :local, block_email: true)
-    transaction do
-      create_deletion_request!
-      update!(suspended_at: date, suspension_origin: origin)
-      create_canonical_email_block! if block_email
-    end
-  end
-
-  def unsuspend!
-    transaction do
-      deletion_request&.destroy!
-      update!(suspended_at: nil, suspension_origin: nil)
-      destroy_canonical_email_block!
-    end
   end
 
   def sensitized?
