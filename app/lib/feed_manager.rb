@@ -40,9 +40,9 @@ class FeedManager
   def filter?(timeline_type, status, receiver)
     case timeline_type
     when :home
-      filter_from_home?(status, receiver.id, build_crutches(receiver.id, [status]), :home)
+      filter_from_home?(status, receiver.id, build_crutches(receiver.id, [status]), check_exclusive_list: true)
     when :list
-      filter_from_list?(status, receiver) || filter_from_home?(status, receiver.account_id, build_crutches(receiver.account_id, [status]), :list)
+      filter_from_list?(status, receiver) || filter_from_home?(status, receiver.account_id, build_crutches(receiver.account_id, [status]), check_exclusive_list: false)
     when :mentions
       filter_from_mentions?(status, receiver.id)
     when :tags
@@ -50,6 +50,14 @@ class FeedManager
     else
       false
     end
+  end
+
+  # Check if the status should be filtered from notifications
+  # @param [Status] status
+  # @param [Integer] account_id
+  # @return [Boolean]
+  def filter_notification?(account_id, status)
+    filter_from_home?(status, account_id, build_crutches(account_id, [status]), check_exclusive_list: false)
   end
 
   # Add a status to a home feed and send a streaming API update
@@ -371,11 +379,12 @@ class FeedManager
   # @param [Status] status
   # @param [Integer] receiver_id
   # @param [Hash] crutches
+  # @param [Boolean] check_exclusive_list
   # @return [Boolean]
-  def filter_from_home?(status, receiver_id, crutches, timeline_type = :home)
+  def filter_from_home?(status, receiver_id, crutches, check_exclusive_list: true)
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
-    return true if timeline_type != :list && crutches[:exclusive_list_users][status.account_id].present?
+    return true if check_exclusive_list && crutches[:exclusive_list_users][status.account_id].present?
     return true if crutches[:languages][status.account_id].present? && status.language.present? && !crutches[:languages][status.account_id].include?(status.language)
 
     check_for_blocks = crutches[:active_mentions][status.id] || []
