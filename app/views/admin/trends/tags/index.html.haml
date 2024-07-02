@@ -27,12 +27,12 @@
       .batch-table__toolbar__actions
         = f.button safe_join([material_symbol('check'), t('admin.trends.allow')]),
                    class: 'table-action-link',
-                   data: { confirm: t('admin.reports.are_you_sure') },
+                   data: { confirm: t('admin.trends.confirm_allow') },
                    name: :approve,
                    type: :submit
         = f.button safe_join([material_symbol('close'), t('admin.trends.disallow')]),
                    class: 'table-action-link',
-                   data: { confirm: t('admin.reports.are_you_sure') },
+                   data: { confirm: t('admin.trends.confirm_disallow') },
                    name: :reject,
                    type: :submit
 
