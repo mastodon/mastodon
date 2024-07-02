@@ -678,7 +678,7 @@ class Status extends ImmutablePureComponent {
         <ColumnHeader
           showBackButton
           multiColumn={multiColumn}
-          extraButton={(
+          extraButton={status.get('spoiler_text').length > 0 && (
             <button type='button' className='column-header__button' title={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll}><Icon id={status.get('hidden') ? 'eye-slash' : 'eye'} icon={status.get('hidden') ? VisibilityOffIcon : VisibilityIcon} /></button>
           )}
         />
