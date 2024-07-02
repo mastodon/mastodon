@@ -8,9 +8,9 @@ module User::LdapAuthenticable
       ldap   = Net::LDAP.new(ldap_options)
       filter = format(Devise.ldap_search_filter, uid: Devise.ldap_uid, mail: Devise.ldap_mail, email: Net::LDAP::Filter.escape(params[:email]))
 
-      if (user_info = ldap.bind_as(base: Devise.ldap_base, filter: filter, password: params[:password]))
-        ldap_get_user(user_info.first)
-      end
+      return unless (user_info = ldap.bind_as(base: Devise.ldap_base, filter: filter, password: params[:password]))
+
+      ldap_get_user(user_info.first)
     end
 
     def ldap_get_user(attributes = {})

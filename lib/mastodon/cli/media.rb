@@ -58,23 +58,23 @@ module Mastodon::CLI
         say("Visited #{processed} accounts and removed profile media totaling #{number_to_human_size(aggregate)}#{dry_run_mode_suffix}", :green, true)
       end
 
-      unless options[:prune_profiles] || options[:remove_headers]
-        processed, aggregate = parallelize_with_progress(MediaAttachment.cached.remote.where(created_at: ..time_ago)) do |media_attachment|
-          next if media_attachment.file.blank?
+      return if options[:prune_profiles] || options[:remove_headers]
 
-          size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
+      processed, aggregate = parallelize_with_progress(MediaAttachment.cached.remote.where(created_at: ..time_ago)) do |media_attachment|
+        next if media_attachment.file.blank?
 
-          unless dry_run?
-            media_attachment.file.destroy
-            media_attachment.thumbnail.destroy
-            media_attachment.save
-          end
+        size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
 
-          size
+        unless dry_run?
+          media_attachment.file.destroy
+          media_attachment.thumbnail.destroy
+          media_attachment.save
         end
 
-        say("Removed #{processed} media attachments (approx. #{number_to_human_size(aggregate)})#{dry_run_mode_suffix}", :green, true)
+        size
       end
+
+      say("Removed #{processed} media attachments (approx. #{number_to_human_size(aggregate)})#{dry_run_mode_suffix}", :green, true)
     end
 
     option :start_after

@@ -318,11 +318,9 @@ class Request
           end
         end
 
-        if outer_e
-          raise outer_e
-        else
-          raise SocketError, "No address for #{host}"
-        end
+        raise outer_e if outer_e
+
+        raise SocketError, "No address for #{host}"
       end
 
       alias new open

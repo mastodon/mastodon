@@ -98,20 +98,18 @@ class PostStatusService < BaseService
   def schedule_status!
     status_for_validation = @account.statuses.build(status_attributes)
 
-    if status_for_validation.valid?
-      # Marking the status as destroyed is necessary to prevent the status from being
-      # persisted when the associated media attachments get updated when creating the
-      # scheduled status.
-      status_for_validation.destroy
+    raise ActiveRecord::RecordInvalid unless status_for_validation.valid?
 
-      # The following transaction block is needed to wrap the UPDATEs to
-      # the media attachments when the scheduled status is created
+    # Marking the status as destroyed is necessary to prevent the status from being
+    # persisted when the associated media attachments get updated when creating the
+    # scheduled status.
+    status_for_validation.destroy
 
-      ApplicationRecord.transaction do
-        @status = @account.scheduled_statuses.create!(scheduled_status_attributes)
-      end
-    else
-      raise ActiveRecord::RecordInvalid
+    # The following transaction block is needed to wrap the UPDATEs to
+    # the media attachments when the scheduled status is created
+
+    ApplicationRecord.transaction do
+      @status = @account.scheduled_statuses.create!(scheduled_status_attributes)
     end
   end
 

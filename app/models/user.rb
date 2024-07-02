@@ -432,16 +432,16 @@ class User < ApplicationRecord
 
     yield
 
-    if new_user
-      # Avoid extremely unlikely race condition when approving and confirming
-      # the user at the same time
-      reload unless approved?
+    return unless new_user
 
-      if approved?
-        prepare_new_user!
-      else
-        notify_staff_about_pending_account!
-      end
+    # Avoid extremely unlikely race condition when approving and confirming
+    # the user at the same time
+    reload unless approved?
+
+    if approved?
+      prepare_new_user!
+    else
+      notify_staff_about_pending_account!
     end
   end
 

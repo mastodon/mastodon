@@ -71,22 +71,18 @@ class Webfinger
 
   def body_from_host_meta
     host_meta_request.perform do |res|
-      if res.code == 200
-        body_from_webfinger(url_from_template(res.body_with_limit), false)
-      else
-        raise Webfinger::Error, "Request for #{@uri} returned HTTP #{res.code}"
-      end
+      raise Webfinger::Error, "Request for #{@uri} returned HTTP #{res.code}" unless res.code == 200
+
+      body_from_webfinger(url_from_template(res.body_with_limit), false)
     end
   end
 
   def url_from_template(str)
     link = Nokogiri::XML(str).at_xpath('//xmlns:Link[@rel="lrdd"]')
 
-    if link.present?
-      link['template'].gsub('{uri}', @uri)
-    else
-      raise Webfinger::Error, "Request for #{@uri} returned host-meta without link to Webfinger"
-    end
+    raise Webfinger::Error, "Request for #{@uri} returned host-meta without link to Webfinger" if link.blank?
+
+    link['template'].gsub('{uri}', @uri)
   rescue Nokogiri::XML::XPath::SyntaxError
     raise Webfinger::Error, "Invalid XML encountered in host-meta for #{@uri}"
   end
