@@ -9,18 +9,18 @@ const messages = defineMessages({
   load_more: { id: 'status.load_more', defaultMessage: 'Load more' },
 });
 
-interface Props {
+interface Props<T> {
   disabled: boolean;
-  maxId: string;
-  onClick: (maxId: string) => void;
+  param: T;
+  onClick: (params: T) => void;
 }
 
-export const LoadGap: React.FC<Props> = ({ disabled, maxId, onClick }) => {
+export const LoadGap = <T,>({ disabled, param, onClick }: Props<T>) => {
   const intl = useIntl();
 
   const handleClick = useCallback(() => {
-    onClick(maxId);
-  }, [maxId, onClick]);
+    onClick(param);
+  }, [param, onClick]);
 
   return (
     <button

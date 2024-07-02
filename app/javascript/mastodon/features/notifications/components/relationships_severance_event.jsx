@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import classNames from 'classnames';
+
 import HeartBrokenIcon from '@/material-icons/400-24px/heart_broken-fill.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 import { domain } from 'mastodon/initial_state';
@@ -13,7 +15,7 @@ const messages = defineMessages({
   user_domain_block: { id: 'notification.relationships_severance_event.user_domain_block', defaultMessage: 'You have blocked {target}, removing {followersCount} of your followers and {followingCount, plural, one {# account} other {# accounts}} you follow.' },
 });
 
-export const RelationshipsSeveranceEvent = ({ type, target, followingCount, followersCount, hidden }) => {
+export const RelationshipsSeveranceEvent = ({ type, target, followingCount, followersCount, hidden, unread }) => {
   const intl = useIntl();
 
   if (hidden) {
@@ -21,14 +23,14 @@ export const RelationshipsSeveranceEvent = ({ type, target, followingCount, foll
   }
 
   return (
-    <a href='/severed_relationships' target='_blank' rel='noopener noreferrer' className='notification__relationships-severance-event'>
-      <Icon id='heart_broken' icon={HeartBrokenIcon} />
+    <div role='button' className={classNames('notification-group notification-group--link notification-group--relationships-severance-event focusable', { 'notification-group--unread': unread })} tabIndex='0'>
+      <div className='notification-group__icon'><Icon id='heart_broken' icon={HeartBrokenIcon} /></div>
 
-      <div className='notification__relationships-severance-event__content'>
+      <div className='notification-group__main'>
         <p>{intl.formatMessage(messages[type], { from: <strong>{domain}</strong>, target: <strong>{target}</strong>, followingCount, followersCount })}</p>
-        <span className='link-button'><FormattedMessage id='notification.relationships_severance_event.learn_more' defaultMessage='Learn more' /></span>
+        <a href='/severed_relationships' target='_blank' rel='noopener noreferrer' className='link-button'><FormattedMessage id='notification.relationships_severance_event.learn_more' defaultMessage='Learn more' /></a>
       </div>
-    </a>
+    </div>
   );
 };
 
@@ -42,4 +44,5 @@ RelationshipsSeveranceEvent.propTypes = {
   followersCount: PropTypes.number.isRequired,
   followingCount: PropTypes.number.isRequired,
   hidden: PropTypes.bool,
+  unread: PropTypes.bool,
 };

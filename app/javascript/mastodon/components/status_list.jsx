@@ -107,7 +107,7 @@ export default class StatusList extends ImmutablePureComponent {
             <LoadGap
               key={'gap:' + statusIds.get(index + 1)}
               disabled={isLoading}
-              maxId={index > 0 ? statusIds.get(index - 1) : null}
+              param={index > 0 ? statusIds.get(index - 1) : null}
               onClick={onLoadMore}
             />
           );
