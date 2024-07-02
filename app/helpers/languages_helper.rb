@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module LanguagesHelper
+  # rubocop:disable Style/WordArray
   ISO_639_1 = {
     aa: ['Afar', 'Afaraf'].freeze,
     ab: ['Abkhaz', 'аҧсуа бызшәа'].freeze,
@@ -220,6 +221,8 @@ module LanguagesHelper
     'zh-TW': ['Chinese (Taiwan)', '繁體中文（臺灣）'].freeze,
     'zh-YUE': ['Cantonese', '廣東話'].freeze,
   }.freeze
+
+  # rubocop:enable Style/WordArray
 
   SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_1_REGIONAL).merge(ISO_639_3).freeze
 
