@@ -1015,21 +1015,22 @@ RSpec.describe Account do
 
   context 'when is local' do
     it 'generates keys' do
-      account = described_class.create!(domain: nil, username: Faker::Internet.user_name(separators: ['_']))
-      expect(account.keypair).to be_private
-      expect(account.keypair).to be_public
+      account = Fabricate(:account, domain: nil)
+      expect(account.keypair)
+        .to be_private
+        .and be_public
     end
   end
 
   context 'when is remote' do
     it 'does not generate keys' do
       key = OpenSSL::PKey::RSA.new(1024).public_key
-      account = described_class.create!(domain: 'remote', uri: 'https://remote/actor', username: Faker::Internet.user_name(separators: ['_']), public_key: key.to_pem)
+      account = Fabricate(:account, domain: 'remote', uri: 'https://remote/actor', public_key: key.to_pem, private_key: nil)
       expect(account.keypair.params).to eq key.params
     end
 
     it 'normalizes domain' do
-      account = described_class.create!(domain: 'にゃん', uri: 'https://xn--r9j5b5b/actor', username: Faker::Internet.user_name(separators: ['_']))
+      account = Fabricate(:account, domain: 'にゃん', uri: 'https://xn--r9j5b5b/actor')
       expect(account.domain).to eq 'xn--r9j5b5b'
     end
   end
