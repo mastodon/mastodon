@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class PushEncryptedMessageWorker
-  include Sidekiq::Worker
+class PushEncryptedMessageWorker < ApplicationWorker
   include Redisable
 
   def perform(encrypted_message_id)

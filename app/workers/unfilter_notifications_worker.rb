@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class UnfilterNotificationsWorker
-  include Sidekiq::Worker
-
+class UnfilterNotificationsWorker < ApplicationWorker
   def perform(notification_request_id)
     @notification_request = NotificationRequest.find(notification_request_id)
 

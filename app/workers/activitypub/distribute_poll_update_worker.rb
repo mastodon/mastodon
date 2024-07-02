@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::DistributePollUpdateWorker
-  include Sidekiq::Worker
+class ActivityPub::DistributePollUpdateWorker < ApplicationWorker
   include Payloadable
 
   sidekiq_options queue: 'push', lock: :until_executed, retry: 0
