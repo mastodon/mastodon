@@ -182,6 +182,46 @@ RSpec.describe Api::V1::StatusesController do
           expect(response.headers['X-RateLimit-Remaining']).to eq '0'
         end
       end
+
+      context 'with missing thread' do
+        subject { post :create, params: params }
+
+        let(:params) { { status: 'Hello world', in_reply_to_id: 0 } }
+
+        it 'returns http not found' do
+          subject
+
+          expect(response).to have_http_status(404)
+        end
+      end
+
+      context 'when scheduling a status' do
+        subject { post :create, params: params }
+
+        let(:params) { { status: 'Hello world', scheduled_at: 10.minutes.from_now } }
+        let(:account) { user.account }
+
+        it 'returns HTTP 200' do
+          subject
+
+          expect(response).to have_http_status(200)
+        end
+
+        it 'creates a scheduled status' do
+          expect { subject }.to change { account.scheduled_statuses.count }.from(0).to(1)
+        end
+
+        context 'when the scheduling time is less than 5 minutes' do
+          let(:params) { { status: 'Hello world', scheduled_at: 4.minutes.from_now } }
+
+          it 'does not create a scheduled status', :aggregate_failures do
+            subject
+
+            expect(response).to have_http_status(422)
+            expect(account.scheduled_statuses).to be_empty
+          end
+        end
+      end
     end
 
     describe 'DELETE #destroy' do
