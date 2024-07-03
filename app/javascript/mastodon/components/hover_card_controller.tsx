@@ -43,6 +43,7 @@ export const HoverCardController: React.FC = () => {
   useEffect(() => {
     let isScrolling = false;
     let currentAnchor: HTMLElement | null = null;
+    let currentTitle: string | null = null;
 
     const open = (target: HTMLElement) => {
       target.setAttribute('aria-describedby', 'hover-card');
@@ -75,6 +76,9 @@ export const HoverCardController: React.FC = () => {
         currentAnchor?.removeAttribute('aria-describedby');
         currentAnchor = target;
 
+        currentTitle = target.getAttribute('title');
+        target.removeAttribute('title');
+
         setEnterTimeout(() => {
           open(target);
         }, enterDelay);
@@ -90,11 +94,20 @@ export const HoverCardController: React.FC = () => {
     };
 
     const handleMouseLeave = (e: MouseEvent) => {
+      const { target } = e;
+
       if (!currentAnchor) {
         return;
       }
 
-      if (e.target === currentAnchor || e.target === cardRef.current) {
+      if (
+        currentTitle &&
+        target instanceof HTMLElement &&
+        target === currentAnchor
+      )
+        target.setAttribute('title', currentTitle);
+
+      if (target === currentAnchor || target === cardRef.current) {
         cancelEnterTimeout();
 
         setLeaveTimeout(() => {
