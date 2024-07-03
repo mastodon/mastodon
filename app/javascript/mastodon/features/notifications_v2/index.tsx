@@ -11,7 +11,6 @@ import { useDebouncedCallback } from 'use-debounce';
 import DoneAllIcon from '@/material-icons/400-24px/done_all.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import {
-  fetchNotifications,
   fetchNotificationsGap,
   updateScrollPosition,
   loadPending,
@@ -138,17 +137,15 @@ export const Notifications: React.FC<{
     }
   }, []);
 
-  useEffect(() => {
-    // dispatch(mountNotifications());
+  // TODO: is this necessary?
+  // useEffect(() => {
+  //   dispatch(mountNotifications());
 
-    // FIXME: remove once this becomes the main implementation
-    void dispatch(fetchNotifications());
-
-    return () => {
-      // dispatch(unmountNotifications());
-      // dispatch(updateScrollPosition({ top: false }));
-    };
-  }, [dispatch]);
+  //   return () => {
+  //     dispatch(unmountNotifications());
+  //     dispatch(updateScrollPosition({ top: false }));
+  //   };
+  // }, [dispatch]);
 
   const handleLoadGap = useCallback(
     (gap: NotificationGap) => {
