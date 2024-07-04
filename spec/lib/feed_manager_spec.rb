@@ -206,13 +206,13 @@ RSpec.describe FeedManager do
         expect(described_class.instance.filter?(:mentions, reply, bob)).to be true
       end
 
-      it 'returns true for status by silenced account who recipient is not following' do
+      it 'returns false for status by limited account who recipient is not following' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
         alice.silence!
-        expect(described_class.instance.filter?(:mentions, status, bob)).to be true
+        expect(described_class.instance.filter?(:mentions, status, bob)).to be false
       end
 
-      it 'returns false for status by followed silenced account' do
+      it 'returns false for status by followed limited account' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
         alice.silence!
         bob.follow!(alice)

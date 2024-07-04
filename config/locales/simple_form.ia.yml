@@ -3,42 +3,42 @@ ia:
   simple_form:
     hints:
       account:
-        discoverable: Tu messages public e tu profilo pote esser consiliate o recommendate in varie areas de Mastodon e tu profilo pote esser suggerite a altere usatores.
+        discoverable: Tu messages public e tu profilo pote esser mittite in evidentia o recommendate in varie areas de Mastodon e tu profilo pote esser suggerite a altere usatores.
         display_name: Tu prenomine e nomine de familia o tu pseudonymo.
-        fields: Tu pagina principal, pronomines, etate, toto lo que tu vole.
-        indexable: Tu messages public pote apparer in resultatos del recerca sur Mastodon. Illes qui ha interagite con tu messages totevia pote cercar les.
+        fields: Tu pagina principal, pronomines, etate, tote lo que tu vole.
+        indexable: Tu messages public pote apparer in le resultatos de recerca sur Mastodon. Le personas qui ha interagite con tu messages pote cercar los in omne caso.
         note: 'Tu pote @mentionar altere personas o #hashtags.'
-        show_collections: Le personas potera navigar per tu sequites e sequaces. Le personas potera navigar per tu sequites e sequaces.
-        unlocked: Le personas potera sequer te sin requestar approbation. Dismarca si tu desira revider le requestas de sequer e selige si acceptar o rejectar nove sequaces.
+        show_collections: Le gente potera percurrer le listas de personas que tu seque e qui te seque. Le personas que tu seque videra que tu les seque in omne caso.
+        unlocked: Le personas potera sequer te sin requestar approbation. Dismarca si tu vole revider le requestas de sequimento e seliger si acceptar o rejectar nove sequitores.
       account_alias:
-        acct: Specifica le nomine_de_usator@dominio del conto ab que tu vole mover
+        acct: Specifica le nomine_de_usator@dominio del conto desde le qual tu vole migrar
       account_migration:
-        acct: Specifica le nomine_de_usator@dominio del conto a que tu vole mover
+        acct: Specifica le nomine_de_usator@dominio del conto al qual tu vole migrar
       account_warning_preset:
-        text: Tu pote usar le syntaxe de message, tal como URLs, hashtags e mentiones
+        text: Tu pote usar le syntaxe de messages, como URLs, hashtags e mentiones
         title: Optional. Non visibile al destinatario
       admin_account_action:
-        include_statuses: Le usator videra que messages ha causate le action o aviso de moderation
-        send_email_notification: Le usator recipera un explication de cosa eveniva con lor conto
-        text_html: Optional. Tu pote usar le syntaxe de message. Tu pote <a href="%{path}">adder avisos preconfigurate</a> pro sparniar tempore
-        type_html: Selige lo que tu vole facer con <strong>%{acct}</strong>
+        include_statuses: Le usator videra qual messages ha causate le action o advertimento de moderation
+        send_email_notification: Le usator recipera un explication de lo que ha evenite con su conto
+        text_html: Optional. Tu pote usar le syntaxe de messages. Tu pote <a href="%{path}">adder advertimentos preconfigurate</a> pro sparniar tempore
+        type_html: Selige lo que facer con <strong>%{acct}</strong>
         types:
-          disable: Impedir al usator de usar lor conto, sin deler o celar lor contentos.
-          none: Usar lo pro inviar un aviso al usator, sin discatenar ulle altere action.
-          sensitive: Fortiar tote le annexos multimedial de iste usator a esser signalate como sensibile.
-          silence: Impedir al usator de poter publicar messages con public visibilitate, celar lor messages e notificationes ab gente non sequente illes. Clauder tote le reportos contra iste conto.
-          suspend: Impedir ulle interaction de o a iste conto e deler su contentos. Reversibile intra 30 dies. Clauder tote le reportos contra iste conto.
-        warning_preset_id: Optional. Tu pote ancora adder personal texto a fin del preconfigurate
+          disable: Impedir al usator de usar su conto, sin deler o celar su contento.
+          none: Usa isto pro inviar un advertimento al usator, sin prender alcun altere mesura.
+          sensitive: Fortiar tote le annexos multimedial de iste usator a esser marcate como sensibile.
+          silence: Impedir al usator de publicar messages con visibilitate public, celante su messages e notificationes a qui non le seque. Claude tote le reportos contra iste conto.
+          suspend: Impedir tote interaction desde o verso iste conto e deler su contento. Reversibile intra 30 dies. Claude tote le reportos contra iste conto.
+        warning_preset_id: Optional. Tu pote ancora adder texto personalisate al fin del preconfigurate
       announcement:
-        all_day: Si marcate, solo le datas del campo tempore sera monstrate
-        ends_at: Le annuncio sera automaticamente obscurate a iste tempore
-        scheduled_at: Lassar blanc pro publicar le annuncio immediatemente
-        starts_at: Optional. In caso tu annuncio es ligate con un specific campo tempore
-        text: Tu pote usar le syntaxe de message. Presta attention al spatio que le annuncio occupara sur le schermo de usator
+        all_day: Si marcate, solmente le datas del intervallo de tempore essera monstrate
+        ends_at: Optional. Le annuncio essera automaticamente retirate del publication a iste tempore
+        scheduled_at: Lassa vacue pro publicar le annuncio immediatemente
+        starts_at: Optional. In caso que tu annuncio es ligate a un intervallo specific de tempore
+        text: Tu pote usar le syntaxe de messages. Presta attention al spatio que le annuncio occupara sur le schermo del usator
       appeal:
-        text: Tu pote solo appellar te un vice
+        text: Tu pote solo appellar contra un sanction un vice
       defaults:
-        autofollow: Illes qui se inscribe per le invitation automaticamente devenira tu sequaces
+        autofollow: Le personas qui se inscribe per medio del invitation te sequera automaticamente
         avatar: WEBP, PNG, GIF or JPG. Al maximo %{size}. Sera diminuite a %{dimensions}px
         bot: Signala a alteres que le conto principalmente exeque actiones automatisate e poterea non esser surveliate
         context: Un o plure contextos ubi le filtro deberea applicar se
@@ -53,7 +53,7 @@ ia:
         password: Usa al minus 8 characteres
         phrase: Sera concordate ignorante majuscule/minuscule in le texto o avisos de contento de un message
         scopes: A que APIs sera permittite acceder al application. Si tu selige un ambito de maxime nivello, tu non besonia de seliger los singulemente.
-        setting_aggregate_reblogs: Non monstra nove stimulos pro messages que ha essite recentemente stimulate (stimulos solo affice los novemente recipite)
+        setting_aggregate_reblogs: Non monstrar nove impulsos pro messages que ha essite recentemente impulsate (affecta solmente le impulsos novemente recipite)
         setting_always_send_emails: Normalmente le avisos de email non sera inviate quando tu activemente usa Mastodon
         setting_default_sensitive: Le medios sensibile es celate de ordinario e pote esser revelate con un clic
         setting_display_media_default: Celar le medios marcate como sensibile
@@ -64,7 +64,7 @@ ia:
         username: Tu pote usar litteras, numeros e tractos de sublineamento
         whole_word: Quando le parola o expression clave es solo alphanumeric, illo sera solo applicate si illo concorda con tote le parola
       domain_allow:
-        domain: Iste dominio potera reportar datos ab iste servitor e le datos in ingresso ab illo sera processate e immagazinate
+        domain: Iste dominio potera extraher datos de iste servitor e le datos entrante de illo essera processate e immagazinate
       email_domain_block:
         domain: Isto pote esser le nomine de dominio que apparera in le adresse email o le registration MX que illo usa. Illos sera verificate durante le inscription.
         with_dns_records: Un tentativa sera facite pro resolver le registrationes de DNS del dominio date e le resultatos sera alsi blocate
@@ -81,7 +81,7 @@ ia:
         backups_retention_period: Le usatores pote generar archivos de lor messages pro discargar los plus tarde. Quando predefinite a un valor positive, iste archivos sera automaticamente delite de tu immagazinage post le specificate numero de dies.
         bootstrap_timeline_accounts: Iste contos sera appunctate al summitate del recommendationes a sequer del nove usatores.
         closed_registrations_message: Monstrate quando le inscriptiones es claudite
-        content_cache_retention_period: Tote messages de altere servitores (includite stimulos e responsas) sera delite post le specificate numero de dies, sin considerar alcun interaction de usator local con ille messages. Isto include messages ubi un usator local los ha marcate como marcapaginas o favoritos. Mentiones private inter usatores de differente instantias sera alsi perdite e impossibile a restaurar. Le uso de iste parametros es intendite pro specific instantias e infringe multe expectationes de usator quando implementate pro uso general.
+        content_cache_retention_period: Tote le messages de altere servitores (includite impulsos e responsas) essera delite post le numero de dies specificate, independentemente de tote interaction de usatores local con ille messages. Isto include le messages addite al marcapaginas o marcate como favorite per un usator local. Le mentiones private inter usatores de differente instantias tamben essera irrecuperabilemente perdite. Le uso de iste parametro es intendite pro instantias con scopos specific e viola multe expectationes de usatores si es implementate pro uso general.
         custom_css: Tu pote applicar stilos personalisate sur le version de web de Mastodon.
         favicon: WEBP, PNG, GIF o JPG. Supplanta le favicone predefinite de Mastodon con un icone personalisate.
         mascot: Illo substitue le illustration in le interfacie web avantiate.
@@ -125,9 +125,9 @@ ia:
         webauthn: Si illo es un clave USB cura de inserer lo e, si necessari, tocca lo.
       settings:
         indexable: Tu pagina del profilo pote apparer in resultatos del recerca sur Google, Bing, e alteros.
-        show_application: Tu sempre sera capace totevia de vider que app publicava tu message.
+        show_application: In omne caso, tu potera sempre vider qual app ha publicate tu message.
       tag:
-        name: Tu pote solo cambiar le inveloppe del litteras, per exemplo, pro render lo plus legibile
+        name: Tu pote solmente cambiar le litteras inter majusculas e minusculas, per exemplo, pro render lo plus legibile
       user:
         chosen_languages: Si marcate, solo le messages in le linguas seligite sera monstrate in chronologias public
         role: Le rolo controla que permissos ha le usator
@@ -158,7 +158,7 @@ ia:
         text: Texto predefinite
         title: Titulo
       admin_account_action:
-        include_statuses: Includer messages reportate in le email
+        include_statuses: Includer le messages reportate in le e-mail
         send_email_notification: Notificar le usator per e-mail
         text: Advertimento personalisate
         type: Action
@@ -203,10 +203,10 @@ ia:
         password: Contrasigno
         phrase: Parola o phrase clave
         setting_advanced_layout: Activar le interfacie web avantiate
-        setting_aggregate_reblogs: Gruppa promotiones in classificationes temporal
+        setting_aggregate_reblogs: Gruppar impulsos in chronologias
         setting_always_send_emails: Sempre inviar notificationes per e-mail
         setting_auto_play_gif: Auto-reproduce GIFs animate
-        setting_boost_modal: Monstrar dialogo de confirmation ante promover
+        setting_boost_modal: Monstrar dialogo de confirmation ante de impulsar
         setting_default_language: Lingua de publication
         setting_default_privacy: Confidentialitate del messages
         setting_default_sensitive: Sempre marcar le medios cmo sensbile
@@ -269,7 +269,7 @@ ia:
         trends: Activar tendentias
         trends_as_landing_page: Usar tendentias como pagina de destination
       interactions:
-        must_be_follower: Blocar notificationes de non-sequaces
+        must_be_follower: Blocar notificationes de personas qui non te seque
         must_be_following: Blocar notificationes de gente que tu non sequer
         must_be_following_dm: Blocar messages directe de gente que tu non seque
       invite:
@@ -292,7 +292,7 @@ ia:
         follow_request: Alcuno requireva de sequer te
         mention: Alcuno te mentionava
         pending_account: Nove conto besonia de revision
-        reblog: Alcuno promoveva tu message
+        reblog: Alcuno ha impulsate tu message
         report: Un nove reporto es inviate
         software_updates:
           all: Notificar sur tote le actualisationes

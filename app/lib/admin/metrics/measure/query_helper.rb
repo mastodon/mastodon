@@ -15,6 +15,14 @@ module Admin::Metrics::Measure::QueryHelper
     ActiveRecord::Base.sanitize_sql_array(sql_array)
   end
 
+  def generated_series_days
+    Arel.sql(
+      <<~SQL.squish
+        SELECT generate_series(:start_at::timestamp, :end_at::timestamp, '1 day')::date AS period
+      SQL
+    )
+  end
+
   def account_domain_sql(include_subdomains)
     if include_subdomains
       "accounts.domain IN (SELECT domain FROM instances WHERE reverse('.' || domain) LIKE reverse('.' || :domain::text))"

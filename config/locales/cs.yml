@@ -81,7 +81,7 @@ cs:
       invite_request_text: Důvody založení
       invited_by: Pozván uživatelem
       ip: IP adresa
-      joined: Uživatel založen
+      joined: Uživatelem od
       location:
         all: Všechny
         local: Místní
@@ -291,6 +291,7 @@ cs:
         update_custom_emoji_html: Uživatel %{name} aktualizoval emoji %{target}
         update_domain_block_html: "%{name} aktualizoval blokaci domény %{target}"
         update_ip_block_html: "%{name} změnil pravidlo pro IP %{target}"
+        update_report_html: "%{name} aktualizoval hlášení %{target}"
         update_status_html: Uživatel %{name} aktualizoval příspěvek uživatele %{target}
         update_user_role_html: "%{name} změnil %{target} roli"
       deleted_account: smazaný účet
@@ -298,6 +299,7 @@ cs:
       filter_by_action: Filtrovat podle akce
       filter_by_user: Filtrovat podle uživatele
       title: Protokol auditu
+      unavailable_instance: "(doména není k dispozici)"
     announcements:
       destroyed_msg: Oznámení bylo úspěšně odstraněno!
       edit:
@@ -984,6 +986,7 @@ cs:
       delete: Smazat
       edit_preset: Upravit předlohu pro varování
       empty: Zatím jste nedefinovali žádné předlohy varování.
+      title: Předvolby varování
     webhooks:
       add_new: Přidat koncový bod
       delete: Smazat

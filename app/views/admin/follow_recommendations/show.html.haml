@@ -5,23 +5,23 @@
 
 %hr.spacer/
 
-= form_tag admin_follow_recommendations_path, method: 'GET', class: 'simple_form' do
+= form_with url: admin_follow_recommendations_path, method: :get, class: :simple_form do |form|
   - RelationshipFilter::KEYS.each do |key|
-    = hidden_field_tag key, params[key] if params[key].present?
+    = form.hidden_field key, value: params[key] if params[key].present?
 
   .filters
     .filter-subset.filter-subset--with-select
       %strong= t('admin.follow_recommendations.language')
       .input.select.optional
-        = select_tag :language,
-                     options_for_select(Trends.available_locales.map { |key| [standard_locale_name(key), key] }, @language)
+        = form.select :language,
+                      options_for_select(Trends.available_locales.map { |key| [standard_locale_name(key), key] }, @language)
     .filter-subset
       %strong= t('admin.follow_recommendations.status')
       %ul
         %li= filter_link_to t('admin.accounts.moderation.active'), status: nil
         %li= filter_link_to t('admin.follow_recommendations.suppressed'), status: 'suppressed'
 
-= form_for(@form, url: admin_follow_recommendations_path, method: :patch) do |f|
+= form_with model: @form, url: admin_follow_recommendations_path, method: :patch do |f|
   - RelationshipFilter::KEYS.each do |key|
     = hidden_field_tag key, params[key] if params[key].present?
 

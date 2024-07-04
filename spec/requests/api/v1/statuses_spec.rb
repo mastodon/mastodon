@@ -9,13 +9,13 @@ describe '/api/v1/statuses' do
     let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, application: client_app, scopes: scopes) }
     let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-    describe 'GET /api/v1/statuses?ids[]=:id' do
+    describe 'GET /api/v1/statuses?id[]=:id' do
       let(:status) { Fabricate(:status) }
       let(:other_status) { Fabricate(:status) }
       let(:scopes) { 'read:statuses' }
 
       it 'returns expected response' do
-        get '/api/v1/statuses', headers: headers, params: { ids: [status.id, other_status.id, 123_123] }
+        get '/api/v1/statuses', headers: headers, params: { id: [status.id, other_status.id, 123_123] }
 
         expect(response).to have_http_status(200)
         expect(body_as_json).to contain_exactly(
@@ -191,6 +191,32 @@ describe '/api/v1/statuses' do
           subject
 
           expect(response).to have_http_status(404)
+        end
+      end
+
+      context 'when scheduling a status' do
+        let(:params) { { status: 'Hello world', scheduled_at: 10.minutes.from_now } }
+        let(:account) { user.account }
+
+        it 'returns HTTP 200' do
+          subject
+
+          expect(response).to have_http_status(200)
+        end
+
+        it 'creates a scheduled status' do
+          expect { subject }.to change { account.scheduled_statuses.count }.from(0).to(1)
+        end
+
+        context 'when the scheduling time is less than 5 minutes' do
+          let(:params) { { status: 'Hello world', scheduled_at: 4.minutes.from_now } }
+
+          it 'does not create a scheduled status', :aggregate_failures do
+            subject
+
+            expect(response).to have_http_status(422)
+            expect(account.scheduled_statuses).to be_empty
+          end
         end
       end
     end

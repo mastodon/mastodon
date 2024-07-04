@@ -120,8 +120,27 @@
       text-decoration: none;
     }
 
-    &:disabled {
-      opacity: 0.5;
+    &.button--destructive {
+      &:active,
+      &:focus,
+      &:hover {
+        border-color: $ui-button-destructive-focus-background-color;
+        color: $ui-button-destructive-focus-background-color;
+      }
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 0.7;
+      border-color: $ui-primary-color;
+      color: $ui-primary-color;
+
+      &:active,
+      &:focus,
+      &:hover {
+        border-color: $ui-primary-color;
+        color: $ui-primary-color;
+      }
     }
   }
 
@@ -903,8 +922,14 @@ body > [data-popper-placement] {
   padding: 10px;
 
   p {
+    font-size: 15px;
+    line-height: 22px;
     color: $darker-text-color;
     margin-bottom: 20px;
+
+    strong {
+      font-weight: 700;
+    }
 
     a {
       color: $secondary-text-color;
@@ -1411,10 +1436,15 @@ body > [data-popper-placement] {
     .audio-player,
     .attachment-list,
     .picture-in-picture-placeholder,
+    .more-from-author,
     .status-card,
     .hashtag-bar {
       margin-inline-start: $thread-margin;
-      width: calc(100% - ($thread-margin));
+      width: calc(100% - $thread-margin);
+    }
+
+    .more-from-author {
+      width: calc(100% - $thread-margin + 2px);
     }
 
     .status__content__read-more-button {
@@ -2409,7 +2439,7 @@ a.account__display-name {
 }
 
 .dropdown-animation {
-  animation: dropdown 150ms cubic-bezier(0.1, 0.7, 0.1, 1);
+  animation: dropdown 250ms cubic-bezier(0.1, 0.7, 0.1, 1);
 
   @keyframes dropdown {
     from {
@@ -3896,6 +3926,10 @@ $ui-header-logo-wordmark-width: 99px;
   border: 1px solid var(--background-border-color);
   border-radius: 8px;
 
+  &.bottomless {
+    border-radius: 8px 8px 0 0;
+  }
+
   &__actions {
     bottom: 0;
     inset-inline-start: 0;
@@ -4121,6 +4155,13 @@ a.status-card {
 .status-card.expanded .status-card__image-image,
 .status-card.expanded .status-card__image-preview {
   border-start-end-radius: 8px;
+  border-end-end-radius: 0;
+  border-end-start-radius: 0;
+}
+
+.status-card.bottomless .status-card__image,
+.status-card.bottomless .status-card__image-image,
+.status-card.bottomless .status-card__image-preview {
   border-end-end-radius: 0;
   border-end-start-radius: 0;
 }
@@ -8780,24 +8821,12 @@ noscript {
   display: flex;
   align-items: center;
   color: $primary-text-color;
-  text-decoration: none;
-  padding: 15px;
+  padding: 16px;
   border-bottom: 1px solid var(--background-border-color);
-  gap: 15px;
+  gap: 16px;
 
   &:last-child {
     border-bottom: 0;
-  }
-
-  &:hover,
-  &:active,
-  &:focus {
-    color: $highlight-text-color;
-
-    .story__details__publisher,
-    .story__details__shared {
-      color: $highlight-text-color;
-    }
   }
 
   &__details {
@@ -8806,17 +8835,66 @@ noscript {
     &__publisher {
       color: $darker-text-color;
       margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 20px;
     }
 
     &__title {
+      display: block;
       font-size: 19px;
       line-height: 24px;
       font-weight: 500;
       margin-bottom: 8px;
+      text-decoration: none;
+      color: $primary-text-color;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $highlight-text-color;
+      }
     }
 
     &__shared {
+      display: flex;
+      align-items: center;
       color: $darker-text-color;
+      gap: 8px;
+      justify-content: space-between;
+      font-size: 14px;
+      line-height: 20px;
+
+      & > span {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      &__pill {
+        background: var(--surface-variant-background-color);
+        border-radius: 4px;
+        color: inherit;
+        text-decoration: none;
+        padding: 4px 12px;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 16px;
+      }
+
+      &__author-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        color: $primary-text-color;
+        font-weight: 500;
+        text-decoration: none;
+
+        &:hover,
+        &:active,
+        &:focus {
+          color: $highlight-text-color;
+        }
+      }
     }
 
     strong {
@@ -8881,14 +8959,14 @@ noscript {
 }
 
 .server-banner {
-  padding: 20px 0;
-
   &__introduction {
+    font-size: 15px;
+    line-height: 22px;
     color: $darker-text-color;
     margin-bottom: 20px;
 
     strong {
-      font-weight: 600;
+      font-weight: 700;
     }
 
     a {
@@ -8916,6 +8994,9 @@ noscript {
   }
 
   &__description {
+    font-size: 15px;
+    line-height: 22px;
+    color: $darker-text-color;
     margin-bottom: 20px;
   }
 
@@ -9887,14 +9968,14 @@ noscript {
     color: inherit;
     text-decoration: none;
     padding: 4px 12px;
-    background: $ui-base-color;
+    background: var(--surface-variant-background-color);
     border-radius: 4px;
     font-weight: 500;
 
     &:hover,
     &:focus,
     &:active {
-      background: lighten($ui-base-color, 4%);
+      background: var(--surface-variant-active-background-color);
     }
   }
 
@@ -10220,6 +10301,201 @@ noscript {
       border-radius: 4px;
       border: 1px solid var(--background-border-color);
       padding: 5px;
+    }
+  }
+}
+
+.more-from-author {
+  box-sizing: border-box;
+  font-size: 14px;
+  color: $darker-text-color;
+  background: var(--surface-background-color);
+  border: 1px solid var(--background-border-color);
+  border-top: 0;
+  border-radius: 0 0 8px 8px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .logo {
+    height: 16px;
+    color: $darker-text-color;
+  }
+
+  & > span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+    color: $primary-text-color;
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $highlight-text-color;
+    }
+  }
+}
+
+.hover-card-controller[data-popper-reference-hidden='true'] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hover-card {
+  box-shadow: var(--dropdown-shadow);
+  background: var(--modal-background-color);
+  backdrop-filter: var(--background-filter);
+  border: 1px solid var(--modal-border-color);
+  border-radius: 8px;
+  padding: 16px;
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  &--loading {
+    position: relative;
+    min-height: 100px;
+  }
+
+  &__name {
+    display: flex;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &__number {
+    font-size: 15px;
+    line-height: 22px;
+    color: $secondary-text-color;
+
+    strong {
+      font-weight: 700;
+    }
+  }
+
+  &__text-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__bio {
+    color: $secondary-text-color;
+    font-size: 14px;
+    line-height: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-height: 2 * 20px;
+    overflow: hidden;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .display-name {
+    font-size: 15px;
+    line-height: 22px;
+
+    bdi {
+      font-weight: 500;
+      color: $primary-text-color;
+    }
+
+    &__account {
+      display: block;
+      color: $dark-text-color;
+    }
+  }
+
+  .account-fields {
+    color: $secondary-text-color;
+    font-size: 14px;
+    line-height: 20px;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:focus,
+      &:hover,
+      &:active {
+        text-decoration: underline;
+      }
+    }
+
+    dl {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      dt {
+        flex: 0 0 auto;
+        color: $dark-text-color;
+        min-width: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      dd {
+        flex: 1 1 auto;
+        font-weight: 500;
+        min-width: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        text-align: end;
+      }
+
+      &.verified {
+        dd {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 4px;
+          overflow: hidden;
+          white-space: nowrap;
+          color: $valid-value-color;
+
+          & > span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          a {
+            font-weight: 500;
+          }
+
+          .icon {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
     }
   }
 }

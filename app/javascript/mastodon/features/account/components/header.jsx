@@ -94,7 +94,7 @@ const messageForFollowButton = relationship => {
     return messages.mutual;
   } else if (!relationship.get('following') && relationship.get('followed_by')) {
     return messages.followBack;
-  } else if (relationship.get('following')) {
+  } else if (relationship.get('following') || relationship.get('requested')) {
     return messages.unfollow;
   } else {
     return messages.follow;
@@ -291,10 +291,8 @@ class Header extends ImmutablePureComponent {
     if (me !== account.get('id')) {
       if (signedIn && !account.get('relationship')) { // Wait until the relationship is loaded
         actionBtn = <Button disabled><LoadingIndicator /></Button>;
-      } else if (account.getIn(['relationship', 'requested'])) {
-        actionBtn = <Button text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.props.onFollow} />;
       } else if (!account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames({ 'button--destructive': account.getIn(['relationship', 'following']) })} text={intl.formatMessage(messageForFollowButton(account.get('relationship')))} onClick={signedIn ? this.props.onFollow : this.props.onInteractionModal} />;
+        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames({ 'button--destructive': (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) })} text={intl.formatMessage(messageForFollowButton(account.get('relationship')))} onClick={signedIn ? this.props.onFollow : this.props.onInteractionModal} />;
       } else if (account.getIn(['relationship', 'blocking'])) {
         actionBtn = <Button text={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />;
       }

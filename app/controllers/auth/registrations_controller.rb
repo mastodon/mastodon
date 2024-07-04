@@ -25,6 +25,14 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     super(&:build_invite_request)
   end
 
+  def edit # rubocop:disable Lint/UselessMethodDefinition
+    super
+  end
+
+  def create # rubocop:disable Lint/UselessMethodDefinition
+    super
+  end
+
   def update
     super do |resource|
       resource.clear_other_sessions(current_session.session_id) if resource.saved_change_to_encrypted_password?

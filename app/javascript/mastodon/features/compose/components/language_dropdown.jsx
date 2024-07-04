@@ -110,18 +110,6 @@ class LanguageDropdownMenu extends PureComponent {
     }).map(result => result.obj);
   }
 
-  frequentlyUsed () {
-    const { languages, value } = this.props;
-    const current = languages.find(lang => lang[0] === value);
-    const results = [];
-
-    if (current) {
-      results.push(current);
-    }
-
-    return results;
-  }
-
   handleClick = e => {
     const value = e.currentTarget.getAttribute('data-index');
 

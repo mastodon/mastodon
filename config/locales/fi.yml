@@ -293,6 +293,7 @@ fi:
       filter_by_action: Suodata tapahtuman mukaan
       filter_by_user: Suodata käyttäjän mukaan
       title: Auditointiloki
+      unavailable_instance: "(verkkotunnus ei saatavilla)"
     announcements:
       destroyed_msg: Tiedote poistettu onnistuneesti!
       edit:
@@ -1661,7 +1662,7 @@ fi:
     preferences: Ominaisuudet
     profile: Julkinen profiili
     relationships: Seuratut ja seuraajat
-    severed_relationships: Katkenneet suhteet
+    severed_relationships: Katkenneet seurantasuhteet
     statuses_cleanup: Autom. julkaisujen poisto
     strikes: Valvontavaroitukset
     two_factor_authentication: Kaksivaiheinen todennus
@@ -1674,7 +1675,7 @@ fi:
       user_domain_block: Estit käyttäjän %{target_name}
     lost_followers: Menetetyt seuraajat
     lost_follows: Menetetyt seuratut
-    preamble: Voit menettää seurattusi ja seuraajasi, kun estät verkkotunnuksen tai kun valvojasi päättävät jäädyttää etäpalvelimen. Kun näin tapahtuu, voit ladata luetteloita katkenneista suhteista, jotta voit tarkastella niitä ja mahdollisesti viedä ne toiselle palvelimelle.
+    preamble: Voit menettää seurattusi ja seuraajasi, kun estät verkkotunnuksen tai kun valvojasi päättävät jäädyttää etäpalvelimen. Kun näin tapahtuu, voit ladata luetteloita katkenneista seurantasuhteista, jotta voit tarkastella niitä ja mahdollisesti viedä ne toiselle palvelimelle.
     purged: Palvelimesi ylläpitäjät ovat tyhjentäneet tämän palvelimen tiedot.
     type: Tapahtuma
   statuses:
@@ -1862,31 +1863,31 @@ fi:
       apps_ios_action: Lataa App Storesta
       apps_step: Lataa viralliset sovelluksemme.
       apps_title: Mastodon-sovellukset
-      checklist_subtitle: 'Aloitetaan tällä uudella sosiaalisella seudulla:'
+      checklist_subtitle: 'Näin pääset alkuun tällä uudella sosiaalisella alustalla:'
       checklist_title: Tervetulon tarkistuslista
       edit_profile_action: Mukauta
-      edit_profile_step: Tehosta vuorovaikutuksiasi täydennetyllä profiililla.
+      edit_profile_step: Tehosta vuorovaikutuksiasi kattavin profiilitiedoin.
       edit_profile_title: Mukauta profiiliasi
       explanation: Näillä vinkeillä pääset alkuun
       feature_action: Lue lisää
-      feature_audience: Mastodon tarjoaa sinulle ainutlaatuisen mahdollisuuden hallita yleisöäsi ilman välikäsiä. Omassa infrastruktuurissasi käytössä oleva Mastodon antaa sinulle mahdollisuuden seurata ja tulla seuratuksi miltä tahansa muulta verkon Mastodon-palvelimelta, ja se on vain sinun hallinnassasi.
+      feature_audience: Mastodon tarjoaa sinulle ainutlaatuisen mahdollisuuden hallita yleisöäsi ilman välikäsiä. Omassa infrastruktuurissasi toimiva Mastodon on täysin hallinnassasi, ja mahdollistaa sinun seurata mitä tahansa Mastodon-palvelimia sekä niin ikään olla seurattu niiltä päin.
       feature_audience_title: Rakenna yleisöäsi luottavaisin mielin
       feature_control: Tiedät itse parhaiten, mitä haluat nähdä kotisyötteessäsi. Ei algoritmeja eikä mainoksia tuhlaamassa aikaasi. Seuraa yhdellä tilillä ketä tahansa, miltä tahansa Mastodon-palvelimelta, vastaanota heidän julkaisunsa aikajärjestyksessä ja tee omasta internetin nurkastasi hieman enemmän omanlaisesi.
       feature_control_title: Pidä aikajanasi hallussasi
       feature_creativity: Mastodon tukee ääni-, video- ja kuvajulkaisuja, saavutettavuuskuvauksia, äänestyksiä, sisältövaroituksia, animoituja avattaria, mukautettuja emojeita, pikkukuvien rajauksen hallintaa ja paljon muuta, mikä auttaa ilmaisemaan itseäsi verkossa. Julkaisetpa sitten taidetta, musiikkia tai podcastia, Mastodon on sinua varten.
       feature_creativity_title: Luovuutta vertaansa vailla
       feature_moderation: Mastodon palauttaa päätöksenteon käsiisi. Jokainen palvelin luo omat sääntönsä ja määräyksensä, joita valvotaan paikallisesti eikä ylhäältä alas kuten kaupallisessa sosiaalisessa mediassa, mikä tekee siitä joustavimman vastaamaan eri ihmisryhmien tarpeisiin. Liity palvelimelle, jonka säännöt sopivat sinulle, tai ylläpidä omaa palvelinta.
-      feature_moderation_title: Moderointi niin kuin kuuluukin
+      feature_moderation_title: Moderointi juuri kuten sen pitäisi olla
       follow_action: Seuraa
-      follow_step: Mastodonissa on kyse kiinnostavien ihmisten seuraamisesta.
+      follow_step: Mastodon perustuu sinua kiinnostavien henkilöjen julkaisujen seuraamiseen.
       follow_title: Mukauta kotisyötettäsi
       follows_subtitle: Seuraa tunnettuja tilejä
-      follows_title: Ehdotuksia seurattavaksi
+      follows_title: Seurantaehdotuksia
       follows_view_more: Näytä lisää seurattavia henkilöitä
       hashtags_recent_count:
         one: "%{people} henkilö viimeisen 2 päivän aikana"
         other: "%{people} henkilöä viimeisen 2 päivän aikana"
-      hashtags_subtitle: Tutki, mikä on ollut suosittua viimeisenä 2 päivänä
+      hashtags_subtitle: Tutki, mikä on ollut suosittua 2 edeltävän päivän jälkeen
       hashtags_title: Suositut aihetunnisteet
       hashtags_view_more: Näytä lisää suosittuja aihetunnisteita
       post_action: Kirjoita

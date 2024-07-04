@@ -76,7 +76,7 @@ lt:
       webauthn_disabled:
         explanation: Tavo paskyrai išjungtas tapatybės nustatymas naudojant saugumo raktus.
         extra: Prisijungimas dabar galimas naudojant tik susietos TOTP programėlės sugeneruotą prieigos raktą.
-        subject: 'Mastodon: tapatybės nustatymas naudojant saugumo raktai išjungta'
+        subject: 'Mastodon: tapatybės nustatymas su saugumo raktai išjungta'
         title: Saugumo raktai išjungti
       webauthn_enabled:
         explanation: Tavo paskyrai įjungtas saugumo rakto tapatybės nustatymas.
@@ -98,8 +98,8 @@ lt:
       signed_up_but_inactive: Sėkmingai užsiregistravai. Tačiau negalėjome tavęs prijungti, nes tavo paskyra dar nėra aktyvuota.
       signed_up_but_locked: Sėkmingai užsiregistravai. Tačiau negalėjome tavęs prijungti, nes tavo paskyra dar užrakinta.
       signed_up_but_pending: Į tavo el. pašto adresą buvo išsiųstas laiškas su patvirtinimo nuoroda. Paspaudęs (-usi) nuorodą, peržiūrėsime tavo paraišką. Tau bus pranešta, jei ji patvirtinta.
-      signed_up_but_unconfirmed: Į tavo el. pašto adresą buvo išsiųstas laiškas su patvirtinimo nuoroda. Paspausk nuorodą, kad aktyvuotum savo paskyrą. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
-      update_needs_confirmation: Sėkmingai atnaujinai savo paskyrą, bet mums reikia patvirtinti naująjį el. pašto adresą. Patikrink savo el. paštą ir paspausk patvirtinimo nuorodą, kad patvirtintum savo naują el. pašto adresą. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
+      signed_up_but_unconfirmed: Į tavo el. pašto adresą buvo išsiųstas laiškas su patvirtinimo nuoroda. Sek nuorodą, kad aktyvuotum savo paskyrą. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
+      update_needs_confirmation: Sėkmingai atnaujinai savo paskyrą, bet mums reikia patvirtinti naująjį el. pašto adresą. Patikrink savo el. paštą ir sek patvirtinimo nuorodą, kad patvirtintum savo naują el. pašto adresą. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
       updated: Tavo paskyra buvo sėkmingai atnaujinta.
     sessions:
       already_signed_out: Atsijungta sėkmingai.
@@ -107,7 +107,7 @@ lt:
       signed_out: Atjungta sėkmingai.
     unlocks:
       send_instructions: Po kelių minučių gausi el. laišką su instrukcijomis, kaip atrakinti paskyrą. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
-      send_paranoid_instructions: Jei paskyra egzistuoja, po kelių minučių gausi el. laišką su instrukcijomis, kaip ją atrakinti. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
+      send_paranoid_instructions: Jei tavo paskyra egzistuoja, po kelių minučių gausi el. laišką su instrukcijomis, kaip ją atrakinti. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
       unlocked: Tavo paskyra sėkmingai atrakinta. Norėdamas (-a) tęsti, prisijunk.
   errors:
     messages:

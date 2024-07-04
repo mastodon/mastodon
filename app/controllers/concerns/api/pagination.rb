@@ -3,6 +3,8 @@
 module Api::Pagination
   extend ActiveSupport::Concern
 
+  PAGINATION_PARAMS = %i(limit).freeze
+
   protected
 
   def pagination_max_id
@@ -22,6 +24,13 @@ module Api::Pagination
 
   def require_valid_pagination_options!
     render json: { error: 'Pagination values for `offset` and `limit` must be positive' }, status: 400 if pagination_options_invalid?
+  end
+
+  def pagination_params(core_params)
+    params
+      .slice(*PAGINATION_PARAMS)
+      .permit(*PAGINATION_PARAMS)
+      .merge(core_params)
   end
 
   private

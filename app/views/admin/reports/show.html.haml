@@ -45,7 +45,7 @@
             admin_account_statuses_path(@report.target_account_id, report_id: @report.id),
             class: 'table-action-link'
 
-= form_for(@form, url: batch_admin_account_statuses_path(@report.target_account_id, report_id: @report.id)) do |f|
+= form_with model: @form, url: batch_admin_account_statuses_path(@report.target_account_id, report_id: @report.id) do |f|
   .batch-table
     .batch-table__toolbar
       %label.batch-table__toolbar__select.batch-checkbox-all

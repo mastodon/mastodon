@@ -5,22 +5,24 @@
 
 %hr.spacer/
 
-= form_tag admin_trends_statuses_path, method: 'GET', class: 'simple_form' do
+= form_with url: admin_trends_statuses_path, method: :get, class: :simple_form do |form|
   - Trends::StatusFilter::KEYS.each do |key|
-    = hidden_field_tag key, params[key] if params[key].present?
+    = form.hidden_field key, value: params[key] if params[key].present?
 
   .filters
     .filter-subset.filter-subset--with-select
       %strong= t('admin.follow_recommendations.language')
       .input.select.optional
-        = select_tag :locale, options_for_select(@locales.map { |key| [standard_locale_name(key), key] }, params[:locale]), include_blank: true
+        = form.select :locale,
+                      options_for_select(@locales.map { |key| [standard_locale_name(key), key] }, params[:locale]),
+                      include_blank: true
     .filter-subset
       %strong= t('admin.trends.trending')
       %ul
         %li= filter_link_to t('generic.all'), trending: nil
         %li= filter_link_to t('admin.trends.only_allowed'), trending: 'allowed'
 
-= form_for(@form, url: batch_admin_trends_statuses_path) do |f|
+= form_with model: @form, url: batch_admin_trends_statuses_path do |f|
   = hidden_field_tag :page, params[:page] || 1
 
   - Trends::StatusFilter::KEYS.each do |key|

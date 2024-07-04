@@ -69,10 +69,10 @@ describe Extractor do
     end
   end
 
-  describe 'extract_cashtags_with_indices' do
-    it 'returns []' do
+  describe 'extract_entities_with_indices' do
+    it 'returns empty array when cashtag present' do
       text = '$cashtag'
-      extracted = described_class.extract_cashtags_with_indices(text)
+      extracted = described_class.extract_entities_with_indices(text)
       expect(extracted).to eq []
     end
   end

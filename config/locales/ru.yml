@@ -298,6 +298,7 @@ ru:
       filter_by_action: Фильтр по действию
       filter_by_user: Фильтр по пользователю
       title: Журнал аудита
+      unavailable_instance: "(доменное имя недоступно)"
     announcements:
       destroyed_msg: Объявление удалено.
       edit:
@@ -1698,6 +1699,7 @@ ru:
     import: Импорт
     import_and_export: Импорт и экспорт
     migrate: Миграция учётной записи
+    notifications: Уведомления по электронной почте
     preferences: Настройки
     profile: Профиль
     relationships: Подписки и подписчики
@@ -1705,6 +1707,9 @@ ru:
     strikes: Замечания модерации
     two_factor_authentication: Подтверждение входа
     webauthn_authentication: Ключи безопасности
+  severed_relationships:
+    event_type:
+      user_domain_block: Вы заблокировали %{target_name}
   statuses:
     attached:
       audio:

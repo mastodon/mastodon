@@ -293,6 +293,7 @@ nl:
       filter_by_action: Op actie filteren
       filter_by_user: Op gebruiker filteren
       title: Auditlog
+      unavailable_instance: "(domeinnaam niet beschikbaar)"
     announcements:
       destroyed_msg: Verwijderen van mededeling geslaagd!
       edit:
@@ -1814,14 +1815,14 @@ nl:
       subject: Jouw archief staat klaar om te worden gedownload
       title: Archief ophalen
     failed_2fa:
-      details: 'Hier zijn details van de inlogpoging:'
+      details: 'Hier zijn de details van de inlogpoging:'
       explanation: Iemand heeft geprobeerd om in te loggen op jouw account maar heeft een ongeldige tweede verificatiefactor opgegeven.
       further_actions_html: Als jij dit niet was, raden we je aan om onmiddellijk %{action} aangezien het in gevaar kan zijn.
       subject: Tweestapsverificatiefout
       title: Tweestapsverificatie mislukt
     suspicious_sign_in:
       change_password: je wachtwoord te wijzigen
-      details: 'Hier zijn de details van inlogpoging:'
+      details: 'Hier zijn de details van het inloggen:'
       explanation: We hebben vastgesteld dat iemand vanaf een nieuw IP-adres op jouw account is ingelogd.
       further_actions_html: Wanneer jij dit niet was, adviseren wij om onmiddellijk %{action} en om tweestapsverificatie in te schakelen, om zo je account veilig te houden.
       subject: Jouw account is vanaf een nieuw IP-adres benaderd

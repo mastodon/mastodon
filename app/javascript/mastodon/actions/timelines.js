@@ -6,9 +6,11 @@ import { usePendingItems as preferPendingItems } from 'mastodon/initial_state';
 
 import { importFetchedStatus, importFetchedStatuses } from './importer';
 import { submitMarkers } from './markers';
+import {timelineDelete} from './timelines_typed';
+
+export { disconnectTimeline } from './timelines_typed';
 
 export const TIMELINE_UPDATE  = 'TIMELINE_UPDATE';
-export const TIMELINE_DELETE  = 'TIMELINE_DELETE';
 export const TIMELINE_CLEAR   = 'TIMELINE_CLEAR';
 
 export const TIMELINE_EXPAND_REQUEST = 'TIMELINE_EXPAND_REQUEST';
@@ -17,7 +19,6 @@ export const TIMELINE_EXPAND_FAIL    = 'TIMELINE_EXPAND_FAIL';
 
 export const TIMELINE_SCROLL_TOP   = 'TIMELINE_SCROLL_TOP';
 export const TIMELINE_LOAD_PENDING = 'TIMELINE_LOAD_PENDING';
-export const TIMELINE_DISCONNECT   = 'TIMELINE_DISCONNECT';
 export const TIMELINE_CONNECT      = 'TIMELINE_CONNECT';
 
 export const TIMELINE_MARK_AS_PARTIAL = 'TIMELINE_MARK_AS_PARTIAL';
@@ -62,16 +63,10 @@ export function updateTimeline(timeline, status, accept) {
 export function deleteFromTimelines(id) {
   return (dispatch, getState) => {
     const accountId  = getState().getIn(['statuses', id, 'account']);
-    const references = getState().get('statuses').filter(status => status.get('reblog') === id).map(status => status.get('id'));
+    const references = getState().get('statuses').filter(status => status.get('reblog') === id).map(status => status.get('id')).valueSeq().toJSON();
     const reblogOf   = getState().getIn(['statuses', id, 'reblog'], null);
 
-    dispatch({
-      type: TIMELINE_DELETE,
-      id,
-      accountId,
-      references,
-      reblogOf,
-    });
+    dispatch(timelineDelete({ statusId: id, accountId, references, reblogOf }));
   };
 }
 
@@ -163,6 +158,7 @@ export const expandAccountTimeline         = (accountId, { maxId, withReplies, t
 export const expandAccountFeaturedTimeline = (accountId, { tagged } = {}) => expandTimeline(`account:${accountId}:pinned${tagged ? `:${tagged}` : ''}`, `/api/v1/accounts/${accountId}/statuses`, { pinned: true, tagged });
 export const expandAccountMediaTimeline    = (accountId, { maxId } = {}) => expandTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { max_id: maxId, only_media: true, limit: 40 });
 export const expandListTimeline            = (id, { maxId } = {}, done = noOp) => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`, { max_id: maxId }, done);
+export const expandLinkTimeline            = (url, { maxId } = {}, done = noOp) => expandTimeline(`link:${url}`, `/api/v1/timelines/link`, { url, max_id: maxId }, done);
 export const expandHashtagTimeline         = (hashtag, { maxId, tags, local } = {}, done = noOp) => {
   return expandTimeline(`hashtag:${hashtag}${local ? ':local' : ''}`, `/api/v1/timelines/tag/${hashtag}`, {
     max_id: maxId,
@@ -224,12 +220,6 @@ export function connectTimeline(timeline) {
     usePendingItems: preferPendingItems,
   };
 }
-
-export const disconnectTimeline = timeline => ({
-  type: TIMELINE_DISCONNECT,
-  timeline,
-  usePendingItems: preferPendingItems,
-});
 
 export const markAsPartial = timeline => ({
   type: TIMELINE_MARK_AS_PARTIAL,
