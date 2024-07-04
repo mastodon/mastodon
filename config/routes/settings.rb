@@ -37,13 +37,13 @@ namespace :settings do
     end
   end
 
-  resource :otp_authentication, only: [:show, :create], controller: 'two_factor_authentication/otp_authentication'
+  scope module: :two_factor_authentication do
+    resource :otp_authentication, only: [:show, :create], controller: :otp_authentication
 
-  resources :webauthn_credentials, only: [:index, :new, :create, :destroy],
-                                   path: 'security_keys',
-                                   controller: 'two_factor_authentication/webauthn_credentials' do
-    collection do
-      get :options
+    resources :webauthn_credentials, only: [:index, :new, :create, :destroy], path: 'security_keys' do
+      collection do
+        get :options
+      end
     end
   end
 
