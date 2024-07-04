@@ -166,7 +166,11 @@ describe Settings::ApplicationsController do
   end
 
   describe 'destroy' do
+    let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
+    let!(:access_token) { Fabricate(:accessible_access_token, application: app) }
+
     before do
+      allow(redis).to receive(:pipelined).and_yield(redis_pipeline_stub)
       post :destroy, params: { id: app.id }
     end
 
@@ -176,6 +180,10 @@ describe Settings::ApplicationsController do
 
     it 'removes the app' do
       expect(Doorkeeper::Application.find_by(id: app.id)).to be_nil
+    end
+
+    it 'sends a session kill payload to the streaming server' do
+      expect(redis_pipeline_stub).to have_received(:publish).with("timeline:access_token:#{access_token.id}", '{"event":"kill"}')
     end
   end
 
