@@ -32,6 +32,8 @@ describe 'Public' do
     context 'when the instance allows public preview' do
       let(:expected_statuses) { [local_status, remote_status, media_status] }
 
+      it_behaves_like 'forbidden for wrong scope', 'profile'
+
       context 'with an authorized user' do
         it_behaves_like 'a successful request to the public timeline'
       end
@@ -96,13 +98,9 @@ describe 'Public' do
         Form::AdminSettings.new(timeline_preview: false).save
       end
 
-      context 'with an authenticated user' do
-        let(:expected_statuses) { [local_status, remote_status, media_status] }
+      it_behaves_like 'forbidden for wrong scope', 'profile'
 
-        it_behaves_like 'a successful request to the public timeline'
-      end
-
-      context 'with an unauthenticated user' do
+      context 'without an authentication token' do
         let(:headers) { {} }
 
         it 'returns http unprocessable entity' do
@@ -110,6 +108,22 @@ describe 'Public' do
 
           expect(response).to have_http_status(422)
         end
+      end
+
+      context 'with an application access token, not bound to a user' do
+        let(:token) { Fabricate(:accessible_access_token, resource_owner_id: nil, scopes: scopes) }
+
+        it 'returns http unprocessable entity' do
+          subject
+
+          expect(response).to have_http_status(422)
+        end
+      end
+
+      context 'with an authenticated user' do
+        let(:expected_statuses) { [local_status, remote_status, media_status] }
+
+        it_behaves_like 'a successful request to the public timeline'
       end
     end
   end
