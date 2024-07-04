@@ -24,8 +24,8 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def create
-    Warden::Manager.before_failure do |env, opts|
-      logger.info("Login failed for user #{env["rack.request.form_hash"]["user"]["email"]} by #{env["HTTP_X_REAL_IP"]}")
+    Warden::Manager.before_failure do |env|
+      logger.info("Login failed for user #{env['rack.request.form_hash']['user']['email']} by #{env['HTTP_X_REAL_IP']}")
     end
 
     super do |resource|
