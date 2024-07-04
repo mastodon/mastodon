@@ -12,7 +12,7 @@ describe Api::V1::Timelines::PublicController do
   end
 
   context 'with a user context' do
-    let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id) }
+    let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:statuses') }
 
     describe 'GET #show' do
       before do
@@ -42,7 +42,7 @@ describe Api::V1::Timelines::PublicController do
   end
 
   context 'without a user context' do
-    let(:token) { Fabricate(:accessible_access_token, resource_owner_id: nil) }
+    let(:token) { Fabricate(:accessible_access_token, resource_owner_id: nil, scopes: 'read:statuses') }
 
     describe 'GET #show' do
       it 'returns http success' do

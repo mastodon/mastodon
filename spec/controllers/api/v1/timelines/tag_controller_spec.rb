@@ -6,7 +6,8 @@ describe Api::V1::Timelines::TagController do
   render_views
 
   let(:user)   { Fabricate(:user) }
-  let(:token)  { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:statuses') }
+  let(:scopes) { 'read:statuses' }
+  let(:token)  { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
@@ -48,13 +49,23 @@ describe Api::V1::Timelines::TagController do
         Form::AdminSettings.new(timeline_preview: false).save
       end
 
-      context 'when the user is not authenticated' do
+      context 'without an access token' do
         let(:token) { nil }
 
-        it 'returns http unauthorized' do
+        it 'returns http unprocessable entity' do
           subject
 
-          expect(response).to have_http_status(401)
+          expect(response).to have_http_status(422)
+        end
+      end
+
+      context 'with an application access token, not bound to a user' do
+        let(:token) { Fabricate(:accessible_access_token, resource_owner_id: nil, scopes: scopes) }
+
+        it 'returns http unprocessable entity' do
+          subject
+
+          expect(response).to have_http_status(422)
         end
       end
 

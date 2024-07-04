@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::Timelines::TagController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, only: :show, if: :require_auth?
+  before_action -> { authorize_if_got_token! :read, :'read:statuses' }
+  before_action :require_user!, if: :require_auth?
   before_action :load_tag
   after_action :insert_pagination_headers, unless: -> { @statuses.empty? }
 
