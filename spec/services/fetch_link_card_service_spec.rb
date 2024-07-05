@@ -30,6 +30,7 @@ RSpec.describe FetchLinkCardService do
     stub_request(:get, 'http://example.com/latin1_posing_as_utf8_broken').to_return(request_fixture('latin1_posing_as_utf8_broken.txt'))
     stub_request(:get, 'http://example.com/latin1_posing_as_utf8_recoverable').to_return(request_fixture('latin1_posing_as_utf8_recoverable.txt'))
     stub_request(:get, 'http://example.com/aergerliche-umlaute').to_return(request_fixture('redirect_with_utf8_url.txt'))
+    stub_request(:get, 'http://example.com/page_without_title').to_return(request_fixture('page_without_title.txt'))
 
     Rails.cache.write('oembed_endpoint:example.com', oembed_cache) if oembed_cache
 
@@ -106,6 +107,14 @@ RSpec.describe FetchLinkCardService do
 
     context 'with a redirect URL with faulty encoding' do
       let(:status) { Fabricate(:status, text: 'http://example.com/aergerliche-umlaute') }
+
+      it 'does not create a preview card' do
+        expect(status.preview_card).to be_nil
+      end
+    end
+
+    context 'with a page that has no title' do
+      let(:status) { Fabricate(:status, text: 'http://example.com/page_without_title') }
 
       it 'does not create a preview card' do
         expect(status.preview_card).to be_nil
