@@ -141,7 +141,7 @@ export default class Card extends PureComponent {
     const showAuthor  = !!card.getIn(['authors', 0, 'accountId']);
 
     const description = (
-      <div className='status-card__content'>
+      <div className='status-card__content' dir='auto'>
         <span className='status-card__host'>
           <span lang={language}>{provider}</span>
           {card.get('published_at') && <> · <RelativeTimestamp timestamp={card.get('published_at')} /></>}
