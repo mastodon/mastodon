@@ -31,18 +31,18 @@ gl:
       created_msg: Nota de moderación creada correctamente!
       destroyed_msg: Nota de moderación eliminada de xeito correcto!
     accounts:
-      add_email_domain_block: Bloquear o dominio do email
+      add_email_domain_block: Bloquear o dominio do enderezo
       approve: Aprobar
       approved_msg: Aprobada a solicitude de rexistro de %{username}
       are_you_sure: Está segura?
       avatar: Imaxe de perfil
       by_domain: Dominio
       change_email:
-        changed_msg: Email mudado de xeito correcto!
-        current_email: Email actual
-        label: Mudar email
-        new_email: Novo email
-        submit: Mudar email
+        changed_msg: Correo cambiado de xeito correcto!
+        current_email: Enderezo actual
+        label: Cambiar de enderezo
+        new_email: Novo enderezo
+        submit: Cambiar de enderezo
         title: Mudar email de %{username}
       change_role:
         changed_msg: Rol mudado correctamente!
@@ -64,10 +64,10 @@ gl:
       display_name: Nome a amosar
       domain: Dominio
       edit: Editar
-      email: Email
-      email_status: Estado do email
+      email: Enderezo de correo
+      email_status: Estado do correo
       enable: Activar
-      enable_sign_in_token_auth: Activar autenticación cun token no email
+      enable_sign_in_token_auth: Activar autenticación cun token no correo
       enabled: Activado
       enabled_msg: Desbloqueada a conta de %{username}
       followers: Seguidoras
@@ -132,7 +132,7 @@ gl:
       resubscribe: Resubscribir
       role: Rol
       search: Procurar
-      search_same_email_domain: Outras usuarias co mesmo dominio de email
+      search_same_email_domain: Outras usuarias co mesmo dominio de correo
       search_same_ip: Outras usuarias co mesmo IP
       security: Seguridade
       security_measures:
@@ -154,9 +154,9 @@ gl:
       suspension_irreversible: Elimináronse de xeito irreversible os datos desta conta. Podes reactivar a conta para facela usable novamente pero non recuperará os datos eliminados.
       suspension_reversible_hint_html: Esta conta foi suspendida, e os datos serán totalmente eliminados o %{date}. Ata entón, a conta pode ser restaurada sen danos. Se desexas eliminar agora mesmo todos os datos da conta, podes facelo aquí embaixo.
       title: Contas
-      unblock_email: Desbloquear enderezo de email
-      unblocked_email_msg: Enderezo de email de %{username} desbloqueado
-      unconfirmed_email: Email non confirmado
+      unblock_email: Desbloquear enderezo de correo
+      unblocked_email_msg: Enderezo de correo de %{username} desbloqueado
+      unconfirmed_email: Enderezo de correo sen confirmar
       undo_sensitized: Desmarcar como sensible
       undo_silenced: Desfacer acalar
       undo_suspension: Desfacer suspensión
@@ -173,12 +173,12 @@ gl:
         approve_appeal: Aprobar apelación
         approve_user: Aprobar Usuaria
         assigned_to_self_report: Asignar denuncia
-        change_email_user: Editar email da usuaria
+        change_email_user: Editar correo electrónico da usuaria
         change_role_user: Cambiar Rol da Usuaria
         confirm_user: Confirmar usuaria
         create_account_warning: Crear aviso
         create_announcement: Crear anuncio
-        create_canonical_email_block: Crear Bloqueo de email
+        create_canonical_email_block: Crear Bloqueo de correo electrónico
         create_custom_emoji: Crear emoticonas personalizadas
         create_domain_allow: Crear Dominio Permitido
         create_domain_block: Crear bloquedo do Dominio
@@ -188,7 +188,7 @@ gl:
         create_user_role: Crear Rol
         demote_user: Degradar usuaria
         destroy_announcement: Eliminar anuncio
-        destroy_canonical_email_block: Eliminar Bloqueo de email
+        destroy_canonical_email_block: Eliminar Bloqueo de correo electrónico
         destroy_custom_emoji: Eliminar emoticona personalizada
         destroy_domain_allow: Eliminar Dominio permitido
         destroy_domain_block: Eliminar bloqueo do Dominio
@@ -200,7 +200,7 @@ gl:
         destroy_user_role: Eliminar Rol
         disable_2fa_user: Desactivar 2FA
         disable_custom_emoji: Desactivar emoticona personalizada
-        disable_sign_in_token_auth_user: Desactivar Autenticación por token no email para Usuaria
+        disable_sign_in_token_auth_user: Desactivar Autenticación con token no correo para Usuaria
         disable_user: Desactivar usuaria
         enable_custom_emoji: Activar emoticona personalizada
         enable_sign_in_token_auth_user: Activar Autenticación con token no email para Usuaria
@@ -211,14 +211,14 @@ gl:
         reject_user: Rexeitar Usuaria
         remove_avatar_user: Eliminar avatar
         reopen_report: Reabrir denuncia
-        resend_user: Reenviar o email de confirmación
+        resend_user: Reenviar o correo de confirmación
         reset_password_user: Restabelecer contrasinal
         resolve_report: Resolver denuncia
         sensitive_account: Marca o multimedia da túa conta como sensible
         silence_account: Silenciar conta
         suspend_account: Suspender conta
         unassigned_report: Desasignar denuncia
-        unblock_email_account: Desbloquear enderezo de email
+        unblock_email_account: Desbloquear enderezo de correo
         unsensitive_account: Retira a marca de sensible do multimedia da conta
         unsilence_account: Deixar de silenciar conta
         unsuspend_account: Retirar suspensión de conta
@@ -660,7 +660,7 @@ gl:
         delete_data_html: Eliminar o perfil e contidos de <strong>@%{acct}</strong> para os próximos 30 días a non ser que sexa suspendida nese período
         preview_preamble_html: "<strong>@%{acct}</strong> vai recibir un aviso co seguinte contido:"
         record_strike_html: Anotar un aviso contra <strong>@%{acct}</strong> para axudarche a xestionar futuros problemas con esta conta
-        send_email_html: Enviar un email de aviso a <strong>@%{acct}</strong>
+        send_email_html: Enviar un correo de aviso a <strong>@%{acct}</strong>
         warning_placeholder: Razóns adicionais optativas para a acción de moderación.
       target_origin: Orixe da conta denunciada
       title: Denuncias
@@ -1060,7 +1060,7 @@ gl:
       redirect_to_app_html: Ímoste redirixir á app <strong>%{app_name}</strong>. Se iso non acontece, proba %{clicking_this_link} ou volve ti manualmente á app.
       registration_complete: Completouse a creación da conta en %{domain}!
       welcome_title: Benvida, %{name}!
-      wrong_email_hint: Se o enderezo de email non é correcto, podes cambialo nos axustes da conta.
+      wrong_email_hint: Se o enderezo de correo non é correcto, podes cambialo nos axustes da conta.
     delete_account: Eliminar conta
     delete_account_html: Se queres eliminar a túa conta, podes <a href="%{path}">facelo aquí</a>. Deberás confirmar a acción.
     description:
