@@ -156,11 +156,11 @@ class LinkDetailsExtractor
   end
 
   def title
-    html_entities.decode(structured_data&.headline || opengraph_tag('og:title') || document.xpath('//title').map(&:content).first).strip
+    html_entities_decode(structured_data&.headline || opengraph_tag('og:title') || document.xpath('//title').map(&:content).first)&.strip
   end
 
   def description
-    html_entities.decode(structured_data&.description || opengraph_tag('og:description') || meta_tag('description'))
+    html_entities_decode(structured_data&.description || opengraph_tag('og:description') || meta_tag('description'))
   end
 
   def published_at
@@ -180,7 +180,7 @@ class LinkDetailsExtractor
   end
 
   def provider_name
-    html_entities.decode(structured_data&.publisher_name || opengraph_tag('og:site_name'))
+    html_entities_decode(structured_data&.publisher_name || opengraph_tag('og:site_name'))
   end
 
   def provider_url
@@ -188,7 +188,7 @@ class LinkDetailsExtractor
   end
 
   def author_name
-    html_entities.decode(structured_data&.author_name || opengraph_tag('og:author') || opengraph_tag('og:author:username'))
+    html_entities_decode(structured_data&.author_name || opengraph_tag('og:author') || opengraph_tag('og:author:username'))
   end
 
   def author_url
@@ -257,7 +257,7 @@ class LinkDetailsExtractor
 
       next if json_ld.blank?
 
-      structured_data = StructuredData.new(html_entities.decode(json_ld))
+      structured_data = StructuredData.new(html_entities_decode(json_ld))
 
       next unless structured_data.valid?
 
@@ -273,10 +273,11 @@ class LinkDetailsExtractor
   end
 
   def detect_encoding_and_parse_document
-    [detect_encoding, nil, @html_charset, 'UTF-8'].uniq.each do |encoding|
+    [detect_encoding, nil, @html_charset].uniq.each do |encoding|
       document = Nokogiri::HTML(@html, nil, encoding)
       return document if document.to_s.valid_encoding?
     end
+    Nokogiri::HTML(@html, nil, 'UTF-8')
   end
 
   def detect_encoding
@@ -288,6 +289,15 @@ class LinkDetailsExtractor
     @detector ||= CharlockHolmes::EncodingDetector.new.tap do |detector|
       detector.strip_tags = true
     end
+  end
+
+  def html_entities_decode(string)
+    return if string.nil?
+
+    unicode_string = string.encode('UTF-8')
+    raise EncodingError, 'cannot convert string to valid UTF-8' unless unicode_string.valid_encoding?
+
+    html_entities.decode(unicode_string)
   end
 
   def html_entities
