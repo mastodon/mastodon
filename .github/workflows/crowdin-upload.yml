@@ -2,8 +2,7 @@ name: Crowdin / Upload translations
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
       - crowdin.yml
       - app/javascript/mastodon/locales/en.json

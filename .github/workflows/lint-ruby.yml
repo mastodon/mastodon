@@ -1,9 +1,7 @@
 name: Ruby Linting
 on:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
+    branches: [main]
     paths:
       - 'Gemfile*'
       - '.rubocop*.yml'

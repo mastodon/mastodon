@@ -2,9 +2,7 @@ name: Ruby Testing
 
 on:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
+    branches: [main]
   pull_request:
 
 env:

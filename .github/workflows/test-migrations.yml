@@ -2,9 +2,7 @@ name: Historical data migration test
 
 on:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
+    branches: [main]
   pull_request:
 
 jobs:

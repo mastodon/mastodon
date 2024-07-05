@@ -1,9 +1,7 @@
 name: CSS Linting
 on:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
+    branches: [main]
     paths:
       - 'package.json'
       - 'yarn.lock'
