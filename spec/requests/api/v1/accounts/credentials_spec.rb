@@ -29,8 +29,8 @@ RSpec.describe 'credentials API' do
       })
     end
 
-    describe 'allows the read:me scope' do
-      let(:scopes) { 'read:me' }
+    describe 'allows the profile scope' do
+      let(:scopes) { 'profile' }
 
       it 'returns the response successfully' do
         subject

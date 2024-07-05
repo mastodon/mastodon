@@ -9,7 +9,7 @@ describe 'The account show page' do
 
     get '/@alice'
 
-    expect(head_link_icons.size).to eq(4) # One general favicon and three with sizes
+    expect(head_link_icons.size).to eq(3) # Three favicons with sizes
 
     expect(head_meta_content('og:title')).to match alice.display_name
     expect(head_meta_content('og:type')).to eq 'profile'

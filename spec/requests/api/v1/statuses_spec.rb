@@ -193,6 +193,32 @@ describe '/api/v1/statuses' do
           expect(response).to have_http_status(404)
         end
       end
+
+      context 'when scheduling a status' do
+        let(:params) { { status: 'Hello world', scheduled_at: 10.minutes.from_now } }
+        let(:account) { user.account }
+
+        it 'returns HTTP 200' do
+          subject
+
+          expect(response).to have_http_status(200)
+        end
+
+        it 'creates a scheduled status' do
+          expect { subject }.to change { account.scheduled_statuses.count }.from(0).to(1)
+        end
+
+        context 'when the scheduling time is less than 5 minutes' do
+          let(:params) { { status: 'Hello world', scheduled_at: 4.minutes.from_now } }
+
+          it 'does not create a scheduled status', :aggregate_failures do
+            subject
+
+            expect(response).to have_http_status(422)
+            expect(account.scheduled_statuses).to be_empty
+          end
+        end
+      end
     end
 
     describe 'DELETE /api/v1/statuses/:id' do

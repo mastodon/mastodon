@@ -613,9 +613,10 @@ code {
       font-family: inherit;
       pointer-events: none;
       cursor: default;
-      max-width: 140px;
+      max-width: 50%;
       white-space: nowrap;
       overflow: hidden;
+      text-overflow: ellipsis;
 
       &::after {
         content: '';

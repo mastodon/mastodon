@@ -8,11 +8,6 @@ RSpec.describe Import do
   let(:data) { attachment_fixture('imports.txt') }
 
   describe 'validations' do
-    it 'has a valid parameters' do
-      import = described_class.create(account: account, type: type, data: data)
-      expect(import).to be_valid
-    end
-
     it 'is invalid without an type' do
       import = described_class.create(account: account, data: data)
       expect(import).to model_have_error_on_field(:type)

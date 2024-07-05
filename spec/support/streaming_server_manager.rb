@@ -80,9 +80,6 @@ end
 RSpec.configure do |config|
   config.before :suite do
     if streaming_examples_present?
-      # Compile assets
-      Webpacker.compile
-
       # Start the node streaming server
       streaming_server_manager.start(port: STREAMING_PORT)
     end

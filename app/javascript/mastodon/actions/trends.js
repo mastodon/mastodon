@@ -1,6 +1,6 @@
 import api, { getLinks } from '../api';
 
-import { importFetchedStatuses } from './importer';
+import { importFetchedStatuses, importFetchedAccounts } from './importer';
 
 export const TRENDS_TAGS_FETCH_REQUEST = 'TRENDS_TAGS_FETCH_REQUEST';
 export const TRENDS_TAGS_FETCH_SUCCESS = 'TRENDS_TAGS_FETCH_SUCCESS';
@@ -49,8 +49,11 @@ export const fetchTrendingLinks = () => (dispatch) => {
   dispatch(fetchTrendingLinksRequest());
 
   api()
-    .get('/api/v1/trends/links')
-    .then(({ data }) => dispatch(fetchTrendingLinksSuccess(data)))
+    .get('/api/v1/trends/links', { params: { limit: 20 } })
+    .then(({ data }) => {
+      dispatch(importFetchedAccounts(data.flatMap(link => link.authors.map(author => author.account)).filter(account => !!account)));
+      dispatch(fetchTrendingLinksSuccess(data));
+    })
     .catch(err => dispatch(fetchTrendingLinksFail(err)));
 };
 

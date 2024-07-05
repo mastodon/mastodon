@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class REST::NotificationGroupSerializer < ActiveModel::Serializer
-  attributes :group_key, :notifications_count, :type
+  attributes :group_key, :notifications_count, :type, :most_recent_notification_id
 
   attribute :page_min_id, if: :paginated?
   attribute :page_max_id, if: :paginated?
@@ -11,6 +11,7 @@ class REST::NotificationGroupSerializer < ActiveModel::Serializer
   belongs_to :target_status, key: :status, if: :status_type?, serializer: REST::StatusSerializer
   belongs_to :report, if: :report_type?, serializer: REST::ReportSerializer
   belongs_to :account_relationship_severance_event, key: :event, if: :relationship_severance_event?, serializer: REST::AccountRelationshipSeveranceEventSerializer
+  belongs_to :account_warning, key: :moderation_warning, if: :moderation_warning_event?, serializer: REST::AccountWarningSerializer
 
   def status_type?
     [:favourite, :reblog, :status, :mention, :poll, :update].include?(object.type)
@@ -22,6 +23,10 @@ class REST::NotificationGroupSerializer < ActiveModel::Serializer
 
   def relationship_severance_event?
     object.type == :severed_relationships
+  end
+
+  def moderation_warning_event?
+    object.type == :moderation_warning
   end
 
   def page_min_id
@@ -40,6 +45,6 @@ class REST::NotificationGroupSerializer < ActiveModel::Serializer
   end
 
   def paginated?
-    instance_options[:group_metadata].present?
+    !instance_options[:group_metadata].nil?
   end
 end

@@ -18,6 +18,10 @@ describe Sanitize::Config do
       expect(Sanitize.fragment('<p>Check out:</p><ol start="3" reversed=""><li>Foo</li><li>Bar</li></ol>', subject)).to eq '<p>Check out:</p><ol start="3" reversed=""><li>Foo</li><li>Bar</li></ol>'
     end
 
+    it 'keeps ruby tags' do
+      expect(Sanitize.fragment('<p><ruby>明日 <rp>(</rp><rt>Ashita</rt><rp>)</rp></ruby></p>', subject)).to eq '<p><ruby>明日 <rp>(</rp><rt>Ashita</rt><rp>)</rp></ruby></p>'
+    end
+
     it 'removes a without href' do
       expect(Sanitize.fragment('<a>Test</a>', subject)).to eq 'Test'
     end

@@ -8,7 +8,7 @@
     %strong= t('admin.statuses.media.title')
     %ul
       %li= filter_link_to t('generic.all'), media: nil, id: nil
-      %li= filter_link_to t('admin.statuses.with_media'), media: '1'
+      %li= filter_link_to t('admin.statuses.with_media'), media: true
   .back-link
     - if params[:report_id]
       = link_to admin_report_path(params[:report_id].to_i) do
@@ -21,7 +21,7 @@
 
 %hr.spacer/
 
-= form_for(@status_batch_action, url: batch_admin_account_statuses_path(@account.id)) do |f|
+= form_with model: @status_batch_action, url: batch_admin_account_statuses_path(@account.id) do |f|
   = hidden_field_tag :page, params[:page] || 1
 
   - Admin::StatusFilter::KEYS.each do |key|

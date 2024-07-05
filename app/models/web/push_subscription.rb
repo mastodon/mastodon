@@ -25,6 +25,8 @@ class Web::PushSubscription < ApplicationRecord
   validates :key_p256dh, presence: true
   validates :key_auth, presence: true
 
+  validates_with WebPushKeyValidator
+
   delegate :locale, to: :associated_user
 
   def encrypt(payload)
@@ -73,7 +75,7 @@ class Web::PushSubscription < ApplicationRecord
 
   class << self
     def unsubscribe_for(application_id, resource_owner)
-      access_token_ids = Doorkeeper::AccessToken.where(application_id: application_id, resource_owner_id: resource_owner.id, revoked_at: nil).pluck(:id)
+      access_token_ids = Doorkeeper::AccessToken.where(application_id: application_id, resource_owner_id: resource_owner.id).not_revoked.pluck(:id)
       where(access_token_id: access_token_ids).delete_all
     end
   end

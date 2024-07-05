@@ -8,7 +8,7 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-  config.cache_classes = false
+  config.enable_reloading = true
 
   # Do not eager load code on boot.
   config.eager_load = false
@@ -37,7 +37,7 @@ Rails.application.configure do
 
   config.action_controller.forgery_protection_origin_check = ENV['DISABLE_FORGERY_REQUEST_PROTECTION'].nil?
 
-  ActiveSupport::Logger.new(STDOUT).tap do |logger|
+  ActiveSupport::Logger.new($stdout).tap do |logger|
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end

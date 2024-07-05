@@ -58,6 +58,7 @@ RSpec.describe 'Notifications' do
 
         expect(response).to have_http_status(200)
         expect(body_json_types.uniq).to eq ['mention']
+        expect(body_as_json[0][:page_min_id]).to_not be_nil
       end
     end
 
