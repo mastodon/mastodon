@@ -27,6 +27,8 @@ RSpec.describe FetchLinkCardService do
     stub_request(:get, 'http://example.com/koi8-r').to_return(request_fixture('koi8-r.txt'))
     stub_request(:get, 'http://example.com/windows-1251').to_return(request_fixture('windows-1251.txt'))
     stub_request(:get, 'http://example.com/low_confidence_latin1').to_return(request_fixture('low_confidence_latin1.txt'))
+    stub_request(:get, 'http://example.com/latin1_posing_as_utf8_broken').to_return(request_fixture('latin1_posing_as_utf8_broken.txt'))
+    stub_request(:get, 'http://example.com/latin1_posing_as_utf8_recoverable').to_return(request_fixture('latin1_posing_as_utf8_recoverable.txt'))
     stub_request(:get, 'http://example.com/aergerliche-umlaute').to_return(request_fixture('redirect_with_utf8_url.txt'))
 
     Rails.cache.write('oembed_endpoint:example.com', oembed_cache) if oembed_cache
@@ -159,10 +161,30 @@ RSpec.describe FetchLinkCardService do
     end
 
     context 'with a URL of a page in ISO-8859-1 encoding, that charlock_holmes cannot detect' do
-      let(:status) { Fabricate(:status, text: 'Check out http://example.com/low_confidence_latin1') }
+      context 'when encoding in http header is correct' do
+        let(:status) { Fabricate(:status, text: 'Check out http://example.com/low_confidence_latin1') }
 
-      it 'decodes the HTML' do
-        expect(status.preview_card.title).to eq("Tofu á l'orange")
+        it 'decodes the HTML' do
+          expect(status.preview_card.title).to eq("Tofu á l'orange")
+        end
+      end
+
+      context 'when encoding in http header is incorrect' do
+        context 'when encoding problems appear in unrelated tags' do
+          let(:status) { Fabricate(:status, text: 'Check out http://example.com/latin1_posing_as_utf8_recoverable') }
+
+          it 'decodes the HTML' do
+            expect(status.preview_card.title).to eq('Tofu with orange sauce')
+          end
+        end
+
+        context 'when encoding problems appear in title tag' do
+          let(:status) { Fabricate(:status, text: 'Check out http://example.com/latin1_posing_as_utf8_broken') }
+
+          it 'does not create a preview card' do
+            expect(status.preview_card).to be_nil
+          end
+        end
       end
     end
 
