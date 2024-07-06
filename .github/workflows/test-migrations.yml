@@ -3,7 +3,9 @@ name: Historical data migration test
 on:
   merge_group:
   push:
-    branches: [main]
+    branches:
+      - 'main'
+      - 'stable-*'
   pull_request:
 
 jobs:

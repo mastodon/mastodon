@@ -2,7 +2,9 @@ name: Ruby Linting
 on:
   merge_group:
   push:
-    branches: [main]
+    branches:
+      - 'main'
+      - 'stable-*'
     paths:
       - 'Gemfile*'
       - '.rubocop*.yml'

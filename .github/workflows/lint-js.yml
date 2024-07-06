@@ -2,7 +2,9 @@ name: JavaScript Linting
 on:
   merge_group:
   push:
-    branches: [main]
+    branches:
+      - 'main'
+      - 'stable-*'
     paths:
       - 'package.json'
       - 'yarn.lock'

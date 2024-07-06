@@ -2,7 +2,9 @@ name: Haml Linting
 on:
   merge_group:
   push:
-    branches: [main]
+    branches:
+      - 'main'
+      - 'stable-*'
     paths:
       - '.github/workflows/haml-lint-problem-matcher.json'
       - '.github/workflows/lint-haml.yml'

@@ -2,7 +2,9 @@ name: Bundler Audit
 on:
   merge_group:
   push:
-    branches: [main]
+    branches:
+      - 'main'
+      - 'stable-*'
     paths:
       - 'Gemfile*'
       - '.ruby-version'
