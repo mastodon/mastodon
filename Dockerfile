@@ -102,7 +102,6 @@ RUN \
   apt-get install -y --no-install-recommends \
     curl \
     file \
-    imagemagick \
     libjemalloc2 \
     patchelf \
     procps \
