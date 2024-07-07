@@ -1,10 +1,11 @@
 name: Historical data migration test
 
 on:
+  merge_group:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
+    branches:
+      - 'main'
+      - 'stable-*'
   pull_request:
 
 jobs:

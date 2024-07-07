@@ -1,9 +1,10 @@
 name: CSS Linting
 on:
+  merge_group:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
+    branches:
+      - 'main'
+      - 'stable-*'
     paths:
       - 'package.json'
       - 'yarn.lock'

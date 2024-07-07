@@ -1,10 +1,11 @@
 name: Ruby Testing
 
 on:
+  merge_group:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
+    branches:
+      - 'main'
+      - 'stable-*'
   pull_request:
 
 env:
