@@ -5,12 +5,14 @@
 # the appropriate version for your deployment. Using `nightly` will deploy the in-development version of Mastodon, which is
 # not considered a stable release. Visit https://github.com/mastodon/mastodon/releases for currently released versions and tags.
 
+x-image-tag: &image-tag nightly
+
 services:
   web:
     # build:
     #   context: .
     #   dockerfile: Dockerfile
-    image: ghcr.io/mastodon/mastodon:nightly
+    image: ghcr.io/mastodon/mastodon:*image-tag
     env_file: .env.production
     environment:
       - PORT=3000
@@ -39,7 +41,7 @@ services:
     # build:
     #   context: .
     #   dockerfile: Dockerfile
-    image: ghcr.io/mastodon/mastodon:nightly
+    image: ghcr.io/mastodon/mastodon:*image-tag
     env_file: .env.production
     restart: always
     command: bundle exec sidekiq
@@ -59,7 +61,7 @@ services:
     # build:
     #   context: ./streaming
     #   dockerfile: Dockerfile
-    image: ghcr.io/mastodon/mastodon-streaming:nightly
+    image: ghcr.io/mastodon/mastodon-streaming:*image-tag
     env_file: .env.production
     environment:
       - PORT=4000
