@@ -62,7 +62,8 @@ class LinkDetailsExtractor
     end
 
     def author_name
-      author['name']
+      name = author['name']
+      name.is_a?(Array) ? name.join(', ') : name
     end
 
     def author_url
@@ -294,7 +295,7 @@ class LinkDetailsExtractor
   def html_entities_decode(string)
     return if string.nil?
 
-    unicode_string = string.encode('UTF-8')
+    unicode_string = string.to_s.encode('UTF-8')
     raise EncodingError, 'cannot convert string to valid UTF-8' unless unicode_string.valid_encoding?
 
     html_entities.decode(unicode_string)
