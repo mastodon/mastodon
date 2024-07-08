@@ -22,6 +22,7 @@ export const NotificationGroupWithStatus: React.FC<{
   accountIds: string[];
   timestamp: string;
   labelRenderer: LabelRenderer;
+  labelSeeMoreHref?: string;
   type: string;
   unread: boolean;
 }> = ({
@@ -32,15 +33,22 @@ export const NotificationGroupWithStatus: React.FC<{
   count,
   statusId,
   labelRenderer,
+  labelSeeMoreHref,
   type,
   unread,
 }) => {
   const label = useMemo(
     () =>
       labelRenderer({
-        name: <NamesList accountIds={accountIds} total={count} />,
+        name: (
+          <NamesList
+            accountIds={accountIds}
+            total={count}
+            seeMoreHref={labelSeeMoreHref}
+          />
+        ),
       }),
-    [labelRenderer, accountIds, count],
+    [labelRenderer, accountIds, count, labelSeeMoreHref],
   );
 
   return (

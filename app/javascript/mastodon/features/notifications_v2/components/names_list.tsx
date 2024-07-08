@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 
 import { useAppSelector } from 'mastodon/store';
 
-export const NamesList: React.FC<{ accountIds: string[]; total: number }> = ({
-  accountIds,
-  total,
-}) => {
+export const NamesList: React.FC<{
+  accountIds: string[];
+  total: number;
+  seeMoreHref?: string;
+}> = ({ accountIds, total, seeMoreHref }) => {
   const lastAccountId = accountIds[0] ?? '0';
   const account = useAppSelector((state) => state.accounts.get(lastAccountId));
 
@@ -26,6 +27,19 @@ export const NamesList: React.FC<{ accountIds: string[]; total: number }> = ({
   if (total === 1) {
     return displayedName;
   }
+
+  if (seeMoreHref)
+    return (
+      <FormattedMessage
+        id='name_and_others_with_link'
+        defaultMessage='{name} and <a>{count, plural, one {# other} other {# others}}</a>'
+        values={{
+          name: displayedName,
+          count: total - 1,
+          a: (chunks) => <Link to={seeMoreHref}>{chunks}</Link>,
+        }}
+      />
+    );
 
   return (
     <FormattedMessage
