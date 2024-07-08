@@ -113,7 +113,7 @@ RSpec.describe 'Domain Allows' do
     end
 
     context 'with invalid domain name' do
-      let(:params) { 'foo bar' }
+      let(:params) { { domain: 'foo bar' } }
 
       it 'returns http unprocessable entity' do
         subject

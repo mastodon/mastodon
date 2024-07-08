@@ -12,6 +12,8 @@ module Paperclip
       attachment.instance.blurhash = Blurhash.encode(width, height, data, **(options[:blurhash] || {}))
 
       @file
+    rescue Vips::Error => e
+      raise Paperclip::Error, "Error while generating blurhash for #{@basename}: #{e}"
     end
 
     private

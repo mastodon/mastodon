@@ -1,6 +1,7 @@
 import { fromJS, Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
 import { blockDomainSuccess } from 'mastodon/actions/domain_blocks';
+import { timelineDelete } from 'mastodon/actions/timelines_typed';
 
 import {
   authorizeFollowRequestSuccess,
@@ -30,7 +31,7 @@ import {
   NOTIFICATIONS_SET_BROWSER_SUPPORT,
   NOTIFICATIONS_SET_BROWSER_PERMISSION,
 } from '../actions/notifications';
-import { TIMELINE_DELETE, TIMELINE_DISCONNECT } from '../actions/timelines';
+import { disconnectTimeline } from '../actions/timelines';
 import { compareId } from '../compare_id';
 
 const initialState = ImmutableMap({
@@ -291,11 +292,11 @@ export default function notifications(state = initialState, action) {
     return filterNotifications(state, [action.payload.id], 'follow_request');
   case NOTIFICATIONS_CLEAR:
     return state.set('items', ImmutableList()).set('pendingItems', ImmutableList()).set('hasMore', false);
-  case TIMELINE_DELETE:
-    return deleteByStatus(state, action.id);
-  case TIMELINE_DISCONNECT:
-    return action.timeline === 'home' ?
-      state.update(action.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items) :
+  case timelineDelete.type:
+    return deleteByStatus(state, action.payload.statusId);
+  case disconnectTimeline.type:
+    return action.payload.timeline === 'home' ?
+      state.update(action.payload.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items) :
       state;
   case NOTIFICATIONS_MARK_AS_READ:
     const lastNotification = state.get('items').find(item => item !== null);

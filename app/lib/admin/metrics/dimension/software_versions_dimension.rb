@@ -10,7 +10,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   protected
 
   def perform_query
-    [mastodon_version, ruby_version, postgresql_version, redis_version, elasticsearch_version, libvips_version].compact
+    [mastodon_version, ruby_version, postgresql_version, redis_version, elasticsearch_version, libvips_version, imagemagick_version, ffmpeg_version].compact
   end
 
   def mastodon_version
@@ -28,8 +28,8 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
     {
       key: 'ruby',
       human_key: 'Ruby',
-      value: "#{RUBY_VERSION}p#{RUBY_PATCHLEVEL}",
-      human_value: RUBY_DESCRIPTION,
+      value: RUBY_DESCRIPTION,
+      human_value: "#{RUBY_VERSION}p#{RUBY_PATCHLEVEL}",
     }
   end
 
@@ -80,6 +80,34 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
       value: Vips.version_string,
       human_value: Vips.version_string,
     }
+  end
+
+  def imagemagick_version
+    return if Rails.configuration.x.use_vips
+
+    version = `convert -version`.match(/Version: ImageMagick ([\d\.]+)/)[1]
+
+    {
+      key: 'imagemagick',
+      human_key: 'ImageMagick',
+      value: version,
+      human_value: version,
+    }
+  rescue Errno::ENOENT
+    nil
+  end
+
+  def ffmpeg_version
+    version = `ffmpeg -version`.match(/ffmpeg version ([\d\.]+)/)[1]
+
+    {
+      key: 'ffmpeg',
+      human_key: 'FFmpeg',
+      value: version,
+      human_value: version,
+    }
+  rescue Errno::ENOENT
+    nil
   end
 
   def redis_info

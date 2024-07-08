@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Check for merge conflicts
-        uses: eps1lon/actions-label-merge-conflict@releases/2.x
+        uses: eps1lon/actions-label-merge-conflict@v3
         with:
           dirtyLabel: 'rebase needed :construction:'
           repoToken: '${{ secrets.GITHUB_TOKEN }}'

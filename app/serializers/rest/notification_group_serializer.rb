@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class REST::NotificationGroupSerializer < ActiveModel::Serializer
-  attributes :group_key, :notifications_count, :type
+  attributes :group_key, :notifications_count, :type, :most_recent_notification_id
 
   attribute :page_min_id, if: :paginated?
   attribute :page_max_id, if: :paginated?
@@ -45,6 +45,6 @@ class REST::NotificationGroupSerializer < ActiveModel::Serializer
   end
 
   def paginated?
-    instance_options[:group_metadata].present?
+    !instance_options[:group_metadata].nil?
   end
 end

@@ -69,6 +69,8 @@ module Paperclip
       attachment.instance.file.instance_write(:meta, (attachment.instance.file.instance_read(:meta) || {}).merge(meta))
 
       @file
+    rescue Vips::Error => e
+      raise Paperclip::Error, "Error while extracting colors for #{@basename}: #{e}"
     end
 
     private
@@ -114,31 +116,22 @@ module Paperclip
       # The number of occurrences of a color (r, g, b) is thus encoded in band `b` at pixel position `(r, g)`
       histogram = image.hist_find_ndim(bins: BINS)
 
-      # `histogram.max` returns an array of maxima with their pixel positions, but we don't know in which
-      # band they are
+      # With `bandunfold`, we get back to a (BINS*BINS)×BINS 2D image with a single band.
+      # The number of occurrences of a color (r, g, b) is thus encoded at pixel position `(r * BINS + b, g)`
+      histogram = histogram.bandunfold
+
       _, colors = histogram.max(size: 10, out_array: true, x_array: true, y_array: true)
 
-      colors['out_array'].zip(colors['x_array'], colors['y_array']).map do |v, x, y|
-        rgb_from_xyv(histogram, x, y, v)
-      end.reverse
+      colors['x_array'].zip(colors['y_array']).map do |x, y|
+        rgb_from_hist_xy(x, y)
+      end.flatten.reverse
     end
 
     # rubocop:disable Naming/MethodParameterName
-    def rgb_from_xyv(image, x, y, v)
-      pixel = image.getpoint(x, y)
-
-      # Unfortunately, we only have the first 2 dimensions, so try to
-      # guess the third one by looking up the value
-
-      # NOTE: this means that if multiple bins with the same `r` and `g`
-      # components have the same number of occurrences, we will always return
-      # the one with the lowest `b` value. This means that in case of a tie,
-      # we will return the same color twice and skip the ones it tied with.
-      z = pixel.find_index(v)
-
-      r = (x + 0.5) * 256 / BINS
+    def rgb_from_hist_xy(x, y)
+      r = ((x / BINS) + 0.5) * 256 / BINS
       g = (y + 0.5) * 256 / BINS
-      b = (z + 0.5) * 256 / BINS
+      b = ((x % BINS) + 0.5) * 256 / BINS
       ColorDiff::Color::RGB.new(r, g, b)
     end
 

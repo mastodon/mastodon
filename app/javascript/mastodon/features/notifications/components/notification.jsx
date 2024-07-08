@@ -435,7 +435,7 @@ class Notification extends ImmutablePureComponent {
 
     const targetAccount = report.get('target_account');
     const targetDisplayNameHtml = { __html: targetAccount.get('display_name_html') };
-    const targetLink = <bdi><Link className='notification__display-name' title={targetAccount.get('acct')} to={`/@${targetAccount.get('acct')}`} dangerouslySetInnerHTML={targetDisplayNameHtml} /></bdi>;
+    const targetLink = <bdi><Link className='notification__display-name' data-hover-card-account={targetAccount.get('id')} to={`/@${targetAccount.get('acct')}`} dangerouslySetInnerHTML={targetDisplayNameHtml} /></bdi>;
 
     return (
       <HotKeys handlers={this.getHandlers()}>
@@ -458,7 +458,7 @@ class Notification extends ImmutablePureComponent {
     const { notification } = this.props;
     const account          = notification.get('account');
     const displayNameHtml  = { __html: account.get('display_name_html') };
-    const link             = <bdi><Link className='notification__display-name' href={`/@${account.get('acct')}`} title={account.get('acct')} to={`/@${account.get('acct')}`} dangerouslySetInnerHTML={displayNameHtml} /></bdi>;
+    const link             = <bdi><Link className='notification__display-name' href={`/@${account.get('acct')}`} data-hover-card-account={account.get('id')} to={`/@${account.get('acct')}`} dangerouslySetInnerHTML={displayNameHtml} /></bdi>;
 
     switch(notification.get('type')) {
     case 'follow':

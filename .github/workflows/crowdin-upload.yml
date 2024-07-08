@@ -1,9 +1,11 @@
 name: Crowdin / Upload translations
 
 on:
+  merge_group:
   push:
     branches:
-      - main
+      - 'main'
+      - 'stable-*'
     paths:
       - crowdin.yml
       - app/javascript/mastodon/locales/en.json

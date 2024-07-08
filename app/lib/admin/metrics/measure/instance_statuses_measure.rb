@@ -45,7 +45,7 @@ class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure
         SELECT count(*) FROM new_statuses
       ) AS value
       FROM (
-        SELECT generate_series(date_trunc('day', :start_at::timestamp)::date, date_trunc('day', :end_at::timestamp)::date, interval '1 day') AS period
+        #{generated_series_days}
       ) AS axis
     SQL
   end
@@ -56,14 +56,6 @@ class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure
 
   def latest_status_id
     Mastodon::Snowflake.id_at(@end_at.end_of_day, with_random: false)
-  end
-
-  def time_period
-    (@start_at.to_date..@end_at.to_date)
-  end
-
-  def previous_time_period
-    ((@start_at.to_date - length_of_period)..(@end_at.to_date - length_of_period))
   end
 
   def params

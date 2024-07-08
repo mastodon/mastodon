@@ -49,6 +49,7 @@ require_relative '../lib/webpacker/manifest_extensions'
 require_relative '../lib/webpacker/helper_extensions'
 require_relative '../lib/rails/engine_extensions'
 require_relative '../lib/action_dispatch/remote_ip_extensions'
+require_relative '../lib/stoplight/redis_data_store_extensions'
 require_relative '../lib/active_record/database_tasks_extensions'
 require_relative '../lib/active_record/batches'
 require_relative '../lib/active_record/with_recursive'
@@ -60,9 +61,10 @@ Bundler.require(:pam_authentication) if ENV['PAM_ENABLED'] == 'true'
 module Mastodon
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
+    config.load_defaults 7.1
 
-    config.active_record.marshalling_format_version = 7.1
+    # Explicitly set the cache format version to align with Rails version
+    config.active_support.cache_format_version = 7.1
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
@@ -114,6 +116,7 @@ module Mastodon
       Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
       Doorkeeper::Application.include ApplicationExtension
+      Doorkeeper::AccessGrant.include AccessGrantExtension
       Doorkeeper::AccessToken.include AccessTokenExtension
       Devise::FailureApp.include AbstractController::Callbacks
       Devise::FailureApp.include Localized

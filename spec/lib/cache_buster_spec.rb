@@ -28,14 +28,6 @@ describe CacheBuster do
     end
 
     context 'when using default options' do
-      around do |example|
-        # Disables the CacheBuster.new deprecation warning about default arguments.
-        # Remove this `silence` block when default arg support is removed from CacheBuster
-        Rails.application.deprecators[:mastodon].silence do
-          example.run
-        end
-      end
-
       include_examples 'makes_request'
     end
 

@@ -1,10 +1,11 @@
 name: Ruby Testing
 
 on:
+  merge_group:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
+    branches:
+      - 'main'
+      - 'stable-*'
   pull_request:
 
 env:
@@ -28,11 +29,7 @@ jobs:
     env:
       RAILS_ENV: ${{ matrix.mode }}
       BUNDLE_WITH: ${{ matrix.mode }}
-      ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY: precompile_placeholder
-      ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT: precompile_placeholder
-      ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY: precompile_placeholder
-      OTP_SECRET: precompile_placeholder
-      SECRET_KEY_BASE: precompile_placeholder
+      SECRET_KEY_BASE_DUMMY: 1
 
     steps:
       - uses: actions/checkout@v4
@@ -77,9 +74,9 @@ jobs:
           POSTGRES_USER: postgres
         options: >-
           --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          --health-interval 10ms
+          --health-timeout 3s
+          --health-retries 50
         ports:
           - 5432:5432
 
@@ -87,9 +84,9 @@ jobs:
         image: redis:7-alpine
         options: >-
           --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          --health-interval 10ms
+          --health-timeout 3s
+          --health-retries 50
         ports:
           - 6379:6379
 
@@ -136,15 +133,17 @@ jobs:
           additional-system-dependencies: ffmpeg libpam-dev
 
       - name: Load database schema
-        run: './bin/rails db:create db:schema:load db:seed'
+        run: |
+          bin/rails db:setup
+          bin/flatware fan bin/rails db:test:prepare
 
-      - run: bin/rspec
+      - run: bin/flatware rspec -r ./spec/flatware_helper.rb
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
         uses: codecov/codecov-action@v4
         with:
-          files: coverage/lcov/mastodon.lcov
+          files: coverage/lcov/*.lcov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
@@ -163,9 +162,9 @@ jobs:
           POSTGRES_USER: postgres
         options: >-
           --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          --health-interval 10ms
+          --health-timeout 3s
+          --health-retries 50
         ports:
           - 5432:5432
 
@@ -173,9 +172,9 @@ jobs:
         image: redis:7-alpine
         options: >-
           --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          --health-interval 10ms
+          --health-timeout 3s
+          --health-retries 50
         ports:
           - 6379:6379
 
@@ -250,9 +249,9 @@ jobs:
           POSTGRES_USER: postgres
         options: >-
           --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          --health-interval 10ms
+          --health-timeout 3s
+          --health-retries 50
         ports:
           - 5432:5432
 
@@ -260,9 +259,9 @@ jobs:
         image: redis:7-alpine
         options: >-
           --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          --health-interval 10ms
+          --health-timeout 3s
+          --health-retries 50
         ports:
           - 6379:6379
 
@@ -289,8 +288,12 @@ jobs:
 
       - uses: actions/download-artifact@v4
         with:
-          path: './public'
+          path: './'
           name: ${{ github.sha }}
+
+      - name: Expand archived asset artifacts
+        run: |
+          tar xvzf artifacts.tar.gz
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
@@ -335,9 +338,9 @@ jobs:
           POSTGRES_USER: postgres
         options: >-
           --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          --health-interval 10ms
+          --health-timeout 3s
+          --health-retries 50
         ports:
           - 5432:5432
 
@@ -345,9 +348,9 @@ jobs:
         image: redis:7-alpine
         options: >-
           --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          --health-interval 10ms
+          --health-timeout 3s
+          --health-retries 50
         ports:
           - 6379:6379
 
@@ -358,9 +361,9 @@ jobs:
           xpack.security.enabled: false
         options: >-
           --health-cmd "curl http://localhost:9200/_cluster/health"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 10
+          --health-interval 2s
+          --health-timeout 3s
+          --health-retries 50
         ports:
           - 9200:9200
 
@@ -372,9 +375,9 @@ jobs:
           DISABLE_SECURITY_PLUGIN: true
         options: >-
           --health-cmd "curl http://localhost:9200/_cluster/health"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 10
+          --health-interval 2s
+          --health-timeout 3s
+          --health-retries 50
         ports:
           - 9200:9200
 
@@ -409,7 +412,7 @@ jobs:
 
       - uses: actions/download-artifact@v4
         with:
-          path: './public'
+          path: './'
           name: ${{ github.sha }}
 
       - name: Set up Ruby environment

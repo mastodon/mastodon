@@ -44,10 +44,6 @@ export const NOTIFICATIONS_MARK_AS_READ = 'NOTIFICATIONS_MARK_AS_READ';
 export const NOTIFICATIONS_SET_BROWSER_SUPPORT    = 'NOTIFICATIONS_SET_BROWSER_SUPPORT';
 export const NOTIFICATIONS_SET_BROWSER_PERMISSION = 'NOTIFICATIONS_SET_BROWSER_PERMISSION';
 
-export const NOTIFICATION_POLICY_FETCH_REQUEST = 'NOTIFICATION_POLICY_FETCH_REQUEST';
-export const NOTIFICATION_POLICY_FETCH_SUCCESS = 'NOTIFICATION_POLICY_FETCH_SUCCESS';
-export const NOTIFICATION_POLICY_FETCH_FAIL    = 'NOTIFICATION_POLICY_FETCH_FAIL';
-
 export const NOTIFICATION_REQUESTS_FETCH_REQUEST = 'NOTIFICATION_REQUESTS_FETCH_REQUEST';
 export const NOTIFICATION_REQUESTS_FETCH_SUCCESS = 'NOTIFICATION_REQUESTS_FETCH_SUCCESS';
 export const NOTIFICATION_REQUESTS_FETCH_FAIL    = 'NOTIFICATION_REQUESTS_FETCH_FAIL';
@@ -345,40 +341,6 @@ export function setBrowserPermission (value) {
     value,
   };
 }
-
-export const fetchNotificationPolicy = () => (dispatch) => {
-  dispatch(fetchNotificationPolicyRequest());
-
-  api().get('/api/v1/notifications/policy').then(({ data }) => {
-    dispatch(fetchNotificationPolicySuccess(data));
-  }).catch(err => {
-    dispatch(fetchNotificationPolicyFail(err));
-  });
-};
-
-export const fetchNotificationPolicyRequest = () => ({
-  type: NOTIFICATION_POLICY_FETCH_REQUEST,
-});
-
-export const fetchNotificationPolicySuccess = policy => ({
-  type: NOTIFICATION_POLICY_FETCH_SUCCESS,
-  policy,
-});
-
-export const fetchNotificationPolicyFail = error => ({
-  type: NOTIFICATION_POLICY_FETCH_FAIL,
-  error,
-});
-
-export const updateNotificationsPolicy = params => (dispatch) => {
-  dispatch(fetchNotificationPolicyRequest());
-
-  api().put('/api/v1/notifications/policy', params).then(({ data }) => {
-    dispatch(fetchNotificationPolicySuccess(data));
-  }).catch(err => {
-    dispatch(fetchNotificationPolicyFail(err));
-  });
-};
 
 export const fetchNotificationRequests = () => (dispatch, getState) => {
   const params = {};
