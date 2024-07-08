@@ -5,7 +5,7 @@ import type { RootState } from 'mastodon/store';
 
 export const selectUnreadNotificationsGroupsCount = createSelector(
   [
-    (s: RootState) => s.markers.notifications,
+    (s: RootState) => s.notificationsGroups.lastReadId,
     (s: RootState) => s.notificationsGroups.pendingGroups,
     (s: RootState) => s.notificationsGroups.groups,
   ],

@@ -135,3 +135,10 @@ export const clearNotifications = createDataLoadingThunk(
   'notifications/clear',
   () => apiClearNotifications(),
 );
+
+export const markNotificationsAsRead = createAction(
+  'notificationGroups/markAsRead',
+);
+
+export const mountNotifications = createAction('notificationGroups/mount');
+export const unmountNotifications = createAction('notificationGroups/unmount');

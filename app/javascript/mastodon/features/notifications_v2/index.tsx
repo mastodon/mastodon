@@ -14,6 +14,9 @@ import {
   fetchNotificationsGap,
   updateScrollPosition,
   loadPending,
+  markNotificationsAsRead,
+  mountNotifications,
+  unmountNotifications,
 } from 'mastodon/actions/notification_groups';
 import { compareId } from 'mastodon/compare_id';
 import { Icon } from 'mastodon/components/icon';
@@ -36,11 +39,6 @@ import type { RootState } from 'mastodon/store';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { submitMarkers } from '../../actions/markers';
-import {
-  // mountNotifications,
-  // unmountNotifications,
-  markNotificationsAsRead,
-} from '../../actions/notifications';
 import Column from '../../components/column';
 import { ColumnHeader } from '../../components/column_header';
 import { LoadGap } from '../../components/load_gap';
@@ -93,7 +91,9 @@ export const Notifications: React.FC<{
   const hasMore = notifications.at(-1)?.type === 'gap';
 
   const lastReadId = useAppSelector((s) =>
-    selectSettingsNotificationsShowUnread(s) ? s.markers.notifications : '0',
+    selectSettingsNotificationsShowUnread(s)
+      ? s.notificationsGroups.lastReadId
+      : '0',
   );
 
   const numPending = useAppSelector(selectPendingNotificationsGroupsCount);
@@ -137,15 +137,15 @@ export const Notifications: React.FC<{
     }
   }, []);
 
-  // TODO: is this necessary?
-  // useEffect(() => {
-  //   dispatch(mountNotifications());
+  // Keep track of mounted components for unread notification handling
+  useEffect(() => {
+    dispatch(mountNotifications());
 
-  //   return () => {
-  //     dispatch(unmountNotifications());
-  //     dispatch(updateScrollPosition({ top: false }));
-  //   };
-  // }, [dispatch]);
+    return () => {
+      dispatch(unmountNotifications());
+      dispatch(updateScrollPosition({ top: false }));
+    };
+  }, [dispatch]);
 
   const handleLoadGap = useCallback(
     (gap: NotificationGap) => {

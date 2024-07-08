@@ -6,7 +6,9 @@ import {
   muteAccountSuccess,
   rejectFollowRequestSuccess,
 } from 'mastodon/actions/accounts_typed';
+import { focusApp, unfocusApp } from 'mastodon/actions/app';
 import { blockDomainSuccess } from 'mastodon/actions/domain_blocks_typed';
+import { fetchMarkers } from 'mastodon/actions/markers';
 import {
   clearNotifications,
   fetchNotifications,
@@ -14,6 +16,9 @@ import {
   processNewNotificationForGroups,
   loadPending,
   updateScrollPosition,
+  markNotificationsAsRead,
+  mountNotifications,
+  unmountNotifications,
 } from 'mastodon/actions/notification_groups';
 import {
   disconnectTimeline,
@@ -42,6 +47,9 @@ interface NotificationGroupsState {
   pendingGroups: (NotificationGroup | NotificationGap)[];
   scrolledToTop: boolean;
   isLoading: boolean;
+  lastReadId: string;
+  mounted: number;
+  isTabVisible: boolean;
 }
 
 const initialState: NotificationGroupsState = {
@@ -49,6 +57,10 @@ const initialState: NotificationGroupsState = {
   pendingGroups: [], // holds pending groups in slow mode
   scrolledToTop: false,
   isLoading: false,
+  // The following properties are used to track unread notifications
+  lastReadId: '0', // used for unread notifications
+  mounted: 0, // number of mounted notification list components, usually 0 or 1
+  isTabVisible: true,
 };
 
 function filterNotificationsForAccounts(
@@ -232,6 +244,47 @@ function trimNotifications(state: NotificationGroupsState) {
   }
 }
 
+function shouldMarkNewNotificationsAsRead(
+  {
+    isTabVisible,
+    scrolledToTop,
+    mounted,
+    lastReadId,
+    groups,
+  }: NotificationGroupsState,
+  ignoreScroll = false,
+) {
+  const isMounted = mounted > 0;
+  const oldestGroup = groups.findLast(isNotificationGroup);
+  const hasMore = groups.at(-1)?.type === 'gap';
+  const oldestGroupReached =
+    !hasMore ||
+    lastReadId === '0' ||
+    (oldestGroup?.page_min_id &&
+      compareId(oldestGroup.page_min_id, lastReadId) <= 0);
+
+  return (
+    isTabVisible &&
+    (ignoreScroll || scrolledToTop) &&
+    isMounted &&
+    oldestGroupReached
+  );
+}
+
+function updateLastReadId(
+  state: NotificationGroupsState,
+  group: NotificationGroup | undefined = undefined,
+) {
+  if (shouldMarkNewNotificationsAsRead(state)) {
+    group = group ?? state.groups.find(isNotificationGroup);
+    if (
+      group?.page_max_id &&
+      compareId(state.lastReadId, group.page_max_id) < 0
+    )
+      state.lastReadId = group.page_max_id;
+  }
+}
+
 export const notificationsGroupsReducer =
   createReducer<NotificationGroupsState>(initialState, (builder) => {
     builder
@@ -240,6 +293,7 @@ export const notificationsGroupsReducer =
           json.type === 'gap' ? json : createNotificationGroupFromJSON(json),
         );
         state.isLoading = false;
+        updateLastReadId(state);
       })
       .addCase(fetchNotificationsGap.fulfilled, (state, action) => {
         const { notifications } = action.payload;
@@ -320,6 +374,8 @@ export const notificationsGroupsReducer =
         mergeGaps(state.groups);
 
         state.isLoading = false;
+
+        updateLastReadId(state);
       })
       .addCase(processNewNotificationForGroups.fulfilled, (state, action) => {
         const notification = action.payload;
@@ -327,6 +383,7 @@ export const notificationsGroupsReducer =
           usePendingItems ? state.pendingGroups : state.groups,
           notification,
         );
+        updateLastReadId(state);
         trimNotifications(state);
       })
       .addCase(disconnectTimeline, (state, action) => {
@@ -390,7 +447,33 @@ export const notificationsGroupsReducer =
       })
       .addCase(updateScrollPosition, (state, action) => {
         state.scrolledToTop = action.payload.top;
+        updateLastReadId(state);
         trimNotifications(state);
+      })
+      .addCase(markNotificationsAsRead, (state) => {
+        const mostRecentGroup = state.groups.find(isNotificationGroup);
+        // TODO: compareId?
+        if (mostRecentGroup?.page_max_id)
+          state.lastReadId = mostRecentGroup.page_max_id;
+      })
+      .addCase(fetchMarkers.fulfilled, (state, action) => {
+        // TODO: compareId?
+        if (action.payload.markers.notifications)
+          state.lastReadId = action.payload.markers.notifications.last_read_id;
+      })
+      .addCase(mountNotifications, (state) => {
+        state.mounted += 1;
+        updateLastReadId(state);
+      })
+      .addCase(unmountNotifications, (state) => {
+        state.mounted -= 1;
+      })
+      .addCase(focusApp, (state) => {
+        state.isTabVisible = true;
+        updateLastReadId(state);
+      })
+      .addCase(unfocusApp, (state) => {
+        state.isTabVisible = false;
       })
       .addMatcher(
         isAnyOf(authorizeFollowRequestSuccess, rejectFollowRequestSuccess),
