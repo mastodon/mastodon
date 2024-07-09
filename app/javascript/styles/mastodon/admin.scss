@@ -1146,8 +1146,9 @@ a.name-tag,
 .sparkline {
   display: block;
   text-decoration: none;
-  background: lighten($ui-base-color, 4%);
+  background: var(--background-color);
   border-radius: 4px;
+  border: 1px solid lighten($ui-base-color, 8%);
   padding: 0;
   position: relative;
   padding-bottom: 55px + 20px;
@@ -1219,12 +1220,12 @@ a.sparkline {
   &:hover,
   &:focus,
   &:active {
-    background: lighten($ui-base-color, 6%);
+    background: $ui-base-color;
   }
 }
 
 .skeleton {
-  background-color: lighten($ui-base-color, 8%);
+  background-color: var(--background-color);
   background-image: linear-gradient(
     90deg,
     lighten($ui-base-color, 8%),
