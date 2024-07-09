@@ -15,6 +15,7 @@ import * as Database from './database.js';
 import { AuthenticationError, RequestError, extractStatusAndMessage as extractErrorStatusAndMessage } from './errors.js';
 import { logger, httpLogger, initializeLogLevel, attachWebsocketHttpLogger, createWebsocketLogger } from './logging.js';
 import { setupMetrics } from './metrics.js';
+import { PubSubManager } from './pubsub_manager.js';
 import * as Redis from './redis.js';
 import { isTruthy, normalizeHashtag, firstParam } from './utils.js';
 
@@ -131,6 +132,8 @@ const startServer = async () => {
 
   const redisConfig = Redis.configFromEnv(process.env);
   const redisClient = Redis.createClient(redisConfig, logger);
+  const pubsubManager = new PubSubManager(redisConfig, logger, metrics);
+
   const server = http.createServer();
   const wss = new WebSocketServer({ noServer: true });
 
@@ -217,14 +220,6 @@ const startServer = async () => {
     });
   });
 
-  /**
-   * @type {Object.<string, Array.<function(Object<string, any>): void>>}
-   */
-  const subs = {};
-
-  const redisSubscribeClient = Redis.createClient(redisConfig, logger);
-  const { redisPrefix } = redisConfig;
-
   // When checking metrics in the browser, the favicon is requested this
   // prevents the request from falling through to the API Router, which would
   // error for this endpoint:
@@ -264,83 +259,6 @@ const startServer = async () => {
         heartbeat = undefined;
       }
     };
-  };
-
-  /**
-   * @param {string} channel
-   * @param {string} message
-   */
-  const onRedisMessage = (channel, message) => {
-    metrics.redisMessagesReceived.inc();
-
-    const callbacks = subs[channel];
-
-    logger.debug(`New message on channel ${redisPrefix}${channel}`);
-
-    if (!callbacks) {
-      return;
-    }
-
-    const json = parseJSON(message, null);
-    if (!json) return;
-
-    callbacks.forEach(callback => callback(json));
-  };
-  redisSubscribeClient.on("message", onRedisMessage);
-
-  /**
-   * @callback SubscriptionListener
-   * @param {ReturnType<parseJSON>} json of the message
-   * @returns void
-   */
-
-  /**
-   * @param {string} channel
-   * @param {SubscriptionListener} callback
-   */
-  const subscribe = (channel, callback) => {
-    logger.debug(`Adding listener for ${channel}`);
-
-    subs[channel] = subs[channel] || [];
-
-    if (subs[channel].length === 0) {
-      logger.debug(`Subscribe ${channel}`);
-      redisSubscribeClient.subscribe(channel, (err, count) => {
-        if (err) {
-          logger.error(`Error subscribing to ${channel}`);
-        } else if (typeof count === 'number') {
-          metrics.redisSubscriptions.set(count);
-        }
-      });
-    }
-
-    subs[channel].push(callback);
-  };
-
-  /**
-   * @param {string} channel
-   * @param {SubscriptionListener} callback
-   */
-  const unsubscribe = (channel, callback) => {
-    logger.debug(`Removing listener for ${channel}`);
-
-    if (!subs[channel]) {
-      return;
-    }
-
-    subs[channel] = subs[channel].filter(item => item !== callback);
-
-    if (subs[channel].length === 0) {
-      logger.debug(`Unsubscribe ${channel}`);
-      redisSubscribeClient.unsubscribe(channel, (err, count) => {
-        if (err) {
-          logger.error(`Error unsubscribing to ${channel}`);
-        } else if (typeof count === 'number') {
-          metrics.redisSubscriptions.set(count);
-        }
-      });
-      delete subs[channel];
-    }
   };
 
   /**
@@ -549,10 +467,10 @@ const startServer = async () => {
   /**
    * @param {any} req
    * @param {SystemMessageHandlers} eventHandlers
-   * @returns {SubscriptionListener}
+   * @returns {import('./pubsub_manager.js').MessageCallback}
    */
   const createSystemMessageListener = (req, eventHandlers) => {
-    return message => {
+    return (message) => {
       if (!message?.event) {
         return;
       }
@@ -591,14 +509,14 @@ const startServer = async () => {
     });
 
     res.on('close', () => {
-      unsubscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
-      unsubscribe(`${redisPrefix}${systemChannelId}`, listener);
+      pubsubManager.unsubscribe(accessTokenChannelId, listener);
+      pubsubManager.unsubscribe(systemChannelId, listener);
 
       metrics.connectedChannels.labels({ type: 'eventsource', channel: 'system' }).dec(2);
     });
 
-    subscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
-    subscribe(`${redisPrefix}${systemChannelId}`, listener);
+    pubsubManager.subscribe(accessTokenChannelId, listener);
+    pubsubManager.subscribe(systemChannelId, listener);
 
     metrics.connectedChannels.labels({ type: 'eventsource', channel: 'system' }).inc(2);
   };
@@ -682,7 +600,7 @@ const startServer = async () => {
    * @param {function(string, string): void} output
    * @param {'websocket' | 'eventsource'} destinationType
    * @param {boolean=} needsFiltering
-   * @returns {SubscriptionListener}
+   * @returns {import('./pubsub_manager.js').MessageCallback}
    */
   const streamFrom = (channelIds, req, log, output, destinationType, needsFiltering = false) => {
     log.info({ channelIds }, `Starting stream`);
@@ -706,7 +624,7 @@ const startServer = async () => {
     // message here is an object with an `event` and `payload` property. Some
     // events also include a queued_at value, but this is being removed shortly.
 
-    /** @type {SubscriptionListener} */
+    /** @type {import('./pubsub_manager.js').MessageCallback} */
     const listener = message => {
       if (!message?.event || !message?.payload) {
         return;
@@ -952,14 +870,14 @@ const startServer = async () => {
       const listener = streamFrom(channelIds, req, req.log, onSend, 'eventsource', options.needsFiltering);
 
       channelIds.forEach(channel => {
-        subscribe(channel, listener);
+        pubsubManager.subscribe(channel, listener);
       });
 
       req.on('close', () => {
         heartbeat.stop();
 
         channelIds.forEach(channel => {
-          unsubscribe(channel, listener);
+          pubsubManager.unsubscribe(channel, listener);
         });
       });
     }).catch(err => {
@@ -1129,7 +1047,7 @@ const startServer = async () => {
   /**
    * @typedef WebSocketSubscription
    * @property {string} channelName
-   * @property {SubscriptionListener} listener
+   * @property {import('./pubsub_manager.js').MessageCallback} listener
    * @property {SubscriptionHeartbeat} [heartbeat]
    */
 
@@ -1161,7 +1079,7 @@ const startServer = async () => {
       const listener = streamFrom(channelIds, request, logger, onSend, 'websocket', options.needsFiltering);
 
       channelIds.forEach(channelId => {
-        subscribe(channelId, listener);
+        pubsubManager.subscribe(channelId, listener);
       });
 
       metrics.connectedChannels.labels({ type: 'websocket', channel: channelName }).inc();
@@ -1200,7 +1118,7 @@ const startServer = async () => {
     }
 
     channelIds.forEach(channelId => {
-      unsubscribe(`${redisPrefix}${channelId}`, subscription.listener);
+      pubsubManager.unsubscribe(channelId, subscription.listener);
     });
 
     if (subscription.heartbeat) {
@@ -1247,8 +1165,8 @@ const startServer = async () => {
       },
     });
 
-    subscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
-    subscribe(`${redisPrefix}${systemChannelId}`, listener);
+    pubsubManager.subscribe(accessTokenChannelId, listener);
+    pubsubManager.subscribe(systemChannelId, listener);
 
     subscriptions[accessTokenChannelId] = {
       channelName: 'system',
