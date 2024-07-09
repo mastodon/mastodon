@@ -8,7 +8,6 @@ import url from 'node:url';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
-import { Redis } from 'ioredis';
 import { JSDOM } from 'jsdom';
 import { WebSocketServer } from 'ws';
 
@@ -16,6 +15,7 @@ import * as Database from './database.js';
 import { AuthenticationError, RequestError, extractStatusAndMessage as extractErrorStatusAndMessage } from './errors.js';
 import { logger, httpLogger, initializeLogLevel, attachWebsocketHttpLogger, createWebsocketLogger } from './logging.js';
 import { setupMetrics } from './metrics.js';
+import * as Redis from './redis.js';
 import { isTruthy, normalizeHashtag, firstParam } from './utils.js';
 
 const environment = process.env.NODE_ENV || 'development';
@@ -47,23 +47,6 @@ initializeLogLevel(process.env, environment);
  * @property {string} deviceId
  */
 
-/**
- * @param {RedisConfiguration} config
- * @returns {Promise<Redis>}
- */
-const createRedisClient = async ({ redisParams, redisUrl }) => {
-  let client;
-
-  if (typeof redisUrl === 'string') {
-    client = new Redis(redisUrl, redisParams);
-  } else {
-    client = new Redis(redisParams);
-  }
-
-  client.on('error', (err) => logger.error({ err }, 'Redis Client Error!'));
-
-  return client;
-};
 
 /**
  * Attempts to safely parse a string as JSON, used when both receiving a message
@@ -96,69 +79,6 @@ const parseJSON = (json, req) => {
   }
 };
 
-/**
- * Takes an environment variable that should be an integer, attempts to parse
- * it falling back to a default if not set, and handles errors parsing.
- * @param {string|undefined} value
- * @param {number} defaultValue
- * @param {string} variableName
- * @returns {number}
- */
-const parseIntFromEnv = (value, defaultValue, variableName) => {
-  if (typeof value === 'string' && value.length > 0) {
-    const parsedValue = parseInt(value, 10);
-    if (isNaN(parsedValue)) {
-      throw new Error(`Invalid ${variableName} environment variable: ${value}`);
-    }
-    return parsedValue;
-  } else {
-    return defaultValue;
-  }
-};
-
-/**
- * @typedef RedisConfiguration
- * @property {import('ioredis').RedisOptions} redisParams
- * @property {string} redisPrefix
- * @property {string|undefined} redisUrl
- */
-
-/**
- * @param {NodeJS.ProcessEnv} env the `process.env` value to read configuration from
- * @returns {RedisConfiguration} configuration for the Redis connection
- */
-const redisConfigFromEnv = (env) => {
-  // ioredis *can* transparently add prefixes for us, but it doesn't *in some cases*,
-  // which means we can't use it. But this is something that should be looked into.
-  const redisPrefix = env.REDIS_NAMESPACE ? `${env.REDIS_NAMESPACE}:` : '';
-
-  let redisPort = parseIntFromEnv(env.REDIS_PORT, 6379, 'REDIS_PORT');
-  let redisDatabase = parseIntFromEnv(env.REDIS_DB, 0, 'REDIS_DB');
-
-  /** @type {import('ioredis').RedisOptions} */
-  const redisParams = {
-    host: env.REDIS_HOST || '127.0.0.1',
-    port: redisPort,
-    // Force support for both IPv6 and IPv4, by default ioredis sets this to 4,
-    // only allowing IPv4 connections:
-    // https://github.com/redis/ioredis/issues/1576
-    family: 0,
-    db: redisDatabase,
-    password: env.REDIS_PASSWORD || undefined,
-  };
-
-  // redisParams.path takes precedence over host and port.
-  if (env.REDIS_URL && env.REDIS_URL.startsWith('unix://')) {
-    redisParams.path = env.REDIS_URL.slice(7);
-  }
-
-  return {
-    redisParams,
-    redisPrefix,
-    redisUrl: typeof env.REDIS_URL === 'string' ? env.REDIS_URL : undefined,
-  };
-};
-
 const PUBLIC_CHANNELS = [
   'public',
   'public:media',
@@ -186,6 +106,8 @@ const startServer = async () => {
 
   const metrics = setupMetrics(CHANNEL_NAMES, pgPool);
 
+  const redisConfig = Redis.configFromEnv(process.env);
+  const redisClient = Redis.createClient(redisConfig, logger);
   const server = http.createServer();
   const wss = new WebSocketServer({ noServer: true });
 
@@ -277,9 +199,7 @@ const startServer = async () => {
    */
   const subs = {};
 
-  const redisConfig = redisConfigFromEnv(process.env);
-  const redisSubscribeClient = await createRedisClient(redisConfig);
-  const redisClient = await createRedisClient(redisConfig);
+  const redisSubscribeClient = Redis.createClient(redisConfig, logger);
   const { redisPrefix } = redisConfig;
 
   // When checking metrics in the browser, the favicon is requested this
