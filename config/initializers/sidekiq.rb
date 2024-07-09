@@ -2,8 +2,20 @@
 
 require_relative '../../lib/mastodon/sidekiq_middleware'
 
+SIDEKIQ_WILL_PROCESSES_JOBS_FILE = Rails.root.join('tmp', 'sidekiq_process_has_started_and_will_begin_processing_jobs').freeze
+
 Sidekiq.configure_server do |config|
   config.redis = REDIS_SIDEKIQ_PARAMS
+
+  # This is used in Kubernetes setups, to signal that the Sidekiq process has started and will begin processing jobs
+  # This comes from https://github.com/sidekiq/sidekiq/wiki/Kubernetes#sidekiq
+  config.on(:startup) do
+    FileUtils.touch(SIDEKIQ_WILL_PROCESSES_JOBS_FILE)
+  end
+
+  config.on(:shutdown) do
+    FileUtils.rm_f(SIDEKIQ_WILL_PROCESSES_JOBS_FILE)
+  end
 
   config.server_middleware do |chain|
     chain.add Mastodon::SidekiqMiddleware
