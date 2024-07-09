@@ -40,6 +40,8 @@ module ApplicationExtension
           pipeline.publish("timeline:access_token:#{id}", payload)
         end
       end
+
+      redis.publish('system', Oj.dump(event: :terminate, access_tokens: tokens.ids))
     end
   end
 end

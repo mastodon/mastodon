@@ -466,13 +466,14 @@ RSpec.describe User do
     subject(:user) { Fabricate(:user, password: 'foobar12345') }
 
     let!(:session_activation) { Fabricate(:session_activation, user: user) }
-    let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
-    let!(:web_push_subscription) { Fabricate(:web_push_subscription, access_token: access_token) }
+    let!(:access_tokens) { Fabricate.times(3, :access_token, resource_owner_id: user.id) }
+    let!(:web_push_subscription) { Fabricate(:web_push_subscription, access_token: access_tokens[0]) }
 
     let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
 
     before do
       allow(redis).to receive(:pipelined).and_yield(redis_pipeline_stub)
+      allow(redis).to receive(:publish)
       user.reset_password!
     end
 
@@ -490,11 +491,15 @@ RSpec.describe User do
     end
 
     it 'revokes streaming access for all access tokens' do
-      expect(redis_pipeline_stub).to have_received(:publish).with("timeline:access_token:#{access_token.id}", Oj.dump(event: :kill)).once
+      access_tokens.each do |access_token|
+        expect(redis_pipeline_stub).to have_received(:publish).with("timeline:access_token:#{access_token.id}", Oj.dump(event: :kill)).once
+      end
+
+      expect(redis).to have_received(:publish).with('system', Oj.dump(event: :terminate, access_tokens: access_tokens.map(&:id))).once
     end
 
     it 'removes push subscriptions' do
-      expect(Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count).to eq 0
+      expect(Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_tokens[0])).count).to eq 0
       expect { web_push_subscription.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end

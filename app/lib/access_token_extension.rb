@@ -24,6 +24,9 @@ module AccessTokenExtension
   end
 
   def push_to_streaming_api
-    redis.publish("timeline:access_token:#{id}", Oj.dump(event: :kill)) if revoked? || destroyed?
+    if revoked? || destroyed?
+      redis.publish("timeline:access_token:#{id}", Oj.dump(event: :kill))
+      redis.publish('system', Oj.dump(event: :terminate, access_tokens: [id]))
+    end
   end
 end
