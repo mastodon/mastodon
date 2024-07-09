@@ -26,7 +26,7 @@ $content-width: 840px;
     &__inner {
       display: flex;
       justify-content: flex-end;
-      background: $ui-base-color;
+      background: var(--background-color);
       height: 100%;
     }
   }
@@ -38,7 +38,7 @@ $content-width: 840px;
 
     &__toggle {
       display: none;
-      background: darken($ui-base-color, 4%);
+      background: var(--background-color);
       border-bottom: 1px solid lighten($ui-base-color, 4%);
       align-items: center;
 
@@ -103,7 +103,6 @@ $content-width: 840px;
 
     ul {
       list-style: none;
-      border-radius: 4px 0 0 4px;
       overflow: hidden;
       margin-bottom: 20px;
 
@@ -112,13 +111,13 @@ $content-width: 840px;
       }
 
       a {
+        font-size: 14px;
         display: block;
         padding: 15px;
         color: $darker-text-color;
         text-decoration: none;
         transition: all 200ms linear;
         transition-property: color, background-color;
-        border-radius: 4px 0 0 4px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -129,19 +128,13 @@ $content-width: 840px;
 
         &:hover {
           color: $primary-text-color;
-          background-color: darken($ui-base-color, 5%);
           transition: all 100ms linear;
           transition-property: color, background-color;
-        }
-
-        &.selected {
-          border-radius: 4px 0 0;
         }
       }
 
       ul {
         background: var(--background-color);
-        border-radius: 0 0 0 4px;
         margin: 0;
 
         a {
@@ -156,15 +149,9 @@ $content-width: 840px;
       }
 
       .simple-navigation-active-leaf a {
-        color: $primary-text-color;
-        background-color: $ui-highlight-color;
+        color: $highlight-text-color;
         border-bottom: 0;
-        border-radius: 0;
       }
-    }
-
-    & > ul > .simple-navigation-active-leaf a {
-      border-radius: 4px 0 0 4px;
     }
   }
 
@@ -410,14 +397,15 @@ $content-width: 840px;
           inset-inline-start: 0;
           bottom: 0;
           overflow-y: auto;
-          background: $ui-base-color;
+          background: var(--background-color);
         }
       }
 
       ul a,
       ul ul a {
+        font-size: 16px;
         border-radius: 0;
-        border-bottom: 1px solid lighten($ui-base-color, 4%);
+        // border-bottom: 1px solid lighten($ui-base-color, 4%);
         transition: none;
 
         &:hover {
