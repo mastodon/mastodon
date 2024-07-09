@@ -238,22 +238,31 @@ const startServer = async () => {
   app.get('/metrics', metrics.requestHandler);
 
   /**
+   * @typedef SubscriptionHeartbeat
+   * @property {function(): void} stop
+   */
+
+  /**
    * @param {string[]} channels
-   * @returns {function(): void}
+   * @returns {SubscriptionHeartbeat}
    */
   const subscriptionHeartbeat = channels => {
     const interval = 6 * 60;
 
     const tellSubscribed = () => {
-      channels.forEach(channel => redisClient.set(`${redisPrefix}subscribed:${channel}`, '1', 'EX', interval * 3));
+      channels.forEach(channel => redisClient.set(`${redisConfig.redisPrefix}subscribed:${channel}`, '1', 'EX', interval * 3));
     };
 
     tellSubscribed();
 
-    const heartbeat = setInterval(tellSubscribed, interval * 1000);
+    /** @type {NodeJS.Timeout|undefined} */
+    let heartbeat = setInterval(tellSubscribed, interval * 1000);
 
-    return () => {
-      clearInterval(heartbeat);
+    return {
+      stop() {
+        clearInterval(heartbeat);
+        heartbeat = undefined;
+      }
     };
   };
 
@@ -963,8 +972,9 @@ const startServer = async () => {
     }
 
     channelNameToIds(req, channelName, req.query).then(({ channelIds, options }) => {
+      const heartbeat = subscriptionHeartbeat(channelIds);
       const onSend = streamToHttp(req, res);
-      const onEnd = streamHttpEnd(req, subscriptionHeartbeat(channelIds));
+      const onEnd = streamHttpEnd(req, heartbeat.stop);
 
       // @ts-ignore
       streamFrom(channelIds, req, req.log, onSend, onEnd, 'eventsource', options.needsFiltering);
@@ -1133,11 +1143,18 @@ const startServer = async () => {
   };
 
   /**
+   * @typedef WebSocketSubscription
+   * @property {string} channelName
+   * @property {SubscriptionListener} listener
+   * @property {SubscriptionHeartbeat} [heartbeat]
+   */
+
+  /**
    * @typedef WebSocketSession
    * @property {WebSocket & { isAlive: boolean}} websocket
    * @property {http.IncomingMessage & ResolvedAccount} request
    * @property {import('pino').Logger} logger
-   * @property {Object.<string, { channelName: string, listener: SubscriptionListener, stopHeartbeat: function(): void }>} subscriptions
+   * @property {Object.<string, WebSocketSubscription>} subscriptions
    */
 
   /**
@@ -1156,15 +1173,15 @@ const startServer = async () => {
       }
 
       const onSend = streamToWs(request, websocket, streamNameFromChannelName(channelName, params));
-      const stopHeartbeat = subscriptionHeartbeat(channelIds);
       const listener = streamFrom(channelIds, request, logger, onSend, undefined, 'websocket', options.needsFiltering);
+      const heartbeat = subscriptionHeartbeat(channelIds);
 
       metrics.connectedChannels.labels({ type: 'websocket', channel: channelName }).inc();
 
       subscriptions[channelIds.join(';')] = {
         channelName,
         listener,
-        stopHeartbeat,
+        heartbeat,
       };
     }).catch(err => {
       const {statusCode, errorMessage } = extractErrorStatusAndMessage(err);
@@ -1198,8 +1215,11 @@ const startServer = async () => {
       unsubscribe(`${redisPrefix}${channelId}`, subscription.listener);
     });
 
+    if (subscription.heartbeat) {
+      subscription.heartbeat.stop();
+    }
+
     metrics.connectedChannels.labels({ type: 'websocket', channel: subscription.channelName }).dec();
-    subscription.stopHeartbeat();
 
     delete subscriptions[channelIds.join(';')];
   };
@@ -1245,15 +1265,11 @@ const startServer = async () => {
     subscriptions[accessTokenChannelId] = {
       channelName: 'system',
       listener,
-      stopHeartbeat: () => {
-      },
     };
 
     subscriptions[systemChannelId] = {
       channelName: 'system',
       listener,
-      stopHeartbeat: () => {
-      },
     };
 
     metrics.connectedChannels.labels({ type: 'websocket', channel: 'system' }).inc(2);
