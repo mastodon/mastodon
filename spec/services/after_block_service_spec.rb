@@ -48,4 +48,16 @@ RSpec.describe AfterBlockService do
       }.from([status.id.to_s, other_account_status.id.to_s, other_account_reblog.id.to_s]).to([other_account_status.id.to_s])
     end
   end
+
+  describe 'streaming integration' do
+    before do
+      allow(redis).to receive(:publish)
+    end
+
+    it 'notifies streaming of the blocks change' do
+      subject
+
+      expect(redis).to have_received(:publish).with('system', Oj.dump(event: :blocks_changed, account: account.id, target_account: target_account.id)).once
+    end
+  end
 end

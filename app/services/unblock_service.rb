@@ -2,6 +2,7 @@
 
 class UnblockService < BaseService
   include Payloadable
+  include Redisable
 
   def call(account, target_account)
     return unless account.blocking?(target_account)
@@ -9,7 +10,7 @@ class UnblockService < BaseService
     unblock = account.unblock!(target_account)
     create_notification(unblock) if !target_account.local? && target_account.activitypub?
 
-    notify_streaming!
+    redis.publish('system', Oj.dump(event: :blocks_changed, account: account.id, target_account: target_account.id))
 
     unblock
   end
@@ -22,9 +23,5 @@ class UnblockService < BaseService
 
   def build_json(unblock)
     Oj.dump(serialize_payload(unblock, ActivityPub::UndoBlockSerializer))
-  end
-
-  def notify_streaming!
-    redis.publish('system', Oj.dump(event: :blocks_changed, account: @account.id, target_account: @target_account.id))
   end
 end

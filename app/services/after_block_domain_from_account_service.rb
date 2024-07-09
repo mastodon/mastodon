@@ -2,6 +2,7 @@
 
 class AfterBlockDomainFromAccountService < BaseService
   include Payloadable
+  include Redisable
 
   # This service does not create an AccountDomainBlock record,
   # it's meant to be called after such a record has been created

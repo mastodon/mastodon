@@ -7,6 +7,10 @@ RSpec.describe UnblockService do
 
   let(:sender) { Fabricate(:account, username: 'alice') }
 
+  before do
+    allow(redis).to receive(:publish)
+  end
+
   describe 'local' do
     let(:bob) { Fabricate(:account) }
 
@@ -17,6 +21,10 @@ RSpec.describe UnblockService do
 
     it 'destroys the blocking relation' do
       expect(sender.blocking?(bob)).to be false
+    end
+
+    it 'notifies streaming of the change in blocks' do
+      expect(redis).to have_received(:publish).with('system', Oj.dump(event: :blocks_changed, account: sender.id, target_account: bob.id))
     end
   end
 
@@ -35,6 +43,10 @@ RSpec.describe UnblockService do
 
     it 'sends an unblock activity', :inline_jobs do
       expect(a_request(:post, 'http://example.com/inbox')).to have_been_made.once
+    end
+
+    it 'notifies streaming of the change in blocks' do
+      expect(redis).to have_received(:publish).with('system', Oj.dump(event: :blocks_changed, account: sender.id, target_account: bob.id))
     end
   end
 end

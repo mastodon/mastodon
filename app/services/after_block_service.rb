@@ -11,6 +11,7 @@ class AfterBlockService < BaseService
     clear_list_feeds!
     clear_notifications!
     clear_conversations!
+
     notify_streaming!
   end
 

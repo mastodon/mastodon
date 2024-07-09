@@ -5,8 +5,9 @@ require 'rails_helper'
 RSpec.describe AfterBlockDomainFromAccountService do
   subject { described_class.new }
 
-  let(:wolf) { Fabricate(:account, username: 'wolf', domain: 'evil.org', inbox_url: 'https://evil.org/wolf/inbox', protocol: :activitypub) }
-  let(:dog)  { Fabricate(:account, username: 'dog', domain: 'evil.org', inbox_url: 'https://evil.org/dog/inbox', protocol: :activitypub) }
+  let(:target_domain) { 'evil.org' }
+  let(:wolf) { Fabricate(:account, username: 'wolf', domain: target_domain, inbox_url: 'https://evil.org/wolf/inbox', protocol: :activitypub) }
+  let(:dog)  { Fabricate(:account, username: 'dog', domain: target_domain, inbox_url: 'https://evil.org/dog/inbox', protocol: :activitypub) }
   let(:alice) { Fabricate(:account, username: 'alice') }
 
   before do
@@ -17,7 +18,7 @@ RSpec.describe AfterBlockDomainFromAccountService do
   end
 
   it 'purge followers from blocked domain, remove notification permissions, sends `Reject->Follow`, and records severed relationships', :aggregate_failures do
-    expect { subject.call(alice, 'evil.org') }
+    expect { subject.call(alice, target_domain) }
       .to change { wolf.following?(alice) }.from(true).to(false)
       .and change { NotificationPermission.exists?(account: alice, from_account: wolf) }.from(true).to(false)
 
@@ -30,5 +31,17 @@ RSpec.describe AfterBlockDomainFromAccountService do
     expect(severed_relationships.count).to eq 2
     expect(severed_relationships[0].relationship_severance_event).to eq severed_relationships[1].relationship_severance_event
     expect(severed_relationships.map { |rel| [rel.account, rel.target_account] }).to contain_exactly([wolf, alice], [alice, dog])
+  end
+
+  describe 'streaming integration' do
+    before do
+      allow(redis).to receive(:publish)
+    end
+
+    it 'notifies streaming of the domain blocks change' do
+      subject.call(alice, target_domain)
+
+      expect(redis).to have_received(:publish).with('system', Oj.dump(event: :domain_blocks_changed, account: alice.id, target_domain: target_domain)).once
+    end
   end
 end
