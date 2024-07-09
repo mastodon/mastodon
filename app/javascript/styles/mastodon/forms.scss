@@ -442,7 +442,8 @@ code {
     padding: 10px 16px;
 
     &::placeholder {
-      color: lighten($darker-text-color, 4%);
+      color: $dark-text-color;
+      opacity: 1;
     }
 
     &:invalid {
@@ -453,10 +454,10 @@ code {
       border-color: $valid-value-color;
     }
 
-    &:active,
-    &:focus {
-      border-color: $highlight-text-color;
-    }
+    // &:active,
+    // &:focus {
+    //   border-color: $highlight-text-color;
+    // }
 
     @media screen and (width <= 600px) {
       font-size: 16px;
