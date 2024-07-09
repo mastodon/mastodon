@@ -306,18 +306,6 @@ html {
   }
 }
 
-.simple_form {
-  input[type='text'],
-  input[type='number'],
-  input[type='email'],
-  input[type='password'],
-  textarea {
-    &:hover {
-      border-color: lighten($ui-base-color, 12%);
-    }
-  }
-}
-
 .picture-in-picture-placeholder {
   background: $white;
   border-color: lighten($ui-base-color, 8%);
