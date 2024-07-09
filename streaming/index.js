@@ -680,12 +680,11 @@ const startServer = async () => {
    * @param {http.IncomingMessage & ResolvedAccount} req
    * @param {import('pino').Logger} log
    * @param {function(string, string): void} output
-   * @param {undefined | function(string[], SubscriptionListener): void} attachCloseHandler
    * @param {'websocket' | 'eventsource'} destinationType
    * @param {boolean=} needsFiltering
    * @returns {SubscriptionListener}
    */
-  const streamFrom = (channelIds, req, log, output, attachCloseHandler, destinationType, needsFiltering = false) => {
+  const streamFrom = (channelIds, req, log, output, destinationType, needsFiltering = false) => {
     log.info({ channelIds }, `Starting stream`);
 
     /**
@@ -852,14 +851,6 @@ const startServer = async () => {
       });
     };
 
-    channelIds.forEach(id => {
-      subscribe(`${redisPrefix}${id}`, listener);
-    });
-
-    if (typeof attachCloseHandler === 'function') {
-      attachCloseHandler(channelIds.map(id => `${redisPrefix}${id}`), listener);
-    }
-
     return listener;
   };
 
@@ -904,24 +895,6 @@ const startServer = async () => {
       res.write(`event: ${event}\n`);
       res.write(`data: ${payload}\n\n`);
     };
-  };
-
-  /**
-   * @param {any} req
-   * @param {function(): void} [closeHandler]
-   * @returns {function(string[], SubscriptionListener): void}
-   */
-
-  const streamHttpEnd = (req, closeHandler = undefined) => (ids, listener) => {
-    req.on('close', () => {
-      ids.forEach(id => {
-        unsubscribe(id, listener);
-      });
-
-      if (closeHandler) {
-        closeHandler();
-      }
-    });
   };
 
   /**
@@ -974,10 +947,21 @@ const startServer = async () => {
     channelNameToIds(req, channelName, req.query).then(({ channelIds, options }) => {
       const heartbeat = subscriptionHeartbeat(channelIds);
       const onSend = streamToHttp(req, res);
-      const onEnd = streamHttpEnd(req, heartbeat.stop);
 
       // @ts-ignore
-      streamFrom(channelIds, req, req.log, onSend, onEnd, 'eventsource', options.needsFiltering);
+      const listener = streamFrom(channelIds, req, req.log, onSend, 'eventsource', options.needsFiltering);
+
+      channelIds.forEach(channel => {
+        subscribe(channel, listener);
+      });
+
+      req.on('close', () => {
+        heartbeat.stop();
+
+        channelIds.forEach(channel => {
+          unsubscribe(channel, listener);
+        });
+      });
     }).catch(err => {
       const {statusCode, errorMessage } = extractErrorStatusAndMessage(err);
 
@@ -1173,8 +1157,12 @@ const startServer = async () => {
       }
 
       const onSend = streamToWs(request, websocket, streamNameFromChannelName(channelName, params));
-      const listener = streamFrom(channelIds, request, logger, onSend, undefined, 'websocket', options.needsFiltering);
       const heartbeat = subscriptionHeartbeat(channelIds);
+      const listener = streamFrom(channelIds, request, logger, onSend, 'websocket', options.needsFiltering);
+
+      channelIds.forEach(channelId => {
+        subscribe(channelId, listener);
+      });
 
       metrics.connectedChannels.labels({ type: 'websocket', channel: channelName }).inc();
 
