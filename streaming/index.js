@@ -1245,9 +1245,11 @@ const startServer = async () => {
 
       const json = parseJSON(message, session.request);
 
-      if (!json) return;
+      if (!json || typeof json !== 'object' || Array.isArray(json)) return;
 
       const { type, stream, ...params } = json;
+
+      session.logger.debug({ message: json }, "Received message from websocket connection");
 
       if (type === 'subscribe') {
         subscribeWebsocketToChannel(session, firstParam(stream), params);
