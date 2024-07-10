@@ -32,6 +32,7 @@ RSpec.describe FetchLinkCardService do
     stub_request(:get, 'http://example.com/aergerliche-umlaute').to_return(request_fixture('redirect_with_utf8_url.txt'))
     stub_request(:get, 'http://example.com/page_without_title').to_return(request_fixture('page_without_title.txt'))
     stub_request(:get, 'http://example.com/long_canonical_url').to_return(request_fixture('long_canonical_url.txt'))
+    stub_request(:get, 'http://example.com/alternative_utf8_spelling_in_header').to_return(request_fixture('alternative_utf8_spelling_in_header.txt'))
 
     Rails.cache.write('oembed_endpoint:example.com', oembed_cache) if oembed_cache
 
@@ -290,6 +291,14 @@ RSpec.describe FetchLinkCardService do
 
       it 'does not create a preview card' do
         expect(status.preview_card).to be_nil
+      end
+    end
+
+    context 'with a URL where the `Content-Type` header uses `utf8` instead of `utf-8`' do
+      let(:status) { Fabricate(:status, text: 'test http://example.com/alternative_utf8_spelling_in_header') }
+
+      it 'does not create a preview card' do
+        expect(status.preview_card.title).to eq 'Webserver Configs R Us'
       end
     end
   end
