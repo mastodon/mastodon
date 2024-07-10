@@ -644,8 +644,9 @@ code {
 }
 
 .flash-message {
-  background: lighten($ui-base-color, 8%);
-  color: $darker-text-color;
+  background: var(--background-color);
+  color: $highlight-text-color;
+  border: 1px solid $ui-highlight-color;
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
