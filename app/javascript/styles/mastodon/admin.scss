@@ -1,7 +1,7 @@
 @use 'sass:math';
 
 $no-columns-breakpoint: 600px;
-$sidebar-width: 240px;
+$sidebar-width: 300px;
 $content-width: 840px;
 
 .admin-wrapper {
@@ -976,7 +976,7 @@ a.name-tag,
 .applications-list__item,
 .filters-list__item {
   padding: 15px 0;
-  background: $ui-base-color;
+  background: var(--background-color);
   border: 1px solid lighten($ui-base-color, 4%);
   border-radius: 4px;
   margin-top: 15px;
@@ -993,7 +993,7 @@ a.name-tag,
 
   &__item {
     padding: 15px 0;
-    background: $ui-base-color;
+    background: var(--background-color);
     border-bottom: 1px solid lighten($ui-base-color, 4%);
 
     &__title {
