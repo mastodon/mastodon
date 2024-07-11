@@ -69,7 +69,7 @@ describe 'Accounts show response' do
             expect(response)
               .to have_http_status(200)
               .and render_template(:show)
-              .and have_http_link_header(:alternate, ActivityPub::TagManager.instance.uri_for(account))
+              .and have_http_link_header(ActivityPub::TagManager.instance.uri_for(account), rel: 'alternate')
           end
         end
 

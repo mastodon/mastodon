@@ -57,8 +57,8 @@ describe AccountControllerConcern do
       expect(assigns(:account)).to eq account
       expect(response)
         .to have_http_status(200)
-        .and have_http_link_header(:lrdd, 'http://test.host/.well-known/webfinger?resource=acct%3Ausername%40cb6e6126.ngrok.io').with_type('application/jrd+json')
-        .and have_http_link_header(:alternate, 'https://cb6e6126.ngrok.io/users/username').with_type('application/activity+json')
+        .and have_http_link_header('http://test.host/.well-known/webfinger?resource=acct%3Ausername%40cb6e6126.ngrok.io', rel: 'lrdd', type: 'application/jrd+json')
+        .and have_http_link_header('https://cb6e6126.ngrok.io/users/username', rel: 'alternate', type: 'application/activity+json')
     end
   end
 end

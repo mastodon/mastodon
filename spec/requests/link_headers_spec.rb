@@ -10,8 +10,8 @@ describe 'Link headers' do
       get short_account_path(username: account)
 
       expect(response)
-        .to have_http_link_header(:lrdd, 'http://www.example.com/.well-known/webfinger?resource=acct%3Atest%40cb6e6126.ngrok.io').with_type('application/jrd+json')
-        .and have_http_link_header(:alternate, 'https://cb6e6126.ngrok.io/users/test').with_type('application/activity+json')
+        .to have_http_link_header('http://www.example.com/.well-known/webfinger?resource=acct%3Atest%40cb6e6126.ngrok.io', rel: 'lrdd', type: 'application/jrd+json')
+        .and have_http_link_header('https://cb6e6126.ngrok.io/users/test', rel: 'alternate', type: 'application/activity+json')
     end
   end
 end
