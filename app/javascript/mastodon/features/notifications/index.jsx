@@ -241,6 +241,8 @@ class Notifications extends PureComponent {
           onScroll={this.handleScroll}
           bindToDocument={!multiColumn}
         >
+          <FilteredNotificationsBanner />
+
           {scrollableContent}
         </ScrollableList>
       );
@@ -281,8 +283,6 @@ class Notifications extends PureComponent {
         </ColumnHeader>
 
         {filterBarContainer}
-
-        <FilteredNotificationsBanner />
 
         {scrollContainer}
 
