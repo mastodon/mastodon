@@ -28,8 +28,10 @@ RSpec.describe 'API V1 Statuses Reblogged by Accounts' do
 
         expect(response)
           .to have_http_status(200)
-        expect(response.headers['Link'].links.size)
-          .to eq(2)
+          .and include_pagination_headers(
+            prev: api_v1_status_reblogged_by_index_url(limit: 2, since_id: bob.statuses.first.id),
+            next: api_v1_status_reblogged_by_index_url(limit: 2, max_id: alice.statuses.first.id)
+          )
 
         expect(body_as_json.size)
           .to eq(2)
