@@ -60,7 +60,7 @@ describe 'API V1 Accounts Statuses' do
 
         expect(response)
           .to have_http_status(200)
-          .and have_http_link_header(:prev, api_v1_account_statuses_url(pinned: true, min_id: Status.first.id))
+          .and include_pagination_headers(prev: api_v1_account_statuses_url(pinned: true, min_id: Status.first.id))
       end
     end
 
