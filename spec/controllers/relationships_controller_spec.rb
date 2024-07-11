@@ -14,12 +14,10 @@ describe RelationshipsController do
         get :show, params: { page: 2, relationship: 'followed_by' }
       end
 
-      it 'returns http success' do
-        expect(response).to have_http_status(200)
-      end
-
-      it 'returns private cache control headers' do
-        expect(response.headers['Cache-Control']).to include('private, no-store')
+      it 'returns http success and private cache control' do
+        expect(response)
+          .to have_http_status(200)
+          .and have_http_header('Cache-Control', 'private, no-store')
       end
     end
 

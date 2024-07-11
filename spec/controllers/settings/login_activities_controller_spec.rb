@@ -18,8 +18,9 @@ describe Settings::LoginActivitiesController do
     end
 
     it 'returns http success with private cache control headers', :aggregate_failures do
-      expect(response).to have_http_status(200)
-      expect(response.headers['Cache-Control']).to include('private, no-store')
+      expect(response)
+        .to have_http_status(200)
+        .and have_http_header('Cache-Control', 'private, no-store')
       expect(response.body)
         .to include(login_activity.user_agent)
         .and include(login_activity.authentication_method)

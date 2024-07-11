@@ -25,10 +25,11 @@ RSpec.describe ActivityPub::OutboxesController do
       context 'with page not requested' do
         let(:page) { nil }
 
-        it_behaves_like 'cacheable response'
-
         it 'returns http success and correct media type and headers and items count' do
-          expect(response).to have_http_status(200)
+          expect(response)
+            .to have_http_status(200)
+            .and have_cacheable_headers
+
           expect(response.media_type).to eq 'application/activity+json'
           expect(response.headers['Vary']).to be_nil
           expect(body[:totalItems]).to eq 4
@@ -59,10 +60,12 @@ RSpec.describe ActivityPub::OutboxesController do
       context 'with page requested' do
         let(:page) { 'true' }
 
-        it_behaves_like 'cacheable response'
-
         it 'returns http success and correct media type and vary header and items' do
-          expect(response).to have_http_status(200)
+          expect(response)
+            .to have_http_status(200)
+            .and have_cacheable_headers
+            .and have_http_header('Vary', 'Signature')
+
           expect(response.media_type).to eq 'application/activity+json'
           expect(response.headers['Vary']).to include 'Signature'
 
@@ -104,10 +107,11 @@ RSpec.describe ActivityPub::OutboxesController do
         end
 
         it 'returns http success and correct media type and headers and items' do
-          expect(response).to have_http_status(200)
-          expect(response.media_type).to eq 'application/activity+json'
-          expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
+          expect(response)
+            .to have_http_status(200)
+            .and have_http_header('Cache-Control', 'max-age=60, private')
 
+          expect(response.media_type).to eq 'application/activity+json'
           expect(body_as_json[:orderedItems]).to be_an Array
           expect(body_as_json[:orderedItems].size).to eq 2
           expect(body_as_json[:orderedItems].all? { |item| targets_public_collection?(item) }).to be true
@@ -121,9 +125,10 @@ RSpec.describe ActivityPub::OutboxesController do
         end
 
         it 'returns http success and correct media type and headers and items' do
-          expect(response).to have_http_status(200)
+          expect(response)
+            .to have_http_status(200)
+            .and have_http_header('Cache-Control', 'max-age=60, private')
           expect(response.media_type).to eq 'application/activity+json'
-          expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
 
           expect(body_as_json[:orderedItems]).to be_an Array
           expect(body_as_json[:orderedItems].size).to eq 3
@@ -138,10 +143,10 @@ RSpec.describe ActivityPub::OutboxesController do
         end
 
         it 'returns http success and correct media type and headers and items' do
-          expect(response).to have_http_status(200)
+          expect(response)
+            .to have_http_status(200)
+            .and have_http_header('Cache-Control', 'max-age=60, private')
           expect(response.media_type).to eq 'application/activity+json'
-          expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
-
           expect(body_as_json[:orderedItems])
             .to be_an(Array)
             .and be_empty
@@ -155,10 +160,10 @@ RSpec.describe ActivityPub::OutboxesController do
         end
 
         it 'returns http success and correct media type and headers and items' do
-          expect(response).to have_http_status(200)
+          expect(response)
+            .to have_http_status(200)
+            .and have_http_header('Cache-Control', 'max-age=60, private')
           expect(response.media_type).to eq 'application/activity+json'
-          expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
-
           expect(body_as_json[:orderedItems])
             .to be_an(Array)
             .and be_empty

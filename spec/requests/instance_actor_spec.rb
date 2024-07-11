@@ -17,6 +17,7 @@ RSpec.describe 'Instance actor endpoint' do
       it 'returns http success with correct media type and body' do
         expect(response)
           .to have_http_status(200)
+          .and have_cacheable_headers
         expect(response.content_type)
           .to start_with('application/activity+json')
         expect(body_as_json)
@@ -32,8 +33,6 @@ RSpec.describe 'Instance actor endpoint' do
             url: about_more_url(instance_actor: true)
           )
       end
-
-      it_behaves_like 'cacheable response'
     end
 
     context 'with limited federation mode disabled' do

@@ -22,14 +22,12 @@ describe Oauth::AuthorizedApplicationsController do
         sign_in Fabricate(:user), scope: :user
       end
 
-      it 'returns http success' do
+      it 'returns http success and private cache control' do
         subject
-        expect(response).to have_http_status(200)
-      end
 
-      it 'returns private cache control headers' do
-        subject
-        expect(response.headers['Cache-Control']).to include('private, no-store')
+        expect(response)
+          .to have_http_status(200)
+          .and have_http_header('Cache-Control', 'private, no-store')
       end
 
       include_examples 'stores location for user'

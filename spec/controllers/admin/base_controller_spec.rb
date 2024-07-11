@@ -23,7 +23,7 @@ describe Admin::BaseController do
     sign_in(Fabricate(:user, role: UserRole.find_by(name: 'Moderator')))
     get :success
 
-    expect(response.headers['Cache-Control']).to include('private, no-store')
+    expect(response).to have_http_header('Cache-Control', 'private, no-store')
   end
 
   it 'renders admin layout as a moderator' do

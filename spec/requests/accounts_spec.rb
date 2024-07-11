@@ -130,14 +130,13 @@ describe 'Accounts show response' do
           it 'returns a JSON version of the account', :aggregate_failures do
             expect(response)
               .to have_http_status(200)
+              .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
               .and have_attributes(
                 media_type: eq('application/activity+json')
               )
 
             expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
           end
-
-          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
           context 'with authorized fetch mode' do
             let(:authorized_fetch_mode) { true }
@@ -159,11 +158,10 @@ describe 'Accounts show response' do
           it 'returns a private JSON version of the account', :aggregate_failures do
             expect(response)
               .to have_http_status(200)
+              .and have_http_header('Cache-Control', 'private')
               .and have_attributes(
                 media_type: eq('application/activity+json')
               )
-
-            expect(response.headers['Cache-Control']).to include 'private'
 
             expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
           end
@@ -179,6 +177,7 @@ describe 'Accounts show response' do
           it 'returns a JSON version of the account', :aggregate_failures do
             expect(response)
               .to have_http_status(200)
+              .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
               .and have_attributes(
                 media_type: eq('application/activity+json')
               )
@@ -186,20 +185,17 @@ describe 'Accounts show response' do
             expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
           end
 
-          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
           context 'with authorized fetch mode' do
             let(:authorized_fetch_mode) { true }
 
             it 'returns a private signature JSON version of the account', :aggregate_failures do
               expect(response)
                 .to have_http_status(200)
+                .and have_http_header('Cache-Control', 'private')
+                .and have_http_header('Vary', 'Signature')
                 .and have_attributes(
                   media_type: eq('application/activity+json')
                 )
-
-              expect(response.headers['Cache-Control']).to include 'private'
-              expect(response.headers['Vary']).to include 'Signature'
 
               expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
             end
@@ -215,10 +211,11 @@ describe 'Accounts show response' do
             get short_account_path(username: account.username, format: format)
           end
 
-          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
           it 'responds with correct statuses', :aggregate_failures do
-            expect(response).to have_http_status(200)
+            expect(response)
+              .to have_http_status(200)
+              .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
+
             expect(response.body).to include(status_tag_for(status_media))
             expect(response.body).to include(status_tag_for(status_self_reply))
             expect(response.body).to include(status_tag_for(status))
@@ -234,10 +231,11 @@ describe 'Accounts show response' do
             get short_account_with_replies_path(username: account.username, format: format)
           end
 
-          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
           it 'responds with correct statuses with replies', :aggregate_failures do
-            expect(response).to have_http_status(200)
+            expect(response)
+              .to have_http_status(200)
+              .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
+
             expect(response.body).to include(status_tag_for(status_media))
             expect(response.body).to include(status_tag_for(status_reply))
             expect(response.body).to include(status_tag_for(status_self_reply))
@@ -253,10 +251,11 @@ describe 'Accounts show response' do
             get short_account_media_path(username: account.username, format: format)
           end
 
-          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
           it 'responds with correct statuses with media', :aggregate_failures do
-            expect(response).to have_http_status(200)
+            expect(response)
+              .to have_http_status(200)
+              .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
+
             expect(response.body).to include(status_tag_for(status_media))
             expect(response.body).to_not include(status_tag_for(status_direct))
             expect(response.body).to_not include(status_tag_for(status_private))
@@ -277,10 +276,11 @@ describe 'Accounts show response' do
             get short_account_tag_path(username: account.username, tag: tag, format: format)
           end
 
-          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
           it 'responds with correct statuses with a tag', :aggregate_failures do
-            expect(response).to have_http_status(200)
+            expect(response)
+              .to have_http_status(200)
+              .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
+
             expect(response.body).to include(status_tag_for(status_tag))
             expect(response.body).to_not include(status_tag_for(status_direct))
             expect(response.body).to_not include(status_tag_for(status_media))

@@ -15,9 +15,8 @@ RSpec.describe 'Tags' do
         it 'returns http success' do
           expect(response)
             .to have_http_status(200)
+            .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
         end
-
-        it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
       end
 
       context 'with JSON format' do
@@ -26,11 +25,10 @@ RSpec.describe 'Tags' do
         it 'returns http success' do
           expect(response)
             .to have_http_status(200)
+            .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
           expect(response.content_type)
             .to start_with('application/activity+json')
         end
-
-        it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
       end
 
       context 'with RSS format' do
@@ -39,11 +37,10 @@ RSpec.describe 'Tags' do
         it 'returns http success' do
           expect(response)
             .to have_http_status(200)
+            .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
           expect(response.content_type)
             .to start_with('application/rss+xml')
         end
-
-        it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
       end
     end
 

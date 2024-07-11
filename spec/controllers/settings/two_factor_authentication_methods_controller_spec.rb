@@ -29,9 +29,10 @@ describe Settings::TwoFactorAuthenticationMethodsController do
           get :index
         end
 
-        it 'returns http success with private cache control headers', :aggregate_failures do
-          expect(response).to have_http_status(200)
-          expect(response.headers['Cache-Control']).to include('private, no-store')
+        it 'returns http success and private cache control' do
+          expect(response)
+            .to have_http_status(200)
+            .and have_http_header('Cache-Control', 'private, no-store')
         end
       end
 

@@ -18,9 +18,9 @@ describe 'The /.well-known/webfinger endpoint' do
 
   shared_examples 'a successful response' do
     it 'returns http success with correct media type and headers and body json' do
-      expect(response).to have_http_status(200)
-
-      expect(response.headers['Vary']).to eq('Origin')
+      expect(response)
+        .to have_http_status(200)
+        .and have_http_header('Vary', 'Origin')
 
       expect(response.media_type).to eq 'application/jrd+json'
 
@@ -116,12 +116,10 @@ describe 'The /.well-known/webfinger endpoint' do
       perform_request!
     end
 
-    it 'returns http success' do
-      expect(response).to have_http_status(200)
-    end
-
-    it 'sets only a Vary Origin header' do
-      expect(response.headers['Vary']).to eq('Origin')
+    it 'returns http success and vary origin header' do
+      expect(response)
+        .to have_http_status(200)
+        .and have_http_header('Vary', 'Origin')
     end
 
     it 'returns application/jrd+json' do
