@@ -104,13 +104,9 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users, path: 'auth', format: false, controllers: {
-    omniauth_callbacks: 'auth/omniauth_callbacks',
-    sessions: 'auth/sessions',
-    registrations: 'auth/registrations',
-    passwords: 'auth/passwords',
-    confirmations: 'auth/confirmations',
-  }
+  scope module: :auth do
+    devise_for :users, path: 'auth', format: false
+  end
 
   with_options constraints: ->(req) { req.format.nil? || req.format.html? } do
     get '/users/:username', to: redirect_with_vary('/@%{username}')
