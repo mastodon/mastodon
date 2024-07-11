@@ -16,7 +16,7 @@ describe Api::BaseController do
   it 'returns private cache control headers by default' do
     routes.draw { get 'success' => 'api/base#success' }
     get :success
-    expect(response.headers['Cache-Control']).to include('private, no-store')
+    expect(response).to have_http_header('Cache-Control', 'private, no-store')
   end
 
   describe 'forgery protection' do

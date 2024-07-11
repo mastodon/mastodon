@@ -35,12 +35,10 @@ RSpec.describe Auth::RegistrationsController do
       get :edit
     end
 
-    it 'returns http success' do
-      expect(response).to have_http_status(200)
-    end
-
-    it 'returns private cache control header' do
-      expect(response.headers['Cache-Control']).to include('private, no-store')
+    it 'returns http success and private cache control' do
+      expect(response)
+        .to have_http_status(200)
+        .and have_http_header('Cache-Control', 'private, no-store')
     end
   end
 
@@ -51,16 +49,13 @@ RSpec.describe Auth::RegistrationsController do
     before do
       request.env['devise.mapping'] = Devise.mappings[:user]
       sign_in(user, scope: :user)
+      put :update
     end
 
-    it 'returns http success' do
-      put :update
-      expect(response).to have_http_status(200)
-    end
-
-    it 'returns private cache control headers' do
-      put :update
-      expect(response.headers['Cache-Control']).to include('private, no-store')
+    it 'returns http success and private cache control' do
+      expect(response)
+        .to have_http_status(200)
+        .and have_http_header('Cache-Control', 'private, no-store')
     end
 
     it 'can update the user email' do

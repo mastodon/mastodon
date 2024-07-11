@@ -38,8 +38,9 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController do
       let(:remote_account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/instance') }
 
       it 'returns http success and cache control and activity json types and correct items' do
-        expect(response).to have_http_status(200)
-        expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
+        expect(response)
+          .to have_http_status(200)
+          .and have_http_header('Cache-Control', 'max-age=0, private')
         expect(response.media_type).to eq 'application/activity+json'
 
         expect(body[:orderedItems])
