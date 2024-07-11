@@ -94,8 +94,9 @@ describe 'Home', :inline_jobs do
       it 'returns http unprocessable entity', :aggregate_failures do
         subject
 
-        expect(response).to have_http_status(422)
-        expect(response.headers['Link']).to be_nil
+        expect(response)
+          .to have_http_status(422)
+          .and not_have_http_link_header
       end
     end
   end

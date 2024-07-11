@@ -55,15 +55,10 @@ describe AccountControllerConcern do
       get 'success', params: { account_username: account.username }
 
       expect(assigns(:account)).to eq account
-      expect(response).to have_http_status(200)
-      expect(response.headers['Link'].to_s).to eq(expected_link_headers)
-    end
-
-    def expected_link_headers
-      [
-        '<http://test.host/.well-known/webfinger?resource=acct%3Ausername%40cb6e6126.ngrok.io>; rel="lrdd"; type="application/jrd+json"',
-        '<https://cb6e6126.ngrok.io/users/username>; rel="alternate"; type="application/activity+json"',
-      ].join(', ')
+      expect(response)
+        .to have_http_status(200)
+        .and have_http_link_header(:lrdd, 'http://test.host/.well-known/webfinger?resource=acct%3Ausername%40cb6e6126.ngrok.io').with_type('application/jrd+json')
+        .and have_http_link_header(:alternate, 'https://cb6e6126.ngrok.io/users/username').with_type('application/activity+json')
     end
   end
 end
