@@ -14,6 +14,8 @@
 #
 
 class NotificationRequest < ApplicationRecord
+  self.ignored_columns += %w(dismissed)
+
   include Paginable
 
   MAX_MEANINGFUL_COUNT = 100
