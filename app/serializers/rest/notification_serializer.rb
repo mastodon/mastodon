@@ -3,6 +3,8 @@
 class REST::NotificationSerializer < ActiveModel::Serializer
   attributes :id, :type, :created_at, :group_key
 
+  attribute :filtered, if: :filtered?
+
   belongs_to :from_account, key: :account, serializer: REST::AccountSerializer
   belongs_to :target_status, key: :status, if: :status_type?, serializer: REST::StatusSerializer
   belongs_to :report, if: :report_type?, serializer: REST::ReportSerializer
@@ -32,4 +34,6 @@ class REST::NotificationSerializer < ActiveModel::Serializer
   def moderation_warning_event?
     object.type == :moderation_warning
   end
+
+  delegate :filtered?, to: :object
 end
