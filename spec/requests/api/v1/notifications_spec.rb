@@ -36,6 +36,7 @@ RSpec.describe 'Notifications' do
         expect(response).to have_http_status(200)
         expect(body_as_json.size).to eq 5
         expect(body_json_types).to include('reblog', 'mention', 'favourite', 'follow')
+        expect(body_as_json.any? { |x| x[:filtered] }).to be false
       end
     end
 
@@ -48,6 +49,7 @@ RSpec.describe 'Notifications' do
         expect(response).to have_http_status(200)
         expect(body_as_json.size).to eq 6
         expect(body_json_types).to include('reblog', 'mention', 'favourite', 'follow')
+        expect(body_as_json.any? { |x| x[:filtered] }).to be true
       end
     end
 
