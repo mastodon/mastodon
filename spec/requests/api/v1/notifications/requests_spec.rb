@@ -17,22 +17,11 @@ RSpec.describe 'Requests' do
 
     before do
       Fabricate(:notification_request, account: user.account)
-      Fabricate(:notification_request, account: user.account, dismissed: true)
     end
 
     it_behaves_like 'forbidden for wrong scope', 'write write:notifications'
 
     context 'with no options' do
-      it 'returns http success', :aggregate_failures do
-        subject
-
-        expect(response).to have_http_status(200)
-      end
-    end
-
-    context 'with dismissed' do
-      let(:params) { { dismissed: '1' } }
-
       it 'returns http success', :aggregate_failures do
         subject
 
@@ -78,15 +67,14 @@ RSpec.describe 'Requests' do
       post "/api/v1/notifications/requests/#{notification_request.id}/dismiss", headers: headers
     end
 
-    let(:notification_request) { Fabricate(:notification_request, account: user.account) }
+    let!(:notification_request) { Fabricate(:notification_request, account: user.account) }
 
     it_behaves_like 'forbidden for wrong scope', 'read read:notifications'
 
-    it 'returns http success and dismisses the notification request', :aggregate_failures do
-      subject
+    it 'returns http success and destroys the notification request', :aggregate_failures do
+      expect { subject }.to change(NotificationRequest, :count).by(-1)
 
       expect(response).to have_http_status(200)
-      expect(notification_request.reload.dismissed?).to be true
     end
 
     context 'when notification request belongs to someone else' do

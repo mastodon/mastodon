@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_07_094856) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_12_064044) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -706,11 +706,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_094856) do
     t.bigint "from_account_id", null: false
     t.bigint "last_status_id"
     t.bigint "notifications_count", default: 0, null: false
-    t.boolean "dismissed", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id", "from_account_id"], name: "index_notification_requests_on_account_id_and_from_account_id", unique: true
-    t.index ["account_id", "id"], name: "index_notification_requests_on_account_id_and_id", order: { id: :desc }, where: "(dismissed = false)"
     t.index ["from_account_id"], name: "index_notification_requests_on_from_account_id"
     t.index ["last_status_id"], name: "index_notification_requests_on_last_status_id"
   end
