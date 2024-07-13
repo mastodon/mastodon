@@ -86,14 +86,6 @@
                             limit: 8,
                             start_at: @time_period.first
 
-  .dashboard__item
-    = react_admin_component :dimension,
-                            dimension: 'servers',
-                            end_at: @time_period.last,
-                            label: t('admin.dashboard.top_servers'),
-                            limit: 8,
-                            start_at: @time_period.first
-
   .dashboard__item.dashboard__item--span-double-column
     = react_admin_component :retention,
                             end_at: @time_period.last,
