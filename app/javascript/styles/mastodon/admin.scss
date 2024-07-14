@@ -819,6 +819,7 @@ a.name-tag,
 
 .report-card {
   background: var(--background-color);
+  border: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px;
   margin-bottom: 20px;
 
@@ -830,7 +831,7 @@ a.name-tag,
 
     .account {
       padding: 0;
-      border: 0;
+
 
       &__avatar-wrapper {
         margin-inline-start: 0;
@@ -867,9 +868,9 @@ a.name-tag,
       justify-content: flex-start;
       border-top: 1px solid darken($ui-base-color, 8%);
 
-      &:hover {
-        background: lighten($ui-base-color, 2%);
-      }
+      // &:hover {
+      //   background: lighten($ui-base-color, 2%);
+      // }
 
       &__reported-by,
       &__assigned {
@@ -1306,16 +1307,12 @@ a.sparkline {
 
 .report-reason-selector {
   border-radius: 4px;
-  background: $ui-base-color;
+  background: var(--background-color);
   margin-bottom: 20px;
 
   &__category {
     cursor: pointer;
     border-bottom: 1px solid darken($ui-base-color, 8%);
-
-    &:last-child {
-      border-bottom: 0;
-    }
 
     &__label {
       padding: 15px;
