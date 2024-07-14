@@ -818,7 +818,7 @@ a.name-tag,
 }
 
 .report-card {
-  background: $ui-base-color;
+  background: var(--background-color);
   border-radius: 4px;
   margin-bottom: 20px;
 
@@ -1097,7 +1097,7 @@ a.name-tag,
 
   &__table {
     &__number {
-      color: $secondary-text-color;
+      color: var(--background-color);
       padding: 10px;
     }
 
@@ -1124,7 +1124,7 @@ a.name-tag,
 
     &__box {
       box-sizing: border-box;
-      background: $ui-highlight-color;
+      background: var(--background-color);
       padding: 10px;
       font-weight: 500;
       color: $primary-text-color;
