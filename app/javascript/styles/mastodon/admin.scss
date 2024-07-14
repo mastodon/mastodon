@@ -865,7 +865,7 @@ a.name-tag,
     &__item {
       display: flex;
       justify-content: flex-start;
-      border-top: 1px solid darken($ui-base-color, 4%);
+      border-top: 1px solid darken($ui-base-color, 8%);
 
       &:hover {
         background: lighten($ui-base-color, 2%);
@@ -977,7 +977,7 @@ a.name-tag,
 .filters-list__item {
   padding: 15px 0;
   background: var(--background-color);
-  border: 1px solid lighten($ui-base-color, 4%);
+  border: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px;
   margin-top: 15px;
 }
@@ -988,13 +988,13 @@ a.name-tag,
 
 .announcements-list,
 .filters-list {
-  border: 1px solid lighten($ui-base-color, 4%);
+  border: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px;
 
   &__item {
     padding: 15px 0;
     background: var(--background-color);
-    border-bottom: 1px solid lighten($ui-base-color, 4%);
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
 
     &__title {
       padding: 0 15px;
