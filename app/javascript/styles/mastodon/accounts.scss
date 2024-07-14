@@ -6,13 +6,13 @@
     overflow: hidden;
     border-radius: 4px;
 
-    // &:hover,
-    // &:active,
-    // &:focus {
-    //   .card__bar {
-    //     background: lighten($ui-base-color, 8%);
-    //   }
-    // }
+    &:hover,
+    &:active,
+    &:focus {
+      .card__bar {
+        background: $ui-base-color;
+      }
+    }
   }
 
   &__img {

@@ -456,6 +456,16 @@ html {
   &__img {
     background: darken($ui-base-color, 10%);
   }
+
+  & > a {
+    &:hover,
+    &:active,
+    &:focus {
+      .card__bar {
+        background: darken($ui-base-color, 10%);
+      }
+    }
+  }
 }
 
 .mute-modal select {
@@ -524,5 +534,17 @@ a.sparkline {
   &:focus,
   &:active {
     background: darken($ui-base-color, 10%);
+  }
+}
+
+.dashboard__counters {
+  & > div {
+    & > a {
+      &:hover,
+      &:focus,
+      &:active {
+        background: darken($ui-base-color, 10%);
+      }
+    }
   }
 }
