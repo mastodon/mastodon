@@ -18,7 +18,9 @@
   &__img {
     height: 130px;
     position: relative;
-    background: darken($ui-base-color, 12%);
+    background: darken($ui-base-color, 4%);
+    border: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: none;
 
     img {
       display: block;
@@ -41,6 +43,7 @@
     align-items: center;
     background: var(--background-color);
     border: 1px solid lighten($ui-base-color, 8%);
+    border-top: none;
 
     .avatar {
       flex: 0 0 auto;
