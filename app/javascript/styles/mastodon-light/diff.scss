@@ -518,3 +518,11 @@ html {
 .inline-follow-suggestions__body__scroll-button__icon {
   color: $white;
 }
+
+a.sparkline {
+  &:hover,
+  &:focus,
+  &:active {
+    background: darken($ui-base-color, 10%);
+  }
+}
