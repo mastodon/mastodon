@@ -270,16 +270,16 @@ a.table-action-link {
       }
     }
 
-    &:hover {
-      background: darken($ui-base-color, 2%);
-    }
+    // &:hover {
+    //   background: $ui-highlight-color;
+    // }
 
     &:nth-child(even) {
       background: var(--background-color);
 
-      &:hover {
-        background: lighten($ui-base-color, 2%);
-      }
+      // &:hover {
+      //   background: $ui-highlight-color;
+      // }
     }
 
     &__content {
