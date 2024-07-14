@@ -13,8 +13,9 @@
     & > div,
     & > a {
       padding: 20px;
-      background: lighten($ui-base-color, 4%);
+      background: var(--background-color);
       border-radius: 4px;
+      border: 1px solid lighten($ui-base-color, 8%);
       box-sizing: border-box;
       height: 100%;
     }
@@ -24,11 +25,11 @@
       color: inherit;
       display: block;
 
-      &:hover,
-      &:focus,
-      &:active {
-        background: lighten($ui-base-color, 8%);
-      }
+      // &:hover,
+      // &:focus,
+      // &:active {
+      //   background: lighten($ui-base-color, 8%);
+      // }
     }
   }
 

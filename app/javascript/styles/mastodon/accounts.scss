@@ -6,13 +6,13 @@
     overflow: hidden;
     border-radius: 4px;
 
-    &:hover,
-    &:active,
-    &:focus {
-      .card__bar {
-        background: lighten($ui-base-color, 8%);
-      }
-    }
+    // &:hover,
+    // &:active,
+    // &:focus {
+    //   .card__bar {
+    //     background: lighten($ui-base-color, 8%);
+    //   }
+    // }
   }
 
   &__img {
@@ -39,7 +39,8 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background: lighten($ui-base-color, 4%);
+    background: var(--background-color);
+    border: 1px solid lighten($ui-base-color, 8%);
 
     .avatar {
       flex: 0 0 auto;
