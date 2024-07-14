@@ -452,6 +452,12 @@ html {
   box-shadow: none;
 }
 
+.card {
+  &__img {
+    background: darken($ui-base-color, 10%);
+  }
+}
+
 .mute-modal select {
   border: 1px solid lighten($ui-base-color, 8%);
   background: $simple-background-color
