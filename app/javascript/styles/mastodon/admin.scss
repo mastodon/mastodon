@@ -405,7 +405,6 @@ $content-width: 840px;
       ul ul a {
         font-size: 16px;
         border-radius: 0;
-        // border-bottom: 1px solid lighten($ui-base-color, 4%);
         transition: none;
 
         &:hover {
@@ -733,6 +732,7 @@ a.inline-name-tag,
 .inline-name-tag {
   text-decoration: none;
   color: $secondary-text-color;
+
   &:hover {
     color: $highlight-text-color;
   }
@@ -830,7 +830,6 @@ a.name-tag,
     .account {
       padding: 0;
 
-
       &__avatar-wrapper {
         margin-inline-start: 0;
       }
@@ -866,10 +865,6 @@ a.name-tag,
       justify-content: flex-start;
       border-top: 1px solid darken($ui-base-color, 8%);
 
-      // &:hover {
-      //   background: lighten($ui-base-color, 2%);
-      // }
-
       &__reported-by,
       &__assigned {
         padding: 15px;
@@ -891,7 +886,6 @@ a.name-tag,
         max-width: calc(100% - 300px);
 
         &__icon {
-          // color: $dark-text-color;
           margin-inline-end: 4px;
           font-weight: 500;
         }
@@ -904,6 +898,7 @@ a.name-tag,
         padding: 15px;
         text-decoration: none;
         color: $darker-text-color;
+
         &:hover {
           color: $highlight-text-color;
         }
@@ -1008,6 +1003,7 @@ a.name-tag,
       color: $secondary-text-color;
       text-decoration: none;
       margin-bottom: 10px;
+
       &:hover {
         color: $highlight-text-color;
       }

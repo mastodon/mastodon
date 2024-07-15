@@ -3,8 +3,6 @@
   max-width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
-  // border: 1px solid $ui-base-color;
-  // border-radius: 4px;
 
   th,
   td {
@@ -23,8 +21,6 @@
 
   & > thead > tr > th {
     vertical-align: bottom;
-    // border-bottom: 2px solid $ui-base-color;
-    // border-top: 0;
     font-weight: 500;
   }
 
@@ -36,6 +32,7 @@
   & > tbody > tr:nth-child(odd) > th {
     background: var(--background-color);
   }
+
   & > tbody > tr:last-child > td,
   & > tbody > tr:last-child > th {
     border-bottom: 0;
@@ -276,16 +273,8 @@ a.table-action-link {
       }
     }
 
-    // &:hover {
-    //   background: $ui-highlight-color;
-    // }
-
     &:nth-child(even) {
       background: var(--background-color);
-
-      // &:hover {
-      //   background: $ui-highlight-color;
-      // }
     }
 
     &__content {
