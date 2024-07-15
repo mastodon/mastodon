@@ -548,3 +548,15 @@ a.sparkline {
     }
   }
 }
+
+.directory {
+  &__tag {
+    & > a {
+      &:hover,
+      &:active,
+      &:focus {
+        background: darken($ui-base-color, 10%);
+      }
+    }
+  }
+}
