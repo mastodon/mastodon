@@ -20,8 +20,8 @@ RSpec.describe 'Notifications' do
     before do
       first_status = PostStatusService.new.call(user.account, text: 'Test')
       ReblogService.new.call(bob.account, first_status)
-      mentioning_status = PostStatusService.new.call(bob.account, text: 'Hello @alice')
-      mentioning_status.mentions.first
+      PostStatusService.new.call(bob.account, text: 'Hello @alice')
+      PostStatusService.new.call(tom.account, text: 'Hello @alice', visibility: :direct) # Filtered by default
       FavouriteService.new.call(bob.account, first_status)
       FavouriteService.new.call(tom.account, first_status)
       FollowService.new.call(bob.account, user.account)
@@ -34,10 +34,22 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_json_types).to include 'reblog'
-        expect(body_json_types).to include 'mention'
-        expect(body_json_types).to include 'favourite'
-        expect(body_json_types).to include 'follow'
+        expect(body_as_json.size).to eq 5
+        expect(body_json_types).to include('reblog', 'mention', 'favourite', 'follow')
+        expect(body_as_json.any? { |x| x[:filtered] }).to be false
+      end
+    end
+
+    context 'with include_filtered' do
+      let(:params) { { include_filtered: true } }
+
+      it 'returns expected notification types, including filtered notifications' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json.size).to eq 6
+        expect(body_json_types).to include('reblog', 'mention', 'favourite', 'follow')
+        expect(body_as_json.any? { |x| x[:filtered] }).to be true
       end
     end
 
@@ -96,7 +108,7 @@ RSpec.describe 'Notifications' do
       it 'returns the requested number of notifications paginated', :aggregate_failures do
         subject
 
-        notifications = user.account.notifications
+        notifications = user.account.notifications.browserable
 
         expect(body_as_json.size)
           .to eq(params[:limit])
