@@ -216,7 +216,7 @@ class Notifications extends PureComponent {
         />
       ));
     } else {
-      scrollableContent = <> </>;
+      scrollableContent = null;
     }
 
     this.scrollableContent = scrollableContent;
