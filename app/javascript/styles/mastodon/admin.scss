@@ -671,8 +671,9 @@ body,
   line-height: 20px;
   padding: 15px;
   padding-inline-start: 15px * 2 + 40px;
-  background: $ui-base-color;
-  border-bottom: 1px solid darken($ui-base-color, 8%);
+  background: var(--background-color);
+  border: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: none;
   position: relative;
   text-decoration: none;
   color: $darker-text-color;
@@ -686,13 +687,7 @@ body,
   &:last-child {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
-    border-bottom: 0;
-  }
-
-  &:hover,
-  &:focus,
-  &:active {
-    background: lighten($ui-base-color, 4%);
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
   }
 
   &__avatar {
@@ -738,6 +733,9 @@ a.inline-name-tag,
 .inline-name-tag {
   text-decoration: none;
   color: $secondary-text-color;
+  &:hover {
+    color: $highlight-text-color;
+  }
 
   .username {
     font-weight: 500;
@@ -893,7 +891,7 @@ a.name-tag,
         max-width: calc(100% - 300px);
 
         &__icon {
-          color: $dark-text-color;
+          // color: $dark-text-color;
           margin-inline-end: 4px;
           font-weight: 500;
         }
@@ -906,6 +904,9 @@ a.name-tag,
         padding: 15px;
         text-decoration: none;
         color: $darker-text-color;
+        &:hover {
+          color: $highlight-text-color;
+        }
       }
     }
   }
