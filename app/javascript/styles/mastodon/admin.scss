@@ -1008,6 +1008,9 @@ a.name-tag,
       color: $secondary-text-color;
       text-decoration: none;
       margin-bottom: 10px;
+      &:hover {
+        color: $highlight-text-color;
+      }
 
       .account-role {
         vertical-align: middle;
