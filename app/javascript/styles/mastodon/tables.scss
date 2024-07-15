@@ -3,13 +3,15 @@
   max-width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
+  // border: 1px solid $ui-base-color;
+  // border-radius: 4px;
 
   th,
   td {
     padding: 8px;
     line-height: 18px;
     vertical-align: top;
-    border-top: 1px solid $ui-base-color;
+    border-bottom: 1px solid $ui-base-color;
     text-align: start;
     background: var(--background-color);
 
@@ -21,8 +23,8 @@
 
   & > thead > tr > th {
     vertical-align: bottom;
-    border-bottom: 2px solid $ui-base-color;
-    border-top: 0;
+    // border-bottom: 2px solid $ui-base-color;
+    // border-top: 0;
     font-weight: 500;
   }
 
@@ -34,13 +36,17 @@
   & > tbody > tr:nth-child(odd) > th {
     background: var(--background-color);
   }
+  & > tbody > tr:last-child > td,
+  & > tbody > tr:last-child > th {
+    border-bottom: 0;
+  }
 
   a {
-    color: $highlight-text-color;
-    text-decoration: underline;
+    color: $darker-text-color;
+    text-decoration: none;
 
     &:hover {
-      text-decoration: none;
+      color: $highlight-text-color;
     }
   }
 
