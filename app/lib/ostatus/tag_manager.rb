@@ -59,15 +59,4 @@ class OStatus::TagManager
   def local_id?(id)
     id.start_with?("tag:#{Rails.configuration.x.local_domain}") || ActivityPub::TagManager.instance.local_uri?(id)
   end
-
-  def uri_for(target)
-    return target.uri if target.respond_to?(:local?) && !target.local?
-
-    case target.object_type
-    when :person
-      account_url(target)
-    when :note, :comment, :activity
-      target.uri || unique_tag(target.created_at, target.id, 'Status')
-    end
-  end
 end
