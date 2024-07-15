@@ -1611,9 +1611,7 @@ body > [data-popper-placement] {
   }
 }
 
-.status__wrapper-direct,
-.notification-group--unread,
-.notification-ungrouped--unread {
+.status__wrapper-direct {
   background: rgba($ui-highlight-color, 0.05);
 
   &:focus {
@@ -10539,6 +10537,22 @@ noscript {
   .notification__report {
     border: 0;
     padding: 0;
+  }
+}
+
+.notification-group--unread,
+.notification-ungrouped--unread {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+    width: 100%;
+    height: 100%;
+    border-inline-start: 4px solid $highlight-text-color;
+    pointer-events: none;
   }
 }
 
