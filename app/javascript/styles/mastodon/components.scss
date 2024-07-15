@@ -1611,7 +1611,8 @@ body > [data-popper-placement] {
   }
 }
 
-.status__wrapper-direct {
+.status__wrapper-direct,
+.notification-ungrouped--direct {
   background: rgba($ui-highlight-color, 0.05);
 
   &:focus {
@@ -1619,8 +1620,10 @@ body > [data-popper-placement] {
   }
 }
 
-.status__wrapper-direct {
-  .status__prepend {
+.status__wrapper-direct,
+.notification-ungrouped--direct {
+  .status__prepend,
+  .notification-ungrouped__header {
     color: $highlight-text-color;
   }
 }
