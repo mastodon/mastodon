@@ -19,6 +19,14 @@ module ApplicationExtension
     before_destroy :close_streaming_sessions, prepend: true
   end
 
+  class_methods do
+    def webapp
+      Doorkeeper::Application.find_by!(name: 'Web', superapp: true)
+    rescue ActiveRecord::RecordNotFound
+      Doorkeeper::Application.create!(name: 'Web', redirect_uri: Doorkeeper.configuration.native_redirect_uri, scopes: 'read write follow push', superapp: true)
+    end
+  end
+
   def confirmation_redirect_uri
     redirect_uri.lines.first.strip
   end

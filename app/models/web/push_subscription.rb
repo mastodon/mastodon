@@ -66,9 +66,9 @@ class Web::PushSubscription < ApplicationRecord
 
   def find_or_create_access_token
     Doorkeeper::AccessToken.find_or_create_for(
-      application: Doorkeeper::Application.find_by(superapp: true),
+      application: Doorkeeper::Application.webapp,
       resource_owner: user_id || session_activation.user_id,
-      scopes: Doorkeeper::OAuth::Scopes.from_string('read write follow push'),
+      scopes: Doorkeeper::Application.webapp.scopes,
       expires_in: Doorkeeper.configuration.access_token_expires_in,
       use_refresh_token: Doorkeeper.configuration.refresh_token_enabled?
     )

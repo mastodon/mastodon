@@ -28,7 +28,7 @@ class SessionActivation < ApplicationRecord
 
   before_create :assign_access_token
 
-  DEFAULT_SCOPES = %w(read write follow).freeze
+  DEFAULT_SCOPES = Doorkeeper::Application.webapp.scopes.without('push').freeze
 
   scope :latest, -> { order(id: :desc) }
 
@@ -66,9 +66,9 @@ class SessionActivation < ApplicationRecord
 
   def access_token_attributes
     {
-      application_id: Doorkeeper::Application.find_by(superapp: true)&.id,
+      application_id: Doorkeeper::Application.webapp.id,
       resource_owner_id: user_id,
-      scopes: DEFAULT_SCOPES.join(' '),
+      scopes: DEFAULT_SCOPES,
       expires_in: Doorkeeper.configuration.access_token_expires_in,
       use_refresh_token: Doorkeeper.configuration.refresh_token_enabled?,
     }
