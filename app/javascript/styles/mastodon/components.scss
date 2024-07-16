@@ -10440,6 +10440,9 @@ noscript {
   &__avatar-group {
     display: flex;
     gap: 8px;
+    height: 28px;
+    overflow-y: hidden;
+    flex-wrap: wrap;
   }
 
   .status {
