@@ -8,7 +8,7 @@ class NotificationGroup < ActiveModelSerializers::Model
 
   def self.from_notification(notification, max_id: nil)
     if notification.group_key.present?
-      # TODO: caching and preloading
+      # TODO: caching, and, if caching, preloading
       scope = notification.account.notifications.where(group_key: notification.group_key)
       scope = scope.where(id: ..max_id) if max_id.present?
 

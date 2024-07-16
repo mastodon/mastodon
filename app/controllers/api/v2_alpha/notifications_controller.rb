@@ -15,7 +15,12 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
       @relationships = StatusRelationshipsPresenter.new(target_statuses_from_notifications, current_user&.account_id)
     end
 
-    render json: @notifications.map { |notification| NotificationGroup.from_notification(notification, max_id: @group_metadata.dig(notification.group_key, :max_id)) }, each_serializer: REST::NotificationGroupSerializer, relationships: @relationships, group_metadata: @group_metadata
+    grouped_notifications = @notifications.map { |notification| NotificationGroup.from_notification(notification, max_id: @group_metadata.dig(notification.group_key, :max_id)) }
+
+    # Preload associations to avoid N+1s
+    ActiveRecord::Associations::Preloader.new(records: grouped_notifications.flat_map(&:sample_accounts), associations: [:account_stat, { user: :role }]).call
+
+    render json: grouped_notifications, each_serializer: REST::NotificationGroupSerializer, relationships: @relationships, group_metadata: @group_metadata
   end
 
   def show
