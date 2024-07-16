@@ -47,6 +47,7 @@ RSpec.describe 'Reports' do
 
       expect(target_account.targeted_reports).to_not be_empty
       expect(target_account.targeted_reports.first.comment).to eq 'reasons'
+      expect(target_account.targeted_reports.first.application).to eq token.application
 
       expect(emails.size)
         .to eq(1)

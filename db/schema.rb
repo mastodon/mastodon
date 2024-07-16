@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_12_064044) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_13_171909) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -929,6 +929,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_12_064044) do
     t.integer "category", default: 0, null: false
     t.datetime "action_taken_at", precision: nil
     t.bigint "rule_ids", array: true
+    t.bigint "application_id"
     t.index ["account_id"], name: "index_reports_on_account_id"
     t.index ["action_taken_by_account_id"], name: "index_reports_on_action_taken_by_account_id", where: "(action_taken_by_account_id IS NOT NULL)"
     t.index ["assigned_account_id"], name: "index_reports_on_assigned_account_id", where: "(assigned_account_id IS NOT NULL)"
@@ -1361,6 +1362,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_12_064044) do
   add_foreign_key "reports", "accounts", column: "assigned_account_id", on_delete: :nullify
   add_foreign_key "reports", "accounts", column: "target_account_id", name: "fk_eb37af34f0", on_delete: :cascade
   add_foreign_key "reports", "accounts", name: "fk_4b81f7522c", on_delete: :cascade
+  add_foreign_key "reports", "oauth_applications", column: "application_id", on_delete: :nullify
   add_foreign_key "scheduled_statuses", "accounts", on_delete: :cascade
   add_foreign_key "session_activations", "oauth_access_tokens", column: "access_token_id", name: "fk_957e5bda89", on_delete: :cascade
   add_foreign_key "session_activations", "users", name: "fk_e5fda67334", on_delete: :cascade
