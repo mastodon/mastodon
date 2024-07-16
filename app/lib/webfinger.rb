@@ -26,7 +26,7 @@ class Webfinger
     private
 
     def links
-      @links ||= @json['links'].index_by { |link| link['rel'] }
+      @links ||= @json.fetch('links', []).index_by { |link| link['rel'] }
     end
 
     def validate_response!
