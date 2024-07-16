@@ -15,6 +15,12 @@ GIT
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
 
+GIT
+  remote: https://github.com/test-prof/test-prof.git
+  revision: 0259a76d2242a63d01556100ee208d29eaf1429c
+  specs:
+    test-prof (1.4.0.rc.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -836,7 +842,6 @@ GEM
       unicode-display_width (>= 1.1.1, < 3)
     terrapin (1.0.1)
       climate_control
-    test-prof (1.3.3.1)
     thor (1.3.1)
     tilt (2.3.0)
     timeout (0.4.1)
@@ -1051,7 +1056,7 @@ DEPENDENCIES
   stackprof
   stoplight (~> 4.1)
   strong_migrations
-  test-prof
+  test-prof!
   thor (~> 1.2)
   tty-prompt (~> 0.23)
   twitter-text (~> 3.1.0)

@@ -209,7 +209,7 @@ group :development, :test do
   gem 'memory_profiler', require: false
   gem 'ruby-prof', require: false
   gem 'stackprof', require: false
-  gem 'test-prof'
+  gem 'test-prof', github: 'test-prof/test-prof'
 
   # RSpec runner for rails
   gem 'rspec-rails', '~> 6.0'
