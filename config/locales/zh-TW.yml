@@ -227,7 +227,7 @@ zh-TW:
         update_user_role: 更新角色
       actions:
         approve_appeal_html: "%{name} 已批准來自 %{target} 的審核決定申訴"
-        approve_user_html: "%{name} 已批准從 %{target} 而來的註冊"
+        approve_user_html: "%{name} 已批准自 %{target} 而來的註冊"
         assigned_to_self_report_html: "%{name} 將報告 %{target} 指派給自己"
         change_email_user_html: "%{name} 已變更使用者 %{target} 的電子郵件地址"
         change_role_user_html: "%{name} 已變更 %{target} 的角色"
@@ -264,10 +264,10 @@ zh-TW:
         memorialize_account_html: "%{name} 將 %{target} 設定為追悼帳號"
         promote_user_html: "%{name} 對使用者 %{target} 已進行晉級操作"
         reject_appeal_html: "%{name} 已回絕來自 %{target} 的審核決定申訴"
-        reject_user_html: "%{name} 已回絕從 %{target} 而來的註冊"
+        reject_user_html: "%{name} 已回絕自 %{target} 而來的註冊"
         remove_avatar_user_html: "%{name} 已移除 %{target} 的大頭貼"
         reopen_report_html: "%{name} 重新開啟 %{target} 的檢舉"
-        resend_user_html: "%{name} 已重新發送驗證信給 %{target}"
+        resend_user_html: "%{name} 已重新發送驗證信至 %{target}"
         reset_password_user_html: "%{name} 已重新設定使用者 %{target} 的密碼"
         resolve_report_html: "%{name} 已處理 %{target} 的檢舉"
         sensitive_account_html: "%{name} 將 %{target} 的媒體檔案標記為敏感內容"
@@ -383,7 +383,7 @@ zh-TW:
         confirm: 停權
         permanent_action: 撤銷停權將不會回復任何資料或跟隨關係
         preamble_html: 您將要停權 <strong>%{domain}</strong> 及其子網域。
-        remove_all_data: 此操作將從您伺服器移除所有來自此網域帳號之內容、媒體、個人檔案資料。
+        remove_all_data: 此操作將自您伺服器移除所有來自此網域帳號之內容、媒體、個人檔案資料。
         stop_communication: 您伺服器將停止與這些伺服器交流。
         title: 確認對 %{domain} 網域之封鎖
         undo_relationships: 此操作將撤銷任何您伺服器與此伺服器帳號間之跟隨關係。
@@ -555,11 +555,11 @@ zh-TW:
     relays:
       add_new: 新增中繼站
       delete: 刪除
-      description_html: "<strong>聯邦中繼站</strong> 是種中繼伺服器，會於訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦宇宙中探索內容</strong>，而無須本地使用者手動跟隨遠端伺服器的其他使用者。"
+      description_html: "<strong>聯邦中繼站</strong> 是種中繼伺服器，會於訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器自聯邦宇宙中探索內容</strong>，而無須本地使用者手動跟隨遠端伺服器的其他使用者。"
       disable: 停用
       disabled: 停用
       enable: 啟用
-      enable_hint: 啟用後，您的伺服器將訂閱該中繼的所有公開文章，並將會此伺服器的公開文章發送給它。
+      enable_hint: 啟用後，您的伺服器將訂閱該中繼的所有公開文章，並將此伺服器的公開文章向它發送。
       enabled: 已啟用
       inbox_url: 中繼 URL
       pending: 等待中繼站審核
@@ -648,7 +648,7 @@ zh-TW:
         delete_data_html: 於即日起 30 天後刪除 <strong>@%{acct}</strong>之個人檔案與內容，除非他們於期限前被解除停權
         preview_preamble_html: "<strong>@%{acct}</strong> 將收到關於以下內容之警告："
         record_strike_html: 紀錄關於 <strong>@%{acct}</strong>之警示有助於您升級對此帳號未來違規處理
-        send_email_html: 寄一封警告 e-mail 給 <strong>@%{acct}</strong>
+        send_email_html: 寄一封警告 e-mail 至 <strong>@%{acct}</strong>
         warning_placeholder: 選填之其他站務動作理由。
       target_origin: 檢舉帳號之來源
       title: 檢舉
@@ -671,7 +671,7 @@ zh-TW:
       description_html: 透過<strong>使用者角色</strong>，您可以自訂您的使用者可以存取 Mastodon 的哪些功能與區域。
       edit: 編輯「%{name}」角色
       everyone: 預設權限
-      everyone_full_description_html: 這是會影響<strong>所有使用者</strong>的<strong>基本角色</strong>，即使是那些沒有被分配角色的使用者也一樣。其他所有的角色都從它繼承權限。
+      everyone_full_description_html: 這是會影響<strong>所有使用者</strong>的<strong>基本角色</strong>，即使是那些沒有被分配角色的使用者也一樣。其他所有的角色都自它繼承權限。
       permissions_count:
         other: "%{count} 個權限"
       privileges:
@@ -757,8 +757,8 @@ zh-TW:
         title: 探索
         trends: 熱門趨勢
       domain_blocks:
-        all: 給任何人
-        disabled: 給沒有人
+        all: 至任何人
+        disabled: 至沒有人
         users: 套用至所有登入的本站使用者
       registrations:
         moderation_recommandation: 對所有人開放註冊之前，請確保您有人手充足且反應靈敏的管理員團隊！
@@ -797,7 +797,7 @@ zh-TW:
       back_to_account: 返回帳號資訊頁面
       back_to_report: 回到檢舉報告頁面
       batch:
-        remove_from_report: 從檢舉報告中移除
+        remove_from_report: 自檢舉報告中移除
         report: 檢舉報告
       deleted: 已刪除
       favourites: 最愛
@@ -1055,7 +1055,7 @@ zh-TW:
     dont_have_your_security_key: 找不到您的安全金鑰？
     forgot_password: 忘記密碼？
     invalid_reset_password_token: 密碼重設 token 無效或已過期。請重新設定密碼。
-    link_to_otp: 請從您手機輸入兩階段驗證 (2FA) 或備用驗證碼
+    link_to_otp: 請自您手機輸入兩階段驗證 (2FA) 或備用驗證碼
     link_to_webauth: 使用您的安全金鑰
     log_in_with: 登入，使用
     login: 登入
@@ -1138,7 +1138,7 @@ zh-TW:
       x_seconds: "%{count}秒"
   deletes:
     challenge_not_passed: 您所輸入的資料不正確
-    confirm_password: 輸入您現在的密碼以驗證身份
+    confirm_password: 輸入您目前的密碼以驗證身份
     confirm_username: 請輸入您的使用者名稱以作確認
     proceed: 刪除帳號
     success_msg: 您的帳號已經成功刪除
@@ -1170,7 +1170,7 @@ zh-TW:
       recipient: 此致
       reject_appeal: 駁回申訴
       status: '嘟文編號 #%{id}'
-      status_removed: 嘟文已從系統中移除
+      status_removed: 嘟文已自系統中移除
       title: "%{action} 來自 %{date}"
       title_actions:
         delete_statuses: 嘟文移除
@@ -1238,10 +1238,10 @@ zh-TW:
       add_keyword: 新增關鍵字
       keywords: 關鍵字
       statuses: 各別嘟文
-      statuses_hint_html: 此過濾器會套用至所選之各別嘟文，無論其是否符合下列關鍵字。<a href="%{path}">審閱或從過濾條件移除嘟文</a>。
+      statuses_hint_html: 此過濾器會套用至所選之各別嘟文，無論其是否符合下列關鍵字。<a href="%{path}">審閱或自過濾條件移除嘟文</a>。
       title: 編輯過濾條件
     errors:
-      deprecated_api_multiple_keywords: 這些參數無法從此應用程式中更改，因為它們適用於一或多個過濾器關鍵字。請使用較新的應用程式或是網頁介面。
+      deprecated_api_multiple_keywords: 這些參數無法自此應用程式中更改，因為它們適用於一或多個過濾器關鍵字。請使用較新的應用程式或是網頁介面。
       invalid_context: 沒有提供內文或內文無效
     index:
       contexts: "%{contexts} 中的過濾器"
@@ -1262,7 +1262,7 @@ zh-TW:
     statuses:
       back_to_filter: 回到過濾器
       batch:
-        remove: 從過濾器中移除
+        remove: 自過濾器中移除
       index:
         hint: 此過濾器會套用至所選之各別嘟文，不管它們有無符合其他條件。您可以從網頁介面中將更多嘟文加入至此過濾器。
         title: 已過濾之嘟文
@@ -1419,7 +1419,7 @@ zh-TW:
     on_cooldown: 您最近已轉移過您的帳號。此功能將於 %{count} 天後可再度使用。
     past_migrations: 以往的轉移紀錄
     proceed_with_move: 移動跟隨者
-    redirected_msg: 您的帳號現在指向 %{acct}
+    redirected_msg: 您的帳號目前重導向至 %{acct}。
     redirecting_to: 您的帳號目前正被重新導向到 %{acct}
     set_redirect: 設定重新導向
     warning:
@@ -1552,7 +1552,7 @@ zh-TW:
     mutual: 跟隨彼此
     primary: 主要
     relationship: 關係
-    remove_selected_domains: 從所選取網域中移除所有跟隨者
+    remove_selected_domains: 自所選取網域中移除所有跟隨者
     remove_selected_followers: 移除選取的跟隨者
     remove_selected_follows: 取消跟隨選取的使用者
     status: 帳號狀態
@@ -1599,7 +1599,7 @@ zh-TW:
     current_session: 目前的 session
     date: 日期
     description: "%{platform} 上的 %{browser}"
-    explanation: 這些是現在正登入於您 Mastodon 帳號的瀏覽器。
+    explanation: 這些是目前正登入於您 Mastodon 帳號的瀏覽器。
     ip: IP 位址
     platforms:
       adobe_air: Adobe Air
