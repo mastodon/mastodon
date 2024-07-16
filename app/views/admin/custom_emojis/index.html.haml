@@ -55,9 +55,9 @@
 
           = f.button safe_join([material_symbol('visibility_off'), t('admin.custom_emojis.unlist')]), name: :unlist, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
 
-        = f.button safe_join([material_symbol('power'), t('admin.custom_emojis.enable')]), name: :enable, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        = f.button safe_join([material_symbol('radio_button_checked'), t('admin.custom_emojis.enable')]), name: :enable, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
 
-        = f.button safe_join([material_symbol('power_off'), t('admin.custom_emojis.disable')]), name: :disable, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        = f.button safe_join([material_symbol('radio_button_unchecked'), t('admin.custom_emojis.disable')]), name: :disable, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
 
         - if can?(:destroy, :custom_emoji)
           = f.button safe_join([material_symbol('close'), t('admin.custom_emojis.delete')]), name: :delete, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
