@@ -18,6 +18,7 @@ export const NotificationGroupWithStatus: React.FC<{
   icon: IconProp;
   iconId: string;
   statusId?: string;
+  actions?: JSX.Element;
   count: number;
   accountIds: string[];
   timestamp: string;
@@ -30,6 +31,7 @@ export const NotificationGroupWithStatus: React.FC<{
   iconId,
   timestamp,
   accountIds,
+  actions,
   count,
   statusId,
   labelRenderer,
@@ -66,7 +68,11 @@ export const NotificationGroupWithStatus: React.FC<{
 
       <div className='notification-group__main'>
         <div className='notification-group__main__header'>
-          <AvatarGroup accountIds={accountIds} />
+          <div className='notification-group__main__header__wrapper'>
+            <AvatarGroup accountIds={accountIds} />
+
+            {actions}
+          </div>
 
           <div className='notification-group__main__header__label'>
             {label}

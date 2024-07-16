@@ -10379,6 +10379,18 @@ noscript {
     color: $red-bookmark;
   }
 
+  &--follow-request &__actions {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+
+    .icon-button {
+      border: 1px solid var(--background-border-color);
+      border-radius: 50%;
+      padding: 1px;
+    }
+  }
+
   &__main {
     display: flex;
     flex-direction: column;
@@ -10389,6 +10401,11 @@ noscript {
       display: flex;
       flex-direction: column;
       gap: 8px;
+
+      &__wrapper {
+        display: flex;
+        justify-content: space-between;
+      }
 
       &__label {
         display: flex;
