@@ -227,7 +227,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
   context 'with statuses referencing other statuses', :inline_jobs do
     before do
-      stub_const 'ActivityPub::FetchRemoteStatusService::DISCOVERIES_PER_REQUEST', 5
+      stub_const 'ActivityPub::FetchRemoteStatusService::DISCOVERIES_PER_REQUEST', 3
     end
 
     context 'when using inReplyTo' do
@@ -243,7 +243,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
       end
 
       before do
-        8.times do |i|
+        5.times do |i|
           status_json = {
             '@context': 'https://www.w3.org/ns/activitystreams',
             id: "https://foo.bar/@foo/#{i}",
@@ -257,12 +257,10 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
         end
       end
 
-      it 'creates at least some statuses' do
-        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }.to change { sender.statuses.count }.by_at_least(2)
-      end
-
-      it 'creates no more account than the limit allows' do
-        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }.to change { sender.statuses.count }.by_at_most(5)
+      it 'creates statuses but not more than limit allows' do
+        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }
+          .to change { sender.statuses.count }.by_at_least(2)
+          .and change { sender.statuses.count }.by_at_most(3)
       end
     end
 
@@ -287,7 +285,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
       end
 
       before do
-        8.times do |i|
+        5.times do |i|
           status_json = {
             '@context': 'https://www.w3.org/ns/activitystreams',
             id: "https://foo.bar/@foo/#{i}",
@@ -309,12 +307,10 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
         end
       end
 
-      it 'creates at least some statuses' do
-        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }.to change { sender.statuses.count }.by_at_least(2)
-      end
-
-      it 'creates no more account than the limit allows' do
-        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }.to change { sender.statuses.count }.by_at_most(5)
+      it 'creates statuses but not more than limit allows' do
+        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }
+          .to change { sender.statuses.count }.by_at_least(2)
+          .and change { sender.statuses.count }.by_at_most(3)
       end
     end
   end
