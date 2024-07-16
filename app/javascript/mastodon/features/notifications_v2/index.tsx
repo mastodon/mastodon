@@ -276,6 +276,13 @@ export const Notifications: React.FC<{
     handleMoveDown,
   ]);
 
+  const prepend = (
+    <>
+      {needsNotificationPermission && <NotificationsPermissionBanner />}
+      <FilteredNotificationsBanner />
+    </>
+  );
+
   const scrollContainer = signedIn ? (
     <ScrollableList
       scrollKey={`notifications-${columnId}`}
@@ -284,7 +291,7 @@ export const Notifications: React.FC<{
       showLoading={isLoading && notifications.length === 0}
       hasMore={hasMore}
       numPending={numPending}
-      prepend={needsNotificationPermission && <NotificationsPermissionBanner />}
+      prepend={prepend}
       alwaysPrepend
       emptyMessage={emptyMessage}
       onLoadMore={handleLoadOlder}
@@ -332,8 +339,6 @@ export const Notifications: React.FC<{
       </ColumnHeader>
 
       {filterBar}
-
-      <FilteredNotificationsBanner />
 
       {scrollContainer}
 
