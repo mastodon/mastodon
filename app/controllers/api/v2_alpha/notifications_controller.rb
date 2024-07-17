@@ -19,7 +19,15 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
       ActiveRecord::Associations::Preloader.new(records: @grouped_notifications.flat_map(&:sample_accounts), associations: [:account_stat, { user: :role }]).call
     end
 
-    render json: @grouped_notifications, each_serializer: REST::NotificationGroupSerializer, relationships: @relationships, group_metadata: @group_metadata
+    MastodonOTELTracer.in_span('Api::V2Alpha::NotificationsController#index rendering') do |span|
+      span.add_attributes(
+        'notifications.sample_accounts' => @grouped_notifications.flat_map(&:sample_accounts).size,
+        'notifications.unique_sample_accounts' => @grouped_notifications.flat_map(&:sample_accounts).pluck(:id).uniq.size,
+        'notifications.count' => @grouped_notifications.size
+      )
+
+      render json: @grouped_notifications, each_serializer: REST::NotificationGroupSerializer, relationships: @relationships, group_metadata: @group_metadata
+    end
   end
 
   def show
@@ -40,29 +48,35 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
   private
 
   def load_notifications
-    notifications = browserable_account_notifications.includes(from_account: [:account_stat, :user]).to_a_grouped_paginated_by_id(
-      limit_param(DEFAULT_NOTIFICATIONS_LIMIT),
-      params_slice(:max_id, :since_id, :min_id)
-    )
+    MastodonOTELTracer.in_span('Api::V2Alpha::NotificationsController#load_notifications') do
+      notifications = browserable_account_notifications.includes(from_account: [:account_stat, :user]).to_a_grouped_paginated_by_id(
+        limit_param(DEFAULT_NOTIFICATIONS_LIMIT),
+        params_slice(:max_id, :since_id, :min_id)
+      )
 
-    Notification.preload_cache_collection_target_statuses(notifications) do |target_statuses|
-      preload_collection(target_statuses, Status)
+      Notification.preload_cache_collection_target_statuses(notifications) do |target_statuses|
+        preload_collection(target_statuses, Status)
+      end
     end
   end
 
   def load_group_metadata
     return {} if @notifications.empty?
 
-    browserable_account_notifications
-      .where(group_key: @notifications.filter_map(&:group_key))
-      .where(id: (@notifications.last.id)..(@notifications.first.id))
-      .group(:group_key)
-      .pluck(:group_key, 'min(notifications.id) as min_id', 'max(notifications.id) as max_id', 'max(notifications.created_at) as latest_notification_at')
-      .to_h { |group_key, min_id, max_id, latest_notification_at| [group_key, { min_id: min_id, max_id: max_id, latest_notification_at: latest_notification_at }] }
+    MastodonOTELTracer.in_span('Api::V2Alpha::NotificationsController#load_group_metadata') do
+      browserable_account_notifications
+        .where(group_key: @notifications.filter_map(&:group_key))
+        .where(id: (@notifications.last.id)..(@notifications.first.id))
+        .group(:group_key)
+        .pluck(:group_key, 'min(notifications.id) as min_id', 'max(notifications.id) as max_id', 'max(notifications.created_at) as latest_notification_at')
+        .to_h { |group_key, min_id, max_id, latest_notification_at| [group_key, { min_id: min_id, max_id: max_id, latest_notification_at: latest_notification_at }] }
+    end
   end
 
   def load_grouped_notifications
-    @notifications.map { |notification| NotificationGroup.from_notification(notification, max_id: @group_metadata.dig(notification.group_key, :max_id)) }
+    MastodonOTELTracer.in_span('Api::V2Alpha::NotificationsController#load_grouped_notifications') do
+      @notifications.map { |notification| NotificationGroup.from_notification(notification, max_id: @group_metadata.dig(notification.group_key, :max_id)) }
+    end
   end
 
   def browserable_account_notifications
