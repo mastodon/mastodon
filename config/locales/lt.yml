@@ -542,6 +542,8 @@ lt:
         manage_taxonomies_description: Leidžia naudotojams peržiūrėti tendencingą turinį ir atnaujinti saitažodžių nustatymus
         manage_user_access_description: Leidžia naudotojams išjungti kitų naudotojų dvigubo tapatybės nustatymą, pakeisti el. pašto adresą ir iš naujo nustatyti slaptažodį.
     settings:
+      branding:
+        title: Firminio ženklo kūrimas
       captcha_enabled:
         desc_html: Tai priklauso nuo hCaptcha išorinių skriptų, kurie gali kelti susirūpinimą dėl saugumo ir privatumo. Be to, <strong>dėl to registracijos procesas kai kuriems žmonėms (ypač neįgaliesiems) gali būti gerokai sunkiau prieinami</strong>. Dėl šių priežasčių apsvarstyk alternatyvias priemones, pavyzdžiui, patvirtinimu arba kvietimu grindžiamą registraciją.
       content_retention:
@@ -663,7 +665,19 @@ lt:
       edit_preset: Keisti įspėjimo nustatymus
       title: Įspėjamieji numatytieji
     webhooks:
+      add_new: Pridėti galutinį tašką
+      delete: Ištrinti
       description_html: "<strong>Webhook</strong> leidžia Mastodon siųsti <strong>realaus laiko pranešimus</strong> apie pasirinktus įvykius į tavo programą, kad programa galėtų <strong>automatiškai paleisti reakcijas</strong>."
+      disable: Išjungti
+      disabled: Išjungta
+      edit: Redaguoti galutinį tašką
+      enable: Įjungti
+      enabled: Aktyvi
+      enabled_events:
+        few: "%{count} įjungti įvykiai"
+        many: "%{count} įjungto įvykio"
+        one: "%{count} įjungtas įvykis"
+        other: "%{count} įjungtų įvykių"
       events: Įvykiai
   admin_mailer:
     auto_close_registrations:
@@ -909,6 +923,7 @@ lt:
   login_activities:
     authentication_methods:
       otp: dvigubas tapatybės nustatymo programėlė
+      webauthn: saugumo raktai
     description_html: Jei pastebėjei neatpažįstamą veiklą, apsvarstyk galimybę pakeisti slaptažodį ir įjungti dvigubą tapatybės nustatymą.
     empty: Tapatybės nustatymas istorijos nėra
     title: Tapatybės nustatymo istorija
@@ -1049,6 +1064,7 @@ lt:
     relationships: Sekimai ir sekėjai
     severed_relationships: Nutrūkę sąryšiai
     two_factor_authentication: Dvigubas tapatybės nustatymas
+    webauthn_authentication: Saugumo raktai
   severed_relationships:
     download: Atsisiųsti (%{count})
     preamble: Užblokavus domeną arba prižiūrėtojams nusprendus pristabdyti nuotolinio serverio veiklą, gali prarasti sekimus ir sekėjus. Kai taip atsitiks, galėsi atsisiųsti nutrauktų sąryšių sąrašus, kad juos patikrinti ir galbūt importuoti į kitą serverį.
@@ -1110,6 +1126,7 @@ lt:
     recovery_codes: Atsarginio atkūrimo kodai
     recovery_codes_regenerated: Atkūrimo kodai sėkmingai sugeneruoti
     recovery_instructions_html: Jeigu prarandate prieiga prie telefono, jūs galite naudoti atkūrimo kodus esančius žemiau, kad atgautumėte priega prie savo paskyros.<strong>Laikykite atkūrimo kodus saugiai</strong> Pavyzdžiui, galite norėti juos išspausdinti, ir laikyti kartu su kitais svarbiais dokumentais.
+    webauthn: Saugumo raktai
   user_mailer:
     appeal_approved:
       action: Paskyros nustatymai
@@ -1196,9 +1213,11 @@ lt:
     verification: Patvirtinimas
     verified_links: Tavo patikrintos nuorodos
   webauthn_credentials:
+    add: Pridėti naują saugumo raktą
     create:
       error: Kilo problema pridedant saugumo raktą. Bandyk dar kartą.
       success: Tavo saugumo raktas buvo sėkmingai pridėtas.
+    delete: Ištrinti
     delete_confirmation: Ar tikrai nori ištrinti šį saugumo raktą?
     description_html: Jei įjungsi <strong>saugumo rakto tapatybės nustatymą</strong>, prisijungiant reikės naudoti vieną iš savo saugumo raktų.
     destroy:
