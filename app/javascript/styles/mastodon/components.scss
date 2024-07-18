@@ -1611,14 +1611,19 @@ body > [data-popper-placement] {
   }
 }
 
-.status__wrapper-direct {
+.status__wrapper-direct,
+.notification-ungrouped--direct {
   background: rgba($ui-highlight-color, 0.05);
 
   &:focus {
-    background: rgba($ui-highlight-color, 0.05);
+    background: rgba($ui-highlight-color, 0.1);
   }
+}
 
-  .status__prepend {
+.status__wrapper-direct,
+.notification-ungrouped--direct {
+  .status__prepend,
+  .notification-ungrouped__header {
     color: $highlight-text-color;
   }
 }
@@ -2209,41 +2214,28 @@ a.account__display-name {
   }
 }
 
-.notification__relationships-severance-event,
-.notification__moderation-warning {
-  display: flex;
-  gap: 16px;
+.notification-group--link {
   color: $secondary-text-color;
   text-decoration: none;
-  align-items: flex-start;
-  padding: 16px 32px;
-  border-bottom: 1px solid var(--background-border-color);
 
-  &:hover {
-    color: $primary-text-color;
-  }
-
-  .icon {
-    padding: 2px;
-    color: $highlight-text-color;
-  }
-
-  &__content {
+  .notification-group__main {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
     flex-grow: 1;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 15px;
+    line-height: 22px;
 
-    strong {
+    strong,
+    bdi {
       font-weight: 700;
     }
 
     .link-button {
       font-size: inherit;
       line-height: inherit;
+      font-weight: inherit;
     }
   }
 }
@@ -10193,8 +10185,8 @@ noscript {
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--background-border-color);
-  padding: 24px 32px;
-  gap: 16px;
+  padding: 16px 24px;
+  gap: 8px;
   color: $darker-text-color;
   text-decoration: none;
 
@@ -10204,10 +10196,8 @@ noscript {
     color: $secondary-text-color;
   }
 
-  .icon {
-    width: 24px;
-    height: 24px;
-    padding: 2px;
+  .notification-group__icon {
+    color: inherit;
   }
 
   &__text {
@@ -10342,6 +10332,251 @@ noscript {
     &:active {
       color: $highlight-text-color;
     }
+  }
+}
+
+.notification-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--background-border-color);
+
+  &__icon {
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    color: $dark-text-color;
+
+    .icon {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  &--follow &__icon,
+  &--follow-request &__icon {
+    color: $highlight-text-color;
+  }
+
+  &--favourite &__icon {
+    color: $gold-star;
+  }
+
+  &--reblog &__icon {
+    color: $valid-value-color;
+  }
+
+  &--relationships-severance-event &__icon,
+  &--admin-report &__icon,
+  &--admin-sign-up &__icon {
+    color: $dark-text-color;
+  }
+
+  &--moderation-warning &__icon {
+    color: $red-bookmark;
+  }
+
+  &--follow-request &__actions {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+
+    .icon-button {
+      border: 1px solid var(--background-border-color);
+      border-radius: 50%;
+      padding: 1px;
+    }
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1 1 auto;
+    overflow: hidden;
+
+    &__header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      &__wrapper {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &__label {
+        display: flex;
+        gap: 8px;
+        font-size: 15px;
+        line-height: 22px;
+        color: $darker-text-color;
+
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
+
+        bdi {
+          font-weight: 700;
+          color: $primary-text-color;
+        }
+
+        time {
+          color: $dark-text-color;
+        }
+      }
+    }
+
+    &__status {
+      border: 1px solid var(--background-border-color);
+      border-radius: 8px;
+      padding: 8px;
+    }
+  }
+
+  &__avatar-group {
+    display: flex;
+    gap: 8px;
+    height: 28px;
+    overflow-y: hidden;
+    flex-wrap: wrap;
+  }
+
+  .status {
+    padding: 0;
+    border: 0;
+  }
+
+  &__embedded-status {
+    &__account {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 8px;
+      color: $dark-text-color;
+
+      bdi {
+        color: inherit;
+      }
+    }
+
+    .account__avatar {
+      opacity: 0.5;
+    }
+
+    &__content {
+      display: -webkit-box;
+      font-size: 15px;
+      line-height: 22px;
+      color: $dark-text-color;
+      cursor: pointer;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      max-height: 4 * 22px;
+      overflow: hidden;
+
+      p,
+      a {
+        color: inherit;
+      }
+    }
+  }
+}
+
+.notification-ungrouped {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--background-border-color);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: $dark-text-color;
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 500;
+    padding-inline-start: 24px;
+    margin-bottom: 16px;
+
+    &__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+
+      .icon {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  .status {
+    border: 0;
+    padding: 0;
+
+    &__avatar {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .status__wrapper-direct {
+    background: transparent;
+  }
+
+  $icon-margin: 48px; // 40px avatar + 8px gap
+
+  .status__content,
+  .status__action-bar,
+  .media-gallery,
+  .video-player,
+  .audio-player,
+  .attachment-list,
+  .picture-in-picture-placeholder,
+  .more-from-author,
+  .status-card,
+  .hashtag-bar {
+    margin-inline-start: $icon-margin;
+    width: calc(100% - $icon-margin);
+  }
+
+  .more-from-author {
+    width: calc(100% - $icon-margin + 2px);
+  }
+
+  .status__content__read-more-button {
+    margin-inline-start: $icon-margin;
+  }
+
+  .notification__report {
+    border: 0;
+    padding: 0;
+  }
+}
+
+.notification-group--unread,
+.notification-ungrouped--unread {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+    width: 100%;
+    height: 100%;
+    border-inline-start: 4px solid $highlight-text-color;
+    pointer-events: none;
   }
 }
 

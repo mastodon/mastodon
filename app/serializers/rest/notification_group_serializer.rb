@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class REST::NotificationGroupSerializer < ActiveModel::Serializer
+  # Please update app/javascript/api_types/notification.ts when making changes to the attributes
   attributes :group_key, :notifications_count, :type, :most_recent_notification_id
 
   attribute :page_min_id, if: :paginated?

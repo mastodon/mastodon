@@ -30,6 +30,7 @@ class Notification < ApplicationRecord
     'Poll' => :poll,
   }.freeze
 
+  # Please update app/javascript/api_types/notification.ts if you change this
   PROPERTIES = {
     mention: {
       filterable: true,

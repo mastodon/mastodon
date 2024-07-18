@@ -2,10 +2,13 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
+import { initializeNotifications } from 'mastodon/actions/notifications_migration';
+
 import { showAlert } from '../../../actions/alerts';
 import { openModal } from '../../../actions/modal';
+import { clearNotifications } from '../../../actions/notification_groups';
 import { updateNotificationsPolicy } from '../../../actions/notification_policies';
-import { setFilter, clearNotifications, requestBrowserPermission } from '../../../actions/notifications';
+import { setFilter, requestBrowserPermission } from '../../../actions/notifications';
 import { changeAlerts as changePushNotifications } from '../../../actions/push_notifications';
 import { changeSetting } from '../../../actions/settings';
 import ColumnSettings from '../components/column_settings';
@@ -58,6 +61,9 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       } else {
         dispatch(changeSetting(['notifications', ...path], checked));
       }
+    } else if(path[0] === 'groupingBeta') {
+      dispatch(changeSetting(['notifications', ...path], checked));
+      dispatch(initializeNotifications());
     } else {
       dispatch(changeSetting(['notifications', ...path], checked));
     }

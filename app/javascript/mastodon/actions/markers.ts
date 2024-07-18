@@ -75,9 +75,17 @@ interface MarkerParam {
 }
 
 function getLastNotificationId(state: RootState): string | undefined {
-  // @ts-expect-error state.notifications is not yet typed
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
-  return state.getIn(['notifications', 'lastReadId']);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+  const enableBeta = state.settings.getIn(
+    ['notifications', 'groupingBeta'],
+    false,
+  ) as boolean;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  return enableBeta
+    ? state.notificationGroups.lastReadId
+    : // @ts-expect-error state.notifications is not yet typed
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      state.getIn(['notifications', 'lastReadId']);
 }
 
 const buildPostMarkersParams = (state: RootState) => {
