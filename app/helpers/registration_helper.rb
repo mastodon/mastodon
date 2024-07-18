@@ -11,6 +11,10 @@ module RegistrationHelper
     Setting.registrations_mode != 'none'
   end
 
+  def omniauth_only?
+    ENV['OMNIAUTH_ONLY'] == 'true'
+  end
+
   def ip_blocked?(remote_ip)
     IpBlock.where(severity: :sign_up_block).exists?(['ip >>= ?', remote_ip.to_s])
   end
