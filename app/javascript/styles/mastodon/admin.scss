@@ -1695,7 +1695,7 @@ a.sparkline {
 
 .strike-card {
   padding: 15px;
-  border: 1px solid $gold-star;
+  border: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px;
   background: $ui-base-color;
   font-size: 15px;
@@ -1745,14 +1745,14 @@ a.sparkline {
 
   &__statuses-list {
     border-radius: 4px;
-    border: 1px solid darken($ui-base-color, 8%);
+    border: 1px solid lighten($ui-base-color, 8%);
     font-size: 13px;
     line-height: 18px;
     overflow: hidden;
 
     &__item {
       padding: 16px;
-      border-bottom: 1px solid darken($ui-base-color, 8%);
+      border-bottom: 1px solid lighten($ui-base-color, 8%);
 
       &:last-child {
         border-bottom: 0;
