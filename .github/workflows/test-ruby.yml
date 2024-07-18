@@ -138,6 +138,7 @@ jobs:
           bin/flatware fan bin/rails db:test:prepare
 
       - name: Cache RSpec persistence file
+        if: matrix.ruby-version == '.ruby-version'
         uses: actions/cache@v4
         with:
           path: |
