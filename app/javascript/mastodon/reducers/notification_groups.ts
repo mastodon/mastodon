@@ -238,7 +238,6 @@ function processNewNotification(
 }
 
 function trimNotifications(state: NotificationGroupsState) {
-  // TODO: is there more to it?
   if (state.scrolledToTop) {
     state.groups.splice(NOTIFICATIONS_TRIM_LIMIT);
   }
@@ -453,13 +452,20 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
       })
       .addCase(markNotificationsAsRead, (state) => {
         const mostRecentGroup = state.groups.find(isNotificationGroup);
-        // TODO: compareId?
-        if (mostRecentGroup?.page_max_id)
+        if (
+          mostRecentGroup?.page_max_id &&
+          compareId(state.lastReadId, mostRecentGroup.page_max_id) < 0
+        )
           state.lastReadId = mostRecentGroup.page_max_id;
       })
       .addCase(fetchMarkers.fulfilled, (state, action) => {
-        // TODO: compareId?
-        if (action.payload.markers.notifications)
+        if (
+          action.payload.markers.notifications &&
+          compareId(
+            state.lastReadId,
+            action.payload.markers.notifications.last_read_id,
+          ) < 0
+        )
           state.lastReadId = action.payload.markers.notifications.last_read_id;
       })
       .addCase(mountNotifications, (state) => {
