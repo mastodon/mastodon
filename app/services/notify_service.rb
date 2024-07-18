@@ -217,7 +217,7 @@ class NotifyService < BaseService
     hour_bucket = previous_bucket if hour_bucket < previous_bucket + MAXIMUM_GROUP_SPAN_HOURS
 
     # We do not concern ourselves with race conditions since we use hour buckets
-    redis.set(redis_key, hour_bucket, ex: MAXIMUM_GROUP_SPAN_HOURS)
+    redis.set(redis_key, hour_bucket, ex: MAXIMUM_GROUP_SPAN_HOURS.hours.to_i)
 
     "#{type_prefix}-#{hour_bucket}"
   end
