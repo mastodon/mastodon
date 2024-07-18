@@ -22,10 +22,10 @@ import { compareId } from 'mastodon/compare_id';
 import { Icon } from 'mastodon/components/icon';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
 import { useIdentity } from 'mastodon/identity_context';
-import type { NotificationGap } from 'mastodon/reducers/notifications_groups';
+import type { NotificationGap } from 'mastodon/reducers/notification_groups';
 import {
-  selectUnreadNotificationsGroupsCount,
-  selectPendingNotificationsGroupsCount,
+  selectUnreadNotificationGroupsCount,
+  selectPendingNotificationGroupsCount,
 } from 'mastodon/selectors/notifications';
 import {
   selectNeedsNotificationPermission,
@@ -63,7 +63,7 @@ const getNotifications = createSelector(
     selectSettingsNotificationsQuickFilterShow,
     selectSettingsNotificationsQuickFilterActive,
     selectSettingsNotificationsExcludedTypes,
-    (state: RootState) => state.notificationsGroups.groups,
+    (state: RootState) => state.notificationGroups.groups,
   ],
   (showFilterBar, allowedType, excludedTypes, notifications) => {
     if (!showFilterBar || allowedType === 'all') {
@@ -87,19 +87,19 @@ export const Notifications: React.FC<{
   const intl = useIntl();
   const notifications = useAppSelector(getNotifications);
   const dispatch = useAppDispatch();
-  const isLoading = useAppSelector((s) => s.notificationsGroups.isLoading);
+  const isLoading = useAppSelector((s) => s.notificationGroups.isLoading);
   const hasMore = notifications.at(-1)?.type === 'gap';
 
   const lastReadId = useAppSelector((s) =>
     selectSettingsNotificationsShowUnread(s)
-      ? s.notificationsGroups.lastReadId
+      ? s.notificationGroups.lastReadId
       : '0',
   );
 
-  const numPending = useAppSelector(selectPendingNotificationsGroupsCount);
+  const numPending = useAppSelector(selectPendingNotificationGroupsCount);
 
   const unreadNotificationsCount = useAppSelector(
-    selectUnreadNotificationsGroupsCount,
+    selectUnreadNotificationGroupsCount,
   );
 
   const isUnread = unreadNotificationsCount > 0;

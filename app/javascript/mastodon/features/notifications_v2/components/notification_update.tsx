@@ -22,7 +22,7 @@ export const NotificationUpdate: React.FC<{
     type='update'
     icon={EditIcon}
     iconId='edit'
-    accountIds={notification.sampleAccountsIds}
+    accountIds={notification.sampleAccountIds}
     count={notification.notifications_count}
     statusId={notification.statusId}
     labelRenderer={labelRenderer}

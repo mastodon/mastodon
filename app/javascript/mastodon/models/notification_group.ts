@@ -10,12 +10,12 @@ import type {
 import type { ApiReportJSON } from 'mastodon/api_types/reports';
 
 // Maximum number of avatars displayed in a notification group
-// This corresponds to the max lenght of `group.sampleAccountsIds`
+// This corresponds to the max lenght of `group.sampleAccountIds`
 export const NOTIFICATIONS_GROUP_MAX_AVATARS = 8;
 
 interface BaseNotificationGroup
   extends Omit<BaseNotificationGroupJSON, 'sample_accounts'> {
-  sampleAccountsIds: string[];
+  sampleAccountIds: string[];
 }
 
 interface BaseNotificationWithStatus<Type extends NotificationWithStatusType>
@@ -116,7 +116,7 @@ export function createNotificationGroupFromJSON(
   groupJson: ApiNotificationGroupJSON,
 ): NotificationGroup {
   const { sample_accounts, ...group } = groupJson;
-  const sampleAccountsIds = sample_accounts.map((account) => account.id);
+  const sampleAccountIds = sample_accounts.map((account) => account.id);
 
   switch (group.type) {
     case 'favourite':
@@ -128,7 +128,7 @@ export function createNotificationGroupFromJSON(
       const { status, ...groupWithoutStatus } = group;
       return {
         statusId: status.id,
-        sampleAccountsIds,
+        sampleAccountIds,
         ...groupWithoutStatus,
       };
     }
@@ -136,7 +136,7 @@ export function createNotificationGroupFromJSON(
       const { report, ...groupWithoutTargetAccount } = group;
       return {
         report: createReportFromJSON(report),
-        sampleAccountsIds,
+        sampleAccountIds,
         ...groupWithoutTargetAccount,
       };
     }
@@ -144,7 +144,7 @@ export function createNotificationGroupFromJSON(
       return {
         ...group,
         event: createAccountRelationshipSeveranceEventFromJSON(group.event),
-        sampleAccountsIds,
+        sampleAccountIds,
       };
 
     case 'moderation_warning': {
@@ -152,12 +152,12 @@ export function createNotificationGroupFromJSON(
       return {
         ...groupWithoutModerationWarning,
         moderationWarning: createAccountWarningFromJSON(moderation_warning),
-        sampleAccountsIds,
+        sampleAccountIds,
       };
     }
     default:
       return {
-        sampleAccountsIds,
+        sampleAccountIds,
         ...group,
       };
   }
@@ -167,7 +167,7 @@ export function createNotificationGroupFromNotificationJSON(
   notification: ApiNotificationJSON,
 ) {
   const group = {
-    sampleAccountsIds: [notification.account.id],
+    sampleAccountIds: [notification.account.id],
     group_key: notification.group_key,
     notifications_count: 1,
     type: notification.type,

@@ -31,7 +31,7 @@ export const NotificationReblog: React.FC<{
       type='reblog'
       icon={RepeatIcon}
       iconId='repeat'
-      accountIds={notification.sampleAccountsIds}
+      accountIds={notification.sampleAccountIds}
       statusId={notification.statusId}
       timestamp={notification.latest_page_notification_at}
       count={notification.notifications_count}

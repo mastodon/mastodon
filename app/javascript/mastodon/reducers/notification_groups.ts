@@ -74,13 +74,13 @@ function filterNotificationsForAccounts(
         group.type !== 'gap' &&
         (!onlyForType || group.type === onlyForType)
       ) {
-        const previousLength = group.sampleAccountsIds.length;
+        const previousLength = group.sampleAccountIds.length;
 
-        group.sampleAccountsIds = group.sampleAccountsIds.filter(
+        group.sampleAccountIds = group.sampleAccountIds.filter(
           (id) => !accountIds.includes(id),
         );
 
-        const newLength = group.sampleAccountsIds.length;
+        const newLength = group.sampleAccountIds.length;
         const removed = previousLength - newLength;
 
         group.notifications_count -= removed;
@@ -89,7 +89,7 @@ function filterNotificationsForAccounts(
       return group;
     })
     .filter(
-      (group) => group.type === 'gap' || group.sampleAccountsIds.length > 0,
+      (group) => group.type === 'gap' || group.sampleAccountIds.length > 0,
     );
   mergeGaps(groups);
   return groups;
@@ -212,14 +212,14 @@ function processNewNotification(
     if (
       existingGroup &&
       existingGroup.type !== 'gap' &&
-      !existingGroup.sampleAccountsIds.includes(notification.account.id) // This can happen for example if you like, then unlike, then like again the same post
+      !existingGroup.sampleAccountIds.includes(notification.account.id) // This can happen for example if you like, then unlike, then like again the same post
     ) {
       // Update the existing group
       if (
-        existingGroup.sampleAccountsIds.unshift(notification.account.id) >
+        existingGroup.sampleAccountIds.unshift(notification.account.id) >
         NOTIFICATIONS_GROUP_MAX_AVATARS
       )
-        existingGroup.sampleAccountsIds.pop();
+        existingGroup.sampleAccountIds.pop();
 
       existingGroup.most_recent_notification_id = notification.id;
       existingGroup.page_max_id = notification.id;
@@ -285,8 +285,9 @@ function updateLastReadId(
   }
 }
 
-export const notificationsGroupsReducer =
-  createReducer<NotificationGroupsState>(initialState, (builder) => {
+export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
+  initialState,
+  (builder) => {
     builder
       .addCase(fetchNotifications.fulfilled, (state, action) => {
         state.groups = action.payload.map((json) =>
@@ -431,8 +432,8 @@ export const notificationsGroupsReducer =
               const existingGroup = state.groups[existingGroupIndex];
               if (existingGroup && existingGroup.type !== 'gap') {
                 group.notifications_count += existingGroup.notifications_count;
-                group.sampleAccountsIds = group.sampleAccountsIds
-                  .concat(existingGroup.sampleAccountsIds)
+                group.sampleAccountIds = group.sampleAccountIds
+                  .concat(existingGroup.sampleAccountIds)
                   .slice(0, NOTIFICATIONS_GROUP_MAX_AVATARS);
                 state.groups.splice(existingGroupIndex, 1);
               }
@@ -497,4 +498,5 @@ export const notificationsGroupsReducer =
           state.isLoading = false;
         },
       );
-  });
+  },
+);

@@ -22,7 +22,7 @@ export const NotificationFollow: React.FC<{
     type='follow'
     icon={PersonAddIcon}
     iconId='person-add'
-    accountIds={notification.sampleAccountsIds}
+    accountIds={notification.sampleAccountIds}
     timestamp={notification.latest_page_notification_at}
     count={notification.notifications_count}
     labelRenderer={labelRenderer}

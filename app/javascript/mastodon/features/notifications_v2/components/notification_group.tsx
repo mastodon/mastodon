@@ -25,7 +25,7 @@ export const NotificationGroup: React.FC<{
   onMoveDown: (groupId: string) => void;
 }> = ({ notificationGroupId, unread, onMoveUp, onMoveDown }) => {
   const notificationGroup = useAppSelector((state) =>
-    state.notificationsGroups.groups.find(
+    state.notificationGroups.groups.find(
       (item) => item.type !== 'gap' && item.group_key === notificationGroupId,
     ),
   );

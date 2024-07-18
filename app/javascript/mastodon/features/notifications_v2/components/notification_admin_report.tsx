@@ -37,7 +37,7 @@ export const NotificationAdminReport: React.FC<{
     state.accounts.get(report.targetAccountId),
   );
   const account = useAppSelector((state) =>
-    state.accounts.get(notification.sampleAccountsIds[0] ?? '0'),
+    state.accounts.get(notification.sampleAccountIds[0] ?? '0'),
   );
 
   if (!account || !targetAccount) return null;

@@ -41,7 +41,7 @@ export const NotificationMention: React.FC<{
       type='mention'
       icon={ReplyIcon}
       iconId='reply'
-      accountIds={notification.sampleAccountsIds}
+      accountIds={notification.sampleAccountIds}
       count={notification.notifications_count}
       statusId={notification.statusId}
       labelRenderer={

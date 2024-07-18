@@ -34,7 +34,7 @@ import { NavigationPortal } from 'mastodon/components/navigation_portal';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { timelinePreview, trendsEnabled } from 'mastodon/initial_state';
 import { transientSingleColumn } from 'mastodon/is_mobile';
-import { selectUnreadNotificationsGroupsCount } from 'mastodon/selectors/notifications';
+import { selectUnreadNotificationGroupsCount } from 'mastodon/selectors/notifications';
 
 import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
@@ -64,7 +64,7 @@ const NotificationsLink = () => {
   const count = useSelector(state => state.getIn(['notifications', 'unread']));
   const intl = useIntl();
 
-  const newCount = useSelector(selectUnreadNotificationsGroupsCount);
+  const newCount = useSelector(selectUnreadNotificationGroupsCount);
 
   return (
     <ColumnLink

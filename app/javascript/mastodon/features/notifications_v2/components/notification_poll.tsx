@@ -28,11 +28,11 @@ export const NotificationPoll: React.FC<{
     type='poll'
     icon={BarChart4BarsIcon}
     iconId='bar-chart-4-bars'
-    accountIds={notification.sampleAccountsIds}
+    accountIds={notification.sampleAccountIds}
     count={notification.notifications_count}
     statusId={notification.statusId}
     labelRenderer={
-      notification.sampleAccountsIds[0] === me
+      notification.sampleAccountIds[0] === me
         ? labelRendererOwn
         : labelRendererOther
     }

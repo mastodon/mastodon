@@ -38,12 +38,12 @@ export const NotificationFollowRequest: React.FC<{
   const dispatch = useAppDispatch();
 
   const onAuthorize = useCallback(() => {
-    dispatch(authorizeFollowRequest(notification.sampleAccountsIds[0]));
-  }, [dispatch, notification.sampleAccountsIds]);
+    dispatch(authorizeFollowRequest(notification.sampleAccountIds[0]));
+  }, [dispatch, notification.sampleAccountIds]);
 
   const onReject = useCallback(() => {
-    dispatch(rejectFollowRequest(notification.sampleAccountsIds[0]));
-  }, [dispatch, notification.sampleAccountsIds]);
+    dispatch(rejectFollowRequest(notification.sampleAccountIds[0]));
+  }, [dispatch, notification.sampleAccountIds]);
 
   const actions = (
     <div className='notification-group__actions'>
@@ -67,7 +67,7 @@ export const NotificationFollowRequest: React.FC<{
       type='follow-request'
       icon={PersonAddIcon}
       iconId='person-add'
-      accountIds={notification.sampleAccountsIds}
+      accountIds={notification.sampleAccountIds}
       timestamp={notification.latest_page_notification_at}
       count={notification.notifications_count}
       labelRenderer={labelRenderer}

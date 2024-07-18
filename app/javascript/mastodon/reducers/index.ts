@@ -24,10 +24,10 @@ import { markersReducer } from './markers';
 import media_attachments from './media_attachments';
 import meta from './meta';
 import { modalReducer } from './modal';
+import { notificationGroupsReducer } from './notification_groups';
 import { notificationPolicyReducer } from './notification_policy';
 import { notificationRequestsReducer } from './notification_requests';
 import notifications from './notifications';
-import { notificationsGroupsReducer } from './notifications_groups';
 import { pictureInPictureReducer } from './picture_in_picture';
 import polls from './polls';
 import push_notifications from './push_notifications';
@@ -66,7 +66,7 @@ const reducers = {
   search,
   media_attachments,
   notifications,
-  notificationsGroups: notificationsGroupsReducer,
+  notificationGroups: notificationGroupsReducer,
   height_cache,
   custom_emojis,
   lists,

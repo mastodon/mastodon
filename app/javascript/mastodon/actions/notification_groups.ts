@@ -11,7 +11,7 @@ import type {
 } from 'mastodon/api_types/notifications';
 import { allNotificationTypes } from 'mastodon/api_types/notifications';
 import type { ApiStatusJSON } from 'mastodon/api_types/statuses';
-import type { NotificationGap } from 'mastodon/reducers/notifications_groups';
+import type { NotificationGap } from 'mastodon/reducers/notification_groups';
 import {
   selectSettingsNotificationsExcludedTypes,
   selectSettingsNotificationsQuickFilterActive,
@@ -91,7 +91,7 @@ export const fetchNotifications = createDataLoadingThunk(
 );
 
 export const fetchNotificationsGap = createDataLoadingThunk(
-  'notificationGroups/fetchGat',
+  'notificationGroups/fetchGap',
   async (params: { gap: NotificationGap }) =>
     apiFetchNotifications({ max_id: params.gap.maxId }),
 
@@ -103,7 +103,7 @@ export const fetchNotificationsGap = createDataLoadingThunk(
 );
 
 export const processNewNotificationForGroups = createAppAsyncThunk(
-  'notificationsGroups/processNew',
+  'notificationGroups/processNew',
   (notification: ApiNotificationJSON, { dispatch }) => {
     dispatchAssociatedRecords(dispatch, [notification]);
 

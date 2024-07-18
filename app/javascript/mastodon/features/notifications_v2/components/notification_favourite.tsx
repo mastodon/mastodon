@@ -31,7 +31,7 @@ export const NotificationFavourite: React.FC<{
       type='favourite'
       icon={StarIcon}
       iconId='star'
-      accountIds={notification.sampleAccountsIds}
+      accountIds={notification.sampleAccountIds}
       statusId={notification.statusId}
       timestamp={notification.latest_page_notification_at}
       count={notification.notifications_count}

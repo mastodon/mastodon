@@ -82,7 +82,7 @@ function getLastNotificationId(state: RootState): string | undefined {
   ) as boolean;
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return enableBeta
-    ? state.notificationsGroups.lastReadId
+    ? state.notificationGroups.lastReadId
     : // @ts-expect-error state.notifications is not yet typed
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       state.getIn(['notifications', 'lastReadId']);
