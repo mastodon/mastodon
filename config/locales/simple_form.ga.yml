@@ -2,47 +2,239 @@
 ga:
   simple_form:
     hints:
+      account:
+        discoverable: Seans go mbeidh do phostálacha poiblí agus do phróifíl le feiceáil nó molta i réimsí éagsúla de Mastodon agus is féidir do phróifíl a mholadh d’úsáideoirí eile.
+        display_name: D'ainm iomlán nó d'ainm spraoi.
+        fields: Do leathanach baile, forainmneacha, aois, rud ar bith is mian leat.
+        indexable: Seans go mbeidh do phostálacha poiblí le feiceáil sna torthaí cuardaigh ar Mastodon. Seans go mbeidh daoine a d’idirghníomhaigh le do phostálacha in ann iad a chuardach beag beann ar.
+        note: 'Is féidir leat @trá a dhéanamh ar dhaoine eile nó #hashtags.'
+        show_collections: Beidh daoine in ann brabhsáil trí do seo a leanas agus do leanúna. Feicfidh na daoine a leanann tú go leanann tú iad beag beann ar.
+        unlocked: Beidh daoine in ann tú a leanúint gan cead a iarraidh. Díthiceáil an dteastaíonn uait athbhreithniú a dhéanamh ar iarratais leantacha agus roghnaigh cé acu an nglacfaidh nó an diúltóidh tú do leantóirí nua.
       account_alias:
         acct: Sonraigh ainm@fearann don chuntas ar mhaith leat aistriú uaidh
       account_migration:
         acct: Sonraigh ainm@fearann don chuntas ar mhaith leat aistriú chuige
+      account_warning_preset:
+        text: Is féidir leat comhréir na bpost a úsáid, mar URLanna, hashtags agus lua
+        title: Roghnach. Níl sé le feiceáil ag an bhfaighteoir
       admin_account_action:
+        include_statuses: Feicfidh an t-úsáideoir cé na poist ba chúis leis an ngníomh modhnóireachta nó leis an rabhadh
+        send_email_notification: Gheobhaidh an t-úsáideoir míniú ar an méid a tharla lena chuntas
+        text_html: Roghnach. Is féidir leat comhréir phoist a úsáid. Is féidir leat <a href="%{path}">réamhshocruithe rabhaidh a chur leis</a> chun am a shábháil
+        type_html: Roghnaigh cad atá le déanamh le <strong>%{acct}</strong>
         types:
           disable: Cuir cosc ar an úsáideoir a chuntas a úsáid, ach ná scrios ná folaigh a bhfuil ann.
+          none: Bain úsáid as seo chun rabhadh a sheoladh chuig an úsáideoir, gan aon ghníomh eile a spreagadh.
+          sensitive: Iallach a chur ar cheangaltáin meán an úsáideora seo go léir a bheith íogair.
+          silence: Cosc a chur ar an úsáideoir ó bheith in ann postáil le hinfheictheacht phoiblí, a gcuid postálacha agus fógraí a cheilt ar dhaoine nach leanann iad. Dúnann sé gach tuairisc i gcoinne an chuntais seo.
+          suspend: Cosc ar aon idirghníomhaíocht ón gcuntas seo nó chuig an gcuntas seo agus scrios a bhfuil ann. Inchúlaithe laistigh de 30 lá. Dúnann sé gach tuairisc i gcoinne an chuntais seo.
+        warning_preset_id: Roghnach. Is féidir leat téacs saincheaptha a chur le deireadh an réamhshocraithe fós
+      announcement:
+        all_day: Nuair a dhéantar iad a sheiceáil, ní thaispeánfar ach dátaí an raon ama
+        ends_at: Roghnach. Beidh an fógra neamhfhoilsithe go huathoibríoch ag an am seo
+        scheduled_at: Fág bán chun an fógra a fhoilsiú láithreach
+        starts_at: Roghnach. I gcás go bhfuil d'fhógra ceangailte le raon ama ar leith
+        text: Is féidir leat comhréir phoist a úsáid. Tabhair aird ar an spás a ghlacfaidh an fógra ar scáileán an úsáideora
+      appeal:
+        text: Ní féidir leat achomharc a dhéanamh ach uair amháin ar stailc
       defaults:
+        autofollow: Leanfaidh daoine a chláraíonn tríd an gcuireadh thú go huathoibríoch
+        avatar: WEBP, PNG, GIF nó JPG. %{size} ar a mhéad. Íoslaghdófar é go %{dimensions}px
+        bot: Cuir in iúl do dhaoine eile go ndéanann an cuntas gníomhartha uathoibrithe den chuid is mó agus go mb’fhéidir nach ndéanfar monatóireacht air
+        context: Comhthéacs amháin nó comhthéacsanna iolracha inar cheart go mbeadh feidhm ag an scagaire
+        current_password: Chun críocha slándála cuir isteach pasfhocal an chuntais reatha
+        current_username: Le deimhniú, cuir isteach ainm úsáideora an chuntais reatha
+        digest: Seoltar é tar éis tréimhse fhada neamhghníomhaíochta amháin agus sa chás sin amháin go bhfuil aon teachtaireachtaí pearsanta faighte agat agus tú as láthair
+        email: Seolfar ríomhphost deimhnithe chugat
+        header: WEBP, PNG, GIF nó JPG. %{size} ar a mhéad. Íoslaghdófar é go %{dimensions}px
+        inbox_url: Cóipeáil an URL ó leathanach tosaigh an athsheachadáin is mian leat a úsáid
+        irreversible: Imeoidh postálacha scagtha go dochúlaithe, fiú má bhaintear an scagaire níos déanaí
+        locale: Teanga an chomhéadain úsáideora, r-phoist agus fógraí brú
+        password: Úsáid ar a laghad 8 gcarachtar
+        phrase: Déanfar é a mheaitseáil beag beann ar chásáil an téacs nó ar an ábhar atá ag tabhairt foláireamh do phostáil
+        scopes: Cé na APIanna a mbeidh cead ag an bhfeidhmchlár rochtain a fháil orthu. Má roghnaíonn tú raon feidhme barrleibhéil, ní gá duit cinn aonair a roghnú.
+        setting_aggregate_reblogs: Ná taispeáin treisithe nua do phoist a treisíodh le déanaí (ní dhéanann difear ach do threisithe nuafhaighte)
+        setting_always_send_emails: Go hiondúil ní sheolfar fógraí ríomhphoist agus tú ag úsáid Mastodon go gníomhach
+        setting_default_sensitive: Tá meáin íogair i bhfolach de réir réamhshocraithe agus is féidir iad a nochtadh le cliceáil
+        setting_display_media_default: Folaigh meáin atá marcáilte mar íogair
         setting_display_media_hide_all: Folaigh meáin i gcónaí
         setting_display_media_show_all: Taispeáin meáin i gcónaí
+        setting_use_blurhash: Tá grádáin bunaithe ar dhathanna na n-amharcanna ceilte ach cuireann siad salach ar aon mhionsonraí
+        setting_use_pending_items: Folaigh nuashonruithe amlíne taobh thiar de chlic seachas an fotha a scrollú go huathoibríoch
+        username: Is féidir leat litreacha, uimhreacha, agus béim a úsáid
+        whole_word: Nuair a bhíonn an eochairfhocal nó frása alfa-uimhriúil amháin, ní chuirfear i bhfeidhm é ach amháin má mheaitseálann sé an focal iomlán
+      domain_allow:
+        domain: Beidh an fearann ​​seo in ann sonraí a fháil ón bhfreastalaí seo agus déanfar sonraí a thagann isteach uaidh a phróiseáil agus a stóráil
+      email_domain_block:
+        domain: Is féidir gurb é seo an t-ainm fearainn a thaispeánann sa seoladh ríomhphoist nó sa taifead MX a úsáideann sé. Déanfar iad a sheiceáil nuair a chláraítear iad.
+        with_dns_records: Déanfar iarracht taifid DNS an fhearainn tugtha a réiteach agus cuirfear bac ar na torthaí freisin
+      featured_tag:
+        name: 'Seo cuid de na hashtags a d’úsáid tú le déanaí:'
+      filters:
+        action: Roghnaigh an gníomh ba cheart a dhéanamh nuair a mheaitseálann postáil an scagaire
+        actions:
+          hide: Cuir an t-ábhar scagtha i bhfolach go hiomlán, ag iompar amhail is nach raibh sé ann
+          warn: Folaigh an t-ábhar scagtha taobh thiar de rabhadh a luann teideal an scagaire
+      form_admin_settings:
+        activity_api_enabled: Áireamh na bpost a foilsíodh go háitiúil, úsáideoirí gníomhacha, agus clárúcháin nua i buicéid seachtainiúla
+        app_icon: WEBP, PNG, GIF nó JPG. Sáraíonn sé an deilbhín réamhshocraithe aipe ar ghléasanna soghluaiste le deilbhín saincheaptha.
+        backups_retention_period: Tá an cumas ag úsáideoirí cartlanna dá gcuid post a ghiniúint le híoslódáil níos déanaí. Nuair a bheidh luach dearfach socraithe, scriosfar na cartlanna seo go huathoibríoch ó do stór tar éis an líon sonraithe laethanta.
+        bootstrap_timeline_accounts: Cuirfear na cuntais seo ar bharr na moltaí a leanann úsáideoirí nua.
+        closed_registrations_message: Ar taispeáint nuair a dhúntar clárúcháin
+        content_cache_retention_period: Scriosfar gach postáil ó fhreastalaithe eile (lena n-áirítear treisithe agus freagraí) tar éis an líon sonraithe laethanta, gan aird ar aon idirghníomhaíocht úsáideora áitiúil leis na postálacha sin. Áirítear leis seo postálacha ina bhfuil úsáideoir áitiúil tar éis é a mharcáil mar leabharmharcanna nó mar cheanáin. Caillfear tagairtí príobháideacha idir úsáideoirí ó chásanna éagsúla freisin agus ní féidir iad a athchóiriú. Tá úsáid an tsocraithe seo beartaithe le haghaidh cásanna sainchuspóra agus sáraítear go leor ionchais úsáideoirí nuair a chuirtear i bhfeidhm é le haghaidh úsáid ghinearálta.
+        custom_css: Is féidir leat stíleanna saincheaptha a chur i bhfeidhm ar an leagan gréasáin de Mastodon.
+        favicon: WEBP, PNG, GIF nó JPG. Sáraíonn sé an favicon Mastodon réamhshocraithe le deilbhín saincheaptha.
+        mascot: Sáraíonn sé an léaráid san ardchomhéadan gréasáin.
+        media_cache_retention_period: Déantar comhaid meán ó phoist a dhéanann cianúsáideoirí a thaisceadh ar do fhreastalaí. Nuair a bheidh luach dearfach socraithe, scriosfar na meáin tar éis an líon sonraithe laethanta. Má iarrtar na sonraí meán tar éis é a scriosadh, déanfar é a ath-íoslódáil, má tá an t-ábhar foinse fós ar fáil. Mar gheall ar shrianta ar cé chomh minic is atá cártaí réamhamhairc ag vótaíocht do shuíomhanna tríú páirtí, moltar an luach seo a shocrú go 14 lá ar a laghad, nó ní dhéanfar cártaí réamhamhairc naisc a nuashonrú ar éileamh roimh an am sin.
+        peers_api_enabled: Liosta de na hainmneacha fearainn ar tháinig an freastalaí seo orthu sa choinbhleacht. Níl aon sonraí san áireamh anseo faoi cé acu an ndéanann tú cónascadh le freastalaí ar leith, díreach go bhfuil a fhios ag do fhreastalaí faoi. Úsáideann seirbhísí a bhailíonn staitisticí ar chónaidhm go ginearálta é seo.
+        profile_directory: Liostaíonn an t-eolaire próifíle na húsáideoirí go léir a roghnaigh isteach le bheith in-aimsithe.
+        require_invite_text: Nuair a bhíonn faomhadh láimhe ag teastáil le haghaidh clárúcháin, déan an "Cén fáth ar mhaith leat a bheith páirteach?" ionchur téacs éigeantach seachas roghnach
+        site_contact_email: Conas is féidir le daoine dul i dteagmháil leat le haghaidh fiosrúchán dlíthiúil nó tacaíochta.
+        site_contact_username: Conas is féidir le daoine dul i dteagmháil leat ar Mastodon.
+        site_extended_description: Aon fhaisnéis bhreise a d’fhéadfadh a bheith úsáideach do chuairteoirí agus d’úsáideoirí. Is féidir é a struchtúrú le comhréir Markdown.
+        site_short_description: Cur síos gairid chun cabhrú le do fhreastalaí a aithint go uathúil. Cé atá á rith, cé dó a bhfuil sé?
+        site_terms: Bain úsáid as do pholasaí príobháideachta féin nó fág bán é chun an réamhshocrú a úsáid. Is féidir é a struchtúrú le comhréir Markdown.
+        site_title: Conas is féidir le daoine tagairt a dhéanamh do do fhreastalaí seachas a ainm fearainn.
+        status_page_url: URL leathanach inar féidir le daoine stádas an fhreastalaí seo a fheiceáil le linn briseadh amach
+        theme: Téama a fheiceann cuairteoirí logáilte amach agus úsáideoirí nua.
+        thumbnail: Íomhá thart ar 2:1 ar taispeáint taobh le faisnéis do fhreastalaí.
+        timeline_preview: Beidh cuairteoirí logáilte amach in ann na postálacha poiblí is déanaí atá ar fáil ar an bhfreastalaí a bhrabhsáil.
+        trendable_by_default: Léim ar athbhreithniú láimhe ar ábhar treochta. Is féidir míreanna aonair a bhaint as treochtaí fós tar éis an fhíric.
+        trends: Léiríonn treochtaí cé na postálacha, hashtags agus scéalta nuachta atá ag tarraingt ar do fhreastalaí.
+        trends_as_landing_page: Taispeáin inneachar treochta d'úsáideoirí agus do chuairteoirí atá logáilte amach in ionad cur síos ar an bhfreastalaí seo. Éilíonn treochtaí a chumasú.
+      form_challenge:
+        current_password: Tá tú ag dul isteach i limistéar slán
+      imports:
+        data: Comhad CSV easpórtáilte ó fhreastalaí Mastodon eile
+      invite_request:
+        text: Cabhróidh sé seo linn d’iarratas a athbhreithniú
+      ip_block:
+        comment: Roghnach. Cuimhnigh cén fáth ar chuir tú an riail seo leis.
+        expires_in: Is acmhainn chríochta iad seoltaí IP, uaireanta roinntear iad agus is minic a athraíonn lámha. Ar an gcúis seo, ní mholtar bloic IP éiginnte.
+        ip: Cuir isteach seoladh IPv4 nó IPv6. Is féidir leat raonta iomlána a bhlocáil ag baint úsáide as an chomhréir CIDR. Bí cúramach gan tú féin a ghlasáil amach!
+        severities:
+          no_access: Cuir bac ar rochtain ar na hacmhainní go léir
+          sign_up_block: Ní bheidh clárú nua indéanta
+          sign_up_requires_approval: Beidh do cheadú ag teastáil le haghaidh clárúcháin nua
+        severity: Roghnaigh cad a tharlóidh le hiarratais ón IP seo
+      rule:
+        hint: Roghnach. Tabhair tuilleadh sonraí faoin riail
+        text: Déan cur síos ar riail nó riachtanas d'úsáideoirí ar an bhfreastalaí seo. Déan iarracht é a choinneáil gearr agus simplí
+      sessions:
+        otp: 'Cuir isteach an cód dhá fhachtóir ginte ag d''aip ghutháin nó úsáid ceann de do chóid athshlánaithe:'
+        webauthn: Más eochair USB atá ann déan cinnte é a chur isteach agus, más gá, tapáil í.
+      settings:
+        indexable: Seans go mbeidh do leathanach próifíle le feiceáil i dtorthaí cuardaigh ar Google, Bing agus eile.
+        show_application: Beidh tú in ann a fheiceáil i gcónaí cén aip a d’fhoilsigh do phostáil beag beann ar.
+      tag:
+        name: Ní féidir leat ach cásáil na litreacha a athrú, mar shampla, chun é a dhéanamh níos inléite
+      user:
+        chosen_languages: Nuair a dhéantar iad a sheiceáil, ní thaispeánfar ach postálacha i dteangacha roghnaithe in amlínte poiblí
+        role: Rialaíonn an ról na ceadanna atá ag an úsáideoir
+      user_role:
+        color: Dath le húsáid don ról ar fud an Chomhéadain, mar RGB i bhformáid heicsidheachúlach
+        highlighted: Déanann sé seo an ról le feiceáil go poiblí
+        name: Ainm poiblí an róil, má tá an ról socraithe le taispeáint mar shuaitheantas
+        permissions_as_keys: Beidh rochtain ag úsáideoirí a bhfuil an ról seo acu ar...
+        position: Cinneann ról níos airde réiteach coinbhleachta i gcásanna áirithe. Ní féidir gníomhartha áirithe a dhéanamh ach amháin ar róil a bhfuil tosaíocht níos ísle acu
+      webhook:
+        events: Roghnaigh imeachtaí le seoladh
+        template: Cum do phálasta JSON féin ag baint úsáide as idirshuíomh athróg. Fág bán le haghaidh JSON réamhshocraithe.
+        url: An áit a seolfar imeachtaí chuig
     labels:
       account:
+        discoverable: Próifíl gné agus postálacha in halgartaim fionnachtana
         fields:
           name: Lipéad
+          value: Ábhar
+        indexable: Cuir postálacha poiblí san áireamh sna torthaí cuardaigh
+        show_collections: Taispeáin seo a leanas agus leanúna ar phróifíl
+        unlocked: Glac le leantóirí nua go huathoibríoch
+      account_alias:
+        acct: Láimhseáil an seanchuntais
+      account_migration:
+        acct: Láimhseáil an chuntais nua
       account_warning_preset:
+        text: Téacs réamhshocraithe
         title: Teideal
       admin_account_action:
+        include_statuses: Cuir postálacha tuairiscithe san áireamh sa ríomhphost
+        send_email_notification: Cuir an t-úsáideoir ar an eolas trí ríomhphost
         text: Rabhadh saincheaptha
+        type: Gníomh
         types:
           disable: Reoigh
           none: Seol rabhadh
+          sensitive: Íogair
           silence: Teorannaigh
           suspend: Cuir ar fionraí
+        warning_preset_id: Bain úsáid as réamhshocrú rabhaidh
       announcement:
+        all_day: Imeacht uile-lae
+        ends_at: Deireadh an imeachta
+        scheduled_at: Foilsiú sceideal
+        starts_at: Tús na hócáide
         text: Fógra
+      appeal:
+        text: Mínigh cén fáth ar cheart an cinneadh seo a fhreaschur
       defaults:
+        autofollow: Tabhair cuireadh do chuntas a leanúint
         avatar: Abhatár
+        bot: Is cuntas uathoibrithe é seo
+        chosen_languages: Scag teangacha
+        confirm_new_password: Deimhnigh pasfhocal nua
+        confirm_password: Deimhnigh Pasfhocal
+        context: Comhthéacsanna a scagadh
+        current_password: Pasfhocal reatha
         data: Sonraí
         display_name: Ainm taispeána
         email: Seoladh ríomhphoist
+        expires_in: In éag tar éis
+        fields: Réimsí breise
         header: Ceanntásc
+        honeypot: "%{label} (ná líon isteach)"
+        inbox_url: URL an bhosca isteach sealaíochta
+        irreversible: Droim ar aghaidh in ionad bheith ag folaigh
+        locale: Teanga comhéadan
+        max_uses: Uaslíon úsáidí
         new_password: Pasfhocal nua
         note: Beathaisnéis
+        otp_attempt: Cód dhá-fhachtóir
         password: Pasfhocal
+        phrase: Eochairfhocal nó frása
+        setting_advanced_layout: Cumasaigh ardchomhéadan gréasáin
+        setting_aggregate_reblogs: Treisithe grúpa i línte ama
+        setting_always_send_emails: Seol fógraí ríomhphoist i gcónaí
+        setting_auto_play_gif: Gifs beoite go huathoibríoch a imirt
+        setting_boost_modal: Taispeáin dialóg deimhnithe roimh threisiú
+        setting_default_language: Teanga postála
+        setting_default_privacy: Postáil príobháideachta
+        setting_default_sensitive: Marcáil na meáin mar íogair i gcónaí
+        setting_delete_modal: Taispeáin dialóg deimhnithe sula scriostar postáil
+        setting_disable_hover_cards: Díchumasaigh réamhamharc próifíle ar ainlíon
+        setting_disable_swiping: Díchumasaigh gluaiseachtaí swiping
+        setting_display_media: Taispeáint meáin
         setting_display_media_default: Réamhshocrú
         setting_display_media_hide_all: Cuir uile i bhfolach
         setting_display_media_show_all: Taispeáin uile
+        setting_expand_spoilers: Méadaigh postálacha atá marcáilte le rabhaidh inneachair i gcónaí
+        setting_hide_network: Folaigh do ghraf sóisialta
+        setting_reduce_motion: Laghdú ar an tairiscint i beochan
+        setting_system_font_ui: Úsáid cló réamhshocraithe an chórais
         setting_theme: Téama suímh
         setting_trends: Taispeáin treochtaí an lae inniu
+        setting_unfollow_modal: Taispeáin dialóg deimhnithe sula ndíleanfaidh tú duine éigin
+        setting_use_blurhash: Taispeáin grádáin ildaite do mheáin fholaithe
+        setting_use_pending_items: Modh mall
+        severity: Déine
+        sign_in_token_attempt: Cód slándála
         title: Teideal
+        type: Cineál iompórtála
         username: Ainm úsáideora
+        username_or_email: Ainm Úsáideora nó Ríomhphost
+        whole_word: Focal ar fad
+      email_domain_block:
+        with_dns_records: Cuir taifid MX agus IPanna an fhearainn san áireamh
       featured_tag:
         name: Haischlib
       filters:
@@ -50,27 +242,100 @@ ga:
           hide: Cuir i bhfolach go hiomlán
           warn: Cuir i bhfolach le rabhadh
       form_admin_settings:
+        activity_api_enabled: Foilsigh staitisticí comhiomlána faoi ghníomhaíocht úsáideoirí san API
+        app_icon: Deilbhín aip
+        backups_retention_period: Tréimhse choinneála cartlainne úsáideora
+        bootstrap_timeline_accounts: Mol na cuntais seo d'úsáideoirí nua i gcónaí
+        closed_registrations_message: Teachtaireacht saincheaptha nuair nach bhfuil sínithe suas ar fáil
+        content_cache_retention_period: Tréimhse choinneála inneachair cianda
+        custom_css: CSS saincheaptha
+        favicon: Favicon
+        mascot: Mascóg saincheaptha (oidhreacht)
+        media_cache_retention_period: Tréimhse choinneála taisce meán
+        peers_api_enabled: Foilsigh liosta de na freastalaithe aimsithe san API
+        profile_directory: Cumasaigh eolaire próifíle
+        registrations_mode: Cé atá in ann clárú
+        require_invite_text: A cheangal ar chúis a bheith páirteach
+        show_domain_blocks: Taispeáin bloic fearainn
+        show_domain_blocks_rationale: Taispeáin cén fáth ar cuireadh bac ar fhearann
+        site_contact_email: R-phost teagmhála
+        site_contact_username: Ainm úsáideora teagmhála
         site_extended_description: Cur síos fada
         site_short_description: Cur síos freastalaí
         site_terms: Polasaí príobháideachais
         site_title: Ainm freastalaí
+        status_page_url: URL an leathanaigh stádais
+        theme: Téama réamhshocraithe
+        thumbnail: Mionsamhail freastalaí
+        timeline_preview: Ceadaigh rochtain neamhdheimhnithe ar amlínte poiblí
+        trendable_by_default: Ceadaigh treochtaí gan athbhreithniú roimh ré
+        trends: Cumasaigh treochtaí
+        trends_as_landing_page: Úsáid treochtaí mar an leathanach tuirlingthe
+      interactions:
+        must_be_follower: Cuir bac ar fhógraí ó dhaoine nach leantóirí iad
+        must_be_following: Cuir bac ar fhógraí ó dhaoine nach leanann tú
+        must_be_following_dm: Cuir bac ar theachtaireachtaí díreacha ó dhaoine nach leanann tú
       invite:
         comment: Ráiteas
+      invite_request:
+        text: Cén fáth ar mhaith leat a bheith páirteach?
       ip_block:
         comment: Ráiteas
         ip: IP
+        severities:
+          no_access: Rochtain a bhlocáil
+          sign_up_block: Cuir bac ar chlárúcháin
+          sign_up_requires_approval: Teorainn le clárú
         severity: Riail
       notification_emails:
+        appeal: Déanann duine éigin achomharc i gcoinne chinneadh modhnóra
+        digest: Seol r-phoist achoimre
+        favourite: Is fearr le duine éigin do phostáil
         follow: Lean duine éigin tú
+        follow_request: D'iarr duine éigin tú a leanúint
+        mention: Luaigh duine éigin tú
+        pending_account: Ní mór athbhreithniú a dhéanamh ar chuntas nua
         reblog: Mhol duine éigin do phostáil
+        report: Tá tuairisc nua curtha isteach
+        software_updates:
+          all: Fógra a thabhairt ar gach nuashonrú
+          critical: Fógra a thabhairt ar nuashonruithe ríthábhachtacha amháin
+          label: Tá leagan nua Mastodon ar fáil
+          none: Ná cuir nuashonruithe ar an eolas choíche (ní mholtar é)
+          patch: Fógra ar nuashonruithe bugfix
+        trending_tag: Teastaíonn athbhreithniú ar threocht nua
       rule:
+        hint: Eolas breise
         text: Riail
+      settings:
+        indexable: Cuir leathanach próifíle san innill chuardaigh
+        show_application: Taispeáin cén aip ónar sheol tú postáil
       tag:
+        listable: Lig don hashchlib seo a bheith le feiceáil i gcuardach agus i moltaí
         name: Haischlib
+        trendable: Lig don haischlib seo a bheith le feiceáil faoi threochtaí
+        usable: Lig do phostálacha an hashchlib seo a úsáid
       user:
         role: Ról
+        time_zone: Crios ama
       user_role:
+        color: Dath suaitheantas
+        highlighted: Taispeáin ról mar shuaitheantas ar phróifílí úsáideora
         name: Ainm
+        permissions_as_keys: Ceadanna
+        position: Tosaíocht
+      webhook:
+        events: Imeachtaí cumasaithe
+        template: Teimpléad pá-ualach
+        url: URL críochphointe
+    'no': Níl
+    not_recommended: Ní mholtar
+    overridden: Sáraithe
     recommended: Molta
     required:
       mark: "*"
+      text: ag teastáil
+    title:
+      sessions:
+        webauthn: Úsáid ceann de d'eochracha slándála chun síniú isteach
+    'yes': Tá
