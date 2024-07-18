@@ -7380,6 +7380,11 @@ a.status-card {
   display: flex;
   flex-shrink: 0;
 
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-right: 0;
+    border-left: 0;
+  }
+
   button {
     background: transparent;
     border: 0;
