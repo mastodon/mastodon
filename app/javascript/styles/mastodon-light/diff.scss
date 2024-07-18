@@ -510,7 +510,7 @@ html {
 .search__popout,
 .emoji-mart-search input,
 .language-dropdown__dropdown .emoji-mart-search input,
-.strike-card,
+// .strike-card,
 .poll__option input[type='text'] {
   background: darken($ui-base-color, 10%);
 }
@@ -552,10 +552,18 @@ a.sparkline {
   &__tag {
     & > a {
       &:hover,
-      &:active,
-      &:focus {
+      &:focus,
+      &:active, {
         background: darken($ui-base-color, 10%);
       }
     }
+  }
+}
+
+.strike-entry {
+  &:hover,
+  &:focus,
+  &:active {
+    background: darken($ui-base-color, 10%);
   }
 }

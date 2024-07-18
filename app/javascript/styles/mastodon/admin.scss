@@ -728,6 +728,47 @@ body,
   }
 }
 
+.strike-entry {
+  display: block;
+  line-height: 20px;
+  padding: 15px;
+  padding-inline-start: 15px * 2 + 40px;
+  background: var(--background-color);
+  border: 1px solid lighten($ui-base-color, 8%);
+  border-radius: 4px;
+  position: relative;
+  text-decoration: none;
+  color: $darker-text-color;
+  font-size: 14px;
+  margin-bottom: 15px;
+
+  &__avatar {
+    position: absolute;
+    inset-inline-start: 15px;
+    top: 15px;
+
+    .avatar {
+      border-radius: 4px;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__title {
+    word-wrap: break-word;
+  }
+
+  &__timestamp {
+    color: $dark-text-color;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: $ui-base-color;
+  }
+}
+
 a.name-tag,
 .name-tag,
 a.inline-name-tag,
@@ -1695,9 +1736,9 @@ a.sparkline {
 
 .strike-card {
   padding: 15px;
-  border: 1px solid lighten($ui-base-color, 8%);
-  border-radius: 4px;
-  background: $ui-base-color;
+  // border: 1px solid lighten($ui-base-color, 8%);
+  // border-radius: 4px;
+  // background: $ui-base-color;
   font-size: 15px;
   line-height: 20px;
   word-wrap: break-word;
