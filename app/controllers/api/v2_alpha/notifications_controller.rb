@@ -14,9 +14,10 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
       @group_metadata = load_group_metadata
       @grouped_notifications = load_grouped_notifications
       @relationships = StatusRelationshipsPresenter.new(target_statuses_from_notifications, current_user&.account_id)
+      @sample_accounts = @grouped_notifications.flat_map(&:sample_accounts)
 
       # Preload associations to avoid N+1s
-      ActiveRecord::Associations::Preloader.new(records: @grouped_notifications.flat_map(&:sample_accounts), associations: [:account_stat, { user: :role }]).call
+      ActiveRecord::Associations::Preloader.new(records: @sample_accounts, associations: [:account_stat, { user: :role }]).call
     end
 
     MastodonOTELTracer.in_span('Api::V2Alpha::NotificationsController#index rendering') do |span|
@@ -24,8 +25,8 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
 
       span.add_attributes(
         'app.notification_grouping.count' => @grouped_notifications.size,
-        'app.notification_grouping.sample_account.count' => @grouped_notifications.flat_map(&:sample_accounts).size,
-        'app.notification_grouping.sample_account.unique_count' => @grouped_notifications.flat_map(&:sample_accounts).pluck(:id).uniq.size,
+        'app.notification_grouping.sample_account.count' => @sample_accounts.size,
+        'app.notification_grouping.sample_account.unique_count' => @sample_accounts.pluck(:id).uniq.size,
         'app.notification_grouping.status.count' => statuses.size,
         'app.notification_grouping.status.unique_count' => statuses.uniq.size
       )
