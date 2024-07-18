@@ -90,7 +90,7 @@ RSpec.describe MediaAttachment, :attachment_processing do
       media.destroy
     end
 
-    it 'saves media attachment with correct file metadata' do
+    it 'saves media attachment with correct file and size metadata' do
       expect(media)
         .to be_persisted
         .and be_processing_complete
@@ -103,14 +103,12 @@ RSpec.describe MediaAttachment, :attachment_processing do
 
       # Rack::Mime (used by PublicFileServerMiddleware) recognizes file extension
       expect(Rack::Mime.mime_type(extension, nil)).to eq content_type
-    end
 
-    it 'saves media attachment with correct size metadata' do
-      # strips original file name
+      # Strip original file name
       expect(media.file_file_name)
         .to_not start_with '600x400'
 
-      # sets meta for original and thumbnail
+      # Set meta for original and thumbnail
       expect(media.file.meta.deep_symbolize_keys)
         .to include(
           original: include(
@@ -174,10 +172,18 @@ RSpec.describe MediaAttachment, :attachment_processing do
     let(:media) { Fabricate(:media_attachment, file: attachment_fixture('avatar.gif')) }
 
     it 'sets correct file metadata' do
-      expect(media.type).to eq 'gifv'
-      expect(media.file_content_type).to eq 'video/mp4'
-      expect(media.file.meta['original']['width']).to eq 128
-      expect(media.file.meta['original']['height']).to eq 128
+      expect(media)
+        .to have_attributes(
+          type: eq('gifv'),
+          file_content_type: eq('video/mp4')
+        )
+      expect(media_metadata)
+        .to include(
+          original: include(
+            width: eq(128),
+            height: eq(128)
+          )
+        )
     end
   end
 
@@ -192,11 +198,19 @@ RSpec.describe MediaAttachment, :attachment_processing do
         let(:media) { Fabricate(:media_attachment, file: attachment_fixture(fixture[:filename])) }
 
         it 'sets correct file metadata' do
-          expect(media.type).to eq 'image'
-          expect(media.file_content_type).to eq 'image/gif'
-          expect(media.file.meta['original']['width']).to eq fixture[:width]
-          expect(media.file.meta['original']['height']).to eq fixture[:height]
-          expect(media.file.meta['original']['aspect']).to eq fixture[:aspect]
+          expect(media)
+            .to have_attributes(
+              type: eq('image'),
+              file_content_type: eq('image/gif')
+            )
+          expect(media_metadata)
+            .to include(
+              original: include(
+                width: eq(fixture[:width]),
+                height: eq(fixture[:height]),
+                aspect: eq(fixture[:aspect])
+              )
+            )
         end
       end
     end
@@ -204,39 +218,42 @@ RSpec.describe MediaAttachment, :attachment_processing do
 
   describe 'ogg with cover art' do
     let(:media) { Fabricate(:media_attachment, file: attachment_fixture('boop.ogg')) }
+    let(:expected_media_duration) { 0.235102 }
+
+    # The libvips and ImageMagick implementations produce different results
+    let(:expected_background_color) { Rails.configuration.x.use_vips ? '#268cd9' : '#3088d4' }
 
     it 'sets correct file metadata' do
-      expect(media.type).to eq 'audio'
-      expect(media.file.meta['original']['duration']).to be_within(0.05).of(0.235102)
-      expect(media.thumbnail.present?).to be true
+      expect(media)
+        .to have_attributes(
+          type: eq('audio'),
+          thumbnail: be_present,
+          file_file_name: not_eq('boop.ogg')
+        )
 
-      expect(media.file.meta['colors']['background']).to eq(expected_background_color)
-      expect(media.file_file_name).to_not eq 'boop.ogg'
-    end
-
-    def expected_background_color
-      # The libvips and ImageMagick implementations produce different results
-      Rails.configuration.x.use_vips ? '#268cd9' : '#3088d4'
+      expect(media_metadata)
+        .to include(
+          original: include(duration: be_within(0.05).of(expected_media_duration)),
+          colors: include(background: eq(expected_background_color))
+        )
     end
   end
 
   describe 'mp3 with large cover art' do
     let(:media) { Fabricate(:media_attachment, file: attachment_fixture('boop.mp3')) }
+    let(:expected_media_duration) { 0.235102 }
 
-    it 'detects it as an audio file' do
-      expect(media.type).to eq 'audio'
-    end
-
-    it 'sets meta for the duration' do
-      expect(media.file.meta['original']['duration']).to be_within(0.05).of(0.235102)
-    end
-
-    it 'extracts thumbnail' do
-      expect(media.thumbnail.present?).to be true
-    end
-
-    it 'gives the file a random name' do
-      expect(media.file_file_name).to_not eq 'boop.mp3'
+    it 'detects file type and sets correct metadata' do
+      expect(media)
+        .to have_attributes(
+          type: eq('audio'),
+          thumbnail: be_present,
+          file_file_name: not_eq('boop.mp3')
+        )
+      expect(media_metadata)
+        .to include(
+          original: include(duration: be_within(0.05).of(expected_media_duration))
+        )
     end
   end
 
@@ -273,5 +290,11 @@ RSpec.describe MediaAttachment, :attachment_processing do
       media = Fabricate(:media_attachment, file: attachment_fixture('attachment.jpg'))
       expect(media.valid?).to be true
     end
+  end
+
+  private
+
+  def media_metadata
+    media.file.meta.deep_symbolize_keys
   end
 end

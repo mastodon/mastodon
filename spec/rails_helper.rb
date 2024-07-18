@@ -161,6 +161,7 @@ RSpec::Sidekiq.configure do |config|
 end
 
 RSpec::Matchers.define_negated_matcher :not_change, :change
+RSpec::Matchers.define_negated_matcher :not_eq, :eq
 RSpec::Matchers.define_negated_matcher :not_include, :include
 
 def request_fixture(name)
