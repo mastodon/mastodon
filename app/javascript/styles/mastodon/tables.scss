@@ -81,7 +81,7 @@
     & > tbody > tr > td {
       padding: 11px 10px;
       background: transparent;
-      border: 1px solid lighten($ui-base-color, 8%);
+      border: 1px solid var(--background-border-color);
       color: $secondary-text-color;
     }
 
@@ -94,17 +94,17 @@
   &.batch-table {
     & > thead > tr > th {
       background: var(--background-color);
-      border-top: 1px solid lighten($ui-base-color, 8%);
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
+      border-top: 1px solid var(--background-border-color);
+      border-bottom: 1px solid var(--background-border-color);
 
       &:first-child {
         border-radius: 4px 0 0;
-        border-inline-start: 1px solid lighten($ui-base-color, 8%);
+        border-inline-start: 1px solid var(--background-border-color);
       }
 
       &:last-child {
         border-radius: 0 4px 0 0;
-        border-inline-end: 1px solid lighten($ui-base-color, 8%);
+        border-inline-end: 1px solid var(--background-border-color);
       }
     }
   }
@@ -189,7 +189,7 @@ a.table-action-link {
     position: sticky;
     top: 0;
     z-index: 1;
-    border: 1px solid lighten($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
     background: var(--background-color);
     border-radius: 4px 4px 0 0;
     height: 47px;
@@ -206,7 +206,7 @@ a.table-action-link {
     height: 47px;
     align-items: center;
     justify-content: center;
-    border: 1px solid lighten($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
     border-top: 0;
     color: $secondary-text-color;
     display: none;
@@ -252,7 +252,7 @@ a.table-action-link {
 
   &__form {
     padding: 16px;
-    border: 1px solid lighten($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
     border-top: 0;
     background: var(--background-color);
 
@@ -263,13 +263,13 @@ a.table-action-link {
   }
 
   &__row {
-    border: 1px solid lighten($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
     border-top: 0;
     background: var(--background-color);
 
     @media screen and (max-width: $no-gap-breakpoint) {
       .optional &:first-child {
-        border-top: 1px solid lighten($ui-base-color, 8%);
+        border-top: 1px solid var(--background-border-color);
       }
     }
 
@@ -352,13 +352,13 @@ a.table-action-link {
   }
 
   .nothing-here {
-    border: 1px solid lighten($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
     border-top: 0;
     box-shadow: none;
     background: var(--background-color);
 
     @media screen and (max-width: $no-gap-breakpoint) {
-      border-top: 1px solid lighten($ui-base-color, 8%);
+      border-top: 1px solid var(--background-border-color);
     }
   }
 

@@ -19,7 +19,7 @@
     height: 130px;
     position: relative;
     background: $ui-base-color;
-    border: 1px solid lighten($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
     border-bottom: none;
 
     img {
@@ -42,7 +42,7 @@
     justify-content: flex-start;
     align-items: center;
     background: var(--background-color);
-    border: 1px solid lighten($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
     border-top: none;
 
     .avatar {

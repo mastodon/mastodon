@@ -23,7 +23,7 @@ html {
 // Change default background colors of columns
 .interaction-modal {
   background: $white;
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
 }
 
 .rules-list li::before {
@@ -75,8 +75,8 @@ html {
 }
 
 .getting-started .navigation-bar {
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-top: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--background-border-color);
 
   @media screen and (max-width: $no-gap-breakpoint) {
     border-top: 0;
@@ -88,7 +88,7 @@ html {
 .setting-text,
 .report-dialog-modal__textarea,
 .audio-player {
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
 }
 
 .report-dialog-modal .dialog-option .poll__input {
@@ -174,7 +174,7 @@ html {
 .picture-in-picture__footer,
 .reactions-bar__item {
   background: $white;
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
 }
 
 .reactions-bar__item:hover,
@@ -216,7 +216,7 @@ html {
 
 .column-header__collapsible-inner {
   background: darken($ui-base-color, 4%);
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
   border-bottom: 0;
 }
 
@@ -258,7 +258,7 @@ html {
 
 .embed-modal .embed-modal__container .embed-modal__html {
   background: $white;
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
 
   &:focus {
     border-color: lighten($ui-base-color, 12%);
@@ -297,7 +297,7 @@ html {
 .directory__tag > a,
 .directory__tag > div {
   background: $white;
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
 
   @media screen and (max-width: $no-gap-breakpoint) {
     border-left: 0;
@@ -333,7 +333,7 @@ html {
 }
 
 .activity-stream {
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
 
   &--under-tabs {
     border-top: 0;
@@ -469,7 +469,7 @@ html {
 }
 
 .mute-modal select {
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
   background: $simple-background-color
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 8%))}'/></svg>")
     no-repeat right 8px center / auto 16px;

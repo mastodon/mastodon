@@ -286,7 +286,7 @@ $content-width: 840px;
       color: $darker-text-color;
       padding-bottom: 8px;
       margin-bottom: 8px;
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
+      border-bottom: 1px solid var(--background-border-color);
     }
 
     h6 {
@@ -671,9 +671,9 @@ body,
   padding: 15px;
   padding-inline-start: 15px * 2 + 40px;
   background: var(--background-color);
-  border-right: 1px solid lighten($ui-base-color, 8%);
-  border-left: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-right: 1px solid var(--background-border-color);
+  border-left: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--background-border-color);
   position: relative;
   text-decoration: none;
   color: $darker-text-color;
@@ -682,13 +682,13 @@ body,
   &:first-child {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    border-top: 1px solid lighten($ui-base-color, 8%);
+    border-top: 1px solid var(--background-border-color);
   }
 
   &:last-child {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--background-border-color);
   }
 
   &__avatar {
@@ -734,7 +734,7 @@ body,
   padding: 15px;
   padding-inline-start: 15px * 2 + 40px;
   background: var(--background-color);
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
   border-radius: 4px;
   position: relative;
   text-decoration: none;
@@ -860,7 +860,7 @@ a.name-tag,
 
 .report-card {
   background: var(--background-color);
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
   border-radius: 4px;
   margin-bottom: 20px;
 
@@ -981,14 +981,14 @@ a.name-tag,
   .account__header__fields,
   .account__header__content {
     background: var(--background-color);
-    border: 1px solid lighten($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
     border-radius: 4px;
     height: 100%;
   }
 
   .account__header__fields {
     margin: 0;
-    border: 1px solid lighten($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
 
     a {
       color: $highlight-text-color;
@@ -1018,7 +1018,7 @@ a.name-tag,
 .filters-list__item {
   padding: 15px 0;
   background: var(--background-color);
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
   border-radius: 4px;
   margin-top: 15px;
 }
@@ -1029,13 +1029,13 @@ a.name-tag,
 
 .announcements-list,
 .filters-list {
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
   border-radius: 4px;
   border-bottom: none;
 
   &__item {
     padding: 15px 0;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--background-border-color);
 
     &__title {
       padding: 0 15px;
@@ -1189,7 +1189,7 @@ a.name-tag,
   text-decoration: none;
   background: var(--background-color);
   border-radius: 4px;
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
   padding: 0;
   position: relative;
   padding-bottom: 55px + 20px;
@@ -1381,7 +1381,7 @@ a.sparkline {
 
   &__details {
     &__item {
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
+      border-bottom: 1px solid var(--background-border-color);
       padding: 15px 0;
 
       &:last-child {
@@ -1412,7 +1412,7 @@ a.sparkline {
 
 .account-card {
   border-radius: 4px;
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
   position: relative;
 
   &__warning-badge {
@@ -1579,7 +1579,7 @@ a.sparkline {
     position: relative;
     padding: 15px;
     padding-inline-start: 15px * 2 + 40px;
-    border: 1px solid lighten($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
 
     &:first-child {
       border-top-left-radius: 4px;
@@ -1742,7 +1742,7 @@ a.sparkline {
   color: $primary-text-color;
   box-sizing: border-box;
   min-height: 100%;
-  padding-left: 0;
+  border: 1px solid var(--background-border-color);
 
   a {
     color: $highlight-text-color;
@@ -1783,14 +1783,14 @@ a.sparkline {
 
   &__statuses-list {
     border-radius: 4px;
-    border: 1px solid lighten($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
     font-size: 13px;
     line-height: 18px;
     overflow: hidden;
 
     &__item {
       padding: 16px;
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
+      border-bottom: 1px solid var(--background-border-color);
 
       &:last-child {
         border-bottom: 0;
