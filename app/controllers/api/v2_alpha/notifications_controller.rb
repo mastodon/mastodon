@@ -20,10 +20,14 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
     end
 
     MastodonOTELTracer.in_span('Api::V2Alpha::NotificationsController#index rendering') do |span|
+      statuses = @grouped_notifications.filter_map { |group| group.target_status&.id }
+
       span.add_attributes(
-        'notifications.sample_accounts' => @grouped_notifications.flat_map(&:sample_accounts).size,
-        'notifications.unique_sample_accounts' => @grouped_notifications.flat_map(&:sample_accounts).pluck(:id).uniq.size,
-        'notifications.count' => @grouped_notifications.size
+        'app.notification_grouping.count' => @grouped_notifications.size,
+        'app.notification_grouping.sample_account.count' => @grouped_notifications.flat_map(&:sample_accounts).size,
+        'app.notification_grouping.sample_account.unique_count' => @grouped_notifications.flat_map(&:sample_accounts).pluck(:id).uniq.size,
+        'app.notification_grouping.status.count' => statuses.size,
+        'app.notification_grouping.status.unique_count' => statuses.uniq.size
       )
 
       render json: @grouped_notifications, each_serializer: REST::NotificationGroupSerializer, relationships: @relationships, group_metadata: @group_metadata
