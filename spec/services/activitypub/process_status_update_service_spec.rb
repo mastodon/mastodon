@@ -40,14 +40,13 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
   end
 
   describe '#call' do
-    it 'updates text' do
+    it 'updates text and content warning' do
       subject.call(status, json, json)
-      expect(status.reload.text).to eq 'Hello universe'
-    end
-
-    it 'updates content warning' do
-      subject.call(status, json, json)
-      expect(status.reload.spoiler_text).to eq 'Show more'
+      expect(status.reload)
+        .to have_attributes(
+          text: eq('Hello universe'),
+          spoiler_text: eq('Show more')
+        )
     end
 
     context 'when the changes are only in sanitized-out HTML' do
@@ -67,12 +66,9 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         subject.call(status, json, json)
       end
 
-      it 'does not create any edits' do
+      it 'does not create any edits and does not mark status edited' do
         expect(status.reload.edits).to be_empty
-      end
-
-      it 'does not mark status as edited' do
-        expect(status.edited?).to be false
+        expect(status).to_not be_edited
       end
     end
 
@@ -90,15 +86,9 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         subject.call(status, json, json)
       end
 
-      it 'does not create any edits' do
+      it 'does not create any edits, mark status edited, or update text' do
         expect(status.reload.edits).to be_empty
-      end
-
-      it 'does not mark status as edited' do
-        expect(status.reload.edited?).to be false
-      end
-
-      it 'does not update the text' do
+        expect(status.reload).to_not be_edited
         expect(status.reload.text).to eq 'Hello world'
       end
     end
@@ -137,19 +127,10 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         subject.call(status, json, json)
       end
 
-      it 'does not create any edits' do
+      it 'does not create any edits, mark status edited, update text but does update tallies' do
         expect(status.reload.edits).to be_empty
-      end
-
-      it 'does not mark status as edited' do
-        expect(status.reload.edited?).to be false
-      end
-
-      it 'does not update the text' do
+        expect(status.reload).to_not be_edited
         expect(status.reload.text).to eq 'Hello world'
-      end
-
-      it 'updates tallies' do
         expect(status.poll.reload.cached_tallies).to eq [4, 3]
       end
     end
@@ -189,19 +170,10 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         subject.call(status, json, json)
       end
 
-      it 'does not create any edits' do
+      it 'does not create any edits, mark status edited, update text, or update tallies' do
         expect(status.reload.edits).to be_empty
-      end
-
-      it 'does not mark status as edited' do
-        expect(status.reload.edited?).to be false
-      end
-
-      it 'does not update the text' do
+        expect(status.reload).to_not be_edited
         expect(status.reload.text).to eq 'Hello world'
-      end
-
-      it 'does not update tallies' do
         expect(status.poll.reload.cached_tallies).to eq [0, 0]
       end
     end
@@ -213,13 +185,10 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         status.snapshot!(rate_limit: false)
       end
 
-      it 'does not create any edits' do
-        expect { subject.call(status, json, json) }.to_not(change { status.reload.edits.pluck(&:id) })
-      end
-
-      it 'does not update the text, spoiler_text or edited_at' do
+      it 'does not create any edits or update relevant attributes' do
         expect { subject.call(status, json, json) }
-          .to_not(change { status.reload.attributes.slice('text', 'spoiler_text', 'edited_at').values })
+          .to not_change { status.reload.edits.pluck(&:id) }
+          .and(not_change { status.reload.attributes.slice('text', 'spoiler_text', 'edited_at').values })
       end
     end
 
@@ -237,12 +206,9 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         subject.call(status, json, json)
       end
 
-      it 'does not create any edits' do
+      it 'does not create any edits or mark status edited' do
         expect(status.reload.edits).to be_empty
-      end
-
-      it 'does not mark status as edited' do
-        expect(status.edited?).to be false
+        expect(status).to_not be_edited
       end
     end
 
@@ -261,12 +227,9 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         subject.call(status, json, json)
       end
 
-      it 'does not create any edits' do
+      it 'does not create any edits or mark status edited' do
         expect(status.reload.edits).to be_empty
-      end
-
-      it 'does not mark status as edited' do
-        expect(status.edited?).to be false
+        expect(status).to_not be_edited
       end
     end
 
@@ -412,11 +375,8 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         subject.call(status, json, json)
       end
 
-      it 'removes poll' do
+      it 'removes poll and records media change in edit' do
         expect(status.reload.poll).to be_nil
-      end
-
-      it 'records media change in edit' do
         expect(status.edits.reload.last.poll_options).to be_nil
       end
     end
@@ -442,26 +402,21 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         subject.call(status, json, json)
       end
 
-      it 'creates a poll' do
+      it 'creates a poll and records media change in edit' do
         poll = status.reload.poll
 
         expect(poll).to_not be_nil
         expect(poll.options).to eq %w(Foo Bar Baz)
-      end
-
-      it 'records media change in edit' do
         expect(status.edits.reload.last.poll_options).to eq %w(Foo Bar Baz)
       end
     end
 
-    it 'creates edit history' do
+    it 'creates edit history and sets edit timestamp' do
       subject.call(status, json, json)
-      expect(status.edits.reload.map(&:text)).to eq ['Hello world', 'Hello universe']
-    end
-
-    it 'sets edited timestamp' do
-      subject.call(status, json, json)
-      expect(status.reload.edited_at.to_s).to eq '2021-09-08 22:39:25 UTC'
+      expect(status.edits.reload.map(&:text))
+        .to eq ['Hello world', 'Hello universe']
+      expect(status.reload.edited_at.to_s)
+        .to eq '2021-09-08 22:39:25 UTC'
     end
   end
 end
