@@ -118,8 +118,7 @@ Doorkeeper.configure do
                   :'admin:write:domain_blocks',
                   :'admin:write:ip_blocks',
                   :'admin:write:email_domain_blocks',
-                  :'admin:write:canonical_email_blocks',
-                  :crypto
+                  :'admin:write:canonical_email_blocks'
 
   # Change the way client credentials are retrieved from the request object.
   # By default it retrieves first from the `HTTP_AUTHORIZATION` header, then
