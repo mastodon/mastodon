@@ -93,7 +93,7 @@ export function redraft(status, raw_text) {
   };
 }
 
-export const editStatus = (id, routerHistory) => (dispatch, getState) => {
+export const editStatus = (id) => (dispatch, getState) => {
   let status = getState().getIn(['statuses', id]);
 
   if (status.get('poll')) {
@@ -104,7 +104,7 @@ export const editStatus = (id, routerHistory) => (dispatch, getState) => {
 
   api().get(`/api/v1/statuses/${id}/source`).then(response => {
     dispatch(fetchStatusSourceSuccess());
-    ensureComposeIsVisible(getState, routerHistory);
+    ensureComposeIsVisible(getState);
     dispatch(setComposeToStatus(status, response.data.text, response.data.spoiler_text));
   }).catch(error => {
     dispatch(fetchStatusSourceFail(error));
@@ -124,7 +124,7 @@ export const fetchStatusSourceFail = error => ({
   error,
 });
 
-export function deleteStatus(id, routerHistory, withRedraft = false) {
+export function deleteStatus(id, withRedraft = false) {
   return (dispatch, getState) => {
     let status = getState().getIn(['statuses', id]);
 
@@ -141,7 +141,7 @@ export function deleteStatus(id, routerHistory, withRedraft = false) {
 
       if (withRedraft) {
         dispatch(redraft(status, response.data.text));
-        ensureComposeIsVisible(getState, routerHistory);
+        ensureComposeIsVisible(getState);
       }
     }).catch(error => {
       dispatch(deleteStatusFail(id, error));

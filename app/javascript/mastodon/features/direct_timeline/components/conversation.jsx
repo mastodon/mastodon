@@ -108,14 +108,14 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
           modalProps: {
             message: intl.formatMessage(messages.replyMessage),
             confirm: intl.formatMessage(messages.replyConfirm),
-            onConfirm: () => dispatch(replyCompose(lastStatus, history)),
+            onConfirm: () => dispatch(replyCompose(lastStatus)),
           },
         }));
       } else {
-        dispatch(replyCompose(lastStatus, history));
+        dispatch(replyCompose(lastStatus));
       }
     });
-  }, [dispatch, lastStatus, history, intl]);
+  }, [dispatch, lastStatus, intl]);
 
   const handleDelete = useCallback(() => {
     dispatch(deleteConversation(id));
