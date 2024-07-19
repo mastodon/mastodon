@@ -19,7 +19,6 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'CLI'
   inflect.acronym 'DeepL'
   inflect.acronym 'DSL'
-  inflect.acronym 'Ed25519'
   inflect.acronym 'JsonLd'
   inflect.acronym 'OEmbed'
   inflect.acronym 'OStatus'
