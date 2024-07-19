@@ -3,6 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Move do
+  RSpec::Matchers.define_negated_matcher :not_be_following, :be_following
+  RSpec::Matchers.define_negated_matcher :not_be_requested, :be_requested
+
   let(:follower)         { Fabricate(:account) }
   let(:old_account)      { Fabricate(:account, uri: 'https://example.org/alice', domain: 'example.org', protocol: :activitypub, inbox_url: 'https://example.org/inbox') }
   let(:new_account)      { Fabricate(:account, uri: 'https://example.com/alice', domain: 'example.com', protocol: :activitypub, inbox_url: 'https://example.com/inbox', also_known_as: also_known_as) }
@@ -39,48 +42,36 @@ RSpec.describe ActivityPub::Activity::Move do
     end
 
     context 'when all conditions are met', :inline_jobs do
-      it 'sets moved account on old account' do
-        expect(old_account.reload.moved_to_account_id).to eq new_account.id
-      end
-
-      it 'makes followers unfollow old account' do
-        expect(follower.following?(old_account)).to be false
-      end
-
-      it 'makes followers follow-request the new account' do
-        expect(follower.requested?(new_account)).to be true
+      it 'sets moved on old account, followers unfollow old account, followers request the new account' do
+        expect(old_account.reload.moved_to_account_id)
+          .to eq new_account.id
+        expect(follower)
+          .to not_be_following(old_account)
+          .and be_requested(new_account)
       end
     end
 
     context "when the new account can't be resolved" do
       let(:returned_account) { nil }
 
-      it 'does not set moved account on old account' do
-        expect(old_account.reload.moved_to_account_id).to be_nil
-      end
-
-      it 'does not make followers unfollow old account' do
-        expect(follower.following?(old_account)).to be true
-      end
-
-      it 'does not make followers follow-request the new account' do
-        expect(follower.requested?(new_account)).to be false
+      it 'does not set moved on old account, does not unfollow old, does not follow request new' do
+        expect(old_account.reload.moved_to_account_id)
+          .to be_nil
+        expect(follower)
+          .to be_following(old_account)
+          .and not_be_requested(new_account)
       end
     end
 
     context 'when the new account does not references the old account' do
       let(:also_known_as) { [] }
 
-      it 'does not set moved account on old account' do
-        expect(old_account.reload.moved_to_account_id).to be_nil
-      end
-
-      it 'does not make followers unfollow old account' do
-        expect(follower.following?(old_account)).to be true
-      end
-
-      it 'does not make followers follow-request the new account' do
-        expect(follower.requested?(new_account)).to be false
+      it 'does not set moved on old account, does not unfollow old, does not follow request new' do
+        expect(old_account.reload.moved_to_account_id)
+          .to be_nil
+        expect(follower)
+          .to be_following(old_account)
+          .and not_be_requested(new_account)
       end
     end
 
@@ -91,16 +82,12 @@ RSpec.describe ActivityPub::Activity::Move do
         redis.del("move_in_progress:#{old_account.id}")
       end
 
-      it 'does not set moved account on old account' do
-        expect(old_account.reload.moved_to_account_id).to be_nil
-      end
-
-      it 'does not make followers unfollow old account' do
-        expect(follower.following?(old_account)).to be true
-      end
-
-      it 'does not make followers follow-request the new account' do
-        expect(follower.requested?(new_account)).to be false
+      it 'does not set moved on old account, does not unfollow old, does not follow request new' do
+        expect(old_account.reload.moved_to_account_id)
+          .to be_nil
+        expect(follower)
+          .to be_following(old_account)
+          .and not_be_requested(new_account)
       end
     end
   end
