@@ -1,3 +1,5 @@
+import { browserHistory } from 'mastodon/components/router';
+
 import api from '../api';
 
 import { ensureComposeIsVisible, setComposeToStatus } from './compose';
@@ -363,3 +365,15 @@ export const undoStatusTranslation = (id, pollId) => ({
   id,
   pollId,
 });
+
+export const navigateToStatus = (statusId) => {
+  return (_dispatch, getState) => {
+    const state = getState();
+    const accountId = state.statuses.getIn([statusId, 'account']);
+    const acct = state.accounts.getIn([accountId, 'acct']);
+
+    if (acct) {
+      browserHistory.push(`/@${acct}/${statusId}`);
+    }
+  };
+};
