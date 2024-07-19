@@ -118,7 +118,7 @@ class StatusActionBar extends ImmutablePureComponent {
     const { signedIn } = this.props.identity;
 
     if (signedIn) {
-      this.props.onReply(this.props.status, this.props.history);
+      this.props.onReply(this.props.status);
     } else {
       this.props.onInteractionModal('reply', this.props.status);
     }
@@ -157,15 +157,15 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   handleDeleteClick = () => {
-    this.props.onDelete(this.props.status, this.props.history);
+    this.props.onDelete(this.props.status);
   };
 
   handleRedraftClick = () => {
-    this.props.onDelete(this.props.status, this.props.history, true);
+    this.props.onDelete(this.props.status, true);
   };
 
   handleEditClick = () => {
-    this.props.onEdit(this.props.status, this.props.history);
+    this.props.onEdit(this.props.status);
   };
 
   handlePinClick = () => {
@@ -173,11 +173,11 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   handleMentionClick = () => {
-    this.props.onMention(this.props.status.get('account'), this.props.history);
+    this.props.onMention(this.props.status.get('account'));
   };
 
   handleDirectClick = () => {
-    this.props.onDirect(this.props.status.get('account'), this.props.history);
+    this.props.onDirect(this.props.status.get('account'));
   };
 
   handleMuteClick = () => {

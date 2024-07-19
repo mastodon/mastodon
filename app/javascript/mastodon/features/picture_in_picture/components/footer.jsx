@@ -61,13 +61,13 @@ class Footer extends ImmutablePureComponent {
   };
 
   _performReply = () => {
-    const { dispatch, status, onClose, history } = this.props;
+    const { dispatch, status, onClose } = this.props;
 
     if (onClose) {
       onClose(true);
     }
 
-    dispatch(replyCompose(status, history));
+    dispatch(replyCompose(status));
   };
 
   handleReplyClick = () => {

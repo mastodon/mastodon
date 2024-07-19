@@ -101,7 +101,7 @@ class Notification extends ImmutablePureComponent {
     e.preventDefault();
 
     const { notification, onMention } = this.props;
-    onMention(notification.get('account'), this.props.history);
+    onMention(notification.get('account'));
   };
 
   handleHotkeyFavourite = () => {
