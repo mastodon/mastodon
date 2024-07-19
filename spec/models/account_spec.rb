@@ -775,7 +775,7 @@ RSpec.describe Account do
       end
 
       it 'is invalid if the display name is longer than the character limit' do
-        account = Fabricate.build(:account, display_name: username_over_limit)
+        account = Fabricate.build(:account, display_name: display_name_over_limit)
         account.valid?
         expect(account).to model_have_error_on_field(:display_name)
       end
@@ -821,7 +821,7 @@ RSpec.describe Account do
       end
 
       it 'is valid even if the display name is longer than the character limit' do
-        account = Fabricate.build(:account, domain: 'domain', display_name: username_over_limit)
+        account = Fabricate.build(:account, domain: 'domain', display_name: display_name_over_limit)
         account.valid?
         expect(account).to_not model_have_error_on_field(:display_name)
       end
@@ -835,6 +835,10 @@ RSpec.describe Account do
 
     def username_over_limit
       'a' * described_class::USERNAME_LENGTH_LIMIT * 2
+    end
+
+    def display_name_over_limit
+      'a' * described_class::DISPLAY_NAME_LENGTH_LIMIT * 2
     end
 
     def account_note_over_limit
