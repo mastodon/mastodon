@@ -105,7 +105,7 @@ class MigrateAccountConversations < ActiveRecord::Migration[5.2]
       end
     end
 
-    notifications_about_direct_statuses.includes(:account, mention: { status: [:account, mentions: :account] }).find_each do |notification|
+    notifications_about_direct_statuses.includes(:account, mention: { status: [:account, { mentions: :account }] }).find_each do |notification|
       MigrationAccountConversation.add_status(notification.account, notification.target_status)
       migrated += 1
 

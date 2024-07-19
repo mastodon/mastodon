@@ -52,19 +52,19 @@ jobs:
 
       # Create or update the pull request
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5.0.2
+        uses: peter-evans/create-pull-request@v6.0.5
         with:
           commit-message: 'New Crowdin translations'
           title: 'New Crowdin Translations (automated)'
           author: 'GitHub Actions <noreply@github.com>'
           body: |
-            New Crowdin translations, automated with Github Actions
+            New Crowdin translations, automated with GitHub Actions
 
             See `.github/workflows/crowdin-download.yml`
 
             This PR will be updated every day with new translations.
 
-            Due to a limitation in Github Actions, checks are not running on this PR without manual action.
+            Due to a limitation in GitHub Actions, checks are not running on this PR without manual action.
             If you want to run the checks, then close and re-open it.
           branch: i18n/crowdin/translations
           base: main

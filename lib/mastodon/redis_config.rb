@@ -30,11 +30,13 @@ namespace         = ENV.fetch('REDIS_NAMESPACE', nil)
 cache_namespace   = namespace ? "#{namespace}_cache" : 'cache'
 sidekiq_namespace = namespace
 
+redis_driver = ENV.fetch('REDIS_DRIVER', 'hiredis') == 'ruby' ? :ruby : :hiredis
+
 REDIS_CACHE_PARAMS = {
-  driver: :hiredis,
+  driver: redis_driver,
   url: ENV['CACHE_REDIS_URL'],
   expires_in: 10.minutes,
-  namespace: cache_namespace,
+  namespace: "#{cache_namespace}:7.1",
   connect_timeout: 5,
   pool: {
     size: Sidekiq.server? ? Sidekiq[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
@@ -43,7 +45,7 @@ REDIS_CACHE_PARAMS = {
 }.freeze
 
 REDIS_SIDEKIQ_PARAMS = {
-  driver: :hiredis,
+  driver: redis_driver,
   url: ENV['SIDEKIQ_REDIS_URL'],
   namespace: sidekiq_namespace,
 }.freeze

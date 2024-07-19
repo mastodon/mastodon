@@ -13,14 +13,13 @@ RSpec.describe AdminMailer do
       recipient.user.update(locale: :en)
     end
 
-    it 'renders the headers' do
-      expect(mail.subject).to eq("New report for cb6e6126.ngrok.io (##{report.id})")
-      expect(mail.to).to eq [recipient.user_email]
-      expect(mail.from).to eq ['notifications@localhost']
-    end
-
-    it 'renders the body' do
-      expect(mail.body.encoded).to eq("Mike,\r\n\r\nJohn has reported Mike\r\n\r\nView: https://cb6e6126.ngrok.io/admin/reports/#{report.id}\r\n")
+    it 'renders the email' do
+      expect(mail)
+        .to be_present
+        .and(deliver_to(recipient.user_email))
+        .and(deliver_from('notifications@localhost'))
+        .and(have_subject("New report for cb6e6126.ngrok.io (##{report.id})"))
+        .and(have_body_text("Mike,\r\n\r\nJohn has reported Mike\r\n\r\nView: https://cb6e6126.ngrok.io/admin/reports/#{report.id}\r\n"))
     end
   end
 
@@ -33,14 +32,13 @@ RSpec.describe AdminMailer do
       recipient.user.update(locale: :en)
     end
 
-    it 'renders the headers' do
-      expect(mail.subject).to eq("#{appeal.account.username} is appealing a moderation decision on cb6e6126.ngrok.io")
-      expect(mail.to).to eq [recipient.user_email]
-      expect(mail.from).to eq ['notifications@localhost']
-    end
-
-    it 'renders the body' do
-      expect(mail.body.encoded).to match "#{appeal.account.username} is appealing a moderation decision by #{appeal.strike.account.username}"
+    it 'renders the email' do
+      expect(mail)
+        .to be_present
+        .and(deliver_to(recipient.user_email))
+        .and(deliver_from('notifications@localhost'))
+        .and(have_subject("#{appeal.account.username} is appealing a moderation decision on cb6e6126.ngrok.io"))
+        .and(have_body_text("#{appeal.account.username} is appealing a moderation decision by #{appeal.strike.account.username}"))
     end
   end
 
@@ -53,36 +51,39 @@ RSpec.describe AdminMailer do
       recipient.user.update(locale: :en)
     end
 
-    it 'renders the headers' do
-      expect(mail.subject).to eq("New account up for review on cb6e6126.ngrok.io (#{user.account.username})")
-      expect(mail.to).to eq [recipient.user_email]
-      expect(mail.from).to eq ['notifications@localhost']
-    end
-
-    it 'renders the body' do
-      expect(mail.body.encoded).to match 'The details of the new account are below. You can approve or reject this application.'
+    it 'renders the email' do
+      expect(mail)
+        .to be_present
+        .and(deliver_to(recipient.user_email))
+        .and(deliver_from('notifications@localhost'))
+        .and(have_subject("New account up for review on cb6e6126.ngrok.io (#{user.account.username})"))
+        .and(have_body_text('The details of the new account are below. You can approve or reject this application.'))
     end
   end
 
   describe '.new_trends' do
     let(:recipient) { Fabricate(:account, username: 'Snurf') }
-    let(:links) { [] }
-    let(:statuses) { [] }
-    let(:tags) { [] }
-    let(:mail) { described_class.with(recipient: recipient).new_trends(links, tags, statuses) }
+    let(:link) { Fabricate(:preview_card, trendable: true, language: 'en') }
+    let(:status) { Fabricate(:status) }
+    let(:tag) { Fabricate(:tag) }
+    let(:mail) { described_class.with(recipient: recipient).new_trends([link], [tag], [status]) }
 
     before do
+      PreviewCardTrend.create!(preview_card: link)
+      StatusTrend.create!(status: status, account: Fabricate(:account))
       recipient.user.update(locale: :en)
     end
 
-    it 'renders the headers' do
-      expect(mail.subject).to eq('New trends up for review on cb6e6126.ngrok.io')
-      expect(mail.to).to eq [recipient.user_email]
-      expect(mail.from).to eq ['notifications@localhost']
-    end
-
-    it 'renders the body' do
-      expect(mail.body.encoded).to match 'The following items need a review before they can be displayed publicly'
+    it 'renders the email' do
+      expect(mail)
+        .to be_present
+        .and(deliver_to(recipient.user_email))
+        .and(deliver_from('notifications@localhost'))
+        .and(have_subject('New trends up for review on cb6e6126.ngrok.io'))
+        .and(have_body_text('The following items need a review before they can be displayed publicly'))
+        .and(have_body_text(ActivityPub::TagManager.instance.url_for(status)))
+        .and(have_body_text(link.title))
+        .and(have_body_text(tag.display_name))
     end
   end
 
@@ -94,14 +95,13 @@ RSpec.describe AdminMailer do
       recipient.user.update(locale: :en)
     end
 
-    it 'renders the headers' do
-      expect(mail.subject).to eq('New Mastodon versions are available for cb6e6126.ngrok.io!')
-      expect(mail.to).to eq [recipient.user_email]
-      expect(mail.from).to eq ['notifications@localhost']
-    end
-
-    it 'renders the body' do
-      expect(mail.body.encoded).to match 'New Mastodon versions have been released, you may want to update!'
+    it 'renders the email' do
+      expect(mail)
+        .to be_present
+        .and(deliver_to(recipient.user_email))
+        .and(deliver_from('notifications@localhost'))
+        .and(have_subject('New Mastodon versions are available for cb6e6126.ngrok.io!'))
+        .and(have_body_text('New Mastodon versions have been released, you may want to update!'))
     end
   end
 
@@ -113,18 +113,34 @@ RSpec.describe AdminMailer do
       recipient.user.update(locale: :en)
     end
 
-    it 'renders the headers', :aggregate_failures do
-      expect(mail.subject).to eq('Critical Mastodon updates are available for cb6e6126.ngrok.io!')
-      expect(mail.to).to eq [recipient.user_email]
-      expect(mail.from).to eq ['notifications@localhost']
+    it 'renders the email' do
+      expect(mail)
+        .to be_present
+        .and(deliver_to(recipient.user_email))
+        .and(deliver_from('notifications@localhost'))
+        .and(have_subject('Critical Mastodon updates are available for cb6e6126.ngrok.io!'))
+        .and(have_body_text('New critical versions of Mastodon have been released, you may want to update as soon as possible!'))
+        .and(have_header('Importance', 'high'))
+        .and(have_header('Priority', 'urgent'))
+        .and(have_header('X-Priority', '1'))
+    end
+  end
 
-      expect(mail['Importance'].value).to eq 'high'
-      expect(mail['Priority'].value).to eq 'urgent'
-      expect(mail['X-Priority'].value).to eq '1'
+  describe '.auto_close_registrations' do
+    let(:recipient) { Fabricate(:account, username: 'Bob') }
+    let(:mail) { described_class.with(recipient: recipient).auto_close_registrations }
+
+    before do
+      recipient.user.update(locale: :en)
     end
 
-    it 'renders the body' do
-      expect(mail.body.encoded).to match 'New critical versions of Mastodon have been released, you may want to update as soon as possible!'
+    it 'renders the email' do
+      expect(mail)
+        .to be_present
+        .and(deliver_to(recipient.user_email))
+        .and(deliver_from('notifications@localhost'))
+        .and(have_subject('Registrations for cb6e6126.ngrok.io have been automatically switched to requiring approval'))
+        .and(have_body_text('have been automatically switched'))
     end
   end
 end

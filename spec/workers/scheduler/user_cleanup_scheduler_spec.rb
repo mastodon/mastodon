@@ -14,16 +14,15 @@ describe Scheduler::UserCleanupScheduler do
     before do
       # Need to update the already-existing users because their initialization overrides confirmation_sent_at
       new_unconfirmed_user.update!(confirmed_at: nil, confirmation_sent_at: Time.now.utc)
-      old_unconfirmed_user.update!(confirmed_at: nil, confirmation_sent_at: 1.week.ago)
+      old_unconfirmed_user.update!(confirmed_at: nil, confirmation_sent_at: 10.days.ago)
       confirmed_user.update!(confirmed_at: 1.day.ago)
     end
 
-    it 'deletes the old unconfirmed user' do
-      expect { subject.perform }.to change { User.exists?(old_unconfirmed_user.id) }.from(true).to(false)
-    end
-
-    it "deletes the old unconfirmed user's account" do
-      expect { subject.perform }.to change { Account.exists?(old_unconfirmed_user.account_id) }.from(true).to(false)
+    it 'deletes the old unconfirmed user, their account, and the moderation note' do
+      expect { subject.perform }
+        .to change { User.exists?(old_unconfirmed_user.id) }.from(true).to(false)
+        .and change { Account.exists?(old_unconfirmed_user.account_id) }.from(true).to(false)
+      expect { moderation_note.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it 'does not delete the new unconfirmed user or their account' do

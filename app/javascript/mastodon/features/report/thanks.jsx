@@ -20,7 +20,7 @@ class Thanks extends PureComponent {
   static propTypes = {
     submitted: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.record.isRequired,
     dispatch: PropTypes.func.isRequired,
   };
 

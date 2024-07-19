@@ -15,9 +15,20 @@ module ReactComponentHelper
     div_tag_with_data(data)
   end
 
+  def serialized_media_attachments(media_attachments)
+    media_attachments.map { |attachment| serialized_attachment(attachment) }
+  end
+
   private
 
   def div_tag_with_data(data)
     content_tag(:div, nil, data: data)
+  end
+
+  def serialized_attachment(attachment)
+    ActiveModelSerializers::SerializableResource.new(
+      attachment,
+      serializer: REST::MediaAttachmentSerializer
+    ).as_json
   end
 end

@@ -7,6 +7,10 @@
       %small
         - if instance.domain_block
           = instance.domain_block.policies.map { |policy| t(policy, scope: 'admin.instances.content_policies.policies') }.join(' · ')
+          - if instance.domain_block.public_comment.present?
+            %span.comment.public-comment #{t('admin.domain_blocks.public_comment')}: #{instance.domain_block.public_comment}
+          - if instance.domain_block.private_comment.present?
+            %span.comment.private-comment #{t('admin.domain_blocks.private_comment')}: #{instance.domain_block.private_comment}
         - elsif instance.domain_allow
           = t('admin.accounts.whitelisted')
         - else

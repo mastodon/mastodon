@@ -1,1 +1,18 @@
+---
 pa:
+  devise:
+    confirmations:
+      confirmed: ਤੁਹਾਡੇ ਈਮੇਲ ਸਿਰਨਾਵੇਂ ਨੂੰ ਕਾਮਯਾਬੀ ਨਾਲ ਤਸਦੀਕ ਕੀਤਾ ਗਿਆ ਹੈ।
+    failure:
+      inactive: ਤੁਹਾਡਾ ਖਾਤਾ ਹਾਲੇ ਸਰਗਰਮ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ।
+      invalid: ਗਲਤ %{authentication_keys} ਜਾਂ ਪਾਸਵਰਡ ਹੈ।
+      last_attempt: ਤੁਹਾਡੇ ਖਾਤੇ ਦੇ ਲਾਕ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ ਤੁਹਾਡੇ ਕੋਲ ਇੱਕ ਹੋਰ ਕੋਸ਼ਿਸ਼ ਬਾਕੀ ਹੈ।
+      locked: ਤੁਹਾਡਾ ਖਾਤਾ ਲਾਕ ਹੋ ਗਿਆ ਹੈ।
+      not_found_in_database: ਗਲਤ %{authentication_keys} ਜਾਂ ਪਾਸਵਰਡ ਹੈ।
+      pending: ਤੁਹਾਡਾ ਖਾਤਾ ਹਾਲੇ ਵੀ ਪੜਤਾਲ ਅਧੀਨ ਹੈ।
+      timeout: ਤੁਹਾਡੇ ਸ਼ੈਸ਼ਨ ਦੀ ਮਿਆਦ ਪੁੱਗੀ ਹੈ। ਜਾਰੀ ਰੱਖਣ ਲਈ ਫੇਰ ਲਾਗਇਨ ਕਰੋ।
+      unauthenticated: ਜਾਰੀ ਰੱਖਣ ਤੋਂ ਪਹਿਲਾਂ ਤੁਹਾਨੂੰ ਲਾਗਇਨ ਜਾਂ ਸਾਈਨ ਅੱਪ ਕਰਨ ਦੀ ਲੋੜ ਹੈ।
+    sessions:
+      already_signed_out: ਕਾਮਯਾਬੀ ਨਾਲ ਸਾਈਨ ਆਉਟ ਕੀਤਾ।
+      signed_in: ਕਾਮਯਾਬੀ ਨਾਲ ਸਾਈਨ ਇਨ ਕੀਤਾ।
+      signed_out: ਕਾਮਯਾਬੀ ਨਾਲ ਸਾਈਨ ਆਉਟ ਕੀਤਾ।

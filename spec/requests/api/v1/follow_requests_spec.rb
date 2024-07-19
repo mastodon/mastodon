@@ -13,7 +13,7 @@ RSpec.describe 'Follow requests' do
       get '/api/v1/follow_requests', headers: headers, params: params
     end
 
-    let(:accounts) { Fabricate.times(5, :account) }
+    let(:accounts) { Fabricate.times(2, :account) }
     let(:params)   { {} }
 
     let(:expected_response) do
@@ -40,7 +40,7 @@ RSpec.describe 'Follow requests' do
     end
 
     context 'with limit param' do
-      let(:params) { { limit: 2 } }
+      let(:params) { { limit: 1 } }
 
       it 'returns only the requested number of follow requests' do
         subject

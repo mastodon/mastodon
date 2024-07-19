@@ -1,6 +1,7 @@
+import { createSelector } from '@reduxjs/toolkit';
 import { Map as ImmutableMap } from 'immutable';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+
 
 import { changeComposeLanguage } from 'mastodon/actions/compose';
 import { useLanguage } from 'mastodon/actions/languages';

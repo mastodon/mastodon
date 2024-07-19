@@ -32,18 +32,18 @@ describe 'Links' do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'returns http success' do
-      subject
+      expect { subject }
+        .to change_link_trendable_to_true
 
       expect(response).to have_http_status(200)
+      expects_correct_link_data
     end
 
-    it 'sets the link as trendable' do
-      expect { subject }.to change { preview_card.reload.trendable }.from(false).to(true)
+    def change_link_trendable_to_true
+      change { preview_card.reload.trendable }.from(false).to(true)
     end
 
-    it 'returns the link data' do
-      subject
-
+    def expects_correct_link_data
       expect(body_as_json).to match(
         a_hash_including(
           url: preview_card.url,
@@ -85,13 +85,14 @@ describe 'Links' do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'returns http success' do
-      subject
+      expect { subject }
+        .to_not change_link_trendable
 
       expect(response).to have_http_status(200)
     end
 
-    it 'does not set the link as trendable' do
-      expect { subject }.to_not(change { preview_card.reload.trendable })
+    def change_link_trendable
+      change { preview_card.reload.trendable }
     end
 
     it 'returns the link data' do

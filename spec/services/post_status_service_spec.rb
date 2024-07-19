@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PostStatusService, type: :service do
+RSpec.describe PostStatusService do
   subject { described_class.new }
 
   it 'creates a new status' do
@@ -32,27 +32,44 @@ RSpec.describe PostStatusService, type: :service do
     let!(:future)          { Time.now.utc + 2.hours }
     let!(:previous_status) { Fabricate(:status, account: account) }
 
-    it 'schedules a status' do
-      status = subject.call(account, text: 'Hi future!', scheduled_at: future)
-      expect(status).to be_a ScheduledStatus
-      expect(status.scheduled_at).to eq future
-      expect(status.params['text']).to eq 'Hi future!'
-    end
-
-    it 'does not immediately create a status' do
+    it 'schedules a status for future creation and does not create one immediately' do
       media = Fabricate(:media_attachment, account: account)
       status = subject.call(account, text: 'Hi future!', media_ids: [media.id], scheduled_at: future)
 
-      expect(status).to be_a ScheduledStatus
-      expect(status.scheduled_at).to eq future
-      expect(status.params['text']).to eq 'Hi future!'
-      expect(status.params['media_ids']).to eq [media.id]
+      expect(status)
+        .to be_a(ScheduledStatus)
+        .and have_attributes(
+          scheduled_at: eq(future),
+          params: include(
+            'text' => eq('Hi future!'),
+            'media_ids' => contain_exactly(media.id)
+          )
+        )
       expect(media.reload.status).to be_nil
       expect(Status.where(text: 'Hi future!')).to_not exist
     end
 
-    it 'does not change statuses count' do
-      expect { subject.call(account, text: 'Hi future!', scheduled_at: future, thread: previous_status) }.to_not(change { [account.statuses_count, previous_status.replies_count] })
+    it 'does not change statuses_count of account or replies_count of thread previous status' do
+      expect { subject.call(account, text: 'Hi future!', scheduled_at: future, thread: previous_status) }
+        .to not_change { account.statuses_count }
+        .and(not_change { previous_status.replies_count })
+    end
+
+    it 'returns existing status when used twice with idempotency key' do
+      account = Fabricate(:account)
+      status1 = subject.call(account, text: 'test', idempotency: 'meepmeep', scheduled_at: future)
+      status2 = subject.call(account, text: 'test', idempotency: 'meepmeep', scheduled_at: future)
+      expect(status2.id).to eq status1.id
+    end
+
+    context 'when scheduled_at is less than min offset' do
+      let(:invalid_scheduled_time) { 4.minutes.from_now }
+
+      it 'raises invalid record error' do
+        expect do
+          subject.call(account, text: 'Hi future!', scheduled_at: invalid_scheduled_time)
+        end.to raise_error(ActiveRecord::RecordInvalid)
+      end
     end
   end
 
@@ -150,7 +167,7 @@ RSpec.describe PostStatusService, type: :service do
 
     expect do
       subject.call(account, text: '@alice hm, @bob is really annoying lately', allowed_mentions: [mentioned_account.id])
-    end.to raise_error(an_instance_of(PostStatusService::UnexpectedMentionsError).and(having_attributes(accounts: [unexpected_mentioned_account])))
+    end.to raise_error(an_instance_of(described_class::UnexpectedMentionsError).and(having_attributes(accounts: [unexpected_mentioned_account])))
   end
 
   it 'processes duplicate mentions correctly' do
@@ -221,20 +238,15 @@ RSpec.describe PostStatusService, type: :service do
     expect(media.reload.status).to be_nil
   end
 
-  it 'does not allow attaching more than 4 files' do
+  it 'does not allow attaching more files than configured limit' do
+    stub_const('Status::MEDIA_ATTACHMENTS_LIMIT', 1)
     account = Fabricate(:account)
 
     expect do
       subject.call(
         account,
         text: 'test status update',
-        media_ids: [
-          Fabricate(:media_attachment, account: account),
-          Fabricate(:media_attachment, account: account),
-          Fabricate(:media_attachment, account: account),
-          Fabricate(:media_attachment, account: account),
-          Fabricate(:media_attachment, account: account),
-        ].map(&:id)
+        media_ids: Array.new(2) { Fabricate(:media_attachment, account: account) }.map(&:id)
       )
     end.to raise_error(
       Mastodon::ValidationError,

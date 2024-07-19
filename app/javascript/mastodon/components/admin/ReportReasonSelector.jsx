@@ -105,7 +105,7 @@ class ReportReasonSelector extends PureComponent {
   };
 
   componentDidMount() {
-    api().get('/api/v1/instance').then(res => {
+    api(false).get('/api/v1/instance').then(res => {
       this.setState({
         rules: res.data.rules,
       });
@@ -122,9 +122,9 @@ class ReportReasonSelector extends PureComponent {
       return;
     }
 
-    api().put(`/api/v1/admin/reports/${id}`, {
+    api(false).put(`/api/v1/admin/reports/${id}`, {
       category,
-      rule_ids,
+      rule_ids: category === 'violation' ? rule_ids : [],
     }).catch(err => {
       console.error(err);
     });

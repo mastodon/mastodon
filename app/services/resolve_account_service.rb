@@ -100,7 +100,9 @@ class ResolveAccountService < BaseService
   end
 
   def split_acct(acct)
-    acct.delete_prefix('acct:').split('@')
+    acct.delete_prefix('acct:').split('@').tap do |parts|
+      raise Webfinger::Error, 'Webfinger response is missing user or host value' unless parts.size == 2
+    end
   end
 
   def fetch_account!

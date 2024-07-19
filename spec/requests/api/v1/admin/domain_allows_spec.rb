@@ -35,7 +35,7 @@ RSpec.describe 'Domain Allows' do
     end
 
     context 'when there are allowed domains' do
-      let!(:domain_allows) { Fabricate.times(5, :domain_allow) }
+      let!(:domain_allows) { Fabricate.times(2, :domain_allow) }
       let(:expected_response) do
         domain_allows.map do |domain_allow|
           {
@@ -53,7 +53,7 @@ RSpec.describe 'Domain Allows' do
       end
 
       context 'with limit param' do
-        let(:params) { { limit: 2 } }
+        let(:params) { { limit: 1 } }
 
         it 'returns only the requested number of allowed domains' do
           subject
@@ -113,7 +113,7 @@ RSpec.describe 'Domain Allows' do
     end
 
     context 'with invalid domain name' do
-      let(:params) { 'foo bar' }
+      let(:params) { { domain: 'foo bar' } }
 
       it 'returns http unprocessable entity' do
         subject

@@ -9,11 +9,11 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { ReactComponent as DeleteIcon } from '@material-symbols/svg-600/outlined/delete.svg';
-import { ReactComponent as EditIcon } from '@material-symbols/svg-600/outlined/edit.svg';
-import { ReactComponent as ListAltIcon } from '@material-symbols/svg-600/outlined/list_alt.svg';
 import Toggle from 'react-toggle';
 
+import DeleteIcon from '@/material-icons/400-24px/delete.svg?react';
+import EditIcon from '@/material-icons/400-24px/edit.svg?react';
+import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { fetchList, deleteList, updateList } from 'mastodon/actions/lists';
 import { openModal } from 'mastodon/actions/modal';
@@ -193,35 +193,38 @@ class ListTimeline extends PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
         >
-          <div className='column-settings__row column-header__links'>
-            <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleEditClick}>
-              <Icon id='pencil' icon={EditIcon} /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
-            </button>
+          <div className='column-settings'>
+            <section className='column-header__links'>
+              <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleEditClick}>
+                <Icon id='pencil' icon={EditIcon} /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
+              </button>
 
-            <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleDeleteClick}>
-              <Icon id='trash' icon={DeleteIcon} /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
-            </button>
-          </div>
+              <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleDeleteClick}>
+                <Icon id='trash' icon={DeleteIcon} /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
+              </button>
+            </section>
 
-          <div className='setting-toggle'>
-            <Toggle id={`list-${id}-exclusive`} defaultChecked={isExclusive} onChange={this.onExclusiveToggle} />
-            <label htmlFor={`list-${id}-exclusive`} className='setting-toggle__label'>
-              <FormattedMessage id='lists.exclusive' defaultMessage='Hide these posts from home' />
-            </label>
-          </div>
-
-          { replies_policy !== undefined && (
-            <div role='group' aria-labelledby={`list-${id}-replies-policy`}>
-              <span id={`list-${id}-replies-policy`} className='column-settings__section'>
-                <FormattedMessage id='lists.replies_policy.title' defaultMessage='Show replies to:' />
-              </span>
-              <div className='column-settings__row'>
-                { ['none', 'list', 'followed'].map(policy => (
-                  <RadioButton name='order' key={policy} value={policy} label={intl.formatMessage(messages[policy])} checked={replies_policy === policy} onChange={this.handleRepliesPolicyChange} />
-                ))}
+            <section>
+              <div className='setting-toggle'>
+                <Toggle id={`list-${id}-exclusive`} checked={isExclusive} onChange={this.onExclusiveToggle} />
+                <label htmlFor={`list-${id}-exclusive`} className='setting-toggle__label'>
+                  <FormattedMessage id='lists.exclusive' defaultMessage='Hide these posts from home' />
+                </label>
               </div>
-            </div>
-          )}
+            </section>
+
+            {replies_policy !== undefined && (
+              <section aria-labelledby={`list-${id}-replies-policy`}>
+                <h3 id={`list-${id}-replies-policy`}><FormattedMessage id='lists.replies_policy.title' defaultMessage='Show replies to:' /></h3>
+
+                <div className='column-settings__row'>
+                  { ['none', 'list', 'followed'].map(policy => (
+                    <RadioButton name='order' key={policy} value={policy} label={intl.formatMessage(messages[policy])} checked={replies_policy === policy} onChange={this.handleRepliesPolicyChange} />
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
         </ColumnHeader>
 
         <StatusListContainer

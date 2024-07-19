@@ -1,12 +1,8 @@
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 import {
-  DIRECTORY_FETCH_REQUEST,
-  DIRECTORY_FETCH_SUCCESS,
-  DIRECTORY_FETCH_FAIL,
-  DIRECTORY_EXPAND_REQUEST,
-  DIRECTORY_EXPAND_SUCCESS,
-  DIRECTORY_EXPAND_FAIL,
+  expandDirectory,
+  fetchDirectory
 } from 'mastodon/actions/directory';
 import {
   FEATURED_TAGS_FETCH_REQUEST,
@@ -33,8 +29,8 @@ import {
   FOLLOW_REQUESTS_EXPAND_REQUEST,
   FOLLOW_REQUESTS_EXPAND_SUCCESS,
   FOLLOW_REQUESTS_EXPAND_FAIL,
-  FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
-  FOLLOW_REQUEST_REJECT_SUCCESS,
+  authorizeFollowRequestSuccess,
+  rejectFollowRequestSuccess,
 } from '../actions/accounts';
 import {
   BLOCKS_FETCH_REQUEST,
@@ -66,11 +62,7 @@ import {
   MUTES_EXPAND_SUCCESS,
   MUTES_EXPAND_FAIL,
 } from '../actions/mutes';
-import {
-  NOTIFICATIONS_UPDATE,
-} from '../actions/notifications';
-
-
+import { notificationsUpdate } from '../actions/notifications';
 
 const initialListState = ImmutableMap({
   next: null,
@@ -121,6 +113,7 @@ const normalizeFeaturedTags = (state, path, featuredTags, accountId) => {
   }));
 };
 
+/** @type {import('@reduxjs/toolkit').Reducer<typeof initialState>} */
 export default function userLists(state = initialState, action) {
   switch(action.type) {
   case FOLLOWERS_FETCH_SUCCESS:
@@ -163,8 +156,8 @@ export default function userLists(state = initialState, action) {
   case FAVOURITES_FETCH_FAIL:
   case FAVOURITES_EXPAND_FAIL:
     return state.setIn(['favourited_by', action.id, 'isLoading'], false);
-  case NOTIFICATIONS_UPDATE:
-    return action.notification.type === 'follow_request' ? normalizeFollowRequest(state, action.notification) : state;
+  case notificationsUpdate.type:
+    return action.payload.notification.type === 'follow_request' ? normalizeFollowRequest(state, action.payload.notification) : state;
   case FOLLOW_REQUESTS_FETCH_SUCCESS:
     return normalizeList(state, ['follow_requests'], action.accounts, action.next);
   case FOLLOW_REQUESTS_EXPAND_SUCCESS:
@@ -175,9 +168,9 @@ export default function userLists(state = initialState, action) {
   case FOLLOW_REQUESTS_FETCH_FAIL:
   case FOLLOW_REQUESTS_EXPAND_FAIL:
     return state.setIn(['follow_requests', 'isLoading'], false);
-  case FOLLOW_REQUEST_AUTHORIZE_SUCCESS:
-  case FOLLOW_REQUEST_REJECT_SUCCESS:
-    return state.updateIn(['follow_requests', 'items'], list => list.filterNot(item => item === action.id));
+  case authorizeFollowRequestSuccess.type:
+  case rejectFollowRequestSuccess.type:
+    return state.updateIn(['follow_requests', 'items'], list => list.filterNot(item => item === action.payload.id));
   case BLOCKS_FETCH_SUCCESS:
     return normalizeList(state, ['blocks'], action.accounts, action.next);
   case BLOCKS_EXPAND_SUCCESS:
@@ -198,16 +191,6 @@ export default function userLists(state = initialState, action) {
   case MUTES_FETCH_FAIL:
   case MUTES_EXPAND_FAIL:
     return state.setIn(['mutes', 'isLoading'], false);
-  case DIRECTORY_FETCH_SUCCESS:
-    return normalizeList(state, ['directory'], action.accounts, action.next);
-  case DIRECTORY_EXPAND_SUCCESS:
-    return appendToList(state, ['directory'], action.accounts, action.next);
-  case DIRECTORY_FETCH_REQUEST:
-  case DIRECTORY_EXPAND_REQUEST:
-    return state.setIn(['directory', 'isLoading'], true);
-  case DIRECTORY_FETCH_FAIL:
-  case DIRECTORY_EXPAND_FAIL:
-    return state.setIn(['directory', 'isLoading'], false);
   case FEATURED_TAGS_FETCH_SUCCESS:
     return normalizeFeaturedTags(state, ['featured_tags', action.id], action.tags, action.id);
   case FEATURED_TAGS_FETCH_REQUEST:
@@ -215,6 +198,17 @@ export default function userLists(state = initialState, action) {
   case FEATURED_TAGS_FETCH_FAIL:
     return state.setIn(['featured_tags', action.id, 'isLoading'], false);
   default:
-    return state;
+    if(fetchDirectory.fulfilled.match(action))
+      return normalizeList(state, ['directory'], action.payload.accounts, undefined);
+    else if( expandDirectory.fulfilled.match(action))
+      return appendToList(state, ['directory'], action.payload.accounts, undefined);
+    else if(fetchDirectory.pending.match(action) ||
+     expandDirectory.pending.match(action))
+      return state.setIn(['directory', 'isLoading'], true);
+    else if(fetchDirectory.rejected.match(action) ||
+     expandDirectory.rejected.match(action))
+      return state.setIn(['directory', 'isLoading'], false);
+    else
+      return state;
   }
 }

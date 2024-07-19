@@ -22,7 +22,7 @@ RSpec.describe Tag do
   end
 
   describe 'HASHTAG_RE' do
-    subject { Tag::HASHTAG_RE }
+    subject { described_class::HASHTAG_RE }
 
     it 'does not match URLs with anchors with non-hashtag characters' do
       expect(subject.match('Check this out https://medium.com/@alice/some-article#.abcdef123')).to be_nil
@@ -30,6 +30,14 @@ RSpec.describe Tag do
 
     it 'does not match URLs with hashtag-like anchors' do
       expect(subject.match('https://en.wikipedia.org/wiki/Ghostbusters_(song)#Lawsuit')).to be_nil
+    end
+
+    it 'does not match URLs with hashtag-like anchors after a numeral' do
+      expect(subject.match('https://gcc.gnu.org/bugzilla/show_bug.cgi?id=111895#c4')).to be_nil
+    end
+
+    it 'does not match URLs with hashtag-like anchors after a non-ascii character' do
+      expect(subject.match('https://example.org/testé#foo')).to be_nil
     end
 
     it 'does not match URLs with hashtag-like anchors after an empty query parameter' do
@@ -96,6 +104,38 @@ RSpec.describe Tag do
     end
   end
 
+  describe '.recently_used' do
+    let(:account) { Fabricate(:account) }
+    let(:other_person_status) { Fabricate(:status) }
+    let(:out_of_range) { Fabricate(:status, account: account) }
+    let(:older_in_range) { Fabricate(:status, account: account) }
+    let(:newer_in_range) { Fabricate(:status, account: account) }
+    let(:unused_tag) { Fabricate(:tag) }
+    let(:used_tag_one) { Fabricate(:tag) }
+    let(:used_tag_two) { Fabricate(:tag) }
+    let(:used_tag_on_out_of_range) { Fabricate(:tag) }
+
+    before do
+      stub_const 'Tag::RECENT_STATUS_LIMIT', 2
+
+      other_person_status.tags << used_tag_one
+
+      out_of_range.tags << used_tag_on_out_of_range
+
+      older_in_range.tags << used_tag_one
+      older_in_range.tags << used_tag_two
+
+      newer_in_range.tags << used_tag_one
+    end
+
+    it 'returns tags used by account within last X statuses ordered most used first' do
+      results = described_class.recently_used(account)
+
+      expect(results)
+        .to eq([used_tag_one, used_tag_two])
+    end
+  end
+
   describe '.find_normalized' do
     it 'returns tag for a multibyte case-insensitive name' do
       upcase_string   = 'abcABCａｂｃＡＢＣやゆよ'
@@ -103,6 +143,25 @@ RSpec.describe Tag do
 
       tag = Fabricate(:tag, name: HashtagNormalizer.new.normalize(downcase_string))
       expect(described_class.find_normalized(upcase_string)).to eq tag
+    end
+  end
+
+  describe '.not_featured_by' do
+    let!(:account) { Fabricate(:account) }
+    let!(:fun) { Fabricate(:tag, name: 'fun') }
+    let!(:games) { Fabricate(:tag, name: 'games') }
+
+    before do
+      Fabricate :featured_tag, account: account, name: 'games'
+      Fabricate :featured_tag, name: 'fun'
+    end
+
+    it 'returns tags not featured by the account' do
+      results = described_class.not_featured_by(account)
+
+      expect(results)
+        .to include(fun)
+        .and not_include(games)
     end
   end
 

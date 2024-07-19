@@ -15,7 +15,9 @@ class ChangeRelaysEnabled < ActiveRecord::Migration[5.2]
   end
 
   def down
-    remove_column :relays, :state
-    add_column :relays, :enabled, :boolean, default: false, null: false
+    change_table(:relays, bulk: true) do |t|
+      t.remove :state
+      t.column :enabled, :boolean, default: false, null: false
+    end
   end
 end

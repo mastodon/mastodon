@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UpdateStatusService, type: :service do
+RSpec.describe UpdateStatusService do
   subject { described_class.new }
 
   context 'when nothing changes' do
@@ -23,11 +23,11 @@ RSpec.describe UpdateStatusService, type: :service do
   end
 
   context 'when text changes' do
-    let!(:status) { Fabricate(:status, text: 'Foo') }
+    let(:status) { Fabricate(:status, text: 'Foo') }
     let(:preview_card) { Fabricate(:preview_card) }
 
     before do
-      status.preview_cards << preview_card
+      PreviewCardsStatus.create(status: status, preview_card: preview_card)
       subject.call(status, status.account_id, text: 'Bar')
     end
 
@@ -40,16 +40,16 @@ RSpec.describe UpdateStatusService, type: :service do
     end
 
     it 'saves edit history' do
-      expect(status.edits.pluck(:text)).to eq %w(Foo Bar)
+      expect(status.edits.ordered.pluck(:text)).to eq %w(Foo Bar)
     end
   end
 
   context 'when content warning changes' do
-    let!(:status) { Fabricate(:status, text: 'Foo', spoiler_text: '') }
+    let(:status) { Fabricate(:status, text: 'Foo', spoiler_text: '') }
     let(:preview_card) { Fabricate(:preview_card) }
 
     before do
-      status.preview_cards << preview_card
+      PreviewCardsStatus.create(status: status, preview_card: preview_card)
       subject.call(status, status.account_id, text: 'Foo', spoiler_text: 'Bar')
     end
 
@@ -58,7 +58,7 @@ RSpec.describe UpdateStatusService, type: :service do
     end
 
     it 'saves edit history' do
-      expect(status.edits.pluck(:text, :spoiler_text)).to eq [['Foo', ''], ['Foo', 'Bar']]
+      expect(status.edits.ordered.pluck(:text, :spoiler_text)).to eq [['Foo', ''], ['Foo', 'Bar']]
     end
   end
 
@@ -85,7 +85,7 @@ RSpec.describe UpdateStatusService, type: :service do
     end
 
     it 'saves edit history' do
-      expect(status.edits.pluck(:ordered_media_attachment_ids)).to eq [[detached_media_attachment.id], [attached_media_attachment.id]]
+      expect(status.edits.ordered.pluck(:ordered_media_attachment_ids)).to eq [[detached_media_attachment.id], [attached_media_attachment.id]]
     end
   end
 
@@ -107,7 +107,7 @@ RSpec.describe UpdateStatusService, type: :service do
     end
 
     it 'saves edit history' do
-      expect(status.edits.map { |edit| edit.ordered_media_attachments.map(&:description) }).to eq [['Old description'], ['New description']]
+      expect(status.edits.ordered.map { |edit| edit.ordered_media_attachments.map(&:description) }).to eq [['Old description'], ['New description']]
     end
   end
 
@@ -120,9 +120,7 @@ RSpec.describe UpdateStatusService, type: :service do
     before do
       status.update(poll: poll)
       VoteService.new.call(voter, poll, [0])
-      Sidekiq::Testing.fake! do
-        subject.call(status, status.account_id, text: 'Foo', poll: { options: %w(Bar Baz Foo), expires_in: 5.days.to_i })
-      end
+      subject.call(status, status.account_id, text: 'Foo', poll: { options: %w(Bar Baz Foo), expires_in: 5.days.to_i })
     end
 
     it 'updates poll' do
@@ -138,7 +136,7 @@ RSpec.describe UpdateStatusService, type: :service do
     end
 
     it 'saves edit history' do
-      expect(status.edits.pluck(:poll_options)).to eq [%w(Foo Bar), %w(Bar Baz Foo)]
+      expect(status.edits.ordered.pluck(:poll_options)).to eq [%w(Foo Bar), %w(Bar Baz Foo)]
     end
 
     it 'requeues expiration notification' do

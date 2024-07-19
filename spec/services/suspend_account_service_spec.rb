@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SuspendAccountService, type: :service do
+RSpec.describe SuspendAccountService, :inline_jobs do
   shared_examples 'common behavior' do
     subject { described_class.new.call(account) }
 
@@ -16,16 +16,24 @@ RSpec.describe SuspendAccountService, type: :service do
       list.accounts << account
 
       account.suspend!
+
+      Fabricate(:media_attachment, file: attachment_fixture('boop.ogg'), account: account)
     end
 
-    it "unmerges from local followers' feeds" do
-      subject
+    it 'unmerges from feeds of local followers and changes file mode and preserves suspended flag' do
+      expect { subject }
+        .to change_file_mode
+        .and not_change_suspended_flag
       expect(FeedManager.instance).to have_received(:unmerge_from_home).with(account, local_follower)
       expect(FeedManager.instance).to have_received(:unmerge_from_list).with(account, list)
     end
 
-    it 'does not change the “suspended” flag' do
-      expect { subject }.to_not change(account, :suspended?)
+    def change_file_mode
+      change { File.stat(account.media_attachments.first.file.path).mode }
+    end
+
+    def not_change_suspended_flag
+      not_change(account, :suspended?)
     end
   end
 
@@ -45,13 +53,13 @@ RSpec.describe SuspendAccountService, type: :service do
       let!(:account)         { Fabricate(:account) }
       let!(:remote_follower) { Fabricate(:account, uri: 'https://alice.com', inbox_url: 'https://alice.com/inbox', protocol: :activitypub, domain: 'alice.com') }
       let!(:remote_reporter) { Fabricate(:account, uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub, domain: 'bob.com') }
-      let!(:report)          { Fabricate(:report, account: remote_reporter, target_account: account) }
 
       before do
+        Fabricate(:report, account: remote_reporter, target_account: account)
         remote_follower.follow!(account)
       end
 
-      it 'sends an update actor to followers and reporters' do
+      it 'sends an Update actor activity to followers and reporters' do
         subject
         expect(a_request(:post, remote_follower.inbox_url).with { |req| match_update_actor_request(req, account) }).to have_been_made.once
         expect(a_request(:post, remote_reporter.inbox_url).with { |req| match_update_actor_request(req, account) }).to have_been_made.once
@@ -77,8 +85,9 @@ RSpec.describe SuspendAccountService, type: :service do
         account.follow!(local_followee)
       end
 
-      it 'sends a reject follow' do
+      it 'sends a Reject Follow activity', :aggregate_failures do
         subject
+
         expect(a_request(:post, account.inbox_url).with { |req| match_reject_follow_request(req, account, local_followee) }).to have_been_made.once
       end
     end

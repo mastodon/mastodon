@@ -3,13 +3,7 @@
 require 'rails_helper'
 
 describe REST::EncryptedMessageSerializer do
-  let(:serialization) do
-    JSON.parse(
-      ActiveModelSerializers::SerializableResource.new(
-        record, serializer: described_class
-      ).to_json
-    )
-  end
+  let(:serialization) { serialized_record_json(record, described_class) }
   let(:record) { Fabricate(:encrypted_message) }
 
   describe 'account' do

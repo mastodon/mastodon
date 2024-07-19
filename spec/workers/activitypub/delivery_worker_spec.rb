@@ -11,7 +11,8 @@ describe ActivityPub::DeliveryWorker do
   let(:payload) { 'test' }
 
   before do
-    allow_any_instance_of(Account).to receive(:remote_followers_hash).with('https://example.com/api').and_return('somehash')
+    allow(sender).to receive(:remote_followers_hash).with('https://example.com/api').and_return('somehash')
+    allow(Account).to receive(:find).with(sender.id).and_return(sender)
   end
 
   describe 'perform' do

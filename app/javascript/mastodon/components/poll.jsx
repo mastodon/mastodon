@@ -7,13 +7,14 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/check.svg';
 import escapeTextContentForBrowser from 'escape-html';
 import spring from 'react-motion/lib/spring';
 
+import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 import emojify from 'mastodon/features/emoji/emoji';
 import Motion from 'mastodon/features/ui/util/optional_motion';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 
 import { RelativeTimestamp } from './relative_timestamp';
 
@@ -38,12 +39,8 @@ const makeEmojiMap = record => record.get('emojis').reduce((obj, emoji) => {
 }, {});
 
 class Poll extends ImmutablePureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     poll: ImmutablePropTypes.map,
     lang: PropTypes.string,
     intl: PropTypes.object.isRequired,
@@ -235,7 +232,7 @@ class Poll extends ImmutablePureComponent {
         </ul>
 
         <div className='poll__footer'>
-          {!showResults && <button className='button button-secondary' disabled={disabled || !this.context.identity.signedIn} onClick={this.handleVote}><FormattedMessage id='poll.vote' defaultMessage='Vote' /></button>}
+          {!showResults && <button className='button button-secondary' disabled={disabled || !this.props.identity.signedIn} onClick={this.handleVote}><FormattedMessage id='poll.vote' defaultMessage='Vote' /></button>}
           {!showResults && <><button className='poll__link' onClick={this.handleReveal}><FormattedMessage id='poll.reveal' defaultMessage='See results' /></button> · </>}
           {showResults && !this.props.disabled && <><button className='poll__link' onClick={this.handleRefresh}><FormattedMessage id='poll.refresh' defaultMessage='Refresh' /></button> · </>}
           {votesCount}
@@ -247,4 +244,4 @@ class Poll extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(Poll);
+export default injectIntl(withIdentity(Poll));

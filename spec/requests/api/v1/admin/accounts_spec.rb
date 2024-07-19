@@ -151,12 +151,13 @@ RSpec.describe 'Accounts' do
       it 'logs action', :aggregate_failures do
         subject
 
-        log_item = Admin::ActionLog.last
-
-        expect(log_item).to be_present
-        expect(log_item.action).to eq :approve
-        expect(log_item.account_id).to eq user.account_id
-        expect(log_item.target_id).to eq account.user.id
+        expect(latest_admin_action_log)
+          .to be_present
+          .and have_attributes(
+            action: eq(:approve),
+            account_id: eq(user.account_id),
+            target_id: eq(account.user.id)
+          )
       end
     end
 
@@ -202,12 +203,13 @@ RSpec.describe 'Accounts' do
       it 'logs action', :aggregate_failures do
         subject
 
-        log_item = Admin::ActionLog.last
-
-        expect(log_item).to be_present
-        expect(log_item.action).to eq :reject
-        expect(log_item.account_id).to eq user.account_id
-        expect(log_item.target_id).to eq account.user.id
+        expect(latest_admin_action_log)
+          .to be_present
+          .and have_attributes(
+            action: eq(:reject),
+            account_id: eq(user.account_id),
+            target_id: eq(account.user.id)
+          )
       end
     end
 
@@ -397,5 +399,11 @@ RSpec.describe 'Accounts' do
         expect(response).to have_http_status(404)
       end
     end
+  end
+
+  private
+
+  def latest_admin_action_log
+    Admin::ActionLog.last
   end
 end

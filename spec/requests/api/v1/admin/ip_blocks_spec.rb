@@ -177,7 +177,9 @@ RSpec.describe 'IP Blocks' do
     let(:params)    { { severity: 'sign_up_requires_approval', comment: 'Decreasing severity' } }
 
     it 'returns the correct ip block', :aggregate_failures do
-      subject
+      expect { subject }
+        .to change_severity_level
+        .and change_comment_value
 
       expect(response).to have_http_status(200)
       expect(body_as_json).to match(hash_including({
@@ -187,12 +189,12 @@ RSpec.describe 'IP Blocks' do
       }))
     end
 
-    it 'updates the severity correctly' do
-      expect { subject }.to change { ip_block.reload.severity }.from('no_access').to('sign_up_requires_approval')
+    def change_severity_level
+      change { ip_block.reload.severity }.from('no_access').to('sign_up_requires_approval')
     end
 
-    it 'updates the comment correctly' do
-      expect { subject }.to change { ip_block.reload.comment }.from('Spam').to('Decreasing severity')
+    def change_comment_value
+      change { ip_block.reload.comment }.from('Spam').to('Decreasing severity')
     end
 
     context 'when ip block does not exist' do

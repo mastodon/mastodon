@@ -12,7 +12,7 @@
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
     = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
-    = stylesheet_pack_tag Setting.default_settings['theme'], media: 'all', crossorigin: 'anonymous'
+    = theme_style_tags Setting.theme # Use the admin-configured theme here, even if logged in
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
     = preload_pack_asset "locale/#{I18n.locale}-json.js"
     = render_initial_state
@@ -20,5 +20,5 @@
   %body.embed
     = yield
 
-    .logo-resources{ 'tabindex' => '-1', 'inert' => true, 'aria-hidden' => true }
-      = render_symbol :icon
+    .logo-resources{ 'tabindex' => '-1', 'inert' => true, 'aria-hidden' => 'true' }
+      = inline_svg_tag 'logo-symbol-icon.svg'

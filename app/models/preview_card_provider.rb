@@ -54,6 +54,6 @@ class PreviewCardProvider < ApplicationRecord
 
   def self.matching_domain(domain)
     segments = domain.split('.')
-    where(domain: segments.map.with_index { |_, i| segments[i..].join('.') }).order(Arel.sql('char_length(domain) desc')).first
+    where(domain: segments.map.with_index { |_, i| segments[i..].join('.') }).by_domain_length.first
   end
 end

@@ -21,7 +21,7 @@ class UpdateAccountService < BaseService
 
   def authorize_all_follow_requests(account)
     follow_requests = FollowRequest.where(target_account: account)
-    follow_requests = follow_requests.preload(:account).select { |req| !req.account.silenced? }
+    follow_requests = follow_requests.preload(:account).reject { |req| req.account.silenced? }
     AuthorizeFollowWorker.push_bulk(follow_requests, limit: 1_000) do |req|
       [req.account_id, req.target_account_id]
     end
@@ -30,11 +30,7 @@ class UpdateAccountService < BaseService
   def check_links(account)
     return unless account.fields.any?(&:requires_verification?)
 
-    if account.local?
-      VerifyAccountLinksWorker.perform_async(account.id)
-    else
-      VerifyAccountLinksWorker.perform_in(rand(10.minutes.to_i), account.id)
-    end
+    VerifyAccountLinksWorker.perform_async(account.id)
   end
 
   def process_hashtags(account)

@@ -48,6 +48,13 @@ describe FollowerAccountsController do
 
         it 'returns followers' do
           expect(response).to have_http_status(200)
+          expect(body_as_json)
+            .to include(
+              orderedItems: contain_exactly(
+                include(follow_from_bob.account.username),
+                include(follow_from_chris.account.username)
+              )
+            )
           expect(body['totalItems']).to eq 2
           expect(body['partOf']).to be_present
         end

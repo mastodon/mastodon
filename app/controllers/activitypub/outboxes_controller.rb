@@ -3,9 +3,6 @@
 class ActivityPub::OutboxesController < ActivityPub::BaseController
   LIMIT = 20
 
-  include SignatureVerification
-  include AccountOwnedConcern
-
   vary_by -> { 'Signature' if authorized_fetch_mode? || page_requested? }
 
   before_action :require_account_signature!, if: :authorized_fetch_mode?
@@ -63,7 +60,7 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
   def set_statuses
     return unless page_requested?
 
-    @statuses = cache_collection_paginated_by_id(
+    @statuses = preload_collection_paginated_by_id(
       AccountStatusesFilter.new(@account, signed_request_account).results,
       Status,
       LIMIT,

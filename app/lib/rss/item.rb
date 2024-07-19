@@ -2,7 +2,7 @@
 
 class RSS::Item < RSS::Element
   def initialize
-    super()
+    super
 
     @root = create_element('item')
   end

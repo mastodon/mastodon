@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe StatusPinValidator, type: :validator do
+RSpec.describe StatusPinValidator do
   describe '#validate' do
     before do
       subject.validate(pin)
@@ -45,8 +45,8 @@ RSpec.describe StatusPinValidator, type: :validator do
       end
     end
 
-    context 'when pin.account.status_pins.count > 4 && pin.account.local?' do
-      let(:count) { 5 }
+    context 'when pin account is local and has too many pins' do
+      let(:count) { described_class::PIN_LIMIT + 1 }
       let(:local) { true }
 
       it 'calls errors.add' do

@@ -54,9 +54,7 @@ class Trends::Links < Trends::Base
                   !(original_status.account.silenced? || status.account.silenced?) &&
                   !(original_status.spoiler_text? || original_status.sensitive?)
 
-    original_status.preview_cards.each do |preview_card|
-      add(preview_card, status.account_id, at_time) if preview_card.appropriate_for_trends?
-    end
+    add(original_status.preview_card, status.account_id, at_time) if original_status.preview_card&.appropriate_for_trends?
   end
 
   def add(preview_card, account_id, at_time = Time.now.utc)
@@ -83,13 +81,13 @@ class Trends::Links < Trends::Base
 
     # Now that all trends have up-to-date scores, and all the ones below the threshold have
     # been removed, we can recalculate their positions
-    PreviewCardTrend.connection.exec_update('UPDATE preview_card_trends SET rank = t0.calculated_rank FROM (SELECT id, row_number() OVER w AS calculated_rank FROM preview_card_trends WINDOW w AS (PARTITION BY language ORDER BY score DESC)) t0 WHERE preview_card_trends.id = t0.id')
+    PreviewCardTrend.recalculate_ordered_rank
   end
 
   def request_review
     PreviewCardTrend.pluck('distinct language').flat_map do |language|
-      score_at_threshold  = PreviewCardTrend.where(language: language, allowed: true).order(rank: :desc).where('rank <= ?', options[:review_threshold]).first&.score || 0
-      preview_card_trends = PreviewCardTrend.where(language: language, allowed: false).joins(:preview_card)
+      score_at_threshold  = PreviewCardTrend.where(language: language).allowed.by_rank.ranked_below(options[:review_threshold]).first&.score || 0
+      preview_card_trends = PreviewCardTrend.where(language: language).not_allowed.joins(:preview_card)
 
       preview_card_trends.filter_map do |trend|
         preview_card = trend.preview_card
