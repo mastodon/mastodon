@@ -592,7 +592,7 @@ RSpec.describe Account do
       expect(results).to eq [match]
     end
 
-    it 'limits by 10 by default' do
+    it 'limits result count by default value' do
       stub_const('Account::Search::DEFAULT_LIMIT', 1)
       2.times { Fabricate(:account, display_name: 'Display Name') }
       results = described_class.advanced_search_for('display', account)
