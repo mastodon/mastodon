@@ -30,8 +30,6 @@ import { confirmDeleteList } from 'mastodon/utils/confirmations';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 const messages = defineMessages({
-  deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
-  deleteConfirm: { id: 'confirmations.delete_list.confirm', defaultMessage: 'Delete' },
   followed:   { id: 'lists.replies_policy.followed', defaultMessage: 'Any followed user' },
   none:    { id: 'lists.replies_policy.none', defaultMessage: 'No one' },
   list:  { id: 'lists.replies_policy.list', defaultMessage: 'Members of the list' },
