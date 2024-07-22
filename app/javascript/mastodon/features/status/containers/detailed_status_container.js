@@ -22,8 +22,7 @@ import {
   muteStatus,
   unmuteStatus,
   deleteStatus,
-  hideStatus,
-  revealStatus,
+  toggleStatusSpoilers,
 } from '../../../actions/statuses';
 import { deleteModal } from '../../../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../../../selectors';
@@ -156,11 +155,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onToggleHidden (status) {
-    if (status.get('hidden')) {
-      dispatch(revealStatus(status.get('id')));
-    } else {
-      dispatch(hideStatus(status.get('id')));
-    }
+    dispatch(toggleStatusSpoilers(status.get('id')));
   },
 
 });

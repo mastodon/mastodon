@@ -36,8 +36,7 @@ import {
   muteStatus,
   unmuteStatus,
   deleteStatus,
-  hideStatus,
-  revealStatus,
+  toggleStatusSpoilers,
   toggleStatusCollapse,
   editStatus,
   translateStatus,
@@ -223,11 +222,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   },
 
   onToggleHidden (status) {
-    if (status.get('hidden')) {
-      dispatch(revealStatus(status.get('id')));
-    } else {
-      dispatch(hideStatus(status.get('id')));
-    }
+    dispatch(toggleStatusSpoilers(status.get('id')));
   },
 
   onToggleCollapsed (status, isCollapsed) {
