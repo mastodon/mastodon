@@ -5,6 +5,7 @@ RSpec.configure do |config|
     # Classes of intermittent ignorable errors
     ignored_errors = [
       /Error while trying to use the following icon from the Manifest/, # https://github.com/mastodon/mastodon/pull/30793
+      /Manifest: Line: 1, column: 1, Syntax error/, # Similar parsing/interruption issue as above
     ]
     errors = page.driver.browser.logs.get(:browser).reject do |error|
       ignored_errors.any? { |pattern| pattern.match(error.message) }
