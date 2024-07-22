@@ -6,12 +6,15 @@ class ResolveURLService < BaseService
 
   USERNAME_STATUS_RE = %r{/@(?<username>#{Account::USERNAME_RE})/(?<status_id>[0-9]+)\Z}
 
-  def call(url, on_behalf_of: nil)
-    @url          = url
-    @on_behalf_of = on_behalf_of
+  def call(url, on_behalf_of: nil, allow_caching: false)
+    @url             = url
+    @on_behalf_of    = on_behalf_of
+    @caching_allowed = allow_caching
 
     if local_url?
       process_local_url
+    elsif allow_caching && (resource = known_resource)
+      resource
     elsif !fetched_resource.nil?
       process_url
     else
@@ -37,23 +40,9 @@ class ResolveURLService < BaseService
       return account unless account.nil?
     end
 
-    return unless @on_behalf_of.present? && [401, 403, 404].include?(fetch_resource_service.response_code)
+    return unless !@caching_allowed && @on_behalf_of.present? && [401, 403, 404].include?(fetch_resource_service.response_code)
 
-    # It may happen that the resource is a private toot, and thus not fetchable,
-    # but we can return the toot if we already know about it.
-    scope = Status.where(uri: @url)
-
-    # We don't have an index on `url`, so try guessing the `uri` from `url`
-    parsed_url = Addressable::URI.parse(@url)
-    parsed_url.path.match(USERNAME_STATUS_RE) do |matched|
-      parsed_url.path = "/users/#{matched[:username]}/statuses/#{matched[:status_id]}"
-      scope = scope.or(Status.where(uri: parsed_url.to_s, url: @url))
-    end
-
-    status = scope.first
-
-    authorize_with @on_behalf_of, status, :show? unless status.nil?
-    status
+    find_remote_status_in_local_db
   rescue Mastodon::NotPermittedError
     nil
   end
@@ -114,6 +103,13 @@ class ResolveURLService < BaseService
     end
   end
 
+  def known_resource
+    status = find_remote_status_in_local_db
+    return status unless status.nil?
+
+    Account.where(uri: @url).or(Account.where(url: @url)).first
+  end
+
   def check_local_status(status)
     return if status.nil?
 
@@ -121,5 +117,22 @@ class ResolveURLService < BaseService
     status
   rescue Mastodon::NotPermittedError
     nil
+  end
+
+  def find_remote_status_in_local_db
+    # It may happen that the resource is a private toot, and thus not fetchable,
+    # but we can return the toot if we already know about it.
+    scope = Status.where(uri: @url)
+
+    # We don't have an index on `url`, so try guessing the `uri` from `url`
+    parsed_url = Addressable::URI.parse(@url)
+    parsed_url.path.match(USERNAME_STATUS_RE) do |matched|
+      parsed_url.path = "/users/#{matched[:username]}/statuses/#{matched[:status_id]}"
+      scope = scope.or(Status.where(uri: parsed_url.to_s, url: @url))
+    end
+
+    status = scope.first
+
+    check_local_status(status)
   end
 end

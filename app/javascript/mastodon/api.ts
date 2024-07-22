@@ -67,6 +67,7 @@ export async function apiRequest<ApiResponse = unknown>(
   args: {
     params?: RequestParamsOrData;
     data?: RequestParamsOrData;
+    timeout?: number;
   } = {},
 ) {
   const { data } = await api().request<ApiResponse>({
@@ -81,8 +82,9 @@ export async function apiRequest<ApiResponse = unknown>(
 export async function apiRequestGet<ApiResponse = unknown>(
   url: string,
   params?: RequestParamsOrData,
+  timeout?: number
 ) {
-  return apiRequest<ApiResponse>('GET', url, { params });
+  return apiRequest<ApiResponse>('GET', url, {params: params, timeout: timeout });
 }
 
 export async function apiRequestPost<ApiResponse = unknown>(
