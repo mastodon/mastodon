@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { HotKeys } from 'react-hotkeys';
 
 import { replyComposeById } from 'mastodon/actions/compose';
+import { toggleReblog, toggleFavourite } from 'mastodon/actions/interactions';
 import { navigateToStatus } from 'mastodon/actions/statuses';
 import type { IconProp } from 'mastodon/components/icon';
 import { Icon } from 'mastodon/components/icon';
@@ -57,7 +58,15 @@ export const NotificationWithStatus: React.FC<{
         dispatch(replyComposeById(statusId));
       },
 
-      // TODO: boost, favourite, toggleHidden
+      boost: () => {
+        dispatch(toggleReblog(statusId));
+      },
+
+      favourite: () => {
+        dispatch(toggleFavourite(statusId));
+      },
+
+      // TODO: toggleHidden
     }),
     [dispatch, statusId],
   );
