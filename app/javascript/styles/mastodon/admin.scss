@@ -906,7 +906,7 @@ a.name-tag,
     &__item {
       display: flex;
       justify-content: flex-start;
-      border-top: 1px solid darken($ui-base-color, 8%);
+      border-top: 1px solid var(--background-border-color);
 
       &__reported-by,
       &__assigned {
