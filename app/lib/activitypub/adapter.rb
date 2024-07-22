@@ -20,6 +20,6 @@ class ActivityPub::Adapter < ActiveModelSerializers::Adapter::Base
     serialized_hash = serialized_hash.select { |k, _| options[:fields].include?(k) } if options[:fields]
     serialized_hash = self.class.transform_key_casing!(serialized_hash, instance_options)
 
-    { '@context' => serialized_context(named_contexts, context_extensions) }.merge(serialized_hash)
+    { '@context': serialized_context(named_contexts, context_extensions) }.merge(serialized_hash)
   end
 end
