@@ -5,14 +5,14 @@ el:
     contact_missing: Δεν έχει οριστεί
     contact_unavailable: Μη διαθέσιμο
     hosted_on: Το Mastodon φιλοξενείται στο %{domain}
-    title: Σχετικά με
+    title: Σχετικά
   accounts:
     follow: Ακολούθησε
     followers:
       one: Ακόλουθος
       other: Ακόλουθοι
     following: Ακολουθείτε
-    instance_actor_flash: Αυτός ο λογαριασμός είναι εικονικός και χρησιμοποιείται για να αντιπροσωπεύει τον ίδιο τον διακομιστή και όχι κάποιον μεμονωμένο χρήστη. Χρησιμοποιείται για σκοπούς συναλλαγών και δεν πρέπει να ανασταλεί.
+    instance_actor_flash: Αυτός ο λογαριασμός είναι εικονικός και χρησιμοποιείται για να αντιπροσωπεύει τον ίδιο τον διακομιστή και όχι κάποιον μεμονωμένο χρήστη. Χρησιμοποιείται για σκοπούς ομοσπονδίας και δεν πρέπει να ανασταλεί.
     last_active: τελευταία ενεργός/ή
     link_verified_on: Η ιδιοκτησία αυτού του συνδέσμου ελέγχθηκε στις %{date}
     nothing_here: Δεν υπάρχει τίποτα εδώ!
@@ -159,7 +159,7 @@ el:
       unconfirmed_email: Ανεπιβεβαίωτο email
       undo_sensitized: Άρση ευαίσθητου
       undo_silenced: Άρση περιορισμού
-      undo_suspension: Αναίρεση παύσης
+      undo_suspension: Αναίρεση αναστολής
       unsilenced_msg: Επιτυχής άρση περιορισμών λογαριασμού του/της %{username}
       unsubscribe: Κατάργηση εγγραφής
       unsuspended_msg: Επιτυχής άρση αναστολής λογαριασμού του/της %{username}
@@ -167,7 +167,7 @@ el:
       view_domain: Προβολή περίληψης τομέα
       warn: Προειδοποίηση
       web: Διαδίκτυο
-      whitelisted: Εγκεκριμένοι για συναλλαγές
+      whitelisted: Εγκεκριμένοι για ομοσπονδία
     action_logs:
       action_types:
         approve_appeal: Έγκριση Έφεσης
@@ -185,7 +185,7 @@ el:
         create_email_domain_block: Δημουργία Αποκλεισμού Τομέα email
         create_ip_block: Δημιουργία κανόνα IP
         create_unavailable_domain: Δημιουργία Μη Διαθέσιμου Τομέα
-        create_user_role: Δημιουργία ρόλου
+        create_user_role: Δημιουργία Ρόλου
         demote_user: Υποβιβασμός Χρήστη
         destroy_announcement: Διαγραφή Ανακοίνωσης
         destroy_canonical_email_block: Διαγραφή Αποκλεισμού email
@@ -226,6 +226,7 @@ el:
         update_custom_emoji: Ενημέρωση Προσαρμοσμένου Emoji
         update_domain_block: Ενημέρωση Αποκλεισμού Τομέα
         update_ip_block: Ενημέρωση κανόνα IP
+        update_report: Ενημέρωση Αναφοράς
         update_status: Ενημέρωση Ανάρτησης
         update_user_role: Ενημέρωση ρόλου
       actions:
