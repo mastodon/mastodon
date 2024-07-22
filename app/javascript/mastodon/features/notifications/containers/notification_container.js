@@ -6,8 +6,7 @@ import {
   toggleReblog,
 } from '../../../actions/interactions';
 import {
-  hideStatus,
-  revealStatus,
+  toggleStatusSpoilers,
 } from '../../../actions/statuses';
 import { makeGetNotification, makeGetStatus, makeGetReport } from '../../../selectors';
 import Notification from '../components/notification';
@@ -43,11 +42,7 @@ const mapDispatchToProps = dispatch => ({
   },
 
   onToggleHidden (status) {
-    if (status.get('hidden')) {
-      dispatch(revealStatus(status.get('id')));
-    } else {
-      dispatch(hideStatus(status.get('id')));
-    }
+    dispatch(toggleStatusSpoilers(status.get('id')));
   },
 });
 

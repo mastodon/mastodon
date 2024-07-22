@@ -308,6 +308,21 @@ export function revealStatus(ids) {
   };
 }
 
+export function toggleStatusSpoilers(statusId) {
+  return (dispatch, getState) => {
+    const status = getState().statuses.get(statusId);
+
+    if (!status)
+      return;
+
+    if (status.get('hidden')) {
+      dispatch(revealStatus(statusId));
+    } else {
+      dispatch(hideStatus(statusId));
+    }
+  };
+}
+
 export function toggleStatusCollapse(id, isCollapsed) {
   return {
     type: STATUS_COLLAPSE,
