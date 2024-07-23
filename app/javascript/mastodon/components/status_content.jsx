@@ -78,7 +78,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
         message: intl.formatMessage(messages.openExternalLink),
         confirm: intl.formatMessage(messages.openExternalLinkConfirm),
         closeWhenConfirm: true,
-        onConfirm: () => window.open(url, null, 'norefferer'),
+        onConfirm: () => window.open(url, null, 'noreferrer'),
       },
     }));
   },
