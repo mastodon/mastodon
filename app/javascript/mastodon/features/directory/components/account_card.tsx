@@ -11,6 +11,7 @@ import {
   unblockAccount,
   unmuteAccount,
 } from 'mastodon/actions/accounts';
+import { openModal } from 'mastodon/actions/modal';
 import { Avatar } from 'mastodon/components/avatar';
 import { Button } from 'mastodon/components/button';
 import { DisplayName } from 'mastodon/components/display_name';
@@ -19,7 +20,6 @@ import { autoPlayGif, me } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
 import { makeGetAccount } from 'mastodon/selectors';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
-import { confirmUnfollow } from 'mastodon/utils/confirmations';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -84,11 +84,13 @@ export const AccountCard: React.FC<{ accountId: string }> = ({ accountId }) => {
       account.getIn(['relationship', 'following']) ||
       account.getIn(['relationship', 'requested'])
     ) {
-      confirmUnfollow(dispatch, intl, account as Account);
+      dispatch(
+        openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }),
+      );
     } else {
       dispatch(followAccount(account.get('id')));
     }
-  }, [account, dispatch, intl]);
+  }, [account, dispatch]);
 
   const handleBlock = useCallback(() => {
     if (account?.relationship?.blocking) {

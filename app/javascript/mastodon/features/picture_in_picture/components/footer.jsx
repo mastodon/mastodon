@@ -21,7 +21,6 @@ import { IconButton } from 'mastodon/components/icon_button';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { me } from 'mastodon/initial_state';
 import { makeGetStatus } from 'mastodon/selectors';
-import { confirmReply } from 'mastodon/utils/confirmations';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 const messages = defineMessages({
@@ -70,13 +69,13 @@ class Footer extends ImmutablePureComponent {
   };
 
   handleReplyClick = () => {
-    const { dispatch, askReplyConfirmation, status, intl, onClose } = this.props;
+    const { dispatch, askReplyConfirmation, status, onClose } = this.props;
     const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (askReplyConfirmation) {
         onClose(true);
-        confirmReply(dispatch, intl, status);
+        dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status } }));
       } else {
         this._performReply();
       }

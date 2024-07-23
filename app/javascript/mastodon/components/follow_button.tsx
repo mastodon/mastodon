@@ -9,7 +9,6 @@ import { Button } from 'mastodon/components/button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { me } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
-import { confirmUnfollow } from 'mastodon/utils/confirmations';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -58,11 +57,13 @@ export const FollowButton: React.FC<{
     if (accountId === me) {
       return;
     } else if (account && (relationship.following || relationship.requested)) {
-      confirmUnfollow(dispatch, intl, account);
+      dispatch(
+        openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }),
+      );
     } else {
       dispatch(followAccount(accountId));
     }
-  }, [dispatch, intl, accountId, relationship, account, signedIn]);
+  }, [dispatch, accountId, relationship, account, signedIn]);
 
   let label;
 

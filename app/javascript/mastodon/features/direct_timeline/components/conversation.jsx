@@ -17,6 +17,7 @@ import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import { replyCompose } from 'mastodon/actions/compose';
 import { markConversationRead, deleteConversation } from 'mastodon/actions/conversations';
+import { openModal } from 'mastodon/actions/modal';
 import { muteStatus, unmuteStatus, toggleStatusSpoilers } from 'mastodon/actions/statuses';
 import AttachmentList from 'mastodon/components/attachment_list';
 import AvatarComposite from 'mastodon/components/avatar_composite';
@@ -26,7 +27,6 @@ import StatusContent from 'mastodon/components/status_content';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { autoPlayGif } from 'mastodon/initial_state';
 import { makeGetStatus } from 'mastodon/selectors';
-import { confirmReply } from 'mastodon/utils/confirmations';
 
 const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
@@ -101,12 +101,12 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
       let state = getState();
 
       if (state.getIn(['compose', 'text']).trim().length !== 0) {
-        confirmReply(dispatch, intl, lastStatus);
+        dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status: lastStatus } }));
       } else {
         dispatch(replyCompose(lastStatus));
       }
     });
-  }, [dispatch, lastStatus, intl]);
+  }, [dispatch, lastStatus]);
 
   const handleDelete = useCallback(() => {
     dispatch(deleteConversation(id));

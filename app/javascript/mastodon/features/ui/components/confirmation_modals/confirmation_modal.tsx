@@ -8,9 +8,10 @@ export const ConfirmationModal: React.FC<{
   title: React.ReactNode;
   message: React.ReactNode;
   confirm: React.ReactNode;
-  secondary: React.ReactNode;
-  onSecondary: () => void;
-  onClose: () => void;
+  secondary?: React.ReactNode;
+  onSecondary?: () => void;
+  // This is optional here, but is injected by the ModalRoot component
+  onClose?: () => void;
   onConfirm: () => void;
   closeWhenConfirm?: boolean;
 }> = ({
@@ -25,19 +26,19 @@ export const ConfirmationModal: React.FC<{
 }) => {
   const handleClick = useCallback(() => {
     if (closeWhenConfirm) {
-      onClose();
+      onClose?.();
     }
 
     onConfirm();
   }, [onClose, onConfirm, closeWhenConfirm]);
 
   const handleSecondary = useCallback(() => {
-    onClose();
-    onSecondary();
+    onClose?.();
+    onSecondary?.();
   }, [onClose, onSecondary]);
 
   const handleCancel = useCallback(() => {
-    onClose();
+    onClose?.();
   }, [onClose]);
 
   return (

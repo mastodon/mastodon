@@ -2,8 +2,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
+import { openModal } from 'mastodon/actions/modal';
 import { initializeNotifications } from 'mastodon/actions/notifications_migration';
-import { confirmClearNotifications } from 'mastodon/utils/confirmations';
 
 import { showAlert } from '../../../actions/alerts';
 import { updateNotificationsPolicy } from '../../../actions/notification_policies';
@@ -28,7 +28,7 @@ const mapStateToProps = state => ({
   notificationPolicy: state.notificationPolicy,
 });
 
-const mapDispatchToProps = (dispatch, { intl }) => ({
+const mapDispatchToProps = (dispatch) => ({
 
   onChange (path, checked) {
     if (path[0] === 'push') {
@@ -67,7 +67,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onClear () {
-    confirmClearNotifications(dispatch, intl);
+    dispatch(openModal({ modalType: 'CONFIRM_CLEAR_NOTIFICATIONS' }));
   },
 
   onRequestNotificationPermission () {

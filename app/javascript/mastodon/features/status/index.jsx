@@ -21,7 +21,6 @@ import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollContainer from 'mastodon/containers/scroll_container';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
-import { confirmDeleteStatus, confirmReply, confirmEdit } from 'mastodon/utils/confirmations';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import {
@@ -258,12 +257,12 @@ class Status extends ImmutablePureComponent {
   };
 
   handleReplyClick = (status) => {
-    const { askReplyConfirmation, dispatch, intl } = this.props;
+    const { askReplyConfirmation, dispatch } = this.props;
     const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (askReplyConfirmation) {
-        confirmReply(dispatch, intl, status);
+        dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status } }));
       } else {
         dispatch(replyCompose(status));
       }
@@ -306,20 +305,20 @@ class Status extends ImmutablePureComponent {
   };
 
   handleDeleteClick = (status, withRedraft = false) => {
-    const { dispatch, intl } = this.props;
+    const { dispatch } = this.props;
 
     if (!deleteModal) {
       dispatch(deleteStatus(status.get('id'), withRedraft));
     } else {
-      confirmDeleteStatus(dispatch, intl, status.get('id'), withRedraft);
+      dispatch(openModal({ modalType: 'CONFIRM_DELETE_STATUS', modalProps: { statusId: status.get('id'), withRedraft } }));
     }
   };
 
   handleEditClick = (status) => {
-    const { dispatch, intl, askReplyConfirmation } = this.props;
+    const { dispatch, askReplyConfirmation } = this.props;
 
     if (askReplyConfirmation) {
-      confirmEdit(dispatch, intl, status.get('id'));
+      dispatch(openModal({ modalType: 'CONFIRM_EDIT_STATUS', modalProps: { statusId: status.get('id') } }));
     } else {
       dispatch(editStatus(status.get('id')));
     }

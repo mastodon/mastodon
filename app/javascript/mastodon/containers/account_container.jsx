@@ -2,7 +2,7 @@ import { injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { confirmUnfollow } from 'mastodon/utils/confirmations';
+import { openModal } from 'mastodon/actions/modal';
 
 import {
   followAccount,
@@ -25,11 +25,11 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-const mapDispatchToProps = (dispatch, { intl }) => ({
+const mapDispatchToProps = (dispatch) => ({
 
   onFollow (account) {
     if (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) {
-      confirmUnfollow(dispatch, intl, account);
+      dispatch(openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }));
     } else {
       dispatch(followAccount(account.get('id')));
     }

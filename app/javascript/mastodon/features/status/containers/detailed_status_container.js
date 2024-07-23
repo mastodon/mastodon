@@ -2,8 +2,6 @@ import { injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { confirmDeleteStatus, confirmReply } from 'mastodon/utils/confirmations';
-
 import { showAlertForError } from '../../../actions/alerts';
 import { initBlockModal } from '../../../actions/blocks';
 import {
@@ -43,13 +41,13 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-const mapDispatchToProps = (dispatch, { intl }) => ({
+const mapDispatchToProps = (dispatch) => ({
 
   onReply (status) {
     dispatch((_, getState) => {
       let state = getState();
       if (state.getIn(['compose', 'text']).trim().length !== 0) {
-        confirmReply(dispatch, intl, status);
+        dispatch(openModal({ type: 'CONFIRM_REPLY', status }));
       } else {
         dispatch(replyCompose(status));
       }
@@ -86,7 +84,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     if (!deleteModal) {
       dispatch(deleteStatus(status.get('id'), withRedraft));
     } else {
-      confirmDeleteStatus(dispatch, intl, history, status.get('id'), withRedraft);
+      dispatch(openModal({ type: 'CONFIRM_DELETE_STATUS', statusId: status.get('id'), withRedraft }));
     }
   },
 

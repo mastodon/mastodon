@@ -2,8 +2,6 @@ import { injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { confirmDeleteStatus, confirmReply, confirmEdit } from 'mastodon/utils/confirmations';
-
 import {
   unmuteAccount,
   unblockAccount,
@@ -61,14 +59,14 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
+const mapDispatchToProps = (dispatch, { contextType }) => ({
 
   onReply (status) {
     dispatch((_, getState) => {
       let state = getState();
 
       if (state.getIn(['compose', 'text']).trim().length !== 0) {
-        confirmReply(dispatch, intl, status);
+        dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status } }));
       } else {
         dispatch(replyCompose(status));
       }
@@ -113,7 +111,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     if (!deleteModal) {
       dispatch(deleteStatus(status.get('id'), withRedraft));
     } else {
-      confirmDeleteStatus(dispatch, intl, status.get('id'), withRedraft);
+      dispatch(openModal({ modalType: 'CONFIRM_DELETE_STATUS', modalProps: { statusId: status.get('id'), withRedraft } }));
     }
   },
 
@@ -121,7 +119,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     dispatch((_, getState) => {
       let state = getState();
       if (state.getIn(['compose', 'text']).trim().length !== 0) {
-        confirmEdit(dispatch, intl, status.get('id'));
+        dispatch(openModal({ modalType: 'CONFIRM_EDIT_STATUS', modalProps: { statusId: status.get('id') } }));
       } else {
         dispatch(editStatus(status.get('id')));
       }

@@ -26,7 +26,6 @@ import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RadioButton } from 'mastodon/components/radio_button';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import StatusListContainer from 'mastodon/features/ui/containers/status_list_container';
-import { confirmDeleteList } from 'mastodon/utils/confirmations';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 const messages = defineMessages({
@@ -124,10 +123,10 @@ class ListTimeline extends PureComponent {
   };
 
   handleDeleteClick = () => {
-    const { dispatch, columnId, intl } = this.props;
+    const { dispatch, columnId } = this.props;
     const { id } = this.props.params;
 
-    confirmDeleteList(dispatch, intl, id, columnId);
+    dispatch(openModal({ modalType: 'CONFIRM_DELETE_LIST', modalProps: { listId: id, columnId } }));
   };
 
   handleRepliesPolicyChange = ({ target }) => {

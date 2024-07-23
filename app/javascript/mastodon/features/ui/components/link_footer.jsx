@@ -7,14 +7,15 @@ import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
+import { openModal } from 'mastodon/actions/modal';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { domain, version, source_url, statusPageUrl, profile_directory as profileDirectory } from 'mastodon/initial_state';
 import { PERMISSION_INVITE_USERS } from 'mastodon/permissions';
-import { confirmLogOut } from 'mastodon/utils/confirmations';
 
-const mapDispatchToProps = (dispatch, { intl }) => ({
+const mapDispatchToProps = (dispatch) => ({
   onLogout () {
-    confirmLogOut(dispatch, intl);
+    dispatch(openModal({ modalType: 'CONFIRM_LOG_OUT' }));
+
   },
 });
 

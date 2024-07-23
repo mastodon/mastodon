@@ -5,8 +5,8 @@ import { defineMessages, useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
+import { openModal } from 'mastodon/actions/modal';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
-import { confirmLogOut } from 'mastodon/utils/confirmations';
 
 const messages = defineMessages({
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
@@ -29,8 +29,8 @@ export const ActionBar = () => {
   const intl = useIntl();
 
   const handleLogoutClick = useCallback(() => {
-    confirmLogOut(dispatch, intl);
-  }, [dispatch, intl]);
+    dispatch(openModal({ modalType: 'CONFIRM_LOG_OUT' }));
+  }, [dispatch]);
 
   let menu = [];
 

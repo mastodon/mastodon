@@ -7,17 +7,17 @@ import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
+import { openModal } from 'mastodon/actions/modal';
 import { disabledAccountId, movedToAccountId, domain } from 'mastodon/initial_state';
-import { confirmLogOut } from 'mastodon/utils/confirmations';
 
 const mapStateToProps = (state) => ({
   disabledAcct: state.getIn(['accounts', disabledAccountId, 'acct']),
   movedToAcct: movedToAccountId ? state.getIn(['accounts', movedToAccountId, 'acct']) : undefined,
 });
 
-const mapDispatchToProps = (dispatch, { intl }) => ({
+const mapDispatchToProps = (dispatch) => ({
   onLogout () {
-    confirmLogOut(dispatch, intl);
+    dispatch(openModal({ modalType: 'CONFIRM_LOG_OUT' }));
   },
 });
 
