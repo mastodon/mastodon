@@ -6,7 +6,7 @@ class Webfinger
   class RedirectError < Error; end
 
   class Response
-    ACIVITYPUB_READY_TYPE = ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"']
+    ACIVITYPUB_READY_TYPE = ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].freeze
     attr_reader :uri
 
     def initialize(uri, body)
