@@ -215,7 +215,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
         }.with_indifferent_access
         webfinger = {
           subject: "acct:user#{i}@foo.test",
-          links: [{ rel: 'self', href: "https://foo.test/users/#{i}" }],
+          links: [{ rel: 'self', href: "https://foo.test/users/#{i}", type: 'application/activity+json' }],
         }.with_indifferent_access
         stub_request(:get, "https://foo.test/users/#{i}").to_return(status: 200, body: actor_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
         stub_request(:get, "https://foo.test/users/#{i}/featured").to_return(status: 200, body: featured_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
