@@ -316,8 +316,8 @@ function loaded() {
 
       const message =
         statusEl.dataset.spoiler === 'expanded'
-          ? localeData['status.show_less'] ?? 'Show less'
-          : localeData['status.show_more'] ?? 'Show more';
+          ? (localeData['status.show_less'] ?? 'Show less')
+          : (localeData['status.show_more'] ?? 'Show more');
       spoilerLink.textContent = new IntlMessageFormat(
         message,
         locale,
