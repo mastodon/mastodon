@@ -6,7 +6,8 @@ class Webfinger
   class RedirectError < Error; end
 
   class Response
-    ACIVITYPUB_READY_TYPE = ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].freeze
+    ACTIVITYPUB_READY_TYPE = ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].freeze
+
     attr_reader :uri
 
     def initialize(uri, body)
@@ -36,7 +37,7 @@ class Webfinger
 
     def self_link
       links.fetch('self', []).find do |link|
-        ACIVITYPUB_READY_TYPE.include?(link['type'])
+        ACTIVITYPUB_READY_TYPE.include?(link['type'])
       end
     end
 
