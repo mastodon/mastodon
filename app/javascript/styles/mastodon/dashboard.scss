@@ -13,8 +13,9 @@
     & > div,
     & > a {
       padding: 20px;
-      background: lighten($ui-base-color, 4%);
+      background: var(--background-color);
       border-radius: 4px;
+      border: 1px solid var(--background-border-color);
       box-sizing: border-box;
       height: 100%;
     }
@@ -27,7 +28,7 @@
       &:hover,
       &:focus,
       &:active {
-        background: lighten($ui-base-color, 8%);
+        background: $ui-base-color;
       }
     }
   }

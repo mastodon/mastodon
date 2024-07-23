@@ -414,7 +414,7 @@ code {
   }
 
   .input.static .label_input__wrapper {
-    font-size: 16px;
+    font-size: 14px;
     padding: 10px;
     border: 1px solid $dark-text-color;
     border-radius: 4px;
@@ -436,13 +436,14 @@ code {
     outline: 0;
     font-family: inherit;
     resize: vertical;
-    background: darken($ui-base-color, 10%);
-    border: 1px solid darken($ui-base-color, 10%);
-    border-radius: 8px;
+    background: $ui-base-color;
+    border: 1px solid var(--background-border-color);
+    border-radius: 4px;
     padding: 10px 16px;
 
     &::placeholder {
-      color: lighten($darker-text-color, 4%);
+      color: $dark-text-color;
+      opacity: 1;
     }
 
     &:invalid {
@@ -451,11 +452,6 @@ code {
 
     &:required:valid {
       border-color: $valid-value-color;
-    }
-
-    &:active,
-    &:focus {
-      border-color: $highlight-text-color;
     }
 
     @media screen and (width <= 600px) {
@@ -576,21 +572,25 @@ code {
   select {
     appearance: none;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 14px;
     color: $primary-text-color;
     display: block;
     width: 100%;
     outline: 0;
     font-family: inherit;
     resize: vertical;
-    background: darken($ui-base-color, 10%)
+    background: $ui-base-color
       url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 12%))}'/></svg>")
-      no-repeat right 8px center / auto 16px;
-    border: 1px solid darken($ui-base-color, 14%);
+      no-repeat right 8px center / auto 14px;
+    border: 1px solid var(--background-border-color);
     border-radius: 4px;
     padding-inline-start: 10px;
     padding-inline-end: 30px;
     height: 41px;
+
+    @media screen and (width <= 600px) {
+      font-size: 16px;
+    }
   }
 
   h4 {
@@ -644,8 +644,9 @@ code {
 }
 
 .flash-message {
-  background: lighten($ui-base-color, 8%);
-  color: $darker-text-color;
+  background: var(--background-color);
+  color: $highlight-text-color;
+  border: 1px solid $highlight-text-color;
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
@@ -1335,7 +1336,7 @@ code {
 
     &__toggle > div {
       display: flex;
-      border-inline-start: 1px solid lighten($ui-base-color, 8%);
+      border-inline-start: 1px solid var(--background-border-color);
       padding-inline-start: 16px;
     }
   }
