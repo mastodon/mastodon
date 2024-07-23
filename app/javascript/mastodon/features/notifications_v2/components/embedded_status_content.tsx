@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
@@ -34,75 +34,9 @@ export const EmbeddedStatusContent: React.FC<{
   content: string;
   mentions: List<Mention>;
   language: string;
-  onClick?: () => void;
   className?: string;
-}> = ({ content, mentions, language, onClick, className }) => {
-  const clickCoordinatesRef = useRef<[number, number] | null>();
+}> = ({ content, mentions, language, className }) => {
   const history = useHistory();
-
-  const handleMouseDown = useCallback<React.MouseEventHandler<HTMLDivElement>>(
-    ({ clientX, clientY }) => {
-      clickCoordinatesRef.current = [clientX, clientY];
-    },
-    [clickCoordinatesRef],
-  );
-
-  const handleMouseUp = useCallback<React.MouseEventHandler<HTMLDivElement>>(
-    ({ clientX, clientY, target, button }) => {
-      const [startX, startY] = clickCoordinatesRef.current ?? [0, 0];
-      const [deltaX, deltaY] = [
-        Math.abs(clientX - startX),
-        Math.abs(clientY - startY),
-      ];
-
-      let element: HTMLDivElement | null = target as HTMLDivElement;
-
-      while (element) {
-        if (
-          element.localName === 'button' ||
-          element.localName === 'a' ||
-          element.localName === 'label'
-        ) {
-          return;
-        }
-
-        element = element.parentNode as HTMLDivElement | null;
-      }
-
-      if (deltaX + deltaY < 5 && button === 0 && onClick) {
-        onClick();
-      }
-
-      clickCoordinatesRef.current = null;
-    },
-    [clickCoordinatesRef, onClick],
-  );
-
-  const handleMouseEnter = useCallback<React.MouseEventHandler<HTMLDivElement>>(
-    ({ currentTarget }) => {
-      const emojis =
-        currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
-
-      for (const emoji of emojis) {
-        const newSrc = emoji.getAttribute('data-original');
-        if (newSrc) emoji.src = newSrc;
-      }
-    },
-    [],
-  );
-
-  const handleMouseLeave = useCallback<React.MouseEventHandler<HTMLDivElement>>(
-    ({ currentTarget }) => {
-      const emojis =
-        currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
-
-      for (const emoji of emojis) {
-        const newSrc = emoji.getAttribute('data-static');
-        if (newSrc) emoji.src = newSrc;
-      }
-    },
-    [],
-  );
 
   const handleContentRef = useCallback(
     (node: HTMLDivElement | null) => {
@@ -150,16 +84,10 @@ export const EmbeddedStatusContent: React.FC<{
 
   return (
     <div
-      role='button'
-      tabIndex={0}
       className={className}
       ref={handleContentRef}
       lang={language}
       dangerouslySetInnerHTML={{ __html: content }}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     />
   );
 };

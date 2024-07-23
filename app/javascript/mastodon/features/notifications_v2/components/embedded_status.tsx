@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -22,6 +22,7 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   statusId,
 }) => {
   const history = useHistory();
+  const clickCoordinatesRef = useRef<[number, number] | null>();
 
   const status = useAppSelector(
     (state) => state.statuses.get(statusId) as Status | undefined,
@@ -31,11 +32,69 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
     state.accounts.get(status?.get('account') as string),
   );
 
-  const handleClick = useCallback(() => {
-    if (!account) return;
+  const handleMouseDown = useCallback<React.MouseEventHandler<HTMLDivElement>>(
+    ({ clientX, clientY }) => {
+      clickCoordinatesRef.current = [clientX, clientY];
+    },
+    [clickCoordinatesRef],
+  );
 
-    history.push(`/@${account.acct}/${statusId}`);
-  }, [statusId, account, history]);
+  const handleMouseUp = useCallback<React.MouseEventHandler<HTMLDivElement>>(
+    ({ clientX, clientY, target, button }) => {
+      const [startX, startY] = clickCoordinatesRef.current ?? [0, 0];
+      const [deltaX, deltaY] = [
+        Math.abs(clientX - startX),
+        Math.abs(clientY - startY),
+      ];
+
+      let element: HTMLDivElement | null = target as HTMLDivElement;
+
+      while (element) {
+        if (
+          element.localName === 'button' ||
+          element.localName === 'a' ||
+          element.localName === 'label'
+        ) {
+          return;
+        }
+
+        element = element.parentNode as HTMLDivElement | null;
+      }
+
+      if (deltaX + deltaY < 5 && button === 0 && account) {
+        history.push(`/@${account.acct}/${statusId}`);
+      }
+
+      clickCoordinatesRef.current = null;
+    },
+    [clickCoordinatesRef, statusId, account, history],
+  );
+
+  const handleMouseEnter = useCallback<React.MouseEventHandler<HTMLDivElement>>(
+    ({ currentTarget }) => {
+      const emojis =
+        currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
+
+      for (const emoji of emojis) {
+        const newSrc = emoji.getAttribute('data-original');
+        if (newSrc) emoji.src = newSrc;
+      }
+    },
+    [],
+  );
+
+  const handleMouseLeave = useCallback<React.MouseEventHandler<HTMLDivElement>>(
+    ({ currentTarget }) => {
+      const emojis =
+        currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
+
+      for (const emoji of emojis) {
+        const newSrc = emoji.getAttribute('data-static');
+        if (newSrc) emoji.src = newSrc;
+      }
+    },
+    [],
+  );
 
   if (!status) {
     return null;
@@ -51,7 +110,15 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   ).size;
 
   return (
-    <div className='notification-group__embedded-status'>
+    <div
+      className='notification-group__embedded-status'
+      role='button'
+      tabIndex={-1}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className='notification-group__embedded-status__account'>
         <Avatar account={account} size={16} />
         <DisplayName account={account} />
@@ -62,7 +129,6 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
         content={contentHtml}
         language={language}
         mentions={mentions}
-        onClick={handleClick}
       />
 
       {(poll || mediaAttachmentsSize > 0) && (
