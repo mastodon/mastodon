@@ -83,6 +83,7 @@ en:
         access_denied: The resource owner or authorization server denied the request.
         credential_flow_not_configured: Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
         invalid_client: Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.
+        invalid_code_challenge_method: The code challenge method must be S256, plain is unsupported.
         invalid_grant: The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
         invalid_redirect_uri: The redirect uri included is not valid.
         invalid_request:
