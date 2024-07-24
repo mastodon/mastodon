@@ -35,6 +35,17 @@ code {
     display: none;
   }
 
+  a {
+    color: $highlight-text-color;
+    text-decoration: underline;
+
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
   .input {
     margin-bottom: 16px;
     overflow: hidden;

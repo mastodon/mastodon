@@ -6,6 +6,8 @@
     %h3= t('doorkeeper.authorizations.new.title')
 
     %p= t('doorkeeper.authorizations.new.prompt_html', client_name: content_tag(:strong, @pre_auth.client.name))
+    - if @pre_auth.client.application.owner
+      %p= t('doorkeeper.authorizations.new.prompt_author_html', author_profile: link_to(@pre_auth.client.application.owner.account.local_username_and_domain, account_path(@pre_auth.client.application.owner.account)))
 
     %h3= t('doorkeeper.authorizations.new.review_permissions')
 
