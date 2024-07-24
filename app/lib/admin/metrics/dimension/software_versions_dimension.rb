@@ -86,7 +86,11 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
     return if Rails.configuration.x.use_vips
 
     command = %w(magick convert).find { |cmd| system("which #{cmd} > /dev/null 2>&1") }
-    version = `#{command} -version`.match(/Version: ImageMagick ([\d\.]+)/)[1]
+    
+    version_output = `#{command} -version`
+    version_match = version_output.match(/Version: ImageMagick ([\d\.]+|[^\s]+)/)
+
+    version = version_match ? version_match[1] : '0.0.0'
 
     {
       key: 'imagemagick',
