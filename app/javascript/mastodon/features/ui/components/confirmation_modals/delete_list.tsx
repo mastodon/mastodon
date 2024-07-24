@@ -8,6 +8,7 @@ import { removeColumn } from 'mastodon/actions/columns';
 import { deleteList } from 'mastodon/actions/lists';
 import { useAppDispatch } from 'mastodon/store';
 
+import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
 
 const messages = defineMessages({
@@ -25,10 +26,12 @@ const messages = defineMessages({
   },
 });
 
-export const ConfirmDeleteListModal: React.FC<{
-  listId: string;
-  columnId: string;
-}> = ({ listId, columnId }) => {
+export const ConfirmDeleteListModal: React.FC<
+  {
+    listId: string;
+    columnId: string;
+  } & BaseConfirmationModalProps
+> = ({ listId, columnId, onClose }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const history = useHistory();
@@ -49,6 +52,7 @@ export const ConfirmDeleteListModal: React.FC<{
       message={intl.formatMessage(messages.deleteListMessage)}
       confirm={intl.formatMessage(messages.deleteListConfirm)}
       onConfirm={onConfirm}
+      onClose={onClose}
     />
   );
 };

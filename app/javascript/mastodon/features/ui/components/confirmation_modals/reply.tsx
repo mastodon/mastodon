@@ -6,6 +6,7 @@ import { replyCompose } from 'mastodon/actions/compose';
 import type { Status } from 'mastodon/models/status';
 import { useAppDispatch } from 'mastodon/store';
 
+import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
 
 const messages = defineMessages({
@@ -21,9 +22,11 @@ const messages = defineMessages({
   },
 });
 
-export const ConfirmReplyModal: React.FC<{
-  status: Status;
-}> = ({ status }) => {
+export const ConfirmReplyModal: React.FC<
+  {
+    status: Status;
+  } & BaseConfirmationModalProps
+> = ({ status, onClose }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
 
@@ -37,6 +40,7 @@ export const ConfirmReplyModal: React.FC<{
       message={intl.formatMessage(messages.replyMessage)}
       confirm={intl.formatMessage(messages.replyConfirm)}
       onConfirm={onConfirm}
+      onClose={onClose}
     />
   );
 };

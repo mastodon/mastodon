@@ -5,6 +5,7 @@ import { defineMessages, useIntl } from 'react-intl';
 import { clearNotifications } from 'mastodon/actions/notification_groups';
 import { useAppDispatch } from 'mastodon/store';
 
+import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
 
 const messages = defineMessages({
@@ -23,7 +24,9 @@ const messages = defineMessages({
   },
 });
 
-export const ConfirmClearNotificationsModal: React.FC = () => {
+export const ConfirmClearNotificationsModal: React.FC<
+  BaseConfirmationModalProps
+> = ({ onClose }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
 
@@ -37,6 +40,7 @@ export const ConfirmClearNotificationsModal: React.FC = () => {
       message={intl.formatMessage(messages.clearMessage)}
       confirm={intl.formatMessage(messages.clearConfirm)}
       onConfirm={onConfirm}
+      onClose={onClose}
     />
   );
 };

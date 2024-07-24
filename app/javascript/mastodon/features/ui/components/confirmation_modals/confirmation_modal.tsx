@@ -4,17 +4,21 @@ import { FormattedMessage } from 'react-intl';
 
 import { Button } from 'mastodon/components/button';
 
-export const ConfirmationModal: React.FC<{
-  title: React.ReactNode;
-  message: React.ReactNode;
-  confirm: React.ReactNode;
-  secondary?: React.ReactNode;
-  onSecondary?: () => void;
-  // This is optional here, but is injected by the ModalRoot component
-  onClose?: () => void;
-  onConfirm: () => void;
-  closeWhenConfirm?: boolean;
-}> = ({
+export interface BaseConfirmationModalProps {
+  onClose: () => void;
+}
+
+export const ConfirmationModal: React.FC<
+  {
+    title: React.ReactNode;
+    message: React.ReactNode;
+    confirm: React.ReactNode;
+    secondary?: React.ReactNode;
+    onSecondary?: () => void;
+    onConfirm: () => void;
+    closeWhenConfirm?: boolean;
+  } & BaseConfirmationModalProps
+> = ({
   title,
   message,
   confirm,
@@ -26,19 +30,19 @@ export const ConfirmationModal: React.FC<{
 }) => {
   const handleClick = useCallback(() => {
     if (closeWhenConfirm) {
-      onClose?.();
+      onClose();
     }
 
     onConfirm();
   }, [onClose, onConfirm, closeWhenConfirm]);
 
   const handleSecondary = useCallback(() => {
-    onClose?.();
+    onClose();
     onSecondary?.();
   }, [onClose, onSecondary]);
 
   const handleCancel = useCallback(() => {
-    onClose?.();
+    onClose();
   }, [onClose]);
 
   return (

@@ -6,6 +6,7 @@ import { unfollowAccount } from 'mastodon/actions/accounts';
 import type { Account } from 'mastodon/models/account';
 import { useAppDispatch } from 'mastodon/store';
 
+import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
 
 const messages = defineMessages({
@@ -19,9 +20,11 @@ const messages = defineMessages({
   },
 });
 
-export const ConfirmUnfollowModal: React.FC<{
-  account: Account;
-}> = ({ account }) => {
+export const ConfirmUnfollowModal: React.FC<
+  {
+    account: Account;
+  } & BaseConfirmationModalProps
+> = ({ account, onClose }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
 
@@ -41,6 +44,7 @@ export const ConfirmUnfollowModal: React.FC<{
       }
       confirm={intl.formatMessage(messages.unfollowConfirm)}
       onConfirm={onConfirm}
+      onClose={onClose}
     />
   );
 };

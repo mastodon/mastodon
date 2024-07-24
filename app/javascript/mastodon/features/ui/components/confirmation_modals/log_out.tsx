@@ -4,6 +4,7 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import { logOut } from 'mastodon/utils/log_out';
 
+import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
 
 const messages = defineMessages({
@@ -18,7 +19,9 @@ const messages = defineMessages({
   },
 });
 
-export const ConfirmLogOutModal: React.FC = () => {
+export const ConfirmLogOutModal: React.FC<BaseConfirmationModalProps> = ({
+  onClose,
+}) => {
   const intl = useIntl();
 
   const onConfirm = useCallback(() => {
@@ -31,6 +34,7 @@ export const ConfirmLogOutModal: React.FC = () => {
       message={intl.formatMessage(messages.logoutMessage)}
       confirm={intl.formatMessage(messages.logoutConfirm)}
       onConfirm={onConfirm}
+      onClose={onClose}
     />
   );
 };

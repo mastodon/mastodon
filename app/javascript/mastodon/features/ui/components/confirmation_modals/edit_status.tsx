@@ -5,6 +5,7 @@ import { defineMessages, useIntl } from 'react-intl';
 import { editStatus } from 'mastodon/actions/statuses';
 import { useAppDispatch } from 'mastodon/store';
 
+import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
 
 const messages = defineMessages({
@@ -20,9 +21,11 @@ const messages = defineMessages({
   },
 });
 
-export const ConfirmEditStatusModal: React.FC<{
-  statusId: string;
-}> = ({ statusId }) => {
+export const ConfirmEditStatusModal: React.FC<
+  {
+    statusId: string;
+  } & BaseConfirmationModalProps
+> = ({ statusId, onClose }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
 
@@ -36,6 +39,7 @@ export const ConfirmEditStatusModal: React.FC<{
       message={intl.formatMessage(messages.editMessage)}
       confirm={intl.formatMessage(messages.editConfirm)}
       onConfirm={onConfirm}
+      onClose={onClose}
     />
   );
 };

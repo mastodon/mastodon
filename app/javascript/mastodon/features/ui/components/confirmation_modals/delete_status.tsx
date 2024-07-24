@@ -5,6 +5,7 @@ import { defineMessages, useIntl } from 'react-intl';
 import { deleteStatus } from 'mastodon/actions/statuses';
 import { useAppDispatch } from 'mastodon/store';
 
+import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
 
 const messages = defineMessages({
@@ -35,10 +36,12 @@ const messages = defineMessages({
   },
 });
 
-export const ConfirmDeleteStatusModal: React.FC<{
-  statusId: string;
-  withRedraft: boolean;
-}> = ({ statusId, withRedraft }) => {
+export const ConfirmDeleteStatusModal: React.FC<
+  {
+    statusId: string;
+    withRedraft: boolean;
+  } & BaseConfirmationModalProps
+> = ({ statusId, withRedraft, onClose }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
 
@@ -58,6 +61,7 @@ export const ConfirmDeleteStatusModal: React.FC<{
         withRedraft ? messages.deleteAndRedraftConfirm : messages.deleteConfirm,
       )}
       onConfirm={onConfirm}
+      onClose={onClose}
     />
   );
 };
