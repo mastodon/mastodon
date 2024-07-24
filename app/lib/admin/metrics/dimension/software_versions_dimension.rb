@@ -98,7 +98,10 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   end
 
   def ffmpeg_version
-    version = `ffmpeg -version`.match(/ffmpeg version ([^\s]+)/)[1]
+    version_output = `ffmpeg -version`
+    version_match = version_output.match(/ffmpeg version ([\d\.]+|[^\s]+)/)
+
+    version = version_match ? version_match[1] : '0.0.0'
 
     {
       key: 'ffmpeg',
