@@ -148,16 +148,29 @@ class Notification < ApplicationRecord
       unscoped
         .with_recursive(
           grouped_notifications: [
+            # Base case: fetching one notification and annotating it with visited groups
             query
               .select('notifications.*', "ARRAY[COALESCE(notifications.group_key, 'ungrouped-' || notifications.id)] AS groups")
               .limit(1),
-            query
-              .joins('CROSS JOIN grouped_notifications')
-              .where('array_length(grouped_notifications.groups, 1) < :limit', limit: limit)
-              .where('notifications.id < grouped_notifications.id')
-              .where.not("COALESCE(notifications.group_key, 'ungrouped-' || notifications.id) = ANY(grouped_notifications.groups)")
-              .select('notifications.*', "array_append(grouped_notifications.groups, COALESCE(notifications.group_key, 'ungrouped-' || notifications.id))")
-              .limit(1),
+            # Recursive case, always yielding at most one annotated notification
+            unscoped
+              .from(
+                [
+                  # Expose the working table as `wt`, but quit early if we've reached the limit
+                  unscoped
+                    .select('id', 'groups')
+                    .from('grouped_notifications')
+                    .where('array_length(grouped_notifications.groups, 1) < :limit', limit: limit)
+                    .arel.as('wt'),
+                  # Recursive query, using `LATERAL` so we can refer to `wt`
+                  query
+                    .where('notifications.id < wt.id')
+                    .where.not("COALESCE(notifications.group_key, 'ungrouped-' || notifications.id) = ANY(wt.groups)")
+                    .limit(1)
+                    .arel.lateral('notifications'),
+                ]
+              )
+              .select('notifications.*', "array_append(wt.groups, COALESCE(notifications.group_key, 'ungrouped-' || notifications.id))"),
           ]
         )
         .from('grouped_notifications AS notifications')
@@ -176,16 +189,29 @@ class Notification < ApplicationRecord
       unscoped
         .with_recursive(
           grouped_notifications: [
+            # Base case: fetching one notification and annotating it with visited groups
             query
               .select('notifications.*', "ARRAY[COALESCE(notifications.group_key, 'ungrouped-' || notifications.id)] AS groups")
               .limit(1),
-            query
-              .joins('CROSS JOIN grouped_notifications')
-              .where('array_length(grouped_notifications.groups, 1) < :limit', limit: limit)
-              .where('notifications.id > grouped_notifications.id')
-              .where.not("COALESCE(notifications.group_key, 'ungrouped-' || notifications.id) = ANY(grouped_notifications.groups)")
-              .select('notifications.*', "array_append(grouped_notifications.groups, COALESCE(notifications.group_key, 'ungrouped-' || notifications.id))")
-              .limit(1),
+            # Recursive case, always yielding at most one annotated notification
+            unscoped
+              .from(
+                [
+                  # Expose the working table as `wt`, but quit early if we've reached the limit
+                  unscoped
+                    .select('id', 'groups')
+                    .from('grouped_notifications')
+                    .where('array_length(grouped_notifications.groups, 1) < :limit', limit: limit)
+                    .arel.as('wt'),
+                  # Recursive query, using `LATERAL` so we can refer to `wt`
+                  query
+                    .where('notifications.id > wt.id')
+                    .where.not("COALESCE(notifications.group_key, 'ungrouped-' || notifications.id) = ANY(wt.groups)")
+                    .limit(1)
+                    .arel.lateral('notifications'),
+                ]
+              )
+              .select('notifications.*', "array_append(wt.groups, COALESCE(notifications.group_key, 'ungrouped-' || notifications.id))"),
           ]
         )
         .from('grouped_notifications AS notifications')
