@@ -95,6 +95,14 @@ RSpec.describe Tag do
     it 'does not match purely-numeric hashtags' do
       expect(subject.match('hello #0123456')).to be_nil
     end
+
+    it 'matches hashtags immediately following the letter ß' do
+      expect(subject.match('Hello toß #ruby').to_s).to eq '#ruby'
+    end
+
+    it 'matches hashtags containing uppercase characters' do
+      expect(subject.match('Hello #rubyOnRails').to_s).to eq '#rubyOnRails'
+    end
   end
 
   describe '#to_param' do

@@ -703,6 +703,14 @@ RSpec.describe Account do
     it 'does not match URL query string' do
       expect(subject.match('https://example.com/?x=@alice')).to be_nil
     end
+
+    it 'matches usernames immediately following the letter ß' do
+      expect(subject.match('Hello toß @alice from me')[1]).to eq 'alice'
+    end
+
+    it 'matches usernames containing uppercase characters' do
+      expect(subject.match('Hello to @aLice@Example.com from me')[1]).to eq 'aLice@Example.com'
+    end
   end
 
   describe 'validations' do
