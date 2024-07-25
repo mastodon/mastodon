@@ -226,6 +226,7 @@ fy:
         update_custom_emoji: Lokale emoji bywurkje
         update_domain_block: Domeinblokkade bywurkje
         update_ip_block: IP-rigel bywurkje
+        update_report: Rapportaazje bywurkje
         update_status: Berjocht bywurkje
         update_user_role: Rol bywurkje
       actions:
@@ -293,6 +294,7 @@ fy:
       filter_by_action: Op aksje filterje
       filter_by_user: Op brûker filterje
       title: Auditlogboek
+      unavailable_instance: "(domeinnamme net beskikber)"
     announcements:
       destroyed_msg: Fuortsmiten fan meidieling slagge!
       edit:
@@ -469,6 +471,9 @@ fy:
       title: Oanrekommandearre accounts
       unsuppress: Account wer oanrekommandearje
     instances:
+      audit_log:
+        title: Resinte auditlochboeken
+        view_all: Folsleine auditlochboeken besjen
       availability:
         description_html:
           one: As de besoarging oan it domein nei <strong>%{count} dag</strong> mislearjen bliuwt, dan sille der gjin fierdere besykjen ta besoarging dien wurde oant in besoarging <em>fan</em> it domein ûntfongen is.
@@ -637,6 +642,7 @@ fy:
       report: 'Rapportaazje #%{id}'
       reported_account: Rapportearre account
       reported_by: Rapportearre troch
+      reported_with_application: Mei applikaasje rapportearre
       resolved: Oplost
       resolved_msg: Rapportaazje oplosse slagge!
       skip_to_actions: Gean daliks nei de maatregels
@@ -780,6 +786,7 @@ fy:
           approved: Goedkarring fereaske om te registrearje te kinnen
           none: Net ien kin harren registrearje
           open: Elkenien kin harren registrearje
+        warning_hint: Wy riede jo oan om ‘Goedkarring fereaske om registrearje te kinnen’ te brûken, útsein jo der wis fan binne dat jo moderaasjeteam spam en kweawollende registraasjes tidich ôfhannelje kin.
       security:
         authorized_fetch: Ferifikaasje fan fedearre servers fereaskje
         authorized_fetch_hint: Ferifikaasje fereaskje fan federearre servers, makket in striktere hanthaving fan sawol brûkersnivo as server-levelblokken mooglik. Dit giet wol ten koste fan de prestaasjes, ferminderet it berik fan jo antwurden en kin kompatibiliteitsproblemen mei guon federearre services opleverje. Boppedat sil dit net foarkomme dat tawijde spilers jo iepenbiere artikelen en accounts ophelje.
@@ -950,6 +957,7 @@ fy:
       delete: Fuortsmite
       edit_preset: Foarynstelling foar warskôging bewurkje
       empty: Jo hawwe noch gjin foarynstellingen foar warskôgingen tafoege.
+      title: Foarynstellingen foar warskôgingen
     webhooks:
       add_new: Einpunt tafoegje
       delete: Fuortsmite
@@ -971,6 +979,9 @@ fy:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Yn ferbân mei in gebrek oan resinte moderatoraktiviteit, is de registraasjemodus op %{instance} automatysk wizige nei hânmjittige beoardieling troch moderatoren. Dit om foar te kommen dat %{instance} as platfoarm foar eventueel misbrûk brûkt wurde kin. Jo kinne op elk winske momint werom skeakelje nei iepen registraasjes.
+      subject: De registraasjemodus op %{instance} is automatysk wizige nei hânmjittige beoardieling troch moderatoren
     new_appeal:
       actions:
         delete_statuses: it fuortsmiten fan harren berjochten
@@ -1669,6 +1680,8 @@ fy:
       user_domain_block: Jo hawwe %{target_name} blokkearre
     lost_followers: Ferlerne folgers
     lost_follows: Ferlerne folge accounts
+    preamble: Jo kinne folge accounts en folgers ferlieze wannear’t jo in domein blokkearje of wannear’t de moderators fan jo server beslisse om in eksterne server út te sluten. Wannear’t dat bart, kinne jo listen fan ferbrutsen folchrelaasjes downloade, dizze ynspektearje en mooglik ymportearje op in oare server.
+    purged: Ynformaasje oer dizze server is fuortsmiten troch de behearders fan jo server.
     type: Barren
   statuses:
     attached:

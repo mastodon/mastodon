@@ -223,6 +223,7 @@ th:
         update_custom_emoji: อัปเดตอีโมจิที่กำหนดเอง
         update_domain_block: อัปเดตการปิดกั้นโดเมน
         update_ip_block: อัปเดตกฎ IP
+        update_report: อัปเดตรายงาน
         update_status: อัปเดตโพสต์
         update_user_role: อัปเดตบทบาท
       actions:
@@ -462,6 +463,9 @@ th:
       title: คำแนะนำการติดตาม
       unsuppress: คืนค่าคำแนะนำการติดตาม
     instances:
+      audit_log:
+        title: รายการบันทึกการตรวจสอบล่าสุด
+        view_all: ดูรายการบันทึกการตรวจสอบแบบเต็ม
       availability:
         description_html:
           other: หากการจัดส่งไปยังโดเมนล้มเหลวเป็นเวลา <strong>%{count} วันที่แตกต่างกัน</strong> โดยไม่สำเร็จ จะไม่ทำการพยายามจัดส่งเพิ่มเติมเว้นแต่จะได้รับการจัดส่ง <em>จาก</em> โดเมน
@@ -626,6 +630,7 @@ th:
       report: 'รายงาน #%{id}'
       reported_account: บัญชีที่ได้รับการรายงาน
       reported_by: รายงานโดย
+      reported_with_application: รายงานด้วยแอปพลิเคชัน
       resolved: แก้ปัญหาแล้ว
       resolved_msg: แก้ปัญหารายงานสำเร็จ!
       skip_to_actions: ข้ามไปยังการกระทำ
