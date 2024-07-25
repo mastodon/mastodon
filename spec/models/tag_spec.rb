@@ -99,6 +99,10 @@ RSpec.describe Tag do
     it 'matches hashtags immediately following the letter ß' do
       expect(subject.match('Hello toß #ruby').to_s).to eq '#ruby'
     end
+
+    it 'matches hashtags containing uppercase characters' do
+      expect(subject.match('Hello #rubyOnRails').to_s).to eq '#rubyOnRails'
+    end
   end
 
   describe '#to_param' do
