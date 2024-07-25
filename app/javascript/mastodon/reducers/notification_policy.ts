@@ -11,8 +11,10 @@ export const notificationPolicyReducer =
   createReducer<NotificationPolicy | null>(null, (builder) => {
     builder
       .addCase(decreasePendingNotificationsCount, (state, action) => {
-        state.summary.pending_notifications_count -= action.payload;
-        state.summary.pending_requests_count -= 1;
+        if (state) {
+          state.summary.pending_notifications_count -= action.payload;
+          state.summary.pending_requests_count -= 1;
+        }
       })
       .addMatcher(
         isAnyOf(
