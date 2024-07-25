@@ -129,6 +129,24 @@ RSpec.describe LinkDetailsExtractor do
       include_examples 'structured data'
     end
 
+    context 'with the first tag is null' do
+      let(:html) { <<~HTML }
+        <!doctype html>
+        <html>
+        <body>
+          <script type="application/ld+json">
+            null
+          </script>
+          <script type="application/ld+json">
+            #{ld_json}
+          </script>
+        </body>
+        </html>
+      HTML
+
+      include_examples 'structured data'
+    end
+
     context 'with preceding block of unsupported LD+JSON' do
       let(:html) { <<~HTML }
         <!doctype html>
