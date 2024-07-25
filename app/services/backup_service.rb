@@ -19,8 +19,8 @@ class BackupService < BaseService
 
   def build_outbox_json!(file)
     skeleton = serialize(collection_presenter, ActivityPub::CollectionSerializer)
-    skeleton[:@context] = full_context
-    skeleton[:orderedItems] = ['!PLACEHOLDER!']
+    skeleton['@context'] = full_context
+    skeleton['orderedItems'] = ['!PLACEHOLDER!']
     skeleton = Oj.dump(skeleton)
     prepend, append = skeleton.split('"!PLACEHOLDER!"')
     add_comma = false
