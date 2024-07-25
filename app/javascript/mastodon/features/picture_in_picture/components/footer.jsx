@@ -31,8 +31,6 @@ const messages = defineMessages({
   cancel_reblog_private: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },
-  replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
-  replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
 });
 
@@ -71,19 +69,13 @@ class Footer extends ImmutablePureComponent {
   };
 
   handleReplyClick = () => {
-    const { dispatch, askReplyConfirmation, status, intl } = this.props;
+    const { dispatch, askReplyConfirmation, status, onClose } = this.props;
     const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (askReplyConfirmation) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: intl.formatMessage(messages.replyMessage),
-            confirm: intl.formatMessage(messages.replyConfirm),
-            onConfirm: this._performReply,
-          },
-        }));
+        onClose(true);
+        dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status } }));
       } else {
         this._performReply();
       }
