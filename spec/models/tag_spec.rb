@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Tag do
+  include_examples 'Reviewable'
+
   describe 'validations' do
     it 'invalid with #' do
       expect(described_class.new(name: '#hello_world')).to_not be_valid

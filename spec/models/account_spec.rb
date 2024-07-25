@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Account do
+  include_examples 'Reviewable'
+
   context 'with an account record' do
     subject { Fabricate(:account) }
 
