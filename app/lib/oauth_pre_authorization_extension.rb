@@ -8,6 +8,6 @@ module OauthPreAuthorizationExtension
   end
 
   def validate_code_challenge_method_s256
-    code_challenge.blank? || (code_challenge_method.present? && code_challenge_method == 'S256')
+    code_challenge.blank? || code_challenge_method == 'S256'
   end
 end
