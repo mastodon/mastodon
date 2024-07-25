@@ -1,0 +1,34 @@
+---
+name: Depot Build and Push
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
+      - '.github/linters/**'
+  pull_request:
+    paths-ignore:
+      - 'README.md'
+      - '.github/linters/**'
+
+jobs:
+  docker-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Depot CLI
+        uses: depot/setup-action@v1
+
+      - name: Build and push
+        uses: depot/build-push-action@v1
+        with:
+          # if no depot.json file is at the root of your repo, you must specify the project id
+          token: ${{ secrets.DEPOT_PROJECT_TOKEN }}
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: false
+          tags: ghcr.io/bretfisher/mastodon:latest
