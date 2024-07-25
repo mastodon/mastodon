@@ -1,5 +1,5 @@
-ffmpeg
-libopenblas0-pthread
-libpq-dev
-libxdamage1
-libxfixes3
+libidn12
+# for idn-ruby on heroku-24 stack
+
+# use https://github.com/heroku/heroku-buildpack-activestorage-preview
+# in place for ffmpeg and its dependent packages to reduce slag size
