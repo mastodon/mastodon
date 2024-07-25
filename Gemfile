@@ -100,7 +100,7 @@ gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
-gem 'opentelemetry-api', '~> 1.2.5'
+gem 'opentelemetry-api', '~> 1.3.0'
 
 group :opentelemetry do
   gem 'opentelemetry-exporter-otlp', '~> 0.28.0', require: false
