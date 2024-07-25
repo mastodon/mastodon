@@ -1,7 +1,7 @@
 ---
 de:
   about:
-    about_mastodon_html: 'Das soziale Netzwerk der Zukunft: Keine Werbung, keine Überwachung durch Unternehmen – dafür dezentral und mit Anstand! Beherrsche deine Daten mit Mastodon!'
+    about_mastodon_html: 'Das soziale Netzwerk der Zukunft: Keine Werbung, keine Überwachung durch Unternehmen – dafür dezentral und mit Anstand! Behalte mit Mastodon die Kontrolle über deine Daten!'
     contact_missing: Nicht festgelegt
     contact_unavailable: Nicht verfügbar
     hosted_on: Mastodon, gehostet auf %{domain}
@@ -293,7 +293,7 @@ de:
       empty: Protokolle nicht gefunden.
       filter_by_action: Nach Aktion filtern
       filter_by_user: Nach Benutzer*in filtern
-      title: Protokoll
+      title: Audit-Log
       unavailable_instance: "(Server nicht verfügbar)"
     announcements:
       destroyed_msg: Ankündigung erfolgreich gelöscht!
@@ -471,6 +471,9 @@ de:
       title: Folgeempfehlungen
       unsuppress: Folgeempfehlung nicht mehr unterbinden
     instances:
+      audit_log:
+        title: Neueste Audit-Logs
+        view_all: Alle Audit-Logs anzeigen
       availability:
         description_html:
           one: Wenn die Zustellung an die Domain <strong>%{count} Tag</strong> lang erfolglos bleibt, werden keine weiteren Zustellversuche unternommen, bis eine Zustellung <em>von</em> der Domain empfangen wird.
@@ -588,7 +591,7 @@ de:
         notes:
           one: "%{count} Notiz"
           other: "%{count} Notizen"
-      action_log: Protokoll
+      action_log: Audit-Log
       action_taken_by: Maßnahme ergriffen von
       actions:
         delete_description_html: Der gemeldete Beitrag wird gelöscht und die ergriffene Maßnahme wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Kontos zu helfen.

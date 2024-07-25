@@ -293,7 +293,7 @@ fi:
       empty: Lokeja ei löytynyt.
       filter_by_action: Suodata tapahtuman mukaan
       filter_by_user: Suodata käyttäjän mukaan
-      title: Auditointiloki
+      title: Tarkastusloki
       unavailable_instance: "(verkkotunnus ei saatavilla)"
     announcements:
       destroyed_msg: Tiedote poistettu onnistuneesti!
@@ -471,6 +471,9 @@ fi:
       title: Seuraamissuositukset
       unsuppress: Palauta seuraamissuositus
     instances:
+      audit_log:
+        title: Viimeaikaiset tarkastuslokit
+        view_all: Näytä kaikki tarkastuslokit
       availability:
         description_html:
           one: Jos toimitus verkkotunnukseen epäonnistuu <strong>%{count} päivä</strong> ilman onnistumista, uusia yrityksiä ei tehdä ennen kuin toimitus <em>alkaen</em> verkkotunnukselta on vastaanotettu.
@@ -693,7 +696,7 @@ fi:
         administrator: Ylläpitäjä
         administrator_description: Käyttäjät, joilla on tämä käyttöoikeus, ohittavat jokaisen käyttöoikeuden
         delete_user_data: Poistaa käyttäjän tiedot
-        delete_user_data_description: Salli käyttäjien poistaa muiden käyttäjien tiedot viipymättä
+        delete_user_data_description: Sallii käyttäjien poistaa muiden käyttäjien tiedot viipymättä
         invite_users: Kutsua käyttäjiä
         invite_users_description: Sallii käyttäjien kutsua uusia ihmisiä palvelimelle
         manage_announcements: Hallita tiedotteita
@@ -724,7 +727,7 @@ fi:
         manage_users_description: Sallii käyttäjien tarkastella muiden käyttäjien tietoja ja suorittaa valvontatoimia heitä kohtaan
         manage_webhooks: Hallita webhookeja
         manage_webhooks_description: Sallii käyttäjien luoda webhookeja hallinnollisiin tapahtumiin
-        view_audit_log: Katsoa valvontalokia
+        view_audit_log: Katsoa tarkastuslokia
         view_audit_log_description: Sallii käyttäjien nähdä palvelimen hallinnollisten toimien historian
         view_dashboard: Katsoa koontinäyttöä
         view_dashboard_description: Sallii käyttäjien käyttää kojelautaa ja erilaisia mittareita
