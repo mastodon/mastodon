@@ -18,6 +18,7 @@ import {
   importFetchedStatuses,
 } from './importer';
 import { submitMarkers } from './markers';
+import { decreasePendingNotificationsCount } from './notification_policies';
 import { notificationsUpdate } from "./notifications_typed";
 import { register as registerPushNotifications } from './push_notifications';
 import { saveSettings } from './settings';
@@ -433,11 +434,12 @@ export const fetchNotificationRequestFail = (id, error) => ({
   error,
 });
 
-export const acceptNotificationRequest = id => (dispatch) => {
+export const acceptNotificationRequest = (id, count) => (dispatch) => {
   dispatch(acceptNotificationRequestRequest(id));
 
   api().post(`/api/v1/notifications/requests/${id}/accept`).then(() => {
     dispatch(acceptNotificationRequestSuccess(id));
+    dispatch(decreasePendingNotificationsCount(count));
   }).catch(err => {
     dispatch(acceptNotificationRequestFail(id, err));
   });
@@ -459,11 +461,12 @@ export const acceptNotificationRequestFail = (id, error) => ({
   error,
 });
 
-export const dismissNotificationRequest = id => (dispatch) => {
+export const dismissNotificationRequest = (id, count) => (dispatch) => {
   dispatch(dismissNotificationRequestRequest(id));
 
   api().post(`/api/v1/notifications/requests/${id}/dismiss`).then(() =>{
     dispatch(dismissNotificationRequestSuccess(id));
+    dispatch(decreasePendingNotificationsCount(count));
   }).catch(err => {
     dispatch(dismissNotificationRequestFail(id, err));
   });

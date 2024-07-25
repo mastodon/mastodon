@@ -28,12 +28,12 @@ export const NotificationRequest = ({ id, accountId, notificationsCount }) => {
   const intl = useIntl();
 
   const handleDismiss = useCallback(() => {
-    dispatch(dismissNotificationRequest(id));
-  }, [dispatch, id]);
+    dispatch(dismissNotificationRequest(id, notificationsCount));
+  }, [dispatch, id, notificationsCount]);
 
   const handleAccept = useCallback(() => {
-    dispatch(acceptNotificationRequest(id));
-  }, [dispatch, id]);
+    dispatch(acceptNotificationRequest(id, notificationsCount));
+  }, [dispatch, id, notificationsCount]);
 
   return (
     <div className='notification-request'>
