@@ -47,7 +47,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch((_, getState) => {
       let state = getState();
       if (state.getIn(['compose', 'text']).trim().length !== 0) {
-        dispatch(openModal({ type: 'CONFIRM_REPLY', status }));
+        dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status } }));
       } else {
         dispatch(replyCompose(status));
       }
@@ -84,7 +84,7 @@ const mapDispatchToProps = (dispatch) => ({
     if (!deleteModal) {
       dispatch(deleteStatus(status.get('id'), withRedraft));
     } else {
-      dispatch(openModal({ type: 'CONFIRM_DELETE_STATUS', statusId: status.get('id'), withRedraft }));
+      dispatch(openModal({ modalType: 'CONFIRM_DELETE_STATUS', modalProps: { statusId: status.get('id'), withRedraft } }));
     }
   },
 
