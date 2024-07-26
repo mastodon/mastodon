@@ -98,7 +98,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   end
 
   def ffmpeg_version
-    version_output = `ffmpeg -version`
+    version_output = Terrapin::CommandLine.new(Rails.configuration.x.ffmpeg_binary, "-version").run
     version_match = version_output.match(/ffmpeg version ([\d\.]+|[^\s]+)/)
 
     version = version_match ? version_match[1] : '0.0.0'
