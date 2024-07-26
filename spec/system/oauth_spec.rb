@@ -2,8 +2,13 @@
 
 require 'rails_helper'
 
-describe 'Using OAuth from an external app', :js, :streaming do
+describe 'Using OAuth from an external app' do
+  subject { visit "/oauth/authorize?#{params.to_query}" }
+
   let(:client_app) { Doorkeeper::Application.create!(name: 'test', redirect_uri: about_url(host: Rails.application.config.x.local_domain), scopes: 'read') }
+  let(:params) do
+    { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read' }
+  end
 
   context 'when the user is already logged in' do
     let!(:user) { Fabricate(:user) }
@@ -14,8 +19,7 @@ describe 'Using OAuth from an external app', :js, :streaming do
     end
 
     it 'when accepting the authorization request' do
-      params = { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read' }
-      visit "/oauth/authorize?#{params.to_query}"
+      subject
 
       # It presents the user with an authorization page
       expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.authorize'))
@@ -29,8 +33,7 @@ describe 'Using OAuth from an external app', :js, :streaming do
     end
 
     it 'when rejecting the authorization request' do
-      params = { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read' }
-      visit "/oauth/authorize?#{params.to_query}"
+      subject
 
       # It presents the user with an authorization page
       expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.deny'))
@@ -41,6 +44,79 @@ describe 'Using OAuth from an external app', :js, :streaming do
 
       # It does not grant the app access to the account
       expect(Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id)).to be false
+    end
+
+    # The tests in this context ensures that requests without PKCE parameters
+    # still work; In the future we likely want to force usage of PKCE for
+    # security reasons, as per:
+    #
+    # https://www.ietf.org/archive/id/draft-ietf-oauth-security-topics-27.html#section-2.1.1-9
+    context 'when not using PKCE' do
+      it 'does not include the PKCE values in the hidden inputs' do
+        subject
+
+        code_challenge_inputs = all('.oauth-prompt input[name=code_challenge]', visible: false)
+        code_challenge_method_inputs = all('.oauth-prompt input[name=code_challenge_method]', visible: false)
+
+        expect(code_challenge_inputs).to_not be_empty
+        expect(code_challenge_method_inputs).to_not be_empty
+
+        (code_challenge_inputs.to_a + code_challenge_method_inputs.to_a).each do |input|
+          expect(input.value).to be_nil
+        end
+      end
+    end
+
+    context 'when using PKCE' do
+      let(:params) do
+        { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read', code_challenge_method: pkce_code_challenge_method, code_challenge: pkce_code_challenge }
+      end
+      let(:pkce_code_challenge) { SecureRandom.hex(32) }
+      let(:pkce_code_challenge_method) { 'S256' }
+
+      context 'when using S256 code challenge method' do
+        it 'includes the PKCE values in the hidden inputs' do
+          subject
+
+          code_challenge_inputs = all('.oauth-prompt input[name=code_challenge]', visible: false)
+          code_challenge_method_inputs = all('.oauth-prompt input[name=code_challenge_method]', visible: false)
+
+          expect(code_challenge_inputs).to_not be_empty
+          expect(code_challenge_method_inputs).to_not be_empty
+
+          code_challenge_inputs.each do |input|
+            expect(input.value).to eq pkce_code_challenge
+          end
+          code_challenge_method_inputs.each do |input|
+            expect(input.value).to eq pkce_code_challenge_method
+          end
+        end
+      end
+
+      context 'when using plain code challenge method' do
+        let(:pkce_code_challenge_method) { 'plain' }
+
+        it 'does not include the PKCE values in the response' do
+          subject
+
+          expect(page).to have_no_css('.oauth-prompt input[name=code_challenge]')
+          expect(page).to have_no_css('.oauth-prompt input[name=code_challenge_method]')
+        end
+
+        it 'does not include the authorize button' do
+          subject
+
+          expect(page).to have_no_css('.oauth-prompt button[type="submit"]')
+        end
+
+        it 'includes an error message' do
+          subject
+
+          within '.form-container .flash-message' do
+            expect(page).to have_content(I18n.t('doorkeeper.errors.messages.invalid_code_challenge_method'))
+          end
+        end
+      end
     end
   end
 
