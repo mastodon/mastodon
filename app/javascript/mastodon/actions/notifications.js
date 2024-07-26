@@ -18,6 +18,7 @@ import {
   importFetchedStatuses,
 } from './importer';
 import { submitMarkers } from './markers';
+import { decreasePendingNotificationsCount } from './notification_policies';
 import { notificationsUpdate } from "./notifications_typed";
 import { register as registerPushNotifications } from './push_notifications';
 import { saveSettings } from './settings';
@@ -82,6 +83,12 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
   if (accountIds.length > 0) {
     dispatch(fetchRelationships(accountIds));
   }
+};
+
+const selectNotificationCountForRequest = (state, id) => {
+  const requests = state.getIn(['notificationRequests', 'items']);
+  const thisRequest = requests.find(request => request.get('id') === id);
+  return thisRequest ? thisRequest.get('notifications_count') : 0;
 };
 
 export const loadPending = () => ({
@@ -433,11 +440,13 @@ export const fetchNotificationRequestFail = (id, error) => ({
   error,
 });
 
-export const acceptNotificationRequest = id => (dispatch) => {
+export const acceptNotificationRequest = (id) => (dispatch, getState) => {
+  const count = selectNotificationCountForRequest(getState(), id);
   dispatch(acceptNotificationRequestRequest(id));
 
   api().post(`/api/v1/notifications/requests/${id}/accept`).then(() => {
     dispatch(acceptNotificationRequestSuccess(id));
+    dispatch(decreasePendingNotificationsCount(count));
   }).catch(err => {
     dispatch(acceptNotificationRequestFail(id, err));
   });
@@ -459,11 +468,13 @@ export const acceptNotificationRequestFail = (id, error) => ({
   error,
 });
 
-export const dismissNotificationRequest = id => (dispatch) => {
+export const dismissNotificationRequest = (id) => (dispatch, getState) => {
+  const count = selectNotificationCountForRequest(getState(), id);
   dispatch(dismissNotificationRequestRequest(id));
 
   api().post(`/api/v1/notifications/requests/${id}/dismiss`).then(() =>{
     dispatch(dismissNotificationRequestSuccess(id));
+    dispatch(decreasePendingNotificationsCount(count));
   }).catch(err => {
     dispatch(dismissNotificationRequestFail(id, err));
   });
