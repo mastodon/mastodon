@@ -85,6 +85,12 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
   }
 };
 
+const selectNotificationCountForRequest = (state, id) => {
+  const requests = state.getIn(['notificationRequests', 'items']);
+  const thisRequest = requests.find(request => request.get('id') === id);
+  return thisRequest ? thisRequest.get('notifications_count') : 0;
+};
+
 export const loadPending = () => ({
   type: NOTIFICATIONS_LOAD_PENDING,
 });
@@ -434,7 +440,8 @@ export const fetchNotificationRequestFail = (id, error) => ({
   error,
 });
 
-export const acceptNotificationRequest = (id, count) => (dispatch) => {
+export const acceptNotificationRequest = (id) => (dispatch, getState) => {
+  const count = selectNotificationCountForRequest(getState(), id);
   dispatch(acceptNotificationRequestRequest(id));
 
   api().post(`/api/v1/notifications/requests/${id}/accept`).then(() => {
@@ -461,7 +468,8 @@ export const acceptNotificationRequestFail = (id, error) => ({
   error,
 });
 
-export const dismissNotificationRequest = (id, count) => (dispatch) => {
+export const dismissNotificationRequest = (id) => (dispatch, getState) => {
+  const count = selectNotificationCountForRequest(getState(), id);
   dispatch(dismissNotificationRequestRequest(id));
 
   api().post(`/api/v1/notifications/requests/${id}/dismiss`).then(() =>{
