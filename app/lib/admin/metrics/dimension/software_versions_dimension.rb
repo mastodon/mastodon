@@ -107,7 +107,11 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
       value: version,
       human_value: version,
     }
-  rescue Errno::ENOENT
+  rescue Terrapin::CommandNotFoundError
+    nil
+  rescue Terrapin::ExitStatusError
+    nil
+  rescue Oj::ParseError
     nil
   end
 
