@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_13_171909) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_24_181224) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -739,6 +739,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_13_171909) do
     t.string "scopes"
     t.bigint "application_id", null: false
     t.bigint "resource_owner_id", null: false
+    t.string "code_challenge"
+    t.string "code_challenge_method"
     t.index ["resource_owner_id"], name: "index_oauth_access_grants_on_resource_owner_id"
     t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true
   end
