@@ -85,12 +85,26 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   def imagemagick_version
     return if Rails.configuration.x.use_vips
 
-    command = %w(magick convert).find { |cmd| system("which #{cmd} > /dev/null 2>&1") }
+    imagemagick_binary = nil
 
-    version_output = `#{command} -version`
-    version_match = version_output.match(/Version: ImageMagick ([\d\.]+|[^\s]+)/)
+    %w(magick convert).each do |cmd|
+      begin
+        Terrapin::CommandLine.new('which', cmd).run
+        imagemagick_binary = cmd
+        break
+      rescue Terrapin::CommandNotFoundError, Terrapin::ExitStatusError
+        next
+      end
+    end
 
-    version = version_match ? version_match[1] : '0.0.0'
+    return nil unless imagemagick_binary
+
+    version_output = Terrapin::CommandLine.new(imagemagick_binary, '-version').run
+    version_match = version_output.match(/Version: ImageMagick (\S+)/)[1].strip
+
+    return nil unless version_match
+
+    version = version_match
 
     {
       key: 'imagemagick',
@@ -98,7 +112,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
       value: version,
       human_value: version,
     }
-  rescue Errno::ENOENT
+  rescue Terrapin::CommandNotFoundError, Terrapin::ExitStatusError
     nil
   end
 
