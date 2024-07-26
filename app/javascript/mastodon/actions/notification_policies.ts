@@ -18,5 +18,5 @@ export const updateNotificationsPolicy = createDataLoadingThunk(
 );
 
 export const decreasePendingNotificationsCount = createAction<number>(
-  'notification_policy/decrease_pending_notification_count',
+  'notificationPolicy/decreasePendingNotificationCount',
 );
