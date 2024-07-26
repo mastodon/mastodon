@@ -9,25 +9,25 @@ fi:
         indexable: Julkiset julkaisusi voivat näkyä hakutuloksissa Mastodonissa. Ihmiset, jotka ovat olleet vuorovaikutuksessa julkaisujesi kanssa, voivat etsiä niitä asetuksesta riippumatta.
         note: 'Voit @mainita muita käyttäjiä tai #aihetunnisteita.'
         show_collections: Käyttäjät voivat selata seurattujasi ja seuraajiasi. Käyttäjät, joita seuraat, näkevät joka tapauksessa, että seuraat heitä.
-        unlocked: Käyttäjät voivat seurata sinua pyytämättä hyväksyntää. Poista valinta, jos haluat tarkistaa ja hyväksyä tai hylätä vastaanottamasi seuraamispyynnöt.
+        unlocked: Käyttäjät voivat seurata sinua pyytämättä hyväksyntääsi. Poista valinta, jos haluat tarkistaa sekä hyväksyä tai hylätä vastaanottamasi seuraamispyynnöt.
       account_alias:
-        acct: Määrittele sen tilin käyttäjänimi@verkkotunnus, josta haluat siirtyä
+        acct: Määrittele sen tilin käyttäjänimi@verkkotunnus, josta haluat muuttaa
       account_migration:
-        acct: Määrittele sen tilin käyttäjänimi@verkkotunnus, johon haluat siirtyä
+        acct: Määrittele sen tilin käyttäjänimi@verkkotunnus, jonne haluat muuttaa
       account_warning_preset:
         text: Voit käyttää julkaisun syntaksia, kuten URL-osoitteita, aihetunnisteita ja mainintoja
         title: Valinnainen. Ei näy vastaanottajalle
       admin_account_action:
-        include_statuses: Käyttäjä näkee, mitkä julkaisut johtivat valvontatoimeen tai varoitukseen
+        include_statuses: Käyttäjä näkee, mitkä julkaisut johtivat moderointitoimeen tai -varoitukseen
         send_email_notification: Käyttäjä saa selvityksen siitä, mitä hänen tililleen tapahtui
         text_html: Valinnainen. Voit käyttää julkaisun syntaksia. Voit <a href="%{path}">lisätä varoitusasetuksia</a> säästääksesi aikaa
         type_html: Valitse mitä teet käyttäjälle <strong>%{acct}</strong>
         types:
           disable: Estä käyttäjää käyttämästä tiliään, mutta älä poista tai piilota sen sisältöä.
-          none: Käytä tätä lähettääksesi varoituksen käyttäjälle käynnistämättä mitään muita toimintoja.
+          none: Käytä tätä lähettääksesi varoitus käyttäjälle käynnistämättä mitään muita toimia.
           sensitive: Pakota kaikki tämän käyttäjän mediatiedostot arkaluonteisiksi.
-          silence: Estä käyttäjää lähettämästä viestejä julkisesti, piilota hänen viestinsä ja ilmoituksensa ihmisiltä, jotka eivät seuraa häntä. Sulkee kaikki tämän tilin raportit.
-          suspend: Estä kaikki vuorovaikutus tältä -tai tälle tilille ja poista sen kaikki sisältö. Päätös voidaan peruuttaa 30 päivän aikana. Sulkee kaikki raportit tätä tiliä vasten.
+          silence: Estä käyttäjää lähettämästä julkaisuja, joiden näkyvyys on julkinen, sekä piilota hänen julkaisunsa ja häneen liittyvät ilmoitukset niiltä, jotka eivät seuraa häntä. Sulkee kaikki tiliin kohdistuvat raportit.
+          suspend: Estä kaikki vuorovaikutus tältä tililtä ja tälle tilille sekä poista kaikki sen sisältö. Peruttavissa 30 päivän ajan. Sulkee kaikki tiliin kohdistuvat raportit.
         warning_preset_id: Valinnainen. Voit silti lisätä mukautetun tekstin esiasetuksen loppuun
       announcement:
         all_day: Kun valittu, vain valittu aikaväli näytetään
@@ -40,7 +40,7 @@ fi:
       defaults:
         autofollow: Henkilöt, jotka rekisteröityvät kutsun kautta, seuraavat sinua automaattisesti
         avatar: WEBP, PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
-        bot: Tämä tili suorittaa enimmäkseen automaattisia toimintoja eikä sitä ehkä valvota
+        bot: Ilmaise muille, että tili suorittaa enimmäkseen automaattisia toimia eikä sitä valvota
         context: Ainakin yksi konteksti, jossa suodattimen pitäisi olla voimassa
         current_password: Turvallisuussyistä kirjoita nykyisen tilin salasana
         current_username: Vahvista kirjoittamalla nykyisen tilin käyttäjänimi
@@ -52,7 +52,7 @@ fi:
         locale: Käyttöliittymän, sähköpostien ja puskuilmoitusten kieli
         password: Käytä vähintään 8 merkkiä
         phrase: Täsmää riippumatta tekstin aakkoslajista tai julkaisun sisältövaroituksesta
-        scopes: Mihin sovellusliittymiin sovellus pääsee käsiksi. Jos valitset ylätason laajuuden, sinun ei tarvitse valita yksittäisiä.
+        scopes: Mihin ohjelmointirajapintoihin sovellus pääsee käsiksi. Jos valitset ylätason oikeuden, sinun ei tarvitse valita yksittäisiä.
         setting_aggregate_reblogs: Älä näytä uusia tehostuksia julkaisuille, joita on äskettäin tehostettu (koskee vain juuri vastaanotettuja tehostuksia)
         setting_always_send_emails: Yleensä sähköposti-ilmoituksia ei lähetetä, kun käytät Mastodonia aktiivisesti
         setting_default_sensitive: Arkaluonteinen media piilotetaan oletusarvoisesti, ja se voidaan näyttää yhdellä napsautuksella
@@ -64,10 +64,10 @@ fi:
         username: Voit käyttää kirjaimia, numeroita ja alaviivoja
         whole_word: Kun avainsana tai -fraasi on täysin aakkosnumeerinen, suodatin aktivoituu vain sen täysvastineille
       domain_allow:
-        domain: Tämä verkkotunnus voi noutaa tietoja tältä palvelimelta ja sieltä saapuvat tiedot käsitellään ja tallennetaan
+        domain: Tämä verkkotunnus voi noutaa tietoja tältä palvelimelta, ja sieltä saapuvat tiedot käsitellään ja tallennetaan
       email_domain_block:
         domain: Tämä voi olla verkkotunnus, joka näkyy sähköpostiosoitteessa tai sen käyttämässä MX-tietueessa. Ne tarkistetaan rekisteröitymisen yhteydessä.
-        with_dns_records: Annetun verkkotunnuksen DNS-tietueet yritetään ratkaista ja tulokset myös estetään
+        with_dns_records: Annetun verkkotunnuksen DNS-tietueet yritetään selvittää ja myös tulokset estetään
       featured_tag:
         name: 'Tässä muutamia hiljattain käyttämiäsi aihetunnisteita:'
       filters:
@@ -78,29 +78,29 @@ fi:
       form_admin_settings:
         activity_api_enabled: Paikallisesti julkaistujen julkaisujen, aktiivisten käyttäjien ja rekisteröitymisten viikoittainen määrä
         app_icon: WEBP, PNG, GIF tai JPG. Korvaa oletusarvoisen mobiililaitteiden sovelluskuvakkeen omalla kuvakkeella.
-        backups_retention_period: Käyttäjillä on mahdollisuus arkistoida julkaisujaan myöhemmin ladattaviksi. Kun arvo on positiivinen, nämä arkistot poistuvat automaattisesti, kun määritetty määrä päiviä on kulunut.
-        bootstrap_timeline_accounts: Nämä tilit kiinnitetään uusien käyttäjien seuraamissuosituslistojen alkuun.
+        backups_retention_period: Käyttäjillä on mahdollisuus arkistoida julkaisujaan myöhemmin ladattaviksi. Kun kentän arvo on positiivinen, nämä arkistot poistuvat automaattisesti, kun määritetty määrä päiviä on kulunut.
+        bootstrap_timeline_accounts: Nämä tilit kiinnitetään uusien käyttäjien seuraamissuositusten alkuun.
         closed_registrations_message: Näkyy, kun rekisteröityminen on suljettu
-        content_cache_retention_period: Kaikki muiden palvelinten julkaisut (mukaan lukien tehostukset ja vastaukset) poistuvat, kun määritetty määrä päiviä on kulunut, ottamatta huomioon paikallisen käyttäjän vuorovaikutusta näiden julkaisujen kanssa. Sisältää julkaisut, jotka paikallinen käyttäjä on merkinnyt kirjanmerkiksi tai suosikiksi. Myös yksityiset maininnat eri palvelinten käyttäjien välillä menetetään, eikä niitä voi palauttaa. Tämä asetus on tarkoitettu käytettäväksi erityistapauksissa ja rikkoo monia käyttäjien odotuksia, kun sitä käytetään yleistarkoituksiin.
-        custom_css: Voit käyttää mukautettuja tyylejä Mastodonin verkkoversiossa.
+        content_cache_retention_period: Kaikki muiden palvelinten julkaisut (mukaan lukien tehostukset ja vastaukset) poistuvat, kun määritetty määrä päiviä on kulunut, lukuun ottamatta paikallisen käyttäjän vuorovaikutusta näiden julkaisujen kanssa. Tämä sisältää julkaisut, jotka paikallinen käyttäjä on merkinnyt kirjanmerkiksi tai suosikiksi. Myös yksityismaininnat eri palvelinten käyttäjien välillä menetetään, eikä niitä voi palauttaa. Tämä asetus on tarkoitettu käytettäväksi erityistapauksissa ja rikkoo monia käyttäjien odotuksia, kun sitä sovelletaan yleiskäyttöön.
+        custom_css: Voit käyttää mukautettuja tyylejä Mastodonin selainversiossa.
         favicon: WEBP, PNG, GIF tai JPG. Korvaa oletusarvoisen Mastodonin sivustokuvakkeen (favicon) haluamallasi kuvakkeella.
         mascot: Ohittaa kuvituksen edistyneessä selainkäyttöliittymässä.
-        media_cache_retention_period: Käyttäjien tekemien julkaisujen mediatiedostot ovat välimuistissa palvelimellasi. Kun arvo on positiivinen, media poistuu, kun määritetty määrä päiviä on kulunut. Jos mediaa pyydetään sen poistamisen jälkeen, se ladataan uudelleen, jos lähdesisältö on vielä saatavilla. Koska linkkien esikatselun kyselyitä kolmansien osapuolien sivustoille on rajoitettu, on suositeltavaa asettaa tämä arvo vähintään 14 päivään, tai linkkien kortteja ei päivitetä pyynnöstä ennen tätä ajankohtaa.
-        peers_api_enabled: Luettelo verkkotunnuksista, jotka tämä palvelin on kohdannut fediversumissa. Se ei kerro, oletko liitossa tietyn palvelimen kanssa, vaan että palvelimesi on ylipäätään tietoinen siitä. Tätä tietoa käytetään palveluissa, jotka keräävät tilastoja federoinnista yleisellä tasolla.
-        profile_directory: Profiilihakemisto lueteloi kaikki käyttäjät, jotka ovat ilmoittaneet olevansa löydettävissä.
+        media_cache_retention_period: Etäkäyttäjien tekemien julkaisujen mediatiedostot ovat välimuistissa palvelimellasi. Kun kentän arvo on positiivinen, media poistuu, kun määritetty määrä päiviä on kulunut. Jos mediaa pyydetään sen poistamisen jälkeen, se ladataan uudelleen, jos lähdesisältö on vielä saatavilla. Koska linkkien esikatselun kyselyitä kolmansien osapuolien sivustoille on rajoitettu, on suositeltavaa asettaa tämä arvo vähintään 14 päivään, tai linkkien kortteja ei päivitetä pyynnöstä ennen tätä ajankohtaa.
+        peers_api_enabled: Luettelo verkkotunnuksista, jotka tämä palvelin on kohdannut fediversumissa. Se ei kerro, federoitko tietyn palvelimen kanssa, vaan että palvelimesi on ylipäätään tietoinen siitä. Tätä tietoa käytetään palveluissa, jotka keräävät tilastoja federoinnista yleisellä tasolla.
+        profile_directory: Profiilihakemisto luetteloi kaikki käyttäjät, jotka ovat valinneet olla löydettävissä.
         require_invite_text: Kun rekisteröityminen vaatii manuaalisen hyväksynnän, tee ”Miksi haluat liittyä?” -tekstikentästä pakollinen vapaaehtoisen sijaan
-        site_contact_email: Kuinka ihmiset voivat tavoittaa sinut oikeudellisissa tai tukikysymyksissä.
+        site_contact_email: Miten ihmiset voivat tavoittaa sinut oikeus- tai tukikysymyksissä.
         site_contact_username: Miten ihmiset voivat tavoittaa sinut Mastodonissa.
         site_extended_description: Kaikki lisätiedot, jotka voivat olla hyödyllisiä kävijöille ja käyttäjille. Voidaan jäsentää Markdown-syntaksilla.
-        site_short_description: Lyhyt kuvaus auttaa yksilöimään palvelimesi. Kuka sitä johtaa, kenelle se on tarkoitettu?
+        site_short_description: Lyhyt kuvaus, joka auttaa yksilöimään palvelimesi. Kuka sitä johtaa, ja keille se on tarkoitettu?
         site_terms: Käytä omaa tietosuojakäytäntöä tai jätä tyhjäksi, jos haluat käyttää oletusta. Voidaan jäsentää Markdown-syntaksilla.
-        site_title: Kuinka ihmiset voivat viitata palvelimeen sen verkkotunnuksen lisäksi.
-        status_page_url: URL-osoite sivulle, jonka kautta tämän palvelimen tila voidaan ongelmatilanteissa tarkastaa
+        site_title: Miten ihmiset voivat viitata palvelimeesi sen verkkotunnuksen lisäksi.
+        status_page_url: URL-osoite sivulle, josta tämän palvelimen tilan voi ongelmatilanteissa tarkistaa
         theme: Teema, jonka uloskirjautuneet vierailijat ja uudet käyttäjät näkevät.
-        thumbnail: Noin 2:1 kuva näytetään palvelimen tietojen rinnalla.
+        thumbnail: Noin 2:1 kuva näkyy palvelimen tietojen ohessa.
         timeline_preview: Uloskirjautuneet vierailijat voivat selata uusimpia julkisia julkaisuja, jotka ovat saatavilla palvelimella.
-        trendable_by_default: Ohita suositun sisällön manuaalinen tarkistus. Yksittäisiä kohteita voidaan edelleen poistaa jälkikäteen.
-        trends: Trendit osoittavat, mitkä julkaisut, aihetunnisteet ja uutiset ovat saamassa vetoa palvelimellasi.
+        trendable_by_default: Ohita suositun sisällön manuaalinen tarkastus. Yksittäisiä kohteita voidaan edelleen poistaa jälkikäteen.
+        trends: Trendit osoittavat, mitkä julkaisut, aihetunnisteet ja uutiset keräävät huomiota palvelimellasi.
         trends_as_landing_page: Näytä vierailijoille ja uloskirjautuneille käyttäjille suosittua sisältöä palvelimen kuvauksen sijaan. Edellyttää, että trendit on otettu käyttöön.
       form_challenge:
         current_password: Olet menossa suojatulle alueelle
@@ -110,7 +110,7 @@ fi:
         text: Tämä auttaa meitä arvioimaan hakemustasi
       ip_block:
         comment: Valinnainen. Muista miksi lisäsit tämän säännön.
-        expires_in: IP-osoitteet ovat rajallinen resurssi – joskus niitä jaetaan, ja ne vaihtavat usein omistajaa. Niinpä epämääräisiä IP-lohkoja ei suositella.
+        expires_in: IP-osoitteet ovat rajallinen resurssi – joskus niitä jaetaan eteenpäin, ja ne vaihtavat usein omistajaa. Niinpä epämääräisiä IP-lohkoja ei suositella.
         ip: Kirjoita IPv4- tai IPv6-osoite. Voit estää kokonaisia IP-osoitealueita CIDR-syntaksin avulla. Varo lukitsemasta itseäsi ulos!
         severities:
           no_access: Estä pääsy kaikkiin resursseihin
@@ -129,14 +129,14 @@ fi:
       tag:
         name: Voit esimerkiksi vaihtaa suur- ja pienaakkosten kesken helppolukuistaaksesi tekstiäsi
       user:
-        chosen_languages: Jos valitset kieliä oheisesta listauksesta, vain niidenkieliset julkaisut näkyvät julkisilla aikajanoilla sinulle
+        chosen_languages: Jos valitset kieliä oheisesta luettelosta, vain niidenkieliset julkaisut näkyvät sinulle julkisilla aikajanoilla
         role: Rooli vaikuttaa käyttäjän käyttöoikeuksiin
       user_role:
         color: Väri, jota käytetään roolille kaikkialla käyttöliittymässä, RGB-heksadesimaalimuodossa
         highlighted: Tämä tekee roolista julkisesti näkyvän
         name: Roolin julkinen nimi, jos rooli on asetettu näytettäväksi merkkinä
         permissions_as_keys: Käyttäjillä, joilla on tämä rooli, on käyttöoikeus...
-        position: Korkeampi rooli ratkaisee konfliktit tietyissä tilanteissa. Tiettyjä toimintoja voidaan suorittaa vain rooleille, joiden prioriteetti on pienempi
+        position: Korkeampi rooli ratkaisee konfliktit tietyissä tilanteissa. Tiettyjä toimia voidaan suorittaa vain rooleilla, joiden prioriteetti on pienempi
       webhook:
         events: Valitse lähetettävät tapahtumat
         template: Luo oma JSON-hyötykuorma käyttäen muuttujien interpolointia. Jätä kenttä tyhjäksi käyttääksesi vakio-JSON-kuormaa.
@@ -234,7 +234,7 @@ fi:
         username_or_email: Käyttäjänimi tai sähköpostiosoite
         whole_word: Koko sana
       email_domain_block:
-        with_dns_records: Sisällytä toimialueen MX-tietueet ja IP-osoitteet
+        with_dns_records: Sisällytä verkkotunnuksen MX-tietueet ja IP-osoitteet
       featured_tag:
         name: Aihetunniste
       filters:
@@ -250,15 +250,15 @@ fi:
         content_cache_retention_period: Etäsisällön säilytysaika
         custom_css: Mukautettu CSS
         favicon: Suosikkikuvake
-        mascot: Mukautettu maskotti (vanhentunut ominaisuus)
-        media_cache_retention_period: Mediasisältövälimuistin säilytysaika
+        mascot: Mukautettu maskotti (vanhentunut)
+        media_cache_retention_period: Mediasisällön välimuistin säilytysaika
         peers_api_enabled: Julkaise löydettyjen palvelinten luettelo ohjelmointirajapinnassa
         profile_directory: Ota profiilihakemisto käyttöön
         registrations_mode: Kuka voi rekisteröityä
         require_invite_text: Vaadi syy liittyä
         show_domain_blocks: Näytä verkkotunnusten estot
         show_domain_blocks_rationale: Näytä, miksi verkkotunnukset on estetty
-        site_contact_email: Ota yhteys sähköpostitse
+        site_contact_email: Yhteyshenkilön sähköpostiosoite
         site_contact_username: Yhteyshenkilön käyttäjänimi
         site_extended_description: Laajennettu kuvaus
         site_short_description: Palvelimen kuvaus
@@ -268,9 +268,9 @@ fi:
         theme: Oletusteema
         thumbnail: Palvelimen pienoiskuva
         timeline_preview: Salli todentamaton pääsy julkisille aikajanoille
-        trendable_by_default: Salli suositun sisällön koonti ilman ennakkotarkastusta
+        trendable_by_default: Salli trendit ilman ennakkotarkastusta
         trends: Ota trendit käyttöön
-        trends_as_landing_page: Käytä suosittua sisältöä aloitussivuna
+        trends_as_landing_page: Käytä trendejä aloitussivuna
       interactions:
         must_be_follower: Estä ilmoitukset käyttäjiltä, jotka eivät seuraa sinua
         must_be_following: Estä ilmoitukset käyttäjiltä, joita et seuraa
@@ -288,22 +288,22 @@ fi:
           sign_up_requires_approval: Rajoita rekisteröitymisiä
         severity: Sääntö
       notification_emails:
-        appeal: Joku valittaa valvojan päätöksestä
+        appeal: Joku valittaa moderaattorin päätöksestä
         digest: Lähetä koosteviestejä sähköpostitse
         favourite: Joku lisäsi julkaisusi suosikkeihinsa
         follow: Joku seurasi sinua
         follow_request: Joku pyysi saada seurata sinua
         mention: Joku mainitsi sinut
-        pending_account: Uusi tili tarvitsee tarkistusta
+        pending_account: Uusi tili tarvitsee tarkistuksen
         reblog: Joku tehosti julkaisuasi
-        report: Uusi raportti on lähetetty
+        report: Uusi raportti lähetettiin
         software_updates:
           all: Ilmoita kaikista päivityksistä
           critical: Ilmoita vain kriittisistä päivityksistä
           label: Uusi Mastodon-versio on saatavilla
           none: Älä koskaan ilmoita päivityksistä (ei suositeltu)
           patch: Ilmoita virhekorjauspäivityksistä
-        trending_tag: Uusi trendi vaatii tarkistusta
+        trending_tag: Uusi trendi vaatii tarkastuksen
       rule:
         hint: Lisätietoja
         text: Sääntö
@@ -337,5 +337,5 @@ fi:
       text: vaadittu tieto
     title:
       sessions:
-        webauthn: Käytä yhtä turva-avaimistasi kirjautuaksesi sisään
+        webauthn: Käytä yhtä suojausavaimistasi kirjautuaksesi sisään
     'yes': Kyllä
