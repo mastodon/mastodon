@@ -6,8 +6,4 @@ class REST::RoleSerializer < ActiveModel::Serializer
   def id
     object.id.to_s
   end
-
-  def permissions
-    object.computed_permissions.to_s
-  end
 end

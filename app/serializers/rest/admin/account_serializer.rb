@@ -11,7 +11,7 @@ class REST::Admin::AccountSerializer < ActiveModel::Serializer
 
   has_many :ips, serializer: REST::Admin::IpSerializer
   has_one :account, serializer: REST::AccountSerializer
-  has_one :role, serializer: REST::RoleSerializer
+  has_one :role, serializer: REST::CredentialRoleSerializer
 
   def id
     object.id.to_s
