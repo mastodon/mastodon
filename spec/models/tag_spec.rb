@@ -240,5 +240,23 @@ RSpec.describe Tag do
 
       expect(results).to eq [tag, similar_tag]
     end
+
+    it 'finds only listable tags' do
+      tag = Fabricate(:tag, name: 'match')
+      _miss_tag = Fabricate(:tag, name: 'matchunlisted', listable: false)
+
+      results = described_class.search_for('match')
+
+      expect(results).to eq [tag]
+    end
+
+    it 'finds non-listable tags as well via option' do
+      tag = Fabricate(:tag, name: 'match')
+      unlisted_tag = Fabricate(:tag, name: 'matchunlisted', listable: false)
+
+      results = described_class.search_for('match', 5, 0, exclude_unlistable: false)
+
+      expect(results).to eq [tag, unlisted_tag]
+    end
   end
 end
