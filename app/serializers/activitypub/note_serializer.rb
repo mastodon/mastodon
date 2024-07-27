@@ -269,7 +269,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     end
 
     def name
-      "##{object.name}"
+      object.formatted_name
     end
   end
 
