@@ -40,6 +40,10 @@ class FeaturedTag < ApplicationRecord
     attributes['name'] || tag.display_name
   end
 
+  def formatted_name
+    "##{attributes['name']}" || tag.formatted_name
+  end
+
   def increment(timestamp)
     update(statuses_count: statuses_count + 1, last_status_at: timestamp)
   end
