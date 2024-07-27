@@ -1,5 +1,5 @@
 - content_for :page_title do
-  = "##{@tag.display_name}"
+  = @tag.formatted_name
 
 - content_for :heading_actions do
   - if current_user.can?(:view_dashboard)

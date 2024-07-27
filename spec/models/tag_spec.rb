@@ -112,6 +112,18 @@ RSpec.describe Tag do
     end
   end
 
+  describe '#formatted_name' do
+    it 'returns name with a proceeding hash symbol' do
+      tag = Fabricate(:tag, name: 'foo')
+      expect(tag.formatted_name).to eq '#foo'
+    end
+
+    it 'returns display_name with a proceeding hash symbol, if display name present' do
+      tag = Fabricate(:tag, name: 'foobar', display_name: 'FooBar')
+      expect(tag.formatted_name).to eq '#FooBar'
+    end
+  end
+
   describe '.recently_used' do
     let(:account) { Fabricate(:account) }
     let(:other_person_status) { Fabricate(:status) }

@@ -75,6 +75,10 @@ class Tag < ApplicationRecord
     attributes['display_name'] || name
   end
 
+  def formatted_name
+    "##{display_name}"
+  end
+
   def usable
     boolean_with_default('usable', true)
   end
