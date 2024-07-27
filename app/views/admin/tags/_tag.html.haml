@@ -2,8 +2,7 @@
   .batch-table__row__content.batch-table__row__content--padded.pending-account
     .pending-account__header
       %strong
-        = link_to admin_tag_path(tag.id) do
-          = t('admin.tags.tag_name', name: tag.display_name)
+        = link_to tag.formatted_name, admin_tag_path(tag.id)
 
       %br/
 
