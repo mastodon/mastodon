@@ -25,6 +25,10 @@ describe REST::AccountSerializer do
     it 'returns the expected role' do
       expect(subject['roles'].first).to include({ 'name' => 'Role' })
     end
+
+    it 'does not expose the roles permissions' do
+      expect(subject['roles'].first).to_not include({ 'permissions' => role.computed_permissions.to_s })
+    end
   end
 
   context 'when the account has a non-highlighted role' do
