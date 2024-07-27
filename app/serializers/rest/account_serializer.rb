@@ -30,15 +30,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
     end
   end
 
-  class RoleSerializer < ActiveModel::Serializer
-    attributes :id, :name, :color
-
-    def id
-      object.id.to_s
-    end
-  end
-
-  has_many :roles, serializer: RoleSerializer, if: :local?
+  has_many :roles, serializer: REST::RoleSerializer, if: :local?
 
   class FieldSerializer < ActiveModel::Serializer
     include FormattingHelper
