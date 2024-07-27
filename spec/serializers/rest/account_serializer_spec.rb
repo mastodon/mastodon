@@ -5,7 +5,7 @@ require 'rails_helper'
 describe REST::AccountSerializer do
   subject { serialized_record_json(account, described_class) }
 
-  let(:role)    { Fabricate(:user_role, name: 'Role', highlighted: true) }
+  let(:role)    { Fabricate(:user_role, name: 'Fancy User', highlighted: true) }
   let(:user)    { Fabricate(:user, role: role) }
   let(:account) { user.account }
 
@@ -20,10 +20,10 @@ describe REST::AccountSerializer do
   end
 
   context 'when the account has a highlighted role' do
-    let(:role) { Fabricate(:user_role, name: 'Role', highlighted: true) }
+    let(:role) { Fabricate(:user_role, name: 'Fancy User', highlighted: true) }
 
     it 'returns the expected role' do
-      expect(subject['roles'].first).to include({ 'name' => 'Role' })
+      expect(subject['roles'].first).to include({ 'name' => 'Fancy User' })
     end
 
     it 'does not expose the roles permissions' do
@@ -32,7 +32,7 @@ describe REST::AccountSerializer do
   end
 
   context 'when the account has a non-highlighted role' do
-    let(:role) { Fabricate(:user_role, name: 'Role', highlighted: false) }
+    let(:role) { Fabricate(:user_role, name: 'Fancy User', highlighted: false) }
 
     it 'returns empty roles' do
       expect(subject['roles']).to eq []
