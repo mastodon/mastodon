@@ -85,19 +85,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   def imagemagick_version
     return if Rails.configuration.x.use_vips
 
-    imagemagick_binary = nil
-
-    %w(magick convert).each do |cmd|
-      begin
-        Terrapin::CommandLine.new('which', cmd).run
-        imagemagick_binary = cmd
-        break
-      rescue Terrapin::CommandNotFoundError, Terrapin::ExitStatusError
-        next
-      end
-    end
-
-    return nil unless imagemagick_binary
+    imagemagick_binary = Paperclip.options[:is_windows] ? 'magick convert' : 'convert'
 
     version_output = Terrapin::CommandLine.new(imagemagick_binary, '-version').run
     version_match = version_output.match(/Version: ImageMagick (\S+)/)[1].strip
@@ -112,7 +100,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
       value: version,
       human_value: version,
     }
-  rescue Terrapin::CommandNotFoundError, Terrapin::ExitStatusError
+  rescue Terrapin::CommandNotFoundError, Terrapin::ExitStatusError, Paperclip::Errors::CommandNotFoundError, Paperclip::Errors::CommandFailedError
     nil
   end
 
