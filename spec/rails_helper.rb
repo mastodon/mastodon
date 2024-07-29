@@ -37,11 +37,14 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 
 require 'spec_helper'
 require 'rspec/rails'
+require 'rspec-sidekiq'
 require 'webmock/rspec'
 require 'paperclip/matchers'
 require 'capybara/rspec'
 require 'chewy/rspec'
+require 'email_spec'
 require 'email_spec/rspec'
+require 'database_cleaner/active_record'
 require 'test_prof/recipes/rspec/before_all'
 
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
