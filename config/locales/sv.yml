@@ -471,6 +471,9 @@ sv:
       title: Följ rekommendationer
       unsuppress: Återställ följrekommendation
     instances:
+      audit_log:
+        title: Senaste revisionsloggar
+        view_all: Visa fullständiga revisionssloggar
       availability:
         description_html:
           one: Om leveranser till domänen misslyckas i <strong>%{count} dag</strong> kommer inga ytterligare leveransförsök att göras förrän en leverans <em>från</em> domänen tas emot.
@@ -639,6 +642,7 @@ sv:
       report: 'Rapport #%{id}'
       reported_account: Anmält konto
       reported_by: Anmäld av
+      reported_with_application: Rapporterat med applikation
       resolved: Löst
       resolved_msg: Anmälan har lösts framgångsrikt!
       skip_to_actions: Hoppa till åtgärder

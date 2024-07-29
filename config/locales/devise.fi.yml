@@ -51,7 +51,7 @@ fi:
         explanation: Sisäänkirjautuminen on nyt mahdollista pelkällä sähköpostiosoitteella ja salasanalla.
         subject: 'Mastodon: kaksivaiheinen todennus poistettu käytöstä'
         subtitle: Kaksivaiheinen todennus on poistettu käytöstä tililtäsi.
-        title: 2-vaiheinen todennus pois käytöstä
+        title: Kaksivaiheinen todennus poissa käytöstä
       two_factor_enabled:
         explanation: Sisäänkirjautuminen edellyttää liitetyn TOTP-sovelluksen luomaa aikarajattua kertatunnuslukua.
         subject: 'Mastodon: kaksivaiheinen todennus otettu käyttöön'
@@ -61,7 +61,7 @@ fi:
         explanation: Uudet palautuskoodit on nyt luotu ja vanhat mitätöity.
         subject: 'Mastodon: kaksivaiheisen todennuksen palautuskoodit luotiin uudelleen'
         subtitle: Aiemmat palautuskoodit on mitätöity, ja korvaavat uudet koodit on luotu.
-        title: 2-vaiheisen todennuksen palautuskoodit vaihdettiin
+        title: Kaksivaiheisen todennuksen palautuskoodit vaihdettiin
       unlock_instructions:
         subject: 'Mastodon: ohjeet lukituksen poistoon'
       webauthn_credential:
@@ -84,8 +84,8 @@ fi:
         subject: 'Mastodon: suojausavaimella todennus otettu käyttöön'
         title: Suojausavaimet käytössä
     omniauth_callbacks:
-      failure: Tunnistautuminen lähteestä %{kind} ei onnistunut, syynä ”%{reason}”.
-      success: Tunnistautuminen tililtä %{kind} onnistui.
+      failure: Todentaminen lähteestä %{kind} ei onnistunut, syynä ”%{reason}”.
+      success: Todentaminen tililtä %{kind} onnistui.
     passwords:
       no_token: Tälle sivulle pääsee vain salasananvaihtoviestin kautta. Jos tiedät tulevasi sen kautta, varmista, että käytät viestissä mainittua URL-osoitetta kokonaisuudessaan.
       send_instructions: Jos sähköpostiosoiteesi on tiedossamme, siihen lähetetään pian viesti, jossa on linkki salasanan vaihtamiseksi. Jos viestiä ei kuulu, tarkista roskapostikansiosi.

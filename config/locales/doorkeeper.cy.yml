@@ -83,6 +83,7 @@ cy:
         access_denied: Mae perchennog yr adnodd neu'r gweinydd awdurdodi wedi atal y cais.
         credential_flow_not_configured: Llif meini prawf cyfrinair perchennog yr adnodd wedi methu achos fod Doorkeeper.configure.resource_owner_from_credentials heb ei ffurfweddu.
         invalid_client: Methodd dilysu cleient oherwydd cleient anhysbys, dim dilysiad cleient wedi'i gynnwys, neu ddull dilysu heb ei gefnogi.
+        invalid_code_challenge_method: Rhaid i'r dull herio cod fod yn S256, nid oes cefnogaeth i'r plaen.
         invalid_grant: Mae'r grant awdurdodi ar yr amod yn annilys, wedi dod i ben, wedi'i ddirymu, nid yw'n cyfateb i'r URI ailgyfeirio a ddefnyddiwyd yn y cais am awdurdodiad, neu wedi'i roi i gleient arall.
         invalid_redirect_uri: Nid yw'r uri ailgyfeirio a gynhwysir yn ddilys.
         invalid_request:

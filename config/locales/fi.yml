@@ -59,7 +59,7 @@ fi:
       destroyed_msg: Käyttäjän %{username} tiedot ovat nyt jonossa poistettavaksi välittömästi
       disable: Poista käytöstä
       disable_sign_in_token_auth: Poista sähköpostitunnuksella todennus käytöstä
-      disable_two_factor_authentication: Poista 2FA käytöstä
+      disable_two_factor_authentication: Poista kaksivaiheinen todennus käytöstä
       disabled: Poistettu käytöstä
       display_name: Näyttönimi
       domain: Verkkotunnus
@@ -137,7 +137,7 @@ fi:
       security: Turvallisuus
       security_measures:
         only_password: Vain salasana
-        password_and_2fa: Salasana ja kaksivaiheinen tunnistautuminen
+        password_and_2fa: Salasana ja kaksivaiheinen todennus
       sensitive: Pakota arkaluonteiseksi
       sensitized: Merkitty arkaluonteiseksi
       shared_inbox_url: Jaetun saapuvan postilaatikon osoite
@@ -159,7 +159,7 @@ fi:
       unconfirmed_email: Sähköpostia ei vahvistettu
       undo_sensitized: Kumoa pakotus arkaluonteiseksi
       undo_silenced: Kumoa rajoitus
-      undo_suspension: Peru jäähy
+      undo_suspension: Kumoa jäädytys
       unsilenced_msg: Tilin %{username} rajoitus kumottiin onnistuneesti
       unsubscribe: Lopeta tilaus
       unsuspended_msg: Tilin %{username} jäädytys kumottiin onnistuneesti
@@ -198,23 +198,23 @@ fi:
         destroy_status: Poista julkaisu
         destroy_unavailable_domain: Poista ei-saatavilla oleva verkkotunnus
         destroy_user_role: Hävitä rooli
-        disable_2fa_user: Poista kaksivaiheinen tunnistautuminen käytöstä
+        disable_2fa_user: Poista kaksivaiheinen todennus käytöstä
         disable_custom_emoji: Poista mukautettu emoji käytöstä
-        disable_sign_in_token_auth_user: Estä käyttäjältä sähköpostitunnuksella todennus
+        disable_sign_in_token_auth_user: Poista sähköpostitunnuksella todennus käytöstä käyttäjältä
         disable_user: Poista tili käytöstä
-        enable_custom_emoji: Käytä mukautettuja emojeita
+        enable_custom_emoji: Ota mukautetut emojit käyttöön
         enable_sign_in_token_auth_user: Salli käyttäjälle sähköpostitunnuksella todennuksen
         enable_user: Ota tili käyttöön
         memorialize_account: Muuta muistotiliksi
-        promote_user: Käyttäjä ylennetty
+        promote_user: Ylennä käyttäjä
         reject_appeal: Hylkää valitus
         reject_user: Hylkää käyttäjä
-        remove_avatar_user: Profiilikuvan poisto
+        remove_avatar_user: Poista profiilikuva
         reopen_report: Avaa raportti uudelleen
         resend_user: Lähetä vahvistusviesti uudelleen
         reset_password_user: Nollaa salasana
         resolve_report: Selvitä raportti
-        sensitive_account: Pakotus arkaluonteiseksi tiliksi
+        sensitive_account: Pakota arkaluonteiseksi tiliksi
         silence_account: Rajoita tiliä
         suspend_account: Jäädytä tili
         unassigned_report: Poista raportti käsittelystä
@@ -262,7 +262,7 @@ fi:
         disable_custom_emoji_html: "%{name} poisti käytöstä emojin %{target}"
         disable_sign_in_token_auth_user_html: "%{name} poisti sähköpostitunnuksella todennuksen käytöstä tililtä %{target}"
         disable_user_html: "%{name} poisti kirjautumisen käyttäjältä %{target}"
-        enable_custom_emoji_html: "%{name} otti käyttöön emojin %{target}"
+        enable_custom_emoji_html: "%{name} otti emojin %{target} käyttöön"
         enable_sign_in_token_auth_user_html: "%{name} otti sähköpostitunnuksella todennuksen käyttöön tilille %{target}"
         enable_user_html: "%{name} otti kirjautumisen käyttöön käyttäjälle %{target}"
         memorialize_account_html: "%{name} muutti käyttäjän %{target} tilin muistosivuksi"
@@ -389,14 +389,14 @@ fi:
       confirm_suspension:
         cancel: Peruuta
         confirm: Jäädytä
-        permanent_action: Jäädytyksen kumoaminen ei palauta mitään tietoja tai suhteita.
+        permanent_action: Jäädytyksen kumoaminen ei palauta mitään tietoja tai seurantasuhteita.
         preamble_html: Olet jäädyttämässä verkkotunnuksen <strong>%{domain}</strong> aliverkkotunnuksineen.
         remove_all_data: Tämä poistaa palvelimeltasi kaiken sisällön, median ja profiilitiedot tämän verkkotunnuksen tileiltä.
         stop_communication: Palvelimesi lopettaa viestinnän näiden palvelinten kanssa.
         title: Vahvista verkkotunnuksen %{domain} esto
-        undo_relationships: Tämä kumoaa näiden palvelimien ja sinun tilien välisen seurannan.
+        undo_relationships: Tämä kumoaa näiden palvelinten ja sinun palvelimesi tilien väliset seurantasuhteet.
       created_msg: Verkkotunnuksen estoa käsitellään
-      destroyed_msg: Verkkotunnuksen esto on peruttu
+      destroyed_msg: Verkkotunnuksen esto on kumottu
       domain: Verkkotunnus
       edit: Muokkaa verkkotunnuksen estoa
       existing_domain_block: Olet jo asettanut tiukemmat rajoitukset käyttäjälle %{name}.
@@ -424,7 +424,7 @@ fi:
       reject_media_hint: Poistaa paikallisesti tallennetut mediatiedostot eikä lataa niitä enää jatkossa. Ei merkitystä jäähyn kohdalla
       reject_reports: Hylkää raportit
       reject_reports_hint: Ohita kaikki tästä verkkotunnuksesta tulevat raportit. Ei vaikuta jäädytyksiin
-      undo: Peru verkkotunnuksen esto
+      undo: Kumoa verkkotunnuksen esto
       view: Näytä verkkotunnuksen esto
     email_domain_blocks:
       add_new: Lisää uusi
@@ -454,7 +454,7 @@ fi:
     export_domain_blocks:
       import:
         description_html: Olet tuomassa verkkotunnusten estoluetteloa. Tarkista luettelo huolella – etenkin, jos et ole laatinut sitä itse.
-        existing_relationships_warning: Olemassa olevat seuraussuhteet
+        existing_relationships_warning: Olemassa olevat seurantasuhteet
         private_comment_description_html: 'Seurataksesi tuotujen estojen alkuperää lisätään estojen yhteyteen seuraava yksityinen kommentti: <q>%{comment}</q>'
         private_comment_template: Tuotu lähteestä %{source} %{date}
         title: Tuo verkkotunnusten estoja
@@ -566,7 +566,7 @@ fi:
       no_ip_block_selected: IP-sääntöjä ei muutettu, koska yhtään ei ollut valittuna
       title: IP-säännöt
     relationships:
-      title: "%{acct}n suhteet"
+      title: Tilin %{acct} seurantasuhteet
     relays:
       add_new: Lisää uusi välittäjä
       delete: Poista
@@ -1418,7 +1418,7 @@ fi:
         notification_emails:
           favourite: sähköposti-ilmoituksia suosikkeihin lisäämisistä
           follow: sähköposti-ilmoituksia seuraamisista
-          follow_request: sähköposti-ilmoituksia seuraamispyynnöistä
+          follow_request: sähköposti-ilmoituksia seurantapyynnöistä
           mention: sähköposti-ilmoituksia maininnoista
           reblog: sähköposti-ilmoituksia tehostuksista
       resubscribe_html: Jos olet perunut tilauksen erehdyksessä, voit tilata ilmoitusviestejä uudelleen <a href="%{settings_path}">sähköposti-ilmoitusten asetuksista</a>.
@@ -1439,7 +1439,7 @@ fi:
       missing_also_known_as: ei ole tämän tilin alias
       move_to_self: ei voi olla nykyinen tili
       not_found: ei voitu löytää
-      on_cooldown: Sinä olet jäähyllä
+      on_cooldown: Olet jäähyllä
     followers_count: Seuraajat muuton aikana
     incoming_migrations: Muutto toiselta tililtä
     incoming_migrations_html: Muuttaaksesi toisesta tilistä tähän, sinun täytyy ensin <a href="%{path}">luoda tilin alias</a>.
@@ -1483,10 +1483,10 @@ fi:
       subject: "%{name} seuraa nyt sinua"
       title: Uusi seuraaja
     follow_request:
-      action: Hallitse seuraamispyyntöjä
-      body: "%{name} haluaa seurata sinua"
+      action: Hallitse seurantapyyntöjä
+      body: "%{name} on pyytänyt lupaa seurata sinua"
       subject: 'Odottava seuraamispyyntö: %{name}'
-      title: Uusi seuraamispyyntö
+      title: Uusi seurantapyyntö
     mention:
       action: Vastaa
       body: "%{name} mainitsi sinut:"
@@ -1580,7 +1580,7 @@ fi:
     moved: Muuttaneet
     mutual: Seuraatte toisianne
     primary: Ensisijaiset
-    relationship: Suhde
+    relationship: Seurantasuhde
     remove_selected_domains: Poista kaikki seuraajat valituista verkkotunnuksista
     remove_selected_followers: Poista valitut seuraajat
     remove_selected_follows: Lopeta valittujen käyttäjien seuraaminen
@@ -1789,7 +1789,7 @@ fi:
       too_many_requests: Käännöspalvelulle on hiljattain esitetty liian monta pyyntöä.
   two_factor_authentication:
     add: Lisää
-    disable: Poista 2FA käytöstä
+    disable: Poista kaksivaiheinen todennus käytöstä
     disabled_success: Kaksivaiheisen todennuksen käytöstäpoisto onnistui
     edit: Muokkaa
     enabled: Kaksivaiheinen todennus käytössä
@@ -1875,7 +1875,7 @@ fi:
       edit_profile_title: Mukauta profiiliasi
       explanation: Näillä vinkeillä pääset alkuun
       feature_action: Lue lisää
-      feature_audience: Mastodon tarjoaa sinulle ainutlaatuisen mahdollisuuden hallita yleisöäsi ilman välikäsiä. Omassa infrastruktuurissasi toimiva Mastodon on täysin hallinnassasi, ja mahdollistaa sinun seurata mitä tahansa Mastodon-palvelimia sekä niin ikään olla seurattu niiltä päin.
+      feature_audience: Mastodon tarjoaa sinulle ainutlaatuisen mahdollisuuden hallita yleisöäsi ilman välikäsiä. Omassa infrastruktuurissasi toimiva Mastodon on täysin hallinnassasi ja antaa sinun seurata ja tulla seuratuksi miltä tahansa verkon Mastodon-palvelimelta.
       feature_audience_title: Rakenna yleisöäsi luottavaisin mielin
       feature_control: Tiedät itse parhaiten, mitä haluat nähdä kotisyötteessäsi. Ei algoritmeja eikä mainoksia tuhlaamassa aikaasi. Seuraa yhdellä tilillä ketä tahansa, miltä tahansa Mastodon-palvelimelta, vastaanota heidän julkaisunsa aikajärjestyksessä ja tee omasta internetin nurkastasi hieman enemmän omanlaisesi.
       feature_control_title: Pidä aikajanasi hallussasi
@@ -1884,14 +1884,14 @@ fi:
       feature_moderation: Mastodon palauttaa päätöksenteon käsiisi. Jokainen palvelin luo omat sääntönsä ja määräyksensä, joita valvotaan paikallisesti eikä ylhäältä alas kuten kaupallisessa sosiaalisessa mediassa, mikä tekee siitä joustavimman vastaamaan eri ihmisryhmien tarpeisiin. Liity palvelimelle, jonka säännöt sopivat sinulle, tai ylläpidä omaa palvelinta.
       feature_moderation_title: Moderointi juuri kuten sen pitäisi olla
       follow_action: Seuraa
-      follow_step: Mastodon perustuu sinua kiinnostavien henkilöjen julkaisujen seuraamiseen.
+      follow_step: Mastodonissa on kyse kiinnostavien ihmisten seuraamisesta.
       follow_title: Mukauta kotisyötettäsi
       follows_subtitle: Seuraa tunnettuja tilejä
       follows_title: Seurantaehdotuksia
       follows_view_more: Näytä lisää seurattavia henkilöitä
       hashtags_recent_count:
-        one: "%{people} henkilö viimeisen 2 päivän aikana"
-        other: "%{people} henkilöä viimeisen 2 päivän aikana"
+        one: "%{people} henkilö viimeisenä 2 päivänä"
+        other: "%{people} henkilöä viimeisenä 2 päivänä"
       hashtags_subtitle: Tutki, mikä on ollut suosittua viimeisenä 2 päivänä
       hashtags_title: Suositut aihetunnisteet
       hashtags_view_more: Näytä lisää suosittuja aihetunnisteita

@@ -83,6 +83,7 @@ it:
         access_denied: Il proprietario della risorsa o il server d'autorizzazione ha negato la richiesta.
         credential_flow_not_configured: Il processo delle Credenziali Password del Proprietario della Risorsa è fallito a causa della mancata configurazione di Doorkeeper.configure.resource_owner_from_credentials.
         invalid_client: Autenticazione del client fallita a causa di un client sconosciuto, di nessun'autenticazione del client inclusa o di un metodo d'autenticazione non supportato.
+        invalid_code_challenge_method: Il metodo di verifica del codice deve essere S256, semplice non è supportato.
         invalid_grant: L'autorizzazione fornita non è valida, è scaduta, è stata revocata, non corrisponde all'URI di reindirizzamento utilizzato nella richiesta d'autorizzazione o è stata emessa a un altro client.
         invalid_redirect_uri: L'uri di reindirizzamento incluso non è valido.
         invalid_request:
