@@ -38,28 +38,28 @@ RSpec.describe Webhook do
 
   describe '#rotate_secret!' do
     it 'changes the secret' do
-      previous_value = webhook.secret
-      webhook.rotate_secret!
-      expect(webhook.secret).to_not be_blank
-      expect(webhook.secret).to_not eq previous_value
+      expect { webhook.rotate_secret! }
+        .to change(webhook, :secret)
+      expect(webhook.secret)
+        .to_not be_blank
     end
   end
 
   describe '#enable!' do
-    before do
-      webhook.disable!
-    end
+    let(:webhook) { Fabricate(:webhook, enabled: false) }
 
     it 'enables the webhook' do
-      webhook.enable!
-      expect(webhook.enabled?).to be true
+      expect { webhook.enable! }
+        .to change(webhook, :enabled?).to(true)
     end
   end
 
   describe '#disable!' do
+    let(:webhook) { Fabricate(:webhook, enabled: true) }
+
     it 'disables the webhook' do
-      webhook.disable!
-      expect(webhook.enabled?).to be false
+      expect { webhook.disable! }
+        .to change(webhook, :enabled?).to(false)
     end
   end
 end
