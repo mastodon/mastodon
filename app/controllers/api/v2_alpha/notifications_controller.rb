@@ -7,6 +7,7 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
   after_action :insert_pagination_headers, only: :index
 
   DEFAULT_NOTIFICATIONS_LIMIT = 40
+  NOTIFICATIONS_COUNT_LIMIT = 100
 
   def index
     with_read_replica do
@@ -32,6 +33,12 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
       )
 
       render json: @grouped_notifications, each_serializer: REST::NotificationGroupSerializer, relationships: @relationships, group_metadata: @group_metadata
+    end
+  end
+
+  def count
+    with_read_replica do
+      render json: { count: browserable_account_notifications.without_suspended.paginate_groups_by_min_id(NOTIFICATIONS_COUNT_LIMIT, min_id: notification_marker&.last_read_id).count }
     end
   end
 
@@ -90,6 +97,10 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
       exclude_types: Array(browserable_params[:exclude_types]),
       include_filtered: truthy_param?(:include_filtered)
     )
+  end
+
+  def notification_marker
+    current_user.markers.find_by(timeline: 'notifications')
   end
 
   def target_statuses_from_notifications

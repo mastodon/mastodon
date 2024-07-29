@@ -336,6 +336,7 @@ namespace :api, format: false do
     resources :notifications, only: [:index, :show] do
       collection do
         post :clear
+        get :count
       end
 
       member do
