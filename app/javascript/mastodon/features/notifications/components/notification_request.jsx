@@ -1,31 +1,26 @@
 import PropTypes from 'prop-types';
 import { useCallback } from 'react';
 
-import { defineMessages, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 
+import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 import DeleteIcon from '@/material-icons/400-24px/delete.svg?react';
 import DoneIcon from '@/material-icons/400-24px/done.svg?react';
 import { acceptNotificationRequest, dismissNotificationRequest } from 'mastodon/actions/notifications';
 import { Avatar } from 'mastodon/components/avatar';
-import { IconButton } from 'mastodon/components/icon_button';
+import { Icon } from 'mastodon/components/icon';
 import { makeGetAccount } from 'mastodon/selectors';
 import { toCappedNumber } from 'mastodon/utils/numbers';
 
 const getAccount = makeGetAccount();
 
-const messages = defineMessages({
-  accept: { id: 'notification_requests.accept', defaultMessage: 'Accept' },
-  dismiss: { id: 'notification_requests.dismiss', defaultMessage: 'Dismiss' },
-});
-
 export const NotificationRequest = ({ id, accountId, notificationsCount }) => {
   const dispatch = useDispatch();
   const account = useSelector(state => getAccount(state, accountId));
-  const intl = useIntl();
 
   const handleDismiss = useCallback(() => {
     dispatch(dismissNotificationRequest(id));
@@ -48,11 +43,19 @@ export const NotificationRequest = ({ id, accountId, notificationsCount }) => {
 
           <span>@{account?.get('acct')}</span>
         </div>
+
+        <Icon id='chevron-right' icon={ChevronRightIcon} className='notification-request__disclosure-indicator' />
       </Link>
 
       <div className='notification-request__actions'>
-        <IconButton iconComponent={DeleteIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
-        <IconButton iconComponent={DoneIcon} onClick={handleAccept} title={intl.formatMessage(messages.accept)} />
+        <button type='button' className='button button-tertiary button--destructive' onClick={handleDismiss}>
+          <Icon id='times' icon={DeleteIcon} />
+          <FormattedMessage id='notification_requests.dismiss' defaultMessage='Dismiss' />
+        </button>
+        <button type='button' className='button button-tertiary' onClick={handleAccept}>
+          <Icon id='check' icon={DoneIcon} />
+          <FormattedMessage id='notification_requests.accept' defaultMessage='Accept' />
+        </button>
       </div>
     </div>
   );
