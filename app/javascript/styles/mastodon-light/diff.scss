@@ -298,12 +298,6 @@ html {
 .directory__tag > div {
   background: $white;
   border: 1px solid var(--background-border-color);
-
-  @media screen and (max-width: $no-gap-breakpoint) {
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
-  }
 }
 
 .picture-in-picture-placeholder {
@@ -317,10 +311,6 @@ html {
   &:active,
   &:focus {
     background: $ui-base-color;
-  }
-
-  @media screen and (max-width: $no-gap-breakpoint) {
-    border: 0;
   }
 }
 
