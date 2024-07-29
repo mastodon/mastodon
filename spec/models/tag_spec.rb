@@ -112,6 +112,18 @@ RSpec.describe Tag do
     end
   end
 
+  describe '#formatted_name' do
+    it 'returns name with a proceeding hash symbol' do
+      tag = Fabricate(:tag, name: 'foo')
+      expect(tag.formatted_name).to eq '#foo'
+    end
+
+    it 'returns display_name with a proceeding hash symbol, if display name present' do
+      tag = Fabricate(:tag, name: 'foobar', display_name: 'FooBar')
+      expect(tag.formatted_name).to eq '#FooBar'
+    end
+  end
+
   describe '.recently_used' do
     let(:account) { Fabricate(:account) }
     let(:other_person_status) { Fabricate(:status) }
@@ -239,6 +251,24 @@ RSpec.describe Tag do
       results = described_class.search_for('match')
 
       expect(results).to eq [tag, similar_tag]
+    end
+
+    it 'finds only listable tags' do
+      tag = Fabricate(:tag, name: 'match')
+      _miss_tag = Fabricate(:tag, name: 'matchunlisted', listable: false)
+
+      results = described_class.search_for('match')
+
+      expect(results).to eq [tag]
+    end
+
+    it 'finds non-listable tags as well via option' do
+      tag = Fabricate(:tag, name: 'match')
+      unlisted_tag = Fabricate(:tag, name: 'matchunlisted', listable: false)
+
+      results = described_class.search_for('match', 5, 0, exclude_unlistable: false)
+
+      expect(results).to eq [tag, unlisted_tag]
     end
   end
 end
