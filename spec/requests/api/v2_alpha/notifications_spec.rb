@@ -62,14 +62,14 @@ RSpec.describe 'Notifications' do
 
     context 'when there are more notifications than the limit' do
       before do
-        stub_const('Api::V2Alpha::NotificationsController::NOTIFICATIONS_COUNT_LIMIT', 2)
+        stub_const('Api::V2Alpha::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT', 2)
       end
 
       it 'returns a capped value' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq Api::V2Alpha::NotificationsController::NOTIFICATIONS_COUNT_LIMIT
+        expect(body_as_json[:count]).to eq Api::V2Alpha::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT
       end
     end
   end
