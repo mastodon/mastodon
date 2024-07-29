@@ -19,7 +19,7 @@ class Api::V1::NotificationsController < Api::BaseController
     render json: @notifications, each_serializer: REST::NotificationSerializer, relationships: @relationships
   end
 
-  def count
+  def unread_count
     limit = limit_param(DEFAULT_NOTIFICATIONS_COUNT_LIMIT, MAX_NOTIFICATIONS_COUNT_LIMIT)
 
     with_read_replica do

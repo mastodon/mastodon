@@ -37,7 +37,7 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
     end
   end
 
-  def count
+  def unread_count
     limit = limit_param(DEFAULT_NOTIFICATIONS_COUNT_LIMIT, MAX_NOTIFICATIONS_COUNT_LIMIT)
 
     with_read_replica do
