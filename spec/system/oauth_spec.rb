@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 describe 'Using OAuth from an external app' do
+  include ProfileStories
+
   subject { visit "/oauth/authorize?#{params.to_query}" }
 
   let(:client_app) { Doorkeeper::Application.create!(name: 'test', redirect_uri: about_url(host: Rails.application.config.x.local_domain), scopes: 'read') }
@@ -245,12 +247,6 @@ describe 'Using OAuth from an external app' do
   end
 
   private
-
-  def fill_in_auth_details(email, password)
-    fill_in 'user_email', with: email
-    fill_in 'user_password', with: password
-    click_on I18n.t('auth.login')
-  end
 
   def fill_in_otp_details(value)
     fill_in 'user_otp_attempt', with: value
