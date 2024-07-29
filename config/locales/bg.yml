@@ -1113,6 +1113,10 @@ bg:
     hint_html: "<strong>Съвет</strong>: няма да ви питаме пак за паролата през следващия час."
     invalid_password: Невалидна парола
     prompt: Потвърдете паролата, за да продължите
+  crypto:
+    errors:
+      invalid_key: не е валиден ключ Ed25519 или Curve25519
+      invalid_signature: не е валиден подпис Ed25519
   date:
     formats:
       default: "%b %d, %Y"

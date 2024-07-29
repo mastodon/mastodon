@@ -1069,6 +1069,10 @@ zh-HK:
     hint_html: "<strong>温馨提示</strong> 我們在未來一小時內不會再要求你填寫密碼。"
     invalid_password: 密碼錯誤
     prompt: 確認密碼以繼續
+  crypto:
+    errors:
+      invalid_key: 不是一個有效的 Ed25519 或 Curve25519 密鑰
+      invalid_signature: 不是一個有效的 Ed25519 簽名
   date:
     formats:
       default: "%Y年%b月%d日"

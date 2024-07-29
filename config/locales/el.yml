@@ -1126,6 +1126,10 @@ el:
     hint_html: "<strong>Συμβουλή:</strong> Δεν θα σου ζητήσουμε τον κωδικό ασφαλείας σου ξανά για την επόμενη ώρα."
     invalid_password: Μη έγκυρο συνθηματικό
     prompt: Επιβεβαίωση συνθηματικού για συνέχεια
+  crypto:
+    errors:
+      invalid_key: δεν είναι έγκυρο κλειδί Ed25519 ή Curve25519
+      invalid_signature: δεν είναι έγκυρη υπογραφή Ed25519
   date:
     formats:
       default: "%b %d, %Y"

@@ -827,6 +827,10 @@ si:
     hint_html: "<strong>ඉඟිය:</strong> අපි ඉදිරි පැය සඳහා නැවත ඔබගේ මුරපදය ඔබෙන් නොඉල්ලමු."
     invalid_password: මුරපදය වැරදිය
     prompt: ඉදිරියට යාමට මුරපදය තහවුරු කරන්න
+  crypto:
+    errors:
+      invalid_key: වලංගු Ed25519 හෝ Curve25519 යතුරක් නොවේ
+      invalid_signature: වලංගු Ed25519 අත්සනක් නොවේ
   date:
     formats:
       default: "%Y %b %d"

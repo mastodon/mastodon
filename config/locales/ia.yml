@@ -1151,6 +1151,10 @@ ia:
     hint_html: "<strong>Consilio:</strong> Nos non te demandara tu contrasigno de novo in le proxime hora."
     invalid_password: Contrasigno non valide
     prompt: Confirma le contrasigno pro continuar
+  crypto:
+    errors:
+      invalid_key: non es un clave Ed25519 o Curve25519 valide
+      invalid_signature: non es un signatura Ed25519 valide
   date:
     formats:
       default: "%d %b %Y"

@@ -1201,6 +1201,10 @@ uk:
     hint_html: "<strong>Підказка:</strong> ми не будемо запитувати ваш пароль впродовж наступної години."
     invalid_password: Невірний пароль
     prompt: Підтвердіть пароль для продовження
+  crypto:
+    errors:
+      invalid_key: не є припустимим ключем Ed25519 або Curve25519
+      invalid_signature: не є дійсним підписом Ed25519
   date:
     formats:
       default: "%b %d, %Y"

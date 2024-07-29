@@ -1143,6 +1143,10 @@ et:
     hint_html: "<strong>Nõuanne:</strong> Me ei küsi salasõna uuesti järgmise tunni jooksul."
     invalid_password: Vigane salasõna
     prompt: Jätkamiseks salasõna veelkord
+  crypto:
+    errors:
+      invalid_key: ei ole õige Ed25519 ega Curve25519 võti
+      invalid_signature: ei ole õige Ed25519 allkiri
   date:
     formats:
       default: "%d. %b %Y"

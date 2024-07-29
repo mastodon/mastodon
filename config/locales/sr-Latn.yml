@@ -1108,6 +1108,10 @@ sr-Latn:
     hint_html: "<strong>Savet:</strong> Nećemo Vas pitati za lozinku ponovo u narednih sat vremena."
     invalid_password: Neispravna lozinka
     prompt: Potvrdite lozinku za nastavak
+  crypto:
+    errors:
+      invalid_key: nije validan Ed25519 ili Curve25519 ključ
+      invalid_signature: nije validan Ed25519 potpis
   date:
     formats:
       default: "%d. %b. %Y."

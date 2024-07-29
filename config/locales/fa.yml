@@ -920,6 +920,10 @@ fa:
     hint_html: "<strong>نکته:</strong> ما در یک ساعت آینده گذرواژه‌تان را از شما نخواهیم پرسید."
     invalid_password: گذرواژه نامعتبر
     prompt: برای ادامه گذرواژه‌تان را تأیید کنید
+  crypto:
+    errors:
+      invalid_key: یک کلید معتبر Ed25519 یا Curve25519 نیست
+      invalid_signature: یک امضای معتبر Ed25519 نیست
   date:
     formats:
       default: "%d %b %Y"

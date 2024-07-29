@@ -1187,6 +1187,10 @@ be:
     hint_html: "<strong>Парада:</strong> Мы не будзем запытваць ваш пароль зноўку на працягу наступнай гадзіны."
     invalid_password: Няправільны пароль
     prompt: Пацвердзіць пароль, каб працягнуць
+  crypto:
+    errors:
+      invalid_key: гэта не сапраўдны Ed25519 або Curve25519 ключ
+      invalid_signature: гэта не сапраўдная Ed25519 сігнатура
   date:
     formats:
       default: "%d.%m.%Y"

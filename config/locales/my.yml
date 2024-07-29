@@ -1042,6 +1042,10 @@ my:
     hint_html: "<strong>အကြံပြုချက် -</strong> နောက်နာရီများတွင် သင့်စကားဝှက်ကို ထပ်မံတောင်းဆိုမည်မဟုတ်ပါ။"
     invalid_password: စကားဝှက် မမှန်ပါ
     prompt: ဆက်လက်လုပ်ဆောင်ရန်အတွက် စကားဝှက်အတည်ပြုပါ
+  crypto:
+    errors:
+      invalid_key: မှန်ကန်သော Ed25519 သို့မဟုတ် Curve25519 ကီး မဟုတ်ပါ။
+      invalid_signature: မှန်ကန်သော Ed25519 လက်မှတ်မဟုတ်ပါ
   date:
     formats:
       default: "%b %d, %Y"

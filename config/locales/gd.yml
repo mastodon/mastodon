@@ -1201,6 +1201,10 @@ gd:
     hint_html: "<strong>Gliocas:</strong> Chan iarr sinn am facal-faire agad ort a-rithist fad uair a thìde."
     invalid_password: Facal-faire mì-dhligheach
     prompt: Dearbh am facal-faire airson leantainn air adhart
+  crypto:
+    errors:
+      invalid_key: "– chan e iuchair Ed25519 no Curve25519 dhligheach a th’ ann"
+      invalid_signature: "– chan e soidhneadh Ed25519 dligheach a th’ ann"
   date:
     formats:
       default: "%d %b %Y"

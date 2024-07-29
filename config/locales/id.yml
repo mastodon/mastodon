@@ -934,6 +934,10 @@ id:
     hint_html: "<strong>Tip:</strong> Kami tidak akan meminta kata sandi Anda lagi untuk beberapa jam ke depan."
     invalid_password: Kata sandi tidak valid
     prompt: Konfirmasi kata sandi untuk melanjutkan
+  crypto:
+    errors:
+      invalid_key: bukan kunci Ed25519 atau Curve25519 yang valid
+      invalid_signature: bukan tanda tangan Ed25519 yang valid
   date:
     formats:
       default: "%d %b %Y"

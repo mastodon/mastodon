@@ -1081,6 +1081,10 @@
     hint_html: "<strong>Tips:</strong> Vi ber deg ikke om passordet ditt igjen i løpet av neste time."
     invalid_password: Ugyldig passord
     prompt: Bekreft passordet for å fortsette
+  crypto:
+    errors:
+      invalid_key: er ikke en gyldig Ed25519- eller Curve25519-nøkkel
+      invalid_signature: er ikke en gyldig Ed25519-signatur
   date:
     formats:
       default: "%d. %b, %Y"

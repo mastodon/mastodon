@@ -938,6 +938,10 @@ sco:
     hint_html: "<strong>wee tip:</strong> We wullnae ask ye fir yer passwird again fir the neist oor."
     invalid_password: Passwird isnae valid
     prompt: Confirm yer passwird fir tae continue
+  crypto:
+    errors:
+      invalid_key: isnae a valid Ed25519 or Curve25519 key
+      invalid_signature: isnae a valid Ed25519 signature
   date:
     formats:
       default: "%b %d, %Y"

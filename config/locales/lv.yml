@@ -1096,6 +1096,10 @@ lv:
     hint_html: "<strong>Padoms:</strong> Nākamās stundas laikā mēs tev vairs neprasīsim paroli."
     invalid_password: Nepareiza parole
     prompt: Lai turpinātu, apstiprini paroli
+  crypto:
+    errors:
+      invalid_key: nav derīga Ed25519 vai Curve25519 atslēga
+      invalid_signature: nav derīgs Ed25519 paraksts
   date:
     formats:
       default: "%b %d, %Y"

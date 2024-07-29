@@ -1087,6 +1087,10 @@ ie:
     hint_html: "<strong>Nota</strong>: On ne va petir tui passa-parol denov por li venient hor."
     invalid_password: Ínvalid passa-parol
     prompt: Confirmar passa-parol por avansar
+  crypto:
+    errors:
+      invalid_key: ne es un valid clave Ed25519 o Curve25519
+      invalid_signature: ne es un valid signatura Ed25519
   date:
     formats:
       default: "%d.%m.%Y"
