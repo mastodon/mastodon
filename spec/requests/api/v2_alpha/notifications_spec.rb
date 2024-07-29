@@ -60,6 +60,17 @@ RSpec.describe 'Notifications' do
       end
     end
 
+    context 'with a user-provided limit' do
+      let(:params) { { limit: 2 } }
+
+      it 'returns a capped value' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:count]).to eq 2
+      end
+    end
+
     context 'when there are more notifications than the limit' do
       before do
         stub_const('Api::V2Alpha::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT', 2)
