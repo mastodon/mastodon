@@ -501,6 +501,19 @@ class Account < ApplicationRecord
     save!
   end
 
+  def private_key
+    if account_secret
+      account_secret.private_key
+    else
+      super
+    end
+  end
+
+  def private_key=(value)
+    self.account_secret ||= AccountSecret.new
+    account_secret.private_key = value
+  end
+
   private
 
   def prepare_contents

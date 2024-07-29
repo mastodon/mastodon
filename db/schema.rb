@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_24_181224) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_26_143215) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -101,6 +101,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_24_181224) do
     t.index ["account_id", "relationship_severance_event_id"], name: "idx_on_account_id_relationship_severance_event_id_7bd82bf20e", unique: true
     t.index ["account_id"], name: "index_account_relationship_severance_events_on_account_id"
     t.index ["relationship_severance_event_id"], name: "idx_on_relationship_severance_event_id_403f53e707"
+  end
+
+  create_table "account_secrets", force: :cascade do |t|
+    t.text "private_key"
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_secrets_on_account_id"
   end
 
   create_table "account_stats", force: :cascade do |t|
@@ -1274,6 +1282,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_24_181224) do
   add_foreign_key "account_pins", "accounts", on_delete: :cascade
   add_foreign_key "account_relationship_severance_events", "accounts", on_delete: :cascade
   add_foreign_key "account_relationship_severance_events", "relationship_severance_events", on_delete: :cascade
+  add_foreign_key "account_secrets", "accounts"
   add_foreign_key "account_stats", "accounts", on_delete: :cascade
   add_foreign_key "account_statuses_cleanup_policies", "accounts", on_delete: :cascade
   add_foreign_key "account_warnings", "accounts", column: "target_account_id", on_delete: :cascade
