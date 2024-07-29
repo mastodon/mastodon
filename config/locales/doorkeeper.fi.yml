@@ -83,6 +83,7 @@ fi:
         access_denied: Resurssin omistaja tai valtuutuspalvelin hylkäsi pyynnön.
         credential_flow_not_configured: Resurssin omistajan salasanatietojen luku epäonnistui, koska asetusta Doorkeeper.configure.resource_owner_from_credentials ei ole konfiguroitu.
         invalid_client: Asiakasohjelman todennus epäonnistui, koska asiakas on tuntematon, asiakkaan todennus ei ollut mukana tai todennustapaa ei tueta.
+        invalid_code_challenge_method: Koodihaastemenetelmän tulee olla S256 – selväkielistä ei tueta.
         invalid_grant: Valtuutuslupa on virheellinen, vanhentunut, peruttu, valtuutuspyynnössä käytettyä uudelleenohjaus-URI:tä vastaamaton tai myönnetty toiselle asiakkaalle.
         invalid_redirect_uri: Uudelleenohjaus-URI on virheellinen.
         invalid_request:
@@ -165,7 +166,7 @@ fi:
       admin:write:ip_blocks: suorita moderointitoimia estetyille IP-osoitteille
       admin:write:reports: suorita moderointitoimia raporteille
       crypto: käytä päästä päähän -salausta
-      follow: muokkaa tilin suhteita
+      follow: muokkaa tilin seurantasuhteita
       profile: lue vain tilisi profiilitietoja
       push: vastaanota puskuilmoituksesi
       read: lue kaikkia tilin tietoja
