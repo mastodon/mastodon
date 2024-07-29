@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ProfileStories
-  attr_reader :bob, :alice, :alice_bio
+  attr_reader :bob
 
   def fill_in_auth_details(email, password)
     fill_in 'user_email', with: email
