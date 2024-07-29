@@ -46,16 +46,14 @@ describe Account::Counters do
     end
 
     it 'preserves last_status_at when decrementing statuses_count' do
-      account_stat = Fabricate(
-        :account_stat,
-        account: account,
-        last_status_at: 3.days.ago,
-        statuses_count: 10
-      )
+      account.statuses_count = 10
+      account.save!
+      account.account_stat.last_status_at = 3.days.ago
+      account.account_stat.save!
 
       expect { account.decrement_count!(:statuses_count) }
-        .to change(account_stat.reload, :statuses_count).by(-1)
-        .and not_change(account_stat.reload, :last_status_at)
+        .to change(account.account_stat.reload, :statuses_count).by(-1)
+        .and not_change(account.account_stat.reload, :last_status_at)
     end
   end
 end
