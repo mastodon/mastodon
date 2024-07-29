@@ -19,6 +19,7 @@ on:
 jobs:
   upload-translations:
     runs-on: ubuntu-latest
+    if: github.repository == 'mastodon/mastodon'
 
     steps:
       - name: Checkout
