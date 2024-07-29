@@ -1282,7 +1282,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_26_143215) do
   add_foreign_key "account_pins", "accounts", on_delete: :cascade
   add_foreign_key "account_relationship_severance_events", "accounts", on_delete: :cascade
   add_foreign_key "account_relationship_severance_events", "relationship_severance_events", on_delete: :cascade
-  add_foreign_key "account_secrets", "accounts"
+  add_foreign_key "account_secrets", "accounts", on_delete: :cascade
   add_foreign_key "account_stats", "accounts", on_delete: :cascade
   add_foreign_key "account_statuses_cleanup_policies", "accounts", on_delete: :cascade
   add_foreign_key "account_warnings", "accounts", column: "target_account_id", on_delete: :cascade
