@@ -8,6 +8,83 @@ RSpec.describe 'Notifications' do
   let(:scopes)  { 'read:notifications write:notifications' }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
+  describe 'GET /api/v1/notifications/unread_count', :inline_jobs do
+    subject do
+      get '/api/v1/notifications/unread_count', headers: headers, params: params
+    end
+
+    let(:params) { {} }
+
+    before do
+      first_status = PostStatusService.new.call(user.account, text: 'Test')
+      ReblogService.new.call(Fabricate(:account), first_status)
+      PostStatusService.new.call(Fabricate(:account), text: 'Hello @alice')
+      FavouriteService.new.call(Fabricate(:account), first_status)
+      FavouriteService.new.call(Fabricate(:account), first_status)
+      FollowService.new.call(Fabricate(:account), user.account)
+    end
+
+    it_behaves_like 'forbidden for wrong scope', 'write write:notifications'
+
+    context 'with no options' do
+      it 'returns expected notifications count' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:count]).to eq 5
+      end
+    end
+
+    context 'with a read marker' do
+      before do
+        id = user.account.notifications.browserable.order(id: :desc).offset(2).first.id
+        user.markers.create!(timeline: 'notifications', last_read_id: id)
+      end
+
+      it 'returns expected notifications count' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:count]).to eq 2
+      end
+    end
+
+    context 'with exclude_types param' do
+      let(:params) { { exclude_types: %w(mention) } }
+
+      it 'returns expected notifications count' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:count]).to eq 4
+      end
+    end
+
+    context 'with a user-provided limit' do
+      let(:params) { { limit: 2 } }
+
+      it 'returns a capped value' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:count]).to eq 2
+      end
+    end
+
+    context 'when there are more notifications than the limit' do
+      before do
+        stub_const('Api::V1::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT', 2)
+      end
+
+      it 'returns a capped value' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:count]).to eq Api::V1::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT
+      end
+    end
+  end
+
   describe 'GET /api/v1/notifications', :inline_jobs do
     subject do
       get '/api/v1/notifications', headers: headers, params: params
