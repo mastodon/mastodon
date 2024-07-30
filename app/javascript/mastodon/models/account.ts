@@ -7,6 +7,7 @@ import type {
   ApiAccountFieldJSON,
   ApiAccountRoleJSON,
   ApiAccountJSON,
+  ShallowApiAccountJSON,
 } from 'mastodon/api_types/accounts';
 import type { ApiCustomEmojiJSON } from 'mastodon/api_types/custom_emoji';
 import emojify from 'mastodon/features/emoji/emoji';
@@ -136,6 +137,35 @@ export function createAccountFromServerJSON(serverJSON: ApiAccountJSON) {
   return AccountFactory({
     ...accountJSON,
     moved: moved?.id,
+    fields: List(
+      serverJSON.fields.map((field) => createAccountField(field, emojiMap)),
+    ),
+    emojis: List(serverJSON.emojis.map((emoji) => CustomEmojiFactory(emoji))),
+    roles: List(serverJSON.roles?.map((role) => AccountRoleFactory(role))),
+    display_name_html: emojify(
+      escapeTextContentForBrowser(displayName),
+      emojiMap,
+    ),
+    note_emojified: emojify(accountJSON.note, emojiMap),
+    note_plain: unescapeHTML(accountJSON.note),
+  });
+}
+
+export function createAccountFromServerShallowJSON(
+  serverJSON: ShallowApiAccountJSON,
+) {
+  const { moved_to_account_id, ...accountJSON } = serverJSON;
+
+  const emojiMap = makeEmojiMap(accountJSON.emojis);
+
+  const displayName =
+    accountJSON.display_name.trim().length === 0
+      ? accountJSON.username
+      : accountJSON.display_name;
+
+  return AccountFactory({
+    ...accountJSON,
+    moved: moved_to_account_id,
     fields: List(
       serverJSON.fields.map((field) => createAccountField(field, emojiMap)),
     ),

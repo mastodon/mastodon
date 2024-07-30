@@ -296,7 +296,9 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
         updateLastReadId(state);
       })
       .addCase(fetchNotificationsGap.fulfilled, (state, action) => {
-        const { notifications } = action.payload;
+        const {
+          apiResult: { notification_groups: notifications },
+        } = action.payload;
 
         // find the gap in the existing notifications
         const gapIndex = state.groups.findIndex(

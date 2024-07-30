@@ -1,5 +1,6 @@
 import type {
   ApiAccountRelationshipSeveranceEventJSON,
+  ShallowApiAccountWarningJSON,
   ApiAccountWarningJSON,
   BaseNotificationGroupJSON,
   ApiNotificationGroupJSON,
@@ -7,14 +8,17 @@ import type {
   NotificationType,
   NotificationWithStatusType,
 } from 'mastodon/api_types/notifications';
-import type { ApiReportJSON } from 'mastodon/api_types/reports';
+import type {
+  ApiReportJSON,
+  ShallowApiReportJSON,
+} from 'mastodon/api_types/reports';
 
 // Maximum number of avatars displayed in a notification group
 // This corresponds to the max lenght of `group.sampleAccountIds`
 export const NOTIFICATIONS_GROUP_MAX_AVATARS = 8;
 
 interface BaseNotificationGroup
-  extends Omit<BaseNotificationGroupJSON, 'sample_accounts'> {
+  extends Omit<BaseNotificationGroupJSON, 'sample_account_ids'> {
   sampleAccountIds: string[];
 }
 
@@ -96,12 +100,30 @@ function createReportFromJSON(reportJSON: ApiReportJSON): Report {
   };
 }
 
+function createReportFromShallowJSON(reportJSON: ShallowApiReportJSON): Report {
+  const { target_account_id, ...report } = reportJSON;
+  return {
+    targetAccountId: target_account_id,
+    ...report,
+  };
+}
+
 function createAccountWarningFromJSON(
   warningJSON: ApiAccountWarningJSON,
 ): AccountWarning {
   const { target_account, ...warning } = warningJSON;
   return {
     targetAccountId: target_account.id,
+    ...warning,
+  };
+}
+
+function createAccountWarningFromShallowJSON(
+  warningJSON: ShallowApiAccountWarningJSON,
+): AccountWarning {
+  const { target_account_id, ...warning } = warningJSON;
+  return {
+    targetAccountId: target_account_id,
     ...warning,
   };
 }
@@ -115,8 +137,7 @@ function createAccountRelationshipSeveranceEventFromJSON(
 export function createNotificationGroupFromJSON(
   groupJson: ApiNotificationGroupJSON,
 ): NotificationGroup {
-  const { sample_accounts, ...group } = groupJson;
-  const sampleAccountIds = sample_accounts.map((account) => account.id);
+  const { sample_account_ids: sampleAccountIds, ...group } = groupJson;
 
   switch (group.type) {
     case 'favourite':
@@ -125,9 +146,9 @@ export function createNotificationGroupFromJSON(
     case 'mention':
     case 'poll':
     case 'update': {
-      const { status, ...groupWithoutStatus } = group;
+      const { status_id, ...groupWithoutStatus } = group;
       return {
-        statusId: status.id,
+        statusId: status_id,
         sampleAccountIds,
         ...groupWithoutStatus,
       };
@@ -135,7 +156,7 @@ export function createNotificationGroupFromJSON(
     case 'admin.report': {
       const { report, ...groupWithoutTargetAccount } = group;
       return {
-        report: createReportFromJSON(report),
+        report: createReportFromShallowJSON(report),
         sampleAccountIds,
         ...groupWithoutTargetAccount,
       };
@@ -151,7 +172,8 @@ export function createNotificationGroupFromJSON(
       const { moderation_warning, ...groupWithoutModerationWarning } = group;
       return {
         ...groupWithoutModerationWarning,
-        moderationWarning: createAccountWarningFromJSON(moderation_warning),
+        moderationWarning:
+          createAccountWarningFromShallowJSON(moderation_warning),
         sampleAccountIds,
       };
     }

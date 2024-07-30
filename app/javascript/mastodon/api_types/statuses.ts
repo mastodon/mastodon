@@ -1,4 +1,4 @@
-// See app/serializers/rest/status_serializer.rb
+// See app/serializers/rest/base_status_serializer.rb
 
 import type { ApiAccountJSON } from './accounts';
 import type { ApiCustomEmojiJSON } from './custom_emoji';
@@ -58,7 +58,7 @@ export interface ApiPreviewCardJSON {
   authors: ApiPreviewCardAuthorJSON[];
 }
 
-export interface ApiStatusJSON {
+export interface BaseApiStatusJSON {
   id: string;
   created_at: string;
   in_reply_to_id?: string;
@@ -85,9 +85,7 @@ export interface ApiStatusJSON {
   content?: string;
   text?: string;
 
-  reblog?: ApiStatusJSON;
   application?: ApiStatusApplicationJSON;
-  account: ApiAccountJSON;
   media_attachments: ApiMediaAttachmentJSON[];
   mentions: ApiMentionJSON[];
 
@@ -96,4 +94,14 @@ export interface ApiStatusJSON {
 
   card?: ApiPreviewCardJSON;
   poll?: ApiPollJSON;
+}
+
+export interface ApiStatusJSON extends BaseApiStatusJSON {
+  account: ApiAccountJSON;
+  reblog?: ApiStatusJSON;
+}
+
+export interface ShallowApiStatusJSON extends BaseApiStatusJSON {
+  account_id: string;
+  reblog_id?: string;
 }

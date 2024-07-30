@@ -1,17 +1,17 @@
 import api, { apiRequest, getLinks } from 'mastodon/api';
-import type { ApiNotificationGroupJSON } from 'mastodon/api_types/notifications';
+import type { ApiGenericJSON } from 'mastodon/api_types/generic';
 
 export const apiFetchNotifications = async (params?: {
   exclude_types?: string[];
   max_id?: string;
 }) => {
-  const response = await api().request<ApiNotificationGroupJSON[]>({
+  const response = await api().request<ApiGenericJSON>({
     method: 'GET',
     url: '/api/v2_alpha/notifications',
     params,
   });
 
-  return { notifications: response.data, links: getLinks(response) };
+  return { apiResult: response.data, links: getLinks(response) };
 };
 
 export const apiClearNotifications = () =>

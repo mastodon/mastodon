@@ -1,6 +1,9 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
+import type {
+  ApiAccountJSON,
+  ShallowApiAccountJSON,
+} from 'mastodon/api_types/accounts';
 import type { ApiRelationshipJSON } from 'mastodon/api_types/relationships';
 
 export const revealAccount = createAction<{
@@ -10,6 +13,10 @@ export const revealAccount = createAction<{
 export const importAccounts = createAction<{ accounts: ApiAccountJSON[] }>(
   'accounts/importAccounts',
 );
+
+export const importShallowAccounts = createAction<{
+  accounts: ShallowApiAccountJSON[];
+}>('accounts/importShallowAccounts');
 
 function actionWithSkipLoadingTrue<Args extends object>(args: Args) {
   return {

@@ -2,7 +2,7 @@ import type { ApiAccountJSON } from './accounts';
 
 export type ReportCategory = 'other' | 'spam' | 'legal' | 'violation';
 
-export interface ApiReportJSON {
+export interface BaseApiReportJSON {
   id: string;
   action_taken: unknown;
   action_taken_at: unknown;
@@ -12,5 +12,12 @@ export interface ApiReportJSON {
   created_at: string;
   status_ids: string[];
   rule_ids: string[];
+}
+
+export interface ApiReportJSON extends BaseApiReportJSON {
   target_account: ApiAccountJSON;
+}
+
+export interface ShallowApiReportJSON extends BaseApiReportJSON {
+  target_account_id: string;
 }

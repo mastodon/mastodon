@@ -12,8 +12,8 @@ export interface ApiAccountRoleJSON {
   name: string;
 }
 
-// See app/serializers/rest/account_serializer.rb
-export interface ApiAccountJSON {
+// See app/serializers/rest/base_account_serializer.rb
+export interface BaseApiAccountJSON {
   acct: string;
   avatar: string;
   avatar_static: string;
@@ -34,14 +34,21 @@ export interface ApiAccountJSON {
   locked: boolean;
   noindex?: boolean;
   note: string;
-  roles?: ApiAccountJSON[];
+  roles?: ApiAccountRoleJSON[];
   statuses_count: number;
   uri: string;
   url: string;
   username: string;
-  moved?: ApiAccountJSON;
   suspended?: boolean;
   limited?: boolean;
   memorial?: boolean;
   hide_collections: boolean;
+}
+
+export interface ApiAccountJSON extends BaseApiAccountJSON {
+  moved?: ApiAccountJSON;
+}
+
+export interface ShallowApiAccountJSON extends BaseApiAccountJSON {
+  moved_to_account_id?: string;
 }

@@ -1,6 +1,6 @@
 import { importAccounts } from '../accounts_typed';
 
-import { normalizeStatus, normalizePoll } from './normalizer';
+import { normalizeStatus, normalizeShallowStatus, normalizePoll } from './normalizer';
 
 export const STATUS_IMPORT   = 'STATUS_IMPORT';
 export const STATUSES_IMPORT = 'STATUSES_IMPORT';
@@ -49,6 +49,10 @@ export function importFetchedAccounts(accounts) {
   return importAccounts({ accounts: normalAccounts });
 }
 
+export function importShallowFetchedAccounts(accounts) {
+  return importAccounts({ accounts });
+}
+
 export function importFetchedStatus(status) {
   return importFetchedStatuses([status]);
 }
@@ -85,6 +89,32 @@ export function importFetchedStatuses(statuses) {
 
     dispatch(importPolls(polls));
     dispatch(importFetchedAccounts(accounts));
+    dispatch(importStatuses(normalStatuses));
+    dispatch(importFilters(filters));
+  };
+}
+
+export function importShallowStatuses(statuses) {
+  return (dispatch, getState) => {
+    const normalStatuses = [];
+    const polls = [];
+    const filters = [];
+
+    function processStatus(status) {
+      pushUnique(normalStatuses, normalizeShallowStatus(status, getState().getIn(['statuses', status.id])));
+
+      if (status.filtered) {
+        status.filtered.forEach(result => pushUnique(filters, result.filter));
+      }
+
+      if (status.poll?.id) {
+        pushUnique(polls, normalizePoll(status.poll, getState().getIn(['polls', status.poll.id])));
+      }
+    }
+
+    statuses.forEach(processStatus);
+
+    dispatch(importPolls(polls));
     dispatch(importStatuses(normalStatuses));
     dispatch(importFilters(filters));
   };

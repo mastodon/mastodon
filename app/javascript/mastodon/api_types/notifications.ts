@@ -3,7 +3,7 @@
 import type { AccountWarningAction } from 'mastodon/models/notification_group';
 
 import type { ApiAccountJSON } from './accounts';
-import type { ApiReportJSON } from './reports';
+import type { ApiReportJSON, ShallowApiReportJSON } from './reports';
 import type { ApiStatusJSON } from './statuses';
 
 // See app/model/notification.rb
@@ -51,7 +51,7 @@ export interface BaseNotificationGroupJSON {
   group_key: string;
   notifications_count: number;
   type: NotificationType;
-  sample_accounts: ApiAccountJSON[];
+  sample_account_ids: string[];
   latest_page_notification_at: string; // FIXME: This will only be present if the notification group is returned in a paginated list, not requested directly
   most_recent_notification_id: string;
   page_min_id?: string;
@@ -60,7 +60,7 @@ export interface BaseNotificationGroupJSON {
 
 interface NotificationGroupWithStatusJSON extends BaseNotificationGroupJSON {
   type: NotificationWithStatusType;
-  status: ApiStatusJSON;
+  status_id: string;
 }
 
 interface NotificationWithStatusJSON extends BaseNotificationJSON {
@@ -70,7 +70,7 @@ interface NotificationWithStatusJSON extends BaseNotificationJSON {
 
 interface ReportNotificationGroupJSON extends BaseNotificationGroupJSON {
   type: 'admin.report';
-  report: ApiReportJSON;
+  report: ShallowApiReportJSON;
 }
 
 interface ReportNotificationJSON extends BaseNotificationJSON {
@@ -87,20 +87,28 @@ interface SimpleNotificationJSON extends BaseNotificationJSON {
   type: SimpleNotificationTypes;
 }
 
-export interface ApiAccountWarningJSON {
+export interface BaseApiAccountWarningJSON {
   id: string;
   action: AccountWarningAction;
   text: string;
   status_ids: string[];
   created_at: string;
-  target_account: ApiAccountJSON;
   appeal: unknown;
+}
+
+export interface ApiAccountWarningJSON extends BaseApiAccountWarningJSON {
+  target_account: ApiAccountJSON;
+}
+
+export interface ShallowApiAccountWarningJSON
+  extends BaseApiAccountWarningJSON {
+  target_account_id: string;
 }
 
 interface ModerationWarningNotificationGroupJSON
   extends BaseNotificationGroupJSON {
   type: 'moderation_warning';
-  moderation_warning: ApiAccountWarningJSON;
+  moderation_warning: ShallowApiAccountWarningJSON;
 }
 
 interface ModerationWarningNotificationJSON extends BaseNotificationJSON {

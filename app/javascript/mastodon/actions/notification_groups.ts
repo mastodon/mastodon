@@ -5,6 +5,7 @@ import {
   apiFetchNotifications,
 } from 'mastodon/api/notifications';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
+import type { ApiGenericJSON } from 'mastodon/api_types/generic';
 import type {
   ApiNotificationGroupJSON,
   ApiNotificationJSON,
@@ -22,7 +23,12 @@ import {
   createDataLoadingThunk,
 } from 'mastodon/store/typed_functions';
 
-import { importFetchedAccounts, importFetchedStatuses } from './importer';
+import { importShallowAccounts } from './accounts_typed';
+import {
+  importFetchedAccounts,
+  importFetchedStatuses,
+  importShallowStatuses,
+} from './importer';
 import { NOTIFICATIONS_FILTER_SET } from './notifications';
 import { saveSettings } from './settings';
 
@@ -32,16 +38,12 @@ function excludeAllTypesExcept(filter: string) {
 
 function dispatchAssociatedRecords(
   dispatch: AppDispatch,
-  notifications: ApiNotificationGroupJSON[] | ApiNotificationJSON[],
+  notifications: ApiNotificationJSON[],
 ) {
   const fetchedAccounts: ApiAccountJSON[] = [];
   const fetchedStatuses: ApiStatusJSON[] = [];
 
   notifications.forEach((notification) => {
-    if ('sample_accounts' in notification) {
-      fetchedAccounts.push(...notification.sample_accounts);
-    }
-
     if (notification.type === 'admin.report') {
       fetchedAccounts.push(notification.report.target_account);
     }
@@ -62,6 +64,17 @@ function dispatchAssociatedRecords(
     dispatch(importFetchedStatuses(fetchedStatuses));
 }
 
+function dispatchGenericAssociatedRecords(
+  dispatch: AppDispatch,
+  apiResult: ApiGenericJSON,
+) {
+  if (apiResult.accounts.length > 0)
+    dispatch(importShallowAccounts({ accounts: apiResult.accounts }));
+
+  if (apiResult.statuses.length > 0)
+    dispatch(importShallowStatuses(apiResult.statuses));
+}
+
 export const fetchNotifications = createDataLoadingThunk(
   'notificationGroups/fetch',
   async (_params, { getState }) => {
@@ -75,15 +88,18 @@ export const fetchNotifications = createDataLoadingThunk(
           : excludeAllTypesExcept(activeFilter),
     });
   },
-  ({ notifications }, { dispatch }) => {
-    dispatchAssociatedRecords(dispatch, notifications);
+  ({ apiResult }, { dispatch }) => {
+    dispatchGenericAssociatedRecords(dispatch, apiResult);
     const payload: (ApiNotificationGroupJSON | NotificationGap)[] =
-      notifications;
+      apiResult.notification_groups;
 
     // TODO: might be worth not using gaps for that…
     // if (nextLink) payload.push({ type: 'gap', loadUrl: nextLink.uri });
-    if (notifications.length > 1)
-      payload.push({ type: 'gap', maxId: notifications.at(-1)?.page_min_id });
+    if (apiResult.notification_groups.length > 1)
+      payload.push({
+        type: 'gap',
+        maxId: apiResult.notification_groups.at(-1)?.page_min_id,
+      });
 
     return payload;
     // dispatch(submitMarkers());
@@ -95,10 +111,10 @@ export const fetchNotificationsGap = createDataLoadingThunk(
   async (params: { gap: NotificationGap }) =>
     apiFetchNotifications({ max_id: params.gap.maxId }),
 
-  ({ notifications }, { dispatch }) => {
-    dispatchAssociatedRecords(dispatch, notifications);
+  ({ apiResult }, { dispatch }) => {
+    dispatchGenericAssociatedRecords(dispatch, apiResult);
 
-    return { notifications };
+    return { apiResult };
   },
 );
 

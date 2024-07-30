@@ -5,12 +5,19 @@ import {
   followAccountSuccess,
   unfollowAccountSuccess,
   importAccounts,
+  importShallowAccounts,
   revealAccount,
 } from 'mastodon/actions/accounts_typed';
-import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
+import type {
+  ApiAccountJSON,
+  ShallowApiAccountJSON,
+} from 'mastodon/api_types/accounts';
 import { me } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
-import { createAccountFromServerJSON } from 'mastodon/models/account';
+import {
+  createAccountFromServerJSON,
+  createAccountFromServerShallowJSON,
+} from 'mastodon/models/account';
 
 const initialState = ImmutableMap<string, Account>();
 
@@ -40,6 +47,32 @@ const normalizeAccounts = (
   return state;
 };
 
+const normalizeShallowAccount = (
+  state: typeof initialState,
+  account: ShallowApiAccountJSON,
+) => {
+  return state.set(
+    account.id,
+    createAccountFromServerShallowJSON(account).set(
+      'hidden',
+      state.get(account.id)?.hidden === false
+        ? false
+        : account.limited || false,
+    ),
+  );
+};
+
+const normalizeShallowAccounts = (
+  state: typeof initialState,
+  accounts: ShallowApiAccountJSON[],
+) => {
+  accounts.forEach((account) => {
+    state = normalizeShallowAccount(state, account);
+  });
+
+  return state;
+};
+
 function getCurrentUser() {
   if (!me)
     throw new Error(
@@ -57,6 +90,8 @@ export const accountsReducer: Reducer<typeof initialState> = (
     return state.setIn([action.payload.id, 'hidden'], false);
   else if (importAccounts.match(action))
     return normalizeAccounts(state, action.payload.accounts);
+  else if (importShallowAccounts.match(action))
+    return normalizeShallowAccounts(state, action.payload.accounts);
   else if (followAccountSuccess.match(action)) {
     return state
       .update(action.payload.relationship.id, (account) =>

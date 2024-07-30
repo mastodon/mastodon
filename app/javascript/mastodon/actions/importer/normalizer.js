@@ -25,12 +25,33 @@ export function normalizeFilterResult(result) {
 }
 
 export function normalizeStatus(status, normalOldStatus) {
-  const normalStatus   = { ...status };
-  normalStatus.account = status.account.id;
+  const { account, reblog, ...normalStatus } = status;
 
-  if (status.reblog && status.reblog.id) {
-    normalStatus.reblog = status.reblog.id;
+  normalStatus.account_id = account.id;
+
+  if (reblog && reblog.id) {
+    normalStatus.reblog_id = reblog.id;
   }
+
+  if (status.card) {
+    normalStatus.card = {
+      ...status.card,
+      authors: status.card.authors.map(author => ({
+        ...author,
+        account_id: author.account?.id,
+        account: undefined,
+      })),
+    };
+  }
+
+  return normalizeShallowStatus(normalStatus, normalOldStatus);
+}
+
+export function normalizeShallowStatus(status, normalOldStatus) {
+  const { account_id, reblog_id, ...normalStatus } = status;
+
+  normalStatus.account = account_id;
+  normalStatus.reblog = reblog_id;
 
   if (status.poll && status.poll.id) {
     normalStatus.poll = status.poll.id;
@@ -41,8 +62,8 @@ export function normalizeStatus(status, normalOldStatus) {
       ...status.card,
       authors: status.card.authors.map(author => ({
         ...author,
-        accountId: author.account?.id,
-        account: undefined,
+        accountId: author.account_id,
+        account_id: undefined,
       })),
     };
   }
