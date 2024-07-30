@@ -23,6 +23,8 @@ class Mute < ApplicationRecord
 
   validates :account_id, uniqueness: { scope: :target_account_id }
 
+  scope :recent, -> { reorder(id: :desc) }
+
   after_commit :invalidate_blocking_cache
   after_commit :invalidate_follow_recommendations_cache
 
