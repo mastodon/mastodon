@@ -23,7 +23,7 @@ module Account::Associations
 
     # Pinned statuses
     has_many :status_pins, inverse_of: :account, dependent: :destroy
-    has_many :pinned_statuses, -> { reorder('status_pins.created_at DESC') }, through: :status_pins, class_name: 'Status', source: :status
+    has_many :pinned_statuses, -> { StatusPin.latest }, through: :status_pins, class_name: 'Status', source: :status
 
     # Endorsements
     has_many :account_pins, inverse_of: :account, dependent: :destroy

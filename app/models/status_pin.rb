@@ -17,6 +17,8 @@ class StatusPin < ApplicationRecord
 
   validates_with StatusPinValidator
 
+  scope :latest, -> { reorder(created_at: :desc) }
+
   after_destroy :invalidate_cleanup_info, if: %i(account_matches_status_account? account_local?)
 
   delegate :local?, to: :account, prefix: true
