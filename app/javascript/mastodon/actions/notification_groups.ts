@@ -38,10 +38,6 @@ function dispatchAssociatedRecords(
   const fetchedStatuses: ApiStatusJSON[] = [];
 
   notifications.forEach((notification) => {
-    if ('sample_accounts' in notification) {
-      fetchedAccounts.push(...notification.sample_accounts);
-    }
-
     if (notification.type === 'admin.report') {
       fetchedAccounts.push(notification.report.target_account);
     }
@@ -75,7 +71,9 @@ export const fetchNotifications = createDataLoadingThunk(
           : excludeAllTypesExcept(activeFilter),
     });
   },
-  ({ notifications }, { dispatch }) => {
+  ({ notifications, accounts, statuses }, { dispatch }) => {
+    dispatch(importFetchedAccounts(accounts));
+    dispatch(importFetchedStatuses(statuses));
     dispatchAssociatedRecords(dispatch, notifications);
     const payload: (ApiNotificationGroupJSON | NotificationGap)[] =
       notifications;
@@ -95,7 +93,9 @@ export const fetchNotificationsGap = createDataLoadingThunk(
   async (params: { gap: NotificationGap }) =>
     apiFetchNotifications({ max_id: params.gap.maxId }),
 
-  ({ notifications }, { dispatch }) => {
+  ({ notifications, accounts, statuses }, { dispatch }) => {
+    dispatch(importFetchedAccounts(accounts));
+    dispatch(importFetchedStatuses(statuses));
     dispatchAssociatedRecords(dispatch, notifications);
 
     return { notifications };
