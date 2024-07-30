@@ -83,7 +83,7 @@ nl:
         access_denied: De resource-eigenaar of autorisatie-server weigerde het verzoek.
         credential_flow_not_configured: De wachtwoordgegevens-flow van de resource-eigenaar is mislukt omdat Doorkeeper.configure.resource_owner_from_credentials niet is ingesteld.
         invalid_client: Clientverificatie is mislukt door een onbekende client, ontbrekende client-authenticatie of een niet ondersteunde authenticatie-methode.
-        invalid_code_challenge_method: De code-uitdagingsmethode moet S256 zijn, eenvoudig wordt niet ondersteund.
+        invalid_code_challenge_method: De code challenge method moet S256 zijn, plain wordt niet ondersteund.
         invalid_grant: De verstrekte autorisatie is ongeldig, verlopen, ingetrokken, komt niet overeen met de redirect-URI die is opgegeven of werd uitgegeven aan een andere client.
         invalid_redirect_uri: De opgegeven redirect-URI is ongeldig.
         invalid_request:

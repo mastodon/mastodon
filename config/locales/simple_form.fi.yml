@@ -73,13 +73,13 @@ fi:
       filters:
         action: Valitse, mikä toiminto suoritetaan, kun julkaisu vastaa suodatinta
         actions:
-          hide: Piilota suodatettu sisältö kokonaan ja käyttäydy ikään kuin sitä ei olisi olemassa
+          hide: Piilota suodatettu sisältö kokonaan, ikään kuin sitä ei olisi olemassa
           warn: Piilota suodatettu sisältö varoituksen taakse, jossa mainitaan suodattimen nimi
       form_admin_settings:
         activity_api_enabled: Paikallisesti julkaistujen julkaisujen, aktiivisten käyttäjien ja rekisteröitymisten viikoittainen määrä
         app_icon: WEBP, PNG, GIF tai JPG. Korvaa oletusarvoisen mobiililaitteiden sovelluskuvakkeen omalla kuvakkeella.
         backups_retention_period: Käyttäjillä on mahdollisuus arkistoida julkaisujaan myöhemmin ladattaviksi. Kun kentän arvo on positiivinen, nämä arkistot poistuvat automaattisesti, kun määritetty määrä päiviä on kulunut.
-        bootstrap_timeline_accounts: Nämä tilit kiinnitetään uusien käyttäjien seuraamissuositusten alkuun.
+        bootstrap_timeline_accounts: Nämä tilit kiinnitetään uusien käyttäjien seurantasuositusten alkuun.
         closed_registrations_message: Näkyy, kun rekisteröityminen on suljettu
         content_cache_retention_period: Kaikki muiden palvelinten julkaisut (mukaan lukien tehostukset ja vastaukset) poistuvat, kun määritetty määrä päiviä on kulunut, lukuun ottamatta paikallisen käyttäjän vuorovaikutusta näiden julkaisujen kanssa. Tämä sisältää julkaisut, jotka paikallinen käyttäjä on merkinnyt kirjanmerkiksi tai suosikiksi. Myös yksityismaininnat eri palvelinten käyttäjien välillä menetetään, eikä niitä voi palauttaa. Tämä asetus on tarkoitettu käytettäväksi erityistapauksissa ja rikkoo monia käyttäjien odotuksia, kun sitä sovelletaan yleiskäyttöön.
         custom_css: Voit käyttää mukautettuja tyylejä Mastodonin selainversiossa.
@@ -151,9 +151,9 @@ fi:
         show_collections: Näytä seuratut ja seuraajat profiilissa
         unlocked: Hyväksy uudet seuraajat automaattisesti
       account_alias:
-        acct: Vanhan tilin käyttäjänimi
+        acct: Vanhan tilin käyttäjätunnus
       account_migration:
-        acct: Uuden tilin käyttäjänimi
+        acct: Uuden tilin käyttäjätunnus
       account_warning_preset:
         text: Esimääritetty teksti
         title: Nimi
@@ -314,7 +314,7 @@ fi:
         listable: Salli tämän aihetunnisteen näkyä hauissa ja ehdotuksissa
         name: Aihetunniste
         trendable: Salli tämän aihetunnisteen näkyä trendeissä
-        usable: Salli julkaisujen käyttää tätä aihetunnistetta
+        usable: Salli julkaisujen käyttää tätä aihetunnistetta paikallisesti
       user:
         role: Rooli
         time_zone: Aikavyöhyke

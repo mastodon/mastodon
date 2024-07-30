@@ -151,7 +151,7 @@ de:
       subscribe: Abonnieren
       suspend: Sperren
       suspended: Gesperrt
-      suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst das Konto entsperren, um es wieder nutzbar zu machen, aber es wird keine Daten wiederherstellen, die es davor hatte.
+      suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst das Konto entsperren, um es wieder zu verwenden, aber es wird keine Daten wiederherstellen, die es davor hatte.
       suspension_reversible_hint_html: Das Konto wurde gesperrt und die Daten werden am %{date} vollständig gelöscht. Bis dahin kann das Konto ohne irgendwelche negativen Auswirkungen wiederhergestellt werden. Wenn du alle Daten des Kontos sofort entfernen möchtest, kannst du das nachfolgend tun.
       title: Konten
       unblock_email: E-Mail-Adresse entsperren
@@ -885,7 +885,23 @@ de:
         action: Für weitere Informationen hier klicken
         message_html: "<strong>Die Konfiguration deines Objektspeichers ist fehlerhaft. Die Privatsphäre deiner Benutzer*innen ist gefährdet.</strong>"
     tags:
+      moderation:
+        not_trendable: Nicht trendfähig
+        not_usable: Nicht verwendbar
+        pending_review: Überprüfung ausstehend
+        review_requested: Überprüfung angefordert
+        reviewed: Überprüft
+        title: Status
+        trendable: Trendfähig
+        unreviewed: Ungeprüft
+        usable: Verwendbar
+      name: Name
+      newest: Neueste
+      oldest: Älteste
+      reset: Zurücksetzen
       review: Prüfstatus
+      search: Suchen
+      title: Hashtags
       updated_msg: Hashtag-Einstellungen erfolgreich aktualisiert
     title: Administration
     trends:
@@ -1455,7 +1471,7 @@ de:
       backreference_required: Das neue Konto muss zuerst auf das alte Konto verweisen
       before: 'Bevor du fortfährst, lies bitte diese Hinweise sorgfältig durch:'
       cooldown: Nach dem Umzug wird es eine Weile dauern, bis du erneut umziehen darfst
-      disabled_account: Dein altes Konto ist nur noch eingeschränkt nutzbar. Du kannst jedoch deine Daten exportieren und das Konto wieder reaktivieren.
+      disabled_account: Dein altes Konto ist nur noch eingeschränkt verwendbar. Du kannst jedoch deine Daten exportieren und das Konto wieder reaktivieren.
       followers: Alle Follower werden vom alten zum neuen Konto übertragen
       only_redirect_html: Alternativ kannst du auch <a href="%{path}">nur eine Weiterleitung zu deinem neuen Konto</a> einrichten, ohne die Follower zu übertragen.
       other_data: Keine anderen Daten werden automatisch zum neuen Konto übertragen
