@@ -239,7 +239,7 @@ class StatusContent extends PureComponent {
 
   spokenByUser() {
     return spokenLanguages.includes(this.props.status.get('language'));
-  };
+  }
 
   render () {
     const { status, intl, statusContent } = this.props;
