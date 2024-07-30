@@ -463,13 +463,13 @@ fi:
         title: Tuo verkkotunnusten estoja
       no_file: Yhtäkään tiedostoa ei ole valittu
     follow_recommendations:
-      description_html: "<strong>Seuraamissuositukset auttavat uusia käyttäjiä löytämään nopeasti kiinnostavaa sisältöä</strong>. Kun käyttäjä ei ole ollut tarpeeksi vuorovaikutuksessa muiden kanssa, jotta hänelle olisi muodostunut henkilökohtaisia seuraamissuosituksia, suositellaan niiden sijaan näitä tilejä. Ne lasketaan päivittäin uudelleen yhdistelmästä tilejä, jotka ovat viime aikoina olleet aktiivisimmin sitoutuneita ja joilla on suurimmat paikalliset seuraajamäärät tietyllä kielellä."
+      description_html: "<strong>Seurantasuositukset auttavat uusia käyttäjiä löytämään nopeasti kiinnostavaa sisältöä</strong>. Kun käyttäjä ei ole ollut tarpeeksi vuorovaikutuksessa muiden kanssa, jotta hänelle olisi muodostunut henkilökohtaisia seuraamissuosituksia, suositellaan niiden sijaan näitä tilejä. Ne lasketaan päivittäin uudelleen yhdistelmästä tilejä, jotka ovat viime aikoina olleet aktiivisimmin sitoutuneita ja joilla on suurimmat paikalliset seuraajamäärät tietyllä kielellä."
       language: Kielelle
       status: Tila
-      suppress: Hylkää seuraamissuositus
+      suppress: Hylkää seurantasuositus
       suppressed: Hylätty
-      title: Seuraamissuositukset
-      unsuppress: Palauta seuraamissuositus
+      title: Seurantasuositukset
+      unsuppress: Palauta seurantasuositus
     instances:
       audit_log:
         title: Viimeaikaiset tarkastuslokit
@@ -765,7 +765,7 @@ fi:
         desc_html: Vaikuttaa kaikkiin käyttäjiin, jotka eivät ole muuttaneet tätä asetusta itse
         title: Jätä käyttäjät oletusarvoisesti hakukoneindeksoinnin ulkopuolelle
       discovery:
-        follow_recommendations: Seuraamissuositukset
+        follow_recommendations: Seurantasuositukset
         preamble: Mielenkiintoisen sisällön esille tuominen auttaa saamaan uusia käyttäjiä, jotka eivät ehkä tunne ketään Mastodonista. Määrittele, kuinka erilaiset löytämisominaisuudet toimivat palvelimellasi.
         profile_directory: Profiilihakemisto
         public_timelines: Julkiset aikajanat
@@ -885,7 +885,23 @@ fi:
         action: Katso täältä lisätietoja
         message_html: "<strong>Objektivarastosi on määritetty virheellisesti, ja käyttäjiesi yksityisyys on vaarassa.</strong>"
     tags:
+      moderation:
+        not_trendable: Ei trendattava
+        not_usable: Ei käytettävissä
+        pending_review: Odottaa tarkastusta
+        review_requested: Tarkastus pyydetty
+        reviewed: Tarkastettu
+        title: Tila
+        trendable: Trendattava
+        unreviewed: Tarkastamaton
+        usable: Käytettävissä
+      name: Nimi
+      newest: Uusin
+      oldest: Vanhin
+      reset: Tyhjennä
       review: Tarkista tila
+      search: Hae
+      title: Aihetunnisteet
       updated_msg: Aihetunnisteiden asetusten päivitys onnistui
     title: Ylläpito
     trends:
@@ -918,7 +934,7 @@ fi:
       statuses:
         allow: Salli julkaisu
         allow_account: Salli tekijä
-        description_html: Nämä ovat julkaisuja, joita palvelimesi tietää jaettavan ja lisättävän suosikkeihin paljon tällä hetkellä. Listaus voi auttaa uusia ja palaavia käyttäjiäsi löytämään lisää seurattavia. Julkaisut eivät näy julkisesti ennen kuin hyväksyt niiden julkaisijan ja julkaisija sallii tilinsä ehdottamisen. Voit myös sallia tai hylätä yksittäisiä julkaisuja.
+        description_html: Nämä ovat julkaisuja, joita palvelimesi tietää jaettavan ja lisättävän suosikkeihin paljon tällä hetkellä. Listaus voi auttaa uusia ja palaavia käyttäjiäsi löytämään lisää seurattavia. Julkaisut eivät näy julkisesti ennen kuin hyväksyt niiden tekijän ja tekijä sallii tilinsä ehdottamisen. Voit myös sallia tai hylätä yksittäisiä julkaisuja.
         disallow: Kiellä julkaisu
         disallow_account: Estä tekijä
         no_status_selected: Suosittuja julkaisuja ei muutettu, koska yhtään ei ollut valittuna
@@ -1227,7 +1243,7 @@ fi:
     noscript_html: Käyttääksesi Mastodonin verkkosovellusta, ota JavaScript käyttöön. Vaihtoehtoisesti voit kokeilla käyttämällesi alustalle kehitettyjä Mastodonin <a href="%{apps_path}">natiivisovelluksia</a>.
   existing_username_validator:
     not_found: paikallista käyttäjää ei löydy kyseisellä käyttäjänimellä
-    not_found_multiple: "%{usernames} ei löytynyt"
+    not_found_multiple: käyttäjänimiä %{usernames} ei löytynyt
   exports:
     archive_takeout:
       date: Päiväys
@@ -1265,7 +1281,7 @@ fi:
       deprecated_api_multiple_keywords: Näitä parametreja ei voi muuttaa tästä sovelluksesta, koska ne koskevat useampaa kuin yhtä suodattimen avainsanaa. Käytä uudempaa sovellusta tai selainkäyttöliittymää.
       invalid_context: Ei sisältöä tai se on virheellinen
     index:
-      contexts: Suodattaa kontektissa %{contexts}
+      contexts: Suodattaa kontekstissa %{contexts}
       delete: Poista
       empty: Sinulla ei ole suodattimia.
       expires_in: Vanhenee %{distance}
@@ -1551,7 +1567,7 @@ fi:
     privacy: Yksityisyys
     privacy_hint_html: Määritä, kuinka paljon muita avustavia tietoja haluat paljastaa. Käyttäjät löytävät kiinnostavia profiileja ja hienoja sovelluksia, kun he selaavat toisten seuraamia käyttäjiä ja kun he näkevät, millä sovelluksilla nämä julkaisevat. Saatat kuitenkin haluta piilottaa nämä tiedot.
     reach: Tavoittavuus
-    reach_hint_html: Määritä, haluatko tulla uusien käyttäjien löytämäksi ja seuraamaksi. Haluatko julkaisujesi näkyvän Selaa-sivulla? Haluatko muiden käyttäjien näkevän sinut seuraamissuosituksissaan? Haluatko hyväksyä kaikki uudet seuraajat automaattisesti vai päättää jokaisesta erikseen?
+    reach_hint_html: Määritä, haluatko tulla uusien käyttäjien löytämäksi ja seuraamaksi. Haluatko julkaisujesi näkyvän Selaa-sivulla? Haluatko muiden käyttäjien näkevän sinut seurantasuosituksissaan? Haluatko hyväksyä kaikki uudet seuraajat automaattisesti vai päättää jokaisesta erikseen?
     search: Haku
     search_hint_html: Määritä, kuinka haluat tulla löydetyksi. Haluatko, että ihmiset löytävät sinut julkisten julkaisujesi perusteella? Haluatko, että ihmiset Mastodonin ulkopuolella löytävät profiilisi tehdessään hakuja verkossa? Otathan huomioon, ettei julkisten tietojen täyttä kaikista hakukoneista poisjäämistä voi taata.
     title: Yksityisyys ja tavoittavuus
