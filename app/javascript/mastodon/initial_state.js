@@ -43,6 +43,7 @@
  * @property {boolean=} use_pending_items
  * @property {string} version
  * @property {string} sso_redirect
+ * @property {string[]} spoken_languages
  */
 
 /**
