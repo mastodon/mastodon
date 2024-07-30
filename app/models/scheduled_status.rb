@@ -15,6 +15,7 @@ class ScheduledStatus < ApplicationRecord
 
   TOTAL_LIMIT = 300
   DAILY_LIMIT = 25
+  MINIMUM_OFFSET = 5.minutes.freeze
 
   belongs_to :account, inverse_of: :scheduled_statuses
   has_many :media_attachments, inverse_of: :scheduled_status, dependent: :nullify
@@ -26,7 +27,7 @@ class ScheduledStatus < ApplicationRecord
   private
 
   def validate_future_date
-    errors.add(:scheduled_at, I18n.t('scheduled_statuses.too_soon')) if scheduled_at.present? && scheduled_at <= Time.now.utc + PostStatusService::MIN_SCHEDULE_OFFSET
+    errors.add(:scheduled_at, I18n.t('scheduled_statuses.too_soon')) if scheduled_at.present? && scheduled_at <= Time.now.utc + MINIMUM_OFFSET
   end
 
   def validate_total_limit

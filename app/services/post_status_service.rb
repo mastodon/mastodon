@@ -4,8 +4,6 @@ class PostStatusService < BaseService
   include Redisable
   include LanguagesHelper
 
-  MIN_SCHEDULE_OFFSET = 5.minutes.freeze
-
   class UnexpectedMentionsError < StandardError
     attr_reader :accounts
 
