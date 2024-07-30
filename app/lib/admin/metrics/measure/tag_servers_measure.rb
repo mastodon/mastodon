@@ -14,11 +14,11 @@ class Admin::Metrics::Measure::TagServersMeasure < Admin::Metrics::Measure::Base
   protected
 
   def perform_total_query
-    tag.statuses.where('statuses.id BETWEEN ? AND ?', Mastodon::Snowflake.id_at(@start_at, with_random: false), Mastodon::Snowflake.id_at(@end_at, with_random: false)).joins(:account).count('distinct accounts.domain')
+    domain_tag_count id_range(@start_at, @end_at)
   end
 
   def perform_previous_total_query
-    tag.statuses.where('statuses.id BETWEEN ? AND ?', Mastodon::Snowflake.id_at(@start_at - length_of_period, with_random: false), Mastodon::Snowflake.id_at(@end_at - length_of_period, with_random: false)).joins(:account).count('distinct accounts.domain')
+    domain_tag_count id_range(@start_at, @end_at, length_of_period)
   end
 
   def sql_array
@@ -59,5 +59,22 @@ class Admin::Metrics::Measure::TagServersMeasure < Admin::Metrics::Measure::Base
 
   def params
     @params.permit(:id)
+  end
+
+  def domain_tag_count(range)
+    tag
+      .statuses
+      .where(id: range)
+      .joins(:account)
+      .distinct
+      .count(Account.arel_table[:domain])
+  end
+
+  def id_range(starting, ending, offset = 0)
+    id_from(starting - offset)..id_from(ending - offset)
+  end
+
+  def id_from(time)
+    Mastodon::Snowflake.id_at(time, with_random: false)
   end
 end
