@@ -49,21 +49,14 @@ export const FilteredNotificationsBanner: React.FC = () => {
         <span>
           <FormattedMessage
             id='filtered_notifications_banner.pending_requests'
-            defaultMessage='Notifications from {count, plural, =0 {no one} one {one person} other {# people}} you may know'
+            defaultMessage='From {count, plural, =0 {no one} one {one person} other {# people}} you may know'
             values={{ count: policy.summary.pending_requests_count }}
           />
         </span>
       </div>
 
       <div className='filtered-notifications-banner__badge'>
-        <div className='filtered-notifications-banner__badge__badge'>
-          {toCappedNumber(policy.summary.pending_notifications_count)}
-        </div>
-        <FormattedMessage
-          id='filtered_notifications_banner.mentions'
-          defaultMessage='{count, plural, one {mention} other {mentions}}'
-          values={{ count: policy.summary.pending_notifications_count }}
-        />
+        {toCappedNumber(policy.summary.pending_notifications_count)}
       </div>
     </Link>
   );
