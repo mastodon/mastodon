@@ -1,5 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 
+import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import ReplyIcon from '@/material-icons/400-24px/reply-fill.svg?react';
 import type { StatusVisibility } from 'mastodon/api_types/statuses';
 import type { NotificationGroupMention } from 'mastodon/models/notification_group';
@@ -39,7 +40,7 @@ export const NotificationMention: React.FC<{
   return (
     <NotificationWithStatus
       type='mention'
-      icon={ReplyIcon}
+      icon={statusVisibility === 'direct' ? AlternateEmailIcon : ReplyIcon}
       iconId='reply'
       accountIds={notification.sampleAccountIds}
       count={notification.notifications_count}
