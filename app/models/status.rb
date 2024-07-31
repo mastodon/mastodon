@@ -84,7 +84,8 @@ class Status < ApplicationRecord
   has_many :local_reblogged, -> { merge(Account.local) }, through: :reblogs, source: :account
   has_many :local_bookmarked, -> { merge(Account.local) }, through: :bookmarks, source: :account
 
-  has_and_belongs_to_many :tags # rubocop:disable Rails/HasAndBelongsToMany
+  has_many :taggings, as: :taggable, dependent: :destroy
+  has_many :tags, through: :taggings
 
   has_one :preview_cards_status, inverse_of: :status, dependent: :delete
 

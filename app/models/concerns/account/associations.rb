@@ -45,6 +45,9 @@ module Account::Associations
         has_many :targeted_moderation_notes, class_name: 'AccountModerationNote'
         has_many :targeted_reports, class_name: 'Report'
       end
+
+      # Tagging applied to account
+      has_many :taggings, as: :taggable
     end
 
     # Status records pinned by the account
@@ -60,7 +63,7 @@ module Account::Associations
     belongs_to :moved_to_account, class_name: 'Account', optional: true
 
     # Tag records applied to account
-    has_and_belongs_to_many :tags # rubocop:disable Rails/HasAndBelongsToMany
+    has_many :tags, through: :taggings
 
     # FollowRecommendation for account (surfaced via view)
     has_one :follow_recommendation, inverse_of: :account, dependent: nil

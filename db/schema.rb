@@ -206,12 +206,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_04_082851) do
     t.index ["url"], name: "index_accounts_on_url", opclass: :text_pattern_ops, where: "(url IS NOT NULL)"
   end
 
-  create_table "accounts_tags", primary_key: ["tag_id", "account_id"], force: :cascade do |t|
-    t.bigint "account_id", null: false
-    t.bigint "tag_id", null: false
-    t.index ["account_id", "tag_id"], name: "index_accounts_tags_on_account_id_and_tag_id"
-  end
-
   create_table "admin_action_logs", force: :cascade do |t|
     t.bigint "account_id"
     t.string "action", default: "", null: false
@@ -1065,12 +1059,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_04_082851) do
     t.index ["uri"], name: "index_statuses_on_uri", unique: true, opclass: :text_pattern_ops, where: "(uri IS NOT NULL)"
   end
 
-  create_table "statuses_tags", primary_key: ["tag_id", "status_id"], force: :cascade do |t|
-    t.bigint "status_id", null: false
-    t.bigint "tag_id", null: false
-    t.index ["status_id"], name: "index_statuses_tags_on_status_id"
-  end
-
   create_table "tag_follows", force: :cascade do |t|
     t.bigint "tag_id", null: false
     t.bigint "account_id", null: false
@@ -1349,8 +1337,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_04_082851) do
   add_foreign_key "statuses", "accounts", name: "fk_9bda1543f7", on_delete: :cascade
   add_foreign_key "statuses", "statuses", column: "in_reply_to_id", on_delete: :nullify
   add_foreign_key "statuses", "statuses", column: "reblog_of_id", on_delete: :cascade
-  add_foreign_key "statuses_tags", "statuses", on_delete: :cascade
-  add_foreign_key "statuses_tags", "tags", name: "fk_3081861e21", on_delete: :cascade
   add_foreign_key "tag_follows", "accounts", on_delete: :cascade
   add_foreign_key "tag_follows", "tags", on_delete: :cascade
   add_foreign_key "taggings", "tags"
