@@ -33,7 +33,8 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
         'app.notification_grouping.status.unique_count' => statuses.uniq.size
       )
 
-      render json: @grouped_notifications, each_serializer: REST::NotificationGroupSerializer, relationships: @relationships, group_metadata: @group_metadata
+      presenter = GroupedNotificationsPresenter.new(@grouped_notifications)
+      render json: presenter, serializer: REST::DedupNotificationGroupSerializer, relationships: @relationships, group_metadata: @group_metadata
     end
   end
 
@@ -47,7 +48,8 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
 
   def show
     @notification = current_account.notifications.without_suspended.find_by!(group_key: params[:id])
-    render json: NotificationGroup.from_notification(@notification), serializer: REST::NotificationGroupSerializer
+    presenter = GroupedNotificationsPresenter.new([NotificationGroup.from_notification(@notification)])
+    render json: presenter, serializer: REST::DedupNotificationGroupSerializer
   end
 
   def clear

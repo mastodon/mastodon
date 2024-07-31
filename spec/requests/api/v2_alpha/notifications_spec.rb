@@ -135,7 +135,7 @@ RSpec.describe 'Notifications' do
 
         expect(response).to have_http_status(200)
         expect(body_json_types.uniq).to eq ['mention']
-        expect(body_as_json[0][:page_min_id]).to_not be_nil
+        expect(body_as_json.dig(:notification_groups, 0, :page_min_id)).to_not be_nil
       end
     end
 
@@ -147,7 +147,7 @@ RSpec.describe 'Notifications' do
 
         notifications = user.account.notifications
 
-        expect(body_as_json.size)
+        expect(body_as_json[:notification_groups].size)
           .to eq(params[:limit])
 
         expect(response)
@@ -161,7 +161,7 @@ RSpec.describe 'Notifications' do
     end
 
     def body_json_types
-      body_as_json.pluck(:type)
+      body_as_json[:notification_groups].pluck(:type)
     end
   end
 

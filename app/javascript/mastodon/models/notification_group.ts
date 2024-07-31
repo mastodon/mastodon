@@ -14,7 +14,7 @@ import type { ApiReportJSON } from 'mastodon/api_types/reports';
 export const NOTIFICATIONS_GROUP_MAX_AVATARS = 8;
 
 interface BaseNotificationGroup
-  extends Omit<BaseNotificationGroupJSON, 'sample_accounts'> {
+  extends Omit<BaseNotificationGroupJSON, 'sample_account_ids'> {
   sampleAccountIds: string[];
 }
 
@@ -115,8 +115,7 @@ function createAccountRelationshipSeveranceEventFromJSON(
 export function createNotificationGroupFromJSON(
   groupJson: ApiNotificationGroupJSON,
 ): NotificationGroup {
-  const { sample_accounts, ...group } = groupJson;
-  const sampleAccountIds = sample_accounts.map((account) => account.id);
+  const { sample_account_ids: sampleAccountIds, ...group } = groupJson;
 
   switch (group.type) {
     case 'favourite':
