@@ -49,7 +49,7 @@ export const FilteredNotificationsBanner: React.FC = () => {
         <span>
           <FormattedMessage
             id='filtered_notifications_banner.pending_requests'
-            defaultMessage='{count, plural, =0 {No one} one {One person} other {# people}} you may know'
+            defaultMessage='From {count, plural, =0 {no one} one {one person} other {# people}} you may know'
             values={{ count: policy.summary.pending_requests_count }}
           />
         </span>
