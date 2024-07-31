@@ -45,7 +45,13 @@ class FetchLinkCardService < BaseService
   def html
     return @html if defined?(@html)
 
-    @html = Request.new(:get, @url).add_headers('Accept' => 'text/html', 'User-Agent' => "#{Mastodon::Version.user_agent} Bot").perform do |res|
+    headers = {
+      'Accept' => 'text/html',
+      'Accept-Language' => [@status.language.presence, "#{I18n.default_locale};q=0.5", '*'].compact.join(', '),
+      'User-Agent' => "#{Mastodon::Version.user_agent} Bot",
+    }
+
+    @html = Request.new(:get, @url).add_headers(headers).perform do |res|
       next unless res.code == 200 && res.mime_type == 'text/html'
 
       # We follow redirects, and ideally we want to save the preview card for
@@ -103,9 +109,9 @@ class FetchLinkCardService < BaseService
     service         = FetchOEmbedService.new
     url_domain      = Addressable::URI.parse(@url).normalized_host
     cached_endpoint = Rails.cache.read("oembed_endpoint:#{url_domain}")
-
-    embed   = service.call(@url, cached_endpoint: cached_endpoint) unless cached_endpoint.nil?
-    embed ||= service.call(@url, html: html) unless html.nil?
+p 'cached_endpoint', cached_endpoint, @url
+    embed   = service.call(@url, language: @status.language.presence, cached_endpoint: cached_endpoint) unless cached_endpoint.nil?
+    embed ||= service.call(@url, language: @status.language.presence, html: html) unless html.nil?
 
     return false if embed.nil?
 
