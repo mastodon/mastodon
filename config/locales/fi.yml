@@ -101,7 +101,7 @@ fi:
       most_recent_ip: Viimeisin IP
       no_account_selected: Tilejä ei muutettu, koska yhtään ei ollut valittuna
       no_limits_imposed: Rajoituksia ei ole asetettu
-      no_role_assigned: Roolia ei määritetty
+      no_role_assigned: Roolia ei asetettu
       not_subscribed: Ei tilaaja
       pending: Odottaa tarkastusta
       perform_full_suspension: Jäädytä
@@ -173,8 +173,8 @@ fi:
         approve_appeal: Hyväksy valitus
         approve_user: Hyväksy käyttäjä
         assigned_to_self_report: Ota raportti käsiteltäväksi
-        change_email_user: Vaihda sähköposti käyttäjälle
-        change_role_user: Muuta käyttäjän roolia
+        change_email_user: Vaihda käyttäjän sähköpostiosoite
+        change_role_user: Vaihda käyttäjän roolia
         confirm_user: Vahvista käyttäjä
         create_account_warning: Luo varoitus
         create_announcement: Luo tiedote
@@ -231,44 +231,44 @@ fi:
         update_user_role: Päivitä rooli
       actions:
         approve_appeal_html: "%{name} hyväksyi käyttäjän %{target} valituksen moderointipäätöksestä"
-        approve_user_html: "%{name} hyväksyi käyttäjän rekisteröitymisen kohteesta %{target}"
+        approve_user_html: "%{name} hyväksyi käyttäjän %{target} rekisteröitymisen"
         assigned_to_self_report_html: "%{name} otti raportin %{target} käsiteltäväkseen"
         change_email_user_html: "%{name} vaihtoi käyttäjän %{target} sähköpostiosoitteen"
         change_role_user_html: "%{name} muutti käyttäjän %{target} roolia"
         confirm_user_html: "%{name} vahvisti käyttäjän %{target} sähköpostiosoitteen"
         create_account_warning_html: "%{name} lähetti varoituksen käyttäjälle %{target}"
         create_announcement_html: "%{name} loi uuden tiedotteen %{target}"
-        create_canonical_email_block_html: "%{name} esti sähköpostin tiivisteellä %{target}"
+        create_canonical_email_block_html: "%{name} esti sähköpostiosoitteen tiivisteellä %{target}"
         create_custom_emoji_html: "%{name} lähetti uuden emojin %{target}"
         create_domain_allow_html: "%{name} salli federoinnin verkkotunnuksen %{target} kanssa"
         create_domain_block_html: "%{name} esti verkkotunnuksen %{target}"
         create_email_domain_block_html: "%{name} esti sähköpostiverkkotunnuksen %{target}"
-        create_ip_block_html: "%{name} loi IP-säännön %{target}"
+        create_ip_block_html: "%{name} loi säännön IP-osoitteelle %{target}"
         create_unavailable_domain_html: "%{name} pysäytti toimituksen verkkotunnukseen %{target}"
         create_user_role_html: "%{name} loi roolin %{target}"
         demote_user_html: "%{name} alensi käyttäjän %{target}"
         destroy_announcement_html: "%{name} poisti tiedotteen %{target}"
-        destroy_canonical_email_block_html: "%{name} kumosi sähköpostin eston tiivisteellä %{target}"
+        destroy_canonical_email_block_html: "%{name} kumosi sähköpostiosoitteen eston tiivisteellä %{target}"
         destroy_custom_emoji_html: "%{name} poisti emojin %{target}"
         destroy_domain_allow_html: "%{name} kielsi federoinnin verkkotunnuksen %{target} kanssa"
         destroy_domain_block_html: "%{name} kumosi verkkotunnuksen %{target} eston"
         destroy_email_domain_block_html: "%{name} kumosi sähköpostiverkkotunnuksen %{target} eston"
         destroy_instance_html: "%{name} tyhjensi verkkotunnuksen %{target}"
-        destroy_ip_block_html: "%{name} poisti IP-säännön %{target}"
+        destroy_ip_block_html: "%{name} poisti säännön IP-osoitteelta %{target}"
         destroy_status_html: "%{name} poisti käyttäjän %{target} julkaisun"
         destroy_unavailable_domain_html: "%{name} jatkoi toimitusta verkkotunnukseen %{target}"
         destroy_user_role_html: "%{name} poisti roolin %{target}"
-        disable_2fa_user_html: "%{name} poisti käyttäjältä %{target} vaatimuksen kaksivaiheisen todentamiseen"
-        disable_custom_emoji_html: "%{name} poisti käytöstä emojin %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} poisti sähköpostitunnuksella todennuksen käytöstä tililtä %{target}"
-        disable_user_html: "%{name} poisti kirjautumisen käyttäjältä %{target}"
+        disable_2fa_user_html: "%{name} poisti käyttäjältä %{target} vaatimuksen kaksivaiheiseen todentamiseen"
+        disable_custom_emoji_html: "%{name} poisti emojin %{target} käytöstä"
+        disable_sign_in_token_auth_user_html: "%{name} poisti sähköpostitunnuksella todennuksen käytöstä käyttäjältä %{target}"
+        disable_user_html: "%{name} poisti kirjautumisen käytöstä käyttäjältä %{target}"
         enable_custom_emoji_html: "%{name} otti emojin %{target} käyttöön"
-        enable_sign_in_token_auth_user_html: "%{name} otti sähköpostitunnuksella todennuksen käyttöön tilille %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} otti sähköpostitunnuksella todennuksen käyttöön käyttäjälle %{target}"
         enable_user_html: "%{name} otti kirjautumisen käyttöön käyttäjälle %{target}"
         memorialize_account_html: "%{name} muutti käyttäjän %{target} tilin muistosivuksi"
         promote_user_html: "%{name} ylensi käyttäjän %{target}"
         reject_appeal_html: "%{name} hylkäsi käyttäjän %{target} valituksen moderointipäätöksestä"
-        reject_user_html: "%{name} hylkäsi käyttäjän rekisteröitymisen kohteesta %{target}"
+        reject_user_html: "%{name} hylkäsi käyttäjän %{target} rekisteröitymisen"
         remove_avatar_user_html: "%{name} poisti käyttäjän %{target} profiilikuvan"
         reopen_report_html: "%{name} avasi uudelleen raportin %{target}"
         resend_user_html: "%{name} lähetti vahvistussähköpostiviestin uudelleen käyttäjälle %{target}"
@@ -277,7 +277,7 @@ fi:
         sensitive_account_html: "%{name} merkitsi käyttäjän %{target} median arkaluonteiseksi"
         silence_account_html: "%{name} rajoitti käyttäjän %{target} tiliä"
         suspend_account_html: "%{name} jäädytti käyttäjän %{target} tilin"
-        unassigned_report_html: "%{name} poisti raportin käsittelystä %{target}"
+        unassigned_report_html: "%{name} poisti raportin %{target} käsittelystä"
         unblock_email_account_html: "%{name} kumosi käyttäjän %{target} sähköpostiosoitteen eston"
         unsensitive_account_html: "%{name} kumosi käyttäjän %{target} median arkaluonteisuusmerkinnän"
         unsilence_account_html: "%{name} kumosi käyttäjän %{target} rajoituksen"
@@ -476,15 +476,15 @@ fi:
         view_all: Näytä kaikki tarkastuslokit
       availability:
         description_html:
-          one: Jos toimitus verkkotunnukseen epäonnistuu <strong>%{count} päivän</strong> ajan, sitä ei yritetä uudelleen ennen kuin verkkotunnuksesta <em>vastaanotetaan</em> toimitus.
-          other: Jos toimitus verkkotunnukseen epäonnistuu <strong>%{count} päivän</strong> ajan, sitä ei yritetä uudelleen ennen kuin verkkotunnuksesta <em>vastaanotetaan</em> toimitus.
-        failure_threshold_reached: Epäonnistumisen kynnys saavutettu %{date}.
+          one: Jos toimitus verkkotunnukseen epäonnistuu <strong>päivän ajan</strong>, sitä ei yritetä uudelleen ennen kuin verkkotunnuksesta <em>vastaanotetaan</em> toimitus.
+          other: Jos toimitus verkkotunnukseen epäonnistuu <strong>%{count} päivän ajan</strong>, sitä ei yritetä uudelleen ennen kuin verkkotunnuksesta <em>vastaanotetaan</em> toimitus.
+        failure_threshold_reached: Epäonnistumisten yläraja saavutettu %{date}.
         failures_recorded:
-          one: Epäonnistuneita yrityksiä %{count} päivässä.
-          other: Epäonnistuneita yrityksiä %{count} päivää.
-        no_failures_recorded: Ei epäonnistumisia kirjattu.
+          one: Epäonnistuneita yrityksiä %{count} päivänä.
+          other: Epäonnistuneita yrityksiä %{count} päivänä.
+        no_failures_recorded: Epäonnistumisia ei kirjattu.
         title: Saatavuus
-        warning: Viimeisin yritys yhdistää yhteys tähän palvelimeen on epäonnistunut
+        warning: Viimeisin yritys yhdistää tähän palvelimeen epäonnistui
       back_to_all: Kaikki
       back_to_limited: Rajoitettu
       back_to_warning: Varoitus
@@ -492,24 +492,24 @@ fi:
       confirm_purge: Haluatko varmasti poistaa pysyvästi tämän verkkotunnuksen tiedot?
       content_policies:
         comment: Sisäinen muistiinpano
-        description_html: Voit määrittää sisältökäytännöt, joita sovelletaan kaikkiin tämän verkkotunnuksen ja sen aliverkkotunnuksien tileihin.
+        description_html: Voit määrittää sisältökäytännöt, joita sovelletaan kaikkiin tämän verkkotunnuksen ja sen aliverkkotunnusten tileihin.
         limited_federation_mode_description_html: Voit valita sallitaanko federointi tällä verkkotunnuksella.
         policies:
           reject_media: Hylkää media
           reject_reports: Hylkää raportit
           silence: Rajoita
           suspend: Jäädytä
-        policy: Käytännöt
+        policy: Käytäntö
         reason: Julkinen syy
-        title: Sisällön toimintatavat
+        title: Sisältökäytännöt
       dashboard:
         instance_accounts_dimension: Seuratuimmat tilit
         instance_accounts_measure: tallennetut tilit
         instance_followers_measure: seuraajamme siellä
         instance_follows_measure: heidän seuraajansa täällä
         instance_languages_dimension: Suosituimmat kielet
-        instance_media_attachments_measure: tallennetut median liitteet
-        instance_reports_measure: niitä koskevat raportit
+        instance_media_attachments_measure: tallennetut medialiitteet
+        instance_reports_measure: heitä koskevat raportit
         instance_statuses_measure: tallennetut julkaisut
       delivery:
         all: Kaikki
@@ -520,7 +520,7 @@ fi:
         unavailable: Ei saatavilla
       delivery_available: Toimitus on saatavilla
       delivery_error_days: Toimitusvirheen päivät
-      delivery_error_hint: Jos toimitus ei ole mahdollista %{count} päivän aikana, se merkitään automaattisesti toimittamattomaksi.
+      delivery_error_hint: Jos toimitus ei ole mahdollista %{count} päivään, se merkitään automaattisesti toimituskelvottomaksi.
       destroyed_msg: Palvelimelta %{domain} peräisin olevat tiedot ovat nyt jonossa poistattaviksi.
       empty: Verkkotunnuksia ei löytynyt.
       known_accounts:
@@ -533,14 +533,14 @@ fi:
       private_comment: Yksityinen kommentti
       public_comment: Julkinen kommentti
       purge: Tyhjennä
-      purge_description_html: Jos uskot, että tämä verkkotunnus on offline-tilassa tarkoituksella, voit poistaa kaikki verkkotunnuksen tilitietueet ja niihin liittyvät tiedot tallennustilastasi. Tämä voi kestää jonkin aikaa.
+      purge_description_html: Jos uskot, että tämä verkkotunnus on yhteydettömässä tilassa tarkoituksella, voit poistaa kaikki verkkotunnuksen tilitietueet ja niihin liittyvät tiedot tallennustilastasi. Tämä voi kestää jonkin aikaa.
       title: Federointi
       total_blocked_by_us: Estämämme
       total_followed_by_them: Heidän seuraama
       total_followed_by_us: Meidän seuraama
-      total_reported: Niitä koskevat raportit
+      total_reported: Heitä koskevat raportit
       total_storage: Medialiitteet
-      totals_time_period_hint_html: Alla näkyvät yhteenlasketut tiedot sisältävät koko ajan.
+      totals_time_period_hint_html: Seuraavassa näkyvät määrät sisältävät tiedot koko ajalta.
       unknown_instance: Tällä palvelimella ei tällä hetkellä ole tähän verkkotunnukseen liittyviä tietueita.
     invites:
       deactivate_all: Poista kaikki käytöstä
@@ -689,7 +689,7 @@ fi:
       description_html: "<strong>Käyttäjärooleilla</strong> voit mukauttaa, mihin Mastodonin toimintoihin ja alueisiin käyttäjäsi pääsevät käsiksi."
       edit: Muokkaa roolia ”%{name}”
       everyone: Oletuskäyttöoikeudet
-      everyone_full_description_html: Tämä on <strong>perusrooli</strong>, joka vaikuttaa <strong>kaikkiin käyttäjiin</strong>, jopa ilman määrättyä roolia. Kaikki muut roolit perivät sen käyttöoikeudet.
+      everyone_full_description_html: Tämä on <strong>perusrooli</strong>, joka vaikuttaa <strong>kaikkiin käyttäjiin</strong>, jopa ilman asetettua roolia. Kaikki muut roolit perivät sen käyttöoikeudet.
       permissions_count:
         one: "%{count} käyttöoikeus"
         other: "%{count} käyttöoikeutta"
@@ -794,7 +794,7 @@ fi:
         federation_authentication: Federoinnin todennuksen valvonta
       title: Palvelimen asetukset
     site_uploads:
-      delete: Poista ladattu tiedosto
+      delete: Poista lähetetty tiedosto
       destroyed_msg: Sivustolatauksen poisto onnistui!
     software_updates:
       critical_update: Kriittinen – päivitä viivyttelemättä
@@ -851,7 +851,7 @@ fi:
       elasticsearch_health_red:
         message_html: Elasticsearch-klusteri on vikatilassa (punainen tila), joten hakuominaisuudet eivät ole käytettävissä
       elasticsearch_health_yellow:
-        message_html: Elasticsearch-klusteri on häiriötilassa (keltainen tila), joten suosittelemme tutkimaan syyn
+        message_html: Elasticsearch-klusteri on vikatilassa (keltainen tila), joten suosittelemme tutkimaan syyn
       elasticsearch_index_mismatch:
         message_html: Elasticsearch-indeksin sidokset ovat vanhentuneet. Suorita <code>tootctl search deploy --only=%{value}</code>
       elasticsearch_preset:
@@ -863,10 +863,10 @@ fi:
       elasticsearch_reset_chewy:
         message_html: Elasticsearch-järjestelmäindeksi on vanhentunut asetusmuutoksen vuoksi. Suorita <code>tootctl search deploy --reset-chewy</code> päivittääksesi sen.
       elasticsearch_running_check:
-        message_html: Ei saatu yhteyttä Elasticsearchiin. Tarkista, että se on käynnissä tai poista kokotekstihaku käytöstä
+        message_html: Elasticsearchiin ei saatu yhteyttä. Tarkista, että se on käynnissä, tai poista kokotekstihaku käytöstä
       elasticsearch_version_check:
         message_html: 'Yhteensopimaton Elasticsearch-versio: %{value}'
-        version_comparison: Elasticsearch %{running_version} on käynnissä, kun %{required_version} vaaditaan
+        version_comparison: Käynnissä on Elasticsearch %{running_version}, kun vaaditaan %{required_version}
       rules_check:
         action: Hallitse palvelimen sääntöjä
         message_html: Et ole määrittänyt lainkaan palvelimen sääntöjä.
@@ -879,11 +879,11 @@ fi:
         action: Näytä saatavilla olevat päivitykset
         message_html: Mastodonin virhekorjauspäivitys on saatavilla.
       upload_check_privacy_error:
-        action: Katso täältä lisätietoja
-        message_html: "<strong>Verkkopalvelimesi on määritetty väärin. Käyttäjiesi yksityisyys on vaarassa.</strong>"
+        action: Katso lisätietoja täältä
+        message_html: "<strong>Verkkopalvelimesi on määritetty väärin. Käyttäjiesi tietosuoja on vaarassa.</strong>"
       upload_check_privacy_error_object_storage:
-        action: Katso täältä lisätietoja
-        message_html: "<strong>Objektivarastosi on määritetty virheellisesti, ja käyttäjiesi yksityisyys on vaarassa.</strong>"
+        action: Katso lisätietoja täältä
+        message_html: "<strong>Oliovarastosi on määritetty virheellisesti. Käyttäjiesi tietosuoja on vaarassa.</strong>"
     tags:
       moderation:
         not_trendable: Ei trendattava
@@ -1070,7 +1070,7 @@ fi:
     apply_for_account: Pyydä tiliä
     captcha_confirmation:
       help_html: Jos kohtaat ongelmia CAPTCHAn ratkaisemisessa, voit pyytää meiltä apua osoitteella %{email}.
-      hint_html: Vielä yksi juttu! Meidän on vahvistettava, että olet ihminen (tämän avulla pidämme roskapostin poissa!). Ratkaise alla oleva CAPTCHA-vahvistus ja paina "Jatka".
+      hint_html: Vielä yksi asia! Meidän on vahvistettava, että olet ihminen (tämän avulla pidämme roskapostin poissa!). Ratkaise alla oleva CAPTCHA-vahvistus ja paina ”Jatka”.
       title: Turvatarkastus
     confirmations:
       awaiting_review: Sähköpostiosoitteesi on vahvistettu! Seuraavaksi palvelimen %{domain} ylläpito tarkastaa rekisteröitymisesi, ja saat lopuksi ilmoituksen sähköpostitse, jos tilisi hyväksytään!
@@ -1100,7 +1100,7 @@ fi:
     migrate_account: Muuta toiseen tiliin
     migrate_account_html: Jos haluat ohjata tämän tilin toiseen, voit <a href="%{path}">asettaa toisen tilin tästä</a>.
     or_log_in_with: Tai käytä kirjautumiseen
-    privacy_policy_agreement_html: Olen lukenut ja hyväksynyt <a href="%{privacy_policy_path}" target="_blank">tietosuojakäytännön</a>
+    privacy_policy_agreement_html: Olen lukenut ja hyväksyn <a href="%{privacy_policy_path}" target="_blank">tietosuojakäytännön</a>
     progress:
       confirm: Vahvista sähköpostiosoite
       details: Omat tietosi
@@ -1187,7 +1187,7 @@ fi:
       email_contact_html: Jos ei saavu perille, voit pyytää apua sähköpostilla <a href="mailto:%{email}">%{email}</a>
       email_reconfirmation_html: Jos et saa vahvistuksen sähköpostia, niin voit <a href="%{path}">pyytää sitä uudelleen</a>
       irreversible: Et voi palauttaa tiliäsi tai aktivoida sitä uudelleen
-      more_details_html: Lisätietoja saat <a href="%{terms_path}">tietosuojakäytännöstämme</a>.
+      more_details_html: Tarkempia tietoja saat <a href="%{terms_path}">tietosuojakäytännöstämme</a>.
       username_available: Käyttäjänimesi tulee saataville uudelleen
       username_unavailable: Käyttäjänimesi ei tule saataville enää uudelleen
   disputes:
@@ -1312,8 +1312,8 @@ fi:
       one: "<strong>%{count}</strong> kohde tällä sivulla on valittu."
       other: Kaikki <strong>%{count}</strong> kohdetta tällä sivulla on valittu.
     all_matching_items_selected_html:
-      one: "<strong>%{count}</strong> kohde, joka vastaa hakuasi."
-      other: Kaikki <strong>%{count}</strong> hakuasi vastaavaa kohdetta.
+      one: "<strong>%{count}</strong> hakuasi vastaava kohde on valittuna."
+      other: Kaikki <strong>%{count}</strong> hakuasi vastaavat kohteet ovat valittuina.
     cancel: Peruuta
     changes_saved_msg: Muutosten tallennus onnistui!
     confirm: Vahvista
@@ -1324,7 +1324,7 @@ fi:
     order_by: Järjestys
     save_changes: Tallenna muutokset
     select_all_matching_items:
-      one: Valitse %{count} kohde, joka vastaa hakuasi.
+      one: Valitse %{count} hakuasi vastaava kohde.
       other: Valitse kaikki %{count} hakuasi vastaavaa kohdetta.
     today: tänään
     validation_errors:
@@ -1475,7 +1475,7 @@ fi:
       followers: Tämä toiminto siirtää kaikki seuraajat nykyisestä tilistä uudelle tilille
       only_redirect_html: Vaihtoehtoisesti voit <a href="%{path}">asettaa vain ohjauksen profiiliisi</a>.
       other_data: Muita tietoja ei siirretä automaattisesti
-      redirect: Nykyisen tilisi profiili päivitetään ohjaushuomautuksella ja suljetaan pois hauista
+      redirect: Nykyisen tilisi profiili päivitetään uudelleenohjaushuomautuksella ja suljetaan pois hauista
   moderation:
     title: Moderointi
   move_handler:
@@ -1858,7 +1858,7 @@ fi:
         delete_statuses: Joidenkin julkaisuistasi on havaittu rikkovan ainakin yhtä yhteisön sääntöä, joten palvelimen %{instance} moderaattorit ovat poistaneet ne.
         disable: Et voi enää käyttää tiliäsi, mutta profiilisi ja muut tiedot pysyvät muuttumattomina. Voit pyytää varmuuskopiota tiedoistasi, vaihtaa tilin asetuksia tai poistaa tilisi.
         mark_statuses_as_sensitive: Palvelimen %{instance} moderaattorit ovat merkinneet osan julkaisuistasi arkaluonteisiksi. Tämä tarkoittaa sitä, että ihmisten täytyy napauttaa mediaa ennen kuin sen esikatselu näytetään. Voit merkitä median itse arkaluonteiseksi, kun julkaiset tulevaisuudessa.
-        sensitive: Tästä lähtien kaikki ladatut mediatiedostot merkitään arkaluonteisiksi ja piilotetaan napsautusvaroituksen taakse.
+        sensitive: Tästä lähtien kaikki lähetetyt mediatiedostot merkitään arkaluonteisiksi ja piilotetaan napsautusvaroituksen taakse.
         silence: Voit edelleen käyttää tiliäsi, mutta vain sinua jo seuraavat käyttäjät näkevät julkaisusi tällä palvelimella ja sinut voidaan sulkea pois eri löytämisominaisuuksista. Toiset voivat kuitenkin edelleen seurata sinua manuaalisesti.
         suspend: Et voi enää käyttää tiliäsi, eivätkä profiilisi ja muut tiedot ole enää käytettävissä. Voit silti kirjautua sisään pyytääksesi tietojesi varmuuskopiota, kunnes tiedot on poistettu kokonaan noin 30 päivän kuluttua. Säilytämme kuitenkin joitain perustietoja, jotka estävät sinua kiertämästä jäädytystä.
       reason: 'Syy:'
