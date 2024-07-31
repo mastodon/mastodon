@@ -7,9 +7,9 @@ import { Helmet } from 'react-helmet';
 
 import { useSelector, useDispatch } from 'react-redux';
 
+import DeleteIcon from '@/material-icons/400-24px/delete.svg?react';
 import DoneIcon from '@/material-icons/400-24px/done.svg?react';
 import InventoryIcon from '@/material-icons/400-24px/inventory_2.svg?react';
-import VolumeOffIcon from '@/material-icons/400-24px/volume_off.svg?react';
 import { fetchNotificationRequest, fetchNotificationsForRequest, expandNotificationsForRequest, acceptNotificationRequest, dismissNotificationRequest } from 'mastodon/actions/notifications';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
@@ -101,7 +101,7 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
         showBackButton
         extraButton={!removed && (
           <>
-            <IconButton className='column-header__button' iconComponent={VolumeOffIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
+            <IconButton className='column-header__button' iconComponent={DeleteIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
             <IconButton className='column-header__button' iconComponent={DoneIcon} onClick={handleAccept} title={intl.formatMessage(messages.accept)} />
           </>
         )}
