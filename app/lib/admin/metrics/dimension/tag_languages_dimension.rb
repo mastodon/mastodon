@@ -26,8 +26,8 @@ class Admin::Metrics::Dimension::TagLanguagesDimension < Admin::Metrics::Dimensi
     <<~SQL.squish
       SELECT COALESCE(statuses.language, 'und') AS language, count(*) AS value
       FROM statuses
-      INNER JOIN statuses_tags ON statuses_tags.status_id = statuses.id
-      WHERE statuses_tags.tag_id = :tag_id
+      INNER JOIN taggings ON taggings.taggable_id = statuses.id AND taggings.taggable_type = 'Status'
+      WHERE taggings.tag_id = :tag_id
         AND statuses.id BETWEEN :earliest_status_id AND :latest_status_id
       GROUP BY COALESCE(statuses.language, 'und')
       ORDER BY count(*) DESC

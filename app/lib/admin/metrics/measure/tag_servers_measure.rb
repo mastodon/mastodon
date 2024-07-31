@@ -31,9 +31,9 @@ class Admin::Metrics::Measure::TagServersMeasure < Admin::Metrics::Measure::Base
         WITH tag_servers AS (
           SELECT DISTINCT accounts.domain
           FROM statuses
-          INNER JOIN statuses_tags ON statuses.id = statuses_tags.status_id
+          INNER JOIN taggings ON statuses.id = taggings.taggable_id AND taggings.taggable_type = 'Status'
           INNER JOIN accounts ON statuses.account_id = accounts.id
-          WHERE statuses_tags.tag_id = :tag_id
+          WHERE taggings.tag_id = :tag_id
             AND statuses.id BETWEEN :earliest_status_id AND :latest_status_id
             AND date_trunc('day', statuses.created_at)::date = axis.period
         )

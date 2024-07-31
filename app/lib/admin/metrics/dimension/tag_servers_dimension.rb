@@ -26,8 +26,8 @@ class Admin::Metrics::Dimension::TagServersDimension < Admin::Metrics::Dimension
       SELECT accounts.domain, count(*) AS value
       FROM statuses
       INNER JOIN accounts ON accounts.id = statuses.account_id
-      INNER JOIN statuses_tags ON statuses_tags.status_id = statuses.id
-      WHERE statuses_tags.tag_id = :tag_id
+      INNER JOIN taggings ON taggings.taggable_id = statuses.id AND taggings.taggable_type = 'Status'
+      WHERE taggings.tag_id = :tag_id
         AND statuses.id BETWEEN :earliest_status_id AND :latest_status_id
       GROUP BY accounts.domain
       ORDER BY count(*) DESC
