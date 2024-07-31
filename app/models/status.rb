@@ -113,18 +113,18 @@ class Status < ApplicationRecord
   scope :not_reply, -> { where(reply: false) }
   scope :reply_to_account, -> { where(arel_table[:in_reply_to_account_id].eq arel_table[:account_id]) }
   scope :without_reblogs, -> { where(statuses: { reblog_of_id: nil }) }
-  scope :tagged_with, ->(tag_ids) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag_ids }) }
+  scope :tagged_with, ->(tag_ids) { joins(:tags).where(tags: { id: tag_ids }) }
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).merge(Account.not_domain_blocked_by_account(account)) }
   scope :tagged_with_all, lambda { |tag_ids|
     Array(tag_ids).map(&:to_i).reduce(self) do |result, id|
       result.where(<<~SQL.squish, tag_id: id)
-        EXISTS(SELECT 1 FROM statuses_tags WHERE statuses_tags.status_id = statuses.id AND statuses_tags.tag_id = :tag_id)
+        EXISTS(SELECT 1 FROM taggings WHERE taggings.taggable_id = statuses.id AND taggings.taggable_type = 'Status' AND taggings.tag_id = :tag_id)
       SQL
     end
   }
   scope :tagged_with_none, lambda { |tag_ids|
-    where('NOT EXISTS (SELECT * FROM statuses_tags forbidden WHERE forbidden.status_id = statuses.id AND forbidden.tag_id IN (?))', tag_ids)
+    where('NOT EXISTS (SELECT * FROM taggings forbidden WHERE forbidden.taggable_id = statuses.id AND forbidden.taggable_type = \'Status\' AND forbidden.tag_id IN (?))', tag_ids)
   }
   scope :distributable_visibility, -> { where(visibility: %i(public unlisted)) }
   scope :list_eligible_visibility, -> { where(visibility: %i(public unlisted private)) }
