@@ -248,6 +248,10 @@ const redisConfigFromEnv = (env) => {
   const redisParams = {
     host: env.REDIS_HOST || '127.0.0.1',
     port: redisPort,
+    // Force support for both IPv6 and IPv4, by default ioredis sets this to 4,
+    // only allowing IPv4 connections:
+    // https://github.com/redis/ioredis/issues/1576
+    family: 0,
     db: redisDatabase,
     password: env.REDIS_PASSWORD || undefined,
   };
