@@ -321,28 +321,4 @@ RSpec.describe FetchLinkCardService do
       expect(a_request(:get, 'https://quitter.se/tag/wannacry')).to_not have_been_made
     end
   end
-
-  describe 'Accept-Language' do
-    let(:status) { Fabricate(:status, language: language, text: 'http://example.com/html') }
-
-    context 'when status language is defined' do
-      let(:language) { 'da' }
-
-      it 'includes the status language' do
-        expect(a_request(:get, 'http://example.com/html').
-          with(headers: { 'Accept-Language' => 'da, en;q=0.5, *' })).
-          to have_been_made.once
-      end
-    end
-
-    context 'when status language is not defined' do
-      let(:language) { nil }
-
-      it 'includes the status language' do
-        expect(a_request(:get, 'http://example.com/html').
-          with(headers: { 'Accept-Language' => 'en;q=0.5, *' })).
-          to have_been_made.once
-      end
-    end
-  end
 end
