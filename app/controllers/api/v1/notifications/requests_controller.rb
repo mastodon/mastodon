@@ -28,14 +28,14 @@ class Api::V1::Notifications::RequestsController < Api::BaseController
   end
 
   def dismiss
-    @request.update!(dismissed: true)
+    @request.destroy!
     render_empty
   end
 
   private
 
   def load_requests
-    requests = NotificationRequest.where(account: current_account).where(dismissed: truthy_param?(:dismissed) || false).includes(:last_status, from_account: [:account_stat, :user]).to_a_paginated_by_id(
+    requests = NotificationRequest.where(account: current_account).includes(:last_status, from_account: [:account_stat, :user]).to_a_paginated_by_id(
       limit_param(DEFAULT_ACCOUNTS_LIMIT),
       params_slice(:max_id, :since_id, :min_id)
     )
@@ -67,9 +67,5 @@ class Api::V1::Notifications::RequestsController < Api::BaseController
 
   def pagination_since_id
     @requests.first.id
-  end
-
-  def pagination_params(core_params)
-    params.slice(:dismissed).permit(:dismissed).merge(core_params)
   end
 end

@@ -25,7 +25,7 @@ gem 'ruby-vips', '~> 2.2', require: false
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'
 gem 'bootsnap', '~> 1.18.0', require: false
-gem 'browser'
+gem 'browser', '< 6' # https://github.com/fnando/browser/issues/543
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.3'
 gem 'devise', '~> 4.9'
@@ -88,7 +88,7 @@ gem 'sidekiq-unique-jobs', '~> 7.1'
 gem 'simple_form', '~> 5.2'
 gem 'simple-navigation', '~> 4.4'
 gem 'stoplight', '~> 4.1'
-gem 'strong_migrations', '1.8.0'
+gem 'strong_migrations'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2023'
@@ -100,9 +100,7 @@ gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
-gem 'private_address_check', '~> 0.5'
-
-gem 'opentelemetry-api', '~> 1.2.5'
+gem 'opentelemetry-api', '~> 1.3.0'
 
 group :opentelemetry do
   gem 'opentelemetry-exporter-otlp', '~> 0.28.0', require: false
@@ -116,13 +114,16 @@ group :opentelemetry do
   gem 'opentelemetry-instrumentation-net_http', '~> 0.22.4', require: false
   gem 'opentelemetry-instrumentation-pg', '~> 0.27.1', require: false
   gem 'opentelemetry-instrumentation-rack', '~> 0.24.1', require: false
-  gem 'opentelemetry-instrumentation-rails', '~> 0.30.0', require: false
+  gem 'opentelemetry-instrumentation-rails', '~> 0.31.0', require: false
   gem 'opentelemetry-instrumentation-redis', '~> 0.25.3', require: false
   gem 'opentelemetry-instrumentation-sidekiq', '~> 0.25.2', require: false
   gem 'opentelemetry-sdk', '~> 1.4', require: false
 end
 
 group :test do
+  # Enable usage of all available CPUs/cores during spec runs
+  gem 'flatware-rspec'
+
   # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
   gem 'rspec-github', '~> 2.4', require: false
 

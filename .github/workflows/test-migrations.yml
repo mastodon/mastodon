@@ -1,29 +1,29 @@
 name: Historical data migration test
 
 on:
+  merge_group:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
+    branches:
+      - 'main'
+      - 'stable-*'
+    paths:
+      - 'Gemfile*'
+      - '.ruby-version'
+      - '**/*.rb'
+      - '.github/workflows/test-migrations.yml'
+      - 'lib/tasks/tests.rake'
+
   pull_request:
+    paths:
+      - 'Gemfile*'
+      - '.ruby-version'
+      - '**/*.rb'
+      - '.github/workflows/test-migrations.yml'
+      - 'lib/tasks/tests.rake'
 
 jobs:
-  pre_job:
-    runs-on: ubuntu-latest
-
-    outputs:
-      should_skip: ${{ steps.skip_check.outputs.should_skip }}
-
-    steps:
-      - id: skip_check
-        uses: fkirc/skip-duplicate-actions@v5
-        with:
-          paths: '["Gemfile*", ".ruby-version", "**/*.rb", ".github/workflows/test-migrations.yml", "lib/tasks/tests.rake"]'
-
   test:
     runs-on: ubuntu-latest
-    needs: pre_job
-    if: needs.pre_job.outputs.should_skip != 'true'
 
     strategy:
       fail-fast: false

@@ -83,6 +83,7 @@ sv:
         access_denied: Resursägaren eller behörighetsservern nekade begäran.
         credential_flow_not_configured: Resurs Ägare Lösenord Credentials flöde misslyckades på grund av att Doorkeeper.configure.resource_owner_from_credentials är okonfigurerad.
         invalid_client: Klientautentisering misslyckades på grund av okänd klient, ingen klientautentisering inkluderad eller icke godkänd autentiseringsmetod.
+        invalid_code_challenge_method: Kodutmaningsmetoden måste vara S256, en slät stöds inte.
         invalid_grant: Det beviljade godkännandetillskottet är ogiltigt, upphört, återkallat, matchar inte den omdirigering URI som användes i auktorisationsförfrågan eller har utfärdats till en annan klient.
         invalid_redirect_uri: Den omdirigerade uri är inte giltig.
         invalid_request:

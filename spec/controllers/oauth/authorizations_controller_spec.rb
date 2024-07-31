@@ -3,8 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe Oauth::AuthorizationsController do
-  render_views
-
   let(:app) { Doorkeeper::Application.create!(name: 'test', redirect_uri: 'http://localhost/', scopes: 'read') }
 
   describe 'GET #new' do
@@ -36,11 +34,6 @@ RSpec.describe Oauth::AuthorizationsController do
         expect(response.headers['Cache-Control']).to include('private, no-store')
       end
 
-      it 'gives options to authorize and deny' do
-        subject
-        expect(response.body).to match(/Authorize/)
-      end
-
       include_examples 'stores location for user'
 
       context 'when app is already authorized' do
@@ -61,7 +54,8 @@ RSpec.describe Oauth::AuthorizationsController do
 
         it 'does not redirect to callback with force_login=true' do
           get :new, params: { client_id: app.uid, response_type: 'code', redirect_uri: 'http://localhost/', scope: 'read', force_login: 'true' }
-          expect(response.body).to match(/Authorize/)
+
+          expect(response).to have_http_status(:success)
         end
       end
     end

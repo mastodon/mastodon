@@ -5,7 +5,11 @@ if Rails.configuration.x.use_vips
 
   require 'vips'
 
-  abort('Incompatible libvips version, please install libvips >= 8.13') unless Vips.at_least_libvips?(8, 13)
+  unless Vips.at_least_libvips?(8, 13)
+    abort <<~ERROR.squish
+      Incompatible libvips version (#{Vips.version_string}), please install libvips >= 8.13
+    ERROR
+  end
 
   Vips.block('VipsForeign', true)
 
@@ -24,4 +28,12 @@ if Rails.configuration.x.use_vips
   end
 
   Vips.block_untrusted(true)
+end
+
+# In some places of the code, we rescue this exception, but we don't always
+# load libvips, so it may be an undefined constant:
+unless defined?(Vips)
+  module Vips
+    class Error < StandardError; end
+  end
 end

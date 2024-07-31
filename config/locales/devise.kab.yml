@@ -12,6 +12,7 @@ kab:
       last_attempt: Γur-k yiwen n uɛraḍ-nniḍen kan send ad yettucekkel umiḍan-ik.
       locked: Amiḍan-ik yettwargel.
       not_found_in_database: Tella tuccḍa deg %{authentication_keys} neγ deg wawal uffir.
+      omniauth_user_creation_failure: Tuccḍa lawan n tmerna n umiḍan i timagit-a.
       pending: Amiḍan-inek mazal-it deg ɛiwed n tmuγli.
       timeout: Tiɣimit n tuqqna tezri. Ma ulac aɣilif ɛiwed tuqqna akken ad tkemmleḍ.
       unauthenticated: Ilaq ad teqqneḍ neɣ ad tjerrḍeḍ akken ad tkemmelḍ.
@@ -47,21 +48,41 @@ kab:
         subject: 'Mastodon: Iwellihen n uwennez n wawal uffir'
         title: Aɛiwed n wawal uffir
       two_factor_disabled:
+        explanation: Tuqqna tella tura s useqdec n tansa n yimayl tasuft d wawal n uεeddi.
         subject: 'Mastodon: Asesteb s snat n tarrayin yensa'
+        subtitle: Asesteb s snat tarrayin i umiḍan-ik yensan.
         title: Asesteb s snat n tarrayin insa
       two_factor_enabled:
+        explanation: Ajuṭu yettusirwen s usnas TOTP yeqqnen ilaq i wakken ad teqqneḍ.
         subject: 'Mastodon: Asesteb s snat n tarrayin yermed'
+        subtitle: Asesteb s snat tarrayin yettwarmed i umiḍan-ik.
         title: Asesteb s snat n tarrayin irmed
       two_factor_recovery_codes_changed:
         explanation: Tangalt n tuɣalin tettwaḥbes sakin nesnulfa-d yiwet d tamaynut.
         subject: 'Mastodon: Tingalin n tuɣalin n snat n tarayin ttwarnanat i tikkelt-nniḍen'
+        subtitle: Tangalt n tuɣalin tettwaḥbes sakin nesnulfa-d yiwet d tamaynut.
         title: Tangalt n tuɣalin 2FA tettwabeddel
       unlock_instructions:
         subject: 'Mastodon: iwelihhen n userreḥ'
       webauthn_credential:
         added:
+          explanation: Tasarut-a n tɣellist tettwarna ɣer umiḍan-ik·im
           subject: 'Maṣṭudun : Tasarutt tamaynutt n tɣellist'
           title: Tasarut tamaynutt n tɣellist tamaynut tettwarna
+        deleted:
+          explanation: Tasarut-a n tɣellist tettwakkes seg umiḍan-ik·im
+          subject: 'Mastodon: Tasarut n tɣellsit tettwakkes'
+          title: Yiwet seg tsura-k·m n tɣellist tettwakkes
+      webauthn_disabled:
+        explanation: Yensa usesteb s tsura n tɣellist i umiḍan-ik.
+        extra: Tzemreḍ ad tkecmeḍ tura s useqdec asuf n ujuṭu yettwasran s usnas TOPTP yeqqnen.
+        subject: 'Mastodon: Asesteb s tsura n tɣellist yensa'
+        title: Tisura n tɣellist nsant
+      webauthn_enabled:
+        explanation: Asesteb n tsarut n tɣellist tettwarmed i umiḍan-ik.
+        extra: Tasarut-ik n tɣellist tezmer tura ad tettuseqdec i unekcum.
+        subject: 'Mastodon: Asesteb n tsarut n tɣellist yermed'
+        title: Tisura n tɣellist remdent
     omniauth_callbacks:
       failure: Ur nezmir ara ad ak·akem-nsesṭeb seg %{kind} acku "%{reason}".
       success: Asesṭeb idda akken iwata seg umiḍan %{kind}.

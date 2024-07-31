@@ -83,6 +83,7 @@ lt:
         access_denied: Išteklių savininkas (-ė) arba įgaliojimų serveris atmetė užklausą.
         credential_flow_not_configured: Išteklių savininko slaptažodžio kredencialų srautas nepavyko, nes Doorkeeper.configure.resource_owner_from_credentials nėra nesukonfigūruotas.
         invalid_client: Kliento tapatybės nustatymas nepavyko dėl nežinomo kliento, neįtraukto kliento tapatybės nustatymo arba nepalaikomo tapatybės nustatymo metodo.
+        invalid_code_challenge_method: Kodo iššūkio būdas turi būti S256. Paprastas nepalaikomas.
         invalid_grant: Pateiktas įgaliojimas yra netinkamas, pasibaigęs, panaikintas, neatitinka įgaliojimo užklausoje naudoto nukreipimo URI arba buvo išduotas kitam klientui.
         invalid_redirect_uri: Nukreipimo uri įtrauktas yra netinkamas.
         invalid_request:

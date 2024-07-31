@@ -226,6 +226,7 @@ nl:
         update_custom_emoji: Lokale emoji bijwerken
         update_domain_block: Domeinblokkade bijwerken
         update_ip_block: IP-regel bijwerken
+        update_report: Rapportage bijwerken
         update_status: Bericht bijwerken
         update_user_role: Rol bijwerken
       actions:
@@ -470,6 +471,9 @@ nl:
       title: Aanbevolen accounts
       unsuppress: Account weer aanbevelen
     instances:
+      audit_log:
+        title: Recente audit-logboeken
+        view_all: Volledige audit-logboeken inzien
       availability:
         description_html:
           one: Wanneer de bezorging aan het domein gedurende <strong>%{count} dag</strong> blijft mislukken dan worden er geen bezorgpogingen meer gedaan, totdat een bezorging <em>van</em> het domein wordt ontvangen.
@@ -638,6 +642,7 @@ nl:
       report: 'Rapportage #%{id}'
       reported_account: Gerapporteerde account
       reported_by: Gerapporteerd door
+      reported_with_application: Gerapporteerd met applicatie
       resolved: Opgelost
       resolved_msg: Rapportage succesvol opgelost!
       skip_to_actions: Ga direct naar de maatregelen
@@ -880,7 +885,23 @@ nl:
         action: Klik hier voor meer informatie
         message_html: "<strong>Jouw objectopslag is verkeerd geconfigureerd. De privacy van je gebruikers is in gevaar.</strong>"
     tags:
+      moderation:
+        not_trendable: Niet trendbaar
+        not_usable: Niet bruikbaar
+        pending_review: In afwachting van beoordeling
+        review_requested: Beoordeling aangevraagd
+        reviewed: Beoordeeld
+        title: Status
+        trendable: Trendbaar
+        unreviewed: Onbeoordeeld
+        usable: Bruikbaar
+      name: Naam
+      newest: Nieuwste
+      oldest: Oudste
+      reset: Opnieuw
       review: Status beoordelen
+      search: Zoeken
+      title: Hashtags
       updated_msg: Instellingen hashtag succesvol bijgewerkt
     title: Beheer
     trends:
@@ -975,7 +996,7 @@ nl:
       webhook: Webhook
   admin_mailer:
     auto_close_registrations:
-      body: In verband met een gebrek aan recentelijke moderator-activiteit, is de registratie-modus op %{instance} automatisch veranderd naar handmatige beoordeling door moderatoren. Dit om te voorkomen dat %{instance} als platform voor eventueel misbruik kan worden gebruikt. Je kunt op elk gewenst moment veel terugschakelen naar open registraties.
+      body: In verband met een gebrek aan recentelijke moderatoractiviteit, is de registratiemodus op %{instance} automatisch gewijzigd naar handmatige beoordeling door moderatoren. Dit om te voorkomen dat %{instance} als platform voor eventueel misbruik kan worden gebruikt. Je kunt op elk gewenst moment weer terugschakelen naar open registraties.
       subject: De registratie-modus op %{instance} is automatisch veranderd naar handmatige beoordeling door moderatoren
     new_appeal:
       actions:

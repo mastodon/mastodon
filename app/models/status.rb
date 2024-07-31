@@ -288,7 +288,7 @@ class Status < ApplicationRecord
     else
       map = media_attachments.index_by(&:id)
       ordered_media_attachment_ids.filter_map { |media_attachment_id| map[media_attachment_id] }
-    end
+    end.take(MEDIA_ATTACHMENTS_LIMIT)
   end
 
   def replies_count

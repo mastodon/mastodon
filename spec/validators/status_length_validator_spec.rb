@@ -42,23 +42,23 @@ describe StatusLengthValidator do
       expect(status.errors).to have_received(:add)
     end
 
-    it 'counts URLs as 23 characters flat' do
-      text   = ('a' * 476) + " http://#{'b' * 30}.com/example"
+    it 'reduces calculated length of auto-linkable space-separated URLs' do
+      text = [starting_string, example_link].join(' ')
       status = status_double(text: text)
 
       subject.validate(status)
       expect(status.errors).to_not have_received(:add)
     end
 
-    it 'does not count non-autolinkable URLs as 23 characters flat' do
-      text   = ('a' * 476) + "http://#{'b' * 30}.com/example"
+    it 'does not reduce calculated length of non-autolinkable URLs' do
+      text = [starting_string, example_link].join
       status = status_double(text: text)
 
       subject.validate(status)
       expect(status.errors).to have_received(:add)
     end
 
-    it 'does not count overly long URLs as 23 characters flat' do
+    it 'does not reduce calculated length of count overly long URLs' do
       text = "http://example.com/valid?#{'#foo?' * 1000}"
       status = status_double(text: text)
       subject.validate(status)
@@ -83,6 +83,14 @@ describe StatusLengthValidator do
   end
 
   private
+
+  def starting_string
+    'a' * 476
+  end
+
+  def example_link
+    "http://#{'b' * 30}.com/example"
+  end
 
   def status_double(spoiler_text: '', text: '')
     instance_double(

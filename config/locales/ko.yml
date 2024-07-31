@@ -223,6 +223,7 @@ ko:
         update_custom_emoji: 커스텀 에모지 업데이트
         update_domain_block: 도메인 차단 갱신
         update_ip_block: IP 규칙 수정
+        update_report: 신고 업데이트
         update_status: 게시물 수정
         update_user_role: 역할 수정
       actions:
@@ -464,6 +465,9 @@ ko:
       title: 팔로우 추천
       unsuppress: 팔로우 추천 복원
     instances:
+      audit_log:
+        title: 최근 감사 기록
+        view_all: 감사 기록 전체 보기
       availability:
         description_html:
           other: 도메인에 대한 전달이 성공 없이 <strong>%{count}</strong>일 실패한다면, 이후의 전달 시도는 해당 도메인<em>에서</em> 전달이 오기 전까지는 만들어지지 않습니다.
@@ -1741,7 +1745,7 @@ ko:
     contrast: 마스토돈 (고대비)
     default: 마스토돈 (어두움)
     mastodon-light: 마스토돈 (밝음)
-    system: 자동 선택 (시스템 테마 이용)
+    system: 자동 (시스템 테마 사용)
   time:
     formats:
       default: "%Y-%m-%d %H:%M"

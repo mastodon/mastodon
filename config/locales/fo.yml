@@ -226,6 +226,7 @@ fo:
         update_custom_emoji: Dagfør Sergjørt Kenslutekn
         update_domain_block: Dagfør Domain forðing
         update_ip_block: Dagfør IP reglur
+        update_report: Dagfør frágreiðing
         update_status: Dagfør Uppslag
         update_user_role: Dagfør Leiklut
       actions:
@@ -470,6 +471,9 @@ fo:
       title: Tilmæli at fylgja
       unsuppress: Endurskapa tilmæli at fylgja
     instances:
+      audit_log:
+        title: Feskir kanningarloggar
+        view_all: Vís fullar kanningarloggar
       availability:
         description_html:
           one: Um veiting til navnaøkið ikki riggar í <strong>%{count} dag</strong>, so verða ongar royndir at veita gjørdar, uttan so, at ein veiting <em>frá</em> navnaøkinum er móttikin.
@@ -638,6 +642,7 @@ fo:
       report: 'Melding #%{id}'
       reported_account: Meldað konta
       reported_by: Meldað av
+      reported_with_application: Fráboðað við umsókn
       resolved: Loyst
       resolved_msg: Melding avgreidd!
       skip_to_actions: Leyp til atgerðir
@@ -880,7 +885,23 @@ fo:
         action: Kekka her fyri at fáa fleiri upplýsingar
         message_html: "<strong>Objekt-goymslan hjá tær er skeivt uppsett. Privatlívið hjá brúkarunum hjá tær er í vanda.</strong>"
     tags:
+      moderation:
+        not_trendable: Ikki rákbært
+        not_usable: Kann ikki brúkast
+        pending_review: Viðgerð í gongd
+        review_requested: Viðgerð umbiðin
+        reviewed: Viðgjørt
+        title: Støða
+        trendable: Rákbært
+        unreviewed: Ikki viðgjørt
+        usable: Ónýtiligt
+      name: Navn
+      newest: Nýggjasta/u
+      oldest: Elsta/u
+      reset: Endurstilla
       review: Eftirkanna støðu
+      search: Leita
+      title: Frámerki
       updated_msg: Frámerkjastillingar dagførdar
     title: Umsiting
     trends:

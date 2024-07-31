@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe MediaAttachment, :paperclip_processing do
+RSpec.describe MediaAttachment, :attachment_processing do
   describe 'local?' do
     subject { media_attachment.local? }
 
@@ -90,7 +90,7 @@ RSpec.describe MediaAttachment, :paperclip_processing do
       media.destroy
     end
 
-    it 'saves metadata' do
+    it 'saves metadata and generates styles' do
       expect(media)
         .to be_persisted
         .and be_processing_complete
@@ -101,22 +101,25 @@ RSpec.describe MediaAttachment, :paperclip_processing do
           file_file_name: end_with(extension),
           blurhash: have_attributes(size: eq(36))
         )
-    end
 
-    it 'generates image styles' do
-      # strips original file name
-      expect(media.file_file_name).to_not start_with '600x400'
+      # Strip original file name
+      expect(media.file_file_name)
+        .to_not start_with '600x400'
 
-      # generates styles
-      expect(FastImage.size(media.file.path(:original))).to eq [600, 400]
-      expect(FastImage.size(media.file.path(:small))).to eq [588, 392]
+      # Generate styles
+      expect(FastImage.size(media.file.path(:original)))
+        .to eq [600, 400]
+      expect(FastImage.size(media.file.path(:small)))
+        .to eq [588, 392]
 
-      # uses extension recognized by Rack::Mime (used by PublicFileServerMiddleware)
-      expect(media.file.path(:original)).to end_with(extension)
-      expect(media.file.path(:small)).to end_with(extension)
+      # Use extension recognized by Rack::Mime (used by PublicFileServerMiddleware)
+      expect(media.file.path(:original))
+        .to end_with(extension)
+      expect(media.file.path(:small))
+        .to end_with(extension)
 
-      # sets meta for styles
-      expect(media.file.meta.deep_symbolize_keys)
+      # Set meta for original and thumbnail
+      expect(media_metadata)
         .to include(
           original: include(
             width: eq(600),
@@ -129,6 +132,9 @@ RSpec.describe MediaAttachment, :paperclip_processing do
             aspect: eq(1.5)
           )
         )
+
+      # Rack::Mime (used by PublicFileServerMiddleware) recognizes file extension
+      expect(Rack::Mime.mime_type(extension, nil)).to eq content_type
     end
   end
 
@@ -137,7 +143,7 @@ RSpec.describe MediaAttachment, :paperclip_processing do
       media.destroy
     end
 
-    it 'saves metadata' do
+    it 'saves metadata and generates styles' do
       expect(media)
         .to be_persisted
         .and be_processing_complete
@@ -148,22 +154,25 @@ RSpec.describe MediaAttachment, :paperclip_processing do
           file_file_name: end_with('.mp4'),
           blurhash: have_attributes(size: eq(36))
         )
-    end
 
-    it 'generates image styles' do
-      # strips original file name
-      expect(media.file_file_name).to_not start_with '600x400'
+      # Strip original file name
+      expect(media.file_file_name)
+        .to_not start_with '600x400'
 
-      # transcodes to MP4
-      expect(media.file.path(:original)).to end_with('.mp4')
+      # Transcode to MP4
+      expect(media.file.path(:original))
+        .to end_with('.mp4')
 
-      # generates static thumbnail
-      expect(FastImage.size(media.file.path(:small))).to eq [600, 400]
-      expect(FastImage.animated?(media.file.path(:small))).to be false
-      expect(media.file.path(:small)).to end_with('.png')
+      # Generate static thumbnail
+      expect(FastImage.size(media.file.path(:small)))
+        .to eq [600, 400]
+      expect(FastImage.animated?(media.file.path(:small)))
+        .to be false
+      expect(media.file.path(:small))
+        .to end_with('.png')
 
-      # sets meta for styles
-      expect(media.file.meta.deep_symbolize_keys)
+      # Set meta for styles
+      expect(media_metadata)
         .to include(
           original: include(
             width: eq(600),
@@ -243,35 +252,42 @@ RSpec.describe MediaAttachment, :paperclip_processing do
 
   describe 'ogg with cover art' do
     let(:media) { Fabricate(:media_attachment, file: attachment_fixture('boop.ogg')) }
+    let(:expected_media_duration) { 0.235102 }
+
+    # The libvips and ImageMagick implementations produce different results
+    let(:expected_background_color) { Rails.configuration.x.use_vips ? '#268cd9' : '#3088d4' }
 
     it 'sets correct file metadata' do
-      expect(media.type).to eq 'audio'
-      expect(media.file.meta['original']['duration']).to be_within(0.05).of(0.235102)
-      expect(media.thumbnail.present?).to be true
+      expect(media)
+        .to have_attributes(
+          type: eq('audio'),
+          thumbnail: be_present,
+          file_file_name: not_eq('boop.ogg')
+        )
 
-      # NOTE: Our libvips and ImageMagick implementations currently have different results
-      expect(media.file.meta['colors']['background']).to eq(ENV['MASTODON_USE_LIBVIPS'] ? '#268cd9' : '#3088d4')
-      expect(media.file_file_name).to_not eq 'boop.ogg'
+      expect(media_metadata)
+        .to include(
+          original: include(duration: be_within(0.05).of(expected_media_duration)),
+          colors: include(background: eq(expected_background_color))
+        )
     end
   end
 
   describe 'mp3 with large cover art' do
     let(:media) { Fabricate(:media_attachment, file: attachment_fixture('boop.mp3')) }
+    let(:expected_media_duration) { 0.235102 }
 
-    it 'detects it as an audio file' do
-      expect(media.type).to eq 'audio'
-    end
-
-    it 'sets meta for the duration' do
-      expect(media.file.meta['original']['duration']).to be_within(0.05).of(0.235102)
-    end
-
-    it 'extracts thumbnail' do
-      expect(media.thumbnail.present?).to be true
-    end
-
-    it 'gives the file a random name' do
-      expect(media.file_file_name).to_not eq 'boop.mp3'
+    it 'detects file type and sets correct metadata' do
+      expect(media)
+        .to have_attributes(
+          type: eq('audio'),
+          thumbnail: be_present,
+          file_file_name: not_eq('boop.mp3')
+        )
+      expect(media_metadata)
+        .to include(
+          original: include(duration: be_within(0.05).of(expected_media_duration))
+        )
     end
   end
 
@@ -308,5 +324,11 @@ RSpec.describe MediaAttachment, :paperclip_processing do
       media = Fabricate(:media_attachment, file: attachment_fixture('attachment.jpg'))
       expect(media.valid?).to be true
     end
+  end
+
+  private
+
+  def media_metadata
+    media.file.meta.deep_symbolize_keys
   end
 end

@@ -76,8 +76,8 @@ export function importFetchedStatuses(statuses) {
         pushUnique(polls, normalizePoll(status.poll, getState().getIn(['polls', status.poll.id])));
       }
 
-      if (status.card?.author_account) {
-        pushUnique(accounts, status.card.author_account);
+      if (status.card) {
+        status.card.authors.forEach(author => author.account && pushUnique(accounts, author.account));
       }
     }
 

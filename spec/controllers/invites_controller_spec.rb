@@ -69,19 +69,16 @@ describe InvitesController do
     end
   end
 
-  describe 'DELETE #create' do
+  describe 'DELETE #destroy' do
+    subject { delete :destroy, params: { id: invite.id } }
+
     let(:invite) { Fabricate(:invite, user: user, expires_at: nil) }
 
-    before do
-      delete :destroy, params: { id: invite.id }
-    end
-
-    it 'redirects' do
-      expect(response).to redirect_to invites_path
-    end
-
-    it 'expires invite' do
-      expect(invite.reload).to be_expired
+    it 'expires invite and redirects' do
+      expect { subject }
+        .to(change { invite.reload.expired? }.to(true))
+      expect(response)
+        .to redirect_to invites_path
     end
   end
 end

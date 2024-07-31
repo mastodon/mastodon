@@ -66,18 +66,14 @@ RSpec.describe ActivityPub::RepliesController do
 
     context 'when status is public' do
       let(:parent_visibility) { :public }
-      let(:json) { body_as_json }
-      let(:page_json) { json[:first] }
-
-      it 'returns http success' do
-        expect(response).to have_http_status(200)
-      end
-
-      it 'returns application/activity+json' do
-        expect(response.media_type).to eq 'application/activity+json'
-      end
+      let(:page_json) { body_as_json[:first] }
 
       it_behaves_like 'cacheable response'
+
+      it 'returns http success and correct media type' do
+        expect(response).to have_http_status(200)
+        expect(response.media_type).to eq 'application/activity+json'
+      end
 
       context 'without only_other_accounts' do
         it "returns items with thread author's replies" do

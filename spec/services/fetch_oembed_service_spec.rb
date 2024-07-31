@@ -37,6 +37,12 @@ describe FetchOEmbedService do
           subject.call('https://www.youtube.com/watch?v=IPSbNdBmWKE')
           expect(Rails.cache.read('oembed_endpoint:www.youtube.com')[:endpoint]).to eq 'https://www.youtube.com/oembed?format=json&url={url}'
         end
+
+        it 'sends Accept-Language header' do
+          subject.call('https://www.youtube.com/watch?v=IPSbNdBmWKE', language: 'fi')
+          expect(a_request(:get, 'https://www.youtube.com/watch?v=IPSbNdBmWKE').with(headers: { 'Accept-Language' => 'fi, en;q=0.5, *' })).to have_been_made
+          expect(a_request(:get, 'https://www.youtube.com/oembed?format=json&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DIPSbNdBmWKE').with(headers: { 'Accept-Language' => 'fi, en;q=0.5, *' })).to have_been_made
+        end
       end
 
       context 'when both of JSON and XML provider are discoverable' do
