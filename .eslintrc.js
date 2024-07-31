@@ -99,6 +99,7 @@ module.exports = defineConfig({
         args: 'after-used',
         destructuredArrayIgnorePattern: '^_',
         ignoreRestSiblings: true,
+        caughtErrors: 'none',
       },
     ],
     'valid-typeof': 'error',
@@ -316,7 +317,7 @@ module.exports = defineConfig({
       ],
 
       parserOptions: {
-        project: true,
+        projectService: true,
         tsconfigRootDir: __dirname,
       },
 
