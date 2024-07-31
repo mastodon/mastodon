@@ -10171,25 +10171,10 @@ noscript {
   }
 
   &__badge {
-    display: flex;
-    align-items: center;
-    border-radius: 999px;
-    background: var(--background-border-color);
-    color: $darker-text-color;
-    padding: 4px;
-    padding-inline-end: 8px;
-    gap: 6px;
-    font-weight: 500;
-    font-size: 11px;
-    line-height: 16px;
-    word-break: keep-all;
-
-    &__badge {
-      background: $ui-button-background-color;
-      color: $white;
-      border-radius: 100px;
-      padding: 2px 8px;
-    }
+    background: $ui-button-background-color;
+    color: $white;
+    border-radius: 100px;
+    padding: 2px 8px;
   }
 }
 
