@@ -124,9 +124,9 @@ export function createNotificationGroupFromJSON(
     case 'mention':
     case 'poll':
     case 'update': {
-      const { status, ...groupWithoutStatus } = group;
+      const { status_id: statusId, ...groupWithoutStatus } = group;
       return {
-        statusId: status.id,
+        statusId,
         sampleAccountIds,
         ...groupWithoutStatus,
       };
