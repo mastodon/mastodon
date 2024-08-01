@@ -100,6 +100,8 @@ class Notification < ApplicationRecord
 
   validates :type, inclusion: { in: TYPES }
 
+  scope :filtered, -> { where(filtered: true) }
+  scope :unfiltered, -> { where(filtered: false) }
   scope :without_suspended, -> { joins(:from_account).merge(Account.without_suspended) }
 
   def type
