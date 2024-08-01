@@ -155,6 +155,11 @@ namespace :api, format: false do
 
     namespace :notifications do
       resources :requests, only: [:index, :show] do
+        collection do
+          post :accept, to: 'requests#accept_bulk'
+          post :dismiss, to: 'requests#dismiss_bulk'
+        end
+
         member do
           post :accept
           post :dismiss
