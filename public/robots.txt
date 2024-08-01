@@ -5,7 +5,7 @@ Disallow: /media_proxy/
 Disallow: /interact/
 
 ###############################################################################################################################
-## (Safe to block) AI Bots - Crawlers/scrapers and data harvesters. Blocking these should not negatively effect the end user.
+AI Bots - Crawlers/scrapers and data harvesters. Blocking these should not negatively effect the end user.
 ###############################################################################################################################
 
 # OpenAI Scraper/Crawler/Assistant - https://platform.openai.com/docs/bots
@@ -33,8 +33,6 @@ User-agent: Meta-ExternalAgent
 # Googles Gemini Apps and Vertex AI https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers
 User-agent: Google-Extended
 
-###############################################################################################################################
-# (Likely safe to block) AI Bots - Crawlers/scrapers and data harvesters. Blocking these might negatively effect the end user.
 ###############################################################################################################################
 
 # https://docs.perplexity.ai/docs/perplexity-bot
