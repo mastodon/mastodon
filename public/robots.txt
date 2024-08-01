@@ -6,6 +6,11 @@ Disallow: /interact/
 
 ## AI Bots - Research from darkvisitors.com and multiple other sources.
 
+# AI Data Scraper/Crawler/Assistant - https://platform.openai.com/docs/bots
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+
 # AI Search Crawler - https://developer.amazon.com/amazonbot
 User-agent: Amazonbot
 
@@ -23,15 +28,6 @@ User-agent: Bytespider
 
 # AI Data Scraper - https://commoncrawl.org/ccbot
 User-agent: CCBot
-
-# AI Data Scraper - https://platform.openai.com/docs/bots
-User-agent: GPTBot
-
-# AI Assistant - https://platform.openai.com/docs/bots
-User-agent: ChatGPT-User
-
-# AI Search Crawler - https://platform.openai.com/docs/bots
-User-agent: OAI-SearchBot
 
 # AI Data Scraper - https://support.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler
 User-agent: ClaudeBot
