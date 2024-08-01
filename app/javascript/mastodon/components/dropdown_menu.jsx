@@ -39,6 +39,7 @@ class DropdownMenu extends PureComponent {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
       e.stopPropagation();
+      e.preventDefault();
     }
   };
 
