@@ -4,7 +4,9 @@ User-agent: *
 Disallow: /media_proxy/
 Disallow: /interact/
 
-## AI Bots - Research from darkvisitors.com and multiple other sources.
+###################################################################################################################
+## AI Bots - Crawlers/scrapers and data harvesters that don't effect the end user.
+###################################################################################################################
 
 # OpenAI Scraper/Crawler/Assistant - https://platform.openai.com/docs/bots
 User-agent: GPTBot
@@ -14,20 +16,32 @@ User-agent: OAI-SearchBot
 # Amazon Alexa Crawler https://developer.amazon.com/amazonbot
 User-agent: Amazonbot
 
-# ??
-User-agent: anthropic-ai
-
 # Apple Siri Crawler https://support.apple.com/en-au/HT204683
 User-agent: Applebot
 
 # Apple AI models https://support.apple.com/en-au/119829
 User-agent: Applebot-Extended
 
+# https://commoncrawl.org/ccbot
+User-agent: CCBot
+
+# Facebook AI models https://developers.facebook.com/docs/sharing/bot/
+User-agent: FacebookBot
+# Facebook AI models https://developers.facebook.com/docs/sharing/webmasters/crawler
+User-agent: Meta-ExternalAgent
+
+# Googles Gemini Apps and Vertex AI https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers
+User-agent: Google-Extended
+
+###################################################################################################################
+
+
+# ??
+User-agent: anthropic-ai
+
 # Bytedance
 User-agent: Bytespider
 
-# https://commoncrawl.org/ccbot
-User-agent: CCBot
 
 # https://support.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler
 User-agent: ClaudeBot
@@ -41,32 +55,13 @@ User-agent: cohere-ai
 # ??
 User-agent: Diffbot
 
-# https://developers.facebook.com/docs/sharing/bot/
-User-agent: FacebookBot
-
-# ??
-User-agent: Google-Extended
-
-# Search Engine Crawler - http://google.com/bot.html
-User-agent: GoogleOther
-
-# https://developers.google.com/search/docs/crawling-indexing/googlebot
-User-agent: GoogleOther-Image
-
-# https://developers.google.com/search/docs/crawling-indexing/googlebot
-User-agent: GoogleOther-Video
-
 # https://imagesift.com/about
 User-agent: ImagesiftBot
 
 # ??
 User-agent: img2dataset
 
-# https://developers.facebook.com/docs/sharing/webmasters/crawler
-User-agent: Meta-ExternalAgent
 
-# https://developers.facebook.com/docs/sharing/webmasters/crawler
-User-agent: Meta-ExternalFetcher
 
 # ??
 User-agent: omgili
