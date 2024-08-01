@@ -180,7 +180,6 @@ class Dropdown extends PureComponent {
     renderItem: PropTypes.func,
     renderHeader: PropTypes.func,
     onItemClick: PropTypes.func,
-    className: PropTypes.string,
     ...WithRouterPropTypes
   };
 
@@ -286,7 +285,6 @@ class Dropdown extends PureComponent {
       children,
       renderItem,
       renderHeader,
-      className,
     } = this.props;
 
     const open = this.state.id === openDropdownId;
@@ -299,7 +297,6 @@ class Dropdown extends PureComponent {
       ref: this.setTargetRef,
     }) : (
       <IconButton
-        className={className}
         icon={!open ? icon : 'close'}
         iconComponent={iconComponent}
         title={title}
