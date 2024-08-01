@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import InventoryIcon from '@/material-icons/400-24px/inventory_2.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import { openModal } from 'mastodon/actions/modal';
-import { fetchNotificationRequests, expandNotificationRequests, acceptNotificationRequest, dismissNotificationRequest } from 'mastodon/actions/notifications';
+import { fetchNotificationRequests, expandNotificationRequests, acceptNotificationRequests, dismissNotificationRequests } from 'mastodon/actions/notifications';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 import ScrollableList from 'mastodon/components/scrollable_list';
@@ -57,11 +57,8 @@ export const NotificationRequests = ({ multiColumn }) => {
         title: intl.formatMessage(messages.confirm_accept_all_title),
         message: intl.formatMessage(messages.confirm_accept_all_message, { count: notificationRequests.size }),
         confirm: intl.formatMessage(messages.confirm_accept_all_button),
-        onConfirm: () => {
-          notificationRequests.forEach((request) =>
-            dispatch(acceptNotificationRequest(request.get('id')))
-          );
-        },
+        onConfirm: () =>
+          dispatch(acceptNotificationRequests(notificationRequests.map((request) => request.get('id')))),
       },
     }));
   }, [dispatch, notificationRequests, intl]);
@@ -73,11 +70,8 @@ export const NotificationRequests = ({ multiColumn }) => {
         title: intl.formatMessage(messages.confirm_dismiss_all_title),
         message: intl.formatMessage(messages.confirm_dismiss_all_message, { count: notificationRequests.size }),
         confirm: intl.formatMessage(messages.confirm_dismiss_all_button),
-        onConfirm: () => {
-          notificationRequests.forEach((request) =>
-            dispatch(dismissNotificationRequest(request.get('id')))
-          );
-        },
+        onConfirm: () =>
+          dispatch(dismissNotificationRequests(notificationRequests.map((request) => request.get('id')))),
       }
     }));
   }, [dispatch, notificationRequests, intl]);
