@@ -30,7 +30,7 @@ fi:
           suspend: Estä kaikki vuorovaikutus tältä tililtä ja tälle tilille sekä poista kaikki sen sisältö. Peruttavissa 30 päivän ajan. Sulkee kaikki tiliin kohdistuvat raportit.
         warning_preset_id: Valinnainen. Voit silti lisätä mukautetun tekstin esiasetuksen loppuun
       announcement:
-        all_day: Kun valittu, vain valittu aikaväli näytetään
+        all_day: Kun valittuna, vain aikavälin päivät näytetään
         ends_at: Valinnainen. Tiedote poistetaan automaattisesti tällä hetkellä
         scheduled_at: Jätä tyhjäksi julkaistaksesi tiedotteen heti
         starts_at: Valinnainen. Jos tiedotteesi on sidottu tiettyyn aikaväliin
@@ -45,14 +45,14 @@ fi:
         current_password: Turvallisuussyistä kirjoita nykyisen tilin salasana
         current_username: Vahvista kirjoittamalla nykyisen tilin käyttäjänimi
         digest: Lähetetään vain pitkän poissaolon jälkeen ja vain, jos olet saanut suoria viestejä poissaolosi aikana
-        email: Sinulle lähetetään vahvistussähköposti
+        email: Sinulle lähetetään vahvistusviesti
         header: WEBP, PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
         inbox_url: Kopioi URL-osoite haluamasi välittäjän etusivulta
-        irreversible: Suodatetut julkaisut katoavat lopullisesti, vaikka suodatin poistettaisiin myöhemmin
+        irreversible: Suodatetut julkaisut katoavat peruuttamattomasti, vaikka suodatin poistettaisiin myöhemmin
         locale: Käyttöliittymän, sähköpostien ja puskuilmoitusten kieli
-        password: Käytä vähintään 8 merkkiä
+        password: Käytä vähintään 8:aa merkkiä
         phrase: Täsmää riippumatta tekstin aakkoslajista tai julkaisun sisältövaroituksesta
-        scopes: Mihin ohjelmointirajapintoihin sovellus pääsee käsiksi. Jos valitset ylätason oikeuden, sinun ei tarvitse valita yksittäisiä.
+        scopes: Mihin ohjelmointirajapintoihin sovelluksella on pääsy. Jos valitset ylätason käyttöoikeuden, sinun ei tarvitse valita yksittäisiä.
         setting_aggregate_reblogs: Älä näytä uusia tehostuksia julkaisuille, joita on äskettäin tehostettu (koskee vain juuri vastaanotettuja tehostuksia)
         setting_always_send_emails: Yleensä sähköposti-ilmoituksia ei lähetetä, kun käytät Mastodonia aktiivisesti
         setting_default_sensitive: Arkaluonteinen media piilotetaan oletusarvoisesti, ja se voidaan näyttää yhdellä napsautuksella
@@ -84,7 +84,7 @@ fi:
         content_cache_retention_period: Kaikki muiden palvelinten julkaisut (mukaan lukien tehostukset ja vastaukset) poistuvat, kun määritetty määrä päiviä on kulunut, lukuun ottamatta paikallisen käyttäjän vuorovaikutusta näiden julkaisujen kanssa. Tämä sisältää julkaisut, jotka paikallinen käyttäjä on merkinnyt kirjanmerkiksi tai suosikiksi. Myös yksityismaininnat eri palvelinten käyttäjien välillä menetetään, eikä niitä voi palauttaa. Tämä asetus on tarkoitettu käytettäväksi erityistapauksissa ja rikkoo monia käyttäjien odotuksia, kun sitä sovelletaan yleiskäyttöön.
         custom_css: Voit käyttää mukautettuja tyylejä Mastodonin selainversiossa.
         favicon: WEBP, PNG, GIF tai JPG. Korvaa oletusarvoisen Mastodonin sivustokuvakkeen haluamallasi kuvakkeella.
-        mascot: Ohittaa kuvituksen edistyneessä selainkäyttöliittymässä.
+        mascot: Korvaa kuvituksen edistyneessä selainkäyttöliittymässä.
         media_cache_retention_period: Etäkäyttäjien tekemien julkaisujen mediatiedostot ovat välimuistissa palvelimellasi. Kun kentän arvo on positiivinen, media poistuu, kun määritetty määrä päiviä on kulunut. Jos mediaa pyydetään sen poistamisen jälkeen, se ladataan uudelleen, jos lähdesisältö on vielä saatavilla. Koska linkkien esikatselun kyselyitä kolmansien osapuolien sivustoille on rajoitettu, on suositeltavaa asettaa tämä arvo vähintään 14 päivään, tai linkkien kortteja ei päivitetä pyynnöstä ennen tätä ajankohtaa.
         peers_api_enabled: Luettelo verkkotunnuksista, jotka tämä palvelin on kohdannut fediversumissa. Se ei kerro, federoitko tietyn palvelimen kanssa, vaan että palvelimesi on ylipäätään tietoinen siitä. Tätä tietoa käytetään palveluissa, jotka keräävät tilastoja federoinnista yleisellä tasolla.
         profile_directory: Profiilihakemisto luetteloi kaikki käyttäjät, jotka ovat valinneet olla löydettävissä.
@@ -201,7 +201,7 @@ fi:
         note: Elämäkerta
         otp_attempt: Kaksivaiheisen todennuksen tunnusluku
         password: Salasana
-        phrase: Avainsana tai -fraasi
+        phrase: Avainsana tai fraasi
         setting_advanced_layout: Ota edistynyt selainkäyttöliittymä käyttöön
         setting_aggregate_reblogs: Ryhmitä tehostukset aikajanoilla
         setting_always_send_emails: Lähetä sähköposti-ilmoitukset aina
@@ -255,7 +255,7 @@ fi:
         peers_api_enabled: Julkaise löydettyjen palvelinten luettelo ohjelmointirajapinnassa
         profile_directory: Ota profiilihakemisto käyttöön
         registrations_mode: Kuka voi rekisteröityä
-        require_invite_text: Vaadi syy liittyä
+        require_invite_text: Vaadi liittymissyy
         show_domain_blocks: Näytä verkkotunnusten estot
         show_domain_blocks_rationale: Näytä, miksi verkkotunnukset on estetty
         site_contact_email: Yhteyshenkilön sähköpostiosoite
@@ -311,7 +311,7 @@ fi:
         indexable: Sisällytä profiilisivu hakukoneisiin
         show_application: Näytä, mistä sovelluksesta lähetit julkaisun
       tag:
-        listable: Salli tämän aihetunnisteen näkyä hauissa ja ehdotuksissa
+        listable: Salli tämän aihetunnisteen näkyä hakutuloksissa ja ehdotuksissa
         name: Aihetunniste
         trendable: Salli tämän aihetunnisteen näkyä trendeissä
         usable: Salli julkaisujen käyttää tätä aihetunnistetta paikallisesti
@@ -322,7 +322,7 @@ fi:
         color: Merkin väri
         highlighted: Näytä rooli merkkinä käyttäjäprofiileissa
         name: Nimi
-        permissions_as_keys: Oikeudet
+        permissions_as_keys: Käyttöoikeudet
         position: Prioriteetti
       webhook:
         events: Käytössä olevat tapahtumat
@@ -331,7 +331,7 @@ fi:
     'no': Ei
     not_recommended: Ei suositella
     overridden: Ohitettu
-    recommended: Suositeltu
+    recommended: Suositellaan
     required:
       mark: "*"
       text: vaadittu tieto
