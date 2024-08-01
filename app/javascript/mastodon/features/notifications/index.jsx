@@ -34,7 +34,10 @@ import ColumnHeader from '../../components/column_header';
 import { LoadGap } from '../../components/load_gap';
 import ScrollableList from '../../components/scrollable_list';
 
-import { FilteredNotificationsBanner } from './components/filtered_notifications_banner';
+import {
+  FilteredNotificationsBanner,
+  FilteredNotificationsIconButton,
+} from './components/filtered_notifications_banner';
 import NotificationsPermissionBanner from './components/notifications_permission_banner';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import FilterBarContainer from './containers/filter_bar_container';
@@ -255,20 +258,21 @@ class Notifications extends PureComponent {
       scrollContainer = <NotSignedInIndicator />;
     }
 
-    let extraButton = null;
-
-    if (canMarkAsRead) {
-      extraButton = (
-        <button
-          aria-label={intl.formatMessage(messages.markAsRead)}
-          title={intl.formatMessage(messages.markAsRead)}
-          onClick={this.handleMarkAsRead}
-          className='column-header__button'
-        >
-          <Icon id='done-all' icon={DoneAllIcon} />
-        </button>
-      );
-    }
+    const extraButton = (
+      <>
+        <FilteredNotificationsIconButton className='column-header__button' />
+        {canMarkAsRead && (
+          <button
+            aria-label={intl.formatMessage(messages.markAsRead)}
+            title={intl.formatMessage(messages.markAsRead)}
+            onClick={this.handleMarkAsRead}
+            className='column-header__button'
+          >
+            <Icon id='done-all' icon={DoneAllIcon} />
+          </button>
+        )}
+      </>
+    );
 
     return (
       <Column bindToDocument={!multiColumn} ref={this.setColumnRef} label={intl.formatMessage(messages.title)}>
