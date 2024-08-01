@@ -40,15 +40,15 @@ fi:
         user:
           attributes:
             email:
-              blocked: käyttää kiellettyä sähköpostipalvelun tarjoajaa
+              blocked: käyttää kiellettyä sähköpostipalveluntarjoajaa
               unreachable: ei näytä olevan olemassa
             role_id:
               elevated: ei voi olla korkeampi kuin nykyinen roolisi
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: sisältää oikeuksia, jotka eivät ole turvallisia perusroolille
-              elevated: ei voi sisältää oikeuksia, joita nykyisellä roolillasi ei ole
+              dangerous: sisällytä käyttöoikeuksia, jotka eivät ole turvallisia perusroolille
+              elevated: ei voi sisältää käyttöoikeuksia, joita nykyisellä roolillasi ei ole
               own_role: ei voi muuttaa nykyisellä roolillasi
             position:
               elevated: ei voi olla korkeampi kuin nykyinen roolisi

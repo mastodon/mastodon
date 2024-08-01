@@ -31,7 +31,7 @@ fi:
       form:
         error: Hupsis! Tarkista, ettei lomakkeessasi ole virheitä
       help:
-        native_redirect_uri: Käytä %{native_redirect_uri} paikallisiin testeihin
+        native_redirect_uri: Käytä tunnistetta %{native_redirect_uri} paikallisiin testeihin
         redirect_uri: Lisää jokainen URI omalle rivilleen
         scopes: Erota oikeudet välilyönneillä. Jätä kenttä tyhjäksi, jos haluat käyttää oletusoikeuksia.
       index:
@@ -43,7 +43,7 @@ fi:
         new: Uusi sovellus
         scopes: Oikeudet
         show: Näytä
-        title: Omat sovellukset
+        title: Omat sovelluksesi
       new:
         title: Uusi sovellus
       show:
@@ -60,7 +60,7 @@ fi:
       error:
         title: Tapahtui virhe
       new:
-        prompt_html: "%{client_name} pyytää lupaa käyttää tiliäsi. Se on kolmannen osapuolen sovellus. <strong>Jos et luota siihen, älä valtuuta sitä.</strong>"
+        prompt_html: "%{client_name} pyytää oikeutta käyttää tiliäsi. Se on kolmannen osapuolen sovellus. <strong>Jos et luota siihen, älä valtuuta sitä.</strong>"
         review_permissions: Tarkista käyttöoikeudet
         title: Valtuutus vaaditaan
       show:
@@ -75,7 +75,7 @@ fi:
         description_html: Nämä sovellukset voivat käyttää tiliäsi ohjelmointirajapinnan kautta. Jos tässä on sovelluksia, joita et tunnista, tai sovellus toimii väärin, voit peruuttaa sen käyttöoikeuden.
         last_used_at: Käytetty viimeksi %{date}
         never_used: Ei käytetty
-        scopes: Oikeudet
+        scopes: Käyttöoikeudet
         superapp: Sisäinen
         title: Valtuuttamasi sovellukset
     errors:
@@ -130,8 +130,8 @@ fi:
         crypto: Päästä päähän -salaus
         favourites: Suosikit
         filters: Suodattimet
-        follow: Seuraamiset, mykistykset ja estot
-        follows: Seuraa
+        follow: Seuratut, mykistykset ja estot
+        follows: Seuratut
         lists: Listat
         media: Medialiitteet
         mutes: Mykistykset
@@ -169,7 +169,7 @@ fi:
       follow: muokkaa tilin seurantasuhteita
       profile: lue vain tilisi profiilitietoja
       push: vastaanota puskuilmoituksesi
-      read: lue kaikkia tilin tietoja
+      read: lue kaikkia tilisi tietoja
       read:accounts: katso tilien tietoja
       read:blocks: katso estojasi
       read:bookmarks: katso kirjanmerkkejäsi
@@ -187,7 +187,7 @@ fi:
       write:blocks: estä tilejä ja verkkotunnuksia
       write:bookmarks: lisää julkaisuja kirjanmerkkeihin
       write:conversations: mykistä ja poista keskusteluja
-      write:favourites: suosikkijulkaisut
+      write:favourites: lisää julkaisuja suosikkeihin
       write:filters: luo suodattimia
       write:follows: seuraa käyttäjiä
       write:lists: luo listoja
