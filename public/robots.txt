@@ -5,7 +5,7 @@ Disallow: /media_proxy/
 Disallow: /interact/
 
 ###################################################################################################################
-## AI Bots - Crawlers/scrapers and data harvesters that don't effect the end user.
+## Major AI Bots - Crawlers/scrapers and data harvesters that don't effect the end user.
 ###################################################################################################################
 
 # OpenAI Scraper/Crawler/Assistant - https://platform.openai.com/docs/bots
@@ -34,54 +34,24 @@ User-agent: Meta-ExternalAgent
 User-agent: Google-Extended
 
 ###################################################################################################################
+# Other AI Bots - Crawlers/scrapers and data harvesters that don't effect the end user.
+###################################################################################################################
 
-
-# ??
-User-agent: anthropic-ai
-
-# Bytedance
-User-agent: Bytespider
-
-
-# https://support.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler
-User-agent: ClaudeBot
-
-# ??
-User-agent: Claude-Web
-
-# ??
-User-agent: cohere-ai
-
-# ??
-User-agent: Diffbot
-
-# https://imagesift.com/about
-User-agent: ImagesiftBot
-
-# ??
-User-agent: img2dataset
-
-
-
-# ??
-User-agent: omgili
-
-# ??
-User-agent: omgilibot
-
-# https://docs.perplexity.ai/docs/perplexitybot
+# https://docs.perplexity.ai/docs/perplexity-bot
 User-agent: PerplexityBot
 
-# ??
-User-agent: Scrapy
-
-# ??
-User-agent: Timpibot
+# https://support.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler
+User-agent: anthropic-ai
+User-agent: ClaudeBot
+User-agent: Claude-Web
 
 # https://velen.io/
 User-agent: VelenPublicWebCrawler
 
 # https://about.you.com/es/youbot/
 User-agent: YouBot
+
+# ??
+User-agent: cohere-ai
 
 Disallow: /
