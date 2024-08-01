@@ -10215,6 +10215,12 @@ noscript {
       letter-spacing: 0.5px;
       line-height: 24px;
       color: $secondary-text-color;
+
+      bdi {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
     }
 
     .filtered-notifications-banner__badge {
