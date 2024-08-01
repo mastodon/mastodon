@@ -124,7 +124,7 @@ class Status < ApplicationRecord
     end
   }
   scope :tagged_with_none, lambda { |tag_ids|
-    where('NOT EXISTS (SELECT * FROM taggings forbidden WHERE forbidden.taggable_id = statuses.id AND forbidden.taggable_type = \'Status\' AND forbidden.tag_id IN (?))', tag_ids)
+    where('NOT EXISTS (SELECT * FROM taggings WHERE taggings.taggable_id = statuses.id AND taggings.taggable_type = \'Status\' AND taggings.tag_id IN (?))', tag_ids)
   }
   scope :distributable_visibility, -> { where(visibility: %i(public unlisted)) }
   scope :list_eligible_visibility, -> { where(visibility: %i(public unlisted private)) }
