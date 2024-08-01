@@ -37,4 +37,9 @@ export const selectNeedsNotificationPermission = (state: RootState) =>
       'dismissPermissionBanner',
     ])) as boolean;
 
+export const selectSettingsNotificationsMinimizeFilteredBanner = (
+  state: RootState,
+) =>
+  state.settings.getIn(['notifications', 'minimizeFilteredBanner']) as boolean;
+
 /* eslint-enable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */

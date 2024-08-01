@@ -8,15 +8,20 @@ import { Helmet } from 'react-helmet';
 import { useSelector, useDispatch } from 'react-redux';
 
 import InventoryIcon from '@/material-icons/400-24px/inventory_2.svg?react';
+import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import { fetchNotificationRequests, expandNotificationRequests } from 'mastodon/actions/notifications';
+import { changeSetting } from 'mastodon/actions/settings';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 import ScrollableList from 'mastodon/components/scrollable_list';
+import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
+import { selectSettingsNotificationsMinimizeFilteredBanner } from 'mastodon/selectors/settings';
 
 import { NotificationRequest } from './components/notification_request';
 
 const messages = defineMessages({
   title: { id: 'notification_requests.title', defaultMessage: 'Filtered notifications' },
+  maximize: { id: 'notification_requests.maximize', defaultMessage: 'Maximize' }
 });
 
 export const NotificationRequests = ({ multiColumn }) => {
@@ -26,6 +31,9 @@ export const NotificationRequests = ({ multiColumn }) => {
   const isLoading = useSelector(state => state.getIn(['notificationRequests', 'isLoading']));
   const notificationRequests = useSelector(state => state.getIn(['notificationRequests', 'items']));
   const hasMore = useSelector(state => !!state.getIn(['notificationRequests', 'next']));
+  const minimizeSetting = useSelector(
+    selectSettingsNotificationsMinimizeFilteredBanner,
+  );
 
   const handleHeaderClick = useCallback(() => {
     columnRef.current?.scrollTop();
@@ -35,9 +43,33 @@ export const NotificationRequests = ({ multiColumn }) => {
     dispatch(expandNotificationRequests());
   }, [dispatch]);
 
+  const handleMaximize = useCallback(() => {
+    dispatch(changeSetting(['notifications', 'minimizeFilteredBanner'], false));
+  }, [dispatch]);
+
   useEffect(() => {
     dispatch(fetchNotificationRequests());
   }, [dispatch]);
+
+  const menu = [];
+
+  if (minimizeSetting) {
+    menu.push({
+      text: intl.formatMessage(messages.maximize),
+      action: handleMaximize,
+    });
+  }
+
+  const extraButton = menu.length > 0 ? (
+    <DropdownMenuContainer
+      className='column-header__button'
+      items={menu}
+      icon='ellipsis-v'
+      iconComponent={MoreHorizIcon}
+      size={24}
+      direction='right'
+    />
+  ) : null;
 
   return (
     <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
@@ -47,6 +79,7 @@ export const NotificationRequests = ({ multiColumn }) => {
         title={intl.formatMessage(messages.title)}
         onClick={handleHeaderClick}
         multiColumn={multiColumn}
+        extraButton={extraButton}
         showBackButton
       />
 
