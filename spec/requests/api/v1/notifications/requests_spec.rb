@@ -87,4 +87,37 @@ RSpec.describe 'Requests' do
       end
     end
   end
+
+  describe 'POST /api/v1/notifications/requests/accept' do
+    subject do
+      post '/api/v1/notifications/requests/accept', params: { id: [notification_request.id] }, headers: headers
+    end
+
+    let!(:notification_request) { Fabricate(:notification_request, account: user.account) }
+
+    it_behaves_like 'forbidden for wrong scope', 'read read:notifications'
+
+    it 'returns http success and creates notification permission', :aggregate_failures do
+      subject
+
+      expect(NotificationPermission.find_by(account: notification_request.account, from_account: notification_request.from_account)).to_not be_nil
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'POST /api/v1/notifications/requests/dismiss' do
+    subject do
+      post '/api/v1/notifications/requests/dismiss', params: { id: [notification_request.id] }, headers: headers
+    end
+
+    let!(:notification_request) { Fabricate(:notification_request, account: user.account) }
+
+    it_behaves_like 'forbidden for wrong scope', 'read read:notifications'
+
+    it 'returns http success and destroys the notification request', :aggregate_failures do
+      expect { subject }.to change(NotificationRequest, :count).by(-1)
+
+      expect(response).to have_http_status(200)
+    end
+  end
 end
