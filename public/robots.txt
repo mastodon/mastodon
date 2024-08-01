@@ -8,7 +8,7 @@ Disallow: /interact/
 # AI Bots - Crawlers/scrapers and data harvesters. Blocking these should not negatively effect the end user.
 ###############################################################################################################################
 
-# OpenAI Scraper/Crawler/Assistant - https://platform.openai.com/docs/bots
+# OpenAI Scraper/Crawler/Assistant https://platform.openai.com/docs/bots
 User-agent: GPTBot
 User-agent: ChatGPT-User
 User-agent: OAI-SearchBot
@@ -22,7 +22,7 @@ User-agent: Applebot
 # Apple AI models https://support.apple.com/en-au/119829
 User-agent: Applebot-Extended
 
-# https://commoncrawl.org/ccbot
+# Common Crawl https://commoncrawl.org/ccbot
 User-agent: CCBot
 
 # Facebook AI models https://developers.facebook.com/docs/sharing/bot/
@@ -32,8 +32,6 @@ User-agent: Meta-ExternalAgent
 
 # Googles Gemini Apps and Vertex AI https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers
 User-agent: Google-Extended
-
-###############################################################################################################################
 
 # https://docs.perplexity.ai/docs/perplexity-bot
 User-agent: PerplexityBot
