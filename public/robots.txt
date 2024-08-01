@@ -4,9 +4,9 @@ User-agent: *
 Disallow: /media_proxy/
 Disallow: /interact/
 
-###################################################################################################################
-## Major AI Bots - Crawlers/scrapers and data harvesters that don't effect the end user.
-###################################################################################################################
+###############################################################################################################################
+## (Safe to block) AI Bots - Crawlers/scrapers and data harvesters. Blocking these should not negatively effect the end user.
+###############################################################################################################################
 
 # OpenAI Scraper/Crawler/Assistant - https://platform.openai.com/docs/bots
 User-agent: GPTBot
@@ -33,9 +33,9 @@ User-agent: Meta-ExternalAgent
 # Googles Gemini Apps and Vertex AI https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers
 User-agent: Google-Extended
 
-###################################################################################################################
-# Other AI Bots - Crawlers/scrapers and data harvesters that don't effect the end user.
-###################################################################################################################
+###############################################################################################################################
+# (Likely safe to block) AI Bots - Crawlers/scrapers and data harvesters. Blocking these might negatively effect the end user.
+###############################################################################################################################
 
 # https://docs.perplexity.ai/docs/perplexity-bot
 User-agent: PerplexityBot
