@@ -8,9 +8,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_REPORTS } from 'mastodon/permissions';
 
-import { CheckboxWithLabel } from './checkbox_with_label';
 import ClearColumnButton from './clear_column_button';
 import GrantPermissionButton from './grant_permission_button';
+import { PolicyControls } from './policy_controls';
 import SettingToggle from './setting_toggle';
 
 class ColumnSettings extends PureComponent {
@@ -24,32 +24,14 @@ class ColumnSettings extends PureComponent {
     alertsEnabled: PropTypes.bool,
     browserSupport: PropTypes.bool,
     browserPermission: PropTypes.string,
-    notificationPolicy: PropTypes.object.isRequired,
-    onChangePolicy: PropTypes.func.isRequired,
   };
 
   onPushChange = (path, checked) => {
     this.props.onChange(['push', ...path], checked);
   };
 
-  handleFilterNotFollowing = checked => {
-    this.props.onChangePolicy('filter_not_following', checked);
-  };
-
-  handleFilterNotFollowers = checked => {
-    this.props.onChangePolicy('filter_not_followers', checked);
-  };
-
-  handleFilterNewAccounts = checked => {
-    this.props.onChangePolicy('filter_new_accounts', checked);
-  };
-
-  handleFilterPrivateMentions = checked => {
-    this.props.onChangePolicy('filter_private_mentions', checked);
-  };
-
   render () {
-    const { settings, pushSettings, onChange, onClear, alertsEnabled, browserSupport, browserPermission, onRequestNotificationPermission, notificationPolicy } = this.props;
+    const { settings, pushSettings, onChange, onClear, alertsEnabled, browserSupport, browserPermission, onRequestNotificationPermission } = this.props;
 
     const filterAdvancedStr = <FormattedMessage id='notifications.column_settings.filter_bar.advanced' defaultMessage='Display all categories' />;
     const unreadMarkersShowStr = <FormattedMessage id='notifications.column_settings.unread_notifications.highlight' defaultMessage='Highlight unread notifications' />;
@@ -79,31 +61,7 @@ class ColumnSettings extends PureComponent {
           </section>
         )}
 
-        <section>
-          <h3><FormattedMessage id='notifications.policy.title' defaultMessage='Filter out notifications from…' /></h3>
-
-          <div className='column-settings__row'>
-            <CheckboxWithLabel checked={notificationPolicy.filter_not_following} onChange={this.handleFilterNotFollowing}>
-              <strong><FormattedMessage id='notifications.policy.filter_not_following_title' defaultMessage="People you don't follow" /></strong>
-              <span className='hint'><FormattedMessage id='notifications.policy.filter_not_following_hint' defaultMessage='Until you manually approve them' /></span>
-            </CheckboxWithLabel>
-
-            <CheckboxWithLabel checked={notificationPolicy.filter_not_followers} onChange={this.handleFilterNotFollowers}>
-              <strong><FormattedMessage id='notifications.policy.filter_not_followers_title' defaultMessage='People not following you' /></strong>
-              <span className='hint'><FormattedMessage id='notifications.policy.filter_not_followers_hint' defaultMessage='Including people who have been following you fewer than {days, plural, one {one day} other {# days}}' values={{ days: 3 }} /></span>
-            </CheckboxWithLabel>
-
-            <CheckboxWithLabel checked={notificationPolicy.filter_new_accounts} onChange={this.handleFilterNewAccounts}>
-              <strong><FormattedMessage id='notifications.policy.filter_new_accounts_title' defaultMessage='New accounts' /></strong>
-              <span className='hint'><FormattedMessage id='notifications.policy.filter_new_accounts.hint' defaultMessage='Created within the past {days, plural, one {one day} other {# days}}' values={{ days: 30 }} /></span>
-            </CheckboxWithLabel>
-
-            <CheckboxWithLabel checked={notificationPolicy.filter_private_mentions} onChange={this.handleFilterPrivateMentions}>
-              <strong><FormattedMessage id='notifications.policy.filter_private_mentions_title' defaultMessage='Unsolicited private mentions' /></strong>
-              <span className='hint'><FormattedMessage id='notifications.policy.filter_private_mentions_hint' defaultMessage="Filtered unless it's in reply to your own mention or if you follow the sender" /></span>
-            </CheckboxWithLabel>
-          </div>
-        </section>
+        <PolicyControls />
 
         <section role='group' aria-labelledby='notifications-beta'>
           <h3 id='notifications-beta'>

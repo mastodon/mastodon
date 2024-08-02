@@ -43,7 +43,10 @@ import Column from '../../components/column';
 import { ColumnHeader } from '../../components/column_header';
 import { LoadGap } from '../../components/load_gap';
 import ScrollableList from '../../components/scrollable_list';
-import { FilteredNotificationsBanner } from '../notifications/components/filtered_notifications_banner';
+import {
+  FilteredNotificationsBanner,
+  FilteredNotificationsIconButton,
+} from '../notifications/components/filtered_notifications_banner';
 import NotificationsPermissionBanner from '../notifications/components/notifications_permission_banner';
 import ColumnSettingsContainer from '../notifications/containers/column_settings_container';
 
@@ -306,16 +309,21 @@ export const Notifications: React.FC<{
     <NotSignedInIndicator />
   );
 
-  const extraButton = canMarkAsRead ? (
-    <button
-      aria-label={intl.formatMessage(messages.markAsRead)}
-      title={intl.formatMessage(messages.markAsRead)}
-      onClick={handleMarkAsRead}
-      className='column-header__button'
-    >
-      <Icon id='done-all' icon={DoneAllIcon} />
-    </button>
-  ) : null;
+  const extraButton = (
+    <>
+      <FilteredNotificationsIconButton className='column-header__button' />
+      {canMarkAsRead && (
+        <button
+          aria-label={intl.formatMessage(messages.markAsRead)}
+          title={intl.formatMessage(messages.markAsRead)}
+          onClick={handleMarkAsRead}
+          className='column-header__button'
+        >
+          <Icon id='done-all' icon={DoneAllIcon} />
+        </button>
+      )}
+    </>
+  );
 
   return (
     <Column

@@ -9,15 +9,51 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import InventoryIcon from '@/material-icons/400-24px/inventory_2.svg?react';
 import { fetchNotificationRequests, expandNotificationRequests } from 'mastodon/actions/notifications';
+import { changeSetting } from 'mastodon/actions/settings';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 import ScrollableList from 'mastodon/components/scrollable_list';
 
 import { NotificationRequest } from './components/notification_request';
+import { PolicyControls } from './components/policy_controls';
+import SettingToggle from './components/setting_toggle';
 
 const messages = defineMessages({
   title: { id: 'notification_requests.title', defaultMessage: 'Filtered notifications' },
+  maximize: { id: 'notification_requests.maximize', defaultMessage: 'Maximize' }
 });
+
+const ColumnSettings = () => {
+  const dispatch = useDispatch();
+  const settings = useSelector((state) => state.settings.get('notifications'));
+
+  const onChange = useCallback(
+    (key, checked) => {
+      dispatch(changeSetting(['notifications', ...key], checked));
+    },
+    [dispatch],
+  );
+
+  return (
+    <div className='column-settings'>
+      <section>
+        <div className='column-settings__row'>
+          <SettingToggle
+            prefix='notifications'
+            settings={settings}
+            settingPath={['minimizeFilteredBanner']}
+            onChange={onChange}
+            label={
+              <FormattedMessage id='notification_requests.minimize_banner' defaultMessage='Minimize filtred notifications banner' />
+            }
+          />
+        </div>
+      </section>
+
+      <PolicyControls />
+    </div>
+  );
+};
 
 export const NotificationRequests = ({ multiColumn }) => {
   const columnRef = useRef();
@@ -48,7 +84,9 @@ export const NotificationRequests = ({ multiColumn }) => {
         onClick={handleHeaderClick}
         multiColumn={multiColumn}
         showBackButton
-      />
+      >
+        <ColumnSettings />
+      </ColumnHeader>
 
       <ScrollableList
         scrollKey='notification_requests'
