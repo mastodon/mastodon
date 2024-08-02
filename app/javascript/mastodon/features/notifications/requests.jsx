@@ -15,6 +15,7 @@ import ColumnHeader from 'mastodon/components/column_header';
 import ScrollableList from 'mastodon/components/scrollable_list';
 
 import { NotificationRequest } from './components/notification_request';
+import { PolicyControls } from './components/policy_controls';
 import SettingToggle from './components/setting_toggle';
 
 const messages = defineMessages({
@@ -48,6 +49,8 @@ const ColumnSettings = () => {
           />
         </div>
       </section>
+
+      <PolicyControls />
     </div>
   );
 };
