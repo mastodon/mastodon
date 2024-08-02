@@ -6,7 +6,6 @@ import { openModal } from 'mastodon/actions/modal';
 import { initializeNotifications } from 'mastodon/actions/notifications_migration';
 
 import { showAlert } from '../../../actions/alerts';
-import { updateNotificationsPolicy } from '../../../actions/notification_policies';
 import { setFilter, requestBrowserPermission } from '../../../actions/notifications';
 import { changeAlerts as changePushNotifications } from '../../../actions/push_notifications';
 import { changeSetting } from '../../../actions/settings';
@@ -25,7 +24,6 @@ const mapStateToProps = state => ({
   alertsEnabled: state.getIn(['settings', 'notifications', 'alerts']).includes(true),
   browserSupport: state.getIn(['notifications', 'browserSupport']),
   browserPermission: state.getIn(['notifications', 'browserPermission']),
-  notificationPolicy: state.notificationPolicy,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -72,12 +70,6 @@ const mapDispatchToProps = (dispatch) => ({
 
   onRequestNotificationPermission () {
     dispatch(requestBrowserPermission());
-  },
-
-  onChangePolicy (param, checked) {
-    dispatch(updateNotificationsPolicy({
-      [param]: checked,
-    }));
   },
 
 });
