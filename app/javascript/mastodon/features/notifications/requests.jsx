@@ -44,7 +44,7 @@ const ColumnSettings = () => {
             settingPath={['minimizeFilteredBanner']}
             onChange={onChange}
             label={
-              <FormattedMessage id='notification_requests.minimize_banner' defaultMessage='Minimize filtred notifications banner' />
+              <FormattedMessage id='notification_requests.minimize_banner' defaultMessage='Minimize filtered notifications banner' />
             }
           />
         </div>
