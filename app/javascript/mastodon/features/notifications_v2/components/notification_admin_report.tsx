@@ -1,6 +1,7 @@
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 
 import FlagIcon from '@/material-icons/400-24px/flag-fill.svg?react';
 import { Icon } from 'mastodon/components/icon';
@@ -44,16 +45,26 @@ export const NotificationAdminReport: React.FC<{
 
   const values = {
     name: (
-      <bdi
-        dangerouslySetInnerHTML={{ __html: account.get('display_name_html') }}
-      />
+      <Link
+        to={`/@${account.acct}`}
+        title={`@${account.acct}`}
+        data-hover-card-account={account.id}
+      >
+        <bdi dangerouslySetInnerHTML={{ __html: account.display_name_html }} />
+      </Link>
     ),
     target: (
-      <bdi
-        dangerouslySetInnerHTML={{
-          __html: targetAccount.get('display_name_html'),
-        }}
-      />
+      <Link
+        to={`/@${targetAccount.acct}`}
+        title={`@${targetAccount.acct}`}
+        data-hover-card-account={targetAccount.id}
+      >
+        <bdi
+          dangerouslySetInnerHTML={{
+            __html: targetAccount.display_name_html,
+          }}
+        />
+      </Link>
     ),
     category: intl.formatMessage(messages[report.category]),
     count: report.status_ids.length,
