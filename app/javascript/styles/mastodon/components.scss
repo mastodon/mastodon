@@ -1980,17 +1980,15 @@ body > [data-popper-placement] {
 }
 
 .account__avatar {
-  @include avatar-radius;
-
   display: block;
   position: relative;
-  overflow: hidden;
 
   img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 4px;
   }
 
   &-inline {
@@ -2026,6 +2024,29 @@ body > [data-popper-placement] {
       font-weight: 700;
       font-size: 15px;
     }
+  }
+
+  &__counter {
+    $height: 16px;
+    $h-padding: 5px;
+
+    position: absolute;
+    bottom: -3px;
+    inset-inline-end: -3px;
+    padding-left: $h-padding;
+    padding-right: $h-padding;
+    height: $height;
+    border-radius: $height;
+    min-width: $height - 2 * $h-padding; // to ensure that it is never narrower than a circle
+    line-height: $height + 1px; // to visually center the numbers
+    background-color: $ui-button-background-color;
+    color: $white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--background-color);
+    font-size: 11px;
+    font-weight: 500;
+    text-align: center;
   }
 }
 
