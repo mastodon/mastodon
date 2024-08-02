@@ -129,6 +129,40 @@ RSpec.describe NotifyService do
     end
   end
 
+  context 'when the blocked sender has a role' do
+    let(:sender) { Fabricate(:user, role: sender_role).account }
+    let(:activity) { Fabricate(:mention, status: Fabricate(:status, account: sender)) }
+    let(:type) { :mention }
+
+    before do
+      recipient.block!(sender)
+    end
+
+    context 'when the role is a visible moderator' do
+      let(:sender_role) { Fabricate(:user_role, highlighted: true, permissions: UserRole::FLAGS[:manage_users]) }
+
+      it 'does notify' do
+        expect { subject }.to change(Notification, :count)
+      end
+    end
+
+    context 'when the role is a non-visible moderator' do
+      let(:sender_role) { Fabricate(:user_role, highlighted: false, permissions: UserRole::FLAGS[:manage_users]) }
+
+      it 'does not notify' do
+        expect { subject }.to_not change(Notification, :count)
+      end
+    end
+
+    context 'when the role is a visible non-moderator' do
+      let(:sender_role) { Fabricate(:user_role, highlighted: true) }
+
+      it 'does not notify' do
+        expect { subject }.to_not change(Notification, :count)
+      end
+    end
+  end
+
   context 'with filtered notifications' do
     let(:unknown)  { Fabricate(:account, username: 'unknown') }
     let(:status)   { Fabricate(:status, account: unknown) }
