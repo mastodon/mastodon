@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_24_181224) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_03_160904) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -880,6 +880,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_24_181224) do
     t.datetime "published_at"
     t.string "image_description", default: "", null: false
     t.bigint "author_account_id"
+    t.string "image_remote_url"
     t.index ["author_account_id"], name: "index_preview_cards_on_author_account_id", where: "(author_account_id IS NOT NULL)"
     t.index ["url"], name: "index_preview_cards_on_url", unique: true
   end
