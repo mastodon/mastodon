@@ -67,7 +67,7 @@ describe Paperclip::ResponseWithLimitAdapter do
       it 'raises without reading the body' do
         allow(response).to receive(:body).and_call_original
 
-        expect { subject }.to raise_error(Mastodon::LengthValidationError)
+        expect { subject }.to raise_error(Mastodon::LengthValidationError, 'Content-Length 5242880 exceeds limit of 51200')
 
         expect(response).to_not have_received(:body)
       end
@@ -77,7 +77,7 @@ describe Paperclip::ResponseWithLimitAdapter do
       let(:body) { SecureRandom.random_bytes(1.megabyte) }
 
       it 'raises while reading the body' do
-        expect { subject }.to raise_error(Mastodon::LengthValidationError)
+        expect { subject }.to raise_error(Mastodon::LengthValidationError, 'Body size exceeds limit of 51200')
         expect(response.content_length).to be_nil
       end
     end
