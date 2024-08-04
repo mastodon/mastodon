@@ -9,6 +9,12 @@ class REST::Admin::WebhookEventSerializer < ActiveModel::Serializer
       REST::Admin::ReportSerializer
     when 'Status'
       REST::StatusSerializer
+    when 'Follow'
+      REST::FollowSerializer
+    when 'Mute'
+      REST::MuteSerializer
+    when 'Block'
+      REST::BlockSerializer
     else
       super
     end
