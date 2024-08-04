@@ -290,6 +290,10 @@ code {
     flex: 0;
   }
 
+  .input.select.select--languages {
+    min-width: 32ch;
+  }
+
   .required abbr {
     text-decoration: none;
     color: lighten($error-value-color, 12%);
