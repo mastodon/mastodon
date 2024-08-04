@@ -226,6 +226,7 @@ it:
         update_custom_emoji: Aggiorna Emoji Personalizzata
         update_domain_block: Aggiorna Blocco del Dominio
         update_ip_block: Aggiorna regola IP
+        update_report: Aggiorna segnalazione
         update_status: Aggiorna Toot
         update_user_role: Aggiorna Ruolo
       actions:
@@ -470,6 +471,9 @@ it:
       title: Consigli su chi seguire
       unsuppress: Ripristina consigli su chi seguire
     instances:
+      audit_log:
+        title: Log di Controllo Recenti
+        view_all: Visualizza tutti i log
       availability:
         description_html:
           one: Se la consegna al dominio fallisce <strong>%{count} giorno</strong>, non sarà effettuato alcun tentativo di consegna ulteriore a meno che la consegna <em>dal</em> dominio non sia ricevuta.
@@ -638,6 +642,7 @@ it:
       report: 'Rapporto #%{id}'
       reported_account: Account segnalato
       reported_by: Inviato da
+      reported_with_application: Segnalato con applicazione
       resolved: Risolto
       resolved_msg: Rapporto risolto!
       skip_to_actions: Passa alle azioni
@@ -880,7 +885,23 @@ it:
         action: Controlla qui per maggiori informazioni
         message_html: "<strong>La tua archiviazione oggetti è mal configurata. La privacy dei tuoi utenti è a rischio.</strong>"
     tags:
+      moderation:
+        not_trendable: Non di tendenza
+        not_usable: Non utilizzabile
+        pending_review: In attesa di revisione
+        review_requested: Revisione richiesta
+        reviewed: Controllato
+        title: Stato
+        trendable: Di tendenza
+        unreviewed: Non revisionato
+        usable: Utilizzabile
+      name: Nome
+      newest: Più recenti
+      oldest: Più vecchio
+      reset: Ripristina
       review: Esamina status
+      search: Cerca
+      title: Hashtag
       updated_msg: Impostazioni hashtag aggiornate con successo
     title: Amministrazione
     trends:

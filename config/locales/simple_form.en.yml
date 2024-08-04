@@ -211,6 +211,7 @@ en:
         setting_default_privacy: Posting privacy
         setting_default_sensitive: Always mark media as sensitive
         setting_delete_modal: Show confirmation dialog before deleting a post
+        setting_disable_hover_cards: Disable profile preview on hover
         setting_disable_swiping: Disable swiping motions
         setting_display_media: Media display
         setting_display_media_default: Default
@@ -242,11 +243,13 @@ en:
           warn: Hide with a warning
       form_admin_settings:
         activity_api_enabled: Publish aggregate statistics about user activity in the API
+        app_icon: App icon
         backups_retention_period: User archive retention period
         bootstrap_timeline_accounts: Always recommend these accounts to new users
         closed_registrations_message: Custom message when sign-ups are not available
         content_cache_retention_period: Remote content retention period
         custom_css: Custom CSS
+        favicon: Favicon
         mascot: Custom mascot (legacy)
         media_cache_retention_period: Media cache retention period
         peers_api_enabled: Publish list of discovered servers in the API
@@ -311,7 +314,7 @@ en:
         listable: Allow this hashtag to appear in searches and suggestions
         name: Hashtag
         trendable: Allow this hashtag to appear under trends
-        usable: Allow posts to use this hashtag
+        usable: Allow posts to use this hashtag locally
       user:
         role: Role
         time_zone: Time zone

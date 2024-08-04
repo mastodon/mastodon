@@ -226,6 +226,7 @@ tr:
         update_custom_emoji: Özel İfadeyi Güncelle
         update_domain_block: Engellenen Alan Adını Güncelle
         update_ip_block: IP kuralını güncelle
+        update_report: Raporu Güncelle
         update_status: Durumu Güncelle
         update_user_role: Rolü Güncelle
       actions:
@@ -470,6 +471,9 @@ tr:
       title: Takip önerileri
       unsuppress: Takip önerisini geri getir
     instances:
+      audit_log:
+        title: En Son Denetim Günlükleri
+        view_all: Tüm denetim günlüklerini görüntüle
       availability:
         description_html:
           one: Eğer alan adına teslimat <strong>%{count} gün</strong> boyunca başarısız olursa, alan adından bir teslimat <em>gelmedikçe</em> yeni bir iletim denemesi yapılmayacak.
@@ -638,6 +642,7 @@ tr:
       report: 'Şikayet #%{id}'
       reported_account: Şikayet edilen hesap
       reported_by: Şikayet eden
+      reported_with_application: Uygulamayla bildirildi
       resolved: Giderildi
       resolved_msg: Şikayet başarıyla çözümlendi!
       skip_to_actions: İşlemlere atla
@@ -723,7 +728,7 @@ tr:
         manage_users_description: Kullanıcıların, diğer kullanıcıların ayrıntılarını görüntülemesine ve onlara karşı denetim eylemleri gerçekleştirmesine izin verir
         manage_webhooks: Webhookları Yönetme
         manage_webhooks_description: Kullanıcıların yönetsel olaylar için webhook kurmasına izin verir
-        view_audit_log: Denetim Kaydını Görüntüleme
+        view_audit_log: Denetim Günlüğünü Görüntüleme
         view_audit_log_description: Kullanıcıların sunucudaki yönetsel eylemlerin bir tarihçesini görüntülemesine izin verir
         view_dashboard: Ana Paneli Görüntüleme
         view_dashboard_description: Kullanıcıların ana panele ve çeşitli ölçütlere erişmesine izin verir

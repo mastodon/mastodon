@@ -83,7 +83,8 @@ RSpec.describe 'API V2 Admin Accounts' do
       let(:params) { { limit: 1 } }
 
       it 'sets the correct pagination headers' do
-        expect(response.headers['Link'].find_link(%w(rel next)).href).to eq api_v2_admin_accounts_url(limit: 1, max_id: admin_account.id)
+        expect(response)
+          .to include_pagination_headers(next: api_v2_admin_accounts_url(limit: 1, max_id: admin_account.id))
       end
     end
   end

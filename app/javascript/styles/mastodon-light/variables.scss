@@ -56,11 +56,13 @@ $account-background-color: $white !default;
 
 $emojis-requiring-inversion: 'chains';
 
-.theme-mastodon-light {
+body {
   --dropdown-border-color: #d9e1e8;
   --dropdown-background-color: #fff;
+  --modal-border-color: #d9e1e8;
+  --modal-background-color: var(--background-color-tint);
   --background-border-color: #d9e1e8;
   --background-color: #fff;
-  --background-color-tint: rgba(255, 255, 255, 90%);
+  --background-color-tint: rgba(255, 255, 255, 80%);
   --background-filter: blur(10px);
 }

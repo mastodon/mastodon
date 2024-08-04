@@ -114,6 +114,16 @@
 - if @instance.persisted?
   %hr.spacer/
 
+  %h3= t('admin.instances.audit_log.title')
+  - if @action_logs.empty?
+    %p= t('accounts.nothing_here')
+  - else
+    .report-notes
+      = render partial: 'admin/action_logs/action_log', collection: @action_logs
+    = link_to t('admin.instances.audit_log.view_all'), admin_action_logs_path(target_domain: @instance.domain), class: 'button'
+
+  %hr.spacer/
+
   %h3= t('admin.instances.availability.title')
 
   %p

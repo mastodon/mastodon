@@ -225,7 +225,7 @@ class SearchQueryTransformer < Parslet::Transform
   end
 
   rule(clause: subtree(:clause)) do
-    prefix   = clause[:prefix][:term].to_s if clause[:prefix]
+    prefix   = clause[:prefix][:term].to_s.downcase if clause[:prefix]
     operator = clause[:operator]&.to_s
     term     = clause[:phrase] ? clause[:phrase].map { |term| term[:term].to_s }.join(' ') : clause[:term].to_s
 

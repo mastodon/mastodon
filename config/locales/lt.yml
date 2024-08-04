@@ -232,6 +232,7 @@ lt:
         update_custom_emoji: Atnaujinti pasirinktinį jaustuką
         update_domain_block: Atnaujinti domeno bloką
         update_ip_block: Atnaujinti IP taisyklę
+        update_report: Atnaujinti ataskaitą
         update_status: Atnaujinti įrašą
         update_user_role: Atnaujinti vaidmenį
       actions:
@@ -347,7 +348,7 @@ lt:
       shortcode_hint: Bent du ženklai, tik raidiniai skaitmeniniai ženklai bei akcentai(_)
       title: Asmeniniai jaustukai
       uncategorized: Be kategorijos
-      unlist: Išbraukti iš sąrašo
+      unlist: Neįtraukti į sąrašą
       unlisted: Neįtrauktas į sąrašą
       update_failed_msg: Jaustukas negalėjo būti pakeistas
       updated_msg: Jaustukas sėkmingai pakeistas!
@@ -445,6 +446,9 @@ lt:
       import:
         description_html: Netrukus importuosi domenų blokavimų sąrašą. Labai atidžiai peržiūrėk šį sąrašą, ypač jei ne tu jį sudarei.
     instances:
+      audit_log:
+        title: Naujausi audito žurnalai
+        view_all: Peržiūrėti visus audito žurnalus
       availability:
         title: Prieinamumas
         warning: Paskutinis bandymas prisijungti prie šio serverio buvo nesėkmingas
@@ -522,6 +526,7 @@ lt:
       report: 'Skundas #%{id}'
       reported_account: Reportuota paskyra
       reported_by: Skundas sukurtas
+      reported_with_application: Pranešta su programėle
       resolved: Išspręsta
       resolved_msg: Skundas sėkmingai įšspręstas!
       status: Statusas
@@ -542,6 +547,8 @@ lt:
         manage_taxonomies_description: Leidžia naudotojams peržiūrėti tendencingą turinį ir atnaujinti saitažodžių nustatymus
         manage_user_access_description: Leidžia naudotojams išjungti kitų naudotojų dvigubo tapatybės nustatymą, pakeisti el. pašto adresą ir iš naujo nustatyti slaptažodį.
     settings:
+      branding:
+        title: Firminio ženklo kūrimas
       captcha_enabled:
         desc_html: Tai priklauso nuo hCaptcha išorinių skriptų, kurie gali kelti susirūpinimą dėl saugumo ir privatumo. Be to, <strong>dėl to registracijos procesas kai kuriems žmonėms (ypač neįgaliesiems) gali būti gerokai sunkiau prieinami</strong>. Dėl šių priežasčių apsvarstyk alternatyvias priemones, pavyzdžiui, patvirtinimu arba kvietimu grindžiamą registraciją.
       content_retention:
@@ -604,6 +611,23 @@ lt:
         message_html: Tavo Elasticsearch klasteris turi tik vieną mazgą, <code>ES_PRESET</code> turėtų būti nustatyta į <code>single_node_cluster</code>.
       elasticsearch_running_check:
         message_html: Nepavyko prijungti prie Elasticsearch. Patikrink, ar ji veikia, arba išjunk viso teksto paiešką.
+    tags:
+      moderation:
+        not_trendable: Netendencinga
+        not_usable: Nenaudojama
+        pending_review: Laukiama peržiūros
+        review_requested: Paprašyta peržiūros
+        reviewed: Peržiūrėta
+        title: Statusas
+        trendable: Tendencinga
+        unreviewed: Neperžiūrėta
+        usable: Naudojama
+      name: Pavadinimas
+      newest: Naujausias
+      oldest: Seniausias
+      reset: Atkurti
+      search: Paieška
+      title: Saitažodžiai
     title: Administracija
     trends:
       allow: Leisti
@@ -663,7 +687,19 @@ lt:
       edit_preset: Keisti įspėjimo nustatymus
       title: Įspėjamieji numatytieji
     webhooks:
+      add_new: Pridėti galutinį tašką
+      delete: Ištrinti
       description_html: "<strong>Webhook</strong> leidžia Mastodon siųsti <strong>realaus laiko pranešimus</strong> apie pasirinktus įvykius į tavo programą, kad programa galėtų <strong>automatiškai paleisti reakcijas</strong>."
+      disable: Išjungti
+      disabled: Išjungta
+      edit: Redaguoti galutinį tašką
+      enable: Įjungti
+      enabled: Aktyvi
+      enabled_events:
+        few: "%{count} įjungti įvykiai"
+        many: "%{count} įjungto įvykio"
+        one: "%{count} įjungtas įvykis"
+        other: "%{count} įjungtų įvykių"
       events: Įvykiai
   admin_mailer:
     auto_close_registrations:
@@ -909,6 +945,7 @@ lt:
   login_activities:
     authentication_methods:
       otp: dvigubas tapatybės nustatymo programėlė
+      webauthn: saugumo raktai
     description_html: Jei pastebėjei neatpažįstamą veiklą, apsvarstyk galimybę pakeisti slaptažodį ir įjungti dvigubą tapatybės nustatymą.
     empty: Tapatybės nustatymas istorijos nėra
     title: Tapatybės nustatymo istorija
@@ -1049,6 +1086,7 @@ lt:
     relationships: Sekimai ir sekėjai
     severed_relationships: Nutrūkę sąryšiai
     two_factor_authentication: Dvigubas tapatybės nustatymas
+    webauthn_authentication: Saugumo raktai
   severed_relationships:
     download: Atsisiųsti (%{count})
     preamble: Užblokavus domeną arba prižiūrėtojams nusprendus pristabdyti nuotolinio serverio veiklą, gali prarasti sekimus ir sekėjus. Kai taip atsitiks, galėsi atsisiųsti nutrauktų sąryšių sąrašus, kad juos patikrinti ir galbūt importuoti į kitą serverį.
@@ -1083,7 +1121,7 @@ lt:
       private_long: rodyti tik sekėjams
       public: Vieša
       public_long: visi gali matyti
-      unlisted: Neįtrauktas į sąrašus
+      unlisted: Neįtrauktas į sąrašą
       unlisted_long: matyti gali visi, bet nėra išvardyti į viešąsias laiko skales
   statuses_cleanup:
     enabled_hint: Automatiškai ištrina įrašus, kai jie pasiekia nustatytą amžiaus ribą, nebent jie atitinka vieną iš toliau nurodytų išimčių
@@ -1110,6 +1148,7 @@ lt:
     recovery_codes: Atsarginio atkūrimo kodai
     recovery_codes_regenerated: Atkūrimo kodai sėkmingai sugeneruoti
     recovery_instructions_html: Jeigu prarandate prieiga prie telefono, jūs galite naudoti atkūrimo kodus esančius žemiau, kad atgautumėte priega prie savo paskyros.<strong>Laikykite atkūrimo kodus saugiai</strong> Pavyzdžiui, galite norėti juos išspausdinti, ir laikyti kartu su kitais svarbiais dokumentais.
+    webauthn: Saugumo raktai
   user_mailer:
     appeal_approved:
       action: Paskyros nustatymai
@@ -1196,9 +1235,11 @@ lt:
     verification: Patvirtinimas
     verified_links: Tavo patikrintos nuorodos
   webauthn_credentials:
+    add: Pridėti naują saugumo raktą
     create:
       error: Kilo problema pridedant saugumo raktą. Bandyk dar kartą.
       success: Tavo saugumo raktas buvo sėkmingai pridėtas.
+    delete: Ištrinti
     delete_confirmation: Ar tikrai nori ištrinti šį saugumo raktą?
     description_html: Jei įjungsi <strong>saugumo rakto tapatybės nustatymą</strong>, prisijungiant reikės naudoti vieną iš savo saugumo raktų.
     destroy:

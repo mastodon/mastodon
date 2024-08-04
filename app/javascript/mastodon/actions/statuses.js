@@ -1,3 +1,5 @@
+import { browserHistory } from 'mastodon/components/router';
+
 import api from '../api';
 
 import { ensureComposeIsVisible, setComposeToStatus } from './compose';
@@ -93,7 +95,7 @@ export function redraft(status, raw_text) {
   };
 }
 
-export const editStatus = (id, routerHistory) => (dispatch, getState) => {
+export const editStatus = (id) => (dispatch, getState) => {
   let status = getState().getIn(['statuses', id]);
 
   if (status.get('poll')) {
@@ -104,7 +106,7 @@ export const editStatus = (id, routerHistory) => (dispatch, getState) => {
 
   api().get(`/api/v1/statuses/${id}/source`).then(response => {
     dispatch(fetchStatusSourceSuccess());
-    ensureComposeIsVisible(getState, routerHistory);
+    ensureComposeIsVisible(getState);
     dispatch(setComposeToStatus(status, response.data.text, response.data.spoiler_text));
   }).catch(error => {
     dispatch(fetchStatusSourceFail(error));
@@ -124,7 +126,7 @@ export const fetchStatusSourceFail = error => ({
   error,
 });
 
-export function deleteStatus(id, routerHistory, withRedraft = false) {
+export function deleteStatus(id, withRedraft = false) {
   return (dispatch, getState) => {
     let status = getState().getIn(['statuses', id]);
 
@@ -141,7 +143,7 @@ export function deleteStatus(id, routerHistory, withRedraft = false) {
 
       if (withRedraft) {
         dispatch(redraft(status, response.data.text));
-        ensureComposeIsVisible(getState, routerHistory);
+        ensureComposeIsVisible(getState);
       }
     }).catch(error => {
       dispatch(deleteStatusFail(id, error));
@@ -308,6 +310,21 @@ export function revealStatus(ids) {
   };
 }
 
+export function toggleStatusSpoilers(statusId) {
+  return (dispatch, getState) => {
+    const status = getState().statuses.get(statusId);
+
+    if (!status)
+      return;
+
+    if (status.get('hidden')) {
+      dispatch(revealStatus(statusId));
+    } else {
+      dispatch(hideStatus(statusId));
+    }
+  };
+}
+
 export function toggleStatusCollapse(id, isCollapsed) {
   return {
     type: STATUS_COLLAPSE,
@@ -348,3 +365,15 @@ export const undoStatusTranslation = (id, pollId) => ({
   id,
   pollId,
 });
+
+export const navigateToStatus = (statusId) => {
+  return (_dispatch, getState) => {
+    const state = getState();
+    const accountId = state.statuses.getIn([statusId, 'account']);
+    const acct = state.accounts.getIn([accountId, 'acct']);
+
+    if (acct) {
+      browserHistory.push(`/@${acct}/${statusId}`);
+    }
+  };
+};

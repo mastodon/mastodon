@@ -1,4 +1,7 @@
 ---
+Rails/BulkChangeTable:
+  Enabled: false # Conflicts with strong_migrations features
+
 Rails/FilePath:
   EnforcedStyle: arguments
 
@@ -18,6 +21,3 @@ Rails/RakeEnvironment:
 
 Rails/SkipsModelValidations:
   Enabled: false
-
-Rails/UnusedIgnoredColumns:
-  Enabled: false # Preserve ability to migrate from arbitrary old versions

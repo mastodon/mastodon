@@ -223,6 +223,7 @@ ko:
         update_custom_emoji: 커스텀 에모지 업데이트
         update_domain_block: 도메인 차단 갱신
         update_ip_block: IP 규칙 수정
+        update_report: 신고 업데이트
         update_status: 게시물 수정
         update_user_role: 역할 수정
       actions:
@@ -464,6 +465,9 @@ ko:
       title: 팔로우 추천
       unsuppress: 팔로우 추천 복원
     instances:
+      audit_log:
+        title: 최근 감사 기록
+        view_all: 감사 기록 전체 보기
       availability:
         description_html:
           other: 도메인에 대한 전달이 성공 없이 <strong>%{count}</strong>일 실패한다면, 이후의 전달 시도는 해당 도메인<em>에서</em> 전달이 오기 전까지는 만들어지지 않습니다.
@@ -628,6 +632,7 @@ ko:
       report: '신고 #%{id}'
       reported_account: 신고 대상 계정
       reported_by: 신고자
+      reported_with_application: 신고에 사용된 앱
       resolved: 해결
       resolved_msg: 신고를 잘 해결했습니다!
       skip_to_actions: 작업으로 건너뛰기
@@ -868,7 +873,23 @@ ko:
         action: 더 많은 정보를 보려면 여기를 확인하세요
         message_html: "<strong>오브젝트 스토리지가 잘못 설정되어 있습니다. 사용자의 개인정보가 위험한 상태입니다.</strong>"
     tags:
+      moderation:
+        not_trendable: 유행에 오를 수 없음
+        not_usable: 사용 불가
+        pending_review: 심사 대기
+        review_requested: 검토 요청
+        reviewed: 검토함
+        title: 게시물
+        trendable: 유행에 오를 수 있음
+        unreviewed: 검토되지 않음
+        usable: 사용 가능
+      name: 이름
+      newest: 최신
+      oldest: 오래된 순
+      reset: 초기화
       review: 심사 상태
+      search: 검색
+      title: 해시태그
       updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
     title: 관리
     trends:
@@ -1741,7 +1762,7 @@ ko:
     contrast: 마스토돈 (고대비)
     default: 마스토돈 (어두움)
     mastodon-light: 마스토돈 (밝음)
-    system: 자동 선택 (시스템 테마 이용)
+    system: 자동 (시스템 테마 사용)
   time:
     formats:
       default: "%Y-%m-%d %H:%M"

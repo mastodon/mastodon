@@ -105,7 +105,7 @@ RSpec.describe NotifyService do
     context 'when email notification is enabled' do
       let(:enabled) { true }
 
-      it 'sends email', :sidekiq_inline do
+      it 'sends email', :inline_jobs do
         emails = capture_emails { subject }
 
         expect(emails.size)
@@ -125,6 +125,39 @@ RSpec.describe NotifyService do
         emails = capture_emails { subject }
 
         expect(emails).to be_empty
+      end
+    end
+  end
+
+  context 'with filtered notifications' do
+    let(:unknown)  { Fabricate(:account, username: 'unknown') }
+    let(:status)   { Fabricate(:status, account: unknown) }
+    let(:activity) { Fabricate(:mention, account: recipient, status: status) }
+    let(:type)     { :mention }
+
+    before do
+      Fabricate(:notification_policy, account: recipient, filter_not_following: true)
+    end
+
+    it 'creates a filtered notification' do
+      expect { subject }.to change(Notification, :count)
+      expect(Notification.last).to be_filtered
+    end
+
+    context 'when no notification request exists' do
+      it 'creates a notification request' do
+        expect { subject }.to change(NotificationRequest, :count)
+      end
+    end
+
+    context 'when a notification request exists' do
+      let!(:notification_request) do
+        Fabricate(:notification_request, account: recipient, from_account: unknown, last_status: Fabricate(:status, account: unknown))
+      end
+
+      it 'updates the existing notification request' do
+        expect { subject }.to_not change(NotificationRequest, :count)
+        expect(notification_request.reload.last_status).to eq status
       end
     end
   end

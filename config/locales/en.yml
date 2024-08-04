@@ -226,6 +226,7 @@ en:
         update_custom_emoji: Update Custom Emoji
         update_domain_block: Update Domain Block
         update_ip_block: Update IP rule
+        update_report: Update Report
         update_status: Update Post
         update_user_role: Update Role
       actions:
@@ -470,6 +471,9 @@ en:
       title: Follow recommendations
       unsuppress: Restore follow recommendation
     instances:
+      audit_log:
+        title: Recent Audit Logs
+        view_all: View full audit logs
       availability:
         description_html:
           one: If delivering to the domain fails <strong>%{count} day</strong> without succeeding, no further delivery attempts will be made unless a delivery <em>from</em> the domain is received.
@@ -638,6 +642,7 @@ en:
       report: 'Report #%{id}'
       reported_account: Reported account
       reported_by: Reported by
+      reported_with_application: Reported with application
       resolved: Resolved
       resolved_msg: Report successfully resolved!
       skip_to_actions: Skip to actions
@@ -880,7 +885,23 @@ en:
         action: Check here for more information
         message_html: "<strong>Your object storage is misconfigured. The privacy of your users is at risk.</strong>"
     tags:
+      moderation:
+        not_trendable: Not trendable
+        not_usable: Not usable
+        pending_review: Pending review
+        review_requested: Review requested
+        reviewed: Reviewed
+        title: Status
+        trendable: Trendable
+        unreviewed: Unreviewed
+        usable: Usable
+      name: Name
+      newest: Newest
+      oldest: Oldest
+      reset: Reset
       review: Review status
+      search: Search
+      title: Hashtags
       updated_msg: Hashtag settings updated successfully
     title: Administration
     trends:

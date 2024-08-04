@@ -204,7 +204,7 @@
 }
 
 .directory {
-  background: $ui-base-color;
+  background: var(--background-color);
   border-radius: 4px;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
 
@@ -217,7 +217,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: $ui-base-color;
+      border: 1px solid lighten($ui-base-color, 8%);
       border-radius: 4px;
       padding: 15px;
       text-decoration: none;
@@ -229,7 +229,7 @@
       &:hover,
       &:active,
       &:focus {
-        background: lighten($ui-base-color, 8%);
+        background: $ui-base-color;
       }
     }
 
@@ -351,7 +351,7 @@
       &:focus,
       &:hover,
       &:active {
-        text-decoration: underline;
+        color: $highlight-text-color;
       }
     }
   }

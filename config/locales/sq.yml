@@ -226,6 +226,7 @@ sq:
         update_custom_emoji: Përditëso Emoxhi Vetjake
         update_domain_block: Përditëso Bllok Përkatësish
         update_ip_block: Përditësoni rregull IP
+        update_report: Përditësoni Raportimin
         update_status: Përditëso Gjendjen
         update_user_role: Përditësoni Rol
       actions:
@@ -469,6 +470,9 @@ sq:
       title: Rekomandime ndjekjeje
       unsuppress: Rikthe rekomandime ndjekjeje
     instances:
+      audit_log:
+        title: Regjistra Auditimesh Së Fundi
+        view_all: Shihni regjistra të plotë auditimesh
       availability:
         description_html:
           one: Nëse dhënia e mesazheve te përkatësia dështon për <strong>%{count} ditë</strong> pa sukses, s’do të bëhen përpjekje të tjera për dhënie, veç në u marrtë një dërgim <em>prej</em> përkatësisë.
@@ -876,7 +880,21 @@ sq:
         action: Për më tepër hollësi, shihni këtu
         message_html: "<strong>Depozita juaj e objekteve është e formësuar keq. Privatësia e përdoruesve tuaj është në rrezik.</strong>"
     tags:
+      moderation:
+        not_usable: Të papërdorshme
+        pending_review: Në pritje të shqyrtimit
+        review_requested: U kërkua shqyrtim
+        reviewed: Shqyrtuar
+        title: Gjendje
+        unreviewed: Të pashqyrtuar
+        usable: Të përdorshëm
+      name: Emër
+      newest: Më të rejat
+      oldest: Më të vjetrat
+      reset: Riktheje te parazgjedhjet
       review: Gjendje rishikimi
+      search: Kërkim
+      title: Hashtag-ë
       updated_msg: Rregullimet për hashtag-ët u përditësuan me sukses
     title: Administrim
     trends:

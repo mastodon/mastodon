@@ -238,6 +238,7 @@ cy:
         update_custom_emoji: Diweddaru Emoji Addasedig
         update_domain_block: Diweddaru'r Blocio Parth
         update_ip_block: Diweddaru rheol IP
+        update_report: Diweddaru Adroddiad
         update_status: Diweddaru Postiad
         update_user_role: Diweddaru Rôl
       actions:
@@ -305,6 +306,7 @@ cy:
       filter_by_action: Hidlo yn ôl gweithred
       filter_by_user: Hidlo yn ôl defnyddiwr
       title: Cofnod archwilio
+      unavailable_instance: "(nid yw enw'r parth ar gael)"
     announcements:
       destroyed_msg: Cyhoeddiad wedi'i ddileu'n llwyddiannus!
       edit:
@@ -685,6 +687,7 @@ cy:
       report: 'Adroddiad #%{id}'
       reported_account: Cyfrif wedi ei adrodd
       reported_by: Adroddwyd gan
+      reported_with_application: Adroddwyd gydag ap
       resolved: Wedi ei ddatrys
       resolved_msg: Llwyddwyd i ddatrys yr adroddiad!
       skip_to_actions: Mynd i gamau gweithredu
@@ -1436,7 +1439,7 @@ cy:
       domain_blocking_html: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{total_items} parth</strong> o <strong>%{filename}</strong> .
       following_html: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{total_items} cyfrif</strong> gan <strong>%{filename}</strong> .
       lists_html: Rydych ar fin ychwanegu hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> at eich <strong>rhestrau</strong> . Bydd rhestrau newydd yn cael eu creu os nad oes rhestr i ychwanegu ati.
-      muting_html: Rydych ar fin <strong>tewi</strong> hyd at <strong>%{total_items} cyfrif</strong> o <strong>%{filename}</strong> .
+      muting_html: Rydych ar fin <strong>anwybyddu</strong> hyd at <strong>%{total_items} cyfrif</strong> o <strong>%{filename}</strong>.
     preface: Gallwch fewnforio data rydych chi wedi'i allforio o weinydd arall, fel rhestr o'r bobl rydych chi'n eu dilyn neu'n eu blocio.
     recent_imports: Mewnforion diweddar
     states:
@@ -1529,9 +1532,9 @@ cy:
       too_many: Methu atodi mwy na 4 ffeil
   migrations:
     acct: Symudwyd i
-    cancel: Diddymu ailgyfeirio
-    cancel_explanation: Bydd diddymu'r ailgyfeiriad yn ail agor eich cyfrif cyfredol, ond ni fydd yn dod â dilynwyr sydd wedi'u symud i'r cyfrif hwnnw yn ôl.
-    cancelled_msg: Wedi diddymu'r ailgyfeiriad yn llwyddiannus.
+    cancel: Canslo ailgyfeirio
+    cancel_explanation: Bydd canslo'r ailgyfeiriad yn ail agor eich cyfrif cyfredol, ond ni fydd yn dod â dilynwyr sydd wedi'u symud i'r cyfrif hwnnw yn ôl.
+    cancelled_msg: Wedi canslo'r ailgyfeiriad yn llwyddiannus.
     errors:
       already_moved: yw'r un cyfrif rydych chi wedi symud iddo eisoes
       missing_also_known_as: nid yw'n arallenw o'r cyfrif hwn

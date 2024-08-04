@@ -8,7 +8,7 @@
     %strong= t('admin.statuses.media.title')
     %ul
       %li= filter_link_to t('generic.all'), media: nil, id: nil
-      %li= filter_link_to t('admin.statuses.with_media'), media: '1'
+      %li= filter_link_to t('admin.statuses.with_media'), media: true
   .back-link
     - if params[:report_id]
       = link_to admin_report_path(params[:report_id].to_i) do

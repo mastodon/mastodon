@@ -2,6 +2,7 @@
 
 class Api::V1::Statuses::TranslationsController < Api::V1::Statuses::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:statuses' }
+  before_action :require_user!
   before_action :set_translation
 
   rescue_from TranslationService::NotConfiguredError, with: :not_found

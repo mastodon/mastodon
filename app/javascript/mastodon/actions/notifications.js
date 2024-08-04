@@ -18,6 +18,7 @@ import {
   importFetchedStatuses,
 } from './importer';
 import { submitMarkers } from './markers';
+import { decreasePendingNotificationsCount } from './notification_policies';
 import { notificationsUpdate } from "./notifications_typed";
 import { register as registerPushNotifications } from './push_notifications';
 import { saveSettings } from './settings';
@@ -32,7 +33,6 @@ export const NOTIFICATIONS_EXPAND_FAIL    = 'NOTIFICATIONS_EXPAND_FAIL';
 
 export const NOTIFICATIONS_FILTER_SET = 'NOTIFICATIONS_FILTER_SET';
 
-export const NOTIFICATIONS_CLEAR        = 'NOTIFICATIONS_CLEAR';
 export const NOTIFICATIONS_SCROLL_TOP   = 'NOTIFICATIONS_SCROLL_TOP';
 export const NOTIFICATIONS_LOAD_PENDING = 'NOTIFICATIONS_LOAD_PENDING';
 
@@ -83,6 +83,12 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
   if (accountIds.length > 0) {
     dispatch(fetchRelationships(accountIds));
   }
+};
+
+const selectNotificationCountForRequest = (state, id) => {
+  const requests = state.getIn(['notificationRequests', 'items']);
+  const thisRequest = requests.find(request => request.get('id') === id);
+  return thisRequest ? thisRequest.get('notifications_count') : 0;
 };
 
 export const loadPending = () => ({
@@ -174,7 +180,7 @@ const noOp = () => {};
 
 let expandNotificationsController = new AbortController();
 
-export function expandNotifications({ maxId, forceLoad } = {}, done = noOp) {
+export function expandNotifications({ maxId, forceLoad = false } = {}, done = noOp) {
   return (dispatch, getState) => {
     const activeFilter = getState().getIn(['settings', 'notifications', 'quickFilter', 'active']);
     const notifications = getState().get('notifications');
@@ -254,16 +260,6 @@ export function expandNotificationsFail(error, isLoadingMore) {
     error,
     skipLoading: !isLoadingMore,
     skipAlert: !isLoadingMore || error.name === 'AbortError',
-  };
-}
-
-export function clearNotifications() {
-  return (dispatch) => {
-    dispatch({
-      type: NOTIFICATIONS_CLEAR,
-    });
-
-    api().post('/api/v1/notifications/clear');
   };
 }
 
@@ -444,11 +440,13 @@ export const fetchNotificationRequestFail = (id, error) => ({
   error,
 });
 
-export const acceptNotificationRequest = id => (dispatch) => {
+export const acceptNotificationRequest = (id) => (dispatch, getState) => {
+  const count = selectNotificationCountForRequest(getState(), id);
   dispatch(acceptNotificationRequestRequest(id));
 
   api().post(`/api/v1/notifications/requests/${id}/accept`).then(() => {
     dispatch(acceptNotificationRequestSuccess(id));
+    dispatch(decreasePendingNotificationsCount(count));
   }).catch(err => {
     dispatch(acceptNotificationRequestFail(id, err));
   });
@@ -470,11 +468,13 @@ export const acceptNotificationRequestFail = (id, error) => ({
   error,
 });
 
-export const dismissNotificationRequest = id => (dispatch) => {
+export const dismissNotificationRequest = (id) => (dispatch, getState) => {
+  const count = selectNotificationCountForRequest(getState(), id);
   dispatch(dismissNotificationRequestRequest(id));
 
   api().post(`/api/v1/notifications/requests/${id}/dismiss`).then(() =>{
     dispatch(dismissNotificationRequestSuccess(id));
+    dispatch(decreasePendingNotificationsCount(count));
   }).catch(err => {
     dispatch(dismissNotificationRequestFail(id, err));
   });

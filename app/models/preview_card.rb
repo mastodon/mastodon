@@ -46,6 +46,11 @@ class PreviewCard < ApplicationRecord
     y_comp: 4,
   }.freeze
 
+  # URL size limit to safely store in PosgreSQL's unique indexes
+  # Technically this is a byte-size limit but we use it as a
+  # character limit to work with length validation
+  URL_CHARACTER_LIMIT = 2692
+
   self.inheritance_column = false
 
   enum :type, { link: 0, photo: 1, video: 2, rich: 3 }
@@ -63,7 +68,7 @@ class PreviewCard < ApplicationRecord
                     convert_options: { all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp' },
                     validate_media_type: false
 
-  validates :url, presence: true, uniqueness: true, url: true
+  validates :url, presence: true, uniqueness: true, url: true, length: { maximum: URL_CHARACTER_LIMIT }
   validates_attachment_content_type :image, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :image, less_than: LIMIT
   remotable_attachment :image, LIMIT
@@ -126,6 +131,22 @@ class PreviewCard < ApplicationRecord
 
   def history
     @history ||= Trends::History.new('links', id)
+  end
+
+  def authors
+    @authors ||= [PreviewCard::Author.new(self)]
+  end
+
+  class Author < ActiveModelSerializers::Model
+    attributes :name, :url, :account
+
+    def initialize(preview_card)
+      super(
+        name: preview_card.author_name,
+        url: preview_card.author_url,
+        account: preview_card.author_account,
+      )
+    end
   end
 
   class << self

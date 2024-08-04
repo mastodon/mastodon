@@ -223,6 +223,7 @@ zh-CN:
         update_custom_emoji: 更新自定义表情符号
         update_domain_block: 更新域名屏蔽
         update_ip_block: 编辑 IP 封禁规则
+        update_report: 更新举报
         update_status: 更新嘟文
         update_user_role: 更新角色
       actions:
@@ -462,6 +463,9 @@ zh-CN:
       title: 关注推荐
       unsuppress: 恢复推荐关注
     instances:
+      audit_log:
+        title: 近期审计日志
+        view_all: 查看完整审计日志
       availability:
         description_html:
           other: 如果连续 <strong>%{count} 天</strong> 均无法成功向该域名投递消息，则将不再尝试向其投递，直至收到<em>来自</em>该域名的消息。
@@ -626,6 +630,7 @@ zh-CN:
       report: '举报 #%{id}'
       reported_account: 举报用户
       reported_by: 举报人
+      reported_with_application: 举报人使用的应用
       resolved: 已处理
       resolved_msg: 举报处理成功！
       skip_to_actions: 跳转到操作
@@ -866,7 +871,23 @@ zh-CN:
         action: 点击这里查看更多信息
         message_html: "<strong>您的对象存储空间配置错误，您用户的隐私处于危险中。</strong>"
     tags:
+      moderation:
+        not_trendable: 不在趋势中显示
+        not_usable: 不可用
+        pending_review: 待审核
+        review_requested: 已请求审核
+        reviewed: 已审核
+        title: 状态
+        trendable: 可在趋势中显示
+        unreviewed: 未审核
+        usable: 可用
+      name: 名称
+      newest: 最新
+      oldest: 最早
+      reset: 重置
       review: 审核状态
+      search: 搜索
+      title: 话题标签
       updated_msg: 话题标签设置更新成功
     title: 管理
     trends:

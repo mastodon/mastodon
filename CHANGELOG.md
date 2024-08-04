@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.10] - 2024-07-04
+
+### Security
+
+- Fix incorrect permission checking on multiple API endpoints ([GHSA-58x8-3qxw-6hm7](https://github.com/mastodon/mastodon/security/advisories/GHSA-58x8-3qxw-6hm7))
+- Fix incorrect authorship checking when processing some activities (CVE-2024-37903, [GHSA-xjvf-fm67-4qc3](https://github.com/mastodon/mastodon/security/advisories/GHSA-xjvf-fm67-4qc3))
+- Fix ongoing streaming sessions not being invalidated when application tokens get revoked ([GHSA-vp5r-5pgw-jwqx](https://github.com/mastodon/mastodon/security/advisories/GHSA-vp5r-5pgw-jwqx))
+- Update dependencies
+
+### Added
+
+- Add yarn version specification to avoid confusion with Yarn 3 and Yarn 4
+
+### Changed
+
+- Change preview cards generation to skip unusually long URLs ([oneiros](https://github.com/mastodon/mastodon/pull/30854))
+- Change search modifiers to be case-insensitive ([Gargron](https://github.com/mastodon/mastodon/pull/30865))
+- Change `STATSD_ADDR` handling to emit a warning rather than crashing if the address is unreachable ([timothyjrogers](https://github.com/mastodon/mastodon/pull/30691))
+- Change PWA start URL from `/home` to `/` ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/27377))
+
+### Removed
+
+- Removed dependency on `posix-spawn` ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18559))
+
+### Fixed
+
+- Fix scheduled statuses scheduled in less than 5 minutes being immediately published ([danielmbrasil](https://github.com/mastodon/mastodon/pull/30584))
+- Fix encoding detection for link cards ([oneiros](https://github.com/mastodon/mastodon/pull/30780))
+- Fix `/admin/accounts/:account_id/statuses/:id` for edited posts with media attachments ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/30819))
+- Fix duplicate `@context` attribute in user archive export ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/30653))
+
 ## [4.2.9] - 2024-05-30
 
 ### Security

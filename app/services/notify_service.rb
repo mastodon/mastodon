@@ -4,7 +4,6 @@ class NotifyService < BaseService
   include Redisable
 
   MAXIMUM_GROUP_SPAN_HOURS = 12
-  MAXIMUM_GROUP_GAP_TIME = 4.hours.to_i
 
   NON_EMAIL_TYPES = %i(
     admin.report
@@ -217,9 +216,8 @@ class NotifyService < BaseService
     previous_bucket = redis.get(redis_key).to_i
     hour_bucket = previous_bucket if hour_bucket < previous_bucket + MAXIMUM_GROUP_SPAN_HOURS
 
-    # Do not track groups past a given inactivity time
     # We do not concern ourselves with race conditions since we use hour buckets
-    redis.set(redis_key, hour_bucket, ex: MAXIMUM_GROUP_GAP_TIME)
+    redis.set(redis_key, hour_bucket, ex: MAXIMUM_GROUP_SPAN_HOURS.hours.to_i)
 
     "#{type_prefix}-#{hour_bucket}"
   end
