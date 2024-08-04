@@ -101,7 +101,12 @@ class LinkDetailsExtractor
     end
 
     def json
-      @json ||= root_array(Oj.load(@data)).compact.find { |obj| SUPPORTED_TYPES.include?(obj['@type']) } || {}
+      @json ||= begin
+        json = Oj.load(@data)
+        first = first_of_value(json)
+        json = first['@graph'] if first && first['@graph'] && (first.keys - ['@context', '@graph']).none?
+        root_array(json).compact.find { |obj| SUPPORTED_TYPES.include?(obj['@type']) } || {}
+      end
     end
   end
 
