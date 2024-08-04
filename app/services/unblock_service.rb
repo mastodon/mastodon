@@ -8,7 +8,10 @@ class UnblockService < BaseService
 
     unblock = account.unblock!(target_account)
 
-    TriggerWebhookWithObjectWorker.perform_async('block.removed', Oj.to_json({ 'account_id': unblock.account_id, 'target_account_id': unblock.target_account_id, 'id': unblock.id }))
+    TriggerWebhookWithObjectWorker.perform_async('block.removed',
+                                                 Oj.to_json({ account_id: unblock.account_id,
+                                                              target_account_id: unblock.target_account_id,
+                                                              id: unblock.id }))
 
     create_notification(unblock) if !target_account.local? && target_account.activitypub?
     unblock

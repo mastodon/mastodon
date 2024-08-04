@@ -29,7 +29,10 @@ class UnfollowService < BaseService
 
     follow.destroy!
 
-    TriggerWebhookWithObjectWorker.perform_async('follow.removed', Oj.to_json({ 'account_id': follow.account_id, 'target_account_id': follow.target_account_id, 'id': follow.id }))
+    TriggerWebhookWithObjectWorker.perform_async('follow.removed',
+                                                 Oj.to_json({ account_id: follow.account_id,
+                                                              target_account_id: follow.target_account_id,
+                                                              id: follow.id }))
 
     create_notification(follow) if !@target_account.local? && @target_account.activitypub?
     create_reject_notification(follow) if @target_account.local? && !@source_account.local? && @source_account.activitypub?
