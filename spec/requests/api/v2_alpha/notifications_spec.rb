@@ -160,6 +160,25 @@ RSpec.describe 'Notifications' do
       end
     end
 
+    context 'when requesting stripped-down accounts' do
+      let(:params) { { stripped: true } }
+
+      let(:recent_account) { Fabricate(:account) }
+
+      before do
+        FavouriteService.new.call(recent_account, user.account.statuses.first)
+      end
+
+      it 'returns an account in "partial_accounts"', :aggregate_failures do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:partial_accounts].size).to be > 0
+        expect(body_as_json[:partial_accounts].pluck(:id)).to_not include(recent_account.id.to_s)
+        expect(body_as_json[:accounts].pluck(:id)).to include(recent_account.id.to_s)
+      end
+    end
+
     def body_json_types
       body_as_json[:notification_groups].pluck(:type)
     end
