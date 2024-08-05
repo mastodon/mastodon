@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ResolveAccountService, type: :service do
+RSpec.describe ResolveAccountService do
   subject { described_class.new }
 
   before do
@@ -195,7 +195,7 @@ RSpec.describe ResolveAccountService, type: :service do
       expect(account.uri).to eq 'https://ap.example.com/users/foo'
     end
 
-    it 'merges accounts', :sidekiq_inline do
+    it 'merges accounts', :inline_jobs do
       account = subject.call('foo@ap.example.com')
 
       expect(status.reload.account_id).to eq account.id
@@ -219,26 +219,18 @@ RSpec.describe ResolveAccountService, type: :service do
   end
 
   it 'processes one remote account at a time using locks' do
-    wait_for_start = true
     fail_occurred  = false
     return_values  = Concurrent::Array.new
 
-    threads = Array.new(5) do
-      Thread.new do
-        true while wait_for_start
-
-        begin
-          return_values << described_class.new.call('foo@ap.example.com')
-        rescue ActiveRecord::RecordNotUnique
-          fail_occurred = true
-        ensure
-          RedisConfiguration.pool.checkin if Thread.current[:redis]
-        end
+    multi_threaded_execution(5) do
+      begin
+        return_values << described_class.new.call('foo@ap.example.com')
+      rescue ActiveRecord::RecordNotUnique
+        fail_occurred = true
+      ensure
+        RedisConfiguration.pool.checkin if Thread.current[:redis]
       end
     end
-
-    wait_for_start = false
-    threads.each(&:join)
 
     expect(fail_occurred).to be false
     expect(return_values).to_not include(nil)

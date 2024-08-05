@@ -5,7 +5,7 @@ class Api::V1::Instances::ExtendedDescriptionsController < Api::V1::Instances::B
 
   before_action :set_extended_description
 
-  # Override `current_user` to avoid reading session cookies unless in whitelist mode
+  # Override `current_user` to avoid reading session cookies unless in limited federation mode
   def current_user
     super if limited_federation_mode?
   end

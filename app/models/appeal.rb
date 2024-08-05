@@ -18,6 +18,8 @@
 class Appeal < ApplicationRecord
   MAX_STRIKE_AGE = 20.days
 
+  TEXT_LENGTH_LIMIT = 2_000
+
   belongs_to :account
   belongs_to :strike, class_name: 'AccountWarning', foreign_key: 'account_warning_id', inverse_of: :appeal
 
@@ -26,7 +28,7 @@ class Appeal < ApplicationRecord
     belongs_to :rejected_by_account
   end
 
-  validates :text, presence: true, length: { maximum: 2_000 }
+  validates :text, presence: true, length: { maximum: TEXT_LENGTH_LIMIT }
   validates :account_warning_id, uniqueness: true
 
   validate :validate_time_frame, on: :create

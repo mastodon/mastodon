@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe BlockService, type: :service do
+RSpec.describe BlockService do
   subject { described_class.new }
 
   let(:sender) { Fabricate(:account, username: 'alice') }
@@ -11,11 +11,13 @@ RSpec.describe BlockService, type: :service do
     let(:bob) { Fabricate(:account, username: 'bob') }
 
     before do
-      subject.call(sender, bob)
+      NotificationPermission.create!(account: sender, from_account: bob)
     end
 
-    it 'creates a blocking relation' do
-      expect(sender.blocking?(bob)).to be true
+    it 'creates a blocking relation and removes notification permissions' do
+      expect { subject.call(sender, bob) }
+        .to change { sender.blocking?(bob) }.from(false).to(true)
+        .and change { NotificationPermission.exists?(account: sender, from_account: bob) }.from(true).to(false)
     end
   end
 
@@ -31,7 +33,7 @@ RSpec.describe BlockService, type: :service do
       expect(sender.blocking?(bob)).to be true
     end
 
-    it 'sends a block activity', :sidekiq_inline do
+    it 'sends a block activity', :inline_jobs do
       expect(a_request(:post, 'http://example.com/inbox')).to have_been_made.once
     end
   end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe AppSignUpService, type: :service do
+RSpec.describe AppSignUpService do
   subject { described_class.new }
 
   let(:app) { Fabricate(:application, scopes: 'read write') }

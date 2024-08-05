@@ -3,30 +3,6 @@
 require 'rails_helper'
 
 describe ApplicationHelper do
-  describe 'active_nav_class' do
-    it 'returns active when on the current page' do
-      allow(helper).to receive(:current_page?).and_return(true)
-
-      result = helper.active_nav_class('/test')
-      expect(result).to eq 'active'
-    end
-
-    it 'returns active when on a current page' do
-      allow(helper).to receive(:current_page?).with('/foo').and_return(false)
-      allow(helper).to receive(:current_page?).with('/test').and_return(true)
-
-      result = helper.active_nav_class('/foo', '/test')
-      expect(result).to eq 'active'
-    end
-
-    it 'returns empty string when not on current page' do
-      allow(helper).to receive(:current_page?).and_return(false)
-
-      result = helper.active_nav_class('/test')
-      expect(result).to eq ''
-    end
-  end
-
   describe 'body_classes' do
     context 'with a body class string from a controller' do
       before { helper.extend controller_helpers }
@@ -96,36 +72,6 @@ describe ApplicationHelper do
 
       expect(helper.open_registrations?).to be false
       expect(Setting).to have_received(:[]).with('registrations_mode')
-    end
-  end
-
-  describe 'show_landing_strip?', :without_verify_partial_doubles do
-    describe 'when signed in' do
-      before do
-        allow(helper).to receive(:user_signed_in?).and_return(true)
-      end
-
-      it 'does not show landing strip' do
-        expect(helper.show_landing_strip?).to be false
-      end
-    end
-
-    describe 'when signed out' do
-      before do
-        allow(helper).to receive(:user_signed_in?).and_return(false)
-      end
-
-      it 'does not show landing strip on single user instance' do
-        allow(helper).to receive(:single_user_mode?).and_return(true)
-
-        expect(helper.show_landing_strip?).to be false
-      end
-
-      it 'shows landing strip on multi user instance' do
-        allow(helper).to receive(:single_user_mode?).and_return(false)
-
-        expect(helper.show_landing_strip?).to be true
-      end
     end
   end
 
@@ -336,6 +282,35 @@ describe ApplicationHelper do
 
         expect(helper.html_title).to eq 'Site Title'
         expect(helper.html_title).to be_html_safe
+      end
+    end
+  end
+
+  describe 'favicon' do
+    context 'when an icon exists' do
+      let!(:favicon) { Fabricate(:site_upload, var: 'favicon') }
+      let!(:app_icon) { Fabricate(:site_upload, var: 'app_icon') }
+
+      it 'returns the URL of the icon' do
+        expect(helper.favicon_path).to eq(favicon.file.url('48'))
+        expect(helper.app_icon_path).to eq(app_icon.file.url('48'))
+      end
+
+      it 'returns the URL of the icon with size parameter' do
+        expect(helper.favicon_path(16)).to eq(favicon.file.url('16'))
+        expect(helper.app_icon_path(16)).to eq(app_icon.file.url('16'))
+      end
+    end
+
+    context 'when an icon does not exist' do
+      it 'returns nil' do
+        expect(helper.favicon_path).to be_nil
+        expect(helper.app_icon_path).to be_nil
+      end
+
+      it 'returns nil with size parameter' do
+        expect(helper.favicon_path(16)).to be_nil
+        expect(helper.app_icon_path(16)).to be_nil
       end
     end
   end

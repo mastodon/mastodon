@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::FetchRemoteActorService, type: :service do
+RSpec.describe ActivityPub::FetchRemoteActorService do
   subject { described_class.new }
 
   let!(:actor) do
@@ -33,12 +33,12 @@ RSpec.describe ActivityPub::FetchRemoteActorService, type: :service do
     end
 
     context 'when the account does not have a inbox' do
-      let!(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice' }] } }
+      let!(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice', type: 'application/activity+json' }] } }
 
       before do
         actor[:inbox] = nil
 
-        stub_request(:get, 'https://example.com/alice').to_return(body: Oj.dump(actor))
+        stub_request(:get, 'https://example.com/alice').to_return(body: Oj.dump(actor), headers: { 'Content-Type': 'application/activity+json' })
         stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
       end
 
@@ -51,10 +51,10 @@ RSpec.describe ActivityPub::FetchRemoteActorService, type: :service do
     end
 
     context 'when URI and WebFinger share the same host' do
-      let!(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice' }] } }
+      let!(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice', type: 'application/activity+json' }] } }
 
       before do
-        stub_request(:get, 'https://example.com/alice').to_return(body: Oj.dump(actor))
+        stub_request(:get, 'https://example.com/alice').to_return(body: Oj.dump(actor), headers: { 'Content-Type': 'application/activity+json' })
         stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
       end
 
@@ -72,10 +72,10 @@ RSpec.describe ActivityPub::FetchRemoteActorService, type: :service do
     end
 
     context 'when WebFinger presents different domain than URI' do
-      let!(:webfinger) { { subject: 'acct:alice@iscool.af', links: [{ rel: 'self', href: 'https://example.com/alice' }] } }
+      let!(:webfinger) { { subject: 'acct:alice@iscool.af', links: [{ rel: 'self', href: 'https://example.com/alice', type: 'application/activity+json' }] } }
 
       before do
-        stub_request(:get, 'https://example.com/alice').to_return(body: Oj.dump(actor))
+        stub_request(:get, 'https://example.com/alice').to_return(body: Oj.dump(actor), headers: { 'Content-Type': 'application/activity+json' })
         stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
         stub_request(:get, 'https://iscool.af/.well-known/webfinger?resource=acct:alice@iscool.af').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
       end
@@ -95,10 +95,10 @@ RSpec.describe ActivityPub::FetchRemoteActorService, type: :service do
     end
 
     context 'when WebFinger returns a different URI' do
-      let!(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/bob' }] } }
+      let!(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/bob', type: 'application/activity+json' }] } }
 
       before do
-        stub_request(:get, 'https://example.com/alice').to_return(body: Oj.dump(actor))
+        stub_request(:get, 'https://example.com/alice').to_return(body: Oj.dump(actor), headers: { 'Content-Type': 'application/activity+json' })
         stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
       end
 
@@ -111,10 +111,10 @@ RSpec.describe ActivityPub::FetchRemoteActorService, type: :service do
     end
 
     context 'when WebFinger returns a different URI after a redirection' do
-      let!(:webfinger) { { subject: 'acct:alice@iscool.af', links: [{ rel: 'self', href: 'https://example.com/bob' }] } }
+      let!(:webfinger) { { subject: 'acct:alice@iscool.af', links: [{ rel: 'self', href: 'https://example.com/bob', type: 'application/activity+json' }] } }
 
       before do
-        stub_request(:get, 'https://example.com/alice').to_return(body: Oj.dump(actor))
+        stub_request(:get, 'https://example.com/alice').to_return(body: Oj.dump(actor), headers: { 'Content-Type': 'application/activity+json' })
         stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
         stub_request(:get, 'https://iscool.af/.well-known/webfinger?resource=acct:alice@iscool.af').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
       end

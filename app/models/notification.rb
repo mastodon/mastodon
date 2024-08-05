@@ -12,6 +12,8 @@
 #  account_id      :bigint(8)        not null
 #  from_account_id :bigint(8)        not null
 #  type            :string
+#  filtered        :boolean          default(FALSE), not null
+#  group_key       :string
 #
 
 class Notification < ApplicationRecord
@@ -28,18 +30,47 @@ class Notification < ApplicationRecord
     'Poll' => :poll,
   }.freeze
 
-  TYPES = %i(
-    mention
-    status
-    reblog
-    follow
-    follow_request
-    favourite
-    poll
-    update
-    admin.sign_up
-    admin.report
-  ).freeze
+  # Please update app/javascript/api_types/notification.ts if you change this
+  PROPERTIES = {
+    mention: {
+      filterable: true,
+    }.freeze,
+    status: {
+      filterable: false,
+    }.freeze,
+    reblog: {
+      filterable: true,
+    }.freeze,
+    follow: {
+      filterable: true,
+    }.freeze,
+    follow_request: {
+      filterable: true,
+    }.freeze,
+    favourite: {
+      filterable: true,
+    }.freeze,
+    poll: {
+      filterable: false,
+    }.freeze,
+    update: {
+      filterable: false,
+    }.freeze,
+    severed_relationships: {
+      filterable: false,
+    }.freeze,
+    moderation_warning: {
+      filterable: false,
+    }.freeze,
+    'admin.sign_up': {
+      filterable: false,
+    }.freeze,
+    'admin.report': {
+      filterable: false,
+    }.freeze,
+  }.freeze
+
+  TYPES = PROPERTIES.keys.freeze
 
   TARGET_STATUS_INCLUDES_BY_TYPE = {
     status: :status,
@@ -63,6 +94,8 @@ class Notification < ApplicationRecord
     belongs_to :favourite, inverse_of: :notification
     belongs_to :poll, inverse_of: false
     belongs_to :report, inverse_of: false
+    belongs_to :account_relationship_severance_event, inverse_of: false
+    belongs_to :account_warning, inverse_of: false
   end
 
   validates :type, inclusion: { in: TYPES }
@@ -89,7 +122,7 @@ class Notification < ApplicationRecord
   end
 
   class << self
-    def browserable(types: [], exclude_types: [], from_account_id: nil)
+    def browserable(types: [], exclude_types: [], from_account_id: nil, include_filtered: false)
       requested_types = if types.empty?
                           TYPES
                         else
@@ -99,8 +132,74 @@ class Notification < ApplicationRecord
       requested_types -= exclude_types.map(&:to_sym)
 
       all.tap do |scope|
+        scope.merge!(where(filtered: false)) unless include_filtered || from_account_id.present?
         scope.merge!(where(from_account_id: from_account_id)) if from_account_id.present?
         scope.merge!(where(type: requested_types)) unless requested_types.size == TYPES.size
+      end
+    end
+
+    def paginate_groups(limit, pagination_order)
+      raise ArgumentError unless %i(asc desc).include?(pagination_order)
+
+      query = reorder(id: pagination_order)
+
+      unscoped
+        .with_recursive(
+          grouped_notifications: [
+            # Base case: fetching one notification and annotating it with visited groups
+            query
+              .select('notifications.*', "ARRAY[COALESCE(notifications.group_key, 'ungrouped-' || notifications.id)] AS groups")
+              .limit(1),
+            # Recursive case, always yielding at most one annotated notification
+            unscoped
+              .from(
+                [
+                  # Expose the working table as `wt`, but quit early if we've reached the limit
+                  unscoped
+                    .select('id', 'groups')
+                    .from('grouped_notifications')
+                    .where('array_length(grouped_notifications.groups, 1) < :limit', limit: limit)
+                    .arel.as('wt'),
+                  # Recursive query, using `LATERAL` so we can refer to `wt`
+                  query
+                    .where(pagination_order == :desc ? 'notifications.id < wt.id' : 'notifications.id > wt.id')
+                    .where.not("COALESCE(notifications.group_key, 'ungrouped-' || notifications.id) = ANY(wt.groups)")
+                    .limit(1)
+                    .arel.lateral('notifications'),
+                ]
+              )
+              .select('notifications.*', "array_append(wt.groups, COALESCE(notifications.group_key, 'ungrouped-' || notifications.id))"),
+          ]
+        )
+        .from('grouped_notifications AS notifications')
+        .order(id: pagination_order)
+        .limit(limit)
+    end
+
+    # This returns notifications from the request page, but with at most one notification per group.
+    # Notifications that have no `group_key` each count as a separate group.
+    def paginate_groups_by_max_id(limit, max_id: nil, since_id: nil)
+      query = reorder(id: :desc)
+      query = query.where(id: ...max_id) if max_id.present?
+      query = query.where(id: (since_id + 1)...) if since_id.present?
+      query.paginate_groups(limit, :desc)
+    end
+
+    # Differs from :paginate_groups_by_max_id in that it gives the results immediately following min_id,
+    # whereas since_id gives the items with largest id, but with since_id as a cutoff.
+    # Results will be in ascending order by id.
+    def paginate_groups_by_min_id(limit, max_id: nil, min_id: nil)
+      query = reorder(id: :asc)
+      query = query.where(id: (min_id + 1)...) if min_id.present?
+      query = query.where(id: ...max_id) if max_id.present?
+      query.paginate_groups(limit, :asc)
+    end
+
+    def to_a_grouped_paginated_by_id(limit, options = {})
+      if options[:min_id].present?
+        paginate_groups_by_min_id(limit, min_id: options[:min_id], max_id: options[:max_id]).reverse
+      else
+        paginate_groups_by_max_id(limit, max_id: options[:max_id], since_id: options[:since_id]).to_a
       end
     end
 
@@ -144,6 +243,8 @@ class Notification < ApplicationRecord
   after_initialize :set_from_account
   before_validation :set_from_account
 
+  after_destroy :remove_from_notification_request
+
   private
 
   def set_from_account
@@ -156,6 +257,16 @@ class Notification < ApplicationRecord
       self.from_account_id = activity&.status&.account_id
     when 'Account'
       self.from_account_id = activity&.id
+    when 'AccountRelationshipSeveranceEvent', 'AccountWarning'
+      # These do not really have an originating account, but this is mandatory
+      # in the data model, and the recipient's account will by definition
+      # always exist
+      self.from_account_id = account_id
     end
+  end
+
+  def remove_from_notification_request
+    notification_request = NotificationRequest.find_by(account_id: account_id, from_account_id: from_account_id)
+    notification_request&.reconsider_existence!
   end
 end

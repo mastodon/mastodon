@@ -47,14 +47,19 @@ ro:
         subject: Instrucțiuni pentru resetarea parolei
         title: Resetare parolă
       two_factor_disabled:
+        explanation: Conectarea este acum posibilă folosind doar adresa de e-mail și parola.
         subject: Autentificare cu doi factori dezactivată
+        subtitle: Autentificarea cu doi factori pentru contul dvs. a fost dezactivată.
         title: 2FA dezactivat
       two_factor_enabled:
+        explanation: Pentru autentificare va fi necesar un token generat de aplicația TOTP asociată.
         subject: Autentificare în doi pași activată
+        subtitle: Autentificarea cu doi factori a fost activată pentru contul dvs.
         title: 2FA activat
       two_factor_recovery_codes_changed:
         explanation: Codurile anterioare de recuperare au fost invalidate și unele noi generate.
         subject: Recuperare în doi factori
+        subtitle: Codurile de recuperare anterioare au fost invalidate și s-au generat altele noi.
         title: Coduri de recuperare 2FA modificate
       unlock_instructions:
         subject: Instrucțiuni de deblocare
@@ -68,9 +73,13 @@ ro:
           subject: 'Mastodon: Cheie de securitate ștearsă'
           title: Una dintre cheile tale de securitate a fost ștearsă
       webauthn_disabled:
+        explanation: Autentificarea cu chei de securitate a fost dezactivată pentru contul dvs.
+        extra: Conectarea este acum posibilă folosind doar token-ul generat de aplicația TOTP asociată.
         subject: 'Mastodon: Autentificarea cu chei de securitate dezactivată'
         title: Chei de securitate dezactivate
       webauthn_enabled:
+        explanation: Autentificarea cu cheie de securitate a fost activată pentru contul dvs.
+        extra: Cheia ta de securitate poate fi acum folosită pentru conectare.
         subject: 'Mastodon: Autentificarea cheii de securitate activată'
         title: Chei de securitate activate
     omniauth_callbacks:

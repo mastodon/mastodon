@@ -31,14 +31,6 @@ describe Poll do
   end
 
   describe 'validations' do
-    context 'when valid' do
-      let(:poll) { Fabricate.build(:poll) }
-
-      it 'is valid with valid attributes' do
-        expect(poll).to be_valid
-      end
-    end
-
     context 'when not valid' do
       let(:poll) { Fabricate.build(:poll, expires_at: nil) }
 

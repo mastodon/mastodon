@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UnblockService, type: :service do
+RSpec.describe UnblockService do
   subject { described_class.new }
 
   let(:sender) { Fabricate(:account, username: 'alice') }
@@ -33,7 +33,7 @@ RSpec.describe UnblockService, type: :service do
       expect(sender.blocking?(bob)).to be false
     end
 
-    it 'sends an unblock activity', :sidekiq_inline do
+    it 'sends an unblock activity', :inline_jobs do
       expect(a_request(:post, 'http://example.com/inbox')).to have_been_made.once
     end
   end

@@ -1,6 +1,6 @@
-const { pino } = require('pino');
-const { pinoHttp, stdSerializers: pinoHttpSerializers } = require('pino-http');
-const uuid = require('uuid');
+import { pino } from 'pino';
+import { pinoHttp, stdSerializers as pinoHttpSerializers } from 'pino-http';
+import * as uuid from 'uuid';
 
 /**
  * Generates the Request ID for logging and setting on responses
@@ -36,7 +36,7 @@ function sanitizeRequestLog(req) {
   return log;
 }
 
-const logger = pino({
+export const logger = pino({
   name: "streaming",
   // Reformat the log level to a string:
   formatters: {
@@ -59,7 +59,7 @@ const logger = pino({
   }
 });
 
-const httpLogger = pinoHttp({
+export const httpLogger = pinoHttp({
   logger,
   genReqId: generateRequestId,
   serializers: {
@@ -71,7 +71,7 @@ const httpLogger = pinoHttp({
  * Attaches a logger to the request object received by http upgrade handlers
  * @param {http.IncomingMessage} request
  */
-function attachWebsocketHttpLogger(request) {
+export function attachWebsocketHttpLogger(request) {
   generateRequestId(request);
 
   request.log = logger.child({
@@ -84,7 +84,7 @@ function attachWebsocketHttpLogger(request) {
  * @param {http.IncomingMessage} request
  * @param {import('./index.js').ResolvedAccount} resolvedAccount
  */
-function createWebsocketLogger(request, resolvedAccount) {
+export function createWebsocketLogger(request, resolvedAccount) {
   // ensure the request.id is always present.
   generateRequestId(request);
 
@@ -98,17 +98,12 @@ function createWebsocketLogger(request, resolvedAccount) {
   });
 }
 
-exports.logger = logger;
-exports.httpLogger = httpLogger;
-exports.attachWebsocketHttpLogger = attachWebsocketHttpLogger;
-exports.createWebsocketLogger = createWebsocketLogger;
-
 /**
  * Initializes the log level based on the environment
  * @param {Object<string, any>} env
  * @param {string} environment
  */
-exports.initializeLogLevel = function initializeLogLevel(env, environment) {
+export function initializeLogLevel(env, environment) {
   if (env.LOG_LEVEL && Object.keys(logger.levels.values).includes(env.LOG_LEVEL)) {
     logger.level = env.LOG_LEVEL;
   } else if (environment === 'development') {
@@ -116,4 +111,4 @@ exports.initializeLogLevel = function initializeLogLevel(env, environment) {
   } else {
     logger.level = 'info';
   }
-};
+}

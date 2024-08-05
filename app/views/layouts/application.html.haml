@@ -11,25 +11,24 @@
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
-    %link{ rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' }/
+    - SiteUpload::FAVICON_SIZES.each do |size|
+      %link{ rel: 'icon', sizes: "#{size}x#{size}", href: favicon_path(size.to_i) || frontend_asset_path("icons/favicon-#{size}x#{size}.png"), type: 'image/png' }/
 
-    - %w(16 32 48).each do |size|
-      %link{ rel: 'icon', sizes: "#{size}x#{size}", href: frontend_asset_path("icons/favicon-#{size}x#{size}.png"), type: 'image/png' }/
+    - SiteUpload::APPLE_ICON_SIZES.each do |size|
+      %link{ rel: 'apple-touch-icon', sizes: "#{size}x#{size}", href: app_icon_path(size.to_i) || frontend_asset_path("icons/apple-touch-icon-#{size}x#{size}.png") }/
 
-    - %w(57 60 72 76 114 120 144 152 167 180 1024).each do |size|
-      %link{ rel: 'apple-touch-icon', sizes: "#{size}x#{size}", href: frontend_asset_path("icons/apple-touch-icon-#{size}x#{size}.png") }/
-
-    %link{ rel: 'mask-icon', href: frontend_asset_path('images/logo-symbol-icon.svg'), color: '#6364FF' }/
+    - if use_mask_icon?
+      %link{ rel: 'mask-icon', href: frontend_asset_path('images/logo-symbol-icon.svg'), color: '#6364FF' }/
     %link{ rel: 'manifest', href: manifest_path(format: :json) }/
-    %meta{ name: 'theme-color', content: '#191b22' }/
+    = theme_color_tags current_theme
     %meta{ name: 'apple-mobile-web-app-capable', content: 'yes' }/
 
     %title= html_title
 
     = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
-    = stylesheet_pack_tag current_theme, media: 'all', crossorigin: 'anonymous'
+    = theme_style_tags current_theme
     -# Needed for the wicg-inert polyfill. It needs to be on it's own <style> tag, with this `id`
-    = stylesheet_pack_tag 'inert', media: 'all', id: 'inert-style'
+    = stylesheet_pack_tag 'inert', media: 'all', crossorigin: 'anonymous', id: 'inert-style'
 
     = javascript_pack_tag 'common', crossorigin: 'anonymous'
     = preload_pack_asset "locale/#{I18n.locale}-json.js"
@@ -43,6 +42,6 @@
   %body{ class: body_classes }
     = content_for?(:content) ? yield(:content) : yield
 
-    .logo-resources{ 'tabindex' => '-1', 'inert' => true, 'aria-hidden' => true }
-      = render_symbol :icon
-      = render_symbol :wordmark
+    .logo-resources{ 'tabindex' => '-1', 'inert' => true, 'aria-hidden' => 'true' }
+      = inline_svg_tag 'logo-symbol-icon.svg'
+      = inline_svg_tag 'logo-symbol-wordmark.svg'

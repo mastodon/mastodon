@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SoftwareUpdateCheckService, type: :service do
+RSpec.describe SoftwareUpdateCheckService do
   subject { described_class.new }
 
   shared_examples 'when the feature is enabled' do

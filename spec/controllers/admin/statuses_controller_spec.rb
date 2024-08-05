@@ -33,7 +33,7 @@ describe Admin::StatusesController do
 
     context 'when filtering by media' do
       before do
-        get :index, params: { account_id: account.id, media: '1' }
+        get :index, params: { account_id: account.id, media: true }
       end
 
       it 'returns http success' do
@@ -44,6 +44,11 @@ describe Admin::StatusesController do
 
   describe 'GET #show' do
     before do
+      status.media_attachments << Fabricate(:media_attachment, type: :image, account: status.account)
+      status.save!
+      status.snapshot!(at_time: status.created_at, rate_limit: false)
+      status.update!(text: 'Hello, this is an edited post')
+      status.snapshot!(rate_limit: false)
       get :show, params: { account_id: account.id, id: status.id }
     end
 

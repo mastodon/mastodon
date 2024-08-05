@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe Sanitize::Config do
   describe '::MASTODON_STRICT' do
-    subject { Sanitize::Config::MASTODON_STRICT }
+    subject { described_class::MASTODON_STRICT }
 
     it 'converts h1 to p strong' do
       expect(Sanitize.fragment('<h1>Foo</h1>', subject)).to eq '<p><strong>Foo</strong></p>'
@@ -16,6 +16,10 @@ describe Sanitize::Config do
 
     it 'keeps start and reversed attributes of ol' do
       expect(Sanitize.fragment('<p>Check out:</p><ol start="3" reversed=""><li>Foo</li><li>Bar</li></ol>', subject)).to eq '<p>Check out:</p><ol start="3" reversed=""><li>Foo</li><li>Bar</li></ol>'
+    end
+
+    it 'keeps ruby tags' do
+      expect(Sanitize.fragment('<p><ruby>明日 <rp>(</rp><rt>Ashita</rt><rp>)</rp></ruby></p>', subject)).to eq '<p><ruby>明日 <rp>(</rp><rt>Ashita</rt><rp>)</rp></ruby></p>'
     end
 
     it 'removes a without href' do

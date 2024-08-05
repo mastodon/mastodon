@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure do
-  subject(:measure) { described_class.new(start_at, end_at, params) }
+  subject { described_class.new(start_at, end_at, params) }
 
   let(:domain) { 'example.com' }
 
@@ -20,11 +20,11 @@ describe Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure do
     remote_account_on_subdomain.media_attachments.create!(file: attachment_fixture('attachment.jpg'))
   end
 
-  describe 'total' do
+  describe '#total' do
     context 'without include_subdomains' do
       it 'returns the expected number of accounts' do
         expected_total = remote_account.media_attachments.sum(:file_file_size) + remote_account.media_attachments.sum(:thumbnail_file_size)
-        expect(measure.total).to eq expected_total
+        expect(subject.total).to eq expected_total
       end
     end
 
@@ -36,14 +36,25 @@ describe Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure do
           account.media_attachments.sum(:file_file_size) + account.media_attachments.sum(:thumbnail_file_size)
         end
 
-        expect(measure.total).to eq expected_total
+        expect(subject.total).to eq expected_total
       end
     end
   end
 
   describe '#data' do
-    it 'runs data query without error' do
-      expect { measure.data }.to_not raise_error
+    it 'returns correct media_attachments counts' do
+      expect(subject.data.size)
+        .to eq(3)
+      expect(subject.data.map(&:symbolize_keys))
+        .to contain_exactly(
+          include(date: 2.days.ago.midnight.to_time, value: '0'),
+          include(date: 1.day.ago.midnight.to_time, value: '0'),
+          include(date: 0.days.ago.midnight.to_time, value: expected_domain_only_total.to_s)
+        )
+    end
+
+    def expected_domain_only_total
+      remote_account.media_attachments.sum(:file_file_size) + remote_account.media_attachments.sum(:thumbnail_file_size)
     end
   end
 end

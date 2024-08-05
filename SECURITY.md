@@ -2,7 +2,7 @@
 
 If you believe you've identified a security vulnerability in Mastodon (a bug that allows something to happen that shouldn't be possible), you can either:
 
-- open a [Github security issue on the Mastodon project](https://github.com/mastodon/mastodon/security/advisories/new)
+- open a [GitHub security issue on the Mastodon project](https://github.com/mastodon/mastodon/security/advisories/new)
 - reach us at <security@joinmastodon.org>
 
 You should _not_ report such issues on public GitHub issues or in other public spaces to give us time to publish a fix for the issue without exposing Mastodon's users to increased risk.

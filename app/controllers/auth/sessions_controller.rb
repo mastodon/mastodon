@@ -16,8 +16,6 @@ class Auth::SessionsController < Devise::SessionsController
 
   include Auth::TwoFactorAuthenticationConcern
 
-  before_action :set_body_classes
-
   content_security_policy only: :new do |p|
     p.form_action(false)
   end
@@ -103,10 +101,6 @@ class Auth::SessionsController < Devise::SessionsController
 
   private
 
-  def set_body_classes
-    @body_classes = 'lighter'
-  end
-
   def home_paths(resource)
     paths = [about_path, '/explore']
 
@@ -183,7 +177,9 @@ class Auth::SessionsController < Devise::SessionsController
     )
 
     # Only send a notification email every hour at most
-    return if redis.set("2fa_failure_notification:#{user.id}", '1', ex: 1.hour, get: true).present?
+    return if redis.get("2fa_failure_notification:#{user.id}").present?
+
+    redis.set("2fa_failure_notification:#{user.id}", '1', ex: 1.hour)
 
     UserMailer.failed_2fa(user, request.remote_ip, request.user_agent, Time.now.utc).deliver_later!
   end

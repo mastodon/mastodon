@@ -30,6 +30,8 @@ RSpec.describe 'Tag' do
     let(:params)          { {} }
     let(:hashtag)         { 'life' }
 
+    it_behaves_like 'forbidden for wrong scope', 'profile'
+
     context 'when given only one hashtag' do
       let(:expected_statuses) { [life_status] }
 
@@ -71,10 +73,11 @@ RSpec.describe 'Tag' do
       it 'sets the correct pagination headers', :aggregate_failures do
         subject
 
-        headers = response.headers['Link']
-
-        expect(headers.find_link(%w(rel prev)).href).to eq(api_v1_timelines_tag_url(limit: 1, min_id: love_status.id.to_s))
-        expect(headers.find_link(%w(rel next)).href).to eq(api_v1_timelines_tag_url(limit: 1, max_id: love_status.id.to_s))
+        expect(response)
+          .to include_pagination_headers(
+            prev: api_v1_timelines_tag_url(limit: params[:limit], min_id: love_status.id),
+            next: api_v1_timelines_tag_url(limit: params[:limit], max_id: love_status.id)
+          )
       end
     end
 
@@ -92,13 +95,15 @@ RSpec.describe 'Tag' do
         Form::AdminSettings.new(timeline_preview: false).save
       end
 
-      context 'when the user is not authenticated' do
+      it_behaves_like 'forbidden for wrong scope', 'profile'
+
+      context 'without an authentication token' do
         let(:headers) { {} }
 
-        it 'returns http unauthorized' do
+        it 'returns http unprocessable entity' do
           subject
 
-          expect(response).to have_http_status(401)
+          expect(response).to have_http_status(422)
         end
       end
 

@@ -45,7 +45,7 @@ class TagsController < ApplicationController
   end
 
   def set_statuses
-    @statuses = cache_collection(TagFeed.new(@tag, nil, local: @local).get(limit_param), Status)
+    @statuses = preload_collection(TagFeed.new(@tag, nil, local: @local).get(limit_param), Status)
   end
 
   def limit_param

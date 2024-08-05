@@ -58,18 +58,20 @@ describe Admin::ReportsController do
       report.reload
       expect(report.action_taken_by_account).to eq user.account
       expect(report.action_taken?).to be true
+      expect(last_action_log.target).to eq(report)
     end
   end
 
   describe 'POST #reopen' do
     it 'reopens the report' do
-      report = Fabricate(:report)
+      report = Fabricate(:report, action_taken_at: 3.days.ago)
 
       put :reopen, params: { id: report }
       expect(response).to redirect_to(admin_report_path(report))
       report.reload
       expect(report.action_taken_by_account).to be_nil
       expect(report.action_taken?).to be false
+      expect(last_action_log.target).to eq(report)
     end
   end
 
@@ -81,17 +83,25 @@ describe Admin::ReportsController do
       expect(response).to redirect_to(admin_report_path(report))
       report.reload
       expect(report.assigned_account).to eq user.account
+      expect(last_action_log.target).to eq(report)
     end
   end
 
   describe 'POST #unassign' do
     it 'reopens the report' do
-      report = Fabricate(:report)
+      report = Fabricate(:report, assigned_account_id: Account.last.id)
 
       put :unassign, params: { id: report }
       expect(response).to redirect_to(admin_report_path(report))
       report.reload
       expect(report.assigned_account).to be_nil
+      expect(last_action_log.target).to eq(report)
     end
+  end
+
+  private
+
+  def last_action_log
+    Admin::ActionLog.last
   end
 end

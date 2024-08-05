@@ -1,20 +1,9 @@
 # frozen_string_literal: true
 
 class ManifestSerializer < ActiveModel::Serializer
+  include ApplicationHelper
   include RoutingHelper
   include ActionView::Helpers::TextHelper
-
-  ICON_SIZES = %w(
-    36
-    48
-    72
-    96
-    144
-    192
-    256
-    384
-    512
-  ).freeze
 
   attributes :id, :name, :short_name,
              :icons, :theme_color, :background_color,
@@ -37,9 +26,12 @@ class ManifestSerializer < ActiveModel::Serializer
   end
 
   def icons
-    ICON_SIZES.map do |size|
+    SiteUpload::ANDROID_ICON_SIZES.map do |size|
+      src = app_icon_path(size.to_i)
+      src = URI.join(root_url, src).to_s if src.present?
+
       {
-        src: frontend_asset_url("icons/android-chrome-#{size}x#{size}.png"),
+        src: src || frontend_asset_url("icons/android-chrome-#{size}x#{size}.png"),
         sizes: "#{size}x#{size}",
         type: 'image/png',
         purpose: 'any maskable',

@@ -83,6 +83,7 @@ zh-CN:
         access_denied: 资源所有者或验证服务器拒绝了此请求
         credential_flow_not_configured: 由于 Doorkeeper.configure.resource_owner_from_credentials 尚未配置，应用验证授权流程失败。
         invalid_client: 由于应用信息未知、未提交认证信息或使用了不支持的认证方式，认证失败
+        invalid_code_challenge_method: 代码验证方法必须是 S256，不支持明文。
         invalid_grant: 授权方式无效、过期或已被撤销、与授权请求中的回调地址不一致，或使用了其他应用的回调地址
         invalid_redirect_uri: 无效的登录回调地址
         invalid_request:
@@ -135,6 +136,7 @@ zh-CN:
         media: 媒体文件
         mutes: 已被隐藏的
         notifications: 通知
+        profile: 你的 Mastodon 个人资料
         push: 推送通知
         reports: 举报
         search: 搜索
@@ -165,6 +167,7 @@ zh-CN:
       admin:write:reports: 对举报执行管理操作
       crypto: 使用端到端加密
       follow: 关注或屏蔽用户
+      profile: 仅读取你账户中的个人资料信息
       push: 接收你的账户的推送通知
       read: 读取你的账户数据
       read:accounts: 查看账号信息

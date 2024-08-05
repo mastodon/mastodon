@@ -12,6 +12,6 @@
   = react_component :media_gallery,
                     height: 343,
                     lang: status.language,
-                    media: status.ordered_media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json },
+                    media: serialized_media_attachments(status.ordered_media_attachments),
                     sensitive: status.sensitive?,
                     visible: false
