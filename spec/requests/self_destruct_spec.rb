@@ -87,6 +87,6 @@ describe 'Self-destruct mode' do
     it_behaves_like 'accessible logged-in endpoint', '/auth/edit'
     it_behaves_like 'accessible logged-in endpoint', '/settings/export'
     it_behaves_like 'accessible logged-in endpoint', '/settings/login_activities'
-    it_behaves_like 'accessible logged-in endpoint', '/settings/exports/follows.csv'
+    it_behaves_like 'accessible logged-in endpoint', '/settings/exports/following.csv'
   end
 end
