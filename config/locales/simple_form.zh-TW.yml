@@ -24,7 +24,7 @@ zh-TW:
         type_html: 設定要使用 <strong>%{acct}</strong> 做的事
         types:
           disable: 禁止該使用者使用他們的帳號，但是不刪除或隱藏他們的內容。
-          none: 使用這個寄送警告給該使用者，而不進行其他動作。
+          none: 使用這個寄送警告至該使用者，而不進行其他動作。
           sensitive: 強制標記此使用者所有多媒體附加檔案為敏感內容。
           silence: 禁止該使用者發公開嘟文，從無跟隨他們的帳號中隱藏嘟文與通知。關閉所有對此帳號之檢舉報告。
           suspend: 禁止所有對該帳號任何互動，並且刪除其內容。三十天內可以撤銷此動作。關閉所有對此帳號之檢舉報告。
@@ -34,7 +34,7 @@ zh-TW:
         ends_at: 可選的。公告會於該時間點自動取消發布
         scheduled_at: 空白則立即發布公告
         starts_at: 可選的。使公告於特定時間範圍內顯示
-        text: 您可以使用嘟文語法，但請小心別讓公告太鴨霸而佔據使用者的整個版面。
+        text: 您可以使用嘟文語法，但請小心別使公告太鴨霸而佔據使用者的整個版面。
       appeal:
         text: 您只能對警示提出一次申訴
       defaults:
@@ -47,7 +47,7 @@ zh-TW:
         digest: 僅於您長時間未登入且於未登入期間收到私訊時傳送
         email: 您將收到一封確認電子郵件
         header: 支援 WEBP、PNG、GIF 或 JPG 圖片格式，檔案最大為 %{size}。將等比例縮減至 %{dimensions} 像素
-        inbox_url: 從您想要使用的中繼首頁複製網址
+        inbox_url: 自您想要使用的中繼首頁複製網址
         irreversible: 已過濾的嘟文將會不可逆地消失，即便之後移除過濾器也一樣
         locale: 使用者介面、電子郵件與推播通知的語言
         password: 使用至少 8 個字元
@@ -92,7 +92,7 @@ zh-TW:
         site_contact_email: 其他人如何聯繫您關於法律或支援之諮詢。
         site_contact_username: 其他人如何於 Mastodon 上聯繫您。
         site_extended_description: 任何其他可能對訪客或使用者有用的額外資訊。可由 Markdown 語法撰寫。
-        site_short_description: 一段有助於辨別您伺服器的簡短說明。例如：誰運行該伺服器、該伺服器是提供給哪些人群？
+        site_short_description: 一段有助於辨別您伺服器的簡短說明。例如：誰運行該伺服器、該伺服器是提供至哪些人群？
         site_terms: 使用您自己的隱私權政策，或者保留空白以使用預設值。可由 Markdown 語法撰寫。
         site_title: 除了網域外，其他人該如何指稱您的伺服器。
         status_page_url: 當服務中斷時，可以提供使用者了解伺服器資訊頁面之 URL
@@ -101,11 +101,11 @@ zh-TW:
         timeline_preview: 未登入之訪客能夠瀏覽此伺服器上最新的公開嘟文。
         trendable_by_default: 跳過手動審核熱門內容。仍能於登上熱門趨勢後移除個別內容。
         trends: 熱門趨勢將顯示於您伺服器上正在吸引大量注意力的嘟文、主題標籤、或者新聞。
-        trends_as_landing_page: 顯示熱門趨勢內容給未登入使用者及訪客而不是關於此伺服器之描述。需要啟用熱門趨勢。
+        trends_as_landing_page: 顯示熱門趨勢內容至未登入使用者及訪客而不是關於此伺服器之描述。需要啟用熱門趨勢。
       form_challenge:
         current_password: 您正要進入安全區域
       imports:
-        data: 從其他 Mastodon 伺服器匯出的 CSV 檔案
+        data: 自其他 Mastodon 伺服器匯出的 CSV 檔案
       invite_request:
         text: 這會協助我們審核您的申請
       ip_block:
@@ -133,7 +133,7 @@ zh-TW:
         role: 角色控制使用者有哪些權限
       user_role:
         color: 於整個使用者介面中用於角色的顏色，十六進位格式的 RGB
-        highlighted: 這會使角色公開可見
+        highlighted: 這將使角色公開可見
         name: 角色的公開名稱，如果角色設定為顯示為徽章
         permissions_as_keys: 有此角色的使用者將有權存取...
         position: 某些情況下，衝突的解決方式由更高階的角色決定。某些動作只能由優先程度較低的角色執行
@@ -211,6 +211,7 @@ zh-TW:
         setting_default_privacy: 嘟文隱私設定
         setting_default_sensitive: 總是將媒體標記為敏感內容
         setting_delete_modal: 刪除嘟文前先詢問我
+        setting_disable_hover_cards: 停用於滑鼠懸停時預覽個人檔案
         setting_disable_swiping: 停用滑動手勢
         setting_display_media: 媒體顯示
         setting_display_media_default: 預設
@@ -242,11 +243,13 @@ zh-TW:
           warn: 隱藏於警告之後
       form_admin_settings:
         activity_api_enabled: 於 API 中公開使用者活躍度的統計數據
+        app_icon: 應用程式圖示
         backups_retention_period: 使用者封存資料保留期間
-        bootstrap_timeline_accounts: 永遠推薦這些帳號給新使用者
+        bootstrap_timeline_accounts: 永遠推薦這些帳號至新使用者
         closed_registrations_message: 當註冊關閉時的客製化訊息
         content_cache_retention_period: 遠端內容保留期限
         custom_css: 自訂 CSS
+        favicon: 網站圖示 (Favicon)
         mascot: 自訂吉祥物 (legacy)
         media_cache_retention_period: 多媒體快取資料保留期間
         peers_api_enabled: 於 API 中公開已知伺服器的列表

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ActivityPub::FetchRemoteKeyService do
   subject { described_class.new }
 
-  let(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice' }] } }
+  let(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice', type: 'application/activity+json' }] } }
 
   let(:public_key_pem) do
     <<~TEXT

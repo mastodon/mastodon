@@ -58,14 +58,6 @@ class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure
     Mastodon::Snowflake.id_at(@end_at.end_of_day, with_random: false)
   end
 
-  def time_period
-    (@start_at.to_date..@end_at.to_date)
-  end
-
-  def previous_time_period
-    ((@start_at.to_date - length_of_period)..(@end_at.to_date - length_of_period))
-  end
-
   def params
     @params.permit(:domain, :include_subdomains)
   end

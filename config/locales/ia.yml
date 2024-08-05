@@ -226,6 +226,7 @@ ia:
         update_custom_emoji: Actualisar emoji personalisate
         update_domain_block: Actualisar blocada de dominio
         update_ip_block: Actualisar le regula IP
+        update_report: Actualisar le reporto
         update_status: Actualisar le message
         update_user_role: Actualisar rolo
       actions:
@@ -574,7 +575,7 @@ ia:
       enabled: Activate
       inbox_url: URL del repetitor
       pending: Attende le approbation del repetitor
-      save_and_enable: Salveguardar e activar
+      save_and_enable: Salvar e activar
       setup: Crear un connexion con un repetitor
       signatures_not_enabled: Le repetitores pote non functionar correctemente durante que le modo secur o le modo de federation limitate es activate
       status: Stato
@@ -638,6 +639,7 @@ ia:
       report: 'Reporto #%{id}'
       reported_account: Conto reportate
       reported_by: Reportate per
+      reported_with_application: Signalate con le application
       resolved: Resolvite
       resolved_msg: Reporto resolvite con successo!
       skip_to_actions: Saltar al actiones
@@ -880,7 +882,13 @@ ia:
         action: Consulta hic pro plus information
         message_html: "<strong>Tu immagazinage de objectos es mal configurate. Le confidentialitate de tu usatores es in risco.</strong>"
     tags:
+      moderation:
+        pending_review: Attende revision
+        title: Stato
+      name: Nomine
       review: Revide le stato
+      search: Cercar
+      title: Hashtags
       updated_msg: Parametros de hashtag actualisate con successo
     title: Administration
     trends:
@@ -1276,7 +1284,7 @@ ia:
         other: "%{count} messages individual celate"
       title: Filtros
     new:
-      save: Salveguardar nove filtro
+      save: Salvar nove filtro
       title: Adder nove filtro
     statuses:
       back_to_filter: Retro al filtro
@@ -1294,14 +1302,14 @@ ia:
       one: "<strong>%{count}</strong> elemento correspondente al recerca es seligite."
       other: Tote le <strong>%{count}</strong> elementos correspondente al recerca es seligite.
     cancel: Cancellar
-    changes_saved_msg: Cambios salveguardate con successo!
+    changes_saved_msg: Le cambiamentos ha essite salvate!
     confirm: Confirmar
     copy: Copiar
     delete: Deler
     deselect: Deseliger toto
     none: Necun
     order_by: Ordinar per
-    save_changes: Salvar le cambios
+    save_changes: Salvar le cambiamentos
     select_all_matching_items:
       one: Selige %{count} elemento correspondente a tu recerca.
       other: Selige %{count} elementos correspondente a tu recerca.

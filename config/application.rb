@@ -49,6 +49,7 @@ require_relative '../lib/webpacker/manifest_extensions'
 require_relative '../lib/webpacker/helper_extensions'
 require_relative '../lib/rails/engine_extensions'
 require_relative '../lib/action_dispatch/remote_ip_extensions'
+require_relative '../lib/stoplight/redis_data_store_extensions'
 require_relative '../lib/active_record/database_tasks_extensions'
 require_relative '../lib/active_record/batches'
 require_relative '../lib/active_record/with_recursive'
@@ -117,6 +118,7 @@ module Mastodon
       Doorkeeper::Application.include ApplicationExtension
       Doorkeeper::AccessGrant.include AccessGrantExtension
       Doorkeeper::AccessToken.include AccessTokenExtension
+      Doorkeeper::OAuth::PreAuthorization.include OauthPreAuthorizationExtension
       Devise::FailureApp.include AbstractController::Callbacks
       Devise::FailureApp.include Localized
     end

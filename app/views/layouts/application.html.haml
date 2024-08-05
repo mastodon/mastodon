@@ -11,8 +11,6 @@
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
-    %link{ rel: 'icon', href: favicon_path('ico') || '/favicon.ico', type: 'image/x-icon' }/
-
     - SiteUpload::FAVICON_SIZES.each do |size|
       %link{ rel: 'icon', sizes: "#{size}x#{size}", href: favicon_path(size.to_i) || frontend_asset_path("icons/favicon-#{size}x#{size}.png"), type: 'image/png' }/
 

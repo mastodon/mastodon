@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AddAttachmentHeaderToAccounts < ActiveRecord::Migration[4.2]
-  def self.up
+  def up
     change_table :accounts do |t|
       # The following corresponds to `t.attachment :header` in an older version of Paperclip
       t.string :header_file_name
@@ -11,7 +11,7 @@ class AddAttachmentHeaderToAccounts < ActiveRecord::Migration[4.2]
     end
   end
 
-  def self.down
+  def down
     remove_attachment :accounts, :header
   end
 end

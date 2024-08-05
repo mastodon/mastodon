@@ -29,7 +29,10 @@ describe 'The /.well-known/oauth-authorization-server request' do
       revocation_endpoint: oauth_revoke_url(protocol: protocol),
       scopes_supported: Doorkeeper.configuration.scopes.map(&:to_s),
       response_types_supported: Doorkeeper.configuration.authorization_response_types,
+      response_modes_supported: Doorkeeper.configuration.authorization_response_flows.flat_map(&:response_mode_matches).uniq,
+      token_endpoint_auth_methods_supported: %w(client_secret_basic client_secret_post),
       grant_types_supported: grant_types_supported,
+      code_challenge_methods_supported: ['S256'],
       # non-standard extension:
       app_registration_endpoint: api_v1_apps_url(protocol: protocol)
     )

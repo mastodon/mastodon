@@ -8,10 +8,10 @@
 
 %hr.spacer/
 
-.applications-list
+.announcements-list
   = render partial: 'role', collection: @roles.select(&:everyone?)
 
 %hr.spacer/
 
-.applications-list
+.announcements-list
   = render partial: 'role', collection: @roles.reject(&:everyone?)

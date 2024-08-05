@@ -22,7 +22,7 @@ type LocationState = MastodonLocationState | null | undefined;
 
 type HistoryPath = Path | LocationDescriptor<LocationState>;
 
-const browserHistory = createBrowserHistory<LocationState>();
+export const browserHistory = createBrowserHistory<LocationState>();
 const originalPush = browserHistory.push.bind(browserHistory);
 const originalReplace = browserHistory.replace.bind(browserHistory);
 

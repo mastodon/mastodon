@@ -226,6 +226,7 @@ pt-PT:
         update_custom_emoji: Atualizar Emoji Personalizado
         update_domain_block: Atualizar Bloqueio de Domínio
         update_ip_block: Atualizar regra de IP
+        update_report: Atualizar Relatório
         update_status: Atualizar Estado
         update_user_role: Atualizar Função
       actions:
@@ -470,6 +471,9 @@ pt-PT:
       title: Seguir recomendações
       unsuppress: Restaurar recomendações de contas a seguir
     instances:
+      audit_log:
+        title: Registos de auditoria recentes
+        view_all: Ver registos de auditoria completos
       availability:
         description_html:
           one: Se a transmissão ao domínio falhar ao final de <strong>%{count} dia(s)</strong>, não será feita mais nenhuma tentativa de transmissão a menos que seja recebida uma transmissão <em>proveniente</em> desse domínio.
@@ -638,6 +642,7 @@ pt-PT:
       report: 'Denúncia #%{id}'
       reported_account: Conta denunciada
       reported_by: Denunciado por
+      reported_with_application: Reportado com a aplicação
       resolved: Resolvido
       resolved_msg: Denúncia correctamente resolvida!
       skip_to_actions: Passar para as ações
@@ -880,7 +885,23 @@ pt-PT:
         action: Verifique aqui para mais informações
         message_html: "<strong>O seu armazenamento de objetos está mal configurado. A privacidade dos seus utilizadores está em risco.</strong>"
     tags:
+      moderation:
+        not_trendable: Não pode ser tendência
+        not_usable: Não utilizável
+        pending_review: Pendente de revisão
+        review_requested: Revisão solicitada
+        reviewed: Revista
+        title: Estado
+        trendable: Pode ser tendência
+        unreviewed: Não revista
+        usable: Utilizável
+      name: Nome
+      newest: Mais recente
+      oldest: Mais antiga
+      reset: Repor
       review: Estado da revisão
+      search: Pesquisar
+      title: Hashtags
       updated_msg: 'Definições de #etiquetas correctamente actualizadas'
     title: Administração
     trends:

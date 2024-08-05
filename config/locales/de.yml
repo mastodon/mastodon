@@ -1,7 +1,7 @@
 ---
 de:
   about:
-    about_mastodon_html: 'Das soziale Netzwerk der Zukunft: Keine Werbung, keine Überwachung durch Unternehmen – dafür dezentral und mit Anstand! Beherrsche deine Daten mit Mastodon!'
+    about_mastodon_html: 'Das soziale Netzwerk der Zukunft: Keine Werbung, keine Überwachung durch Unternehmen – dafür dezentral und mit Anstand! Behalte mit Mastodon die Kontrolle über deine Daten!'
     contact_missing: Nicht festgelegt
     contact_unavailable: Nicht verfügbar
     hosted_on: Mastodon, gehostet auf %{domain}
@@ -151,7 +151,7 @@ de:
       subscribe: Abonnieren
       suspend: Sperren
       suspended: Gesperrt
-      suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst das Konto entsperren, um es wieder nutzbar zu machen, aber es wird keine Daten wiederherstellen, die es davor hatte.
+      suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst das Konto entsperren, um es wieder zu verwenden, aber es wird keine Daten wiederherstellen, die es davor hatte.
       suspension_reversible_hint_html: Das Konto wurde gesperrt und die Daten werden am %{date} vollständig gelöscht. Bis dahin kann das Konto ohne irgendwelche negativen Auswirkungen wiederhergestellt werden. Wenn du alle Daten des Kontos sofort entfernen möchtest, kannst du das nachfolgend tun.
       title: Konten
       unblock_email: E-Mail-Adresse entsperren
@@ -226,6 +226,7 @@ de:
         update_custom_emoji: Eigenes Emoji aktualisieren
         update_domain_block: Domain-Sperre aktualisieren
         update_ip_block: IP-Regel aktualisieren
+        update_report: Meldung aktualisieren
         update_status: Beitrag aktualisieren
         update_user_role: Rolle bearbeiten
       actions:
@@ -292,7 +293,7 @@ de:
       empty: Protokolle nicht gefunden.
       filter_by_action: Nach Aktion filtern
       filter_by_user: Nach Benutzer*in filtern
-      title: Protokoll
+      title: Audit-Log
       unavailable_instance: "(Server nicht verfügbar)"
     announcements:
       destroyed_msg: Ankündigung erfolgreich gelöscht!
@@ -470,6 +471,9 @@ de:
       title: Folgeempfehlungen
       unsuppress: Folgeempfehlung nicht mehr unterbinden
     instances:
+      audit_log:
+        title: Neueste Audit-Logs
+        view_all: Alle Audit-Logs anzeigen
       availability:
         description_html:
           one: Wenn die Zustellung an die Domain <strong>%{count} Tag</strong> lang erfolglos bleibt, werden keine weiteren Zustellversuche unternommen, bis eine Zustellung <em>von</em> der Domain empfangen wird.
@@ -587,7 +591,7 @@ de:
         notes:
           one: "%{count} Notiz"
           other: "%{count} Notizen"
-      action_log: Protokoll
+      action_log: Audit-Log
       action_taken_by: Maßnahme ergriffen von
       actions:
         delete_description_html: Der gemeldete Beitrag wird gelöscht und die ergriffene Maßnahme wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Kontos zu helfen.
@@ -638,6 +642,7 @@ de:
       report: "%{id}. Meldung"
       reported_account: Gemeldetes Konto
       reported_by: Gemeldet von
+      reported_with_application: Per App gemeldet
       resolved: Geklärt
       resolved_msg: Meldung erfolgreich geklärt!
       skip_to_actions: Zur Maßnahme springen
@@ -880,7 +885,23 @@ de:
         action: Für weitere Informationen hier klicken
         message_html: "<strong>Die Konfiguration deines Objektspeichers ist fehlerhaft. Die Privatsphäre deiner Benutzer*innen ist gefährdet.</strong>"
     tags:
+      moderation:
+        not_trendable: Nicht trendfähig
+        not_usable: Nicht verwendbar
+        pending_review: Überprüfung ausstehend
+        review_requested: Überprüfung angefordert
+        reviewed: Überprüft
+        title: Status
+        trendable: Trendfähig
+        unreviewed: Ungeprüft
+        usable: Verwendbar
+      name: Name
+      newest: Neueste
+      oldest: Älteste
+      reset: Zurücksetzen
       review: Prüfstatus
+      search: Suchen
+      title: Hashtags
       updated_msg: Hashtag-Einstellungen erfolgreich aktualisiert
     title: Administration
     trends:
@@ -1109,7 +1130,7 @@ de:
       new_confirmation_instructions_sent: In wenigen Minuten wirst du eine neue E-Mail mit dem Bestätigungslink erhalten!
       title: Überprüfe dein E-Mail-Postfach
     sign_in:
-      preamble_html: Melde dich mit deinen Zugangsdaten für <strong>%{domain}</strong> an. Solltest du dein Konto auf einem anderen Server registriert haben, ist eine Anmeldung hier nicht möglich.
+      preamble_html: Melde dich mit deinen Zugangsdaten für <strong>%{domain}</strong> an. Falls dein Konto auf einem anderen Server erstellt wurde, ist eine Anmeldung hier nicht möglich.
       title: Bei %{domain} anmelden
     sign_up:
       manual_review: Registrierungen für den Server %{domain} werden manuell durch unsere Moderator*innen überprüft. Um uns dabei zu unterstützen, schreibe etwas über dich und sage uns, weshalb du ein Konto auf %{domain} anlegen möchtest.
@@ -1450,7 +1471,7 @@ de:
       backreference_required: Das neue Konto muss zuerst auf das alte Konto verweisen
       before: 'Bevor du fortfährst, lies bitte diese Hinweise sorgfältig durch:'
       cooldown: Nach dem Umzug wird es eine Weile dauern, bis du erneut umziehen darfst
-      disabled_account: Dein altes Konto ist nur noch eingeschränkt nutzbar. Du kannst jedoch deine Daten exportieren und das Konto wieder reaktivieren.
+      disabled_account: Dein altes Konto ist nur noch eingeschränkt verwendbar. Du kannst jedoch deine Daten exportieren und das Konto wieder reaktivieren.
       followers: Alle Follower werden vom alten zum neuen Konto übertragen
       only_redirect_html: Alternativ kannst du auch <a href="%{path}">nur eine Weiterleitung zu deinem neuen Konto</a> einrichten, ohne die Follower zu übertragen.
       other_data: Keine anderen Daten werden automatisch zum neuen Konto übertragen

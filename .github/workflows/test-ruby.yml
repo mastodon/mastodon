@@ -1,10 +1,11 @@
 name: Ruby Testing
 
 on:
+  merge_group:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
+    branches:
+      - 'main'
+      - 'stable-*'
   pull_request:
 
 env:
@@ -132,15 +133,17 @@ jobs:
           additional-system-dependencies: ffmpeg libpam-dev
 
       - name: Load database schema
-        run: './bin/rails db:create db:schema:load db:seed'
+        run: |
+          bin/rails db:setup
+          bin/flatware fan bin/rails db:test:prepare
 
-      - run: bin/rspec
+      - run: bin/flatware rspec -r ./spec/flatware_helper.rb
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
         uses: codecov/codecov-action@v4
         with:
-          files: coverage/lcov/mastodon.lcov
+          files: coverage/lcov/*.lcov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
@@ -221,7 +224,7 @@ jobs:
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
-      - run: bin/rspec --tag paperclip_processing
+      - run: bin/rspec --tag attachment_processing
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
@@ -285,8 +288,12 @@ jobs:
 
       - uses: actions/download-artifact@v4
         with:
-          path: './public'
+          path: './'
           name: ${{ github.sha }}
+
+      - name: Expand archived asset artifacts
+        run: |
+          tar xvzf artifacts.tar.gz
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
@@ -405,7 +412,7 @@ jobs:
 
       - uses: actions/download-artifact@v4
         with:
-          path: './public'
+          path: './'
           name: ${{ github.sha }}
 
       - name: Set up Ruby environment

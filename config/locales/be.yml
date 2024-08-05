@@ -232,6 +232,7 @@ be:
         update_custom_emoji: Абнавіць адвольныя эмодзі
         update_domain_block: Актуалізаваць блакіроўку дамена
         update_ip_block: Абнавіць IP правіла
+        update_report: Абнавіць скаргу
         update_status: Абнавіць допіс
         update_user_role: Абнавіць ролю
       actions:
@@ -299,6 +300,7 @@ be:
       filter_by_action: Фільтраваць па дзеянню
       filter_by_user: Адфільтраваць па карыстальніку
       title: Аўдыт
+      unavailable_instance: "(імя дамена недаступнае)"
     announcements:
       destroyed_msg: Аб'ява паспяхова выдалена!
       edit:
@@ -485,6 +487,9 @@ be:
       title: Рэкамендацыі падпісак
       unsuppress: Аднавіць рэкамендацыі падпісак
     instances:
+      audit_log:
+        title: Нядаўнія журналы аўдыту
+        view_all: Праглядзець поўныя журналы аўдыту
       availability:
         description_html:
           few: Калі дастаўка на дамен не атрымоўваецца праз <strong>%{count} іншыя дні</strong>, далейшыя спробы дастаўкі не будуць зроблены, пакуль не будзе атрымана дастаўка <em>з</em> дамена.
@@ -661,6 +666,7 @@ be:
       report: 'Скарга #%{id}'
       reported_account: Уліковы запіс парушальніка
       reported_by: Адпраўнік скаргі
+      reported_with_application: Паведамлена праз праграму
       resolved: Вырашана
       resolved_msg: Скарга была паспяхова вырашана!
       skip_to_actions: Прапусціць дзеянні
@@ -907,7 +913,23 @@ be:
         action: Для падрабязнасцей націсніце тут
         message_html: "<strong>Ваша сховішча не наладжана. Прыватнасць карыстальнікаў пад пагрозай.</strong>"
     tags:
+      moderation:
+        not_trendable: Не ў трэндзе
+        not_usable: Непрыгодныя
+        pending_review: Чакае праверкі
+        review_requested: Патрабуюць прагледжвання
+        reviewed: Прагледжаныя
+        title: Стан
+        trendable: У трэндзе
+        unreviewed: Непрагледжаныя
+        usable: Прыгодныя
+      name: Назва
+      newest: Спачатку новыя
+      oldest: Спачатку старыя
+      reset: Скінуць
       review: Стан праверкі
+      search: Пошук
+      title: Хэштэгі
       updated_msg: Налады хэштэгаў паспяхова змененыя
     title: Адміністрацыя
     trends:

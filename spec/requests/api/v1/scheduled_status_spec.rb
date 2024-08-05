@@ -25,6 +25,17 @@ describe 'Scheduled Statuses' do
       it_behaves_like 'forbidden for wrong scope', 'write write:statuses'
     end
 
+    context 'with an application token' do
+      let(:token) { Fabricate(:accessible_access_token, resource_owner_id: nil, scopes: 'read:statuses') }
+
+      it 'returns http unprocessable entity' do
+        get api_v1_scheduled_statuses_path, headers: headers
+
+        expect(response)
+          .to have_http_status(422)
+      end
+    end
+
     context 'with correct scope' do
       let(:scopes) { 'read:statuses' }
 

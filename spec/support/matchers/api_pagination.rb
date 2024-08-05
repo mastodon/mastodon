@@ -7,7 +7,7 @@ RSpec::Matchers.define :include_pagination_headers do |links|
     end.all?
   end
 
-  failure_message do |header|
-    "expected that #{header} would have the same values as #{links}."
+  failure_message do |response|
+    "expected that #{response.headers['Link']} would have the same values as #{links}."
   end
 end

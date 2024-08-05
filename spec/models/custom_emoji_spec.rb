@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CustomEmoji, :paperclip_processing do
+RSpec.describe CustomEmoji, :attachment_processing do
   describe '#search' do
     subject { described_class.search(search_term) }
 

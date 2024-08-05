@@ -49,14 +49,6 @@ class Admin::Metrics::Measure::InstanceReportsMeasure < Admin::Metrics::Measure:
     SQL
   end
 
-  def time_period
-    (@start_at.to_date..@end_at.to_date)
-  end
-
-  def previous_time_period
-    ((@start_at.to_date - length_of_period)..(@end_at.to_date - length_of_period))
-  end
-
   def params
     @params.permit(:domain, :include_subdomains)
   end

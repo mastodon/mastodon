@@ -1,13 +1,12 @@
 ---
+Rails/BulkChangeTable:
+  Enabled: false # Conflicts with strong_migrations features
+
 Rails/FilePath:
   EnforcedStyle: arguments
 
 Rails/HttpStatus:
   EnforcedStyle: numeric
-
-Rails/LexicallyScopedActionFilter:
-  Exclude:
-    - app/controllers/auth/* # Conflicts with `Lint/UselessMethodDefinition` for inherited controller actions
 
 Rails/NegateInclude:
   Enabled: false
@@ -22,6 +21,3 @@ Rails/RakeEnvironment:
 
 Rails/SkipsModelValidations:
   Enabled: false
-
-Rails/UnusedIgnoredColumns:
-  Enabled: false # Preserve ability to migrate from arbitrary old versions

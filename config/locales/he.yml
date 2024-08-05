@@ -232,6 +232,7 @@ he:
         update_custom_emoji: עדכון סמלון מותאם אישית
         update_domain_block: עדכון חסימת שם מתחם
         update_ip_block: עדכון כלל IP
+        update_report: עדכון דו"ח עבירה
         update_status: סטטוס עדכון
         update_user_role: עדכון תפקיד
       actions:
@@ -486,6 +487,9 @@ he:
       title: המלצות מעקב
       unsuppress: שחזור המלצות מעקב
     instances:
+      audit_log:
+        title: יומני ביקורת אחרונים
+        view_all: צפיה ביומני הביקורת המלאים
       availability:
         description_html:
           many: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים שונים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
@@ -662,6 +666,7 @@ he:
       report: 'דווח על #%{id}'
       reported_account: חשבון מדווח
       reported_by: דווח על ידי
+      reported_with_application: דיווחים באמצעות יישומון
       resolved: פתור
       resolved_msg: הדו"ח נפתר בהצלחה!
       skip_to_actions: דלג/י לפעולות
@@ -908,7 +913,23 @@ he:
         action: למידע נוסף
         message_html: "<strong>שרות אחסון הענן שלך אינו מוגדר כראוי. פרטיות המשתמשות והמשתמשים שלך בסכנה.</strong>"
     tags:
+      moderation:
+        not_trendable: לא מזוהה כאופנתי
+        not_usable: בלתי שמיש
+        pending_review: ממתינים לסקירה
+        review_requested: התבקשה סקירה
+        reviewed: נסקר
+        title: מצב
+        trendable: ניתן לאפיון כאופנה
+        unreviewed: לא נסקר
+        usable: שמיש
+      name: שם
+      newest: החדש ביותר
+      oldest: הישן ביותר
+      reset: איפוס
       review: סקירת מצב
+      search: חיפוש
+      title: תגיות
       updated_msg: הגדרות תגיות עודכנו בהצלחה
     title: ניהול
     trends:

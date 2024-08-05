@@ -82,12 +82,18 @@ export function createThunk<Arg = void, Returned = void>(
 const discardLoadDataInPayload = Symbol('discardLoadDataInPayload');
 type DiscardLoadData = typeof discardLoadDataInPayload;
 
-type OnData<LoadDataResult, ReturnedData> = (
+type OnData<ActionArg, LoadDataResult, ReturnedData> = (
   data: LoadDataResult,
   api: AppThunkApi & {
+    actionArg: ActionArg;
     discardLoadData: DiscardLoadData;
   },
 ) => ReturnedData | DiscardLoadData | Promise<ReturnedData | DiscardLoadData>;
+
+type LoadData<Args, LoadDataResult> = (
+  args: Args,
+  api: AppThunkApi,
+) => Promise<LoadDataResult>;
 
 type ArgsType = Record<string, unknown> | undefined;
 
@@ -101,18 +107,18 @@ export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
 // Overload when the `onData` method returns discardLoadDataInPayload, then the payload is empty
 export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
   name: string,
-  loadData: (args: Args) => Promise<LoadDataResult>,
+  loadData: LoadData<Args, LoadDataResult>,
   onDataOrThunkOptions?:
     | AppThunkOptions
-    | OnData<LoadDataResult, DiscardLoadData>,
+    | OnData<Args, LoadDataResult, DiscardLoadData>,
   thunkOptions?: AppThunkOptions,
 ): ReturnType<typeof createThunk<Args, void>>;
 
 // Overload when the `onData` method returns nothing, then the mayload is the `onData` result
 export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
   name: string,
-  loadData: (args: Args) => Promise<LoadDataResult>,
-  onDataOrThunkOptions?: AppThunkOptions | OnData<LoadDataResult, void>,
+  loadData: LoadData<Args, LoadDataResult>,
+  onDataOrThunkOptions?: AppThunkOptions | OnData<Args, LoadDataResult, void>,
   thunkOptions?: AppThunkOptions,
 ): ReturnType<typeof createThunk<Args, LoadDataResult>>;
 
@@ -123,8 +129,10 @@ export function createDataLoadingThunk<
   Returned,
 >(
   name: string,
-  loadData: (args: Args) => Promise<LoadDataResult>,
-  onDataOrThunkOptions?: AppThunkOptions | OnData<LoadDataResult, Returned>,
+  loadData: LoadData<Args, LoadDataResult>,
+  onDataOrThunkOptions?:
+    | AppThunkOptions
+    | OnData<Args, LoadDataResult, Returned>,
   thunkOptions?: AppThunkOptions,
 ): ReturnType<typeof createThunk<Args, Returned>>;
 
@@ -159,11 +167,13 @@ export function createDataLoadingThunk<
   Returned,
 >(
   name: string,
-  loadData: (args: Args) => Promise<LoadDataResult>,
-  onDataOrThunkOptions?: AppThunkOptions | OnData<LoadDataResult, Returned>,
+  loadData: LoadData<Args, LoadDataResult>,
+  onDataOrThunkOptions?:
+    | AppThunkOptions
+    | OnData<Args, LoadDataResult, Returned>,
   maybeThunkOptions?: AppThunkOptions,
 ) {
-  let onData: OnData<LoadDataResult, Returned> | undefined;
+  let onData: OnData<Args, LoadDataResult, Returned> | undefined;
   let thunkOptions: AppThunkOptions | undefined;
 
   if (typeof onDataOrThunkOptions === 'function') onData = onDataOrThunkOptions;
@@ -177,7 +187,10 @@ export function createDataLoadingThunk<
   return createThunk<Args, Returned>(
     name,
     async (arg, { getState, dispatch }) => {
-      const data = await loadData(arg);
+      const data = await loadData(arg, {
+        dispatch,
+        getState,
+      });
 
       if (!onData) return data as Returned;
 
@@ -185,6 +198,7 @@ export function createDataLoadingThunk<
         dispatch,
         getState,
         discardLoadData: discardLoadDataInPayload,
+        actionArg: arg,
       });
 
       // if there is no return in `onData`, we return the `onData` result

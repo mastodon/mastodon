@@ -51,7 +51,7 @@ export const fetchTrendingLinks = () => (dispatch) => {
   api()
     .get('/api/v1/trends/links', { params: { limit: 20 } })
     .then(({ data }) => {
-      dispatch(importFetchedAccounts(data.map(link => link.author_account).filter(account => !!account)));
+      dispatch(importFetchedAccounts(data.flatMap(link => link.authors.map(author => author.account)).filter(account => !!account)));
       dispatch(fetchTrendingLinksSuccess(data));
     })
     .catch(err => dispatch(fetchTrendingLinksFail(err)));

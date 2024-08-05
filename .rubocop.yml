@@ -1,21 +1,14 @@
 ---
 AllCops:
   CacheRootDirectory: tmp
-  DisplayCopNames: true
   DisplayStyleGuide: true
   Exclude:
-    - db/schema.rb
-    - bin/*
-    - node_modules/**/*
     - Vagrantfile
-    - vendor/**/*
     - config/initializers/json_ld*
     - lib/mastodon/migration_helpers.rb
-    - lib/templates/**/*
   ExtraDetails: true
   NewCops: enable
   TargetRubyVersion: 3.1 # Oldest supported ruby version
-  UseCache: true
 
 inherit_from:
   - .rubocop/layout.yml

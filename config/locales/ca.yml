@@ -226,6 +226,7 @@ ca:
         update_custom_emoji: Actualitza l'emoji personalitzat
         update_domain_block: Actualitza el Bloqueig de Domini
         update_ip_block: Actualitza norma IP
+        update_report: Actualitza l'informe
         update_status: Actualitza l'estat
         update_user_role: Actualitza Rol
       actions:
@@ -470,6 +471,9 @@ ca:
       title: Recomanacions de comptes a seguir
       unsuppress: Restaurar les recomanacions de seguiment
     instances:
+      audit_log:
+        title: Registres recents d'auditoria
+        view_all: Mostra els registres d'auditoria complets
       availability:
         description_html:
           one: Si la tramesa cap el domini falla <strong>%{count} dia</strong> sense èxit, no es faran més intents d'entrega a no ser que es rebi una tramesa <em>des de</em> el domini.
@@ -638,6 +642,7 @@ ca:
       report: 'Informe #%{id}'
       reported_account: Compte denunciat
       reported_by: Denunciat per
+      reported_with_application: Reportat amb l'aplicació
       resolved: Resolt
       resolved_msg: Informe resolt correctament!
       skip_to_actions: Salta a les accions
@@ -880,7 +885,23 @@ ca:
         action: Consulta aquí per a més informació
         message_html: "<strong>El teu emagatzamatge d'objectes no està ben configurat. La privacitat dels teus usuaris està en risc.</strong>"
     tags:
+      moderation:
+        not_trendable: No pot ser en tendència
+        not_usable: No es pot fer servir
+        pending_review: Pendent de revisió
+        review_requested: Revisió demanada
+        reviewed: Revisada
+        title: Estat
+        trendable: Pot ser tendència
+        unreviewed: No revisada
+        usable: Es pot fer servir
+      name: Nom
+      newest: Més nous
+      oldest: Més vells
+      reset: Restableix
       review: Revisar l'estat
+      search: Cerca
+      title: Etiquetes
       updated_msg: Ajustaments d'etiquetes actualitzats amb èxit
     title: Administració
     trends:
