@@ -101,12 +101,9 @@ class LinkDetailsExtractor
     end
 
     def json
-      @json ||= begin
-        json = Oj.load(@data)
-        first = first_of_value(json)
-        json = first['@graph'] if first && first['@graph'] && (first.keys - ['@context', '@graph']).none?
-        root_array(json).compact.find { |obj| SUPPORTED_TYPES.include?(obj['@type']) } || {}
-      end
+      @json ||= root_array(Oj.load(@data))
+                .map { |node| JSON::LD::API.compact(node, 'https://schema.org') }
+                .find { |node| SUPPORTED_TYPES.include?(node['type']) } || {}
     end
   end
 
