@@ -33,8 +33,8 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
         'app.notification_grouping.status.unique_count' => statuses.uniq.size
       )
 
-      presenter = GroupedNotificationsPresenter.new(@grouped_notifications)
-      render json: presenter, serializer: REST::DedupNotificationGroupSerializer, relationships: @relationships, group_metadata: @group_metadata
+      presenter = GroupedNotificationsPresenter.new(@grouped_notifications, partial_accounts: params[:stripped])
+      render json: presenter, serializer: REST::DedupNotificationGroupSerializer, relationships: @relationships, group_metadata: @group_metadata, stripped: params[:stripped]
     end
   end
 
