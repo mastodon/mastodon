@@ -17,7 +17,7 @@ fi:
     link_verified_on: Tämän linkin omistus on tarkastettu %{date}
     nothing_here: Täällä ei ole mitään!
     pin_errors:
-      following: Sinun täytyy seurata henkilöä jota haluat tukea
+      following: Sinun täytyy seurata käyttäjää, jota haluat tukea
     posts:
       one: Julkaisu
       other: viestiä
@@ -632,7 +632,7 @@ fi:
         create_and_resolve: Ratkaise ja lisää muistiinpano
         create_and_unresolve: Avaa uudelleen ja lisää muistiinpano
         delete: Poista
-        placeholder: Kuvaile tehtyjä toimia tai lisää muita käyttäjään liittyviä merkintöjä...
+        placeholder: Kuvaile tehtyjä toimia tai lisää muita käyttäjään liittyviä merkintöjä…
         title: Muistiinpanot
       notes_description_html: Tarkastele ja jätä muistiinpanoja muille moderaattoreille ja itsellesi tulevaisuuteen
       processed_msg: Raportin nro %{id} käsittely onnistui
@@ -771,7 +771,7 @@ fi:
         public_timelines: Julkiset aikajanat
         publish_discovered_servers: Julkaise löydetyt palvelimet
         publish_statistics: Julkaise tilastot
-        title: Löydettävyys
+        title: Löytäminen
         trends: Trendit
       domain_blocks:
         all: Kaikille
@@ -838,7 +838,7 @@ fi:
         delete_statuses: "%{name} poisti käyttäjän %{target} julkaisut"
         disable: "%{name} jäädytti %{target} tilin"
         mark_statuses_as_sensitive: "%{name} merkitsi käyttäjän %{target} julkaisut arkaluonteisiksi"
-        none: "%{name} lähetti varoituksen henkilölle %{target}"
+        none: "%{name} lähetti varoituksen käyttäjälle %{target}"
         sensitive: "%{name} merkitsi käyttäjän %{target} tilin arkaluonteiseksi"
         silence: "%{name} rajoitti käyttäjän %{target} tiliä"
         suspend: "%{name} jäädytti käyttäjän %{target} tilin"
@@ -918,8 +918,8 @@ fi:
         publishers:
           no_publisher_selected: Julkaisijoita ei muutettu, koska yhtään ei ollut valittuna
         shared_by_over_week:
-          one: Jakanut yksi henkilö viimeisen viikon aikana
-          other: Jakanut %{count} henkilöä viimeisen viikon aikana
+          one: Jakanut yksi käyttäjä viimeisen viikon aikana
+          other: Jakanut %{count} käyttäjää viimeisen viikon aikana
         title: Suositut linkit
         usage_comparison: Jaettu tänään %{today} kertaa verrattuna eilisen %{yesterday} kertaan
       not_allowed_to_trend: Ei saa trendata
@@ -951,7 +951,7 @@ fi:
           tag_servers_dimension: Suosituimmat palvelimet
           tag_servers_measure: eri palvelimet
           tag_uses_measure: käyttökerrat yhteensä
-        description_html: Nämä aihetunnisteet näkyvät parhaillaan monissa julkaisuissa, jotka palvelimesi näkee. Tämä luettelo voi auttaa käyttäjiäsi selvittämään, mistä ihmiset puhuvat eniten juuri nyt. Mitkään aihetunnisteet ei näy julkisesti ennen kuin hyväksyt ne.
+        description_html: Nämä aihetunnisteet näkyvät parhaillaan monissa julkaisuissa, jotka palvelimesi näkee. Tämä luettelo voi auttaa käyttäjiäsi selvittämään, mistä puhutaan eniten juuri nyt. Mitkään aihetunnisteet ei näy julkisesti ennen kuin hyväksyt ne.
         listable: Voi ehdottaa
         no_tag_selected: Tunnisteita ei muutettu, koska yhtään ei ollut valittuna
         not_listable: Ei ehdoteta
@@ -964,8 +964,8 @@ fi:
         usable: Voi käyttää
         usage_comparison: Käytetty tänään %{today} kertaa, verrattuna elisen %{yesterday} kertaan
         used_by_over_week:
-          one: Käyttänyt yksi henkilö viimeisen viikon aikana
-          other: Käyttänyt %{count} henkilöä viimeisen viikon aikana
+          one: Käyttänyt yksi käyttäjä viimeisen viikon aikana
+          other: Käyttänyt %{count} käyttäjää viimeisen viikon aikana
       title: Trendit
       trending: Trendaus
     warning_presets:
@@ -1043,8 +1043,8 @@ fi:
     advanced_web_interface: Edistynyt selainkäyttöliittymä
     advanced_web_interface_hint: 'Jos haluat hyödyntää näytön koko leveyttä, edistyneen selainkäyttöliittymän avulla voit määrittää useita erilaisia sarakkeita, niin näet kerralla niin paljon tietoa kuin haluat: kotisyöte, ilmoitukset, yleinen aikajana, mikä tahansa määrä listoja ja aihetunnisteita.'
     animations_and_accessibility: Animaatiot ja saavutettavuus
-    confirmation_dialogs: Vahvistusvalinnat
-    discovery: Löydettävyys
+    confirmation_dialogs: Vahvistusikkunat
+    discovery: Löytäminen
     localization:
       body: Mastodonin ovat kääntäneet vapaaehtoiset.
       guide_link: https://crowdin.com/project/mastodon
@@ -1092,7 +1092,7 @@ fi:
     dont_have_your_security_key: Eikö sinulla ole suojausavainta?
     forgot_password: Unohditko salasanasi?
     invalid_reset_password_token: Salasanan palautustunnus on virheellinen tai vanhentunut. Pyydä uusi.
-    link_to_otp: Syötä puhelimesi kaksivaiheisen todennuksen koodi tai palautuskoodi
+    link_to_otp: Syötä kaksivaiheisen todennuksen tunnusluku puhelimestasi tai palautuskoodi
     link_to_webauth: Käytä suojausavaintasi
     log_in_with: Kirjaudu käyttäen
     login: Kirjaudu sisään
@@ -1134,7 +1134,7 @@ fi:
       title: Kirjaudu palvelimelle %{domain}
     sign_up:
       manual_review: Palvelimen %{domain} ylläpito tarkastaa rekisteröitymiset käsin. Helpottaaksesi rekisteröitymisesi käsittelyä kerro hieman itsestäsi ja siitä, miksi haluat luoda käyttäjätilin palvelimelle %{domain}.
-      preamble: Kun sinulla on tili tällä Mastodon-palvelimella, voit seurata kaikkia muita verkossa olevia henkilöitä riippumatta siitä, missä heidän tilinsä on.
+      preamble: Kun sinulla on tili tällä Mastodon-palvelimella, voit seurata kaikkia muita verkossa olevia käyttäjiä riippumatta siitä, missä heidän tilinsä on.
       title: Otetaan %{domain} käyttöösi.
     status:
       account_status: Tilin tila
@@ -1224,7 +1224,7 @@ fi:
     invalid_domain: ei ole kelvollinen verkkotunnus
   edit_profile:
     basic_information: Perustiedot
-    hint_html: "<strong>Mukauta, mitä ihmiset näkevät julkisessa profiilissasi ja julkaisujesi vieressä.</strong> Ihmiset seuraavat sinua takaisin ja ovat kanssasi vuorovaikutuksessa todennäköisemmin, kun sinulla on täytetty profiili ja profiilikuva."
+    hint_html: "<strong>Mukauta, mitä ihmiset näkevät julkisessa profiilissasi ja julkaisujesi vieressä.</strong> Sinua seurataan takaisin ja kanssasi ollaan vuorovaikutuksessa todennäköisemmin, kun sinulla on täytetty profiili ja profiilikuva."
     other: Muut
   errors:
     '400': Lähettämäsi pyyntö oli virheellinen tai muotoiltu virheellisesti.
@@ -1249,7 +1249,7 @@ fi:
       date: Päiväys
       download: Lataa arkisto
       hint_html: Voit pyytää arkistoa omista <strong>julkaisuista ja mediasta</strong>. Viedyt tiedot ovat ActivityPub-muodossa, ja ne voi lukea millä tahansa yhteensopivalla ohjelmalla. Voit pyytää arkistoa 7 päivän välein.
-      in_progress: Arkistoa kootaan...
+      in_progress: Arkistoa kootaan…
       request: Pyydä arkisto
       size: Koko
     blocks: Estot
@@ -1262,8 +1262,8 @@ fi:
   featured_tags:
     add_new: Lisää uusi
     errors:
-      limit: Olet nostanut esille jo enimmäismäärän aihetunnisteita
-    hint_html: "<strong>Nosta tärkeimmät aihetunnisteesi esille profiilissasi.</strong> Erinomainen työkalu, jolla pidät kirjaa luovista teoksistasi ja pitkäaikaisista projekteistasi. Esille nostamasi aihetunnisteet ovat näyttävällä paikalla profiilissasi ja mahdollistavat nopean pääsyn julkaisuihisi."
+      limit: Suosittelet jo aihetunnisteiden enimmäismäärää
+    hint_html: "<strong>Suosittele tärkeimpiä aihetunnisteitasi profiilissasi.</strong> Erinomainen työkalu, jolla pidät kirjaa luovista teoksistasi ja pitkäaikaisista projekteistasi. Suosittelemasi aihetunnisteet ovat näyttävällä paikalla profiilissasi ja mahdollistavat nopean pääsyn julkaisuihisi."
   filters:
     contexts:
       account: Profiilit
@@ -1359,7 +1359,7 @@ fi:
       following_html: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
       lists_html: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
       muting_html: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
-    preface: Voit tuoda toiselta palvelimelta viemiäsi tietoja, kuten seuraamiesi tai estämiesi henkilöiden luettelon.
+    preface: Voit tuoda toiselta palvelimelta viemiäsi tietoja, kuten seuraamiesi tai estämiesi käyttäjien luettelon.
     recent_imports: Viimeksi tuotu
     states:
       finished: Valmis
@@ -1386,7 +1386,7 @@ fi:
       domain_blocking: Verkkotunnusten estoluettelo
       following: Seurattujen luettelo
       lists: Listat
-      muting: Mykistettyjen luettelo
+      muting: Mykistysluettelo
     upload: Lähetä
   invites:
     delete: Poista käytöstä
@@ -1480,7 +1480,7 @@ fi:
     title: Moderointi
   move_handler:
     carry_blocks_over_text: Tämä käyttäjä siirtyi paikasta %{acct}, jonka olit estänyt.
-    carry_mutes_over_text: Tämä käyttäjä siirtyi tililtä %{acct}, jonka olet mykistänyt.
+    carry_mutes_over_text: Tämä käyttäjä muutti tilistä %{acct}, jonka olet mykistänyt.
     copy_account_note_text: 'Tämä käyttäjä siirtyi tililtä %{acct}. Nämä olivat muistiinpanosi hänestä:'
   navigation:
     toggle_menu: Avaa/sulje valikko
@@ -1569,7 +1569,7 @@ fi:
     reach: Tavoittavuus
     reach_hint_html: Määritä, haluatko tulla uusien käyttäjien löytämäksi ja seuraamaksi. Haluatko julkaisujesi näkyvän Selaa-sivulla? Haluatko muiden käyttäjien näkevän sinut seurantasuosituksissaan? Haluatko hyväksyä kaikki uudet seuraajat automaattisesti vai päättää jokaisesta erikseen?
     search: Haku
-    search_hint_html: Määritä, kuinka haluat tulla löydetyksi. Haluatko, että ihmiset löytävät sinut julkisten julkaisujesi perusteella? Haluatko, että ihmiset Mastodonin ulkopuolella löytävät profiilisi tehdessään hakuja verkossa? Otathan huomioon, ettei julkisten tietojen täyttä kaikista hakukoneista poisjäämistä voi taata.
+    search_hint_html: Määritä, kuinka haluat tulla löydetyksi. Haluatko, että sinut löydetään julkisten julkaisujesi perusteella? Haluatko, että Mastodonin ulkopuoliset ihmiset löytävät profiilisi tehdessään hakuja verkossa? Otathan huomioon, ettei julkisten tietojen täyttä kaikista hakukoneista poisjäämistä voi taata.
     title: Yksityisyys ja tavoittavuus
   privacy_policy:
     title: Tietosuojakäytäntö
@@ -1675,16 +1675,16 @@ fi:
     development: Kehitys
     edit_profile: Muokkaa profiilia
     export: Vie tietoja
-    featured_tags: Esille nostetut aihetunnisteet
+    featured_tags: Suositellut aihetunnisteet
     import: Tuo tietoja
     import_and_export: Tuonti ja vienti
     migrate: Tilin muutto toisaalle
     notifications: Sähköposti-ilmoitukset
-    preferences: Ominaisuudet
+    preferences: Asetukset
     profile: Julkinen profiili
     relationships: Seuratut ja seuraajat
-    severed_relationships: Katkenneet seurantasuhteet
-    statuses_cleanup: Autom. julkaisujen poisto
+    severed_relationships: Katkenneet suhteet
+    statuses_cleanup: Julkaisujen automaattipoisto
     strikes: Moderointivaroitukset
     two_factor_authentication: Kaksivaiheinen todennus
     webauthn_authentication: Suojausavaimet
@@ -1729,8 +1729,8 @@ fi:
       reblog: Tehostusta ei voi kiinnittää
     poll:
       total_people:
-        one: "%{count} henkilö"
-        other: "%{count} henkilöä"
+        one: "%{count} käyttäjä"
+        other: "%{count} käyttäjää"
       total_votes:
         one: "%{count} ääni"
         other: "%{count} ääntä"
@@ -1750,7 +1750,7 @@ fi:
     enabled: Poista vanhat julkaisut automaattisesti
     enabled_hint: Poistaa julkaisusi automaattisesti, kun ne saavuttavat valitun ikäkynnyksen, ellei jokin alla olevista poikkeuksista tule kyseeseen
     exceptions: Poikkeukset
-    explanation: Koska julkaisujen poistaminen on raskas toimi, se tapahtuu hitaasti ajan mittaan, kun palvelin ei ole muutoin ruuhkainen. Siksi viestejäsi voi poistua vasta tovi sen jälkeen, kun ne ovat saavuttaneet ikäkynnyksen.
+    explanation: Koska julkaisujen poistaminen on raskas toimi, se tapahtuu hitaasti aikaa myöten silloin kun palvelin ei ole muutoin ruuhkainen. Siksi viestejäsi voi poistua vasta tovi sen jälkeen kun ne ovat ylittäneet ikäkynnyksen.
     ignore_favs: Ohita suosikit
     ignore_reblogs: Ohita tehostukset
     interaction_exceptions: Vuorovaikutuksiin perustuvat poikkeukset
@@ -1857,7 +1857,7 @@ fi:
       explanation:
         delete_statuses: Joidenkin julkaisuistasi on havaittu rikkovan ainakin yhtä yhteisön sääntöä, joten palvelimen %{instance} moderaattorit ovat poistaneet ne.
         disable: Et voi enää käyttää tiliäsi, mutta profiilisi ja muut tiedot pysyvät muuttumattomina. Voit pyytää varmuuskopiota tiedoistasi, vaihtaa tilin asetuksia tai poistaa tilisi.
-        mark_statuses_as_sensitive: Palvelimen %{instance} moderaattorit ovat merkinneet osan julkaisuistasi arkaluonteisiksi. Tämä tarkoittaa sitä, että ihmisten täytyy napauttaa mediaa ennen kuin sen esikatselu näytetään. Voit merkitä median itse arkaluonteiseksi, kun julkaiset tulevaisuudessa.
+        mark_statuses_as_sensitive: Palvelimen %{instance} moderaattorit ovat merkinneet osan julkaisuistasi arkaluonteisiksi. Tämä tarkoittaa sitä, että mediaa täytyy napauttaa ennen kuin sen esikatselu näytetään. Voit merkitä median itse arkaluonteiseksi, kun julkaiset tulevaisuudessa.
         sensitive: Tästä lähtien kaikki lähetetyt mediatiedostot merkitään arkaluonteisiksi ja piilotetaan napsautusvaroituksen taakse.
         silence: Voit edelleen käyttää tiliäsi, mutta vain sinua jo seuraavat käyttäjät näkevät julkaisusi tällä palvelimella ja sinut voidaan sulkea pois eri löytämisominaisuuksista. Toiset voivat kuitenkin edelleen seurata sinua manuaalisesti.
         suspend: Et voi enää käyttää tiliäsi, eivätkä profiilisi ja muut tiedot ole enää käytettävissä. Voit silti kirjautua sisään pyytääksesi tietojesi varmuuskopiota, kunnes tiedot on poistettu kokonaan noin 30 päivän kuluttua. Säilytämme kuitenkin joitain perustietoja, jotka estävät sinua kiertämästä jäädytystä.
@@ -1900,14 +1900,14 @@ fi:
       feature_moderation: Mastodon palauttaa päätöksenteon käsiisi. Jokainen palvelin luo omat sääntönsä ja määräyksensä, joita valvotaan paikallisesti eikä ylhäältä alas kuten kaupallisessa sosiaalisessa mediassa, mikä tekee siitä joustavimman vastaamaan eri ihmisryhmien tarpeisiin. Liity palvelimelle, jonka säännöt sopivat sinulle, tai ylläpidä omaa palvelinta.
       feature_moderation_title: Moderointi juuri kuten sen pitäisi olla
       follow_action: Seuraa
-      follow_step: Mastodonissa on kyse kiinnostavien ihmisten seuraamisesta.
+      follow_step: Mastodonissa on kyse kiinnostavien käyttäjien seuraamisesta.
       follow_title: Mukauta kotisyötettäsi
       follows_subtitle: Seuraa tunnettuja tilejä
       follows_title: Seurantaehdotuksia
-      follows_view_more: Näytä lisää seurattavia henkilöitä
+      follows_view_more: Näytä lisää seurattavia käyttäjiä
       hashtags_recent_count:
-        one: "%{people} henkilö viimeisenä 2 päivänä"
-        other: "%{people} henkilöä viimeisenä 2 päivänä"
+        one: "%{people} käyttäjä viimeisenä 2 päivänä"
+        other: "%{people} käyttäjää viimeisenä 2 päivänä"
       hashtags_subtitle: Tutki, mikä on ollut suosittua viimeisenä 2 päivänä
       hashtags_title: Suositut aihetunnisteet
       hashtags_view_more: Näytä lisää suosittuja aihetunnisteita
@@ -1921,9 +1921,9 @@ fi:
       subject: Tervetuloa Mastodoniin
       title: Tervetuloa mukaan, %{name}!
   users:
-    follow_limit_reached: Et voi seurata yli %{limit} henkilöä
+    follow_limit_reached: Et voi seurata yli %{limit} käyttäjää
     go_to_sso_account_settings: Avaa identiteettitarjoajasi tiliasetukset
-    invalid_otp_token: Virheellinen kaksivaiheisen todentamisen koodi
+    invalid_otp_token: Virheellinen kaksivaiheisen todennuksen koodi
     otp_lost_help_html: Jos sinulla ei ole pääsyä kumpaankaan, voit ottaa yhteyden osoitteeseen %{email}
     rate_limited: Liian monta todennusyritystä – yritä uudelleen myöhemmin.
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.

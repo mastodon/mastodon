@@ -20,7 +20,7 @@ hu:
     applications:
       buttons:
         authorize: Hitelesítés
-        cancel: Mégsem
+        cancel: Mégse
         destroy: Törlés
         edit: Szerkesztés
         submit: Elküldés
@@ -51,20 +51,20 @@ hu:
         application_id: Ügyfélkulcs
         callback_urls: Visszahívási URL-ek
         scopes: Hatáskörök
-        secret: Ügyfél titkos kulcs
+        secret: Ügyféltitok
         title: 'Alkalmazás: %{name}'
     authorizations:
       buttons:
-        authorize: Hitelesítés
+        authorize: Engedélyezés
         deny: Tiltás
       error:
         title: Hiba történt
       new:
         prompt_html: "%{client_name} szeretné elérni a fiókodat. Ez egy harmadik féltől származó alkalmazás. <strong>Ha nem bízol meg benne, ne addj felhatalmazást neki.</strong>"
         review_permissions: Jogosultságok áttekintése
-        title: Hitelesítés szükséges
+        title: Engedélyezés szükséges
       show:
-        title: Másold le ezt az engedélyező kódot és írd be az alkalmazásba.
+        title: Másold le ezt az engedélyezési kódot és írd be az alkalmazásba.
     authorized_applications:
       buttons:
         revoke: Visszavonás
@@ -83,6 +83,7 @@ hu:
         access_denied: Az erőforrás tulajdonosa vagy az engedélyező kiszolgáló elutasította a kérést.
         credential_flow_not_configured: Az erőforrás tulajdonos jelszóadatainak átadása megszakadt, mert a Doorkeeper.configure.resource_owner_from_credentials beállítatlan.
         invalid_client: A kliens hitelesítése megszakadt, mert ismeretlen a kliens, a kliens nem küldött hitelesítést, vagy a hitelesítés módja nem támogatott.
+        invalid_code_challenge_method: A kódkihívási módszernek S256-nak kell lennie, az egyszerű kód nem támogatott.
         invalid_grant: A biztosított hitelesítés érvénytelen, lejárt, visszavont, vagy nem egyezik a hitelesítési kérésben használt URI-val, vagy más kliensnek címezték.
         invalid_redirect_uri: Az átirányító URI nem valós.
         invalid_request:
