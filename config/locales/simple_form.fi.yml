@@ -6,7 +6,7 @@ fi:
         discoverable: Julkisia julkaisujasi ja profiiliasi voidaan pitää esillä tai suositella Mastodonin eri alueilla ja profiiliasi voidaan ehdottaa toisille käyttäjille.
         display_name: Koko nimesi tai lempinimesi.
         fields: Verkkosivustosi, pronominisi, ikäsi ja mitä ikinä haluatkaan ilmoittaa.
-        indexable: Julkiset julkaisusi voivat näkyä hakutuloksissa Mastodonissa. Ihmiset, jotka ovat olleet vuorovaikutuksessa julkaisujesi kanssa, voivat etsiä niitä asetuksesta riippumatta.
+        indexable: Julkiset julkaisusi voivat näkyä Mastodonin hakutuloksissa. Käyttäjät, jotka ovat olleet vuorovaikutuksessa julkaisujesi kanssa, voivat etsiä niitä asetuksesta riippumatta.
         note: 'Voit @mainita muita käyttäjiä tai #aihetunnisteita.'
         show_collections: Käyttäjät voivat selata seurattujasi ja seuraajiasi. Käyttäjät, joita seuraat, näkevät joka tapauksessa, että seuraat heitä.
         unlocked: Käyttäjät voivat seurata sinua pyytämättä hyväksyntääsi. Poista valinta, jos haluat tarkistaa sekä hyväksyä tai hylätä vastaanottamasi seurantapyynnöt.
@@ -38,7 +38,7 @@ fi:
       appeal:
         text: Voit valittaa varoituksesta vain kerran
       defaults:
-        autofollow: Henkilöt, jotka rekisteröityvät kutsun kautta, seuraavat sinua automaattisesti
+        autofollow: Kutsun kautta rekisteröityvät käyttäjät seuraavat sinua automaattisesti
         avatar: WEBP, PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
         bot: Ilmaise muille, että tili suorittaa enimmäkseen automaattisia toimia eikä sitä valvota
         context: Ainakin yksi konteksti, jossa suodattimen pitäisi olla voimassa
@@ -49,14 +49,14 @@ fi:
         header: WEBP, PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
         inbox_url: Kopioi URL-osoite haluamasi välittäjän etusivulta
         irreversible: Suodatetut julkaisut katoavat peruuttamattomasti, vaikka suodatin poistettaisiin myöhemmin
-        locale: Käyttöliittymän, sähköpostien ja puskuilmoitusten kieli
+        locale: Käyttöliittymän, sähköpostiviestien ja puskuilmoitusten kieli
         password: Käytä vähintään 8:aa merkkiä
         phrase: Täsmää riippumatta tekstin aakkoslajista tai julkaisun sisältövaroituksesta
         scopes: Mihin ohjelmointirajapintoihin sovelluksella on pääsy. Jos valitset ylätason käyttöoikeuden, sinun ei tarvitse valita yksittäisiä.
         setting_aggregate_reblogs: Älä näytä uusia tehostuksia julkaisuille, joita on äskettäin tehostettu (koskee vain juuri vastaanotettuja tehostuksia)
         setting_always_send_emails: Yleensä sähköposti-ilmoituksia ei lähetetä, kun käytät Mastodonia aktiivisesti
         setting_default_sensitive: Arkaluonteinen media piilotetaan oletusarvoisesti, ja se voidaan näyttää yhdellä napsautuksella
-        setting_display_media_default: Piilota arkaluonteiseksi merkitty media
+        setting_display_media_default: Piilota arkaluonteiseksi merkitty mediasisältö
         setting_display_media_hide_all: Piilota mediasisältö aina
         setting_display_media_show_all: Näytä mediasisältö aina
         setting_use_blurhash: Liukuvärit perustuvat piilotettujen kuvien väreihin mutta sumentavat yksityiskohdat
@@ -89,12 +89,12 @@ fi:
         peers_api_enabled: Luettelo verkkotunnuksista, jotka tämä palvelin on kohdannut fediversumissa. Se ei kerro, federoitko tietyn palvelimen kanssa, vaan että palvelimesi on ylipäätään tietoinen siitä. Tätä tietoa käytetään palveluissa, jotka keräävät tilastoja federoinnista yleisellä tasolla.
         profile_directory: Profiilihakemisto luetteloi kaikki käyttäjät, jotka ovat valinneet olla löydettävissä.
         require_invite_text: Kun rekisteröityminen vaatii manuaalisen hyväksynnän, tee ”Miksi haluat liittyä?” -tekstikentästä pakollinen vapaaehtoisen sijaan
-        site_contact_email: Miten ihmiset voivat tavoittaa sinut oikeus- tai tukikysymyksissä.
-        site_contact_username: Miten ihmiset voivat tavoittaa sinut Mastodonissa.
+        site_contact_email: Miten sinut voi tavoittaa oikeus- tai tukikysymyksissä.
+        site_contact_username: Miten sinut voi tavoittaa Mastodonissa.
         site_extended_description: Kaikki lisätiedot, jotka voivat olla hyödyllisiä kävijöille ja käyttäjille. Voidaan jäsentää Markdown-syntaksilla.
         site_short_description: Lyhyt kuvaus, joka auttaa yksilöimään palvelimesi. Kuka sitä johtaa, ja keille se on tarkoitettu?
         site_terms: Käytä omaa tietosuojakäytäntöä tai jätä tyhjäksi, jos haluat käyttää oletusta. Voidaan jäsentää Markdown-syntaksilla.
-        site_title: Miten ihmiset voivat viitata palvelimeesi sen verkkotunnuksen lisäksi.
+        site_title: Miten palvelimeesi voi viitata sen verkkotunnuksen lisäksi.
         status_page_url: URL-osoite sivulle, josta tämän palvelimen tilan voi ongelmatilanteissa tarkistaa
         theme: Teema, jonka uloskirjautuneet vierailijat ja uudet käyttäjät näkevät.
         thumbnail: Noin 2:1 kuva näkyy palvelimen tietojen ohessa.
@@ -121,7 +121,7 @@ fi:
         hint: Vapaaehtoinen. Anna yksityiskohtaisempia tietoja säännöstä
         text: Kuvaile sääntöä tai edellytystä palvelimesi käyttäjille. Suosi tiivistä, yksinkertaista ilmaisua
       sessions:
-        otp: 'Näppäile mobiilisovelluksessa näkyvä kaksivaiheisen todennuksen tunnusluku, tai käytä tarvittaessa palautuskoodia:'
+        otp: 'Näppäile mobiilisovelluksessa näkyvä kaksivaiheisen todennuksen tunnusluku tai käytä tarvittaessa palautuskoodia:'
         webauthn: Jos kyseessä on USB-avain, muista laittaa se paikalleen ja tarvittaessa napauttaa sitä.
       settings:
         indexable: Profiilisi voi näkyä Googlen, Bingin ja muiden hakukoneiden hakutuloksissa.
@@ -135,7 +135,7 @@ fi:
         color: Väri, jota käytetään roolille kaikkialla käyttöliittymässä, RGB-heksadesimaalimuodossa
         highlighted: Tämä tekee roolista julkisesti näkyvän
         name: Roolin julkinen nimi, jos rooli on asetettu näytettäväksi merkkinä
-        permissions_as_keys: Käyttäjillä, joilla on tämä rooli, on käyttöoikeus...
+        permissions_as_keys: Käyttäjillä, joilla on tämä rooli, on käyttöoikeus…
         position: Korkeampi rooli ratkaisee konfliktit tietyissä tilanteissa. Tiettyjä toimia voidaan suorittaa vain rooleilla, joiden prioriteetti on pienempi
       webhook:
         events: Valitse lähetettävät tapahtumat
@@ -213,7 +213,7 @@ fi:
         setting_delete_modal: Kysy vahvistusta ennen julkaisun poistamista
         setting_disable_hover_cards: Poista käytöstä profiilin esikatselu osoitettaessa
         setting_disable_swiping: Poista pyyhkäisyeleet käytöstä
-        setting_display_media: Median näyttäminen
+        setting_display_media: Median näkyminen
         setting_display_media_default: Oletus
         setting_display_media_hide_all: Piilota kaikki
         setting_display_media_show_all: Näytä kaikki
@@ -224,7 +224,7 @@ fi:
         setting_theme: Sivuston teema
         setting_trends: Näytä päivän trendit
         setting_unfollow_modal: Kysy vahvistusta ennen seuraamisen lopettamista
-        setting_use_blurhash: Käytä värikästä liukusävytystä piilotetulle medialle
+        setting_use_blurhash: Käytä värikästä liukusävytystä piilotetulle mediasisällölle
         setting_use_pending_items: Hidas tila
         severity: Vakavuus
         sign_in_token_attempt: Turvakoodi
@@ -294,7 +294,7 @@ fi:
         follow: Joku seurasi sinua
         follow_request: Joku pyysi lupaa seurata sinua
         mention: Joku mainitsi sinut
-        pending_account: Uusi tili tarvitsee tarkistuksen
+        pending_account: Uusi tili tarvitsee tarkastuksen
         reblog: Joku tehosti julkaisuasi
         report: Uusi raportti lähetettiin
         software_updates:
