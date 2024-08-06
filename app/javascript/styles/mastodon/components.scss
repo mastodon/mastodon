@@ -10628,6 +10628,25 @@ noscript {
     }
   }
 
+  &__note {
+    &-label {
+      color: $dark-text-color;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    dd {
+      white-space: pre-line;
+      color: $secondary-text-color;
+      overflow: hidden;
+      line-clamp: 3; // Not yet supported in browers
+      display: -webkit-box; // The next 3 properties are needed
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+  }
+
   .display-name {
     font-size: 15px;
     line-height: 22px;
