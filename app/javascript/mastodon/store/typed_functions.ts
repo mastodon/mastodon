@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { useDispatch, useSelector } from 'react-redux';
 
-import type { BaseThunkAPI } from '@reduxjs/toolkit/dist/createAsyncThunk';
+import type { BaseThunkAPI } from '@reduxjs/toolkit/src/createAsyncThunk';
 
 import type { AppDispatch, RootState } from './store';
 
