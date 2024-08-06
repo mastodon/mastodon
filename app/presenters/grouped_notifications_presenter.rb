@@ -27,7 +27,13 @@ class GroupedNotificationsPresenter < ActiveModelSerializers::Model
   end
 
   def partial_accounts
-    @grouped_notifications.flat_map { |group| group.sample_accounts[1...] }.uniq(&:id).filter { |account| accounts.exclude?(account) }
+    @partial_accounts ||= begin
+      if partial_avatars?
+        @grouped_notifications.flat_map { |group| group.sample_accounts[1...] }.uniq(&:id).filter { |account| accounts.exclude?(account) }
+      else
+        []
+      end
+    end
   end
 
   private
