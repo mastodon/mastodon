@@ -161,7 +161,7 @@ RSpec.describe 'Notifications' do
     end
 
     context 'when requesting stripped-down accounts' do
-      let(:params) { { stripped: true } }
+      let(:params) { { expand_accounts: 'partial_avatars' } }
 
       let(:recent_account) { Fabricate(:account) }
 
@@ -176,6 +176,16 @@ RSpec.describe 'Notifications' do
         expect(body_as_json[:partial_accounts].size).to be > 0
         expect(body_as_json[:partial_accounts].pluck(:id)).to_not include(recent_account.id.to_s)
         expect(body_as_json[:accounts].pluck(:id)).to include(recent_account.id.to_s)
+      end
+    end
+
+    context 'when passing an invalid value for "expand_accounts"' do
+      let(:params) { { expand_accounts: 'unknown_foobar' } }
+
+      it 'returns http bad request' do
+        subject
+
+        expect(response).to have_http_status(400)
       end
     end
 

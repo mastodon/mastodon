@@ -32,11 +32,11 @@ class REST::DedupNotificationGroupSerializer < ActiveModel::Serializer
   end
 
   has_many :accounts, serializer: REST::AccountSerializer
-  has_many :partial_accounts, serializer: PartialAccountSerializer, if: :stripped?
+  has_many :partial_accounts, serializer: PartialAccountSerializer, if: :return_partial_accounts?
   has_many :statuses, serializer: REST::StatusSerializer
   has_many :notification_groups, serializer: REST::NotificationGroupSerializer
 
-  def stripped?
-    instance_options[:stripped]
+  def return_partial_accounts?
+    instance_options[:expand_accounts] == 'partial_avatars'
   end
 end

@@ -33,8 +33,8 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
         'app.notification_grouping.status.unique_count' => statuses.uniq.size
       )
 
-      presenter = GroupedNotificationsPresenter.new(@grouped_notifications, partial_accounts: params[:stripped])
-      render json: presenter, serializer: REST::DedupNotificationGroupSerializer, relationships: @relationships, group_metadata: @group_metadata, stripped: params[:stripped]
+      presenter = GroupedNotificationsPresenter.new(@grouped_notifications, expand_accounts: expand_accounts_param)
+      render json: presenter, serializer: REST::DedupNotificationGroupSerializer, relationships: @relationships, group_metadata: @group_metadata, expand_accounts: expand_accounts_param
     end
   end
 
@@ -130,5 +130,16 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
 
   def pagination_params(core_params)
     params.slice(:limit, :types, :exclude_types, :include_filtered).permit(:limit, :include_filtered, types: [], exclude_types: []).merge(core_params)
+  end
+
+  def expand_accounts_param
+    case params[:expand_accounts]
+    when nil, 'full'
+      'full'
+    when 'partial_avatars'
+      'partial_avatars'
+    else
+      raise Mastodon::InvalidParameterError, "Invalid value for 'expand_accounts': '#{params[:expand_accounts]}', allowed values are 'full' and 'partial_avatars'"
+    end
   end
 end
