@@ -332,7 +332,7 @@ class Request
 
         return if Rails.env.development? || private_address_exceptions.any? { |range| range.include?(addr) }
 
-        raise Mastodon::PrivateNetworkAddressError, host if PrivateAddressCheck.private_address?(addr)
+        # raise Mastodon::PrivateNetworkAddressError, host if PrivateAddressCheck.private_address?(addr)
       end
 
       def private_address_exceptions

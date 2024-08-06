@@ -927,8 +927,8 @@ body > [data-popper-placement] {
   vertical-align: middle;
   object-fit: contain;
   margin: -0.2ex 0.15em 0.2ex;
-  width: 16px;
-  height: 16px;
+  width: 64px;
+  height: 64px;
 
   img {
     width: auto;
@@ -969,8 +969,8 @@ body > [data-popper-placement] {
   }
 
   .emojione {
-    width: 20px;
-    height: 20px;
+    width: auto;
+    height: 64px;
     margin: -3px 0 0;
   }
 
@@ -2707,7 +2707,7 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .column {
-  width: 350px;
+  width: 25vw;
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -2735,7 +2735,7 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .drawer {
-  width: 300px;
+  width: 25vw;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

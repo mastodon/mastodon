@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class StatusPinValidator < ActiveModel::Validator
-  PIN_LIMIT = 5
+  PIN_LIMIT = 100
 
   def validate(pin)
     pin.errors.add(:base, I18n.t('statuses.pin_errors.reblog')) if pin.status.reblog?

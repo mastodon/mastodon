@@ -43,9 +43,41 @@ class TextFormatter
       end
     end
 
+    # REPLACE!!
+    html = custom_format(html)
+
     html = simple_format(html, {}, sanitize: false).delete("\n") if multiline?
 
-    html.html_safe # rubocop:disable Rails/OutputSafety
+    html
+
+    #html.html_safe # rubocop:disable Rails/OutputSafety
+
+  end
+
+
+  # ADD: custom format
+  # ※先頭行に[NO]と書かれている場合は書式無視
+  def custom_format(text)
+    return text.gsub(/^\[NO\]/, "") if !/^\[NO\]/.match(text).nil?
+
+    # MD
+    text = text
+    .gsub(/## (.*)/, "<h2>\\1</h2>")
+    .gsub(/# (.*)/, "<h1>\\1</h1>")
+    .gsub(/\[\[(https?:\/\/[^|]+)\|(.+)\]\]/, "<a href='\\1'>\\2</a>")
+    
+    text = text
+    .gsub(/^\[MD\]/, "")
+    # MARKDOWN(DEFAULT)
+    .gsub(/\*\*\*(.+)\*\*\*/, "<b><i>\\1</i></b>")
+    .gsub(/\*\*(.+)\*\*/, "<b>\\1</b>")
+    .gsub(/\*(.+)\*/, "<i>\\1</i>")
+    .gsub(/~~(.*)~~/, "<strike>\\1</strike>")
+    .gsub(/&gt; (.*)/, "<blockquote>\\1</blockquote>")
+    .gsub(/`(.*)`/, "<code>\\1</code>")
+    .gsub(/\[c:([a-z]+)\](.+)\[\/c\]/, "<span style='color: \\1'>\\2</span>")
+
+
   end
 
   class << self

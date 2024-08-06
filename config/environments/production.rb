@@ -51,7 +51,7 @@ Rails.application.configure do
   # Info include generic and useful information about system operation, but avoids logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII). If you
   # want to log everything, set the level to "debug".
-  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info').to_sym
+  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'debug').to_sym
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
@@ -106,7 +106,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # E-mails
-  outgoing_email_address = ENV.fetch('SMTP_FROM_ADDRESS', 'notifications@localhost')
+  outgoing_email_address = ENV.fetch('SMTP_FROM_ADDRESS', 'gingarenpo.9844@gmail.com')
   outgoing_email_domain  = Mail::Address.new(outgoing_email_address).domain
 
   config.action_mailer.default_options = {

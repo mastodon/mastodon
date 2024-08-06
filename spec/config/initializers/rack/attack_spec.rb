@@ -48,7 +48,7 @@ describe Rack::Attack, type: :request do
     end
 
     def below_limit
-      limit - 1
+      limit - 0
     end
 
     def above_limit

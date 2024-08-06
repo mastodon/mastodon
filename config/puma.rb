@@ -9,7 +9,7 @@ threads min_threads_count, max_threads_count
 if ENV['SOCKET']
   bind "unix://#{ENV['SOCKET']}"
 else
-  bind "tcp://#{ENV.fetch('BIND', '127.0.0.1')}:#{ENV.fetch('PORT', 3000)}"
+  bind "tcp://#{ENV.fetch('BIND', '0.0.0.0')}:#{ENV.fetch('PORT', 3000)}"
 end
 
 environment ENV.fetch('RAILS_ENV') { 'development' }

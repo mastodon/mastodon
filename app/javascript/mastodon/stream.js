@@ -237,7 +237,8 @@ const createConnection = (streamingAPIBaseURL, accessToken, channelName, { conne
 
   if (streamingAPIBaseURL.startsWith('ws')) {
     // @ts-expect-error
-    const ws = new WebSocketClient(`${streamingAPIBaseURL}/api/v1/streaming/?${params.join('&')}`, accessToken);
+    //const ws = new WebSocketClient(`${streamingAPIBaseURL}/api/v1/streaming/?${params.join('&')}`, accessToken);
+    const ws = new WebSocketClient(`wss://mstdn.gingarenpo.com/api/v1/streaming/?${params.join('&')}`, accessToken);
 
     // @ts-expect-error
     ws.onopen = connected;
