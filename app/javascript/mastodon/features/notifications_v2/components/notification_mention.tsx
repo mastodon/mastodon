@@ -11,23 +11,23 @@ import type { LabelRenderer } from './notification_group_with_status';
 import { NotificationWithStatus } from './notification_with_status';
 
 const mentionLabelRenderer: LabelRenderer = () => (
-  <FormattedMessage id='notification.mention' defaultMessage='Mention' />
+  <FormattedMessage id='notification.label.mention' defaultMessage='Mention' />
 );
 
 const privateMentionLabelRenderer: LabelRenderer = () => (
   <FormattedMessage
-    id='notification.private_mention'
+    id='notification.label.private_mention'
     defaultMessage='Private mention'
   />
 );
 
 const replyLabelRenderer: LabelRenderer = () => (
-  <FormattedMessage id='notification.reply' defaultMessage='Reply' />
+  <FormattedMessage id='notification.label.reply' defaultMessage='Reply' />
 );
 
 const privateReplyLabelRenderer: LabelRenderer = () => (
   <FormattedMessage
-    id='notification.private_reply'
+    id='notification.label.private_reply'
     defaultMessage='Private reply'
   />
 );
