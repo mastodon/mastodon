@@ -7,6 +7,10 @@ RSpec.describe UnmuteService do
     let!(:account) { Fabricate(:account) }
     let!(:target_account) { Fabricate(:account) }
 
+    before do
+      allow(redis).to receive(:publish)
+    end
+
     context 'when account is muting target account' do
       before { Fabricate :mute, account: account, target_account: target_account }
 
@@ -33,6 +37,12 @@ RSpec.describe UnmuteService do
           .from(true)
           .to(false)
       end
+
+      it 'notifies streaming of the change in mutes' do
+        subject.call(account, target_account)
+
+        expect(redis).to have_received(:publish).with('system', Oj.dump(event: :mutes_changed, account: account.id, target_account: target_account.id))
+      end
     end
 
     context 'when account is not muting target account' do
@@ -40,6 +50,8 @@ RSpec.describe UnmuteService do
         expect { subject.call(account, target_account) }
           .to_not(change { account.reload.muting?(target_account) })
         expect(MergeWorker).to_not have_enqueued_sidekiq_job(any_args)
+
+        expect(redis).to_not have_received(:publish)
       end
     end
   end

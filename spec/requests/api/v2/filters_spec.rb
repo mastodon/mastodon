@@ -199,6 +199,7 @@ RSpec.describe 'Filters' do
         subject
 
         expect(redis).to have_received(:publish).with("timeline:#{user.account.id}", Oj.dump(event: :filters_changed)).once
+        expect(redis).to have_received(:publish).with('system', Oj.dump(event: :filters_changed, account_id: user.account.id)).once
       end
     end
 

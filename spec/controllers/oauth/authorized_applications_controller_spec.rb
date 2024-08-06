@@ -48,13 +48,16 @@ describe Oauth::AuthorizedApplicationsController do
   describe 'DELETE #destroy' do
     let!(:user) { Fabricate(:user) }
     let!(:application) { Fabricate(:application) }
-    let!(:access_token) { Fabricate(:accessible_access_token, application: application, resource_owner_id: user.id) }
-    let!(:web_push_subscription) { Fabricate(:web_push_subscription, user: user, access_token: access_token) }
+    let!(:access_tokens) { Fabricate.times(3, :accessible_access_token, application: application, resource_owner_id: user.id) }
+    let!(:web_push_subscription) { Fabricate(:web_push_subscription, user: user, access_token: access_tokens[0]) }
     let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
 
     before do
       sign_in user, scope: :user
+
       allow(redis).to receive(:pipelined).and_yield(redis_pipeline_stub)
+      allow(redis).to receive(:publish)
+
       post :destroy, params: { id: application.id }
     end
 
@@ -71,7 +74,11 @@ describe Oauth::AuthorizedApplicationsController do
     end
 
     it 'sends a session kill payload to the streaming server' do
-      expect(redis_pipeline_stub).to have_received(:publish).with("timeline:access_token:#{access_token.id}", '{"event":"kill"}')
+      access_tokens.each do |access_token|
+        expect(redis_pipeline_stub).to have_received(:publish).with("timeline:access_token:#{access_token.id}", '{"event":"kill"}')
+      end
+
+      expect(redis).to have_received(:publish).with('system', Oj.dump(event: :terminate, access_tokens: access_tokens.map(&:id)))
     end
   end
 end

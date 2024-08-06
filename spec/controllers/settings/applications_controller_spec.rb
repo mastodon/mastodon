@@ -148,10 +148,12 @@ describe Settings::ApplicationsController do
 
   describe 'destroy' do
     let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
-    let!(:access_token) { Fabricate(:accessible_access_token, application: app) }
+    let!(:access_tokens) { Fabricate.times(3, :accessible_access_token, application: app) }
 
     before do
       allow(redis).to receive(:pipelined).and_yield(redis_pipeline_stub)
+      allow(redis).to receive(:publish)
+
       post :destroy, params: { id: app.id }
     end
 
@@ -161,7 +163,11 @@ describe Settings::ApplicationsController do
     end
 
     it 'sends a session kill payload to the streaming server' do
-      expect(redis_pipeline_stub).to have_received(:publish).with("timeline:access_token:#{access_token.id}", '{"event":"kill"}')
+      access_tokens.each do |access_token|
+        expect(redis_pipeline_stub).to have_received(:publish).with("timeline:access_token:#{access_token.id}", '{"event":"kill"}')
+      end
+
+      expect(redis).to have_received(:publish).with('system', Oj.dump({ event: :terminate, access_tokens: access_tokens.map(&:id) }))
     end
   end
 

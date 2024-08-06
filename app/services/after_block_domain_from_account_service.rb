@@ -2,6 +2,7 @@
 
 class AfterBlockDomainFromAccountService < BaseService
   include Payloadable
+  include Redisable
 
   # This service does not create an AccountDomainBlock record,
   # it's meant to be called after such a record has been created
@@ -16,7 +17,9 @@ class AfterBlockDomainFromAccountService < BaseService
     remove_follows!
     reject_existing_followers!
     reject_pending_follow_requests!
+
     notify_of_severed_relationships!
+    notify_streaming!
   end
 
   private
@@ -66,5 +69,9 @@ class AfterBlockDomainFromAccountService < BaseService
 
   def domain_block_event
     @domain_block_event ||= RelationshipSeveranceEvent.create!(type: :user_domain_block, target_name: @domain)
+  end
+
+  def notify_streaming!
+    redis.publish('system', Oj.dump(event: :domain_blocks_changed, account: @account.id, target_domain: @domain))
   end
 end

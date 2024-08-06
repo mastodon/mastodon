@@ -18,6 +18,8 @@ class AccountDomainBlock < ApplicationRecord
   belongs_to :account
   validates :domain, presence: true, uniqueness: { scope: :account_id }, domain: true
 
+  after_destroy :notify_streaming
+
   after_commit :invalidate_domain_blocking_cache
   after_commit :invalidate_follow_recommendations_cache
 
@@ -30,5 +32,9 @@ class AccountDomainBlock < ApplicationRecord
 
   def invalidate_follow_recommendations_cache
     Rails.cache.delete("follow_recommendations/#{account_id}")
+  end
+
+  def notify_streaming
+    AfterUnblockDomainFromAccountService.call(account_id, domain)
   end
 end

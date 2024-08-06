@@ -2,12 +2,16 @@
 
 class UnblockService < BaseService
   include Payloadable
+  include Redisable
 
   def call(account, target_account)
     return unless account.blocking?(target_account)
 
     unblock = account.unblock!(target_account)
     create_notification(unblock) if !target_account.local? && target_account.activitypub?
+
+    redis.publish('system', Oj.dump(event: :blocks_changed, account: account.id, target_account: target_account.id))
+
     unblock
   end
 
