@@ -3086,11 +3086,6 @@ $ui-header-logo-wordmark-width: 99px;
   .explore__search-header {
     display: flex;
   }
-
-  .explore__search-results {
-    border: 0;
-    border-radius: 0;
-  }
 }
 
 .icon-with-badge {
@@ -8789,10 +8784,13 @@ noscript {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--background-border-color);
-  border-top: 0;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+
+  @media screen and (min-width: $no-gap-breakpoint) {
+    border: 1px solid var(--background-border-color);
+    border-top: 0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
 }
 
 .story {
