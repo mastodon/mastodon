@@ -1,19 +1,23 @@
 - content_for :page_title do
   = t('admin.action_logs.title')
 
-= form_tag admin_action_logs_url, method: 'GET', class: 'simple_form' do
+= form_with url: admin_action_logs_url, method: :get, class: :simple_form do |form|
   = hidden_field_tag :target_account_id, params[:target_account_id] if params[:target_account_id].present?
 
   .filters
     .filter-subset.filter-subset--with-select
       %strong= t('admin.action_logs.filter_by_user')
       .input.select.optional
-        = select_tag :account_id, options_from_collection_for_select(@auditable_accounts, :id, :username, params[:account_id]), prompt: I18n.t('admin.accounts.moderation.all')
+        = form.select :account_id,
+                      options_from_collection_for_select(@auditable_accounts, :id, :username, params[:account_id]),
+                      prompt: I18n.t('admin.accounts.moderation.all')
 
     .filter-subset.filter-subset--with-select
       %strong= t('admin.action_logs.filter_by_action')
       .input.select.optional
-        = select_tag :action_type, options_for_select(Admin::ActionLogFilter::ACTION_TYPE_MAP.keys.map { |key| [I18n.t("admin.action_logs.action_types.#{key}"), key] }, params[:action_type]), prompt: I18n.t('admin.accounts.moderation.all')
+        = form.select :action_type,
+                      options_for_select(Admin::ActionLogFilter::ACTION_TYPE_MAP.keys.map { |key| [I18n.t("admin.action_logs.action_types.#{key}"), key] }, params[:action_type]),
+                      prompt: I18n.t('admin.accounts.moderation.all')
 
 - if @action_logs.empty?
   .muted-hint.center-text

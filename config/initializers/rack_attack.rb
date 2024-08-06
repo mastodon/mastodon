@@ -14,7 +14,7 @@ class Rack::Attack
     end
 
     def remote_ip
-      @remote_ip ||= (@env["action_dispatch.remote_ip"] || ip).to_s
+      @remote_ip ||= (@env['action_dispatch.remote_ip'] || ip).to_s
     end
 
     def throttleable_remote_ip
@@ -35,6 +35,10 @@ class Rack::Attack
 
     def authenticated_token_id
       authenticated_token&.id
+    end
+
+    def warden_user_id
+      @env['warden']&.user&.id
     end
 
     def unauthenticated?
@@ -138,6 +142,9 @@ class Rack::Attack
     req.session[:attempt_user_id] || req.params.dig('user', 'email').presence if req.post? && req.path_matches?('/auth/sign_in')
   end
 
+  throttle('throttle_password_change/account', limit: 10, period: 10.minutes) do |req|
+    req.warden_user_id if req.put? || (req.patch? && req.path_matches?('/auth'))
+  end
 
   self.throttled_responder = lambda do |request|
     now        = Time.now.utc

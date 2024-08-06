@@ -105,7 +105,7 @@ RSpec.describe NotifyService do
     context 'when email notification is enabled' do
       let(:enabled) { true }
 
-      it 'sends email', :sidekiq_inline do
+      it 'sends email', :inline_jobs do
         emails = capture_emails { subject }
 
         expect(emails.size)
@@ -125,6 +125,68 @@ RSpec.describe NotifyService do
         emails = capture_emails { subject }
 
         expect(emails).to be_empty
+      end
+    end
+  end
+
+  context 'with filtered notifications' do
+    let(:unknown)  { Fabricate(:account, username: 'unknown') }
+    let(:status)   { Fabricate(:status, account: unknown) }
+    let(:activity) { Fabricate(:mention, account: recipient, status: status) }
+    let(:type)     { :mention }
+
+    before do
+      Fabricate(:notification_policy, account: recipient, filter_not_following: true)
+    end
+
+    it 'creates a filtered notification' do
+      expect { subject }.to change(Notification, :count)
+      expect(Notification.last).to be_filtered
+    end
+
+    context 'when no notification request exists' do
+      it 'creates a notification request' do
+        expect { subject }.to change(NotificationRequest, :count)
+      end
+    end
+
+    context 'when a notification request exists' do
+      let!(:notification_request) do
+        Fabricate(:notification_request, account: recipient, from_account: unknown, last_status: Fabricate(:status, account: unknown))
+      end
+
+      it 'updates the existing notification request' do
+        expect { subject }.to_not change(NotificationRequest, :count)
+        expect(notification_request.reload.last_status).to eq status
+      end
+    end
+  end
+
+  describe NotifyService::DismissCondition do
+    subject { described_class.new(notification) }
+
+    let(:activity) { Fabricate(:mention, status: Fabricate(:status)) }
+    let(:notification) { Fabricate(:notification, type: :mention, activity: activity, from_account: activity.status.account, account: activity.account) }
+
+    describe '#dismiss?' do
+      context 'when sender is silenced' do
+        before do
+          notification.from_account.silence!
+        end
+
+        it 'returns false' do
+          expect(subject.dismiss?).to be false
+        end
+      end
+
+      context 'when recipient has blocked sender' do
+        before do
+          notification.account.block!(notification.from_account)
+        end
+
+        it 'returns true' do
+          expect(subject.dismiss?).to be true
+        end
       end
     end
   end
@@ -307,6 +369,19 @@ RSpec.describe NotifyService do
 
             it 'returns false' do
               expect(subject.filter?).to be false
+            end
+          end
+
+          context 'when the sender is mentioned in an unrelated message chain' do
+            before do
+              original_status = Fabricate(:status, visibility: :direct)
+              intermediary_status = Fabricate(:status, visibility: :direct, thread: original_status)
+              notification.target_status.update(thread: intermediary_status)
+              Fabricate(:mention, status: original_status, account: notification.from_account)
+            end
+
+            it 'returns true' do
+              expect(subject.filter?).to be true
             end
           end
         end

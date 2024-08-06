@@ -8,7 +8,84 @@ RSpec.describe 'Notifications' do
   let(:scopes)  { 'read:notifications write:notifications' }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  describe 'GET /api/v1/notifications', :sidekiq_inline do
+  describe 'GET /api/v1/notifications/unread_count', :inline_jobs do
+    subject do
+      get '/api/v1/notifications/unread_count', headers: headers, params: params
+    end
+
+    let(:params) { {} }
+
+    before do
+      first_status = PostStatusService.new.call(user.account, text: 'Test')
+      ReblogService.new.call(Fabricate(:account), first_status)
+      PostStatusService.new.call(Fabricate(:account), text: 'Hello @alice')
+      FavouriteService.new.call(Fabricate(:account), first_status)
+      FavouriteService.new.call(Fabricate(:account), first_status)
+      FollowService.new.call(Fabricate(:account), user.account)
+    end
+
+    it_behaves_like 'forbidden for wrong scope', 'write write:notifications'
+
+    context 'with no options' do
+      it 'returns expected notifications count' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:count]).to eq 5
+      end
+    end
+
+    context 'with a read marker' do
+      before do
+        id = user.account.notifications.browserable.order(id: :desc).offset(2).first.id
+        user.markers.create!(timeline: 'notifications', last_read_id: id)
+      end
+
+      it 'returns expected notifications count' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:count]).to eq 2
+      end
+    end
+
+    context 'with exclude_types param' do
+      let(:params) { { exclude_types: %w(mention) } }
+
+      it 'returns expected notifications count' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:count]).to eq 4
+      end
+    end
+
+    context 'with a user-provided limit' do
+      let(:params) { { limit: 2 } }
+
+      it 'returns a capped value' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:count]).to eq 2
+      end
+    end
+
+    context 'when there are more notifications than the limit' do
+      before do
+        stub_const('Api::V1::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT', 2)
+      end
+
+      it 'returns a capped value' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:count]).to eq Api::V1::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT
+      end
+    end
+  end
+
+  describe 'GET /api/v1/notifications', :inline_jobs do
     subject do
       get '/api/v1/notifications', headers: headers, params: params
     end
@@ -20,8 +97,8 @@ RSpec.describe 'Notifications' do
     before do
       first_status = PostStatusService.new.call(user.account, text: 'Test')
       ReblogService.new.call(bob.account, first_status)
-      mentioning_status = PostStatusService.new.call(bob.account, text: 'Hello @alice')
-      mentioning_status.mentions.first
+      PostStatusService.new.call(bob.account, text: 'Hello @alice')
+      PostStatusService.new.call(tom.account, text: 'Hello @alice', visibility: :direct) # Filtered by default
       FavouriteService.new.call(bob.account, first_status)
       FavouriteService.new.call(tom.account, first_status)
       FollowService.new.call(bob.account, user.account)
@@ -34,10 +111,22 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_json_types).to include 'reblog'
-        expect(body_json_types).to include 'mention'
-        expect(body_json_types).to include 'favourite'
-        expect(body_json_types).to include 'follow'
+        expect(body_as_json.size).to eq 5
+        expect(body_json_types).to include('reblog', 'mention', 'favourite', 'follow')
+        expect(body_as_json.any? { |x| x[:filtered] }).to be false
+      end
+    end
+
+    context 'with include_filtered' do
+      let(:params) { { include_filtered: true } }
+
+      it 'returns expected notification types, including filtered notifications' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json.size).to eq 6
+        expect(body_json_types).to include('reblog', 'mention', 'favourite', 'follow')
+        expect(body_as_json.any? { |x| x[:filtered] }).to be true
       end
     end
 
@@ -96,7 +185,7 @@ RSpec.describe 'Notifications' do
       it 'returns the requested number of notifications paginated', :aggregate_failures do
         subject
 
-        notifications = user.account.notifications
+        notifications = user.account.notifications.browserable
 
         expect(body_as_json.size)
           .to eq(params[:limit])

@@ -597,6 +597,9 @@ ie:
       actions_description_html: Decider quel action a far por soluer ti raporte. Si tu fa un punitiv action contra li raportat conto, li usator va reciver un notification per email, except in li casu que li <strong>Spam</strong> categorie es selectet.
       actions_description_remote_html: Decider quel action a far por soluer ti raporte. It va afecter solmen qualmen <strong>vor</strong> servitor comunica con ti lontan conto e tractar su contenete.
       add_to_report: Adjunter plu al raporte
+      already_suspended_badges:
+        local: Ja suspendet sur ti-ci servitor
+        remote: Ja suspendet sur su servitor
       are_you_sure: Es tu cert?
       assign_to_self: Assignar it a me
       assigned: Assignat moderator
@@ -748,6 +751,7 @@ ie:
         desc_html: To ci usa extern scrites de hCaptcha, quel posse esser ínquietant pro rasones de securitá e privatie. In plu, <strong>it posse far li processu de registration mult plu desfacil (particularimen por tis con deshabilitás)</strong>. Pro ti rasones, ples considerar alternativ mesuras, tales quam registration per aprobation o invitation.
         title: Exige que nov usatores solue un CAPTCHA por confirmar lor conto
       content_retention:
+        danger_zone: Zone de dangere
         preamble: Decider qualmen usator-generat contenete es inmagasinat in Mastodon.
         title: Retention de contenete
       default_noindex:
@@ -946,7 +950,6 @@ ie:
       delete: Deleter
       edit_preset: Modificar prefiguration de avise
       empty: Vu ancor ha definit null prefigurationes de avise.
-      title: Modificar prefigurationes de avise
     webhooks:
       add_new: Adjunter punctu terminal
       delete: Deleter
@@ -1652,13 +1655,26 @@ ie:
     import: Importar
     import_and_export: Importation e exportation
     migrate: Migration de conto
+    notifications: E-postal notificationes
     preferences: Preferenties
     profile: Public profil
     relationships: Sequetes e sequitores
+    severed_relationships: Detranchat relationes
     statuses_cleanup: Automatisat deletion de postas
     strikes: Admonimentes moderatori
     two_factor_authentication: 2-factor autentication
     webauthn_authentication: Claves de securitá
+  severed_relationships:
+    download: Descargar (%{count})
+    event_type:
+      account_suspension: Suspension del conto (%{target_name})
+      domain_block: Suspension del servitor (%{target_name})
+      user_domain_block: Tu bloccat %{target_name}
+    lost_followers: Perdit sequitores
+    lost_follows: Perdit sequetes
+    preamble: Tu posse perdir tis queles tu seque e tui sequitores quande tu blocca un domonia o quande tui moderatores decide suspender un lontan servitor. Tande, tu va posser descargar listes de dejuntet relationes, a inspecter e possibilmen importar sur un altri servitor.
+    purged: Information pri ti-ci servitor ha esset purgat per li administratores de tui servitor.
+    type: Eveniment
   statuses:
     attached:
       audio:
@@ -1752,6 +1768,7 @@ ie:
     contrast: Mastodon (Alt contraste)
     default: Mastodon (Obscur)
     mastodon-light: Mastodon (Luminosi)
+    system: Automatic (usar tema del sistema)
   time:
     formats:
       default: "%d.%m.%Y ye %H:%M"
@@ -1864,6 +1881,9 @@ ie:
       follows_subtitle: Sequer famosi contos
       follows_title: Persones a sequer
       follows_view_more: Vider plu persones a sequer
+      hashtags_recent_count:
+        one: "%{people} person in li passat 2 dies"
+        other: "%{people} persones in li passat 2 dies"
       hashtags_subtitle: Explorar li postas de tendentie durant li passat 2 dies
       hashtags_title: Populari hashtags
       hashtags_view_more: Vider plu hashtags in tendentie

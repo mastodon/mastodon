@@ -223,6 +223,7 @@ vi:
         update_custom_emoji: Cập nhật emoji
         update_domain_block: Cập nhật máy chủ chặn
         update_ip_block: Cập nhật chặn IP
+        update_report: Cập nhật báo cáo
         update_status: Cập nhật tút
         update_user_role: Cập nhật vai trò
       actions:
@@ -282,6 +283,7 @@ vi:
         update_custom_emoji_html: "%{name} đã cập nhật emoji %{target}"
         update_domain_block_html: "%{name} cập nhật chặn máy chủ %{target}"
         update_ip_block_html: "%{name} cập nhật chặn IP %{target}"
+        update_report_html: "%{name} cập nhật báo cáo %{target}"
         update_status_html: "%{name} cập nhật tút của %{target}"
         update_user_role_html: "%{name} đã thay đổi vai trò %{target}"
       deleted_account: tài khoản đã xóa
@@ -289,6 +291,7 @@ vi:
       filter_by_action: Theo hành động
       filter_by_user: Theo người
       title: Nhật ký kiểm duyệt
+      unavailable_instance: "(tên máy chủ không khả dụng)"
     announcements:
       destroyed_msg: Xóa thông báo thành công!
       edit:
@@ -460,6 +463,9 @@ vi:
       title: Gợi ý theo dõi
       unsuppress: Mở lại gợi ý theo dõi
     instances:
+      audit_log:
+        title: Kiểm duyệt gần đây
+        view_all: Xem lịch sử đầy đủ
       availability:
         description_html:
           other: Nếu chuyển đến tên miền <strong>%{count} ngày</strong> mà không thành công, không chuyển gì nữa cho tới khi sự tiếp nhận <em>từ</em> máy chủ được nhận.
@@ -624,6 +630,7 @@ vi:
       report: 'Báo cáo #%{id}'
       reported_account: Tài khoản bị báo cáo
       reported_by: Báo cáo bởi
+      reported_with_application: Báo cáo bằng ứng dụng
       resolved: Đã xong
       resolved_msg: Đã xử lý báo cáo xong!
       skip_to_actions: Kiểm duyệt
@@ -737,6 +744,7 @@ vi:
         desc_html: Điều này phụ thuộc vào các mã lệnh bên ngoài từ hCaptcha, đây có thể là mối lo ngại về bảo mật và quyền riêng tư. Thêm vào đó, <strong>điều này có thể làm cho quá trình đăng ký khó hơn đối với một số người (đặc biệt là người khuyết tật)</strong>. Vì những lý do này, vui lòng xem xét các biện pháp thay thế như duyệt đăng ký thủ công hoặc tạo thư mời.
         title: Yêu cầu người dùng mới dùng CAPTCHA để xác minh tài khoản của họ
       content_retention:
+        danger_zone: Khu vực nguy hiểm
         preamble: Kiểm soát cách lưu trữ nội dung cá nhân trong Mastodon.
         title: Lưu giữ nội dung
       default_noindex:
@@ -863,7 +871,23 @@ vi:
         action: Nhấn vào đây để biết thêm thông tin
         message_html: "<strong>Lưu trữ đối tượng của bạn bị cấu hình sai. Có nguy cơ ảnh hưởng bảo mật của người dùng.</strong>"
     tags:
+      moderation:
+        not_trendable: Không xu hướng
+        not_usable: Không được dùng
+        pending_review: Chờ duyệt
+        review_requested: Yêu cầu duyệt
+        reviewed: Đã duyệt
+        title: Trạng thái
+        trendable: Có thể xu hướng
+        unreviewed: Chưa duyệt
+        usable: Có thể dùng
+      name: Tên
+      newest: Mới nhất
+      oldest: Cũ nhất
+      reset: Đặt lại
       review: Phê duyệt
+      search: Tìm kiếm
+      title: Hashtag
       updated_msg: Hashtag đã được cập nhật thành công
     title: Quản trị
     trends:
@@ -932,7 +956,7 @@ vi:
       delete: Xóa bỏ
       edit_preset: Sửa mẫu có sẵn
       empty: Bạn chưa thêm mẫu cảnh cáo nào cả.
-      title: Quản lý mẫu cảnh cáo
+      title: Cảnh báo cài sẵn
     webhooks:
       add_new: Thêm endpoint
       delete: Xóa bỏ
@@ -1788,8 +1812,8 @@ vi:
     suspicious_sign_in:
       change_password: đổi mật khẩu của bạn
       details: 'Chi tiết thông tin đăng nhập:'
-      explanation: Chúng tôi phát hiện lần đăng nhập bất thường tài khoản của bạn từ một địa chỉ IP mới.
-      further_actions_html: Nếu đó không phải là bạn, chúng tôi khuyến nghị %{action} lập tức và bật xác minh hai bước để giữ tài khoản được an toàn.
+      explanation: Chúng tôi phát hiện tài khoản của bạn đăng nhập bất thường từ một địa chỉ IP mới.
+      further_actions_html: Nếu đây không phải là bạn, hãy %{action} lập tức và bật xác minh hai bước để giữ tài khoản được an toàn.
       subject: Đăng nhập tài khoản từ địa chỉ IP mới
       title: Lần đăng nhập mới
     warning:

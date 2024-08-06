@@ -234,12 +234,16 @@ class Request
     end
 
     def body_with_limit(limit = 1.megabyte)
-      raise Mastodon::LengthValidationError if content_length.present? && content_length > limit
+      require_limit_not_exceeded!(limit)
 
       contents = truncated_body(limit)
-      raise Mastodon::LengthValidationError if contents.bytesize > limit
+      raise Mastodon::LengthValidationError, "Body size exceeds limit of #{limit}" if contents.bytesize > limit
 
       contents
+    end
+
+    def require_limit_not_exceeded!(limit)
+      raise Mastodon::LengthValidationError, "Content-Length #{content_length} exceeds limit of #{limit}" if content_length.present? && content_length > limit
     end
   end
 

@@ -113,6 +113,14 @@ module ApplicationHelper
     content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
   end
 
+  def material_symbol(icon, attributes = {})
+    inline_svg_tag(
+      "400-24px/#{icon}.svg",
+      class: %w(icon).concat(attributes[:class].to_s.split),
+      role: :img
+    )
+  end
+
   def check_icon
     inline_svg_tag 'check.svg'
   end
@@ -158,18 +166,6 @@ module ApplicationHelper
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
     output << 'rtl' if locale_direction == 'rtl'
     output.compact_blank.join(' ')
-  end
-
-  def theme_style_tags(theme)
-    if theme == 'system'
-      concat stylesheet_pack_tag('mastodon-light', media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')
-      concat stylesheet_pack_tag('default', media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
-      concat tag.meta name: 'theme-color', content: Themes::MASTODON_DARK_THEME_COLOR, media: '(prefers-color-scheme: dark)'
-      concat tag.meta name: 'theme-color', content: Themes::MASTODON_LIGHT_THEME_COLOR, media: '(prefers-color-scheme: light)'
-    else
-      concat stylesheet_pack_tag theme, media: 'all', crossorigin: 'anonymous'
-      concat tag.meta name: 'theme-color', content: theme == 'mastodon-light' ? Themes::MASTODON_LIGHT_THEME_COLOR : Themes::MASTODON_DARK_THEME_COLOR
-    end
   end
 
   def cdn_host
@@ -242,6 +238,26 @@ module ApplicationHelper
 
   def prerender_custom_emojis(html, custom_emojis, other_options = {})
     EmojiFormatter.new(html, custom_emojis, other_options.merge(animate: prefers_autoplay?)).to_s
+  end
+
+  def mascot_url
+    full_asset_url(instance_presenter.mascot&.file&.url || frontend_asset_path('images/elephant_ui_plane.svg'))
+  end
+
+  def instance_presenter
+    @instance_presenter ||= InstancePresenter.new
+  end
+
+  def favicon_path(size = '48')
+    instance_presenter.favicon&.file&.url(size)
+  end
+
+  def app_icon_path(size = '48')
+    instance_presenter.app_icon&.file&.url(size)
+  end
+
+  def use_mask_icon?
+    instance_presenter.app_icon.blank?
   end
 
   private

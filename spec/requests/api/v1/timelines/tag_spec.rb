@@ -30,6 +30,8 @@ RSpec.describe 'Tag' do
     let(:params)          { {} }
     let(:hashtag)         { 'life' }
 
+    it_behaves_like 'forbidden for wrong scope', 'profile'
+
     context 'when given only one hashtag' do
       let(:expected_statuses) { [life_status] }
 
@@ -93,13 +95,15 @@ RSpec.describe 'Tag' do
         Form::AdminSettings.new(timeline_preview: false).save
       end
 
-      context 'when the user is not authenticated' do
+      it_behaves_like 'forbidden for wrong scope', 'profile'
+
+      context 'without an authentication token' do
         let(:headers) { {} }
 
-        it 'returns http unauthorized' do
+        it 'returns http unprocessable entity' do
           subject
 
-          expect(response).to have_http_status(401)
+          expect(response).to have_http_status(422)
         end
       end
 

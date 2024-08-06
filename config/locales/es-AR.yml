@@ -226,6 +226,7 @@ es-AR:
         update_custom_emoji: Actualizar emoji personalizado
         update_domain_block: Actualizar bloque de dominio
         update_ip_block: Actualizar regla de dirección IP
+        update_report: Actualizar denuncia
         update_status: Actualizar mensaje
         update_user_role: Actualizar rol
       actions:
@@ -285,6 +286,7 @@ es-AR:
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
         update_ip_block_html: "%{name} cambió la regla para la dirección IP %{target}"
+        update_report_html: "%{name} actualizó la denuncia %{target}"
         update_status_html: "%{name} actualizó el mensaje de %{target}"
         update_user_role_html: "%{name} cambió el rol %{target}"
       deleted_account: cuenta eliminada
@@ -292,6 +294,7 @@ es-AR:
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuario
       title: Registro de auditoría
+      unavailable_instance: "[nombre de dominio no disponible]"
     announcements:
       destroyed_msg: "¡Anuncio eliminado exitosamente!"
       edit:
@@ -468,6 +471,9 @@ es-AR:
       title: Recom. de cuentas a seguir
       unsuppress: Restablecer recomendaciones de cuentas para seguir
     instances:
+      audit_log:
+        title: Registros de auditoría recientes
+        view_all: Ver registros de auditoría completos
       availability:
         description_html:
           one: Si el envío al dominio falla durante <strong>%{count} día</strong> sin éxito, no se harán más intentos de entrega a menos que se reciba un envío <em>desde</em> el dominio.
@@ -636,6 +642,7 @@ es-AR:
       report: 'Denuncia #%{id}'
       reported_account: Cuenta denunciada
       reported_by: Denunciada por
+      reported_with_application: Denunciado con aplicación
       resolved: Resueltas
       resolved_msg: "¡Denuncia exitosamente resuelta!"
       skip_to_actions: Ir directamente a las acciones
@@ -751,6 +758,7 @@ es-AR:
         desc_html: Esto depende de scripts externos de hCaptcha, que pueden ser una preocupación de seguridad y privacidad. Además, <strong>esto puede hacer el proceso de registro significativamente menos accesible para algunas personas (especialmente para gente con discapacidades)</strong>. Por estas razones, por favor, considerá medidas alternativas, como el registro basado en la aprobación o la invitación.
         title: Solicitar a los nuevos usuarios que resuelvan una CAPTCHA para confirmar su cuenta
       content_retention:
+        danger_zone: Zona de peligro
         preamble: Controlá cómo el contenido generado por el usuario se almacena en Mastodon.
         title: Retención de contenido
       default_noindex:
@@ -877,7 +885,23 @@ es-AR:
         action: Revisá acá para más información
         message_html: "<strong>El almacenamiento de tu objeto está mal configurado. La privacidad de tus usuarios está en riesgo.</strong>"
     tags:
+      moderation:
+        not_trendable: No disponible para tendencia
+        not_usable: No disponible para uso
+        pending_review: Revisión pendiente
+        review_requested: Revisión solicitada
+        reviewed: Revisada
+        title: Estado
+        trendable: Disponible para tendencia
+        unreviewed: No revisada
+        usable: Disponible para uso
+      name: Nombre
+      newest: Lo más reciente
+      oldest: Lo más antiguo
+      reset: Restablecer
       review: Estado de revisión
+      search: Buscar
+      title: Etiquetas
       updated_msg: La configuración de la etiqueta se actualizó exitosamente
     title: Administración
     trends:
@@ -949,7 +973,7 @@ es-AR:
       delete: Eliminar
       edit_preset: Editar preajuste de advertencia
       empty: Aún no ha definido ningún preajuste de advertencia.
-      title: Administrar preajustes de advertencia
+      title: Preajustes de advertencia
     webhooks:
       add_new: Agregar punto final
       delete: Eliminar

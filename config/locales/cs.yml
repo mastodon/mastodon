@@ -81,7 +81,7 @@ cs:
       invite_request_text: Důvody založení
       invited_by: Pozván uživatelem
       ip: IP adresa
-      joined: Uživatel založen
+      joined: Uživatelem od
       location:
         all: Všechny
         local: Místní
@@ -118,7 +118,7 @@ cs:
       promote: Povýšit
       protocol: Protokol
       public: Veřejný
-      push_subscription_expires: Odebírání PuSH expiruje
+      push_subscription_expires: Odebírání PuSH vyprší
       redownload: Obnovit profil
       redownloaded_msg: Profil účtu %{username} byl úspěšně obnoven ze zdroje
       reject: Zamítnout
@@ -232,6 +232,7 @@ cs:
         update_custom_emoji: Aktualizovat vlastní emoji
         update_domain_block: Změnit blokaci domény
         update_ip_block: Aktualizovat pravidlo IP
+        update_report: Upravit hlášení
         update_status: Aktualizovat Příspěvek
         update_user_role: Aktualizovat roli
       actions:
@@ -291,6 +292,7 @@ cs:
         update_custom_emoji_html: Uživatel %{name} aktualizoval emoji %{target}
         update_domain_block_html: "%{name} aktualizoval blokaci domény %{target}"
         update_ip_block_html: "%{name} změnil pravidlo pro IP %{target}"
+        update_report_html: "%{name} aktualizoval hlášení %{target}"
         update_status_html: Uživatel %{name} aktualizoval příspěvek uživatele %{target}
         update_user_role_html: "%{name} změnil %{target} roli"
       deleted_account: smazaný účet
@@ -298,6 +300,7 @@ cs:
       filter_by_action: Filtrovat podle akce
       filter_by_user: Filtrovat podle uživatele
       title: Protokol auditu
+      unavailable_instance: "(doména není k dispozici)"
     announcements:
       destroyed_msg: Oznámení bylo úspěšně odstraněno!
       edit:
@@ -484,6 +487,9 @@ cs:
       title: Doporučená sledování
       unsuppress: Obnovit doporučení sledování
     instances:
+      audit_log:
+        title: Nedávné protokoly auditu
+        view_all: Zobrazit úplné protokoly auditu
       availability:
         description_html:
           few: Pokud doručování na doménu selže ve <strong>%{count} různých dnech</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
@@ -621,6 +627,9 @@ cs:
       actions_description_html: Rozhodněte, který krok učinit pro vyřešení tohoto hlášení. Pokud podniknete kárný krok proti nahlášenému účtu, bude mu zasláno e-mailové oznámení, s výjimkou případu, kdy je zvolena kategorie <strong>Spam</strong>.
       actions_description_remote_html: Rozhodněte, co podniknout pro vyřešení tohoto hlášení. Toto ovlivní pouze to, jak <strong>váš</strong> server komunikuje s tímto vzdáleným účtem, a zpracuje jeho obsah.
       add_to_report: Přidat do hlášení další
+      already_suspended_badges:
+        local: Již pozastaveno na tomto serveru
+        remote: Již pozastaveno na jejich serveru
       are_you_sure: Jste si jisti?
       assign_to_self: Přidělit ke mně
       assigned: Přiřazený moderátor
@@ -657,6 +666,7 @@ cs:
       report: 'Hlášení #%{id}'
       reported_account: Nahlášený účet
       reported_by: Nahlášeno uživatelem
+      reported_with_application: Nahlášeno aplikací
       resolved: Vyřešeno
       resolved_msg: Hlášení úspěšně vyřešeno!
       skip_to_actions: Přeskočit k akcím
@@ -776,6 +786,7 @@ cs:
         desc_html: Toto spoléhá na externí skripty z hCaptcha, což může být budit obavy o bezpečnost a soukromí. Navíc <strong>to může způsobit, že proces registrace bude pro některé osoby (zejména se zdravotním postižením) hůře přístupný</strong>. Z těchto důvodů zvažte alternativní přístup, jako je schvalování registrace nebo pozvánky.
         title: Vyžadovat po nových uživatelích, aby vyřešili CAPTCHU pro potvrzení jejich účtu
       content_retention:
+        danger_zone: Nebezpečná zóna
         preamble: Určuje, jak je obsah generovaný uživatelem uložen v Mastodonu.
         title: Uchovávání obsahu
       default_noindex:
@@ -902,7 +913,23 @@ cs:
         action: Pro více informací se podívejte zde
         message_html: "<strong>Váš object storage je špatně nakonfigurován. Soukromí vašich uživatelů je ohroženo.</strong>"
     tags:
+      moderation:
+        not_trendable: Netrendovatelné
+        not_usable: Nepoužitelné
+        pending_review: Čeká na posouzení
+        review_requested: Posouzení vyžádáno
+        reviewed: Posouzené
+        title: Stav
+        trendable: Trendovatelné
+        unreviewed: Neposouzené
+        usable: Použitelné
+      name: Název
+      newest: Nejnovější
+      oldest: Nejstarší
+      reset: Resetovat
       review: Stav posouzení
+      search: Hledat
+      title: Hashtagy
       updated_msg: Nastavení hashtagů bylo úspěšně aktualizováno
     title: Administrace
     trends:
@@ -980,7 +1007,7 @@ cs:
       delete: Smazat
       edit_preset: Upravit předlohu pro varování
       empty: Zatím jste nedefinovali žádné předlohy varování.
-      title: Spravovat předlohy pro varování
+      title: Předvolby varování
     webhooks:
       add_new: Přidat koncový bod
       delete: Smazat
@@ -1704,13 +1731,26 @@ cs:
     import: Import
     import_and_export: Import a export
     migrate: Přesun účtu
+    notifications: E-mailová upozornění
     preferences: Předvolby
     profile: Profil
     relationships: Sledovaní a sledující
+    severed_relationships: Přerušené vztahy
     statuses_cleanup: Automatické mazání příspěvků
     strikes: Moderační prohřešky
     two_factor_authentication: Dvoufázové ověřování
     webauthn_authentication: Bezpečnostní klíče
+  severed_relationships:
+    download: Stáhnout (%{count})
+    event_type:
+      account_suspension: Pozastavení účtu (%{target_name})
+      domain_block: Pozastavení serveru (%{target_name})
+      user_domain_block: Zablokovali jste %{target_name}
+    lost_followers: Ztracení sledující
+    lost_follows: Ztracená sledování
+    preamble: Když zablokujete doménu nebo když se moderátoři rozhodnou pozastavit vzdálený server, můžete přijít o sledování a sledující. Když k tomu dojde, budete si moci stáhnout seznamy přerušených vztahů, abyste je mohli zkontrolovat a případně importovat na jiný server.
+    purged: Informace o tomto serveru byly správci serveru vymazány.
+    type: Událost
   statuses:
     attached:
       audio:
@@ -1816,6 +1856,7 @@ cs:
     contrast: Mastodon (vysoký kontrast)
     default: Mastodon (tmavý)
     mastodon-light: Mastodon (světlý)
+    system: Automaticky (dle motivu systému)
   time:
     formats:
       default: "%d. %b %Y, %H:%M"
@@ -1903,7 +1944,46 @@ cs:
         silence: Účet omezen
         suspend: Účet pozastaven
     welcome:
+      apps_android_action: Získejte na Google Play
+      apps_ios_action: Stáhnout z App Store
+      apps_step: Stáhněte si naše oficiální aplikace.
+      apps_title: Aplikace Mastodon
+      checklist_subtitle: 'Začněme na této nové sociální hranici:'
+      checklist_title: Uvítací kontrolní seznam
+      edit_profile_action: Přizpůsobit
+      edit_profile_step: Zlepšete své interakce tím, že si vytvoříte komplexní profil.
+      edit_profile_title: Přizpůsobte si svůj profil
       explanation: Zde je pár tipů do začátku
+      feature_action: Zjistit více
+      feature_audience: Mastodon vám nabízí jedinečnou možnost správy publika bez prostředníků. Mastodon nasazený na vaší vlastní infrastruktuře vám umožňuje sledovat a být sledován z jakéhokoli jiného Mastodon serveru online a není pod kontrolou nikoho jiného než vás.
+      feature_audience_title: Vytvořte si svědomě své publikum
+      feature_control: Sami nejlépe víte, co chcete vidět na svém domovském kanálu. Žádné algoritmy ani reklamy, které by plýtvaly vaším časem. Sledujte kohokoli z libovolného Mastodon serveru z jediného účtu, dostávejte jejich příspěvky v chronologickém pořadí a udělejte si svůj kout internetu trochu více podle sebe.
+      feature_control_title: Mějte pod kontrolou vlastní časovou osu
+      feature_creativity: Mastodon podporuje zvukové, video a obrázkové příspěvky, popisy přístupnosti, ankety, upozornění na obsah, animované avatary, vlastní emotikony, ovládání ořezu miniatur a další funkce, které vám pomohou vyjádřit se online. Ať už publikujete své umění, hudbu nebo podcast, Mastodon je tu pro vás.
+      feature_creativity_title: Bezkonkurenční kreativita
+      feature_moderation: Mastodon dává rozhodování zpět do vašich rukou. Každý server si vytváří svá vlastní pravidla a předpisy, které jsou prosazovány lokálně, nikoli shora jako v případě firemních sociálních médií, díky čemuž lze nejpružněji reagovat na potřeby různých skupin lidí. Připojte se k serveru s pravidly, se kterými souhlasíte, nebo si založte vlastní.
+      feature_moderation_title: Moderování způsobem, jakým by to mělo být
+      follow_action: Sledovat
+      follow_step: Mastodon je o sledování zajimavých lidí.
+      follow_title: Přizpůsobte si svůj domovský kanál
+      follows_subtitle: Sledujte známé účty
+      follows_title: Koho sledovat
+      follows_view_more: Zobrazit více lidí ke sledování
+      hashtags_recent_count:
+        few: "%{people} osoby v posledních 2 dnech"
+        many: "%{people} osob v posledních 2 dnech"
+        one: "%{people} osoba v posledních 2 dnech"
+        other: "%{people} osob v posledních 2 dnech"
+      hashtags_subtitle: Prozkoumejte, co je populární od posledních 2 dnů
+      hashtags_title: Populární hashtagy
+      hashtags_view_more: Zobrazit více populárních hashtagů
+      post_action: Sepsat
+      post_step: Řekněte světu ahoj pomocí textu, fotografií, videí nebo anket.
+      post_title: Vytvořte svůj první příspěvek
+      share_action: Sdílet
+      share_step: Dejte přátelům vědět, jak vás mohou na Mastodonu najít.
+      share_title: Sdílejte svůj Mastodon profil
+      sign_in_action: Přihlásit se
       subject: Vítejte na Mastodonu
       title: Vítejte na palubě, %{name}!
   users:

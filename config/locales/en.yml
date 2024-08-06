@@ -226,6 +226,7 @@ en:
         update_custom_emoji: Update Custom Emoji
         update_domain_block: Update Domain Block
         update_ip_block: Update IP rule
+        update_report: Update Report
         update_status: Update Post
         update_user_role: Update Role
       actions:
@@ -285,6 +286,7 @@ en:
         update_custom_emoji_html: "%{name} updated emoji %{target}"
         update_domain_block_html: "%{name} updated domain block for %{target}"
         update_ip_block_html: "%{name} changed rule for IP %{target}"
+        update_report_html: "%{name} updated report %{target}"
         update_status_html: "%{name} updated post by %{target}"
         update_user_role_html: "%{name} changed %{target} role"
       deleted_account: deleted account
@@ -292,6 +294,7 @@ en:
       filter_by_action: Filter by action
       filter_by_user: Filter by user
       title: Audit log
+      unavailable_instance: "(domain name unavailable)"
     announcements:
       destroyed_msg: Announcement successfully deleted!
       edit:
@@ -468,6 +471,9 @@ en:
       title: Follow recommendations
       unsuppress: Restore follow recommendation
     instances:
+      audit_log:
+        title: Recent Audit Logs
+        view_all: View full audit logs
       availability:
         description_html:
           one: If delivering to the domain fails <strong>%{count} day</strong> without succeeding, no further delivery attempts will be made unless a delivery <em>from</em> the domain is received.
@@ -636,6 +642,7 @@ en:
       report: 'Report #%{id}'
       reported_account: Reported account
       reported_by: Reported by
+      reported_with_application: Reported with application
       resolved: Resolved
       resolved_msg: Report successfully resolved!
       skip_to_actions: Skip to actions
@@ -751,6 +758,7 @@ en:
         desc_html: This relies on external scripts from hCaptcha, which may be a security and privacy concern. In addition, <strong>this can make the registration process significantly less accessible to some (especially disabled) people</strong>. For these reasons, please consider alternative measures such as approval-based or invite-based registration.
         title: Require new users to solve a CAPTCHA to confirm their account
       content_retention:
+        danger_zone: Danger zone
         preamble: Control how user-generated content is stored in Mastodon.
         title: Content retention
       default_noindex:
@@ -877,7 +885,23 @@ en:
         action: Check here for more information
         message_html: "<strong>Your object storage is misconfigured. The privacy of your users is at risk.</strong>"
     tags:
+      moderation:
+        not_trendable: Not trendable
+        not_usable: Not usable
+        pending_review: Pending review
+        review_requested: Review requested
+        reviewed: Reviewed
+        title: Status
+        trendable: Trendable
+        unreviewed: Unreviewed
+        usable: Usable
+      name: Name
+      newest: Newest
+      oldest: Oldest
+      reset: Reset
       review: Review status
+      search: Search
+      title: Hashtags
       updated_msg: Hashtag settings updated successfully
     title: Administration
     trends:
@@ -949,7 +973,7 @@ en:
       delete: Delete
       edit_preset: Edit warning preset
       empty: You haven't defined any warning presets yet.
-      title: Manage warning presets
+      title: Warning presets
     webhooks:
       add_new: Add endpoint
       delete: Delete

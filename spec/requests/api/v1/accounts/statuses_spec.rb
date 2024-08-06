@@ -10,12 +10,15 @@ describe 'API V1 Accounts Statuses' do
 
   describe 'GET /api/v1/accounts/:account_id/statuses' do
     it 'returns expected headers', :aggregate_failures do
-      Fabricate(:status, account: user.account)
+      status = Fabricate(:status, account: user.account)
       get "/api/v1/accounts/#{user.account.id}/statuses", params: { limit: 1 }, headers: headers
 
-      expect(response).to have_http_status(200)
-      expect(links_from_header.size)
-        .to eq(2)
+      expect(response)
+        .to have_http_status(200)
+        .and include_pagination_headers(
+          prev: api_v1_account_statuses_url(limit: 1, min_id: status.id),
+          next: api_v1_account_statuses_url(limit: 1, max_id: status.id)
+        )
     end
 
     context 'with only media' do
@@ -55,16 +58,9 @@ describe 'API V1 Accounts Statuses' do
       it 'returns http success and includes a header link' do
         get "/api/v1/accounts/#{user.account.id}/statuses", params: { pinned: true }, headers: headers
 
-        expect(response).to have_http_status(200)
-        expect(links_from_header.size)
-          .to eq(1)
-        expect(links_from_header)
-          .to contain_exactly(
-            have_attributes(
-              href: /pinned=true/,
-              attr_pairs: contain_exactly(['rel', 'prev'])
-            )
-          )
+        expect(response)
+          .to have_http_status(200)
+          .and include_pagination_headers(prev: api_v1_account_statuses_url(pinned: true, min_id: Status.first.id))
       end
     end
 
@@ -77,19 +73,11 @@ describe 'API V1 Accounts Statuses' do
       it 'returns http success and header pagination links to prev and next' do
         get "/api/v1/accounts/#{user.account.id}/statuses", params: { pinned: true }, headers: headers
 
-        expect(response).to have_http_status(200)
-        expect(links_from_header.size)
-          .to eq(2)
-        expect(links_from_header)
-          .to contain_exactly(
-            have_attributes(
-              href: /pinned=true/,
-              attr_pairs: contain_exactly(['rel', 'next'])
-            ),
-            have_attributes(
-              href: /pinned=true/,
-              attr_pairs: contain_exactly(['rel', 'prev'])
-            )
+        expect(response)
+          .to have_http_status(200)
+          .and include_pagination_headers(
+            prev: api_v1_account_statuses_url(pinned: true, min_id: Status.first.id),
+            next: api_v1_account_statuses_url(pinned: true, max_id: Status.first.id)
           )
       end
     end
@@ -137,13 +125,5 @@ describe 'API V1 Accounts Statuses' do
         end
       end
     end
-  end
-
-  private
-
-  def links_from_header
-    response
-      .headers['Link']
-      .links
   end
 end

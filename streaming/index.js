@@ -12,7 +12,7 @@ import { Redis } from 'ioredis';
 import { JSDOM } from 'jsdom';
 import pg from 'pg';
 import pgConnectionString from 'pg-connection-string';
-import WebSocket from 'ws';
+import { WebSocketServer } from 'ws';
 
 import { AuthenticationError, RequestError, extractStatusAndMessage as extractErrorStatusAndMessage } from './errors.js';
 import { logger, httpLogger, initializeLogLevel, attachWebsocketHttpLogger, createWebsocketLogger } from './logging.js';
@@ -248,6 +248,10 @@ const redisConfigFromEnv = (env) => {
   const redisParams = {
     host: env.REDIS_HOST || '127.0.0.1',
     port: redisPort,
+    // Force support for both IPv6 and IPv4, by default ioredis sets this to 4,
+    // only allowing IPv4 connections:
+    // https://github.com/redis/ioredis/issues/1576
+    family: 0,
     db: redisDatabase,
     password: env.REDIS_PASSWORD || undefined,
   };
@@ -289,7 +293,7 @@ const CHANNEL_NAMES = [
 const startServer = async () => {
   const pgPool = new pg.Pool(pgConfigFromEnv(process.env));
   const server = http.createServer();
-  const wss = new WebSocket.Server({ noServer: true });
+  const wss = new WebSocketServer({ noServer: true });
 
   // Set the X-Request-Id header on WebSockets:
   wss.on("headers", function onHeaders(headers, req) {
@@ -524,43 +528,27 @@ const startServer = async () => {
    * @param {any} req
    * @returns {Promise<ResolvedAccount>}
    */
-  const accountFromToken = (token, req) => new Promise((resolve, reject) => {
-    pgPool.connect((err, client, done) => {
-      if (err) {
-        reject(err);
-        return;
-      }
+  const accountFromToken = async (token, req) => {
+    const result = await pgPool.query('SELECT oauth_access_tokens.id, oauth_access_tokens.resource_owner_id, users.account_id, users.chosen_languages, oauth_access_tokens.scopes, devices.device_id FROM oauth_access_tokens INNER JOIN users ON oauth_access_tokens.resource_owner_id = users.id LEFT OUTER JOIN devices ON oauth_access_tokens.id = devices.access_token_id WHERE oauth_access_tokens.token = $1 AND oauth_access_tokens.revoked_at IS NULL LIMIT 1', [token]);
 
-      // @ts-ignore
-      client.query('SELECT oauth_access_tokens.id, oauth_access_tokens.resource_owner_id, users.account_id, users.chosen_languages, oauth_access_tokens.scopes, devices.device_id FROM oauth_access_tokens INNER JOIN users ON oauth_access_tokens.resource_owner_id = users.id LEFT OUTER JOIN devices ON oauth_access_tokens.id = devices.access_token_id WHERE oauth_access_tokens.token = $1 AND oauth_access_tokens.revoked_at IS NULL LIMIT 1', [token], (err, result) => {
-        done();
+    if (result.rows.length === 0) {
+      throw new AuthenticationError('Invalid access token');
+    }
 
-        if (err) {
-          reject(err);
-          return;
-        }
+    req.accessTokenId = result.rows[0].id;
+    req.scopes = result.rows[0].scopes.split(' ');
+    req.accountId = result.rows[0].account_id;
+    req.chosenLanguages = result.rows[0].chosen_languages;
+    req.deviceId = result.rows[0].device_id;
 
-        if (result.rows.length === 0) {
-          reject(new AuthenticationError('Invalid access token'));
-          return;
-        }
-
-        req.accessTokenId = result.rows[0].id;
-        req.scopes = result.rows[0].scopes.split(' ');
-        req.accountId = result.rows[0].account_id;
-        req.chosenLanguages = result.rows[0].chosen_languages;
-        req.deviceId = result.rows[0].device_id;
-
-        resolve({
-          accessTokenId: result.rows[0].id,
-          scopes: result.rows[0].scopes.split(' '),
-          accountId: result.rows[0].account_id,
-          chosenLanguages: result.rows[0].chosen_languages,
-          deviceId: result.rows[0].device_id
-        });
-      });
-    });
-  });
+    return {
+      accessTokenId: result.rows[0].id,
+      scopes: result.rows[0].scopes.split(' '),
+      accountId: result.rows[0].account_id,
+      chosenLanguages: result.rows[0].chosen_languages,
+      deviceId: result.rows[0].device_id
+    };
+  };
 
   /**
    * @param {any} req
@@ -771,28 +759,15 @@ const startServer = async () => {
    * @param {any} req
    * @returns {Promise.<void>}
    */
-  const authorizeListAccess = (listId, req) => new Promise((resolve, reject) => {
+  const authorizeListAccess = async (listId, req) => {
     const { accountId } = req;
 
-    pgPool.connect((err, client, done) => {
-      if (err) {
-        reject();
-        return;
-      }
+    const result = await pgPool.query('SELECT id, account_id FROM lists WHERE id = $1 AND account_id = $2 LIMIT 1', [listId, accountId]);
 
-      // @ts-ignore
-      client.query('SELECT id, account_id FROM lists WHERE id = $1 LIMIT 1', [listId], (err, result) => {
-        done();
-
-        if (err || result.rows.length === 0 || result.rows[0].account_id !== accountId) {
-          reject();
-          return;
-        }
-
-        resolve();
-      });
-    });
-  });
+    if (result.rows.length === 0) {
+      throw new AuthenticationError('List not found');
+    }
+  };
 
   /**
    * @param {string[]} channelIds
@@ -1107,7 +1082,7 @@ const startServer = async () => {
 
   /**
    * @param {http.IncomingMessage} req
-   * @param {WebSocket} ws
+   * @param {import('ws').WebSocket} ws
    * @param {string[]} streamName
    * @returns {function(string, string): void}
    */
@@ -1324,7 +1299,7 @@ const startServer = async () => {
 
   /**
    * @typedef WebSocketSession
-   * @property {WebSocket & { isAlive: boolean}} websocket
+   * @property {import('ws').WebSocket & { isAlive: boolean}} websocket
    * @property {http.IncomingMessage & ResolvedAccount} request
    * @property {import('pino').Logger} logger
    * @property {Object.<string, { channelName: string, listener: SubscriptionListener, stopHeartbeat: function(): void }>} subscriptions
@@ -1450,7 +1425,7 @@ const startServer = async () => {
   };
 
   /**
-   * @param {WebSocket & { isAlive: boolean }} ws
+   * @param {import('ws').WebSocket & { isAlive: boolean }} ws
    * @param {http.IncomingMessage & ResolvedAccount} req
    * @param {import('pino').Logger} log
    */

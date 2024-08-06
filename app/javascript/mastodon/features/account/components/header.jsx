@@ -25,6 +25,7 @@ import { IconButton } from 'mastodon/components/icon_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { ShortNumber } from 'mastodon/components/short_number';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { autoPlayGif, me, domain as localDomain } from 'mastodon/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
@@ -93,7 +94,7 @@ const messageForFollowButton = relationship => {
     return messages.mutual;
   } else if (!relationship.get('following') && relationship.get('followed_by')) {
     return messages.followBack;
-  } else if (relationship.get('following')) {
+  } else if (relationship.get('following') || relationship.get('requested')) {
     return messages.unfollow;
   } else {
     return messages.follow;
@@ -111,6 +112,7 @@ const dateFormatOptions = {
 class Header extends ImmutablePureComponent {
 
   static propTypes = {
+    identity: identityContextPropShape,
     account: ImmutablePropTypes.record,
     identity_props: ImmutablePropTypes.list,
     onFollow: PropTypes.func.isRequired,
@@ -134,10 +136,6 @@ class Header extends ImmutablePureComponent {
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
     ...WithRouterPropTypes,
-  };
-
-  static contextTypes = {
-    identity: PropTypes.object,
   };
 
   setRef = c => {
@@ -255,7 +253,7 @@ class Header extends ImmutablePureComponent {
 
   render () {
     const { account, hidden, intl } = this.props;
-    const { signedIn, permissions } = this.context.identity;
+    const { signedIn, permissions } = this.props.identity;
 
     if (!account) {
       return null;
@@ -293,10 +291,8 @@ class Header extends ImmutablePureComponent {
     if (me !== account.get('id')) {
       if (signedIn && !account.get('relationship')) { // Wait until the relationship is loaded
         actionBtn = <Button disabled><LoadingIndicator /></Button>;
-      } else if (account.getIn(['relationship', 'requested'])) {
-        actionBtn = <Button text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.props.onFollow} />;
       } else if (!account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames({ 'button--destructive': account.getIn(['relationship', 'following']) })} text={intl.formatMessage(messageForFollowButton(account.get('relationship')))} onClick={signedIn ? this.props.onFollow : this.props.onInteractionModal} />;
+        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames({ 'button--destructive': (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) })} text={intl.formatMessage(messageForFollowButton(account.get('relationship')))} onClick={signedIn ? this.props.onFollow : this.props.onInteractionModal} />;
       } else if (account.getIn(['relationship', 'blocking'])) {
         actionBtn = <Button text={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />;
       }
@@ -516,4 +512,4 @@ class Header extends ImmutablePureComponent {
 
 }
 
-export default withRouter(injectIntl(Header));
+export default withRouter(withIdentity(injectIntl(Header)));

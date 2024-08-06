@@ -15,6 +15,7 @@
  * @property {boolean=} boost_modal
  * @property {boolean=} delete_modal
  * @property {boolean=} disable_swiping
+ * @property {boolean=} disable_hover_cards
  * @property {string=} disabled_account_id
  * @property {string} display_media
  * @property {string} domain
@@ -45,11 +46,21 @@
  */
 
 /**
+ * @typedef Role
+ * @property {string} id
+ * @property {string} name
+ * @property {string} permissions
+ * @property {string} color
+ * @property {boolean} highlighted
+ */
+
+/**
  * @typedef InitialState
  * @property {Record<string, import("./api_types/accounts").ApiAccountJSON>} accounts
  * @property {InitialStateLanguage[]} languages
  * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta
+ * @property {Role?} role
  */
 
 const element = document.getElementById('initial-state');
@@ -76,6 +87,7 @@ export const autoPlayGif = getMeta('auto_play_gif');
 export const boostModal = getMeta('boost_modal');
 export const deleteModal = getMeta('delete_modal');
 export const disableSwiping = getMeta('disable_swiping');
+export const disableHoverCards = getMeta('disable_hover_cards');
 export const disabledAccountId = getMeta('disabled_account_id');
 export const displayMedia = getMeta('display_media');
 export const domain = getMeta('domain');
@@ -106,5 +118,12 @@ export const criticalUpdatesPending = initialState?.critical_updates_pending;
 // @ts-expect-error
 export const statusPageUrl = getMeta('status_page_url');
 export const sso_redirect = getMeta('sso_redirect');
+
+/**
+ * @returns {string | undefined}
+ */
+export function getAccessToken() {
+  return getMeta('access_token');
+}
 
 export default initialState;

@@ -13,6 +13,7 @@ module Mastodon::CLI
     option :remove_headers, type: :boolean, default: false
     option :include_follows, type: :boolean, default: false
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :verbose, type: :boolean, default: false, aliases: [:v]
     option :dry_run, type: :boolean, default: false
     desc 'remove', 'Remove remote media files, headers or avatars'
     long_desc <<-DESC
@@ -128,7 +129,7 @@ module Mastodon::CLI
 
             model_name      = path_segments.first.classify
             attachment_name = path_segments[1].singularize
-            record_id       = path_segments[2..-2].join.to_i
+            record_id       = path_segments[2...-2].join.to_i
             file_name       = path_segments.last
             record          = record_map.dig(model_name, record_id)
             attachment      = record&.public_send(attachment_name)
@@ -172,7 +173,7 @@ module Mastodon::CLI
           end
 
           model_name      = path_segments.first.classify
-          record_id       = path_segments[2..-2].join.to_i
+          record_id       = path_segments[2...-2].join.to_i
           attachment_name = path_segments[1].singularize
           file_name       = path_segments.last
 
@@ -297,7 +298,7 @@ module Mastodon::CLI
       fail_with_message 'Not a media URL' unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
 
       model_name = path_segments.first.classify
-      record_id  = path_segments[2..-2].join.to_i
+      record_id  = path_segments[2...-2].join.to_i
 
       fail_with_message "Cannot find corresponding model: #{model_name}" unless PRELOAD_MODEL_WHITELIST.include?(model_name)
 
@@ -353,7 +354,7 @@ module Mastodon::CLI
         next unless VALID_PATH_SEGMENTS_SIZE.include?(segments.size)
 
         model_name = segments.first.classify
-        record_id  = segments[2..-2].join.to_i
+        record_id  = segments[2...-2].join.to_i
 
         next unless PRELOAD_MODEL_WHITELIST.include?(model_name)
 

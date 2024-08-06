@@ -20,6 +20,7 @@ import { Icon }  from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollContainer from 'mastodon/containers/scroll_container';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import {
@@ -37,12 +38,10 @@ import {
   unblockDomain,
 } from '../../actions/domain_blocks';
 import {
-  favourite,
-  unfavourite,
+  toggleFavourite,
   bookmark,
   unbookmark,
-  reblog,
-  unreblog,
+  toggleReblog,
   pin,
   unpin,
 } from '../../actions/interactions';
@@ -63,7 +62,7 @@ import {
 import ColumnHeader from '../../components/column_header';
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
 import StatusContainer from '../../containers/status_container';
-import { boostModal, deleteModal } from '../../initial_state';
+import { deleteModal } from '../../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../../selectors';
 import Column from '../ui/components/column';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
@@ -73,17 +72,10 @@ import DetailedStatus from './components/detailed_status';
 
 
 const messages = defineMessages({
-  deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
-  deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
-  redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
-  redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favorites and boosts will be lost, and replies to the original post will be orphaned.' },
   revealAll: { id: 'status.show_more_all', defaultMessage: 'Show more for all' },
   hideAll: { id: 'status.show_less_all', defaultMessage: 'Show less for all' },
   statusTitleWithAttachments: { id: 'status.title.with_attachments', defaultMessage: '{user} posted {attachmentCount, plural, one {an attachment} other {# attachments}}' },
   detailedStatus: { id: 'status.detailed_status', defaultMessage: 'Detailed conversation view' },
-  replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
-  replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
-  blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Block entire domain' },
 });
 
 const makeMapStateToProps = () => {
@@ -189,12 +181,8 @@ const titleFromStatus = (intl, status) => {
 };
 
 class Status extends ImmutablePureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     status: ImmutablePropTypes.map,
@@ -244,14 +232,10 @@ class Status extends ImmutablePureComponent {
 
   handleFavouriteClick = (status) => {
     const { dispatch } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
-      if (status.get('favourited')) {
-        dispatch(unfavourite(status));
-      } else {
-        dispatch(favourite(status));
-      }
+      dispatch(toggleFavourite(status.get('id')));
     } else {
       dispatch(openModal({
         modalType: 'INTERACTION',
@@ -273,21 +257,14 @@ class Status extends ImmutablePureComponent {
   };
 
   handleReplyClick = (status) => {
-    const { askReplyConfirmation, dispatch, intl } = this.props;
-    const { signedIn } = this.context.identity;
+    const { askReplyConfirmation, dispatch } = this.props;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (askReplyConfirmation) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: intl.formatMessage(messages.replyMessage),
-            confirm: intl.formatMessage(messages.replyConfirm),
-            onConfirm: () => dispatch(replyCompose(status, this.props.history)),
-          },
-        }));
+        dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status } }));
       } else {
-        dispatch(replyCompose(status, this.props.history));
+        dispatch(replyCompose(status));
       }
     } else {
       dispatch(openModal({
@@ -301,24 +278,12 @@ class Status extends ImmutablePureComponent {
     }
   };
 
-  handleModalReblog = (status, privacy) => {
-    this.props.dispatch(reblog(status, privacy));
-  };
-
   handleReblogClick = (status, e) => {
     const { dispatch } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
-      if (status.get('reblogged')) {
-        dispatch(unreblog(status));
-      } else {
-        if ((e && e.shiftKey) || !boostModal) {
-          this.handleModalReblog(status);
-        } else {
-          dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.handleModalReblog } }));
-        }
-      }
+      dispatch(toggleReblog(status.get('id'), e && e.shiftKey));
     } else {
       dispatch(openModal({
         modalType: 'INTERACTION',
@@ -339,33 +304,32 @@ class Status extends ImmutablePureComponent {
     }
   };
 
-  handleDeleteClick = (status, history, withRedraft = false) => {
-    const { dispatch, intl } = this.props;
+  handleDeleteClick = (status, withRedraft = false) => {
+    const { dispatch } = this.props;
 
     if (!deleteModal) {
-      dispatch(deleteStatus(status.get('id'), history, withRedraft));
+      dispatch(deleteStatus(status.get('id'), withRedraft));
     } else {
-      dispatch(openModal({
-        modalType: 'CONFIRM',
-        modalProps: {
-          message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
-          confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
-          onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
-        },
-      }));
+      dispatch(openModal({ modalType: 'CONFIRM_DELETE_STATUS', modalProps: { statusId: status.get('id'), withRedraft } }));
     }
   };
 
-  handleEditClick = (status, history) => {
-    this.props.dispatch(editStatus(status.get('id'), history));
+  handleEditClick = (status) => {
+    const { dispatch, askReplyConfirmation } = this.props;
+
+    if (askReplyConfirmation) {
+      dispatch(openModal({ modalType: 'CONFIRM_EDIT_STATUS', modalProps: { statusId: status.get('id') } }));
+    } else {
+      dispatch(editStatus(status.get('id')));
+    }
   };
 
-  handleDirectClick = (account, router) => {
-    this.props.dispatch(directCompose(account, router));
+  handleDirectClick = (account) => {
+    this.props.dispatch(directCompose(account));
   };
 
-  handleMentionClick = (account, router) => {
-    this.props.dispatch(mentionCompose(account, router));
+  handleMentionClick = (account) => {
+    this.props.dispatch(mentionCompose(account));
   };
 
   handleOpenMedia = (media, index, lang) => {
@@ -745,4 +709,4 @@ class Status extends ImmutablePureComponent {
 
 }
 
-export default withRouter(injectIntl(connect(makeMapStateToProps)(Status)));
+export default withRouter(injectIntl(connect(makeMapStateToProps)(withIdentity(Status))));

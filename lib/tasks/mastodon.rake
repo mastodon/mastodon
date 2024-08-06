@@ -36,6 +36,15 @@ namespace :mastodon do
         env[key] = SecureRandom.hex(64)
       end
 
+      # Required by ActiveRecord encryption feature
+      %w(
+        ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY
+        ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT
+        ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY
+      ).each do |key|
+        env[key] = SecureRandom.alphanumeric(32)
+      end
+
       vapid_key = Webpush.generate_key
 
       env['VAPID_PRIVATE_KEY'] = vapid_key.private_key

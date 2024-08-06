@@ -20,10 +20,6 @@ module.exports = defineConfig({
     es6: true,
   },
 
-  globals: {
-    ATTACHMENT_HOST: false,
-  },
-
   parser: '@typescript-eslint/parser',
 
   plugins: [
@@ -79,7 +75,7 @@ module.exports = defineConfig({
         ],
       },
     ],
-    'no-empty': 'off',
+    'no-empty': ['error', { "allowEmptyCatch": true }],
     'no-restricted-properties': [
       'error',
       { property: 'substring', message: 'Use .slice instead of .substring.' },
@@ -94,7 +90,6 @@ module.exports = defineConfig({
         message: "Use '·' (middle dot) instead of '•' (bullet)",
       },
     ],
-    'no-self-assign': 'off',
     'no-unused-expressions': 'error',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
@@ -119,12 +114,10 @@ module.exports = defineConfig({
     'react/jsx-tag-spacing': 'error',
     'react/jsx-uses-react': 'off', // not needed with new JSX transform
     'react/jsx-wrap-multilines': 'error',
-    'react/no-deprecated': 'off',
     'react/react-in-jsx-scope': 'off', // not needed with new JSX transform
     'react/self-closing-comp': 'error',
 
     // recommended values found in https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/v6.8.0/src/index.js#L46
-    'jsx-a11y/accessible-emoji': 'warn',
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/media-has-caption': 'off',
@@ -139,23 +132,6 @@ module.exports = defineConfig({
     // ],
     'jsx-a11y/no-interactive-element-to-noninteractive-role': 'off',
     // recommended rule is:
-    // 'jsx-a11y/no-noninteractive-element-interactions': [
-    //   'error',
-    //   {
-    //     body: ['onError', 'onLoad'],
-    //     iframe: ['onError', 'onLoad'],
-    //     img: ['onError', 'onLoad'],
-    //   },
-    // ],
-    'jsx-a11y/no-noninteractive-element-interactions': [
-      'warn',
-      {
-        handlers: [
-          'onClick',
-        ],
-      },
-    ],
-    // recommended rule is:
     // 'jsx-a11y/no-noninteractive-tabindex': [
     //   'error',
     //   {
@@ -165,7 +141,6 @@ module.exports = defineConfig({
     //   },
     // ],
     'jsx-a11y/no-noninteractive-tabindex': 'off',
-    'jsx-a11y/no-onchange': 'off',
     // recommended is full 'error'
     'jsx-a11y/no-static-element-interactions': [
       'warn',
@@ -349,6 +324,9 @@ module.exports = defineConfig({
         // Disable formatting rules that have been enabled in the base config
         'indent': 'off',
 
+        // This is not needed as we use noImplicitReturns, which handles this in addition to understanding types
+        'consistent-return': 'off',
+
         'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
 
         '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
@@ -363,6 +341,7 @@ module.exports = defineConfig({
             "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
           }
         ],
+        "@typescript-eslint/restrict-template-expressions": ['warn', { allowNumber: true }],
         'jsdoc/require-jsdoc': 'off',
 
         // Those rules set stricter rules for TS files

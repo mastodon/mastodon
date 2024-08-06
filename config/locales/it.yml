@@ -226,6 +226,7 @@ it:
         update_custom_emoji: Aggiorna Emoji Personalizzata
         update_domain_block: Aggiorna Blocco del Dominio
         update_ip_block: Aggiorna regola IP
+        update_report: Aggiorna segnalazione
         update_status: Aggiorna Toot
         update_user_role: Aggiorna Ruolo
       actions:
@@ -285,6 +286,7 @@ it:
         update_custom_emoji_html: "%{name} ha aggiornato emoji %{target}"
         update_domain_block_html: "%{name} ha aggiornato il blocco dominio per %{target}"
         update_ip_block_html: "%{name} ha cambiato la regola per l'IP %{target}"
+        update_report_html: "%{name} ha aggiornato la segnalazione %{target}"
         update_status_html: "%{name} ha aggiornato lo status di %{target}"
         update_user_role_html: "%{name} ha modificato il ruolo %{target}"
       deleted_account: account eliminato
@@ -292,6 +294,7 @@ it:
       filter_by_action: Filtra per azione
       filter_by_user: Filtra per utente
       title: Registro di controllo
+      unavailable_instance: "(nome di dominio non disponibile)"
     announcements:
       destroyed_msg: Annuncio eliminato!
       edit:
@@ -468,6 +471,9 @@ it:
       title: Consigli su chi seguire
       unsuppress: Ripristina consigli su chi seguire
     instances:
+      audit_log:
+        title: Log di Controllo Recenti
+        view_all: Visualizza tutti i log
       availability:
         description_html:
           one: Se la consegna al dominio fallisce <strong>%{count} giorno</strong>, non sarà effettuato alcun tentativo di consegna ulteriore a meno che la consegna <em>dal</em> dominio non sia ricevuta.
@@ -636,6 +642,7 @@ it:
       report: 'Rapporto #%{id}'
       reported_account: Account segnalato
       reported_by: Inviato da
+      reported_with_application: Segnalato con applicazione
       resolved: Risolto
       resolved_msg: Rapporto risolto!
       skip_to_actions: Passa alle azioni
@@ -751,6 +758,7 @@ it:
         desc_html: Questo si basa su script esterni da hCaptcha, che possono rappresentare un problema di sicurezza e privacy. Inoltre, <strong>questo può rendere il processo di registrazione significativamente meno accessibile ad alcune persone (soprattutto disabili)</strong>. Per questi motivi, prendi in considerazione misure alternative come la registrazione basata su approvazione o su invito.
         title: Richiedi ai nuovi utenti di risolvere un CAPTCHA per confermare il loro account
       content_retention:
+        danger_zone: Zona pericolosa
         preamble: Controlla come vengono memorizzati i contenuti generati dall'utente in Mastodon.
         title: Conservazione dei contenuti
       default_noindex:
@@ -877,7 +885,23 @@ it:
         action: Controlla qui per maggiori informazioni
         message_html: "<strong>La tua archiviazione oggetti è mal configurata. La privacy dei tuoi utenti è a rischio.</strong>"
     tags:
+      moderation:
+        not_trendable: Non di tendenza
+        not_usable: Non utilizzabile
+        pending_review: In attesa di revisione
+        review_requested: Revisione richiesta
+        reviewed: Controllato
+        title: Stato
+        trendable: Di tendenza
+        unreviewed: Non revisionato
+        usable: Utilizzabile
+      name: Nome
+      newest: Più recenti
+      oldest: Più vecchio
+      reset: Ripristina
       review: Esamina status
+      search: Cerca
+      title: Hashtag
       updated_msg: Impostazioni hashtag aggiornate con successo
     title: Amministrazione
     trends:
@@ -949,7 +973,7 @@ it:
       delete: Cancella
       edit_preset: Modifica avviso predefinito
       empty: Non hai ancora definito alcun avviso preimpostato.
-      title: Gestisci avvisi predefiniti
+      title: Preimpostazioni di avviso
     webhooks:
       add_new: Aggiungi endpoint
       delete: Elimina
@@ -1234,7 +1258,7 @@ it:
     bookmarks: Segnalibri
     csv: CSV
     domain_blocks: Blocchi di dominio
-    lists: Liste
+    lists: Elenchi
     mutes: Stai silenziando
     storage: Archiviazione media
   featured_tags:

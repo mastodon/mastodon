@@ -15,4 +15,6 @@ class UserIp < ApplicationRecord
   self.primary_key = :user_id
 
   belongs_to :user
+
+  scope :by_latest_used, -> { order(used_at: :desc) }
 end

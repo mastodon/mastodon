@@ -38,7 +38,7 @@ class BulkImport < ApplicationRecord
     scheduled: 1,
     in_progress: 2,
     finished: 3,
-  }
+  }, prefix: true
 
   validates :type, presence: true
 

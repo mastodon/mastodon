@@ -54,11 +54,12 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
       accounts: {
         max_featured_tags: FeaturedTag::LIMIT,
+        max_pinned_statuses: StatusPinValidator::PIN_LIMIT,
       },
 
       statuses: {
         max_characters: StatusLengthValidator::MAX_CHARS,
-        max_media_attachments: 4,
+        max_media_attachments: Status::MEDIA_ATTACHMENTS_LIMIT,
         characters_reserved_per_url: StatusLengthValidator::URL_PLACEHOLDER_CHARS,
       },
 

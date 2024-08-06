@@ -285,6 +285,7 @@ et:
         update_custom_emoji_html: "%{name} uuendas emotikoni %{target}"
         update_domain_block_html: "%{name} uuendas domeeni %{target} keeldu"
         update_ip_block_html: "%{name} muutis IP-aadressi %{target} reeglit"
+        update_report_html: "%{name} uuendas raportit %{target}"
         update_status_html: "%{name} muutis %{target} postitust"
         update_user_role_html: "%{name} muutis %{target} rolli"
       deleted_account: kustutatud konto
@@ -292,6 +293,7 @@ et:
       filter_by_action: Filtreeri tegevuse järgi
       filter_by_user: Filtreeri kasutaja järgi
       title: Auditilogi
+      unavailable_instance: "(domeeni nimi pole saadaval)"
     announcements:
       destroyed_msg: Teadaande kustutamine õnnestus!
       edit:
@@ -597,6 +599,9 @@ et:
       actions_description_html: Otsustus, mida raporti lahendamiseks ette võtta. Karistava tegevuse korral saadetakse e-postiga teade, välja arvatud kategooria <strong>rämpspost</strong> puhul.
       actions_description_remote_html: Otsusta, mida teha selle raporti lahendamiseks. See mõjutab ainult seda, kuidas <strong>Sinu</strong> server selle kaugkontoga suhtleb ning selle sisu käsitleb.
       add_to_report: Lisa raportile juurde
+      already_suspended_badges:
+        local: Juba kustutamisel selles serveris
+        remote: Juba kustutamisel tema serveris
       are_you_sure: Oled kindel?
       assign_to_self: Määra mulle
       assigned: Määratud moderaator
@@ -748,6 +753,7 @@ et:
         desc_html: See tugineb välistele hCaptcha skriptidele, mis võib olla turvalisuse ja privaatsuse probleem. Lisaks <strong>võib see muuta registreerimisprotsessi mõnede inimeste (eriti puudega inimeste) jaoks, oluliselt vähem ligipääsetavaks.</strong> Neil põhjustel kaalu palun teisi võimalusi, näiteks kinnitamis- või kutsepõhiseid registreerimislahendusi.
         title: Nõua uutelt kasutajatelt konto kinnitamiseks CAPTCHA lahendamist
       content_retention:
+        danger_zone: Ohutsoon
         preamble: Määra, kuidas kasutajate loodud sisu Mastodonis talletatakse.
         title: Sisu talletamine
       default_noindex:
@@ -767,7 +773,7 @@ et:
         disabled: Mitte kellelegi
         users: Sisseloginud kohalikele kasutajatele
       registrations:
-        moderation_recommandation: Enne registreeringute avamist kõigile veendu, et oleks olemas adekvaatne ja reageerimisvalmis modereerijaskond!
+        moderation_recommandation: Enne kõigi jaoks registreerimise avamist veendu, et oleks olemas adekvaatne ja reageerimisvalmis modereerijaskond!
         preamble: Kes saab serveril konto luua.
         title: Registreerimised
       registrations_mode:
@@ -788,7 +794,7 @@ et:
     software_updates:
       critical_update: Kriitiline — uuenda kiiresti
       description: On soovitav hoida oma Mastodoni paigaldus kõige uuemal kujul, et saada kasu kõige värskematest parandustest ja oskustest. Lisaks, vahel on Mastodoni kiire uuendamine kriitiline, et vältida turvaprobleeme. Neil põhjustel kontrollib Mastodon uuendusi iga 30 minuti tagant ja teavitab sind vastavalt su e-posti teavituste eelistustele.
-      documentation_link: Saa rohkem teada
+      documentation_link: Vaata lisa
       release_notes: Väljalaskemärkused
       title: Saadaval uuendused
       type: Tüüp
@@ -946,7 +952,7 @@ et:
       delete: Kustuta
       edit_preset: Hoiatuse eelseadistuse muutmine
       empty: Hoiatuste eelseadeid pole defineeritud.
-      title: Halda hoiatuste eelseadistusi
+      title: Hoiatuste eelhäälestused
     webhooks:
       add_new: Lisa lõpp-punkt
       delete: Kustuta
@@ -1652,13 +1658,26 @@ et:
     import: Impordi
     import_and_export: Import / eksport
     migrate: Konto kolimine
+    notifications: E-postiteavitused
     preferences: Eelistused
     profile: Profiil
     relationships: Jälgitud ja jälgijad
+    severed_relationships: Katkestatud seos
     statuses_cleanup: Automaatne kustutamine
     strikes: Modereerimisjuhtumid
     two_factor_authentication: Kaheastmeline autentimine
     webauthn_authentication: Turvavõtmed
+  severed_relationships:
+    download: Allalaadimine (%{count})
+    event_type:
+      account_suspension: Konto kustutamisel (%{target_name})
+      domain_block: Server kustutamisel (%{target_name})
+      user_domain_block: Blokeerisid %{target_name}
+    lost_followers: Kadunud jälgijad
+    lost_follows: Kaotatud jälgimised
+    preamble: Võid kaotada jälgijaid ja jälgitavaid, kui blokeerid domeeni või kui su moderaatorid otsustavad kustutada kaugserveri. Kui see juhtub, saad alla laadida katkestatud seoste loetelu, et see üle vaadata ja võib-olla teise serverisse üles laadida.
+    purged: Selle serveri info on sinu serveri administraatorite poolt tühjendatud.
+    type: Sündmus
   statuses:
     attached:
       audio:
@@ -1754,6 +1773,7 @@ et:
     contrast: Mastodon (Kõrge kontrast)
     default: Mastodon (Tume)
     mastodon-light: Mastodon (Hele)
+    system: Automaatne (kasuta süsteemi teemat)
   time:
     formats:
       default: "%d. %B, %Y. aastal, kell %H:%M"
@@ -1798,8 +1818,8 @@ et:
       title: Arhiivi väljavõte
     failed_2fa:
       details: 'Sisenemise üksikasjad:'
-      explanation: Keegi püüdis Su kontole siseneda, ent sisestas vale teisese autentimisfaktori.
-      further_actions_html: Kui see polnud Sina, siis soovitame viivitamata %{action}, kuna see võib olla lekkinud.
+      explanation: Keegi püüdis Su kontole siseneda, ent sisestas vale kaheastmelise autentimise faktori.
+      further_actions_html: Kui see polnud Sina, siis soovitame viivitamata %{action}, kuna see võib olla ohus.
       subject: Kaheastmelise autentimise nurjumine
       title: Kaheastmeline autentimine nurjus
     suspicious_sign_in:
@@ -1841,9 +1861,9 @@ et:
         silence: Konto limiteeritud
         suspend: Konto kustutatud
     welcome:
-      apps_android_action: Google Play poest
+      apps_android_action: Laadi see Google Playst
       apps_ios_action: Allalaadimine App Store'ist
-      apps_step: Meie ametlikud rakendused.
+      apps_step: Laadi meie ametlikud rakendused.
       apps_title: Mastodoni rakendused
       checklist_subtitle: 'Kuidas sel uudsel sotsiaalmeediarindel pihta hakata:'
       checklist_title: Millest alustada
@@ -1856,7 +1876,7 @@ et:
       feature_audience_title: Kogu enesekindlalt jälgijaid
       feature_control: Tead ise kõige paremini, mida soovid oma koduvoos näha. Ei aega raiskavaid algoritme ega reklaame. Jälgi ühe kasutajakonto kaudu keda iganes mistahes Mastodoni serveris ja näe postitusi ajalises järjestuses, muutes oma nurgakese Internetist rohkem endale meelepärasemaks.
       feature_control_title: Säilita oma ajajoone üle kontroll
-      feature_creativity: Mastodon toetab audiot, video- ja pildipostitusi, liigipääsetavuse kirjeldusi, küsitlusi, sisuhoiatusi, animeeritud avatare, kohandatud emotikone, pisipiltide lõikeeelistusi ja enamatki, et end võrgus väljendada. Kas avaldad kunsti, muusikat või taskuhäälingusaadet, Mastodon on mõeldud Sinu jaoks.
+      feature_creativity: Mastodon toetab audiot, video- ja pildipostitusi, ligipääsetavuse kirjeldusi, küsitlusi, sisuhoiatusi, animeeritud avatare, kohandatud emotikone, pisipiltide lõikeeelistusi ja enamatki, et end võrgus väljendada. Kas avaldad kunsti, muusikat või taskuhäälingut, Mastodon on mõeldud Sinu jaoks.
       feature_creativity_title: Võrreldamatu loovus
       feature_moderation: Mastodon annab otsustusõiguse tagasi Sinu kätte. Igal serveril on oma reeglid ja regulatsioonid, mida hallatakse kohapeal, mitte nagu ülalt-alla korporatiivses sotsiaalmeedias, võimaldades enim paindlikku vastavust erinevate vajadustega gruppide ja inimeste eelistustele. Liitu sobivate reeglitega serveriga, või käivita oma server.
       feature_moderation_title: Modereerimine, nagu see olema peab
@@ -1866,6 +1886,9 @@ et:
       follows_subtitle: Jälgi teada-tuntud kasutajaid
       follows_title: Keda jälgida
       follows_view_more: Vaata lähemalt, keda jälgida
+      hashtags_recent_count:
+        one: "%{people} isikut viimase 2 päeva jooksul"
+        other: "%{people} inimest viimase 2 päeva jooksul"
       hashtags_subtitle: Avasta, mis viimase 2 päeva jooksul on toimunud
       hashtags_title: Populaarsed märksõnad
       hashtags_view_more: Vaata teisi trendikaid märksõnu

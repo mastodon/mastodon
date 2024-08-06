@@ -16,6 +16,6 @@ class AnnualReport::TopStatuses < AnnualReport::Source
   end
 
   def base_scope
-    @account.statuses.with_public_visibility.joins(:status_stat).where(id: year_as_snowflake_range).reorder(nil)
+    @account.statuses.public_visibility.joins(:status_stat).where(id: year_as_snowflake_range).reorder(nil)
   end
 end

@@ -36,6 +36,10 @@ RSpec.describe Tag do
       expect(subject.match('https://gcc.gnu.org/bugzilla/show_bug.cgi?id=111895#c4')).to be_nil
     end
 
+    it 'does not match URLs with hashtag-like anchors after a non-ascii character' do
+      expect(subject.match('https://example.org/testé#foo')).to be_nil
+    end
+
     it 'does not match URLs with hashtag-like anchors after an empty query parameter' do
       expect(subject.match('https://en.wikipedia.org/wiki/Ghostbusters_(song)?foo=#Lawsuit')).to be_nil
     end
@@ -91,12 +95,32 @@ RSpec.describe Tag do
     it 'does not match purely-numeric hashtags' do
       expect(subject.match('hello #0123456')).to be_nil
     end
+
+    it 'matches hashtags immediately following the letter ß' do
+      expect(subject.match('Hello toß #ruby').to_s).to eq '#ruby'
+    end
+
+    it 'matches hashtags containing uppercase characters' do
+      expect(subject.match('Hello #rubyOnRails').to_s).to eq '#rubyOnRails'
+    end
   end
 
   describe '#to_param' do
     it 'returns name' do
       tag = Fabricate(:tag, name: 'foo')
       expect(tag.to_param).to eq 'foo'
+    end
+  end
+
+  describe '#formatted_name' do
+    it 'returns name with a proceeding hash symbol' do
+      tag = Fabricate(:tag, name: 'foo')
+      expect(tag.formatted_name).to eq '#foo'
+    end
+
+    it 'returns display_name with a proceeding hash symbol, if display name present' do
+      tag = Fabricate(:tag, name: 'foobar', display_name: 'FooBar')
+      expect(tag.formatted_name).to eq '#FooBar'
     end
   end
 
@@ -139,6 +163,25 @@ RSpec.describe Tag do
 
       tag = Fabricate(:tag, name: HashtagNormalizer.new.normalize(downcase_string))
       expect(described_class.find_normalized(upcase_string)).to eq tag
+    end
+  end
+
+  describe '.not_featured_by' do
+    let!(:account) { Fabricate(:account) }
+    let!(:fun) { Fabricate(:tag, name: 'fun') }
+    let!(:games) { Fabricate(:tag, name: 'games') }
+
+    before do
+      Fabricate :featured_tag, account: account, name: 'games'
+      Fabricate :featured_tag, name: 'fun'
+    end
+
+    it 'returns tags not featured by the account' do
+      results = described_class.not_featured_by(account)
+
+      expect(results)
+        .to include(fun)
+        .and not_include(games)
     end
   end
 
@@ -208,6 +251,24 @@ RSpec.describe Tag do
       results = described_class.search_for('match')
 
       expect(results).to eq [tag, similar_tag]
+    end
+
+    it 'finds only listable tags' do
+      tag = Fabricate(:tag, name: 'match')
+      _miss_tag = Fabricate(:tag, name: 'matchunlisted', listable: false)
+
+      results = described_class.search_for('match')
+
+      expect(results).to eq [tag]
+    end
+
+    it 'finds non-listable tags as well via option' do
+      tag = Fabricate(:tag, name: 'match')
+      unlisted_tag = Fabricate(:tag, name: 'matchunlisted', listable: false)
+
+      results = described_class.search_for('match', 5, 0, exclude_unlistable: false)
+
+      expect(results).to eq [tag, unlisted_tag]
     end
   end
 end

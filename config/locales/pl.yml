@@ -232,6 +232,7 @@ pl:
         update_custom_emoji: Aktualizuj niestandardowe emoji
         update_domain_block: Zaktualizuj blokadę domeny
         update_ip_block: Aktualizuj regułę IP
+        update_report: Wiadomości or raporcie
         update_status: Aktualizuj wpis
         update_user_role: Aktualizuj rolę
       actions:
@@ -291,6 +292,7 @@ pl:
         update_custom_emoji_html: Zaktualizowane emoji %{target} przez %{name}
         update_domain_block_html: Zaktualizowano blokadę domeny dla %{target} przez %{name}
         update_ip_block_html: "%{name} stworzył(a) regułę dla IP %{target}"
+        update_report_html: "%{target} zaktualizowany przez %{name}"
         update_status_html: "%{name} zaktualizował(a) wpis użytkownika %{target}"
         update_user_role_html: "%{name} zmienił rolę %{target}"
       deleted_account: usunięte konto
@@ -298,6 +300,7 @@ pl:
       filter_by_action: Filtruj według działania
       filter_by_user: Filtruj według użytkownika
       title: Dziennik działań administracyjnych
+      unavailable_instance: "(domena niedostępna)"
     announcements:
       destroyed_msg: Pomyślnie usunięto ogłoszenie!
       edit:
@@ -484,6 +487,9 @@ pl:
       title: Polecane konta
       unsuppress: Przywróć polecenie obserwacji konta
     instances:
+      audit_log:
+        title: Niedawne zdarzenia z dzienniku
+        view_all: Pokaż pełny dziennik zdarzeń
       availability:
         description_html:
           few: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dni</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
@@ -660,6 +666,7 @@ pl:
       report: 'Zgłoszenie #%{id}'
       reported_account: Zgłoszone konto
       reported_by: Zgłaszający
+      reported_with_application: Zareportowano przez aplikację
       resolved: Rozwiązane
       resolved_msg: Pomyślnie rozwiązano zgłoszenie.
       skip_to_actions: Przejdź do akcji
@@ -779,6 +786,7 @@ pl:
         desc_html: Wymaga użycia zewnętrznych skryptów hCaptcha, co może negatywnie wpływać na bezpieczeństwo i prywatność. <strong>Może również przyczynić się do znaczącego utrudnienia procesu rejestracji niektórym, np. niepełnosprawnym, osobom.</strong> Dlatego sugeruje się używanie zaproszeń bądź ręcznie potwierdzanie kont.
         title: W celu potwierdzenia ich kont wymagaj rozwiązania zadania CAPTCHA przez nowych użytkowników
       content_retention:
+        danger_zone: Strefa niebezpieczeństwa
         preamble: Kontroluj, jak treści generowane przez użytkownika są przechowywane w Mastodon.
         title: Retencja treści
       default_noindex:
@@ -905,7 +913,23 @@ pl:
         action: Kliknij tutaj, aby dowiedzieć się więcej
         message_html: "<strong>Pamięć obiektu jest nieprawidłowa. Prywatność twoich użytkowników jest zagrożona.</strong>"
     tags:
+      moderation:
+        not_trendable: Nie mogą trendować
+        not_usable: Nieużywalne
+        pending_review: Oczekuje na przejrzenie
+        review_requested: Prośba o przejrzenie
+        reviewed: Przejrzane
+        title: Status
+        trendable: Mogą trendować
+        unreviewed: Nieprzejrzane
+        usable: Używalne
+      name: Nazwa
+      newest: Najnowsze
+      oldest: Najstarsze
+      reset: Resetuj
       review: Stan przeglądu
+      search: Szukaj
+      title: Hashtagi
       updated_msg: Pomyślnie uaktualniono ustawienia hashtagów
     title: Administracja
     trends:
@@ -983,7 +1007,7 @@ pl:
       delete: Usuń
       edit_preset: Edytuj szablon ostrzeżenia
       empty: Nie zdefiniowano jeszcze żadnych szablonów ostrzegawczych.
-      title: Zarządzaj szablonami ostrzeżeń
+      title: Zapisane ostrzeżenia
     webhooks:
       add_new: Dodaj punkt końcowy
       delete: Usuń

@@ -7,6 +7,8 @@
     "allowJs": true,
     "noEmit": true,
     "strict": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "baseUrl": "./",
@@ -20,7 +22,7 @@
   },
   "include": [
     "app/javascript/mastodon",
-    "app/javascript/packs",
+    "app/javascript/entrypoints",
     "app/javascript/types"
   ]
 }

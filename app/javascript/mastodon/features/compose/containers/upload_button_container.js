@@ -9,7 +9,7 @@ const mapStateToProps = state => {
   const readyAttachmentsSize = state.getIn(['compose', 'media_attachments']).size ?? 0;
   const pendingAttachmentsSize = state.getIn(['compose', 'pending_media_attachments']).size ?? 0;
   const attachmentsSize = readyAttachmentsSize + pendingAttachmentsSize;
-  const isOverLimit = attachmentsSize > 3;
+  const isOverLimit = attachmentsSize > state.getIn(['server', 'server', 'configuration', 'statuses', 'max_media_attachments'])-1;
   const hasVideoOrAudio = state.getIn(['compose', 'media_attachments']).some(m => ['video', 'audio'].includes(m.get('type')));
 
   return {

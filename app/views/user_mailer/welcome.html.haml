@@ -68,7 +68,4 @@
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-extra-td
-      = render 'application/mailer/feature', key: 'feature_control', feature_title: t('user_mailer.welcome.feature_control_title'), feature_text: t('user_mailer.welcome.feature_control'), text_first_on_desktop: true
-      = render 'application/mailer/feature', key: 'feature_audience', feature_title: t('user_mailer.welcome.feature_audience_title'), feature_text: t('user_mailer.welcome.feature_audience'), text_first_on_desktop: false
-      = render 'application/mailer/feature', key: 'feature_moderation', feature_title: t('user_mailer.welcome.feature_moderation_title'), feature_text: t('user_mailer.welcome.feature_moderation'), text_first_on_desktop: true
-      = render 'application/mailer/feature', key: 'feature_creativity', feature_title: t('user_mailer.welcome.feature_creativity_title'), feature_text: t('user_mailer.welcome.feature_creativity'), text_first_on_desktop: false
+      = render partial: 'application/mailer/feature', collection: %w(control audience moderation creativity)

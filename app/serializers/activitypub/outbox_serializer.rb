@@ -2,7 +2,7 @@
 
 class ActivityPub::OutboxSerializer < ActivityPub::CollectionSerializer
   def self.serializer_for(model, options)
-    if model.class.name == 'ActivityPub::ActivityPresenter'
+    if model.instance_of?(::ActivityPub::ActivityPresenter)
       ActivityPub::ActivitySerializer
     else
       super

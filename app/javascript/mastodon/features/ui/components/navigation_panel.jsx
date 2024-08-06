@@ -31,8 +31,10 @@ import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { WordmarkLogo } from 'mastodon/components/logo';
 import { NavigationPortal } from 'mastodon/components/navigation_portal';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { timelinePreview, trendsEnabled } from 'mastodon/initial_state';
 import { transientSingleColumn } from 'mastodon/is_mobile';
+import { selectUnreadNotificationGroupsCount } from 'mastodon/selectors/notifications';
 
 import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
@@ -58,15 +60,19 @@ const messages = defineMessages({
 });
 
 const NotificationsLink = () => {
+  const optedInGroupedNotifications = useSelector((state) => state.getIn(['settings', 'notifications', 'groupingBeta'], false));
   const count = useSelector(state => state.getIn(['notifications', 'unread']));
   const intl = useIntl();
 
+  const newCount = useSelector(selectUnreadNotificationGroupsCount);
+
   return (
     <ColumnLink
+      key='notifications'
       transparent
       to='/notifications'
-      icon={<IconWithBadge id='bell' icon={NotificationsIcon} count={count} className='column-link__icon' />}
-      activeIcon={<IconWithBadge id='bell' icon={NotificationsActiveIcon} count={count} className='column-link__icon' />}
+      icon={<IconWithBadge id='bell' icon={NotificationsIcon} count={optedInGroupedNotifications ? newCount : count} className='column-link__icon' />}
+      activeIcon={<IconWithBadge id='bell' icon={NotificationsActiveIcon} count={optedInGroupedNotifications ? newCount : count} className='column-link__icon' />}
       text={intl.formatMessage(messages.notifications)}
     />
   );
@@ -97,12 +103,8 @@ const FollowRequestsLink = () => {
 };
 
 class NavigationPanel extends Component {
-
-  static contextTypes = {
-    identity: PropTypes.object.isRequired,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     intl: PropTypes.object.isRequired,
   };
 
@@ -112,7 +114,7 @@ class NavigationPanel extends Component {
 
   render () {
     const { intl } = this.props;
-    const { signedIn, disabledAccountId } = this.context.identity;
+    const { signedIn, disabledAccountId } = this.props.identity;
 
     let banner = undefined;
 
@@ -189,4 +191,4 @@ class NavigationPanel extends Component {
 
 }
 
-export default injectIntl(NavigationPanel);
+export default injectIntl(withIdentity(NavigationPanel));

@@ -40,7 +40,7 @@ RSpec.describe UpdateStatusService do
     end
 
     it 'saves edit history' do
-      expect(status.edits.pluck(:text)).to eq %w(Foo Bar)
+      expect(status.edits.ordered.pluck(:text)).to eq %w(Foo Bar)
     end
   end
 
@@ -58,7 +58,7 @@ RSpec.describe UpdateStatusService do
     end
 
     it 'saves edit history' do
-      expect(status.edits.pluck(:text, :spoiler_text)).to eq [['Foo', ''], ['Foo', 'Bar']]
+      expect(status.edits.ordered.pluck(:text, :spoiler_text)).to eq [['Foo', ''], ['Foo', 'Bar']]
     end
   end
 
@@ -85,7 +85,7 @@ RSpec.describe UpdateStatusService do
     end
 
     it 'saves edit history' do
-      expect(status.edits.pluck(:ordered_media_attachment_ids)).to eq [[detached_media_attachment.id], [attached_media_attachment.id]]
+      expect(status.edits.ordered.pluck(:ordered_media_attachment_ids)).to eq [[detached_media_attachment.id], [attached_media_attachment.id]]
     end
   end
 
@@ -107,7 +107,7 @@ RSpec.describe UpdateStatusService do
     end
 
     it 'saves edit history' do
-      expect(status.edits.map { |edit| edit.ordered_media_attachments.map(&:description) }).to eq [['Old description'], ['New description']]
+      expect(status.edits.ordered.map { |edit| edit.ordered_media_attachments.map(&:description) }).to eq [['Old description'], ['New description']]
     end
   end
 
@@ -136,7 +136,7 @@ RSpec.describe UpdateStatusService do
     end
 
     it 'saves edit history' do
-      expect(status.edits.pluck(:poll_options)).to eq [%w(Foo Bar), %w(Bar Baz Foo)]
+      expect(status.edits.ordered.pluck(:poll_options)).to eq [%w(Foo Bar), %w(Bar Baz Foo)]
     end
 
     it 'requeues expiration notification' do

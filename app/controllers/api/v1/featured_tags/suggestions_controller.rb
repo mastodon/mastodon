@@ -12,10 +12,6 @@ class Api::V1::FeaturedTags::SuggestionsController < Api::BaseController
   private
 
   def set_recently_used_tags
-    @recently_used_tags = Tag.recently_used(current_account).where.not(id: featured_tag_ids).limit(10)
-  end
-
-  def featured_tag_ids
-    current_account.featured_tags.pluck(:tag_id)
+    @recently_used_tags = Tag.suggestions_for_account(current_account).limit(10)
   end
 end

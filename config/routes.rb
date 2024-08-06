@@ -27,7 +27,9 @@ Rails.application.routes.draw do
     /public/remote
     /conversations
     /lists/(*any)
+    /links/(*any)
     /notifications/(*any)
+    /notifications_v2/(*any)
     /favourites
     /bookmarks
     /pinned
@@ -62,11 +64,16 @@ Rails.application.routes.draw do
                 tokens: 'oauth/tokens'
   end
 
-  get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
-  get '.well-known/nodeinfo', to: 'well_known/node_info#index', as: :nodeinfo, defaults: { format: 'json' }
-  get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
-  get '.well-known/change-password', to: redirect('/auth/edit')
-  get '.well-known/proxy', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
+  scope path: '.well-known' do
+    scope module: :well_known do
+      get 'oauth-authorization-server', to: 'oauth_metadata#show', as: :oauth_metadata, defaults: { format: 'json' }
+      get 'host-meta', to: 'host_meta#show', as: :host_meta, defaults: { format: 'xml' }
+      get 'nodeinfo', to: 'node_info#index', as: :nodeinfo, defaults: { format: 'json' }
+      get 'webfinger', to: 'webfinger#show', as: :webfinger
+    end
+    get 'change-password', to: redirect('/auth/edit'), as: nil
+    get 'proxy', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }, as: nil
+  end
 
   get '/nodeinfo/2.0', to: 'well_known/node_info#show', as: :nodeinfo_schema
 
@@ -92,19 +99,15 @@ Rails.application.routes.draw do
 
     namespace :auth do
       resource :setup, only: [:show, :update], controller: :setup
-      resource :challenge, only: [:create], controller: :challenges
+      resource :challenge, only: [:create]
       get 'sessions/security_key_options', to: 'sessions#webauthn_options'
       post 'captcha_confirmation', to: 'confirmations#confirm_captcha', as: :captcha_confirmation
     end
   end
 
-  devise_for :users, path: 'auth', format: false, controllers: {
-    omniauth_callbacks: 'auth/omniauth_callbacks',
-    sessions: 'auth/sessions',
-    registrations: 'auth/registrations',
-    passwords: 'auth/passwords',
-    confirmations: 'auth/confirmations',
-  }
+  scope module: :auth do
+    devise_for :users, path: 'auth', format: false
+  end
 
   with_options constraints: ->(req) { req.format.nil? || req.format.html? } do
     get '/users/:username', to: redirect_with_vary('/@%{username}')
@@ -139,7 +142,11 @@ Rails.application.routes.draw do
 
   resource :inbox, only: [:create], module: :activitypub
 
-  get '/:encoded_at(*path)', to: redirect("/@%{path}"), constraints: { encoded_at: /%40/ }
+  constraints(encoded_path: /%40.*/) do
+    get '/:encoded_path', to: redirect { |params|
+      "/#{params[:encoded_path].gsub('%40', '@')}"
+    }
+  end
 
   constraints(username: %r{[^@/.]+}) do
     with_options to: 'accounts#show' do

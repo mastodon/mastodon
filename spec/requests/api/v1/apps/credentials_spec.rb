@@ -20,13 +20,25 @@ describe 'Credentials' do
 
         expect(body_as_json).to match(
           a_hash_including(
+            id: token.application.id.to_s,
             name: token.application.name,
             website: token.application.website,
-            vapid_key: Rails.configuration.x.vapid_public_key,
             scopes: token.application.scopes.map(&:to_s),
-            client_id: token.application.uid
+            redirect_uris: token.application.redirect_uris,
+            # Deprecated properties as of 4.3:
+            redirect_uri: token.application.redirect_uri.split.first,
+            vapid_key: Rails.configuration.x.vapid_public_key
           )
         )
+      end
+
+      it 'does not expose the client_id or client_secret' do
+        subject
+
+        expect(response).to have_http_status(200)
+
+        expect(body_as_json[:client_id]).to_not be_present
+        expect(body_as_json[:client_secret]).to_not be_present
       end
     end
 
@@ -46,11 +58,14 @@ describe 'Credentials' do
 
         expect(body_as_json).to match(
           a_hash_including(
+            id: token.application.id.to_s,
             name: token.application.name,
             website: token.application.website,
-            vapid_key: Rails.configuration.x.vapid_public_key,
             scopes: token.application.scopes.map(&:to_s),
-            client_id: token.application.uid
+            redirect_uris: token.application.redirect_uris,
+            # Deprecated properties as of 4.3:
+            redirect_uri: token.application.redirect_uri.split.first,
+            vapid_key: Rails.configuration.x.vapid_public_key
           )
         )
       end

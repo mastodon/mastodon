@@ -163,7 +163,7 @@ namespace :admin do
   resources :roles, except: [:show]
   resources :account_moderation_notes, only: [:create, :destroy]
   resource :follow_recommendations, only: [:show, :update]
-  resources :tags, only: [:show, :update]
+  resources :tags, only: [:index, :show, :update]
 
   namespace :trends do
     resources :links, only: [:index] do

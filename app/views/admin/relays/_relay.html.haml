@@ -4,7 +4,7 @@
   %td
     - if relay.accepted?
       %span.positive-hint
-        = fa_icon('check')
+        = material_symbol('check')
         &nbsp;
         = t 'admin.relays.enabled'
     - elsif relay.pending?
@@ -13,7 +13,7 @@
       = t 'admin.relays.pending'
     - else
       %span.negative-hint
-        = fa_icon('times')
+        = material_symbol('close')
         &nbsp;
         = t 'admin.relays.disabled'
   %td

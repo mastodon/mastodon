@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'report interface', :paperclip_processing do
+describe 'report interface', :attachment_processing, :js, :streaming do
   include ProfileStories
 
   let(:email)               { 'admin@example.com' }

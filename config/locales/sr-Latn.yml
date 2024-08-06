@@ -288,6 +288,7 @@ sr-Latn:
         update_custom_emoji_html: "%{name} je ažurirao/-la emodži %{target}"
         update_domain_block_html: "%{name} je ažurirao/-la blok domena %{target}"
         update_ip_block_html: "%{name} je promenio/-la IP uslov za %{target}"
+        update_report_html: "%{name} je ažurirao izveštaj %{target}"
         update_status_html: "%{name} je ažurirao/-la objavu korisnika %{target}"
         update_user_role_html: "%{name} je promenio/-la poziciju %{target}"
       deleted_account: obrisan nalog
@@ -295,6 +296,7 @@ sr-Latn:
       filter_by_action: Filtriraj po aktivnosti
       filter_by_user: Filtriraj po korisniku
       title: Zapisnik
+      unavailable_instance: "(ime domena nedostupno)"
     announcements:
       destroyed_msg: Saopštenje je uspešno obrisano!
       edit:
@@ -575,7 +577,7 @@ sr-Latn:
     relays:
       add_new: Dodaj novi relej
       delete: Obriši
-      description_html: "<strong>Federalni relej</strong> je posrednički server koji razmenjuje velike količine javnih truba između servera na koji je pretplaćen i na koji objavljuje.<strong>Može pomoći malim i srednjim serverima da otkriju sadržaj iz fediversa</strong>, koji inače zahteva od lokalnih korisnika da ručno pratiti ostale ljude na udaljenim serverima."
+      description_html: "<strong>Federalni relej</strong> je posrednički server koji razmenjuje velike količine javnih objava između servera na koji je pretplaćen i na koji objavljuje.<strong>Može pomoći malim i srednjim serverima da otkriju sadržaj iz fediverzuma</strong>, koji inače zahteva od lokalnih korisnika da ručno pratiti ostale ljude na udaljenim serverima."
       disable: Isključi
       disabled: Isključen
       enable: Uključi
@@ -609,6 +611,9 @@ sr-Latn:
       actions_description_html: Odlučite koju radnju da sprovedete radi rešavanja ove prijave. Ukoliko sprovedete kaznenu radnju protiv prijavljenog naloga, vlasnik naloga će biti obavešten putem i-mejla, osim ukoliko oznaka <strong>„Nepoželjne poruke”</strong> nije odabrana.
       actions_description_remote_html: Odlučite koju radnju da preduzmete radi rešavanja ove prijave. Ovo će uticati samo na to kako <strong>Vaš</strong> server komunicira sa ovim udaljenim nalogom i obrađuje njegov sadržaj.
       add_to_report: Dodaj još u prijavu
+      already_suspended_badges:
+        local: Već suspendovan na ovom serveru
+        remote: Već suspendovan na njihovom serveru
       are_you_sure: Da li ste sigurni?
       assign_to_self: Dodeli meni
       assigned: Dodeljeni moderator
@@ -762,6 +767,7 @@ sr-Latn:
         desc_html: Ovo se oslanja na eksterne skripte iz hCaptcha, što može predstavljati zabrinutost za bezbednost i privatnost. Pored toga, <strong>ovo može učiniti proces registracije znatno manje dostupnim nekim (posebno osobama sa invaliditetom)</strong>. Iz ovih razloga, razmotrite alternativne mere kao što je registracija zasnovana na odobrenju ili na pozivu.
         title: Zahtevaj od novih korisnika da reše CAPTCHA da bi potvrdili svoj nalog
       content_retention:
+        danger_zone: Opasna zona
         preamble: Kontrolišite kako se sadržaj generisan od strane korisnika skladišti na Mastodon-u.
         title: Zadržavanje sadržaja
       default_noindex:
@@ -864,7 +870,7 @@ sr-Latn:
         action: Pogledaj dokumentaciju
         message_html: Vaš Elasticsearch klaster ima samo jedan čvor, <code>ES_PRESET</code>treba postaviti na<code>single_node_cluster</code>.
       elasticsearch_reset_chewy:
-        message_html: Vaš Elasticsearch klaster ima samo jedan čvor, <code>ES_PRESET</code>treba postaviti na<code>single_node_cluster</code>.
+        message_html: Indeks Elasticsearch sistema je zastareo zbog promene podešavanja. Pokrenite <code>tootctl search deploy --reset-chewy</code>da biste ga ažurirali.
       elasticsearch_running_check:
         message_html: Povezivanje na Elasticsearch nije bilo moguće. Molimo Vas proverite da li je pokrenut, ili onemogućite pretragu celog teksta
       elasticsearch_version_check:
@@ -961,9 +967,9 @@ sr-Latn:
     warning_presets:
       add_new: Dodaj novi
       delete: Izbriši
-      edit_preset: Uredi preset upozorenja
-      empty: Još uvek niste definisali nijedan šablon upozorenja.
-      title: Upravljaj presetima upozorenja
+      edit_preset: Uredi predefinisana upozorenja
+      empty: Još uvek niste definisali nijedno upozorenje.
+      title: Predefinisana upozorenja
     webhooks:
       add_new: Dodaj krajnju tačku
       delete: Izbriši
@@ -1396,7 +1402,7 @@ sr-Latn:
       '43200': 12 sati
       '604800': 1 nedelja
       '86400': 1 dan
-    expires_in_prompt: Nikad
+    expires_in_prompt: Nikada
     generate: Generiši
     invalid: Ova pozivnica nije važeća
     invited_by: 'Pozvao Vas je:'
@@ -1678,13 +1684,26 @@ sr-Latn:
     import: Uvoz
     import_and_export: Uvoz i izvoz
     migrate: Prebacivanje naloga
+    notifications: Obaveštenja e-poštom
     preferences: Podešavanja
     profile: Javni profil
     relationships: Praćenja i pratioci
+    severed_relationships: Prekinute veze
     statuses_cleanup: Automatsko brisanje objava
     strikes: Moderacijski prestupi
     two_factor_authentication: Dvofaktorska identifikacija
     webauthn_authentication: Sigurnosni ključevi
+  severed_relationships:
+    download: Preuzmi (%{count})
+    event_type:
+      account_suspension: Suspenzija naloga (%{target_name})
+      domain_block: Suspenzija servera (%{target_name})
+      user_domain_block: Blokirali ste %{target_name}
+    lost_followers: Izgubljeni pratioci
+    lost_follows: Izgubljena praćenja
+    preamble: Možete izgubiti praćenja i pratioce kada blokirate domen ili kada vaši moderatori odluče da suspenduju udaljeni server. Kada se to desi, moći ćete da preuzmete liste prekinutih veza, koje treba pregledati i eventualno uvesti na drugi server.
+    purged: Administratori vašeg servera su obrisali informacije o ovom serveru.
+    type: Događaj
   statuses:
     attached:
       audio:
@@ -1784,6 +1803,7 @@ sr-Latn:
     contrast: Veliki kontrast
     default: Mastodon (tamna)
     mastodon-light: Mastodon (svetla)
+    system: Automatski (korišćenje sistemske teme)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -1896,6 +1916,10 @@ sr-Latn:
       follows_subtitle: Pratite dobro poznate naloge
       follows_title: Koga pratiti
       follows_view_more: Pogledajte još ljudi za praćenje
+      hashtags_recent_count:
+        few: "%{people} osobe u poslednja 2 dana"
+        one: "%{people} osoba u poslednja 2 dana"
+        other: "%{people} osoba u poslednja 2 dana"
       hashtags_subtitle: Istražite šta je u trendu u poslednja 2 dana
       hashtags_title: Heš oznake u trendu
       hashtags_view_more: Pogledajte još heš oznaka u trendu

@@ -137,6 +137,18 @@ RSpec.describe '/api/web/embed' do
         end
       end
 
+      context 'when sanitizing the fragment fails' do
+        let(:call_result) { { html: 'ok' } }
+
+        before { allow(Sanitize).to receive(:fragment).and_raise(ArgumentError) }
+
+        it 'returns http not found' do
+          subject
+
+          expect(response).to have_http_status(404)
+        end
+      end
+
       context 'when failing to fetch OEmbed' do
         let(:call_result) { nil }
 

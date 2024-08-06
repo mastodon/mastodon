@@ -205,6 +205,83 @@ RSpec.describe Status do
     end
   end
 
+  describe '#reported?' do
+    context 'when the status is not reported' do
+      it 'returns false' do
+        expect(subject.reported?).to be false
+      end
+    end
+
+    context 'when the status is part of an open report' do
+      before do
+        Fabricate(:report, target_account: subject.account, status_ids: [subject.id])
+      end
+
+      it 'returns true' do
+        expect(subject.reported?).to be true
+      end
+    end
+
+    context 'when the status is part of a closed report with an account warning mentioning the account' do
+      before do
+        report = Fabricate(:report, target_account: subject.account, status_ids: [subject.id])
+        report.resolve!(Fabricate(:account))
+        Fabricate(:account_warning, target_account: subject.account, status_ids: [subject.id], report: report)
+      end
+
+      it 'returns true' do
+        expect(subject.reported?).to be true
+      end
+    end
+
+    context 'when the status is part of a closed report with an account warning not mentioning the account' do
+      before do
+        report = Fabricate(:report, target_account: subject.account, status_ids: [subject.id])
+        report.resolve!(Fabricate(:account))
+        Fabricate(:account_warning, target_account: subject.account, report: report)
+      end
+
+      it 'returns false' do
+        expect(subject.reported?).to be false
+      end
+    end
+  end
+
+  describe '#ordered_media_attachments' do
+    let(:status) { Fabricate(:status) }
+
+    let(:first_attachment) { Fabricate(:media_attachment) }
+    let(:second_attachment) { Fabricate(:media_attachment) }
+    let(:last_attachment) { Fabricate(:media_attachment) }
+    let(:extra_attachment) { Fabricate(:media_attachment) }
+
+    before do
+      stub_const('Status::MEDIA_ATTACHMENTS_LIMIT', 3)
+
+      # Add attachments out of order
+      status.media_attachments << second_attachment
+      status.media_attachments << last_attachment
+      status.media_attachments << extra_attachment
+      status.media_attachments << first_attachment
+    end
+
+    context 'when ordered_media_attachment_ids is not set' do
+      it 'returns up to MEDIA_ATTACHMENTS_LIMIT attachments' do
+        expect(status.ordered_media_attachments.size).to eq Status::MEDIA_ATTACHMENTS_LIMIT
+      end
+    end
+
+    context 'when ordered_media_attachment_ids is set' do
+      before do
+        status.update!(ordered_media_attachment_ids: [first_attachment.id, second_attachment.id, last_attachment.id, extra_attachment.id])
+      end
+
+      it 'returns up to MEDIA_ATTACHMENTS_LIMIT attachments in the expected order' do
+        expect(status.ordered_media_attachments).to eq [first_attachment, second_attachment, last_attachment]
+      end
+    end
+  end
+
   describe '.mutes_map' do
     subject { described_class.mutes_map([status.conversation.id], account) }
 

@@ -226,6 +226,7 @@ ca:
         update_custom_emoji: Actualitza l'emoji personalitzat
         update_domain_block: Actualitza el Bloqueig de Domini
         update_ip_block: Actualitza norma IP
+        update_report: Actualitza l'informe
         update_status: Actualitza l'estat
         update_user_role: Actualitza Rol
       actions:
@@ -285,6 +286,7 @@ ca:
         update_custom_emoji_html: "%{name} ha actualitzat l'emoji %{target}"
         update_domain_block_html: "%{name} ha actualitzat el bloqueig de domini per a %{target}"
         update_ip_block_html: "%{name} ha canviat la norma per la IP %{target}"
+        update_report_html: "%{name} ha actualitzat l'informe %{target}"
         update_status_html: "%{name} ha actualitzat l'estat de %{target}"
         update_user_role_html: "%{name} ha canviat el rol %{target}"
       deleted_account: compte eliminat
@@ -292,6 +294,7 @@ ca:
       filter_by_action: Filtra per acció
       filter_by_user: Filtra per usuari
       title: Registre d'auditoria
+      unavailable_instance: "(nom de domini no disponible)"
     announcements:
       destroyed_msg: L’anunci s’ha esborrat amb èxit!
       edit:
@@ -465,9 +468,12 @@ ca:
       status: Estat
       suppress: Suprimeix les recomanacions de seguiment
       suppressed: Suprimit
-      title: Seguir les recomanacions
+      title: Recomanacions de comptes a seguir
       unsuppress: Restaurar les recomanacions de seguiment
     instances:
+      audit_log:
+        title: Registres recents d'auditoria
+        view_all: Mostra els registres d'auditoria complets
       availability:
         description_html:
           one: Si la tramesa cap el domini falla <strong>%{count} dia</strong> sense èxit, no es faran més intents d'entrega a no ser que es rebi una tramesa <em>des de</em> el domini.
@@ -636,6 +642,7 @@ ca:
       report: 'Informe #%{id}'
       reported_account: Compte denunciat
       reported_by: Denunciat per
+      reported_with_application: Reportat amb l'aplicació
       resolved: Resolt
       resolved_msg: Informe resolt correctament!
       skip_to_actions: Salta a les accions
@@ -751,6 +758,7 @@ ca:
         desc_html: Això es basa en scripts externs de hCaptcha, que poden ser un problema de privacitat i seguretat. A més, <strong>això pot fer que el procés de registre sigui significativament menys accesible per algunes (especialment discapacitades) persones</strong>. Per aquestes raons, si us plau considera alternatives com ara registre amb aprovació necessària o basada en invitacions.
         title: Demana als nous usuaris que resolguin un CAPTCHA per a confirmar el seu compte
       content_retention:
+        danger_zone: Zona de perill
         preamble: Controla com es desa a Mastodon el contingut generat per l'usuari.
         title: Retenció de contingut
       default_noindex:
@@ -877,7 +885,23 @@ ca:
         action: Consulta aquí per a més informació
         message_html: "<strong>El teu emagatzamatge d'objectes no està ben configurat. La privacitat dels teus usuaris està en risc.</strong>"
     tags:
+      moderation:
+        not_trendable: No pot ser en tendència
+        not_usable: No es pot fer servir
+        pending_review: Pendent de revisió
+        review_requested: Revisió demanada
+        reviewed: Revisada
+        title: Estat
+        trendable: Pot ser tendència
+        unreviewed: No revisada
+        usable: Es pot fer servir
+      name: Nom
+      newest: Més nous
+      oldest: Més vells
+      reset: Restableix
       review: Revisar l'estat
+      search: Cerca
+      title: Etiquetes
       updated_msg: Ajustaments d'etiquetes actualitzats amb èxit
     title: Administració
     trends:
@@ -949,7 +973,7 @@ ca:
       delete: Elimina
       edit_preset: Edita l'avís predeterminat
       empty: Encara no has definit cap preavís.
-      title: Gestiona les configuracions predefinides dels avisos
+      title: Predefinicions d'avís
     webhooks:
       add_new: Afegir extrem
       delete: Elimina

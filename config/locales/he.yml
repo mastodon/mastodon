@@ -232,6 +232,7 @@ he:
         update_custom_emoji: עדכון סמלון מותאם אישית
         update_domain_block: עדכון חסימת שם מתחם
         update_ip_block: עדכון כלל IP
+        update_report: עדכון דו"ח עבירה
         update_status: סטטוס עדכון
         update_user_role: עדכון תפקיד
       actions:
@@ -291,6 +292,7 @@ he:
         update_custom_emoji_html: "%{name} עדכן/ה אמוג'י %{target}"
         update_domain_block_html: "%{name} עדכן/ה חסימת דומיין עבור %{target}"
         update_ip_block_html: "%{name} שינה כלל עבור IP %{target}"
+        update_report_html: '%{name} עדכן/ה דו"ח %{target}'
         update_status_html: "%{name} עדכן/ה הודעה של %{target}"
         update_user_role_html: "%{name} שינה את התפקיד של %{target}"
       deleted_account: חשבון מחוק
@@ -298,6 +300,7 @@ he:
       filter_by_action: סינון לפי פעולה
       filter_by_user: סינון לפי משתמש
       title: ביקורת יומן
+      unavailable_instance: "(שם מתחם לא זמין)"
     announcements:
       destroyed_msg: הכרזה נמחקה בהצלחה!
       edit:
@@ -484,6 +487,9 @@ he:
       title: המלצות מעקב
       unsuppress: שחזור המלצות מעקב
     instances:
+      audit_log:
+        title: יומני ביקורת אחרונים
+        view_all: צפיה ביומני הביקורת המלאים
       availability:
         description_html:
           many: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים שונים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
@@ -660,6 +666,7 @@ he:
       report: 'דווח על #%{id}'
       reported_account: חשבון מדווח
       reported_by: דווח על ידי
+      reported_with_application: דיווחים באמצעות יישומון
       resolved: פתור
       resolved_msg: הדו"ח נפתר בהצלחה!
       skip_to_actions: דלג/י לפעולות
@@ -779,6 +786,7 @@ he:
         desc_html: אפשרות זו ניסמכת על קטעי קוד חיצוניים של hCaptcha שעלולים להיות סיכון אבטחה ופרטיות. בנוסף, <strong>זה עשוי להפוך את תהליך ההרשמה לבלתי נגיש לא.נשים, במיוחד בעלות ובעלי מוגבלויות</strong>. מסיבות אלו, כדאי לשקול חלופות כמו אשרור מנהלים ידני או הרשמה רק על בסיס הזמנה.
         title: לדרוש פתרון CAPTCHA כדי לאשרר למשתמשים את חשבונם
       content_retention:
+        danger_zone: אזור מסוכן
         preamble: שליטה על דרך אחסון תוכן המשתמשים במסטודון.
         title: תקופת השמירה של תכנים
       default_noindex:
@@ -905,7 +913,23 @@ he:
         action: למידע נוסף
         message_html: "<strong>שרות אחסון הענן שלך אינו מוגדר כראוי. פרטיות המשתמשות והמשתמשים שלך בסכנה.</strong>"
     tags:
+      moderation:
+        not_trendable: לא מזוהה כאופנתי
+        not_usable: בלתי שמיש
+        pending_review: ממתינים לסקירה
+        review_requested: התבקשה סקירה
+        reviewed: נסקר
+        title: מצב
+        trendable: ניתן לאפיון כאופנה
+        unreviewed: לא נסקר
+        usable: שמיש
+      name: שם
+      newest: החדש ביותר
+      oldest: הישן ביותר
+      reset: איפוס
       review: סקירת מצב
+      search: חיפוש
+      title: תגיות
       updated_msg: הגדרות תגיות עודכנו בהצלחה
     title: ניהול
     trends:
@@ -983,7 +1007,7 @@ he:
       delete: למחוק
       edit_preset: ערוך/י טקסט מוכן מראש לאזהרה
       empty: לא הגדרת עדיין שום טקסט מוכן מראש לאזהרה.
-      title: ניהול טקסטים מוכנים מראש לאזהרות
+      title: תצורת אזהרות
     webhooks:
       add_new: הוספת נקודת קצה
       delete: מחיקה

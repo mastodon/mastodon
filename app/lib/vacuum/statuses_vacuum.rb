@@ -34,7 +34,7 @@ class Vacuum::StatusesVacuum
   def statuses_scope
     Status.unscoped.kept
           .joins(:account).merge(Account.remote)
-          .where('statuses.id < ?', retention_period_as_id)
+          .where(statuses: { id: ...retention_period_as_id })
   end
 
   def retention_period_as_id

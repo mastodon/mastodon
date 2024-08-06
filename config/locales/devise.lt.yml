@@ -22,7 +22,7 @@ lt:
         action: Patvirtinti el. pašto adresą
         action_with_app: Patvirtinti ir grįžti į %{app}
         explanation: Šiuo el. pašto adresu sukūrei paskyrą %{host}. Iki jos aktyvavimo liko vienas paspaudimas. Jei tai buvo ne tu, ignoruok šį el. laišką.
-        explanation_when_pending: Šiuo el. pašto adresu pateikei paraišką pakvietimui į %{host}. Kai patvirtinsi savo el. pašto adresą, mes peržiūrėsime tavo paraišką. Gali prisijungti ir pakeisti savo duomenis arba ištrinti paskyrą, tačiau negalėsi naudotis daugeliu funkcijų, kol tavo paskyra nebus patvirtinta. Jei tavo paraiška bus atmesta, duomenys bus pašalinti, todėl jokių papildomų veiksmų iš tavęs nereikės. Jei tai buvo ne tu, ignoruok šį el. laišką.
+        explanation_when_pending: Šiuo el. pašto adresu pateikei paraišką pakvietimui į %{host}. Kai patvirtinsi savo el. pašto adresą, mes peržiūrėsime tavo paraišką. Gali prisijungti ir pakeisti savo duomenis arba ištrinti paskyrą, bet negalėsi naudotis daugeliu funkcijų, kol tavo paskyra nebus patvirtinta. Jei tavo paraiška bus atmesta, duomenys bus pašalinti, todėl jokių papildomų veiksmų iš tavęs nereikės. Jei tai buvo ne tu, ignoruok šį el. laišką.
         extra_html: Taip pat peržiūrėk <a href="%{terms_path}">serverio taisykles</a> ir <a href="%{policy_path}">mūsų paslaugų teikimo sąlygas</a>.
         subject: 'Mastodon: patvirtinimo instrukcijos %{instance}'
         title: Patvirtinti el. pašto adresą
@@ -54,9 +54,9 @@ lt:
         title: 2FA išjungta
       two_factor_enabled:
         explanation: Prisijungiant reikės susietos TOTP programėlės sugeneruoto priegos rakto.
-        subject: 'Mastodon: dviejų tapatybės patikrinimas įgalintas'
+        subject: 'Mastodon: dviejų tapatybės patvirtinimas įjungtas'
         subtitle: Tavo paskyrai įjungtas dviejų tapatybės patikrinimas.
-        title: 2FA įgalinta
+        title: 2FA įjungta
       two_factor_recovery_codes_changed:
         explanation: Ankstesnieji atkūrimo kodai yra negaliojantys ir sugeneruojami nauji.
         subject: 'Mastodon: dviejų tapatybės atkūrimo kodai iš naujo sugeneruoti'
@@ -76,13 +76,13 @@ lt:
       webauthn_disabled:
         explanation: Tavo paskyrai išjungtas tapatybės nustatymas naudojant saugumo raktus.
         extra: Prisijungimas dabar galimas naudojant tik susietos TOTP programėlės sugeneruotą prieigos raktą.
-        subject: 'Mastodon: tapatybės nustatymas naudojant saugumo raktai išjungta'
+        subject: 'Mastodon: tapatybės nustatymas su saugumo raktai išjungta'
         title: Saugumo raktai išjungti
       webauthn_enabled:
         explanation: Tavo paskyrai įjungtas saugumo rakto tapatybės nustatymas.
         extra: Tavo saugumo raktą dabar galima naudoti prisijungimui.
-        subject: 'Mastodon: saugumo rakto tapatybės nustatymas įgalintas'
-        title: Saugumo raktai įgalinti
+        subject: 'Mastodon: saugumo rakto tapatybės nustatymas įjungtas'
+        title: Saugumo raktai įjungti
     omniauth_callbacks:
       failure: Nepavyko nustatyti tapatybės iš %{kind}, nes „%{reason}“.
       success: Sėkmingai nustatyta tapatybė iš %{kind} paskyros.
@@ -98,8 +98,8 @@ lt:
       signed_up_but_inactive: Sėkmingai užsiregistravai. Tačiau negalėjome tavęs prijungti, nes tavo paskyra dar nėra aktyvuota.
       signed_up_but_locked: Sėkmingai užsiregistravai. Tačiau negalėjome tavęs prijungti, nes tavo paskyra dar užrakinta.
       signed_up_but_pending: Į tavo el. pašto adresą buvo išsiųstas laiškas su patvirtinimo nuoroda. Paspaudęs (-usi) nuorodą, peržiūrėsime tavo paraišką. Tau bus pranešta, jei ji patvirtinta.
-      signed_up_but_unconfirmed: Į tavo el. pašto adresą buvo išsiųstas laiškas su patvirtinimo nuoroda. Paspausk nuorodą, kad aktyvuotum savo paskyrą. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
-      update_needs_confirmation: Sėkmingai atnaujinai savo paskyrą, bet mums reikia patvirtinti naująjį el. pašto adresą. Patikrink savo el. paštą ir paspausk patvirtinimo nuorodą, kad patvirtintum savo naują el. pašto adresą. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
+      signed_up_but_unconfirmed: Į tavo el. pašto adresą buvo išsiųstas laiškas su patvirtinimo nuoroda. Sek nuorodą, kad aktyvuotum savo paskyrą. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
+      update_needs_confirmation: Sėkmingai atnaujinai savo paskyrą, bet mums reikia patvirtinti naująjį el. pašto adresą. Patikrink savo el. paštą ir sek patvirtinimo nuorodą, kad patvirtintum savo naują el. pašto adresą. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
       updated: Tavo paskyra buvo sėkmingai atnaujinta.
     sessions:
       already_signed_out: Atsijungta sėkmingai.
@@ -107,7 +107,7 @@ lt:
       signed_out: Atjungta sėkmingai.
     unlocks:
       send_instructions: Po kelių minučių gausi el. laišką su instrukcijomis, kaip atrakinti paskyrą. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
-      send_paranoid_instructions: Jei paskyra egzistuoja, po kelių minučių gausi el. laišką su instrukcijomis, kaip ją atrakinti. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
+      send_paranoid_instructions: Jei tavo paskyra egzistuoja, po kelių minučių gausi el. laišką su instrukcijomis, kaip ją atrakinti. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
       unlocked: Tavo paskyra sėkmingai atrakinta. Norėdamas (-a) tęsti, prisijunk.
   errors:
     messages:

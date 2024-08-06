@@ -79,6 +79,16 @@ RSpec.describe LinkDetailsExtractor do
         },
       }.to_json
     end
+    let(:html) { <<~HTML }
+      <!doctype html>
+      <html>
+      <body>
+        <script type="application/ld+json">
+          #{ld_json}
+        </script>
+      </body>
+      </html>
+    HTML
 
     shared_examples 'structured data' do
       it 'extracts the expected values from structured data' do
@@ -118,6 +128,24 @@ RSpec.describe LinkDetailsExtractor do
         <body>
           <script type="application/ld+json">
             invalid LD+JSON
+          </script>
+          <script type="application/ld+json">
+            #{ld_json}
+          </script>
+        </body>
+        </html>
+      HTML
+
+      include_examples 'structured data'
+    end
+
+    context 'with the first tag is null' do
+      let(:html) { <<~HTML }
+        <!doctype html>
+        <html>
+        <body>
+          <script type="application/ld+json">
+            null
           </script>
           <script type="application/ld+json">
             #{ld_json}
@@ -191,6 +219,41 @@ RSpec.describe LinkDetailsExtractor do
       HTML
 
       include_examples 'structured data'
+    end
+
+    context 'with author names as array' do
+      let(:ld_json) do
+        {
+          '@context' => 'https://schema.org',
+          '@type' => 'NewsArticle',
+          'headline' => 'A lot of authors',
+          'description' => 'But we decided to cram them into one',
+          'author' => {
+            '@type' => 'Person',
+            'name' => ['Author 1', 'Author 2'],
+          },
+        }.to_json
+      end
+
+      it 'joins author names' do
+        expect(subject.author_name).to eq 'Author 1, Author 2'
+      end
+    end
+
+    context 'with named graph' do
+      let(:ld_json) do
+        {
+          '@context' => 'https://schema.org',
+          '@graph' => [
+            '@type' => 'NewsArticle',
+            'headline' => "What's in a name",
+          ],
+        }.to_json
+      end
+
+      it 'descends into @graph node' do
+        expect(subject.title).to eq "What's in a name"
+      end
     end
   end
 

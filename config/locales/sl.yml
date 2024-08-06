@@ -232,6 +232,7 @@ sl:
         update_custom_emoji: Posodobi emotikon po meri
         update_domain_block: Posodobi blokado domene
         update_ip_block: Posodobi pravilo IP
+        update_report: Posodobi poročilo
         update_status: Posodobi objavo
         update_user_role: Posodobi vlogo
       actions:
@@ -291,6 +292,7 @@ sl:
         update_custom_emoji_html: "%{name} je posodobil/a emotikone %{target}"
         update_domain_block_html: "%{name} je posodobil/a domenski blok za %{target}"
         update_ip_block_html: "%{name} je spremenil/a pravilo za IP %{target}"
+        update_report_html: "%{name} je posodobil poročilo %{target}"
         update_status_html: "%{name} je posodobil/a objavo uporabnika %{target}"
         update_user_role_html: "%{name} je spremenil/a vlogo %{target}"
       deleted_account: izbrisan račun
@@ -298,6 +300,7 @@ sl:
       filter_by_action: Filtriraj po dejanjih
       filter_by_user: Filtriraj po uporabnikih
       title: Dnevnik revizije
+      unavailable_instance: "(ime domene ni na voljo)"
     announcements:
       destroyed_msg: Obvestilo je bilo uspešno izbrisano!
       edit:
@@ -660,6 +663,7 @@ sl:
       report: 'Prijavi #%{id}'
       reported_account: Prijavljeni račun
       reported_by: Prijavil/a
+      reported_with_application: Prijavljeno s programom
       resolved: Razrešeni
       resolved_msg: Prijava je uspešno razrešena!
       skip_to_actions: Preskoči na dejanja
@@ -779,6 +783,7 @@ sl:
         desc_html: To se zanaša na zunanje skripte hCaptcha in lahko predstavlja tveganje za varnost in zasebnost. Poleg tega <strong>to lahko nekaterim ljudem (posebno invalidom) občutno oteži dostopnost registracijskega postopka</strong>. Zato svetujemo, da razmislite o drugih ukrepih, kot je na primer registracija na podlagi odobritve ali povabila.
         title: Od novih uporabnikov zahtevaj reševanje CAPTCHA za potrditev računov
       content_retention:
+        danger_zone: Območje nevarnosti
         preamble: Nazdor nad hrambo vsebine uporabnikov v Mastodonu.
         title: Hramba vsebin
       default_noindex:
@@ -983,7 +988,7 @@ sl:
       delete: Izbriši
       edit_preset: Uredi prednastavitev opozoril
       empty: Zaenkrat še niste določili nobenih opozorilnih prednastavitev.
-      title: Upravljaj prednastavitev opozoril
+      title: Pred-nastavitve opozoril
     webhooks:
       add_new: Dodaj končno točko
       delete: Izbriši

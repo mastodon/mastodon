@@ -116,6 +116,8 @@ ro:
       redownloaded_msg: S-a reîmprospătat cu succes profilul %{username} de la origine
       reject: Respinge
       rejected_msg: S-a respins cu succes cererea de înregistrare a utilizatorului %{username}
+      remote_suspension_irreversible: Datele acestui cont au fost șterse în mod ireversibil.
+      remote_suspension_reversible_hint_html: Contul a fost suspendat pe server-ul respectiv, iar datele vor fi șterse complet pe %{date}. Până atunci, server-ul remote poate restabili acest cont fără consecințe negative. Dacă dorești să elimini toate datele contului numaidecât, poți face acest lucru mai jos.
       remove_avatar: Elimină avatar
       remove_header: Elimină antet
       removed_avatar_msg: S-a îndepărtat cu succes poza de profil a utilizatorului %{username}
@@ -566,6 +568,7 @@ ro:
       blocking: Lista de blocare
       domain_blocking: Listă de blocare domenii
       following: Lista de urmărire
+      lists: Liste
       muting: Lista de ignorare
     upload: Încarcă
   invites:
@@ -622,6 +625,14 @@ ro:
       body: 'Postarea ta a fost impulsionată de %{name}:'
       subject: "%{name} ți-a impulsionat postarea"
       title: Impuls nou
+  number:
+    human:
+      decimal_units:
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
   polls:
     errors:
       expired: Sondajul s-a încheiat deja

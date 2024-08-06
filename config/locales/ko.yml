@@ -223,6 +223,7 @@ ko:
         update_custom_emoji: 커스텀 에모지 업데이트
         update_domain_block: 도메인 차단 갱신
         update_ip_block: IP 규칙 수정
+        update_report: 신고 업데이트
         update_status: 게시물 수정
         update_user_role: 역할 수정
       actions:
@@ -282,6 +283,7 @@ ko:
         update_custom_emoji_html: "%{name} 님이 에모지 %{target}를 업데이트 했습니다"
         update_domain_block_html: "%{name} 님이 %{target}에 대한 도메인 차단을 갱신했습니다"
         update_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 수정했습니다"
+        update_report_html: "%{name} 님이 신고 %{target}를 업데이트 했습니다"
         update_status_html: "%{name} 님이 %{target}의 게시물을 업데이트했습니다"
         update_user_role_html: "%{name} 님이 %{target} 역할을 수정했습니다"
       deleted_account: 계정을 삭제했습니다
@@ -289,6 +291,7 @@ ko:
       filter_by_action: 행동으로 거르기
       filter_by_user: 사용자로 거르기
       title: 감사 로그
+      unavailable_instance: "(도메인네임 사용불가)"
     announcements:
       destroyed_msg: 공지가 성공적으로 삭제되었습니다!
       edit:
@@ -462,6 +465,9 @@ ko:
       title: 팔로우 추천
       unsuppress: 팔로우 추천 복원
     instances:
+      audit_log:
+        title: 최근 감사 기록
+        view_all: 감사 기록 전체 보기
       availability:
         description_html:
           other: 도메인에 대한 전달이 성공 없이 <strong>%{count}</strong>일 실패한다면, 이후의 전달 시도는 해당 도메인<em>에서</em> 전달이 오기 전까지는 만들어지지 않습니다.
@@ -626,6 +632,7 @@ ko:
       report: '신고 #%{id}'
       reported_account: 신고 대상 계정
       reported_by: 신고자
+      reported_with_application: 신고에 사용된 앱
       resolved: 해결
       resolved_msg: 신고를 잘 해결했습니다!
       skip_to_actions: 작업으로 건너뛰기
@@ -739,6 +746,7 @@ ko:
         desc_html: 이것은 hCaptcha의 외부 스크립트에 의존합니다, 이것은 개인정보 보호에 위협을 가할 수도 있습니다. 추가적으로, <strong>이것은 몇몇 사람들(특히나 장애인들)에게 가입 절차의 접근성을 심각하게 떨어트릴 수 있습니다</strong>. 이러한 이유로, 대체제로 승인 전용이나 초대제를 통한 가입을 고려해보세요.
         title: 새로운 사용자가 계정 확인을 위해서는 CAPTCHA를 풀어야 하도록 합니다
       content_retention:
+        danger_zone: 위험한 영역
         preamble: 마스토돈에 저장된 사용자 콘텐츠를 어떻게 다룰지 제어합니다.
         title: 콘텐츠 보존기한
       default_noindex:
@@ -865,7 +873,23 @@ ko:
         action: 더 많은 정보를 보려면 여기를 확인하세요
         message_html: "<strong>오브젝트 스토리지가 잘못 설정되어 있습니다. 사용자의 개인정보가 위험한 상태입니다.</strong>"
     tags:
+      moderation:
+        not_trendable: 유행에 오를 수 없음
+        not_usable: 사용 불가
+        pending_review: 심사 대기
+        review_requested: 검토 요청
+        reviewed: 검토함
+        title: 게시물
+        trendable: 유행에 오를 수 있음
+        unreviewed: 검토되지 않음
+        usable: 사용 가능
+      name: 이름
+      newest: 최신
+      oldest: 오래된 순
+      reset: 초기화
       review: 심사 상태
+      search: 검색
+      title: 해시태그
       updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
     title: 관리
     trends:
@@ -934,7 +958,7 @@ ko:
       delete: 삭제
       edit_preset: 경고 프리셋 편집
       empty: 아직 어떤 경고 틀도 정의되지 않았습니다.
-      title: 경고 틀 관리
+      title: 경고 프리셋
     webhooks:
       add_new: 엔드포인트 추가
       delete: 삭제
@@ -979,7 +1003,7 @@ ko:
     new_report:
       body: "%{reporter} 님이 %{target}를 신고했습니다"
       body_remote: "%{domain}의 누군가가 %{target}을 신고했습니다"
-      subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
+      subject: "%{instance}의 새로운 신고(#%{id})"
     new_software_updates:
       body: 새 마스토돈 버전이 릴리스되었습니다. 업데이트 할 수 있습니다!
       subject: "%{instance}에 대해 새 마스토돈 버전이 사용 가능합니다!"
@@ -1118,7 +1142,7 @@ ko:
   date:
     formats:
       default: "%Y-%m-%d"
-      with_month_name: "%Y년 %f월 %e일"
+      with_month_name: "%Y년 %B %d일"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}시간"
@@ -1738,11 +1762,11 @@ ko:
     contrast: 마스토돈 (고대비)
     default: 마스토돈 (어두움)
     mastodon-light: 마스토돈 (밝음)
-    system: 자동 선택 (시스템 테마 이용)
+    system: 자동 (시스템 테마 사용)
   time:
     formats:
       default: "%Y-%m-%d %H:%M"
-      month: "%Y년 %f월"
+      month: "%Y년 %b"
       time: "%H:%M"
       with_time_zone: "%Y-%m-%d %H:%M %Z"
   translation:
@@ -1896,4 +1920,4 @@ ko:
     not_enabled: 아직 WebAuthn을 활성화 하지 않았습니다.
     not_supported: 이 브라우저는 보안 키를 지원하지 않습니다
     otp_required: 보안 키를 사용하기 위해서는 2단계 인증을 먼저 활성화 해 주세요
-    registered_on: "%{date} 에 등록됨"
+    registered_on: "%{date}에 등록됨"

@@ -281,7 +281,7 @@ RSpec.describe Form::Import do
         end
 
         it 'defaults to unconfirmed true' do
-          expect(bulk_import.unconfirmed?).to be true
+          expect(bulk_import.state_unconfirmed?).to be true
         end
       end
     end

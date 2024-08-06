@@ -2,6 +2,8 @@
 
 import WebSocketClient from '@gamestdio/websocket';
 
+import { getAccessToken } from './initial_state';
+
 /**
  * @type {WebSocketClient | undefined}
  */
@@ -145,8 +147,10 @@ const channelNameWithInlineParams = (channelName, params) => {
 // @ts-expect-error
 export const connectStream = (channelName, params, callbacks) => (dispatch, getState) => {
   const streamingAPIBaseURL = getState().getIn(['meta', 'streaming_api_base_url']);
-  const accessToken = getState().getIn(['meta', 'access_token']);
+  const accessToken = getAccessToken();
   const { onConnect, onReceive, onDisconnect } = callbacks(dispatch, getState);
+
+  if(!accessToken) throw new Error("Trying to connect to the streaming server but no access token is available.");
 
   // If we cannot use a websockets connection, we must fall back
   // to using individual connections for each channel

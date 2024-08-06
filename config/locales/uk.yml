@@ -232,6 +232,7 @@ uk:
         update_custom_emoji: Оновити користувацькі емодзі
         update_domain_block: Оновити блокування домену
         update_ip_block: Оновити правило IP
+        update_report: Оновити звіт
         update_status: Оновити допис
         update_user_role: Оновити роль
       actions:
@@ -291,6 +292,7 @@ uk:
         update_custom_emoji_html: "%{name} оновлює емодзі %{target}"
         update_domain_block_html: "%{name} оновлює блокування домену для %{target}"
         update_ip_block_html: "%{name} змінює правило для IP %{target}"
+        update_report_html: "%{name} оновлює звіт %{target}"
         update_status_html: "%{name} оновлює допис %{target}"
         update_user_role_html: "%{name} змінює роль %{target}"
       deleted_account: видалений обліковий запис
@@ -298,6 +300,7 @@ uk:
       filter_by_action: Фільтрувати за дією
       filter_by_user: Фільтрувати за користувачем
       title: Журнал подій
+      unavailable_instance: "(ім'я домену недоступне)"
     announcements:
       destroyed_msg: Оголошення успішно видалено!
       edit:
@@ -484,6 +487,9 @@ uk:
       title: Поради щодо підписок
       unsuppress: Відновити поради щодо підписок
     instances:
+      audit_log:
+        title: Останні журнали перевірки
+        view_all: Переглянути повні журнали перевірки
       availability:
         description_html:
           few: Якщо доставлення до домену не вдалася за <strong>%{count} інших дні</strong>, жодних спроб доставлення не здійснюється, доки доставлення <em>від домену</em> не отримуватиметься.
@@ -660,6 +666,7 @@ uk:
       report: 'Скарга #%{id}'
       reported_account: Обліковий запис порушника
       reported_by: Відправник скарги
+      reported_with_application: Повідомлено через застосунок
       resolved: Вирішено
       resolved_msg: Скаргу успішно вирішено!
       skip_to_actions: Перейти до дій
@@ -671,7 +678,7 @@ uk:
           delete_html: 'Ви збираєтеся <strong>вилучити</strong> деякі з дописів <strong>@%{acct}</strong>. Це буде:'
           mark_as_sensitive_html: 'Ви збираєтеся <strong>позначити</strong> деякі з дописів <strong>@%{acct}</strong> <strong>делікатними</strong>. Це буде:'
           silence_html: 'Ви збираєтеся <strong>обмежити</strong> обліковий запис <strong>@%{acct}</strong>. Це буде:'
-          suspend_html: 'Ви збираєтесь <strong>призупинити</strong> обліковий запис <strong>@%%{acct}</strong>. Це буде:'
+          suspend_html: 'Ви збираєтесь <strong>призупинити</strong> обліковий запис <strong>@%{acct}</strong>. Це буде:'
         actions:
           delete_html: Вилучити образливі дописи
           mark_as_sensitive_html: Позначити медіа образливих дописів делікатними
@@ -779,6 +786,7 @@ uk:
         desc_html: Це залежить від зовнішніх скриптів hCaptcha, що може становити загрозу безпеці та приватності. Крім того, <strong>це може зробити процес реєстрації значно менш доступним для деяких людей (особливо з обмеженими можливостями)</strong>. З цих причин, будь ласка, розгляньте альтернативні заходи, такі як реєстрація на основі схвалення або на основі запрошення.
         title: Вимагати нових користувачів розв'язувати CAPTCHA для підтвердження облікового запису
       content_retention:
+        danger_zone: Зони небезпеки
         preamble: Контролюйте, як зберігаються користувацькі матеріали в Mastodon.
         title: Зберігання вмісту
       default_noindex:
@@ -983,7 +991,7 @@ uk:
       delete: Видалити
       edit_preset: Редагувати шаблон попередження
       empty: Ви ще не визначили жодних попереджень.
-      title: Керування шаблонами попереджень
+      title: Попереджувальні пресети
     webhooks:
       add_new: Додати кінцеву точку
       delete: Видалити
