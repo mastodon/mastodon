@@ -101,9 +101,17 @@ class LinkDetailsExtractor
     end
 
     def json
-      @json ||= root_array(Oj.load(@data))
-                .map { |node| JSON::LD::API.compact(node, 'https://schema.org') }
-                .find { |node| SUPPORTED_TYPES.include?(node['type']) } || {}
+      @json ||= begin
+        nodes = root_array(Oj.load(@data)).map do |node|
+          begin
+            JSON::LD::API.compact(node, 'https://schema.org')
+          rescue JSON::LD::JsonLdError
+            node['type'] = node['@type']
+            node
+          end
+        end
+        nodes.find { |node| SUPPORTED_TYPES.include?(node['type']) } || {}
+      end
     end
   end
 
