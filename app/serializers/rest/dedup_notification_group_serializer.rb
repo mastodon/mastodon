@@ -1,34 +1,14 @@
 # frozen_string_literal: true
 
 class REST::DedupNotificationGroupSerializer < ActiveModel::Serializer
-  class PartialAccountSerializer < ActiveModel::Serializer
-    include RoutingHelper
+  class PartialAccountSerializer < REST::AccountSerializer
+    # This is a hack to reset ActiveModel::Serializer internals and only expose the attributes
+    # we care about.
+    self._attributes_data = {}
+    self._reflections = []
+    self._links = []
 
     attributes :id, :acct, :locked, :bot, :url, :avatar, :avatar_static
-
-    def id
-      object.id.to_s
-    end
-
-    def acct
-      object.pretty_acct
-    end
-
-    def note
-      object.unavailable? ? '' : account_bio_format(object)
-    end
-
-    def url
-      ActivityPub::TagManager.instance.url_for(object)
-    end
-
-    def avatar
-      full_asset_url(object.unavailable? ? object.avatar.default_url : object.avatar_original_url)
-    end
-
-    def avatar_static
-      full_asset_url(object.unavailable? ? object.avatar.default_url : object.avatar_static_url)
-    end
   end
 
   has_many :accounts, serializer: REST::AccountSerializer

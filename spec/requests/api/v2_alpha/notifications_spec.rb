@@ -169,11 +169,12 @@ RSpec.describe 'Notifications' do
         FavouriteService.new.call(recent_account, user.account.statuses.first)
       end
 
-      it 'returns an account in "partial_accounts"', :aggregate_failures do
+      it 'returns an account in "partial_accounts", with the expected keys', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
         expect(body_as_json[:partial_accounts].size).to be > 0
+        expect(body_as_json[:partial_accounts][0].keys).to contain_exactly(:acct, :avatar, :avatar_static, :bot, :id, :locked, :url)
         expect(body_as_json[:partial_accounts].pluck(:id)).to_not include(recent_account.id.to_s)
         expect(body_as_json[:accounts].pluck(:id)).to include(recent_account.id.to_s)
       end
