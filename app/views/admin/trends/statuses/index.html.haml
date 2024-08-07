@@ -12,10 +12,11 @@
   .filters
     .filter-subset.filter-subset--with-select
       %strong= t('admin.follow_recommendations.language')
-      .input.select.optional
+      .input.select.select--languages.optional
         = form.select :locale,
                       options_for_select(@locales.map { |key| [standard_locale_name(key), key] }, params[:locale]),
-                      include_blank: true
+                      { include_blank: true },
+                      { disabled: @locales.empty? }
     .filter-subset
       %strong= t('admin.trends.trending')
       %ul
