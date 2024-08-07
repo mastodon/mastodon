@@ -29,7 +29,7 @@ class Api::V1::Notifications::RequestsController < Api::BaseController
   end
 
   def dismiss
-    @request.destroy!
+    DismissNotificationRequestService.new.call(@request)
     render_empty
   end
 
