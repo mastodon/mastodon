@@ -9,7 +9,7 @@ RSpec.describe NotificationPolicy do
     let(:sender) { Fabricate(:account) }
 
     before do
-      Fabricate.times(2, :notification, account: subject.account, activity: Fabricate(:status, account: sender), filtered: true)
+      Fabricate.times(2, :notification, account: subject.account, activity: Fabricate(:status, account: sender), filtered: true, type: :mention)
       Fabricate(:notification_request, account: subject.account, from_account: sender)
       subject.summarize!
     end
