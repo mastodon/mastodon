@@ -83,6 +83,7 @@ gl:
         access_denied: O propietario do recurso ou o servidor autorizado denegaron a petición.
         credential_flow_not_configured: O fluxo do Contrasinal de Credenciais do Dono do Recurso fallou debido a que Doorkeeper.configure.resource_owner_from_credentials non están configuradas.
         invalid_client: A autenticación do cliente fallou por ser un cliente descoñecido, non se incluíu autenticación do cliente, ou o método de autenticación non está soportado.
+        invalid_code_challenge_method: O método de desafío para o código debe ser S256, texto claro non ten soporte.
         invalid_grant: A validación da autorización proporcionada non é valida, caducou, foi rexeitada, non coincide a redirección URI utilizada na petición de autorización, ou foi proporcionada para outro cliente.
         invalid_redirect_uri: A uri de redirección incluída non é válida.
         invalid_request:

@@ -80,8 +80,8 @@ fi:
       joined: Liittynyt
       location:
         all: Kaikki
-        local: Paikalliset
-        remote: Etätilit
+        local: Paikallinen
+        remote: Etäinen
         title: Sijainti
       login_status: Sisäänkirjautumisen tila
       media_attachments: Medialiitteet
@@ -89,12 +89,12 @@ fi:
       memorialized: Muutettu muistosivuksi
       memorialized_msg: Käyttäjän %{username} tili muutettiin muistosivuksi onnistuneesti
       moderation:
-        active: Aktiiviset
+        active: Aktiivinen
         all: Kaikki
-        disabled: Eivät käytössä
-        pending: Odottavat
-        silenced: Rajoitetut
-        suspended: Jäädytetyt
+        disabled: Ei käytössä
+        pending: Odottava
+        silenced: Rajoitettu
+        suspended: Jäädytetty
         title: Moderointi
       moderation_notes: Moderointimuistiinpanot
       most_recent_activity: Viimeisin toiminta
@@ -341,7 +341,7 @@ fi:
       shortcode: Lyhennekoodi
       shortcode_hint: Vähintään 2 merkkiä, vain kirjaimia, numeroita ja alaviivoja
       title: Mukautetut emojit
-      uncategorized: Luokittelemattomat
+      uncategorized: Luokittelematon
       unlist: Poista listalta
       unlisted: Ei listalla
       update_failed_msg: Emojin päivitys epäonnistui
@@ -467,7 +467,7 @@ fi:
       language: Kielelle
       status: Tila
       suppress: Hylkää seurantasuositus
-      suppressed: Hylätyt
+      suppressed: Hylätty
       title: Seurantasuositukset
       unsuppress: Palauta seurantasuositus
     instances:
@@ -514,10 +514,10 @@ fi:
       delivery:
         all: Kaikki
         clear: Tyhjennä toimitusvirheet
-        failing: Epäonnistuneet
+        failing: Epäonnistuva
         restart: Käynnistä toimitus uudelleen
         stop: Lopeta toimitus
-        unavailable: Eivät saatavilla
+        unavailable: Ei saatavilla
       delivery_available: Toimitus on saatavilla
       delivery_error_days: Toimitusvirheen päivät
       delivery_error_hint: Jos toimitus ei ole mahdollista %{count} päivään, se merkitään automaattisesti toimituskelvottomaksi.
@@ -528,7 +528,7 @@ fi:
         other: "%{count} tunnettua tiliä"
       moderation:
         all: Kaikki
-        limited: Rajoitetut
+        limited: Rajoitettu
         title: Moderointi
       private_comment: Yksityinen kommentti
       public_comment: Julkinen kommentti
@@ -547,7 +547,7 @@ fi:
       filter:
         all: Kaikki
         available: Saatavilla
-        expired: Vanhentuneet
+        expired: Vanhentunut
         title: Suodatus
       title: Kutsut
     ip_blocks:
@@ -643,7 +643,7 @@ fi:
       reported_account: Raportoitu tili
       reported_by: Raportoinut
       reported_with_application: Raportoitu sovelluksella
-      resolved: Ratkaistut
+      resolved: Ratkaistu
       resolved_msg: Raportin ratkaisu onnistui!
       skip_to_actions: Siirry toimiin
       status: Tila
@@ -671,7 +671,7 @@ fi:
       title: Raportit
       unassign: Poista käsittelystä
       unknown_action_msg: 'Tuntematon toimi: %{action}'
-      unresolved: Ratkaisemattomat
+      unresolved: Ratkaisematon
       updated_at: Päivitetty
       view_profile: Näytä profiili
     roles:
@@ -906,7 +906,7 @@ fi:
     title: Ylläpito
     trends:
       allow: Salli
-      approved: Hyväksytyt
+      approved: Hyväksytty
       disallow: Kiellä
       links:
         allow: Salli linkki
@@ -923,14 +923,14 @@ fi:
         title: Suositut linkit
         usage_comparison: Jaettu tänään %{today} kertaa verrattuna eilisen %{yesterday} kertaan
       not_allowed_to_trend: Ei saa trendata
-      only_allowed: Vain sallitut
+      only_allowed: Vain sallittu
       pending_review: Odottaa tarkastusta
       preview_card_providers:
         allowed: Tämän julkaisijan lähettämät linkit voivat trendata
         description_html: Näistä verkkotunnuksista lähetettyjä linkkejä jaetaan usein palvelimellasi. Linkit eivät trendaa julkisesti, ellei linkin verkkotunnusta ole hyväksytty. Hyväksyntäsi (tai hylkäyksesi) ulottuu aliverkkotunnuksiin.
         rejected: Tämän julkaisijan lähettämät linkit eivät voi trendata
         title: Julkaisijat
-      rejected: Hylätyt
+      rejected: Hylätty
       statuses:
         allow: Salli julkaisu
         allow_account: Salli tekijä
@@ -1591,8 +1591,8 @@ fi:
     followers: Seuraajat
     following: Seuratut
     invited: Kutsutut
-    last_active: Viimeksi aktiiviset
-    most_recent: Viimeisimmät
+    last_active: Viimeksi aktiivinen
+    most_recent: Tuorein
     moved: Muuttaneet
     mutual: Seuraatte toisianne
     primary: Ensisijaiset
