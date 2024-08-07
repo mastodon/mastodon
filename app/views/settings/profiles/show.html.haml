@@ -43,7 +43,7 @@
         = image_tag @account.avatar.url, class: 'fields-group__thumbnail', id: 'account_avatar-preview'
         - if @account.avatar.present?
           = link_to settings_profile_picture_path('avatar'), data: { method: :delete }, class: 'link-button link-button--destructive' do
-            = fa_icon 'trash fw'
+            = material_symbol 'delete'
             = t('generic.delete')
 
   .fields-row
@@ -59,7 +59,7 @@
         = image_tag @account.header.url, class: 'fields-group__thumbnail', id: 'account_header-preview'
         - if @account.header.present?
           = link_to settings_profile_picture_path('header'), data: { method: :delete }, class: 'link-button link-button--destructive' do
-            = fa_icon 'trash fw'
+            = material_symbol 'delete'
             = t('generic.delete')
 
   %h4= t('edit_profile.other')
