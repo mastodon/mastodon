@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
