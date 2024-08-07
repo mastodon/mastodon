@@ -37,10 +37,32 @@ RSpec.describe Admin::InstancesController do
   end
 
   describe 'GET #show' do
+    before do
+      allow(Admin::ActionLogFilter).to receive(:new).and_call_original
+    end
+
     it 'shows an instance page' do
       get :show, params: { id: account_popular_main.domain }
 
       expect(response).to have_http_status(200)
+
+      instance = assigns(:instance)
+      expect(instance).to_not be_new_record
+
+      expect(Admin::ActionLogFilter).to have_received(:new).with(target_domain: account_popular_main.domain)
+
+      action_logs = assigns(:action_logs).to_a
+      expect(action_logs.size).to eq 0
+    end
+
+    context 'with an unknown domain' do
+      it 'returns http success' do
+        get :show, params: { id: 'unknown.example' }
+        expect(response).to have_http_status(200)
+
+        instance = assigns(:instance)
+        expect(instance).to be_new_record
+      end
     end
   end
 

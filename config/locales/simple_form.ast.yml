@@ -6,7 +6,7 @@ ast:
         note: 'Pues @mentar a otros perfiles o poner #etiquetes.'
         unlocked: Los perfiles van ser a siguite ensin solicitar la to aprobación. Desmarca esta opción si quies revisar les solicitúes de siguimientu y escoyer si aceptales o refugales.
       admin_account_action:
-        text_html: Opcional. Pues usar la sintaxis de los artículos ya amestar <a href="%{path}">alvertencies preconfiguraes</a> p'aforrar tiempu
+        text_html: Opcional. Pues usar la sintaxis de los artículos y amestar <a href="%{path}">alvertencies preconfiguraes</a> p'aforrar tiempu
         type_html: Escueyi qué facer con <strong>%{acct}</strong>
         types:
           none: Usa esta opción pa unviar una alvertencia al perfil, ensin aicionar nenguna otra aición.
@@ -18,14 +18,14 @@ ast:
         text: Pues usar la sintaxis de los artículos. Ten en cuenta l'espaciu que l'anunciu va ocupar na pantalla del usuariu/a
       defaults:
         autofollow: Les persones que se rexistren pente la invitación van siguite automáticamente
-        bot: Avisa a otres persones de qu'esta cuenta fai principalmente aiciones automatizaes ya de que ye posible que nun tean supervisaes
-        digest: Namás s'unvia dempués d'un periodu llongu d'inactividá ya namás si recibiesti dalgún mensaxe personal demientres la to ausencia
+        bot: Avisa a otres persones de qu'esta cuenta fai principalmente aiciones automatizaes y de que ye posible que nun tean supervisaes
+        digest: Namás s'unvia dempués d'un periodu llongu d'inactividá y namás si recibiesti dalgún mensaxe personal demientres la to ausencia
         irreversible: Los artículos peñeraos desapaecen de forma irreversible, magar que la peñera se quite dempués
-        locale: La llingua de la interfaz, los mensaxes per corréu electrónicu ya los avisos push
+        locale: La llingua de la interfaz, los mensaxes per corréu electrónicu y los avisos push
         password: Usa polo menos 8 caráuteres
-        setting_aggregate_reblogs: Nun amuesa los artículos compartíos nuevos que xá se compartieren de recién (namás afeuta a los artículos compartíos d'agora)
+        setting_aggregate_reblogs: Nun amuesa los artículos compartíos nuevos que yá se compartieren de recién (namás afeuta a los artículos compartíos d'agora)
         setting_always_send_emails: Los avisos nun se suelen unviar per corréu electrónicu si uses activamente Mastodon
-        setting_default_sensitive: El conteníu multimedia sensible anúbrese por defeutu ya pue amosase al calcar nelli
+        setting_default_sensitive: El conteníu multimedia sensible anúbrese por defeutu y pue amosase al calcar nelli
         setting_display_media_default: Anubrilu cuando se marque como sensible
         setting_display_media_hide_all: Anubrilu siempres
         setting_display_media_show_all: Amosalu siempres
@@ -37,10 +37,10 @@ ast:
         custom_css: Pues aplicar estilos personalizaos a la versión web de Mastodon.
         mascot: Anula la ilustración na interfaz web avanzada.
         require_invite_text: Cuando los rexistros riquen una aprobación manual, el campu «¿Por qué quies xunite?» vuélvese obligatoriu
-        site_extended_description: Cualesquier tipu d'información adicional que pueda ser útil pa visitantes ya pa perfiles rexistraos. El testu pue estructurase cola sintaxis de Mastodon.
+        site_extended_description: Cualesquier tipu d'información adicional que pueda ser útil pa visitantes y pa perfiles rexistraos. El testu pue estructurase cola sintaxis de Mastodon.
         site_short_description: Un descripción curtia qu'ayuda a identificar de forma única al sirvidor. ¿Quién lu lleva?, ¿pa quién ye?
-        theme: L'estilu que los visitantes ya los perfiles nuevos usen.
-        trends: Les tendencies amuesen artículos, etiquetes ya noticies que tean ganando popularidá nesti sirvidor.
+        theme: L'estilu que los visitantes y los perfiles nuevos usen.
+        trends: Les tendencies amuesen artículos, etiquetes y noticies que tean ganando popularidá nesti sirvidor.
       form_challenge:
         current_password: Tas entrando a una área segura
       imports:
@@ -49,7 +49,7 @@ ast:
         text: Esto va ayudanos a revisar la to solicitú
       ip_block:
         comment: Opcional. Un recordatoriu de por qué amestesti esta norma.
-        expires_in: Les direiciones IP son un recursu finitu, suelen compartise ya cambiar de manes. Por esti motivu, nun s'aconseyen los bloqueos indefiníos de direiciones IP.
+        expires_in: Les direiciones IP son un recursu finitu, suelen compartise y cambiar de manes. Por esti motivu, nun s'aconseyen los bloqueos indefiníos de direiciones IP.
         severities:
           no_access: Bloquia l'accesu a tolos recursos
           sign_up_block: Fai que nun se puedan rexistrar cuentes nueves
@@ -58,11 +58,12 @@ ast:
         chosen_languages: Namás los artículos de les llingües que marques son los que van apaecer nes llinies de tiempu públiques
     labels:
       account:
-        discoverable: Destacar el perfil ya los artículos nos algoritmos de descubrimientu
+        discoverable: Destacar el perfil y los artículos nos algoritmos de descubrimientu
         fields:
           name: Etiqueta
           value: Conteníu
         indexable: Incluyir los artículos públicos nos resultaos de busca
+        show_collections: Amosar los perfiles a los que sigues y los que te siguen
       account_warning_preset:
         title: Títulu
       admin_account_action:
@@ -109,10 +110,11 @@ ast:
         setting_default_privacy: Privacidá de los artículos
         setting_default_sensitive: Marcar siempres tol conteníu como sensible
         setting_delete_modal: Amosar el diálogu de confirmación enantes de desaniciar un artículu
+        setting_disable_hover_cards: Desactivar la previsualización de perfiles al pasar el mur penriba
         setting_disable_swiping: Desactivar el movimientu de desplazamientu
         setting_display_media: Conteníu multimedia
         setting_expand_spoilers: Espander siempres los artículos marcaos con alvertencies de conteníu
-        setting_hide_network: Anubrir les cuentes que sigas ya te sigan
+        setting_hide_network: Anubrir les cuentes que sigas y te sigan
         setting_reduce_motion: Amenorgar el movimientu de les animaciones
         setting_system_font_ui: Usar la fonte predeterminada del sistema
         setting_theme: Estilu del sitiu
@@ -173,11 +175,11 @@ ast:
         text: Norma
       settings:
         indexable: Incluyir la páxina del perfil nos motores de busca
+        show_application: Amosar l'aplicación dende la que s'unvien los artículos
       tag:
-        listable: Permitir qu'esta etiqueta apaeza nes busques ya nes suxerencies
+        listable: Permitir qu'esta etiqueta apaeza nes busques y nes suxerencies
         name: Etiqueta
         trendable: Permitir qu'esta etiqueta apaeza nes tendencies
-        usable: Permitir que los artículos usen esta etiqueta
       user:
         role: Rol
         time_zone: Fusu horariu

@@ -7,7 +7,15 @@ export function Compose () {
 }
 
 export function Notifications () {
-  return import(/* webpackChunkName: "features/notifications" */'../../notifications');
+  return import(/* webpackChunkName: "features/notifications_v1" */'../../notifications');
+}
+
+export function Notifications_v2 () {
+  return import(/* webpackChunkName: "features/notifications_v2" */'../../notifications_v2');
+}
+
+export function NotificationsWrapper () {
+  return import(/* webpackChunkName: "features/notifications" */'../../notifications_wrapper');
 }
 
 export function HomeTimeline () {
@@ -200,4 +208,8 @@ export function NotificationRequests () {
 
 export function NotificationRequest () {
   return import(/*webpackChunkName: "features/notifications/request" */'../../notifications/request');
+}
+
+export function LinkTimeline () {
+  return import(/*webpackChunkName: "features/link_timeline" */'../../link_timeline');
 }

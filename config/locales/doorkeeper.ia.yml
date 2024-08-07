@@ -61,7 +61,7 @@ ia:
         title: Un error ha occurrite
       new:
         prompt_html: "%{client_name} vole haber le permission de acceder a tu conto. Illo es un application tertie. <strong>Si tu non confide in illo, alora tu non deberea autorisar lo.</strong>"
-        review_permissions: Revisionar le permissos
+        review_permissions: Revider permissiones
         title: Autorisation necessari
       show:
         title: Copia iste codice de autorisation e colla lo in le application.
@@ -135,6 +135,7 @@ ia:
         media: Annexos multimedial
         mutes: Silentiates
         notifications: Notificationes
+        profile: Tu profilo de Mastodon
         push: Notificationes push
         reports: Reportos
         search: Cercar
@@ -148,34 +149,34 @@ ia:
         title: Autorisation OAuth necessari
     scopes:
       admin:read: leger tote le datos in le servitor
-      admin:read:accounts: leger information sensibile de tote le contos
-      admin:read:canonical_email_blocks: leger datos sensibile de tote le blocadas de email canonic
+      admin:read:accounts: leger informationes sensibile de tote le contos
+      admin:read:canonical_email_blocks: leger informationes sensibile de tote le blocadas de e-mail canonic
       admin:read:domain_allows: leger informationes sensibile de tote le dominios permittite
       admin:read:domain_blocks: leger informationes sensibile de tote le blocadas de dominio
-      admin:read:email_domain_blocks: leger informationes sensibile de tote le blocadas de dominio email
-      admin:read:ip_blocks: leger informationes sensibile de tote le blocadas de IP
-      admin:read:reports: leger information sensibile de tote le reportos e contos signalate
+      admin:read:email_domain_blocks: leger informationes sensibile de tote le blocadas de dominio de e-mail
+      admin:read:ip_blocks: leger informationes sensibile de tote le blocadas de adresses IP
+      admin:read:reports: leger informationes sensibile de tote le reportos e contos reportate
       admin:write: modificar tote le datos in le servitor
-      admin:write:accounts: exequer action de moderation sur contos
-      admin:write:canonical_email_blocks: exequer actiones de moderation sur blocadas de email canonic
+      admin:write:accounts: exequer actiones de moderation sur contos
+      admin:write:canonical_email_blocks: exequer actiones de moderation sur blocadas de e-mail canonic
       admin:write:domain_allows: exequer actiones de moderation sur dominios permittite
       admin:write:domain_blocks: exequer actiones de moderation sur blocadas de dominio
-      admin:write:email_domain_blocks: exequer actiones de moderation sur blocadas de dominio email
-      admin:write:ip_blocks: exequer actiones de moderation sur blocadas de IP
-      admin:write:reports: exequer action de moderation sur reportos
-      crypto: usar cryptation de extremo-a-extremo
-      follow: modificar relationes del contos
+      admin:write:email_domain_blocks: exequer actiones de moderation sur blocadas de dominio de e-mail
+      admin:write:ip_blocks: exequer actiones de moderation sur blocadas de adresses IP
+      admin:write:reports: exequer actiones de moderation sur reportos
+      crypto: usar cryptation de puncta a puncta
+      follow: modificar relationes inter contos
+      profile: leger solmente le information de profilo de tu conto
       push: reciper tu notificationes push
       read: leger tote le datos de tu conto
-      read:accounts: vider informationes de conto
+      read:accounts: vider informationes de contos
       read:blocks: vider tu blocadas
       read:bookmarks: vider tu marcapaginas
-      read:favourites: vider tu favoritos
+      read:favourites: vider tu favorites
       read:filters: vider tu filtros
-      read:follows: vider tu sequites
+      read:follows: vider qui tu seque
       read:lists: vider tu listas
-      read:me: leger solmente le information basic de tu conto
-      read:mutes: vider tu silentiates
+      read:mutes: vider qui tu silentia
       read:notifications: vider tu notificationes
       read:reports: vider tu reportos
       read:search: cercar in tu nomine
@@ -189,8 +190,8 @@ ia:
       write:filters: crear filtros
       write:follows: sequer personas
       write:lists: crear listas
-      write:media: incargar files de medios
+      write:media: incargar files multimedial
       write:mutes: silentiar personas e conversationes
       write:notifications: rader tu notificationes
-      write:reports: signalar altere personas
+      write:reports: reportar altere personas
       write:statuses: publicar messages

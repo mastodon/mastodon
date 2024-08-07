@@ -5,6 +5,14 @@ class Admin::ActionLogFilter
     action_type
     account_id
     target_account_id
+    target_domain
+  ).freeze
+
+  INSTANCE_TARGET_TYPES = %w(
+    DomainBlock
+    DomainAllow
+    Instance
+    UnavailableDomain
   ).freeze
 
   ACTION_TYPE_MAP = {
@@ -95,6 +103,9 @@ class Admin::ActionLogFilter
     when 'target_account_id'
       account = Account.find_or_initialize_by(id: value)
       latest_action_logs.where(target: [account, account.user].compact)
+    when 'target_domain'
+      normalized_domain = TagManager.instance.normalize_domain(value)
+      latest_action_logs.where(human_identifier: normalized_domain, target_type: INSTANCE_TARGET_TYPES)
     else
       raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end

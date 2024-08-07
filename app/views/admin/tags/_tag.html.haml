@@ -1,0 +1,27 @@
+.batch-table__row{ class: [!tag.requires_review? && !tag.usable? && 'batch-table__row--muted'] }
+  .batch-table__row__content.batch-table__row__content--padded.pending-account
+    .pending-account__header
+      %strong
+        = link_to tag.formatted_name, admin_tag_path(tag.id)
+
+      %br/
+
+      - if tag.usable?
+        = t('admin.tags.moderation.usable')
+      - else
+        = t('admin.tags.moderation.not_usable')
+
+      ·
+      - if tag.trendable?
+        = t('admin.tags.moderation.trendable')
+      - else
+        = t('admin.tags.moderation.not_trendable')
+
+      - if tag.requested_review? || tag.requires_review?
+        ·
+        - if tag.requested_review?
+          %span.negative-hint
+            = t('admin.tags.moderation.review_requested')
+        - else
+          %span.warning-hint
+            = t('admin.tags.moderation.pending_review')

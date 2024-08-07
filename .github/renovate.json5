@@ -2,6 +2,7 @@
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
     'config:recommended',
+    'customManagers:dockerfileVersions',
     ':labels(dependencies)',
     ':prConcurrentLimitNone', // Remove limit for open PRs at any time.
     ':prHourlyLimit2', // Rate limit PR creation to a maximum of two per hour.
@@ -59,7 +60,7 @@
       dependencyDashboardApproval: true,
     },
     {
-      // Update Github Actions and Docker images weekly
+      // Update GitHub Actions and Docker images weekly
       matchManagers: ['github-actions', 'dockerfile', 'docker-compose'],
       extends: ['schedule:weekly'],
     },

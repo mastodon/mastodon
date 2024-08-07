@@ -1,9 +1,11 @@
 name: Crowdin / Upload translations
 
 on:
+  merge_group:
   push:
     branches:
-      - main
+      - 'main'
+      - 'stable-*'
     paths:
       - crowdin.yml
       - app/javascript/mastodon/locales/en.json
@@ -17,6 +19,7 @@ on:
 jobs:
   upload-translations:
     runs-on: ubuntu-latest
+    if: github.repository == 'mastodon/mastodon'
 
     steps:
       - name: Checkout

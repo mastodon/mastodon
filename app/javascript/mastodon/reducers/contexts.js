@@ -1,11 +1,13 @@
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
+import { timelineDelete } from 'mastodon/actions/timelines_typed';
+
 import {
   blockAccountSuccess,
   muteAccountSuccess,
 } from '../actions/accounts';
 import { CONTEXT_FETCH_SUCCESS } from '../actions/statuses';
-import { TIMELINE_DELETE, TIMELINE_UPDATE } from '../actions/timelines';
+import { TIMELINE_UPDATE } from '../actions/timelines';
 import { compareId } from '../compare_id';
 
 const initialState = ImmutableMap({
@@ -97,8 +99,8 @@ export default function replies(state = initialState, action) {
     return filterContexts(state, action.payload.relationship, action.payload.statuses);
   case CONTEXT_FETCH_SUCCESS:
     return normalizeContext(state, action.id, action.ancestors, action.descendants);
-  case TIMELINE_DELETE:
-    return deleteFromContexts(state, [action.id]);
+  case timelineDelete.type:
+    return deleteFromContexts(state, [action.payload.statusId]);
   case TIMELINE_UPDATE:
     return updateContext(state, action.status);
   default:

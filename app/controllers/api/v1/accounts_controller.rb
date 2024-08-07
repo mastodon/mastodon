@@ -106,11 +106,11 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def account_ids
-    Array(accounts_params[:ids]).uniq.map(&:to_i)
+    Array(accounts_params[:id]).uniq.map(&:to_i)
   end
 
   def accounts_params
-    params.permit(ids: [])
+    params.permit(id: [])
   end
 
   def account_params

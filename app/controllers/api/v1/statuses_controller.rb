@@ -141,11 +141,11 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def status_ids
-    Array(statuses_params[:ids]).uniq.map(&:to_i)
+    Array(statuses_params[:id]).uniq.map(&:to_i)
   end
 
   def statuses_params
-    params.permit(ids: [])
+    params.permit(id: [])
   end
 
   def status_params
@@ -187,9 +187,5 @@ class Api::V1::StatusesController < Api::BaseController
 
   def serialized_accounts(accounts)
     ActiveModel::Serializer::CollectionSerializer.new(accounts, serializer: REST::AccountSerializer)
-  end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
   end
 end

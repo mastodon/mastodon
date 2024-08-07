@@ -4,9 +4,7 @@ require 'rails_helper'
 
 RSpec.describe NotificationRequest do
   describe '#reconsider_existence!' do
-    subject { Fabricate(:notification_request, dismissed: dismissed) }
-
-    let(:dismissed) { false }
+    subject { Fabricate(:notification_request) }
 
     context 'when there are remaining notifications' do
       before do
@@ -26,14 +24,6 @@ RSpec.describe NotificationRequest do
     context 'when there are no notifications' do
       before do
         subject.reconsider_existence!
-      end
-
-      context 'when dismissed' do
-        let(:dismissed) { true }
-
-        it 'leaves request intact' do
-          expect(subject.destroyed?).to be false
-        end
       end
 
       it 'removes the request' do

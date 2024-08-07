@@ -89,6 +89,7 @@ id:
       moderation:
         active: Aktif
         all: Semua
+        disabled: Nonaktif
         pending: Tertunda
         silenced: Terbatas
         suspended: Disuspen
@@ -121,6 +122,8 @@ id:
       removed_header_msg: Berhasil menghapus gambar header %{username}
       resend_confirmation:
         already_confirmed: Pengguna ini sudah dikonfirmasi
+        send: Kirim ulang email konfirmasi
+        success: Email konfirmasi berhasil dikirim!
       reset: Atur ulang
       reset_password: Reset kata sandi
       resubscribe: Langganan ulang
@@ -128,6 +131,7 @@ id:
       search: Cari
       search_same_email_domain: Pengguna lain dengan domain email yang sama
       search_same_ip: Pengguna lain dengan IP yang sama
+      security: Keamanan
       security_measures:
         only_password: Hanya kata sandi
         password_and_2fa: Kata sandi dan 2FA
@@ -278,6 +282,7 @@ id:
         update_custom_emoji_html: "%{name} memperbarui emoji %{target}"
         update_domain_block_html: "%{name} memperbarui blokir domain untuk %{target}"
         update_ip_block_html: "%{name} mengubah peraturan untuk IP %{target}"
+        update_report_html: "%{name} memperbarui laporan %{target}"
         update_status_html: "%{name} memperbarui status %{target}"
         update_user_role_html: "%{name} mengubah peran %{target}"
       deleted_account: akun yang dihapus
@@ -302,6 +307,7 @@ id:
       unpublish: Batal terbitkan
       unpublished_msg: Pengumuman berhasil ditarik!
       updated_msg: Pengumuman berhasil diperbarui!
+    critical_update_pending: Pembaruan penting tertunda
     custom_emojis:
       assign_category: Beri kategori
       by_domain: Domain

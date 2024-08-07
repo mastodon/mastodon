@@ -83,6 +83,7 @@ vi:
         access_denied: Chủ sở hữu tài nguyên hoặc máy chủ đã từ chối yêu cầu.
         credential_flow_not_configured: Resource Owner Password Credentials không thành công do Doorkeeper.configure.resource_owner_from_credentials không được định cấu hình.
         invalid_client: Xác minh ứng dụng khách không thành công do máy khách mơ hồ, không bao gồm xác thực ứng dụng khách hoặc phương thức xác thực không được hỗ trợ.
+        invalid_code_challenge_method: Phương pháp thử thách mã phải là S256, phương pháp plain không được hỗ trợ.
         invalid_grant: Yêu cầu không hợp lệ, hết hạn, bị gỡ hoặc không khớp với tài khoản đã cấp phép. Hoặc xung đột với ứng dụng khác.
         invalid_redirect_uri: URL chuyển hướng không hợp lệ.
         invalid_request:
@@ -135,6 +136,7 @@ vi:
         media: Tập tin đính kèm
         mutes: Đã ẩn
         notifications: Thông báo
+        profile: Hồ sơ Mastodon của bạn
         push: Thông báo đẩy
         reports: Báo cáo
         search: Tìm kiếm
@@ -165,6 +167,7 @@ vi:
       admin:write:reports: áp đặt kiểm duyệt với các báo cáo
       crypto: dùng mã hóa đầu cuối
       follow: sửa đổi các mối quan hệ tài khoản
+      profile: chỉ đọc thông tin tài khoản cơ bản
       push: nhận thông báo đẩy
       read: đọc mọi dữ liệu tài khoản
       read:accounts: xem thông tin tài khoản
@@ -174,7 +177,6 @@ vi:
       read:filters: xem bộ lọc
       read:follows: xem những người theo dõi
       read:lists: xem danh sách
-      read:me: chỉ đọc thông tin cơ bản tài khoản
       read:mutes: xem những người đã ẩn
       read:notifications: xem thông báo
       read:reports: xem báo cáo của bạn

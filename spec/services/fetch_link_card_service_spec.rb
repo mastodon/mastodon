@@ -26,6 +26,13 @@ RSpec.describe FetchLinkCardService do
     stub_request(:get, 'http://example.com/sjis_with_wrong_charset').to_return(request_fixture('sjis_with_wrong_charset.txt'))
     stub_request(:get, 'http://example.com/koi8-r').to_return(request_fixture('koi8-r.txt'))
     stub_request(:get, 'http://example.com/windows-1251').to_return(request_fixture('windows-1251.txt'))
+    stub_request(:get, 'http://example.com/low_confidence_latin1').to_return(request_fixture('low_confidence_latin1.txt'))
+    stub_request(:get, 'http://example.com/latin1_posing_as_utf8_broken').to_return(request_fixture('latin1_posing_as_utf8_broken.txt'))
+    stub_request(:get, 'http://example.com/latin1_posing_as_utf8_recoverable').to_return(request_fixture('latin1_posing_as_utf8_recoverable.txt'))
+    stub_request(:get, 'http://example.com/aergerliche-umlaute').to_return(request_fixture('redirect_with_utf8_url.txt'))
+    stub_request(:get, 'http://example.com/page_without_title').to_return(request_fixture('page_without_title.txt'))
+    stub_request(:get, 'http://example.com/long_canonical_url').to_return(request_fixture('long_canonical_url.txt'))
+    stub_request(:get, 'http://example.com/alternative_utf8_spelling_in_header').to_return(request_fixture('alternative_utf8_spelling_in_header.txt'))
 
     Rails.cache.write('oembed_endpoint:example.com', oembed_cache) if oembed_cache
 
@@ -100,6 +107,22 @@ RSpec.describe FetchLinkCardService do
       end
     end
 
+    context 'with a redirect URL with faulty encoding' do
+      let(:status) { Fabricate(:status, text: 'http://example.com/aergerliche-umlaute') }
+
+      it 'does not create a preview card' do
+        expect(status.preview_card).to be_nil
+      end
+    end
+
+    context 'with a page that has no title' do
+      let(:status) { Fabricate(:status, text: 'http://example.com/page_without_title') }
+
+      it 'does not create a preview card' do
+        expect(status.preview_card).to be_nil
+      end
+    end
+
     context 'with a 404 URL' do
       let(:status) { Fabricate(:status, text: 'http://example.com/not-found') }
 
@@ -145,6 +168,34 @@ RSpec.describe FetchLinkCardService do
 
       it 'decodes the HTML' do
         expect(status.preview_card.title).to eq('сэмпл текст')
+      end
+    end
+
+    context 'with a URL of a page in ISO-8859-1 encoding, that charlock_holmes cannot detect' do
+      context 'when encoding in http header is correct' do
+        let(:status) { Fabricate(:status, text: 'Check out http://example.com/low_confidence_latin1') }
+
+        it 'decodes the HTML' do
+          expect(status.preview_card.title).to eq("Tofu á l'orange")
+        end
+      end
+
+      context 'when encoding in http header is incorrect' do
+        context 'when encoding problems appear in unrelated tags' do
+          let(:status) { Fabricate(:status, text: 'Check out http://example.com/latin1_posing_as_utf8_recoverable') }
+
+          it 'decodes the HTML' do
+            expect(status.preview_card.title).to eq('Tofu with orange sauce')
+          end
+        end
+
+        context 'when encoding problems appear in title tag' do
+          let(:status) { Fabricate(:status, text: 'Check out http://example.com/latin1_posing_as_utf8_broken') }
+
+          it 'does not create a preview card' do
+            expect(status.preview_card).to be_nil
+          end
+        end
       end
     end
 
@@ -232,6 +283,22 @@ RSpec.describe FetchLinkCardService do
         it 'uses the original URL' do
           expect(status.preview_card&.url).to eq 'http://example.com/redirect-to-404'
         end
+      end
+    end
+
+    context 'with a URL of a page that includes a canonical URL too long for PostgreSQL unique indexes' do
+      let(:status) { Fabricate(:status, text: 'test http://example.com/long_canonical_url') }
+
+      it 'does not create a preview card' do
+        expect(status.preview_card).to be_nil
+      end
+    end
+
+    context 'with a URL where the `Content-Type` header uses `utf8` instead of `utf-8`' do
+      let(:status) { Fabricate(:status, text: 'test http://example.com/alternative_utf8_spelling_in_header') }
+
+      it 'does not create a preview card' do
+        expect(status.preview_card.title).to eq 'Webserver Configs R Us'
       end
     end
   end

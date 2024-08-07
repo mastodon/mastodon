@@ -2,6 +2,12 @@
 ro:
   simple_form:
     hints:
+      account:
+        discoverable: Este posibil ca postările și profilul tău să fie recomandate în diferite zone ale Mastodon, iar profilul tău ar poate fi sugerat altor utilizatori.
+        fields: Pagina ta principală, pronumele tale, vârsta, sau orice îți dorești.
+        indexable: Postările tale publice pot apărea în rezultatele căutărilor pe Mastodon. Persoanele care au interacționat cu postările tale vor putea să le caute oricând.
+        note: 'Poți @menționa alte persoane sau #hashtag-uri.'
+        unlocked: Alte persoane vă vor putea urmări fără a solicita aprobare. Debifați dacă doriți să revizuiți cererile și să alegeți dacă doriți să acceptați sau să respingeți noii urmăritori.
       account_alias:
         acct: Specificați numele de utilizator@domeniu al contului de la care doriți să treceți
       account_migration:
@@ -23,12 +29,14 @@ ro:
         text: Poți folosi sintaxa de postare. Te rugăm să fii atent la spațiul pe care anunțul îl va ocupa pe ecranul utilizatorului
       defaults:
         autofollow: Persoanele care se înregistrează datorită invitației tale te vor urmări automat
+        avatar: WEBP, PNG, GIF sau JPG. Cel mult %{size}. Va fi redimensionată la %{dimensions}px
         bot: Acest cont performează în cea mai mare parte acțiuni automate și nu poate fi monitorizat
         context: Contextele în care filtrul trebuie aplicat
         current_password: În scopuri de securitate, vă rugăm să introduceţi parola contului curent
         current_username: Pentru a confirma, vă rugăm să introduceţi numele de utilizator al contului curent
         digest: Este trimis doar după o lungă perioadă de inactivitate și numai dacă primești mesaje personale în perioada de absență
         email: Vei primi un e-mail de confirmare
+        header: WEBP, PNG, GIF sau JPG. Cel mult %{size}. Va fi redimensionată la %{dimensions}px
         inbox_url: Copiază adresa URL de pe prima pagină a reului pe care vrei să îl utilizezi
         irreversible: Postările sortate vor dispărea ireversibil, chiar dacă filtrul este ulterior șters
         locale: Limba interfaței de utilizator, e-mailurile si notificările push
@@ -36,17 +44,27 @@ ro:
         phrase: Vor fi potrivite indiferent de textul din casetă sau advertismentul unei postări
         scopes: La care API-uri aplicația are nevoie de acces. Dacă selectezi un scop principal nu mai e nevoie să selectezi fiecare sub-scop al acestuia.
         setting_aggregate_reblogs: Nu afișa impulsurile noi pentru postările care au fost deja recent impulsionate (afectează doar noile impulsuri primite)
+        setting_always_send_emails: În mod normal, notificările prin e-mail nu vor fi trimise când utilizați în mod activ Mastodon
         setting_default_sensitive: Fișierele media sensibile sunt ascunse implicit și pot fi dezvăluite cu un clic
         setting_display_media_default: Ascunde conținutul media marcat ca sensibil (NSFW)
         setting_display_media_hide_all: Întotdeauna ascunde tot conținutul media
         setting_display_media_show_all: Întotdeauna afișează conținutul media marcat ca sensibil
         setting_use_blurhash: Gradienții sunt bazați pe culorile vizualelor ascunse, dar ofuscă orice detalii
         setting_use_pending_items: Ascunde actualizările cronologice din spatele unui click în loc de a derula automat fluxul
+        username: Poți folosi litere, numere sau liniuțe de subliniere
         whole_word: Când fraza sau cuvântul este doar alfanumeric, acesta se aplică doar dacă există o potrivire completă
       domain_allow:
         domain: Acest domeniu va putea prelua date de pe acest server și datele primite de la el vor fi procesate și stocate
       email_domain_block:
+        domain: Acesta poate fi numele de domeniu care apare în adresa de e-mail sau în înregistrarea MX pe care o utilizează. Acestea vor fi verificate la înscriere.
         with_dns_records: Se va face o încercare de a rezolva înregistrările DNS ale domeniului dat și rezultatele vor fi de asemenea afișate pe lista neagră
+      featured_tag:
+        name: 'Iată câteva dintre hashtag-urile pe care le-ai folosit cel mai recent:'
+      filters:
+        action: Alege ce acţiune va fi efectuată atunci când o postare corespunde filtrului
+        actions:
+          hide: Ascunde complet conținutul filtrat, ca și cum nu ar exista
+          warn: Ascunde conținutul filtrat în spatele unui avertisment care menționează titlul filtrului
       form_challenge:
         current_password: Ați intrat într-o zonă securizată
       imports:
@@ -159,7 +177,6 @@ ro:
       tag:
         listable: Permite acestui hashtag să apară în căutări și în directorul de profil
         trendable: Permite acestui hashtag să apară sub tendințe
-        usable: Permite postărilor să folosească acest hashtag
     'no': Nu
     recommended: Recomandat
     required:
