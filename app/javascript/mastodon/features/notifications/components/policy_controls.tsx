@@ -7,6 +7,9 @@ import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { CheckboxWithLabel } from './checkbox_with_label';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const noop = () => {};
+
 export const PolicyControls: React.FC = () => {
   const dispatch = useAppDispatch();
 
@@ -132,6 +135,21 @@ export const PolicyControls: React.FC = () => {
             <FormattedMessage
               id='notifications.policy.filter_private_mentions_hint'
               defaultMessage="Filtered unless it's in reply to your own mention or if you follow the sender"
+            />
+          </span>
+        </CheckboxWithLabel>
+
+        <CheckboxWithLabel checked disabled onChange={noop}>
+          <strong>
+            <FormattedMessage
+              id='notifications.policy.filter_limited_accounts_title'
+              defaultMessage='Moderated accounts'
+            />
+          </strong>
+          <span className='hint'>
+            <FormattedMessage
+              id='notifications.policy.filter_limited_accounts_hint'
+              defaultMessage='Limited by server moderators'
             />
           </span>
         </CheckboxWithLabel>
