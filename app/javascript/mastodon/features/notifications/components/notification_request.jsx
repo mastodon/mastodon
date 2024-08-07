@@ -37,7 +37,7 @@ export const NotificationRequest = ({ id, accountId, notificationsCount }) => {
 
   return (
     <div className='notification-request'>
-      <Link to={`/notifications/requests/${id}`} className='notification-request__link'>
+      <Link to={`/notifications/requests/${id}`} className='notification-request__link' data-hover-card-account={account?.get('id')}>
         <Avatar account={account} size={40} counter={toCappedNumber(notificationsCount)} />
 
         <div className='notification-request__name'>
