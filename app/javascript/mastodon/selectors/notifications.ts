@@ -27,6 +27,22 @@ export const selectUnreadNotificationGroupsCount = createSelector(
   },
 );
 
+// Whether there is any unread notification according to the user-facing state
+export const selectAnyPendingNotification = createSelector(
+  [
+    (s: RootState) => s.notificationGroups.readMarkerId,
+    (s: RootState) => s.notificationGroups.groups,
+  ],
+  (notificationMarker, groups) => {
+    return groups.some(
+      (group) =>
+        group.type !== 'gap' &&
+        group.page_max_id &&
+        compareId(group.page_max_id, notificationMarker) > 0,
+    );
+  },
+);
+
 export const selectPendingNotificationGroupsCount = createSelector(
   [(s: RootState) => s.notificationGroups.pendingGroups],
   (pendingGroups) =>
