@@ -6320,7 +6320,7 @@ a.status-card {
 
   .status__content,
   .status__content p {
-    color: $inverted-text-color;
+    color: $primary-text-color;
   }
 
   .status__content__spoiler-link {
@@ -6365,7 +6365,7 @@ a.status-card {
   .poll__option.dialog-option {
     padding: 15px 0;
     flex: 0 0 auto;
-    border-bottom: 1px solid $ui-secondary-color;
+    border-bottom: 1px solid var(--background-border-color);
 
     &:last-child {
       border-bottom: 0;
@@ -6373,13 +6373,13 @@ a.status-card {
 
     & > .poll__option__text {
       font-size: 13px;
-      color: lighten($inverted-text-color, 16%);
+      color: $secondary-text-color;
 
       strong {
         font-size: 17px;
         font-weight: 500;
         line-height: 22px;
-        color: $inverted-text-color;
+        color: $primary-text-color;
         display: block;
         margin-bottom: 4px;
 
