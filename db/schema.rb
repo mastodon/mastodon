@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_24_181224) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_08_114841) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -698,6 +698,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_24_181224) do
     t.boolean "filter_private_mentions", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "for_not_following", default: 0, null: false
+    t.integer "for_not_followers", default: 0, null: false
+    t.integer "for_new_accounts", default: 0, null: false
+    t.integer "for_private_mentions", default: 1, null: false
+    t.integer "for_limited_accounts", default: 1, null: false
     t.index ["account_id"], name: "index_notification_policies_on_account_id", unique: true
   end
 
