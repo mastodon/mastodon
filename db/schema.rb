@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_08_124339) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_08_125420) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -692,10 +692,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_08_124339) do
 
   create_table "notification_policies", force: :cascade do |t|
     t.bigint "account_id", null: false
-    t.boolean "filter_not_following", default: false, null: false
-    t.boolean "filter_not_followers", default: false, null: false
-    t.boolean "filter_new_accounts", default: false, null: false
-    t.boolean "filter_private_mentions", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "for_not_following", default: 0, null: false
