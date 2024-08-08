@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,6 +15,7 @@ import { initMuteModal } from 'mastodon/actions/mutes';
 import { acceptNotificationRequest, dismissNotificationRequest } from 'mastodon/actions/notifications';
 import { initReport } from 'mastodon/actions/reports';
 import { Avatar } from 'mastodon/components/avatar';
+import { CheckBox } from 'mastodon/components/check_box';
 import { IconButton } from 'mastodon/components/icon_button';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { makeGetAccount } from 'mastodon/selectors';
@@ -30,7 +32,7 @@ const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
 });
 
-export const NotificationRequest = ({ id, accountId, notificationsCount }) => {
+export const NotificationRequest = ({ id, accountId, notificationsCount, checked, showCheckbox, toggleCheck }) => {
   const dispatch = useDispatch();
   const account = useSelector(state => getAccount(state, accountId));
   const intl = useIntl();
@@ -63,8 +65,15 @@ export const NotificationRequest = ({ id, accountId, notificationsCount }) => {
     { text: intl.formatMessage(messages.report, { name: account.username }), action: handleReport, dangerous: true },
   ];
 
+  const handleCheck = useCallback(() => {
+    toggleCheck(id);
+  }, [toggleCheck, id]);
+
   return (
-    <div className='notification-request'>
+    <div className={classNames('notification-request', showCheckbox && 'notification-request--forced-checkbox')}>
+      <div className='notification-request__checkbox'>
+        <CheckBox checked={checked} onChange={handleCheck} />
+      </div>
       <Link to={`/notifications/requests/${id}`} className='notification-request__link'>
         <Avatar account={account} size={40} counter={toCappedNumber(notificationsCount)} />
 
@@ -95,4 +104,7 @@ NotificationRequest.propTypes = {
   id: PropTypes.string.isRequired,
   accountId: PropTypes.string.isRequired,
   notificationsCount: PropTypes.string.isRequired,
+  checked: PropTypes.bool,
+  showCheckbox: PropTypes.bool,
+  toggleCheck: PropTypes.func,
 };
