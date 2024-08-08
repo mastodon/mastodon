@@ -10218,13 +10218,18 @@ noscript {
 }
 
 .notification-request {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 15px;
+  $padding: 15px;
+  $actions-gap: 8px;
+
+  position: relative;
   border-bottom: 1px solid var(--background-border-color);
 
+  &:hover {
+    background: lighten($ui-base-color, 1%);
+  }
+
   &__link {
+    padding: $padding;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -10232,6 +10237,11 @@ noscript {
     text-decoration: none;
     color: inherit;
     overflow: hidden;
+
+    $actions-count: 2;
+
+    padding-right: $padding * 2 + $actions-gap * ($actions-count - 1) + 24px *
+      $actions-count + 15px;
 
     .account__avatar {
       flex-shrink: 0;
@@ -10271,9 +10281,13 @@ noscript {
   }
 
   &__actions {
+    position: absolute;
+    right: $padding;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: $actions-gap;
 
     .icon-button {
       border-radius: 4px;
