@@ -877,6 +877,13 @@ body > [data-popper-placement] {
   text-overflow: ellipsis;
   white-space: nowrap;
 
+  &[disabled] {
+    cursor: default;
+    color: $highlight-text-color;
+    border-color: $highlight-text-color;
+    opacity: 0.5;
+  }
+
   .icon {
     width: 15px;
     height: 15px;
