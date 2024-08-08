@@ -2945,6 +2945,7 @@ __metadata:
     stacktrace-js: "npm:^2.0.2"
     stringz: "npm:^2.1.0"
     stylelint: "npm:^16.0.2"
+    stylelint-config-prettier-scss: "npm:^1.0.0"
     stylelint-config-standard-scss: "npm:^13.0.0"
     substring-trie: "npm:^1.0.2"
     terser-webpack-plugin: "npm:^4.2.3"
@@ -16592,6 +16593,18 @@ __metadata:
   peerDependencies:
     postcss: ^8.4.31
   checksum: 10c0/552299e869ac430e1076c025ace6c80bdfd5b672632435625eb1bd45ff5611aad7f3ee810e72edc04dc0fc3761e08dec40d27b72c50b95690eea2de43238b8d8
+  languageName: node
+  linkType: hard
+
+"stylelint-config-prettier-scss@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "stylelint-config-prettier-scss@npm:1.0.0"
+  peerDependencies:
+    stylelint: ">=15.0.0"
+  bin:
+    stylelint-config-prettier-scss: bin/check.js
+    stylelint-config-prettier-scss-check: bin/check.js
+  checksum: 10c0/4d5e1d1c200d4611b5b7bd2d2528cc9e301f26645802a2774aec192c4c2949cbf5a0147eba8b2e6e4ff14a071b03024f3034bb1b4fda37a8ed5a0081a9597d4d
   languageName: node
   linkType: hard
 
