@@ -1,49 +1,31 @@
 import type { PropsWithChildren } from 'react';
 import { useCallback, useState, useRef } from 'react';
 
-import { useIntl, defineMessages } from 'react-intl';
-
 import classNames from 'classnames';
 
 import type { Placement, State as PopperState } from '@popperjs/core';
 import Overlay from 'react-overlays/Overlay';
 
 import ArrowDropDownIcon from '@/material-icons/400-24px/arrow_drop_down.svg?react';
+import type { SelectItem } from 'mastodon/components/dropdown_selector';
 import { DropdownSelector } from 'mastodon/components/dropdown_selector';
 import { Icon } from 'mastodon/components/icon';
 
-const messages = defineMessages({
-  accept: { id: 'notifications.policy.accept', defaultMessage: 'Accept' },
-  accept_hint: {
-    id: 'notifications.policy.accept_hint',
-    defaultMessage: 'Show in notifications',
-  },
-  filter: { id: 'notifications.policy.filter', defaultMessage: 'Filter' },
-  filter_hint: {
-    id: 'notifications.policy.filter_hint',
-    defaultMessage: 'Send to filtered notifications inbox',
-  },
-  drop: { id: 'notifications.policy.drop', defaultMessage: 'Ignore' },
-  drop_hint: {
-    id: 'notifications.policy.drop_hint',
-    defaultMessage: 'Send to the void, never to be seen again',
-  },
-});
-
 interface DropdownProps {
   value: string;
+  options: SelectItem[];
   disabled?: boolean;
   onChange: (value: string) => void;
   placement?: Placement;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
-  disabled,
   value,
+  options,
+  disabled,
   onChange,
   placement: initialPlacement = 'bottom-end',
 }) => {
-  const intl = useIntl();
   const activeElementRef = useRef<Element | null>(null);
   const containerRef = useRef(null);
   const [isOpen, setOpen] = useState<boolean>(false);
@@ -94,25 +76,7 @@ const Dropdown: React.FC<DropdownProps> = ({
     [setPlacement],
   );
 
-  const items = [
-    {
-      value: 'accept',
-      text: intl.formatMessage(messages.accept),
-      meta: intl.formatMessage(messages.accept_hint),
-    },
-    {
-      value: 'filter',
-      text: intl.formatMessage(messages.filter),
-      meta: intl.formatMessage(messages.filter_hint),
-    },
-    {
-      value: 'drop',
-      text: intl.formatMessage(messages.drop),
-      meta: intl.formatMessage(messages.drop_hint),
-    },
-  ];
-
-  const valueOption = items.find((item) => item.value === value);
+  const valueOption = options.find((item) => item.value === value);
 
   return (
     <div ref={containerRef}>
@@ -142,7 +106,7 @@ const Dropdown: React.FC<DropdownProps> = ({
               className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}
             >
               <DropdownSelector
-                items={items}
+                items={options}
                 value={value}
                 onClose={handleClose}
                 onChange={onChange}
@@ -158,12 +122,14 @@ const Dropdown: React.FC<DropdownProps> = ({
 
 interface Props {
   value: string;
+  options: SelectItem[];
   disabled?: boolean;
   onChange: (value: string) => void;
 }
 
 export const SelectWithLabel: React.FC<PropsWithChildren<Props>> = ({
   value,
+  options,
   disabled,
   children,
   onChange,
@@ -174,7 +140,12 @@ export const SelectWithLabel: React.FC<PropsWithChildren<Props>> = ({
 
       <div className='app-form__toggle__toggle'>
         <div>
-          <Dropdown value={value} onChange={onChange} disabled={disabled} />
+          <Dropdown
+            value={value}
+            onChange={onChange}
+            disabled={disabled}
+            options={options}
+          />
         </div>
       </div>
     </label>

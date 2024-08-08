@@ -1,63 +1,105 @@
 import { useCallback } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
+import { openModal } from 'mastodon/actions/modal';
 import { updateNotificationsPolicy } from 'mastodon/actions/notification_policies';
+import type { AppDispatch } from 'mastodon/store';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { SelectWithLabel } from './select_with_label';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const noop = () => {};
+const messages = defineMessages({
+  accept: { id: 'notifications.policy.accept', defaultMessage: 'Accept' },
+  accept_hint: {
+    id: 'notifications.policy.accept_hint',
+    defaultMessage: 'Show in notifications',
+  },
+  filter: { id: 'notifications.policy.filter', defaultMessage: 'Filter' },
+  filter_hint: {
+    id: 'notifications.policy.filter_hint',
+    defaultMessage: 'Send to filtered notifications inbox',
+  },
+  drop: { id: 'notifications.policy.drop', defaultMessage: 'Ignore' },
+  drop_hint: {
+    id: 'notifications.policy.drop_hint',
+    defaultMessage: 'Send to the void, never to be seen again',
+  },
+});
+
+// TODO: change the following when we change the API
+const changeFilter = (
+  dispatch: AppDispatch,
+  filterType: string,
+  value: string,
+) => {
+  if (value === 'drop') {
+    dispatch(
+      openModal({
+        modalType: 'IGNORE_NOTIFICATIONS',
+        modalProps: { filterType },
+      }),
+    );
+  } else {
+    void dispatch(
+      updateNotificationsPolicy({ [filterType]: value !== 'accept' }),
+    );
+  }
+};
 
 export const PolicyControls: React.FC = () => {
+  const intl = useIntl();
   const dispatch = useAppDispatch();
 
   const notificationPolicy = useAppSelector(
     (state) => state.notificationPolicy,
   );
 
+  // TODO: change the following when we change the API
   const handleFilterNotFollowing = useCallback(
-    (value: string) => {
-      void dispatch(
-        updateNotificationsPolicy({
-          filter_not_following: value !== 'accept',
-        }),
-      );
-    },
+    (value: string) => changeFilter(dispatch, 'filter_not_following', value),
     [dispatch],
   );
 
   const handleFilterNotFollowers = useCallback(
-    (value: string) => {
-      void dispatch(
-        updateNotificationsPolicy({ filter_not_followers: value !== 'accept' }),
-      );
-    },
+    (value: string) => changeFilter(dispatch, 'filter_not_followers', value),
     [dispatch],
   );
 
   const handleFilterNewAccounts = useCallback(
-    (value: string) => {
-      void dispatch(
-        updateNotificationsPolicy({ filter_new_accounts: value !== 'accept' }),
-      );
-    },
+    (value: string) => changeFilter(dispatch, 'filter_new_accounts', value),
     [dispatch],
   );
 
   const handleFilterPrivateMentions = useCallback(
-    (value: string) => {
-      void dispatch(
-        updateNotificationsPolicy({
-          filter_private_mentions: value !== 'accept',
-        }),
-      );
-    },
+    (value: string) => changeFilter(dispatch, 'filter_private_mentions', value),
+    [dispatch],
+  );
+
+  const handleFilterLimitedAccounts = useCallback(
+    (value: string) => changeFilter(dispatch, 'filter_limited_accounts', value),
     [dispatch],
   );
 
   if (!notificationPolicy) return null;
+
+  const options = [
+    {
+      value: 'accept',
+      text: intl.formatMessage(messages.accept),
+      meta: intl.formatMessage(messages.accept_hint),
+    },
+    {
+      value: 'filter',
+      text: intl.formatMessage(messages.filter),
+      meta: intl.formatMessage(messages.filter_hint),
+    },
+    {
+      value: 'drop',
+      text: intl.formatMessage(messages.drop),
+      meta: intl.formatMessage(messages.drop_hint),
+    },
+  ];
 
   return (
     <section>
@@ -72,6 +114,7 @@ export const PolicyControls: React.FC = () => {
         <SelectWithLabel
           value={notificationPolicy.filter_not_following ? 'filter' : 'accept'}
           onChange={handleFilterNotFollowing}
+          options={options}
         >
           <strong>
             <FormattedMessage
@@ -90,6 +133,7 @@ export const PolicyControls: React.FC = () => {
         <SelectWithLabel
           value={notificationPolicy.filter_not_followers ? 'filter' : 'accept'}
           onChange={handleFilterNotFollowers}
+          options={options}
         >
           <strong>
             <FormattedMessage
@@ -109,6 +153,7 @@ export const PolicyControls: React.FC = () => {
         <SelectWithLabel
           value={notificationPolicy.filter_new_accounts ? 'filter' : 'accept'}
           onChange={handleFilterNewAccounts}
+          options={options}
         >
           <strong>
             <FormattedMessage
@@ -130,6 +175,7 @@ export const PolicyControls: React.FC = () => {
             notificationPolicy.filter_private_mentions ? 'filter' : 'accept'
           }
           onChange={handleFilterPrivateMentions}
+          options={options}
         >
           <strong>
             <FormattedMessage
@@ -145,7 +191,12 @@ export const PolicyControls: React.FC = () => {
           </span>
         </SelectWithLabel>
 
-        <SelectWithLabel value='filter' disabled onChange={noop}>
+        <SelectWithLabel
+          value='filter'
+          disabled
+          onChange={handleFilterLimitedAccounts}
+          options={options}
+        >
           <strong>
             <FormattedMessage
               id='notifications.policy.filter_limited_accounts_title'
