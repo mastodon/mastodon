@@ -474,8 +474,11 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
             state.lastReadId,
             action.payload.markers.notifications.last_read_id,
           ) < 0
-        )
+        ) {
           state.lastReadId = action.payload.markers.notifications.last_read_id;
+          state.readMarkerId =
+            action.payload.markers.notifications.last_read_id;
+        }
       })
       .addCase(mountNotifications, (state) => {
         state.mounted += 1;
