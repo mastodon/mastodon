@@ -93,10 +93,15 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
   let explainer = null;
 
   if (account?.limited) {
+    const isLocal = account.acct.indexOf('@') === -1;
     explainer = (
       <div className='dismissable-banner'>
         <div className='dismissable-banner__message'>
-          <FormattedMessage id='notification_requests.explainer_for_limited_account' defaultMessage='Notifications from this account have been filtered because the account has been limited by a moderator.' />
+          {isLocal ? (
+            <FormattedMessage id='notification_requests.explainer_for_limited_account' defaultMessage='Notifications from this account have been filtered because the account has been limited by a moderator.' />
+          ) : (
+            <FormattedMessage id='notification_requests.explainer_for_limited_remote_account' defaultMessage='Notifications from this account have been filtered because the account or its server has been limited by a moderator.' />
+          )}
         </div>
       </div>
     );
