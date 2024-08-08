@@ -3881,18 +3881,17 @@ $ui-header-logo-wordmark-width: 99px;
   display: block;
   box-sizing: border-box;
   margin: 0;
-  color: $inverted-text-color;
-  background: $white;
+  color: $primary-text-color;
+  background: $ui-base-color;
   padding: 7px 10px;
   font-family: inherit;
   font-size: 14px;
   line-height: 22px;
   border-radius: 4px;
-  border: 1px solid $white;
+  border: 1px solid var(--background-border-color);
 
   &:focus {
     outline: 0;
-    border-color: lighten($ui-highlight-color, 12%);
   }
 
   &__wrapper {
