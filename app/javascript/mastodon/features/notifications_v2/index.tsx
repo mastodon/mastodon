@@ -4,8 +4,6 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
-import { createSelector } from '@reduxjs/toolkit';
-
 import { useDebouncedCallback } from 'use-debounce';
 
 import DoneAllIcon from '@/material-icons/400-24px/done_all.svg?react';
@@ -27,16 +25,13 @@ import {
   selectUnreadNotificationGroupsCount,
   selectPendingNotificationGroupsCount,
   selectAnyPendingNotification,
+  selectNotificationGroups,
 } from 'mastodon/selectors/notifications';
 import {
   selectNeedsNotificationPermission,
-  selectSettingsNotificationsExcludedTypes,
-  selectSettingsNotificationsQuickFilterActive,
-  selectSettingsNotificationsQuickFilterShow,
   selectSettingsNotificationsShowUnread,
 } from 'mastodon/selectors/settings';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
-import type { RootState } from 'mastodon/store';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { submitMarkers } from '../../actions/markers';
@@ -62,34 +57,12 @@ const messages = defineMessages({
   },
 });
 
-const getNotifications = createSelector(
-  [
-    selectSettingsNotificationsQuickFilterShow,
-    selectSettingsNotificationsQuickFilterActive,
-    selectSettingsNotificationsExcludedTypes,
-    (state: RootState) => state.notificationGroups.groups,
-  ],
-  (showFilterBar, allowedType, excludedTypes, notifications) => {
-    if (!showFilterBar || allowedType === 'all') {
-      // used if user changed the notification settings after loading the notifications from the server
-      // otherwise a list of notifications will come pre-filtered from the backend
-      // we need to turn it off for FilterBar in order not to block ourselves from seeing a specific category
-      return notifications.filter(
-        (item) => item.type === 'gap' || !excludedTypes.includes(item.type),
-      );
-    }
-    return notifications.filter(
-      (item) => item.type === 'gap' || allowedType === item.type,
-    );
-  },
-);
-
 export const Notifications: React.FC<{
   columnId?: string;
   multiColumn?: boolean;
 }> = ({ columnId, multiColumn }) => {
   const intl = useIntl();
-  const notifications = useAppSelector(getNotifications);
+  const notifications = useAppSelector(selectNotificationGroups);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector((s) => s.notificationGroups.isLoading);
   const hasMore = notifications.at(-1)?.type === 'gap';

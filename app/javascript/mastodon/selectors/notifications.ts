@@ -1,15 +1,62 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 import { compareId } from 'mastodon/compare_id';
+import type { NotificationGroup } from 'mastodon/models/notification_group';
+import type { NotificationGap } from 'mastodon/reducers/notification_groups';
 import type { RootState } from 'mastodon/store';
+
+import {
+  selectSettingsNotificationsExcludedTypes,
+  selectSettingsNotificationsQuickFilterActive,
+  selectSettingsNotificationsQuickFilterShow,
+} from './settings';
+
+const filterNotificationsByAllowedTypes = (
+  showFilterBar: boolean,
+  allowedType: string,
+  excludedTypes: string[],
+  notifications: (NotificationGroup | NotificationGap)[],
+) => {
+  if (!showFilterBar || allowedType === 'all') {
+    // used if user changed the notification settings after loading the notifications from the server
+    // otherwise a list of notifications will come pre-filtered from the backend
+    // we need to turn it off for FilterBar in order not to block ourselves from seeing a specific category
+    return notifications.filter(
+      (item) => item.type === 'gap' || !excludedTypes.includes(item.type),
+    );
+  }
+  return notifications.filter(
+    (item) => item.type === 'gap' || allowedType === item.type,
+  );
+};
+
+export const selectNotificationGroups = createSelector(
+  [
+    selectSettingsNotificationsQuickFilterShow,
+    selectSettingsNotificationsQuickFilterActive,
+    selectSettingsNotificationsExcludedTypes,
+    (state: RootState) => state.notificationGroups.groups,
+  ],
+  filterNotificationsByAllowedTypes,
+);
+
+const selectPendingNotificationGroups = createSelector(
+  [
+    selectSettingsNotificationsQuickFilterShow,
+    selectSettingsNotificationsQuickFilterActive,
+    selectSettingsNotificationsExcludedTypes,
+    (state: RootState) => state.notificationGroups.pendingGroups,
+  ],
+  filterNotificationsByAllowedTypes,
+);
 
 export const selectUnreadNotificationGroupsCount = createSelector(
   [
     (s: RootState) => s.notificationGroups.lastReadId,
-    (s: RootState) => s.notificationGroups.pendingGroups,
-    (s: RootState) => s.notificationGroups.groups,
+    selectNotificationGroups,
+    selectPendingNotificationGroups,
   ],
-  (notificationMarker, pendingGroups, groups) => {
+  (notificationMarker, groups, pendingGroups) => {
     return (
       groups.filter(
         (group) =>
@@ -31,7 +78,7 @@ export const selectUnreadNotificationGroupsCount = createSelector(
 export const selectAnyPendingNotification = createSelector(
   [
     (s: RootState) => s.notificationGroups.readMarkerId,
-    (s: RootState) => s.notificationGroups.groups,
+    selectNotificationGroups,
   ],
   (notificationMarker, groups) => {
     return groups.some(
@@ -44,7 +91,7 @@ export const selectAnyPendingNotification = createSelector(
 );
 
 export const selectPendingNotificationGroupsCount = createSelector(
-  [(s: RootState) => s.notificationGroups.pendingGroups],
+  [selectPendingNotificationGroups],
   (pendingGroups) =>
     pendingGroups.filter((group) => group.type !== 'gap').length,
 );
