@@ -6244,9 +6244,10 @@ a.status-card {
   max-width: 90vw;
   width: 480px;
   height: 80vh;
-  background: lighten($ui-secondary-color, 8%);
-  color: $inverted-text-color;
-  border-radius: 8px;
+  background: var(--background-color);
+  color: $primary-text-color;
+  border-radius: 4px;
+  border: 1px solid var(--background-border-color);
   overflow: hidden;
   position: relative;
   flex-direction: column;
@@ -6254,7 +6255,7 @@ a.status-card {
 
   &__container {
     box-sizing: border-box;
-    border-top: 1px solid $ui-secondary-color;
+    border-top: 1px solid var(--background-border-color);
     padding: 20px;
     flex-grow: 1;
     display: flex;
@@ -6284,7 +6285,7 @@ a.status-card {
   &__lead {
     font-size: 17px;
     line-height: 22px;
-    color: lighten($inverted-text-color, 16%);
+    color: $secondary-text-color;
     margin-bottom: 30px;
 
     a {
