@@ -2779,6 +2779,11 @@ $ui-header-logo-wordmark-width: 99px;
     &.privacy-policy {
       border-top: 1px solid var(--background-border-color);
       border-radius: 4px;
+
+      @media screen and (max-width: $no-gap-breakpoint) {
+        border-top: 0;
+        border-bottom: 0;
+      }
     }
   }
 }
@@ -4472,6 +4477,11 @@ a.status-card {
 .column-header__collapsible-inner {
   border: 1px solid var(--background-border-color);
   border-top: 0;
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-left: 0;
+    border-right: 0;
+  }
 }
 
 .column-header__setting-btn {
@@ -7656,6 +7666,11 @@ noscript {
     input {
       width: 100%;
     }
+  }
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-left: 0;
+    border-right: 0;
   }
 }
 
