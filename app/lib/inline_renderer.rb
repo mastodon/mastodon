@@ -20,8 +20,6 @@ class InlineRenderer
       serializer = REST::AnnouncementSerializer
     when :reaction
       serializer = REST::ReactionSerializer
-    when :encrypted_message
-      serializer = REST::EncryptedMessageSerializer
     else
       return
     end

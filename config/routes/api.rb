@@ -68,23 +68,6 @@ namespace :api, format: false do
       end
     end
 
-    # namespace :crypto do
-    #   resources :deliveries, only: :create
-
-    #   namespace :keys do
-    #     resource :upload, only: [:create]
-    #     resource :query,  only: [:create]
-    #     resource :claim,  only: [:create]
-    #     resource :count,  only: [:show]
-    #   end
-
-    #   resources :encrypted_messages, only: [:index] do
-    #     collection do
-    #       post :clear
-    #     end
-    #   end
-    # end
-
     resources :conversations, only: [:index, :destroy] do
       member do
         post :read
