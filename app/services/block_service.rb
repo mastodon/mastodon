@@ -14,6 +14,8 @@ class BlockService < BaseService
 
     block = account.block!(target_account)
 
+    trigger_webhooks block.id
+
     BlockWorker.perform_async(account.id, target_account.id)
     create_notification(block) if !target_account.local? && target_account.activitypub?
     block
@@ -27,5 +29,9 @@ class BlockService < BaseService
 
   def build_json(block)
     Oj.dump(serialize_payload(block, ActivityPub::BlockSerializer))
+  end
+
+  def trigger_webhooks(block_id)
+    TriggerWebhookWorker.perform_async('block.created', 'Block', block_id)
   end
 end
