@@ -42,7 +42,7 @@ RSpec.describe 'Apps' do
             client_secret: app.secret,
             name: client_name,
             website: website,
-            scopes: ['read', 'write'],
+            scopes: %w(read write),
             redirect_uris: redirect_uris,
             # Deprecated properties as of 4.3:
             redirect_uri: redirect_uri,

@@ -90,7 +90,7 @@ RSpec.describe User do
       it 'preserves valid options for languages' do
         user = Fabricate.build(:user, chosen_languages: ['en', 'fr', ''])
 
-        expect(user.chosen_languages).to eq(['en', 'fr'])
+        expect(user.chosen_languages).to eq(%w(en fr))
       end
 
       it 'cleans out empty string from languages' do
