@@ -10247,8 +10247,10 @@ noscript {
 
 .notification-request {
   $padding: 15px;
-  $actions-gap: 8px;
 
+  display: flex;
+  padding: $padding;
+  gap: 8px;
   position: relative;
   border-bottom: 1px solid var(--background-border-color);
 
@@ -10267,7 +10269,6 @@ noscript {
   }
 
   &__link {
-    padding: $padding;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -10275,11 +10276,6 @@ noscript {
     text-decoration: none;
     color: inherit;
     overflow: hidden;
-
-    $actions-count: 2;
-
-    padding-inline-end: $padding * 2 + $actions-gap * ($actions-count - 1) +
-      24px * $actions-count + 15px;
 
     .account__avatar {
       flex-shrink: 0;
@@ -10319,13 +10315,9 @@ noscript {
   }
 
   &__actions {
-    position: absolute;
-    inset-inline-end: $padding;
-    top: 50%;
-    transform: translateY(-50%);
     display: flex;
     align-items: center;
-    gap: $actions-gap;
+    gap: 8px;
 
     .icon-button {
       border-radius: 4px;
@@ -10339,6 +10331,8 @@ noscript {
   }
 
   &--forced-checkbox {
+    cursor: pointer;
+
     &:hover {
       background: lighten($ui-base-color, 1%);
     }
@@ -10349,8 +10343,7 @@ noscript {
     }
 
     .notification-request__link {
-      padding-inline-start: 30px + $padding;
-      padding-inline-end: $padding;
+      padding-inline-start: 30px;
     }
 
     .notification-request__actions {

@@ -78,7 +78,7 @@ export const NotificationRequest = ({ id, accountId, notificationsCount, checked
   }, [toggleCheck, id, showCheckbox]);
 
   return (
-    <div className={classNames('notification-request', showCheckbox && 'notification-request--forced-checkbox')}>
+    <div className={classNames('notification-request', showCheckbox && 'notification-request--forced-checkbox')} onClick={handleClick}>
       <div className='notification-request__checkbox'>
         <CheckBox checked={checked} onChange={handleCheck} />
       </div>
