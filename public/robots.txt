@@ -1,8 +1,64 @@
 # See http://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
 
-User-agent: GPTBot
-Disallow: /
-
 User-agent: *
 Disallow: /media_proxy/
 Disallow: /interact/
+
+###############################################################################################################################
+# AI Bots - Crawlers/scrapers and data harvesters. Blocking these should not negatively effect the end user.
+###############################################################################################################################
+
+# OpenAI Scraper/Crawler/Assistant https://platform.openai.com/docs/bots
+# "GPTBot is used to make our generative AI foundation models more useful and safe. It is used to crawl content that may be used in training our generative AI foundation models"
+User-agent: GPTBot
+Disallow: /
+# "When users ask ChatGPT or a CustomGPT a question, it may visit a web page to help answer"
+User-agent: ChatGPT-User
+Disallow: /
+# "OAI-SearchBot is used to link to and surface websites in search results in the SearchGPT prototype"
+User-agent: OAI-SearchBot
+Disallow: /
+
+# Amazon Alexa Crawler https://developer.amazon.com/amazonbot
+# "Amazonbot is Amazon's web crawler used to improve our services, such as enabling Alexa to answer even more questions for customers"
+User-agent: Amazonbot
+Disallow: /
+
+# Apple Siri Crawler https://support.apple.com/en-au/HT204683
+# "Applebot is the web crawler for Apple. Products like Siri and Spotlight Suggestions use Applebot"
+User-agent: Applebot
+Disallow: /
+
+# Apple AI models https://support.apple.com/en-au/119829
+# "Allowing Applebot-Extended will help improve the capabilities and quality of Apple’s generative AI models over time"
+User-agent: Applebot-Extended
+Disallow: /
+
+# Common Crawl https://commoncrawl.org/ccbot
+# "democratizing access to web information by producing and maintaining an open repository of web crawl data that is universally accessible and analyzable by anyone"
+User-agent: CCBot
+Disallow: /
+
+# Facebook AI models https://developers.facebook.com/docs/sharing/bot/
+# "FacebookBot crawls public web pages to improve language models for our speech recognition technology."
+User-agent: FacebookBot
+Disallow: /
+
+# Facebook AI models https://developers.facebook.com/docs/sharing/webmasters/crawler
+# "training AI models or improving products by indexing content directly"
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+# Googles AI models https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers
+# "help improve Gemini Apps and Vertex AI generative APIs, including future generations of models that power those products"
+User-agent: Google-Extended
+Disallow: /
+
+# Anthropic AI Modals https://support.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler
+# "Our mission to build safe and reliable frontier systems and advance the field of responsible AI development"
+User-agent: anthropic-ai
+Disallow: /
+User-agent: ClaudeBot
+Disallow: /
+User-agent: Claude-Web
+Disallow: /
