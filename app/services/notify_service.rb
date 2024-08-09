@@ -38,6 +38,10 @@ class NotifyService < BaseService
 
     private
 
+    def filterable_type?
+      Notification::PROPERTIES[@notification.type][:filterable]
+    end
+
     def not_following?
       !@recipient.following?(@sender)
     end
@@ -109,7 +113,7 @@ class NotifyService < BaseService
       blocked ||= blocked_mention? if message?
 
       return true if blocked
-      return false unless Notification::PROPERTIES[@notification.type][:filterable]
+      return false unless filterable_type?
       return false if override_for_sender?
 
       blocked_by_limited_accounts_policy? ||
@@ -168,7 +172,7 @@ class NotifyService < BaseService
 
   class FilterCondition < BaseCondition
     def filter?
-      return false unless Notification::PROPERTIES[@notification.type][:filterable]
+      return false unless filterable_type?
       return false if override_for_sender?
 
       filtered_by_limited_accounts_policy? ||
