@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_24_181224) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_01_100823) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -1201,7 +1201,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_24_181224) do
     t.string "webauthn_id"
     t.inet "sign_up_ip"
     t.boolean "skip_sign_in_token"
-    t.bigint "role_id"
+    t.bigint "role_id", default: -99
     t.text "settings"
     t.string "time_zone"
     t.string "otp_secret"

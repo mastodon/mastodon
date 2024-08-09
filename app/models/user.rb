@@ -36,7 +36,7 @@
 #  sign_in_token_sent_at     :datetime
 #  webauthn_id               :string
 #  sign_up_ip                :inet
-#  role_id                   :bigint(8)
+#  role_id                   :bigint(8)        default(-99)
 #  settings                  :text
 #  time_zone                 :string
 #  otp_secret                :string
@@ -129,6 +129,7 @@ class User < ApplicationRecord
   before_validation :sanitize_role
   before_create :set_approved
   after_commit :send_pending_devise_notifications
+  after_find :set_role_id
   after_create_commit :trigger_webhooks
 
   normalizes :locale, with: ->(locale) { I18n.available_locales.exclude?(locale.to_sym) ? nil : locale }
@@ -154,6 +155,10 @@ class User < ApplicationRecord
 
   def self.skip_mx_check?
     Rails.env.local?
+  end
+
+  def set_role_id
+    self.role_id ||= -99
   end
 
   def role
