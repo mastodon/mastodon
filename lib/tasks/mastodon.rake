@@ -51,6 +51,16 @@ namespace :mastodon do
       env['VAPID_PUBLIC_KEY']  = vapid_key.public_key
 
       prompt.say "\n"
+      
+      ip_retention_period_days = prompt.ask('How long should we store IP addresses in the database? (in days)') do |q|
+        q.required true
+        q.default 31
+        q.convert :int
+      end
+      
+      env['IP_RETENTION_PERIOD'] = (ip_retention_period_days * 86400)
+      
+      prompt.say "\n"
 
       using_docker        = prompt.yes?('Are you using Docker to run Mastodon?')
       db_connection_works = false
