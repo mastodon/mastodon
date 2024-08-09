@@ -45,7 +45,6 @@ class Admin::Metrics::Dimension::SpaceUsageDimension < Admin::Metrics::Dimension
       PreviewCard.sum(:image_file_size),
       Account.sum(Arel.sql('COALESCE(avatar_file_size, 0) + COALESCE(header_file_size, 0)')),
       Backup.sum(:dump_file_size),
-      Import.sum(:data_file_size),
       SiteUpload.sum(:file_file_size),
     ].sum
 
