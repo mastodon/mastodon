@@ -65,16 +65,16 @@ $content-width: 840px;
           background: $ui-base-color;
         }
 
-        .fa-times {
+        .material-close {
           display: none;
         }
 
         &.active {
-          .fa-times {
+          .material-close {
             display: block;
           }
 
-          .fa-bars {
+          .material-menu {
             display: none;
           }
         }
