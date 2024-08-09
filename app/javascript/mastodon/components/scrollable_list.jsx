@@ -7,7 +7,6 @@ import { useLocation } from 'react-router-dom';
 import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
 
-import { supportsPassiveEvents } from 'detect-passive-events';
 import { throttle } from 'lodash';
 
 import ScrollContainer from 'mastodon/containers/scroll_container';
@@ -19,10 +18,6 @@ import IntersectionObserverWrapper from '../features/ui/util/intersection_observ
 import { LoadMore } from './load_more';
 import { LoadPending } from './load_pending';
 import { LoadingIndicator } from './loading_indicator';
-
-const MOUSE_IDLE_DELAY = 300;
-
-const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
 /**
  *
@@ -92,6 +87,8 @@ class ScrollableList extends PureComponent {
   };
 
   intersectionObserverWrapper = new IntersectionObserverWrapper();
+  articleOfInterest = null;
+  scrollAdjustment = 0;
 
   handleScroll = throttle(() => {
     if (this.node) {
@@ -109,22 +106,10 @@ class ScrollableList extends PureComponent {
       } else if (this.props.onScroll) {
         this.props.onScroll();
       }
-
-      if (!this.lastScrollWasSynthetic) {
-        // If the last scroll wasn't caused by setScrollTop(), assume it was
-        // intentional and cancel any pending scroll reset on mouse idle
-        this.scrollToTopOnMouseIdle = false;
-      }
-      this.lastScrollWasSynthetic = false;
     }
   }, 150, {
     trailing: true,
   });
-
-  mouseIdleTimer = null;
-  mouseMovedRecently = false;
-  lastScrollWasSynthetic = false;
-  scrollToTopOnMouseIdle = false;
 
   _getScrollingElement = () => {
     if (this.props.bindToDocument) {
@@ -136,48 +121,8 @@ class ScrollableList extends PureComponent {
 
   setScrollTop = newScrollTop => {
     if (this.getScrollTop() !== newScrollTop) {
-      this.lastScrollWasSynthetic = true;
-
       this._getScrollingElement().scrollTop = newScrollTop;
     }
-  };
-
-  clearMouseIdleTimer = () => {
-    if (this.mouseIdleTimer === null) {
-      return;
-    }
-
-    clearTimeout(this.mouseIdleTimer);
-    this.mouseIdleTimer = null;
-  };
-
-  handleMouseMove = throttle(() => {
-    // As long as the mouse keeps moving, clear and restart the idle timer.
-    this.clearMouseIdleTimer();
-    this.mouseIdleTimer = setTimeout(this.handleMouseIdle, MOUSE_IDLE_DELAY);
-
-    if (!this.mouseMovedRecently && this.getScrollTop() === 0) {
-      // Only set if we just started moving and are scrolled to the top.
-      this.scrollToTopOnMouseIdle = true;
-    }
-
-    // Save setting this flag for last, so we can do the comparison above.
-    this.mouseMovedRecently = true;
-  }, MOUSE_IDLE_DELAY / 2);
-
-  handleWheel = throttle(() => {
-    this.scrollToTopOnMouseIdle = false;
-  }, 150, {
-    trailing: true,
-  });
-
-  handleMouseIdle = () => {
-    if (this.scrollToTopOnMouseIdle && !this.props.preventScroll) {
-      this.setScrollTop(0);
-    }
-
-    this.mouseMovedRecently = false;
-    this.scrollToTopOnMouseIdle = false;
   };
 
   componentDidMount () {
@@ -188,10 +133,16 @@ class ScrollableList extends PureComponent {
 
     // Handle initial scroll position
     this.handleScroll();
+
+    // If we are bound to the document, the stuff above the scrollable has to
+    // be taken into account when we focus back to the article we want.
+    if (this.props.bindToDocument) {
+      this.scrollAdjustment = this.node.getBoundingClientRect().top;
+    }
   }
 
   getScrollPosition = () => {
-    if (this.node && (this.getScrollTop() > 0 || this.mouseMovedRecently)) {
+    if (this.node && this.getScrollTop() > 0) {
       return { height: this.getScrollHeight(), top: this.getScrollTop() };
     } else {
       return null;
@@ -216,27 +167,6 @@ class ScrollableList extends PureComponent {
     this.setScrollTop(newScrollTop);
   };
 
-  getSnapshotBeforeUpdate (prevProps) {
-    const someItemInserted = Children.count(prevProps.children) > 0 &&
-      Children.count(prevProps.children) < Children.count(this.props.children) &&
-      this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props);
-    const pendingChanged = (prevProps.numPending > 0) !== (this.props.numPending > 0);
-
-    if (pendingChanged || someItemInserted && (this.getScrollTop() > 0 || this.mouseMovedRecently || this.props.preventScroll)) {
-      return this.getScrollHeight() - this.getScrollTop();
-    } else {
-      return null;
-    }
-  }
-
-  componentDidUpdate (prevProps, prevState, snapshot) {
-    // Reset the scroll position when a new child comes in in order not to
-    // jerk the scrollbar around if you're already scrolled down the page.
-    if (snapshot !== null) {
-      this.setScrollTop(this.getScrollHeight() - snapshot);
-    }
-  }
-
   cacheMediaWidth = (width) => {
     if (width && this.state.cachedMediaWidth !== width) {
       this.setState({ cachedMediaWidth: width });
@@ -244,7 +174,6 @@ class ScrollableList extends PureComponent {
   };
 
   componentWillUnmount () {
-    this.clearMouseIdleTimer();
     this.detachScrollListener();
     this.detachIntersectionObserver();
 
@@ -272,20 +201,16 @@ class ScrollableList extends PureComponent {
   attachScrollListener () {
     if (this.props.bindToDocument) {
       document.addEventListener('scroll', this.handleScroll);
-      document.addEventListener('wheel', this.handleWheel,  listenerOptions);
     } else {
       this.node.addEventListener('scroll', this.handleScroll);
-      this.node.addEventListener('wheel', this.handleWheel, listenerOptions);
     }
   }
 
   detachScrollListener () {
     if (this.props.bindToDocument) {
       document.removeEventListener('scroll', this.handleScroll);
-      document.removeEventListener('wheel', this.handleWheel, listenerOptions);
     } else {
       this.node.removeEventListener('scroll', this.handleScroll);
-      this.node.removeEventListener('wheel', this.handleWheel, listenerOptions);
     }
   }
 
@@ -306,21 +231,65 @@ class ScrollableList extends PureComponent {
     this.node = c;
   };
 
+  preLoad = () => {
+    // Here we record the article of interest so that when we mouseUp on
+    // the LoadX element, were able to scroll back to it.
+
+    // Note that it does not matter whether we are binding to the document, or
+    // not. The node we have to test is always that of the scrollable itself.
+    const scrollableRect = this.node.getBoundingClientRect();
+    const articles = this.node.querySelectorAll("article");
+    for (const article of articles) {
+      const articleRect = article.getBoundingClientRect();
+      if (articleRect.top >= scrollableRect.top) {
+        this.articleOfInterest = article;
+        break;
+      }
+    }
+  }
+
+  returnToArticleOfInterest () {
+    let article = this.articleOfInterest;
+    if (article === null) {
+      return;
+    }
+
+    // Scroll the articleOfInterest back into view once we're done with
+    // everything else.
+    setTimeout(() => {
+      // We try to find the article previous to the article of interest in the
+      // list of articles. That's the article we finally want to focus on.
+      let prev = article.previousElementSibling;
+      while (prev !== null) {
+        if (prev.localName === "article") {
+          article = prev;
+          break;
+        }
+
+        prev = prev.previousElementSibling;
+      }
+
+
+      // We need to adjust with the scrollAdjustment. It is non-zero only when
+      // we bind to the document.
+      this.setScrollTop(this.getScrollTop() +
+                        article.getBoundingClientRect().top -
+                        this.scrollAdjustment);
+      article.querySelector("div.status__wrapper").focus();
+    }, 0);
+  }
+
+
   handleLoadMore = e => {
     e.preventDefault();
     this.props.onLoadMore();
+    this.returnToArticleOfInterest();
   };
 
   handleLoadPending = e => {
     e.preventDefault();
     this.props.onLoadPending();
-    // Prevent the weird scroll-jumping behavior, as we explicitly don't want to
-    // scroll to top, and we know the scroll height is going to change
-    this.scrollToTopOnMouseIdle = false;
-    this.lastScrollWasSynthetic = false;
-    this.clearMouseIdleTimer();
-    this.mouseIdleTimer = setTimeout(this.handleMouseIdle, MOUSE_IDLE_DELAY);
-    this.mouseMovedRecently = true;
+    this.returnToArticleOfInterest();
   };
 
   render () {
@@ -328,8 +297,8 @@ class ScrollableList extends PureComponent {
     const { fullscreen } = this.state;
     const childrenCount = Children.count(children);
 
-    const loadMore     = (hasMore && onLoadMore) ? <LoadMore visible={!isLoading} onClick={this.handleLoadMore} /> : null;
-    const loadPending  = (numPending > 0) ? <LoadPending count={numPending} onClick={this.handleLoadPending} /> : null;
+    const loadMore     = (hasMore && onLoadMore) ? <LoadMore visible={!isLoading} onMouseDown={this.preLoad} onMouseUp={this.handleLoadMore} /> : null;
+    const loadPending  = (numPending > 0) ? <LoadPending count={numPending} onMouseDown={this.preLoad} onMouseUp={this.handleLoadPending} /> : null;
     let scrollableArea = null;
 
     if (showLoading) {
@@ -346,7 +315,7 @@ class ScrollableList extends PureComponent {
       );
     } else if (isLoading || childrenCount > 0 || numPending > 0 || hasMore || !emptyMessage) {
       scrollableArea = (
-        <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove}>
+        <div className={classNames('scrollable', { fullscreen })} ref={this.setRef}>
           <div role='feed' className='item-list'>
             {prepend}
 
