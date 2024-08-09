@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Scheduler::SuspendedUserCleanupScheduler
-  include Sidekiq::Worker
-
+class Scheduler::SuspendedUserCleanupScheduler < ApplicationWorker
   # Each processed deletion request may enqueue an enormous
   # amount of jobs in the `pull` queue, so only enqueue when
   # the queue is empty or close to being so.

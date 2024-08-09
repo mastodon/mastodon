@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class DomainClearMediaWorker
-  include Sidekiq::Worker
-
+class DomainClearMediaWorker < ApplicationWorker
   sidekiq_options queue: 'pull'
 
   def perform(domain_block_id)
