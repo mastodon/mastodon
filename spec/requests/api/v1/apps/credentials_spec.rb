@@ -39,6 +39,7 @@ describe 'Credentials' do
 
         expect(body_as_json[:client_id]).to_not be_present
         expect(body_as_json[:client_secret]).to_not be_present
+        expect(body_as_json[:client_secret_expires_at]).to_not be_present
       end
     end
 
