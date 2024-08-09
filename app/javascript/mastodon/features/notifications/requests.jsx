@@ -125,10 +125,10 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
       <div className='column-header__select-row__selection-mode'>
         <button className='text-btn' tabIndex={0} onClick={handleToggleSelectionMode}>
           {selectionMode ? (
-            <FormattedMessage id='notification_requests.exit_selection_mode' defaultMessage='Exit selection mode' />
+            <FormattedMessage id='notification_requests.exit_selection_mode' defaultMessage='Cancel' />
           ) :
             (
-              <FormattedMessage id='notification_requests.enter_selection_mode' defaultMessage='Enter selection mode' />
+              <FormattedMessage id='notification_requests.enter_selection_mode' defaultMessage='Select' />
             )}
         </button>
       </div>
