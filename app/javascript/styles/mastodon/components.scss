@@ -4326,12 +4326,12 @@ a.status-card {
     display: flex;
   }
 
-  &__selected-count {
-    margin-left: auto;
-  }
+  &__selection-mode {
+    flex-grow: 1;
 
-  :not(&__selected-count) + &__actions {
-    margin-left: auto;
+    .text-btn:hover {
+      text-decoration: underline;
+    }
   }
 
   &__actions {
@@ -10254,7 +10254,7 @@ noscript {
 
   &__checkbox {
     position: absolute;
-    left: $padding;
+    inset-inline-start: $padding;
     top: 50%;
     transform: translateY(-50%);
     width: 0;
@@ -10278,8 +10278,8 @@ noscript {
 
     $actions-count: 2;
 
-    padding-right: $padding * 2 + $actions-gap * ($actions-count - 1) + 24px *
-      $actions-count + 15px;
+    padding-inline-end: $padding * 2 + $actions-gap * ($actions-count - 1) +
+      24px * $actions-count + 15px;
 
     .account__avatar {
       flex-shrink: 0;
@@ -10320,7 +10320,7 @@ noscript {
 
   &__actions {
     position: absolute;
-    right: $padding;
+    inset-inline-end: $padding;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
@@ -10335,22 +10335,26 @@ noscript {
   }
 
   .notification-request__link {
-    transition: padding-left 0.1s ease-in-out;
+    transition: padding-inline-start 0.1s ease-in-out;
   }
 
-  &:hover {
-    background: lighten($ui-base-color, 1%);
-  }
+  &--forced-checkbox {
+    &:hover {
+      background: lighten($ui-base-color, 1%);
+    }
 
-  &--forced-checkbox,
-  &:hover {
     .notification-request__checkbox {
       opacity: 1;
       width: 30px;
     }
 
     .notification-request__link {
-      padding-left: 30px + $padding;
+      padding-inline-start: 30px + $padding;
+      padding-inline-end: $padding;
+    }
+
+    .notification-request__actions {
+      display: none;
     }
   }
 }

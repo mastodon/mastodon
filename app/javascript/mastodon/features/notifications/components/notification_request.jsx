@@ -69,12 +69,20 @@ export const NotificationRequest = ({ id, accountId, notificationsCount, checked
     toggleCheck(id);
   }, [toggleCheck, id]);
 
+  const handleClick = useCallback((e) => {
+    if (showCheckbox) {
+      toggleCheck(id);
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, [toggleCheck, id, showCheckbox]);
+
   return (
     <div className={classNames('notification-request', showCheckbox && 'notification-request--forced-checkbox')}>
       <div className='notification-request__checkbox'>
         <CheckBox checked={checked} onChange={handleCheck} />
       </div>
-      <Link to={`/notifications/requests/${id}`} className='notification-request__link'>
+      <Link to={`/notifications/requests/${id}`} className='notification-request__link' onClick={handleClick}>
         <Avatar account={account} size={40} counter={toCappedNumber(notificationsCount)} />
 
         <div className='notification-request__name'>

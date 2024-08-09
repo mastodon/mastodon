@@ -70,7 +70,7 @@ const ColumnSettings = () => {
   );
 };
 
-const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems}) => {
+const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionMode, setSelectionMode}) => {
   const intl = useIntl();
   const dispatch = useDispatch();
 
@@ -102,10 +102,14 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems}) => {
     }));
   }, [dispatch, intl, selectedItems]);
 
+  const handleToggleSelectionMode = useCallback(() => {
+    setSelectionMode((mode) => !mode);
+  }, [setSelectionMode]);
+
   const menu = selectedCount === 0 ?
     [
       { text: intl.formatMessage(messages.acceptAll), action: handleAcceptAll },
-      { text: intl.formatMessage(messages.dismissAll), action: handleDismissAll }
+      { text: intl.formatMessage(messages.dismissAll), action: handleDismissAll },
     ] : [
       { text: intl.formatMessage(messages.acceptMultiple, { count: selectedCount }), action: handleAcceptAll },
       { text: intl.formatMessage(messages.dismissMultiple, { count: selectedCount }), action: handleDismissAll },
@@ -113,7 +117,20 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems}) => {
 
   return (
     <div className='column-header__select-row'>
-      <div className='column-header__select-row__checkbox'><CheckBox checked={selectAllChecked} indeterminate={selectedCount > 0 && !selectAllChecked} onChange={toggleSelectAll} />
+      {selectionMode && (
+        <div className='column-header__select-row__checkbox'>
+          <CheckBox checked={selectAllChecked} indeterminate={selectedCount > 0 && !selectAllChecked} onChange={toggleSelectAll} />
+        </div>
+      )}
+      <div className='column-header__select-row__selection-mode'>
+        <button className='text-btn' tabIndex={0} onClick={handleToggleSelectionMode}>
+          {selectionMode ? (
+            <FormattedMessage id='notification_requests.exit_selection_mode' defaultMessage='Exit selection mode' />
+          ) :
+            (
+              <FormattedMessage id='notification_requests.enter_selection_mode' defaultMessage='Enter selection mode' />
+            )}
+        </button>
       </div>
       {selectedCount > 0 &&
         <div className='column-header__select-row__selected-count'>
@@ -137,6 +154,8 @@ SelectRow.propTypes = {
   selectAllChecked: PropTypes.func.isRequired,
   toggleSelectAll: PropTypes.func.isRequired,
   selectedItems: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectionMode: PropTypes.bool,
+  setSelectionMode: PropTypes.func.isRequired,
 };
 
 export const NotificationRequests = ({ multiColumn }) => {
@@ -147,6 +166,7 @@ export const NotificationRequests = ({ multiColumn }) => {
   const notificationRequests = useSelector(state => state.getIn(['notificationRequests', 'items']));
   const hasMore = useSelector(state => !!state.getIn(['notificationRequests', 'next']));
 
+  const [selectionMode, setSelectionMode] = useState(false);
   const [checkedRequestIds, setCheckedRequestIds] = useState([]);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
 
@@ -198,7 +218,7 @@ export const NotificationRequests = ({ multiColumn }) => {
         multiColumn={multiColumn}
         showBackButton
         appendContent={
-          <SelectRow selectAllChecked={selectAllChecked} toggleSelectAll={toggleSelectAll} selectedItems={checkedRequestIds} />}
+          <SelectRow selectionMode={selectionMode} setSelectionMode={setSelectionMode} selectAllChecked={selectAllChecked} toggleSelectAll={toggleSelectAll} selectedItems={checkedRequestIds} />}
       >
         <ColumnSettings />
       </ColumnHeader>
@@ -219,7 +239,7 @@ export const NotificationRequests = ({ multiColumn }) => {
             id={request.get('id')}
             accountId={request.get('account')}
             notificationsCount={request.get('notifications_count')}
-            showCheckbox={checkedRequestIds.length > 0 || selectAllChecked}
+            showCheckbox={selectionMode}
             checked={checkedRequestIds.includes(request.get('id'))}
             toggleCheck={handleCheck}
           />
