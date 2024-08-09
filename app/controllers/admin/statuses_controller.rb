@@ -16,6 +16,8 @@ module Admin
 
     def show
       authorize [:admin, @status], :show?
+
+      @status_batch_action = Admin::StatusBatchAction.new
     end
 
     def batch
