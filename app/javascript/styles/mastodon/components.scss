@@ -10334,16 +10334,9 @@ noscript {
     }
   }
 
-  // &:not(&--forced-checkbox) {
   .notification-request__link {
     transition: padding-left 0.1s ease-in-out;
   }
-
-  .notification-request__checkbox {
-    transition: opacity 0.5s ease-in-out;
-  }
-
-  // }
 
   &:hover {
     background: lighten($ui-base-color, 1%);
