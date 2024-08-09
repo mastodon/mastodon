@@ -3,6 +3,8 @@
   = javascript_pack_tag 'public', crossorigin: 'anonymous'
   = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
 
+- content_for :body_classes, 'admin'
+
 - content_for :content do
   .admin-wrapper
     .sidebar-wrapper
