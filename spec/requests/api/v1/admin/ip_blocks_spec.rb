@@ -166,6 +166,16 @@ RSpec.describe 'IP Blocks' do
         expect(response).to have_http_status(422)
       end
     end
+
+    context 'when the given severity is invalid' do
+      let(:params) { { ip: '151.0.32.55', severity: 'invalid' } }
+
+      it 'returns http unprocessable entity' do
+        subject
+
+        expect(response).to have_http_status(422)
+      end
+    end
   end
 
   describe 'PUT /api/v1/admin/ip_blocks/:id' do
