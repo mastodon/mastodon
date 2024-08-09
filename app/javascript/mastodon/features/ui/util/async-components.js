@@ -134,6 +134,10 @@ export function ReportModal () {
   return import(/* webpackChunkName: "modals/report_modal" */'../components/report_modal');
 }
 
+export function IgnoreNotificationsModal () {
+  return import(/* webpackChunkName: "modals/domain_block_modal" */'../components/ignore_notifications_modal');
+}
+
 export function MediaGallery () {
   return import(/* webpackChunkName: "status/media_gallery" */'../../../components/media_gallery');
 }

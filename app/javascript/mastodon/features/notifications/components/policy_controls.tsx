@@ -1,16 +1,52 @@
 import { useCallback } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
+import { openModal } from 'mastodon/actions/modal';
 import { updateNotificationsPolicy } from 'mastodon/actions/notification_policies';
+import type { AppDispatch } from 'mastodon/store';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
-import { CheckboxWithLabel } from './checkbox_with_label';
+import { SelectWithLabel } from './select_with_label';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const noop = () => {};
+const messages = defineMessages({
+  accept: { id: 'notifications.policy.accept', defaultMessage: 'Accept' },
+  accept_hint: {
+    id: 'notifications.policy.accept_hint',
+    defaultMessage: 'Show in notifications',
+  },
+  filter: { id: 'notifications.policy.filter', defaultMessage: 'Filter' },
+  filter_hint: {
+    id: 'notifications.policy.filter_hint',
+    defaultMessage: 'Send to filtered notifications inbox',
+  },
+  drop: { id: 'notifications.policy.drop', defaultMessage: 'Ignore' },
+  drop_hint: {
+    id: 'notifications.policy.drop_hint',
+    defaultMessage: 'Send to the void, never to be seen again',
+  },
+});
+
+// TODO: change the following when we change the API
+const changeFilter = (
+  dispatch: AppDispatch,
+  filterType: string,
+  value: string,
+) => {
+  if (value === 'drop') {
+    dispatch(
+      openModal({
+        modalType: 'IGNORE_NOTIFICATIONS',
+        modalProps: { filterType },
+      }),
+    );
+  } else {
+    void dispatch(updateNotificationsPolicy({ [filterType]: value }));
+  }
+};
 
 export const PolicyControls: React.FC = () => {
+  const intl = useIntl();
   const dispatch = useAppDispatch();
 
   const notificationPolicy = useAppSelector(
@@ -18,56 +54,74 @@ export const PolicyControls: React.FC = () => {
   );
 
   const handleFilterNotFollowing = useCallback(
-    (checked: boolean) => {
-      void dispatch(
-        updateNotificationsPolicy({ filter_not_following: checked }),
-      );
+    (value: string) => {
+      changeFilter(dispatch, 'for_not_following', value);
     },
     [dispatch],
   );
 
   const handleFilterNotFollowers = useCallback(
-    (checked: boolean) => {
-      void dispatch(
-        updateNotificationsPolicy({ filter_not_followers: checked }),
-      );
+    (value: string) => {
+      changeFilter(dispatch, 'for_not_followers', value);
     },
     [dispatch],
   );
 
   const handleFilterNewAccounts = useCallback(
-    (checked: boolean) => {
-      void dispatch(
-        updateNotificationsPolicy({ filter_new_accounts: checked }),
-      );
+    (value: string) => {
+      changeFilter(dispatch, 'for_new_accounts', value);
     },
     [dispatch],
   );
 
   const handleFilterPrivateMentions = useCallback(
-    (checked: boolean) => {
-      void dispatch(
-        updateNotificationsPolicy({ filter_private_mentions: checked }),
-      );
+    (value: string) => {
+      changeFilter(dispatch, 'for_private_mentions', value);
+    },
+    [dispatch],
+  );
+
+  const handleFilterLimitedAccounts = useCallback(
+    (value: string) => {
+      changeFilter(dispatch, 'for_limited_accounts', value);
     },
     [dispatch],
   );
 
   if (!notificationPolicy) return null;
 
+  const options = [
+    {
+      value: 'accept',
+      text: intl.formatMessage(messages.accept),
+      meta: intl.formatMessage(messages.accept_hint),
+    },
+    {
+      value: 'filter',
+      text: intl.formatMessage(messages.filter),
+      meta: intl.formatMessage(messages.filter_hint),
+    },
+    {
+      value: 'drop',
+      text: intl.formatMessage(messages.drop),
+      meta: intl.formatMessage(messages.drop_hint),
+    },
+  ];
+
   return (
     <section>
       <h3>
         <FormattedMessage
           id='notifications.policy.title'
-          defaultMessage='Filter out notifications from…'
+          defaultMessage='Manage notifications from…'
         />
       </h3>
 
       <div className='column-settings__row'>
-        <CheckboxWithLabel
-          checked={notificationPolicy.filter_not_following}
+        <SelectWithLabel
+          value={notificationPolicy.for_not_following}
           onChange={handleFilterNotFollowing}
+          options={options}
         >
           <strong>
             <FormattedMessage
@@ -81,11 +135,12 @@ export const PolicyControls: React.FC = () => {
               defaultMessage='Until you manually approve them'
             />
           </span>
-        </CheckboxWithLabel>
+        </SelectWithLabel>
 
-        <CheckboxWithLabel
-          checked={notificationPolicy.filter_not_followers}
+        <SelectWithLabel
+          value={notificationPolicy.for_not_followers}
           onChange={handleFilterNotFollowers}
+          options={options}
         >
           <strong>
             <FormattedMessage
@@ -100,11 +155,12 @@ export const PolicyControls: React.FC = () => {
               values={{ days: 3 }}
             />
           </span>
-        </CheckboxWithLabel>
+        </SelectWithLabel>
 
-        <CheckboxWithLabel
-          checked={notificationPolicy.filter_new_accounts}
+        <SelectWithLabel
+          value={notificationPolicy.for_new_accounts}
           onChange={handleFilterNewAccounts}
+          options={options}
         >
           <strong>
             <FormattedMessage
@@ -119,11 +175,12 @@ export const PolicyControls: React.FC = () => {
               values={{ days: 30 }}
             />
           </span>
-        </CheckboxWithLabel>
+        </SelectWithLabel>
 
-        <CheckboxWithLabel
-          checked={notificationPolicy.filter_private_mentions}
+        <SelectWithLabel
+          value={notificationPolicy.for_private_mentions}
           onChange={handleFilterPrivateMentions}
+          options={options}
         >
           <strong>
             <FormattedMessage
@@ -137,9 +194,13 @@ export const PolicyControls: React.FC = () => {
               defaultMessage="Filtered unless it's in reply to your own mention or if you follow the sender"
             />
           </span>
-        </CheckboxWithLabel>
+        </SelectWithLabel>
 
-        <CheckboxWithLabel checked disabled onChange={noop}>
+        <SelectWithLabel
+          value={notificationPolicy.for_limited_accounts}
+          onChange={handleFilterLimitedAccounts}
+          options={options}
+        >
           <strong>
             <FormattedMessage
               id='notifications.policy.filter_limited_accounts_title'
@@ -152,7 +213,7 @@ export const PolicyControls: React.FC = () => {
               defaultMessage='Limited by server moderators'
             />
           </span>
-        </CheckboxWithLabel>
+        </SelectWithLabel>
       </div>
     </section>
   );
