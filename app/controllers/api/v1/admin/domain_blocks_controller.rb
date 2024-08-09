@@ -68,7 +68,7 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
   end
 
   def domain_block_params
-    params.permit(:severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate)
+    params_slice(:severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate)
   end
 
   def next_path

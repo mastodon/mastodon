@@ -108,7 +108,7 @@ class Api::V1::Admin::AccountsController < Api::BaseController
   end
 
   def filter_params
-    params.permit(*FILTER_PARAMS)
+    params_slice(*FILTER_PARAMS)
   end
 
   def translated_filter_params

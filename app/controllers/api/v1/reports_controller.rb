@@ -23,6 +23,8 @@ class Api::V1::ReportsController < Api::BaseController
   end
 
   def report_params
-    params.permit(:account_id, :comment, :category, :forward, forward_to_domains: [], status_ids: [], rule_ids: [])
+    params
+      .slice(:account_id, :comment, :category, :forward, :forward_to_domains, :status_ids, :rule_ids)
+      .permit(:account_id, :comment, :category, :forward, :rule_ids, forward_to_domains: [], status_ids: [], rule_ids: [])
   end
 end
