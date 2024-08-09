@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Notifications::PoliciesController < Api::BaseController
+class Api::V2::Notifications::PoliciesController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:notifications' }, only: :show
   before_action -> { doorkeeper_authorize! :write, :'write:notifications' }, only: :update
 
@@ -8,12 +8,12 @@ class Api::V1::Notifications::PoliciesController < Api::BaseController
   before_action :set_policy
 
   def show
-    render json: @policy, serializer: REST::V1::NotificationPolicySerializer
+    render json: @policy, serializer: REST::NotificationPolicySerializer
   end
 
   def update
     @policy.update!(resource_params)
-    render json: @policy, serializer: REST::V1::NotificationPolicySerializer
+    render json: @policy, serializer: REST::NotificationPolicySerializer
   end
 
   private
@@ -28,10 +28,11 @@ class Api::V1::Notifications::PoliciesController < Api::BaseController
 
   def resource_params
     params.permit(
-      :filter_not_following,
-      :filter_not_followers,
-      :filter_new_accounts,
-      :filter_private_mentions
+      :for_not_following,
+      :for_not_followers,
+      :for_new_accounts,
+      :for_private_mentions,
+      :for_limited_accounts
     )
   end
 end

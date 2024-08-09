@@ -8,9 +8,9 @@ RSpec.describe 'Policies' do
   let(:scopes)  { 'read:notifications write:notifications' }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  describe 'GET /api/v1/notifications/policy', :inline_jobs do
+  describe 'GET /api/v2/notifications/policy', :inline_jobs do
     subject do
-      get '/api/v1/notifications/policy', headers: headers, params: params
+      get '/api/v2/notifications/policy', headers: headers, params: params
     end
 
     let(:params) { {} }
@@ -27,10 +27,11 @@ RSpec.describe 'Policies' do
 
         expect(response).to have_http_status(200)
         expect(body_as_json).to include(
-          filter_not_following: false,
-          filter_not_followers: false,
-          filter_new_accounts: false,
-          filter_private_mentions: true,
+          for_not_following: 'accept',
+          for_not_followers: 'accept',
+          for_new_accounts: 'accept',
+          for_private_mentions: 'filter',
+          for_limited_accounts: 'filter',
           summary: a_hash_including(
             pending_requests_count: 1,
             pending_notifications_count: 0
@@ -40,25 +41,27 @@ RSpec.describe 'Policies' do
     end
   end
 
-  describe 'PUT /api/v1/notifications/policy' do
+  describe 'PUT /api/v2/notifications/policy' do
     subject do
-      put '/api/v1/notifications/policy', headers: headers, params: params
+      put '/api/v2/notifications/policy', headers: headers, params: params
     end
 
-    let(:params) { { filter_not_following: true } }
+    let(:params) { { for_not_following: 'filter', for_limited_accounts: 'drop' } }
 
     it_behaves_like 'forbidden for wrong scope', 'read read:notifications'
 
     it 'changes notification policy and returns an updated json object', :aggregate_failures do
       expect { subject }
         .to change { NotificationPolicy.find_or_initialize_by(account: user.account).for_not_following.to_sym }.from(:accept).to(:filter)
+        .and change { NotificationPolicy.find_or_initialize_by(account: user.account).for_limited_accounts.to_sym }.from(:filter).to(:drop)
 
       expect(response).to have_http_status(200)
       expect(body_as_json).to include(
-        filter_not_following: true,
-        filter_not_followers: false,
-        filter_new_accounts: false,
-        filter_private_mentions: true,
+        for_not_following: 'filter',
+        for_not_followers: 'accept',
+        for_new_accounts: 'accept',
+        for_private_mentions: 'filter',
+        for_limited_accounts: 'drop',
         summary: a_hash_including(
           pending_requests_count: 0,
           pending_notifications_count: 0

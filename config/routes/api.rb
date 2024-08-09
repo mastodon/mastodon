@@ -336,6 +336,10 @@ namespace :api, format: false do
     namespace :admin do
       resources :accounts, only: [:index]
     end
+
+    namespace :notifications do
+      resource :policy, only: [:show, :update]
+    end
   end
 
   namespace :v2_alpha do

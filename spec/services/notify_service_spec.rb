@@ -196,20 +196,58 @@ RSpec.describe NotifyService do
     end
   end
 
-  describe NotifyService::DismissCondition do
+  describe NotifyService::DropCondition do
     subject { described_class.new(notification) }
 
     let(:activity) { Fabricate(:mention, status: Fabricate(:status)) }
     let(:notification) { Fabricate(:notification, type: :mention, activity: activity, from_account: activity.status.account, account: activity.account) }
 
-    describe '#dismiss?' do
-      context 'when sender is silenced' do
+    describe '#drop' do
+      context 'when sender is silenced and recipient has a default policy' do
         before do
           notification.from_account.silence!
         end
 
         it 'returns false' do
-          expect(subject.dismiss?).to be false
+          expect(subject.drop?).to be false
+        end
+      end
+
+      context 'when sender is silenced and recipient has a policy to ignore silenced accounts' do
+        before do
+          notification.from_account.silence!
+          notification.account.create_notification_policy!(for_limited_accounts: :drop)
+        end
+
+        it 'returns true' do
+          expect(subject.drop?).to be true
+        end
+      end
+
+      context 'when sender is new and recipient has a default policy' do
+        it 'returns false' do
+          expect(subject.drop?).to be false
+        end
+      end
+
+      context 'when sender is new and recipient has a policy to ignore silenced accounts' do
+        before do
+          notification.account.create_notification_policy!(for_new_accounts: :drop)
+        end
+
+        it 'returns true' do
+          expect(subject.drop?).to be true
+        end
+      end
+
+      context 'when sender is new and followed and recipient has a policy to ignore silenced accounts' do
+        before do
+          notification.account.create_notification_policy!(for_new_accounts: :drop)
+          notification.account.follow!(notification.from_account)
+        end
+
+        it 'returns false' do
+          expect(subject.drop?).to be false
         end
       end
 
@@ -219,7 +257,7 @@ RSpec.describe NotifyService do
         end
 
         it 'returns true' do
-          expect(subject.dismiss?).to be true
+          expect(subject.drop?).to be true
         end
       end
     end
@@ -244,6 +282,16 @@ RSpec.describe NotifyService do
         context 'when recipient follows sender' do
           before do
             notification.account.follow!(notification.from_account)
+          end
+
+          it 'returns false' do
+            expect(subject.filter?).to be false
+          end
+        end
+
+        context 'when recipient is allowing limited accounts' do
+          before do
+            notification.account.create_notification_policy!(for_limited_accounts: :accept)
           end
 
           it 'returns false' do
