@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 import classnames from 'classnames';
 import { Link, withRouter } from 'react-router-dom';
@@ -10,6 +10,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
+import { openModal } from 'mastodon/actions/modal';
+import { apiRequestGet } from 'mastodon/api';
 import { Icon }  from 'mastodon/components/icon';
 import PollContainer from 'mastodon/containers/poll_container';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
@@ -18,6 +20,10 @@ import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_s
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
+const messages = defineMessages({
+  openExternalLink: { id: 'status_content.external_link.open', defaultMessage: 'You are now leaving mastodon'},
+  openExternalLinkConfirm: { id: 'status_content.external_link.confirm', defaultMessage: 'Open link'},
+});
 /**
  *
  * @param {any} status
@@ -64,6 +70,20 @@ class TranslateButton extends PureComponent {
 
 }
 
+const mapDispatchToProps = (dispatch, { intl }) => ({
+  openExternalLink(url) {
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.openExternalLink),
+        confirm: intl.formatMessage(messages.openExternalLinkConfirm),
+        closeWhenConfirm: true,
+        onConfirm: () => window.open(url, null, 'noreferrer'),
+      },
+    }));
+  },
+});
+
 const mapStateToProps = state => ({
   languages: state.getIn(['server', 'translationLanguages', 'items']),
 });
@@ -84,7 +104,8 @@ class StatusContent extends PureComponent {
     // from react-router
     match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    openExternalLink: PropTypes.func.isRequired
   };
 
   state = {
@@ -122,9 +143,12 @@ class StatusContent extends PureComponent {
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
         link.setAttribute('href', `/tags/${link.text.replace(/^#/, '')}`);
-      } else {
+      } else if (status.get('uri') === link.href) {
         link.setAttribute('title', link.href);
         link.classList.add('unhandled-link');
+      } else {
+        link.setAttribute('title', link.href);
+        link.addEventListener('click', this.onLinkClick.bind(this, link), false);
       }
     }
 
@@ -189,6 +213,41 @@ class StatusContent extends PureComponent {
       e.preventDefault();
       this.props.history.push(`/tags/${hashtag}`);
     }
+  };
+
+  onLinkClick = (anchor, e) => {
+    if (anchor.getAttribute('search-not-found')) {
+      return;
+    }
+    const url = anchor?.href;
+    if (!url || !(this.props && e.button === 0 && !(e.ctrlKey || e.metaKey))) {
+      return;
+    }
+    e.preventDefault();
+    if (url.startsWith("/")) {
+      this.props.history.push(url);
+      return;
+    }
+    if (url.startsWith(window.location.origin)) {
+      this.props.history.push(url.slice(window.location.origin.length));
+      return;
+    }
+    const query = new URLSearchParams();
+    query.set("url", url);
+    apiRequestGet(`/v2/resolved_url?${query}`, null, 1000)
+      .then((result) => {
+        let resolvedPath = result.resolvedPath;
+
+        if (resolvedPath) {
+          this.props.history.push(resolvedPath);
+        } else {
+          anchor.setAttribute('search-not-found', 'true');
+          window.open(url, null, 'noreferrer');
+        }
+      })
+      .catch(() => {
+        this.props.openExternalLink(url);
+      });
   };
 
   handleMouseDown = (e) => {
@@ -327,4 +386,4 @@ class StatusContent extends PureComponent {
 
 }
 
-export default withRouter(withIdentity(connect(mapStateToProps)(injectIntl(StatusContent))));
+export default withRouter(withIdentity(injectIntl(connect(mapStateToProps, mapDispatchToProps)(StatusContent))));

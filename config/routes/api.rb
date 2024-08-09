@@ -316,6 +316,7 @@ namespace :api, format: false do
   end
 
   namespace :v2 do
+    get '/resolved_url', to: 'resolved_urls#show', as: :resolved_url
     get '/search', to: 'search#index', as: :search
 
     resources :media, only: [:create]
