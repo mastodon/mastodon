@@ -245,7 +245,7 @@ class LinkDetailsExtractor
   end
 
   def meta_tag(name)
-    document.xpath("//meta[@name=\"#{name}\"]").pick('content')
+    head.xpath('//meta[@name][@content]').find { |el| name.casecmp?(el['name']) }&.attr('content')
   end
 
   def structured_data

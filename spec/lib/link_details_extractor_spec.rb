@@ -41,7 +41,7 @@ RSpec.describe LinkDetailsExtractor do
       <html lang="en">
       <head>
         <title>Man bites dog</title>
-        <meta name="description" content="A dog&#39;s tale">
+        <meta name="descripTION" content="A dog&#39;s tale">
         <link rel="pretty IcoN" href="/favicon.ico">
       </head>
       </html>
