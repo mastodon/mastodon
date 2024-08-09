@@ -7,10 +7,11 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     has_one :account, serializer: REST::AccountSerializer
   end
 
+  include InstanceHelper
   include RoutingHelper
 
   attributes :domain, :title, :version, :source_url, :description,
-             :usage, :thumbnail, :languages, :configuration,
+             :usage, :thumbnail, :icon, :languages, :configuration,
              :registrations
 
   has_one :contact, serializer: ContactSerializer
@@ -29,6 +30,18 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     else
       {
         url: frontend_asset_url('images/preview.png'),
+      }
+    end
+  end
+
+  def icon
+    SiteUpload::ANDROID_ICON_SIZES.map do |size|
+      src = app_icon_path(size.to_i)
+      src = URI.join(root_url, src).to_s if src.present?
+
+      {
+        src: src || frontend_asset_url("icons/android-chrome-#{size}x#{size}.png"),
+        size: "#{size}x#{size}",
       }
     end
   end
