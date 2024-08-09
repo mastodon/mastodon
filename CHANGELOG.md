@@ -2,6 +2,257 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.3.0] - UNRELEASED
+
+The following changelog entries focus on changes visible to users, administrators, client developers or federated software developers, but there has also been a lot of code modernization, refactoring, and tooling work, in particular by TODO
+
+### Security
+
+- **Add confirmation interstitial instead of silently redirecting logged-out visitors to remote resources** (#27792, #28902, #30651)
+  This fixes a longstanding open redirect in Mastodon, at the cost of added friction when local links to remote resources are shared.
+
+### Added
+
+- **Add experimental server-side notification grouping** (#29889, #30576, #30685, #30688, #30707, #30776, #30779, #30781)
+  Group notifications of the same type for the same target, so that your notifications no longer get cluttered by boost and favorite notifications as soon as a couple of your posts get traction.
+  This is done server-side so that clients can efficiently get relevant groups without having to go through numerous pages of individual notifications.
+  As part of this, the visual design of the entire notifications feature has been revamped.
+  TODO: documentation
+- **Add notification policies, filtered notifications and notification requests** (#29366, #29529, #29433, #29565, #29567, #29572, #29575, #29588, #29646, #29652, #29658, #29666, #29693, #29699, #29737, #29706, #29570, #29752, #29810, #29826, #30114, #30251, #30559, #29868)
+  The old “Block notifications from non-followers”, “Block notifications from people you don't follow” and “Block direct messages from people you don't follow” notification settings have been replaced by a new set of settings found directly in the notification column.
+  You can now filter notifications from people you don't follow, people who don't follow you, accounts created within the past 30 days, as well as unsolicited private mentions.
+  Instead of being outright dropped, notifications that do not match your settings are put in a separate “Filtered notifications” box that you can review separately without it clogging your main notifications.
+  This adds the following REST API endpoints:
+  - `GET /api/v1/notifications/policy`: https://docs.joinmastodon.org/methods/notifications/#get-policy
+  - `PATCH /api/v1/notifications/policy`: https://docs.joinmastodon.org/methods/notifications/#update-the-filtering-policy-for-notifications
+  - `GET /api/v1/notifications/requests`: https://docs.joinmastodon.org/methods/notifications/#get-requests
+  - `GET /api/v1/notifications/requests/:id`: https://docs.joinmastodon.org/methods/notifications/#get-one-request
+  - `POST /api/v1/notifications/requests/:id/accept`: https://docs.joinmastodon.org/methods/notifications/#accept-request
+  - `POST /api/v1/notifications/requests/:id/dismiss`: https://docs.joinmastodon.org/methods/notifications/#dismiss-request
+- **Add notifications of severed relationships** (#27511, #29665, #29668, #29670, #29700, #29714, #29712, #29731)
+  Notify local users when they lose relationships as a result of a local moderator blocking a remote account or server, allowing the affected user to retrieve the list of broken relationships.
+  Note that this does not notify remote users.
+  This adds the `severed_relationships` notification type to the REST API and streaming, with a new [`relationship_severance_event` attribute](https://docs.joinmastodon.org/entities/Notification/#relationship_severance_event).
+- **Add hover cards in web UI** (#30754, #30864, #30850, #30879, #30928, #30949, #30948, #30931)
+  Hovering over an avatar or username will now display a hover card with the first two lines of the user's description and their first two profile fields.
+  This can be disabled in the “Animations and accessibility” section of the preferences.
+- **Add "system" theme setting (light/dark theme depending on user system preference)** (#29748, #29553, #29795, #29918, #30839, #30861)
+  Add a “system” theme that automatically switch between default dark and light themes depending on the user's system preferences.
+  Also changes the default server theme to this new “system” theme so that automatic theme selection happens even when logged out.
+- **Add timeline of public posts about a trending link** (#30381, #30840)
+  You can now see public posts mentioning currently-trending articles from people who have opted into discovery features.
+  This adds a new REST API endpoint: https://docs.joinmastodon.org/methods/timelines/#link
+- **Add author highlight for news articles whose authors are on the fediverse** (#30398, #30670, #30521, #30846)
+  This adds a mechanism to highlight the author of news articles shared on Mastodon.
+  TODO
+- **Add in-app notifications for moderation actions and warnings** (#30065, #30082, #30081)
+  In addition to email notifications, also notify users of moderation actions or warnings against them directly within the app, so they are less likely to miss important communication from their moderators.
+  This adds the `moderation_warning` notification type to the REST API and streaming, with a new [`moderation_warning` attribute](https://docs.joinmastodon.org/entities/Notification/#moderation_warning).
+- **Add domain information to profiles in web UI** (#29602)
+  Clicking the domain of a user in their profile will now open a tooltip with a short explanation about servers and federation.
+- Add ability to reorder uploaded media before posting in web UI (#28456)
+- Add ability for admins to configure instance favicon and logo (#30040, #30208, #30259, #30375, #30734)
+- Add profile setup to onboarding in web UI (#27829, #27876, #28453)
+- Add prominent share/copy button on profiles in web UI (#27865, #27889)
+- Add optional hints for server rules (#29539, #29758)
+  Server rules can now be broken into a short rule name and a longer explanation of the rule.
+  This adds a new [`hint` attribute](https://docs.joinmastodon.org/entities/Rule/#hint) to `Rule` entities in the REST API.
+- Add `/` keyboard shortcut to focus the search field (#29921)
+- Add list of pending releases directly in mail notifications for version updates (#29436, #30035)
+- Add badge on account card in report moderation interface when account is already suspended (#29592)
+- Add admin comments directly to the `admin/instances` page (#29240)
+- Add ability to require approval when users sign up using specific email domains (#28468, #28732, #28607, #28608)
+- Add banner for forwarded reports made by remote users about remote content (#27549)
+- Add support HTML ruby tags in remote posts for east-asian languages (#30897)
+- Add link to manage warning presets in admin navigation (#26199)
+- Add volume saving/reuse to video player (#27488)
+- Add Elasticsearch index size, ffmpeg and ImageMagick versions to the admin dashboard (#27301, #30710)
+- Add `MASTODON_SIDEKIQ_READY_FILENAME` environment variable to use a file for Sidekiq to signal it is ready to process jobs (#30971, #30988)
+  In the official Docker image, this is set to `sidekiq_process_has_started_and_will_begin_processing_jobs` so that Sidekiq will touch `tmp/sidekiq_process_has_started_and_will_begin_processing_jobs` to signal readiness.
+- Add `S3_RETRY_LIMIT` environment variable to make S3 retries configurable (#23215)
+- Add `S3_KEY_PREFIX` environment variable (#30181)
+- Add support for multiple `redirect_uris` when creating OAuth 2.0 Applications (#29192)
+- Add Interlingue and Interlingua to interface languages (#28630, #30828)
+- Add Kashubian, Pennsylvania Dutch, Vai, Jawi Malay, Mohawk and Low German to posting languages (#26024, #26634, #27136, #29098, #27115, #27434)
+- Add validations to `Web::PushSubscription` (#30540, #30542)
+- Add option to use native Ruby driver for Redis through `REDIS_DRIVER=ruby` (#30717)
+- Add support for libvips in addition to ImageMagick (#30090, #30590, #30597, #30632, #30857, #30869, #30858)
+  Server admins can now use libvips as a faster and lighter alternative to ImageMagick for processing user-uploaded images.
+  This requires libvips 8.13 or newer, and needs to be enabled with `MASTODON_USE_LIBVIPS=true`.
+  This is enabled by default in the official Docker images, and is intended to completely replace ImageMagick in the future.
+- Add active animation to header settings button (#30221, #30307, #30388)
+- Add OpenTelemetry instrumentation (#30130, #30322, #30353, #30350)
+  TODO
+- Add API to get multiple accounts and statuses (#27871, #30465)
+  This adds `GET /api/v1/accounts` and `GET /api/v1/statuses` to the REST API, see https://docs.joinmastodon.org/methods/accounts/#index and https://docs.joinmastodon.org/methods/statuses/#index
+- Add redirection back to previous page after site upload deletion (#30141)
+- Add RFC8414 OAuth 2.0 server metadata (#29191)
+- Add loading indicator and empty result message to advanced interface search (#30085)
+- Add `profile` OAuth 2.0 scope, allowing more limited access to user data (#29087, #30357)
+- Add the role ID to the badge component (#29707)
+- Add diagnostic message for failure during CLI search deploy (#29462)
+- Add pagination `Link` headers on API accounts/statuses when pinned true (#29442)
+- Add support for specifying custom CA cert for Elasticsearch through `ES_CA_FILE` (#29122, #29147)
+- Add annual reports for accounts (#28693)
+  TODO
+- Add notification email on invalid second authenticator (#28822)
+- Add new emojis from `jdecked/twemoji` 15.0 (#28404)
+- Add configurable error handling in attachment batch deletion (#28184)
+  This makes the S3 batch size configurable through the `S3_BATCH_DELETE_LIMIT` environment variable (defaults to 1000), and adds some retry logic, configurable through the `S3_BATCH_DELETE_RETRY` environment variable (defaults to 3).
+- Add VAPID public key to instance serializer (#28006)
+- Add `nodeName` and `nodeDescription` to nodeinfo `metadata` (#28079)
+- Add Thai diacritics and tone marks in `HASHTAG_INVALID_CHARS_RE` (#26576)
+- Add variable delay before link verification of remote account links (#27774)
+- Add support for invite codes in the registration API (#27805)
+- Add HTML lang attribute to preview card descriptions (#27503)
+- Add display of relevant account warnings to report action logs (#27425)
+- Add validation of allowed schemes on preview card URLs (#27485)
+- Add token introspection without read scope to `/api/v1/apps/verify_credentials` (#27142)
+- Add support for cross-origin request to `/nodeinfo/2.0` (#27413)
+- Add variable delay before link verification of remote account links (#27351)
+- Add PWA shortcut to `/explore` page (#27235)
+
+### Changed
+
+- **Change icons throughout the web interface** (#27385, #27539, #27555, #27579, #27700, #27817, #28519, #28709, #28064, #28775, #28780, #27924, #29294, #29395, #29537, #29569, #29610, #29612, #29649, #29844, #27780)
+  This changes all the interface icons from FontAwesome to Material Symbols for a more modern look, consistent with the official Mastodon Android app.
+  In addition, better care is given to pixel alignment, and icon variants are used to better highlight active/inactive state.
+- **Change design of compose form in web UI** (#28119, #29059, #29248, #29372, #29384, #29417, #29456, #29406, #29651, #29659)
+  The compose form has been completely redesigned for a more modern and consistent look, as well as spelling out the chosen privacy setting and language name at all times.
+  As part of this, the “Unlisted” privacy setting has been renamed to “Quiet public”.
+- **Change mute, block and domain block confirmation modals in web UI** (#29576, #29614, #29640, #29644, #30131)
+  Change the modals to a more modern design, and include more detailed information about the effects of the action requiring confirmation.
+- **Change background color throughout the web UI** (#29522, #29584, #29653, #29779, #29803, #29809, #29808, #29828)
+- **Change onboarding prompt to follow suggestions carousel in web UI** (#28878, #29272)
+- **Change email templates** (#28416, #28755, #28814, #29064, #28883, #29470, #29607, #29761, #29760, #29879)
+  All emails to end-users have been completely redesigned with a fresh new look, providing more information while making them easier to reand and keeping maximum compatibility across mail clients.
+- **Change follow recommendations algorithm** (#28314, #28433, #29017, #29108, #29306, #29550, #29619)
+  This replaces the “past interactions” recommendation algorithm with a “friends of friends” algorithm that suggests accounts followed by people you follow, and a “similar profiles” algorithm that suggests accounts with a profile similar to your most recent follows.
+  In addition, the implementation has been significantly reworked, and all follow recommendations are now dismissable.
+  This change deprecates the `source` attribute in `Suggestion` entities in the REST API, and replaces it with the new [`sources` attribute](https://docs.joinmastodon.org/entities/Suggestion/#sources).
+- Change account search algorithm (#30803)
+- **Change streaming server to use its own dependencies and its own docker image** (#24702, #27967, #26850, #28112, #28115, #28137, #28138, #28497, #28548, #30795)
+  In order to reduce the amount of runtime dependencies, the streaming server has been moved into a separate package and Docker image.
+  The `mastodon` container does not contain the streaming server anymore, as it has been moved to its own `mastodon-streaming` container.
+  Administrators may need to update their setup accordingly.
+- Change Web UI to allow viewing and severing relationships with suspended accounts (#27667)
+  This also adds a `with_suspended` paramter to `GET /api/v1/accounts/relationships` in the REST API.
+- Change counters to be displayed on profile timelines in web UI (#30525)
+- Change disabled buttons color in light mode to make the difference more visible (#30998)
+- Change design of people tab on explore in web UI (#30059)
+- Change sidebar text in web UI (#30696)
+- Change "Follow" to "Follow back" and "Mutual" when appropriate in web UI (#28452, #28465)
+- Change media to be hidden/blurred by default in report modal (#28522)
+- Change order of the "muting" and "blocking" list options in “Data Exports” (#26088)
+- Change admin and moderation notes character limit from 500 to 2000 characters (#30288)
+- Change mute options to be in dropdown on muted users list in web UI (#30049)
+- Change out-of-band hashtags design in web UI (#29732)
+- Change design of metadata underneath detailed posts in web UI (#29585, #29605, #29648)
+- Change action button to be last on profiles in web UI (#29533, #29923)
+- Change dropdown menu icon to not be replaced by close icon when open in web UI (#29532)
+- Change back button to always appear in advanced web UI (#29551, #29669)
+- Change border of active compose field search inputs (#29832, #29839)
+- Change layout and wording of the Content Retention server settings page (#27733)
+- Change unconfirmed users to be kept for one week instead of two days (#30285)
+- Change database pool size to default to Sidekiq concurrency settings in Sidekiq processes (#26488)
+- Change alt text to empty string for avatars (#21875)
+- Change Docker images to use custom-built libvips and ffmpeg (#30571, #30569)
+- Change external links in the admin audit log to plain text or local administration pages (#27139, #27150)
+- Change YJIT to be enabled when available (#30310, #27283)
+  Enable Ruby's built-in just-in-time compiler. This improves performances substantially, at the cost of a slightly increased memory usage.
+- Change `.env` file loading from deprecated `dotenv-rails` gem to `dotenv` gem (#29173, #30121)
+  This should have no effect except in the unlikely case an environment variable included a newline.
+- Change “Panjabi” language name to the more common spelling “Punjabi” (#27117)
+- Change encryption of OTP secrets to use ActiveRecord Encryption (#29831, #28325, #30151, #30202, #30340, #30344)
+  This requires a manual step from administrators of existing servers. Indeed, they need to generate new secrets, which can be done using `bundle exec rails db:encryption:init`.
+  Furthermore, there is a risk that the introduced migration fails if the server was misconfigured in the past. If that happens, the migration error will include the relevant information.
+- Change `/api/v1/announcements` to return regular `Status` entities (#26736)
+- Change imports to convert case-insensitive fields to lowercase (#29739, #29740)
+- Change stats in the admin interface to be inclusive of the full selected range, from beginning of day to end of day (#29416, #29841)
+- Change materialized views to be refreshed concurrently to avoid locks (#29015)
+- Change compose form to use server-provided post character and poll options limits (#28928, #29490)
+- Change streaming server logging from `npmlog` to `pino` and `pino-http` (#27828)
+  This changes the Mastodon streaming server log format, so this might be considered a breaking change if you were parsing the logs.
+- Change media “ALT” label to use a specific CSS class (#28777)
+- Change streaming API host to not be overridden to localhost in development mode (#28557)
+- Change cookie rotator to use SHA1 digest for new cookies (#27392)
+  Note that this requires that no pre-4.2.0 Mastodon web server is running when this code is deployed, as those would not understand the new cookies.
+  Therefore, zero-downtime updates are only supported if you're coming from 4.2.0 or newer. If you want to skip Mastodon 4.2, you will need to completely stop Mastodon services before updating.
+- Change preview card deletes to be done using batch method (#28183)
+- Change `img-src` and `media-src` CSP directives to not include `https:` (#28025, #28561)
+- Change self-destruct procedure (#26439, #29049, #29420)
+  Instead of enqueuing deletion jobs immediately, `tootctl self-destruct` now outputs a value for the `SELF_DESTRUCT` environment variable, which puts a server in self-destruct mode, processing deletions in the background, while giving users access to their export archives.
+
+### Removed
+
+- Remove `CacheBuster` default options (#30718)
+- Remove home marker updates from the Web UI (#22721)
+  The web interface was unconditionally updating the home marker to the most recent received post, discarding any value set by other clients, thus making the feature unreliable.
+- Remove support for Ruby 3.0 (reaching EOL) (#29702)
+- Remove setting for unfollow confirmation modal (#29373)
+  Instead, the unfollow confirmation modal will always be displayed.
+- Remove support for Capistrano (#27295, #30009)
+
+### Fixed
+
+- **Fix link preview cards not always preserving the original URL from the status** (#27312)
+- Fix various issues when in link preview card generation (#28748, #30017, #30362, #30173, #30853, #30929, #30933, #30957, #30987)
+- Fix HTTP 500 error in `/api/v1/polls/:id/votes` when required `choices` parameter is missing (#25598)
+- Fix cross-origin loading of `inert.css` polyfill (#30687)
+- Fix cutoff of instance name in sign-up form (#30598)
+- Fix `--verbose` option of `tootctl media remove`, which was previously erroneously removed (#30536)
+- Fix empty `aria-hidden` attribute value in logo resources area (#30570)
+- Fix “Redirect URI” field not being marked as required in “New application” form (#30311)
+- Fix right-to-left text in preview cards (#30930)
+- Fix rack attack `match_type` value typo in logging config (#30514)
+- Fix division by zero on some video/GIF files (#30600)
+- Fix Web UI trying to save user settings despite being logged out (#30324)
+- Fix hashtag regexp matching some link anchors (#30190)
+- Fix race condition in `POST /api/v1/push/subscription` (#30166)
+- Fix post deletion not being delayed when those are part of an account warning (#30163)
+- Fix local account search on LDAP login being case-sensitive (#30113)
+- Fix rendering error on `/start` when not logged in (#30023)
+- Fix development environment admin account not being auto-approved (#29958)
+- Fix logo pushing header buttons out of view on certain conditions in mobile layout (#29787)
+- Fix notification-related records not being reattributed when merging accounts (#29694)
+- Fix results/query in `api/v1/featured_tags/suggestions` (#29597)
+- Fix being able to upload more than 4 media attachments in some cases (#29183)
+- Fix preview card player getting embedded when clicking on the external link button (#29457)
+- Fix full date display not respecting the locale 12/24h format (#29448)
+- Fix filters title and keywords overflow (#29396)
+- Fix incorrect date format in “Follows and followers” (#29390)
+- Fix “Edit media” modal sizing and layout when space-constrained (#27095)
+- Fix modal container bounds (#29185)
+- Fix inefficient HTTP signature parsing using regexps and `StringScanner` (#29133)
+- Fix moderation report updates through `PUT /api/v1/admin/reports/:id` not being logged in the audit log (#29044, #30342)
+- Fix report reason selector in moderation interface not unselecting rules when changing category (#29026)
+- Fix already-invalid reports failing to resolve (#29027)
+- Fix the emoji dropdown button always opening the dropdown instead of behaving like a toggle (#29012)
+- Fix processing of incoming posts with bearcaps (#26527)
+- Fix search form re-rendering spuriously in web UI (#28876)
+- Fix `RedownloadMediaWorker` not being called on transient S3 failure (#28714)
+- Fix ISO code for Canadian French from incorrect `fr-QC` to `fr-CA` (#26015)
+- Fix `.opus` file uploads being misidentified by Paperclip (#28580)
+- Fix loading local accounts with extraneous domain part in WebUI (#28559)
+- Fix OCR when using S3/CDN for assets (#28551)
+- Fix destructive actions in dropdowns not using error color in light theme (#28484)
+- Fix call to inefficient `delete_matched` cache method in domain blocks (#28374)
+- Fix status edits not always being streamed to mentioned users (#28324)
+- Fix error when encountering malformed `Tag` objects from Kbin (#28235)
+- Fix onboarding step descriptions being truncated on narrow screens (#28021)
+- Fix not all allowed image formats showing in file picker when uploading custom emoji (#28076)
+- Fix search popout listing unusable search options when logged out (#27918)
+- Fix duplicate IDs in relationships and familiar_followers APIs (#27982)
+- Fix modal content not being selectable (#27813)
+- Fix Web UI not displaying appropriate explanation when a user hides their follows/followers (#27791)
+- Fix format-dependent redirects being cached regardless of requested format (#27632)
+- Fix processing of featured collections lacking an `items` attribute (#27581)
+- Fix confusing screen when visiting a confirmation link for an already-confirmed email (#27368)
+- Fix explore page reloading when you navigate back to it in web UI (#27489)
+- Fix missing redirection from `/home` to `/deck/home` in the advanced interface (#27378)
+- Fix empty environment variables not using default nil value (#27400)
+- Fix language sorting in settings (#27158)
+
 ## [4.2.10] - 2024-07-04
 
 ### Security
