@@ -91,7 +91,13 @@
   },
   "buildpacks": [
     {
+      "url": "https://github.com/heroku/heroku-buildpack-activestorage-preview"
+    },
+    {
       "url": "https://github.com/heroku/heroku-buildpack-apt"
+    },
+    {
+      "url": "heroku/nodejs"
     },
     {
       "url": "heroku/ruby"
@@ -100,5 +106,6 @@
   "scripts": {
     "postdeploy": "bundle exec rails db:migrate && bundle exec rails db:seed"
   },
-  "addons": ["heroku-postgresql", "heroku-redis"]
+  "addons": ["heroku-postgresql", "heroku-redis"],
+  "stack": "heroku-24"
 }
