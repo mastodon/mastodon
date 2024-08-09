@@ -127,9 +127,6 @@ group :test do
   # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
   gem 'rspec-github', '~> 2.4', require: false
 
-  # RSpec progress bar formatter
-  gem 'fuubar', '~> 2.5'
-
   # RSpec helpers for email specs
   gem 'email_spec'
 
