@@ -74,9 +74,39 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
   const intl = useIntl();
   const dispatch = useDispatch();
 
+  const notificationRequests = useSelector(state => state.getIn(['notificationRequests', 'items']));
+
   const selectedCount = selectedItems.length;
 
   const handleAcceptAll = useCallback(() => {
+    const items = notificationRequests.map(request => request.get('id')).toArray();
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        title: intl.formatMessage(messages.confirmAcceptAllTitle),
+        message: intl.formatMessage(messages.confirmAcceptAllMessage, { count: items.length }),
+        confirm: intl.formatMessage(messages.confirmAcceptAllButton),
+        onConfirm: () =>
+          dispatch(acceptNotificationRequests(items)),
+      },
+    }));
+  }, [dispatch, intl, notificationRequests]);
+
+  const handleDismissAll = useCallback(() => {
+    const items = notificationRequests.map(request => request.get('id')).toArray();
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        title: intl.formatMessage(messages.confirmDismissAllTitle),
+        message: intl.formatMessage(messages.confirmDismissAllMessage, { count: items.length }),
+        confirm: intl.formatMessage(messages.confirmDismissAllButton),
+        onConfirm: () =>
+          dispatch(dismissNotificationRequests(items)),
+      },
+    }));
+  }, [dispatch, intl, notificationRequests]);
+
+  const handleAcceptMultiple = useCallback(() => {
     dispatch(openModal({
       modalType: 'CONFIRM',
       modalProps: {
@@ -89,7 +119,7 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
     }));
   }, [dispatch, intl, selectedItems]);
 
-  const handleDismissAll = useCallback(() => {
+  const handleDismissMultiple = useCallback(() => {
     dispatch(openModal({
       modalType: 'CONFIRM',
       modalProps: {
@@ -111,8 +141,8 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
       { text: intl.formatMessage(messages.acceptAll), action: handleAcceptAll },
       { text: intl.formatMessage(messages.dismissAll), action: handleDismissAll },
     ] : [
-      { text: intl.formatMessage(messages.acceptMultiple, { count: selectedCount }), action: handleAcceptAll },
-      { text: intl.formatMessage(messages.dismissMultiple, { count: selectedCount }), action: handleDismissAll },
+      { text: intl.formatMessage(messages.acceptMultiple, { count: selectedCount }), action: handleAcceptMultiple },
+      { text: intl.formatMessage(messages.dismissMultiple, { count: selectedCount }), action: handleDismissMultiple },
     ];
 
   return (
