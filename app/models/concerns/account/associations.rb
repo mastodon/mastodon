@@ -77,5 +77,8 @@ module Account::Associations
 
     # Imports
     has_many :bulk_imports, inverse_of: :account, dependent: :delete_all
+
+    # Secrets
+    has_one :account_secret, inverse_of: :account, dependent: :destroy, autosave: true
   end
 end

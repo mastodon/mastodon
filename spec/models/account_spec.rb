@@ -1067,4 +1067,15 @@ RSpec.describe Account do
       expect(subject.reload.followers_count).to eq 15
     end
   end
+
+  describe 'private key' do
+    it 'encrypts and decrypts the key' do
+      account = Fabricate(:account)
+
+      account.private_key = 'secret'
+      account.save!
+
+      expect(account.reload.private_key).to eq 'secret'
+    end
+  end
 end

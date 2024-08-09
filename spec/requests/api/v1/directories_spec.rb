@@ -17,7 +17,7 @@ describe 'Directories API' do
           user: Fabricate(:user, confirmed_at: nil, approved: true),
           username: 'local_unconfirmed'
         )
-        local_unconfirmed_account.create_account_stat!
+        local_unconfirmed_account.account_stat.save!
 
         local_unapproved_account = Fabricate(
           :account,
@@ -25,7 +25,7 @@ describe 'Directories API' do
           user: Fabricate(:user, confirmed_at: 10.days.ago),
           username: 'local_unapproved'
         )
-        local_unapproved_account.create_account_stat!
+        local_unapproved_account.account_stat.save!
         local_unapproved_account.user.update(approved: false)
 
         local_undiscoverable_account = Fabricate(
@@ -35,7 +35,7 @@ describe 'Directories API' do
           discoverable: false,
           username: 'local_undiscoverable'
         )
-        local_undiscoverable_account.create_account_stat!
+        local_undiscoverable_account.account_stat.save!
 
         excluded_from_timeline_account = Fabricate(
           :account,
@@ -43,7 +43,7 @@ describe 'Directories API' do
           discoverable: true,
           username: 'remote_excluded_from_timeline'
         )
-        excluded_from_timeline_account.create_account_stat!
+        excluded_from_timeline_account.account_stat.save!
         Fabricate(:block, account: user.account, target_account: excluded_from_timeline_account)
 
         domain_blocked_account = Fabricate(
@@ -52,11 +52,11 @@ describe 'Directories API' do
           discoverable: true,
           username: 'remote_domain_blocked'
         )
-        domain_blocked_account.create_account_stat!
+        domain_blocked_account.account_stat.save!
         Fabricate(:account_domain_block, account: user.account, domain: 'test.example')
 
-        local_discoverable_account.create_account_stat!
-        eligible_remote_account.create_account_stat!
+        local_discoverable_account.account_stat.save!
+        eligible_remote_account.account_stat.save!
       end
 
       let(:local_discoverable_account) do
@@ -93,8 +93,8 @@ describe 'Directories API' do
       let(:remote_account) { Fabricate(:account, domain: 'host.example') }
 
       before do
-        local_account.create_account_stat!
-        remote_account.create_account_stat!
+        local_account.account_stat.save!
+        remote_account.account_stat.save!
       end
 
       it 'returns only the local accounts' do
