@@ -82,7 +82,7 @@ export const NotificationRequest = ({ id, accountId, notificationsCount, checked
       <div className='notification-request__checkbox'>
         <CheckBox checked={checked} onChange={handleCheck} />
       </div>
-      <Link to={`/notifications/requests/${id}`} className='notification-request__link' onClick={handleClick}>
+      <Link to={`/notifications/requests/${id}`} className='notification-request__link' onClick={handleClick} title={account?.acct}>
         <Avatar account={account} size={40} counter={toCappedNumber(notificationsCount)} />
 
         <div className='notification-request__name'>
