@@ -17,23 +17,9 @@ class Admin::Metrics::Measure::NewUsersMeasure < Admin::Metrics::Measure::BaseMe
     User.where(created_at: previous_time_period).count
   end
 
-  def sql_array
-    [sql_query_string, { start_at: @start_at, end_at: @end_at }]
-  end
-
-  def sql_query_string
-    <<~SQL.squish
-      SELECT axis.*, (
-        WITH new_users AS (
-          SELECT users.id
-          FROM users
-          WHERE date_trunc('day', users.created_at)::date = axis.period
-        )
-        SELECT count(*) FROM new_users
-      ) AS value
-      FROM (
-        #{generated_series_days}
-      ) AS axis
-    SQL
+  def data_source
+    User
+      .select(:id)
+      .where(daily_period(:users))
   end
 end

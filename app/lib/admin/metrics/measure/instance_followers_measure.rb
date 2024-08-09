@@ -27,26 +27,12 @@ class Admin::Metrics::Measure::InstanceFollowersMeasure < Admin::Metrics::Measur
     nil
   end
 
-  def sql_array
-    [sql_query_string, { start_at: @start_at, end_at: @end_at, domain: params[:domain] }]
-  end
-
-  def sql_query_string
-    <<~SQL.squish
-      SELECT axis.*, (
-        WITH new_followers AS (
-          SELECT follows.id
-          FROM follows
-          INNER JOIN accounts ON follows.account_id = accounts.id
-          WHERE date_trunc('day', follows.created_at)::date = axis.period
-            AND #{account_domain_sql(params[:include_subdomains])}
-        )
-        SELECT count(*) FROM new_followers
-      ) AS value
-      FROM (
-        #{generated_series_days}
-      ) AS axis
-    SQL
+  def data_source
+    Follow
+      .select(:id)
+      .joins(:account)
+      .where(account_domain_sql, domain: params[:domain])
+      .where(daily_period(:follows))
   end
 
   def params

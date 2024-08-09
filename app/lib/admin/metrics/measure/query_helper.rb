@@ -15,19 +15,49 @@ module Admin::Metrics::Measure::QueryHelper
     ActiveRecord::Base.sanitize_sql_array(sql_array)
   end
 
-  def generated_series_days
-    Arel.sql(
-      <<~SQL.squish
-        SELECT generate_series(:start_at::timestamp, :end_at::timestamp, '1 day')::date AS period
-      SQL
-    )
+  def sql_array
+    [sql_query_string, { start_at: @start_at, end_at: @end_at }]
   end
 
-  def account_domain_sql(include_subdomains)
-    if include_subdomains
-      "accounts.domain IN (SELECT domain FROM instances WHERE reverse('.' || domain) LIKE reverse('.' || :domain::text))"
+  def sql_query_string
+    <<~SQL.squish
+      SELECT axis.*, (
+        WITH data_source AS (#{data_source.to_sql})
+        SELECT #{select_target} FROM data_source
+      ) AS value
+      FROM (
+        SELECT generate_series(:start_at::timestamp, :end_at::timestamp, '1 day')::date AS period
+      ) AS axis
+    SQL
+  end
+
+  def select_target
+    <<~SQL.squish
+      COUNT(*)
+    SQL
+  end
+
+  def daily_period(table, column = :created_at)
+    <<~SQL.squish
+      DATE_TRUNC('day', #{table}.#{column})::date = axis.period
+    SQL
+  end
+
+  def status_range_sql
+    <<~SQL.squish
+      statuses.id BETWEEN :earliest_status_id AND :latest_status_id
+    SQL
+  end
+
+  def account_domain_sql
+    if params[:include_subdomains]
+      <<~SQL.squish
+        accounts.domain IN (SELECT domain FROM instances WHERE reverse('.' || domain) LIKE reverse('.' || :domain::text))
+      SQL
     else
-      'accounts.domain = :domain::text'
+      <<~SQL.squish
+        accounts.domain = :domain::text
+      SQL
     end
   end
 end

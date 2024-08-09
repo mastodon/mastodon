@@ -27,27 +27,13 @@ class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure
     nil
   end
 
-  def sql_array
-    [sql_query_string, { start_at: @start_at, end_at: @end_at, domain: params[:domain], earliest_status_id: earliest_status_id, latest_status_id: latest_status_id }]
-  end
-
-  def sql_query_string
-    <<~SQL.squish
-      SELECT axis.*, (
-        WITH new_statuses AS (
-          SELECT statuses.id
-          FROM statuses
-          INNER JOIN accounts ON accounts.id = statuses.account_id
-          WHERE statuses.id BETWEEN :earliest_status_id AND :latest_status_id
-            AND #{account_domain_sql(params[:include_subdomains])}
-            AND date_trunc('day', statuses.created_at)::date = axis.period
-        )
-        SELECT count(*) FROM new_statuses
-      ) AS value
-      FROM (
-        #{generated_series_days}
-      ) AS axis
-    SQL
+  def data_source
+    Status
+      .select(:id)
+      .joins(:account)
+      .where(account_domain_sql, domain: params[:domain])
+      .where(status_range_sql, earliest_status_id: earliest_status_id, latest_status_id: latest_status_id)
+      .where(daily_period(:statuses))
   end
 
   def earliest_status_id

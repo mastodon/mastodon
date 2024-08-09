@@ -27,25 +27,11 @@ class Admin::Metrics::Measure::InstanceAccountsMeasure < Admin::Metrics::Measure
     nil
   end
 
-  def sql_array
-    [sql_query_string, { start_at: @start_at, end_at: @end_at, domain: params[:domain] }]
-  end
-
-  def sql_query_string
-    <<~SQL.squish
-      SELECT axis.*, (
-        WITH new_accounts AS (
-          SELECT accounts.id
-          FROM accounts
-          WHERE date_trunc('day', accounts.created_at)::date = axis.period
-            AND #{account_domain_sql(params[:include_subdomains])}
-        )
-        SELECT count(*) FROM new_accounts
-      ) AS value
-      FROM (
-        #{generated_series_days}
-      ) AS axis
-    SQL
+  def data_source
+    Account
+      .select(:id)
+      .where(account_domain_sql, domain: params[:domain])
+      .where(daily_period(:accounts))
   end
 
   def params
