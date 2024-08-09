@@ -338,6 +338,18 @@ class Account < ApplicationRecord
     end
   end
 
+  def fields=(fields)
+    old_fields = self[:fields] || []
+    old_fields = [] if old_fields.is_a?(Hash)
+
+    self[:fields] = fields.map do |field|
+      verified_at = old_fields.find { |item| item['value'] == field['value'] }&.fetch('verified_at', nil)
+      next field if verified_at.blank?
+
+      field.merge('verified_at' => verified_at)
+    end
+  end
+
   def fields_attributes=(attributes)
     fields     = []
     old_fields = self[:fields] || []
