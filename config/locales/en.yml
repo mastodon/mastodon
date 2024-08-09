@@ -867,6 +867,8 @@ en:
       elasticsearch_version_check:
         message_html: 'Incompatible Elasticsearch version: %{value}'
         version_comparison: Elasticsearch %{running_version} is running while %{required_version} is required
+      missing_indexes_check:
+        message_html: 'The following indexes are missing from the database and should be recreated: <code>%{value}</code>.<br> Missing indexes may lead to severely reduced performance and data inconsistencies.'
       rules_check:
         action: Manage server rules
         message_html: You haven't defined any server rules.
