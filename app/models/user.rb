@@ -56,19 +56,11 @@ class User < ApplicationRecord
 
   include LanguagesHelper
   include Redisable
+  include User::Activity
   include User::HasSettings
   include User::LdapAuthenticable
   include User::Omniauthable
   include User::PamAuthenticable
-
-  # The home and list feeds will be stored in Redis for this amount
-  # of time, and status fan-out to followers will include only people
-  # within this time frame. Lowering the duration may improve performance
-  # if lots of people sign up, but not a lot of them check their feed
-  # every day. Raising the duration reduces the amount of expensive
-  # RegenerationWorker jobs that need to be run when those people come
-  # to check their feed
-  ACTIVE_DURATION = ENV.fetch('USER_ACTIVE_DAYS', 7).to_i.days.freeze
 
   devise :two_factor_authenticatable,
          otp_secret_encryption_key: Rails.configuration.x.otp_secret
@@ -121,8 +113,6 @@ class User < ApplicationRecord
   scope :enabled, -> { where(disabled: false) }
   scope :disabled, -> { where(disabled: true) }
   scope :active, -> { confirmed.signed_in_recently.account_not_suspended }
-  scope :signed_in_recently, -> { where(current_sign_in_at: ACTIVE_DURATION.ago..) }
-  scope :not_signed_in_recently, -> { where(current_sign_in_at: ...ACTIVE_DURATION.ago) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
   scope :matches_ip, ->(value) { left_joins(:ips).where('user_ips.ip <<= ?', value).group('users.id') }
 
@@ -499,7 +489,7 @@ class User < ApplicationRecord
     return unless confirmed?
 
     ActivityTracker.record('activity:logins', id)
-    regenerate_feed! if needs_feed_update?
+    regenerate_feed! if inactive_since_duration?
   end
 
   def notify_staff_about_pending_account!
@@ -512,10 +502,6 @@ class User < ApplicationRecord
 
   def regenerate_feed!
     RegenerationWorker.perform_async(account_id) if redis.set("account:#{account_id}:regeneration", true, nx: true, ex: 1.day.seconds)
-  end
-
-  def needs_feed_update?
-    last_sign_in_at < ACTIVE_DURATION.ago
   end
 
   def validate_email_dns?
