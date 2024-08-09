@@ -95,8 +95,8 @@ class NotifyService < BaseService
     end
   end
 
-  class DismissCondition < BaseCondition
-    def dismiss?
+  class DropCondition < BaseCondition
+    def drop?
       blocked   = @recipient.unavailable?
       blocked ||= from_self? && %i(poll severed_relationships moderation_warning).exclude?(@notification.type)
 
@@ -209,7 +209,7 @@ class NotifyService < BaseService
     @notification = Notification.new(account: @recipient, type: type, activity: @activity)
 
     # For certain conditions we don't need to create a notification at all
-    return if dismiss?
+    return if drop?
 
     @notification.filtered = filter?
     @notification.group_key = notification_group_key
@@ -249,8 +249,8 @@ class NotifyService < BaseService
     "#{type_prefix}-#{hour_bucket}"
   end
 
-  def dismiss?
-    DismissCondition.new(@notification).dismiss?
+  def drop?
+    DropCondition.new(@notification).drop?
   end
 
   def filter?

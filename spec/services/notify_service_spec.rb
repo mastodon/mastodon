@@ -196,20 +196,20 @@ RSpec.describe NotifyService do
     end
   end
 
-  describe NotifyService::DismissCondition do
+  describe NotifyService::DropCondition do
     subject { described_class.new(notification) }
 
     let(:activity) { Fabricate(:mention, status: Fabricate(:status)) }
     let(:notification) { Fabricate(:notification, type: :mention, activity: activity, from_account: activity.status.account, account: activity.account) }
 
-    describe '#dismiss?' do
+    describe '#drop' do
       context 'when sender is silenced and recipient has a default policy' do
         before do
           notification.from_account.silence!
         end
 
         it 'returns false' do
-          expect(subject.dismiss?).to be false
+          expect(subject.drop?).to be false
         end
       end
 
@@ -220,13 +220,13 @@ RSpec.describe NotifyService do
         end
 
         it 'returns true' do
-          expect(subject.dismiss?).to be true
+          expect(subject.drop?).to be true
         end
       end
 
       context 'when sender is new and recipient has a default policy' do
         it 'returns false' do
-          expect(subject.dismiss?).to be false
+          expect(subject.drop?).to be false
         end
       end
 
@@ -236,7 +236,7 @@ RSpec.describe NotifyService do
         end
 
         it 'returns true' do
-          expect(subject.dismiss?).to be true
+          expect(subject.drop?).to be true
         end
       end
 
@@ -247,7 +247,7 @@ RSpec.describe NotifyService do
         end
 
         it 'returns false' do
-          expect(subject.dismiss?).to be false
+          expect(subject.drop?).to be false
         end
       end
 
@@ -257,7 +257,7 @@ RSpec.describe NotifyService do
         end
 
         it 'returns true' do
-          expect(subject.dismiss?).to be true
+          expect(subject.drop?).to be true
         end
       end
     end
