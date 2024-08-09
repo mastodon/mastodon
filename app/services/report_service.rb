@@ -86,7 +86,7 @@ class ReportService < BaseService
     has_followers = @target_account.followers.with_domain(domain).exists?
     visibility = has_followers ? %i(public unlisted private) : %i(public unlisted)
     scope = @target_account.statuses.with_discarded
-    scope.merge!(scope.where(visibility: visibility).or(scope.where('EXISTS (SELECT 1 FROM mentions m JOIN accounts a ON m.account_id = a.id WHERE lower(a.domain) = ?)', domain)))
+    scope.merge!(scope.where(visibility: visibility).or(scope.where(exists_mention_for_domain_accounts(domain))))
     # Allow missing posts to not drop reports that include e.g. a deleted post
     scope.where(id: Array(@status_ids)).pluck(:id)
   end
@@ -97,5 +97,14 @@ class ReportService < BaseService
 
   def some_local_account
     @some_local_account ||= Account.representative
+  end
+
+  def exists_mention_for_domain_accounts(domain)
+    Mention
+      .joins(:account)
+      .merge(Account.with_domain(domain))
+      .select(1)
+      .arel
+      .exists
   end
 end
