@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -26,6 +26,7 @@ const getAccount = makeGetAccount();
 const messages = defineMessages({
   accept: { id: 'notification_requests.accept', defaultMessage: 'Accept' },
   dismiss: { id: 'notification_requests.dismiss', defaultMessage: 'Dismiss' },
+  view: { id: 'notification_requests.view', defaultMessage: 'View notifications' },
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
@@ -36,6 +37,7 @@ export const NotificationRequest = ({ id, accountId, notificationsCount, checked
   const dispatch = useDispatch();
   const account = useSelector(state => getAccount(state, accountId));
   const intl = useIntl();
+  const { push: historyPush } = useHistory();
 
   const handleDismiss = useCallback(() => {
     dispatch(dismissNotificationRequest(id));
@@ -57,7 +59,13 @@ export const NotificationRequest = ({ id, accountId, notificationsCount, checked
     dispatch(initReport(account));
   }, [dispatch, account]);
 
+  const handleView = useCallback(() => {
+    historyPush(`/notifications/requests/${id}`);
+  }, [historyPush, id]);
+
   const menu = [
+    { text: intl.formatMessage(messages.view), action: handleView },
+    null,
     { text: intl.formatMessage(messages.accept), action: handleAccept },
     null,
     { text: intl.formatMessage(messages.mute, { name: account.username }), action: handleMute, dangerous: true },
