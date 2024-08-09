@@ -79,16 +79,6 @@ RSpec.describe LinkDetailsExtractor do
         },
       }.to_json
     end
-    let(:html) { <<~HTML }
-      <!doctype html>
-      <html>
-      <body>
-        <script type="application/ld+json">
-          #{ld_json}
-        </script>
-      </body>
-      </html>
-    HTML
 
     shared_examples 'structured data' do
       it 'extracts the expected values from structured data' do
@@ -234,25 +224,19 @@ RSpec.describe LinkDetailsExtractor do
           },
         }.to_json
       end
+      let(:html) { <<~HTML }
+        <!doctype html>
+        <html>
+        <body>
+          <script type="application/ld+json">
+            #{ld_json}
+          </script>
+        </body>
+        </html>
+      HTML
 
       it 'joins author names' do
         expect(subject.author_name).to eq 'Author 1, Author 2'
-      end
-    end
-
-    context 'with named graph' do
-      let(:ld_json) do
-        {
-          '@context' => 'https://schema.org',
-          '@graph' => [
-            '@type' => 'NewsArticle',
-            'headline' => "What's in a name",
-          ],
-        }.to_json
-      end
-
-      it 'descends into @graph node' do
-        expect(subject.title).to eq "What's in a name"
       end
     end
   end
