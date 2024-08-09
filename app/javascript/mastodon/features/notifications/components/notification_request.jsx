@@ -86,8 +86,9 @@ export const NotificationRequest = ({ id, accountId, notificationsCount, checked
   }, [toggleCheck, id, showCheckbox]);
 
   return (
+    /* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- this is just a minor affordance, but we will need a comprehensive accessibility pass */
     <div className={classNames('notification-request', showCheckbox && 'notification-request--forced-checkbox')} onClick={handleClick}>
-      <div className='notification-request__checkbox'>
+      <div className='notification-request__checkbox' aria-hidden={!showCheckbox}>
         <CheckBox checked={checked} onChange={handleCheck} />
       </div>
       <Link to={`/notifications/requests/${id}`} className='notification-request__link' onClick={handleClick} title={account?.acct}>
