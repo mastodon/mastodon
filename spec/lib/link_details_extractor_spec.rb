@@ -255,6 +255,22 @@ RSpec.describe LinkDetailsExtractor do
         expect(subject.title).to eq "What's in a name"
       end
     end
+
+    context 'with invalid JSON-LD' do
+      let(:ld_json) do
+        {
+          '@context' => 'https://schema.org',
+          '@type' => 'NewsArticle',
+          '@id' => 'https://example.com',
+          'id' => 'https://example.com',
+          'headline' => 'Colliding keywords',
+        }.to_json
+      end
+
+      it 'silently skips compaction' do
+        expect(subject.title).to eq 'Colliding keywords'
+      end
+    end
   end
 
   context 'when Open Graph protocol data is present' do
