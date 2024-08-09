@@ -115,5 +115,58 @@ RSpec.describe ActivityPub::Activity::Update do
         expect(status.edited_at).to be_nil
       end
     end
+
+    context 'with a Note object' do
+      let!(:status) { Fabricate(:status, uri: 'https://example.com/statuses', text: 'Foo', account: sender) }
+      let(:json) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'foo',
+          type: 'Update',
+          actor: sender.uri,
+          object: {
+            type: 'Note',
+            id: status.uri,
+            attributedTo: status.account.uri,
+            content: 'Bar',
+            published: '2022-01-22T15:00:00Z',
+            updated: '2022-01-22T16:00:00Z',
+          },
+        }.with_indifferent_access
+      end
+
+      before do
+        status.update!(uri: ActivityPub::TagManager.instance.uri_for(status))
+        subject.perform
+      end
+
+      it 'updates the status' do
+        expect(status.reload.text).to eq('Bar')
+      end
+
+      context 'when the activity actor and object atttributedTo are different' do
+        let!(:another_actor) { Fabricate(:account) }
+        let(:json) do
+          {
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            id: 'foo',
+            type: 'Update',
+            actor: another_actor.uri,
+            object: {
+              type: 'Note',
+              id: status.uri,
+              attributedTo: status.account.uri,
+              content: 'Bar',
+              published: '2022-01-22T15:00:00Z',
+              updated: '2022-01-22T16:00:00Z',
+            },
+          }.with_indifferent_access
+        end
+
+        it 'updates the status' do
+          expect(status.reload.text).to eq('Bar')
+        end
+      end
+    end
   end
 end
