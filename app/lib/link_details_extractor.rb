@@ -157,7 +157,7 @@ class LinkDetailsExtractor
   end
 
   def title
-    html_entities_decode(structured_data&.headline || opengraph_tag('og:title') || document.xpath('//title').map(&:content).first)&.strip
+    html_entities_decode(structured_data&.headline || opengraph_tag('og:title') || head.at_xpath('title')&.content)&.strip
   end
 
   def description
@@ -205,11 +205,11 @@ class LinkDetailsExtractor
   end
 
   def language
-    valid_locale_or_nil(structured_data&.language || opengraph_tag('og:locale') || document.xpath('//html').pick('lang'))
+    valid_locale_or_nil(structured_data&.language || opengraph_tag('og:locale') || document.root.attr('lang'))
   end
 
   def icon
-    valid_url_or_nil(structured_data&.publisher_icon || link_tag('apple-touch-icon') || link_tag('shortcut icon'))
+    valid_url_or_nil(structured_data&.publisher_icon || link_tag('apple-touch-icon') || link_tag('icon'))
   end
 
   private
@@ -237,18 +237,20 @@ class LinkDetailsExtractor
   end
 
   def link_tag(name)
-    document.xpath("//link[@rel=\"#{name}\"]").pick('href')
+    head.xpath('//link[@rel][@href]').find { |el| el.kwattr_values('rel').any? { |v| name.casecmp?(v) } }&.attr('href')
   end
 
   def opengraph_tag(name)
-    document.xpath("//meta[@property=\"#{name}\" or @name=\"#{name}\"]").pick('content')
+    head.xpath('//meta[@content]').find { |el| name.casecmp?(el['property']) || name.casecmp?(el['name']) }&.attr('content')
   end
 
   def meta_tag(name)
-    document.xpath("//meta[@name=\"#{name}\"]").pick('content')
+    head.xpath('//meta[@name][@content]').find { |el| name.casecmp?(el['name']) }&.attr('content')
   end
 
   def structured_data
+    return @structured_data if defined?(@structured_data)
+
     # Some publications have more than one JSON-LD definition on the page,
     # and some of those definitions aren't valid JSON either, so we have
     # to loop through here until we find something that is the right type
@@ -271,6 +273,10 @@ class LinkDetailsExtractor
 
   def document
     @document ||= detect_encoding_and_parse_document
+  end
+
+  def head
+    @head ||= document.at_xpath('/html/head')
   end
 
   def detect_encoding_and_parse_document
