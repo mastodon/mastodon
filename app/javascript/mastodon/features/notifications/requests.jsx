@@ -77,7 +77,7 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedCount}) => {
 
   return (
     <div className='column-header__select-row'>
-      <div className='column-header__select-row__checkbox'><CheckBox checked={selectAllChecked} onChange={toggleSelectAll} />
+      <div className='column-header__select-row__checkbox'><CheckBox checked={selectAllChecked} indeterminate={selectedCount > 0 && !selectAllChecked} onChange={toggleSelectAll} />
       </div>
       {selectedCount > 0 &&
         <div className='column-header__select-row__selected-count'>
