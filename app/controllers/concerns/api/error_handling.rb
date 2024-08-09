@@ -20,12 +20,12 @@ module Api::ErrorHandling
       render json: { error: 'Record not found' }, status: 404
     end
 
-    rescue_from HTTP::Error, Mastodon::UnexpectedResponseError do
-      render json: { error: 'Remote data could not be fetched' }, status: 503
-    end
-
     rescue_from OpenSSL::SSL::SSLError do
       render json: { error: 'Remote SSL certificate could not be verified' }, status: 503
+    end
+
+    rescue_from(*Mastodon::HTTP_CONNECTION_ERRORS) do
+      render json: { error: 'Remote data could not be fetched' }, status: 503
     end
 
     rescue_from Mastodon::NotPermittedError do
