@@ -6244,9 +6244,10 @@ a.status-card {
   max-width: 90vw;
   width: 480px;
   height: 80vh;
-  background: lighten($ui-secondary-color, 8%);
-  color: $inverted-text-color;
-  border-radius: 8px;
+  background: var(--background-color);
+  color: $primary-text-color;
+  border-radius: 4px;
+  border: 1px solid var(--background-border-color);
   overflow: hidden;
   position: relative;
   flex-direction: column;
@@ -6254,7 +6255,7 @@ a.status-card {
 
   &__container {
     box-sizing: border-box;
-    border-top: 1px solid $ui-secondary-color;
+    border-top: 1px solid var(--background-border-color);
     padding: 20px;
     flex-grow: 1;
     display: flex;
@@ -6284,7 +6285,7 @@ a.status-card {
   &__lead {
     font-size: 17px;
     line-height: 22px;
-    color: lighten($inverted-text-color, 16%);
+    color: $secondary-text-color;
     margin-bottom: 30px;
 
     a {
@@ -6319,7 +6320,7 @@ a.status-card {
 
   .status__content,
   .status__content p {
-    color: $inverted-text-color;
+    color: $primary-text-color;
   }
 
   .status__content__spoiler-link {
@@ -6364,7 +6365,7 @@ a.status-card {
   .poll__option.dialog-option {
     padding: 15px 0;
     flex: 0 0 auto;
-    border-bottom: 1px solid $ui-secondary-color;
+    border-bottom: 1px solid var(--background-border-color);
 
     &:last-child {
       border-bottom: 0;
@@ -6372,13 +6373,13 @@ a.status-card {
 
     & > .poll__option__text {
       font-size: 13px;
-      color: lighten($inverted-text-color, 16%);
+      color: $secondary-text-color;
 
       strong {
         font-size: 17px;
         font-weight: 500;
         line-height: 22px;
-        color: $inverted-text-color;
+        color: $primary-text-color;
         display: block;
         margin-bottom: 4px;
 
@@ -6397,21 +6398,18 @@ a.status-card {
     display: block;
     box-sizing: border-box;
     width: 100%;
-    color: $inverted-text-color;
-    background: $simple-background-color;
+    color: $primary-text-color;
+    background: $ui-base-color;
     padding: 10px;
     font-family: inherit;
     font-size: 17px;
     line-height: 22px;
     resize: vertical;
     border: 0;
+    border: 1px solid var(--background-border-color);
     outline: 0;
     border-radius: 4px;
     margin: 20px 0;
-
-    &::placeholder {
-      color: $dark-text-color;
-    }
 
     &:focus {
       outline: 0;
@@ -6433,16 +6431,16 @@ a.status-card {
   }
 
   .button.button-secondary {
-    border-color: $inverted-text-color;
-    color: $inverted-text-color;
+    border-color: $ui-button-destructive-background-color;
+    color: $ui-button-destructive-background-color;
     flex: 0 0 auto;
 
     &:hover,
     &:focus,
     &:active {
-      background: transparent;
-      border-color: $ui-button-background-color;
-      color: $ui-button-background-color;
+      background: $ui-button-destructive-background-color;
+      border-color: $ui-button-destructive-background-color;
+      color: $white;
     }
   }
 
