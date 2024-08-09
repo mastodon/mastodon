@@ -116,7 +116,7 @@ module ApplicationHelper
   def material_symbol(icon, attributes = {})
     inline_svg_tag(
       "400-24px/#{icon}.svg",
-      class: %w(icon).concat(attributes[:class].to_s.split),
+      class: ['icon', "material-#{icon}"].concat(attributes[:class].to_s.split),
       role: :img
     )
   end
@@ -127,23 +127,23 @@ module ApplicationHelper
 
   def visibility_icon(status)
     if status.public_visibility?
-      fa_icon('globe', title: I18n.t('statuses.visibilities.public'))
+      material_symbol('globe', title: I18n.t('statuses.visibilities.public'))
     elsif status.unlisted_visibility?
-      fa_icon('unlock', title: I18n.t('statuses.visibilities.unlisted'))
+      material_symbol('lock_open', title: I18n.t('statuses.visibilities.unlisted'))
     elsif status.private_visibility? || status.limited_visibility?
-      fa_icon('lock', title: I18n.t('statuses.visibilities.private'))
+      material_symbol('lock', title: I18n.t('statuses.visibilities.private'))
     elsif status.direct_visibility?
-      fa_icon('at', title: I18n.t('statuses.visibilities.direct'))
+      material_symbol('alternate_email', title: I18n.t('statuses.visibilities.direct'))
     end
   end
 
   def interrelationships_icon(relationships, account_id)
     if relationships.following[account_id] && relationships.followed_by[account_id]
-      fa_icon('exchange', title: I18n.t('relationships.mutual'), class: 'fa-fw active passive')
+      material_symbol('sync_alt', title: I18n.t('relationships.mutual'), class: 'active passive')
     elsif relationships.following[account_id]
-      fa_icon(locale_direction == 'ltr' ? 'arrow-right' : 'arrow-left', title: I18n.t('relationships.following'), class: 'fa-fw active')
+      material_symbol(locale_direction == 'ltr' ? 'arrow_right_alt' : 'arrow_left_alt', title: I18n.t('relationships.following'), class: 'active')
     elsif relationships.followed_by[account_id]
-      fa_icon(locale_direction == 'ltr' ? 'arrow-left' : 'arrow-right', title: I18n.t('relationships.followers'), class: 'fa-fw passive')
+      material_symbol(locale_direction == 'ltr' ? 'arrow_left_alt' : 'arrow_right_alt', title: I18n.t('relationships.followers'), class: 'passive')
     end
   end
 

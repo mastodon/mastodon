@@ -232,6 +232,7 @@ gd:
         update_custom_emoji: Ùraich an t-Emoji gnàthaichte
         update_domain_block: Ùraich bacadh na h-àrainne
         update_ip_block: Ùraich an riaghailt IP
+        update_report: Ùraich an gearan
         update_status: Ùraich am post
         update_user_role: Ùraich an dreuchd
       actions:
@@ -291,6 +292,7 @@ gd:
         update_custom_emoji_html: Dh’ùraich %{name} an Emoji %{target}
         update_domain_block_html: Dh’ùraich %{name} bacadh na h-àrainne %{target}
         update_ip_block_html: Sguab %{name} às riaghailt dhan IP %{target}
+        update_report_html: Dh’ùraich %{name} an gearan %{target}
         update_status_html: Dh’ùraich %{name} post le %{target}
         update_user_role_html: Dh’atharraich %{name} an dreuchd %{target}
       deleted_account: chaidh an cunntas a sguabadh às
@@ -298,6 +300,7 @@ gd:
       filter_by_action: Criathraich a-rèir gnìomha
       filter_by_user: Criathraich a-rèir cleachdaiche
       title: Sgrùd an loga
+      unavailable_instance: "(chan eil ainm na h-àrainn ri fhaighinn)"
     announcements:
       destroyed_msg: Chaidh am brath-fios a sguabadh às!
       edit:
@@ -484,6 +487,9 @@ gd:
       title: Molaidhean leantainn
       unsuppress: Aisig am moladh leantainn
     instances:
+      audit_log:
+        title: Logaichean sgrùdaidh o chionn goirid
+        view_all: Seall na logaichean sgrùdaidh slàna
       availability:
         description_html:
           few: Ma dh’fhàilligeas an lìbhrigeadh dhan àrainn fad <strong>%{count} làithean</strong>, chan fheuch sinn a-rithist leis an lìbhrigeadh ach às dèidh lìbhrigeadh fhaighinn <em>on àrainn ud fhèin</em>.
@@ -660,6 +666,7 @@ gd:
       report: 'Gearan air #%{id}'
       reported_account: Cunntas mun a chaidh a ghearan
       reported_by: Chaidh gearan a dhèanamh le
+      reported_with_application: Chaidh an gearan a dhèanamh le aplacaid
       resolved: Air fhuasgladh
       resolved_msg: Chaidh an gearan fhuasgladh!
       skip_to_actions: Geàrr leum dha na gnìomhan
@@ -779,6 +786,7 @@ gd:
         desc_html: Tha seo an eisimeil air sgriobtaichean hCaptcha on taobh a-muigh a dh’fhaodadh a bhith ’na dhragh tèarainteachd ’s prìobhaideachd. A bharrachd air sin, <strong>nì seo an clàradh mòran nas do-ruigsinn no chuid (gu h-àraidh an fheadhainn air a bheil ciorram)</strong>. Air na h-adhbharan sin, beachdaich air dòighean eile mar clàradh stèidhichte air aontachadh no cuireadh.
         title: Iarr air cleachdaichean ùra gum fuasgail iad CAPTCHA gus an cunntas aca a dhearbhadh
       content_retention:
+        danger_zone: Earrann chunnartach
         preamble: Stiùirich mar a tha susbaint an luchd-cleachdaidh ’ga stòradh ann am Mastodon.
         title: Glèidheadh na susbaint
       default_noindex:
@@ -905,7 +913,23 @@ gd:
         action: Thoir sùil an-seo airson barrachd fiosrachaidh
         message_html: "<strong>Chaidh stòras nan oibseactan agad a dhroch-rèiteachadh. Tha prìobhaideachd an luchd-cleachdaidh agad fo chunnart.</strong>"
     tags:
+      moderation:
+        not_trendable: Chan fhaod a threandadh
+        not_usable: Cha ghabh a chleachdadh
+        pending_review: A’ feitheamh air lèirmheas
+        review_requested: Chaidh lèirmheas iarraidh
+        reviewed: Chaidh lèirmheas a dhèanamh air
+        title: Staid
+        trendable: Faodaidh a threandadh
+        unreviewed: Gun lèirmheas
+        usable: Gabhaidh a chleachdadh
+      name: Ainm
+      newest: As ùire
+      oldest: As sine
+      reset: Ath-shuidhich
       review: Dèan lèirmheas air an staid
+      search: Lorg
+      title: Tagaichean hais
       updated_msg: Chaidh roghainnean an taga hais ùrachadh
     title: Rianachd
     trends:
@@ -983,10 +1007,11 @@ gd:
       delete: Sguab às
       edit_preset: Deasaich rabhadh ro-shuidhichte
       empty: Cha do mhìnich thu ro-sheataichean rabhaidhean fhathast.
+      title: Ro-sheataichean rabhaidhean
     webhooks:
       add_new: Cuir puing-dheiridh ris
       delete: Sguab às
-      description_html: Bheir <strong>webhook</strong> comas do Mhastodon gus <strong>brathan fìor-ama</strong> a phutadh dhan aplacaid agad fhèin mu na tachartasan a thagh thu ach an adhbharaich an aplacaid agad <strong>freagairtean gu fèin-obrachail</strong>.
+      description_html: Bheir <strong>webhook</strong> comas do Mhastodon gus <strong>brathan fìor-ama</strong> a phutadh dhan aplacaid agad fhèin mu na tachartasan a thagh thu ach an adhbharaich an aplacaid agad <strong>frith-ghnìomhan gu fèin-obrachail</strong>.
       disable: Cuir à comas
       disabled: À comas
       edit: Deasaich a’ phuing-dheiridh
@@ -1602,7 +1627,7 @@ gd:
     title: Poileasaidh prìobhaideachd
   reactions:
     errors:
-      limit_reached: Ràinig thu crìoch nam freagairtean eadar-dhealaichte
+      limit_reached: Ràinig thu crìoch nam frith-ghnìomhan eadar-dhealaichte
       unrecognized_emoji: "– chan aithne dhuinn an Emoji seo"
   redirects:
     prompt: Ma tha earbsa agad sa cheangal seo, briog airson leantainn air adhart.

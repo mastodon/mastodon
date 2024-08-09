@@ -581,11 +581,13 @@ kab:
     strikes:
       status: 'Tasuffeɣt #%{id}'
       title_actions:
+        delete_statuses: Tukksa n tsuffeɣt
         none: Ɣur-wat
   edit_profile:
     basic_information: Talɣut tamatut
     hint_html: "<strong>Mudd udem i wayen ttwalin medden deg umaɣnu-inek azayez ɣer yidis n yiznan-ik.</strong> Imdanen niḍen zemren ad k-ḍefren yernu ad gen assaɣ yid-k mi ara tesɛuḍ amaɣnu yeccuṛen ed tugna n umaɣnu."
   errors:
+    '404': Asebter i tettnadiḍ ulac-it da.
     '500':
       title: Asebter-ayi d arameɣtu
   existing_username_validator:
@@ -831,6 +833,7 @@ kab:
       public_long: Yal yiwen·t yezmer at iwali
       unlisted: War tabdert
   statuses_cleanup:
+    enabled: Tukksa n tsuffaɣ tiqburin s wudem awurman
     min_age:
       '1209600': 2 n yimalasen
       '15778476': 6 n wayyuren
@@ -877,10 +880,16 @@ kab:
       apps_ios_action: Sader-it-id seg App Store
       apps_step: Zdem-d isnasen-nneɣ unṣiben.
       apps_title: Isnasen n Mastodon
+      edit_profile_action: Sagen
+      edit_profile_title: Sagen amaɣnu-inek·inem
       feature_action: Issin ugar
       follow_action: Ḍfeṛ
+      follows_subtitle: Ḍfer imiḍanen yettwassnen mliḥ
       follows_title: Anwa ara ḍefṛeḍ
       follows_view_more: Ssken-d ugar n medden ay tzemred ad tḍefred
+      hashtags_subtitle: Wali ayen ileḥḥun seg sin wussan-a iεeddan
+      hashtags_title: Ihacṭagen mucaɛen
+      hashtags_view_more: Sken-d ugar n yihacṭagen mucaɛen
       post_step: Ini-as azul i umaḍal s uḍris, s tiwlafin, s tividyutin neɣ s tefranin.
       post_title: Aru tasuffeɣt-inek·inem tamezwarut
       share_action: Bḍu

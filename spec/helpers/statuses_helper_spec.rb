@@ -36,7 +36,7 @@ describe StatusesHelper do
       it 'returns the correct fa icon' do
         result = helper.fa_visibility_icon(status)
 
-        expect(result).to match('fa-globe')
+        expect(result).to match('material-globe')
       end
     end
 
@@ -46,7 +46,7 @@ describe StatusesHelper do
       it 'returns the correct fa icon' do
         result = helper.fa_visibility_icon(status)
 
-        expect(result).to match('fa-unlock')
+        expect(result).to match('material-lock_open')
       end
     end
 
@@ -56,7 +56,7 @@ describe StatusesHelper do
       it 'returns the correct fa icon' do
         result = helper.fa_visibility_icon(status)
 
-        expect(result).to match('fa-lock')
+        expect(result).to match('material-lock')
       end
     end
 
@@ -66,7 +66,7 @@ describe StatusesHelper do
       it 'returns the correct fa icon' do
         result = helper.fa_visibility_icon(status)
 
-        expect(result).to match('fa-at')
+        expect(result).to match('material-alternate_email')
       end
     end
   end

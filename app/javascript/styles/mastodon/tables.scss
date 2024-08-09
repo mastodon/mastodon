@@ -273,8 +273,8 @@ a.table-action-link {
       }
     }
 
-    &:nth-child(even) {
-      background: var(--background-color);
+    &:last-child {
+      border-radius: 0 0 4px 4px;
     }
 
     &__content {

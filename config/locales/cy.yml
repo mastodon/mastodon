@@ -17,11 +17,11 @@ cy:
       zero: Dilynwyr
     following: Yn dilyn
     instance_actor_flash: Mae'r cyfrif hwn yn actor rhithwir sy'n cael ei ddefnyddio i gynrychioli'r gweinydd ei hun ac nid unrhyw ddefnyddiwr unigol. Fe'i defnyddir at ddibenion ffederasiwn ac ni ddylid ei atal.
-    last_active: y diweddaraf
+    last_active: gweithgar ddiwethaf
     link_verified_on: Gwiriwyd perchnogaeth y ddolen yma ar %{date}
     nothing_here: Does dim byd yma!
     pin_errors:
-      following: Rhaid i chi fod yn dilyn yn barod y person rydych am ei gymeradwyo
+      following: Rhaid i chi fod yn dilyn y person rydych am ei gymeradwyo, yn barod.
     posts:
       few: Postiadau
       many: Postiadau
@@ -503,6 +503,9 @@ cy:
       title: Dilyn yr argymhellion
       unsuppress: Adfer argymhelliad dilyn
     instances:
+      audit_log:
+        title: Cofnodion Archwilio Diweddar
+        view_all: Gweld y cofnodion archwilio llawn
       availability:
         description_html:
           few: Os bydd anfon i'r parth yn methu ar <strong>%{count} o ddiwrnodau gwahanol</strong> heb lwyddo, ni fydd unrhyw ymdrechion dosbarthu pellach yn cael eu gwneud oni bai y bydd danfoniad yn cael ei dderbyn <em>o'r</em> parth.
@@ -938,7 +941,23 @@ cy:
         action: Ewch yma am fwy o wybodaeth
         message_html: "<strong>Mae eich storfa gwrthrychau wedi'i cham ffurfweddu. Mae preifatrwydd eich defnyddwyr mewn perygl.</strong>"
     tags:
+      moderation:
+        not_trendable: Ddim yn dueddol
+        not_usable: Ddim yn ddefnyddiadwy
+        pending_review: O dan ystyriaeth
+        review_requested: Gofynnwyd am adolygiad
+        reviewed: Adolygwyd
+        title: Statws
+        trendable: Tueddadwy
+        unreviewed: Heb ei adolygu
+        usable: Defnyddiadwy
+      name: Enw
+      newest: Mwyaf newydd
+      oldest: Hynaf
+      reset: Ailosod
       review: Adolygu statws
+      search: Chwilio
+      title: Hashnodau
       updated_msg: Gosodiadau hashnodau wedi'i diweddaru'n llwyddiannus
     title: Gweinyddiaeth
     trends:

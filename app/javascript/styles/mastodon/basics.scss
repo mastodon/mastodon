@@ -66,10 +66,6 @@ body {
     }
   }
 
-  &.lighter {
-    background: $ui-base-color;
-  }
-
   &.with-modals {
     overflow-x: hidden;
     overflow-y: scroll;
@@ -109,7 +105,6 @@ body {
   }
 
   &.embed {
-    background: lighten($ui-base-color, 4%);
     margin: 0;
     padding-bottom: 0;
 
@@ -122,15 +117,12 @@ body {
   }
 
   &.admin {
-    background: var(--background-color);
     padding: 0;
   }
 
   &.error {
     position: absolute;
     text-align: center;
-    color: $darker-text-color;
-    background: $ui-base-color;
     width: 100%;
     height: 100%;
     padding: 0;

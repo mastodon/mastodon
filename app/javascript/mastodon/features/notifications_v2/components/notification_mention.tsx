@@ -1,26 +1,34 @@
 import { FormattedMessage } from 'react-intl';
 
+import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import ReplyIcon from '@/material-icons/400-24px/reply-fill.svg?react';
-import type { StatusVisibility } from 'mastodon/api_types/statuses';
+import { me } from 'mastodon/initial_state';
 import type { NotificationGroupMention } from 'mastodon/models/notification_group';
+import type { Status } from 'mastodon/models/status';
 import { useAppSelector } from 'mastodon/store';
 
 import type { LabelRenderer } from './notification_group_with_status';
 import { NotificationWithStatus } from './notification_with_status';
 
-const labelRenderer: LabelRenderer = (values) => (
+const mentionLabelRenderer: LabelRenderer = () => (
+  <FormattedMessage id='notification.label.mention' defaultMessage='Mention' />
+);
+
+const privateMentionLabelRenderer: LabelRenderer = () => (
   <FormattedMessage
-    id='notification.mention'
-    defaultMessage='{name} mentioned you'
-    values={values}
+    id='notification.label.private_mention'
+    defaultMessage='Private mention'
   />
 );
 
-const privateMentionLabelRenderer: LabelRenderer = (values) => (
+const replyLabelRenderer: LabelRenderer = () => (
+  <FormattedMessage id='notification.label.reply' defaultMessage='Reply' />
+);
+
+const privateReplyLabelRenderer: LabelRenderer = () => (
   <FormattedMessage
-    id='notification.private_mention'
-    defaultMessage='{name} privately mentioned you'
-    values={values}
+    id='notification.label.private_reply'
+    defaultMessage='Private reply'
   />
 );
 
@@ -28,27 +36,30 @@ export const NotificationMention: React.FC<{
   notification: NotificationGroupMention;
   unread: boolean;
 }> = ({ notification, unread }) => {
-  const statusVisibility = useAppSelector(
-    (state) =>
-      state.statuses.getIn([
-        notification.statusId,
-        'visibility',
-      ]) as StatusVisibility,
-  );
+  const [isDirect, isReply] = useAppSelector((state) => {
+    const status = state.statuses.get(notification.statusId) as Status;
+
+    return [
+      status.get('visibility') === 'direct',
+      status.get('in_reply_to_account_id') === me,
+    ] as const;
+  });
+
+  let labelRenderer = mentionLabelRenderer;
+
+  if (isReply && isDirect) labelRenderer = privateReplyLabelRenderer;
+  else if (isReply) labelRenderer = replyLabelRenderer;
+  else if (isDirect) labelRenderer = privateMentionLabelRenderer;
 
   return (
     <NotificationWithStatus
       type='mention'
-      icon={ReplyIcon}
+      icon={isReply ? ReplyIcon : AlternateEmailIcon}
       iconId='reply'
       accountIds={notification.sampleAccountIds}
       count={notification.notifications_count}
       statusId={notification.statusId}
-      labelRenderer={
-        statusVisibility === 'direct'
-          ? privateMentionLabelRenderer
-          : labelRenderer
-      }
+      labelRenderer={labelRenderer}
       unread={unread}
     />
   );

@@ -232,6 +232,7 @@ cs:
         update_custom_emoji: Aktualizovat vlastní emoji
         update_domain_block: Změnit blokaci domény
         update_ip_block: Aktualizovat pravidlo IP
+        update_report: Upravit hlášení
         update_status: Aktualizovat Příspěvek
         update_user_role: Aktualizovat roli
       actions:
@@ -486,6 +487,9 @@ cs:
       title: Doporučená sledování
       unsuppress: Obnovit doporučení sledování
     instances:
+      audit_log:
+        title: Nedávné protokoly auditu
+        view_all: Zobrazit úplné protokoly auditu
       availability:
         description_html:
           few: Pokud doručování na doménu selže ve <strong>%{count} různých dnech</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
@@ -662,6 +666,7 @@ cs:
       report: 'Hlášení #%{id}'
       reported_account: Nahlášený účet
       reported_by: Nahlášeno uživatelem
+      reported_with_application: Nahlášeno aplikací
       resolved: Vyřešeno
       resolved_msg: Hlášení úspěšně vyřešeno!
       skip_to_actions: Přeskočit k akcím
@@ -908,7 +913,23 @@ cs:
         action: Pro více informací se podívejte zde
         message_html: "<strong>Váš object storage je špatně nakonfigurován. Soukromí vašich uživatelů je ohroženo.</strong>"
     tags:
+      moderation:
+        not_trendable: Netrendovatelné
+        not_usable: Nepoužitelné
+        pending_review: Čeká na posouzení
+        review_requested: Posouzení vyžádáno
+        reviewed: Posouzené
+        title: Stav
+        trendable: Trendovatelné
+        unreviewed: Neposouzené
+        usable: Použitelné
+      name: Název
+      newest: Nejnovější
+      oldest: Nejstarší
+      reset: Resetovat
       review: Stav posouzení
+      search: Hledat
+      title: Hashtagy
       updated_msg: Nastavení hashtagů bylo úspěšně aktualizováno
     title: Administrace
     trends:

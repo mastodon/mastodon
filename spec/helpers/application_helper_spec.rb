@@ -223,7 +223,7 @@ describe ApplicationHelper do
 
     it 'returns an unlock icon for a unlisted visible status' do
       result = helper.visibility_icon Status.new(visibility: 'unlisted')
-      expect(result).to match(/unlock/)
+      expect(result).to match(/lock_open/)
     end
 
     it 'returns a lock icon for a private visible status' do
@@ -233,7 +233,7 @@ describe ApplicationHelper do
 
     it 'returns an at icon for a direct visible status' do
       result = helper.visibility_icon Status.new(visibility: 'direct')
-      expect(result).to match(/at/)
+      expect(result).to match(/alternate_email/)
     end
   end
 

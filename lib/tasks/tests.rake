@@ -107,8 +107,8 @@ namespace :tests do
       end
 
       policy = NotificationPolicy.find_by(account: User.find(1).account)
-      unless policy.filter_private_mentions == false && policy.filter_not_following == true
-        puts 'Notification policy not migrated as expected'
+      unless policy.for_private_mentions == 'accept' && policy.for_not_following == 'filter'
+        puts "Notification policy not migrated as expected: #{policy.for_private_mentions.inspect}, #{policy.for_not_following.inspect}"
         exit(1)
       end
 

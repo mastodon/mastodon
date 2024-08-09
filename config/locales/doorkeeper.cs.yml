@@ -83,6 +83,7 @@ cs:
         access_denied: Vlastník zdroje či autorizační server žádost zamítl.
         credential_flow_not_configured: Proud Resource Owner Password Credentials selhal, protože Doorkeeper.configure.resource_owner_from_credentials nebylo nakonfigurováno.
         invalid_client: Ověření klienta selhalo kvůli neznámému klientovi, chybějící klientské autentizaci či nepodporované autentizační metodě.
+        invalid_code_challenge_method: Metoda code challenge musí být S256, plain není podporována.
         invalid_grant: Poskytnuté oprávnění je neplatné, vypršela jeho platnost, bylo odvoláno, neshoduje se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno jinému klientu.
         invalid_redirect_uri: Zahrnutá přesměrovací URI není platná.
         invalid_request:

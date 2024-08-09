@@ -5,7 +5,8 @@ class Api::V1::Notifications::RequestsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :write, :'write:notifications' }, except: :index
 
   before_action :require_user!
-  before_action :set_request, except: :index
+  before_action :set_request, only: [:show, :accept, :dismiss]
+  before_action :set_requests, only: [:accept_bulk, :dismiss_bulk]
 
   after_action :insert_pagination_headers, only: :index
 
@@ -28,7 +29,17 @@ class Api::V1::Notifications::RequestsController < Api::BaseController
   end
 
   def dismiss
-    @request.destroy!
+    DismissNotificationRequestService.new.call(@request)
+    render_empty
+  end
+
+  def accept_bulk
+    @requests.each { |request| AcceptNotificationRequestService.new.call(request) }
+    render_empty
+  end
+
+  def dismiss_bulk
+    @requests.each(&:destroy!)
     render_empty
   end
 
@@ -51,6 +62,10 @@ class Api::V1::Notifications::RequestsController < Api::BaseController
 
   def set_request
     @request = NotificationRequest.where(account: current_account).find(params[:id])
+  end
+
+  def set_requests
+    @requests = NotificationRequest.where(account: current_account, id: Array(params[:id]).uniq.map(&:to_i))
   end
 
   def next_path

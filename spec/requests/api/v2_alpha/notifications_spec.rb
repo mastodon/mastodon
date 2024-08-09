@@ -135,7 +135,7 @@ RSpec.describe 'Notifications' do
 
         expect(response).to have_http_status(200)
         expect(body_json_types.uniq).to eq ['mention']
-        expect(body_as_json[0][:page_min_id]).to_not be_nil
+        expect(body_as_json.dig(:notification_groups, 0, :page_min_id)).to_not be_nil
       end
     end
 
@@ -147,7 +147,7 @@ RSpec.describe 'Notifications' do
 
         notifications = user.account.notifications
 
-        expect(body_as_json.size)
+        expect(body_as_json[:notification_groups].size)
           .to eq(params[:limit])
 
         expect(response)
@@ -160,8 +160,38 @@ RSpec.describe 'Notifications' do
       end
     end
 
+    context 'when requesting stripped-down accounts' do
+      let(:params) { { expand_accounts: 'partial_avatars' } }
+
+      let(:recent_account) { Fabricate(:account) }
+
+      before do
+        FavouriteService.new.call(recent_account, user.account.statuses.first)
+      end
+
+      it 'returns an account in "partial_accounts", with the expected keys', :aggregate_failures do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:partial_accounts].size).to be > 0
+        expect(body_as_json[:partial_accounts][0].keys).to contain_exactly(:acct, :avatar, :avatar_static, :bot, :id, :locked, :url)
+        expect(body_as_json[:partial_accounts].pluck(:id)).to_not include(recent_account.id.to_s)
+        expect(body_as_json[:accounts].pluck(:id)).to include(recent_account.id.to_s)
+      end
+    end
+
+    context 'when passing an invalid value for "expand_accounts"' do
+      let(:params) { { expand_accounts: 'unknown_foobar' } }
+
+      it 'returns http bad request' do
+        subject
+
+        expect(response).to have_http_status(400)
+      end
+    end
+
     def body_json_types
-      body_as_json.pluck(:type)
+      body_as_json[:notification_groups].pluck(:type)
     end
   end
 
