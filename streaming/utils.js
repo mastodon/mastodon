@@ -1,16 +1,6 @@
 // @ts-check
 
-const FALSE_VALUES = [
-  false,
-  0,
-  '0',
-  'f',
-  'F',
-  'false',
-  'FALSE',
-  'off',
-  'OFF',
-];
+const FALSE_VALUES = [false, 0, '0', 'f', 'F', 'false', 'FALSE', 'off', 'OFF'];
 
 /**
  * @param {any} value
@@ -24,8 +14,10 @@ export function isTruthy(value) {
  * See app/lib/ascii_folder.rb for the canon definitions
  * of these constants
  */
-const NON_ASCII_CHARS        = 'ÀÁÂÃÄÅàáâãäåĀāĂăĄąÇçĆćĈĉĊċČčÐðĎďĐđÈÉÊËèéêëĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħÌÍÎÏìíîïĨĩĪīĬĭĮįİıĴĵĶķĸĹĺĻļĽľĿŀŁłÑñŃńŅņŇňŉŊŋÒÓÔÕÖØòóôõöøŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšſŢţŤťŦŧÙÚÛÜùúûüŨũŪūŬŭŮůŰűŲųŴŵÝýÿŶŷŸŹźŻżŽž';
-const EQUIVALENT_ASCII_CHARS = 'AAAAAAaaaaaaAaAaAaCcCcCcCcCcDdDdDdEEEEeeeeEeEeEeEeEeGgGgGgGgHhHhIIIIiiiiIiIiIiIiIiJjKkkLlLlLlLlLlNnNnNnNnnNnOOOOOOooooooOoOoOoRrRrRrSsSsSsSssTtTtTtUUUUuuuuUuUuUuUuUuUuWwYyyYyYZzZzZz';
+const NON_ASCII_CHARS =
+  'ÀÁÂÃÄÅàáâãäåĀāĂăĄąÇçĆćĈĉĊċČčÐðĎďĐđÈÉÊËèéêëĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħÌÍÎÏìíîïĨĩĪīĬĭĮįİıĴĵĶķĸĹĺĻļĽľĿŀŁłÑñŃńŅņŇňŉŊŋÒÓÔÕÖØòóôõöøŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšſŢţŤťŦŧÙÚÛÜùúûüŨũŪūŬŭŮůŰűŲųŴŵÝýÿŶŷŸŹźŻżŽž';
+const EQUIVALENT_ASCII_CHARS =
+  'AAAAAAaaaaaaAaAaAaCcCcCcCcCcDdDdDdEEEEeeeeEeEeEeEeEeGgGgGgGgHhHhIIIIiiiiIiIiIiIiIiJjKkkLlLlLlLlLlNnNnNnNnnNnOOOOOOooooooOoOoOoRrRrRrSsSsSsSssTtTtTtUUUUuuuuUuUuUuUuUuUuWwYyyYyYZzZzZz';
 
 /**
  * @param {string} str
@@ -34,7 +26,7 @@ const EQUIVALENT_ASCII_CHARS = 'AAAAAAaaaaaaAaAaAaCcCcCcCcCcDdDdDdEEEEeeeeEeEeEe
 export function foldToASCII(str) {
   const regex = new RegExp(NON_ASCII_CHARS.split('').join('|'), 'g');
 
-  return str.replace(regex, function(match) {
+  return str.replace(regex, function (match) {
     const index = NON_ASCII_CHARS.indexOf(match);
     return EQUIVALENT_ASCII_CHARS[index];
   });
@@ -45,7 +37,10 @@ export function foldToASCII(str) {
  * @returns {string}
  */
 export function normalizeHashtag(str) {
-  return foldToASCII(str.normalize('NFKC').toLowerCase()).replace(/[^\p{L}\p{N}_\u00b7\u200c]/gu, '');
+  return foldToASCII(str.normalize('NFKC').toLowerCase()).replace(
+    /[^\p{L}\p{N}_\u00b7\u200c]/gu,
+    '',
+  );
 }
 
 /**
