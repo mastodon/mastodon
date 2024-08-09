@@ -241,7 +241,7 @@ class LinkDetailsExtractor
   end
 
   def opengraph_tag(name)
-    head.at_xpath("//meta[@property='#{name}' or @name='#{name}'][@content]")&.attr('content')
+    head.xpath('//meta[@content]').find { |el| name.casecmp?(el['property']) || name.casecmp?(el['name']) }&.attr('content')
   end
 
   def meta_tag(name)

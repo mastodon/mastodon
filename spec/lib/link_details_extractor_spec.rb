@@ -250,7 +250,7 @@ RSpec.describe LinkDetailsExtractor do
       <head>
         <meta property="og:url" content="https://example.com/dog.html">
         <meta property="og:title" content="Man bites dog">
-        <meta property="og:description" content="A dog's tale">
+        <meta property="OG:description" content="A dog's tale">
         <meta property="article:published_time" content="2022-01-31T19:53:00+00:00">
         <meta property="og:author" content="Charlie Brown">
         <meta property="og:locale" content="en">
