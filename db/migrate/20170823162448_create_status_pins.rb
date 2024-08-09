@@ -2,7 +2,7 @@
 
 class CreateStatusPins < ActiveRecord::Migration[5.1]
   def change
-    create_table :status_pins do |t|
+    create_table :status_pins do |t| # rubocop:disable Rails/CreateTableWithTimestamps
       t.belongs_to :account, foreign_key: { on_delete: :cascade }, null: false
       t.belongs_to :status, foreign_key: { on_delete: :cascade }, null: false
     end
