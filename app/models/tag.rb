@@ -21,6 +21,8 @@
 
 class Tag < ApplicationRecord
   include Paginable
+  include Reviewable
+
   # rubocop:disable Rails/HasAndBelongsToMany
   has_and_belongs_to_many :statuses
   has_and_belongs_to_many :accounts
@@ -96,22 +98,6 @@ class Tag < ApplicationRecord
   end
 
   alias trendable? trendable
-
-  def requires_review?
-    reviewed_at.nil?
-  end
-
-  def reviewed?
-    reviewed_at.present?
-  end
-
-  def requested_review?
-    requested_review_at.present?
-  end
-
-  def requires_review_notification?
-    requires_review? && !requested_review?
-  end
 
   def decaying?
     max_score_at && max_score_at >= Trends.tags.options[:max_score_cooldown].ago && max_score_at < 1.day.ago
