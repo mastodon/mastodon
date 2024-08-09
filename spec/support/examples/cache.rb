@@ -7,8 +7,8 @@ shared_examples 'cacheable response' do |expects_vary: false|
 
     expect(session).to be_empty
 
-    expect(response.headers['Vary']).to include(expects_vary) if expects_vary
+    expect(response).to have_http_header('Vary', expects_vary) if expects_vary
 
-    expect(response.headers['Cache-Control']).to include('public')
+    expect(response).to have_http_header('Cache-Control', 'public')
   end
 end

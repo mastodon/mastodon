@@ -19,11 +19,13 @@ RSpec.describe Settings::ImportsController do
       get :index
     end
 
-    it 'assigns the expected imports', :aggregate_failures do
-      expect(response).to have_http_status(200)
-      expect(assigns(:recent_imports)).to eq [import]
-      expect(assigns(:recent_imports)).to_not include(other_import)
-      expect(response.headers['Cache-Control']).to include('private, no-store')
+    it 'assigns expected imports and returns http success and private cache control' do
+      expect(response)
+        .to have_http_status(200)
+        .and have_http_header('Cache-Control', 'private, no-store')
+      expect(assigns(:recent_imports))
+        .to eq([import])
+        .and not_include(other_import)
     end
   end
 

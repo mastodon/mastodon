@@ -14,17 +14,19 @@ describe Settings::DeletesController do
         get :show
       end
 
-      it 'renders confirmation page with private cache control headers', :aggregate_failures do
-        expect(response).to have_http_status(200)
-        expect(response.headers['Cache-Control']).to include('private, no-store')
+      it 'returns http success and private cache control' do
+        expect(response)
+          .to have_http_status(200)
+          .and have_http_header('Cache-Control', 'private, no-store')
       end
 
       context 'when suspended' do
         let(:user) { Fabricate(:user, account_attributes: { suspended_at: Time.now.utc }) }
 
-        it 'returns http forbidden with private cache control headers', :aggregate_failures do
-          expect(response).to have_http_status(403)
-          expect(response.headers['Cache-Control']).to include('private, no-store')
+        it 'returns http forbidden and private cache control' do
+          expect(response)
+            .to have_http_status(403)
+            .and have_http_header('Cache-Control', 'private, no-store')
         end
       end
     end

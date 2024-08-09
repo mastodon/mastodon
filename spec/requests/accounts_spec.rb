@@ -159,11 +159,10 @@ describe 'Accounts show response' do
           it 'returns a private JSON version of the account', :aggregate_failures do
             expect(response)
               .to have_http_status(200)
+              .and have_http_header('Cache-Control', 'private')
               .and have_attributes(
                 media_type: eq('application/activity+json')
               )
-
-            expect(response.headers['Cache-Control']).to include 'private'
 
             expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
           end
@@ -194,12 +193,11 @@ describe 'Accounts show response' do
             it 'returns a private signature JSON version of the account', :aggregate_failures do
               expect(response)
                 .to have_http_status(200)
+                .and have_http_header('Cache-Control', 'private')
+                .and have_http_header('Vary', 'Signature')
                 .and have_attributes(
                   media_type: eq('application/activity+json')
                 )
-
-              expect(response.headers['Cache-Control']).to include 'private'
-              expect(response.headers['Vary']).to include 'Signature'
 
               expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
             end

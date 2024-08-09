@@ -89,9 +89,10 @@ RSpec.describe ActivityPub::CollectionsController do
             end
 
             it 'returns http success and correct media type and cache headers and empty items' do
-              expect(response).to have_http_status(200)
+              expect(response)
+                .to have_http_status(200)
+                .and have_http_header('Cache-Control', 'private')
               expect(response.media_type).to eq 'application/activity+json'
-              expect(response.headers['Cache-Control']).to include 'private'
 
               expect(body_as_json[:orderedItems])
                 .to be_an(Array)
@@ -105,9 +106,10 @@ RSpec.describe ActivityPub::CollectionsController do
             end
 
             it 'returns http success and correct media type and cache headers and empty items' do
-              expect(response).to have_http_status(200)
+              expect(response)
+                .to have_http_status(200)
+                .and have_http_header('Cache-Control', 'private')
               expect(response.media_type).to eq 'application/activity+json'
-              expect(response.headers['Cache-Control']).to include 'private'
 
               expect(body_as_json[:orderedItems])
                 .to be_an(Array)
