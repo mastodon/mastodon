@@ -21,6 +21,8 @@ class Block < ApplicationRecord
 
   validates :account_id, uniqueness: { scope: :target_account_id }
 
+  scope :recent, -> { reorder(id: :desc) }
+
   def local?
     false # Force uri_for to use uri attribute
   end

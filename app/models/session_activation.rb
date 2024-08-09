@@ -28,6 +28,8 @@ class SessionActivation < ApplicationRecord
 
   before_create :assign_access_token
 
+  scope :latest, -> { order(created_at: :desc) }
+
   class << self
     def active?(id)
       id && exists?(session_id: id)
@@ -46,7 +48,7 @@ class SessionActivation < ApplicationRecord
     end
 
     def purge_old
-      order('created_at desc').offset(Rails.configuration.x.max_session_activations).destroy_all
+      latest.offset(Rails.configuration.x.max_session_activations).destroy_all
     end
 
     def exclusive(id)
