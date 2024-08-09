@@ -70,7 +70,7 @@ export const IgnoreNotificationsModal = ({ filterType }) => {
 
           <div>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={ShieldQuestionIcon} /></div>
-            <div><FormattedMessage id='ignore_notifications_modal.filter_to_act_users' defaultMessage='Filtering helps avoid potential confusion' /></div>
+            <div><FormattedMessage id='ignore_notifications_modal.filter_to_avoid_confusion' defaultMessage='Filtering helps avoid potential confusion' /></div>
           </div>
         </div>
 
