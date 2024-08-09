@@ -56,13 +56,11 @@ namespace :repo do
               loop do
                 response = HTTP.headers('Authorization' => "token #{ENV['GITHUB_API_TOKEN']}").get("https://api.github.com/repos/#{REPOSITORY_NAME}/pulls/#{pull_request_number}")
 
-                if response.code == 403
-                  sleep_for = (response.headers['X-RateLimit-Reset'].to_i - Time.now.to_i).abs
-                  puts "Sleeping for #{sleep_for} seconds to get over rate limit"
-                  sleep sleep_for
-                else
-                  break
-                end
+                break unless response.code == 403
+
+                sleep_for = (response.headers['X-RateLimit-Reset'].to_i - Time.now.to_i).abs
+                puts "Sleeping for #{sleep_for} seconds to get over rate limit"
+                sleep sleep_for
               end
 
               pull_request = Oj.load(response.to_s)
