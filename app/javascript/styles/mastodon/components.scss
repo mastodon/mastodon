@@ -403,7 +403,7 @@ body > [data-popper-placement] {
   &__suggestions {
     box-shadow: var(--dropdown-shadow);
     background: $ui-base-color;
-    border: 1px solid lighten($ui-base-color, 14%);
+    border: 1px solid var(--background-border-color);
     border-radius: 0 0 4px 4px;
     color: $secondary-text-color;
     font-size: 14px;
@@ -876,6 +876,13 @@ body > [data-popper-placement] {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  &[disabled] {
+    cursor: default;
+    color: $highlight-text-color;
+    border-color: $highlight-text-color;
+    opacity: 0.5;
+  }
 
   .icon {
     width: 15px;
@@ -2779,6 +2786,11 @@ $ui-header-logo-wordmark-width: 99px;
     &.privacy-policy {
       border-top: 1px solid var(--background-border-color);
       border-radius: 4px;
+
+      @media screen and (max-width: $no-gap-breakpoint) {
+        border-top: 0;
+        border-bottom: 0;
+      }
     }
   }
 }
@@ -3085,11 +3097,6 @@ $ui-header-logo-wordmark-width: 99px;
 
   .explore__search-header {
     display: flex;
-  }
-
-  .explore__search-results {
-    border: 0;
-    border-radius: 0;
   }
 }
 
@@ -3881,18 +3888,17 @@ $ui-header-logo-wordmark-width: 99px;
   display: block;
   box-sizing: border-box;
   margin: 0;
-  color: $inverted-text-color;
-  background: $white;
+  color: $primary-text-color;
+  background: $ui-base-color;
   padding: 7px 10px;
   font-family: inherit;
   font-size: 14px;
   line-height: 22px;
   border-radius: 4px;
-  border: 1px solid $white;
+  border: 1px solid var(--background-border-color);
 
   &:focus {
     outline: 0;
-    border-color: lighten($ui-highlight-color, 12%);
   }
 
   &__wrapper {
@@ -4314,6 +4320,36 @@ a.status-card {
   }
 }
 
+.column-header__select-row {
+  border-width: 0 1px 1px;
+  border-style: solid;
+  border-color: var(--background-border-color);
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &__checkbox .check-box {
+    display: flex;
+  }
+
+  &__selection-mode {
+    flex-grow: 1;
+
+    .text-btn:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__actions {
+    .icon-button {
+      border-radius: 4px;
+      border: 1px solid var(--background-border-color);
+      padding: 5px;
+    }
+  }
+}
+
 .column-header {
   display: flex;
   font-size: 16px;
@@ -4477,6 +4513,11 @@ a.status-card {
 .column-header__collapsible-inner {
   border: 1px solid var(--background-border-color);
   border-top: 0;
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-left: 0;
+    border-right: 0;
+  }
 }
 
 .column-header__setting-btn {
@@ -6240,9 +6281,10 @@ a.status-card {
   max-width: 90vw;
   width: 480px;
   height: 80vh;
-  background: lighten($ui-secondary-color, 8%);
-  color: $inverted-text-color;
-  border-radius: 8px;
+  background: var(--background-color);
+  color: $primary-text-color;
+  border-radius: 4px;
+  border: 1px solid var(--background-border-color);
   overflow: hidden;
   position: relative;
   flex-direction: column;
@@ -6250,7 +6292,7 @@ a.status-card {
 
   &__container {
     box-sizing: border-box;
-    border-top: 1px solid $ui-secondary-color;
+    border-top: 1px solid var(--background-border-color);
     padding: 20px;
     flex-grow: 1;
     display: flex;
@@ -6280,7 +6322,7 @@ a.status-card {
   &__lead {
     font-size: 17px;
     line-height: 22px;
-    color: lighten($inverted-text-color, 16%);
+    color: $secondary-text-color;
     margin-bottom: 30px;
 
     a {
@@ -6315,7 +6357,7 @@ a.status-card {
 
   .status__content,
   .status__content p {
-    color: $inverted-text-color;
+    color: $primary-text-color;
   }
 
   .status__content__spoiler-link {
@@ -6360,7 +6402,7 @@ a.status-card {
   .poll__option.dialog-option {
     padding: 15px 0;
     flex: 0 0 auto;
-    border-bottom: 1px solid $ui-secondary-color;
+    border-bottom: 1px solid var(--background-border-color);
 
     &:last-child {
       border-bottom: 0;
@@ -6368,13 +6410,13 @@ a.status-card {
 
     & > .poll__option__text {
       font-size: 13px;
-      color: lighten($inverted-text-color, 16%);
+      color: $secondary-text-color;
 
       strong {
         font-size: 17px;
         font-weight: 500;
         line-height: 22px;
-        color: $inverted-text-color;
+        color: $primary-text-color;
         display: block;
         margin-bottom: 4px;
 
@@ -6393,21 +6435,18 @@ a.status-card {
     display: block;
     box-sizing: border-box;
     width: 100%;
-    color: $inverted-text-color;
-    background: $simple-background-color;
+    color: $primary-text-color;
+    background: $ui-base-color;
     padding: 10px;
     font-family: inherit;
     font-size: 17px;
     line-height: 22px;
     resize: vertical;
     border: 0;
+    border: 1px solid var(--background-border-color);
     outline: 0;
     border-radius: 4px;
     margin: 20px 0;
-
-    &::placeholder {
-      color: $dark-text-color;
-    }
 
     &:focus {
       outline: 0;
@@ -6429,16 +6468,16 @@ a.status-card {
   }
 
   .button.button-secondary {
-    border-color: $inverted-text-color;
-    color: $inverted-text-color;
+    border-color: $ui-button-destructive-background-color;
+    color: $ui-button-destructive-background-color;
     flex: 0 0 auto;
 
     &:hover,
     &:focus,
     &:active {
-      background: transparent;
-      border-color: $ui-button-background-color;
-      color: $ui-button-background-color;
+      background: $ui-button-destructive-background-color;
+      border-color: $ui-button-destructive-background-color;
+      color: $white;
     }
   }
 
@@ -7458,20 +7497,9 @@ a.status-card {
     flex: 0 0 auto;
     border-radius: 50%;
 
-    &.checked {
+    &.checked,
+    &.indeterminate {
       border-color: $ui-highlight-color;
-
-      &::before {
-        position: absolute;
-        left: 2px;
-        top: 2px;
-        content: '';
-        display: block;
-        border-radius: 50%;
-        width: 12px;
-        height: 12px;
-        background: $ui-highlight-color;
-      }
     }
 
     .icon {
@@ -7481,19 +7509,28 @@ a.status-card {
   }
 }
 
+.radio-button.checked::before {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  content: '';
+  display: block;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  background: $ui-highlight-color;
+}
+
 .check-box {
   &__input {
     width: 18px;
     height: 18px;
     border-radius: 2px;
 
-    &.checked {
+    &.checked,
+    &.indeterminate {
       background: $ui-highlight-color;
       color: $white;
-
-      &::before {
-        display: none;
-      }
     }
   }
 }
@@ -7661,6 +7698,11 @@ noscript {
     input {
       width: 100%;
     }
+  }
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-left: 0;
+    border-right: 0;
   }
 }
 
@@ -8789,10 +8831,13 @@ noscript {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--background-border-color);
-  border-top: 0;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+
+  @media screen and (min-width: $no-gap-breakpoint) {
+    border: 1px solid var(--background-border-color);
+    border-top: 0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
 }
 
 .story {
@@ -10206,11 +10251,27 @@ noscript {
 }
 
 .notification-request {
+  $padding: 15px;
+
   display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 15px;
+  padding: $padding;
+  gap: 8px;
+  position: relative;
   border-bottom: 1px solid var(--background-border-color);
+
+  &__checkbox {
+    position: absolute;
+    inset-inline-start: $padding;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+
+    .check-box {
+      display: flex;
+    }
+  }
 
   &__link {
     display: flex;
@@ -10267,6 +10328,31 @@ noscript {
       border-radius: 4px;
       border: 1px solid var(--background-border-color);
       padding: 5px;
+    }
+  }
+
+  .notification-request__link {
+    transition: padding-inline-start 0.1s ease-in-out;
+  }
+
+  &--forced-checkbox {
+    cursor: pointer;
+
+    &:hover {
+      background: lighten($ui-base-color, 1%);
+    }
+
+    .notification-request__checkbox {
+      opacity: 1;
+      width: 30px;
+    }
+
+    .notification-request__link {
+      padding-inline-start: 30px;
+    }
+
+    .notification-request__actions {
+      display: none;
     }
   }
 }

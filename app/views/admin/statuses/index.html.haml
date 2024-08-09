@@ -33,7 +33,7 @@
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
         - unless @statuses.empty?
-          = f.button safe_join([fa_icon('flag'), t('admin.statuses.batch.report')]),
+          = f.button safe_join([material_symbol('flag'), t('admin.statuses.batch.report')]),
                      class: 'table-action-link',
                      data: { confirm: t('admin.reports.are_you_sure') },
                      name: :report,
