@@ -75,7 +75,7 @@ module.exports = defineConfig({
         ],
       },
     ],
-    'no-empty': ['error', { "allowEmptyCatch": true }],
+    'no-empty': ['error', { 'allowEmptyCatch': true }],
     'no-restricted-properties': [
       'error',
       { property: 'substring', message: 'Use .slice instead of .substring.' },
@@ -332,16 +332,16 @@ module.exports = defineConfig({
         '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
         '@typescript-eslint/consistent-type-exports': 'error',
         '@typescript-eslint/consistent-type-imports': 'error',
-        "@typescript-eslint/prefer-nullish-coalescing": ['error', { ignorePrimitives: { boolean: true } }],
-        "@typescript-eslint/no-restricted-imports": [
-          "warn",
+        '@typescript-eslint/prefer-nullish-coalescing': ['error', { ignorePrimitives: { boolean: true } }],
+        '@typescript-eslint/no-restricted-imports': [
+          'warn',
           {
-            "name": "react-redux",
-            "importNames": ["useSelector", "useDispatch"],
-            "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
+            'name': 'react-redux',
+            'importNames': ['useSelector', 'useDispatch'],
+            'message': 'Use typed hooks `useAppDispatch` and `useAppSelector` instead.'
           }
         ],
-        "@typescript-eslint/restrict-template-expressions": ['warn', { allowNumber: true }],
+        '@typescript-eslint/restrict-template-expressions': ['warn', { allowNumber: true }],
         'jsdoc/require-jsdoc': 'off',
 
         // Those rules set stricter rules for TS files

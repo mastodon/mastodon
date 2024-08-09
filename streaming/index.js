@@ -91,7 +91,7 @@ const parseJSON = (json, req) => {
         req.log.error({ err }, `Error parsing message from ${req.remoteAddress}`);
       }
     } else {
-      logger.error({ err }, `Error parsing message from redis`);
+      logger.error({ err }, 'Error parsing message from redis');
     }
     return null;
   }
@@ -296,7 +296,7 @@ const startServer = async () => {
   const wss = new WebSocketServer({ noServer: true });
 
   // Set the X-Request-Id header on WebSockets:
-  wss.on("headers", function onHeaders(headers, req) {
+  wss.on('headers', function onHeaders(headers, req) {
     headers.push(`X-Request-Id: ${req.id}`);
   });
 
@@ -316,7 +316,7 @@ const startServer = async () => {
     // logger. This decorates the `request` object.
     attachWebsocketHttpLogger(request);
 
-    request.log.info("HTTP Upgrade Requested");
+    request.log.info('HTTP Upgrade Requested');
 
     /** @param {Error} err */
     const onSocketError = (err) => {
@@ -369,7 +369,7 @@ const startServer = async () => {
     socket.removeListener('error', onSocketError);
 
     wss.handleUpgrade(request, socket, head, function done(ws) {
-      request.log.info("Authenticated request & upgraded to WebSocket connection");
+      request.log.info('Authenticated request & upgraded to WebSocket connection');
 
       const wsLogger = createWebsocketLogger(request, resolvedAccount);
 
@@ -458,7 +458,7 @@ const startServer = async () => {
 
     callbacks.forEach(callback => callback(json));
   };
-  redisSubscribeClient.on("message", onRedisMessage);
+  redisSubscribeClient.on('message', onRedisMessage);
 
   /**
    * @callback SubscriptionListener
@@ -780,7 +780,7 @@ const startServer = async () => {
    * @returns {SubscriptionListener}
    */
   const streamFrom = (channelIds, req, log, output, attachCloseHandler, destinationType, needsFiltering = false) => {
-    log.info({ channelIds }, `Starting stream`);
+    log.info({ channelIds }, 'Starting stream');
 
     /**
      * @param {string} event
@@ -887,7 +887,7 @@ const startServer = async () => {
           // If the payload already contains the `filtered` property, it means
           // that filtering has been applied on the ruby on rails side, as
           // such, we don't need to construct or apply the filters in streaming:
-          if (Object.hasOwn(payload, "filtered")) {
+          if (Object.hasOwn(payload, 'filtered')) {
             transmit(event, payload);
             return;
           }
@@ -1043,7 +1043,7 @@ const startServer = async () => {
     const heartbeat = setInterval(() => res.write(':thump\n'), 15000);
 
     req.on('close', () => {
-      req.log.info({ accountId: req.accountId }, `Ending stream`);
+      req.log.info({ accountId: req.accountId }, 'Ending stream');
 
       // We decrement these counters here instead of in streamHttpEnd as in that
       // method we don't have knowledge of the channel names
@@ -1096,7 +1096,7 @@ const startServer = async () => {
 
     ws.send(message, (/** @type {Error|undefined} */ err) => {
       if (err) {
-        req.log.error({err}, `Failed to send to websocket`);
+        req.log.error({err}, 'Failed to send to websocket');
       }
     });
   };
@@ -1351,7 +1351,7 @@ const startServer = async () => {
    * @param {string[]} channelIds
    */
   const removeSubscription = ({ request, logger, subscriptions }, channelIds) => {
-    logger.info({ channelIds, accountId: request.accountId }, `Ending stream`);
+    logger.info({ channelIds, accountId: request.accountId }, 'Ending stream');
 
     const subscription = subscriptions[channelIds.join(';')];
 
@@ -1386,7 +1386,7 @@ const startServer = async () => {
       // If we have a socket that is alive and open still, send the error back to the client:
       if (websocket.isAlive && websocket.readyState === websocket.OPEN) {
         // TODO: Use a better error response here
-        websocket.send(JSON.stringify({ error: "Error unsubscribing from channel" }));
+        websocket.send(JSON.stringify({ error: 'Error unsubscribing from channel' }));
       }
     });
   };

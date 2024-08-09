@@ -97,7 +97,7 @@ module.exports = {
       'node_modules',
     ],
     alias: {
-      "@": resolve(settings.source_path),
+      '@': resolve(settings.source_path),
     }
   },
 
