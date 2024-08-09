@@ -117,7 +117,8 @@ module ApplicationHelper
     inline_svg_tag(
       "400-24px/#{icon}.svg",
       class: ['icon', "material-#{icon}"].concat(attributes[:class].to_s.split),
-      role: :img
+      role: :img,
+      data: attributes[:data]
     )
   end
 

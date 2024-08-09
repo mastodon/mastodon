@@ -59,6 +59,15 @@ describe ApplicationHelper do
     end
   end
 
+  describe '#material_symbol' do
+    it 'returns an svg with the icon and options' do
+      expect(helper.material_symbol('lock', class: :test, data: { hidden: true }))
+        .to match('<svg.*/svg>')
+        .and match('class="icon material-lock test"')
+        .and match('data-hidden="true"')
+    end
+  end
+
   describe 'open_registrations?' do
     it 'returns true when open for registrations' do
       allow(Setting).to receive(:[]).with('registrations_mode').and_return('open')
