@@ -14,11 +14,12 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import DescriptionIcon from '@/material-icons/400-24px/description-fill.svg?react';
 import OpenInNewIcon from '@/material-icons/400-24px/open_in_new.svg?react';
 import PlayArrowIcon from '@/material-icons/400-24px/play_arrow-fill.svg?react';
+import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon }  from 'mastodon/components/icon';
 import { MoreFromAuthor } from 'mastodon/components/more_from_author';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
-import { useBlurhash } from 'mastodon/initial_state';
+import { displayMedia, useBlurhash } from 'mastodon/initial_state';
 
 const IDNA_PREFIX = 'xn--';
 
@@ -64,12 +65,14 @@ export default class Card extends PureComponent {
     card: ImmutablePropTypes.map,
     onOpenMedia: PropTypes.func.isRequired,
     sensitive: PropTypes.bool,
+    visible: PropTypes.bool,
   };
 
   state = {
     previewLoaded: false,
     embedded: false,
     revealed: !this.props.sensitive,
+    visible: this.props.visible !== undefined ? this.props.visible : (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all'),
   };
 
   UNSAFE_componentWillReceiveProps (nextProps) {
@@ -79,6 +82,12 @@ export default class Card extends PureComponent {
 
     if (this.props.sensitive !== nextProps.sensitive) {
       this.setState({ revealed: !nextProps.sensitive });
+    }
+
+    if (nextProps.visible === undefined) {
+      this.setState({ visible: displayMedia !== 'hide_all' && !nextProps.sensitive || displayMedia === 'show_all' });
+    } else if (!Immutable.is(nextProps.visible, this.props.visible) && nextProps.visible !== undefined) {
+      this.setState({ visible: nextProps.visible });
     }
   }
 
@@ -112,6 +121,12 @@ export default class Card extends PureComponent {
     this.setState({ revealed: true });
   };
 
+  handleOpen = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    this.setState({ visible: !this.state.visible });
+  };
+
   renderVideo () {
     const { card } = this.props;
     const content = { __html: addAutoPlay(card.get('html')) };
@@ -128,7 +143,7 @@ export default class Card extends PureComponent {
 
   render () {
     const { card } = this.props;
-    const { embedded, revealed } = this.state;
+    const { embedded, revealed, visible } = this.state;
 
     if (card === null) {
       return null;
@@ -165,14 +180,14 @@ export default class Card extends PureComponent {
       thumbnailStyle.aspectRatio = 1;
     }
 
-    let embed;
+    let embed, spoilerButton;
 
     let canvas = (
       <Blurhash
-        className={classNames('status-card__image-preview', {
-          'status-card__image-preview--hidden': revealed && this.state.previewLoaded,
-        })}
         hash={card.get('blurhash')}
+        className={classNames('status-card__image-preview', {
+          'status-card__image-preview--hidden': visible && this.state.previewLoaded,
+        })}
         dummy={!useBlurhash}
       />
     );
@@ -180,17 +195,24 @@ export default class Card extends PureComponent {
     const thumbnailDescription = card.get('image_description');
     const thumbnail = <img src={card.get('image')} alt={thumbnailDescription} title={thumbnailDescription} lang={language} style={thumbnailStyle} onLoad={this.handleImageLoad} className='status-card__image-image' />;
 
-    let spoilerButton = (
-      <button type='button' onClick={this.handleReveal} className='spoiler-button__overlay'>
-        <span className='spoiler-button__overlay__label'>
-          <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />
-          <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.show' defaultMessage='Click to show' /></span>
-        </span>
-      </button>
-    );
+    if (visible) {
+      spoilerButton = (
+        <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'>
+          <Icon id='eye-slash' icon={VisibilityOffIcon} />
+        </button>);
+    } else {
+      spoilerButton = (
+        <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'>
+          <span className='spoiler-button__overlay__label'>
+            {revealed ? <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' /> : <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />}
+            <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.show' defaultMessage='Click to show' /></span>
+          </span>
+        </button>
+      );
+    }
 
     spoilerButton = (
-      <div className={classNames('spoiler-button', { 'spoiler-button--minified': revealed })}>
+      <div className={classNames('spoiler-button', { 'spoiler-button--minified': visible })}>
         {spoilerButton}
       </div>
     );
@@ -204,11 +226,12 @@ export default class Card extends PureComponent {
             {canvas}
             {thumbnail}
 
-            {revealed ? (
+            {visible ? (
               <div className='status-card__actions' onClick={this.handleEmbedClick} role='none'>
                 <div>
                   <button type='button' onClick={this.handleEmbedClick}><Icon id='play' icon={PlayArrowIcon} /></button>
                   <a href={card.get('url')} onClick={this.handleExternalLinkClick} target='_blank' rel='noopener noreferrer'><Icon id='external-link' icon={OpenInNewIcon} /></a>
+                  <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'><Icon id='eye-slash' icon={VisibilityOffIcon} /></button>
                 </div>
               </div>
             ) : spoilerButton}
@@ -226,6 +249,7 @@ export default class Card extends PureComponent {
       embed = (
         <div className='status-card__image'>
           {canvas}
+          {spoilerButton}
           {thumbnail}
         </div>
       );
