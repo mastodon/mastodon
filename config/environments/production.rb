@@ -43,6 +43,7 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
   config.ssl_options = {
+    hsts: { preload: ENV['HSTS_PRELOAD'] == 'true' },
     redirect: {
       exclude: ->(request) { request.path.start_with?('/health') || request.headers['Host'].end_with?('.onion') || request.headers['Host'].end_with?('.i2p') },
     },
