@@ -64,6 +64,14 @@ export const NOTIFICATION_REQUEST_DISMISS_REQUEST = 'NOTIFICATION_REQUEST_DISMIS
 export const NOTIFICATION_REQUEST_DISMISS_SUCCESS = 'NOTIFICATION_REQUEST_DISMISS_SUCCESS';
 export const NOTIFICATION_REQUEST_DISMISS_FAIL    = 'NOTIFICATION_REQUEST_DISMISS_FAIL';
 
+export const NOTIFICATION_REQUESTS_ACCEPT_REQUEST = 'NOTIFICATION_REQUESTS_ACCEPT_REQUEST';
+export const NOTIFICATION_REQUESTS_ACCEPT_SUCCESS = 'NOTIFICATION_REQUESTS_ACCEPT_SUCCESS';
+export const NOTIFICATION_REQUESTS_ACCEPT_FAIL    = 'NOTIFICATION_REQUESTS_ACCEPT_FAIL';
+
+export const NOTIFICATION_REQUESTS_DISMISS_REQUEST = 'NOTIFICATION_REQUESTS_DISMISS_REQUEST';
+export const NOTIFICATION_REQUESTS_DISMISS_SUCCESS = 'NOTIFICATION_REQUESTS_DISMISS_SUCCESS';
+export const NOTIFICATION_REQUESTS_DISMISS_FAIL    = 'NOTIFICATION_REQUESTS_DISMISS_FAIL';
+
 export const NOTIFICATIONS_FOR_REQUEST_FETCH_REQUEST = 'NOTIFICATIONS_FOR_REQUEST_FETCH_REQUEST';
 export const NOTIFICATIONS_FOR_REQUEST_FETCH_SUCCESS = 'NOTIFICATIONS_FOR_REQUEST_FETCH_SUCCESS';
 export const NOTIFICATIONS_FOR_REQUEST_FETCH_FAIL    = 'NOTIFICATIONS_FOR_REQUEST_FETCH_FAIL';
@@ -493,6 +501,62 @@ export const dismissNotificationRequestSuccess = id => ({
 export const dismissNotificationRequestFail = (id, error) => ({
   type: NOTIFICATION_REQUEST_DISMISS_FAIL,
   id,
+  error,
+});
+
+export const acceptNotificationRequests = (ids) => (dispatch, getState) => {
+  const count = ids.reduce((count, id) => count + selectNotificationCountForRequest(getState(), id), 0);
+  dispatch(acceptNotificationRequestsRequest(ids));
+
+  api().post(`/api/v1/notifications/requests/accept`, { id: ids }).then(() => {
+    dispatch(acceptNotificationRequestsSuccess(ids));
+    dispatch(decreasePendingNotificationsCount(count));
+  }).catch(err => {
+    dispatch(acceptNotificationRequestFail(ids, err));
+  });
+};
+
+export const acceptNotificationRequestsRequest = ids => ({
+  type: NOTIFICATION_REQUESTS_ACCEPT_REQUEST,
+  ids,
+});
+
+export const acceptNotificationRequestsSuccess = ids => ({
+  type: NOTIFICATION_REQUESTS_ACCEPT_SUCCESS,
+  ids,
+});
+
+export const acceptNotificationRequestsFail = (ids, error) => ({
+  type: NOTIFICATION_REQUESTS_ACCEPT_FAIL,
+  ids,
+  error,
+});
+
+export const dismissNotificationRequests = (ids) => (dispatch, getState) => {
+  const count = ids.reduce((count, id) => count + selectNotificationCountForRequest(getState(), id), 0);
+  dispatch(acceptNotificationRequestsRequest(ids));
+
+  api().post(`/api/v1/notifications/requests/dismiss`, { id: ids }).then(() => {
+    dispatch(dismissNotificationRequestsSuccess(ids));
+    dispatch(decreasePendingNotificationsCount(count));
+  }).catch(err => {
+    dispatch(dismissNotificationRequestFail(ids, err));
+  });
+};
+
+export const dismissNotificationRequestsRequest = ids => ({
+  type: NOTIFICATION_REQUESTS_DISMISS_REQUEST,
+  ids,
+});
+
+export const dismissNotificationRequestsSuccess = ids => ({
+  type: NOTIFICATION_REQUESTS_DISMISS_SUCCESS,
+  ids,
+});
+
+export const dismissNotificationRequestsFail = (ids, error) => ({
+  type: NOTIFICATION_REQUESTS_DISMISS_FAIL,
+  ids,
   error,
 });
 
