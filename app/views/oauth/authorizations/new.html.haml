@@ -13,7 +13,7 @@
       - grouped_scopes(@pre_auth.scopes).each do |scope|
         %li.permissions-list__item
           .permissions-list__item__icon
-            = fa_icon('check')
+            = material_symbol('check')
           .permissions-list__item__text
             .permissions-list__item__text__title
               = t(scope.key, scope: [:doorkeeper, :grouped_scopes, :title])
