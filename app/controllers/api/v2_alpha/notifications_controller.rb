@@ -16,10 +16,10 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
       @group_metadata = load_group_metadata
       @grouped_notifications = load_grouped_notifications
       @relationships = StatusRelationshipsPresenter.new(target_statuses_from_notifications, current_user&.account_id)
-      @sample_accounts = @grouped_notifications.flat_map(&:sample_accounts)
+      @presenter = GroupedNotificationsPresenter.new(@grouped_notifications, expand_accounts: expand_accounts_param)
 
       # Preload associations to avoid N+1s
-      ActiveRecord::Associations::Preloader.new(records: @sample_accounts, associations: [:account_stat, { user: :role }]).call
+      ActiveRecord::Associations::Preloader.new(records: @presenter.accounts, associations: [:account_stat, { user: :role }]).call
     end
 
     MastodonOTELTracer.in_span('Api::V2Alpha::NotificationsController#index rendering') do |span|
@@ -27,14 +27,14 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
 
       span.add_attributes(
         'app.notification_grouping.count' => @grouped_notifications.size,
-        'app.notification_grouping.sample_account.count' => @sample_accounts.size,
-        'app.notification_grouping.sample_account.unique_count' => @sample_accounts.pluck(:id).uniq.size,
+        'app.notification_grouping.account.count' => @presenter.accounts.size,
+        'app.notification_grouping.partial_account.count' => @presenter.partial_accounts.size,
         'app.notification_grouping.status.count' => statuses.size,
-        'app.notification_grouping.status.unique_count' => statuses.uniq.size
+        'app.notification_grouping.status.unique_count' => statuses.uniq.size,
+        'app.notification_grouping.expand_accounts_param' => expand_accounts_param
       )
 
-      presenter = GroupedNotificationsPresenter.new(@grouped_notifications)
-      render json: presenter, serializer: REST::DedupNotificationGroupSerializer, relationships: @relationships, group_metadata: @group_metadata
+      render json: @presenter, serializer: REST::DedupNotificationGroupSerializer, relationships: @relationships, group_metadata: @group_metadata, expand_accounts: expand_accounts_param
     end
   end
 
@@ -130,5 +130,16 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
 
   def pagination_params(core_params)
     params.slice(:limit, :types, :exclude_types, :include_filtered).permit(:limit, :include_filtered, types: [], exclude_types: []).merge(core_params)
+  end
+
+  def expand_accounts_param
+    case params[:expand_accounts]
+    when nil, 'full'
+      'full'
+    when 'partial_avatars'
+      'partial_avatars'
+    else
+      raise Mastodon::InvalidParameterError, "Invalid value for 'expand_accounts': '#{params[:expand_accounts]}', allowed values are 'full' and 'partial_avatars'"
+    end
   end
 end

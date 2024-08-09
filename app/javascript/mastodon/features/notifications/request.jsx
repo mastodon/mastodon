@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useRef, useCallback, useEffect } from 'react';
 
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
@@ -90,6 +90,23 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
 
   const columnTitle = intl.formatMessage(messages.title, { name: account?.get('display_name') || account?.get('username') });
 
+  let explainer = null;
+
+  if (account?.limited) {
+    const isLocal = account.acct.indexOf('@') === -1;
+    explainer = (
+      <div className='dismissable-banner'>
+        <div className='dismissable-banner__message'>
+          {isLocal ? (
+            <FormattedMessage id='notification_requests.explainer_for_limited_account' defaultMessage='Notifications from this account have been filtered because the account has been limited by a moderator.' />
+          ) : (
+            <FormattedMessage id='notification_requests.explainer_for_limited_remote_account' defaultMessage='Notifications from this account have been filtered because the account or its server has been limited by a moderator.' />
+          )}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <Column bindToDocument={!multiColumn} ref={columnRef} label={columnTitle}>
       <ColumnHeader
@@ -109,6 +126,7 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
 
       <SensitiveMediaContextProvider hideMediaByDefault>
         <ScrollableList
+          prepend={explainer}
           scrollKey={`notification_requests/${id}`}
           trackScroll={!multiColumn}
           bindToDocument={!multiColumn}
