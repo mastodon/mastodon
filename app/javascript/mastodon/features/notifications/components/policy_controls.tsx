@@ -41,9 +41,7 @@ const changeFilter = (
       }),
     );
   } else {
-    void dispatch(
-      updateNotificationsPolicy({ [filterType]: value !== 'accept' }),
-    );
+    void dispatch(updateNotificationsPolicy({ [filterType]: value }));
   }
 };
 
@@ -55,29 +53,38 @@ export const PolicyControls: React.FC = () => {
     (state) => state.notificationPolicy,
   );
 
-  // TODO: change the following when we change the API
   const handleFilterNotFollowing = useCallback(
-    (value: string) => changeFilter(dispatch, 'filter_not_following', value),
+    (value: string) => {
+      changeFilter(dispatch, 'for_not_following', value);
+    },
     [dispatch],
   );
 
   const handleFilterNotFollowers = useCallback(
-    (value: string) => changeFilter(dispatch, 'filter_not_followers', value),
+    (value: string) => {
+      changeFilter(dispatch, 'for_not_followers', value);
+    },
     [dispatch],
   );
 
   const handleFilterNewAccounts = useCallback(
-    (value: string) => changeFilter(dispatch, 'filter_new_accounts', value),
+    (value: string) => {
+      changeFilter(dispatch, 'for_new_accounts', value);
+    },
     [dispatch],
   );
 
   const handleFilterPrivateMentions = useCallback(
-    (value: string) => changeFilter(dispatch, 'filter_private_mentions', value),
+    (value: string) => {
+      changeFilter(dispatch, 'for_private_mentions', value);
+    },
     [dispatch],
   );
 
   const handleFilterLimitedAccounts = useCallback(
-    (value: string) => changeFilter(dispatch, 'filter_limited_accounts', value),
+    (value: string) => {
+      changeFilter(dispatch, 'for_limited_accounts', value);
+    },
     [dispatch],
   );
 
@@ -112,7 +119,7 @@ export const PolicyControls: React.FC = () => {
 
       <div className='column-settings__row'>
         <SelectWithLabel
-          value={notificationPolicy.filter_not_following ? 'filter' : 'accept'}
+          value={notificationPolicy.for_not_following}
           onChange={handleFilterNotFollowing}
           options={options}
         >
@@ -131,7 +138,7 @@ export const PolicyControls: React.FC = () => {
         </SelectWithLabel>
 
         <SelectWithLabel
-          value={notificationPolicy.filter_not_followers ? 'filter' : 'accept'}
+          value={notificationPolicy.for_not_followers}
           onChange={handleFilterNotFollowers}
           options={options}
         >
@@ -151,7 +158,7 @@ export const PolicyControls: React.FC = () => {
         </SelectWithLabel>
 
         <SelectWithLabel
-          value={notificationPolicy.filter_new_accounts ? 'filter' : 'accept'}
+          value={notificationPolicy.for_new_accounts}
           onChange={handleFilterNewAccounts}
           options={options}
         >
@@ -171,9 +178,7 @@ export const PolicyControls: React.FC = () => {
         </SelectWithLabel>
 
         <SelectWithLabel
-          value={
-            notificationPolicy.filter_private_mentions ? 'filter' : 'accept'
-          }
+          value={notificationPolicy.for_private_mentions}
           onChange={handleFilterPrivateMentions}
           options={options}
         >
@@ -192,8 +197,7 @@ export const PolicyControls: React.FC = () => {
         </SelectWithLabel>
 
         <SelectWithLabel
-          value='filter'
-          disabled
+          value={notificationPolicy.for_limited_accounts}
           onChange={handleFilterLimitedAccounts}
           options={options}
         >

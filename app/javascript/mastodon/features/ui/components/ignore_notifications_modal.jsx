@@ -9,6 +9,7 @@ import InventoryIcon from '@/material-icons/400-24px/inventory_2.svg?react';
 import PersonAlertIcon from '@/material-icons/400-24px/person_alert.svg?react';
 import ShieldQuestionIcon from '@/material-icons/400-24px/shield_question.svg?react';
 import { closeModal } from 'mastodon/actions/modal';
+import { updateNotificationsPolicy } from 'mastodon/actions/notification_policies';
 import { Button } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
 
@@ -17,13 +18,13 @@ export const IgnoreNotificationsModal = ({ filterType }) => {
 
   const handleClick = useCallback(() => {
     dispatch(closeModal({ modalType: undefined, ignoreFocus: false }));
-    //TODO
-  }, [dispatch]);
+    void dispatch(updateNotificationsPolicy({ [filterType]: 'drop' }));
+  }, [dispatch, filterType]);
 
   const handleSecondaryClick = useCallback(() => {
     dispatch(closeModal({ modalType: undefined, ignoreFocus: false }));
-    //TODO
-  }, [dispatch]);
+    void dispatch(updateNotificationsPolicy({ [filterType]: 'filter' }));
+  }, [dispatch, filterType]);
 
   const handleCancel = useCallback(() => {
     dispatch(closeModal({ modalType: undefined, ignoreFocus: false }));
