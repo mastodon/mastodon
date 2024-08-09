@@ -37,5 +37,5 @@
       = t('filters.index.contexts', contexts: filter.context.map { |context| I18n.t("filters.contexts.#{context}") }.join(', '))
 
     %div
-      = table_link_to 'pencil', t('filters.edit.title'), edit_filter_path(filter)
-      = table_link_to 'times', t('filters.index.delete'), filter_path(filter), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }
+      = table_link_to 'edit', t('filters.edit.title'), edit_filter_path(filter)
+      = table_link_to 'close', t('filters.index.delete'), filter_path(filter), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }

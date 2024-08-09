@@ -20,6 +20,6 @@
             %td= link_to application.name, settings_application_path(application)
             %th= application.scopes
             %td
-              = table_link_to 'times', t('doorkeeper.applications.index.delete'), settings_application_path(application), method: :delete, data: { confirm: t('doorkeeper.applications.confirmations.destroy') }
+              = table_link_to 'close', t('doorkeeper.applications.index.delete'), settings_application_path(application), method: :delete, data: { confirm: t('doorkeeper.applications.confirmations.destroy') }
 
 = paginate @applications

@@ -25,7 +25,7 @@ module Admin::FilterHelper
   end
 
   def table_link_to(icon, text, path, **options)
-    link_to safe_join([fa_icon(icon), text]), path, options.merge(class: 'table-action-link')
+    link_to safe_join([material_symbol(icon), text]), path, options.merge(class: 'table-action-link')
   end
 
   def selected?(more_params)

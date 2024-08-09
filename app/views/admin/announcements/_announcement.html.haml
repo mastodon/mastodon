@@ -12,8 +12,8 @@
     %div
       - if can?(:update, announcement)
         - if announcement.published?
-          = table_link_to 'toggle-off', t('admin.announcements.unpublish'), unpublish_admin_announcement_path(announcement), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
+          = table_link_to 'toggle_off', t('admin.announcements.unpublish'), unpublish_admin_announcement_path(announcement), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
         - else
-          = table_link_to 'toggle-on', t('admin.announcements.publish'), publish_admin_announcement_path(announcement), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
+          = table_link_to 'toggle_on', t('admin.announcements.publish'), publish_admin_announcement_path(announcement), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
 
-      = table_link_to 'trash', t('generic.delete'), admin_announcement_path(announcement), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, announcement)
+      = table_link_to 'delete', t('generic.delete'), admin_announcement_path(announcement), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, announcement)

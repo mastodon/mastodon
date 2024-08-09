@@ -54,6 +54,6 @@
           = admin_account_link_to report.assigned_account
         —
         - if report.assigned_account != current_user.account
-          = table_link_to 'user', t('admin.reports.assign_to_self'), assign_to_self_admin_report_path(report), method: :post
+          = table_link_to 'person', t('admin.reports.assign_to_self'), assign_to_self_admin_report_path(report), method: :post
         - elsif !report.assigned_account.nil?
-          = table_link_to 'trash', t('admin.reports.unassign'), unassign_admin_report_path(report), method: :post
+          = table_link_to 'delete', t('admin.reports.unassign'), unassign_admin_report_path(report), method: :post

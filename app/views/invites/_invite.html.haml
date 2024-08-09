@@ -22,4 +22,4 @@
 
   %td
     - if invite.valid_for_use? && policy(invite).destroy?
-      = table_link_to 'times', t('invites.delete'), invite_path(invite), method: :delete
+      = table_link_to 'close', t('invites.delete'), invite_path(invite), method: :delete
