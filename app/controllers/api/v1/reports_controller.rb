@@ -6,6 +6,17 @@ class Api::V1::ReportsController < Api::BaseController
 
   override_rate_limit_headers :create, family: :reports
 
+  PERMITTED_PARAMS = [
+    :account_id,
+    :category,
+    :comment,
+    :forward,
+    :rule_ids,
+    forward_to_domains: [],
+    rule_ids: [],
+    status_ids: [],
+  ].freeze
+
   def create
     @report = ReportService.new.call(
       current_account,
@@ -23,6 +34,6 @@ class Api::V1::ReportsController < Api::BaseController
   end
 
   def report_params
-    params.permit(:account_id, :comment, :category, :forward, forward_to_domains: [], status_ids: [], rule_ids: [])
+    params.permit(*PERMITTED_PARAMS)
   end
 end

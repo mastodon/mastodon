@@ -15,6 +15,15 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
   after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
+  PERMITTED_PARAMS = %i(
+    obfuscate
+    private_comment
+    public_comment
+    reject_media
+    reject_reports
+    severity
+  ).freeze
+
   def index
     authorize :domain_block, :index?
     render json: @domain_blocks, each_serializer: REST::Admin::DomainBlockSerializer
@@ -68,7 +77,9 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
   end
 
   def domain_block_params
-    params.permit(:severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate)
+    params
+      .slice(*PERMITTED_PARAMS)
+      .permit(*PERMITTED_PARAMS)
   end
 
   def next_path

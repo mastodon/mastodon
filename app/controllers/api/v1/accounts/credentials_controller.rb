@@ -5,6 +5,19 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, only: [:update]
   before_action :require_user!
 
+  PERMITTED_PARAMS = [
+    :avatar,
+    :bot,
+    :discoverable,
+    :display_name,
+    :header,
+    :hide_collections,
+    :indexable,
+    :locked,
+    :note,
+    fields_attributes: [:name, :value],
+  ].freeze
+
   def show
     @account = current_account
     render json: @account, serializer: REST::CredentialAccountSerializer
@@ -23,18 +36,9 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
   private
 
   def account_params
-    params.permit(
-      :display_name,
-      :note,
-      :avatar,
-      :header,
-      :locked,
-      :bot,
-      :discoverable,
-      :hide_collections,
-      :indexable,
-      fields_attributes: [:name, :value]
-    )
+    params
+      .slice(*PERMITTED_PARAMS)
+      .permit(*PERMITTED_PARAMS)
   end
 
   def user_params
