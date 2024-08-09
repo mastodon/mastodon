@@ -41,7 +41,7 @@ class TagSearchService < BaseService
 
     normalized_query = Tag.normalize(@query)
     exact_match = results.find { |tag| tag.name.downcase == normalized_query }
-    exact_match ||= Tag.find_normalized(normalized_query)
+    exact_match ||= Tag.listable.find_normalized(normalized_query)
     unless exact_match.nil?
       results.delete(exact_match)
       results = [exact_match] + results
