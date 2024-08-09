@@ -287,7 +287,9 @@ class MediaGallery extends PureComponent {
 
   isFullSizeEligible() {
     const { media } = this.props;
-    return media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
+    const aspect = media.getIn([0, 'meta', 'small', 'aspect']);
+    const minAspectRatioThreshold = 3/2;
+    return media.size === 1 && typeof aspect === 'number' && aspect >= minAspectRatioThreshold;
   }
 
   render () {
