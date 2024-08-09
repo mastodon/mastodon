@@ -1,6 +1,18 @@
 ---
-Layout/FirstHashElementIndentation:
-  EnforcedStyle: consistent
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_first_argument
 
-Layout/LineLength:
-  Max: 300 # Default of 120 causes a duplicate entry in generated todo file
+Layout/EmptyLineBetweenDefs:
+  AllowAdjacentOneLineDefs: true
+
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: keyword
+
+Layout/ExtraSpacing:
+  AllowForAlignment: true
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: aligned
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: space
