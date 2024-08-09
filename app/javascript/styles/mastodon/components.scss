@@ -2771,7 +2771,8 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .column {
-  width: 350px;
+  min-width: 300px;
+  max-width: 550px;
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -2804,7 +2805,8 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .drawer {
-  width: 300px;
+  min-width: 300px;
+  max-width: 400px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -2836,7 +2838,7 @@ $ui-header-logo-wordmark-width: 99px;
 
   .column,
   .drawer {
-    flex: 0 0 auto;
+    flex: 0 0 100%;
     padding: 10px;
     padding-inline-start: 5px;
     padding-inline-end: 5px;
