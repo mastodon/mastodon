@@ -892,7 +892,16 @@ el:
         review_requested: Αιτήθηκε αξιολόγηση
         reviewed: Αξιολογήθηκε
         title: Κατάσταση
+        trendable: Πιθανό για τάσεις
+        unreviewed: Μη ελεγμένη
+        usable: Χρησιμοποιήσιμο
+      name: Όνομα
+      newest: Νεότερη όλων
+      oldest: Παλαιότερη όλων
+      reset: Επαναφορά
       review: Κατάσταση αξιολόγησης
+      search: Αναζήτηση
+      title: Ετικέτες
       updated_msg: Οι ρυθμίσεις των ετικετών ενημερώθηκαν επιτυχώς
     title: Διαχείριση
     trends:
@@ -964,6 +973,7 @@ el:
       delete: Διαγραφή
       edit_preset: Ενημέρωση προκαθορισμένης προειδοποίησης
       empty: Δεν έχετε ακόμη ορίσει κάποια προκαθορισμένη προειδοποίηση.
+      title: Προεπιλογές προειδοποίησης
     webhooks:
       add_new: Προσθήκη σημείου τερματισμού
       delete: Διαγραφή
@@ -985,6 +995,9 @@ el:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Λόγω έλλειψης πρόσφατης δραστηριότητας συντονιστών, οι εγγραφές στο %{instance} έχουν αλλάξει αυτόματα στην απαίτηση χειροκίνητης αξιολόγησης, για να αποτρέψει το %{instance} από το να χρησιμοποιηθεί ως πλατφόρμα για πιθανούς κακούς ηθοποιούς. Μπορείς να το αλλάξεις ξανά για να ανοίξετε εγγραφές ανά πάσα στιγμή.
+      subject: Οι εγγραφές για το %{instance} έχουν αλλάξει αυτόματα σε απαίτηση έγκρισης
     new_appeal:
       actions:
         delete_statuses: διαγραφή των αναρτήσεών του
@@ -997,6 +1010,9 @@ el:
       body: 'Ο/Η %{target} κάνει έφεση στην απόφαση συντονισμού που έγινε από τον/την %{action_taken_by} στις %{date}, η οποία ήταν %{type}. Έγραψαν:'
       next_steps: Μπορείς να εγκρίνεις την έφεση για να αναιρέσεις την απόφαση της ομάδας συντονισμού ή να την αγνοήσεις.
       subject: Ο/Η %{username} κάνει έφεση σε μια απόφαση της ομάδας συντονισμού στον %{instance}
+    new_critical_software_updates:
+      body: Έχουν κυκλοφορήσει νέες κρίσιμες εκδόσεις του Mastodon, καλύτερα να ενημερώσεις το συντομότερο δυνατόν!
+      subject: Κρίσιμες ενημερώσεις Mastodon είναι διαθέσιμες για το %{instance}!
     new_pending_account:
       body: Τα στοιχεία του νέου λογαριασμού είναι παρακάτω. Μπορείς να εγκρίνεις ή να απορρίψεις αυτή την αίτηση.
       subject: Νέος λογαριασμός προς έγκριση στο %{instance} (%{username})
@@ -1004,6 +1020,9 @@ el:
       body: Ο/Η %{reporter} ανέφερε τον/την %{target}
       body_remote: Κάποιος/α από τον τομέα %{domain} ανέφερε τον/την %{target}
       subject: Νέα αναφορά για %{instance} (#%{id})
+    new_software_updates:
+      body: Έχουν κυκλοφορήσει νέες εκδόσεις Mastodon, ίσως θέλεις να ενημερώσεις!
+      subject: Νέες εκδόσεις Mastodon είναι διαθέσιμες για το %{instance}!
     new_trends:
       body: 'Τα ακόλουθα στοιχεία χρειάζονται αξιολόγηση για να μπορούν να προβληθούν δημόσια:'
       new_trending_links:
@@ -1050,8 +1069,18 @@ el:
   auth:
     apply_for_account: Ζήτα έναν λογαριασμό
     captcha_confirmation:
+      help_html: Εάν αντιμετωπίζεις προβλήματα με την επίλυση του CAPTCHA, μπορείς να επικοινωνήσεις μαζί μας μέσω %{email} και μπορούμε να σε βοηθήσουμε.
+      hint_html: Και κάτι ακόμα! Πρέπει να επιβεβαιώσουμε ότι είσαι άνθρωπος (αυτό γίνεται για να κρατήσουμε μακριά το σπαμ!). Λύσε το CAPTCHA παρακάτω και κάνε κλικ "Συνέχεια".
       title: Ελεγχος ασφαλείας
     confirmations:
+      awaiting_review: Η διεύθυνση e-mail σου επιβεβαιώθηκε! Το προσωπικό του %{domain} εξετάζει τώρα την εγγραφή σου. Θα λάβεις ένα e-mail εάν εγκρίνουν τον λογαριασμό σου!
+      awaiting_review_title: Η εγγραφή σου εξετάζεται
+      clicking_this_link: κάνοντας κλικ σε αυτόν τον σύνδεσμο
+      login_link: σύνδεση
+      proceed_to_login_html: Τώρα μπορείς να προχωρήσεις στο %{login_link}.
+      redirect_to_app_html: Θα πρέπει να μεταφέρθηκες στην εφαρμογή <strong>%{app_name}</strong>. Αν αυτό δεν συμβεί, δοκιμάσε το %{clicking_this_link} ή επέστρεψε χειροκίνητα στην εφαρμογή.
+      registration_complete: Η εγγραφή σου στο %{domain} έχει πλέον ολοκληρωθεί!
+      welcome_title: Καλώς ήρθες, %{name}!
       wrong_email_hint: Εάν αυτή η διεύθυνση email δεν είναι σωστή, μπορείς να την αλλάξεις στις ρυθμίσεις λογαριασμού.
     delete_account: Διαγραφή λογαριασμού
     delete_account_html: Αν θέλεις να διαγράψεις το λογαριασμό σου, μπορείς <a href="%{path}">να συνεχίσεις εδώ</a>. Θα σου ζητηθεί επιβεβαίωση.
@@ -1087,8 +1116,11 @@ el:
     rules:
       accept: Αποδοχή
       back: Πίσω
+      invited_by: 'Μπορείτε να συμμετάσχεις στο %{domain} χάρη στην πρόσκληση που έλαβες από:'
       preamble: Αυτά ορίζονται και επιβάλλονται από τους συντονιστές του%{domain}.
+      preamble_invited: Πριν συνεχίσεις, παρακαλώ δώσε προσοχή στους βασικούς κανόνες που έχουν οριστεί από τους συντονιστές του %{domain}.
       title: Ορισμένοι βασικοί κανόνες.
+      title_invited: Έχεις προσκληθεί.
     security: Ασφάλεια
     set_new_password: Ορισμός νέου συνθηματικού
     setup:
@@ -1110,6 +1142,7 @@ el:
       functional: Ο λογαριασμός σας είναι πλήρως λειτουργικός.
       pending: Η εφαρμογή σας εκκρεμεί έγκρισης, πιθανόν θα διαρκέσει κάποιο χρόνο. Θα λάβετε email αν εγκριθεί.
       redirecting_to: Ο λογαριασμός σου είναι ανενεργός γιατί επί του παρόντος ανακατευθύνει στον %{acct}.
+      self_destruct: Καθώς το %{domain} κλείνει, θα έχεις μόνο περιορισμένη πρόσβαση στον λογαριασμό σου.
       view_strikes: Προβολή προηγούμενων ποινών εναντίον του λογαριασμού σας
     too_fast: Η φόρμα υποβλήθηκε πολύ γρήγορα, προσπαθήστε ξανά.
     use_security_key: Χρήση κλειδιού ασφαλείας
@@ -1189,6 +1222,10 @@ el:
       your_appeal_rejected: Η έφεση σου απορρίφθηκε
   domain_validator:
     invalid_domain: δεν είναι έγκυρο όνομα τομέα
+  edit_profile:
+    basic_information: Βασικές πληροφορίες
+    hint_html: "<strong>Τροποποίησε τί βλέπουν άτομα στο δημόσιο προφίλ σου και δίπλα στις αναρτήσεις σου.</strong> Είναι πιο πιθανό κάποιος να σε ακολουθήσει πίσω και να αλληλεπιδράσουν μαζί σου αν έχεις ολοκληρωμένο προφίλ και εικόνα προφίλ."
+    other: Άλλο
   errors:
     '400': Το αίτημα ήταν άκυρο ή με λάθος μορφή.
     '403': Δεν έχεις δικαίωμα πρόσβασης σε αυτή τη σελίδα.
@@ -1296,25 +1333,44 @@ el:
   imports:
     errors:
       empty: Κενό αρχείο CSV
+      incompatible_type: Μη συμβατό με τον επιλεγμένο τύπο εισαγωγής
       invalid_csv_file: 'Μη έγκυρο αρχείο CSV. Σφάλμα: %{error}'
       over_rows_processing_limit: περιέχει περισσότερες από %{count} γραμμές
       too_large: Το αρχείο είναι πολύ μεγάλο
     failures: Αποτυχίες
+    imported: Εισήχθη
+    mismatched_types_warning: Φαίνεται ότι έχεις επιλέξει λάθος τύπο για αυτήν την εισαγωγή, παρακαλώ έλεγξε ξανά.
     modes:
       merge: Συγχώνευση
       merge_long: Διατήρηση των εγγράφων που υπάρχουν και προσθήκη των νέων
       overwrite: Αντικατάσταση
       overwrite_long: Αντικατάσταση των υπαρχόντων εγγράφων με τις καινούργιες
+    overwrite_preambles:
+      blocking_html: Πρόκειται να <strong>αντικαταστήσεις τη λίστα αποκλεισμών</strong> με έως και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong>.
+      bookmarks_html: Πρόκειται να <strong>αντικαταστήσεις τους σελιδοδείκτες σου</strong> με έως και <strong>%{total_items} αναρτήσεις</strong> από το <strong>%{filename}</strong>.
+      domain_blocking_html: Πρόκειται να <strong>αντικαταστήσεις τη λίστα αποκλεισμών τομέων</strong> με έως και <strong>%{total_items} τομείς</strong> από το <strong>%{filename}</strong>.
+      following_html: Πρόκειται να <strong>ακολουθήσεις</strong> μέχρι <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong> και <strong>να σταματήσεις να ακολουθείς οποιονδήποτε άλλο</strong>.
+      lists_html: Πρόκειται να <strong>αντικαταστήσεις τις λίστες σου</strong> με περιεχόμενο του <strong>%{filename}</strong>. Μέχρι <strong>%{total_items} λογαριασμοί</strong> θα προστεθούν σε νέες λίστες.
+      muting_html: Πρόκειται να <strong>αντικαταστήσεις τη λίστα λογαριασμών σε σίγαση</strong> με έως και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Πρόκειται να <strong>αποκλείσεις</strong> έως και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong>.
+      bookmarks_html: Πρόκειται να προσθέσεις μέχρι και <strong>%{total_items} αναρτήσεις</strong> από το <strong>%{filename}</strong> στους <strong>σελιδοδείκτες</strong> σου.
+      domain_blocking_html: Πρόκειται να <strong>αποκλείσεις</strong> έως και <strong>%{total_items} τομείς</strong> από το <strong>%{filename}</strong>.
+      following_html: Πρόκειται να <strong>ακολουθήσεις</strong> έως και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong>.
+      lists_html: Πρόκειται να προσθέσεις μέχρι και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong> στις <strong>λίστες</strong> σου. Θα δημιουργηθούν νέες λίστες αν δεν υπάρχει λίστα για προσθήκη.
+      muting_html: Πρόκειται να <strong>κάνεις σίγαση</strong> σε έως και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong>.
     preface: Μπορείς να εισάγεις τα δεδομένα που έχεις εξάγει από άλλο διακομιστή, όπως τη λίστα των ατόμων που ακολουθείς ή έχεις αποκλείσει.
     recent_imports: Πρόσφατες Εισαγωγές
     states:
       finished: Ολοκληρώθηκε
       in_progress: Σε εξέλιξη
       scheduled: Προγραμματισμένη
+      unconfirmed: Μη επιβεβαιωμένη
     status: Κατάσταση
     success: Τα δεδομένα σου μεταφορτώθηκαν επιτυχώς και θα επεξεργαστούν σύντομα
     time_started: Ξεκίνησε στις
     titles:
+      blocking: Εισαγωγή αποκλεισμένων λογαριασμών
       following: Εισαγωγή λογαριασμών που ακολουθείτε
     type: Τύπος εισαγωγής
     type_groups:
@@ -1721,6 +1777,9 @@ el:
       extra: Είναι τώρα έτοιμο για λήψη!
       subject: Το αρχείο σου είναι έτοιμο για λήψη
       title: Λήψη εφεδρικού αρχείου
+    failed_2fa:
+      subject: Αποτυχία ταυτοποίησης δεύτερου παράγοντα
+      title: Αποτυχία ελέγχου ταυτότητας δεύτερου παράγοντα
     suspicious_sign_in:
       change_password: άλλαξε τον κωδικό πρόσβασής σου
       details: 'Εδώ είναι οι λεπτομέρειες της σύνδεσης:'
@@ -1760,7 +1819,19 @@ el:
         silence: Περιορισμένος λογαριασμός
         suspend: Λογαριασμός σε αναστολή
     welcome:
+      apps_android_action: Απόκτησέ το στο Google Play
+      apps_ios_action: Λήψη από το AppStore
+      apps_step: Κατεβάστε τις επίσημες εφαρμογές μας.
+      apps_title: Εφαρμογές Mastodon
+      checklist_subtitle: 'Ας ξεκινήσουμε σε αυτό το νέο κοινωνικό σύνορο:'
+      checklist_title: Λίστα Καλωσορίσματος
+      edit_profile_action: Εξατομίκευση
+      edit_profile_step: Ενίσχυσε τις αλληλεπιδράσεις σου έχοντας ένα ολοκληρωμένο προφίλ.
+      edit_profile_title: Εξατομίκευση του προφίλ σου
       explanation: Μερικές συμβουλές για να ξεκινήσεις
+      feature_action: Μάθε περισσότερα
+      feature_audience: Το Mastodon σού παρέχει μια μοναδική δυνατότητα διαχείρισης του κοινού σου χωρίς μεσάζοντες. Το Mastodon όταν αναπτύσσεται στη δική σου υποδομή σού επιτρέπει να ακολουθείς και να ακολουθείσαι από οποιονδήποτε άλλο συνδεδεμένο διακομιστή Mastodon και κανείς δεν τον ελέγχει, εκτός από σένα.
+      feature_audience_title: Χτίσε το κοινό σου με σιγουριά
       subject: Καλώς ήρθες στο Mastodon
       title: Καλώς όρισες, %{name}!
   users:
