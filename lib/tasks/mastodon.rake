@@ -536,6 +536,15 @@ namespace :mastodon do
           require_relative '../../config/environment'
           disable_log_stdout!
 
+          # With the environment now reloaded, update Sidekiq to use the Redis config that was provided earlier interactively, in case it differs from the default localhost:6379.
+          # When the admin user is created, User dispatches an 'account.created' event to Sidekiq, which connects to Redis.
+          Sidekiq.configure_client do |config|
+            new_params = REDIS_SIDEKIQ_PARAMS.dup
+            new_params['url'] = "redis://:#{env['REDIS_PASSWORD']}@#{env['REDIS_HOST']}:#{env['REDIS_PORT']}/0"
+            new_params.freeze
+            config.redis = new_params
+          end
+          
           username = prompt.ask('Username:') do |q|
             q.required true
             q.default 'admin'
