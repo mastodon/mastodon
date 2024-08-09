@@ -25,6 +25,8 @@ module Admin::DashboardHelper
                          [account.user_current_sign_in_at, false]
                        elsif account.user_pending?
                          [account.user_created_at, true]
+                       elsif account.suspended_at.present? && account.local? && account.user.nil?
+                         [account.suspended_at, true]
                        elsif account.last_status_at.present?
                          [account.last_status_at, true]
                        else
