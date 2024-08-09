@@ -112,6 +112,8 @@ module Mastodon
       end
     end
 
+    config.x.storage = config_for(:storage)
+
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
