@@ -68,6 +68,14 @@ RSpec.describe Account::Field do
         end
       end
 
+      context 'with an HTTP URL' do
+        let(:value) { 'http://example.com' }
+
+        it 'returns false' do
+          expect(subject.verifiable?).to be false
+        end
+      end
+
       context 'with an IDN URL' do
         let(:value) { 'https://twitter.com∕dougallj∕status∕1590357240443437057.ê.cc/twitter.html' }
 
