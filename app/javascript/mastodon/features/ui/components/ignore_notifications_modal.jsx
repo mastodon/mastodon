@@ -33,19 +33,19 @@ export const IgnoreNotificationsModal = ({ filterType }) => {
   let title = null;
 
   switch(filterType) {
-  case 'filter_not_following':
+  case 'for_not_following':
     title = <FormattedMessage id='ignore_notifications_modal.not_following_title' defaultMessage="Ignore notifications from people you don't follow?" />;
     break;
-  case 'filter_not_followers':
+  case 'for_not_followers':
     title = <FormattedMessage id='ignore_notifications_modal.not_followers_title' defaultMessage='Ignore notifications from people not following you?' />;
     break;
-  case 'filter_new_accounts':
+  case 'for_new_accounts':
     title = <FormattedMessage id='ignore_notifications_modal.new_accounts_title' defaultMessage='Ignore notifications from new accounts?' />;
     break;
-  case 'filter_private_mentions':
+  case 'for_private_mentions':
     title = <FormattedMessage id='ignore_notifications_modal.private_mentions_title' defaultMessage='Ignore notifications from unsolicited Private Mentions?' />;
     break;
-  case 'filter_limited_accounts':
+  case 'for_limited_accounts':
     title = <FormattedMessage id='ignore_notifications_modal.limited_accounts_title' defaultMessage='Ignore notifications from moderated accounts?' />;
     break;
   }
