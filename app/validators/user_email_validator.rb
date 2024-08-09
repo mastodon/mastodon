@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BlacklistedEmailValidator < ActiveModel::Validator
+class UserEmailValidator < ActiveModel::Validator
   def validate(user)
     return if user.valid_invitation? || user.email.blank?
 
@@ -23,18 +23,18 @@ class BlacklistedEmailValidator < ActiveModel::Validator
   end
 
   def not_allowed_through_configuration?(email)
-    return false if Rails.configuration.x.email_domains_whitelist.blank?
+    return false if Rails.configuration.x.email_domains_allowlist.blank?
 
-    domains = Rails.configuration.x.email_domains_whitelist.gsub('.', '\.')
+    domains = Rails.configuration.x.email_domains_allowlist.gsub('.', '\.')
     regexp  = Regexp.new("@(.+\\.)?(#{domains})$", true)
 
     email !~ regexp
   end
 
   def disallowed_through_configuration?(email)
-    return false if Rails.configuration.x.email_domains_blacklist.blank?
+    return false if Rails.configuration.x.email_domains_denylist.blank?
 
-    domains = Rails.configuration.x.email_domains_blacklist.gsub('.', '\.')
+    domains = Rails.configuration.x.email_domains_denylist.gsub('.', '\.')
     regexp  = Regexp.new("@(.+\\.)?(#{domains})", true)
 
     regexp.match?(email)
