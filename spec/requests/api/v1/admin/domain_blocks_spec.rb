@@ -205,6 +205,17 @@ RSpec.describe 'Domain Blocks' do
         expect(response).to have_http_status(422)
       end
     end
+
+    context 'when severity is invalid' do
+      let(:params) { { domain: 'bar.com', severity: :bar } }
+
+      it 'returns http unprocessable entity' do
+        subject
+
+        expect(response).to have_http_status(422)
+        expect(body_as_json[:error]).to eq('Validation failed: Severity is not included in the list')
+      end
+    end
   end
 
   describe 'PUT /api/v1/admin/domain_blocks/:id' do
