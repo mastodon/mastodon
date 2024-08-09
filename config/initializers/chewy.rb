@@ -5,7 +5,7 @@ host            = ENV.fetch('ES_HOST') { 'localhost' }
 port            = ENV.fetch('ES_PORT') { 9200 }
 user            = ENV.fetch('ES_USER', nil).presence
 password        = ENV.fetch('ES_PASS', nil).presence
-fallback_prefix = ENV.fetch('REDIS_NAMESPACE', nil).presence
+fallback_prefix = ENV.fetch('TODO_PLACEHOLDER', nil).presence
 prefix          = ENV.fetch('ES_PREFIX') { fallback_prefix }
 ca_file         = ENV.fetch('ES_CA_FILE', nil).presence
 
