@@ -21,6 +21,14 @@ const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: '{number, plural, one {Hide image} other {Hide images}}' },
 });
 
+const colCount = function(size) {
+  return Math.max(Math.ceil(Math.sqrt(size)), 2);
+};
+
+const rowCount = function(size) {
+  return Math.ceil(size / colCount(size));
+};
+
 class Item extends PureComponent {
 
   static propTypes = {
@@ -92,14 +100,18 @@ class Item extends PureComponent {
     let badges = [], thumbnail;
 
     let width  = 50;
-    let height = 100;
+    let height = 50;
 
-    if (size === 1) {
+    const cols = colCount(size);
+    const remaining = (-size % cols + cols) % cols;
+    const largeCount = Math.floor(remaining / 3); // width=2, height=2
+    const mediumCount = remaining % 3; // height=2
+
+    if (size === 1 || index < largeCount) {
       width = 100;
-    }
-
-    if (size === 4 || (size === 3 && index > 0)) {
-      height = 50;
+      height = 100;
+    } else if (size === 2 || index < largeCount + mediumCount) {
+      height = 100;
     }
 
     if (attachment.get('description')?.length > 0) {
@@ -302,6 +314,11 @@ class MediaGallery extends PureComponent {
     if (this.isFullSizeEligible()) {
       style.aspectRatio = `${this.props.media.getIn([0, 'meta', 'small', 'aspect'])}`;
     } else {
+      const cols = colCount(media.size);
+      const rows = rowCount(media.size);
+      style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+      style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+
       style.aspectRatio = '3 / 2';
     }
 
