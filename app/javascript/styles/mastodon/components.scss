@@ -426,10 +426,17 @@ body > [data-popper-placement] {
 
       &:hover,
       &:focus,
-      &:active,
+      &:active {
+        background: var(--dropdown-border-color);
+
+        .autosuggest-account .display-name__account {
+          color: inherit;
+        }
+      }
+
       &.selected {
         background: $ui-highlight-color;
-        color: $primary-text-color;
+        color: $ui-button-color;
 
         .autosuggest-account .display-name__account {
           color: inherit;
@@ -465,7 +472,7 @@ body > [data-popper-placement] {
     display: block;
     line-height: 16px;
     font-size: 12px;
-    color: $dark-text-color;
+    color: $ui-primary-color;
   }
 }
 
