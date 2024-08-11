@@ -18,7 +18,6 @@ ast:
     account_moderation_notes:
       create: Dexar la nota
     accounts:
-      add_email_domain_block: Bloquiar el dominiu de corréu electrónicu
       approved_msg: Aprobóse correutamente la solicitú de rexistru de «%{username}»
       are_you_sure: "¿De xuru que quies facer esta aición?"
       avatar: Avatar
@@ -53,7 +52,6 @@ ast:
         already_confirmed: Esti perfil yá ta confirmáu
       role: Rol
       search: Buscar
-      search_same_email_domain: Otros perfiles col mesmu dominiu de corréu electrónicu
       search_same_ip: Otros perfiles cola mesma IP
       security: Seguranza
       show:
@@ -67,9 +65,7 @@ ast:
     action_logs:
       actions:
         approve_user_html: "%{name} aprobó'l rexistru de: %{target}"
-        change_email_user_html: "%{name} camudó la direición de corréu electrónicu del perfil %{target}"
         change_role_user_html: "%{name} camudó'l rol de: %{target}"
-        confirm_user_html: "%{name} confirmó la direición de corréu electrónicu del perfil %{target}"
         create_account_warning_html: "%{name} unvió una alvertencia a %{target}"
         create_announcement_html: "%{name} creó l'anunciu «%{target}»"
         create_custom_emoji_html: "%{name} xubió un fustaxe nuevu «%{target}»"
@@ -87,7 +83,6 @@ ast:
         reject_user_html: "%{name} refugó'l rexistru de: %{target}"
         remove_avatar_user_html: "%{name} quitó l'avatar de: %{target}"
         reopen_report_html: "%{name} volvió abrir l'informe «%{target}»"
-        resend_user_html: "%{name} volvió unviar el mensaxe de confirmación pa: %{target}"
         resolve_report_html: "%{name} resolvió l'informe «%{target}»"
         unblock_email_account_html: "%{name} desbloquió la direición de corréu electrónicu de: %{target}"
         update_announcement_html: "%{name} anovó l'anunciu «%{target}»"
@@ -242,7 +237,6 @@ ast:
           other: "%{count} notes"
       actions:
         silence_description_html: La cuenta va ser visible namás pa quien yá la siguiere o la buscare manualmente, lo que llenda'l so algame. Esta decisión pue desfacese en cualesquier momentu. Si escueyes esta opción, zárrense tolos informes escontra esta cuenta.
-      actions_description_html: Decidi qué aición tomar pa resolver esti informe. Si tomes una aición punitiva escontra la cuenta de la que s'informó, va unviase un avisu per corréu electrónicu a esa cuenta, esceuto cuando se seleiciona la categoría <strong>Puxarra</strong>.
       add_to_report: Amestar más al informe
       are_you_sure: "¿De xuru que quies facer esta aición?"
       category: Categoría
@@ -345,7 +339,6 @@ ast:
       delete: Desaniciar el ficheru xubíu
     software_updates:
       documentation_link: Saber más
-      type: Tipu
       types:
         major: Versión mayor
         minor: Versión menor
@@ -399,7 +392,6 @@ ast:
         not_usable: Nun se pue usar
         title: Etiquetes en tendencia
         usable: Pue usase
-      title: Tendencies
       trending: En tendencia
     webhooks:
       add_new: Amestar un estremu
@@ -448,8 +440,6 @@ ast:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: tol mundu pue collaborar.
     sensitive_content: Conteníu sensible
-  application_mailer:
-    notification_preferences: Camudar les preferencies de los mensaxes de corréu electrónicu
   applications:
     created: L'aplicación creóse correutamente
     destroyed: L'aplicación desanicióse correutamente
@@ -458,8 +448,6 @@ ast:
     warning: Ten munchu curiáu con estos datos, ¡enxamás nun los compartas con naide!
     your_token: El pase d'accesu
   auth:
-    confirmations:
-      wrong_email_hint: Si la direición de corréu electrónicu nun ye correuta, pues camudala na configuración de la cuenta.
     delete_account: Desaniciu de la cuenta
     delete_account_html: Si quies desaniciar la cuenta, pues facelo <a href="%{path}">equí</a>. Va pidísete que confirmes l'aición.
     description:
@@ -483,16 +471,12 @@ ast:
     security: Seguranza
     setup:
       link_not_received: "¿Nun consiguiesti l'enllaz?"
-    sign_in:
-      preamble_html: Anicia la sesión colos tos datos d'accesu en <strong>%{domain}</strong>. Si la cuenta ta agospiada n'otru sirvidor, nun vas ser a aniciar la sesión equí.
-      title: Aniciu de la sesión en «%{domain}»
     sign_up:
       preamble: Con una cuenta nesti sirvidor de Mastodon vas ser a siguir a cualesquier perfil de la rede, independientemente del sirvidor onde s'agospie la so cuenta.
       title: 'Creación d''una cuenta en: %{domain}.'
     status:
       account_status: Estáu de la cuenta
       functional: La cuenta ta completamente operativa.
-      pending: La to solicitú ta pendiente de que la revise'l nuesu personal y ye posible que tarde tiempu. Vas recibir un mensaxe si s'aprueba.
     too_fast: El formulariu xubióse mui rápido, volvi tentalo.
   challenge:
     confirm: Siguir
@@ -519,8 +503,6 @@ ast:
     challenge_not_passed: La información qu'introduxesti nun yera correuta
     confirm_password: Introduz la contraseña pa verificar la to identidá
     warning:
-      email_contact_html: Si nun aportó, pues unviar un mensaxe a <a href="mailto:%{email}">%{email}</a> pa consiguir más ayuda
-      email_reconfirmation_html: Si nun recibiesti'l mensaxe de confirmación, pues <a href="%{path}">volver solicitalu</a>
       more_details_html: Pa consiguir más detalles, mira la <a href="%{terms_path}">política de privacidá</a>.
   disputes:
     strikes:
@@ -674,7 +656,6 @@ ast:
       sign_up:
         subject: "%{name} rexistróse"
     favourite:
-      body: "%{name} marcó como favoritu'l to artículu:"
       subject: "%{name} marcó'l to artículu como favoritu"
     follow:
       body: "¡Agora %{name} siguete!"
@@ -692,7 +673,6 @@ ast:
     update:
       subject: "%{name} editó un artículu"
   notifications:
-    email_events: Unviu d'avisos per corréu electrónicu
     email_events_hint: 'Seleiciona los eventos de los que quies recibir avisos:'
   number:
     human:
@@ -917,7 +897,6 @@ ast:
     follow_limit_reached: Nun pues siguir a más de %{limit} persones
     invalid_otp_token: El códigu de l'autenticación en dos pasos nun ye válidu
     rate_limited: Fixéronse milenta intentos d'autenticación. Volvi tentalo dempués.
-    seamless_external_login: Aniciesti la sesión pente un serviciu esternu, polo que la configuración de la contraseña y de la direición de corréu electrónicu nun tán disponibles.
     signed_in_as: 'Aniciesti la sesión como:'
   verification:
     verification: Verificación

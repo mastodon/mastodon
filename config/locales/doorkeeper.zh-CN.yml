@@ -151,18 +151,18 @@ zh-CN:
     scopes:
       admin:read: 读取服务器上的所有数据
       admin:read:accounts: 读取所有账号的敏感信息
-      admin:read:canonical_email_blocks: 读取所有标准电子邮件块的敏感信息
+      admin:read:canonical_email_blocks: 读取所有已屏蔽邮箱的敏感信息
       admin:read:domain_allows: 读取所有域的敏感信息
       admin:read:domain_blocks: 读取所有域块的敏感信息
-      admin:read:email_domain_blocks: 读取所有电子邮件域块的敏感信息
+      admin:read:email_domain_blocks: 读取所有已屏蔽邮箱域名的敏感信息
       admin:read:ip_blocks: 读取所有IP块的敏感信息
       admin:read:reports: 读取所有举报和被举报账号的敏感信息
       admin:write: 修改服务器上的所有数据
       admin:write:accounts: 对账号执行管理操作
-      admin:write:canonical_email_blocks: 在标准电子邮件块上执行管理操作
+      admin:write:canonical_email_blocks: 对已屏蔽邮箱执行管理操作
       admin:write:domain_allows: 在域上执行管理操作
       admin:write:domain_blocks: 在域块上执行管理操作
-      admin:write:email_domain_blocks: 在电子邮件域块上执行管理操作
+      admin:write:email_domain_blocks: 对已屏蔽邮箱域名执行管理操作
       admin:write:ip_blocks: 在 IP 块上执行管理操作
       admin:write:reports: 对举报执行管理操作
       crypto: 使用端到端加密

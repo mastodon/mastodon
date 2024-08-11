@@ -31,7 +31,6 @@ fr:
       created_msg: Note de modération créée avec succès !
       destroyed_msg: Note de modération supprimée avec succès !
     accounts:
-      add_email_domain_block: Bloquer ce domaine de courriel
       approve: Approuver
       approved_msg: La demande d’inscription de %{username} a été approuvée avec succès
       are_you_sure: Voulez-vous vraiment faire ça ?
@@ -58,7 +57,6 @@ fr:
       demote: Rétrograder
       destroyed_msg: Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment
       disable: Geler
-      disable_sign_in_token_auth: Désactiver l'authentification basée sur les jetons envoyés par courriel
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
       disabled: Gelé
       display_name: Nom affiché
@@ -67,7 +65,6 @@ fr:
       email: Adresse de courriel
       email_status: État du courriel
       enable: Dégeler
-      enable_sign_in_token_auth: Activer l'authentification basée sur les jetons envoyés par courriel
       enabled: Activé
       enabled_msg: Le compte de %{username} a été dégelé avec succès
       followers: Abonné·e·s
@@ -132,7 +129,6 @@ fr:
       resubscribe: Se réabonner
       role: Rôle
       search: Rechercher
-      search_same_email_domain: Autres utilisateurs·trices avec le même domaine de courriel
       search_same_ip: Autres utilisateur·rice·s avec la même IP
       security: Sécurité
       security_measures:
@@ -173,26 +169,21 @@ fr:
         approve_appeal: Approuver l'appel
         approve_user: Approuver le compte
         assigned_to_self_report: Affecter le signalement
-        change_email_user: Modifier l’adresse de courriel pour ce compte
         change_role_user: Changer le rôle du compte
         confirm_user: Confirmer le compte
         create_account_warning: Créer une alerte
         create_announcement: Créer une annonce
-        create_canonical_email_block: Créer un blocage de domaine de courriel
         create_custom_emoji: Créer des émojis personnalisés
         create_domain_allow: Créer un domaine autorisé
         create_domain_block: Créer un blocage de domaine
-        create_email_domain_block: Créer un blocage de domaine de courriel
         create_ip_block: Créer une règle IP
         create_unavailable_domain: Créer un domaine indisponible
         create_user_role: Créer le rôle
         demote_user: Rétrograder l’utilisateur·ice
         destroy_announcement: Supprimer l’annonce
-        destroy_canonical_email_block: Supprimer le blocage de domaine de courriel
         destroy_custom_emoji: Supprimer des émojis personnalisés
         destroy_domain_allow: Supprimer le domaine autorisé
         destroy_domain_block: Supprimer le blocage de domaine
-        destroy_email_domain_block: Supprimer le blocage de domaine de courriel
         destroy_instance: Purge du domaine
         destroy_ip_block: Supprimer la règle IP
         destroy_status: Supprimer le message
@@ -200,10 +191,8 @@ fr:
         destroy_user_role: Détruire le rôle
         disable_2fa_user: Désactiver l’A2F
         disable_custom_emoji: Désactiver les émojis personnalisés
-        disable_sign_in_token_auth_user: Désactiver l'authentification basée sur les jetons envoyés par courriel pour l'utilisateur·rice
         disable_user: Désactiver le compte
         enable_custom_emoji: Activer les émojis personnalisées
-        enable_sign_in_token_auth_user: Activer l'authentification basée sur les jetons envoyés par courriel pour l'utilisateur·rice
         enable_user: Activer le compte
         memorialize_account: Ériger en mémorial
         promote_user: Promouvoir le compte
@@ -232,26 +221,20 @@ fr:
         approve_appeal_html: "%{name} a approuvé l'appel de la décision de modération émis par %{target}"
         approve_user_html: "%{name} a approuvé l’inscription de %{target}"
         assigned_to_self_report_html: "%{name} s’est assigné·e le signalement de %{target}"
-        change_email_user_html: "%{name} a modifié l'adresse de courriel de l'utilisateur·rice %{target}"
         change_role_user_html: "%{name} a changé le rôle de %{target}"
-        confirm_user_html: "%{name} a confirmé l'adresse courriel de l'utilisateur %{target}"
         create_account_warning_html: "%{name} a envoyé un avertissement à %{target}"
         create_announcement_html: "%{name} a créé une nouvelle annonce %{target}"
-        create_canonical_email_block_html: "%{name} a bloqué le courriel avec le hachage %{target}"
         create_custom_emoji_html: "%{name} a téléversé un nouvel émoji %{target}"
         create_domain_allow_html: "%{name} a autorisé la fédération avec le domaine %{target}"
         create_domain_block_html: "%{name} a bloqué le domaine %{target}"
-        create_email_domain_block_html: "%{name} a bloqué de domaine de courriel %{target}"
         create_ip_block_html: "%{name} a créé une règle pour l'IP %{target}"
         create_unavailable_domain_html: "%{name} a arrêté la livraison vers le domaine %{target}"
         create_user_role_html: "%{name} a créé le rôle %{target}"
         demote_user_html: "%{name} a rétrogradé l'utilisateur·rice %{target}"
         destroy_announcement_html: "%{name} a supprimé l'annonce %{target}"
-        destroy_canonical_email_block_html: "%{name} a débloqué le courriel avec le hachage %{target}"
         destroy_custom_emoji_html: "%{name} a supprimé l'émoji %{target}"
         destroy_domain_allow_html: "%{name} a rejeté la fédération avec le domaine %{target}"
         destroy_domain_block_html: "%{name} a débloqué le domaine %{target}"
-        destroy_email_domain_block_html: "%{name} a débloqué le domaine de courriel %{target}"
         destroy_instance_html: "%{name} a purgé le domaine %{target}"
         destroy_ip_block_html: "%{name} a supprimé la règle pour l'IP %{target}"
         destroy_status_html: "%{name} a supprimé le message de %{target}"
@@ -259,10 +242,8 @@ fr:
         destroy_user_role_html: "%{name} a supprimé le rôle %{target}"
         disable_2fa_user_html: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur·rice %{target}"
         disable_custom_emoji_html: "%{name} a désactivé l'émoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} a désactivé l'authentification basée sur les jetons envoyés par courriel pour %{target}"
         disable_user_html: "%{name} a désactivé la connexion de l'utilisateur·rice %{target}"
         enable_custom_emoji_html: "%{name} a activé l'émoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} a activé l'authentification basée sur les jetons envoyés par courriel pour %{target}"
         enable_user_html: "%{name} a activé la connexion de l'utilisateur·rice %{target}"
         memorialize_account_html: "%{name} a converti le compte de %{target} en un mémorial"
         promote_user_html: "%{name} a promu l'utilisateur·rice %{target}"
@@ -270,7 +251,6 @@ fr:
         reject_user_html: "%{name} a rejeté l’inscription de %{target}"
         remove_avatar_user_html: "%{name} a supprimé l'avatar de %{target}"
         reopen_report_html: "%{name} a rouvert le signalement %{target}"
-        resend_user_html: "%{name} a renvoyé l'e-mail de confirmation pour %{target}"
         reset_password_user_html: "%{name} a réinitialisé le mot de passe de l'utilisateur·rice %{target}"
         resolve_report_html: "%{name} a résolu le signalement %{target}"
         sensitive_account_html: "%{name} a marqué le média de %{target} comme sensible"
@@ -429,7 +409,6 @@ fr:
       attempts_over_week:
         one: "%{count} tentative au cours de la dernière semaine"
         other: "%{count} tentatives au cours de la dernière semaine"
-      created_msg: Le blocage de domaine de courriel est désormais activé
       delete: Supprimer
       dns:
         types:
@@ -438,12 +417,8 @@ fr:
       new:
         create: Créer le blocage
         resolve: Résoudre le domaine
-        title: Nouveau blocage de domaine de courriel
-      no_email_domain_block_selected: Aucun blocage de domaine de courriel n'a été modifié car aucun n'a été sélectionné
       not_permitted: Non autorisé
-      resolved_dns_records_hint_html: Le nom de domaine est relié aux domaines MX suivants, qui ont la responsabilité ultime d'accepter les courriels. Bloquer un domaine MX empêchera les inscriptions à partir de toute adresse courriel utilisant le même domaine MX, même si le nom de domaine affiché est différent. <strong> Veillez à ne pas bloquer les fournisseurs de messagerie d'envergure.</strong>
       resolved_through_html: Résolu par %{domain}
-      title: Blocage de domaines de courriel
     export_domain_allows:
       new:
         title: Importer les autorisations de domaine
@@ -594,7 +569,6 @@ fr:
         resolve_description_html: Aucune mesure ne sera prise contre le compte signalé, aucune sanction ne sera enregistrée et le sigalement sera clôturé.
         silence_description_html: Le compte ne sera visible que par ceux qui le suivent déjà ou qui le recherchent manuellement, ce qui limite fortement sa portée. Cette action peut toujours être annulée. Cloture tous les signalements concernant ce compte.
         suspend_description_html: Le compte et tous ses contenus seront inaccessibles et finalement supprimés, et il sera impossible d'interagir avec lui. Réversible dans les 30 jours. Cloture tous les signalements concernant ce compte.
-      actions_description_html: Décidez des mesures à prendre pour résoudre ce signalement. Si vous prenez des mesures punitives contre le compte signalé, une notification sera envoyée par e-mail, sauf si la catégorie <strong>Spam</strong> est sélectionnée.
       actions_description_remote_html: Décidez des mesures à prendre pour résoudre ce signalement. Cela n'affectera que la manière dont <strong>votre</strong> serveur communique avec ce compte distant et traite son contenu.
       add_to_report: Ajouter davantage au rapport
       already_suspended_badges:
@@ -658,7 +632,6 @@ fr:
         delete_data_html: effacer le profil de <strong>@%{acct}</strong> et ses contenus dans 30 jours, à moins que la suspension du compte ne soit annulée entre temps
         preview_preamble_html: "<strong>@%{acct}</strong> recevra un avertissement contenant les éléments suivants :"
         record_strike_html: enregistrer une sanction contre <strong>@%{acct}</strong> pour vous aider à prendre des mesures supplémentaires en cas d'infractions futures de ce compte
-        send_email_html: envoyer un courriel d'avertissement à <strong>@%{acct}</strong>
         warning_placeholder: Arguments supplémentaires pour l'action de modération (facultatif).
       target_origin: Origine du compte signalé
       title: Signalements
@@ -698,7 +671,6 @@ fr:
         manage_appeals: Gérer les contestations
         manage_appeals_description: Permet aux utilisateur⋅rice⋅s d'examiner les appels contre les actions de modération
         manage_blocks: Gérer les blocages
-        manage_blocks_description: Permet aux utilisateur⋅rice⋅s de bloquer des fournisseurs de courriel et des adresses IP
         manage_custom_emojis: Gérer les émojis personnalisés
         manage_custom_emojis_description: Permet aux utilisateur⋅rice⋅s de gérer les émoticônes personnalisées sur le serveur
         manage_federation: Gérer de la féderation
@@ -716,7 +688,6 @@ fr:
         manage_taxonomies: Gérer les taxonomies
         manage_taxonomies_description: Permet aux utilisateur⋅rice⋅s d'examiner les contenus tendance et de mettre à jour les paramètres des hashtags
         manage_user_access: Gérer l'accès utilisateur
-        manage_user_access_description: Permet aux utilisateur⋅rice⋅s de désactiver l'authentification à deux facteurs, de modifier l'adresse courriel et de réinitialiser le mot de passe des autres utilisateur⋅rice⋅s
         manage_users: Gérer les utilisateur·rice·s
         manage_users_description: Permet aux utilisateur⋅rice⋅s de voir les détails des autres utilisateur⋅rice⋅s et d'effectuer des actions de modération en conséquence
         manage_webhooks: Gérer les points d’ancrage web
@@ -790,7 +761,6 @@ fr:
       destroyed_msg: Téléversement sur le site supprimé avec succès !
     software_updates:
       critical_update: Critique — veuillez mettre à jour au plus vite
-      description: Il est recommandé de maintenir votre installation de Mastodon à jour afin de bénéficier des derniers correctifs et des dernières fonctionnalités. Il est également essentiel de mettre à jour Mastodon rapidement dans certains cas afin d’éviter des problèmes de sécurité. Pour ces raisons, Mastodon vérifie les mises à jour toutes les 30 minutes, et vous en informera selon vos préférences de notification par e-mail.
       documentation_link: En savoir plus
       release_notes: Notes de mises à jour
       title: Mises à jour disponibles
@@ -942,7 +912,6 @@ fr:
         used_by_over_week:
           one: Utilisé par %{count} personne au cours de la dernière semaine
           other: Utilisé par %{count} personnes au cours de la dernière semaine
-      title: Tendances
       trending: Tendances
     warning_presets:
       add_new: Ajouter un nouveau
@@ -1026,9 +995,7 @@ fr:
       guide_link_text: Tout le monde peut y contribuer.
     sensitive_content: Contenu sensible
   application_mailer:
-    notification_preferences: Modifier les préférences de courriel
     salutation: "%{name},"
-    settings: 'Changer les préférences courriel : %{link}'
     unsubscribe: Se désabonner
     view: 'Voir :'
     view_profile: Voir le profil
@@ -1048,7 +1015,6 @@ fr:
       hint_html: Encore une chose ! Nous avons besoin de confirmer que vous êtes un humain (c'est pour que nous puissions empêcher les spams !). Résolvez le CAPTCHA ci-dessous et cliquez sur "Continuer".
       title: Vérification de sécurité
     confirmations:
-      awaiting_review: Votre adresse e-mail est confirmée ! L’équipe de %{domain} vérifie désormais votre inscription. Vous recevrez un e-mail si votre compte est approuvé !
       awaiting_review_title: Votre inscription est en cours de validation
       clicking_this_link: cliquer sur ce lien
       login_link: vous connecter
@@ -1056,7 +1022,6 @@ fr:
       redirect_to_app_html: Vous auriez dû être redirigé vers l’application <strong>%{app_name}</strong>. Si cela ne s’est pas produit, essayez de %{clicking_this_link} ou de revenir manuellement à l’application.
       registration_complete: Votre inscription sur %{domain} est désormais terminée !
       welcome_title: Bienvenue, %{name} !
-      wrong_email_hint: Si cette adresse de courriel est incorrecte, vous pouvez la modifier dans vos paramètres de compte.
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.
     description:
@@ -1077,7 +1042,6 @@ fr:
     or_log_in_with: Ou authentifiez-vous avec
     privacy_policy_agreement_html: J’ai lu et j’accepte la <a href="%{privacy_policy_path}" target="_blank">politique de confidentialité</a>
     progress:
-      confirm: Confirmez l'e-mail
       details: Vos infos
       review: Notre avis
       rules: Accepter les règles
@@ -1099,10 +1063,8 @@ fr:
     security: Sécurité
     set_new_password: Définir le nouveau mot de passe
     setup:
-      email_below_hint_html: Vérifiez votre dossier de spam ou demandez qu’on vous le renvoie. Vous pouvez corriger votre adresse e-mail si elle est incorrecte.
       email_settings_hint_html: Cliquez sur le lien que nous vous avons envoyé pour vérifier l’adresse %{email}. Nous vous attendons ici.
       link_not_received: Vous n'avez pas reçu de lien ?
-      new_confirmation_instructions_sent: Vous allez recevoir un nouvel e-mail de confirmation dans quelques minutes !
       title: Vérifiez votre boîte de réception
     sign_in:
       preamble_html: Connectez-vous avec vos identifiants sur <strong>%{domain}</strong>. Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
@@ -1113,9 +1075,7 @@ fr:
       title: Mettons les choses en place pour %{domain}.
     status:
       account_status: État du compte
-      confirming: En attente de la confirmation par courriel à compléter.
       functional: Votre compte est entièrement opérationnel.
-      pending: Votre demande est en attente d'examen par notre personnel. Cela peut prendre un certain temps. Vous recevrez un courriel si votre demande est approuvée.
       redirecting_to: Votre compte est inactif car il est actuellement redirigé vers %{acct}.
       self_destruct: Comme %{domain} est en train de fermer, vous n’aurez qu’un accès limité à votre compte.
       view_strikes: Voir les sanctions précédemment appliquées à votre compte
@@ -1158,9 +1118,6 @@ fr:
       before: 'Veuillez lire attentivement ces notes avant de continuer :'
       caches: Le contenu mis en cache par d'autres serveurs peut persister
       data_removal: Vos messages et autres données seront définitivement supprimés
-      email_change_html: Vous pouvez <a href="%{path}">modifier votre adresse courriel</a> sans supprimer votre compte
-      email_contact_html: S'il n'arrive toujours pas, vous pouvez envoyer un courriel à <a href="mailto:%{email}">%{email}</a> pour demander de l'aide
-      email_reconfirmation_html: Si vous ne recevez pas le courriel de confirmation, vous pouvez le <a href="%{path}">demander à nouveau</a>
       irreversible: Vous ne pourrez pas restaurer ou réactiver votre compte
       more_details_html: Pour plus de détails, voir la <a href="%{terms_path}">politique de confidentialité</a>.
       username_available: Votre nom d’utilisateur·rice sera à nouveau disponible
@@ -1393,7 +1350,6 @@ fr:
     authentication_methods:
       otp: application d'authentification à deux facteurs
       password: mot de passe
-      sign_in_token: code de sécurité par courriel
       webauthn: clés de sécurité
     description_html: Si vous voyez une activité que vous ne reconnaissez pas, envisagez de changer votre mot de passe et d'activer l'authentification à deux facteurs.
     empty: Aucun historique d'authentification disponible
@@ -1404,16 +1360,6 @@ fr:
     unsubscribe:
       action: Oui, se désinscrire
       complete: Désinscrit
-      confirmation_html: Êtes-vous sûr de vouloir vous désinscrire des %{type} de la part du Mastodon installé sur %{domain} vers votre adresse %{email}? Vous pouvez toujours vous réabonner à partir de vos <a href="%{settings_path}">paramètres de notification par e-mail</a>.
-      emails:
-        notification_emails:
-          favourite: e-mails de notifications de signets
-          follow: e-mails de notifications d’abonnements
-          follow_request: e-mails de demandes d’abonnements
-          mention: e-mails de notifications de mentions
-          reblog: e-mails de notifications de boost
-      resubscribe_html: Si vous vous êtes désabonné par erreur, vous pouvez vous réinscrire à partir de vos <a href="%{settings_path}">paramètres de notification par e-mail</a>.
-      success_html: Vous ne serez plus inscrits aux %{type} du Mastodon installé sur %{domain} à votre adresse %{email}.
       title: Se désinscrire
   media_attachments:
     validations:
@@ -1494,8 +1440,6 @@ fr:
     update:
       subject: "%{name} a modifié un message"
   notifications:
-    administration_emails: Notifications par e-mail de l’admin
-    email_events: Événements pour les notifications par courriel
     email_events_hint: 'Sélectionnez les événements pour lesquels vous souhaitez recevoir des notifications :'
   number:
     human:
@@ -1654,7 +1598,6 @@ fr:
     import: Import de données
     import_and_export: Import et export
     migrate: Migration de compte
-    notifications: Notifications par mail
     preferences: Préférences
     profile: Profil
     relationships: Abonnements et abonné·e·s
@@ -1901,7 +1844,6 @@ fr:
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
     otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
     rate_limited: Trop de tentatives d'authentification, réessayez plus tard.
-    seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
   verification:
     extra_instructions_html: <strong>Astuce :</strong> Le lien sur votre site Web peut être invisible. La partie importante est <code>rel="me"</code> qui évite que soient pris en compte d’autres liens provenant de contenu générés par des utilisateurs tiers. Vous pouvez même utiliser une balise <code>link</code> dans l’en-tête de la page au lieu de <code>a</code>, mais le HTML doit être accessible sans avoir besoin d’exécuter du JavaScript.

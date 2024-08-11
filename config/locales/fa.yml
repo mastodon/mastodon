@@ -31,7 +31,6 @@ fa:
       created_msg: یادداشت مدیر با موفقیت ساخته شد!
       destroyed_msg: یادداشت نظارتی با موفقیت نابود شد!
     accounts:
-      add_email_domain_block: انسداد دامنهٔ رایانامه
       approve: پذیرفتن
       approved_msg: کارهٔ ثبت‌نام %{username} با موفقیت تأیید شد
       are_you_sure: مطمئنید؟
@@ -58,7 +57,6 @@ fa:
       demote: تنزل‌دادن
       destroyed_msg: داده‌های %{username} در صف حدف قرار گرفتند
       disable: از کار انداختن
-      disable_sign_in_token_auth: از کار انداختن تأیید هویت ژتون رایانامه‌ای
       disable_two_factor_authentication: از کار انداختن ورود دومرحله‌ای
       disabled: از کار افتاده
       display_name: نام نمایشی
@@ -67,7 +65,6 @@ fa:
       email: رایانامه
       email_status: وضعیت رایانامه
       enable: به کار انداختن
-      enable_sign_in_token_auth: به کار انداختن تأیید هویت ژتون رایانامه‌ای
       enabled: به کار افتاده
       enabled_msg: حساب %{username} با موفقیت به کار انداخته شد
       followers: پیگیران
@@ -132,7 +129,6 @@ fa:
       resubscribe: اشتراک دوباره
       role: نقش
       search: جست‌وجو
-      search_same_email_domain: دیگر کاربران با دامنهٔ رایانامهٔ یکسان
       search_same_ip: دیگر کاربران با IP یکسان
       security: امنیت
       security_measures:
@@ -173,26 +169,21 @@ fa:
         approve_appeal: پذیرش درخواست تجدیدنظر
         approve_user: تایید کاربر
         assigned_to_self_report: واگذاری گزارش
-        change_email_user: تغییر رایانامه برای کاربر
         change_role_user: تغیر نقش کاربر
         confirm_user: تأیید کاربر
         create_account_warning: ایجاد هشدار
         create_announcement: ایجاد اعلامیه
-        create_canonical_email_block: ایجاد انسداد ایمیل
         create_custom_emoji: ایجاد اموجی سفارشی
         create_domain_allow: ایجاد اجازهٔ دامنه
         create_domain_block: ایجاد انسداد دامنه
-        create_email_domain_block: ایجاد انسداد دامنهٔ رایانامه
         create_ip_block: ایجاد قاعدهٔ آی‌پی
         create_unavailable_domain: ایجاد دامنهٔ ناموجود
         create_user_role: ایجاد نقش
         demote_user: تنزل کاربر
         destroy_announcement: حذف اعلامیه
-        destroy_canonical_email_block: پاک کردن انسداد ایمیل
         destroy_custom_emoji: حذف اموجی سفارشی
         destroy_domain_allow: حذف اجازهٔ دامنه
         destroy_domain_block: حذف انسداد دامنه
-        destroy_email_domain_block: حذف انسداد دامنهٔ رایانامه
         destroy_instance: پاکسازی دامنه
         destroy_ip_block: حذف قاعدهٔ آی‌پی
         destroy_status: حذف وضعیت
@@ -200,10 +191,8 @@ fa:
         destroy_user_role: نابودی نقش
         disable_2fa_user: از کار انداختن ورود دومرحله‌ای
         disable_custom_emoji: از کار انداختن اموجی سفارشی
-        disable_sign_in_token_auth_user: از کار انداختن تأیید هویت ژتون رایانامه‌ای برای کاربر
         disable_user: از کار انداختن کاربر
         enable_custom_emoji: به کار انداختن اموجی سفارشی
-        enable_sign_in_token_auth_user: به کار انداختن تأیید هویت ژتون رایانامه‌ای برای کاربر
         enable_user: به کار انداختن کاربر
         memorialize_account: یادسپاری حساب
         promote_user: ترفیع کاربر
@@ -232,26 +221,20 @@ fa:
         approve_appeal_html: "%{name} درخواست تجدیدنظر تصمیم مدیر را از %{target} پذیرفت"
         approve_user_html: "%{name} ثبت نام %{target} را تایید کرد"
         assigned_to_self_report_html: "%{name} رسیدگی به گزارش %{target} را به عهده گرفت"
-        change_email_user_html: "%{name} نشانی رایانامهٔ کاربر %{target} را عوض کرد"
         change_role_user_html: "%{name} نقش %{target} را تغییر داد"
-        confirm_user_html: "%{name} نشانی رایانامهٔ کاربر %{target} را تأیید کرد"
         create_account_warning_html: "%{name} هشداری برای %{target} فرستاد"
         create_announcement_html: "%{name} اعلامیه‌ای جدید ایجاد کرد %{target}"
-        create_canonical_email_block_html: "%{name} رایانامه با درهم‌ریزی %{target} را مسدود کرد"
         create_custom_emoji_html: "%{name} اموجی تازهٔ %{target} را بارگذاشت"
         create_domain_allow_html: "%{name} دامنهٔ %{target} را مجاز کرد"
         create_domain_block_html: "%{name} دامنهٔ %{target} را مسدود کرد"
-        create_email_domain_block_html: "%{name} دامنهٔ رایانامهٔ %{target} را مسدود کرد"
         create_ip_block_html: "%{name} برای آی‌پی %{target} قانونی ایجاد کرد"
         create_unavailable_domain_html: "%{name} تحویل محتوا به دامنه %{target} را متوقف کرد"
         create_user_role_html: "%{name} نقش %{target} را ایجاد کرد"
         demote_user_html: "%{name} کاربر %{target} را تنزل داد"
         destroy_announcement_html: "%{name} اعلامیهٔ %{target} را حذف کرد"
-        destroy_canonical_email_block_html: "%{name} رایانامه با درهم‌ریزی %{target} را نامسدود کرد"
         destroy_custom_emoji_html: "%{name} شکلک %{target} را حذف کرد"
         destroy_domain_allow_html: "%{name} دامنهٔ %{target} را از فهرست مجاز برداشت"
         destroy_domain_block_html: "%{name} انسداد دامنهٔ %{target} را رفع کرد"
-        destroy_email_domain_block_html: "%{name} انسداد دامنهٔ رایانامهٔ %{target} را برداشت"
         destroy_instance_html: "%{name} دامنه %{target} را پاکسازی کرد"
         destroy_ip_block_html: "%{name} قاعدهٔ آی‌پی %{target} را حذف کرد"
         destroy_status_html: "%{name} وضعیت %{target} را برداشت"
@@ -259,10 +242,8 @@ fa:
         destroy_user_role_html: "%{name} نقش %{target} را حذف کرد"
         disable_2fa_user_html: "%{name} ضرورت ورود دو مرحله‌ای را برای کاربر %{target} غیر فعال کرد"
         disable_custom_emoji_html: "%{name} شکلک %{target} را غیرفعال کرد"
-        disable_sign_in_token_auth_user_html: "%{name}، احراز هویت با توکن رایانامه را برای %{target} غیرفعال کرد"
         disable_user_html: "%{name} ورود را برای کاربر %{target} غیرفعال کرد"
         enable_custom_emoji_html: "%{name} شکلک %{target} را فعال کرد"
-        enable_sign_in_token_auth_user_html: "%{name}، احراز هویت با توکن رایانامه را برای %{target} فعال کرد"
         enable_user_html: "%{name} ورود را برای کاربر %{target} فعال کرد"
         memorialize_account_html: "%{name} حساب %{target} را تبدیل به صفحهٔ یادمان کرد"
         promote_user_html: "%{name} کاربر %{target} را ترفیع داد"
@@ -270,7 +251,6 @@ fa:
         reject_user_html: "%{name} ثبت نام %{target} را رد کرد"
         remove_avatar_user_html: "%{name} تصویر نمایهٔ %{target} را حذف کرد"
         reopen_report_html: "%{name} گزارش %{target} را دوباره به جریان انداخت"
-        resend_user_html: "%{name} رایانامهٔ تأیید برای %{target} را دوباره فرستاد"
         reset_password_user_html: "%{name} گذرواژه کاربر %{target} را بازنشاند"
         resolve_report_html: "%{name} گزارش %{target} را رفع کرد"
         sensitive_account_html: "%{name} رسانهٔ %{target} را به عنوان حساس علامت‌گذاری کرد"
@@ -426,7 +406,6 @@ fa:
       attempts_over_week:
         one: "%{count} تلاش در هفتهٔ گذشته"
         other: "%{count} تلاش ورود در هفتهٔ گذشته"
-      created_msg: دامنهٔ رایانامه با موفقیت مسدود شد
       delete: پاک‌کردن
       dns:
         types:
@@ -435,9 +414,7 @@ fa:
       new:
         create: ساختن مسدودسازی
         resolve: حل و فصل دامنه
-        title: مسدودسازی دامنهٔ رایانامهٔ جدید
       not_permitted: مجاز نیست
-      title: دامنه‌های رایانامهٔ مسدود شده
     export_domain_allows:
       new:
         title: درون‌ریزی اجازه‌های دامنه
@@ -801,7 +778,6 @@ fa:
         title: برچسب‌های پرطرفدار
         trending_rank: 'پرطرفدار #%{rank}'
         usable: قابل استفاده
-      title: پرطرفدار
       trending: پرطرفدار
     warning_presets:
       add_new: افزودن تازه
@@ -870,9 +846,7 @@ fa:
       guide_link_text: همه می‌توانند کمک کنند.
     sensitive_content: محتوای حساس
   application_mailer:
-    notification_preferences: تغییر ترجیحات ایمیل
     salutation: "%{name}،"
-    settings: 'تغییر تنظیمات ایمیل: %{link}'
     unsubscribe: لغو اشتراک
     view: 'نمایش:'
     view_profile: دیدن نمایه
@@ -912,7 +886,6 @@ fa:
     or_log_in_with: یا ورود به وسیلهٔ
     privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">سیاست محرمانگی</a> را خوانده و پذیرفته‌ام
     progress:
-      confirm: تأیید رایانامه
       details: جزئیات شما
       review: بررسی ما
       rules: پذیرش قوانین
@@ -937,9 +910,7 @@ fa:
       title: ورود به %{domain}
     status:
       account_status: وضعیت حساب
-      confirming: در حال انتظار برای کامل شدن تأیید ایمیل.
       functional: حسابتان کاملاً قابل استفاده است.
-      pending: درخواست شما منتظر تأیید مسئولان سایت است و این فرایند ممکن است کمی طول بکشد. اگر درخواست شما پذیرفته شود به شما ایمیلی فرستاده خواهد شد.
       redirecting_to: حساب شما غیرفعال است زیرا هم‌اکنون به %{acct} منتقل شده است.
       view_strikes: دیدن شکایت‌های گذشته از حسابتان
     too_fast: فرم با سرعت بسیار زیادی فرستاده شد، دوباره تلاش کنید.
@@ -981,9 +952,6 @@ fa:
       before: 'پیش از ادامه،‌ لطفاً نکته‌های زیر را به دقت بخوانید:'
       caches: ممکن است محتواهایی که دیگر کارسازها ذخیره کرده‌اند، همچنان باقی بماند
       data_removal: نوشته‌ها و داده‌های شما برای همیشه پاک خواهند شد
-      email_change_html: شما می‌توانید بدون پاک کردن حساب <a href="%{path}">نشانی ایمیل خود را تغییر دهید</a>
-      email_contact_html: اگر ایمیل همچنان نرسیده، برای درخواست کمک به <a href="mailto:%{email}">%{email}</a> پیغام دهید
-      email_reconfirmation_html: اگر ایمیل تأیید به دستتان نرسیده، می‌توانید <a href="%{path}">یک بار دیگر برایش درخواست بدهید</a>
       irreversible: شما نخواهید توانست حساب خود را بازیابی یا فعال‌سازی کنید
       more_details_html: برای اطلاعات بیشتر <a href="%{terms_path}">سیاست رازداری</a> را ببینید.
       username_available: نام کاربری شما دوباره در دسترس خواهد بود
@@ -1175,7 +1143,6 @@ fa:
     authentication_methods:
       otp: کارهٔ تأیید هویت دوعاملی
       password: گذرواژه
-      sign_in_token: کد امنیتی رایانامه‌ای
       webauthn: کلیدهای امنیتی
     description_html: اگر فعالیتی می‌بینید که تشخیصش نمی‌دهید، تغییر گذرواژه و به کار انداختن تأیید هویت دوعاملی را در نظر داشته باشید.
     empty: هیچ تاریخچه‌ای از تأییدهویت موجود نیست
@@ -1185,9 +1152,6 @@ fa:
   mail_subscriptions:
     unsubscribe:
       complete: لغو اشتراک شد
-      emails:
-        notification_emails:
-          mention: رایانامه‌های آگاهی اشاره
       title: لغو اشتراک
   media_attachments:
     validations:
@@ -1268,7 +1232,6 @@ fa:
     update:
       subject: "%{name} فرسته‌ای را ویرایست"
   notifications:
-    email_events: رویدادها برای آگاهی‌های رایانامه‌ای
     email_events_hint: 'گزینش رویدادهایی که می‌خواهید برایشان آگاهی دریافت کنید:'
   number:
     human:
@@ -1579,7 +1542,6 @@ fa:
     go_to_sso_account_settings: به تنظیمات حساب فراهمگر هوبتتان بروید
     invalid_otp_token: کد ورود دومرحله‌ای نامعتبر است
     otp_lost_help_html: اگر شما دسترسی به هیچ‌کدامشان ندارید، باید با ایمیل %{email} تماس بگیرید
-    seamless_external_login: شما با یک سرویس خارج از مجموعه وارد شده‌اید، به همین دلیل تنظیمات ایمیل و گذرواژه برای شما در دسترس نیست.
     signed_in_as: 'واردشده به نام:'
   verification:
     extra_instructions_html: <strong>نکته:</strong> پیوند روی پایگاه وبتان می‌تواند نامرئی باشد. بخش مهم <code>rel="me"</code> است که از جعل هویت روی پایگاه‌هایی با محتوای تولید شده به دست کاربر جلوگیری می‌کند. حتا می‌توانید به جای برچسب <code>a</code> از برچسب <code>link</code> در سرایند صفحه استفاده کنید؛ ولی HTML باید بدون اجرای جاوااسکریپت در دسترس باشد.

@@ -29,7 +29,7 @@ zh-TW:
       created_msg: 已成功新增管理備註！
       destroyed_msg: 已成功刪除管理備註！
     accounts:
-      add_email_domain_block: 將電子郵件網域加入黑名單
+      add_email_domain_block: 封鎖電子郵件網域
       approve: 批准
       approved_msg: 已成功審核 %{username} 的新帳號申請
       are_you_sure: 您確定嗎？
@@ -121,15 +121,15 @@ zh-TW:
       removed_avatar_msg: 已成功刪除 %{username} 的大頭貼
       removed_header_msg: 已成功刪除 %{username} 的封面圖片
       resend_confirmation:
-        already_confirmed: 此使用者已被確認
-        send: 重新傳送確認連結
-        success: 已成功傳送確認連結！
+        already_confirmed: 此使用者已被驗證
+        send: 重新傳送驗證連結
+        success: 已成功傳送驗證連結！
       reset: 重設
       reset_password: 重設密碼
       resubscribe: 重新訂閱
       role: 角色
       search: 搜尋
-      search_same_email_domain: 其他有同個電子郵件網域的使用者
+      search_same_email_domain: 其他相同電子郵件網域之使用者
       search_same_ip: 其他有同個 IP 的使用者
       security: 安全性
       security_measures:
@@ -153,7 +153,7 @@ zh-TW:
       title: 帳號
       unblock_email: 解除封鎖電子郵件地址
       unblocked_email_msg: 成功解除封鎖 %{username} 的電子郵件地址
-      unconfirmed_email: 未確認的電子郵件地址
+      unconfirmed_email: 未驗證的電子郵件地址
       undo_sensitized: 取消強制標記為敏感內容
       undo_silenced: 取消靜音
       undo_suspension: 取消停權
@@ -170,12 +170,12 @@ zh-TW:
         approve_appeal: 批准申訴
         approve_user: 批准使用者
         assigned_to_self_report: 指派回報
-        change_email_user: 變更使用者的電子郵件地址
+        change_email_user: 變更使用者電子郵件地址
         change_role_user: 變更使用者角色
-        confirm_user: 確認使用者
+        confirm_user: 驗證使用者
         create_account_warning: 新增警告
         create_announcement: 新增公告
-        create_canonical_email_block: 新增 E-mail 封鎖
+        create_canonical_email_block: 新增電子郵件封鎖
         create_custom_emoji: 新增自訂 emoji 表情符號
         create_domain_allow: 新增允許網域
         create_domain_block: 新增網域封鎖
@@ -185,7 +185,7 @@ zh-TW:
         create_user_role: 新增角色
         demote_user: 將用戶降級
         destroy_announcement: 刪除公告
-        destroy_canonical_email_block: 刪除 E-mail 封鎖
+        destroy_canonical_email_block: 刪除電子郵件封鎖
         destroy_custom_emoji: 刪除自訂 emoji 表情符號
         destroy_domain_allow: 刪除允許網域
         destroy_domain_block: 刪除網域封鎖
@@ -230,12 +230,12 @@ zh-TW:
         approve_appeal_html: "%{name} 已批准來自 %{target} 的審核決定申訴"
         approve_user_html: "%{name} 已批准自 %{target} 而來的註冊"
         assigned_to_self_report_html: "%{name} 將報告 %{target} 指派給自己"
-        change_email_user_html: "%{name} 已變更使用者 %{target} 的電子郵件地址"
+        change_email_user_html: "%{name} 已變更使用者 %{target} 之電子郵件地址"
         change_role_user_html: "%{name} 已變更 %{target} 的角色"
-        confirm_user_html: "%{name} 已確認使用者 %{target} 的電子郵件位址"
+        confirm_user_html: "%{name} 已驗證使用者 %{target} 之電子郵件位址"
         create_account_warning_html: "%{name} 已對 %{target} 送出警告"
         create_announcement_html: "%{name} 已新增公告 %{target}"
-        create_canonical_email_block_html: "%{name} 已封鎖 hash 為 %{target} 的 e-mail"
+        create_canonical_email_block_html: "%{name} 已封鎖 hash 為 %{target} 之電子郵件"
         create_custom_emoji_html: "%{name} 已上傳新自訂 emoji 表情符號 %{target}"
         create_domain_allow_html: "%{name} 允許 %{target} 網域加入聯邦宇宙"
         create_domain_block_html: "%{name} 已封鎖網域 %{target}"
@@ -245,7 +245,7 @@ zh-TW:
         create_user_role_html: "%{name} 已新增 %{target} 角色"
         demote_user_html: "%{name} 將使用者 %{target} 降級"
         destroy_announcement_html: "%{name} 已刪除公告 %{target}"
-        destroy_canonical_email_block_html: "%{name} 已解除封鎖 hash 為 %{target} 的電子郵件"
+        destroy_canonical_email_block_html: "%{name} 已解除封鎖 hash 為 %{target} 之電子郵件"
         destroy_custom_emoji_html: "%{name} 已刪除 emoji 表情符號 %{target}"
         destroy_domain_allow_html: "%{name} 不允許與網域 %{target} 加入聯邦宇宙"
         destroy_domain_block_html: "%{name} 已解除封鎖網域 %{target}"
@@ -424,7 +424,7 @@ zh-TW:
       allow_registrations_with_approval: 經審核後可註冊
       attempts_over_week:
         other: 上週共有 %{count} 次註冊嘗試
-      created_msg: 已成功將電子郵件網域加入黑名單
+      created_msg: 已成功封鎖電子郵件網域
       delete: 刪除
       dns:
         types:
@@ -433,12 +433,12 @@ zh-TW:
       new:
         create: 新增網域
         resolve: 解析網域
-        title: 新增電子郵件黑名單項目
-      no_email_domain_block_selected: 因未選取電子郵件網域黑名單，所以什麼事都沒發生
+        title: 新增電子郵件網域封鎖
+      no_email_domain_block_selected: 因未選取任何電子郵件網域，所以什麼事都沒發生
       not_permitted: 無權限
       resolved_dns_records_hint_html: 網域名稱解析為以下 MX 網域，這些網域最終負責接收電子郵件。封鎖 MX 網域將會封鎖任何來自使用相同 MX 網域的電子郵件註冊，即便可見的域名是不同的也一樣。<strong>請注意，不要封鎖主要的電子郵件服務提供商。</strong>
       resolved_through_html: 透過 %{domain} 解析
-      title: 電子郵件黑名單
+      title: 已封鎖電子郵件網域
     export_domain_allows:
       new:
         title: 匯入網域白名單
@@ -588,7 +588,7 @@ zh-TW:
         resolve_description_html: 被檢舉的帳號將不被採取任何行動，不會加以刪除線標記，並且此份報告將被關閉。
         silence_description_html: 此帳號僅對已跟隨帳號之使用者或手動查詢可見，將大幅度限制觸及範圍。此設定可隨時被還原。關閉所有對此帳號之檢舉報告。
         suspend_description_html: 此帳號及其所有內容將不可被存取並且最終被移除，並且無法與之進行互動。三十天內可以撤銷此動作。關閉所有對此帳號之檢舉報告。
-      actions_description_html: 決定應對此報告採取何種行動。若您對檢舉之帳號採取懲罰措施，則將對他們發送 e-mail 通知，如非選擇了 <strong>垃圾郵件</strong> 類別。
+      actions_description_html: 決定應對此報告採取何種行動。若您對檢舉之帳號採取懲罰措施，則將對他們發送 e-mail 通知，除非選擇了 <strong>垃圾郵件</strong> 類別。
       actions_description_remote_html: 決定將對此檢舉報告採取何種動作。這將僅作用於<strong>您的伺服器</strong>與此遠端帳號及其內容之通訊行為。
       add_to_report: 加入更多至報告
       already_suspended_badges:
@@ -653,7 +653,7 @@ zh-TW:
         delete_data_html: 於即日起 30 天後刪除 <strong>@%{acct}</strong>之個人檔案與內容，除非他們於期限前被解除停權
         preview_preamble_html: "<strong>@%{acct}</strong> 將收到關於以下內容之警告："
         record_strike_html: 紀錄關於 <strong>@%{acct}</strong>之警示有助於您升級對此帳號未來違規處理
-        send_email_html: 寄一封警告 e-mail 至 <strong>@%{acct}</strong>
+        send_email_html: 寄一封警告信至 <strong>@%{acct}</strong>
         warning_placeholder: 選填之其他站務動作理由。
       target_origin: 檢舉帳號之來源
       title: 檢舉
@@ -691,7 +691,7 @@ zh-TW:
         manage_appeals: 管理解封申訴系統
         manage_appeals_description: 允許使用者審閱針對站務動作之申訴
         manage_blocks: 管理封鎖
-        manage_blocks_description: 允許使用者封鎖電子郵件提供者與 IP 位置
+        manage_blocks_description: 允許使用者封鎖電子郵件提供商與 IP 位址
         manage_custom_emojis: 管理自訂 emoji 表情符號
         manage_custom_emojis_description: 允許使用者管理伺服器上之自訂 emoji 表情符號
         manage_federation: 管理聯邦宇宙
@@ -895,13 +895,19 @@ zh-TW:
     trends:
       allow: 允許
       approved: 已通過審核
+      confirm_allow: 您確定要允許選取的主題標籤嗎？
+      confirm_disallow: 您確定要禁止選取的主題標籤嗎？
       disallow: 不允許
       links:
         allow: 允許連結
-        allow_provider: 允許發行者
+        allow_provider: 允許提供商
+        confirm_allow: 您確定要允許選取的連結嗎？
+        confirm_allow_provider: 您確定要允許選取的提供商嗎？
+        confirm_disallow: 您確定要禁止選取的連結嗎？
+        confirm_disallow_provider: 您確定要禁止選取的提供商嗎？
         description_html: 這些連結是正在被您伺服器上看到該嘟文之帳號大量分享。這些連結可以幫助您的使用者探索目前世界上正在發生的事情。除非您核准該發行者，連結將不被公開展示。您也可以核准或駁回個別連結。
         disallow: 不允許連結
-        disallow_provider: 不允許發行者
+        disallow_provider: 不允許提供商
         no_link_selected: 因未選取任何連結，所以什麼事都沒發生
         publishers:
           no_publisher_selected: 因未選取任何發行者，所以什麼事都沒發生
@@ -913,14 +919,18 @@ zh-TW:
       only_allowed: 僅允許
       pending_review: 等待審核中
       preview_card_providers:
-        allowed: 此發行者之連結能登上熱門
+        allowed: 此提供商之連結能登上熱門
         description_html: 這些網域來自被您伺服器常被分享的連結。除非您核准該連結，則這些連結將不會成為公開熱門標籤。您的核准或駁回將對子網域仍有效。
-        rejected: 此發行者之連結不會登上熱門
-        title: 發行者
+        rejected: 此提供商之連結不會登上熱門
+        title: 網域提供商
       rejected: 被拒絕
       statuses:
         allow: 允許嘟文
         allow_account: 允許作者
+        confirm_allow: 您確定要允許選取的嘟文嗎？
+        confirm_allow_account: 您確定要允許選取的帳號嗎？
+        confirm_disallow: 您確定要禁止選取的嘟文嗎？
+        confirm_disallow_account: 您確定要禁止選取的帳號嗎？
         description_html: 這些是您伺服器上已知被正在大量分享及加入最愛之嘟文。這些嘟文能幫助您伺服器上舊雨新知發現更多帳號來跟隨。除非您核准該作者且作者允許他們的帳號被推薦至其他人，嘟文將不被公開展示。您可以核准或駁回個別嘟文。
         disallow: 不允許嘟文
         disallow_account: 不允許作者
@@ -951,7 +961,7 @@ zh-TW:
         usage_comparison: 於今日被使用 %{today} 次，相較於昨日 %{yesterday} 次
         used_by_over_week:
           other: 上週被 %{count} 個人使用
-      title: 熱門榜
+      title: 推薦內容與熱門趨勢
       trending: 熱門
     warning_presets:
       add_new: 新增
@@ -1057,7 +1067,7 @@ zh-TW:
       hint_html: 僅再一步！我們必須確認您是位人類（這是防止垃圾訊息濫用）。請完成以下 CAPTCHA 挑戰並點擊「繼續」。
       title: 安全性檢查
     confirmations:
-      awaiting_review: 已驗證您的電子郵件！%{domain} 的管理員正在審核您的註冊申請。若您的帳號通過審核，您將收到電子郵件通知。
+      awaiting_review: 已驗證您的電子郵件地址！%{domain} 的管理員正在審核您的註冊申請。若您的帳號通過審核，您將收到電子郵件通知。
       awaiting_review_title: 我們正在審核您的註冊申請
       clicking_this_link: 點擊此連結
       login_link: 登入
@@ -1072,7 +1082,7 @@ zh-TW:
       prefix_invited_by_user: "@%{name} 邀請您加入這個 Mastodon 伺服器！"
       prefix_sign_up: 馬上註冊 Mastodon 帳號吧！
       suffix: 有了帳號，就可以自任何 Mastodon 伺服器跟隨任何人、發發廢嘟，並且與任何 Mastodon 伺服器的使用者交流，以及更多！
-    didnt_get_confirmation: 沒有收到確認連結嗎？
+    didnt_get_confirmation: 沒有收到驗證連結嗎？
     dont_have_your_security_key: 找不到您的安全金鑰？
     forgot_password: 忘記密碼？
     invalid_reset_password_token: 密碼重設 token 無效或已過期。請重新設定密碼。
@@ -1086,7 +1096,7 @@ zh-TW:
     or_log_in_with: 或透過其他方式登入
     privacy_policy_agreement_html: 我已閱讀且同意 <a href="%{privacy_policy_path}" target="_blank">隱私權政策</a>
     progress:
-      confirm: 確認電子郵件
+      confirm: 驗證電子郵件地址
       details: 您的個人資料
       review: 我們的審核
       rules: 接受規則
@@ -1095,7 +1105,7 @@ zh-TW:
       saml: SAML
     register: 註冊
     registration_closed: "%{instance} 目前不開放新成員"
-    resend_confirmation: 重新傳送確認連結
+    resend_confirmation: 重新傳送驗證連結
     reset_password: 重設密碼
     rules:
       accept: 接受
@@ -1108,10 +1118,10 @@ zh-TW:
     security: 登入資訊
     set_new_password: 設定新密碼
     setup:
-      email_below_hint_html: 請檢查您的垃圾郵件資料夾，或是請求另一個。如果是錯的，您可以更正您的電子郵件地址。
+      email_below_hint_html: 請檢查您的垃圾郵件資料夾，或是請求另一封驗證信。若不正確，您可以更正您的電子郵件地址。
       email_settings_hint_html: 請點擊我們寄給您連結以驗證 %{email}。我們將於此稍候。
       link_not_received: 無法取得連結嗎？
-      new_confirmation_instructions_sent: 您將於幾分鐘之內收到新的包含確認連結的電子郵件！
+      new_confirmation_instructions_sent: 您將於幾分鐘之內收到新的包含驗證連結之電子郵件！
       title: 請檢查您的收件匣
     sign_in:
       preamble_html: 請使用您於 <strong>%{domain}</strong> 的帳號密碼登入。若您的帳號託管於其他伺服器，您將無法於此登入。
@@ -1122,7 +1132,7 @@ zh-TW:
       title: 讓我們一起設定 %{domain} 吧！
     status:
       account_status: 帳號狀態
-      confirming: 等待電子郵件確認完成。
+      confirming: 等待電子郵件驗證完成。
       functional: "您的帳號可以正常使用了。🎉"
       pending: 管管們正在處理您的申請，這可能需要一點時間處理。我們將於申請通過後以電子郵件方式通知您。
       redirecting_to: 您的帳號因目前重定向至 %{acct} 而被停用。
@@ -1160,7 +1170,7 @@ zh-TW:
   deletes:
     challenge_not_passed: 您所輸入的資料不正確
     confirm_password: 輸入您目前的密碼以驗證身份
-    confirm_username: 請輸入您的使用者名稱以作確認
+    confirm_username: 請輸入您的使用者名稱以確認
     proceed: 刪除帳號
     success_msg: 您的帳號已經成功刪除
     warning:
@@ -1169,7 +1179,7 @@ zh-TW:
       data_removal: 您的嘟文與其他資料將被永久刪除
       email_change_html: 您能於不刪除帳號的情況下<a href="%{path}">變更您的電子郵件地址</a>
       email_contact_html: 如果您仍然沒有收到郵件，請寄信至 <a href="mailto:%{email}">%{email}</a> 以獲得協助
-      email_reconfirmation_html: 如果您沒有收到確認郵件，可以<a href="%{path}">請求再次發送</a>
+      email_reconfirmation_html: 如果您沒有收到驗證信，可以於<a href="%{path}">請求再次發送</a>
       irreversible: 您將無法復原或重新啟用您的帳號
       more_details_html: 更多詳細資訊，請參閲<a href="%{terms_path}">隱私政策</a>。
       username_available: 您的使用者名稱將會釋出供他人使用
@@ -1814,9 +1824,9 @@ zh-TW:
     suspicious_sign_in:
       change_password: 變更密碼
       details: 以下是該登入之詳細資訊：
-      explanation: 我們偵測到有新 IP 地址登入您的帳號
+      explanation: 我們偵測到有新 IP 位址登入您的帳號
       further_actions_html: 如果這個不是您，我們建議您立即 %{action} ，並且啟用二階段驗證 (2FA) 以確保帳號安全。
-      subject: 您的帳號已被新 IP 地址存取
+      subject: 您的帳號已被新 IP 位址存取
       title: 新登入
     warning:
       appeal: 遞交申訴
@@ -1895,7 +1905,7 @@ zh-TW:
     invalid_otp_token: 兩階段驗證碼不正確
     otp_lost_help_html: 如果您無法存取這兩者，您可以透過 %{email} 與我們聯繫
     rate_limited: 過多次身份驗證嘗試，請稍後再試。
-    seamless_external_login: 由於您是由外部系統登入，所以不能設定密碼與電子郵件。
+    seamless_external_login: 由於您是透過外部服務登入，所以不能設定密碼與電子郵件。
     signed_in_as: 目前登入的帳號：
   verification:
     extra_instructions_html: <strong>小撇步：</strong>您網站上之此連結可以是不可見的。其重要的部分是 <code>rel="me"</code> ，防止透過使用者產生內容模擬。您甚至能使用頁面標頭之 <code>link</code> 標籤取代頁面中的 <code>a</code> 標籤，但 HTML 必須能於不執行 JavaScript 情況下所存取。

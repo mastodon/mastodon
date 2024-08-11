@@ -58,7 +58,6 @@ sv:
       demote: Degradera
       destroyed_msg: "%{username}'s data har nu lagts till kön för att raderas omedelbart"
       disable: inaktivera
-      disable_sign_in_token_auth: Inaktivera autentisering med e-post-token
       disable_two_factor_authentication: Inaktivera 2FA
       disabled: inaktiverad
       display_name: Visningsnamn
@@ -67,7 +66,6 @@ sv:
       email: E-post
       email_status: E-poststatus
       enable: Aktivera
-      enable_sign_in_token_auth: Aktivera autentisering med e-post-token
       enabled: Aktiverad
       enabled_msg: Uppfrysningen av %{username}'s konto lyckades
       followers: Följare
@@ -132,7 +130,6 @@ sv:
       resubscribe: Starta en ny prenumeration
       role: Roll
       search: Sök
-      search_same_email_domain: Andra användare med samma e-postdomän
       search_same_ip: Annan användare med samma IP-adress
       security: Säkerhet
       security_measures:
@@ -173,26 +170,21 @@ sv:
         approve_appeal: Godkänn överklagande
         approve_user: Godkänn användare
         assigned_to_self_report: Tilldela anmälan
-        change_email_user: Ändra e-post för användare
         change_role_user: Ändra roll för användaren
         confirm_user: Bekräfta användare
         create_account_warning: Skapa varning
         create_announcement: Skapa kungörelse
-        create_canonical_email_block: Skapa e-postblockering
         create_custom_emoji: Skapa egen emoji
         create_domain_allow: Skapa tillåten domän
         create_domain_block: Skapa blockerad domän
-        create_email_domain_block: Skapa blockering av e-postdomän
         create_ip_block: Skapa IP-regel
         create_unavailable_domain: Skapa otillgänglig domän
         create_user_role: Skapa roll
         demote_user: Degradera användare
         destroy_announcement: Radera kungörelse
-        destroy_canonical_email_block: Radera e-postblockering
         destroy_custom_emoji: Radera egen emoji
         destroy_domain_allow: Ta bort tillåten domän
         destroy_domain_block: Ta bort blockerad domän
-        destroy_email_domain_block: Radera blockering av e-postdomän
         destroy_instance: Rensa domänen
         destroy_ip_block: Radera IP-regel
         destroy_status: Radera inlägg
@@ -200,10 +192,8 @@ sv:
         destroy_user_role: Förstör roll
         disable_2fa_user: Inaktivera 2FA
         disable_custom_emoji: Inaktivera egna emojis
-        disable_sign_in_token_auth_user: Inaktivera autentisering med e-post-token för användare
         disable_user: Inaktivera användare
         enable_custom_emoji: Aktivera egna emojis
-        enable_sign_in_token_auth_user: Aktivera autentisering med e-post-token för användare
         enable_user: Aktivera användare
         memorialize_account: Minnesmärk konto
         promote_user: Befordra användare
@@ -233,26 +223,20 @@ sv:
         approve_appeal_html: "%{name} godkände överklagande av modereringsbeslut från %{target}"
         approve_user_html: "%{name} godkände registrering från %{target}"
         assigned_to_self_report_html: "%{name} tilldelade rapporten %{target} till sig själva"
-        change_email_user_html: "%{name} bytte e-postadress för användare %{target}"
         change_role_user_html: "%{name} ändrade roll för %{target}"
-        confirm_user_html: "%{name} bekräftade e-postadress för användare %{target}"
         create_account_warning_html: "%{name} skickade en varning till %{target}"
         create_announcement_html: "%{name} skapade kungörelsen %{target}"
-        create_canonical_email_block_html: "%{name} blockerade e-post med hashen %{target}"
         create_custom_emoji_html: "%{name} laddade upp ny emoji %{target}"
         create_domain_allow_html: "%{name} vitlistade domän %{target}"
         create_domain_block_html: "%{name} blockerade domänen %{target}"
-        create_email_domain_block_html: "%{name} blockerade e-postdomänen %{target}"
         create_ip_block_html: "%{name} skapade regel för IP %{target}"
         create_unavailable_domain_html: "%{name} stoppade leverans till domänen %{target}"
         create_user_role_html: "%{name} skapade rollen %{target}"
         demote_user_html: "%{name} nedgraderade användare %{target}"
         destroy_announcement_html: "%{name} raderade kungörelsen %{target}"
-        destroy_canonical_email_block_html: "%{name} avblockerade e-post med hashen %{target}"
         destroy_custom_emoji_html: "%{name} raderade emoji %{target}"
         destroy_domain_allow_html: "%{name} raderade domän %{target} från vitlistan"
         destroy_domain_block_html: "%{name} avblockerade domänen %{target}"
-        destroy_email_domain_block_html: "%{name} avblockerade e-postdomänen %{target}"
         destroy_instance_html: "%{name} rensade domän %{target}"
         destroy_ip_block_html: "%{name} tog bort regel för IP %{target}"
         destroy_status_html: "%{name} tog bort inlägget av %{target}"
@@ -260,10 +244,8 @@ sv:
         destroy_user_role_html: "%{name} raderade rollen %{target}"
         disable_2fa_user_html: "%{name} inaktiverade tvåfaktorsautentiseringskrav för användaren %{target}"
         disable_custom_emoji_html: "%{name} inaktiverade emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} inaktiverade e-posttokenautentisering för %{target}"
         disable_user_html: "%{name} stängde av inloggning för användaren %{target}"
         enable_custom_emoji_html: "%{name} aktiverade emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} aktiverade e-posttokenautentisering för %{target}"
         enable_user_html: "%{name} aktiverade inloggning för användaren %{target}"
         memorialize_account_html: "%{name} gjorde %{target}'s konto till en minnessida"
         promote_user_html: "%{name} befordrade användaren %{target}"
@@ -271,7 +253,6 @@ sv:
         reject_user_html: "%{name} avvisade registrering från %{target}"
         remove_avatar_user_html: "%{name} tog bort %{target}'s avatar"
         reopen_report_html: "%{name} öppnade rapporten igen %{target}"
-        resend_user_html: "%{name} skickade bekräftelsemail för %{target} på nytt"
         reset_password_user_html: "%{name} återställ användarens lösenord %{target}"
         resolve_report_html: "%{name} löste rapporten %{target}"
         sensitive_account_html: "%{name} markerade %{target}'s media som känsligt"
@@ -432,7 +413,6 @@ sv:
       attempts_over_week:
         one: "%{count} försök under den senaste veckan"
         other: "%{count} registreringsförsök under den senaste veckan"
-      created_msg: Blockerade e-postdomänen
       delete: Radera
       dns:
         types:
@@ -441,12 +421,8 @@ sv:
       new:
         create: Skapa domän
         resolve: Slå upp domän
-        title: Blockera ny e-postdomän
-      no_email_domain_block_selected: Inga blockeringar av e-postdomäner ändrades eftersom inga valdes
       not_permitted: Ej tillåtet
-      resolved_dns_records_hint_html: Domännamnet ger uppslag till följande MX-domäner, vilka är ytterst ansvariga för att e-post tas emot. Att blockera en MX-domän blockerar även registreringar från alla e-postadresser som använder samma MX-domän, även om det synliga domännamnet är annorlunda. <strong>Var noga med att inte blockera stora e-postleverantörer.</strong>
       resolved_through_html: Uppslagen genom %{domain}
-      title: Blockerade e-postdomäner
     export_domain_allows:
       new:
         title: Importera domäntillåtelser
@@ -600,7 +576,6 @@ sv:
         resolve_description_html: Ingen åtgärd vidtas mot det rapporterade kontot, ingen prick registreras och rapporten stängs.
         silence_description_html: Kontot kommer endast synas för de som redan följer den eller manuellt söker på den, vilket dramatiskt minskar dess räckvidd. Kan alltid ångras. Stänger alla anmälningar mot detta konto.
         suspend_description_html: Kontot och allt dess innehåll kommer att vara oåtkomligt och så småningom tas bort, det kommer inte gå att interagera med kontot. Kan ångras inom 30 dagar. Stänger alla anmälningar mot detta konto.
-      actions_description_html: Välj vilken åtgärd som skall vidtas för att lösa denna rapport. Om du vidtar en bestraffningsåtgärd mot det rapporterade kontot kommer en e-postnotis att skickas till dem, förutom om du valt kategorin <strong>Skräppost</strong>.
       actions_description_remote_html: Bestäm vilka åtgärder som ska vidtas för att lösa denna rapport. Detta kommer bara att påverka hur <strong>din</strong> server kommunicerar med detta fjärrkonto och hanterar dess innehåll.
       add_to_report: Lägg till mer i rapporten
       already_suspended_badges:
@@ -665,7 +640,6 @@ sv:
         delete_data_html: Ta bort <strong>@%{acct}</strong>s profil och innehåll om 30 dagar ifall deras avstängning inte tagits bort under tiden
         preview_preamble_html: "<strong>@%{acct}</strong> kommer få en varning med följande innehåll:"
         record_strike_html: Registrera en varning mot <strong>@%{acct}</strong> för att hjälpa dig eskalera vid framtida överträdelser från detta konto
-        send_email_html: Skicka <strong>@%{acct}</strong> ett varningsmejl
         warning_placeholder: Valfri ytterligare resonemang för modereringsåtgärd.
       target_origin: Ursprung för anmält konto
       title: Anmälningar
@@ -705,7 +679,6 @@ sv:
         manage_appeals: Hantera överklaganden
         manage_appeals_description: Tillåter användare att granska överklaganden av modereringsåtgärder
         manage_blocks: Hantera blockeringar
-        manage_blocks_description: Tillåter användare att blockera e-postleverantörer och IP-adresser
         manage_custom_emojis: Hantera egna emojier
         manage_custom_emojis_description: Tillåter användare att hantera egna emojier på servern
         manage_federation: Hantera federering
@@ -723,7 +696,6 @@ sv:
         manage_taxonomies: Hantera taxonomier
         manage_taxonomies_description: Tillåter användare att granska trendande innehåll och uppdatera inställningar för hashtaggar
         manage_user_access: Hantera användaråtkomst
-        manage_user_access_description: Tillåter användare att inaktivera andra användares tvåfaktorsautentisering, ändra deras e-postadress samt återställa deras lösenord
         manage_users: Hantera användare
         manage_users_description: Tillåter användare att granska användares data och utföra modereringsåtgärder på dessa
         manage_webhooks: Hantera webhooks
@@ -798,7 +770,6 @@ sv:
       destroyed_msg: Webbplatsuppladdningen har raderats!
     software_updates:
       critical_update: Kritiskt — vänligen uppdatera omgående
-      description: Det rekommenderas att hålla din Mastodon-installation uppdaterad för att ta nytta av de senaste fixarna och funktionerna. Dessutom är det ibland viktigt att uppdatera Mastodon i tid för att undvika säkerhetsproblem. Av dessa skäl kontrollerar Mastodon efter uppdateringar var 30:e minut och meddelar dig i enlighet med dina e-postaviseringsinställningar.
       documentation_link: Läs mer
       release_notes: Ändringslogg
       title: Tillgängliga uppdateringar
@@ -955,7 +926,7 @@ sv:
         used_by_over_week:
           one: Använd av en person under den senaste veckan
           other: Använd av %{count} personer under den senaste veckan
-      title: Trender
+      title: Rekommendationer & Trender
       trending: Trendande
     warning_presets:
       add_new: Lägg till ny
@@ -1040,9 +1011,8 @@ sv:
       guide_link_text: Alla kan bidra.
     sensitive_content: Känsligt innehåll
   application_mailer:
-    notification_preferences: Ändra e-postinställningar
+    notification_preferences: Ändra e-postpreferenser
     salutation: "%{name},"
-    settings: 'Ändra e-postinställningar: %{link}'
     unsubscribe: Avprenumerera
     view: 'Granska:'
     view_profile: Visa profil
@@ -1062,7 +1032,6 @@ sv:
       hint_html: En sista sak till! Vi måste bekräfta att du är en människa (för att hålla borta skräpinlägg!). Lös CAPTCHA nedan och klicka på "Fortsätt".
       title: Säkerhetskontroll
     confirmations:
-      awaiting_review: Din e-postadress är bekräftad! %{domain} personalen granskar nu din registrering. Du kommer att få ett e-postmeddelande om de godkänner ditt konto!
       awaiting_review_title: Din registrering är under granskning
       clicking_this_link: klicka på denna länk
       login_link: logga in
@@ -1070,7 +1039,6 @@ sv:
       redirect_to_app_html: Du borde ha omdirigerats till appen <strong>%{app_name}</strong>. Om det inte hände, försök att %{clicking_this_link} eller återgå manuellt till appen.
       registration_complete: Din registrering på %{domain} är nu slutförd!
       welcome_title: Välkommen %{name}!
-      wrong_email_hint: Om e-postadressen inte är rätt, kan du ändra den i kontoinställningarna.
     delete_account: Radera konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
     description:
@@ -1091,7 +1059,6 @@ sv:
     or_log_in_with: Eller logga in med
     privacy_policy_agreement_html: Jag har läst och godkänner <a href="%{privacy_policy_path}" target="_blank">integritetspolicyn</a>
     progress:
-      confirm: Bekräfta e-postadress
       details: Dina uppgifter
       review: Vår recension
       rules: Acceptera regler
@@ -1113,10 +1080,8 @@ sv:
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
     setup:
-      email_below_hint_html: Kolla din skräppost-mapp eller begär en annan. Du kan korrigera din e-postadress om den är fel.
       email_settings_hint_html: Klicka på länken som vi har skickat till dig för att bekräfta %{email}. Vi väntar här.
       link_not_received: Fick du ingen länk?
-      new_confirmation_instructions_sent: Du får e-post med bekräftelselänk om några minuter!
       title: Kolla din inkorg
     sign_in:
       preamble_html: Logga in med dina användaruppgifter på <strong>%{domain}</strong>. Om ditt konto finns på en annan server kommer du inte att kunna logga in här.
@@ -1127,9 +1092,7 @@ sv:
       title: Låt oss få igång dig på %{domain}.
     status:
       account_status: Kontostatus
-      confirming: Väntar på att e-postbekräftelsen ska slutföras.
       functional: Ditt konto fungerar som det ska.
-      pending: Din ansökan inväntar granskning. Detta kan ta tid. Du kommer att få ett e-postmeddelande om din ansökan godkänns.
       redirecting_to: Ditt konto är inaktivt eftersom det för närvarande dirigeras om till %{acct}.
       self_destruct: Eftersom %{domain} håller på att stängas ned, kommer du endast att ha begränsad tillgång till ditt konto.
       view_strikes: Visa tidigare prickar på ditt konto
@@ -1173,8 +1136,6 @@ sv:
       caches: Innehåll som har cachats av andra servrar kan bibehållas
       data_removal: Dina inlägg och annan data kommer permanent raderas
       email_change_html: Du kan <a href="%{path}">ändra din e-postadress</a> utan att radera ditt konto
-      email_contact_html: Om det fortfarande inte kommer kan du e-posta <a href="mailto:%{email}">%{email}</a> för support
-      email_reconfirmation_html: Om du inte får bekräftelsemeddelandet kan du <a href="%{path}">begära ett nytt</a>
       irreversible: Du kan inte återställa eller återaktivera ditt konto
       more_details_html: För mer information, se <a href="%{terms_path}">integritetspolicyn</a>.
       username_available: Ditt användarnamn kommer att bli tillgängligt igen
@@ -1407,7 +1368,6 @@ sv:
     authentication_methods:
       otp: tvåfaktorsautentiseringsapp
       password: lösenord
-      sign_in_token: e-postsäkerhetskod
       webauthn: säkerhetsnycklar
     description_html: Om du ser aktivitet som du inte känner igen, överväg att byta ditt lösenord och aktivera tvåfaktor-autentisering.
     empty: Ingen autentiseringshistorik tillgänglig
@@ -1418,16 +1378,6 @@ sv:
     unsubscribe:
       action: Ja, avsluta prenumerationen
       complete: Prenumeration avslutad
-      confirmation_html: Är du säker på att du vill avregistrera dig från att ta emot %{type} för Mastodon på %{domain} till din e-post på %{email}? Du kan alltid återprenumerera på dina <a href="%{settings_path}">e-postmeddelandeinställningar</a>.
-      emails:
-        notification_emails:
-          favourite: favoritaviseringsmejl
-          follow: följaviseringsmejl
-          follow_request: följbegärningsmejl
-          mention: aviseringsmejl för inlägg där du nämns
-          reblog: aviseringsmejl för boostade inlägg
-      resubscribe_html: Om du slutat prenumerera av misstag kan du återprenumerera i dina <a href="%{settings_path}">e-postaviseringsinställningar</a>.
-      success_html: Du får inte längre %{type} för Mastodon på %{domain} till din e-post på %{email}.
       title: Avsluta prenumeration
   media_attachments:
     validations:
@@ -1508,8 +1458,6 @@ sv:
     update:
       subject: "%{name} redigerade ett inlägg"
   notifications:
-    administration_emails: Admin e-postaviseringar
-    email_events: Händelser för e-postnotiser
     email_events_hint: 'Välj händelser som du vill ta emot aviseringar för:'
   number:
     human:
@@ -1668,7 +1616,6 @@ sv:
     import: Importera
     import_and_export: Import och export
     migrate: Kontoflytt
-    notifications: E-postaviseringar
     preferences: Inställningar
     profile: Profil
     relationships: Följer och följare
@@ -1915,7 +1862,6 @@ sv:
     invalid_otp_token: Ogiltig tvåfaktorskod
     otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
     rate_limited: För många autentiseringsförsök, försök igen senare.
-    seamless_external_login: Du är inloggad via en extern tjänst, inställningar för lösenord och e-post är därför inte tillgängliga.
     signed_in_as: 'Inloggad som:'
   verification:
     extra_instructions_html: <strong>Tips:</strong> Länken på din webbplats kan vara osynlig. Den viktiga delen är <code>rel="me"</code> som förhindrar personifiering på webbplatser med användargenererat innehåll. Du kan även använda en <code>länk</code> tagg i huvudet på sidan istället för <code>en</code>, men HTML:en måste vara tillgänglig utan att exekvera JavaScript.

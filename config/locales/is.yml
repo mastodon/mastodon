@@ -909,10 +909,16 @@ is:
     trends:
       allow: Leyfa
       approved: Samþykkt
+      confirm_allow: Ertu viss um að þú viljir leyfa valin merki?
+      confirm_disallow: Ertu viss um að þú viljir ekki leyfa valin merki?
       disallow: Ekki leyfa
       links:
         allow: Leyfa tengil
         allow_provider: Leyfa útgefanda
+        confirm_allow: Ertu viss um að þú viljir leyfa valda tengla?
+        confirm_allow_provider: Ertu viss um að þú viljir leyfa valdar þjónustur?
+        confirm_disallow: Ertu viss um að þú viljir ekki leyfa valda tengla?
+        confirm_disallow_provider: Ertu viss um að þú viljir ekki leyfa valdar þjónustur?
         description_html: Þetta eru tenglar/slóðir sem mikið er deilt af notendum sem netþjónninn þinn sér færslur frá. Þeir geta hjálpað notendunum þínu við að finna út hvað sé í gangi í heiminum. Engir tenglar birtast opinberlega fyrr en þú hefur samþykkt útgefanda þeirra. Þú getur líka leyft eða hafnað eintökum tenglum.
         disallow: Ekki leyfa tengil
         disallow_provider: Ekki leyfa útgefanda
@@ -936,6 +942,10 @@ is:
       statuses:
         allow: Leyfa færslu
         allow_account: Leyfa höfund
+        confirm_allow: Ertu viss um að þú viljir leyfa valdar stöður?
+        confirm_allow_account: Ertu viss um að þú viljir leyfa valda notendaaðganga?
+        confirm_disallow: Ertu viss um að þú viljir ekki leyfa valdar stöður?
+        confirm_disallow_account: Ertu viss um að þú viljir ekki leyfa valda notendaaðganga?
         description_html: Þetta eru færslur sem netþjónninn þinn veit að er víða deilt eða eru mikið sett í eftirlæti þessa stundina. Þær geta hjálpað nýjum sem eldri notendum þínum við að finna fleira fólk til að fylgjast með. Engar færslur birtast opinberlega fyrr en þú hefur samþykkt höfund þeirra og að viðkomandi höfundur leyfi að efni frá þeim sé notað í tillögur til annarra. Þú getur líka leyft eða hafnað eintökum færslum.
         disallow: Ekki leyfa færslu
         disallow_account: Ekki leyfa höfund
@@ -968,7 +978,7 @@ is:
         used_by_over_week:
           one: Notað af einum aðila síðustu vikuna
           other: Notað af %{count} aðilum síðustu vikuna
-      title: Tilhneiging
+      title: Meðmæli og vinsælt
       trending: Vinsælt
     warning_presets:
       add_new: Bæta við nýju

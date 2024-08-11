@@ -442,7 +442,7 @@ es-AR:
         create: Agregar dominio
         resolve: Resolver dominio
         title: Bloquear nuevo dominio de correo electrónico
-      no_email_domain_block_selected: No se cambiaron bloques de dominio ya que no se seleccionó ninguno
+      no_email_domain_block_selected: No se cambiaron bloqueos de dominio de correo electrónico, ya que no se seleccionó ninguno
       not_permitted: No permitidos
       resolved_dns_records_hint_html: El nombre de dominio resuelve los siguientes dominios MX, los cuales son responsables en última instancia de aceptar el correo electrónico. Bloquear un dominio MX bloqueará los registros de cualquier dirección de correo electrónico que utilice el mismo dominio MX, incluso si el nombre de dominio visible es diferente. <strong>Tené cuidado de no bloquear los principales proveedores de correo electrónico.</strong>
       resolved_through_html: Resuelto a través de %{domain}
@@ -907,10 +907,16 @@ es-AR:
     trends:
       allow: Permitir
       approved: Aprobadas
+      confirm_allow: "¿Estás seguro de que querés permitir las etiquetas seleccionadas?"
+      confirm_disallow: "¿Estás seguro de que no querés permitir las etiquetas seleccionadas?"
       disallow: Rechazar
       links:
         allow: Permitir enlace
         allow_provider: Permitir medio
+        confirm_allow: "¿Estás seguro de que querés permitir los enlaces seleccionados?"
+        confirm_allow_provider: "¿Estás seguro de que querés permitir los proveedores seleccionados?"
+        confirm_disallow: "¿Estás seguro de que no querés permitir los enlaces seleccionados?"
+        confirm_disallow_provider: "¿Estás seguro de que no querés permitir los proveedores seleccionados?"
         description_html: Estos son enlaces que actualmente están siendo muy compartidos por cuentas desde las que tu servidor ve los mensajes. Esto puede ayudar a tus usuarios a averiguar qué está pasando en el mundo. No hay enlaces que se muestren públicamente hasta que autoricés al publicador. También podés permitir o rechazar enlaces individuales.
         disallow: Rechazar enlace
         disallow_provider: Rechazar medio
@@ -934,6 +940,10 @@ es-AR:
       statuses:
         allow: Permitir mensaje
         allow_account: Permitir autor
+        confirm_allow: "¿Estás seguro de que querés permitir los estados seleccionados?"
+        confirm_allow_account: "¿Estás seguro de que querés permitir las cuentas seleccionadas?"
+        confirm_disallow: "¿Estás seguro de que no querés permitir los estados seleccionados?"
+        confirm_disallow_account: "¿Estás seguro de que no querés permitir las cuentas seleccionadas?"
         description_html: Estos son mensajes que tu servidor detecta que están siendo compartidos y marcados como favoritos muchas veces en este momento. Esto puede ayudar a tus usuarios nuevos y retornantes a encontrar más cuentas para seguir. No hay mensajes que se muestren públicamente hasta que aprobés al autor, y el autor permita que su cuenta sea sugerida a otros. También podés permitir o rechazar mensajes individuales.
         disallow: Rechazar mensaje
         disallow_account: Rechazar autor
@@ -966,7 +976,7 @@ es-AR:
         used_by_over_week:
           one: Usada por una persona durante la última semana
           other: Usada por %{count} personas durante la última semana
-      title: Tendencias
+      title: Recomendaciones y tendencias
       trending: En tendencia
     warning_presets:
       add_new: Agregar nuevo

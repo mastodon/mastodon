@@ -206,10 +206,10 @@ pl:
         destroy_user_role: Zlikwiduj rolę
         disable_2fa_user: Wyłącz 2FA
         disable_custom_emoji: Wyłącz niestandardowe emoji
-        disable_sign_in_token_auth_user: Wyłącz uwierzytelnianie tokenu e-mail dla użytkownika
+        disable_sign_in_token_auth_user: Wyłącz uwierzytelnianie tokenem przez e-mail dla użytkownika
         disable_user: Wyłącz użytkownika
         enable_custom_emoji: Włącz niestandardowe emoji
-        enable_sign_in_token_auth_user: Włącz uwierzytelnianie tokenu e-mail dla użytkownika
+        enable_sign_in_token_auth_user: Włącz uwierzytelnianie tokenem przez e-mail dla użytkownika
         enable_user: Włącz użytkownika
         memorialize_account: Upamiętnij konto
         promote_user: Podnieś uprawnienia
@@ -244,7 +244,7 @@ pl:
         confirm_user_html: "%{name} potwierdził(a) adres e-mail użytkownika %{target}"
         create_account_warning_html: "%{name} wysłał(a) ostrzeżenie do %{target}"
         create_announcement_html: "%{name} utworzył(a) nowe ogłoszenie %{target}"
-        create_canonical_email_block_html: "%{name} zablokował e-mail z hasłem %{target}"
+        create_canonical_email_block_html: "%{name} zablokował(a) e-mail z hashem %{target}"
         create_custom_emoji_html: "%{name} dodał(a) nowe emoji %{target}"
         create_domain_allow_html: "%{name} dodał(a) na białą listę domenę %{target}"
         create_domain_block_html: "%{name} zablokował(a) domenę %{target}"
@@ -254,7 +254,7 @@ pl:
         create_user_role_html: "%{name} utworzył rolę %{target}"
         demote_user_html: "%{name} zdegradował(a) użytkownika %{target}"
         destroy_announcement_html: "%{name} usunął(-ęła) ogłoszenie %{target}"
-        destroy_canonical_email_block_html: "%{name} odblokował(a) e-mail z hasłem %{target}"
+        destroy_canonical_email_block_html: "%{name} odblokował(a) e-mail z hashem %{target}"
         destroy_custom_emoji_html: "%{name} usunął emoji %{target}"
         destroy_domain_allow_html: "%{name} usunął(-ęła) domenę %{target} z białej listy"
         destroy_domain_block_html: "%{name} odblokował(a) domenę %{target}"
@@ -266,10 +266,10 @@ pl:
         destroy_user_role_html: "%{name} usunął rolę %{target}"
         disable_2fa_user_html: "%{name} wyłączył(a) uwierzytelnianie dwuskładnikowe użytkownikowi %{target}"
         disable_custom_emoji_html: "%{name} wyłączył(a) emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} wyłączył/a uwierzytelnianie tokenem e-mail dla %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} wyłączył/a uwierzytelnianie tokenem przez e-mail dla %{target}"
         disable_user_html: "%{name} zablokował(a) możliwość logowania użytkownikowi %{target}"
         enable_custom_emoji_html: "%{name} włączył(a) emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} włączył/a uwierzytelnianie tokenem e-mail dla %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} włączył/a uwierzytelnianie tokenem przez e-mail dla %{target}"
         enable_user_html: "%{name} przywrócił(a) możliwość logowania użytkownikowi %{target}"
         memorialize_account_html: "%{name} nadał(a) kontu %{target} status in memoriam"
         promote_user_html: "%{name} podniósł(a) uprawnienia użytkownikowi %{target}"
@@ -462,7 +462,7 @@ pl:
       not_permitted: Brak uprawnień
       resolved_dns_records_hint_html: Nazwa domeny rozwiązuje się do następujących domen MX, które są ostatecznie odpowiedzialne za przyjmowanie wiadomości e-mail. Blokowanie domeny MX spowoduje zablokowanie rejestracji z dowolnego adresu e-mail, który używa tej samej domeny MX, nawet jeśli widoczna nazwa domeny jest inna. <strong>Uważaj, aby nie blokować głównych dostawców poczty elektronicznej.</strong>
       resolved_through_html: Rozwiązano przez %{domain}
-      title: Blokowanie domen e-mail
+      title: Zablokowane domeny e-mail
     export_domain_allows:
       new:
         title: Zaimportuj zezwolenia domen
@@ -935,10 +935,16 @@ pl:
     trends:
       allow: Zezwól
       approved: Zaakceptowano
+      confirm_allow: Czy na pewno chcesz zezwolić na zaznaczone tagi?
+      confirm_disallow: Czy na pewno chcesz zabronić zaznaczonych tagów?
       disallow: Niedozwolone
       links:
         allow: Zezwól na link
         allow_provider: Zezwalaj na wydawcę
+        confirm_allow: Czy na pewno chcesz zezwolić na zaznaczone linki?
+        confirm_allow_provider: Czy na pewno chcesz zezwolić na zaznaczonych dostawców?
+        confirm_disallow: Czy na pewno chcesz zabronić zaznaczonych linków?
+        confirm_disallow_provider: Czy na pewno chcesz zabronić zaznaczonych dostawców?
         description_html: Są to linki, które są obecnie często udostępniane przez konta, z których Twój serwer widzi posty. Może to pomóc Twoim użytkownikom dowiedzieć się, co dzieje się na świecie. Żadne linki nie są wyświetlane publicznie dopóki nie zaakceptujesz wydawcy. Możesz również zezwolić lub odrzucić indywidualne linki.
         disallow: Nie zezwalaj na link
         disallow_provider: Nie zezwalaj na wydawcę
@@ -964,6 +970,10 @@ pl:
       statuses:
         allow: Zezwól na post
         allow_account: Zezwól na autora
+        confirm_allow: Czy na pewno chcesz zezwolić na zaznaczone statusy?
+        confirm_allow_account: Czy na pewno chcesz zezwolić na zaznaczone konta?
+        confirm_disallow: Czy na pewno chcesz zabronić zaznaczonych statusów?
+        confirm_disallow_account: Czy na pewno chcesz zabronić zaznaczonych kont?
         description_html: Są to wpisy, o których Twój serwer wie i które są obecnie często udostępniane i dodawane do ulubionych. Może to pomóc nowym i powracającym użytkownikom znaleźć więcej osób do obserwacji. Żadne posty nie są wyświetlane publicznie, dopóki nie zatwierdzisz autora, a autor ustawi zezwolenie na wyświetlanie się w katalogu. Możesz również zezwolić lub odrzucić poszczególne posty.
         disallow: Nie zezwalaj na post
         disallow_account: Nie zezwalaj na autora
@@ -1000,7 +1010,7 @@ pl:
           many: Użyte przez %{count} osób w ciągu ostatniego tygodnia
           one: Użyte przez jedną osobę w ciągu ostatniego tygodnia
           other: Użyte przez %{count} osób w ciągu ostatniego tygodnia
-      title: Na czasie
+      title: Rekomendacje i Trendy
       trending: Popularne
     warning_presets:
       add_new: Dodaj nowy
@@ -1089,7 +1099,7 @@ pl:
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
     salutation: "%{name},"
-    settings: 'Zmień ustawienia powiadamiania: %{link}'
+    settings: 'Zmień ustawienia e-maili: %{link}'
     unsubscribe: Anuluj subskrypcję
     view: 'Zobacz:'
     view_profile: Wyświetl profil
@@ -1138,7 +1148,7 @@ pl:
     or_log_in_with: Lub zaloguj się z użyciem
     privacy_policy_agreement_html: Przeczytałem/am i akceptuję <a href="%{privacy_policy_path}" target="_blank">politykę prywatności</a>
     progress:
-      confirm: Potwierdź e-mail
+      confirm: Potwierdź adres e-mail
       details: Twoje dane
       review: Nasza opinia
       rules: Akceptuj zasady

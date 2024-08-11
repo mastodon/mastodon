@@ -35,7 +35,6 @@ sk:
       created_msg: Poznámka moderátora bola úspešne vytvorená!
       destroyed_msg: Moderátorska poznámka bola úspešne zmazaná!
     accounts:
-      add_email_domain_block: Pridaj e-mailovú doménu na zoznam zakázaných
       approve: Schváľ
       approved_msg: Úspešne schválená prihláška %{username}
       are_you_sure: Si si istý/á?
@@ -62,7 +61,6 @@ sk:
       demote: Degraduj
       destroyed_msg: "%{username} je teraz zaradený do fronty na okamžité vymazanie"
       disable: Zablokuj
-      disable_sign_in_token_auth: Zakázanie overovania e-mailovým tokenom
       disable_two_factor_authentication: Vypni dvoj-faktorové overovanie
       disabled: Blokovaný
       display_name: Ukáž meno
@@ -71,7 +69,6 @@ sk:
       email: Email
       email_status: Stav emailu
       enable: Povoľ
-      enable_sign_in_token_auth: Povolenie overovania e-mailovým tokenom
       enabled: Povolený
       enabled_msg: Úspešne rozmrazené konto %{username}
       followers: Sledujúci
@@ -133,7 +130,6 @@ sk:
       resubscribe: Znovu odoberaj
       role: Postavenie
       search: Hľadaj
-      search_same_email_domain: Iní užívatelia s tou istou emailovou doménou
       search_same_ip: Ostatní užívatelia s rovnakou IP adresou
       security: Zabezpečenie
       security_measures:
@@ -174,26 +170,21 @@ sk:
         approve_appeal: Schváľ námietku
         approve_user: Odobri užívateľa
         assigned_to_self_report: Priraď hlásenie
-        change_email_user: Zmeň email pre užívateľa
         change_role_user: Zmeň užívateľskú rolu
         confirm_user: Potvrď užívateľa
         create_account_warning: Vytvor výstrahu
         create_announcement: Vytvor oboznámenie
-        create_canonical_email_block: Vytvor blokovanie emailu
         create_custom_emoji: Vytvor vlastné emotikony
         create_domain_allow: Vytvor povolenie pre doménu
         create_domain_block: Vytvor zákaz domény
-        create_email_domain_block: Vytvor zákaz emailovej domény
         create_ip_block: Vytvor IP pravidlo
         create_unavailable_domain: Vytvor nedostupnú doménu
         create_user_role: Vytvoriť rolu
         demote_user: Zniž užívateľskú rolu
         destroy_announcement: Vymaž oboznámenie
-        destroy_canonical_email_block: Zruš blokovanie emailu
         destroy_custom_emoji: Vymaž vlastné emotikony
         destroy_domain_allow: Zmaž povolenie pre doménu
         destroy_domain_block: Zruš blokovanie domény
-        destroy_email_domain_block: Zmazať zákaz emailovej domény
         destroy_instance: Vyčistiť doménu
         destroy_ip_block: Vymaž IP pravidlo
         destroy_status: Vymaž príspevok
@@ -201,7 +192,6 @@ sk:
         destroy_user_role: Zničiť rolu
         disable_2fa_user: Vypni dvoj-faktorové overovanie
         disable_custom_emoji: Vypni vlastné emotikony
-        disable_sign_in_token_auth_user: Zakázať používateľom overovanie e-mailovým tokenom
         disable_user: Deaktivuj užívateľa
         enable_custom_emoji: Povoľ vlastné emotikony
         enable_user: Povoľ užívateľa
@@ -231,25 +221,19 @@ sk:
         approve_appeal_html: "%{name} odsúhlasil/a námietku na moderátorské rozhodnutie od %{target}"
         approve_user_html: "%{name} odsúhlasil/a registráciu od %{target}"
         assigned_to_self_report_html: "%{name} pridelil/a hlásenie užívateľa %{target} sebe"
-        change_email_user_html: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
         change_role_user_html: "%{name} zmenil/a rolu pre %{target}"
-        confirm_user_html: "%{name} potvrdil/a emailovú adresu používateľa %{target}"
         create_account_warning_html: "%{name} poslal/a upozornenie užívateľovi %{target}"
         create_announcement_html: "%{name} vytvoril/a nové oboznámenie %{target}"
-        create_canonical_email_block_html: "%{name} zablokoval/a email s hašom %{target}"
         create_custom_emoji_html: "%{name} nahral/a novú emotikonu %{target}"
         create_domain_allow_html: "%{name} povolil/a federáciu s doménou %{target}"
         create_domain_block_html: "%{name} zablokoval/a doménu %{target}"
-        create_email_domain_block_html: "%{name} zablokoval/a e-mailovú doménu %{target}"
         create_ip_block_html: "%{name} vytvoril/a pravidlo pre IP %{target}"
         create_user_role_html: "%{name} vytvoril/a rolu pre %{target}"
         demote_user_html: "%{name} degradoval/a užívateľa %{target}"
         destroy_announcement_html: "%{name} vymazal/a oboznámenie %{target}"
-        destroy_canonical_email_block_html: "%{name} odblokoval/i email z hašom %{target}"
         destroy_custom_emoji_html: "%{name} vymazal/a emotikonu %{target}"
         destroy_domain_allow_html: "%{name} zakázal/a federáciu s doménou %{target}"
         destroy_domain_block_html: "%{name} odblokoval/i doménu %{target}"
-        destroy_email_domain_block_html: "%{name} odblokoval/a e-mailovú doménu %{target}"
         destroy_ip_block_html: "%{name} vymazal/a pravidlo pre IP %{target}"
         destroy_status_html: "%{name} zmazal/a príspevok od %{target}"
         destroy_unavailable_domain_html: "%{name} znova spustil/a doručovanie pre doménu %{target}"
@@ -262,7 +246,6 @@ sk:
         reject_user_html: "%{name} odmietol/la registráciu od %{target}"
         remove_avatar_user_html: "%{name} vymazal/a %{target}/ov/in avatar"
         reopen_report_html: "%{name} znovu otvoril/a nahlásenie %{target}"
-        resend_user_html: "%{name} znovu odoslal/a potvrdzovací email pre %{target}"
         reset_password_user_html: "%{name} resetoval/a heslo používateľa %{target}"
         resolve_report_html: "%{name} vyriešil/a nahlásenie %{target}"
         sensitive_account_html: "%{name} označil/a médium od %{target} za chúlostivé"
@@ -396,7 +379,6 @@ sk:
     email_domain_blocks:
       add_new: Pridaj nový
       allow_registrations_with_approval: Povoľ registrovanie so schválením
-      created_msg: Emailová doména bola úspešne pridaná do zoznamu zakázaných
       delete: Vymaž
       dns:
         types:
@@ -405,10 +387,8 @@ sk:
       new:
         create: Pridaj doménu
         resolve: Preveď doménu
-        title: Nový email na zablokovanie
       not_permitted: Nepovolená
       resolved_through_html: Prevedená cez %{domain}
-      title: Blokované emailové adresy
     export_domain_allows:
       new:
         title: Nahraj povolené domény
@@ -757,7 +737,6 @@ sk:
         trendable: Môže sa objaviť medzi trendmi
         trending_rank: 'Populárne #%{rank}'
         usable: Môže byť použitý
-      title: Trendy
       trending: Populárne
     warning_presets:
       add_new: Pridaj nové
@@ -809,8 +788,6 @@ sk:
       guide_link_text: Prispievať môže každý.
     sensitive_content: Chúlostivý obsah
   application_mailer:
-    notification_preferences: Zmeň emailové voľby
-    settings: 'Zmeň emailové voľby: %{link}'
     unsubscribe: Prestaň odoberať
     view: 'Zobraziť:'
     view_profile: Zobraz profil
@@ -848,7 +825,6 @@ sk:
     migrate_account_html: Ak si želáš presmerovať tento účet na nejaký iný, môžeš si to <a href="%{path}">nastaviť tu</a>.
     or_log_in_with: Alebo prihlás s
     progress:
-      confirm: Potvrď email
       details: Tvoje údaje
       rules: Súhlas s pravidlami
     register: Zaregistruj sa
@@ -869,8 +845,6 @@ sk:
       title: Prihlás sa na %{domain}
     status:
       account_status: Stav účtu
-      confirming: Čaká sa na dokončenie potvrdenia emailom.
-      pending: Tvoja žiadosť čaká na schvílenie od nášho týmu. Môže to chviľu potrvať. Ak bude tvoja žiadosť schválená, dostaneš o tom email.
       redirecting_to: Tvoj účet je neaktívny, lebo v súčasnosti presmerováva na %{acct}.
     use_security_key: Použi bezpečnostný kľúč
   challenge:
@@ -902,9 +876,6 @@ sk:
       before: 'Než budeš pokračovať, prosím pozorne si prečítaj tieto poznámky:'
       caches: Obsah, ktorý bol predčítaný inými servermi môže zanechať pozostatky
       data_removal: Tvoje príspevky a iné dáta budú natrvalo odstránené
-      email_change_html: Môžeš si <a href="%{path}">zmeniť svoju emailovú adresu</a> bez mazania účtu
-      email_contact_html: Ak stále neprichádza, môžeš poslať email na <a href="mailto:%{email}">%{email}</a> so žiadosťou o pomoc
-      email_reconfirmation_html: Ak ti potvrdzovací email neprichádza, môžeš si ho <a href="%{path}">vyžiadať znovu</a>
       irreversible: Nebudeš môcť navrátiť, alebo znova aktivovať svoj účet
       more_details_html: Pre viac podrobností, pozri <a href="%{terms_path}">zásady súkromia</a>.
       username_available: Tvoje užívateľské meno bude znova dostupné
@@ -1072,7 +1043,6 @@ sk:
   login_activities:
     authentication_methods:
       password: heslom
-      sign_in_token: emailovým bezpečtnostným kódom
       webauthn: bezpečnostnými kľúčmi
     title: História overení
   mail_subscriptions:
@@ -1148,7 +1118,6 @@ sk:
     update:
       subject: "%{name} upravil/a príspevok"
   notifications:
-    email_events: Udalosti oznamované emailom
     email_events_hint: 'Vyber si udalosti, pre ktoré chceš dostávať oboznámenia:'
   otp_authentication:
     enable: Povoľ
@@ -1259,7 +1228,6 @@ sk:
     import: Importuj
     import_and_export: Import a export
     migrate: Presuň účet
-    notifications: Emailové upozornenia
     preferences: Voľby
     profile: Profil
     relationships: Sledovania a následovatelia
@@ -1412,7 +1380,6 @@ sk:
     invalid_otp_token: Neplatný kód pre dvojfaktorovú autentikáciu
     otp_lost_help_html: Pokiaľ si stratil/a prístup k obom, môžeš dať vedieť %{email}
     rate_limited: Príliš veľa pokusov o overenie, skús to znova neskôr.
-    seamless_external_login: Si prihlásená/ý cez externú službu, takže nastavenia hesla a emailu ti niesú prístupné.
     signed_in_as: 'Prihlásená/ý ako:'
   verification:
     verification: Overenie

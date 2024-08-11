@@ -31,7 +31,6 @@ lad:
       created_msg: Nota de moderasyon kriyada kon sukseso!
       destroyed_msg: Nota de moderasyon destruida kon sukseso!
     accounts:
-      add_email_domain_block: Bloka domeno de posta
       approve: Achetar
       approved_msg: La solisitasyon de enrejistrasyon de %{username} achetada djustamente
       are_you_sure: Estas siguro?
@@ -58,7 +57,6 @@ lad:
       demote: Degrada
       destroyed_msg: Los datos de %{username} estan agora en kola para ser supremir pishin
       disable: Inkapasita
-      disable_sign_in_token_auth: Inkapasita la autentifikasyon por token de posta elektronika
       disable_two_factor_authentication: Inkapasita autentifikasyon en dos pasos
       disabled: Inkapasitada
       display_name: Nombre amostrado
@@ -67,7 +65,6 @@ lad:
       email: Posta elektronika
       email_status: Estatus de posta
       enable: Kapasita
-      enable_sign_in_token_auth: Kapasita la autentifikasyon por token de posta elektronika
       enabled: Kapasitada
       enabled_msg: El kuento de %{username} fue kapasitado djustamente
       followers: Suivantes
@@ -132,7 +129,6 @@ lad:
       resubscribe: Reabona
       role: Rolo
       search: Bushka
-      search_same_email_domain: Otros utilizadores kon el mezmo domeno de posta
       search_same_ip: Otros utilizadores kon el mezmo adreso IP
       security: Sigurita
       security_measures:
@@ -173,26 +169,21 @@ lad:
         approve_appeal: Acheta apelasyon
         approve_user: Acheta utilizador
         assigned_to_self_report: Asinya raporto
-        change_email_user: Troka posta elektronika del utilizador
         change_role_user: Troka rolo de utilizador
         confirm_user: Konfirma utilizador
         create_account_warning: Kriya avertensya
         create_announcement: Kriya pregon
-        create_canonical_email_block: Kriya bloko de posta elektronika
         create_custom_emoji: Kriya emoji personalizado
         create_domain_allow: Kriya permiso de domeno
         create_domain_block: Kriya bloko de domeno
-        create_email_domain_block: Kriya bloko de domeno de posta
         create_ip_block: Kriya regla de IP
         create_unavailable_domain: Kriya domeno no desponivle
         create_user_role: Kriya rolo
         demote_user: Degrada utilizador
         destroy_announcement: Efasa pregon
-        destroy_canonical_email_block: Efasa bloko de posta elektronika
         destroy_custom_emoji: Efasa emoji personalizado
         destroy_domain_allow: Efasa permiso de domeno
         destroy_domain_block: Efasa bloko de domeno
-        destroy_email_domain_block: Efasa bloko de domeno de posta
         destroy_instance: Efasa domeno
         destroy_ip_block: Efasa regla de IP
         destroy_status: Efasa publikasyon
@@ -200,10 +191,8 @@ lad:
         destroy_user_role: Efasa rolo
         disable_2fa_user: Inkapasita autentifikasyon en dos pasos
         disable_custom_emoji: Inkapasita emoji personalizados
-        disable_sign_in_token_auth_user: Inkapasita la autentifikasyon por token de posta elektronika para el utilizador
         disable_user: Inkapasita utilizador
         enable_custom_emoji: Kapasita emoji personalizados
-        enable_sign_in_token_auth_user: Kapasita la autentifikasyon por token de posta para el utilizador
         enable_user: Kapasita utilizador
         memorialize_account: Transforma en kuento komemorativo
         promote_user: Promove utilizador
@@ -232,26 +221,20 @@ lad:
         approve_appeal_html: "%{name} acheto la solisitasyon de moderasyon de %{target}"
         approve_user_html: "%{name} acheto el enrejistramiento de %{target}"
         assigned_to_self_report_html: "%{name} asinyo el raporto %{target} a si mezmo"
-        change_email_user_html: "%{name} troko el adreso de posta elektronika del utilizador %{target}"
         change_role_user_html: "%{name} troko el rolo de %{target}"
-        confirm_user_html: "%{name} konfirmo el adreso de posta elektronika del utilizador %{target}"
         create_account_warning_html: "%{name} embio una avertensya a %{target}"
         create_announcement_html: "%{name} kriyo un muevo pregon %{target}"
-        create_canonical_email_block_html: "%{name} bloko la posta elektronika kon el hash %{target}"
         create_custom_emoji_html: "%{name} kargo el muevo emoji %{target}"
         create_domain_allow_html: "%{name} perimitio la federasyon kon el domeno %{target}"
         create_domain_block_html: "%{name} bloko el domeno %{target}"
-        create_email_domain_block_html: "%{name} bloko el domeno de posta elektronika %{target}"
         create_ip_block_html: "%{name} kriyo una regla para IP %{target}"
         create_unavailable_domain_html: "%{name} detuvo las entregas al domeno %{target}"
         create_user_role_html: "%{name} kriyo el rolo %{target}"
         demote_user_html: "%{name} degrado a %{target}"
         destroy_announcement_html: "%{name} supremio el pregon %{target}"
-        destroy_canonical_email_block_html: "%{name} dezbloko la posta elektronika kon el hash %{target}"
         destroy_custom_emoji_html: "%{name} supremio el emoji %{target}"
         destroy_domain_allow_html: "%{name} bloko la federasyon kon el domeno %{target}"
         destroy_domain_block_html: "%{name} dezbloko el domeno %{target}"
-        destroy_email_domain_block_html: "%{name} dezbloko el domeno de posta elektronika %{target}"
         destroy_instance_html: "\"%{name} purgo el domeno %{target}"
         destroy_ip_block_html: "%{name} supremio una regla para la IP %{target}"
         destroy_status_html: "%{name} supremio una publikasyon de %{target}"
@@ -259,10 +242,8 @@ lad:
         destroy_user_role_html: "%{name} supremio el rolo %{target}"
         disable_2fa_user_html: "%{name} dezaktivo el rekerimiento en dos pasos para el utilizador %{target}"
         disable_custom_emoji_html: "%{name} dezaktivo el emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} inkapasito la autentifikasyon por token de posta elektronika para %{target}"
         disable_user_html: "%{name} inkapasito la koneksion kon el kuento para el utilizador %{target}"
         enable_custom_emoji_html: "%{name} aktivo el emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} tiene kapasitado la autentifikasyon por token de posta elektronika para %{target}"
         enable_user_html: "%{name} kapasito koneksion kon kuento para el utilizador %{target}"
         memorialize_account_html: "%{name} konvirtio el kuento de %{target} en una pajina de bendicha memoria"
         promote_user_html: "%{name} promosyon al utilizador %{target}"
@@ -270,7 +251,6 @@ lad:
         reject_user_html: "%{name} refuzo el enrejistramiento de %{target}"
         remove_avatar_user_html: "%{name} supremio la imaje de profil de %{target}"
         reopen_report_html: "%{name} reavrio el raporto %{target}"
-        resend_user_html: "%{name} tiene reembiado la posta de konfirmasyon para %{target}"
         reset_password_user_html: "%{name} reinisyo el kod del utilizador %{target}"
         resolve_report_html: "%{name} rezolvio el raporto %{target}"
         sensitive_account_html: "%{name} marko la multimedia de %{target} komo sensivle"
@@ -430,7 +410,6 @@ lad:
       attempts_over_week:
         one: "\"%{count} prova durante la ultima semana"
         other: "%{count} provas de enrejistrarse durante la ultima semana"
-      created_msg: Domeno de posta blokado kon sukseso
       delete: Efasa
       dns:
         types:
@@ -439,12 +418,8 @@ lad:
       new:
         create: Adjusta domeno
         resolve: Rezolve domeno
-        title: Bloka muevo domeno de posta
-      no_email_domain_block_selected: No se tienen trokado blokos de domeno porke dinguno a sido eskojido
       not_permitted: Sin permiso
-      resolved_dns_records_hint_html: El nombre de domeno rezolve los sigientes domenos MX, los kualos son responsavles en ultima instansya de achetar la posta elektronika. Blokar un domeno MX blokara los rejistros de kualkier adreso de posta elektronika ke utilize el mezmo domeno MX, inkluzo si el nombre de domeno vizivle es desferente. <strong>Tenga kudiado de no blokar los prinsipales domenos de posta elektronika.</strong>
       resolved_through_html: Rezolvido por %{domain}
-      title: Domenos de posta blokados
     export_domain_allows:
       new:
         title: Importa permisos de domeno
@@ -595,7 +570,6 @@ lad:
         resolve_description_html: No se tomaran aksyones kontra el kuento denunsiado, no se enrejistrara el amonestamiento, i se serrara el raporto.
         silence_description_html: El profil sera vizivle solo para akeyos ke ya lo sigan o lo bushken manualmente, limitando seriamente su alkanse. Siempre puede ser revertido.
         suspend_description_html: El profil i todos sus kontenidos seran inaksesivles asta ke sean enfin supremidos. La enteraksion kon el kuento sera emposivle. Reversivle durante un tiempo de 30 diyas.
-      actions_description_html: Dechide kualas mizuras tomar para rezolver esta denunsia. Si tomas una aksion punitiva kontra el kuento denunsiada, se le embiara a dicho kuento un avizo por posta elektronika, ekseptado kuando se eskoja la kategoria <strong>Spam</strong>.
       actions_description_remote_html: Dechide ke fazer para rezolver este raporto. Esto solo va afektar komo <strong>tu</strong> sirvidor komunike kon este kuento remoto i ke faze kon su kontenido.
       add_to_report: Adjusta mas al raporto
       already_suspended_badges:
@@ -659,7 +633,6 @@ lad:
         delete_data_html: Efasa el profil i kontenido de <strong>@%{acct}</strong> en 30 dias si no sea desuspendido en akel tiempo
         preview_preamble_html: "<strong>@%{acct}</strong> resivira una avertensya komo esta:"
         record_strike_html: Enrejistra un amonestamiento kontra <strong>@%{acct}</strong> para ke te ayude eskalar las violasyones de reglas de este kuento en el avenir
-        send_email_html: Embia un mesaj de avertensia a la posta elektronika de <strong>@%{acct}</strong>
         warning_placeholder: Adisionalas, opsionalas razones la aksyon de moderasyon.
       target_origin: Orijin del kuento raportado
       title: Raportos
@@ -699,7 +672,6 @@ lad:
         manage_appeals: Administra apelasiones
         manage_appeals_description: Permete a los utilizadores revizar apelasiones kontra aksyones de moderasyon
         manage_blocks: Administra blokos
-        manage_blocks_description: Permete a los utilizadores blokar los prokuradores de posta elektronika i los adresos IP
         manage_custom_emojis: Administra emojis personalizados
         manage_custom_emojis_description: Permete a los utilizadores editar emojis personalizados en el sirvidor
         manage_federation: Administra federasyon
@@ -717,7 +689,6 @@ lad:
         manage_taxonomies: Administra etiketas
         manage_taxonomies_description: Permete a los utilizadores revizar el kontenido en trend i aktualizar la konfigurasyon de las etiketas
         manage_user_access: Administra akseso de utilizadores
-        manage_user_access_description: Permete a los utilizadores dezaktivar la autentifikasyon en dos pasos de otros utilizadores, trokar sus adreso de posta elektronika i restableser sus kod
         manage_users: Administra utilizadores
         manage_users_description: Permete a los utilizadores ver los peratim de otros utilizadores i realizar aksyones de moderasyon kontra eyos
         manage_webhooks: Administrar webhooks
@@ -791,7 +762,6 @@ lad:
       destroyed_msg: Dosya supremida kon sukseso!
     software_updates:
       critical_update: Kritiko – por favor aktualiza pishin
-      description: Rekomendamos ke mantengas aktualizada tu enstalasyon de Mastodon para benefisyar de las muevas koreksyones y funksyones. Ademas, a vezes es kritiko aktualizar Mastodon punktualmente para evitar problemas de sigurita. Por estas razones, Mastodon komprova si ay aktualizasyones kada 30 minutos, i te avizara de akodro a tus preferensyas de avizos por posta elektronika.
       documentation_link: Ambezate mas
       release_notes: Notas sovre la versyon
       title: Aktualizasyones desponivles
@@ -943,7 +913,6 @@ lad:
         used_by_over_week:
           one: Uzada por una persona durante la ultima semana
           other: Uzada por %{count} personas durante la ultima semana
-      title: Trendes
       trending: En trend
     warning_presets:
       add_new: Adjusta muevo
@@ -1027,9 +996,7 @@ lad:
       guide_link_text: Todos pueden kontribuir.
     sensitive_content: Kontenido sensivle
   application_mailer:
-    notification_preferences: Troka preferensyas de posta
     salutation: "%{name},"
-    settings: 'Troka preferensyas de posta: %{link}'
     unsubscribe: Dezabona
     view: 'Mira:'
     view_profile: Ve profil
@@ -1049,7 +1016,6 @@ lad:
       hint_html: Una koza mas! Tenemos ke konfirmar ke eres umano (para evitar spam!). Rezolve el CAPTCHA abasho i klika "Kontinua".
       title: Kontrolo de sigurita
     confirmations:
-      awaiting_review: Tu adreso de posta tiene sido konfirmado! La taifa de %{domain} esta revizando tu enrejistrasyon. Risiviras un meil si acheten tu kuento!
       awaiting_review_title: Estamos revizando tu enrejistramiento
       clicking_this_link: klikando en este atadijo
       login_link: konektate kon kuento
@@ -1057,7 +1023,6 @@ lad:
       redirect_to_app_html: Seras readresado a la aplikasyon <strong>%{app_name}</strong>. Si esto no afita, aprova %{clicking_this_link} o regresa manualmente a la aplikasyon.
       registration_complete: Tu enrejistrasyon en %{domain} ya esta kompletada!
       welcome_title: Bienvenido, %{name}!
-      wrong_email_hint: Si este adreso de posta es inkorekto, puedes trokarlo en las preferensyas del kuento.
     delete_account: Efasa kuento
     delete_account_html: Si keres supremir tu kuento, puedes <a href="%{path}">ir aki</a>. Seras pedido de una konfirmasyon.
     description:
@@ -1078,7 +1043,6 @@ lad:
     or_log_in_with: O konektate kon tu kuento kon
     privacy_policy_agreement_html: Tengo meldado i acheto la <a href="%{privacy_policy_path}" target="_blank">politika de privasita</a>
     progress:
-      confirm: Konfirma posta
       details: Tus detalyos
       review: Muestra revizyon
       rules: Acheta reglas
@@ -1100,10 +1064,8 @@ lad:
     security: Sigurita
     set_new_password: Establese muevo kod
     setup:
-      email_below_hint_html: Mira en tu kuti de spam o solisita de muevo. Si el adreso de posta elektronika ke aparese aki es yerrado, puedes trokarlo aki.
       email_settings_hint_html: Klika el atadjiko ke te embimos para verifikar %{email}. Asperaremos aki.
       link_not_received: No risivites un atadijo?
-      new_confirmation_instructions_sent: Resiviras un muevo mesaj de posta elektronika kon el atadjio de konfirmasyon en unos minutos!
       title: Reviza tu kuti de arivo
     sign_in:
       preamble_html: Konektate kon tus kredensiales de <strong>%{domain}</strong>. Si tu kuento esta balabayado en otruno servidor, no puedras konektarte aki.
@@ -1114,9 +1076,7 @@ lad:
       title: Kriya kuento de Mastodon en %{domain}.
     status:
       account_status: Estado del kuento
-      confirming: Bekleando konfirmasyon de posta elektronika.
       functional: Tu kuento esta kompletamente funksyonal.
-      pending: Tu solisitasyon esta asperando la revizion por muestros administradores. Esto puede tadrar algun tiempo. Arisiviras una posta elektronika si la solisitasyon sea achetada.
       redirecting_to: Tu kuento se topa inaktivo porke esta siendo readresado a %{acct}.
       self_destruct: Deke %{domain} va a serrarse, solo tendras akseso limitado a tu kuento.
       view_strikes: Ve amonestamientos pasados kontra tu kuento
@@ -1159,9 +1119,6 @@ lad:
       before: 'Antes de kontinuar, por favor melda kon atensyon las sigientes notas:'
       caches: El kontenido ke tiene sido magazinado en kashe por otros sirvidores puede persistir
       data_removal: Tus publikasyones i el resto de datos se supremiran definitivamente
-      email_change_html: Puedes <a href="%{path}"> trokar tu adreso de posta elektronika</a> sin supremir tu kuento
-      email_contact_html: Si ainda no te tiene parvenido, puedes eskrivir a <a href="mailto:%{email}">%{email}</a> para pider ayuda
-      email_reconfirmation_html: Si no te tiene parvenido la posta de konfirmasyon, puedes <a href="%{path}"> retornar a solisitarlo</a>
       irreversible: No podras restaurar ni reaktivar tu kuento
       more_details_html: Para mas detalyos, ver <a href="%{terms_path}"> la politika de privasita</a>.
       username_available: Tu nombre de utilizador retornara a estar desponivle
@@ -1394,7 +1351,6 @@ lad:
     authentication_methods:
       otp: aplikasyon de autentifikasyon en dos pasos
       password: kod
-      sign_in_token: kodiche de sigurita por posta elektronika
       webauthn: yaves de sigurita
     description_html: Si ves una aktivita ke no rekoneses, konsidera trokar tu kod i kapasitar la autentifikasyon en dos pasos.
     empty: No ay estoria de autentifikasyon desponivle
@@ -1405,16 +1361,6 @@ lad:
     unsubscribe:
       action: Si, dezabona
       complete: Dezabonado
-      confirmation_html: Estas siguro de ke ya no keres risivir %{type} de Mastodon en %{domain} a tu posta elektronika %{email}? Syempre podras reabonarte dizde las <a href="%{settings_path}"> opsyones de avizos por posta.</a>.
-      emails:
-        notification_emails:
-          favourite: avizos de favoritos por posta
-          follow: avizos de segidores por posta
-          follow_request: avizos de solisitasyones de segimyento por posta
-          mention: avizos de enmentaduras por posta
-          reblog: avizos de repartajasyones por posta
-      resubscribe_html: Si tyenes deabonado por yerro, puedes reabonar en tus <a href="%{settings_path}">opsyones de avizos por posta elektronika</a>.
-      success_html: Ya no risiviras %{type} de Mastodon en %{domain} a tu posta en %{email}.
       title: Dezabona
   media_attachments:
     validations:
@@ -1495,8 +1441,6 @@ lad:
     update:
       subject: "%{name} edito una publikasyon"
   notifications:
-    administration_emails: Avizos de administrasyon por posta
-    email_events: Evenimyentos para avizos por posta
     email_events_hint: 'Eskoje los evenimientos para los kualos keres risivir avizos:'
   number:
     human:
@@ -1655,7 +1599,6 @@ lad:
     import: Importo
     import_and_export: Importo i eksporto
     migrate: Migrasyon de kuento
-    notifications: Avizos por posta elektronika
     preferences: Preferensyas
     profile: Profil publiko
     relationships: Segidos i suivantes
@@ -1891,7 +1834,6 @@ lad:
     invalid_otp_token: Kodiche de dos pasos no valido
     otp_lost_help_html: Si pedriste akseso a los dos, puedes kontaktarte kon %{email}
     rate_limited: Demaziadas provas de autentifikasyon, aprova de muevo dempues.
-    seamless_external_login: Estas konektado por un servisyo eksterno i estonses la konfigurasyon de kod i konto de posta no estan disponivles.
     signed_in_as: 'Konektado komo:'
   verification:
     extra_instructions_html: <strong>Konsejo:</strong> El atadijo en tu web puede ser invizivle. La parte importante es <code>rel="me"</code>, ke evita la suplantasyon de identita en sitios kon kontenido jenerado por el utilizador. Puedes inkluzo uzar una etiketa <code>atadijo</code> en la kavesera de la pajina en vez de <code>a</code>, ama el HTML deve ser aksesivle sin exekutar JavaScript.

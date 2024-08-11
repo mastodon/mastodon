@@ -29,7 +29,6 @@ th:
       created_msg: สร้างหมายเหตุการกลั่นกรองสำเร็จ!
       destroyed_msg: ทำลายหมายเหตุการกลั่นกรองสำเร็จ!
     accounts:
-      add_email_domain_block: ปิดกั้นโดเมนอีเมล
       approve: อนุมัติ
       approved_msg: อนุมัติใบสมัครลงทะเบียนของ %{username} สำเร็จ
       are_you_sure: คุณแน่ใจหรือไม่?
@@ -56,7 +55,6 @@ th:
       demote: ลดขั้น
       destroyed_msg: ตอนนี้จัดคิวเพื่อลบข้อมูลของ %{username} ในเร็ว ๆ นี้แล้ว
       disable: อายัด
-      disable_sign_in_token_auth: ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมล
       disable_two_factor_authentication: ปิดใช้งาน 2FA
       disabled: อายัดอยู่
       display_name: ชื่อที่แสดง
@@ -65,7 +63,6 @@ th:
       email: อีเมล
       email_status: สถานะอีเมล
       enable: เลิกอายัด
-      enable_sign_in_token_auth: เปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมล
       enabled: เปิดใช้งานอยู่
       enabled_msg: เลิกอายัดบัญชีของ %{username} สำเร็จ
       followers: ผู้ติดตาม
@@ -129,7 +126,6 @@ th:
       resubscribe: บอกรับใหม่
       role: บทบาท
       search: ค้นหา
-      search_same_email_domain: ผู้ใช้อื่น ๆ ที่มีโดเมนอีเมลเดียวกัน
       search_same_ip: ผู้ใช้อื่น ๆ ที่มี IP เดียวกัน
       security: ความปลอดภัย
       security_measures:
@@ -170,26 +166,21 @@ th:
         approve_appeal: อนุมัติการอุทธรณ์
         approve_user: อนุมัติผู้ใช้
         assigned_to_self_report: มอบหมายรายงาน
-        change_email_user: เปลี่ยนอีเมลสำหรับผู้ใช้
         change_role_user: เปลี่ยนบทบาทของผู้ใช้
         confirm_user: ยืนยันผู้ใช้
         create_account_warning: สร้างคำเตือน
         create_announcement: สร้างประกาศ
-        create_canonical_email_block: สร้างการปิดกั้นอีเมล
         create_custom_emoji: สร้างอีโมจิที่กำหนดเอง
         create_domain_allow: สร้างการอนุญาตโดเมน
         create_domain_block: สร้างการปิดกั้นโดเมน
-        create_email_domain_block: สร้างการปิดกั้นโดเมนอีเมล
         create_ip_block: สร้างกฎ IP
         create_unavailable_domain: สร้างโดเมนที่ไม่พร้อมใช้งาน
         create_user_role: สร้างบทบาท
         demote_user: ลดขั้นผู้ใช้
         destroy_announcement: ลบประกาศ
-        destroy_canonical_email_block: ลบการปิดกั้นอีเมล
         destroy_custom_emoji: ลบอีโมจิที่กำหนดเอง
         destroy_domain_allow: ลบการอนุญาตโดเมน
         destroy_domain_block: ลบการปิดกั้นโดเมน
-        destroy_email_domain_block: ลบการปิดกั้นโดเมนอีเมล
         destroy_instance: ล้างข้อมูลโดเมน
         destroy_ip_block: ลบกฎ IP
         destroy_status: ลบโพสต์
@@ -197,10 +188,8 @@ th:
         destroy_user_role: ทำลายบทบาท
         disable_2fa_user: ปิดใช้งาน 2FA
         disable_custom_emoji: ปิดใช้งานอีโมจิที่กำหนดเอง
-        disable_sign_in_token_auth_user: ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับผู้ใช้
         disable_user: ปิดใช้งานผู้ใช้
         enable_custom_emoji: เปิดใช้งานอีโมจิที่กำหนดเอง
-        enable_sign_in_token_auth_user: เปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับผู้ใช้
         enable_user: เปิดใช้งานผู้ใช้
         memorialize_account: ทำให้บัญชีเป็นอนุสรณ์
         promote_user: เลื่อนขั้นผู้ใช้
@@ -230,26 +219,20 @@ th:
         approve_appeal_html: "%{name} ได้อนุมัติการอุทธรณ์การตัดสินใจในการกลั่นกรองจาก %{target}"
         approve_user_html: "%{name} ได้อนุมัติการลงทะเบียนจาก %{target}"
         assigned_to_self_report_html: "%{name} ได้มอบหมายรายงาน %{target} ให้กับตนเอง"
-        change_email_user_html: "%{name} ได้เปลี่ยนที่อยู่อีเมลของผู้ใช้ %{target}"
         change_role_user_html: "%{name} ได้เปลี่ยนบทบาทของ %{target}"
-        confirm_user_html: "%{name} ได้ยืนยันที่อยู่อีเมลของผู้ใช้ %{target}"
         create_account_warning_html: "%{name} ได้ส่งคำเตือนไปยัง %{target}"
         create_announcement_html: "%{name} ได้สร้างประกาศใหม่ %{target}"
-        create_canonical_email_block_html: "%{name} ได้ปิดกั้นอีเมลที่มีแฮช %{target}"
         create_custom_emoji_html: "%{name} ได้อัปโหลดอีโมจิใหม่ %{target}"
         create_domain_allow_html: "%{name} ได้อนุญาตการติดต่อกับภายนอกกับโดเมน %{target}"
         create_domain_block_html: "%{name} ได้ปิดกั้นโดเมน %{target}"
-        create_email_domain_block_html: "%{name} ได้ปิดกั้นโดเมนอีเมล %{target}"
         create_ip_block_html: "%{name} ได้สร้างกฎสำหรับ IP %{target}"
         create_unavailable_domain_html: "%{name} ได้หยุดการจัดส่งไปยังโดเมน %{target}"
         create_user_role_html: "%{name} ได้สร้างบทบาท %{target}"
         demote_user_html: "%{name} ได้ลดขั้นผู้ใช้ %{target}"
         destroy_announcement_html: "%{name} ได้ลบประกาศ %{target}"
-        destroy_canonical_email_block_html: "%{name} ได้เลิกปิดกั้นอีเมลที่มีแฮช %{target}"
         destroy_custom_emoji_html: "%{name} ได้ลบอีโมจิ %{target}"
         destroy_domain_allow_html: "%{name} ได้ไม่อนุญาตการติดต่อกับภายนอกกับโดเมน %{target}"
         destroy_domain_block_html: "%{name} ได้เลิกปิดกั้นโดเมน %{target}"
-        destroy_email_domain_block_html: "%{name} ได้เลิกปิดกั้นโดเมนอีเมล %{target}"
         destroy_instance_html: "%{name} ได้ล้างข้อมูลโดเมน %{target}"
         destroy_ip_block_html: "%{name} ได้ลบกฎสำหรับ IP %{target}"
         destroy_status_html: "%{name} ได้เอาโพสต์โดย %{target} ออก"
@@ -257,10 +240,8 @@ th:
         destroy_user_role_html: "%{name} ได้ลบบทบาท %{target}"
         disable_2fa_user_html: "%{name} ได้ปิดใช้งานความต้องการสองปัจจัยสำหรับผู้ใช้ %{target}"
         disable_custom_emoji_html: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} ได้ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับ %{target}"
         disable_user_html: "%{name} ได้ปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
         enable_custom_emoji_html: "%{name} ได้เปิดใช้งานอีโมจิ %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} ได้เปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับ %{target}"
         enable_user_html: "%{name} ได้เปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
         memorialize_account_html: "%{name} ได้เปลี่ยนบัญชีของ %{target} เป็นหน้าอนุสรณ์"
         promote_user_html: "%{name} ได้เลื่อนขั้นผู้ใช้ %{target}"
@@ -268,7 +249,6 @@ th:
         reject_user_html: "%{name} ได้ปฏิเสธการลงทะเบียนจาก %{target}"
         remove_avatar_user_html: "%{name} ได้เอาภาพประจำตัวของ %{target} ออก"
         reopen_report_html: "%{name} ได้เปิดรายงาน %{target} ใหม่"
-        resend_user_html: "%{name} ได้ส่งอีเมลการยืนยันสำหรับ %{target} ใหม่"
         reset_password_user_html: "%{name} ได้ตั้งรหัสผ่านของผู้ใช้ %{target} ใหม่"
         resolve_report_html: "%{name} ได้แก้ปัญหารายงาน %{target}"
         sensitive_account_html: "%{name} ได้ทำเครื่องหมายสื่อของ %{target} ว่าละเอียดอ่อน"
@@ -424,7 +404,6 @@ th:
       allow_registrations_with_approval: อนุญาตการลงทะเบียนด้วยการอนุมัติ
       attempts_over_week:
         other: "%{count} ความพยายามในการลงทะเบียนในช่วงสัปดาห์ที่ผ่านมา"
-      created_msg: ปิดกั้นโดเมนอีเมลสำเร็จ
       delete: ลบ
       dns:
         types:
@@ -433,12 +412,8 @@ th:
       new:
         create: เพิ่มโดเมน
         resolve: แปลงที่อยู่โดเมน
-        title: ปิดกั้นโดเมนอีเมลใหม่
-      no_email_domain_block_selected: ไม่มีการเปลี่ยนแปลงการปิดกั้นโดเมนอีเมลเนื่องจากไม่มีการเลือก
       not_permitted: ไม่ได้รับอนุญาต
-      resolved_dns_records_hint_html: ชื่อโดเมนแปลงที่อยู่เป็นโดเมน MX ดังต่อไปนี้ ซึ่งท้ายที่สุดแล้วจะรับผิดชอบสำหรับการยอมรับอีเมล การปิดกั้นโดเมน MX จะปิดกั้นการลงทะเบียนจากที่อยู่อีเมลใด ๆ ซึ่งใช้โดเมน MX เดียวกัน แม้ว่าชื่อโดเมนที่ปรากฏจะแตกต่างกันก็ตาม <strong>ระวังอย่าปิดกั้นผู้ให้บริการอีเมลรายใหญ่</strong>
       resolved_through_html: แปลงที่อยู่ผ่าน %{domain}
-      title: โดเมนอีเมลที่ปิดกั้นอยู่
     export_domain_allows:
       new:
         title: นำเข้าการอนุญาตโดเมน
@@ -588,7 +563,6 @@ th:
         resolve_description_html: จะไม่ใช้การกระทำต่อบัญชีที่รายงาน ไม่มีการบันทึกการดำเนินการ และจะปิดรายงาน
         silence_description_html: บัญชีจะปรากฏแก่เฉพาะผู้ที่ติดตามโปรไฟล์อยู่แล้วหรือค้นหาโปรไฟล์ด้วยตนเองเท่านั้น จำกัดการเข้าถึงของโปรไฟล์อย่างมาก สามารถแปลงกลับได้เสมอ ปิดรายงานต่อบัญชีนี้ทั้งหมด
         suspend_description_html: บัญชีและเนื้อหาของบัญชีทั้งหมดจะเข้าถึงไม่ได้และได้รับการลบในที่สุด และการโต้ตอบกับบัญชีจะเป็นไปไม่ได้ แปลงกลับได้ภายใน 30 วัน ปิดรายงานต่อบัญชีนี้ทั้งหมด
-      actions_description_html: ตัดสินใจว่าการกระทำใดที่จะใช้เพื่อแก้ปัญหารายงานนี้ หากคุณใช้การกระทำที่เป็นการลงโทษต่อบัญชีที่รายงาน จะส่งการแจ้งเตือนอีเมลถึงเขา ยกเว้นเมื่อมีการเลือกหมวดหมู่ <strong>สแปม</strong>
       actions_description_remote_html: ตัดสินใจว่าการกระทำใดที่จะใช้เพื่อแก้ปัญหารายงานนี้ นี่จะมีผลต่อวิธีที่เซิร์ฟเวอร์ <strong>ของคุณ</strong> สื่อสารกับบัญชีระยะไกลนี้และจัดการเนื้อหาของบัญชีเท่านั้น
       add_to_report: เพิ่มข้อมูลเพิ่มเติมไปยังรายงาน
       already_suspended_badges:
@@ -653,7 +627,6 @@ th:
         delete_data_html: ลบโปรไฟล์และเนื้อหาของ <strong>@%{acct}</strong> ในอีก 30 วันนับจากนี้เว้นแต่มีการเลิกระงับเขาในระหว่างนี้
         preview_preamble_html: "<strong>@%{acct}</strong> จะได้รับคำเตือนโดยมีเนื้อหาดังต่อไปนี้:"
         record_strike_html: บันทึกการดำเนินการต่อ <strong>@%{acct}</strong> เพื่อช่วยให้คุณเลื่อนระดับการละเมิดในอนาคตจากบัญชีนี้
-        send_email_html: ส่งอีเมลคำเตือนถึง <strong>@%{acct}</strong>
         warning_placeholder: การให้เหตุผลเพิ่มเติมที่ไม่จำเป็นสำหรับการกระทำการกลั่นกรอง
       target_origin: จุดเริ่มต้นของบัญชีที่ได้รับการรายงาน
       title: รายงาน
@@ -691,7 +664,6 @@ th:
         manage_appeals: จัดการการอุทธรณ์
         manage_appeals_description: อนุญาตให้ผู้ใช้ตรวจทานการอุทธรณ์ต่อการกระทำการกลั่นกรอง
         manage_blocks: จัดการการปิดกั้น
-        manage_blocks_description: อนุญาตให้ผู้ใช้ปิดกั้นผู้ให้บริการอีเมลและที่อยู่ IP
         manage_custom_emojis: จัดการอีโมจิที่กำหนดเอง
         manage_custom_emojis_description: อนุญาตให้ผู้ใช้จัดการอีโมจิที่กำหนดเองในเซิร์ฟเวอร์
         manage_federation: จัดการการติดต่อกับภายนอก
@@ -709,7 +681,6 @@ th:
         manage_taxonomies: จัดการอนุกรมวิธาน
         manage_taxonomies_description: อนุญาตให้ผู้ใช้ตรวจทานเนื้อหาที่กำลังนิยมและอัปเดตการตั้งค่าแฮชแท็ก
         manage_user_access: จัดการการเข้าถึงของผู้ใช้
-        manage_user_access_description: อนุญาตให้ผู้ใช้ปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยของผู้ใช้อื่น เปลี่ยนที่อยู่อีเมลของเขา และตั้งรหัสผ่านของเขาใหม่
         manage_users: จัดการผู้ใช้
         manage_users_description: อนุญาตให้ผู้ใช้ดูรายละเอียดของผู้ใช้อื่น ๆ และทำการกระทำการกลั่นกรองต่อผู้ใช้เหล่านั้น
         manage_webhooks: จัดการเว็บฮุค
@@ -784,7 +755,6 @@ th:
       destroyed_msg: ลบการอัปโหลดไซต์สำเร็จ!
     software_updates:
       critical_update: สำคัญ — โปรดอัปเดตอย่างรวดเร็ว
-      description: ขอแนะนำให้ทำให้การติดตั้ง Mastodon ของคุณทันสมัยอยู่เสมอเพื่อรับประโยชน์จากการแก้ไขและคุณลักษณะล่าสุด ยิ่งไปกว่านั้น บางครั้งก็เป็นสิ่งสำคัญที่จะอัปเดต Mastodon อย่างทันท่วงทีเพื่อหลีกเลี่ยงปัญหาความปลอดภัย ด้วยเหตุผลเหล่านี้ Mastodon จึงตรวจสอบการอัปเดตทุก 30 นาที และจะแจ้งเตือนคุณตามการกำหนดลักษณะการแจ้งเตือนอีเมลของคุณ
       documentation_link: เรียนรู้เพิ่มเติม
       release_notes: บันทึกประจำรุ่น
       title: การอัปเดตที่พร้อมใช้งาน
@@ -871,7 +841,21 @@ th:
         action: ตรวจสอบที่นี่สำหรับข้อมูลเพิ่มเติม
         message_html: "<strong>ที่เก็บข้อมูลวัตถุของคุณกำหนดค่าไม่ถูกต้อง ความเป็นส่วนตัวของผู้ใช้ของคุณตกอยู่ในความเสี่ยง</strong>"
     tags:
+      moderation:
+        not_usable: ไม่สามารถใช้งานได้
+        pending_review: การตรวจทานที่รอดำเนินการ
+        review_requested: ต้องการการตรวจทาน
+        reviewed: ตรวจทานแล้ว
+        title: สถานะ
+        unreviewed: ไม่ได้รับการตรวจทาน
+        usable: ใช้งานได้
+      name: ชื่อ
+      newest: ใหม่ที่สุด
+      oldest: เก่าที่สุด
+      reset: รีเซ็ต
       review: สถานะการตรวจทาน
+      search: ค้นหา
+      title: แฮชแท็ก
       updated_msg: อัปเดตการตั้งค่าแฮชแท็กสำเร็จ
     title: การดูแล
     trends:
@@ -933,7 +917,6 @@ th:
         usage_comparison: ใช้ %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
         used_by_over_week:
           other: ใช้โดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
-      title: แนวโน้ม
       trending: กำลังนิยม
     warning_presets:
       add_new: เพิ่มใหม่
@@ -1017,9 +1000,7 @@ th:
       guide_link_text: ทุกคนสามารถมีส่วนร่วม
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
   application_mailer:
-    notification_preferences: เปลี่ยนการกำหนดลักษณะอีเมล
     salutation: "%{name},"
-    settings: 'เปลี่ยนการกำหนดลักษณะอีเมล: %{link}'
     unsubscribe: เลิกบอกรับ
     view: 'มุมมอง:'
     view_profile: ดูโปรไฟล์
@@ -1039,7 +1020,6 @@ th:
       hint_html: อีกเพียงหนึ่งสิ่งเพิ่มเติม! เราจำเป็นต้องยืนยันว่าคุณเป็นมนุษย์ (นี่ก็เพื่อให้เราสามารถกันสแปมออกไป!) แก้ CAPTCHA ด้านล่างและคลิก "ดำเนินการต่อ"
       title: การตรวจสอบความปลอดภัย
     confirmations:
-      awaiting_review: ยืนยันที่อยู่อีเมลของคุณแล้ว! ตอนนี้พนักงานของ %{domain} กำลังตรวจทานการลงทะเบียนของคุณ คุณจะได้รับอีเมลหากพนักงานอนุมัติบัญชีของคุณ!
       awaiting_review_title: กำลังตรวจทานการลงทะเบียนของคุณ
       clicking_this_link: คลิกลิงก์นี้
       login_link: เข้าสู่ระบบ
@@ -1047,7 +1027,6 @@ th:
       redirect_to_app_html: คุณควรได้รับการเปลี่ยนเส้นทางไปยังแอป <strong>%{app_name}</strong> หากนั่นไม่เกิดขึ้น ลอง %{clicking_this_link} หรือกลับไปยังแอปด้วยตนเอง
       registration_complete: ตอนนี้การลงทะเบียนของคุณใน %{domain} เสร็จสมบูรณ์แล้ว!
       welcome_title: ยินดีต้อนรับ %{name}!
-      wrong_email_hint: หากที่อยู่อีเมลนั้นไม่ถูกต้อง คุณสามารถเปลี่ยนที่อยู่อีเมลได้ในการตั้งค่าบัญชี
     delete_account: ลบบัญชี
     delete_account_html: หากคุณต้องการลบบัญชีของคุณ คุณสามารถ <a href="%{path}">ดำเนินการต่อที่นี่</a> คุณจะได้รับการถามเพื่อการยืนยัน
     description:
@@ -1068,7 +1047,6 @@ th:
     or_log_in_with: หรือเข้าสู่ระบบด้วย
     privacy_policy_agreement_html: ฉันได้อ่านและเห็นด้วยกับ <a href="%{privacy_policy_path}" target="_blank">นโยบายความเป็นส่วนตัว</a>
     progress:
-      confirm: ยืนยันอีเมล
       details: รายละเอียดของคุณ
       review: การตรวจทานของเรา
       rules: ยอมรับกฎ
@@ -1090,10 +1068,8 @@ th:
     security: ความปลอดภัย
     set_new_password: ตั้งรหัสผ่านใหม่
     setup:
-      email_below_hint_html: ตรวจสอบโฟลเดอร์สแปมของคุณ หรือขออีเมลอื่น คุณสามารถแก้ไขที่อยู่อีเมลของคุณหากที่อยู่อีเมลผิด
       email_settings_hint_html: คลิกลิงก์ที่เราส่งถึงคุณเพื่อยืนยัน %{email} เราจะรออยู่ตรงนี้
       link_not_received: ไม่ได้รับลิงก์?
-      new_confirmation_instructions_sent: คุณจะได้รับอีเมลใหม่พร้อมลิงก์การยืนยันในไม่กี่นาที!
       title: ตรวจสอบกล่องขาเข้าของคุณ
     sign_in:
       preamble_html: เข้าสู่ระบบด้วยข้อมูลประจำตัว <strong>%{domain}</strong> ของคุณ หากบัญชีของคุณได้รับการโฮสต์ในเซิร์ฟเวอร์อื่น คุณจะไม่สามารถเข้าสู่ระบบได้ที่นี่
@@ -1104,9 +1080,7 @@ th:
       title: มาตั้งค่าของคุณใน %{domain} กันเลย
     status:
       account_status: สถานะบัญชี
-      confirming: กำลังรอการยืนยันอีเมลให้เสร็จสมบูรณ์
       functional: บัญชีของคุณทำงานได้อย่างเต็มที่
-      pending: ใบสมัครของคุณกำลังรอดำเนินการตรวจทานโดยพนักงานของเรา นี่อาจใช้เวลาสักครู่ คุณจะได้รับอีเมลหากมีการอนุมัติใบสมัครของคุณ
       redirecting_to: บัญชีของคุณไม่ได้ใช้งานเนื่องจากบัญชีกำลังเปลี่ยนเส้นทางไปยัง %{acct} ในปัจจุบัน
       self_destruct: เนื่องจาก %{domain} กำลังปิดตัวลง คุณจะได้รับการเข้าถึงบัญชีของคุณแบบจำกัดเท่านั้น
       view_strikes: ดูการดำเนินการที่ผ่านมาต่อบัญชีของคุณ
@@ -1149,9 +1123,6 @@ th:
       before: 'ก่อนดำเนินการต่อ โปรดอ่านหมายเหตุเหล่านี้อย่างระมัดระวัง:'
       caches: เนื้อหาที่ได้รับการแคชโดยเซิร์ฟเวอร์อื่น ๆ อาจยังคงอยู่
       data_removal: จะเอาโพสต์และข้อมูลอื่น ๆ ของคุณออกโดยถาวร
-      email_change_html: คุณสามารถ <a href="%{path}">เปลี่ยนที่อยู่อีเมลของคุณ</a> ได้โดยไม่ต้องลบบัญชีของคุณ
-      email_contact_html: หากอีเมลยังคงมาไม่ถึง คุณสามารถส่งอีเมลถึง <a href="mailto:%{email}">%{email}</a> สำหรับความช่วยเหลือ
-      email_reconfirmation_html: หากคุณไม่ได้รับอีเมลการยืนยัน คุณสามารถ <a href="%{path}">ขออีเมลอีกครั้ง</a>
       irreversible: คุณจะไม่สามารถคืนค่าหรือเปิดใช้งานบัญชีของคุณใหม่
       more_details_html: สำหรับรายละเอียดเพิ่มเติม ดู <a href="%{terms_path}">นโยบายความเป็นส่วนตัว</a>
       username_available: ชื่อผู้ใช้ของคุณจะพร้อมใช้งานอีกครั้ง
@@ -1376,7 +1347,6 @@ th:
     authentication_methods:
       otp: แอปการรับรองความถูกต้องด้วยสองปัจจัย
       password: รหัสผ่าน
-      sign_in_token: รหัสความปลอดภัยอีเมล
       webauthn: กุญแจความปลอดภัย
     description_html: หากคุณเห็นกิจกรรมที่คุณไม่รู้จัก พิจารณาเปลี่ยนรหัสผ่านของคุณและเปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัย
     empty: ไม่มีประวัติการรับรองความถูกต้อง
@@ -1387,16 +1357,6 @@ th:
     unsubscribe:
       action: ใช่ เลิกบอกรับ
       complete: เลิกบอกรับแล้ว
-      confirmation_html: คุณแน่ใจหรือไม่ว่าต้องการเลิกบอกรับจากการรับ %{type} สำหรับ Mastodon ใน %{domain} ไปยังอีเมลของคุณที่ %{email}? คุณสามารถบอกรับใหม่ได้เสมอจาก <a href="%{settings_path}">การตั้งค่าการแจ้งเตือนอีเมล</a> ของคุณ
-      emails:
-        notification_emails:
-          favourite: อีเมลการแจ้งเตือนการชื่นชอบ
-          follow: อีเมลการแจ้งเตือนการติดตาม
-          follow_request: อีเมลคำขอติดตาม
-          mention: อีเมลการแจ้งเตือนการกล่าวถึง
-          reblog: อีเมลการแจ้งเตือนการดัน
-      resubscribe_html: หากคุณได้เลิกบอกรับโดยไม่ได้ตั้งใจ คุณสามารถบอกรับใหม่ได้จาก <a href="%{settings_path}">การตั้งค่าการแจ้งเตือนอีเมล</a> ของคุณ
-      success_html: คุณจะไม่ได้รับ %{type} สำหรับ Mastodon ใน %{domain} ไปยังอีเมลของคุณที่ %{email} อีกต่อไป
       title: เลิกบอกรับ
   media_attachments:
     validations:
@@ -1477,8 +1437,6 @@ th:
     update:
       subject: "%{name} ได้แก้ไขโพสต์"
   notifications:
-    administration_emails: การแจ้งเตือนอีเมลผู้ดูแล
-    email_events: เหตุการณ์สำหรับการแจ้งเตือนอีเมล
     email_events_hint: 'เลือกเหตุการณ์ที่คุณต้องการรับการแจ้งเตือน:'
   number:
     human:
@@ -1637,7 +1595,6 @@ th:
     import: การนำเข้า
     import_and_export: การนำเข้าและการส่งออก
     migrate: การโยกย้ายบัญชี
-    notifications: การแจ้งเตือนทางอีเมล
     preferences: การกำหนดลักษณะ
     profile: โปรไฟล์สาธารณะ
     relationships: การติดตามและผู้ติดตาม
@@ -1877,7 +1834,6 @@ th:
     invalid_otp_token: รหัสสองปัจจัยไม่ถูกต้อง
     otp_lost_help_html: หากคุณสูญเสียการเข้าถึงทั้งสองอย่าง คุณสามารถติดต่อ %{email}
     rate_limited: มีความพยายามในการรับรองความถูกต้องมากเกินไป ลองอีกครั้งในภายหลัง
-    seamless_external_login: คุณได้เข้าสู่ระบบผ่านบริการภายนอก ดังนั้นจึงไม่มีการตั้งค่ารหัสผ่านและอีเมล
     signed_in_as: 'ลงชื่อเข้าเป็น:'
   verification:
     extra_instructions_html: <strong>เคล็ดลับ:</strong> ลิงก์ในเว็บไซต์ของคุณสามารถเป็นแบบมองไม่เห็น ส่วนที่สำคัญคือ <code>rel="me"</code> ซึ่งป้องกันการแอบอ้างในเว็บไซต์ที่มีเนื้อหาที่ผู้ใช้สร้างขึ้น คุณยังสามารถใช้แท็ก <code>link</code> ในส่วนหัวของหน้าแทนที่จะเป็น <code>a</code> แต่ HTML ต้องเข้าถึงได้โดยไม่มีการประมวลผล JavaScript

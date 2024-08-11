@@ -58,7 +58,7 @@ da:
       demote: Degradér
       destroyed_msg: "%{username}s data er nu sat i kø mhp. snarlig sletning"
       disable: Frys
-      disable_sign_in_token_auth: Deaktivér e-mailtokengodkendelse
+      disable_sign_in_token_auth: Deaktivér e-mailtoken godkendelse
       disable_two_factor_authentication: Deaktivér 2FA
       disabled: Frosset
       display_name: Visningsnavn
@@ -233,7 +233,7 @@ da:
         approve_appeal_html: "%{name} godkendte moderationsafgørelsesappellen fra %{target}"
         approve_user_html: "%{name} godkendte tilmeldingen fra %{target}"
         assigned_to_self_report_html: "%{name} tildelte sig selv anmeldelsen %{target}"
-        change_email_user_html: "%{name} ændrede e-mailadressen for bruger %{target}"
+        change_email_user_html: "%{name} skiftede e-mailadressen for bruger %{target}"
         change_role_user_html: "%{name} ændrede rollen for %{target}"
         confirm_user_html: "%{name} bekræftede e-mailadressen for bruger %{target}"
         create_account_warning_html: "%{name} sendte en advarsel til %{target}"
@@ -432,7 +432,7 @@ da:
       attempts_over_week:
         one: "%{count} tilmeldingsforsøg over den seneste uge"
         other: "%{count} tilmeldingsforsøg over den seneste uge"
-      created_msg: E-maildomæne blokeret
+      created_msg: E-maildomæne hermed blokeret
       delete: Slet
       dns:
         types:
@@ -442,9 +442,9 @@ da:
         create: Tilføj domæne
         resolve: Opløs domæne
         title: Blokér nyt e-maildomæne
-      no_email_domain_block_selected: Ingen e-mailblokeringer ændret (ingen var valgt)
+      no_email_domain_block_selected: Ingen e-maildomæneblokeringer ændret (ingen var valgt)
       not_permitted: Ikke tilladt
-      resolved_dns_records_hint_html: Domænenavnet opløses til flg. MX-domæner, som i sidste ende er ansvarlige for e-mailmodtagelse. Blokering af et MX-domæne blokerer også tilmeldinger fra enhver e-mailadresse på det pågældende MX-domæne, selv hvis det synlige domænenavn er et andet. <strong>Pas på ikke ikke at blokere større e-mailudbydere.</strong>
+      resolved_dns_records_hint_html: Domænenavnet opløses til flg. MX-domæner, som i sidste ende er ansvarlige for e-mailmodtagelse. Blokering af et MX-domæne blokerer også tilmeldinger fra enhver e-mailadresse på det pågældende MX-domæne, selv hvis det synlige domænenavn er et andet. <strong>Pas på ikke at blokere større e-mailudbydere.</strong>
       resolved_through_html: Opløst via %{domain}
       title: Blokerede e-maildomæner
     export_domain_allows:
@@ -600,7 +600,7 @@ da:
         resolve_description_html: Ingen foranstaltninger træffes mod den anmeldte konto, ingen advarsel (strike) registreres og anmeldelsen lukkes.
         silence_description_html: Kontoen vil kun være synlig for følgerene eller dem, som manuelt slå den op, hvilket markant begrænser dens udbredelse. Kan altid omgøres. Lukker alle indrapporteringer af kontoen.
         suspend_description_html: Kontoen inkl. alt indhold utilgængeliggøres og interaktion umuliggøres, og den slettes på et tidspunkt. Kan omgøres inden for 30 dage. Lukker alle indrapporteringer af kontoen.
-      actions_description_html: Afgør, hvilke foranstaltning, der skal træffes for at løse denne anmeldelse. Træffes en straffende foranstaltning mod den anmeldte konto, fremsendes en e-mailnotifikation, undtagen når kategorien <strong>Spam</strong> er valgt.
+      actions_description_html: Afgør, hvilke foranstaltning, der skal træffes for at løse denne anmeldelse. Ved en straffende foranstaltning mod den anmeldte konto, fremsendes en e-mailnotifikation, undtagen når kategorien <strong>Spam</strong> er valgt.
       actions_description_remote_html: Fastslå en nødvendig handling mhp. at løse denne anmeldelse. Dette vil kun påvirke <strong>din</strong> servers kommunikation med, og indholdshåndtering for, fjernkontoen.
       add_to_report: Føj mere til anmeldelse
       already_suspended_badges:
@@ -798,7 +798,7 @@ da:
       destroyed_msg: Websteds-upload blev slettet!
     software_updates:
       critical_update: Kritisk – opdatér hurtigst muligt
-      description: Det anbefales at holde Mastodon-installationen opdateret for at drage fordel af de seneste fejlrettelser og funktioner. Undertiden kan det desuden være kritisk at opdatere Mastodon rettidigt for at undgå sikkerhedsproblemer. Mastodon tjekker derfor for opdateringer hvert 30. minut og notificerer dig jf. dine e-mailnotifikationsindstillinger.
+      description: Det anbefales at holde Mastodon-installationen opdateret for at drage fordel af de seneste fejlrettelser og funktioner. Undertiden kan det desuden være kritisk at opdatere Mastodon rettidigt for at undgå sikkerhedsproblemer. Mastodon tjekker derfor for opdateringer hvert 30. minut og notificerer brugeren jf. dennes e-mailnotifikationsindstillinger.
       documentation_link: Læs mere
       release_notes: Udgivelsesnoter
       title: Tilgængelige opdateringer
@@ -907,10 +907,16 @@ da:
     trends:
       allow: Tillad
       approved: Godkendt
+      confirm_allow: Sikker på, at de valgte tags skal tillades?
+      confirm_disallow: Sikker på, at de valgte tags ikke skal tillades?
       disallow: Tillad ikke
       links:
         allow: Tillad link
         allow_provider: Tillad udgiver
+        confirm_allow: Sikker på, at de valgte links skal tillades?
+        confirm_allow_provider: Sikker på, at de valgte udbydere skal tillades?
+        confirm_disallow: Sikker på, at de valgte links ikke skal tillades?
+        confirm_disallow_provider: Sikker på, at de valgte udbydere ikke skal tillades?
         description_html: Disse er links, som pt. deles meget af konti, som serveren ser indlæg fra. Det kan hjælpe ens brugere med at finde ud af, hvad der sker i verden. Ingen links vises offentligt, før man godkender udgiveren. Man kan også tillade/afvise individuelle links.
         disallow: Tillad ikke link
         disallow_provider: Tillad ikke udgiver
@@ -934,6 +940,10 @@ da:
       statuses:
         allow: Tillad indlæg
         allow_account: Tillad forfatter
+        confirm_allow: Sikker på, at de valgte statusser skal tillades?
+        confirm_allow_account: Sikker på, at de valgte konti skal tillades?
+        confirm_disallow: Sikker på, at de valgte statusser ikke skal tillades?
+        confirm_disallow_account: Sikker på, at de valgte konti ikke skal tillades?
         description_html: Disse er indlæg, serveren kender til, som pt. deles og favoritmarkeres meget. Det kan hjælpe nye og tilbagevendende brugere til at finde flere personer at følge. Ingen indlæg vises offentligt, før man godkender forfatteren, samt denne tillader sin konto at blive foreslået andre. Man kan også tillade/afvise individuelle indlæg.
         disallow: Tillad ikke indlæg
         disallow_account: Tillad ikke forfatter
@@ -966,7 +976,7 @@ da:
         used_by_over_week:
           one: Brugt af én person den seneste uge
           other: Brugt af %{count} personer den seneste uge
-      title: Trends
+      title: Anbefalinger og Tendenser
       trending: Populære
     warning_presets:
       add_new: Tilføj ny
@@ -1073,7 +1083,7 @@ da:
       hint_html: Bare en ting mere! Vi er nødt til at bekræfte, at du er et menneske (dette er for at vi kan holde spam ude!). Løs CAPTCHA'en nedenfor og klik på "Fortsæt".
       title: Sikkerhedstjek
     confirmations:
-      awaiting_review: E-mailadressen er bekræftet! %{domain}-personalet gennemgår nu registreringen. En e-mail fremsendes, såfremt din konto godkendes!
+      awaiting_review: E-mailadressen er bekræftet! %{domain}-personalet gennemgår nu registreringen. En e-mail fremsendes, såfremt kontoen godkendes!
       awaiting_review_title: Registreringen er ved at blive gennemgået
       clicking_this_link: klikke på dette link
       login_link: log ind
@@ -1081,7 +1091,7 @@ da:
       redirect_to_app_html: En omdirigering til <strong>%{app_name}</strong>-appen burde være sket. Er det ikke tilfældet, prøv da %{clicking_this_link} eller returnér manuelt til appen.
       registration_complete: Registreringen på %{domain} er nu fuldført!
       welcome_title: Velkommen %{name}!
-      wrong_email_hint: Er denne e-mailadresse ikke korrekt, kan den ændres i kontoindstillinger.
+      wrong_email_hint: Er denne e-mailadresse ikke korrekt, kan den ændres via Kontoindstillinger.
     delete_account: Slet konto
     delete_account_html: Ønsker du at slette din konto, kan du <a href="%{path}">gøre dette hér</a>. Du vil blive bedt om bekræftelse.
     description:
@@ -1140,7 +1150,7 @@ da:
       account_status: Kontostatus
       confirming: Afventer færdiggørelse af e-mailbekræftelse.
       functional: Din konto er fuldt funktionel.
-      pending: Din ansøgning afventer gennemgang af vores medarbejdere. Dette kan tage noget tid. Du modtager en e-mail, hvis din ansøgning godkendes.
+      pending: Ansøgningen afventer gennemgang af vores personale. Dette kan tage noget tid. Man bør modtage en e-mail, såfremt ansøgningen godkendes.
       redirecting_to: Din konto er inaktiv, da den pt. er omdirigerer til %{acct}.
       self_destruct: Da %{domain} er under nedlukning, vil kontoadgangen være begrænset.
       view_strikes: Se tidligere anmeldelser af din konto
@@ -1183,9 +1193,9 @@ da:
       before: 'Inder der fortsættes, læs venligst disse notater omhyggeligt:'
       caches: Indhold, cachelagret af andre servere, kan fortsat eksistere
       data_removal: Dine indlæg og andre data fjernes permanent
-      email_change_html: Du kan <a href="%{path}">skifte e-mailadresse</a> uden at slette din konto
-      email_contact_html: Hvis det stadig ikke ankommer, kan du sende en e-mail til <a href="mailto:%{email}">%{email}</a> for hjælp
-      email_reconfirmation_html: Modtager du ikke bekræftelses-e-mailen, kan du <a href="%{path}">anmode om en ny</a>
+      email_change_html: Man kan <a href="%{path}">skifte e-mailadresse</a> uden at slette sin konto
+      email_contact_html: Hvis den stadig ikke modtages, send en e-mail til <a href="mailto:%{email}">%{email}</a> for hjælp
+      email_reconfirmation_html: Modtages bekræftelsesmailen ikke, kan man <a href="%{path}">anmode om en ny</a>
       irreversible: Du vil ikke kunne gendanne/genaktivere din konto
       more_details_html: For yderligere oplysningerer, tjek <a href="%{terms_path}">privatlivspolitikken</a>.
       username_available: Dit brugernavn vil blive tilgængeligt igen
@@ -1429,7 +1439,7 @@ da:
     unsubscribe:
       action: Ja, afmeld
       complete: Afmeldt
-      confirmation_html: Er du sikker på, at du vil afmelde dig fra at modtage %{type} for Mastodon på %{domain} til din e-mail på %{email}? Du kan altid gentilmelde dig dine <a href="%{settings_path}">e-mail-notifikationsindstillinger</a>.
+      confirmation_html: Sikker på, at %{type} for Mastodon skal afmeldes på %{domain} til e-mailen %{email}? Man kan altid gentilmelde sig via <a href="%{settings_path}">indstillingerne E-mailnotifikationer</a>.
       emails:
         notification_emails:
           favourite: e-mailnotifikationer om favoritmarkeringer
@@ -1437,8 +1447,8 @@ da:
           follow_request: e-mailnotifikationer om følgeanmodninger
           mention: e-mailnotifikationer om omtaler
           reblog: e-mailnotifikationer om boosts
-      resubscribe_html: Hvis du har afmeldt dig ved en fejl, kan du gentilmelde dig under dine <a href="%{settings_path}">e-mail-notifikationsindstillinger</a>.
-      success_html: Du vil ikke længere modtage %{type} for Mastodon på %{domain} til din e-mail på %{email}.
+      resubscribe_html: Har man afmeldt sig ved en fejl, kan man gentilmelde sig via <a href="%{settings_path}">indstillingerne E-mailnotifikationer</a>.
+      success_html: Man vil ikke længere modtage %{type} for Mastodon på %{domain} til e-mailen %{email}.
       title: Opsig abonnement
   media_attachments:
     validations:
@@ -1926,7 +1936,7 @@ da:
     invalid_otp_token: Ugyldig tofaktorkode
     otp_lost_help_html: Har du mistet adgang til begge, kan du kontakte %{email}
     rate_limited: For mange godkendelsesforsøg. Prøv igen senere.
-    seamless_external_login: Du er logget ind via en ekstern tjeneste, så adgangskode- og e-mailindstillinger er utilgængelige.
+    seamless_external_login: Adgangskode- og e-mailindstillinger er utilgængelige, da der er logget ind via en ekstern tjeneste.
     signed_in_as: 'Logget ind som:'
   verification:
     extra_instructions_html: <strong>Tip:</strong> Linket på din hjemmeside kan være usynligt. Den vigtige del er <code>rel="me"</code> , som forhindrer impersonation på websteder med brugergenereret indhold. Du kan endda bruge et <code>link</code> tag i overskriften på siden i stedet for <code>a</code>, men HTML skal være tilgængelig uden at udføre JavaScript.

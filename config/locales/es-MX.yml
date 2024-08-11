@@ -31,7 +31,7 @@ es-MX:
       created_msg: "¡Nota de moderación creada con éxito!"
       destroyed_msg: "¡Nota de moderación destruida con éxito!"
     accounts:
-      add_email_domain_block: Poner en lista negra el dominio del correo
+      add_email_domain_block: Bloquear el dominio del correo
       approve: Aprobar
       approved_msg: La solicitud de registro de %{username} ha sido aprobada correctamente
       are_you_sure: "¿Estás seguro?"
@@ -58,7 +58,7 @@ es-MX:
       demote: Degradar
       destroyed_msg: Los datos de %{username} están ahora en cola para ser eliminados inminentemente
       disable: Deshabilitar
-      disable_sign_in_token_auth: Desactivar la autenticación de doble factor
+      disable_sign_in_token_auth: Deshabilitar la autenticación por token de correo electrónico
       disable_two_factor_authentication: Desactivar autenticación de dos factores
       disabled: Deshabilitada
       display_name: Nombre
@@ -67,7 +67,7 @@ es-MX:
       email: E-mail
       email_status: E-mail Status
       enable: Habilitar
-      enable_sign_in_token_auth: Habilitar autenticación por token de correo electrónico
+      enable_sign_in_token_auth: Habilitar la autenticación por token de correo electrónico
       enabled: Habilitada
       enabled_msg: Se ha descongelado correctamente la cuenta de %{username}
       followers: Seguidores
@@ -178,7 +178,7 @@ es-MX:
         confirm_user: Confirmar Usuario
         create_account_warning: Crear Advertencia
         create_announcement: Crear Anuncio
-        create_canonical_email_block: Crear Bloque de E-mail
+        create_canonical_email_block: Crear Bloqueo de Correo Electrónico
         create_custom_emoji: Crear Emoji Personalizado
         create_domain_allow: Crear Permiso de Dominio
         create_domain_block: Crear Bloqueo de Dominio
@@ -188,7 +188,7 @@ es-MX:
         create_user_role: Crear rol
         demote_user: Degradar Usuario
         destroy_announcement: Eliminar Anuncio
-        destroy_canonical_email_block: Eliminar Bloque de E-mail
+        destroy_canonical_email_block: Eliminar Bloqueo de Correo Electrónico
         destroy_custom_emoji: Eliminar Emoji Personalizado
         destroy_domain_allow: Eliminar Permiso de Dominio
         destroy_domain_block: Eliminar Bloqueo de Dominio
@@ -200,7 +200,7 @@ es-MX:
         destroy_user_role: Destruir Rol
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar Emoji Personalizado
-        disable_sign_in_token_auth_user: Desactivar la autenticación de token de correo electrónico para el usuario
+        disable_sign_in_token_auth_user: Deshabilitar la Autenticación por Token de Correo Electrónico para el Usuario
         disable_user: Deshabilitar Usuario
         enable_custom_emoji: Habilitar Emoji Personalizado
         enable_sign_in_token_auth_user: Habilitar la Autenticación por Token de Correo Electrónico para el Usuario
@@ -432,7 +432,7 @@ es-MX:
       attempts_over_week:
         one: "%{count} intentos durante la última semana"
         other: "%{count} intentos de registro en la última semana"
-      created_msg: Dominio de correo añadido a la lista negra con éxito
+      created_msg: Dominio de correo bloqueado con éxito
       delete: Borrar
       dns:
         types:
@@ -441,12 +441,12 @@ es-MX:
       new:
         create: Añadir dominio
         resolve: Resolver dominio
-        title: Nueva entrada en la lista negra de correo
-      no_email_domain_block_selected: No se han cambiado bloqueos de dominio ya que ninguno ha sido seleccionado
+        title: Bloquear nuevo dominio de correo
+      no_email_domain_block_selected: No se han cambiado bloqueos de dominio de correo, ya que ninguno ha sido seleccionado
       not_permitted: No permitido
-      resolved_dns_records_hint_html: El nombre de dominio resuelve los siguientes dominios MX, los cuales son responsables en última instancia de aceptar el correo electrónico. Bloquear un dominio MX bloqueará los registros de cualquier dirección de correo electrónico que utilice el mismo dominio MX, incluso si el nombre de dominio visible es diferente. <strong>Tenga cuidado de no bloquear los principales proveedores de correo electrónico.</strong>
+      resolved_dns_records_hint_html: El nombre de dominio resuelve los siguientes dominios MX, los cuales son responsables en última instancia de aceptar el correo electrónico. Bloquear un dominio MX bloqueará los registros de cualquier dirección de correo electrónico que utilice el mismo dominio MX, incluso si el nombre de dominio visible es diferente. <strong>Ten cuidado de no bloquear los principales proveedores de correo electrónico.</strong>
       resolved_through_html: Resuelto a través de %{domain}
-      title: Lista negra de correo
+      title: Dominios de correo bloqueados
     export_domain_allows:
       new:
         title: Importar dominios permitidos
@@ -705,7 +705,7 @@ es-MX:
         manage_appeals: Administrar Apelaciones
         manage_appeals_description: Permite a los usuarios revisar apelaciones contra acciones de moderación
         manage_blocks: Administrar Bloqueos
-        manage_blocks_description: Permite a los usuarios bloquear los proveedores de e-mail y las direcciones IP
+        manage_blocks_description: Permite a los usuarios bloquear proveedores de correo electrónico y direcciones IP
         manage_custom_emojis: Administrar Emojis Personalizados
         manage_custom_emojis_description: Permite a los usuarios gestionar emojis personalizados en el servidor
         manage_federation: Administrar Federación
@@ -798,7 +798,7 @@ es-MX:
       destroyed_msg: "¡Carga del sitio eliminada con éxito!"
     software_updates:
       critical_update: Crítico — por favor actualiza rápidamente
-      description: Se recomienda mantener actualizada su instalación de Mastodon para beneficiarse de las últimas correcciones y características. Además, a veces es crítico actualizar Mastodon de manera oportuna para evitar problemas de seguridad. Por estas razones, Mastodon comprueba si hay actualizaciones cada 30 minutos, y le notificará de acuerdo a sus preferencias de notificación por correo electrónico.
+      description: Se recomienda mantener actualizada tu instalación de Mastodon para beneficiarte de las últimas correcciones y características. Además, a veces es crítico actualizar Mastodon de manera oportuna para evitar problemas de seguridad. Por estas razones, Mastodon comprueba si hay actualizaciones cada 30 minutos, y te notificará de acuerdo a tus preferencias de notificación por correo electrónico.
       documentation_link: Saber más
       release_notes: Notas de la versión
       title: Actualizaciones disponibles
@@ -907,10 +907,16 @@ es-MX:
     trends:
       allow: Permitir
       approved: Aprobado
+      confirm_allow: "¿Estás seguro de que deseas permitir la etiqueta seleccionada?"
+      confirm_disallow: "¿Estás seguro de que deseas restringir la etiqueta seleccionada?"
       disallow: Rechazar
       links:
         allow: Permitir enlace
         allow_provider: Permitir editor
+        confirm_allow: "¿Estás seguro de que deseas permitir los enlaces seleccionados?"
+        confirm_allow_provider: "¿Estás seguro de que deseas permitir los proveedores seleccionados?"
+        confirm_disallow: "¿Estás seguro de que deseas restringir los enlaces seleccionados?"
+        confirm_disallow_provider: "¿Estás seguro de que deseas restringir los proveedores seleccionados?"
         description_html: Estos son enlaces que actualmente están siendo compartidos mucho por las cuentas desde las que tu servidor ve los mensajes. Pueden ayudar a tus usuarios a averiguar qué está pasando en el mundo. Ningún enlace se muestren públicamente hasta que autorice al dominio. También puede permitir o rechazar enlaces individuales.
         disallow: Rechazar enlace
         disallow_provider: Rechazar editor
@@ -934,6 +940,10 @@ es-MX:
       statuses:
         allow: Permitir publicación
         allow_account: Permitir autor
+        confirm_allow: "¿Estás seguro de que deseas permitir los estados seleccionados?"
+        confirm_allow_account: "¿Estás seguro de que deseas permitir las cuentas seleccionadas?"
+        confirm_disallow: "¿Estás seguro de que deseas restringir los estados seleccionados?"
+        confirm_disallow_account: "¿Estás seguro de que deseas restringir las cuentas seleccionadas?"
         description_html: Estos son publicaciones que su servidor conoce que están siendo compartidas y marcadas como favoritas mucho en este momento. Pueden ayudar a tus usuarios nuevos y retornantes a encontrar más gente a la que seguir. No hay mensajes que se muestren públicamente hasta que apruebes el autor y el autor permita que su cuenta sea sugerida a otros. También puedes permitir o rechazar mensajes individuales.
         disallow: Rechazar publicación
         disallow_account: No permitir autor
@@ -966,7 +976,7 @@ es-MX:
         used_by_over_week:
           one: Usada por una persona durante la última semana
           other: Usada por %{count} personas durante la última semana
-      title: Tendencias
+      title: Recomendaciones y tendencias
       trending: En tendencia
     warning_presets:
       add_new: Añadir nuevo
@@ -1073,7 +1083,7 @@ es-MX:
       hint_html: ¡Una última cosita! Necesitamos confirmar que eres humano (¡así podemos evitar el spam!). Resuelve este CAPTCHA de debajo y pulsa en "Continuar".
       title: Comprobación de seguridad
     confirmations:
-      awaiting_review: "¡Tu dirección de correo electrónico ha sido confirmada! El personal de %{domain} está revisando tu registro. ¡Recibirás un correo electrónico si aprueban tu cuenta!"
+      awaiting_review: "¡Tu dirección de correo electrónico ha sido confirmada! El personal de %{domain} está revisando tu registro. ¡Recibirás un correo electrónico cuando aprueben tu cuenta!"
       awaiting_review_title: Su registro está siendo revisado
       clicking_this_link: presionando este enlace
       login_link: iniciar sesión
@@ -1102,7 +1112,7 @@ es-MX:
     or_log_in_with: O inicia sesión con
     privacy_policy_agreement_html: He leído y acepto la <a href="%{privacy_policy_path}" target="_blank">política de privacidad</a>
     progress:
-      confirm: Confirmar correo
+      confirm: Confirmar dirección de correo
       details: Tus detalles
       review: Nuestra revisión
       rules: Aceptar reglas
@@ -1124,7 +1134,7 @@ es-MX:
     security: Cambiar contraseña
     set_new_password: Establecer nueva contraseña
     setup:
-      email_below_hint_html: Comprueba tu carpeta de correo no deseado o solicita otro enlace de confirmación. Puedes corregir tu correo electrónico si está mal.
+      email_below_hint_html: Comprueba tu carpeta de correo no deseado o solicita otro enlace de confirmación. Puedes corregir tu dirección de correo electrónico si está mal.
       email_settings_hint_html: Pulsa el enlace que te hemos enviado para verificar %{email}. Esperaremos aquí mismo.
       link_not_received: "¿No recibiste un enlace?"
       new_confirmation_instructions_sent: "¡Recibirás un nuevo correo electrónico con el enlace de confirmación en unos minutos!"
@@ -1140,7 +1150,7 @@ es-MX:
       account_status: Estado de la cuenta
       confirming: Esperando confirmación de correo electrónico.
       functional: Tu cuenta está completamente operativa.
-      pending: Su solicitud está pendiente de revisión por nuestros administradores. Eso puede tardar algún tiempo. Usted recibirá un correo electrónico si el solicitud sea aprobada.
+      pending: Tu solicitud está pendiente de revisión por nuestro personal. Eso puede tardar un tiempo. Recibirás un correo electrónico cuando tu solicitud sea aprobada.
       redirecting_to: Tu cuenta se encuentra inactiva porque está siendo redirigida a %{acct}.
       self_destruct: Como %{domain} está cerrando, solo tendrás acceso limitado a tu cuenta.
       view_strikes: Ver amonestaciones pasadas contra tu cuenta
@@ -1183,9 +1193,9 @@ es-MX:
       before: 'Antes de continuar, por favor lee con atención las siguientes notas:'
       caches: El contenido que ha sido almacenado en caché por otros servidores puede persistir
       data_removal: Tus publicaciones y el resto de datos se eliminarán definitivamente
-      email_change_html: Puedes <a href="%{path}"> cambiar tu dirección de correo electrónico</a> sin eliminar tu cuenta
+      email_change_html: Puedes <a href="%{path}">cambiar tu dirección de correo electrónico</a> sin eliminar tu cuenta
       email_contact_html: Si aún no te ha llegado, puedes escribir a <a href="mailto:%{email}">%{email}</a> para pedir ayuda
-      email_reconfirmation_html: Si no te ha llegado el correo de confirmación, puedes <a href="%{path}"> volver a solicitarlo</a>
+      email_reconfirmation_html: Si no te ha llegado el correo de confirmación, puedes <a href="%{path}">volver a solicitarlo</a>
       irreversible: No podrás restaurar ni reactivar tu cuenta
       more_details_html: Para más detalles, ver <a href="%{terms_path}"> la política de privacidad</a>.
       username_available: Tu nombre de usuario volverá a estar disponible
@@ -1429,16 +1439,16 @@ es-MX:
     unsubscribe:
       action: Sí, darse de baja
       complete: Has cancelado tu suscripción
-      confirmation_html: ¿Estás seguro de que quieres dejar de recibir %{type} de Mastodon en %{domain} a tu email %{email}? Siempre podrás volver a suscribirte desde los <a href="%{settings_path}"> ajustes de notificación por correo.</a>.
+      confirmation_html: ¿Estás seguro de que quieres dejar de recibir %{type} de Mastodon en %{domain} a tu correo %{email}? Siempre podrás volver a suscribirte de nuevo desde los <a href="%{settings_path}">ajustes de notificación por correo</a>.
       emails:
         notification_emails:
-          favourite: notificaciones de me gusta por correo
-          follow: notificaciones de seguidores por correo
-          follow_request: notificaciones de peticiones de seguimiento por correo
-          mention: notificaciones de menciones por correo
-          reblog: notificaciones de boost por correo
-      resubscribe_html: Si te has dado de baja por error, puedes volver a suscribirte desde tus <a href="%{settings_path}">ajustes de notificaciones por correo</a>.
-      success_html: Ya no recibirás %{type} de mastodon en %{domain} a tu correo %{email}.
+          favourite: correos de notificación de favoritos
+          follow: correos de notificación de nuevos seguidores
+          follow_request: correos de notificación de solicitud de seguidor
+          mention: correos de notificación de menciones
+          reblog: correos de notificación de impulsos
+      resubscribe_html: Si te has dado de baja por error, puedes volver a darte de alta desde tus <a href="%{settings_path}">ajustes de notificaciones por correo</a>.
+      success_html: Ya no recibirás %{type} de Mastodon en %{domain} a tu correo %{email}.
       title: Cancelar suscripción
   media_attachments:
     validations:
@@ -1519,7 +1529,7 @@ es-MX:
     update:
       subject: "%{name} editó una publicación"
   notifications:
-    administration_emails: Notificaciones de administración por correo electrónico
+    administration_emails: Notificaciones administrativas por correo
     email_events: Eventos para notificaciones por correo electrónico
     email_events_hint: 'Selecciona los eventos para los que deseas recibir notificaciones:'
   number:
@@ -1926,7 +1936,7 @@ es-MX:
     invalid_otp_token: Código de dos factores incorrecto
     otp_lost_help_html: Si perdiste al acceso a ambos, puedes ponerte en contancto con %{email}
     rate_limited: Demasiados intentos de autenticación, inténtalo de nuevo más tarde.
-    seamless_external_login: Has iniciado sesión desde un servicio externo, así que los ajustes de contraseña y correo no están disponibles.
+    seamless_external_login: Has iniciado sesión desde un servicio externo, por lo que los ajustes de contraseña y correo electrónico no están disponibles.
     signed_in_as: 'Sesión iniciada como:'
   verification:
     extra_instructions_html: <strong>Consejo:</strong> El enlace en tu web puede ser invisible. La parte importante es <code>rel="me"</code>, que evita la suplantación de identidad en sitios con contenido generado por el usuario. Puedes incluso usar un tag <code>link</code> en el encabezado de la página en vez de <code>a</code>, pero el HTML debe ser accesible sin ejecutar JavaScript.

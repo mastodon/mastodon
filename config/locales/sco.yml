@@ -31,7 +31,6 @@ sco:
       created_msg: Moderation note successfully makkit!
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
-      add_email_domain_block: Dingie email domain
       approve: Approve
       approved_msg: Successfully approvit %{username}'s sign-up application
       are_you_sure: Ye shuir?
@@ -58,7 +57,6 @@ sco:
       demote: Demote
       destroyed_msg: "%{username}'s data is noo queued fir tae be deletit the noo"
       disable: Freeze
-      disable_sign_in_token_auth: Turn aff email token authentication
       disable_two_factor_authentication: Turn aff 2FA
       disabled: Froze
       display_name: Display nemm
@@ -67,7 +65,6 @@ sco:
       email: Email
       email_status: Email status
       enable: Unfreeze
-      enable_sign_in_token_auth: Turn on email token authentication
       enabled: Turnt on
       enabled_msg: Successfully unfroze %{username}'s accoont
       followers: Follaers
@@ -127,7 +124,6 @@ sco:
       resubscribe: Resubscribe
       role: Role
       search: Seirch
-      search_same_email_domain: Ither uisers wi the same email domain
       search_same_ip: Ither uisers wi the same IP
       security_measures:
         only_password: Ainly passwird
@@ -167,26 +163,21 @@ sco:
         approve_appeal: Approve Appeal
         approve_user: Approve Uiser
         assigned_to_self_report: Assign Clype
-        change_email_user: Chynge Email fir Uiser
         change_role_user: Chynge Role o Uiser
         confirm_user: Confirm Uiser
         create_account_warning: Mak Warnin
         create_announcement: Mak Annooncement
-        create_canonical_email_block: Mak a Email Dingie
         create_custom_emoji: Mak Custom Emoji
         create_domain_allow: Mak Domain Alloo
         create_domain_block: Mak Domain Dingie
-        create_email_domain_block: Mak Email Domain Dingie
         create_ip_block: Mak IP rule
         create_unavailable_domain: Mak Unavailable Domain
         create_user_role: Mak Role
         demote_user: Demote Uiser
         destroy_announcement: Delete Annooncement
-        destroy_canonical_email_block: Delete Email Dingie
         destroy_custom_emoji: Delete Custom Emoji
         destroy_domain_allow: Delete Domain Alloo
         destroy_domain_block: Delete Domain Dingie
-        destroy_email_domain_block: Delete Email Domain Dingie
         destroy_instance: Purge Domain
         destroy_ip_block: Delete IP rule
         destroy_status: Delete Post
@@ -194,10 +185,8 @@ sco:
         destroy_user_role: Destroy Role
         disable_2fa_user: Disable 2FA
         disable_custom_emoji: Disable Custom Emoji
-        disable_sign_in_token_auth_user: Disable Email Token Authentication fir Uiser
         disable_user: Turn aff Uiser
         enable_custom_emoji: Turn on Custom Emoji
-        enable_sign_in_token_auth_user: Turn on Email Token Authentication fir Uiser
         enable_user: Turn on Uiser
         memorialize_account: Memorialize Accoont
         promote_user: Promote Uiser
@@ -226,26 +215,20 @@ sco:
         approve_appeal_html: "%{name} approved moderation decision appeal fae %{target}"
         approve_user_html: "%{name} approved sign-up fae %{target}"
         assigned_to_self_report_html: "%{name} assigned clype %{target} tae theirsels"
-        change_email_user_html: "%{name} chynged the email address o uiser %{target}"
         change_role_user_html: "%{name} chynged the role o %{target}"
-        confirm_user_html: "%{name} confirmt email address o uiser %{target}"
         create_account_warning_html: "%{name} sent a warnin tae %{target}"
         create_announcement_html: "%{name} creatit new annooncement %{target}"
-        create_canonical_email_block_html: "%{name} dingied email wi the hash %{target}"
         create_custom_emoji_html: "%{name} uploadit new emoji %{target}"
         create_domain_allow_html: "%{name} allooed federation wi domain %{target}"
         create_domain_block_html: "%{name} dingied domain %{target}"
-        create_email_domain_block_html: "%{name} dingied email domain %{target}"
         create_ip_block_html: "%{name} creatit rule fir IP %{target}"
         create_unavailable_domain_html: "%{name} stapt delivery tae domain %{target}"
         create_user_role_html: "%{name} creatit %{target} role"
         demote_user_html: "%{name} demotit uiser %{target}"
         destroy_announcement_html: "%{name} deletit annooncement %{target}"
-        destroy_canonical_email_block_html: "%{name} undingied email wi the hash %{target}"
         destroy_custom_emoji_html: "%{name} deletit emoji %{target}"
         destroy_domain_allow_html: "%{name} disallooed federation wi domain %{target}"
         destroy_domain_block_html: "%{name} undingied domain %{target}"
-        destroy_email_domain_block_html: "%{name} undingied email domain %{target}"
         destroy_instance_html: "%{name} purged domain %{target}"
         destroy_ip_block_html: "%{name} deletit rule fir IP %{target}"
         destroy_status_html: "%{name} taen doon post bi %{target}"
@@ -253,10 +236,8 @@ sco:
         destroy_user_role_html: "%{name} deletit %{target} role"
         disable_2fa_user_html: "%{name} turnt aff twa factor requirement fir uiser %{target}"
         disable_custom_emoji_html: "%{name} turnt aff emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} turnt aff email token authentication fir %{target}"
         disable_user_html: "%{name} turnt aff login fir uiser %{target}"
         enable_custom_emoji_html: "%{name} turnt on emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} turnt on email token authentication fir %{target}"
         enable_user_html: "%{name} turnt on login fir uiser %{target}"
         memorialize_account_html: "%{name} pit %{target}'s accoont ower intae a memorial page"
         promote_user_html: "%{name} promotit uiser %{target}"
@@ -264,7 +245,6 @@ sco:
         reject_user_html: "%{name} rejectit sign-up fae %{target}"
         remove_avatar_user_html: "%{name} taen doon %{target}'s avatar"
         reopen_report_html: "%{name} reopent clype %{target}"
-        resend_user_html: "%{name} resent confirmation email fir %{target}"
         reset_password_user_html: "%{name} reset passwird fir uiser %{target}"
         resolve_report_html: "%{name} resolved clype %{target}"
         sensitive_account_html: "%{name} mairked %{target}'s media as sensitive"
@@ -412,7 +392,6 @@ sco:
       attempts_over_week:
         one: "%{count} attempt ower the last week"
         other: "%{count} sign-up attempts ower the last week"
-      created_msg: Successfully dingied email domain
       delete: Delete
       dns:
         types:
@@ -421,11 +400,7 @@ sco:
       new:
         create: Add domain
         resolve: Resolve domain
-        title: Dingie new email domain
-      no_email_domain_block_selected: Nae email domain dingies got chynged as naen wis selectit
-      resolved_dns_records_hint_html: The domain nemm resolves tae the follaein MX domains, thit ur ultimately responsible fir acceptin email. Dingiein a MX domain wull dingie sign-ups fae onie email address thit uises the same MX domain, even if the visible domain name is different. <strong>Caw canny no tae dingie major email providers.</strong>
       resolved_through_html: Resolvit throu %{domain}
-      title: Dingied email domains
     export_domain_allows:
       new:
         title: Import domain alloos
@@ -571,7 +546,6 @@ sco:
         mark_as_sensitive_description_html: The media in the clyped on posts will be mairked as sensitive an a strike wull be recordit fir tae help ye escalate on future infractions bi the same accoont.
         other_description_html: See mair options fir controllin the accoont's behaviour an customize communication tae the clyped on accoont.
         resolve_description_html: Nae action wull be taen aginst the clyped on accoont, nae strike recordit, an the clype wull be shut.
-      actions_description_html: Decide whit action fir tae tak fir tae resolve this clype. If ye tak a punitive action agin the accoont thit wis clyped on, a email note wull be sent tae them, except whan the <strong>Mince</strong> caitegory is selectit.
       add_to_report: Add mair tae yer clype
       are_you_sure: Ye sure?
       assign_to_self: Assign tae me
@@ -647,7 +621,6 @@ sco:
         manage_appeals: Manage Appeals
         manage_appeals_description: Alloos uisers fir tae luik ower appeals aginst moderation actions
         manage_blocks: Manage Dingies
-        manage_blocks_description: Alloos uisers fir tae dingie email providers an IP addresses
         manage_custom_emojis: Manage Custom Emoji
         manage_custom_emojis_description: Alloos uisers fir tae manage custom emoji on the server
         manage_federation: Manage Federation
@@ -665,7 +638,6 @@ sco:
         manage_taxonomies: Manage Taxonomies
         manage_taxonomies_description: Alloos uisers fir tae luik ower trendin content an update hashtag settins
         manage_user_access: Manage Uiser Access
-        manage_user_access_description: Alloos uisers fir tae turn aff ither uisers' twa-factor authentication, chynge their email address, an reset their passwird
         manage_users: Manage Uisers
         manage_users_description: Alloos uisers fir tae luik at ither uisers' details an cairry oot moderation actions agin them
         manage_webhooks: Manage Webhooks
@@ -835,7 +807,6 @@ sco:
         used_by_over_week:
           one: Uised bi ae person ower the last week
           other: Uised bi %{count} fowk ower the last week
-      title: Trends
       trending: Trendin
     warning_presets:
       add_new: Add new
@@ -910,9 +881,7 @@ sco:
       guide_link_text: Awbody kin contribute.
     sensitive_content: Sensitive content
   application_mailer:
-    notification_preferences: Chynge email preferences
     salutation: "%{name},"
-    settings: 'Chynge email preferences: %{link}'
     view: 'View:'
     view_profile: View profile
     view_status: View post
@@ -959,9 +928,7 @@ sco:
       title: Let's get ye set up on %{domain}.
     status:
       account_status: Accoont status
-      confirming: Waitin fir email confirmation fir tae be completit.
       functional: Yer accoont is fully operational.
-      pending: Yer application is pendin review bi oor staff. This'll mibbie tak some time. Ye'll get a email if yer application is approved.
       redirecting_to: Yer accoont isnae active acause it is redirectin tae %{acct} the noo.
       view_strikes: Luik at past strikes aginst yer accoont
     too_fast: Form submittit ower fast, try again.
@@ -1003,9 +970,6 @@ sco:
       before: 'Afore proceedin, please read thir notes careful:'
       caches: Content thit haes been cached bi ither servers eull mibbie persist
       data_removal: Yer posts an ither data wull get permanently removed
-      email_change_html: Ye kin <a href="%{path}">chynge yer email address</a> athoot deletin yer accoont
-      email_contact_html: Gin it stull disnae arrive, ye kin email <a href="mailto:%{email}">%{email}</a> fir help
-      email_reconfirmation_html: Gin ye urnae gettin the confirmation email, ye kin <a href="%{path}">request it again</a>
       irreversible: Ye wullnae be able tae restore or reactivate yer accoont
       more_details_html: Fir mair details, see the <a href="%{terms_path}">privacy policy</a>.
       username_available: Yer uisernemm wull become available again
@@ -1186,7 +1150,6 @@ sco:
     authentication_methods:
       otp: twa-factor authentication app
       password: passwird
-      sign_in_token: email security code
       webauthn: security keys
     description_html: If ye see activity on yer accoont thit ye dinnae recognize, consider chyngin yer passwird an turnin on twa-factor authentication.
     empty: Nae authentication history available
@@ -1272,7 +1235,6 @@ sco:
     update:
       subject: "%{name} editit a post"
   notifications:
-    email_events: Events fir email notes
     email_events_hint: 'Pick events thit ye''r wantin tae get notes fir:'
   number:
     human:
@@ -1583,7 +1545,6 @@ sco:
     follow_limit_reached: Ye cannae follae mair than %{limit} fowk
     invalid_otp_token: Invalid twa-factor code
     otp_lost_help_html: If ye lost access tae baith, ye kin get in touch wi %{email}
-    seamless_external_login: Ye'r logged in via a external service, sae passwird an email settins urnae available.
     signed_in_as: 'Signt in as:'
   verification:
     verification: Verification
