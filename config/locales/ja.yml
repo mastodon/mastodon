@@ -29,7 +29,6 @@ ja:
       created_msg: モデレーションメモを書き込みました！
       destroyed_msg: モデレーションメモを削除しました！
     accounts:
-      add_email_domain_block: メールドメインブロックに追加
       approve: 承認
       approved_msg: "%{username}さんの登録申請を承認しました"
       are_you_sure: 本当に実行しますか？
@@ -56,7 +55,6 @@ ja:
       demote: 降格
       destroyed_msg: "%{username}さんのデータは完全に削除されるよう登録されました"
       disable: 無効化
-      disable_sign_in_token_auth: メールトークン認証を無効にする
       disable_two_factor_authentication: 二要素認証を無効にする
       disabled: 無効
       display_name: 表示名
@@ -65,7 +63,6 @@ ja:
       email: メールアドレス
       email_status: メールアドレスの状態
       enable: 有効化
-      enable_sign_in_token_auth: メールトークン認証を有効にする
       enabled: 有効
       enabled_msg: "%{username}の無効化を解除しました"
       followers: フォロワー数
@@ -129,7 +126,6 @@ ja:
       resubscribe: 再講読
       role: ロール
       search: 検索
-      search_same_email_domain: 同じドメインのメールアドレスを使用しているユーザー
       search_same_ip: 同じIPのユーザーを検索
       security: 認証方法
       security_measures:
@@ -170,26 +166,21 @@ ja:
         approve_appeal: 抗議を承認
         approve_user: ユーザーの承認
         assigned_to_self_report: 通報の担当者に設定
-        change_email_user: ユーザーのメールアドレスを変更
         change_role_user: ユーザーのロールを変更
         confirm_user: ユーザーの確認
         create_account_warning: 警告を作成
         create_announcement: お知らせを作成
-        create_canonical_email_block: メールブロックを作成
         create_custom_emoji: カスタム絵文字を作成
         create_domain_allow: 連合を許可
         create_domain_block: ドメインブロックを作成
-        create_email_domain_block: メールドメインブロックを作成
         create_ip_block: IPルールを作成
         create_unavailable_domain: 配送できないドメインを作成
         create_user_role: ロールを作成
         demote_user: ユーザーを降格
         destroy_announcement: お知らせを削除
-        destroy_canonical_email_block: メールブロックを削除
         destroy_custom_emoji: カスタム絵文字を削除
         destroy_domain_allow: 連合許可を外す
         destroy_domain_block: ドメインブロックを削除
-        destroy_email_domain_block: メールドメインブロックを削除
         destroy_instance: ドメインをブロックする
         destroy_ip_block: IPルールを削除
         destroy_status: 投稿を削除
@@ -197,10 +188,8 @@ ja:
         destroy_user_role: ロールを削除
         disable_2fa_user: 二要素認証を無効化
         disable_custom_emoji: カスタム絵文字を無効化
-        disable_sign_in_token_auth_user: ユーザーのメールトークン認証を無効にする
         disable_user: ユーザーを無効化
         enable_custom_emoji: カスタム絵文字を有効化
-        enable_sign_in_token_auth_user: メールトークンのユーザー認証を有効にする
         enable_user: ユーザーを有効化
         memorialize_account: 追悼アカウント化
         promote_user: ユーザーを昇格
@@ -230,26 +219,20 @@ ja:
         approve_appeal_html: "%{name}さんが%{target}さんからの抗議を承認しました"
         approve_user_html: "%{name}さんが%{target}さんからの登録を承認しました"
         assigned_to_self_report_html: "%{name}さんが通報 %{target}を自身の担当に割り当てました"
-        change_email_user_html: "%{name}さんが%{target}さんのメールアドレスを変更しました"
         change_role_user_html: "%{name}さんが%{target}さんのロールを変更しました"
-        confirm_user_html: "%{name}さんが%{target}さんのメールアドレスを確認済みにしました"
         create_account_warning_html: "%{name}さんが%{target}さんに警告メールを送信しました"
         create_announcement_html: "%{name}さんが新しいお知らせ %{target}を作成しました"
-        create_canonical_email_block_html: "%{name} さんがハッシュ %{target} を持つメールをブロックしました。"
         create_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を追加しました"
         create_domain_allow_html: "%{name}さんが%{target}の連合を許可しました"
         create_domain_block_html: "%{name}さんがドメイン %{target}をブロックしました"
-        create_email_domain_block_html: "%{name}さんが%{target}をメールドメインブロックに追加しました"
         create_ip_block_html: "%{name}さんがIP %{target}のルールを作成しました"
         create_unavailable_domain_html: "%{name}がドメイン %{target}への配送を停止しました"
         create_user_role_html: "%{name}さんがロール『%{target}』を作成しました"
         demote_user_html: "%{name}さんが%{target}さんを降格しました"
         destroy_announcement_html: "%{name}さんがお知らせ %{target}を削除しました"
-        destroy_canonical_email_block_html: "%{name} さんがハッシュ %{target} を持つメールのブロックを解除しました。"
         destroy_custom_emoji_html: "%{name}さんがカスタム絵文字『%{target}』を削除しました"
         destroy_domain_allow_html: "%{name}さんが%{target}の連合許可を外しました"
         destroy_domain_block_html: "%{name}さんがドメイン %{target}のブロックを外しました"
-        destroy_email_domain_block_html: "%{name}さんが%{target}をメールドメインブロックから外しました"
         destroy_instance_html: "%{name}さんがドメイン %{target}をブロックしました"
         destroy_ip_block_html: "%{name}さんが IP %{target}のルールを削除しました"
         destroy_status_html: "%{name}さんが%{target}さんの投稿を削除しました"
@@ -257,10 +240,8 @@ ja:
         destroy_user_role_html: "%{name}さんがロール『%{target}』を削除しました"
         disable_2fa_user_html: "%{name}さんが%{target}さんの二要素認証を無効化しました"
         disable_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を無効化しました"
-        disable_sign_in_token_auth_user_html: "%{name}さんが%{target}さんのメールトークン認証を無効にしました"
         disable_user_html: "%{name}さんが%{target}さんのログインを無効化しました"
         enable_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を有効化しました"
-        enable_sign_in_token_auth_user_html: "%{name}さんが%{target}さんのメールトークン認証を有効にしました"
         enable_user_html: "%{name}さんが%{target}さんのログインを有効化しました"
         memorialize_account_html: "%{name}さんが%{target}さんを追悼アカウントページに登録しました"
         promote_user_html: "%{name}さんが%{target}さんを昇格しました"
@@ -268,7 +249,6 @@ ja:
         reject_user_html: "%{name}さんが%{target}さんからの登録を拒否しました"
         remove_avatar_user_html: "%{name}さんが%{target}さんのアイコンを削除しました"
         reopen_report_html: "%{name}さんが通報 %{target}を未解決に戻しました"
-        resend_user_html: "%{name}さんが%{target}の確認メールを再送信しました"
         reset_password_user_html: "%{name}さんが%{target}さんのパスワードをリセットしました"
         resolve_report_html: "%{name}さんが通報 %{target}を解決済みにしました"
         sensitive_account_html: "%{name}さんが%{target}さんのメディアを閲覧注意にマークしました"
@@ -424,7 +404,6 @@ ja:
       allow_registrations_with_approval: 承認制での新規登録を可能にする
       attempts_over_week:
         other: 先週は%{count}回サインアップが試みられました
-      created_msg: メールドメインブロックに追加しました
       delete: 消去
       dns:
         types:
@@ -433,12 +412,8 @@ ja:
       new:
         create: ドメインを追加
         resolve: ドメイン解決
-        title: 新規メールドメインブロック
-      no_email_domain_block_selected: 何も選択されていないためメールドメインブロックを変更しませんでした
       not_permitted: 権限がありません
-      resolved_dns_records_hint_html: ドメイン名はDNSでMXドメインに名前解決され、最終的にメールを受け付ける役割を担います。目に見えるドメイン名が異なっていても、同じMXドメインを使用するメールアドレスからのアカウント登録がブロックされます。<strong>主要なメールプロバイダーをブロックしないように注意して下さい。</strong>
       resolved_through_html: "%{domain}を通して解決しました"
-      title: メールドメインブロック
     export_domain_allows:
       new:
         title: ドメイン許可をインポート
@@ -585,7 +560,6 @@ ja:
         resolve_description_html: 報告されたアカウントに対していかなる措置も取られず、ストライクも記録されず、報告は終了します。
         silence_description_html: このアカウントは、すでにフォローしている人、または手動で検索した人にしか見えないため、リーチが極端に制限されます。いつでも元に戻すことができます。このアカウントに対するすべての通報をクローズします。
         suspend_description_html: アカウントとそのすべての内容にアクセスできなくなり、最終的に削除され、やり取りは不可能になります。 30日以内であれば元に戻すことができます。このアカウントに対するすべての通報をクローズします。
-      actions_description_html: このレポートを解決するために取るアクションを決定します。 報告されたアカウントに対して懲罰的な措置を取った場合、メール通知が送信されますが<strong>スパム</strong>カテゴリが選択されている場合を除きます。
       actions_description_remote_html: この通報を解決するためのアクションを選択してください。これは<strong>あなたの</strong>サーバーがこのリモートアカウントと通信し、そのコンテンツを処理する時のみ影響します。
       add_to_report: 通報にさらに追加
       already_suspended_badges:
@@ -650,7 +624,6 @@ ja:
         delete_data_html: 停止が解除されないまま30日経過すると、<strong>@%{acct}</strong>さんのプロフィールとコンテンツは削除されます
         preview_preamble_html: "<strong>@%{acct}</strong>さんに次の内容の警告を通知します:"
         record_strike_html: 今後、<strong>@%{acct}</strong>さんが違反行為をしたときにエスカレーションできるように、このアカウントに対するストライクを記録します
-        send_email_html: "<strong>@%{acct}</strong>さんに警告メールを送信します"
         warning_placeholder: アクションを行使する追加の理由（オプション）
       target_origin: 報告されたアカウントの起源
       title: 通報
@@ -688,7 +661,6 @@ ja:
         manage_appeals: 抗議の管理
         manage_appeals_description: ユーザーはモデレーションアクションに対する抗議を確認できます
         manage_blocks: ブロックの管理
-        manage_blocks_description: ユーザーがメールプロバイダとIPアドレスをブロックできるようにします
         manage_custom_emojis: カスタム絵文字を管理
         manage_custom_emojis_description: ユーザーがサーバー上のカスタム絵文字を管理できるようにします
         manage_federation: 連合の管理
@@ -706,7 +678,6 @@ ja:
         manage_taxonomies: 分類の管理
         manage_taxonomies_description: トレンドコンテンツの確認とハッシュタグの設定の更新
         manage_user_access: アクセス権を管理
-        manage_user_access_description: 他のユーザーの2段階認証を無効にしたり、メールアドレスを変更したり、パスワードをリセットしたりすることができます。
         manage_users: ユーザーの管理
         manage_users_description: 他のユーザーの詳細情報を閲覧し、モデレーションを行うことができます。
         manage_webhooks: Webhookの管理
@@ -781,7 +752,6 @@ ja:
       destroyed_msg: ファイルを削除しました！
     software_updates:
       critical_update: "※緊急 (速やかに適用してください)"
-      description: Mastodonサーバーはいつでも最新の状態を保ち、新しい機能や修正を利用できるようにしておくことをおすすめします。またセキュリティの問題が発生した場合は、速やかにMastodonをアップデートすることが大切です。Mastodonは30分おきにアップデートを確認し、通知設定に応じて新しいアップデートをメールで通知します。
       documentation_link: もっと見る
       release_notes: リリースノート
       title: 利用可能なアップデート
@@ -930,7 +900,6 @@ ja:
         usage_comparison: 今日は%{today}回、昨日は%{yesterday}回使用されました。
         used_by_over_week:
           other: 週間%{count}人に使用されました
-      title: トレンド
       trending: トレンド
     warning_presets:
       add_new: 追加
@@ -1014,9 +983,7 @@ ja:
       guide_link_text: 誰でも参加することができます。
     sensitive_content: 閲覧注意コンテンツ
   application_mailer:
-    notification_preferences: メール設定の変更
     salutation: "%{name}さん"
-    settings: 'メール設定の変更: %{link}'
     unsubscribe: 購読解除
     view: 'リンク:'
     view_profile: プロフィールを表示
@@ -1036,7 +1003,6 @@ ja:
       hint_html: もう一つだけ！あなたが人間であることを確認する必要があります(スパムを防ぐためです！)。 以下のCAPTCHAを解き、「続ける」をクリックします。
       title: セキュリティチェック
     confirmations:
-      awaiting_review: メールアドレスが確認できました。%{domain} のスタッフが登録審査を行います。承認されたらメールでお知らせします！
       awaiting_review_title: 登録の審査待ちです
       clicking_this_link: このリンクを押す
       login_link: ログイン
@@ -1044,7 +1010,6 @@ ja:
       redirect_to_app_html: 自動的に<strong>%{app_name}</strong>に戻らなかった場合、%{clicking_this_link}か、手動でアプリを切り替えてください。
       registration_complete: "%{domain} へのアカウント登録が完了しました。"
       welcome_title: ようこそ、%{name}さん！
-      wrong_email_hint: メールアドレスが正しくない場合は、アカウント設定で変更できます。
     delete_account: アカウントの削除
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a>から手続きが行えます。削除する前に、確認画面があります。
     description:
@@ -1065,7 +1030,6 @@ ja:
     or_log_in_with: または次のサービスでログイン
     privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">プライバシーポリシー</a>を読み、同意します
     progress:
-      confirm: メールアドレスの確認
       details: ユーザー情報
       review: 承認
       rules: ルール
@@ -1087,10 +1051,8 @@ ja:
     security: セキュリティ
     set_new_password: 新しいパスワード
     setup:
-      email_below_hint_html: 確認メールが迷惑メールフォルダに振り分けられていないか確認してください。メールアドレスを間違えた場合は、ここでメールアドレスの変更と確認メールの再送ができます。
       email_settings_hint_html: メールに記載のリンクを開いて %{email} を確認してください。
       link_not_received: 確認メールを受信できない場合は
-      new_confirmation_instructions_sent: 確認用のリンクを記載した新しいメールを送信しました
       title: 確認メールを送信しました
     sign_in:
       preamble_html: "<strong>%{domain}</strong> の資格情報でサインインします。 あなたのアカウントが別のサーバーでホストされている場合は、ここでログインすることはできません。"
@@ -1101,9 +1063,7 @@ ja:
       title: さあ %{domain} でセットアップしましょう.
     status:
       account_status: アカウントの状態
-      confirming: メールアドレスの確認が完了するのを待っています。
       functional: アカウントは完全に機能しています。
-      pending: あなたの申請は現在サーバー管理者による審査待ちです。これにはしばらくかかります。申請が承認されるとメールが届きます。
       redirecting_to: アカウントは%{acct}に引っ越し設定されているため非アクティブになっています。
       self_destruct: "%{domain} は閉鎖されるため、今後このアカウントでは限られた操作しかできません。"
       view_strikes: 過去のストライクを表示
@@ -1146,9 +1106,6 @@ ja:
       before: '続行する前に、次の点を再度確認してください:'
       caches: 他のサーバーにコンテンツのキャッシュがずっと残る場合があります
       data_removal: あなたの投稿やその他のデータはこのサーバーから完全に削除されます
-      email_change_html: アカウントを削除しなくても<a href="%{path}">メールアドレスを変更</a>できます
-      email_contact_html: それでも届かない場合、<a href="mailto:%{email}">%{email}</a>までメールで問い合わせてください
-      email_reconfirmation_html: 確認のメールが届かない場合、<a href="%{path}">もう一度申請</a>できます。
       irreversible: 削除操作の撤回やアカウントの復活はできません
       more_details_html: 詳しくは<a href="%{terms_path}">プライバシーポリシー</a>をご覧ください。
       username_available: あなたのユーザー名は再利用できるようになります
@@ -1373,7 +1330,6 @@ ja:
     authentication_methods:
       otp: 二要素認証アプリ
       password: パスワード
-      sign_in_token: メールセキュリティコード
       webauthn: セキュリティキー
     description_html: 認識できないアクティビティが表示された場合は、パスワードの変更と二要素認証の有効化を検討してください。
     empty: 利用可能な認証履歴がありません
@@ -1384,16 +1340,6 @@ ja:
     unsubscribe:
       action: 購読を解除する
       complete: 購読を解除しました
-      confirmation_html: '%{domain} の Mastodon による %{email} への%{type}を購読解除しますか？ 再購読が必要になった場合は<a href="%{settings_path}">メール通知の設定</a>からいつでも再開できます。'
-      emails:
-        notification_emails:
-          favourite: お気に入り登録の通知メール
-          follow: フォロー通知メール
-          follow_request: フォローリクエスト通知メール
-          mention: 返信の通知メール
-          reblog: ブーストの通知メール
-      resubscribe_html: 間違って配信を停止した場合は、 <a href="%{settings_path}">メール通知設定</a>から再登録できます。
-      success_html: "%{domain} の Mastodon から %{email} への%{type}の配信が停止されました。"
       title: 購読の解除
   media_attachments:
     validations:
@@ -1474,8 +1420,6 @@ ja:
     update:
       subject: "%{name}さんが投稿を更新しました"
   notifications:
-    administration_emails: 管理にかかわるメール通知
-    email_events: メールによる通知
     email_events_hint: '受信する通知を選択:'
   number:
     human:
@@ -1634,7 +1578,6 @@ ja:
     import: データのインポート
     import_and_export: インポート・エクスポート
     migrate: アカウントの引っ越し
-    notifications: メール通知
     preferences: ユーザー設定
     profile: プロフィール
     relationships: フォロー・フォロワー
@@ -1874,7 +1817,6 @@ ja:
     invalid_otp_token: 二要素認証コードが間違っています
     otp_lost_help_html: どちらも使用できない場合、%{email}に連絡を取ると解決できるかもしれません
     rate_limited: 認証に失敗した回数が多すぎます。時間をおいてからログインしてください。
-    seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
     signed_in_as: '下記でログイン中:'
   verification:
     extra_instructions_html: <strong>ワンポイント:</strong> webサイト上のプロフィールへのリンクは表示上見えなくてもかまいません。重要な部分は <code>rel="me"</code> で、これはユーザーが自由にリンクを作成可能なサイトを悪用してなりすまされるのを防ぐための情報です。<code>a</code> タグを配置する代わりに <code>link</code> タグをHTMLヘッダーに挿入することでも認証が可能です。ただし、HTMLにはJavaScriptを使わなくてもアクセスできるようにしてください。

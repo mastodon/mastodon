@@ -31,7 +31,6 @@ sc:
       created_msg: As creadu una nota de moderatzione.
       destroyed_msg: As cantzelladu una nota de moderatzione.
     accounts:
-      add_email_domain_block: Bloca domìniu de posta eletrònica
       approve: Aprova
       approved_msg: Sa dimanda de registru de %{username} est istada aprovada
       are_you_sure: Seguru?
@@ -114,7 +113,6 @@ sc:
       reset_password: Reseta sa crae
       resubscribe: Torra a sutascrìere
       search: Chirca
-      search_same_email_domain: Àteras persones cun su pròpiu domìniu de posta
       search_same_ip: Àteras persones cun sa pròpiu IP
       security: Seguresa
       sensitive: Sensìbile
@@ -147,21 +145,18 @@ sc:
     action_logs:
       action_types:
         assigned_to_self_report: Assigna s'informe
-        change_email_user: Muda s'indiritzu eletrònicu pro s'utente
         confirm_user: Cunfirma s'utente
         create_account_warning: Crea un'avisu
         create_announcement: Crea un'annùntziu
         create_custom_emoji: Crea un'emoji personalizadu
         create_domain_allow: Crea unu domìniu permìtidu
         create_domain_block: Crea unu blocu de domìniu
-        create_email_domain_block: Crea unu blocu de domìniu de indiritzu de posta
         create_ip_block: Crea una règula IP
         demote_user: Degrada s'utente
         destroy_announcement: Cantzella s'annùntziu
         destroy_custom_emoji: Cantzella s'emoji personalizadu
         destroy_domain_allow: Cantzella su domìniu permìtidu
         destroy_domain_block: Cantzella su blocu de domìniu
-        destroy_email_domain_block: Cantzella su blocu de domìniu de s'indiritzu de posta
         destroy_ip_block: Cantzella sa règula IP
         destroy_status: Cantzella s'istadu
         disable_2fa_user: Disativa 2FA
@@ -188,20 +183,16 @@ sc:
         update_status: Atualiza s'istadu
       actions:
         assigned_to_self_report_html: "%{name} s'est auto-assignadu s'informe %{target}"
-        change_email_user_html: "%{name} at mudadu s'indiritzu de posta eletrònica de s'utente %{target}"
-        confirm_user_html: "%{name} at cunfirmadu s'indiritzu de posta eletrònica de s'utente %{target}"
         create_account_warning_html: "%{name} at imbiadu un'avisu a %{target}"
         create_announcement_html: "%{name} at creadu un'annùntziu nou %{target}"
         create_custom_emoji_html: "%{name} at carrigadu un'emoji nou %{target}"
         create_domain_allow_html: "%{name} at permìtidu sa federatzione cun su domìniu %{target}"
         create_domain_block_html: "%{name} at blocadu su domìniu %{target}"
-        create_email_domain_block_html: "%{name} at blocadu su domìniu de posta eletrònica %{target}"
         create_ip_block_html: "%{name} at creadu una règula pro s'IP %{target}"
         demote_user_html: "%{name} at degradadu s'utente %{target}"
         destroy_announcement_html: "%{name} at cantzelladu s'annùntziu %{target}"
         destroy_domain_allow_html: "%{name} no at permìtidu sa federatzione cun su domìniu %{target}"
         destroy_domain_block_html: "%{name} at isblocadu su domìniu %{target}"
-        destroy_email_domain_block_html: "%{name} at isblocadu su domìniu de posta eletrònica %{target}"
         destroy_ip_block_html: "%{name} at cantzelladu sa règula pro s'IP %{target}"
         destroy_status_html: "%{name} at eliminadu sa publicatzione de %{target}"
         disable_2fa_user_html: "%{name} at disativadu su rechisitu de duos fatores pro s'utente %{target}"
@@ -332,14 +323,11 @@ sc:
       view: Bide su blocu de domìniu
     email_domain_blocks:
       add_new: Agiunghe nou
-      created_msg: Domìniu de posta eletrònica blocadu
       delete: Cantzella
       domain: Domìniu
       new:
         create: Agiunghe unu domìniu
-        title: Bloca su domìniu de posta eletrònica nou
       not_permitted: Non permìtidu
-      title: Domìnios de posta eletrònica blocados
     export_domain_allows:
       no_file: Perunu archìviu seletzionadu
     export_domain_blocks:
@@ -582,7 +570,6 @@ sc:
         disallow_account: Non permitas a s'autore
       tags:
         title: Etichetas de tendèntzia
-      title: Tendèntzias
     warning_presets:
       add_new: Agiunghe noa
       delete: Cantzella
@@ -638,9 +625,7 @@ sc:
       guide_link_text: Chie si siat podet contribuire.
     sensitive_content: Cuntenutu sensìbile
   application_mailer:
-    notification_preferences: Muda is preferèntzias de posta
     salutation: "%{name},"
-    settings: 'Muda is preferèntzias de posta: %{link}'
     unsubscribe: Annulla sa sutiscritzione
     view: 'Visualizatzione:'
     view_profile: Visualiza profilu
@@ -677,7 +662,6 @@ sc:
     migrate_account_html: Si boles torrare a indiritzare custu contu a un'àteru, ddu as a pòdere <a href="%{path}">fàghere inoghe</a>.
     or_log_in_with: O intra cun
     progress:
-      confirm: Cunfirma s'indiritzu de posta eletrònica
       details: Is detàllios tuos
       review: Sa revisione nostra
       rules: Atzeta is règulas
@@ -698,9 +682,7 @@ sc:
       link_not_received: No as retzidu su ligòngiu?
     status:
       account_status: Istadu de su contu
-      confirming: Isetende chi sa posta eletrònica siat cumpletada.
       functional: Su contu tuo est operativu.
-      pending: Sa dimanda tua est in protzessu de revisione dae su personale nostru. Podet serbire unu pagu de tempus. As a retzire unu messàgiu eletrònicu si sa dimanda est aprovada.
       redirecting_to: Su contu tuo est inativu pro ite in die de oe est torrende a indiritzare a %{acct}.
     too_fast: Formulàriu imbiadu tropu a lestru, torra a proare.
     use_security_key: Imprea una crae de seguresa
@@ -741,9 +723,6 @@ sc:
       before: 'In antis de sighire, leghe custu cun atentzione:'
       caches: Su cuntenutu chi siat istadu sarvadu in sa memòria temporànea de àteros serbidores podet sighire a esìstere
       data_removal: Is publicatziones tuas e àteros datos ant a èssere cantzellados in manera permanente
-      email_change_html: Podes <a href="%{path}">mudare s'indiritzu tuo de posta eletrònica</a> sena cantzellare su contu
-      email_contact_html: Si no est ancora arribada, podes imbiare unu messàgiu a <a href="mailto:%{email}">%{email}</a> e dimandare agiudu
-      email_reconfirmation_html: Si no ses retzende su messàgiu de cunfirmatzione, ddu podes <a href="%{path}">torrare a dimandare</a>
       irreversible: No as a pòdere ripristinare o torrare a ativare su contu tuo
       more_details_html: Pro àteros detàllios, bide sa <a href="%{terms_path}">normativa de riservadesa</a>.
       username_available: Su nòmine de utente tuo at a torrare a èssere a disponimentu
@@ -973,7 +952,6 @@ sc:
     status:
       subject: "%{name} at publicadu cosa"
   notifications:
-    email_events: Eventos pro notìficas cun posta eletrònica
     email_events_hint: 'Seletziona eventos pro is chi boles retzire notìficas:'
   number:
     human:
@@ -1111,7 +1089,6 @@ sc:
     import: Importatzione
     import_and_export: Importatzione e esportatzione
     migrate: Tràmuda de contu
-    notifications: Notìficas tràmite posta eletrònica
     preferences: Preferèntzias
     profile: Profilu pùblicu
     relationships: Gente chi sighis e sighiduras
@@ -1249,7 +1226,6 @@ sc:
     follow_limit_reached: Non podes sighire prus de %{limit} persones
     invalid_otp_token: Còdighe a duas fases non vàlidu
     otp_lost_help_html: Si as pèrdidu s'atzessu a ambos, podes cuntatare a %{email}
-    seamless_external_login: As abertu sa sessione pro mèdiu de unu servìtziu esternu, e pro custa resone is cunfiguratziones de sa crae de intrada e de posta eletrònica non sunt a disponimentu.
     signed_in_as: 'Sessione aberta comente:'
   verification:
     verification: Verìfica

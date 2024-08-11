@@ -56,7 +56,7 @@ vi:
       demote: Xóa vai trò
       destroyed_msg: Dữ liệu %{username} sẽ được lên lịch xóa ngay bây giờ
       disable: Khóa
-      disable_sign_in_token_auth: Vô hiệu hóa xác minh bằng email
+      disable_sign_in_token_auth: Tắt xác minh bằng email
       disable_two_factor_authentication: Vô hiệu hóa xác minh 2 bước
       disabled: Tạm khóa
       display_name: Biệt danh
@@ -129,7 +129,7 @@ vi:
       resubscribe: Đăng ký lại
       role: Vai trò
       search: Tìm kiếm
-      search_same_email_domain: Tra cứu email
+      search_same_email_domain: Những người khác với cùng tên miền email
       search_same_ip: Tra cứu IP
       security: Bảo mật
       security_measures:
@@ -170,22 +170,22 @@ vi:
         approve_appeal: Chấp nhận kháng cáo
         approve_user: Chấp nhận đăng ký
         assigned_to_self_report: Tự xử lý báo cáo
-        change_email_user: Đổi email
+        change_email_user: Đổi email người dùng
         change_role_user: Đổi vai trò
         confirm_user: Xác minh
         create_account_warning: Cảnh cáo
         create_announcement: Tạo thông báo mới
-        create_canonical_email_block: Tạo chặn tên miền email
+        create_canonical_email_block: Tạo chặn email
         create_custom_emoji: Tạo emoji
         create_domain_allow: Cho phép máy chủ
         create_domain_block: Chặn máy chủ
-        create_email_domain_block: Chặn tên miền email
+        create_email_domain_block: Tạo chặn tên miền email
         create_ip_block: Tạo chặn IP mới
         create_unavailable_domain: Máy chủ không khả dụng
         create_user_role: Tạo vai trò
         demote_user: Xóa vai trò
         destroy_announcement: Xóa thông báo
-        destroy_canonical_email_block: Bỏ chặn tên miền email
+        destroy_canonical_email_block: Bỏ chặn email
         destroy_custom_emoji: Xóa emoji
         destroy_domain_allow: Bỏ thanh trừng máy chủ
         destroy_domain_block: Bỏ chặn máy chủ
@@ -197,10 +197,10 @@ vi:
         destroy_user_role: Xóa vai trò
         disable_2fa_user: Vô hiệu hóa 2FA
         disable_custom_emoji: Vô hiệu hóa emoji
-        disable_sign_in_token_auth_user: Vô hiệu hóa xác minh bằng email
+        disable_sign_in_token_auth_user: Tắt xác minh bằng email cho người dùng
         disable_user: Vô hiệu hóa đăng nhập
         enable_custom_emoji: Cho phép emoji
-        enable_sign_in_token_auth_user: Bật xác minh bằng email
+        enable_sign_in_token_auth_user: Bật xác minh bằng email cho người dùng
         enable_user: Bỏ vô hiệu hóa đăng nhập
         memorialize_account: Đánh dấu tưởng niệm
         promote_user: Chỉ định vai trò
@@ -235,21 +235,21 @@ vi:
         confirm_user_html: "%{name} đã xác minh địa chỉ email của %{target}"
         create_account_warning_html: "%{name} đã cảnh cáo %{target}"
         create_announcement_html: "%{name} tạo thông báo mới %{target}"
-        create_canonical_email_block_html: "%{name} chặn email với hàm băm %{target}"
+        create_canonical_email_block_html: "%{name} đã chặn email với hash %{target}"
         create_custom_emoji_html: "%{name} đã tải lên biểu tượng cảm xúc mới %{target}"
         create_domain_allow_html: "%{name} kích hoạt liên hợp với %{target}"
         create_domain_block_html: "%{name} chặn máy chủ %{target}"
-        create_email_domain_block_html: "%{name} chặn tên miền email %{target}"
+        create_email_domain_block_html: "%{name} đã chặn tên miền email %{target}"
         create_ip_block_html: "%{name} đã chặn IP %{target}"
         create_unavailable_domain_html: "%{name} ngưng phân phối với máy chủ %{target}"
         create_user_role_html: "%{name} đã tạo vai trò %{target}"
         demote_user_html: "%{name} đã xóa vai trò của %{target}"
         destroy_announcement_html: "%{name} xóa thông báo %{target}"
-        destroy_canonical_email_block_html: "%{name} bỏ chặn email với hàm băm %{target}"
+        destroy_canonical_email_block_html: "%{name} đã bỏ chặn email với hash %{target}"
         destroy_custom_emoji_html: "%{name} đã xóa emoji %{target}"
         destroy_domain_allow_html: "%{name} đã ngừng liên hợp với %{target}"
         destroy_domain_block_html: "%{name} bỏ chặn máy chủ %{target}"
-        destroy_email_domain_block_html: "%{name} bỏ chặn tên miền email %{target}"
+        destroy_email_domain_block_html: "%{name} đã bỏ chặn email %{target}"
         destroy_instance_html: "%{name} thanh trừng máy chủ %{target}"
         destroy_ip_block_html: "%{name} bỏ chặn IP %{target}"
         destroy_status_html: "%{name} đã xóa tút của %{target}"
@@ -257,10 +257,10 @@ vi:
         destroy_user_role_html: "%{name} đã xóa vai trò %{target}"
         disable_2fa_user_html: "%{name} đã vô hiệu hóa xác minh hai bước của %{target}"
         disable_custom_emoji_html: "%{name} đã ẩn emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} vô hiệu hóa xác minh email của %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} đã tắt xác minh email của %{target}"
         disable_user_html: "%{name} vô hiệu hóa đăng nhập %{target}"
         enable_custom_emoji_html: "%{name} cho phép Emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} bật xác minh email của %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} đã bật xác minh email của %{target}"
         enable_user_html: "%{name} bỏ vô hiệu hóa đăng nhập %{target}"
         memorialize_account_html: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
         promote_user_html: "%{name} chỉ định vai trò cho %{target}"
@@ -268,7 +268,7 @@ vi:
         reject_user_html: "%{name} đã từ chối đăng ký từ %{target}"
         remove_avatar_user_html: "%{name} đã xóa ảnh đại diện của %{target}"
         reopen_report_html: "%{name} mở lại báo cáo %{target}"
-        resend_user_html: "%{name} gửi lại email xác minh cho %{target}"
+        resend_user_html: "%{name} đã gửi lại email xác minh cho %{target}"
         reset_password_user_html: "%{name} đã đặt lại mật khẩu của %{target}"
         resolve_report_html: "%{name} đã xử lý báo cáo %{target}"
         sensitive_account_html: "%{name} đánh dấu nội dung của %{target} là nhạy cảm"
@@ -424,7 +424,7 @@ vi:
       allow_registrations_with_approval: Cho đăng ký nhưng duyệt thủ công
       attempts_over_week:
         other: "%{count} lần thử đăng ký vào tuần trước"
-      created_msg: Đã chặn tên miền email này
+      created_msg: Đã chặn tên miền email thành công
       delete: Xóa bỏ
       dns:
         types:
@@ -434,7 +434,7 @@ vi:
         create: Thêm địa chỉ
         resolve: Xử lý tên miền
         title: Chặn tên miền email mới
-      no_email_domain_block_selected: Không có chặn e-mail nào thay đổi vì không có mục nào được chọn
+      no_email_domain_block_selected: Không có thay đổi vì không có mục nào được chọn
       not_permitted: Không cho phép
       resolved_dns_records_hint_html: Tên miền phân giải thành các tên miền MX sau, các tên miền này chịu trách nhiệm cuối cùng trong việc chấp nhận email. Chặn tên miền MX sẽ chặn đăng ký từ bất kỳ địa chỉ email nào sử dụng cùng một tên miền MX, ngay cả khi tên miền hiển thị là khác. <strong>Cẩn thận đừng chặn những dịch vụ email lớn.</strong>
       resolved_through_html: Đã xử lý thông qua %{domain}
@@ -588,7 +588,7 @@ vi:
         resolve_description_html: Không áp dụng trừng phạt nào và đóng báo cáo.
         silence_description_html: Chỉ hiển thị trang với những người đã theo dõi hoặc tìm kiếm thủ công.
         suspend_description_html: Tài khoản và tất cả nội dung của nó sẽ không thể truy cập được và cuối cùng sẽ bị xóa, đồng thời không thể tương tác với tài khoản đó. Có thể đảo ngược trong vòng 30 ngày. Đóng tất cả các báo cáo đối với tài khoản này.
-      actions_description_html: Nếu áp đặt trừng phạt, một email thông báo sẽ được gửi cho người này, ngoại trừ <strong>Spam</strong>.
+      actions_description_html: Nếu áp đặt kiểm duyệt, một email thông báo sẽ được gửi cho người này, ngoại trừ <strong>Spam</strong>.
       actions_description_remote_html: Chọn hành động cần thực hiện để xử lý báo cáo này. Điều này sẽ chỉ ảnh hưởng đến cách máy chủ <strong>của bạn</strong> giao tiếp với tài khoản này và xử lý nội dung của nó.
       add_to_report: Bổ sung báo cáo
       already_suspended_badges:
@@ -691,7 +691,7 @@ vi:
         manage_appeals: Quản lý kháng cáo
         manage_appeals_description: Cho phép xem xét kháng cáo đối với các hành động kiểm duyệt
         manage_blocks: Quản lý chặn
-        manage_blocks_description: Cho phép chặn các nhà cung cấp e-mail và địa chỉ IP
+        manage_blocks_description: Cho phép người dùng tự chặn các nhà cung cấp email và địa chỉ IP
         manage_custom_emojis: Quản lý emoji
         manage_custom_emojis_description: Cho phép quản lý các emoji tùy chỉnh trên máy chủ
         manage_federation: Quản lý liên hợp
@@ -709,7 +709,7 @@ vi:
         manage_taxonomies: Quản lý phân loại
         manage_taxonomies_description: Cho phép đánh giá nội dung xu hướng và cập nhật cài đặt hashtag
         manage_user_access: Quản lý người truy cập
-        manage_user_access_description: Cho phép vô hiệu hóa xác thực hai bước của người khác, thay đổi địa chỉ email và đặt lại mật khẩu của họ
+        manage_user_access_description: Cho phép người dùng tắt xác minh hai bước của người khác, đổi địa chỉ email và đặt lại mật khẩu của họ
         manage_users: Quản lý người
         manage_users_description: Cho phép xem thông tin chi tiết của người khác và thực hiện các hành động kiểm duyệt
         manage_webhooks: Quản lý Webhook
@@ -784,7 +784,7 @@ vi:
       destroyed_msg: Đã xóa tập tin tải lên thành công!
     software_updates:
       critical_update: Quan trọng — vui lòng cập nhật sớm
-      description: Bạn nên cập nhật Mastodon phiên bản mới nhất để được hưởng lợi từ các bản sửa lỗi và thêm tính năng mới. Hơn nữa, quan trọng là phải cập nhật Mastodon kịp thời để tránh các vấn đề bảo mật. Vì những lý do này, Mastodon sẽ kiểm tra các bản cập nhật 30 phút một lần và sẽ thông báo cho bạn theo tùy chọn thông báo qua email của bạn.
+      description: Bạn nên cập nhật Mastodon phiên bản mới nhất để được hưởng lợi từ các bản sửa lỗi và thêm tính năng mới. Nhất là để tránh các vấn đề bảo mật. Vì những lý do này, Mastodon sẽ kiểm tra các bản cập nhật 30 phút một lần và sẽ thông báo cho bạn theo tùy chọn thông báo qua email của bạn.
       documentation_link: Tìm hiểu thêm
       release_notes: Có gì mới?
       title: Bản cập nhật mới
@@ -893,10 +893,16 @@ vi:
     trends:
       allow: Cho phép
       approved: Đã cho phép
+      confirm_allow: Bạn có chắc muốn cho phép những hashtag đã chọn?
+      confirm_disallow: Bạn có chắc muốn cấm những hashtag đã chọn?
       disallow: Cấm
       links:
         allow: Cho phép liên kết
         allow_provider: Cho phép nguồn đăng
+        confirm_allow: Bạn có chắc muốn cho phép những liên kết đã chọn?
+        confirm_allow_provider: Bạn có chắc muốn cho phép những tên miền email đã chọn?
+        confirm_disallow: Bạn có chắc muốn cấm những liên kết đã chọn?
+        confirm_disallow_provider: Bạn có chắc muốn cấm những tên miền email đã chọn?
         description_html: Đây là những liên kết được chia sẻ nhiều trên máy chủ của bạn. Nó có thể giúp người dùng tìm hiểu những gì đang xảy ra trên thế giới. Không có liên kết nào được hiển thị công khai cho đến khi bạn duyệt nguồn đăng. Bạn cũng có thể cho phép hoặc từ chối từng liên kết riêng.
         disallow: Cấm liên kết
         disallow_provider: Cấm nguồn đăng
@@ -919,6 +925,10 @@ vi:
       statuses:
         allow: Cho phép tút
         allow_account: Cho phép người đăng
+        confirm_allow: Bạn có chắc muốn cho phép những tút đã chọn?
+        confirm_allow_account: Bạn có chắc muốn cho phép những người đã chọn?
+        confirm_disallow: Bạn có chắc muốn cấm những tút đã chọn?
+        confirm_disallow_account: Bạn có chắc muốn cấm những người đã chọn?
         description_html: Đây là những tút đang được chia sẻ và yêu thích rất nhiều trên máy chủ của bạn. Nó có thể giúp người mới và người cũ tìm thấy nhiều người hơn để theo dõi. Không có tút nào được hiển thị công khai cho đến khi bạn cho phép người đăng và người cho phép đề xuất tài khoản của họ cho người khác. Bạn cũng có thể cho phép hoặc từ chối từng tút riêng.
         disallow: Cấm tút
         disallow_account: Cấm người đăng
@@ -949,7 +959,7 @@ vi:
         usage_comparison: Dùng %{today} lần hôm nay, so với %{yesterday} hôm qua
         used_by_over_week:
           other: "%{count} người dùng tuần rồi"
-      title: Xu hướng
+      title: Đề xuất & Xu hướng
       trending: Xu hướng
     warning_presets:
       add_new: Thêm mới
@@ -1033,9 +1043,9 @@ vi:
       guide_link_text: Ai cũng có thể đóng góp.
     sensitive_content: Nội dung nhạy cảm
   application_mailer:
-    notification_preferences: Thay đổi tùy chọn email
+    notification_preferences: Thay đổi thiết lập email
     salutation: "%{name},"
-    settings: 'Thay đổi tùy chọn email: %{link}'
+    settings: 'Thay đổi thiết lập email: %{link}'
     unsubscribe: Hủy đăng ký
     view: 'Chi tiết:'
     view_profile: Xem trang hồ sơ
@@ -1055,7 +1065,7 @@ vi:
       hint_html: Còn một xíu nữa! Chúng tôi cần xác minh bạn là con người (để chúng tôi có thể ngăn chặn thư rác!). Nhập CAPTCHA bên dưới và nhấn "Tiếp tục".
       title: Kiểm tra an toàn
     confirmations:
-      awaiting_review: Đã xác minh email của bạn! Kiểm duyệt viên %{domain} đang xem xét đăng ký của bạn. Bạn sẽ nhận được một email nếu tài khoản của bạn được duyệt!
+      awaiting_review: Đã nhận yêu cầu! Kiểm duyệt viên %{domain} đang xem xét đăng ký của bạn. Bạn sẽ nhận được một email nếu tài khoản của bạn được duyệt!
       awaiting_review_title: Đăng ký của bạn đang chờ duyệt
       clicking_this_link: nhấn vào link này
       login_link: đăng nhập
@@ -1063,7 +1073,7 @@ vi:
       redirect_to_app_html: Bạn đã có thể chuyển tiếp tới <strong>%{app_name}</strong>. Nếu không có gì xảy ra, thử %{clicking_this_link} hoặc tự quay lại app.
       registration_complete: Hoàn tất đăng ký trên %{domain}!
       welcome_title: Chào mừng, %{name}!
-      wrong_email_hint: Nếu địa chỉ email đó không chính xác, bạn có thể thay đổi nó trong cài đặt tài khoản.
+      wrong_email_hint: Nếu địa chỉ email đó không chính xác, bạn có thể đổi lại trong cài đặt tài khoản.
     delete_account: Xóa tài khoản
     delete_account_html: Nếu bạn muốn xóa tài khoản của mình, hãy <a href="%{path}">yêu cầu tại đây</a>. Bạn sẽ được yêu cầu xác nhận.
     description:
@@ -1084,7 +1094,7 @@ vi:
     or_log_in_with: Hoặc đăng nhập bằng
     privacy_policy_agreement_html: Tôi đã đọc và đồng ý <a href="%{privacy_policy_path}" target="_blank">chính sách bảo mật</a>
     progress:
-      confirm: Xác minh email
+      confirm: Xác nhận email
       details: Điền thông tin
       review: Đợi duyệt
       rules: Đọc nội quy
@@ -1165,9 +1175,9 @@ vi:
       before: 'Trước khi tiếp tục, xin vui lòng xem xét cẩn thận:'
       caches: Nội dung đã lưu trữ trên các máy chủ khác có thể vẫn tồn tại
       data_removal: Bài viết của bạn và dữ liệu khác sẽ bị xóa vĩnh viễn
-      email_change_html: Bạn có thể <a href="%{path}">thay đổi địa chỉ email</a> mà không cần phải xóa tài khoản
-      email_contact_html: Nếu vẫn không nhận được, bạn có thể liên hệ <a href="mailto:%{email}">%{email}</a> để được giúp đỡ
-      email_reconfirmation_html: Nếu bạn không nhận được email xác minh, hãy thử <a href="%{path}">yêu cầu lại</a>
+      email_change_html: Bạn có thể <a href="%{path}">đổi địa chỉ email</a> mà không cần phải xóa tài khoản
+      email_contact_html: Nếu vẫn không nhận được, hãy liên hệ <a href="mailto:%{email}">%{email}</a> để được giúp đỡ
+      email_reconfirmation_html: Nếu bạn không nhận được email xác nhận, hãy thử <a href="%{path}">yêu cầu lại</a>
       irreversible: Bạn sẽ không thể khôi phục hoặc kích hoạt lại tài khoản của mình
       more_details_html: Đọc <a href="%{terms_path}">chính sách bảo mật</a> để biết thêm chi tiết.
       username_available: Tên người dùng của bạn sẽ có thể đăng ký lại
@@ -1403,16 +1413,16 @@ vi:
     unsubscribe:
       action: Đúng, hủy đăng ký
       complete: Đã hủy đăng ký
-      confirmation_html: Bạn có có chắc muốn hủy đăng ký %{type} Mastodon trên %{domain} cho %{email}? Bạn có thể đăng ký lại từ <a href="%{settings_path}">cài đặt thông báo email</a>.
+      confirmation_html: Bạn có chắc muốn hủy đăng ký %{type} Mastodon trên %{domain} tới %{email}? Bạn có thể đăng ký lại từ <a href="%{settings_path}">cài đặt thông báo email</a>.
       emails:
         notification_emails:
           favourite: email thông báo lượt thích
-          follow: email thông báo theo dõi
+          follow: email thông báo người theo dõi mới
           follow_request: email thông báo yêu cầu theo dõi
           mention: email thông báo lượt nhắc đến
           reblog: email thông báo lượt đăng lại
       resubscribe_html: Nếu đổi ý, bạn có thể đăng ký lại từ <a href="%{settings_path}">cài đặt thông báo email</a>.
-      success_html: Bạn sẽ không còn nhận %{type} Mastodon trên %{domain} cho %{email}.
+      success_html: Bạn sẽ không còn nhận %{type} Mastodon trên %{domain} tới %{email}.
       title: Hủy đăng ký
   media_attachments:
     validations:
@@ -1493,8 +1503,8 @@ vi:
     update:
       subject: "%{name} đã sửa một tút"
   notifications:
-    administration_emails: Email thông báo admin
-    email_events: Email
+    administration_emails: Thông báo email admin
+    email_events: Những sự kiện thông báo email
     email_events_hint: 'Chọn những hoạt động sẽ gửi thông báo qua email:'
   number:
     human:
@@ -1653,7 +1663,7 @@ vi:
     import: Nhập dữ liệu
     import_and_export: Dữ liệu
     migrate: Chuyển tài khoản sang máy chủ khác
-    notifications: Thông báo email
+    notifications: Thông báo qua email
     preferences: Chung
     profile: Hồ sơ
     relationships: Quan hệ

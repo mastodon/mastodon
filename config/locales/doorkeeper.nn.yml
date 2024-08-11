@@ -83,6 +83,7 @@ nn:
         access_denied: Ressurseigaren eller autorisasjonstenaren avviste førespurnaden.
         credential_flow_not_configured: Flyten «Resource Owner Password Credentials» kunne ikkje fullførast sidan «Doorkeeper.configure.resource_owner_from_credentials» ikkje er konfigurert.
         invalid_client: Klientautentisering feila på grunn av ukjent klient, ingen inkludert autentisering, eller ikkje støtta autentiseringsmetode.
+        invalid_code_challenge_method: Kodeutfordringsmetoden må vera S256, klartekst er ikkje støtta.
         invalid_grant: Autoriseringa er ugyldig, utløpt, oppheva, stemmer ikkje med omdirigerings-URIen eller var tildelt ein annan klient.
         invalid_redirect_uri: Omdirigerings-URLen er ikkje gyldig.
         invalid_request:

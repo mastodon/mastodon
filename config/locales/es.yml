@@ -432,7 +432,7 @@ es:
       attempts_over_week:
         one: "%{count} intento durante la última semana"
         other: "%{count} intentos de registro durante la última semana"
-      created_msg: Dominio de correo añadido a la lista negra con éxito
+      created_msg: Dominio de correo bloqueado con éxito
       delete: Borrar
       dns:
         types:
@@ -441,12 +441,12 @@ es:
       new:
         create: Añadir dominio
         resolve: Resolver dominio
-        title: Nueva entrada en la lista negra de correo
-      no_email_domain_block_selected: No se han cambiado bloqueos de dominio ya que ninguno ha sido seleccionado
+        title: Bloquear nuevo dominio de correo
+      no_email_domain_block_selected: No se han cambiado bloqueos de dominio de correo, ya que ninguno ha sido seleccionado
       not_permitted: No permitido
-      resolved_dns_records_hint_html: El nombre de dominio resuelve los siguientes dominios MX, los cuales son responsables en última instancia de aceptar el correo electrónico. Bloquear un dominio MX bloqueará los registros de cualquier dirección de correo electrónico que utilice el mismo dominio MX, incluso si el nombre de dominio visible es diferente. <strong>Tenga cuidado de no bloquear los principales proveedores de correo electrónico.</strong>
+      resolved_dns_records_hint_html: El nombre de dominio resuelve los siguientes dominios MX, los cuales son responsables en última instancia de aceptar el correo electrónico. Bloquear un dominio MX bloqueará los registros de cualquier dirección de correo electrónico que utilice el mismo dominio MX, incluso si el nombre de dominio visible es diferente. <strong>Ten cuidado de no bloquear los principales proveedores de correo electrónico.</strong>
       resolved_through_html: Resuelto a través de %{domain}
-      title: Lista negra de correo
+      title: Dominios de correo bloqueados
     export_domain_allows:
       new:
         title: Importar dominios permitidos
@@ -705,7 +705,7 @@ es:
         manage_appeals: Administrar Apelaciones
         manage_appeals_description: Permite a los usuarios revisar apelaciones contra acciones de moderación
         manage_blocks: Administrar Bloqueos
-        manage_blocks_description: Permite a los usuarios bloquear los proveedores de e-mail y las direcciones IP
+        manage_blocks_description: Permite a los usuarios bloquear proveedores de correo electrónico y direcciones IP
         manage_custom_emojis: Administrar Emojis Personalizados
         manage_custom_emojis_description: Permite a los usuarios gestionar emojis personalizados en el servidor
         manage_federation: Administrar Federación
@@ -907,10 +907,16 @@ es:
     trends:
       allow: Permitir
       approved: Aprobadas
+      confirm_allow: "¿Estás seguro de que deseas permitir la etiqueta seleccionada?"
+      confirm_disallow: "¿Estás seguro de que deseas restringir la etiqueta seleccionada?"
       disallow: No permitir
       links:
         allow: Permitir enlace
         allow_provider: Permitir medio
+        confirm_allow: "¿Estás seguro de que deseas permitir los enlaces seleccionados?"
+        confirm_allow_provider: "¿Estás seguro de que deseas permitir los proveedores seleccionados?"
+        confirm_disallow: "¿Estás seguro de que deseas restringir los enlaces seleccionados?"
+        confirm_disallow_provider: "¿Estás seguro de que deseas restringir los proveedores seleccionados?"
         description_html: Estos son enlaces que actualmente están siendo compartidos mucho por las cuentas desde las que tu servidor ve los mensajes. Pueden ayudar a tus usuarios a averiguar qué está pasando en el mundo. Ningún enlace se muestren públicamente hasta que autorice al dominio. También puede permitir o rechazar enlaces individuales.
         disallow: Rechazar enlace
         disallow_provider: Rechazar medio
@@ -934,6 +940,10 @@ es:
       statuses:
         allow: Permitir publicación
         allow_account: Permitir autor
+        confirm_allow: "¿Estás seguro de que deseas permitir los estados seleccionados?"
+        confirm_allow_account: "¿Estás seguro de que deseas permitir las cuentas seleccionadas?"
+        confirm_disallow: "¿Estás seguro de que deseas restringir los estados seleccionados?"
+        confirm_disallow_account: "¿Estás seguro de que deseas restringir las cuentas seleccionadas?"
         description_html: Estos son publicaciones que tu servidor conoce que están siendo compartidas y marcadas como favoritas mucho en este momento. Pueden ayudar a tus usuarios nuevos y retornantes a encontrar más personas a las que seguir. No hay mensajes que se muestren públicamente hasta que apruebes el autor y el autor permita que su cuenta sea sugerida a otros. También puedes permitir o rechazar mensajes individuales.
         disallow: No permitir publicación
         disallow_account: No permitir autor
@@ -966,7 +976,7 @@ es:
         used_by_over_week:
           one: Usada por una persona durante la última semana
           other: Usada por %{count} personas durante la última semana
-      title: Tendencias
+      title: Recomendaciones y tendencias
       trending: En tendencia
     warning_presets:
       add_new: Añadir nuevo
@@ -1183,9 +1193,9 @@ es:
       before: 'Antes de continuar, por favor lee con atención las siguientes notas:'
       caches: El contenido que ha sido almacenado en caché por otros servidores puede persistir
       data_removal: Tus publicaciones y el resto de datos se eliminarán definitivamente
-      email_change_html: Puedes <a href="%{path}"> cambiar tu dirección de correo electrónico</a> sin eliminar tu cuenta
+      email_change_html: Puedes <a href="%{path}">cambiar tu dirección de correo electrónico</a> sin eliminar tu cuenta
       email_contact_html: Si aún no te ha llegado, puedes escribir a <a href="mailto:%{email}">%{email}</a> para pedir ayuda
-      email_reconfirmation_html: Si no te ha llegado el correo de confirmación, puedes <a href="%{path}"> volver a solicitarlo</a>
+      email_reconfirmation_html: Si no te ha llegado el correo de confirmación, puedes <a href="%{path}">volver a solicitarlo</a>
       irreversible: No podrás restaurar ni reactivar tu cuenta
       more_details_html: Para más detalles, ver <a href="%{terms_path}"> la política de privacidad</a>.
       username_available: Tu nombre de usuario volverá a estar disponible
@@ -1429,16 +1439,16 @@ es:
     unsubscribe:
       action: Sí, cancelar suscripción
       complete: Has cancelado tu suscripción
-      confirmation_html: ¿Estás seguro de que quieres dejar de recibir %{type} de Mastodon en %{domain} a tu email %{email}? Siempre podrás volver a suscribirte desde los <a href="%{settings_path}"> ajustes de notificación por correo.</a>.
+      confirmation_html: ¿Estás seguro de que quieres dejar de recibir %{type} de Mastodon en %{domain} a tu correo %{email}? Siempre podrás volver a suscribirte de nuevo desde los <a href="%{settings_path}">ajustes de notificación por correo</a>.
       emails:
         notification_emails:
-          favourite: notificaciones de me gusta por correo
-          follow: notificaciones de seguidores por correo
-          follow_request: notificaciones de peticiones de seguimiento por correo
-          mention: notificaciones de menciones por correo
-          reblog: notificaciones de impulsos por correo
+          favourite: correos de notificación de favoritos
+          follow: correos de notificación de nuevos seguidores
+          follow_request: correos de notificación de solicitud de seguidor
+          mention: correos de notificación de menciones
+          reblog: correos de notificación de impulsos
       resubscribe_html: Si te has dado de baja por error, puedes volver a darte de alta desde tus <a href="%{settings_path}">ajustes de notificaciones por correo</a>.
-      success_html: Ya no recibirás %{type} de mastodon en %{domain} a tu correo %{email}.
+      success_html: Ya no recibirás %{type} de Mastodon en %{domain} a tu correo %{email}.
       title: Cancelar suscripición
   media_attachments:
     validations:
@@ -1519,7 +1529,7 @@ es:
     update:
       subject: "%{name} editó una publicación"
   notifications:
-    administration_emails: Notificaciones de administración por correo electrónico
+    administration_emails: Notificaciones administrativas por correo
     email_events: Eventos para notificaciones por correo electrónico
     email_events_hint: 'Selecciona los eventos para los que deseas recibir notificaciones:'
   number:
@@ -1926,7 +1936,7 @@ es:
     invalid_otp_token: Código de dos factores incorrecto
     otp_lost_help_html: Si perdiste al acceso a ambos, puedes ponerte en contancto con %{email}
     rate_limited: Demasiados intentos de autenticación, inténtalo de nuevo más tarde.
-    seamless_external_login: Has iniciado sesión desde un servicio externo, así que los ajustes de contraseña y correo no están disponibles.
+    seamless_external_login: Has iniciado sesión desde un servicio externo, por lo que los ajustes de contraseña y correo electrónico no están disponibles.
     signed_in_as: 'Sesión iniciada como:'
   verification:
     extra_instructions_html: <strong>Consejo:</strong> El enlace en tu web puede ser invisible. La parte importante es <code>rel="me"</code>, que evita la suplantación de identidad en sitios con contenido generado por el usuario. Puedes incluso usar una etiqueta <code>enlace</code> en el encabezado de la página en vez de <code>a</code>, pero el HTML debe ser accesible sin ejecutar JavaScript.

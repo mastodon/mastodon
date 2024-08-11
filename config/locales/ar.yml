@@ -39,7 +39,6 @@ ar:
       created_msg: تم إنشاء ملاحظة الإشراف بنجاح!
       destroyed_msg: تم تدمير ملاحظة الإشراف بنجاح!
     accounts:
-      add_email_domain_block: حظر نطاق البريد الإلكتروني هذا
       approve: صادِق عليه
       approved_msg: تمت الموافقة على تسجيل %{username}
       are_you_sure: هل أنت متأكد؟
@@ -66,7 +65,6 @@ ar:
       demote: إنزال الدور الوظيفي
       destroyed_msg: بيانات حساب %{username} الآن في قائمة الانتظار ليتم حذفها قريباً
       disable: تجميد
-      disable_sign_in_token_auth: تعطيل مصادقة رمز البريد الإلكتروني
       disable_two_factor_authentication: تعطيل المصادقة بخطوتين
       disabled: معطَّل
       display_name: عرض الاسم
@@ -75,7 +73,6 @@ ar:
       email: البريد الإلكتروني
       email_status: حالة البريد الإلكتروني
       enable: تفعيل
-      enable_sign_in_token_auth: تمكين مصادقة رمز البريد الإلكتروني
       enabled: مفعَّل
       enabled_msg: تم إلغاء تجميد حساب %{username}
       followers: المتابِعون
@@ -144,7 +141,6 @@ ar:
       resubscribe: إعادة الاشتراك
       role: الدور
       search: البحث
-      search_same_email_domain: مستخدمون آخرون لديهم نفس نطاق البريد الإلكتروني
       search_same_ip: مستخدِمون آخرون بنفس الـ IP
       security: الأمان
       security_measures:
@@ -185,26 +181,21 @@ ar:
         approve_appeal: الموافقة على الطعن
         approve_user: الموافقة على المستخدم
         assigned_to_self_report: أسند التقرير
-        change_email_user: تغيير عنوان البريد الإلكتروني الخاص بالمستخدم
         change_role_user: تم تغيير الرتبه للمستخدم
         confirm_user: تأكيد المستخدم
         create_account_warning: إنشاء تحذير
         create_announcement: إنشاء إعلان
-        create_canonical_email_block: إنشاء حظر للبريد
         create_custom_emoji: إنشاء إيموجي مخصص
         create_domain_allow: إنشاء نطاق المسموح به
         create_domain_block: إنشاء حظر لنطاق
-        create_email_domain_block: إنشاء كتلة نطاق بريد إلكتروني
         create_ip_block: إنشاء قاعدة IP جديدة
         create_unavailable_domain: إنشاء نطاق غير متوفر
         create_user_role: انشاء دور
         demote_user: إنزال رتبة المستخدم
         destroy_announcement: احذف الإعلان
-        destroy_canonical_email_block: حذف نطاق للبريد
         destroy_custom_emoji: احذف الإيموجي المخصص
         destroy_domain_allow: حذف النطاق المسموح به
         destroy_domain_block: إزالة حظر النطاق
-        destroy_email_domain_block: حذف حظر نطاق بريد إلكتروني
         destroy_instance: تنظيف النطاق
         destroy_ip_block: حذف قاعدة IP
         destroy_status: حذف المنشور
@@ -212,10 +203,8 @@ ar:
         destroy_user_role: حذف الدور
         disable_2fa_user: تعطيل 2FA
         disable_custom_emoji: تعطيل الإيموجي المخصص
-        disable_sign_in_token_auth_user: تعطيل مصادقة رمز البريد الإلكتروني للمستخدم
         disable_user: تعطيل المستخدم
         enable_custom_emoji: تفعيل الإيموجي المخصص
-        enable_sign_in_token_auth_user: تمكين مصادقة رمز البريد الإلكتروني للمستخدم
         enable_user: تفعيل المستخدم
         memorialize_account: جعل الحساب تذكاريا
         promote_user: ترقية المستخدم
@@ -244,26 +233,20 @@ ar:
         approve_appeal_html: وافق %{name} على استئناف الطعن بشأن قرار الإشراف من %{target}
         approve_user_html: وافق %{name} على تسجيل %{target}
         assigned_to_self_report_html: قام %{name} بإسناد التقرير %{target} لأنفسهم
-        change_email_user_html: غيّر %{name} عنوان البريد الإلكتروني للمستخدم %{target}
         change_role_user_html: قام %{name} بإنشاء قاعدة للـIP %{target}
-        confirm_user_html: "%{name} قد قام بتأكيد عنوان البريد الإلكتروني لـ %{target}"
         create_account_warning_html: قام %{name} بإرسال تحذير إلى %{target}
         create_announcement_html: قام %{name} بإنشاء إعلان جديد %{target}
-        create_canonical_email_block_html: قام %{name} بحظر نطاق البريد الإلكتروني %{target}
         create_custom_emoji_html: "%{name} قام برفع إيموجي جديد %{target}"
         create_domain_allow_html: قام %{name} بإضافة النطاق %{target} إلى القائمة البيضاء
         create_domain_block_html: "%{name} قام بحجب نطاق %{target}"
-        create_email_domain_block_html: قام %{name} بحظر نطاق البريد الإلكتروني %{target}
         create_ip_block_html: قام %{name} بإنشاء قاعدة للـIP %{target}
         create_unavailable_domain_html: قام %{name} بتوقيف التوصيل للنطاق %{target}
         create_user_role_html: "%{name} أنشأ رتبه %{target}"
         demote_user_html: قام %{name} بخفض الرتبة الوظيفية لـ%{target}
         destroy_announcement_html: قام %{name} بحذف الإعلان %{target}
-        destroy_canonical_email_block_html: قام %{name} برفع الحظر عن نطاق البريد الإلكتروني %{target}
         destroy_custom_emoji_html: قام %{name} بتحديث الإيموجي %{target}
         destroy_domain_allow_html: قام %{name} بمنع الاتحاد مع النطاق %{target}
         destroy_domain_block_html: قام %{name} برفع الحظر عن النطاق %{target}
-        destroy_email_domain_block_html: قام %{name} برفع الحظر عن نطاق البريد الإلكتروني %{target}
         destroy_instance_html: "%{name} قام بحجب نطاق %{target}"
         destroy_ip_block_html: قام %{name} بحذف قاعدة للـIP %{target}
         destroy_status_html: قام %{name} بحذف منشور من %{target}
@@ -271,10 +254,8 @@ ar:
         destroy_user_role_html: "%{name} أنشأ رتبه %{target}"
         disable_2fa_user_html: قام %{name} بتعطيل المصادقة بخطوتين للمستخدم %{target}
         disable_custom_emoji_html: قام %{name} بتعطيل الإيموجي %{target}
-        disable_sign_in_token_auth_user_html: "%{name} تعطيل مصادقة رمز البريد الإلكتروني لـ %{target}"
         disable_user_html: قام %{name} بتعطيل تسجيل الدخول للمستخدم %{target}
         enable_custom_emoji_html: قام %{name} بتنشيط الإيموجي %{target}
-        enable_sign_in_token_auth_user_html: "%{name} تمكين مصادقة رمز البريد الإلكتروني لـ %{target}"
         enable_user_html: قام %{name} بتنشيط تسجيل الدخول للمستخدم %{target}
         memorialize_account_html: قام %{name} بتحويل حساب %{target} إلى صفحة تذكارية
         promote_user_html: قام %{name} بترويج المستخدم %{target}
@@ -282,7 +263,6 @@ ar:
         reject_user_html: رفض %{name} تسجيل %{target}
         remove_avatar_user_html: قام %{name} بإزالة صورة %{target} الرمزية
         reopen_report_html: قام %{name} بإعادة فتح الشكوى %{target}
-        resend_user_html: "%{name} إعادة إرسال البريد الإلكتروني للتأكيد لـ %{target}"
         reset_password_user_html: قام %{name} بإعادة تعيين كلمة مرور المستخدم %{target}
         resolve_report_html: قام %{name} بمعالجة الشكوى %{target}
         sensitive_account_html: قام %{name} بوضع علامة حساس على محتوى %{target}
@@ -461,7 +441,6 @@ ar:
         other: "%{count} محاولات تسجيل في آخر أسبوع"
         two: "%{count} محاولتا تسجيل في آخر أسبوع"
         zero: "%{count} محاولة تسجيل في آخر أسبوع"
-      created_msg: لقد دخل حظر نطاق البريد الإلكتروني حيّز الخدمة
       delete: حذف
       dns:
         types:
@@ -470,12 +449,8 @@ ar:
       new:
         create: إضافة نطاق
         resolve: العثور على عنوان النطاق
-        title: إضافة نطاق بريد جديد إلى اللائحة السوداء
-      no_email_domain_block_selected: لم يطرأ أي تغيير على أي نطاق بريد بما أنه لم يتم اختيار أي نطاق
       not_permitted: غير مسموح به
-      resolved_dns_records_hint_html: عنوان النطاق يعود لخوادم البريد (MX) التالية وهو ما يسمح للنطاق باستقبال البريد. حظر خوادم البريد هذه سوف يتسبب في منع أي تسجيل خلال أي نطاق يستخدم هذه الخوادم حتى لو كان اسم النطاق مختلف عن اسماء خوادم البريد.<strong>احذر من حظر مزودي البريد العالميين.</strong>
       resolved_through_html: الحصول على العنوان من خلال %{domain}
-      title: القائمة السوداء للبريد الإلكتروني
     export_domain_allows:
       new:
         title: استيراد قامة النطاقات المسموحة
@@ -642,7 +617,6 @@ ar:
         resolve_description_html: ولن يُتخذ أي إجراء ضد الحساب المبلّغ عنه، ولن تسلَّط عليه أية عقوبة، وسوف يُغلق التقرير.
         silence_description_html: الحساب سيظهر فقط لمن يتابعه أو قام بالبحث عنه بشكل مباشر مما يخفض إمكانية رؤيته بشكل شبه كامل. يمكنك دائما التراجع عن هذا الإجراء. تُغلَق كافة الإبلاغات عن هذا الحساب.
         suspend_description_html: سيُمنع الوصول إلى الحساب وجميع محتوياته وتُحذف تدريجياً، وسيكون التفاعل معه مستحيلاً. بالإمكان عكس مفعول ذلك في غضون 30 يوماً. يغلق جميع التبليغات ضد الحساب.
-      actions_description_html: تحديد الإجراءات التي يتعين اتخاذها لحل هذا التبليغ. إذا اتخذت إجراء عقابيا ضد الحساب المبلغ عنه، فسيتم إرسال إشعار بالبريد الإلكتروني إليهم، إلا عندما يتم تحديد فئة <strong>البريد المزعج.</strong>
       actions_description_remote_html: حدّد الإجراءات التي يتعين اتخاذها لحل هذا التقرير. هذا سيؤثر فقط على كيفية اتصال <strong>خادمك</strong> بهذا الحساب البعيد والتعامل مع محتوياته.
       add_to_report: أضف المزيد إلى التقرير
       are_you_sure: هل أنت متأكد ؟
@@ -703,7 +677,6 @@ ar:
         delete_data_html: حذف ملف <strong>@%{acct}</strong> الشخصي بمحتواه بعد 30 يوماً من الآن ما لم يُلغَ تعليق الحساب
         preview_preamble_html: 'سوف يتلقى <strong>@%{acct}</strong> تحذيرا يحتوي على ما يلي:'
         record_strike_html: تسجيل عقوبة ضد <strong>@%{acct}</strong> لمساعدتك في أخذ إجراءات إضافية في حال انتهاكات مستقبلية من طرف هذا الحساب
-        send_email_html: إرسال بريد إلكتروني تحذيري إلى <strong>@%{acct}</strong>
         warning_placeholder: مبررات إضافية اختيارية لإجراء الإشراف.
       target_origin: مصدر الحساب المبلغ عنه
       title: الشكاوى
@@ -751,7 +724,6 @@ ar:
         manage_appeals: إدارة الاستئنافات
         manage_appeals_description: يسمح للمستخدمين بمراجعة الطعن ضد إجراءات الإشراف
         manage_blocks: إدارة الحظر
-        manage_blocks_description: يسمح للمستخدمين بحظر مزودي خدمات البريد الإلكتروني وعناوين IP
         manage_custom_emojis: إدارة الرموز التعبيريّة المخصصة
         manage_custom_emojis_description: السماح للمستخدمين بإدارة الرموز التعبيريّة المخصصة على الخادم
         manage_federation: إدارة الفديرالية
@@ -769,7 +741,6 @@ ar:
         manage_taxonomies: إدارة التصنيفات
         manage_taxonomies_description: السماح للمستخدمين بمراجعة المحتوى المتداول وتحديث إعدادات الوسم
         manage_user_access: إدارة وصول المستخدم
-        manage_user_access_description: يسمح للمستخدمين بتعطيل المصادقة الثنائية المستخدمين الآخرين، تغيير عنوان البريد الإلكتروني الخاص بهم، وإعادة تعيين كلمة المرور الخاصة بهم
         manage_users: إدارة المستخدمين
         manage_users_description: يسمح للمستخدمين بعرض تفاصيل المستخدمين الآخرين وتنفيذ إجراءات الإشراف ضدهم
         manage_webhooks: إدارة الـWebhooks
@@ -842,7 +813,6 @@ ar:
       destroyed_msg: تم حذف التحميل مِن الموقع بنجاح!
     software_updates:
       critical_update: حَرِج - يرجى التحديث في أقرب وقت ممكن
-      description: من المستحسَن إبقاء تثبيت ماستدون الخاص بك محدثا للاستفادة من أحدث التصحيحات والميزات. إضافةً إلى ذلك، فهو مهمّ جدا تحديث ماستدون أحيانًا في الوقت المناسب لتجنب المسائل الأمنية. لهذه الأسباب، يقوم ماستدون بالتحقق من التحديثات كل 30 دقيقة، وسيتم إعلامك وفقا لتفضيلات إشعارات البريد الإلكتروني الخاصة بك.
       documentation_link: معرفة المزيد
       release_notes: ملخصات الإصدار
       title: التحديثات المتوفرة
@@ -1006,7 +976,6 @@ ar:
           other: مستخدَم من قِبل %{count} شخص خلال الأسبوع الماضي
           two: مستخدَم من قِبل %{count} شخصين خلال الأسبوع الماضي
           zero: مستخدَم من قِبل %{count} شخص خلال الأسبوع الماضي
-      title: المتداوَلة
       trending: المتداولة
     warning_presets:
       add_new: إضافة واحد جديد
@@ -1091,9 +1060,7 @@ ar:
       guide_link_text: يمكن للجميع المساهمة.
     sensitive_content: المحتوى الحساس
   application_mailer:
-    notification_preferences: تعديل تفضيلات البريد الإلكتروني
     salutation: "%{name}،"
-    settings: 'تغيير تفضيلات البريد الإلكتروني: %{link}'
     unsubscribe: إلغاء الاشتراك
     view: 'اعرض:'
     view_profile: اعرض الصفحة التعريفية
@@ -1113,7 +1080,6 @@ ar:
       hint_html: شيء واحد آخر! نحن بحاجة إلى التأكّد من أنك إنسان (حتى نتمكن من تتفادي البريد المزعج!). حل رمز CAPTCHA أدناه وانقر فوق "متابعة".
       title: التحقق من الأمان
     confirmations:
-      awaiting_review: تمّ تأكيد عنوان بريدك الإلكتروني! موظفو %{domain} يعاينونَ تسجيلكَ حاليًا. ستتلقى بريدًا إلكترونيًا إن تَمّ قُبولك!
       awaiting_review_title: التسجيل الخاص بك قيد المُعاينة
       clicking_this_link: اضغط على هذا الرابط
       login_link: تسجيل الدخول
@@ -1121,7 +1087,6 @@ ar:
       redirect_to_app_html: كان من المفترض إعادة توجيهك إلى تطبيق <strong>%{app_name}</strong>. إن لم يحدث ذلك، حاول %{clicking_this_link} أو العودة يدويًا إلى التطبيق.
       registration_complete: اكتمل تسجيل حسابك على %{domain} الآن!
       welcome_title: أهلاً بك، %{name}!
-      wrong_email_hint: إذا كان عنوان البريد الإلكتروني هذا غير صحيح، يمكنك تغييره في إعدادات الحساب.
     delete_account: احذف الحساب
     delete_account_html: إن كنت ترغب في حذف حسابك يُمكنك <a href="%{path}">المواصلة هنا</a>. سوف يُطلَبُ منك التأكيد قبل الحذف.
     description:
@@ -1142,7 +1107,6 @@ ar:
     or_log_in_with: أو قم بتسجيل الدخول بواسطة
     privacy_policy_agreement_html: لقد قرأتُ وأوافق على سياسة الخصوصية <a href="%{privacy_policy_path}" target="_blank"></a>
     progress:
-      confirm: تأكيد عنوان البريد الإلكتروني
       details: تفاصيلك
       review: رأيُنا
       rules: قبول القواعد
@@ -1164,10 +1128,8 @@ ar:
     security: الأمان
     set_new_password: إدخال كلمة مرور جديدة
     setup:
-      email_below_hint_html: قم بفحص مجلد البريد المزعج الخاص بك، أو قم بطلب آخر. يمكنك تصحيح عنوان بريدك الإلكتروني إن كان خاطئا.
       email_settings_hint_html: انقر على الرابط الذي أرسلناه لك للتحقق من %{email}. سننتظر هنا.
       link_not_received: ألم تحصل على رابط؟
-      new_confirmation_instructions_sent: سوف تتلقى رسالة بريد إلكتروني جديدة مع رابط التأكيد في غضون بضع دقائق!
       title: تحقَّق من بريدك الوارِد
     sign_in:
       preamble_html: قم بتسجيل الدخول باستخدام بيانات الاعتماد الخاصة بك على <strong>%{domain}</strong>. إن استُضيف حسابك على خادم مختلف عن هذا الخادم، لن تتمكن من الولوج هنا.
@@ -1178,9 +1140,7 @@ ar:
       title: دعنا نجهّز %{domain}.
     status:
       account_status: حالة الحساب
-      confirming: في انتظار اكتمال تأكيد البريد الإلكتروني.
       functional: حسابك يعمل بشكل كامل.
-      pending: إن طلبك قيد المراجعة من قبل فريقنا. قد يستغرق هذا بعض الوقت. سوف تتلقى بريدا إلكترونيا إذا تمت الموافقة على طلبك.
       redirecting_to: حسابك غير نشط لأنه تم تحويله حاليا إلى %{acct}.
       self_destruct: نظرًا لإغلاق %{domain}، ستحصل فقط على وصول محدود إلى حسابك.
       view_strikes: عرض العقوبات السابقة المُطَبَّقة ضد حسابك
@@ -1223,9 +1183,6 @@ ar:
       before: 'يرجى قراءة هذه الملاحظات بتأنّي قبل المواصلة:'
       caches: قد يبقى المحتوى الذي تم تخزينه مؤقتًا مِن طرف الخوادم الأخرى
       data_removal: سوف تُحذَف منشوراتك والبيانات الأخرى نهائيا
-      email_change_html: بإمكانك <a href="%{path}">تغيير عنوان بريدك الإلكتروني</a> دون أن يُحذف حسابك
-      email_contact_html: إن لم تتلقّ أي شيء ، يمكنك مراسلة <a href="mailto:%{email}">%{email}</a> لطلب المساعدة
-      email_reconfirmation_html: إن لم تتلقّ الرسالة الإلكترونية للتأكيد ، بإمكانك <a href="%{path}">إعادة طلبها ثانيةً</a>
       irreversible: لن يكون بإمكانك استرجاع أو إعادة تنشيط حسابك
       more_details_html: للمزيد مِن التفاصيل ، يرجى الإطلاع على <a href="%{terms_path}">سياسة الخصوصية</a>.
       username_available: سيصبح اسم مستخدمك متوفرا ثانية
@@ -1490,7 +1447,6 @@ ar:
     authentication_methods:
       otp: تطبيق المصادقة الثنائية
       password: كلمة المرور
-      sign_in_token: رمز الأمان للبريد الإلكتروني
       webauthn: مفاتيح الأمان
     description_html: إذا رأيت النشاط الذي لا تتعرف عليه، فكر في تغيير كلمة المرور الخاصة بك وتفعيل المصادقة ذات العاملين.
     empty: لا يوجد سجل مصادقة متاح
@@ -1501,16 +1457,6 @@ ar:
     unsubscribe:
       action: نعم، ألغِ الاشتراك
       complete: غير مشترك
-      confirmation_html: هل أنت متأكد أنك تريد إلغاء الاشتراك في تلقي %{type} لـ Mastodon على %{domain} إلى بريدك الإلكتروني على %{email}؟ يمكنك دائمًا إعادة الاشتراك من <a href="%{settings_path}">إعدادات إشعارات البريد الإلكتروني</a>.
-      emails:
-        notification_emails:
-          favourite: إشعارات رسائل البريد الخاصة بالمفضلة
-          follow: إشعارات رسائل البريد الخاصة بالمتابعة
-          follow_request: رسائل البريد الإلكترونية الخاصة بطلبات المتابعة
-          mention: إشعارات رسائل البريد عندما يَذكُرك أحدهم
-          reblog: رسائل البريد الخاصة بالمنشورات المعاد نشرها
-      resubscribe_html: إذا قمت بإلغاء الاشتراك عن طريق الخطأ، يمكنك إعادة الاشتراك من <a href="%{settings_path}">إعدادات الإشعارات في بريدك الإلكتروني</a>.
-      success_html: لن تتلقّ بعد الآن %{type} لماستدون مِن %{domain} على بريدك الإلكتروني %{email}.
       title: إلغاء الاشتراك
   media_attachments:
     validations:
@@ -1591,8 +1537,6 @@ ar:
     update:
       subject: قام %{name} بتحرير منشور
   notifications:
-    administration_emails: إشعارات البريد الإلكتروني الإدارية
-    email_events: الأحداث للإشعارات عبر البريد الإلكتروني
     email_events_hint: 'اختر الأحداث التي تريد أن تصِلَك اشعارات عنها:'
   number:
     human:
@@ -1751,7 +1695,6 @@ ar:
     import: استيراد
     import_and_export: استيراد وتصدير
     migrate: تهجير الحساب
-    notifications: إشعارات البريد الإلكتروني
     preferences: التفضيلات
     profile: الملف التعريفي
     relationships: المتابِعون والمتابَعون
@@ -2013,7 +1956,6 @@ ar:
     invalid_otp_token: رمز المصادقة بخطوتين غير صالح
     otp_lost_help_html: إن فقدتَهُما ، يمكنك الاتصال بـ %{email}
     rate_limited: عدد محاولات المصادقة كثير جداً، حاول مرة أخرى لاحقاً.
-    seamless_external_login: لقد قمت بتسجيل الدخول عبر خدمة خارجية، إنّ إعدادات الكلمة السرية و البريد الإلكتروني غير متوفرة.
     signed_in_as: 'تم تسجيل دخولك بصفة:'
   verification:
     extra_instructions_html: <strong>نصيحة:</strong> يمكن أن يكون الرابط الموجود على موقع الويب الخاص بك غير مرئي. الجزء المهم هو <code>rel="me"</code> الذي يمنع انتحال الهوية على مواقع الويب ذات المحتوى الذي ينشئه المستخدم. يمكنك أيضًا استخدام علامة <code>link</code> في رأس الصفحة بدلاً من <code>a</code>، ولكن يجب أن يكون HTML قابلاً للوصول دون تنفيذ JavaScript.

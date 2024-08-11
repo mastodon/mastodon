@@ -15,7 +15,7 @@ nn:
       account_migration:
         acct: Angi brukarnamn@domene til brukaren du ynskjer å flytta til
       account_warning_preset:
-        text: Du kan bruka tut-syntaks, som t. d. URL-ar, emneknaggar og nemningar
+        text: Du kan bruka tut-syntaks, som t. d. URL-ar, emneknaggar og omtaler
         title: Valfritt. Ikkje synleg for mottakar
       admin_account_action:
         include_statuses: Brukaren får sjå kva tut som førte til moderatorhandlinga eller -åtvaringa
@@ -81,7 +81,7 @@ nn:
         backups_retention_period: Brukarar har moglegheit til å generere arkiv av sine innlegg for å laste ned seinare. Når sett til ein positiv verdi, blir desse arkiva automatisk sletta frå lagringa etter eit gitt antal dagar.
         bootstrap_timeline_accounts: Desse kontoane vil bli festa øverst på fylgjaranbefalingane til nye brukarar.
         closed_registrations_message: Vist når det er stengt for registrering
-        content_cache_retention_period: Alle innlegg frå andre serverar (inkludert boostar og svar) vil bli sletta etter dei gitte antal dagar, uten hensyn til lokale brukarinteraksjonar med desse innlegga. Dette inkluderer innlegg der ein lokal brukar har merka det som bokmerker eller som favorittar. Òg private nemningar mellom brukarar frå ulike førekomstar vil gå tapt og vere umogleg å gjenskape. Bruk av denne innstillinga er rekna på spesielle førekomstar og bryt mange brukarforventingar når dette blir tatt i generell bruk.
+        content_cache_retention_period: Alle innlegg frå andre tenarar (inkludert framhevingar og svar) vil bli sletta etter talet på dagar du skriv inn, uansett om nokon har samhandla med desse innlegga. Dette inkluderer innlegg der ein lokal brukar har merka det som bokmerke eller som favoritt. Private omtaler mellom brukarar frå ulike nettstader vil gå tapt og vera umogleg å gjenskapa. Bruk av denne innstillinga er meint for spesielle nettstader og bryt med det mange forventar av ein vanleg nettstad.
         custom_css: Du kan bruka eigendefinerte stilar på nettversjonen av Mastodon.
         favicon: WEBP, PNG, GIF eller JPG. Overstyrer det standarde Mastodon-favikonet med eit eigendefinert ikon.
         mascot: Overstyrer illustrasjonen i det avanserte webgrensesnittet.
@@ -314,6 +314,7 @@ nn:
         listable: Tillat denne emneknaggen å synast i søk og i profilmappa
         name: Emneknagg
         trendable: Tillat denne emneknaggen til å synast under trendar
+        usable: Godta at innlegga kan bruka denne emneknaggen lokalt
       user:
         role: Rolle
         time_zone: Tidssone

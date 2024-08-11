@@ -31,7 +31,6 @@ io:
       created_msg: Jernoto sucesoze kreesis!
       destroyed_msg: Jernoto sucesoze efacesis!
     accounts:
-      add_email_domain_block: Obstruktez retpostodomeno
       approve: Aprobez
       approved_msg: Sucesoze aprobis registroapliko di %{username}
       are_you_sure: Ka tu esas certa?
@@ -58,7 +57,6 @@ io:
       demote: Despromocez
       destroyed_msg: Informi di %{username} nun aranjesis por efacesar aparante
       disable: Frostigez
-      disable_sign_in_token_auth: Desaktivigez retpostofichyurizeso
       disable_two_factor_authentication: Desaktivigez 2FA
       disabled: Desinterdiktita
       display_name: Profilnomo
@@ -67,7 +65,6 @@ io:
       email: E-mail
       email_status: Retpostostando
       enable: Defrostigez
-      enable_sign_in_token_auth: Aktivigez retpostofichyurizeso
       enabled: Aktivigita
       enabled_msg: Sucesoze desfrostigas konto di %{username}
       followers: Uzanti
@@ -132,7 +129,6 @@ io:
       resubscribe: Riabonez
       role: Rolo
       search: Trovez
-      search_same_email_domain: Altra uzanti kun sama retpostodomeno
       search_same_ip: Altra uzanti kun sama IP
       security: Sekureso
       security_measures:
@@ -173,26 +169,21 @@ io:
         approve_appeal: Aprobez apelo
         approve_user: Aprobez uzanto
         assigned_to_self_report: Taskigez raporto
-        change_email_user: Chanjez retposto por uzanto
         change_role_user: Chanjez rolo di uzanto
         confirm_user: Konfirmez uzanto
         create_account_warning: Kreez averto
         create_announcement: Kreez anunco
-        create_canonical_email_block: Kreez domenobstrukto
         create_custom_emoji: Kreez kustumizita emocimajo
         create_domain_allow: Kreez domenpermiso
         create_domain_block: Kreez domenobstrukto
-        create_email_domain_block: Kreez retpostodomenobstrukto
         create_ip_block: Kreez IP-regulo
         create_unavailable_domain: Kreez nedisponebla domeno
         create_user_role: Kreez rolo
         demote_user: Despromocez uzanto
         destroy_announcement: Efacez anunco
-        destroy_canonical_email_block: Efacez domenobstrukto
         destroy_custom_emoji: Efacez kustumizita emocimajo
         destroy_domain_allow: Efacez domenpermiso
         destroy_domain_block: Efacez domenobstrukto
-        destroy_email_domain_block: Efacez retpostodomenobstrukto
         destroy_instance: Efacez domeno
         destroy_ip_block: Efacez IP-regulo
         destroy_status: Efacez posto
@@ -200,10 +191,8 @@ io:
         destroy_user_role: Destruktez rolo
         disable_2fa_user: Desaktivigez 2FA
         disable_custom_emoji: Desaktivigez kustumizita emocimajo
-        disable_sign_in_token_auth_user: Desaktivigez retpostofichyurizo por uzanto
         disable_user: Desaktivigez uzanto
         enable_custom_emoji: Aktivigez kustumizita emocimajo
-        enable_sign_in_token_auth_user: Aktivigez retpostofichyurizo por uzanto
         enable_user: Aktivigez uzanto
         memorialize_account: Memorializez konto
         promote_user: Promocez uzanto
@@ -232,26 +221,20 @@ io:
         approve_appeal_html: "%{name} aprobis jerdecidapelo de %{target}"
         approve_user_html: "%{name} aprobis registro de %{target}"
         assigned_to_self_report_html: "%{name} taskigis raporto %{target} a su"
-        change_email_user_html: "%{name} chanjis retpostoadreso di uzanto %{target}"
         change_role_user_html: "%{name} chanjis rolo di %{target}"
-        confirm_user_html: "%{name} konfirmis retpostoadreso di uzanto %{target}"
         create_account_warning_html: "%{name} sendis averto a %{target}"
         create_announcement_html: "%{name} kreis nova anunco %{target}"
-        create_canonical_email_block_html: "%{name} obstruktis retpostodomeno %{target}"
         create_custom_emoji_html: "%{name} adchargis nova emocimajo %{target}"
         create_domain_allow_html: "%{name} permisis federato kun domeno %{target}"
         create_domain_block_html: "%{name} obstruktis domeno %{target}"
-        create_email_domain_block_html: "%{name} obstruktis retpostodomeno %{target}"
         create_ip_block_html: "%{name} kreis regulo por IP %{target}"
         create_unavailable_domain_html: "%{name} cesis sendo a domeno %{target}"
         create_user_role_html: "%{name} kreis rolo di %{target}"
         demote_user_html: "%{name} despromocis uzanto %{target}"
         destroy_announcement_html: "%{name} efacis anunco %{target}"
-        destroy_canonical_email_block_html: "%{name} obstruktis retpostodomeno %{target}"
         destroy_custom_emoji_html: "%{name} efacis emocimajo %{target}"
         destroy_domain_allow_html: "%{name} despermisis federato kun domeno %{target}"
         destroy_domain_block_html: "%{name} deobstruktis domeno %{target}"
-        destroy_email_domain_block_html: "%{name} deobstruktis retpostodomeno %{target}"
         destroy_instance_html: "%{name} efacis domeno %{target}"
         destroy_ip_block_html: "%{name} efacis regulo por IP %{target}"
         destroy_status_html: "%{name} efacis posto da %{target}"
@@ -259,10 +242,8 @@ io:
         destroy_user_role_html: "%{name} efacis rolo di %{target}"
         disable_2fa_user_html: "%{name} desaktivigis 2-faktorbezono por uzanto %{target}"
         disable_custom_emoji_html: "%{name} desaktivigis emocimajo %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} desaktivigis retpostofichyurizo por %{target}"
         disable_user_html: "%{name} desaktivigis eniro por uzanto %{target}"
         enable_custom_emoji_html: "%{name} aktivigis emocimajo %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} aktivigis retpostofichyurizo por %{target}"
         enable_user_html: "%{name} aktivigis eniro por uzanto %{target}"
         memorialize_account_html: "%{name} kauzigis konto di %{target} divenar memorialpagino"
         promote_user_html: "%{name} promocis uzanto %{target}"
@@ -270,7 +251,6 @@ io:
         reject_user_html: "%{name} refuzis registro de %{target}"
         remove_avatar_user_html: "%{name} efacis profilimajo de %{target}"
         reopen_report_html: "%{name} riapertis raporto %{target}"
-        resend_user_html: "%{name} risendis konfirmretposto por %{target}"
         reset_password_user_html: "%{name} richanjis pasvorto de uzanto %{target}"
         resolve_report_html: "%{name} rezolvis raporto %{target}"
         sensitive_account_html: "%{name} markizis medii di %{target} quale sentoza"
@@ -428,7 +408,6 @@ io:
       attempts_over_week:
         one: "%{count} probo de pos 1 week"
         other: "%{count} registroprobi de pos 1 week"
-      created_msg: Sucesoze obstruktis retpostodomeno
       delete: Efacez
       dns:
         types:
@@ -437,12 +416,8 @@ io:
       new:
         create: Insertez domeno
         resolve: Rezolvez domeno
-        title: Obstruktez nova retpostodomeno
-      no_email_domain_block_selected: Retpostodomenobstrukti ne chanjesis por ke nulo selektesis
       not_permitted: Ne permisata
-      resolved_dns_records_hint_html: Ca domennomo rezolvesas a ca MX-domeni, quale esas ultime responsanta por ganar retposto. Obstruktar MX-domeno obstruktos registri de irga retpostoadreso quo uzas sama MX-domeni, mem se la videbla domennomo esas diferanta. <strong>Sorgemez e ne obstruktez majora retpostositi.</strong>
       resolved_through_html: Rezolvesis tra %{domain}
-      title: Obstruktita retpostodomeni
     export_domain_allows:
       no_file: Nula dosiero selektesas
     export_domain_blocks:
@@ -591,7 +566,6 @@ io:
         resolve_description_html: Nulo agesos kontre raportizita konto, streko ne rekordizesos e raporto klozesos.
         silence_description_html: Konto esos videbla nur por personi qui ja sequas lo o manuale serchas lo, severe limitizante lua atingo. On sempre povas desfacar co. Klozas omna raporti kontra ca konto.
         suspend_description_html: Ca konto e omna kontenaji esos neacesebla e efacota, e interagar kun ol esos neposibla. Desfacebla dum 30 dii. Klozas omna raporti kontra ca konto.
-      actions_description_html: Decidez ago por rezolvar ca raporto. Se vu decidar puniso kontre raportizesis konto, retpostoavizo sendesos a ol, ecepte kande <strong>Spam</strong> kategorio selektesis.
       actions_description_remote_html: Selektez quo vu agos por solvar ca raporto. Co nur efektigos quale <strong>vua</strong> servilo komunikas kun ca fora konto e traktas lua kontenaji.
       add_to_report: Insertez pluse a raporto
       are_you_sure: Ka vu esas certa?
@@ -652,7 +626,6 @@ io:
         delete_data_html: Efacor la profilo e kontenaji di <strong>@%{acct}</strong> ye 30 dii de nun ecepte ke lu esus desrestrikita ante ta tempe
         preview_preamble_html: "<strong>@%{acct}</strong> recevos averto kun la sequanta kontenajo:"
         record_strike_html: Registrar punto kontra <strong>@%{acct}</strong> por helpar vu traktar futura reguloviolaci di ca konto
-        send_email_html: Sendez a <strong>@%{acct}</strong> avertala retposto
         warning_placeholder: Neobligata plusa expliko por la jero-ago.
       target_origin: Fonto di raportizita konto
       title: Raporti
@@ -691,7 +664,6 @@ io:
         manage_appeals: Jerez apeli
         manage_appeals_description: Permisez uzanti kontrolar apeli kontra jero
         manage_blocks: Jerez obstrukti
-        manage_blocks_description: Permisez uzanti obstruktar retpostoservilo e adresi di IP
         manage_custom_emojis: Jerez kustumizita emocimaji
         manage_custom_emojis_description: Permisez uzanti jerar kustumizita emocimaji en la servilo
         manage_federation: Jerez federo
@@ -709,7 +681,6 @@ io:
         manage_taxonomies: Jerez nomkategorii
         manage_taxonomies_description: Permisez uzanti kontrolar tendencoza kontenajo e novigar hashtagopcioni
         manage_user_access: Jerez uzantoeniro
-        manage_user_access_description: Permisez uzanti desaktivigar 2-faktoryurizeso di altra uzanti, chanjar olia retpostoadreso e richanjar olia pasvorto
         manage_users: Jerez uzanti
         manage_users_description: Permisez uzanti vidar detali di altra uzanti e jerar kontra oli
         manage_webhooks: Jerez interrethoki
@@ -779,7 +750,6 @@ io:
       destroyed_msg: Sitadchargito sucesoze efacesis!
     software_updates:
       critical_update: Urjanta — voluntez aktualigar rapide
-      description: On rekomendas ke vu sempre aktualigas vua Mastodon-instaluro por profitar la maxim nova solvuri e novaji. Pluse, kelkafoye es importantega aktualigar Mastodon rapide por evitar sekuresoproblemi. Pro ca motivi, Mastodon serchas aktualigi mihorale, e notifikos vu segun vua opcioni pri retposto-notifiki.
       documentation_link: Lernez pluse
       release_notes: Emiso-noti
       title: Aktualigi disponebla
@@ -921,7 +891,6 @@ io:
         used_by_over_week:
           one: Uzesis da 1 persono de pos 1 semano
           other: Uzesis da %{count} personi de pos 1 semano
-      title: Tendenci
       trending: Tendenco
     warning_presets:
       add_new: Insertez novo
@@ -1002,9 +971,7 @@ io:
       guide_link_text: Omnu povas kontributar.
     sensitive_content: Sentoza kontenajo
   application_mailer:
-    notification_preferences: Chanjez retpostopreferaji
     salutation: "%{name},"
-    settings: 'Chanjar la retpost-mesajala preferi: %{link}'
     unsubscribe: Desabonez
     view: 'Vidar:'
     view_profile: Videz profilo
@@ -1024,7 +991,6 @@ io:
       hint_html: Nur un plusa kozo! Ni postulas ke vu konfirmez ke vu esas homo (co es por ke ni povas preventar mesajachi!). Solvez la suba CAPTCHA e pulsez "Avancez".
       title: Sekuresokontrolo
     confirmations:
-      awaiting_review: Vua retpostadreso es konfirmita! La jeraro che %{domain} revuos vua apliko. Vu recevos retposto se li aprobas vua konto!
       awaiting_review_title: Vua apliko vartas revuo
       clicking_this_link: pulsante ca ligilo
       login_link: enirar
@@ -1032,7 +998,6 @@ io:
       redirect_to_app_html: Vu devas sendesir al apliko <strong>%{app_name}</strong>. Se to ne evenis, probez %{clicking_this_link} o retroirez manuale al apliko.
       registration_complete: Vua registrago che %{domain} nun es kompleta!
       welcome_title: Bonvenez, %{name}!
-      wrong_email_hint: Se ta retpostadreso ne es korekta, vu povas chanjar lo en la konto-opcioni.
     delete_account: Efacez konto
     delete_account_html: Se vu volas efacar vua konto, vu povas <a href="%{path}">irar hike</a>. Vu demandesos konfirmar.
     description:
@@ -1053,7 +1018,6 @@ io:
     or_log_in_with: O eniras per
     privacy_policy_agreement_html: Me lektis e konsentis <a href="%{privacy_policy_path}" target="_blank">privatesguidilo</a>
     progress:
-      confirm: Konfirmar retpostoadreso
       details: Vua detali
       review: Nia revuo
       rules: Aceptar reguli
@@ -1075,10 +1039,8 @@ io:
     security: Chanjar pasvorto
     set_new_password: Selektar nova pasvorto
     setup:
-      email_below_hint_html: Kontrolez vua spam-dosieruro, o demandez altra ligilo. Vu povas korektigar vua retpostadreso se esas nekorekta.
       email_settings_hint_html: Uzez la ligilo quan ni sendis a vu por verifikar %{email}. Ni vartos hike.
       link_not_received: Ka vu ne recevis ligilo?
-      new_confirmation_instructions_sent: Vu recevos nova retposto kun la konfirmligilo pos kelka minuti!
       title: Kontrolez vua retposti
     sign_in:
       preamble_html: Enirez per vua <strong>%{domain}</strong> detali. Se vua konto esas che altra servilo, vu ne povos enirar hike.
@@ -1089,9 +1051,7 @@ io:
       title: Ni komencigez vu en %{domain}.
     status:
       account_status: Kontostando
-      confirming: Vartas retpostokonfirmo finar.
       functional: Vua konto esas tote funcionoza.
-      pending: Vua apliko bezonas kontrolo da nia laborero. Co forsan esas nekurta. Vu ganos retposto se vua apliko aprobesas.
       redirecting_to: Vua konto esas neaktiva pro ke ol nun ridirektesos a %{acct}.
       self_destruct: Pro ke %{domain} balde klozos, vu havas nur aceso limitizata a vua konto.
       view_strikes: Videz antea streki kontre vua konto
@@ -1134,9 +1094,6 @@ io:
       before: 'Ante durar, lektez ca noti sorgeme:'
       caches: Kontenajo quo memoresis da altra servilo forsan restas
       data_removal: Vua posti e altra informi netempale efacesis
-      email_change_html: Vu povas <a href="%{path}">chanjar vua retpostoadreso</a> sen efacar vua konto
-      email_contact_html: Se ol ankore ne venas, vu povas retpostigar a <a href="mailto:%{email}">%{email}</a> por ganar helpo
-      email_reconfirmation_html: Se vu ne ganas konfirmretposto, vu povas <a href="%{path}">demandar itere</a>
       irreversible: Vu ne povos riganar o riaktivigar vua konto
       more_details_html: Por plu multa detali, videz <a href="%{terms_path}">privatesguidilo</a>.
       username_available: Vua uzantonomo divenos disponebla itere
@@ -1367,7 +1324,6 @@ io:
     authentication_methods:
       otp: 2-faktoryurizessoftwaro
       password: pasvorto
-      sign_in_token: retpostosekureskodexo
       webauthn: sekuresklefi
     description_html: Se vu vidas aktiveso quon vu ne rikonocas, konsiderez chanjar vua pasvorto e aktivigez 2-faktoryurizo.
     empty: Yurizeshistorio esas nedisponebla
@@ -1378,16 +1334,6 @@ io:
     unsubscribe:
       action: Yes, desabonez
       complete: Desabonita
-      confirmation_html: Ka vu esas certa ke vu volas desabonar de recevar %{type} por Mastodon che %{domain} a vua retpostoadreso %{email}? Vu sempre povas riabonar che vua <a href="%{settings_path}">opcioni pri restposto-notifiki</a>.
-      emails:
-        notification_emails:
-          favourite: notifiko-retposti pri favoriziti
-          follow: retposti pri sequo-notifiki
-          follow_request: retposti pri sequo-demandi
-          mention: retposti pri menciono-notifiki
-          reblog: retposti pri repeto-notifiki
-      resubscribe_html: Se vu desabonis eroroze, vu povas riabonar en vua <a href="%{settings_path}">opcioni pri retposto-notifiki</a>.
-      success_html: Vu ne plus recevos %{type} por Mastodon che %{domain} a vua retpostadreso %{email}.
       title: Desabonez
   media_attachments:
     validations:
@@ -1468,8 +1414,6 @@ io:
     update:
       subject: "%{name} modifikis posto"
   notifications:
-    administration_emails: Jerala retpostonotifiki
-    email_events: Eventi por retpostoavizi
     email_events_hint: 'Selektez eventi quon vu volas ganar avizi:'
   number:
     human:
@@ -1798,7 +1742,6 @@ io:
     follow_limit_reached: Vu ne povas sequar plu kam %{limit} personi
     invalid_otp_token: La dufaktora autentikigila kodexo ne esas valida
     otp_lost_help_html: Se vu perdas aceso de 2 konto, vu povas kontaktar kun %{email}
-    seamless_external_login: Vu enirar tra externa serveso, do pasvorto e retpostoopcioni ne esas disponebla.
     signed_in_as: 'Eniris quale:'
   verification:
     here_is_how: Yen quale

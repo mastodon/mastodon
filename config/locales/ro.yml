@@ -33,7 +33,6 @@ ro:
       created_msg: Notă de moderare creată cu succes!
       destroyed_msg: Notă de moderare distrusă cu succes!
     accounts:
-      add_email_domain_block: Domeniu de e-mail în lista neagră
       approve: Aprobă
       approved_msg: Cererea de înregistrare de către %{username} a fost aprobată cu succes
       are_you_sure: Ești sigur?
@@ -60,7 +59,6 @@ ro:
       demote: Retrogradează
       destroyed_msg: Datele utilizatorului %{username} sunt acum în așteptare pentru a fi șterse iminent
       disable: Dezactivează
-      disable_sign_in_token_auth: Dezactivează autentificarea prin token e-mail
       disable_two_factor_authentication: Dezactivează 2FA
       disabled: Dezactivat
       display_name: Nume afișat
@@ -69,7 +67,6 @@ ro:
       email: E-mail
       email_status: Stare e-mail
       enable: Activează
-      enable_sign_in_token_auth: Activează autentificarea prin token e-mail
       enabled: Activat
       enabled_msg: Am dezghețat cu succes contul %{username}
       followers: Urmăritori
@@ -131,7 +128,6 @@ ro:
       resubscribe: Resubscrie-te
       role: Rol
       search: Caută
-      search_same_email_domain: Alţi utilizatori cu acelaşi domeniu de e-mail
       search_same_ip: Alţi utilizatori cu acelaşi IP
       security: Securitate
       security_measures:
@@ -172,7 +168,6 @@ ro:
         approve_appeal: Aprobare apel
         approve_user: Aprobă Utilizatorul
         assigned_to_self_report: Atribuie raportul
-        change_email_user: Schimbă e-mailul pentru utilizator
         change_role_user: Schimbă rolul utilizatorului
         confirm_user: Confirmare Utilizator
         create_account_warning: Crează avertisment
@@ -180,7 +175,6 @@ ro:
         create_custom_emoji: Creează Zâmbet Personalizat
         create_domain_allow: Creează permis domeniu
         create_domain_block: Crează blocare de domenii
-        create_email_domain_block: Creați blocare de domeniu e-mail
         create_ip_block: Creează regulă IP
         create_unavailable_domain: Crează domeniu indisponibil
         create_user_role: Creează Rol
@@ -189,7 +183,6 @@ ro:
         destroy_custom_emoji: Ștergere Zâmbet Personalizat
         destroy_domain_allow: Ștergere Permitere Domeniu
         destroy_domain_block: Ștergere Blocare Domeniu
-        destroy_email_domain_block: Șterge Blocarea Domeniului de Email
         destroy_instance: Curăță Domeniul
         destroy_ip_block: Șterge regula IP
         destroy_status: Șterge starea
@@ -197,10 +190,8 @@ ro:
         destroy_user_role: Distruge Rolul
         disable_2fa_user: Dezactivează 2FA
         disable_custom_emoji: Dezactivează Emoji-urile Personalizate
-        disable_sign_in_token_auth_user: Dezactivează Autentificarea prin Token E-mail pentru Utilizator
         disable_user: Dezactivează Utilizator
         enable_custom_emoji: Activează Emoji Personalizat
-        enable_sign_in_token_auth_user: Activează Autentificarea prin Token e-mail pentru Utilizator
         enable_user: Activează Utilizator
         memorialize_account: Comemoreză Contul
         promote_user: Promovează utilizator
@@ -451,8 +442,6 @@ ro:
       guide_link_text: Toată lumea poate contribui.
     sensitive_content: Conținut sensibil
   application_mailer:
-    notification_preferences: Modifică preferințe e-mail
-    settings: 'Modifică preferințe e-mail: %{link}'
     view: 'Vizualizare:'
     view_profile: Vizualizați profilul
     view_status: Vezi starea
@@ -484,8 +473,6 @@ ro:
     set_new_password: Setează o nouă parolă
     status:
       account_status: Starea contului
-      confirming: Se așteaptă finalizarea confirmării prin e-mail.
-      pending: Cererea dvs. este în curs de revizuire de către personalul nostru. Este posibil să dureze ceva timp. Veți primi un e-mail dacă cererea dvs. este aprobată.
       redirecting_to: Contul dvs. este inactiv deoarece în prezent se redirecționează către %{acct}.
   challenge:
     confirm: Continuă
@@ -517,8 +504,6 @@ ro:
       before: 'Înainte de a continua, vă rugăm să citiţi aceste note cu atenţie:'
       caches: Conținutul care a fost memorat de alte servere poate persista
       data_removal: Postările tale și alte date vor fi șterse permanent
-      email_change_html: Puteți <a href="%{path}">schimba adresa de e-mail</a> fără a șterge contul dvs
-      email_contact_html: Dacă tot nu ajunge, puteți trimite e-mail la <a href="mailto:%{email}">%{email}</a> pentru ajutor
   errors:
     '403': Nu ai permisiunea să vizitezi această pagină.
     '404': Pagina pe care o cauți nu există.
@@ -764,7 +749,6 @@ ro:
     follow_limit_reached: Nu poți urmări mai mult de %{limit} persoane
     invalid_otp_token: Cod doi pași nevalid
     otp_lost_help_html: Dacă ai pierdut accesul la ambele, poți lua legătura cu %{email}
-    seamless_external_login: Sunteți autentificat prin intermediul unui serviciu extern, astfel încât parola și setările de e-mail nu sunt disponibile.
     signed_in_as: 'Conectat ca:'
   verification:
     verification: Verificare

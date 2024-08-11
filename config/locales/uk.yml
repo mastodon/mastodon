@@ -35,7 +35,6 @@ uk:
       created_msg: Нотатку модератора успішно створено!
       destroyed_msg: Нотатку модератора успішно видалено!
     accounts:
-      add_email_domain_block: Додати поштовий домен до чорного списку
       approve: Схвалити
       approved_msg: Заявку на реєстрацію %{username} затверджено
       are_you_sure: Ви впевнені?
@@ -62,7 +61,6 @@ uk:
       demote: Усунути
       destroyed_msg: Дані %{username} тепер в черзі на негайне видалення
       disable: Заморозити
-      disable_sign_in_token_auth: Вимкнути автентифікацію за допомогою е-пошти
       disable_two_factor_authentication: Вимкнути двофакторну авторизацію
       disabled: Вимкнено
       display_name: Відображуване ім'я
@@ -71,7 +69,6 @@ uk:
       email: Електронна пошта
       email_status: Стан електронної пошти
       enable: Розморозити
-      enable_sign_in_token_auth: Увімкнути автентифікацію за допомогою е-пошти
       enabled: Увімкнено
       enabled_msg: Обліковий запис %{username} успішно розморожено
       followers: Підписники
@@ -138,7 +135,6 @@ uk:
       resubscribe: Перепідписатися
       role: Роль
       search: Пошук
-      search_same_email_domain: Інші користувачі з тим самим поштовим доменом
       search_same_ip: Інші користувачі з тим самим IP
       security: Безпека
       security_measures:
@@ -179,26 +175,21 @@ uk:
         approve_appeal: Затвердити апеляцію
         approve_user: Затвердити користувачів
         assigned_to_self_report: Призначити звіт
-        change_email_user: Змінити електронну пошту для користувача
         change_role_user: Змінити роль користувача
         confirm_user: Підтвердити користувача
         create_account_warning: Створити попередження
         create_announcement: Створити оголошення
-        create_canonical_email_block: Створити блок електронної пошти
         create_custom_emoji: Створити користувацьке емодзі
         create_domain_allow: Створити дозвіл на домен
         create_domain_block: Створити блокування домену
-        create_email_domain_block: Створити блокування поштового домену
         create_ip_block: Створити правило IP
         create_unavailable_domain: Створити недоступний домен
         create_user_role: Створити роль
         demote_user: Понизити користувача
         destroy_announcement: Видалити оголошення
-        destroy_canonical_email_block: Видалити блок електронної пошти
         destroy_custom_emoji: Видалити користувацьке емодзі
         destroy_domain_allow: Видалити дозвіл на домен
         destroy_domain_block: Видалити блокування домену
-        destroy_email_domain_block: Видалити блокування поштового домену
         destroy_instance: Очистити домен
         destroy_ip_block: Видалити правило IP
         destroy_status: Видалити допис
@@ -206,10 +197,8 @@ uk:
         destroy_user_role: Знищити роль
         disable_2fa_user: Вимкнути 2FA
         disable_custom_emoji: Вимкнути користувацькі емодзі
-        disable_sign_in_token_auth_user: Вимкнути автентифікацію за допомогою е-пошти для користувача
         disable_user: Відключити користувача
         enable_custom_emoji: Увімкнути користувацькі емодзі
-        enable_sign_in_token_auth_user: Увімкнути автентифікацію за допомогою е-пошти для користувача
         enable_user: Активувати користувача
         memorialize_account: Меморіалізувати акаунт
         promote_user: Підвищити користувача
@@ -239,26 +228,20 @@ uk:
         approve_appeal_html: "%{name} затвердили звернення на оскарження рішення від %{target}"
         approve_user_html: "%{name} схвалює реєстрацію від %{target}"
         assigned_to_self_report_html: "%{name} створює скаргу %{target} на себе"
-        change_email_user_html: "%{name} змінює поштову адресу користувача %{target}"
         change_role_user_html: "%{name} змінює роль %{target}"
-        confirm_user_html: "%{name} підтверджує стан поштової адреси користувача %{target}"
         create_account_warning_html: "%{name} надсилає попередження до %{target}"
         create_announcement_html: "%{name} створює нове оголошення %{target}"
-        create_canonical_email_block_html: "%{name} блокує електронну пошту з хешем %{target}"
         create_custom_emoji_html: "%{name} завантажує нові емодзі %{target}"
         create_domain_allow_html: "%{name} дозволяє федерацію з доменом %{target}"
         create_domain_block_html: "%{name} блокує домен %{target}"
-        create_email_domain_block_html: "%{name} блокує домен електронної пошти %{target}"
         create_ip_block_html: "%{name} створює правило для IP %{target}"
         create_unavailable_domain_html: "%{name} зупиняє доставляння на домен %{target}"
         create_user_role_html: "%{name} створює роль %{target}"
         demote_user_html: "%{name} понижує користувача %{target}"
         destroy_announcement_html: "%{name} видаляє оголошення %{target}"
-        destroy_canonical_email_block_html: "%{name} розблоковує електронну пошту з хешем %{target}"
         destroy_custom_emoji_html: "%{name} видаляє емоджі %{target}"
         destroy_domain_allow_html: "%{name} скасовує федерацію з доменом %{target}"
         destroy_domain_block_html: "%{name} розблокує домен %{target}"
-        destroy_email_domain_block_html: "%{name} розблоковує домен електронної пошти %{target}"
         destroy_instance_html: "%{name} очищує домен %{target}"
         destroy_ip_block_html: "%{name} видаляє правило для IP %{target}"
         destroy_status_html: "%{name} вилучає допис %{target}"
@@ -266,10 +249,8 @@ uk:
         destroy_user_role_html: "%{name} видаляє роль %{target}"
         disable_2fa_user_html: "%{name} вимикає двоетапну перевірку для користувача %{target}"
         disable_custom_emoji_html: "%{name} вимикає емодзі %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} вимикає автентифікацію через е-пошту для %{target}"
         disable_user_html: "%{name} вимикає вхід для користувача %{target}"
         enable_custom_emoji_html: "%{name} вмикає емодзі %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} вмикає автентифікацію через е-пошту для %{target}"
         enable_user_html: "%{name} вмикає вхід для користувача %{target}"
         memorialize_account_html: "%{name} перетворює обліковий запис %{target} на сторінку пам'яті"
         promote_user_html: "%{name} підвищує користувача %{target}"
@@ -277,7 +258,6 @@ uk:
         reject_user_html: "%{name} відхиляє реєстрацію від %{target}"
         remove_avatar_user_html: "%{name} прибирає аватар %{target}"
         reopen_report_html: "%{name} знову відкриває звіт %{target}"
-        resend_user_html: "%{name} було надіслано листа з підтвердженням для %{target}"
         reset_password_user_html: "%{name} скидає пароль користувача %{target}"
         resolve_report_html: "%{name} розв'язує скаргу %{target}"
         sensitive_account_html: "%{name} позначає медіа від %{target} делікатним"
@@ -448,7 +428,6 @@ uk:
         many: "%{count} спроб входу за останній тиждень"
         one: "%{count} спроба за останній тиждень"
         other: "%{count} спроби входу за останній тиждень"
-      created_msg: Успішно додано поштовий домен до чорного списку
       delete: Видалити
       dns:
         types:
@@ -457,12 +436,8 @@ uk:
       new:
         create: Додати домен
         resolve: Розв'язати домен
-        title: Нове блокування поштового домену
-      no_email_domain_block_selected: Жодні налаштування блокування доменів електронної пошти не було змінено, оскільки жоден з них не було обрано
       not_permitted: Не дозволено
-      resolved_dns_records_hint_html: Ім'я домену резолвиться в наступні домени MX, які в кінцевому рахунку відповідають за прийняття електронної пошти. Блокування домену MX заблокує реєстрацію з будь-якої e-mail адреси, яка використовує однаковий домен MX, навіть якщо доменне ім'я буде інакше. <strong>Будьте обережні, щоб не блокувати великих поштових провайдерів.</strong>
       resolved_through_html: Розв'язано через %{domain}
-      title: Чорний список поштових доменів
     export_domain_allows:
       new:
         title: Імпорт дозволів домену
@@ -624,7 +599,6 @@ uk:
         resolve_description_html: Не буде застосовано жодних дій проти облікового запису, на який скаржилися, не буде записано попередження, а скаргу буде закрито.
         silence_description_html: Обліковий запис буде видно лише тим, хто вже за ним слідкує, або знайде його вручну, що значно обмежує його охоплення. Може завжди бути повернуто. Закриває всі скарги на цей обліковий запис.
         suspend_description_html: Обліковий запис і весь його вміст будуть недоступними й врешті-решт видалені, і взаємодіяти з ним буде неможливо. Відновлення можливе протягом 30 днів. Закриває всі скарги на цей обліковий запис.
-      actions_description_html: Визначте, які дії слід вжити для розв'язання цієї скарги. Якщо ви оберете каральні дії проти зареєстрованого облікового запису, про них буде надіслано сповіщення електронним листом, крім випадків, коли вибрано категорію <strong>Спам</strong>.
       actions_description_remote_html: Визначте, які дії слід вжити для розв'язання цього звіту. Це вплине тільки на те, як <strong>ваш</strong> сервер з'єднується з цим віддаленим обліковим записом і обробляє його вміст.
       add_to_report: Додати ще подробиць до скарги
       already_suspended_badges:
@@ -689,7 +663,6 @@ uk:
         delete_data_html: Видаліть профіль <strong>@%{acct}</strong> і вміст за останні 30 днів, якщо вони не дія не скасується тим часом
         preview_preamble_html: "<strong>@%{acct}</strong> отримає попередження з таким вмістом:"
         record_strike_html: Запис попередження проти <strong>@%{acct}</strong>, що допоможе вам посилити ваші майбутні санкції проти цього облікового запису
-        send_email_html: Надіслати <strong>@%{acct}</strong> попереджувального електронного листа
         warning_placeholder: Додаткові причини дії модерації.
       target_origin: Походження облікового запису, на який скаржаться
       title: Скарги
@@ -733,7 +706,6 @@ uk:
         manage_appeals: Керувати оскарженнями
         manage_appeals_description: Дозволяє користувачам розглядати оскарження дій модерації
         manage_blocks: Керувати блокуваннями
-        manage_blocks_description: Дозволяє користувачам блокувати постачальників е-пошти та IP-адреси
         manage_custom_emojis: Керувати користувацькими емоджі
         manage_custom_emojis_description: Дозволяє користувачам керувати користувацькими емоджі на сервері
         manage_federation: Керувати федерацією
@@ -751,7 +723,6 @@ uk:
         manage_taxonomies: Керувати таксономіями
         manage_taxonomies_description: Дозволяє користувачам переглядати актуальні налаштування вмісту й оновити хештеґ
         manage_user_access: Керувати доступом користувачів
-        manage_user_access_description: Дозволяє користувачам вимкнути двоетапну перевірку інших користувачів, змінити їхню адресу електронної пошти та відновити пароль
         manage_users: Керувати користувачами
         manage_users_description: Дозволяє користувачам переглядати подробиці інших користувачів і виконувати їхню модерацію
         manage_webhooks: Керувати Webhooks
@@ -826,7 +797,6 @@ uk:
       destroyed_msg: Завантаження сайту успішно видалено!
     software_updates:
       critical_update: Критично — оновіться якнайшвидше
-      description: Радимо постійно оновлювати інсталяцію Mastodon, щоб мати змогу користуватися найновішими виправленнями та функціями. На додаток, іноді дуже важливо вчасно оновлювати Mastodon, щоб уникнути проблем з безпекою. З цих причин Mastodon перевіряє наявність оновлень що 30 хвилин і сповіщає вас про це відповідно до ваших налаштувань сповіщень на електронну пошту.
       documentation_link: Докладніше
       release_notes: Примітки до випуску
       title: Доступні оновлення
@@ -984,7 +954,7 @@ uk:
           many: Використали %{count} людей за минулий тиждень
           one: Використала одна людина за минулий тиждень
           other: Використали %{count} людей за минулий тиждень
-      title: Популярні
+      title: Рекомендації та тренди
       trending: Популярне
     warning_presets:
       add_new: Додати новий
@@ -1071,9 +1041,7 @@ uk:
       guide_link_text: Кожен може взяти участь.
     sensitive_content: Дражливий зміст
   application_mailer:
-    notification_preferences: Змінити налаштування електронної пошти
     salutation: "%{name},"
-    settings: 'Змінити налаштування електронної пошти: %{link}'
     unsubscribe: Відписатися
     view: 'Перегляд:'
     view_profile: Показати профіль
@@ -1093,7 +1061,6 @@ uk:
       hint_html: Ще одне! Ми повинні пересвідчитись, що ви людина (щоб ми могли уникнути спаму!). Розв'яжіть CAPTCHA внизу і натисніть кнопку "Продовжити".
       title: Перевірка безпеки
     confirmations:
-      awaiting_review: Ваша електронна адреса підтверджена! Наразі співробітники %{domain} розглядають вашу реєстрацію. Ви отримаєте електронний лист, якщо вони затвердять ваш обліковий запис!
       awaiting_review_title: Ваша реєстрація розглядається
       clicking_this_link: натисніть це посилання
       login_link: увійти
@@ -1101,7 +1068,6 @@ uk:
       redirect_to_app_html: Вас мало переспрямувати до програми <strong>%{app_name}</strong>. Якщо цього не сталося, спробуйте %{clicking_this_link} або вручну поверніться до програми.
       registration_complete: Ваша реєстрація на %{domain} завершена!
       welcome_title: Ласкаво просимо, %{name}!
-      wrong_email_hint: Якщо ця адреса електронної пошти неправильна, можна змінити її в налаштуваннях облікового запису.
     delete_account: Видалити обліковий запис
     delete_account_html: Якщо ви хочете видалити свій обліковий запис, ви можете <a href="%{path}">перейти сюди</a>. Вас попросять підтвердити дію.
     description:
@@ -1122,7 +1088,6 @@ uk:
     or_log_in_with: Або увійдіть з
     privacy_policy_agreement_html: Мною прочитано і я погоджуюся з <a href="%{privacy_policy_path}" target="_blank">політикою приватності</a>
     progress:
-      confirm: Підтвердити електронну адресу
       details: Ваші дані
       review: Наш відгук
       rules: Погодитися з правилами
@@ -1144,10 +1109,8 @@ uk:
     security: Зміна паролю
     set_new_password: Встановити новий пароль
     setup:
-      email_below_hint_html: Перевірте теку "Спам", або зробіть ще один запит. Ви можете виправити свою електронну адресу, якщо вона неправильна.
       email_settings_hint_html: Натисніть на посилання, яке ми надіслали вам, щоб підтвердити %{email}. Ми чекатимемо прямо тут.
       link_not_received: Не отримали посилання?
-      new_confirmation_instructions_sent: Ви отримаєте новий лист із посиланням на підтвердження протягом декількох хвилин!
       title: Перевірте вашу поштову скриньку
     sign_in:
       preamble_html: Увійдіть за допомогою облікових даних <strong>%{domain}</strong>. Якщо ваш обліковий запис розміщений на іншому сервері, ви не зможете увійти тут.
@@ -1158,9 +1121,7 @@ uk:
       title: Налаштуймо вас на %{domain}.
     status:
       account_status: Стан облікового запису
-      confirming: Очікуємо на завершення підтвердження за допомогою електронної пошти.
       functional: Ваш обліковий запис повністю робочий.
-      pending: Ваша заява очікує на розгляд нашим персоналом. Це може зайняти деякий час. Ви отримаєте електронний лист, якщо ваша заява буде схвалена.
       redirecting_to: Ваш обліковий запис наразі неактивний, тому що він перенаправлений до %{acct}.
       self_destruct: Оскільки %{domain} закривається, ви отримаєте тільки обмежений доступ до вашого облікового запису.
       view_strikes: Переглянути попередні попередження вашому обліковому запису
@@ -1203,9 +1164,6 @@ uk:
       before: 'До того як продовжити, будь ласка уважно прочитайте це:'
       caches: Інформація, кешована іншими серверами, може залишитися
       data_removal: Ваші дописи й інші дані будуть вилучені назавжди
-      email_change_html: Ви можете <a href="%{path}">змінити вашу електронну адресу</a>, не видаляючи ваш обліковий запис
-      email_contact_html: Якщо його все ще немає, ви можете написали до <a href="mailto:%{email}">%{email}</a> для допомоги
-      email_reconfirmation_html: Якщо ви не отримали електронного листа з підтвердженням, ви можете <a href="%{path}">запросити його знову</a>
       irreversible: Буде неможливо відновити ваш обліковий запис
       more_details_html: Подробиці за посиланням <a href="%{terms_path}">політика конфіденційності</a>.
       username_available: Ваше ім'я користувача стане доступним для використання
@@ -1454,7 +1412,6 @@ uk:
     authentication_methods:
       otp: застосунок двофакторної автентифікації
       password: пароль
-      sign_in_token: код безпеки е-поштою
       webauthn: ключі безпеки
     description_html: Якщо ви помітили невідомі вам дії, тоді подумайте про зміну свого пароля та можливість увімкнення двофакторної автентифікації.
     empty: Немає історії входів
@@ -1465,16 +1422,6 @@ uk:
     unsubscribe:
       action: Так, відписатися
       complete: Відписалися
-      confirmation_html: Ви впевнені, що хочете відписатися від отримання %{type} для Mastodon на %{domain} до своєї скриньки %{email}? Ви можете повторно підписатися у <a href="%{settings_path}">налаштуваннях сповіщень електронною поштою</a>.
-      emails:
-        notification_emails:
-          favourite: отримувати сповіщення про вподобання електронною поштою
-          follow: отримувати сповіщення про підписки електронною поштою
-          follow_request: отримувати сповіщення про запити на стеження електронною поштою
-          mention: отримувати сповіщення про згадки електронною поштою
-          reblog: отримувати сповіщення про поширення електронною поштою
-      resubscribe_html: Якщо ви відписалися помилково, ви можете повторно підписатися в <a href="%{settings_path}">налаштуваннях сповіщень електронною поштою</a>.
-      success_html: Ви більше не отримуватимете %{type} для Mastodon %{domain} на адресу %{email}.
       title: Відписатися
   media_attachments:
     validations:
@@ -1555,8 +1502,6 @@ uk:
     update:
       subject: "%{name} змінює допис"
   notifications:
-    administration_emails: Сповіщення е-пошти адміністратора
-    email_events: Події, про які сповіщати електронною поштою
     email_events_hint: 'Оберіть події, про які ви хочете отримувати сповіщення:'
   number:
     human:
@@ -1715,7 +1660,6 @@ uk:
     import: Імпорт
     import_and_export: Імпорт та експорт
     migrate: Міграція облікового запису
-    notifications: E-mail сповіщення
     preferences: Налаштування
     profile: Загальнодоступний профіль
     relationships: Підписки та підписники
@@ -1976,7 +1920,6 @@ uk:
     invalid_otp_token: Введено неправильний код
     otp_lost_help_html: Якщо ви втратили доступ до обох, ви можете отримати доступ з %{email}
     rate_limited: Забагато спроб з'єднання. Спробуйте ще раз пізніше.
-    seamless_external_login: Ви увійшли за допомогою зовнішнього сервісу, тому налаштування паролю та електронної пошти недоступні.
     signed_in_as: 'Ви увійшли як:'
   verification:
     extra_instructions_html: <strong>Порада:</strong> Посилання на ваш сайт може бути невидимим. Важлива частина — це <code>rel="me"</code>, яка не запобігає видаванню себе за іншу особу на вебсайтах з користувацьким наповненням. Ви навіть можете використовувати тег <code>link</code> у заголовку сторінки замість <code>a</code>, але HTML має бути доступним без виконання JavaScript.

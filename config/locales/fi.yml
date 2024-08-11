@@ -203,7 +203,7 @@ fi:
         disable_sign_in_token_auth_user: Poista sähköpostitunnuksella todennus käytöstä käyttäjältä
         disable_user: Poista tili käytöstä
         enable_custom_emoji: Ota mukautettu emoji käyttöön
-        enable_sign_in_token_auth_user: Salli käyttäjälle sähköpostitunnuksella todennus
+        enable_sign_in_token_auth_user: Ota sähköpostitunnuksella todennus käyttöön käyttäjälle
         enable_user: Ota tili käyttöön
         memorialize_account: Muuta muistotiliksi
         promote_user: Ylennä käyttäjä
@@ -907,10 +907,16 @@ fi:
     trends:
       allow: Salli
       approved: Hyväksytty
+      confirm_allow: Haluatko varmasti sallia valitut tunnisteet?
+      confirm_disallow: Haluatko varmasti kieltää valitut tunnisteet?
       disallow: Kiellä
       links:
         allow: Salli linkki
         allow_provider: Salli julkaisija
+        confirm_allow: Haluatko varmasti sallia valitut linkit?
+        confirm_allow_provider: Haluatko varmasti sallia valitut palveluntarjoajat?
+        confirm_disallow: Haluatko varmasti kieltää valitut linkit?
+        confirm_disallow_provider: Haluatko varmasti kieltää valitut palveluntarjoajat?
         description_html: Näitä linkkejä jaetaan parhaillaan paljon tileillä, joiden julkaisuja palvelimesi näkee. Luettelo voi auttaa käyttäjiäsi saamaan selville, mitä maailmassa tapahtuu. Linkit eivät näy julkisesti ennen kuin hyväksyt julkaisijan. Voit myös sallia tai hylätä yksittäisiä linkkejä.
         disallow: Kiellä linkki
         disallow_provider: Kiellä julkaisija
@@ -934,6 +940,10 @@ fi:
       statuses:
         allow: Salli julkaisu
         allow_account: Salli tekijä
+        confirm_allow: Haluatko varmasti sallia valitut julkaisut?
+        confirm_allow_account: Haluatko varmasti sallia valitut tilit?
+        confirm_disallow: Haluatko varmasti kieltää valitut julkaisut?
+        confirm_disallow_account: Haluatko varmasti kieltää valitut tilit?
         description_html: Näitä julkaisuja palvelimesi tietää parhaillaan jaettavan ja lisättävän suosikkeihin paljon. Luettelo voi auttaa uusia ja palaavia käyttäjiäsi löytämään lisää seurattavia. Julkaisut eivät näy julkisesti ennen kuin hyväksyt niiden tekijän ja tekijä sallii tilinsä ehdottamisen. Voit myös sallia tai hylätä yksittäisiä julkaisuja.
         disallow: Kiellä julkaisu
         disallow_account: Kiellä tekijä
@@ -966,7 +976,7 @@ fi:
         used_by_over_week:
           one: Käyttänyt yksi käyttäjä viimeisen viikon aikana
           other: Käyttänyt %{count} käyttäjää viimeisen viikon aikana
-      title: Trendit
+      title: Suositukset ja trendit
       trending: Trendaus
     warning_presets:
       add_new: Lisää uusi
