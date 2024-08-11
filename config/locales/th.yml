@@ -29,6 +29,7 @@ th:
       created_msg: สร้างหมายเหตุการกลั่นกรองสำเร็จ!
       destroyed_msg: ทำลายหมายเหตุการกลั่นกรองสำเร็จ!
     accounts:
+      add_email_domain_block: ปิดกั้นโดเมนอีเมล
       approve: อนุมัติ
       approved_msg: อนุมัติใบสมัครลงทะเบียนของ %{username} สำเร็จ
       are_you_sure: คุณแน่ใจหรือไม่?
@@ -166,21 +167,26 @@ th:
         approve_appeal: อนุมัติการอุทธรณ์
         approve_user: อนุมัติผู้ใช้
         assigned_to_self_report: มอบหมายรายงาน
+        change_email_user: เปลี่ยนอีเมลสำหรับผู้ใช้
         change_role_user: เปลี่ยนบทบาทของผู้ใช้
         confirm_user: ยืนยันผู้ใช้
         create_account_warning: สร้างคำเตือน
         create_announcement: สร้างประกาศ
+        create_canonical_email_block: สร้างการปิดกั้นอีเมล
         create_custom_emoji: สร้างอีโมจิที่กำหนดเอง
         create_domain_allow: สร้างการอนุญาตโดเมน
         create_domain_block: สร้างการปิดกั้นโดเมน
+        create_email_domain_block: สร้างการปิดกั้นโดเมนอีเมล
         create_ip_block: สร้างกฎ IP
         create_unavailable_domain: สร้างโดเมนที่ไม่พร้อมใช้งาน
         create_user_role: สร้างบทบาท
         demote_user: ลดขั้นผู้ใช้
         destroy_announcement: ลบประกาศ
+        destroy_canonical_email_block: ลบการปิดกั้นอีเมล
         destroy_custom_emoji: ลบอีโมจิที่กำหนดเอง
         destroy_domain_allow: ลบการอนุญาตโดเมน
         destroy_domain_block: ลบการปิดกั้นโดเมน
+        destroy_email_domain_block: ลบการปิดกั้นโดเมนอีเมล
         destroy_instance: ล้างข้อมูลโดเมน
         destroy_ip_block: ลบกฎ IP
         destroy_status: ลบโพสต์
@@ -917,6 +923,7 @@ th:
         usage_comparison: ใช้ %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
         used_by_over_week:
           other: ใช้โดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
+      title: คำแนะนำและแนวโน้ม
       trending: กำลังนิยม
     warning_presets:
       add_new: เพิ่มใหม่
@@ -1000,7 +1007,9 @@ th:
       guide_link_text: ทุกคนสามารถมีส่วนร่วม
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
   application_mailer:
+    notification_preferences: เปลี่ยนการกำหนดลักษณะอีเมล
     salutation: "%{name},"
+    settings: 'เปลี่ยนการกำหนดลักษณะอีเมล: %{link}'
     unsubscribe: เลิกบอกรับ
     view: 'มุมมอง:'
     view_profile: ดูโปรไฟล์
@@ -1020,6 +1029,7 @@ th:
       hint_html: อีกเพียงหนึ่งสิ่งเพิ่มเติม! เราจำเป็นต้องยืนยันว่าคุณเป็นมนุษย์ (นี่ก็เพื่อให้เราสามารถกันสแปมออกไป!) แก้ CAPTCHA ด้านล่างและคลิก "ดำเนินการต่อ"
       title: การตรวจสอบความปลอดภัย
     confirmations:
+      awaiting_review: ยืนยันที่อยู่อีเมลของคุณแล้ว! ตอนนี้พนักงานของ %{domain} กำลังตรวจทานการลงทะเบียนของคุณ คุณจะได้รับอีเมลหากพนักงานอนุมัติบัญชีของคุณ!
       awaiting_review_title: กำลังตรวจทานการลงทะเบียนของคุณ
       clicking_this_link: คลิกลิงก์นี้
       login_link: เข้าสู่ระบบ
@@ -1027,6 +1037,7 @@ th:
       redirect_to_app_html: คุณควรได้รับการเปลี่ยนเส้นทางไปยังแอป <strong>%{app_name}</strong> หากนั่นไม่เกิดขึ้น ลอง %{clicking_this_link} หรือกลับไปยังแอปด้วยตนเอง
       registration_complete: ตอนนี้การลงทะเบียนของคุณใน %{domain} เสร็จสมบูรณ์แล้ว!
       welcome_title: ยินดีต้อนรับ %{name}!
+      wrong_email_hint: หากที่อยู่อีเมลนั้นไม่ถูกต้อง คุณสามารถเปลี่ยนที่อยู่อีเมลได้ในการตั้งค่าบัญชี
     delete_account: ลบบัญชี
     delete_account_html: หากคุณต้องการลบบัญชีของคุณ คุณสามารถ <a href="%{path}">ดำเนินการต่อที่นี่</a> คุณจะได้รับการถามเพื่อการยืนยัน
     description:
@@ -1047,6 +1058,7 @@ th:
     or_log_in_with: หรือเข้าสู่ระบบด้วย
     privacy_policy_agreement_html: ฉันได้อ่านและเห็นด้วยกับ <a href="%{privacy_policy_path}" target="_blank">นโยบายความเป็นส่วนตัว</a>
     progress:
+      confirm: ยืนยันอีเมล
       details: รายละเอียดของคุณ
       review: การตรวจทานของเรา
       rules: ยอมรับกฎ
@@ -1068,8 +1080,10 @@ th:
     security: ความปลอดภัย
     set_new_password: ตั้งรหัสผ่านใหม่
     setup:
+      email_below_hint_html: ตรวจสอบโฟลเดอร์สแปมของคุณ หรือขออีเมลอื่น คุณสามารถแก้ไขที่อยู่อีเมลของคุณหากที่อยู่อีเมลผิด
       email_settings_hint_html: คลิกลิงก์ที่เราส่งถึงคุณเพื่อยืนยัน %{email} เราจะรออยู่ตรงนี้
       link_not_received: ไม่ได้รับลิงก์?
+      new_confirmation_instructions_sent: คุณจะได้รับอีเมลใหม่พร้อมลิงก์การยืนยันในไม่กี่นาที!
       title: ตรวจสอบกล่องขาเข้าของคุณ
     sign_in:
       preamble_html: เข้าสู่ระบบด้วยข้อมูลประจำตัว <strong>%{domain}</strong> ของคุณ หากบัญชีของคุณได้รับการโฮสต์ในเซิร์ฟเวอร์อื่น คุณจะไม่สามารถเข้าสู่ระบบได้ที่นี่
@@ -1080,7 +1094,9 @@ th:
       title: มาตั้งค่าของคุณใน %{domain} กันเลย
     status:
       account_status: สถานะบัญชี
+      confirming: กำลังรอการยืนยันอีเมลให้เสร็จสมบูรณ์
       functional: บัญชีของคุณทำงานได้อย่างเต็มที่
+      pending: ใบสมัครของคุณกำลังรอดำเนินการตรวจทานโดยพนักงานของเรา นี่อาจใช้เวลาสักครู่ คุณจะได้รับอีเมลหากมีการอนุมัติใบสมัครของคุณ
       redirecting_to: บัญชีของคุณไม่ได้ใช้งานเนื่องจากบัญชีกำลังเปลี่ยนเส้นทางไปยัง %{acct} ในปัจจุบัน
       self_destruct: เนื่องจาก %{domain} กำลังปิดตัวลง คุณจะได้รับการเข้าถึงบัญชีของคุณแบบจำกัดเท่านั้น
       view_strikes: ดูการดำเนินการที่ผ่านมาต่อบัญชีของคุณ
@@ -1123,6 +1139,9 @@ th:
       before: 'ก่อนดำเนินการต่อ โปรดอ่านหมายเหตุเหล่านี้อย่างระมัดระวัง:'
       caches: เนื้อหาที่ได้รับการแคชโดยเซิร์ฟเวอร์อื่น ๆ อาจยังคงอยู่
       data_removal: จะเอาโพสต์และข้อมูลอื่น ๆ ของคุณออกโดยถาวร
+      email_change_html: คุณสามารถ <a href="%{path}">เปลี่ยนที่อยู่อีเมลของคุณ</a> ได้โดยไม่ต้องลบบัญชีของคุณ
+      email_contact_html: หากอีเมลยังคงมาไม่ถึง คุณสามารถส่งอีเมลถึง <a href="mailto:%{email}">%{email}</a> สำหรับความช่วยเหลือ
+      email_reconfirmation_html: หากคุณไม่ได้รับอีเมลการยืนยัน คุณสามารถ <a href="%{path}">ขออีเมลอีกครั้ง</a>
       irreversible: คุณจะไม่สามารถคืนค่าหรือเปิดใช้งานบัญชีของคุณใหม่
       more_details_html: สำหรับรายละเอียดเพิ่มเติม ดู <a href="%{terms_path}">นโยบายความเป็นส่วนตัว</a>
       username_available: ชื่อผู้ใช้ของคุณจะพร้อมใช้งานอีกครั้ง
@@ -1347,6 +1366,7 @@ th:
     authentication_methods:
       otp: แอปการรับรองความถูกต้องด้วยสองปัจจัย
       password: รหัสผ่าน
+      sign_in_token: รหัสความปลอดภัยอีเมล
       webauthn: กุญแจความปลอดภัย
     description_html: หากคุณเห็นกิจกรรมที่คุณไม่รู้จัก พิจารณาเปลี่ยนรหัสผ่านของคุณและเปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัย
     empty: ไม่มีประวัติการรับรองความถูกต้อง
@@ -1357,6 +1377,16 @@ th:
     unsubscribe:
       action: ใช่ เลิกบอกรับ
       complete: เลิกบอกรับแล้ว
+      confirmation_html: คุณแน่ใจหรือไม่ว่าต้องการเลิกบอกรับจากการรับ %{type} สำหรับ Mastodon ใน %{domain} ไปยังอีเมลของคุณที่ %{email}? คุณสามารถบอกรับใหม่ได้เสมอจาก <a href="%{settings_path}">การตั้งค่าการแจ้งเตือนอีเมล</a> ของคุณ
+      emails:
+        notification_emails:
+          favourite: อีเมลการแจ้งเตือนการชื่นชอบ
+          follow: อีเมลการแจ้งเตือนการติดตาม
+          follow_request: อีเมลคำขอติดตาม
+          mention: อีเมลการแจ้งเตือนการกล่าวถึง
+          reblog: อีเมลการแจ้งเตือนการดัน
+      resubscribe_html: หากคุณได้เลิกบอกรับโดยไม่ได้ตั้งใจ คุณสามารถบอกรับใหม่ได้จาก <a href="%{settings_path}">การตั้งค่าการแจ้งเตือนอีเมล</a> ของคุณ
+      success_html: คุณจะไม่ได้รับ %{type} สำหรับ Mastodon ใน %{domain} ไปยังอีเมลของคุณที่ %{email} อีกต่อไป
       title: เลิกบอกรับ
   media_attachments:
     validations:
@@ -1437,6 +1467,8 @@ th:
     update:
       subject: "%{name} ได้แก้ไขโพสต์"
   notifications:
+    administration_emails: การแจ้งเตือนอีเมลผู้ดูแล
+    email_events: เหตุการณ์สำหรับการแจ้งเตือนอีเมล
     email_events_hint: 'เลือกเหตุการณ์ที่คุณต้องการรับการแจ้งเตือน:'
   number:
     human:
@@ -1595,6 +1627,7 @@ th:
     import: การนำเข้า
     import_and_export: การนำเข้าและการส่งออก
     migrate: การโยกย้ายบัญชี
+    notifications: การแจ้งเตือนอีเมล
     preferences: การกำหนดลักษณะ
     profile: โปรไฟล์สาธารณะ
     relationships: การติดตามและผู้ติดตาม
@@ -1834,6 +1867,7 @@ th:
     invalid_otp_token: รหัสสองปัจจัยไม่ถูกต้อง
     otp_lost_help_html: หากคุณสูญเสียการเข้าถึงทั้งสองอย่าง คุณสามารถติดต่อ %{email}
     rate_limited: มีความพยายามในการรับรองความถูกต้องมากเกินไป ลองอีกครั้งในภายหลัง
+    seamless_external_login: คุณได้เข้าสู่ระบบผ่านบริการภายนอก ดังนั้นการตั้งค่ารหัสผ่านและอีเมลจึงไม่พร้อมใช้งาน
     signed_in_as: 'ลงชื่อเข้าเป็น:'
   verification:
     extra_instructions_html: <strong>เคล็ดลับ:</strong> ลิงก์ในเว็บไซต์ของคุณสามารถเป็นแบบมองไม่เห็น ส่วนที่สำคัญคือ <code>rel="me"</code> ซึ่งป้องกันการแอบอ้างในเว็บไซต์ที่มีเนื้อหาที่ผู้ใช้สร้างขึ้น คุณยังสามารถใช้แท็ก <code>link</code> ในส่วนหัวของหน้าแทนที่จะเป็น <code>a</code> แต่ HTML ต้องเข้าถึงได้โดยไม่มีการประมวลผล JavaScript
