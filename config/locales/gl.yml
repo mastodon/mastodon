@@ -31,6 +31,7 @@ gl:
       created_msg: Nota de moderación creada correctamente!
       destroyed_msg: Nota de moderación eliminada de xeito correcto!
     accounts:
+      add_email_domain_block: Bloquear dominio de correo
       approve: Aprobar
       approved_msg: Aprobada a solicitude de rexistro de %{username}
       are_you_sure: Está segura?
@@ -57,6 +58,7 @@ gl:
       demote: Rebaixar
       destroyed_msg: Os datos de %{username} están na cola para ser eliminados axiña
       disable: Desactivar
+      disable_sign_in_token_auth: Desactivar a autenticación con token por correo
       disable_two_factor_authentication: Desactivar 2FA
       disabled: Desactivado
       display_name: Nome a amosar
@@ -65,6 +67,7 @@ gl:
       email: Enderezo de correo
       email_status: Estado do correo
       enable: Activar
+      enable_sign_in_token_auth: Activar autenticación con token por correo
       enabled: Activado
       enabled_msg: Desbloqueada a conta de %{username}
       followers: Seguidoras
@@ -129,6 +132,7 @@ gl:
       resubscribe: Resubscribir
       role: Rol
       search: Procurar
+      search_same_email_domain: Outras usuarias co mesmo dominio de correo
       search_same_ip: Outras usuarias co mesmo IP
       security: Seguridade
       security_measures:
@@ -169,21 +173,26 @@ gl:
         approve_appeal: Aprobar apelación
         approve_user: Aprobar Usuaria
         assigned_to_self_report: Asignar denuncia
+        change_email_user: Cambiar o correo da Usuaria
         change_role_user: Cambiar Rol da Usuaria
         confirm_user: Confirmar usuaria
         create_account_warning: Crear aviso
         create_announcement: Crear anuncio
+        create_canonical_email_block: Crear Bloqueo de Correo
         create_custom_emoji: Crear emoticonas personalizadas
         create_domain_allow: Crear Dominio Permitido
         create_domain_block: Crear bloquedo do Dominio
+        create_email_domain_block: Crear Bloqueo de Dominio do correo
         create_ip_block: Crear regra IP
         create_unavailable_domain: Crear dominio Non dispoñible
         create_user_role: Crear Rol
         demote_user: Degradar usuaria
         destroy_announcement: Eliminar anuncio
+        destroy_canonical_email_block: Eliminar bloqueo do correo
         destroy_custom_emoji: Eliminar emoticona personalizada
         destroy_domain_allow: Eliminar Dominio permitido
         destroy_domain_block: Eliminar bloqueo do Dominio
+        destroy_email_domain_block: Eliminar bloqueo do dominio do correo
         destroy_instance: Purgar Dominio
         destroy_ip_block: Eliminar regra IP
         destroy_status: Eliminar publicación
@@ -191,8 +200,10 @@ gl:
         destroy_user_role: Eliminar Rol
         disable_2fa_user: Desactivar 2FA
         disable_custom_emoji: Desactivar emoticona personalizada
+        disable_sign_in_token_auth_user: Desactivar Autenticación por Token no Correo para a Usuaria
         disable_user: Desactivar usuaria
         enable_custom_emoji: Activar emoticona personalizada
+        enable_sign_in_token_auth_user: Activar Autenticación con Token no Correo para a Usuaria
         enable_user: Activar usuaria
         memorialize_account: Transformar en conta conmemorativa
         promote_user: Promover usuaria
@@ -222,20 +233,26 @@ gl:
         approve_appeal_html: "%{name} aprobou a apelación da decisión da moderación de %{target}"
         approve_user_html: "%{name} aprobou o rexistro de %{target}"
         assigned_to_self_report_html: "%{name} asignou a denuncia %{target} para si mesma"
+        change_email_user_html: "%{name} cambiou o enderezo de correo da usuaria %{target}"
         change_role_user_html: "%{name} cambiou o rol de %{target}"
+        confirm_user_html: "%{name} confirmou o enderezo de correo da usuaria %{target}"
         create_account_warning_html: "%{name} envioulle unha advertencia a %{target}"
         create_announcement_html: "%{name} creou un novo anuncio %{target}"
+        create_canonical_email_block_html: "%{name} bloqueou os correo con suma de comprobación %{target}"
         create_custom_emoji_html: "%{name} subiu un novo emoji %{target}"
         create_domain_allow_html: "%{name} permitiu a federación co dominio %{target}"
         create_domain_block_html: "%{name} bloqueou o dominio %{target}"
+        create_email_domain_block_html: "%{name} bloqueou o dominio de correo %{target}"
         create_ip_block_html: "%{name} creou regra para o IP %{target}"
         create_unavailable_domain_html: "%{name} deixou de interactuar co dominio %{target}"
         create_user_role_html: "%{name} creou o rol %{target}"
         demote_user_html: "%{name} degradou a usuaria %{target}"
         destroy_announcement_html: "%{name} eliminou o anuncio %{target}"
+        destroy_canonical_email_block_html: "%{name} desbloqueou o correo con suma de comprobación %{target}"
         destroy_custom_emoji_html: "%{name} eliminou o emoji %{target}"
         destroy_domain_allow_html: "%{name} retirou a federación co dominio %{target}"
         destroy_domain_block_html: "%{name} desbloqueou o dominio %{target}"
+        destroy_email_domain_block_html: "%{name} desbloqueou o dominio de correo %{target}"
         destroy_instance_html: "%{name} purgou o dominio %{target}"
         destroy_ip_block_html: "%{name} eliminou a regra para o IP %{target}"
         destroy_status_html: "%{name} eliminou a publicación de %{target}"
@@ -243,8 +260,10 @@ gl:
         destroy_user_role_html: "%{name} eliminou o rol %{target}"
         disable_2fa_user_html: "%{name} desactivou o requerimento do segundo factor para a usuaria %{target}"
         disable_custom_emoji_html: "%{name} desactivou o emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} desactivou a autenticación por token no email para %{target}"
         disable_user_html: "%{name} desactivou as credenciais para a usuaria %{target}"
         enable_custom_emoji_html: "%{name} activou o emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} activou a autenticación con token no email para %{target}"
         enable_user_html: "%{name} activou as credenciais para a usuaria %{target}"
         memorialize_account_html: "%{name} convertiu a conta de %{target} nunha páxina para o recordo"
         promote_user_html: "%{name} promocionou a usuaria %{target}"
@@ -252,6 +271,7 @@ gl:
         reject_user_html: "%{name} rexeitou o rexistro de %{target}"
         remove_avatar_user_html: "%{name} eliminou o avatar de %{target}"
         reopen_report_html: "%{name} reabriu a denuncia %{target}"
+        resend_user_html: "%{name} volveu a enviar o correo de confirmación para %{target}"
         reset_password_user_html: "%{name} restableceu o contrasinal da usuaria %{target}"
         resolve_report_html: "%{name} resolveu a denuncia %{target}"
         sensitive_account_html: "%{name} marcou o multimedia de %{target} como sensible"
@@ -412,6 +432,7 @@ gl:
       attempts_over_week:
         one: "%{count} intento na última semana"
         other: "%{count} intentos de conexión na última semana"
+      created_msg: Bloqueouse correctamente o dominio de correo
       delete: Eliminar
       dns:
         types:
@@ -420,8 +441,12 @@ gl:
       new:
         create: Engadir dominio
         resolve: Resolver dominio
+        title: Bloquear novo dominio de correo
+      no_email_domain_block_selected: Non se cambiou ningún bloqueo de dominio porque non había ningún seleccionado
       not_permitted: Non permitido
+      resolved_dns_records_hint_html: O nome de dominio corresponde cos seguintes dominios MX, que son os responsables últimos de aceptar o correo. Ao bloquear un dominio MX bloquerás a creación de contas para todo enderezo de correo que use o mesmo dominio MX, incluso se o nome de dominio visible é diferente. <strong>Ten coidado xa que podes bloquear os principais provedores de correo.</strong>
       resolved_through_html: Resolto a través de %{domain}
+      title: Dominios de correo bloqueados
     export_domain_allows:
       new:
         title: Importar dominios permitidos
@@ -575,6 +600,7 @@ gl:
         resolve_description_html: Non se van tomar accións contra a conta denunciada, nin se gardarán avisos, e pecharase a denuncia.
         silence_description_html: A conta será visible só para quen xa a está a seguir ou quen a buscou manualmente, limitando moito o seu alcance. Pódese cambiar. Isto pecha tódalas denuncias acerca desta conta.
         suspend_description_html: A conta e todo o seu contido non serán accesible e finalmente eliminaranse, será imposible interactuar con ela. A decisión é reversible durante 30 días. Isto pecha tódalas denuncias sobre esta conta.
+      actions_description_html: Decide a acción a tomar para resolver esta denuncia. Se tomas accións punitivas contra a conta denunciada enviaraselle un correo, excepto se está indicada a categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide a acción a tomar para resolver a denuncia. Isto só lle afecta ao xeito en que o <strong>teu</strong> servidor se comunica con esta conta remota e xestiona o seu contido.
       add_to_report: Engadir máis á denuncia
       already_suspended_badges:
@@ -639,6 +665,7 @@ gl:
         delete_data_html: Eliminar o perfil e contidos de <strong>@%{acct}</strong> para os próximos 30 días a non ser que sexa suspendida nese período
         preview_preamble_html: "<strong>@%{acct}</strong> vai recibir un aviso co seguinte contido:"
         record_strike_html: Anotar un aviso contra <strong>@%{acct}</strong> para axudarche a xestionar futuros problemas con esta conta
+        send_email_html: Enviarlle a <strong>@%{acct}</strong> un correo de advertencia
         warning_placeholder: Razóns adicionais optativas para a acción de moderación.
       target_origin: Orixe da conta denunciada
       title: Denuncias
@@ -678,6 +705,7 @@ gl:
         manage_appeals: Xestionar recursos
         manage_appeals_description: Permite revisar as apelacións contra as accións de moderación
         manage_blocks: Xestionar bloqueos
+        manage_blocks_description: Permite que as usuarias bloqueen provedoras de correo e enderezos IP
         manage_custom_emojis: Xestionar Emojis personalizados
         manage_custom_emojis_description: Permite xestionar os emojis personalizados do servidor
         manage_federation: Xestionar a federación
@@ -695,6 +723,7 @@ gl:
         manage_taxonomies: Xestionar Taxonomías
         manage_taxonomies_description: Permite revisar o contido en voga e actualizar os axustes dos cancelos
         manage_user_access: Xestionar Acceso das usuarias
+        manage_user_access_description: Permite desactivar o segundo factor de autenticación doutras usuarias, cambiar o enderezo de correo e restablecer o contrasinal
         manage_users: Xestionar Usuarias
         manage_users_description: Permite ver os detalles doutras usuarias e realizar accións de moderación sobre elas
         manage_webhooks: Xestionar Webhooks
@@ -769,6 +798,7 @@ gl:
       destroyed_msg: Eliminado correctamente o subido!
     software_updates:
       critical_update: Crítica - actualiza axiña
+      description: Aconsellamos manter actualizado o teu servidor Mastodon para beneficiarte dos últimos arranxos e características. A maiores, de cando en vez hai actualizacións para evitar problemas importantes de seguridade. Debido a isto, Mastodon comproba cada 30 minutos se hai actualizacións e avisarate seguindo as túas preferencias de notificación por correo electrónico.
       documentation_link: Saber máis
       release_notes: Notas da versión
       title: Actualizacións dispoñibles
@@ -946,6 +976,7 @@ gl:
         used_by_over_week:
           one: Utilizado por unha persoa na última semana
           other: Utilizado por %{count} persoas na última semana
+      title: Recomendacións e Suxestións
       trending: Tendencias
     warning_presets:
       add_new: Engadir novo
@@ -1030,7 +1061,9 @@ gl:
       guide_link_text: Todas podemos contribuír.
     sensitive_content: Contido sensible
   application_mailer:
+    notification_preferences: Cambiar preferencias de correo
     salutation: "%{name},"
+    settings: 'Cambiar preferencias de correo: %{link}'
     unsubscribe: Anular subscrición
     view: 'Vista:'
     view_profile: Ver perfil
@@ -1050,6 +1083,7 @@ gl:
       hint_html: Unha cousa máis! Temos que confirmar que es un ser humano (para poder evitar contas de spam!). Resolve o CAPTCHA de aquí embaixo e preme en "Continuar".
       title: Comprobación de seguridade
     confirmations:
+      awaiting_review: O teu correo foi confirmado! A administración de %{domain} está revisando agora a túa solicitude. Recibirás un correo cando autoricen a conta!
       awaiting_review_title: Estamos revisando a solicitude de rexistro
       clicking_this_link: premendo nesta ligazón
       login_link: acceder
@@ -1057,6 +1091,7 @@ gl:
       redirect_to_app_html: Ímoste redirixir á app <strong>%{app_name}</strong>. Se iso non acontece, proba %{clicking_this_link} ou volve ti manualmente á app.
       registration_complete: Completouse a creación da conta en %{domain}!
       welcome_title: Benvida, %{name}!
+      wrong_email_hint: Se o enderezo de correo non é correcto, podes cambialo nos axustes da conta.
     delete_account: Eliminar conta
     delete_account_html: Se queres eliminar a túa conta, podes <a href="%{path}">facelo aquí</a>. Deberás confirmar a acción.
     description:
@@ -1077,6 +1112,7 @@ gl:
     or_log_in_with: Ou accede con
     privacy_policy_agreement_html: Lin e acepto a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
     progress:
+      confirm: Confirmar correo
       details: Detalles
       review: A nosa revisión
       rules: Aceptar regras
@@ -1098,8 +1134,10 @@ gl:
     security: Seguranza
     set_new_password: Estabelecer novo contrasinal
     setup:
+      email_below_hint_html: Mira no cartafol do spam, ou solicita outra. Podes cambiar o enderzo de correo se non é correcto.
       email_settings_hint_html: Preme na ligazón que che enviamos para verificar %{email}. Agardamos por ti.
       link_not_received: Non recibiches a ligazón?
+      new_confirmation_instructions_sent: Nuns minutos recibirás un novo correo electrónico coa ligazón de confirmación!
       title: Mira a caixa de entrada
     sign_in:
       preamble_html: Accede coas credenciais en <strong>%{domain}</strong>. Se a túa conta está noutro servidor non poderás acceder desde aquí.
@@ -1110,7 +1148,9 @@ gl:
       title: Imos crear a túa conta en %{domain}.
     status:
       account_status: Estado da conta
+      confirming: Agardando a confirmación do correo enviado.
       functional: A túa conta está completamente operativa.
+      pending: A túa solicitude está pendente de revisión. Poderíanos levar algún tempo. Recibirás un correo se a solicitude foi aprobada.
       redirecting_to: A túa conta está inactiva porque está redirixida a %{acct}.
       self_destruct: Como %{domain} vai fechar, tes acceso restrinxido á túa conta.
       view_strikes: Ver avisos anteriores respecto da túa conta
@@ -1153,6 +1193,9 @@ gl:
       before: 'Antes de continuar, por favor le estas notas con atención:'
       caches: O contido almacenado noutros servidores podería persistir
       data_removal: As túas publicacións e outros datos serán permanentemente borrados
+      email_change_html: Podes <a href="%{path}">cambiar o enderezo de correo</a> sen eliminar a conta
+      email_contact_html: Se non o recibes, podes escribir a <a href="mailto:%{email}">%{email}</a> pedindo axuda
+      email_reconfirmation_html: Se non recibes o correo de confirmación, podes <a href="%{path}">solicitalo de novo</a>
       irreversible: Non poderás restaurar ou reactivar a conta
       more_details_html: Para máis detalles, mira a <a href="%{terms_path}">política de privacidade</a>.
       username_available: O nome de usuaria estará dispoñible novamente
@@ -1385,6 +1428,7 @@ gl:
     authentication_methods:
       otp: app para autenticación con dous factores
       password: contrasinal
+      sign_in_token: código de seguridade por correo
       webauthn: chaves de seguridade
     description_html: Se ves actividade que non recoñeces, considera cambiar o contrasinal e activar o segundo factor de autenticación.
     empty: Non hai historial de autenticación
@@ -1395,6 +1439,16 @@ gl:
     unsubscribe:
       action: Si, retirar subscrición
       complete: Subscrición anulada
+      confirmation_html: Tes a certeza de querer retirar a subscrición a Mastodon en %{domain} para recibir %{type} no teu correo electrónico en %{email}? Poderás volver a subscribirte desde os <a href="%{settings_path}">axustes de notificacións por correo</a>.
+      emails:
+        notification_emails:
+          favourite: notificacións de favorecidas
+          follow: notificacións de seguimentos
+          follow_request: notificacións de solicitudes de seguimento
+          mention: notificacións de mencións
+          reblog: notificacións de promocións
+      resubscribe_html: Se por un erro eliminaches a subscrición, podes volver a subscribirte desde os <a href="%{settings_path}">axustes de notificacións por correo electrónico</a>.
+      success_html: Non vas recibir %{type} de Mastodon en %{domain} no enderezo %{email}.
       title: Anular subscrición
   media_attachments:
     validations:
@@ -1475,6 +1529,8 @@ gl:
     update:
       subject: "%{name} editou unha publicación"
   notifications:
+    administration_emails: Administrar notificacións por correo
+    email_events: Eventos para as notificación por correo
     email_events_hint: 'Escolle os eventos sobre os que queres recibir notificacións:'
   number:
     human:
@@ -1633,6 +1689,7 @@ gl:
     import: Importar
     import_and_export: Importar e exportar
     migrate: Migrar conta
+    notifications: Notificacións por correo
     preferences: Preferencias
     profile: Perfil
     relationships: Seguindo e seguidoras
@@ -1879,6 +1936,7 @@ gl:
     invalid_otp_token: O código do segundo factor non é válido
     otp_lost_help_html: Se perdes o acceso a ambos, podes contactar con %{email}
     rate_limited: Demasiados intentos de autenticación, inténtao máis tarde.
+    seamless_external_login: Accedeches a través dun servizo externo, polo que os axustes de contrasinal e correo non están dispoñibles.
     signed_in_as: 'Rexistrada como:'
   verification:
     extra_instructions_html: <strong>Truco:</strong> A ligazón pode estar agochada na túa páxina web. A parte importante é <code>rel="me"</code> que impide a suplantación en sitios web con contido creado polas usuarias. Incluso podes usar a etiqueta <code>link</code> na cabeceira da páxina en lugar de <code>a</code>, pero o HTML debe ser accesible sen precisar usar JavaScript.
