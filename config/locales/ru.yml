@@ -175,6 +175,7 @@ ru:
         approve_appeal: Одобрить обжалование
         approve_user: Утвердить
         assigned_to_self_report: Присвоение жалоб
+        change_email_user: Сменить e-mail для пользователя
         change_role_user: Изменить роль пользователя
         confirm_user: Подтверждение пользователей
         create_account_warning: Выдача предупреждения
@@ -221,6 +222,7 @@ ru:
         update_custom_emoji: Обновление эмодзи
         update_domain_block: Изменение блокировки домена
         update_ip_block: Обновить правило для IP-адреса
+        update_report: Обновить рапорт
         update_status: Изменение постов
         update_user_role: Обновить роль
       actions:
@@ -436,6 +438,7 @@ ru:
         resolve: Проверить домен
       not_permitted: Не разрешено
       resolved_through_html: Разрешено через %{domain}
+      title: Заблокированные e-mail домены
     export_domain_allows:
       new:
         title: Импорт домена разрешён
@@ -714,6 +717,7 @@ ru:
         manage_taxonomies: Управление трендами
         manage_taxonomies_description: Позволяет пользователям модерировать список популярного контента и менять настройки хэштегов
         manage_user_access: Управление правами пользователей
+        manage_user_access_description: Разрешает пользователям отключать двухэтапную аутентификацию другим пользователям, менять их e-mail и сбрасывать их пароль
         manage_users: Управление пользователями
         manage_users_description: Разрешает пользователям просматривать информацию о других пользователях и применять против них модерацию
         manage_webhooks: Управление веб-хуками
@@ -871,6 +875,8 @@ ru:
         action: Нажмите сюда, чтобы узнать подробности
         message_html: "<strong>Ваше хранилище объектов неправильно настроено. Безопасность ваших пользователей находится под угрозой</strong>"
     tags:
+      moderation:
+        title: Статус
       review: Состояние проверки
       updated_msg: Настройки хэштега обновлены
     title: Администрирование

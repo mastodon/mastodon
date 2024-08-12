@@ -58,6 +58,7 @@ el:
       demote: Υποβιβασμός
       destroyed_msg: Τα δεδομένα του/της %{username} εκκρεμούν για άμεση διαγραφή
       disable: Πάγωμα
+      disable_sign_in_token_auth: Απενεργοποίηση επαλήθευσης διακριτικού email
       disable_two_factor_authentication: Απενεργοποίηση 2FA
       disabled: Παγωμένος
       display_name: Εμφανιζόμενο όνομα
@@ -66,6 +67,7 @@ el:
       email: Email
       email_status: Κατάσταση email
       enable: Ξεπάγωμα
+      enable_sign_in_token_auth: Ενεργοποίηση ελέγχου ταυτότητας διακριτικού e-mail
       enabled: Ενεργοποιημένο
       enabled_msg: Επιτυχές ξεπάγωμα λογαριασμού του/της %{username}
       followers: Ακόλουθοι
@@ -130,6 +132,7 @@ el:
       resubscribe: Επανεγγραφή
       role: Ρόλος
       search: Αναζήτηση
+      search_same_email_domain: Άλλοι χρήστες με τον ίδιο τομέα email
       search_same_ip: Υπόλοιποι χρήστες με την ίδια διεύθυνση IP
       security: Ασφάλεια
       security_measures:
@@ -170,21 +173,26 @@ el:
         approve_appeal: Έγκριση Έφεσης
         approve_user: Έγκριση Χρήστη
         assigned_to_self_report: Ανάθεση Αναφοράς
+        change_email_user: Αλλαγή email για Χρήστη
         change_role_user: Αλλαγή του ρόλου του χρήστη
         confirm_user: Επιβεβαίωση Χρήστη
         create_account_warning: Δημιουργία Προειδοποίησης
         create_announcement: Δημιουργία Ανακοίνωσης
+        create_canonical_email_block: Δημιουργία Αποκλεισμού Email
         create_custom_emoji: Δημιουργία Προσαρμοσμένου Emoji
         create_domain_allow: Δημιουργία Αποδεκτού Τομέα
         create_domain_block: Δημιουργία Αποκλεισμού Τομέα
+        create_email_domain_block: Δημιουργία Αποκλεισμού Τομέα Email
         create_ip_block: Δημιουργία κανόνα IP
         create_unavailable_domain: Δημιουργία Μη Διαθέσιμου Τομέα
         create_user_role: Δημιουργία Ρόλου
         demote_user: Υποβιβασμός Χρήστη
         destroy_announcement: Διαγραφή Ανακοίνωσης
+        destroy_canonical_email_block: Διαγραφή Αποκλεισμού Email
         destroy_custom_emoji: Διαγραφή Προσαρμοσμένου Emoji
         destroy_domain_allow: Διαγραφή Αποδεκτού Τομέα
         destroy_domain_block: Διαγραφή Αποκλεισμού Τομέα
+        destroy_email_domain_block: Διαγραφή Αποκλεισμού Τομέα Email
         destroy_instance: Εκκαθάριση Τομέα
         destroy_ip_block: Διαγραφή κανόνα IP
         destroy_status: Διαγραφή Ανάρτησης
@@ -192,8 +200,10 @@ el:
         destroy_user_role: Καταστροφή Ρόλου
         disable_2fa_user: Απενεργοποίηση 2FA
         disable_custom_emoji: Απενεργοποίηση Προσαρμοσμένων Emoji
+        disable_sign_in_token_auth_user: Απενεργοποίηση Ελέγχου Ταυτότητας Διακριτικού Email για Χρήστη
         disable_user: Απενεργοποίηση Χρήστη
         enable_custom_emoji: Ενεργοποίηση Προσαρμοσμένων Emoji
+        enable_sign_in_token_auth_user: Ενεργοποίηση Ελέγχου Ταυτότητας Διακριτικού Email για Χρήστη
         enable_user: Ενεργοποίηση Χρήστη
         memorialize_account: Μετατροπή Λογαριασμού σε Εις Μνήμην
         promote_user: Προαγωγή Χρήστη
@@ -223,12 +233,16 @@ el:
         approve_appeal_html: Ο/Η %{name} ενέκρινε την ένσταση της απόφασης των συντονιστών από %{target}
         approve_user_html: ο/η %{name} ενέκρινε την εγγραφή του %{target}
         assigned_to_self_report_html: Ο/Η %{name} ανάθεσε την αναφορά %{target} στον εαυτό του/της
+        change_email_user_html: Ο χρήστης %{name} άλλαξε τη διεύθυνση email του χρήστη %{target}
         change_role_user_html: Ο/Η %{name} άλλαξε ρόλο του/της %{target}
+        confirm_user_html: Ο χρήστης %{name} επιβεβαίωσε τη διεύθυνση email του χρήστη %{target}
         create_account_warning_html: Ο/Η %{name} έστειλε προειδοποίηση προς %{target}
         create_announcement_html: Ο/Η %{name} δημιούργησε νέα ανακοίνωση %{target}
+        create_canonical_email_block_html: Ο χρήστης %{name} απέκλεισε email με το hash %{target}
         create_custom_emoji_html: Ο/Η %{name} ανέβασε νέο emoji %{target}
         create_domain_allow_html: Ο/Η %{name} επέτρεψε την συναλλαγή με τον τομέα %{target}
         create_domain_block_html: Ο/Η %{name} απέκλεισε τον τομέα %{target}
+        create_email_domain_block_html: Ο χρήστης %{name} απέκλεισε τον τομέα email %{target}
         create_ip_block_html: Ο/Η %{name} δημιούργησε κανόνα για την IP %{target}
         create_unavailable_domain_html: Ο/Η %{name} σταμάτησε να τροφοδοτεί τον τομέα %{target}
         create_user_role_html: Ο/Η %{name} δημιούργησε ρόλο %{target}
