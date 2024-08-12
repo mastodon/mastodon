@@ -4503,6 +4503,9 @@ a.status-card {
   opacity: 1;
   z-index: 1;
   position: relative;
+  border-left: 1px solid var(--background-border-color);
+  border-right: 1px solid var(--background-border-color);
+  border-bottom: 0;
 
   &.collapsed {
     max-height: 0;
@@ -4523,7 +4526,7 @@ a.status-card {
 }
 
 .column-header__collapsible-inner {
-  border: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--background-border-color);
   border-top: 0;
 
   @media screen and (max-width: $no-gap-breakpoint) {
