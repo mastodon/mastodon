@@ -4505,11 +4505,12 @@ a.status-card {
   position: relative;
   border-left: 1px solid var(--background-border-color);
   border-right: 1px solid var(--background-border-color);
-  border-bottom: 0;
+  border-bottom: 1px solid var(--background-border-color);
 
   &.collapsed {
     max-height: 0;
     opacity: 0.5;
+    border-bottom: 0;
   }
 
   &.animating {
@@ -4526,7 +4527,6 @@ a.status-card {
 }
 
 .column-header__collapsible-inner {
-  border-bottom: 1px solid var(--background-border-color);
   border-top: 0;
 
   @media screen and (max-width: $no-gap-breakpoint) {
