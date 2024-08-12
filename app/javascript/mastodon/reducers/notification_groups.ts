@@ -387,12 +387,14 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
       })
       .addCase(processNewNotificationForGroups.fulfilled, (state, action) => {
         const notification = action.payload;
-        processNewNotification(
-          usePendingItems ? state.pendingGroups : state.groups,
-          notification,
-        );
-        updateLastReadId(state);
-        trimNotifications(state);
+        if (notification) {
+          processNewNotification(
+            usePendingItems ? state.pendingGroups : state.groups,
+            notification,
+          );
+          updateLastReadId(state);
+          trimNotifications(state);
+        }
       })
       .addCase(disconnectTimeline, (state, action) => {
         if (action.payload.timeline === 'home') {

@@ -15,6 +15,7 @@ import type { NotificationGap } from 'mastodon/reducers/notification_groups';
 import {
   selectSettingsNotificationsExcludedTypes,
   selectSettingsNotificationsQuickFilterActive,
+  selectSettingsNotificationsShows,
 } from 'mastodon/selectors/settings';
 import type { AppDispatch } from 'mastodon/store';
 import {
@@ -104,7 +105,31 @@ export const fetchNotificationsGap = createDataLoadingThunk(
 
 export const processNewNotificationForGroups = createAppAsyncThunk(
   'notificationGroups/processNew',
-  (notification: ApiNotificationJSON, { dispatch }) => {
+  (notification: ApiNotificationJSON, { dispatch, getState }) => {
+    const state = getState();
+    const activeFilter = selectSettingsNotificationsQuickFilterActive(state);
+    const notificationShows = selectSettingsNotificationsShows(state);
+
+    const showInColumn =
+      activeFilter === 'all'
+        ? notificationShows[notification.type]
+        : activeFilter === notification.type;
+
+    if (!showInColumn) return;
+
+    if (
+      (notification.type === 'mention' || notification.type === 'update') &&
+      notification.status.filtered
+    ) {
+      const filters = notification.status.filtered.filter((result) =>
+        result.filter.context.includes('notifications'),
+      );
+
+      if (filters.some((result) => result.filter.filter_action === 'hide')) {
+        return;
+      }
+    }
+
     dispatchAssociatedRecords(dispatch, [notification]);
 
     return notification;

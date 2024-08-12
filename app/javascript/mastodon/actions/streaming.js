@@ -104,7 +104,7 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
           const notificationJSON = JSON.parse(data.payload);
           dispatch(updateNotifications(notificationJSON, messages, locale));
           // TODO: remove this once the groups feature replaces the previous one
-          if(getState().notificationGroups.groups.length > 0) {
+          if(getState().settings.getIn(['notifications', 'groupingBeta'], false)) {
             dispatch(processNewNotificationForGroups(notificationJSON));
           }
           break;
