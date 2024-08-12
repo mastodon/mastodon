@@ -4507,6 +4507,11 @@ a.status-card {
   border-right: 1px solid var(--background-border-color);
   border-bottom: 1px solid var(--background-border-color);
 
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-left: 0;
+    border-right: 0;
+  }
+
   &.collapsed {
     max-height: 0;
     opacity: 0.5;
@@ -4528,11 +4533,6 @@ a.status-card {
 
 .column-header__collapsible-inner {
   border-top: 0;
-
-  @media screen and (max-width: $no-gap-breakpoint) {
-    border-left: 0;
-    border-right: 0;
-  }
 }
 
 .column-header__setting-btn {
