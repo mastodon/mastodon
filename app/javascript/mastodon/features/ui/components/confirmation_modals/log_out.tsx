@@ -25,7 +25,7 @@ export const ConfirmLogOutModal: React.FC<BaseConfirmationModalProps> = ({
   const intl = useIntl();
 
   const onConfirm = useCallback(() => {
-    logOut();
+    void logOut();
   }, []);
 
   return (
