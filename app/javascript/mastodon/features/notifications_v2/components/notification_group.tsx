@@ -20,6 +20,21 @@ import { NotificationSeveredRelationships } from './notification_severed_relatio
 import { NotificationStatus } from './notification_status';
 import { NotificationUpdate } from './notification_update';
 
+function missingActivity(notificationGroup: NotificationGroupModel) {
+  switch (notificationGroup.type) {
+    case 'reblog':
+    case 'favourite':
+    case 'mention':
+    case 'update':
+    case 'status':
+    case 'poll':
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- our type is actually not correct as the server can occasionally have orphaned notifications
+      return notificationGroup.statusId === null;
+    default:
+      return false;
+  }
+}
+
 export const NotificationGroup: React.FC<{
   notificationGroupId: NotificationGroupModel['group_key'];
   unread: boolean;
@@ -60,7 +75,12 @@ export const NotificationGroup: React.FC<{
     [dispatch, notificationGroupId, accountId, onMoveUp, onMoveDown],
   );
 
-  if (!notificationGroup || notificationGroup.type === 'gap') return null;
+  if (
+    !notificationGroup ||
+    notificationGroup.type === 'gap' ||
+    missingActivity(notificationGroup)
+  )
+    return null;
 
   let content;
 
