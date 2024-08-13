@@ -2836,7 +2836,7 @@ $ui-header-logo-wordmark-width: 99px;
   overflow: hidden;
 }
 
-@media screen and (width >= 631px) {
+@media screen and (width > $mobile-breakpoint) {
   .columns-area {
     padding: 0;
   }
@@ -5731,7 +5731,7 @@ a.status-card {
   user-select: text;
   display: flex;
 
-  @media screen and (width <= 630px) {
+  @media screen and (width <= $mobile-breakpoint) {
     margin-top: auto;
   }
 }
@@ -6090,7 +6090,7 @@ a.status-card {
     border-radius: 0 0 16px 16px;
     border-top: 0;
 
-    @media screen and (max-width: $no-gap-breakpoint) {
+    @media screen and (max-width: $mobile-breakpoint) {
       border-radius: 0;
       border-bottom: 0;
       padding-bottom: 32px;
@@ -9092,8 +9092,9 @@ noscript {
   backdrop-filter: var(--background-filter);
   border: 1px solid var(--modal-border-color);
   padding: 24px;
+  box-sizing: border-box;
 
-  @media screen and (max-width: $no-gap-breakpoint) {
+  @media screen and (max-width: $mobile-breakpoint) {
     border-radius: 16px 16px 0 0;
     border-bottom: 0;
     padding-bottom: 32px;
