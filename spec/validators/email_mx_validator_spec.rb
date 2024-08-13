@@ -9,10 +9,10 @@ describe EmailMxValidator do
 
     context 'with an e-mail domain that is explicitly allowed' do
       around do |block|
-        tmp = Rails.configuration.x.email_domains_whitelist
-        Rails.configuration.x.email_domains_whitelist = 'example.com'
+        tmp = Rails.configuration.x.email_domains_allowlist
+        Rails.configuration.x.email_domains_allowlist = 'example.com'
         block.call
-        Rails.configuration.x.email_domains_whitelist = tmp
+        Rails.configuration.x.email_domains_allowlist = tmp
       end
 
       it 'does not add errors if there are no DNS records' do
@@ -69,7 +69,7 @@ describe EmailMxValidator do
       expect(user.errors).to have_received(:add)
     end
 
-    it 'adds an error if the MX record is blacklisted' do
+    it 'adds an error if the MX record has an email domain block' do
       EmailDomainBlock.create!(domain: 'mail.example.com')
 
       configure_resolver(
