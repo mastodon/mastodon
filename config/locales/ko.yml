@@ -414,8 +414,10 @@ ko:
       new:
         create: 도메인 추가하기
         resolve: 도메인 검사
+        title: 새 이메일 도메인 차단
       not_permitted: 허용하지 않음
       resolved_through_html: "%{domain}을 통해 리졸빙됨"
+      title: 차단된 이메일 도메인
     export_domain_allows:
       new:
         title: 도메인 허용 목록 불러오기
@@ -1004,7 +1006,9 @@ ko:
       guide_link_text: 누구나 기여할 수 있습니다.
     sensitive_content: 민감한 내용
   application_mailer:
+    notification_preferences: 이메일 설정 변경
     salutation: "%{name} 님,"
+    settings: '이메일 설정 변경: %{link}'
     unsubscribe: 구독 해제
     view: '보기:'
     view_profile: 프로필 보기
@@ -1024,6 +1028,7 @@ ko:
       hint_html: 하나만 더! 당신이 사람인지 확인이 필요합니다 (스팸 계정을 거르기 위해서 필요한 과정입니다). 아래에 있는 CAPTCHA를 풀고 "계속"을 누르세요
       title: 보안 체크
     confirmations:
+      awaiting_review: 이메일 주소가 확인되었습니다! 이제 %{domain} 스태프가 가입을 검토할 것입니다. 계정이 승인되면 이메일을 받게 됩니다!
       awaiting_review_title: 가입 신청을 검토 중입니다
       clicking_this_link: 이 링크를 클릭
       login_link: 로그인
@@ -1051,6 +1056,7 @@ ko:
     or_log_in_with: 다른 방법으로 로그인 하려면
     privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">개인정보처리방침</a>을 읽고 동의합니다
     progress:
+      confirm: 이메일 확인
       details: 세부사항
       review: 심사 결과
       rules: 규정을 수락합니다.
@@ -1072,6 +1078,7 @@ ko:
     security: 보안
     set_new_password: 새 암호 설정
     setup:
+      email_below_hint_html: 스팸 폴더를 체크해보거나, 새로 요청할 수 있습니다. 이메일을 잘못 입력한 경우 수정할 수 있습니다.
       email_settings_hint_html: "%{email}을 인증하기 위해 우리가 보낸 링크를 누르세요. 여기서 기다리겠습니다."
       link_not_received: 링크를 못 받으셨나요?
       title: 수신함 확인하기
@@ -1351,6 +1358,7 @@ ko:
     authentication_methods:
       otp: 2단계 인증 앱
       password: 암호
+      sign_in_token: 이메일 보안 코드
       webauthn: 보안 키
     description_html: 확인되지 않은 활동이 보인다면, 암호를 바꾸거나 2단계 인증을 활성화 하는 것을 고려해 보세요.
     empty: 인증 이력이 존재하지 않습니다

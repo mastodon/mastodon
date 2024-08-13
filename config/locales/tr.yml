@@ -31,6 +31,7 @@ tr:
       created_msg: Denetim notu başarıyla oluşturuldu!
       destroyed_msg: Denetim notu başarıyla yok edildi!
     accounts:
+      add_email_domain_block: E-posta alan adını engelle
       approve: Onayla
       approved_msg: "%{username} adlı kullanıcının kayıt başvurusu başarıyla onaylandı"
       are_you_sure: Emin misin?
@@ -57,6 +58,7 @@ tr:
       demote: Düşür
       destroyed_msg: "%{username} adlı kullanıcının verilerinin silinmesi sıraya alındı"
       disable: Dondur
+      disable_sign_in_token_auth: E-posta token doğrulamayı devre dışı bırak
       disable_two_factor_authentication: 2 aşamalı doğrulamayı kapat
       disabled: Kapalı
       display_name: Görünen isim
@@ -65,6 +67,7 @@ tr:
       email: E-posta
       email_status: E-posta durumu
       enable: Etkinleştir
+      enable_sign_in_token_auth: E-posta token doğrulamayı etkinleştir
       enabled: Etkin
       enabled_msg: "%{username} hesabı başarıyla çözüldü"
       followers: Takipçi
@@ -129,6 +132,7 @@ tr:
       resubscribe: Yeniden abone ol
       role: Rol
       search: Ara
+      search_same_email_domain: Aynı e-posta alan adına sahip diğer kullanıcılar
       search_same_ip: Aynı IP adresine sahip diğer kullanıcılar
       security: Güvenlik
       security_measures:
@@ -169,21 +173,26 @@ tr:
         approve_appeal: İtirazı Onayla
         approve_user: Kullanıcıyı Onayla
         assigned_to_self_report: Raporu Ata
+        change_email_user: Kullanıcı E-postasını Değiştir
         change_role_user: Kullanıcının Rolünü Değiştir
         confirm_user: Kullanıcıyı Onayla
         create_account_warning: Uyarı Oluştur
         create_announcement: Duyuru Oluştur
+        create_canonical_email_block: E-posta Engeli Oluştur
         create_custom_emoji: Özel İfade Oluştur
         create_domain_allow: İzin Verilen Alan Adı Oluştur
         create_domain_block: Engellenen Alan Adı Oluştur
+        create_email_domain_block: E-Posta Alan Adı Engeli Oluştur
         create_ip_block: IP kuralı oluştur
         create_unavailable_domain: Mevcut Olmayan Alan Adı Oluştur
         create_user_role: Rol Oluştur
         demote_user: Kullanıcıyı Düşür
         destroy_announcement: Duyuru Sil
+        destroy_canonical_email_block: E-Posta Engelini Sil
         destroy_custom_emoji: Özel İfadeyi Sil
         destroy_domain_allow: İzin Verilen Alan Adını Sil
         destroy_domain_block: Engellenen Alan Adını Sil
+        destroy_email_domain_block: E-posta Alan Adı Engelini Sil
         destroy_instance: Alan adını temizle
         destroy_ip_block: IP kuralını sil
         destroy_status: Durumu Sil
@@ -191,8 +200,10 @@ tr:
         destroy_user_role: Rolü Kaldır
         disable_2fa_user: 2AD Kapat
         disable_custom_emoji: Özel İfadeyi Devre Dışı Bırak
+        disable_sign_in_token_auth_user: Kullanıcı için E-posta Token Doğrulamayı Devre Dışı Bırak
         disable_user: Kullanıcıyı Devre Dışı Bırak
         enable_custom_emoji: Özel İfadeyi Etkinleştir
+        enable_sign_in_token_auth_user: Kullanıcı için E-posta Token Doğrulamayı Etkinleştir
         enable_user: Kullanıcıyı Etkinleştir
         memorialize_account: Hesabı Anıtlaştır
         promote_user: Kullanıcıyı Yükselt
@@ -222,20 +233,26 @@ tr:
         approve_appeal_html: "%{name}, %{target} kullanıcısının yönetim kararına itirazını kabul etti"
         approve_user_html: "%{name}, %{target} konumundan kaydı onayladı"
         assigned_to_self_report_html: "%{name} kendilerine %{target} adlı raporu verdi"
+        change_email_user_html: "%{name}, %{target} kullanıcısının e-posta adresini değiştirdi"
         change_role_user_html: "%{name}, %{target} kişisinin rolünü değiştirdi"
+        confirm_user_html: "%{name} %{target} kullanıcısının e-posta adresini onayladı"
         create_account_warning_html: "%{name} %{target} 'a bir uyarı gönderdi"
         create_announcement_html: "%{name}, yeni %{target} duyurusunu oluşturdu"
+        create_canonical_email_block_html: "%{name}, %{target} karmasıyla e-posta engelledi"
         create_custom_emoji_html: "%{name} yeni %{target} ifadesini yükledi"
         create_domain_allow_html: "%{name}, %{target} alan adıyla birliğe izin verdi"
         create_domain_block_html: "%{name}, %{target} alan adını engelledi"
+        create_email_domain_block_html: "%{name}, %{target} e-posta alan adını engelledi"
         create_ip_block_html: "%{name}, %{target} IP adresi için kural oluşturdu"
         create_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı durdurdu"
         create_user_role_html: "%{name}, %{target} rolünü oluşturdu"
         demote_user_html: "%{name}, %{target} kullanıcısını düşürdü"
         destroy_announcement_html: "%{name}, %{target} duyurusunu sildi"
+        destroy_canonical_email_block_html: "%{name}, %{target} karmasıyla e-posta engelini kaldırdı"
         destroy_custom_emoji_html: "%{name}, %{target} ifadesini sildi"
         destroy_domain_allow_html: "%{name}, %{target} alan adıyla birlik iznini kaldırdı"
         destroy_domain_block_html: "%{name}, %{target} alan adı engelini kaldırdı"
+        destroy_email_domain_block_html: "%{name}, %{target} e-posta alan adı engelini kaldırdı"
         destroy_instance_html: "%{name}, %{target} alan adını temizledi"
         destroy_ip_block_html: "%{name}, %{target} IP adresi kuralını sildi"
         destroy_status_html: "%{name}, %{target} kullanıcısının gönderisini kaldırdı"
@@ -243,8 +260,10 @@ tr:
         destroy_user_role_html: "%{name}, %{target} rolünü sildi"
         disable_2fa_user_html: "%{name}, %{target} kullanıcısının iki aşamalı doğrulama gereksinimini kapattı"
         disable_custom_emoji_html: "%{name}, %{target} emojisini devre dışı bıraktı"
+        disable_sign_in_token_auth_user_html: "%{name}, %{target} için e-posta token doğrulamayı devre dışı bıraktı"
         disable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı devre dışı bıraktı"
         enable_custom_emoji_html: "%{name}, %{target} emojisini etkinleştirdi"
+        enable_sign_in_token_auth_user_html: "%{name}, %{target} için e-posta token doğrulamayı etkinleştirdi"
         enable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı etkinleştirdi"
         memorialize_account_html: "%{name}, %{target} kullanıcısının hesabını bir anıt sayfaya dönüştürdü"
         promote_user_html: "%{name}, %{target} kullanıcısını yükseltti"
@@ -252,6 +271,7 @@ tr:
         reject_user_html: "%{name}, %{target} konumundan kaydı reddetti"
         remove_avatar_user_html: "%{name}, %{target} kullanıcısının avatarını kaldırdı"
         reopen_report_html: "%{name}, %{target} şikayetini yeniden açtı"
+        resend_user_html: "%{name}, %{target} için doğrulama e-postasını tekrar gönderdi"
         reset_password_user_html: "%{name}, %{target} kullanıcısının parolasını sıfırladı"
         resolve_report_html: "%{name}, %{target} şikayetini çözdü"
         sensitive_account_html: "%{name}, %{target} kullanıcısının medyasını hassas olarak işaretledi"
@@ -412,6 +432,7 @@ tr:
       attempts_over_week:
         one: Son haftada %{count} deneme
         other: Son haftada %{count} kayıt denemesi
+      created_msg: E-posta alan adı kara listeye başarıyla eklendi
       delete: Sil
       dns:
         types:
@@ -420,8 +441,12 @@ tr:
       new:
         create: Alan adı ekle
         resolve: Alan adı çözümleme
+        title: Yeni e-posta kara liste girişi
+      no_email_domain_block_selected: Seçim yapılmadığından hiç bir e-posta alan adı engeli değiştirilmedi
       not_permitted: İzin verilmedi
+      resolved_dns_records_hint_html: Alan adı aşağıdaki MX alan adlarına çözümleniyor, ancak hiç biri nihayetinde e-posta kabulünden sorum değil. Bir MX alan adını engellemek, görünen alan adı farklı osa bile aynı MX alan adını kullanan e-posta adreslerinden gelen kayıtları engelleyecektir. <strong>Başlıca e-posta sağlayıcıları engellememek için dikkatli olun.</strong>
       resolved_through_html: "%{domain} aracılığıyla çözümlendi"
+      title: Engelli e-posta alan adları
     export_domain_allows:
       new:
         title: Alan adı engellerini içe aktar
@@ -575,6 +600,7 @@ tr:
         resolve_description_html: Bildirilen hesap için bir şey yapılmayacak, eylem kaydedilmeyecek ve bildirim kapatılacak.
         silence_description_html: Bu hesap sadece halihazırda takip edenler ve elle bakanlarca görünecek, böylece erişimi ciddi bir şekilde kısıtlanacak. Her zaman geri alınabilir. Bu hesaba yönelik tüm bildirimleri kapatır.
         suspend_description_html: Bu hesap ve tüm içeriği erişilmez olacak ve nihayetinde silinecek ve bu hesapla etkileşim mümkün olmayacaktır. 30 gün içinde geri alınabilir. Bu hesaba yönelik tüm bildiriimleri kapatır.
+      actions_description_html: Bu bildirimi çözmek için ne yapılması gerektiğine karar verin. Bildirilen hesap için ceza işlemi yaparsanız, <strong>İstenmeyen</strong> kategorisi seçilmemişse, onlara bir e-posta duyurusu gönderilecektir.
       actions_description_remote_html: Bu bildirimi çözmek için hangi eylemi yapmak istediğinize karar verin. Bu yalnızca <strong>sizin</strong> sunucunuzun bu uzak hesapla nasıl etkileşeğini ve içeriğiyle ne yapacağını etkiler.
       add_to_report: Bildirime daha fazlasını ekle
       already_suspended_badges:
@@ -639,6 +665,7 @@ tr:
         delete_data_html: İlgili sürede askıdan alınması kaldırılmazsa <strong>@%{acct}</strong> hesabının profilini ve içeriğini şu andan itibaren 30 gün içinde sil
         preview_preamble_html: "<strong>@%{acct}</strong> aşağıdaki içerikle bir uyarı alacaktır:"
         record_strike_html: "<strong>@%{acct}</strong> hesabına karşı bir eylem kaydet, böylece bu hesabın gelecekteki ihlallerini üst makama taşımanıza yardımcı olacaktır"
+        send_email_html: "<strong>@%{acct}</strong> adlı kullanıcıya uyarı e-maili gönder"
         warning_placeholder: İsteğe bağlı ek nedenden denetim eylemi.
       target_origin: Şikayet edilen hesabın kökeni
       title: Şikayetler
@@ -678,6 +705,7 @@ tr:
         manage_appeals: İtirazları Yönetme
         manage_appeals_description: Kullanıcıların denetleme eylemlerine itirazları gözden geçirmesine izin verir
         manage_blocks: Engelleri Yönetme
+        manage_blocks_description: Kullanıcıların e-posta sağlayıcıları ve IP adreslerini engellemesine izin verir
         manage_custom_emojis: Özel İfadeleri Yönetme
         manage_custom_emojis_description: Kullanıcıların sunucudaki özel ifadeleri yönetmesine izin verir
         manage_federation: Birleştirme Yönetme
@@ -695,6 +723,7 @@ tr:
         manage_taxonomies: Kategorileri Yönetme
         manage_taxonomies_description: Kullanıcıların öne çıkan içeriği incelemesine ve etiket ayarlarını güncellemesine izin verir
         manage_user_access: Kullanıcı Erişimini Yönetme
+        manage_user_access_description: Kullanıcıların, diğer kullanıcıların iki aşamalı yetkilendirme, e-posta adreslerini değiştirme ve parolalarını sıfırlama eylemlerini etkisizleştirmesine izin verir
         manage_users: Kullanıcıları Yönetme
         manage_users_description: Kullanıcıların, diğer kullanıcıların ayrıntılarını görüntülemesine ve onlara karşı denetim eylemleri gerçekleştirmesine izin verir
         manage_webhooks: Webhookları Yönetme
@@ -769,6 +798,7 @@ tr:
       destroyed_msg: Site yüklemesi başarıyla silindi!
     software_updates:
       critical_update: Kritik — lütfen hemen güncelleyin
+      description: Son düzeltme ve özelliklerden yararlanmak için Mastodon kurulumunu güncel tutmanızı öneriyoruz. Üstelik güvenlik sorunlarından kaçınmak için Mastodon'u zamanında güncellemek kritiktir. Bu nedenlerle Mastodon her 30 dakikada bir güncellemeleri denetler ve e-posta bildirim seçeneğinize göre size haber verir.
       documentation_link: Daha fazlası
       release_notes: Sürüm notları
       title: Mevcut güncellemeler
@@ -1031,7 +1061,9 @@ tr:
       guide_link_text: Herkes katkıda bulunabilir.
     sensitive_content: Hassas içerik
   application_mailer:
+    notification_preferences: E-posta tercihlerini değiştir
     salutation: "%{name},"
+    settings: 'E-posta tercihlerini değiştir: %{link}'
     unsubscribe: Abonelikten çık
     view: 'Görüntüle:'
     view_profile: Profili görüntüle
@@ -1051,6 +1083,7 @@ tr:
       hint_html: Sadece bir şey daha! Sizin bir insan olduğunuzu doğrulamamız gerekiyor (bu, spam'i dışarıda tutabilmemiz içindir!). Aşağıdaki CAPTCHA'yı çözün ve "Devam Et" düğmesini tıklayın.
       title: Güvenlik denetimi
     confirmations:
+      awaiting_review: E-posta adresiniz doğrulandı! %{domain} çalışanları şimdi kaydınızı inceliyorlar. Hesabınızı onayladıklarında bir e-posta alacaksınız!
       awaiting_review_title: Kaydınız inceleniyor
       clicking_this_link: bu bağlantıyı tıklamayı
       login_link: oturum aç
@@ -1058,6 +1091,7 @@ tr:
       redirect_to_app_html: "<strong>%{app_name}</strong> uygulamasına yönlendirileceksiniz. Eğer yönlendirme olmazsa, %{clicking_this_link} veya uygulamaya geri dönmeyi deneyin."
       registration_complete: "%{domain} sunucusunda kaydınız şimdi tamamlandı!"
       welcome_title: Hoşgeldin %{name}!
+      wrong_email_hint: Eğer bu e-posta adresi doğru değilse, hesap ayarlarında değiştirebilirsiniz.
     delete_account: Hesabı sil
     delete_account_html: Hesabını silmek istersen, <a href="%{path}">buradan devam edebilirsin</a>. Onay istenir.
     description:
@@ -1078,6 +1112,7 @@ tr:
     or_log_in_with: 'Veya şununla oturum açın:'
     privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">Gizlilik politikasını</a> okudum ve kabul ettim
     progress:
+      confirm: E-postanızı onaylayın
       details: Ayrıntılarınız
       review: İncelememiz
       rules: Kabul kuralları
@@ -1099,8 +1134,10 @@ tr:
     security: Güvenlik
     set_new_password: Yeni parola belirle
     setup:
+      email_below_hint_html: İstenmeyenler dizininize bakın veya başka bir onay bağlantısı isteyin. Eğer yanlışsa e-posta adresinizi de düzeltebilirsiniz.
       email_settings_hint_html: "%{email} adresinizi doğrulamak için size gönderdiğimiz bağlantıya tıklayın. Biz burada bekliyoruz."
       link_not_received: Bağlantı gelmedi mi?
+      new_confirmation_instructions_sent: Birkaç dakika içerisinde onaylama bağlantısını içeren yeni bir e-posta alacaksınız!
       title: Gelen kutunuzu kontrol edin
     sign_in:
       preamble_html: "<strong>%{domain}</strong> kimlik bilgilerinizi kullanarak giriş yapın. Eğer hesabınız başka bir sunucuda barındırılıyorsa, burada giriş yapamazsınız."
@@ -1111,7 +1148,9 @@ tr:
       title: "%{domain} için kurulumunuzu yapalım."
     status:
       account_status: Hesap durumu
+      confirming: E-posta onaylamanın tamamlanması bekleniyor.
       functional: Hesabınız tamamen kullanıma hazır.
+      pending: Başvurunuz personelimiz tarafından gözden geçirilmeyi beklemektedir. Bu biraz zaman alabilir. Başvurunuz onaylanırsa bir e-posta alacaksınız.
       redirecting_to: Hesabınız aktif değil çünkü şu anda %{acct} adresine yönlendirilmektedir.
       self_destruct: "%{domain} kapandığı için, hesabınıza sadece kısıtlı erişiminiz olacak."
       view_strikes: Hesabınıza yönelik eski eylemleri görüntüleyin
@@ -1154,6 +1193,9 @@ tr:
       before: 'Devam etmeden önce, lütfen bu notları dikkatlice okuyun:'
       caches: Diğer sunucular tarafından ön belleğe alınan içerik kalabilir
       data_removal: Gönderileriniz ve diğer verileriniz kalıcı olarak silinecektir
+      email_change_html: Hesabınızı silmeden <a href="%{path}">e-posta adresinizi değiştirebilirsiniz</a>
+      email_contact_html: Eğer hala ulaşmazsa, yardım almak için <a href="mailto:%{email}">%{email}</a> adresine e-posta gönderebilirsiniz
+      email_reconfirmation_html: Eğer onaylama e-postası ulaşmıyorsa, <a href="%{path}">tekrar talep edebilirsiniz</a>
       irreversible: Hesabınızı geri yükleyemeyecek ya da yeniden etkinleştiremeyeceksiniz
       more_details_html: Daha fazla ayrıntı için, <a href="%{terms_path}">gizlilik politikası</a>na göz atın.
       username_available: Kullanıcı adınız tekrar kullanılabilir olacaktır
@@ -1386,6 +1428,7 @@ tr:
     authentication_methods:
       otp: iki aşamalı kimlik doğrulama uygulaması
       password: parola
+      sign_in_token: e-posta güvenlik kodu
       webauthn: güvenlik anahtarları
     description_html: Eğer tanımadığınız bir faaliyet görüyorsanız, parolanızı değiştirmeyi ve iki aşamalı kimlik doğrulamayı etkinleştirmeyi düşünün.
     empty: Kimlik doğrulama geçmişi yok
@@ -1396,6 +1439,16 @@ tr:
     unsubscribe:
       action: Evet, abonelikten çık
       complete: Abonelikten çık
+      confirmation_html: '%{domain} üzerindeki Mastodon için %{type} almayı durdurarak %{email} adresinize aboneliğinizi iptal etmek istediğinizden emin misiniz? <a href="%{settings_path}">e-posta bildirim ayarlarınızdan</a> her zaman yeniden abone olabilirsiniz.'
+      emails:
+        notification_emails:
+          favourite: favori bildirim e-postaları
+          follow: takip bildirim e-postaları
+          follow_request: takip isteği bildirim e-postaları
+          mention: bahsetme bildirim e-postaları
+          reblog: öne çıkanlar bildirim e-postaları
+      resubscribe_html: Abonelikten yanlışlıkla çıktıysanız, <a href="%{settings_path}">e-posta bildirim ayarlarınızdan</a> yeniden abone olabilirsiniz.
+      success_html: Artık %{email} adresindeki e-postanıza %{domain} üzerindeki Mastodon için %{type} almayacaksınız.
       title: Abonelikten çık
   media_attachments:
     validations:
@@ -1476,6 +1529,8 @@ tr:
     update:
       subject: "%{name} bir gönderiyi düzenledi"
   notifications:
+    administration_emails: Yönetici e-posta bildirimleri
+    email_events: E-posta bildirimi etkinlikleri
     email_events_hint: 'Bildirim almak istediğiniz olayları seçin:'
   number:
     human:
@@ -1634,6 +1689,7 @@ tr:
     import: İçe aktar
     import_and_export: İçe ve dışa aktar
     migrate: Hesap taşıma
+    notifications: E-posta bildirimleri
     preferences: Tercihler
     profile: Profil
     relationships: Takip edilenler ve takipçiler
@@ -1880,6 +1936,7 @@ tr:
     invalid_otp_token: Geçersiz iki adımlı doğrulama kodu
     otp_lost_help_html: Her ikisine de erişiminizi kaybettiyseniz, %{email} ile irtibata geçebilirsiniz
     rate_limited: Çok fazla kimlik doğrulama denemesi. Daha sonra tekrar deneyin.
+    seamless_external_login: Harici bir servis aracılığıyla oturum açtınız, bu nedenle parola ve e-posta ayarları mevcut değildir.
     signed_in_as: 'Oturum açtı:'
   verification:
     extra_instructions_html: <strong>İpucu:</strong> Web sitenizdeki bağlantı görünmez olabilir. Önemli olan, kullanıcı tarafından oluşturulan içeriğe sahip web sitelerinde kimliğe bürünmeyi önleyen <code>rel="me"</code>'dir. Sayfa başlığında <code>a</code> yerine bir <code>bağlantı</code> etiketi de kullanabilirsiniz, ancak HTML'ye JavaScript çalıştırılmadan erişilebilir olmalıdır.
