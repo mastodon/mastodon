@@ -669,6 +669,7 @@ lt:
         title: Tendencingos saitažodžiai
         trendable: Gali pasirodyti tendencijose
         trending_rank: 'Tendencinga #%{rank}'
+      title: Rekomendacijos ir tendencijos
       trending: Tendencinga
     warning_presets:
       add_new: Pridėti naują
@@ -887,7 +888,7 @@ lt:
     errors:
       too_large: Failas per didelis.
     modes:
-      merge: Sulieti
+      merge: Sujungti
       merge_long: Išsaugoti esančius įrašus ir pridėti naujus
       overwrite: Perrašyti
       overwrite_long: Pakeisti senus įrašus naujais
@@ -931,6 +932,9 @@ lt:
     description_html: Jei pastebėjei neatpažįstamą veiklą, apsvarstyk galimybę pakeisti slaptažodį ir įjungti dvigubą tapatybės nustatymą.
     empty: Tapatybės nustatymas istorijos nėra
     title: Tapatybės nustatymo istorija
+  mail_subscriptions:
+    unsubscribe:
+      success_html: Daugiau negausi %{type} „Mastodon“ domene %{domain} į savo el. paštą %{email}.
   media_attachments:
     validations:
       images_and_video: Negalima pridėti video prie statuso, kuris jau turi nuotrauką
@@ -964,6 +968,8 @@ lt:
       subject: "%{name} pakėlė tavo įrašą"
       title: Naujas pakėlimas
   notifications:
+    administration_emails: Administratoriaus el. laiško pranešimai
+    email_events: Įvykiai, skirti el. laiško pranešimams
     email_events_hint: 'Pasirink įvykius, apie kuriuos nori gauti pranešimus:'
   number:
     human:
@@ -1061,6 +1067,7 @@ lt:
     featured_tags: Rodomi saitažodžiai
     import: Importuoti
     migrate: Paskyros migracija
+    notifications: El. laiško pranešimai
     preferences: Nuostatos
     profile: Viešas profilis
     relationships: Sekimai ir sekėjai
@@ -1205,6 +1212,7 @@ lt:
     invalid_otp_token: Netinkamas dviejų veiksnių kodas
     otp_lost_help_html: Jei praradai prieigą prie abiejų, gali susisiek su %{email}
     rate_limited: Per daug tapatybės nustatymo bandymų. Bandyk dar kartą vėliau.
+    seamless_external_login: Esi prisijungęs (-usi) per išorinę paslaugą, todėl slaptažodžio ir el. pašto nustatymai nepasiekiami.
     signed_in_as: 'Prisijungta kaip:'
   verification:
     extra_instructions_html: <strong>Patarimas:</strong> nuoroda tavo svetainėje gali būti nematoma. Svarbi dalis – tai, kad <code>rel="me"</code> neleidžia apsimesti interneto svetainėse, kuriose yra naudotojų sukurto turinio. Vietoj to gali naudoti net <code>nuorodą</code> puslapio antraštėje esančią žymę <code>a</code>, tačiau HTML turi būti pasiekiamas nevykdant JavaScript.
