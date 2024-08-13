@@ -45,13 +45,17 @@ class ColumnSettings extends PureComponent {
 
     return (
       <div className='column-settings'>
-        {alertsEnabled && browserSupport && browserPermission === 'denied' && (
-          <span className='warning-hint'><FormattedMessage id='notifications.permission_denied' defaultMessage='Desktop notifications are unavailable due to previously denied browser permissions request' /></span>
-        )}
-
         <section>
           <ClearColumnButton onClick={onClear} />
         </section>
+
+        {alertsEnabled && browserSupport && browserPermission === 'denied' && (
+          <section>
+            <span className='warning-hint'>
+              <FormattedMessage id='notifications.permission_denied' defaultMessage='Desktop notifications are unavailable due to previously denied browser permissions request' />
+            </span>
+          </section>
+        )}
 
         {alertsEnabled && browserSupport && browserPermission === 'default' && (
           <section>
