@@ -46,7 +46,7 @@ export const NotificationFollowRequest: React.FC<{
   }, [dispatch, notification.sampleAccountIds]);
 
   const actions = (
-    <div className='notification-group__actions'>
+    <>
       <IconButton
         title={intl.formatMessage(messages.reject)}
         icon='times'
@@ -59,7 +59,7 @@ export const NotificationFollowRequest: React.FC<{
         iconComponent={CheckIcon}
         onClick={onAuthorize}
       />
-    </div>
+    </>
   );
 
   return (
