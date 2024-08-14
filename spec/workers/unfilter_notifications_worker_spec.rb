@@ -30,7 +30,7 @@ describe UnfilterNotificationsWorker do
           .and change { recipient.conversations.exists?(last_status_id: sender.statuses.first.id) }.to(true)
           .and change { redis.get("notification_unfilter_jobs:#{recipient.id}").to_i }.by(-1)
 
-        expect(redis).to have_received(:publish).with("timeline:#{recipient.id}:notifications", '{"event":"notifications_merged"}')
+        expect(redis).to have_received(:publish).with("timeline:#{recipient.id}:notifications", '{"event":"notifications_merged","payload":"1"}')
       end
     end
 
@@ -46,7 +46,7 @@ describe UnfilterNotificationsWorker do
           .and change { recipient.conversations.exists?(last_status_id: sender.statuses.first.id) }.to(true)
           .and change { redis.get("notification_unfilter_jobs:#{recipient.id}").to_i }.by(-1)
 
-        expect(redis).to_not have_received(:publish).with("timeline:#{recipient.id}:notifications", '{"event":"notifications_merged"}')
+        expect(redis).to_not have_received(:publish).with("timeline:#{recipient.id}:notifications", '{"event":"notifications_merged","payload":"1"}')
       end
     end
 
@@ -61,7 +61,7 @@ describe UnfilterNotificationsWorker do
           .and change { recipient.conversations.exists?(last_status_id: sender.statuses.first.id) }.to(true)
           .and change { redis.get("notification_unfilter_jobs:#{recipient.id}").to_i }.by(-1)
 
-        expect(redis).to_not have_received(:publish).with("timeline:#{recipient.id}:notifications", '{"event":"notifications_merged"}')
+        expect(redis).to_not have_received(:publish).with("timeline:#{recipient.id}:notifications", '{"event":"notifications_merged","payload":"1"}')
       end
     end
   end
