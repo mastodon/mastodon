@@ -10,7 +10,7 @@ import {
   deleteAnnouncement,
 } from './announcements';
 import { updateConversations } from './conversations';
-import { processNewNotificationForGroups, fetchNotifications as fetchNotificationGroups } from './notification_groups';
+import { processNewNotificationForGroups, refreshStaleNotificationGroups } from './notification_groups';
 import { updateNotifications, expandNotifications } from './notifications';
 import { updateStatus } from './statuses';
 import {
@@ -114,8 +114,8 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
           // TODO: what to do when in the middle of browsing notifications?
           if (state.notifications.top || !state.notifications.mounted)
             dispatch(expandNotifications({ forceLoad: true, maxId: undefined }));
-          if(state.settings.getIn(['notifications', 'groupingBeta'], false) && (state.notificationGroups.scrolledToTop || !state.notificationGroups.mounted)) {
-            dispatch(fetchNotificationGroups());
+          if(state.settings.getIn(['notifications', 'groupingBeta'], false)) {
+            dispatch(refreshStaleNotificationGroups());
           }
           break;
         case 'conversation':
