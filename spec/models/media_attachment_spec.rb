@@ -302,15 +302,10 @@ RSpec.describe MediaAttachment, :attachment_processing do
     it 'queues CacheBusterWorker jobs' do
       original_path = media.file.path(:original)
       small_path = media.file.path(:small)
-      thumbnail_path = media.thumbnail.path(:original)
-      paths = [original_path, small_path, thumbnail_path]
 
-      media.destroy
-
-      paths.each do |path|
-        expect(CacheBusterWorker).to have_enqueued_sidekiq_job(path) if path
-        expect(CacheBusterWorker).to_not have_enqueued_sidekiq_job(path) if path.nil?
-      end
+      expect { media.destroy }
+        .to enqueue_sidekiq_job(CacheBusterWorker).with(original_path)
+        .and enqueue_sidekiq_job(CacheBusterWorker).with(small_path)
     end
   end
 
