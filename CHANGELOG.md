@@ -3,6 +3,24 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [4.1.19] - 2024-08-16
+
+### Fixed
+
+- Fix incorrect rate limit on PUT requests ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/31356))
+- Fix presence of `ß` in adjacent word preventing mention and hashtag matching ([adamniedzielski](https://github.com/mastodon/mastodon/pull/31122))
+- Fix processing of webfinger responses with multiple `self` links ([adamniedzielski](https://github.com/mastodon/mastodon/pull/31110))
+- Fix status processing failing halfway when a remote post has a malformed `replies` attribute ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/31246))
+- Fix division by zero on some video/GIF files ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/30600))
+- Fix hashtag regexp matching some link anchors ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/30190))
+- Fix local account search on LDAP login being case-sensitive ([raucao](https://github.com/mastodon/mastodon/pull/30113))
+- Fix development environment admin account not being auto-approved ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/29958))
+- Fix report reason selector in moderation interface not unselecting rules when changing category ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/29026))
+- Fix already-invalid reports failing to resolve ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/29027))
+- Fix OCR when using S3/CDN for assets ([vmstan](https://github.com/mastodon/mastodon/pull/28551))
+- Fix error when encountering malformed `Tag` objects from Kbin ([ShadowJonathan](https://github.com/mastodon/mastodon/pull/28235))
+- Fix not all allowed image formats showing in file picker when uploading custom emoji ([june128](https://github.com/mastodon/mastodon/pull/28076))
+
 ## [4.1.18] - 2024-07-04
 
 ### Security
