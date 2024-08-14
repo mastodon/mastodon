@@ -1448,6 +1448,7 @@ nn:
           mention: e-postar om omtaler
           reblog: e-postar om framhevingar
       resubscribe_html: Om du har avslutta abonnementet ved ein feil, kan du abonnera på nytt i <a href="%{settings_path}">innstillingar for e-postvarsling</a>.
+      success_html: Du vil ikkje lenger få %{type} frå Mastodon på %{domain} til e-posten på %{email}.
       title: Meld av
   media_attachments:
     validations:
@@ -1528,6 +1529,8 @@ nn:
     update:
       subject: "%{name} redigerte et innlegg"
   notifications:
+    administration_emails: Epostvarsel for administrator
+    email_events: Hendingar for epostvarsel
     email_events_hint: 'Velg hendelser som du vil motta varslinger for:'
   number:
     human:
@@ -1686,6 +1689,7 @@ nn:
     import: Hent inn
     import_and_export: Importer og eksporter
     migrate: Kontoflytting
+    notifications: Epostvarsel
     preferences: Innstillingar
     profile: Profil
     relationships: Fylgjar og fylgjarar
@@ -1932,6 +1936,7 @@ nn:
     invalid_otp_token: Ugyldig tostegskode
     otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
     rate_limited: For mange autentiseringsforsøk, prøv igjen seinare.
+    seamless_external_login: Du er logga inn gjennom ei ekstern tenest, så passord- og epostinnstillingar er ikkje tilgjengelege.
     signed_in_as: 'Logga inn som:'
   verification:
     extra_instructions_html: <strong>Tips:</strong> Linken på nettsida di kan vera usynleg. Den viktige delen er <code>rel="me"</code>, som på nettstader med brukargenerert innhald vil hindra at andre kan låst som dei er deg. Du kan til og med bruka <code>link</code> i staden for <code>a</code> i toppteksten til sida, men HTML-koden må vera tilgjengeleg utan å måtte køyra JavaScript.
