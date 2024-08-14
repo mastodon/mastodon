@@ -10,7 +10,7 @@ import {
   deleteAnnouncement,
 } from './announcements';
 import { updateConversations } from './conversations';
-import { processNewNotificationForGroups } from './notification_groups';
+import { processNewNotificationForGroups, fetchNotifications as fetchNotificationGroups } from './notification_groups';
 import { updateNotifications, expandNotifications } from './notifications';
 import { updateStatus } from './statuses';
 import {
@@ -109,6 +109,15 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
           }
           break;
         }
+        case 'notifications_merged':
+          const state = getState();
+          // TODO: what to do when in the middle of browsing notifications?
+          if (state.notifications.top || !state.notifications.mounted)
+            dispatch(expandNotifications({ forceLoad: true, maxId: undefined }));
+          if(state.settings.getIn(['notifications', 'groupingBeta'], false) && (state.notificationGroups.scrolledToTop || !state.notificationGroups.mounted)) {
+            dispatch(fetchNotificationGroups());
+          }
+          break;
         case 'conversation':
           // @ts-expect-error
           dispatch(updateConversations(JSON.parse(data.payload)));
