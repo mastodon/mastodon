@@ -47,7 +47,7 @@ function dispatchAssociatedRecords(
       fetchedAccounts.push(notification.moderation_warning.target_account);
     }
 
-    if ('status' in notification) {
+    if ('status' in notification && notification.status) {
       fetchedStatuses.push(notification.status);
     }
   });
@@ -119,7 +119,7 @@ export const processNewNotificationForGroups = createAppAsyncThunk(
 
     if (
       (notification.type === 'mention' || notification.type === 'update') &&
-      notification.status.filtered
+      notification.status?.filtered
     ) {
       const filters = notification.status.filtered.filter((result) =>
         result.filter.context.includes('notifications'),

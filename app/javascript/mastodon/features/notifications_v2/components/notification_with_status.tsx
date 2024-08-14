@@ -23,7 +23,7 @@ export const NotificationWithStatus: React.FC<{
   icon: IconProp;
   iconId: string;
   accountIds: string[];
-  statusId: string;
+  statusId: string | undefined;
   count: number;
   labelRenderer: LabelRenderer;
   unread: boolean;
@@ -75,6 +75,8 @@ export const NotificationWithStatus: React.FC<{
     }),
     [dispatch, statusId],
   );
+
+  if (!statusId) return null;
 
   return (
     <HotKeys handlers={handlers}>
