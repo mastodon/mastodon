@@ -10486,6 +10486,13 @@ noscript {
     gap: 8px;
     flex: 1 1 auto;
     overflow: hidden;
+    container-type: inline-size;
+
+    @container (width < 350px) {
+      &__header time {
+        display: none;
+      }
+    }
 
     &__header {
       display: flex;
