@@ -79,6 +79,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
     markdown.render(status_content_format(object.text, domain: Rails.configuration.x.local_domain))
   end
 
+  
   def url
     ActivityPub::TagManager.instance.url_for(object)
   end
