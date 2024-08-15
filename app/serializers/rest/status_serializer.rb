@@ -160,6 +160,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
     instance_options && instance_options[:relationships]
   end
 
+  def markdown
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, no_images: true)
+  end
+
   class ApplicationSerializer < ActiveModel::Serializer
     attributes :name, :website
 
