@@ -76,7 +76,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def content
-    markdown.render(status_content_format(object.text, domain: Rails.configuration.x.local_domain))
+    status_content_format(object)
   end
 
   def url
@@ -158,10 +158,6 @@ class REST::StatusSerializer < ActiveModel::Serializer
 
   def relationships
     instance_options && instance_options[:relationships]
-  end
-
-  def markdown
-    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, no_images: true)
   end
 
   class ApplicationSerializer < ActiveModel::Serializer
