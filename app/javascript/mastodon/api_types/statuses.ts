@@ -10,7 +10,7 @@ export type StatusVisibility =
   | 'public'
   | 'unlisted'
   | 'private'
-  // | 'limited' // This is never exposed to the API (they become `private`)
+  | 'limited' // This is never exposed to the API (they become `private`)
   | 'direct';
 
 export interface ApiStatusApplicationJSON {
