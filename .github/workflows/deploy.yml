@@ -29,6 +29,8 @@ jobs:
     - name: Deploy to Server
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.INSTANCE }} << EOF
-          cd ${{ secrets.MASTODON_PATH }} 
+          cd ${{ secrets.MASTODON_PATH }}
+          git reset --hard origin/main
+          RAILS_ENV=production bundle exec rails assets:precompile
           git pull origin main
         EOF
