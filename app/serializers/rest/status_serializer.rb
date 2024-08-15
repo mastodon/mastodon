@@ -76,7 +76,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def content
-    status_content_format(object)
+    markdown.render(status_content_format(object))
   end
 
   def url
