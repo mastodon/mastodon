@@ -30,6 +30,8 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.INSTANCE }} << EOF
           cd ${{ secrets.MASTODON_PATH }} 
+
           git config --global --add safe.directory ${{ secrets.MASTODON_PATH }}
+          
           git pull origin main
         EOF
