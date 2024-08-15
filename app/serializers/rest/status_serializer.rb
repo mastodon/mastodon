@@ -76,7 +76,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def content
-    markdown.render(text)
+    markdown.render(status_content_format(object.text, domain: Rails.configuration.x.local_domain))
   end
 
   def url
