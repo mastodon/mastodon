@@ -557,3 +557,12 @@ a.sparkline {
     color: $dark-text-color;
   }
 }
+
+html {
+  scrollbar-color: rgba($action-button-color, 0.25)
+    var(--background-border-color);
+}
+
+::-webkit-scrollbar-thumb {
+  opacity: 0.25;
+}
