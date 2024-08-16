@@ -726,7 +726,7 @@ const startWorker = async (workerId) => {
           // If the payload already contains the `filtered` property, it means
           // that filtering has been applied on the ruby on rails side, as
           // such, we don't need to construct or apply the filters in streaming:
-          if (Object.prototype.hasOwnProperty.call(payload, "filtered")) {
+          if (Object.prototype.hasOwnProperty.call(payload, 'filtered')) {
             transmit(event, payload);
             return;
           }
@@ -813,7 +813,7 @@ const startWorker = async (workerId) => {
                 results.push({
                   filter: cachedFilter.filter,
                   keyword_matches,
-                  status_matches: null
+                  status_matches: null,
                 });
               }
 
@@ -828,7 +828,7 @@ const startWorker = async (workerId) => {
             // filtered: https://docs.joinmastodon.org/entities/Status/#filtered
             transmit(event, {
               ...payload,
-              filtered: filter_results
+              filtered: filter_results,
             });
           } else {
             transmit(event, payload);
