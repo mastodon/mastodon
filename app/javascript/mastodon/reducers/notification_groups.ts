@@ -60,12 +60,13 @@ const initialState: NotificationGroupsState = {
   pendingGroups: [], // holds pending groups in slow mode
   scrolledToTop: false,
   isLoading: false,
+  // this is used to track whether we need to refresh notifications after accepting requests
+  mergedNotifications: 'ok',
   // The following properties are used to track unread notifications
   lastReadId: '0', // used internally for unread notifications
   readMarkerId: '0', // user-facing and updated when focus changes
   mounted: 0, // number of mounted notification list components, usually 0 or 1
   isTabVisible: true,
-  mergedNotifications: 'ok',
 };
 
 function filterNotificationsForAccounts(
