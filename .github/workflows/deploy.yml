@@ -32,5 +32,4 @@ jobs:
           cd ${{ secrets.MASTODON_PATH }}
           git reset --hard origin/main
           git pull origin main
-          RAILS_ENV=production bundle exec rails assets:precompile
         EOF
