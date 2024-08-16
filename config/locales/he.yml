@@ -62,6 +62,7 @@ he:
       demote: הורדה בדרגה
       destroyed_msg: הנתונים של %{username} נכנסו לתור המחיקה וצפויים להימחק באופן מיידי
       disable: הקפאה
+      disable_sign_in_token_auth: ביטול הזדהות באמצעות אסימון דוא״ל
       disable_two_factor_authentication: ביטול הזדהות דו־שלבית
       disabled: מוקפא
       display_name: שם תצוגה
@@ -70,6 +71,7 @@ he:
       email: דוא״ל
       email_status: מצב דוא״ל
       enable: ביטול הקפאה
+      enable_sign_in_token_auth: הפעלת אסימון הזדהות בדוא״ל
       enabled: מופעל
       enabled_msg: ביטול השעית החשבון של %{username} בוצע בהצלחה
       followers: עוקבים
@@ -136,6 +138,7 @@ he:
       resubscribe: להרשם מחדש
       role: תפקיד
       search: חיפוש
+      search_same_email_domain: משתמשים אחרים מאותו דומיין דוא"ל
       search_same_ip: משתמשים אחרים מאותה כתובת IP
       security: אבטחה
       security_measures:
@@ -176,21 +179,26 @@ he:
         approve_appeal: אישור ערעור
         approve_user: אישור משתמש
         assigned_to_self_report: הקצאת דו"ח
+        change_email_user: שינוי כתובת דוא"ל למשתמש
         change_role_user: שינוי תפקיד למשתמש
         confirm_user: אשר משתמש
         create_account_warning: יצירת אזהרה
         create_announcement: יצירת הכרזה
+        create_canonical_email_block: יצירת חסימת דואל
         create_custom_emoji: יצירת אמוג'י מיוחד
         create_domain_allow: יצירת דומיין מותר
         create_domain_block: יצירת דומיין חסום
+        create_email_domain_block: יצירת חסימת דומיין דוא"ל
         create_ip_block: יצירת כלל IP
         create_unavailable_domain: יצירת דומיין בלתי זמין
         create_user_role: יצירת תפקיד
         demote_user: הורדת משתמש בדרגה
         destroy_announcement: מחיקת הכרזה
+        destroy_canonical_email_block: מחיקת חסימת דואל
         destroy_custom_emoji: מחיקת אמוג'י יחודי
         destroy_domain_allow: מחיקת דומיין מותר
         destroy_domain_block: מחיקת דומיין חסום
+        destroy_email_domain_block: מחיקת חסימת דומיין דוא"ל
         destroy_instance: טיהור דומיין
         destroy_ip_block: מחיקת כלל IP
         destroy_status: מחיקת הודעה
@@ -198,8 +206,10 @@ he:
         destroy_user_role: מחיקת תפקיד
         disable_2fa_user: השעיית זיהוי דו-גורמי
         disable_custom_emoji: השעיית אמוג'י מיוחד
+        disable_sign_in_token_auth_user: השעיית אסימון הזדהות בדוא"ל של משתמש
         disable_user: השעיית משתמש
         enable_custom_emoji: הפעלת אמוג'י מיוחד
+        enable_sign_in_token_auth_user: הפעלת אסימון הזדהות בדוא"ל של משתמש
         enable_user: אפשור משתמש
         memorialize_account: הנצחת חשבון
         promote_user: קידום משתמש
@@ -229,20 +239,26 @@ he:
         approve_appeal_html: "%{name} אישר/ה ערעור על החלטת מנהלי הקהילה מ-%{target}"
         approve_user_html: "%{name} אישר/ה הרשמה מ-%{target}"
         assigned_to_self_report_html: '%{name} הקצה/תה דו"ח %{target} לעצמם'
+        change_email_user_html: '%{name} שינה\שינתה את כתובת הדוא"ל של המשתמש %{target}'
         change_role_user_html: "%{name} שינה את התפקיד של %{target}"
+        confirm_user_html: '%{name} אישר/ה את כותבת הדו"אל של המשתמש %{target}'
         create_account_warning_html: "%{name} שלח/ה אזהרה ל %{target}"
         create_announcement_html: "%{name} יצר/ה הכרזה חדשה %{target}"
+        create_canonical_email_block_html: "%{name} חסם/ה את הדואל %{target}"
         create_custom_emoji_html: "%{name} העלו אמוג'י חדש %{target}"
         create_domain_allow_html: "%{name} אישר/ה פדרציה עם הדומיין %{target}"
         create_domain_block_html: "%{name} חסם/ה את הדומיין %{target}"
+        create_email_domain_block_html: '%{name} חסם/ה את דומיין הדוא"ל %{target}'
         create_ip_block_html: "%{name} יצר/ה כלל עבור IP %{target}"
         create_unavailable_domain_html: "%{name} הפסיק/ה משלוח לדומיין %{target}"
         create_user_role_html: "%{name} יצר את התפקיד של %{target}"
         demote_user_html: "%{name} הוריד/ה בדרגה את המשתמש %{target}"
         destroy_announcement_html: "%{name} מחק/ה את ההכרזה %{target}"
+        destroy_canonical_email_block_html: "%{name} הסיר/ה חסימה מדואל %{target}"
         destroy_custom_emoji_html: "%{name} מחק אמוג'י של %{target}"
         destroy_domain_allow_html: "%{name} לא התיר/ה פדרציה עם הדומיין %{target}"
         destroy_domain_block_html: "%{name} הסיר/ה חסימה מהדומיין %{target}"
+        destroy_email_domain_block_html: '%{name} הסיר/ה חסימה מדומיין הדוא"ל %{target}'
         destroy_instance_html: "%{name} טיהר/ה את הדומיין %{target}"
         destroy_ip_block_html: "%{name} מחק/ה את הכלל עבור IP %{target}"
         destroy_status_html: ההודעה של %{target} הוסרה ע"י %{name}
@@ -250,8 +266,10 @@ he:
         destroy_user_role_html: "%{name} ביטל את התפקיד של %{target}"
         disable_2fa_user_html: "%{name} ביטל/ה את הדרישה לאימות דו-גורמי למשתמש %{target}"
         disable_custom_emoji_html: "%{name} השבית/ה את האמוג'י %{target}"
+        disable_sign_in_token_auth_user_html: '%{name} השבית/ה את האימות בעזרת אסימון דוא"ל עבור %{target}'
         disable_user_html: "%{name} חסם/ה כניסה מהמשתמש/ת %{target}"
         enable_custom_emoji_html: "%{name} אפשר/ה את האמוג'י %{target}"
+        enable_sign_in_token_auth_user_html: '%{name} אפשר/ה אימות בעזרת אסימון דוא"ל עבור %{target}'
         enable_user_html: "%{name} אפשר/ה כניסה עבור המשתמש %{target}"
         memorialize_account_html: "%{name} הפך/ה את חשבונו של %{target} לדף הנצחה"
         promote_user_html: "%{name} העלה בדרגה את המשתמש %{target}"
@@ -259,6 +277,7 @@ he:
         reject_user_html: "%{name} דחו הרשמה מ-%{target}"
         remove_avatar_user_html: "%{name} הסירו את תמונת הפרופיל של %{target}"
         reopen_report_html: '%{name} פתח מחדש דו"ח %{target}'
+        resend_user_html: "%{name} הפעיל.ה שליחה מחדש של דואל אימות עבור %{target}"
         reset_password_user_html: הסיסמה עבור המשתמש %{target} התאפסה על־ידי %{name}
         resolve_report_html: '%{name} פתר/ה דו"ח %{target}'
         sensitive_account_html: "%{name} סימן/ה את המדיה של %{target} כרגיש"
@@ -429,6 +448,7 @@ he:
         one: "%{count} נסיון במשך השבוע שעבר"
         other: "%{count} נסיונות הרשמה במשך השבוע שעבר"
         two: "%{count} נסיונות הרשמה במשך השבוע שעבר"
+      created_msg: מתחם כתובות דואל נחסם בהצלחה
       delete: מחיקה
       dns:
         types:
@@ -437,8 +457,12 @@ he:
       new:
         create: הוספת דומיין
         resolve: פתור דומיין
+        title: חסימת מתחם כתובות דואל חדש
+      no_email_domain_block_selected: לא בוצעו שינויים לחסימת מתחמי דוא"ל שכן לא נבחרו מתחמים
       not_permitted: נאסר
+      resolved_dns_records_hint_html: שם הדומיין מוביל למתחמי ה-MX הבאים, שהם בסופו של דבר אחראיים לקבלת דוא"ל. חסימת שם MX תוביל לחסימת הרשמות מכל כתובת דוא"ל שעושה שימוש בכתובת MX זו, אפילו אם הדומיין הגלוי שונה. <strong>יש להמנע מלחסום ספקי דוא"ל מובילים.</strong>
       resolved_through_html: נמצא דרך %{domain}
+      title: מתחמי כתובות דוא"ל חסומים
     export_domain_allows:
       new:
         title: יבוא רשימת שרתים מאושרים
@@ -600,6 +624,7 @@ he:
         resolve_description_html: אף פעולה לא תבוצע נגד החשבון עליו דווח, לא תירשם עבירה, והדיווח ייסגר.
         silence_description_html: הפרופיל יהיה גלוי אך ורק לאלה שכבר עוקבים אחריו או לאלה שיחפשו אותו ידנית, מה שיגביל מאד את תפוצתו. ניתן תמיד להחזיר את המצב לקדמותו. פעולה זו תסגור את כל הדיווחים נגד הפרופיל.
         suspend_description_html: חשבון זה על כל תכניו יחסמו וברבות הימים ימחקו, כל פעילות מולו לא תתאפשר. הפעולה ניתנת לביטול תוך 30 ימים, והיא תסגור כל דיווח התלוי ועומד נגד החשבון.
+      actions_description_html: בחר/י איזו פעולה לבצע על מנת לפתור את הדו"ח. אם תופעל פעולת ענישה כנגד החשבון המדווח, הודעת דוא"ל תשלח אליהם, אלא אם נבחרה קטגוריית ה<strong>ספאם</strong>.
       actions_description_remote_html: בחרו איזו פעולה לבצע כדי לפתור את הדיווח שהוגש. פעולה זו תשפיע רק על התקשורת מול השרת <strong>שלך</strong> עם החשבון המרוחק ותוכנו.
       add_to_report: הוספת פרטים לדיווח
       already_suspended_badges:
@@ -664,6 +689,7 @@ he:
         delete_data_html: למחוק את הפרופיל והתוכן של <strong>@%{acct}</strong> בעוד 30 יום אלא אם תוסר ההגבלה עליהם לפני כן
         preview_preamble_html: 'שליחת אזהרה אל <strong>@%{acct}</strong> בזו הלשון:'
         record_strike_html: ציין נקודה שחורה נגד <strong>@%{acct}</strong> כדי לסייע בשיפוטו בדיווחים עתידיים על חריגות
+        send_email_html: שליחת דואל אזהרה אל <strong>@%{acct}</strong>
         warning_placeholder: צידוקים אפשריים נוספים לפעולה המשמעתית.
       target_origin: מקור החשבון המדווח
       title: דיווחים
@@ -707,6 +733,7 @@ he:
         manage_appeals: ניהול ערעורים
         manage_appeals_description: מאפשר למשתמשים לסקור ערעורים כנגד פעולות מודרציה
         manage_blocks: ניהול חסימות
+        manage_blocks_description: מאפשר למשתמשים לחסום ספקי דוא"ל וכתובות IP
         manage_custom_emojis: ניהול סמלונים בהתאמה אישית
         manage_custom_emojis_description: מאפשר למשתמשים לנהל סמלונים בהתאמה אישית של השרת
         manage_federation: ניהול פדרציה
@@ -724,6 +751,7 @@ he:
         manage_taxonomies: ניהול טקסונומיות
         manage_taxonomies_description: מאפשר למשתמשים לסקור תוכן אופנתי (טרנדי) ולעדכן אפשרויות של תגיות.
         manage_user_access: ניהול גישת משתמשים
+        manage_user_access_description: מאפשר למשתמשים לבטל אימות דו-שלבי של משתמשים אחרים, לשנות את כתובות הדוא"ל שלהם, ולאפס את סיסמתם
         manage_users: ניהול משתמשים
         manage_users_description: מאפשר למשתמשים לצפות בפרטים של משתמשים אחרים ולבצע פעולות מודרציה לפיהם
         manage_webhooks: ניהול Webhooks
@@ -798,6 +826,7 @@ he:
       destroyed_msg: העלאת אתר נמחקה בהצלחה!
     software_updates:
       critical_update: חשוב -- יש לעדכן במהירות
+      description: מומלץ לשמור את התקנת המסטודון שלך עדכנית כדי להרוויח מהיכולות והתיקונים האחרונים. למעלה מכך, לעיתים קריטי לעדכן את מסטודון בהקדם כדי להמנע מפרצות אבטחה. מסיבות אלו, השרת יבדוק כל 30 דקות, ויודיע לך לפי העדפות הדואל שלך.
       documentation_link: למידע נוסף
       release_notes: פרטי הגרסה
       title: עדכונים זמינים
@@ -981,6 +1010,7 @@ he:
           one: הוצגה על ידי משתמש בודד במשך השבוע שעבר
           other: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
           two: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
+      title: המלצות ונושאים חמים
       trending: נושאים חמים
     warning_presets:
       add_new: הוספת חדש
@@ -1067,7 +1097,9 @@ he:
       guide_link_text: כולם יכולים לתרום.
     sensitive_content: תוכן רגיש
   application_mailer:
+    notification_preferences: שינוי העדפות דוא"ל
     salutation: "%{name},"
+    settings: 'שינוי הגדרות דוא"ל: %{link}'
     unsubscribe: בטל מנוי
     view: 'תצוגה:'
     view_profile: צפיה בפרופיל
@@ -1087,6 +1119,7 @@ he:
       hint_html: עוד דבר אחד, עלינו לאשרר שאת(ה) אנושיים (לצורך סינון ספאם). נא לפתור את הקאפצ'ה להלן וללחוץ "המשך".
       title: בדיקות אבטחה
     confirmations:
+      awaiting_review: כתובת הדואל שלך אושרה! צוות %{domain} עכשיו יבדוק את הרשמתך. תשלח אליך הודעת דואל אם הצוות יאשר את החשבון!
       awaiting_review_title: הרשמתך עוברת בדיקה
       clicking_this_link: לחיצה על קישור זה
       login_link: כניסה
@@ -1094,6 +1127,7 @@ he:
       redirect_to_app_html: כאן אמורה היתה להיות הפניה אוטמטית ליישומון <strong>%{app_name}</strong>. אם זה לא קרה, ניתן לנסות שוב על ידי %{clicking_this_link} או חזרה ידנית אל היישומון.
       registration_complete: הרשמתך לשרת %{domain} הושלמה כעת!
       welcome_title: ברוך/ה הבא/ה, %{name}!
+      wrong_email_hint: אם כתובת הדואל הזו איננה נכונה, ניתן לשנות אותה בעמוד ההגדרות.
     delete_account: מחיקת חשבון
     delete_account_html: אם ברצונך למחוק את החשבון, ניתן <a href="%{path}">להמשיך כאן</a>. תתבקש/י לספק אישור נוסף.
     description:
@@ -1114,6 +1148,7 @@ he:
     or_log_in_with: או התחבר באמצעות
     privacy_policy_agreement_html: קראתי והסכמתי ל<a href="%{privacy_policy_path}" target="_blank">מדיניות הפרטיות</a>
     progress:
+      confirm: אימות כתובת הדואל
       details: הפרטים שלך
       review: הבדיקה שלנו
       rules: הסכמה לתקנות
@@ -1135,8 +1170,10 @@ he:
     security: אבטחה
     set_new_password: סיסמה חדשה
     setup:
+      email_below_hint_html: אנא בדקו בתיקיית הספאם, או בקשו קוד חדש. ניתן לתקן את הכתובת אם נפלה תקלדה.
       email_settings_hint_html: לחצו על הקישור שנשלח כדי לאשר את הכתובת %{email}. אנו ממתינים פה.
       link_not_received: לא קיבלת קישור?
+      new_confirmation_instructions_sent: אתם עומדים לקבל הודעת דואל חדשה עם קיש/ור אימות בדקות הקרובות!
       title: בדוק/בדקי את תיבת הדואר הנכנס שלך
     sign_in:
       preamble_html: הכנס.י עם שם וסיסמה מאתר <strong>%{domain}</strong>. אם חשבונך מתארח בשרת אחר, לא ניתן להתחבר איתו פה.
@@ -1147,7 +1184,9 @@ he:
       title: הבה ניצור לך חשבון בשרת %{domain}.
     status:
       account_status: מצב חשבון
+      confirming: ממתין שדוא"ל האישור יושלם.
       functional: החשבון שלכם פעיל לגמרי.
+      pending: בקשתך ממתינה לאישור על ידי הצוות שלנו. זה עשוי לקחת זמן מה. דוא"ל יישלח אליך אם בקשתך התקבלה.
       redirecting_to: חשבונכם לא פעיל כעת מכיוון שמפנה ל%{acct}.
       self_destruct: מכיוון שהשרת %{domain} בתהליכי סגירה, תהיה לך גישה מוגבלת בלבד לחשבונך.
       view_strikes: צפיה בעברות קודמות שנרשמו נגד חשבונך
@@ -1190,6 +1229,9 @@ he:
       before: 'לפני שנמשיך, נא לקרוא בזהירות את ההערות הבאות:'
       caches: מידע שהוטמן על ידי שרתים אחרים עשוי להתמיד
       data_removal: הודעותיך וכל מידע אחר יוסרו לתמיד
+      email_change_html: ניתן <a href="%{path}">לשנות את כתובת הדוא"ל שלך</a> מבלי למחוק את החשבון
+      email_contact_html: אם הוא עדיין לא הגיע, ניתן לקבל עזרה על ידי משלוח דואל ל-<a href="mailto:%{email}">%{email}</a>
+      email_reconfirmation_html: אם לא מתקבל דוא"ל האישור, ניתן <a href="%{path}">לבקש אותו שוב</a>
       irreversible: לא ניתן יהיה לשחזר או להפעיל מחדש את חשבונך
       more_details_html: לפרטים נוספים, ראו את <a href="%{terms_path}">מדיניות הפרטיות</a>.
       username_available: שם המשתמש שלך שוב יהיה זמין
@@ -1438,6 +1480,7 @@ he:
     authentication_methods:
       otp: יישומון אימות דו-שלבי
       password: סיסמה
+      sign_in_token: קוד אימות בדוא"ל
       webauthn: מפתחות אבטחה
     description_html: אם את/ה רואה פעילות שאינך מזהה, אנא שנה/י את סיסמתך והפעל/י אימות דו-גורמי.
     empty: הסטוריית אימותים אינה זמינה
@@ -1448,6 +1491,16 @@ he:
     unsubscribe:
       action: כן, לבטל הרשמה
       complete: הפסקת הרשמה
+      confirmation_html: יש לאשר את ביטול ההרשמה להודעות %{type} ממסטודון בשרת %{domain} לכתובת הדואל %{email}. תמיד אפשר להרשם מחדש ב<a href="%{settings_path}">כיוונוני הודעות דואל</a>.
+      emails:
+        notification_emails:
+          favourite: הודעות דואל לגבי חיבובים
+          follow: הודעות דואל לגבי עוקבים חדשים
+          follow_request: הודעות דואל לגבי בקשות מעקב
+          mention: הודעות דואל לגבי איזכורים
+          reblog: הודעות דואל לגבי הידהודים
+      resubscribe_html: אם ביטול ההרשמה היה בטעות, ניתן להרשם מחדש מתוך <a href="%{settings_path}">מסך הגדרות ההרשמה</a> שלך.
+      success_html: לא יגיעו אליך יותר הודעות %{type} משרת מסטודון %{domain} לכתובת הדואל %{email}.
       title: הפסקת הרשמה
   media_attachments:
     validations:
@@ -1528,6 +1581,8 @@ he:
     update:
       subject: "%{name} ערכו הודעה"
   notifications:
+    administration_emails: התראות לדוא"ל חשבון מנהל
+    email_events: ארועים להתראות דוא"ל
     email_events_hint: 'בחר/י ארועים עבורים תרצה/י לקבל התראות:'
   number:
     human:
@@ -1686,6 +1741,7 @@ he:
     import: יבוא
     import_and_export: יבוא ויצוא
     migrate: הגירת חשבון
+    notifications: התראות בדואל
     preferences: העדפות
     profile: פרופיל
     relationships: נעקבים ועוקבים
@@ -1946,6 +2002,7 @@ he:
     invalid_otp_token: קוד דו-שלבי שגוי
     otp_lost_help_html: אם איבדת גישה לשניהם, ניתן ליצור קשר ב-%{email}
     rate_limited: יותר מדי ניסיונות אימות, נסו שוב מאוחר יותר.
+    seamless_external_login: את.ה מחובר דרך שירות חיצוני, לכן אפשרויות הסיסמא והדוא"ל לא מאופשרות.
     signed_in_as: 'מחובר בתור:'
   verification:
     extra_instructions_html: <strong>טיפ:</strong> הלינק באתר שלך יכול להיות מוסתר. החלק החשוב הוא <code>rel="me"</code> שמונע התחזות על אתרים עם תוכן משתמשים. ניתן גם ליצור תגית <code>link</code> בכותרת העמוד במקום קישור <code>a</code> אבל קוד ה־HTML חייב להופיע שם ללא הרצה של ג'אווהסקריפט.
