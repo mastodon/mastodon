@@ -43,6 +43,6 @@ class UnfilterNotificationsWorker
   end
 
   def notifications_with_private_mentions
-    filtered_notifications.joins(mention: :status).merge(Status.where(visibility: :direct)).includes(mention: :status)
+    filtered_notifications.where(type: :mention).joins(mention: :status).merge(Status.where(visibility: :direct)).includes(mention: :status)
   end
 end
