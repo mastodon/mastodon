@@ -27,7 +27,10 @@ class UnfilterNotificationsWorker
   private
 
   def push_to_conversations!
-    notifications_with_private_mentions.reorder(nil).find_each(order: :desc) { |notification| AccountConversation.add_status(@recipient, notification.target_status) }
+    notifications_with_private_mentions.reorder(nil).find_each(order: :desc) do |notification|
+      puts "DEBUG: what is going on???? #{notification.type.inspect} #{notification.account.notifications.count} #{notification.from_account.statuses.count} #{notification.activity.inspect}" if notification.target_status.nil?
+      AccountConversation.add_status(@recipient, notification.target_status)
+    end
   end
 
   def unfilter_notifications!
