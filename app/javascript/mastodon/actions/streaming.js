@@ -111,7 +111,6 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
         }
         case 'notifications_merged':
           const state = getState();
-          // TODO: what to do when in the middle of browsing notifications?
           if (state.notifications.top || !state.notifications.mounted)
             dispatch(expandNotifications({ forceLoad: true, maxId: undefined }));
           if(state.settings.getIn(['notifications', 'groupingBeta'], false)) {

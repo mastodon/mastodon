@@ -81,7 +81,11 @@ export const Notifications: React.FC<{
 
   const anyPendingNotification = useAppSelector(selectAnyPendingNotification);
 
-  const isUnread = unreadNotificationsCount > 0;
+  const needsReload = useAppSelector(
+    (state) => state.notificationGroups.mergedNotifications === 'needs-reload',
+  );
+
+  const isUnread = unreadNotificationsCount > 0 || needsReload;
 
   const canMarkAsRead =
     useAppSelector(selectSettingsNotificationsShowUnread) &&
