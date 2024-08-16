@@ -4341,24 +4341,20 @@ a.status-card {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-height: 25px; // to fit the button without resizing
 
   &__checkbox .check-box {
     display: flex;
   }
 
-  &__selection-mode {
-    flex-grow: 1;
+  &__mode-button {
+    margin-left: auto;
+    color: $highlight-text-color;
+    font-weight: bold;
+    font-size: 14px;
 
-    .text-btn:hover {
-      text-decoration: underline;
-    }
-  }
-
-  &__actions {
-    .icon-button {
-      border-radius: 4px;
-      border: 1px solid var(--background-border-color);
-      padding: 5px;
+    &:hover {
+      color: lighten($highlight-text-color, 6%);
     }
   }
 }
@@ -4566,6 +4562,7 @@ a.status-card {
   padding: 0;
   font-family: inherit;
   font-size: inherit;
+  font-weight: inherit;
   color: inherit;
   border: 0;
   background: transparent;
