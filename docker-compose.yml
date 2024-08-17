@@ -78,11 +78,12 @@ services:
       - ./public/system:/mastodon/public/system
 
   streaming:
-    build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.11
+    build:
+      context: .
+      dockerfile: streaming/Dockerfile
+    image: ghcr.io/mastodon/mastodon-streaming:v4.2.11
     restart: always
     env_file: .env.production
-    command: node ./streaming
     networks:
       - external_network
       - internal_network
