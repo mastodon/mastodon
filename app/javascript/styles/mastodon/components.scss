@@ -10486,6 +10486,13 @@ noscript {
     gap: 8px;
     flex: 1 1 auto;
     overflow: hidden;
+    container-type: inline-size;
+
+    @container (width < 350px) {
+      &__header time {
+        display: none;
+      }
+    }
 
     &__header {
       display: flex;
@@ -10524,6 +10531,11 @@ noscript {
       border: 1px solid var(--background-border-color);
       border-radius: 8px;
       padding: 8px;
+    }
+
+    &__additional-content {
+      color: $darker-text-color;
+      margin-top: -8px; // to offset the parent's `gap` property
     }
   }
 

@@ -31,6 +31,7 @@ lad:
       created_msg: Nota de moderasyon kriyada kon sukseso!
       destroyed_msg: Nota de moderasyon destruida kon sukseso!
     accounts:
+      add_email_domain_block: Bloka domeno de posta
       approve: Achetar
       approved_msg: La solisitasyon de enrejistrasyon de %{username} achetada djustamente
       are_you_sure: Estas siguro?
@@ -57,6 +58,7 @@ lad:
       demote: Degrada
       destroyed_msg: Los datos de %{username} estan agora en kola para ser supremir pishin
       disable: Inkapasita
+      disable_sign_in_token_auth: Inkapasita la autentifikasyon por token de posta elektronika
       disable_two_factor_authentication: Inkapasita autentifikasyon en dos pasos
       disabled: Inkapasitada
       display_name: Nombre amostrado
@@ -65,6 +67,7 @@ lad:
       email: Posta elektronika
       email_status: Estatus de posta
       enable: Kapasita
+      enable_sign_in_token_auth: Kapasita la autentifikasyon por token de posta elektronika
       enabled: Kapasitada
       enabled_msg: El kuento de %{username} fue kapasitado djustamente
       followers: Suivantes
@@ -129,6 +132,7 @@ lad:
       resubscribe: Reabona
       role: Rolo
       search: Bushka
+      search_same_email_domain: Otros utilizadores kon el mezmo domeno de posta
       search_same_ip: Otros utilizadores kon el mezmo adreso IP
       security: Sigurita
       security_measures:
@@ -169,21 +173,26 @@ lad:
         approve_appeal: Acheta apelasyon
         approve_user: Acheta utilizador
         assigned_to_self_report: Asinya raporto
+        change_email_user: Troka posta elektronika del utilizador
         change_role_user: Troka rolo de utilizador
         confirm_user: Konfirma utilizador
         create_account_warning: Kriya avertensya
         create_announcement: Kriya pregon
+        create_canonical_email_block: Kriya bloko de posta elektronika
         create_custom_emoji: Kriya emoji personalizado
         create_domain_allow: Kriya permiso de domeno
         create_domain_block: Kriya bloko de domeno
+        create_email_domain_block: Kriya bloko de domeno de posta
         create_ip_block: Kriya regla de IP
         create_unavailable_domain: Kriya domeno no desponivle
         create_user_role: Kriya rolo
         demote_user: Degrada utilizador
         destroy_announcement: Efasa pregon
+        destroy_canonical_email_block: Efasa bloko de posta elektronika
         destroy_custom_emoji: Efasa emoji personalizado
         destroy_domain_allow: Efasa permiso de domeno
         destroy_domain_block: Efasa bloko de domeno
+        destroy_email_domain_block: Efasa bloko de domeno de posta
         destroy_instance: Efasa domeno
         destroy_ip_block: Efasa regla de IP
         destroy_status: Efasa publikasyon
@@ -191,8 +200,10 @@ lad:
         destroy_user_role: Efasa rolo
         disable_2fa_user: Inkapasita autentifikasyon en dos pasos
         disable_custom_emoji: Inkapasita emoji personalizados
+        disable_sign_in_token_auth_user: Inkapasita la autentifikasyon por token de posta elektronika para el utilizador
         disable_user: Inkapasita utilizador
         enable_custom_emoji: Kapasita emoji personalizados
+        enable_sign_in_token_auth_user: Kapasita la autentifikasyon por token de posta para el utilizador
         enable_user: Kapasita utilizador
         memorialize_account: Transforma en kuento komemorativo
         promote_user: Promove utilizador
@@ -221,20 +232,26 @@ lad:
         approve_appeal_html: "%{name} acheto la solisitasyon de moderasyon de %{target}"
         approve_user_html: "%{name} acheto el enrejistramiento de %{target}"
         assigned_to_self_report_html: "%{name} asinyo el raporto %{target} a si mezmo"
+        change_email_user_html: "%{name} troko el adreso de posta elektronika del utilizador %{target}"
         change_role_user_html: "%{name} troko el rolo de %{target}"
+        confirm_user_html: "%{name} konfirmo el adreso de posta elektronika del utilizador %{target}"
         create_account_warning_html: "%{name} embio una avertensya a %{target}"
         create_announcement_html: "%{name} kriyo un muevo pregon %{target}"
+        create_canonical_email_block_html: "%{name} bloko la posta elektronika kon el hash %{target}"
         create_custom_emoji_html: "%{name} kargo el muevo emoji %{target}"
         create_domain_allow_html: "%{name} perimitio la federasyon kon el domeno %{target}"
         create_domain_block_html: "%{name} bloko el domeno %{target}"
+        create_email_domain_block_html: "%{name} bloko el domeno de posta elektronika %{target}"
         create_ip_block_html: "%{name} kriyo una regla para IP %{target}"
         create_unavailable_domain_html: "%{name} detuvo las entregas al domeno %{target}"
         create_user_role_html: "%{name} kriyo el rolo %{target}"
         demote_user_html: "%{name} degrado a %{target}"
         destroy_announcement_html: "%{name} supremio el pregon %{target}"
+        destroy_canonical_email_block_html: "%{name} dezbloko la posta elektronika kon el hash %{target}"
         destroy_custom_emoji_html: "%{name} supremio el emoji %{target}"
         destroy_domain_allow_html: "%{name} bloko la federasyon kon el domeno %{target}"
         destroy_domain_block_html: "%{name} dezbloko el domeno %{target}"
+        destroy_email_domain_block_html: "%{name} dezbloko el domeno de posta elektronika %{target}"
         destroy_instance_html: "\"%{name} purgo el domeno %{target}"
         destroy_ip_block_html: "%{name} supremio una regla para la IP %{target}"
         destroy_status_html: "%{name} supremio una publikasyon de %{target}"
@@ -242,8 +259,10 @@ lad:
         destroy_user_role_html: "%{name} supremio el rolo %{target}"
         disable_2fa_user_html: "%{name} dezaktivo el rekerimiento en dos pasos para el utilizador %{target}"
         disable_custom_emoji_html: "%{name} dezaktivo el emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} inkapasito la autentifikasyon por token de posta elektronika para %{target}"
         disable_user_html: "%{name} inkapasito la koneksion kon el kuento para el utilizador %{target}"
         enable_custom_emoji_html: "%{name} aktivo el emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} tiene kapasitado la autentifikasyon por token de posta elektronika para %{target}"
         enable_user_html: "%{name} kapasito koneksion kon kuento para el utilizador %{target}"
         memorialize_account_html: "%{name} konvirtio el kuento de %{target} en una pajina de bendicha memoria"
         promote_user_html: "%{name} promosyon al utilizador %{target}"
@@ -251,6 +270,7 @@ lad:
         reject_user_html: "%{name} refuzo el enrejistramiento de %{target}"
         remove_avatar_user_html: "%{name} supremio la imaje de profil de %{target}"
         reopen_report_html: "%{name} reavrio el raporto %{target}"
+        resend_user_html: "%{name} tiene reembiado la posta de konfirmasyon para %{target}"
         reset_password_user_html: "%{name} reinisyo el kod del utilizador %{target}"
         resolve_report_html: "%{name} rezolvio el raporto %{target}"
         sensitive_account_html: "%{name} marko la multimedia de %{target} komo sensivle"
@@ -410,6 +430,7 @@ lad:
       attempts_over_week:
         one: "\"%{count} prova durante la ultima semana"
         other: "%{count} provas de enrejistrarse durante la ultima semana"
+      created_msg: Domeno de posta blokado kon sukseso
       delete: Efasa
       dns:
         types:
@@ -418,6 +439,7 @@ lad:
       new:
         create: Adjusta domeno
         resolve: Rezolve domeno
+        title: Bloka muevo domeno de posta
       not_permitted: Sin permiso
       resolved_through_html: Rezolvido por %{domain}
     export_domain_allows:
@@ -848,7 +870,13 @@ lad:
         action: Ve aki para mas enformasyon
         message_html: "<strong>Tu magazinaje de objektos es mal konfigurado. La privasita de tus utilizadores esta en riziko.</strong>"
     tags:
+      moderation:
+        title: Estado
+      name: Nombre
+      reset: Reinisya
       review: Estado de revizion
+      search: Bushka
+      title: Etiketas
       updated_msg: Konfigurasyon de etiketas aktualizada kon sukseso
     title: Administrasyon
     trends:
@@ -1043,6 +1071,7 @@ lad:
     or_log_in_with: O konektate kon tu kuento kon
     privacy_policy_agreement_html: Tengo meldado i acheto la <a href="%{privacy_policy_path}" target="_blank">politika de privasita</a>
     progress:
+      confirm: Konfirma posta
       details: Tus detalyos
       review: Muestra revizyon
       rules: Acheta reglas
@@ -1361,6 +1390,15 @@ lad:
     unsubscribe:
       action: Si, dezabona
       complete: Dezabonado
+      emails:
+        notification_emails:
+          favourite: avizos de favoritos por posta
+          follow: avizos de segidores por posta
+          follow_request: avizos de solisitasyones de segimyento por posta
+          mention: avizos de enmentaduras por posta
+          reblog: avizos de repartajasyones por posta
+      resubscribe_html: Si tyenes deabonado por yerro, puedes reabonar en tus <a href="%{settings_path}">opsyones de avizos por posta elektronika</a>.
+      success_html: Ya no risiviras %{type} de Mastodon en %{domain} a tu posta en %{email}.
       title: Dezabona
   media_attachments:
     validations:
@@ -1441,6 +1479,8 @@ lad:
     update:
       subject: "%{name} edito una publikasyon"
   notifications:
+    administration_emails: Avizos de administrasyon por posta
+    email_events: Evenimyentos para avizos por posta
     email_events_hint: 'Eskoje los evenimientos para los kualos keres risivir avizos:'
   number:
     human:
@@ -1599,6 +1639,7 @@ lad:
     import: Importo
     import_and_export: Importo i eksporto
     migrate: Migrasyon de kuento
+    notifications: Avizos por posta elektronika
     preferences: Preferensyas
     profile: Profil publiko
     relationships: Segidos i suivantes

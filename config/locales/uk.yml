@@ -35,6 +35,7 @@ uk:
       created_msg: Нотатку модератора успішно створено!
       destroyed_msg: Нотатку модератора успішно видалено!
     accounts:
+      add_email_domain_block: Заблокувати домен до е-пошти
       approve: Схвалити
       approved_msg: Заявку на реєстрацію %{username} затверджено
       are_you_sure: Ви впевнені?
@@ -61,6 +62,7 @@ uk:
       demote: Усунути
       destroyed_msg: Дані %{username} тепер в черзі на негайне видалення
       disable: Заморозити
+      disable_sign_in_token_auth: Вимкнути автентифікацію за допомогою токена е-пошти
       disable_two_factor_authentication: Вимкнути двофакторну авторизацію
       disabled: Вимкнено
       display_name: Відображуване ім'я
@@ -69,6 +71,7 @@ uk:
       email: Електронна пошта
       email_status: Стан електронної пошти
       enable: Розморозити
+      enable_sign_in_token_auth: Увімкнути автентифікацію за допомогою токена е-пошти
       enabled: Увімкнено
       enabled_msg: Обліковий запис %{username} успішно розморожено
       followers: Підписники
@@ -135,6 +138,7 @@ uk:
       resubscribe: Перепідписатися
       role: Роль
       search: Пошук
+      search_same_email_domain: Інші користувачі з тим самим доменом е-пошти
       search_same_ip: Інші користувачі з тим самим IP
       security: Безпека
       security_measures:
@@ -175,21 +179,26 @@ uk:
         approve_appeal: Затвердити апеляцію
         approve_user: Затвердити користувачів
         assigned_to_self_report: Призначити звіт
+        change_email_user: Змінити електронну пошту для користувача
         change_role_user: Змінити роль користувача
         confirm_user: Підтвердити користувача
         create_account_warning: Створити попередження
         create_announcement: Створити оголошення
+        create_canonical_email_block: Створити блокування електронної пошти
         create_custom_emoji: Створити користувацьке емодзі
         create_domain_allow: Створити дозвіл на домен
         create_domain_block: Створити блокування домену
+        create_email_domain_block: Створити блокування домену е-пошти
         create_ip_block: Створити правило IP
         create_unavailable_domain: Створити недоступний домен
         create_user_role: Створити роль
         demote_user: Понизити користувача
         destroy_announcement: Видалити оголошення
+        destroy_canonical_email_block: Видалити блокування електронної пошти
         destroy_custom_emoji: Видалити користувацьке емодзі
         destroy_domain_allow: Видалити дозвіл на домен
         destroy_domain_block: Видалити блокування домену
+        destroy_email_domain_block: Видалити блокування домену е-пошти
         destroy_instance: Очистити домен
         destroy_ip_block: Видалити правило IP
         destroy_status: Видалити допис
@@ -197,8 +206,10 @@ uk:
         destroy_user_role: Знищити роль
         disable_2fa_user: Вимкнути 2FA
         disable_custom_emoji: Вимкнути користувацькі емодзі
+        disable_sign_in_token_auth_user: Вимкнути автентифікацію за допомогою токена е-пошти для користувача
         disable_user: Відключити користувача
         enable_custom_emoji: Увімкнути користувацькі емодзі
+        enable_sign_in_token_auth_user: Увімкнути автентифікацію за допомогою токена е-пошти для користувача
         enable_user: Активувати користувача
         memorialize_account: Меморіалізувати акаунт
         promote_user: Підвищити користувача
@@ -228,20 +239,26 @@ uk:
         approve_appeal_html: "%{name} затвердили звернення на оскарження рішення від %{target}"
         approve_user_html: "%{name} схвалює реєстрацію від %{target}"
         assigned_to_self_report_html: "%{name} створює скаргу %{target} на себе"
+        change_email_user_html: "%{name} змінює адресу е-пошти користувача %{target}"
         change_role_user_html: "%{name} змінює роль %{target}"
+        confirm_user_html: "%{name} підтверджує стан адреси е-пошти користувача %{target}"
         create_account_warning_html: "%{name} надсилає попередження до %{target}"
         create_announcement_html: "%{name} створює нове оголошення %{target}"
+        create_canonical_email_block_html: "%{name} блокує адресу е-пошти з хешем %{target}"
         create_custom_emoji_html: "%{name} завантажує нові емодзі %{target}"
         create_domain_allow_html: "%{name} дозволяє федерацію з доменом %{target}"
         create_domain_block_html: "%{name} блокує домен %{target}"
+        create_email_domain_block_html: "%{name} блокує домен електронної пошти %{target}"
         create_ip_block_html: "%{name} створює правило для IP %{target}"
         create_unavailable_domain_html: "%{name} зупиняє доставляння на домен %{target}"
         create_user_role_html: "%{name} створює роль %{target}"
         demote_user_html: "%{name} понижує користувача %{target}"
         destroy_announcement_html: "%{name} видаляє оголошення %{target}"
+        destroy_canonical_email_block_html: "%{name} розблоковує електронну пошту з хешем %{target}"
         destroy_custom_emoji_html: "%{name} видаляє емоджі %{target}"
         destroy_domain_allow_html: "%{name} скасовує федерацію з доменом %{target}"
         destroy_domain_block_html: "%{name} розблокує домен %{target}"
+        destroy_email_domain_block_html: "%{name} розблоковує домен електронної пошти %{target}"
         destroy_instance_html: "%{name} очищує домен %{target}"
         destroy_ip_block_html: "%{name} видаляє правило для IP %{target}"
         destroy_status_html: "%{name} вилучає допис %{target}"
@@ -249,8 +266,10 @@ uk:
         destroy_user_role_html: "%{name} видаляє роль %{target}"
         disable_2fa_user_html: "%{name} вимикає двоетапну перевірку для користувача %{target}"
         disable_custom_emoji_html: "%{name} вимикає емодзі %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} вимикає автентифікацію через токен е-пошти для %{target}"
         disable_user_html: "%{name} вимикає вхід для користувача %{target}"
         enable_custom_emoji_html: "%{name} вмикає емодзі %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} вмикає автентифікацію через токен е-пошти для %{target}"
         enable_user_html: "%{name} вмикає вхід для користувача %{target}"
         memorialize_account_html: "%{name} перетворює обліковий запис %{target} на сторінку пам'яті"
         promote_user_html: "%{name} підвищує користувача %{target}"
@@ -258,6 +277,7 @@ uk:
         reject_user_html: "%{name} відхиляє реєстрацію від %{target}"
         remove_avatar_user_html: "%{name} прибирає аватар %{target}"
         reopen_report_html: "%{name} знову відкриває звіт %{target}"
+        resend_user_html: "%{name} надсилає підтверджувальний лист для %{target}"
         reset_password_user_html: "%{name} скидає пароль користувача %{target}"
         resolve_report_html: "%{name} розв'язує скаргу %{target}"
         sensitive_account_html: "%{name} позначає медіа від %{target} делікатним"
@@ -428,6 +448,7 @@ uk:
         many: "%{count} спроб входу за останній тиждень"
         one: "%{count} спроба за останній тиждень"
         other: "%{count} спроби входу за останній тиждень"
+      created_msg: Домен е-пошти заблоковано
       delete: Видалити
       dns:
         types:
@@ -436,6 +457,8 @@ uk:
       new:
         create: Додати домен
         resolve: Розв'язати домен
+        title: Заблокувати новий домен е-пошти
+      no_email_domain_block_selected: Налаштування блокування доменів електронної пошти не змінено, оскільки жоден домен вибрано
       not_permitted: Не дозволено
       resolved_through_html: Розв'язано через %{domain}
     export_domain_allows:
@@ -1412,6 +1435,7 @@ uk:
     authentication_methods:
       otp: застосунок двофакторної автентифікації
       password: пароль
+      sign_in_token: код безпеки е-поштою
       webauthn: ключі безпеки
     description_html: Якщо ви помітили невідомі вам дії, тоді подумайте про зміну свого пароля та можливість увімкнення двофакторної автентифікації.
     empty: Немає історії входів
@@ -1422,6 +1446,15 @@ uk:
     unsubscribe:
       action: Так, відписатися
       complete: Відписалися
+      emails:
+        notification_emails:
+          favourite: отримувати сповіщення про вподобання електронною поштою
+          follow: отримувати сповіщення про підписки електронною поштою
+          follow_request: отримувати сповіщення про запити на стеження електронною поштою
+          mention: отримувати сповіщення про згадки електронною поштою
+          reblog: отримувати сповіщення про поширення електронною поштою
+      resubscribe_html: Якщо ви відписалися помилково, ви можете повторно підписатися в <a href="%{settings_path}">налаштуваннях сповіщень електронною поштою</a>.
+      success_html: Ви більше не отримуватимете %{type} для Mastodon %{domain} на адресу %{email}.
       title: Відписатися
   media_attachments:
     validations:
@@ -1502,6 +1535,8 @@ uk:
     update:
       subject: "%{name} змінює допис"
   notifications:
+    administration_emails: Сповіщення е-пошти адміністратора
+    email_events: Події, про які сповіщати електронною поштою
     email_events_hint: 'Оберіть події, про які ви хочете отримувати сповіщення:'
   number:
     human:
@@ -1660,6 +1695,7 @@ uk:
     import: Імпорт
     import_and_export: Імпорт та експорт
     migrate: Міграція облікового запису
+    notifications: Сповіщення е-поштою
     preferences: Налаштування
     profile: Загальнодоступний профіль
     relationships: Підписки та підписники
@@ -1920,6 +1956,7 @@ uk:
     invalid_otp_token: Введено неправильний код
     otp_lost_help_html: Якщо ви втратили доступ до обох, ви можете отримати доступ з %{email}
     rate_limited: Забагато спроб з'єднання. Спробуйте ще раз пізніше.
+    seamless_external_login: Ви увійшли за допомогою зовнішньої служби, тому налаштування пароля та електронної пошти недоступні.
     signed_in_as: 'Ви увійшли як:'
   verification:
     extra_instructions_html: <strong>Порада:</strong> Посилання на ваш сайт може бути невидимим. Важлива частина — це <code>rel="me"</code>, яка не запобігає видаванню себе за іншу особу на вебсайтах з користувацьким наповненням. Ви навіть можете використовувати тег <code>link</code> у заголовку сторінки замість <code>a</code>, але HTML має бути доступним без виконання JavaScript.
