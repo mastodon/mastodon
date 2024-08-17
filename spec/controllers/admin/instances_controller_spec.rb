@@ -34,6 +34,20 @@ RSpec.describe Admin::InstancesController do
       expect(response).to have_http_status(200)
     end
 
+    describe 'outdated filter parameters' do
+      it 'redirect to status suspended when just limited is set' do
+        get :index, params: { limited: 1 }
+
+        expect(response).to redirect_to admin_instances_path({ status: :suspended })
+      end
+
+      it 'retains other filters when redirecting if limited is set' do
+        get :index, params: { limited: 1, availability: 'failing' }
+
+        expect(response).to redirect_to admin_instances_path({ status: :suspended, availability: 'failing' })
+      end
+    end
+
     def instance_directory_links
       response.parsed_body.css('div.directory__tag a')
     end
