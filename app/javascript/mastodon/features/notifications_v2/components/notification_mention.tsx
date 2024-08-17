@@ -61,7 +61,6 @@ export const NotificationMention: React.FC<{
       icon={isReply ? ReplyIcon : AlternateEmailIcon}
       iconId='reply'
       accountIds={notification.sampleAccountIds}
-      count={notification.notifications_count}
       statusId={notification.statusId}
       labelRenderer={labelRenderer}
       unread={unread}

@@ -23,7 +23,6 @@ export const NotificationStatus: React.FC<{
     icon={NotificationsActiveIcon}
     iconId='notifications-active'
     accountIds={notification.sampleAccountIds}
-    count={notification.notifications_count}
     statusId={notification.statusId}
     labelRenderer={labelRenderer}
     unread={unread}
