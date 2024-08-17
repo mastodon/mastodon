@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import type { NotificationGroupUpdate } from 'mastodon/models/notification_group';
 
-import type { LabelRenderer } from './notification_group_with_status';
+import type { LabelRenderer } from './notification_with_status';
 import { NotificationWithStatus } from './notification_with_status';
 
 const labelRenderer: LabelRenderer = (values) => (

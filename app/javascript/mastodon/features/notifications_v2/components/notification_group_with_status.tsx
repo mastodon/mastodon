@@ -14,10 +14,6 @@ import { useAppDispatch } from 'mastodon/store';
 import { AvatarGroup } from './avatar_group';
 import { EmbeddedStatus } from './embedded_status';
 
-export type LabelRenderer = (
-  values: Record<string, React.ReactNode>,
-) => JSX.Element;
-
 export const NotificationGroupWithStatus: React.FC<{
   icon: IconProp;
   iconId: string;
