@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { useMemo } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
@@ -13,26 +14,51 @@ import { IconButton } from 'mastodon/components/icon_button';
 import type { NotificationGroupFollowRequest } from 'mastodon/models/notification_group';
 import { useAppDispatch } from 'mastodon/store';
 
-import type { LabelRenderer } from './notification_group_with_status';
 import { NotificationGroupWithStatus } from './notification_group_with_status';
+import { DisplayedName } from './displayed_name';
 
 const messages = defineMessages({
   authorize: { id: 'follow_request.authorize', defaultMessage: 'Authorize' },
   reject: { id: 'follow_request.reject', defaultMessage: 'Reject' },
 });
 
-const labelRenderer: LabelRenderer = (values) => (
-  <FormattedMessage
-    id='notification.follow_request'
-    defaultMessage='{name} has requested to follow you'
-    values={values}
-  />
-);
-
 export const NotificationFollowRequest: React.FC<{
   notification: NotificationGroupFollowRequest;
   unread: boolean;
 }> = ({ notification, unread }) => {
+  const displayedName = (
+    <DisplayedName
+      accountIds={notification.sampleAccountIds}
+    />
+  );
+
+  const count = notification.notifications_count;
+
+  const label = useMemo(
+    () => {
+      if (count === 1)
+        return (
+          <FormattedMessage
+            id='notification.follow_request'
+            defaultMessage='{name} has requested to follow you'
+            values={{ name: displayedName }}
+          />
+        );
+    
+      return (
+        <FormattedMessage
+          id='notification.follow_request.name_and_others'
+          defaultMessage='{name} and {count, plural, one {# other} other {# others}} has requested to follow you'
+          values={{
+            name: displayedName,
+            count: count - 1,
+          }}
+        />
+      );
+    },
+    [displayedName, count],
+  );
+
   const intl = useIntl();
 
   const dispatch = useAppDispatch();
@@ -69,8 +95,7 @@ export const NotificationFollowRequest: React.FC<{
       iconId='person-add'
       accountIds={notification.sampleAccountIds}
       timestamp={notification.latest_page_notification_at}
-      count={notification.notifications_count}
-      labelRenderer={labelRenderer}
+      label={label}
       actions={actions}
       unread={unread}
     />
