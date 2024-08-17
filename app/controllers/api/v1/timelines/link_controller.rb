@@ -2,6 +2,7 @@
 
 class Api::V1::Timelines::LinkController < Api::V1::Timelines::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }
+  before_action :require_user!, if: :require_auth?
   before_action :set_preview_card
   before_action :set_statuses
 
@@ -16,6 +17,12 @@ class Api::V1::Timelines::LinkController < Api::V1::Timelines::BaseController
   end
 
   private
+
+  # A viewer can only see the link timeline if both timeline_preview_local and
+  # timeline_preview_remote are true, since it includes remote content
+  def require_auth?
+    !(Setting.timeline_preview_local && Setting.timeline_preview_remote)
+  end
 
   def set_preview_card
     @preview_card = PreviewCard.joins(:trend).merge(PreviewCardTrend.allowed).find_by!(url: params[:url])

@@ -14,10 +14,6 @@ class Api::V1::Timelines::TagController < Api::V1::Timelines::BaseController
 
   private
 
-  def require_auth?
-    !Setting.timeline_preview
-  end
-
   def load_tag
     @tag = Tag.find_normalized(params[:id])
   end
