@@ -16,10 +16,7 @@ import Status from 'mastodon/containers/status_container';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { DisplayedName } from './displayed_name';
-
-export type LabelRenderer = (
-  values: Record<string, React.ReactNode>,
-) => JSX.Element;
+import type { LabelRenderer } from './notification_group_with_status';
 
 export const NotificationWithStatus: React.FC<{
   type: string;

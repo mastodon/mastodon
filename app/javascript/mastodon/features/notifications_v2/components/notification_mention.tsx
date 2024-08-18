@@ -7,7 +7,7 @@ import type { NotificationGroupMention } from 'mastodon/models/notification_grou
 import type { Status } from 'mastodon/models/status';
 import { useAppSelector } from 'mastodon/store';
 
-import type { LabelRenderer } from './notification_with_status';
+import type { LabelRenderer } from './notification_group_with_status';
 import { NotificationWithStatus } from './notification_with_status';
 
 const mentionLabelRenderer: LabelRenderer = () => (
