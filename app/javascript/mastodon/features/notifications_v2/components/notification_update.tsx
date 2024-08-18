@@ -6,11 +6,11 @@ import type { NotificationGroupUpdate } from 'mastodon/models/notification_group
 import type { LabelRenderer } from './notification_group_with_status';
 import { NotificationWithStatus } from './notification_with_status';
 
-const labelRenderer: LabelRenderer = (values) => (
+const labelRenderer: LabelRenderer = (displayedName) => (
   <FormattedMessage
     id='notification.update'
     defaultMessage='{name} edited a post'
-    values={values}
+    values={{ name: displayedName }}
   />
 );
 
@@ -23,6 +23,7 @@ export const NotificationUpdate: React.FC<{
     icon={EditIcon}
     iconId='edit'
     accountIds={notification.sampleAccountIds}
+    count={notification.notifications_count}
     statusId={notification.statusId}
     labelRenderer={labelRenderer}
     unread={unread}

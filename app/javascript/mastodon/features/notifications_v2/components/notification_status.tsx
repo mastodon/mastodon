@@ -6,11 +6,11 @@ import type { NotificationGroupStatus } from 'mastodon/models/notification_group
 import type { LabelRenderer } from './notification_group_with_status';
 import { NotificationWithStatus } from './notification_with_status';
 
-const labelRenderer: LabelRenderer = (values) => (
+const labelRenderer: LabelRenderer = (displayedName) => (
   <FormattedMessage
     id='notification.status'
     defaultMessage='{name} just posted'
-    values={values}
+    values={{ name: displayedName }}
   />
 );
 
@@ -23,6 +23,7 @@ export const NotificationStatus: React.FC<{
     icon={NotificationsActiveIcon}
     iconId='notifications-active'
     accountIds={notification.sampleAccountIds}
+    count={notification.notifications_count}
     statusId={notification.statusId}
     labelRenderer={labelRenderer}
     unread={unread}

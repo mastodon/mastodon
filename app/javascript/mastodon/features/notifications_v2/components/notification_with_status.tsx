@@ -24,6 +24,7 @@ export const NotificationWithStatus: React.FC<{
   iconId: string;
   accountIds: string[];
   statusId: string | undefined;
+  count: number;
   labelRenderer: LabelRenderer;
   unread: boolean;
 }> = ({
@@ -31,6 +32,7 @@ export const NotificationWithStatus: React.FC<{
   iconId,
   accountIds,
   statusId,
+  count,
   labelRenderer,
   type,
   unread,
@@ -38,11 +40,8 @@ export const NotificationWithStatus: React.FC<{
   const dispatch = useAppDispatch();
 
   const label = useMemo(
-    () =>
-      labelRenderer({
-        name: <DisplayedName accountIds={accountIds} />,
-      }),
-    [labelRenderer, accountIds],
+    () => labelRenderer(<DisplayedName accountIds={accountIds} />, count),
+    [labelRenderer, accountIds, count],
   );
 
   const isPrivateMention = useAppSelector(

@@ -29,6 +29,7 @@ export const NotificationPoll: React.FC<{
     icon={BarChart4BarsIcon}
     iconId='bar-chart-4-bars'
     accountIds={notification.sampleAccountIds}
+    count={notification.notifications_count}
     statusId={notification.statusId}
     labelRenderer={
       notification.sampleAccountIds[0] === me
