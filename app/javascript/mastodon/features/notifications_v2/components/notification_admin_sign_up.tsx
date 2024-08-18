@@ -5,45 +5,40 @@ import { FormattedMessage } from 'react-intl';
 import PersonAddIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
 import type { NotificationGroupAdminSignUp } from 'mastodon/models/notification_group';
 
-import { NotificationGroupWithStatus } from './notification_group_with_status';
 import { DisplayedName } from './displayed_name';
+import { NotificationGroupWithStatus } from './notification_group_with_status';
 
 export const NotificationAdminSignUp: React.FC<{
   notification: NotificationGroupAdminSignUp;
   unread: boolean;
 }> = ({ notification, unread }) => {
   const displayedName = (
-    <DisplayedName
-      accountIds={notification.sampleAccountIds}
-    />
+    <DisplayedName accountIds={notification.sampleAccountIds} />
   );
 
   const count = notification.notifications_count;
 
-  const label = useMemo(
-    () => {
-      if (count === 1)
-        return (
-          <FormattedMessage
-            id='notification.admin.sign_up'
-            defaultMessage='{name} signed up'
-            values={{ name: displayedName }}
-          />
-        );
-    
+  const label = useMemo(() => {
+    if (count === 1)
       return (
         <FormattedMessage
           id='notification.admin.sign_up'
-          defaultMessage='{name} and {count, plural, one {# other} other {# others}} signed up'
-          values={{
-            name: displayedName,
-            count: count - 1,
-          }}
+          defaultMessage='{name} signed up'
+          values={{ name: displayedName }}
         />
       );
-    },
-    [displayedName, count],
-  );
+
+    return (
+      <FormattedMessage
+        id='notification.admin.sign_up.name_and_others'
+        defaultMessage='{name} and {count, plural, one {# other} other {# others}} signed up'
+        values={{
+          name: displayedName,
+          count: count - 1,
+        }}
+      />
+    );
+  }, [displayedName, count]);
 
   return (
     <NotificationGroupWithStatus
@@ -55,5 +50,5 @@ export const NotificationAdminSignUp: React.FC<{
       label={label}
       unread={unread}
     />
-  )
+  );
 };
