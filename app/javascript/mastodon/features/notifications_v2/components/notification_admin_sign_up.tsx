@@ -31,17 +31,15 @@ const labelRenderer: LabelRenderer = (displayedName, total) => {
 export const NotificationAdminSignUp: React.FC<{
   notification: NotificationGroupAdminSignUp;
   unread: boolean;
-}> = ({ notification, unread }) => {
-  return (
-    <NotificationGroupWithStatus
-      type='admin-sign-up'
-      icon={PersonAddIcon}
-      iconId='person-add'
-      accountIds={notification.sampleAccountIds}
-      timestamp={notification.latest_page_notification_at}
-      count={notification.notifications_count}
-      labelRenderer={labelRenderer}
-      unread={unread}
-    />
-  );
-};
+}> = ({ notification, unread }) => (
+  <NotificationGroupWithStatus
+    type='admin-sign-up'
+    icon={PersonAddIcon}
+    iconId='person-add'
+    accountIds={notification.sampleAccountIds}
+    timestamp={notification.latest_page_notification_at}
+    count={notification.notifications_count}
+    labelRenderer={labelRenderer}
+    unread={unread}
+  />
+);
