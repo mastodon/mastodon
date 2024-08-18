@@ -106,6 +106,7 @@ For development with **Docker**, complete the following steps:
 
 - Install Docker Desktop
 - Run `docker compose -f .devcontainer/docker-compose.yml up -d`
+- (extra) Run `sudo docker-compose -f .devcontainer/docker-compose.yml exec app git config --global --add safe.directory /workspaces/posts`
 - Run `docker compose -f .devcontainer/docker-compose.yml exec app .devcontainer/post-create.sh`
 - Finally, run `docker compose -f .devcontainer/docker-compose.yml exec app foreman start -f Procfile.dev`
 
