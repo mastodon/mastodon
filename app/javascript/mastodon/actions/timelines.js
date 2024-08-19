@@ -76,21 +76,18 @@ export function clearTimeline(timeline) {
   };
 }
 
-const noOp = () => {};
-
 const parseTags = (tags = {}, mode) => {
   return (tags[mode] || []).map((tag) => {
     return tag.value;
   });
 };
 
-export function expandTimeline(timelineId, path, params = {}, done = noOp) {
-  return (dispatch, getState) => {
+export function expandTimeline(timelineId, path, params = {}) {
+  return async (dispatch, getState) => {
     const timeline = getState().getIn(['timelines', timelineId], ImmutableMap());
     const isLoadingMore = !!params.max_id;
 
     if (timeline.get('isLoading')) {
-      done();
       return;
     }
 
@@ -109,7 +106,8 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
 
     dispatch(expandTimelineRequest(timelineId, isLoadingMore));
 
-    api().get(path, { params }).then(response => {
+    try {
+      const response = await api().get(path, { params });
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
       dispatch(importFetchedStatuses(response.data));
@@ -127,52 +125,48 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
       if (timelineId === 'home') {
         dispatch(submitMarkers());
       }
-    }).catch(error => {
+    } catch(error) {
       dispatch(expandTimelineFail(timelineId, error, isLoadingMore));
-    }).finally(() => {
-      done();
-    });
+    }
   };
 }
 
-export function fillTimelineGaps(timelineId, path, params = {}, done = noOp) {
-  return (dispatch, getState) => {
+export function fillTimelineGaps(timelineId, path, params = {}) {
+  return async (dispatch, getState) => {
     const timeline = getState().getIn(['timelines', timelineId], ImmutableMap());
     const items = timeline.get('items');
     const nullIndexes = items.map((statusId, index) => statusId === null ? index : null);
     const gaps = nullIndexes.map(index => index > 0 ? items.get(index - 1) : null);
 
     // Only expand at most two gaps to avoid doing too many requests
-    done = gaps.take(2).reduce((done, maxId) => {
-      return (() => dispatch(expandTimeline(timelineId, path, { ...params, maxId }, done)));
-    }, done);
-
-    done();
+    for (const maxId of gaps.take(2)) {
+      await dispatch(expandTimeline(timelineId, path, { ...params, maxId }));
+    }
   };
 }
 
-export const expandHomeTimeline            = ({ maxId } = {}, done = noOp) => expandTimeline('home', '/api/v1/timelines/home', { max_id: maxId }, done);
-export const expandPublicTimeline          = ({ maxId, onlyMedia, onlyRemote } = {}, done = noOp) => expandTimeline(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { remote: !!onlyRemote, max_id: maxId, only_media: !!onlyMedia }, done);
-export const expandCommunityTimeline       = ({ maxId, onlyMedia } = {}, done = noOp) => expandTimeline(`community${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { local: true, max_id: maxId, only_media: !!onlyMedia }, done);
+export const expandHomeTimeline            = ({ maxId } = {}) => expandTimeline('home', '/api/v1/timelines/home', { max_id: maxId });
+export const expandPublicTimeline          = ({ maxId, onlyMedia, onlyRemote } = {}) => expandTimeline(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { remote: !!onlyRemote, max_id: maxId, only_media: !!onlyMedia });
+export const expandCommunityTimeline       = ({ maxId, onlyMedia } = {}) => expandTimeline(`community${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { local: true, max_id: maxId, only_media: !!onlyMedia });
 export const expandAccountTimeline         = (accountId, { maxId, withReplies, tagged } = {}) => expandTimeline(`account:${accountId}${withReplies ? ':with_replies' : ''}${tagged ? `:${tagged}` : ''}`, `/api/v1/accounts/${accountId}/statuses`, { exclude_replies: !withReplies, exclude_reblogs: withReplies, tagged, max_id: maxId });
 export const expandAccountFeaturedTimeline = (accountId, { tagged } = {}) => expandTimeline(`account:${accountId}:pinned${tagged ? `:${tagged}` : ''}`, `/api/v1/accounts/${accountId}/statuses`, { pinned: true, tagged });
 export const expandAccountMediaTimeline    = (accountId, { maxId } = {}) => expandTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { max_id: maxId, only_media: true, limit: 40 });
-export const expandListTimeline            = (id, { maxId } = {}, done = noOp) => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`, { max_id: maxId }, done);
-export const expandLinkTimeline            = (url, { maxId } = {}, done = noOp) => expandTimeline(`link:${url}`, `/api/v1/timelines/link`, { url, max_id: maxId }, done);
-export const expandHashtagTimeline         = (hashtag, { maxId, tags, local } = {}, done = noOp) => {
+export const expandListTimeline            = (id, { maxId } = {}) => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`, { max_id: maxId });
+export const expandLinkTimeline            = (url, { maxId } = {}) => expandTimeline(`link:${url}`, `/api/v1/timelines/link`, { url, max_id: maxId });
+export const expandHashtagTimeline         = (hashtag, { maxId, tags, local } = {}) => {
   return expandTimeline(`hashtag:${hashtag}${local ? ':local' : ''}`, `/api/v1/timelines/tag/${hashtag}`, {
     max_id: maxId,
     any:    parseTags(tags, 'any'),
     all:    parseTags(tags, 'all'),
     none:   parseTags(tags, 'none'),
     local:  local,
-  }, done);
+  });
 };
 
-export const fillHomeTimelineGaps      = (done = noOp) => fillTimelineGaps('home', '/api/v1/timelines/home', {}, done);
-export const fillPublicTimelineGaps    = ({ onlyMedia, onlyRemote } = {}, done = noOp) => fillTimelineGaps(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { remote: !!onlyRemote, only_media: !!onlyMedia }, done);
-export const fillCommunityTimelineGaps = ({ onlyMedia } = {}, done = noOp) => fillTimelineGaps(`community${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { local: true, only_media: !!onlyMedia }, done);
-export const fillListTimelineGaps      = (id, done = noOp) => fillTimelineGaps(`list:${id}`, `/api/v1/timelines/list/${id}`, {}, done);
+export const fillHomeTimelineGaps      = () => fillTimelineGaps('home', '/api/v1/timelines/home', {});
+export const fillPublicTimelineGaps    = ({ onlyMedia, onlyRemote } = {}) => fillTimelineGaps(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { remote: !!onlyRemote, only_media: !!onlyMedia });
+export const fillCommunityTimelineGaps = ({ onlyMedia } = {}) => fillTimelineGaps(`community${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { local: true, only_media: !!onlyMedia });
+export const fillListTimelineGaps      = (id) => fillTimelineGaps(`list:${id}`, `/api/v1/timelines/list/${id}`, {});
 
 export function expandTimelineRequest(timeline, isLoadingMore) {
   return {
