@@ -82,7 +82,7 @@ services:
     depends_on:
       - db
       - redis
-   
+
   db:
     image: postgres:16-alpine
     restart: always
@@ -107,7 +107,7 @@ services:
       - ./redis:/data
 
   es:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.21
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.23
     environment:
       - 'ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true'
       - 'xpack.license.self_generated.type=basic'
