@@ -53,9 +53,11 @@ table {
   border-spacing: 0;
 }
 
-html {
-  scrollbar-color: $action-button-color var(--background-border-color);
-  scrollbar-width: thin;
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-color: $action-button-color var(--background-border-color);
+    scrollbar-width: thin;
+  }
 }
 
 ::-webkit-scrollbar {
