@@ -141,22 +141,6 @@ services:
     volumes:
       - ./elasticsearch:/usr/share/elasticsearch/data
 
-  # Uncomment the following section to enable Tor
-  # tor:
-  #   image: sirboops/tor
-  #   networks:
-  #      - external_network
-  #      - internal_network
-
-  # Uncomment the following section to enable Privoxy
-  # privoxy:
-  #   image: sirboops/privoxy
-  #   networks:
-  #     - external_network
-  #     - internal_network
-  #   volumes:
-  #     - ./priv-config:/opt/config
-
 networks:
   external_network:
   internal_network:
