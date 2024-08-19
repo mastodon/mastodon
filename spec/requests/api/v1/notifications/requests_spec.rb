@@ -133,9 +133,7 @@ RSpec.describe 'Requests' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json).to include(
-          merged: true
-        )
+        expect(body_as_json).to eq({ merged: true })
       end
     end
 
@@ -148,9 +146,7 @@ RSpec.describe 'Requests' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json).to include(
-          merged: false
-        )
+        expect(body_as_json).to eq({ merged: false })
       end
     end
   end
