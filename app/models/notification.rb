@@ -30,6 +30,7 @@ class Notification < ApplicationRecord
     'Poll' => :poll,
   }.freeze
 
+  # Please update app/javascript/api_types/notification.ts if you change this
   PROPERTIES = {
     mention: {
       filterable: true,
@@ -137,31 +138,51 @@ class Notification < ApplicationRecord
       end
     end
 
+    def paginate_groups(limit, pagination_order)
+      raise ArgumentError unless %i(asc desc).include?(pagination_order)
+
+      query = reorder(id: pagination_order)
+
+      unscoped
+        .with_recursive(
+          grouped_notifications: [
+            # Base case: fetching one notification and annotating it with visited groups
+            query
+              .select('notifications.*', "ARRAY[COALESCE(notifications.group_key, 'ungrouped-' || notifications.id)] AS groups")
+              .limit(1),
+            # Recursive case, always yielding at most one annotated notification
+            unscoped
+              .from(
+                [
+                  # Expose the working table as `wt`, but quit early if we've reached the limit
+                  unscoped
+                    .select('id', 'groups')
+                    .from('grouped_notifications')
+                    .where('array_length(grouped_notifications.groups, 1) < :limit', limit: limit)
+                    .arel.as('wt'),
+                  # Recursive query, using `LATERAL` so we can refer to `wt`
+                  query
+                    .where(pagination_order == :desc ? 'notifications.id < wt.id' : 'notifications.id > wt.id')
+                    .where.not("COALESCE(notifications.group_key, 'ungrouped-' || notifications.id) = ANY(wt.groups)")
+                    .limit(1)
+                    .arel.lateral('notifications'),
+                ]
+              )
+              .select('notifications.*', "array_append(wt.groups, COALESCE(notifications.group_key, 'ungrouped-' || notifications.id))"),
+          ]
+        )
+        .from('grouped_notifications AS notifications')
+        .order(id: pagination_order)
+        .limit(limit)
+    end
+
     # This returns notifications from the request page, but with at most one notification per group.
     # Notifications that have no `group_key` each count as a separate group.
     def paginate_groups_by_max_id(limit, max_id: nil, since_id: nil)
       query = reorder(id: :desc)
       query = query.where(id: ...max_id) if max_id.present?
       query = query.where(id: (since_id + 1)...) if since_id.present?
-
-      unscoped
-        .with_recursive(
-          grouped_notifications: [
-            query
-              .select('notifications.*', "ARRAY[COALESCE(notifications.group_key, 'ungrouped-' || notifications.id)] groups")
-              .limit(1),
-            query
-              .joins('CROSS JOIN grouped_notifications')
-              .where('array_length(grouped_notifications.groups, 1) < :limit', limit: limit)
-              .where('notifications.id < grouped_notifications.id')
-              .where.not("COALESCE(notifications.group_key, 'ungrouped-' || notifications.id) = ANY(grouped_notifications.groups)")
-              .select('notifications.*', "array_append(grouped_notifications.groups, COALESCE(notifications.group_key, 'ungrouped-' || notifications.id))")
-              .limit(1),
-          ]
-        )
-        .from('grouped_notifications AS notifications')
-        .order(id: :desc)
-        .limit(limit)
+      query.paginate_groups(limit, :desc)
     end
 
     # Differs from :paginate_groups_by_max_id in that it gives the results immediately following min_id,
@@ -171,25 +192,7 @@ class Notification < ApplicationRecord
       query = reorder(id: :asc)
       query = query.where(id: (min_id + 1)...) if min_id.present?
       query = query.where(id: ...max_id) if max_id.present?
-
-      unscoped
-        .with_recursive(
-          grouped_notifications: [
-            query
-              .select('notifications.*', "ARRAY[COALESCE(notifications.group_key, 'ungrouped-' || notifications.id)] groups")
-              .limit(1),
-            query
-              .joins('CROSS JOIN grouped_notifications')
-              .where('array_length(grouped_notifications.groups, 1) < :limit', limit: limit)
-              .where('notifications.id > grouped_notifications.id')
-              .where.not("COALESCE(notifications.group_key, 'ungrouped-' || notifications.id) = ANY(grouped_notifications.groups)")
-              .select('notifications.*', "array_append(grouped_notifications.groups, COALESCE(notifications.group_key, 'ungrouped-' || notifications.id))")
-              .limit(1),
-          ]
-        )
-        .from('grouped_notifications AS notifications')
-        .order(id: :asc)
-        .limit(limit)
+      query.paginate_groups(limit, :asc)
     end
 
     def to_a_grouped_paginated_by_id(limit, options = {})

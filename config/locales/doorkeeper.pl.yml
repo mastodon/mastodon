@@ -83,6 +83,7 @@ pl:
         access_denied: Właściciel zasobu lub serwer autoryzujący odrzuciły żądanie.
         credential_flow_not_configured: Ścieżka "Resource Owner Password Credentials" zakończyła się błędem, ponieważ Doorkeeper.configure.resource_owner_from_credentials nie został skonfigurowany.
         invalid_client: Autoryzacja klienta nie powiodła się z powodu nieznanego klienta, braku uwierzytelnienia klienta, lub niewspieranej metody uwierzytelniania.
+        invalid_code_challenge_method: Metodą wyzwania kodowego musi być S256, plain jest nieobsługiwany.
         invalid_grant: Grant uwierzytelnienia jest niepoprawny, przeterminowany, unieważniony, nie pasuje do URI przekierowwania użytego w żądaniu uwierzytelnienia, lub został wystawiony przez innego klienta.
         invalid_redirect_uri: URI przekierowania jest nieprawidłowy.
         invalid_request:

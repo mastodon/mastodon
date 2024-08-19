@@ -1,8 +1,7 @@
+import type { GetThunkAPI } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { useDispatch, useSelector } from 'react-redux';
-
-import type { BaseThunkAPI } from '@reduxjs/toolkit/dist/createAsyncThunk';
 
 import type { AppDispatch, RootState } from './store';
 
@@ -25,29 +24,20 @@ export const createAppAsyncThunk = createAsyncThunk.withTypes<{
   rejectValue: AsyncThunkRejectValue;
 }>();
 
-type AppThunkApi = Pick<
-  BaseThunkAPI<
-    RootState,
-    unknown,
-    AppDispatch,
-    AsyncThunkRejectValue,
-    AppMeta,
-    AppMeta
-  >,
-  'getState' | 'dispatch'
->;
-
-interface AppThunkOptions {
-  skipLoading?: boolean;
-}
-
-const createBaseAsyncThunk = createAsyncThunk.withTypes<{
+interface AppThunkConfig {
   state: RootState;
   dispatch: AppDispatch;
   rejectValue: AsyncThunkRejectValue;
   fulfilledMeta: AppMeta;
   rejectedMeta: AppMeta;
-}>();
+}
+type AppThunkApi = Pick<GetThunkAPI<AppThunkConfig>, 'getState' | 'dispatch'>;
+
+interface AppThunkOptions {
+  skipLoading?: boolean;
+}
+
+const createBaseAsyncThunk = createAsyncThunk.withTypes<AppThunkConfig>();
 
 export function createThunk<Arg = void, Returned = void>(
   name: string,

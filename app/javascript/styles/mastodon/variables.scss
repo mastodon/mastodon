@@ -88,6 +88,7 @@ $media-modal-media-max-width: 100%;
 $media-modal-media-max-height: 80%;
 
 $no-gap-breakpoint: 1175px;
+$mobile-breakpoint: 630px;
 
 $font-sans-serif: 'mastodon-font-sans-serif' !default;
 $font-display: 'mastodon-font-display' !default;
@@ -108,4 +109,5 @@ $font-monospace: 'mastodon-font-monospace' !default;
   --surface-background-color: #{darken($ui-base-color, 4%)};
   --surface-variant-background-color: #{$ui-base-color};
   --surface-variant-active-background-color: #{lighten($ui-base-color, 4%)};
+  --avatar-border-radius: 8px;
 }

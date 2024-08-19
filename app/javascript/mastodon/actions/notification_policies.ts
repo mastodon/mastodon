@@ -1,3 +1,5 @@
+import { createAction } from '@reduxjs/toolkit';
+
 import {
   apiGetNotificationPolicy,
   apiUpdateNotificationsPolicy,
@@ -13,4 +15,8 @@ export const fetchNotificationPolicy = createDataLoadingThunk(
 export const updateNotificationsPolicy = createDataLoadingThunk(
   'notificationPolicy/update',
   (policy: Partial<NotificationPolicy>) => apiUpdateNotificationsPolicy(policy),
+);
+
+export const decreasePendingNotificationsCount = createAction<number>(
+  'notificationPolicy/decreasePendingNotificationCount',
 );

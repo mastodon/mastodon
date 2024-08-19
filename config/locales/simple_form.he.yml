@@ -73,8 +73,8 @@ he:
       filters:
         action: בחרו איזו פעולה לבצע כאשר הודעה מתאימה למסנן
         actions:
-          hide: הסתר את התוכן המסונן, כאילו לא היה קיים
-          warn: הסתר את התוכן המסונן מאחורי אזהרה עם כותרת המסנן
+          hide: הסתרת התוכן המסונן, כאילו לא היה קיים
+          warn: הסתרת התוכן המסונן מאחורי אזהרה עם כותרת המסנן
       form_admin_settings:
         activity_api_enabled: מספר ההודעות שפורסמו מקומית, משתמשים פעילים, והרשמות חדשות בדליים שבועיים
         app_icon: WEBP, PNG, GIF או JPG. גובר על אייקון ברירת המחדל ביישומון על מכשירים ניידים ומחליף אותו באייקון נבחר.
@@ -211,6 +211,7 @@ he:
         setting_default_privacy: פרטיות ההודעות
         setting_default_sensitive: תמיד לתת סימון "רגיש" למדיה
         setting_delete_modal: להראות תיבת אישור לפני מחיקת חיצרוץ
+        setting_disable_hover_cards: כבה הצצה מקדימה לפרופיל בעת מעבר עכבר מעליו
         setting_disable_swiping: ביטול החלקת-צד
         setting_display_media: תצוגת מדיה
         setting_display_media_default: ברירת מחדל
@@ -242,11 +243,13 @@ he:
           warn: הסתרה עם אזהרה
       form_admin_settings:
         activity_api_enabled: פרסום סטטיסטיקות מקובצות עבור פעילות משתמשים באמצעות מנשק התוכנה
+        app_icon: אייקון יישומון
         backups_retention_period: תקופת השמירה של ארכיון המשתמש
         bootstrap_timeline_accounts: המלצה על חשבונות אלה למשתמשים חדשים
         closed_registrations_message: הודעה מיוחדת כשההרשמה לא מאופשרת
         content_cache_retention_period: תקופת השמירה על תוכן חיצוני
         custom_css: CSS בהתאמה אישית
+        favicon: סמל מועדפים (Favicon)
         mascot: סמל השרת (ישן)
         media_cache_retention_period: תקופת שמירת מטמון מדיה
         peers_api_enabled: פרסם רשימה של שרתים שנתגלו באמצעות ה-API
@@ -311,7 +314,7 @@ he:
         listable: הרשה/י לתגית זו להופיע בחיפושים והצעות
         name: תגית
         trendable: הרשה/י לתגית זו להופיע תחת נושאים חמים
-        usable: הרשה/י להודעות להכיל תגית זו
+        usable: הרשה/י להודעות להכיל תגית זו באופן מקומי
       user:
         role: תפקיד
         time_zone: אזור זמן

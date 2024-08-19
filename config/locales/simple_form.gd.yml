@@ -77,10 +77,15 @@ gd:
           warn: Falaich an t-susbaint chriathraichte air cùlaibh rabhaidh a dh’innseas tiotal na criathraige
       form_admin_settings:
         activity_api_enabled: Cunntasan nam postaichean a chaidh fhoillseachadh gu h-ionadail, nan cleachdaichean gnìomhach ’s nan clàraidhean ùra an am bucaidean seachdaineil
+        app_icon: WEBP, PNG, GIF no JPG. Tar-àithnidh seo ìomhaigheag bhunaiteach na h-aplacaid air uidheaman mobile le ìomhaigheag ghnàthaichte.
+        backups_retention_period: "’S urrainn do chleachdaichean tasg-lannan dhe na postaichean aca a gintinn airson an luchdadh a-nuas an uairsin. Nuair a bhios luach dearbh air, thèid na tasg-lannan a sguabadh às on stòras agad gu fèin-obrachail às dèidh an àireamh de làithean a shònraich thu."
         bootstrap_timeline_accounts: Thèid na cunntasan seo a phrìneachadh air bàrr nam molaidhean leantainn dhan luchd-cleachdaidh ùr.
         closed_registrations_message: Thèid seo a shealltainn nuair a bhios an clàradh dùinte
+        content_cache_retention_period: Thèid a h-uile post o fhrithealaiche sam bith eile (a’ gabhail a-staigh brosnachaidhean is freagairtean) a sguabadh às às dèidh na h-àireimh de làithean a shònraich thu ’s gun diù a chon air eadar-ghabhail ionadail air na postaichean ud. Gabhaidh seo a-steach na postaichean a chuir cleachdaiche ionadail ris na h-annsachdan aca no comharran-lìn riutha. Thèid iomraidhean prìobhaideach eadar cleachdaichean o ionstansan diofraichte air chall cuideachd agus cha ghabh an aiseag idir. Tha an roghainn seo do dh’ionstansan sònraichte a-mhàin agus briseadh e dùilean an luchd-cleachdaidh nuair a rachadh a chleachdadh gu coitcheann.
         custom_css: "’S urrainn dhut stoidhlean gnàthaichte a chur an sàs air an tionndadh-lìn de Mhastodon."
+        favicon: WEBP, PNG, GIF no JPG. Tar-àithnidh seo favicon bunaiteach Mhastodon le ìomhaigheag ghnàthaichte.
         mascot: Tar-àithnidh seo an sgead-dhealbh san eadar-aghaidh-lìn adhartach.
+        media_cache_retention_period: Thèid faidhlichean meadhain o phostaichean a chruthaich cleachdaichean cèine a chur ri tasgadan an fhrithealaiche agad. Nuair a shuidhicheas tu seo air luach dearbh, thèid na meadhanan a sguabadh às às dèidh na h-àireimh de làithean a shònraich thu. Ma tha dàta meadhain ga iarraidh às dèidh a sguabaidh às, thèid a luchdadh a-nuas a-rithist ma tha susbaint an tùis ri fhaighinn fhathast. Ri linn cuingeachaidhean air mar a cheasnaicheas cairtean ro-sheallaidh làraichean threas-phàrtaidhean, mholamaid gun suidhich thu an luach seo air 14 làithean ar a char as giorra no cha dèid an ùrachadh nuair a thèid an iarraidh ron àm sin.
         peers_api_enabled: Seo liosta de dh’ainmean àrainne ris an do thachair am frithealaiche seo sa cho-shaoghal. Chan eil dàta sam bith ’ga ghabhail a-staigh an-seo mu a bheil thu co-naisgte ri frithealaiche sònraichte gus nach eil ach dìreach gu bheil am frithealaiche agad eòlach air. Thèid seo a chleachdadh le seirbheisean a chruinnicheas stadastaireachd air a’ cho-nasgadh san fharsaingeachd.
         profile_directory: Seallaidh eòlaire nam pròifil liosta dhen luchd-cleachdaidh a dh’aontaich gun gabh an rùrachadh.
         require_invite_text: Nuair a bhios aontachadh a làimh riatanach dhan chlàradh, dèan an raon teacsa “Carson a bu mhiann leat ballrachd fhaighinn?” riatanach seach roghainneil
@@ -206,6 +211,7 @@ gd:
         setting_default_privacy: Prìobhaideachd postaidh
         setting_default_sensitive: Cuir comharra ri meadhanan an-còmhnaidh gu bheil iad frionasach
         setting_delete_modal: Seall còmhradh dearbhaidh mus sguab thu às post
+        setting_disable_hover_cards: Na ro-sheall pròifil nuair a dh’fhanas mi os a cionn
         setting_disable_swiping: Cuir gluasadan grad-shlaighdidh à comas
         setting_display_media: Sealltainn nam meadhanan
         setting_display_media_default: Bun-roghainn
@@ -237,10 +243,13 @@ gd:
           warn: Falaich le rabhadh
       form_admin_settings:
         activity_api_enabled: Foillsich agragaid dhen stadastaireachd mu ghnìomhachd nan cleachdaichean san API
+        app_icon: Ìomhaigheag na h-aplacaid
         backups_retention_period: Ùine glèidhidh aig tasg-lannan an luchd-cleachdaidh
         bootstrap_timeline_accounts: Mol na cunntasan seo do chleachdaichean ùra an-còmhnaidh
         closed_registrations_message: Teachdaireachd ghnàthaichte nuair nach eil clàradh ri fhaighinn
+        content_cache_retention_period: Ùine glèidhidh aig susbaint chèin
         custom_css: CSS gnàthaichte
+        favicon: Favicon
         mascot: Suaichnean gnàthaichte (dìleabach)
         media_cache_retention_period: Ùine glèidhidh aig tasgadan nam meadhanan
         peers_api_enabled: Foillsich liosta nam frithealaichean a chaidh a rùrachadh san API
@@ -305,7 +314,7 @@ gd:
         listable: Faodaidh an taga hais seo nochdadh ann an toraidhean luirg ’s am measg nam molaidhean
         name: Taga hais
         trendable: Faodaidh an taga hais seo nochdadh am measg nan treandaichean
-        usable: Faodaidh postaichean an taga hais seo a chleachdadh
+        usable: Faodaidh postaichean an taga hais seo a chleachdadh gu h-ionadail
       user:
         role: Dreuchd
         time_zone: Roinn-tìde

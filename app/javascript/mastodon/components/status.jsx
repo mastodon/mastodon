@@ -116,7 +116,10 @@ class Status extends ImmutablePureComponent {
     cacheMediaWidth: PropTypes.func,
     cachedMediaWidth: PropTypes.number,
     scrollKey: PropTypes.string,
+    skipPrepend: PropTypes.bool,
+    avatarSize: PropTypes.number,
     deployPictureInPicture: PropTypes.func,
+    unfocusable: PropTypes.bool,
     pictureInPicture: ImmutablePropTypes.contains({
       inUse: PropTypes.bool,
       available: PropTypes.bool,
@@ -266,7 +269,7 @@ class Status extends ImmutablePureComponent {
 
   handleHotkeyReply = e => {
     e.preventDefault();
-    this.props.onReply(this._properStatus(), this.props.history);
+    this.props.onReply(this._properStatus());
   };
 
   handleHotkeyFavourite = () => {
@@ -279,7 +282,7 @@ class Status extends ImmutablePureComponent {
 
   handleHotkeyMention = e => {
     e.preventDefault();
-    this.props.onMention(this._properStatus().get('account'), this.props.history);
+    this.props.onMention(this._properStatus().get('account'));
   };
 
   handleHotkeyOpen = () => {
@@ -353,7 +356,7 @@ class Status extends ImmutablePureComponent {
   };
 
   render () {
-    const { intl, hidden, featured, unread, showThread, scrollKey, pictureInPicture, previousId, nextInReplyToId, rootId } = this.props;
+    const { intl, hidden, featured, unfocusable, unread, showThread, scrollKey, pictureInPicture, previousId, nextInReplyToId, rootId, skipPrepend, avatarSize = 46 } = this.props;
 
     let { status, account, ...other } = this.props;
 
@@ -379,8 +382,8 @@ class Status extends ImmutablePureComponent {
 
     if (hidden) {
       return (
-        <HotKeys handlers={handlers}>
-          <div ref={this.handleRef} className={classNames('status__wrapper', { focusable: !this.props.muted })} tabIndex={0}>
+        <HotKeys handlers={handlers} tabIndex={unfocusable ? null : -1}>
+          <div ref={this.handleRef} className={classNames('status__wrapper', { focusable: !this.props.muted })} tabIndex={unfocusable ? null : 0}>
             <span>{status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}</span>
             <span>{status.get('content')}</span>
           </div>
@@ -400,8 +403,8 @@ class Status extends ImmutablePureComponent {
       };
 
       return (
-        <HotKeys handlers={minHandlers}>
-          <div className='status__wrapper status__wrapper--filtered focusable' tabIndex={0} ref={this.handleRef}>
+        <HotKeys handlers={minHandlers} tabIndex={unfocusable ? null : -1}>
+          <div className='status__wrapper status__wrapper--filtered focusable' tabIndex={unfocusable ? null : 0} ref={this.handleRef}>
             <FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {matchedFilters.join(', ')}.
             {' '}
             <button className='status__wrapper--filtered__button' onClick={this.handleUnfilterClick}>
@@ -539,7 +542,7 @@ class Status extends ImmutablePureComponent {
     }
 
     if (account === undefined || account === null) {
-      statusAvatar = <Avatar account={status.get('account')} size={46} />;
+      statusAvatar = <Avatar account={status.get('account')} size={avatarSize} />;
     } else {
       statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
     }
@@ -548,9 +551,9 @@ class Status extends ImmutablePureComponent {
     const expanded = !status.get('hidden') || status.get('spoiler_text').length === 0;
 
     return (
-      <HotKeys handlers={handlers}>
-        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), unread, focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText)} ref={this.handleRef} data-nosnippet={status.getIn(['account', 'noindex'], true) || undefined}>
-          {prepend}
+      <HotKeys handlers={handlers} tabIndex={unfocusable ? null : -1}>
+        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), unread, focusable: !this.props.muted })} tabIndex={this.props.muted || unfocusable ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText)} ref={this.handleRef} data-nosnippet={status.getIn(['account', 'noindex'], true) || undefined}>
+          {!skipPrepend && prepend}
 
           <div className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), 'status--in-thread': !!rootId, 'status--first-in-thread': previousId && (!connectUp || connectToRoot), muted: this.props.muted })} data-id={status.get('id')}>
             {(connectReply || connectUp || connectToRoot) && <div className={classNames('status__line', { 'status__line--full': connectReply, 'status__line--first': !status.get('in_reply_to_id') && !connectToRoot })} />}
@@ -562,7 +565,7 @@ class Status extends ImmutablePureComponent {
                 <RelativeTimestamp timestamp={status.get('created_at')} />{status.get('edited_at') && <abbr title={intl.formatMessage(messages.edited, { date: intl.formatDate(status.get('edited_at'), { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) })}> *</abbr>}
               </a>
 
-              <a onClick={this.handleAccountClick} href={`/@${status.getIn(['account', 'acct'])}`} data-hover-card-account={status.getIn(['account', 'id'])} className='status__display-name' target='_blank' rel='noopener noreferrer'>
+              <a onClick={this.handleAccountClick} href={`/@${status.getIn(['account', 'acct'])}`} title={status.getIn(['account', 'acct'])} data-hover-card-account={status.getIn(['account', 'id'])} className='status__display-name' target='_blank' rel='noopener noreferrer'>
                 <div className='status__avatar'>
                   {statusAvatar}
                 </div>

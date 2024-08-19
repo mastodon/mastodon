@@ -106,7 +106,7 @@ const Account = ({ size = 46, account, onFollow, onBlock, onMute, onMuteNotifica
         </>
       );
     } else if (defaultAction === 'mute') {
-      buttons = <Button title={intl.formatMessage(messages.mute)} onClick={handleMute} />;
+      buttons = <Button text={intl.formatMessage(messages.mute)} onClick={handleMute} />;
     } else if (defaultAction === 'block') {
       buttons = <Button text={intl.formatMessage(messages.block)} onClick={handleBlock} />;
     } else if (!account.get('suspended') && !account.get('moved') || following) {

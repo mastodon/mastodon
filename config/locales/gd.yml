@@ -194,7 +194,7 @@ gd:
         create_user_role: Cruthaich dreuchd
         demote_user: Ìslich an cleachdaiche
         destroy_announcement: Sguab às am brath-fios
-        destroy_canonical_email_block: Sguab às dhan bhacadh puist-d
+        destroy_canonical_email_block: Sguab às bacadh a’ phuist-d
         destroy_custom_emoji: Sguab às an t-Emoji gnàthaichte
         destroy_domain_allow: Sguab às ceadachadh na h-àrainne
         destroy_domain_block: Sguab às bacadh na h-àrainne
@@ -232,6 +232,7 @@ gd:
         update_custom_emoji: Ùraich an t-Emoji gnàthaichte
         update_domain_block: Ùraich bacadh na h-àrainne
         update_ip_block: Ùraich an riaghailt IP
+        update_report: Ùraich an gearan
         update_status: Ùraich am post
         update_user_role: Ùraich an dreuchd
       actions:
@@ -291,6 +292,7 @@ gd:
         update_custom_emoji_html: Dh’ùraich %{name} an Emoji %{target}
         update_domain_block_html: Dh’ùraich %{name} bacadh na h-àrainne %{target}
         update_ip_block_html: Sguab %{name} às riaghailt dhan IP %{target}
+        update_report_html: Dh’ùraich %{name} an gearan %{target}
         update_status_html: Dh’ùraich %{name} post le %{target}
         update_user_role_html: Dh’atharraich %{name} an dreuchd %{target}
       deleted_account: chaidh an cunntas a sguabadh às
@@ -298,6 +300,7 @@ gd:
       filter_by_action: Criathraich a-rèir gnìomha
       filter_by_user: Criathraich a-rèir cleachdaiche
       title: Sgrùd an loga
+      unavailable_instance: "(chan eil ainm na h-àrainn ri fhaighinn)"
     announcements:
       destroyed_msg: Chaidh am brath-fios a sguabadh às!
       edit:
@@ -484,6 +487,9 @@ gd:
       title: Molaidhean leantainn
       unsuppress: Aisig am moladh leantainn
     instances:
+      audit_log:
+        title: Logaichean sgrùdaidh o chionn goirid
+        view_all: Seall na logaichean sgrùdaidh slàna
       availability:
         description_html:
           few: Ma dh’fhàilligeas an lìbhrigeadh dhan àrainn fad <strong>%{count} làithean</strong>, chan fheuch sinn a-rithist leis an lìbhrigeadh ach às dèidh lìbhrigeadh fhaighinn <em>on àrainn ud fhèin</em>.
@@ -618,7 +624,7 @@ gd:
         resolve_description_html: Cha dèid gnìomh sam bith a ghabhail an aghaidh a’ chunntais le gearan air agus thèid an gearan a dhùnadh gun rabhadh a chlàradh.
         silence_description_html: Chan fhaic ach an fheadhainn a tha ’ga leantainn mu thràth no a lorgas a làimh e an cunntas seo agus cuingichidh seo uiread nan daoine a ruigeas e gu mòr. Gabhaidh seo a neo-dhèanamh uair sam bith. Dùinidh seo gach gearan mun chunntas seo.
         suspend_description_html: Cha ghabh an cunntas seo agus an t-susbaint gu leòr aige inntrigeadh gus an dèid a sguabadh às air deireadh na sgeòil agus cha ghabh eadar-ghabhail a dhèanamh leis. Gabhaidh seo a neo-dhèanamh am broinn 30 latha. Dùinidh seo gach gearan mun chunntas seo.
-      actions_description_html: Socraich dè a nì thu airson an gearan seo fhuasgladh. Ma chuireas tu peanas air a’ chunntas le gearan air, gheibh iad brath air a’ phost-d mura tagh thu an roinn-seòrsa <strong>Spama</strong>.
+      actions_description_html: Cuir romhad dè nì thu airson an gearan seo fhuasgladh. Ma chuireas tu peanas air a’ chunntas le gearan air, gheibh iad brath air a’ phost-d mura tagh thu an roinn-seòrsa <strong>Spama</strong>.
       actions_description_remote_html: Cuir romhad dè an gnìomh a ghabhas tu airson an gearan seo fhuasgladh. Cha bheir seo buaidh ach air mar a làimhsicheas am frithealaiche <strong>agadsa</strong> an cunntas cèin seo is mar a nì e conaltradh leis.
       add_to_report: Cuir barrachd ris a’ ghearan
       already_suspended_badges:
@@ -660,6 +666,7 @@ gd:
       report: 'Gearan air #%{id}'
       reported_account: Cunntas mun a chaidh a ghearan
       reported_by: Chaidh gearan a dhèanamh le
+      reported_with_application: Chaidh an gearan a dhèanamh le aplacaid
       resolved: Air fhuasgladh
       resolved_msg: Chaidh an gearan fhuasgladh!
       skip_to_actions: Geàrr leum dha na gnìomhan
@@ -779,6 +786,7 @@ gd:
         desc_html: Tha seo an eisimeil air sgriobtaichean hCaptcha on taobh a-muigh a dh’fhaodadh a bhith ’na dhragh tèarainteachd ’s prìobhaideachd. A bharrachd air sin, <strong>nì seo an clàradh mòran nas do-ruigsinn no chuid (gu h-àraidh an fheadhainn air a bheil ciorram)</strong>. Air na h-adhbharan sin, beachdaich air dòighean eile mar clàradh stèidhichte air aontachadh no cuireadh.
         title: Iarr air cleachdaichean ùra gum fuasgail iad CAPTCHA gus an cunntas aca a dhearbhadh
       content_retention:
+        danger_zone: Earrann chunnartach
         preamble: Stiùirich mar a tha susbaint an luchd-cleachdaidh ’ga stòradh ann am Mastodon.
         title: Glèidheadh na susbaint
       default_noindex:
@@ -905,16 +913,38 @@ gd:
         action: Thoir sùil an-seo airson barrachd fiosrachaidh
         message_html: "<strong>Chaidh stòras nan oibseactan agad a dhroch-rèiteachadh. Tha prìobhaideachd an luchd-cleachdaidh agad fo chunnart.</strong>"
     tags:
+      moderation:
+        not_trendable: Chan fhaod a threandadh
+        not_usable: Cha ghabh a chleachdadh
+        pending_review: A’ feitheamh air lèirmheas
+        review_requested: Chaidh lèirmheas iarraidh
+        reviewed: Chaidh lèirmheas a dhèanamh air
+        title: Staid
+        trendable: Faodaidh a threandadh
+        unreviewed: Gun lèirmheas
+        usable: Gabhaidh a chleachdadh
+      name: Ainm
+      newest: As ùire
+      oldest: As sine
+      reset: Ath-shuidhich
       review: Dèan lèirmheas air an staid
+      search: Lorg
+      title: Tagaichean hais
       updated_msg: Chaidh roghainnean an taga hais ùrachadh
     title: Rianachd
     trends:
       allow: Ceadaich
       approved: Aontaichte
+      confirm_allow: A bheil thu cinnteach gu bheil thu airson na tagaichean a thagh thu a cheadachadh?
+      confirm_disallow: A bheil thu cinnteach gu bheil thu airson na tagaichean a thagh thu a dhì-cheadachadh?
       disallow: Na ceadaich
       links:
         allow: Ceadaich an ceangal
         allow_provider: Ceadaich am foillsichear
+        confirm_allow: A bheil thu cinnteach gu bheil thu airson na ceanglaichean a thagh thu a cheadachadh?
+        confirm_allow_provider: A bheil thu cinnteach gu bheil thu airson na solaraichean a thagh thu a cheadachadh?
+        confirm_disallow: A bheil thu cinnteach gu bheil thu airson na ceanglaichean a thagh thu a dhì-cheadachadh?
+        confirm_disallow_provider: A bheil thu cinnteach gu bheil thu airson na solaraichean a thagh thu a dhì-cheadachadh?
         description_html: Seo na ceanglaichean a tha ’gan co-roinneadh le iomadh cunntas on a chì am frithealaiche agad na postaichean. Faodaidh iad a bhith ’nan cuideachadh dhan luchd-cleachdaidh ach am faigh iad a-mach dè tha tachairt air an t-saoghal. Cha dèid ceanglaichean a shealltainn gu poblach gus an aontaich thu ris an fhoillsichear. ’S urrainn dhut ceanglaichean àraidh a cheadachadh no a dhiùltadh cuideachd.
         disallow: Na ceadaich an ceangal
         disallow_provider: Na ceadaich am foillsichear
@@ -940,6 +970,10 @@ gd:
       statuses:
         allow: Ceadaich am post
         allow_account: Ceadaich an t-ùghdar
+        confirm_allow: A bheil thu cinnteach gu bheil thu airson na puist a thagh thu a cheadachadh?
+        confirm_allow_account: A bheil thu cinnteach gu bheil thu airson na cunntasan a thagh thu a cheadachadh?
+        confirm_disallow: A bheil thu cinnteach gu bheil thu airson na puist a thagh thu a dhì-cheadachadh?
+        confirm_disallow_account: A bheil thu cinnteach gu bheil thu airson na cunntasan a thagh thu a dhì-cheadachadh?
         description_html: Seo na postaichean air a bheil am frithealaiche agad eòlach ’s a tha ’gan co-roinneadh is ’nan annsachd gu tric aig an àm seo. Faodaidh iad a bhith ’nan cuideachadh dhan luchd-cleachdaidh ùr no a thill ach an lorg iad daoine airson an leantainn. Cha dèid postaichean a shealltainn gu poblach gus an gabh thu ris an ùghdar agus gus an aontaich an t-ùghdar gun dèid an cunntas aca a mholadh do dhaoine eile. ’S urrainn dhut postaichean àraidh a cheadachadh no a dhiùltadh cuideachd.
         disallow: Na ceadaich am post
         disallow_account: Na ceadaich an t-ùghdar
@@ -976,17 +1010,18 @@ gd:
           one: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
           other: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
           two: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
-      title: Treandaichean
+      title: Molaidhean ⁊ treandaichean
       trending: A’ treandadh
     warning_presets:
       add_new: Cuir fear ùr ris
       delete: Sguab às
       edit_preset: Deasaich rabhadh ro-shuidhichte
       empty: Cha do mhìnich thu ro-sheataichean rabhaidhean fhathast.
+      title: Ro-sheataichean rabhaidhean
     webhooks:
       add_new: Cuir puing-dheiridh ris
       delete: Sguab às
-      description_html: Bheir <strong>webhook</strong> comas do Mhastodon gus <strong>brathan fìor-ama</strong> a phutadh dhan aplacaid agad fhèin mu na tachartasan a thagh thu ach an adhbharaich an aplacaid agad <strong>freagairtean gu fèin-obrachail</strong>.
+      description_html: Bheir <strong>webhook</strong> comas do Mhastodon gus <strong>brathan fìor-ama</strong> a phutadh dhan aplacaid agad fhèin mu na tachartasan a thagh thu ach an adhbharaich an aplacaid agad <strong>frith-ghnìomhan gu fèin-obrachail</strong>.
       disable: Cuir à comas
       disabled: À comas
       edit: Deasaich a’ phuing-dheiridh
@@ -1113,7 +1148,7 @@ gd:
     or_log_in_with: No clàraich a-steach le
     privacy_policy_agreement_html: Leugh mi is tha mi ag aontachadh ris a’ <a href="%{privacy_policy_path}" target="_blank">phoileasaidh prìobhaideachd</a>
     progress:
-      confirm: Post-d an dearbhaidh
+      confirm: Dearbh am post-d
       details: Am fiosrachadh agad
       review: An lèirmheas againn
       rules: Gabh ris na riaghailtean
@@ -1602,7 +1637,7 @@ gd:
     title: Poileasaidh prìobhaideachd
   reactions:
     errors:
-      limit_reached: Ràinig thu crìoch nam freagairtean eadar-dhealaichte
+      limit_reached: Ràinig thu crìoch nam frith-ghnìomhan eadar-dhealaichte
       unrecognized_emoji: "– chan aithne dhuinn an Emoji seo"
   redirects:
     prompt: Ma tha earbsa agad sa cheangal seo, briog airson leantainn air adhart.

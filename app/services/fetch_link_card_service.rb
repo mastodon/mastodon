@@ -15,9 +15,6 @@ class FetchLinkCardService < BaseService
     )
   }iox
 
-  # URL size limit to safely store in PosgreSQL's unique indexes
-  BYTESIZE_LIMIT = 2692
-
   def call(status)
     @status       = status
     @original_url = parse_urls
@@ -32,7 +29,7 @@ class FetchLinkCardService < BaseService
     end
 
     attach_card if @card&.persisted?
-  rescue HTTP::Error, OpenSSL::SSL::SSLError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError, EncodingError => e
+  rescue HTTP::Error, OpenSSL::SSL::SSLError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError, EncodingError, ActiveRecord::RecordInvalid => e
     Rails.logger.debug { "Error fetching link #{@original_url}: #{e}" }
     nil
   end
@@ -48,7 +45,13 @@ class FetchLinkCardService < BaseService
   def html
     return @html if defined?(@html)
 
-    @html = Request.new(:get, @url).add_headers('Accept' => 'text/html', 'User-Agent' => "#{Mastodon::Version.user_agent} Bot").perform do |res|
+    headers = {
+      'Accept' => 'text/html',
+      'Accept-Language' => "#{I18n.default_locale}, *;q=0.5",
+      'User-Agent' => "#{Mastodon::Version.user_agent} Bot",
+    }
+
+    @html = Request.new(:get, @url).add_headers(headers).perform do |res|
       next unless res.code == 200 && res.mime_type == 'text/html'
 
       # We follow redirects, and ideally we want to save the preview card for
@@ -88,7 +91,7 @@ class FetchLinkCardService < BaseService
 
   def bad_url?(uri)
     # Avoid local instance URLs and invalid URLs
-    uri.host.blank? || TagManager.instance.local_url?(uri.to_s) || !%w(http https).include?(uri.scheme) || uri.to_s.bytesize > BYTESIZE_LIMIT
+    uri.host.blank? || TagManager.instance.local_url?(uri.to_s) || !%w(http https).include?(uri.scheme)
   end
 
   def mention_link?(anchor)

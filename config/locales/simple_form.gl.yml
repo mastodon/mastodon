@@ -99,9 +99,9 @@ gl:
         theme: Decorado que verán visitantes e novas usuarias.
         thumbnail: Imaxe con proporcións 2:1 mostrada xunto á información sobre o servidor.
         timeline_preview: Visitantes e usuarias non conectadas poderán ver as publicacións públicas máis recentes do servidor.
-        trendable_by_default: Omitir a revisión manual das tendencias. Poderás igualmente eliminar manualmente os elementos que vaian aparecendo.
+        trendable_by_default: Omitir a revisión manual dos contidos populares. Poderás igualmente eliminar manualmente os elementos que vaian aparecendo.
         trends: As tendencias mostran publicacións, cancelos e novas historias que teñen popularidade no teu servidor.
-        trends_as_landing_page: Mostrar contidos en voga para as persoas sen sesión iniciada e visitantes no lugar dunha descrición deste servidor. Require ter activado Tendencias.
+        trends_as_landing_page: Mostrar contidos en voga para as persoas sen sesión iniciada e visitantes no lugar dunha descrición deste servidor. Require ter activado Popularidade.
       form_challenge:
         current_password: Estás entrando nun área segura
       imports:
@@ -211,6 +211,7 @@ gl:
         setting_default_privacy: Privacidade da publicación
         setting_default_sensitive: Marcar sempre multimedia como sensible
         setting_delete_modal: Solicitar confirmación antes de eliminar unha publicación
+        setting_disable_hover_cards: Desactivar vista previa do perfil ao poñerse enriba
         setting_disable_swiping: Desactivar opcións de desprazamento
         setting_display_media: Mostrar multimedia
         setting_display_media_default: Por defecto
@@ -242,11 +243,13 @@ gl:
           warn: Agochar tras un aviso
       form_admin_settings:
         activity_api_enabled: Publicar na API estatísticas agregadas acerca da actividade das usuarias
+        app_icon: Icona da app
         backups_retention_period: Período de retención do arquivo da usuaria
         bootstrap_timeline_accounts: Recomendar sempre estas contas ás novas usuarias
         closed_registrations_message: Mensaxe personalizada para cando o rexistro está pechado
         content_cache_retention_period: Período de retención de contido remoto
         custom_css: CSS personalizado
+        favicon: Favicon
         mascot: Mascota propia (herdado)
         media_cache_retention_period: Período de retención da caché multimedia
         peers_api_enabled: Publicar na API unha lista dos servidores descubertos
@@ -300,7 +303,7 @@ gl:
           label: Hai unha nova versión de Mastodon dispoñible
           none: Non notificar nunca as actualizacións (non se aconsella)
           patch: Notificar as actualizacións de arranxos
-        trending_tag: Hai que revisar unha nova tendencia
+        trending_tag: Hai que revisar un novo tema popular
       rule:
         hint: Información adicional
         text: Regra
@@ -311,7 +314,7 @@ gl:
         listable: Permitir que este cancelo apareza en buscas e no directorio de perfil
         name: Cancelo
         trendable: Permitir que este cancelo apareza en tendencias
-        usable: Permitir que as publicacións utilicen este cancelo
+        usable: Permitir que as publicacións usen este cancelo localmente
       user:
         role: Rol
         time_zone: Fuso horario

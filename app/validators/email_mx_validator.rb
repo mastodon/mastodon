@@ -15,7 +15,7 @@ class EmailMxValidator < ActiveModel::Validator
 
       if resolved_ips.empty?
         user.errors.add(:email, :unreachable)
-      elsif on_blacklist?(resolved_domains, user.sign_up_ip)
+      elsif email_domain_blocked?(resolved_domains, user.sign_up_ip)
         user.errors.add(:email, :blocked)
       end
     end
@@ -34,9 +34,9 @@ class EmailMxValidator < ActiveModel::Validator
   end
 
   def on_allowlist?(domain)
-    return false if Rails.configuration.x.email_domains_whitelist.blank?
+    return false if Rails.configuration.x.email_domains_allowlist.blank?
 
-    Rails.configuration.x.email_domains_whitelist.include?(domain)
+    Rails.configuration.x.email_domains_allowlist.include?(domain)
   end
 
   def resolve_mx(domain)
@@ -58,7 +58,7 @@ class EmailMxValidator < ActiveModel::Validator
     [ips, records]
   end
 
-  def on_blacklist?(domains, attempt_ip)
+  def email_domain_blocked?(domains, attempt_ip)
     EmailDomainBlock.block?(domains, attempt_ip: attempt_ip)
   end
 end

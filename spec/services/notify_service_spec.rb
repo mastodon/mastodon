@@ -105,7 +105,7 @@ RSpec.describe NotifyService do
     context 'when email notification is enabled' do
       let(:enabled) { true }
 
-      it 'sends email', :sidekiq_inline do
+      it 'sends email', :inline_jobs do
         emails = capture_emails { subject }
 
         expect(emails.size)
@@ -129,20 +129,125 @@ RSpec.describe NotifyService do
     end
   end
 
-  describe NotifyService::DismissCondition do
+  context 'when the blocked sender has a role' do
+    let(:sender) { Fabricate(:user, role: sender_role).account }
+    let(:activity) { Fabricate(:mention, status: Fabricate(:status, account: sender)) }
+    let(:type) { :mention }
+
+    before do
+      recipient.block!(sender)
+    end
+
+    context 'when the role is a visible moderator' do
+      let(:sender_role) { Fabricate(:user_role, highlighted: true, permissions: UserRole::FLAGS[:manage_users]) }
+
+      it 'does notify' do
+        expect { subject }.to change(Notification, :count)
+      end
+    end
+
+    context 'when the role is a non-visible moderator' do
+      let(:sender_role) { Fabricate(:user_role, highlighted: false, permissions: UserRole::FLAGS[:manage_users]) }
+
+      it 'does not notify' do
+        expect { subject }.to_not change(Notification, :count)
+      end
+    end
+
+    context 'when the role is a visible non-moderator' do
+      let(:sender_role) { Fabricate(:user_role, highlighted: true) }
+
+      it 'does not notify' do
+        expect { subject }.to_not change(Notification, :count)
+      end
+    end
+  end
+
+  context 'with filtered notifications' do
+    let(:unknown)  { Fabricate(:account, username: 'unknown') }
+    let(:status)   { Fabricate(:status, account: unknown) }
+    let(:activity) { Fabricate(:mention, account: recipient, status: status) }
+    let(:type)     { :mention }
+
+    before do
+      Fabricate(:notification_policy, account: recipient, filter_not_following: true)
+    end
+
+    it 'creates a filtered notification' do
+      expect { subject }.to change(Notification, :count)
+      expect(Notification.last).to be_filtered
+    end
+
+    context 'when no notification request exists' do
+      it 'creates a notification request' do
+        expect { subject }.to change(NotificationRequest, :count)
+      end
+    end
+
+    context 'when a notification request exists' do
+      let!(:notification_request) do
+        Fabricate(:notification_request, account: recipient, from_account: unknown, last_status: Fabricate(:status, account: unknown))
+      end
+
+      it 'updates the existing notification request' do
+        expect { subject }.to_not change(NotificationRequest, :count)
+        expect(notification_request.reload.last_status).to eq status
+      end
+    end
+  end
+
+  describe NotifyService::DropCondition do
     subject { described_class.new(notification) }
 
     let(:activity) { Fabricate(:mention, status: Fabricate(:status)) }
     let(:notification) { Fabricate(:notification, type: :mention, activity: activity, from_account: activity.status.account, account: activity.account) }
 
-    describe '#dismiss?' do
-      context 'when sender is silenced' do
+    describe '#drop' do
+      context 'when sender is silenced and recipient has a default policy' do
         before do
           notification.from_account.silence!
         end
 
         it 'returns false' do
-          expect(subject.dismiss?).to be false
+          expect(subject.drop?).to be false
+        end
+      end
+
+      context 'when sender is silenced and recipient has a policy to ignore silenced accounts' do
+        before do
+          notification.from_account.silence!
+          notification.account.create_notification_policy!(for_limited_accounts: :drop)
+        end
+
+        it 'returns true' do
+          expect(subject.drop?).to be true
+        end
+      end
+
+      context 'when sender is new and recipient has a default policy' do
+        it 'returns false' do
+          expect(subject.drop?).to be false
+        end
+      end
+
+      context 'when sender is new and recipient has a policy to ignore silenced accounts' do
+        before do
+          notification.account.create_notification_policy!(for_new_accounts: :drop)
+        end
+
+        it 'returns true' do
+          expect(subject.drop?).to be true
+        end
+      end
+
+      context 'when sender is new and followed and recipient has a policy to ignore silenced accounts' do
+        before do
+          notification.account.create_notification_policy!(for_new_accounts: :drop)
+          notification.account.follow!(notification.from_account)
+        end
+
+        it 'returns false' do
+          expect(subject.drop?).to be false
         end
       end
 
@@ -152,7 +257,7 @@ RSpec.describe NotifyService do
         end
 
         it 'returns true' do
-          expect(subject.dismiss?).to be true
+          expect(subject.drop?).to be true
         end
       end
     end
@@ -177,6 +282,16 @@ RSpec.describe NotifyService do
         context 'when recipient follows sender' do
           before do
             notification.account.follow!(notification.from_account)
+          end
+
+          it 'returns false' do
+            expect(subject.filter?).to be false
+          end
+        end
+
+        context 'when recipient is allowing limited accounts' do
+          before do
+            notification.account.create_notification_policy!(for_limited_accounts: :accept)
           end
 
           it 'returns false' do

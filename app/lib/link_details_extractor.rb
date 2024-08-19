@@ -62,7 +62,8 @@ class LinkDetailsExtractor
     end
 
     def author_name
-      author['name']
+      name = author['name']
+      name.is_a?(Array) ? name.join(', ') : name
     end
 
     def author_url
@@ -100,7 +101,7 @@ class LinkDetailsExtractor
     end
 
     def json
-      @json ||= root_array(Oj.load(@data)).find { |obj| SUPPORTED_TYPES.include?(obj['@type']) } || {}
+      @json ||= root_array(Oj.load(@data)).compact.find { |obj| SUPPORTED_TYPES.include?(obj['@type']) } || {}
     end
   end
 
@@ -273,7 +274,7 @@ class LinkDetailsExtractor
   end
 
   def detect_encoding_and_parse_document
-    [detect_encoding, nil, @html_charset].uniq.each do |encoding|
+    [detect_encoding, nil, header_encoding].uniq.each do |encoding|
       document = Nokogiri::HTML(@html, nil, encoding)
       return document if document.to_s.valid_encoding?
     end
@@ -285,6 +286,13 @@ class LinkDetailsExtractor
     guess&.fetch(:confidence, 0).to_i > 60 ? guess&.fetch(:encoding, nil) : nil
   end
 
+  def header_encoding
+    Encoding.find(@html_charset).name if @html_charset
+  rescue ArgumentError
+    # Encoding from HTTP header is not recognized by ruby
+    nil
+  end
+
   def detector
     @detector ||= CharlockHolmes::EncodingDetector.new.tap do |detector|
       detector.strip_tags = true
@@ -294,7 +302,7 @@ class LinkDetailsExtractor
   def html_entities_decode(string)
     return if string.nil?
 
-    unicode_string = string.encode('UTF-8')
+    unicode_string = string.to_s.encode('UTF-8')
     raise EncodingError, 'cannot convert string to valid UTF-8' unless unicode_string.valid_encoding?
 
     html_entities.decode(unicode_string)

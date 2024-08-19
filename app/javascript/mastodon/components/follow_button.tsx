@@ -1,13 +1,9 @@
 import { useCallback, useEffect } from 'react';
 
-import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
+import { useIntl, defineMessages } from 'react-intl';
 
 import { useIdentity } from '@/mastodon/identity_context';
-import {
-  fetchRelationships,
-  followAccount,
-  unfollowAccount,
-} from 'mastodon/actions/accounts';
+import { fetchRelationships, followAccount } from 'mastodon/actions/accounts';
 import { openModal } from 'mastodon/actions/modal';
 import { Button } from 'mastodon/components/button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
@@ -60,29 +56,14 @@ export const FollowButton: React.FC<{
 
     if (accountId === me) {
       return;
-    } else if (relationship.following || relationship.requested) {
+    } else if (account && (relationship.following || relationship.requested)) {
       dispatch(
-        openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: (
-              <FormattedMessage
-                id='confirmations.unfollow.message'
-                defaultMessage='Are you sure you want to unfollow {name}?'
-                values={{ name: <strong>@{account?.acct}</strong> }}
-              />
-            ),
-            confirm: intl.formatMessage(messages.unfollow),
-            onConfirm: () => {
-              dispatch(unfollowAccount(accountId));
-            },
-          },
-        }),
+        openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }),
       );
     } else {
       dispatch(followAccount(accountId));
     }
-  }, [dispatch, intl, accountId, relationship, account, signedIn]);
+  }, [dispatch, accountId, relationship, account, signedIn]);
 
   let label;
 

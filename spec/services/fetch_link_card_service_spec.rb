@@ -31,6 +31,8 @@ RSpec.describe FetchLinkCardService do
     stub_request(:get, 'http://example.com/latin1_posing_as_utf8_recoverable').to_return(request_fixture('latin1_posing_as_utf8_recoverable.txt'))
     stub_request(:get, 'http://example.com/aergerliche-umlaute').to_return(request_fixture('redirect_with_utf8_url.txt'))
     stub_request(:get, 'http://example.com/page_without_title').to_return(request_fixture('page_without_title.txt'))
+    stub_request(:get, 'http://example.com/long_canonical_url').to_return(request_fixture('long_canonical_url.txt'))
+    stub_request(:get, 'http://example.com/alternative_utf8_spelling_in_header').to_return(request_fixture('alternative_utf8_spelling_in_header.txt'))
 
     Rails.cache.write('oembed_endpoint:example.com', oembed_cache) if oembed_cache
 
@@ -233,19 +235,6 @@ RSpec.describe FetchLinkCardService do
       end
     end
 
-    context 'with an URL too long for PostgreSQL unique indexes' do
-      let(:url) { "http://example.com/#{'a' * 2674}" }
-      let(:status) { Fabricate(:status, text: url) }
-
-      it 'does not fetch the URL' do
-        expect(a_request(:get, url)).to_not have_been_made
-      end
-
-      it 'does not create a preview card' do
-        expect(status.preview_card).to be_nil
-      end
-    end
-
     context 'with a URL of a page with oEmbed support' do
       let(:html) { '<!doctype html><title>Hello world</title><link rel="alternate" type="application/json+oembed" href="http://example.com/oembed?url=http://example.com/html">' }
       let(:status) { Fabricate(:status, text: 'http://example.com/html') }
@@ -294,6 +283,22 @@ RSpec.describe FetchLinkCardService do
         it 'uses the original URL' do
           expect(status.preview_card&.url).to eq 'http://example.com/redirect-to-404'
         end
+      end
+    end
+
+    context 'with a URL of a page that includes a canonical URL too long for PostgreSQL unique indexes' do
+      let(:status) { Fabricate(:status, text: 'test http://example.com/long_canonical_url') }
+
+      it 'does not create a preview card' do
+        expect(status.preview_card).to be_nil
+      end
+    end
+
+    context 'with a URL where the `Content-Type` header uses `utf8` instead of `utf-8`' do
+      let(:status) { Fabricate(:status, text: 'test http://example.com/alternative_utf8_spelling_in_header') }
+
+      it 'does not create a preview card' do
+        expect(status.preview_card.title).to eq 'Webserver Configs R Us'
       end
     end
   end

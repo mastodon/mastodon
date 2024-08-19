@@ -82,7 +82,7 @@ services:
     depends_on:
       - db
       - redis
-
+   
   db:
     image: postgres:16-alpine
     restart: always

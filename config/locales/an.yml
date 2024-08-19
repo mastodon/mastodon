@@ -31,7 +31,6 @@ an:
       created_msg: Nota de moderación creyada con exito!
       destroyed_msg: Nota de moderación destruyida con exito!
     accounts:
-      add_email_domain_block: Meter en lista negra lo dominio d'o correu
       approve: Aprebar
       approved_msg: La solicitut de rechistro de %{username} ha estau aprebada correctament
       are_you_sure: Yes seguro?
@@ -58,7 +57,6 @@ an:
       demote: Degradar
       destroyed_msg: Los datos de %{username} son ya en coda pa estar eliminaus de camín
       disable: Deshabilitar
-      disable_sign_in_token_auth: Deshabilitar l'autenticación per token de correu electronico
       disable_two_factor_authentication: Desactivar autenticación de dos factors
       disabled: Deshabilitada
       display_name: Nombre
@@ -67,7 +65,6 @@ an:
       email: Adreza de correu-e
       email_status: Status de correu-e
       enable: Habilitar
-      enable_sign_in_token_auth: Habilitar l'autenticación per token de correu electronico
       enabled: Habilitada
       enabled_msg: S'ha descongelado correctament la cuenta de %{username}
       followers: Seguidores
@@ -129,7 +126,6 @@ an:
       resubscribe: Re-suscribir
       role: Rol
       search: Buscar
-      search_same_email_domain: Atros usuarios con o mesmo dominio de correu
       search_same_ip: Atros usuarios con a mesma IP
       security_measures:
         only_password: Nomás clau
@@ -169,26 +165,21 @@ an:
         approve_appeal: Aprebar Apelación
         approve_user: Aprebar Usuario
         assigned_to_self_report: Asignar Reporte
-        change_email_user: Cambiar Correu Electronico de l'Usuario
         change_role_user: Cambiar Rol d'Usuario
         confirm_user: Confirmar Usuario
         create_account_warning: Creyar Alvertencia
         create_announcement: Creyar Anuncio
-        create_canonical_email_block: Creyar Bloqueyo de Correu Electronico
         create_custom_emoji: Creyar Emoji Personalizau
         create_domain_allow: Creyar Permiso de Dominio
         create_domain_block: Creyar Bloqueyo de Dominio
-        create_email_domain_block: Creyar Bloqueyo de Dominio de Correu Electronico
         create_ip_block: Creyar regla IP
         create_unavailable_domain: Creyar Dominio No Disponible
         create_user_role: Creyar Rol
         demote_user: Degradar Usuario
         destroy_announcement: Eliminar Anuncio
-        destroy_canonical_email_block: Eliminar Bloqueyo de Correu Electronico
         destroy_custom_emoji: Eliminar Emoji Personalizau
         destroy_domain_allow: Eliminar Permiso de Dominio
         destroy_domain_block: Eliminar Bloqueyo de Dominio
-        destroy_email_domain_block: Eliminar Bloqueyo de Dominio de Correu Electronico
         destroy_instance: Purgar Dominio
         destroy_ip_block: Eliminar regla IP
         destroy_status: Eliminar Estau
@@ -196,10 +187,8 @@ an:
         destroy_user_role: Destruyir Rol
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar Emoji Personalizau
-        disable_sign_in_token_auth_user: Deshabilitar l'Autenticación per Token de Correu Electronico pa l'Usuario
         disable_user: Deshabilitar Usuario
         enable_custom_emoji: Habilitar Emoji Personalizau
-        enable_sign_in_token_auth_user: Habilitar l'Autenticación per Token de Correu Electronico pa l'Usuario
         enable_user: Habilitar Usuario
         memorialize_account: Transformar en Cuenta Commemorativa
         promote_user: Promover Usuario
@@ -228,26 +217,20 @@ an:
         approve_appeal_html: "%{name} aprebó la solicitut de moderación de %{target}"
         approve_user_html: "%{name} aprebó lo rechistro de %{target}"
         assigned_to_self_report_html: "%{name} asignó l'informe %{target} a ell mesmo"
-        change_email_user_html: "%{name} cambió l'adreza de correu electronico de l'usuario %{target}"
         change_role_user_html: "%{name} cambió lo rol de %{target}"
-        confirm_user_html: "%{name} confirmó l'adreza de correu electronico de l'usuario %{target}"
         create_account_warning_html: "%{name} ninvió una alvertencia a %{target}"
         create_announcement_html: "%{name} ha creyau un nuevo anuncio %{target}"
-        create_canonical_email_block_html: "%{name} blocó lo correu electronico con o hash %{target}"
         create_custom_emoji_html: "%{name} puyó un nuevo emoji %{target}"
         create_domain_allow_html: "%{name} permitió la federación con o dominio %{target}"
         create_domain_block_html: "%{name} blocó lo dominio %{target}"
-        create_email_domain_block_html: "%{name} blocó lo dominio de correu electronico %{target}"
         create_ip_block_html: "%{name} creyó una regla pa la IP %{target}"
         create_unavailable_domain_html: "%{name} aturó las entregas a lo dominio %{target}"
         create_user_role_html: "%{name} creyó lo rol %{target}"
         demote_user_html: "%{name} degradó a l'usuario %{target}"
         destroy_announcement_html: "%{name} eliminó l'anuncio %{target}"
-        destroy_canonical_email_block_html: "%{name} desblocó lo correu electronico con o hash %{target}"
         destroy_custom_emoji_html: "%{name} eliminó lo emoji %{target}"
         destroy_domain_allow_html: "%{name} blocó la federación con o dominio %{target}"
         destroy_domain_block_html: "%{name} desblocó lo dominio %{target}"
-        destroy_email_domain_block_html: "%{name} desblocó lo dominio de correu electronico %{target}"
         destroy_instance_html: "%{name} purgó lo dominio %{target}"
         destroy_ip_block_html: "%{name} eliminó una regla pa la IP %{target}"
         destroy_status_html: "%{name} eliminó lo estau per %{target}"
@@ -255,10 +238,8 @@ an:
         destroy_user_role_html: "%{name} eliminó lo rol %{target}"
         disable_2fa_user_html: "%{name} desactivó lo requisito de dos factors pa l'usuario %{target}"
         disable_custom_emoji_html: "%{name} desactivó lo emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} ha deshabilitau l'autenticación per token de correu electronico pa %{target}"
         disable_user_html: "%{name} deshabilitó l'inicio de sesión pa l'usuario %{target}"
         enable_custom_emoji_html: "%{name} activó lo emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} ha habilitau l'autenticación per token de correu electronico pa %{target}"
         enable_user_html: "%{name} habilitó l'inicio de sesión pa l'usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una pachina in memoriam"
         promote_user_html: "%{name} promoción a l'usuario %{target}"
@@ -266,7 +247,6 @@ an:
         reject_user_html: "%{name} refusó lo rechistro de %{target}"
         remove_avatar_user_html: "%{name} eliminó lo avatar de %{target}"
         reopen_report_html: "%{name} reubrió l'informe %{target}"
-        resend_user_html: "%{name} ha reninviau lo correu de confirmación pa %{target}"
         reset_password_user_html: "%{name} reinició la clau de l'usuario %{target}"
         resolve_report_html: "%{name} resolvió l'informe %{target}"
         sensitive_account_html: "%{name} marcó los fichers multimedia de %{target} como sensibles"
@@ -414,7 +394,6 @@ an:
       attempts_over_week:
         one: "%{count} intento entre la zaguera semana"
         other: "%{count} intentos de rechistro entre la zaguera semana"
-      created_msg: Dominio de correu anyadiu a la lista negra con exito
       delete: Borrar
       dns:
         types:
@@ -423,11 +402,7 @@ an:
       new:
         create: Anyadir dominio
         resolve: Resolver dominio
-        title: Nueva dentrada en a lista negra de correu
-      no_email_domain_block_selected: No s'ha cambiau bloqueyos de dominio ya que garra ha estau triau
-      resolved_dns_records_hint_html: Lo nombre de dominio resuelte los siguients dominios MX, los quals son responsables en zaguera instancia d'acceptar lo correu electronico. Blocar un dominio MX blocará los rechistros de qualsequier adreza de correu electronico que utilice lo mesmo dominio MX, mesmo si lo nombre de dominio visible ye diferent. <strong>Tienga cudiau de no blocar los prencipals furnidors de correu electronico.</strong>
       resolved_through_html: Resuelto a traviés de %{domain}
-      title: Lista negra de correu
     export_domain_allows:
       new:
         title: Importar dominios permitius
@@ -575,7 +550,6 @@ an:
         resolve_description_html: No se prendrán medidas contra la cuenta denunciada, no se rechistrará l'amonestación, y se zarrará l'informe.
         silence_description_html: La cuenta será visible nomás pa aquells que ya en sigan u lo busquen manualment, limitando seriosament lo suyo alcance. Siempre puede estar revertiu. Se zarrarán totz los informes contre esta cuenta.
         suspend_description_html: Esta cuenta y totz los suyos contenius serán inaccesibles y finalment eliminaus, y interaccionar con ella no será posible. Reversible en 30 días. Zarra totz los informes contra eta cuenta.
-      actions_description_html: Decide qué medidas prener pa resolver esta denuncia. Si prenes una acción punitiva contra la cuenta denunciada, se le ninviará a dita cuenta una notificación per correu electronico, fueras de quan se tríe la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide qué acción prener pa resolver este reporte. Ixo afectará nomás a como <strong>lo tuyo</strong> servidor se comunica con estea cuenta remota y a cómo chestiona lo suyo conteniu.
       add_to_report: Anyadir mas a lo reporte
       are_you_sure: Yes seguro?
@@ -652,7 +626,6 @@ an:
         manage_appeals: Administrar Apelacions
         manage_appeals_description: Permite a los usuarios revisar apelacions contra accions de moderación
         manage_blocks: Administrar Bloqueyos
-        manage_blocks_description: Permite a los usuarios blocar los furnidors de e-mail y las adrezas IP
         manage_custom_emojis: Administrar Emojis Personalizaus
         manage_custom_emojis_description: Permite a los usuarios chestionar emojis personalizaus en o servidor
         manage_federation: Administrar Federación
@@ -670,7 +643,6 @@ an:
         manage_taxonomies: Administrar Taxonomías
         manage_taxonomies_description: Permite a los usuarios revisar lo conteniu en tendencia y actualizar la configuración d'as etiquetas
         manage_user_access: Administrar Acceso d'Usuarios
-        manage_user_access_description: Permite a los usuarios desactivar l'autenticación de dos factors d'atros usuarios, cambiar la suya adreza de correu electronico y restablir la suya clau
         manage_users: Administrar Usuarios
         manage_users_description: Permite a los usuarios veyer los detalles d'atros usuarios y realizar accions de moderación contra ells
         manage_webhooks: Administrar Webhooks
@@ -845,7 +817,6 @@ an:
         used_by_over_week:
           one: Usada per una persona entre la zaguera semana
           other: Usada per %{count} personas entre la zaguera semana
-      title: Tendencias
       trending: En tendencia
     warning_presets:
       add_new: Anyadir nuevo
@@ -920,9 +891,7 @@ an:
       guide_link_text: Totz pueden contribuyir.
     sensitive_content: Conteniu sensible
   application_mailer:
-    notification_preferences: Cambiar preferencias de correu electronico
     salutation: "%{name}:"
-    settings: 'Cambiar preferencias de correu: %{link}'
     view: 'Vista:'
     view_profile: Veyer perfil
     view_status: Veyer estau
@@ -972,9 +941,7 @@ an:
       title: Creyar cuenta de Mastodon en %{domain}.
     status:
       account_status: Estau d'a cuenta
-      confirming: Asperando confirmación de correu electronico.
       functional: La tuya cuenta ye completament operativa.
-      pending: La suya solicitut ye pendient de revisión per los nuestros administradors. Ixo puede tardar bell tiempo. Vusté recibirá un correu electronico si lo solicitut sía aprebada.
       redirecting_to: La tuya cuenta se troba inactiva perque ye estando reendrezada a %{acct}.
       view_strikes: Veyer amonestacions pasadas contra la tuya cuenta
     too_fast: Formulario ninviau masiau rapido, lo intente de nuevo.
@@ -1016,9 +983,6 @@ an:
       before: 'Antes de continar, per favor leye con atención las siguients notas:'
       caches: Lo conteniu que ha estau almagazenau en caché per atros servidors puede persistir
       data_removal: Las tuyas publicacions y la resta de datos s'eliminarán definitivament
-      email_change_html: Puetz <a href="%{path}"> cambiar la tuya adreza de correu electronico</a> sin eliminar la tuya cuenta
-      email_contact_html: Si encara no t'ha plegau, puetz escribir a <a href="mailto:%{email}">%{email}</a> pa pedir aduya
-      email_reconfirmation_html: Si no t'ha plegau lo correu de confirmación, puetz <a href="%{path}"> tornar a demandar-lo</a>
       irreversible: No podrás restaurar ni reactivar la tuya cuenta
       more_details_html: Pa mas detalles, veyer <a href="%{terms_path}"> la politica de privacidat</a>.
       username_available: Lo tuyo nombre d'usuario tornará a estar disponible
@@ -1199,7 +1163,6 @@ an:
     authentication_methods:
       otp: aplicación d'autenticación en dos pasos
       password: clau
-      sign_in_token: codigo de seguranza per correu electronico
       webauthn: claus de seguranza
     description_html: Si veye una actividat que no reconoixe, considere cambiar la suya clau y habilitar l'autenticación de dos factors.
     empty: No i hai historial d'autenticación disponible
@@ -1285,7 +1248,6 @@ an:
     update:
       subject: "%{name} editó una publicación"
   notifications:
-    email_events: Eventos pa notificacions per correu electronico
     email_events_hint: 'Tría los eventos pa los quals deseyas recibir notificacions:'
   number:
     human:
@@ -1599,7 +1561,6 @@ an:
     follow_limit_reached: No puetz seguir a mas de %{limit} personas
     invalid_otp_token: Codigo de dos factors incorrecto
     otp_lost_help_html: Si perdiés a l'acceso a totz dos, puetz meter-te en contancto con %{email}
-    seamless_external_login: Has iniciau sesión dende un servicio externo, asinas que los achustes de clau y correu no son disponibles.
     signed_in_as: 'Sesión iniciada como:'
   verification:
     verification: Verificación

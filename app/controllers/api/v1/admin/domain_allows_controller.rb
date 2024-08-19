@@ -5,6 +5,7 @@ class Api::V1::Admin::DomainAllowsController < Api::BaseController
   include AccountableConcern
 
   LIMIT = 100
+  MAX_LIMIT = 500
 
   before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:domain_allows' }, only: [:index, :show]
   before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:domain_allows' }, except: [:index, :show]
@@ -47,16 +48,11 @@ class Api::V1::Admin::DomainAllowsController < Api::BaseController
   private
 
   def set_domain_allows
-    @domain_allows = filtered_domain_allows.order(id: :desc).to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
+    @domain_allows = DomainAllow.order(id: :desc).to_a_paginated_by_id(limit_param(LIMIT, MAX_LIMIT), params_slice(:max_id, :since_id, :min_id))
   end
 
   def set_domain_allow
     @domain_allow = DomainAllow.find(params[:id])
-  end
-
-  def filtered_domain_allows
-    # TODO: no filtering yet
-    DomainAllow.all
   end
 
   def next_path
@@ -72,7 +68,7 @@ class Api::V1::Admin::DomainAllowsController < Api::BaseController
   end
 
   def records_continue?
-    @domain_allows.size == limit_param(LIMIT)
+    @domain_allows.size == limit_param(LIMIT, MAX_LIMIT)
   end
 
   def resource_params

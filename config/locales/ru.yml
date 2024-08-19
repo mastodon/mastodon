@@ -35,7 +35,6 @@ ru:
       created_msg: Заметка модератора успешно создана!
       destroyed_msg: Заметка модератора успешно удалена!
     accounts:
-      add_email_domain_block: Заблокировать e-mail домен
       approve: Подтвердить
       approved_msg: Успешно одобрена заявка на регистрацию %{username}
       are_you_sure: Вы уверены?
@@ -62,7 +61,6 @@ ru:
       demote: Разжаловать
       destroyed_msg: Данные %{username} поставлены в очередь на удаление
       disable: Заморозка
-      disable_sign_in_token_auth: Отключить аутентификацию по e-mail кодам
       disable_two_factor_authentication: Отключить 2FA
       disabled: Отключено
       display_name: Отображаемое имя
@@ -71,7 +69,6 @@ ru:
       email: E-mail
       email_status: Статус e-mail
       enable: Включить
-      enable_sign_in_token_auth: Включить аутентификацию по e-mail кодам
       enabled: Включен
       enabled_msg: Учётная запись %{username} успешно разморожена
       followers: Подписчики
@@ -138,7 +135,6 @@ ru:
       resubscribe: Переподписаться
       role: Роль
       search: Поиск
-      search_same_email_domain: Другие пользователи с тем же доменом электронной почты
       search_same_ip: Другие пользователи с таким же IP
       security: Безопасность
       security_measures:
@@ -179,26 +175,22 @@ ru:
         approve_appeal: Одобрить обжалование
         approve_user: Утвердить
         assigned_to_self_report: Присвоение жалоб
-        change_email_user: Изменение эл. почты пользователя
+        change_email_user: Сменить e-mail для пользователя
         change_role_user: Изменить роль пользователя
         confirm_user: Подтверждение пользователей
         create_account_warning: Выдача предупреждения
         create_announcement: Создание объявлений
-        create_canonical_email_block: Создать блокировку эл. почты
         create_custom_emoji: Добавление эмодзи
         create_domain_allow: Разрешение доменов
         create_domain_block: Блокировка доменов
-        create_email_domain_block: Блокировка e-mail доменов
         create_ip_block: Создание правил для IP-адресов
         create_unavailable_domain: Добавление домена в список недоступных
         create_user_role: Создать роль
         demote_user: Разжалование пользователей
         destroy_announcement: Удаление объявлений
-        destroy_canonical_email_block: Удалить блокировку эл. почты
         destroy_custom_emoji: Удаление эмодзи
         destroy_domain_allow: Отзыв разрешений для доменов
         destroy_domain_block: Разблокировка доменов
-        destroy_email_domain_block: Разблокировка e-mail доменов
         destroy_instance: Очистить домен
         destroy_ip_block: Удаление правил для IP-адресов
         destroy_status: Удаление постов
@@ -206,10 +198,8 @@ ru:
         destroy_user_role: Удалить роль
         disable_2fa_user: Отключение 2FA
         disable_custom_emoji: Отключение эмодзи
-        disable_sign_in_token_auth_user: Отключение аутентификации по e-mail кодам у пользователей
         disable_user: Заморозка пользователей
         enable_custom_emoji: Включение эмодзи
-        enable_sign_in_token_auth_user: Включение аутентификации по e-mail кодам у пользователей
         enable_user: Разморозка пользователей
         memorialize_account: Присвоение пользователям статуса «мемориала»
         promote_user: Повышение пользователей
@@ -232,32 +222,27 @@ ru:
         update_custom_emoji: Обновление эмодзи
         update_domain_block: Изменение блокировки домена
         update_ip_block: Обновить правило для IP-адреса
+        update_report: Обновить рапорт
         update_status: Изменение постов
         update_user_role: Обновить роль
       actions:
         approve_appeal_html: "%{name} одобрил апелляцию на умеренное решение от %{target}"
         approve_user_html: "%{name} утвердил(а) регистрацию %{target}"
         assigned_to_self_report_html: "%{name} назначил(а) себя для решения жалобы %{target}"
-        change_email_user_html: "%{name} сменил(а) e-mail пользователя %{target}"
         change_role_user_html: "%{name} изменил(а) роль %{target}"
-        confirm_user_html: "%{name} подтвердил(а) e-mail адрес пользователя %{target}"
         create_account_warning_html: "%{name} выдал(а) предупреждение %{target}"
         create_announcement_html: "%{name} создал(а) новое объявление %{target}"
-        create_canonical_email_block_html: "%{name} заблокировал(а) эл. почту с хешем %{target}"
         create_custom_emoji_html: "%{name} загрузил(а) новый эмодзи %{target}"
         create_domain_allow_html: "%{name} разрешил(а) федерацию с доменом %{target}"
         create_domain_block_html: "%{name} заблокировал(а) домен %{target}"
-        create_email_domain_block_html: "%{name} заблокировал(а) e-mail домен %{target}"
         create_ip_block_html: "%{name} создал(а) правило для IP %{target}"
         create_unavailable_domain_html: "%{name} приостановил доставку на узел %{target}"
         create_user_role_html: "%{name} создал(а) роль %{target}"
         demote_user_html: "%{name} разжаловал(а) пользователя %{target}"
         destroy_announcement_html: "%{name} удалил(а) объявление %{target}"
-        destroy_canonical_email_block_html: "%{name} снял(а) блокировку e-mail с хэшем %{target}"
         destroy_custom_emoji_html: "%{name} удалил(а) эмодзи %{target}"
         destroy_domain_allow_html: "%{name} запретил(а) федерацию с доменом %{target}"
         destroy_domain_block_html: "%{name} снял(а) блокировку с домена %{target}"
-        destroy_email_domain_block_html: "%{name} снял(а) блокировку с e-mail домена %{target}"
         destroy_instance_html: "%{name} очистил(а) данные для домена %{target}"
         destroy_ip_block_html: "%{name} удалил(а) правило для IP %{target}"
         destroy_status_html: "%{name} удалил(а) пост пользователя %{target}"
@@ -265,10 +250,8 @@ ru:
         destroy_user_role_html: "%{name} удалил(а) роль %{target}"
         disable_2fa_user_html: "%{name} отключил(а) требование двухэтапной авторизации для пользователя %{target}"
         disable_custom_emoji_html: "%{name} отключил(а) эмодзи %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} отключил(а) аутентификацию по e-mail кодам для %{target}"
         disable_user_html: "%{name} заморозил(а) пользователя %{target}"
         enable_custom_emoji_html: "%{name} включил(а) эмодзи %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} включил(а) аутентификацию по e-mail кодам для %{target}"
         enable_user_html: "%{name} разморозил(а) пользователя %{target}"
         memorialize_account_html: "%{name} перевел(а) учётную запись пользователя %{target} в статус памятника"
         promote_user_html: "%{name} повысил(а) пользователя %{target}"
@@ -276,7 +259,6 @@ ru:
         reject_user_html: "%{name} отклонил(а) регистрацию %{target}"
         remove_avatar_user_html: "%{name} убрал(а) аватарку пользователя %{target}"
         reopen_report_html: "%{name} повторно открыл(а) жалобу %{target}"
-        resend_user_html: "%{name} переслал письмо с подтверждением для %{target}"
         reset_password_user_html: "%{name} сбросил(а) пароль пользователя %{target}"
         resolve_report_html: "%{name} решил(а) жалобу %{target}"
         sensitive_account_html: "%{name} установил(а) отметку файлов %{target} как «деликатного характера»"
@@ -446,7 +428,6 @@ ru:
         many: "%{count} попыток за последнюю неделю"
         one: "%{count} попытка за последнюю неделю"
         other: "%{count} попыток регистрации за последнюю неделю"
-      created_msg: E-mail домен внесён в список блокировки
       delete: Удалить
       dns:
         types:
@@ -455,12 +436,9 @@ ru:
       new:
         create: Создать блокировку
         resolve: Проверить домен
-        title: Новая блокировка по домену
-      no_email_domain_block_selected: Блоки домена электронной почты не были изменены, так как не были выбраны
       not_permitted: Не разрешено
-      resolved_dns_records_hint_html: Доменное имя устраняется на следующие MX-домены, которые в конечном итоге отвечают за прием электронной почты. Блокировка MX-домена будет блокировать регистрации с любого адреса электронной почты, который использует тот же MX-домен, даже если видимое доменное имя отличается от него. <strong>Будьте осторожны, чтобы не блокировать основных поставщиков электронной почты</strong>
       resolved_through_html: Разрешено через %{domain}
-      title: Блокировка e-mail доменов
+      title: Заблокированные e-mail домены
     export_domain_allows:
       new:
         title: Импорт домена разрешён
@@ -619,7 +597,6 @@ ru:
         resolve_description_html: Никаких действий не будет выполнено относительно доложенного содержимого. Жалоба будет закрыта.
         silence_description_html: Учетная запись будет видна только тем пользователям, которые уже подписаны на неё, либо открыли его вручную. Это действие можно отменить в любой момент, и отменяет все жалобы против аккаунта.
         suspend_description_html: Аккаунт и все его содержимое будут недоступны и в конечном итоге удалены, и взаимодействие с ним будет невозможно. Это действие можно отменить в течение 30 дней. Отменяет все жалобы против этого аккаунта.
-      actions_description_html: Выберите действие, чтобы решить данную жалобу. Если вы выберите наказание против аккаунта, вы получите уведомление по E-Mail, проверяйте папку <strong>Спам</strong>.
       actions_description_remote_html: Решите вопрос о том, какие меры необходимо принять для урегулирования этой жалобы. Это повлияет только на то, как <strong>ваш</strong> сервер взаимодействует с этим удаленным аккаунтом и обрабатывает его содержимое.
       add_to_report: Прикрепить ещё
       are_you_sure: Вы уверены?
@@ -680,7 +657,6 @@ ru:
         delete_data_html: Удалить профиль и контент <strong>@%{acct}</strong> через 30 дней, если за это время они не будут разблокированы
         preview_preamble_html: "<strong>@%{acct}</strong> получит предупреждение со следующим содержанием:"
         record_strike_html: Запишите замечание против <strong>@%{acct}</strong>, чтобы помочь вам в решении будущих нарушений с этого аккаунта
-        send_email_html: Отправить <strong>@%{acct}</strong> предупреждение на почту
         warning_placeholder: Необязательное дополнительное обоснование действия модерации.
       target_origin: Происхождение объекта жалобы
       title: Жалобы
@@ -724,7 +700,6 @@ ru:
         manage_appeals: Управление апелляциями
         manage_appeals_description: Позволяет пользователям просматривать апелляции на действия модерации
         manage_blocks: Управление блоками
-        manage_blocks_description: Позволяет пользователям блокировать домены электронной почты и IP адреса
         manage_custom_emojis: Управление смайлами
         manage_custom_emojis_description: Позволяет пользователям управлять пользовательскими эмодзи на сервере
         manage_federation: Управление Федерацией
@@ -742,7 +717,7 @@ ru:
         manage_taxonomies: Управление трендами
         manage_taxonomies_description: Позволяет пользователям модерировать список популярного контента и менять настройки хэштегов
         manage_user_access: Управление правами пользователей
-        manage_user_access_description: Разрешает пользователям отключать двухэтапную аутентификацию другим пользователям, изменять их адрес электронной почты и сбрасывать их пароль
+        manage_user_access_description: Разрешает пользователям отключать двухэтапную аутентификацию другим пользователям, менять их e-mail и сбрасывать их пароль
         manage_users: Управление пользователями
         manage_users_description: Разрешает пользователям просматривать информацию о других пользователях и применять против них модерацию
         manage_webhooks: Управление веб-хуками
@@ -814,7 +789,6 @@ ru:
       destroyed_msg: Файл успешно удалён.
     software_updates:
       critical_update: Критично — пожалуйста, обновите как можно скорее
-      description: Рекомендуется поддерживать установку Mastodon в актуальном состоянии, чтобы воспользоваться последними исправлениями и возможностями. Кроме того, иногда очень важно своевременно обновлять Mastodon, чтобы избежать проблем с безопасностью. По этим причинам Mastodon проверяет наличие обновлений каждые 30 минут и уведомляет вас об этом в соответствии с вашими предпочтениями в отношении уведомлений по электронной почте.
       documentation_link: Узнать больше
       release_notes: Примечания к выпуску
       title: Доступные обновления
@@ -901,6 +875,8 @@ ru:
         action: Нажмите сюда, чтобы узнать подробности
         message_html: "<strong>Ваше хранилище объектов неправильно настроено. Безопасность ваших пользователей находится под угрозой</strong>"
     tags:
+      moderation:
+        title: Статус
       review: Состояние проверки
       updated_msg: Настройки хэштега обновлены
     title: Администрирование
@@ -972,7 +948,6 @@ ru:
           many: За последнюю неделю использовало %{count} человек
           one: За последнюю неделю использовал один человек
           other: За последнюю неделю использовал %{count} человек
-      title: Популярное
       trending: Популярное
     warning_presets:
       add_new: Добавить
@@ -1055,9 +1030,7 @@ ru:
       guide_link_text: Каждый может внести свой вклад.
     sensitive_content: Содержимое деликатного характера
   application_mailer:
-    notification_preferences: Настроить уведомления можно здесь
     salutation: "%{name},"
-    settings: 'Настроить уведомления можно здесь: %{link}'
     unsubscribe: Отписаться
     view: 'Просмотр:'
     view_profile: Просмотреть профиль
@@ -1077,7 +1050,6 @@ ru:
       hint_html: Еще одна вещь! Нам нужно подтвердить, что вы человек (так что мы можем держать спам!). Решите капчу ниже и нажмите кнопку «Продолжить».
       title: Проверка безопасности
     confirmations:
-      awaiting_review: Ваш адрес электронной почты подтвержден! Сотрудники %{domain} проверяют вашу регистрацию. Вы получите письмо, если они подтвердят вашу учетную запись!
       awaiting_review_title: Ваша регистрация проверяется
       clicking_this_link: нажатие на эту ссылку
       login_link: войти
@@ -1085,7 +1057,6 @@ ru:
       redirect_to_app_html: Вы должны были перенаправлены на приложение <strong>%{app_name}</strong>. Если этого не произошло, попробуйте %{clicking_this_link} или вернитесь к приложению вручную.
       registration_complete: Ваша регистрация на %{domain} завершена!
       welcome_title: Добро пожаловать, %{name}!
-      wrong_email_hint: Если этот адрес электронной почты неверен, вы можете изменить его в настройках аккаунта.
     delete_account: Удалить учётную запись
     delete_account_html: Удалить свою учётную запись <a href="%{path}">можно в два счёта здесь</a>, но прежде у вас будет спрошено подтверждение.
     description:
@@ -1106,7 +1077,6 @@ ru:
     or_log_in_with: Или войти с помощью
     privacy_policy_agreement_html: Мной прочитана и принята <a href="%{privacy_policy_path}" target="_blank">политика конфиденциальности</a>
     progress:
-      confirm: Подтвердите e-mail
       details: Ваши данные
       review: Наш обзор
       rules: Принять правила
@@ -1128,10 +1098,8 @@ ru:
     security: Безопасность
     set_new_password: Задать новый пароль
     setup:
-      email_below_hint_html: Проверьте папку "Спам" или запросите другую. Вы можете исправить свой адрес электронной почты, если он неправильный.
       email_settings_hint_html: Нажмите на ссылку, которую мы отправили вам для проверки %{email}. Мы будем ждать прямо здесь.
       link_not_received: Не получили ссылку?
-      new_confirmation_instructions_sent: Через несколько минут вы получите новое письмо со ссылкой для подтверждения!
       title: Проверьте свой почтовый ящик
     sign_in:
       preamble_html: Войдите, используя ваши учётные данные <strong>%{domain}</strong>. Если ваша учётная запись размещена на другом сервере, вы не сможете здесь войти.
@@ -1142,9 +1110,7 @@ ru:
       title: Зарегистрируйтесь в %{domain}.
     status:
       account_status: Статус учётной записи
-      confirming: Ожидание подтверждения e-mail.
       functional: Ваша учётная запись в полном порядке.
-      pending: Ваша заявка ожидает одобрения администраторами, это может занять немного времени. Вы получите письмо, как только заявку одобрят.
       redirecting_to: Ваша учётная запись деактивированна, потому что вы настроили перенаправление на %{acct}.
       self_destruct: Поскольку %{domain} закрывается, вы получите ограниченный доступ к вашей учетной записи.
       view_strikes: Просмотр предыдущих замечаний в адрес вашей учетной записи
@@ -1187,9 +1153,6 @@ ru:
       before: 'Внимательно прочитайте следующую информацию перед началом:'
       caches: Некоторые данные, обработанные другими узлами, однако, могут храниться ещё какое-то время
       data_removal: Все ваши золотые посты, шикарный профиль и прочие данные будут безвозвратно уничтожены
-      email_change_html: <a href="%{path}">Поменять свой e-mail</a> можно не удаляя учётную запись
-      email_contact_html: Если письмо не приходит, обратитесь за помощю на <a href="mailto:%{email}">%{email}</a>
-      email_reconfirmation_html: Если вы не получили письмо с подтверждением, его можно <a href="%{path}">запросить ещё раз</a>
       irreversible: После удаления восстановить или повторно активировать учётную запись не получится
       more_details_html: За всеми подробностями, изучите <a href="%{terms_path}">политику конфиденциальности</a>.
       username_available: Ваше имя пользователя снова станет доступным
@@ -1438,7 +1401,6 @@ ru:
     authentication_methods:
       otp: приложение двухфакторной аутентификации
       password: пароль
-      sign_in_token: код безопасности из e-mail
       webauthn: ключи безопасности
     description_html: Если вы видите неопознанное действие, смените пароль и/или включите двухфакторную авторизацию.
     empty: Нет доступной истории входов
@@ -1449,16 +1411,6 @@ ru:
     unsubscribe:
       action: Да, отписаться
       complete: Подписка отменена
-      confirmation_html: Вы уверены, что хотите отписаться от получения на ваш адрес электронной почты %{email} %{type} от Сообщества Mastodon %{domain}?  Вы всегда можете заново подписаться на уведомления по электронной почте в разделе настройки <a href="%{settings_path}"></a>.
-      emails:
-        notification_emails:
-          favourite: Избранные уведомления по электронной почте
-          follow: подписаться на уведомления по электронной почте
-          follow_request: Уведомлять по электронной почте о новых запросах
-          mention: получать уведомления с упоминаниями
-          reblog: подписаться на уведомления по электронной почте
-      resubscribe_html: Если вы отказались от подписки по ошибке, вы всегда можете заново подписаться на уведомления по электронной почте по этой ссылке <a href="%{settings_path}"></a>.
-      success_html: Вы больше не будете получать %{type} для Mastodon на %{domain} к себе на почту %{email}.
       title: Отписаться
   media_attachments:
     validations:
@@ -1539,8 +1491,6 @@ ru:
     update:
       subject: "%{name} изменил(а) пост"
   notifications:
-    administration_emails: Уведомления администратора по электронной почте
-    email_events: События для e-mail уведомлений
     email_events_hint: 'Выберите события, для которых вы хотели бы получать уведомления:'
   number:
     human:
@@ -1699,7 +1649,6 @@ ru:
     import: Импорт
     import_and_export: Импорт и экспорт
     migrate: Миграция учётной записи
-    notifications: Уведомления по электронной почте
     preferences: Настройки
     profile: Профиль
     relationships: Подписки и подписчики
@@ -1912,7 +1861,6 @@ ru:
     invalid_otp_token: Введен неверный код двухфакторной аутентификации
     otp_lost_help_html: Если Вы потеряли доступ к обоим, свяжитесь с %{email}
     rate_limited: Слишком много попыток аутентификации, повторите попытку позже.
-    seamless_external_login: Вы залогинены через сторонний сервис, поэтому настройки e-mail и пароля недоступны.
     signed_in_as: 'Выполнен вход под именем:'
   verification:
     extra_instructions_html: <strong>Подсказка:</strong> Ссылка на вашем сайте может быть невидимой. Важной частью является <code>rel="me"</code>, который предотвращает выдачу себя за другое лицо на сайтах с пользовательским контентом. Вы даже можете использовать тег <code>link</code> в заголовке страницы вместо <code>a</code>, но HTML должен быть доступен без выполнения JavaScript.

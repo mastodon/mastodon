@@ -18,7 +18,7 @@ import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import { replyCompose } from 'mastodon/actions/compose';
 import { markConversationRead, deleteConversation } from 'mastodon/actions/conversations';
 import { openModal } from 'mastodon/actions/modal';
-import { muteStatus, unmuteStatus, revealStatus, hideStatus } from 'mastodon/actions/statuses';
+import { muteStatus, unmuteStatus, toggleStatusSpoilers } from 'mastodon/actions/statuses';
 import AttachmentList from 'mastodon/components/attachment_list';
 import AvatarComposite from 'mastodon/components/avatar_composite';
 import { IconButton } from 'mastodon/components/icon_button';
@@ -36,8 +36,6 @@ const messages = defineMessages({
   delete: { id: 'conversation.delete', defaultMessage: 'Delete conversation' },
   muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
   unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
-  replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
-  replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
 });
 
 const getAccounts = createSelector(
@@ -103,19 +101,12 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
       let state = getState();
 
       if (state.getIn(['compose', 'text']).trim().length !== 0) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: intl.formatMessage(messages.replyMessage),
-            confirm: intl.formatMessage(messages.replyConfirm),
-            onConfirm: () => dispatch(replyCompose(lastStatus, history)),
-          },
-        }));
+        dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status: lastStatus } }));
       } else {
-        dispatch(replyCompose(lastStatus, history));
+        dispatch(replyCompose(lastStatus));
       }
     });
-  }, [dispatch, lastStatus, history, intl]);
+  }, [dispatch, lastStatus]);
 
   const handleDelete = useCallback(() => {
     dispatch(deleteConversation(id));
@@ -138,11 +129,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
   }, [dispatch, lastStatus]);
 
   const handleShowMore = useCallback(() => {
-    if (lastStatus.get('hidden')) {
-      dispatch(revealStatus(lastStatus.get('id')));
-    } else {
-      dispatch(hideStatus(lastStatus.get('id')));
-    }
+    dispatch(toggleStatusSpoilers(lastStatus.get('id')));
   }, [dispatch, lastStatus]);
 
   if (!lastStatus) {
