@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## |4.2.11] - 2024-08-16
+## [4.2.12] - 2024-08-19
+
+### Fixed
+
+- Fix broken notifications for mentions from local moderators ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/31484))
+
+## [4.2.11] - 2024-08-16
 
 ### Added
 
