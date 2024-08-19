@@ -4217,7 +4217,7 @@ a.status-card {
   text-decoration: none;
 
   &:hover {
-    background: lighten($ui-base-color, 2%);
+    background: var(--on-surface-color);
   }
 }
 
@@ -10366,7 +10366,7 @@ noscript {
     cursor: pointer;
 
     &:hover {
-      background: lighten($ui-base-color, 1%);
+      background: var(--on-surface-color);
     }
 
     .notification-request__checkbox {
