@@ -23,7 +23,7 @@
     "lint:css": "stylelint \"**/*.{css,scss}\"",
     "lint": "yarn lint:js && yarn lint:css",
     "postversion": "git push --tags",
-    "prepare": "husky",
+    "postinstall": "test -d node_modules/husky && husky || echo \"husky is not installed\"",
     "start": "node ./streaming/index.js",
     "test": "yarn lint && yarn run typecheck && yarn jest",
     "typecheck": "tsc --noEmit"
