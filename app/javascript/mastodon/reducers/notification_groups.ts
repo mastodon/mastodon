@@ -19,6 +19,7 @@ import {
   markNotificationsAsRead,
   mountNotifications,
   unmountNotifications,
+  refreshStaleNotificationGroups,
 } from 'mastodon/actions/notification_groups';
 import {
   disconnectTimeline,
@@ -51,6 +52,7 @@ interface NotificationGroupsState {
   readMarkerId: string;
   mounted: number;
   isTabVisible: boolean;
+  mergedNotifications: 'ok' | 'pending' | 'needs-reload';
 }
 
 const initialState: NotificationGroupsState = {
@@ -58,6 +60,8 @@ const initialState: NotificationGroupsState = {
   pendingGroups: [], // holds pending groups in slow mode
   scrolledToTop: false,
   isLoading: false,
+  // this is used to track whether we need to refresh notifications after accepting requests
+  mergedNotifications: 'ok',
   // The following properties are used to track unread notifications
   lastReadId: '0', // used internally for unread notifications
   readMarkerId: '0', // user-facing and updated when focus changes
@@ -301,6 +305,7 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
           json.type === 'gap' ? json : createNotificationGroupFromJSON(json),
         );
         state.isLoading = false;
+        state.mergedNotifications = 'ok';
         updateLastReadId(state);
       })
       .addCase(fetchNotificationsGap.fulfilled, (state, action) => {
@@ -455,7 +460,7 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
         state.groups = state.pendingGroups.concat(state.groups);
         state.pendingGroups = [];
       })
-      .addCase(updateScrollPosition, (state, action) => {
+      .addCase(updateScrollPosition.fulfilled, (state, action) => {
         state.scrolledToTop = action.payload.top;
         updateLastReadId(state);
         trimNotifications(state);
@@ -482,7 +487,7 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
             action.payload.markers.notifications.last_read_id;
         }
       })
-      .addCase(mountNotifications, (state) => {
+      .addCase(mountNotifications.fulfilled, (state) => {
         state.mounted += 1;
         commitLastReadId(state);
         updateLastReadId(state);
@@ -497,6 +502,10 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
       })
       .addCase(unfocusApp, (state) => {
         state.isTabVisible = false;
+      })
+      .addCase(refreshStaleNotificationGroups.fulfilled, (state, action) => {
+        if (action.payload.deferredRefresh)
+          state.mergedNotifications = 'needs-reload';
       })
       .addMatcher(
         isAnyOf(authorizeFollowRequestSuccess, rejectFollowRequestSuccess),
