@@ -4341,10 +4341,13 @@ a.status-card {
   display: flex;
   align-items: center;
   gap: 8px;
-  min-height: 25px; // to fit the button without resizing
 
   &__checkbox .check-box {
     display: flex;
+  }
+
+  &__select-menu:disabled {
+    visibility: hidden;
   }
 
   &__mode-button {

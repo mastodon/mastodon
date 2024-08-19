@@ -121,20 +121,20 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
       <div className='column-header__select-row__checkbox'>
         <CheckBox checked={selectAllChecked} indeterminate={selectedCount > 0 && !selectAllChecked} onChange={handleSelectAll} />
       </div>
-      {selectedItems.length > 0 && <DropdownMenuContainer
+      <DropdownMenuContainer
         items={menu}
         icons='ellipsis-h'
         iconComponent={MoreHorizIcon}
         direction='right'
         title={intl.formatMessage(messages.more)}
       >
-        <button className='dropdown-button column-header__select-row__select-menu'>
+        <button className='dropdown-button column-header__select-row__select-menu' disabled={selectedItems.length === 0}>
           <span className='dropdown-button__label'>
             {selectedCount} selected
           </span>
           <Icon id='down' icon={ArrowDropDownIcon} />
         </button>
-      </DropdownMenuContainer>}
+      </DropdownMenuContainer>
       <div className='column-header__select-row__mode-button'>
         <button className='text-btn' tabIndex={0} onClick={handleToggleSelectionMode}>
           {selectionMode ? (
