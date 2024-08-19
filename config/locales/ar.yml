@@ -39,6 +39,7 @@ ar:
       created_msg: تم إنشاء ملاحظة الإشراف بنجاح!
       destroyed_msg: تم تدمير ملاحظة الإشراف بنجاح!
     accounts:
+      add_email_domain_block: حظر نطاق البريد الإلكتروني
       approve: صادِق عليه
       approved_msg: تمت الموافقة على تسجيل %{username}
       are_you_sure: هل أنت متأكد؟
@@ -227,6 +228,7 @@ ar:
         update_custom_emoji: تحديث الإيموجي المخصص
         update_domain_block: تحديث حظر النطاق
         update_ip_block: تحديث قاعدة IP
+        update_report: تحديث التقرير
         update_status: تحديث المنشور
         update_user_role: تحديث الدور
       actions:
@@ -559,7 +561,7 @@ ar:
       deactivate_all: تعطيلها كافة
       filter:
         all: الكل
-        available: المتوفرة
+        available: متاح
         expired: المنتهي صلاحيتها
         title: التصفية
       title: الدعوات
@@ -617,6 +619,7 @@ ar:
         resolve_description_html: ولن يُتخذ أي إجراء ضد الحساب المبلّغ عنه، ولن تسلَّط عليه أية عقوبة، وسوف يُغلق التقرير.
         silence_description_html: الحساب سيظهر فقط لمن يتابعه أو قام بالبحث عنه بشكل مباشر مما يخفض إمكانية رؤيته بشكل شبه كامل. يمكنك دائما التراجع عن هذا الإجراء. تُغلَق كافة الإبلاغات عن هذا الحساب.
         suspend_description_html: سيُمنع الوصول إلى الحساب وجميع محتوياته وتُحذف تدريجياً، وسيكون التفاعل معه مستحيلاً. بالإمكان عكس مفعول ذلك في غضون 30 يوماً. يغلق جميع التبليغات ضد الحساب.
+      actions_description_html: حدد الإجراء الذي يجب عليك اتخاذه لحل هذا التقرير. إذا اتخذت إجراء عقابيا ضد الحساب المبلغ عنه، فسيتم إرسال إشعار عبر البريد الإلكتروني إليهم، باستثناء عند اختيار فئة <strong>spam</strong>.
       actions_description_remote_html: حدّد الإجراءات التي يتعين اتخاذها لحل هذا التقرير. هذا سيؤثر فقط على كيفية اتصال <strong>خادمك</strong> بهذا الحساب البعيد والتعامل مع محتوياته.
       add_to_report: أضف المزيد إلى التقرير
       are_you_sure: هل أنت متأكد ؟
@@ -721,8 +724,8 @@ ar:
         invite_users_description: يسمح للمستخدمين بدعوة أشخاص جدد إلى الخادم
         manage_announcements: ادارة الاعلانات
         manage_announcements_description: يسمح للمستخدمين بإدارة الإعلانات على الخادم
-        manage_appeals: إدارة الاستئنافات
-        manage_appeals_description: يسمح للمستخدمين بمراجعة الطعن ضد إجراءات الإشراف
+        manage_appeals: إدارة الطعون
+        manage_appeals_description: يسمح للمستخدمين بمراجعة الطعون المقدمة ضد إجراءات الإشراف
         manage_blocks: إدارة الحظر
         manage_custom_emojis: إدارة الرموز التعبيريّة المخصصة
         manage_custom_emojis_description: السماح للمستخدمين بإدارة الرموز التعبيريّة المخصصة على الخادم
@@ -899,6 +902,9 @@ ar:
         action: تحقق هنا للمزيد من المعلومات
         message_html: "<strong>تم تكوين مخزن الكائنات الخاص بك بشكل خاطئ. خصوصية المستخدمين في خطر.</strong>"
     tags:
+      moderation:
+        title: الحالة
+      newest: الأحدث
       review: حالة المراجعة
       search: البحث
       title: الوسوم
@@ -1062,7 +1068,9 @@ ar:
       guide_link_text: يمكن للجميع المساهمة.
     sensitive_content: المحتوى الحساس
   application_mailer:
+    notification_preferences: تغيير تفضيلات البريد الإلكتروني
     salutation: "%{name}،"
+    settings: 'تغيير تفضيلات البريد الإلكتروني: %{link}'
     unsubscribe: إلغاء الاشتراك
     view: 'اعرض:'
     view_profile: اعرض الصفحة التعريفية
@@ -1460,6 +1468,9 @@ ar:
     unsubscribe:
       action: نعم، ألغِ الاشتراك
       complete: غير مشترك
+      emails:
+        notification_emails:
+          reblog: رسائل البريد الخاصة بالمنشورات المعاد نشرها
       title: إلغاء الاشتراك
   media_attachments:
     validations:
@@ -1817,7 +1828,7 @@ ar:
     min_age_label: عتبة العمر
     min_favs: إبقاء المشاركات المفضلة أكثر من
     min_favs_hint: لن تُحذف أي من منشوراتك التي تلقّت على الأقل هذا العدد من المفضلات. اتركه فارغاً لحذف المنشورات مهما كان عدد المفضلات التي تلقتها
-    min_reblogs: إبقاء المشاركات المعززة أكثر من
+    min_reblogs: إبقاء المنشورات المعاد نشرها أكثر من
     min_reblogs_hint: لن تُحذف أي من منشوراتك التي أعيد مشاركتها أكثر من هذا العدد من المرات. اتركه فارغاً لحذف المنشورات بغض النظر عن عدد إعادات النشر
   stream_entries:
     sensitive_content: محتوى حساس
@@ -1960,6 +1971,7 @@ ar:
     invalid_otp_token: رمز المصادقة بخطوتين غير صالح
     otp_lost_help_html: إن فقدتَهُما ، يمكنك الاتصال بـ %{email}
     rate_limited: عدد محاولات المصادقة كثير جداً، حاول مرة أخرى لاحقاً.
+    seamless_external_login: لقد تم تسجيل دخولك عبر خدمة خارجية، لذا فإن إعدادات كلمة المرور والبريد الإلكتروني غير متاحة.
     signed_in_as: 'تم تسجيل دخولك بصفة:'
   verification:
     extra_instructions_html: <strong>نصيحة:</strong> يمكن أن يكون الرابط الموجود على موقع الويب الخاص بك غير مرئي. الجزء المهم هو <code>rel="me"</code> الذي يمنع انتحال الهوية على مواقع الويب ذات المحتوى الذي ينشئه المستخدم. يمكنك أيضًا استخدام علامة <code>link</code> في رأس الصفحة بدلاً من <code>a</code>، ولكن يجب أن يكون HTML قابلاً للوصول دون تنفيذ JavaScript.

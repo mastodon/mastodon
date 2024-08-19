@@ -33,6 +33,7 @@ sr:
       created_msg: Модераторска белешка успешно направљена!
       destroyed_msg: Модераторска белешка успешно обрисана!
     accounts:
+      add_email_domain_block: Блокирај домен е-поште
       approve: Одобри
       approved_msg: Захтев за регистрацију корисника %{username} је успешно одобрен
       are_you_sure: Да ли сте сигурни?
@@ -59,6 +60,7 @@ sr:
       demote: Ражалуј
       destroyed_msg: Подаци корисника %{username} су неповратно стављени у ред за брисање
       disable: Замрзни
+      disable_sign_in_token_auth: Онемогући аутентификацију токена е-поште
       disable_two_factor_authentication: Искључи 2FA
       disabled: Замрзнут
       display_name: Име за приказ
@@ -67,6 +69,7 @@ sr:
       email: Е-пошта
       email_status: Статус е-поште
       enable: Омогући
+      enable_sign_in_token_auth: Омогући аутентификацију токена е-поште
       enabled: Омогућен
       enabled_msg: Успешно одлеђен налог корисника %{username}
       followers: Пратиоци
@@ -132,6 +135,7 @@ sr:
       resubscribe: Поново се претплати
       role: Улога
       search: Претрага
+      search_same_email_domain: Остали корисници са истим доменом е-поште
       search_same_ip: Остали корисници са истом IP адресом
       security: Безбедност
       security_measures:
@@ -172,21 +176,26 @@ sr:
         approve_appeal: Уважи жалбу
         approve_user: Одобри корисника
         assigned_to_self_report: Додели пријаву
+        change_email_user: Промени e-адресу за корисника
         change_role_user: Промени улогу корисника
         confirm_user: Потврди корисника
         create_account_warning: Креирај упозорење
         create_announcement: Креирај најаву
+        create_canonical_email_block: Креирај блок е-поште
         create_custom_emoji: Направи прилагођени емоџи
         create_domain_allow: Додај дозвољени домен
         create_domain_block: Додај блокирани домен
+        create_email_domain_block: Креирај блок домена е-поште
         create_ip_block: Направи IP услов
         create_unavailable_domain: Додај домен као недоступан
         create_user_role: Креирај улогу
         demote_user: Смањи овлашћења корисника
         destroy_announcement: Избриши најаву
+        destroy_canonical_email_block: Избриши блок е-поште
         destroy_custom_emoji: Обриши прилагођени емоџи
         destroy_domain_allow: Обриши дозвољени домен
         destroy_domain_block: Обриши блокирани домен
+        destroy_email_domain_block: Избриши блок домена е-поште
         destroy_instance: Очисти домен
         destroy_ip_block: Обриши IP услов
         destroy_status: Избриши пост
@@ -194,8 +203,10 @@ sr:
         destroy_user_role: Уништи позицију
         disable_2fa_user: Онемогући двофакторску аутентификацију
         disable_custom_emoji: Онемогући прилагођене емоџије
+        disable_sign_in_token_auth_user: Онемогући аутентификацију токена е-поште за корисника
         disable_user: Онемогући корисника
         enable_custom_emoji: Омогући прилагођене емоџије
+        enable_sign_in_token_auth_user: Омогући аутентификацију токена е-поште за корисника
         enable_user: Омогући корисника
         memorialize_account: Претвори у меморијални налог
         promote_user: Унапреди корисника
@@ -218,26 +229,33 @@ sr:
         update_custom_emoji: Ажурирај прилагођене емоџије
         update_domain_block: Ажурирај домен блок
         update_ip_block: Ажурирај IP услов
+        update_report: Ажурирај извештај
         update_status: Уреди објаву
         update_user_role: Уреди улогу
       actions:
         approve_appeal_html: "%{name} је уважио жалбу корисника %{target} на одлуку модератора"
         approve_user_html: "%{name} је одобрио/-ла регистрацију корисника %{target}"
         assigned_to_self_report_html: "%{name} је себи доделио/-ла пријаву %{target}"
+        change_email_user_html: "%{name} је променио/ла адресу е-поште за корисника %{target}"
         change_role_user_html: "%{name} је променио/-ла овлашћења корисника %{target}"
+        confirm_user_html: "%{name} је потврдио/ла адресу е-поште за корисника %{target}"
         create_account_warning_html: "%{name} је послао/-ла упозорење кориснику %{target}"
         create_announcement_html: "%{name} је направио/-ла ново саопштење %{target}"
+        create_canonical_email_block_html: "%{name} је блокирао/ла адресу е-поште са хешом %{target}"
         create_custom_emoji_html: "%{name} је отпремио/-ла нове емоџије %{target}"
         create_domain_allow_html: "%{name} је дозволио/-ла федерацију са доменом %{target}"
         create_domain_block_html: "%{name} је блокирао/-ла домен %{target}"
+        create_email_domain_block_html: "%{name} је блокирао/ла домен е-поште %{target}"
         create_ip_block_html: "%{name} је направио/-ла услов за IP адресе %{target}"
         create_unavailable_domain_html: "%{name} је обуставио/-ла испоручивање домену %{target}"
         create_user_role_html: "%{name} је направио/-ла %{target} позицију"
         demote_user_html: "%{name} је смањио овлашћења корисника %{target}"
         destroy_announcement_html: "%{name} је обрисао/-ла саопштење %{target}"
+        destroy_canonical_email_block_html: "%{name} је одблокирао/ла адресу е-поште са хешом %{target}"
         destroy_custom_emoji_html: "%{name} је обрисао/-ла емоџи %{target}"
         destroy_domain_allow_html: "%{name} је забранио/-ла федерацију са доменом %{target}"
         destroy_domain_block_html: "%{name} је одблокирао/-ла домен %{target}"
+        destroy_email_domain_block_html: "%{name} је одблокирао/ла домен е-поште %{target}"
         destroy_instance_html: "%{name} је очистио/-ла домен %{target}"
         destroy_ip_block_html: "%{name} је обрисао/-ла услов за IP адресе %{target}"
         destroy_status_html: "%{name} је избрисао/-ла објаву корисника %{target}"
@@ -245,8 +263,10 @@ sr:
         destroy_user_role_html: "%{name} је избрисао/-ла %{target} позицију"
         disable_2fa_user_html: "%{name} је онемогућио/-ла двофакторску аутентификацију за корисника %{target}"
         disable_custom_emoji_html: "%{name} је онемогућио/-ла емоџи %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} је онемогућио/ла аутентификацију токена е-поште за %{target}"
         disable_user_html: "%{name} је онемогућио/-ла пријављивање за корисника %{target}"
         enable_custom_emoji_html: "%{name} је омогућио/-ла емоџи %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} је омогућио/ла аутентификацију токена е-поште за %{target}"
         enable_user_html: "%{name} је омогућио/-ла пријављивање кориснику %{target}"
         memorialize_account_html: "%{name} је претворио/-ла налог корисника %{target} у меморијалну страницу"
         promote_user_html: "%{name} је унапредио/-ла корисника %{target}"
@@ -254,6 +274,7 @@ sr:
         reject_user_html: "%{name} је одбио/-ла регистрацију корисника %{target}"
         remove_avatar_user_html: "%{name} је уклонио аватар корисника %{target}"
         reopen_report_html: "%{name} је поново отворио/-ла пријаву %{target}"
+        resend_user_html: "%{name} је поништио/ла е-пошту за потврду за %{target}"
         reset_password_user_html: "%{name} је ресетовао/-ла лозинку корисника %{target}"
         resolve_report_html: "%{name} је решио/-ла пријаву %{target}"
         sensitive_account_html: "%{name} је означио/-ла медије налога %{target} као осетљиве"
@@ -419,6 +440,7 @@ sr:
         few: "%{count} покушаја током претходне недеље"
         one: "%{count} покушај током претходне недеље"
         other: "%{count} покушаја регистрације током претходне недеље"
+      created_msg: Успешно блокиран домен е-поште
       delete: Обриши
       dns:
         types:
@@ -427,8 +449,12 @@ sr:
       new:
         create: Додај домен
         resolve: Претвори домен
+        title: Блокирај нови домен е-поште
+      no_email_domain_block_selected: Ниједан блок домена е-поште није промењен јер ниједан није изабран
       not_permitted: Није дозвољено
+      resolved_dns_records_hint_html: Име домена се претвара у следеће MX домене, који су напослетку одговорни за прихватање е-поште. Блокирање MX домена ће блокирати регистрације са сваке адресе е-поште која користи тај MX домен, чак и у случају када се видљиво име домена разликује. <strong>Водите рачуна о томе да не блокирате главне добављаче е-поште.</strong>
       resolved_through_html: Преусмерено кроз %{domain}
+      title: Блокирани домени е-поште
     export_domain_allows:
       new:
         title: Увези дозвољене домене
@@ -453,6 +479,9 @@ sr:
       title: Препоруке за праћење
       unsuppress: Врати препоруку за праћење
     instances:
+      audit_log:
+        title: Недавни записници
+        view_all: Погледај пуне записнике
       availability:
         description_html:
           few: Уколико испорука домену не успе ниједном током <strong>%{count} различитих дана</strong>, даљи покушаји испоруке неће бити иницирани осим уколико се не прими испорука <em>са</em> домена.
@@ -583,6 +612,7 @@ sr:
         resolve_description_html: Ниједна радња неће бити предузета против пријављеног налога, ниједан преступ није уписан и пријава ће бити затворена.
         silence_description_html: Налог ће бити видљив само онима који га већ прате или који га ручно потраже, што ће значајно ограничити његов домет. Ограничење се може повући у сваком тренутку. Затвара све пријаве поднете против овог налога.
         suspend_description_html: Налог и сви његови садржаји ће постати недоступни и у једном тренутку избрисани, а интеракција са налогом више неће бити могућа. Суспензија се може повући у року од 30 дана. Затвара све пријаве поднете против овог налога.
+      actions_description_html: Одлучите коју радњу да спроведете ради решавања ове пријаве. Уколико спроведете казнену радњу против пријављеног налога, власник налога ће бити обавештен путем е-поште, осим уколико ознака <strong>„Нежељене поруке”</strong> није одабрана.
       actions_description_remote_html: Одлучите коју радњу да предузмете ради решавања ове пријаве. Ово ће утицати само на то како <strong>Ваш</strong> сервер комуницира са овим удаљеним налогом и обрађује његов садржај.
       add_to_report: Додај још у пријаву
       already_suspended_badges:
@@ -1885,7 +1915,7 @@ sr:
   verification:
     extra_instructions_html: <strong>Савет:</strong>Веза на вашем веб сајту може да буде невидљива. Важан део је <code>rel="me"</code> који спречава лажно представљање на веб сајтовима са садржајем који генерише корисник. Можете чак да користите ознаку <code>везе</code> у заглављу странице уместо <code>а</code>, али HTML мора бити доступан без извршавања JavaScript-а.
     here_is_how: Ево како
-    hint_html: "<strong>Верификација вашег идентитета на Mastodon-у је за свакога.</strong> Засновано на отвореним веб стандардима, сада и заувек бесплатно. Све што вам треба је лични веб сајт по коме вас људи препознају. Када се повежете са овим веб сајтом са свог профила, проверићемо да ли је веб сајт повезан са вашим профилом и на њему ћемо приказати визуелни индикатор."
+    hint_html: "<strong>Свако може да верификује свој идентитет на Mastodon-у.</strong> Засновано на отвореним веб стандардима, сада и заувек бесплатно. Све што вам треба је лични веб сајт по коме вас људи препознају. Када се повежете са овим веб сајтом са свог профила, проверићемо да ли је веб сајт повезан са вашим профилом и на њему ћемо приказати визуелни индикатор."
     instructions_html: Копирајте и налепите код испод у HTML свог веб сајта. Затим додајте адресу свог веб сајта у једно од додатних поља на свом профилу са картице „Уреди профил” и сачувајте промене.
     verification: Верификација
     verified_links: Ваше верификоване везе
