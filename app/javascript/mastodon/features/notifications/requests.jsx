@@ -32,10 +32,10 @@ const messages = defineMessages({
   dismissMultiple: { id: 'notification_requests.dismiss_multiple', defaultMessage: '{count, plural, one {Dismiss # request…} other {Dismiss # requests…}}' },
   confirmAcceptMultipleTitle: { id: 'notification_requests.confirm_accept_multiple.title', defaultMessage: 'Accept notification requests?' },
   confirmAcceptMultipleMessage: { id: 'notification_requests.confirm_accept_multiple.message', defaultMessage: 'You are about to accept {count, plural, one {one notification request} other {# notification requests}}. Are you sure you want to proceed?' },
-  confirmAcceptMultipleButton: { id: 'notification_requests.confirm_accept_multiple.button', defaultMessage: 'Accept all' },
+  confirmAcceptMultipleButton: { id: 'notification_requests.confirm_accept_multiple.button', defaultMessage: '{count, plural, one {Accept request} other {Accept requests}}' },
   confirmDismissMultipleTitle: { id: 'notification_requests.confirm_dismiss_multiple.title', defaultMessage: 'Dismiss notification requests?' },
   confirmDismissMultipleMessage: { id: 'notification_requests.confirm_dismiss_multiple.message', defaultMessage: "You are about to dismiss {count, plural, one {one notification request} other {# notification requests}}. You won't be able to easily access {count, plural, one {it} other {them}} again. Are you sure you want to proceed?" },
-  confirmDismissMultipleButton: { id: 'notification_requests.confirm_dismiss_multiple.button', defaultMessage: 'Dismiss all' },
+  confirmDismissMultipleButton: { id: 'notification_requests.confirm_dismiss_multiple.button', defaultMessage: '{count, plural, one {Dismiss request} other {Dismiss requests}}' },
 });
 
 const ColumnSettings = () => {
@@ -82,7 +82,7 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
       modalProps: {
         title: intl.formatMessage(messages.confirmAcceptMultipleTitle),
         message: intl.formatMessage(messages.confirmAcceptMultipleMessage, { count: selectedItems.length }),
-        confirm: intl.formatMessage(messages.confirmAcceptMultipleButton),
+        confirm: intl.formatMessage(messages.confirmAcceptMultipleButton, { count: selectedItems.length}),
         onConfirm: () =>
           dispatch(acceptNotificationRequests(selectedItems)),
       },
@@ -95,7 +95,7 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
       modalProps: {
         title: intl.formatMessage(messages.confirmDismissMultipleTitle),
         message: intl.formatMessage(messages.confirmDismissMultipleMessage, { count: selectedItems.length }),
-        confirm: intl.formatMessage(messages.confirmDismissMultipleButton),
+        confirm: intl.formatMessage(messages.confirmDismissMultipleButton, { count: selectedItems.length}),
         onConfirm: () =>
           dispatch(dismissNotificationRequests(selectedItems)),
       },
