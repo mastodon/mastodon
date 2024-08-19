@@ -83,6 +83,7 @@ sr-Latn:
         access_denied: Vlasnik resursa ili autorizacioni server su odbili zahtev.
         credential_flow_not_configured: Tok Resource Owner Password Credentials nije uspeo pošto je Doorkeeper.configure.resource_owner_from_credentials neiskonfigurisan.
         invalid_client: Klijentska identifikacija nije uspela zbog nepoznatog klijenta, zato što klijent nije uključio identifikaciju ili zato što je iskorišćen nepodržani identifikacioni metod.
+        invalid_code_challenge_method: Metod izazova koda mora biti S256, običan nije podržan.
         invalid_grant: Zadata identifikaciona dozvola je neispravna, istekla, opozvana, ne poklapa se sa adresom preusmeravanja ili je izdata nekog drugom klijentu.
         invalid_redirect_uri: Uključena adresa preusmeravanja nije ispravna.
         invalid_request:

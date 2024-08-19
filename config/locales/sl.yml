@@ -35,6 +35,7 @@ sl:
       created_msg: Opomba moderiranja je uspešno ustvarjena!
       destroyed_msg: Opomba moderiranja je uspešno uničena!
     accounts:
+      add_email_domain_block: Blokiraj domeno e-pošte
       approve: Odobri
       approved_msg: Uspešno odobrena vloga prijave uporabnika %{username}
       are_you_sure: Ali ste prepričani?
@@ -61,6 +62,7 @@ sl:
       demote: Ponižaj
       destroyed_msg: Podatki uporabnika %{username} so zdaj v vrsti za trajen izbris
       disable: Zamrzni
+      disable_sign_in_token_auth: Onemogoči overjanje z žetonom po e-pošti
       disable_two_factor_authentication: Onemogoči 2FA
       disabled: Zamrznjeno
       display_name: Pojavno ime
@@ -69,6 +71,7 @@ sl:
       email: E-naslov
       email_status: Stanje e-naslova
       enable: Odmrzni
+      enable_sign_in_token_auth: Omogoči overjanje z žetonom po e-pošti
       enabled: Omogočeno
       enabled_msg: Uspešno odmrznjen račun uporabnika %{username}
       followers: Sledilci
@@ -135,6 +138,7 @@ sl:
       resubscribe: Ponovno se naroči
       role: Vloga
       search: Iskanje
+      search_same_email_domain: Drugi uporabniki z isto e-poštno domeno
       search_same_ip: Drugi uporabniki z istim IP
       security: Varnost
       security_measures:
@@ -175,21 +179,26 @@ sl:
         approve_appeal: Odobri pritožbo
         approve_user: Odobri uporabnika
         assigned_to_self_report: Dodeli prijavo
+        change_email_user: Spremeni e-naslov uporabnika
         change_role_user: Spremeni vlogo uporabnika
         confirm_user: Potrdi uporabnika
         create_account_warning: Ustvari opozorilo
         create_announcement: Ustvari obvestilo
+        create_canonical_email_block: Ustvari blokado e-naslova
         create_custom_emoji: Ustvari emotikon po meri
         create_domain_allow: Ustvari odobritev domene
         create_domain_block: Ustvari blokado domene
+        create_email_domain_block: Ustvari blokado domene e-pošte
         create_ip_block: Ustvari pravilo IP
         create_unavailable_domain: Ustvari domeno, ki ni na voljo
         create_user_role: Ustvari vlogo
         demote_user: Ponižaj uporabnika
         destroy_announcement: Izbriši obvestilo
+        destroy_canonical_email_block: Izbriši blokado e-naslova
         destroy_custom_emoji: Izbriši emotikon po meri
         destroy_domain_allow: Izbriši odobritev domene
         destroy_domain_block: Izbriši blokado domene
+        destroy_email_domain_block: Izbriši blokado domene e-pošte
         destroy_instance: Očisti domeno
         destroy_ip_block: Izbriši pravilo IP
         destroy_status: Izbriši objavo
@@ -197,8 +206,10 @@ sl:
         destroy_user_role: Uniči vlogo
         disable_2fa_user: Onemogoči
         disable_custom_emoji: Onemogoči emotikon po meri
+        disable_sign_in_token_auth_user: Onemogoči overjanje z žetonom po e-pošti za uporabnika
         disable_user: Onemogoči uporabnika
         enable_custom_emoji: Omogoči emotikon po meri
+        enable_sign_in_token_auth_user: Omogoči overjanje z žetonom po e-pošti za uporabnika
         enable_user: Omogoči uporabnika
         memorialize_account: Spomenificiraj račun
         promote_user: Povišaj uporabnika
@@ -228,20 +239,26 @@ sl:
         approve_appeal_html: "%{name} je ugodil pritožbi uporabnika %{target} na moderatorsko odločitev"
         approve_user_html: "%{name} je odobril/a registracijo iz %{target}"
         assigned_to_self_report_html: "%{name} je dodelil/a prijavo %{target} sebi"
+        change_email_user_html: "%{name} je spremenil/a naslov e-pošte uporabnika %{target}"
         change_role_user_html: "%{name} je spremenil/a vlogo %{target}"
+        confirm_user_html: "%{name} je potrdil/a naslov e-pošte uporabnika %{target}"
         create_account_warning_html: "%{name} je poslal/a opozorilo %{target}"
         create_announcement_html: "%{name} je ustvarila/a novo obvestilo %{target}"
+        create_canonical_email_block_html: "%{name} je dal/a na črni seznam e-pošto s ključnikom %{target}"
         create_custom_emoji_html: "%{name} je posodobil/a emotikone %{target}"
         create_domain_allow_html: "%{name} je dovolil/a federacijo z domeno %{target}"
         create_domain_block_html: "%{name} je blokiral/a domeno %{target}"
+        create_email_domain_block_html: "%{name} je dal/a na črni seznam e-pošto domene %{target}"
         create_ip_block_html: "%{name} je ustvaril/a pravilo za IP %{target}"
         create_unavailable_domain_html: "%{name} je prekinil/a dostavo v domeno %{target}"
         create_user_role_html: "%{name} je ustvaril/a vlogo %{target}"
         demote_user_html: "%{name} je ponižal/a uporabnika %{target}"
         destroy_announcement_html: "%{name} je izbrisal/a obvestilo %{target}"
+        destroy_canonical_email_block_html: "%{name} je odstranil/a s črnega seznama e-pošto s ključnikom %{target}"
         destroy_custom_emoji_html: "%{name} je izbrisal/a emotikon %{target}"
         destroy_domain_allow_html: "%{name} ni dovolil/a federacije z domeno %{target}"
         destroy_domain_block_html: "%{name} je odblokiral/a domeno %{target}"
+        destroy_email_domain_block_html: "%{name} je odblokiral/a e-pošto domene %{target}"
         destroy_instance_html: "%{name} je očistil/a domeno %{target}"
         destroy_ip_block_html: "%{name} je izbrisal/a pravilo za IP %{target}"
         destroy_status_html: "%{name} je odstranil/a objavo uporabnika %{target}"
@@ -249,8 +266,10 @@ sl:
         destroy_user_role_html: "%{name} je izbrisal/a vlogo %{target}"
         disable_2fa_user_html: "%{name} je onemogočil/a dvofaktorsko zahtevo za uporabnika %{target}"
         disable_custom_emoji_html: "%{name} je onemogočil/a emotikone %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} je onemogočil/a overjanje z žetonom po e-pošti za uporabnika %{target}"
         disable_user_html: "%{name} je onemogočil/a prijavo za uporabnika %{target}"
         enable_custom_emoji_html: "%{name} je omogočil/a emotikone %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} je omogočil/a overjanje z žetonom po e-pošti za uporabnika %{target}"
         enable_user_html: "%{name} je omogočil/a prijavo za uporabnika %{target}"
         memorialize_account_html: "%{name} je spremenil/a račun uporabnika %{target} v spominsko stran"
         promote_user_html: "%{name} je povišal/a uporabnika %{target}"
@@ -258,6 +277,7 @@ sl:
         reject_user_html: "%{name} je zavrnil/a registracijo iz %{target}"
         remove_avatar_user_html: "%{name} je odstranil podobo (avatar) uporabnika %{target}"
         reopen_report_html: "%{name} je ponovno odprl/a prijavo %{target}"
+        resend_user_html: "%{name} je ponovno poslal_a potrditveno e-sporočilo za %{target}"
         reset_password_user_html: "%{name} je ponastavil/a geslo uporabnika %{target}"
         resolve_report_html: "%{name} je razrešil/a prijavo %{target}"
         sensitive_account_html: "%{name} je označil/a medije računa %{target}'s kot občutljive"
@@ -428,6 +448,7 @@ sl:
         one: "%{count} poskus prijave zadnji teden"
         other: "%{count} poskusov prijave zadnji teden"
         two: "%{count} poskusa prijave zadnji teden"
+      created_msg: Domena e-pošte je bila uspešno dodana na črni seznam
       delete: Izbriši
       dns:
         types:
@@ -436,8 +457,12 @@ sl:
       new:
         create: Dodaj domeno
         resolve: Razreši domeno
+        title: Nov vnos e-pošte na črni seznam
+      no_email_domain_block_selected: Nobena domena e-računa ni bila spremenjena, ker nobena ni bila izbrana
       not_permitted: Ni dovoljeno
+      resolved_dns_records_hint_html: Ime domene se razreši na naslednje domene MX, ki so končno odgovorne za sprejemanje e-pošte. Blokiranje domene MX bo blokiralo prijave s poljubnega e-poštnega naslova, ki uporablja isto domeno MX, tudi če je vidno ime domene drugačno. <strong>Pazite, da ne blokirate večjih ponudnikov e-pošte.</strong>
       resolved_through_html: Razrešeno prek %{domain}
+      title: Črni seznam e-pošt
     export_domain_allows:
       new:
         title: Uvozi prepustnice domen
@@ -596,6 +621,7 @@ sl:
         resolve_description_html: Proti prijavljenemu računu ne bo izvedeno nobeno dejanje, noben ukrep ne bo zabeležen in prijava bo zaprta.
         silence_description_html: Račun bo viden samo tistim, ki mu že sled ijo ali ga ročno poiščejo, s čimer bo resno omejen njegov doseg. To je vedno možno povrniti. Zaključi vse prijave zoper ta račun.
         suspend_description_html: Račun in vsa njegova vsebina ne bo dostopna in bo postopoma izbrisana, interakcija z njim pa ne bo več možna. Dejanje je moč povrniti v roku 30 dni. Zaključi vse prijave zoper ta račun.
+      actions_description_html: Odločite se, katere ukrepe boste sprejeli za rešitev te prijave. Če sprejmete kazenski ukrep proti prijavljenemu računu, mu bo poslano e-poštno obvestilo, razen če je izbrana kategorija <strong>Neželena pošta</strong>.
       actions_description_remote_html: Odločite se za dejanje, ki bo odločilo o tej prijavi. To bo vplivalo le na to, kako <strong>vaš</strong> strežnik komunicira s tem oddaljenim računom in obravnava njegovo vsebino.
       add_to_report: Dodaj več v prijavo
       already_suspended_badges:
@@ -660,6 +686,7 @@ sl:
         delete_data_html: Izbriši profil in vsebine <strong>@%{acct}</strong> čez 30 dni, razen če suspenz v tem času ni preklican
         preview_preamble_html: 'Oseba <strong>@%{acct}</strong> bo prejela opozorilo z naslednjo vsebino:'
         record_strike_html: Izdajte opomin računu <strong>@%{acct}</strong>, da boste lažje stopnjevali svoj odziv ob prihodnjih kršitvah s tega računa
+        send_email_html: Pošlji <strong>@%{acct}</strong> opozorilno e-sporočilo
         warning_placeholder: Neobvezna dodatna utemeljitev dejanja moderiranja.
       target_origin: Izvor prijavljenega računa
       title: Prijave
@@ -703,6 +730,7 @@ sl:
         manage_appeals: Upravljaj pritožbe
         manage_appeals_description: Omogoča uporabnikom, da pregledajo pritožbe glede dejanj moderiranja
         manage_blocks: Upravljaj blokirano
+        manage_blocks_description: Omogoča uporabnikom, da blokirajo ponudnike e-pošte in naslove IP
         manage_custom_emojis: Upravljaj emotikone po meri
         manage_custom_emojis_description: Omogoča uporabnikom, da upravljajo emotikone po meri na strežniku
         manage_federation: Upravljaj beli seznam
@@ -720,6 +748,7 @@ sl:
         manage_taxonomies: Upravljaj taksonomije
         manage_taxonomies_description: Omogoča uporabnikom, da preverijo vsebino v trendu in posodobijo nastavitve ključnikov
         manage_user_access: Upravljaj dostop uporabnikov
+        manage_user_access_description: Omogoča uporabnikom, da onemogočijo drugim uporabnikom dvofazno overjanje, spremenijo njihov e-naslov ter ponastavijo njihovo geslo
         manage_users: Upravljaj uporabnike
         manage_users_description: Omogoča uporabnikom, da vidijo podrobnosti drugih uporabnikov in nad njimi izvedejo dejanja moderiranja
         manage_webhooks: Upravljaj spletne zanke
@@ -794,6 +823,7 @@ sl:
       destroyed_msg: Prenos na strežnik uspešno izbrisan!
     software_updates:
       critical_update: Kritično — čim prej posodobite
+      description: Vašo namestitev Mastodona je priporočeno vedno imeti posodobljeno in tako koristiti najnovejše popravke ter zmožnosti. Poleg tega je včasih nujno čim prej posodobiti Mastodon in se s tem izogniti varnostnim težavam. Zato Mastodon vsakih 30 minut preverja razpoložljivost posodobitev in vas o njih obvešča glede na vaše nastavitve obveščanja po e-pošti.
       documentation_link: Več o tem
       release_notes: Opombe ob izdaji
       title: Razpoložljive posodobitve
@@ -881,11 +911,13 @@ sl:
         message_html: "<strong>Vaša predmetna shramba je napačno nastavljena. Zasebnost vaših uporabnikov je izpostavljena tveganjem.</strong>"
     tags:
       moderation:
+        not_trendable: Ni v trendu
         not_usable: Ni uporabno
         pending_review: Čakajoče na pregled
         review_requested: Zahtevan pregled
         reviewed: Pregledano
         title: Stanje
+        trendable: V trendu
         unreviewed: Nepregledano
         usable: Uporabno
       name: Ime
@@ -900,10 +932,16 @@ sl:
     trends:
       allow: Dovoli
       approved: Odobren
+      confirm_allow: Ali ste prepričani, da želite dopustiti izbrane oznake?
+      confirm_disallow: Ali ste prepričani, da želite prepovedati izbrane oznake?
       disallow: Ne dovoli
       links:
         allow: Dovoli povezavo
         allow_provider: Dovoli izdajatelja
+        confirm_allow: Ali ste prepričani, da želite dopustiti izbrane povezave?
+        confirm_allow_provider: Ali ste prepričani, da želite dopustiti izbrane ponudnike?
+        confirm_disallow: Ali ste prepričani, da želite prepovedati izbrane povezave?
+        confirm_disallow_provider: Ali ste prepričani, da želite prepovedati izbrane ponudnike?
         description_html: To so povezave, ki jih trenutno veliko delijo računi, iz katerih vaš strežnik vidi objave. Vašim uporabnikom lahko pomaga izvedeti, kaj se dogaja po svetu. Nobene povezave niso javno prikazane, dokler ne odobrite izdajatelja. Posamezne povezave lahko tudi dovolite ali zavrnete.
         disallow: Ne dovoli povezave
         disallow_provider: Ne dovoli izdajatelja
@@ -929,6 +967,10 @@ sl:
       statuses:
         allow: Dovoli objavo
         allow_account: Dovoli avtorja
+        confirm_allow: Ali ste prepričani, da želite dopustiti izbrana stanja?
+        confirm_allow_account: Ali ste prepričani, da želite dopustiti izbrane račune?
+        confirm_disallow: Ali ste prepričani, da želite prepovedati izbrana stanja?
+        confirm_disallow_account: Ali ste prepričani, da želite prepovedati izbrane račune?
         description_html: To so objave, za katere vaš strežnik ve, da so trenutno v skupni rabi in med priljubljenimi. Vašim novim uporabnikom in uporabnikom, ki se vračajo, lahko pomaga najti več oseb, ki jim bodo sledili. Nobena objava ni javno prikazana, dokler avtorja ne odobrite in avtor ne dovoli, da se njegov račun predlaga drugim. Posamezne objave lahko tudi dovolite ali zavrnete.
         disallow: Ne dovoli objave
         disallow_account: Ne dovoli avtorja
@@ -965,6 +1007,7 @@ sl:
           one: Uporabila %{count} oseba v zadnjem tednu
           other: Uporabilo %{count} oseb v zadnjem tednu
           two: Uporabili %{count} osebi v zadnjem tednu
+      title: Priporočila in trendi
       trending: V porastu
     warning_presets:
       add_new: Dodaj novo
@@ -1051,7 +1094,9 @@ sl:
       guide_link_text: Vsakdo lahko prispeva.
     sensitive_content: Občutljiva vsebina
   application_mailer:
+    notification_preferences: Spremenite e-poštne nastavitve
     salutation: "%{name},"
+    settings: 'Spremenite e-poštne nastavitve: %{link}'
     unsubscribe: Odjavi od naročnine
     view: 'Pogled:'
     view_profile: Ogled profila
@@ -1071,6 +1116,7 @@ sl:
       hint_html: Samo še nekaj. Moramo se prepričati, da ste človek (to nam pomaga pri preprečevanju neželenih vsebin). Rešite spodnji CAPTCHA in kliknite »Nadaljuj«.
       title: Varnostno preverjanje
     confirmations:
+      awaiting_review: Vaš e-poštni naslov je potrjen. Skrbniki %{domain} bodo pregledali vašo prijavo. Če odobrijo vaš račun, boste o tem prejeli e-pošto.
       awaiting_review_title: Vaša prijava se pregleduje
       clicking_this_link: s klikom na to povezavo
       login_link: prijavo
@@ -1078,6 +1124,7 @@ sl:
       redirect_to_app_html: Morali bi biti preusmerjeni na aplikacijo <strong>%{app_name}</strong>. Če se to ni zgodilo, poskusite %{clicking_this_link} ali pa se ročno vrnite na aplikacijo.
       registration_complete: Vaša prijava na %{domain} je sedaj zaključena.
       welcome_title: Pozdravljeni, %{name}!
+      wrong_email_hint: Če ta e-poštni naslov ni pravilen, ga lahko spremenite v nastavitvah računa.
     delete_account: Izbriši račun
     delete_account_html: Če želite izbrisati svoj račun, lahko nadaljujete <a href="%{path}">tukaj</a>. Prosili vas bomo za potrditev.
     description:
@@ -1098,6 +1145,7 @@ sl:
     or_log_in_with: Ali se prijavite z
     privacy_policy_agreement_html: Prebral_a sem in se strinjam s <a href="%{privacy_policy_path}" target="_blank">pravilnikom o zasebnosti</a>.
     progress:
+      confirm: Potrdi e-pošto
       details: Vaši podatki
       review: Naš pregled
       rules: Sprejmi pravila
@@ -1119,8 +1167,10 @@ sl:
     security: Varnost
     set_new_password: Nastavi novo geslo
     setup:
+      email_below_hint_html: Poglejte v mapo neželene pošte ali zaprosite za novega. Če ste podali napačen e-naslov, ga lahko popravite.
       email_settings_hint_html: Kliknite povezavo, ki smo vam jo poslali, da overite %{email}. Počakali bomo.
       link_not_received: Ali ste prejeli povezavo?
+      new_confirmation_instructions_sent: Čez nekaj minut boste prejeli novo e-sporočilo s potrditveno povezavo!
       title: Preverite svojo dohodno e-pošto
     sign_in:
       preamble_html: Prijavite se s svojimi poverilnicami <strong>%{domain}</strong>. Če vaš račun gostuje na drugem strežniku, se tukaj ne boste mogli prijaviti.
@@ -1131,7 +1181,9 @@ sl:
       title: Naj vas namestimo na %{domain}.
     status:
       account_status: Stanje računa
+      confirming: Čakanje na potrditev e-pošte.
       functional: Vaš račun je polno opravilen.
+      pending: Naše osebje preverja vašo prijavo. To lahko traja nekaj časa. Če bo vaša prijava odobrena, boste prejeli e-pošto.
       redirecting_to: Vaš račun ni dejaven, ker trenutno preusmerja na račun %{acct}.
       self_destruct: Ker se %{domain} zapira, boste imeli omejen dostop da svojega računa.
       view_strikes: Pokaži pretekle ukrepe proti mojemu računu
@@ -1174,6 +1226,9 @@ sl:
       before: 'Pred nadaljevanjem previdno preberite naslednje opombe:'
       caches: Vsebina, ki jo medpomnijo drugi strežniki, lahko vztraja
       data_removal: Vaše objave in drugi podatki bodo trajno odstranjeni
+      email_change_html: <a href="%{path}">Svoj e-naslov lahko spremenite</a> brez izbrisa svojega računa
+      email_contact_html: Če še vedno ni dostavljeno, lahko za pomoč pošljete e-sporočilo na naslov <a href="mailto:%{email}">%{email}</a>
+      email_reconfirmation_html: Če niste prejeli potrditvenega e-sporočila, lahko <a href="%{path}">znova zaprosite zanj</a>
       irreversible: Vašega računa ne boste mogli obnoviti ali ponovno aktivirati
       more_details_html: Za podrobnosti glejte <a href="%{terms_path}">politiko zasebnosti</a>.
       username_available: Vaše uporabniško ime bo znova na voljo
@@ -1422,6 +1477,7 @@ sl:
     authentication_methods:
       otp: aplikacija za dvoravenjsko overjanje
       password: geslo
+      sign_in_token: varnostna koda po e-pošti
       webauthn: varnostni ključi
     description_html: Če opazite dejavnost, ki je ne prepoznate kot svoje, razmislite o spremembi svojega gesla in omogočanju dvoravenskega overjanja.
     empty: Zgodovina overjanja ni na voljo
@@ -1432,6 +1488,16 @@ sl:
     unsubscribe:
       action: Da, odjavi me
       complete: Odjavljeni
+      confirmation_html: Ali se res želite odjaviti od prejemanja %{type} za Mastodon na %{domain} na svojo e-pošto %{email}? Kadarkoli se lahko znova prijavite iz svojih <a href="%{settings_path}">nastavitev e-poštnih obvestil</a>.
+      emails:
+        notification_emails:
+          favourite: e-sporočil z obvestili o priljubljenosti
+          follow: e-sporočil z obvestili o sledenju
+          follow_request: e-sporočil o zahtevah za sledenje
+          mention: e-sporočil z obvestili o omembah
+          reblog: e-sporočil z obvestili o izpostavljanju
+      resubscribe_html: Če ste se odjavili po pomoti, se lahko znova prijavite iz svojih <a href="%{settings_path}">nastavitev e-poštnih obvestil</a>.
+      success_html: Nič več ne boste prejemali %{type} za Mastodon na %{domain} na svoj e-naslov %{email}.
       title: Odjavi od naročnine
   media_attachments:
     validations:
@@ -1512,6 +1578,8 @@ sl:
     update:
       subject: "%{name} je uredil(a) objavo"
   notifications:
+    administration_emails: E-poštna obvestila skrbnika
+    email_events: Dogodki za e-obvestila
     email_events_hint: 'Izberite dogodke, za katere želite prejmati obvestila:'
   number:
     human:
@@ -1670,6 +1738,7 @@ sl:
     import: Uvozi
     import_and_export: Uvoz in izvoz
     migrate: Selitev računa
+    notifications: E-poštna obvestila
     preferences: Nastavitve
     profile: Profil
     relationships: Sledenja in sledilci
@@ -1930,6 +1999,7 @@ sl:
     invalid_otp_token: Neveljavna dvofaktorska koda
     otp_lost_help_html: Če ste izgubili dostop do obeh, stopite v stik z %{email}
     rate_limited: Preveč poskusov preverjanja pristnosti, poskusite kasneje.
+    seamless_external_login: Prijavljeni ste prek zunanje storitve, tako da nastavitve gesla in e-pošte niso na voljo.
     signed_in_as: 'Vpisani kot:'
   verification:
     extra_instructions_html: <strong>Nasvet:</strong> Povezava na vaši spletni strani je lahko nevidna. Pomembni del je atribut <code>rel="me"</code>, ki preprečuje lažno predstavljanje na spletnih straneh z uporabniško ustvarjeno vsebino. Namesto oznake <code>a</code> lahko uporabite tudi oznako <code>link</code> znotraj glave (<code>head</code>) spletne strani, vendar mora biti HTML dosegljiv brez izvajanja skript JavaScript.

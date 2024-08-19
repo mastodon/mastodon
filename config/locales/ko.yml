@@ -29,6 +29,7 @@ ko:
       created_msg: 중재 참고사항을 만들었습니다!
       destroyed_msg: 중재 참고사항을 지웠습니다!
     accounts:
+      add_email_domain_block: 이메일 도메인 차단
       approve: 허가
       approved_msg: 성공적으로 %{username}의 가입 신청서를 승인했습니다
       are_you_sure: 확실합니까?
@@ -55,6 +56,7 @@ ko:
       demote: 강등
       destroyed_msg: "%{username}의 데이터는 곧 삭제되도록 대기열에 들어갔습니다"
       disable: 동결
+      disable_sign_in_token_auth: 이메일 토큰 인증 비활성화
       disable_two_factor_authentication: 2단계 인증을 비활성화
       disabled: 동결됨
       display_name: 표시되는 이름
@@ -63,6 +65,7 @@ ko:
       email: 이메일
       email_status: 이메일 상태
       enable: 동결 해제
+      enable_sign_in_token_auth: 이메일 토큰 인증 활성화
       enabled: 활성
       enabled_msg: "%{username}의 동결을 성공적으로 해제 했습니다."
       followers: 팔로워
@@ -126,6 +129,7 @@ ko:
       resubscribe: 다시 구독
       role: 역할
       search: 검색
+      search_same_email_domain: 같은 이메일 도메인을 가진 다른 사용자들
       search_same_ip: 같은 IP의 다른 사용자들
       security: 보안
       security_measures:
@@ -166,21 +170,26 @@ ko:
         approve_appeal: 이의제기 승인
         approve_user: 사용자 승인
         assigned_to_self_report: 신고 맡기
+        change_email_user: 사용자 이메일 변경
         change_role_user: 사용자 역할 변경
         confirm_user: 사용자 확인
         create_account_warning: 경고 생성
         create_announcement: 공지사항 생성
+        create_canonical_email_block: 이메일 차단 생성
         create_custom_emoji: 커스텀 에모지 생성
         create_domain_allow: 도메인 허용 생성
         create_domain_block: 도메인 차단 추가
+        create_email_domain_block: 이메일 도메인 차단 생성
         create_ip_block: IP 규칙 만들기
         create_unavailable_domain: 사용 불가능한 도메인 생성
         create_user_role: 역할 생성
         demote_user: 사용자 강등
         destroy_announcement: 공지사항 삭제
+        destroy_canonical_email_block: 이메일 차단 삭제
         destroy_custom_emoji: 커스텀 에모지 삭제
         destroy_domain_allow: 도메인 허용 삭제
         destroy_domain_block: 도메인 차단 삭제
+        destroy_email_domain_block: 이메일 도메인 차단 삭제
         destroy_instance: 도메인 제거
         destroy_ip_block: IP 규칙 삭제
         destroy_status: 게시물 삭제
@@ -188,8 +197,10 @@ ko:
         destroy_user_role: 역할 삭제
         disable_2fa_user: 2단계 인증 비활성화
         disable_custom_emoji: 커스텀 에모지 비활성화
+        disable_sign_in_token_auth_user: 사용자의 이메일 토큰 인증 비활성화
         disable_user: 사용자 비활성화
         enable_custom_emoji: 커스텀 에모지 활성화
+        enable_sign_in_token_auth_user: 사용자의 이메일 토큰 인증 활성화
         enable_user: 사용자 활성화
         memorialize_account: 고인의 계정으로 전환
         promote_user: 사용자 승급
@@ -219,20 +230,26 @@ ko:
         approve_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의 제기를 승인했습니다"
         approve_user_html: "%{name} 님이 %{target} 님의 가입을 승인했습니다"
         assigned_to_self_report_html: "%{name} 님이 신고 %{target}을 자신에게 할당했습니다"
+        change_email_user_html: "%{name} 님이 %{target} 님의 이메일 주소를 변경했습니다"
         change_role_user_html: "%{name} 님이 %{target} 님의 역할을 수정했습니다"
+        confirm_user_html: "%{name} 님이 %{target} 님의 이메일 주소를 승인했습니다"
         create_account_warning_html: "%{name} 님이 %{target}에게 경고를 보냈습니다"
         create_announcement_html: "%{name} 님이 새 공지 %{target}을 만들었습니다"
+        create_canonical_email_block_html: "%{name} 님이 %{target} 해시를 가진 이메일을 차단했습니다"
         create_custom_emoji_html: "%{name} 님이 새로운 에모지 %{target}를 업로드 했습니다"
         create_domain_allow_html: "%{name} 님이 %{target} 도메인을 허용리스트에 넣었습니다"
         create_domain_block_html: "%{name} 님이 도메인 %{target}를 차단했습니다"
+        create_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}를 차단했습니다"
         create_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 만들었습니다"
         create_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 중지했습니다"
         create_user_role_html: "%{name} 님이 %{target} 역할을 생성했습니다"
         demote_user_html: "%{name} 님이 사용자 %{target} 님을 강등했습니다"
         destroy_announcement_html: "%{name} 님이 공지 %{target}을 삭제했습니다"
+        destroy_canonical_email_block_html: "%{name} 님이 %{target} 해시를 가진 이메일을 차단 해제했습니다"
         destroy_custom_emoji_html: "%{name} 님이 에모지 %{target}를 삭제했습니다"
         destroy_domain_allow_html: "%{name} 님이 %{target} 도메인과의 연합을 금지했습니다"
         destroy_domain_block_html: "%{name} 님이 도메인 %{target}의 차단을 해제했습니다"
+        destroy_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}을 차단 해제하였습니다"
         destroy_instance_html: "%{name} 님이 도메인 %{target}를 제거했습니다"
         destroy_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 삭제하였습니다"
         destroy_status_html: "%{name} 님이 %{target} 님의 게시물을 삭제했습니다"

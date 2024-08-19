@@ -1431,6 +1431,14 @@ sq:
     unsubscribe:
       action: Po, shpajtomëni
       complete: U shpajtuat
+      confirmation_html: Jeni i sigurt se doni të shpajtoheni nga marrje %{type} për Mastodon te %{domain} në email-in tuaj %{email}? Mundeni përherë të ripajtoheni që nga <a href="%{settings_path}">rregullimet tuaja për njoftime me email</a>.
+      emails:
+        notification_emails:
+          favourite: email-e njoftimesh parapëlqimesh
+          follow: email-e njoftimesh ndjekjeje
+          follow_request: email-e kërkesash ndjekjeje
+          mention: email-e njoftimesh përmendjesh
+          reblog: email-e njoftimesh përforcimesh
       resubscribe_html: Nëse u shpajtuat gabimisht, mund të ripajtoheni që nga <a href="%{settings_path}">rregullimet tuaja për njoftime me email</a>.
       success_html: S’do të merrni më %{type} për Mastodon te %{domain} në email-in tuaj te %{email}.
       title: Shpajtohuni
@@ -1513,6 +1521,8 @@ sq:
     update:
       subject: "%{name} përpunoi një postim"
   notifications:
+    administration_emails: Njoftime email përgjegjësi
+    email_events: Akte për njoftime email
     email_events_hint: 'Përzgjidhni akte për të cilët doni të merrni njoftime:'
   number:
     human:
@@ -1671,6 +1681,7 @@ sq:
     import: Importo
     import_and_export: Importim dhe eksportim
     migrate: Migrim llogarie
+    notifications: Njoftime me email
     preferences: Parapëlqime
     profile: Profil
     relationships: Ndjekje dhe ndjekës
