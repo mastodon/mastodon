@@ -1,4 +1,5 @@
-# This file is designed for production server deployment, not local development work
+# This is a Docker Compose file for deploying Mastodon. It is designed to be used with the `docker compose` command.
+# This file is designed as a starting point for your production server deployment, not local development work!
 # For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/README.md#docker
 
 # You should check the Docker image tag used for the web, sidekiq, and streaming containers to make sure you are running
@@ -8,7 +9,9 @@
 x-image-tag: &image-tag nightly
 
 services:
+  # This is the Mastodon web application. It serves the web interface and the REST API.
   web:
+    # Remove the comments from this `build` section if you need to build the image from source.
     # build:
     #   context: .
     #   dockerfile: Dockerfile
@@ -32,12 +35,10 @@ services:
       - '127.0.0.1:3000:3000'
     volumes:
       - ./public/system:/mastodon/public/system
-    depends_on:
-      - db
-      - redis
-      - es
 
+  # This is the Mastodon streaming API. It serves the streaming API used by the web interface.
   streaming:
+    # Remove the comments from this `build` section if you need to build the image from source.
     # build:
     #   context: ./streaming
     #   dockerfile: Dockerfile
@@ -59,11 +60,10 @@ services:
       - internal_network
     ports:
       - '127.0.0.1:4000:4000'
-    depends_on:
-      - db
-      - redis
 
+  # This is the Mastodon background worker. It processes jobs such fetching posts from other servers and sending e-mails.
   sidekiq:
+    # Remove the comments from this `build` section if you need to build the image from source.
     # build:
     #   context: .
     #   dockerfile: Dockerfile
@@ -78,68 +78,11 @@ services:
       - internal_network
     volumes:
       - ./public/system:/mastodon/public/system
-    depends_on:
-      - db
-      - redis
-      - es
 
-  db:
-    image: postgres:16-alpine
-    restart: always
-    healthcheck:
-      test: ['CMD', 'pg_isready', '-U', 'postgres']
-    shm_size: 256mb
-    networks:
-      - internal_network
-    volumes:
-      - ./postgres16:/var/lib/postgresql/data
-    environment:
-      - 'POSTGRES_HOST_AUTH_METHOD=trust'
-
-  redis:
-    restart: always
-    image: redis:7-alpine
-    healthcheck:
-      test: ['CMD', 'redis-cli', 'ping']
-    networks:
-      - internal_network
-    volumes:
-      - ./redis:/data
-
-  es:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.23
-    environment:
-      - 'ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true'
-      - 'xpack.license.self_generated.type=basic'
-      - 'xpack.security.enabled=false'
-      - 'xpack.watcher.enabled=false'
-      - 'xpack.graph.enabled=false'
-      - 'xpack.ml.enabled=false'
-      - 'bootstrap.memory_lock=true'
-      - 'cluster.name=es-mastodon'
-      - 'discovery.type=single-node'
-      - 'thread_pool.write.queue_size=1000'
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-      nofile:
-        soft: 65536
-        hard: 65536
-    restart: always
-    healthcheck:
-      test:
-        [
-          'CMD-SHELL',
-          'curl --silent --fail localhost:9200/_cluster/health || exit 1',
-        ]
-    networks:
-      - external_network
-      - internal_network
-    ports:
-      - '127.0.0.1:9200:9200'
-    volumes:
-      - ./elasticsearch:/usr/share/elasticsearch/data
+# Mastodon requires Redis for caching and Sidekiq job processing, and PostgreSQL for data storage.
+# Elasticsearch is optional but recommended for better search functionality.
+# Nginx is required for securely serving the web interface and streaming API to users.
+# You can use the official images for these services. Please refer to their documentation for more information.
 
 networks:
   external_network:
