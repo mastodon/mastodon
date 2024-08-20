@@ -11,7 +11,6 @@
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
-    = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
     = theme_style_tags Setting.theme # Use the admin-configured theme here, even if logged in
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
     = preload_pack_asset "locale/#{I18n.locale}-json.js"
