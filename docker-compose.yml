@@ -33,6 +33,7 @@ services:
       - internal_network
     ports:
       - '127.0.0.1:3000:3000'
+    # S3 is optional but recommended for storing user-uploaded media files.
     volumes:
       - ./public/system:/mastodon/public/system
 
@@ -76,12 +77,13 @@ services:
     networks:
       - external_network
       - internal_network
+    # S3 is optional but recommended for storing user-uploaded media files.
     volumes:
       - ./public/system:/mastodon/public/system
 
 # Mastodon requires Redis for caching and Sidekiq job processing, and PostgreSQL for data storage.
-# Elasticsearch is optional but recommended for better search functionality.
 # Nginx is required for securely serving the web interface and streaming API to users.
+# Elasticsearch is optional but recommended for better search functionality.
 # You can use the official images for these services. Please refer to their documentation for more information.
 
 networks:
