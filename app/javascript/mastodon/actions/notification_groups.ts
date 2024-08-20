@@ -103,6 +103,18 @@ export const fetchNotificationsGap = createDataLoadingThunk(
   },
 );
 
+export const pollRecentNotifications = createDataLoadingThunk(
+  'notificationGroups/pollRecentNotifications',
+  async () => apiFetchNotifications({ max_id: undefined }),
+  ({ notifications, accounts, statuses }, { dispatch }) => {
+    dispatch(importFetchedAccounts(accounts));
+    dispatch(importFetchedStatuses(statuses));
+    dispatchAssociatedRecords(dispatch, notifications);
+
+    return { notifications };
+  },
+);
+
 export const processNewNotificationForGroups = createAppAsyncThunk(
   'notificationGroups/processNew',
   (notification: ApiNotificationJSON, { dispatch, getState }) => {
