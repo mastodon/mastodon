@@ -19,26 +19,15 @@ const labelRenderer: LabelRenderer = (displayedName, total, seeMoreHref) => {
       />
     );
 
-  if (seeMoreHref)
-    return (
-      <FormattedMessage
-        id='notification.reblog.name_and_others_with_link'
-        defaultMessage='{name} and <a>{count, plural, one {# other} other {# others}}</a> boosted your post'
-        values={{
-          name: displayedName,
-          count: total - 1,
-          a: (chunks) => <Link to={seeMoreHref}>{chunks}</Link>,
-        }}
-      />
-    );
-
   return (
     <FormattedMessage
-      id='notification.reblog.name_and_others'
-      defaultMessage='{name} and {count, plural, one {# other} other {# others}} boosted your post'
+      id='notification.reblog.name_and_others_with_link'
+      defaultMessage='{name} and <a>{count, plural, one {# other} other {# others}}</a> boosted your post'
       values={{
         name: displayedName,
         count: total - 1,
+        a: (chunks) =>
+          seeMoreHref ? <Link to={seeMoreHref}>{chunks}</Link> : chunks,
       }}
     />
   );
