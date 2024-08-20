@@ -9,13 +9,13 @@
 - if @strike.overruled?
   %p.hint
     %span.positive-hint
-      = fa_icon 'check'
+      = material_symbol 'check'
       &nbsp;
       = t 'disputes.strikes.appeal_approved'
 - elsif @appeal.persisted? && @appeal.rejected?
   %p.hint
     %span.negative-hint
-      = fa_icon 'times'
+      = material_symbol 'close'
       &nbsp;
       = t 'disputes.strikes.appeal_rejected'
 

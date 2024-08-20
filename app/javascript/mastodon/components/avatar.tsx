@@ -11,6 +11,8 @@ interface Props {
   style?: React.CSSProperties;
   inline?: boolean;
   animate?: boolean;
+  counter?: number | string;
+  counterBorderColor?: string;
 }
 
 export const Avatar: React.FC<Props> = ({
@@ -19,6 +21,8 @@ export const Avatar: React.FC<Props> = ({
   size = 20,
   inline = false,
   style: styleFromParent,
+  counter,
+  counterBorderColor,
 }) => {
   const { hovering, handleMouseEnter, handleMouseLeave } = useHovering(animate);
 
@@ -43,6 +47,14 @@ export const Avatar: React.FC<Props> = ({
       style={style}
     >
       {src && <img src={src} alt='' />}
+      {counter && (
+        <div
+          className='account__avatar__counter'
+          style={{ borderColor: counterBorderColor }}
+        >
+          {counter}
+        </div>
+      )}
     </div>
   );
 };

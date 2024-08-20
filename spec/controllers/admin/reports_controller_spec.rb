@@ -64,7 +64,7 @@ describe Admin::ReportsController do
 
   describe 'POST #reopen' do
     it 'reopens the report' do
-      report = Fabricate(:report)
+      report = Fabricate(:report, action_taken_at: 3.days.ago)
 
       put :reopen, params: { id: report }
       expect(response).to redirect_to(admin_report_path(report))
@@ -89,7 +89,7 @@ describe Admin::ReportsController do
 
   describe 'POST #unassign' do
     it 'reopens the report' do
-      report = Fabricate(:report)
+      report = Fabricate(:report, assigned_account_id: Account.last.id)
 
       put :unassign, params: { id: report }
       expect(response).to redirect_to(admin_report_path(report))

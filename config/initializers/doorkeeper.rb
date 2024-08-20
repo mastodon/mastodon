@@ -74,7 +74,8 @@ Doorkeeper.configure do
   # For more information go to
   # https://github.com/doorkeeper-gem/doorkeeper/wiki/Using-Scopes
   default_scopes  :read
-  optional_scopes :write,
+  optional_scopes :profile,
+                  :write,
                   :'write:accounts',
                   :'write:blocks',
                   :'write:bookmarks',
@@ -89,7 +90,6 @@ Doorkeeper.configure do
                   :'write:reports',
                   :'write:statuses',
                   :read,
-                  :'read:me',
                   :'read:accounts',
                   :'read:blocks',
                   :'read:bookmarks',
@@ -147,7 +147,7 @@ Doorkeeper.configure do
   force_ssl_in_redirect_uri false
 
   # Specify what redirect URI's you want to block during Application creation.
-  # Any redirect URI is whitelisted by default.
+  # Any redirect URI is allowed by default.
   #
   # You can use this option in order to forbid URI's with 'javascript' scheme
   # for example.

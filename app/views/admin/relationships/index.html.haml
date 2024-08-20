@@ -24,7 +24,7 @@
 
 %hr.spacer/
 
-= form_for(@form, url: batch_admin_accounts_path) do |f|
+= form_with model: @form, url: batch_admin_accounts_path do |f|
   .batch-table
     .batch-table__toolbar
       %label.batch-table__toolbar__select.batch-checkbox-all

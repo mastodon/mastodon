@@ -37,25 +37,18 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController do
       let(:body) { body_as_json }
       let(:remote_account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/instance') }
 
-      it 'returns http success' do
+      it 'returns http success and cache control and activity json types and correct items' do
         expect(response).to have_http_status(200)
-      end
-
-      it 'returns application/activity+json' do
-        expect(response.media_type).to eq 'application/activity+json'
-      end
-
-      it 'returns orderedItems with followers from example.com' do
-        expect(body[:orderedItems]).to be_an Array
-        expect(body[:orderedItems]).to contain_exactly(
-          follower_example_com_instance_actor.uri,
-          follower_example_com_user_a.uri,
-          follower_example_com_user_b.uri
-        )
-      end
-
-      it 'returns private Cache-Control header' do
         expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
+        expect(response.media_type).to eq 'application/activity+json'
+
+        expect(body[:orderedItems])
+          .to be_an(Array)
+          .and contain_exactly(
+            follower_example_com_instance_actor.uri,
+            follower_example_com_user_a.uri,
+            follower_example_com_user_b.uri
+          )
       end
 
       context 'when account is permanently suspended' do

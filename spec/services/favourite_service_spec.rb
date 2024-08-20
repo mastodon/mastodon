@@ -33,7 +33,7 @@ RSpec.describe FavouriteService do
       expect(status.favourites.first).to_not be_nil
     end
 
-    it 'sends a like activity', :sidekiq_inline do
+    it 'sends a like activity', :inline_jobs do
       expect(a_request(:post, 'http://example.com/inbox')).to have_been_made.once
     end
   end

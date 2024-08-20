@@ -26,6 +26,7 @@ import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import FollowRequestContainer from '../containers/follow_request_container';
 
+import { ModerationWarning } from './moderation_warning';
 import { RelationshipsSeveranceEvent } from './relationships_severance_event';
 import Report from './report';
 
@@ -33,13 +34,14 @@ const messages = defineMessages({
   favourite: { id: 'notification.favourite', defaultMessage: '{name} favorited your status' },
   follow: { id: 'notification.follow', defaultMessage: '{name} followed you' },
   ownPoll: { id: 'notification.own_poll', defaultMessage: 'Your poll has ended' },
-  poll: { id: 'notification.poll', defaultMessage: 'A poll you have voted in has ended' },
+  poll: { id: 'notification.poll', defaultMessage: 'A poll you voted in has ended' },
   reblog: { id: 'notification.reblog', defaultMessage: '{name} boosted your status' },
   status: { id: 'notification.status', defaultMessage: '{name} just posted' },
   update: { id: 'notification.update', defaultMessage: '{name} edited a post' },
   adminSignUp: { id: 'notification.admin.sign_up', defaultMessage: '{name} signed up' },
   adminReport: { id: 'notification.admin.report', defaultMessage: '{name} reported {target}' },
   relationshipsSevered: { id: 'notification.relationships_severance_event', defaultMessage: 'Lost connections with {name}' },
+  moderationWarning: { id: 'notification.moderation_warning', defaultMessage: 'You have received a moderation warning' },
 });
 
 const notificationForScreenReader = (intl, message, timestamp) => {
@@ -99,7 +101,7 @@ class Notification extends ImmutablePureComponent {
     e.preventDefault();
 
     const { notification, onMention } = this.props;
-    onMention(notification.get('account'), this.props.history);
+    onMention(notification.get('account'));
   };
 
   handleHotkeyFavourite = () => {
@@ -338,7 +340,7 @@ class Notification extends ImmutablePureComponent {
               {ownPoll ? (
                 <FormattedMessage id='notification.own_poll' defaultMessage='Your poll has ended' />
               ) : (
-                <FormattedMessage id='notification.poll' defaultMessage='A poll you have voted in has ended' />
+                <FormattedMessage id='notification.poll' defaultMessage='A poll you voted in has ended' />
               )}
             </span>
           </div>
@@ -383,6 +385,27 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
+  renderModerationWarning (notification) {
+    const { intl, unread, hidden } = this.props;
+    const warning = notification.get('moderation_warning');
+
+    if (!warning) {
+      return null;
+    }
+
+    return (
+      <HotKeys handlers={this.getHandlers()}>
+        <div className={classNames('notification notification-moderation-warning focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.moderationWarning), notification.get('created_at'))}>
+          <ModerationWarning
+            action={warning.get('action')}
+            id={warning.get('id')}
+            hidden={hidden}
+          />
+        </div>
+      </HotKeys>
+    );
+  }
+
   renderAdminSignUp (notification, account, link) {
     const { intl, unread } = this.props;
 
@@ -412,7 +435,7 @@ class Notification extends ImmutablePureComponent {
 
     const targetAccount = report.get('target_account');
     const targetDisplayNameHtml = { __html: targetAccount.get('display_name_html') };
-    const targetLink = <bdi><Link className='notification__display-name' title={targetAccount.get('acct')} to={`/@${targetAccount.get('acct')}`} dangerouslySetInnerHTML={targetDisplayNameHtml} /></bdi>;
+    const targetLink = <bdi><Link className='notification__display-name' title={targetAccount.get('acct')} data-hover-card-account={targetAccount.get('id')} to={`/@${targetAccount.get('acct')}`} dangerouslySetInnerHTML={targetDisplayNameHtml} /></bdi>;
 
     return (
       <HotKeys handlers={this.getHandlers()}>
@@ -435,7 +458,7 @@ class Notification extends ImmutablePureComponent {
     const { notification } = this.props;
     const account          = notification.get('account');
     const displayNameHtml  = { __html: account.get('display_name_html') };
-    const link             = <bdi><Link className='notification__display-name' href={`/@${account.get('acct')}`} title={account.get('acct')} to={`/@${account.get('acct')}`} dangerouslySetInnerHTML={displayNameHtml} /></bdi>;
+    const link             = <bdi><Link className='notification__display-name' href={`/@${account.get('acct')}`} title={account.get('acct')} data-hover-card-account={account.get('id')} to={`/@${account.get('acct')}`} dangerouslySetInnerHTML={displayNameHtml} /></bdi>;
 
     switch(notification.get('type')) {
     case 'follow':
@@ -456,6 +479,8 @@ class Notification extends ImmutablePureComponent {
       return this.renderPoll(notification, account);
     case 'severed_relationships':
       return this.renderRelationshipsSevered(notification);
+    case 'moderation_warning':
+      return this.renderModerationWarning(notification);
     case 'admin.sign_up':
       return this.renderAdminSignUp(notification, account, link);
     case 'admin.report':

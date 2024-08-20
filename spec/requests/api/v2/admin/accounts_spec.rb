@@ -8,7 +8,6 @@ RSpec.describe 'API V2 Admin Accounts' do
   let(:scopes) { 'admin:read admin:write' }
   let(:token)  { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
-  let(:account) { Fabricate(:account) }
 
   describe 'GET #index' do
     let!(:remote_account)       { Fabricate(:account, domain: 'example.org') }
@@ -84,7 +83,8 @@ RSpec.describe 'API V2 Admin Accounts' do
       let(:params) { { limit: 1 } }
 
       it 'sets the correct pagination headers' do
-        expect(response.headers['Link'].find_link(%w(rel next)).href).to eq api_v2_admin_accounts_url(limit: 1, max_id: admin_account.id)
+        expect(response)
+          .to include_pagination_headers(next: api_v2_admin_accounts_url(limit: 1, max_id: admin_account.id))
       end
     end
   end

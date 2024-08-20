@@ -86,9 +86,7 @@ Rails.application.configure do
   config.lograge.enabled = true
 
   config.lograge.custom_payload do |controller|
-    if controller.respond_to?(:signed_request?) && controller.signed_request?
-      { key: controller.signature_key_id }
-    end
+    { key: controller.signature_key_id } if controller.respond_to?(:signed_request?) && controller.signed_request?
   end
 
   # Use a different logger for distributed setups.
@@ -96,7 +94,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
   # Log to STDOUT by default
-  config.logger = ActiveSupport::Logger.new(STDOUT)
+  config.logger = ActiveSupport::Logger.new($stdout)
                                        .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
                                        .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
 
@@ -157,7 +155,12 @@ Rails.application.configure do
     'Referrer-Policy' => 'same-origin',
   }
 
-  config.x.otp_secret = ENV.fetch('OTP_SECRET')
+  # TODO: Remove once devise-two-factor data migration complete
+  config.x.otp_secret = if ENV['SECRET_KEY_BASE_DUMMY']
+                          SecureRandom.hex(64)
+                        else
+                          ENV.fetch('OTP_SECRET')
+                        end
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [

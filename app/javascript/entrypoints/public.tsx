@@ -65,7 +65,7 @@ window.addEventListener('message', (e) => {
       {
         type: 'setHeight',
         id: data.id,
-        height: document.getElementsByTagName('html')[0].scrollHeight,
+        height: document.getElementsByTagName('html')[0]?.scrollHeight,
       },
       '*',
     );
@@ -135,7 +135,7 @@ function loaded() {
     );
   };
   const todayFormat = new IntlMessageFormat(
-    localeData['relative_format.today'] || 'Today at {time}',
+    localeData['relative_format.today'] ?? 'Today at {time}',
     locale,
   );
 
@@ -288,13 +288,13 @@ function loaded() {
       if (statusEl.dataset.spoiler === 'expanded') {
         statusEl.dataset.spoiler = 'folded';
         this.textContent = new IntlMessageFormat(
-          localeData['status.show_more'] || 'Show more',
+          localeData['status.show_more'] ?? 'Show more',
           locale,
         ).format() as string;
       } else {
         statusEl.dataset.spoiler = 'expanded';
         this.textContent = new IntlMessageFormat(
-          localeData['status.show_less'] || 'Show less',
+          localeData['status.show_less'] ?? 'Show less',
           locale,
         ).format() as string;
       }
@@ -316,8 +316,8 @@ function loaded() {
 
       const message =
         statusEl.dataset.spoiler === 'expanded'
-          ? localeData['status.show_less'] || 'Show less'
-          : localeData['status.show_more'] || 'Show more';
+          ? (localeData['status.show_less'] ?? 'Show less')
+          : (localeData['status.show_more'] ?? 'Show more');
       spoilerLink.textContent = new IntlMessageFormat(
         message,
         locale,
@@ -430,6 +430,42 @@ Rails.delegate(document, 'img.custom-emoji', 'mouseout', ({ target }) => {
   if (target instanceof HTMLImageElement && target.dataset.static)
     target.src = target.dataset.static;
 });
+
+const setInputDisabled = (
+  input: HTMLInputElement | HTMLSelectElement,
+  disabled: boolean,
+) => {
+  input.disabled = disabled;
+
+  const wrapper = input.closest('.with_label');
+  if (wrapper) {
+    wrapper.classList.toggle('disabled', input.disabled);
+
+    const hidden =
+      input.type === 'checkbox' &&
+      wrapper.querySelector<HTMLInputElement>('input[type=hidden][value="0"]');
+    if (hidden) {
+      hidden.disabled = input.disabled;
+    }
+  }
+};
+
+Rails.delegate(
+  document,
+  '#account_statuses_cleanup_policy_enabled',
+  'change',
+  ({ target }) => {
+    if (!(target instanceof HTMLInputElement) || !target.form) return;
+
+    target.form
+      .querySelectorAll<
+        HTMLInputElement | HTMLSelectElement
+      >('input:not([type=hidden], #account_statuses_cleanup_policy_enabled), select')
+      .forEach((input) => {
+        setInputDisabled(input, !target.checked);
+      });
+  },
+);
 
 // Empty the honeypot fields in JS in case something like an extension
 // automatically filled them.

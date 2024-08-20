@@ -13,10 +13,10 @@ export const MUTES_EXPAND_SUCCESS = 'MUTES_EXPAND_SUCCESS';
 export const MUTES_EXPAND_FAIL    = 'MUTES_EXPAND_FAIL';
 
 export function fetchMutes() {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(fetchMutesRequest());
 
-    api(getState).get('/api/v1/mutes').then(response => {
+    api().get('/api/v1/mutes').then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedAccounts(response.data));
       dispatch(fetchMutesSuccess(response.data, next ? next.uri : null));
@@ -56,7 +56,7 @@ export function expandMutes() {
 
     dispatch(expandMutesRequest());
 
-    api(getState).get(url).then(response => {
+    api().get(url).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedAccounts(response.data));
       dispatch(expandMutesSuccess(response.data, next ? next.uri : null));

@@ -77,13 +77,13 @@ lv:
           warn: Paslēp filtrēto saturu aiz brīdinājuma, kurā minēts filtra nosaukums
       form_admin_settings:
         activity_api_enabled: Vietēji publicēto ziņu, aktīvo lietotāju un jauno reģistrāciju skaits nedēļas kopās
-        backups_retention_period: Saglabā ģenerētos lietotāju arhīvus norādīto dienu skaitā.
+        app_icon: WEBP, PNG, GIF vai JPG. Mobilajās ierīcēs aizstāj noklusējuma lietotnes ikonu ar pielāgotu.
+        backups_retention_period: Lietotājiem ir iespēja izveidot savu ierakstu arhīvu lejupielādēšanai vēlāk. Kad iestatīta pozitīva vērtība, šie arhīvi tiks automātiski izdzēsti no krātuves pēc norādītā dienu skaita.
         bootstrap_timeline_accounts: Šie konti tiks piesprausti jauno lietotāju ieteikumu augšdaļā.
         closed_registrations_message: Tiek rādīts, kad reģistrēšanās ir slēgta
-        content_cache_retention_period: Ziņas no citiem serveriem tiks dzēstas pēc norādītā dienu skaita, ja ir iestatīta pozitīva vērtība. Tas var būt neatgriezeniski.
         custom_css: Vari lietot pielāgotus stilus Mastodon tīmekļa versijā.
+        favicon: WEBP, PNG, GIF vai JPG. Aizstāj noklusējuma Mastodon favikonu ar pielāgotu.
         mascot: Ignorē ilustrāciju uzlabotajā tīmekļa saskarnē.
-        media_cache_retention_period: Lejupielādētie multivides faili tiks dzēsti pēc norādītā dienu skaita, kad tie būs iestatīti uz pozitīvu vērtību, un pēc pieprasījuma tiks lejupielādēti atkārtoti.
         peers_api_enabled: Domēna vārdu saraksts, ar kuriem šis serveris ir saskāries fediversā. Šeit nav iekļauti dati par to, vai tu veic federāciju ar noteiktu serveri, tikai tavs serveris par to zina. To izmanto dienesti, kas apkopo statistiku par federāciju vispārīgā nozīmē.
         profile_directory: Profilu direktorijā ir uzskaitīti visi lietotāji, kuri ir izvēlējušies būt atklājami.
         require_invite_text: 'Ja pierakstīšanai nepieciešama manuāla apstiprināšana, izdari tā, lai teksta: “Kāpēc vēlaties pievienoties?” ievade ir obligāta, nevis opcionāla'
@@ -116,6 +116,7 @@ lv:
           sign_up_requires_approval: Jaunām reģistrācijām būs nepieciešams tavs apstiprinājums
         severity: Izvēlies, kas notiks ar pieprasījumiem no šīs IP adreses
       rule:
+        hint: Izvēles. Sniedz vairāk informācijas par nosacījumu
         text: Apraksti nosacījumus vai prasības šī servera lietotājiem. Centies, lai tas būtu īss un vienkāršs
       sessions:
         otp: 'Ievadi divfaktoru kodu, ko ģenerējusi tava tālruņa lietotne, vai izmanto kādu no atkopšanas kodiem:'
@@ -242,7 +243,7 @@ lv:
         backups_retention_period: Lietotāja arhīva glabāšanas periods
         bootstrap_timeline_accounts: Vienmēr iesaki šos kontus jaunajiem lietotājiem
         closed_registrations_message: Pielāgots ziņojums, ja reģistrēšanās nav pieejama
-        content_cache_retention_period: Satura arhīva glabāšanas periods
+        content_cache_retention_period: Attālā satura paturēšanas laika posms
         custom_css: Pielāgots CSS
         mascot: Pielāgots talismans (mantots)
         media_cache_retention_period: Multivides kešatmiņas saglabāšanas periods
@@ -299,6 +300,7 @@ lv:
           patch: Paziņot par novērsto kļūdu atjauninājumiem
         trending_tag: Jaunā tendence ir jāpārskata
       rule:
+        hint: Papildu informācija
         text: Noteikumi
       settings:
         indexable: Ietvert profila lapu meklēšanas dzinējos
@@ -307,7 +309,6 @@ lv:
         listable: Atļaut šim tēmturim parādīties meklējumos un ieteikumos
         name: Tēmturis
         trendable: Atļaut šim tēmturim parādīties zem tendencēm
-        usable: Atļaut lietot ziņās šo tēmturi
       user:
         role: Loma
         time_zone: Laika josla

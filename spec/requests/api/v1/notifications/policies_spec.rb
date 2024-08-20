@@ -8,7 +8,7 @@ RSpec.describe 'Policies' do
   let(:scopes)  { 'read:notifications write:notifications' }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  describe 'GET /api/v1/notifications/policy', :sidekiq_inline do
+  describe 'GET /api/v1/notifications/policy', :inline_jobs do
     subject do
       get '/api/v1/notifications/policy', headers: headers, params: params
     end
@@ -51,7 +51,7 @@ RSpec.describe 'Policies' do
 
     it 'changes notification policy and returns an updated json object', :aggregate_failures do
       expect { subject }
-        .to change { NotificationPolicy.find_or_initialize_by(account: user.account).filter_not_following }.from(false).to(true)
+        .to change { NotificationPolicy.find_or_initialize_by(account: user.account).for_not_following.to_sym }.from(:accept).to(:filter)
 
       expect(response).to have_http_status(200)
       expect(body_as_json).to include(

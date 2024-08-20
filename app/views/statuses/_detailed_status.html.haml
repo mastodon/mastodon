@@ -11,7 +11,7 @@
           %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true, autoplay: prefers_autoplay?)
         %span.display-name__account
           = acct(status.account)
-          = fa_icon('lock') if status.account.locked?
+          = material_symbol('lock') if status.account.locked?
 
   = account_action_button(status.account)
 
@@ -58,20 +58,20 @@
       ·
     %span.detailed-status__link
       - if status.in_reply_to_id.nil?
-        = fa_icon('reply')
+        = material_symbol('reply')
       - else
-        = fa_icon('reply-all')
+        = material_symbol('reply_all')
       %span.detailed-status__reblogs>= friendly_number_to_human status.replies_count
       &nbsp;
     ·
     - if status.public_visibility? || status.unlisted_visibility?
       %span.detailed-status__link
-        = fa_icon('retweet')
+        = material_symbol('repeat')
         %span.detailed-status__reblogs>= friendly_number_to_human status.reblogs_count
         &nbsp;
       ·
     %span.detailed-status__link
-      = fa_icon('star')
+      = material_symbol('star')
       %span.detailed-status__favorites>= friendly_number_to_human status.favourites_count
       &nbsp;
 

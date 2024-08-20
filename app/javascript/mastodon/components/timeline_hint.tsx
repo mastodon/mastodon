@@ -1,12 +1,15 @@
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
+
 interface Props {
   resource: JSX.Element;
   url: string;
+  className?: string;
 }
 
-export const TimelineHint: React.FC<Props> = ({ resource, url }) => (
-  <div className='timeline-hint'>
+export const TimelineHint: React.FC<Props> = ({ className, resource, url }) => (
+  <div className={classNames('timeline-hint', className)}>
     <strong>
       <FormattedMessage
         id='timeline_hint.remote_resource_not_displayed'

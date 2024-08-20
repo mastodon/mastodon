@@ -134,13 +134,10 @@ ka:
       undo: უკუქცევა
     email_domain_blocks:
       add_new: ახლის დამატება
-      created_msg: ელ-ფოსტის დომენი წარმატებით დაემატა შავ სიას
       delete: გაუქმება
       domain: დომენი
       new:
         create: დომენის დამატება
-        title: ელ-ფოსტის ახალი შენატანი შავ სიაში
-      title: ელ-ფოსტის შავი სია
     instances:
       title: ცნობილი ინსტანციები
     invites:
@@ -203,8 +200,6 @@ ka:
       body_remote: ვიღაცამ %{domain}-იდან დაარეპორტა %{target}
       subject: ახალი რეპორტი %{instance} (#%{id})-ზე
   application_mailer:
-    notification_preferences: შეცვალეთ ელ-ფოსტის პრეფერნსიები
-    settings: 'შეცვალეთ ელ-ფოსტის პრეფერენსიები: %{link}'
     view: 'ჩვენება:'
     view_profile: პროფილის ჩვენება
     view_status: სტატუსის ჩვენება
@@ -475,5 +470,4 @@ ka:
   users:
     invalid_otp_token: არასწორი მეორე ფაქტორის კოდი
     otp_lost_help_html: თუ დაკარგეთ წვდომა ორივეზე, შესაძლოა დაუკავშირდეთ %{email}-ს
-    seamless_external_login: შესული ხართ გარე სერვისით, აქედან გამომდინარე პაროლი და ელ-ფოსტის მისამართი არაა ხელმისაწვდომი.
     signed_in_as: 'შესული ხართ როგორც:'

@@ -107,8 +107,8 @@ namespace :tests do
       end
 
       policy = NotificationPolicy.find_by(account: User.find(1).account)
-      unless policy.filter_private_mentions == false && policy.filter_not_following == true
-        puts 'Notification policy not migrated as expected'
+      unless policy.for_private_mentions == 'accept' && policy.for_not_following == 'filter'
+        puts "Notification policy not migrated as expected: #{policy.for_private_mentions.inspect}, #{policy.for_not_following.inspect}"
         exit(1)
       end
 
@@ -124,6 +124,23 @@ namespace :tests do
 
       unless AccountAlias.where(account_id: 1, uri: 'https://example.com/users/foobar').count == 1
         puts 'Account aliases not deduplicated as expected'
+        exit(1)
+      end
+
+      # This is checking the attribute rather than the method, to avoid the legacy fallback
+      # and ensure the data has been migrated
+      unless Account.find_local('qcuser').user[:otp_secret] == 'anotpsecretthatshouldbeencrypted'
+        puts 'OTP secret for user not preserved as expected'
+        exit(1)
+      end
+
+      unless Doorkeeper::Application.find(2)[:scopes] == 'write:accounts profile'
+        puts 'Application OAuth scopes not rewritten as expected'
+        exit(1)
+      end
+
+      unless Doorkeeper::Application.find(2).access_tokens.first[:scopes] == 'write:accounts profile'
+        puts 'OAuth access token scopes not rewritten as expected'
         exit(1)
       end
 
@@ -144,6 +161,23 @@ namespace :tests do
         VALUES
           (1, 'https://example.com/users/foobar', 'foobar@example.com', now(), now()),
           (1, 'https://example.com/users/foobar', 'foobar@example.com', now(), now());
+
+        /* Doorkeeper records
+           While the `read:me` scope was technically not valid in 3.3.0,
+           it is still useful for the purposes of testing the `ChangeReadMeScopeToProfile`
+           migration.
+        */
+
+        INSERT INTO "oauth_applications"
+          (id, name, uid, secret, redirect_uri, scopes, created_at, updated_at)
+        VALUES
+          (2, 'foo', 'foo', 'foo', 'https://example.com/#foo', 'write:accounts read:me', now(), now()),
+          (3, 'bar', 'bar', 'bar', 'https://example.com/#bar', 'read:me', now(), now());
+
+        INSERT INTO "oauth_access_tokens"
+          (token, application_id, scopes, resource_owner_id, created_at)
+        VALUES
+          ('secret', 2, 'write:accounts read:me', 4, now());
       SQL
     end
 
@@ -213,9 +247,15 @@ namespace :tests do
           (4, 10, 'kmruser@localhost', now(), now(), false, 'ku', '{en,kmr,ku,ckb}');
 
         INSERT INTO "users"
-          (id, account_id, email, created_at, updated_at, locale)
+          (id, account_id, email, created_at, updated_at, locale,
+           encrypted_otp_secret, encrypted_otp_secret_iv, encrypted_otp_secret_salt,
+           otp_required_for_login)
         VALUES
-          (5, 11, 'qcuser@localhost', now(), now(), 'fr-QC');
+          (5, 11, 'qcuser@localhost', now(), now(), 'fr-QC',
+           E'Fttsy7QAa0edaDfdfSz094rRLAxc8cJweDQ4BsWH/zozcdVA8o9GLqcKhn2b\nGi/V\n',
+           'rys3THICkr60BoWC',
+           '_LMkAGvdg7a+sDIKjI3mR2Q==',
+           true);
 
         INSERT INTO "settings"
           (id, thing_type, thing_id, var, value, created_at, updated_at)

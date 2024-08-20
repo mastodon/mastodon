@@ -16,8 +16,6 @@ class Auth::SessionsController < Devise::SessionsController
 
   include Auth::TwoFactorAuthenticationConcern
 
-  before_action :set_body_classes
-
   content_security_policy only: :new do |p|
     p.form_action(false)
   end
@@ -102,10 +100,6 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   private
-
-  def set_body_classes
-    @body_classes = 'lighter'
-  end
 
   def home_paths(resource)
     paths = [about_path, '/explore']
@@ -192,5 +186,16 @@ class Auth::SessionsController < Devise::SessionsController
 
   def second_factor_attempts_key(user)
     "2fa_auth_attempts:#{user.id}:#{Time.now.utc.hour}"
+  end
+
+  def respond_to_on_destroy
+    respond_to do |format|
+      format.json do
+        render json: {
+          redirect_to: after_sign_out_path_for(resource_name),
+        }, status: 200
+      end
+      format.all { super }
+    end
   end
 end
