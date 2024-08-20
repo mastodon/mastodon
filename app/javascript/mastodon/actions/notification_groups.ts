@@ -11,6 +11,7 @@ import type {
 } from 'mastodon/api_types/notifications';
 import { allNotificationTypes } from 'mastodon/api_types/notifications';
 import type { ApiStatusJSON } from 'mastodon/api_types/statuses';
+import { usePendingItems } from 'mastodon/initial_state';
 import type { NotificationGap } from 'mastodon/reducers/notification_groups';
 import {
   selectSettingsNotificationsExcludedTypes,
@@ -105,7 +106,17 @@ export const fetchNotificationsGap = createDataLoadingThunk(
 
 export const pollRecentNotifications = createDataLoadingThunk(
   'notificationGroups/pollRecentNotifications',
-  async () => apiFetchNotifications({ max_id: undefined }),
+  async (_params, { getState }) => {
+    return apiFetchNotifications({
+      max_id: undefined,
+      // In slow mode, we don't want to include notifications that duplicate the already-displayed ones
+      since_id: usePendingItems
+        ? getState().notificationGroups.groups.find(
+            (group) => group.type !== 'gap',
+          )?.page_max_id
+        : undefined,
+    });
+  },
   ({ notifications, accounts, statuses }, { dispatch }) => {
     dispatch(importFetchedAccounts(accounts));
     dispatch(importFetchedStatuses(statuses));
