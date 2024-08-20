@@ -762,16 +762,6 @@ body > [data-popper-placement] {
     gap: 12px;
     flex-wrap: wrap;
 
-    .button {
-      display: block; // Otherwise text-ellipsis doesn't work
-      font-size: 14px;
-      line-height: normal;
-      font-weight: 700;
-      flex: 1 1 auto;
-      padding: 5px 12px;
-      border-radius: 4px;
-    }
-
     .icon-button {
       box-sizing: content-box;
       color: $highlight-text-color;
@@ -10530,8 +10520,10 @@ noscript {
     }
 
     &__additional-content {
-      color: $darker-text-color;
+      color: $dark-text-color;
       margin-top: -8px; // to offset the parent's `gap` property
+      font-size: 15px;
+      line-height: 22px;
     }
   }
 
@@ -10582,6 +10574,19 @@ noscript {
         color: inherit;
       }
     }
+  }
+}
+
+.notification-group__actions,
+.compose-form__actions {
+  .button {
+    display: block; // Otherwise text-ellipsis doesn't work
+    font-size: 14px;
+    line-height: normal;
+    font-weight: 700;
+    flex: 1 1 auto;
+    padding: 5px 12px;
+    border-radius: 4px;
   }
 }
 
