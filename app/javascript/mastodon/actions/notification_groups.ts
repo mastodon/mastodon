@@ -138,8 +138,18 @@ export const processNewNotificationForGroups = createAppAsyncThunk(
 
 export const loadPending = createAction('notificationGroups/loadPending');
 
-export const updateScrollPosition = createAction<{ top: boolean }>(
+export const updateScrollPosition = createAppAsyncThunk(
   'notificationGroups/updateScrollPosition',
+  ({ top }: { top: boolean }, { dispatch, getState }) => {
+    if (
+      top &&
+      getState().notificationGroups.mergedNotifications === 'needs-reload'
+    ) {
+      void dispatch(fetchNotifications());
+    }
+
+    return { top };
+  },
 );
 
 export const setNotificationsFilter = createAppAsyncThunk(
@@ -165,5 +175,34 @@ export const markNotificationsAsRead = createAction(
   'notificationGroups/markAsRead',
 );
 
-export const mountNotifications = createAction('notificationGroups/mount');
+export const mountNotifications = createAppAsyncThunk(
+  'notificationGroups/mount',
+  (_, { dispatch, getState }) => {
+    const state = getState();
+
+    if (
+      state.notificationGroups.mounted === 0 &&
+      state.notificationGroups.mergedNotifications === 'needs-reload'
+    ) {
+      void dispatch(fetchNotifications());
+    }
+  },
+);
+
 export const unmountNotifications = createAction('notificationGroups/unmount');
+
+export const refreshStaleNotificationGroups = createAppAsyncThunk<{
+  deferredRefresh: boolean;
+}>('notificationGroups/refreshStale', (_, { dispatch, getState }) => {
+  const state = getState();
+
+  if (
+    state.notificationGroups.scrolledToTop ||
+    !state.notificationGroups.mounted
+  ) {
+    void dispatch(fetchNotifications());
+    return { deferredRefresh: false };
+  }
+
+  return { deferredRefresh: true };
+});
