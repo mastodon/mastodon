@@ -31,5 +31,5 @@
             = t('accounts.nothing_here')
           - else
             %time.formatted{ datetime: featured_tag.last_status_at.iso8601, title: l(featured_tag.last_status_at) }= l featured_tag.last_status_at
-          = table_link_to 'trash', t('filters.index.delete'), settings_featured_tag_path(featured_tag), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }
+          = table_link_to 'delete', t('filters.index.delete'), settings_featured_tag_path(featured_tag), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }
       .trends__item__current= friendly_number_to_human featured_tag.statuses_count
