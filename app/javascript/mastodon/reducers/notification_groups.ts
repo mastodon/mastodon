@@ -457,10 +457,11 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
       })
       .addCase(disconnectTimeline, (state, action) => {
         if (action.payload.timeline === 'home') {
-          if (state.groups.length > 0 && state.groups[0]?.type !== 'gap') {
-            state.groups.unshift({
+          const groups = usePendingItems ? state.pendingGroups : state.groups;
+          if (groups.length > 0 && groups[0]?.type !== 'gap') {
+            groups.unshift({
               type: 'gap',
-              sinceId: state.groups[0]?.page_min_id,
+              sinceId: groups[0]?.page_min_id,
             });
           }
         }
@@ -507,12 +508,13 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
               }
             }
           }
-          trimNotifications(state);
         });
 
         // Then build the consolidated list and clear pending groups
         state.groups = state.pendingGroups.concat(state.groups);
         state.pendingGroups = [];
+        mergeGaps(state.groups);
+        trimNotifications(state);
       })
       .addCase(updateScrollPosition.fulfilled, (state, action) => {
         state.scrolledToTop = action.payload.top;
