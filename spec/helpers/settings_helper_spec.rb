@@ -10,7 +10,7 @@ describe SettingsHelper do
       it 'detects the device and returns a descriptive string' do
         result = helper.session_device_icon(session)
 
-        expect(result).to eq('mobile')
+        expect(result).to eq('smartphone')
       end
     end
 
@@ -30,7 +30,7 @@ describe SettingsHelper do
       it 'detects the device and returns a descriptive string' do
         result = helper.session_device_icon(session)
 
-        expect(result).to eq('desktop')
+        expect(result).to eq('desktop_mac')
       end
     end
   end
