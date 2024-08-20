@@ -26,11 +26,11 @@ module SettingsHelper
     device = session.detection.device
 
     if device.mobile?
-      'mobile'
+      'smartphone'
     elsif device.tablet?
       'tablet'
     else
-      'desktop'
+      'desktop_mac'
     end
   end
 

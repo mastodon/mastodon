@@ -185,7 +185,7 @@ RSpec.describe 'Notifications' do
       it 'returns the requested number of notifications paginated', :aggregate_failures do
         subject
 
-        notifications = user.account.notifications.browserable
+        notifications = user.account.notifications.browserable.order(id: :asc)
 
         expect(body_as_json.size)
           .to eq(params[:limit])

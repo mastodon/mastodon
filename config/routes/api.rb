@@ -158,6 +158,7 @@ namespace :api, format: false do
         collection do
           post :accept, to: 'requests#accept_bulk'
           post :dismiss, to: 'requests#dismiss_bulk'
+          get :merged, to: 'requests#merged?'
         end
 
         member do

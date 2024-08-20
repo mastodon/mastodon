@@ -35,6 +35,7 @@ be:
       created_msg: Нататка мадэратара паспяхова створана!
       destroyed_msg: Нататка мадэратара паспяхова выдалена!
     accounts:
+      add_email_domain_block: Заблакіраваць дамен эл. пошты
       approve: Пацвердзіць
       approved_msg: Заяўка на рэгістрацыю %{username} ухваленая
       are_you_sure: Вы ўпэўнены?
@@ -135,6 +136,7 @@ be:
       resubscribe: Аднавіць падпіску
       role: Роля
       search: Пошук
+      search_same_email_domain: Іншыя карыстальнікі з такім жа даменам эл. пошты
       search_same_ip: Іншыя карыстальнікі з гэтым IP
       security: Бяспека
       security_measures:
@@ -175,21 +177,26 @@ be:
         approve_appeal: Ухваліць абскарджанне
         approve_user: Зацвердзіць карыстальніка
         assigned_to_self_report: Прызначыць скаргу
+        change_email_user: Змяніць эл. пошту карыстальніка
         change_role_user: Змяніць ролю карыстальніка
         confirm_user: Пацвердзіць карыстальніка
         create_account_warning: Стварыць папярэджанне
         create_announcement: Стварыць аб'яву
+        create_canonical_email_block: Стварыць блакіроўку электроннай пошты
         create_custom_emoji: Стварыць адвольны эмодзі
         create_domain_allow: Стварыць даменны дазвол
         create_domain_block: Стварыць даменны блок
+        create_email_domain_block: Стварыць даменны блок электроннай пошты
         create_ip_block: Стварыць IP правіла
         create_unavailable_domain: Стварыць недаступны Дамен
         create_user_role: Стварыць ролю
         demote_user: Панізіць карыстальніка
         destroy_announcement: Выдаліць аб'яву
+        destroy_canonical_email_block: Выдаліць блакіроўку электроннай пошты
         destroy_custom_emoji: Выдаліць адвольны эмодзі
         destroy_domain_allow: Выдаліць дамены дазвол
         destroy_domain_block: Выдаліць даменны блок
+        destroy_email_domain_block: Выдаліць даменны блок электроннай пошты
         destroy_instance: Вычысціць дамен
         destroy_ip_block: Выдаліць IP правіла
         destroy_status: Выдаліць допіс
@@ -197,8 +204,10 @@ be:
         destroy_user_role: Выдаліць ролю
         disable_2fa_user: Адключыць двухэтапнае спраўджанне
         disable_custom_emoji: Адключыць адвольныя эмодзі
+        disable_sign_in_token_auth_user: Адключыць аўтарызацыю праз электронную пошту для карыстальніка
         disable_user: Адключыць карыстальніка
         enable_custom_emoji: Уключыць адвольныя эмодзі
+        enable_sign_in_token_auth_user: Уключыць аўтарызацыю праз электронную пошту для карыстальніка
         enable_user: Уключыць карыстальніка
         memorialize_account: Запомніць уліковы запіс
         promote_user: Павысіць правы Карыстальніка
@@ -228,20 +237,26 @@ be:
         approve_appeal_html: Карыстальнік %{name} ухваліў запыт на мадэрацыю %{target}
         approve_user_html: "%{name} пацвердзіў рэгістрацыю ад %{target}"
         assigned_to_self_report_html: "%{name} прызначыў справаздачу %{target} на сябе\n"
+        change_email_user_html: "%{name} змяніў паштовы адрас карыстальніка %{target}"
         change_role_user_html: "%{name} змяніў ролю %{target}"
+        confirm_user_html: "%{name} пацвердзіў паштовы адрас %{target}"
         create_account_warning_html: "%{name} накіраваў папярэджанне %{target}"
         create_announcement_html: "%{name} зрабіў новую аб'яву %{target}"
+        create_canonical_email_block_html: "%{name} заблакіраваў эл. пошту з хэшам %{target}"
         create_custom_emoji_html: "%{name} загрузіў новы смайлік %{target}\n\n"
         create_domain_allow_html: "%{name} дазволіў федэрацыю з даменам %{target}"
         create_domain_block_html: "%{name} заблакіраваў дамен %{target}"
+        create_email_domain_block_html: "%{name} заблакіраваў дамен эл. пошты %{target}"
         create_ip_block_html: "%{name} стварыў правіла для IP %{target}"
         create_unavailable_domain_html: "%{name} прыпыніў дастаўку да дамена %{target}"
         create_user_role_html: "%{name} зрабіў ролю %{target}"
         demote_user_html: "%{name} прыбраў карыстальніка %{target}"
         destroy_announcement_html: "%{name} выдаліў аб'яву %{target}"
+        destroy_canonical_email_block_html: "%{name} разблакіраваў эл. пошту з хэшам %{target}"
         destroy_custom_emoji_html: "%{name} выдаліў(а) эмоджі %{target}"
         destroy_domain_allow_html: "%{name} зняў дазвол на аб'яднанне з даменам %{target}\n"
         destroy_domain_block_html: "%{name} разблакаваў дамен %{target}"
+        destroy_email_domain_block_html: "%{name} разблакіраваў дамен эл. пошты %{target}"
         destroy_instance_html: "%{name} цалкам прыбраў дамен %{target}"
         destroy_ip_block_html: "%{name} выдаліў правіла для IP %{target}"
         destroy_status_html: "%{name} выдаліў допіс %{target}"
@@ -249,8 +264,10 @@ be:
         destroy_user_role_html: "%{name} выдаліў ролю %{target}"
         disable_2fa_user_html: "%{name} амяніў абавязковую двухфактарную верыфікацыю для карыстальніка %{target}"
         disable_custom_emoji_html: "%{name} заблакіраваў эмодзі %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} адключыў уваход праз эл. пошту для %{target}"
         disable_user_html: "%{name} адключыў уваход для карыстальніка %{target}"
         enable_custom_emoji_html: "%{name} уключыў эмодзі %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} уключыў уваход праз эл. пошту для %{target}"
         enable_user_html: "%{name} уключыў уваход для карыстальніка %{target}"
         memorialize_account_html: Карыстальнік %{name} пераключыў уліковы запіс %{target} у старонку памяці
         promote_user_html: "%{name} павысіў карыстальніка %{target}"
@@ -258,6 +275,7 @@ be:
         reject_user_html: "%{name} адхіліў рэгістрацыю з %{target}"
         remove_avatar_user_html: "%{name} выдаліў аватар %{target}"
         reopen_report_html: "%{name} зноў адкрыў скаргу %{target}"
+        resend_user_html: "%{name} зноў адправіў ліст з пацвярджэннем для %{target}"
         reset_password_user_html: "%{name} скінул(а) пароль для %{target}"
         resolve_report_html: "%{name} вырашыў скаргу %{target}"
         sensitive_account_html: "%{name} адзначыў медыя %{target} як далікатнае"
@@ -428,6 +446,7 @@ be:
         many: "%{count} спроб рэгіістрацыі за апошні тыдзень"
         one: "%{count} спроба рэгістрацыі за апошні тыдзень"
         other: "%{count} спроб рэгіістрацыі за апошні тыдзень"
+      created_msg: Дамен эл. пошты паспяхова заблакіраваны
       delete: Выдаліць
       dns:
         types:
@@ -436,8 +455,11 @@ be:
       new:
         create: Дадаць дамен
         resolve: Вызначыць дамен
+        title: Заблакіраваць новы дамен эл. пошты
       not_permitted: Забаронена
+      resolved_dns_records_hint_html: Даменнае імя ператвараецца ў наступныя дамены MX, якія ў канчатковым выніку адказваюць за прыём электроннай пошты. Блакаванне дамена MX заблакуе рэгістрацыю з любога адраса электроннай пошты, які выкарыстоўвае той жа дамен MX, нават калі бачнае імя дамена адрозніваецца. <strong>Будзьце асцярожныя, каб не заблакіраваць асноўных пастаўшчыкоў электроннай пошты.</strong>
       resolved_through_html: Вызначына каля %{domain}
+      title: Заблакіраваныя паштовыя дамены
     export_domain_allows:
       new:
         title: Імпарт дазволаў дамена
@@ -599,6 +621,7 @@ be:
         resolve_description_html: Ніякіх дзеянняў супраць уліковага запісу, пра які паведамляецца, не будзе, папярэджэнне не зафіксавана, і скарга будзе закрыта.
         silence_description_html: Уліковы запіс будзе бачны толькі тым, хто ўжо сочыць за ім або шукае яго ўручную, што значна абмяжоўвае яго ахоп. Заўсёды можна вярнуць. Закрывае ўсе скаргі на гэты ўліковы запіс.
         suspend_description_html: Уліковы запіс і ўсё яго змесціва будзе недаступна і ў далейшым выдалены, узаемадзеянне з ім будзе немагчыма. Магчыма адмяніць на працягу 30 дзён. Закрывае ўсе скаргі на гэты ўліковы запіс.
+      actions_description_html: Вырашыце, якія дзеянні распачаць, каб вырашыць гэтую скаргу. Калі вы прымеце меры пакарання ў дачыненні да ўліковага запісу, пра які паведамляецца, ім будзе адпраўлена апавяшчэнне па электроннай пошце, за выключэннем выпадкаў, калі выбрана катэгорыя <strong>Спам</strong>.
       actions_description_remote_html: Вырашыце як паступіць з гэтай скаргай. Гэта паўплывае толькі на тое як <strong>ваш</strong> сервер звязваецца з аддалёным уліковым запісам і апрацоўвае яго кантэнт.
       add_to_report: Дадаць яшчэ дэталяў да скаргі
       already_suspended_badges:
@@ -663,6 +686,7 @@ be:
         delete_data_html: Выдаліць профіль <strong>@%{acct}</strong> і змесціва праз 30 дзён, калі тым часам гэтае дзеянне не будзе адменена
         preview_preamble_html: "<strong>@%{acct}</strong> атрымае папярэджанне наступнага зместу:"
         record_strike_html: Зарэгістраваць папярэджанне <strong>@%{acct}</strong>, каб дапамагчы вам эскаліраваць наступныя парушэнні з боку таго ж уліковага запісу
+        send_email_html: Адправіць <strong>@%{acct}</strong> папярэджанне па электроннай пошце
         warning_placeholder: Неабавязковае дадатковае абгрунтаванне мадэрацыі.
       target_origin: Крыніца уліковага запісу на які пададзена скарга
       title: Скаргі
@@ -706,6 +730,7 @@ be:
         manage_appeals: Кіраванне апеляцыямі
         manage_appeals_description: Дазваляе карыстальнікам разглядаць апеляцыі на дзеянні мадэратара
         manage_blocks: Кіраванне блакіроўкамі
+        manage_blocks_description: Дазваляе блакаваць пэўныя паштовыя правайдэры і IP адрасы
         manage_custom_emojis: Кіраванне адвольнымі эмодзі
         manage_custom_emojis_description: Дазваляе кіраваць адвольнымі эмодзі на серверы
         manage_federation: Кіраваць федэрацыяй
@@ -723,6 +748,7 @@ be:
         manage_taxonomies: Кіраванне катэгорыямі
         manage_taxonomies_description: Дазваляе карыстальнікам праглядаць папулярны кантэнт і абнаўляць налады хэштэгаў
         manage_user_access: Кіраванне наладамі доступу карыстальнікаў
+        manage_user_access_description: Дазваляе адключаць двухфактарную аўтэнтыфікацыю іншым карыстальнікам, змяняць іх паштовы адрас і скідваць пароль
         manage_users: Кіраванне карыстальнікамі
         manage_users_description: Дазваляе праглядаць звесткі іншых карыстальнікаў і іх мадэрацыю
         manage_webhooks: Кіраванне вэбхукамі
@@ -797,6 +823,7 @@ be:
       destroyed_msg: Загрузка сайту паспяхова выдалена!
     software_updates:
       critical_update: Крытычна - зрабіце абнаўленне як мага хутчэй
+      description: Рэкамендуецца падтрымліваць усталёўку Mastodon у актуальным стане, каб карыстацца апошнімі выпраўленнямі і магчымасцямі. Акрамя таго, часам вельмі важна своечасова абнаўляць Mastodon, каб пазбегнуць праблем з бяспекай. Па гэтых прычынах Mastodon правярае наяўнасць абнаўленняў кожныя 30 хвілін і паведамляе вам пра гэта ў адпаведнасці з вашымі наладамі апавяшчэнняў па электроннай пошце.
       documentation_link: Даведацца больш
       release_notes: Журнал змен
       title: Даступныя абнаўленні
@@ -970,6 +997,7 @@ be:
           many: Выкарысталі %{count} чалавек за апошні тыдзень
           one: Выкарыстаў адзін чалавек за апошні тыдзень
           other: Выкарысталі %{count} чалавек за апошні тыдзень
+      title: Рэкамендацыі і трэнды
       trending: Папулярныя
     warning_presets:
       add_new: Дадаць новы
@@ -1056,7 +1084,9 @@ be:
       guide_link_text: Кожны і кожная можа зрабіць унёсак.
     sensitive_content: Далікатны змест
   application_mailer:
+    notification_preferences: Змяніць налады эл. пошты
     salutation: "%{name},"
+    settings: 'Змяніць налады эл. пошты: %{link}'
     unsubscribe: Адпісацца
     view: 'Паглядзець:'
     view_profile: Паглядзець профіль
@@ -1076,6 +1106,7 @@ be:
       hint_html: Засталася яшчэ адна рэч! Каб не дапусціць спаму, нам трэба пацвердзіць, што вы чалавек. Разгадайце CAPTCHA ніжэй і націсніце «Працягнуць».
       title: Праверка бяспекі
     confirmations:
+      awaiting_review: Ваш электронны адрас пацверджаны! Адміністрацыя %{domain} зараз разглядае вашу рэгістрацыю. Вы атрымаеце паведамленне па электроннай пошце, калі ваш уліковы запіс будзе ўхвалены!
       awaiting_review_title: Ваша рэгістрацыя разглядаецца
       clicking_this_link: націснуць на гэту спасылку
       login_link: увайсці
@@ -1083,6 +1114,7 @@ be:
       redirect_to_app_html: Вы павінны былі быць перанакіраваны ў праграму <strong>%{app_name}</strong>. Калі гэтага не адбылося, паспрабуйце %{clicking_this_link} або вярніцеся да праграмы ўручную.
       registration_complete: Ваша рэгістрацыя на %{domain} завершана!
       welcome_title: Вітаем, %{name}!
+      wrong_email_hint: Калі гэты адрас электроннай пошты памылковы, вы можаце змяніць яго ў наладах уліковага запісу.
     delete_account: Выдаліць уліковы запіс
     delete_account_html: Калі вы жадаеце выдаліць ваш уліковы запіс, можаце <a href="%{path}">працягнуць тут</a>. Ад вас будзе запатрабавана пацвярджэнне.
     description:
@@ -1103,6 +1135,7 @@ be:
     or_log_in_with: Або ўвайсці з дапамогай
     privacy_policy_agreement_html: Я азнаёміўся і пагаджаюся з <a href="%{privacy_policy_path}" target="_blank">палітыкай канфідэнцыйнасці</a>
     progress:
+      confirm: Пацвердзіць email
       details: Вашы дадзеныя
       review: Наш водгук
       rules: Прыняць правілы
@@ -1124,8 +1157,10 @@ be:
     security: Бяспека
     set_new_password: Прызначыць новы пароль
     setup:
+      email_below_hint_html: Праверце папку са спамам або зрабіце новы запыт. Вы можаце выправіць свой email, калі ён няправільны.
       email_settings_hint_html: Націсніце на спасылку, якую мы адправілі, каб спраўдзіць %{email}. Мы вас пачакаем тут.
       link_not_received: Не атрымалі спасылку?
+      new_confirmation_instructions_sent: Праз некалькі хвілін вы атрымаеце новы ліст на email са спасылкай для пацверджання!
       title: Праверце вашу пошту
     sign_in:
       preamble_html: Уваход з уліковымі дадзенымі <strong>%{domain}</strong>. Калі ваш уліковы запіс знаходзіцца на іншым серверы, у вас не атрымаецца ўвайсці тут.
@@ -1136,7 +1171,9 @@ be:
       title: Наладзьма вас на %{domain}.
     status:
       account_status: Стан уліковага запісу
+      confirming: Чакаецца пацвярджэнне з электроннай пошты.
       functional: Ваш уліковы запіс поўнасцю працуе.
+      pending: Ваша заяўка разглядаецца нашым супрацоўнікам. Гэта можа заняць некаторы час. Вы атрымаеце электронны ліст, калі заяўка будзе ўхвалена.
       redirecting_to: Ваш уліковы запіс неактыўны, бо ў цяперашні час ён перанакіроўваецца на %{acct}.
       self_destruct: Паколькі %{domain} зачыняецца, вы атрымаеце толькі абмежаваны доступ да свайго уліковага запісу.
       view_strikes: Праглядзець мінулыя папярэджанні для вашага ўліковага запісу
@@ -1179,6 +1216,9 @@ be:
       before: 'Перш чым працягнуць, уважліва прачытайце гэтыя заўвагі:'
       caches: Змесціва, кэшаванае іншымі серверамі, можа захавацца
       data_removal: Вашы допісы і іншыя даныя будуць выдалены назаўсёды
+      email_change_html: Вы можаце <a href="%{path}">змяніць свой адрас электроннай пошты</a>, не выдаляючы ўліковы запіс
+      email_contact_html: Калі ліст усё яшчэ не дайшоў, вы можаце звярнуцца па дапамогу на эл. пошту <a href="mailto:%{email}">%{email}</a>
+      email_reconfirmation_html: Калі вы не атрымалі пацвярджэнне па электроннай пошце, вы можаце <a href="%{path}">запытаць яго зноў</a>
       irreversible: Вы не зможаце аднавіць або паўторна актываваць свой уліковы запіс
       more_details_html: Падрабязнасці глядзіце ў <a href="%{terms_path}">палітыцы прыватнасці</a>.
       username_available: Ваша імя карыстальніка зноў стане даступным
@@ -1427,6 +1467,7 @@ be:
     authentication_methods:
       otp: праграма двухфактарнай аўтэнтыфікацыі
       password: пароль
+      sign_in_token: код з электроннай пошты
       webauthn: ключы бяспекі
     description_html: Калі вы бачыце невядомую вам актыўнасць, падумайце пра змену пароля і ўключэнне двухфактарнай аўтэнтыфікацыі.
     empty: Няма гісторыі ўваходаў
@@ -1437,6 +1478,16 @@ be:
     unsubscribe:
       action: Так, адпісацца
       complete: Адпісаны
+      confirmation_html: Вы ўпэўнены, што жадаеце адмовіцца ад %{type} з Mastodon на дамене %{domain} на вашу электронную пошту %{email}? Вы заўсёды можаце паўторна падпісацца у <a href="%{settings_path}">наладах апавяшчэнняў па электроннай пошце</a>.
+      emails:
+        notification_emails:
+          favourite: апавяшчэнні на пошту пра упадабанае
+          follow: апавяшчэнні на пошту пра падпіскі
+          follow_request: апавяшчэнні на пошту пра запыты на падпіску
+          mention: апавяшчэнні на пошту пра згадванні
+          reblog: апавяшчэнні на пошту пра пашырэнні
+      resubscribe_html: Калі вы адмовіліся ад падпіскі памылкова, вы можаце зноў падпісацца ў <a href="%{settings_path}">наладах апавяшчэнняў па электроннай пошце</a>.
+      success_html: Вы больш не будзеце атрымліваць %{type} на сваю электронную пошту %{email} ад Mastodon на дамене %{domain}.
       title: Адпісацца
   media_attachments:
     validations:
@@ -1517,6 +1568,8 @@ be:
     update:
       subject: "%{name} адрэдагаваў допіс"
   notifications:
+    administration_emails: Апавяшчэнні эл. пошты для адміністратара
+    email_events: Падзеі для апавяшчэнняў эл. пошты
     email_events_hint: 'Выберыце падзеі, аб якіх вы хочаце атрымліваць апавяшчэнні:'
   number:
     human:
@@ -1675,6 +1728,7 @@ be:
     import: Імпарт
     import_and_export: Імпарт і экспарт
     migrate: Перамяшчэнне ўліковага запісу
+    notifications: Апавяшчэнні па эл. пошце
     preferences: Налады
     profile: Профіль
     relationships: Падпіскі і падпісчыкі
@@ -1935,6 +1989,7 @@ be:
     invalid_otp_token: Няправільны код двухфактарнай аўтэнтыфікацыі
     otp_lost_help_html: Калі вы страцілі доступ да абодвух, вы можаце скарыстацца %{email}
     rate_limited: Занадта шмат спробаў аўтэнтыфікацыі, паспрабуйце пазней.
+    seamless_external_login: Вы ўвайшлі праз знешні сэрвіс, таму налады пароля і эл. пошты недаступныя.
     signed_in_as: 'Увайшлі як:'
   verification:
     extra_instructions_html: <strong>Парада:</strong> спасылка на вашым сайце можа быць нябачнай. Важнай часткай з'яўляецца <code>rel="me"</code>, якая прадухіляе імперсанацыю на сайтах з карыстальніцкім кантэнтам. Вы нават можаце выкарыстоўваць тэг <code>link</code> у загалоўку старонкі замест <code>a</code>, але HTML павінен быць даступны без выканання JavaScript.
