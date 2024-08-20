@@ -5,8 +5,27 @@
 # You should check the Docker image tag used for the web, sidekiq, and streaming containers to make sure you are running
 # the appropriate version for your deployment. Using `nightly` will deploy the in-development version of Mastodon, which is
 # not considered a stable release. Visit https://github.com/mastodon/mastodon/releases for currently released versions and tags.
+x-image-tag:
+  &image-tag nightly
 
-x-image-tag: &image-tag nightly
+  # This is the Mastodon background worker. It processes jobs such fetching posts from other servers and sending e-mails.
+x-sidekiq-base: &sidekiq-base
+  # Remove the comments from this `build` section if you need to build the image from source.
+  # build:
+  #   context: .
+  #   dockerfile: Dockerfile
+  image: ghcr.io/mastodon/mastodon:*image-tag
+  env_file: .env.production
+  restart: always
+  command: bundle exec sidekiq
+  healthcheck:
+    test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
+  networks:
+    - external_network
+    - internal_network
+  # S3 is optional but recommended for storing user-uploaded media files.
+  volumes:
+    - ./public/system:/mastodon/public/system
 
 services:
   # This is the Mastodon web application. It serves the web interface and the REST API.
@@ -62,24 +81,15 @@ services:
     ports:
       - '127.0.0.1:4000:4000'
 
-  # This is the Mastodon background worker. It processes jobs such fetching posts from other servers and sending e-mails.
-  sidekiq:
-    # Remove the comments from this `build` section if you need to build the image from source.
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile
-    image: ghcr.io/mastodon/mastodon:*image-tag
-    env_file: .env.production
-    restart: always
+  # You can run multiple Sidekiq processes to handle more jobs concurrently. Adjusting the command to process different queues is also possible.
+  # Please see https://docs.joinmastodon.org/admin/scaling/#sidekiq for more information.
+  sidekiq-1:
+    <<: *sidekiq-base
     command: bundle exec sidekiq
-    healthcheck:
-      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
-    networks:
-      - external_network
-      - internal_network
-    # S3 is optional but recommended for storing user-uploaded media files.
-    volumes:
-      - ./public/system:/mastodon/public/system
+
+  sidekiq-2:
+    <<: *sidekiq-base
+    command: bundle exec sidekiq
 
 # Mastodon requires Redis for caching and Sidekiq job processing, and PostgreSQL for data storage.
 # Nginx is required for securely serving the web interface and streaming API to users.
