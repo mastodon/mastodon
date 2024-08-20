@@ -199,7 +199,7 @@ RSpec.describe Mastodon::CLI::Media do
     let(:action) { :remove_orphans }
 
     before do
-      FileUtils.mkdir_p Rails.public_path.join('system')
+      FileUtils.mkdir_p Rails.configuration.x.file_storage_root_path
     end
 
     context 'without any options' do
