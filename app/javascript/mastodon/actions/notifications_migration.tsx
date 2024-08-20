@@ -13,6 +13,6 @@ export const initializeNotifications = createAppAsyncThunk(
     ) as boolean;
 
     if (enableBeta) void dispatch(fetchNotifications());
-    else void dispatch(expandNotifications());
+    else void dispatch(expandNotifications({}));
   },
 );
