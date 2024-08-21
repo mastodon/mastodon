@@ -29,6 +29,7 @@ RSpec.describe Admin::AccountModerationNotesController do
 
       it 'fails to create a note' do
         expect { subject }.to_not change(AccountModerationNote, :count)
+        expect(assigns(:moderation_notes).to_a).to eq []
         expect(response).to render_template 'admin/accounts/show'
       end
     end
@@ -38,6 +39,7 @@ RSpec.describe Admin::AccountModerationNotesController do
 
       it 'fails to create a note' do
         expect { subject }.to_not change(AccountModerationNote, :count)
+        expect(assigns(:moderation_notes).to_a).to eq []
         expect(response).to render_template 'admin/accounts/show'
       end
     end
