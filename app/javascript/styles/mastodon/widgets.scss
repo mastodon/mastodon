@@ -169,11 +169,6 @@
 
   &__message {
     margin-bottom: 15px;
-
-    .fa {
-      margin-inline-end: 5px;
-      color: $darker-text-color;
-    }
   }
 
   &__card {
@@ -366,9 +361,7 @@
     padding-inline-end: 16px;
   }
 
-  .fa {
-    font-size: 16px;
-
+  .icon {
     &.active {
       color: $highlight-text-color;
     }
