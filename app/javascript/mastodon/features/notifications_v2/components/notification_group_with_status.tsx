@@ -12,11 +12,13 @@ import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import { useAppDispatch } from 'mastodon/store';
 
 import { AvatarGroup } from './avatar_group';
+import { DisplayedName } from './displayed_name';
 import { EmbeddedStatus } from './embedded_status';
-import { NamesList } from './names_list';
 
 export type LabelRenderer = (
-  values: Record<string, React.ReactNode>,
+  displayedName: JSX.Element,
+  total: number,
+  seeMoreHref?: string,
 ) => JSX.Element;
 
 export const NotificationGroupWithStatus: React.FC<{
@@ -50,15 +52,11 @@ export const NotificationGroupWithStatus: React.FC<{
 
   const label = useMemo(
     () =>
-      labelRenderer({
-        name: (
-          <NamesList
-            accountIds={accountIds}
-            total={count}
-            seeMoreHref={labelSeeMoreHref}
-          />
-        ),
-      }),
+      labelRenderer(
+        <DisplayedName accountIds={accountIds} />,
+        count,
+        labelSeeMoreHref,
+      ),
     [labelRenderer, accountIds, count, labelSeeMoreHref],
   );
 
