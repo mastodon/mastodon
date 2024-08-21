@@ -168,15 +168,15 @@ class SearchQueryTransformer < Parslet::Transform
       when 'before'
         @filter = :created_at
         @type = :range
-        @term = { lt: term, time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
+        @term = { lt: TermValidator::validate_date!(term), time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
       when 'after'
         @filter = :created_at
         @type = :range
-        @term = { gt: term, time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
+        @term = { gt: TermValidator::validate_date!(term), time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
       when 'during'
         @filter = :created_at
         @type = :range
-        @term = { gte: term, lte: term, time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
+        @term = { gte: TermValidator::validate_date!(term), lte: TermValidator::validate_date!(term), time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
       when 'in'
         @operator = :flag
         @term = term
@@ -221,6 +221,14 @@ class SearchQueryTransformer < Parslet::Transform
       return language_code if LanguagesHelper::SUPPORTED_LOCALES.key?(language_code.to_sym)
 
       term
+    end
+  end
+
+  class TermValidator
+    def self.validate_date!(value)
+      return value if (value.match?(/\A\d{4}-\d{2}-\d{2}(\s\d{2}:\d{2})?\z/) || value.match?(/\A\d{1,11}\z/))
+
+      raise Mastodon::FilterValidationError, "Invalid date #{value}"
     end
   end
 

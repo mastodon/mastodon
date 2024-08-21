@@ -77,4 +77,12 @@ describe SearchQueryTransformer do
       expect(subject.send(:filter_clauses).map(&:term)).to contain_exactly(lt: '2022-01-01 23:00', time_zone: 'UTC')
     end
   end
+
+  context 'with \'before:"abc"\'' do
+    let(:query) { 'before:"abc"' }
+
+    it 'raises an exception' do
+      expect { subject }.to raise_error(Mastodon::FilterValidationError, 'Invalid date abc')
+    end
+  end
 end
