@@ -15,6 +15,10 @@ class Oauth::AuthorizedApplicationsController < Doorkeeper::AuthorizedApplicatio
 
   include Localized
 
+  def index
+    @applications = OauthAuthorizedApplications.includes(:access_tokens).order(:created_at)
+  end
+
   def destroy
     Web::PushSubscription.unsubscribe_for(params[:id], current_resource_owner)
     Doorkeeper::Application.find_by(id: params[:id])&.close_streaming_sessions(current_resource_owner)
