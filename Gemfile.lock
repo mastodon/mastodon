@@ -8,13 +8,13 @@ GIT
       jwt (~> 2.0)
 
 GIT
-  remote: https://github.com/toptal/chewy.git
-  revision: 5a1c4d540b3b3047b7f2fd104c107ff95f7cf667
+  remote: https://github.com/ql/chewy.git
+  revision: d2129a8cf35f07cdcb651a669e130fd9417b3aab
   branch: es-8-0-upgrade-poc
   specs:
-    chewy (7.4.0)
+    chewy (7.6.0)
       activesupport (>= 6.1)
-      elasticsearch (>= 8.11, < 9.0)
+      elasticsearch (>= 8.14, < 9.0)
       elasticsearch-dsl
 
 GEM
@@ -210,13 +210,13 @@ GEM
       railties (>= 5)
     dotenv (3.1.4)
     drb (2.2.1)
-    elastic-transport (8.3.2)
+    elastic-transport (8.3.5)
       faraday (< 3)
       multi_json
-    elasticsearch (8.13.0)
+    elasticsearch (8.15.0)
       elastic-transport (~> 8.3)
-      elasticsearch-api (= 8.13.0)
-    elasticsearch-api (8.13.0)
+      elasticsearch-api (= 8.15.0)
+    elasticsearch-api (8.15.0)
       multi_json
     elasticsearch-dsl (0.1.10)
     email_spec (2.3.0)
