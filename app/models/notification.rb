@@ -180,8 +180,8 @@ class Notification < ApplicationRecord
     # Notifications that have no `group_key` each count as a separate group.
     def paginate_groups_by_max_id(limit, max_id: nil, since_id: nil)
       query = reorder(id: :desc)
-      query = query.where(id: ...max_id) if max_id.present?
-      query = query.where(id: (since_id + 1)...) if since_id.present?
+      query = query.where(id: ...(max_id.to_i)) if max_id.present?
+      query = query.where(id: (since_id.to_i + 1)...) if since_id.present?
       query.paginate_groups(limit, :desc)
     end
 
@@ -190,8 +190,8 @@ class Notification < ApplicationRecord
     # Results will be in ascending order by id.
     def paginate_groups_by_min_id(limit, max_id: nil, min_id: nil)
       query = reorder(id: :asc)
-      query = query.where(id: (min_id + 1)...) if min_id.present?
-      query = query.where(id: ...max_id) if max_id.present?
+      query = query.where(id: (min_id.to_i + 1)...) if min_id.present?
+      query = query.where(id: ...(max_id.to_i)) if max_id.present?
       query.paginate_groups(limit, :asc)
     end
 

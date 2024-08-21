@@ -53,9 +53,12 @@ describe ApplicationHelper do
     end
   end
 
-  describe 'fa_icon' do
-    it 'returns a tag of fixed-width cog' do
-      expect(helper.fa_icon('cog fw')).to eq '<i class="fa fa-cog fa-fw"></i>'
+  describe '#material_symbol' do
+    it 'returns an svg with the icon and options' do
+      expect(helper.material_symbol('lock', class: :test, data: { hidden: true }))
+        .to match('<svg.*/svg>')
+        .and match('class="icon material-lock test"')
+        .and match('data-hidden="true"')
     end
   end
 

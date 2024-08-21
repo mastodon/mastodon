@@ -20,12 +20,12 @@
       %tr
         %td= t('two_factor_authentication.otp')
         %td
-          = table_link_to 'pencil', t('two_factor_authentication.edit'), settings_otp_authentication_path, method: :post
+          = table_link_to 'edit', t('two_factor_authentication.edit'), settings_otp_authentication_path, method: :post
       %tr
         %td= t('two_factor_authentication.webauthn')
         - if current_user.webauthn_enabled?
           %td
-            = table_link_to 'pencil', t('two_factor_authentication.edit'), settings_webauthn_credentials_path, method: :get
+            = table_link_to 'edit', t('two_factor_authentication.edit'), settings_webauthn_credentials_path, method: :get
         - else
           %td
             = table_link_to 'key', t('two_factor_authentication.add'), new_settings_webauthn_credential_path, method: :get

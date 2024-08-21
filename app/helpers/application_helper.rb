@@ -105,19 +105,12 @@ module ApplicationHelper
     policy(record).public_send(:"#{action}?")
   end
 
-  def fa_icon(icon, attributes = {})
-    class_names = attributes[:class]&.split || []
-    class_names << 'fa'
-    class_names += icon.split.map { |cl| "fa-#{cl}" }
-
-    content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
-  end
-
   def material_symbol(icon, attributes = {})
     inline_svg_tag(
       "400-24px/#{icon}.svg",
       class: ['icon', "material-#{icon}"].concat(attributes[:class].to_s.split),
-      role: :img
+      role: :img,
+      data: attributes[:data]
     )
   end
 
