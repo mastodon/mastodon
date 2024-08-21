@@ -16,8 +16,10 @@ x-sidekiq-base: &sidekiq-base
   #   dockerfile: Dockerfile
   image: ghcr.io/mastodon/mastodon:*image-tag
   env_file: .env.production
+  environment:
+    - DB_POOL=15
   restart: always
-  command: bundle exec sidekiq
+  command: bundle exec sidekiq -c 15
   healthcheck:
     test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
   networks:
@@ -81,15 +83,15 @@ services:
     ports:
       - '127.0.0.1:4000:4000'
 
-  # You can run multiple Sidekiq processes to handle more jobs concurrently. Adjusting the command to process different queues is also possible.
+  # You can run multiple Sidekiq processes to handle more jobs concurrently. The scheduler queue must only be run on one process.
   # Please see https://docs.joinmastodon.org/admin/scaling/#sidekiq for more information.
   sidekiq-1:
     <<: *sidekiq-base
-    command: bundle exec sidekiq
+    command: bundle exec sidekiq -c 15 -q default -q push -q ingress -q mailers -q pull -q scheduler
 
   sidekiq-2:
     <<: *sidekiq-base
-    command: bundle exec sidekiq
+    command: bundle exec sidekiq -c 15 -q default -q push -q ingress -q mailers -q pull
 
 # Mastodon requires Redis for caching and Sidekiq job processing, and PostgreSQL for data storage.
 # Nginx is required for securely serving the web interface and streaming API to users.
