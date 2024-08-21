@@ -10,7 +10,7 @@ import {
   deleteAnnouncement,
 } from './announcements';
 import { updateConversations } from './conversations';
-import { processNewNotificationForGroups, refreshStaleNotificationGroups } from './notification_groups';
+import { processNewNotificationForGroups, refreshStaleNotificationGroups, pollRecentNotifications as pollRecentGroupNotifications } from './notification_groups';
 import { updateNotifications, expandNotifications } from './notifications';
 import { updateStatus } from './statuses';
 import {
@@ -37,7 +37,7 @@ const randomUpTo = max =>
  * @param {string} channelName
  * @param {Object.<string, string>} params
  * @param {Object} options
- * @param {function(Function): Promise<void>} [options.fallback]
+ * @param {function(Function, Function): Promise<void>} [options.fallback]
  * @param {function(): void} [options.fillGaps]
  * @param {function(object): boolean} [options.accept]
  * @returns {function(): void}
@@ -52,11 +52,11 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
     let pollingId;
 
     /**
-     * @param {function(Function): Promise<void>} fallback
+     * @param {function(Function, Function): Promise<void>} fallback
      */
 
     const useFallback = async fallback => {
-      await fallback(dispatch);
+      await fallback(dispatch, getState);
       // eslint-disable-next-line react-hooks/rules-of-hooks -- this is not a react hook
       pollingId = setTimeout(() => useFallback(fallback), 20000 + randomUpTo(20000));
     };
@@ -139,10 +139,23 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
 
 /**
  * @param {Function} dispatch
+ * @param {Function} getState
  */
-async function refreshHomeTimelineAndNotification(dispatch) {
+async function refreshHomeTimelineAndNotification(dispatch, getState) {
   await dispatch(expandHomeTimeline({ maxId: undefined }));
-  await dispatch(expandNotifications({}));
+
+  // TODO: remove this once the groups feature replaces the previous one
+  if(getState().settings.getIn(['notifications', 'groupingBeta'], false)) {
+    // TODO: polling for merged notifications
+    try {
+      await dispatch(pollRecentGroupNotifications());
+    } catch (error) {
+      // TODO
+    }
+  } else {
+    await dispatch(expandNotifications({}));
+  }
+
   await dispatch(fetchAnnouncements());
 }
 

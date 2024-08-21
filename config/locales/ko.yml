@@ -257,8 +257,10 @@ ko:
         destroy_user_role_html: "%{name} 님이 %{target} 역할을 삭제했습니다"
         disable_2fa_user_html: "%{name} 님이 사용자 %{target} 님의 2단계 인증을 비활성화 했습니다"
         disable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 비활성화했습니다"
+        disable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 비활성화했습니다"
         disable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 비활성화했습니다"
         enable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 활성화했습니다"
+        enable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 활성화했습니다"
         enable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 활성화했습니다"
         memorialize_account_html: "%{name} 님이 %{target}의 계정을 고인의 계정 페이지로 전환했습니다"
         promote_user_html: "%{name} 님이 사용자 %{target}를 승급시켰습니다"
@@ -266,6 +268,7 @@ ko:
         reject_user_html: "%{name} 님이 %{target} 님의 가입을 거부했습니다"
         remove_avatar_user_html: "%{name} 님이 %{target} 님의 아바타를 지웠습니다"
         reopen_report_html: "%{name} 님이 신고 %{target}을 다시 열었습니다"
+        resend_user_html: "%{name} 님이 %{target} 님에 대한 확인 메일을 다시 보냈습니다"
         reset_password_user_html: "%{name} 님이 사용자 %{target}의 암호를 초기화했습니다"
         resolve_report_html: "%{name} 님이 %{target}번 신고를 해결로 변경하였습니다"
         sensitive_account_html: "%{name} 님이 %{target}의 미디어를 민감함으로 표시했습니다"
@@ -423,6 +426,7 @@ ko:
       allow_registrations_with_approval: 승인을 통한 가입 허용
       attempts_over_week:
         other: 지난 주 동안 %{count}건의 가입 시도가 있었습니다
+      created_msg: 이메일 도메인 차단 규칙을 생성했습니다
       delete: 삭제하기
       dns:
         types:
@@ -432,7 +436,9 @@ ko:
         create: 도메인 추가하기
         resolve: 도메인 검사
         title: 새 이메일 도메인 차단
+      no_email_domain_block_selected: 아무 것도 선택 되지 않아 어떤 이메일 도메인 차단도 변경되지 않았습니다
       not_permitted: 허용하지 않음
+      resolved_dns_records_hint_html: 도메인 네임은 다음의 MX 도메인으로 연결되어 있으며, 이메일을 받는데 필수적입니다. MX 도메인을 차단하면 같은 MX 도메인을 사용하는 어떤 이메일이라도 가입할 수 없게 되며, 보여지는 도메인이 다르더라도 적용됩니다. <strong>주요 이메일 제공자를 차단하지 않도록 조심하세요.</strong>
       resolved_through_html: "%{domain}을 통해 리졸빙됨"
       title: 차단된 이메일 도메인
     export_domain_allows:
@@ -584,6 +590,7 @@ ko:
         resolve_description_html: 신고된 계정에 대해 아무런 동작도 취하지 않으며, 처벌기록이 남지 않으며, 신고는 처리됨으로 변경됩니다.
         silence_description_html: 이 계정을 이미 팔로우 하고 있는 사람이나 수동으로 찾아보는 사람에게만 프로필이 보여지고, 도달 범위를 엄격하게 제한합니다. 언제든지 되돌릴 수 있습니다. 이 계정에 대한 모든 신고를 닫습니다.
         suspend_description_html: 이 계정과 이 계정의 콘텐츠들은 접근 불가능해지고 삭제될 것이며, 상호작용은 불가능해집니다. 30일 이내에 되돌릴 수 있습니다. 이 계정에 대한 모든 신고를 닫습니다.
+      actions_description_html: 이 신고를 해결하기 위해 취해야 할 조치를 지정해주세요. 신고된 계정에 대해 처벌 조치를 취하면, <strong>스팸</strong> 카테고리가 선택된 경우를 제외하고 해당 계정으로 이메일 알림이 전송됩니다.
       actions_description_remote_html: 이 신고를 해결하기 위해 실행할 행동을 결정하세요. 이 결정은 이 원격 계정과 그 콘텐츠를 다루는 방식에 대해 <strong>이 서버</strong>에서만 영향을 끼칩니다
       add_to_report: 신고에 더 추가하기
       already_suspended_badges:
@@ -648,6 +655,7 @@ ko:
         delete_data_html: "<strong>@%{acct}</strong>의 프로필과 콘텐츠를 30일의 유예기간 이후에 삭제합니다"
         preview_preamble_html: "<strong>@%{acct}</strong>는 다음 내용의 경고를 받게 됩니다:"
         record_strike_html: 향후 규칙위반에 대한 참고사항이 될 수 있도록 <strong>@%{acct}</strong>에 대한 처벌기록을 남깁니다
+        send_email_html: "<strong>@%{acct}</strong>에게 경고 메일을 보냅니다"
         warning_placeholder: 중재 결정에 대한 추가적인 이유.
       target_origin: 신고된 계정의 소속
       title: 신고
@@ -685,6 +693,7 @@ ko:
         manage_appeals: 이의제기 관리
         manage_appeals_description: 사용자가 중재에 대한 이의제기를 리뷰할 수 있도록 허용
         manage_blocks: 차단 관리
+        manage_blocks_description: 사용자가 이메일 제공자와 IP 주소를 차단할 수 있도록 허용
         manage_custom_emojis: 커스텀 에모지 관리
         manage_custom_emojis_description: 사용자가 서버의 커스텀 에모지를 관리할 수 있도록 허용
         manage_federation: 연합 관리
@@ -702,6 +711,7 @@ ko:
         manage_taxonomies: 분류 관리
         manage_taxonomies_description: 사용자가 트렌드를 리뷰하고 해시태그 설정을 수정할 수 있도록 허용합니다
         manage_user_access: 사용자 접근 관리
+        manage_user_access_description: 사용자가 다른 사용자의 2차 인증을 비활성화 하거나, 이메일 주소를 바꾸거나, 암호를 초기화 할 수 있도록 허용
         manage_users: 사용자 관리
         manage_users_description: 사용자가 다른 사용자의 상세정보를 보고 해당 사용자에 대한 중재활동을 할 수 있도록 허용
         manage_webhooks: 웹훅 관리
@@ -776,6 +786,7 @@ ko:
       destroyed_msg: 사이트 업로드를 성공적으로 삭제했습니다!
     software_updates:
       critical_update: 긴급 — 빠른 업데이트 요망
+      description: 최신 수정 사항과 기능을 활용하기 위해 Mastodon 설치를 최신 상태로 유지하기를 권장합니다. 더욱이, 때로는 보안 문제를 피하기 위해 Mastodon을 적절한 시점에 긴급 업데이트해야 하는 경우도 있습니다. 따라서 Mastodon은 30분마다 업데이트를 확인하며, 이메일 알림 환경설정에 따라 사용자에게 알려드립니다.
       documentation_link: 더 알아보기
       release_notes: 릴리스 노트
       title: 사용 가능한 업데이트
@@ -884,12 +895,18 @@ ko:
     trends:
       allow: 허용
       approved: 승인됨
-      disallow: 거부
+      confirm_allow: 정말로 선택된 태그들을 허용하시겠습니까?
+      confirm_disallow: 정말로 선택된 태그들을 금지하시겠습니까?
+      disallow: 금지
       links:
         allow: 링크 허용
         allow_provider: 발행처 허용
+        confirm_allow: 정말로 선택된 링크들을 허용하시겠습니까?
+        confirm_allow_provider: 정말로 선택된 제공자들을 허용하시겠습니까?
+        confirm_disallow: 정말로 선택된 링크들을 금지하시겠습니까?
+        confirm_disallow_provider: 정말로 선택된 제공자들을 금지하시겠습니까?
         description_html: 현재 서버에서 게시물을 볼 수 있는 계정에서 많이 공유되고 있는 링크들입니다. 사용자가 세상 돌아가는 상황을 파악하는 데 도움이 됩니다. 출처를 승인할 때까지 링크는 공개적으로 게시되지 않습니다. 각각의 링크를 개별적으로 허용하거나 거부할 수도 있습니다.
-        disallow: 링크 거부
+        disallow: 링크 금지
         disallow_provider: 발행처 비허용
         no_link_selected: 아무 것도 선택 되지 않아 어떤 링크도 바뀌지 않았습니다
         publishers:
@@ -910,9 +927,13 @@ ko:
       statuses:
         allow: 게시물 허용
         allow_account: 작성자 허용
+        confirm_allow: 정말로 선택된 게시물들을 허용하시겠습니까?
+        confirm_allow_account: 정말로 선택된 계정들을 허용하시겠습니까?
+        confirm_disallow: 정말로 선택된 게시물들을 금지하시겠습니까?
+        confirm_disallow_account: 정말로 선택된 계정들을 금지하시겠습니까?
         description_html: 여러분의 서버가 알기로 현재 많은 수의 공유와 좋아요가 되고 있는 게시물들입니다. 새로운 사용자나 돌아오는 사용자들이 팔로우 할 사람들을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물들은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
         disallow: 게시물 비허용
-        disallow_account: 작성자 비허용
+        disallow_account: 작성자 금지
         no_status_selected: 아무 것도 선택 되지 않아 어떤 유행중인 게시물도 바뀌지 않았습니다
         not_discoverable: 작성자가 발견되기를 원치 않습니다
         shared_by:
@@ -940,6 +961,7 @@ ko:
         usage_comparison: 오늘은 %{today}회 쓰였고, 어제는 %{yesterday}회 쓰임
         used_by_over_week:
           other: 지난 주 동안 %{count} 명의 사람들이 사용했습니다
+      title: 추천과 유행
       trending: 유행 중
     warning_presets:
       add_new: 새로 추가
@@ -1053,6 +1075,7 @@ ko:
       redirect_to_app_html: 곧 <strong>%{app_name}</strong>으로 리디렉션 됩니다. 안 된다면, %{clicking_this_link}하거나 직접 앱으로 돌아가세요.
       registration_complete: 지금 막 %{domain} 가입이 완료되었습니다!
       welcome_title: "%{name} 님 반갑습니다!"
+      wrong_email_hint: 만약 이메일 주소가 올바르지 않다면, 계정 설정에서 변경할 수 있습니다.
     delete_account: 계정 삭제
     delete_account_html: 계정을 삭제하고 싶은 경우, <a href="%{path}">여기서</a> 삭제할 수 있습니다. 삭제 전 확인 화면이 표시됩니다.
     description:
@@ -1098,6 +1121,7 @@ ko:
       email_below_hint_html: 스팸 폴더를 체크해보거나, 새로 요청할 수 있습니다. 이메일을 잘못 입력한 경우 수정할 수 있습니다.
       email_settings_hint_html: "%{email}을 인증하기 위해 우리가 보낸 링크를 누르세요. 여기서 기다리겠습니다."
       link_not_received: 링크를 못 받으셨나요?
+      new_confirmation_instructions_sent: 확인 링크가 담긴 이메일이 몇 분 안에 도착할것입니다!
       title: 수신함 확인하기
     sign_in:
       preamble_html: "<strong>%{domain}</strong>의 계정 정보를 이용해 로그인 하세요. 만약 내 계정이 다른 서버에 존재한다면, 여기서는 로그인 할 수 없습니다."
@@ -1108,7 +1132,9 @@ ko:
       title: "%{domain}에 가입하기 위한 정보들을 입력하세요."
     status:
       account_status: 계정 상태
+      confirming: 이메일 확인 과정이 완료되기를 기다리는 중.
       functional: 계정이 완벽히 작동합니다.
+      pending: 당신의 가입 신청은 스태프의 검사를 위해 대기 중입니다. 시간이 조금 걸릴 수 있습니다. 가입 신청이 승인되면 이메일을 받게 됩니다.
       redirecting_to: 계정이 %{acct}로 리다이렉트 중이기 때문에 비활성 상태입니다.
       self_destruct: "%{domain} 도메인 폐쇄가 진행중이기 때문에, 계정에는 제한된 접근만 할 수 있습니다."
       view_strikes: 내 계정에 대한 과거 중재 기록 보기
@@ -1151,6 +1177,9 @@ ko:
       before: '진행하기 전, 주의사항을 꼼꼼히 읽어보세요:'
       caches: 다른 서버에 캐싱된 정보들은 남아있을 수 있습니다
       data_removal: 당신의 게시물과 다른 정보들은 영구적으로 삭제 됩니다
+      email_change_html: 계정을 지우지 않고도 <a href="%{path}">이메일 주소를 변경할 수 있습니다</a>
+      email_contact_html: 아직 도착하지 않았다면, <a href="mailto:%{email}">%{email}</a>에 메일을 보내 도움을 요청할 수 있습니다
+      email_reconfirmation_html: 아직 확인 메일이 도착하지 않은 경우, <a href="%{path}">다시 요청할 수 있습니다</a>
       irreversible: 계정을 복구하거나 다시 사용할 수 없게 됩니다
       more_details_html: 더 자세한 정보는, <a href="%{terms_path}">개인정보처리방침</a>을 참고하세요.
       username_available: 당신의 계정명은 다시 사용할 수 있게 됩니다
@@ -1386,6 +1415,16 @@ ko:
     unsubscribe:
       action: 네, 구독 취소합니다
       complete: 구독 취소됨
+      confirmation_html: 정말로 %{domain}에서 %{email}로 보내는 마스토돈의 %{type}에 대한 구독을 취소하시겠습니까? 언제든지 <a href="%{settings_path}">이메일 알림 설정</a>에서 다시 구독할 수 있습니다.
+      emails:
+        notification_emails:
+          favourite: 좋아요 알림 이메일
+          follow: 팔로우 알림 이메일
+          follow_request: 팔로우 요청 이메일
+          mention: 멘션 알림 이메일
+          reblog: 부스트 알림 이메일
+      resubscribe_html: 만약 실수로 구독 취소를 했다면 <a href="%{settings_path}">이메일 알림 설정</a>에서 다시 구독할 수 있습니다.
+      success_html: 이제 더이상 %{domain}의 마스토돈에서 %{email}로 %{type} 알림을 보내지 않습니다.
       title: 구독 취소
   media_attachments:
     validations:
@@ -1466,6 +1505,8 @@ ko:
     update:
       subject: "%{name} 님이 게시물을 수정했습니다"
   notifications:
+    administration_emails: 관리자 이메일 알림
+    email_events: 이메일 알림에 대한 이벤트
     email_events_hint: '알림 받을 이벤트를 선택해주세요:'
   number:
     human:
@@ -1624,6 +1665,7 @@ ko:
     import: 데이터 가져오기
     import_and_export: 가져오기 & 내보내기
     migrate: 계정 이동
+    notifications: 이메일 알림
     preferences: 환경설정
     profile: 공개 프로필
     relationships: 팔로잉과 팔로워
@@ -1646,12 +1688,12 @@ ko:
   statuses:
     attached:
       audio:
-        other: "%{count}개의 오디오"
+        other: "%{count} 개의 오디오"
       description: '첨부: %{attached}'
       image:
         other: "%{count}장의 이미지"
       video:
-        other: "%{count}개의 영상"
+        other: "%{count} 개의 영상"
     boosted_from_html: "%{acct_link}의 글을 부스트"
     content_warning: '열람 주의: %{warning}'
     default_language: 화면 표시 언어와 동일하게
@@ -1671,7 +1713,7 @@ ko:
       total_people:
         other: "%{count}명"
       total_votes:
-        other: "%{count}명 투표함"
+        other: "%{count} 명 투표함"
       vote: 투표
     show_more: 더 보기
     show_thread: 글타래 보기
@@ -1863,6 +1905,7 @@ ko:
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
     otp_lost_help_html: 만약 양쪽 모두를 잃어버렸다면 %{email}을 통해 복구할 수 있습니다
     rate_limited: 너무 많은 인증 시도가 있었습니다, 잠시 후에 시도하세요.
+    seamless_external_login: 외부 서비스를 이용해 로그인했으므로 이메일과 암호는 설정할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'
   verification:
     extra_instructions_html: <strong>팁:</strong> 웹사이트에 안 보이는 링크로 삽입할 수 있습니다. 중요한 것은 나를 도용하는 것을 방지하는 <code>rel="me"</code> 부분입니다. 심지어 <code>a</code> 대신 <code>link</code>태그를 페이지 헤더에 넣는 것으로 대체할 수도 있습니다. 하지만 HTML 코드는 자바스크립트 실행 없이 접근이 가능해야 합니다.

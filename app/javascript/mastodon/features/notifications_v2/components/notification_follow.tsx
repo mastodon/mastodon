@@ -10,13 +10,27 @@ import { useAppSelector } from 'mastodon/store';
 import type { LabelRenderer } from './notification_group_with_status';
 import { NotificationGroupWithStatus } from './notification_group_with_status';
 
-const labelRenderer: LabelRenderer = (values) => (
-  <FormattedMessage
-    id='notification.follow'
-    defaultMessage='{name} followed you'
-    values={values}
-  />
-);
+const labelRenderer: LabelRenderer = (displayedName, total) => {
+  if (total === 1)
+    return (
+      <FormattedMessage
+        id='notification.follow'
+        defaultMessage='{name} followed you'
+        values={{ name: displayedName }}
+      />
+    );
+
+  return (
+    <FormattedMessage
+      id='notification.follow.name_and_others'
+      defaultMessage='{name} and {count, plural, one {# other} other {# others}} followed you'
+      values={{
+        name: displayedName,
+        count: total - 1,
+      }}
+    />
+  );
+};
 
 const FollowerCount: React.FC<{ accountId: string }> = ({ accountId }) => {
   const account = useAppSelector((s) => s.accounts.get(accountId));
