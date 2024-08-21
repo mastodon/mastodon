@@ -226,6 +226,7 @@ nl:
         update_custom_emoji: Lokale emoji bijwerken
         update_domain_block: Domeinblokkade bijwerken
         update_ip_block: IP-regel bijwerken
+        update_report: Rapportage bijwerken
         update_status: Bericht bijwerken
         update_user_role: Rol bijwerken
       actions:
@@ -285,6 +286,7 @@ nl:
         update_custom_emoji_html: Emoji %{target} is door %{name} bijgewerkt
         update_domain_block_html: "%{name} heeft de domeinblokkade bijgewerkt voor %{target}"
         update_ip_block_html: "%{name} wijzigde de IP-regel voor %{target}"
+        update_report_html: Rapportage %{target} is door %{name} bijgewerkt
         update_status_html: "%{name} heeft de berichten van %{target} bijgewerkt"
         update_user_role_html: "%{name} wijzigde de rol %{target}"
       deleted_account: verwijderd account
@@ -292,6 +294,7 @@ nl:
       filter_by_action: Op actie filteren
       filter_by_user: Op gebruiker filteren
       title: Auditlog
+      unavailable_instance: "(domeinnaam niet beschikbaar)"
     announcements:
       destroyed_msg: Verwijderen van mededeling geslaagd!
       edit:
@@ -429,7 +432,7 @@ nl:
       attempts_over_week:
         one: "%{count} registratiepoging tijdens de afgelopen week"
         other: "%{count} registratiepogingen tijdens de afgelopen week"
-      created_msg: Blokkeren e-maildomein geslaagd
+      created_msg: Blokkering e-maildomein geslaagd
       delete: Verwijderen
       dns:
         types:
@@ -468,6 +471,9 @@ nl:
       title: Aanbevolen accounts
       unsuppress: Account weer aanbevelen
     instances:
+      audit_log:
+        title: Recente audit-logboeken
+        view_all: Volledige audit-logboeken inzien
       availability:
         description_html:
           one: Wanneer de bezorging aan het domein gedurende <strong>%{count} dag</strong> blijft mislukken dan worden er geen bezorgpogingen meer gedaan, totdat een bezorging <em>van</em> het domein wordt ontvangen.
@@ -636,6 +642,7 @@ nl:
       report: 'Rapportage #%{id}'
       reported_account: Gerapporteerde account
       reported_by: Gerapporteerd door
+      reported_with_application: Gerapporteerd met applicatie
       resolved: Opgelost
       resolved_msg: Rapportage succesvol opgelost!
       skip_to_actions: Ga direct naar de maatregelen
@@ -745,12 +752,13 @@ nl:
         preamble: Mastodons webomgeving aanpassen.
         title: Weergave
       branding:
-        preamble: De branding van jouw server laat zien hoe het met andere servers in het netwerk verschilt. Deze informatie wordt op verschillende plekken getoond, zoals in de webomgeving van Mastodon, in mobiele apps, in voorvertoningen op andere websites en berichten-apps, enz. Daarom is het belangrijk om de informatie helder, kort en beknopt te houden.
+        preamble: De branding van jouw server laat zien hoe het met andere servers in het netwerk verschilt. Deze informatie wordt op verschillende plekken getoond, zoals in de webomgeving van Mastodon, in mobiele apps, in linkvoorbeelden op andere websites en berichten-apps, enz. Daarom is het belangrijk om de informatie helder, kort en beknopt te houden.
         title: Branding
       captcha_enabled:
         desc_html: Dit is afhankelijk van externe scripts van hCaptcha, wat veiligheids- en privacyrisico's met zich mee kan brengen. Bovendien kan <strong>dit het registratieproces aanzienlijk minder toegankelijk maken voor sommige (vooral gehandicapte) mensen</strong>. Om deze redenen kun je het beste alternatieve maatregelen overwegen, zoals registratie op basis van goedkeuring of op uitnodiging.
         title: Nieuwe gebruikers dienen een CAPTCHA op te lossen om hun account te bevestigen
       content_retention:
+        danger_zone: Gevarenzone
         preamble: Toezicht houden op hoe berichten en media van gebruikers op Mastodon worden bewaard.
         title: Bewaartermijn berichten
       default_noindex:
@@ -877,16 +885,38 @@ nl:
         action: Klik hier voor meer informatie
         message_html: "<strong>Jouw objectopslag is verkeerd geconfigureerd. De privacy van je gebruikers is in gevaar.</strong>"
     tags:
+      moderation:
+        not_trendable: Niet trendbaar
+        not_usable: Niet bruikbaar
+        pending_review: In afwachting van beoordeling
+        review_requested: Beoordeling aangevraagd
+        reviewed: Beoordeeld
+        title: Status
+        trendable: Trendbaar
+        unreviewed: Onbeoordeeld
+        usable: Bruikbaar
+      name: Naam
+      newest: Nieuwste
+      oldest: Oudste
+      reset: Opnieuw
       review: Status beoordelen
+      search: Zoeken
+      title: Hashtags
       updated_msg: Instellingen hashtag succesvol bijgewerkt
     title: Beheer
     trends:
       allow: Goedkeuren
       approved: Goedgekeurde
+      confirm_allow: Weet je zeker dat je de geselecteerde hashtags wil toestaan?
+      confirm_disallow: Weet je zeker dat je de geselecteerde hashtags wil afkeuren?
       disallow: Afkeuren
       links:
         allow: Link goedkeuren
         allow_provider: Website goedkeuren
+        confirm_allow: Weet je zeker dat je de geselecteerde links wil toestaan?
+        confirm_allow_provider: Weet je zeker dat je de geselecteerde websites wil toestaan?
+        confirm_disallow: Weet je zeker dat je de geselecteerde links wil afkeuren?
+        confirm_disallow_provider: Weet je zeker dat je de geselecteerde websites wil afkeuren?
         description_html: Dit zijn links die momenteel veel worden gedeeld door accounts waar jouw server berichten van ontvangt. Hierdoor kunnen jouw gebruikers zien wat er in de wereld aan de hand is. Er worden geen links weergeven totdat je de website hebt goedgekeurd. Je kunt ook individuele links goed- of afkeuren.
         disallow: Link afkeuren
         disallow_provider: Website afkeuren
@@ -910,6 +940,10 @@ nl:
       statuses:
         allow: Bericht goedkeuren
         allow_account: Account goedkeuren
+        confirm_allow: Weet je zeker dat je de geselecteerde berichten wil toestaan?
+        confirm_allow_account: Weet je zeker dat je de geselecteerde accounts wil toestaan?
+        confirm_disallow: Weet je zeker dat je de geselecteerde berichten wil afkeuren?
+        confirm_disallow_account: Weet je zeker dat je de geselecteerde accounts wil afkeuren?
         description_html: Dit zijn berichten die op jouw server bekend zijn en die momenteel veel worden gedeeld en als favoriet worden gemarkeerd. Hiermee kunnen nieuwe en terugkerende gebruikers meer mensen vinden om te volgen. Er worden geen berichten in het openbaar weergegeven totdat het account door jou is goedgekeurd en de gebruiker toestaat dat diens account aan anderen wordt aanbevolen. Je kunt ook individuele berichten goed- of afkeuren.
         disallow: Bericht afkeuren
         disallow_account: Account afkeuren
@@ -942,14 +976,14 @@ nl:
         used_by_over_week:
           one: Door één persoon tijdens de afgelopen week gebruikt
           other: Door %{count} mensen tijdens de afgelopen week gebruikt
-      title: Trends
+      title: Aanbevelingen & trends
       trending: Trending
     warning_presets:
       add_new: Nieuwe toevoegen
       delete: Verwijderen
       edit_preset: Preset voor waarschuwing bewerken
       empty: Je hebt nog geen presets voor waarschuwingen toegevoegd.
-      title: Presets voor waarschuwingen beheren
+      title: Presets voor waarschuwingen
     webhooks:
       add_new: Eindpunt toevoegen
       delete: Verwijderen
@@ -972,7 +1006,7 @@ nl:
       webhook: Webhook
   admin_mailer:
     auto_close_registrations:
-      body: In verband met een gebrek aan recentelijke moderator-activiteit, is de registratie-modus op %{instance} automatisch veranderd naar handmatige beoordeling door moderatoren. Dit om te voorkomen dat %{instance} als platform voor eventueel misbruik kan worden gebruikt. Je kunt op elk gewenst moment veel terugschakelen naar open registraties.
+      body: In verband met een gebrek aan recentelijke moderatoractiviteit, is de registratiemodus op %{instance} automatisch gewijzigd naar handmatige beoordeling door moderatoren. Dit om te voorkomen dat %{instance} als platform voor eventueel misbruik kan worden gebruikt. Je kunt op elk gewenst moment weer terugschakelen naar open registraties.
       subject: De registratie-modus op %{instance} is automatisch veranderd naar handmatige beoordeling door moderatoren
     new_appeal:
       actions:
@@ -1078,7 +1112,7 @@ nl:
     or_log_in_with: Of inloggen met
     privacy_policy_agreement_html: Ik heb het <a href="%{privacy_policy_path}" target="_blank">privacybeleid</a> gelezen en ga daarmee akkoord
     progress:
-      confirm: E-mail bevestigen
+      confirm: E-mailadres bevestigen
       details: Jouw gegevens
       review: Onze beoordeling
       rules: Regels accepteren
@@ -1114,7 +1148,7 @@ nl:
       title: Laten we je account op %{domain} instellen.
     status:
       account_status: Accountstatus
-      confirming: Aan het wachten totdat de e-mail is bevestigd.
+      confirming: Wachten tot e-mailbevestiging is voltooid.
       functional: Jouw account kan in diens geheel gebruikt worden.
       pending: Jouw aanvraag moet nog worden beoordeeld door een van onze medewerkers. Dit kan misschien eventjes duren. Je ontvangt een e-mail wanneer jouw aanvraag is goedgekeurd.
       redirecting_to: Jouw account is inactief omdat het momenteel wordt doorverwezen naar %{acct}.
@@ -1160,7 +1194,7 @@ nl:
       caches: Berichten en media die op andere servers zijn opgeslagen kunnen daar achterblijven
       data_removal: Jouw berichten en andere gegevens worden permanent verwijderd
       email_change_html: Je kunt <a href="%{path}">je e-mailadres wijzigen</a> zonder dat je jouw account hoeft te verwijderen
-      email_contact_html: Wanneer het nog steeds niet aankomt, kun je voor hulp e-mailen naar <a href="mailto:%{email}">%{email}</a>
+      email_contact_html: Als het nog steeds niet aankomt, kun je een e-mail sturen <a href="mailto:%{email}">%{email}</a> voor hulp
       email_reconfirmation_html: Wanneer je de bevestigingsmail niet hebt ontvangen, kun je deze <a href="%{path}">opnieuw aanvragen</a>
       irreversible: Je bent niet meer in staat om jouw account te herstellen of te deactiveren
       more_details_html: Zie het <a href="%{terms_path}">privacybeleid</a> voor meer informatie.
@@ -1812,14 +1846,14 @@ nl:
       subject: Jouw archief staat klaar om te worden gedownload
       title: Archief ophalen
     failed_2fa:
-      details: 'Hier zijn details van de inlogpoging:'
+      details: 'Hier zijn de details van de inlogpoging:'
       explanation: Iemand heeft geprobeerd om in te loggen op jouw account maar heeft een ongeldige tweede verificatiefactor opgegeven.
       further_actions_html: Als jij dit niet was, raden we je aan om onmiddellijk %{action} aangezien het in gevaar kan zijn.
       subject: Tweestapsverificatiefout
       title: Tweestapsverificatie mislukt
     suspicious_sign_in:
       change_password: je wachtwoord te wijzigen
-      details: 'Hier zijn de details van inlogpoging:'
+      details: 'Hier zijn de details van het inloggen:'
       explanation: We hebben vastgesteld dat iemand vanaf een nieuw IP-adres op jouw account is ingelogd.
       further_actions_html: Wanneer jij dit niet was, adviseren wij om onmiddellijk %{action} en om tweestapsverificatie in te schakelen, om zo je account veilig te houden.
       subject: Jouw account is vanaf een nieuw IP-adres benaderd

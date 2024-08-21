@@ -1,5 +1,6 @@
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
+import { blockAccountSuccess, muteAccountSuccess } from 'mastodon/actions/accounts';
 import {
   NOTIFICATION_REQUESTS_EXPAND_REQUEST,
   NOTIFICATION_REQUESTS_EXPAND_SUCCESS,
@@ -12,6 +13,8 @@ import {
   NOTIFICATION_REQUEST_FETCH_FAIL,
   NOTIFICATION_REQUEST_ACCEPT_REQUEST,
   NOTIFICATION_REQUEST_DISMISS_REQUEST,
+  NOTIFICATION_REQUESTS_ACCEPT_REQUEST,
+  NOTIFICATION_REQUESTS_DISMISS_REQUEST,
   NOTIFICATIONS_FOR_REQUEST_FETCH_REQUEST,
   NOTIFICATIONS_FOR_REQUEST_FETCH_SUCCESS,
   NOTIFICATIONS_FOR_REQUEST_FETCH_FAIL,
@@ -51,6 +54,14 @@ const removeRequest = (state, id) => {
   return state.update('items', list => list.filterNot(item => item.get('id') === id));
 };
 
+const removeRequestByAccount = (state, account_id) => {
+  if (state.getIn(['current', 'item', 'account']) === account_id) {
+    state = state.setIn(['current', 'removed'], true);
+  }
+
+  return state.update('items', list => list.filterNot(item => item.get('account') === account_id));
+};
+
 export const notificationRequestsReducer = (state = initialState, action) => {
   switch(action.type) {
   case NOTIFICATION_REQUESTS_FETCH_SUCCESS:
@@ -74,6 +85,13 @@ export const notificationRequestsReducer = (state = initialState, action) => {
   case NOTIFICATION_REQUEST_ACCEPT_REQUEST:
   case NOTIFICATION_REQUEST_DISMISS_REQUEST:
     return removeRequest(state, action.id);
+  case NOTIFICATION_REQUESTS_ACCEPT_REQUEST:
+  case NOTIFICATION_REQUESTS_DISMISS_REQUEST:
+    return action.ids.reduce((state, id) => removeRequest(state, id), state);
+  case blockAccountSuccess.type:
+    return removeRequestByAccount(state, action.payload.relationship.id);
+  case muteAccountSuccess.type:
+    return action.payload.relationship.muting_notifications ? removeRequestByAccount(state, action.payload.relationship.id) : state;
   case NOTIFICATION_REQUEST_FETCH_REQUEST:
     return state.set('current', initialState.get('current').set('isLoading', true));
   case NOTIFICATION_REQUEST_FETCH_SUCCESS:

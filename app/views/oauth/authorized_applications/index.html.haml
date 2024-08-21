@@ -29,14 +29,14 @@
 
         - unless application.superapp? || current_account.unavailable?
           %div
-            = table_link_to 'times', t('doorkeeper.authorized_applications.buttons.revoke'), oauth_authorized_application_path(application), method: :delete, data: { confirm: t('doorkeeper.authorized_applications.confirmations.revoke') }
+            = table_link_to 'close', t('doorkeeper.authorized_applications.buttons.revoke'), oauth_authorized_application_path(application), method: :delete, data: { confirm: t('doorkeeper.authorized_applications.confirmations.revoke') }
 
       .announcements-list__item__permissions
         %ul.permissions-list
           - grouped_scopes(application.scopes).each do |scope|
             %li.permissions-list__item
               .permissions-list__item__icon
-                = fa_icon('check')
+                = material_symbol('check')
               .permissions-list__item__text
                 .permissions-list__item__text__title
                   = t(scope.key, scope: [:doorkeeper, :grouped_scopes, :title])

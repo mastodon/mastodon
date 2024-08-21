@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'NewStatuses', :sidekiq_inline do
+describe 'NewStatuses', :inline_jobs, :js, :streaming do
   include ProfileStories
 
   subject { page }

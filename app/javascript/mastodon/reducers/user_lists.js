@@ -1,12 +1,8 @@
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 import {
-  DIRECTORY_FETCH_REQUEST,
-  DIRECTORY_FETCH_SUCCESS,
-  DIRECTORY_FETCH_FAIL,
-  DIRECTORY_EXPAND_REQUEST,
-  DIRECTORY_EXPAND_SUCCESS,
-  DIRECTORY_EXPAND_FAIL,
+  expandDirectory,
+  fetchDirectory
 } from 'mastodon/actions/directory';
 import {
   FEATURED_TAGS_FETCH_REQUEST,
@@ -117,6 +113,7 @@ const normalizeFeaturedTags = (state, path, featuredTags, accountId) => {
   }));
 };
 
+/** @type {import('@reduxjs/toolkit').Reducer<typeof initialState>} */
 export default function userLists(state = initialState, action) {
   switch(action.type) {
   case FOLLOWERS_FETCH_SUCCESS:
@@ -194,16 +191,6 @@ export default function userLists(state = initialState, action) {
   case MUTES_FETCH_FAIL:
   case MUTES_EXPAND_FAIL:
     return state.setIn(['mutes', 'isLoading'], false);
-  case DIRECTORY_FETCH_SUCCESS:
-    return normalizeList(state, ['directory'], action.accounts, action.next);
-  case DIRECTORY_EXPAND_SUCCESS:
-    return appendToList(state, ['directory'], action.accounts, action.next);
-  case DIRECTORY_FETCH_REQUEST:
-  case DIRECTORY_EXPAND_REQUEST:
-    return state.setIn(['directory', 'isLoading'], true);
-  case DIRECTORY_FETCH_FAIL:
-  case DIRECTORY_EXPAND_FAIL:
-    return state.setIn(['directory', 'isLoading'], false);
   case FEATURED_TAGS_FETCH_SUCCESS:
     return normalizeFeaturedTags(state, ['featured_tags', action.id], action.tags, action.id);
   case FEATURED_TAGS_FETCH_REQUEST:
@@ -211,6 +198,17 @@ export default function userLists(state = initialState, action) {
   case FEATURED_TAGS_FETCH_FAIL:
     return state.setIn(['featured_tags', action.id, 'isLoading'], false);
   default:
-    return state;
+    if(fetchDirectory.fulfilled.match(action))
+      return normalizeList(state, ['directory'], action.payload.accounts, undefined);
+    else if( expandDirectory.fulfilled.match(action))
+      return appendToList(state, ['directory'], action.payload.accounts, undefined);
+    else if(fetchDirectory.pending.match(action) ||
+     expandDirectory.pending.match(action))
+      return state.setIn(['directory', 'isLoading'], true);
+    else if(fetchDirectory.rejected.match(action) ||
+     expandDirectory.rejected.match(action))
+      return state.setIn(['directory', 'isLoading'], false);
+    else
+      return state;
   }
 }

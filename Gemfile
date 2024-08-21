@@ -9,9 +9,6 @@ gem 'rack', '~> 2.2.7'
 gem 'rails', '~> 7.1.1'
 gem 'thor', '~> 1.2'
 
-# For why irb is in the Gemfile, see: https://ruby.social/@st0012/111444685161478182
-gem 'irb', '~> 1.8'
-
 gem 'dotenv'
 gem 'haml-rails', '~>2.0'
 gem 'pg', '~> 1.5'
@@ -19,19 +16,20 @@ gem 'pghero'
 
 gem 'aws-sdk-s3', '~> 1.123', require: false
 gem 'blurhash', '~> 0.1'
-gem 'fog-core', '<= 2.4.0'
+gem 'fog-core', '<= 2.5.0'
 gem 'fog-openstack', '~> 1.0', require: false
 gem 'kt-paperclip', '~> 7.2'
 gem 'md-paperclip-azure', '~> 2.2', require: false
+gem 'ruby-vips', '~> 2.2', require: false
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'
 gem 'bootsnap', '~> 1.18.0', require: false
-gem 'browser'
+gem 'browser', '< 6' # https://github.com/fnando/browser/issues/543
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.3'
 gem 'devise', '~> 4.9'
-gem 'devise-two-factor', '~> 4.1'
+gem 'devise-two-factor'
 
 group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'
@@ -56,10 +54,11 @@ gem 'hiredis', '~> 0.6'
 gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 5.2.0'
 gem 'http_accept_language', '~> 2.1'
-gem 'httplog', '~> 1.6.2'
-gem 'i18n', '1.14.1' # TODO: Remove version when resolved: https://github.com/glebm/i18n-tasks/issues/552 / https://github.com/ruby-i18n/i18n/pull/688
+gem 'httplog', '~> 1.7.0'
+gem 'i18n'
 gem 'idn-ruby', require: 'idn'
 gem 'inline_svg'
+gem 'irb', '~> 1.8'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
@@ -70,7 +69,7 @@ gem 'oj', '~> 3.14'
 gem 'ox', '~> 2.14'
 gem 'parslet'
 gem 'premailer-rails'
-gem 'public_suffix', '~> 5.0'
+gem 'public_suffix', '~> 6.0'
 gem 'pundit', '~> 2.3'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', '~> 2.0', require: 'rack/cors'
@@ -89,7 +88,7 @@ gem 'sidekiq-unique-jobs', '~> 7.1'
 gem 'simple_form', '~> 5.2'
 gem 'simple-navigation', '~> 4.4'
 gem 'stoplight', '~> 4.1'
-gem 'strong_migrations', '1.8.0'
+gem 'strong_migrations'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2023'
@@ -101,9 +100,30 @@ gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
-gem 'private_address_check', '~> 0.5'
+gem 'opentelemetry-api', '~> 1.3.0'
+
+group :opentelemetry do
+  gem 'opentelemetry-exporter-otlp', '~> 0.28.0', require: false
+  gem 'opentelemetry-instrumentation-active_job', '~> 0.7.1', require: false
+  gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.20.1', require: false
+  gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.21.2', require: false
+  gem 'opentelemetry-instrumentation-excon', '~> 0.22.0', require: false
+  gem 'opentelemetry-instrumentation-faraday', '~> 0.24.1', require: false
+  gem 'opentelemetry-instrumentation-http', '~> 0.23.2', require: false
+  gem 'opentelemetry-instrumentation-http_client', '~> 0.22.3', require: false
+  gem 'opentelemetry-instrumentation-net_http', '~> 0.22.4', require: false
+  gem 'opentelemetry-instrumentation-pg', '~> 0.28.0', require: false
+  gem 'opentelemetry-instrumentation-rack', '~> 0.24.1', require: false
+  gem 'opentelemetry-instrumentation-rails', '~> 0.31.0', require: false
+  gem 'opentelemetry-instrumentation-redis', '~> 0.25.3', require: false
+  gem 'opentelemetry-instrumentation-sidekiq', '~> 0.25.2', require: false
+  gem 'opentelemetry-sdk', '~> 1.4', require: false
+end
 
 group :test do
+  # Enable usage of all available CPUs/cores during spec runs
+  gem 'flatware-rspec'
+
   # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
   gem 'rspec-github', '~> 2.4', require: false
 
@@ -114,7 +134,7 @@ group :test do
   gem 'email_spec'
 
   # Extra RSpec extension methods and helpers for sidekiq
-  gem 'rspec-sidekiq', '~> 4.0'
+  gem 'rspec-sidekiq', '~> 5.0'
 
   # Browser integration testing
   gem 'capybara', '~> 3.39'
@@ -150,6 +170,7 @@ group :development do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec_rails', require: false
 
   # Annotates modules with schema
   gem 'annotate', '~> 3.2'
@@ -160,7 +181,7 @@ group :development do
 
   # Preview mail in the browser
   gem 'letter_opener', '~> 1.8'
-  gem 'letter_opener_web', '~> 2.0'
+  gem 'letter_opener_web', '~> 3.0'
 
   # Security analysis CLI tools
   gem 'brakeman', '~> 6.0', require: false

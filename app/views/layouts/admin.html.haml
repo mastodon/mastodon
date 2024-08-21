@@ -17,8 +17,8 @@
                 = logo_as_symbol(:wordmark)
 
             = link_to '#', class: 'sidebar__toggle__icon', 'aria-label': t('navigation.toggle_menu'), 'aria-expanded': 'false' do
-              = fa_icon 'bars'
-              = fa_icon 'times'
+              = material_symbol 'menu'
+              = material_symbol 'close'
 
           = render_navigation
 

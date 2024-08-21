@@ -5,7 +5,7 @@
   - content_for :heading_actions do
     = link_to t('admin.ip_blocks.add_new'), new_admin_ip_block_path, class: 'button'
 
-= form_for(@form, url: batch_admin_ip_blocks_path) do |f|
+= form_with model: @form, url: batch_admin_ip_blocks_path do |f|
   = hidden_field_tag :page, params[:page] || 1
 
   .batch-table

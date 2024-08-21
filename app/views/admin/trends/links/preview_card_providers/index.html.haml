@@ -20,7 +20,7 @@
 
 %hr.spacer/
 
-= form_for(@form, url: batch_admin_trends_links_preview_card_providers_path) do |f|
+= form_with model: @form, url: batch_admin_trends_links_preview_card_providers_path do |f|
   = hidden_field_tag :page, params[:page] || 1
 
   - Trends::PreviewCardProviderFilter::KEYS.each do |key|

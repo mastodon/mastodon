@@ -592,7 +592,7 @@ RSpec.describe Account do
       expect(results).to eq [match]
     end
 
-    it 'limits by 10 by default' do
+    it 'limits result count by default value' do
       stub_const('Account::Search::DEFAULT_LIMIT', 1)
       2.times { Fabricate(:account, display_name: 'Display Name') }
       results = described_class.advanced_search_for('display', account)
@@ -711,6 +711,14 @@ RSpec.describe Account do
     it 'does not match URL query string' do
       expect(subject.match('https://example.com/?x=@alice')).to be_nil
     end
+
+    it 'matches usernames immediately following the letter ß' do
+      expect(subject.match('Hello toß @alice from me')[1]).to eq 'alice'
+    end
+
+    it 'matches usernames containing uppercase characters' do
+      expect(subject.match('Hello to @aLice@Example.com from me')[1]).to eq 'aLice@Example.com'
+    end
   end
 
   describe 'validations' do
@@ -768,20 +776,20 @@ RSpec.describe Account do
         expect(account).to model_have_error_on_field(:username)
       end
 
-      it 'is invalid if the username is longer than 30 characters' do
-        account = Fabricate.build(:account, username: Faker::Lorem.characters(number: 31))
+      it 'is invalid if the username is longer than the character limit' do
+        account = Fabricate.build(:account, username: username_over_limit)
         account.valid?
         expect(account).to model_have_error_on_field(:username)
       end
 
-      it 'is invalid if the display name is longer than 30 characters' do
-        account = Fabricate.build(:account, display_name: Faker::Lorem.characters(number: 31))
+      it 'is invalid if the display name is longer than the character limit' do
+        account = Fabricate.build(:account, display_name: display_name_over_limit)
         account.valid?
         expect(account).to model_have_error_on_field(:display_name)
       end
 
-      it 'is invalid if the note is longer than 500 characters' do
-        account = Fabricate.build(:account, note: Faker::Lorem.characters(number: 501))
+      it 'is invalid if the note is longer than the character limit' do
+        account = Fabricate.build(:account, note: account_note_over_limit)
         account.valid?
         expect(account).to model_have_error_on_field(:note)
       end
@@ -814,23 +822,35 @@ RSpec.describe Account do
         expect(account).to model_have_error_on_field(:username)
       end
 
-      it 'is valid even if the username is longer than 30 characters' do
-        account = Fabricate.build(:account, domain: 'domain', username: Faker::Lorem.characters(number: 31))
+      it 'is valid even if the username is longer than the character limit' do
+        account = Fabricate.build(:account, domain: 'domain', username: username_over_limit)
         account.valid?
         expect(account).to_not model_have_error_on_field(:username)
       end
 
-      it 'is valid even if the display name is longer than 30 characters' do
-        account = Fabricate.build(:account, domain: 'domain', display_name: Faker::Lorem.characters(number: 31))
+      it 'is valid even if the display name is longer than the character limit' do
+        account = Fabricate.build(:account, domain: 'domain', display_name: display_name_over_limit)
         account.valid?
         expect(account).to_not model_have_error_on_field(:display_name)
       end
 
-      it 'is valid even if the note is longer than 500 characters' do
-        account = Fabricate.build(:account, domain: 'domain', note: Faker::Lorem.characters(number: 501))
+      it 'is valid even if the note is longer than the character limit' do
+        account = Fabricate.build(:account, domain: 'domain', note: account_note_over_limit)
         account.valid?
         expect(account).to_not model_have_error_on_field(:note)
       end
+    end
+
+    def username_over_limit
+      'a' * described_class::USERNAME_LENGTH_LIMIT * 2
+    end
+
+    def display_name_over_limit
+      'a' * described_class::DISPLAY_NAME_LENGTH_LIMIT * 2
+    end
+
+    def account_note_over_limit
+      'a' * described_class::NOTE_LENGTH_LIMIT * 2
     end
   end
 
@@ -1007,21 +1027,26 @@ RSpec.describe Account do
 
   context 'when is local' do
     it 'generates keys' do
-      account = described_class.create!(domain: nil, username: Faker::Internet.user_name(separators: ['_']))
-      expect(account.keypair).to be_private
-      expect(account.keypair).to be_public
+      account = described_class.create!(domain: nil, username: 'user_without_keys')
+
+      expect(account)
+        .to be_private_key
+        .and be_public_key
+      expect(account.keypair)
+        .to be_private
+        .and be_public
     end
   end
 
   context 'when is remote' do
     it 'does not generate keys' do
       key = OpenSSL::PKey::RSA.new(1024).public_key
-      account = described_class.create!(domain: 'remote', uri: 'https://remote/actor', username: Faker::Internet.user_name(separators: ['_']), public_key: key.to_pem)
+      account = described_class.create!(domain: 'remote', uri: 'https://remote/actor', username: 'remote_user_with_public', public_key: key.to_pem)
       expect(account.keypair.params).to eq key.params
     end
 
     it 'normalizes domain' do
-      account = described_class.create!(domain: 'にゃん', uri: 'https://xn--r9j5b5b/actor', username: Faker::Internet.user_name(separators: ['_']))
+      account = described_class.create!(domain: 'にゃん', uri: 'https://xn--r9j5b5b/actor', username: 'remote_user_with_idn_domain')
       expect(account.domain).to eq 'xn--r9j5b5b'
     end
   end

@@ -5,7 +5,7 @@ Rails.application.configure do
   # You should only generate this once per instance. If you later decide to change it, all push subscription will
   # be invalidated, requiring the users to access the website again to resubscribe.
   #
-  # Generate with `rake mastodon:webpush:generate_vapid_key` task (`docker-compose run --rm web rake mastodon:webpush:generate_vapid_key` if you use docker compose)
+  # Generate with `bundle exec rails mastodon:webpush:generate_vapid_key` task (`docker-compose run --rm web bundle exec rails mastodon:webpush:generate_vapid_key` if you use docker compose)
   #
   # For more information visit https://rossta.net/blog/using-the-web-push-api-with-vapid.html
 

@@ -20,7 +20,7 @@ let id = 0;
 class DropdownMenu extends PureComponent {
 
   static propTypes = {
-    items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list]).isRequired,
+    items: PropTypes.array.isRequired,
     loading: PropTypes.bool,
     scrollable: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
@@ -39,6 +39,7 @@ class DropdownMenu extends PureComponent {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
       e.stopPropagation();
+      e.preventDefault();
     }
   };
 
@@ -164,7 +165,7 @@ class Dropdown extends PureComponent {
     children: PropTypes.node,
     icon: PropTypes.string,
     iconComponent: PropTypes.func,
-    items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list]),
+    items: PropTypes.array.isRequired,
     loading: PropTypes.bool,
     size: PropTypes.number,
     title: PropTypes.string,

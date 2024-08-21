@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   include UserTrackingConcern
   include SessionTrackingConcern
   include CacheConcern
+  include PreloadingConcern
   include DomainControlHelper
   include DatabaseHelper
   include AuthorizedFetchHelper
@@ -19,7 +20,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_theme
   helper_method :single_user_mode?
   helper_method :use_seamless_external_login?
-  helper_method :omniauth_only?
   helper_method :sso_account_settings
   helper_method :limited_federation_mode?
   helper_method :body_class_string
@@ -134,10 +134,6 @@ class ApplicationController < ActionController::Base
 
   def use_seamless_external_login?
     Devise.pam_authentication || Devise.ldap_authentication
-  end
-
-  def omniauth_only?
-    ENV['OMNIAUTH_ONLY'] == 'true'
   end
 
   def sso_account_settings

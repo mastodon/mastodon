@@ -19,8 +19,9 @@ describe ReactionValidator do
       expect(reaction.errors).to be_empty
     end
 
-    it 'adds error when 8 reactions already exist' do
-      %w(🐘 ❤️ 🙉 😍 😋 😂 😞 👍).each do |name|
+    it 'adds error when reaction limit count has already been reached' do
+      stub_const 'ReactionValidator::LIMIT', 2
+      %w(🐘 ❤️).each do |name|
         announcement.announcement_reactions.create!(name: name, account: Fabricate(:account))
       end
 

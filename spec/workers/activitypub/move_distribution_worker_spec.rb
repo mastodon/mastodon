@@ -16,12 +16,16 @@ describe ActivityPub::MoveDistributionWorker do
     end
 
     it 'delivers to followers and known blockers' do
-      expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [
-                                  [kind_of(String), migration.account.id, 'http://example.com'],
-                                  [kind_of(String), migration.account.id, 'http://example2.com'],
-                                ]) do
+      expect_push_bulk_to_match(ActivityPub::DeliveryWorker, expected_migration_deliveries) do
         subject.perform(migration.id)
       end
+    end
+
+    def expected_migration_deliveries
+      [
+        [match_json_values(type: 'Move'), migration.account.id, 'http://example.com'],
+        [match_json_values(type: 'Move'), migration.account.id, 'http://example2.com'],
+      ]
     end
   end
 end

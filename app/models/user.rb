@@ -39,6 +39,7 @@
 #  role_id                   :bigint(8)
 #  settings                  :text
 #  time_zone                 :string
+#  otp_secret                :string
 #
 
 class User < ApplicationRecord
@@ -72,6 +73,8 @@ class User < ApplicationRecord
   devise :two_factor_authenticatable,
          otp_secret_encryption_key: Rails.configuration.x.otp_secret
 
+  include LegacyOtpSecret # Must be after the above `devise` line in order to override the legacy method
+
   devise :two_factor_backupable,
          otp_number_of_backup_codes: 10
 
@@ -97,7 +100,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, email_address: true
 
-  validates_with BlacklistedEmailValidator, if: -> { ENV['EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION'] == 'true' || !confirmed? }
+  validates_with UserEmailValidator, if: -> { ENV['EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION'] == 'true' || !confirmed? }
   validates_with EmailMxValidator, if: :validate_email_dns?
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
 
@@ -114,6 +117,7 @@ class User < ApplicationRecord
   scope :pending, -> { where(approved: false) }
   scope :approved, -> { where(approved: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
+  scope :unconfirmed, -> { where(confirmed_at: nil) }
   scope :enabled, -> { where(disabled: false) }
   scope :disabled, -> { where(disabled: true) }
   scope :active, -> { confirmed.signed_in_recently.account_not_suspended }
@@ -130,11 +134,6 @@ class User < ApplicationRecord
   normalizes :locale, with: ->(locale) { I18n.available_locales.exclude?(locale.to_sym) ? nil : locale }
   normalizes :time_zone, with: ->(time_zone) { ActiveSupport::TimeZone[time_zone].nil? ? nil : time_zone }
   normalizes :chosen_languages, with: ->(chosen_languages) { chosen_languages.compact_blank.presence }
-
-  # This avoids a deprecation warning from Rails 5.1
-  # It seems possible that a future release of devise-two-factor will
-  # handle this itself, and this can be removed from our User class.
-  attribute :otp_secret
 
   has_many :session_activations, dependent: :destroy
 

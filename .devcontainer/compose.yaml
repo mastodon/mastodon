@@ -1,0 +1,89 @@
+services:
+  app:
+    working_dir: /workspaces/mastodon/
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/workspaces/mastodon:cached
+    environment:
+      RAILS_ENV: development
+      NODE_ENV: development
+      BIND: 0.0.0.0
+      REDIS_HOST: redis
+      REDIS_PORT: '6379'
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASS: postgres
+      DB_PORT: '5432'
+      ES_ENABLED: 'true'
+      ES_HOST: es
+      ES_PORT: '9200'
+      LIBRE_TRANSLATE_ENDPOINT: http://libretranslate:5000
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+    ports:
+      - '127.0.0.1:3000:3000'
+      - '127.0.0.1:3035:3035'
+      - '127.0.0.1:4000:4000'
+    networks:
+      - external_network
+      - internal_network
+
+  db:
+    image: postgres:14-alpine
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    networks:
+      - internal_network
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+    networks:
+      - internal_network
+
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+    restart: unless-stopped
+    environment:
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+      cluster.name: es-mastodon
+      discovery.type: single-node
+      bootstrap.memory_lock: 'true'
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    networks:
+      - internal_network
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+  libretranslate:
+    image: libretranslate/libretranslate:v1.5.7
+    restart: unless-stopped
+    volumes:
+      - lt-data:/home/libretranslate/.local
+    networks:
+      - external_network
+      - internal_network
+
+volumes:
+  postgres-data:
+  redis-data:
+  es-data:
+  lt-data:
+
+networks:
+  external_network:
+  internal_network:
+    internal: true
