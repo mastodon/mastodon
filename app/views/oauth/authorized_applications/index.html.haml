@@ -6,7 +6,7 @@
 %hr.spacer/
 
 .applications-list
-  - @applications.order(created_at: :desc).each do |application|
+  - @applications.each do |application|
     .applications-list__item
       - if application.website.present?
         = link_to application.name, application.website, target: '_blank', rel: 'noopener noreferrer', class: 'announcements-list__item__title'
