@@ -74,7 +74,7 @@ namespace :repo do
 
               authors.sort!.uniq!
 
-              "(#{pull_requests.map { |pr| "##{pr}" }.join(', ')} by #{authors.map { |author| "@#{author}" }.join(', ')})"
+              "(#{pull_requests.map { |pr| "##{pr}" }.to_sentence} by #{authors.map { |author| "@#{author}" }.to_sentence})"
             end
 
             tmp.puts new_line
