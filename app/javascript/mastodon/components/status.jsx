@@ -13,6 +13,8 @@ import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?re
 import PushPinIcon from '@/material-icons/400-24px/push_pin.svg?react';
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
 import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
+import { ContentWarning } from 'mastodon/components/content_warning';
+import { FilterWarning } from 'mastodon/components/filter_warning';
 import { Icon }  from 'mastodon/components/icon';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 import { withOptionalRouter, WithOptionalRouterPropTypes } from 'mastodon/utils/react_router';
@@ -140,7 +142,7 @@ class Status extends ImmutablePureComponent {
 
   state = {
     showMedia: defaultMediaVisibility(this.props.status) && !(this.context?.hideMediaByDefault),
-    forceFilter: undefined,
+    showDespiteFilter: undefined,
   };
 
   componentDidUpdate (prevProps) {
@@ -152,7 +154,7 @@ class Status extends ImmutablePureComponent {
     if (this.props.status?.get('id') !== prevProps.status?.get('id')) {
       this.setState({
         showMedia: defaultMediaVisibility(this.props.status) && !(this.context?.hideMediaByDefault),
-        forceFilter: undefined,
+        showDespiteFilter: undefined,
       });
     }
   }
@@ -325,20 +327,32 @@ class Status extends ImmutablePureComponent {
   };
 
   handleHotkeyToggleHidden = () => {
-    this.props.onToggleHidden(this._properStatus());
+    const { onToggleHidden } = this.props;
+    const status = this._properStatus();
+
+    if (status.get('matched_filters')) {
+      const expandedBecauseOfCW = !status.get('hidden') || status.get('spoiler_text').length === 0;
+      const expandedBecauseOfFilter = this.state.showDespiteFilter;
+
+      if (expandedBecauseOfFilter && !expandedBecauseOfCW) {
+        onToggleHidden(status);
+      } else if (expandedBecauseOfFilter && expandedBecauseOfCW) {
+        onToggleHidden(status);
+        this.handleFilterToggle();
+      } else  {
+        this.handleFilterToggle();
+      }
+    } else {
+      onToggleHidden(status);
+    }
   };
 
   handleHotkeyToggleSensitive = () => {
     this.handleToggleMediaVisibility();
   };
 
-  handleUnfilterClick = e => {
-    this.setState({ forceFilter: false });
-    e.preventDefault();
-  };
-
-  handleFilterClick = () => {
-    this.setState({ forceFilter: true });
+  handleFilterToggle = () => {
+    this.setState(state => ({ ...state, showDespiteFilter: !state.showDespiteFilter }));
   };
 
   _properStatus () {
@@ -395,25 +409,6 @@ class Status extends ImmutablePureComponent {
     const connectToRoot = rootId && rootId === status.get('in_reply_to_id');
     const connectReply = nextInReplyToId && nextInReplyToId === status.get('id');
     const matchedFilters = status.get('matched_filters');
-
-    if (this.state.forceFilter === undefined ? matchedFilters : this.state.forceFilter) {
-      const minHandlers = this.props.muted ? {} : {
-        moveUp: this.handleHotkeyMoveUp,
-        moveDown: this.handleHotkeyMoveDown,
-      };
-
-      return (
-        <HotKeys handlers={minHandlers} tabIndex={unfocusable ? null : -1}>
-          <div className='status__wrapper status__wrapper--filtered focusable' tabIndex={unfocusable ? null : 0} ref={this.handleRef}>
-            <FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {matchedFilters.join(', ')}.
-            {' '}
-            <button className='status__wrapper--filtered__button' onClick={this.handleUnfilterClick}>
-              <FormattedMessage id='status.show_filter_reason' defaultMessage='Show anyway' />
-            </button>
-          </div>
-        </HotKeys>
-      );
-    }
 
     if (featured) {
       prepend = (
@@ -548,7 +543,7 @@ class Status extends ImmutablePureComponent {
     }
 
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
-    const expanded = !status.get('hidden') || status.get('spoiler_text').length === 0;
+    const expanded = (!matchedFilters || this.state.showDespiteFilter) && (!status.get('hidden') || status.get('spoiler_text').length === 0);
 
     return (
       <HotKeys handlers={handlers} tabIndex={unfocusable ? null : -1}>
@@ -574,22 +569,27 @@ class Status extends ImmutablePureComponent {
               </a>
             </div>
 
-            <StatusContent
-              status={status}
-              onClick={this.handleClick}
-              expanded={expanded}
-              onExpandedToggle={this.handleExpandedToggle}
-              onTranslate={this.handleTranslate}
-              collapsible
-              onCollapsedToggle={this.handleCollapsedToggle}
-              {...statusContentProps}
-            />
+            {matchedFilters && <FilterWarning title={matchedFilters.join(', ')} expanded={this.state.showDespiteFilter} onClick={this.handleFilterToggle} />}
 
-            {media}
+            {(status.get('spoiler_text').length > 0 && (!matchedFilters || this.state.showDespiteFilter)) && <ContentWarning text={status.getIn(['translation', 'spoilerHtml']) || status.get('spoilerHtml')} expanded={expanded} onClick={this.handleExpandedToggle} />}
 
-            {expanded && hashtagBar}
+            {expanded && (
+              <>
+                <StatusContent
+                  status={status}
+                  onClick={this.handleClick}
+                  onTranslate={this.handleTranslate}
+                  collapsible
+                  onCollapsedToggle={this.handleCollapsedToggle}
+                  {...statusContentProps}
+                />
 
-            <StatusActionBar scrollKey={scrollKey} status={status} account={account} onFilter={matchedFilters ? this.handleFilterClick : null} {...other} />
+                {media}
+                {hashtagBar}
+              </>
+            )}
+
+            <StatusActionBar scrollKey={scrollKey} status={status} account={account}  {...other} />
           </div>
         </div>
       </HotKeys>
