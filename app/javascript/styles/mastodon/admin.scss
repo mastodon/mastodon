@@ -906,6 +906,15 @@ a.name-tag,
       justify-content: flex-start;
       border-top: 1px solid var(--background-border-color);
 
+      &__report-id {
+        text-decoration: none;
+        color: $darker-text-color;
+
+        &:hover {
+          color: $highlight-text-color;
+        }
+      }
+
       &__reported-by,
       &__assigned {
         padding: 15px;

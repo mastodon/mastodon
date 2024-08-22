@@ -30,6 +30,8 @@
       %button.button= t('admin.accounts.search')
       = link_to t('admin.accounts.reset'), admin_reports_path, class: 'button negative'
 
+%h4 Reports by reported account
+
 - @reports.group_by(&:target_account_id).each_value do |reports|
   - target_account = reports.first.target_account
   .report-card
@@ -50,12 +52,9 @@
       - reports.each do |report|
         .report-card__summary__item
           .report-card__summary__item__reported-by
-            - if report.account.instance_actor?
-              = site_hostname
-            - elsif report.account.local?
-              = admin_account_link_to report.account
-            - else
-              = report.account.domain
+            = link_to t('admin.reports.report', id: report.id), admin_report_path(report), class: 'report-card__summary__item__report-id'
+            %br
+
           .report-card__summary__item__content
             = link_to admin_report_path(report) do
               .one-line= report.comment.presence || t('admin.reports.comment.none')
@@ -68,11 +67,25 @@
                 = material_symbol('photo_camera')
                 = report.media_attachments_count
 
+              %span.report-card__summary__item__content__icon{ title: }
+                - if report.account.instance_actor?
+                  = material_symbol('cloud')
+                  = site_hostname
+                - elsif report.account.local?
+                  = material_symbol('person')
+                  = report.account.acct
+                - else
+                  = material_symbol('cloud')
+                  = report.account.domain
+
               - if report.forwarded?
                 ·
                 = t('admin.reports.forwarded_to', domain: target_account.domain)
 
           .report-card__summary__item__assigned
+            %span.report-card__summary__item__content__icon{ title: t('admin.reports.notes.title') }
+              = material_symbol('comment')
+              = report.notes.count
             - if report.assigned_account.present?
               = admin_account_link_to report.assigned_account
             - else
