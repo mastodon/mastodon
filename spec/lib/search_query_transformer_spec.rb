@@ -8,6 +8,38 @@ describe SearchQueryTransformer do
   let(:account) { Fabricate(:account) }
   let(:parser) { SearchQueryParser.new.parse(query) }
 
+  shared_examples 'date operator' do |operator|
+    let(:statement_operations) { [] }
+
+    [
+      ["2022-01-01", "2022-01-01"],
+      ["\"2022-01-01\"", "2022-01-01"],
+      ["12345678", "12345678"],
+      ["\"12345678\"", "12345678"]
+    ].each do |value, parsed|
+      context "with #{operator}:#{value}" do
+        let(:query) { "#{operator}:#{value}" }
+
+        it "transforms clauses" do
+          ops = statement_operations.map { |op| [op, parsed] }.to_h
+
+          expect(subject.send(:must_clauses)).to be_empty
+          expect(subject.send(:must_not_clauses)).to be_empty
+          expect(subject.send(:filter_clauses).map(&:term)).to contain_exactly(**ops, time_zone: 'UTC')
+        end
+
+      end
+    end
+
+    context "with #{operator}:\"abc\"" do
+      let(:query) { "#{operator}:\"abc\"" }
+
+      it 'raises an exception' do
+        expect { subject }.to raise_error(Mastodon::FilterValidationError, 'Invalid date abc')
+      end
+    end
+  end
+
   context 'with "hello world"' do
     let(:query) { 'hello world' }
 
@@ -78,21 +110,23 @@ describe SearchQueryTransformer do
     end
   end
 
-  context 'with \'before:"2022-01-01"\'' do
-    let(:query) { 'before:"2022-01-01"' }
-
-    it 'transforms clauses' do
-      expect(subject.send(:must_clauses)).to be_empty
-      expect(subject.send(:must_not_clauses)).to be_empty
-      expect(subject.send(:filter_clauses).map(&:term)).to contain_exactly(lt: '2022-01-01', time_zone: 'UTC')
+  context 'with date operators' do
+    context "before" do
+      it_behaves_like 'date operator', 'before' do
+        let(:statement_operations) { [:lt] }
+      end
     end
-  end
 
-  context 'with \'before:"abc"\'' do
-    let(:query) { 'before:"abc"' }
+    context "after" do
+      it_behaves_like 'date operator', 'after' do
+        let(:statement_operations) { [:gt] }
+      end
+    end
 
-    it 'raises an exception' do
-      expect { subject }.to raise_error(Mastodon::FilterValidationError, 'Invalid date abc')
+    context "during" do
+      it_behaves_like 'date operator', 'during' do
+        let(:statement_operations) { [:gte, :lte] }
+      end
     end
   end
 end
