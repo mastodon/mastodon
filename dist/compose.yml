@@ -5,6 +5,8 @@
 # You should check the Docker image tag used for the web, sidekiq, and streaming containers to make sure you are running
 # the appropriate version for your deployment. Using `nightly` will deploy the in-development version of Mastodon, which is
 # not considered a stable release. Visit https://github.com/mastodon/mastodon/releases for currently released versions and tags.
+
+# Change the `image-tag` value to the desired version tag, e.g. `4.3.0`, `4.3.1`, etc.
 x-image-tag:
   &image-tag nightly
 
