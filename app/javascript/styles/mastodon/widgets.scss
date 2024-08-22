@@ -1,3 +1,85 @@
+.directory {
+  &__tag {
+    box-sizing: border-box;
+    margin-bottom: 10px;
+
+    & > a,
+    & > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid var(--background-border-color);
+      border-radius: 4px;
+      padding: 15px;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+    }
+
+    & > a {
+      &:hover,
+      &:active,
+      &:focus {
+        background: $ui-base-color;
+      }
+    }
+
+    &.active > a {
+      background: $ui-highlight-color;
+      cursor: default;
+    }
+
+    &.disabled > div {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    h4 {
+      flex: 1 1 auto;
+      font-size: 18px;
+      font-weight: 700;
+      color: $primary-text-color;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      .fa {
+        color: $darker-text-color;
+      }
+
+      small {
+        display: block;
+        font-weight: 400;
+        font-size: 15px;
+        margin-top: 8px;
+        color: $darker-text-color;
+      }
+    }
+
+    &.active h4 {
+      &,
+      .fa,
+      small,
+      .trends__item__current {
+        color: $primary-text-color;
+      }
+    }
+
+    .avatar-stack {
+      flex: 0 0 auto;
+      width: (36px + 4px) * 3;
+    }
+
+    &.active .avatar-stack .account__avatar {
+      border-color: $ui-highlight-color;
+    }
+
+    .trends__item__current {
+      padding-inline-end: 0;
+    }
+  }
+}
+
 .accounts-table {
   width: 100%;
 
