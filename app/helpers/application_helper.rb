@@ -237,22 +237,6 @@ module ApplicationHelper
     full_asset_url(instance_presenter.mascot&.file&.url || frontend_asset_path('images/elephant_ui_plane.svg'))
   end
 
-  def instance_presenter
-    @instance_presenter ||= InstancePresenter.new
-  end
-
-  def favicon_path(size = '48')
-    instance_presenter.favicon&.file&.url(size)
-  end
-
-  def app_icon_path(size = '48')
-    instance_presenter.app_icon&.file&.url(size)
-  end
-
-  def use_mask_icon?
-    instance_presenter.app_icon.blank?
-  end
-
   private
 
   def storage_host_var
