@@ -217,7 +217,9 @@ export const NotificationRequests = ({ multiColumn }) => {
         multiColumn={multiColumn}
         showBackButton
         appendContent={
-          <SelectRow selectionMode={selectionMode} setSelectionMode={setSelectionMode} selectAllChecked={selectAllChecked} toggleSelectAll={toggleSelectAll} selectedItems={checkedRequestIds} />}
+          notificationRequests.size > 0 && (
+            <SelectRow selectionMode={selectionMode} setSelectionMode={setSelectionMode} selectAllChecked={selectAllChecked} toggleSelectAll={toggleSelectAll} selectedItems={checkedRequestIds} />
+          )}
       >
         <ColumnSettings />
       </ColumnHeader>
