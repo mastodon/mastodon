@@ -762,16 +762,6 @@ body > [data-popper-placement] {
     gap: 12px;
     flex-wrap: wrap;
 
-    .button {
-      display: block; // Otherwise text-ellipsis doesn't work
-      font-size: 14px;
-      line-height: normal;
-      font-weight: 700;
-      flex: 1 1 auto;
-      padding: 5px 12px;
-      border-radius: 4px;
-    }
-
     .icon-button {
       box-sizing: content-box;
       color: $highlight-text-color;
@@ -2901,10 +2891,6 @@ $ui-header-logo-wordmark-width: 99px;
     padding-inline-end: 30px;
   }
 
-  .search__icon .fa {
-    top: 15px;
-  }
-
   .scrollable {
     overflow: visible;
 
@@ -3435,26 +3421,6 @@ $ui-header-logo-wordmark-width: 99px;
   flex-direction: column;
   height: calc(100% - 10px);
   overflow-y: hidden;
-
-  .hero-widget {
-    box-shadow: none;
-
-    &__text,
-    &__img,
-    &__img img {
-      border-radius: 0;
-    }
-
-    &__text {
-      padding: 15px;
-      color: $secondary-text-color;
-
-      strong {
-        font-weight: 700;
-        color: $primary-text-color;
-      }
-    }
-  }
 
   .compose-form {
     flex: 1 1 auto;
@@ -4217,7 +4183,7 @@ a.status-card {
   text-decoration: none;
 
   &:hover {
-    background: lighten($ui-base-color, 2%);
+    background: var(--on-surface-color);
   }
 }
 
@@ -4227,11 +4193,12 @@ a.status-card {
 
 .timeline-hint {
   text-align: center;
-  color: $darker-text-color;
-  padding: 15px;
+  color: $dark-text-color;
+  padding: 16px;
   box-sizing: border-box;
   width: 100%;
-  cursor: default;
+  font-size: 14px;
+  line-height: 21px;
 
   strong {
     font-weight: 500;
@@ -4248,10 +4215,10 @@ a.status-card {
       color: lighten($highlight-text-color, 4%);
     }
   }
-}
 
-.timeline-hint--with-descendants {
-  border-top: 1px solid var(--background-border-color);
+  &--with-descendants {
+    border-top: 1px solid var(--background-border-color);
+  }
 }
 
 .regeneration-indicator {
@@ -4346,19 +4313,18 @@ a.status-card {
     display: flex;
   }
 
-  &__selection-mode {
-    flex-grow: 1;
-
-    .text-btn:hover {
-      text-decoration: underline;
-    }
+  &__select-menu:disabled {
+    visibility: hidden;
   }
 
-  &__actions {
-    .icon-button {
-      border-radius: 4px;
-      border: 1px solid var(--background-border-color);
-      padding: 5px;
+  &__mode-button {
+    margin-left: auto;
+    color: $highlight-text-color;
+    font-weight: bold;
+    font-size: 14px;
+
+    &:hover {
+      color: lighten($highlight-text-color, 6%);
     }
   }
 }
@@ -4566,6 +4532,7 @@ a.status-card {
   padding: 0;
   font-family: inherit;
   font-size: inherit;
+  font-weight: inherit;
   color: inherit;
   border: 0;
   background: transparent;
@@ -6256,7 +6223,7 @@ a.status-card {
 }
 
 .boost-modal__container {
-  overflow-x: scroll;
+  overflow-y: auto;
   padding: 10px;
 
   .status {
@@ -7558,10 +7525,6 @@ a.status-card {
       color: $white;
     }
   }
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 0;
 }
 
 noscript {
@@ -10366,7 +10329,7 @@ noscript {
     cursor: pointer;
 
     &:hover {
-      background: lighten($ui-base-color, 1%);
+      background: var(--on-surface-color);
     }
 
     .notification-request__checkbox {
@@ -10486,6 +10449,13 @@ noscript {
     gap: 8px;
     flex: 1 1 auto;
     overflow: hidden;
+    container-type: inline-size;
+
+    @container (width < 350px) {
+      &__header time {
+        display: none;
+      }
+    }
 
     &__header {
       display: flex;
@@ -10524,6 +10494,13 @@ noscript {
       border: 1px solid var(--background-border-color);
       border-radius: 8px;
       padding: 8px;
+    }
+
+    &__additional-content {
+      color: $dark-text-color;
+      margin-top: -8px; // to offset the parent's `gap` property
+      font-size: 15px;
+      line-height: 22px;
     }
   }
 
@@ -10574,6 +10551,19 @@ noscript {
         color: inherit;
       }
     }
+  }
+}
+
+.notification-group__actions,
+.compose-form__actions {
+  .button {
+    display: block; // Otherwise text-ellipsis doesn't work
+    font-size: 14px;
+    line-height: normal;
+    font-weight: 700;
+    flex: 1 1 auto;
+    padding: 5px 12px;
+    border-radius: 4px;
   }
 }
 

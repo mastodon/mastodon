@@ -56,6 +56,7 @@ th:
       demote: ลดขั้น
       destroyed_msg: ตอนนี้จัดคิวเพื่อลบข้อมูลของ %{username} ในเร็ว ๆ นี้แล้ว
       disable: อายัด
+      disable_sign_in_token_auth: ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมล
       disable_two_factor_authentication: ปิดใช้งาน 2FA
       disabled: อายัดอยู่
       display_name: ชื่อที่แสดง
@@ -64,6 +65,7 @@ th:
       email: อีเมล
       email_status: สถานะอีเมล
       enable: เลิกอายัด
+      enable_sign_in_token_auth: เปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมล
       enabled: เปิดใช้งานอยู่
       enabled_msg: เลิกอายัดบัญชีของ %{username} สำเร็จ
       followers: ผู้ติดตาม
@@ -127,6 +129,7 @@ th:
       resubscribe: บอกรับใหม่
       role: บทบาท
       search: ค้นหา
+      search_same_email_domain: ผู้ใช้อื่น ๆ ที่มีโดเมนอีเมลเดียวกัน
       search_same_ip: ผู้ใช้อื่น ๆ ที่มี IP เดียวกัน
       security: ความปลอดภัย
       security_measures:
@@ -194,8 +197,10 @@ th:
         destroy_user_role: ทำลายบทบาท
         disable_2fa_user: ปิดใช้งาน 2FA
         disable_custom_emoji: ปิดใช้งานอีโมจิที่กำหนดเอง
+        disable_sign_in_token_auth_user: ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับผู้ใช้
         disable_user: ปิดใช้งานผู้ใช้
         enable_custom_emoji: เปิดใช้งานอีโมจิที่กำหนดเอง
+        enable_sign_in_token_auth_user: เปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับผู้ใช้
         enable_user: เปิดใช้งานผู้ใช้
         memorialize_account: ทำให้บัญชีเป็นอนุสรณ์
         promote_user: เลื่อนขั้นผู้ใช้
@@ -225,20 +230,26 @@ th:
         approve_appeal_html: "%{name} ได้อนุมัติการอุทธรณ์การตัดสินใจในการกลั่นกรองจาก %{target}"
         approve_user_html: "%{name} ได้อนุมัติการลงทะเบียนจาก %{target}"
         assigned_to_self_report_html: "%{name} ได้มอบหมายรายงาน %{target} ให้กับตนเอง"
+        change_email_user_html: "%{name} ได้เปลี่ยนที่อยู่อีเมลของผู้ใช้ %{target}"
         change_role_user_html: "%{name} ได้เปลี่ยนบทบาทของ %{target}"
+        confirm_user_html: "%{name} ได้ยืนยันที่อยู่อีเมลของผู้ใช้ %{target}"
         create_account_warning_html: "%{name} ได้ส่งคำเตือนไปยัง %{target}"
         create_announcement_html: "%{name} ได้สร้างประกาศใหม่ %{target}"
+        create_canonical_email_block_html: "%{name} ได้ปิดกั้นอีเมลที่มีแฮช %{target}"
         create_custom_emoji_html: "%{name} ได้อัปโหลดอีโมจิใหม่ %{target}"
         create_domain_allow_html: "%{name} ได้อนุญาตการติดต่อกับภายนอกกับโดเมน %{target}"
         create_domain_block_html: "%{name} ได้ปิดกั้นโดเมน %{target}"
+        create_email_domain_block_html: "%{name} ได้ปิดกั้นโดเมนอีเมล %{target}"
         create_ip_block_html: "%{name} ได้สร้างกฎสำหรับ IP %{target}"
         create_unavailable_domain_html: "%{name} ได้หยุดการจัดส่งไปยังโดเมน %{target}"
         create_user_role_html: "%{name} ได้สร้างบทบาท %{target}"
         demote_user_html: "%{name} ได้ลดขั้นผู้ใช้ %{target}"
         destroy_announcement_html: "%{name} ได้ลบประกาศ %{target}"
+        destroy_canonical_email_block_html: "%{name} ได้เลิกปิดกั้นอีเมลที่มีแฮช %{target}"
         destroy_custom_emoji_html: "%{name} ได้ลบอีโมจิ %{target}"
         destroy_domain_allow_html: "%{name} ได้ไม่อนุญาตการติดต่อกับภายนอกกับโดเมน %{target}"
         destroy_domain_block_html: "%{name} ได้เลิกปิดกั้นโดเมน %{target}"
+        destroy_email_domain_block_html: "%{name} ได้เลิกปิดกั้นโดเมนอีเมล %{target}"
         destroy_instance_html: "%{name} ได้ล้างข้อมูลโดเมน %{target}"
         destroy_ip_block_html: "%{name} ได้ลบกฎสำหรับ IP %{target}"
         destroy_status_html: "%{name} ได้เอาโพสต์โดย %{target} ออก"
@@ -246,8 +257,10 @@ th:
         destroy_user_role_html: "%{name} ได้ลบบทบาท %{target}"
         disable_2fa_user_html: "%{name} ได้ปิดใช้งานความต้องการสองปัจจัยสำหรับผู้ใช้ %{target}"
         disable_custom_emoji_html: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} ได้ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับ %{target}"
         disable_user_html: "%{name} ได้ปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
         enable_custom_emoji_html: "%{name} ได้เปิดใช้งานอีโมจิ %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} ได้เปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับ %{target}"
         enable_user_html: "%{name} ได้เปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
         memorialize_account_html: "%{name} ได้เปลี่ยนบัญชีของ %{target} เป็นหน้าอนุสรณ์"
         promote_user_html: "%{name} ได้เลื่อนขั้นผู้ใช้ %{target}"
@@ -255,6 +268,7 @@ th:
         reject_user_html: "%{name} ได้ปฏิเสธการลงทะเบียนจาก %{target}"
         remove_avatar_user_html: "%{name} ได้เอาภาพประจำตัวของ %{target} ออก"
         reopen_report_html: "%{name} ได้เปิดรายงาน %{target} ใหม่"
+        resend_user_html: "%{name} ได้ส่งอีเมลการยืนยันสำหรับ %{target} ใหม่"
         reset_password_user_html: "%{name} ได้ตั้งรหัสผ่านของผู้ใช้ %{target} ใหม่"
         resolve_report_html: "%{name} ได้แก้ปัญหารายงาน %{target}"
         sensitive_account_html: "%{name} ได้ทำเครื่องหมายสื่อของ %{target} ว่าละเอียดอ่อน"
@@ -410,6 +424,7 @@ th:
       allow_registrations_with_approval: อนุญาตการลงทะเบียนด้วยการอนุมัติ
       attempts_over_week:
         other: "%{count} ความพยายามในการลงทะเบียนในช่วงสัปดาห์ที่ผ่านมา"
+      created_msg: ปิดกั้นโดเมนอีเมลสำเร็จ
       delete: ลบ
       dns:
         types:
@@ -418,8 +433,12 @@ th:
       new:
         create: เพิ่มโดเมน
         resolve: แปลงที่อยู่โดเมน
+        title: ปิดกั้นโดเมนอีเมลใหม่
+      no_email_domain_block_selected: ไม่มีการเปลี่ยนแปลงการปิดกั้นโดเมนอีเมลเนื่องจากไม่มีการเลือก
       not_permitted: ไม่ได้รับอนุญาต
+      resolved_dns_records_hint_html: ชื่อโดเมนแปลงที่อยู่เป็นโดเมน MX ดังต่อไปนี้ ซึ่งท้ายที่สุดแล้วจะรับผิดชอบสำหรับการยอมรับอีเมล การปิดกั้นโดเมน MX จะปิดกั้นการลงทะเบียนจากที่อยู่อีเมลใด ๆ ซึ่งใช้โดเมน MX เดียวกัน แม้ว่าชื่อโดเมนที่ปรากฏจะแตกต่างกันก็ตาม <strong>ระวังอย่าปิดกั้นผู้ให้บริการอีเมลรายใหญ่</strong>
       resolved_through_html: แปลงที่อยู่ผ่าน %{domain}
+      title: โดเมนอีเมลที่ปิดกั้นอยู่
     export_domain_allows:
       new:
         title: นำเข้าการอนุญาตโดเมน
@@ -569,6 +588,7 @@ th:
         resolve_description_html: จะไม่ใช้การกระทำต่อบัญชีที่รายงาน ไม่มีการบันทึกการดำเนินการ และจะปิดรายงาน
         silence_description_html: บัญชีจะปรากฏแก่เฉพาะผู้ที่ติดตามโปรไฟล์อยู่แล้วหรือค้นหาโปรไฟล์ด้วยตนเองเท่านั้น จำกัดการเข้าถึงของโปรไฟล์อย่างมาก สามารถแปลงกลับได้เสมอ ปิดรายงานต่อบัญชีนี้ทั้งหมด
         suspend_description_html: บัญชีและเนื้อหาของบัญชีทั้งหมดจะเข้าถึงไม่ได้และได้รับการลบในที่สุด และการโต้ตอบกับบัญชีจะเป็นไปไม่ได้ แปลงกลับได้ภายใน 30 วัน ปิดรายงานต่อบัญชีนี้ทั้งหมด
+      actions_description_html: ตัดสินใจว่าการกระทำใดที่จะใช้เพื่อแก้ปัญหารายงานนี้ หากคุณใช้การกระทำที่เป็นการลงโทษต่อบัญชีที่รายงาน จะส่งการแจ้งเตือนอีเมลถึงเขา ยกเว้นเมื่อมีการเลือกหมวดหมู่ <strong>สแปม</strong>
       actions_description_remote_html: ตัดสินใจว่าการกระทำใดที่จะใช้เพื่อแก้ปัญหารายงานนี้ นี่จะมีผลต่อวิธีที่เซิร์ฟเวอร์ <strong>ของคุณ</strong> สื่อสารกับบัญชีระยะไกลนี้และจัดการเนื้อหาของบัญชีเท่านั้น
       add_to_report: เพิ่มข้อมูลเพิ่มเติมไปยังรายงาน
       already_suspended_badges:
@@ -633,6 +653,7 @@ th:
         delete_data_html: ลบโปรไฟล์และเนื้อหาของ <strong>@%{acct}</strong> ในอีก 30 วันนับจากนี้เว้นแต่มีการเลิกระงับเขาในระหว่างนี้
         preview_preamble_html: "<strong>@%{acct}</strong> จะได้รับคำเตือนโดยมีเนื้อหาดังต่อไปนี้:"
         record_strike_html: บันทึกการดำเนินการต่อ <strong>@%{acct}</strong> เพื่อช่วยให้คุณเลื่อนระดับการละเมิดในอนาคตจากบัญชีนี้
+        send_email_html: ส่งอีเมลคำเตือนถึง <strong>@%{acct}</strong>
         warning_placeholder: การให้เหตุผลเพิ่มเติมที่ไม่จำเป็นสำหรับการกระทำการกลั่นกรอง
       target_origin: จุดเริ่มต้นของบัญชีที่ได้รับการรายงาน
       title: รายงาน
@@ -670,6 +691,7 @@ th:
         manage_appeals: จัดการการอุทธรณ์
         manage_appeals_description: อนุญาตให้ผู้ใช้ตรวจทานการอุทธรณ์ต่อการกระทำการกลั่นกรอง
         manage_blocks: จัดการการปิดกั้น
+        manage_blocks_description: อนุญาตให้ผู้ใช้ปิดกั้นผู้ให้บริการอีเมลและที่อยู่ IP
         manage_custom_emojis: จัดการอีโมจิที่กำหนดเอง
         manage_custom_emojis_description: อนุญาตให้ผู้ใช้จัดการอีโมจิที่กำหนดเองในเซิร์ฟเวอร์
         manage_federation: จัดการการติดต่อกับภายนอก
@@ -687,6 +709,7 @@ th:
         manage_taxonomies: จัดการอนุกรมวิธาน
         manage_taxonomies_description: อนุญาตให้ผู้ใช้ตรวจทานเนื้อหาที่กำลังนิยมและอัปเดตการตั้งค่าแฮชแท็ก
         manage_user_access: จัดการการเข้าถึงของผู้ใช้
+        manage_user_access_description: อนุญาตให้ผู้ใช้ปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยของผู้ใช้อื่น ๆ เปลี่ยนที่อยู่อีเมลของเขา และตั้งรหัสผ่านของเขาใหม่
         manage_users: จัดการผู้ใช้
         manage_users_description: อนุญาตให้ผู้ใช้ดูรายละเอียดของผู้ใช้อื่น ๆ และทำการกระทำการกลั่นกรองต่อผู้ใช้เหล่านั้น
         manage_webhooks: จัดการเว็บฮุค
@@ -761,6 +784,7 @@ th:
       destroyed_msg: ลบการอัปโหลดไซต์สำเร็จ!
     software_updates:
       critical_update: สำคัญ — โปรดอัปเดตอย่างรวดเร็ว
+      description: ขอแนะนำให้ทำให้การติดตั้ง Mastodon ของคุณทันสมัยอยู่เสมอเพื่อรับประโยชน์จากการแก้ไขและคุณลักษณะล่าสุด ยิ่งไปกว่านั้น บางครั้งก็เป็นสิ่งสำคัญที่จะอัปเดต Mastodon อย่างทันท่วงทีเพื่อหลีกเลี่ยงปัญหาความปลอดภัย ด้วยเหตุผลเหล่านี้ Mastodon จึงตรวจสอบการอัปเดตทุก 30 นาที และจะแจ้งเตือนคุณตามการกำหนดลักษณะการแจ้งเตือนอีเมลของคุณ
       documentation_link: เรียนรู้เพิ่มเติม
       release_notes: บันทึกประจำรุ่น
       title: การอัปเดตที่พร้อมใช้งาน
@@ -867,10 +891,16 @@ th:
     trends:
       allow: อนุญาต
       approved: อนุมัติแล้ว
+      confirm_allow: คุณแน่ใจหรือไม่ว่าต้องการอนุญาตแท็กที่เลือก?
+      confirm_disallow: คุณแน่ใจหรือไม่ว่าต้องการไม่อนุญาตแท็กที่เลือก?
       disallow: ไม่อนุญาต
       links:
         allow: อนุญาตลิงก์
         allow_provider: อนุญาตผู้เผยแพร่
+        confirm_allow: คุณแน่ใจหรือไม่ว่าต้องการอนุญาตลิงก์ที่เลือก?
+        confirm_allow_provider: คุณแน่ใจหรือไม่ว่าต้องการอนุญาตผู้ให้บริการที่เลือก?
+        confirm_disallow: คุณแน่ใจหรือไม่ว่าต้องการไม่อนุญาตลิงก์ที่เลือก?
+        confirm_disallow_provider: คุณแน่ใจหรือไม่ว่าต้องการไม่อนุญาตผู้ให้บริการที่เลือก?
         description_html: นี่คือลิงก์ที่กำลังได้รับการแบ่งปันเป็นจำนวนมากโดยบัญชีที่เซิร์ฟเวอร์ของคุณเห็นโพสต์จากในปัจจุบัน ลิงก์สามารถช่วยให้ผู้ใช้ของคุณค้นหาสิ่งที่กำลังเกิดขึ้นในโลก จะไม่แสดงลิงก์เป็นสาธารณะจนกว่าคุณจะอนุมัติผู้เผยแพร่ คุณยังสามารถอนุญาตหรือปฏิเสธลิงก์แต่ละรายการ
         disallow: ไม่อนุญาตลิงก์
         disallow_provider: ไม่อนุญาตผู้เผยแพร่
@@ -893,6 +923,10 @@ th:
       statuses:
         allow: อนุญาตโพสต์
         allow_account: อนุญาตผู้สร้าง
+        confirm_allow: คุณแน่ใจหรือไม่ว่าต้องการอนุญาตสถานะที่เลือก?
+        confirm_allow_account: คุณแน่ใจหรือไม่ว่าต้องการอนุญาตบัญชีที่เลือก?
+        confirm_disallow: คุณแน่ใจหรือไม่ว่าต้องการไม่อนุญาตสถานะที่เลือก?
+        confirm_disallow_account: คุณแน่ใจหรือไม่ว่าต้องการไม่อนุญาตบัญชีที่เลือก?
         description_html: นี่คือโพสต์ที่เซิร์ฟเวอร์ของคุณทราบเกี่ยวกับที่กำลังได้รับการแบ่งปันและชื่นชอบเป็นจำนวนมากในปัจจุบันในขณะนี้ โพสต์สามารถช่วยให้ผู้ใช้ใหม่และที่กลับมาของคุณค้นหาผู้คนเพิ่มเติมที่จะติดตาม จะไม่แสดงโพสต์เป็นสาธารณะจนกว่าคุณจะอนุมัติผู้สร้าง และผู้สร้างอนุญาตให้เสนอแนะบัญชีของเขาแก่ผู้อื่น คุณยังสามารถอนุญาตหรือปฏิเสธโพสต์แต่ละรายการ
         disallow: ไม่อนุญาตโพสต์
         disallow_account: ไม่อนุญาตผู้สร้าง

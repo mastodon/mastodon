@@ -130,6 +130,7 @@ ca:
       resubscribe: Torna a subscriure
       role: Rol
       search: Cerca
+      search_same_email_domain: Altres usuaris amb el mateix domini del correu electrònic
       search_same_ip: Altres usuaris amb la mateixa IP
       security: Seguretat
       security_measures:
@@ -170,21 +171,26 @@ ca:
         approve_appeal: Aprova l'apel·lació
         approve_user: Aprova l'usuari
         assigned_to_self_report: Assigna un informe
+        change_email_user: Canvia el correu electrònic per l'usuari
         change_role_user: Canvia el Rol del Usuari
         confirm_user: Confirma l'usuari
         create_account_warning: Crea un avís
         create_announcement: Crea un anunci
+        create_canonical_email_block: Crea un blocatge del correu electrònic
         create_custom_emoji: Crea un emoji personalitzat
         create_domain_allow: Crea un domini permès
         create_domain_block: Crea un bloqueig de domini
+        create_email_domain_block: Crea un blocatge del domini del correu electrònic
         create_ip_block: Crear regla IP
         create_unavailable_domain: Crea un domini no disponible
         create_user_role: Crea Rol
         demote_user: Degrada l'usuari
         destroy_announcement: Esborra l'anunci
+        destroy_canonical_email_block: Elimina el blocatge del correu electrònic
         destroy_custom_emoji: Esborra l'emoji personalitzat
         destroy_domain_allow: Esborra el permís del domini
         destroy_domain_block: Esborra el bloqueig de domini
+        destroy_email_domain_block: Elimina el blocatge del domini del correu electrònic
         destroy_instance: Purga Domini
         destroy_ip_block: Eliminar regla IP
         destroy_status: Elimina la publicació
@@ -223,7 +229,9 @@ ca:
         approve_appeal_html: "%{name} ha aprovat l'apel·lació a la decisió de moderació de %{target}"
         approve_user_html: "%{name} ha aprovat el registre de %{target}"
         assigned_to_self_report_html: "%{name} s'han assignat l'informe %{target} a ells mateixos"
+        change_email_user_html: "%{name} ha canviat l'adreça del correu electrònic de l'usuari %{target}"
         change_role_user_html: "%{name} ha canviat el rol de %{target}"
+        confirm_user_html: "%{name} ha confirmat l'adreça del correu electrònic de l'usuari %{target}"
         create_account_warning_html: "%{name} ha enviat un avís a %{target}"
         create_announcement_html: "%{name} ha creat un nou anunci %{target}"
         create_custom_emoji_html: "%{name} ha pujat un emoji nou %{target}"
@@ -1079,6 +1087,7 @@ ca:
     or_log_in_with: O inicia sessió amb
     privacy_policy_agreement_html: He llegit i estic d'acord amb la <a href="%{privacy_policy_path}" target="_blank">política de privacitat</a>
     progress:
+      confirm: Confirmar email
       details: Els teus detalls
       review: La nostra revisió
       rules: Accepta les normes
@@ -1102,6 +1111,7 @@ ca:
     setup:
       email_settings_hint_html: Toca l'enllaç que t'hem enviat per a verificar %{email}. Esperarem aquí mateix.
       link_not_received: No has rebut l'enllaç?
+      new_confirmation_instructions_sent: Rebràs un nou correu amb l'enllaç de confirmació en pocs minuts!
       title: Comprova la teva safata d'entrada
     sign_in:
       preamble_html: Inicia la sessió amb les teves credencials de <strong>%{domain}</strong>. Si el teu compte es troba a un servidor diferent, no podràs iniciar sessió aquí.

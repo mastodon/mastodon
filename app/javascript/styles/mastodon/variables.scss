@@ -7,8 +7,8 @@ $blurple-600: #563acc; // Iris
 $blurple-500: #6364ff; // Brand purple
 $blurple-400: #7477fd; // Medium slate blue
 $blurple-300: #858afa; // Faded Blue
-$grey-600: #4e4c5a; // Trout
-$grey-100: #dadaf3; // Topaz
+$grey-600: hsl(240deg, 8%, 33%); // Trout
+$grey-100: hsl(240deg, 51%, 90%); // Topaz
 
 $success-green: #79bd9a !default; // Padua
 $error-red: $red-500 !default; // Cerise
@@ -18,10 +18,10 @@ $gold-star: #ca8f04 !default; // Dark Goldenrod
 $red-bookmark: $warning-red;
 
 // Values from the classic Mastodon UI
-$classic-base-color: #282c37; // Midnight Express
-$classic-primary-color: #9baec8; // Echo Blue
-$classic-secondary-color: #d9e1e8; // Pattens Blue
-$classic-highlight-color: #6364ff; // Brand purple
+$classic-base-color: hsl(240deg, 16%, 19%);
+$classic-primary-color: hsl(240deg, 29%, 70%);
+$classic-secondary-color: hsl(255deg, 25%, 88%);
+$classic-highlight-color: $blurple-500;
 
 // Variables for defaults in UI
 $base-shadow-color: $black !default;
@@ -109,5 +109,6 @@ $font-monospace: 'mastodon-font-monospace' !default;
   --surface-background-color: #{darken($ui-base-color, 4%)};
   --surface-variant-background-color: #{$ui-base-color};
   --surface-variant-active-background-color: #{lighten($ui-base-color, 4%)};
+  --on-surface-color: #{transparentize($ui-base-color, 0.5)};
   --avatar-border-radius: 8px;
 }

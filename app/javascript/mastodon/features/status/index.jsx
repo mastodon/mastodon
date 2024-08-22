@@ -629,7 +629,14 @@ class Status extends ImmutablePureComponent {
     const isIndexable = !status.getIn(['account', 'noindex']);
 
     if (!isLocal) {
-      remoteHint = <TimelineHint className={classNames(!!descendants && 'timeline-hint--with-descendants')} url={status.get('url')} resource={<FormattedMessage id='timeline_hint.resources.replies' defaultMessage='Some replies' />} />;
+      remoteHint = (
+        <TimelineHint
+          className={classNames(!!descendants && 'timeline-hint--with-descendants')}
+          url={status.get('url')}
+          message={<FormattedMessage id='hints.threads.replies_may_be_missing' defaultMessage='Replies from other servers may be missing.' />}
+          label={<FormattedMessage id='hints.threads.see_more' defaultMessage='See more replies on {domain}' values={{ domain: <strong>{status.getIn(['account', 'acct']).split('@')[1]}</strong> }} />}
+        />
+      );
     }
 
     const handlers = {

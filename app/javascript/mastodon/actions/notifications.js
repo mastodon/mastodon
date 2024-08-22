@@ -188,8 +188,8 @@ const noOp = () => {};
 
 let expandNotificationsController = new AbortController();
 
-export function expandNotifications({ maxId, forceLoad = false } = {}, done = noOp) {
-  return (dispatch, getState) => {
+export function expandNotifications({ maxId = undefined, forceLoad = false }) {
+  return async (dispatch, getState) => {
     const activeFilter = getState().getIn(['settings', 'notifications', 'quickFilter', 'active']);
     const notifications = getState().get('notifications');
     const isLoadingMore = !!maxId;
@@ -199,7 +199,6 @@ export function expandNotifications({ maxId, forceLoad = false } = {}, done = no
         expandNotificationsController.abort();
         expandNotificationsController = new AbortController();
       } else {
-        done();
         return;
       }
     }
@@ -226,7 +225,8 @@ export function expandNotifications({ maxId, forceLoad = false } = {}, done = no
 
     dispatch(expandNotificationsRequest(isLoadingMore));
 
-    api().get('/api/v1/notifications', { params, signal: expandNotificationsController.signal }).then(response => {
+    try {
+      const response = await api().get('/api/v1/notifications', { params, signal: expandNotificationsController.signal });
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
       dispatch(importFetchedAccounts(response.data.map(item => item.account)));
@@ -236,11 +236,9 @@ export function expandNotifications({ maxId, forceLoad = false } = {}, done = no
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null, isLoadingMore, isLoadingRecent, isLoadingRecent && preferPendingItems));
       fetchRelatedRelationships(dispatch, response.data);
       dispatch(submitMarkers());
-    }).catch(error => {
+    } catch(error) {
       dispatch(expandNotificationsFail(error, isLoadingMore));
-    }).finally(() => {
-      done();
-    });
+    }
   };
 }
 

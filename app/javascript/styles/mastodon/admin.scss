@@ -122,10 +122,6 @@ $content-width: 840px;
         overflow: hidden;
         text-overflow: ellipsis;
 
-        i.fa {
-          margin-inline-end: 5px;
-        }
-
         &:hover {
           color: $primary-text-color;
           transition: all 100ms linear;
@@ -248,6 +244,11 @@ $content-width: 840px;
         display: inline-flex;
         flex-flow: wrap;
         gap: 5px;
+        align-items: center;
+
+        .time-period {
+          padding: 0 10px;
+        }
       }
 
       h2 small {
@@ -304,10 +305,6 @@ $content-width: 840px;
     .directory__tag > a,
     .directory__tag > div {
       box-shadow: none;
-    }
-
-    .directory__tag .table-action-link .fa {
-      color: inherit;
     }
 
     .directory__tag h4 {
