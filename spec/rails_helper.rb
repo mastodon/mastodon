@@ -112,6 +112,7 @@ RSpec.configure do |config|
   config.include ThreadingHelpers
   config.include SignedRequestHelpers, type: :request
   config.include CommandLineHelpers, type: :cli
+  config.include SystemHelpers, type: :system
 
   config.around(:each, use_transactional_tests: false) do |example|
     self.use_transactional_tests = false
