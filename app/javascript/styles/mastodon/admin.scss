@@ -244,6 +244,11 @@ $content-width: 840px;
         display: inline-flex;
         flex-flow: wrap;
         gap: 5px;
+        align-items: center;
+
+        .time-period {
+          padding: 0 10px;
+        }
       }
 
       h2 small {

@@ -3,9 +3,12 @@
 
 - content_for :heading_actions do
   - if current_user.can?(:view_dashboard)
-    = l(@time_period.first)
-    = ' - '
-    = l(@time_period.last)
+    .time-period
+      = l(@time_period.first)
+      = ' - '
+      = l(@time_period.last)
+
+  = link_to t('admin.tags.open'), tag_url(@tag), class: 'button', target: '_blank', rel: 'noopener noreferrer'
 
 - if current_user.can?(:view_dashboard)
   .dashboard
