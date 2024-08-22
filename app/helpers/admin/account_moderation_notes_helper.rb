@@ -23,8 +23,6 @@ module Admin::AccountModerationNotesHelper
     )
   end
 
-  private
-
   def labeled_account_avatar(account)
     safe_join(
       [
@@ -34,6 +32,8 @@ module Admin::AccountModerationNotesHelper
       ' '
     )
   end
+
+  private
 
   def account_inline_text(account)
     content_tag(:span, account.acct, class: 'username')
