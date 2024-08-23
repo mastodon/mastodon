@@ -18,6 +18,17 @@ RSpec.describe NotifyService, type: :service do
     expect { subject }.to_not change(Notification, :count)
   end
 
+  context 'when the sender is a local moderator' do
+    let(:sender) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
+    let(:type) { :mention }
+    let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender)) }
+
+    it 'does notify when the sender is blocked' do
+      recipient.block!(sender)
+      expect { subject }.to change(Notification, :count).by(1)
+    end
+  end
+
   it 'does not notify when sender is muted with hide_notifications' do
     recipient.mute!(sender, notifications: true)
     expect { subject }.to_not change(Notification, :count)

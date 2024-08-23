@@ -86,7 +86,8 @@ class NotifyService < BaseService
   end
 
   def from_staff?
-    @notification.from_account.local? && @notification.from_account.user.present? && @notification.from_account.user_role&.overrides?(@recipient.user_role)
+    sender = @notification.from_account
+    sender.local? && sender.user.present? && sender.user_role&.overrides?(@recipient.user_role) && sender.user_role&.highlighted? && sender.user_role&.can?(*UserRole::Flags::CATEGORIES[:moderation].map(&:to_sym))
   end
 
   def optional_non_following_and_direct?

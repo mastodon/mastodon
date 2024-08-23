@@ -133,5 +133,18 @@ describe Report do
       report = Fabricate.build(:report, account: remote_account, comment: Faker::Lorem.characters(number: 1001))
       expect(report.valid?).to be true
     end
+
+    it 'is invalid if it references invalid rules' do
+      report = Fabricate.build(:report, category: :violation, rule_ids: [-1])
+      expect(report.valid?).to be false
+      expect(report).to model_have_error_on_field(:rule_ids)
+    end
+
+    it 'is invalid if it references rules but category is not "violation"' do
+      rule = Fabricate(:rule)
+      report = Fabricate.build(:report, category: :spam, rule_ids: rule.id)
+      expect(report.valid?).to be false
+      expect(report).to model_have_error_on_field(:rule_ids)
+    end
   end
 end
