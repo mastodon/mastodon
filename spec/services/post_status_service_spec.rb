@@ -123,6 +123,12 @@ RSpec.describe PostStatusService do
     expect(status.visibility).to eq 'private'
   end
 
+  it 'raises on an invalid visibility' do
+    expect do
+      create_status_with_options(visibility: :xxx)
+    end.to raise_error(ActiveRecord::RecordInvalid)
+  end
+
   it 'creates a status with limited visibility for silenced users' do
     status = subject.call(Fabricate(:account, silenced: true), text: 'test', visibility: :public)
 

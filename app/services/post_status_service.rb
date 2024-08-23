@@ -73,7 +73,12 @@ class PostStatusService < BaseService
   end
 
   def process_status!
-    @status = @account.statuses.new(status_attributes)
+    begin
+      @status = @account.statuses.new(status_attributes)
+    rescue ArgumentError
+      raise ActiveRecord::RecordInvalid
+    end
+
     process_mentions_service.call(@status, save_records: false)
     safeguard_mentions!(@status)
 
