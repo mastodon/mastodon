@@ -35,7 +35,7 @@ class Tag < ApplicationRecord
   HASHTAG_LAST_SEQUENCE = '([[:word:]_]*[[:alpha:]][[:word:]_]*)'
   HASHTAG_NAME_PAT = "#{HASHTAG_FIRST_SEQUENCE}|#{HASHTAG_LAST_SEQUENCE}"
 
-  HASHTAG_RE = %r{(?<![=/)\w])#(#{HASHTAG_NAME_PAT})}i
+  HASHTAG_RE = %r{(?<![=/)\p{Alnum}])#(#{HASHTAG_NAME_PAT})}
   HASHTAG_NAME_RE = /\A(#{HASHTAG_NAME_PAT})\z/i
   HASHTAG_INVALID_CHARS_RE = /[^[:alnum:]#{HASHTAG_SEPARATORS}]/
 

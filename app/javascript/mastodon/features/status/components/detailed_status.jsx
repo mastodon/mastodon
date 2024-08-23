@@ -321,8 +321,6 @@ class DetailedStatus extends ImmutablePureComponent {
             {...statusContentProps}
           />
 
-          {media}
-
           {expanded && hashtagBar}
 
           <div className='detailed-status__meta'>
