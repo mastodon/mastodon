@@ -29,10 +29,8 @@ RSpec.describe 'Obtaining OAuth Tokens' do
         access_grant.plaintext_token
       end
 
-      context 'with no scopes specified' do
-        let(:scope) { nil }
-
-        it 'returns all scopes requested for this code' do
+      shared_examples 'returns originally requested scopes' do
+        it 'returns all scopes requested for the given code' do
           subject
 
           expect(response).to have_http_status(200)
@@ -40,27 +38,29 @@ RSpec.describe 'Obtaining OAuth Tokens' do
         end
       end
 
+      context 'with no scopes specified' do
+        let(:scope) { nil }
+
+        include_examples 'returns originally requested scopes'
+      end
+
       context 'with scopes specified' do
         context 'when the scopes were requested for this code' do
           let(:scope) { 'write' }
 
-          it 'returns all scopes requested for this code' do
-            subject
-
-            expect(response).to have_http_status(200)
-            expect(body_as_json[:scope]).to eq 'read write'
-          end
+          include_examples 'returns originally requested scopes'
         end
 
         context 'when the scope was not requested for the code' do
           let(:scope) { 'follow' }
 
-          it 'returns all scopes requested for this code' do
-            subject
+          include_examples 'returns originally requested scopes'
+        end
 
-            expect(response).to have_http_status(200)
-            expect(body_as_json[:scope]).to eq 'read write'
-          end
+        context 'when the scope does not belong to the application' do
+          let(:scope) { 'push' }
+
+          include_examples 'returns originally requested scopes'
         end
       end
     end
