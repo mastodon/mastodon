@@ -847,7 +847,10 @@ fr:
         action: Pour plus d'informations, cliquez ici
         message_html: "<strong>Votre serveur web est mal configuré. La confidentialité de vos utilisateurs est en péril.</strong>"
     tags:
+      name: Nom
       review: État du traitement
+      search: Recherche
+      title: Hashtags
       updated_msg: Paramètres du hashtag mis à jour avec succès
     title: Administration
     trends:
@@ -912,12 +915,14 @@ fr:
         used_by_over_week:
           one: Utilisé par %{count} personne au cours de la dernière semaine
           other: Utilisé par %{count} personnes au cours de la dernière semaine
+      title: Recommandations et tendances
       trending: Tendances
     warning_presets:
       add_new: Ajouter un nouveau
       delete: Supprimer
       edit_preset: Éditer les avertissements prédéfinis
       empty: Vous n'avez pas encore créé de paramètres prédéfinis pour les avertissements.
+      title: Préréglages d'avertissement
     webhooks:
       add_new: Ajouter un point de terminaison
       delete: Supprimer
@@ -1065,6 +1070,7 @@ fr:
     setup:
       email_settings_hint_html: Cliquez sur le lien que nous vous avons envoyé pour vérifier l’adresse %{email}. Nous vous attendons ici.
       link_not_received: Vous n'avez pas reçu de lien ?
+      new_confirmation_instructions_sent: Vous allez recevoir un nouvel e-mail avec le lien de confirmation dans quelques minutes !
       title: Vérifiez votre boîte de réception
     sign_in:
       preamble_html: Connectez-vous avec vos identifiants sur <strong>%{domain}</strong>. Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
@@ -1076,6 +1082,7 @@ fr:
     status:
       account_status: État du compte
       functional: Votre compte est entièrement opérationnel.
+      pending: Votre demande est en attente d’examen par notre équipe. Cela peut prendre un certain temps. Vous recevrez un e-mail si votre demande est approuvée.
       redirecting_to: Votre compte est inactif car il est actuellement redirigé vers %{acct}.
       self_destruct: Comme %{domain} est en train de fermer, vous n’aurez qu’un accès limité à votre compte.
       view_strikes: Voir les sanctions précédemment appliquées à votre compte
@@ -1118,6 +1125,7 @@ fr:
       before: 'Veuillez lire attentivement ces notes avant de continuer :'
       caches: Le contenu mis en cache par d'autres serveurs peut persister
       data_removal: Vos messages et autres données seront définitivement supprimés
+      email_change_html: Vous pouvez <a href="%{path}">modifier votre adresse e-mail</a> sans supprimer votre compte
       irreversible: Vous ne pourrez pas restaurer ou réactiver votre compte
       more_details_html: Pour plus de détails, voir la <a href="%{terms_path}">politique de confidentialité</a>.
       username_available: Votre nom d’utilisateur·rice sera à nouveau disponible
@@ -1350,6 +1358,7 @@ fr:
     authentication_methods:
       otp: application d'authentification à deux facteurs
       password: mot de passe
+      sign_in_token: code de sécurité par courriel
       webauthn: clés de sécurité
     description_html: Si vous voyez une activité que vous ne reconnaissez pas, envisagez de changer votre mot de passe et d'activer l'authentification à deux facteurs.
     empty: Aucun historique d'authentification disponible
@@ -1440,6 +1449,8 @@ fr:
     update:
       subject: "%{name} a modifié un message"
   notifications:
+    administration_emails: Notifications d'administration par courriel
+    email_events: Événements pour les notifications par e-mail
     email_events_hint: 'Sélectionnez les événements pour lesquels vous souhaitez recevoir des notifications :'
   number:
     human:
@@ -1598,6 +1609,7 @@ fr:
     import: Import de données
     import_and_export: Import et export
     migrate: Migration de compte
+    notifications: Notifications par courriel
     preferences: Préférences
     profile: Profil
     relationships: Abonnements et abonné·e·s
