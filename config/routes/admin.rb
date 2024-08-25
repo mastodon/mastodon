@@ -75,6 +75,8 @@ namespace :admin do
       post :restart_delivery
       post :stop_delivery
     end
+
+    resources :notes, controller: 'instances/notes', only: [:create, :destroy]
   end
 
   resources :rules, only: [:index, :create, :edit, :update, :destroy]

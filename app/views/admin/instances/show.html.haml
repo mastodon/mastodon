@@ -57,6 +57,22 @@
 
   %hr.spacer/
 
+  %h3#instance-notes= t 'admin.instances.notes.title'
+  %p= t 'admin.instances.notes.description_html'
+  .report-notes
+    = render partial: 'admin/report_notes/report_note', collection: @instance_notes
+
+  = simple_form_for @instance_note, url: admin_instance_notes_path(instance_id: @instance.domain) do |form|
+    = render 'shared/error_messages', object: @instance_note
+
+    .field-group
+      = form.input :content, input_html: { placeholder: t('admin.instances.notes.placeholder'), maxlength: InstanceNote::CONTENT_SIZE_LIMIT, rows: 6, autofocus: @instance_note.errors.any? }
+
+    .actions
+      = form.button :button, t('admin.instances.notes.create'), type: :submit
+
+  %hr.spacer/
+
   %h3= t('admin.instances.availability.title')
 
   %p

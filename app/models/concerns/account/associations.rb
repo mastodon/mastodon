@@ -41,6 +41,7 @@ module Account::Associations
     has_many :custom_filters, inverse_of: :account, dependent: :destroy
 
     # Moderation notes
+    has_many :instance_notes, dependent: :destroy, inverse_of: :account
     has_many :account_moderation_notes, dependent: :destroy, inverse_of: :account
     has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, dependent: :destroy, inverse_of: :target_account
     has_many :account_warnings, dependent: :destroy, inverse_of: :account
