@@ -478,9 +478,6 @@ th:
         no_failures_recorded: ไม่มีความล้มเหลวในระเบียน
         title: ความพร้อมใช้งาน
         warning: ความพยายามล่าสุดในการเชื่อมต่อกับเซิร์ฟเวอร์นี้ไม่สำเร็จ
-      back_to_all: ทั้งหมด
-      back_to_limited: จำกัดอยู่
-      back_to_warning: คำเตือน
       by_domain: โดเมน
       confirm_purge: คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลจากโดเมนนี้อย่างถาวร?
       content_policies:
@@ -511,27 +508,16 @@ th:
         restart: เริ่มการจัดส่งใหม่
         stop: หยุดการจัดส่ง
         unavailable: ไม่พร้อมใช้งาน
-      delivery_available: มีการจัดส่ง
-      delivery_error_days: วันที่มีข้อผิดพลาดการจัดส่ง
-      delivery_error_hint: หากไม่สามารถทำการจัดส่งได้เป็นเวลา %{count} วัน ระบบจะทำเครื่องหมายโดเมนว่าจัดส่งไม่ได้โดยอัตโนมัติ
       destroyed_msg: ตอนนี้จัดคิวข้อมูลจาก %{domain} สำหรับการลบในเร็ว ๆ นี้แล้ว
       empty: ไม่พบโดเมน
       known_accounts:
         other: "%{count} บัญชีที่รู้จัก"
       moderation:
         all: ทั้งหมด
-        limited: จำกัดอยู่
         title: การกลั่นกรอง
-      private_comment: ความคิดเห็นส่วนตัว
-      public_comment: ความคิดเห็นสาธารณะ
       purge: ล้างข้อมูล
       purge_description_html: หากคุณเชื่อว่าโดเมนนี้ออฟไลน์อย่างถาวร คุณสามารถลบระเบียนบัญชีและข้อมูลที่เกี่ยวข้องทั้งหมดจากโดเมนนี้จากที่เก็บข้อมูลของคุณ นี่อาจใช้เวลาสักครู่
       title: การติดต่อกับภายนอก
-      total_blocked_by_us: ปิดกั้นโดยเรา
-      total_followed_by_them: ติดตามโดยเขา
-      total_followed_by_us: ติดตามโดยเรา
-      total_reported: รายงานเกี่ยวกับเขา
-      total_storage: ไฟล์แนบสื่อ
       totals_time_period_hint_html: ยอดรวมที่แสดงด้านล่างรวมข้อมูลสำหรับเวลาทั้งหมด
       unknown_instance: ไม่มีระเบียนของโดเมนนี้ในเซิร์ฟเวอร์นี้ในปัจจุบัน
     invites:
