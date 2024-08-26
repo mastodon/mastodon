@@ -35,24 +35,24 @@ lt:
         redirect_uri: Naudok po vieną eilutę kiekvienam URI.
         scopes: Atskirk aprėptis tarpais. Palik tuščią, jei nori naudoti numatytąsias aprėtis.
       index:
-        application: Programėlė
+        application: Programa
         callback_url: Atgalinis URL
         delete: Ištrinti
-        empty: Neturi jokių programėlių.
+        empty: Neturi jokių programų.
         name: Pavadinimas
-        new: Nauja programėlė
+        new: Nauja programa
         scopes: Aprėptys
         show: Rodyti
-        title: Tavo programėlės
+        title: Tavo programos
       new:
-        title: Nauja programėlė
+        title: Nauja programa
       show:
         actions: Veiksmai
-        application_id: Kliento raktas
-        callback_urls: Atgalinių URL adresų
+        application_id: Kliento programos raktas
+        callback_urls: Atgalinių URL
         scopes: Aprėptys
-        secret: Kliento paslaptis
-        title: 'Programėlė: %{name}'
+        secret: Kliento programos paslaptis
+        title: 'Programa: %{name}'
     authorizations:
       buttons:
         authorize: Leisti
@@ -60,48 +60,48 @@ lt:
       error:
         title: Įvyko klaida.
       new:
-        prompt_html: "%{client_name} norėtų gauti leidimą prieigos prie tavo paskyros. Tai trečiosios šalies programėlė. <strong>Jei ja nepasitiki, neturėtum leisti.</strong>"
+        prompt_html: "%{client_name} norėtų gauti leidimą pasiekti tavo paskyrą. Tai – trečiosios šalies programa. <strong>Jei ja nepasitiki, tada neturėtum leisti.</strong>"
         review_permissions: Peržiūrėti leidimus
-        title: Reikalingas leidimas
+        title: Privalomas leidimas
       show:
-        title: Nukopijuok šį tapatybės patvirtinimo kodą ir įklijuok jį į programėlę.
+        title: Nukopijuok šį leidimo kodą ir įklijuok jį į programą.
     authorized_applications:
       buttons:
         revoke: Naikinti
       confirmations:
         revoke: Ar esi įsitikinęs (-usi)?
       index:
-        authorized_at: Įgaliota %{date}
-        description_html: Tai programėlės, kurios gali pasiekti tavo paskyrą naudojant API. Jei čia yra programėlių, kurių neatpažįsti, arba jei programėlė elgiasi netinkamai, gali panaikinti jos prieigą.
+        authorized_at: Leidžiama %{date}
+        description_html: Tai – programos, kurios gali pasiekti tavo paskyrą naudojant API. Jei čia yra programų, kurių neatpažįsti, arba jei programa elgiasi netinkamai, gali panaikinti jos prieigą.
         last_used_at: Paskutinį kartą naudota %{date}
-        never_used: Niekada nenaudotas
+        never_used: Niekada nenaudota
         scopes: Leidimai
         superapp: Vidinis
-        title: Tavo leidžiamos programėlės
+        title: Tavo leidžiamos programos
     errors:
       messages:
-        access_denied: Išteklių savininkas (-ė) arba įgaliojimų serveris atmetė užklausą.
+        access_denied: Išteklių savininkas (-ė) arba leidžiamų serveris atmetė užklausą.
         credential_flow_not_configured: Išteklių savininko slaptažodžio kredencialų srautas nepavyko, nes Doorkeeper.configure.resource_owner_from_credentials nėra nesukonfigūruotas.
-        invalid_client: Kliento tapatybės nustatymas nepavyko dėl nežinomo kliento, neįtraukto kliento tapatybės nustatymo arba nepalaikomo tapatybės nustatymo metodo.
-        invalid_code_challenge_method: Kodo iššūkio būdas turi būti S256. Paprastas nepalaikomas.
-        invalid_grant: Pateiktas įgaliojimas yra netinkamas, pasibaigęs, panaikintas, neatitinka įgaliojimo užklausoje naudoto nukreipimo URI arba buvo išduotas kitam klientui.
-        invalid_redirect_uri: Nukreipimo uri įtrauktas yra netinkamas.
+        invalid_client: Kliento programos tapatybės nustatymas nepavyko dėl nežinomo kliento programos, neįtraukto kliento programos tapatybės nustatymo arba nepalaikomo tapatybės nustatymo metodo.
+        invalid_code_challenge_method: Kodo iššūkio metodas turi būti S256. Paprastas nepalaikomas.
+        invalid_grant: Pateiktas leidimo suteikimas yra netinkamas, nebegaliojantis, panaikintas, neatitinka leidimo užklausoje naudoto nukreipimo URI arba buvo išduotas kitam kliento programui.
+        invalid_redirect_uri: Įtrauktas nukreipimo URI netinkamas.
         invalid_request:
           missing_param: 'Trūksta privalomo parametro: %{value}.'
-          request_not_authorized: Užklausą reikia įgalioti. Reikalingo parametro užklausai įgalioti trūksta arba jis netinkamas.
-          unknown: Užklausoje trūksta privalomo parametro, turi nepalaikomą parametro reikšmę arba yra kitaip netinkamai suformuota.
-        invalid_resource_owner: Pateikti išteklių savininko įgaliojimai yra netinkami arba išteklių savininko negalima surasti.
+          request_not_authorized: Užklausą reikia leisti. Trūksta privalomo parametro užklausai leisti arba jis netinkamas.
+          unknown: Užklausai trūksta privalomo parametro, įtraukta nepalaikoma parametro reikšmė arba ji yra kitaip netaisyklingas.
+        invalid_resource_owner: Pateikti išteklių savininko kredencialai yra netinkami arba išteklių savininko negalima surasti.
         invalid_scope: Užklausos aprėptis yra netinkama, nežinoma arba netaisyklingas.
         invalid_token:
-          expired: Baigėsi prieigos rakto galiojimas.
+          expired: Prieigos raktas nebegalioja.
           revoked: Prieigos raktas buvo panaikintas.
-          unknown: Prieigos raktas yra netinkamas.
-        resource_owner_authenticator_not_configured: Išteklių savininko suradimas nepavyko dėl to, kad Doorkeeper.configure.resource_owner_authenticator nėra sukonfigūruotas.
-        server_error: Įgaliojimų serveris susidūrė su netikėta sąlyga, dėl kurios negalėjo užpildyti užklausos.
+          unknown: Prieigos raktas netinkamas.
+        resource_owner_authenticator_not_configured: Išteklių savininko suradimas nepavyko, nes Doorkeeper.configure.resource_owner_authenticator nėra sukonfigūruotas.
+        server_error: Leidimo serveris susidūrė su netikėta sąlyga, dėl kurios negalėjo užpildyti užklausos.
         temporarily_unavailable: Įgaliojimų serveris šiuo metu negali apdoroti užklausos dėl laikinos serverio perkrovos arba techninės priežiūros.
-        unauthorized_client: Klientas nėra įgaliotas atlikti šią užklausą šiuo metodu.
-        unsupported_grant_type: Įgaliojimų suteikimo tipas nepalaikomas įgaliojimų serveryje.
-        unsupported_response_type: Įgaliojimų serveris nepalaiko šio atsako tipo.
+        unauthorized_client: Klientas nėra leidžiamas atlikti šią užklausą šiuo metodu.
+        unsupported_grant_type: Leidimo suteikimo tipas nepalaikomas leidimo serveryje.
+        unsupported_response_type: Leidimo serveris nepalaiko šio atsakymo tipo.
     flash:
       applications:
         create:
@@ -123,7 +123,7 @@ lt:
         admin/accounts: Paskyrų administravimas
         admin/all: Visi administraciniai funkcijos
         admin/reports: Ataskaitų administravimas
-        all: Pilna prieiga prie tavo Mastodon paskyros
+        all: Pilna prieiga prie tavo „Mastodon“ paskyros
         blocks: Blokavimai
         bookmarks: Žymės
         conversations: Pokalbiai
@@ -136,7 +136,7 @@ lt:
         media: Medijos priedai
         mutes: Nutildymai
         notifications: Pranešimai
-        profile: Tavo Mastodon profilis
+        profile: Tavo „Mastodon“ profilis
         push: Tiesioginiai pranešimai
         reports: Ataskaitos
         search: Paieška
@@ -151,25 +151,25 @@ lt:
     scopes:
       admin:read: skaityti visus duomenis serveryje
       admin:read:accounts: skaityti slaptą visų paskyrų informaciją
-      admin:read:canonical_email_blocks: skaityti slaptą visų kanoninių el. laiško blokavimų informaciją
-      admin:read:domain_allows: skaityti slaptą visų domeno leidimus informaciją
-      admin:read:domain_blocks: skaityti slaptą visų domeno blokavimų informaciją
-      admin:read:email_domain_blocks: skaityti slaptą visų el. laiško domeno blokavimų informaciją
+      admin:read:canonical_email_blocks: skaityti slaptą visų kanoninių el. laiškų blokavimų informaciją
+      admin:read:domain_allows: skaityti slaptą visų serverių leidžiamų informaciją
+      admin:read:domain_blocks: skaityti slaptą visų serverių blokavimų informaciją
+      admin:read:email_domain_blocks: skaityti slaptą visų el. laiškų serverių blokavimų informaciją
       admin:read:ip_blocks: skaityti slaptą visų IP blokavimų informaciją
       admin:read:reports: skaityti slaptą visų ataskaitų ir praneštų paskyrų informaciją
       admin:write: modifikuoti visus duomenis serveryje
       admin:write:accounts: atlikti paskyrų prižiūrėjimo veiksmus
-      admin:write:canonical_email_blocks: atlikti kanoninių el. laiško blokavimų prižiūrėjimo veiksmus
-      admin:write:domain_allows: atlikti domeno leidimų prižiūrėjimo veiksmus
-      admin:write:domain_blocks: atlikti domeno blokavimų prižiūrėjimo veiksmus
-      admin:write:email_domain_blocks: atlikti el. laiško domenų blokavimų prižiūrėjimo veiksmus
+      admin:write:canonical_email_blocks: atlikti kanoninių el. laiškų blokavimų prižiūrėjimo veiksmus
+      admin:write:domain_allows: atlikti serverio leidžiamų prižiūrėjimo veiksmus
+      admin:write:domain_blocks: atlikti serverio blokavimų prižiūrėjimo veiksmus
+      admin:write:email_domain_blocks: atlikti el. laiškų serverių blokavimų prižiūrėjimo veiksmus
       admin:write:ip_blocks: atlikti IP blokavimų prižiūrėjimo veiksmus
       admin:write:reports: atlikti ataskaitų prižiūrėjimo veiksmus
       crypto: naudoti visapusį šifravimą
       follow: modifikuoti paskyros sąryšius
       profile: skaityti tik tavo paskyros profilio informaciją
       push: gauti tiesioginius pranešimus
-      read: skaityti visus paskyros duomenis
+      read: skaityti visus tavo paskyros duomenis
       read:accounts: matyti paskyrų informaciją
       read:blocks: matyti tavo blokavimus
       read:bookmarks: matyti tavo žymes
@@ -185,14 +185,14 @@ lt:
       write: modifikuoti visus tavo paskyros duomenis
       write:accounts: modifikuoti tavo profilį
       write:blocks: blokuoti paskyras ir domenus
-      write:bookmarks: pridėti į žymes įrašus
+      write:bookmarks: pridėti įrašus į žymes
       write:conversations: nutildyti ir ištrinti pokalbius
       write:favourites: pamėgti įrašus
-      write:filters: sukurti filtrus
+      write:filters: kurti filtrus
       write:follows: sekti žmones
-      write:lists: sukurti sąrašus
+      write:lists: kurti sąrašus
       write:media: įkelti medijos failus
       write:mutes: nutildyti žmones ir pokalbius
-      write:notifications: išvalyti tavo pranešimus
+      write:notifications: valyti tavo pranešimus
       write:reports: pranešti apie kitus žmones
       write:statuses: skelbti įrašus

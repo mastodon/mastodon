@@ -77,6 +77,7 @@ fr-CA:
           warn: Cacher le contenu filtré derrière un avertissement mentionnant le nom du filtre
       form_admin_settings:
         activity_api_enabled: Nombre de messages publiés localement, de comptes actifs et de nouvelles inscriptions par tranche hebdomadaire
+        backups_retention_period: Les utilisateur·rice·s ont la possibilité de générer des archives de leurs messages pour les télécharger plus tard. Lorsqu'elles sont définies à une valeur positive, ces archives seront automatiquement supprimées de votre stockage après le nombre de jours spécifié.
         bootstrap_timeline_accounts: Ces comptes seront épinglés en tête de liste des recommandations pour les nouveaux utilisateurs.
         closed_registrations_message: Affiché lorsque les inscriptions sont fermées
         custom_css: Vous pouvez appliquer des styles personnalisés sur la version Web de Mastodon.
@@ -206,6 +207,7 @@ fr-CA:
         setting_default_privacy: Confidentialité des messages
         setting_default_sensitive: Toujours marquer les médias comme sensibles
         setting_delete_modal: Demander confirmation avant de supprimer un message
+        setting_disable_hover_cards: Désactiver l'aperçu du profil au survol
         setting_disable_swiping: Désactiver les actions par glissement
         setting_display_media: Affichage des médias
         setting_display_media_default: Défaut
@@ -241,6 +243,7 @@ fr-CA:
         backups_retention_period: Période d'archivage utilisateur
         bootstrap_timeline_accounts: Toujours recommander ces comptes aux nouveaux utilisateurs
         closed_registrations_message: Message personnalisé lorsque les inscriptions ne sont pas disponibles
+        content_cache_retention_period: Durée de rétention du contenu distant
         custom_css: CSS personnalisé
         favicon: Favicon
         mascot: Mascotte personnalisée (héritée)
@@ -307,6 +310,7 @@ fr-CA:
         listable: Autoriser ce hashtag à apparaître dans les recherches et dans l’annuaire des profils
         name: Mot-clic
         trendable: Autoriser ce hashtag à apparaitre dans les tendances
+        usable: Autoriser les messages à utiliser ce hashtag localement
       user:
         role: Rôle
         time_zone: Fuseau horaire

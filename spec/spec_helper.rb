@@ -28,7 +28,7 @@ RSpec.configure do |config|
   end
 
   config.after :suite do
-    FileUtils.rm_rf(Dir[Rails.root.join('spec', 'test_files')])
+    FileUtils.rm_rf(Rails.root.glob('spec/test_files'))
   end
 
   # Use the GitHub Annotations formatter for CI

@@ -58,6 +58,7 @@ sv:
       demote: Degradera
       destroyed_msg: "%{username}'s data har nu lagts till kön för att raderas omedelbart"
       disable: inaktivera
+      disable_sign_in_token_auth: Inaktivera autentisering med pollett via e-post
       disable_two_factor_authentication: Inaktivera 2FA
       disabled: inaktiverad
       display_name: Visningsnamn
@@ -66,6 +67,7 @@ sv:
       email: E-post
       email_status: E-poststatus
       enable: Aktivera
+      enable_sign_in_token_auth: Aktivera autentisering med pollett via e-post
       enabled: Aktiverad
       enabled_msg: Uppfrysningen av %{username}'s konto lyckades
       followers: Följare
@@ -130,6 +132,7 @@ sv:
       resubscribe: Starta en ny prenumeration
       role: Roll
       search: Sök
+      search_same_email_domain: Andra användare med samma e-postdomän
       search_same_ip: Annan användare med samma IP-adress
       security: Säkerhet
       security_measures:
@@ -170,6 +173,7 @@ sv:
         approve_appeal: Godkänn överklagande
         approve_user: Godkänn användare
         assigned_to_self_report: Tilldela anmälan
+        change_email_user: Ändra e-postadress för användare
         change_role_user: Ändra roll för användaren
         confirm_user: Bekräfta användare
         create_account_warning: Skapa varning
@@ -192,8 +196,10 @@ sv:
         destroy_user_role: Förstör roll
         disable_2fa_user: Inaktivera 2FA
         disable_custom_emoji: Inaktivera egna emojis
+        disable_sign_in_token_auth_user: Inaktivera autentisering med pollett via e-post för användare
         disable_user: Inaktivera användare
         enable_custom_emoji: Aktivera egna emojis
+        enable_sign_in_token_auth_user: Aktivera autentisering med pollett via e-post för användare
         enable_user: Aktivera användare
         memorialize_account: Minnesmärk konto
         promote_user: Befordra användare
@@ -223,6 +229,7 @@ sv:
         approve_appeal_html: "%{name} godkände överklagande av modereringsbeslut från %{target}"
         approve_user_html: "%{name} godkände registrering från %{target}"
         assigned_to_self_report_html: "%{name} tilldelade rapporten %{target} till sig själva"
+        change_email_user_html: "%{name} bytte e-postadress för användaren %{target}"
         change_role_user_html: "%{name} ändrade roll för %{target}"
         create_account_warning_html: "%{name} skickade en varning till %{target}"
         create_announcement_html: "%{name} skapade kungörelsen %{target}"
@@ -1093,6 +1100,7 @@ sv:
     status:
       account_status: Kontostatus
       functional: Ditt konto fungerar som det ska.
+      pending: Din ansökan inväntar granskning. Detta kan ta tid. Du kommer att få ett e-postmeddelande om din ansökan har godkänts.
       redirecting_to: Ditt konto är inaktivt eftersom det för närvarande dirigeras om till %{acct}.
       self_destruct: Eftersom %{domain} håller på att stängas ned, kommer du endast att ha begränsad tillgång till ditt konto.
       view_strikes: Visa tidigare prickar på ditt konto
@@ -1136,6 +1144,8 @@ sv:
       caches: Innehåll som har cachats av andra servrar kan bibehållas
       data_removal: Dina inlägg och annan data kommer permanent raderas
       email_change_html: Du kan <a href="%{path}">ändra din e-postadress</a> utan att radera ditt konto
+      email_contact_html: Om det inte kommer kan du mejla <a href="mailto:%{email}">%{email}</a> för att få hjälp
+      email_reconfirmation_html: Om du inte får bekräftelsemeddelandet kan du <a href="%{path}">begära ett på nytt</a>
       irreversible: Du kan inte återställa eller återaktivera ditt konto
       more_details_html: För mer information, se <a href="%{terms_path}">integritetspolicyn</a>.
       username_available: Ditt användarnamn kommer att bli tillgängligt igen
@@ -1368,6 +1378,7 @@ sv:
     authentication_methods:
       otp: tvåfaktorsautentiseringsapp
       password: lösenord
+      sign_in_token: e-postsäkerhetskod
       webauthn: säkerhetsnycklar
     description_html: Om du ser aktivitet som du inte känner igen, överväg att byta ditt lösenord och aktivera tvåfaktor-autentisering.
     empty: Ingen autentiseringshistorik tillgänglig
@@ -1378,6 +1389,16 @@ sv:
     unsubscribe:
       action: Ja, avsluta prenumerationen
       complete: Prenumeration avslutad
+      confirmation_html: Är du säker på att du vill avregistrera dig från att ta emot %{type} för Mastodon på %{domain} med din e-post på %{email}? Du kan alltid återprenumerera bland dina <a href="%{settings_path}">e-postmeddelandeinställningar</a>.
+      emails:
+        notification_emails:
+          favourite: aviseringsmejl för favoriserade inlägg
+          follow: aviseringsmejl för följda inlägg
+          follow_request: aviseringsmejl för följdförfrågningar
+          mention: aviseringsmejl för inlägg där du nämns
+          reblog: aviseringsmejl för förhöjda inlägg
+      resubscribe_html: Om du slutat prenumerera av misstag kan du återprenumerera i dina <a href="%{settings_path}">e-postaviseringsinställningar</a>.
+      success_html: Du får inte längre %{type} för Mastodon på %{domain} till din e-post på %{email}.
       title: Avsluta prenumeration
   media_attachments:
     validations:
@@ -1458,6 +1479,8 @@ sv:
     update:
       subject: "%{name} redigerade ett inlägg"
   notifications:
+    administration_emails: E-postaviseringar från administratör
+    email_events: Händelser vid e-postnotiser
     email_events_hint: 'Välj händelser som du vill ta emot aviseringar för:'
   number:
     human:
@@ -1616,6 +1639,7 @@ sv:
     import: Importera
     import_and_export: Import och export
     migrate: Kontoflytt
+    notifications: E-postaviseringar
     preferences: Inställningar
     profile: Profil
     relationships: Följer och följare
@@ -1862,6 +1886,7 @@ sv:
     invalid_otp_token: Ogiltig tvåfaktorskod
     otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
     rate_limited: För många autentiseringsförsök, försök igen senare.
+    seamless_external_login: Du är inloggad via en extern tjänst. Därför finns inställningar för lösenord och e-post inte tillgängliga.
     signed_in_as: 'Inloggad som:'
   verification:
     extra_instructions_html: <strong>Tips:</strong> Länken på din webbplats kan vara osynlig. Den viktiga delen är <code>rel="me"</code> som förhindrar personifiering på webbplatser med användargenererat innehåll. Du kan även använda en <code>länk</code> tagg i huvudet på sidan istället för <code>en</code>, men HTML:en måste vara tillgänglig utan att exekvera JavaScript.

@@ -8,11 +8,13 @@ import type { List as ImmutableList, RecordOf } from 'immutable';
 
 import BarChart4BarsIcon from '@/material-icons/400-24px/bar_chart_4_bars.svg?react';
 import PhotoLibraryIcon from '@/material-icons/400-24px/photo_library.svg?react';
+import { toggleStatusSpoilers } from 'mastodon/actions/statuses';
 import { Avatar } from 'mastodon/components/avatar';
+import { ContentWarning } from 'mastodon/components/content_warning';
 import { DisplayName } from 'mastodon/components/display_name';
 import { Icon } from 'mastodon/components/icon';
 import type { Status } from 'mastodon/models/status';
-import { useAppSelector } from 'mastodon/store';
+import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { EmbeddedStatusContent } from './embedded_status_content';
 
@@ -23,6 +25,7 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
 }) => {
   const history = useHistory();
   const clickCoordinatesRef = useRef<[number, number] | null>();
+  const dispatch = useAppDispatch();
 
   const status = useAppSelector(
     (state) => state.statuses.get(statusId) as Status | undefined,
@@ -96,15 +99,21 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
     [],
   );
 
+  const handleContentWarningClick = useCallback(() => {
+    dispatch(toggleStatusSpoilers(statusId));
+  }, [dispatch, statusId]);
+
   if (!status) {
     return null;
   }
 
   // Assign status attributes to variables with a forced type, as status is not yet properly typed
   const contentHtml = status.get('contentHtml') as string;
+  const contentWarning = status.get('spoilerHtml') as string;
   const poll = status.get('poll');
   const language = status.get('language') as string;
   const mentions = status.get('mentions') as ImmutableList<Mention>;
+  const expanded = !status.get('hidden') || !contentWarning;
   const mediaAttachmentsSize = (
     status.get('media_attachments') as ImmutableList<unknown>
   ).size;
@@ -124,14 +133,24 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
         <DisplayName account={account} />
       </div>
 
-      <EmbeddedStatusContent
-        className='notification-group__embedded-status__content reply-indicator__content translate'
-        content={contentHtml}
-        language={language}
-        mentions={mentions}
-      />
+      {contentWarning && (
+        <ContentWarning
+          text={contentWarning}
+          onClick={handleContentWarningClick}
+          expanded={expanded}
+        />
+      )}
 
-      {(poll || mediaAttachmentsSize > 0) && (
+      {(!contentWarning || expanded) && (
+        <EmbeddedStatusContent
+          className='notification-group__embedded-status__content reply-indicator__content translate'
+          content={contentHtml}
+          language={language}
+          mentions={mentions}
+        />
+      )}
+
+      {expanded && (poll || mediaAttachmentsSize > 0) && (
         <div className='notification-group__embedded-status__attachments reply-indicator__attachments'>
           {!!poll && (
             <>
