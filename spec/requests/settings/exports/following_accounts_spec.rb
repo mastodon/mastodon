@@ -22,6 +22,8 @@ describe 'Settings / Exports / Following Accounts' do
 
         expect(response)
           .to have_http_status(200)
+        expect(response.content_type)
+          .to eq('text/csv')
         expect(response.body)
           .to eq(<<~CSV)
             Account address,Show boosts,Notify on new posts,Languages

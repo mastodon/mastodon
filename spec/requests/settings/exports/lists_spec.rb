@@ -19,6 +19,8 @@ describe 'Settings / Exports / Lists' do
 
         expect(response)
           .to have_http_status(200)
+        expect(response.content_type)
+          .to eq('text/csv')
         expect(response.body)
           .to eq(<<~CSV)
             The List,test@example.com
