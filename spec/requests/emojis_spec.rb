@@ -7,7 +7,7 @@ describe 'Emojis' do
     let(:emoji) { Fabricate(:custom_emoji, shortcode: 'coolcat') }
 
     it 'returns http success with correct json' do
-      get emoji_path(emoji, format: :json)
+      get "/emojis/#{emoji.id}"
 
       expect(response)
         .to have_http_status(200)
