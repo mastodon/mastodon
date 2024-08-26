@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Admin::Settings::Branding' do
+RSpec.describe 'Admin::Settings::Branding' do
   it 'Saves changes to branding settings' do
     sign_in admin_user
     visit admin_settings_branding_path

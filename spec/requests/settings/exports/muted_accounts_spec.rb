@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Settings / Exports / Muted Accounts' do
+RSpec.describe 'Settings / Exports / Muted Accounts' do
   describe 'GET /settings/exports/mutes' do
     context 'with a signed in user who has muted accounts' do
       let(:user) { Fabricate :user }

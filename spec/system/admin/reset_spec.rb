@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Admin::Reset' do
+RSpec.describe 'Admin::Reset' do
   it 'Resets password for account user' do
     account = Fabricate :account
     sign_in admin_user

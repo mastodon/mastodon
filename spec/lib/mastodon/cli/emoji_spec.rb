@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'mastodon/cli/emoji'
 
-describe Mastodon::CLI::Emoji do
+RSpec.describe Mastodon::CLI::Emoji do
   subject { cli.invoke(action, arguments, options) }
 
   let(:cli) { described_class.new }

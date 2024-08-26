@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe UnfilterNotificationsWorker do
+RSpec.describe UnfilterNotificationsWorker do
   let(:recipient) { Fabricate(:account) }
   let(:sender) { Fabricate(:account) }
 

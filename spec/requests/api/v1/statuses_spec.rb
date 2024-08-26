@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe '/api/v1/statuses' do
+RSpec.describe '/api/v1/statuses' do
   context 'with an oauth token' do
     let(:user)  { Fabricate(:user) }
     let(:client_app) { Fabricate(:application, name: 'Test app', website: 'http://testapp.com') }

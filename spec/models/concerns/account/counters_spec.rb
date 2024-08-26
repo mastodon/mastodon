@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Account::Counters do
+RSpec.describe Account::Counters do
   let!(:account) { Fabricate(:account) }
 
   describe '#increment_count!' do

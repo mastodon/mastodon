@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ActivityPub::NoteSerializer do
+RSpec.describe ActivityPub::NoteSerializer do
   subject { serialized_record_json(parent, described_class, adapter: ActivityPub::Adapter) }
 
   let!(:account) { Fabricate(:account) }

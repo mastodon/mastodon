@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'About page' do
+RSpec.describe 'About page' do
   it 'visits the about page and renders the web app' do
     visit about_path
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Settings / Exports / Following Accounts' do
+RSpec.describe 'Settings / Exports / Following Accounts' do
   describe 'GET /settings/exports/follows' do
     context 'with a signed in user who is following accounts' do
       let(:user) { Fabricate :user }

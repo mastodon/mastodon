@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::InvitesController do
+RSpec.describe Admin::InvitesController do
   render_views
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }

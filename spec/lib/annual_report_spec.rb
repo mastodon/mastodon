@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AnnualReport do
+RSpec.describe AnnualReport do
   describe '#generate' do
     subject { described_class.new(account, Time.zone.now.year) }
 

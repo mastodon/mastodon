@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe MediaComponentHelper do
+RSpec.describe MediaComponentHelper do
   before { helper.extend controller_helpers }
 
   describe 'render_video_component' do

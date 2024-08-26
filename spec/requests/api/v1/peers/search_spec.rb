@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'API Peers Search' do
+RSpec.describe 'API Peers Search' do
   describe 'GET /api/v1/peers/search' do
     context 'when peers api is disabled' do
       before do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ApplicationHelper do
+RSpec.describe ApplicationHelper do
   describe 'body_classes' do
     context 'with a body class string from a controller' do
       before { helper.extend controller_helpers }

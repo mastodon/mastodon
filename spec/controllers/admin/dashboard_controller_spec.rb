@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::DashboardController do
+RSpec.describe Admin::DashboardController do
   render_views
 
   describe 'GET #index' do

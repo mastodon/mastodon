@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Admin::Settings::Appearance' do
+RSpec.describe 'Admin::Settings::Appearance' do
   it 'Saves changes to appearance settings' do
     sign_in admin_user
     visit admin_settings_appearance_path

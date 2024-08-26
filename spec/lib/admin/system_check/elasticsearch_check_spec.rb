@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::SystemCheck::ElasticsearchCheck do
+RSpec.describe Admin::SystemCheck::ElasticsearchCheck do
   subject(:check) { described_class.new(user) }
 
   let(:user) { Fabricate(:user) }

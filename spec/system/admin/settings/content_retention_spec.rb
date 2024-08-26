@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Admin::Settings::ContentRetention' do
+RSpec.describe 'Admin::Settings::ContentRetention' do
   it 'Saves changes to content retention settings' do
     sign_in admin_user
     visit admin_settings_content_retention_path

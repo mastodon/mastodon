@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'invites' do
+RSpec.describe 'invites' do
   let(:invite) { Fabricate(:invite) }
 
   context 'when requesting a JSON document' do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe InvitesController do
+RSpec.describe InvitesController do
   render_views
 
   let(:user) { Fabricate(:user) }

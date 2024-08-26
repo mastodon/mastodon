@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe JsonLdHelper do
+RSpec.describe JsonLdHelper do
   describe '#equals_or_includes?' do
     it 'returns true when value equals' do
       expect(helper.equals_or_includes?('foo', 'foo')).to be true

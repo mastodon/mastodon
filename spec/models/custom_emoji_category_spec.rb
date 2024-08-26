@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe CustomEmojiCategory do
+RSpec.describe CustomEmojiCategory do
   describe 'validations' do
     it 'validates name presence' do
       record = described_class.new(name: nil)

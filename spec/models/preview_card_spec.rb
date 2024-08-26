@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe PreviewCard do
+RSpec.describe PreviewCard do
   describe 'validations' do
     describe 'urls' do
       it 'allows http schemes' do

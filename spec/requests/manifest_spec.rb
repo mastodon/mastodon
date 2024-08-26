@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Manifest' do
+RSpec.describe 'Manifest' do
   describe 'GET /manifest' do
     before { get '/manifest' }
 

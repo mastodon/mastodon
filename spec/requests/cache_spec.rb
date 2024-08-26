@@ -118,7 +118,7 @@ module TestEndpoints
   end
 end
 
-describe 'Caching behavior' do
+RSpec.describe 'Caching behavior' do
   shared_examples 'cachable response' do |http_success: false|
     it 'does not set cookies or set public cache control', :aggregate_failures do
       expect(response.cookies).to be_empty

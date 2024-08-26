@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Using OAuth from an external app' do
+RSpec.describe 'Using OAuth from an external app' do
   include ProfileStories
 
   subject { visit "/oauth/authorize?#{params.to_query}" }

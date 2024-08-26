@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'statuses/show.html.haml' do
+RSpec.describe 'statuses/show.html.haml' do
   let(:alice) { Fabricate(:account, username: 'alice', display_name: 'Alice') }
   let(:status) { Fabricate(:status, account: alice, text: 'Hello World') }
 

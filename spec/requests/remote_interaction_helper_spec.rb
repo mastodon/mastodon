@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Remote Interaction Helper' do
+RSpec.describe 'Remote Interaction Helper' do
   describe 'GET /remote_interaction_helper' do
     it 'returns http success' do
       get remote_interaction_helper_path

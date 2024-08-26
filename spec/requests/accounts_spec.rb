@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Accounts show response' do
+RSpec.describe 'Accounts show response' do
   let(:account) { Fabricate(:account) }
 
   context 'with an unapproved account' do

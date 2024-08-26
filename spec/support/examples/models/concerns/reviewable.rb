@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-shared_examples 'Reviewable' do
+RSpec.shared_examples 'Reviewable' do
   subject { described_class.new(reviewed_at: reviewed_at, requested_review_at: requested_review_at) }
 
   let(:reviewed_at) { nil }

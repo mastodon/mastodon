@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Admin::EmailDomainBlocks' do
+RSpec.describe 'Admin::EmailDomainBlocks' do
   let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
   before do

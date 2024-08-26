@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AfterAccountDomainBlockWorker do
+RSpec.describe AfterAccountDomainBlockWorker do
   let(:worker) { described_class.new }
   let(:service) { instance_double(AfterBlockDomainFromAccountService, call: true) }
 

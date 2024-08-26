@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe OneTimeKey do
+RSpec.describe OneTimeKey do
   describe 'validations' do
     context 'with an invalid signature' do
       let(:one_time_key) { Fabricate.build(:one_time_key, signature: 'wrong!') }

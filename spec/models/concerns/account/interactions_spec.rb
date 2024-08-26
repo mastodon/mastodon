@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Account::Interactions do
+RSpec.describe Account::Interactions do
   let(:account)            { Fabricate(:account, username: 'account') }
   let(:account_id)         { account.id }
   let(:account_ids)        { [account_id] }

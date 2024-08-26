@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Log Out' do
+RSpec.describe 'Log Out' do
   include RoutingHelper
 
   describe 'DELETE /auth/sign_out' do

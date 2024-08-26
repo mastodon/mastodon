@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe StatusReachFinder do
+RSpec.describe StatusReachFinder do
   describe '#inboxes' do
     context 'with a local status' do
       subject { described_class.new(status) }

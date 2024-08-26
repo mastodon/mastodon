@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Emojis' do
+RSpec.describe 'Emojis' do
   describe 'GET /emojis/:id' do
     let(:emoji) { Fabricate(:custom_emoji, shortcode: 'coolcat') }
 

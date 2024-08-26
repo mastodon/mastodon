@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ActivityPub::DeviceSerializer do
+RSpec.describe ActivityPub::DeviceSerializer do
   let(:serialization) { serialized_record_json(record, described_class) }
   let(:record) { Fabricate(:device) }
 

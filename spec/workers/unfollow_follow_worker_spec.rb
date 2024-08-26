@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe UnfollowFollowWorker do
+RSpec.describe UnfollowFollowWorker do
   subject { described_class.new }
 
   let(:local_follower)   { Fabricate(:account) }

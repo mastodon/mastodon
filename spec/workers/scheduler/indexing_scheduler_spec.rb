@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Scheduler::IndexingScheduler do
+RSpec.describe Scheduler::IndexingScheduler do
   let(:worker) { described_class.new }
 
   describe 'perform' do

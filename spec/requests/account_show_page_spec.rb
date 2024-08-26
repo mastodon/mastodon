@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'The account show page' do
+RSpec.describe 'The account show page' do
   it 'has valid opengraph tags' do
     alice = Fabricate(:account, username: 'alice', display_name: 'Alice')
     _status = Fabricate(:status, account: alice, text: 'Hello World')

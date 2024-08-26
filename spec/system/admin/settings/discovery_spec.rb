@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Admin::Settings::Discovery' do
+RSpec.describe 'Admin::Settings::Discovery' do
   it 'Saves changes to discovery settings' do
     sign_in admin_user
     visit admin_settings_discovery_path

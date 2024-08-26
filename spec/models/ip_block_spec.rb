@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe IpBlock do
+RSpec.describe IpBlock do
   describe 'validations' do
     it 'validates ip presence', :aggregate_failures do
       ip_block = described_class.new(ip: nil, severity: :no_access)

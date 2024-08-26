@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Marker do
+RSpec.describe Marker do
   describe 'validations' do
     describe 'timeline' do
       it 'must be included in valid list' do

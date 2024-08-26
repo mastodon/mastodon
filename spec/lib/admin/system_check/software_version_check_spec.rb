@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::SystemCheck::SoftwareVersionCheck do
+RSpec.describe Admin::SystemCheck::SoftwareVersionCheck do
   include RoutingHelper
 
   subject(:check) { described_class.new(user) }

@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'mastodon/cli/accounts'
 
-describe Mastodon::CLI::Accounts do
+RSpec.describe Mastodon::CLI::Accounts do
   subject { cli.invoke(action, arguments, options) }
 
   let(:cli) { described_class.new }

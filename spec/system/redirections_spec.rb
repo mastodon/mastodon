@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'redirection confirmations' do
+RSpec.describe 'redirection confirmations' do
   let(:account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/users/foo', url: 'https://example.com/@foo') }
   let(:status)  { Fabricate(:status, account: account, uri: 'https://example.com/users/foo/statuses/1', url: 'https://example.com/@foo/1') }
 

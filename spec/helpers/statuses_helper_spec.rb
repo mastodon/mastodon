@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe StatusesHelper do
+RSpec.describe StatusesHelper do
   describe 'status_text_summary' do
     context 'with blank text' do
       let(:status) { Status.new(spoiler_text: '') }

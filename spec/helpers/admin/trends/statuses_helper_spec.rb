@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::Trends::StatusesHelper do
+RSpec.describe Admin::Trends::StatusesHelper do
   describe '.one_line_preview' do
     before do
       allow(helper).to receive(:current_user).and_return(Fabricate.build(:user))
