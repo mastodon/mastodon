@@ -8,7 +8,11 @@ describe 'Settings / Exports / Blocked Accounts' do
       let(:user) { Fabricate :user }
 
       before do
-        user.account.block!(Fabricate(:account, username: 'username', domain: 'domain'))
+        Fabricate(
+          :block,
+          account: user.account,
+          target_account: Fabricate(:account, username: 'username', domain: 'domain')
+        )
         sign_in user
       end
 

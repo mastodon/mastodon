@@ -10,7 +10,11 @@ describe 'Settings / Exports / Bookmarks' do
       let(:user) { Fabricate(:user) }
 
       before do
-        user.account.bookmarks.create!(status: status)
+        Fabricate(
+          :bookmark,
+          account: user.account,
+          status: status
+        )
         sign_in user
       end
 
