@@ -27,5 +27,14 @@ describe 'Settings / Exports / Blocked Accounts' do
           CSV
       end
     end
+
+    describe 'when signed out' do
+      it 'returns unauthorized' do
+        get '/settings/exports/blocks.csv'
+
+        expect(response)
+          .to have_http_status(401)
+      end
+    end
   end
 end

@@ -25,5 +25,14 @@ describe 'Settings / Exports / Lists' do
           CSV
       end
     end
+
+    describe 'when signed out' do
+      it 'returns unauthorized' do
+        get '/settings/exports/lists.csv'
+
+        expect(response)
+          .to have_http_status(401)
+      end
+    end
   end
 end

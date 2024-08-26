@@ -24,5 +24,14 @@ describe 'Settings / Exports / Blocked Domains' do
           CSV
       end
     end
+
+    describe 'when signed out' do
+      it 'returns unauthorized' do
+        get '/settings/exports/domain_blocks.csv'
+
+        expect(response)
+          .to have_http_status(401)
+      end
+    end
   end
 end

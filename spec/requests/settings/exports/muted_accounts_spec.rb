@@ -28,5 +28,14 @@ describe 'Settings / Exports / Muted Accounts' do
           CSV
       end
     end
+
+    describe 'when signed out' do
+      it 'returns unauthorized' do
+        get '/settings/exports/mutes.csv'
+
+        expect(response)
+          .to have_http_status(401)
+      end
+    end
   end
 end
