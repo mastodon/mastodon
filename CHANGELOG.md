@@ -165,7 +165,7 @@ The following changelog entries focus on changes visible to users, administrator
 - **Change colors throughout the web UI** (#29522, #29584, #29653, #29779, #29803, #29809, #29808, #29828, #31034, #31168, #31266, #31348, #31349, #31361, and #31510 by @ClearlyClaire, @Gargron, @renchap, and @vmstan)
 - **Change onboarding prompt to follow suggestions carousel in web UI** (#28878 and #29272 by @Gargron)
 - **Change email templates** (#28416, #28755, #28814, #29064, #28883, #29470, #29607, #29761, #29760, and #29879 by @ClearlyClaire, @Gargron, @hteumeuleu, and @mjankowski)\
-  All emails to end-users have been completely redesigned with a fresh new look, providing more information while making them easier to reand and keeping maximum compatibility across mail clients.
+  All emails to end-users have been completely redesigned with a fresh new look, providing more information while making them easier to read and keeping maximum compatibility across mail clients.
 - **Change follow recommendations algorithm** (#28314, #28433, #29017, #29108, #29306, #29550, #29619, and #31474 by @ClearlyClaire, @Gargron, @kernal053, @mjankowski, and @wheatear-dev)\
   This replaces the “past interactions” recommendation algorithm with a “friends of friends” algorithm that suggests accounts followed by people you follow, and a “similar profiles” algorithm that suggests accounts with a profile similar to your most recent follows.\
   In addition, the implementation has been significantly reworked, and all follow recommendations are now dismissable.\
