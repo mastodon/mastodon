@@ -42,7 +42,7 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
     limit = limit_param(DEFAULT_NOTIFICATIONS_COUNT_LIMIT, MAX_NOTIFICATIONS_COUNT_LIMIT)
 
     with_read_replica do
-      render json: { count: browserable_account_notifications.paginate_groups_by_min_id(limit, min_id: notification_marker&.last_read_id).count }
+      render json: { count: browserable_account_notifications.paginate_groups_by_min_id(limit, min_id: notification_marker&.last_read_id, grouped_types: params[:grouped_types]).count }
     end
   end
 
@@ -68,7 +68,7 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
     MastodonOTELTracer.in_span('Api::V2Alpha::NotificationsController#load_notifications') do
       notifications = browserable_account_notifications.includes(from_account: [:account_stat, :user]).to_a_grouped_paginated_by_id(
         limit_param(DEFAULT_NOTIFICATIONS_LIMIT),
-        params_slice(:max_id, :since_id, :min_id)
+        params.slice(:max_id, :since_id, :min_id, :grouped_types).permit(:max_id, :since_id, :min_id, grouped_types: [])
       )
 
       Notification.preload_cache_collection_target_statuses(notifications) do |target_statuses|
@@ -92,7 +92,7 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
 
   def load_grouped_notifications
     MastodonOTELTracer.in_span('Api::V2Alpha::NotificationsController#load_grouped_notifications') do
-      @notifications.map { |notification| NotificationGroup.from_notification(notification, max_id: @group_metadata.dig(notification.group_key, :max_id)) }
+      @notifications.map { |notification| NotificationGroup.from_notification(notification, max_id: @group_metadata.dig(notification.group_key, :max_id), grouped_types: params[:grouped_types]) }
     end
   end
 
@@ -125,11 +125,11 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
   end
 
   def browserable_params
-    params.permit(:include_filtered, types: [], exclude_types: [])
+    params.permit(:include_filtered, types: [], exclude_types: [], grouped_types: [])
   end
 
   def pagination_params(core_params)
-    params.slice(:limit, :types, :exclude_types, :include_filtered).permit(:limit, :include_filtered, types: [], exclude_types: []).merge(core_params)
+    params.slice(:limit, :include_filtered, :types, :exclude_types, :grouped_types).permit(:limit, :include_filtered, types: [], exclude_types: [], grouped_types: []).merge(core_params)
   end
 
   def expand_accounts_param
