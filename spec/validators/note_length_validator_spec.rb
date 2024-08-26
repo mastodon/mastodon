@@ -3,11 +3,11 @@
 require 'rails_helper'
 
 describe NoteLengthValidator do
-  subject { described_class.new(attributes: { note: true }, maximum: 500) }
+  subject { described_class.new(attributes: { note: true }, maximum: 2800) }
 
   describe '#validate' do
     it 'adds an error when text is over configured character limit' do
-      text = 'a' * 520
+      text = 'a' * 2820
       account = instance_double(Account, note: text, errors: activemodel_errors)
 
       subject.validate_each(account, 'note', text)
