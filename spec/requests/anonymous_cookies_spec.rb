@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-context 'when visited anonymously' do
+describe 'Anonymous visits' do
   around do |example|
     old = ActionController::Base.allow_forgery_protection
     ActionController::Base.allow_forgery_protection = true
