@@ -1359,7 +1359,15 @@ const attachServerWithConfig = (server, onSuccess) => {
       }
     });
   } else {
-    server.listen(+(process.env.PORT || 4000), process.env.BIND || '127.0.0.1', () => {
+    const port = +(process.env.PORT || 4000);
+    let bind = process.env.BIND ?? '127.0.0.1';
+    // Web uses the URI syntax for BIND, which means IPv6 addresses may
+    // be wrapped in square brackets:
+    if (bind.startsWith('[') && bind.endsWith(']')) {
+      bind = bind.slice(1, -1);
+    }
+
+    server.listen(port, bind, () => {
       if (onSuccess) {
         onSuccess(`${server.address().address}:${server.address().port}`);
       }
