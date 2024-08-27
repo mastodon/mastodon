@@ -32,7 +32,7 @@ describe 'API V1 Statuses Translations' do
         translation = TranslationService::Translation.new(text: 'Hello')
         service = instance_double(TranslationService::DeepL, translate: [translation])
         allow(TranslationService).to receive_messages(configured?: true, configured: service)
-        Rails.cache.write('translation_service/languages', { 'es' => ['en'] })
+        Rails.cache.write('v2:translation_service/languages', { 'es' => ['en'] })
         post "/api/v1/statuses/#{status.id}/translate", headers: headers
       end
 

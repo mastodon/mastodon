@@ -38,7 +38,7 @@ RSpec.describe TranslationService::DeepL do
         .with(body: 'text=Guten+Tag&source_lang&target_lang=en&tag_handling=html')
         .to_return(body: '{"translations":[{"detected_source_language":"DE","text":"Good morning"}]}')
 
-      translations = service.translate(['Guten Tag'], nil, 'en')
+      translations = service.translate(['Guten Tag'], 'und', 'en')
       expect(translations.size).to eq 1
 
       translation = translations.first
@@ -62,7 +62,7 @@ RSpec.describe TranslationService::DeepL do
 
   describe '#languages' do
     it 'returns source languages' do
-      expect(service.languages.keys).to eq [nil, 'en', 'uk']
+      expect(service.languages.keys).to eq %w(und en uk)
     end
 
     it 'returns target languages for each source language' do
@@ -71,7 +71,7 @@ RSpec.describe TranslationService::DeepL do
     end
 
     it 'returns target languages for auto-detection' do
-      expect(service.languages[nil]).to eq %w(en pt en-GB zh)
+      expect(service.languages['und']).to eq %w(en pt en-GB zh)
     end
   end
 

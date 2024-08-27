@@ -15,7 +15,7 @@ RSpec.describe TranslationService::LibreTranslate do
     subject(:languages) { service.languages }
 
     it 'returns source languages' do
-      expect(languages.keys).to eq ['en', 'da', nil]
+      expect(languages.keys).to eq %w(en da und)
     end
 
     it 'returns target languages for each source language' do
@@ -24,7 +24,7 @@ RSpec.describe TranslationService::LibreTranslate do
     end
 
     it 'returns target languages for auto-detected language' do
-      expect(languages[nil]).to eq %w(de en es pt)
+      expect(languages['und']).to eq %w(de en es pt)
     end
   end
 
