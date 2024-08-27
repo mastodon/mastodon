@@ -392,14 +392,16 @@ class Status extends ImmutablePureComponent {
     }
   };
 
-  handleTranslate = status => {
+  handleTranslate = (status, sourceLanguage) => {
     const { dispatch } = this.props;
 
-    if (status.get('translation')) {
-      dispatch(undoStatusTranslation(status.get('id'), status.get('poll')));
-    } else {
-      dispatch(translateStatus(status.get('id')));
-    }
+    dispatch(translateStatus(status.get('id'), sourceLanguage));
+  };
+
+  handleUndoStatusTranslation = status => {
+    const { dispatch } = this.props;
+
+    dispatch(undoStatusTranslation(status.get('id'), status.get('poll')));
   };
 
   handleBlockClick = (status) => {
@@ -675,6 +677,7 @@ class Status extends ImmutablePureComponent {
                   onOpenMedia={this.handleOpenMedia}
                   onToggleHidden={this.handleToggleHidden}
                   onTranslate={this.handleTranslate}
+                  onUndoStatusTranslation={this.handleUndoStatusTranslation}
                   domain={domain}
                   showMedia={this.state.showMedia}
                   onToggleMediaVisibility={this.handleToggleMediaVisibility}

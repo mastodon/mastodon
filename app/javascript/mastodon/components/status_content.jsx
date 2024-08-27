@@ -30,16 +30,27 @@ class TranslateButton extends PureComponent {
 
   static propTypes = {
     translation: ImmutablePropTypes.map,
-    onClick: PropTypes.func,
+    onTranslate: PropTypes.func,
+    onDetectLanguage: PropTypes.func,
+    onUndoStatusTranslation: PropTypes.func,
   };
 
   render () {
-    const { translation, onClick } = this.props;
+    const { translation, onTranslate, onDetectLanguage, onUndoStatusTranslation } = this.props;
 
     if (translation) {
       const language     = preloadedLanguages.find(lang => lang[0] === translation.get('detected_source_language'));
       const languageName = language ? language[2] : translation.get('detected_source_language');
       const provider     = translation.get('provider');
+
+      const languageDetectionButton = onDetectLanguage && (
+        <>
+          <button className='link-button' onClick={onDetectLanguage}>
+            <FormattedMessage id='status.detect_language' defaultMessage='Detect language' />
+          </button>
+          ·
+        </>
+      );
 
       return (
         <div className='translate-button'>
@@ -47,15 +58,19 @@ class TranslateButton extends PureComponent {
             <FormattedMessage id='status.translated_from_with' defaultMessage='Translated from {lang} using {provider}' values={{ lang: languageName, provider }} />
           </div>
 
-          <button className='link-button' onClick={onClick}>
-            <FormattedMessage id='status.show_original' defaultMessage='Show original' />
-          </button>
+          <div className='translate-button__buttons'>
+            {languageDetectionButton}
+
+            <button className='link-button' onClick={onUndoStatusTranslation}>
+              <FormattedMessage id='status.show_original' defaultMessage='Show original' />
+            </button>
+          </div>
         </div>
       );
     }
 
     return (
-      <button className='status__content__translate-button' onClick={onClick}>
+      <button className='status__content__translate-button' onClick={onTranslate}>
         <FormattedMessage id='status.translate' defaultMessage='Translate' />
       </button>
     );
@@ -73,6 +88,7 @@ class StatusContent extends PureComponent {
     status: ImmutablePropTypes.map.isRequired,
     statusContent: PropTypes.string,
     onTranslate: PropTypes.func,
+    onUndoStatusTranslation: PropTypes.func,
     onClick: PropTypes.func,
     collapsible: PropTypes.bool,
     onCollapsedToggle: PropTypes.func,
@@ -215,6 +231,10 @@ class StatusContent extends PureComponent {
     this.props.onTranslate();
   };
 
+  handleDetectLanguage = () => {
+    this.props.onTranslate('und');
+  };
+
   setRef = (c) => {
     this.node = c;
   };
@@ -224,8 +244,12 @@ class StatusContent extends PureComponent {
 
     const renderReadMore = this.props.onClick && status.get('collapsed');
     const contentLocale = intl.locale.replace(/[_-].*/, '');
-    const targetLanguages = this.props.languages?.get(status.get('language') || 'und');
+    const sourceLanguage = status.get('language') || 'und';
+    const targetLanguages = this.props.languages?.get(sourceLanguage);
     const renderTranslate = this.props.onTranslate && this.props.identity.signedIn && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('search_index').trim().length > 0 && targetLanguages?.includes(contentLocale);
+
+    const languageDetectionTargetLanguages = this.props.languages?.get('und');
+    const renderDetectLanguage = sourceLanguage !== 'und' && languageDetectionTargetLanguages?.includes(contentLocale) && status.get('translation')?.get('source_language') !== 'und';
 
     const content = { __html: statusContent ?? getStatusContent(status) };
     const language = status.getIn(['translation', 'language']) || status.get('language');
@@ -241,7 +265,12 @@ class StatusContent extends PureComponent {
     );
 
     const translateButton = renderTranslate && (
-      <TranslateButton onClick={this.handleTranslate} translation={status.get('translation')} />
+      <TranslateButton
+        onTranslate={this.handleTranslate}
+        onDetectLanguage={renderDetectLanguage && this.handleDetectLanguage}
+        onUndoStatusTranslation={this.props.onUndoStatusTranslation}
+        translation={status.get('translation')}
+      />
     );
 
     const poll = !!status.get('poll') && (

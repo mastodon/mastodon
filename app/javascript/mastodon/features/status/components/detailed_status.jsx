@@ -36,6 +36,7 @@ class DetailedStatus extends ImmutablePureComponent {
     onOpenVideo: PropTypes.func.isRequired,
     onToggleHidden: PropTypes.func.isRequired,
     onTranslate: PropTypes.func.isRequired,
+    onUndoStatusTranslation: PropTypes.func.isRequired,
     measureHeight: PropTypes.bool,
     onHeightChange: PropTypes.func,
     domain: PropTypes.string.isRequired,
@@ -103,9 +104,14 @@ class DetailedStatus extends ImmutablePureComponent {
     window.open(href, 'mastodon-intent', 'width=445,height=600,resizable=no,menubar=no,status=no,scrollbars=yes');
   };
 
-  handleTranslate = () => {
+  handleTranslate = (sourceLanguage) => {
     const { onTranslate, status } = this.props;
-    onTranslate(status);
+    onTranslate(status, sourceLanguage);
+  };
+
+  handleUndoStatusTranslation = () => {
+    const { onUndoStatusTranslation, status } = this.props;
+    onUndoStatusTranslation(status);
   };
 
   _properStatus () {
@@ -285,6 +291,7 @@ class DetailedStatus extends ImmutablePureComponent {
               <StatusContent
                 status={status}
                 onTranslate={this.handleTranslate}
+                onUndoStatusTranslation={this.handleUndoStatusTranslation}
                 {...statusContentProps}
               />
 

@@ -1312,6 +1312,17 @@ body > [data-popper-placement] {
   display: flex;
   justify-content: space-between;
   color: $dark-text-color;
+
+  .translate-button__buttons {
+    margin-right: -6px;
+    float: right;
+    white-space: nowrap;
+
+    .link-button {
+      display: inline;
+      margin: 0 6px;
+    }
+  }
 }
 
 .status__content__spoiler-link {
