@@ -45,20 +45,8 @@ export const NotificationAdminReport: React.FC<{
   const domain = account.acct.split('@')[1];
 
   const values = {
-    name: domain ? (
-      <bdi>{domain}</bdi>
-    ) : (
-      <bdi
-        dangerouslySetInnerHTML={{ __html: account.get('display_name_html') }}
-      />
-    ),
-    target: (
-      <bdi
-        dangerouslySetInnerHTML={{
-          __html: targetAccount.get('display_name_html'),
-        }}
-      />
-    ),
+    name: <bdi>{domain ?? `@${account.acct}`}</bdi>,
+    target: <bdi>@{targetAccount.acct}</bdi>,
     category: intl.formatMessage(messages[report.category]),
     count: report.status_ids.length,
   };
