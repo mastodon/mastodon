@@ -200,7 +200,6 @@ const startServer = async () => {
   const subs = {};
 
   const redisSubscribeClient = Redis.createClient(redisConfig, logger);
-  const { redisPrefix } = redisConfig;
 
   // When checking metrics in the browser, the favicon is requested this
   // prevents the request from falling through to the API Router, which would
@@ -222,7 +221,7 @@ const startServer = async () => {
     const interval = 6 * 60;
 
     const tellSubscribed = () => {
-      channels.forEach(channel => redisClient.set(`${redisPrefix}subscribed:${channel}`, '1', 'EX', interval * 3));
+      channels.forEach(channel => redisClient.set(`subscribed:${channel}`, '1', 'EX', interval * 3));
     };
 
     tellSubscribed();
@@ -243,7 +242,7 @@ const startServer = async () => {
 
     const callbacks = subs[channel];
 
-    logger.debug(`New message on channel ${redisPrefix}${channel}`);
+    logger.debug(`New message on channel ${channel}`);
 
     if (!callbacks) {
       return;
@@ -481,14 +480,14 @@ const startServer = async () => {
     });
 
     res.on('close', () => {
-      unsubscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
-      unsubscribe(`${redisPrefix}${systemChannelId}`, listener);
+      unsubscribe(accessTokenChannelId, listener);
+      unsubscribe(systemChannelId, listener);
 
       metrics.connectedChannels.labels({ type: 'eventsource', channel: 'system' }).dec(2);
     });
 
-    subscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
-    subscribe(`${redisPrefix}${systemChannelId}`, listener);
+    subscribe(accessTokenChannelId, listener);
+    subscribe(systemChannelId, listener);
 
     metrics.connectedChannels.labels({ type: 'eventsource', channel: 'system' }).inc(2);
   };
@@ -805,11 +804,11 @@ const startServer = async () => {
     };
 
     channelIds.forEach(id => {
-      subscribe(`${redisPrefix}${id}`, listener);
+      subscribe(id, listener);
     });
 
     if (typeof attachCloseHandler === 'function') {
-      attachCloseHandler(channelIds.map(id => `${redisPrefix}${id}`), listener);
+      attachCloseHandler(channelIds, listener);
     }
 
     return listener;
@@ -1156,7 +1155,7 @@ const startServer = async () => {
     }
 
     channelIds.forEach(channelId => {
-      unsubscribe(`${redisPrefix}${channelId}`, subscription.listener);
+      unsubscribe(channelId, subscription.listener);
     });
 
     metrics.connectedChannels.labels({ type: 'websocket', channel: subscription.channelName }).dec();
@@ -1200,8 +1199,8 @@ const startServer = async () => {
       },
     });
 
-    subscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
-    subscribe(`${redisPrefix}${systemChannelId}`, listener);
+    subscribe(accessTokenChannelId, listener);
+    subscribe(systemChannelId, listener);
 
     subscriptions[accessTokenChannelId] = {
       channelName: 'system',
