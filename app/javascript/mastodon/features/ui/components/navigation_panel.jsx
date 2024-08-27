@@ -37,6 +37,7 @@ import { timelinePreview, trendsEnabled } from 'mastodon/initial_state';
 import { transientSingleColumn } from 'mastodon/is_mobile';
 import { canManageReports, canViewAdminDashboard } from 'mastodon/permissions';
 import { selectUnreadNotificationGroupsCount } from 'mastodon/selectors/notifications';
+import { selectUseGroupedNotifications } from 'mastodon/selectors/settings';
 
 import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
@@ -64,7 +65,7 @@ const messages = defineMessages({
 });
 
 const NotificationsLink = () => {
-  const optedInGroupedNotifications = useSelector((state) => state.getIn(['settings', 'notifications', 'groupingBeta'], false));
+  const optedInGroupedNotifications = useSelector(selectUseGroupedNotifications);
   const count = useSelector(state => state.getIn(['notifications', 'unread']));
   const intl = useIntl();
 
