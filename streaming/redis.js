@@ -9,6 +9,56 @@ import { parseIntFromEnvValue } from './utils.js';
  */
 
 /**
+ *
+ * @param {NodeJS.ProcessEnv} env
+ * @returns {boolean}
+ */
+function hasSentinelConfiguration(env) {
+  return (
+    typeof env.REDIS_SENTINELS === 'string' &&
+    env.REDIS_SENTINELS.length > 0 &&
+    typeof env.REDIS_SENTINEL_MASTER === 'string' &&
+    env.REDIS_SENTINEL_MASTER.length > 0
+  );
+}
+
+/**
+ *
+ * @param {NodeJS.ProcessEnv} env
+ * @param {import('ioredis').SentinelConnectionOptions} commonOptions
+ * @returns {import('ioredis').SentinelConnectionOptions}
+ */
+function getSentinelConfiguration(env, commonOptions) {
+  const redisDatabase = parseIntFromEnvValue(env.REDIS_DB, 0, 'REDIS_DB');
+  const sentinelPort = parseIntFromEnvValue(env.REDIS_SENTINEL_PORT, 26379, 'REDIS_SENTINEL_PORT');
+
+  const sentinels = env.REDIS_SENTINELS.split(',').map((sentinel) => {
+    const [host, port] = sentinel.split(':', 2);
+
+    /** @type {import('ioredis').SentinelAddress} */
+    return {
+      host: host,
+      port: port ?? sentinelPort,
+      // Force support for both IPv6 and IPv4, by default ioredis sets this to 4,
+      // only allowing IPv4 connections:
+      // https://github.com/redis/ioredis/issues/1576
+      family: 0
+    };
+  });
+
+  return {
+    db: redisDatabase,
+    name: env.REDIS_SENTINEL_MASTER,
+    username: env.REDIS_USERNAME,
+    password: env.REDIS_PASSWORD,
+    sentinelUsername: env.REDIS_SENTINEL_USERNAME ?? env.REDIS_USERNAME,
+    sentinelPassword: env.REDIS_SENTINEL_PASSWORD ?? env.REDIS_PASSWORD,
+    sentinels,
+    ...commonOptions,
+  };
+}
+
+/**
  * @param {NodeJS.ProcessEnv} env the `process.env` value to read configuration from
  * @returns {RedisConfiguration} configuration for the Redis connection
  */
@@ -32,6 +82,13 @@ export function configFromEnv(env) {
     return {
       redisUrl: env.REDIS_URL,
       redisOptions: commonOptions
+    };
+  }
+
+  // If we have configuration for Redis Sentinel mode, prefer that:
+  if (hasSentinelConfiguration(env)) {
+    return {
+      redisOptions: getSentinelConfiguration(env, commonOptions),
     };
   }
 
