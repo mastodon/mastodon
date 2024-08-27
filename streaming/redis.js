@@ -4,6 +4,7 @@ import { parseIntFromEnvValue } from './utils.js';
 
 /**
  * @typedef RedisConfiguration
+ * @property {string|undefined} redisNamespace
  * @property {string|undefined} redisUrl
  * @property {import('ioredis').RedisOptions} redisOptions
  */
@@ -63,7 +64,7 @@ function getSentinelConfiguration(env, commonOptions) {
  * @returns {RedisConfiguration} configuration for the Redis connection
  */
 export function configFromEnv(env) {
-  const redisNamespace = env.REDIS_NAMESPACE ? `${env.REDIS_NAMESPACE}:` : undefined;
+  const redisNamespace = env.REDIS_NAMESPACE ? `${env.REDIS_NAMESPACE}:` : '';
 
   // These options apply for both REDIS_URL based connections and connections
   // using the other REDIS_* environment variables:
@@ -81,7 +82,8 @@ export function configFromEnv(env) {
   if (typeof env.REDIS_URL === 'string' && env.REDIS_URL.length > 0) {
     return {
       redisUrl: env.REDIS_URL,
-      redisOptions: commonOptions
+      redisOptions: commonOptions,
+      redisNamespace
     };
   }
 
@@ -89,6 +91,7 @@ export function configFromEnv(env) {
   if (hasSentinelConfiguration(env)) {
     return {
       redisOptions: getSentinelConfiguration(env, commonOptions),
+      redisNamespace
     };
   }
 
@@ -107,7 +110,8 @@ export function configFromEnv(env) {
   };
 
   return {
-    redisOptions
+    redisOptions,
+    redisNamespace
   };
 }
 

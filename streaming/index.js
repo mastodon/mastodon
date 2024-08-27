@@ -107,6 +107,7 @@ const startServer = async () => {
   const metrics = setupMetrics(CHANNEL_NAMES, pgPool);
 
   const redisConfig = Redis.configFromEnv(process.env);
+  const redisNamespace = redisConfig.redisNamespace;
   const redisClient = Redis.createClient(redisConfig, logger);
   const server = http.createServer();
   const wss = new WebSocketServer({ noServer: true });
@@ -239,11 +240,13 @@ const startServer = async () => {
    */
   const onRedisMessage = (channel, message) => {
     metrics.redisMessagesReceived.inc();
-
-    const callbacks = subs[channel];
-
     logger.debug(`New message on channel ${channel}`);
 
+    // FIXME: https://github.com/redis/ioredis/issues/1910
+    // Strip the redis keyPrefix from the channel:
+    const channelName = redisNamespace ? channel.slice(redisNamespace.length) : channel;
+
+    const callbacks = subs[channelName];
     if (!callbacks) {
       return;
     }
@@ -272,7 +275,9 @@ const startServer = async () => {
 
     if (subs[channel].length === 0) {
       logger.debug(`Subscribe ${channel}`);
-      redisSubscribeClient.subscribe(channel, (err, count) => {
+
+      // FIXME: https://github.com/redis/ioredis/issues/1910
+      redisSubscribeClient.subscribe(`${redisNamespace}${channel}`, (err, count) => {
         if (err) {
           logger.error(`Error subscribing to ${channel}`);
         } else if (typeof count === 'number') {
@@ -299,7 +304,9 @@ const startServer = async () => {
 
     if (subs[channel].length === 0) {
       logger.debug(`Unsubscribe ${channel}`);
-      redisSubscribeClient.unsubscribe(channel, (err, count) => {
+
+      // FIXME: https://github.com/redis/ioredis/issues/1910
+      redisSubscribeClient.unsubscribe(`${redisNamespace}${channel}`, (err, count) => {
         if (err) {
           logger.error(`Error unsubscribing to ${channel}`);
         } else if (typeof count === 'number') {
