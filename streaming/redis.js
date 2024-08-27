@@ -35,6 +35,7 @@ export function configFromEnv(env) {
     };
   }
 
+  // Finally, handle all the other REDIS_* environment variables:
   let redisPort = parseIntFromEnvValue(env.REDIS_PORT, 6379, 'REDIS_PORT');
   let redisDatabase = parseIntFromEnvValue(env.REDIS_DB, 0, 'REDIS_DB');
 
@@ -43,8 +44,9 @@ export function configFromEnv(env) {
     host: env.REDIS_HOST ?? '127.0.0.1',
     port: redisPort,
     db: redisDatabase,
-    password: env.REDIS_PASSWORD || undefined,
-    ...commonOptions
+    username: env.REDIS_USERNAME,
+    password: env.REDIS_PASSWORD,
+    ...commonOptions,
   };
 
   return {
