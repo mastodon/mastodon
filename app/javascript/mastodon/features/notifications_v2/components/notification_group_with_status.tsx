@@ -87,34 +87,30 @@ export const NotificationGroupWithStatus: React.FC<{
           <Icon icon={icon} id={iconId} />
         </div>
 
-        <div className='notification-group__main'>
-          <div className='notification-group__main__header'>
-            <div className='notification-group__main__header__wrapper'>
-              <AvatarGroup accountIds={accountIds} />
+        <div className='notification-group__main__header__wrapper'>
+          <AvatarGroup accountIds={accountIds} />
 
-              {actions && (
-                <div className='notification-group__actions'>{actions}</div>
-              )}
-            </div>
-
-            <div className='notification-group__main__header__label'>
-              {label}
-              {timestamp && <RelativeTimestamp timestamp={timestamp} />}
-            </div>
-          </div>
-
-          {statusId && (
-            <div className='notification-group__main__status'>
-              <EmbeddedStatus statusId={statusId} />
-            </div>
-          )}
-
-          {additionalContent && (
-            <div className='notification-group__main__additional-content'>
-              {additionalContent}
-            </div>
+          {actions && (
+            <div className='notification-group__actions'>{actions}</div>
           )}
         </div>
+
+        <div className='notification-group__main__header__label'>
+          {label}
+          {timestamp && <RelativeTimestamp timestamp={timestamp} />}
+        </div>
+
+        {statusId && (
+          <div className='notification-group__main__status'>
+            <EmbeddedStatus statusId={statusId} />
+          </div>
+        )}
+
+        {additionalContent && (
+          <div className='notification-group__main__additional-content'>
+            {additionalContent}
+          </div>
+        )}
       </div>
     </HotKeys>
   );

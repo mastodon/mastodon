@@ -113,20 +113,16 @@ export const NotificationAdminReport: React.FC<{
         <Icon id='flag' icon={FlagIcon} />
       </div>
 
-      <div className='notification-group__main'>
-        <div className='notification-group__main__header'>
-          <div className='notification-group__main__header__label'>
-            {message}
-            <RelativeTimestamp timestamp={report.created_at} />
-          </div>
-        </div>
-
-        {report.comment.length > 0 && (
-          <div className='notification-group__embedded-status__content'>
-            “{report.comment}”
-          </div>
-        )}
+      <div className='notification-group__main__header__label'>
+        {message}
+        <RelativeTimestamp timestamp={report.created_at} />
       </div>
+
+      {report.comment.length > 0 && (
+        <div className='notification-group__embedded-status__content'>
+          “{report.comment}”
+        </div>
+      )}
     </a>
   );
 };

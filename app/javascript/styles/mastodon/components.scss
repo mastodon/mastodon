@@ -10466,11 +10466,17 @@ noscript {
 }
 
 .notification-group {
-  display: flex;
+  display: grid;
   align-items: flex-start;
   gap: 8px;
   padding: 16px 24px;
+  grid-template-columns: 40px 1fr;
+  grid-template-areas:
+    'icon header-wrapper'
+    '. header-label'
+    '. content';
   border-bottom: 1px solid var(--background-border-color);
+  container-type: inline-size;
 
   &__icon {
     width: 40px;
@@ -10479,6 +10485,7 @@ noscript {
     justify-content: center;
     flex: 0 0 auto;
     color: $dark-text-color;
+    grid-area: icon;
 
     .icon {
       width: 28px;
@@ -10522,13 +10529,6 @@ noscript {
   }
 
   &__main {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex: 1 1 auto;
-    overflow: hidden;
-    container-type: inline-size;
-
     @container (width < 350px) {
       &__header time {
         display: none;
@@ -10536,13 +10536,10 @@ noscript {
     }
 
     &__header {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-
       &__wrapper {
         display: flex;
         justify-content: space-between;
+        grid-area: header-wrapper;
       }
 
       &__label {
@@ -10551,6 +10548,7 @@ noscript {
         font-size: 15px;
         line-height: 22px;
         color: $darker-text-color;
+        grid-area: header-label;
 
         a {
           color: inherit;
@@ -10572,6 +10570,8 @@ noscript {
       border: 1px solid var(--background-border-color);
       border-radius: 8px;
       padding: 8px;
+      grid-area: content;
+      overflow: hidden;
     }
 
     &__additional-content {
