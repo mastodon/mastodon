@@ -29,7 +29,8 @@ class HtmlAwareFormatter
   private
 
   def reformat
-    Sanitize.fragment(text, Sanitize::Config::MASTODON_STRICT)
+    #Sanitize.fragment(text, Sanitize::Config::MASTODON_STRICT)
+    text
   end
 
   def linkify
