@@ -2,25 +2,25 @@
 $black: #000000;
 $white: #ffffff;
 
-$classic-base-color: #282c37;
-$classic-primary-color: #9baec8;
-$classic-secondary-color: #d9e1e8;
-$classic-highlight-color: #6364ff;
+$classic-base-color: hsl(240deg, 16%, 19%);
+$classic-primary-color: hsl(240deg, 29%, 70%);
+$classic-secondary-color: hsl(255deg, 25%, 88%);
+$classic-highlight-color: hsl(240deg, 100%, 69%);
 
-$blurple-600: #563acc; // Iris
-$blurple-500: #6364ff; // Brand purple
-$blurple-300: #858afa; // Faded Blue
-$grey-600: #4e4c5a; // Trout
-$grey-100: #dadaf3; // Topaz
+$blurple-600: hsl(252deg, 59%, 51%); // Iris
+$blurple-500: hsl(240deg, 100%, 69%); // Brand purple
+$blurple-300: hsl(237deg, 92%, 75%); // Faded Blue
+$grey-600: hsl(240deg, 8%, 33%); // Trout
+$grey-100: hsl(240deg, 51%, 90%); // Topaz
 
 // Differences
-$success-green: lighten(#3c754d, 8%);
+$success-green: lighten(hsl(138deg, 32%, 35%), 8%);
 
 $base-overlay-background: $white !default;
 $valid-value-color: $success-green !default;
 
 $ui-base-color: $classic-secondary-color !default;
-$ui-base-lighter-color: #b0c0cf;
+$ui-base-lighter-color: hsl(250deg, 24%, 75%);
 $ui-primary-color: $classic-primary-color !default;
 $ui-secondary-color: $classic-base-color !default;
 $ui-highlight-color: $classic-highlight-color !default;
@@ -35,12 +35,12 @@ $ui-button-tertiary-border-color: $blurple-500 !default;
 $primary-text-color: $black !default;
 $darker-text-color: $classic-base-color !default;
 $highlight-text-color: $ui-highlight-color !default;
-$dark-text-color: #444b5d;
-$action-button-color: #606984;
+$dark-text-color: hsl(240deg, 16%, 32%);
+$action-button-color: hsl(240deg, 16%, 45%);
 
 $inverted-text-color: $black !default;
 $lighter-text-color: $classic-base-color !default;
-$light-text-color: #444b5d;
+$light-text-color: hsl(240deg, 16%, 32%);
 
 // Newly added colors
 $account-background-color: $white !default;
@@ -57,12 +57,13 @@ $account-background-color: $white !default;
 $emojis-requiring-inversion: 'chains';
 
 body {
-  --dropdown-border-color: #d9e1e8;
+  --dropdown-border-color: hsl(240deg, 25%, 88%);
   --dropdown-background-color: #fff;
-  --modal-border-color: #d9e1e8;
+  --modal-border-color: hsl(240deg, 25%, 88%);
   --modal-background-color: var(--background-color-tint);
-  --background-border-color: #d9e1e8;
+  --background-border-color: hsl(240deg, 25%, 88%);
   --background-color: #fff;
   --background-color-tint: rgba(255, 255, 255, 80%);
   --background-filter: blur(10px);
+  --on-surface-color: #{transparentize($ui-base-color, 0.65)};
 }

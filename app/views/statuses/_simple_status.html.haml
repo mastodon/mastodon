@@ -26,7 +26,7 @@
           &nbsp;
           %span.display-name__account
             = acct(status.account)
-            = fa_icon('lock') if status.account.locked?
+            = material_symbol('lock') if status.account.locked?
   .status__content.emojify{ data: ({ spoiler: current_account&.user&.setting_expand_spoilers ? 'expanded' : 'folded' } if status.spoiler_text?) }<
     - if status.spoiler_text?
       %p<
@@ -55,16 +55,16 @@
   .status__action-bar
     %span.status__action-bar-button.icon-button.icon-button--with-counter
       - if status.in_reply_to_id.nil?
-        = fa_icon 'reply fw'
+        = material_symbol 'reply'
       - else
-        = fa_icon 'reply-all fw'
+        = material_symbol 'reply_all'
       %span.icon-button__counter= obscured_counter status.replies_count
     %span.status__action-bar-button.icon-button
       - if status.distributable?
-        = fa_icon 'retweet fw'
+        = material_symbol 'repeat'
       - elsif status.private_visibility? || status.limited_visibility?
-        = fa_icon 'lock fw'
+        = material_symbol 'lock'
       - else
-        = fa_icon 'at fw'
+        = material_symbol 'alternate_email'
     %span.status__action-bar-button.icon-button
-      = fa_icon 'star fw'
+      = material_symbol 'star'

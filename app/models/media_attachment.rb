@@ -422,7 +422,7 @@ class MediaAttachment < ApplicationRecord
       attachment = public_send(attachment_name)
       styles = DEFAULT_STYLES | attachment.styles.keys
       styles.map { |style| attachment.path(style) }
-    end
+    end.compact
   rescue => e
     # We really don't want any error here preventing media deletion
     Rails.logger.warn "Error #{e.class} busting cache: #{e.message}"

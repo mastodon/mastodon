@@ -31,7 +31,7 @@ fo:
       created_msg: Umsjónarviðmerking stovnað!
       destroyed_msg: Umsjónarviðmerking strikað!
     accounts:
-      add_email_domain_block: Blokera teldupostanavnaøki
+      add_email_domain_block: Forða t-post økisnavni
       approve: Vátta
       approved_msg: Góðkent tilmeldingarumbøn hjá %{username}
       are_you_sure: Ert tú vís/ur?
@@ -132,7 +132,7 @@ fo:
       resubscribe: Tegna teg umaftur
       role: Leiklutur
       search: Leita
-      search_same_email_domain: Aðrir brúkarir eru við sama teldupost domaini
+      search_same_email_domain: Aðrir brúkarar við sama t-post-økisnavni
       search_same_ip: Aðrir brúkarar við somu IP
       security: Trygd
       security_measures:
@@ -173,26 +173,26 @@ fo:
         approve_appeal: Góðkenn kæru
         approve_user: Góðkenn brúkara
         assigned_to_self_report: Tilluta melding
-        change_email_user: Broyt teldupost fyri brúkara
+        change_email_user: Broyt t-post hjá brúkara
         change_role_user: Broyt leiklut hjá brúkara
         confirm_user: Vátta brúkara
         create_account_warning: Stovna ávaring
         create_announcement: Stovna kunngerð
-        create_canonical_email_block: Stovna teldupostblokering
+        create_canonical_email_block: Stovna t-post-blokk
         create_custom_emoji: Stovna serligt kenslutekn
         create_domain_allow: Stovna navnaøkjaloyvi
         create_domain_block: Stovna navnaøkjablokering
-        create_email_domain_block: Stovna teldupostanavnaøkjablokering
+        create_email_domain_block: Stovna t-post-økisnavnablokk
         create_ip_block: Stovna IP reglu
         create_unavailable_domain: Stovna navnaøki, sum ikki er tøkt
         create_user_role: Stovna leiklut
         demote_user: Lækka brúkara í tign
         destroy_announcement: Strika kunngerð
-        destroy_canonical_email_block: Strika teldupostblokering
+        destroy_canonical_email_block: Strika t-postablokk
         destroy_custom_emoji: Strika serligt kenslutekn
         destroy_domain_allow: Strika navnaøkjaloyvi
         destroy_domain_block: Strika navnaøkjablokering
-        destroy_email_domain_block: Strika teldupostanavnaøkjablokering
+        destroy_email_domain_block: Strika t-posta-økisnavnablokk
         destroy_instance: Reinsa navnaøki
         destroy_ip_block: Strika IP reglu
         destroy_status: Strika post
@@ -233,9 +233,9 @@ fo:
         approve_appeal_html: "%{name} góðkendi umsjónaráheitan frá %{target}"
         approve_user_html: "%{name} góðtók umsókn frá %{target}"
         assigned_to_self_report_html: "%{name} tillutaði frágreiðing %{target} til sín sjálvs"
-        change_email_user_html: "%{name} broytti teldupost addressuna hjá %{target}"
+        change_email_user_html: "%{name} broytti t-postin hjá brúkara %{target}"
         change_role_user_html: "%{name} broytti leiklutin hjá %{target}"
-        confirm_user_html: "%{name} góðtók teldupost addressuna hjá %{target}"
+        confirm_user_html: "%{name} váttaði t-post hjá brúkara %{target}"
         create_account_warning_html: "%{name} sendi eina ávaring til %{target}"
         create_announcement_html: "%{name} stovnaði eina fráboðan %{target}"
         create_canonical_email_block_html: "%{name} forðaði telduposti við hash'inum %{target}"
@@ -252,7 +252,7 @@ fo:
         destroy_custom_emoji_html: "%{name} strikaði kensluteknið %{target}"
         destroy_domain_allow_html: "%{name} havnaði sameining við navnaøkið %{target}"
         destroy_domain_block_html: "%{name} strikaði blokering av navnaøkinum %{target}"
-        destroy_email_domain_block_html: "%{name} leysgivi teldupostanavnaøkið %{target}"
+        destroy_email_domain_block_html: "%{name} leysgav teldupostanavnaøkið %{target}"
         destroy_instance_html: "%{name} reinsaði navnaøkið %{target}"
         destroy_ip_block_html: "%{name} slettaðar reglur fyri IP %{target}"
         destroy_status_html: "%{name} slettaði upplegg hjá %{target}"
@@ -898,6 +898,7 @@ fo:
       name: Navn
       newest: Nýggjasta/u
       oldest: Elsta/u
+      open: Vís fyri øllum
       reset: Endurstilla
       review: Eftirkanna støðu
       search: Leita
@@ -907,10 +908,16 @@ fo:
     trends:
       allow: Loyv
       approved: Váttað
+      confirm_allow: Vil tú veruliga loyva valdu frámerkini?
+      confirm_disallow: Vil tú veruliga frávelja valdu frámerkini?
       disallow: Tak loyvi aftur
       links:
         allow: Loyv leinki
         allow_provider: Loyv útgevara
+        confirm_allow: Vil tú veruliga loyva valdu leinkini?
+        confirm_allow_provider: Vil tú veruliga loyva valdu veitararnar?
+        confirm_disallow: Vil tú veruliga frávelja valdu leinkini?
+        confirm_disallow_provider: Vil tú veruliga frávelja valdu veitararnar?
         description_html: Hesi leinkini verða í løtuni deild nógv av kontum, sum ambætarin sær postar hjá. At síggja leinkini kann hjálpa brúkarum at finna útav, hvat hendir í verðini. Eingi leinki verða víst alment, áðrenn tú góðkennir útgevaran. Tú kanst eisini loyva ella vraka einstøk leinki.
         disallow: Loyv ikki leinki
         disallow_provider: Loyv ikki útgevara
@@ -934,6 +941,10 @@ fo:
       statuses:
         allow: Loyv posti
         allow_account: Loyv høvundi
+        confirm_allow: Vil tú veruliga loyva valdu støðurnar?
+        confirm_allow_account: Vil tú veruliga loyva valdu konturnar?
+        confirm_disallow: Vil tú veruliga vraka valdu støðurnar?
+        confirm_disallow_account: Vil tú veruliga vraka valdu konturnar?
         description_html: Hetta eru postar, sum tín ambætari veit um og sum í løtuni vera deildir og dámaðir ofta. At vísa teir kann hjálpa nýggjum og afturvendandi brúkarum at finna fleiri fólk, sum tey vilja fylgja. Eingir postar verða vístir almenninginum, áðrenn tú góðkennir høvundin, og høvundurin loyvir teirra kontu at vera skotin upp fyri øðrum. Tú kanst eisini góðkenna ella vraka einstakar postar.
         disallow: Vraka post
         disallow_account: Vraka høvund
@@ -966,7 +977,7 @@ fo:
         used_by_over_week:
           one: Brúkt av einum brúkara seinastu vikuna
           other: Brúkt av %{count} brúkarum seinastu vikuna
-      title: Rák
+      title: Tilmæli & rák
       trending: Vælumtókt
     warning_presets:
       add_new: Legg afturat
@@ -1436,7 +1447,7 @@ fo:
           follow: fylg fráboðanarteldupostar
           follow_request: fylg umbønir um teldupost
           mention: nevn fráboðanarteldupostar
-          reblog: stimbra fráboðanarpostar
+          reblog: framhevja fráboðanarpostar
       resubscribe_html: Um tú hevur strikað haldið av misgávum, so kanst tú tekna haldið av nýggjum í tínum <a href="%{settings_path}">teldupostfráboðarstillingum</a>.
       success_html: Tú fer ikki longur at móttaka %{type} fyri Mastodon á %{domain} til tín teldupost á %{email}.
       title: Strika hald

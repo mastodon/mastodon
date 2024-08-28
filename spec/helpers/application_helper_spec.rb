@@ -53,9 +53,12 @@ describe ApplicationHelper do
     end
   end
 
-  describe 'fa_icon' do
-    it 'returns a tag of fixed-width cog' do
-      expect(helper.fa_icon('cog fw')).to eq '<i class="fa fa-cog fa-fw"></i>'
+  describe '#material_symbol' do
+    it 'returns an svg with the icon and options' do
+      expect(helper.material_symbol('lock', class: :test, data: { hidden: true }))
+        .to match('<svg.*/svg>')
+        .and match('class="icon material-lock test"')
+        .and match('data-hidden="true"')
     end
   end
 
@@ -282,35 +285,6 @@ describe ApplicationHelper do
 
         expect(helper.html_title).to eq 'Site Title'
         expect(helper.html_title).to be_html_safe
-      end
-    end
-  end
-
-  describe 'favicon' do
-    context 'when an icon exists' do
-      let!(:favicon) { Fabricate(:site_upload, var: 'favicon') }
-      let!(:app_icon) { Fabricate(:site_upload, var: 'app_icon') }
-
-      it 'returns the URL of the icon' do
-        expect(helper.favicon_path).to eq(favicon.file.url('48'))
-        expect(helper.app_icon_path).to eq(app_icon.file.url('48'))
-      end
-
-      it 'returns the URL of the icon with size parameter' do
-        expect(helper.favicon_path(16)).to eq(favicon.file.url('16'))
-        expect(helper.app_icon_path(16)).to eq(app_icon.file.url('16'))
-      end
-    end
-
-    context 'when an icon does not exist' do
-      it 'returns nil' do
-        expect(helper.favicon_path).to be_nil
-        expect(helper.app_icon_path).to be_nil
-      end
-
-      it 'returns nil with size parameter' do
-        expect(helper.favicon_path(16)).to be_nil
-        expect(helper.app_icon_path(16)).to be_nil
       end
     end
   end

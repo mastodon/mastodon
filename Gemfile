@@ -64,7 +64,6 @@ gem 'link_header', '~> 0.0'
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'mime-types', '~> 3.5.0', require: 'mime/types/columnar'
 gem 'nokogiri', '~> 1.15'
-gem 'nsa'
 gem 'oj', '~> 3.14'
 gem 'ox', '~> 2.14'
 gem 'parslet'
@@ -112,7 +111,7 @@ group :opentelemetry do
   gem 'opentelemetry-instrumentation-http', '~> 0.23.2', require: false
   gem 'opentelemetry-instrumentation-http_client', '~> 0.22.3', require: false
   gem 'opentelemetry-instrumentation-net_http', '~> 0.22.4', require: false
-  gem 'opentelemetry-instrumentation-pg', '~> 0.27.1', require: false
+  gem 'opentelemetry-instrumentation-pg', '~> 0.28.0', require: false
   gem 'opentelemetry-instrumentation-rack', '~> 0.24.1', require: false
   gem 'opentelemetry-instrumentation-rails', '~> 0.31.0', require: false
   gem 'opentelemetry-instrumentation-redis', '~> 0.25.3', require: false

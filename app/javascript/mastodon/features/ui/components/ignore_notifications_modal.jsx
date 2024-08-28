@@ -60,7 +60,7 @@ export const IgnoreNotificationsModal = ({ filterType }) => {
         <div className='safety-action-modal__bullet-points'>
           <div>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={InventoryIcon} /></div>
-            <div><FormattedMessage id='ignore_notifications_modal.filter_to_review_separately' defaultMessage='You can review filtered notifications speparately' /></div>
+            <div><FormattedMessage id='ignore_notifications_modal.filter_to_review_separately' defaultMessage='You can review filtered notifications separately' /></div>
           </div>
 
           <div>

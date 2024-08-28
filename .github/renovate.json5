@@ -87,6 +87,7 @@
     },
     {
       // Update devDependencies every week, with one grouped PR
+      matchManagers: ['npm'],
       matchDepTypes: 'devDependencies',
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'devDependencies (non-major)',
@@ -95,8 +96,7 @@
     {
       // Group all eslint-related packages with `eslint` in the same PR
       matchManagers: ['npm'],
-      matchPackageNames: ['eslint'],
-      matchPackagePrefixes: ['eslint-', '@typescript-eslint/'],
+      matchPackageNames: ['eslint', 'eslint-*', '@typescript-eslint/*'],
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'eslint (non-major)',
     },
@@ -112,7 +112,8 @@
     },
     {
       // Update @types/* packages every week, with one grouped PR
-      matchPackagePrefixes: '@types/',
+      matchManagers: ['npm'],
+      matchPackageNames: '@types/*',
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'DefinitelyTyped types (non-major)',
       extends: ['schedule:weekly'],
@@ -129,23 +130,21 @@
     {
       // Group all RuboCop packages with `rubocop` in the same PR
       matchManagers: ['bundler'],
-      matchPackageNames: ['rubocop'],
-      matchPackagePrefixes: ['rubocop-'],
+      matchPackageNames: ['rubocop', 'rubocop-*'],
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'RuboCop (non-major)',
     },
     {
       // Group all RSpec packages with `rspec` in the same PR
       matchManagers: ['bundler'],
-      matchPackageNames: ['rspec'],
-      matchPackagePrefixes: ['rspec-'],
+      matchPackageNames: ['rspec', 'rspec-*'],
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'RSpec (non-major)',
     },
     {
       // Group all opentelemetry-ruby packages in the same PR
       matchManagers: ['bundler'],
-      matchPackagePrefixes: ['opentelemetry-'],
+      matchPackageNames: ['opentelemetry-*'],
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'opentelemetry-ruby (non-major)',
     },

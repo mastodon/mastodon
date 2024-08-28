@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class Api::V1::Notifications::RequestsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:notifications' }, only: :index
-  before_action -> { doorkeeper_authorize! :write, :'write:notifications' }, except: :index
+  include Redisable
+
+  before_action -> { doorkeeper_authorize! :read, :'read:notifications' }, only: [:index, :show, :merged?]
+  before_action -> { doorkeeper_authorize! :write, :'write:notifications' }, except: [:index, :show, :merged?]
 
   before_action :require_user!
   before_action :set_request, only: [:show, :accept, :dismiss]
@@ -17,6 +19,10 @@ class Api::V1::Notifications::RequestsController < Api::BaseController
     end
 
     render json: @requests, each_serializer: REST::NotificationRequestSerializer, relationships: @relationships
+  end
+
+  def merged?
+    render json: { merged: redis.get("notification_unfilter_jobs:#{current_account.id}").to_i <= 0 }
   end
 
   def show
@@ -69,11 +75,15 @@ class Api::V1::Notifications::RequestsController < Api::BaseController
   end
 
   def next_path
-    api_v1_notifications_requests_url pagination_params(max_id: pagination_max_id) unless @requests.empty?
+    api_v1_notifications_requests_url pagination_params(max_id: pagination_max_id) if records_continue?
   end
 
   def prev_path
     api_v1_notifications_requests_url pagination_params(min_id: pagination_since_id) unless @requests.empty?
+  end
+
+  def records_continue?
+    @requests.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
   end
 
   def pagination_max_id

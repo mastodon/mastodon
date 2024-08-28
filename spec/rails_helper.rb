@@ -44,7 +44,7 @@ require 'chewy/rspec'
 require 'email_spec/rspec'
 require 'test_prof/recipes/rspec/before_all'
 
-Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
+Rails.root.glob('spec/support/**/*.rb').each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!(

@@ -31,7 +31,6 @@ fy:
       created_msg: Oanmeitsjen fan opmerking foar moderatoaren slagge!
       destroyed_msg: Fuortsmiten fan opmerking foar moderatoaren slagge!
     accounts:
-      add_email_domain_block: E-maildomein blokkearje
       approve: Goedkarre
       approved_msg: It goedkarren fan de account fan %{username} is slagge
       are_you_sure: Binne jo wis?
@@ -58,7 +57,6 @@ fy:
       demote: Degradearje
       destroyed_msg: It fuortsmiten fan de gegevens fan %{username} stiet no yn de wachtrige
       disable: Befrieze
-      disable_sign_in_token_auth: Ferifikaasje mei in tagongskoade fia e-mailberjocht útskeakelje
       disable_two_factor_authentication: 2FA útskeakelje
       disabled: Beferzen
       display_name: Werjeftenamme
@@ -67,7 +65,6 @@ fy:
       email: E-mailadres
       email_status: E-mailsteat
       enable: Untteie
-      enable_sign_in_token_auth: Ferifikaasje mei in tagongskoade fia e-mailberjocht ynskeakelje
       enabled: Ynskeakele
       enabled_msg: It ûntteie fan de account fan %{username} is slagge
       followers: Folgers
@@ -132,7 +129,6 @@ fy:
       resubscribe: Opnij abonnearje
       role: Rol
       search: Sykje
-      search_same_email_domain: Oare brûkers mei itselde e-maildomein
       search_same_ip: Oare brûkers mei itselde IP-adres
       security: Befeiliging
       security_measures:
@@ -173,26 +169,21 @@ fy:
         approve_appeal: Beswier goedkarre
         approve_user: Brûker goedkarre
         assigned_to_self_report: Rapportaazje tawize
-        change_email_user: E-mailadres fan brûker wizigje
         change_role_user: Brûkersrol wizigje
         confirm_user: Brûker befêstigje
         create_account_warning: Warskôging oanmeitsje
         create_announcement: Meidieling oanmeitsje
-        create_canonical_email_block: E-mailblokkade oanmeitsje
         create_custom_emoji: Lokale emoji oanmeitsje
         create_domain_allow: Domeingoedkarring oanmeitsje
         create_domain_block: Domeinblokkade oanmeitsje
-        create_email_domain_block: E-maildomeinblokkade oanmeitsje
         create_ip_block: IP-rigel oanmeitsje
         create_unavailable_domain: Net beskikber domein oanmeitsje
         create_user_role: Rol oanmeitsje
         demote_user: Brûker degradearje
         destroy_announcement: Meidieling fuortsmite
-        destroy_canonical_email_block: E-mailblokkade fuortsmite
         destroy_custom_emoji: Lokale emoji fuortsmite
         destroy_domain_allow: Domeingoedkarring fuortsmite
         destroy_domain_block: Domeinblokkade fuortsmite
-        destroy_email_domain_block: E-maildomeinblokkade fuortsmite
         destroy_instance: Domein folslein fuortsmite
         destroy_ip_block: IP-rigel fuortsmite
         destroy_status: Toot fuortsmite
@@ -200,10 +191,8 @@ fy:
         destroy_user_role: Rol permanint fuortsmite
         disable_2fa_user: Twa-stapsferifikaasje útskeakelje
         disable_custom_emoji: Lokale emoji útskeakelje
-        disable_sign_in_token_auth_user: Ferifikaasje mei in tagongskoade fia e-mailberjocht foar de brûker útskeakelje
         disable_user: Brûker útskeakelje
         enable_custom_emoji: Lokale emoji ynskeakelje
-        enable_sign_in_token_auth_user: Ferifikaasje mei in tagongskoade fia e-mailberjocht foar de brûker ynskeakelje
         enable_user: Brûker ynskeakelje
         memorialize_account: De account yn in Yn memoriam wizigje
         promote_user: Brûker promovearje
@@ -233,26 +222,20 @@ fy:
         approve_appeal_html: "%{name} hat it beswier tsjin de moderaasjemaatregel fan %{target} goedkard"
         approve_user_html: "%{name} hat de registraasje fan %{target} goedkard"
         assigned_to_self_report_html: "%{name} hat rapportaazje %{target} oan harrensels tawiisd"
-        change_email_user_html: "%{name} hat it e-mailadres fan brûker %{target} wizige"
         change_role_user_html: "%{name} hat de rol fan %{target} wizige"
-        confirm_user_html: E-mailadres fan brûker %{target} is troch %{name} befêstige
         create_account_warning_html: "%{name} hat in warskôging nei %{target} ferstjoerd"
         create_announcement_html: "%{name} hat de nije meidieling %{target} oanmakke"
-        create_canonical_email_block_html: "%{name} hat it e-mailberjocht mei de hash %{target} blokkearre"
         create_custom_emoji_html: Nije emoji %{target} is troch %{name} opladen
         create_domain_allow_html: "%{name} hat de federaasje mei it domein %{target} goedkard"
         create_domain_block_html: Domein %{target} is troch %{name} blokkearre
-        create_email_domain_block_html: "%{name} hat it e-maildomein %{target} blokkearre"
         create_ip_block_html: "%{name} hat de rigel foar IP %{target} oanmakke"
         create_unavailable_domain_html: "%{name} hat de besoarging foar domein %{target} beëinige"
         create_user_role_html: "%{name} hat de rol %{target} oanmakke"
         demote_user_html: Brûker %{target} is troch %{name} degradearre
         destroy_announcement_html: "%{name} hat de meidieling %{target} fuortsmiten"
-        destroy_canonical_email_block_html: "%{name} hat it e-mailberjocht mei de hash %{target} deblokkearre"
         destroy_custom_emoji_html: Emoji %{target} is troch %{name} fuortsmiten
         destroy_domain_allow_html: "%{name} hat de federaasje mei it domein %{target} ôfkard"
         destroy_domain_block_html: Domein %{target} is troch %{name} deblokkearre
-        destroy_email_domain_block_html: Domein %{target} is troch %{name} deblokkearre
         destroy_instance_html: "%{name} hat it domein %{target} folslein fuortsmiten"
         destroy_ip_block_html: "%{name} hat de rigel foar IP %{target} fuortsmiten"
         destroy_status_html: Berjocht fan %{target} is troch %{name} fuortsmiten
@@ -260,10 +243,8 @@ fy:
         destroy_user_role_html: "%{name} hat de rol %{target} fuortsmiten"
         disable_2fa_user_html: De fereaske twa-stapsferifikaasje foar %{target} is troch %{name} útskeakele
         disable_custom_emoji_html: Emoji %{target} is troch %{name} útskeakele
-        disable_sign_in_token_auth_user_html: "%{name} hat ferifikaasje mei in tagongskoade fia e-mailberjocht útskeakele foar %{target}"
         disable_user_html: Oanmelden foar %{target} is troch %{name} útskeakele
         enable_custom_emoji_html: Emoji %{target} is troch %{name} ynskeakele
-        enable_sign_in_token_auth_user_html: "%{name} hat ferifikaasje mei in tagongskoade fia e-mailberjocht ynskeakele foar %{target}"
         enable_user_html: Oanmelden foar %{target} is troch %{name} ynskeakele
         memorialize_account_html: De account %{target} is troch %{name} yn in Yn memoriam wizige
         promote_user_html: Brûker %{target} is troch %{name} promovearre
@@ -271,7 +252,6 @@ fy:
         reject_user_html: "%{name} hat de registraasje fan %{target} ôfwêzen"
         remove_avatar_user_html: "%{name} hat de profylfoto fan %{target} fuortsmiten"
         reopen_report_html: "%{name} hat rapportaazje %{target} opnij iepene"
-        resend_user_html: "%{name} hat it befêstigings-e-mailberjocht foar %{target} opnij ferstjoerd"
         reset_password_user_html: Wachtwurd fan brûker %{target} is troch %{name} opnij ynsteld
         resolve_report_html: "%{name} hat rapportaazje %{target} oplost"
         sensitive_account_html: "%{name} markearre de media fan %{target} as gefoelich"
@@ -432,7 +412,6 @@ fy:
       attempts_over_week:
         one: "%{count} registraasjebesykjen yn de ôfrûne wike"
         other: "%{count} registraasjebesykjen yn de ôfrûne wike"
-      created_msg: E-maildomein blokkearjen slagge
       delete: Fuortsmite
       dns:
         types:
@@ -441,12 +420,8 @@ fy:
       new:
         create: Domein tafoegje
         resolve: Domein opsykje
-        title: Nije e-maildomein blokkearje
-      no_email_domain_block_selected: Der binne gjin e-maildomeinblokkaden wizige, omdat der gjin ien selektearre waard
       not_permitted: Net tastien
-      resolved_dns_records_hint_html: De domeinnamme slacht op de folgjende MX-domeinen dy’t úteinlik ferantwurdlik binne foar it akseptearjen fan e-mail. It blokkearjen fan in MX-domein blokkearret oanmeldingen fan elk e-mailadres dat itselde MX-domein brûkt, sels as de sichtbere domeinnamme oars is. <strong>Pas op dat jo gjin grutte e-mailproviders blokkearje.</strong>
       resolved_through_html: Blokkearre fia %{domain}
-      title: Blokkearre e-maildomeinen
     export_domain_allows:
       new:
         title: Tastiene domeinen ymportearje
@@ -600,7 +575,6 @@ fy:
         resolve_description_html: Der wurdt tsjin it rapportearre account gjin maatregel nommen, gjin oertrêding registrearre en de rapportaazje wurdt markearre as oplost.
         silence_description_html: De account sil allinnich sichtber wêze foar dyjinge dy’t it al folgje of it hânmjittich opsykje, wêrtroch it berik earnstich beheind wurdt. Kin altyd weromdraaid wurde. Dit slút alle rapportaazjes oer dizze account.
         suspend_description_html: De account en alle ynhâld sil net tagonklik wêze en úteinlik fuortsmiten wurde, en ynteraksje hjirmei sil net mooglik wêze. Binnen 30 dagen werom te draaien. Dit slút alle rapportaazjes oer dizze account.
-      actions_description_html: Beslis hokker maatregel nommen wurde moat om dizze rapportaazje op te lossen. Wannear’t jo in (straf)maatregel tsjin it rapportearre account nimme, kriget de account in e-mailmelding, behalve wannear’t de <strong>spam</strong>-kategory keazen is.
       actions_description_remote_html: Beslút hokker aksje nommen wurde moat om dizze rapportaazje ôf te hanneljen. Dit hat allinnich ynfloed op hoe’t <strong>jo</strong> server kommunisearret mei dizze eksterne account en omgiet mei de ynhâld.
       add_to_report: Mear oan de rapportaazje tafoegje
       already_suspended_badges:
@@ -665,7 +639,6 @@ fy:
         delete_data_html: It profyl en de ynhâld fan <strong>@%{acct}</strong> wurde nei 30 dagen fan no ôf fuortsmiten, útsein as de account yn de tuskentiid net mear blokkearre wurdt
         preview_preamble_html: "<strong>@%{acct}</strong> sil in warskôging ûntfange mei de folgjende ynhâld:"
         record_strike_html: In ban tsjin <strong>@%{acct}</strong> ynstelle, om jo te helpen by takomstige skeiningen fan dizze acount te eskalearjen
-        send_email_html: Stjoer <strong>@%{acct}</strong> in warskôgings-e-mailberjocht
         warning_placeholder: Ekstra opsjonele reden foar de moderaasje-aksje.
       target_origin: Orizjineel fan rapportearre account
       title: Rapportaazjes
@@ -705,7 +678,6 @@ fy:
         manage_appeals: Beswieren beheare
         manage_appeals_description: Stiet brûkers ta om beswieren tsjin moderaasjemaatregelen te beoardielen
         manage_blocks: Blokkaden beheare
-        manage_blocks_description: Stiet brûkers ta om e-mailproviders en IP-adressen te blokkearjen
         manage_custom_emojis: Lokale emoji’s beheare
         manage_custom_emojis_description: Stiet brûkers ta om lokale emoji’s op de server te behearen
         manage_federation: Federaasje beheare
@@ -723,7 +695,6 @@ fy:
         manage_taxonomies: Trends en hashtags beheare
         manage_taxonomies_description: Stiet brûkers ta om trending ynhâld te besjen en om hashtagynstellingen by te wurkjen
         manage_user_access: Brûkerstagong beheare
-        manage_user_access_description: Stiet brûkers ta om twa-stapsferifikaasje fan oare brûkers út te skeakeljen, om harren e-mailadres te wizigjen en om harren wachtwurd opnij yn te stellen
         manage_users: Brûkers beheare
         manage_users_description: Stiet brûkers ta om brûkersdetails fan oaren te besjen en moderaasjemaatregelen tsjin harren te nimmen
         manage_webhooks: Webhooks beheare
@@ -798,7 +769,6 @@ fy:
       destroyed_msg: Fuortsmiten website-oplaad slagge!
     software_updates:
       critical_update: Krityk — fernij sa gau as mooglik
-      description: It wurdt oanrekommandearre om jo Mastodon-ynstallaasje by-de-tiid te hâlden om gebrûk meitsje te kinnen fan de nijste oplossingen en funksjes. Boppe dat is it somtiden krúsjaal om Mastodon tidich by te wurkjen om feiligheidsproblemen foar te kommen. Om dizze redenen kontrolearret Mastodon elke 30 minuten fernijingen en bringt jo hjirfan op de hichte neffens jo foarkarren foar e-mailmeldingen.
       documentation_link: Mear ynfo
       release_notes: Utjefte-opmerkingen
       title: Beskikbere fernijingen
@@ -950,7 +920,6 @@ fy:
         used_by_over_week:
           one: Dizze wike troch ien persoan brûkt
           other: Dizze wike troch %{count} persoanen brûkt
-      title: Trends
       trending: Trending
     warning_presets:
       add_new: Nije tafoegje
@@ -1035,9 +1004,7 @@ fy:
       guide_link_text: Elkenien kin bydrage.
     sensitive_content: Gefoelige ynhâld
   application_mailer:
-    notification_preferences: E-mailynstellingen wizigje
     salutation: "%{name},"
-    settings: 'E-mailynstellingen wizigje: %{link}'
     unsubscribe: Ofmelde
     view: 'Besjoch:'
     view_profile: Profyl besjen
@@ -1057,7 +1024,6 @@ fy:
       hint_html: Noch ien ding! Jo moatte befêstigje dat jo in minske binne (dit is om de spam bûten de doar te hâlden!). Los de ûndersteande CAPTCHA op en klik op ‘Trochgean’.
       title: Befeiligingskontrôle
     confirmations:
-      awaiting_review: Jo e-mailadres is befêstige! De %{domain}-meiwurkers binne no dwaande mei it besjen fan jo registraasje. Jo ûntfange in e-mailberjocht as de jo account goedkarre!
       awaiting_review_title: Jo registraasje wurdt beoardield
       clicking_this_link: klik op dizze keppeling
       login_link: oanmelde
@@ -1065,7 +1031,6 @@ fy:
       redirect_to_app_html: Jo soene omlaad wêze moatte nei de <strong>%{app_name}</strong> app. As dat net bard is, probearje dan %{clicking_this_link} of kear hânmjittich werom nei de app.
       registration_complete: Jo registraasje op %{domain} is no foltôge!
       welcome_title: Wolkom, %{name}!
-      wrong_email_hint: As it e-mailadres net korrekt is, kinne jo dat wizigje yn de accountynstellingen.
     delete_account: Account fuortsmite
     delete_account_html: Wannear’t jo jo account graach fuortsmite wolle, kinne jo dat <a href="%{path}">hjir dwaan</a>. Wy freegje jo dêr om in befêstiging.
     description:
@@ -1086,7 +1051,6 @@ fy:
     or_log_in_with: Of oanmelde mei
     privacy_policy_agreement_html: Ik haw it <a href="%{privacy_policy_path}" target="_blank">privacybelied</a> lêzen en gean dêrmei akkoard
     progress:
-      confirm: E-mailadres werhelje
       details: Jo gegevens
       review: Us beoardieling
       rules: Regels akseptearje
@@ -1108,10 +1072,8 @@ fy:
     security: Befeiliging
     set_new_password: Nij wachtwurd ynstelle
     setup:
-      email_below_hint_html: Kontrolearje jo map Net-winske, of freegje in nije befêstigingskeppeling oan. Jo kinne jo e-mailadres wizigje as it ferkeard is.
       email_settings_hint_html: Klik op de keppeling dy’t wy jo stjoerd hawwe om %{email} te ferifiearjen. Wy wachtsje wol even.
       link_not_received: Gjin keppeling krigen?
-      new_confirmation_instructions_sent: Jo ûntfange binnen inkelde minuten in nij e-mailberjocht mei de befêstigingskeppeling!
       title: Kontrolearje jo Postfek YN
     sign_in:
       preamble_html: Meld jo oan mei de oanmeldgegevens fan <strong>%{domain}</strong>. As jo account op in oare server stiet, kinne jo hjir net oanmelde.
@@ -1122,9 +1084,7 @@ fy:
       title: Litte wy jo account op %{domain} ynstelle.
     status:
       account_status: Accountsteat
-      confirming: Oan it wachtsjen oant it e-mailadres befêstige is.
       functional: Jo account kin folslein brûkt wurde.
-      pending: Jo oanfraach moat noch beoardiele wurde troch ien fan ús meiwurkers. Dit kin miskien efkes duorje. Jo ûntfangt in e-mailberjocht wannear’t jo oanfraach goedkard is.
       redirecting_to: Jo account is ynaktyf, omdat it op dit stuit trochferwezen wurdt nei %{acct}.
       self_destruct: Omdat %{domain} sluten sil, krije jo mar beheind tagong ta jo account.
       view_strikes: Besjoch de earder troch moderatoaren fêststelde skeiningen dy’t jo makke hawwe
@@ -1167,9 +1127,6 @@ fy:
       before: 'Lês dizze tekst soarchfâldich eardat jo troch gean:'
       caches: Berjochten en media dy’t op oare servers bewarre binne kinne dêr efterbliuwe
       data_removal: Jo berjochten en oare gegevens wurde permanint fuortmiten
-      email_change_html: Jo kinne <a href="%{path}">jo e-mailadres wizigje</a> sûnder dat jo jo account fuort hoege te smiten
-      email_contact_html: Wannear’t it noch hieltyd net oankomt, kinne jo foar help in e-mailberjocht stjoere nei <a href="mailto:%{email}">%{email}</a>
-      email_reconfirmation_html: Wannear’t jo it befêstigings-e-mailberjocht net ûntfongen hawwe, kinne jo dizze <a href="%{path}">opnij oanfreegje</a>
       irreversible: Jo sille net yn steat wêze om jo account te werstellen of te de-aktivearjen
       more_details_html: Sjoch it <a href="%{terms_path}">privacybelied</a> foar mear ynformaasje.
       username_available: Jo brûkersnamme sil wer beskikber komme
@@ -1402,7 +1359,6 @@ fy:
     authentication_methods:
       otp: twa-stapsferifikaasje-app
       password: wachtwurd
-      sign_in_token: befeiligingskoade fia e-mailberjocht
       webauthn: befeiligingskaaien
     description_html: Wannear’t jo aktiviteit sjogge dy’t jo net werkenne, tink dan nei om jo wachtwurd te wizigjen en twa-stapsferifikaasje yn te skeakeljen.
     empty: Gjin oanmeldskiednis beskikber
@@ -1413,16 +1369,6 @@ fy:
     unsubscribe:
       action: Ja, ôfmelde
       complete: Ofmelden
-      confirmation_html: Binne jo wis dat jo jo ôfmelde wolle foar it ûntfangen fan %{type} fan Mastodon op %{domain} op jo e-mailadres %{email}? Jo kinne jo altyd opnij abonnearje yn jo <a href="%{settings_path}">ynstellingen foar e-mailmeldingen</a>.
-      emails:
-        notification_emails:
-          favourite: e-mailmeldingen foar favoriten
-          follow: e-mailmeldingen foar nije folgers
-          follow_request: e-mailmeldingen foar folchfersiken
-          mention: e-mailmeldingen foar fermeldingen
-          reblog: e-mailmeldingen foar boosts
-      resubscribe_html: As jo jo mei fersin ôfmeld hawwe, kinne jo jo opnij abonnearje yn jo <a href="%{settings_path}">ynstellingen foar e-mailmeldingen</a>.
-      success_html: Jo ûntfange net langer %{type} fan Mastodon op %{domain} op jo e-mailadres %{email}.
       title: Ofmelde
   media_attachments:
     validations:
@@ -1503,8 +1449,6 @@ fy:
     update:
       subject: "%{name} hat in berjocht bewurke"
   notifications:
-    administration_emails: E-mailmeldingen behearder
-    email_events: E-mailmeldingen foar eveneminten
     email_events_hint: 'Selektearje eveneminten wêrfoar’t jo meldingen ûntfange wolle:'
   number:
     human:
@@ -1663,7 +1607,6 @@ fy:
     import: Ymportearje
     import_and_export: Ymportearje en eksportearje
     migrate: Accountmigraasje
-    notifications: E-mailmeldingen
     preferences: Ynstellingen
     profile: Profyl
     relationships: Folgers en folgjenden
@@ -1910,7 +1853,6 @@ fy:
     invalid_otp_token: Unjildige twa-stapstagongskoade
     otp_lost_help_html: As jo tagong ta beide kwytrekke binne, nim dan kontakt op fia %{email}
     rate_limited: Te folle autentikaasjebesykjen, probearje it letter opnij.
-    seamless_external_login: Jo binne oanmeld fia in eksterne tsjinst, dêrom binne wachtwurden en e-mailynstellingen net beskikber.
     signed_in_as: 'Oanmeld as:'
   verification:
     extra_instructions_html: <strong>Tip:</strong> De keppeling op jo website kin ûnsichtber wêze. It wichtige part is <code>rel="me"</code> dat ympersonaasje op websites mei user-generated ynhâld foarkomt. Jo kinne sels in <code>link</code>-label brûke yn de header fan de side yn stee fan <code>a</code>, mar de HTML moat ek sûnder JavaScript tagonklik wêze.

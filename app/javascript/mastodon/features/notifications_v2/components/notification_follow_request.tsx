@@ -21,13 +21,27 @@ const messages = defineMessages({
   reject: { id: 'follow_request.reject', defaultMessage: 'Reject' },
 });
 
-const labelRenderer: LabelRenderer = (values) => (
-  <FormattedMessage
-    id='notification.follow_request'
-    defaultMessage='{name} has requested to follow you'
-    values={values}
-  />
-);
+const labelRenderer: LabelRenderer = (displayedName, total) => {
+  if (total === 1)
+    return (
+      <FormattedMessage
+        id='notification.follow_request'
+        defaultMessage='{name} has requested to follow you'
+        values={{ name: displayedName }}
+      />
+    );
+
+  return (
+    <FormattedMessage
+      id='notification.follow_request.name_and_others'
+      defaultMessage='{name} and {count, plural, one {# other} other {# others}} has requested to follow you'
+      values={{
+        name: displayedName,
+        count: total - 1,
+      }}
+    />
+  );
+};
 
 export const NotificationFollowRequest: React.FC<{
   notification: NotificationGroupFollowRequest;
@@ -46,7 +60,7 @@ export const NotificationFollowRequest: React.FC<{
   }, [dispatch, notification.sampleAccountIds]);
 
   const actions = (
-    <div className='notification-group__actions'>
+    <>
       <IconButton
         title={intl.formatMessage(messages.reject)}
         icon='times'
@@ -59,7 +73,7 @@ export const NotificationFollowRequest: React.FC<{
         iconComponent={CheckIcon}
         onClick={onAuthorize}
       />
-    </div>
+    </>
   );
 
   return (

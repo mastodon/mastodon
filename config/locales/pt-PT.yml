@@ -31,7 +31,6 @@ pt-PT:
       created_msg: Nota de moderação correctamente criada!
       destroyed_msg: Nota de moderação destruída!
     accounts:
-      add_email_domain_block: Bloquear este domínio de correio electrónico
       approve: Aprovar
       approved_msg: Inscrição de %{username} aprovada correctamente
       are_you_sure: Tens a certeza?
@@ -58,7 +57,6 @@ pt-PT:
       demote: Despromoveu
       destroyed_msg: Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato
       disable: Congelar
-      disable_sign_in_token_auth: Desativar token de autenticação por e-mail
       disable_two_factor_authentication: Desactivar autenticação por dois factores (2FA)
       disabled: Congelada
       display_name: Nome a mostrar
@@ -67,7 +65,6 @@ pt-PT:
       email: Correio electrónico
       email_status: Estado do e-mail
       enable: Descongelar
-      enable_sign_in_token_auth: Ativar token de autenticação por e-mail
       enabled: Ativado
       enabled_msg: Descongelou a conta %{username}
       followers: Seguidores
@@ -132,7 +129,6 @@ pt-PT:
       resubscribe: Reinscrever
       role: Função
       search: Pesquisar
-      search_same_email_domain: Outros utilizadores com o mesmo domínio de correio electrónico
       search_same_ip: Outros utilizadores com o mesmo IP
       security: Segurança
       security_measures:
@@ -173,26 +169,21 @@ pt-PT:
         approve_appeal: Aprovar recurso
         approve_user: Aprovar utilizador
         assigned_to_self_report: Atribuir Denúncia
-        change_email_user: Alterar correio electrónico do utilizador
         change_role_user: Alterar Função do Utilizador
         confirm_user: Confirmar Utilizador
         create_account_warning: Criar Aviso
         create_announcement: Criar comunicado
-        create_canonical_email_block: Criar Bloqueio de E-mail
         create_custom_emoji: Criar Emoji Personalizado
         create_domain_allow: Criar Permissão de Domínio
         create_domain_block: Criar Bloqueio de Domínio
-        create_email_domain_block: Criar Bloqueio de Domínio de E-mail
         create_ip_block: Criar regra de IP
         create_unavailable_domain: Criar Domínio Indisponível
         create_user_role: Criar Função
         demote_user: Despromover Utilizador
         destroy_announcement: Apagar comunicado
-        destroy_canonical_email_block: Eliminar Bloqueio de E-mail
         destroy_custom_emoji: Eliminar Emoji Personalizado
         destroy_domain_allow: Eliminar Permissão de Domínio
         destroy_domain_block: Eliminar Bloqueio de Domínio
-        destroy_email_domain_block: Eliminar Bloqueio de Domínio de E-mail
         destroy_instance: Purgar Domínio
         destroy_ip_block: Eliminar regra de IP
         destroy_status: Eliminar Publicação
@@ -200,10 +191,8 @@ pt-PT:
         destroy_user_role: Eliminar Função
         disable_2fa_user: Desativar 2FA
         disable_custom_emoji: Desativar Emoji Personalizado
-        disable_sign_in_token_auth_user: Desativar token de autenticação por e-mail para Utilizador
         disable_user: Desativar Utilizador
         enable_custom_emoji: Ativar Emoji Personalizado
-        enable_sign_in_token_auth_user: Ativar token de autenticação por e-mail para Utilizador
         enable_user: Ativar Utilizador
         memorialize_account: Tornar conta num memorial
         promote_user: Promover Utilizador
@@ -233,26 +222,20 @@ pt-PT:
         approve_appeal_html: "%{name} aprovou recurso da decisão de moderação de %{target}"
         approve_user_html: "%{name} aprovou a inscrição de %{target}"
         assigned_to_self_report_html: "%{name} atribuiu a denúncia %{target} a si próprio"
-        change_email_user_html: "%{name} alterou o endereço de e-mail do utilizador %{target}"
         change_role_user_html: "%{name} alterou a função de %{target}"
-        confirm_user_html: "%{name} confirmou o endereço de e-mail do utilizador %{target}"
         create_account_warning_html: "%{name} enviou um aviso para %{target}"
         create_announcement_html: "%{name} criou o novo anúncio %{target}"
-        create_canonical_email_block_html: "%{name} bloqueou o e-mail com a hash %{target}"
         create_custom_emoji_html: "%{name} carregou o novo emoji %{target}"
         create_domain_allow_html: "%{name} habilitou a federação com o domínio %{target}"
         create_domain_block_html: "%{name} bloqueou o domínio %{target}"
-        create_email_domain_block_html: "%{name} bloqueou o domínio de e-mail %{target}"
         create_ip_block_html: "%{name} criou regra para o IP %{target}"
         create_unavailable_domain_html: "%{name} parou a entrega ao domínio %{target}"
         create_user_role_html: "%{name} criou a função %{target}"
         demote_user_html: "%{name} despromoveu o utilizador %{target}"
         destroy_announcement_html: "%{name} eliminou o anúncio %{target}"
-        destroy_canonical_email_block_html: "%{name} desbloqueou o e-mail com a hash %{target}"
         destroy_custom_emoji_html: "%{name} eliminou o emoji %{target}"
         destroy_domain_allow_html: "%{name} desabilitou a federação com o domínio %{target}"
         destroy_domain_block_html: "%{name} desbloqueou o domínio %{target}"
-        destroy_email_domain_block_html: "%{name} desbloqueou o domínio de e-mail %{target}"
         destroy_instance_html: "%{name} purgou o domínio %{target}"
         destroy_ip_block_html: "%{name} eliminou regra para o IP %{target}"
         destroy_status_html: "%{name} removeu a publicação de %{target}"
@@ -260,10 +243,8 @@ pt-PT:
         destroy_user_role_html: "%{name} eliminou a função %{target}"
         disable_2fa_user_html: "%{name} desativou o requerimento de autenticação em dois passos para o utilizador %{target}"
         disable_custom_emoji_html: "%{name} desabilitou o emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} desativou token de autenticação por e-mail para %{target}"
         disable_user_html: "%{name} desativou o acesso para o utilizador %{target}"
         enable_custom_emoji_html: "%{name} habilitou o emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} ativou token de autenticação por e-mail para %{target}"
         enable_user_html: "%{name} ativou o acesso para o utilizador %{target}"
         memorialize_account_html: "%{name} transformou a conta de %{target} em um memorial"
         promote_user_html: "%{name} promoveu o utilizador %{target}"
@@ -271,7 +252,6 @@ pt-PT:
         reject_user_html: "%{name} rejeitou a inscrição de %{target}"
         remove_avatar_user_html: "%{name} removeu a imagem de perfil de %{target}"
         reopen_report_html: "%{name} reabriu a denúncia %{target}"
-        resend_user_html: "%{name} reenviou e-mail de confirmação para %{target}"
         reset_password_user_html: "%{name} restabeleceu a palavra-passe do utilizador %{target}"
         resolve_report_html: "%{name} resolveu a denúncia %{target}"
         sensitive_account_html: "%{name} marcou a media de %{target} como sensível"
@@ -432,7 +412,6 @@ pt-PT:
       attempts_over_week:
         one: "%{count} tentativa na última semana"
         other: "%{count} tentativas de inscrição na última semana"
-      created_msg: Bloqueio de domínio de e-mail criado com sucesso
       delete: Eliminar
       dns:
         types:
@@ -441,12 +420,8 @@ pt-PT:
       new:
         create: Adicionar domínio
         resolve: Domínio de resolução
-        title: Novo bloqueio de domínio de e-mail
-      no_email_domain_block_selected: Nenhum bloqueio de domínio de e-mail foi alterado pois nenhum foi selecionado
       not_permitted: Não permitido
-      resolved_dns_records_hint_html: O nome de domínio resolve para os seguintes domínios MX, que são, em última análise, responsáveis por aceitar o e-mail. Bloquear um domínio MX irá bloquear as inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo quando o nome de domínio visível é diferente. <strong>Cuidado para não bloquear os principais provedores de e-mail.</strong>
       resolved_through_html: Resolvido através de %{domain}
-      title: Domínios de e-mail bloqueados
     export_domain_allows:
       new:
         title: Importar permissões de domínio
@@ -600,7 +575,6 @@ pt-PT:
         resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, não será registada nenhuma reprimenda, e a denúncia será fechada.
         silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou o procurem manualmente, limitando fortemente o seu alcance. Pode sempre ser revertido. Encerrar todas as denúncias contra esta conta.
         suspend_description_html: A conta e todo o seu conteúdo ficará inacessível e, eventualmente apagado, pelo que interagir com ela será impossível. Reversível durante 30 dias. Encerra todas as denúncias contra esta conta.
-      actions_description_html: Decida a ação a tomar para resolver esta denúncia. Se decidir por uma ação punitiva contra a conta denunciada, um e-mail de notificação será enviado, excetuando quando selecionada a categoria <strong>Spam</strong>.
       actions_description_remote_html: Decida quais as medidas a tomar para resolver esta denúncia. Isso apenas afetará como <strong>o seu</strong> servido comunica com esta conta remota e gere o seu conteúdo.
       add_to_report: Adicionar mais à denúncia
       already_suspended_badges:
@@ -665,7 +639,6 @@ pt-PT:
         delete_data_html: Excluir <strong>@%{acct}</strong>perfil e conteúdo 30 dias a menos que sejam dessuspensos
         preview_preamble_html: "<strong>@%{acct}</strong> receberá um aviso com o seguinte conteúdo:"
         record_strike_html: Registre um ataque contra <strong>@%{acct}</strong> para ajudá-lo a escalar futuras violações desta conta
-        send_email_html: Enviar <strong>@%{acct}</strong> um e-mail de aviso
         warning_placeholder: Argumentos adicionais opcionais para a acção de moderação.
       target_origin: Origem da conta denunciada
       title: Denúncias
@@ -705,7 +678,6 @@ pt-PT:
         manage_appeals: Gerir apelos
         manage_appeals_description: Permite aos utilizadores rever recursos de moderação
         manage_blocks: Gerir Bloqueios
-        manage_blocks_description: Permite aos utilizadores bloquear fornecedores de e-mail e endereços IP
         manage_custom_emojis: Gerir Emojis Personalizados
         manage_custom_emojis_description: Permite aos utilizadores gerirem os emojis personalizados do servidor
         manage_federation: Gerir Federação
@@ -723,7 +695,6 @@ pt-PT:
         manage_taxonomies: Gerir Taxonomias
         manage_taxonomies_description: 'Permite aos utilizadores avaliar o conteúdo em alta e atualizar as configurações de #etiquetas'
         manage_user_access: Gerir Acesso de Utilizador
-        manage_user_access_description: Permite aos utilizadores desativar a autenticação em duas etapas de outros utilizadores, alterar o seu endereço de e-mail e redefinir a sua palavra-passe
         manage_users: Gerir Utilizadores
         manage_users_description: Permite aos utilizadores ver os detalhes de outros utilizadores e executar ações de moderação contra eles
         manage_webhooks: Gerir Webhooks
@@ -798,7 +769,6 @@ pt-PT:
       destroyed_msg: Envio de sítio na teia correctamente eliminado!
     software_updates:
       critical_update: Crítico — por favor, atualize rapidamente
-      description: Recomenda-se manter a instalação do Mastodon atualizada para beneficiar das funcionalidades e correções mais recentes. Além disso, por vezes é fundamental actualizar o Mastodon de forma atempada para evitar problemas de segurança. Por estes motivos, o Mastodon procura por atualizações a cada 30 minutos e envia-lhe uma notificação de acordo com suas preferências de notificação por e-mail.
       documentation_link: Saber mais
       release_notes: Notas de lançamento
       title: Atualizações disponíveis
@@ -966,7 +936,6 @@ pt-PT:
         used_by_over_week:
           one: Utilizada por uma pessoa na última semana
           other: Utilizada por %{count} pessoas na última semana
-      title: Em alta
       trending: Em alta
     warning_presets:
       add_new: Adicionar novo
@@ -1051,9 +1020,7 @@ pt-PT:
       guide_link_text: Todos podem contribuir.
     sensitive_content: Conteúdo problemático
   application_mailer:
-    notification_preferences: Alterar preferências de e-mail
     salutation: "%{name},"
-    settings: 'Alterar preferências de e-mail: %{link}'
     unsubscribe: Cancelar subscrição
     view: 'Ver:'
     view_profile: Ver perfil
@@ -1073,7 +1040,6 @@ pt-PT:
       hint_html: Só mais uma coisa! Precisamos confirmar que você é um humano (isto para que possamos evitar spam!). Resolva o CAPTCHA abaixo e clique em "Continuar".
       title: Verificação de segurança
     confirmations:
-      awaiting_review: O seu endereço de correio eletrónico foi confirmado! A equipa %{domain} está agora a rever a sua inscrição. Receberá uma mensagem de correio eletrónico se aprovarem a sua conta!
       awaiting_review_title: A sua inscrição está a ser revista
       clicking_this_link: clicar nesta hiperligação
       login_link: iniciar sessão
@@ -1081,7 +1047,6 @@ pt-PT:
       redirect_to_app_html: Devia ter sido reencaminhado para a aplicação <strong>%{app_name}</strong>. Se isso não aconteceu, tente %{clicking_this_link} ou volte manualmente para a aplicação.
       registration_complete: O seu registo sem %{domain} está agora concluído!
       welcome_title: Bem-vindo(a), %{name}!
-      wrong_email_hint: Se esse endereço de e-mail não estiver correto, você pode alterá-lo nas configurações da conta.
     delete_account: Eliminar conta
     delete_account_html: Se deseja eliminar a sua conta, pode <a href="%{path}">continuar aqui</a>. Uma confirmação será solicitada.
     description:
@@ -1102,7 +1067,6 @@ pt-PT:
     or_log_in_with: Ou iniciar sessão com
     privacy_policy_agreement_html: Eu li e concordo com a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
     progress:
-      confirm: Confirmar e-mail
       details: Os seus dados
       review: A nossa avaliação
       rules: Aceitar regras
@@ -1124,10 +1088,8 @@ pt-PT:
     security: Alterar palavra-passe
     set_new_password: Editar palavra-passe
     setup:
-      email_below_hint_html: Verifique a sua pasta de spam, ou solicite outra. Pode corrigir o seu endereço de e-mail se este estiver errado.
       email_settings_hint_html: Clique no link que enviamos para verificar %{email}. Esperaremos aqui.
       link_not_received: Não recebeu um link?
-      new_confirmation_instructions_sent: Receberá um novo e-mail com o link de confirmação daqui a poucos minutos!
       title: Verifique a caixa de entrada do seu e-mail
     sign_in:
       preamble_html: Iniciar sessão com as suas credenciais de <strong>%{domain}</strong>. Se a sua conta estiver hospedada noutro servidor, não poderá iniciar sessão aqui.
@@ -1138,9 +1100,7 @@ pt-PT:
       title: Vamos lá inscrevê-lo em %{domain}.
     status:
       account_status: Estado da conta
-      confirming: A aguardar que conclua a confirmação do e-mail.
       functional: A sua conta está totalmente operacional.
-      pending: A sua inscrição está pendente de revisão pela nossa equipa. Isso pode demorar algum tempo. Receberá um e-mail se a sua conta for aprovada.
       redirecting_to: A sua conta está inativa porque está atualmente a ser redirecionada para %{acct}.
       self_destruct: Como %{domain} vai fechar, só terá acesso limitado à sua conta.
       view_strikes: Veja as reprimendas anteriores sobre a sua conta
@@ -1183,9 +1143,6 @@ pt-PT:
       before: 'Antes de continuar, por favor leia cuidadosamente estas notas:'
       caches: O conteúdo que foi armazenado em cache por outras instâncias pode perdurar
       data_removal: As suas publicações e outros dados serão eliminados permanentemente
-      email_change_html: Pode <a href="%{path}">alterar o seu endereço de e-mail</a> sem eliminar a sua conta
-      email_contact_html: Se ainda não chegou, pode enviar um e-mail a <a href="mailto:%{email}">%{email}</a> para obter ajuda
-      email_reconfirmation_html: Se não recebeu o e-mail de confirmação, pode <a href="%{path}">pedi-lo novamente</a>
       irreversible: Não será possível restaurar ou reativar sua conta
       more_details_html: Para mais pormenores, leia a <a href="%{terms_path}">política de privacidade</a>.
       username_available: O seu nome de utilizador ficará novamente disponível
@@ -1418,7 +1375,6 @@ pt-PT:
     authentication_methods:
       otp: aplicação de autenticação em duas etapas
       password: palavra-passe
-      sign_in_token: código de segurança por correio electrónico
       webauthn: chaves de segurança
     description_html: Se vê atividade que não reconhece, considere alterar a sua palavra-passe e ativar a autenticação em duas etapas.
     empty: Sem histórico de autenticação disponível
@@ -1429,16 +1385,6 @@ pt-PT:
     unsubscribe:
       action: Sim, cancelar subscrição
       complete: Subscrição Cancelada
-      confirmation_html: Tem a certeza que deseja cancelar a subscrição para receber %{type} pelo Mastodon em %{domain} no seu e-mail em %{email}? Pode sempre subcrever novamente nas suas <a href="%{settings_path}">configurações de notificação de e-mail</a>.
-      emails:
-        notification_emails:
-          favourite: e-mails de notificação de favorito
-          follow: e-mails de notificação de seguidor
-          follow_request: e-mails de notificação de pedido de seguidor
-          mention: e-mails de notificação de menção
-          reblog: e-mails de notificação de partilha
-      resubscribe_html: Se cancelou a subscrição por engano, pode subscrever novamente nas suas <a href="%{settings_path}">configurações de notificação de e-mail</a>.
-      success_html: Não receberá novamente %{type} pelo Mastodon em %{domain} para o seu e-mail em %{email}.
       title: Cancelar subscrição
   media_attachments:
     validations:
@@ -1519,8 +1465,6 @@ pt-PT:
     update:
       subject: "%{name} editou uma publicação"
   notifications:
-    administration_emails: Notificções administrativas por e-mail
-    email_events: Eventos para notificações por e-mail
     email_events_hint: 'Selecione os casos para os quais deseja receber notificações:'
   number:
     human:
@@ -1679,7 +1623,6 @@ pt-PT:
     import: Importar
     import_and_export: Importar e exportar
     migrate: Migração de conta
-    notifications: Notificações por e-mail
     preferences: Preferências
     profile: Perfil
     relationships: Seguindo e seguidores
@@ -1926,7 +1869,6 @@ pt-PT:
     invalid_otp_token: Código de autenticação inválido
     otp_lost_help_html: Se perdeu o acesso a ambos, pode entrar em contacto com %{email}
     rate_limited: Demasiadas tentativas de autenticação, tente novamente mais tarde.
-    seamless_external_login: Tu estás ligado via um serviço externo. Por isso, as configurações da palavra-passe e do e-mail não estão disponíveis.
     signed_in_as: 'Registado como:'
   verification:
     extra_instructions_html: <strong>Dica:</strong> A ligação no seu site pode ser invisível. A parte importante é <code>rel="me"</code> que impede a personificação em sites com conteúdo gerado pelo utilizador. Pode até utilizar uma etiqueta <code>link</code> no cabeçalho da página ao invés de <code>a</code>, mas o HTML deve ser acessível sem executar JavaScript.

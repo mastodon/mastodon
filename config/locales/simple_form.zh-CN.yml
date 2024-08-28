@@ -49,12 +49,12 @@ zh-CN:
         header: 支持WEBP、PNG、GIF 或 JPG。最大 %{size}。将缩小到 %{dimensions}px
         inbox_url: 从你想要使用的中继站的主页上复制 URL
         irreversible: 已过滤的嘟文会不可逆转地消失，即便移除过滤器之后也一样
-        locale: 用户界面、电子邮件和推送通知中使用的语言
+        locale: 在用户界面、电子邮件和推送通知中使用的语言
         password: 至少需要8个字符
         phrase: 匹配将忽略嘟文或内容警告里的字母大小写
         scopes: 哪些 API 被允许使用。如果你勾选了更高一级的范围，就不用单独选中子项目了。
         setting_aggregate_reblogs: 不显示最近已经被转嘟过的嘟文(只会影响新收到的转嘟)
-        setting_always_send_emails: 一般情况下，如果您活跃使用 Mastodon，我们不会给您发送电子邮件通知
+        setting_always_send_emails: 一般情况下，如果你活跃使用 Mastodon，我们不会向你发送电子邮件通知
         setting_default_sensitive: 敏感内容默认隐藏，并在点击后显示
         setting_display_media_default: 隐藏被标记为敏感内容的媒体
         setting_display_media_hide_all: 始终隐藏媒体
@@ -66,7 +66,7 @@ zh-CN:
       domain_allow:
         domain: 该站点将能够从该服务器上拉取数据，并处理和存储收到的数据。
       email_domain_block:
-        domain: 这可以是电子邮件地址的域名或它使用的 MX 记录所指向的域名。用户注册时，系统会对此检查。
+        domain: 这可以是邮箱地址的域名或它使用的 MX 记录所指向的域名。用户注册时，系统会对此执行检查。
         with_dns_records: Mastodon 会尝试解析所给域名的 DNS 记录，然后把解析结果一并封禁
       featured_tag:
         name: 以下是你最近使用过的标签：
@@ -100,8 +100,8 @@ zh-CN:
         thumbnail: 与服务器信息一并展示的约 2:1 比例的图像。
         timeline_preview: 未登录访客将能够浏览服务器上最新的公共嘟文。
         trendable_by_default: 跳过对热门内容的手工审核。个别项目仍可在之后从趋势中删除。
-        trends: 趋势中会显示正在你服务器上受到关注的嘟文、标签和新闻故事。
-        trends_as_landing_page: 向注销的用户和访问者显示趋势内容，而不是对该服务器的描述，需要启用趋势。
+        trends: 热门页中会显示正在你服务器上受到关注的嘟文、标签和新闻故事。
+        trends_as_landing_page: 向注销的用户和访问者显示热门内容，而不是对该服务器的描述，需要启用热门。
       form_challenge:
         current_password: 你正在进入安全区域
       imports:
@@ -188,7 +188,7 @@ zh-CN:
         current_password: 当前密码
         data: 数据文件
         display_name: 昵称
-        email: 电子邮件地址
+        email: 邮箱地址
         expires_in: 失效时间
         fields: 个人资料附加信息
         header: 个人资料页横幅图片
@@ -231,7 +231,7 @@ zh-CN:
         title: 标题
         type: 导入数据类型
         username: 用户名
-        username_or_email: 用户名或电子邮件地址
+        username_or_email: 用户名或邮箱地址
         whole_word: 整个词条
       email_domain_block:
         with_dns_records: 包括该域名的 MX 记录和 IP 地址
@@ -269,8 +269,8 @@ zh-CN:
         thumbnail: 本站缩略图
         timeline_preview: 时间轴预览
         trendable_by_default: 允许在未审核的情况下将话题置为热门
-        trends: 启用趋势
-        trends_as_landing_page: 使用趋势作为登陆页面
+        trends: 启用热门
+        trends_as_landing_page: 使用热门页作为登陆页面
       interactions:
         must_be_follower: 屏蔽来自未关注我的用户的通知
         must_be_following: 屏蔽来自我未关注的用户的通知
@@ -291,11 +291,11 @@ zh-CN:
         appeal: 有人对审核结果提出申诉
         digest: 发送摘要邮件
         favourite: 当有用户喜欢了我的嘟文时，发送电子邮件提醒我
-        follow: 当有用户关注我时，发送电子邮件提醒我
-        follow_request: 当有用户向我发送关注请求时，发送电子邮件提醒我
-        mention: 当有用户在嘟文中提及我时，发送电子邮件提醒我
-        pending_account: 在有账号需要审核时，发送电子邮件提醒我
-        reblog: 当有用户转嘟了我的嘟文时，发送电子邮件提醒我
+        follow: 有用户关注我时
+        follow_request: 有用户向我发送关注请求时
+        mention: 有用户提及我时
+        pending_account: 有账号需要审核时
+        reblog: 有用户转嘟我的嘟文时
         report: 新举报已提交
         software_updates:
           all: 通知所有更新
