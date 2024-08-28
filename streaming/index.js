@@ -1351,15 +1351,23 @@ const startServer = async () => {
  * @param {function(string): void} [onSuccess]
  */
 const attachServerWithConfig = (server, onSuccess) => {
-  if (process.env.SOCKET || process.env.PORT && isNaN(+process.env.PORT)) {
-    server.listen(process.env.SOCKET || process.env.PORT, () => {
+  if (process.env.SOCKET) {
+    server.listen(process.env.SOCKET, () => {
       if (onSuccess) {
         fs.chmodSync(server.address(), 0o666);
         onSuccess(server.address());
       }
     });
   } else {
-    server.listen(+(process.env.PORT || 4000), process.env.BIND || '127.0.0.1', () => {
+    const port = +(process.env.PORT || 4000);
+    let bind = process.env.BIND ?? '127.0.0.1';
+    // Web uses the URI syntax for BIND, which means IPv6 addresses may
+    // be wrapped in square brackets:
+    if (bind.startsWith('[') && bind.endsWith(']')) {
+      bind = bind.slice(1, -1);
+    }
+
+    server.listen(port, bind, () => {
       if (onSuccess) {
         onSuccess(`${server.address().address}:${server.address().port}`);
       }
