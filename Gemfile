@@ -99,10 +99,10 @@ gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
-gem 'opentelemetry-api', '~> 1.3.0'
+gem 'opentelemetry-api', '~> 1.4.0'
 
 group :opentelemetry do
-  gem 'opentelemetry-exporter-otlp', '~> 0.28.0', require: false
+  gem 'opentelemetry-exporter-otlp', '~> 0.29.0', require: false
   gem 'opentelemetry-instrumentation-active_job', '~> 0.7.1', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.20.1', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.21.2', require: false
