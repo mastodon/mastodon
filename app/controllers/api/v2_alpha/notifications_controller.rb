@@ -48,7 +48,7 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
 
   def show
     @notification = current_account.notifications.without_suspended.find_by!(group_key: params[:id])
-    presenter = GroupedNotificationsPresenter.new([NotificationGroup.from_notification(@notification)])
+    presenter = GroupedNotificationsPresenter.new(NotificationGroup.from_notifications([@notification]))
     render json: presenter, serializer: REST::DedupNotificationGroupSerializer
   end
 
@@ -92,7 +92,7 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
 
   def load_grouped_notifications
     MastodonOTELTracer.in_span('Api::V2Alpha::NotificationsController#load_grouped_notifications') do
-      @notifications.map { |notification| NotificationGroup.from_notification(notification, max_id: @group_metadata.dig(notification.group_key, :max_id), grouped_types: params[:grouped_types]) }
+      NotificationGroup.from_notifications(@notifications, max_id: @notifications.first.id, grouped_types: params[:grouped_types])
     end
   end
 
