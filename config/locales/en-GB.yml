@@ -865,6 +865,8 @@ en-GB:
       links:
         allow: Allow link
         allow_provider: Allow publisher
+        confirm_disallow: Are you sure you want to disallow selected links?
+        confirm_disallow_provider: Are you sure you want to disallow selected providers?
         description_html: These are links that are currently being shared a lot by accounts that your server sees posts from. It can help your users find out what's going on in the world. No links are displayed publicly until you approve the publisher. You can also allow or reject individual links.
         disallow: Disallow link
         disallow_provider: Disallow publisher
@@ -888,6 +890,10 @@ en-GB:
       statuses:
         allow: Allow post
         allow_account: Allow author
+        confirm_allow: Are you sure you want to allow selected statuses?
+        confirm_allow_account: Are you sure you want to allow selected accounts?
+        confirm_disallow: Are you sure you want to disallow selected statuses?
+        confirm_disallow_account: Are you sure you want to disallow selected accounts?
         description_html: These are posts that your server knows about that are currently being shared and favourited a lot at the moment. It can help your new and returning users to find more people to follow. No posts are displayed publicly until you approve the author, and the author allows their account to be suggested to others. You can also allow or reject individual posts.
         disallow: Disallow post
         disallow_account: Disallow author
@@ -920,6 +926,7 @@ en-GB:
         used_by_over_week:
           one: Used by one person over the last week
           other: Used by %{count} people over the last week
+      title: Recommendations & Trends
       trending: Trending
     warning_presets:
       add_new: Add new
