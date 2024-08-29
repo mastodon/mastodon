@@ -125,7 +125,7 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
   end
 
   def browserable_params
-    params.permit(:include_filtered, types: [], exclude_types: [], grouped_types: [])
+    params.slice(:include_filtered, :types, :exclude_types, :grouped_types).permit(:include_filtered, types: [], exclude_types: [], grouped_types: [])
   end
 
   def pagination_params(core_params)
