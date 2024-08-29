@@ -35,6 +35,17 @@ RSpec.describe 'Notifications' do
       end
     end
 
+    context 'with grouped_types parameter' do
+      let(:params) { { grouped_types: %w(reblog) } }
+
+      it 'returns expected notifications count' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:count]).to eq 5
+      end
+    end
+
     context 'with a read marker' do
       before do
         id = user.account.notifications.browserable.order(id: :desc).offset(2).first.id
@@ -111,6 +122,38 @@ RSpec.describe 'Notifications' do
 
         expect(response).to have_http_status(200)
         expect(body_json_types).to include('reblog', 'mention', 'favourite', 'follow')
+      end
+    end
+
+    context 'with grouped_types param' do
+      let(:params) { { grouped_types: %w(reblog) } }
+
+      it 'returns everything, but does not group favourites' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:notification_groups]).to contain_exactly(
+          a_hash_including(
+            type: 'reblog',
+            sample_account_ids: [bob.account_id.to_s]
+          ),
+          a_hash_including(
+            type: 'mention',
+            sample_account_ids: [bob.account_id.to_s]
+          ),
+          a_hash_including(
+            type: 'favourite',
+            sample_account_ids: [bob.account_id.to_s]
+          ),
+          a_hash_including(
+            type: 'favourite',
+            sample_account_ids: [tom.account_id.to_s]
+          ),
+          a_hash_including(
+            type: 'follow',
+            sample_account_ids: [bob.account_id.to_s]
+          )
+        )
       end
     end
 
