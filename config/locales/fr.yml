@@ -169,13 +169,16 @@ fr:
         approve_appeal: Approuver l'appel
         approve_user: Approuver le compte
         assigned_to_self_report: Affecter le signalement
+        change_email_user: Modification de l’adresse de messagerie électronique pour l'utilisateur·ce
         change_role_user: Changer le rôle du compte
         confirm_user: Confirmer le compte
         create_account_warning: Créer une alerte
         create_announcement: Créer une annonce
+        create_canonical_email_block: Création d'un blocage de courrier électronique
         create_custom_emoji: Créer des émojis personnalisés
         create_domain_allow: Créer un domaine autorisé
         create_domain_block: Créer un blocage de domaine
+        create_email_domain_block: Création d'un blocage de domaine de courrier électronique
         create_ip_block: Créer une règle IP
         create_unavailable_domain: Créer un domaine indisponible
         create_user_role: Créer le rôle
@@ -417,8 +420,10 @@ fr:
       new:
         create: Créer le blocage
         resolve: Résoudre le domaine
+        title: Blocage d'un nouveau domaine de messagerie électronique
       not_permitted: Non autorisé
       resolved_through_html: Résolu par %{domain}
+      title: Domaines de messagerie électronique bloqués
     export_domain_allows:
       new:
         title: Importer les autorisations de domaine
@@ -443,6 +448,9 @@ fr:
       title: Recommandations d'abonnement
       unsuppress: Rétablir les recommandations d'abonnement
     instances:
+      audit_log:
+        title: Journaux d'audit récents
+        view_all: Voir les journaux d'audit complets
       availability:
         description_html:
           one: Si la livraison au domaine échoue pendant <strong>%{count} jour</strong>, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine ne soit reçue.
@@ -610,6 +618,7 @@ fr:
       report: 'Signalement #%{id}'
       reported_account: Compte signalé
       reported_by: Signalé par
+      reported_with_application: Signalé avec l'application
       resolved: Résolus
       resolved_msg: Signalement résolu avec succès !
       skip_to_actions: Passer aux actions
@@ -632,6 +641,7 @@ fr:
         delete_data_html: effacer le profil de <strong>@%{acct}</strong> et ses contenus dans 30 jours, à moins que la suspension du compte ne soit annulée entre temps
         preview_preamble_html: "<strong>@%{acct}</strong> recevra un avertissement contenant les éléments suivants :"
         record_strike_html: enregistrer une sanction contre <strong>@%{acct}</strong> pour vous aider à prendre des mesures supplémentaires en cas d'infractions futures de ce compte
+        send_email_html: Envoyer un courriel d'avertissement à <strong>@%{acct}</strong>
         warning_placeholder: Arguments supplémentaires pour l'action de modération (facultatif).
       target_origin: Origine du compte signalé
       title: Signalements
@@ -671,6 +681,7 @@ fr:
         manage_appeals: Gérer les contestations
         manage_appeals_description: Permet aux utilisateur⋅rice⋅s d'examiner les appels contre les actions de modération
         manage_blocks: Gérer les blocages
+        manage_blocks_description: Permet aux utilisateur⋅rice⋅s de bloquer des fournisseurs de courriel et des adresses IP
         manage_custom_emojis: Gérer les émojis personnalisés
         manage_custom_emojis_description: Permet aux utilisateur⋅rice⋅s de gérer les émoticônes personnalisées sur le serveur
         manage_federation: Gérer de la féderation
@@ -850,6 +861,9 @@ fr:
         message_html: "<strong>Votre serveur web est mal configuré. La confidentialité de vos utilisateurs est en péril.</strong>"
     tags:
       name: Nom
+      newest: Plus récents
+      oldest: Plus anciens
+      reset: Réinitialiser
       review: État du traitement
       search: Recherche
       title: Hashtags
@@ -858,10 +872,16 @@ fr:
     trends:
       allow: Autoriser
       approved: Approuvé
+      confirm_allow: Êtes-vous sûr de vouloir autoriser les hashtags sélectionnés ?
+      confirm_disallow: Êtes-vous sûr de vouloir interdire les hashtags sélectionnés ?
       disallow: Interdire
       links:
         allow: Autoriser le lien
         allow_provider: Autoriser l'éditeur
+        confirm_allow: Êtes-vous sûr de vouloir autoriser les liens sélectionnés ?
+        confirm_allow_provider: Êtes-vous sûr de vouloir autoriser les fournisseurs sélectionnés ?
+        confirm_disallow: Êtes-vous sûr de vouloir interdire les liens sélectionnés ?
+        confirm_disallow_provider: Êtes-vous sûr de vouloir interdire les fournisseurs sélectionnés ?
         description_html: Ces liens sont actuellement énormément partagés par des comptes dont votre serveur voit les messages. Cela peut aider vos utilisateur⋅rice⋅s à découvrir ce qu'il se passe dans le monde. Aucun lien n'est publiquement affiché tant que vous n'avez pas approuvé le compte qui le publie. Vous pouvez également autoriser ou rejeter les liens individuellement.
         disallow: Interdire le lien
         disallow_provider: Interdire l'éditeur
@@ -1002,7 +1022,9 @@ fr:
       guide_link_text: Tout le monde peut y contribuer.
     sensitive_content: Contenu sensible
   application_mailer:
+    notification_preferences: Modification des préférences de la messagerie
     salutation: "%{name},"
+    settings: 'Modifier les préférences de la messagerie : %{link}'
     unsubscribe: Se désabonner
     view: 'Voir :'
     view_profile: Voir le profil
@@ -1022,6 +1044,7 @@ fr:
       hint_html: Encore une chose ! Nous avons besoin de confirmer que vous êtes un humain (c'est pour que nous puissions empêcher les spams !). Résolvez le CAPTCHA ci-dessous et cliquez sur "Continuer".
       title: Vérification de sécurité
     confirmations:
+      awaiting_review: Votre adresse de messagerie est confirmée ! L'équipe de %{domain} est en train d'examiner votre inscription. Vous recevrez un e-mail si votre compte est approuvé !
       awaiting_review_title: Votre inscription est en cours de validation
       clicking_this_link: cliquer sur ce lien
       login_link: vous connecter
@@ -1029,6 +1052,7 @@ fr:
       redirect_to_app_html: Vous auriez dû être redirigé vers l’application <strong>%{app_name}</strong>. Si cela ne s’est pas produit, essayez de %{clicking_this_link} ou de revenir manuellement à l’application.
       registration_complete: Votre inscription sur %{domain} est désormais terminée !
       welcome_title: Bienvenue, %{name} !
+      wrong_email_hint: Si cette adresse de messagerie est incorrecte, vous pouvez la modifier dans vos paramètres de compte.
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.
     description:
@@ -1049,6 +1073,7 @@ fr:
     or_log_in_with: Ou authentifiez-vous avec
     privacy_policy_agreement_html: J’ai lu et j’accepte la <a href="%{privacy_policy_path}" target="_blank">politique de confidentialité</a>
     progress:
+      confirm: Confirmation de l'adresse mail
       details: Vos infos
       review: Notre avis
       rules: Accepter les règles
@@ -1070,6 +1095,7 @@ fr:
     security: Sécurité
     set_new_password: Définir le nouveau mot de passe
     setup:
+      email_below_hint_html: Consultez votre dossier de courrier indésirable ou demandez-en un autre. Vous pouvez corriger votre adresse e-mail si elle est incorrecte.
       email_settings_hint_html: Cliquez sur le lien que nous vous avons envoyé pour vérifier l’adresse %{email}. Nous vous attendons ici.
       link_not_received: Vous n'avez pas reçu de lien ?
       new_confirmation_instructions_sent: Vous allez recevoir un nouvel e-mail avec le lien de confirmation dans quelques minutes !
@@ -1083,6 +1109,7 @@ fr:
       title: Mettons les choses en place pour %{domain}.
     status:
       account_status: État du compte
+      confirming: En attente de la confirmation par courrier électronique.
       functional: Votre compte est entièrement opérationnel.
       pending: Votre demande est en attente d’examen par notre équipe. Cela peut prendre un certain temps. Vous recevrez un e-mail si votre demande est approuvée.
       redirecting_to: Votre compte est inactif car il est actuellement redirigé vers %{acct}.
@@ -1128,6 +1155,8 @@ fr:
       caches: Le contenu mis en cache par d'autres serveurs peut persister
       data_removal: Vos messages et autres données seront définitivement supprimés
       email_change_html: Vous pouvez <a href="%{path}">modifier votre adresse e-mail</a> sans supprimer votre compte
+      email_contact_html: S'il ne vous est toujours pas parvenu, vous pouvez envoyer un message à <a href="mailto:%{email}">%{email}</a> pour obtenir de l'aide
+      email_reconfirmation_html: Dans le cas où vous n'auriez pas reçu l'email de confirmation, vous pouvez <a href="%{path}">en réclamer un nouveau</a>
       irreversible: Vous ne pourrez pas restaurer ou réactiver votre compte
       more_details_html: Pour plus de détails, voir la <a href="%{terms_path}">politique de confidentialité</a>.
       username_available: Votre nom d’utilisateur·rice sera à nouveau disponible
