@@ -13,7 +13,6 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
   def index
     with_read_replica do
       @notifications = load_notifications
-      @group_metadata = load_group_metadata
       @grouped_notifications = load_grouped_notifications
       @relationships = StatusRelationshipsPresenter.new(target_statuses_from_notifications, current_user&.account_id)
       @presenter = GroupedNotificationsPresenter.new(@grouped_notifications, expand_accounts: expand_accounts_param)
@@ -34,7 +33,7 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
         'app.notification_grouping.expand_accounts_param' => expand_accounts_param
       )
 
-      render json: @presenter, serializer: REST::DedupNotificationGroupSerializer, relationships: @relationships, group_metadata: @group_metadata, expand_accounts: expand_accounts_param
+      render json: @presenter, serializer: REST::DedupNotificationGroupSerializer, relationships: @relationships, expand_accounts: expand_accounts_param
     end
   end
 
@@ -77,22 +76,9 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
     end
   end
 
-  def load_group_metadata
-    return {} if @notifications.empty?
-
-    MastodonOTELTracer.in_span('Api::V2Alpha::NotificationsController#load_group_metadata') do
-      browserable_account_notifications
-        .where(group_key: @notifications.filter_map(&:group_key))
-        .where(id: (@notifications.last.id)..(@notifications.first.id))
-        .group(:group_key)
-        .pluck(:group_key, 'min(notifications.id) as min_id', 'max(notifications.id) as max_id', 'max(notifications.created_at) as latest_notification_at')
-        .to_h { |group_key, min_id, max_id, latest_notification_at| [group_key, { min_id: min_id, max_id: max_id, latest_notification_at: latest_notification_at }] }
-    end
-  end
-
   def load_grouped_notifications
     MastodonOTELTracer.in_span('Api::V2Alpha::NotificationsController#load_grouped_notifications') do
-      NotificationGroup.from_notifications(@notifications, max_id: @notifications.first.id, grouped_types: params[:grouped_types])
+      NotificationGroup.from_notifications(@notifications, pagination_range: (@notifications.last.id)..(@notifications.first.id), grouped_types: params[:grouped_types])
     end
   end
 
