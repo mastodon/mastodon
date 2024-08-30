@@ -10644,6 +10644,12 @@ noscript {
       font-size: 15px;
       line-height: 22px;
       color: $dark-text-color;
+
+      span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 }
