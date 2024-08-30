@@ -65,8 +65,8 @@ class NotificationGroup < ActiveModelSerializers::Model
           SAMPLE_ACCOUNTS_SIZE,
           pagination_range.begin,
           pagination_range.end,
+          ActiveRecord::Relation::QueryAttribute.new('group_keys', group_keys, ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Array.new(ActiveModel::Type::String.new)),
         ]
-        binds.concat(group_keys)
 
         ActiveRecord::Base.connection.select_all(<<~SQL.squish, 'grouped_notifications', binds).cast_values.to_h { |k, *values| [k, values] }
           SELECT
@@ -77,14 +77,14 @@ class NotificationGroup < ActiveModelSerializers::Model
             (SELECT id FROM notifications WHERE notifications.account_id = $1 AND notifications.group_key = groups.group_key AND id >= $3 ORDER BY id ASC LIMIT 1) AS min_id,
             (SELECT created_at FROM notifications WHERE notifications.account_id = $1 AND notifications.group_key = groups.group_key AND id <= $4 ORDER BY id DESC LIMIT 1)
           FROM
-            (VALUES #{Array.new(group_keys.size) { |i| "($#{i + 5})" }.join(', ')}) AS groups(group_key);
+            unnest($5::text[]) AS groups(group_key);
         SQL
       else
         binds = [
           account_id,
           SAMPLE_ACCOUNTS_SIZE,
+          ActiveRecord::Relation::QueryAttribute.new('group_keys', group_keys, ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Array.new(ActiveModel::Type::String.new)),
         ]
-        binds.concat(group_keys)
 
         ActiveRecord::Base.connection.select_all(<<~SQL.squish, 'grouped_notifications', binds).cast_values.to_h { |k, *values| [k, values] }
           SELECT
@@ -93,7 +93,7 @@ class NotificationGroup < ActiveModelSerializers::Model
             array(SELECT from_account_id FROM notifications WHERE notifications.account_id = $1 AND notifications.group_key = groups.group_key ORDER BY id DESC LIMIT $2),
             (SELECT count(*) FROM notifications WHERE notifications.account_id = $1 AND notifications.group_key = groups.group_key) AS notifications_count
           FROM
-            (VALUES #{Array.new(group_keys.size) { |i| "($#{i + 3})" }.join(', ')}) AS groups(group_key);
+            unnest($3::text[]) AS groups(group_key);
         SQL
       end
     end
