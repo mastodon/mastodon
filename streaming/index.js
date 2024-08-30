@@ -107,10 +107,38 @@ const startServer = async () => {
   const metrics = setupMetrics(CHANNEL_NAMES, pgPool);
 
   const redisConfig = Redis.configFromEnv(process.env);
-  const redisNamespace = redisConfig.redisNamespace;
   const redisClient = Redis.createClient(redisConfig, logger);
   const server = http.createServer();
   const wss = new WebSocketServer({ noServer: true });
+
+  /**
+   * Adds a namespace to Redis keys or channel names
+   * Fixes: https://github.com/redis/ioredis/issues/1910
+   * @param {string} keyOrChannel
+   * @returns {string}
+   */
+  function redisNamespaced(keyOrChannel) {
+    if (redisConfig.namespace) {
+      return `${redisConfig.namespace}:${keyOrChannel}`;
+    } else {
+      return keyOrChannel;
+    }
+  }
+
+  /**
+   * Removes the redis namespace from a channel name
+   * @param {string} channel
+   * @returns {string}
+   */
+  function redisUnnamespaced(channel) {
+    if (typeof redisConfig.namespace === "string") {
+      // Note: this removes the configured namespace and the colon that is used
+      // to separate it:
+      return channel.slice(redisConfig.namespace.length + 1);
+    } else {
+      return channel;
+    }
+  }
 
   // Set the X-Request-Id header on WebSockets:
   wss.on("headers", function onHeaders(headers, req) {
@@ -222,7 +250,7 @@ const startServer = async () => {
     const interval = 6 * 60;
 
     const tellSubscribed = () => {
-      channels.forEach(channel => redisClient.set(`subscribed:${channel}`, '1', 'EX', interval * 3));
+      channels.forEach(channel => redisClient.set(redisNamespaced(`subscribed:${channel}`), '1', 'EX', interval * 3));
     };
 
     tellSubscribed();
@@ -242,11 +270,8 @@ const startServer = async () => {
     metrics.redisMessagesReceived.inc();
     logger.debug(`New message on channel ${channel}`);
 
-    // FIXME: https://github.com/redis/ioredis/issues/1910
-    // Strip the redis keyPrefix from the channel:
-    const channelName = redisNamespace ? channel.slice(redisNamespace.length) : channel;
-
-    const callbacks = subs[channelName];
+    const key = redisUnnamespaced(channel);
+    const callbacks = subs[key];
     if (!callbacks) {
       return;
     }
@@ -276,8 +301,7 @@ const startServer = async () => {
     if (subs[channel].length === 0) {
       logger.debug(`Subscribe ${channel}`);
 
-      // FIXME: https://github.com/redis/ioredis/issues/1910
-      redisSubscribeClient.subscribe(`${redisNamespace}${channel}`, (err, count) => {
+      redisSubscribeClient.subscribe(redisNamespaced(channel), (err, count) => {
         if (err) {
           logger.error(`Error subscribing to ${channel}`);
         } else if (typeof count === 'number') {
@@ -306,7 +330,7 @@ const startServer = async () => {
       logger.debug(`Unsubscribe ${channel}`);
 
       // FIXME: https://github.com/redis/ioredis/issues/1910
-      redisSubscribeClient.unsubscribe(`${redisNamespace}${channel}`, (err, count) => {
+      redisSubscribeClient.unsubscribe(redisNamespaced(channel), (err, count) => {
         if (err) {
           logger.error(`Error unsubscribing to ${channel}`);
         } else if (typeof count === 'number') {

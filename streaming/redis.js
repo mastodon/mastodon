@@ -4,9 +4,9 @@ import { parseIntFromEnvValue } from './utils.js';
 
 /**
  * @typedef RedisConfiguration
- * @property {string|undefined} redisNamespace
- * @property {string|undefined} redisUrl
- * @property {import('ioredis').RedisOptions} redisOptions
+ * @property {string|undefined} namespace
+ * @property {string|undefined} url
+ * @property {import('ioredis').RedisOptions} options
  */
 
 /**
@@ -64,7 +64,7 @@ function getSentinelConfiguration(env, commonOptions) {
  * @returns {RedisConfiguration} configuration for the Redis connection
  */
 export function configFromEnv(env) {
-  const redisNamespace = env.REDIS_NAMESPACE ? `${env.REDIS_NAMESPACE}:` : '';
+  const redisNamespace = env.REDIS_NAMESPACE;
 
   // These options apply for both REDIS_URL based connections and connections
   // using the other REDIS_* environment variables:
@@ -72,26 +72,26 @@ export function configFromEnv(env) {
     // Force support for both IPv6 and IPv4, by default ioredis sets this to 4,
     // only allowing IPv4 connections:
     // https://github.com/redis/ioredis/issues/1576
-    family: 0,
-    // Support auto-prefixing keys:
-    keyPrefix: redisNamespace
+    family: 0
+    // Note: we don't use auto-prefixing of keys since this doesn't apply to
+    // subscribe/unsubscribe which have "channel" instead of "key" arguments
   };
 
   // If we receive REDIS_URL, don't continue parsing any other REDIS_*
   // environment variables:
   if (typeof env.REDIS_URL === 'string' && env.REDIS_URL.length > 0) {
     return {
-      redisUrl: env.REDIS_URL,
-      redisOptions: commonOptions,
-      redisNamespace
+      url: env.REDIS_URL,
+      options: commonOptions,
+      namespace: redisNamespace
     };
   }
 
   // If we have configuration for Redis Sentinel mode, prefer that:
   if (hasSentinelConfiguration(env)) {
     return {
-      redisOptions: getSentinelConfiguration(env, commonOptions),
-      redisNamespace
+      options: getSentinelConfiguration(env, commonOptions),
+      namespace: redisNamespace
     };
   }
 
@@ -100,7 +100,7 @@ export function configFromEnv(env) {
   let redisDatabase = parseIntFromEnvValue(env.REDIS_DB, 0, 'REDIS_DB');
 
   /** @type {import('ioredis').RedisOptions} */
-  const redisOptions = {
+  const options = {
     host: env.REDIS_HOST ?? '127.0.0.1',
     port: redisPort,
     db: redisDatabase,
@@ -110,8 +110,8 @@ export function configFromEnv(env) {
   };
 
   return {
-    redisOptions,
-    redisNamespace
+    options,
+    namespace: redisNamespace
   };
 }
 
@@ -120,13 +120,13 @@ export function configFromEnv(env) {
  * @param {import('pino').Logger} logger
  * @returns {Redis}
  */
-export function createClient({ redisUrl, redisOptions }, logger) {
+export function createClient({ url, options }, logger) {
   let client;
 
-  if (typeof redisUrl === 'string') {
-    client = new Redis(redisUrl, redisOptions);
+  if (typeof url === 'string') {
+    client = new Redis(url, options);
   } else {
-    client = new Redis(redisOptions);
+    client = new Redis(options);
   }
 
   client.on('error', (err) => logger.error({ err }, 'Redis Client Error!'));
