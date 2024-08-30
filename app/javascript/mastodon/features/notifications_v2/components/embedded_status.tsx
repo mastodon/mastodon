@@ -122,69 +122,11 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   const mediaAttachments = status.get(
     'media_attachments',
   ) as ImmutableList<MediaAttachment>;
-  const mediaAttachmentsSize = mediaAttachments.size;
-  const mediaAttachmentDescription = mediaAttachments.find(
+  const mediaAttachmentsWithDescription = mediaAttachments.filter(
     (attachment) => !!attachment.get('description'),
-  )?.get('description');
-
-  const mediaAttachmentsList = [];
-  if (expanded) {
-    if (poll) {
-      mediaAttachmentsList.push(
-        <div
-          className='notification-group__embedded-status__attachments reply-indicator__attachments'
-          key='poll-indicator'
-        >
-          <Icon icon={BarChart4BarsIcon} id='bar-chart-4-bars' />
-          <FormattedMessage id='reply_indicator.poll' defaultMessage='Poll' />
-        </div>,
-      );
-    }
-
-    if (mediaAttachmentDescription) {
-      mediaAttachmentsList.push(
-        <div
-          className='notification-group__embedded-status__attachments reply-indicator__attachments'
-          key='media-description-indicator'
-        >
-          <Icon icon={PhotoLibraryIcon} id='photo-library' />
-          <span>
-            {mediaAttachmentDescription}
-          </span>
-        </div>,
-      );
-
-      if (mediaAttachmentsSize > 1) {
-        mediaAttachmentsList.push(
-          <div
-            className='notification-group__embedded-status__attachments reply-indicator__attachments'
-            key='media-other-indicator'
-          >
-            <Icon icon={PhotoLibraryIcon} id='photo-library' />
-            <FormattedMessage
-              id='reply_indicator.and_other_attachments'
-              defaultMessage='and {count, plural, one {# other attachment} other {# other attachments}}'
-              values={{ count: mediaAttachmentsSize - 1 }}
-            />
-          </div>,
-        );
-      }
-    } else if (mediaAttachmentsSize > 0) {
-      mediaAttachmentsList.push(
-        <div
-          className='notification-group__embedded-status__attachments reply-indicator__attachments'
-          key='media-indicator'
-        >
-          <Icon icon={PhotoLibraryIcon} id='photo-library' />
-          <FormattedMessage
-            id='reply_indicator.attachments'
-            defaultMessage='{count, plural, one {# attachment} other {# attachments}}'
-            values={{ count: mediaAttachmentsSize }}
-          />
-        </div>,
-      );
-    }
-  }
+  );
+  const uncaptionedMediaCount =
+    mediaAttachments.size - mediaAttachmentsWithDescription.size;
 
   return (
     <div
@@ -218,7 +160,49 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
         />
       )}
 
-      {mediaAttachmentsList}
+      {expanded && !!poll && (
+        <div
+          className='notification-group__embedded-status__attachments reply-indicator__attachments'
+          key='poll-indicator'
+        >
+          <Icon icon={BarChart4BarsIcon} id='bar-chart-4-bars' />
+          <FormattedMessage id='reply_indicator.poll' defaultMessage='Poll' />
+        </div>
+      )}
+
+      {expanded &&
+        mediaAttachmentsWithDescription.size > 0 &&
+        mediaAttachmentsWithDescription.map((attachment) => (
+          <div
+            className='notification-group__embedded-status__attachments reply-indicator__attachments'
+            key={`media-description-${attachment.get('id')}}`}
+          >
+            <Icon icon={PhotoLibraryIcon} id='photo-library' />
+            <span>{attachment.get('description')}</span>
+          </div>
+        ))}
+
+      {expanded && uncaptionedMediaCount > 0 && (
+        <div
+          className='notification-group__embedded-status__attachments reply-indicator__attachments'
+          key='uncaptioned-media-indicator'
+        >
+          <Icon icon={PhotoLibraryIcon} id='photo-library' />
+          {mediaAttachmentsWithDescription.size > 0 ? (
+            <FormattedMessage
+              id='reply_indicator.and_other_attachments'
+              defaultMessage='and {count, plural, one {# other attachment} other {# other attachments}}'
+              values={{ count: uncaptionedMediaCount }}
+            />
+          ) : (
+            <FormattedMessage
+              id='reply_indicator.attachments'
+              defaultMessage='{count, plural, one {# attachment} other {# attachments}}'
+              values={{ count: uncaptionedMediaCount }}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 };
