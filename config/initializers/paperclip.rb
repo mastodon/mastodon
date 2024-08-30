@@ -160,13 +160,8 @@ elsif ENV['AZURE_ENABLED'] == 'true'
     )
   end
 else
-  if ENV['TEST_ENV_NUMBER']
-    path_suffix = "test-env-#{ENV['TEST_ENV_NUMBER']}"
-    default_root_url = "/system/#{path_suffix}"
-  else
-    path_suffix = nil
-    default_root_url = '/system'
-  end
+  path_suffix = ENV['TEST_ENV_NUMBER'].present? ? "test-env-#{ENV['TEST_ENV_NUMBER']}" : nil
+  default_root_url = ['/system', path_suffix].compact.join('/')
 
   Rails.configuration.x.file_storage_root_path = ENV.fetch(
     'PAPERCLIP_ROOT_PATH',
