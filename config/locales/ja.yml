@@ -404,6 +404,7 @@ ja:
       allow_registrations_with_approval: 承認制での新規登録を可能にする
       attempts_over_week:
         other: 先週は%{count}回サインアップが試みられました
+      created_msg: メールドメインブロックを追加しました
       delete: 消去
       dns:
         types:
@@ -412,8 +413,12 @@ ja:
       new:
         create: ドメインを追加
         resolve: ドメイン解決
+        title: 新規メールドメインブロック
+      no_email_domain_block_selected: 変更対象のメールドメインブロックを選択してください
       not_permitted: 権限がありません
+      resolved_dns_records_hint_html: 入力されたドメイン名のMXレコードから以下のドメインが解決されました。MXレコードが指すドメインはメールの送受信において重要な役割をもっています。MXレコードのドメインをブロックすると、見た目のドメインが異なるメールアドレスからの登録であっても、そのドメイン名から解決されるMXレコードのドメインが同じ場合はブロックの対象になります。<strong>大手のメールプロバイダをブロックしないように注意してください。</strong>
       resolved_through_html: "%{domain}を通して解決しました"
+      title: メールドメインブロック
     export_domain_allows:
       new:
         title: ドメイン許可をインポート
@@ -900,6 +905,7 @@ ja:
         usage_comparison: 今日は%{today}回、昨日は%{yesterday}回使用されました。
         used_by_over_week:
           other: 週間%{count}人に使用されました
+      title: おすすめとトレンド
       trending: トレンド
     warning_presets:
       add_new: 追加
@@ -1340,6 +1346,16 @@ ja:
     unsubscribe:
       action: 購読を解除する
       complete: 購読を解除しました
+      confirmation_html: Mastodon (%{domain}) による %{email} 宛の「%{type}」の配信を停止します。再度必要になった場合は<a href="%{settings_path}">メール通知の設定</a>からいつでも再開できます。
+      emails:
+        notification_emails:
+          favourite: お気に入りの通知メール
+          follow: フォローの通知メール
+          follow_request: フォローリクエストの通知メール
+          mention: 返信の通知メール
+          reblog: ブーストの通知メール
+      resubscribe_html: 誤って解除した場合は<a href="%{settings_path}">メール通知の設定</a>から再購読できます。
+      success_html: Mastodon (%{domain}) から %{email} への「%{type}」の配信が停止されました。
       title: 購読の解除
   media_attachments:
     validations:
@@ -1578,6 +1594,7 @@ ja:
     import: データのインポート
     import_and_export: インポート・エクスポート
     migrate: アカウントの引っ越し
+    notifications: メール通知
     preferences: ユーザー設定
     profile: プロフィール
     relationships: フォロー・フォロワー

@@ -31,6 +31,7 @@ fr-CA:
       created_msg: Note de modération créée avec succès !
       destroyed_msg: Note de modération supprimée avec succès !
     accounts:
+      add_email_domain_block: Bloquer le domaine de messagerie
       approve: Approuver
       approved_msg: La demande d’inscription de %{username} a été approuvée avec succès
       are_you_sure: Voulez-vous vraiment faire ça ?
@@ -860,6 +861,14 @@ fr-CA:
         action: Pour plus d'informations, cliquez ici
         message_html: "<strong>Votre serveur web est mal configuré. La confidentialité de vos utilisateurs est en péril.</strong>"
     tags:
+      moderation:
+        not_usable: Non utilisable
+        pending_review: En attente de traitement
+        review_requested: Révision requise
+        reviewed: Traité
+        title: État
+        unreviewed: Non traité
+        usable: Utilisable
       name: Nom
       newest: Plus récents
       oldest: Plus anciens
