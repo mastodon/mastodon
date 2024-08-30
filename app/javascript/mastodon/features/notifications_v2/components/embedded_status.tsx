@@ -190,8 +190,8 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
           <Icon icon={PhotoLibraryIcon} id='photo-library' />
           {mediaAttachmentsWithDescription.size > 0 ? (
             <FormattedMessage
-              id='reply_indicator.and_other_attachments'
-              defaultMessage='and {count, plural, one {# other attachment} other {# other attachments}}'
+              id='reply_indicator.other_attachments'
+              defaultMessage='{count, plural, one {# other attachment} other {# other attachments}}'
               values={{ count: uncaptionedMediaCount }}
             />
           ) : (
