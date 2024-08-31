@@ -31,7 +31,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq 5
+        expect(response.parsed_body[:count]).to eq 5
       end
     end
 
@@ -45,7 +45,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq 2
+        expect(response.parsed_body[:count]).to eq 2
       end
     end
 
@@ -56,7 +56,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq 4
+        expect(response.parsed_body[:count]).to eq 4
       end
     end
 
@@ -67,7 +67,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq 2
+        expect(response.parsed_body[:count]).to eq 2
       end
     end
 
@@ -80,7 +80,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq Api::V1::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT
+        expect(response.parsed_body[:count]).to eq Api::V1::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT
       end
     end
   end
@@ -111,9 +111,9 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json.size).to eq 5
+        expect(response.parsed_body.size).to eq 5
         expect(body_json_types).to include('reblog', 'mention', 'favourite', 'follow')
-        expect(body_as_json.any? { |x| x[:filtered] }).to be false
+        expect(response.parsed_body.any? { |x| x[:filtered] }).to be false
       end
     end
 
@@ -124,9 +124,9 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json.size).to eq 6
+        expect(response.parsed_body.size).to eq 6
         expect(body_json_types).to include('reblog', 'mention', 'favourite', 'follow')
-        expect(body_as_json.any? { |x| x[:filtered] }).to be true
+        expect(response.parsed_body.any? { |x| x[:filtered] }).to be true
       end
     end
 
@@ -141,7 +141,7 @@ RSpec.describe 'Notifications' do
       end
 
       def body_json_account_ids
-        body_as_json.map { |x| x[:account][:id] }
+        response.parsed_body.map { |x| x[:account][:id] }
       end
     end
 
@@ -152,7 +152,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json.size).to eq 0
+        expect(response.parsed_body.size).to eq 0
       end
     end
 
@@ -163,7 +163,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json.size).to_not eq 0
+        expect(response.parsed_body.size).to_not eq 0
         expect(body_json_types.uniq).to_not include 'mention'
       end
     end
@@ -187,7 +187,7 @@ RSpec.describe 'Notifications' do
 
         notifications = user.account.notifications.browserable.order(id: :asc)
 
-        expect(body_as_json.size)
+        expect(response.parsed_body.size)
           .to eq(params[:limit])
 
         expect(response)
@@ -199,7 +199,7 @@ RSpec.describe 'Notifications' do
     end
 
     def body_json_types
-      body_as_json.pluck(:type)
+      response.parsed_body.pluck(:type)
     end
   end
 

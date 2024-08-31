@@ -135,7 +135,7 @@ RSpec.describe 'Accounts show response' do
                 media_type: eq('application/activity+json')
               )
 
-            expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
+            expect(response.parsed_body).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
           end
 
           context 'with authorized fetch mode' do
@@ -164,7 +164,7 @@ RSpec.describe 'Accounts show response' do
 
             expect(response.headers['Cache-Control']).to include 'private'
 
-            expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
+            expect(response.parsed_body).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
           end
         end
 
@@ -183,7 +183,7 @@ RSpec.describe 'Accounts show response' do
                 media_type: eq('application/activity+json')
               )
 
-            expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
+            expect(response.parsed_body).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
           end
 
           context 'with authorized fetch mode' do
@@ -199,7 +199,7 @@ RSpec.describe 'Accounts show response' do
               expect(response.headers['Cache-Control']).to include 'private'
               expect(response.headers['Vary']).to include 'Signature'
 
-              expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
+              expect(response.parsed_body).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
             end
           end
         end

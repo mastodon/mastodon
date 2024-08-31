@@ -31,7 +31,7 @@ RSpec.describe 'Email Domain Blocks' do
       it 'returns an empty list' do
         subject
 
-        expect(body_as_json).to be_empty
+        expect(response.parsed_body).to be_empty
       end
     end
 
@@ -42,7 +42,7 @@ RSpec.describe 'Email Domain Blocks' do
       it 'return the correct blocked email domains' do
         subject
 
-        expect(body_as_json.pluck(:domain)).to match_array(blocked_email_domains)
+        expect(response.parsed_body.pluck(:domain)).to match_array(blocked_email_domains)
       end
 
       context 'with limit param' do
@@ -51,7 +51,7 @@ RSpec.describe 'Email Domain Blocks' do
         it 'returns only the requested number of email domain blocks' do
           subject
 
-          expect(body_as_json.size).to eq(params[:limit])
+          expect(response.parsed_body.size).to eq(params[:limit])
         end
       end
 
@@ -63,7 +63,7 @@ RSpec.describe 'Email Domain Blocks' do
 
           email_domain_blocks_ids = email_domain_blocks.pluck(:id).map(&:to_s)
 
-          expect(body_as_json.pluck(:id)).to match_array(email_domain_blocks_ids[2..])
+          expect(response.parsed_body.pluck(:id)).to match_array(email_domain_blocks_ids[2..])
         end
       end
 
@@ -75,7 +75,7 @@ RSpec.describe 'Email Domain Blocks' do
 
           email_domain_blocks_ids = email_domain_blocks.pluck(:id).map(&:to_s)
 
-          expect(body_as_json.pluck(:id)).to match_array(email_domain_blocks_ids[..2])
+          expect(response.parsed_body.pluck(:id)).to match_array(email_domain_blocks_ids[..2])
         end
       end
     end
@@ -97,7 +97,7 @@ RSpec.describe 'Email Domain Blocks' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:domain]).to eq(email_domain_block.domain)
+        expect(response.parsed_body[:domain]).to eq(email_domain_block.domain)
       end
     end
 
@@ -125,7 +125,7 @@ RSpec.describe 'Email Domain Blocks' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json[:domain]).to eq(params[:domain])
+      expect(response.parsed_body[:domain]).to eq(params[:domain])
     end
 
     context 'when domain param is not provided' do
@@ -176,7 +176,7 @@ RSpec.describe 'Email Domain Blocks' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json).to be_empty
+      expect(response.parsed_body).to be_empty
       expect(EmailDomainBlock.find_by(id: email_domain_block.id)).to be_nil
     end
 

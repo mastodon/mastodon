@@ -31,7 +31,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq 4
+        expect(response.parsed_body[:count]).to eq 4
       end
     end
 
@@ -42,7 +42,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq 5
+        expect(response.parsed_body[:count]).to eq 5
       end
     end
 
@@ -56,7 +56,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq 2
+        expect(response.parsed_body[:count]).to eq 2
       end
     end
 
@@ -67,7 +67,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq 3
+        expect(response.parsed_body[:count]).to eq 3
       end
     end
 
@@ -78,7 +78,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq 2
+        expect(response.parsed_body[:count]).to eq 2
       end
     end
 
@@ -91,7 +91,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq Api::V2Alpha::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT
+        expect(response.parsed_body[:count]).to eq Api::V2Alpha::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT
       end
     end
   end
@@ -125,7 +125,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:notification_groups]).to eq []
+        expect(response.parsed_body[:notification_groups]).to eq []
       end
     end
 
@@ -145,7 +145,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:notification_groups]).to contain_exactly(
+        expect(response.parsed_body[:notification_groups]).to contain_exactly(
           a_hash_including(
             type: 'reblog',
             sample_account_ids: [bob.account_id.to_s]
@@ -177,7 +177,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json.size).to_not eq 0
+        expect(response.parsed_body.size).to_not eq 0
         expect(body_json_types.uniq).to_not include 'mention'
       end
     end
@@ -190,7 +190,7 @@ RSpec.describe 'Notifications' do
 
         expect(response).to have_http_status(200)
         expect(body_json_types.uniq).to eq ['mention']
-        expect(body_as_json.dig(:notification_groups, 0, :page_min_id)).to_not be_nil
+        expect(response.parsed_body.dig(:notification_groups, 0, :page_min_id)).to_not be_nil
       end
     end
 
@@ -201,7 +201,7 @@ RSpec.describe 'Notifications' do
       it 'returns the requested number of notifications paginated', :aggregate_failures do
         subject
 
-        expect(body_as_json[:notification_groups].size)
+        expect(response.parsed_body[:notification_groups].size)
           .to eq(params[:limit])
 
         expect(response)
@@ -221,7 +221,7 @@ RSpec.describe 'Notifications' do
       it 'returns the requested number of notifications paginated', :aggregate_failures do
         subject
 
-        expect(body_as_json[:notification_groups].size)
+        expect(response.parsed_body[:notification_groups].size)
           .to eq(2)
 
         expect(response)
@@ -247,10 +247,10 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:partial_accounts].size).to be > 0
-        expect(body_as_json[:partial_accounts][0].keys.map(&:to_sym)).to contain_exactly(:acct, :avatar, :avatar_static, :bot, :id, :locked, :url)
-        expect(body_as_json[:partial_accounts].pluck(:id)).to_not include(recent_account.id.to_s)
-        expect(body_as_json[:accounts].pluck(:id)).to include(recent_account.id.to_s)
+        expect(response.parsed_body[:partial_accounts].size).to be > 0
+        expect(response.parsed_body[:partial_accounts][0].keys.map(&:to_sym)).to contain_exactly(:acct, :avatar, :avatar_static, :bot, :id, :locked, :url)
+        expect(response.parsed_body[:partial_accounts].pluck(:id)).to_not include(recent_account.id.to_s)
+        expect(response.parsed_body[:accounts].pluck(:id)).to include(recent_account.id.to_s)
       end
     end
 
@@ -265,7 +265,7 @@ RSpec.describe 'Notifications' do
     end
 
     def body_json_types
-      body_as_json[:notification_groups].pluck(:type)
+      response.parsed_body[:notification_groups].pluck(:type)
     end
   end
 

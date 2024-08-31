@@ -19,7 +19,7 @@ RSpec.describe 'Custom Emojis' do
         expect(response)
           .to have_http_status(200)
 
-        expect(body_as_json)
+        expect(response.parsed_body)
           .to be_present
           .and have_attributes(
             first: include(shortcode: 'coolcat')
@@ -34,7 +34,7 @@ RSpec.describe 'Custom Emojis' do
         expect(response)
           .to have_http_status(200)
 
-        expect(body_as_json)
+        expect(response.parsed_body)
           .to be_present
           .and have_attributes(
             first: include(shortcode: 'coolcat')

@@ -22,7 +22,7 @@ RSpec.describe 'Sources' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json).to match({
+        expect(response.parsed_body).to match({
           id: status.id.to_s,
           text: status.text,
           spoiler_text: status.spoiler_text,
@@ -51,7 +51,7 @@ RSpec.describe 'Sources' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json).to match({
+        expect(response.parsed_body).to match({
           id: status.id.to_s,
           text: status.text,
           spoiler_text: status.spoiler_text,

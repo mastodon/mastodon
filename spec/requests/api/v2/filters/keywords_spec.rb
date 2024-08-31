@@ -17,7 +17,7 @@ RSpec.describe 'API V2 Filters Keywords' do
     it 'returns http success' do
       get "/api/v2/filters/#{filter.id}/keywords", headers: headers
       expect(response).to have_http_status(200)
-      expect(body_as_json)
+      expect(response.parsed_body)
         .to contain_exactly(
           include(id: keyword.id.to_s)
         )
@@ -42,7 +42,7 @@ RSpec.describe 'API V2 Filters Keywords' do
     it 'creates a filter', :aggregate_failures do
       expect(response).to have_http_status(200)
 
-      expect(body_as_json)
+      expect(response.parsed_body)
         .to include(
           keyword: 'magic',
           whole_word: false
@@ -73,7 +73,7 @@ RSpec.describe 'API V2 Filters Keywords' do
     it 'responds with the keyword', :aggregate_failures do
       expect(response).to have_http_status(200)
 
-      expect(body_as_json)
+      expect(response.parsed_body)
         .to include(
           keyword: 'foo',
           whole_word: false

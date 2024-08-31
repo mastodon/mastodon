@@ -31,7 +31,7 @@ RSpec.describe ActivityPub::CollectionsController do
             .and have_cacheable_headers
           expect(response.media_type).to eq 'application/activity+json'
 
-          expect(body_as_json[:orderedItems])
+          expect(response.parsed_body[:orderedItems])
             .to be_an(Array)
             .and have_attributes(size: 3)
             .and include(ActivityPub::TagManager.instance.uri_for(private_pinned))
@@ -71,7 +71,7 @@ RSpec.describe ActivityPub::CollectionsController do
 
             expect(response.media_type).to eq 'application/activity+json'
 
-            expect(body_as_json[:orderedItems])
+            expect(response.parsed_body[:orderedItems])
               .to be_an(Array)
               .and have_attributes(size: 3)
               .and include(ActivityPub::TagManager.instance.uri_for(private_pinned))
@@ -94,7 +94,7 @@ RSpec.describe ActivityPub::CollectionsController do
               expect(response.media_type).to eq 'application/activity+json'
               expect(response.headers['Cache-Control']).to include 'private'
 
-              expect(body_as_json[:orderedItems])
+              expect(response.parsed_body[:orderedItems])
                 .to be_an(Array)
                 .and be_empty
             end
@@ -110,7 +110,7 @@ RSpec.describe ActivityPub::CollectionsController do
               expect(response.media_type).to eq 'application/activity+json'
               expect(response.headers['Cache-Control']).to include 'private'
 
-              expect(body_as_json[:orderedItems])
+              expect(response.parsed_body[:orderedItems])
                 .to be_an(Array)
                 .and be_empty
             end

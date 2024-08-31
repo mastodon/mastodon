@@ -37,7 +37,7 @@ RSpec.describe 'Reports' do
       emails = capture_emails { subject }
 
       expect(response).to have_http_status(200)
-      expect(body_as_json).to match(
+      expect(response.parsed_body).to match(
         a_hash_including(
           status_ids: [status.id.to_s],
           category: category,
