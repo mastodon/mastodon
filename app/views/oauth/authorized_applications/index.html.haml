@@ -7,7 +7,7 @@
 
 .applications-list
   - @applications.each do |application|
-    .applications-list__item
+    .applications-list__item{id: application.id}
       - if application.website.present?
         = link_to application.name, application.website, target: '_blank', rel: 'noopener noreferrer', class: 'announcements-list__item__title'
       - else
