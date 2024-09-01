@@ -80,6 +80,24 @@ describe LanguagesHelper do
       end
     end
 
+    context 'when sorting with undefined' do
+      it 'returns undefined first before others' do
+        expect(described_class.sorted_locale_keys(%w(en und en-GB))).to eq(%w(und en en-GB))
+      end
+    end
+
+    context 'when sorting with blank value' do
+      it 'returns blank first before others' do
+        expect(described_class.sorted_locale_keys(['en', '', 'en-GB'])).to eq(['', 'en', 'en-GB'])
+      end
+    end
+
+    context 'when sorting with unknown value' do
+      it 'returns unknown alphabetically with others' do
+        expect(described_class.sorted_locale_keys(%w(en invented en-GB))).to eq(%w(en en-GB invented))
+      end
+    end
+
     context 'when sorting with local variants' do
       it 'returns variant in-line' do
         expect(described_class.sorted_locale_keys(%w(en eo en-GB))).to eq(%w(en en-GB eo))
