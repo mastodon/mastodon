@@ -274,11 +274,20 @@ class LinkDetailsExtractor
   end
 
   def detect_encoding_and_parse_document
-    [detect_encoding, nil, header_encoding].uniq.each do |encoding|
-      document = Nokogiri::HTML(@html, nil, encoding)
-      return document if document.to_s.valid_encoding?
+    html = nil
+    encoding = nil
+
+    [detect_encoding, header_encoding].compact.each do |enc|
+      html = @html.dup.force_encoding(enc)
+      if html.valid_encoding?
+        encoding = enc
+        break
+      end
     end
-    Nokogiri::HTML(@html, nil, 'UTF-8')
+
+    html = @html unless encoding
+
+    Nokogiri::HTML5(html, nil, encoding)
   end
 
   def detect_encoding
