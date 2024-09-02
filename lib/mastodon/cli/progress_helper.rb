@@ -51,7 +51,7 @@ module Mastodon::CLI
               result = ActiveRecord::Base.connection_pool.with_connection do
                 yield(item)
               ensure
-                RedisConfiguration.pool.checkin if Thread.current[:redis]
+                RedisConnection.pool.checkin if Thread.current[:redis]
                 Thread.current[:redis] = nil
               end
 

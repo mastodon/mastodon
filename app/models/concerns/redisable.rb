@@ -2,10 +2,10 @@
 
 module Redisable
   def redis
-    Thread.current[:redis] ||= RedisConfiguration.pool.checkout
+    Thread.current[:redis] ||= RedisConnection.pool.checkout
   end
 
   def with_redis(&block)
-    RedisConfiguration.with(&block)
+    RedisConnection.with(&block)
   end
 end

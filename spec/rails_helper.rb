@@ -176,5 +176,5 @@ def stub_reset_connection_pools
   # TODO: Is there a better way to correctly run specs without stubbing this?
   # (Avoids reset_connection_pools! in test env)
   allow(ActiveRecord::Base).to receive(:establish_connection)
-  allow(RedisConfiguration).to receive(:establish_pool)
+  allow(RedisConnection).to receive(:establish_pool)
 end
