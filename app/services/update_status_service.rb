@@ -73,7 +73,7 @@ class UpdateStatusService < BaseService
 
     media_attachments = @status.account.media_attachments.where(status_id: [nil, @status.id]).where(scheduled_status_id: nil).where(id: @options[:media_ids].take(Status::MEDIA_ATTACHMENTS_LIMIT).map(&:to_i)).to_a
 
-    not_found_ids = @options[:media_ids] - media_attachments.map(&:id)
+    not_found_ids = @options[:media_ids].map(&:to_i) - media_attachments.map(&:id)
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.not_found', ids: not_found_ids.join(', ')) if not_found_ids.any?
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if media_attachments.size > 1 && media_attachments.find(&:audio_or_video?)
