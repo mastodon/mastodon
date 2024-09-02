@@ -215,6 +215,7 @@ et:
         update_custom_emoji: Uuendas kohandatud emotikoni
         update_domain_block: Uuenda domeenipiirangut
         update_ip_block: IP-reegli uuendamine
+        update_report: Uuendamise raport
         update_status: Uuenda postitust
         update_user_role: Uuenda rolli
       actions:
@@ -445,6 +446,9 @@ et:
       title: Jälgimissoovitused
       unsuppress: Taasta jälgimissoovitused
     instances:
+      audit_log:
+        title: Viimatised auditi logid
+        view_all: Vaata täielikke auditi logisid
       availability:
         description_html:
           one: Kui domeenile edastamine nurjub <strong>%{count} päeval</strong>, siis ei tehta enam edastamiskatseid, välja arvatud juhul, kui domeenilt <em>võetakse vastu</em> saadetis.
@@ -612,6 +616,7 @@ et:
       report: 'Teavitus #%{id}'
       reported_account: Teavitatud kontost
       reported_by: Teavitaja
+      reported_with_application: Raporteeritud rakendusega
       resolved: Lahendatud
       resolved_msg: Teavituse lahendamine õnnestus!
       skip_to_actions: Otsuste juurde
@@ -850,7 +855,24 @@ et:
         action: Klõpsa lisainfo saamiseks siia
         message_html: "<strong>Objektihoidla on valesti seadistatud. Kasutajate privaatsus on ohustatud.</strong>"
     tags:
+      moderation:
+        not_trendable: Pole trendis
+        not_usable: Pole kasutatav
+        pending_review: Ootab läbivaatust
+        review_requested: Taodeldud läbivaatust
+        reviewed: Läbivaadatud
+        title: Olek
+        trendable: Trendil
+        unreviewed: Läbivaatamata
+        usable: Kasutatav
+      name: Nimi
+      newest: Uusim
+      oldest: Vanim
+      open: Vaata avalikult
+      reset: Lähtesta
       review: Vaata olek üle
+      search: Otsi
+      title: Märksõnad
       updated_msg: Sildi sätted edukalt uuendatud
     title: Administreerimine
     trends:
