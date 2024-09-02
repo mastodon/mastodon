@@ -582,6 +582,8 @@ lt:
       trending: Tendencinga
       with_media: Su medija
     system_checks:
+      database_schema_check:
+        message_html: Laukiama duomenų bazės perkėlimo. Paleisk juos, kad įsitikintum, jog programa veikia taip, kaip tikimasi.
       elasticsearch_health_yellow:
         message_html: Elasticsearch klasteris yra nesveikas (geltona būsena), galbūt norėsi išsiaiškinti priežastį
       elasticsearch_preset:
@@ -836,7 +838,7 @@ lt:
       title: Nepavyko saugumo patvirtinimas
     '429': Stabdomas
     '500':
-      content: Atsiprašome, tačiau mūsų pusėje įvyko klaida.
+      content: Atsiprašome, bet kažkas nutiko ne taip mūsų pusėje.
       title: Netinkamas puslapis
     noscript_html: Kad naudotumėtės Mastodon web aplikacija, prašome įsijungti JavaScript. Alternatyviai, pabandykite viena iš <a href="%{apps_path}">vietinių aplikacijų</a> Mastodon savo platformai.
   exports:

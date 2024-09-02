@@ -31,6 +31,7 @@ en-GB:
       created_msg: Moderation note successfully created!
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
+      add_email_domain_block: Block email domain
       approve: Approve
       approved_msg: Successfully approved %{username}'s sign-up application
       are_you_sure: Are you sure?
@@ -57,6 +58,7 @@ en-GB:
       demote: Demote
       destroyed_msg: "%{username}'s data is now queued to be deleted imminently"
       disable: Freeze
+      disable_sign_in_token_auth: Disable email token authentication
       disable_two_factor_authentication: Disable 2FA
       disabled: Frozen
       display_name: Display name
@@ -65,6 +67,7 @@ en-GB:
       email: Email
       email_status: Email status
       enable: Unfreeze
+      enable_sign_in_token_auth: Enable email token authentication
       enabled: Enabled
       enabled_msg: Successfully unfroze %{username}'s account
       followers: Followers
@@ -129,6 +132,7 @@ en-GB:
       resubscribe: Resubscribe
       role: Role
       search: Search
+      search_same_email_domain: Other users with the same email domain
       search_same_ip: Other users with the same IP
       security: Security
       security_measures:
@@ -169,10 +173,12 @@ en-GB:
         approve_appeal: Approve Appeal
         approve_user: Approve User
         assigned_to_self_report: Assign Report
+        change_email_user: Change Email for User
         change_role_user: Change Role of User
         confirm_user: Confirm User
         create_account_warning: Create Warning
         create_announcement: Create Announcement
+        create_canonical_email_block: Create Email Block
         create_custom_emoji: Create Custom Emoji
         create_domain_allow: Create Domain Allow
         create_domain_block: Create Domain Block
@@ -1081,6 +1087,7 @@ en-GB:
     setup:
       email_settings_hint_html: Click the link we sent you to verify %{email}. We'll wait right here.
       link_not_received: Didn't get a link?
+      new_confirmation_instructions_sent: You will receive a new email with the confirmation link in a few minutes!
       title: Check your inbox
     sign_in:
       preamble_html: Log in with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
@@ -1091,7 +1098,9 @@ en-GB:
       title: Let's get you set up on %{domain}.
     status:
       account_status: Account status
+      confirming: Waiting for email confirmation to be completed.
       functional: Your account is fully operational.
+      pending: Your application is pending review by our staff. This may take some time. You will receive an email if your application is approved.
       redirecting_to: Your account is inactive because it is currently redirecting to %{acct}.
       self_destruct: As %{domain} is closing down, you will only get limited access to your account.
       view_strikes: View past strikes against your account
@@ -1134,6 +1143,9 @@ en-GB:
       before: 'Before proceeding, please read these notes carefully:'
       caches: Content that has been cached by other servers may persist
       data_removal: Your posts and other data will be permanently removed
+      email_change_html: You can <a href="%{path}">change your email address</a> without deleting your account
+      email_contact_html: If it still doesn't arrive, you can email <a href="mailto:%{email}">%{email}</a> for help
+      email_reconfirmation_html: If you are not receiving the confirmation email, you can <a href="%{path}">request it again</a>
       irreversible: You will not be able to restore or reactivate your account
       more_details_html: For more details, see the <a href="%{terms_path}">privacy policy</a>.
       username_available: Your username will become available again
@@ -1366,6 +1378,7 @@ en-GB:
     authentication_methods:
       otp: two-factor authentication app
       password: password
+      sign_in_token: email security code
       webauthn: security keys
     description_html: If you see activity that you don't recognise, consider changing your password and enabling two-factor authentication.
     empty: No authentication history available
@@ -1376,6 +1389,16 @@ en-GB:
     unsubscribe:
       action: Yes, unsubscribe
       complete: Unsubscribed
+      confirmation_html: Are you sure you want to unsubscribe from receiving %{type} for Mastodon on %{domain} to your email at %{email}? You can always re-subscribe from your <a href="%{settings_path}">email notification settings</a>.
+      emails:
+        notification_emails:
+          favourite: favourite notification emails
+          follow: follow notification emails
+          follow_request: follow request emails
+          mention: mention notification emails
+          reblog: boost notification emails
+      resubscribe_html: If you've unsubscribed by mistake, you can re-subscribe from your <a href="%{settings_path}">email notification settings</a>.
+      success_html: You'll no longer receive %{type} for Mastodon on %{domain} to your email at %{email}.
       title: Unsubscribe
   media_attachments:
     validations:
@@ -1456,6 +1479,8 @@ en-GB:
     update:
       subject: "%{name} edited a post"
   notifications:
+    administration_emails: Admin email notifications
+    email_events: Events for email notifications
     email_events_hint: 'Select events that you want to receive notifications for:'
   number:
     human:
@@ -1614,6 +1639,7 @@ en-GB:
     import: Import
     import_and_export: Import and export
     migrate: Account migration
+    notifications: Email notifications
     preferences: Preferences
     profile: Profile
     relationships: Follows and followers
@@ -1860,6 +1886,7 @@ en-GB:
     invalid_otp_token: Invalid two-factor code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     rate_limited: Too many authentication attempts, try again later.
+    seamless_external_login: You are logged in via an external service, so password and email settings are not available.
     signed_in_as: 'Logged in as:'
   verification:
     extra_instructions_html: <strong>Tip:</strong> The link on your website can be invisible. The important part is <code>rel="me"</code> which prevents impersonation on websites with user-generated content. You can even use a <code>link</code> tag in the header of the page instead of <code>a</code>, but the HTML must be accessible without executing JavaScript.
