@@ -234,16 +234,10 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json)
-          .to include(
-            partial_accounts: have_attributes(
-              size: be > 0,
-              first: have_attributes(keys: contain_exactly('acct', 'avatar', 'avatar_static', 'bot', 'id', 'locked', 'url'))
-            ).and(not_include(id: recent_account.id.to_s)),
-            accounts: have_attributes(
-              first: include(id: recent_account.id.to_s)
-            )
-          )
+        expect(body_as_json[:partial_accounts].size).to be > 0
+        expect(body_as_json[:partial_accounts][0].keys.map(&:to_sym)).to contain_exactly(:acct, :avatar, :avatar_static, :bot, :id, :locked, :url)
+        expect(body_as_json[:partial_accounts].pluck(:id)).to_not include(recent_account.id.to_s)
+        expect(body_as_json[:accounts].pluck(:id)).to include(recent_account.id.to_s)
       end
     end
 
