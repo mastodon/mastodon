@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RedisConfiguration
+class RedisConnection
   class << self
     def establish_pool(new_pool_size)
       @pool&.shutdown(&:close)
@@ -22,33 +22,24 @@ class RedisConfiguration
     end
   end
 
+  attr_reader :config
+
+  def initialize
+    @config = REDIS_CONFIGURATION.base
+  end
+
   def connection
-    if namespace?
+    namespace = config[:namespace]
+    if namespace.present?
       Redis::Namespace.new(namespace, redis: raw_connection)
     else
       raw_connection
     end
   end
 
-  def namespace?
-    namespace.present?
-  end
-
-  def namespace
-    ENV.fetch('REDIS_NAMESPACE', nil)
-  end
-
-  def url
-    ENV['REDIS_URL']
-  end
-
-  def redis_driver
-    ENV.fetch('REDIS_DRIVER', 'hiredis') == 'ruby' ? :ruby : :hiredis
-  end
-
   private
 
   def raw_connection
-    Redis.new(url: url, driver: redis_driver)
+    Redis.new(**config)
   end
 end
