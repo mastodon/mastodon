@@ -51,7 +51,7 @@ class ReportService < BaseService
   end
 
   def forward?
-    @report.can_forward? && ActiveModel::Type::Boolean.new.cast(@options[:forward])
+    @report.forwardable? && ActiveModel::Type::Boolean.new.cast(@options[:forward])
   end
 
   def reported_status_ids

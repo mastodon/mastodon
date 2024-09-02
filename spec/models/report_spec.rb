@@ -3,6 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Report do
+  let(:local_account) { Fabricate(:account, domain: nil) }
+  let(:remote_account) { Fabricate(:account, domain: 'example.com') }
+
   describe 'statuses' do
     it 'returns the statuses for the report' do
       status = Fabricate(:status)
@@ -20,6 +23,20 @@ RSpec.describe Report do
       report  = Fabricate(:report, status_ids: [status1.id, status2.id])
 
       expect(report.media_attachments_count).to eq 3
+    end
+  end
+
+  describe 'forwardable?' do
+    it 'returns true if the target account is not local' do
+      report = Fabricate(:report, target_account: remote_account)
+
+      expect(report.forwardable?).to be true
+    end
+
+    it 'returns false if the target account is local' do
+      report = Fabricate(:report, target_account: local_account)
+
+      expect(report.forwardable?).to be false
     end
   end
 

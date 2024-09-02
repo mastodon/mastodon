@@ -7,9 +7,7 @@ class ReportForwardingService < BaseService
     @report = report
     @options = options
 
-    return if @report.target_account.local?
-
-    raise ActiveRecord::RecordNotFound if @report.target_account.unavailable?
+    return unless @report.forwardable?
 
     unless forward_to_domains.empty?
       forward_to_origin! if forward_to_origin?

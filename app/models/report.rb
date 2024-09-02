@@ -103,7 +103,7 @@ class Report < ApplicationRecord
     Rule.with_discarded.where(id: rule_ids)
   end
 
-  def can_forward?
+  def forwardable?
     !target_account.local?
   end
 
