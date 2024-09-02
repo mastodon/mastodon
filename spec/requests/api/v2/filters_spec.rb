@@ -62,7 +62,7 @@ RSpec.describe 'Filters' do
           .to include(
             title: 'magic',
             filter_action: 'hide',
-            context: ['home'],
+            context: %w(home),
             keywords: have_attributes(
               first: include(keyword: 'magic', whole_word: true)
             )

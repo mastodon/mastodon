@@ -26,7 +26,7 @@ describe 'Translation Languages' do
           .to have_http_status(200)
 
         expect(body_as_json)
-          .to include({ und: %w(en de), en: ['de'] })
+          .to match({ und: %w(en de), en: ['de'] })
       end
 
       private
