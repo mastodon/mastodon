@@ -99,6 +99,10 @@ class Report < ApplicationRecord
     Rule.with_discarded.where(id: rule_ids)
   end
 
+  def can_forward?
+    !target_account.local?
+  end
+
   def assign_to_self!(current_account)
     update!(assigned_account_id: current_account.id)
   end
