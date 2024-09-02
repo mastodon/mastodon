@@ -134,7 +134,7 @@ class PostStatusService < BaseService
 
     @media = @account.media_attachments.where(status_id: nil).where(id: @options[:media_ids].take(Status::MEDIA_ATTACHMENTS_LIMIT).map(&:to_i))
 
-    not_found_ids = @options[:media_ids] - @media.map(&:id)
+    not_found_ids = @options[:media_ids].map(&:to_i) - @media.map(&:id)
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.not_found', ids: not_found_ids.join(', ')) if not_found_ids.any?
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if @media.size > 1 && @media.find(&:audio_or_video?)
