@@ -19,6 +19,9 @@
 #  action_taken_at            :datetime
 #  rule_ids                   :bigint(8)        is an Array
 #  application_id             :bigint(8)
+#  forwarded_at               :datetime
+#  forwarded_to_domains       :string           default([]), not null, is an Array
+#  forwarded_by_id            :bigint(8)
 #
 
 class Report < ApplicationRecord
@@ -38,6 +41,7 @@ class Report < ApplicationRecord
     belongs_to :target_account
     belongs_to :action_taken_by_account, optional: true
     belongs_to :assigned_account, optional: true
+    belongs_to :forwarded_by, optional: true
   end
 
   has_many :notes, class_name: 'ReportNote', inverse_of: :report, dependent: :destroy
