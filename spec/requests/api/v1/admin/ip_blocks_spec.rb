@@ -88,10 +88,12 @@ RSpec.describe 'IP Blocks' do
       subject
 
       expect(response).to have_http_status(200)
-      json = body_as_json
 
-      expect(json[:ip]).to eq("#{ip_block.ip}/#{ip_block.ip.prefix}")
-      expect(json[:severity]).to eq(ip_block.severity.to_s)
+      expect(body_as_json)
+        .to include(
+          ip: eq("#{ip_block.ip}/#{ip_block.ip.prefix}"),
+          severity: eq(ip_block.severity.to_s)
+        )
     end
 
     context 'when ip block does not exist' do
@@ -118,11 +120,12 @@ RSpec.describe 'IP Blocks' do
       subject
 
       expect(response).to have_http_status(200)
-      json = body_as_json
-
-      expect(json[:ip]).to eq("#{params[:ip]}/32")
-      expect(json[:severity]).to eq(params[:severity])
-      expect(json[:comment]).to eq(params[:comment])
+      expect(body_as_json)
+        .to include(
+          ip: eq("#{params[:ip]}/32"),
+          severity: eq(params[:severity]),
+          comment: eq(params[:comment])
+        )
     end
 
     context 'when the required ip param is not provided' do

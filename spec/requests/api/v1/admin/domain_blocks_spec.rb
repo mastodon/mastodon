@@ -133,10 +133,8 @@ RSpec.describe 'Domain Blocks' do
     it 'creates a domain block with the expected domain name and severity', :aggregate_failures do
       subject
 
-      body = body_as_json
-
       expect(response).to have_http_status(200)
-      expect(body).to match a_hash_including(
+      expect(body_as_json).to match a_hash_including(
         {
           domain: 'foo.bar.com',
           severity: 'silence',
@@ -156,10 +154,8 @@ RSpec.describe 'Domain Blocks' do
       it 'creates a domain block with the expected domain name and severity', :aggregate_failures do
         subject
 
-        body = body_as_json
-
         expect(response).to have_http_status(200)
-        expect(body).to match a_hash_including(
+        expect(body_as_json).to match a_hash_including(
           {
             domain: 'foo.bar.com',
             severity: 'suspend',

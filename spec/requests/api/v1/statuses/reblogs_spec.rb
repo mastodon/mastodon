@@ -24,11 +24,14 @@ describe 'API V1 Statuses Reblogs' do
 
           expect(user.account.reblogged?(status)).to be true
 
-          hash_body = body_as_json
-
-          expect(hash_body[:reblog][:id]).to eq status.id.to_s
-          expect(hash_body[:reblog][:reblogs_count]).to eq 1
-          expect(hash_body[:reblog][:reblogged]).to be true
+          expect(body_as_json)
+            .to include(
+              reblog: include(
+                id: status.id.to_s,
+                reblogs_count: 1,
+                reblogged: true
+              )
+            )
         end
       end
 
@@ -57,11 +60,12 @@ describe 'API V1 Statuses Reblogs' do
 
           expect(user.account.reblogged?(status)).to be false
 
-          hash_body = body_as_json
-
-          expect(hash_body[:id]).to eq status.id.to_s
-          expect(hash_body[:reblogs_count]).to eq 0
-          expect(hash_body[:reblogged]).to be false
+          expect(body_as_json)
+            .to include(
+              id: status.id.to_s,
+              reblogs_count: 0,
+              reblogged: false
+            )
         end
       end
 
@@ -81,11 +85,12 @@ describe 'API V1 Statuses Reblogs' do
 
           expect(user.account.reblogged?(status)).to be false
 
-          hash_body = body_as_json
-
-          expect(hash_body[:id]).to eq status.id.to_s
-          expect(hash_body[:reblogs_count]).to eq 0
-          expect(hash_body[:reblogged]).to be false
+          expect(body_as_json)
+            .to include(
+              id: status.id.to_s,
+              reblogs_count: 0,
+              reblogged: false
+            )
         end
       end
 
