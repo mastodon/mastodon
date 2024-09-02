@@ -21,19 +21,24 @@
                 warning_hint: I18n.t('admin.settings.registrations_mode.warning_hint'),
                 wrapper: :with_label
 
-    .fields-row__column.fields-row__column-6.fields-group
-      = f.input :require_invite_text,
-                as: :boolean,
-                disabled: !approved_registrations?,
-                wrapper: :with_label
+    - if captcha_available?
+      .fields-row__column.fields-row__column-6.fields-group
+        = f.input :captcha_enabled,
+                  as: :boolean,
+                  hint: t('admin.settings.captcha_enabled.desc_html'),
+                  label: t('admin.settings.captcha_enabled.title'),
+                  wrapper: :with_label
 
-  - if captcha_available?
-    .fields-group
-      = f.input :captcha_enabled,
-                as: :boolean,
-                hint: t('admin.settings.captcha_enabled.desc_html'),
-                label: t('admin.settings.captcha_enabled.title'),
-                wrapper: :with_label
+  .fields-group
+    = f.input :require_invite_message,
+              as: :text,
+              input_html: { rows: 2 },
+              wrapper: :with_block_label
+
+    = f.input :require_invite_text,
+              as: :boolean,
+              disabled: !approved_registrations?,
+              wrapper: :with_label
 
   .fields-group
     = f.input :closed_registrations_message,

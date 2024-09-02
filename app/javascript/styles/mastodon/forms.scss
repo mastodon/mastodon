@@ -136,7 +136,7 @@ code {
     font-size: 17px;
     line-height: 22px;
     color: $secondary-text-color;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 
     &.invited-by {
       margin-bottom: 15px;
@@ -145,6 +145,36 @@ code {
     a {
       color: $highlight-text-color;
     }
+  }
+
+  .invite_reason_message {
+    font-size: 14px;
+    line-height: 20px;
+    color: $secondary-text-color;
+    margin-bottom: 20px;
+
+    p + p {
+      margin-top: 10px;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    a {
+      color: $highlight-text-color;
+      text-decoration: underline;
+
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .user_invite_request_text {
+    margin-top: 10px;
   }
 
   .rules-list {
@@ -987,7 +1017,8 @@ code {
 .form_admin_settings_site_extended_description,
 .form_admin_settings_site_terms,
 .form_admin_settings_custom_css,
-.form_admin_settings_closed_registrations_message {
+.form_admin_settings_closed_registrations_message,
+.form_admin_settings_require_invite_message {
   textarea {
     font-family: $font-monospace, monospace;
   }

@@ -237,6 +237,20 @@ const onChangeRegistrationMode = (target: HTMLSelectElement) => {
         } while (element && !element.classList.contains('fields-group'));
       }
     });
+
+  const requireInviteMessageInput = document.getElementById(
+    'form_admin_settings_require_invite_message',
+  );
+  if (requireInviteMessageInput instanceof HTMLTextAreaElement) {
+    const requireInviteMessageWrapper =
+      requireInviteMessageInput.closest('.input');
+    requireInviteMessageInput.disabled = !enabled;
+    if (enabled) {
+      requireInviteMessageWrapper?.classList.remove('disabled');
+    } else {
+      requireInviteMessageWrapper?.classList.add('disabled');
+    }
+  }
 };
 
 const convertUTCDateTimeToLocal = (value: string) => {
