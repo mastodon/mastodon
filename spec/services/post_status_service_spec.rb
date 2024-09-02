@@ -229,13 +229,16 @@ RSpec.describe PostStatusService do
     account = Fabricate(:account)
     media = Fabricate(:media_attachment, account: Fabricate(:account))
 
-    subject.call(
-      account,
-      text: 'test status update',
-      media_ids: [media.id]
+    expect do
+      subject.call(
+        account,
+        text: 'test status update',
+        media_ids: [media.id]
+      )
+    end.to raise_error(
+      Mastodon::ValidationError,
+      I18n.t('media_attachments.validations.not_found', ids: media.id)
     )
-
-    expect(media.reload.status).to be_nil
   end
 
   it 'does not allow attaching more files than configured limit' do
