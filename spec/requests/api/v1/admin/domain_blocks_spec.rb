@@ -94,7 +94,7 @@ RSpec.describe 'Domain Blocks' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json).to eq(
+      expect(body_as_json).to match(
         {
           id: domain_block.id.to_s,
           domain: domain_block.domain,

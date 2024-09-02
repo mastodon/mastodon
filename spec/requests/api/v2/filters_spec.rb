@@ -63,7 +63,7 @@ RSpec.describe 'Filters' do
         expect(json[:title]).to eq 'magic'
         expect(json[:filter_action]).to eq 'hide'
         expect(json[:context]).to eq ['home']
-        expect(json[:keywords].map { |keyword| keyword.slice(:keyword, :whole_word) }).to eq [{ keyword: 'magic', whole_word: true }]
+        expect(json[:keywords].map { |keyword| keyword.slice(:keyword, :whole_word) }).to match [{ keyword: 'magic', whole_word: true }]
       end
 
       it 'creates a filter', :aggregate_failures do
