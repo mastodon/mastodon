@@ -107,6 +107,21 @@ class Report < ApplicationRecord
     !target_account.local?
   end
 
+  def forwardable_to_domains
+    # If the reporting account isn't local, then this is a report that has been
+    # forwarded to this instance, therefore we should not enable forwarding.
+    return [] unless account.local?
+
+    # If the targeted account isn't local, include that domain
+    domains = target_account.local? ? [] : [target_account.domain]
+
+    # If the reported statuses are in reply to a thread, include the remote domains:
+    status_domains = Account.remote.where(id: Status.where(id: status_ids).where.not(in_reply_to_account_id: nil).select(:in_reply_to_account_id)).pluck(:domain)
+
+    # Finally, make the list unique:
+    domains.concat(status_domains).uniq
+  end
+
   def assign_to_self!(current_account)
     update!(assigned_account_id: current_account.id)
   end
