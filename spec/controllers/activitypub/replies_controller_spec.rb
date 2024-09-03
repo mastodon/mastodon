@@ -68,10 +68,11 @@ RSpec.describe ActivityPub::RepliesController do
       let(:parent_visibility) { :public }
       let(:page_json) { body_as_json[:first] }
 
-      it_behaves_like 'cacheable response'
-
       it 'returns http success and correct media type' do
-        expect(response).to have_http_status(200)
+        expect(response)
+          .to have_http_status(200)
+          .and have_cacheable_headers
+
         expect(response.media_type).to eq 'application/activity+json'
       end
 

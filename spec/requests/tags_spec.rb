@@ -8,16 +8,15 @@ RSpec.describe 'Tags' do
       let(:tag) { Fabricate :tag }
 
       context 'with HTML format' do
-        # TODO: Convert the cacheable response shared example into a matcher,
-        # remove this example, rely on system spec (which should use matcher)
+        # TODO: Update the have_cacheable_headers matcher to operate on capybara sessions
+        # Remove this example, rely on system spec (which should use matcher)
         before { get tag_path(tag) }
 
         it 'returns http success' do
           expect(response)
             .to have_http_status(200)
+            .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
         end
-
-        it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
       end
 
       context 'with JSON format' do
@@ -26,11 +25,10 @@ RSpec.describe 'Tags' do
         it 'returns http success' do
           expect(response)
             .to have_http_status(200)
+            .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
           expect(response.content_type)
             .to start_with('application/activity+json')
         end
-
-        it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
       end
 
       context 'with RSS format' do
@@ -39,11 +37,10 @@ RSpec.describe 'Tags' do
         it 'returns http success' do
           expect(response)
             .to have_http_status(200)
+            .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
           expect(response.content_type)
             .to start_with('application/rss+xml')
         end
-
-        it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
       end
     end
 
