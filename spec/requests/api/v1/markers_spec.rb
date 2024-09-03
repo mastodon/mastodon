@@ -17,13 +17,12 @@ RSpec.describe 'API Markers' do
     end
 
     it 'returns markers', :aggregate_failures do
-      json = body_as_json
-
       expect(response).to have_http_status(200)
-      expect(json.key?(:home)).to be true
-      expect(json[:home][:last_read_id]).to eq '123'
-      expect(json.key?(:notifications)).to be true
-      expect(json[:notifications][:last_read_id]).to eq '456'
+      expect(body_as_json)
+        .to include(
+          home: include(last_read_id: '123'),
+          notifications: include(last_read_id: '456')
+        )
     end
   end
 

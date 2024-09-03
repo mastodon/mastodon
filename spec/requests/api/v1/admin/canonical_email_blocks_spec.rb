@@ -96,10 +96,11 @@ RSpec.describe 'Canonical Email Blocks' do
         subject
 
         expect(response).to have_http_status(200)
-        json = body_as_json
-
-        expect(json[:id]).to eq(canonical_email_block.id.to_s)
-        expect(json[:canonical_email_hash]).to eq(canonical_email_block.canonical_email_hash)
+        expect(body_as_json)
+          .to include(
+            id: eq(canonical_email_block.id.to_s),
+            canonical_email_hash: eq(canonical_email_block.canonical_email_hash)
+          )
       end
     end
 

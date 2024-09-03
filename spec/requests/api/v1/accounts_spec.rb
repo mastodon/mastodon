@@ -114,10 +114,11 @@ describe '/api/v1/accounts' do
 
           expect(response).to have_http_status(200)
 
-          json = body_as_json
-
-          expect(json[:following]).to be true
-          expect(json[:requested]).to be false
+          expect(body_as_json)
+            .to include(
+              following: true,
+              requested: false
+            )
 
           expect(user.account.following?(other_account)).to be true
         end
@@ -133,10 +134,11 @@ describe '/api/v1/accounts' do
 
           expect(response).to have_http_status(200)
 
-          json = body_as_json
-
-          expect(json[:following]).to be false
-          expect(json[:requested]).to be true
+          expect(body_as_json)
+            .to include(
+              following: false,
+              requested: true
+            )
 
           expect(user.account.requested?(other_account)).to be true
         end

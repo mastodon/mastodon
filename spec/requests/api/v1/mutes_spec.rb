@@ -58,10 +58,8 @@ RSpec.describe 'Mutes' do
       it 'queries mutes in range according to max_id', :aggregate_failures do
         subject
 
-        body = body_as_json
-
-        expect(body.size).to eq 1
-        expect(body[0][:id]).to eq mutes[0].target_account_id.to_s
+        expect(body_as_json)
+          .to contain_exactly(include(id: mutes.first.target_account_id.to_s))
       end
     end
 
@@ -71,10 +69,8 @@ RSpec.describe 'Mutes' do
       it 'queries mutes in range according to since_id', :aggregate_failures do
         subject
 
-        body = body_as_json
-
-        expect(body.size).to eq 1
-        expect(body[0][:id]).to eq mutes[1].target_account_id.to_s
+        expect(body_as_json)
+          .to contain_exactly(include(id: mutes[1].target_account_id.to_s))
       end
     end
 

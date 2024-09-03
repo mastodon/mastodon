@@ -55,10 +55,8 @@ RSpec.describe 'Blocks' do
       it 'queries the blocks in range according to max_id', :aggregate_failures do
         subject
 
-        response_body = body_as_json
-
-        expect(response_body.size).to be 1
-        expect(response_body[0][:id]).to eq(blocks[0].target_account.id.to_s)
+        expect(body_as_json)
+          .to contain_exactly(include(id: blocks.first.target_account.id.to_s))
       end
     end
 
@@ -68,10 +66,8 @@ RSpec.describe 'Blocks' do
       it 'queries the blocks in range according to since_id', :aggregate_failures do
         subject
 
-        response_body = body_as_json
-
-        expect(response_body.size).to be 1
-        expect(response_body[0][:id]).to eq(blocks[2].target_account.id.to_s)
+        expect(body_as_json)
+          .to contain_exactly(include(id: blocks[2].target_account.id.to_s))
       end
     end
   end

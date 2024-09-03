@@ -32,10 +32,8 @@ RSpec.describe 'Suggestions' do
     it 'returns accounts' do
       subject
 
-      body = body_as_json
-
-      expect(body.size).to eq 2
-      expect(body.pluck(:id)).to match_array([bob, jeff].map { |i| i.id.to_s })
+      expect(body_as_json)
+        .to contain_exactly(include(id: bob.id.to_s), include(id: jeff.id.to_s))
     end
 
     context 'with limit param' do
