@@ -1456,6 +1456,7 @@ it:
   media_attachments:
     validations:
       images_and_video: Impossibile allegare video a un post che contiene già immagini
+      not_found: Media %{ids} non trovato o già collegato a un altro post
       not_ready: Impossibile allegare file per cui l'elaborazione non è finita. Riprova tra poco!
       too_many: Impossibile allegare più di 4 file
   migrations:

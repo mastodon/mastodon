@@ -1454,6 +1454,7 @@ fi:
   media_attachments:
     validations:
       images_and_video: Videota ei voi liittää tilapäivitykseen, jossa on jo kuvia
+      not_found: Mediaa %{ids} ei löytynyt, tai se on jo liitetty toiseen julkaisuun
       not_ready: Ei voi liittää tiedostoja, joiden käsittely on kesken. Yritä hetken kuluttua uudelleen!
       too_many: Tiedostoja voi liittää enintään 4
   migrations:
