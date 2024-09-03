@@ -106,11 +106,16 @@ module ApplicationHelper
   end
 
   def material_symbol(icon, attributes = {})
-    inline_svg_tag(
-      "400-24px/#{icon}.svg",
-      class: ['icon', "material-#{icon}"].concat(attributes[:class].to_s.split),
-      role: :img,
-      data: attributes[:data]
+    safe_join(
+      [
+        inline_svg_tag(
+          "400-24px/#{icon}.svg",
+          class: ['icon', "material-#{icon}"].concat(attributes[:class].to_s.split),
+          role: :img,
+          data: attributes[:data]
+        ),
+        ' ',
+      ]
     )
   end
 
