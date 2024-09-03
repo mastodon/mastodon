@@ -34,10 +34,8 @@ RSpec.describe CustomFilter do
   end
 
   describe 'Normalizations' do
-    it 'cleans up context values' do
-      record = described_class.new(context: ['home', 'notifications', 'public    ', ''])
-
-      expect(record.context).to eq(%w(home notifications public))
+    describe 'context' do
+      it { is_expected.to normalize(:context).from(['home', 'notifications', 'public    ', '']).to(%w(home notifications public)) }
     end
   end
 end
