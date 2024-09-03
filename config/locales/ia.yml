@@ -661,6 +661,7 @@ ia:
         delete_data_html: Deler le profilo e contento de <strong>@%{acct}</strong> in 30 dies excepte si le suspension es disfacite intertanto
         preview_preamble_html: "<strong>@%{acct}</strong> recipera un advertimento con le sequente contento:"
         record_strike_html: Registra un sanction contra <strong>@%{acct}</strong> pro adjutar te a prender mesuras adequate in caso de futur violationes committite desde iste conto
+        send_email_html: Inviar un e-mail de advertimento a <strong>@%{acct}</strong>
         warning_placeholder: Motivation supplementari facultative pro le action de moderation.
       target_origin: Origine del conto reportate
       title: Reportos
@@ -700,6 +701,7 @@ ia:
         manage_appeals: Gerer appellos
         manage_appeals_description: Permitte que usatores revide appellos contra actiones de moderation
         manage_blocks: Gerer blocadas
+        manage_blocks_description: Permitter que usatores bloca le fornitores de e-mail e le adresses IP
         manage_custom_emojis: Gerer emojis personalisate
         manage_custom_emojis_description: Permitte que usatores gere emojis personalisate sur le servitor
         manage_federation: Gerer federation
@@ -717,6 +719,7 @@ ia:
         manage_taxonomies: Gerer taxonomias
         manage_taxonomies_description: Permitte que usatores revide contento in tendentias e actualisa le parametros de hashtag
         manage_user_access: Gerer le accesso de usatores
+        manage_user_access_description: Permitte que usatores disactiva le authentication bifactorial de altere usatores, cambia lor adresses de e-mail, e reinitialisa lor contrasigno
         manage_users: Gerer usatores
         manage_users_description: Permitte que usatores vide le detalios de altere usatores e exeque actiones de moderation contra illes
         manage_webhooks: Gerer Webhooks
@@ -791,6 +794,7 @@ ia:
       destroyed_msg: Le file incargate al sito ha essite delite!
     software_updates:
       critical_update: Critic – per favor, actualisa rapidemente
+      description: Il es recommendate mantener tu installation de Mastodon actualisate pro beneficiar del ultime reparationes e functiones. In ultra, de tempore a tempore, il es de importantia critic actualisar Mastodon in tempore utile pro evitar problemas de securitate. Pro iste rationes, Mastodon verifica le presentia de actualisationes cata 30 minutas, e te notificara secundo tu preferentias de notification in e-mail.
       documentation_link: Pro saper plus
       release_notes: Notas de version
       title: Actualisationes disponibile
@@ -878,6 +882,7 @@ ia:
         message_html: "<strong>Tu immagazinage de objectos es mal configurate. Le confidentialitate de tu usatores es in risco.</strong>"
     tags:
       moderation:
+        not_trendable: Non pro tendentia
         pending_review: Attende revision
         title: Stato
       name: Nomine
