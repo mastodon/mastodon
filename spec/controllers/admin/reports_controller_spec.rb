@@ -13,39 +13,39 @@ describe Admin::ReportsController do
 
   describe 'GET #index' do
     it 'returns http success with no filters' do
-      specified = Fabricate(:report, action_taken_at: nil)
-      Fabricate(:report, action_taken_at: Time.now.utc)
+      specified = Fabricate(:report, action_taken_at: nil, comment: 'First report')
+      other = Fabricate(:report, action_taken_at: Time.now.utc, comment: 'Second report')
 
       get :index
 
-      reports = assigns(:reports).to_a
-      expect(reports.size).to eq 1
-      expect(reports[0]).to eq specified
       expect(response).to have_http_status(200)
+      expect(response.body)
+        .to include(specified.comment)
+        .and not_include(other.comment)
     end
 
     it 'returns http success with resolved filter' do
-      specified = Fabricate(:report, action_taken_at: Time.now.utc)
-      Fabricate(:report, action_taken_at: nil)
+      specified = Fabricate(:report, action_taken_at: Time.now.utc, comment: 'First report')
+      other = Fabricate(:report, action_taken_at: nil, comment: 'Second report')
 
       get :index, params: { resolved: '1' }
 
-      reports = assigns(:reports).to_a
-      expect(reports.size).to eq 1
-      expect(reports[0]).to eq specified
-
       expect(response).to have_http_status(200)
+      expect(response.body)
+        .to include(specified.comment)
+        .and not_include(other.comment)
     end
   end
 
   describe 'GET #show' do
     it 'renders report' do
-      report = Fabricate(:report)
+      report = Fabricate(:report, comment: 'A big problem')
 
       get :show, params: { id: report }
 
-      expect(assigns(:report)).to eq report
       expect(response).to have_http_status(200)
+      expect(response.body)
+        .to include(report.comment)
     end
   end
 

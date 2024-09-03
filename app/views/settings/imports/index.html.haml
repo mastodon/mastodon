@@ -46,7 +46,7 @@
           %th= t('imports.failures')
       %tbody
         - @recent_imports.each do |import|
-          %tr
+          %tr{ id: dom_id(import) }
             %td= t("imports.types.#{import.type}")
             %td
               - if import.state_unconfirmed?
