@@ -168,15 +168,15 @@ class SearchQueryTransformer < Parslet::Transform
       when 'before'
         @filter = :created_at
         @type = :range
-        @term = { lt: TermValidator::validate_date!(term), time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
+        @term = { lt: TermValidator.validate_date!(term), time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
       when 'after'
         @filter = :created_at
         @type = :range
-        @term = { gt: TermValidator::validate_date!(term), time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
+        @term = { gt: TermValidator.validate_date!(term), time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
       when 'during'
         @filter = :created_at
         @type = :range
-        @term = { gte: TermValidator::validate_date!(term), lte: TermValidator::validate_date!(term), time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
+        @term = { gte: TermValidator.validate_date!(term), lte: TermValidator.validate_date!(term), time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
       when 'in'
         @operator = :flag
         @term = term
@@ -229,7 +229,7 @@ class SearchQueryTransformer < Parslet::Transform
     EPOCH_MILLIS_REGEX = /\A\d{1,19}\z/
 
     def self.validate_date!(value)
-      return value if (value.match?(STRICT_DATE_REGEX) || value.match?(EPOCH_MILLIS_REGEX))
+      return value if value.match?(STRICT_DATE_REGEX) || value.match?(EPOCH_MILLIS_REGEX)
 
       raise Mastodon::FilterValidationError, "Invalid date #{value}"
     end

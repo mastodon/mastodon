@@ -12,22 +12,21 @@ describe SearchQueryTransformer do
     let(:statement_operations) { [] }
 
     [
-      ["2022-01-01", "2022-01-01"],
-      ["\"2022-01-01\"", "2022-01-01"],
-      ["12345678", "12345678"],
-      ["\"12345678\"", "12345678"]
+      ['2022-01-01', '2022-01-01'],
+      ['"2022-01-01"', '2022-01-01'],
+      ['12345678', '12345678'],
+      ['"12345678"', '12345678'],
     ].each do |value, parsed|
       context "with #{operator}:#{value}" do
         let(:query) { "#{operator}:#{value}" }
 
-        it "transforms clauses" do
-          ops = statement_operations.map { |op| [op, parsed] }.to_h
+        it 'transforms clauses' do
+          ops = statement_operations.index_with { |_op| parsed }
 
           expect(subject.send(:must_clauses)).to be_empty
           expect(subject.send(:must_not_clauses)).to be_empty
           expect(subject.send(:filter_clauses).map(&:term)).to contain_exactly(**ops, time_zone: 'UTC')
         end
-
       end
     end
 
@@ -111,19 +110,19 @@ describe SearchQueryTransformer do
   end
 
   context 'with date operators' do
-    context "before" do
+    context 'with "before"' do
       it_behaves_like 'date operator', 'before' do
         let(:statement_operations) { [:lt] }
       end
     end
 
-    context "after" do
+    context 'with "after"' do
       it_behaves_like 'date operator', 'after' do
         let(:statement_operations) { [:gt] }
       end
     end
 
-    context "during" do
+    context 'with "during"' do
       it_behaves_like 'date operator', 'during' do
         let(:statement_operations) { [:gte, :lte] }
       end
