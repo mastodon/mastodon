@@ -21,6 +21,34 @@ describe JsonLdHelper do
     end
   end
 
+  describe '#uri_from_bearcap' do
+    subject { helper.uri_from_bearcap(string) }
+
+    context 'when a bear string has a u param' do
+      let(:string) { 'bear:?t=TOKEN&u=https://example.com/foo' }
+
+      it 'returns the value from the u query param' do
+        expect(subject).to eq('https://example.com/foo')
+      end
+    end
+
+    context 'when a bear string does not have a u param' do
+      let(:string) { 'bear:?t=TOKEN&h=https://example.com/foo' }
+
+      it 'returns nil' do
+        expect(subject).to be_nil
+      end
+    end
+
+    context 'when a non-bear string' do
+      let(:string) { 'http://example.com' }
+
+      it 'returns the string' do
+        expect(subject).to eq('http://example.com')
+      end
+    end
+  end
+
   describe '#first_of_value' do
     context 'when value.is_a?(Array)' do
       it 'returns value.first' do
