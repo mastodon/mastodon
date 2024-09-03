@@ -252,7 +252,7 @@ module Mastodon::CLI
       domain configuration.
     LONG_DESC
     def fix_duplicates
-      Account.remote.select(:uri, 'count(*)').group(:uri).having('count(*) > 1').pluck(:uri).each do |uri|
+      Account.remote.duplicate_uris.pluck(:uri).each do |uri|
         say("Duplicates found for #{uri}")
         begin
           ActivityPub::FetchRemoteAccountService.new.call(uri) unless dry_run?

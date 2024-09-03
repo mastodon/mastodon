@@ -145,6 +145,7 @@ class Account < ApplicationRecord
   scope :with_username, ->(value) { where arel_table[:username].lower.eq(value.to_s.downcase) }
   scope :with_domain, ->(value) { where arel_table[:domain].lower.eq(value&.to_s&.downcase) }
   scope :without_memorial, -> { where(memorial: false) }
+  scope :duplicate_uris, -> { select(:uri, Arel.star.count).group(:uri).having(Arel.star.count.gt(1)) }
 
   after_update_commit :trigger_update_webhooks
 
