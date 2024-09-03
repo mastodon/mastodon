@@ -19,7 +19,7 @@ class ReportService < BaseService
     notify_staff!
 
     if forward?
-      ReportForwardingService.new.call(@report, {
+      ReportForwardingService.new.call(@report, @source_account, {
         forward_to_domains: @options[:forward_to_domains] || [@report.target_account.domain],
       })
     end
