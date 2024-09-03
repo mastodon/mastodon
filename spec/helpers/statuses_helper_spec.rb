@@ -23,12 +23,6 @@ describe StatusesHelper do
     end
   end
 
-  def status_text_summary(status)
-    return if status.spoiler_text.blank?
-
-    I18n.t('statuses.content_warning', warning: status.spoiler_text)
-  end
-
   describe 'fa_visibility_icon' do
     context 'with a status that is public' do
       let(:status) { Status.new(visibility: 'public') }
