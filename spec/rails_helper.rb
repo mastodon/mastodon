@@ -142,6 +142,12 @@ RSpec.configure do |config|
     end
   end
 
+  config.before :each, type: :request do
+    # Use https and configured hostname in request spec requests
+    integration_session.https!
+    host! Rails.configuration.x.local_domain
+  end
+
   config.after do
     Rails.cache.clear
     redis.del(redis.keys)
