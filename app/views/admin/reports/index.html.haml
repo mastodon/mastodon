@@ -68,9 +68,9 @@
                 = material_symbol('photo_camera')
                 = report.media_attachments_count
 
-              - if report.forwarded?
+              - unless report.forwarded_to_domains.empty?
                 ·
-                = t('admin.reports.forwarded_to', domain: target_account.domain)
+                = t('admin.reports.forwarded_to', domain: report.forwarded_to_domains.first, count: report.forwarded_to_domains.size)
 
           .report-card__summary__item__assigned
             - if report.assigned_account.present?
