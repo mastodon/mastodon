@@ -77,6 +77,8 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
   end
 
   def load_grouped_notifications
+    return [] if @notifications.empty?
+
     MastodonOTELTracer.in_span('Api::V2Alpha::NotificationsController#load_grouped_notifications') do
       NotificationGroup.from_notifications(@notifications, pagination_range: (@notifications.last.id)..(@notifications.first.id), grouped_types: params[:grouped_types])
     end
