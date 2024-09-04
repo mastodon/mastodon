@@ -32,6 +32,8 @@
     .report-header__details__item
       .report-header__details__item__header
         %strong= t('admin.reports.forwarded')
+        - unless report.forwardable_to_domains.all? { |domain| report.forwarded_to_domains.include?(domain) }
+          = table_link_to 'forward', t('admin.reports.forward'), '#'
       .report-header__details__item__content
         %ul
           - report.forwardable_to_domains.each do |domain|
