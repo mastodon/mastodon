@@ -14,7 +14,7 @@ describe 'The account show page' do
     expect(head_meta_content('og:title')).to match alice.display_name
     expect(head_meta_content('og:type')).to eq 'profile'
     expect(head_meta_content('og:image')).to match '.+'
-    expect(head_meta_content('og:url')).to match 'http://.+'
+    expect(head_meta_content('og:url')).to eq short_account_url(username: alice.username)
   end
 
   def head_link_icons

@@ -2,14 +2,13 @@
 
 require 'rails_helper'
 
-describe 'statuses/show.html.haml', :without_verify_partial_doubles do
+describe 'statuses/show.html.haml' do
   let(:alice) { Fabricate(:account, username: 'alice', display_name: 'Alice') }
   let(:status) { Fabricate(:status, account: alice, text: 'Hello World') }
 
   before do
-    allow(view).to receive_messages(api_oembed_url: '', site_title: 'example site', site_hostname: 'example.com', full_asset_url: '//asset.host/image.svg', current_account: nil, single_user_mode?: false)
-    allow(view).to receive(:local_time)
-    allow(view).to receive(:local_time_ago)
+    view.extend view_helpers
+
     assign(:instance_presenter, InstancePresenter.new)
 
     Fabricate(:media_attachment, account: alice, status: status, type: :video)
@@ -39,5 +38,19 @@ describe 'statuses/show.html.haml', :without_verify_partial_doubles do
 
   def header_tags
     view.content_for(:header_tags)
+  end
+
+  def view_helpers
+    Module.new do
+      def api_oembed_url(_) = ''
+      def show_landing_strip? = true
+      def site_title = 'example site'
+      def site_hostname = 'example.com'
+      def full_asset_url(_) = '//asset.host/image.svg'
+      def current_account = nil
+      def single_user_mode? = false
+      def local_time = nil
+      def local_time_ago = nil
+    end
   end
 end

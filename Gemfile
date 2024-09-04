@@ -126,9 +126,6 @@ group :test do
   # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
   gem 'rspec-github', '~> 2.4', require: false
 
-  # RSpec progress bar formatter
-  gem 'fuubar', '~> 2.5'
-
   # RSpec helpers for email specs
   gem 'email_spec'
 
@@ -153,6 +150,8 @@ group :test do
 
   # Test harness fo rack components
   gem 'rack-test', '~> 2.1'
+
+  gem 'shoulda-matchers'
 
   # Coverage formatter for RSpec test if DISABLE_SIMPLECOV is false
   gem 'simplecov', '~> 0.22', require: false

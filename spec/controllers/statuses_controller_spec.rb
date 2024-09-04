@@ -72,13 +72,12 @@ describe StatusesController do
       context 'with JSON' do
         let(:format) { 'json' }
 
-        it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
         it 'renders ActivityPub Note object successfully', :aggregate_failures do
           expect(response)
             .to have_http_status(200)
+            .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
+
           expect(response.headers).to include(
-            'Vary' => 'Accept, Accept-Language, Cookie',
             'Content-Type' => include('application/activity+json'),
             'Link' => satisfy { |header| header.to_s.include?('activity+json') }
           )
@@ -380,13 +379,11 @@ describe StatusesController do
         context 'with JSON' do
           let(:format) { 'json' }
 
-          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
           it 'renders ActivityPub Note object successfully', :aggregate_failures do
             expect(response)
               .to have_http_status(200)
+              .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
             expect(response.headers).to include(
-              'Vary' => 'Accept, Accept-Language, Cookie',
               'Content-Type' => include('application/activity+json'),
               'Link' => satisfy { |header| header.to_s.include?('activity+json') }
             )

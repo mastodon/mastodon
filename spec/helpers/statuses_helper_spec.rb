@@ -23,6 +23,19 @@ describe StatusesHelper do
     end
   end
 
+  describe '#media_summary' do
+    it 'describes the media on a status' do
+      status = Fabricate :status
+      Fabricate :media_attachment, status: status, type: :video
+      Fabricate :media_attachment, status: status, type: :audio
+      Fabricate :media_attachment, status: status, type: :image
+
+      result = helper.media_summary(status)
+
+      expect(result).to eq('Attached: 1 image · 1 video · 1 audio')
+    end
+  end
+
   describe 'fa_visibility_icon' do
     context 'with a status that is public' do
       let(:status) { Status.new(visibility: 'public') }

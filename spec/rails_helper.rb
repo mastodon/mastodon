@@ -55,6 +55,8 @@ Sidekiq.logger = nil
 
 DatabaseCleaner.strategy = [:deletion]
 
+Chewy.settings[:enabled] = false
+
 Devise::Test::ControllerHelpers.module_eval do
   alias_method :original_sign_in, :sign_in
 
@@ -112,6 +114,7 @@ RSpec.configure do |config|
   config.include ThreadingHelpers
   config.include SignedRequestHelpers, type: :request
   config.include CommandLineHelpers, type: :cli
+  config.include SystemHelpers, type: :system
 
   config.around(:each, use_transactional_tests: false) do |example|
     self.use_transactional_tests = false
@@ -128,6 +131,12 @@ RSpec.configure do |config|
     example.run
   end
 
+  config.around(:each, type: :search) do |example|
+    Chewy.settings[:enabled] = true
+    example.run
+    Chewy.settings[:enabled] = false
+  end
+
   config.before :each, type: :cli do
     stub_reset_connection_pools
   end
@@ -138,8 +147,17 @@ RSpec.configure do |config|
 
   config.before do |example|
     unless example.metadata[:attachment_processing]
-      allow_any_instance_of(Paperclip::Attachment).to receive(:post_process).and_return(true) # rubocop:disable RSpec/AnyInstance
+      # rubocop:disable RSpec/AnyInstance
+      allow_any_instance_of(Paperclip::Attachment).to receive(:post_process).and_return(true)
+      allow_any_instance_of(Paperclip::MediaTypeSpoofDetector).to receive(:spoofed?).and_return(false)
+      # rubocop:enable RSpec/AnyInstance
     end
+  end
+
+  config.before :each, type: :request do
+    # Use https and configured hostname in request spec requests
+    integration_session.https!
+    host! Rails.configuration.x.local_domain
   end
 
   config.after do
