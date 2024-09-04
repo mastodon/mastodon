@@ -48,7 +48,7 @@ RSpec.describe Admin::AccountsController do
     end
 
     def accounts_table_rows
-      Nokogiri::Slop(response.body).css('table.accounts-table tr')
+      response.parsed_body.css('table.accounts-table tr')
     end
   end
 
