@@ -182,14 +182,17 @@ en-GB:
         create_custom_emoji: Create Custom Emoji
         create_domain_allow: Create Domain Allow
         create_domain_block: Create Domain Block
+        create_email_domain_block: Create Email Domain Block
         create_ip_block: Create IP rule
         create_unavailable_domain: Create Unavailable Domain
         create_user_role: Create Role
         demote_user: Demote User
         destroy_announcement: Delete Announcement
+        destroy_canonical_email_block: Delete Email Block
         destroy_custom_emoji: Delete Custom Emoji
         destroy_domain_allow: Delete Domain Allow
         destroy_domain_block: Delete Domain Block
+        destroy_email_domain_block: Delete Email Domain Block
         destroy_instance: Purge Domain
         destroy_ip_block: Delete IP rule
         destroy_status: Delete Post
@@ -197,8 +200,10 @@ en-GB:
         destroy_user_role: Destroy Role
         disable_2fa_user: Disable 2FA
         disable_custom_emoji: Disable Custom Emoji
+        disable_sign_in_token_auth_user: Disable Email Token Authentication for User
         disable_user: Disable User
         enable_custom_emoji: Enable Custom Emoji
+        enable_sign_in_token_auth_user: Enable Email Token Authentication for User
         enable_user: Enable User
         memorialize_account: Memorialise Account
         promote_user: Promote User
@@ -228,20 +233,26 @@ en-GB:
         approve_appeal_html: "%{name} approved moderation decision appeal from %{target}"
         approve_user_html: "%{name} approved sign-up from %{target}"
         assigned_to_self_report_html: "%{name} assigned report %{target} to themselves"
+        change_email_user_html: "%{name} changed the email address of user %{target}"
         change_role_user_html: "%{name} changed role of %{target}"
+        confirm_user_html: "%{name} confirmed email address of user %{target}"
         create_account_warning_html: "%{name} sent a warning to %{target}"
         create_announcement_html: "%{name} created new announcement %{target}"
+        create_canonical_email_block_html: "%{name} blocked email with the hash %{target}"
         create_custom_emoji_html: "%{name} uploaded new emoji %{target}"
         create_domain_allow_html: "%{name} allowed federation with domain %{target}"
         create_domain_block_html: "%{name} blocked domain %{target}"
+        create_email_domain_block_html: "%{name} blocked email domain %{target}"
         create_ip_block_html: "%{name} created rule for IP %{target}"
         create_unavailable_domain_html: "%{name} stopped delivery to domain %{target}"
         create_user_role_html: "%{name} created %{target} role"
         demote_user_html: "%{name} demoted user %{target}"
         destroy_announcement_html: "%{name} deleted announcement %{target}"
+        destroy_canonical_email_block_html: "%{name} unblocked email with the hash %{target}"
         destroy_custom_emoji_html: "%{name} deleted emoji %{target}"
         destroy_domain_allow_html: "%{name} disallowed federation with domain %{target}"
         destroy_domain_block_html: "%{name} unblocked domain %{target}"
+        destroy_email_domain_block_html: "%{name} unblocked email domain %{target}"
         destroy_instance_html: "%{name} purged domain %{target}"
         destroy_ip_block_html: "%{name} deleted rule for IP %{target}"
         destroy_status_html: "%{name} removed post by %{target}"
@@ -249,8 +260,10 @@ en-GB:
         destroy_user_role_html: "%{name} deleted %{target} role"
         disable_2fa_user_html: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji_html: "%{name} disabled emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} disabled email token authentication for %{target}"
         disable_user_html: "%{name} disabled login for user %{target}"
         enable_custom_emoji_html: "%{name} enabled emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} enabled email token authentication for %{target}"
         enable_user_html: "%{name} enabled login for user %{target}"
         memorialize_account_html: "%{name} turned %{target}'s account into a memoriam page"
         promote_user_html: "%{name} promoted user %{target}"
@@ -258,6 +271,7 @@ en-GB:
         reject_user_html: "%{name} rejected sign-up from %{target}"
         remove_avatar_user_html: "%{name} removed %{target}'s avatar"
         reopen_report_html: "%{name} reopened report %{target}"
+        resend_user_html: "%{name} resent confirmation email for %{target}"
         reset_password_user_html: "%{name} reset password of user %{target}"
         resolve_report_html: "%{name} resolved report %{target}"
         sensitive_account_html: "%{name} marked %{target}'s media as sensitive"
@@ -418,6 +432,7 @@ en-GB:
       attempts_over_week:
         one: "%{count} attempt over the last week"
         other: "%{count} sign-up attempts over the last week"
+      created_msg: Successfully blocked email domain
       delete: Delete
       dns:
         types:
@@ -426,8 +441,12 @@ en-GB:
       new:
         create: Add domain
         resolve: Resolve domain
+        title: Block new email domain
+      no_email_domain_block_selected: No email domain blocks were changed as none were selected
       not_permitted: Not permitted
+      resolved_dns_records_hint_html: The domain name resolves to the following MX domains, which are ultimately responsible for accepting email. Blocking an MX domain will block sign-ups from any email address which uses the same MX domain, even if the visible domain name is different. <strong>Be careful not to block major email providers.</strong>
       resolved_through_html: Resolved through %{domain}
+      title: Blocked email domains
     export_domain_allows:
       new:
         title: Import domain allows
@@ -581,6 +600,7 @@ en-GB:
         resolve_description_html: No action will be taken against the reported account, no strike recorded, and the report will be closed.
         silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
         suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
+      actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an email notification will be sent to them, except when the <strong>Spam</strong> category is selected.
       actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       add_to_report: Add more to report
       already_suspended_badges:
@@ -645,6 +665,7 @@ en-GB:
         delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
         preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
         record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning email
         warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: Origin of reported account
       title: Reports
@@ -684,6 +705,7 @@ en-GB:
         manage_appeals: Manage Appeals
         manage_appeals_description: Allows users to review appeals against moderation actions
         manage_blocks: Manage Blocks
+        manage_blocks_description: Allows users to block email providers and IP addresses
         manage_custom_emojis: Manage Custom Emojis
         manage_custom_emojis_description: Allows users to manage custom emojis on the server
         manage_federation: Manage Federation

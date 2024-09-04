@@ -1454,6 +1454,7 @@ tr:
   media_attachments:
     validations:
       images_and_video: Zaten resim içeren bir duruma video eklenemez
+      not_found: "%{ids} medya dosyaları bulunamadı veya başka bir gönderiye zaten eklenmiş"
       not_ready: İşlemi tamamlanmamış dosyalar eklenemez. Birazdan tekrar deneyin!
       too_many: 4'ten fazla dosya eklenemiyor
   migrations:
