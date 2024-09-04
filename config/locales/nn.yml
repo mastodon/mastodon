@@ -1454,6 +1454,7 @@ nn:
   media_attachments:
     validations:
       images_and_video: Kan ikkje leggja ved video til status som allereie inneheld bilete
+      not_found: Media %{ids} vart ikkje funne eller er allereie kopla til eit anna innlegg
       not_ready: Kan ikke legge til filer som ikke er ferdigbehandlet. Prøv igjen om et øyeblikk!
       too_many: Kan ikkje leggja til meir enn 4 filer
   migrations:

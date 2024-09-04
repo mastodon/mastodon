@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'The /.well-known/host-meta request' do
+RSpec.describe 'The /.well-known/host-meta request' do
   it 'returns http success with valid XML response' do
     get '/.well-known/host-meta'
 

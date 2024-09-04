@@ -29,37 +29,35 @@ RSpec.describe Webhook do
   end
 
   describe 'Normalizations' do
-    it 'cleans up events values' do
-      record = described_class.new(events: ['account.approved', 'account.created     ', ''])
-
-      expect(record.events).to eq(%w(account.approved account.created))
+    describe 'events' do
+      it { is_expected.to normalize(:events).from(['account.approved', 'account.created     ', '']).to(%w(account.approved account.created)) }
     end
   end
 
   describe '#rotate_secret!' do
     it 'changes the secret' do
-      previous_value = webhook.secret
-      webhook.rotate_secret!
-      expect(webhook.secret).to_not be_blank
-      expect(webhook.secret).to_not eq previous_value
+      expect { webhook.rotate_secret! }
+        .to change(webhook, :secret)
+      expect(webhook.secret)
+        .to_not be_blank
     end
   end
 
   describe '#enable!' do
-    before do
-      webhook.disable!
-    end
+    let(:webhook) { Fabricate(:webhook, enabled: false) }
 
     it 'enables the webhook' do
-      webhook.enable!
-      expect(webhook.enabled?).to be true
+      expect { webhook.enable! }
+        .to change(webhook, :enabled?).to(true)
     end
   end
 
   describe '#disable!' do
+    let(:webhook) { Fabricate(:webhook, enabled: true) }
+
     it 'disables the webhook' do
-      webhook.disable!
-      expect(webhook.enabled?).to be false
+      expect { webhook.disable! }
+        .to change(webhook, :enabled?).to(false)
     end
   end
 end

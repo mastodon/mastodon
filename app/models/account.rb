@@ -89,6 +89,7 @@ class Account < ApplicationRecord
   include DomainMaterializable
   include DomainNormalizable
   include Paginable
+  include Reviewable
 
   enum :protocol, { ostatus: 0, activitypub: 1 }
   enum :suspension_origin, { local: 0, remote: 1 }, prefix: true
@@ -145,6 +146,7 @@ class Account < ApplicationRecord
   scope :with_username, ->(value) { where arel_table[:username].lower.eq(value.to_s.downcase) }
   scope :with_domain, ->(value) { where arel_table[:domain].lower.eq(value&.to_s&.downcase) }
   scope :without_memorial, -> { where(memorial: false) }
+  scope :duplicate_uris, -> { select(:uri, Arel.star.count).group(:uri).having(Arel.star.count.gt(1)) }
 
   after_update_commit :trigger_update_webhooks
 
@@ -423,22 +425,6 @@ class Account < ApplicationRecord
     return 'local' if local?
 
     @synchronization_uri_prefix ||= "#{uri[URL_PREFIX_RE]}/"
-  end
-
-  def requires_review?
-    reviewed_at.nil?
-  end
-
-  def reviewed?
-    reviewed_at.present?
-  end
-
-  def requested_review?
-    requested_review_at.present?
-  end
-
-  def requires_review_notification?
-    requires_review? && !requested_review?
   end
 
   class << self

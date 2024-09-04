@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Translation Languages' do
+RSpec.describe 'Translation Languages' do
   describe 'GET /api/v1/instances/translation_languages' do
     context 'when no translation service is configured' do
       it 'returns empty language matrix', :aggregate_failures do

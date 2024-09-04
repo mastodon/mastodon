@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Account do
+  include_examples 'Reviewable'
+
   context 'with an account record' do
     subject { Fabricate(:account) }
 
@@ -721,17 +723,14 @@ RSpec.describe Account do
     end
   end
 
-  describe 'validations' do
-    it 'is invalid without a username' do
-      account = Fabricate.build(:account, username: nil)
-      account.valid?
-      expect(account).to model_have_error_on_field(:username)
+  describe 'Normalizations' do
+    describe 'username' do
+      it { is_expected.to normalize(:username).from(" \u3000bob \t \u00a0 \n ").to('bob') }
     end
+  end
 
-    it 'squishes the username before validation' do
-      account = Fabricate(:account, domain: nil, username: " \u3000bob \t \u00a0 \n ")
-      expect(account.username).to eq 'bob'
-    end
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:username) }
 
     context 'when is local' do
       it 'is invalid if the username is not unique in case-insensitive comparison among local accounts' do

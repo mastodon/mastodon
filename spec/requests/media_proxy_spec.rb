@@ -2,14 +2,9 @@
 
 require 'rails_helper'
 
-describe 'Media Proxy' do
+RSpec.describe 'Media Proxy' do
   describe 'GET /media_proxy/:id' do
-    before do
-      integration_session.https! # TODO: Move to global rails_helper for all request specs?
-      host! Rails.configuration.x.local_domain # TODO: Move to global rails_helper for all request specs?
-
-      stub_request(:get, 'http://example.com/attachment.png').to_return(request_fixture('avatar.txt'))
-    end
+    before { stub_attachment_request }
 
     context 'when attached to a status' do
       let(:status) { Fabricate(:status) }
@@ -62,6 +57,16 @@ describe 'Media Proxy' do
         expect(response)
           .to have_http_status(404)
       end
+    end
+
+    def stub_attachment_request
+      stub_request(
+        :get,
+        'http://example.com/attachment.png'
+      )
+        .to_return(
+          request_fixture('avatar.txt')
+        )
     end
   end
 end

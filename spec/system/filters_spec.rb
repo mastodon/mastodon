@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Filters' do
+RSpec.describe 'Filters' do
   let(:user) { Fabricate(:user) }
   let(:filter_title) { 'Filter of fun and games' }
 

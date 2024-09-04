@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe REST::InstanceSerializer do
+RSpec.describe REST::InstanceSerializer do
   let(:serialization) { serialized_record_json(record, described_class) }
   let(:record) { InstancePresenter.new }
 

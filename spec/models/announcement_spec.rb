@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Announcement do
+RSpec.describe Announcement do
   describe 'Scopes' do
     context 'with published and unpublished records' do
       let!(:published) { Fabricate(:announcement, published: true) }

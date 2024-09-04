@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Settings / Exports / Bookmarks' do
+RSpec.describe 'Settings / Exports / Bookmarks' do
   describe 'GET /settings/exports/bookmarks' do
     context 'with a signed in user who has bookmarks' do
       let(:account) { Fabricate(:account, domain: 'foo.bar') }

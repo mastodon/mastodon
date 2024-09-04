@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Pins' do
+RSpec.describe 'Pins' do
   let(:user)    { Fabricate(:user) }
   let(:scopes)  { 'write:accounts' }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }

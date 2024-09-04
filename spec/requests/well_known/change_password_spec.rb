@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'The /.well-known/change-password request' do
+RSpec.describe 'The /.well-known/change-password request' do
   it 'redirects to the change password page' do
     get '/.well-known/change-password'
 

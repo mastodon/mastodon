@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::ExportsController do
+RSpec.describe Settings::ExportsController do
   render_views
 
   describe 'GET #show' do

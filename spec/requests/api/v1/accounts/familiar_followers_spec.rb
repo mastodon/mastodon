@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Accounts Familiar Followers API' do
+RSpec.describe 'Accounts Familiar Followers API' do
   let(:user)     { Fabricate(:user) }
   let(:token)    { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:scopes)   { 'read:follows' }

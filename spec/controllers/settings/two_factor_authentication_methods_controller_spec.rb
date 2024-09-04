@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::TwoFactorAuthenticationMethodsController do
+RSpec.describe Settings::TwoFactorAuthenticationMethodsController do
   render_views
 
   context 'when not signed in' do

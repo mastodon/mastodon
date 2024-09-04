@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Admin::Announcements' do
+RSpec.describe 'Admin::Announcements' do
   include ActionView::RecordIdentifier
 
   describe 'Viewing announcements' do

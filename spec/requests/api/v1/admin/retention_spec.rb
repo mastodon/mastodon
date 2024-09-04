@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Admin Retention' do
+RSpec.describe 'Admin Retention' do
   let(:user)    { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }

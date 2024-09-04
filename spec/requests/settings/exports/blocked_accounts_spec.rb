@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Settings / Exports / Blocked Accounts' do
+RSpec.describe 'Settings / Exports / Blocked Accounts' do
   describe 'GET /settings/exports/blocks' do
     context 'with a signed in user who has blocked accounts' do
       let(:user) { Fabricate :user }

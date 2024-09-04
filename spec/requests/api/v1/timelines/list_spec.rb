@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'API V1 Timelines List' do
+RSpec.describe 'API V1 Timelines List' do
   let(:user) { Fabricate(:user) }
   let(:scopes)  { 'read:statuses' }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }

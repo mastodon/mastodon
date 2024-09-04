@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Directories API' do
+RSpec.describe 'Directories API' do
   let(:user)    { Fabricate(:user, confirmed_at: nil) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:scopes)  { 'read:follows' }

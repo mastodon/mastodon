@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'blocking domains through the moderation interface' do
+RSpec.describe 'blocking domains through the moderation interface' do
   before do
     allow(DomainBlockWorker).to receive(:perform_async).and_return(true)
     sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')), scope: :user

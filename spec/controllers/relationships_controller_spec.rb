@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe RelationshipsController do
+RSpec.describe RelationshipsController do
   render_views
 
   let(:user) { Fabricate(:user) }

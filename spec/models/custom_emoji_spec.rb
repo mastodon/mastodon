@@ -79,22 +79,9 @@ RSpec.describe CustomEmoji, :attachment_processing do
   end
 
   describe 'Normalizations' do
-    describe 'downcase domain value' do
-      context 'with a mixed case domain value' do
-        it 'normalizes the value to downcased' do
-          custom_emoji = Fabricate.build(:custom_emoji, domain: 'wWw.MaStOdOn.CoM')
-
-          expect(custom_emoji.domain).to eq('www.mastodon.com')
-        end
-      end
-
-      context 'with a nil domain value' do
-        it 'leaves the value as nil' do
-          custom_emoji = Fabricate.build(:custom_emoji, domain: nil)
-
-          expect(custom_emoji.domain).to be_nil
-        end
-      end
+    describe 'domain' do
+      it { is_expected.to normalize(:domain).from('wWw.MaStOdOn.CoM').to('www.mastodon.com') }
+      it { is_expected.to normalize(:domain).from(nil).to(nil) }
     end
   end
 end

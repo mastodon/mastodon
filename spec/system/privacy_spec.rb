@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Privacy policy page' do
+RSpec.describe 'Privacy policy page' do
   it 'visits the privacy policy page and renders the web app' do
     visit privacy_policy_path
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'The /.well-known/oauth-authorization-server request' do
+RSpec.describe 'The /.well-known/oauth-authorization-server request' do
   let(:protocol) { ENV.fetch('LOCAL_HTTPS', true) ? :https : :http }
 
   before do

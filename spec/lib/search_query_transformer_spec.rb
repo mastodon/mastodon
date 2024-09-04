@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe SearchQueryTransformer do
+RSpec.describe SearchQueryTransformer do
   subject { described_class.new.apply(parser, current_account: account) }
 
   let(:account) { Fabricate(:account) }

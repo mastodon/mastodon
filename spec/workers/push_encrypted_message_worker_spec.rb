@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe PushEncryptedMessageWorker do
+RSpec.describe PushEncryptedMessageWorker do
   let(:worker) { described_class.new }
 
   describe 'perform' do

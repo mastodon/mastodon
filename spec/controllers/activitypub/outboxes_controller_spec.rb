@@ -25,10 +25,11 @@ RSpec.describe ActivityPub::OutboxesController do
       context 'with page not requested' do
         let(:page) { nil }
 
-        it_behaves_like 'cacheable response'
-
         it 'returns http success and correct media type and headers and items count' do
-          expect(response).to have_http_status(200)
+          expect(response)
+            .to have_http_status(200)
+            .and have_cacheable_headers
+
           expect(response.media_type).to eq 'application/activity+json'
           expect(response.headers['Vary']).to be_nil
           expect(body[:totalItems]).to eq 4
@@ -59,10 +60,11 @@ RSpec.describe ActivityPub::OutboxesController do
       context 'with page requested' do
         let(:page) { 'true' }
 
-        it_behaves_like 'cacheable response'
-
         it 'returns http success and correct media type and vary header and items' do
-          expect(response).to have_http_status(200)
+          expect(response)
+            .to have_http_status(200)
+            .and have_cacheable_headers
+
           expect(response.media_type).to eq 'application/activity+json'
           expect(response.headers['Vary']).to include 'Signature'
 

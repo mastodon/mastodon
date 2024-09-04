@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe DeliveryFailureTracker do
+RSpec.describe DeliveryFailureTracker do
   subject { described_class.new('http://example.com/inbox') }
 
   describe '#track_success!' do
