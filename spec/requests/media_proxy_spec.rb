@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Media Proxy' do
+RSpec.describe 'Media Proxy' do
   describe 'GET /media_proxy/:id' do
     before { stub_attachment_request }
 

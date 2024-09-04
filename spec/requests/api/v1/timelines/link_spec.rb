@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Link' do
+RSpec.describe 'Link' do
   let(:user)    { Fabricate(:user) }
   let(:scopes)  { 'read:statuses' }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }

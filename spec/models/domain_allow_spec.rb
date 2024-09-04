@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe DomainAllow do
+RSpec.describe DomainAllow do
   describe 'Validations' do
     it 'is invalid without a domain' do
       domain_allow = Fabricate.build(:domain_allow, domain: nil)

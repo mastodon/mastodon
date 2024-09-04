@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Search API' do
+RSpec.describe 'Search API' do
   context 'with token' do
     let(:user)    { Fabricate(:user) }
     let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }

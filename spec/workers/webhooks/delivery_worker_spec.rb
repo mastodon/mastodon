@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Webhooks::DeliveryWorker do
+RSpec.describe Webhooks::DeliveryWorker do
   let(:worker) { described_class.new }
 
   describe '#perform' do

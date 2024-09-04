@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'signature verification concern' do
+RSpec.describe 'signature verification concern' do
   before do
     stub_tests_controller
 

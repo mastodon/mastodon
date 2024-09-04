@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Well Known routes' do
+RSpec.describe 'Well Known routes' do
   describe 'the host-meta route' do
     it 'routes to correct place with xml format' do
       expect(get('/.well-known/host-meta'))

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Settings / Exports / Blocked Domains' do
+RSpec.describe 'Settings / Exports / Blocked Domains' do
   describe 'GET /settings/exports/domain_blocks' do
     context 'with a signed in user who has blocked domains' do
       let(:account) { Fabricate :account, domain: 'example.com' }

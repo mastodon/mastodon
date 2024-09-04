@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Endorsements' do
+RSpec.describe 'Endorsements' do
   let(:user)    { Fabricate(:user) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }

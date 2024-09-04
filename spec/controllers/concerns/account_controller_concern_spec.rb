@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AccountControllerConcern do
+RSpec.describe AccountControllerConcern do
   controller(ApplicationController) do
     include AccountControllerConcern
 

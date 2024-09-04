@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Credentials' do
+RSpec.describe 'Credentials' do
   describe 'GET /api/v1/apps/verify_credentials' do
     subject do
       get '/api/v1/apps/verify_credentials', headers: headers

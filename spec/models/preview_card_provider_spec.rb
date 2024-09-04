@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe PreviewCardProvider do
+RSpec.describe PreviewCardProvider do
   include_examples 'Reviewable'
 
   describe 'scopes' do

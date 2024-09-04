@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Admin::Trends::Statuses' do
+RSpec.describe 'Admin::Trends::Statuses' do
   let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
   before do

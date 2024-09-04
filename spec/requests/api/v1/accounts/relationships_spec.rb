@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'GET /api/v1/accounts/relationships' do
+RSpec.describe 'GET /api/v1/accounts/relationships' do
   subject do
     get '/api/v1/accounts/relationships', headers: headers, params: params
   end

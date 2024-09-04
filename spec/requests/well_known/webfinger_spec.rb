@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'The /.well-known/webfinger endpoint' do
+RSpec.describe 'The /.well-known/webfinger endpoint' do
   subject(:perform_request!) { get webfinger_url(resource: resource) }
 
   let(:alternate_domains) { [] }

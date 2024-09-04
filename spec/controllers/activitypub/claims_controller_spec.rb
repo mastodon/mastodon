@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ActivityPub::ClaimsController do
+RSpec.describe ActivityPub::ClaimsController do
   let(:account) { Fabricate(:account) }
 
   describe 'POST #create' do

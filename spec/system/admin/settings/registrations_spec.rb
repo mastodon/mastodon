@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Admin::Settings::Registrations' do
+RSpec.describe 'Admin::Settings::Registrations' do
   it 'Saves changes to registrations settings' do
     sign_in admin_user
     visit admin_settings_registrations_path

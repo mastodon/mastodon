@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Self-destruct mode' do
+RSpec.describe 'Self-destruct mode' do
   before do
     allow(SelfDestructHelper).to receive(:self_destruct?).and_return(true)
   end

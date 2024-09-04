@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ScopeTransformer do
+RSpec.describe ScopeTransformer do
   describe '#apply' do
     subject { described_class.new.apply(ScopeParser.new.parse(input)) }
 

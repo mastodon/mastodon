@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::MigrationsController do
+RSpec.describe Settings::MigrationsController do
   render_views
 
   shared_examples 'authenticate user' do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe FilteredNotificationCleanupWorker do
+RSpec.describe FilteredNotificationCleanupWorker do
   describe '#perform' do
     let(:sender) { Fabricate(:account) }
     let(:recipient) { Fabricate(:account) }

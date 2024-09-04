@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::Preferences::AppearanceController do
+RSpec.describe Settings::Preferences::AppearanceController do
   render_views
 
   let!(:user) { Fabricate(:user) }

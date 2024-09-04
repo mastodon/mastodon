@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe InstanceHelper do
+RSpec.describe InstanceHelper do
   describe 'site_title' do
     it 'Uses the Setting.site_title value when it exists' do
       Setting.site_title = 'New site title'

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Poll do
+RSpec.describe Poll do
   describe 'scopes' do
     let(:status) { Fabricate(:status) }
     let(:attached_poll) { Fabricate(:poll, status: status) }

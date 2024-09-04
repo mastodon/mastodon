@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'API V1 Streaming' do
+RSpec.describe 'API V1 Streaming' do
   around do |example|
     before = Rails.configuration.x.streaming_api_base_url
     Rails.configuration.x.streaming_api_base_url = "wss://#{Rails.configuration.x.web_domain}"

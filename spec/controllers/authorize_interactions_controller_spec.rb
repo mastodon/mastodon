@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AuthorizeInteractionsController do
+RSpec.describe AuthorizeInteractionsController do
   render_views
 
   describe 'GET #show' do

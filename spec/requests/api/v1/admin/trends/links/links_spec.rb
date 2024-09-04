@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Links' do
+RSpec.describe 'Links' do
   let(:role)    { UserRole.find_by(name: 'Admin') }
   let(:user)    { Fabricate(:user, role: role) }
   let(:scopes)  { 'admin:read admin:write' }

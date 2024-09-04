@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe StatusesController do
+RSpec.describe StatusesController do
   render_views
 
   describe 'GET #show' do

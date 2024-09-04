@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Link headers' do
+RSpec.describe 'Link headers' do
   describe 'on the account show page' do
     let(:account) { Fabricate(:account, username: 'test') }
 

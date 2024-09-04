@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ActivityPub::OneTimeKeySerializer do
+RSpec.describe ActivityPub::OneTimeKeySerializer do
   let(:serialization) { serialized_record_json(record, described_class) }
   let(:record) { Fabricate(:one_time_key) }
 

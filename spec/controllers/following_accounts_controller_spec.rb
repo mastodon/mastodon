@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe FollowingAccountsController do
+RSpec.describe FollowingAccountsController do
   render_views
 
   let(:alice) { Fabricate(:account, username: 'alice') }

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::TwoFactorAuthentication::ConfirmationsController do
+RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
   render_views
 
   shared_examples 'renders :new' do

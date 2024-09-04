@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'The well-known node-info endpoints' do
+RSpec.describe 'The well-known node-info endpoints' do
   describe 'The /.well-known/node-info endpoint' do
     it 'returns JSON document pointing to node info' do
       get '/.well-known/nodeinfo'

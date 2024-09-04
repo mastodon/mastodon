@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Admin::Settings::About' do
+RSpec.describe 'Admin::Settings::About' do
   it 'Saves changes to about settings' do
     sign_in admin_user
     visit admin_settings_about_path

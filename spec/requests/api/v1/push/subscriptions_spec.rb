@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'API V1 Push Subscriptions' do
+RSpec.describe 'API V1 Push Subscriptions' do
   let(:user) { Fabricate(:user) }
   let(:endpoint) { 'https://fcm.googleapis.com/fcm/send/fiuH06a27qE:APA91bHnSiGcLwdaxdyqVXNDR9w1NlztsHb6lyt5WDKOC_Z_Q8BlFxQoR8tWFSXUIDdkyw0EdvxTu63iqamSaqVSevW5LfoFwojws8XYDXv_NRRLH6vo2CdgiN4jgHv5VLt2A8ah6lUX' }
   let(:keys) do

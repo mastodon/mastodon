@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Custom stylesheets' do
+RSpec.describe 'Custom stylesheets' do
   describe 'GET /custom.css' do
     before { get '/custom.css' }
 
