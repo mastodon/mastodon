@@ -27,8 +27,6 @@ RSpec::Matchers.define :have_cacheable_headers do
   end
 
   def check_vary
-    puts @expected_vary
-    pp @response.headers
     "Response `Vary` header does not contain `#{@expected_vary}`" unless @response.headers['Vary'].include?(@expected_vary)
   end
 
