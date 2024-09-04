@@ -92,8 +92,18 @@ export const fetchNotifications = createDataLoadingThunk(
 
 export const fetchNotificationsGap = createDataLoadingThunk(
   'notificationGroups/fetchGap',
-  async (params: { gap: NotificationGap }) =>
-    apiFetchNotifications({ max_id: params.gap.maxId }),
+  async (params: { gap: NotificationGap }, { getState }) => {
+    const activeFilter =
+      selectSettingsNotificationsQuickFilterActive(getState());
+
+    return apiFetchNotifications({
+      max_id: params.gap.maxId,
+      exclude_types:
+        activeFilter === 'all'
+          ? selectSettingsNotificationsExcludedTypes(getState())
+          : excludeAllTypesExcept(activeFilter),
+    });
+  },
 
   ({ notifications, accounts, statuses }, { dispatch }) => {
     dispatch(importFetchedAccounts(accounts));
@@ -107,8 +117,15 @@ export const fetchNotificationsGap = createDataLoadingThunk(
 export const pollRecentNotifications = createDataLoadingThunk(
   'notificationGroups/pollRecentNotifications',
   async (_params, { getState }) => {
+    const activeFilter =
+      selectSettingsNotificationsQuickFilterActive(getState());
+
     return apiFetchNotifications({
       max_id: undefined,
+      exclude_types:
+        activeFilter === 'all'
+          ? selectSettingsNotificationsExcludedTypes(getState())
+          : excludeAllTypesExcept(activeFilter),
       // In slow mode, we don't want to include notifications that duplicate the already-displayed ones
       since_id: usePendingItems
         ? getState().notificationGroups.groups.find(
@@ -183,7 +200,6 @@ export const setNotificationsFilter = createAppAsyncThunk(
       path: ['notifications', 'quickFilter', 'active'],
       value: filterType,
     });
-    // dispatch(expandNotifications({ forceLoad: true }));
     void dispatch(fetchNotifications());
     dispatch(saveSettings());
   },
