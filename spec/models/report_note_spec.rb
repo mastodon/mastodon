@@ -3,13 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe ReportNote do
-  describe 'default scope' do
+  describe 'chronological scope' do
     it 'returns report notes oldest to newest' do
       report = Fabricate(:report)
       note1 = Fabricate(:report_note, report: report)
       note2 = Fabricate(:report_note, report: report)
 
-      expect(report.notes).to eq [note1, note2]
+      expect(report.notes.chronological).to eq [note1, note2]
     end
   end
 

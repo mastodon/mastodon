@@ -18,7 +18,7 @@ class AccountModerationNote < ApplicationRecord
   belongs_to :account
   belongs_to :target_account, class_name: 'Account'
 
-  default_scope { reorder(id: :asc) }
+  scope :chronological, -> { reorder(id: :asc) }
 
   validates :content, presence: true, length: { maximum: CONTENT_SIZE_LIMIT }
 end
