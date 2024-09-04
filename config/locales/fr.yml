@@ -58,6 +58,7 @@ fr:
       demote: Rétrograder
       destroyed_msg: Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment
       disable: Geler
+      disable_sign_in_token_auth: Désactiver le jeton d'authentification par e-mail
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
       disabled: Gelé
       display_name: Nom affiché
@@ -66,6 +67,7 @@ fr:
       email: Adresse de courriel
       email_status: État du courriel
       enable: Dégeler
+      enable_sign_in_token_auth: Activer le jeton d'authentification par e-mail
       enabled: Activé
       enabled_msg: Le compte de %{username} a été dégelé avec succès
       followers: Abonné·e·s
@@ -195,8 +197,10 @@ fr:
         destroy_user_role: Détruire le rôle
         disable_2fa_user: Désactiver l’A2F
         disable_custom_emoji: Désactiver les émojis personnalisés
+        disable_sign_in_token_auth_user: Désactiver le jeton d'authentification par e-mail pour l'utilisateur
         disable_user: Désactiver le compte
         enable_custom_emoji: Activer les émojis personnalisées
+        enable_sign_in_token_auth_user: Activer le jeton d'authentification par e-mail pour l'utilisateur
         enable_user: Activer le compte
         memorialize_account: Ériger en mémorial
         promote_user: Promouvoir le compte
@@ -219,18 +223,22 @@ fr:
         update_custom_emoji: Mettre à jour les émojis personnalisés
         update_domain_block: Mettre à jour le blocage de domaine
         update_ip_block: Mettre à jour la règle IP
+        update_report: Mettre à jour le rapport
         update_status: Mettre à jour le message
         update_user_role: Mettre à jour le rôle
       actions:
         approve_appeal_html: "%{name} a approuvé l'appel de la décision de modération émis par %{target}"
         approve_user_html: "%{name} a approuvé l’inscription de %{target}"
         assigned_to_self_report_html: "%{name} s’est assigné·e le signalement de %{target}"
+        change_email_user_html: "%{name} a changé l'adresse e-mail de l'utilisateur \n%{target}"
         change_role_user_html: "%{name} a changé le rôle de %{target}"
+        confirm_user_html: "%{name} a confirmé l'adresse e-mail de l'utilisateur %{target}"
         create_account_warning_html: "%{name} a envoyé un avertissement à %{target}"
         create_announcement_html: "%{name} a créé une nouvelle annonce %{target}"
         create_custom_emoji_html: "%{name} a téléversé un nouvel émoji %{target}"
         create_domain_allow_html: "%{name} a autorisé la fédération avec le domaine %{target}"
         create_domain_block_html: "%{name} a bloqué le domaine %{target}"
+        create_email_domain_block_html: "%{name} a bloqué le domaine d'e-mail %{target}"
         create_ip_block_html: "%{name} a créé une règle pour l'IP %{target}"
         create_unavailable_domain_html: "%{name} a arrêté la livraison vers le domaine %{target}"
         create_user_role_html: "%{name} a créé le rôle %{target}"
@@ -239,6 +247,7 @@ fr:
         destroy_custom_emoji_html: "%{name} a supprimé l'émoji %{target}"
         destroy_domain_allow_html: "%{name} a rejeté la fédération avec le domaine %{target}"
         destroy_domain_block_html: "%{name} a débloqué le domaine %{target}"
+        destroy_email_domain_block_html: "%{name} a débloqué le domaine d'e-mail %{target}"
         destroy_instance_html: "%{name} a purgé le domaine %{target}"
         destroy_ip_block_html: "%{name} a supprimé la règle pour l'IP %{target}"
         destroy_status_html: "%{name} a supprimé le message de %{target}"
@@ -276,6 +285,7 @@ fr:
       filter_by_action: Filtrer par action
       filter_by_user: Filtrer par utilisateur·ice
       title: Journal d’audit
+      unavailable_instance: "(nom de domaine indisponible)"
     announcements:
       destroyed_msg: Annonce supprimée avec succès !
       edit:
@@ -413,6 +423,7 @@ fr:
       attempts_over_week:
         one: "%{count} tentative au cours de la dernière semaine"
         other: "%{count} tentatives au cours de la dernière semaine"
+      created_msg: Domaine d'e-mail bloqué avec succès
       delete: Supprimer
       dns:
         types:
@@ -914,6 +925,10 @@ fr:
       statuses:
         allow: Autoriser le message
         allow_account: Autoriser l'auteur·rice
+        confirm_allow: Êtes-vous sûr de vouloir autoriser les statuts sélectionnés ?
+        confirm_allow_account: Êtes-vous sûr de vouloir autoriser les comptes sélectionnés ?
+        confirm_disallow: Êtes-vous sûr de vouloir rejeter les statuts sélectionnés ?
+        confirm_disallow_account: Êtes-vous sûr de vouloir rejeter les comptes sélectionnés ?
         description_html: Voici les messages dont votre serveur a connaissance qui sont beaucoup partagés et mis en favoris en ce moment. Cela peut aider vos utilisateur⋅rice⋅s, néophytes comme aguerri⋅e⋅s, à trouver plus de comptes à suivre. Aucun message n'est publiquement affiché tant que vous n'en avez pas approuvé l'auteur⋅rice, et seulement si icellui permet que son compte soit suggéré aux autres. Vous pouvez également autoriser ou rejeter les messages individuellement.
         disallow: Proscrire le message
         disallow_account: Proscrire l'auteur·rice
@@ -1896,6 +1911,7 @@ fr:
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
     otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
     rate_limited: Trop de tentatives d'authentification, réessayez plus tard.
+    seamless_external_login: Vous êtes connectés sur un service externe, de fait les paramètres de mot de passe et d'e-mail ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
   verification:
     extra_instructions_html: <strong>Astuce :</strong> Le lien sur votre site Web peut être invisible. La partie importante est <code>rel="me"</code> qui évite que soient pris en compte d’autres liens provenant de contenu générés par des utilisateurs tiers. Vous pouvez même utiliser une balise <code>link</code> dans l’en-tête de la page au lieu de <code>a</code>, mais le HTML doit être accessible sans avoir besoin d’exécuter du JavaScript.
