@@ -70,7 +70,8 @@
 
               - unless report.forwarded_to_domains.empty?
                 ·
-                = t('admin.reports.forwarded_to', domain: report.forwarded_to_domains.first, count: report.forwarded_to_domains.size)
+                %span{ title: report.forwarded_to_domains.size > 1 ? report.forwarded_to_domains.join(', ') : nil }
+                  = t('admin.reports.forwarded_to', domain: report.forwarded_to_domains.first, count: report.forwarded_to_domains.size)
 
           .report-card__summary__item__assigned
             - if report.assigned_account.present?
