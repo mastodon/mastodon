@@ -3,13 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe AccountModerationNote do
-  describe 'latest scope' do
+  describe 'default scope' do
     it 'returns account moderation notes oldest to newest' do
       account = Fabricate(:account)
       note1 = Fabricate(:account_moderation_note, target_account: account)
       note2 = Fabricate(:account_moderation_note, target_account: account)
 
-      expect(account.targeted_moderation_notes.latest).to eq [note1, note2]
+      expect(account.targeted_moderation_notes).to eq [note1, note2]
     end
   end
 

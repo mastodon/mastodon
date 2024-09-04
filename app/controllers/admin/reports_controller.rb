@@ -13,7 +13,7 @@ module Admin
       authorize @report, :show?
 
       @report_note  = @report.notes.new
-      @report_notes = @report.notes.includes(:account).latest
+      @report_notes = @report.notes.includes(:account)
       @action_logs  = @report.history.includes(:target)
       @form         = Admin::StatusBatchAction.new
       @statuses     = @report.statuses.with_includes
