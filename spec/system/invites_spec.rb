@@ -21,8 +21,7 @@ RSpec.describe 'Invites' do
       within css_id(invite) do
         expect(page)
           .to have_content(invite.uses)
-        expect(page.response_headers)
-          .to include('Cache-Control' => 'private, no-store')
+          .and have_private_cache_control
         expect(copyable_field.value)
           .to eq(public_invite_url(invite_code: invite.code))
       end
