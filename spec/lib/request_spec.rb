@@ -4,7 +4,9 @@ require 'rails_helper'
 require 'securerandom'
 
 RSpec.describe Request do
-  subject { described_class.new(:get, 'http://example.com') }
+  subject { described_class.new(:get, 'http://example.com', **options) }
+
+  let(:options) { {} }
 
   describe '#headers' do
     it 'returns user agent' do
@@ -39,8 +41,8 @@ RSpec.describe Request do
   end
 
   describe '#perform' do
-    context 'with valid host' do
-      before { stub_request(:get, 'http://example.com') }
+    context 'with valid host and non-persistent connection' do
+      before { stub_request(:get, 'http://example.com').to_return(body: 'lorem ipsum') }
 
       it 'executes a HTTP request' do
         expect { |block| subject.perform(&block) }.to yield_control
@@ -71,9 +73,9 @@ RSpec.describe Request do
         expect(subject.send(:http_client)).to have_received(:close)
       end
 
-      it 'returns response which implements body_with_limit' do
+      it 'yields response' do
         subject.perform do |response|
-          expect(response).to respond_to :body_with_limit
+          expect(response.body_with_limit).to eq 'lorem ipsum'
         end
       end
     end
@@ -93,6 +95,35 @@ RSpec.describe Request do
         allow(Resolv::DNS).to receive(:open).and_yield(resolver)
 
         expect { subject.perform }.to raise_error Mastodon::ValidationError
+      end
+    end
+
+    context 'with persistent connection' do
+      before { stub_request(:get, 'http://example.com').to_return(body: SecureRandom.random_bytes(100.kilobytes)) }
+
+      let(:http_client) { described_class.http_client.persistent('http://example.com') }
+      let(:options) { { http_client: http_client } }
+
+      it 'leaves connection open after complete response' do
+        allow(http_client).to receive(:close)
+
+        subject.perform(&:truncated_body)
+
+        expect(http_client).to_not have_received(:close)
+      end
+
+      it 'closes connection after aborted response' do
+        allow(http_client).to receive(:close)
+
+        subject.perform { |response| response.truncated_body(1.kilobyte) }
+
+        expect(http_client).to have_received(:close)
+      end
+
+      it 'yields response' do
+        subject.perform do |response|
+          expect(response.body_with_limit.size).to eq 100.kilobytes
+        end
       end
     end
   end
