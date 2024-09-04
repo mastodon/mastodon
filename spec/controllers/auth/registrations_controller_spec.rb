@@ -342,7 +342,7 @@ RSpec.describe Auth::RegistrationsController do
       end
 
       def username_error_text
-        Nokogiri::Slop(response.body).css('.user_account_username .error').text
+        response.parsed_body.css('.user_account_username .error').text
       end
     end
 

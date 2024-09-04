@@ -64,7 +64,7 @@ RSpec.describe Admin::ExportDomainBlocksController do
     end
 
     def batch_table_rows
-      Nokogiri::Slop(response.body).css('body div.batch-table__row')
+      response.parsed_body.css('body div.batch-table__row')
     end
   end
 
