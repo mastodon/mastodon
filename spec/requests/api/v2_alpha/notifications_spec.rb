@@ -116,6 +116,19 @@ RSpec.describe 'Notifications' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:notifications'
 
+    context 'when there are no notifications' do
+      before do
+        user.account.notifications.destroy_all
+      end
+
+      it 'returns 0 notifications' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:notification_groups]).to eq []
+      end
+    end
+
     context 'with no options' do
       it 'returns expected notification types', :aggregate_failures do
         subject
