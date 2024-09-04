@@ -370,7 +370,7 @@ class Status extends ImmutablePureComponent {
   };
 
   render () {
-    const { intl, hidden, featured, unfocusable, unread, showThread, scrollKey, pictureInPicture, previousId, nextInReplyToId, rootId, skipPrepend, avatarSize = 46 } = this.props;
+    const { intl, hidden, featured, unfocusable, unread, showThread, scrollKey, pictureInPicture, previousId, nextInReplyToId, rootId, skipPrepend, avatarSize = 40 } = this.props;
 
     let { status, account, ...other } = this.props;
 

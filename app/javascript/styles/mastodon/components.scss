@@ -1366,7 +1366,8 @@ body > [data-popper-placement] {
 }
 
 .status {
-  padding: 16px;
+  padding: 16px 24px;
+  padding-inline-end: 32px;
   min-height: 54px;
   border-bottom: 1px solid var(--background-border-color);
   cursor: auto;
@@ -1435,36 +1436,6 @@ body > [data-popper-placement] {
     }
   }
 
-  &--in-thread {
-    $thread-margin: 46px + 10px;
-
-    border-bottom: 0;
-
-    .status__content,
-    .status__action-bar,
-    .media-gallery,
-    .video-player,
-    .audio-player,
-    .attachment-list,
-    .picture-in-picture-placeholder,
-    .more-from-author,
-    .status-card,
-    .hashtag-bar,
-    .content-warning,
-    .filter-warning {
-      margin-inline-start: $thread-margin;
-      width: calc(100% - $thread-margin);
-    }
-
-    .more-from-author {
-      width: calc(100% - $thread-margin + 2px);
-    }
-
-    .status__content__read-more-button {
-      margin-inline-start: $thread-margin;
-    }
-  }
-
   &--first-in-thread {
     border-top: 1px solid var(--background-border-color);
   }
@@ -1475,7 +1446,7 @@ body > [data-popper-placement] {
     width: 0;
     position: absolute;
     top: 0;
-    inset-inline-start: 16px + ((46px - 2px) * 0.5);
+    inset-inline-start: 16px + ((40px - 2px) * 0.5);
 
     &--full {
       top: 0;
@@ -1486,7 +1457,7 @@ body > [data-popper-placement] {
         display: block;
         position: absolute;
         top: 16px - 4px;
-        height: 46px + 4px + 4px;
+        height: 40px + 4px + 4px;
         width: 2px;
         background: $ui-base-color;
         inset-inline-start: -2px;
@@ -1494,8 +1465,8 @@ body > [data-popper-placement] {
     }
 
     &--first {
-      top: 16px + 46px + 4px;
-      height: calc(100% - (16px + 46px + 4px));
+      top: 16px + 40px + 4px;
+      height: calc(100% - (16px + 40px + 4px));
 
       &::before {
         display: none;
@@ -1541,7 +1512,7 @@ body > [data-popper-placement] {
   font-size: 15px;
   line-height: 22px;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   overflow: hidden;
 
   .display-name {
@@ -1605,14 +1576,27 @@ body > [data-popper-placement] {
 }
 
 .status__prepend {
-  padding: 16px;
-  padding-bottom: 0;
-  display: inline-flex;
-  gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: $dark-text-color;
   font-size: 15px;
   line-height: 22px;
   font-weight: 500;
-  color: $dark-text-color;
+  padding-inline-start: 48px;
+  padding-top: 16px;
+
+  &-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
 
   .status__display-name strong {
     color: $dark-text-color;
@@ -2191,8 +2175,8 @@ a.account__display-name {
 }
 
 .status__avatar {
-  width: 46px;
-  height: 46px;
+  width: 40px;
+  height: 40px;
 }
 
 .muted {
@@ -2789,7 +2773,7 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .column {
-  width: 350px;
+  width: 400px;
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -2822,7 +2806,7 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .drawer {
-  width: 300px;
+  width: 350px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -8524,18 +8508,17 @@ noscript {
   }
 
   &--unread {
-    background: lighten($ui-base-color, 2%);
+    position: relative;
 
-    &:focus {
-      background: lighten($ui-base-color, 4%);
-    }
-
-    .conversation__content__info {
-      font-weight: 700;
-    }
-
-    .conversation__content__relative-time {
-      color: $primary-text-color;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      inset-inline-start: 0;
+      width: 100%;
+      height: 100%;
+      border-inline-start: 4px solid $highlight-text-color;
+      pointer-events: none;
     }
   }
 }
@@ -10471,6 +10454,7 @@ noscript {
   align-items: flex-start;
   gap: 8px;
   padding: 16px 24px;
+  padding-inline-end: 32px;
   border-bottom: 1px solid var(--background-border-color);
 
   &__icon {
@@ -10663,6 +10647,7 @@ noscript {
 
 .notification-ungrouped {
   padding: 16px 24px;
+  padding-inline-end: 32px;
   border-bottom: 1px solid var(--background-border-color);
 
   &__header {
@@ -10697,17 +10682,19 @@ noscript {
   .status {
     border: 0;
     padding: 0;
-
-    &__avatar {
-      width: 40px;
-      height: 40px;
-    }
   }
 
   .status__wrapper-direct {
     background: transparent;
   }
 
+  .notification__report {
+    border: 0;
+    padding: 0;
+  }
+}
+
+.status {
   $icon-margin: 48px; // 40px avatar + 8px gap
 
   .status__content,
@@ -10732,11 +10719,6 @@ noscript {
 
   .status__content__read-more-button {
     margin-inline-start: $icon-margin;
-  }
-
-  .notification__report {
-    border: 0;
-    padding: 0;
   }
 }
 
@@ -10931,6 +10913,7 @@ noscript {
 }
 
 .content-warning {
+  box-sizing: border-box;
   background: rgba($ui-highlight-color, 0.05);
   color: $secondary-text-color;
   border-top: 1px solid;
