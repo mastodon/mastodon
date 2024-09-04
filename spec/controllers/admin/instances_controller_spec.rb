@@ -35,7 +35,7 @@ RSpec.describe Admin::InstancesController do
     end
 
     def instance_directory_links
-      Nokogiri::Slop(response.body).css('div.directory__tag a')
+      response.parsed_body.css('div.directory__tag a')
     end
   end
 
