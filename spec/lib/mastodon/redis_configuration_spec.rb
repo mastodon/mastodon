@@ -109,9 +109,9 @@ RSpec.describe Mastodon::RedisConfiguration do
         expect(subject[:sentinels]).to contain_exactly({ host: '192.168.0.1', port: 3000 }, { host: '192.168.0.2', port: 4000 })
       end
 
-      context "when giving dedicated credentials in `#{prefix}REDIS_SENTINEL_USER` and `#{prefix}REDIS_SENTINEL_PASSWORD`" do
+      context "when giving dedicated credentials in `#{prefix}REDIS_SENTINEL_USERNAME` and `#{prefix}REDIS_SENTINEL_PASSWORD`" do
         around do |example|
-          ClimateControl.modify "#{prefix}REDIS_SENTINEL_USER": 'sentinel_user', "#{prefix}REDIS_SENTINEL_PASSWORD": 'sentinel_pass1' do
+          ClimateControl.modify "#{prefix}REDIS_SENTINEL_USERNAME": 'sentinel_user', "#{prefix}REDIS_SENTINEL_PASSWORD": 'sentinel_pass1' do
             example.run
           end
         end

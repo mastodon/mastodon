@@ -89,7 +89,7 @@ class Mastodon::RedisConfiguration
     name              = ENV.fetch("#{prefix}SENTINEL_MASTER", nil)
     sentinel_port     = ENV.fetch("#{prefix}SENTINEL_PORT", 26_379)
     sentinel_list     = ENV.fetch("#{prefix}SENTINELS", nil)
-    sentinel_username = ENV.fetch("#{prefix}SENTINEL_USER", default_user)
+    sentinel_username = ENV.fetch("#{prefix}SENTINEL_USERNAME", default_user)
     sentinel_password = ENV.fetch("#{prefix}SENTINEL_PASSWORD", default_password)
 
     sentinels = parse_sentinels(sentinel_list, default_port: sentinel_port)
