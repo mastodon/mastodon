@@ -95,6 +95,8 @@ namespace :admin do
       end
     end
 
+    resource :forwarding, only: [:new, :create], controller: 'reports/forward'
+
     member do
       post :assign_to_self
       post :unassign

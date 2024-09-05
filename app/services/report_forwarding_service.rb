@@ -6,12 +6,13 @@ class ReportForwardingService < BaseService
   def call(report, forwarder, options = {})
     @report = report
     @options = options
-    @forwarded_to = []
+    @comment = options.delete(:comment).presence || @report.comment
+    @forwarded_to = @report.forwarded_to_domains
 
     return unless @report.forwardable?
 
     unless forward_to_domains.empty?
-      forward_to_origin! if forward_to_origin?
+      forward_to_origin!
       forward_to_replied_to!
     end
 
@@ -19,12 +20,16 @@ class ReportForwardingService < BaseService
       report.update!({
         forwarded_at: DateTime.now.utc,
         forwarded_by: forwarder,
-        forwarded_to_domains: @forwarded_to,
+        forwarded_to_domains: @forwarded_to.uniq,
       })
     end
   end
 
   def forward_to_origin!
+    Rails.logger.debug payload
+
+    return unless forward_to_domains.include?(@report.target_account.domain)
+
     # Send report to the server where the account originates from
     ActivityPub::DeliveryWorker.perform_async(payload, instance_representative.id, @report.target_account.inbox_url)
     @forwarded_to << @report.target_account.domain
@@ -39,11 +44,7 @@ class ReportForwardingService < BaseService
       ActivityPub::DeliveryWorker.perform_async(payload, instance_representative.id, inbox_url)
     end
 
-    @forwarded_to = @forwarded_to.concat(accounts.map(&:domain)).uniq
-  end
-
-  def forward_to_origin?
-    forward_to_domains.include?(@report.target_account.domain)
+    @forwarded_to.concat(accounts.map(&:domain))
   end
 
   def forward_to_domains
@@ -51,7 +52,7 @@ class ReportForwardingService < BaseService
   end
 
   def payload
-    Oj.dump(serialize_payload(@report, ActivityPub::FlagSerializer, account: instance_representative))
+    Oj.dump(serialize_payload(@report, ActivityPub::FlagSerializer, account: instance_representative, comment: @comment))
   end
 
   def instance_representative

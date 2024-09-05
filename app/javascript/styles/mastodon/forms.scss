@@ -278,6 +278,10 @@ code {
     ul {
       columns: 2;
     }
+
+    &.single-column ul {
+      columns: 1;
+    }
   }
 
   .input.with_block_label.user_role_permissions_as_keys ul {

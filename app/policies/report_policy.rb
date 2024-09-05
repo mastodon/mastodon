@@ -12,4 +12,8 @@ class ReportPolicy < ApplicationPolicy
   def show?
     role.can?(:manage_reports)
   end
+
+  def forward?
+    role.can?(:manage_reports)
+  end
 end

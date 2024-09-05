@@ -1,0 +1,35 @@
+- content_for :page_title do
+  = t('admin.reports.forward_report', id: @report.id)
+
+= simple_form_for @report, url: admin_report_forwarding_path(@report.id), method: :post do |form|
+  %p.lead= t('admin.reports.forwarding.description')
+
+  .fields-group
+    = form.input :forwarded_to_domains,
+                 as: :check_boxes,
+                 collection: @report.forwardable_to_domains,
+                 disabled: @report.forwarded_to_domains,
+                 hint: t('admin.reports.forwarding.domains_hint'),
+                 include_blank: false,
+                 collection_wrapper_tag: 'ul',
+                 item_wrapper_tag: 'li',
+                 label_method: ->(domain) { domain == @report.target_account.domain ? "#{domain} #{t('admin.reports.forwarded_to_origin')}" : domain },
+                 wrapper: :with_block_label,
+                 wrapper_html: { class: 'single-column' }
+
+  %h4= t('admin.reports.forwarding.comment')
+
+  - if @report.comment.present?
+    = render 'admin/reports/comment', report: @report
+
+  .fields-group
+    = form.input :comment,
+                 optional: true,
+                 wrapper: :with_block_label,
+                 hint: t('admin.reports.forwarding.comment_hint', maxlength: Report::COMMENT_SIZE_LIMIT),
+                 label: t('admin.reports.forwarding.comment_label'),
+                 input_html: { placeholder: t('admin.reports.forwarding.comment_placeholder'), maxlength: Report::COMMENT_SIZE_LIMIT, rows: 6 }
+
+  .actions
+    = link_to t('.cancel'), admin_report_path(@report), class: 'button button-tertiary'
+    = form.button :button, t('admin.reports.forwarding.create'), type: :submit
