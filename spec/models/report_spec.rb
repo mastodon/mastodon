@@ -128,30 +128,31 @@ RSpec.describe Report do
   end
 
   describe 'validations' do
+    subject { Fabricate.build :report }
+
     let(:remote_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }
+    let(:local_account) { Fabricate(:account, domain: nil) }
 
-    it 'is invalid if comment is longer than character limit and reporter is local' do
-      report = Fabricate.build(:report, comment: comment_over_limit)
-      expect(report.valid?).to be false
-      expect(report).to model_have_error_on_field(:comment)
+    context 'with a local reporter' do
+      subject { Fabricate.build :report, account: local_account }
+
+      it { is_expected.to_not allow_value(comment_over_limit).for(:comment) }
     end
 
-    it 'is valid if comment is longer than character limit and reporter is not local' do
-      report = Fabricate.build(:report, account: remote_account, comment: comment_over_limit)
-      expect(report.valid?).to be true
+    context 'with a remote reporter' do
+      subject { Fabricate.build :report, account: remote_account }
+
+      it { is_expected.to allow_value(comment_over_limit).for(:comment) }
     end
 
-    it 'is invalid if it references invalid rules' do
-      report = Fabricate.build(:report, category: :violation, rule_ids: [-1])
-      expect(report.valid?).to be false
-      expect(report).to model_have_error_on_field(:rule_ids)
-    end
+    it { is_expected.to_not allow_value([-1]).for(:rule_ids) }
 
-    it 'is invalid if it references rules but category is not "violation"' do
-      rule = Fabricate(:rule)
-      report = Fabricate.build(:report, category: :spam, rule_ids: rule.id)
-      expect(report.valid?).to be false
-      expect(report).to model_have_error_on_field(:rule_ids)
+    context 'with a category that is not "violation"' do
+      subject { Fabricate.build :report, category: :spam }
+
+      let(:rule) { Fabricate :rule }
+
+      it { is_expected.to_not allow_value(rule.id).for(:rule_ids) }
     end
 
     def comment_over_limit
