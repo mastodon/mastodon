@@ -3,27 +3,26 @@
 require 'rails_helper'
 
 RSpec.describe Follow do
-  let(:alice) { Fabricate(:account, username: 'alice') }
-  let(:bob)   { Fabricate(:account, username: 'bob') }
-
-  describe 'validations' do
-    subject { described_class.new(account: alice, target_account: bob, rate_limit: true) }
-
+  describe 'Associations' do
     it { is_expected.to belong_to(:account).required }
     it { is_expected.to belong_to(:target_account).required }
+  end
 
-    it 'is invalid if account already follows too many people' do
-      alice.update(following_count: FollowLimitValidator::LIMIT)
+  describe 'Validations' do
+    subject { Fabricate.build :follow, rate_limit: true }
 
-      expect(subject).to_not be_valid
-      expect(subject).to model_have_error_on_field(:base)
+    let(:account) { Fabricate(:account) }
+
+    context 'when account follows too many people' do
+      before { account.update(following_count: FollowLimitValidator::LIMIT) }
+
+      it { is_expected.to_not allow_value(account).for(:account).against(:base) }
     end
 
-    it 'is valid if account is only on the brink of following too many people' do
-      alice.update(following_count: FollowLimitValidator::LIMIT - 1)
+    context 'when account is on brink of following too many people' do
+      before { account.update(following_count: FollowLimitValidator::LIMIT - 1) }
 
-      expect(subject).to be_valid
-      expect(subject).to_not model_have_error_on_field(:base)
+      it { is_expected.to allow_value(account).for(:account).against(:base) }
     end
   end
 
