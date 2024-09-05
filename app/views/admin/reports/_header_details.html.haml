@@ -52,13 +52,11 @@
     .report-header__details__item
       .report-header__details__item__header
         %strong= t('admin.reports.assigned')
+        - if report.assigned_account != current_user.account
+          = table_link_to 'person', t('admin.reports.assign_to_self'), assign_to_self_admin_report_path(report), method: :post
       .report-header__details__item__content
         - if report.assigned_account.nil?
           = t 'admin.reports.no_one_assigned'
         - else
           = admin_account_link_to report.assigned_account
-        —
-        - if report.assigned_account != current_user.account
-          = table_link_to 'person', t('admin.reports.assign_to_self'), assign_to_self_admin_report_path(report), method: :post
-        - elsif !report.assigned_account.nil?
           = table_link_to 'delete', t('admin.reports.unassign'), unassign_admin_report_path(report), method: :post
