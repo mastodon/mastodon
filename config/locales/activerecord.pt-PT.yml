@@ -6,7 +6,7 @@ pt-PT:
         expires_at: Prazo
         options: Escolhas
       user:
-        agreement: Acordo de serviço
+        agreement: Contrato de prestação de serviço
         email: Endereço de correio electrónico
         locale: Região
         password: Palavra-passe
@@ -19,7 +19,7 @@ pt-PT:
         account:
           attributes:
             username:
-              invalid: apenas letras, números e underscores
+              invalid: deve conter apenas letras, números e traços inferiores
               reserved: está reservado
         admin/webhook:
           attributes:
@@ -43,15 +43,15 @@ pt-PT:
               blocked: usa um fornecedor de e-mail que não é permitido
               unreachable: não parece existir
             role_id:
-              elevated: não pode ser maior que o da sua função atual
+              elevated: não pode ser superior à sua função atual
         user_role:
           attributes:
             permissions_as_keys:
               dangerous: incluir permissões que não são seguras para a função base
-              elevated: não pode incluir permissões que a sua função atual não possui
+              elevated: não pode incluir permissões que a sua função atual não possua
               own_role: não pode ser alterado com a sua função atual
             position:
-              elevated: não pode ser maior que o da sua função atual
+              elevated: não pode ser superior à sua função atual
               own_role: não pode ser alterado com a sua função atual
         webhook:
           attributes:
