@@ -193,10 +193,17 @@ class PostStatusService < BaseService
       sensitive: @sensitive,
       spoiler_text: @options[:spoiler_text] || '',
       visibility: @visibility,
-      language: valid_locale_cascade(@options[:language], @account.user&.preferred_posting_language, I18n.default_locale),
+      language: language,
       application: @options[:application],
       rate_limit: @options[:with_rate_limit],
     }.compact
+  end
+
+  def language
+    language = valid_locale_cascade(@options[:language], @account.user&.preferred_posting_language, I18n.default_locale)
+    raise Mastodon::ValidationError, I18n.t('statuses.errors.invalid_language') if Rails.application.config.x.posting_languages && !valid_posting_language?(language)
+
+    language
   end
 
   def scheduled_status_attributes

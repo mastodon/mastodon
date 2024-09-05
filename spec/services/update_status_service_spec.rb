@@ -44,6 +44,40 @@ RSpec.describe UpdateStatusService do
     end
   end
 
+  context 'when language changes' do
+    let(:status) { Fabricate(:status, text: 'Foo', language: 'de') }
+
+    it 'updates language' do
+      subject.call(status, status.account_id, text: 'Foo', language: 'fi')
+      expect(status.reload.language).to eq 'fi'
+    end
+
+    context 'when posting_languages is configured' do
+      before do
+        allow(Rails.configuration.x).to receive(:posting_languages).and_return([:nl, :fr])
+      end
+
+      it 'updates language' do
+        subject.call(status, status.account_id, text: 'Foo', language: 'fr')
+        expect(status.reload.language).to eq 'fr'
+      end
+
+      it 'raises on unpermitted language' do
+        expect do
+          subject.call(status, status.account_id, text: 'Foo', language: 'fi')
+        end.to raise_error(
+          Mastodon::ValidationError,
+          'Language is invalid'
+        )
+      end
+
+      it 'preserves existing unpermitted language' do
+        subject.call(status, status.account_id, text: 'Foo', language: 'de')
+        expect(status.reload.language).to eq 'de'
+      end
+    end
+  end
+
   context 'when content warning changes' do
     let(:status) { Fabricate(:status, text: 'Foo', spoiler_text: '') }
     let(:preview_card) { Fabricate(:preview_card) }

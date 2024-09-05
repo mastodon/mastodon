@@ -46,6 +46,10 @@ class InstancePresenter < ActiveModelSerializers::Model
     [I18n.default_locale]
   end
 
+  def posting_languages
+    Rails.application.config.x.posting_languages || LanguagesHelper::SUPPORTED_LOCALES.keys
+  end
+
   def rules
     Rule.ordered
   end

@@ -109,4 +109,11 @@ Rails.application.configure do
       :en
     end
   end
+
+  config.x.posting_languages = ENV['POSTING_LANGUAGES']&.split(',')&.map(&:to_sym)
+end
+
+Rails.application.config.after_initialize do
+  invalid = Rails.application.config.x.posting_languages&.difference(LanguagesHelper::SUPPORTED_LOCALES.keys)
+  raise "POSTING_LANGUAGES contains invalid code: #{invalid.join(', ')}" if invalid&.any?
 end

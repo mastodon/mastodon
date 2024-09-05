@@ -103,4 +103,10 @@ RSpec.describe InstancePresenter do
       expect(instance_presenter.mascot).to eq(mascot)
     end
   end
+
+  describe '#posting_languages' do
+    it 'returns all supported locales' do
+      expect(instance_presenter.posting_languages).to eq(LanguagesHelper::SUPPORTED_LOCALES.keys)
+    end
+  end
 end

@@ -30,7 +30,7 @@
 
       .fields-group.fields-row__column.fields-row__column-6
         = ff.input :default_language,
-                   collection: [nil] + filterable_languages,
+                   collection: [nil] + posting_languages,
                    hint: false,
                    include_blank: false,
                    label_method: ->(locale) { locale.nil? ? I18n.t('statuses.default_language') : native_locale_name(locale) },

@@ -59,6 +59,7 @@
  * @typedef InitialState
  * @property {Record<string, import("./api_types/accounts").ApiAccountJSON>} accounts
  * @property {InitialStateLanguage[]} languages
+ * @property {string[]} posting_languages
  * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta
  * @property {Role?} role
@@ -115,6 +116,7 @@ export const useBlurhash = getMeta('use_blurhash');
 export const usePendingItems = getMeta('use_pending_items');
 export const version = getMeta('version');
 export const languages = initialState?.languages;
+export const postingLanguages = initialState?.posting_languages;
 export const criticalUpdatesPending = initialState?.critical_updates_pending;
 // @ts-expect-error
 export const statusPageUrl = getMeta('status_page_url');

@@ -5378,7 +5378,7 @@ a.status-card {
     padding: 0;
 
     .emoji-mart-search {
-      padding: 10px;
+      padding: 10px 10px 0;
       background: var(--dropdown-background-color);
 
       input {
@@ -5411,7 +5411,8 @@ a.status-card {
     }
 
     .emoji-mart-scroll {
-      padding: 0 10px 10px;
+      padding: 10px;
+      height: auto;
       background: var(--dropdown-background-color);
     }
 

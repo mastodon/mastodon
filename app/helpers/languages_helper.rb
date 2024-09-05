@@ -298,6 +298,14 @@ module LanguagesHelper
     locale.present? && SUPPORTED_LOCALES.key?(locale.to_sym)
   end
 
+  def valid_posting_language?(locale)
+    if Rails.application.config.x.posting_languages
+      Rails.application.config.x.posting_languages.include?(locale.to_sym)
+    else
+      valid_locale?(locale)
+    end
+  end
+
   def available_locale_or_nil(locale_name)
     locale_name.to_sym if locale_name.present? && I18n.available_locales.include?(locale_name.to_sym)
   end

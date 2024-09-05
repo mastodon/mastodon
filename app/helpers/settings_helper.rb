@@ -5,6 +5,10 @@ module SettingsHelper
     LanguagesHelper.sorted_locale_keys(LanguagesHelper::SUPPORTED_LOCALES.keys)
   end
 
+  def posting_languages
+    Rails.application.config.x.posting_languages || filterable_languages
+  end
+
   def ui_languages
     LanguagesHelper.sorted_locale_keys(I18n.available_locales)
   end

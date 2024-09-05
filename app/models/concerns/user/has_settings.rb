@@ -16,7 +16,9 @@ module User::HasSettings
   end
 
   def preferred_posting_language
-    valid_locale_cascade(settings['default_language'], locale, I18n.locale)
+    language = valid_locale_cascade(settings['default_language'], locale, I18n.locale)
+    language = Rails.configuration.x.posting_languages&.first unless valid_posting_language?(language)
+    language
   end
 
   def setting_auto_play_gif

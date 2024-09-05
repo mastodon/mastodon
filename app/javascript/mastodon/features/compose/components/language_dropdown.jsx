@@ -13,7 +13,7 @@ import CancelIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import TranslateIcon from '@/material-icons/400-24px/translate.svg?react';
 import { Icon } from 'mastodon/components/icon';
-import { languages as preloadedLanguages } from 'mastodon/initial_state';
+import { languages as preloadedLanguages, postingLanguages } from 'mastodon/initial_state';
 
 const messages = defineMessages({
   changeLanguage: { id: 'compose.language.change', defaultMessage: 'Change language' },
@@ -35,7 +35,7 @@ class LanguageDropdownMenu extends PureComponent {
   };
 
   static defaultProps = {
-    languages: preloadedLanguages,
+    languages: preloadedLanguages.filter(l => postingLanguages.includes(l[0])),
   };
 
   state = {
@@ -212,17 +212,19 @@ class LanguageDropdownMenu extends PureComponent {
   };
 
   render () {
-    const { intl } = this.props;
+    const { languages, intl } = this.props;
     const { searchValue } = this.state;
     const isSearching = searchValue !== '';
     const results = this.search();
 
     return (
       <div ref={this.setRef}>
-        <div className='emoji-mart-search'>
-          <input type='search' value={searchValue} onChange={this.handleSearchChange} onKeyDown={this.handleSearchKeyDown} placeholder={intl.formatMessage(messages.search)} />
-          <button type='button' className='emoji-mart-search-icon' disabled={!isSearching} aria-label={intl.formatMessage(messages.clear)} onClick={this.handleClear}><Icon icon={!isSearching ? SearchIcon : CancelIcon} /></button>
-        </div>
+        {languages.length > 10 &&
+          <div className='emoji-mart-search'>
+            <input type='search' value={searchValue} onChange={this.handleSearchChange} onKeyDown={this.handleSearchKeyDown} placeholder={intl.formatMessage(messages.search)} />
+            <button type='button' className='emoji-mart-search-icon' disabled={!isSearching} aria-label={intl.formatMessage(messages.clear)} onClick={this.handleClear}><Icon icon={!isSearching ? SearchIcon : CancelIcon} /></button>
+          </div>
+        }
 
         <div className='language-dropdown__dropdown__results emoji-mart-scroll' role='listbox' ref={this.setListRef}>
           {results.map(this.renderItem)}

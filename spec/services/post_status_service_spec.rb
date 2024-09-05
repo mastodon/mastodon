@@ -141,11 +141,41 @@ RSpec.describe PostStatusService do
 
   it 'creates a status with a language set' do
     account = Fabricate(:account)
-    text = 'This is an English text.'
 
-    status = subject.call(account, text: text)
+    status = subject.call(account, text: 'Guten Tag', language: 'de')
 
-    expect(status.language).to eq 'en'
+    expect(status.language).to eq 'de'
+  end
+
+  it 'creates a status with the user default language' do
+    user = Fabricate(:user, locale: 'fr')
+
+    status = subject.call(user.account, text: 'Bonjour')
+
+    expect(status.language).to eq 'fr'
+  end
+
+  it 'creates a status with a permitted language' do
+    account = Fabricate(:account)
+
+    allow(Rails.configuration.x).to receive(:posting_languages).and_return([:es, :pt])
+
+    status = subject.call(account, text: 'Hola', language: 'es')
+
+    expect(status.language).to eq 'es'
+  end
+
+  it 'raises on unpermitted posting language' do
+    account = Fabricate(:account)
+
+    allow(Rails.configuration.x).to receive(:posting_languages).and_return([:es, :pt])
+
+    expect do
+      subject.call(account, text: 'Foo', language: 'ja')
+    end.to raise_error(
+      Mastodon::ValidationError,
+      'Language is invalid'
+    )
   end
 
   it 'processes mentions' do

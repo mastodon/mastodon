@@ -114,13 +114,20 @@ class UpdateStatusService < BaseService
     @status.text         = @options[:text].presence || @options.delete(:spoiler_text) || '' if @options.key?(:text)
     @status.spoiler_text = @options[:spoiler_text] || '' if @options.key?(:spoiler_text)
     @status.sensitive    = @options[:sensitive] || @options[:spoiler_text].present? if @options.key?(:sensitive) || @options.key?(:spoiler_text)
-    @status.language     = valid_locale_cascade(@options[:language], @status.language, @status.account.user&.preferred_posting_language, I18n.default_locale)
+    @status.language     = language if @options.key?(:language) && @options[:language] != @status.language
 
     # We raise here to rollback the entire transaction
     raise NoChangesSubmittedError unless significant_changes?
 
     @status.edited_at = Time.now.utc
     @status.save!
+  end
+
+  def language
+    language = valid_locale_cascade(@options[:language], @status.account.user&.preferred_posting_language, I18n.default_locale)
+    raise Mastodon::ValidationError, I18n.t('statuses.errors.invalid_language') if Rails.application.config.x.posting_languages && !valid_posting_language?(language)
+
+    language
   end
 
   def reset_preview_card!
