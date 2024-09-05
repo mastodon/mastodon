@@ -171,10 +171,6 @@ RSpec.describe Mastodon::RedisConfiguration do
           url: 'redis://localhost:6379/0',
           driver: :hiredis,
           namespace: nil,
-          name: nil,
-          sentinels: nil,
-          sentinel_username: nil,
-          sentinel_password: nil,
         })
       end
     end
@@ -207,10 +203,6 @@ RSpec.describe Mastodon::RedisConfiguration do
           url: 'redis://:testpass@redis.example.com:3333/3',
           driver: :hiredis,
           namespace: nil,
-          name: nil,
-          sentinels: nil,
-          sentinel_username: nil,
-          sentinel_password: nil,
         })
       end
     end
@@ -239,10 +231,6 @@ RSpec.describe Mastodon::RedisConfiguration do
         namespace: 'cache',
         expires_in: 10.minutes,
         connect_timeout: 5,
-        name: nil,
-        sentinels: nil,
-        sentinel_username: nil,
-        sentinel_password: nil,
         pool: {
           size: 5,
           timeout: 5,
