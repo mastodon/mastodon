@@ -57,15 +57,17 @@ class Mastodon::RedisConfiguration
   def setup_config(prefix: nil, defaults: {})
     prefix = "#{prefix}REDIS_"
 
-    url           = ENV.fetch("#{prefix}URL", nil)
-    user          = ENV.fetch("#{prefix}USER", nil)
-    password      = ENV.fetch("#{prefix}PASSWORD", nil)
-    host          = ENV.fetch("#{prefix}HOST", defaults[:host])
-    port          = ENV.fetch("#{prefix}PORT", defaults[:port])
-    db            = ENV.fetch("#{prefix}DB", defaults[:db])
-    name          = ENV.fetch("#{prefix}SENTINEL_MASTER", nil)
-    sentinel_port = ENV.fetch("#{prefix}SENTINEL_PORT", 26_379)
-    sentinel_list = ENV.fetch("#{prefix}SENTINELS", nil)
+    url               = ENV.fetch("#{prefix}URL", nil)
+    user              = ENV.fetch("#{prefix}USER", nil)
+    password          = ENV.fetch("#{prefix}PASSWORD", nil)
+    host              = ENV.fetch("#{prefix}HOST", defaults[:host])
+    port              = ENV.fetch("#{prefix}PORT", defaults[:port])
+    db                = ENV.fetch("#{prefix}DB", defaults[:db])
+    name              = ENV.fetch("#{prefix}SENTINEL_MASTER", nil)
+    sentinel_port     = ENV.fetch("#{prefix}SENTINEL_PORT", 26_379)
+    sentinel_list     = ENV.fetch("#{prefix}SENTINELS", nil)
+    sentinel_username = ENV.fetch("#{prefix}SENTINEL_USER", user)
+    sentinel_password = ENV.fetch("#{prefix}SENTINEL_PASSWORD", password)
 
     return { url:, driver: } if url
 
@@ -77,12 +79,14 @@ class Mastodon::RedisConfiguration
       db ||= 0
     else
       sentinels = nil
+      sentinel_username = nil
+      sentinel_password = nil
     end
 
     url = construct_uri(host, port, db, user, password)
 
     if url.present?
-      { url:, driver:, name:, sentinels: }
+      { url:, driver:, name:, sentinels:, sentinel_username:, sentinel_password: }
     else
       # Fall back to base config. This has defaults for the URL
       # so this cannot lead to an endless loop.
