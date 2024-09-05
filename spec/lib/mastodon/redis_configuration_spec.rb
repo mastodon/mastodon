@@ -107,14 +107,40 @@ RSpec.describe Mastodon::RedisConfiguration do
     end
 
     context 'when giving sentinels without port numbers' do
-      around do |example|
-        ClimateControl.modify "#{prefix}REDIS_SENTINELS": '192.168.0.1,192.168.0.2', "#{prefix}REDIS_SENTINEL_MASTER": 'mainsentinel' do
-          example.run
+      context "when no default port is given via `#{prefix}REDIS_SENTINEL_PORT`" do
+        around do |example|
+          ClimateControl.modify "#{prefix}REDIS_SENTINELS": '192.168.0.1,192.168.0.2', "#{prefix}REDIS_SENTINEL_MASTER": 'mainsentinel' do
+            example.run
+          end
+        end
+
+        it 'uses the default sentinel port' do
+          expect(subject[:sentinels]).to contain_exactly({ host: '192.168.0.1', port: 26_379 }, { host: '192.168.0.2', port: 26_379 })
         end
       end
 
-      it 'uses the default sentinel port' do
-        expect(subject[:sentinels]).to contain_exactly({ host: '192.168.0.1', port: 26_379 }, { host: '192.168.0.2', port: 26_379 })
+      context 'when adding port numbers to some, but not all sentinels' do
+        around do |example|
+          ClimateControl.modify "#{prefix}REDIS_SENTINELS": '192.168.0.1:5678,192.168.0.2', "#{prefix}REDIS_SENTINEL_MASTER": 'mainsentinel' do
+            example.run
+          end
+        end
+
+        it 'uses the given port number when available and the default otherwise' do
+          expect(subject[:sentinels]).to contain_exactly({ host: '192.168.0.1', port: 5678 }, { host: '192.168.0.2', port: 26_379 })
+        end
+      end
+
+      context "when a default port is given via `#{prefix}REDIS_SENTINEL_PORT`" do
+        around do |example|
+          ClimateControl.modify "#{prefix}REDIS_SENTINEL_PORT": '1234', "#{prefix}REDIS_SENTINELS": '192.168.0.1,192.168.0.2', "#{prefix}REDIS_SENTINEL_MASTER": 'mainsentinel' do
+            example.run
+          end
+        end
+
+        it 'uses the given port number' do
+          expect(subject[:sentinels]).to contain_exactly({ host: '192.168.0.1', port: 1234 }, { host: '192.168.0.2', port: 1234 })
+        end
       end
     end
   end

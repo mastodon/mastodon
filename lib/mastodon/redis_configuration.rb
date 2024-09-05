@@ -57,16 +57,19 @@ class Mastodon::RedisConfiguration
   def setup_config(prefix: nil, defaults: {})
     prefix = "#{prefix}REDIS_"
 
-    url       = ENV.fetch("#{prefix}URL", nil)
-    user      = ENV.fetch("#{prefix}USER", nil)
-    password  = ENV.fetch("#{prefix}PASSWORD", nil)
-    host      = ENV.fetch("#{prefix}HOST", defaults[:host])
-    port      = ENV.fetch("#{prefix}PORT", defaults[:port])
-    db        = ENV.fetch("#{prefix}DB", defaults[:db])
-    name      = ENV.fetch("#{prefix}SENTINEL_MASTER", nil)
-    sentinels = parse_sentinels(ENV.fetch("#{prefix}SENTINELS", nil))
+    url           = ENV.fetch("#{prefix}URL", nil)
+    user          = ENV.fetch("#{prefix}USER", nil)
+    password      = ENV.fetch("#{prefix}PASSWORD", nil)
+    host          = ENV.fetch("#{prefix}HOST", defaults[:host])
+    port          = ENV.fetch("#{prefix}PORT", defaults[:port])
+    db            = ENV.fetch("#{prefix}DB", defaults[:db])
+    name          = ENV.fetch("#{prefix}SENTINEL_MASTER", nil)
+    sentinel_port = ENV.fetch("#{prefix}SENTINEL_PORT", 26_379)
+    sentinel_list = ENV.fetch("#{prefix}SENTINELS", nil)
 
     return { url:, driver: } if url
+
+    sentinels = parse_sentinels(sentinel_list, default_port: sentinel_port)
 
     if name.present? && sentinels.present?
       host = name
@@ -96,10 +99,10 @@ class Mastodon::RedisConfiguration
     end.normalize.to_str
   end
 
-  def parse_sentinels(sentinels_string)
+  def parse_sentinels(sentinels_string, default_port: 26_379)
     (sentinels_string || '').split(',').map do |sentinel|
       host, port = sentinel.split(':')
-      port = port.present? ? port.to_i : 26_379
+      port = (port || default_port).to_i
       { host: host, port: port }
     end.presence
   end
