@@ -7,15 +7,6 @@ GIT
       hkdf (~> 0.2)
       jwt (~> 2.0)
 
-GIT
-  remote: https://github.com/toptal/chewy.git
-  revision: 84c0eed871e835f55d560097ef141cd5fe504967
-  specs:
-    chewy (7.6.0)
-      activesupport (>= 6.1)
-      elasticsearch (>= 8.14, < 9.0)
-      elasticsearch-dsl
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -159,6 +150,10 @@ GEM
       activesupport
     cbor (0.5.9.8)
     charlock_holmes (0.7.9)
+    chewy (8.0.0.pre.beta)
+      activesupport (>= 6.1)
+      elasticsearch (>= 8.14, < 9.0)
+      elasticsearch-dsl
     childprocess (5.1.0)
       logger (~> 1.5)
     chunky_png (1.4.0)
@@ -897,7 +892,7 @@ DEPENDENCIES
   bundler-audit (~> 0.9)
   capybara (~> 3.39)
   charlock_holmes (~> 0.7.7)
-  chewy!
+  chewy (= 8.0.0.pre.beta)
   climate_control
   cocoon (~> 1.2)
   color_diff (~> 0.1)
