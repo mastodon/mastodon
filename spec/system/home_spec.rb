@@ -11,6 +11,7 @@ RSpec.describe 'Home page' do
 
       expect(page)
         .to have_css('noscript', text: /Mastodon/)
+        .and have_css('body', class: 'app-body')
     end
   end
 
@@ -20,6 +21,7 @@ RSpec.describe 'Home page' do
 
       expect(page)
         .to have_css('noscript', text: /Mastodon/)
+        .and have_css('body', class: 'app-body')
     end
   end
 end
