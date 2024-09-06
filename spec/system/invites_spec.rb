@@ -56,10 +56,6 @@ RSpec.describe 'Invites' do
 
   private
 
-  def css_id(record)
-    "##{dom_id(record)}" # TODO: Extract to system spec helper?
-  end
-
   def copyable_field
     within '.input-copy' do
       find(:field, type: :text, readonly: true)
