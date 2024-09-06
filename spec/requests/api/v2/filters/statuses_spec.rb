@@ -17,7 +17,7 @@ RSpec.describe 'API V2 Filters Statuses' do
     it 'returns http success' do
       get "/api/v2/filters/#{filter.id}/statuses", headers: headers
       expect(response).to have_http_status(200)
-      expect(body_as_json)
+      expect(response.parsed_body)
         .to contain_exactly(
           include(id: status_filter.id.to_s)
         )
@@ -43,7 +43,7 @@ RSpec.describe 'API V2 Filters Statuses' do
     it 'creates a filter', :aggregate_failures do
       expect(response).to have_http_status(200)
 
-      expect(body_as_json)
+      expect(response.parsed_body)
         .to include(
           status_id: status.id.to_s
         )
@@ -73,7 +73,7 @@ RSpec.describe 'API V2 Filters Statuses' do
     it 'responds with the filter', :aggregate_failures do
       expect(response).to have_http_status(200)
 
-      expect(body_as_json)
+      expect(response.parsed_body)
         .to include(
           status_id: status_filter.status.id.to_s
         )

@@ -30,7 +30,7 @@ RSpec.describe 'Domain Allows' do
       it 'returns an empty body' do
         subject
 
-        expect(body_as_json).to be_empty
+        expect(response.parsed_body).to be_empty
       end
     end
 
@@ -49,7 +49,7 @@ RSpec.describe 'Domain Allows' do
       it 'returns the correct allowed domains' do
         subject
 
-        expect(body_as_json).to match_array(expected_response)
+        expect(response.parsed_body).to match_array(expected_response)
       end
 
       context 'with limit param' do
@@ -58,7 +58,7 @@ RSpec.describe 'Domain Allows' do
         it 'returns only the requested number of allowed domains' do
           subject
 
-          expect(body_as_json.size).to eq(params[:limit])
+          expect(response.parsed_body.size).to eq(params[:limit])
         end
       end
     end
@@ -79,7 +79,7 @@ RSpec.describe 'Domain Allows' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json[:domain]).to eq domain_allow.domain
+      expect(response.parsed_body[:domain]).to eq domain_allow.domain
     end
 
     context 'when the requested allowed domain does not exist' do
@@ -107,7 +107,7 @@ RSpec.describe 'Domain Allows' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:domain]).to eq 'foo.bar.com'
+        expect(response.parsed_body[:domain]).to eq 'foo.bar.com'
         expect(DomainAllow.find_by(domain: 'foo.bar.com')).to be_present
       end
     end
@@ -140,7 +140,7 @@ RSpec.describe 'Domain Allows' do
       it 'returns the existing allowed domain name' do
         subject
 
-        expect(body_as_json[:domain]).to eq(params[:domain])
+        expect(response.parsed_body[:domain]).to eq(params[:domain])
       end
     end
   end

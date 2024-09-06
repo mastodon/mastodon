@@ -402,7 +402,7 @@ RSpec.describe Auth::SessionsController do
           end
 
           it 'instructs the browser to redirect to home, logs the user in, and updates the sign count' do
-            expect(body_as_json[:redirect_path]).to eq(root_path)
+            expect(response.parsed_body[:redirect_path]).to eq(root_path)
 
             expect(controller.current_user).to eq user
 

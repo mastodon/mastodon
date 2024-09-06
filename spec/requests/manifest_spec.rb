@@ -13,7 +13,7 @@ RSpec.describe 'Manifest' do
         .and have_attributes(
           content_type: match('application/json')
         )
-      expect(body_as_json)
+      expect(response.parsed_body)
         .to include(
           id: '/home',
           name: 'Mastodon'

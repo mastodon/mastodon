@@ -13,7 +13,7 @@ RSpec.describe 'The well-known node-info endpoints' do
           media_type: 'application/json'
         )
 
-      expect(body_as_json).to include(
+      expect(response.parsed_body).to include(
         links: be_an(Array).and(
           contain_exactly(
             include(
@@ -39,7 +39,7 @@ RSpec.describe 'The well-known node-info endpoints' do
       expect(non_matching_hash)
         .to_not match_json_schema('nodeinfo_2.0')
 
-      expect(body_as_json)
+      expect(response.parsed_body)
         .to match_json_schema('nodeinfo_2.0')
         .and include(
           version: '2.0',

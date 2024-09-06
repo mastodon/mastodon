@@ -33,7 +33,7 @@ RSpec.describe 'Accounts in grouped notifications' do
 
       # The group we are interested in is only favorites
       notifications = user.account.notifications.where(type: 'favourite').reorder(id: :desc)
-      expect(body_as_json).to match(
+      expect(response.parsed_body).to match(
         [
           a_hash_including(
             id: notifications.first.from_account_id.to_s
@@ -58,7 +58,7 @@ RSpec.describe 'Accounts in grouped notifications' do
 
         # The group we are interested in is only favorites
         notifications = user.account.notifications.where(type: 'favourite').reorder(id: :desc)
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           [
             a_hash_including(
               id: notifications.first.from_account_id.to_s

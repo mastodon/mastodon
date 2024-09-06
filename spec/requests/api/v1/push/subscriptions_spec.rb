@@ -65,7 +65,7 @@ RSpec.describe 'API V1 Push Subscriptions' do
           access_token_id: eq(token.id)
         )
 
-      expect(body_as_json.with_indifferent_access)
+      expect(response.parsed_body.with_indifferent_access)
         .to include(
           { endpoint: create_payload[:subscription][:endpoint], alerts: {}, policy: 'all' }
         )
@@ -124,7 +124,7 @@ RSpec.describe 'API V1 Push Subscriptions' do
         )
       end
 
-      expect(body_as_json.with_indifferent_access)
+      expect(response.parsed_body.with_indifferent_access)
         .to include(
           endpoint: create_payload[:subscription][:endpoint],
           alerts: alerts_payload[:data][:alerts],

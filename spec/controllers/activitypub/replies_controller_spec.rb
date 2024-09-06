@@ -66,7 +66,7 @@ RSpec.describe ActivityPub::RepliesController do
 
     context 'when status is public' do
       let(:parent_visibility) { :public }
-      let(:page_json) { body_as_json[:first] }
+      let(:page_json) { response.parsed_body[:first] }
 
       it 'returns http success and correct media type' do
         expect(response)

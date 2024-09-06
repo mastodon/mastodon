@@ -26,7 +26,7 @@ RSpec.describe 'Media' do
     it 'returns the media information' do
       subject
 
-      expect(body_as_json).to match(
+      expect(response.parsed_body).to match(
         a_hash_including(
           id: media.id.to_s,
           description: media.description,
@@ -83,7 +83,7 @@ RSpec.describe 'Media' do
         expect(MediaAttachment.first).to be_present
         expect(MediaAttachment.first).to have_attached_file(:file)
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(id: MediaAttachment.first.id.to_s, description: params[:description], type: media_type)
         )
       end

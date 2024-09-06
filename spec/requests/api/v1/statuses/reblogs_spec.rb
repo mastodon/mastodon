@@ -24,7 +24,7 @@ RSpec.describe 'API V1 Statuses Reblogs' do
 
           expect(user.account.reblogged?(status)).to be true
 
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to include(
               reblog: include(
                 id: status.id.to_s,
@@ -60,7 +60,7 @@ RSpec.describe 'API V1 Statuses Reblogs' do
 
           expect(user.account.reblogged?(status)).to be false
 
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to include(
               id: status.id.to_s,
               reblogs_count: 0,
@@ -85,7 +85,7 @@ RSpec.describe 'API V1 Statuses Reblogs' do
 
           expect(user.account.reblogged?(status)).to be false
 
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to include(
               id: status.id.to_s,
               reblogs_count: 0,

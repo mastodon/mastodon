@@ -18,7 +18,7 @@ RSpec.describe '/api/web/embed' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json[:html]).to be_present
+          expect(response.parsed_body[:html]).to be_present
         end
       end
 
@@ -71,7 +71,7 @@ RSpec.describe '/api/web/embed' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json[:html]).to be_present
+          expect(response.parsed_body[:html]).to be_present
         end
 
         context 'when the requesting user is blocked' do
@@ -133,7 +133,7 @@ RSpec.describe '/api/web/embed' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json[:html]).to be_present
+          expect(response.parsed_body[:html]).to be_present
         end
       end
 
