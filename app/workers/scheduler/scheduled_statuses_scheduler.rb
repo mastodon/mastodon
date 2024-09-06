@@ -30,7 +30,7 @@ class Scheduler::ScheduledStatusesScheduler
   end
 
   def due_announcements
-    Announcement.unpublished.where('scheduled_at IS NOT NULL AND scheduled_at <= ?', time_due_at)
+    Announcement.unpublished.scheduled_before(time_due_at)
   end
 
   def unpublish_expired_announcements!
@@ -38,7 +38,7 @@ class Scheduler::ScheduledStatusesScheduler
   end
 
   def expired_announcements
-    Announcement.published.where('ends_at IS NOT NULL AND ends_at <= ?', Time.now.utc)
+    Announcement.published.ending_before(Time.now.utc)
   end
 
   def time_due_at
