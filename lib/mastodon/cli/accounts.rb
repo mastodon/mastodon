@@ -502,7 +502,7 @@ module Mastodon::CLI
       - not muted/blocked by us
     LONG_DESC
     def prune
-      query = Account.remote.where.not(actor_type: %i(Application Service))
+      query = Account.remote.non_automated
       query = query.where('NOT EXISTS (SELECT 1 FROM mentions WHERE account_id = accounts.id)')
       query = query.where('NOT EXISTS (SELECT 1 FROM favourites WHERE account_id = accounts.id)')
       query = query.where('NOT EXISTS (SELECT 1 FROM statuses WHERE account_id = accounts.id)')

@@ -75,6 +75,8 @@ class Account < ApplicationRecord
   DISPLAY_NAME_LENGTH_LIMIT = 30
   NOTE_LENGTH_LIMIT = 500
 
+  AUTOMATED_ACTOR_TYPES = %w(Application Service).freeze
+
   include Attachmentable # Load prior to Avatar & Header concerns
 
   include Account::Associations
@@ -127,7 +129,8 @@ class Account < ApplicationRecord
   scope :without_silenced, -> { where(silenced_at: nil) }
   scope :without_instance_actor, -> { where.not(id: INSTANCE_ACTOR_ID) }
   scope :recent, -> { reorder(id: :desc) }
-  scope :bots, -> { where(actor_type: %w(Application Service)) }
+  scope :bots, -> { where(actor_type: AUTOMATED_ACTOR_TYPES) }
+  scope :non_automated, -> { where.not(actor_type: AUTOMATED_ACTOR_TYPES) }
   scope :groups, -> { where(actor_type: 'Group') }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
   scope :matches_uri_prefix, ->(value) { where(arel_table[:uri].matches("#{sanitize_sql_like(value)}/%", false, true)).or(where(uri: value)) }
@@ -183,7 +186,7 @@ class Account < ApplicationRecord
   end
 
   def bot?
-    %w(Application Service).include? actor_type
+    AUTOMATED_ACTOR_TYPES.include?(actor_type)
   end
 
   def instance_actor?
