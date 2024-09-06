@@ -203,7 +203,7 @@ pt-BR:
         disable_sign_in_token_auth_user: Desativar autenticação via Token de Email para Usuário
         disable_user: Desativar usuário
         enable_custom_emoji: Ativar emoji personalizado
-        enable_sign_in_token_auth_user: Desativar autenticação via token por e-mail para o usuário
+        enable_sign_in_token_auth_user: Ativar autenticação via Token de Email para Usuário
         enable_user: Ativar usuário
         memorialize_account: Converter conta em memorial
         promote_user: Promover usuário
@@ -442,6 +442,7 @@ pt-BR:
         create: Adicionar domínio
         resolve: Resolver domínio
         title: Bloquear novo domínio de e-mail
+      no_email_domain_block_selected: Nenhum bloco de domínio de email foi alterado, pois, nenhum foi selecionado
       not_permitted: Não permitido
       resolved_dns_records_hint_html: O nome de domínio é associado aos seguintes domínios MX, que são responsáveis por aceitar e-mails. Ao bloquear um domínio MX, você bloqueará as inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo que o nome de domínio visível seja diferente. <strong>Tenha cuidado para não bloquear os principais provedores de e-mail.</strong>
       resolved_through_html: Resolvido através de %{domain}
@@ -1440,6 +1441,13 @@ pt-BR:
       action: Sim, cancelar subscrição
       complete: Desinscrito
       confirmation_html: Tem certeza que deseja cancelar a assinatura de %{type} para Mastodon no %{domain} para o seu endereço de e-mail %{email}? Você sempre pode se inscrever novamente nas <a href="%{settings_path}">configurações de notificação de email</a>.
+      emails:
+        notification_emails:
+          favourite: emails de notificação favoritos
+          follow: seguir emails de notificação
+          follow_request: emails de seguidores pendentes
+          mention: emails de notificação de menções
+          reblog: emails de notificação de boosts
       resubscribe_html: Se você cancelou sua inscrição por engano, você pode se inscrever novamente em suas <a href="%{settings_path}"> configurações de notificações por e-mail</a>.
       success_html: Você não mais receberá %{type} no Mastodon em %{domain} ao seu endereço de e-mail %{email}.
       title: Cancelar inscrição
