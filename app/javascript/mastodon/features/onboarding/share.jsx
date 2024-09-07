@@ -10,8 +10,8 @@ import { Link } from 'react-router-dom';
 import SwipeableViews from 'react-swipeable-views';
 
 import ArrowRightAltIcon from '@/material-icons/400-24px/arrow_right_alt.svg?react';
-import ContentCopyIcon from '@/material-icons/400-24px/content_copy.svg?react';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';
+import { CopyPasteText } from 'mastodon/components/copy_paste_text';
 import { Icon }  from 'mastodon/components/icon';
 import { me, domain } from 'mastodon/initial_state';
 import { useAppSelector } from 'mastodon/store';
@@ -19,67 +19,6 @@ import { useAppSelector } from 'mastodon/store';
 const messages = defineMessages({
   shareableMessage: { id: 'onboarding.share.message', defaultMessage: 'I\'m {username} on #Mastodon! Come follow me at {url}' },
 });
-
-class CopyPasteText extends PureComponent {
-
-  static propTypes = {
-    value: PropTypes.string,
-  };
-
-  state = {
-    copied: false,
-    focused: false,
-  };
-
-  setRef = c => {
-    this.input = c;
-  };
-
-  handleInputClick = () => {
-    this.setState({ copied: false });
-    this.input.focus();
-    this.input.select();
-    this.input.setSelectionRange(0, this.props.value.length);
-  };
-
-  handleButtonClick = e => {
-    e.stopPropagation();
-
-    const { value } = this.props;
-    navigator.clipboard.writeText(value);
-    this.input.blur();
-    this.setState({ copied: true });
-    this.timeout = setTimeout(() => this.setState({ copied: false }), 700);
-  };
-
-  handleFocus = () => {
-    this.setState({ focused: true });
-  };
-
-  handleBlur = () => {
-    this.setState({ focused: false });
-  };
-
-  componentWillUnmount () {
-    if (this.timeout) clearTimeout(this.timeout);
-  }
-
-  render () {
-    const { value } = this.props;
-    const { copied, focused } = this.state;
-
-    return (
-      <div className={classNames('copy-paste-text', { copied, focused })} tabIndex='0' role='button' onClick={this.handleInputClick}>
-        <textarea readOnly value={value} ref={this.setRef} onClick={this.handleInputClick} onFocus={this.handleFocus} onBlur={this.handleBlur} />
-
-        <button className='button' onClick={this.handleButtonClick}>
-          <Icon id='copy' icon={ContentCopyIcon} /> {copied ? <FormattedMessage id='copypaste.copied' defaultMessage='Copied' /> : <FormattedMessage id='copypaste.copy_to_clipboard' defaultMessage='Copy to clipboard' />}
-        </button>
-      </div>
-    );
-  }
-
-}
 
 class TipCarousel extends PureComponent {
 
