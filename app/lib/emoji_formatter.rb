@@ -24,7 +24,7 @@ class EmojiFormatter
   def to_s
     return html if custom_emojis.empty? || html.blank?
 
-    tree = Nokogiri::HTML.fragment(html)
+    tree = Nokogiri::HTML5.fragment(html)
     tree.xpath('./text()|.//text()[not(ancestor[@class="invisible"])]').to_a.each do |node|
       i                     = -1
       inside_shortname      = false
