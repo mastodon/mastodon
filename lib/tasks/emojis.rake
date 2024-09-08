@@ -13,7 +13,7 @@ def gen_border(codepoint, color)
     view_box[3] += 4
     svg['viewBox'] = view_box.join(' ')
   end
-  g = Nokogiri::XML::Node.new 'g', doc
+  g = doc.create_element('g')
   doc.css('svg > *').each do |elem|
     border_elem = elem.dup
 
