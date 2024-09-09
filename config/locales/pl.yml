@@ -29,6 +29,8 @@ pl:
   admin:
     account_actions:
       action: Wykonaj działanie
+      already_silenced: To konto zostało już wyciszone.
+      already_suspended: To konto zostało już zawieszone.
       title: Wykonaj działanie moderacyjne na %{acct}
     account_moderation_notes:
       create: Pozostaw notatkę
@@ -50,6 +52,7 @@ pl:
         title: Zmień adres e-mail dla %{username}
       change_role:
         changed_msg: Pomyślnie zmieniono rolę!
+        edit_roles: Zarządzaj rolami użytkowników
         label: Zmień rolę
         no_role: Brak roli
         title: Zmień rolę dla %{username}
@@ -626,6 +629,7 @@ pl:
         suspend_description_html: Konto i cała jego zawartość będą niedostępne i ostatecznie usunięte, a interakcja z nim będzie niemożliwa. Możliwość odwrócenia w ciągu 30 dni. Zamyka wszelkie zgłoszenia dotyczące tego konta.
       actions_description_html: Zdecyduj, jakie działania należy podjąć, aby rozstrzygnąć niniejsze zgłoszenie. Jeśli podejmiesz działania karne przeciwko zgłoszonemu kontowi, zostanie do nich wysłane powiadomienie e-mail, chyba że wybrano kategorię <strong>Spam</strong>.
       actions_description_remote_html: Zdecyduj, jakie działanie należy podjąć, aby rozwiązać to zgłoszenie. Będzie to miało wpływ jedynie na sposób, w jaki <strong>Twój</strong> serwer komunikuje się z tym kontem zdalnym i obsługuje jego zawartość.
+      actions_no_posts: Ten raport nie ma żadnych powiązanych wpisów do usunięcia
       add_to_report: Dodaj więcej do zgłoszenia
       already_suspended_badges:
         local: Już zawieszono na tym serwerze

@@ -23,6 +23,8 @@ zh-TW:
   admin:
     account_actions:
       action: 執行動作
+      already_silenced: 此帳號已被靜音。
+      already_suspended: 此帳號已被停權。
       title: 對 %{acct} 執行站務動作
     account_moderation_notes:
       create: 新增站務記錄
@@ -44,6 +46,7 @@ zh-TW:
         title: 為 %{username} 變更電子郵件地址
       change_role:
         changed_msg: 成功修改角色！
+        edit_roles: 管理使用者權限
         label: 變更角色
         no_role: 沒有角色
         title: 為 %{username} 變更角色
@@ -590,6 +593,7 @@ zh-TW:
         suspend_description_html: 此帳號及其所有內容將不可被存取並且最終被移除，並且無法與之進行互動。三十天內可以撤銷此動作。關閉所有對此帳號之檢舉報告。
       actions_description_html: 決定應對此報告採取何種行動。若您對檢舉之帳號採取懲罰措施，則將對他們發送 e-mail 通知，除非選擇了 <strong>垃圾郵件</strong> 類別。
       actions_description_remote_html: 決定將對此檢舉報告採取何種動作。這將僅作用於<strong>您的伺服器</strong>與此遠端帳號及其內容之通訊行為。
+      actions_no_posts: 此報告無任何需要刪除之相關嘟文
       add_to_report: 加入更多至報告
       already_suspended_badges:
         local: 已自此伺服器停權

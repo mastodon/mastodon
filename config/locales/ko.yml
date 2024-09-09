@@ -23,6 +23,8 @@ ko:
   admin:
     account_actions:
       action: 조치 취하기
+      already_silenced: 이 계정은 이미 침묵되었습니다.
+      already_suspended: 이 계정은 이미 정지되었습니다.
       title: "%{acct} 계정에 중재 취하기"
     account_moderation_notes:
       create: 참고사항 남기기
@@ -44,6 +46,7 @@ ko:
         title: "%{username}의 이메일 바꾸기"
       change_role:
         changed_msg: 역할이 성공적으로 변경되었습니다!
+        edit_roles: 사용자 역할 관리
         label: 역할 변경
         no_role: 역할 없음
         title: "%{username}의 역할 변경"
@@ -592,6 +595,7 @@ ko:
         suspend_description_html: 이 계정과 이 계정의 콘텐츠들은 접근 불가능해지고 삭제될 것이며, 상호작용은 불가능해집니다. 30일 이내에 되돌릴 수 있습니다. 이 계정에 대한 모든 신고를 닫습니다.
       actions_description_html: 이 신고를 해결하기 위해 취해야 할 조치를 지정해주세요. 신고된 계정에 대해 처벌 조치를 취하면, <strong>스팸</strong> 카테고리가 선택된 경우를 제외하고 해당 계정으로 이메일 알림이 전송됩니다.
       actions_description_remote_html: 이 신고를 해결하기 위해 실행할 행동을 결정하세요. 이 결정은 이 원격 계정과 그 콘텐츠를 다루는 방식에 대해 <strong>이 서버</strong>에서만 영향을 끼칩니다
+      actions_no_posts: 이 신고는 삭제할 관련 게시물이 없습니다
       add_to_report: 신고에 더 추가하기
       already_suspended_badges:
         local: 이 서버에서 이미 정지되었습니다

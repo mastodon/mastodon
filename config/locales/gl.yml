@@ -25,6 +25,8 @@ gl:
   admin:
     account_actions:
       action: Executar acción
+      already_silenced: Esta conta xa está silenciada.
+      already_suspended: Esta conta xa está suspendida.
       title: Executar acción de moderación a %{acct}
     account_moderation_notes:
       create: Deixar nota
@@ -46,6 +48,7 @@ gl:
         title: Mudar email de %{username}
       change_role:
         changed_msg: Rol mudado correctamente!
+        edit_roles: Xestionar roles de usuarias
         label: Cambiar rol
         no_role: Sen rol
         title: Cambiar o rol de %{username}
@@ -602,6 +605,7 @@ gl:
         suspend_description_html: A conta e todo o seu contido non serán accesible e finalmente eliminaranse, será imposible interactuar con ela. A decisión é reversible durante 30 días. Isto pecha tódalas denuncias sobre esta conta.
       actions_description_html: Decide a acción a tomar para resolver esta denuncia. Se tomas accións punitivas contra a conta denunciada enviaraselle un correo, excepto se está indicada a categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide a acción a tomar para resolver a denuncia. Isto só lle afecta ao xeito en que o <strong>teu</strong> servidor se comunica con esta conta remota e xestiona o seu contido.
+      actions_no_posts: Esta denuncia non ten publicacións asociadas para eliminar
       add_to_report: Engadir máis á denuncia
       already_suspended_badges:
         local: Xa está suspendida neste servidor

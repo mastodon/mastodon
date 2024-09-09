@@ -25,6 +25,8 @@ ca:
   admin:
     account_actions:
       action: Realitza l'acció
+      already_silenced: Aquest compte ja s'ha silenciat.
+      already_suspended: Aquest compte ja s'ha suspès.
       title: Fer l'acció de moderació a %{acct}
     account_moderation_notes:
       create: Crea nota
@@ -46,6 +48,7 @@ ca:
         title: Canvia l'adreça electrònica de %{username}
       change_role:
         changed_msg: Els privilegis del compte s'han canviat correctament!
+        edit_roles: Gestió de rols d'usuari
         label: Canvia rol
         no_role: Sense rol
         title: Canvia el rol per a %{username}
@@ -585,6 +588,7 @@ ca:
         silence_description_html: El compte només serà visible a qui ja el seguia o l'ha cercat manualment, limitant-ne fortament l'abast. Sempre es pot revertir. Es tancaran tots els informes contra aquest compte.
         suspend_description_html: Aquest compte i tots els seus continguts seran inaccessibles i finalment eliminats, i interaccionar amb ell no serà possible. Reversible en 30 dies. Tanca tots els informes contra aquest compte.
       actions_description_remote_html: Decideix quina acció prendre per a resoldre aquest informe. Això només afectarà com <strong>el teu</strong> servidor es comunica amb aquest compte remot i en gestiona el contingut.
+      actions_no_posts: Aquest informe no té associada cap publicació a esborrar
       add_to_report: Afegir més al informe
       already_suspended_badges:
         local: Ja és suspès en aquest servidor

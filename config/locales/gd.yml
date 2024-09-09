@@ -29,6 +29,8 @@ gd:
   admin:
     account_actions:
       action: Gabh an gnìomh
+      already_silenced: Chaidh an cunntas seo a chuingeachadh mu thràth.
+      already_suspended: Chaidh an cunntas seo a chur à rèim mu thràth.
       title: Gabh gnìomh maorsainneachd air %{acct}
     account_moderation_notes:
       create: Fàg nòta
@@ -50,6 +52,7 @@ gd:
         title: Atharraich am post-d airson %{username}
       change_role:
         changed_msg: Chaidh an dreuchd atharrachadh!
+        edit_roles: Stiùirich dreuchdan nan cleachdaichean
         label: Atharraich an dreuchd
         no_role: Gun dreuchd
         title: Atharraich an dreuchd aig %{username}
@@ -626,6 +629,7 @@ gd:
         suspend_description_html: Cha ghabh an cunntas seo agus an t-susbaint gu leòr aige inntrigeadh gus an dèid a sguabadh às air deireadh na sgeòil agus cha ghabh eadar-ghabhail a dhèanamh leis. Gabhaidh seo a neo-dhèanamh am broinn 30 latha. Dùinidh seo gach gearan mun chunntas seo.
       actions_description_html: Cuir romhad dè nì thu airson an gearan seo fhuasgladh. Ma chuireas tu peanas air a’ chunntas le gearan air, gheibh iad brath air a’ phost-d mura tagh thu an roinn-seòrsa <strong>Spama</strong>.
       actions_description_remote_html: Cuir romhad dè an gnìomh a ghabhas tu airson an gearan seo fhuasgladh. Cha bheir seo buaidh ach air mar a làimhsicheas am frithealaiche <strong>agadsa</strong> an cunntas cèin seo is mar a nì e conaltradh leis.
+      actions_no_posts: Chan eil post ri sguabadh às ris a’ ghearan seo
       add_to_report: Cuir barrachd ris a’ ghearan
       already_suspended_badges:
         local: Chaidh an cur à rèim air an fhrithealaiche seo mu thràth
