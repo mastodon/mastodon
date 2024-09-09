@@ -64,11 +64,7 @@ class Poll < ApplicationRecord
     votes.where(account: account).pluck(:choice)
   end
 
-  delegate :local?, to: :account
-
-  def remote?
-    !local?
-  end
+  delegate :local?, :remote?, to: :account
 
   def emojis
     @emojis ||= CustomEmoji.from_text(options.join(' '), account.domain)
