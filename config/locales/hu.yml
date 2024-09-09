@@ -25,6 +25,8 @@ hu:
   admin:
     account_actions:
       action: Művelet végrehajtása
+      already_silenced: Ezt a fiókot már elnémították.
+      already_suspended: Ezt a fiókot már felfüggesztették.
       title: 'Moderálási művelet végrehajtása ezen: %{acct}'
     account_moderation_notes:
       create: Megjegyzés hagyása
@@ -46,6 +48,7 @@ hu:
         title: "%{username} e-mail-címének megváltoztatása"
       change_role:
         changed_msg: A szerep sikeresen megváltoztatva!
+        edit_roles: Felhasználói szerepkörök kezelése
         label: Szerep megváltoztatása
         no_role: Nincs szerep
         title: "%{username} szerepének megváltoztatása"
@@ -602,6 +605,7 @@ hu:
         suspend_description_html: A fiók és minden tartalma elérhetetlenné válik és végül törlésre kerül. A fiókkal kapcsolatbalépni lehetetlen lesz. Ez a művelet 30 napig visszafordítható. A fiók ellen indított minden bejelentést lezárunk.
       actions_description_html: Döntsd el, mit csináljunk, hogy megoldjuk ezt a bejelentést. Ha valamilyen büntető intézkedést hozol a bejelentett fiók ellen, küldünk neki egy figyelmeztetést e-mailben, kivéve ha a <strong>Spam</strong> kategóriát választod.
       actions_description_remote_html: Döntsd el, mit tegyünk a bejelentés lezárásának érdekében. Ez csak azt befolyásolja, hogy a <strong>saját</strong> kiszolgálód hogyan kommunikál ezzel a távoli fiókkal és hogyan kezeli annak tartalmait.
+      actions_no_posts: Ennek a bejelentésnek nincs egyetlen törölhető, társított bejegyzése sem
       add_to_report: Továbbiak hozzáadása a bejelentéshez
       already_suspended_badges:
         local: Már felfüggesztették ezen a szerveren

@@ -25,6 +25,8 @@ fr:
   admin:
     account_actions:
       action: Effectuer l'action
+      already_silenced: Ce compte est déjà limité.
+      already_suspended: Ce compte est déjà suspendu.
       title: Effectuer une action de modération sur %{acct}
     account_moderation_notes:
       create: Laisser une remarque
@@ -46,6 +48,7 @@ fr:
         title: Modifier l’adresse de courriel pour %{username}
       change_role:
         changed_msg: Rôle modifié avec succès !
+        edit_roles: Gérer les rôles d'utilisateur·ices
         label: Modifier le rôle
         no_role: Aucun rôle
         title: Modifier le rôle de %{username}
@@ -188,9 +191,11 @@ fr:
         create_user_role: Créer le rôle
         demote_user: Rétrograder l’utilisateur·ice
         destroy_announcement: Supprimer l’annonce
+        destroy_canonical_email_block: Supprimer le blocage de courriel
         destroy_custom_emoji: Supprimer des émojis personnalisés
         destroy_domain_allow: Supprimer le domaine autorisé
         destroy_domain_block: Supprimer le blocage de domaine
+        destroy_email_domain_block: Supprimer le blocage de domaine de courriel
         destroy_instance: Purge du domaine
         destroy_ip_block: Supprimer la règle IP
         destroy_status: Supprimer le message
@@ -236,6 +241,7 @@ fr:
         confirm_user_html: "%{name} a confirmé l'adresse e-mail de l'utilisateur %{target}"
         create_account_warning_html: "%{name} a envoyé un avertissement à %{target}"
         create_announcement_html: "%{name} a créé une nouvelle annonce %{target}"
+        create_canonical_email_block_html: "%{name} a bloqué l'adresse email avec le hachage %{target}"
         create_custom_emoji_html: "%{name} a téléversé un nouvel émoji %{target}"
         create_domain_allow_html: "%{name} a autorisé la fédération avec le domaine %{target}"
         create_domain_block_html: "%{name} a bloqué le domaine %{target}"
@@ -245,6 +251,7 @@ fr:
         create_user_role_html: "%{name} a créé le rôle %{target}"
         demote_user_html: "%{name} a rétrogradé l'utilisateur·rice %{target}"
         destroy_announcement_html: "%{name} a supprimé l'annonce %{target}"
+        destroy_canonical_email_block_html: "%{name} a débloqué l'adresse email avec le hachage %{target}"
         destroy_custom_emoji_html: "%{name} a supprimé l'émoji %{target}"
         destroy_domain_allow_html: "%{name} a rejeté la fédération avec le domaine %{target}"
         destroy_domain_block_html: "%{name} a débloqué le domaine %{target}"

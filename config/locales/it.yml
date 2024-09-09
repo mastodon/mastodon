@@ -25,6 +25,8 @@ it:
   admin:
     account_actions:
       action: Esegui azione
+      already_silenced: Questo account è già stato silenziato.
+      already_suspended: Questo account è già stato sospeso.
       title: Esegui l'azione di moderazione su %{acct}
     account_moderation_notes:
       create: Lascia una nota
@@ -46,6 +48,7 @@ it:
         title: Cambia l'email per %{username}
       change_role:
         changed_msg: Ruolo modificato correttamente!
+        edit_roles: Gestisci i ruoli utente
         label: Cambia il ruolo
         no_role: Nessun ruolo
         title: Cambia il ruolo per %{username}
@@ -602,6 +605,7 @@ it:
         suspend_description_html: L'account e tutti i suoi contenuti saranno inaccessibili ed eventualmente cancellati, e interagire con esso sarà impossibile. Reversibile entro 30 giorni. Chiude tutte le segnalazioni contro questo account.
       actions_description_html: Decidi quale azione intraprendere per risolvere questa segnalazione. Se intraprendi un'azione punitiva nei confronti dell'account segnalato, gli verrà inviata una notifica via e-mail, tranne quando è selezionata la categoria <strong>Spam</strong>.
       actions_description_remote_html: Decide quali azioni intraprendere per risolvere la relazione. Questo influenzerà solo come <strong>il tuo</strong> server comunica con questo account remoto e ne gestisce il contenuto.
+      actions_no_posts: Questa segnalazione non ha alcun post associato da eliminare
       add_to_report: Aggiungi altro al report
       already_suspended_badges:
         local: Già sospeso su questo server

@@ -25,6 +25,8 @@ de:
   admin:
     account_actions:
       action: Aktion ausführen
+      already_silenced: Dieses Konto wurde bereits stummgeschaltet.
+      already_suspended: Dieses Konto wurde bereits gesperrt.
       title: "@%{acct} moderieren"
     account_moderation_notes:
       create: Notiz abspeichern
@@ -46,6 +48,7 @@ de:
         title: E-Mail-Adresse für %{username} ändern
       change_role:
         changed_msg: Rolle erfolgreich geändert!
+        edit_roles: Rollen verwalten
         label: Rolle ändern
         no_role: Keine Rolle
         title: Rolle für %{username} ändern
@@ -602,6 +605,7 @@ de:
         suspend_description_html: Das Konto und alle Inhalte werden unzugänglich und ggf. gelöscht. Eine Interaktion mit dem Konto wird unmöglich. Dies kann innerhalb von 30 Tagen rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
       actions_description_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Wenn du eine Strafmaßnahme gegen das gemeldete Konto ergreifst, wird eine E-Mail-Benachrichtigung an dieses gesendet, außer wenn die <strong>Spam</strong>-Kategorie ausgewählt ist.
       actions_description_remote_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Dies wirkt sich lediglich darauf aus, wie <strong>dein</strong> Server mit diesem externen Konto kommuniziert und dessen Inhalt handhabt.
+      actions_no_posts: Diese Meldung enthält keine zu löschenden Beiträge
       add_to_report: Meldung ergänzen
       already_suspended_badges:
         local: Auf diesem Server bereits gesperrt
@@ -1454,7 +1458,7 @@ de:
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag angehängt werden, der bereits Bilder enthält
-      not_found: Medien %{ids} nicht verfügbar oder bereits an einen anderen Beitrag angehängt
+      not_found: Medieninhalt(e) %{ids} nicht gefunden oder bereits an einen anderen Beitrag angehängt
       not_ready: Dateien, die noch nicht verarbeitet wurden, können nicht angehängt werden. Versuche es gleich noch einmal!
       too_many: Mehr als vier Dateien können nicht angehängt werden
   migrations:

@@ -25,6 +25,8 @@ fi:
   admin:
     account_actions:
       action: Suorita toimi
+      already_silenced: Tätä tiliä on jo rajoitettu.
+      already_suspended: Tämä tili on jo jäädytetty.
       title: Suorita moderointitoimi käyttäjälle %{acct}
     account_moderation_notes:
       create: Jätä muistiinpano
@@ -46,6 +48,7 @@ fi:
         title: Vaihda käyttäjän %{username} sähköposti-osoite
       change_role:
         changed_msg: Roolin vaihto onnistui!
+        edit_roles: Hallinnoi käyttäjien rooleja
         label: Vaihda rooli
         no_role: Ei roolia
         title: Vaihda käyttäjän %{username} rooli
@@ -442,7 +445,7 @@ fi:
         create: Lisää verkkotunnus
         resolve: Selvitä verkkotunnus
         title: Estä uusi sähköpostiverkkotunnus
-      no_email_domain_block_selected: Sähköpostiverkkotunnusten estoja ei muutettu; yhtäkään ei ollut valittu
+      no_email_domain_block_selected: Sähköpostiverkkotunnusten estoja ei muutettu, koska yhtäkään ei ollut valittuna
       not_permitted: Ei sallittu
       resolved_dns_records_hint_html: Verkkotunnusnimi kytkeytyy seuraaviin MX-verkkotunnuksiin, jotka ovat viime kädessä vastuussa sähköpostin vastaanottamisesta. MX-verkkotunnuksen estäminen estää rekisteröitymisen mistä tahansa sähköpostiosoitteesta, joka käyttää samaa MX-verkkotunnusta, vaikka näkyvä verkkotunnuksen nimi olisikin erilainen. <strong>Varo estämästä suuria sähköpostipalvelujen tarjoajia.</strong>
       resolved_through_html: Ratkaistu verkkotunnuksen %{domain} kautta
@@ -600,8 +603,9 @@ fi:
         resolve_description_html: Ilmoitettua tiliä kohtaan ei ryhdytä toimiin, varoitusta ei kirjata ja raportti suljetaan.
         silence_description_html: Tili näkyy vain niille, jotka jo seuraavat sitä tai etsivät sen manuaalisesti, mikä rajoittaa merkittävästi sen tavoitettavuutta. Voidaan perua milloin vain. Sulkee kaikki tiliin kohdistuvat raportit.
         suspend_description_html: Tili ja mikään sen sisältö eivät ole käytettävissä, ja lopulta ne poistetaan ja vuorovaikutus tilin kanssa on mahdotonta. Peruttavissa 30 päivän ajan. Sulkee kaikki tiliin kohdistuvat raportit.
-      actions_description_html: Päätä, mihin toimiin ryhdyt tämän raportin ratkaisemiseksi. Jos ryhdyt rangaistustoimeen ilmoitettua tiliä kohtaan, hänelle lähetetään sähköpostitse ilmoitus asiasta, paitsi jos valittuna on <strong>Roskaposti</strong>-luokka.
+      actions_description_html: Päätä, mihin toimiin ryhdyt tämän raportin ratkaisemiseksi. Jos ryhdyt rangaistustoimeen raportoitua tiliä kohtaan, hänelle lähetetään sähköpostitse ilmoitus asiasta, paitsi jos valittuna on <strong>Roskaposti</strong>-luokka.
       actions_description_remote_html: Päätä, mihin toimiin ryhdyt tämän raportin ratkaisemiseksi. Tämä vaikuttaa vain siihen, miten <strong>sinun</strong> palvelimesi viestii tämän etätilin kanssa ja käsittelee sen sisältöä.
+      actions_no_posts: Tähän raporttiin ei liity poistettavia julkaisuja
       add_to_report: Lisää raporttiin
       already_suspended_badges:
         local: Jäädytetty jo tällä palvelimella
@@ -1135,7 +1139,7 @@ fi:
     security: Turvallisuus
     set_new_password: Aseta uusi salasana
     setup:
-      email_below_hint_html: Tarkista roskapostikansiosi tai pyydä uusi viesti. Voit myös korjata sähköpostiosoitteesi tarvittaessa.
+      email_below_hint_html: Tarkista roskapostikansiosi tai pyydä uusi viesti. Voit korjata sähköpostiosoitteesi tarvittaessa.
       email_settings_hint_html: Napsauta lähettämäämme linkkiä vahvistaaksesi osoitteen %{email}. Odotamme täällä.
       link_not_received: Etkö saanut linkkiä?
       new_confirmation_instructions_sent: Saat pian uuden vahvistuslinkin sisältävän sähköpostiviestin!
@@ -1195,7 +1199,7 @@ fi:
       caches: Muiden palvelinten välimuistiinsa tallentamaa sisältöä voi säilyä
       data_removal: Julkaisusi ja muut tietosi poistetaan pysyvästi
       email_change_html: Voit <a href="%{path}">muuttaa sähköpostiosoitettasi</a> poistamatta tiliäsi
-      email_contact_html: Mikäli viesti ei vieläkään saavu perille, voit pyytää apua sähköpostitse osoitteella <a href="mailto:%{email}">%{email}</a>
+      email_contact_html: Jos viesti ei vieläkään saavu perille, voit pyytää apua sähköpostitse osoitteella <a href="mailto:%{email}">%{email}</a>
       email_reconfirmation_html: Jos et saa vahvistussähköpostiviestiä, voit <a href="%{path}">pyytää sitä uudelleen</a>
       irreversible: Et voi palauttaa tiliäsi etkä aktivoida sitä uudelleen
       more_details_html: Tarkempia tietoja saat <a href="%{terms_path}">tietosuojakäytännöstämme</a>.

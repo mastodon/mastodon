@@ -33,6 +33,8 @@ cy:
   admin:
     account_actions:
       action: Cyflawni gweithred
+      already_silenced: Mae'r cyfrif hwn eisoes wedi'i dewi.
+      already_suspended: Mae'r cyfrif hwn eisoes wedi'i atal.
       title: Cyflawni gweithred cymedroli ar %{acct}
     account_moderation_notes:
       create: Gadael nodyn
@@ -54,6 +56,7 @@ cy:
         title: Newid e-bost i %{username}
       change_role:
         changed_msg: Rôl wedi ei newid yn llwyddiannus!
+        edit_roles: Rheoli rolau defnyddwyr
         label: Newid rôl
         no_role: Dim rôl
         title: Newid rôl %{username}
@@ -650,6 +653,7 @@ cy:
         suspend_description_html: Bydd y cyfrif a'i holl gynnwys yn anhygyrch ac yn cael ei ddileu yn y pen draw, a bydd rhyngweithio ag ef yn amhosibl. Yn gildroadwy o fewn 30 diwrnod. Yn cau pob adroddiad yn erbyn y cyfrif hwn.
       actions_description_html: Penderfynwch pa gamau i'w cymryd i delio gyda'r adroddiad hwn. Os cymerwch gamau cosbi yn erbyn y cyfrif a adroddwyd, bydd hysbysiad e-bost yn cael ei anfon atyn nhw, ac eithrio pan fydd y categori <strong>Sbam</strong> yn cael ei ddewis.
       actions_description_remote_html: Penderfynwch pa gamau i'w cymryd i ddatrys yr adroddiad hwn. Bydd hyn ond yn effeithio ar sut <strong>mae'ch</strong> gweinydd yn cyfathrebu â'r cyfrif hwn o bell ac yn trin ei gynnwys.
+      actions_no_posts: Nid oes gan yr adroddiad hwn unrhyw bostiadau cysylltiedig i'w dileu
       add_to_report: Ychwanegu rhagor i adroddiad
       already_suspended_badges:
         local: Wedi atal dros dro ar y gweinydd hwn yn barod
@@ -1558,6 +1562,7 @@ cy:
   media_attachments:
     validations:
       images_and_video: Methu atodi fideo i bostiad sydd eisoes yn cynnwys delweddau
+      not_found: Cyfryngau %{ids} heb eu canfod neu wedi'u hatodi i bostiad arall yn barod
       not_ready: Methu atodi ffeiliau nad ydynt wedi gorffen prosesu. Ceisiwch eto, cyn hir!
       too_many: Methu atodi mwy na 4 ffeil
   migrations:

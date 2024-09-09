@@ -25,6 +25,8 @@ nl:
   admin:
     account_actions:
       action: Actie uitvoeren
+      already_silenced: Dit account is al beperkt.
+      already_suspended: Dit account is al geschorst.
       title: Moderatiemaatregel tegen %{acct} nemen
     account_moderation_notes:
       create: Laat een opmerking achter
@@ -46,6 +48,7 @@ nl:
         title: E-mailadres wijzigen voor %{username}
       change_role:
         changed_msg: Rol succesvol veranderd!
+        edit_roles: Gebruikersrollen beheren
         label: Rol veranderen
         no_role: Geen rol
         title: Rol van %{username} veranderen
@@ -602,6 +605,7 @@ nl:
         suspend_description_html: Het account en de inhoud hiervan is niet meer toegankelijk, en het is ook niet meer mogelijk om ermee interactie te hebben. Uiteindelijk wordt het account volledig verwijderd. Dit is omkeerbaar binnen 30 dagen. Dit sluit alle rapporten tegen dit account af.
       actions_description_html: Beslis welke maatregel moet worden genomen om deze rapportage op te lossen. Wanneer je een (straf)maatregel tegen het gerapporteerde account neemt, krijgt het account een e-mailmelding, behalve wanneer de <strong>spam</strong>-categorie is gekozen.
       actions_description_remote_html: Beslis welke actie moet worden ondernomen om deze rapportage op te lossen. Dit is alleen van invloed op hoe <strong>jouw</strong> server met dit externe account communiceert en de inhoud ervan beheert.
+      actions_no_posts: Dit rapport heeft geen bijbehorende berichten om te verwijderen
       add_to_report: Meer aan de rapportage toevoegen
       already_suspended_badges:
         local: Al geschorst op deze server

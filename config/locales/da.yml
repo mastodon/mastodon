@@ -25,6 +25,8 @@ da:
   admin:
     account_actions:
       action: Udfør handling
+      already_silenced: Denne konto er allerede gjort tavs.
+      already_suspended: Denne konto er allerede suspenderet.
       title: Udfør moderatorhandling på %{acct}
     account_moderation_notes:
       create: Skriv notat
@@ -46,6 +48,7 @@ da:
         title: Skift e-mail for %{username}
       change_role:
         changed_msg: Rolle ændret!
+        edit_roles: Håndtér brugerroller
         label: Ændr rolle
         no_role: Ingen rolle
         title: Ændr rolle for %{username}
@@ -602,6 +605,7 @@ da:
         suspend_description_html: Kontoen inkl. alt indhold utilgængeliggøres og interaktion umuliggøres, og den slettes på et tidspunkt. Kan omgøres inden for 30 dage. Lukker alle indrapporteringer af kontoen.
       actions_description_html: Afgør, hvilke foranstaltning, der skal træffes for at løse denne anmeldelse. Ved en straffende foranstaltning mod den anmeldte konto, fremsendes en e-mailnotifikation, undtagen når kategorien <strong>Spam</strong> er valgt.
       actions_description_remote_html: Fastslå en nødvendig handling mhp. at løse denne anmeldelse. Dette vil kun påvirke <strong>din</strong> servers kommunikation med, og indholdshåndtering for, fjernkontoen.
+      actions_no_posts: Denne anmeldelse har ingen tilknyttede indlæg at slette
       add_to_report: Føj mere til anmeldelse
       already_suspended_badges:
         local: Allerede suspenderet på denne server
