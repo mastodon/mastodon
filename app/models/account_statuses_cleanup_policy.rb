@@ -157,7 +157,7 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
   end
 
   def without_media_scope
-    Status.where('NOT EXISTS (SELECT 1 FROM media_attachments media WHERE media.status_id = statuses.id)')
+    Status.where.not(status_media_reference_exists)
   end
 
   def without_poll_scope
@@ -173,6 +173,14 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
 
   def account_statuses
     Status.where(account_id: account_id)
+  end
+
+  def status_media_reference_exists
+    MediaAttachment
+      .where(MediaAttachment.arel_table[:status_id].eq Status.arel_table[:id])
+      .select(1)
+      .arel
+      .exists
   end
 
   def self_status_reference_exists(model)
