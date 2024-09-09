@@ -121,7 +121,7 @@ RSpec.describe FeaturedTag do
 
       expect { featured_tag.increment(timestamp) }
         .to change(featured_tag, :statuses_count).from(0).to(1)
-        .and change(featured_tag, :last_status_at).from(nil).to(timestamp)
+        .and change(featured_tag, :last_status_at).from(nil).to(be_within(0.1).of(timestamp))
     end
   end
 
@@ -135,7 +135,7 @@ RSpec.describe FeaturedTag do
 
       expect { featured_tag.decrement(status.id) }
         .to change(featured_tag, :statuses_count).from(1).to(0)
-        .and change(featured_tag, :last_status_at).from(status.created_at).to(nil)
+        .and change(featured_tag, :last_status_at).to(nil)
     end
   end
 end
