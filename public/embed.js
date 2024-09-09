@@ -18,8 +18,28 @@
     }
   };
 
+  /**
+   * @param {Map} map
+   */
+  var generateId = function (map) {
+    var id = 0, failCount = 0, idBuffer = new Uint32Array(1);
+
+    while (id === 0 || map.has(id)) {
+      id = crypto.getRandomValues(idBuffer)[0];
+      failCount++;
+
+      if (failCount > 100) {
+        // give up and assign (easily guessable) unique number if getRandomValues is broken or no luck
+        id = -(map.size + 1);
+        break;
+      }
+    }
+
+    return id;
+  };
+
   ready(function () {
-    /** @type {Map<number, HTMLQuoteElement>} */
+    /** @type {Map<number, HTMLQuoteElement | HTMLIFrameElement>} */
     var embeds = new Map();
 
     window.addEventListener('message', function (e) {
@@ -29,52 +49,67 @@
         return;
       }
 
-      var container = embeds.get(data.id);
+      var embed = embeds.get(data.id);
 
-      if (!container) return;
-
-      var iframe = container.querySelector('iframe');
-
-      if (!iframe || ('source' in e && iframe.contentWindow !== e.source)) {
-        return;
+      if (embed instanceof HTMLIFrameElement) {
+        embed.height = data.height;
       }
 
-      iframe.height = data.height;
+      if (embed instanceof HTMLQuoteElement) {
+        var iframe = embed.querySelector('iframe');
 
-      var placeholder = container.querySelector('a');
+        if (!iframe || ('source' in e && iframe.contentWindow !== e.source)) {
+          return;
+        }
 
-      if (!placeholder) return;
+        iframe.height = data.height;
 
-      container.removeChild(placeholder);
+        var placeholder = embed.querySelector('a');
+
+        if (!placeholder) return;
+
+        embed.removeChild(placeholder);
+      }
     });
 
+    // Legacy embeds
+    document.querySelectorAll('iframe.mastodon-embed').forEach(iframe => {
+      var id = generateId(embeds);
+
+      embeds.set(id, iframe);
+
+      iframe.allow = 'fullscreen';
+      iframe.sandbox = 'allow-scripts allow-same-origin';
+      iframe.style.border = 0;
+      iframe.style.overflow = 'hidden';
+      iframe.style.display = 'block';
+
+      iframe.onload = function () {
+        iframe.contentWindow.postMessage({
+          type: 'setHeight',
+          id: id,
+        }, '*');
+      };
+
+      iframe.onload(); // In case the script is executing after the iframe has already loaded
+    });
+
+    // New generation of embeds
     document.querySelectorAll('blockquote.mastodon-embed').forEach(container => {
-      // Select unique id for each iframe
-      var id = 0, failCount = 0, idBuffer = new Uint32Array(1);
-
-      while (id === 0 || embeds.has(id)) {
-        id = crypto.getRandomValues(idBuffer)[0];
-        failCount++;
-
-        if (failCount > 100) {
-          // give up and assign (easily guessable) unique number if getRandomValues is broken or no luck
-          id = -(embeds.size + 1);
-          break;
-        }
-      }
+      var id = generateId(embeds);
 
       embeds.set(id, container);
 
       var iframe = document.createElement('iframe');
       var embedUrl = new URL(container.getAttribute('data-embed-url'));
 
-      if (embedUrl.protocol !== 'https:') return;
+      if (embedUrl.protocol !== 'https:' && embedUrl.protocol !== 'http:') return;
 
       iframe.src = embedUrl.toString();
       iframe.width = container.clientWidth;
       iframe.height = 0;
-      iframe.scrolling = 'no';
-      iframe.allowfullscreen = true;
+      iframe.allow = 'fullscreen';
+      iframe.sandbox = 'allow-scripts allow-same-origin';
       iframe.style.border = 0;
       iframe.style.overflow = 'hidden';
       iframe.style.display = 'block';

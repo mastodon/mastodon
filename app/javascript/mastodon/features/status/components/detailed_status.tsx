@@ -41,16 +41,16 @@ interface VideoModalOptions {
 
 export const DetailedStatus: React.FC<{
   status: any;
-  onOpenMedia?: (arg0: any, arg1: number, arg2: string) => void;
-  onOpenVideo?: (arg0: any, arg1: string, arg2: VideoModalOptions) => void;
-  onTranslate?: (arg0: any) => void;
+  onOpenMedia?: (status: any, index: number, lang: string) => void;
+  onOpenVideo?: (status: any, lang: string, options: VideoModalOptions) => void;
+  onTranslate?: (status: any) => void;
   measureHeight?: boolean;
   onHeightChange?: () => void;
   domain: string;
   showMedia?: boolean;
   withLogo?: boolean;
   pictureInPicture: any;
-  onToggleHidden?: (arg0: any) => void;
+  onToggleHidden?: (status: any) => void;
   onToggleMediaVisibility?: () => void;
 }> = ({
   status,
