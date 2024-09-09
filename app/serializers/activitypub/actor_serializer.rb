@@ -8,7 +8,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
   context_extensions :manually_approves_followers, :featured, :also_known_as,
                      :moved_to, :property_value, :discoverable, :olm, :suspended,
-                     :memorial, :indexable
+                     :memorial, :indexable, :attribution_domains
 
   attributes :id, :type, :following, :followers,
              :inbox, :outbox, :featured, :featured_tags,
@@ -25,6 +25,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   attribute :moved_to, if: :moved?
   attribute :also_known_as, if: :also_known_as?
   attribute :suspended, if: :suspended?
+  attribute :attribution_domains, if: -> { object.attribution_domains.any? }
 
   class EndpointsSerializer < ActivityPub::Serializer
     include RoutingHelper

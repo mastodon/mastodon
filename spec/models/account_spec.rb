@@ -747,6 +747,22 @@ RSpec.describe Account do
     end
   end
 
+  describe '#can_be_attributed_from?' do
+    subject { Fabricate(:account, attribution_domains: %w(example.com)) }
+
+    it 'returns true for a matching domain' do
+      expect(subject.can_be_attributed_from?('example.com')).to be true
+    end
+
+    it 'returns true for a subdomain of a domain' do
+      expect(subject.can_be_attributed_from?('foo.example.com')).to be true
+    end
+
+    it 'returns false for a non-matching domain' do
+      expect(subject.can_be_attributed_from?('hoge.com')).to be false
+    end
+  end
+
   describe 'Normalizations' do
     describe 'username' do
       it { is_expected.to normalize(:username).from(" \u3000bob \t \u00a0 \n ").to('bob') }
