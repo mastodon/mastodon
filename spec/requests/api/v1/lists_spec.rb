@@ -43,7 +43,7 @@ RSpec.describe 'Lists' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json).to match_array(expected_response)
+      expect(response.parsed_body).to match_array(expected_response)
     end
   end
 
@@ -60,7 +60,7 @@ RSpec.describe 'Lists' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json).to eq({
+      expect(response.parsed_body).to match({
         id: list.id.to_s,
         title: list.title,
         replies_policy: list.replies_policy,
@@ -100,7 +100,7 @@ RSpec.describe 'Lists' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json).to match(a_hash_including(title: 'my list', replies_policy: 'none', exclusive: true))
+      expect(response.parsed_body).to match(a_hash_including(title: 'my list', replies_policy: 'none', exclusive: true))
       expect(List.where(account: user.account).count).to eq(1)
     end
 
@@ -144,7 +144,7 @@ RSpec.describe 'Lists' do
       expect(response).to have_http_status(200)
       list.reload
 
-      expect(body_as_json).to eq({
+      expect(response.parsed_body).to match({
         id: list.id.to_s,
         title: list.title,
         replies_policy: list.replies_policy,

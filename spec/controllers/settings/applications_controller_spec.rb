@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::ApplicationsController do
+RSpec.describe Settings::ApplicationsController do
   render_views
 
   let!(:user) { Fabricate(:user) }

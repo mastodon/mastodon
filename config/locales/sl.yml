@@ -911,11 +911,13 @@ sl:
         message_html: "<strong>Vaša predmetna shramba je napačno nastavljena. Zasebnost vaših uporabnikov je izpostavljena tveganjem.</strong>"
     tags:
       moderation:
+        not_trendable: Ni v trendu
         not_usable: Ni uporabno
         pending_review: Čakajoče na pregled
         review_requested: Zahtevan pregled
         reviewed: Pregledano
         title: Stanje
+        trendable: V trendu
         unreviewed: Nepregledano
         usable: Uporabno
       name: Ime
@@ -930,10 +932,16 @@ sl:
     trends:
       allow: Dovoli
       approved: Odobren
+      confirm_allow: Ali ste prepričani, da želite dopustiti izbrane oznake?
+      confirm_disallow: Ali ste prepričani, da želite prepovedati izbrane oznake?
       disallow: Ne dovoli
       links:
         allow: Dovoli povezavo
         allow_provider: Dovoli izdajatelja
+        confirm_allow: Ali ste prepričani, da želite dopustiti izbrane povezave?
+        confirm_allow_provider: Ali ste prepričani, da želite dopustiti izbrane ponudnike?
+        confirm_disallow: Ali ste prepričani, da želite prepovedati izbrane povezave?
+        confirm_disallow_provider: Ali ste prepričani, da želite prepovedati izbrane ponudnike?
         description_html: To so povezave, ki jih trenutno veliko delijo računi, iz katerih vaš strežnik vidi objave. Vašim uporabnikom lahko pomaga izvedeti, kaj se dogaja po svetu. Nobene povezave niso javno prikazane, dokler ne odobrite izdajatelja. Posamezne povezave lahko tudi dovolite ali zavrnete.
         disallow: Ne dovoli povezave
         disallow_provider: Ne dovoli izdajatelja
@@ -959,6 +967,10 @@ sl:
       statuses:
         allow: Dovoli objavo
         allow_account: Dovoli avtorja
+        confirm_allow: Ali ste prepričani, da želite dopustiti izbrana stanja?
+        confirm_allow_account: Ali ste prepričani, da želite dopustiti izbrane račune?
+        confirm_disallow: Ali ste prepričani, da želite prepovedati izbrana stanja?
+        confirm_disallow_account: Ali ste prepričani, da želite prepovedati izbrane račune?
         description_html: To so objave, za katere vaš strežnik ve, da so trenutno v skupni rabi in med priljubljenimi. Vašim novim uporabnikom in uporabnikom, ki se vračajo, lahko pomaga najti več oseb, ki jim bodo sledili. Nobena objava ni javno prikazana, dokler avtorja ne odobrite in avtor ne dovoli, da se njegov račun predlaga drugim. Posamezne objave lahko tudi dovolite ali zavrnete.
         disallow: Ne dovoli objave
         disallow_account: Ne dovoli avtorja
@@ -995,7 +1007,7 @@ sl:
           one: Uporabila %{count} oseba v zadnjem tednu
           other: Uporabilo %{count} oseb v zadnjem tednu
           two: Uporabili %{count} osebi v zadnjem tednu
-      title: Trendi
+      title: Priporočila in trendi
       trending: V porastu
     warning_presets:
       add_new: Dodaj novo
@@ -1726,7 +1738,7 @@ sl:
     import: Uvozi
     import_and_export: Uvoz in izvoz
     migrate: Selitev računa
-    notifications: Obvestila po e-pošti
+    notifications: E-poštna obvestila
     preferences: Nastavitve
     profile: Profil
     relationships: Sledenja in sledilci

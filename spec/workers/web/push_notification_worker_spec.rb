@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Web::PushNotificationWorker do
+RSpec.describe Web::PushNotificationWorker do
   subject { described_class.new }
 
   let(:p256dh) { 'BN4GvZtEZiZuqFxSKVZfSfluwKBD7UxHNBmWkfiZfCtgDE8Bwh-_MtLXbBxTBAWH9r7IPKL0lhdcaqtL1dfxU5E=' }

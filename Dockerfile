@@ -12,7 +12,7 @@ ARG BUILDPLATFORM=${BUILDPLATFORM}
 
 # Ruby image to use for base image, change with [--build-arg RUBY_VERSION="3.3.x"]
 # renovate: datasource=docker depName=docker.io/ruby
-ARG RUBY_VERSION="3.3.4"
+ARG RUBY_VERSION="3.3.5"
 # # Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
 # renovate: datasource=node-version depName=node
 ARG NODE_MAJOR_VERSION="20"
@@ -191,16 +191,19 @@ FROM build AS libvips
 
 # libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
 # renovate: datasource=github-releases depName=libvips packageName=libvips/libvips
-ARG VIPS_VERSION=8.15.2
+ARG VIPS_VERSION=8.15.3
 # libvips download URL, change with [--build-arg VIPS_URL="https://github.com/libvips/libvips/releases/download"]
 ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
 
 WORKDIR /usr/local/libvips/src
+# Download and extract libvips source code
+ADD ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz /usr/local/libvips/src/
+RUN tar xf vips-${VIPS_VERSION}.tar.xz;
 
+WORKDIR /usr/local/libvips/src/vips-${VIPS_VERSION}
+
+# Configure and compile libvips
 RUN \
-  curl -sSL -o vips-${VIPS_VERSION}.tar.xz ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz; \
-  tar xf vips-${VIPS_VERSION}.tar.xz; \
-  cd vips-${VIPS_VERSION}; \
   meson setup build --prefix /usr/local/libvips --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false; \
   cd build; \
   ninja; \
@@ -216,11 +219,14 @@ ARG FFMPEG_VERSION=7.0.2
 ARG FFMPEG_URL=https://ffmpeg.org/releases
 
 WORKDIR /usr/local/ffmpeg/src
+# Download and extract ffmpeg source code
+ADD ${FFMPEG_URL}/ffmpeg-${FFMPEG_VERSION}.tar.xz /usr/local/ffmpeg/src/
+RUN tar xf ffmpeg-${FFMPEG_VERSION}.tar.xz;
 
+WORKDIR /usr/local/ffmpeg/src/ffmpeg-${FFMPEG_VERSION}
+
+# Configure and compile ffmpeg
 RUN \
-  curl -sSL -o ffmpeg-${FFMPEG_VERSION}.tar.xz ${FFMPEG_URL}/ffmpeg-${FFMPEG_VERSION}.tar.xz; \
-  tar xf ffmpeg-${FFMPEG_VERSION}.tar.xz; \
-  cd ffmpeg-${FFMPEG_VERSION}; \
   ./configure \
     --prefix=/usr/local/ffmpeg \
     --toolchain=hardened \

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Credentials' do
+RSpec.describe 'Credentials' do
   describe 'GET /api/v1/apps/verify_credentials' do
     subject do
       get '/api/v1/apps/verify_credentials', headers: headers
@@ -18,7 +18,7 @@ describe 'Credentials' do
 
         expect(response).to have_http_status(200)
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(
             id: token.application.id.to_s,
             name: token.application.name,
@@ -37,8 +37,8 @@ describe 'Credentials' do
 
         expect(response).to have_http_status(200)
 
-        expect(body_as_json[:client_id]).to_not be_present
-        expect(body_as_json[:client_secret]).to_not be_present
+        expect(response.parsed_body[:client_id]).to_not be_present
+        expect(response.parsed_body[:client_secret]).to_not be_present
       end
     end
 
@@ -56,7 +56,7 @@ describe 'Credentials' do
       it 'returns the app information correctly' do
         subject
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(
             id: token.application.id.to_s,
             name: token.application.name,
@@ -95,7 +95,7 @@ describe 'Credentials' do
       it 'returns the error in the json response' do
         subject
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(
             error: 'The access token was revoked'
           )
@@ -117,7 +117,7 @@ describe 'Credentials' do
       it 'returns the error in the json response' do
         subject
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(
             error: 'The access token is invalid'
           )

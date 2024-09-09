@@ -33,7 +33,6 @@ sr-Latn:
       created_msg: Moderatorska beleška uspešno napravljena!
       destroyed_msg: Moderatorska beleška uspešno obrisana!
     accounts:
-      add_email_domain_block: Blokiraj domen e-pošte
       approve: Odobri
       approved_msg: Zahtev za registraciju korisnika %{username} je uspešno odobren
       are_you_sure: Da li ste sigurni?
@@ -60,7 +59,6 @@ sr-Latn:
       demote: Ražaluj
       destroyed_msg: Podaci korisnika %{username} su nepovratno stavljeni u red za brisanje
       disable: Zamrzni
-      disable_sign_in_token_auth: Onemogući imejl autentifikaciju
       disable_two_factor_authentication: Isključi 2FA
       disabled: Zamrznut
       display_name: Ime za prikaz
@@ -69,7 +67,6 @@ sr-Latn:
       email: E-pošta
       email_status: Status e-pošte
       enable: Omogući
-      enable_sign_in_token_auth: Omogući imejl autentifikaciju
       enabled: Omogućen
       enabled_msg: Uspešno odleđen nalog korisnika %{username}
       followers: Pratioci
@@ -135,7 +132,6 @@ sr-Latn:
       resubscribe: Ponovo se pretplati
       role: Uloga
       search: Pretraga
-      search_same_email_domain: Ostali korisnici sa istim domenom e-pošte
       search_same_ip: Ostali korisnici sa istom IP adresom
       security: Bezbednost
       security_measures:
@@ -176,26 +172,21 @@ sr-Latn:
         approve_appeal: Uvaži žalbu
         approve_user: Odobri korisnika
         assigned_to_self_report: Dodeli prijavu
-        change_email_user: Promeni e-adresu korisnika
         change_role_user: Promeni ulogu korisnika
         confirm_user: Potvrdi korisnika
         create_account_warning: Kreiraj upozorenje
         create_announcement: Kreiraj najavu
-        create_canonical_email_block: Kreiraj blok e-pošte
         create_custom_emoji: Napravi prilagođeni emodži
         create_domain_allow: Dodaj dozvoljeni domen
         create_domain_block: Dodaj blokirani domen
-        create_email_domain_block: Blokiraj imejl domen
         create_ip_block: Napravi IP uslov
         create_unavailable_domain: Dodaj domen kao nedostupan
         create_user_role: Kreiraj ulogu
         demote_user: Smanji ovlašćenja korisnika
         destroy_announcement: Izbriši najavu
-        destroy_canonical_email_block: Izbriši blok e-pošte
         destroy_custom_emoji: Obriši prilagođeni emodži
         destroy_domain_allow: Obriši dozvoljeni domen
         destroy_domain_block: Obriši blokirani domen
-        destroy_email_domain_block: Izbriši blok e-pošte
         destroy_instance: Očisti domen
         destroy_ip_block: Obriši IP uslov
         destroy_status: Izbriši post
@@ -203,10 +194,8 @@ sr-Latn:
         destroy_user_role: Uništi poziciju
         disable_2fa_user: Onemogući dvofaktorsku autentifikaciju
         disable_custom_emoji: Onemogući prilagođene emodžije
-        disable_sign_in_token_auth_user: Onemogući imejl autentifikaciju za korisnika
         disable_user: Onemogući korisnika
         enable_custom_emoji: Omogući prilagođene emodžije
-        enable_sign_in_token_auth_user: Omogući imejl autentifikaciju za korisnika
         enable_user: Omogući korisnika
         memorialize_account: Pretvori u memorijalni nalog
         promote_user: Unapredi korisnika
@@ -235,26 +224,20 @@ sr-Latn:
         approve_appeal_html: "%{name} je uvažio žalbu korisnika %{target} na odluku moderatora"
         approve_user_html: "%{name} je odobrio/-la registraciju korisnika %{target}"
         assigned_to_self_report_html: "%{name} je sebi dodelio/-la prijavu %{target}"
-        change_email_user_html: "%{name} je promenio/-la imejl adresu korisnika %{target}"
         change_role_user_html: "%{name} je promenio/-la ovlašćenja korisnika %{target}"
-        confirm_user_html: "%{name} je potvrdio/-la imejl adresu korisnika %{target}"
         create_account_warning_html: "%{name} je poslao/-la upozorenje korisniku %{target}"
         create_announcement_html: "%{name} je napravio/-la novo saopštenje %{target}"
-        create_canonical_email_block_html: "%{name} je blokirao/-la imejl adresu sa hešom %{target}"
         create_custom_emoji_html: "%{name} je otpremio/-la nove emodžije %{target}"
         create_domain_allow_html: "%{name} je dozvolio/-la federaciju sa domenom %{target}"
         create_domain_block_html: "%{name} je blokirao/-la domen %{target}"
-        create_email_domain_block_html: "%{name} je blokirao/-la imejl domen %{target}"
         create_ip_block_html: "%{name} je napravio/-la uslov za IP adrese %{target}"
         create_unavailable_domain_html: "%{name} je obustavio/-la isporučivanje domenu %{target}"
         create_user_role_html: "%{name} je napravio/-la %{target} poziciju"
         demote_user_html: "%{name} je smanjio ovlašćenja korisnika %{target}"
         destroy_announcement_html: "%{name} je obrisao/-la saopštenje %{target}"
-        destroy_canonical_email_block_html: "%{name} je odblokirao/-la imejl adresu sa hešom %{target}"
         destroy_custom_emoji_html: "%{name} je obrisao/-la emodži %{target}"
         destroy_domain_allow_html: "%{name} je zabranio/-la federaciju sa domenom %{target}"
         destroy_domain_block_html: "%{name} je odblokirao/-la domen %{target}"
-        destroy_email_domain_block_html: "%{name} je odblokirao/-la imejl domen %{target}"
         destroy_instance_html: "%{name} je očistio/-la domen %{target}"
         destroy_ip_block_html: "%{name} je obrisao/-la uslov za IP adrese %{target}"
         destroy_status_html: "%{name} je izbrisao/-la objavu korisnika %{target}"
@@ -262,10 +245,8 @@ sr-Latn:
         destroy_user_role_html: "%{name} je izbrisao/-la %{target} poziciju"
         disable_2fa_user_html: "%{name} je onemogućio/-la dvofaktorsku autentifikaciju za korisnika %{target}"
         disable_custom_emoji_html: "%{name} je onemogućio/-la emodži %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} je onemogućio/-la imejl autentifikaciju za korisnika %{target}"
         disable_user_html: "%{name} je onemogućio/-la prijavljivanje za korisnika %{target}"
         enable_custom_emoji_html: "%{name} je omogućio/-la emodži %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} je omogućio/-la imejl autentifikaciju za %{target}"
         enable_user_html: "%{name} je omogućio/-la prijavljivanje korisniku %{target}"
         memorialize_account_html: "%{name} je pretvorio/-la nalog korisnika %{target} u memorijalnu stranicu"
         promote_user_html: "%{name} je unapredio/-la korisnika %{target}"
@@ -273,7 +254,6 @@ sr-Latn:
         reject_user_html: "%{name} je odbio/-la registraciju korisnika %{target}"
         remove_avatar_user_html: "%{name} je uklonio avatar korisnika %{target}"
         reopen_report_html: "%{name} je ponovo otvorio/-la prijavu %{target}"
-        resend_user_html: "%{name} je ponovo poslao/-la imejl za potvrdu korisniku %{target}"
         reset_password_user_html: "%{name} je resetovao/-la lozinku korisnika %{target}"
         resolve_report_html: "%{name} je rešio/-la prijavu %{target}"
         sensitive_account_html: "%{name} je označio/-la medije naloga %{target} kao osetljive"
@@ -439,7 +419,6 @@ sr-Latn:
         few: "%{count} pokušaja tokom prethodne nedelje"
         one: "%{count} pokušaj tokom prethodne nedelje"
         other: "%{count} pokušaja registracije tokom prethodne nedelje"
-      created_msg: Uspešno dodao domen E-pošte na crnu listu
       delete: Obriši
       dns:
         types:
@@ -448,12 +427,8 @@ sr-Latn:
       new:
         create: Dodaj domen
         resolve: Pretvori domen
-        title: Nova stavka e-pošte u crnoj listi
-      no_email_domain_block_selected: Nijedan blok imejl domena nije promenjen jer nijedan nije izabran
       not_permitted: Nije dozvoljeno
-      resolved_dns_records_hint_html: Ime domena se pretvara u sledeće MX domene, koji su naposletku odgovorni za prihvatanje elektronske pošte. Blokiranje MX domena će blokirati registracije sa svake imejl adrese koja koristi taj MX domen, čak i u slučaju kada se vidljivo ime domena razlikuje. <strong>Vodite računa o tome da ne blokirate velike imejl provajdere.</strong>
       resolved_through_html: Preusmereno kroz %{domain}
-      title: Crna lista E-pošte
     export_domain_allows:
       new:
         title: Uvezi dozvoljene domene
@@ -608,7 +583,6 @@ sr-Latn:
         resolve_description_html: Nijedna radnja neće biti preduzeta protiv prijavljenog naloga, nijedan prestup nije upisan i prijava će biti zatvorena.
         silence_description_html: Nalog će biti vidljiv samo onima koji ga već prate ili koji ga ručno potraže, što će značajno ograničiti njegov domet. Ograničenje se može povući u svakom trenutku. Zatvara sve prijave podnete protiv ovog naloga.
         suspend_description_html: Nalog i svi njegovi sadržaji će postati nedostupni i u jednom trenutku izbrisani, a interakcija sa nalogom više neće biti moguća. Suspenzija se može povući u roku od 30 dana. Zatvara sve prijave podnete protiv ovog naloga.
-      actions_description_html: Odlučite koju radnju da sprovedete radi rešavanja ove prijave. Ukoliko sprovedete kaznenu radnju protiv prijavljenog naloga, vlasnik naloga će biti obavešten putem i-mejla, osim ukoliko oznaka <strong>„Nepoželjne poruke”</strong> nije odabrana.
       actions_description_remote_html: Odlučite koju radnju da preduzmete radi rešavanja ove prijave. Ovo će uticati samo na to kako <strong>Vaš</strong> server komunicira sa ovim udaljenim nalogom i obrađuje njegov sadržaj.
       add_to_report: Dodaj još u prijavu
       already_suspended_badges:
@@ -672,7 +646,6 @@ sr-Latn:
         delete_data_html: Obriši profil i sadržaje korisnika <strong>@%{acct}</strong> za 30 dana osim ukoliko suspenzija bude povučena u međuvremenu
         preview_preamble_html: "<strong>@%{acct}</strong> će primiti upozorenje sledeće sadržine:"
         record_strike_html: Upišite prekršaj na ime <strong>@%{acct}</strong> da bi Vam bilo lakše da u budućnosti intervenišete prilikom daljih prestupa sa ovog naloga
-        send_email_html: Pošalji imejl upozorenja korisniku <strong>@%{acct}</strong>
         warning_placeholder: Opciono dodatno obrazloženje za moderacijsku radnju.
       target_origin: Poreklo prijavljenog naloga
       title: Prijave
@@ -714,7 +687,6 @@ sr-Latn:
         manage_appeals: Nadgledanje žalbi
         manage_appeals_description: Dopušta korisnicima da pregledaju žalbe na moderacijske radnje
         manage_blocks: Nadgledanje blokova
-        manage_blocks_description: Dopušta korisnicima da blokiraju imejl provajdere i IP adrese
         manage_custom_emojis: Nadležnost nad prilagođenim emodžijima
         manage_custom_emojis_description: Daje korisnicima kontrolu nad prilagođenim emodžijima na serveru
         manage_federation: Nadgledanje federacije
@@ -732,7 +704,6 @@ sr-Latn:
         manage_taxonomies: Nadgledanje taksonomija
         manage_taxonomies_description: Dopušta korisnicima da pregledaju sadržaj u trendu i ažuriraju postavke heš oznaka
         manage_user_access: Nadležnost nad korisničkim pristupom
-        manage_user_access_description: Dopušta korisnicima da onemoguće dvofaktorsku autentifikaciju drugih korisnika, menjaju im imejl adrese i resetuju im lozinke
         manage_users: Nadležnost nad korisnicima
         manage_users_description: Dopušta korisnicima da pročitaju detalje drugih korisnika i izvršavaju moderacijske radnje nad njima
         manage_webhooks: Nadležnost nad webhook elementima
@@ -807,7 +778,6 @@ sr-Latn:
       destroyed_msg: Otpremanje uspešno obrisano!
     software_updates:
       critical_update: Kritično — ažurirajte brzo
-      description: Preporučuje se da svoju Mastodon instalaciju održavate ažurnom kako biste imali koristi od najnovijih ispravki i funkcija. Štaviše, ponekad je ključno ažurirati Mastodon na vreme kako bi se izbegli bezbednosni problemi. Iz ovih razloga, Mastodon proverava da li postoje ažuriranja svakih 30 minuta, i obavestiće vas u skladu sa vašim podešavanjima obaveštenja putem e-pošte.
       documentation_link: Saznajte više
       release_notes: Beleške o izdanju
       title: Dostupna ažuriranja
@@ -962,7 +932,6 @@ sr-Latn:
           few: Korišćeno od strane %{count} osobe tokom prethodne nedelje
           one: Korišćeno od strane jedne osobe tokom prethodne nedelje
           other: Korišćeno od strane %{count} ljudi tokom prethodne nedelje
-      title: Trendovi
       trending: U trendu
     warning_presets:
       add_new: Dodaj novi
@@ -1048,9 +1017,7 @@ sr-Latn:
       guide_link_text: Svako može doprineti.
     sensitive_content: Osetljiv sadržaj
   application_mailer:
-    notification_preferences: Promeni preference E-pošte
     salutation: Poštovani %{name},
-    settings: 'Promeni podešavanja e-pošte: %{link}'
     unsubscribe: Odjavi se
     view: 'Pogledaj:'
     view_profile: Pogledaj nalog
@@ -1070,7 +1037,6 @@ sr-Latn:
       hint_html: Samo još jedna stvar! Moramo da potvrdimo da ste ljudsko biće (ovo je da bismo sprečili neželjenu poštu!). Rešite CAPTCHA ispod i kliknite na „Nastavi”.
       title: Bezbedonosna provera
     confirmations:
-      awaiting_review: Vaša adresa e-pošte je potvrđena! Osoblje %{domain} sada pregleda vašu registraciju. Dobićete e-poštu ako odobre vaš nalog!
       awaiting_review_title: Vaša registracija se pregleda
       clicking_this_link: klikom na ovu vezu
       login_link: prijavi se
@@ -1078,7 +1044,6 @@ sr-Latn:
       redirect_to_app_html: Trebalo je da budete preusmereni na aplikaciju <strong>%{app_name}</strong>. Ako se to nije desilo, pokušajte sa %{clicking_this_link} ili se ručno vratite u aplikaciju.
       registration_complete: Vaša registracija na %{domain} je sada kompletirana!
       welcome_title: Dobro došli, %{name}!
-      wrong_email_hint: Ako ta imejl adresa nije ispravna, možete je promeniti u podešavanjima naloga.
     delete_account: Brisanje naloga
     delete_account_html: Ako želite da izbrišete vaš nalog, možete <a href="%{path}">nastaviti ovde</a>. Od vas će se tražiti potvrda.
     description:
@@ -1099,7 +1064,6 @@ sr-Latn:
     or_log_in_with: Ili se prijavite sa
     privacy_policy_agreement_html: Pročitao/-la sam i saglasan/-a sam sa <a href="%{privacy_policy_path}" target="_blank">politikom privatnosti</a>
     progress:
-      confirm: Potvrdite e-poštu
       details: Vaši detalji
       review: Naš pregled
       rules: Prihvatite pravila
@@ -1121,10 +1085,8 @@ sr-Latn:
     security: Bezbednost
     set_new_password: Postavi novu lozinku
     setup:
-      email_below_hint_html: Proverite svoju fasciklu neželjene pošte ili zatražite drugu. Možete da ispravite svoju adresu e-pošte ako je pogrešna.
       email_settings_hint_html: Kliknite na vezu koji smo vam poslali da verifikujete %{email}. Čekaćemo ovde.
       link_not_received: Niste dobili vezu?
-      new_confirmation_instructions_sent: Za nekoliko minuta primićete novu e-poruku sa vezom za potvrdu!
       title: Proverite svoje prijemno sanduče
     sign_in:
       preamble_html: Prijavite se sa svojim podacima za <strong>%{domain}</strong>. Ako se Vaš nalog nalazi na drugom serveru, nećete moći da se prijavite ovde.
@@ -1135,9 +1097,7 @@ sr-Latn:
       title: Hajde da Vam namestimo nalog na %{domain}.
     status:
       account_status: Status naloga
-      confirming: Čekanje na potvrdu putem imejla.
       functional: Vaš nalog je potpuno operativan.
-      pending: Vaš zahtev je na čekanju za pregled od strane našeg osoblja. Ovo može potrajati neko vreme. Primićete imejl poruku ukoliko Vam zahtev bude odobren.
       redirecting_to: Vaš nalog je neaktivan jer preusmerava na %{acct}.
       self_destruct: Pošto se %{domain} zatvara, dobićete samo ograničen pristup svom nalogu.
       view_strikes: Pogledajte prethodne prestupe upisane na Vaše ime
@@ -1180,9 +1140,6 @@ sr-Latn:
       before: 'Pre nego što nastavite, molimo Vas pažljivo pročitajte sledeće napomene:'
       caches: Sadržaj koji je keširan na drugim serverima može da ostane netaknut
       data_removal: Vaše objave i drugi podaci će biti trajno izbrisani
-      email_change_html: Možete <a href="%{path}">promeniti svoju imejl adresu</a> bez brisanja svog naloga
-      email_contact_html: Ako poruka i dalje ne stiže, možete poslati mejl na <a href="mailto:%{email}">%{email}</a> za pomoć
-      email_reconfirmation_html: Ukoliko Vam imejl za potvrdu ne stiže, možete ga <a href="%{path}">ponovo zatražiti</a>
       irreversible: Nećete biti u mogućnosti da vratite ili reaktivirate svoj nalog
       more_details_html: Za više detalja, pogledajte <a href="%{terms_path}">politiku privatnosti</a>.
       username_available: Vaše korisničko ime će ponovo postati dostupno
@@ -1423,7 +1380,6 @@ sr-Latn:
     authentication_methods:
       otp: aplikacija za dvofaktorsku autentifikaciju
       password: lozinka
-      sign_in_token: imejl sigurnosni kod
       webauthn: sigurnosni ključevi
     description_html: Ukoliko primetite aktivnost koju ne prepoznajete, razmislite o tome da promenite svoju lozinku i uključite dvofaktorsku autentifikaciju.
     empty: Istorija autentifikacije nije dostupna
@@ -1434,16 +1390,6 @@ sr-Latn:
     unsubscribe:
       action: Da, odjavi me
       complete: Odjavljen
-      confirmation_html: Da li ste sigurni da želite da se odjavite od primanja %{type} za Mastodon na %{domain} na svoju e-poštu na %{email}? Uvek možete ponovo da se prijavite u svojim <a href="%{settings_path}">podešavanjima obaveštenja putem e-pošte</a>.
-      emails:
-        notification_emails:
-          favourite: omiljene e-pošte za obaveštenja
-          follow: omiljene e-pošte za praćenja
-          follow_request: e-pošte za zahteve za praćenja
-          mention: e-pošte za obaveštenje pominjanja
-          reblog: e-pošte za obaveštenje podržavanja
-      resubscribe_html: Ako ste se greškom odjavili, možete ponovo da se prijavite u svojim <a href="%{settings_path}">podešavanjima obaveštenja putem e-pošte</a>.
-      success_html: Više nećete dobijati %{type} za Mastodon na %{domain} na svoju e-poštu na %{email}.
       title: Odjavi se
   media_attachments:
     validations:
@@ -1524,8 +1470,6 @@ sr-Latn:
     update:
       subject: "%{name} je izmenio/-la objavu"
   notifications:
-    administration_emails: Obaveštenja e-poštom od administratora
-    email_events: Događaji za obaveštenja e-poštom
     email_events_hint: 'Izaberite dešavanja za koja želite da primate obaveštenja:'
   number:
     human:
@@ -1684,7 +1628,6 @@ sr-Latn:
     import: Uvoz
     import_and_export: Uvoz i izvoz
     migrate: Prebacivanje naloga
-    notifications: Obaveštenja e-poštom
     preferences: Podešavanja
     profile: Javni profil
     relationships: Praćenja i pratioci
@@ -1938,12 +1881,11 @@ sr-Latn:
     invalid_otp_token: Neispravni dvofaktorski kod
     otp_lost_help_html: Ako izgubite pristup za oba, možete stupiti u kontakt sa %{email}
     rate_limited: Previše pokušaja autentifikacije, pokušajte ponovo kasnije.
-    seamless_external_login: Prijavljeni ste putem spoljašnje usluge, tako da lozinka i podešavanja E-pošte nisu dostupni.
     signed_in_as: 'Prijavljen/a kao:'
   verification:
     extra_instructions_html: <strong>Savet:</strong>Veza na vašem veb sajtu može da bude nevidljiva. Važan deo je <code>rel="me"</code> koji sprečava lažno predstavljanje na veb sajtovima sa sadržajem koji generiše korisnik. Možete čak da koristite oznaku <code>veze</code> u zaglavlju stranice umesto <code>a</code>, ali HTML mora biti dostupan bez izvršavanja JavaScript-a.
     here_is_how: Evo kako
-    hint_html: "<strong>Verifikacija vašeg identiteta na Mastodon-u je za svakoga.</strong> Zasnovano na otvorenim veb standardima, sada i zauvek besplatno. Sve što vam treba je lični veb sajt po kome vas ljudi prepoznaju. Kada se povežete sa ovim veb sajtom sa svog profila, proverićemo da li je veb sajt povezan sa vašim profilom i na njemu ćemo prikazati vizuelni indikator."
+    hint_html: "<strong>Svako može da verifikuje svoj identitet na Mastodon-u.</strong> Zasnovano na otvorenim veb standardima, sada i zauvek besplatno. Sve što vam treba je lični veb sajt po kome vas ljudi prepoznaju. Kada se povežete sa ovim veb sajtom sa svog profila, proverićemo da li je veb sajt povezan sa vašim profilom i na njemu ćemo prikazati vizuelni indikator."
     instructions_html: Kopirajte i nalepite kod ispod u HTML svog veb sajta. Zatim dodajte adresu svog veb sajta u jedno od dodatnih polja na svom profilu sa kartice „Uredi profil” i sačuvajte promene.
     verification: Verifikacija
     verified_links: Vaše verifikovane veze

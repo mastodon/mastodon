@@ -31,7 +31,6 @@ hy:
       created_msg: Մոդերացիոն նոթը բարեյաջող ստեղծուեց
       destroyed_msg: Մոդերացիոն նոթը բարեյաջող վերացուեց
     accounts:
-      add_email_domain_block: Արգելափակել էլ․ փոստի տիրոյթը
       approve: Ընդունել
       approved_msg: Յաջողութեամբ հաստատուեց %{username}֊ի գրանցման յայտը
       are_you_sure: Վստա՞հ ես
@@ -113,7 +112,6 @@ hy:
       reset_password: Վերականգնել գաղտանաբառը
       resubscribe: Կրկին բաժանորդագրուել
       search: Որոնել
-      search_same_email_domain: Այլ օգտատէրեր նոյն էլ․ փոստի դոմէյնով
       search_same_ip: Այլ օգտատէրեր նոյն IP֊ով
       security_measures:
         only_password: Միայն ծածկագիր
@@ -147,21 +145,18 @@ hy:
     action_logs:
       action_types:
         assigned_to_self_report: Բողոքել
-        change_email_user: Փոխել օգտատիրոջ էլ․ հասցէն
         confirm_user: Հաստատել օգտատիրոջը
         create_account_warning: Ստեղծել զգուշացում
         create_announcement: Ստեղծել յայտարարութիւն
         create_custom_emoji: Ստեղծել սեփական էմոջիները
         create_domain_allow: Ստեղծել տիրոյթի թոյլտուութիւն
         create_domain_block: Ստեղծել տիրոյթի արգելափակում
-        create_email_domain_block: Ստեղծել էլ․ հասցէի դոմէյնի արգելափակում
         create_ip_block: Ստեղծել IP կանոն
         demote_user: Աստիճանազրկել օգտատիրոջը
         destroy_announcement: Ջնջել յայտարարութիւնը
         destroy_custom_emoji: Ջնջել էմոջին
         destroy_domain_allow: Ջնջել դոմէնի թոյլտուութիւնը
         destroy_domain_block: Ապաարգելափակել դոմէնը
-        destroy_email_domain_block: Ապաարգելափակել էլ․ հասցէի դոմէնը
         destroy_ip_block: Ջնջել IP կանոնը
         destroy_status: Ջնջել գրառումը
         disable_2fa_user: Անջատել 2FA
@@ -274,13 +269,10 @@ hy:
       view: Տեսնել տիրոյթի արգելափակումը
     email_domain_blocks:
       add_new: Ավելացնել նորը
-      created_msg: Բարեյաջող արգելափակուեց էլ․ փոստի տիրոյթ
       delete: Ջնջել
       domain: Դոմեն
       new:
         create: Ավելացնել դոմեն
-        title: Արգելափակել էլ․ փոստի նոր տիրոյթ
-      title: էլ․ փոստի արգելափակուած տիրոյթներ
     follow_recommendations:
       language: Լեզուի համար
       status: Կարգավիճակ
@@ -433,7 +425,6 @@ hy:
         not_usable: Չի կարող օգտագործուել
         title: Թրենդային պիտակներ
         usable: Կարող է օգտագործուել
-      title: Թրենդներ
     warning_presets:
       add_new: Ավելացնել նորը
       delete: Ջնջել
@@ -454,7 +445,6 @@ hy:
       guide_link_text: Աջակցել կարող են բոլորը։
     sensitive_content: Զգայուն բովանդակութիւն
   application_mailer:
-    notification_preferences: Փոխել փոստային կարգաւորումները
     salutation: "%{name}"
     view: Նայել․
     view_profile: Նայել անձնական էջը
@@ -476,7 +466,6 @@ hy:
     or_log_in_with: Կամ մուտք գործել օգտագործելով՝
     privacy_policy_agreement_html: Ես կարդացել եւ ընդունել եմ <a href="%{privacy_policy_path}" target="_blank">գաղնիութեան քաղաքականութիւնը</a>
     progress:
-      confirm: Փոստի հաստատում
       details: Ձեր տուեալները
       review: Վաւերացում
       rules: Ընդունել կանոները
@@ -499,7 +488,6 @@ hy:
       title: Ստեղծի՜ր հաշիւ %{domain}-ում
     status:
       account_status: Հաշուի կարգավիճակ
-      pending: Դիմումը պէտք է քննուի մեր անձնակազմի կողմից, ինչը կարող է մի փոքր ժամանակ խլել։ Դիմումի հաստատուելու դէպքում, կտեղեկացնենք նամակով։
     use_security_key: Օգտագործել անվտանգութեան բանալի
   challenge:
     confirm: Շարունակել

@@ -35,7 +35,7 @@ he:
       created_msg: הודעת מנחה נוצרה בהצלחה!
       destroyed_msg: הודעת מנחה נמחקה בהצלחה!
     accounts:
-      add_email_domain_block: חסמו לגמרי את שם המתחם (דומיין) של הדוא"ל
+      add_email_domain_block: חסימת מתחם דוא"ל
       approve: אשר
       approved_msg: בקשת %{username} להירשם אושרה בהצלחה
       are_you_sure: בטוח?
@@ -239,7 +239,7 @@ he:
         approve_appeal_html: "%{name} אישר/ה ערעור על החלטת מנהלי הקהילה מ-%{target}"
         approve_user_html: "%{name} אישר/ה הרשמה מ-%{target}"
         assigned_to_self_report_html: '%{name} הקצה/תה דו"ח %{target} לעצמם'
-        change_email_user_html: '%{name} שינה/תה את כתובת הדוא"ל של המשתמש %{target}'
+        change_email_user_html: '%{name} שינה\שינתה את כתובת הדוא"ל של המשתמש %{target}'
         change_role_user_html: "%{name} שינה את התפקיד של %{target}"
         confirm_user_html: '%{name} אישר/ה את כותבת הדו"אל של המשתמש %{target}'
         create_account_warning_html: "%{name} שלח/ה אזהרה ל %{target}"
@@ -448,7 +448,7 @@ he:
         one: "%{count} נסיון במשך השבוע שעבר"
         other: "%{count} נסיונות הרשמה במשך השבוע שעבר"
         two: "%{count} נסיונות הרשמה במשך השבוע שעבר"
-      created_msg: כתובת מייל נחסמה בהצלחה
+      created_msg: מתחם כתובות דואל נחסם בהצלחה
       delete: מחיקה
       dns:
         types:
@@ -457,12 +457,12 @@ he:
       new:
         create: הוספת דומיין
         resolve: פתור דומיין
-        title: חסימת דומיין דוא"ל
-      no_email_domain_block_selected: לא בוצעו שינויים לחסימת דומייני דוא"ל שכן לא נבחרו דומיינים
+        title: חסימת מתחם כתובות דואל חדש
+      no_email_domain_block_selected: לא בוצעו שינויים לחסימת מתחמי דוא"ל שכן לא נבחרו מתחמים
       not_permitted: נאסר
-      resolved_dns_records_hint_html: שם הדומיין מוביל לדומייניי ה-MX הבאים, שהם בסופו של דבר אחראיים לקבלת דוא"ל. חסימת דומיין MX תוביל לחסימת הרשמות מכל כתובת דוא"ל שעושה שימוש בדומיין MX זה, אפילו אם הדומיין הגלוי שונה. <strong>יש להמנע מלחסום ספקי דוא"ל מובילים.</strong>
+      resolved_dns_records_hint_html: שם הדומיין מוביל למתחמי ה-MX הבאים, שהם בסופו של דבר אחראיים לקבלת דוא"ל. חסימת שם MX תוביל לחסימת הרשמות מכל כתובת דוא"ל שעושה שימוש בכתובת MX זו, אפילו אם הדומיין הגלוי שונה. <strong>יש להמנע מלחסום ספקי דוא"ל מובילים.</strong>
       resolved_through_html: נמצא דרך %{domain}
-      title: דומייניי דוא"ל חסומים
+      title: מתחמי כתובות דוא"ל חסומים
     export_domain_allows:
       new:
         title: יבוא רשימת שרתים מאושרים
@@ -926,6 +926,7 @@ he:
       name: שם
       newest: החדש ביותר
       oldest: הישן ביותר
+      open: צפיה בפומבי
       reset: איפוס
       review: סקירת מצב
       search: חיפוש
@@ -935,10 +936,16 @@ he:
     trends:
       allow: לאפשר
       approved: אישור
+      confirm_allow: 'וידוא: האם לאשר את התגיות שנבחרו?'
+      confirm_disallow: 'וידוא: האם לאסור את התגיות שנבחרו?'
       disallow: לא לאשר
       links:
         allow: אישור קישורית
         allow_provider: אישור מפרסם
+        confirm_allow: 'וידוא: האם לאשר את הקישורים שנבחרו?'
+        confirm_allow_provider: 'וידוא: האם לאשר את הספקים שנבחרו?'
+        confirm_disallow: 'וידוא: האם לאסור את הקישורים שנבחרו?'
+        confirm_disallow_provider: 'וידוא: האם לאסור את הספקים שנבחרו?'
         description_html: בקישוריות אלה נעשה כרגע שימוש על ידי חשבונות רבים שהשרת שלך רואה הודעות מהם. זה עשוי לסייע למשתמשיך לברר מה קורה בעולם. שום קישוריות לא יוצגו עד שתאשרו את המפרסם. ניתן גם לאפשר או לדחות קישוריות ספציפיות.
         disallow: לא לאשר קישורית
         disallow_provider: לא לאשר מפרסם
@@ -964,6 +971,10 @@ he:
       statuses:
         allow: הרשאת הודעה
         allow_account: הרשאת מחבר/ת
+        confirm_allow: 'וידוא: האם לאשר את הסטטוסים שנבחרו?'
+        confirm_allow_account: 'וידוא: האם לאשר את החשבונות שנבחרו?'
+        confirm_disallow: 'וידוא: האם לאסור את הסטטוסים שנבחרו?'
+        confirm_disallow_account: 'וידוא: האם לאסור את החשבונות שנבחרו?'
         description_html: אלו הן הודעות שהשרת שלך מכיר וזוכות להדהודים וחיבובים רבים כרגע. זה עשוי למשתמשיך החדשים והחוזרים למצוא עוד נעקבים. ההודעות לא מוצגות עד שיאושר המחבר/ת, והמחבר/ת יאשרו שחשבונים יומלץ לאחרים. ניתן לאשר או לדחות הודעות ספציפיות.
         disallow: לדחות הודעה
         disallow_account: לא לאשר מחבר/ת
@@ -1000,7 +1011,7 @@ he:
           one: הוצגה על ידי משתמש בודד במשך השבוע שעבר
           other: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
           two: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
-      title: נושאים חמים
+      title: המלצות ונושאים חמים
       trending: נושאים חמים
     warning_presets:
       add_new: הוספת חדש
@@ -1344,7 +1355,7 @@ he:
     statuses:
       back_to_filter: חזרה לפילטר
       batch:
-        remove: הסרה מפילטר
+        remove: הסרה ממסנן
       index:
         hint: סנן זה חל באופן של בחירת הודעות בודדות ללא תלות בקריטריונים אחרים. תוכלו להוסיף עוד הודעות לסנן זה ממנשק הווב.
         title: הודעות שסוננו
@@ -1495,6 +1506,7 @@ he:
   media_attachments:
     validations:
       images_and_video: לא ניתן להוסיף וידאו להודעה שכבר מכילה תמונות
+      not_found: קובץ %{ids} לא נמצא, או שהוצמד כבר להודעה אחרת
       not_ready: לא ניתן להצמיד קבצים שהעלאתם לא הסתיימה. נסה/י שוב בעוד רגע!
       too_many: לא ניתן להוסיף יותר מארבעה קבצים
   migrations:

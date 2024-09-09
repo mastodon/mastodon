@@ -252,7 +252,7 @@ module Mastodon::CLI
       domain configuration.
     LONG_DESC
     def fix_duplicates
-      Account.remote.select(:uri, 'count(*)').group(:uri).having('count(*) > 1').pluck(:uri).each do |uri|
+      Account.remote.duplicate_uris.pluck(:uri).each do |uri|
         say("Duplicates found for #{uri}")
         begin
           ActivityPub::FetchRemoteAccountService.new.call(uri) unless dry_run?
@@ -502,7 +502,7 @@ module Mastodon::CLI
       - not muted/blocked by us
     LONG_DESC
     def prune
-      query = Account.remote.where.not(actor_type: %i(Application Service))
+      query = Account.remote.non_automated
       query = query.where('NOT EXISTS (SELECT 1 FROM mentions WHERE account_id = accounts.id)')
       query = query.where('NOT EXISTS (SELECT 1 FROM favourites WHERE account_id = accounts.id)')
       query = query.where('NOT EXISTS (SELECT 1 FROM statuses WHERE account_id = accounts.id)')

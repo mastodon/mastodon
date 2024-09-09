@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Filters::StatusesController do
+RSpec.describe Filters::StatusesController do
   render_views
 
   describe 'GET #index' do

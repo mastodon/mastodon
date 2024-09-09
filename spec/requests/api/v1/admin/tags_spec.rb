@@ -30,7 +30,7 @@ RSpec.describe 'Tags' do
       it 'returns an empty list' do
         subject
 
-        expect(body_as_json).to be_empty
+        expect(response.parsed_body).to be_empty
       end
     end
 
@@ -47,7 +47,7 @@ RSpec.describe 'Tags' do
       it 'returns the expected tags' do
         subject
         tags.each do |tag|
-          expect(body_as_json.find { |item| item[:id] == tag.id.to_s && item[:name] == tag.name }).to_not be_nil
+          expect(response.parsed_body.find { |item| item[:id] == tag.id.to_s && item[:name] == tag.name }).to_not be_nil
         end
       end
 
@@ -57,7 +57,7 @@ RSpec.describe 'Tags' do
         it 'returns only the requested number of tags' do
           subject
 
-          expect(body_as_json.size).to eq(params[:limit])
+          expect(response.parsed_body.size).to eq(params[:limit])
         end
       end
     end
@@ -82,8 +82,8 @@ RSpec.describe 'Tags' do
     it 'returns expected tag content' do
       subject
 
-      expect(body_as_json[:id].to_i).to eq(tag.id)
-      expect(body_as_json[:name]).to eq(tag.name)
+      expect(response.parsed_body[:id].to_i).to eq(tag.id)
+      expect(response.parsed_body[:name]).to eq(tag.name)
     end
 
     context 'when the requested tag does not exist' do
@@ -116,8 +116,8 @@ RSpec.describe 'Tags' do
     it 'returns updated tag' do
       subject
 
-      expect(body_as_json[:id].to_i).to eq(tag.id)
-      expect(body_as_json[:name]).to eq(tag.name.upcase)
+      expect(response.parsed_body[:id].to_i).to eq(tag.id)
+      expect(response.parsed_body[:name]).to eq(tag.name.upcase)
     end
 
     context 'when the updated display name is invalid' do

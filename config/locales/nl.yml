@@ -25,6 +25,8 @@ nl:
   admin:
     account_actions:
       action: Actie uitvoeren
+      already_silenced: Dit account is al beperkt.
+      already_suspended: Dit account is al geschorst.
       title: Moderatiemaatregel tegen %{acct} nemen
     account_moderation_notes:
       create: Laat een opmerking achter
@@ -46,6 +48,7 @@ nl:
         title: E-mailadres wijzigen voor %{username}
       change_role:
         changed_msg: Rol succesvol veranderd!
+        edit_roles: Gebruikersrollen beheren
         label: Rol veranderen
         no_role: Geen rol
         title: Rol van %{username} veranderen
@@ -432,7 +435,7 @@ nl:
       attempts_over_week:
         one: "%{count} registratiepoging tijdens de afgelopen week"
         other: "%{count} registratiepogingen tijdens de afgelopen week"
-      created_msg: Blokkeren e-maildomein geslaagd
+      created_msg: Blokkering e-maildomein geslaagd
       delete: Verwijderen
       dns:
         types:
@@ -505,8 +508,8 @@ nl:
       dashboard:
         instance_accounts_dimension: Meest door ons gevolgde accounts
         instance_accounts_measure: opgeslagen accounts
-        instance_followers_measure: daar ons daar gevolgd
-        instance_follows_measure: door hun hier gevolgd
+        instance_followers_measure: onze volgens daar
+        instance_follows_measure: hun volgers hier
         instance_languages_dimension: Meest actieve talen
         instance_media_attachments_measure: opgeslagen mediabestanden
         instance_reports_measure: rapportages over hun
@@ -602,6 +605,7 @@ nl:
         suspend_description_html: Het account en de inhoud hiervan is niet meer toegankelijk, en het is ook niet meer mogelijk om ermee interactie te hebben. Uiteindelijk wordt het account volledig verwijderd. Dit is omkeerbaar binnen 30 dagen. Dit sluit alle rapporten tegen dit account af.
       actions_description_html: Beslis welke maatregel moet worden genomen om deze rapportage op te lossen. Wanneer je een (straf)maatregel tegen het gerapporteerde account neemt, krijgt het account een e-mailmelding, behalve wanneer de <strong>spam</strong>-categorie is gekozen.
       actions_description_remote_html: Beslis welke actie moet worden ondernomen om deze rapportage op te lossen. Dit is alleen van invloed op hoe <strong>jouw</strong> server met dit externe account communiceert en de inhoud ervan beheert.
+      actions_no_posts: Dit rapport heeft geen bijbehorende berichten om te verwijderen
       add_to_report: Meer aan de rapportage toevoegen
       already_suspended_badges:
         local: Al geschorst op deze server
@@ -898,6 +902,7 @@ nl:
       name: Naam
       newest: Nieuwste
       oldest: Oudste
+      open: In het openbaar bekijken
       reset: Opnieuw
       review: Status beoordelen
       search: Zoeken
@@ -907,10 +912,16 @@ nl:
     trends:
       allow: Goedkeuren
       approved: Goedgekeurde
+      confirm_allow: Weet je zeker dat je de geselecteerde hashtags wil toestaan?
+      confirm_disallow: Weet je zeker dat je de geselecteerde hashtags wil afkeuren?
       disallow: Afkeuren
       links:
         allow: Link goedkeuren
         allow_provider: Website goedkeuren
+        confirm_allow: Weet je zeker dat je de geselecteerde links wil toestaan?
+        confirm_allow_provider: Weet je zeker dat je de geselecteerde websites wil toestaan?
+        confirm_disallow: Weet je zeker dat je de geselecteerde links wil afkeuren?
+        confirm_disallow_provider: Weet je zeker dat je de geselecteerde websites wil afkeuren?
         description_html: Dit zijn links die momenteel veel worden gedeeld door accounts waar jouw server berichten van ontvangt. Hierdoor kunnen jouw gebruikers zien wat er in de wereld aan de hand is. Er worden geen links weergeven totdat je de website hebt goedgekeurd. Je kunt ook individuele links goed- of afkeuren.
         disallow: Link afkeuren
         disallow_provider: Website afkeuren
@@ -934,6 +945,10 @@ nl:
       statuses:
         allow: Bericht goedkeuren
         allow_account: Account goedkeuren
+        confirm_allow: Weet je zeker dat je de geselecteerde berichten wil toestaan?
+        confirm_allow_account: Weet je zeker dat je de geselecteerde accounts wil toestaan?
+        confirm_disallow: Weet je zeker dat je de geselecteerde berichten wil afkeuren?
+        confirm_disallow_account: Weet je zeker dat je de geselecteerde accounts wil afkeuren?
         description_html: Dit zijn berichten die op jouw server bekend zijn en die momenteel veel worden gedeeld en als favoriet worden gemarkeerd. Hiermee kunnen nieuwe en terugkerende gebruikers meer mensen vinden om te volgen. Er worden geen berichten in het openbaar weergegeven totdat het account door jou is goedgekeurd en de gebruiker toestaat dat diens account aan anderen wordt aanbevolen. Je kunt ook individuele berichten goed- of afkeuren.
         disallow: Bericht afkeuren
         disallow_account: Account afkeuren
@@ -966,7 +981,7 @@ nl:
         used_by_over_week:
           one: Door één persoon tijdens de afgelopen week gebruikt
           other: Door %{count} mensen tijdens de afgelopen week gebruikt
-      title: Trends
+      title: Aanbevelingen & trends
       trending: Trending
     warning_presets:
       add_new: Nieuwe toevoegen
@@ -1102,7 +1117,7 @@ nl:
     or_log_in_with: Of inloggen met
     privacy_policy_agreement_html: Ik heb het <a href="%{privacy_policy_path}" target="_blank">privacybeleid</a> gelezen en ga daarmee akkoord
     progress:
-      confirm: E-mail bevestigen
+      confirm: E-mailadres bevestigen
       details: Jouw gegevens
       review: Onze beoordeling
       rules: Regels accepteren
@@ -1138,7 +1153,7 @@ nl:
       title: Laten we je account op %{domain} instellen.
     status:
       account_status: Accountstatus
-      confirming: Aan het wachten totdat de e-mail is bevestigd.
+      confirming: Wachten tot e-mailbevestiging is voltooid.
       functional: Jouw account kan in diens geheel gebruikt worden.
       pending: Jouw aanvraag moet nog worden beoordeeld door een van onze medewerkers. Dit kan misschien eventjes duren. Je ontvangt een e-mail wanneer jouw aanvraag is goedgekeurd.
       redirecting_to: Jouw account is inactief omdat het momenteel wordt doorverwezen naar %{acct}.
@@ -1184,7 +1199,7 @@ nl:
       caches: Berichten en media die op andere servers zijn opgeslagen kunnen daar achterblijven
       data_removal: Jouw berichten en andere gegevens worden permanent verwijderd
       email_change_html: Je kunt <a href="%{path}">je e-mailadres wijzigen</a> zonder dat je jouw account hoeft te verwijderen
-      email_contact_html: Wanneer het nog steeds niet aankomt, kun je voor hulp e-mailen naar <a href="mailto:%{email}">%{email}</a>
+      email_contact_html: Als het nog steeds niet aankomt, kun je een e-mail sturen <a href="mailto:%{email}">%{email}</a> voor hulp
       email_reconfirmation_html: Wanneer je de bevestigingsmail niet hebt ontvangen, kun je deze <a href="%{path}">opnieuw aanvragen</a>
       irreversible: Je bent niet meer in staat om jouw account te herstellen of te deactiveren
       more_details_html: Zie het <a href="%{terms_path}">privacybeleid</a> voor meer informatie.
@@ -1443,6 +1458,7 @@ nl:
   media_attachments:
     validations:
       images_and_video: Een video kan niet aan een bericht met afbeeldingen worden gekoppeld
+      not_found: Media %{ids} niet gevonden of al toegevoegd aan een ander bericht
       not_ready: Kan geen bestanden toevoegen die nog niet zijn verwerkt. Probeer het later opnieuw!
       too_many: Er kunnen niet meer dan 4 afbeeldingen toegevoegd worden
   migrations:

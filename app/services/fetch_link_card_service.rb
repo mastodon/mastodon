@@ -29,7 +29,7 @@ class FetchLinkCardService < BaseService
     end
 
     attach_card if @card&.persisted?
-  rescue HTTP::Error, OpenSSL::SSL::SSLError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError, EncodingError, ActiveRecord::RecordInvalid => e
+  rescue HTTP::Error, OpenSSL::SSL::SSLError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError, Encoding::UndefinedConversionError, ActiveRecord::RecordInvalid => e
     Rails.logger.debug { "Error fetching link #{@original_url}: #{e}" }
     nil
   end
@@ -80,7 +80,7 @@ class FetchLinkCardService < BaseService
     urls = if @status.local?
              @status.text.scan(URL_PATTERN).map { |array| Addressable::URI.parse(array[1]).normalize }
            else
-             document = Nokogiri::HTML(@status.text)
+             document = Nokogiri::HTML5(@status.text)
              links = document.css('a')
 
              links.filter_map { |a| Addressable::URI.parse(a['href']) unless skip_link?(a) }.filter_map(&:normalize)

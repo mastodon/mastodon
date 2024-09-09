@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Scheduled Statuses' do
+RSpec.describe 'Scheduled Statuses' do
   let(:user)    { Fabricate(:user) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
@@ -46,7 +46,7 @@ describe 'Scheduled Statuses' do
           expect(response)
             .to have_http_status(200)
 
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to_not be_present
         end
       end
@@ -60,7 +60,7 @@ describe 'Scheduled Statuses' do
           expect(response)
             .to have_http_status(200)
 
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to be_present
             .and have_attributes(
               first: include(id: scheduled_status.id.to_s)

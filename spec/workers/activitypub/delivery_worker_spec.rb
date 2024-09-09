@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ActivityPub::DeliveryWorker do
+RSpec.describe ActivityPub::DeliveryWorker do
   include RoutingHelper
 
   subject { described_class.new }

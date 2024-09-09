@@ -5,6 +5,7 @@ class NotifyService < BaseService
 
   MAXIMUM_GROUP_SPAN_HOURS = 12
 
+  # TODO: the severed_relationships type probably warrants email notifications
   NON_EMAIL_TYPES = %i(
     admin.report
     admin.sign_up
@@ -12,7 +13,6 @@ class NotifyService < BaseService
     poll
     status
     moderation_warning
-    # TODO: this probably warrants an email notification
     severed_relationships
   ).freeze
 
@@ -237,7 +237,7 @@ class NotifyService < BaseService
   private
 
   def notification_group_key
-    return nil if @notification.filtered || %i(favourite reblog).exclude?(@notification.type)
+    return nil if @notification.filtered || Notification::GROUPABLE_NOTIFICATION_TYPES.exclude?(@notification.type)
 
     type_prefix = "#{@notification.type}-#{@notification.target_status.id}"
     redis_key   = "notif-group/#{@recipient.id}/#{type_prefix}"

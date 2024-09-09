@@ -85,7 +85,7 @@ jobs:
           tags: ${{ inputs.tags }}
           labels: ${{ inputs.labels }}
 
-      - uses: docker/build-push-action@v5
+      - uses: docker/build-push-action@v6
         with:
           context: .
           file: ${{ inputs.file_to_build }}

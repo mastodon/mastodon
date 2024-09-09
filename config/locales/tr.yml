@@ -192,7 +192,7 @@ tr:
         destroy_custom_emoji: Özel İfadeyi Sil
         destroy_domain_allow: İzin Verilen Alan Adını Sil
         destroy_domain_block: Engellenen Alan Adını Sil
-        destroy_email_domain_block: E-posta alan adı engelini sil
+        destroy_email_domain_block: E-posta Alan Adı Engelini Sil
         destroy_instance: Alan adını temizle
         destroy_ip_block: IP kuralını sil
         destroy_status: Durumu Sil
@@ -200,10 +200,10 @@ tr:
         destroy_user_role: Rolü Kaldır
         disable_2fa_user: 2AD Kapat
         disable_custom_emoji: Özel İfadeyi Devre Dışı Bırak
-        disable_sign_in_token_auth_user: Kullanıcı için E-posta Token Doğrulamayı devre dışı bırak
+        disable_sign_in_token_auth_user: Kullanıcı için E-posta Token Doğrulamayı Devre Dışı Bırak
         disable_user: Kullanıcıyı Devre Dışı Bırak
         enable_custom_emoji: Özel İfadeyi Etkinleştir
-        enable_sign_in_token_auth_user: Kullanıcı için E-posta Token Doğrulamayı etkinleştir
+        enable_sign_in_token_auth_user: Kullanıcı için E-posta Token Doğrulamayı Etkinleştir
         enable_user: Kullanıcıyı Etkinleştir
         memorialize_account: Hesabı Anıtlaştır
         promote_user: Kullanıcıyı Yükselt
@@ -417,7 +417,7 @@ tr:
       obfuscate: Alan adını gizle
       obfuscate_hint: Alan adı kısıtlamaları listelerinin duyurulması etkinleştirilmişse alan adını listede kısmen gizle
       private_comment: Özel yorum
-      private_comment_hint: Denetleyiciler tarafından dahili kullanım için bu alan adı sınırlaması hakkında yorum.
+      private_comment_hint: Moderatörler tarafından dahili kullanım için bu alan adı sınırlaması hakkında yorum.
       public_comment: Genel yorum
       public_comment_hint: Eğer alan adı sınırlamaları listesinin tanıtılması etkinleştirilmişse, genel kullanım için bu alan adı sınırlaması hakkında yorum.
       reject_media: Medya dosyalarını reddet
@@ -446,7 +446,7 @@ tr:
       not_permitted: İzin verilmedi
       resolved_dns_records_hint_html: Alan adı aşağıdaki MX alan adlarına çözümleniyor, ancak hiç biri nihayetinde e-posta kabulünden sorum değil. Bir MX alan adını engellemek, görünen alan adı farklı osa bile aynı MX alan adını kullanan e-posta adreslerinden gelen kayıtları engelleyecektir. <strong>Başlıca e-posta sağlayıcıları engellememek için dikkatli olun.</strong>
       resolved_through_html: "%{domain} aracılığıyla çözümlendi"
-      title: E-posta kara listesi
+      title: Engelli e-posta alan adları
     export_domain_allows:
       new:
         title: Alan adı engellerini içe aktar
@@ -608,7 +608,7 @@ tr:
         remote: Sunucularında zaten askıya alınmış
       are_you_sure: Emin misiniz?
       assign_to_self: Bana ata
-      assigned: Denetleyici atandı
+      assigned: Atanan moderatör
       by_target_domain: Şikayet edilen hesabın alan adı
       cancel: İptal et
       category: Kategori
@@ -723,7 +723,7 @@ tr:
         manage_taxonomies: Kategorileri Yönetme
         manage_taxonomies_description: Kullanıcıların öne çıkan içeriği incelemesine ve etiket ayarlarını güncellemesine izin verir
         manage_user_access: Kullanıcı Erişimini Yönetme
-        manage_user_access_description: Kullanıcıların, diğer kullanıcıların işi aşamalı yetkilendirme, e-posta adreslerini değiştirme ve parolalarını sıfırlama eylemlerini etkisizleştirmesine izin verir
+        manage_user_access_description: Kullanıcıların, diğer kullanıcıların iki aşamalı yetkilendirme, e-posta adreslerini değiştirme ve parolalarını sıfırlama eylemlerini etkisizleştirmesine izin verir
         manage_users: Kullanıcıları Yönetme
         manage_users_description: Kullanıcıların, diğer kullanıcıların ayrıntılarını görüntülemesine ve onlara karşı denetim eylemleri gerçekleştirmesine izin verir
         manage_webhooks: Webhookları Yönetme
@@ -898,6 +898,7 @@ tr:
       name: Ad
       newest: En yeni
       oldest: En eski
+      open: Herkese Açık Görüntüle
       reset: Sıfırla
       review: Durumu gözden geçir
       search: Ara
@@ -907,10 +908,16 @@ tr:
     trends:
       allow: İzin ver
       approved: Onaylandı
+      confirm_allow: Seçili etiketlere izin vermek istediğinizden emin misiniz?
+      confirm_disallow: Seçili etiketlerin iznini kaldırmak istediğinizden emin misiniz?
       disallow: İzin verme
       links:
         allow: Bağlantıya izin ver
         allow_provider: Yayıncıya izin ver
+        confirm_allow: Seçili bağlantılara izin vermek istediğinizden emin misiniz?
+        confirm_allow_provider: Seçili sağlayıcılara izin vermek istediğinizden emin misiniz?
+        confirm_disallow: Seçili bağlantıların iznini kaldırmak istediğinizden emin misiniz?
+        confirm_disallow_provider: Seçili sağlayıcıların iznini kaldırmak istediğinizden emin misiniz?
         description_html: Bu bağlantılar şu anda sunucunuzun gönderilerini gördüğü hesaplarca bolca paylaşılıyor. Kullanıcılarınızın dünyada neler olduğunu görmesine yardımcı olabilir. Yayıncıyı onaylamadığınız sürece hiçbir bağlantı herkese açık yayınlanmaz. Tekil bağlantıları onaylayabilir veya reddedebilirsiniz.
         disallow: Bağlantıya izin verme
         disallow_provider: Yayıncıya izin verme
@@ -934,6 +941,10 @@ tr:
       statuses:
         allow: Gönderiye izin ver
         allow_account: Yazara izin ver
+        confirm_allow: Seçili durumlara izin vermek istediğinizden emin misiniz?
+        confirm_allow_account: Seçili hesaplara izin vermek istediğinizden emin misiniz?
+        confirm_disallow: Seçili durumların iznini kaldırmak istediğinizden emin misiniz?
+        confirm_disallow_account: Seçili hesapların iznini kaldırmak istediğinizden emin misiniz?
         description_html: Bunlar, sunucunuzca bilinen, şu an sıklıkla paylaşılan ve favorilere eklenen gönderilerdir. Yeni ve geri dönen kullanıcılarınızın takip etmesi için daha fazla kullanıcı bulmasına yararlar. Siz yazarı onaylamadığınız ve yazar hesabının başkalarına önerilmesine izin vermediği sürece gönderileri herkese açık olarak gösterilmez. Tekil gönderileri de onaylayabilir veya reddedebilirsiniz.
         disallow: Gönderi iznini kaldır
         disallow_account: Yazar iznini kaldır
@@ -966,7 +977,7 @@ tr:
         used_by_over_week:
           one: Geçen hafta bir kişi tarafından kullanıldı
           other: Geçen hafta %{count} kişi tarafından kullanıldı
-      title: Öne çıkanlar
+      title: Öneriler ve Öne Çıkanlar
       trending: Öne çıkanlar
     warning_presets:
       add_new: Yeni ekle
@@ -996,7 +1007,7 @@ tr:
       webhook: Web kancası
   admin_mailer:
     auto_close_registrations:
-      body: Son zamanlardaki denetleyi faaliyeti eksikliğinden dolayı, %{instance} üzerindeki kayıtlar, %{instance} sunucusunun olası kötü aktörler tarafından bir platform olarak kullanımını engellemek için otomatik olarak elle onay gerektirecek şekilde değiştirilmiştir. İstediğiniz zaman açık kayıtlara çevirebilirsiniz.
+      body: Son zamanlardaki moderatör faaliyeti eksikliğinden dolayı, %{instance} üzerindeki kayıtlar, %{instance} sunucusunun olası kötü aktörler tarafından bir platform olarak kullanımını engellemek için otomatik olarak elle onay gerektirecek şekilde değiştirilmiştir. İstediğiniz zaman açık kayıtlara çevirebilirsiniz.
       subject: "%{instance} üzerindeki kayıtlar otomatik olarak onay gerektirecek şekilde değiştirilmiştir"
     new_appeal:
       actions:
@@ -1102,7 +1113,7 @@ tr:
     or_log_in_with: 'Veya şununla oturum açın:'
     privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">Gizlilik politikasını</a> okudum ve kabul ettim
     progress:
-      confirm: E-postayı Onayla
+      confirm: E-postanızı onaylayın
       details: Ayrıntılarınız
       review: İncelememiz
       rules: Kabul kuralları
@@ -1118,7 +1129,7 @@ tr:
       back: Geri
       invited_by: 'Aşağıdakinden aldığınız davet sayesinde %{domain} sunucusuna katılabilirsiniz:'
       preamble: Bunlar, %{domain} moderatörleri tarafından ayarlanmış ve uygulanmıştır.
-      preamble_invited: Devam etmeden önce, %{domain} yöneticileri tarafından belirlenmiş temel kuralları gözden geçirin.
+      preamble_invited: Devam etmeden önce, %{domain} moderatörleri tarafından belirlenmiş temel kuralları gözden geçirin.
       title: Bazı temel kurallar.
       title_invited: Davet edildiniz.
     security: Güvenlik
@@ -1138,7 +1149,7 @@ tr:
       title: "%{domain} için kurulumunuzu yapalım."
     status:
       account_status: Hesap durumu
-      confirming: E-posta doğrulamasının tamamlanması bekleniyor.
+      confirming: E-posta onaylamanın tamamlanması bekleniyor.
       functional: Hesabınız tamamen kullanıma hazır.
       pending: Başvurunuz personelimiz tarafından gözden geçirilmeyi beklemektedir. Bu biraz zaman alabilir. Başvurunuz onaylanırsa bir e-posta alacaksınız.
       redirecting_to: Hesabınız aktif değil çünkü şu anda %{acct} adresine yönlendirilmektedir.
@@ -1184,8 +1195,8 @@ tr:
       caches: Diğer sunucular tarafından ön belleğe alınan içerik kalabilir
       data_removal: Gönderileriniz ve diğer verileriniz kalıcı olarak silinecektir
       email_change_html: Hesabınızı silmeden <a href="%{path}">e-posta adresinizi değiştirebilirsiniz</a>
-      email_contact_html: Eğer hala ulaşmazsa, yardım için <a href="mailto:%{email}">%{email}</a> adresine e-posta gönderebilirsiniz
-      email_reconfirmation_html: Eğer doğrulama e-postası almıyorsanız, <a href="%{path}">tekrar talep edebilirsiniz</a>
+      email_contact_html: Eğer hala ulaşmazsa, yardım almak için <a href="mailto:%{email}">%{email}</a> adresine e-posta gönderebilirsiniz
+      email_reconfirmation_html: Eğer onaylama e-postası ulaşmıyorsa, <a href="%{path}">tekrar talep edebilirsiniz</a>
       irreversible: Hesabınızı geri yükleyemeyecek ya da yeniden etkinleştiremeyeceksiniz
       more_details_html: Daha fazla ayrıntı için, <a href="%{terms_path}">gizlilik politikası</a>na göz atın.
       username_available: Kullanıcı adınız tekrar kullanılabilir olacaktır
@@ -1429,20 +1440,21 @@ tr:
     unsubscribe:
       action: Evet, abonelikten çık
       complete: Abonelikten çık
-      confirmation_html: '%{domain} üzerindeki Mastodon için %{type} almayı durdurarak %{email} adresindeki aboneliğinizi iptal etmek istediğinizden emin misiniz? <a href="%{settings_path}">e-posta bildirim ayarlarınızdan</a> her zaman yeniden abone olabilirsiniz.'
+      confirmation_html: '%{domain} üzerindeki Mastodon için %{type} almayı durdurarak %{email} adresinize aboneliğinizi iptal etmek istediğinizden emin misiniz? <a href="%{settings_path}">e-posta bildirim ayarlarınızdan</a> her zaman yeniden abone olabilirsiniz.'
       emails:
         notification_emails:
-          favourite: bildirim e-postalarını favorile
-          follow: bildirim e-postalarını takip et
-          follow_request: istek e-postalarını takip et
-          mention: bildirim e-postalarına değin
-          reblog: bildirim e-postalarını yükselt
+          favourite: favori bildirim e-postaları
+          follow: takip bildirim e-postaları
+          follow_request: takip isteği bildirim e-postaları
+          mention: bahsetme bildirim e-postaları
+          reblog: öne çıkanlar bildirim e-postaları
       resubscribe_html: Abonelikten yanlışlıkla çıktıysanız, <a href="%{settings_path}">e-posta bildirim ayarlarınızdan</a> yeniden abone olabilirsiniz.
       success_html: Artık %{email} adresindeki e-postanıza %{domain} üzerindeki Mastodon için %{type} almayacaksınız.
       title: Abonelikten çık
   media_attachments:
     validations:
       images_and_video: Zaten resim içeren bir duruma video eklenemez
+      not_found: "%{ids} medya dosyaları bulunamadı veya başka bir gönderiye zaten eklenmiş"
       not_ready: İşlemi tamamlanmamış dosyalar eklenemez. Birazdan tekrar deneyin!
       too_many: 4'ten fazla dosya eklenemiyor
   migrations:
@@ -1511,8 +1523,8 @@ tr:
     poll:
       subject: Anket %{name} tarafından sonlandırıldı
     reblog:
-      body: "%{name} durumunuzu boostladı:"
-      subject: "%{name} durumunuzu paylaştı"
+      body: "%{name} durumunuzu yeniden paylaştı:"
+      subject: "%{name} durumunuzu yeniden paylaştı"
       title: Yeni paylaşım
     status:
       subject: "%{name} az önce gönderdi"
@@ -1520,7 +1532,7 @@ tr:
       subject: "%{name} bir gönderiyi düzenledi"
   notifications:
     administration_emails: Yönetici e-posta bildirimleri
-    email_events: E-posta bildirimi gönderilecek etkinlikler
+    email_events: E-posta bildirimi etkinlikleri
     email_events_hint: 'Bildirim almak istediğiniz olayları seçin:'
   number:
     human:
@@ -1696,7 +1708,7 @@ tr:
       user_domain_block: 'Engellediniz: %{target_name}'
     lost_followers: Kaybedilen takipçiler
     lost_follows: Kaybedilen takipler
-    preamble: Bir alan adını engellediğinizde veya denetleyicileriniz uzak bir sunucuyu askıya almaya karar verdiğinde takipçilerinizi ve takiplerinizi kaybedebilirsiniz. Bu olduğunda, kopan ilişkilerin bir listesini, incelemek ve başka bir sunucuya aktarmak için indirebileceksiniz.
+    preamble: Bir alan adını engellediğinizde veya moderatörleriniz uzak bir sunucuyu askıya almaya karar verdiğinde takipçilerinizi ve takiplerinizi kaybedebilirsiniz. Bu olduğunda, kopan ilişkilerin bir listesini, incelemek ve başka bir sunucuya aktarmak için indirebileceksiniz.
     purged: Bu sunucu hakkındaki bilgiler, sunucunun yöneticileri tarafından temizlenmiş.
     type: Olay
   statuses:
@@ -1711,7 +1723,7 @@ tr:
       video:
         one: "%{count} video"
         other: "%{count} videolar"
-    boosted_from_html: "%{acct_link} kişisinden paylaştı"
+    boosted_from_html: "%{acct_link} kişisinden yeniden paylaştı"
     content_warning: 'İçerik uyarısı: %{warning}'
     default_language: Arayüz diliyle aynı
     disallowed_hashtags:

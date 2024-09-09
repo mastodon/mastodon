@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Import::RowWorker do
+RSpec.describe Import::RowWorker do
   subject { described_class.new }
 
   let(:row) { Fabricate(:bulk_import_row, bulk_import: import) }

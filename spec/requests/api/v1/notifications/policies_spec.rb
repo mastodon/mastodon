@@ -26,7 +26,7 @@ RSpec.describe 'Policies' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json).to include(
+        expect(response.parsed_body).to include(
           filter_not_following: false,
           filter_not_followers: false,
           filter_new_accounts: false,
@@ -54,7 +54,7 @@ RSpec.describe 'Policies' do
         .to change { NotificationPolicy.find_or_initialize_by(account: user.account).for_not_following.to_sym }.from(:accept).to(:filter)
 
       expect(response).to have_http_status(200)
-      expect(body_as_json).to include(
+      expect(response.parsed_body).to include(
         filter_not_following: true,
         filter_not_followers: false,
         filter_new_accounts: false,

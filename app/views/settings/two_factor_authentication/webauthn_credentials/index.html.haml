@@ -9,7 +9,7 @@
           %td= credential.nickname
           %td= t('webauthn_credentials.registered_on', date: l(credential.created_at.to_date, format: :with_month_name))
           %td
-            = table_link_to 'trash', t('webauthn_credentials.delete'), settings_webauthn_credential_path(credential.id), method: :delete, data: { confirm: t('webauthn_credentials.delete_confirmation') }
+            = table_link_to 'delete', t('webauthn_credentials.delete'), settings_webauthn_credential_path(credential.id), method: :delete, data: { confirm: t('webauthn_credentials.delete_confirmation') }
 
 %hr.spacer/
 

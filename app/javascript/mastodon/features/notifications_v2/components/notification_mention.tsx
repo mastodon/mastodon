@@ -37,7 +37,11 @@ export const NotificationMention: React.FC<{
   unread: boolean;
 }> = ({ notification, unread }) => {
   const [isDirect, isReply] = useAppSelector((state) => {
-    const status = state.statuses.get(notification.statusId) as Status;
+    const status = state.statuses.get(notification.statusId) as
+      | Status
+      | undefined;
+
+    if (!status) return [false, false] as const;
 
     return [
       status.get('visibility') === 'direct',

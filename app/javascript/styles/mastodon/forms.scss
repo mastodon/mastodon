@@ -290,6 +290,10 @@ code {
     flex: 0;
   }
 
+  .input.select.select--languages {
+    min-width: 32ch;
+  }
+
   .required abbr {
     text-decoration: none;
     color: lighten($error-value-color, 12%);
@@ -308,7 +312,7 @@ code {
       margin-bottom: 10px;
       max-width: 100%;
       height: auto;
-      border-radius: 4px;
+      border-radius: var(--avatar-border-radius);
       background: url('images/void.png');
 
       &[src$='missing.png'] {
@@ -925,10 +929,6 @@ code {
         &:lang(#{$lang}) {
           font-weight: 700;
         }
-      }
-
-      .fa {
-        font-weight: 400;
       }
     }
   }

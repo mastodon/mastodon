@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe StatusesHelper do
+RSpec.describe StatusesHelper do
   describe 'status_text_summary' do
     context 'with blank text' do
       let(:status) { Status.new(spoiler_text: '') }
@@ -23,10 +23,17 @@ describe StatusesHelper do
     end
   end
 
-  def status_text_summary(status)
-    return if status.spoiler_text.blank?
+  describe '#media_summary' do
+    it 'describes the media on a status' do
+      status = Fabricate :status
+      Fabricate :media_attachment, status: status, type: :video
+      Fabricate :media_attachment, status: status, type: :audio
+      Fabricate :media_attachment, status: status, type: :image
 
-    I18n.t('statuses.content_warning', warning: status.spoiler_text)
+      result = helper.media_summary(status)
+
+      expect(result).to eq('Attached: 1 image · 1 video · 1 audio')
+    end
   end
 
   describe 'fa_visibility_icon' do

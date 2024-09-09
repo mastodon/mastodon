@@ -9,9 +9,10 @@ ro:
       already_authenticated: Ești deja conectat.
       inactive: Contul tău nu este încă activat.
       invalid: "%{authentication_keys} sau parolă greșită."
-      last_attempt: Mai ai încă o încercare înainte de a bloca contul.
+      last_attempt: Mai ai încă o încercare înainte ca contul tău să fie blocat.
       locked: Contul tău este blocat.
       not_found_in_database: "%{authentication_keys} sau parolă greșită."
+      omniauth_user_creation_failure: Eroare la crearea unui cont pentru această identitate.
       pending: Contul tău este încă în curs de revizuire.
       timeout: Sesiunea ta a expirat. Te rugăm să te conectezi din nou pentru a continua.
       unauthenticated: Trebuie să te conectezi sau să te înregistrezi înainte de a continua.
@@ -20,7 +21,7 @@ ro:
       confirmation_instructions:
         action: Verifică adresa de e-mail
         action_with_app: Confirmați și reveniți la %{app}
-        explanation: Ai creat un cont pe %{host} cu această adresă de e-mail. Ești la un click distanță de a o activa. Dacă nu ai fost tu, ignoră acest e-mail.
+        explanation: Ai creat un cont pe %{host} cu această adresă de e-mail. Ești la un clic distanță de a-l activa. Dacă nu ai fost tu, ignoră acest e-mail.
         explanation_when_pending: Ai solicitat o invitație către %{host} cu această adresă de e-mail. Odată ce îți confirmi adresa de e-mail, îți vom revizui cererea. Te poți autentifica pentru a-ți schimba detaliile sau pentru a-ți șterge contul, dar nu poți accesa majoritatea funcțiilor până când contul tău nu este aprobat. Dacă cererea ta este respinsă, datele tale vor fi șterse, astfel încât nu va fi necesară nicio altă acțiune din partea ta. Dacă nu ai fost tu, ignoră acest e-mail.
         extra_html: Te rugăm să verifici și <a href="%{terms_path}">regulile serverului</a> și <a href="%{policy_path}">termenii noștri de serviciu</a>.
         subject: 'Mastodon: Instrucțiuni de confirmare pentru %{instance}'
@@ -28,12 +29,12 @@ ro:
       email_changed:
         explanation: 'Adresa de e-mail pentru contul tău este schimbată la:'
         extra: Dacă nu v-ați schimbat adresa de e-mail, probabil că cineva a obținut acces la contul dvs. Te rugăm să îți schimbi parola imediat sau să contactezi administratorul serverului dacă nu ai acces la contul tău.
-        subject: E-mail schimbat
+        subject: 'Mastodon: E-mail schimbat'
         title: Noua adresa de e-mail
       password_change:
         explanation: Parola contului tău a fost schimbată.
         extra: Dacă nu v-ați schimbat parola, este posibil ca cineva să fi obținut acces la contul dvs. Te rugăm să îți schimbi parola imediat sau să contactezi administratorul serverului dacă nu ai acces la contul tău.
-        subject: Parolă schimbată
+        subject: 'Mastodon: Parolă schimbată'
         title: Parolă schimbată
       reconfirmation_instructions:
         explanation: Confirmă noua adresă pentru a schimba adresa de e-mail.
@@ -44,25 +45,25 @@ ro:
         action: Schimbă parola
         explanation: Ați solicitat o nouă parolă pentru contul dvs.
         extra: Dacă nu ați solicitat acest lucru, ignorați acest e-mail. Parola dvs. nu se va schimba până când nu veți accesa link-ul de mai sus și nu veți crea unul nou.
-        subject: Instrucțiuni pentru resetarea parolei
+        subject: 'Mastodon: Instrucțiuni pentru resetarea parolei'
         title: Resetare parolă
       two_factor_disabled:
         explanation: Conectarea este acum posibilă folosind doar adresa de e-mail și parola.
-        subject: Autentificare cu doi factori dezactivată
+        subject: 'Mastodon: Autentificare cu doi factori dezactivată'
         subtitle: Autentificarea cu doi factori pentru contul dvs. a fost dezactivată.
-        title: 2FA dezactivat
+        title: A2F dezactivată
       two_factor_enabled:
         explanation: Pentru autentificare va fi necesar un token generat de aplicația TOTP asociată.
-        subject: Autentificare în doi pași activată
+        subject: 'Mastodon: Autentificare în doi pași activată'
         subtitle: Autentificarea cu doi factori a fost activată pentru contul dvs.
-        title: 2FA activat
+        title: A2F activată
       two_factor_recovery_codes_changed:
-        explanation: Codurile anterioare de recuperare au fost invalidate și unele noi generate.
-        subject: Recuperare în doi factori
+        explanation: Codurile de recuperare anterioare au fost invalidate și s-au generat altele noi.
+        subject: 'Mastodon: Coduri de recuperare în doi pași regenerate'
         subtitle: Codurile de recuperare anterioare au fost invalidate și s-au generat altele noi.
-        title: Coduri de recuperare 2FA modificate
+        title: Codurile de recuperare în doi pași au fost modificate
       unlock_instructions:
-        subject: Instrucțiuni de deblocare
+        subject: 'Mastodon: Instrucțiuni de deblocare'
       webauthn_credential:
         added:
           explanation: Următoarea cheie de securitate a fost adăugată în contul tău
@@ -80,7 +81,7 @@ ro:
       webauthn_enabled:
         explanation: Autentificarea cu cheie de securitate a fost activată pentru contul dvs.
         extra: Cheia ta de securitate poate fi acum folosită pentru conectare.
-        subject: 'Mastodon: Autentificarea cheii de securitate activată'
+        subject: 'Mastodon: Autentificarea prin chei de securitate activată'
         title: Chei de securitate activate
     omniauth_callbacks:
       failure: Nu te-am putut autentifica de la %{kind} deoarece "%{reason}".
@@ -97,7 +98,7 @@ ro:
       signed_up_but_inactive: V-ați înregistrat cu succes. Cu toate acestea, nu vă putem conecta deoarece contul dvs. nu este încă activat.
       signed_up_but_locked: V-ați înregistrat cu succes. Cu toate acestea, nu vă putem conecta deoarece contul dvs. este blocat.
       signed_up_but_pending: Un mesaj cu un link de confirmare a fost trimis la adresa ta de e-mail. După ce faceți clic pe link, vă vom revizui cererea. Veți fi notificat dacă este aprobat.
-      signed_up_but_unconfirmed: Un mesaj cu un link de confirmare a fost trimis la adresa ta de e-mail. Vă rugăm să urmaţi link-ul pentru a vă activa contul. Vă rugăm să verificaţi folderul spam dacă nu aţi primit acest e-mail.
+      signed_up_but_unconfirmed: Un mesaj cu un link de confirmare a fost trimis la adresa ta de e-mail. Vă rugăm să urmați link-ul pentru a vă activa contul. Vă rugăm să verificați folderul spam dacă nu ați primit acest e-mail.
       update_needs_confirmation: Ți-ai actualizat contul cu succes, dar trebuie să verificăm noua ta adresă de e-mail. Vă rugăm să verificați adresa de e-mail și să urmați link-ul de confirmare pentru a confirma noua dvs. adresă de e-mail. Te rugăm să verifici dosarul spam dacă nu ai primit acest e-mail.
       updated: Contul dvs. a fost actualizat cu succes.
     sessions:
@@ -105,7 +106,7 @@ ro:
       signed_in: Conectat cu succes.
       signed_out: Deconectat cu succes.
     unlocks:
-      send_instructions: Veţi primi un e-mail cu instrucţiuni despre cum să vă deblocaţi contul în câteva minute. Te rugăm să verifici dosarul spam dacă nu ai primit acest e-mail.
+      send_instructions: Veți primi un e-mail cu instrucțiuni despre cum să vă deblocați contul în câteva minute. Te rugăm să verifici dosarul spam dacă nu ai primit acest e-mail.
       send_paranoid_instructions: Dacă contul tău există, vei primi un e-mail cu instrucțiuni pentru cum să-l deblochezi în câteva minute. Te rugăm să verifici dosarul spam dacă nu ai primit acest e-mail.
       unlocked: Contul tău a fost deblocat cu succes. Te rugăm să te autentifici pentru a continua.
   errors:
@@ -118,4 +119,4 @@ ro:
       not_saved:
         few: "%{count} erori au împiedicat salvarea acestui %{resource}:"
         one: 'O eroare a împiedicat salvarea acestui %{resource}:'
-        other: "%{count} de erori au împiedicat salvarea acestui %{resource}:"
+        other: "%{count} erori au împiedicat salvarea acestui %{resource}:"

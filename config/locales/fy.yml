@@ -58,7 +58,7 @@ fy:
       demote: Degradearje
       destroyed_msg: It fuortsmiten fan de gegevens fan %{username} stiet no yn de wachtrige
       disable: Befrieze
-      disable_sign_in_token_auth: Ferifikaasje mei in tagongskoade fia e-mailberjocht útskeakelje
+      disable_sign_in_token_auth: Ferifikaasje mei in tagongskoade fia e-mail útskeakelje
       disable_two_factor_authentication: 2FA útskeakelje
       disabled: Beferzen
       display_name: Werjeftenamme
@@ -67,7 +67,7 @@ fy:
       email: E-mailadres
       email_status: E-mailsteat
       enable: Untteie
-      enable_sign_in_token_auth: Ferifikaasje mei in tagongskoade fia e-mailberjocht ynskeakelje
+      enable_sign_in_token_auth: Ferifikaasje mei in tagongskoade fia e-mail ynskeakelje
       enabled: Ynskeakele
       enabled_msg: It ûntteie fan de account fan %{username} is slagge
       followers: Folgers
@@ -200,10 +200,10 @@ fy:
         destroy_user_role: Rol permanint fuortsmite
         disable_2fa_user: Twa-stapsferifikaasje útskeakelje
         disable_custom_emoji: Lokale emoji útskeakelje
-        disable_sign_in_token_auth_user: Ferifikaasje mei in tagongskoade fia e-mailberjocht foar de brûker útskeakelje
+        disable_sign_in_token_auth_user: Ferifikaasje mei in tagongskoade fia e-mail foar de brûker útskeakelje
         disable_user: Brûker útskeakelje
         enable_custom_emoji: Lokale emoji ynskeakelje
-        enable_sign_in_token_auth_user: Ferifikaasje mei in tagongskoade fia e-mailberjocht foar de brûker ynskeakelje
+        enable_sign_in_token_auth_user: Ferifikaasje mei in tagongskoade fia e-mail foar de brûker ynskeakelje
         enable_user: Brûker ynskeakelje
         memorialize_account: De account yn in Yn memoriam wizigje
         promote_user: Brûker promovearje
@@ -252,7 +252,7 @@ fy:
         destroy_custom_emoji_html: Emoji %{target} is troch %{name} fuortsmiten
         destroy_domain_allow_html: "%{name} hat de federaasje mei it domein %{target} ôfkard"
         destroy_domain_block_html: Domein %{target} is troch %{name} deblokkearre
-        destroy_email_domain_block_html: Domein %{target} is troch %{name} deblokkearre
+        destroy_email_domain_block_html: "%{name} hat it e-maildomein %{target} deblokkearre"
         destroy_instance_html: "%{name} hat it domein %{target} folslein fuortsmiten"
         destroy_ip_block_html: "%{name} hat de rigel foar IP %{target} fuortsmiten"
         destroy_status_html: Berjocht fan %{target} is troch %{name} fuortsmiten
@@ -260,10 +260,10 @@ fy:
         destroy_user_role_html: "%{name} hat de rol %{target} fuortsmiten"
         disable_2fa_user_html: De fereaske twa-stapsferifikaasje foar %{target} is troch %{name} útskeakele
         disable_custom_emoji_html: Emoji %{target} is troch %{name} útskeakele
-        disable_sign_in_token_auth_user_html: "%{name} hat ferifikaasje mei in tagongskoade fia e-mailberjocht útskeakele foar %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} hat ferifikaasje mei in tagongskoade fia e-mail útskeakele foar %{target}"
         disable_user_html: Oanmelden foar %{target} is troch %{name} útskeakele
         enable_custom_emoji_html: Emoji %{target} is troch %{name} ynskeakele
-        enable_sign_in_token_auth_user_html: "%{name} hat ferifikaasje mei in tagongskoade fia e-mailberjocht ynskeakele foar %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} hat ferifikaasje mei in tagongskoade fia e-mail ynskeakele foar %{target}"
         enable_user_html: Oanmelden foar %{target} is troch %{name} ynskeakele
         memorialize_account_html: De account %{target} is troch %{name} yn in Yn memoriam wizige
         promote_user_html: Brûker %{target} is troch %{name} promovearre
@@ -885,16 +885,39 @@ fy:
         action: Klik hjir foar mear ynformaasje
         message_html: "<strong>Jo objektûnthâld is ferkeard konfigurearre. De privacy fan jo brûkers is yn gefaar.</strong>"
     tags:
+      moderation:
+        not_trendable: Net trendber
+        not_usable: Net brûkber
+        pending_review: Moat noch beoardiele wurde
+        review_requested: Beoardieling oanfrege
+        reviewed: Beoardiele
+        title: Status
+        trendable: Trendber
+        unreviewed: Net beoardiele
+        usable: Brûkber
+      name: Namme
+      newest: Nijste
+      oldest: Aldste
+      open: Yn it iepenbier besjen
+      reset: Opnij ynstelle
       review: Steat beoardiele
+      search: Sykje
+      title: Hashtags
       updated_msg: Hashtagynstellingen mei sukses bywurke
     title: Behear
     trends:
       allow: Tastean
       approved: Goedkarre
+      confirm_allow: Binne jo wis dat jo de selektearre hashtags tastean wolle?
+      confirm_disallow: Binne jo wis dat jo de selektearre hashtags ôfkarre wolle?
       disallow: Ofkarre
       links:
         allow: Keppeling goedkarre
         allow_provider: Auteur goedkarre
+        confirm_allow: Binne jo wis dat jo de selektearre keppelingen tastean wolle?
+        confirm_allow_provider: Binne jo wis dat jo de selektearre websites tastean wolle?
+        confirm_disallow: Binne jo wis dat jo de selektearre keppelingen ôfkarre wolle?
+        confirm_disallow_provider: Binne jo wis dat jo de selektearre providers ôfkarre wolle?
         description_html: Dit binne keppelingen dy’t op dit stuit in protte dield wurde troch accounts wêr’t jo server berjochten fan ûntfangt. Hjirtroch kinne jo brûkers sjen wat der yn de wrâld oan de hân is. Der wurde gjin keppelingen werjûn oant jo de website goedkard hawwe. Jo kinne ek yndividuele keppelingen goed- of ôfkarre.
         disallow: Keppeling ôfkarre
         disallow_provider: Website ôfkarre
@@ -918,6 +941,10 @@ fy:
       statuses:
         allow: Berjocht goedkarre
         allow_account: Account goedkarre
+        confirm_allow: Binne jo wis dat jo de selektearre statussen ofkarre wolle?
+        confirm_allow_account: Binne jo wis dat jo de selektearre accounts tastean wolle?
+        confirm_disallow: Binne jo wis dat jo de selektearre statussen ôfkarre wolle?
+        confirm_disallow_account: Binne jo wis dat jo de selektearre accounts ôfkarre wolle?
         description_html: Dit binne berjochten dy’t op jo server bekend binne en dy’t op dit stuit in protte dield wurde en as favoryt markearre wurde. Hjirmei kinne nije en weromkearende brûkers mear minsken fine om te folgjen. Der wurde gjin berjochten yn it iepenbier werjûn oant de account troch jo goedkard is en de brûker tastiet dat harren account oan oaren oanrekommandearre wurdt. Jo kinne ek yndividuele berjochten goed- of ôfkarre.
         disallow: Berjocht ôfkarre
         disallow_account: Account ôfkarre
@@ -950,7 +977,7 @@ fy:
         used_by_over_week:
           one: Dizze wike troch ien persoan brûkt
           other: Dizze wike troch %{count} persoanen brûkt
-      title: Trends
+      title: Oanrekommandaasjes & trends
       trending: Trending
     warning_presets:
       add_new: Nije tafoegje
@@ -1037,7 +1064,7 @@ fy:
   application_mailer:
     notification_preferences: E-mailynstellingen wizigje
     salutation: "%{name},"
-    settings: 'E-mailynstellingen wizigje: %{link}'
+    settings: 'E-mailfoarkarren wizigje: %{link}'
     unsubscribe: Ofmelde
     view: 'Besjoch:'
     view_profile: Profyl besjen
@@ -1427,6 +1454,7 @@ fy:
   media_attachments:
     validations:
       images_and_video: In fideo kin net oan in berjocht mei ôfbyldingen keppele wurde
+      not_found: Media %{ids} net fûn of al tafoege oan in oar berjocht
       not_ready: Kin gjin bestannen tafoegje dy’t noch net ferwurke binne. Probearje it letter opnij!
       too_many: Der kinne net mear as 4 ôfbyldingen tafoege wurde
   migrations:

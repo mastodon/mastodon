@@ -25,6 +25,8 @@ hu:
   admin:
     account_actions:
       action: Művelet végrehajtása
+      already_silenced: Ezt a fiókot már elnémították.
+      already_suspended: Ezt a fiókot már felfüggesztették.
       title: 'Moderálási művelet végrehajtása ezen: %{acct}'
     account_moderation_notes:
       create: Megjegyzés hagyása
@@ -46,6 +48,7 @@ hu:
         title: "%{username} e-mail-címének megváltoztatása"
       change_role:
         changed_msg: A szerep sikeresen megváltoztatva!
+        edit_roles: Felhasználói szerepkörök kezelése
         label: Szerep megváltoztatása
         no_role: Nincs szerep
         title: "%{username} szerepének megváltoztatása"
@@ -132,7 +135,7 @@ hu:
       resubscribe: Feliratkozás ismét
       role: Szerep
       search: Keresés
-      search_same_email_domain: Felhasználók ugyanezzel az email domainnel
+      search_same_email_domain: Felhasználók ugyanezzel az e-mail-domainnel
       search_same_ip: Más felhasználók ugyanezzel az IP-vel
       security: Biztonság
       security_measures:
@@ -173,7 +176,7 @@ hu:
         approve_appeal: Fellebbezés jóváhagyása
         approve_user: Felhasználó Jóváhagyása
         assigned_to_self_report: Jelentés hozzárendelése
-        change_email_user: Felhasználó e-mail címének módosítása
+        change_email_user: Felhasználó e-mail-címének módosítása
         change_role_user: Felhasználó szerepkörének módosítása
         confirm_user: Felhasználó megerősítése
         create_account_warning: Figyelmeztetés létrehozása
@@ -182,17 +185,17 @@ hu:
         create_custom_emoji: Egyéni emodzsi létrehozása
         create_domain_allow: Domain engedélyezés létrehozása
         create_domain_block: Domain tiltás létrehozása
-        create_email_domain_block: E-mail domain tiltás létrehozása
+        create_email_domain_block: E-mail-domain-tiltás létrehozása
         create_ip_block: IP szabály létrehozása
         create_unavailable_domain: Elérhetetlen domain létrehozása
         create_user_role: Szerepkör létrehozása
         demote_user: Felhasználó lefokozása
         destroy_announcement: Közlemény törlése
-        destroy_canonical_email_block: E-mail tiltás törlése
+        destroy_canonical_email_block: E-mail-tiltás törlése
         destroy_custom_emoji: Egyéni emodzsi törlése
         destroy_domain_allow: Domain engedélyezés törlése
         destroy_domain_block: Domain tiltás törlése
-        destroy_email_domain_block: E-mail domain tiltás törlése
+        destroy_email_domain_block: E-mail-domain-tiltás törlése
         destroy_instance: Domain végleges törlése
         destroy_ip_block: IP szabály törlése
         destroy_status: Bejegyzés törlése
@@ -200,10 +203,10 @@ hu:
         destroy_user_role: Szerepkör eltávolítása
         disable_2fa_user: Kétlépcsős hitelesítés letiltása
         disable_custom_emoji: Egyéni emodzsi letiltása
-        disable_sign_in_token_auth_user: A felhasználó tokenes e-mail hitelesítésének letiltása
+        disable_sign_in_token_auth_user: A felhasználó tokenes e-mail-hitelesítésének letiltása
         disable_user: Felhasználói letiltása
         enable_custom_emoji: Egyéni emodzsi engedélyezése
-        enable_sign_in_token_auth_user: A felhasználó tokenes e-mail hitelesítésének engedélyezése
+        enable_sign_in_token_auth_user: A felhasználó tokenes e-mail-hitelesítésének engedélyezése
         enable_user: Felhasználó engedélyezése
         memorialize_account: Fiók emlékké nyilvánítása
         promote_user: Felhasználó előléptetése
@@ -233,7 +236,7 @@ hu:
         approve_appeal_html: "%{name} jóváhagyott egy fellebbezést %{target} moderátori döntéséről"
         approve_user_html: "%{name} jóváhagyta %{target} regisztrációját"
         assigned_to_self_report_html: "%{name} a %{target} bejelentést magához rendelte"
-        change_email_user_html: "%{name} megváltoztatta %{target} felhasználó e-mail címét"
+        change_email_user_html: "%{name} megváltoztatta %{target} felhasználó e-mail-címét"
         change_role_user_html: "%{name} módosította %{target} szerepkörét"
         confirm_user_html: "%{name} megerősítette %{target} e-mail-címét"
         create_account_warning_html: "%{name} figyelmeztetést küldött %{target} számára"
@@ -242,7 +245,7 @@ hu:
         create_custom_emoji_html: "%{name} új emodzsit töltött fel: %{target}"
         create_domain_allow_html: "%{name} engedélyezte a föderációt %{target} domainnel"
         create_domain_block_html: "%{name} letiltotta a %{target} domaint"
-        create_email_domain_block_html: "%{name} letiltotta a %{target} e-mail domaint"
+        create_email_domain_block_html: "%{name} letiltotta a(z) %{target} e-mail-domaint"
         create_ip_block_html: "%{name} létrehozta a(z) %{target} IP-címre vonatkozó szabályt"
         create_unavailable_domain_html: "%{name} leállította a kézbesítést a %{target} domainbe"
         create_user_role_html: "%{name} létrehozta a(z) %{target} szerepkört"
@@ -252,7 +255,7 @@ hu:
         destroy_custom_emoji_html: "%{name} törölte a(z) %{target} emodzsit"
         destroy_domain_allow_html: "%{name} letiltotta a föderációt a %{target} domainnel"
         destroy_domain_block_html: "%{name} engedélyezte a %{target} domaint"
-        destroy_email_domain_block_html: "%{name} engedélyezte a %{target} e-mail domaint"
+        destroy_email_domain_block_html: "%{name} engedélyezte a(z) %{target} e-mail-domaint"
         destroy_instance_html: "%{name} véglegesen törölte a(z) %{target} domaint"
         destroy_ip_block_html: "%{name} törölte a(z) %{target} IP-címre vonatkozó szabályt"
         destroy_status_html: "%{name} eltávolította %{target} felhasználó bejegyzését"
@@ -260,10 +263,10 @@ hu:
         destroy_user_role_html: "%{name} törölte a(z) %{target} szerepkört"
         disable_2fa_user_html: "%{name} kikapcsolta a kétlépcsős hitelesítést %{target} felhasználó fiókján"
         disable_custom_emoji_html: "%{name} letiltotta az emodzsit: %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} letiltotta a tokenes e-mail hitelesítést %{target} felhasználóra"
+        disable_sign_in_token_auth_user_html: "%{name} letiltotta a tokenes e-mail-hitelesítést %{target} felhasználóra"
         disable_user_html: "%{name} letiltotta %{target} felhasználó bejelentkezését"
         enable_custom_emoji_html: "%{name} engedélyezte az emodzsit: %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} engedélyezte a tokenes e-mail hitelesítést %{target} felhasználóra"
+        enable_sign_in_token_auth_user_html: "%{name} engedélyezte a tokenes e-mail-hitelesítést %{target} felhasználóra"
         enable_user_html: "%{name} engedélyezte %{target} felhasználó bejelentkezését"
         memorialize_account_html: "%{name} emléket állított %{target} felhasználónak"
         promote_user_html: "%{name} előléptette %{target} felhasználót"
@@ -432,7 +435,7 @@ hu:
       attempts_over_week:
         one: "%{count} próbálkozás a múlt héten"
         other: "%{count} próbálkozás feliratkozásra a múlt héten"
-      created_msg: E-mail domain sikeresen letiltva
+      created_msg: E-mail-domain sikeresen letiltva
       delete: Törlés
       dns:
         types:
@@ -441,12 +444,12 @@ hu:
       new:
         create: Domain hozzáadása
         resolve: Domain feloldása
-        title: Új e-mail domain tiltása
-      no_email_domain_block_selected: Nem változott meg egy domain tiltás sem, mert semmi sem volt kiválasztva
+        title: Új e-mail-domain tiltása
+      no_email_domain_block_selected: Nem változott meg egy domaintiltás sem, mert semmi sem volt kiválasztva
       not_permitted: Nem engedélyezett
       resolved_dns_records_hint_html: A domain név a következő MX domain-ekre oldódik fel, melyek valójában fogadják az e-mailt. Az MX domain letiltása minden olyan feliratkozást tiltani fog, melyben az e-mailcím ugyanazt az MX domaint használja, még akkor is, ha a látható domain név más. <strong>Légy óvatos, hogy ne tilts le nagy e-mail szolgáltatókat.</strong>
       resolved_through_html: Feloldva %{domain}-n keresztül
-      title: Tiltott e-mail domainek
+      title: Tiltott e-mail-domainek
     export_domain_allows:
       new:
         title: Domain engedélyezések importálása
@@ -600,8 +603,9 @@ hu:
         resolve_description_html: Nem csinálunk semmit a bejelentett fiókkal, nem jegyzünk fel vétséget, és bezárjuk a bejelentést.
         silence_description_html: A profil csak azok számára lesz látható, akik már követik, vagy kézzel rákeresnek, jelentősen korlátozva annak elérését. Ez a művelet bármikor visszafordítható. A fiókkal szemben indított minden bejelentést lezárunk.
         suspend_description_html: A fiók és minden tartalma elérhetetlenné válik és végül törlésre kerül. A fiókkal kapcsolatbalépni lehetetlen lesz. Ez a művelet 30 napig visszafordítható. A fiók ellen indított minden bejelentést lezárunk.
-      actions_description_html: Döntsd el, mit csináljunk, hogy megoldjuk ezt a bejelentést. Ha valamilyen büntető intézkedést hozol a bejelentett fiók ellen, küldünk neki egy figyelmeztetést e-mail-ben, kivéve ha a <strong>Spam</strong> kategóriát választod.
+      actions_description_html: Döntsd el, mit csináljunk, hogy megoldjuk ezt a bejelentést. Ha valamilyen büntető intézkedést hozol a bejelentett fiók ellen, küldünk neki egy figyelmeztetést e-mailben, kivéve ha a <strong>Spam</strong> kategóriát választod.
       actions_description_remote_html: Döntsd el, mit tegyünk a bejelentés lezárásának érdekében. Ez csak azt befolyásolja, hogy a <strong>saját</strong> kiszolgálód hogyan kommunikál ezzel a távoli fiókkal és hogyan kezeli annak tartalmait.
+      actions_no_posts: Ennek a bejelentésnek nincs egyetlen törölhető, társított bejegyzése sem
       add_to_report: Továbbiak hozzáadása a bejelentéshez
       already_suspended_badges:
         local: Már felfüggesztették ezen a szerveren
@@ -665,7 +669,7 @@ hu:
         delete_data_html: "<strong>@%{acct}</strong> profiljának és tartalmainak törlése 30 nap múlva, hacsak addig nem oldják fel a felfüggesztést"
         preview_preamble_html: "<strong>@%{acct}</strong> a következő tartalommal fog figyelmeztetést kapni:"
         record_strike_html: Vétség felrovása a <strong>@%{acct}</strong> fiók ellen, hogy segítsük az eszkalációt a fiók jövőbeni kihágásai esetén
-        send_email_html: Figyelmeztető email küldése <strong>@%{acct}</strong> fiók részére
+        send_email_html: Figyelmeztető e-mail küldése <strong>@%{acct}</strong> részére
         warning_placeholder: Opcionális kiegészítő indoklás a moderációs művelethez.
       target_origin: A jelentett fiók eredete
       title: Bejelentések
@@ -705,7 +709,7 @@ hu:
         manage_appeals: Fellebbezések kezelése
         manage_appeals_description: Lehetővé teszi, hogy a felhasználó átnézze a moderációval kapcsolatos fellebbezéseket
         manage_blocks: Letiltások kezelése
-        manage_blocks_description: Lehetővé teszi, hogy a felhasználó letiltson email szolgáltatókat és IP címeket
+        manage_blocks_description: Lehetővé teszi, hogy a felhasználók e-mail-szolgáltatókat és IP-címeket tiltsanak le
         manage_custom_emojis: Egyedi emodzsik kezelése
         manage_custom_emojis_description: Lehetővé teszi a felhasználó számára, hogy a kiszolgáló egyéni emodzsiait kezelje
         manage_federation: Föderáció kezelése
@@ -723,7 +727,7 @@ hu:
         manage_taxonomies: Taxonómiák kezelése
         manage_taxonomies_description: Lehetővé teszi, hogy a felhasználó átnézze a felkapott tartalmakat és frissítse a hashtagek beállításait
         manage_user_access: Felhasználói hozzáférések kezelése
-        manage_user_access_description: Lehetővé teszi, hogy a felhasználó letiltsa mások kétlépcsős hitelesítését, megváltoztassa az e-mail-címüket, és alaphelyzetbe állítsa a jelszavukat
+        manage_user_access_description: Lehetővé teszi, hogy a felhasználók letiltsák mások kétlépcsős hitelesítését, megváltoztassák az e-mail-címüket, és alaphelyzetbe állítsák a jelszavukat
         manage_users: Felhasználók kezelése
         manage_users_description: Lehetővé teszi, hogy a felhasználó megtekintse mások részletes adatait és moderálja őket
         manage_webhooks: Webhookok kezelése
@@ -798,7 +802,7 @@ hu:
       destroyed_msg: Sikeresen töröltük a site feltöltését!
     software_updates:
       critical_update: Kritikus - frissíts gyorsan
-      description: Javasolt, hogy a Mastodon telepítésed naprakész legyen, hogy kihasználhasd a legújabb javításokat és funkciókat. Ezenkívül néha különösen fontos a Mastodon időben történő frissítése a biztonsági problémák elkerülése érdekében. Ezen okok miatt a Mastodon 30 percenként ellenőrzi a frissítéseket és az email értesítési preferenciáknak megfelelően értesítést küld.
+      description: Javasolt, hogy a Mastodon telepítésed naprakész legyen, hogy kihasználhasd a legújabb javításokat és funkciókat. Ezenkívül néha különösen fontos a Mastodon időben történő frissítése a biztonsági problémák elkerülése érdekében. Ezen okok miatt a Mastodon 30 percenként ellenőrzi a frissítéseket és az e-mail-értesítési beállításoknak megfelelően értesítést küld.
       documentation_link: További információ
       release_notes: Kiadási megjegyzések
       title: Elérhető frissítések
@@ -898,6 +902,7 @@ hu:
       name: Név
       newest: Legújabb
       oldest: Legrégebbi
+      open: Megtekintés nyilvánosan
       reset: Visszaállítás
       review: Engedélyezés állapota
       search: Keresés
@@ -907,10 +912,16 @@ hu:
     trends:
       allow: Engedélyezés
       approved: Jóváhagyott
+      confirm_allow: Biztos, hogy engedélyezni szeretnéd a kiválasztott címkéket?
+      confirm_disallow: Biztos, hogy tiltani szeretnéd a kiválasztott címkéket?
       disallow: Letiltás
       links:
         allow: Hivatkozás engedélyezése
         allow_provider: Közzétevő engedélyezése
+        confirm_allow: Biztos, hogy engedélyezni szeretnéd a kiválasztott hivatkozásokat?
+        confirm_allow_provider: Biztos, hogy engedélyezni szeretnéd a kiválasztott szolgáltatókat?
+        confirm_disallow: Biztos, hogy tiltani szeretnéd a kiválasztott hivatkozásokat?
+        confirm_disallow_provider: Biztos, hogy tiltani szeretnéd a kiválasztott szolgáltatókat?
         description_html: Ezek olyan hivatkozások, melyeket a kiszolgálód által látott fiókok mostanában sokat osztanak meg. Ez segíthet a felhasználóidnak rátalálni arra, hogy mi történik a világban. Egy hivatkozást sem jelenik meg nyilvánosan, amíg a közzétevőt jóvá nem hagytad. A hivatkozásokat külön is engedélyezheted vagy elutasíthatod.
         disallow: Hivatkozás letiltása
         disallow_provider: Közzétevő letiltása
@@ -934,6 +945,10 @@ hu:
       statuses:
         allow: Bejegyzés engedélyezése
         allow_account: Szerző engedélyezése
+        confirm_allow: Biztos, hogy engedélyezni szeretnéd a kiválasztott állapotokat?
+        confirm_allow_account: Biztos, hogy engedélyezni szeretnéd a kiválasztott fiókokat?
+        confirm_disallow: Biztos, hogy engedélyezni szeretnéd a kiválasztott állapotokat?
+        confirm_disallow_account: Biztos, hogy tiltani szeretnéd a kiválasztott fiókokat?
         description_html: Ezek olyan, a szervered által ismert bejegyzések, melyeket mostanság gyakran osztanak meg vagy jelölnek kedvencnek. Ez segíthet az új vagy visszatérő felhasználóidnak, hogy több követhető személyt találjanak. Egyetlen bejegyzés sem jelenik meg nyilvánosan, amíg ennek szerzőjét nem hagytad jóvá és ő nem járult hozzá, hogy őt másoknak ajánlják. Bejegyzéseket egyenként is engedélyezhetsz vagy visszautasíthatsz.
         disallow: Bejegyzés tiltása
         disallow_account: Szerző tiltása
@@ -966,7 +981,7 @@ hu:
         used_by_over_week:
           one: Egy ember használta a múlt héten
           other: "%{count} ember használta a múlt héten"
-      title: Trendek
+      title: Ajánlások és trendek
       trending: Felkapott
     warning_presets:
       add_new: Új hozzáadása
@@ -1051,9 +1066,9 @@ hu:
       guide_link_text: Bárki közreműködhet.
     sensitive_content: Kényes tartalom
   application_mailer:
-    notification_preferences: E-mail beállítások módosítása
+    notification_preferences: E-mail-beállítások módosítása
     salutation: "%{name}!"
-    settings: 'E-mail beállítások módosítása: %{link}'
+    settings: 'E-mail-beállítások módosítása: %{link}'
     unsubscribe: Leiratkozás
     view: 'Megtekintés:'
     view_profile: Profil megtekintése
@@ -1073,7 +1088,7 @@ hu:
       hint_html: Még egy dolog! Meg kell győződnünk róla, hogy tényleg valós személy vagy (így távol tarthatjuk a spam-et). Oldd meg az alábbi CAPTCHA-t és kattints a "Folytatás"-ra.
       title: Biztonsági ellenőrzés
     confirmations:
-      awaiting_review: Az email címed megerősítésre került. %{domain} stábja jelenleg áttekinti a regisztrációdat. Ha jóváhagyásra került a fiókod, egy emailt küldenek majd!
+      awaiting_review: Az e-mail-címed megerősítésre került. A(z) %{domain} stábja jelenleg áttekinti a regisztrációdat. Ha jóváhagyásra került a fiókod, egy e-mailt küldenek majd!
       awaiting_review_title: A regisztrációd áttekintés alatt áll
       clicking_this_link: kattintás erre a hivatkozásra
       login_link: bejelentkezés
@@ -1102,7 +1117,7 @@ hu:
     or_log_in_with: Vagy jelentkezz be ezzel
     privacy_policy_agreement_html: Elolvastam és egyetértek az <a href="%{privacy_policy_path}" target="_blank">adatvédemi nyilatkozattal</a>
     progress:
-      confirm: E-mail-cím megerősítése
+      confirm: E-mail megerősítése
       details: Saját adatok
       review: A felülvizsgálatunk
       rules: Szabályok elfogadása
@@ -1183,9 +1198,9 @@ hu:
       before: 'Mielőtt továbbmész, kérlek olvasd el ezt alaposan:'
       caches: Más szerverek által cache-elt tartalmak még megmaradhatnak
       data_removal: Bejegyzéseid és minden más adatod véglegesen törlődni fog
-      email_change_html: <a href="%{path}">Megváltoztathatod az email címed</a> a fiókod törlése nélkül
-      email_contact_html: Ha még mindig nem érkezik meg, emailezhetsz ide <a href="mailto:%{email}">%{email}</a> segítségért
-      email_reconfirmation_html: Ha nem kaptad meg a megerősítő emailt, <a href="%{path}">itt újrakérheted</a>
+      email_change_html: <a href="%{path}">Megváltoztathatod az e-mail-címed</a> a fiókod törlése nélkül
+      email_contact_html: Ha még mindig nem érkezik meg, akkor segítségért írj a(z) <a href="mailto:%{email}">%{email}</a> e-mail-címre
+      email_reconfirmation_html: Ha nem kaptad meg a megerősítő e-mailt, <a href="%{path}">itt újrakérheted</a>
       irreversible: Nem fogod tudni visszaállítani vagy újraaktiválni a fiókodat
       more_details_html: A részletekért nézd meg az <a href="%{terms_path}">adatvédelmi szabályzatot</a>.
       username_available: A fiókod ismét elérhetővé válik
@@ -1418,7 +1433,7 @@ hu:
     authentication_methods:
       otp: kétlépcsős azonosító alkalmazás
       password: jelszó
-      sign_in_token: e-mail biztonsági kód
+      sign_in_token: e-mailben küldött biztonsági kód
       webauthn: biztonsági kulcsok
     description_html: Ha olyan aktivitást látsz, melyet nem ismersz fel, fontold meg, hogy megváltoztatod a jelszavad és engedélyezed a kétlépcsős hitelesítést.
     empty: Nem érhető el hitelesítési történet
@@ -1429,20 +1444,21 @@ hu:
     unsubscribe:
       action: Igen, leiratkozás
       complete: Leiratkozva
-      confirmation_html: 'Biztos, hogy leiratkozol arról, hogy %{type} típusú üzeneteket kapj a %{domain} Mastodon-kiszolgálótól erre a címedre: %{email}? Bármikor újra feliratkozhatsz az <a href="%{settings_path}">e-mail-értesítések beállításánál</a>.'
+      confirmation_html: 'Biztos, hogy leiratkozol arról, hogy %{type} típusú üzeneteket kapj a(z) %{domain} Mastodon-kiszolgálótól erre a címedre: %{email}? Bármikor újra feliratkozhatsz az <a href="%{settings_path}">e-mail-értesítési beállításokban</a>.'
       emails:
         notification_emails:
-          favourite: kedvencnek jelölésről email értesítő
-          follow: követésről email értesítő
-          follow_request: követési kérelemről email értesítő
-          mention: megemlítésről email értesítő
-          reblog: megtolásról email értesítő
-      resubscribe_html: Ha tévedésből iratkoztál le, újra feliratkozhatsz az <a href="%{settings_path}">e-mail-értesítések beállításainál</a>.
+          favourite: kedvencnek jelölés értesítő e-mailjei
+          follow: követés értesítő e-mailjei
+          follow_request: követési kérések e-mailjei
+          mention: megemlítés értesítő e-mailjei
+          reblog: megtolás értesítő e-mailjei
+      resubscribe_html: Ha tévedésből iratkoztál le, újra feliratkozhatsz az <a href="%{settings_path}">e-mail-értesítési beállításoknál</a>.
       success_html: 'Mostantól nem kapsz %{type} típusú üzeneket a(z) %{domain} Mastodon-kiszolgálón erre a címedre: %{email}.'
       title: Leiratkozás
   media_attachments:
     validations:
       images_and_video: Nem csatolhatsz videót olyan bejegyzéshez, amelyhez már csatoltál képet
+      not_found: A(z) %{ids} média nem található, vagy már egy másik bejegyzéshez lett csatolva
       not_ready: Nem lehet olyan fájlt csatolni, melynek még nem fejeződött be a feldolgozása. Próbáld kicsit később!
       too_many: Maximum négy fájlt csatolhatsz
   migrations:
@@ -1926,7 +1942,7 @@ hu:
     invalid_otp_token: Érvénytelen ellenőrző kód
     otp_lost_help_html: Ha mindkettőt elvesztetted, kérhetsz segítséget itt %{email}
     rate_limited: Túl sok hiteleítési kísérlet történt. Próbáld újra később.
-    seamless_external_login: Külső szolgáltatáson keresztül jelentkeztél be, így a jelszó és e-mail beállítások nem elérhetőek.
+    seamless_external_login: Külső szolgáltatáson keresztül jelentkeztél be, így a jelszó és e-mail-beállítások nem érhetők el.
     signed_in_as: Bejelentkezve mint
   verification:
     extra_instructions_html: <strong>Tipp:</strong> A hivatkozás a weboldaladon lehet láthatatlan. A fontos rész a <code>rel="me"</code>, mely megakadályozza, hogy mások a nevedben lépjenek fel olyan oldalakon, ahol van felhasználók által előállított tartalom. A <code>link</code> tag-et az oldal fejlécében is használhatod az <code>a</code> tag helyett, de a HTML-nek elérhetőnek kell lennie JavaScript futtatása nélkül is.

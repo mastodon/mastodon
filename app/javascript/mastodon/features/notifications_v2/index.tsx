@@ -81,7 +81,11 @@ export const Notifications: React.FC<{
 
   const anyPendingNotification = useAppSelector(selectAnyPendingNotification);
 
-  const isUnread = unreadNotificationsCount > 0;
+  const needsReload = useAppSelector(
+    (state) => state.notificationGroups.mergedNotifications === 'needs-reload',
+  );
+
+  const isUnread = unreadNotificationsCount > 0 || needsReload;
 
   const canMarkAsRead =
     useAppSelector(selectSettingsNotificationsShowUnread) &&
@@ -118,11 +122,11 @@ export const Notifications: React.FC<{
 
   // Keep track of mounted components for unread notification handling
   useEffect(() => {
-    dispatch(mountNotifications());
+    void dispatch(mountNotifications());
 
     return () => {
       dispatch(unmountNotifications());
-      dispatch(updateScrollPosition({ top: false }));
+      void dispatch(updateScrollPosition({ top: false }));
     };
   }, [dispatch]);
 
@@ -147,11 +151,11 @@ export const Notifications: React.FC<{
   }, [dispatch]);
 
   const handleScrollToTop = useDebouncedCallback(() => {
-    dispatch(updateScrollPosition({ top: true }));
+    void dispatch(updateScrollPosition({ top: true }));
   }, 100);
 
   const handleScroll = useDebouncedCallback(() => {
-    dispatch(updateScrollPosition({ top: false }));
+    void dispatch(updateScrollPosition({ top: false }));
   }, 100);
 
   useEffect(() => {

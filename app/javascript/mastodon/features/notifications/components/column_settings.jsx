@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
+import { forceGroupedNotifications } from 'mastodon/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_REPORTS } from 'mastodon/permissions';
 
 import ClearColumnButton from './clear_column_button';
@@ -45,13 +46,17 @@ class ColumnSettings extends PureComponent {
 
     return (
       <div className='column-settings'>
-        {alertsEnabled && browserSupport && browserPermission === 'denied' && (
-          <span className='warning-hint'><FormattedMessage id='notifications.permission_denied' defaultMessage='Desktop notifications are unavailable due to previously denied browser permissions request' /></span>
-        )}
-
         <section>
           <ClearColumnButton onClick={onClear} />
         </section>
+
+        {alertsEnabled && browserSupport && browserPermission === 'denied' && (
+          <section>
+            <span className='warning-hint'>
+              <FormattedMessage id='notifications.permission_denied' defaultMessage='Desktop notifications are unavailable due to previously denied browser permissions request' />
+            </span>
+          </section>
+        )}
 
         {alertsEnabled && browserSupport && browserPermission === 'default' && (
           <section>
@@ -63,15 +68,17 @@ class ColumnSettings extends PureComponent {
 
         <PolicyControls />
 
-        <section role='group' aria-labelledby='notifications-beta'>
-          <h3 id='notifications-beta'>
-            <FormattedMessage id='notifications.column_settings.beta.category' defaultMessage='Experimental features' />
-          </h3>
+        {!forceGroupedNotifications && (
+          <section role='group' aria-labelledby='notifications-beta'>
+            <h3 id='notifications-beta'>
+              <FormattedMessage id='notifications.column_settings.beta.category' defaultMessage='Experimental features' />
+            </h3>
 
-          <div className='column-settings__row'>
-            <SettingToggle id='unread-notification-markers' prefix='notifications' settings={settings} settingPath={['groupingBeta']} onChange={onChange} label={groupingShowStr} />
-          </div>
-        </section>
+            <div className='column-settings__row'>
+              <SettingToggle id='unread-notification-markers' prefix='notifications' settings={settings} settingPath={['groupingBeta']} onChange={onChange} label={groupingShowStr} />
+            </div>
+          </section>
+        )}
 
         <section role='group' aria-labelledby='notifications-unread-markers'>
           <h3 id='notifications-unread-markers'>

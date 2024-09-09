@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-shared_examples 'AccountAvatar' do |fabricator|
+RSpec.shared_examples 'AccountAvatar' do |fabricator|
   describe 'static avatars', :attachment_processing do
     describe 'when GIF' do
       it 'creates a png static style' do

@@ -27,4 +27,4 @@
         ·
         %abbr{ title: role.permissions_as_keys.map { |privilege| I18n.t("admin.roles.privileges.#{privilege}") }.join(', ') }= t('admin.roles.permissions_count', count: role.permissions_as_keys.size)
     %div
-      = table_link_to 'pencil', t('admin.accounts.edit'), edit_admin_role_path(role) if can?(:update, role)
+      = table_link_to 'edit', t('admin.accounts.edit'), edit_admin_role_path(role) if can?(:update, role)

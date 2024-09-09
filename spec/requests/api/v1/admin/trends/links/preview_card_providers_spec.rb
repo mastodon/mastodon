@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'API V1 Admin Trends Links Preview Card Providers' do
+RSpec.describe 'API V1 Admin Trends Links Preview Card Providers' do
   let(:role)   { UserRole.find_by(name: 'Admin') }
   let(:user)   { Fabricate(:user, role: role) }
   let(:scopes) { 'admin:read admin:write' }

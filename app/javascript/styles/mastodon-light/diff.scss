@@ -1,10 +1,6 @@
 // Notes!
 // Sass color functions, "darken" and "lighten" are automatically replaced.
 
-html {
-  scrollbar-color: $ui-base-color rgba($ui-base-color, 0.25);
-}
-
 .simple_form .button.button-tertiary {
   color: $highlight-text-color;
 }
@@ -50,10 +46,6 @@ html {
 
 .icon-button:disabled {
   color: darken($action-button-color, 25%);
-}
-
-.account__header__bar .avatar .account__avatar {
-  border-color: $white;
 }
 
 .getting-started__footer a {
@@ -422,9 +414,6 @@ html {
   border-color: transparent transparent $white;
 }
 
-.hero-widget,
-.moved-account-widget,
-.memoriam-widget,
 .activity-stream,
 .nothing-here,
 .directory__tag > a,
@@ -558,4 +547,21 @@ a.sparkline {
 
 .report-dialog-modal__textarea {
   background: darken($ui-base-color, 10%);
+}
+
+.autosuggest-account {
+  .display-name__account {
+    color: $dark-text-color;
+  }
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-color: rgba($action-button-color, 0.25)
+      var(--background-border-color);
+  }
+}
+
+::-webkit-scrollbar-thumb {
+  opacity: 0.25;
 }

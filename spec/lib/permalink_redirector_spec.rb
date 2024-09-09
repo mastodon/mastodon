@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe PermalinkRedirector do
+RSpec.describe PermalinkRedirector do
   let(:remote_account) { Fabricate(:account, username: 'alice', domain: 'example.com', url: 'https://example.com/@alice', id: 2) }
 
   describe '#redirect_url' do

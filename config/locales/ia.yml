@@ -25,6 +25,8 @@ ia:
   admin:
     account_actions:
       action: Exequer action
+      already_silenced: Iste conto jam ha essite silentiate.
+      already_suspended: Iste conto jam ha essite suspendite.
       title: Exequer action de moderation sur %{acct}
     account_moderation_notes:
       create: Lassar un nota
@@ -46,6 +48,7 @@ ia:
         title: Cambiar e-mail pro %{username}
       change_role:
         changed_msg: Rolo cambiate con successo!
+        edit_roles: Gerer le regulas de usator
         label: Cambiar rolo
         no_role: Necun rolo
         title: Cambiar rolo pro %{username}
@@ -192,7 +195,7 @@ ia:
         destroy_custom_emoji: Deler emoji personalisate
         destroy_domain_allow: Deler permisso de dominio
         destroy_domain_block: Deler blocada de dominio
-        destroy_email_domain_block: Crear blocada de dominio de e-mail
+        destroy_email_domain_block: Deler blocada de dominio de e-mail
         destroy_instance: Purgar dominio
         destroy_ip_block: Deler le regula IP
         destroy_status: Deler message
@@ -235,24 +238,24 @@ ia:
         assigned_to_self_report_html: "%{name} assignava reporto %{target} a se mesme"
         change_email_user_html: "%{name} cambiava le adresse de e-mail address del usator %{target}"
         change_role_user_html: "%{name} cambiava rolo de %{target}"
-        confirm_user_html: "%{name} confirmava le adresse de e-mail del usator %{target}"
+        confirm_user_html: "%{name} confirmava le adresse de e-mail del. usator %{target}"
         create_account_warning_html: "%{name} inviava un advertimento a %{target}"
         create_announcement_html: "%{name} creava un nove annuncio %{target}"
-        create_canonical_email_block_html: "%{name} blocava e-mail con le hash %{target}"
+        create_canonical_email_block_html: "%{name} blocava le e-mail con le hash %{target}"
         create_custom_emoji_html: "%{name} incargava le nove emoji %{target}"
         create_domain_allow_html: "%{name} permitteva federation con dominio %{target}"
         create_domain_block_html: "%{name} blocava dominio %{target}"
-        create_email_domain_block_html: "%{name} blocava dominio de e-mail %{target}"
+        create_email_domain_block_html: "%{name} blocava le dominio de e-mail %{target}"
         create_ip_block_html: "%{name} creava regula pro IP %{target}"
         create_unavailable_domain_html: "%{name} stoppava livration al dominio %{target}"
         create_user_role_html: "%{name} creava rolo de %{target}"
         demote_user_html: "%{name} degradava usator %{target}"
         destroy_announcement_html: "%{name} deleva annuncio %{target}"
-        destroy_canonical_email_block_html: "%{name} disblocava e-mail con le hash %{target}"
+        destroy_canonical_email_block_html: "%{name} disblocava le e-mail con le hash %{target}"
         destroy_custom_emoji_html: "%{name} deleva emoji %{target}"
         destroy_domain_allow_html: "%{name} impediva le federation con dominio %{target}"
         destroy_domain_block_html: "%{name} disblocava dominio %{target}"
-        destroy_email_domain_block_html: "%{name} disblocava dominio de e-mail %{target}"
+        destroy_email_domain_block_html: "%{name} disblocava le dominio de e-mail %{target}"
         destroy_instance_html: "%{name} purgava le dominio %{target}"
         destroy_ip_block_html: "%{name} deleva le regula pro IP %{target}"
         destroy_status_html: "%{name} removeva un message de %{target}"
@@ -432,7 +435,7 @@ ia:
       attempts_over_week:
         one: "%{count} tentativa de inscription in le ultime septimana"
         other: "%{count} tentativas de inscription in le ultime septimana"
-      created_msg: Le dominio de e-mail ha essite blocate
+      created_msg: Le dominio de e-mail ha essite blocate con successo
       delete: Deler
       dns:
         types:
@@ -597,7 +600,6 @@ ia:
         resolve_description_html: Necun mesura essera prendite contra le conto denunciate, necun sanction registrate, e le reporto essera claudite.
         silence_description_html: Iste conto essera visibile solmente a qui ja lo seque o manualmente lo cerca, limitante gravemente su portata. Pote sempre esser revertite. Claude tote le reportos contra iste conto.
         suspend_description_html: Le conto e tote su contento essera inaccessibile e finalmente delite, e interager con illo essera impossibile. Reversibile intra 30 dies. Claude tote le reportos contra iste conto.
-      actions_description_html: Decide qual mesura prender pro resolver iste reporto. Si tu prende un mesura punitive contra le conto reportate, le persona recipera un notification in e-mail, excepte si le categoria <strong>Spam</strong> es seligite.
       actions_description_remote_html: Decide qual mesura prender pro resolver iste reporto. Isto affectara solmente le maniera in que <strong>tu</strong> servitor communica con iste conto remote e gere su contento.
       add_to_report: Adder plus al reporto
       already_suspended_badges:
@@ -883,6 +885,7 @@ ia:
         message_html: "<strong>Tu immagazinage de objectos es mal configurate. Le confidentialitate de tu usatores es in risco.</strong>"
     tags:
       moderation:
+        not_trendable: Non pro tendentia
         pending_review: Attende revision
         title: Stato
       name: Nomine
@@ -897,10 +900,16 @@ ia:
     trends:
       allow: Permitter
       approved: Approbate
+      confirm_allow: Es tu secur que tu vole permitter le etiquettas seligite?
+      confirm_disallow: Es tu secur que tu vole cessar de permitter le etiquettas seligite?
       disallow: Refusar
       links:
         allow: Permitter ligamine
         allow_provider: Autorisar le publicator
+        confirm_allow: Es tu secur que tu vole permitter le ligamines seligite?
+        confirm_allow_provider: Es tu secur que tu vole permitter le fornitores seligite?
+        confirm_disallow: Es tu secur que tu vole cessar de permitter le ligamines seligite?
+        confirm_disallow_provider: Es tu secur que tu vole cessar de permitter le fornitores seligite?
         description_html: Istes es ligamines que es actualmente compartite multo per contos del quales tu servitor recipe messages. Illos pote adjutar tu usatores a discoperir lo que eveni in le mundo. Necun ligamine es monstrate publicamente usque tu autorisa le publicator. Tu pote tamben permitter o rejectar ligamines singule.
         disallow: Prohibir le ligamine
         disallow_provider: Prohibir le publicator
@@ -924,6 +933,8 @@ ia:
       statuses:
         allow: Permitter message
         allow_account: Permitter autor
+        confirm_allow_account: Es tu secur que tu vole permitter le contos seligite?
+        confirm_disallow_account: Es tu secur que tu vole cessar de permitter le contos seligite?
         description_html: Istes es le messages cognoscite sur tu servitor que al momento es multo compartite e marcate como favorite. Illos pote adjutar tu usatores nove e reveniente a trovar plus personas a sequer. Necun message es monstrate publicamente usque tu approba le autor, a condition que le autor permitte que su conto es suggerite a alteres. Tu pote tamben permitter o rejectar messages singule.
         disallow: Non permitter message
         disallow_account: Non permitter autor
@@ -956,7 +967,7 @@ ia:
         used_by_over_week:
           one: Usate per un persona in le ultime septimana
           other: Usate per %{count} personas in le ultime septimana
-      title: Tendentias
+      title: Recommendationes e tendentias
       trending: In tendentia
     warning_presets:
       add_new: Adder nove
