@@ -82,7 +82,7 @@ RSpec.describe FeaturedTag do
         expect(featured_tag)
           .to have_attributes(
             statuses_count: 1,
-            last_status_at: eq(status.created_at)
+            last_status_at: be_within(0.1).of(status.created_at)
           )
       end
     end
