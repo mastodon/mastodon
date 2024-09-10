@@ -40,7 +40,7 @@ RSpec.describe 'Home', :inline_jobs do
       it 'returns the statuses of followed users' do
         subject
 
-        expect(body_as_json.pluck(:id)).to match_array(home_statuses.map { |status| status.id.to_s })
+        expect(response.parsed_body.pluck(:id)).to match_array(home_statuses.map { |status| status.id.to_s })
       end
 
       context 'with limit param' do
@@ -49,7 +49,7 @@ RSpec.describe 'Home', :inline_jobs do
         it 'returns only the requested number of statuses' do
           subject
 
-          expect(body_as_json.size).to eq(params[:limit])
+          expect(response.parsed_body.size).to eq(params[:limit])
         end
 
         it 'sets the correct pagination headers', :aggregate_failures do
@@ -94,8 +94,9 @@ RSpec.describe 'Home', :inline_jobs do
       it 'returns http unprocessable entity', :aggregate_failures do
         subject
 
-        expect(response).to have_http_status(422)
-        expect(response.headers['Link']).to be_nil
+        expect(response)
+          .to have_http_status(422)
+          .and not_have_http_link_header
       end
     end
   end

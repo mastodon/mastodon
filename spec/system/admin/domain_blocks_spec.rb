@@ -91,7 +91,7 @@ RSpec.describe 'blocking domains through the moderation interface' do
       visit edit_admin_domain_block_path(domain_block)
 
       select I18n.t('admin.domain_blocks.new.severity.suspend'), from: 'domain_block_severity'
-      click_on I18n.t('generic.save_changes')
+      click_on submit_button
 
       # It doesn't immediately block but presents a confirmation screen
       expect(page).to have_title(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'example.com'))

@@ -15,7 +15,7 @@ RSpec.describe 'Instance actor endpoint' do
           .and have_cacheable_headers
         expect(response.content_type)
           .to start_with('application/activity+json')
-        expect(body_as_json)
+        expect(response.parsed_body)
           .to include(
             id: instance_actor_url,
             type: 'Application',

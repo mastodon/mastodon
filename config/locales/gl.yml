@@ -24,6 +24,8 @@ gl:
   admin:
     account_actions:
       action: Executar acción
+      already_silenced: A conta xa está limitada
+      already_suspended: Esta conta xa está suspendida.
       title: Executar acción de moderación a %{acct}
     account_moderation_notes:
       create: Deixar nota
@@ -45,6 +47,7 @@ gl:
         title: Mudar email de %{username}
       change_role:
         changed_msg: Rol mudado correctamente!
+        edit_roles: Xestionar roles de usuarias
         label: Cambiar rol
         no_role: Sen rol
         title: Cambiar o rol de %{username}
@@ -342,7 +345,7 @@ gl:
       title: Emoticonas personalizadas
       uncategorized: Sen categoría
       unlist: Non listar
-      unlisted: Sen listar
+      unlisted: Fóra das listas
       update_failed_msg: Non foi posíbel actualizar a emoticona
       updated_msg: Actualizouse a emoticona de xeito correcto!
       upload: Subir
@@ -601,6 +604,7 @@ gl:
         suspend_description_html: A conta e todo o seu contido non serán accesible e finalmente eliminaranse, será imposible interactuar con ela. A decisión é reversible durante 30 días. Isto pecha tódalas denuncias sobre esta conta.
       actions_description_html: Decide a acción a tomar para resolver esta denuncia. Se tomas accións punitivas contra a conta denunciada enviaraselle un correo, excepto se está indicada a categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide a acción a tomar para resolver a denuncia. Isto só lle afecta ao xeito en que o <strong>teu</strong> servidor se comunica con esta conta remota e xestiona o seu contido.
+      actions_no_posts: Esta denuncia non ten publicacións asociadas para eliminar
       add_to_report: Engadir máis á denuncia
       already_suspended_badges:
         local: Xa está suspendida neste servidor
@@ -1744,7 +1748,7 @@ gl:
       private_long: Mostrar só as seguidoras
       public: Público
       public_long: Visible para calquera
-      unlisted: Sen listar
+      unlisted: Fóra das listas
       unlisted_long: Visible para calquera, pero non en cronoloxías públicas
   statuses_cleanup:
     enabled: Borrar automáticamente publicacións antigas
@@ -1838,7 +1842,7 @@ gl:
     failed_2fa:
       details: 'Detalles do intento de acceso:'
       explanation: Alguén intentou acceder á túa conta mais fíxoo cun segundo factor de autenticación non válido.
-      further_actions_html: Se non foches ti, recomendámosche %{action} inmediatamente xa que a conta podería estar en risco.
+      further_actions_html: Se non foches ti, recomendámosche %{action} inmediatamente porque a conta podería estar en risco.
       subject: Fallo co segundo factor de autenticación
       title: Fallou o segundo factor de autenticación
     suspicious_sign_in:

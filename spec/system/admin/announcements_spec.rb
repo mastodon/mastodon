@@ -45,7 +45,7 @@ RSpec.describe 'Admin::Announcements' do
 
       fill_in text_label,
               with: 'Announcement text'
-      save_changes
+      click_on submit_button
 
       expect(page)
         .to have_content(I18n.t('admin.announcements.updated_msg'))
@@ -94,10 +94,6 @@ RSpec.describe 'Admin::Announcements' do
 
   private
 
-  def css_id(record)
-    "##{dom_id(record)}" # TODO: Extract to system spec helper?
-  end
-
   def publish_announcement(announcement)
     within css_id(announcement) do
       click_on I18n.t('admin.announcements.publish')
@@ -114,10 +110,6 @@ RSpec.describe 'Admin::Announcements' do
     within css_id(announcement) do
       click_on I18n.t('generic.delete')
     end
-  end
-
-  def save_changes
-    click_on I18n.t('generic.save_changes')
   end
 
   def submit_form

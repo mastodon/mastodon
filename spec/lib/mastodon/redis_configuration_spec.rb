@@ -100,21 +100,64 @@ RSpec.describe Mastodon::RedisConfiguration do
         expect(subject[:url]).to eq 'redis://:testpass1@mainsentinel/0'
       end
 
+      it 'uses the redis password to authenticate with sentinels' do
+        expect(subject[:sentinel_password]).to eq 'testpass1'
+      end
+
       it 'includes the sentinel master name and list of sentinels' do
         expect(subject[:name]).to eq 'mainsentinel'
         expect(subject[:sentinels]).to contain_exactly({ host: '192.168.0.1', port: 3000 }, { host: '192.168.0.2', port: 4000 })
       end
+
+      context "when giving dedicated credentials in `#{prefix}REDIS_SENTINEL_USERNAME` and `#{prefix}REDIS_SENTINEL_PASSWORD`" do
+        around do |example|
+          ClimateControl.modify "#{prefix}REDIS_SENTINEL_USERNAME": 'sentinel_user', "#{prefix}REDIS_SENTINEL_PASSWORD": 'sentinel_pass1' do
+            example.run
+          end
+        end
+
+        it 'uses the credential to authenticate with sentinels' do
+          expect(subject[:sentinel_username]).to eq 'sentinel_user'
+          expect(subject[:sentinel_password]).to eq 'sentinel_pass1'
+        end
+      end
     end
 
     context 'when giving sentinels without port numbers' do
-      around do |example|
-        ClimateControl.modify "#{prefix}REDIS_SENTINELS": '192.168.0.1,192.168.0.2', "#{prefix}REDIS_SENTINEL_MASTER": 'mainsentinel' do
-          example.run
+      context "when no default port is given via `#{prefix}REDIS_SENTINEL_PORT`" do
+        around do |example|
+          ClimateControl.modify "#{prefix}REDIS_SENTINELS": '192.168.0.1,192.168.0.2', "#{prefix}REDIS_SENTINEL_MASTER": 'mainsentinel' do
+            example.run
+          end
+        end
+
+        it 'uses the default sentinel port' do
+          expect(subject[:sentinels]).to contain_exactly({ host: '192.168.0.1', port: 26_379 }, { host: '192.168.0.2', port: 26_379 })
         end
       end
 
-      it 'uses the default sentinel port' do
-        expect(subject[:sentinels]).to contain_exactly({ host: '192.168.0.1', port: 26_379 }, { host: '192.168.0.2', port: 26_379 })
+      context 'when adding port numbers to some, but not all sentinels' do
+        around do |example|
+          ClimateControl.modify "#{prefix}REDIS_SENTINELS": '192.168.0.1:5678,192.168.0.2', "#{prefix}REDIS_SENTINEL_MASTER": 'mainsentinel' do
+            example.run
+          end
+        end
+
+        it 'uses the given port number when available and the default otherwise' do
+          expect(subject[:sentinels]).to contain_exactly({ host: '192.168.0.1', port: 5678 }, { host: '192.168.0.2', port: 26_379 })
+        end
+      end
+
+      context "when a default port is given via `#{prefix}REDIS_SENTINEL_PORT`" do
+        around do |example|
+          ClimateControl.modify "#{prefix}REDIS_SENTINEL_PORT": '1234', "#{prefix}REDIS_SENTINELS": '192.168.0.1,192.168.0.2', "#{prefix}REDIS_SENTINEL_MASTER": 'mainsentinel' do
+            example.run
+          end
+        end
+
+        it 'uses the given port number' do
+          expect(subject[:sentinels]).to contain_exactly({ host: '192.168.0.1', port: 1234 }, { host: '192.168.0.2', port: 1234 })
+        end
       end
     end
   end
@@ -128,8 +171,6 @@ RSpec.describe Mastodon::RedisConfiguration do
           url: 'redis://localhost:6379/0',
           driver: :hiredis,
           namespace: nil,
-          name: nil,
-          sentinels: nil,
         })
       end
     end
@@ -162,8 +203,6 @@ RSpec.describe Mastodon::RedisConfiguration do
           url: 'redis://:testpass@redis.example.com:3333/3',
           driver: :hiredis,
           namespace: nil,
-          name: nil,
-          sentinels: nil,
         })
       end
     end
@@ -192,8 +231,6 @@ RSpec.describe Mastodon::RedisConfiguration do
         namespace: 'cache',
         expires_in: 10.minutes,
         connect_timeout: 5,
-        name: nil,
-        sentinels: nil,
         pool: {
           size: 5,
           timeout: 5,

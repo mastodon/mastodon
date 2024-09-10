@@ -13,7 +13,7 @@ RSpec.describe 'Languages' do
     end
 
     it 'returns the supported languages' do
-      expect(body_as_json.pluck(:code)).to match_array LanguagesHelper::SUPPORTED_LOCALES.keys.map(&:to_s)
+      expect(response.parsed_body.pluck(:code)).to match_array LanguagesHelper::SUPPORTED_LOCALES.keys.map(&:to_s)
     end
   end
 end

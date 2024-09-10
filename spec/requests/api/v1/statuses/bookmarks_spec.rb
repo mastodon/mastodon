@@ -28,7 +28,7 @@ RSpec.describe 'Bookmarks' do
       it 'returns json with updated attributes' do
         subject
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(id: status.id.to_s, bookmarked: true)
         )
       end
@@ -103,7 +103,7 @@ RSpec.describe 'Bookmarks' do
         it 'returns json with updated attributes' do
           subject
 
-          expect(body_as_json).to match(
+          expect(response.parsed_body).to match(
             a_hash_including(id: status.id.to_s, bookmarked: false)
           )
         end
@@ -127,7 +127,7 @@ RSpec.describe 'Bookmarks' do
         it 'returns json with updated attributes' do
           subject
 
-          expect(body_as_json).to match(
+          expect(response.parsed_body).to match(
             a_hash_including(id: status.id.to_s, bookmarked: false)
           )
         end

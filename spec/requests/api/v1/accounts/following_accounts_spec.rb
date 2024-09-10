@@ -21,8 +21,8 @@ RSpec.describe 'API V1 Accounts FollowingAccounts' do
       get "/api/v1/accounts/#{account.id}/following", params: { limit: 2 }, headers: headers
 
       expect(response).to have_http_status(200)
-      expect(body_as_json.size).to eq 2
-      expect([body_as_json[0][:id], body_as_json[1][:id]]).to contain_exactly(alice.id.to_s, bob.id.to_s)
+      expect(response.parsed_body.size).to eq 2
+      expect([response.parsed_body[0][:id], response.parsed_body[1][:id]]).to contain_exactly(alice.id.to_s, bob.id.to_s)
     end
 
     it 'does not return blocked users', :aggregate_failures do
@@ -30,8 +30,8 @@ RSpec.describe 'API V1 Accounts FollowingAccounts' do
       get "/api/v1/accounts/#{account.id}/following", params: { limit: 2 }, headers: headers
 
       expect(response).to have_http_status(200)
-      expect(body_as_json.size).to eq 1
-      expect(body_as_json[0][:id]).to eq alice.id.to_s
+      expect(response.parsed_body.size).to eq 1
+      expect(response.parsed_body[0][:id]).to eq alice.id.to_s
     end
 
     context 'when requesting user is blocked' do
@@ -41,7 +41,7 @@ RSpec.describe 'API V1 Accounts FollowingAccounts' do
 
       it 'hides results' do
         get "/api/v1/accounts/#{account.id}/following", params: { limit: 2 }, headers: headers
-        expect(body_as_json.size).to eq 0
+        expect(response.parsed_body.size).to eq 0
       end
     end
 
@@ -52,8 +52,8 @@ RSpec.describe 'API V1 Accounts FollowingAccounts' do
         account.mute!(bob)
         get "/api/v1/accounts/#{account.id}/following", params: { limit: 2 }, headers: headers
 
-        expect(body_as_json.size).to eq 2
-        expect([body_as_json[0][:id], body_as_json[1][:id]]).to contain_exactly(alice.id.to_s, bob.id.to_s)
+        expect(response.parsed_body.size).to eq 2
+        expect([response.parsed_body[0][:id], response.parsed_body[1][:id]]).to contain_exactly(alice.id.to_s, bob.id.to_s)
       end
     end
   end

@@ -69,8 +69,7 @@ RSpec.describe 'Accounts show response' do
             expect(response)
               .to have_http_status(200)
               .and render_template(:show)
-
-            expect(response.headers['Link'].to_s).to include ActivityPub::TagManager.instance.uri_for(account)
+              .and have_http_link_header(ActivityPub::TagManager.instance.uri_for(account)).for(rel: 'alternate')
           end
         end
 
@@ -135,7 +134,7 @@ RSpec.describe 'Accounts show response' do
                 media_type: eq('application/activity+json')
               )
 
-            expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
+            expect(response.parsed_body).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
           end
 
           context 'with authorized fetch mode' do
@@ -164,7 +163,7 @@ RSpec.describe 'Accounts show response' do
 
             expect(response.headers['Cache-Control']).to include 'private'
 
-            expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
+            expect(response.parsed_body).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
           end
         end
 
@@ -183,7 +182,7 @@ RSpec.describe 'Accounts show response' do
                 media_type: eq('application/activity+json')
               )
 
-            expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
+            expect(response.parsed_body).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
           end
 
           context 'with authorized fetch mode' do
@@ -199,7 +198,7 @@ RSpec.describe 'Accounts show response' do
               expect(response.headers['Cache-Control']).to include 'private'
               expect(response.headers['Vary']).to include 'Signature'
 
-              expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
+              expect(response.parsed_body).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
             end
           end
         end

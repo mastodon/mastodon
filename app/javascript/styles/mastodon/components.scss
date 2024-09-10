@@ -1607,15 +1607,29 @@ body > [data-popper-placement] {
 .status__prepend {
   padding: 16px;
   padding-bottom: 0;
-  display: inline-flex;
-  gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 15px;
   line-height: 22px;
   font-weight: 500;
   color: $dark-text-color;
 
-  .status__display-name strong {
-    color: $dark-text-color;
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 
   > span {
@@ -2796,7 +2810,7 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .column {
-  width: 350px;
+  width: 400px;
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -2829,7 +2843,7 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .drawer {
-  width: 300px;
+  width: 350px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -4711,20 +4725,12 @@ a.status-card {
   position: absolute;
   z-index: 100;
 
-  &--minified {
-    display: block;
-    inset-inline-start: 4px;
-    top: 4px;
-    width: auto;
-    height: auto;
+  &--hidden {
+    display: none;
   }
 
   &--click-thru {
     pointer-events: none;
-  }
-
-  &--hidden {
-    display: none;
   }
 
   &__overlay {
@@ -4738,19 +4744,20 @@ a.status-card {
     margin: 0;
     border: 0;
     color: $white;
+    line-height: 20px;
+    font-size: 14px;
 
     &__label {
       background-color: rgba($black, 0.45);
       backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
-      border-radius: 6px;
-      padding: 10px 15px;
+      border-radius: 8px;
+      padding: 12px 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 4px;
       flex-direction: column;
-      font-weight: 500;
-      font-size: 14px;
+      font-weight: 600;
     }
 
     &__action {
@@ -6444,7 +6451,7 @@ a.status-card {
   }
 
   .dialog-option .poll__input {
-    border-color: $inverted-text-color;
+    border-color: $darker-text-color;
     color: $ui-secondary-color;
     display: inline-flex;
     align-items: center;
@@ -6458,13 +6465,13 @@ a.status-card {
     &:active,
     &:focus,
     &:hover {
-      border-color: lighten($inverted-text-color, 15%);
+      border-color: $valid-value-color;
       border-width: 4px;
     }
 
     &.active {
-      border-color: $inverted-text-color;
-      background: $inverted-text-color;
+      border-color: $valid-value-color;
+      background: $valid-value-color;
     }
   }
 
@@ -6831,10 +6838,32 @@ a.status-card {
   z-index: 9999;
 }
 
-.media-gallery__item__badges {
+.media-gallery__actions {
   position: absolute;
   bottom: 6px;
-  inset-inline-start: 6px;
+  inset-inline-end: 6px;
+  display: flex;
+  gap: 2px;
+  z-index: 2;
+
+  &__pill {
+    display: block;
+    color: $white;
+    border: 0;
+    background: rgba($black, 0.65);
+    backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
+    padding: 3px 12px;
+    border-radius: 99px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+  }
+}
+
+.media-gallery__item__badges {
+  position: absolute;
+  bottom: 8px;
+  inset-inline-start: 8px;
   display: flex;
   gap: 2px;
 }
@@ -6847,18 +6876,13 @@ a.status-card {
   color: $white;
   background: rgba($black, 0.65);
   backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
-  padding: 2px 6px;
+  padding: 3px 8px;
   border-radius: 4px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   z-index: 1;
   pointer-events: none;
-  line-height: 18px;
-
-  .icon {
-    width: 15px;
-    height: 15px;
-  }
+  line-height: 20px;
 }
 
 .attachment-list {
@@ -8529,22 +8553,6 @@ noscript {
       word-break: break-word;
     }
   }
-
-  &--unread {
-    background: lighten($ui-base-color, 2%);
-
-    &:focus {
-      background: lighten($ui-base-color, 4%);
-    }
-
-    .conversation__content__info {
-      font-weight: 700;
-    }
-
-    .conversation__content__relative-time {
-      color: $primary-text-color;
-    }
-  }
 }
 
 .announcements {
@@ -8739,7 +8747,8 @@ noscript {
 }
 
 .notification,
-.status__wrapper {
+.status__wrapper,
+.conversation {
   position: relative;
 
   &.unread {
@@ -10938,6 +10947,7 @@ noscript {
 }
 
 .content-warning {
+  box-sizing: border-box;
   background: rgba($ui-highlight-color, 0.05);
   color: $secondary-text-color;
   border-top: 1px solid;

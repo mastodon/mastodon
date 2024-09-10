@@ -24,6 +24,8 @@ en:
   admin:
     account_actions:
       action: Perform action
+      already_silenced: This account has already been limited.
+      already_suspended: This account has already been suspended.
       title: Perform moderation action on %{acct}
     account_moderation_notes:
       create: Leave note
@@ -45,6 +47,7 @@ en:
         title: Change email for %{username}
       change_role:
         changed_msg: Role successfully changed!
+        edit_roles: Manage user roles
         label: Change role
         no_role: No role
         title: Change role for %{username}
@@ -601,6 +604,7 @@ en:
         suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
       actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an email notification will be sent to them, except when the <strong>Spam</strong> category is selected.
       actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
+      actions_no_posts: This report doesn't have any associated posts to delete
       add_to_report: Add more to report
       already_suspended_badges:
         local: Already suspended on this server

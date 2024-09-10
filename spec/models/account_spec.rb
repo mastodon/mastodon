@@ -723,6 +723,30 @@ RSpec.describe Account do
     end
   end
 
+  describe '#prepare_contents' do
+    subject { Fabricate.build :account, domain: domain, note: '  padded note  ', display_name: '  padded name  ' }
+
+    context 'with local account' do
+      let(:domain) { nil }
+
+      it 'strips values' do
+        expect { subject.valid? }
+          .to change(subject, :note).to('padded note')
+          .and(change(subject, :display_name).to('padded name'))
+      end
+    end
+
+    context 'with remote account' do
+      let(:domain) { 'host.example' }
+
+      it 'preserves values' do
+        expect { subject.valid? }
+          .to not_change(subject, :note)
+          .and(not_change(subject, :display_name))
+      end
+    end
+  end
+
   describe 'Normalizations' do
     describe 'username' do
       it { is_expected.to normalize(:username).from(" \u3000bob \t \u00a0 \n ").to('bob') }

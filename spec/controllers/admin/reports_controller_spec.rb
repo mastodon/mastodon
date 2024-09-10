@@ -47,6 +47,24 @@ RSpec.describe Admin::ReportsController do
       expect(response.body)
         .to include(report.comment)
     end
+
+    describe 'account moderation notes' do
+      let(:report) { Fabricate(:report) }
+
+      it 'includes moderation notes' do
+        note1 = Fabricate(:report_note, report: report)
+        note2 = Fabricate(:report_note, report: report)
+
+        get :show, params: { id: report }
+
+        expect(response).to have_http_status(200)
+
+        report_notes = assigns(:report_notes).to_a
+
+        expect(report_notes.size).to be 2
+        expect(report_notes).to eq [note1, note2]
+      end
+    end
   end
 
   describe 'POST #resolve' do
