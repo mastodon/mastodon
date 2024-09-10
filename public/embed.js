@@ -1,5 +1,7 @@
 // @ts-check
 
+const allowedPrefixes = (document.currentScript && document.currentScript.tagName.toUpperCase() === 'SCRIPT' && document.currentScript.dataset.allowedPrefixes) ? document.currentScript.dataset.allowedPrefixes.split(' ') : [];
+
 (function () {
   'use strict';
 
@@ -104,6 +106,7 @@
       var embedUrl = new URL(container.getAttribute('data-embed-url'));
 
       if (embedUrl.protocol !== 'https:' && embedUrl.protocol !== 'http:') return;
+      if (allowedPrefixes.every((allowedPrefix) => !embedUrl.toString().startsWith(allowedPrefix))) return;
 
       iframe.src = embedUrl.toString();
       iframe.width = container.clientWidth;

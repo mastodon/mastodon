@@ -45,7 +45,7 @@ class OEmbedSerializer < ActiveModel::Serializer
           <div style="font-weight: 500;">View on Mastodon</div>
         </a>
       </blockquote>
-      <script src="#{full_asset_url('embed.js', skip_pipeline: true)}" async="true"></script>
+      <script data-allowed-prefixes="#{root_url}" src="#{full_asset_url('embed.js', skip_pipeline: true)}" async="true"></script>
     HTML
   end
 
