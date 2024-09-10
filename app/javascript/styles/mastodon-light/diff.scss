@@ -159,13 +159,18 @@
 .error-modal,
 .onboarding-modal,
 .compare-history-modal,
-.report-modal__comment .setting-text__wrapper,
-.report-modal__comment .setting-text,
+.report-modal__comment,
+.report-modal__comment,
 .announcements,
 .picture-in-picture__header,
 .picture-in-picture__footer,
 .reactions-bar__item {
   background: $white;
+  border: 1px solid var(--background-border-color);
+}
+
+.setting-text__wrapper,
+.setting-text {
   border: 1px solid var(--background-border-color);
 }
 
@@ -196,14 +201,6 @@
 .icon-with-badge__badge {
   border-color: $white;
   color: $white;
-}
-
-.report-modal__comment {
-  border-right-color: lighten($ui-base-color, 8%);
-}
-
-.report-modal__container {
-  border-top-color: lighten($ui-base-color, 8%);
 }
 
 .column-settings__hashtags .column-select__option {
