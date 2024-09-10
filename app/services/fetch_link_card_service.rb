@@ -153,12 +153,13 @@ class FetchLinkCardService < BaseService
     return if html.nil?
 
     link_details_extractor = LinkDetailsExtractor.new(@url, @html, @html_charset)
-    provider = PreviewCardProvider.matching_domain(Addressable::URI.parse(link_details_extractor.canonical_url).normalized_host)
-    linked_account = ResolveAccountService.new.call(link_details_extractor.author_account, suppress_errors: true) if link_details_extractor.author_account.present? && provider&.trendable?
+    domain = Addressable::URI.parse(link_details_extractor.canonical_url).normalized_host
+    provider = PreviewCardProvider.matching_domain(domain)
+    linked_account = ResolveAccountService.new.call(link_details_extractor.author_account, suppress_errors: true) if link_details_extractor.author_account.present?
 
     @card = PreviewCard.find_or_initialize_by(url: link_details_extractor.canonical_url) if link_details_extractor.canonical_url != @card.url
     @card.assign_attributes(link_details_extractor.to_preview_card_attributes)
-    @card.author_account = linked_account
+    @card.author_account = linked_account if linked_account&.can_be_attributed_from?(domain) || provider&.trendable?
     @card.save_with_optional_image! unless @card.title.blank? && @card.html.blank?
   end
 end

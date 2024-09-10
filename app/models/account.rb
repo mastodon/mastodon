@@ -51,6 +51,7 @@
 #  reviewed_at                   :datetime
 #  requested_review_at           :datetime
 #  indexable                     :boolean          default(FALSE), not null
+#  attribution_domains           :string           default([]), is an Array
 #
 
 class Account < ApplicationRecord
@@ -88,6 +89,7 @@ class Account < ApplicationRecord
   include Account::Merging
   include Account::Search
   include Account::StatusesSearch
+  include Account::AttributionDomains
   include DomainMaterializable
   include DomainNormalizable
   include Paginable

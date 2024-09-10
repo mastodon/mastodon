@@ -63,6 +63,26 @@ RSpec.describe ActivityPub::ProcessAccountService do
     end
   end
 
+  context 'with attribution domains' do
+    let(:payload) do
+      {
+        id: 'https://foo.test',
+        type: 'Actor',
+        inbox: 'https://foo.test/inbox',
+        attributionDomains: [
+          'example.com',
+        ],
+      }.with_indifferent_access
+    end
+
+    it 'parses attribution domains' do
+      account = subject.call('alice', 'example.com', payload)
+
+      expect(account.attribution_domains)
+        .to match_array(%w(example.com))
+    end
+  end
+
   context 'when account is not suspended' do
     subject { described_class.new.call(account.username, account.domain, payload) }
 
