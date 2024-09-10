@@ -143,13 +143,13 @@ module ApplicationHelper
   end
 
   def body_classes
-    output = body_class_string.split
-    output << content_for(:body_classes)
-    output << "theme-#{current_theme.parameterize}"
-    output << 'system-font' if current_account&.user&.setting_system_font_ui
-    output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
-    output << 'rtl' if locale_direction == 'rtl'
-    output.compact_blank.join(' ')
+    class_names(
+      content_for(:body_classes),
+      "theme-#{current_theme.parameterize}",
+      (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion'),
+      locale_direction,
+      'system-font': current_account&.user&.setting_system_font_ui
+    )
   end
 
   def cdn_host
