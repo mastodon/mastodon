@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_08_125420) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_04_191323) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -933,6 +933,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_08_125420) do
     t.datetime "action_taken_at", precision: nil
     t.bigint "rule_ids", array: true
     t.bigint "application_id"
+    t.datetime "forwarded_at", precision: nil
+    t.string "forwarded_to_domains", default: [], null: false, array: true
+    t.bigint "forwarded_by_id"
     t.index ["account_id"], name: "index_reports_on_account_id"
     t.index ["action_taken_by_account_id"], name: "index_reports_on_action_taken_by_account_id", where: "(action_taken_by_account_id IS NOT NULL)"
     t.index ["assigned_account_id"], name: "index_reports_on_assigned_account_id", where: "(assigned_account_id IS NOT NULL)"
@@ -1363,6 +1366,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_08_125420) do
   add_foreign_key "report_notes", "reports", on_delete: :cascade
   add_foreign_key "reports", "accounts", column: "action_taken_by_account_id", name: "fk_bca45b75fd", on_delete: :nullify
   add_foreign_key "reports", "accounts", column: "assigned_account_id", on_delete: :nullify
+  add_foreign_key "reports", "accounts", column: "forwarded_by_id", on_delete: :nullify
   add_foreign_key "reports", "accounts", column: "target_account_id", name: "fk_eb37af34f0", on_delete: :cascade
   add_foreign_key "reports", "accounts", name: "fk_4b81f7522c", on_delete: :cascade
   add_foreign_key "reports", "oauth_applications", column: "application_id", on_delete: :nullify

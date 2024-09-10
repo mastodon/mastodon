@@ -51,24 +51,33 @@ RSpec.describe ReportService do
 
         context 'when forward_to_domains includes both the replied-to domain and the origin domain' do
           it 'sends ActivityPub payload to both the author of the replied-to post and the reported user' do
-            subject.call(source_account, remote_account, status_ids: [reported_status.id], forward: forward, forward_to_domains: [remote_account.domain, remote_thread_account.domain])
+            report = subject.call(source_account, remote_account, status_ids: [reported_status.id], forward: forward, forward_to_domains: [remote_account.domain, remote_thread_account.domain])
             expect(a_request(:post, 'http://foo.com/inbox')).to have_been_made
             expect(a_request(:post, 'http://example.com/inbox')).to have_been_made
+
+            expect(report.forwarded_to_domains).to contain_exactly('foo.com', 'example.com')
+            expect(report.forwarded_by).to be source_account
           end
         end
 
         context 'when forward_to_domains includes only the replied-to domain' do
           it 'sends ActivityPub payload only to the author of the replied-to post' do
-            subject.call(source_account, remote_account, status_ids: [reported_status.id], forward: forward, forward_to_domains: [remote_thread_account.domain])
+            report = subject.call(source_account, remote_account, status_ids: [reported_status.id], forward: forward, forward_to_domains: [remote_thread_account.domain])
             expect(a_request(:post, 'http://foo.com/inbox')).to have_been_made
             expect(a_request(:post, 'http://example.com/inbox')).to_not have_been_made
+
+            expect(report.forwarded_to_domains).to contain_exactly('foo.com')
+            expect(report.forwarded_by).to be source_account
           end
         end
 
         context 'when forward_to_domains does not include the replied-to domain' do
           it 'does not send ActivityPub payload to the author of the replied-to post' do
-            subject.call(source_account, remote_account, status_ids: [reported_status.id], forward: forward)
+            report = subject.call(source_account, remote_account, status_ids: [reported_status.id], forward: forward)
             expect(a_request(:post, 'http://foo.com/inbox')).to_not have_been_made
+
+            expect(report.forwarded_to_domains).to contain_exactly('example.com')
+            expect(report.forwarded_by).to be source_account
           end
         end
       end
@@ -95,8 +104,11 @@ RSpec.describe ReportService do
 
     context 'when forward is false' do
       it 'does not send anything' do
-        subject.call(source_account, remote_account, forward: forward)
+        report = subject.call(source_account, remote_account, forward: forward)
         expect(a_request(:post, 'http://example.com/inbox')).to_not have_been_made
+
+        expect(report.forwarded_to_domains).to eq []
+        expect(report.forwarded_by).to be_nil
       end
     end
   end

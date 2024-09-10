@@ -3,6 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Report do
+  let(:local_account) { Fabricate(:account, domain: nil) }
+  let(:remote_account) { Fabricate(:account, domain: 'example.com') }
+
   describe 'statuses' do
     it 'returns the statuses for the report' do
       status = Fabricate(:status)
@@ -20,6 +23,77 @@ RSpec.describe Report do
       report  = Fabricate(:report, status_ids: [status1.id, status2.id])
 
       expect(report.media_attachments_count).to eq 3
+    end
+  end
+
+  describe 'forwardable?' do
+    it 'returns true if the target account is not local' do
+      report = Fabricate(:report, target_account: remote_account)
+
+      expect(report.forwardable?).to be true
+    end
+
+    it 'returns false if the target account is local' do
+      report = Fabricate(:report, target_account: local_account)
+
+      expect(report.forwardable?).to be false
+    end
+  end
+
+  describe 'forwardable_to_domains' do
+    context 'when the reporting account is not local' do
+      let(:report) { Fabricate(:report, account: remote_account, target_account: local_account) }
+
+      it 'returns an empty list' do
+        expect(report.forwardable_to_domains).to eql []
+      end
+    end
+
+    context 'when the reported account is local' do
+      let(:report) { Fabricate(:report, target_account: local_account, account: local_account) }
+
+      it 'returns an empty list' do
+        expect(report.forwardable_to_domains).to eql []
+      end
+    end
+
+    context 'when the reported account is local and the statuses are in a thread with remote participants' do
+      let(:remote_thread_account) { Fabricate(:account, domain: 'foo.com') }
+      let(:reported_status) { Fabricate(:status, account: local_account, thread: Fabricate(:status, account: remote_thread_account)) }
+      let(:report) { Fabricate(:report, target_account: local_account, account: local_account, status_ids: [reported_status.id]) }
+
+      it 'returns a list of all participating domains' do
+        expect(report.forwardable_to_domains).to eql ['foo.com']
+      end
+    end
+
+    context 'when the reported account is remote and the statuses are in a thread with remote participants' do
+      let(:remote_thread_account) { Fabricate(:account, domain: 'foo.com') }
+      let(:reported_status) { Fabricate(:status, account: remote_account, thread: Fabricate(:status, account: remote_thread_account)) }
+      let(:report) { Fabricate(:report, target_account: remote_account, account: local_account, status_ids: [reported_status.id]) }
+
+      it 'returns a list of all participating domains' do
+        expect(report.forwardable_to_domains).to eql ['example.com', 'foo.com']
+      end
+    end
+
+    context 'when the reported account is remote and the statuses are in a thread with participants on the same server' do
+      let(:remote_thread_account) { Fabricate(:account, domain: 'example.com') }
+      let(:reported_status) { Fabricate(:status, account: remote_account, thread: Fabricate(:status, account: remote_thread_account)) }
+      let(:report) { Fabricate(:report, target_account: remote_account, account: local_account, status_ids: [reported_status.id]) }
+
+      it 'returns a list of all participating domains without duplicates' do
+        expect(report.forwardable_to_domains).to eql ['example.com']
+      end
+    end
+
+    context 'when the reported account is remote and the status is not in a thread' do
+      let(:reported_status) { Fabricate(:status, account: remote_account) }
+      let(:report) { Fabricate(:report, target_account: remote_account, account: local_account, status_ids: [reported_status.id]) }
+
+      it 'returns a list of just the domain of the reported account' do
+        expect(report.forwardable_to_domains).to eql ['example.com']
+      end
     end
   end
 

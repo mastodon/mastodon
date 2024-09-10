@@ -19,8 +19,9 @@ class ReportService < BaseService
     notify_staff!
 
     if forward?
-      forward_to_origin!
-      forward_to_replied_to!
+      ReportForwardingService.new.call(@report, @source_account, {
+        forward_to_domains: @options[:forward_to_domains] || [@report.target_account.domain],
+      })
     end
 
     @report
@@ -34,7 +35,6 @@ class ReportService < BaseService
       status_ids: reported_status_ids,
       comment: @comment,
       uri: @options[:uri],
-      forwarded: forward_to_origin?,
       category: @category,
       rule_ids: @rule_ids,
       application: @application
@@ -50,32 +50,8 @@ class ReportService < BaseService
     end
   end
 
-  def forward_to_origin!
-    return unless forward_to_origin?
-
-    # Send report to the server where the account originates from
-    ActivityPub::DeliveryWorker.perform_async(payload, some_local_account.id, @target_account.inbox_url)
-  end
-
-  def forward_to_replied_to!
-    # Send report to servers to which the account was replying to, so they also have a chance to act
-    inbox_urls = Account.remote.where(domain: forward_to_domains).where(id: Status.where(id: reported_status_ids).where.not(in_reply_to_account_id: nil).select(:in_reply_to_account_id)).inboxes - [@target_account.inbox_url, @target_account.shared_inbox_url]
-
-    inbox_urls.each do |inbox_url|
-      ActivityPub::DeliveryWorker.perform_async(payload, some_local_account.id, inbox_url)
-    end
-  end
-
   def forward?
-    !@target_account.local? && ActiveModel::Type::Boolean.new.cast(@options[:forward])
-  end
-
-  def forward_to_origin?
-    forward? && forward_to_domains.include?(@target_account.domain)
-  end
-
-  def forward_to_domains
-    @forward_to_domains ||= (@options[:forward_to_domains] || [@target_account.domain]).filter_map { |domain| TagManager.instance.normalize_domain(domain&.strip) }.uniq
+    @report.forwardable? && ActiveModel::Type::Boolean.new.cast(@options[:forward])
   end
 
   def reported_status_ids
@@ -89,13 +65,5 @@ class ReportService < BaseService
     scope.merge!(scope.where(visibility: visibility).or(scope.where('EXISTS (SELECT 1 FROM mentions m JOIN accounts a ON m.account_id = a.id WHERE lower(a.domain) = ?)', domain)))
     # Allow missing posts to not drop reports that include e.g. a deleted post
     scope.where(id: Array(@status_ids)).pluck(:id)
-  end
-
-  def payload
-    Oj.dump(serialize_payload(@report, ActivityPub::FlagSerializer, account: some_local_account))
-  end
-
-  def some_local_account
-    @some_local_account ||= Account.representative
   end
 end

@@ -624,9 +624,22 @@ en:
       confirm_action: Confirm moderation action against @%{acct}
       created_at: Reported
       delete_and_resolve: Delete posts
+      forward: Forward
       forwarded: Forwarded
       forwarded_replies_explanation: This report is from a remote user and about remote content. It has been forwarded to you because the reported content is in reply to one of your users.
-      forwarded_to: Forwarded to %{domain}
+      forwarded_to:
+        one: Forwarded to %{domain}
+        other: Forwarded to %{count} instances
+      forwarded_to_origin: "(origin)"
+      forwarding:
+        comment: Comment
+        comment_label: Override Comment
+        comment_hint: 'You can optionally override the comment by editing it below. Maximum %{maxlength} characters'
+        create: 'Forward report'
+        description: You can forward this report to additional servers if the reporter didn't originally forward it. These will appear as reports from your server, but not identify you specifically as the reporter.
+        domains_hint: 'You can forward to the following domains, those that are disabled have already been forwarded to'
+        processed_msg: 'Report #%{id} has been successfully forwarded'
+      forward_report: 'Forward Report #%{id}'
       mark_as_resolved: Mark as resolved
       mark_as_sensitive: Mark as sensitive
       mark_as_unresolved: Mark as unresolved

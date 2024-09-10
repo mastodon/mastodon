@@ -1389,6 +1389,10 @@ a.sparkline {
       &__header {
         font-weight: 600;
         padding: 4px 0;
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+        justify-content: space-between;
       }
     }
 
@@ -1570,6 +1574,7 @@ a.sparkline {
 }
 
 .report-notes {
+  margin-top: 10px;
   margin-bottom: 20px;
 
   &__item {

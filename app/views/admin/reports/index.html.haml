@@ -68,12 +68,15 @@
                 = material_symbol('photo_camera')
                 = report.media_attachments_count
 
-              - if report.forwarded?
+              - unless report.forwarded_to_domains.empty?
                 ·
-                = t('admin.reports.forwarded_to', domain: target_account.domain)
+                %span{ title: report.forwarded_to_domains.size > 1 ? report.forwarded_to_domains.join(', ') : nil }
+                  = t('admin.reports.forwarded_to', domain: report.forwarded_to_domains.first, count: report.forwarded_to_domains.size)
 
           .report-card__summary__item__assigned
-            - if report.assigned_account.present?
+            - if report.action_taken?
+              = admin_account_link_to report.action_taken_by_account
+            - elsif report.assigned_account.present?
               = admin_account_link_to report.assigned_account
             - else
               \-

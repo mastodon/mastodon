@@ -28,15 +28,20 @@
         = t('admin.reports.resolved')
       - else
         = t('admin.reports.unresolved')
-  - if report.account.local? && !report.target_account.local?
+  - if report.account.local? && !report.forwardable_to_domains.empty?
     .report-header__details__item
       .report-header__details__item__header
         %strong= t('admin.reports.forwarded')
+        - unless report.forwardable_to_domains.all? { |domain| report.forwarded_to_domains.include?(domain) }
+          = table_link_to 'forward', t('admin.reports.forward'), new_admin_report_forwarding_path(report)
       .report-header__details__item__content
-        - if report.forwarded?
-          = t('simple_form.yes')
-        - else
-          = t('simple_form.no')
+        %ul
+          - report.forwardable_to_domains.each do |domain|
+            %li
+              %input{ type: 'checkbox', disabled: true, checked: report.forwarded_to_domains.include?(domain) }
+              = domain
+              - if report.target_account.domain == domain
+                = t('admin.reports.forwarded_to_origin')
   - if report.action_taken_by_account.present?
     .report-header__details__item
       .report-header__details__item__header
@@ -47,13 +52,11 @@
     .report-header__details__item
       .report-header__details__item__header
         %strong= t('admin.reports.assigned')
+        - if report.assigned_account != current_user.account
+          = table_link_to 'person', t('admin.reports.assign_to_self'), assign_to_self_admin_report_path(report), method: :post
       .report-header__details__item__content
         - if report.assigned_account.nil?
           = t 'admin.reports.no_one_assigned'
         - else
           = admin_account_link_to report.assigned_account
-        —
-        - if report.assigned_account != current_user.account
-          = table_link_to 'person', t('admin.reports.assign_to_self'), assign_to_self_admin_report_path(report), method: :post
-        - elsif !report.assigned_account.nil?
           = table_link_to 'delete', t('admin.reports.unassign'), unassign_admin_report_path(report), method: :post
