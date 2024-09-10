@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_08_125420) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_22_171341) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -1131,6 +1131,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_08_125420) do
     t.float "max_score"
     t.datetime "max_score_at", precision: nil
     t.string "display_name"
+    t.boolean "highlighted", default: false, null: false
     t.index "lower((name)::text) text_pattern_ops", name: "index_tags_on_name_lower_btree", unique: true
   end
 

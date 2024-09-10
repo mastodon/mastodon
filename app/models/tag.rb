@@ -17,6 +17,7 @@
 #  max_score           :float
 #  max_score_at        :datetime
 #  display_name        :string
+#  highlighted         :boolean          default(FALSE), not null
 #
 
 class Tag < ApplicationRecord
@@ -50,6 +51,7 @@ class Tag < ApplicationRecord
   validate :validate_name_change, if: -> { !new_record? && name_changed? }
   validate :validate_display_name_change, if: -> { !new_record? && display_name_changed? }
 
+  scope :highlighted, -> { where(highlighted: true) }
   scope :reviewed, -> { where.not(reviewed_at: nil) }
   scope :unreviewed, -> { where(reviewed_at: nil) }
   scope :pending_review, -> { unreviewed.where.not(requested_review_at: nil) }
