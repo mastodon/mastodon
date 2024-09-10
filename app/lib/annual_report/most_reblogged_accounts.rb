@@ -2,21 +2,33 @@
 
 class AnnualReport::MostRebloggedAccounts < AnnualReport::Source
   SET_SIZE = 10
+  MINIMUM_COUNT = 1
 
   def generate
     {
-      most_reblogged_accounts: most_reblogged_accounts.map do |(account_id, count)|
-                                 {
-                                   account_id: account_id.to_s,
-                                   count: count,
-                                 }
-                               end,
+      most_reblogged_accounts: account_map,
     }
   end
 
   private
 
+  def account_map
+    most_reblogged_accounts.map do |account_id, count|
+      {
+        account_id: account_id.to_s,
+        count: count,
+      }
+    end
+  end
+
   def most_reblogged_accounts
-    report_statuses.where.not(reblog_of_id: nil).joins(reblog: :account).group('accounts.id').having('count(*) > 1').order(total: :desc).limit(SET_SIZE).pluck(Arel.sql('accounts.id, count(*) as total'))
+    report_statuses
+      .with_reblogs
+      .group(Account.arel_table[:id])
+      .having(Arel.star.count.gt(MINIMUM_COUNT))
+      .joins(reblog: :account)
+      .limit(SET_SIZE)
+      .order(total: :desc)
+      .pluck(Account.arel_table[:id], Arel.star.count.as('total'))
   end
 end

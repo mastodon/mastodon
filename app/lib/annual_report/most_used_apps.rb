@@ -5,18 +5,27 @@ class AnnualReport::MostUsedApps < AnnualReport::Source
 
   def generate
     {
-      most_used_apps: most_used_apps.map do |(name, count)|
-                        {
-                          name: name,
-                          count: count,
-                        }
-                      end,
+      most_used_apps: app_map,
     }
   end
 
   private
 
+  def app_map
+    most_used_apps.map do |name, count|
+      {
+        name: name,
+        count: count,
+      }
+    end
+  end
+
   def most_used_apps
-    report_statuses.joins(:application).group('oauth_applications.name').order(total: :desc).limit(SET_SIZE).pluck(Arel.sql('oauth_applications.name, count(*) as total'))
+    report_statuses
+      .group(Doorkeeper::Application.arel_table[:name])
+      .joins(:application)
+      .limit(SET_SIZE)
+      .order(total: :desc)
+      .pluck(Doorkeeper::Application.arel_table[:name], Arel.star.count.as('total'))
   end
 end
