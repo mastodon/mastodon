@@ -8,9 +8,9 @@ RSpec.describe 'Notifications' do
   let(:scopes)  { 'read:notifications write:notifications' }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  describe 'GET /api/v2_alpha/notifications/unread_count', :inline_jobs do
+  describe 'GET /api/v2/notifications/unread_count', :inline_jobs do
     subject do
-      get '/api/v2_alpha/notifications/unread_count', headers: headers, params: params
+      get '/api/v2/notifications/unread_count', headers: headers, params: params
     end
 
     let(:params) { {} }
@@ -84,21 +84,21 @@ RSpec.describe 'Notifications' do
 
     context 'when there are more notifications than the limit' do
       before do
-        stub_const('Api::V2Alpha::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT', 2)
+        stub_const('Api::V2::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT', 2)
       end
 
       it 'returns a capped value' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(response.parsed_body[:count]).to eq Api::V2Alpha::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT
+        expect(response.parsed_body[:count]).to eq Api::V2::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT
       end
     end
   end
 
-  describe 'GET /api/v2_alpha/notifications', :inline_jobs do
+  describe 'GET /api/v2/notifications', :inline_jobs do
     subject do
-      get '/api/v2_alpha/notifications', headers: headers, params: params
+      get '/api/v2/notifications', headers: headers, params: params
     end
 
     let(:bob)    { Fabricate(:user) }
@@ -206,10 +206,10 @@ RSpec.describe 'Notifications' do
 
         expect(response)
           .to include_pagination_headers(
-            prev: api_v2_alpha_notifications_url(limit: params[:limit], min_id: notifications.first.id),
+            prev: api_v2_notifications_url(limit: params[:limit], min_id: notifications.first.id),
             # TODO: one downside of the current approach is that we return the first ID matching the group,
             # not the last that has been skipped, so pagination is very likely to give overlap
-            next: api_v2_alpha_notifications_url(limit: params[:limit], max_id: notifications[3].id)
+            next: api_v2_notifications_url(limit: params[:limit], max_id: notifications[3].id)
           )
       end
     end
@@ -226,10 +226,10 @@ RSpec.describe 'Notifications' do
 
         expect(response)
           .to include_pagination_headers(
-            prev: api_v2_alpha_notifications_url(limit: params[:limit], min_id: notifications.first.id),
+            prev: api_v2_notifications_url(limit: params[:limit], min_id: notifications.first.id),
             # TODO: one downside of the current approach is that we return the first ID matching the group,
             # not the last that has been skipped, so pagination is very likely to give overlap
-            next: api_v2_alpha_notifications_url(limit: params[:limit], max_id: notifications[1].id)
+            next: api_v2_notifications_url(limit: params[:limit], max_id: notifications[1].id)
           )
       end
     end
@@ -269,9 +269,9 @@ RSpec.describe 'Notifications' do
     end
   end
 
-  describe 'GET /api/v2_alpha/notifications/:id' do
+  describe 'GET /api/v2/notifications/:id' do
     subject do
-      get "/api/v2_alpha/notifications/#{notification.group_key}", headers: headers
+      get "/api/v2/notifications/#{notification.group_key}", headers: headers
     end
 
     let(:notification) { Fabricate(:notification, account: user.account, group_key: 'foobar') }
@@ -295,9 +295,9 @@ RSpec.describe 'Notifications' do
     end
   end
 
-  describe 'POST /api/v2_alpha/notifications/:id/dismiss' do
+  describe 'POST /api/v2/notifications/:id/dismiss' do
     subject do
-      post "/api/v2_alpha/notifications/#{notification.group_key}/dismiss", headers: headers
+      post "/api/v2/notifications/#{notification.group_key}/dismiss", headers: headers
     end
 
     let!(:notification) { Fabricate(:notification, account: user.account, group_key: 'foobar') }
@@ -322,9 +322,9 @@ RSpec.describe 'Notifications' do
     end
   end
 
-  describe 'POST /api/v2_alpha/notifications/clear' do
+  describe 'POST /api/v2/notifications/clear' do
     subject do
-      post '/api/v2_alpha/notifications/clear', headers: headers
+      post '/api/v2/notifications/clear', headers: headers
     end
 
     before do

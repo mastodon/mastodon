@@ -341,9 +341,7 @@ namespace :api, format: false do
     namespace :notifications do
       resource :policy, only: [:show, :update]
     end
-  end
 
-  namespace :v2_alpha do
     resources :notifications, param: :group_key, only: [:index, :show] do
       collection do
         post :clear
