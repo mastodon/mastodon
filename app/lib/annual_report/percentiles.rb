@@ -1,19 +1,37 @@
 # frozen_string_literal: true
 
 class AnnualReport::Percentiles < AnnualReport::Source
+  THRESHOLD_ADJUSTMENT = 1.0
+
   def generate
     {
       percentiles: {
-        followers: (total_with_fewer_followers / (total_with_any_followers + 1.0)) * 100,
-        statuses: (total_with_fewer_statuses / (total_with_any_statuses + 1.0)) * 100,
+        followers: followers_percentile,
+        statuses: statuses_percentile,
       },
     }
   end
 
   private
 
+  def followers_percentile
+    (total_with_fewer_followers / adjusted_any_followers_count) * 100
+  end
+
+  def statuses_percentile
+    (total_with_fewer_statuses / adjusted_any_statuses_count) * 100
+  end
+
+  def adjusted_any_followers_count
+    total_with_any_followers + THRESHOLD_ADJUSTMENT
+  end
+
+  def adjusted_any_statuses_count
+    total_with_any_statuses + THRESHOLD_ADJUSTMENT
+  end
+
   def followers_gained
-    @followers_gained ||= @account.passive_relationships.where("date_part('year', follows.created_at) = ?", @year).count
+    @followers_gained ||= report_followers.count
   end
 
   def statuses_created
@@ -53,10 +71,36 @@ class AnnualReport::Percentiles < AnnualReport::Source
   end
 
   def total_with_any_followers
-    @total_with_any_followers ||= Follow.where("date_part('year', follows.created_at) = ?", @year).joins(:target_account).merge(Account.local).count('distinct follows.target_account_id')
+    @total_with_any_followers ||= local_account_targetting_follows.distinct.count(Follow.arel_table[:target_account_id])
   end
 
   def total_with_any_statuses
-    @total_with_any_statuses ||= Status.where(id: year_as_snowflake_range).joins(:account).merge(Account.local).count('distinct statuses.account_id')
+    @total_with_any_statuses ||= local_account_statuses.distinct.count(Status.arel_table[:account_id])
+  end
+
+  def local_account_targetting_follows
+    Follow
+      .where(follows_created_year.eq(@year))
+      .joins(:target_account)
+      .merge(Account.local)
+  end
+
+  def local_account_statuses
+    Status
+      .where(id: year_as_snowflake_range)
+      .joins(:account)
+      .merge(Account.local)
+  end
+
+  def report_followers
+    @account
+      .passive_relationships
+      .where(follows_created_year.eq(@year))
+  end
+
+  def follows_created_year
+    Arel.sql(<<~SQL.squish)
+      DATE_PART('year', follows.created_at)::int
+    SQL
   end
 end
