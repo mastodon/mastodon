@@ -25,6 +25,8 @@ tr:
   admin:
     account_actions:
       action: Eylemi gerçekleştir
+      already_silenced: Bu hesap zaten askıya alınmış.
+      already_suspended: Bu hesap zaten askıya alınmış.
       title: "%{acct} üzerinde denetleme eylemi gerçekleştir"
     account_moderation_notes:
       create: Not bırak
@@ -46,6 +48,7 @@ tr:
         title: "%{username} için e-postayı değiştir"
       change_role:
         changed_msg: Rol başarıyla değiştirildi!
+        edit_roles: Kullanıcı rollerini yönetin
         label: Rolü değiştir
         no_role: Rol yok
         title: "%{username} için rolü değiştir"
@@ -602,6 +605,7 @@ tr:
         suspend_description_html: Bu hesap ve tüm içeriği erişilmez olacak ve nihayetinde silinecek ve bu hesapla etkileşim mümkün olmayacaktır. 30 gün içinde geri alınabilir. Bu hesaba yönelik tüm bildiriimleri kapatır.
       actions_description_html: Bu bildirimi çözmek için ne yapılması gerektiğine karar verin. Bildirilen hesap için ceza işlemi yaparsanız, <strong>İstenmeyen</strong> kategorisi seçilmemişse, onlara bir e-posta duyurusu gönderilecektir.
       actions_description_remote_html: Bu bildirimi çözmek için hangi eylemi yapmak istediğinize karar verin. Bu yalnızca <strong>sizin</strong> sunucunuzun bu uzak hesapla nasıl etkileşeğini ve içeriğiyle ne yapacağını etkiler.
+      actions_no_posts: Bu raporun ilişkili olduğu silinecek gönderi yok
       add_to_report: Bildirime daha fazlasını ekle
       already_suspended_badges:
         local: Bu sunucuda zaten askıya alınmış
