@@ -33,7 +33,7 @@
         = material_symbol('repeat_active')
         = t('statuses.boosted_from_html', acct_link: admin_account_inline_link_to(status.proper.account))
       - else
-        = fa_visibility_icon(status)
+        = material_symbol visibility_icon(status)
         = t("statuses.visibilities.#{status.visibility}")
       - if status.proper.sensitive?
         ·
