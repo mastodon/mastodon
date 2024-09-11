@@ -17,6 +17,7 @@ import type { Status } from 'mastodon/models/status';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { EmbeddedStatusContent } from './embedded_status_content';
+import { EmbeddedStatusThumbnail } from './embedded_status_thumbnail';
 
 export type Mention = RecordOf<{ url: string; acct: string }>;
 
@@ -142,12 +143,19 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
       )}
 
       {(!contentWarning || expanded) && (
-        <EmbeddedStatusContent
-          className='notification-group__embedded-status__content reply-indicator__content translate'
-          content={contentHtml}
-          language={language}
-          mentions={mentions}
-        />
+        <div className='notification-group__embedded-status__row'>
+          <EmbeddedStatusThumbnail
+            className='notification-group__embedded-status__thumbnail'
+            statusId={statusId}
+          />
+
+          <EmbeddedStatusContent
+            className='notification-group__embedded-status__content reply-indicator__content translate'
+            content={contentHtml}
+            language={language}
+            mentions={mentions}
+          />
+        </div>
       )}
 
       {expanded && (poll || mediaAttachmentsSize > 0) && (
