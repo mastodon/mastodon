@@ -13,6 +13,7 @@ RSpec.describe FetchLinkCardService do
     stub_request(:get, 'http://example.com/not-found').to_return(status: 404, headers: { 'Content-Type' => 'text/html' }, body: html)
     stub_request(:get, 'http://example.com/text').to_return(status: 404, headers: { 'Content-Type' => 'text/plain' }, body: 'Hello')
     stub_request(:get, 'http://example.com/redirect').to_return(status: 302, headers: { 'Location' => 'http://example.com/html' })
+    stub_request(:get, 'http://example.net/redirect-to-other-domain').to_return(status: 302, headers: { 'Location' => 'http://example.com/html' })
     stub_request(:get, 'http://example.com/redirect-to-404').to_return(status: 302, headers: { 'Location' => 'http://example.com/not-found' })
     stub_request(:get, 'http://example.com/oembed?url=http://example.com/html').to_return(headers: { 'Content-Type' => 'application/json' }, body: '{ "version": "1.0", "type": "link", "title": "oEmbed title" }')
     stub_request(:get, 'http://example.com/oembed?format=json&url=http://example.com/html').to_return(headers: { 'Content-Type' => 'application/json' }, body: '{ "version": "1.0", "type": "link", "title": "oEmbed title" }')
@@ -254,6 +255,39 @@ RSpec.describe FetchLinkCardService do
 
         it 'uses the cached oEmbed response' do
           expect(a_request(:get, 'http://example.com/oembed?url=http://example.com/html')).to_not have_been_made
+          expect(a_request(:get, 'http://example.com/oembed?format=json&url=http://example.com/html')).to have_been_made
+        end
+
+        it 'creates preview card' do
+          expect(status.preview_card).to_not be_nil
+          expect(status.preview_card.url).to eq 'http://example.com/html'
+          expect(status.preview_card.title).to eq 'oEmbed title'
+        end
+      end
+
+      context 'when oEmbed endpoint cache populated with redirect target' do
+        let(:status) { Fabricate(:status, text: 'http://example.net/redirect-to-other-domain') }
+        let(:oembed_cache) { { endpoint: 'http://example.com/oembed?format=json&url={url}', format: :json } }
+
+        it 'uses the cached oEmbed response' do
+          expect(a_request(:get, 'http://example.net/redirect-to-other-domain')).to have_been_made
+          expect(a_request(:get, 'http://example.com/oembed?url=http://example.com/html')).to have_been_made
+        end
+
+        it 'creates preview card' do
+          expect(status.preview_card).to_not be_nil
+          expect(status.preview_card.url).to eq 'http://example.com/html'
+          expect(status.preview_card.title).to eq 'oEmbed title'
+        end
+      end
+
+      context 'when oEmbed endpoint cache populated with redirect target but page contains no oEmbed tags' do
+        let(:status) { Fabricate(:status, text: 'http://example.net/redirect-to-other-domain') }
+        let(:html) { 'Please fill out CAPTCHA' }
+        let(:oembed_cache) { { endpoint: 'http://example.com/oembed?format=json&url={url}', format: :json } }
+
+        it 'uses the cached oEmbed response' do
+          expect(a_request(:get, 'http://example.net/redirect-to-other-domain')).to have_been_made
           expect(a_request(:get, 'http://example.com/oembed?format=json&url=http://example.com/html')).to have_been_made
         end
 
