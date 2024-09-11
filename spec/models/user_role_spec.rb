@@ -24,6 +24,26 @@ RSpec.describe UserRole do
     end
   end
 
+  describe 'Callback for position' do
+    context 'when everyone' do
+      subject { Fabricate.build :user_role, id: described_class::EVERYONE_ROLE_ID }
+
+      it 'sets the position to nobody position' do
+        expect { subject.valid? }
+          .to change(subject, :position).to(described_class::NOBODY_POSITION)
+      end
+    end
+
+    context 'when not everyone' do
+      subject { Fabricate.build :user_role }
+
+      it 'does not change the position' do
+        expect { subject.valid? }
+          .to_not change(subject, :position)
+      end
+    end
+  end
+
   describe '#can?' do
     subject { Fabricate :user_role }
 
