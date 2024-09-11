@@ -111,30 +111,12 @@ module Account::Interactions
     has_many :announcement_mutes, dependent: :destroy
   end
 
-  def follow!(other_account, reblogs: nil, notify: nil, languages: nil, uri: nil, rate_limit: false, bypass_limit: false)
-    rel = active_relationships.create_with(show_reblogs: reblogs.nil? ? true : reblogs, notify: notify.nil? ? false : notify, languages: languages, uri: uri, rate_limit: rate_limit, bypass_follow_limit: bypass_limit)
-                              .find_or_create_by!(target_account: other_account)
-
-    rel.show_reblogs = reblogs   unless reblogs.nil?
-    rel.notify       = notify    unless notify.nil?
-    rel.languages    = languages unless languages.nil?
-
-    rel.save! if rel.changed?
-
-    rel
+  def follow!(other_account, ...)
+    handle_follow(active_relationships, other_account, ...)
   end
 
-  def request_follow!(other_account, reblogs: nil, notify: nil, languages: nil, uri: nil, rate_limit: false, bypass_limit: false)
-    rel = follow_requests.create_with(show_reblogs: reblogs.nil? ? true : reblogs, notify: notify.nil? ? false : notify, uri: uri, languages: languages, rate_limit: rate_limit, bypass_follow_limit: bypass_limit)
-                         .find_or_create_by!(target_account: other_account)
-
-    rel.show_reblogs = reblogs   unless reblogs.nil?
-    rel.notify       = notify    unless notify.nil?
-    rel.languages    = languages unless languages.nil?
-
-    rel.save! if rel.changed?
-
-    rel
+  def request_follow!(other_account, ...)
+    handle_follow(follow_requests, other_account, ...)
   end
 
   def block!(other_account, uri: nil)
@@ -304,5 +286,26 @@ module Account::Interactions
 
   def normalized_domain(domain)
     TagManager.instance.normalize_domain(domain)
+  end
+
+  def handle_follow(relation, other_account, reblogs: nil, notify: nil, languages: nil, uri: nil, rate_limit: false, bypass_limit: false)
+    relation
+      .create_with(
+        show_reblogs: reblogs.nil? ? true : reblogs,
+        notify: notify.nil? ? false : notify,
+        uri: uri,
+        languages: languages,
+        rate_limit: rate_limit,
+        bypass_follow_limit: bypass_limit
+      )
+      .find_or_create_by!(
+        target_account: other_account
+      ).tap do |record|
+        # For any existing record, update to align with passed in arguments if they differ
+        record.show_reblogs = reblogs unless reblogs.nil?
+        record.notify = notify unless notify.nil?
+        record.languages = languages unless languages.nil?
+        record.save! if record.changed?
+      end
   end
 end
