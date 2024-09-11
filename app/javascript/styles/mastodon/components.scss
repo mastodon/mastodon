@@ -6784,7 +6784,7 @@ a.status-card {
 
 .compare-history-modal {
   .report-modal__target {
-    border-bottom: 1px solid $ui-secondary-color;
+    border-bottom: 1px solid var(--background-border-color);
   }
 
   &__container {
@@ -6794,7 +6794,7 @@ a.status-card {
   }
 
   .status__content {
-    color: $inverted-text-color;
+    color: $secondary-text-color;
     font-size: 19px;
     line-height: 24px;
 
