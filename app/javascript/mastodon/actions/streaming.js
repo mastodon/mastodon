@@ -151,7 +151,7 @@ async function refreshHomeTimelineAndNotification(dispatch, getState) {
     // TODO: polling for merged notifications
     try {
       await dispatch(pollRecentGroupNotifications());
-    } catch (error) {
+    } catch {
       // TODO
     }
   } else {
