@@ -12,8 +12,8 @@ import DoneIcon from '@/material-icons/400-24px/done.svg?react';
 import InventoryIcon from '@/material-icons/400-24px/inventory_2.svg?react';
 import {
   fetchNotificationRequest,
-  fetchNotificationsForRequestIfNeeded as fetchNotificationsForRequest,
-  expandNotificationsForRequestIfNeeded as expandNotificationsForRequest,
+  fetchNotificationsForRequest,
+  expandNotificationsForRequest,
   acceptNotificationRequest,
   dismissNotificationRequest,
 } from 'mastodon/actions/notification_requests';
@@ -63,8 +63,8 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
   }, [columnRef]);
 
   const handleLoadMore = useCallback(() => {
-    dispatch(expandNotificationsForRequest());
-  }, [dispatch]);
+    dispatch(expandNotificationsForRequest({ accountId }));
+  }, [dispatch, accountId]);
 
   const handleDismiss = useCallback(() => {
     dispatch(dismissNotificationRequest({ id }));
@@ -90,7 +90,7 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
 
   useEffect(() => {
     if (accountId) {
-      dispatch(fetchNotificationsForRequest(accountId));
+      dispatch(fetchNotificationsForRequest({ accountId }));
     }
   }, [dispatch, accountId]);
 

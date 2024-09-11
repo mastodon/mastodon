@@ -12,8 +12,8 @@ import InventoryIcon from '@/material-icons/400-24px/inventory_2.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import {
-  fetchNotificationRequestsIfNeeded as fetchNotificationRequests,
-  expandNotificationRequestsIfNeeded as expandNotificationRequests,
+  fetchNotificationRequests,
+  expandNotificationRequests,
   acceptNotificationRequests,
   dismissNotificationRequests,
 } from 'mastodon/actions/notification_requests';

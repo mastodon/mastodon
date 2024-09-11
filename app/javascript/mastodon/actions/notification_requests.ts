@@ -68,36 +68,30 @@ export const fetchNotificationRequests = createDataLoadingThunk(
 
     return { requests, next: next?.uri };
   },
+  {
+    condition: (_params, { getState }) =>
+      !getState().notificationRequests.isLoading,
+  },
 );
-
-export const fetchNotificationRequestsIfNeeded =
-  () => async (dispatch: AppDispatch, getState: () => RootState) => {
-    if (getState().notificationRequests.isLoading) {
-      return;
-    }
-
-    await dispatch(fetchNotificationRequests());
-  };
 
 export const fetchNotificationRequest = createDataLoadingThunk(
   'notificationRequest/fetch',
   async ({ id }: { id: string }) => apiFetchNotificationRequest(id),
+  {
+    condition: ({ id }, { getState }) =>
+      !(
+        getState().notificationRequests.current.item?.id === id ||
+        getState().notificationRequests.current.isLoading
+      ),
+  },
 );
-
-export const fetchNotificationIfNeeded =
-  (id: string) => async (dispatch: AppDispatch, getState: () => RootState) => {
-    const current = getState().notificationRequests.current;
-
-    if (current.item?.id === id || current.isLoading) {
-      return;
-    }
-
-    await dispatch(fetchNotificationRequest({ id }));
-  };
 
 export const expandNotificationRequests = createDataLoadingThunk(
   'notificationRequests/expand',
-  async ({ nextUrl }: { nextUrl: string }) => {
+  async (_, { getState }) => {
+    const nextUrl = getState().notificationRequests.next;
+    if (!nextUrl) throw new Error('missing URL');
+
     return apiFetchNotificationRequests(undefined, nextUrl);
   },
   ({ requests, links }, { dispatch }) => {
@@ -107,22 +101,23 @@ export const expandNotificationRequests = createDataLoadingThunk(
 
     return { requests, next: next?.uri };
   },
+  {
+    condition: (_, { getState }) =>
+      !!getState().notificationRequests.next &&
+      !getState().notificationRequests.isLoading,
+  },
 );
-
-export const expandNotificationRequestsIfNeeded =
-  () => async (dispatch: AppDispatch, getState: () => RootState) => {
-    const url = getState().notificationRequests.next;
-
-    if (!url || getState().notificationRequests.isLoading) {
-      return;
-    }
-
-    await dispatch(expandNotificationRequests({ nextUrl: url }));
-  };
 
 export const fetchNotificationsForRequest = createDataLoadingThunk(
   'notificationRequest/fetchNotifications',
-  async ({ accountId, sinceId }: { accountId: string; sinceId?: string }) => {
+  async ({ accountId }: { accountId: string }, { getState }) => {
+    const sinceId =
+      // @ts-expect-error current.notifications.items is not yet typed
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      getState().notificationRequests.current.notifications.items[0]?.get(
+        'id',
+      ) as string | undefined;
+
     return apiFetchNotifications({
       since_id: sinceId,
       account_id: accountId,
@@ -135,34 +130,23 @@ export const fetchNotificationsForRequest = createDataLoadingThunk(
 
     return { notifications, next: next?.uri };
   },
+  {
+    condition: ({ accountId }, { getState }) => {
+      const current = getState().notificationRequests.current;
+      return !(
+        current.item?.account_id === accountId &&
+        current.notifications.isLoading
+      );
+    },
+  },
 );
-
-export const fetchNotificationsForRequestIfNeeded =
-  (accountId: string) =>
-  async (dispatch: AppDispatch, getState: () => RootState) => {
-    const current = getState().notificationRequests.current;
-    let sinceId = undefined;
-
-    if (current.item?.account_id === accountId) {
-      if (current.notifications.isLoading) {
-        return;
-      }
-
-      if (current.notifications.items.length > 0) {
-        // @ts-expect-error current.notifications.items is not yet typed
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-        sinceId = current.notifications.items[0]?.get('id') as
-          | string
-          | undefined;
-      }
-    }
-
-    await dispatch(fetchNotificationsForRequest({ accountId, sinceId }));
-  };
 
 export const expandNotificationsForRequest = createDataLoadingThunk(
   'notificationRequest/expandNotifications',
-  async ({ nextUrl }: { nextUrl: string }) => {
+  async (_, { getState }) => {
+    const nextUrl = getState().notificationRequests.current.notifications.next;
+    if (!nextUrl) throw new Error('missing URL');
+
     return apiFetchNotifications(undefined, nextUrl);
   },
   ({ notifications, links }, { dispatch }) => {
@@ -172,21 +156,18 @@ export const expandNotificationsForRequest = createDataLoadingThunk(
 
     return { notifications, next: next?.uri };
   },
+  {
+    condition: ({ accountId }: { accountId: string }, { getState }) => {
+      const url = getState().notificationRequests.current.notifications.next;
+
+      return (
+        !!url &&
+        !getState().notificationRequests.current.notifications.isLoading &&
+        getState().notificationRequests.current.item?.account_id === accountId
+      );
+    },
+  },
 );
-
-export const expandNotificationsForRequestIfNeeded =
-  () => async (dispatch: AppDispatch, getState: () => RootState) => {
-    const url = getState().notificationRequests.current.notifications.next;
-
-    if (
-      !url ||
-      getState().notificationRequests.current.notifications.isLoading
-    ) {
-      return;
-    }
-
-    await dispatch(expandNotificationsForRequest({ nextUrl: url }));
-  };
 
 const selectNotificationCountForRequest = (state: RootState, id: string) => {
   const requests = state.notificationRequests.items;
