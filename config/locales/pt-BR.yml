@@ -25,6 +25,8 @@ pt-BR:
   admin:
     account_actions:
       action: Tomar uma atitude
+      already_silenced: Esta conta já foi limitada.
+      already_suspended: Esta conta já foi suspensa.
       title: Moderar %{acct}
     account_moderation_notes:
       create: Deixar nota
@@ -46,6 +48,7 @@ pt-BR:
         title: Alterar e-mail para %{username}
       change_role:
         changed_msg: Função alterada com sucesso!
+        edit_roles: Gerenciar funções do usuário
         label: Alterar função
         no_role: Nenhuma função
         title: Alterar função para %{username}
@@ -602,6 +605,7 @@ pt-BR:
         suspend_description_html: A conta e todo o seu conteúdo ficará inacessível e, eventualmente, excluído e interagir com ela será impossível. Reversível dentro de 30 dias. Encerra todas as denúncias contra esta conta.
       actions_description_html: Decida qual ação tomar para responder a essa denúncia. Se você tomar uma ação punitiva contra a conta denunciada, uma notificação por e-mail será enviada ao usuário, exceto quando a categoria <strong>Spam</strong> for selecionada.
       actions_description_remote_html: Decida quais medidas tomará para resolver esta denúncia. Isso só afetará como <strong>seu servidor</strong> se comunica com esta conta remota e manipula seu conteúdo.
+      actions_no_posts: Essa denúncia não tem nenhuma publicação associada para excluir
       add_to_report: Adicionar mais à denúncia
       already_suspended_badges:
         local: Já suspenso neste servidor
@@ -1157,6 +1161,12 @@ pt-BR:
       view_strikes: Veja os avisos anteriores em relação à sua conta
     too_fast: O formulário foi enviado muito rapidamente, tente novamente.
     use_security_key: Usar chave de segurança
+  author_attribution:
+    example_title: Texto de amostra
+    hint_html: Controle como você é creditado quando links são compartilhados no Mastodon.
+    more_from_html: Mais de %{name}
+    s_blog: Blog do %{name}
+    title: Atribuição de autoria
   challenge:
     confirm: Continuar
     hint_html: "<strong>Dica:</strong> Não pediremos novamente sua senha pela próxima hora."
@@ -1945,6 +1955,7 @@ pt-BR:
     instructions_html: Copie o código abaixo e cole no HTML do seu site. Em seguida, adicione o endereço do seu site em um dos campos extras em seu perfil, na aba "Editar perfil", e salve as alterações.
     verification: Verificação
     verified_links: Seus links verificados
+    website_verification: Verificação do site
   webauthn_credentials:
     add: Adicionar nova chave de segurança
     create:

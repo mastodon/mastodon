@@ -15,6 +15,11 @@ ia:
       user/invite_request:
         text: Motivo
     errors:
+      attributes:
+        domain:
+          invalid: non es un nomine de dominio valide
+      messages:
+        invalid_domain_on_line: "%{value} non es un nomine de dominio valide"
       models:
         account:
           attributes:

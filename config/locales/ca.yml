@@ -435,6 +435,7 @@ ca:
       attempts_over_week:
         one: "%{count} intent en la darrera setmana"
         other: "%{count} intents de registre en la darrera setmana"
+      created_msg: S'ha blocat el domini de correu-e
       delete: Elimina
       dns:
         types:
@@ -444,8 +445,10 @@ ca:
         create: Afegir un domini
         resolve: Resol domini
         title: Blocar el nou domini de correu-e
+      no_email_domain_block_selected: No s'han canviat els bloqueigs de domini perquè no se n'ha seleccionat cap
       not_permitted: No permés
       resolved_through_html: Resolt mitjançant %{domain}
+      title: Dominis de correu-e blocats
     export_domain_allows:
       new:
         title: Importa dominis permesos
@@ -599,6 +602,7 @@ ca:
         resolve_description_html: No serà presa cap acció contra el compte denunciat, no se'n registrarà res i l'informe es tancarà.
         silence_description_html: El compte només serà visible a qui ja el seguia o l'ha cercat manualment, limitant-ne fortament l'abast. Sempre es pot revertir. Es tancaran tots els informes contra aquest compte.
         suspend_description_html: Aquest compte i tots els seus continguts seran inaccessibles i finalment eliminats, i interaccionar amb ell no serà possible. Reversible en 30 dies. Tanca tots els informes contra aquest compte.
+      actions_description_html: Decidiu quina acció a prendre per a resoldre aquest informe. Si preneu una acció punitiva contra el compte denunciat, se li enviarà una notificació per correu-e, excepte si se selecciona la categoria <strong>Spam</strong>.
       actions_description_remote_html: Decideix quina acció prendre per a resoldre aquest informe. Això només afectarà com <strong>el teu</strong> servidor es comunica amb aquest compte remot i en gestiona el contingut.
       actions_no_posts: Aquest informe no té associada cap publicació a esborrar
       add_to_report: Afegir més al informe
@@ -664,6 +668,7 @@ ca:
         delete_data_html: Esborra el perfil de <strong>@%{acct}</strong> i els seus continguts dins de 30 dies des d'ara a no ser que es desactivi la suspensió abans
         preview_preamble_html: "<strong>@%{acct}</strong> rebrà un avís amb el contingut següent:"
         record_strike_html: Registra una acció contra <strong>@%{acct}</strong> per ajudar a escalar-ho en futures violacions des d'aquest compte
+        send_email_html: Envia un avís per correu-e a <strong>@%{acct}</strong>
         warning_placeholder: Opcional raó adicional d'aquesta acció de moderació.
       target_origin: Origen del compte denunciat
       title: Informes
@@ -703,6 +708,7 @@ ca:
         manage_appeals: Gestiona apel·lacions
         manage_appeals_description: Permet als usuaris revisar les apel·lacions contra les accions de moderació
         manage_blocks: Gestiona blocs
+        manage_blocks_description: Permet als usuaris blocar adreces IP i proveïdors de correu-e
         manage_custom_emojis: Gestiona emojis personalitzats
         manage_custom_emojis_description: Permet als usuaris gestionar emojis personalitzats al servidor
         manage_federation: Gestiona federació
@@ -720,6 +726,7 @@ ca:
         manage_taxonomies: Gestionar taxonomies
         manage_taxonomies_description: Permet als usuaris revisar el contingut actual i actualitzar la configuració de l'etiqueta
         manage_user_access: Gestionar l'accés dels usuaris
+        manage_user_access_description: Permet als usuaris desactivar l'autenticació de dos factors d'altres usuaris, canviar la seva adreça de correu-e i restablir la seva contrasenya
         manage_users: Gestionar usuaris
         manage_users_description: Permet als usuaris veure els detalls d'altres usuaris i realitzar accions de moderació contra ells
         manage_webhooks: Gestionar Webhooks
@@ -1057,7 +1064,9 @@ ca:
       guide_link_text: Tothom hi pot contribuir.
     sensitive_content: Contingut sensible
   application_mailer:
+    notification_preferences: Canviar les preferències de correu-e
     salutation: "%{name},"
+    settings: 'Canviar les preferències de correu-e: %{link}'
     unsubscribe: Cancel·la la subscripció
     view: 'Visualització:'
     view_profile: Mostra el perfil
@@ -1077,6 +1086,7 @@ ca:
       hint_html: Una cosa més! Necessitem confirmar que ets una persona humana (és així com mantenim a ratlla l'spam). Resolt el CAPTCHA inferior i clica a "Segueix".
       title: Revisió de seguretat
     confirmations:
+      awaiting_review: S'ha confirmat la vostra adreça-e. El personal de %{domain} revisa ara el registre. Rebreu un correu si s'aprova el compte.
       awaiting_review_title: S'està revisant la teva inscripció
       clicking_this_link: en clicar aquest enllaç
       login_link: inici de sessió
@@ -1084,6 +1094,7 @@ ca:
       redirect_to_app_html: Se us hauria d'haver redirigit a l'app <strong>%{app_name}</strong>. Si això no ha passat, intenteu %{clicking_this_link} o torneu manualment a l'app.
       registration_complete: La teva inscripció a %{domain} ja és completa.
       welcome_title: Hola, %{name}!
+      wrong_email_hint: Si aquesta adreça de correu-e no és correcta, podeu canviar-la en els ajustos del compte.
     delete_account: Elimina el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
     description:
@@ -1126,6 +1137,7 @@ ca:
     security: Seguretat
     set_new_password: Estableix una contrasenya nova
     setup:
+      email_below_hint_html: Verifiqueu la carpeta de correu brossa o demaneu-ne un altre. Podeu corregir l'adreça de correu-e si no és correcta.
       email_settings_hint_html: Toca l'enllaç que t'hem enviat per a verificar %{email}. Esperarem aquí mateix.
       link_not_received: No has rebut l'enllaç?
       new_confirmation_instructions_sent: Rebràs un nou correu amb l'enllaç de confirmació en pocs minuts!
@@ -1139,12 +1151,19 @@ ca:
       title: Configurem-te a %{domain}.
     status:
       account_status: Estat del compte
+      confirming: Esperant que es completi la confirmació del correu-e.
       functional: El teu compte està completament operatiu.
       redirecting_to: El teu compte és inactiu perquè actualment està redirigint a %{acct}.
       self_destruct: Com que %{domain} tanca, només tindreu accés limitat al vostre compte.
       view_strikes: Veure accions del passat contra el teu compte
     too_fast: Formulari enviat massa ràpid, torna a provar-ho.
     use_security_key: Usa clau de seguretat
+  author_attribution:
+    example_title: Text d'exemple
+    hint_html: Controleu com se us acredita quan els enllaços es comparteixen a Mastodon.
+    more_from_html: Més de %{name}
+    s_blog: Blog de %{name}
+    title: Atribució d'autor
   challenge:
     confirm: Continua
     hint_html: "<strong>Pista:</strong> No et preguntarem un altre cop la teva contrasenya en la pròxima hora."
@@ -1930,6 +1949,7 @@ ca:
     instructions_html: Copieu i enganxeu el següent codi HTML al vostre lloc web. Després, afegiu l'adreça del vostre lloc web dins d'un dels camps extres del vostre perfil i deseu els canvis.
     verification: Verificació
     verified_links: Els teus enllaços verificats
+    website_verification: Verificació de web
   webauthn_credentials:
     add: Afegir nova clau de seguretat
     create:
