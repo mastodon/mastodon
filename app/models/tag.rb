@@ -47,8 +47,10 @@ class Tag < ApplicationRecord
 
   validates :name, presence: true, format: { with: HASHTAG_NAME_RE }
   validates :display_name, format: { with: HASHTAG_NAME_RE }
-  validate :validate_name_change, if: -> { !new_record? && name_changed? }
-  validate :validate_display_name_change, if: -> { !new_record? && display_name_changed? }
+  with_options on: :update do
+    validate :validate_name_change, if: :name_changed?
+    validate :validate_display_name_change, if: :display_name_changed?
+  end
 
   scope :pending_review, -> { unreviewed.where.not(requested_review_at: nil) }
   scope :usable, -> { where(usable: [true, nil]) }
@@ -158,13 +160,22 @@ class Tag < ApplicationRecord
   private
 
   def validate_name_change
-    errors.add(:name, I18n.t('tags.does_not_match_previous_name')) unless name_was.mb_chars.casecmp(name.mb_chars).zero?
+    errors.add(:name, previous_name_error_message) unless matches_name_chars?(name_was.mb_chars)
   end
 
   def validate_display_name_change
-    unless HashtagNormalizer.new.normalize(display_name).casecmp(name.mb_chars).zero?
-      errors.add(:display_name,
-                 I18n.t('tags.does_not_match_previous_name'))
-    end
+    errors.add(:display_name, previous_name_error_message) unless matches_name_chars?(normalized_display_name)
+  end
+
+  def normalized_display_name
+    HashtagNormalizer.new.normalize(display_name)
+  end
+
+  def matches_name_chars?(value)
+    value.casecmp(name.mb_chars).zero?
+  end
+
+  def previous_name_error_message
+    I18n.t('tags.does_not_match_previous_name')
   end
 end
