@@ -30,16 +30,12 @@ class Instance < ApplicationRecord
   scope :with_domain_follows, ->(domains) { where(domain: domains).where(domain_account_follows) }
 
   def self.domain_account_follows
-    Arel.sql(
-      <<~SQL.squish
-        EXISTS (
-          SELECT 1
-          FROM follows
-          JOIN accounts ON follows.account_id = accounts.id OR follows.target_account_id = accounts.id
-          WHERE accounts.domain = instances.domain
-        )
+    Follow
+      .joins(<<~SQL.squish)
+        JOIN accounts ON follows.account_id = accounts.id OR follows.target_account_id = accounts.id
       SQL
-    )
+      .where(Account.arel_table[:domain].eq arel_table[:domain])
+      .select(1).arel.exists
   end
 
   def delivery_failure_tracker
