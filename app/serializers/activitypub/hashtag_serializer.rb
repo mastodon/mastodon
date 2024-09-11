@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ActivityPub::HashtagSerializer < ActivityPub::Serializer
-  context_extensions :hashtag
+  context :miscellany
 
   include RoutingHelper
 

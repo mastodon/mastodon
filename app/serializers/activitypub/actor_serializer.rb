@@ -4,10 +4,10 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   include RoutingHelper
   include FormattingHelper
 
-  context :security
+  context :security, :miscellany
 
-  context_extensions :manually_approves_followers, :featured, :also_known_as,
-                     :moved_to, :property_value, :discoverable, :olm, :suspended,
+  context_extensions :featured, :also_known_as,
+                     :property_value, :discoverable, :olm, :suspended,
                      :memorial, :indexable, :attribution_domains
 
   attributes :id, :type, :following, :followers,

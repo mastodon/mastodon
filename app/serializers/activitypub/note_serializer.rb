@@ -3,7 +3,9 @@
 class ActivityPub::NoteSerializer < ActivityPub::Serializer
   include FormattingHelper
 
-  context_extensions :atom_uri, :conversation, :sensitive, :voters_count
+  context :miscellany
+
+  context_extensions :atom_uri, :conversation, :voters_count
 
   attributes :id, :type, :summary,
              :in_reply_to, :published, :url,
@@ -254,7 +256,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   class TagSerializer < ActivityPub::Serializer
-    context_extensions :hashtag
+    context :miscellany
 
     include RoutingHelper
 

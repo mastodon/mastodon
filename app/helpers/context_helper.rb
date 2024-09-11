@@ -4,6 +4,7 @@ module ContextHelper
   NAMED_CONTEXT_MAP = {
     activitystreams: 'https://www.w3.org/ns/activitystreams',
     security: 'https://w3id.org/security/v1',
+    miscellany: 'https://purl.archive.org/socialweb/miscellany',
   }.freeze
 
   CONTEXT_EXTENSION_MAP = {
