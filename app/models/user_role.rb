@@ -91,10 +91,13 @@ class UserRole < ApplicationRecord
   validates :name, presence: true, unless: :everyone?
   validates :color, format: { with: VALID_COLOR }, if: :color?
 
-  validate :validate_permissions_elevation
-  validate :validate_position_elevation
-  validate :validate_dangerous_permissions
-  validate :validate_own_role_edition
+  with_options if: -> { defined?(@current_account) } do
+    validate :validate_own_role_edition
+    validate :validate_permissions_elevation
+    validate :validate_position_elevation
+  end
+
+  validate :validate_dangerous_permissions, if: :everyone?
 
   before_validation :set_position
 
@@ -179,21 +182,21 @@ class UserRole < ApplicationRecord
   end
 
   def validate_own_role_edition
-    return unless defined?(@current_account) && @current_account.user_role.id == id
+    return unless @current_account.user_role.id == id
 
     errors.add(:permissions_as_keys, :own_role) if permissions_changed?
     errors.add(:position, :own_role) if position_changed?
   end
 
   def validate_permissions_elevation
-    errors.add(:permissions_as_keys, :elevated) if defined?(@current_account) && @current_account.user_role.computed_permissions & permissions != permissions
+    errors.add(:permissions_as_keys, :elevated) if @current_account.user_role.computed_permissions & permissions != permissions
   end
 
   def validate_position_elevation
-    errors.add(:position, :elevated) if defined?(@current_account) && @current_account.user_role.position < position
+    errors.add(:position, :elevated) if @current_account.user_role.position < position
   end
 
   def validate_dangerous_permissions
-    errors.add(:permissions_as_keys, :dangerous) if everyone? && Flags::DEFAULT & permissions != permissions
+    errors.add(:permissions_as_keys, :dangerous) if Flags::DEFAULT & permissions != permissions
   end
 end

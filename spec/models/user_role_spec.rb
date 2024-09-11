@@ -22,6 +22,25 @@ RSpec.describe UserRole do
       it { is_expected.to allow_values('#112233', '#aabbcc', '').for(:color) }
       it { is_expected.to_not allow_values('x', '112233445566', '#xxyyzz').for(:color) }
     end
+
+    context 'when current_account is set' do
+      subject { Fabricate :user_role }
+
+      let(:account) { Fabricate :account }
+
+      before { subject.current_account = account }
+
+      it { is_expected.to_not allow_value(999_999).for(:position).with_message(:elevated) }
+
+      it { is_expected.to_not allow_value(999_999).for(:permissions).against(:permissions_as_keys).with_message(:elevated) }
+
+      context 'when current_account is changing their own role' do
+        let(:account) { Fabricate :account, user: Fabricate(:user, role: subject) }
+
+        it { is_expected.to_not allow_value(100).for(:permissions).against(:permissions_as_keys).with_message(:own_role) }
+        it { is_expected.to_not allow_value(100).for(:position).with_message(:own_role) }
+      end
+    end
   end
 
   describe 'Callback for position' do
