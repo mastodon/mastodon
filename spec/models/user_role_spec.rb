@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe UserRole do
-  subject { described_class.create(name: 'Foo', position: 1) }
-
   describe '#can?' do
+    subject { Fabricate :user_role }
+
     context 'with a single flag' do
       it 'returns true if any of them are present' do
         subject.permissions = described_class::FLAGS[:manage_reports]
@@ -92,6 +92,8 @@ RSpec.describe UserRole do
   end
 
   describe '#computed_permissions' do
+    subject { Fabricate :user_role }
+
     context 'when the role is nobody' do
       subject { described_class.nobody }
 
