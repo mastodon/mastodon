@@ -65,7 +65,7 @@ export const synchronouslySubmitMarkers = createAppAsyncThunk(
       client.setRequestHeader('Content-Type', 'application/json');
       client.setRequestHeader('Authorization', `Bearer ${accessToken}`);
       client.send(JSON.stringify(params));
-    } catch (e) {
+    } catch {
       // Do not make the BeforeUnload handler error out
     }
   },
