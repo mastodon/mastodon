@@ -17,6 +17,11 @@ RSpec.describe UserRole do
         it { is_expected.to validate_presence_of(:name) }
       end
     end
+
+    describe 'color' do
+      it { is_expected.to allow_values('#112233', '#aabbcc', '').for(:color) }
+      it { is_expected.to_not allow_values('x', '112233445566', '#xxyyzz').for(:color) }
+    end
   end
 
   describe '#can?' do
