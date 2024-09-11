@@ -88,7 +88,7 @@ class UserRole < ApplicationRecord
   attr_writer :current_account
 
   validates :name, presence: true, unless: :everyone?
-  validates :color, format: { with: /\A#?(?:[A-F0-9]{3}){1,2}\z/i }, unless: -> { color.blank? }
+  validates :color, format: { with: /\A#?(?:[A-F0-9]{3}){1,2}\z/i }, if: :color?
 
   validate :validate_permissions_elevation
   validate :validate_position_elevation
