@@ -3,6 +3,22 @@
 require 'rails_helper'
 
 RSpec.describe UserRole do
+  describe 'Validations' do
+    describe 'name' do
+      context 'when everyone' do
+        subject { described_class.everyone }
+
+        it { is_expected.to_not validate_presence_of(:name) }
+      end
+
+      context 'when not everyone' do
+        subject { Fabricate.build :user_role }
+
+        it { is_expected.to validate_presence_of(:name) }
+      end
+    end
+  end
+
   describe '#can?' do
     subject { Fabricate :user_role }
 
