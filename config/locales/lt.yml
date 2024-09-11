@@ -29,6 +29,7 @@ lt:
   admin:
     account_actions:
       action: Atlikti veiksmą
+      already_silenced: Ši paskyra jau buvo apribota.
       already_suspended: Ši paskyra jau sustabdyta.
       title: Atlikti prižiūrėjimo veiksmą %{acct}
     account_moderation_notes:
@@ -800,6 +801,12 @@ lt:
       redirecting_to: Tavo paskyra yra neaktyvi, nes šiuo metu ji nukreipiama į %{acct}.
       self_destruct: Kadangi %{domain} uždaromas, turėsi tik ribotą prieigą prie savo paskyros.
       view_strikes: Peržiūrėti ankstesnius savo paskyros pažeidimus
+  author_attribution:
+    example_title: Teksto pavyzdys
+    hint_html: Valdyk, kaip esi nurodomas (-a), kai nuorodos bendrinamos platformoje „Mastodon“.
+    more_from_html: Daugiau iš %{name}
+    s_blog: "%{name} tinklaraštis"
+    title: Autoriaus (-ės) atribucija
   challenge:
     hint_html: "<strong>Patarimas:</strong> artimiausią valandą daugiau neprašysime tavo slaptažodžio."
   datetime:
@@ -1230,6 +1237,7 @@ lt:
     instructions_html: Nukopijuok ir įklijuok toliau pateiktą kodą į savo svetainės HTML. Tada į vieną iš papildomų profilio laukų skirtuke Redaguoti profilį įrašyk savo svetainės adresą ir išsaugok pakeitimus.
     verification: Patvirtinimas
     verified_links: Tavo patikrintos nuorodos
+    website_verification: Svetainės patvirtinimas
   webauthn_credentials:
     add: Pridėti naują saugumo raktą
     create:

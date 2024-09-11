@@ -183,14 +183,17 @@ sv:
         create_custom_emoji: Skapa egen emoji
         create_domain_allow: Skapa tillåten domän
         create_domain_block: Skapa blockerad domän
+        create_email_domain_block: Skapa E-post domän block
         create_ip_block: Skapa IP-regel
         create_unavailable_domain: Skapa otillgänglig domän
         create_user_role: Skapa roll
         demote_user: Degradera användare
         destroy_announcement: Radera kungörelse
+        destroy_canonical_email_block: Ta bort e-post block
         destroy_custom_emoji: Radera egen emoji
         destroy_domain_allow: Ta bort tillåten domän
         destroy_domain_block: Ta bort blockerad domän
+        destroy_email_domain_block: Ta bort E-post domän block
         destroy_instance: Rensa domänen
         destroy_ip_block: Radera IP-regel
         destroy_status: Radera inlägg
@@ -233,6 +236,7 @@ sv:
         assigned_to_self_report_html: "%{name} tilldelade rapporten %{target} till sig själva"
         change_email_user_html: "%{name} bytte e-postadress för användaren %{target}"
         change_role_user_html: "%{name} ändrade roll för %{target}"
+        confirm_user_html: "%{name} bekräftad e-post adress av användare %{target}"
         create_account_warning_html: "%{name} skickade en varning till %{target}"
         create_announcement_html: "%{name} skapade kungörelsen %{target}"
         create_custom_emoji_html: "%{name} laddade upp ny emoji %{target}"

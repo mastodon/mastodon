@@ -25,7 +25,7 @@ tr:
   admin:
     account_actions:
       action: Eylemi gerçekleştir
-      already_silenced: Bu hesap zaten askıya alınmış.
+      already_silenced: Bu hesap zaten sınırlanmış.
       already_suspended: Bu hesap zaten askıya alınmış.
       title: "%{acct} üzerinde denetleme eylemi gerçekleştir"
     account_moderation_notes:
@@ -1161,6 +1161,12 @@ tr:
       view_strikes: Hesabınıza yönelik eski eylemleri görüntüleyin
     too_fast: Form çok hızlı gönderildi, tekrar deneyin.
     use_security_key: Güvenlik anahtarını kullan
+  author_attribution:
+    example_title: Örnek metin
+    hint_html: Mastodon'da bağlantılar paylaşıldığında nasıl tanınmak istediğinizi denetleyin.
+    more_from_html: "%{name} kişisinden daha fazlası"
+    s_blog: "%{name} kişisinin Günlüğü"
+    title: Yazar atıfı
   challenge:
     confirm: Devam et
     hint_html: "<strong>İpucu:</strong> Önümüzdeki saat boyunca sana parolanı sormayacağız."
@@ -1949,6 +1955,7 @@ tr:
     instructions_html: Aşağıdaki kodu kopyalayın ve websitenizin HTML'sine yapıştırın. Daha sonra "Profil Düzenle" sekmesini kullanarak profilinizdeki ek sahalardan birine websitenizin adresini ekleyin ve değişiklikleri kaydedin.
     verification: Doğrulama
     verified_links: Doğrulanmış bağlantılarınız
+    website_verification: Website doğrulama
   webauthn_credentials:
     add: Yeni güvenlik anahtarı ekle
     create:

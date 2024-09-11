@@ -25,6 +25,7 @@ hu:
   admin:
     account_actions:
       action: Művelet végrehajtása
+      already_silenced: Ezt a fiókot már korlátozták.
       already_suspended: Ezt a fiókot már felfüggesztették.
       title: 'Moderálási művelet végrehajtása ezen: %{acct}'
     account_moderation_notes:
@@ -1160,6 +1161,12 @@ hu:
       view_strikes: Fiókod ellen felrótt korábbi vétségek megtekintése
     too_fast: Túl gyorsan küldted el az űrlapot, próbáld később.
     use_security_key: Biztonsági kulcs használata
+  author_attribution:
+    example_title: Mintaszöveg
+    hint_html: Szabályozd, hogyan hivatkoznak rád, amikor linket osztanak meg Mastodonon.
+    more_from_html: 'Több tőle: %{name}'
+    s_blog: "%{name} blogja"
+    title: Szerző forrásmegjelölése
   challenge:
     confirm: Folytatás
     hint_html: "<strong>Hasznos:</strong> Nem fogjuk megint a jelszavadat kérdezni a következő órában."
@@ -1946,8 +1953,9 @@ hu:
     here_is_how: Itt van, hogyan kell
     hint_html: "<strong>A személyazonosságod ellenőrizhetősége a Mastodonon mindenki számára elérhető.</strong> Ez nyílt webes szabványok alapján, most és mindörökké szabadon és ingyenesen történik. Ehhez csak egy saját weboldalra van szükséged, mely alapján mások felismernek téged. Ha a profilodról erre a weboldalra hivatkozol, mi ellenőrizzük, hogy erről az oldalról visszahivatkozol-e a profilodra, és siker esetén erről vizuális jelzést is adunk a profilodon."
     instructions_html: Az alábbi kódot másold be a weboldalad HTML kódjába. Ezután add hozzá a weboldalad címét a profilod egyik extra mezőjéhez a "Profil szerkesztése" fülön és mentsd a változásokat.
-    verification: Hitelesítés
+    verification: Ellenőrzés
     verified_links: Ellenőrzött hivatkozásaid
+    website_verification: Weboldal ellenőrzése
   webauthn_credentials:
     add: Biztonsági kulcs hozzáadása
     create:
