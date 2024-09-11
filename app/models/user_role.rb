@@ -40,6 +40,7 @@ class UserRole < ApplicationRecord
 
   EVERYONE_ROLE_ID = -99
   NOBODY_POSITION = -1
+  VALID_COLOR = /\A#?(?:[A-F0-9]{3}){1,2}\z/i # CSS-style hex colors
 
   module Flags
     NONE = 0
@@ -88,7 +89,7 @@ class UserRole < ApplicationRecord
   attr_writer :current_account
 
   validates :name, presence: true, unless: :everyone?
-  validates :color, format: { with: /\A#?(?:[A-F0-9]{3}){1,2}\z/i }, if: :color?
+  validates :color, format: { with: VALID_COLOR }, if: :color?
 
   validate :validate_permissions_elevation
   validate :validate_position_elevation
