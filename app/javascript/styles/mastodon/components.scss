@@ -6307,6 +6307,11 @@ a.status-card {
   width: 480px;
   position: relative;
   flex-direction: column;
+
+  @media screen and (max-width: $no-columns-breakpoint) {
+    border-bottom: 0;
+    border-radius: 4px 4px 0 0;
+  }
 }
 
 .boost-modal__container {
@@ -6704,7 +6709,7 @@ a.status-card {
 
     li:not(:empty) {
       a {
-        color: $inverted-text-color;
+        color: $primary-text-color;
         display: flex;
         padding: 12px 16px;
         font-size: 15px;
