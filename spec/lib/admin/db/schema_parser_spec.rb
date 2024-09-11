@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::Db::SchemaParser do
+RSpec.describe Admin::Db::SchemaParser do
   let(:dummy_schema) do
     <<~SCHEMA
       # Comment
