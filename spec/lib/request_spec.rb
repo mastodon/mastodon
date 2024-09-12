@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'securerandom'
 
-describe Request do
+RSpec.describe Request do
   subject { described_class.new(:get, 'http://example.com') }
 
   describe '#headers' do

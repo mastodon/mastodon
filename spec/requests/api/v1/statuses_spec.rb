@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe '/api/v1/statuses' do
+RSpec.describe '/api/v1/statuses' do
   context 'with an oauth token' do
     let(:user)  { Fabricate(:user) }
     let(:client_app) { Fabricate(:application, name: 'Test app', website: 'http://testapp.com') }
@@ -18,7 +18,7 @@ describe '/api/v1/statuses' do
         get '/api/v1/statuses', headers: headers, params: { id: [status.id, other_status.id, 123_123] }
 
         expect(response).to have_http_status(200)
-        expect(body_as_json).to contain_exactly(
+        expect(response.parsed_body).to contain_exactly(
           hash_including(id: status.id.to_s),
           hash_including(id: other_status.id.to_s)
         )
@@ -52,7 +52,7 @@ describe '/api/v1/statuses' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json[:filtered][0]).to include({
+          expect(response.parsed_body[:filtered][0]).to include({
             filter: a_hash_including({
               id: user.account.custom_filters.first.id.to_s,
               title: 'filter1',
@@ -75,7 +75,7 @@ describe '/api/v1/statuses' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json[:filtered][0]).to include({
+          expect(response.parsed_body[:filtered][0]).to include({
             filter: a_hash_including({
               id: user.account.custom_filters.first.id.to_s,
               title: 'filter1',
@@ -97,7 +97,7 @@ describe '/api/v1/statuses' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json[:reblog][:filtered][0]).to include({
+          expect(response.parsed_body[:reblog][:filtered][0]).to include({
             filter: a_hash_including({
               id: user.account.custom_filters.first.id.to_s,
               title: 'filter1',
@@ -154,7 +154,7 @@ describe '/api/v1/statuses' do
           subject
 
           expect(response).to have_http_status(422)
-          expect(body_as_json[:unexpected_accounts].map { |a| a.slice(:id, :acct) }).to eq [{ id: bob.id.to_s, acct: bob.acct }]
+          expect(response.parsed_body[:unexpected_accounts].map { |a| a.slice(:id, :acct) }).to match [{ id: bob.id.to_s, acct: bob.acct }]
         end
       end
 

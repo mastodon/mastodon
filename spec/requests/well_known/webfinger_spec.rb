@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'The /.well-known/webfinger endpoint' do
+RSpec.describe 'The /.well-known/webfinger endpoint' do
   subject(:perform_request!) { get webfinger_url(resource: resource) }
 
   let(:alternate_domains) { [] }
@@ -24,7 +24,7 @@ describe 'The /.well-known/webfinger endpoint' do
 
       expect(response.media_type).to eq 'application/jrd+json'
 
-      expect(body_as_json)
+      expect(response.parsed_body)
         .to include(
           subject: eq('acct:alice@cb6e6126.ngrok.io'),
           aliases: include('https://cb6e6126.ngrok.io/@alice', 'https://cb6e6126.ngrok.io/users/alice')
@@ -129,9 +129,11 @@ describe 'The /.well-known/webfinger endpoint' do
     end
 
     it 'returns links for the internal account' do
-      json = body_as_json
-      expect(json[:subject]).to eq 'acct:mastodon.internal@cb6e6126.ngrok.io'
-      expect(json[:aliases]).to eq ['https://cb6e6126.ngrok.io/actor']
+      expect(response.parsed_body)
+        .to include(
+          subject: 'acct:mastodon.internal@cb6e6126.ngrok.io',
+          aliases: ['https://cb6e6126.ngrok.io/actor']
+        )
     end
   end
 
@@ -166,7 +168,7 @@ describe 'The /.well-known/webfinger endpoint' do
     it 'returns avatar in response' do
       perform_request!
 
-      avatar_link = get_avatar_link(body_as_json)
+      avatar_link = get_avatar_link(response.parsed_body)
       expect(avatar_link).to_not be_nil
       expect(avatar_link[:type]).to eq alice.avatar.content_type
       expect(avatar_link[:href]).to eq Addressable::URI.new(host: Rails.configuration.x.local_domain, path: alice.avatar.to_s, scheme: 'https').to_s
@@ -180,7 +182,7 @@ describe 'The /.well-known/webfinger endpoint' do
       it 'does not return avatar in response' do
         perform_request!
 
-        avatar_link = get_avatar_link(body_as_json)
+        avatar_link = get_avatar_link(response.parsed_body)
         expect(avatar_link).to be_nil
       end
     end
@@ -195,7 +197,7 @@ describe 'The /.well-known/webfinger endpoint' do
       it 'does not return avatar in response' do
         perform_request!
 
-        avatar_link = get_avatar_link(body_as_json)
+        avatar_link = get_avatar_link(response.parsed_body)
         expect(avatar_link).to be_nil
       end
     end
@@ -210,7 +212,7 @@ describe 'The /.well-known/webfinger endpoint' do
     end
 
     it 'does not return avatar in response' do
-      avatar_link = get_avatar_link(body_as_json)
+      avatar_link = get_avatar_link(response.parsed_body)
       expect(avatar_link).to be_nil
     end
   end

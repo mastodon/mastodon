@@ -7,7 +7,6 @@ en:
     hosted_on: Mastodon hosted on %{domain}
     title: About
   accounts:
-    follow: Follow
     followers:
       one: Follower
       other: Followers
@@ -25,6 +24,8 @@ en:
   admin:
     account_actions:
       action: Perform action
+      already_silenced: This account has already been limited.
+      already_suspended: This account has already been suspended.
       title: Perform moderation action on %{acct}
     account_moderation_notes:
       create: Leave note
@@ -46,6 +47,7 @@ en:
         title: Change email for %{username}
       change_role:
         changed_msg: Role successfully changed!
+        edit_roles: Manage user roles
         label: Change role
         no_role: No role
         title: Change role for %{username}
@@ -602,6 +604,7 @@ en:
         suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
       actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an email notification will be sent to them, except when the <strong>Spam</strong> category is selected.
       actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
+      actions_no_posts: This report doesn't have any associated posts to delete
       add_to_report: Add more to report
       already_suspended_badges:
         local: Already suspended on this server
@@ -1157,6 +1160,12 @@ en:
       view_strikes: View past strikes against your account
     too_fast: Form submitted too fast, try again.
     use_security_key: Use security key
+  author_attribution:
+    example_title: Sample text
+    hint_html: Control how you're credited when links are shared on Mastodon.
+    more_from_html: More from %{name}
+    s_blog: "%{name}'s Blog"
+    title: Author attribution
   challenge:
     confirm: Continue
     hint_html: "<strong>Tip:</strong> We won't ask you for your password again for the next hour."
@@ -1231,8 +1240,6 @@ en:
       your_appeal_approved: Your appeal has been approved
       your_appeal_pending: You have submitted an appeal
       your_appeal_rejected: Your appeal has been rejected
-  domain_validator:
-    invalid_domain: is not a valid domain name
   edit_profile:
     basic_information: Basic information
     hint_html: "<strong>Customize what people see on your public profile and next to your posts.</strong> Other people are more likely to follow you back and interact with you when you have a filled out profile and a profile picture."
@@ -1454,6 +1461,7 @@ en:
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a post that already contains images
+      not_found: Media %{ids} not found or already attached to another post
       not_ready: Cannot attach files that have not finished processing. Try again in a moment!
       too_many: Cannot attach more than 4 files
   migrations:
@@ -1732,23 +1740,12 @@ en:
     edited_at_html: Edited %{date}
     errors:
       in_reply_not_found: The post you are trying to reply to does not appear to exist.
-    open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
     pin_errors:
       direct: Posts that are only visible to mentioned users cannot be pinned
       limit: You have already pinned the maximum number of posts
       ownership: Someone else's post cannot be pinned
       reblog: A boost cannot be pinned
-    poll:
-      total_people:
-        one: "%{count} person"
-        other: "%{count} people"
-      total_votes:
-        one: "%{count} vote"
-        other: "%{count} votes"
-      vote: Vote
-    show_more: Show more
-    show_thread: Show thread
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direct
@@ -1947,6 +1944,7 @@ en:
     instructions_html: Copy and paste the code below into the HTML of your website. Then add the address of your website into one of the extra fields on your profile from the "Edit profile" tab and save changes.
     verification: Verification
     verified_links: Your verified links
+    website_verification: Website verification
   webauthn_credentials:
     add: Add new security key
     create:

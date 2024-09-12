@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Api::ErrorHandling do
+RSpec.describe Api::ErrorHandling do
   before do
     stub_const('FakeService', Class.new)
   end

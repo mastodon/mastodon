@@ -7,7 +7,6 @@ cs:
     hosted_on: Mastodon na doméně %{domain}
     title: O aplikaci
   accounts:
-    follow: Sledovat
     followers:
       few: Sledující
       many: Sledujících
@@ -1213,8 +1212,6 @@ cs:
       your_appeal_approved: Vaše odvolání bylo schváleno
       your_appeal_pending: Podali jste odvolání
       your_appeal_rejected: Vaše odvolání bylo zamítnuto
-  domain_validator:
-    invalid_domain: není platné doménové jméno
   edit_profile:
     basic_information: Základní informace
     hint_html: "<strong>Nastavte si, co lidé uvidí na vašem veřejném profilu a vedle vašich příspěvků.</strong> Ostatní lidé vás budou spíše sledovat a komunikovat s vámi, když budete mít vyplněný profil a profilový obrázek."
@@ -1723,27 +1720,12 @@ cs:
     edited_at_html: Upraven %{date}
     errors:
       in_reply_not_found: Příspěvek, na který se pokoušíte odpovědět, neexistuje.
-    open_in_web: Otevřít na webu
     over_character_limit: byl překročen limit %{max} znaků
     pin_errors:
       direct: Příspěvky viditelné pouze zmíněným uživatelům nelze připnout
       limit: Už jste si připnuli maximální počet příspěvků
       ownership: Nelze připnout příspěvek někoho jiného
       reblog: Boosty nelze připnout
-    poll:
-      total_people:
-        few: "%{count} lidé"
-        many: "%{count} lidí"
-        one: "%{count} člověk"
-        other: "%{count} lidí"
-      total_votes:
-        few: "%{count} hlasy"
-        many: "%{count} hlasů"
-        one: "%{count} hlas"
-        other: "%{count} hlasů"
-      vote: Hlasovat
-    show_more: Zobrazit více
-    show_thread: Zobrazit vlákno
     title: "%{name}: „%{quote}“"
     visibilities:
       direct: Přímé

@@ -7,7 +7,6 @@ es-AR:
     hosted_on: Mastodon alojado en %{domain}
     title: Información
   accounts:
-    follow: Seguir
     followers:
       one: Seguidor
       other: Seguidores
@@ -25,6 +24,8 @@ es-AR:
   admin:
     account_actions:
       action: Ejecutar acción
+      already_silenced: Esta cuenta ya fue limitada.
+      already_suspended: Esta cuenta ya ha sido suspendida.
       title: Ejecutar acción de moderación en %{acct}
     account_moderation_notes:
       create: Dejar nota
@@ -46,6 +47,7 @@ es-AR:
         title: Cambiar correo electrónico para %{username}
       change_role:
         changed_msg: "¡Rol cambiado exitosamente!"
+        edit_roles: Administrar roles de usuario
         label: Cambiar rol
         no_role: Sin rol
         title: Cambiar rol para %{username}
@@ -602,6 +604,7 @@ es-AR:
         suspend_description_html: La cuenta y todos sus contenidos serán inaccesibles y finalmente eliminados, e interactuar con ella será imposible. Revertible en 30 días. Esto cierra todas las denuncias contra esta cuenta.
       actions_description_html: Decidí qué medidas tomar para resolver esta denuncia. Si tomás una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decidí qué medidas tomar para resolver esta denuncia. Esto sólo afectará la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y maneja su contenido.
+      actions_no_posts: Esta denuncia no tiene ningún mensaje asociado para eliminar
       add_to_report: Agregar más a la denuncia
       already_suspended_badges:
         local: Ya suspendido en este servidor
@@ -898,6 +901,7 @@ es-AR:
       name: Nombre
       newest: Lo más reciente
       oldest: Lo más antiguo
+      open: Ver públicamente
       reset: Restablecer
       review: Estado de revisión
       search: Buscar
@@ -1156,6 +1160,12 @@ es-AR:
       view_strikes: Ver incumplimientos pasados contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, probá de nuevo.
     use_security_key: Usar la llave de seguridad
+  author_attribution:
+    example_title: Texto de ejemplo
+    hint_html: Controlá cómo se te da crédito cuando los enlaces son compartidos en Mastodon.
+    more_from_html: Más de %{name}
+    s_blog: Blog de %{name}
+    title: Atribución del autor
   challenge:
     confirm: Continuar
     hint_html: "<strong>Dato:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
@@ -1230,8 +1240,6 @@ es-AR:
       your_appeal_approved: Se aprobó tu apelación
       your_appeal_pending: Enviaste una apelación
       your_appeal_rejected: Se rechazó tu apelación
-  domain_validator:
-    invalid_domain: no es un nombre de dominio válido
   edit_profile:
     basic_information: Información básica
     hint_html: "<strong>Personalizá lo que la gente ve en tu perfil público y junto a tus publicaciones.</strong> Es más probable que otras personas te sigan e interactúen con vos cuando tengas un perfil completo y una foto de perfil."
@@ -1453,6 +1461,7 @@ es-AR:
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a un mensaje que ya contenga imágenes
+      not_found: Medios %{ids} no encontrados o ya adjuntados a otro mensaje
       not_ready: No se pueden adjuntar archivos que no se han terminado de procesar. ¡Intentá de nuevo en un rato!
       too_many: No se pueden adjuntar más de 4 archivos
   migrations:
@@ -1730,23 +1739,12 @@ es-AR:
     edited_at_html: Editado el %{date}
     errors:
       in_reply_not_found: El mensaje al que intentás responder no existe.
-    open_in_web: Abrir en la web
     over_character_limit: se excedió el límite de %{max} caracteres
     pin_errors:
       direct: Los mensajes que sólo son visibles para los usuarios mencionados no pueden ser fijados
       limit: Ya fijaste el número máximo de mensajes
       ownership: No se puede fijar el mensaje de otra cuenta
       reblog: No se puede fijar una adhesión
-    poll:
-      total_people:
-        one: "%{count} persona"
-        other: "%{count} personas"
-      total_votes:
-        one: "%{count} voto"
-        other: "%{count} votos"
-      vote: Votar
-    show_more: Mostrar más
-    show_thread: Mostrar hilo
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Directo
@@ -1945,6 +1943,7 @@ es-AR:
     instructions_html: Copiá y pegá el siguiente código en el HTML de tu sitio web. Luego, agregá la dirección de tu sitio web en uno de los campos extras de tu perfil desde la pestaña "Editar perfil" y guardá los cambios.
     verification: Verificación
     verified_links: Tus enlaces verificados
+    website_verification: Verificación del sitio web
   webauthn_credentials:
     add: Agregar nueva llave de seguridad
     create:

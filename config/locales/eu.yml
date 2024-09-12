@@ -7,7 +7,6 @@ eu:
     hosted_on: Mastodon %{domain} domeinuan ostatatua
     title: Honi buruz
   accounts:
-    follow: Jarraitu
     followers:
       one: Jarraitzaile
       other: jarraitzaile
@@ -1155,8 +1154,6 @@ eu:
       your_appeal_approved: Zure apelazioa onartu da
       your_appeal_pending: Apelazio bat bidali duzu
       your_appeal_rejected: Zure apelazioa baztertu da
-  domain_validator:
-    invalid_domain: ez da domeinu izen baliogarria
   edit_profile:
     basic_information: Oinarrizko informazioa
     hint_html: "<strong>Pertsonalizatu jendeak zer ikusi dezakeen zure profil publikoan eta zure bidalketen baitan.</strong> Segur aski, jende gehiagok jarraituko dizu eta interakzio gehiago izango dituzu profila osatuta baduzu, profil irudia eta guzti."
@@ -1641,23 +1638,12 @@ eu:
     edited_at_html: Editatua %{date}
     errors:
       in_reply_not_found: Erantzuten saiatu zaren bidalketa antza ez da existitzen.
-    open_in_web: Ireki web-ean
     over_character_limit: "%{max}eko karaktere muga gaindituta"
     pin_errors:
       direct: Aipatutako erabiltzaileentzat soilik ikusgai dauden bidalketak ezin dira finkatu
       limit: Gehienez finkatu daitekeen bidalketa kopurua finkatu duzu jada
       ownership: Ezin duzu beste norbaiten bidalketa bat finkatu
       reblog: Bultzada bat ezin da finkatu
-    poll:
-      total_people:
-        one: pertsona %{count}
-        other: "%{count} pertsona"
-      total_votes:
-        one: Boto %{count}
-        other: "%{count} boto"
-      vote: Bozkatu
-    show_more: Erakutsi gehiago
-    show_thread: Erakutsi haria
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Zuzena

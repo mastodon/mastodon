@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ReactionValidator do
+RSpec.describe ReactionValidator do
   let(:announcement) { Fabricate(:announcement) }
 
   describe '#validate' do

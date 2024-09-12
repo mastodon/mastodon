@@ -7,7 +7,6 @@ zh-CN:
     hosted_on: 运行在 %{domain} 上的 Mastodon 实例
     title: 关于本站
   accounts:
-    follow: 关注
     followers:
       other: 关注者
     following: 正在关注
@@ -23,6 +22,8 @@ zh-CN:
   admin:
     account_actions:
       action: 执行操作
+      already_silenced: 此账户已受限。
+      already_suspended: 此帐户已被封禁。
       title: 在 %{acct} 上执行管理操作
     account_moderation_notes:
       create: 新建记录
@@ -44,6 +45,7 @@ zh-CN:
         title: 更改 %{username} 的电子邮箱
       change_role:
         changed_msg: 已成功更改角色！
+        edit_roles: 管理用户角色
         label: 更改角色
         no_role: 没有角色
         title: 更改 %{username} 的角色
@@ -383,9 +385,9 @@ zh-CN:
         cancel: 取消
         confirm: 封禁
         permanent_action: 撤销暂停不会恢复任何数据或关系。
-        preamble_html: 您将要暂停 <strong>%{domain}</strong> 及其子域。
-        remove_all_data: 这将从您的实例上删除此域名下账户的所有内容、媒体和个人资料数据。
-        stop_communication: 您的实例将停止与这些实例的通信。
+        preamble_html: 你将要暂停 <strong>%{domain}</strong> 及其子域。
+        remove_all_data: 这将从你的实例上删除此域名下账户的所有内容、媒体和个人资料数据。
+        stop_communication: 你的实例将停止与这些实例的通信。
         title: 确认对 %{domain} 的封锁
         undo_relationships: 这将解除你的实例与这些实例上账户之间的任何关注。
       created_msg: 正在进行域名屏蔽
@@ -590,6 +592,7 @@ zh-CN:
         suspend_description_html: 该帐户及其所有内容将无法访问并最终被删除，且无法与该帐户进行互动。 在 30 天内可随时撤销。关闭针对此帐户的所有举报。
       actions_description_html: 决定采取何种措施处理此举报。如果对被举报账号采取惩罚性措施，将向其发送一封电子邮件通知。但若选中<strong>垃圾信息</strong>类别则不会发送通知。
       actions_description_remote_html: 决定采取何种行动来解决此举报。 这只会影响<strong>您的</strong>服务器如何与该远程帐户的通信并处理其内容。
+      actions_no_posts: 该举报没有相关嘟文可供删除
       add_to_report: 增加更多举报内容
       already_suspended_badges:
         local: 已经在此服务器上暂停
@@ -609,7 +612,7 @@ zh-CN:
       created_at: 举报时间
       delete_and_resolve: 删除嘟文
       forwarded: 已转发
-      forwarded_replies_explanation: 该举报来自外站用户，涉及外站内容。之所以转发给您，是因为被举报的内容是对您站点一位用户的回复。
+      forwarded_replies_explanation: 该举报来自外站用户，涉及外站内容。之所以转发给你，是因为被举报的内容是对你站点一位用户的回复。
       forwarded_to: 转发举报至 %{domain}
       mark_as_resolved: 标记为已处理
       mark_as_sensitive: 标记为敏感内容
@@ -764,7 +767,7 @@ zh-CN:
         disabled: 不对任何人
         users: 对本地已登录用户
       registrations:
-        moderation_recommandation: 在向所有人开放注册之前，请确保您拥有一个人手足够且反应迅速的管理团队！
+        moderation_recommandation: 在向所有人开放注册之前，请确保你拥有一个人手足够且反应迅速的管理团队！
         preamble: 控制谁可以在你的服务器上创建账号。
         title: 注册
       registrations_mode:
@@ -772,7 +775,7 @@ zh-CN:
           approved: 注册时需要批准
           none: 关闭注册
           open: 开放注册
-        warning_hint: 我们建议使用“注册必须经过批准”，除非您确信您的管理团队能够及时处理骚扰和恶意注册。
+        warning_hint: 我们建议使用“注册必须经过批准”，除非你确信你的管理团队能够及时处理骚扰和恶意注册。
       security:
         authorized_fetch: 需要跨站认证
         authorized_fetch_hint: 要求外站请求通过验证能够使用户级别与服务器级别的封锁更为严格。然而，这将带来额外的性能负担、减少回复触达范围、并可能导致与一些联邦宇宙服务的兼容性问题。此外，这并不能阻止他人针对性地获取公开嘟文与账户。
@@ -784,7 +787,7 @@ zh-CN:
       destroyed_msg: 站点上传的文件已经成功删除！
     software_updates:
       critical_update: 紧急 — 请尽快更新
-      description: 建议你及时更新Mastodon实例，以便获得最新修复和功能。此外，为避免安全问题，有时及时更新Mastodon是至关重要的。出于这些原因，Mastodon每30分钟检查一次更新，并根据您的邮件通知偏好向您发送通知。
+      description: 建议你及时更新Mastodon实例，以便获得最新修复和功能。此外，为避免安全问题，有时及时更新Mastodon是至关重要的。出于这些原因，Mastodon每30分钟检查一次更新，并根据你的邮件通知偏好向你发送通知。
       documentation_link: 详细了解
       release_notes: 发行说明
       title: 可用的更新
@@ -837,17 +840,17 @@ zh-CN:
       elasticsearch_health_red:
         message_html: Elasticsearch 集群状态不健康（红色），搜索功能不可用
       elasticsearch_health_yellow:
-        message_html: Elasticsearch 集群不健康(黄色状态)，您可能想要调查原因
+        message_html: Elasticsearch 集群不健康(黄色状态)，你可能想要调查原因
       elasticsearch_index_mismatch:
         message_html: Elasticsearch索引映射已过时。请运行<code>tootctl search deploy --only=%{value}</code>。
       elasticsearch_preset:
         action: 查看文档
-        message_html: 您的Elasticsearch集群有多个节点，但Mastodon未配置好使用它们。
+        message_html: 你的Elasticsearch集群有多个节点，但Mastodon未配置好使用它们。
       elasticsearch_preset_single_node:
         action: 查看文档
-        message_html: 您的Elasticsearch集群只有一个节点，<code>ES_PRESET</code>应该设置为<code>single_node_cluster</code>。
+        message_html: 你的Elasticsearch集群只有一个节点，<code>ES_PRESET</code>应该设置为<code>single_node_cluster</code>。
       elasticsearch_reset_chewy:
-        message_html: 您的Elasticsearch系统索引已过时，可能是由于设置更改导致的。请运行<code>tootctl search deploy --reset-chewy</code>命令来更新它。
+        message_html: 你的Elasticsearch系统索引已过时，可能是由于设置更改导致的。请运行<code>tootctl search deploy --reset-chewy</code>命令来更新它。
       elasticsearch_running_check:
         message_html: 无法连接到 Elasticsearch。请检查它是否正在运行，或禁用全文搜索
       elasticsearch_version_check:
@@ -884,6 +887,7 @@ zh-CN:
       name: 名称
       newest: 最新
       oldest: 最早
+      open: 以公开身份查看
       reset: 重置
       review: 审核状态
       search: 搜索
@@ -988,7 +992,7 @@ zh-CN:
       webhook: Webhook
   admin_mailer:
     auto_close_registrations:
-      body: 由于近期缺乏管理员活动， %{instance} 上的注册已自动切换为需要手动审核，以防止 %{instance} 被潜在的不良行为者用作平台。您可以随时将其切换回开放注册。
+      body: 由于近期缺乏管理员活动， %{instance} 上的注册已自动切换为需要手动审核，以防止 %{instance} 被潜在的不良行为者用作平台。你可以随时将其切换回开放注册。
       subject: "%{instance} 的注册已自动切换为需要批准"
     new_appeal:
       actions:
@@ -1003,7 +1007,7 @@ zh-CN:
       next_steps: 你可以批准此申诉并撤销该审核结果，也可以忽略此申诉。
       subject: "%{username} 对 %{instance} 的审核结果提出了申诉"
     new_critical_software_updates:
-      body: 新的紧急更新版本Mastodon已经发布，您可能希望尽快更新！
+      body: 新的紧急更新版本Mastodon已经发布，你可能希望尽快更新！
       subject: 适用于 %{instance} 的Mastodon紧急更新已经可用。
     new_pending_account:
       body: 新账户的详细信息如下。你可以批准或拒绝此申请。
@@ -1013,7 +1017,7 @@ zh-CN:
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
       subject: 来自 %{instance} 的用户举报（#%{id}）
     new_software_updates:
-      body: 新的 Mastodon 版本已发布，您可能想要更新！
+      body: 新的 Mastodon 版本已发布，你可能想要更新！
       subject: 适用于 %{instance} 的Mastodon版本更新已经可用！
     new_trends:
       body: 以下项目需要审核才能公开显示：
@@ -1061,18 +1065,18 @@ zh-CN:
   auth:
     apply_for_account: 申请账号
     captcha_confirmation:
-      help_html: 如果您在输入验证码时遇到问题，可以通过%{email} 与我们联系，我们将为您提供帮助。
-      hint_html: 只剩最后一件事了！我们需要确认您是一个人类（这样我们才能阻止恶意访问！）。请输入下面的验证码，然后点击“继续”。
+      help_html: 如果你在输入验证码时遇到问题，可以通过%{email} 与我们联系，我们将为你提供帮助。
+      hint_html: 只剩最后一件事了！我们需要确认你是一个人类（这样我们才能阻止恶意访问！）。请输入下面的验证码，然后点击“继续”。
       title: 安全检查
     confirmations:
       awaiting_review: 你的邮箱地址已确认！%{domain} 的工作人员正在审核你的注册信息。如果他们批准了你的账户，你将收到一封邮件通知！
-      awaiting_review_title: 您的注册申请正在审核中
+      awaiting_review_title: 你的注册申请正在审核中
       clicking_this_link: 点击此链接
       login_link: 登录
-      proceed_to_login_html: 现在您可以继续前往 %{login_link} 。
-      redirect_to_app_html: 您应该已被重定向到 <strong>%{app_name}</strong> 应用程序。如果没有，请尝试 %{clicking_this_link} 或手动返回应用程序。
-      registration_complete: 您在 %{domain} 上的注册现已完成！
-      welcome_title: 欢迎您，%{name}！
+      proceed_to_login_html: 现在你可以继续前往 %{login_link} 。
+      redirect_to_app_html: 你应该已被重定向到 <strong>%{app_name}</strong> 应用程序。如果没有，请尝试 %{clicking_this_link} 或手动返回应用程序。
+      registration_complete: 你在 %{domain} 上的注册现已完成！
+      welcome_title: 欢迎你，%{name}！
       wrong_email_hint: 如果该邮箱地址不正确，你可以在账户设置中进行更改。
     delete_account: 删除帐户
     delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
@@ -1110,7 +1114,7 @@ zh-CN:
       back: 返回
       invited_by: 你可以加入%{domain}，这是由于你收到了他人的邀请，邀请来自：
       preamble: 这些由 %{domain} 监察员设置和执行。
-      preamble_invited: 在您继续之前，请考虑 %{domain} 的管理员设定的基本规则。
+      preamble_invited: 在你继续之前，请考虑 %{domain} 的管理员设定的基本规则。
       title: 一些基本规则。
       title_invited: 您已经被邀请。
     security: 账户安全
@@ -1138,6 +1142,12 @@ zh-CN:
       view_strikes: 查看针对你账号的记录
     too_fast: 表单提交过快，请重试。
     use_security_key: 使用安全密钥
+  author_attribution:
+    example_title: 示例文本
+    hint_html: 控制在 Mastodon 上分享的链接如何显示你的署名。
+    more_from_html: 来自 %{name} 的更多内容
+    s_blog: "%{name} 的博客"
+    title: 作者归属
   challenge:
     confirm: 继续
     hint_html: "<strong>注意：</strong>接下来一小时内我们不会再次要求你输入密码。"
@@ -1212,8 +1222,6 @@ zh-CN:
       your_appeal_approved: 你的申诉已被批准
       your_appeal_pending: 你已提交申诉
       your_appeal_rejected: 你的申诉已被驳回
-  domain_validator:
-    invalid_domain: 不是一个有效的域名
   edit_profile:
     basic_information: 基本信息
     hint_html: "<strong>自定义公开资料和嘟文旁边显示的内容。</strong>当您填写完整的个人资料并设置了头像时，其他人更有可能关注您并与您互动。"
@@ -1324,26 +1332,26 @@ zh-CN:
       too_large: 文件过大
     failures: 失败
     imported: 已导入
-    mismatched_types_warning: 您似乎选择了导入错误的类型，请再次检查。
+    mismatched_types_warning: 你似乎选择了导入错误的类型，请再次检查。
     modes:
       merge: 合并
       merge_long: 保留现有记录并添加新的记录
       overwrite: 覆盖
       overwrite_long: 将当前记录替换为新记录
     overwrite_preambles:
-      blocking_html: 您即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个账户</strong>替换您的屏蔽列表。
-      bookmarks_html: 您即将使用来自<strong> %{filename} </strong>的<strong> %{total_items} 篇嘟文</strong>替换您的书签。
-      domain_blocking_html: 您即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个域名</strong>替换您的域名屏蔽列表。
-      following_html: 您即将从<strong> %{filename} </strong>关注<strong> %{total_items} 个账户</strong>，并停止关注其他任何人。
+      blocking_html: 你即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个账户</strong>替换你的屏蔽列表。
+      bookmarks_html: 你即将使用来自<strong> %{filename} </strong>的<strong> %{total_items} 篇嘟文</strong>替换你的书签。
+      domain_blocking_html: 你即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个域名</strong>替换你的域名屏蔽列表。
+      following_html: 你即将从<strong> %{filename} </strong>关注<strong> %{total_items} 个账户</strong>，并停止关注其他任何人。
       lists_html: 你即将用<strong> %{filename} </strong>的内容<strong>替换你的列表</strong>。新列表中将添加<strong> %{total_items} 个账户</strong>。
-      muting_html: 您即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个账户</strong>替换您已隐藏的账户列表。
+      muting_html: 你即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个账户</strong>替换你已隐藏的账户列表。
     preambles:
-      blocking_html: 您即将从<strong> %{filename} </strong>中<strong>封锁</strong>多达<strong> %{total_items} </strong>个账户。
-      bookmarks_html: 您即将把来自<strong> %{filename} </strong>的<strong> %{total_items} 篇嘟文</strong>添加到您的<strong>书签</strong>中。
-      domain_blocking_html: 您即将从<strong> %{filename} </strong>中<strong>屏蔽</strong><strong> %{total_items} 个域名</strong>。
-      following_html: 您即将从<strong> %{filename} </strong><strong>关注</strong>最多<strong> %{total_items} 个账户</strong>。
+      blocking_html: 你即将从<strong> %{filename} </strong>中<strong>封锁</strong>多达<strong> %{total_items} </strong>个账户。
+      bookmarks_html: 你即将把来自<strong> %{filename} </strong>的<strong> %{total_items} 篇嘟文</strong>添加到你的<strong>书签</strong>中。
+      domain_blocking_html: 你即将从<strong> %{filename} </strong>中<strong>屏蔽</strong><strong> %{total_items} 个域名</strong>。
+      following_html: 你即将从<strong> %{filename} </strong><strong>关注</strong>最多<strong> %{total_items} 个账户</strong>。
       lists_html: 你即将从<strong> %{filename} </strong>中添加最多<strong> %{total_items} 个账户</strong>到你的<strong>列表</strong>中。如果没有可用列表，将创建新的列表。
-      muting_html: 您即将从<strong> %{filename} </strong>中<strong>隐藏</strong><strong> %{total_items} 个账户</strong>。
+      muting_html: 你即将从<strong> %{filename} </strong>中<strong>隐藏</strong><strong> %{total_items} 个账户</strong>。
     preface: 你可以在此导入你在其他实例导出的数据，比如你所关注或屏蔽的用户列表。
     recent_imports: 最近导入
     states:
@@ -1413,7 +1421,7 @@ zh-CN:
     unsubscribe:
       action: 是，取消订阅
       complete: 已取消订阅
-      confirmation_html: 你确定要退订来自 %{domain} 上的 Mastodon 的 %{type} 到您的邮箱 %{email} 吗？您可以随时在<a href="%{settings_path}">邮件通知设置</a>中重新订阅。
+      confirmation_html: 你确定要退订来自 %{domain} 上的 Mastodon 的 %{type} 到你的邮箱 %{email} 吗？你可以随时在<a href="%{settings_path}">邮件通知设置</a>中重新订阅。
       emails:
         notification_emails:
           favourite: 嘟文被喜欢邮件通知
@@ -1427,6 +1435,7 @@ zh-CN:
   media_attachments:
     validations:
       images_and_video: 无法在嘟文中同时插入视频和图片
+      not_found: 媒体 %{ids} 未找到，有可能已随附于另一条嘟文。
       not_ready: 不能附加还在处理中的文件。请稍后再试！
       too_many: 最多只能添加 4 张图片
   migrations:
@@ -1539,7 +1548,7 @@ zh-CN:
       expired: 投票已经结束
       invalid_choice: 被选中的投票选项不存在
       over_character_limit: 每条不能超过 %{max} 个字符
-      self_vote: 您不能参与自己发起的投票
+      self_vote: 你不能参与自己发起的投票
       too_few_options: 至少需要两个选项
       too_many_options: 不能超过 %{max} 项
   preferences:
@@ -1547,7 +1556,7 @@ zh-CN:
     posting_defaults: 发布默认值
     public_timelines: 公共时间轴
   privacy:
-    hint_html: "<strong>自定义您希望如何找到您的个人资料和嘟文。</strong>启用Mastodon中的各种功能可以帮助您扩大受众范围。请花点时间查看这些设置，确保它们适合您的使用情况。"
+    hint_html: "<strong>自定义你希望如何找到你的个人资料和嘟文。</strong>启用Mastodon中的各种功能可以帮助你扩大受众范围。请花点时间查看这些设置，确保它们适合你的使用情况。"
     privacy: 隐私
     privacy_hint_html: 控制你愿意向他人透露多少信息。通过浏览他人的关注列表和查看他们发嘟所用的应用，人们可以发现有趣的用户和酷炫的应用，但你可能更喜欢将其隐藏起来。
     reach: 范围
@@ -1562,8 +1571,8 @@ zh-CN:
       limit_reached: 互动种类的限制
       unrecognized_emoji: 不是一个可识别的表情
   redirects:
-    prompt: 如果您信任此链接，请单击以继续跳转。
-    title: 您正在离开 %{instance} 。
+    prompt: 如果你信任此链接，请单击以继续跳转。
+    title: 你正在离开 %{instance} 。
   relationships:
     activity: 账号活动
     confirm_follow_selected_followers: 您确定想要关注所选的关注者吗？
@@ -1700,21 +1709,12 @@ zh-CN:
     edited_at_html: 编辑于 %{date}
     errors:
       in_reply_not_found: 你回复的嘟文似乎不存在
-    open_in_web: 在站内打开
     over_character_limit: 超过了 %{max} 字的限制
     pin_errors:
       direct: 仅对被提及的用户可见的帖子不能被置顶
       limit: 你所固定的嘟文数量已达到上限
       ownership: 不能置顶别人的嘟文
       reblog: 不能置顶转嘟
-    poll:
-      total_people:
-        other: "%{count} 人"
-      total_votes:
-        other: "%{count} 票"
-      vote: 投票
-    show_more: 显示更多
-    show_thread: 显示全部对话
     title: "%{name}：“%{quote}”"
     visibilities:
       direct: 私信
@@ -1801,22 +1801,22 @@ zh-CN:
       action: 账户设置
       explanation: 你于 %{appeal_date} 对 %{strike_date} 在你账号上做出的处罚提出的申诉已被批准，你的账号已回到正常状态。
       subject: 你于 %{date} 提出的申诉已被批准
-      subtitle: 您的账户已再次回到良好状态。
+      subtitle: 你的账户已再次回到良好状态。
       title: 申诉已批准
     appeal_rejected:
       explanation: 你于 %{appeal_date} 对 %{strike_date} 在你账号上做出的处罚提出的申诉已被驳回。
       subject: 你于 %{date} 提出的申诉已被驳回
-      subtitle: 您的申诉已被驳回。
+      subtitle: 你的申诉已被驳回。
       title: 申诉已驳回
     backup_ready:
-      explanation: 您之前请求为您的 Mastodon 账户创建一份完整的备份。
+      explanation: 你之前请求为你的 Mastodon 账户创建一份完整的备份。
       extra: 现在它可以下载了！
       subject: 你的存档已经准备完毕
       title: 存档导出
     failed_2fa:
       details: 以下是该次登录尝试的详情：
-      explanation: 有人试图登录到您的账户，但提供了无效的辅助认证因子。
-      further_actions_html: 如果这不是您所为，您的密码可能已经泄露，建议您立即 %{action} 。
+      explanation: 有人试图登录到你的账户，但提供了无效的辅助认证因子。
+      further_actions_html: 如果这不是你所为，你的密码可能已经泄露，建议你立即 %{action} 。
       subject: 辅助认证失败
       title: 辅助认证失败
     suspicious_sign_in:
@@ -1862,24 +1862,24 @@ zh-CN:
       apps_ios_action: 从 App Store 下载
       apps_step: 下载我们的官方应用。
       apps_title: Mastodon应用
-      checklist_subtitle: 让我们带您开启这片社交新天地：
+      checklist_subtitle: 让我们带你开启这片社交新天地：
       checklist_title: 欢迎清单
       edit_profile_action: 个性化
-      edit_profile_step: 完善个人资料，提升您的互动体验。
-      edit_profile_title: 个性化您的个人资料
+      edit_profile_step: 完善个人资料，提升你的互动体验。
+      edit_profile_title: 个性化你的个人资料
       explanation: 下面是几个小贴士，希望它们能帮到你
       feature_action: 了解更多
-      feature_audience: Mastodon为您提供了无需中间商即可管理受众的独特可能。Mastodon可被部署在您自己的基础设施上，允许您关注其它任何Mastodon在线服务器的用户，或被任何其他在线 Mastodon 服务器的用户关注，并且不受您之外的任何人控制。
-      feature_audience_title: 放手去建立起您的受众
-      feature_control: 您最清楚您想在你自己的主页中看到什么动态。没有算法或广告浪费您的时间。您可以用一个账号关注任何 Mastodon 服务器上的任何人，并按时间顺序获得他们发布的嘟文，让您的互联网的角落更合自己的心意。
+      feature_audience: Mastodon为你提供了无需中间商即可管理受众的独特可能。Mastodon可被部署在你自己的基础设施上，允许你关注其它任何Mastodon在线服务器的用户，或被任何其他在线 Mastodon 服务器的用户关注，并且不受你之外的任何人控制。
+      feature_audience_title: 放手去建立起你的受众
+      feature_control: 你最清楚你想在你自己的主页中看到什么动态。没有算法或广告浪费你的时间。你可以用一个账号关注任何 Mastodon 服务器上的任何人，并按时间顺序获得他们发布的嘟文，让你的互联网的角落更合自己的心意。
       feature_control_title: 掌控自己的时间线
-      feature_creativity: Mastodon支持音频、视频和图片、无障碍描述、投票、内容警告， 动画头像、自定义表情包、缩略图裁剪控制等功能，帮助您在网上尽情表达自己。无论您是要发布您的艺术作品、音乐还是播客，Mastodon 都能为您服务。
+      feature_creativity: Mastodon支持音频、视频和图片、无障碍描述、投票、内容警告， 动画头像、自定义表情包、缩略图裁剪控制等功能，帮助你在网上尽情表达自己。无论你是要发布你的艺术作品、音乐还是播客，Mastodon 都能为你服务。
       feature_creativity_title: 无与伦比的创造力
-      feature_moderation: Mastodon将决策权交还给您。每个服务器都会创建自己的规则和条例，并在站点内施行，而不是像企业社交媒体那样居高临下，这使得它可以最灵活地响应不同人群的需求。加入一个您认同其规则的服务器，或托管您自己的服务器。
+      feature_moderation: Mastodon将决策权交还给你。每个服务器都会创建自己的规则和条例，并在站点内施行，而不是像企业社交媒体那样居高临下，这使得它可以最灵活地响应不同人群的需求。加入一个你认同其规则的服务器，或托管你自己的服务器。
       feature_moderation_title: 管理，本应如此
       follow_action: 关注
       follow_step: 关注有趣的人，这就是Mastodon的意义所在。
-      follow_title: 个性化您的首页动态
+      follow_title: 个性化你的首页动态
       follows_subtitle: 关注知名账户
       follows_title: 推荐关注
       follows_view_more: 查看更多可关注的人
@@ -1890,10 +1890,10 @@ zh-CN:
       hashtags_view_more: 查看更多热门话题标签
       post_action: 撰写
       post_step: 向世界打个招呼吧。
-      post_title: 发布您的第一条嘟文
+      post_title: 发布你的第一条嘟文
       share_action: 分享
-      share_step: 让您的朋友知道如何在Mastodon找到你。
-      share_title: 分享您的Mastodon个人资料
+      share_step: 让你的朋友知道如何在Mastodon找到你。
+      share_title: 分享你的Mastodon个人资料
       sign_in_action: 登录
       subject: 欢迎来到 Mastodon
       title: "%{name}，欢迎你的加入！"
@@ -1906,12 +1906,13 @@ zh-CN:
     seamless_external_login: 你通过外部服务登录，因此密码和邮件设置不可用。
     signed_in_as: 当前登录的账户：
   verification:
-    extra_instructions_html: <strong>提示：</strong>您网站上的链接可能是不可见的。重要的部分是 <code>rel="me"</code>，它可以防止在具有用户生成内容的网站上冒充身份。您甚至可以在页面头部使用 <code>link</code> 标签而不是 <code>a</code>，但 HTML 必须能够在不执行 JavaScript 的情况下访问。
+    extra_instructions_html: <strong>提示：</strong>你网站上的链接可能是不可见的。重要的部分是 <code>rel="me"</code>，它可以防止在具有用户生成内容的网站上冒充身份。你甚至可以在页面头部使用 <code>link</code> 标签而不是 <code>a</code>，但 HTML 必须能够在不执行 JavaScript 的情况下访问。
     here_is_how: 具体方法如下：
-    hint_html: "<strong>在Mastodon上验证您的身份对每个人都是必要的。</strong>基于开放网络标准，现在和将来永远免费。您只需要一个被人们认可的个人网站。当您在个人资料中链接到这个网站时，我们会检查该网站是否回链到您的资料，并显示一个指示符号。"
-    instructions_html: 将下面的代码复制并粘贴到您网站的HTML中。然后在“编辑个人资料”选项卡中的附加字段之一添加您网站的地址，并保存更改。
+    hint_html: "<strong>在Mastodon上验证你的身份对每个人都是必要的。</strong>基于开放网络标准，现在和将来永远免费。你只需要一个被人们认可的个人网站。当你在个人资料中链接到这个网站时，我们会检查该网站是否回链到你的资料，并显示一个指示符号。"
+    instructions_html: 将下面的代码复制并粘贴到你网站的HTML中。然后在“编辑个人资料”选项卡中的附加字段之一添加你网站的地址，并保存更改。
     verification: 验证
-    verified_links: 您已验证的链接
+    verified_links: 你已验证的链接
+    website_verification: 网站验证
   webauthn_credentials:
     add: 添加新的安全密钥
     create:

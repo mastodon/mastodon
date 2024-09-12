@@ -22,6 +22,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
                expose: %w(Link X-RateLimit-Reset X-RateLimit-Limit X-RateLimit-Remaining X-Request-Id),
                methods: %i(post put delete get patch options)
       resource '/oauth/token', methods: [:post]
+      resource '/oauth/revoke', methods: [:post]
     end
   end
 end

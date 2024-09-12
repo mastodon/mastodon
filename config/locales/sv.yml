@@ -7,7 +7,6 @@ sv:
     hosted_on: Mastodon-värd på %{domain}
     title: Om
   accounts:
-    follow: Följa
     followers:
       one: Följare
       other: Följare
@@ -25,6 +24,7 @@ sv:
   admin:
     account_actions:
       action: Utför åtgärd
+      already_silenced: Detta konto är redan begränsat.
       title: Utför aktivitet för moderering på %{acct}
     account_moderation_notes:
       create: Lämna kommentar
@@ -46,6 +46,7 @@ sv:
         title: Byt e-postadress för %{username}
       change_role:
         changed_msg: Rollen har ändrats!
+        edit_roles: Hantera användarroller
         label: Ändra roll
         no_role: Ingen roll
         title: Ändra roll för %{username}
@@ -178,17 +179,21 @@ sv:
         confirm_user: Bekräfta användare
         create_account_warning: Skapa varning
         create_announcement: Skapa kungörelse
+        create_canonical_email_block: Skapa E-post block
         create_custom_emoji: Skapa egen emoji
         create_domain_allow: Skapa tillåten domän
         create_domain_block: Skapa blockerad domän
+        create_email_domain_block: Skapa E-post domän block
         create_ip_block: Skapa IP-regel
         create_unavailable_domain: Skapa otillgänglig domän
         create_user_role: Skapa roll
         demote_user: Degradera användare
         destroy_announcement: Radera kungörelse
+        destroy_canonical_email_block: Ta bort e-post block
         destroy_custom_emoji: Radera egen emoji
         destroy_domain_allow: Ta bort tillåten domän
         destroy_domain_block: Ta bort blockerad domän
+        destroy_email_domain_block: Ta bort E-post domän block
         destroy_instance: Rensa domänen
         destroy_ip_block: Radera IP-regel
         destroy_status: Radera inlägg
@@ -231,19 +236,24 @@ sv:
         assigned_to_self_report_html: "%{name} tilldelade rapporten %{target} till sig själva"
         change_email_user_html: "%{name} bytte e-postadress för användaren %{target}"
         change_role_user_html: "%{name} ändrade roll för %{target}"
+        confirm_user_html: "%{name} bekräftad e-post adress av användare %{target}"
         create_account_warning_html: "%{name} skickade en varning till %{target}"
         create_announcement_html: "%{name} skapade kungörelsen %{target}"
+        create_canonical_email_block_html: "%{name} blockade e-posten med %{target}"
         create_custom_emoji_html: "%{name} laddade upp ny emoji %{target}"
         create_domain_allow_html: "%{name} vitlistade domän %{target}"
         create_domain_block_html: "%{name} blockerade domänen %{target}"
+        create_email_domain_block_html: "%{name} blockerade e-post domänet%{target}"
         create_ip_block_html: "%{name} skapade regel för IP %{target}"
         create_unavailable_domain_html: "%{name} stoppade leverans till domänen %{target}"
         create_user_role_html: "%{name} skapade rollen %{target}"
         demote_user_html: "%{name} nedgraderade användare %{target}"
         destroy_announcement_html: "%{name} raderade kungörelsen %{target}"
+        destroy_canonical_email_block_html: "%{name} avblockerade e-post med hash%{target}"
         destroy_custom_emoji_html: "%{name} raderade emoji %{target}"
         destroy_domain_allow_html: "%{name} raderade domän %{target} från vitlistan"
         destroy_domain_block_html: "%{name} avblockerade domänen %{target}"
+        destroy_email_domain_block_html: "%{name} avblockerade e-post domänet %{target}"
         destroy_instance_html: "%{name} rensade domän %{target}"
         destroy_ip_block_html: "%{name} tog bort regel för IP %{target}"
         destroy_status_html: "%{name} tog bort inlägget av %{target}"
@@ -864,7 +874,9 @@ sv:
         message_html: "<strong>Din objektlagring är felkonfigurerad. Sekretessen för dina användare är i riskzonen.</strong>"
     tags:
       moderation:
+        reviewed: Granskat
         title: Status
+        trendable:
       name: Namn
       reset: Återställ
       review: Granskningsstatus
@@ -1106,6 +1118,8 @@ sv:
       view_strikes: Visa tidigare prickar på ditt konto
     too_fast: Formuläret har skickats för snabbt, försök igen.
     use_security_key: Använd säkerhetsnyckel
+  author_attribution:
+    example_title: Exempeltext
   challenge:
     confirm: Fortsätt
     hint_html: "<strong>Tips:</strong> Vi frågar dig inte efter ditt lösenord igen under nästkommande timme."
@@ -1180,8 +1194,6 @@ sv:
       your_appeal_approved: Din överklagan har godkänts
       your_appeal_pending: Du har lämnat in en överklagan
       your_appeal_rejected: Din överklagan har avvisats
-  domain_validator:
-    invalid_domain: är inte ett giltigt domännamn
   edit_profile:
     basic_information: Allmän information
     hint_html: "<strong>Anpassa vad folk ser på din offentliga profil och bredvid dina inlägg.</strong> Andra personer är mer benägna att följa dig och interagera med dig när du har en ifylld profil och en profilbild."
@@ -1680,23 +1692,12 @@ sv:
     edited_at_html: 'Ändrad: %{date}'
     errors:
       in_reply_not_found: Inlägget du försöker svara på verkar inte existera.
-    open_in_web: Öppna på webben
     over_character_limit: teckengräns på %{max} har överskridits
     pin_errors:
       direct: Inlägg som endast är synliga för nämnda användare kan inte fästas
       limit: Du har redan fäst det maximala antalet inlägg
       ownership: Någon annans inlägg kan inte fästas
       reblog: En boost kan inte fästas
-    poll:
-      total_people:
-        one: "%{count} person"
-        other: "%{count} personer"
-      total_votes:
-        one: "%{count} röst"
-        other: "%{count} röster"
-      vote: Rösta
-    show_more: Visa mer
-    show_thread: Visa tråd
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkt

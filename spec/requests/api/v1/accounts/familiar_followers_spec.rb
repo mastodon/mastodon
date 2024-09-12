@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Accounts Familiar Followers API' do
+RSpec.describe 'Accounts Familiar Followers API' do
   let(:user)     { Fabricate(:user) }
   let(:token)    { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:scopes)   { 'read:follows' }
@@ -24,7 +24,7 @@ describe 'Accounts Familiar Followers API' do
         account_ids = [account_a, account_b, account_b, account_a, account_a].map { |a| a.id.to_s }
         get '/api/v1/accounts/familiar_followers', params: { id: account_ids }, headers: headers
 
-        expect(body_as_json.pluck(:id)).to contain_exactly(account_a.id.to_s, account_b.id.to_s)
+        expect(response.parsed_body.pluck(:id)).to contain_exactly(account_a.id.to_s, account_b.id.to_s)
       end
     end
   end

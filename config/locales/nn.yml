@@ -7,7 +7,6 @@ nn:
     hosted_on: "%{domain} er vert for Mastodon"
     title: Om
   accounts:
-    follow: Fylg
     followers:
       one: Fylgjar
       other: Fylgjarar
@@ -25,6 +24,8 @@ nn:
   admin:
     account_actions:
       action: Utfør
+      already_silenced: Denne kontoen har allereie vorte avgrensa.
+      already_suspended: Denne kontoen er allereie sperra.
       title: Utfør moderatorhandling på %{acct}
     account_moderation_notes:
       create: Legg igjen merknad
@@ -46,6 +47,7 @@ nn:
         title: Byt e-post for %{username}
       change_role:
         changed_msg: Rolle endra!
+        edit_roles: Administrer brukarroller
         label: Endre rolle
         no_role: Inga rolle
         title: Endre rolle for %{username}
@@ -602,6 +604,7 @@ nn:
         suspend_description_html: Brukarkontoen og alt innhaldet vil bli utilgjengeleg og til slutt sletta, og det vil vera uråd å samhandla med brukaren. Du kan angra dette innan 30 dagar. Dette avsluttar alle rapportar om kontoen.
       actions_description_html: Avgjer kva som skal gjerast med denne rapporteringa. Dersom du utfører straffetiltak mot den rapporterte kontoen, vil dei motta ein e-post – så sant du ikkje har valt kategorien <strong>Spam</strong>.
       actions_description_remote_html: Avgjer kva du vil gjera for å løysa denne rapporten. Dette påverkar berre korleis tenaren <strong>din</strong> kommuniserer med kontoen på ein annan tenar, og korleis tenaren din handterer innhald derifrå.
+      actions_no_posts: Denne rapporten har ingen tilknytte innlegg å sletta
       add_to_report: Legg til i rapporten
       already_suspended_badges:
         local: Allereie utestengd på denne tenaren
@@ -898,6 +901,7 @@ nn:
       name: Namn
       newest: Nyaste
       oldest: Eldste
+      open: Vis offentleg
       reset: Nullstill
       review: Sjå gjennom status
       search: Søk
@@ -1156,6 +1160,12 @@ nn:
       view_strikes: Vis tidligere advarsler mot kontoen din
     too_fast: Skjemaet ble sendt inn for raskt, prøv på nytt.
     use_security_key: Bruk sikkerhetsnøkkel
+  author_attribution:
+    example_title: Eksempeltekst
+    hint_html: Kontroller korleis du blir kreditert når nokon deler lenker på Mastodon.
+    more_from_html: Meir frå %{name}
+    s_blog: Bloggen til %{name}
+    title: Forfattarkreditering
   challenge:
     confirm: Hald fram
     hint_html: "<strong>Tips:</strong> Vi skal ikkje spørja deg om passordet ditt igjen i laupet av den neste timen."
@@ -1230,8 +1240,6 @@ nn:
       your_appeal_approved: Din klage har blitt godkjent
       your_appeal_pending: Du har levert en klage
       your_appeal_rejected: Din klage har blitt avvist
-  domain_validator:
-    invalid_domain: er ikkje eit gangbart domenenamn
   edit_profile:
     basic_information: Grunnleggande informasjon
     hint_html: "<strong>Tilpass kva folk ser på den offentlege profilen din og ved sida av innlegga dine.</strong> Andre vil i større grad fylgja og samhandla med deg når du har eit profilbilete og har fyllt ut profilen din."
@@ -1453,6 +1461,7 @@ nn:
   media_attachments:
     validations:
       images_and_video: Kan ikkje leggja ved video til status som allereie inneheld bilete
+      not_found: Media %{ids} vart ikkje funne eller er allereie kopla til eit anna innlegg
       not_ready: Kan ikke legge til filer som ikke er ferdigbehandlet. Prøv igjen om et øyeblikk!
       too_many: Kan ikkje leggja til meir enn 4 filer
   migrations:
@@ -1730,23 +1739,12 @@ nn:
     edited_at_html: Redigert %{date}
     errors:
       in_reply_not_found: Det ser ut til at tutet du freistar å svara ikkje finst.
-    open_in_web: Opn på nett
     over_character_limit: øvregrensa for teikn, %{max}, er nådd
     pin_errors:
       direct: Innlegg som bare er synlige for nevnte brukere kan ikke festes
       limit: Du har allereie festa så mange tut som det går an å festa
       ownership: Du kan ikkje festa andre sine tut
       reblog: Ei framheving kan ikkje festast
-    poll:
-      total_people:
-        one: "%{count} person"
-        other: "%{count} folk"
-      total_votes:
-        one: "%{count} røyst"
-        other: "%{count} røyster"
-      vote: Røyst
-    show_more: Vis meir
-    show_thread: Vis tråden
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Direkte
@@ -1945,6 +1943,7 @@ nn:
     instructions_html: Kopier og lim inn i koden nedanfor i HTML-koden for nettsida di. Legg deretter adressa til nettsida di til i ei av ekstrafelta på profilen din frå fana "Rediger profil" og lagre endringane.
     verification: Stadfesting
     verified_links: Dine verifiserte lenker
+    website_verification: Stadfesting av nettside
   webauthn_credentials:
     add: Legg til ny sikkerhetsnøkkel
     create:

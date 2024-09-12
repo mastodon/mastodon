@@ -7,7 +7,6 @@
     hosted_on: Mastodon driftet på %{domain}
     title: Om
   accounts:
-    follow: Følg
     followers:
       one: Følger
       other: Følgere
@@ -31,6 +30,7 @@
       created_msg: Moderasjonsnotat laget uten problem!
       destroyed_msg: Moderasjonsnotat slettet uten problem!
     accounts:
+      add_email_domain_block: Blokker e-postdomenet
       approve: Godkjenn
       approved_msg: Godkjent %{username} sin registreringsapplikasjon
       are_you_sure: Er du sikker?
@@ -1146,8 +1146,6 @@
       your_appeal_approved: Anken din har blitt godkjent
       your_appeal_pending: Du har levert en anke
       your_appeal_rejected: Anken din har blitt avvist
-  domain_validator:
-    invalid_domain: er ikke et gyldig domenenavn
   edit_profile:
     basic_information: Grunnleggende informasjon
     hint_html: "<strong>Tilpass hva folk ser på din offentlige profil og ved siden av dine innlegg.</strong> Det er mer sannsynlig at andre mennesker følger deg tilbake og samhandler med deg når du har fylt ut en profil og et profilbilde."
@@ -1620,23 +1618,12 @@
     edited_at_html: Redigert %{date}
     errors:
       in_reply_not_found: Posten du prøver å svare ser ikke ut til eksisterer.
-    open_in_web: Åpne i nettleser
     over_character_limit: grensen på %{max} tegn overskredet
     pin_errors:
       direct: Innlegg som bare er synlige for nevnte brukere kan ikke festes
       limit: Du har allerede festet det maksimale antall innlegg
       ownership: Kun egne innlegg kan festes
       reblog: En fremheving kan ikke festes
-    poll:
-      total_people:
-        one: "%{count} person"
-        other: "%{count} personer"
-      total_votes:
-        one: "%{count} stemme"
-        other: "%{count} stemmer"
-      vote: Stem
-    show_more: Vis mer
-    show_thread: Vis tråden
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Direkte

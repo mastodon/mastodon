@@ -3,6 +3,7 @@ nn:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Vernar mot falske krediteringar.
         discoverable: Dei offentlege innlegga dine og profilen din kan dukka opp i tilrådingar på ulike stader på Mastodon, og profilen din kan bli føreslegen for andre folk.
         display_name: Ditt fulle namn eller ditt tøysenamn.
         fields: Heimesida di, pronomen, alder, eller kva du måtte ynskje.
@@ -130,7 +131,7 @@ nn:
         name: Du kan berre endra bruken av store/små bokstavar, t. d. for å gjera det meir leseleg
       user:
         chosen_languages: Når merka vil berre tuta på dei valde språka synast på offentlege tidsliner
-        role: Rolla kontrollerer kva tilgangar brukaren har
+        role: Rolla kontrollerer kva løyve brukaren har.
       user_role:
         color: Fargen som skal nyttast for denne rolla i heile brukargrensesnittet, som RGB i hex-format
         highlighted: Dette gjer rolla synleg offentleg
@@ -143,6 +144,7 @@ nn:
         url: Kvar hendingar skal sendast
     labels:
       account:
+        attribution_domains_as_text: Tillat berre visse nettstader
         discoverable: Ta med profilen og innlegga i oppdagingsalgoritmar
         fields:
           name: Merkelapp

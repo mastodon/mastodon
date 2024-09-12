@@ -7,7 +7,6 @@ lad:
     hosted_on: Mastodon balabayado en %{domain}
     title: Sovre mozotros
   accounts:
-    follow: Sige
     followers:
       one: Suivante
       other: Suivantes
@@ -25,6 +24,7 @@ lad:
   admin:
     account_actions:
       action: Realiza aksion
+      already_suspended: Este kuento ya tiene sido suspendido.
       title: Modera %{acct}
     account_moderation_notes:
       create: Kriya nota
@@ -440,8 +440,11 @@ lad:
         create: Adjusta domeno
         resolve: Rezolve domeno
         title: Bloka muevo domeno de posta
+      no_email_domain_block_selected: No se tienen trokado blokos de domeno porke dinguno a sido eskojido
       not_permitted: Sin permiso
+      resolved_dns_records_hint_html: El nombre de domeno rezolve los sigientes domenos MX, los kualos son responsavles en ultima instansya de achetar la posta elektronika. Blokar un domeno MX blokara los rejistros de kualkier adreso de posta elektronika ke utilize el mezmo domeno MX, inkluzo si el nombre de domeno vizivle es desferente. <strong>Tenga kudiado de no blokar los prinsipales domenos de posta elektronika.</strong>
       resolved_through_html: Rezolvido por %{domain}
+      title: Domenos de posta blokados
     export_domain_allows:
       new:
         title: Importa permisos de domeno
@@ -1182,8 +1185,6 @@ lad:
       your_appeal_approved: Tu apelasyon fue achetada
       your_appeal_pending: Tienes enviado una apelasyon
       your_appeal_rejected: Tu apelasyon fue refuzada
-  domain_validator:
-    invalid_domain: no es un nombre de domeno valido
   edit_profile:
     basic_information: Enformasyon bazika
     hint_html: "<strong>Personaliza lo ke la djente ve en tu profil publiko i kon tus publikasyones.</strong> Es mas probavle ke otras personas te sigan i enteraktuen kontigo kuando kompletas tu profil i foto."
@@ -1675,23 +1676,12 @@ lad:
     edited_at_html: Editado %{date}
     errors:
       in_reply_not_found: La publikasion a la ke aprovas arispondir no egziste.
-    open_in_web: Avre en web
     over_character_limit: limito de karakteres de %{max} superado
     pin_errors:
       direct: Las publikasyones ke son vizivles solo para los utilizadores enmentados no pueden fiksarse
       limit: Ya tienes fiksado el numero maksimo de publikasyones
       ownership: La publikasyon de otra persona no puede fiksarse
       reblog: No se puede fixar una repartajasyon
-    poll:
-      total_people:
-        one: "%{count} persona"
-        other: "%{count} personas"
-      total_votes:
-        one: "%{count} voto"
-        other: "%{count} votos"
-      vote: Vota
-    show_more: Amostra mas
-    show_thread: Amostra diskusyon
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkto

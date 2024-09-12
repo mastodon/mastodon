@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe UserMailer do
+RSpec.describe UserMailer do
   let(:receiver) { Fabricate(:user) }
 
   describe '#confirmation_instructions' do

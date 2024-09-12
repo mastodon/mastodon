@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe REST::EncryptedMessageSerializer do
+RSpec.describe REST::EncryptedMessageSerializer do
   let(:serialization) { serialized_record_json(record, described_class) }
   let(:record) { Fabricate(:encrypted_message) }
 

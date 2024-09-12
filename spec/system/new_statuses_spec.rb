@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'NewStatuses', :inline_jobs, :js, :streaming do
+RSpec.describe 'NewStatuses', :inline_jobs, :js, :streaming do
   include ProfileStories
 
   subject { page }

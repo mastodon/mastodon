@@ -15,6 +15,12 @@ zh-CN:
       user/invite_request:
         text: 理由
     errors:
+      attributes:
+        domain:
+          invalid: 不是有效的域名
+      messages:
+        invalid_domain_on_line: "%{value} 不是有效的域名"
+        too_many_lines: 超出 %{limit} 行的长度限制
       models:
         account:
           attributes:
@@ -56,4 +62,4 @@ zh-CN:
         webhook:
           attributes:
             events:
-              invalid_permissions: 不能包含您没有权限的事件
+              invalid_permissions: 不能包含你没有权限的事件

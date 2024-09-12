@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'mastodon/cli/settings'
 
-describe Mastodon::CLI::Settings do
+RSpec.describe Mastodon::CLI::Settings do
   it_behaves_like 'CLI Command'
 
   describe 'subcommand "registrations"' do

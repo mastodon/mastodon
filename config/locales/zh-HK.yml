@@ -7,7 +7,6 @@ zh-HK:
     hosted_on: 在 %{domain} 運作的 Mastodon 伺服器
     title: 關於
   accounts:
-    follow: 關注
     followers:
       other: 關注者
     following: 正在關注
@@ -1135,8 +1134,6 @@ zh-HK:
       your_appeal_approved: 你的申訴已獲批准
       your_appeal_pending: 你已提交申訴
       your_appeal_rejected: 你的申訴已被駁回
-  domain_validator:
-    invalid_domain: 不是一個可用域名
   edit_profile:
     basic_information: 基本資料
     hint_html: "<strong>自訂你的公開個人檔案和帖文內容。</strong>當你有完整的個人檔案和頭像時，其他人更願意追蹤你和與你互動。"
@@ -1609,21 +1606,12 @@ zh-HK:
     edited_at_html: 編輯於 %{date}
     errors:
       in_reply_not_found: 你所回覆的嘟文並不存在。
-    open_in_web: 開啟網頁
     over_character_limit: 超過了 %{max} 字的限制
     pin_errors:
       direct: 無法將只有被提及使用者可見的帖文置頂
       limit: 你所置頂的文章數量已經達到上限
       ownership: 不能置頂他人的文章
       reblog: 不能置頂轉推
-    poll:
-      total_people:
-        other: "%{count} 人"
-      total_votes:
-        other: "%{count} 票"
-      vote: 投票
-    show_more: 顯示更多
-    show_thread: 顯示討論串
     title: "%{name}：「%{quote}」"
     visibilities:
       direct: 私人訊息

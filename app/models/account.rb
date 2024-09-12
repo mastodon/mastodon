@@ -51,6 +51,7 @@
 #  reviewed_at                   :datetime
 #  requested_review_at           :datetime
 #  indexable                     :boolean          default(FALSE), not null
+#  attribution_domains           :string           default([]), is an Array
 #
 
 class Account < ApplicationRecord
@@ -75,6 +76,8 @@ class Account < ApplicationRecord
   DISPLAY_NAME_LENGTH_LIMIT = 30
   NOTE_LENGTH_LIMIT = 500
 
+  AUTOMATED_ACTOR_TYPES = %w(Application Service).freeze
+
   include Attachmentable # Load prior to Avatar & Header concerns
 
   include Account::Associations
@@ -86,9 +89,11 @@ class Account < ApplicationRecord
   include Account::Merging
   include Account::Search
   include Account::StatusesSearch
+  include Account::AttributionDomains
   include DomainMaterializable
   include DomainNormalizable
   include Paginable
+  include Reviewable
 
   enum :protocol, { ostatus: 0, activitypub: 1 }
   enum :suspension_origin, { local: 0, remote: 1 }, prefix: true
@@ -108,10 +113,12 @@ class Account < ApplicationRecord
   validates :display_name, length: { maximum: DISPLAY_NAME_LENGTH_LIMIT }, if: -> { local? && will_save_change_to_display_name? }
   validates :note, note_length: { maximum: NOTE_LENGTH_LIMIT }, if: -> { local? && will_save_change_to_note? }
   validates :fields, length: { maximum: DEFAULT_FIELDS_SIZE }, if: -> { local? && will_save_change_to_fields? }
-  validates :uri, absence: true, if: :local?, on: :create
-  validates :inbox_url, absence: true, if: :local?, on: :create
-  validates :shared_inbox_url, absence: true, if: :local?, on: :create
-  validates :followers_url, absence: true, if: :local?, on: :create
+  with_options on: :create do
+    validates :uri, absence: true, if: :local?
+    validates :inbox_url, absence: true, if: :local?
+    validates :shared_inbox_url, absence: true, if: :local?
+    validates :followers_url, absence: true, if: :local?
+  end
 
   normalizes :username, with: ->(username) { username.squish }
 
@@ -126,7 +133,8 @@ class Account < ApplicationRecord
   scope :without_silenced, -> { where(silenced_at: nil) }
   scope :without_instance_actor, -> { where.not(id: INSTANCE_ACTOR_ID) }
   scope :recent, -> { reorder(id: :desc) }
-  scope :bots, -> { where(actor_type: %w(Application Service)) }
+  scope :bots, -> { where(actor_type: AUTOMATED_ACTOR_TYPES) }
+  scope :non_automated, -> { where.not(actor_type: AUTOMATED_ACTOR_TYPES) }
   scope :groups, -> { where(actor_type: 'Group') }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
   scope :matches_uri_prefix, ->(value) { where(arel_table[:uri].matches("#{sanitize_sql_like(value)}/%", false, true)).or(where(uri: value)) }
@@ -145,6 +153,7 @@ class Account < ApplicationRecord
   scope :with_username, ->(value) { where arel_table[:username].lower.eq(value.to_s.downcase) }
   scope :with_domain, ->(value) { where arel_table[:domain].lower.eq(value&.to_s&.downcase) }
   scope :without_memorial, -> { where(memorial: false) }
+  scope :duplicate_uris, -> { select(:uri, Arel.star.count).group(:uri).having(Arel.star.count.gt(1)) }
 
   after_update_commit :trigger_update_webhooks
 
@@ -181,7 +190,7 @@ class Account < ApplicationRecord
   end
 
   def bot?
-    %w(Application Service).include? actor_type
+    AUTOMATED_ACTOR_TYPES.include?(actor_type)
   end
 
   def instance_actor?
@@ -423,22 +432,6 @@ class Account < ApplicationRecord
     return 'local' if local?
 
     @synchronization_uri_prefix ||= "#{uri[URL_PREFIX_RE]}/"
-  end
-
-  def requires_review?
-    reviewed_at.nil?
-  end
-
-  def reviewed?
-    reviewed_at.present?
-  end
-
-  def requested_review?
-    requested_review_at.present?
-  end
-
-  def requires_review_notification?
-    requires_review? && !requested_review?
   end
 
   class << self

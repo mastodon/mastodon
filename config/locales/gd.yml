@@ -7,7 +7,6 @@ gd:
     hosted_on: Mastodon ’ga òstadh air %{domain}
     title: Mu dhèidhinn
   accounts:
-    follow: Lean
     followers:
       few: Luchd-leantainn
       one: Neach-leantainn
@@ -29,6 +28,7 @@ gd:
   admin:
     account_actions:
       action: Gabh an gnìomh
+      already_suspended: Chaidh an cunntas seo a chur à rèim mu thràth.
       title: Gabh gnìomh maorsainneachd air %{acct}
     account_moderation_notes:
       create: Fàg nòta
@@ -50,6 +50,7 @@ gd:
         title: Atharraich am post-d airson %{username}
       change_role:
         changed_msg: Chaidh an dreuchd atharrachadh!
+        edit_roles: Stiùirich dreuchdan nan cleachdaichean
         label: Atharraich an dreuchd
         no_role: Gun dreuchd
         title: Atharraich an dreuchd aig %{username}
@@ -626,6 +627,7 @@ gd:
         suspend_description_html: Cha ghabh an cunntas seo agus an t-susbaint gu leòr aige inntrigeadh gus an dèid a sguabadh às air deireadh na sgeòil agus cha ghabh eadar-ghabhail a dhèanamh leis. Gabhaidh seo a neo-dhèanamh am broinn 30 latha. Dùinidh seo gach gearan mun chunntas seo.
       actions_description_html: Cuir romhad dè nì thu airson an gearan seo fhuasgladh. Ma chuireas tu peanas air a’ chunntas le gearan air, gheibh iad brath air a’ phost-d mura tagh thu an roinn-seòrsa <strong>Spama</strong>.
       actions_description_remote_html: Cuir romhad dè an gnìomh a ghabhas tu airson an gearan seo fhuasgladh. Cha bheir seo buaidh ach air mar a làimhsicheas am frithealaiche <strong>agadsa</strong> an cunntas cèin seo is mar a nì e conaltradh leis.
+      actions_no_posts: Chan eil post ri sguabadh às ris a’ ghearan seo
       add_to_report: Cuir barrachd ris a’ ghearan
       already_suspended_badges:
         local: Chaidh an cur à rèim air an fhrithealaiche seo mu thràth
@@ -926,6 +928,7 @@ gd:
       name: Ainm
       newest: As ùire
       oldest: As sine
+      open: Seall gu poblach
       reset: Ath-shuidhich
       review: Dèan lèirmheas air an staid
       search: Lorg
@@ -1266,8 +1269,6 @@ gd:
       your_appeal_approved: Chaidh aontachadh ris an ath-thagradh agad
       your_appeal_pending: Chuir thu ath-thagradh a-null
       your_appeal_rejected: Chaidh an t-ath-thagradh agad a dhiùltadh
-  domain_validator:
-    invalid_domain: "– chan eil seo ’na ainm àrainne dligheach"
   edit_profile:
     basic_information: Fiosrachadh bunasach
     hint_html: "<strong>Gnàthaich na chithear air a’ phròifil phoblach agad is ri taobh nam postaichean agad.</strong> Bidh càch nas buailtiche do leantainn agus conaltradh leat nuair a bhios tu air a’ phròifil agad a lìonadh agus dealbh rithe."
@@ -1505,6 +1506,7 @@ gd:
   media_attachments:
     validations:
       images_and_video: Chan urrainn dhut video a cheangal ri post sa bheil dealbh mu thràth
+      not_found: Cha deach na meadhanan %{ids} a lorg no chaidh an ceangal ri post eile mu thràth
       not_ready: Chan urrainn dhuinn faidhlichean a cheangal ris nach eil air am pròiseasadh fhathast. Feuch ris a-rithist an ceann greis!
       too_many: Chan urrainn dhut barrachd air 4 faidhlichean a ceangal ris
   migrations:
@@ -1790,27 +1792,12 @@ gd:
     edited_at_html: Air a dheasachadh %{date}
     errors:
       in_reply_not_found: Tha coltas nach eil am post dhan a tha thu airson freagairt ann.
-    open_in_web: Fosgail air an lìon
     over_character_limit: chaidh thu thar crìoch charactaran de %{max}
     pin_errors:
       direct: Chan urrainn dhut post a phrìneachadh nach fhaic ach na cleachdaichean le iomradh orra
       limit: Tha an àireamh as motha de phostaichean prìnichte agad a tha ceadaichte
       ownership: Chan urrainn dhut post càich a phrìneachadh
       reblog: Chan urrainn dhut brosnachadh a phrìneachadh
-    poll:
-      total_people:
-        few: "%{count} daoine"
-        one: "%{count} neach"
-        other: "%{count} duine"
-        two: "%{count} neach"
-      total_votes:
-        few: "%{count} bhòtaichean"
-        one: "%{count} bhòt"
-        other: "%{count} bhòt"
-        two: "%{count} bhòt"
-      vote: Bhòt
-    show_more: Seall barrachd dheth
-    show_thread: Seall an snàithlean
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Dìreach

@@ -7,7 +7,6 @@ my:
     hosted_on: "%{domain} မှ လက်ခံဆောင်ရွက်ထားသော Mastodon"
     title: အကြောင်း
   accounts:
-    follow: စောင့်ကြည့်မယ်
     followers:
       other: စောင့်ကြည့်သူ
     following: စောင့်ကြည့်နေသည်
@@ -1108,8 +1107,6 @@ my:
       your_appeal_approved: သင့်တင်သွင်းခြင်းကို အတည်ပြုပြီးပါပြီ
       your_appeal_pending: အယူခံဝင်ရန် တင်သွင်းထားသည်
       your_appeal_rejected: အယူခံဝင်မှုကို ပယ်ချလိုက်သည်
-  domain_validator:
-    invalid_domain: တရားဝင်ဒိုမိန်းအမည်မဟုတ်ပါ
   edit_profile:
     basic_information: အခြေခံသတင်းအချက်အလက်
     hint_html: "<strong>သင်၏ အများမြင်ပရိုဖိုင်နှင့် သင့်ပို့စ်များဘေးရှိ တွေ့မြင်ရသည့်အရာကို စိတ်ကြိုက်ပြင်ဆင်ပါ။ </strong> သင့်တွင် ပရိုဖိုင်နှင့် ပရိုဖိုင်ပုံတစ်ခု ဖြည့်သွင်းထားပါက အခြားသူများအနေဖြင့် သင်နှင့် အပြန်အလှန် တုံ့ပြန်နိုင်ခြေပိုများပါသည်။"
@@ -1562,21 +1559,12 @@ my:
     edited_at_html: "%{date} ကို ပြင်ဆင်ပြီးပါပြီ"
     errors:
       in_reply_not_found: သင် စာပြန်နေသည့်ပို့စ်မှာ မရှိတော့ပါ။
-    open_in_web: ဝဘ်တွင် ဖွင့်ပါ
     over_character_limit: စာလုံးကန့်သတ်ချက် %{max} ကို ကျော်လွန်သွားပါပြီ
     pin_errors:
       direct: အမည်ဖော်ပြထားသည့် ပို့စ်များကို ပင်တွဲ၍မရပါ
       limit: သင်သည် ပို့စ်အရေအတွက်အများဆုံးကို ပင်တွဲထားပြီးဖြစ်သည်
       ownership: အခြားသူ၏ပို့စ်ကို ပင်တွဲ၍မရပါ
       reblog: Boost လုပ်ထားသောပို့စ်ကို ပင်ထား၍မရပါ
-    poll:
-      total_people:
-        other: "%{count} ယောက်"
-      total_votes:
-        other: မဲအရေအတွက် %{count} မဲ
-      vote: မဲပေးမည်
-    show_more: ပိုမိုပြရန်
-    show_thread: Thread ကို ပြပါ
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: တိုက်ရိုက်

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe SettingsHelper do
+RSpec.describe SettingsHelper do
   describe 'session_device_icon' do
     context 'with a mobile device' do
       let(:session) { SessionActivation.new(user_agent: 'Mozilla/5.0 (iPhone)') }

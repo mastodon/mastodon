@@ -13,7 +13,6 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
   def index
     with_read_replica do
       @notifications = load_notifications
-      @group_metadata = load_group_metadata
       @grouped_notifications = load_grouped_notifications
       @relationships = StatusRelationshipsPresenter.new(target_statuses_from_notifications, current_user&.account_id)
       @presenter = GroupedNotificationsPresenter.new(@grouped_notifications, expand_accounts: expand_accounts_param)
@@ -34,7 +33,7 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
         'app.notification_grouping.expand_accounts_param' => expand_accounts_param
       )
 
-      render json: @presenter, serializer: REST::DedupNotificationGroupSerializer, relationships: @relationships, group_metadata: @group_metadata, expand_accounts: expand_accounts_param
+      render json: @presenter, serializer: REST::DedupNotificationGroupSerializer, relationships: @relationships, expand_accounts: expand_accounts_param
     end
   end
 
@@ -42,13 +41,13 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
     limit = limit_param(DEFAULT_NOTIFICATIONS_COUNT_LIMIT, MAX_NOTIFICATIONS_COUNT_LIMIT)
 
     with_read_replica do
-      render json: { count: browserable_account_notifications.paginate_groups_by_min_id(limit, min_id: notification_marker&.last_read_id).count }
+      render json: { count: browserable_account_notifications.paginate_groups_by_min_id(limit, min_id: notification_marker&.last_read_id, grouped_types: params[:grouped_types]).count }
     end
   end
 
   def show
-    @notification = current_account.notifications.without_suspended.find_by!(group_key: params[:id])
-    presenter = GroupedNotificationsPresenter.new([NotificationGroup.from_notification(@notification)])
+    @notification = current_account.notifications.without_suspended.find_by!(group_key: params[:group_key])
+    presenter = GroupedNotificationsPresenter.new(NotificationGroup.from_notifications([@notification]))
     render json: presenter, serializer: REST::DedupNotificationGroupSerializer
   end
 
@@ -58,7 +57,7 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
   end
 
   def dismiss
-    current_account.notifications.where(group_key: params[:id]).destroy_all
+    current_account.notifications.where(group_key: params[:group_key]).destroy_all
     render_empty
   end
 
@@ -68,7 +67,7 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
     MastodonOTELTracer.in_span('Api::V2Alpha::NotificationsController#load_notifications') do
       notifications = browserable_account_notifications.includes(from_account: [:account_stat, :user]).to_a_grouped_paginated_by_id(
         limit_param(DEFAULT_NOTIFICATIONS_LIMIT),
-        params_slice(:max_id, :since_id, :min_id)
+        params.slice(:max_id, :since_id, :min_id, :grouped_types).permit(:max_id, :since_id, :min_id, grouped_types: [])
       )
 
       Notification.preload_cache_collection_target_statuses(notifications) do |target_statuses|
@@ -77,22 +76,11 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
     end
   end
 
-  def load_group_metadata
-    return {} if @notifications.empty?
-
-    MastodonOTELTracer.in_span('Api::V2Alpha::NotificationsController#load_group_metadata') do
-      browserable_account_notifications
-        .where(group_key: @notifications.filter_map(&:group_key))
-        .where(id: (@notifications.last.id)..(@notifications.first.id))
-        .group(:group_key)
-        .pluck(:group_key, 'min(notifications.id) as min_id', 'max(notifications.id) as max_id', 'max(notifications.created_at) as latest_notification_at')
-        .to_h { |group_key, min_id, max_id, latest_notification_at| [group_key, { min_id: min_id, max_id: max_id, latest_notification_at: latest_notification_at }] }
-    end
-  end
-
   def load_grouped_notifications
+    return [] if @notifications.empty?
+
     MastodonOTELTracer.in_span('Api::V2Alpha::NotificationsController#load_grouped_notifications') do
-      @notifications.map { |notification| NotificationGroup.from_notification(notification, max_id: @group_metadata.dig(notification.group_key, :max_id)) }
+      NotificationGroup.from_notifications(@notifications, pagination_range: (@notifications.last.id)..(@notifications.first.id), grouped_types: params[:grouped_types])
     end
   end
 
@@ -125,11 +113,11 @@ class Api::V2Alpha::NotificationsController < Api::BaseController
   end
 
   def browserable_params
-    params.permit(:include_filtered, types: [], exclude_types: [])
+    params.slice(:include_filtered, :types, :exclude_types, :grouped_types).permit(:include_filtered, types: [], exclude_types: [], grouped_types: [])
   end
 
   def pagination_params(core_params)
-    params.slice(:limit, :types, :exclude_types, :include_filtered).permit(:limit, :include_filtered, types: [], exclude_types: []).merge(core_params)
+    params.slice(:limit, :include_filtered, :types, :exclude_types, :grouped_types).permit(:limit, :include_filtered, types: [], exclude_types: [], grouped_types: []).merge(core_params)
   end
 
   def expand_accounts_param

@@ -7,7 +7,6 @@ sco:
     hosted_on: Mastodon hostit on %{domain}
     title: Aboot
   accounts:
-    follow: Follae
     followers:
       one: Follaer
       other: Follaers
@@ -1004,8 +1003,6 @@ sco:
       your_appeal_approved: Yer appeal haes been approved
       your_appeal_pending: Ye hae submittit a appeal
       your_appeal_rejected: Yer appeal haes been rejectit
-  domain_validator:
-    invalid_domain: isnae a valid domain nemm
   errors:
     '400': The request thit ye submittit wisnae valid or it wis illformt.
     '403': Ye dinnae hae permission fir tae luik at this page.
@@ -1396,23 +1393,12 @@ sco:
     edited_at_html: Editit %{date}
     errors:
       in_reply_not_found: The post thit ye'r trying tae reply tae disnae appear tae exist.
-    open_in_web: Open in wab
     over_character_limit: chairacter limit o %{max} exceedit
     pin_errors:
       direct: Posts thit's ainly visible tae menshied uisers cannae be preent
       limit: Ye awriddy preent the maximum nummer o posts
       ownership: Somebody else's post cannae be preent
       reblog: A heeze cannae be preent
-    poll:
-      total_people:
-        one: "%{count} person"
-        other: "%{count} fowk"
-      total_votes:
-        one: "%{count} vote"
-        other: "%{count} votes"
-      vote: Vote
-    show_more: Shaw mair
-    show_thread: Shaw threid
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direck

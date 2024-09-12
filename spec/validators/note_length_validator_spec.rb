@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe NoteLengthValidator do
+RSpec.describe NoteLengthValidator do
   subject { described_class.new(attributes: { note: true }, maximum: 500) }
 
   describe '#validate' do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe DeleteMuteWorker do
+RSpec.describe DeleteMuteWorker do
   let(:worker) { described_class.new }
   let(:service) { instance_double(UnmuteService, call: true) }
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::DeletesController do
+RSpec.describe Settings::DeletesController do
   render_views
 
   describe 'GET #show' do

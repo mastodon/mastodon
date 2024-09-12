@@ -237,7 +237,7 @@ class NotifyService < BaseService
   private
 
   def notification_group_key
-    return nil if @notification.filtered || %i(favourite reblog).exclude?(@notification.type)
+    return nil if @notification.filtered || Notification::GROUPABLE_NOTIFICATION_TYPES.exclude?(@notification.type)
 
     type_prefix = "#{@notification.type}-#{@notification.target_status.id}"
     redis_key   = "notif-group/#{@recipient.id}/#{type_prefix}"

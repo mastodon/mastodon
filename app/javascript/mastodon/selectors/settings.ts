@@ -1,3 +1,4 @@
+import { forceGroupedNotifications } from 'mastodon/initial_state';
 import type { RootState } from 'mastodon/store';
 
 /* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
@@ -24,6 +25,10 @@ export const selectSettingsNotificationsQuickFilterAdvanced = (
   state: RootState,
 ) =>
   state.settings.getIn(['notifications', 'quickFilter', 'advanced']) as boolean;
+
+export const selectUseGroupedNotifications = (state: RootState) =>
+  forceGroupedNotifications ||
+  (state.settings.getIn(['notifications', 'groupingBeta']) as boolean);
 
 export const selectSettingsNotificationsShowUnread = (state: RootState) =>
   state.settings.getIn(['notifications', 'showUnread']) as boolean;

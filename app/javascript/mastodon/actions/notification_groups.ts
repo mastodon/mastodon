@@ -18,7 +18,7 @@ import {
   selectSettingsNotificationsQuickFilterActive,
   selectSettingsNotificationsShows,
 } from 'mastodon/selectors/settings';
-import type { AppDispatch } from 'mastodon/store';
+import type { AppDispatch, RootState } from 'mastodon/store';
 import {
   createAppAsyncThunk,
   createDataLoadingThunk,
@@ -30,6 +30,14 @@ import { saveSettings } from './settings';
 
 function excludeAllTypesExcept(filter: string) {
   return allNotificationTypes.filter((item) => item !== filter);
+}
+
+function getExcludedTypes(state: RootState) {
+  const activeFilter = selectSettingsNotificationsQuickFilterActive(state);
+
+  return activeFilter === 'all'
+    ? selectSettingsNotificationsExcludedTypes(state)
+    : excludeAllTypesExcept(activeFilter);
 }
 
 function dispatchAssociatedRecords(
@@ -62,17 +70,8 @@ function dispatchAssociatedRecords(
 
 export const fetchNotifications = createDataLoadingThunk(
   'notificationGroups/fetch',
-  async (_params, { getState }) => {
-    const activeFilter =
-      selectSettingsNotificationsQuickFilterActive(getState());
-
-    return apiFetchNotifications({
-      exclude_types:
-        activeFilter === 'all'
-          ? selectSettingsNotificationsExcludedTypes(getState())
-          : excludeAllTypesExcept(activeFilter),
-    });
-  },
+  async (_params, { getState }) =>
+    apiFetchNotifications({ exclude_types: getExcludedTypes(getState()) }),
   ({ notifications, accounts, statuses }, { dispatch }) => {
     dispatch(importFetchedAccounts(accounts));
     dispatch(importFetchedStatuses(statuses));
@@ -92,9 +91,11 @@ export const fetchNotifications = createDataLoadingThunk(
 
 export const fetchNotificationsGap = createDataLoadingThunk(
   'notificationGroups/fetchGap',
-  async (params: { gap: NotificationGap }) =>
-    apiFetchNotifications({ max_id: params.gap.maxId }),
-
+  async (params: { gap: NotificationGap }, { getState }) =>
+    apiFetchNotifications({
+      max_id: params.gap.maxId,
+      exclude_types: getExcludedTypes(getState()),
+    }),
   ({ notifications, accounts, statuses }, { dispatch }) => {
     dispatch(importFetchedAccounts(accounts));
     dispatch(importFetchedStatuses(statuses));
@@ -109,6 +110,7 @@ export const pollRecentNotifications = createDataLoadingThunk(
   async (_params, { getState }) => {
     return apiFetchNotifications({
       max_id: undefined,
+      exclude_types: getExcludedTypes(getState()),
       // In slow mode, we don't want to include notifications that duplicate the already-displayed ones
       since_id: usePendingItems
         ? getState().notificationGroups.groups.find(
@@ -183,7 +185,6 @@ export const setNotificationsFilter = createAppAsyncThunk(
       path: ['notifications', 'quickFilter', 'active'],
       value: filterType,
     });
-    // dispatch(expandNotifications({ forceLoad: true }));
     void dispatch(fetchNotifications());
     dispatch(saveSettings());
   },

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-shared_examples 'localized subject' do |*args, **kwrest|
+RSpec.shared_examples 'localized subject' do |*args, **kwrest|
   it 'renders subject localized for the locale of the receiver' do
     locale = :de
     receiver.update!(locale: locale)

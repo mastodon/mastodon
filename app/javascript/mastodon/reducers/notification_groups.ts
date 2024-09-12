@@ -248,8 +248,9 @@ function processNewNotification(
 }
 
 function trimNotifications(state: NotificationGroupsState) {
-  if (state.scrolledToTop) {
+  if (state.scrolledToTop && state.groups.length > NOTIFICATIONS_TRIM_LIMIT) {
     state.groups.splice(NOTIFICATIONS_TRIM_LIMIT);
+    ensureTrailingGap(state.groups);
   }
 }
 
@@ -396,6 +397,28 @@ function ensureLeadingGap(
     };
 
     groups.unshift(gap);
+    return gap;
+  }
+}
+
+// Ensure the groups list ends with a gap suitable for loading more, mutating it to append one if needed
+function ensureTrailingGap(
+  groups: NotificationGroupsState['groups'],
+): NotificationGap {
+  const groupOrGap = groups.at(-1);
+
+  if (groupOrGap?.type === 'gap') {
+    // We're expecting older notifications, so discard sinceId if it's set
+    groupOrGap.sinceId = undefined;
+
+    return groupOrGap;
+  } else {
+    const gap: NotificationGap = {
+      type: 'gap',
+      maxId: groupOrGap?.page_min_id,
+    };
+
+    groups.push(gap);
     return gap;
   }
 }

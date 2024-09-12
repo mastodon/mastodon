@@ -17,6 +17,6 @@ class AnnualReport::TopHashtags < AnnualReport::Source
   private
 
   def top_hashtags
-    Tag.joins(:statuses).where(statuses: { id: @account.statuses.where(id: year_as_snowflake_range).reorder(nil).select(:id) }).group(:id).having('count(*) > 1').order(total: :desc).limit(SET_SIZE).pluck(Arel.sql('COALESCE(tags.display_name, tags.name), count(*) AS total'))
+    Tag.joins(:statuses).where(statuses: { id: report_statuses.select(:id) }).group(:id).having('count(*) > 1').order(total: :desc).limit(SET_SIZE).pluck(Arel.sql('COALESCE(tags.display_name, tags.name), count(*) AS total'))
   end
 end

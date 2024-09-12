@@ -57,7 +57,8 @@ services:
   #     - '127.0.0.1:9200:9200'
 
   web:
-    build: .
+    # You can uncomment the following line if you want to not use the prebuilt image, for example if you have local code changes
+    # build: .
     image: ghcr.io/mastodon/mastodon:v4.3.0-beta.1
     restart: always
     env_file: .env.production
@@ -78,7 +79,10 @@ services:
       - ./public/system:/mastodon/public/system
 
   streaming:
-    build: .
+    # You can uncomment the following lines if you want to not use the prebuilt image, for example if you have local code changes
+    # build:
+    #   dockerfile: ./streaming/Dockerfile
+    #   context: .
     image: ghcr.io/mastodon/mastodon-streaming:v4.3.0-beta.1
     restart: always
     env_file: .env.production
@@ -88,7 +92,7 @@ services:
       - internal_network
     healthcheck:
       # prettier-ignore
-      test: ['CMD-SHELL', "curl -s --noproxy localhost localhost:4000/api/v1/streaming/health | grep -q 'OK' || exit 1'"]
+      test: ['CMD-SHELL', "curl -s --noproxy localhost localhost:4000/api/v1/streaming/health | grep -q 'OK' || exit 1"]
     ports:
       - '127.0.0.1:4000:4000'
     depends_on:

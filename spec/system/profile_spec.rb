@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Profile' do
+RSpec.describe 'Profile' do
   include ProfileStories
 
   subject { page }

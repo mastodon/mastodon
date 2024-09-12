@@ -15,7 +15,7 @@ RSpec.describe 'API V1 Filters' do
     it 'returns http success' do
       get '/api/v1/filters', headers: headers
       expect(response).to have_http_status(200)
-      expect(body_as_json)
+      expect(response.parsed_body)
         .to contain_exactly(
           include(id: custom_filter_keyword.id.to_s)
         )

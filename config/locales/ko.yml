@@ -7,7 +7,6 @@ ko:
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
     title: 정보
   accounts:
-    follow: 팔로우
     followers:
       other: 팔로워
     following: 팔로잉
@@ -23,6 +22,7 @@ ko:
   admin:
     account_actions:
       action: 조치 취하기
+      already_suspended: 이 계정은 이미 정지되었습니다.
       title: "%{acct} 계정에 중재 취하기"
     account_moderation_notes:
       create: 참고사항 남기기
@@ -44,6 +44,7 @@ ko:
         title: "%{username}의 이메일 바꾸기"
       change_role:
         changed_msg: 역할이 성공적으로 변경되었습니다!
+        edit_roles: 사용자 역할 관리
         label: 역할 변경
         no_role: 역할 없음
         title: "%{username}의 역할 변경"
@@ -592,6 +593,7 @@ ko:
         suspend_description_html: 이 계정과 이 계정의 콘텐츠들은 접근 불가능해지고 삭제될 것이며, 상호작용은 불가능해집니다. 30일 이내에 되돌릴 수 있습니다. 이 계정에 대한 모든 신고를 닫습니다.
       actions_description_html: 이 신고를 해결하기 위해 취해야 할 조치를 지정해주세요. 신고된 계정에 대해 처벌 조치를 취하면, <strong>스팸</strong> 카테고리가 선택된 경우를 제외하고 해당 계정으로 이메일 알림이 전송됩니다.
       actions_description_remote_html: 이 신고를 해결하기 위해 실행할 행동을 결정하세요. 이 결정은 이 원격 계정과 그 콘텐츠를 다루는 방식에 대해 <strong>이 서버</strong>에서만 영향을 끼칩니다
+      actions_no_posts: 이 신고는 삭제할 관련 게시물이 없습니다
       add_to_report: 신고에 더 추가하기
       already_suspended_badges:
         local: 이 서버에서 이미 정지되었습니다
@@ -830,7 +832,7 @@ ko:
         sensitive: "%{name} 님이 %{target}의 계정을 민감함으로 표시했습니다"
         silence: "%{name} 님이 %{target}의 계정을 제한시켰습니다"
         suspend: "%{name} 님이 %{target}의 계정을 정지시켰습니다"
-      appeal_approved: 이의제기됨
+      appeal_approved: 이의 받아들여짐
       appeal_pending: 이의제기 대기중
       appeal_rejected: 이의 제기 거절됨
     system_checks:
@@ -886,6 +888,7 @@ ko:
       name: 이름
       newest: 최신
       oldest: 오래된 순
+      open: 공개시점으로 보기
       reset: 초기화
       review: 심사 상태
       search: 검색
@@ -1214,8 +1217,6 @@ ko:
       your_appeal_approved: 소명이 받아들여졌습니다
       your_appeal_pending: 소명을 제출했습니다
       your_appeal_rejected: 소명이 기각되었습니다
-  domain_validator:
-    invalid_domain: 올바른 도메인 네임이 아닙니다
   edit_profile:
     basic_information: 기본 정보
     hint_html: "<strong>사람들이 공개 프로필을 보고서 게시물을 볼 때를 위한 프로필을 꾸밉니다.</strong> 프로필과 프로필 사진을 채우면 다른 사람들이 나를 팔로우하고 나와 교류할 기회가 더 많아집니다."
@@ -1429,6 +1430,7 @@ ko:
   media_attachments:
     validations:
       images_and_video: 이미 사진이 첨부된 게시물엔 동영상을 첨부할 수 없습니다.
+      not_found: 미디어 %{ids}는 찾을 수 없거나 이미 다른 게시물에 첨부되었습니다
       not_ready: 처리가 끝나지 않은 파일은 첨부할 수 없습니다. 잠시 후에 다시 시도해 주세요!
       too_many: 최대 4개까지 첨부할 수 있습니다
   migrations:
@@ -1702,21 +1704,12 @@ ko:
     edited_at_html: "%{date}에 편집됨"
     errors:
       in_reply_not_found: 답장하려는 게시물이 존재하지 않습니다.
-    open_in_web: Web으로 열기
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:
       direct: 멘션된 사용자들에게만 보이는 게시물은 고정될 수 없습니다
       limit: 이미 너무 많은 게시물을 고정했습니다
       ownership: 다른 사람의 게시물은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
-    poll:
-      total_people:
-        other: "%{count}명"
-      total_votes:
-        other: "%{count} 명 투표함"
-      vote: 투표
-    show_more: 더 보기
-    show_thread: 글타래 보기
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: 다이렉트

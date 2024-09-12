@@ -3,7 +3,7 @@
 require_relative '../../lib/mastodon/sidekiq_middleware'
 
 Sidekiq.configure_server do |config|
-  config.redis = REDIS_SIDEKIQ_PARAMS
+  config.redis = REDIS_CONFIGURATION.sidekiq
 
   # This is used in Kubernetes setups, to signal that the Sidekiq process has started and will begin processing jobs
   # This comes from https://github.com/sidekiq/sidekiq/wiki/Kubernetes#sidekiq
@@ -51,7 +51,7 @@ Sidekiq.configure_server do |config|
 end
 
 Sidekiq.configure_client do |config|
-  config.redis = REDIS_SIDEKIQ_PARAMS
+  config.redis = REDIS_CONFIGURATION.sidekiq
 
   config.client_middleware do |chain|
     chain.add SidekiqUniqueJobs::Middleware::Client

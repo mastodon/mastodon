@@ -35,7 +35,7 @@ RSpec.describe 'Apps' do
         expect(app.scopes.to_s).to eq scopes
         expect(app.redirect_uris).to eq redirect_uris
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(
             id: app.id.to_s,
             client_id: app.uid,
@@ -61,9 +61,10 @@ RSpec.describe 'Apps' do
         expect(response).to have_http_status(200)
         expect(Doorkeeper::Application.find_by(name: client_name)).to be_present
 
-        body = body_as_json
-
-        expect(body[:scopes]).to eq Doorkeeper.config.default_scopes.to_a
+        expect(response.parsed_body)
+          .to include(
+            scopes: Doorkeeper.config.default_scopes.to_a
+          )
       end
     end
 
@@ -81,9 +82,10 @@ RSpec.describe 'Apps' do
         expect(app).to be_present
         expect(app.scopes.to_s).to eq 'read'
 
-        body = body_as_json
-
-        expect(body[:scopes]).to eq ['read']
+        expect(response.parsed_body)
+          .to include(
+            scopes: %w(read)
+          )
       end
     end
 
@@ -163,10 +165,11 @@ RSpec.describe 'Apps' do
         expect(app.redirect_uri).to eq redirect_uris
         expect(app.redirect_uris).to eq redirect_uris.split
 
-        body = body_as_json
-
-        expect(body[:redirect_uri]).to eq redirect_uris
-        expect(body[:redirect_uris]).to eq redirect_uris.split
+        expect(response.parsed_body)
+          .to include(
+            redirect_uri: redirect_uris,
+            redirect_uris: redirect_uris.split
+          )
       end
     end
 
@@ -184,10 +187,11 @@ RSpec.describe 'Apps' do
         expect(app.redirect_uri).to eq redirect_uris.join "\n"
         expect(app.redirect_uris).to eq redirect_uris
 
-        body = body_as_json
-
-        expect(body[:redirect_uri]).to eq redirect_uris.join "\n"
-        expect(body[:redirect_uris]).to eq redirect_uris
+        expect(response.parsed_body)
+          .to include(
+            redirect_uri: redirect_uris.join("\n"),
+            redirect_uris: redirect_uris
+          )
       end
     end
 

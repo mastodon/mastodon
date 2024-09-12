@@ -29,7 +29,7 @@ RSpec.describe 'Mutes' do
 
       muted_accounts = mutes.map(&:target_account)
 
-      expect(body_as_json.pluck(:id)).to match_array(muted_accounts.map { |account| account.id.to_s })
+      expect(response.parsed_body.pluck(:id)).to match_array(muted_accounts.map { |account| account.id.to_s })
     end
 
     context 'with limit param' do
@@ -38,7 +38,7 @@ RSpec.describe 'Mutes' do
       it 'returns only the requested number of muted accounts' do
         subject
 
-        expect(body_as_json.size).to eq(params[:limit])
+        expect(response.parsed_body.size).to eq(params[:limit])
       end
 
       it 'sets the correct pagination headers', :aggregate_failures do
@@ -58,10 +58,8 @@ RSpec.describe 'Mutes' do
       it 'queries mutes in range according to max_id', :aggregate_failures do
         subject
 
-        body = body_as_json
-
-        expect(body.size).to eq 1
-        expect(body[0][:id]).to eq mutes[0].target_account_id.to_s
+        expect(response.parsed_body)
+          .to contain_exactly(include(id: mutes.first.target_account_id.to_s))
       end
     end
 
@@ -71,10 +69,8 @@ RSpec.describe 'Mutes' do
       it 'queries mutes in range according to since_id', :aggregate_failures do
         subject
 
-        body = body_as_json
-
-        expect(body.size).to eq 1
-        expect(body[0][:id]).to eq mutes[1].target_account_id.to_s
+        expect(response.parsed_body)
+          .to contain_exactly(include(id: mutes[1].target_account_id.to_s))
       end
     end
 

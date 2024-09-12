@@ -99,10 +99,10 @@ gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
-gem 'opentelemetry-api', '~> 1.3.0'
+gem 'opentelemetry-api', '~> 1.4.0'
 
 group :opentelemetry do
-  gem 'opentelemetry-exporter-otlp', '~> 0.28.0', require: false
+  gem 'opentelemetry-exporter-otlp', '~> 0.29.0', require: false
   gem 'opentelemetry-instrumentation-active_job', '~> 0.7.1', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.20.1', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.21.2', require: false
@@ -126,9 +126,6 @@ group :test do
   # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
   gem 'rspec-github', '~> 2.4', require: false
 
-  # RSpec progress bar formatter
-  gem 'fuubar', '~> 2.5'
-
   # RSpec helpers for email specs
   gem 'email_spec'
 
@@ -149,10 +146,12 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0'
 
   # Validate schemas in specs
-  gem 'json-schema', '~> 4.0'
+  gem 'json-schema', '~> 5.0'
 
   # Test harness fo rack components
   gem 'rack-test', '~> 2.1'
+
+  gem 'shoulda-matchers'
 
   # Coverage formatter for RSpec test if DISABLE_SIMPLECOV is false
   gem 'simplecov', '~> 0.22', require: false
@@ -210,7 +209,7 @@ group :development, :test do
   gem 'test-prof'
 
   # RSpec runner for rails
-  gem 'rspec-rails', '~> 6.0'
+  gem 'rspec-rails', '~> 7.0'
 end
 
 group :production do
