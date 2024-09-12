@@ -4,6 +4,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
+import { isEqual } from 'lodash';
 import { useDebouncedCallback } from 'use-debounce';
 
 import DoneAllIcon from '@/material-icons/400-24px/done_all.svg?react';
@@ -62,7 +63,7 @@ export const Notifications: React.FC<{
   multiColumn?: boolean;
 }> = ({ columnId, multiColumn }) => {
   const intl = useIntl();
-  const notifications = useAppSelector(selectNotificationGroups);
+  const notifications = useAppSelector(selectNotificationGroups, isEqual);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector((s) => s.notificationGroups.isLoading);
   const hasMore = notifications.at(-1)?.type === 'gap';
