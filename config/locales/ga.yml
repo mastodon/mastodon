@@ -7,7 +7,6 @@ ga:
     hosted_on: Mastodon arna óstáil ar %{domain}
     title: Maidir le
   accounts:
-    follow: Lean
     followers:
       few: Leantóirí
       many: Leantóirí
@@ -31,6 +30,7 @@ ga:
   admin:
     account_actions:
       action: Déan gníomh
+      already_suspended: Tá an cuntas seo curtha ar fionraí cheana féin.
       title: Dean gníomh modhnóireachta ar %{acct}
     account_moderation_notes:
       create: Fág nóta
@@ -52,6 +52,7 @@ ga:
         title: Athraigh ríomhphost do %{username}
       change_role:
         changed_msg: Athraíodh ról go rathúil!
+        edit_roles: Bainistigh róil úsáideora
         label: Athraigh ról
         no_role: Gan ról
         title: Athraigh ról do %{username}
@@ -638,6 +639,7 @@ ga:
         suspend_description_html: Beidh an cuntas agus a bhfuil ann go léir dorochtana agus scriosfar iad ar deireadh, agus beidh sé dodhéanta idirghníomhú leis. Inchúlaithe laistigh de 30 lá. Dúnann sé gach tuairisc i gcoinne an chuntais seo.
       actions_description_html: Déan cinneadh ar an ngníomh atá le déanamh chun an tuarascáil seo a réiteach. Má dhéanann tú beart pionósach in aghaidh an chuntais tuairiscithe, seolfar fógra ríomhphoist chucu, ach amháin nuair a roghnaítear an chatagóir <strong>Turscar</strong>.
       actions_description_remote_html: Déan cinneadh ar an ngníomh atá le déanamh chun an tuarascáil seo a réiteach. Ní bheidh tionchar aige seo ach ar an gcaoi a ndéanann <strong>do fhreastalaí</strong> cumarsáid leis an gcianchuntas seo agus a láimhseálann sé a ábhar.
+      actions_no_posts: Níl aon phostáil ghaolmhar ag an tuarascáil seo le scriosadh
       add_to_report: Cuir tuilleadh leis an tuairisc
       already_suspended_badges:
         local: Ar fionraí cheana féin ar an bhfreastalaí seo
@@ -940,6 +942,7 @@ ga:
       name: Ainm
       newest: Is nuaí
       oldest: Is sine
+      open: Amharc go Poiblí
       reset: Athshocraigh
       review: Stádas athbhreithnithe
       search: Cuardach
@@ -1284,8 +1287,6 @@ ga:
       your_appeal_approved: Tá d’achomharc ceadaithe
       your_appeal_pending: Chuir tú achomharc isteach
       your_appeal_rejected: Diúltaíodh do d'achomharc
-  domain_validator:
-    invalid_domain: nach ainm fearainn bailí é
   edit_profile:
     basic_information: Eolas bunúsach
     hint_html: "<strong>Saincheap a bhfeiceann daoine ar do phróifíl phoiblí agus in aice le do phostálacha.</strong> Is dóichí go leanfaidh daoine eile ar ais tú agus go n-idirghníomhóidh siad leat nuair a bhíonn próifíl líonta agus pictiúr próifíle agat."
@@ -1531,6 +1532,7 @@ ga:
   media_attachments:
     validations:
       images_and_video: Ní féidir físeán a cheangal le postáil a bhfuil íomhánna ann cheana féin
+      not_found: Meán %{ids} gan aimsiú nó ceangailte le postáil eile cheana
       not_ready: Ní féidir comhaid nach bhfuil próiseáil críochnaithe acu a cheangal. Bain triail eile as i gceann nóiméad!
       too_many: Ní féidir níos mó ná 4 chomhad a cheangal
   migrations:
@@ -1820,29 +1822,12 @@ ga:
     edited_at_html: "%{date} curtha in eagar"
     errors:
       in_reply_not_found: Is cosúil nach ann don phostáil a bhfuil tú ag iarraidh freagra a thabhairt air.
-    open_in_web: Oscail i ngréasán
     over_character_limit: teorainn carachtar %{max} sáraithe
     pin_errors:
       direct: Ní féidir postálacha nach bhfuil le feiceáil ach ag úsáideoirí luaite a phinnáil
       limit: Tá uaslíon na bpostálacha pinn agat cheana féin
       ownership: Ní féidir postáil duine éigin eile a phionnáil
       reblog: Ní féidir treisiú a phinnáil
-    poll:
-      total_people:
-        few: "%{count} daoine"
-        many: "%{count} daoine"
-        one: "%{count} duine"
-        other: "%{count} daoine"
-        two: "%{count} daoine"
-      total_votes:
-        few: "%{count} vótaí"
-        many: "%{count} vótaí"
-        one: "%{count} vóta"
-        other: "%{count} vótaí"
-        two: "%{count} vótaí"
-      vote: Vótáil
-    show_more: Taispeáin níos mó
-    show_thread: Taispeáin snáithe
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Díreach

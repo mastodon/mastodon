@@ -7,7 +7,6 @@ nl:
     hosted_on: Mastodon op %{domain}
     title: Over
   accounts:
-    follow: Volgen
     followers:
       one: Volger
       other: Volgers
@@ -25,6 +24,8 @@ nl:
   admin:
     account_actions:
       action: Actie uitvoeren
+      already_silenced: Dit account is al beperkt.
+      already_suspended: Dit account is al geschorst.
       title: Moderatiemaatregel tegen %{acct} nemen
     account_moderation_notes:
       create: Laat een opmerking achter
@@ -46,6 +47,7 @@ nl:
         title: E-mailadres wijzigen voor %{username}
       change_role:
         changed_msg: Rol succesvol veranderd!
+        edit_roles: Gebruikersrollen beheren
         label: Rol veranderen
         no_role: Geen rol
         title: Rol van %{username} veranderen
@@ -505,8 +507,8 @@ nl:
       dashboard:
         instance_accounts_dimension: Meest door ons gevolgde accounts
         instance_accounts_measure: opgeslagen accounts
-        instance_followers_measure: daar ons daar gevolgd
-        instance_follows_measure: door hun hier gevolgd
+        instance_followers_measure: onze volgens daar
+        instance_follows_measure: hun volgers hier
         instance_languages_dimension: Meest actieve talen
         instance_media_attachments_measure: opgeslagen mediabestanden
         instance_reports_measure: rapportages over hun
@@ -602,6 +604,7 @@ nl:
         suspend_description_html: Het account en de inhoud hiervan is niet meer toegankelijk, en het is ook niet meer mogelijk om ermee interactie te hebben. Uiteindelijk wordt het account volledig verwijderd. Dit is omkeerbaar binnen 30 dagen. Dit sluit alle rapporten tegen dit account af.
       actions_description_html: Beslis welke maatregel moet worden genomen om deze rapportage op te lossen. Wanneer je een (straf)maatregel tegen het gerapporteerde account neemt, krijgt het account een e-mailmelding, behalve wanneer de <strong>spam</strong>-categorie is gekozen.
       actions_description_remote_html: Beslis welke actie moet worden ondernomen om deze rapportage op te lossen. Dit is alleen van invloed op hoe <strong>jouw</strong> server met dit externe account communiceert en de inhoud ervan beheert.
+      actions_no_posts: Dit rapport heeft geen bijbehorende berichten om te verwijderen
       add_to_report: Meer aan de rapportage toevoegen
       already_suspended_badges:
         local: Al geschorst op deze server
@@ -898,6 +901,7 @@ nl:
       name: Naam
       newest: Nieuwste
       oldest: Oudste
+      open: In het openbaar bekijken
       reset: Opnieuw
       review: Status beoordelen
       search: Zoeken
@@ -1156,6 +1160,12 @@ nl:
       view_strikes: Bekijk de eerder door moderatoren vastgestelde overtredingen die je hebt gemaakt
     too_fast: Formulier is te snel ingediend. Probeer het nogmaals.
     use_security_key: Beveiligingssleutel gebruiken
+  author_attribution:
+    example_title: Voorbeeldtekst
+    hint_html: Bepaal hoe we je vermelden, wanneer jouw links op Mastodon worden gedeeld.
+    more_from_html: Meer van %{name}
+    s_blog: De weblog van %{name}
+    title: Auteur-attributie
   challenge:
     confirm: Doorgaan
     hint_html: "<strong>Tip:</strong> We vragen jou het komende uur niet meer naar jouw wachtwoord."
@@ -1230,8 +1240,6 @@ nl:
       your_appeal_approved: Jouw bezwaar is goedgekeurd
       your_appeal_pending: Je hebt een bezwaar ingediend
       your_appeal_rejected: Jouw bezwaar is afgewezen
-  domain_validator:
-    invalid_domain: is een ongeldige domeinnaam
   edit_profile:
     basic_information: Algemene informatie
     hint_html: "<strong>Wat mensen op jouw openbare profiel en naast je berichten zien aanpassen.</strong> Andere mensen gaan je waarschijnlijk eerder volgen en hebben vaker interactie met je, wanneer je profiel is ingevuld en je een profielfoto hebt."
@@ -1453,6 +1461,7 @@ nl:
   media_attachments:
     validations:
       images_and_video: Een video kan niet aan een bericht met afbeeldingen worden gekoppeld
+      not_found: Media %{ids} niet gevonden of al toegevoegd aan een ander bericht
       not_ready: Kan geen bestanden toevoegen die nog niet zijn verwerkt. Probeer het later opnieuw!
       too_many: Er kunnen niet meer dan 4 afbeeldingen toegevoegd worden
   migrations:
@@ -1730,23 +1739,12 @@ nl:
     edited_at_html: Bewerkt op %{date}
     errors:
       in_reply_not_found: Het bericht waarop je probeert te reageren lijkt niet te bestaan.
-    open_in_web: In de webapp openen
     over_character_limit: Limiet van %{max} tekens overschreden
     pin_errors:
       direct: Berichten die alleen zichtbaar zijn voor vermelde gebruikers, kunnen niet worden vastgezet
       limit: Je hebt het maximaal aantal bericht al vastgemaakt
       ownership: Een bericht van iemand anders kan niet worden vastgemaakt
       reblog: Een boost kan niet worden vastgezet
-    poll:
-      total_people:
-        one: "%{count} persoon"
-        other: "%{count} personen"
-      total_votes:
-        one: "%{count} stem"
-        other: "%{count} stemmen"
-      vote: Stemmen
-    show_more: Meer tonen
-    show_thread: Gesprek tonen
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Privébericht
@@ -1945,6 +1943,7 @@ nl:
     instructions_html: Kopieer en plak de onderstaande code in de HTML van je website. Voeg vervolgens het adres van je website toe aan een van de extra velden op je profiel op het tabblad "Profiel bewerken" en sla de wijzigingen op.
     verification: Verificatie
     verified_links: Jouw geverifieerde links
+    website_verification: Website-verificatie
   webauthn_credentials:
     add: Nieuwe beveiligingssleutel toevoegen
     create:

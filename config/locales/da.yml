@@ -7,7 +7,6 @@ da:
     hosted_on: Mastodon hostet på %{domain}
     title: Om
   accounts:
-    follow: Følg
     followers:
       one: Følger
       other: tilhængere
@@ -25,6 +24,8 @@ da:
   admin:
     account_actions:
       action: Udfør handling
+      already_silenced: Denne konto er allerede blevet begrænset.
+      already_suspended: Denne konto er allerede suspenderet.
       title: Udfør moderatorhandling på %{acct}
     account_moderation_notes:
       create: Skriv notat
@@ -46,6 +47,7 @@ da:
         title: Skift e-mail for %{username}
       change_role:
         changed_msg: Rolle ændret!
+        edit_roles: Håndtér brugerroller
         label: Ændr rolle
         no_role: Ingen rolle
         title: Ændr rolle for %{username}
@@ -602,6 +604,7 @@ da:
         suspend_description_html: Kontoen inkl. alt indhold utilgængeliggøres og interaktion umuliggøres, og den slettes på et tidspunkt. Kan omgøres inden for 30 dage. Lukker alle indrapporteringer af kontoen.
       actions_description_html: Afgør, hvilke foranstaltning, der skal træffes for at løse denne anmeldelse. Ved en straffende foranstaltning mod den anmeldte konto, fremsendes en e-mailnotifikation, undtagen når kategorien <strong>Spam</strong> er valgt.
       actions_description_remote_html: Fastslå en nødvendig handling mhp. at løse denne anmeldelse. Dette vil kun påvirke <strong>din</strong> servers kommunikation med, og indholdshåndtering for, fjernkontoen.
+      actions_no_posts: Denne anmeldelse har ingen tilknyttede indlæg at slette
       add_to_report: Føj mere til anmeldelse
       already_suspended_badges:
         local: Allerede suspenderet på denne server
@@ -898,6 +901,7 @@ da:
       name: Navn
       newest: Seneste
       oldest: Ældste
+      open: Vis offentligt
       reset: Nulstil
       review: Gennmgangsstatus
       search: Søg
@@ -1156,6 +1160,12 @@ da:
       view_strikes: Se tidligere anmeldelser af din konto
     too_fast: Formularen indsendt for hurtigt, forsøg igen.
     use_security_key: Brug sikkerhedsnøgle
+  author_attribution:
+    example_title: Eksempeltekst
+    hint_html: Styrer, hvordan man krediteres, når links deles på Mastodon.
+    more_from_html: Flere fra %{name}
+    s_blog: "%{name}s blog"
+    title: Forfattertilskrivning
   challenge:
     confirm: Fortsæt
     hint_html: "<strong>Tip:</strong> Du bliver ikke anmodet om din adgangskode igen den næste time."
@@ -1230,8 +1240,6 @@ da:
       your_appeal_approved: Din appel er godkendt
       your_appeal_pending: Du har indgivet en appel
       your_appeal_rejected: Din appel er afvist
-  domain_validator:
-    invalid_domain: er ikke et gyldigt domænenavn
   edit_profile:
     basic_information: Oplysninger
     hint_html: "<strong>Tilpas hvad folk ser på din offentlige profil og ved siden af dine indlæg.</strong> Andre personer vil mere sandsynligt følge dig tilbage og interagere med dig, når du har en udfyldt profil og et profilbillede."
@@ -1453,6 +1461,7 @@ da:
   media_attachments:
     validations:
       images_and_video: En video kan ikke vedhæftes et indlæg med billedindhold
+      not_found: Mediet %{ids} ikke fundet eller allerede vedhæftet andet indlæg
       not_ready: Filer under behandling kan ikke vedhæftes. Forsøg igen senere!
       too_many: Maks. 4 filer kan vedhæftes
   migrations:
@@ -1730,23 +1739,12 @@ da:
     edited_at_html: Redigeret %{date}
     errors:
       in_reply_not_found: Indlægget, der forsøges besvaret, ser ikke ud til at eksistere.
-    open_in_web: Åbn i webbrowser
     over_character_limit: grænsen på %{max} tegn overskredet
     pin_errors:
       direct: Indlæg, som kun kan ses af omtalte brugere, kan ikke fastgøres
       limit: Maksimalt antal indlæg allerede fastgjort
       ownership: Andres indlæg kan ikke fastgøres
       reblog: Et boost kan ikke fastgøres
-    poll:
-      total_people:
-        one: "%{count} person"
-        other: "%{count} personer"
-      total_votes:
-        one: "%{count} stemme"
-        other: "%{count} stemmer"
-      vote: Stem
-    show_more: Vis flere
-    show_thread: Vis tråd
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkte
@@ -1945,6 +1943,7 @@ da:
     instructions_html: Kopier og indsæt koden nedenfor i HTML på din hjemmeside. Tilføj derefter adressen på din hjemmeside i et af de ekstra felter på din profil på fanen "Redigér profil" og gem ændringer.
     verification: Bekræftelse
     verified_links: Dine bekræftede links
+    website_verification: Webstedsbekræftelse
   webauthn_credentials:
     add: Tilføj ny sikkerhedsnøgle
     create:

@@ -37,7 +37,7 @@ RSpec.describe 'Followed tags' do
     it 'returns the followed tags correctly' do
       subject
 
-      expect(body_as_json).to match_array(expected_response)
+      expect(response.parsed_body).to match_array(expected_response)
     end
 
     context 'with limit param' do
@@ -46,7 +46,7 @@ RSpec.describe 'Followed tags' do
       it 'returns only the requested number of follow tags' do
         subject
 
-        expect(body_as_json.size).to eq(params[:limit])
+        expect(response.parsed_body.size).to eq(params[:limit])
       end
 
       it 'sets the correct pagination headers' do

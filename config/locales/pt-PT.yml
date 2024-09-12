@@ -4,16 +4,15 @@ pt-PT:
     about_mastodon_html: 'A rede social do futuro: sem publicidade, e sem vigilância empresarial; desenho ético, e descentralizado! Tome posse dos seus dados com o Mastodon!'
     contact_missing: Por definir
     contact_unavailable: n.d.
-    hosted_on: Mastodon em %{domain}
-    title: Acerca de
+    hosted_on: Mastodon alojado em %{domain}
+    title: Sobre
   accounts:
-    follow: Seguir
     followers:
       one: Seguidor
       other: Seguidores
     following: A seguir
-    instance_actor_flash: Esta conta é um actor virtual usado para representar a própria instância e não um utilizador individual. É usada para motivos de federação e não deve ser suspenso.
-    last_active: última vez activo
+    instance_actor_flash: Esta conta é um ator virtual utilizado para representar o servidor em si e não um utilizador individual. É utilizada para efeitos de federação e não deve ser suspensa.
+    last_active: última atividade
     link_verified_on: A posse desta hiperligação foi verificada em %{date}
     nothing_here: Não há nada aqui!
     pin_errors:
@@ -25,19 +24,21 @@ pt-PT:
   admin:
     account_actions:
       action: Executar acção
-      title: Executar acção de moderação em %{acct}
+      already_suspended: Esta conta já foi suspensa.
+      title: Executar ação de moderação em %{acct}
     account_moderation_notes:
       create: Deixar uma nota
-      created_msg: Nota de moderação correctamente criada!
+      created_msg: Nota de moderação criada com sucesso!
       destroyed_msg: Nota de moderação destruída!
     accounts:
+      add_email_domain_block: Bloquear domínio de e-mail
       approve: Aprovar
-      approved_msg: Inscrição de %{username} aprovada correctamente
-      are_you_sure: Tens a certeza?
+      approved_msg: Inscrição de %{username} aprovada com sucesso
+      are_you_sure: Tem a certeza?
       avatar: Imagem de perfil
       by_domain: Domínio
       change_email:
-        changed_msg: Endereço de correio electrónico alterado!
+        changed_msg: E-mail alterado com sucesso!
         current_email: E-mail atual
         label: Alterar e-mail
         new_email: Novo e-mail
@@ -45,26 +46,29 @@ pt-PT:
         title: Alterar e-mail para %{username}
       change_role:
         changed_msg: Função alterada com sucesso!
+        edit_roles: Gerir funções de utilizador
         label: Alterar função
         no_role: Nenhuma função
         title: Alterar a função de %{username}
       confirm: Confirmar
       confirmed: Confirmado
       confirming: A confirmar
-      custom: Personalizar
+      custom: Personalizado
       delete: Eliminar dados
       deleted: Eliminada
-      demote: Despromoveu
+      demote: Despromovida
       destroyed_msg: Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato
       disable: Congelar
-      disable_two_factor_authentication: Desactivar autenticação por dois factores (2FA)
+      disable_sign_in_token_auth: Desativar token de autenticação por e-mail
+      disable_two_factor_authentication: Desativar autenticação por dois fatores (2FA)
       disabled: Congelada
       display_name: Nome a mostrar
       domain: Domínio
       edit: Editar
-      email: Correio electrónico
+      email: E-mail
       email_status: Estado do e-mail
       enable: Descongelar
+      enable_sign_in_token_auth: Ativar token de autenticação por e-mail
       enabled: Ativado
       enabled_msg: Descongelou a conta %{username}
       followers: Seguidores
@@ -86,7 +90,7 @@ pt-PT:
       memorialized: Em memória
       memorialized_msg: Conta %{username} transformada com sucesso em memorial
       moderation:
-        active: Activo
+        active: Ativo
         all: Todos
         disabled: Desativado
         pending: Pendente
@@ -94,14 +98,14 @@ pt-PT:
         suspended: Supensos
         title: Moderação
       moderation_notes: Notas de moderação
-      most_recent_activity: Actividade mais recente
+      most_recent_activity: Atividade mais recente
       most_recent_ip: IP mais recente
       no_account_selected: Nenhuma conta foi alterada porque nenhuma foi selecionada
       no_limits_imposed: Sem limites impostos
       no_role_assigned: Nenhuma função atribuída
       not_subscribed: Não inscrito
-      pending: Pendente de revisão
-      perform_full_suspension: Fazer suspensão completa
+      pending: Revisão pendente
+      perform_full_suspension: Suspender
       previous_strikes: Reprimendas anteriores
       previous_strikes_description_html:
         one: Esta conta tem <strong>1</strong> reprimenda.
@@ -109,11 +113,11 @@ pt-PT:
       promote: Promover
       protocol: Protocolo
       public: Público
-      push_subscription_expires: A Inscrição PuSH expira
+      push_subscription_expires: A inscrição PuSH expira
       redownload: Atualizar perfil
-      redownloaded_msg: Perfil de %{username} correctamente actualizado a partir da origem
+      redownloaded_msg: Perfil de %{username} atualizado a partir da origem com sucesso
       reject: Rejeitar
-      rejected_msg: Inscrição de %{username} correctamente rejeitada
+      rejected_msg: Inscrição de %{username} rejeitada com sucesso
       remote_suspension_irreversible: Os dados desta conta foram eliminados irreversivelmente.
       remote_suspension_reversible_hint_html: A conta foi suspensa no servidor de origem e os seus dados serão totalmente eliminados em %{date}. Até lá, o servidor de origem poderá recuperar esta conta sem quaisquer efeitos negativos. Se desejar eliminar todos os dados desta conta imediatamente, pode fazê-lo em baixo.
       remove_avatar: Remover a imagem de perfil
@@ -122,13 +126,14 @@ pt-PT:
       removed_header_msg: Imagem de cabeçalho de %{username} removida
       resend_confirmation:
         already_confirmed: Este utilizador já está confirmado
-        send: Reenviar link de confirmação
-        success: Link de confirmação enviado com sucesso!
-      reset: Reiniciar
+        send: Reenviar hiperligação de confirmação
+        success: Hiperligação de confirmação enviada com sucesso!
+      reset: Repor
       reset_password: Criar nova palavra-passe
       resubscribe: Reinscrever
       role: Função
       search: Pesquisar
+      search_same_email_domain: Outros utilizadores com o mesmo domínio de e-mail
       search_same_ip: Outros utilizadores com o mesmo IP
       security: Segurança
       security_measures:
@@ -136,7 +141,7 @@ pt-PT:
         password_and_2fa: Palavra-passe e 2FA
       sensitive: Marcar como problemático
       sensitized: Marcada como problemática
-      shared_inbox_url: URL da caixa de entrada compartilhada
+      shared_inbox_url: URL da caixa de entrada partilhada
       show:
         created_reports: Denúncias realizadas
         targeted_reports: Denunciada por outros
@@ -151,101 +156,116 @@ pt-PT:
       suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente eliminados em %{date}. Até lá, a conta poderá ser recuperada sem quaisquer efeitos negativos. Se deseja eliminar todos os dados desta conta imediatamente, pode fazê-lo em baixo.
       title: Contas
       unblock_email: Desbloquear endereço de e-mail
-      unblocked_email_msg: Endereço de e-mail de %{username} desbloqueado
-      unconfirmed_email: Correio electrónico por confirmar
+      unblocked_email_msg: Endereço de e-mail de %{username} desbloqueado com sucesso
+      unconfirmed_email: E-mail por confirmar
       undo_sensitized: Desmarcar como problemático
       undo_silenced: Desfazer silenciar
       undo_suspension: Desfazer supensão
-      unsilenced_msg: Removeu as limitações da conta %{username}
+      unsilenced_msg: Limitações da conta %{username} removidas com sucesso
       unsubscribe: Cancelar inscrição
       unsuspended_msg: Removeu a suspensão da conta %{username}
       username: Nome de utilizador
       view_domain: Ver resumo do domínio
       warn: Advertir
-      web: Teia
+      web: Web
       whitelisted: Permitido para a federação
     action_logs:
       action_types:
         approve_appeal: Aprovar recurso
         approve_user: Aprovar utilizador
-        assigned_to_self_report: Atribuir Denúncia
-        change_role_user: Alterar Função do Utilizador
-        confirm_user: Confirmar Utilizador
-        create_account_warning: Criar Aviso
+        assigned_to_self_report: Atribuir denúncia
+        change_email_user: Alterar e-mail do utilizador
+        change_role_user: Alterar função do utilizador
+        confirm_user: Confirmar utilizador
+        create_account_warning: Criar aviso
         create_announcement: Criar comunicado
-        create_custom_emoji: Criar Emoji Personalizado
-        create_domain_allow: Criar Permissão de Domínio
-        create_domain_block: Criar Bloqueio de Domínio
+        create_canonical_email_block: Criar bloqueio de e-mail
+        create_custom_emoji: Criar emoji personalizado
+        create_domain_allow: Criar permissão de domínio
+        create_domain_block: Criar bloqueio de domínio
+        create_email_domain_block: Criar bloqueio de domínio de e-mail
         create_ip_block: Criar regra de IP
-        create_unavailable_domain: Criar Domínio Indisponível
-        create_user_role: Criar Função
-        demote_user: Despromover Utilizador
-        destroy_announcement: Apagar comunicado
-        destroy_custom_emoji: Eliminar Emoji Personalizado
-        destroy_domain_allow: Eliminar Permissão de Domínio
-        destroy_domain_block: Eliminar Bloqueio de Domínio
-        destroy_instance: Purgar Domínio
+        create_unavailable_domain: Criar domínio indisponível
+        create_user_role: Criar função
+        demote_user: Despromover utilizador
+        destroy_announcement: Eliminar comunicado
+        destroy_canonical_email_block: Eliminar bloqueio de e-mail
+        destroy_custom_emoji: Eliminar emoji personalizado
+        destroy_domain_allow: Eliminar permissão de domínio
+        destroy_domain_block: Eliminar bloqueio de domínio
+        destroy_email_domain_block: Eliminar bloqueio de domínio de e-mail
+        destroy_instance: Purgar domínio
         destroy_ip_block: Eliminar regra de IP
-        destroy_status: Eliminar Publicação
-        destroy_unavailable_domain: Eliminar Domínio Indisponível
-        destroy_user_role: Eliminar Função
+        destroy_status: Eliminar publicação
+        destroy_unavailable_domain: Eliminar domínio indisponível
+        destroy_user_role: Eliminar função
         disable_2fa_user: Desativar 2FA
-        disable_custom_emoji: Desativar Emoji Personalizado
-        disable_user: Desativar Utilizador
-        enable_custom_emoji: Ativar Emoji Personalizado
-        enable_user: Ativar Utilizador
-        memorialize_account: Tornar conta num memorial
-        promote_user: Promover Utilizador
-        reject_appeal: Rejeitar Recurso
-        reject_user: Rejeitar Utilizador
-        remove_avatar_user: Remover Imagem de Perfil
-        reopen_report: Reabrir Denúncia
-        resend_user: Reenviar E-mail de Confirmação
-        reset_password_user: Repor Password
-        resolve_report: Resolver Denúncia
+        disable_custom_emoji: Desativar emoji personalizado
+        disable_sign_in_token_auth_user: Desativar token de autenticação por e-mail para o utilizador
+        disable_user: Desativar utilizador
+        enable_custom_emoji: Ativar emoji personalizado
+        enable_sign_in_token_auth_user: Ativar token de autenticação por e-mail para o utilizador
+        enable_user: Ativar utilizador
+        memorialize_account: Transformar conta num memorial
+        promote_user: Promover utilizador
+        reject_appeal: Rejeitar recurso
+        reject_user: Rejeitar utilizador
+        remove_avatar_user: Remover imagem de perfil
+        reopen_report: Reabrir denúncia
+        resend_user: Reenviar e-mail de confirmação
+        reset_password_user: Repor palavra-passe
+        resolve_report: Resolver denúncia
         sensitive_account: Marcar a media na sua conta como problemática
         silence_account: Limitar conta
         suspend_account: Suspender conta
-        unassigned_report: Desatribuir Denúncia
+        unassigned_report: Anular atribuição desta denúncia
         unblock_email_account: Desbloquear endereço de e-mail
         unsensitive_account: Desmarcar a conta como problemática
-        unsilence_account: Deixar de Silenciar Conta
-        unsuspend_account: Retirar Suspensão à Conta
+        unsilence_account: Deixar de silenciar conta
+        unsuspend_account: Retirar suspensão da conta
         update_announcement: Atualizar comunicado
-        update_custom_emoji: Atualizar Emoji Personalizado
-        update_domain_block: Atualizar Bloqueio de Domínio
+        update_custom_emoji: Atualizar emoji personalizado
+        update_domain_block: Atualizar bloqueio de domínio
         update_ip_block: Atualizar regra de IP
-        update_report: Atualizar Relatório
-        update_status: Atualizar Estado
-        update_user_role: Atualizar Função
+        update_report: Atualizar denúncia
+        update_status: Atualizar publicação
+        update_user_role: Atualizar função
       actions:
         approve_appeal_html: "%{name} aprovou recurso da decisão de moderação de %{target}"
         approve_user_html: "%{name} aprovou a inscrição de %{target}"
         assigned_to_self_report_html: "%{name} atribuiu a denúncia %{target} a si próprio"
+        change_email_user_html: "%{name} alterou o endereço de e-mail do utilizador %{target}"
         change_role_user_html: "%{name} alterou a função de %{target}"
+        confirm_user_html: "%{name} confirmou o endereço de e-mail do utilizador %{target}"
         create_account_warning_html: "%{name} enviou um aviso para %{target}"
         create_announcement_html: "%{name} criou o novo anúncio %{target}"
-        create_custom_emoji_html: "%{name} carregou o novo emoji %{target}"
-        create_domain_allow_html: "%{name} habilitou a federação com o domínio %{target}"
+        create_canonical_email_block_html: "%{name} bloqueou o e-mail com a hash %{target}"
+        create_custom_emoji_html: "%{name} enviou o novo emoji %{target}"
+        create_domain_allow_html: "%{name} permitiu a federação com o domínio %{target}"
         create_domain_block_html: "%{name} bloqueou o domínio %{target}"
-        create_ip_block_html: "%{name} criou regra para o IP %{target}"
-        create_unavailable_domain_html: "%{name} parou a entrega ao domínio %{target}"
+        create_email_domain_block_html: "%{name} bloqueou o domínio de e-mail %{target}"
+        create_ip_block_html: "%{name} criou uma regra para o IP %{target}"
+        create_unavailable_domain_html: "%{name} parou as entregas ao domínio %{target}"
         create_user_role_html: "%{name} criou a função %{target}"
         demote_user_html: "%{name} despromoveu o utilizador %{target}"
         destroy_announcement_html: "%{name} eliminou o anúncio %{target}"
+        destroy_canonical_email_block_html: "%{name} desbloqueou o e-mail com a hash %{target}"
         destroy_custom_emoji_html: "%{name} eliminou o emoji %{target}"
-        destroy_domain_allow_html: "%{name} desabilitou a federação com o domínio %{target}"
+        destroy_domain_allow_html: "%{name} bloqueou a federação com o domínio %{target}"
         destroy_domain_block_html: "%{name} desbloqueou o domínio %{target}"
+        destroy_email_domain_block_html: "%{name} desbloqueou o domínio de e-mail %{target}"
         destroy_instance_html: "%{name} purgou o domínio %{target}"
-        destroy_ip_block_html: "%{name} eliminou regra para o IP %{target}"
+        destroy_ip_block_html: "%{name} eliminou a regra para o IP %{target}"
         destroy_status_html: "%{name} removeu a publicação de %{target}"
-        destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
+        destroy_unavailable_domain_html: "%{name} retomou as entregas ao domínio %{target}"
         destroy_user_role_html: "%{name} eliminou a função %{target}"
         disable_2fa_user_html: "%{name} desativou o requerimento de autenticação em dois passos para o utilizador %{target}"
-        disable_custom_emoji_html: "%{name} desabilitou o emoji %{target}"
-        disable_user_html: "%{name} desativou o acesso para o utilizador %{target}"
-        enable_custom_emoji_html: "%{name} habilitou o emoji %{target}"
-        enable_user_html: "%{name} ativou o acesso para o utilizador %{target}"
+        disable_custom_emoji_html: "%{name} desativou o emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} desativou o token de autenticação por e-mail para %{target}"
+        disable_user_html: "%{name} desativou o início de sessão para o utilizador %{target}"
+        enable_custom_emoji_html: "%{name} ativou o emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} ativou o token de autenticação por e-mail para %{target}"
+        enable_user_html: "%{name} ativou o início de sessão para o utilizador %{target}"
         memorialize_account_html: "%{name} transformou a conta de %{target} em um memorial"
         promote_user_html: "%{name} promoveu o utilizador %{target}"
         reject_appeal_html: "%{name} rejeitou recurso da decisão de moderação de %{target}"
@@ -276,22 +296,22 @@ pt-PT:
       title: Registo de auditoria
       unavailable_instance: "(nome de domínio indisponível)"
     announcements:
-      destroyed_msg: Comunicado correctamente eliminado!
+      destroyed_msg: Comunicado eliminado com sucesso!
       edit:
         title: Editar comunicado
       empty: Nenhum comunicado encontrado.
-      live: Em directo
+      live: Em direto
       new:
         create: Criar comunicado
         title: Novo comunicado
       publish: Publicar
-      published_msg: Comunicado correctamente publicado!
+      published_msg: Comunicado publicado com sucesso!
       scheduled_for: Agendado para %{time}
       scheduled_msg: Comunicado agendado para publicação!
       title: Comunicados
       unpublish: Anular publicação
-      unpublished_msg: Comunicado correctamente retirado de publicação!
-      updated_msg: Comunicado correctamente actualizado!
+      unpublished_msg: Comunicado corretamente retirado de publicação!
+      updated_msg: Comunicado atualizado com sucesso!
     critical_update_pending: Atualização crítica pendente
     custom_emojis:
       assign_category: Atribuir categoria
@@ -319,16 +339,16 @@ pt-PT:
       not_permitted: Não está autorizado a executar esta ação
       overwrite: Escrever por cima
       shortcode: Código de atalho
-      shortcode_hint: Pelo menos 2 caracteres, apenas caracteres alfanuméricos e underscores
+      shortcode_hint: Pelo menos 2 caracteres, apenas caracteres alfanuméricos e traços inferiores
       title: Emojis personalizados
       uncategorized: Não categorizados
       unlist: Não listar
       unlisted: Não inventariado
       update_failed_msg: Não foi possível atualizar esse emoji
-      updated_msg: Emoji correctamente actualizado!
+      updated_msg: Emoji atualizado com sucesso!
       upload: Enviar
     dashboard:
-      active_users: utilizadores activos
+      active_users: utilizadores ativos
       interactions: interações
       media_storage: Armazenamento de media
       new_users: novos utilizadores
@@ -350,16 +370,16 @@ pt-PT:
       sources: Origem de inscrições
       space: Utilização do espaço
       title: Painel de controlo
-      top_languages: Principais idiomas activos
-      top_servers: Servidores mais activos
-      website: Página na teia
+      top_languages: Principais idiomas ativos
+      top_servers: Servidores mais ativos
+      website: Website
     disputes:
       appeals:
         empty: Nenhum recurso encontrado.
         title: Recursos
     domain_allows:
       add_new: Permitir federação com o domínio
-      created_msg: Permissão correctamente atribuída para federação
+      created_msg: O domínio foi autorizado com êxito para a federação
       destroyed_msg: Revogada a permissão de federação para o domínio
       export: Exportar
       import: Importar
@@ -385,14 +405,14 @@ pt-PT:
       import: Importar
       new:
         create: Criar bloqueio
-        hint: O bloqueio por domínio não vai prevenir a criação de contas na base de dados, mas irá retroactiva e automaticamente aplicar certos métodos de moderação nessas contas.
+        hint: O bloqueio do domínio não impedirá a criação de registos de contas na base de dados, mas aplicará retroativamente e automaticamente métodos de moderação específicos a essas contas.
         severity:
           desc_html: "<strong>Limitar</strong> tornará as mensagens das contas neste domínio invisíveis a qualquer pessoa que não as esteja a seguir. <strong>Suspender</strong> removerá do seu servidor todo o conteúdo, media, e dados de perfil das contas deste domínio. Utilize <strong>Nenhum</strong> se apenas quiser rejeitar ficheiros media."
           noop: Nenhum
           silence: Limitar
           suspend: Suspender
         title: Novo bloqueio de domínio
-      no_domain_block_selected: Nenhum bloqueio de domínio foi alterado, pois nenhum foi seleccionado
+      no_domain_block_selected: Nenhum bloqueio de domínio foi alterado pois nenhum foi selecionado
       not_permitted: Não está autorizado a executar esta ação
       obfuscate: Ofuscar nome de domínio
       obfuscate_hint: Ofuscar parcialmente o nome de domínio na lista, caso estejam definidas limitações na publicação da lista de domínios
@@ -527,7 +547,7 @@ pt-PT:
       title: Convites
     ip_blocks:
       add_new: Criar regra
-      created_msg: Nova regra de IP correctamente adicionada
+      created_msg: Nova regra de IP corretamente adicionada
       delete: Eliminar
       expires_in:
         '1209600': 2 semanas
@@ -547,15 +567,15 @@ pt-PT:
       delete: Eliminar
       description_html: Um <strong>repetidor de federação</strong> é um servidor intermediário que troca grandes volumes de publicações públicas entre instâncias que o subscrevem e publicam. <strong>Ele pode ajudar pequenas e medias instâncias a descobrir conteúdo do fediverso</strong> que, de outro modo, exigiria que os utilizadores locais seguissem manualmente outras pessoas em instâncias remotas.
       disable: Desativar
-      disabled: Desactivado
-      enable: Activar
+      disabled: Desativado
+      enable: Ativar
       enable_hint: Uma vez ativado, a tua instância irá assinar todas as publicações deste repetidor e irá começar a enviar as suas publicações públicas para lá.
       enabled: Ativado
       inbox_url: URL do repetidor
       pending: À espera da aprovação do repetidor
       save_and_enable: Guardar e ativar
       setup: Configurar uma ligação ao repetidor
-      signatures_not_enabled: Os repetidores não funcionarão correctamente enquanto o modo seguro ou o modo de lista branca estiverem activados
+      signatures_not_enabled: Os repetidores não funcionarão corretamente enquanto o modo seguro ou o modo de lista branca estiverem ativados
       status: Estado
       title: Retransmissores
     report_notes:
@@ -618,27 +638,27 @@ pt-PT:
       reported_by: Denunciado por
       reported_with_application: Reportado com a aplicação
       resolved: Resolvido
-      resolved_msg: Denúncia correctamente resolvida!
+      resolved_msg: Denúncia resolvida com sucesso!
       skip_to_actions: Passar para as ações
       status: Estado
       statuses: Conteúdo denunciado
       statuses_description_html: O conteúdo ofensivo será citado na comunicação com a conta denunciada
       summary:
         action_preambles:
-          delete_html: 'Você está prestes a <strong>remover</strong> algumas das publicações de <strong>@%{acct}</strong>. Isto irá:'
-          mark_as_sensitive_html: 'Você está prestes a <strong>marcar</strong> alguns dos posts de <strong>@%{acct}</strong>como <strong>sensível</strong>. Isto irá:'
-          silence_html: 'Você está prestes a <strong>limitar a conta do</strong> <strong>@%{acct}</strong>. Isto irá:'
-          suspend_html: 'Você está prestes a <strong>suspender a conta de</strong> <strong>@%{acct}</strong>. Isto irá:'
+          delete_html: 'Está prestes a <strong>remover</strong> algumas das publicações de <strong>@%{acct}</strong>. Isto irá:'
+          mark_as_sensitive_html: 'Está prestes a <strong>marcar</strong> algumas das publicações de <strong>@%{acct}</strong>como <strong>sensível</strong>. Isto irá:'
+          silence_html: 'Está prestes a <strong>limitar a conta de</strong> <strong>@%{acct}</strong>. Isto irá:'
+          suspend_html: 'Está prestes a <strong>suspender a conta de</strong> <strong>@%{acct}</strong>. Isto irá:'
         actions:
           delete_html: Excluir as publicações ofensivas
           mark_as_sensitive_html: Marcar a mídia dos posts ofensivos como sensível
           silence_html: Limitar firmemente o alcance de <strong>@%{acct}</strong>, tornando seus perfis e conteúdos apenas visíveis para pessoas que já os estão seguindo ou olhando manualmente no perfil
-          suspend_html: Suspender <strong>@%{acct}</strong>, tornando seu perfil e conteúdo inacessíveis e impossível de interagir com
+          suspend_html: Suspender <strong>@%{acct}</strong>, tornando seu perfil e conteúdo inacessíveis e impossível de interagir
         close_report: 'Marcar relatório #%{id} como resolvido'
-        close_reports_html: Marcar <strong>todos os</strong> relatórios contra <strong>@%{acct}</strong> como resolvidos
-        delete_data_html: Excluir <strong>@%{acct}</strong>perfil e conteúdo 30 dias a menos que sejam dessuspensos
+        close_reports_html: Marcar <strong>todas as</strong> denúncias contra <strong>@%{acct}</strong> como resolvidas
+        delete_data_html: Eliminar o perfil de <strong>@%{acct}</strong> e conteúdos daqui a 30 dias, a menos que entretanto sejam suspensos
         preview_preamble_html: "<strong>@%{acct}</strong> receberá um aviso com o seguinte conteúdo:"
-        record_strike_html: Registre um ataque contra <strong>@%{acct}</strong> para ajudá-lo a escalar futuras violações desta conta
+        record_strike_html: Registar um ataque contra <strong>@%{acct}</strong> para ajudar a escalar futuras violações desta conta
         warning_placeholder: Argumentos adicionais opcionais para a acção de moderação.
       target_origin: Origem da conta denunciada
       title: Denúncias
@@ -669,39 +689,39 @@ pt-PT:
       privileges:
         administrator: Administrador
         administrator_description: Utilizadores com esta permissão irão contornar todas as permissões
-        delete_user_data: Eliminar Dados de Utilizador
+        delete_user_data: Eliminar dados de utilizador
         delete_user_data_description: Permite que os utilizadores eliminem os dados doutros utilizadores sem tempo de espera
-        invite_users: Convidar Utilizadores
+        invite_users: Convidar utilizadores
         invite_users_description: Permite aos utilizadores convidar pessoas novas para o servidor
         manage_announcements: Gerir comunicados
         manage_announcements_description: Permite aos utilizadores gerirem os comunicados no servidor
         manage_appeals: Gerir apelos
         manage_appeals_description: Permite aos utilizadores rever recursos de moderação
-        manage_blocks: Gerir Bloqueios
-        manage_custom_emojis: Gerir Emojis Personalizados
+        manage_blocks: Gerir bloqueios
+        manage_custom_emojis: Gerir emojis personalizados
         manage_custom_emojis_description: Permite aos utilizadores gerirem os emojis personalizados do servidor
-        manage_federation: Gerir Federação
+        manage_federation: Gerir federação
         manage_federation_description: Permite aos utilizadores bloquear ou permitir federação com outros domínios e controlar a entregabilidade
-        manage_invites: Gerir Convites
+        manage_invites: Gerir convites
         manage_invites_description: Permite aos utilizadores pesquisarem e desativarem ligações de convite
-        manage_reports: Gerir Relatórios
-        manage_reports_description: Permite aos utilizadores rever relatórios e executar ações de moderação contra eles
-        manage_roles: Gerir Funções
+        manage_reports: Gerir denúncias
+        manage_reports_description: Permite aos utilizadores rever denúncias e executar ações de moderação contra eles
+        manage_roles: Gerir funções
         manage_roles_description: Permite aos utilizadores a gestão e atribuição de funções abaixo dos seus
-        manage_rules: Gerir Regras
+        manage_rules: Gerir regras
         manage_rules_description: Permite aos utilizadores alterar as regras do servidor
-        manage_settings: Gerir Configurações
-        manage_settings_description: Permite aos utilizadores alterar as configurações do sítio na teia
-        manage_taxonomies: Gerir Taxonomias
-        manage_taxonomies_description: 'Permite aos utilizadores avaliar o conteúdo em alta e atualizar as configurações de #etiquetas'
-        manage_user_access: Gerir Acesso de Utilizador
-        manage_users: Gerir Utilizadores
+        manage_settings: Gerir configurações
+        manage_settings_description: Permite aos utilizadores alterar as configurações do site
+        manage_taxonomies: Gerir taxonomias
+        manage_taxonomies_description: Permite aos utilizadores rever o conteúdo em tendência e atualizar as configurações de hashtag
+        manage_user_access: Gerir acesso de utilizador
+        manage_users: Gerir utilizadores
         manage_users_description: Permite aos utilizadores ver os detalhes de outros utilizadores e executar ações de moderação contra eles
-        manage_webhooks: Gerir Webhooks
+        manage_webhooks: Gerir webhooks
         manage_webhooks_description: Permite aos utilizadores configurar webhooks para eventos administrativos
-        view_audit_log: Ver Registo de Auditoria
+        view_audit_log: Ver registo de auditoria
         view_audit_log_description: Permite aos utilizadores ver um histórico de ações administrativas no servidor
-        view_dashboard: Ver Painel de Controlo
+        view_dashboard: Ver painel de controlo
         view_dashboard_description: Permite aos utilizadores acederem ao painel de controlo e a várias estatísticas
         view_devops: DevOps
         view_devops_description: Permite aos utilizadores aceder aos painéis de controlo do Sidekiq e pgHero
@@ -723,14 +743,14 @@ pt-PT:
         preamble: Personalize a interface web do Mastodon.
         title: Aspeto
       branding:
-        preamble: A marca do seu servidor diferencia-a doutros servidores na rede. Essa informação pode ser exibida em vários contexos, como a interface na teia do Mastodon, aplicações nativas, visualizações de hiperligações noutros sites, em aplicações de mensagens, etc. Por esta razão, é melhor manter esta informação clara, curta e concisa.
+        preamble: A marca do seu servidor diferencia-a de outros servidores na rede. Essa informação pode ser mostrada em vários ambientes, como a interface web do Mastodon, aplicações nativas, visualizações de hiperligações em outros sites e dentro de aplicações de mensagens, etc. Por esta razão, é melhor manter esta informação clara, curta e concisa.
         title: Marca
       captcha_enabled:
         desc_html: Isto depende de scripts externos da hCaptcha, o que pode ser uma preocupação de segurança e privacidade. Além disso, <strong>isto pode tornar o processo de registo menos acessível para algumas pessoas (especialmente as com limitações físicas)</strong>. Por isso, considere medidas alternativas tais como registo mediante aprovação ou sob convite.
         title: Requerer que novos utilizadores resolvam um CAPTCHA para confirmar a sua conta
       content_retention:
         danger_zone: Zona de perigo
-        preamble: Controle como o conteúdo gerado pelos utilizadores é armazenado no Mastodon.
+        preamble: Controle a forma como o conteúdo gerado pelo utilizador é armazenado no Mastodon.
         title: Retenção de conteúdo
       default_noindex:
         desc_html: Afeta todos os utilizadores que não alteraram esta configuração
@@ -743,13 +763,13 @@ pt-PT:
         publish_discovered_servers: Publicar servidores descobertos
         publish_statistics: Publicar estatísticas
         title: Descobrir
-        trends: Em alta
+        trends: Tendências
       domain_blocks:
         all: Para toda a gente
         disabled: Para ninguém
         users: Para utilizadores locais que se encontrem autenticados
       registrations:
-        moderation_recommandation: Por favor, certifique-se de que você tem uma equipe de moderação adequada e reativa antes de abrir os registros para todos!
+        moderation_recommandation: Certifique-se de que dispõe de uma equipa de moderação adequada e reativa antes de abrir as inscrições a todos!
         preamble: Controle quem pode criar uma conta no seu servidor.
         title: Inscrições
       registrations_mode:
@@ -757,7 +777,7 @@ pt-PT:
           approved: Registo sujeito a aprovação
           none: Ninguém se pode registar
           open: Qualquer pessoa se pode registar
-        warning_hint: Recomendamos o uso de "Aprovação necessária para se cadastrar", a menos que você esteja confiante de que sua equipe de moderação pode lidar com spam e registros maliciosos em tempo hábil.
+        warning_hint: Recomendamos a utilização de “É necessária aprovação para o registo”, a menos que esteja confiante de que a sua equipa de moderação pode tratar o spam e os registos maliciosos de forma atempada.
       security:
         authorized_fetch: Exigir autenticação de servidores federados
         authorized_fetch_hint: Exigir autenticação de servidores federados permite uma aplicação mais rigorosa de bloqueios tanto ao nível do utilizador como do servidor. No entanto, isso é feito à custa de uma diminuição de desempenho, reduz o alcance das suas respostas e pode introduzir problemas de compatibilidade com alguns serviços federados. Além disso, isso não impede os atores mais empenhados de aceder às suas publicações e contas públicas.
@@ -766,7 +786,7 @@ pt-PT:
       title: Definições do servidor
     site_uploads:
       delete: Eliminar arquivo carregado
-      destroyed_msg: Envio de sítio na teia correctamente eliminado!
+      destroyed_msg: Envio do site eliminado com sucesso!
     software_updates:
       critical_update: Crítico — por favor, atualize rapidamente
       documentation_link: Saber mais
@@ -800,7 +820,7 @@ pt-PT:
       reblogs: Re-publicacões
       status_changed: Publicação alterada
       title: Estado das contas
-      trending: Em alta
+      trending: Em tendência
       visibility: Visibilidade
       with_media: Com media
     strikes:
@@ -823,7 +843,7 @@ pt-PT:
       elasticsearch_health_yellow:
         message_html: O cluster elasticsearch não está de boa saúde (estado amarelo), pode querer investigar o motivo
       elasticsearch_index_mismatch:
-        message_html: Os mapeamentos elasticsearch estão desatualizados. Por favor, execute <code>tootctl search deploy --only=%{value}</code>
+        message_html: Os mapeamentos de índice Elasticsearch estão desatualizados. Execute <code>tootctl search deploy --only=%{value}</code>
       elasticsearch_preset:
         action: Ver a documentação
         message_html: O seu cluster elasticsearch tem mais de um nó, mas o Mastodon não está configurado para os usar.
@@ -831,9 +851,9 @@ pt-PT:
         action: Ver documentação
         message_html: O seu cluster elasticsearch tem apenas um nó, <code>ES_PRESET</code> deve ser configurado para <code>single_node_cluster</code>.
       elasticsearch_reset_chewy:
-        message_html: O seu índice de sistema elasticsearch está desatualizado devido a uma mudança de configuração. Por favor, execute <code>tootctl search deploy --reset-chewy</code> para o atualizar.
+        message_html: O seu índice de sistema Elasticsearch está desatualizado devido a uma mudança de configuração. Execute <code>tootctl search deploy --reset-chewy</code> para o atualizar.
       elasticsearch_running_check:
-        message_html: Não foi possível conectar ao Elasticsearch. Por favor, verifique se está em execução, ou desabilite a pesquisa de texto completo
+        message_html: Não foi possível conectar ao Elasticsearch. Verifique se está em execução ou desative a pesquisa de texto completo
       elasticsearch_version_check:
         message_html: 'Versão de Elasticsearch incompatível: %{value}'
         version_comparison: A versão de Elasticsearch %{running_version} está em execução. No entanto, é obrigatória a versão %{required_version}
@@ -872,14 +892,14 @@ pt-PT:
       review: Estado da revisão
       search: Pesquisar
       title: Hashtags
-      updated_msg: 'Definições de #etiquetas correctamente actualizadas'
+      updated_msg: 'Definições de #etiquetas atualizadas com sucesso'
     title: Administração
     trends:
       allow: Permitir
       approved: Aprovado
       disallow: Não permitir
       links:
-        allow: Permitir ligação
+        allow: Permitir hiperligação
         allow_provider: Permitir editor
         description_html: Estas são as ligações que presentemente estão a ser muito partilhadas por contas visíveis pelo seu servidor. Estas podem ajudar os seus utilizador a descobrir o que está a acontecer no mundo. Nenhuma ligação é exibida publicamente até que o editor a aprove. Também pode permitir ou rejeitar ligações em avulso.
         disallow: Não permitir ligação
@@ -890,15 +910,15 @@ pt-PT:
         shared_by_over_week:
           one: Partilhado por uma pessoa na última semana
           other: Partilhado por %{count} pessoas na última semana
-        title: Ligações em alta
+        title: Hiperligações em tendência
         usage_comparison: Partilhado %{today} vezes hoje, em comparação com %{yesterday} ontem
       not_allowed_to_trend: Não permitido para tendência
       only_allowed: Apenas permitidos
       pending_review: Pendente de revisão
       preview_card_providers:
-        allowed: Ligações deste editor poderão vir a ficar em alta
+        allowed: As hiperligações deste editor podem ser tendência
         description_html: Estes são os domínios a partir dos quais ligações são frequentemente partilhadas no seu servidor. As suas ligações não serão colocadas em alta a menos que o seu domínio de origem seja aprovado. A sua aprovação (ou rejeição) estende-se a subdomínios.
-        rejected: Ligações deste editor não serão postas em alta
+        rejected: As hiperligações deste editor não podem ser tendência
         title: Editores
       rejected: Rejeitado
       statuses:
@@ -907,18 +927,18 @@ pt-PT:
         description_html: Estas são publicações que o seu servidor conhece e que atualmente estão a ser frequentemente partilhadas e adicionadas aos favoritos. Isto pode ajudar os seus utilizadores, novos e retornados, a encontrar mais pessoas para seguir. Nenhuma publicação será exibida publicamente até que aprove o autor, e o autor permita que a sua conta seja sugerida a outros. Você também pode permitir ou rejeitar publicações individualmente.
         disallow: Não permitir publicação
         disallow_account: Não permitir autor
-        no_status_selected: Nenhuma publicação em alta foi alterada, pois nenhuma foi selecionada
+        no_status_selected: Não foram alteradas quaisquer publicações de tendências, uma vez que nenhuma foi selecionada
         not_discoverable: O autor optou por não permitir que a sua conta seja sugerida a outros
         shared_by:
           one: Partilhado ou adicionado aos marcadores uma vez
           other: Partilhado e adicionado aos marcadores %{friendly_count} vezes
-        title: Publicações em alta
+        title: Publicações em tendência
       tags:
         current_score: Pontuação atual %{score}
         dashboard:
           tag_accounts_measure: utilizadores únicos
           tag_languages_dimension: Idiomas mais populares
-          tag_servers_dimension: Topo de servidores
+          tag_servers_dimension: Servidores mais populares
           tag_servers_measure: servidores diferentes
           tag_uses_measure: utilizações totais
         description_html: 'Estas são as #etiquetas que aparecem atualmente com frequência em publicações visíveis pelo seu servidor. Isto pode ajudar os seus utilizadores a descobrir o que está ser mais falado no momento. Nenhuma #etiqueta será exibida publicamente até que a aprove.'
@@ -928,15 +948,16 @@ pt-PT:
         not_trendable: Não aparecerá nas tendências
         not_usable: Não pode ser utilizada
         peaked_on_and_decaying: Máximo em %{date}, agora a decair
-        title: Etiquetas em alta
-        trendable: Pode aparecer em alta
-        trending_rank: 'Em alta #%{rank}'
+        title: Etiquetas em tendência
+        trendable: Pode aparecer nas tendências
+        trending_rank: 'Tendência #%{rank}'
         usable: Pode ser utilizada
         usage_comparison: Utilizada %{today} vezes hoje, em comparação com %{yesterday} ontem
         used_by_over_week:
           one: Utilizada por uma pessoa na última semana
           other: Utilizada por %{count} pessoas na última semana
-      trending: Em alta
+      title: Recomendações e tendências
+      trending: Em tendência
     warning_presets:
       add_new: Adicionar novo
       delete: Eliminar
@@ -946,13 +967,13 @@ pt-PT:
     webhooks:
       add_new: Adicionar endpoint
       delete: Eliminar
-      description_html: Um <strong>webhook</strong> possibilita que o Mastodon envie <strong>notificações em tempo real</strong> de eventos seleccionados, para uma aplicação sua, de modo que esta possa <strong>espoletar ações automaticamente</strong>.
+      description_html: Um <strong>webhook</strong> possibilita que o Mastodon envie <strong>notificações em tempo real</strong> de eventos selecionados, para uma aplicação sua, de modo que esta possa <strong>despoletar ações automaticamente</strong>.
       disable: Desativar
       disabled: Desativado
       edit: Editar endpoint
       empty: Não tem ainda qualquer endpoint de webhook configurado.
       enable: Ativar
-      enabled: Activo
+      enabled: Ativo
       enabled_events:
         one: 1 evento ativado
         other: "%{count} eventos ativados"
@@ -993,18 +1014,18 @@ pt-PT:
       body: Foram lançadas novas versões do Mastodon, talvez queira atualizar!
       subject: Estão disponíveis novas versões do Mastodon para %{instance}!
     new_trends:
-      body: 'Os seguintes itens precisam ser revistos antes de poderem ser exibidos publicamente:'
+      body: 'Os seguintes itens necessitam de uma revisão antes de poderem ser apresentados publicamente:'
       new_trending_links:
-        title: Ligações em alta
+        title: Hiperligações em tendência
       new_trending_statuses:
-        title: Publicações em alta
+        title: Publicações em tendência
       new_trending_tags:
-        title: Etiquetas em alta
+        title: Etiquetas em tendência
       subject: Novas tendências para revisão em %{instance}
   aliases:
     add_new: Criar pseudónimo
     created_msg: Criou com sucesso um novo pseudónimo. Pode agora iniciar a migração da conta antiga.
-    deleted_msg: O pseudónimo foi correctamente eliminado. Não será mais possível migrar a partir dessa conta.
+    deleted_msg: O pseudónimo foi removido com êxito. Deixará de ser possível passar dessa conta para esta.
     empty: Não tem pseudónimos.
     hint_html: Se quiser mudar de outra conta para esta, pode criar aqui um pseudónimo, que é necessário antes de poder prosseguir com a migração de seguidores da conta antiga para esta. Esta ação por si só é <strong>inofensiva e reversível</strong>. <strong>A migração da conta é iniciada a partir da conta antiga</strong>.
     remove: Desvincular pseudónimo
@@ -1026,8 +1047,8 @@ pt-PT:
     view_profile: Ver perfil
     view_status: Ver publicação
   applications:
-    created: Aplicação correctamente criada
-    destroyed: Aplicação correctamente eliminada
+    created: Aplicação criada com sucesso
+    destroyed: Aplicação eliminada com sucesso
     logout: Sair
     regenerate_token: Regenerar token de acesso
     token_regenerated: Token de acesso regenerado com sucesso
@@ -1036,7 +1057,7 @@ pt-PT:
   auth:
     apply_for_account: Solicitar uma conta
     captcha_confirmation:
-      help_html: Se tiver problemas a resolver o CAPTCHA, pode entrar em contacto conosco através de %{email} e poderemos ajudá-lo.
+      help_html: Se tiver problemas a resolver o CAPTCHA, pode entrar em contacto connosco através de %{email} e poderemos ajudá-lo.
       hint_html: Só mais uma coisa! Precisamos confirmar que você é um humano (isto para que possamos evitar spam!). Resolva o CAPTCHA abaixo e clique em "Continuar".
       title: Verificação de segurança
     confirmations:
@@ -1138,7 +1159,7 @@ pt-PT:
     confirm_password: Insira sua palavra-passe atual para verificar a sua identidade
     confirm_username: Insira seu nome de utilizador para confirmar o procedimento
     proceed: Eliminar conta
-    success_msg: A sua conta foi correctamente eliminada
+    success_msg: A sua conta foi eliminada com sucesso
     warning:
       before: 'Antes de continuar, por favor leia cuidadosamente estas notas:'
       caches: O conteúdo que foi armazenado em cache por outras instâncias pode perdurar
@@ -1177,8 +1198,6 @@ pt-PT:
       your_appeal_approved: O seu recurso foi deferido
       your_appeal_pending: Submeteu um recurso
       your_appeal_rejected: O seu recurso foi indeferido
-  domain_validator:
-    invalid_domain: não é um nome de domínio válido
   edit_profile:
     basic_information: Informação básica
     hint_html: "<strong>Personalize o que as pessoas veem no seu perfil público e junto das suas publicações.</strong> É mais provável que as outras pessoas o sigam de volta ou interajam consigo se tiver um perfil preenchido e uma imagem de perfil."
@@ -1197,7 +1216,7 @@ pt-PT:
       content: Desculpe, mas algo correu mal da nossa parte.
       title: Esta página não está correta
     '503': A página não pôde ser apresentada devido a uma falha temporária do servidor.
-    noscript_html: Para usar a aplicação da teia do Mastodon, por favor active o JavaScript. Em alternativa, experimenta uma das <a href="%{apps_path}">aplicações nativas</a> do Mastodon para a sua plataforma.
+    noscript_html: Para usar a aplicação web do Mastodon, ative o JavaScript. Alternativamente, experimente uma das <a href="%{apps_path}">aplicações nativas</a> para o Mastodon na sua plataforma.
   existing_username_validator:
     not_found: não foi possível encontrar um utilizador local com esse nome
     not_found_multiple: não foi possível encontrar %{usernames}
@@ -1235,7 +1254,7 @@ pt-PT:
       statuses_hint_html: Este filtro aplica-se a publicações individuais selecionadas independentemente de estas corresponderem às palavras-chave abaixo. <a href="%{path}">Reveja ou remova publicações do filtro</a>.
       title: Editar filtros
     errors:
-      deprecated_api_multiple_keywords: Estes parâmetros não podem ser alterados a partir desta aplicação porque se aplicam a mais que um filtro de palavra-chave. Use uma aplicação mais recente ou a interface na teia.
+      deprecated_api_multiple_keywords: Estes parâmetros não podem ser alterados a partir desta aplicação porque se aplicam a mais de um filtro de palavra-chave. Use uma aplicação mais recente ou a interface web.
       invalid_context: Inválido ou nenhum contexto fornecido
     index:
       contexts: Filtros em %{contexts}
@@ -1335,11 +1354,11 @@ pt-PT:
       muting: Importando contas silenciadas
     type: Tipo de importação
     type_groups:
-      constructive: Seguidores e Marcadores
+      constructive: Seguidores e marcadores
       destructive: Bloqueios e silenciamentos
     types:
       blocking: Lista de bloqueio
-      bookmarks: Itens salvos
+      bookmarks: Marcadores
       domain_blocking: Lista de domínios bloqueados
       following: Lista de pessoas que estás a seguir
       lists: Listas
@@ -1395,7 +1414,7 @@ pt-PT:
     acct: Mudou-se para
     cancel: Cancelar redirecionamento
     cancel_explanation: Cancelar o redirecionamento irá reativar a sua conta atual, mas não trará de volta os seguidores que foram migrados para essa conta.
-    cancelled_msg: Cancelou correctamente o redireccionamento.
+    cancelled_msg: Cancelou corretamente o redirecionamento.
     errors:
       already_moved: é a mesma conta para a qual já migrou
       missing_also_known_as: não é um pseudónimo dessa conta
@@ -1405,13 +1424,13 @@ pt-PT:
     followers_count: Seguidores no momento da migração
     incoming_migrations: A migrar de uma conta diferente
     incoming_migrations_html: Para migrar de outra conta para esta, primeiro você precisa <a href="%{path}">criar um pseudónimo</a>.
-    moved_msg: A sua conta está agora a ser redireccionada para %{acct} e os seus seguidores estão a ser transferidos.
+    moved_msg: A sua conta está agora a ser redirecionada para %{acct} e os seus seguidores estão a ser transferidos.
     not_redirecting: A sua conta não está atualmente a ser redirecionada para nenhuma outra conta.
     on_cooldown: Migrou recentemente a sua conta. Esta função ficará disponível novamente em %{count} dias.
     past_migrations: Migrações anteriores
     proceed_with_move: Migrar seguidores
-    redirected_msg: A sua conta está agora a ser redireccionada para %{acct}.
-    redirecting_to: A sua conta está a ser redireccionada para %{acct}.
+    redirected_msg: A sua conta está agora a ser redirecionada para %{acct}.
+    redirecting_to: A sua conta está a ser redirecionada para %{acct}.
     set_redirect: Definir redirecionamento
     warning:
       backreference_required: A nova conta deve primeiro ser configurada para que esta seja referenciada
@@ -1419,7 +1438,7 @@ pt-PT:
       cooldown: Após a migração, há um período de tempo de espera durante o qual não poderá voltar a migrar
       disabled_account: Posteriormente, a sua conta atual não será totalmente utilizável. No entanto, continuará a ter acesso à exportação de dados, bem como à reativação.
       followers: Esta ação irá migrar todos os seguidores da conta atual para a nova conta
-      only_redirect_html: Em alternativa, pode <a href="%{path}">apenas colocar um redireccionamento no seu perfil</a>.
+      only_redirect_html: Em alternativa, pode <a href="%{path}">apenas colocar um redirecionamento no seu perfil</a>.
       other_data: Nenhum outro dado será migrado automaticamente
       redirect: O perfil da sua conta atual será atualizado com um aviso de redirecionamento e será excluído das pesquisas
   moderation:
@@ -1546,7 +1565,7 @@ pt-PT:
     remove_selected_follows: Deixar de seguir os utilizadores selecionados
     status: Estado da conta
   remote_follow:
-    missing_resource: Não foi possível encontrar o URL de redireccionamento para a sua conta
+    missing_resource: Não foi possível encontrar o URL de redirecionamento para a sua conta
   reports:
     errors:
       invalid_rules: não faz referência a regras válidas
@@ -1639,7 +1658,7 @@ pt-PT:
       user_domain_block: Bloqueou %{target_name}
     lost_followers: Seguidores perdidos
     lost_follows: Pessoas que segue perdidas
-    preamble: Pode perder seguidores e pessoas que segue quando bloqueia um domínio ou quando os seus moderadores decidem suspender um servidor remoto. Quando isso acontecer, poderá descarregar listas de relações cessadas, para serem inspeccionadas e possivelmente importadas para outro servidor.
+    preamble: Pode perder seguidores e pessoas que segue quando bloqueia um domínio ou quando os seus moderadores decidem suspender um servidor remoto. Quando isso acontecer, poderá descarregar listas de relações cortadas, para serem inspecionadas e possivelmente importadas para outro servidor.
     purged: Informações sobre este servidor foram purgadas pelos administradores do seu servidor.
     type: Evento
   statuses:
@@ -1663,23 +1682,12 @@ pt-PT:
     edited_at_html: Editado em %{date}
     errors:
       in_reply_not_found: A publicação a que está a tentar responder parece não existir.
-    open_in_web: Abrir na Teia
     over_character_limit: limite de caracter excedeu %{max}
     pin_errors:
       direct: Publicações visíveis apenas para utilizadores mencionados não podem ser afixadas
       limit: Já afixaste a quantidade máxima de publicações
       ownership: Não podem ser afixadas publicações doutras pessoas
       reblog: Não pode afixar um reforço
-    poll:
-      total_people:
-        one: "%{count} pessoa"
-        other: "%{count} pessoas"
-      total_votes:
-        one: "%{count} voto"
-        other: "%{count} votos"
-      vote: Votar
-    show_more: Mostrar mais
-    show_thread: Mostrar conversa
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direto
@@ -1706,8 +1714,8 @@ pt-PT:
     keep_pinned_hint: Não apagar nenhuma das suas publicações afixadas
     keep_polls: Manter sondagens
     keep_polls_hint: Não apaga nenhuma das suas sondagens
-    keep_self_bookmark: Manter as publicações que guardou
-    keep_self_bookmark_hint: Não apaga as suas próprias publicações se as tiver guardado
+    keep_self_bookmark: Manter as publicações que marcou
+    keep_self_bookmark_hint: Não elimina as suas próprias publicações se as tiver nos marcadores
     keep_self_fav: Manter as publicações que marcou
     keep_self_fav_hint: Não apaga as suas próprias publicações se as tiver marcado
     min_age:
@@ -1825,7 +1833,7 @@ pt-PT:
     welcome:
       apps_android_action: Baixe no Google Play
       apps_ios_action: Baixar na App Store
-      apps_step: Baixe nossos aplicativos oficiais.
+      apps_step: Descarregue as nossas aplicações oficiais.
       apps_title: Apps Mastodon
       checklist_subtitle: 'Vamos começar nesta nova fronteira social:'
       checklist_title: Checklist de Boas-vindas
@@ -1834,11 +1842,11 @@ pt-PT:
       edit_profile_title: Personalize seu perfil
       explanation: Aqui estão algumas dicas para começar
       feature_action: Mais informações
-      feature_audience: Mastodon oferece uma possibilidade única de gerenciar seu público sem intermediários. O Mastodon implantado em sua própria infraestrutura permite que você siga e seja seguido de qualquer outro servidor Mastodon online e não esteja sob o controle de ninguém além do seu.
+      feature_audience: O Mastodon oferece-lhe uma possibilidade única de gerir a sua audiência sem intermediários. O Mastodon implantado na sua própria infraestrutura permite-lhe seguir e ser seguido a partir de qualquer outro servidor Mastodon online e não está sob o controlo de ninguém a não ser o seu.
       feature_audience_title: Construa seu público em confiança
-      feature_control: Você sabe melhor o que deseja ver no feed da sua casa. Sem algoritmos ou anúncios para desperdiçar seu tempo. Siga qualquer pessoa em qualquer servidor Mastodon a partir de uma única conta e receba suas postagens em ordem cronológica, deixando seu canto da internet um pouco mais parecido com você.
-      feature_control_title: Fique no controle da sua própria linha do tempo
-      feature_creativity: Mastodon suporta postagens de áudio, vídeo e imagens, descrições de acessibilidade, enquetes, avisos de conteúdo, avatares animados, emojis personalizados, controle de corte de miniaturas e muito mais, para ajudá-lo a se expressar online. Esteja você publicando sua arte, sua música ou seu podcast, o Mastodon está lá para você.
+      feature_control: Você sabe melhor o que quer ver no seu feed. Não há algoritmos ou anúncios que o façam perder tempo. Siga qualquer pessoa em qualquer servidor Mastodon a partir de uma única conta e receba as suas mensagens por ordem cronológica e torne o seu canto da Internet um pouco mais parecido consigo.
+      feature_control_title: Mantenha o controlo da sua própria cronologia
+      feature_creativity: O Mastodon suporta publicações de áudio, vídeo e imagens, descrições de acessibilidade, sondagens, avisos de conteúdo, avatares animados, emojis personalizados, controlo de corte de miniaturas e muito mais, para o ajudar a expressar-se online. Quer esteja a publicar a sua arte, a sua música ou o seu podcast, o Mastodon está lá para si.
       feature_creativity_title: Criatividade inigualável
       feature_moderation: Mastodon coloca a tomada de decisões de volta em suas mãos. Cada servidor cria as suas próprias regras e regulamentos, que são aplicados localmente e não de cima para baixo como as redes sociais corporativas, tornando-o mais flexível na resposta às necessidades de diferentes grupos de pessoas. Junte-se a um servidor com as regras com as quais você concorda ou hospede as suas próprias.
       feature_moderation_title: Moderando como deve ser
@@ -1852,10 +1860,10 @@ pt-PT:
         one: "%{people} pessoa nos últimos 2 dias"
         other: "%{people} pessoas nos últimos 2 dias"
       hashtags_subtitle: Explore o que está em tendência desde os últimos 2 dias
-      hashtags_title: Trending hashtags
-      hashtags_view_more: Ver mais hashtags em alta
+      hashtags_title: Etiquetas em tendência
+      hashtags_view_more: Ver mais etiquetas em tendência
       post_action: Compor
-      post_step: Diga olá para o mundo com texto, fotos, vídeos ou enquetes.
+      post_step: Diga olá para o mundo com texto, fotos, vídeos ou sondagens.
       post_title: Faça a sua primeira publicação
       share_action: Compartilhar
       share_step: Diga aos seus amigos como te encontrar no Mastodon.
@@ -1874,7 +1882,7 @@ pt-PT:
     extra_instructions_html: <strong>Dica:</strong> A ligação no seu site pode ser invisível. A parte importante é <code>rel="me"</code> que impede a personificação em sites com conteúdo gerado pelo utilizador. Pode até utilizar uma etiqueta <code>link</code> no cabeçalho da página ao invés de <code>a</code>, mas o HTML deve ser acessível sem executar JavaScript.
     here_is_how: Veja como
     hint_html: "<strong>Verificar a sua identidade no Mastodon é para todos.</strong> Baseado em normas públicas da web, agora e para sempre gratuitas. Tudo o que precisa é de um site pessoal pelo qual as pessoas o reconheçam. Quando coloca no seu perfil uma ligação para esse site, vamos verificar que o site tem uma ligação de volta para o seu perfil e mostrar um indicador visual."
-    instructions_html: Copie e cole o código abaixo no HTML do seu site. Em seguida, adicione o endereço do seu site em um dos campos extras no seu perfil, na aba "Editar perfil" e salve as alterações.
+    instructions_html: Copie e cole o código abaixo no HTML do seu site. Em seguida, adicione o endereço do seu site num dos campos extras no seu perfil, na aba "Editar perfil" e guarde as alterações.
     verification: Verificação
     verified_links: As suas ligações verificadas
   webauthn_credentials:

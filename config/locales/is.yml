@@ -7,7 +7,6 @@ is:
     hosted_on: Mastodon hýst á %{domain}
     title: Um hugbúnaðinn
   accounts:
-    follow: Fylgjast með
     followers:
       one: fylgjandi
       other: fylgjendur
@@ -25,6 +24,8 @@ is:
   admin:
     account_actions:
       action: Framkvæma aðgerð
+      already_silenced: Þessi aðgangur hefur þegar verið takmarkaður.
+      already_suspended: Þessi aðgangur hefur þegar verið settur í frysti.
       title: Framkvæma umsjónaraðgerð á %{acct}
     account_moderation_notes:
       create: Skilja eftir minnispunkt
@@ -46,6 +47,7 @@ is:
         title: Breyta tölvupóstfangi fyrir %{username}
       change_role:
         changed_msg: Tókst að breyta hlutverki!
+        edit_roles: Sýsla með hlutverk notenda
         label: Breyta hlutverki
         no_role: Ekkert hlutverk
         title: Breyta hlutverki fyrir %{username}
@@ -602,6 +604,7 @@ is:
         suspend_description_html: Notandaaðgangurinn og allt efni á honum mun verða óaðgengilegt og á endanum eytt út og samskipti við aðganginn verða ekki möguleg. Hægt að afturkalla innan 30 daga. Lokar öllum kærum gagnvart þessum aðgangi.
       actions_description_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Ef þú ákveður að refsa kærða notandaaðgangnum, verður viðkomandi send tilkynning í tölvupósti, nema ef flokkurinn <strong>Ruslpóstur</strong> sé valinn.
       actions_description_remote_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Þetta mun aðeins hafa áhrif á hvernig <strong>netþjónninn þinn</strong> meðhöndlar þennan fjartengda aðgang og efnið á honum.
+      actions_no_posts: Þessi kæra er ekki með neinar tengdar færslur til að eyða
       add_to_report: Bæta fleiru í kæru
       already_suspended_badges:
         local: Þegar frystur á þessum netþjóni
@@ -900,6 +903,7 @@ is:
       name: Nafn
       newest: Nýjast
       oldest: Elsta
+      open: Skoða opinberlega
       reset: Endurstilla
       review: Yfirfara stöðufærslu
       search: Leita
@@ -1160,6 +1164,12 @@ is:
       view_strikes: Skoða fyrri bönn notandaaðgangsins þíns
     too_fast: Innfyllingarform sent inn of hratt, prófaðu aftur.
     use_security_key: Nota öryggislykil
+  author_attribution:
+    example_title: Sýnitexti
+    hint_html: Stýrðu hvernig framlög þín birtast þegar tenglum er deilt á Mastodon.
+    more_from_html: Meira frá %{name}
+    s_blog: Bloggsvæði hjá %{name}
+    title: Framlag höfundar
   challenge:
     confirm: Halda áfram
     hint_html: "<strong>Ábending:</strong> Við munum ekki spyrja þig um lykilorðið aftur næstu klukkustundina."
@@ -1234,8 +1244,6 @@ is:
       your_appeal_approved: Áfrýjun þín hefur verið samþykkt
       your_appeal_pending: Þú hefur sent inn áfrýjun
       your_appeal_rejected: Áfrýjun þinni hefur verið hafnað
-  domain_validator:
-    invalid_domain: er ekki leyfilegt nafn á léni
   edit_profile:
     basic_information: Grunnupplýsingar
     hint_html: "<strong>Sérsníddu hvað fólk sér á opinbera notandasniðinu þínu og næst færslunum þínum.</strong> Annað fólk er líklegra til að fylgjast með þér og eiga í samskiptum við þig ef þú fyllir út notandasniðið og setur auðkennismynd."
@@ -1457,6 +1465,7 @@ is:
   media_attachments:
     validations:
       images_and_video: Ekki er hægt að hengja myndskeið við færslu sem þegar inniheldur myndir
+      not_found: Myndefnið %{ids} fannst ekki eða er þegar hengt við aðra færslu
       not_ready: Ekki er hægt að hengja við skrár sem ekki er búið að vinna til fulls. Prófaðu aftur eftir augnablik!
       too_many: Ekki er hægt að hengja við fleiri en 4 skrár
   migrations:
@@ -1734,23 +1743,12 @@ is:
     edited_at_html: Breytt %{date}
     errors:
       in_reply_not_found: Færslan sem þú ert að reyna að svara að er líklega ekki til.
-    open_in_web: Opna í vafra
     over_character_limit: hámarksfjölda stafa (%{max}) náð
     pin_errors:
       direct: Ekki er hægt að festa færslur sem einungis eru sýnilegar þeim notendum sem minnst er á
       limit: Þú hefur þegar fest leyfilegan hámarksfjölda færslna
       ownership: Færslur frá einhverjum öðrum er ekki hægt að festa
       reblog: Ekki er hægt að festa endurbirtingu
-    poll:
-      total_people:
-        one: "%{count} aðili"
-        other: "%{count} aðilar"
-      total_votes:
-        one: "%{count} atkvæði"
-        other: "%{count} atkvæði"
-      vote: Greiða atkvæði
-    show_more: Sýna meira
-    show_thread: Birta þráð
     title: "%{name}: „%{quote}‟"
     visibilities:
       direct: Beint
@@ -1949,6 +1947,7 @@ is:
     instructions_html: Afritaðu og límdu kóðann hér fyrir neðan inn í HTML-kóða vefsvæðisins þíns. Bættu síðan slóð vefsvæðisins þíns inn í einn af auka-reitunum í flipanum "Breyta notandasniði" og vistaðu síðan breytingarnar.
     verification: Sannprófun
     verified_links: Staðfestu tenglarnir þínir
+    website_verification: Staðfesting vefsvæðis
   webauthn_credentials:
     add: Bæta við nýjum öryggislykli
     create:

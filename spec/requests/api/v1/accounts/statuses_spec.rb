@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'API V1 Accounts Statuses' do
+RSpec.describe 'API V1 Accounts Statuses' do
   let(:user) { Fabricate(:user) }
   let(:scopes) { 'read:statuses' }
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
@@ -41,7 +41,7 @@ describe 'API V1 Accounts Statuses' do
       it 'returns posts along with self replies', :aggregate_failures do
         expect(response)
           .to have_http_status(200)
-        expect(body_as_json)
+        expect(response.parsed_body)
           .to have_attributes(size: 2)
           .and contain_exactly(
             include(id: status.id.to_s),
@@ -102,7 +102,7 @@ describe 'API V1 Accounts Statuses' do
         it 'lists the public status only' do
           get "/api/v1/accounts/#{account.id}/statuses", params: { pinned: true }, headers: headers
 
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to contain_exactly(
               a_hash_including(id: status.id.to_s)
             )
@@ -117,7 +117,7 @@ describe 'API V1 Accounts Statuses' do
         it 'lists both the public and the private statuses' do
           get "/api/v1/accounts/#{account.id}/statuses", params: { pinned: true }, headers: headers
 
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to contain_exactly(
               a_hash_including(id: status.id.to_s),
               a_hash_including(id: private_status.id.to_s)

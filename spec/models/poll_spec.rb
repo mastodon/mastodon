@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Poll do
+RSpec.describe Poll do
   describe 'scopes' do
     let(:status) { Fabricate(:status) }
     let(:attached_poll) { Fabricate(:poll, status: status) }
@@ -32,12 +32,9 @@ describe Poll do
 
   describe 'validations' do
     context 'when not valid' do
-      let(:poll) { Fabricate.build(:poll, expires_at: nil) }
+      subject { Fabricate.build(:poll) }
 
-      it 'is invalid without an expire date' do
-        poll.valid?
-        expect(poll).to model_have_error_on_field(:expires_at)
-      end
+      it { is_expected.to validate_presence_of(:expires_at) }
     end
   end
 end

@@ -33,9 +33,9 @@ RSpec.describe 'API V1 Statuses Reblogged by Accounts' do
             next: api_v1_status_reblogged_by_index_url(limit: 2, max_id: alice.statuses.first.id)
           )
 
-        expect(body_as_json.size)
+        expect(response.parsed_body.size)
           .to eq(2)
-        expect(body_as_json)
+        expect(response.parsed_body)
           .to contain_exactly(
             include(id: alice.id.to_s),
             include(id: bob.id.to_s)
@@ -47,9 +47,9 @@ RSpec.describe 'API V1 Statuses Reblogged by Accounts' do
 
         subject
 
-        expect(body_as_json.size)
+        expect(response.parsed_body.size)
           .to eq 1
-        expect(body_as_json.first[:id]).to eq(alice.id.to_s)
+        expect(response.parsed_body.first[:id]).to eq(alice.id.to_s)
       end
     end
   end

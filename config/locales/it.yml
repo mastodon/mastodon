@@ -7,7 +7,6 @@ it:
     hosted_on: Mastodon ospitato su %{domain}
     title: Info
   accounts:
-    follow: Segui
     followers:
       one: Seguace
       other: Seguaci
@@ -25,6 +24,8 @@ it:
   admin:
     account_actions:
       action: Esegui azione
+      already_silenced: Questo account è già stato limitato.
+      already_suspended: Questo account è già stato sospeso.
       title: Esegui l'azione di moderazione su %{acct}
     account_moderation_notes:
       create: Lascia una nota
@@ -46,6 +47,7 @@ it:
         title: Cambia l'email per %{username}
       change_role:
         changed_msg: Ruolo modificato correttamente!
+        edit_roles: Gestisci i ruoli utente
         label: Cambia il ruolo
         no_role: Nessun ruolo
         title: Cambia il ruolo per %{username}
@@ -602,6 +604,7 @@ it:
         suspend_description_html: L'account e tutti i suoi contenuti saranno inaccessibili ed eventualmente cancellati, e interagire con esso sarà impossibile. Reversibile entro 30 giorni. Chiude tutte le segnalazioni contro questo account.
       actions_description_html: Decidi quale azione intraprendere per risolvere questa segnalazione. Se intraprendi un'azione punitiva nei confronti dell'account segnalato, gli verrà inviata una notifica via e-mail, tranne quando è selezionata la categoria <strong>Spam</strong>.
       actions_description_remote_html: Decide quali azioni intraprendere per risolvere la relazione. Questo influenzerà solo come <strong>il tuo</strong> server comunica con questo account remoto e ne gestisce il contenuto.
+      actions_no_posts: Questa segnalazione non ha alcun post associato da eliminare
       add_to_report: Aggiungi altro al report
       already_suspended_badges:
         local: Già sospeso su questo server
@@ -898,6 +901,7 @@ it:
       name: Nome
       newest: Più recenti
       oldest: Più vecchio
+      open: Visualizza pubblicamente
       reset: Ripristina
       review: Esamina status
       search: Cerca
@@ -1158,6 +1162,12 @@ it:
       view_strikes: Visualizza le sanzioni precedenti prese nei confronti del tuo account
     too_fast: Modulo inviato troppo velocemente, riprova.
     use_security_key: Usa la chiave di sicurezza
+  author_attribution:
+    example_title: Testo di esempio
+    hint_html: Controlla come sei viene accreditato quando i link sono condivisi su Mastodon.
+    more_from_html: Altro da %{name}
+    s_blog: Blog di %{name}
+    title: Attribuzione autore
   challenge:
     confirm: Continua
     hint_html: "<strong>Suggerimento:</strong> Non ti chiederemo di nuovo la tua password per la prossima ora."
@@ -1232,8 +1242,6 @@ it:
       your_appeal_approved: Il tuo appello è stato approvato
       your_appeal_pending: Hai presentato un appello
       your_appeal_rejected: Il tuo appello è stato respinto
-  domain_validator:
-    invalid_domain: non è un nome di dominio valido
   edit_profile:
     basic_information: Informazioni di base
     hint_html: "<strong>Personalizza ciò che le persone vedono sul tuo profilo pubblico e accanto ai tuoi post.</strong> È più probabile che altre persone ti seguano e interagiscano con te quando hai un profilo compilato e un'immagine del profilo."
@@ -1455,6 +1463,7 @@ it:
   media_attachments:
     validations:
       images_and_video: Impossibile allegare video a un post che contiene già immagini
+      not_found: Media %{ids} non trovato o già collegato a un altro post
       not_ready: Impossibile allegare file per cui l'elaborazione non è finita. Riprova tra poco!
       too_many: Impossibile allegare più di 4 file
   migrations:
@@ -1732,23 +1741,12 @@ it:
     edited_at_html: Modificato il %{date}
     errors:
       in_reply_not_found: Il post a cui stai tentando di rispondere non sembra esistere.
-    open_in_web: Apri sul Web
     over_character_limit: Limite caratteri superato di %{max}
     pin_errors:
       direct: I messaggi visibili solo agli utenti citati non possono essere fissati in cima
       limit: Hai già fissato in cima il massimo numero di post
       ownership: Non puoi fissare in cima un post di qualcun altro
       reblog: Un toot condiviso non può essere fissato in cima
-    poll:
-      total_people:
-        one: "%{count} persona"
-        other: "%{count} persone"
-      total_votes:
-        one: "%{count} voto"
-        other: "%{count} voti"
-      vote: Vota
-    show_more: Mostra di più
-    show_thread: Mostra thread
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Diretto
@@ -1947,6 +1945,7 @@ it:
     instructions_html: Copia e incolla il codice qui sotto nell'HTML del tuo sito web. Quindi, aggiungi l'indirizzo del tuo sito web in uno dei campi aggiuntivi del tuo profilo dalla scheda "Modifica profilo" e salva le modifiche.
     verification: Verifica
     verified_links: I tuoi collegamenti verificati
+    website_verification: Verifica del sito web
   webauthn_credentials:
     add: Aggiungi una nuova chiave di sicurezza
     create:

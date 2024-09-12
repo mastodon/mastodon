@@ -7,7 +7,6 @@ ia:
     hosted_on: Mastodon albergate sur %{domain}
     title: A proposito
   accounts:
-    follow: Sequer
     followers:
       one: Sequitor
       other: Sequitores
@@ -25,12 +24,15 @@ ia:
   admin:
     account_actions:
       action: Exequer action
+      already_silenced: Iste conto jam ha essite limitate.
+      already_suspended: Iste conto jam ha essite suspendite.
       title: Exequer action de moderation sur %{acct}
     account_moderation_notes:
       create: Lassar un nota
       created_msg: Nota de moderation create con successo!
       destroyed_msg: Nota de moderation destruite con successo!
     accounts:
+      add_email_domain_block: Blocar dominio de e-mail
       approve: Approbar
       approved_msg: Demanda de inscription de %{username} approbate con successo
       are_you_sure: Es tu secur?
@@ -45,6 +47,7 @@ ia:
         title: Cambiar e-mail pro %{username}
       change_role:
         changed_msg: Rolo cambiate con successo!
+        edit_roles: Gerer le regulas de usator
         label: Cambiar rolo
         no_role: Necun rolo
         title: Cambiar rolo pro %{username}
@@ -57,6 +60,7 @@ ia:
       demote: Degradar
       destroyed_msg: Le datos de %{username} es ora in cauda pro lor imminente deletion
       disable: Gelar
+      disable_sign_in_token_auth: Disactivar le authentication per token in e-mail
       disable_two_factor_authentication: Disactivar A2F
       disabled: Gelate
       display_name: Nomine a monstrar
@@ -65,6 +69,7 @@ ia:
       email: E-mail
       email_status: Stato de e-mail
       enable: Disgelar
+      enable_sign_in_token_auth: Activar le authentication per token in e-mail
       enabled: Activate
       enabled_msg: Conto de %{username} disgelate con successo
       followers: Sequitores
@@ -129,6 +134,7 @@ ia:
       resubscribe: Resubscriber
       role: Rolo
       search: Cercar
+      search_same_email_domain: Altere usatores con le mesme dominio de e-mail
       search_same_ip: Altere usatores con le mesme IP
       security: Securitate
       security_measures:
@@ -169,21 +175,26 @@ ia:
         approve_appeal: Approbar appello
         approve_user: Approbar usator
         assigned_to_self_report: Assignar reporto
+        change_email_user: Cambiar e-mail pro le usator
         change_role_user: Cambiar le rolo del usator
         confirm_user: Confirmar le usator
         create_account_warning: Crear un advertimento
         create_announcement: Crear annuncio
+        create_canonical_email_block: Crear blocada de e-mail
         create_custom_emoji: Crear emoji personalisate
         create_domain_allow: Crear permisso de dominio
         create_domain_block: Crear blocada de dominio
+        create_email_domain_block: Crear blocada de dominio de e-mail
         create_ip_block: Crear un regula IP
         create_unavailable_domain: Crear dominio indisponibile
         create_user_role: Crear un rolo
         demote_user: Degradar usator
         destroy_announcement: Deler annuncio
+        destroy_canonical_email_block: Deler blocada de e-mail
         destroy_custom_emoji: Deler emoji personalisate
         destroy_domain_allow: Deler permisso de dominio
         destroy_domain_block: Deler blocada de dominio
+        destroy_email_domain_block: Deler blocada de dominio de e-mail
         destroy_instance: Purgar dominio
         destroy_ip_block: Deler le regula IP
         destroy_status: Deler message
@@ -191,8 +202,10 @@ ia:
         destroy_user_role: Destruer rolo
         disable_2fa_user: Disactivar A2F
         disable_custom_emoji: Disactivar emoji personalisate
+        disable_sign_in_token_auth_user: Disactivar le authentication per token de e-mail pro le usator
         disable_user: Disactivar le usator
         enable_custom_emoji: Activar emoji personalisate
+        enable_sign_in_token_auth_user: Activar le authentication per token de e-mail pro le usator
         enable_user: Activar le usator
         memorialize_account: Converter conto in memorial
         promote_user: Promover usator
@@ -222,20 +235,26 @@ ia:
         approve_appeal_html: "%{name} approbava appello del decision de moderation de %{target}"
         approve_user_html: "%{name} approbava inscription de %{target}"
         assigned_to_self_report_html: "%{name} assignava reporto %{target} a se mesme"
+        change_email_user_html: "%{name} cambiava le adresse de e-mail address del usator %{target}"
         change_role_user_html: "%{name} cambiava rolo de %{target}"
+        confirm_user_html: "%{name} confirmava le adresse de e-mail del. usator %{target}"
         create_account_warning_html: "%{name} inviava un advertimento a %{target}"
         create_announcement_html: "%{name} creava un nove annuncio %{target}"
+        create_canonical_email_block_html: "%{name} blocava le e-mail con le hash %{target}"
         create_custom_emoji_html: "%{name} incargava le nove emoji %{target}"
         create_domain_allow_html: "%{name} permitteva federation con dominio %{target}"
         create_domain_block_html: "%{name} blocava dominio %{target}"
+        create_email_domain_block_html: "%{name} blocava le dominio de e-mail %{target}"
         create_ip_block_html: "%{name} creava regula pro IP %{target}"
         create_unavailable_domain_html: "%{name} stoppava livration al dominio %{target}"
         create_user_role_html: "%{name} creava rolo de %{target}"
         demote_user_html: "%{name} degradava usator %{target}"
         destroy_announcement_html: "%{name} deleva annuncio %{target}"
+        destroy_canonical_email_block_html: "%{name} disblocava le e-mail con le hash %{target}"
         destroy_custom_emoji_html: "%{name} deleva emoji %{target}"
         destroy_domain_allow_html: "%{name} impediva le federation con dominio %{target}"
         destroy_domain_block_html: "%{name} disblocava dominio %{target}"
+        destroy_email_domain_block_html: "%{name} disblocava le dominio de e-mail %{target}"
         destroy_instance_html: "%{name} purgava le dominio %{target}"
         destroy_ip_block_html: "%{name} deleva le regula pro IP %{target}"
         destroy_status_html: "%{name} removeva un message de %{target}"
@@ -243,8 +262,10 @@ ia:
         destroy_user_role_html: "%{name} deleva le rolo %{target}"
         disable_2fa_user_html: "%{name} disactivava le authentication a duo factores pro le usator %{target}"
         disable_custom_emoji_html: "%{name} disactivava le emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} disactivava le authentication per token de e-mail pro %{target}"
         disable_user_html: "%{name} disactivava le apertura de session pro le usator %{target}"
         enable_custom_emoji_html: "%{name} activava le emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} activava le authentication per token de e-mail pro %{target}"
         enable_user_html: "%{name} activava le apertura de session pro le usator %{target}"
         memorialize_account_html: "%{name} converteva le conto de %{target} in un pagina commemorative"
         promote_user_html: "%{name} promoveva le usator %{target}"
@@ -252,6 +273,7 @@ ia:
         reject_user_html: "%{name} refusava le inscription de %{target}"
         remove_avatar_user_html: "%{name} removeva le avatar de %{target}"
         reopen_report_html: "%{name} reaperiva le reporto %{target}"
+        resend_user_html: "%{name} reinviava le e-mail de confirmation pro %{target}"
         reset_password_user_html: "%{name} reinitialisava le contrasigno del usator %{target}"
         resolve_report_html: "%{name} resolveva le reporto %{target}"
         sensitive_account_html: "%{name} marcava le multimedia de %{target} como sensibile"
@@ -412,6 +434,7 @@ ia:
       attempts_over_week:
         one: "%{count} tentativa de inscription in le ultime septimana"
         other: "%{count} tentativas de inscription in le ultime septimana"
+      created_msg: Le dominio de e-mail ha essite blocate con successo
       delete: Deler
       dns:
         types:
@@ -420,8 +443,12 @@ ia:
       new:
         create: Adder un dominio
         resolve: Resolver dominio
+        title: Blocar un nove dominio de e-mail
+      no_email_domain_block_selected: Necun blocadas de dominio de e-mail ha essite cambiate perque necun ha essite seligite
       not_permitted: Non permittite
+      resolved_dns_records_hint_html: Le nomine de dominio se resolve al sequente dominios MX, le quales ha le ultime responsibilitate pro le reception de e-mail. Blocar un dominio MX blocara le inscriptiones de qualcunque adresse de e-mail que usa le mesme dominio MX, mesmo si le nomine de dominio visibile es differente. <strong>Presta attention a evitar de blocar le grande fornitores de e-mail.</strong>
       resolved_through_html: Resolvite per %{domain}
+      title: Dominios de e-mail blocate
     export_domain_allows:
       new:
         title: Importar permissiones de dominio
@@ -636,6 +663,7 @@ ia:
         delete_data_html: Deler le profilo e contento de <strong>@%{acct}</strong> in 30 dies excepte si le suspension es disfacite intertanto
         preview_preamble_html: "<strong>@%{acct}</strong> recipera un advertimento con le sequente contento:"
         record_strike_html: Registra un sanction contra <strong>@%{acct}</strong> pro adjutar te a prender mesuras adequate in caso de futur violationes committite desde iste conto
+        send_email_html: Inviar un e-mail de advertimento a <strong>@%{acct}</strong>
         warning_placeholder: Motivation supplementari facultative pro le action de moderation.
       target_origin: Origine del conto reportate
       title: Reportos
@@ -675,6 +703,7 @@ ia:
         manage_appeals: Gerer appellos
         manage_appeals_description: Permitte que usatores revide appellos contra actiones de moderation
         manage_blocks: Gerer blocadas
+        manage_blocks_description: Permitter que usatores bloca le fornitores de e-mail e le adresses IP
         manage_custom_emojis: Gerer emojis personalisate
         manage_custom_emojis_description: Permitte que usatores gere emojis personalisate sur le servitor
         manage_federation: Gerer federation
@@ -692,6 +721,7 @@ ia:
         manage_taxonomies: Gerer taxonomias
         manage_taxonomies_description: Permitte que usatores revide contento in tendentias e actualisa le parametros de hashtag
         manage_user_access: Gerer le accesso de usatores
+        manage_user_access_description: Permitte que usatores disactiva le authentication bifactorial de altere usatores, cambia lor adresses de e-mail, e reinitialisa lor contrasigno
         manage_users: Gerer usatores
         manage_users_description: Permitte que usatores vide le detalios de altere usatores e exeque actiones de moderation contra illes
         manage_webhooks: Gerer Webhooks
@@ -766,6 +796,7 @@ ia:
       destroyed_msg: Le file incargate al sito ha essite delite!
     software_updates:
       critical_update: Critic – per favor, actualisa rapidemente
+      description: Il es recommendate mantener tu installation de Mastodon actualisate pro beneficiar del ultime reparationes e functiones. In ultra, de tempore a tempore, il es de importantia critic actualisar Mastodon in tempore utile pro evitar problemas de securitate. Pro iste rationes, Mastodon verifica le presentia de actualisationes cata 30 minutas, e te notificara secundo tu preferentias de notification in e-mail.
       documentation_link: Pro saper plus
       release_notes: Notas de version
       title: Actualisationes disponibile
@@ -853,6 +884,7 @@ ia:
         message_html: "<strong>Tu immagazinage de objectos es mal configurate. Le confidentialitate de tu usatores es in risco.</strong>"
     tags:
       moderation:
+        not_trendable: Non pro tendentia
         pending_review: Attende revision
         title: Stato
       name: Nomine
@@ -868,10 +900,15 @@ ia:
       allow: Permitter
       approved: Approbate
       confirm_allow: Es tu secur que tu vole permitter le etiquettas seligite?
+      confirm_disallow: Es tu secur que tu vole cessar de permitter le etiquettas seligite?
       disallow: Refusar
       links:
         allow: Permitter ligamine
         allow_provider: Autorisar le publicator
+        confirm_allow: Es tu secur que tu vole permitter le ligamines seligite?
+        confirm_allow_provider: Es tu secur que tu vole permitter le fornitores seligite?
+        confirm_disallow: Es tu secur que tu vole cessar de permitter le ligamines seligite?
+        confirm_disallow_provider: Es tu secur que tu vole cessar de permitter le fornitores seligite?
         description_html: Istes es ligamines que es actualmente compartite multo per contos del quales tu servitor recipe messages. Illos pote adjutar tu usatores a discoperir lo que eveni in le mundo. Necun ligamine es monstrate publicamente usque tu autorisa le publicator. Tu pote tamben permitter o rejectar ligamines singule.
         disallow: Prohibir le ligamine
         disallow_provider: Prohibir le publicator
@@ -895,6 +932,8 @@ ia:
       statuses:
         allow: Permitter message
         allow_account: Permitter autor
+        confirm_allow_account: Es tu secur que tu vole permitter le contos seligite?
+        confirm_disallow_account: Es tu secur que tu vole cessar de permitter le contos seligite?
         description_html: Istes es le messages cognoscite sur tu servitor que al momento es multo compartite e marcate como favorite. Illos pote adjutar tu usatores nove e reveniente a trovar plus personas a sequer. Necun message es monstrate publicamente usque tu approba le autor, a condition que le autor permitte que su conto es suggerite a alteres. Tu pote tamben permitter o rejectar messages singule.
         disallow: Non permitter message
         disallow_account: Non permitter autor
@@ -927,6 +966,7 @@ ia:
         used_by_over_week:
           one: Usate per un persona in le ultime septimana
           other: Usate per %{count} personas in le ultime septimana
+      title: Recommendationes e tendentias
       trending: In tendentia
     warning_presets:
       add_new: Adder nove
@@ -1011,7 +1051,9 @@ ia:
       guide_link_text: Totes pote contribuer.
     sensitive_content: Contento sensibile
   application_mailer:
+    notification_preferences: Cambiar preferentias de e-mail
     salutation: "%{name},"
+    settings: 'Cambiar preferentias de e-mail: %{link}'
     unsubscribe: Desubscriber
     view: 'Visita:'
     view_profile: Vider profilo
@@ -1031,6 +1073,7 @@ ia:
       hint_html: Solo un altere cosa! Nos debe confirmar que tu es un humano (de sorta que nos pote mantener le spam foras!). Solve le CAPTCHA infra e clicca sur "Continuar".
       title: Controlo de securitate
     confirmations:
+      awaiting_review: Tu adresse de e-mail es confirmate! Le personal de %{domain} ora revide tu registration. Tu recipera un e-mail si illes approba tu conto!
       awaiting_review_title: Tu inscription es in curso de revision
       clicking_this_link: cliccar sur iste ligamine
       login_link: aperir session
@@ -1038,6 +1081,7 @@ ia:
       redirect_to_app_html: Tu deberea haber essite redirigite al app <strong>%{app_name}</strong>. Si isto non ha evenite, tenta %{clicking_this_link} o retornar manualmente al app.
       registration_complete: Tu inscription sur %{domain} es ora concludite!
       welcome_title: Benvenite, %{name}!
+      wrong_email_hint: Si ille adresse de e-mail non es correcte, tu pote cambiar lo in le parametros del conto.
     delete_account: Deler le conto
     delete_account_html: Si tu vole deler tu conto, tu pote <a href="%{path}">facer lo hic</a>. Te essera demandate un confirmation.
     description:
@@ -1058,6 +1102,7 @@ ia:
     or_log_in_with: O aperi session con
     privacy_policy_agreement_html: Io ha legite e accepta le <a href="<a href="%{privacy_policy_path}" target="_blank">politica de confidentialitate</a>
     progress:
+      confirm: Confirmar e-mail
       details: Tu detalios
       review: Nostre revision
       rules: Accepta le regulas
@@ -1079,8 +1124,10 @@ ia:
     security: Securitate
     set_new_password: Definir un nove contrasigno
     setup:
+      email_below_hint_html: Consulta tu dossier de spam, o requesta un altere ligamine de confirmation. Tu pote corriger tu adresse de e-mail si illo es errate.
       email_settings_hint_html: Clicca sur le ligamine que nos te ha inviate pro verificar %{email}. Nos te attendera hic.
       link_not_received: Necun ligamine recipite?
+      new_confirmation_instructions_sent: Tu recipera un nove e-mail con le ligamine de confirmation in poc minutas!
       title: Consulta tu cassa de entrata
     sign_in:
       preamble_html: Aperi session con tu credentiales de <strong>%{domain}</strong>. Si tu conto es albergate sur un altere servitor, tu non potera aperir session hic.
@@ -1091,12 +1138,18 @@ ia:
       title: Lassa nos installar tu conto sur %{domain}.
     status:
       account_status: Stato del conto
+      confirming: Attendente le termination del confirmation del adresse de e-mail.
       functional: Tu conto es completemente operative.
+      pending: Tu demanda attende le revision per nostre personal. Isto pote prender alcun tempore. Tu recipera un e-mail si tu demanda es approbate.
       redirecting_to: Tu conto es inactive perque illo actualmente redirige a %{acct}.
       self_destruct: Perque %{domain} va clauder, tu solo habera accesso limitate a tu conto.
       view_strikes: Examinar le sanctiones passate contra tu conto
     too_fast: Formulario inviate troppo rapidemente. Tenta lo de novo.
     use_security_key: Usar clave de securitate
+  author_attribution:
+    example_title: Texto de exemplo
+    more_from_html: Plus de %{name}
+    s_blog: Blog de %{name}
   challenge:
     confirm: Continuar
     hint_html: "<strong>Consilio:</strong> Nos non te demandara tu contrasigno de novo in le proxime hora."
@@ -1134,6 +1187,9 @@ ia:
       before: 'Ante de continuar, per favor lege attentemente iste notas:'
       caches: Le contento que altere servitores ha immagazinate in cache pote persister
       data_removal: Tu messages e altere datos essera removite permanentemente
+      email_change_html: Tu pote <a href="%{path}">cambiar tu adresse de e-mail</a> sin deler tu conto
+      email_contact_html: Si illo ancora non arriva, tu pote inviar e-mail a <a href="mailto:%{email}">%{email}</a> pro peter adjuta
+      email_reconfirmation_html: Si tu non recipe le e-mail de confirmation, tu pote <a href="%{path}>requestar lo de novo</a>
       irreversible: Tu non potera restaurar o reactivar tu conto
       more_details_html: Pro plus detalios, vide le <a href="%{terms_path}">politica de confidentialitate</a>.
       username_available: Tu nomine de usator essera disponibile novemente
@@ -1168,8 +1224,6 @@ ia:
       your_appeal_approved: Tu appello ha essite approbate
       your_appeal_pending: Tu ha submittite un appello
       your_appeal_rejected: Tu appello ha essite rejectate
-  domain_validator:
-    invalid_domain: non es un nomine de dominio valide
   edit_profile:
     basic_information: Information basic
     hint_html: "<strong>Personalisa lo que le personas vide sur tu profilo public e presso tu messages.</strong> Il es plus probabile que altere personas te seque e interage con te quando tu ha un profilo complete e un photo."
@@ -1377,6 +1431,16 @@ ia:
     unsubscribe:
       action: Si, desubscriber
       complete: Desubscribite
+      confirmation_html: Es tu secur de voler cancellar le subscription al %{type} de Mastodon sur %{domain} pro tu adresse de e-mail %{email}? Tu pote sempre resubscriber te a partir del <a href="%{settings_path}">parametros de notification in e-mail</a>.
+      emails:
+        notification_emails:
+          favourite: notificationes de favorites in e-mail
+          follow: notificationes de sequimento in e-mail
+          follow_request: requestas de sequimento in e-mail
+          mention: notificationes de mentiones in e-mail
+          reblog: notificationes de impulsos in e-mail
+      resubscribe_html: Si tu ha cancellate le subscription in error, tu pote resubscriber te a partir del <a href="%{settings_path}">parametros de notification in e-mail</a>.
+      success_html: Tu non recipera plus %{type} pro Mastodon sur %{domain} a tu adresse de e-mail %{email}.
       title: Desubcriber
   media_attachments:
     validations:
@@ -1457,6 +1521,8 @@ ia:
     update:
       subject: "%{name} ha modificate un message"
   notifications:
+    administration_emails: Notificationes per e-mail pro administratores
+    email_events: Eventos pro notificationes per e-mail
     email_events_hint: 'Selige eventos pro le quales tu vole reciper notificationes:'
   number:
     human:
@@ -1615,6 +1681,7 @@ ia:
     import: Importar
     import_and_export: Importar e exportar
     migrate: Migration de conto
+    notifications: Notificationes per e-mail
     preferences: Preferentias
     profile: Profilo public
     relationships: Sequites e sequitores
@@ -1655,23 +1722,12 @@ ia:
     edited_at_html: Modificate le %{date}
     errors:
       in_reply_not_found: Le message a que tu tenta responder non pare exister.
-    open_in_web: Aperir sur le web
     over_character_limit: limite de characteres de %{max} excedite
     pin_errors:
       direct: Messages que es solo visibile a usatores mentionate non pote esser appunctate
       limit: Tu ha jam appunctate le maxime numero de messages
       ownership: Le message de alcuno altere non pote esser appunctate
       reblog: Un impulso non pote esser affixate
-    poll:
-      total_people:
-        one: "%{count} persona"
-        other: "%{count} personas"
-      total_votes:
-        one: "%{count} voto"
-        other: "%{count} votos"
-      vote: Votar
-    show_more: Monstrar plus
-    show_thread: Monstrar discussion
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Directe
@@ -1861,6 +1917,7 @@ ia:
     invalid_otp_token: Codice de duo factores non valide
     otp_lost_help_html: Si tu ha perdite le accesso a ambes, tu pote contactar %{email}
     rate_limited: Troppo de tentativas de authentication. Per favor reessaya plus tarde.
+    seamless_external_login: Tu ha aperite session per medio de un servicio externe. Le parametros de contrasigno e de e-mail es dunque indisponibile.
     signed_in_as: 'Session aperite como:'
   verification:
     extra_instructions_html: <strong>Consilio:</strong> Le ligamine sur tu sito web pote esser invisibile. Le parte importante es <code>rel="me"</code> que impedi le usurpation de identitate sur sitos web con contento generate per usatores. Tu pote mesmo usar un etiquetta <code>link</code> in le capite del pagina in vice de <code>a</code>, ma le codice HTML debe esser accessibile sin executar JavaScript.
@@ -1869,6 +1926,7 @@ ia:
     instructions_html: Copia e colla le codice hic infra in le HTML de tu sito web. Alora adde le adresse de tu sito web in un del campos supplementari sur tu profilo desde le scheda “Modificar profilo” e salva le cambiamentos.
     verification: Verification
     verified_links: Tu ligamines verificate
+    website_verification: Verification de sito web
   webauthn_credentials:
     add: Adder un nove clave de securitate
     create:

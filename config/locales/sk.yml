@@ -7,7 +7,6 @@ sk:
     hosted_on: Mastodon hostovaný na %{domain}
     title: Ohľadom
   accounts:
-    follow: Nasleduj
     followers:
       few: Sledovateľov
       many: Sledovateľov
@@ -35,6 +34,7 @@ sk:
       created_msg: Poznámka moderátora bola úspešne vytvorená!
       destroyed_msg: Moderátorska poznámka bola úspešne zmazaná!
     accounts:
+      add_email_domain_block: Blokuj emailovú doménu
       approve: Schváľ
       approved_msg: Úspešne schválená prihláška %{username}
       are_you_sure: Si si istý/á?
@@ -170,10 +170,12 @@ sk:
         approve_appeal: Schváľ námietku
         approve_user: Odobri užívateľa
         assigned_to_self_report: Priraď hlásenie
+        change_email_user: Zmeň email pre užívateľa
         change_role_user: Zmeň užívateľskú rolu
         confirm_user: Potvrď užívateľa
         create_account_warning: Vytvor výstrahu
         create_announcement: Vytvor oboznámenie
+        create_canonical_email_block: Vytvor blokovanie emailu
         create_custom_emoji: Vytvor vlastné emotikony
         create_domain_allow: Vytvor povolenie pre doménu
         create_domain_block: Vytvor zákaz domény
@@ -224,10 +226,13 @@ sk:
         change_role_user_html: "%{name} zmenil/a rolu pre %{target}"
         create_account_warning_html: "%{name} poslal/a upozornenie užívateľovi %{target}"
         create_announcement_html: "%{name} vytvoril/a nové oboznámenie %{target}"
+        create_canonical_email_block_html: "%{name} zablokoval/a email s hašom %{target}"
         create_custom_emoji_html: "%{name} nahral/a novú emotikonu %{target}"
         create_domain_allow_html: "%{name} povolil/a federáciu s doménou %{target}"
         create_domain_block_html: "%{name} zablokoval/a doménu %{target}"
+        create_email_domain_block_html: "%{name} zablokoval/a emailovú doménu %{target}"
         create_ip_block_html: "%{name} vytvoril/a pravidlo pre IP %{target}"
+        create_unavailable_domain_html: "%{name} pozastavil/a doručovanie k doméne %{target}"
         create_user_role_html: "%{name} vytvoril/a rolu pre %{target}"
         demote_user_html: "%{name} degradoval/a užívateľa %{target}"
         destroy_announcement_html: "%{name} vymazal/a oboznámenie %{target}"
@@ -899,8 +904,6 @@ sk:
         silence: Obmedzenie účtu
       your_appeal_approved: Tvoja námietka bola schválená
       your_appeal_pending: Odoslal si námietku
-  domain_validator:
-    invalid_domain: nieje správny tvar domény
   edit_profile:
     basic_information: Základné informácie
     other: Ostatné
@@ -1255,26 +1258,11 @@ sk:
     edited_at_html: Upravené %{date}
     errors:
       in_reply_not_found: Príspevok, na ktorý sa snažíš odpovedať, pravdepodobne neexistuje.
-    open_in_web: Otvor v okne na webe
     over_character_limit: limit %{max} znakov bol presiahnutý
     pin_errors:
       limit: Už si si pripol ten najvyšší možný počet hlášok
       ownership: Nieje možné pripnúť hlášku od niekoho iného
       reblog: Vyzdvihnutie sa nedá pripnúť
-    poll:
-      total_people:
-        few: "%{count} ľudí"
-        many: "%{count} ľudia"
-        one: "%{count} človek"
-        other: "%{count} ľudí"
-      total_votes:
-        few: "%{count} hlasov"
-        many: "%{count} hlasov"
-        one: "%{count} hlas"
-        other: "%{count} hlasy"
-      vote: Hlasuj
-    show_more: Ukáž viac
-    show_thread: Ukáž diskusné vlákno
     title: '%{name}: „%{quote}"'
     visibilities:
       direct: Súkromne

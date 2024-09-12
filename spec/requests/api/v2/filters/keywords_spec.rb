@@ -17,7 +17,7 @@ RSpec.describe 'API V2 Filters Keywords' do
     it 'returns http success' do
       get "/api/v2/filters/#{filter.id}/keywords", headers: headers
       expect(response).to have_http_status(200)
-      expect(body_as_json)
+      expect(response.parsed_body)
         .to contain_exactly(
           include(id: keyword.id.to_s)
         )
@@ -42,9 +42,11 @@ RSpec.describe 'API V2 Filters Keywords' do
     it 'creates a filter', :aggregate_failures do
       expect(response).to have_http_status(200)
 
-      json = body_as_json
-      expect(json[:keyword]).to eq 'magic'
-      expect(json[:whole_word]).to be false
+      expect(response.parsed_body)
+        .to include(
+          keyword: 'magic',
+          whole_word: false
+        )
 
       filter = user.account.custom_filters.first
       expect(filter).to_not be_nil
@@ -71,9 +73,11 @@ RSpec.describe 'API V2 Filters Keywords' do
     it 'responds with the keyword', :aggregate_failures do
       expect(response).to have_http_status(200)
 
-      json = body_as_json
-      expect(json[:keyword]).to eq 'foo'
-      expect(json[:whole_word]).to be false
+      expect(response.parsed_body)
+        .to include(
+          keyword: 'foo',
+          whole_word: false
+        )
     end
 
     context "when trying to access another user's filter keyword" do

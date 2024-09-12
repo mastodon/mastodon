@@ -7,14 +7,16 @@ import { me } from '../initial_state';
 
 export { makeGetAccount } from "./accounts";
 
-const getFilters = (state, { contextType }) => {
-  if (!contextType) return null;
+const getFilters = createSelector([state => state.get('filters'), (_, { contextType }) => contextType], (filters, contextType) => {
+  if (!contextType) {
+    return null;
+  }
 
-  const serverSideType = toServerSideType(contextType);
   const now = new Date();
+  const serverSideType = toServerSideType(contextType);
 
-  return state.get('filters').filter((filter) => filter.get('context').includes(serverSideType) && (filter.get('expires_at') === null || filter.get('expires_at') > now));
-};
+  return filters.filter(filter => filter.get('context').includes(serverSideType) && (filter.get('expires_at') === null || filter.get('expires_at') > now));
+});
 
 export const makeGetStatus = () => {
   return createSelector(
@@ -73,10 +75,21 @@ const ALERT_DEFAULTS = {
   style: false,
 };
 
-export const getAlerts = createSelector(state => state.get('alerts'), alerts =>
+const formatIfNeeded = (intl, message, values) => {
+  if (typeof message === 'object') {
+    return intl.formatMessage(message, values);
+  }
+
+  return message;
+};
+
+export const getAlerts = createSelector([state => state.get('alerts'), (_, { intl }) => intl], (alerts, intl) =>
   alerts.map(item => ({
     ...ALERT_DEFAULTS,
     ...item,
+    action: formatIfNeeded(intl, item.action, item.values),
+    title: formatIfNeeded(intl, item.title, item.values),
+    message: formatIfNeeded(intl, item.message, item.values),
   })).toArray());
 
 export const makeGetNotification = () => createSelector([

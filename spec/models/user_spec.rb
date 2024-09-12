@@ -32,11 +32,7 @@ RSpec.describe User do
   end
 
   describe 'validations' do
-    it 'is invalid without an account' do
-      user = Fabricate.build(:user, account: nil)
-      user.valid?
-      expect(user).to model_have_error_on_field(:account)
-    end
+    it { is_expected.to belong_to(:account).required }
 
     it 'is invalid without a valid email' do
       user = Fabricate.build(:user, email: 'john@')
@@ -59,45 +55,18 @@ RSpec.describe User do
 
   describe 'Normalizations' do
     describe 'locale' do
-      it 'preserves valid locale' do
-        user = Fabricate.build(:user, locale: 'en')
-
-        expect(user.locale).to eq('en')
-      end
-
-      it 'cleans out invalid locale' do
-        user = Fabricate.build(:user, locale: 'toto')
-
-        expect(user.locale).to be_nil
-      end
+      it { is_expected.to_not normalize(:locale).from('en') }
+      it { is_expected.to normalize(:locale).from('toto').to(nil) }
     end
 
     describe 'time_zone' do
-      it 'preserves valid timezone' do
-        user = Fabricate.build(:user, time_zone: 'UTC')
-
-        expect(user.time_zone).to eq('UTC')
-      end
-
-      it 'cleans out invalid timezone' do
-        user = Fabricate.build(:user, time_zone: 'toto')
-
-        expect(user.time_zone).to be_nil
-      end
+      it { is_expected.to_not normalize(:time_zone).from('UTC') }
+      it { is_expected.to normalize(:time_zone).from('toto').to(nil) }
     end
 
-    describe 'languages' do
-      it 'preserves valid options for languages' do
-        user = Fabricate.build(:user, chosen_languages: ['en', 'fr', ''])
-
-        expect(user.chosen_languages).to eq(['en', 'fr'])
-      end
-
-      it 'cleans out empty string from languages' do
-        user = Fabricate.build(:user, chosen_languages: [''])
-
-        expect(user.chosen_languages).to be_nil
-      end
+    describe 'chosen_languages' do
+      it { is_expected.to normalize(:chosen_languages).from(['en', 'fr', '']).to(%w(en fr)) }
+      it { is_expected.to normalize(:chosen_languages).from(['']).to(nil) }
     end
   end
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'API V1 Accounts FollowerAccounts' do
+RSpec.describe 'API V1 Accounts FollowerAccounts' do
   let(:user)    { Fabricate(:user) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:scopes)   { 'read:accounts' }
@@ -21,8 +21,8 @@ describe 'API V1 Accounts FollowerAccounts' do
       get "/api/v1/accounts/#{account.id}/followers", params: { limit: 2 }, headers: headers
 
       expect(response).to have_http_status(200)
-      expect(body_as_json.size).to eq 2
-      expect([body_as_json[0][:id], body_as_json[1][:id]]).to contain_exactly(alice.id.to_s, bob.id.to_s)
+      expect(response.parsed_body.size).to eq 2
+      expect([response.parsed_body[0][:id], response.parsed_body[1][:id]]).to contain_exactly(alice.id.to_s, bob.id.to_s)
     end
 
     it 'does not return blocked users', :aggregate_failures do
@@ -30,8 +30,8 @@ describe 'API V1 Accounts FollowerAccounts' do
       get "/api/v1/accounts/#{account.id}/followers", params: { limit: 2 }, headers: headers
 
       expect(response).to have_http_status(200)
-      expect(body_as_json.size).to eq 1
-      expect(body_as_json[0][:id]).to eq alice.id.to_s
+      expect(response.parsed_body.size).to eq 1
+      expect(response.parsed_body[0][:id]).to eq alice.id.to_s
     end
 
     context 'when requesting user is blocked' do
@@ -41,7 +41,7 @@ describe 'API V1 Accounts FollowerAccounts' do
 
       it 'hides results' do
         get "/api/v1/accounts/#{account.id}/followers", params: { limit: 2 }, headers: headers
-        expect(body_as_json.size).to eq 0
+        expect(response.parsed_body.size).to eq 0
       end
     end
 
@@ -52,8 +52,8 @@ describe 'API V1 Accounts FollowerAccounts' do
         account.mute!(bob)
         get "/api/v1/accounts/#{account.id}/followers", params: { limit: 2 }, headers: headers
 
-        expect(body_as_json.size).to eq 2
-        expect([body_as_json[0][:id], body_as_json[1][:id]]).to contain_exactly(alice.id.to_s, bob.id.to_s)
+        expect(response.parsed_body.size).to eq 2
+        expect([response.parsed_body[0][:id], response.parsed_body[1][:id]]).to contain_exactly(alice.id.to_s, bob.id.to_s)
       end
     end
   end

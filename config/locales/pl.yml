@@ -7,7 +7,6 @@ pl:
     hosted_on: Mastodon prowadzony na %{domain}
     title: O nas
   accounts:
-    follow: Obserwuj
     followers:
       few: śledzących
       many: śledzących
@@ -29,6 +28,8 @@ pl:
   admin:
     account_actions:
       action: Wykonaj działanie
+      already_silenced: To konto zostało już ograniczone.
+      already_suspended: To konto zostało już zawieszone.
       title: Wykonaj działanie moderacyjne na %{acct}
     account_moderation_notes:
       create: Pozostaw notatkę
@@ -50,6 +51,7 @@ pl:
         title: Zmień adres e-mail dla %{username}
       change_role:
         changed_msg: Pomyślnie zmieniono rolę!
+        edit_roles: Zarządzaj rolami użytkowników
         label: Zmień rolę
         no_role: Brak roli
         title: Zmień rolę dla %{username}
@@ -626,6 +628,7 @@ pl:
         suspend_description_html: Konto i cała jego zawartość będą niedostępne i ostatecznie usunięte, a interakcja z nim będzie niemożliwa. Możliwość odwrócenia w ciągu 30 dni. Zamyka wszelkie zgłoszenia dotyczące tego konta.
       actions_description_html: Zdecyduj, jakie działania należy podjąć, aby rozstrzygnąć niniejsze zgłoszenie. Jeśli podejmiesz działania karne przeciwko zgłoszonemu kontowi, zostanie do nich wysłane powiadomienie e-mail, chyba że wybrano kategorię <strong>Spam</strong>.
       actions_description_remote_html: Zdecyduj, jakie działanie należy podjąć, aby rozwiązać to zgłoszenie. Będzie to miało wpływ jedynie na sposób, w jaki <strong>Twój</strong> serwer komunikuje się z tym kontem zdalnym i obsługuje jego zawartość.
+      actions_no_posts: Ten raport nie ma żadnych powiązanych wpisów do usunięcia
       add_to_report: Dodaj więcej do zgłoszenia
       already_suspended_badges:
         local: Już zawieszono na tym serwerze
@@ -926,6 +929,7 @@ pl:
       name: Nazwa
       newest: Najnowsze
       oldest: Najstarsze
+      open: Zobacz w widoku publicznym
       reset: Resetuj
       review: Stan przeglądu
       search: Szukaj
@@ -1192,6 +1196,12 @@ pl:
       view_strikes: Zobacz dawne ostrzeżenia nałożone na twoje konto
     too_fast: Zbyt szybko przesłano formularz, spróbuj ponownie.
     use_security_key: Użyj klucza bezpieczeństwa
+  author_attribution:
+    example_title: Przykładowy tekst
+    hint_html: Kontroluj przypisy do twoich wpisów widoczne na Mastodonie.
+    more_from_html: Więcej od %{name}
+    s_blog: Blog %{name}
+    title: Przypis do autora
   challenge:
     confirm: Kontynuuj
     hint_html: "<strong>Informacja:</strong> Nie będziemy prosić Cię o ponowne podanie hasła przez następną godzinę."
@@ -1266,8 +1276,6 @@ pl:
       your_appeal_approved: Twoje odwołanie zostało zatwierdzone
       your_appeal_pending: Zgłosiłeś odwołanie
       your_appeal_rejected: Twoje odwołanie zostało odrzucone
-  domain_validator:
-    invalid_domain: nie jest prawidłową nazwą domeny
   edit_profile:
     basic_information: Podstawowe informacje
     hint_html: "<strong>Dostosuj to, co ludzie widzą na Twoim profilu publicznym i obok Twoich wpisów.</strong> Inne osoby są bardziej skłonne obserwować Cię i wchodzić z Tobą w interakcje, gdy masz wypełniony profil i zdjęcie profilowe."
@@ -1505,6 +1513,7 @@ pl:
   media_attachments:
     validations:
       images_and_video: Nie możesz załączyć pliku wideo do wpisu, który zawiera już zdjęcia
+      not_found: Nie znaleziono mediów %{ids}, lub są już  dołączone do innego wpisu
       not_ready: Nie można załączyć plików których przetwarzanie nie zostało ukończone. Spróbuj ponownie za chwilę!
       too_many: Nie możesz załączyć więcej niż 4 plików
   migrations:
@@ -1790,27 +1799,12 @@ pl:
     edited_at_html: Edytowane %{date}
     errors:
       in_reply_not_found: Post, na który próbujesz odpowiedzieć, nie istnieje.
-    open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:
       direct: Nie możesz przypiąć wpisu, który jest widoczny tylko dla wspomnianych użytkowników
       limit: Przekroczyłeś maksymalną liczbę przypiętych wpisów
       ownership: Nie możesz przypiąć cudzego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
-    poll:
-      total_people:
-        few: "%{count} osoby"
-        many: "%{count} osób"
-        one: "%{count} osoba"
-        other: "%{count} osoby"
-      total_votes:
-        few: "%{count} głosy"
-        many: "%{count} głosy"
-        one: "%{count} głos"
-        other: "%{count} głosy"
-      vote: Głosuj
-    show_more: Pokaż więcej
-    show_thread: Pokaż wątek
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Bezpośredni
@@ -2011,6 +2005,7 @@ pl:
     instructions_html: Skopiuj poniższy kod HTML i wklej go na swoją stronę. Potem dodaj link do twojej strony do jednego z wolnych pól na profilu z zakładki "Edytuj profil".
     verification: Weryfikacja
     verified_links: Twoje zweryfikowane linki
+    website_verification: Weryfikacja strony internetowej
   webauthn_credentials:
     add: Dodaj nowy klucz bezpieczeństwa
     create:

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::FeaturedTagsController do
+RSpec.describe Settings::FeaturedTagsController do
   render_views
 
   shared_examples 'authenticate user' do

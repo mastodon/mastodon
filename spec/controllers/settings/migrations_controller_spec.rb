@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::MigrationsController do
+RSpec.describe Settings::MigrationsController do
   render_views
 
   shared_examples 'authenticate user' do
@@ -95,6 +95,7 @@ describe Settings::MigrationsController do
 
         before do
           moved_to = Fabricate(:account, also_known_as: [ActivityPub::TagManager.instance.uri_for(user.account)])
+          p moved_to.acct
           user.account.migrations.create!(acct: moved_to.acct)
         end
 

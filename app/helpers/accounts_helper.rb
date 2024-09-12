@@ -19,14 +19,6 @@ module AccountsHelper
     end
   end
 
-  def account_action_button(account)
-    return if account.memorial? || account.moved?
-
-    link_to ActivityPub::TagManager.instance.url_for(account), class: 'button logo-button', target: '_new' do
-      safe_join([logo_as_symbol, t('accounts.follow')])
-    end
-  end
-
   def account_formatted_stat(value)
     number_to_human(value, precision: 3, strip_insignificant_zeros: true)
   end

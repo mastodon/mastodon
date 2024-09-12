@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe PollExpirationNotifyWorker do
+RSpec.describe PollExpirationNotifyWorker do
   let(:worker) { described_class.new }
   let(:account) { Fabricate(:account, domain: remote? ? 'example.com' : nil) }
   let(:status) { Fabricate(:status, account: account) }

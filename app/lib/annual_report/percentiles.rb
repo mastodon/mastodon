@@ -17,7 +17,7 @@ class AnnualReport::Percentiles < AnnualReport::Source
   end
 
   def statuses_created
-    @statuses_created ||= @account.statuses.where(id: year_as_snowflake_range).count
+    @statuses_created ||= report_statuses.count
   end
 
   def total_with_fewer_followers

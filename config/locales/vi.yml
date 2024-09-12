@@ -7,7 +7,6 @@ vi:
     hosted_on: "%{domain} vận hành nhờ Mastodon"
     title: Giới thiệu
   accounts:
-    follow: Theo dõi
     followers:
       other: Người theo dõi
     following: Theo dõi
@@ -23,6 +22,7 @@ vi:
   admin:
     account_actions:
       action: Thực hiện hành động
+      already_suspended: Tài khoản này đã bị vô hiệu hóa.
       title: Áp đặt kiểm duyệt với %{acct}
     account_moderation_notes:
       create: Thêm lưu ý
@@ -44,6 +44,7 @@ vi:
         title: Thay đổi email cho %{username}
       change_role:
         changed_msg: Vai trò đã thay đổi thành công!
+        edit_roles: Quản lý vai trò người dùng
         label: Đổi vai trò
         no_role: Chưa có vai trò
         title: Thay đổi vai trò %{username}
@@ -590,6 +591,7 @@ vi:
         suspend_description_html: Tài khoản và tất cả nội dung của nó sẽ không thể truy cập được và cuối cùng sẽ bị xóa, đồng thời không thể tương tác với tài khoản đó. Có thể đảo ngược trong vòng 30 ngày. Đóng tất cả các báo cáo đối với tài khoản này.
       actions_description_html: Nếu áp đặt kiểm duyệt, một email thông báo sẽ được gửi cho người này, ngoại trừ <strong>Spam</strong>.
       actions_description_remote_html: Chọn hành động cần thực hiện để xử lý báo cáo này. Điều này sẽ chỉ ảnh hưởng đến cách máy chủ <strong>của bạn</strong> giao tiếp với tài khoản này và xử lý nội dung của nó.
+      actions_no_posts: Báo cáo này không có tút liên quan để xóa
       add_to_report: Bổ sung báo cáo
       already_suspended_badges:
         local: Đã vô hiệu hóa trên máy chủ này
@@ -884,6 +886,7 @@ vi:
       name: Tên
       newest: Mới nhất
       oldest: Cũ nhất
+      open: Xem công khai
       reset: Đặt lại
       review: Phê duyệt
       search: Tìm kiếm
@@ -1212,8 +1215,6 @@ vi:
       your_appeal_approved: Khiếu nại của bạn được chấp nhận
       your_appeal_pending: Bạn đã gửi một khiếu nại
       your_appeal_rejected: Khiếu nại của bạn bị từ chối
-  domain_validator:
-    invalid_domain: không phải là một tên miền hợp lệ
   edit_profile:
     basic_information: Thông tin cơ bản
     hint_html: "<strong>Tùy chỉnh những gì mọi người nhìn thấy trên hồ sơ công khai và bên cạnh tút của bạn.</strong> Mọi người sẽ muốn theo dõi và tương tác với bạn hơn nếu bạn có ảnh đại diện và một hồ sơ hoàn chỉnh."
@@ -1427,6 +1428,7 @@ vi:
   media_attachments:
     validations:
       images_and_video: Không thể đính kèm video vào tút đã chứa hình ảnh
+      not_found: Không tìm thấy %{ids} hoặc nó đã bị đính kèm với tút khác
       not_ready: Tập tin này vẫn chưa xử lý xong. Hãy thử lại sau!
       too_many: Không thể đính kèm hơn 4 tệp
   migrations:
@@ -1700,21 +1702,12 @@ vi:
     edited_at_html: Sửa %{date}
     errors:
       in_reply_not_found: Bạn đang trả lời một tút không còn tồn tại.
-    open_in_web: Xem trong web
     over_character_limit: vượt quá giới hạn %{max} ký tự
     pin_errors:
       direct: Không thể ghim những tút nhắn riêng
       limit: Bạn đã ghim quá số lượng tút cho phép
       ownership: Không thể ghim tút của người khác
       reblog: Không thể ghim tút đăng lại
-    poll:
-      total_people:
-        other: "%{count} người bình chọn"
-      total_votes:
-        other: "%{count} người bình chọn"
-      vote: Bình chọn
-    show_more: Đọc thêm
-    show_thread: Nội dung gốc
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Nhắn riêng

@@ -3,6 +3,7 @@ zh-TW:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: 偽造署名保護。
         discoverable: 公開嘟文及個人檔案可能於各 Mastodon 功能中被推薦，並且您的個人檔案可能被推薦至其他使用者。
         display_name: 完整名稱或暱稱。
         fields: 烘培雞、自我認同代稱、年齡，及任何您想分享的。
@@ -53,7 +54,7 @@ zh-TW:
         password: 使用至少 8 個字元
         phrase: 無論是嘟文的本文或是內容警告都會被過濾
         scopes: 允許使應用程式存取的 API。 若您選擇最高階範圍，則無須選擇個別項目。
-        setting_aggregate_reblogs: 請勿顯示最近已被轉嘟之嘟文的最新轉嘟（只影響最新收到的嘟文）
+        setting_aggregate_reblogs: 不顯示最近已被轉嘟之嘟文的最新轉嘟（只影響最新收到的嘟文）
         setting_always_send_emails: 一般情況下若您活躍使用 Mastodon ，我們不會寄送電子郵件通知
         setting_default_sensitive: 敏感內容媒體預設隱藏，且按一下即可重新顯示
         setting_display_media_default: 隱藏標為敏感內容的媒體
@@ -130,7 +131,7 @@ zh-TW:
         name: 您只能變更大小寫，例如，以使其更易讀。
       user:
         chosen_languages: 當選取時，只有選取語言之嘟文會於公開時間軸中顯示
-        role: 角色控制使用者有哪些權限
+        role: 角色控制使用者有哪些權限。
       user_role:
         color: 於整個使用者介面中用於角色的顏色，十六進位格式的 RGB
         highlighted: 這將使角色公開可見
@@ -143,6 +144,7 @@ zh-TW:
         url: 事件會被傳送至何處
     labels:
       account:
+        attribution_domains_as_text: 僅允許特定網站
         discoverable: 於探索演算法中推薦個人檔案及嘟文
         fields:
           name: 標籤

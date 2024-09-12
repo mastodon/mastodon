@@ -34,7 +34,7 @@ RSpec.describe PostStatusService do
 
     it 'schedules a status for future creation and does not create one immediately' do
       media = Fabricate(:media_attachment, account: account)
-      status = subject.call(account, text: 'Hi future!', media_ids: [media.id], scheduled_at: future)
+      status = subject.call(account, text: 'Hi future!', media_ids: [media.id.to_s], scheduled_at: future)
 
       expect(status)
         .to be_a(ScheduledStatus)
@@ -42,7 +42,7 @@ RSpec.describe PostStatusService do
           scheduled_at: eq(future),
           params: include(
             'text' => eq('Hi future!'),
-            'media_ids' => contain_exactly(media.id)
+            'media_ids' => contain_exactly(media.id.to_s)
           )
         )
       expect(media.reload.status).to be_nil
@@ -219,7 +219,7 @@ RSpec.describe PostStatusService do
     status = subject.call(
       account,
       text: 'test status update',
-      media_ids: [media.id]
+      media_ids: [media.id.to_s]
     )
 
     expect(media.reload.status).to eq status
@@ -229,13 +229,16 @@ RSpec.describe PostStatusService do
     account = Fabricate(:account)
     media = Fabricate(:media_attachment, account: Fabricate(:account))
 
-    subject.call(
-      account,
-      text: 'test status update',
-      media_ids: [media.id]
+    expect do
+      subject.call(
+        account,
+        text: 'test status update',
+        media_ids: [media.id.to_s]
+      )
+    end.to raise_error(
+      Mastodon::ValidationError,
+      I18n.t('media_attachments.validations.not_found', ids: media.id)
     )
-
-    expect(media.reload.status).to be_nil
   end
 
   it 'does not allow attaching more files than configured limit' do
@@ -246,7 +249,7 @@ RSpec.describe PostStatusService do
       subject.call(
         account,
         text: 'test status update',
-        media_ids: Array.new(2) { Fabricate(:media_attachment, account: account) }.map(&:id)
+        media_ids: Array.new(2) { Fabricate(:media_attachment, account: account) }.map { |m| m.id.to_s }
       )
     end.to raise_error(
       Mastodon::ValidationError,
@@ -268,7 +271,7 @@ RSpec.describe PostStatusService do
         media_ids: [
           video,
           image,
-        ].map(&:id)
+        ].map { |m| m.id.to_s }
       )
     end.to raise_error(
       Mastodon::ValidationError,
