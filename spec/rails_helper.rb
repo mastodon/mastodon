@@ -18,6 +18,7 @@ unless ENV['DISABLE_SIMPLECOV'] == 'true'
 
     add_filter 'lib/linter'
 
+    add_group 'Feeds', 'app/feeds'
     add_group 'Libraries', 'lib'
     add_group 'Policies', 'app/policies'
     add_group 'Presenters', 'app/presenters'
