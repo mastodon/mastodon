@@ -33,6 +33,7 @@ cy:
   admin:
     account_actions:
       action: Cyflawni gweithred
+      already_silenced: Mae'r cyfrif hwn eisoes wedi'i gyfyngu.
       already_suspended: Mae'r cyfrif hwn eisoes wedi'i atal.
       title: Cyflawni gweithred cymedroli ar %{acct}
     account_moderation_notes:
@@ -1232,6 +1233,12 @@ cy:
       view_strikes: Gweld rybuddion y gorffennol yn erbyn eich cyfrif
     too_fast: Cafodd y ffurflen ei chyflwyno'n rhy gyflym, ceisiwch eto.
     use_security_key: Defnyddiwch allwedd diogelwch
+  author_attribution:
+    example_title: Testun enghreifftiol
+    hint_html: Rheolwch sut rydych chi'n cael eich canmol pan fydd dolenni'n cael eu rhannu ar Mastodon.
+    more_from_html: Mwy gan %{name}
+    s_blog: Blog %{name}
+    title: Priodoliad awdur
   challenge:
     confirm: Parhau
     hint_html: "<strong>Awgrym:</strong> Fyddwn ni ddim yn gofyn i chi am eich cyfrinair eto am yr awr nesaf."
@@ -2080,6 +2087,7 @@ cy:
     instructions_html: Copïwch a gludo'r cod isod i HTML eich gwefan. Yna ychwanegwch gyfeiriad eich gwefan i un o'r meysydd ychwanegol ar eich proffil o'r tab "Golygu proffil" a chadw'r newidiadau.
     verification: Dilysu
     verified_links: Eich dolenni wedi'u dilysu
+    website_verification: Gwirio gwefan
   webauthn_credentials:
     add: Ychwanegu allwedd ddiogelwch newydd
     create:
