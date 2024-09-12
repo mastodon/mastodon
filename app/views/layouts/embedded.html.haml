@@ -15,7 +15,7 @@
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
     = preload_pack_asset "locale/#{I18n.locale}-json.js"
     = render_initial_state
-    = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+    = javascript_pack_tag 'embed', integrity: true, crossorigin: 'anonymous'
   %body.embed
     = yield
 

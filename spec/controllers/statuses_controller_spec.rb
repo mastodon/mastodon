@@ -781,7 +781,6 @@ RSpec.describe StatusesController do
           'Cache-Control' => include('public'),
           'Link' => satisfy { |header| header.to_s.include?('activity+json') }
         )
-        expect(response.body).to include status.text
       end
     end
 

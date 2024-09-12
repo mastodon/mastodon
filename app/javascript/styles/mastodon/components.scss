@@ -1677,18 +1677,6 @@ body > [data-popper-placement] {
   padding: 16px;
   border-top: 1px solid var(--background-border-color);
 
-  &--flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-
-    .status__content,
-    .detailed-status__meta {
-      flex: 100%;
-    }
-  }
-
   .status__content {
     font-size: 19px;
     line-height: 24px;
@@ -1722,6 +1710,25 @@ body > [data-popper-placement] {
     &:last-child {
       margin-bottom: 0;
     }
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+    color: $dark-text-color;
+  }
+}
+
+.embed {
+  position: relative;
+
+  &__overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }
 

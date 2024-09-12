@@ -32,28 +32,6 @@ RSpec.describe MediaComponentHelper do
     end
   end
 
-  describe 'render_card_component' do
-    let(:status) { Fabricate(:status) }
-    let(:result) { helper.render_card_component(status) }
-
-    before do
-      PreviewCardsStatus.create(status: status, preview_card: Fabricate(:preview_card))
-    end
-
-    it 'returns the correct react component markup' do
-      expect(parsed_html.div['data-component']).to eq('Card')
-    end
-  end
-
-  describe 'render_poll_component' do
-    let(:status) { Fabricate(:status, poll: Fabricate(:poll)) }
-    let(:result) { helper.render_poll_component(status) }
-
-    it 'returns the correct react component markup' do
-      expect(parsed_html.div['data-component']).to eq('Poll')
-    end
-  end
-
   private
 
   def parsed_html
