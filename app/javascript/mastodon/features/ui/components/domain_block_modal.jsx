@@ -88,7 +88,7 @@ export const DomainBlockModal = ({ domain, accountId, acct }) => {
             <FormattedMessage id='confirmation_modal.cancel' defaultMessage='Cancel' />
           </button>
 
-          <Button onClick={handleClick}>
+          <Button onClick={handleClick} autoFocus>
             <FormattedMessage id='domain_block_modal.block' defaultMessage='Block server' />
           </Button>
         </div>
