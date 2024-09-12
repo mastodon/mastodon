@@ -95,7 +95,6 @@ RSpec.describe Settings::MigrationsController do
 
         before do
           moved_to = Fabricate(:account, also_known_as: [ActivityPub::TagManager.instance.uri_for(user.account)])
-          p moved_to.acct
           user.account.migrations.create!(acct: moved_to.acct)
         end
 
