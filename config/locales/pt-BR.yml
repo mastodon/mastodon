@@ -7,7 +7,6 @@ pt-BR:
     hosted_on: Mastodon hospedado em %{domain}
     title: Sobre
   accounts:
-    follow: Seguir
     followers:
       one: Seguidor
       other: Seguidores
@@ -25,6 +24,8 @@ pt-BR:
   admin:
     account_actions:
       action: Tomar uma atitude
+      already_silenced: Esta conta já foi limitada.
+      already_suspended: Esta conta já foi suspensa.
       title: Moderar %{acct}
     account_moderation_notes:
       create: Deixar nota
@@ -46,6 +47,7 @@ pt-BR:
         title: Alterar e-mail para %{username}
       change_role:
         changed_msg: Função alterada com sucesso!
+        edit_roles: Gerenciar funções do usuário
         label: Alterar função
         no_role: Nenhuma função
         title: Alterar função para %{username}
@@ -203,7 +205,7 @@ pt-BR:
         disable_sign_in_token_auth_user: Desativar autenticação via Token de Email para Usuário
         disable_user: Desativar usuário
         enable_custom_emoji: Ativar emoji personalizado
-        enable_sign_in_token_auth_user: Desativar autenticação via token por e-mail para o usuário
+        enable_sign_in_token_auth_user: Ativar autenticação via Token de Email para Usuário
         enable_user: Ativar usuário
         memorialize_account: Converter conta em memorial
         promote_user: Promover usuário
@@ -442,6 +444,7 @@ pt-BR:
         create: Adicionar domínio
         resolve: Resolver domínio
         title: Bloquear novo domínio de e-mail
+      no_email_domain_block_selected: Nenhum bloco de domínio de email foi alterado, pois, nenhum foi selecionado
       not_permitted: Não permitido
       resolved_dns_records_hint_html: O nome de domínio é associado aos seguintes domínios MX, que são responsáveis por aceitar e-mails. Ao bloquear um domínio MX, você bloqueará as inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo que o nome de domínio visível seja diferente. <strong>Tenha cuidado para não bloquear os principais provedores de e-mail.</strong>
       resolved_through_html: Resolvido através de %{domain}
@@ -601,6 +604,7 @@ pt-BR:
         suspend_description_html: A conta e todo o seu conteúdo ficará inacessível e, eventualmente, excluído e interagir com ela será impossível. Reversível dentro de 30 dias. Encerra todas as denúncias contra esta conta.
       actions_description_html: Decida qual ação tomar para responder a essa denúncia. Se você tomar uma ação punitiva contra a conta denunciada, uma notificação por e-mail será enviada ao usuário, exceto quando a categoria <strong>Spam</strong> for selecionada.
       actions_description_remote_html: Decida quais medidas tomará para resolver esta denúncia. Isso só afetará como <strong>seu servidor</strong> se comunica com esta conta remota e manipula seu conteúdo.
+      actions_no_posts: Essa denúncia não tem nenhuma publicação associada para excluir
       add_to_report: Adicionar mais à denúncia
       already_suspended_badges:
         local: Já suspenso neste servidor
@@ -1156,6 +1160,12 @@ pt-BR:
       view_strikes: Veja os avisos anteriores em relação à sua conta
     too_fast: O formulário foi enviado muito rapidamente, tente novamente.
     use_security_key: Usar chave de segurança
+  author_attribution:
+    example_title: Texto de amostra
+    hint_html: Controle como você é creditado quando links são compartilhados no Mastodon.
+    more_from_html: Mais de %{name}
+    s_blog: Blog do %{name}
+    title: Atribuição de autoria
   challenge:
     confirm: Continuar
     hint_html: "<strong>Dica:</strong> Não pediremos novamente sua senha pela próxima hora."
@@ -1230,8 +1240,6 @@ pt-BR:
       your_appeal_approved: Sua revisão foi aprovada
       your_appeal_pending: Você enviou uma revisão
       your_appeal_rejected: Sua revisão foi rejeitada
-  domain_validator:
-    invalid_domain: não é um nome de domínio válido
   edit_profile:
     basic_information: Informações básicas
     hint_html: "<strong>Personalize o que as pessoas veem no seu perfil público e ao lado de suas publicações.</strong> É mais provável que outras pessoas o sigam de volta e interajam com você quando você tiver um perfil preenchido e uma foto de perfil."
@@ -1440,6 +1448,13 @@ pt-BR:
       action: Sim, cancelar subscrição
       complete: Desinscrito
       confirmation_html: Tem certeza que deseja cancelar a assinatura de %{type} para Mastodon no %{domain} para o seu endereço de e-mail %{email}? Você sempre pode se inscrever novamente nas <a href="%{settings_path}">configurações de notificação de email</a>.
+      emails:
+        notification_emails:
+          favourite: emails de notificação favoritos
+          follow: seguir emails de notificação
+          follow_request: emails de seguidores pendentes
+          mention: emails de notificação de menções
+          reblog: emails de notificação de boosts
       resubscribe_html: Se você cancelou sua inscrição por engano, você pode se inscrever novamente em suas <a href="%{settings_path}"> configurações de notificações por e-mail</a>.
       success_html: Você não mais receberá %{type} no Mastodon em %{domain} ao seu endereço de e-mail %{email}.
       title: Cancelar inscrição
@@ -1724,23 +1739,12 @@ pt-BR:
     edited_at_html: Editado em %{date}
     errors:
       in_reply_not_found: A publicação que você quer responder parece não existir.
-    open_in_web: Abrir no navegador
     over_character_limit: limite de caracteres de %{max} excedido
     pin_errors:
       direct: Publicações visíveis apenas para usuários mencionados não podem ser fixadas
       limit: Você alcançou o número limite de publicações fixadas
       ownership: As publicações dos outros não podem ser fixadas
       reblog: Um impulso não pode ser fixado
-    poll:
-      total_people:
-        one: "%{count} pessoa"
-        other: "%{count} pessoas"
-      total_votes:
-        one: "%{count} voto"
-        other: "%{count} votos"
-      vote: Votar
-    show_more: Mostrar mais
-    show_thread: Mostrar conversa
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direto
@@ -1939,6 +1943,7 @@ pt-BR:
     instructions_html: Copie o código abaixo e cole no HTML do seu site. Em seguida, adicione o endereço do seu site em um dos campos extras em seu perfil, na aba "Editar perfil", e salve as alterações.
     verification: Verificação
     verified_links: Seus links verificados
+    website_verification: Verificação do site
   webauthn_credentials:
     add: Adicionar nova chave de segurança
     create:

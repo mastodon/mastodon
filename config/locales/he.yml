@@ -7,7 +7,6 @@ he:
     hosted_on: מסטודון שיושב בכתובת %{domain}
     title: אודות
   accounts:
-    follow: לעקוב
     followers:
       many: עוקבים
       one: עוקב
@@ -29,6 +28,8 @@ he:
   admin:
     account_actions:
       action: בצע/י פעולה
+      already_silenced: חשבון זה הוגבל זה מכבר.
+      already_suspended: חשבון זה הושעה.
       title: ביצוע פעולות הנהלה על %{acct}
     account_moderation_notes:
       create: ליצור
@@ -50,6 +51,7 @@ he:
         title: שינוי כתובת דוא"ל עבור המשתמש.ת %{username}
       change_role:
         changed_msg: התפקיד שונה בהצלחה!
+        edit_roles: נהל תפקידי משתמש
         label: שינוי תפקיד
         no_role: ללא תפקיד
         title: שינוי תפקיד עבור %{username}
@@ -626,6 +628,7 @@ he:
         suspend_description_html: חשבון זה על כל תכניו יחסמו וברבות הימים ימחקו, כל פעילות מולו לא תתאפשר. הפעולה ניתנת לביטול תוך 30 ימים, והיא תסגור כל דיווח התלוי ועומד נגד החשבון.
       actions_description_html: בחר/י איזו פעולה לבצע על מנת לפתור את הדו"ח. אם תופעל פעולת ענישה כנגד החשבון המדווח, הודעת דוא"ל תשלח אליהם, אלא אם נבחרה קטגוריית ה<strong>ספאם</strong>.
       actions_description_remote_html: בחרו איזו פעולה לבצע כדי לפתור את הדיווח שהוגש. פעולה זו תשפיע רק על התקשורת מול השרת <strong>שלך</strong> עם החשבון המרוחק ותוכנו.
+      actions_no_posts: דווח זה לא כולל הודעות למחיקה
       add_to_report: הוספת פרטים לדיווח
       already_suspended_badges:
         local: כבר הודח בשרת זה
@@ -1193,6 +1196,12 @@ he:
       view_strikes: צפיה בעברות קודמות שנרשמו נגד חשבונך
     too_fast: הטופס הוגש מהר מדי, נסה/י שוב.
     use_security_key: שימוש במפתח אבטחה
+  author_attribution:
+    example_title: טקסט לדוגמה
+    hint_html: בחירה איך תקבלו קרדיטציה כאשר קישורים משותפים דרך מסטודון.
+    more_from_html: עוד מאת %{name}
+    s_blog: הבלוג של %{name}
+    title: ייחוס למפרסם
   challenge:
     confirm: המשך
     hint_html: "<strong>טיפ:</strong> לא נבקש את סיסמתך שוב בשעה הקרובה."
@@ -1267,8 +1276,6 @@ he:
       your_appeal_approved: ערעורך התקבל
       your_appeal_pending: הגשת ערעור
       your_appeal_rejected: ערעורך נדחה
-  domain_validator:
-    invalid_domain: הוא לא שם דומיין קביל
   edit_profile:
     basic_information: מידע בסיסי
     hint_html: "<strong>התאמה אישית של מה שיראו אחרים בפרופיל הציבורי שלך וליד הודעותיך.</strong> אחרים עשויים יותר להחזיר עוקב וליצור אתך שיחה אם הפרופיל והתמונה יהיו מלאים."
@@ -1792,27 +1799,12 @@ he:
     edited_at_html: נערך ב-%{date}
     errors:
       in_reply_not_found: נראה שההודעה שאת/ה מנסה להגיב לה לא קיימת.
-    open_in_web: פתח ברשת
     over_character_limit: חריגה מגבול התווים של %{max}
     pin_errors:
       direct: לא ניתן לקבע הודעות שנראותן מוגבלת למכותבים בלבד
       limit: הגעת למספר המירבי של ההודעות המוצמדות
       ownership: הודעות של אחרים לא יכולות להיות מוצמדות
       reblog: אין אפשרות להצמיד הדהודים
-    poll:
-      total_people:
-        many: "%{count} אנשים"
-        one: איש/ה %{count}
-        other: "%{count} אנשים"
-        two: "%{count} אנשים"
-      total_votes:
-        many: "%{count} קולות"
-        one: קול %{count}
-        other: "%{count} קולות"
-        two: "%{count} קולות"
-      vote: הצבעה
-    show_more: עוד
-    show_thread: הצג שרשור
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: ישיר
@@ -2013,6 +2005,7 @@ he:
     instructions_html: יש להדביק את הקוד שלמטה אל האתר שלך. ואז להוסיף את כתובת האתר לאחד השדות הנוספים בפרופיל מתוך טאב "עריכת פרופיל" ולשמור את השינויים.
     verification: אימות
     verified_links: קישוריך המאומתים
+    website_verification: אימות אתר רשת
   webauthn_credentials:
     add: הוספת מפתח אבטחה חדש
     create:

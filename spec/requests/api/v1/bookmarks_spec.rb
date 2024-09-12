@@ -33,7 +33,7 @@ RSpec.describe 'Bookmarks' do
     it 'returns the bookmarked statuses' do
       subject
 
-      expect(body_as_json).to match_array(expected_response)
+      expect(response.parsed_body).to match_array(expected_response)
     end
 
     context 'with limit param' do
@@ -42,7 +42,7 @@ RSpec.describe 'Bookmarks' do
       it 'paginates correctly', :aggregate_failures do
         subject
 
-        expect(body_as_json.size)
+        expect(response.parsed_body.size)
           .to eq(params[:limit])
 
         expect(response)

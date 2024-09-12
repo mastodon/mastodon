@@ -723,6 +723,46 @@ RSpec.describe Account do
     end
   end
 
+  describe '#prepare_contents' do
+    subject { Fabricate.build :account, domain: domain, note: '  padded note  ', display_name: '  padded name  ' }
+
+    context 'with local account' do
+      let(:domain) { nil }
+
+      it 'strips values' do
+        expect { subject.valid? }
+          .to change(subject, :note).to('padded note')
+          .and(change(subject, :display_name).to('padded name'))
+      end
+    end
+
+    context 'with remote account' do
+      let(:domain) { 'host.example' }
+
+      it 'preserves values' do
+        expect { subject.valid? }
+          .to not_change(subject, :note)
+          .and(not_change(subject, :display_name))
+      end
+    end
+  end
+
+  describe '#can_be_attributed_from?' do
+    subject { Fabricate(:account, attribution_domains: %w(example.com)) }
+
+    it 'returns true for a matching domain' do
+      expect(subject.can_be_attributed_from?('example.com')).to be true
+    end
+
+    it 'returns true for a subdomain of a domain' do
+      expect(subject.can_be_attributed_from?('foo.example.com')).to be true
+    end
+
+    it 'returns false for a non-matching domain' do
+      expect(subject.can_be_attributed_from?('hoge.com')).to be false
+    end
+  end
+
   describe 'Normalizations' do
     describe 'username' do
       it { is_expected.to normalize(:username).from(" \u3000bob \t \u00a0 \n ").to('bob') }

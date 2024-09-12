@@ -28,7 +28,7 @@ RSpec.describe 'Pins' do
       it 'return json with updated attributes' do
         subject
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(id: status.id.to_s, pinned: true)
         )
       end
@@ -96,7 +96,7 @@ RSpec.describe 'Pins' do
       it 'return json with updated attributes' do
         subject
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(id: status.id.to_s, pinned: false)
         )
       end

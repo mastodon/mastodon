@@ -7,7 +7,6 @@ ca:
     hosted_on: Mastodon allotjat a %{domain}
     title: Quant a
   accounts:
-    follow: Segueix
     followers:
       one: Seguidor
       other: Seguidors
@@ -25,6 +24,8 @@ ca:
   admin:
     account_actions:
       action: Realitza l'acció
+      already_silenced: Aquest compte ja s'ha limitat.
+      already_suspended: Aquest compte ja s'ha suspès.
       title: Fer l'acció de moderació a %{acct}
     account_moderation_notes:
       create: Crea nota
@@ -46,6 +47,7 @@ ca:
         title: Canvia l'adreça electrònica de %{username}
       change_role:
         changed_msg: Els privilegis del compte s'han canviat correctament!
+        edit_roles: Gestió de rols d'usuari
         label: Canvia rol
         no_role: Sense rol
         title: Canvia el rol per a %{username}
@@ -58,6 +60,7 @@ ca:
       demote: Degrada
       destroyed_msg: Les dades de %{username} son a la cua per a ser esborrades en breu
       disable: Inhabilita
+      disable_sign_in_token_auth: Desactivar l'autenticació de token per correu-e
       disable_two_factor_authentication: Desactiva 2FA
       disabled: Inhabilitat
       display_name: Nom visible
@@ -66,6 +69,7 @@ ca:
       email: Adreça electrònica
       email_status: Estat de l'adreça electrònica
       enable: Habilita
+      enable_sign_in_token_auth: Activar l'autenticació de token per correu-e
       enabled: Habilitat
       enabled_msg: El compte de %{username} s’ha descongelat amb èxit
       followers: Seguidors
@@ -198,8 +202,10 @@ ca:
         destroy_user_role: Destrueix Rol
         disable_2fa_user: Desactiva 2FA
         disable_custom_emoji: Desactiva l'emoji personalitzat
+        disable_sign_in_token_auth_user: Desactivar l'autenticació de token per correu-e per a l'usuari
         disable_user: Deshabilita l'usuari
         enable_custom_emoji: Activa l'emoji personalitzat
+        enable_sign_in_token_auth_user: Activar l'autenticació de token per correu-e per a l'usuari
         enable_user: Activa l'usuari
         memorialize_account: Memoritza el compte
         promote_user: Promou l'usuari
@@ -234,17 +240,21 @@ ca:
         confirm_user_html: "%{name} ha confirmat l'adreça del correu electrònic de l'usuari %{target}"
         create_account_warning_html: "%{name} ha enviat un avís a %{target}"
         create_announcement_html: "%{name} ha creat un nou anunci %{target}"
+        create_canonical_email_block_html: "%{name} ha blocat l'adreça de correu electrònic amb el hash %{target}"
         create_custom_emoji_html: "%{name} ha pujat un emoji nou %{target}"
         create_domain_allow_html: "%{name} ha permès la federació amb el domini %{target}"
         create_domain_block_html: "%{name} ha bloquejat el domini %{target}"
+        create_email_domain_block_html: "%{name} ha blocat el domini de correu electrònic %{target}"
         create_ip_block_html: "%{name} ha creat una regla per a l'IP %{target}"
         create_unavailable_domain_html: "%{name} ha aturat el lliurament al domini %{target}"
         create_user_role_html: "%{name} ha creat el rol %{target}"
         demote_user_html: "%{name} ha degradat l'usuari %{target}"
         destroy_announcement_html: "%{name} ha eliminat l'anunci %{target}"
+        destroy_canonical_email_block_html: "%{name} ha desblocat el correu electrònic amb el hash %{target}"
         destroy_custom_emoji_html: "%{name} ha esborrat l'emoji %{target}"
         destroy_domain_allow_html: "%{name} no permet la federació amb el domini %{target}"
         destroy_domain_block_html: "%{name} ha desbloquejat el domini %{target}"
+        destroy_email_domain_block_html: "%{name} ha desblocat el domini de correu electrònic %{target}"
         destroy_instance_html: "%{name} ha purgat el domini %{target}"
         destroy_ip_block_html: "%{name} ha esborrat la regla per a l'IP %{target}"
         destroy_status_html: "%{name} ha eliminat el tut de %{target}"
@@ -252,8 +262,10 @@ ca:
         destroy_user_role_html: "%{name} ha esborrat el rol %{target}"
         disable_2fa_user_html: "%{name} ha desactivat el requisit de dos factors per a l'usuari %{target}"
         disable_custom_emoji_html: "%{name} ha desactivat l'emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} ha desactivat l'autenticació de token per correu-e per a %{target}"
         disable_user_html: "%{name} ha desactivat l'accés del usuari %{target}"
         enable_custom_emoji_html: "%{name} ha activat l'emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} ha activat l'autenticació de token per correu-e per a %{target}"
         enable_user_html: "%{name} ha activat l'accés del usuari %{target}"
         memorialize_account_html: "%{name} ha convertit el compte %{target} en una pàgina de memorial"
         promote_user_html: "%{name} ha promogut l'usuari %{target}"
@@ -261,6 +273,7 @@ ca:
         reject_user_html: "%{name} ha rebutjat el registre de %{target}"
         remove_avatar_user_html: "%{name} ha eliminat l'avatar de %{target}"
         reopen_report_html: "%{name} ha reobert l'informe %{target}"
+        resend_user_html: "%{name} ha reenviat el correu-e de confirmació per %{target}"
         reset_password_user_html: "%{name} ha restablert la contrasenya de l'usuari %{target}"
         resolve_report_html: "%{name} ha resolt l'informe %{target}"
         sensitive_account_html: "%{name} ha marcat els mèdia de %{target} com a sensibles"
@@ -421,6 +434,7 @@ ca:
       attempts_over_week:
         one: "%{count} intent en la darrera setmana"
         other: "%{count} intents de registre en la darrera setmana"
+      created_msg: S'ha blocat el domini de correu-e
       delete: Elimina
       dns:
         types:
@@ -429,8 +443,11 @@ ca:
       new:
         create: Afegir un domini
         resolve: Resol domini
+        title: Blocar el nou domini de correu-e
+      no_email_domain_block_selected: No s'han canviat els bloqueigs de domini perquè no se n'ha seleccionat cap
       not_permitted: No permés
       resolved_through_html: Resolt mitjançant %{domain}
+      title: Dominis de correu-e blocats
     export_domain_allows:
       new:
         title: Importa dominis permesos
@@ -584,7 +601,9 @@ ca:
         resolve_description_html: No serà presa cap acció contra el compte denunciat, no se'n registrarà res i l'informe es tancarà.
         silence_description_html: El compte només serà visible a qui ja el seguia o l'ha cercat manualment, limitant-ne fortament l'abast. Sempre es pot revertir. Es tancaran tots els informes contra aquest compte.
         suspend_description_html: Aquest compte i tots els seus continguts seran inaccessibles i finalment eliminats, i interaccionar amb ell no serà possible. Reversible en 30 dies. Tanca tots els informes contra aquest compte.
+      actions_description_html: Decidiu quina acció a prendre per a resoldre aquest informe. Si preneu una acció punitiva contra el compte denunciat, se li enviarà una notificació per correu-e, excepte si se selecciona la categoria <strong>Spam</strong>.
       actions_description_remote_html: Decideix quina acció prendre per a resoldre aquest informe. Això només afectarà com <strong>el teu</strong> servidor es comunica amb aquest compte remot i en gestiona el contingut.
+      actions_no_posts: Aquest informe no té associada cap publicació a esborrar
       add_to_report: Afegir més al informe
       already_suspended_badges:
         local: Ja és suspès en aquest servidor
@@ -648,6 +667,7 @@ ca:
         delete_data_html: Esborra el perfil de <strong>@%{acct}</strong> i els seus continguts dins de 30 dies des d'ara a no ser que es desactivi la suspensió abans
         preview_preamble_html: "<strong>@%{acct}</strong> rebrà un avís amb el contingut següent:"
         record_strike_html: Registra una acció contra <strong>@%{acct}</strong> per ajudar a escalar-ho en futures violacions des d'aquest compte
+        send_email_html: Envia un avís per correu-e a <strong>@%{acct}</strong>
         warning_placeholder: Opcional raó adicional d'aquesta acció de moderació.
       target_origin: Origen del compte denunciat
       title: Informes
@@ -687,6 +707,7 @@ ca:
         manage_appeals: Gestiona apel·lacions
         manage_appeals_description: Permet als usuaris revisar les apel·lacions contra les accions de moderació
         manage_blocks: Gestiona blocs
+        manage_blocks_description: Permet als usuaris blocar adreces IP i proveïdors de correu-e
         manage_custom_emojis: Gestiona emojis personalitzats
         manage_custom_emojis_description: Permet als usuaris gestionar emojis personalitzats al servidor
         manage_federation: Gestiona federació
@@ -704,6 +725,7 @@ ca:
         manage_taxonomies: Gestionar taxonomies
         manage_taxonomies_description: Permet als usuaris revisar el contingut actual i actualitzar la configuració de l'etiqueta
         manage_user_access: Gestionar l'accés dels usuaris
+        manage_user_access_description: Permet als usuaris desactivar l'autenticació de dos factors d'altres usuaris, canviar la seva adreça de correu-e i restablir la seva contrasenya
         manage_users: Gestionar usuaris
         manage_users_description: Permet als usuaris veure els detalls d'altres usuaris i realitzar accions de moderació contra ells
         manage_webhooks: Gestionar Webhooks
@@ -1041,7 +1063,9 @@ ca:
       guide_link_text: Tothom hi pot contribuir.
     sensitive_content: Contingut sensible
   application_mailer:
+    notification_preferences: Canviar les preferències de correu-e
     salutation: "%{name},"
+    settings: 'Canviar les preferències de correu-e: %{link}'
     unsubscribe: Cancel·la la subscripció
     view: 'Visualització:'
     view_profile: Mostra el perfil
@@ -1061,6 +1085,7 @@ ca:
       hint_html: Una cosa més! Necessitem confirmar que ets una persona humana (és així com mantenim a ratlla l'spam). Resolt el CAPTCHA inferior i clica a "Segueix".
       title: Revisió de seguretat
     confirmations:
+      awaiting_review: S'ha confirmat la vostra adreça-e. El personal de %{domain} revisa ara el registre. Rebreu un correu si s'aprova el compte.
       awaiting_review_title: S'està revisant la teva inscripció
       clicking_this_link: en clicar aquest enllaç
       login_link: inici de sessió
@@ -1068,6 +1093,7 @@ ca:
       redirect_to_app_html: Se us hauria d'haver redirigit a l'app <strong>%{app_name}</strong>. Si això no ha passat, intenteu %{clicking_this_link} o torneu manualment a l'app.
       registration_complete: La teva inscripció a %{domain} ja és completa.
       welcome_title: Hola, %{name}!
+      wrong_email_hint: Si aquesta adreça de correu-e no és correcta, podeu canviar-la en els ajustos del compte.
     delete_account: Elimina el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
     description:
@@ -1110,6 +1136,7 @@ ca:
     security: Seguretat
     set_new_password: Estableix una contrasenya nova
     setup:
+      email_below_hint_html: Verifiqueu la carpeta de correu brossa o demaneu-ne un altre. Podeu corregir l'adreça de correu-e si no és correcta.
       email_settings_hint_html: Toca l'enllaç que t'hem enviat per a verificar %{email}. Esperarem aquí mateix.
       link_not_received: No has rebut l'enllaç?
       new_confirmation_instructions_sent: Rebràs un nou correu amb l'enllaç de confirmació en pocs minuts!
@@ -1123,12 +1150,19 @@ ca:
       title: Configurem-te a %{domain}.
     status:
       account_status: Estat del compte
+      confirming: Esperant que es completi la confirmació del correu-e.
       functional: El teu compte està completament operatiu.
       redirecting_to: El teu compte és inactiu perquè actualment està redirigint a %{acct}.
       self_destruct: Com que %{domain} tanca, només tindreu accés limitat al vostre compte.
       view_strikes: Veure accions del passat contra el teu compte
     too_fast: Formulari enviat massa ràpid, torna a provar-ho.
     use_security_key: Usa clau de seguretat
+  author_attribution:
+    example_title: Text d'exemple
+    hint_html: Controleu com se us acredita quan els enllaços es comparteixen a Mastodon.
+    more_from_html: Més de %{name}
+    s_blog: Blog de %{name}
+    title: Atribució d'autor
   challenge:
     confirm: Continua
     hint_html: "<strong>Pista:</strong> No et preguntarem un altre cop la teva contrasenya en la pròxima hora."
@@ -1200,8 +1234,6 @@ ca:
       your_appeal_approved: La teva apel·lació s'ha aprovat
       your_appeal_pending: Has enviat una apel·lació
       your_appeal_rejected: La teva apel·lació ha estat rebutjada
-  domain_validator:
-    invalid_domain: no es un nom de domini vàlid
   edit_profile:
     basic_information: Informació bàsica
     hint_html: "<strong>Personalitza el que la gent veu en el teu perfil públic i a prop dels teus tuts..</strong> És més probable que altres persones et segueixin i interaccionin amb tu quan tens emplenat el teu perfil i amb la teva imatge."
@@ -1398,6 +1430,7 @@ ca:
     authentication_methods:
       otp: aplicació d'autenticació de dos factors
       password: contrasenya
+      sign_in_token: codi de seguretat per correu electrònic
       webauthn: claus de seguretat
     description_html: Si veus activitat que no reconeixes, considera canviar la teva contrasenya i activar l'autenticació de dos factors.
     empty: Historial d'autenticació no disponible
@@ -1408,6 +1441,16 @@ ca:
     unsubscribe:
       action: Sí, canceŀla la subscripció
       complete: Subscripció cancel·lada
+      confirmation_html: Segur que vols donar-te de baixa de rebre %{type} de Mastodon a %{domain} a %{email}? Sempre pots subscriure't de nou des de la <a href="%{settings_path}">configuració de les notificacions per correu electrònic</a>.
+      emails:
+        notification_emails:
+          favourite: notificacions dels favorits per correu electrònic
+          follow: notificacions dels seguiments per correu electrònic
+          follow_request: correus electrònics de peticions de seguiment
+          mention: correus electrònics de notificacions de mencions
+          reblog: correus electrònics de notificacions d'impulsos
+      resubscribe_html: Si ets dones de baixa per error pots donar-te d'alta des de la <a href="%{settings_path}">configuració de les notificacions per correu electrònic</a>.
+      success_html: Ja no rebràs %{type} de Mastodon a %{domain} a %{email}.
       title: Cancel·la la subscripció
   media_attachments:
     validations:
@@ -1489,6 +1532,8 @@ ca:
     update:
       subject: "%{name} ha editat una publicació"
   notifications:
+    administration_emails: Notificacions per correu-e de l'administrador
+    email_events: Esdeveniments per a notificacions de correu electrònic
     email_events_hint: 'Selecciona els esdeveniments per als quals vols rebre notificacions:'
   number:
     human:
@@ -1647,6 +1692,7 @@ ca:
     import: Importació
     import_and_export: Importació i exportació
     migrate: Migració del compte
+    notifications: Notificacions per correu electrònic
     preferences: Preferències
     profile: Perfil
     relationships: Seguits i seguidors
@@ -1687,23 +1733,12 @@ ca:
     edited_at_html: Editat %{date}
     errors:
       in_reply_not_found: El tut al qual intentes respondre sembla que no existeix.
-    open_in_web: Obre en la web
     over_character_limit: Límit de caràcters de %{max} superat
     pin_errors:
       direct: Els tuts que només són visibles per als usuaris mencionats no poden ser fixats
       limit: Ja has fixat el màxim nombre de tuts
       ownership: No es pot fixar el tut d'algú altre
       reblog: No es pot fixar un impuls
-    poll:
-      total_people:
-        one: "%{count} persona"
-        other: "%{count} persones"
-      total_votes:
-        one: "%{count} vot"
-        other: "%{count} vots"
-      vote: Vota
-    show_more: Mostra'n més
-    show_thread: Mostra el fil
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Directe
@@ -1893,6 +1928,7 @@ ca:
     invalid_otp_token: El codi de dos factors no és correcte
     otp_lost_help_html: Si has perdut l'accés a tots dos pots contactar per %{email}
     rate_limited: Excessius intents d'autenticació, torneu-hi més tard.
+    seamless_external_login: Has iniciat sessió via un servei extern. Així, els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'
   verification:
     extra_instructions_html: <strong>Consell:</strong> l'enllaç al vostre lloc web pot ser invisible. La part important és <code>rel="me"</code> que evita que us suplantin la identitat a llocs web amb contingut generat pels usuaris. Fins i tot podeu generar una etiqueta <code>link</code> a la capçalera de la pàgina en comptes d'una <code>a</code>, però el codi HTML ha de ser accessible sense requerir executar JavaScript.
@@ -1901,6 +1937,7 @@ ca:
     instructions_html: Copieu i enganxeu el següent codi HTML al vostre lloc web. Després, afegiu l'adreça del vostre lloc web dins d'un dels camps extres del vostre perfil i deseu els canvis.
     verification: Verificació
     verified_links: Els teus enllaços verificats
+    website_verification: Verificació de web
   webauthn_credentials:
     add: Afegir nova clau de seguretat
     create:

@@ -68,7 +68,10 @@ RSpec.describe PostStatusService do
       it 'raises invalid record error' do
         expect do
           subject.call(account, text: 'Hi future!', scheduled_at: invalid_scheduled_time)
-        end.to raise_error(ActiveRecord::RecordInvalid)
+        end.to raise_error(
+          ActiveRecord::RecordInvalid,
+          'Validation failed: Scheduled at The scheduled date must be in the future'
+        )
       end
     end
   end
@@ -121,6 +124,15 @@ RSpec.describe PostStatusService do
 
     expect(status).to be_persisted
     expect(status.visibility).to eq 'private'
+  end
+
+  it 'raises on an invalid visibility' do
+    expect do
+      create_status_with_options(visibility: :xxx)
+    end.to raise_error(
+      ActiveRecord::RecordInvalid,
+      'Validation failed: Visibility is not included in the list'
+    )
   end
 
   it 'creates a status with limited visibility for silenced users' do

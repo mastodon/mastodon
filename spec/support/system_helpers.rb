@@ -16,4 +16,8 @@ module SystemHelpers
   def form_label(key)
     I18n.t key, scope: 'simple_form.labels'
   end
+
+  def css_id(record)
+    "##{dom_id(record)}"
+  end
 end

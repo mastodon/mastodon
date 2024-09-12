@@ -7,7 +7,6 @@ ja:
     hosted_on: Mastodon hosted on %{domain}
     title: このサーバーについて
   accounts:
-    follow: フォロー
     followers:
       other: フォロワー
     following: フォロー中
@@ -1213,8 +1212,6 @@ ja:
       your_appeal_approved: 申し立てが承認されました
       your_appeal_pending: 申し立てを送信しました
       your_appeal_rejected: 申し立ては拒否されました
-  domain_validator:
-    invalid_domain: は無効なドメイン名です
   edit_profile:
     basic_information: 基本情報
     hint_html: "<strong>アカウントのトップページや投稿の隣に表示される公開情報です。</strong>プロフィールとアイコンを設定することで、ほかのユーザーは親しみやすく、またフォローしやすくなります。"
@@ -1428,6 +1425,7 @@ ja:
   media_attachments:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません
+      not_found: メディア (%{ids}) が存在しないか、すでに添付して投稿されています
       not_ready: ファイルのアップロードに失敗しました。しばらくしてからもう一度お試しください！
       too_many: 追加できるファイルは4つまでです
   migrations:
@@ -1701,21 +1699,12 @@ ja:
     edited_at_html: "%{date} 編集済み"
     errors:
       in_reply_not_found: あなたが返信しようとしている投稿は存在しないようです。
-    open_in_web: Webで開く
     over_character_limit: 上限は%{max}文字です
     pin_errors:
       direct: 返信したユーザーのみに表示される投稿はピン留めできません
       limit: 固定できる投稿数の上限に達しました
       ownership: 他人の投稿を固定することはできません
       reblog: ブーストを固定することはできません
-    poll:
-      total_people:
-        other: "%{count}人"
-      total_votes:
-        other: "%{count}票"
-      vote: 投票
-    show_more: もっと見る
-    show_thread: スレッドを表示
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: ダイレクト

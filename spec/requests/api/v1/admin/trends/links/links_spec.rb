@@ -44,7 +44,7 @@ RSpec.describe 'Links' do
     end
 
     def expects_correct_link_data
-      expect(body_as_json).to match(
+      expect(response.parsed_body).to match(
         a_hash_including(
           url: preview_card.url,
           title: preview_card.title,
@@ -98,7 +98,7 @@ RSpec.describe 'Links' do
     it 'returns the link data' do
       subject
 
-      expect(body_as_json).to match(
+      expect(response.parsed_body).to match(
         a_hash_including(
           url: preview_card.url,
           title: preview_card.title,

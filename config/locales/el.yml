@@ -7,7 +7,6 @@ el:
     hosted_on: Το Mastodon φιλοξενείται στο %{domain}
     title: Σχετικά
   accounts:
-    follow: Ακολούθησε
     followers:
       one: Ακόλουθος
       other: Ακόλουθοι
@@ -1192,8 +1191,6 @@ el:
       your_appeal_approved: Η έφεση σου έχει εγκριθεί
       your_appeal_pending: Υπέβαλλες έφεση
       your_appeal_rejected: Η έφεση σου απορρίφθηκε
-  domain_validator:
-    invalid_domain: δεν είναι έγκυρο όνομα τομέα
   edit_profile:
     basic_information: Βασικές πληροφορίες
     hint_html: "<strong>Τροποποίησε τί βλέπουν άτομα στο δημόσιο προφίλ σου και δίπλα στις αναρτήσεις σου.</strong> Είναι πιο πιθανό κάποιος να σε ακολουθήσει πίσω και να αλληλεπιδράσουν μαζί σου αν έχεις ολοκληρωμένο προφίλ και εικόνα προφίλ."
@@ -1638,23 +1635,12 @@ el:
     edited_at_html: Επεξεργάστηκε στις %{date}
     errors:
       in_reply_not_found: Η ανάρτηση στην οποία προσπαθείς να απαντήσεις δεν φαίνεται να υπάρχει.
-    open_in_web: Άνοιγμα στο διαδίκτυο
     over_character_limit: υπέρβαση μέγιστου ορίου %{max} χαρακτήρων
     pin_errors:
       direct: Αναρτήσεις που είναι ορατές μόνο στους αναφερόμενους χρήστες δεν μπορούν να καρφιτσωθούν
       limit: Έχεις ήδη καρφιτσώσει το μέγιστο αριθμό επιτρεπτών αναρτήσεων
       ownership: Δεν μπορείς να καρφιτσώσεις ανάρτηση κάποιου άλλου
       reblog: Οι ενισχύσεις δεν καρφιτσώνονται
-    poll:
-      total_people:
-        one: "%{count} άτομο"
-        other: "%{count} άτομα"
-      total_votes:
-        one: "%{count} ψήφος"
-        other: "%{count} ψήφοι"
-      vote: Ψήφισε
-    show_more: Δείξε περισσότερα
-    show_thread: Εμφάνιση νήματος
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Άμεση

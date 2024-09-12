@@ -192,8 +192,8 @@ RSpec.describe FetchLinkCardService do
         context 'when encoding problems appear in title tag' do
           let(:status) { Fabricate(:status, text: 'Check out http://example.com/latin1_posing_as_utf8_broken') }
 
-          it 'does not create a preview card' do
-            expect(status.preview_card).to be_nil
+          it 'creates a preview card anyway that replaces invalid bytes with U+FFFD (replacement char)' do
+            expect(status.preview_card.title).to eq("Tofu � l'orange")
           end
         end
       end

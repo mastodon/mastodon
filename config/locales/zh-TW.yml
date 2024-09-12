@@ -7,7 +7,6 @@ zh-TW:
     hosted_on: 於 %{domain} 託管之 Mastodon 站點
     title: 關於本站
   accounts:
-    follow: 跟隨
     followers:
       other: 跟隨者
     following: 正在跟隨
@@ -23,6 +22,8 @@ zh-TW:
   admin:
     account_actions:
       action: 執行動作
+      already_silenced: 此帳號已被限制。
+      already_suspended: 此帳號已被停權。
       title: 對 %{acct} 執行站務動作
     account_moderation_notes:
       create: 新增站務記錄
@@ -44,6 +45,7 @@ zh-TW:
         title: 為 %{username} 變更電子郵件地址
       change_role:
         changed_msg: 成功修改角色！
+        edit_roles: 管理使用者權限
         label: 變更角色
         no_role: 沒有角色
         title: 為 %{username} 變更角色
@@ -590,6 +592,7 @@ zh-TW:
         suspend_description_html: 此帳號及其所有內容將不可被存取並且最終被移除，並且無法與之進行互動。三十天內可以撤銷此動作。關閉所有對此帳號之檢舉報告。
       actions_description_html: 決定應對此報告採取何種行動。若您對檢舉之帳號採取懲罰措施，則將對他們發送 e-mail 通知，除非選擇了 <strong>垃圾郵件</strong> 類別。
       actions_description_remote_html: 決定將對此檢舉報告採取何種動作。這將僅作用於<strong>您的伺服器</strong>與此遠端帳號及其內容之通訊行為。
+      actions_no_posts: 此報告無任何需要刪除之相關嘟文
       add_to_report: 加入更多至報告
       already_suspended_badges:
         local: 已自此伺服器停權
@@ -1141,6 +1144,12 @@ zh-TW:
       view_strikes: 檢視針對您帳號過去的警示
     too_fast: 送出表單的速度太快跟不上，請稍後再試。
     use_security_key: 使用安全金鑰
+  author_attribution:
+    example_title: 範例文字
+    hint_html: 控制如何於 Mastodon 上分享連結時註明您的貢獻。
+    more_from_html: 來自 %{name} 之更多內容
+    s_blog: "%{name} 的部落格"
+    title: 作者署名
   challenge:
     confirm: 繼續
     hint_html: "<strong>温馨小提醒：</strong> 我們於接下來一小時內不會再要求您輸入密碼。"
@@ -1215,8 +1224,6 @@ zh-TW:
       your_appeal_approved: 您的申訴已被批准
       your_appeal_pending: 您已遞交申訴
       your_appeal_rejected: 您的申訴已被駁回
-  domain_validator:
-    invalid_domain: 並非一個有效網域
   edit_profile:
     basic_information: 基本資訊
     hint_html: "<strong>自訂人們能於您個人檔案及嘟文旁所見之內容。</strong>當您完成填寫個人檔案及設定大頭貼後，其他人們比較願意跟隨您並與您互動。"
@@ -1265,7 +1272,7 @@ zh-TW:
       home: 首頁時間軸
       notifications: 通知
       public: 公開時間軸
-      thread: 對話
+      thread: 討論串
     edit:
       add_keyword: 新增關鍵字
       keywords: 關鍵字
@@ -1704,21 +1711,12 @@ zh-TW:
     edited_at_html: 編輯於 %{date}
     errors:
       in_reply_not_found: 您嘗試回覆的嘟文看起來不存在。
-    open_in_web: 以網頁開啟
     over_character_limit: 已超過 %{max} 字的限制
     pin_errors:
       direct: 無法釘選只有僅提及使用者可見之嘟文
       limit: 釘選嘟文的數量已達上限
       ownership: 不能釘選他人的嘟文
       reblog: 不能釘選轉嘟
-    poll:
-      total_people:
-        other: "%{count} 個人"
-      total_votes:
-        other: "%{count} 票"
-      vote: 投票
-    show_more: 顯示更多
-    show_thread: 顯示討論串
     title: "%{name}：「%{quote}」"
     visibilities:
       direct: 私訊
@@ -1916,6 +1914,7 @@ zh-TW:
     instructions_html: 複製及貼上以下程式碼至您個人網站之 HTML 中。接著透過「編輯個人檔案」將您網站網址加入您個人網站之額外欄位中，並儲存變更。
     verification: 驗證連結
     verified_links: 已驗證連結
+    website_verification: 網站驗證
   webauthn_credentials:
     add: 新增安全金鑰
     create:

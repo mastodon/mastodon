@@ -12,6 +12,41 @@ code {
   margin: 50px auto;
 }
 
+.form-section {
+  border-radius: 8px;
+  background: var(--surface-background-color);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.fade-out-top {
+  position: relative;
+  overflow: hidden;
+  height: 160px;
+
+  &::after {
+    content: '';
+    display: block;
+    background: linear-gradient(
+      to bottom,
+      var(--surface-background-color),
+      transparent
+    );
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+    width: 100%;
+    height: 100px;
+    pointer-events: none;
+  }
+
+  & > div {
+    position: absolute;
+    inset-inline-start: 0;
+    bottom: 0;
+  }
+}
+
 .indicator-icon {
   display: flex;
   align-items: center;

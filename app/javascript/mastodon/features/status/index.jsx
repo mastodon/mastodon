@@ -69,7 +69,7 @@ import Column from '../ui/components/column';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
 
 import ActionBar from './components/action_bar';
-import DetailedStatus from './components/detailed_status';
+import { DetailedStatus } from './components/detailed_status';
 
 
 const messages = defineMessages({

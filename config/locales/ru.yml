@@ -7,7 +7,6 @@ ru:
     hosted_on: Вы получили это сообщение, так как зарегистрированы на %{domain}
     title: О проекте
   accounts:
-    follow: Подписаться
     followers:
       few: подписчика
       many: подписчиков
@@ -1193,8 +1192,6 @@ ru:
       your_appeal_approved: Ваша апелляция одобрена
       your_appeal_pending: Вы подали апелляцию
       your_appeal_rejected: Ваша апелляция отклонена
-  domain_validator:
-    invalid_domain: не является корректным доменным именем
   edit_profile:
     basic_information: Основная информация
     hint_html: "<strong>Настройте то, что люди видят в вашем публичном профиле и рядом с вашими сообщениями.</strong> Другие люди с большей вероятностью подпишутся на Вас и будут взаимодействовать с вами, если у Вас заполнен профиль и добавлено изображение."
@@ -1694,27 +1691,12 @@ ru:
     edited_at_html: Редактировано %{date}
     errors:
       in_reply_not_found: Пост, на который вы пытаетесь ответить, не существует или удалён.
-    open_in_web: Открыть в веб-версии
     over_character_limit: превышен лимит символов (%{max})
     pin_errors:
       direct: Сообщения, видимые только упомянутым пользователям, не могут быть закреплены
       limit: Вы закрепили максимально возможное число постов
       ownership: Нельзя закрепить чужой пост
       reblog: Нельзя закрепить продвинутый пост
-    poll:
-      total_people:
-        few: "%{count} человека"
-        many: "%{count} человек"
-        one: "%{count} человек"
-        other: "%{count} человек"
-      total_votes:
-        few: "%{count} голоса"
-        many: "%{count} голосов"
-        one: "%{count} голос"
-        other: "%{count} голосов"
-      vote: Голосовать
-    show_more: Развернуть
-    show_thread: Открыть обсуждение
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Адресованный

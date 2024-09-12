@@ -7,7 +7,6 @@ fr:
     hosted_on: Serveur Mastodon hébergé sur %{domain}
     title: À propos
   accounts:
-    follow: Suivre
     followers:
       one: Abonné·e
       other: Abonné·e·s
@@ -25,6 +24,7 @@ fr:
   admin:
     account_actions:
       action: Effectuer l'action
+      already_suspended: Ce compte est déjà suspendu.
       title: Effectuer une action de modération sur %{acct}
     account_moderation_notes:
       create: Laisser une remarque
@@ -46,6 +46,7 @@ fr:
         title: Modifier l’adresse de courriel pour %{username}
       change_role:
         changed_msg: Rôle modifié avec succès !
+        edit_roles: Gérer les rôles d'utilisateur·ices
         label: Modifier le rôle
         no_role: Aucun rôle
         title: Modifier le rôle de %{username}
@@ -132,6 +133,7 @@ fr:
       resubscribe: Se réabonner
       role: Rôle
       search: Rechercher
+      search_same_email_domain: Autres utilisateurs avec le même domaine de courriel
       search_same_ip: Autres utilisateur·rice·s avec la même IP
       security: Sécurité
       security_measures:
@@ -187,9 +189,11 @@ fr:
         create_user_role: Créer le rôle
         demote_user: Rétrograder l’utilisateur·ice
         destroy_announcement: Supprimer l’annonce
+        destroy_canonical_email_block: Supprimer le blocage de courriel
         destroy_custom_emoji: Supprimer des émojis personnalisés
         destroy_domain_allow: Supprimer le domaine autorisé
         destroy_domain_block: Supprimer le blocage de domaine
+        destroy_email_domain_block: Supprimer le blocage de domaine de courriel
         destroy_instance: Purge du domaine
         destroy_ip_block: Supprimer la règle IP
         destroy_status: Supprimer le message
@@ -235,6 +239,7 @@ fr:
         confirm_user_html: "%{name} a confirmé l'adresse e-mail de l'utilisateur %{target}"
         create_account_warning_html: "%{name} a envoyé un avertissement à %{target}"
         create_announcement_html: "%{name} a créé une nouvelle annonce %{target}"
+        create_canonical_email_block_html: "%{name} a bloqué l'adresse email avec le hachage %{target}"
         create_custom_emoji_html: "%{name} a téléversé un nouvel émoji %{target}"
         create_domain_allow_html: "%{name} a autorisé la fédération avec le domaine %{target}"
         create_domain_block_html: "%{name} a bloqué le domaine %{target}"
@@ -244,6 +249,7 @@ fr:
         create_user_role_html: "%{name} a créé le rôle %{target}"
         demote_user_html: "%{name} a rétrogradé l'utilisateur·rice %{target}"
         destroy_announcement_html: "%{name} a supprimé l'annonce %{target}"
+        destroy_canonical_email_block_html: "%{name} a débloqué l'adresse email avec le hachage %{target}"
         destroy_custom_emoji_html: "%{name} a supprimé l'émoji %{target}"
         destroy_domain_allow_html: "%{name} a rejeté la fédération avec le domaine %{target}"
         destroy_domain_block_html: "%{name} a débloqué le domaine %{target}"
@@ -1215,8 +1221,6 @@ fr:
       your_appeal_approved: Votre appel a été approuvé
       your_appeal_pending: Vous avez soumis un appel
       your_appeal_rejected: Votre appel a été rejeté
-  domain_validator:
-    invalid_domain: n’est pas un nom de domaine valide
   edit_profile:
     basic_information: Informations de base
     hint_html: "<strong>Personnalisez ce que les gens voient sur votre profil public et à côté de vos messages.</strong> Les autres personnes seront plus susceptibles de vous suivre et d’interagir avec vous lorsque vous avez un profil complet et une photo."
@@ -1428,6 +1432,7 @@ fr:
   media_attachments:
     validations:
       images_and_video: Impossible de joindre une vidéo à un message contenant déjà des images
+      not_found: Média %{ids} introuvable ou déjà attaché à un autre message
       not_ready: Impossible de joindre les fichiers en cours de traitement. Réessayez dans un instant !
       too_many: Impossible de joindre plus de 4 fichiers
   migrations:
@@ -1705,23 +1710,12 @@ fr:
     edited_at_html: Modifié le %{date}
     errors:
       in_reply_not_found: Le message auquel vous essayez de répondre ne semble pas exister.
-    open_in_web: Ouvrir sur le web
     over_character_limit: limite de %{max} caractères dépassée
     pin_errors:
       direct: Les messages qui ne sont visibles que pour les utilisateur·rice·s mentionné·e·s ne peuvent pas être épinglés
       limit: Vous avez déjà épinglé le nombre maximum de messages
       ownership: Vous ne pouvez pas épingler un message ne vous appartenant pas
       reblog: Un partage ne peut pas être épinglé
-    poll:
-      total_people:
-        one: "%{count} personne"
-        other: "%{count} personnes"
-      total_votes:
-        one: "%{count} vote"
-        other: "%{count} votes"
-      vote: Voter
-    show_more: Déplier
-    show_thread: Afficher le fil de discussion
     title: "%{name} : « %{quote} »"
     visibilities:
       direct: Direct

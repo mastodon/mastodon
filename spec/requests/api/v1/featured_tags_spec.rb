@@ -37,7 +37,7 @@ RSpec.describe 'FeaturedTags' do
       it 'returns an empty body' do
         get '/api/v1/featured_tags', headers: headers
 
-        expect(body_as_json).to be_empty
+        expect(response.parsed_body).to be_empty
       end
     end
 
@@ -47,7 +47,7 @@ RSpec.describe 'FeaturedTags' do
       it 'returns only the featured tags belonging to the requesting user' do
         get '/api/v1/featured_tags', headers: headers
 
-        expect(body_as_json.pluck(:id))
+        expect(response.parsed_body.pluck(:id))
           .to match_array(
             user_featured_tags.pluck(:id).map(&:to_s)
           )
@@ -67,7 +67,7 @@ RSpec.describe 'FeaturedTags' do
     it 'returns the correct tag name' do
       post '/api/v1/featured_tags', headers: headers, params: params
 
-      expect(body_as_json)
+      expect(response.parsed_body)
         .to include(
           name: params[:name]
         )
@@ -141,7 +141,7 @@ RSpec.describe 'FeaturedTags' do
     it 'returns an empty body' do
       delete "/api/v1/featured_tags/#{id}", headers: headers
 
-      expect(body_as_json).to be_empty
+      expect(response.parsed_body).to be_empty
     end
 
     it 'deletes the featured tag', :inline_jobs do

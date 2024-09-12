@@ -7,7 +7,6 @@ lt:
     hosted_on: Mastodon talpinamas %{domain}
     title: Apie
   accounts:
-    follow: Sekti
     followers:
       few: Sekėjai
       many: Sekėjo
@@ -29,6 +28,8 @@ lt:
   admin:
     account_actions:
       action: Atlikti veiksmą
+      already_silenced: Ši paskyra jau buvo apribota.
+      already_suspended: Ši paskyra jau sustabdyta.
       title: Atlikti prižiūrėjimo veiksmą %{acct}
     account_moderation_notes:
       create: Palikti pastabą
@@ -49,6 +50,7 @@ lt:
         title: Keisti el. paštą %{username}
       change_role:
         changed_msg: Vaidmuo sėkmingai pakeistas.
+        edit_roles: Tvarkyti naudotojų vaidmenis
         label: Keisti vaidmenį
         no_role: Jokios vaidmenį
         title: Keisti vaidmenį %{username}
@@ -485,6 +487,7 @@ lt:
       destroyed_msg: Skundo žinutė sekmingai ištrinta!
     reports:
       action_taken_by: Veiksmo ėmėsi
+      actions_no_posts: Ši ataskaita neturi jokių susijusių įrašų ištrinti
       already_suspended_badges:
         local: Jau sustabdytas šiame serveryje
         remote: Jau sustabdytas jų serveryje
@@ -797,6 +800,12 @@ lt:
       redirecting_to: Tavo paskyra yra neaktyvi, nes šiuo metu ji nukreipiama į %{acct}.
       self_destruct: Kadangi %{domain} uždaromas, turėsi tik ribotą prieigą prie savo paskyros.
       view_strikes: Peržiūrėti ankstesnius savo paskyros pažeidimus
+  author_attribution:
+    example_title: Teksto pavyzdys
+    hint_html: Valdyk, kaip esi nurodomas (-a), kai nuorodos bendrinamos platformoje „Mastodon“.
+    more_from_html: Daugiau iš %{name}
+    s_blog: "%{name} tinklaraštis"
+    title: Autoriaus (-ės) atribucija
   challenge:
     hint_html: "<strong>Patarimas:</strong> artimiausią valandą daugiau neprašysime tavo slaptažodžio."
   datetime:
@@ -1036,7 +1045,7 @@ lt:
       generic: Nežinoma naršyklė
     current_session: Dabartinis seansas
     date: Data
-    description: "%{browser} ant %{platform}"
+    description: "„%{browser}“ per „%{platform}“"
     explanation: Čia rodomos web naršyklės prijungtos prie Jūsų Mastodon paskyros.
     ip: IP
     platforms:
@@ -1097,16 +1106,11 @@ lt:
         other: "%{count} vaizdų"
     boosted_from_html: Pakelta iš %{acct_link}
     content_warning: 'Turinio įspėjimas: %{warning}'
-    open_in_web: Atidaryti naudojan Web
     over_character_limit: pasiektas %{max} simbolių limitas
     pin_errors:
       limit: Jūs jau prisegėte maksimalų toot'ų skaičų
       ownership: Kitų vartotojų toot'ai negali būti prisegti
       reblog: Pakeltos žinutės negali būti prisegtos
-    poll:
-      vote: Balsuoti
-    show_more: Rodyti daugiau
-    show_thread: Rodyti giją
     visibilities:
       private: Tik sekėjams
       private_long: rodyti tik sekėjams
@@ -1116,6 +1120,7 @@ lt:
       unlisted_long: matyti gali visi, bet nėra išvardyti į viešąsias laiko skales
   statuses_cleanup:
     enabled_hint: Automatiškai ištrina įrašus, kai jie pasiekia nustatytą amžiaus ribą, nebent jie atitinka vieną iš toliau nurodytų išimčių
+    interaction_exceptions_explanation: Atkreipk dėmesį, kad negarantuojama, jog įrašai nebus ištrinti, jei jų mėgstamumo ar pasidalinimo riba bus žemesnė, nors vieną kartą ji jau buvo viršyta.
     keep_polls_hint: Neištrina jokių tavo apklausų
     keep_self_bookmark: Laikyti įrašus, kuriuos pažymėjai
     keep_self_bookmark_hint: Neištrina tavo pačių įrašų, jei esi juos pažymėjęs (-usi)
@@ -1226,6 +1231,7 @@ lt:
     instructions_html: Nukopijuok ir įklijuok toliau pateiktą kodą į savo svetainės HTML. Tada į vieną iš papildomų profilio laukų skirtuke Redaguoti profilį įrašyk savo svetainės adresą ir išsaugok pakeitimus.
     verification: Patvirtinimas
     verified_links: Tavo patikrintos nuorodos
+    website_verification: Svetainės patvirtinimas
   webauthn_credentials:
     add: Pridėti naują saugumo raktą
     create:

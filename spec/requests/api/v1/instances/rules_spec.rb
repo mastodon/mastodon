@@ -10,7 +10,7 @@ RSpec.describe 'Rules' do
       expect(response)
         .to have_http_status(200)
 
-      expect(body_as_json)
+      expect(response.parsed_body)
         .to be_an(Array)
     end
   end

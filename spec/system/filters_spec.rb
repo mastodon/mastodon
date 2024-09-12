@@ -29,7 +29,7 @@ RSpec.describe 'Filters' do
       click_on filter_title
 
       fill_in filter_title_field, with: new_title
-      click_on I18n.t('generic.save_changes')
+      click_on submit_button
 
       expect(page).to have_content(new_title)
     end

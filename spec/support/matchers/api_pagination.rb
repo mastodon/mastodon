@@ -3,7 +3,7 @@
 RSpec::Matchers.define :include_pagination_headers do |links|
   match do |response|
     links.map do |key, value|
-      response.headers['Link'].find_link(['rel', key.to_s]).href == value
+      expect(response).to have_http_link_header(value).for(rel: key.to_s)
     end.all?
   end
 

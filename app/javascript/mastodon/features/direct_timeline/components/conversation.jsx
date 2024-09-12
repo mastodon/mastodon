@@ -170,7 +170,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
 
   return (
     <HotKeys handlers={handlers}>
-      <div className={classNames('conversation focusable muted', { 'conversation--unread': unread })} tabIndex={0}>
+      <div className={classNames('conversation focusable muted', { unread })} tabIndex={0}>
         <div className='conversation__avatar' onClick={handleClick} role='presentation'>
           <AvatarComposite accounts={accounts} size={48} />
         </div>

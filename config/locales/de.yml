@@ -7,7 +7,6 @@ de:
     hosted_on: Mastodon, gehostet auf %{domain}
     title: Über
   accounts:
-    follow: Folgen
     followers:
       one: Follower
       other: Follower
@@ -25,6 +24,8 @@ de:
   admin:
     account_actions:
       action: Aktion ausführen
+      already_silenced: Dieses Konto wurde bereits eingeschränkt.
+      already_suspended: Dieses Konto wurde bereits gesperrt.
       title: "@%{acct} moderieren"
     account_moderation_notes:
       create: Notiz abspeichern
@@ -46,6 +47,7 @@ de:
         title: E-Mail-Adresse für %{username} ändern
       change_role:
         changed_msg: Rolle erfolgreich geändert!
+        edit_roles: Rollen verwalten
         label: Rolle ändern
         no_role: Keine Rolle
         title: Rolle für %{username} ändern
@@ -602,6 +604,7 @@ de:
         suspend_description_html: Das Konto und alle Inhalte werden unzugänglich und ggf. gelöscht. Eine Interaktion mit dem Konto wird unmöglich. Dies kann innerhalb von 30 Tagen rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
       actions_description_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Wenn du eine Strafmaßnahme gegen das gemeldete Konto ergreifst, wird eine E-Mail-Benachrichtigung an dieses gesendet, außer wenn die <strong>Spam</strong>-Kategorie ausgewählt ist.
       actions_description_remote_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Dies wirkt sich lediglich darauf aus, wie <strong>dein</strong> Server mit diesem externen Konto kommuniziert und dessen Inhalt handhabt.
+      actions_no_posts: Diese Meldung enthält keine zu löschenden Beiträge
       add_to_report: Meldung ergänzen
       already_suspended_badges:
         local: Auf diesem Server bereits gesperrt
@@ -1157,6 +1160,12 @@ de:
       view_strikes: Vorherige Verstöße deines Kontos ansehen
     too_fast: Formular zu schnell übermittelt. Bitte versuche es erneut.
     use_security_key: Sicherheitsschlüssel verwenden
+  author_attribution:
+    example_title: Beispieltext
+    hint_html: Bestimme, wie du Anerkennungen durch geteilte Links auf Mastodon handhaben möchtest.
+    more_from_html: Mehr von %{name}
+    s_blog: Blog von %{name}
+    title: Anerkennung als Autor*in
   challenge:
     confirm: Fortfahren
     hint_html: "<strong>Hinweis:</strong> Wir werden dich für die nächste Stunde nicht erneut nach deinem Passwort fragen."
@@ -1231,8 +1240,6 @@ de:
       your_appeal_approved: Dein Einspruch wurde angenommen
       your_appeal_pending: Du hast Einspruch erhoben
       your_appeal_rejected: Dein Einspruch wurde abgelehnt
-  domain_validator:
-    invalid_domain: ist keine gültige Domain
   edit_profile:
     basic_information: Allgemeine Informationen
     hint_html: "<strong>Bestimme, was andere auf deinem öffentlichen Profil und neben deinen Beiträgen sehen können.</strong> Wenn du ein Profilbild festlegst und dein Profil vervollständigst, werden andere eher mit dir interagieren und dir folgen."
@@ -1454,7 +1461,7 @@ de:
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag angehängt werden, der bereits Bilder enthält
-      not_found: Medien %{ids} nicht verfügbar oder bereits an einen anderen Beitrag angehängt
+      not_found: Medieninhalt(e) %{ids} nicht gefunden oder bereits an einen anderen Beitrag angehängt
       not_ready: Dateien, die noch nicht verarbeitet wurden, können nicht angehängt werden. Versuche es gleich noch einmal!
       too_many: Mehr als vier Dateien können nicht angehängt werden
   migrations:
@@ -1732,23 +1739,12 @@ de:
     edited_at_html: 'Bearbeitet: %{date}'
     errors:
       in_reply_not_found: Der Beitrag, auf den du antworten möchtest, scheint nicht zu existieren.
-    open_in_web: Im Webinterface öffnen
     over_character_limit: Begrenzung von %{max} Zeichen überschritten
     pin_errors:
       direct: Beiträge, die nur für erwähnte Profile sichtbar sind, können nicht angeheftet werden
       limit: Du hast bereits die maximale Anzahl an Beiträgen angeheftet
       ownership: Du kannst nur eigene Beiträge anheften
       reblog: Du kannst keine geteilten Beiträge anheften
-    poll:
-      total_people:
-        one: "%{count} Stimme"
-        other: "%{count} Stimmen"
-      total_votes:
-        one: "%{count} Stimme"
-        other: "%{count} Stimmen"
-      vote: Abstimmen
-    show_more: Mehr anzeigen
-    show_thread: Thread anzeigen
     title: "%{name}: „%{quote}“"
     visibilities:
       direct: Direktnachricht
@@ -1947,6 +1943,7 @@ de:
     instructions_html: Kopiere den unten stehenden Code und füge ihn in das HTML deiner Website ein. Trage anschließend die Adresse deiner Website in ein Zusatzfeld auf deinem Profil ein und speichere die Änderungen. Die Zusatzfelder befinden sich im Reiter „Profil bearbeiten“.
     verification: Verifizierung
     verified_links: Deine verifizierten Links
+    website_verification: Website-Verifizierung
   webauthn_credentials:
     add: Sicherheitsschlüssel hinzufügen
     create:

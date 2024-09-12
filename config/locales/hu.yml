@@ -7,7 +7,6 @@ hu:
     hosted_on: "%{domain} Mastodon-kiszolgáló"
     title: Névjegy
   accounts:
-    follow: Követés
     followers:
       one: Követő
       other: Követő
@@ -25,6 +24,8 @@ hu:
   admin:
     account_actions:
       action: Művelet végrehajtása
+      already_silenced: Ezt a fiókot már korlátozták.
+      already_suspended: Ezt a fiókot már felfüggesztették.
       title: 'Moderálási művelet végrehajtása ezen: %{acct}'
     account_moderation_notes:
       create: Megjegyzés hagyása
@@ -46,6 +47,7 @@ hu:
         title: "%{username} e-mail-címének megváltoztatása"
       change_role:
         changed_msg: A szerep sikeresen megváltoztatva!
+        edit_roles: Felhasználói szerepkörök kezelése
         label: Szerep megváltoztatása
         no_role: Nincs szerep
         title: "%{username} szerepének megváltoztatása"
@@ -602,6 +604,7 @@ hu:
         suspend_description_html: A fiók és minden tartalma elérhetetlenné válik és végül törlésre kerül. A fiókkal kapcsolatbalépni lehetetlen lesz. Ez a művelet 30 napig visszafordítható. A fiók ellen indított minden bejelentést lezárunk.
       actions_description_html: Döntsd el, mit csináljunk, hogy megoldjuk ezt a bejelentést. Ha valamilyen büntető intézkedést hozol a bejelentett fiók ellen, küldünk neki egy figyelmeztetést e-mailben, kivéve ha a <strong>Spam</strong> kategóriát választod.
       actions_description_remote_html: Döntsd el, mit tegyünk a bejelentés lezárásának érdekében. Ez csak azt befolyásolja, hogy a <strong>saját</strong> kiszolgálód hogyan kommunikál ezzel a távoli fiókkal és hogyan kezeli annak tartalmait.
+      actions_no_posts: Ennek a bejelentésnek nincs egyetlen törölhető, társított bejegyzése sem
       add_to_report: Továbbiak hozzáadása a bejelentéshez
       already_suspended_badges:
         local: Már felfüggesztették ezen a szerveren
@@ -1157,6 +1160,12 @@ hu:
       view_strikes: Fiókod ellen felrótt korábbi vétségek megtekintése
     too_fast: Túl gyorsan küldted el az űrlapot, próbáld később.
     use_security_key: Biztonsági kulcs használata
+  author_attribution:
+    example_title: Mintaszöveg
+    hint_html: Szabályozd, hogyan hivatkoznak rád, amikor linket osztanak meg Mastodonon.
+    more_from_html: 'Több tőle: %{name}'
+    s_blog: "%{name} blogja"
+    title: Szerző forrásmegjelölése
   challenge:
     confirm: Folytatás
     hint_html: "<strong>Hasznos:</strong> Nem fogjuk megint a jelszavadat kérdezni a következő órában."
@@ -1231,8 +1240,6 @@ hu:
       your_appeal_approved: A fellebbezésedet jóváhagyták
       your_appeal_pending: Beküldtél egy fellebbezést
       your_appeal_rejected: A fellebbezésedet visszautasították
-  domain_validator:
-    invalid_domain: nem egy valódi domain név
   edit_profile:
     basic_information: Általános információk
     hint_html: "<strong>Tedd egyedivé, mi látnak mások a profilodon és a bejegyzéseid mellett.</strong> Mások nagyobb eséllyel követnek vissza és lépnek veled kapcsolatba, ha van kitöltött profilod és profilképed."
@@ -1732,23 +1739,12 @@ hu:
     edited_at_html: 'Szerkesztve: %{date}'
     errors:
       in_reply_not_found: Már nem létezik az a bejegyzés, melyre válaszolni szeretnél.
-    open_in_web: Megnyitás a weben
     over_character_limit: túllépted a maximális %{max} karakteres keretet
     pin_errors:
       direct: A csak a megemlített felhasználók számára látható bejegyzések nem tűzhetők ki
       limit: Elérted a kitűzhető bejegyzések maximális számát
       ownership: Nem tűzheted ki valaki más bejegyzését
       reblog: Megtolt bejegyzést nem tudsz kitűzni
-    poll:
-      total_people:
-        one: "%{count} személy"
-        other: "%{count} személy"
-      total_votes:
-        one: "%{count} szavazat"
-        other: "%{count} szavazat"
-      vote: Szavazás
-    show_more: Több megjelenítése
-    show_thread: Szál mutatása
     title: "%{name}: „%{quote}”"
     visibilities:
       direct: Közvetlen
@@ -1945,8 +1941,9 @@ hu:
     here_is_how: Itt van, hogyan kell
     hint_html: "<strong>A személyazonosságod ellenőrizhetősége a Mastodonon mindenki számára elérhető.</strong> Ez nyílt webes szabványok alapján, most és mindörökké szabadon és ingyenesen történik. Ehhez csak egy saját weboldalra van szükséged, mely alapján mások felismernek téged. Ha a profilodról erre a weboldalra hivatkozol, mi ellenőrizzük, hogy erről az oldalról visszahivatkozol-e a profilodra, és siker esetén erről vizuális jelzést is adunk a profilodon."
     instructions_html: Az alábbi kódot másold be a weboldalad HTML kódjába. Ezután add hozzá a weboldalad címét a profilod egyik extra mezőjéhez a "Profil szerkesztése" fülön és mentsd a változásokat.
-    verification: Hitelesítés
+    verification: Ellenőrzés
     verified_links: Ellenőrzött hivatkozásaid
+    website_verification: Weboldal ellenőrzése
   webauthn_credentials:
     add: Biztonsági kulcs hozzáadása
     create:

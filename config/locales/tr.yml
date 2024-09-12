@@ -7,7 +7,6 @@ tr:
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
     title: Hakkında
   accounts:
-    follow: Takip et
     followers:
       one: Takipçi
       other: Takipçiler
@@ -25,6 +24,8 @@ tr:
   admin:
     account_actions:
       action: Eylemi gerçekleştir
+      already_silenced: Bu hesap zaten sınırlanmış.
+      already_suspended: Bu hesap zaten askıya alınmış.
       title: "%{acct} üzerinde denetleme eylemi gerçekleştir"
     account_moderation_notes:
       create: Not bırak
@@ -46,6 +47,7 @@ tr:
         title: "%{username} için e-postayı değiştir"
       change_role:
         changed_msg: Rol başarıyla değiştirildi!
+        edit_roles: Kullanıcı rollerini yönetin
         label: Rolü değiştir
         no_role: Rol yok
         title: "%{username} için rolü değiştir"
@@ -602,6 +604,7 @@ tr:
         suspend_description_html: Bu hesap ve tüm içeriği erişilmez olacak ve nihayetinde silinecek ve bu hesapla etkileşim mümkün olmayacaktır. 30 gün içinde geri alınabilir. Bu hesaba yönelik tüm bildiriimleri kapatır.
       actions_description_html: Bu bildirimi çözmek için ne yapılması gerektiğine karar verin. Bildirilen hesap için ceza işlemi yaparsanız, <strong>İstenmeyen</strong> kategorisi seçilmemişse, onlara bir e-posta duyurusu gönderilecektir.
       actions_description_remote_html: Bu bildirimi çözmek için hangi eylemi yapmak istediğinize karar verin. Bu yalnızca <strong>sizin</strong> sunucunuzun bu uzak hesapla nasıl etkileşeğini ve içeriğiyle ne yapacağını etkiler.
+      actions_no_posts: Bu raporun ilişkili olduğu silinecek gönderi yok
       add_to_report: Bildirime daha fazlasını ekle
       already_suspended_badges:
         local: Bu sunucuda zaten askıya alınmış
@@ -1157,6 +1160,12 @@ tr:
       view_strikes: Hesabınıza yönelik eski eylemleri görüntüleyin
     too_fast: Form çok hızlı gönderildi, tekrar deneyin.
     use_security_key: Güvenlik anahtarını kullan
+  author_attribution:
+    example_title: Örnek metin
+    hint_html: Mastodon'da bağlantılar paylaşıldığında nasıl tanınmak istediğinizi denetleyin.
+    more_from_html: "%{name} kişisinden daha fazlası"
+    s_blog: "%{name} kişisinin Günlüğü"
+    title: Yazar atıfı
   challenge:
     confirm: Devam et
     hint_html: "<strong>İpucu:</strong> Önümüzdeki saat boyunca sana parolanı sormayacağız."
@@ -1231,8 +1240,6 @@ tr:
       your_appeal_approved: İtirazınız onaylandı
       your_appeal_pending: Bir itiraz gönderdiniz
       your_appeal_rejected: İtirazınız reddedildi
-  domain_validator:
-    invalid_domain: geçerli bir alan adı değil
   edit_profile:
     basic_information: Temel bilgiler
     hint_html: "<strong>İnsanlara herkese açık profilinizde ve gönderilerinizin yanında ne göstermek istediğinizi düzenleyin.</strong> Dolu bir profile ve bir profil resmine sahip olduğunuzda diğer insanlar daha yüksek ihtimalle sizi takip etmek ve sizinle etkileşime geçmek isteyeceklerdir."
@@ -1732,23 +1739,12 @@ tr:
     edited_at_html: "%{date} tarihinde düzenlendi"
     errors:
       in_reply_not_found: Yanıtlamaya çalıştığınız durum yok gibi görünüyor.
-    open_in_web: Web sayfasında aç
     over_character_limit: "%{max} karakter limiti aşıldı"
     pin_errors:
       direct: Sadece değinilen kullanıcıların görebileceği gönderiler üstte tutulamaz
       limit: Halihazırda maksimum sayıda gönderi sabitlediniz
       ownership: Başkasının gönderisi sabitlenemez
       reblog: Bir gönderi sabitlenemez
-    poll:
-      total_people:
-        one: "%{count} kişi"
-        other: "%{count} kişiler"
-      total_votes:
-        one: "%{count} oy"
-        other: "%{count} oylar"
-      vote: Oy Ver
-    show_more: Daha fazlasını göster
-    show_thread: Konuyu göster
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Doğrudan
@@ -1947,6 +1943,7 @@ tr:
     instructions_html: Aşağıdaki kodu kopyalayın ve websitenizin HTML'sine yapıştırın. Daha sonra "Profil Düzenle" sekmesini kullanarak profilinizdeki ek sahalardan birine websitenizin adresini ekleyin ve değişiklikleri kaydedin.
     verification: Doğrulama
     verified_links: Doğrulanmış bağlantılarınız
+    website_verification: Website doğrulama
   webauthn_credentials:
     add: Yeni güvenlik anahtarı ekle
     create:

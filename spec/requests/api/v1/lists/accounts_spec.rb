@@ -34,7 +34,7 @@ RSpec.describe 'Accounts' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json).to match_array(expected_response)
+      expect(response.parsed_body).to match_array(expected_response)
     end
 
     context 'with limit param' do
@@ -43,7 +43,7 @@ RSpec.describe 'Accounts' do
       it 'returns only the requested number of accounts' do
         subject
 
-        expect(body_as_json.size).to eq(params[:limit])
+        expect(response.parsed_body.size).to eq(params[:limit])
       end
     end
   end

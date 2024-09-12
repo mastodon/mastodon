@@ -7,7 +7,6 @@ sq:
     hosted_on: Server Mastodon i strehuar në %{domain}
     title: Mbi
   accounts:
-    follow: Ndiqeni
     followers:
       one: Ndjekës
       other: Ndjekës
@@ -25,6 +24,8 @@ sq:
   admin:
     account_actions:
       action: Kryeje veprimin
+      already_silenced: Kjo llogari është kufizuar tashmë.
+      already_suspended: Kjo llogari është pezulluar tashmë.
       title: Kryeni veprim moderimi te %{acct}
     account_moderation_notes:
       create: Lini një shënim
@@ -46,6 +47,7 @@ sq:
         title: Ndrysho email-in për %{username}
       change_role:
         changed_msg: Roli u ndryshua me sukses!
+        edit_roles: Administroni role përdoruesish
         label: Ndryshoni rol
         no_role: Pa rol
         title: Ndryshoni rolin për %{username}
@@ -600,6 +602,7 @@ sq:
         suspend_description_html: Llogaria dhe krejt lënda e saj s’do të jenë të përdorshme dhe, së fundi, do të fshihen dhe ndërveprimi me te do të jetë i pamundur. E prapakthyeshme brenda 30 ditësh. Mbyll krejt raportimet kundër kësaj llogarie.
       actions_description_html: Vendosni cili veprim të kryhet për të zgjidhur këtë raportim. Nëse ndërmerrni një veprim ndëshkues kundër llogarisë së raportuar, atyre do t’u dërgohet një njoftim me email, hiq rastin kur përzgjidhet kategoria <strong>I padëshiruar</strong>.
       actions_description_remote_html: Vendosni cili veprim të ndërmerret për zgjidhjen e këtij raportimi. Kjo do të prekë vetëm mënyrën se si shërbyesi <strong>juaj</strong> komunikon me këtë llogari të largët dhe se si e trajtojnë lëndën e saj.
+      actions_no_posts: Ky raportim s’ka ndonjë postim të përshoqëruar, për fshirje
       add_to_report: Shtoni më tepër te raportimi
       already_suspended_badges:
         local: Tashmë i pezulluar në këtë shërbyes
@@ -1149,6 +1152,12 @@ sq:
       view_strikes: Shihni paralajmërime të dikurshme kundër llogarisë tuaj
     too_fast: Formulari u parashtrua shumë shpejt, riprovoni.
     use_security_key: Përdor kyç sigurie
+  author_attribution:
+    example_title: Tekst shembull
+    hint_html: Kontrolloni se si vlerësoheni, kur ndahen lidhje me të tjerë në Mastodon.
+    more_from_html: Më tepër nga %{name}
+    s_blog: Blogu i %{name}
+    title: Atribuim autorësh
   challenge:
     confirm: Vazhdo
     hint_html: "<strong>Ndihmëz:</strong> S’do t’ju pyesim për fjalëkalimin tuaj sërish, për një orë."
@@ -1223,8 +1232,6 @@ sq:
       your_appeal_approved: Apelimi juaj u miratua
       your_appeal_pending: Keni parashtruar një apelim
       your_appeal_rejected: Apelimi juaj është hedhur poshtë
-  domain_validator:
-    invalid_domain: s’është emër i vlefshëm përkatësie
   edit_profile:
     basic_information: Hollësi elementare
     hint_html: "<strong>Përshtatni ç’shohin njerëzit në profilin tuaj publik dhe në krah të postimeve tuaja.</strong> Personat e tjerë ka më shumë gjasa t’ju ndjekin dhe ndërveprojnë me ju, kur keni të plotësuar profilin dhe një foto profili."
@@ -1724,23 +1731,12 @@ sq:
     edited_at_html: Përpunuar më %{date}
     errors:
       in_reply_not_found: Gjendja të cilës po provoni t’i përgjigjeni s’duket se ekziston.
-    open_in_web: Hape në internet
     over_character_limit: u tejkalua kufi shenjash prej %{max}
     pin_errors:
       direct: Postimet që janë të dukshme vetëm për përdoruesit e përmendur s’mund të fiksohen
       limit: Keni fiksuar tashmë numrin maksimum të mesazheve
       ownership: S’mund të fiksohen mesazhet e të tjerëve
       reblog: S’mund të fiksohet një përforcim
-    poll:
-      total_people:
-        one: "%{count} person"
-        other: "%{count} vetë"
-      total_votes:
-        one: "%{count} votë"
-        other: "%{count} vota"
-      vote: Votë
-    show_more: Shfaq më tepër
-    show_thread: Shfaq rrjedhën
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: I drejtpërdrejtë
@@ -1939,6 +1935,7 @@ sq:
     instructions_html: Kopjoni dhe ngjitni në HTML-në e sajtit tuaj kodin më poshtë. Mandej shtoni adresën e sajtit tuaj te një nga fushat shtesë në profilin tuaj, që nga skeda “Përpunoni profil” dhe ruani ndryshimet.
     verification: Verifikim
     verified_links: Lidhjet tuaja të verifikuara
+    website_verification: Verifikim sajti
   webauthn_credentials:
     add: Shtoni kyç të ri sigurie
     create:

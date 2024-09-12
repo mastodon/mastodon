@@ -10,6 +10,13 @@ class AnnualReport::Source
 
   protected
 
+  def report_statuses
+    @account
+      .statuses
+      .where(id: year_as_snowflake_range)
+      .reorder(nil)
+  end
+
   def year_as_snowflake_range
     (beginning_snowflake_id..ending_snowflake_id)
   end

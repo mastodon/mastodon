@@ -111,7 +111,7 @@ RSpec.describe 'Confirmations' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json).to be false
+          expect(response.parsed_body).to be false
         end
       end
 
@@ -122,7 +122,7 @@ RSpec.describe 'Confirmations' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json).to be true
+          expect(response.parsed_body).to be true
         end
       end
     end
@@ -139,7 +139,7 @@ RSpec.describe 'Confirmations' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json).to be false
+          expect(response.parsed_body).to be false
         end
       end
 
@@ -150,7 +150,7 @@ RSpec.describe 'Confirmations' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json).to be true
+          expect(response.parsed_body).to be true
         end
       end
     end
