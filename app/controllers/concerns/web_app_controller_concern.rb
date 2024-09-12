@@ -8,6 +8,16 @@ module WebAppControllerConcern
 
     before_action :redirect_unauthenticated_to_permalinks!
     before_action :set_app_body_class
+
+    content_security_policy do |p|
+      policy = ContentSecurityPolicy.new
+
+      if policy.sso_host.present?
+        p.form_action policy.sso_host
+      else
+        p.form_action :none
+      end
+    end
   end
 
   def skip_csrf_meta_tags?

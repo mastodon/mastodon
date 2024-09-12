@@ -26,7 +26,7 @@ RSpec.describe 'Content-Security-Policy' do
       connect-src 'self' data: blob: https://cb6e6126.ngrok.io #{Rails.configuration.x.streaming_api_base_url}
       default-src 'none'
       font-src 'self' https://cb6e6126.ngrok.io
-      form-action 'self'
+      form-action 'none'
       frame-ancestors 'none'
       frame-src 'self' https:
       img-src 'self' data: blob: https://cb6e6126.ngrok.io
