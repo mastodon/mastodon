@@ -15,15 +15,15 @@ module Account::Search
 
   REPUTATION_SCORE_FUNCTION = <<~SQL.squish
     (
-        greatest(0, coalesce(s.followers_count, 0)) / (
-            greatest(0, coalesce(s.following_count, 0)) + 1.0
+        coalesce(s.followers_count, 0) / (
+            coalesce(s.following_count, 0) + 1.0
         )
     )
   SQL
 
   FOLLOWERS_SCORE_FUNCTION = <<~SQL.squish
     log(
-        greatest(0, coalesce(s.followers_count, 0)) + 2
+        coalesce(s.followers_count, 0) + 2
     )
   SQL
 
