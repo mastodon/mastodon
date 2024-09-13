@@ -68,6 +68,7 @@ class Tag < ApplicationRecord
   update_index('tags', :self)
 
   attribute :usable, default: true
+  attribute :listable, default: true
 
   def to_param
     name
@@ -80,12 +81,6 @@ class Tag < ApplicationRecord
   def formatted_name
     "##{display_name}"
   end
-
-  def listable
-    boolean_with_default('listable', true)
-  end
-
-  alias listable? listable
 
   def trendable
     boolean_with_default('trendable', Setting.trendable_by_default)
