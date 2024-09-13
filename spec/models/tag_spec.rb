@@ -5,6 +5,20 @@ require 'rails_helper'
 RSpec.describe Tag do
   include_examples 'Reviewable'
 
+  describe 'Defaults' do
+    describe 'usable' do
+      context 'without any values' do
+        it { is_expected.to be_usable }
+      end
+
+      context 'with an overriden value' do
+        subject { described_class.new usable: false }
+
+        it { is_expected.to_not be_usable }
+      end
+    end
+  end
+
   describe 'validations' do
     it 'invalid with #' do
       expect(described_class.new(name: '#hello_world')).to_not be_valid
