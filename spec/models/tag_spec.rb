@@ -29,6 +29,36 @@ RSpec.describe Tag do
         it { is_expected.to_not be_listable }
       end
     end
+
+    describe 'trendable' do
+      context 'when default is true' do
+        before { Setting.trendable_by_default = true }
+
+        context 'without any value provided' do
+          it { is_expected.to be_trendable }
+        end
+
+        context 'when default value is overridden' do
+          subject { described_class.new trendable: false }
+
+          it { is_expected.to_not be_trendable }
+        end
+      end
+
+      context 'when default is false' do
+        before { Setting.trendable_by_default = false }
+
+        context 'without any value provided' do
+          it { is_expected.to_not be_trendable }
+        end
+
+        context 'when default value is overridden' do
+          subject { described_class.new trendable: true }
+
+          it { is_expected.to be_trendable }
+        end
+      end
+    end
   end
 
   describe 'validations' do
