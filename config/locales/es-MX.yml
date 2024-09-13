@@ -24,6 +24,8 @@ es-MX:
   admin:
     account_actions:
       action: Realizar acción
+      already_silenced: Esta cuenta ya ha sido limitada.
+      already_suspended: Esta cuenta ya ha sido suspendida.
       title: Moderar %{acct}
     account_moderation_notes:
       create: Crear
@@ -45,6 +47,7 @@ es-MX:
         title: Cambiar el correo electrónico de %{username}
       change_role:
         changed_msg: Rol cambiado exitosamente!
+        edit_roles: Administrar roles de usuario
         label: Cambiar de rol
         no_role: Sin rol
         title: Cambiar el rol para %{username}
@@ -601,6 +604,7 @@ es-MX:
         suspend_description_html: La cuenta y todos sus contenidos serán inaccesibles y eventualmente eliminados, e interactuar con ella será imposible. Reversible durante 30 días. Cierra todos los reportes contra esta cuenta.
       actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide qué medidas tomar para resolver este reporte. Esto solo afectará a la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y gestiona su contenido.
+      actions_no_posts: Este informe no incluye ninguna publicación asociada a eliminar
       add_to_report: Añadir más al reporte
       already_suspended_badges:
         local: Ya suspendido en este servidor
@@ -1156,6 +1160,12 @@ es-MX:
       view_strikes: Ver amonestaciones pasadas contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, inténtelo de nuevo.
     use_security_key: Usar la clave de seguridad
+  author_attribution:
+    example_title: Texto de ejemplo
+    hint_html: Controla cómo se te dará atribución cuando se compartan enlaces en Mastodon.
+    more_from_html: Más de %{name}
+    s_blog: Blog de %{name}
+    title: Atribución del autor
   challenge:
     confirm: Continuar
     hint_html: "<strong>Tip:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
@@ -1933,6 +1943,7 @@ es-MX:
     instructions_html: Copia y pega el siguiente código en el HTML de tu sitio web. A continuación, añade la dirección de su sitio web en uno de los campos extra de tu perfil desde la pestaña "Editar perfil" y guarda los cambios.
     verification: Verificación
     verified_links: Tus links verificados
+    website_verification: Verificación del sitio web
   webauthn_credentials:
     add: Agregar nueva clave de seguridad
     create:
