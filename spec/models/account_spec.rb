@@ -792,6 +792,34 @@ RSpec.describe Account do
     end
   end
 
+  describe '#attribution_domains_as_text=' do
+    subject { Fabricate(:account) }
+
+    it 'sets attribution_domains accordingly' do
+      subject.attribution_domains_as_text = "hoge.com\nexample.com"
+
+      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
+    end
+
+    it 'strips leading "*."' do
+      subject.attribution_domains_as_text = "hoge.com\n*.example.com"
+
+      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
+    end
+
+    it 'strips the protocol if present' do
+      subject.attribution_domains_as_text = "http://hoge.com\nhttps://example.com"
+
+      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
+    end
+
+    it 'strips a combination of leading "*." and protocol' do
+      subject.attribution_domains_as_text = "http://*.hoge.com\nhttps://*.example.com"
+
+      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
+    end
+  end
+
   describe 'Normalizations' do
     describe 'username' do
       it { is_expected.to normalize(:username).from(" \u3000bob \t \u00a0 \n ").to('bob') }
