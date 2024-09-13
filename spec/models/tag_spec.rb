@@ -17,6 +17,18 @@ RSpec.describe Tag do
         it { is_expected.to_not be_usable }
       end
     end
+
+    describe 'listable' do
+      context 'without any values' do
+        it { is_expected.to be_listable }
+      end
+
+      context 'with an overriden value' do
+        subject { described_class.new listable: false }
+
+        it { is_expected.to_not be_listable }
+      end
+    end
   end
 
   describe 'validations' do
