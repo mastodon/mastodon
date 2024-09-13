@@ -10,10 +10,39 @@ RSpec.describe Account do
 
     let(:bob) { Fabricate(:account, username: 'bob') }
 
+    describe '#suspended_locally?' do
+      context 'when the account is not suspended' do
+        it 'returns false' do
+          expect(subject.suspended_locally?).to be false
+        end
+      end
+
+      context 'when the account is suspended locally' do
+        before do
+          subject.update!(suspended_at: 1.day.ago, suspension_origin: :local)
+        end
+
+        it 'returns true' do
+          expect(subject.suspended_locally?).to be true
+        end
+      end
+
+      context 'when the account is suspended remotely' do
+        before do
+          subject.update!(suspended_at: 1.day.ago, suspension_origin: :remote)
+        end
+
+        it 'returns false' do
+          expect(subject.suspended_locally?).to be false
+        end
+      end
+    end
+
     describe '#suspend!' do
       it 'marks the account as suspended and creates a deletion request' do
         expect { subject.suspend! }
           .to change(subject, :suspended?).from(false).to(true)
+          .and change(subject, :suspended_locally?).from(false).to(true)
           .and(change { AccountDeletionRequest.exists?(account: subject) }.from(false).to(true))
       end
 
