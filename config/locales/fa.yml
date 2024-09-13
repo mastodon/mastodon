@@ -24,12 +24,15 @@ fa:
   admin:
     account_actions:
       action: انجامِ کنش
+      already_silenced: این جساب از پیش محدود شده.
+      already_suspended: این جساب از پیش معلّق شده.
       title: انجام کنش مدیریتی روی %{acct}
     account_moderation_notes:
       create: افزودن یادداشت
       created_msg: یادداشت مدیر با موفقیت ساخته شد!
       destroyed_msg: یادداشت نظارتی با موفقیت نابود شد!
     accounts:
+      add_email_domain_block: انسداد دامنهٔ رایانامه
       approve: پذیرفتن
       approved_msg: کارهٔ ثبت‌نام %{username} با موفقیت تأیید شد
       are_you_sure: مطمئنید؟
@@ -44,6 +47,7 @@ fa:
         title: تغییر رایانامه برای %{username}
       change_role:
         changed_msg: نقش با موفقیت تغییر کرد!
+        edit_roles: مدیریت نقش‌های کاربر
         label: تغییر نقش
         no_role: بدون نقش
         title: تغییر نقش برای %{username}
@@ -56,6 +60,7 @@ fa:
       demote: تنزل‌دادن
       destroyed_msg: داده‌های %{username} در صف حدف قرار گرفتند
       disable: از کار انداختن
+      disable_sign_in_token_auth: از کار انداختن تأیید هویت ژتون رایانامه‌ای
       disable_two_factor_authentication: از کار انداختن ورود دومرحله‌ای
       disabled: از کار افتاده
       display_name: نام نمایشی
@@ -64,6 +69,7 @@ fa:
       email: رایانامه
       email_status: وضعیت رایانامه
       enable: به کار انداختن
+      enable_sign_in_token_auth: به کار انداختن تأیید هویت ژتون رایانامه‌ای
       enabled: به کار افتاده
       enabled_msg: حساب %{username} با موفقیت به کار انداخته شد
       followers: پیگیران
@@ -128,6 +134,7 @@ fa:
       resubscribe: اشتراک دوباره
       role: نقش
       search: جست‌وجو
+      search_same_email_domain: دیگر کاربران با دامنهٔ رایانامهٔ یکسان
       search_same_ip: دیگر کاربران با IP یکسان
       security: امنیت
       security_measures:
@@ -168,13 +175,16 @@ fa:
         approve_appeal: پذیرش درخواست تجدیدنظر
         approve_user: تایید کاربر
         assigned_to_self_report: واگذاری گزارش
+        change_email_user: تغییر رایانامه برای کاربر
         change_role_user: تغیر نقش کاربر
         confirm_user: تأیید کاربر
         create_account_warning: ایجاد هشدار
         create_announcement: ایجاد اعلامیه
+        create_canonical_email_block: ایجاد انسداد رایانامه
         create_custom_emoji: ایجاد اموجی سفارشی
         create_domain_allow: ایجاد اجازهٔ دامنه
         create_domain_block: ایجاد انسداد دامنه
+        create_email_domain_block: ایجاد انسداد دامنهٔ رایانامه
         create_ip_block: ایجاد قاعدهٔ آی‌پی
         create_unavailable_domain: ایجاد دامنهٔ ناموجود
         create_user_role: ایجاد نقش
@@ -214,6 +224,7 @@ fa:
         update_custom_emoji: به‌روز رسانی اموجی سفارشی
         update_domain_block: به‌روزرسانی مسدودسازی دامنه
         update_ip_block: بروزرسانی قاعدهٔ آی‌پی
+        update_report: به‌روز رسانی گزارش
         update_status: به‌روز رسانی وضعیت
         update_user_role: به روزرسانی نقش
       actions:
@@ -250,6 +261,7 @@ fa:
         reject_user_html: "%{name} ثبت نام %{target} را رد کرد"
         remove_avatar_user_html: "%{name} تصویر نمایهٔ %{target} را حذف کرد"
         reopen_report_html: "%{name} گزارش %{target} را دوباره به جریان انداخت"
+        resend_user_html: "%{name} رایانامهٔ تأیید برای %{target} را دوباره فرستاد"
         reset_password_user_html: "%{name} گذرواژه کاربر %{target} را بازنشاند"
         resolve_report_html: "%{name} گزارش %{target} را رفع کرد"
         sensitive_account_html: "%{name} رسانهٔ %{target} را به عنوان حساس علامت‌گذاری کرد"
@@ -264,6 +276,7 @@ fa:
         update_custom_emoji_html: "%{name} شکلک %{target} را به‌روز کرد"
         update_domain_block_html: "%{name} مسدودسازی دامنه را برای %{target} به‌روزرسانی کرد"
         update_ip_block_html: "%{name} قانون آی‌پی %{target} را تغییر داد"
+        update_report_html: "%{name} گزارش %{target} را به‌روز کرد"
         update_status_html: "%{name} نوشتهٔ %{target} را به‌روز کرد"
         update_user_role_html: "%{name} نقش %{target} را تغییر داد"
       deleted_account: حساب حذف شد
@@ -271,6 +284,7 @@ fa:
       filter_by_action: پالایش بر اساس کنش
       filter_by_user: پالایش بر اساس کاربر
       title: سیاههٔ بازرسی
+      unavailable_instance: "(نام دامنه ناموجود)"
     announcements:
       destroyed_msg: اعلامیه با موفقیت حذف شد!
       edit:
@@ -405,6 +419,7 @@ fa:
       attempts_over_week:
         one: "%{count} تلاش در هفتهٔ گذشته"
         other: "%{count} تلاش ورود در هفتهٔ گذشته"
+      created_msg: دامنهٔ رایانامه با موفقیت مسدود شد
       delete: پاک‌کردن
       dns:
         types:
@@ -413,7 +428,10 @@ fa:
       new:
         create: ساختن مسدودسازی
         resolve: حل و فصل دامنه
+        title: مسدودسازی دامنهٔ رایانامهٔ جدید
+      no_email_domain_block_selected: هیچ انسداد دامنهٔ رایانامه‌ای تغییر نکرد زیرا هیچ‌کدامشان انتخاب نشده بودند
       not_permitted: مجاز نیست
+      title: دامنه‌های رایانامهٔ مسدود شده
     export_domain_allows:
       new:
         title: درون‌ریزی اجازه‌های دامنه
@@ -586,6 +604,7 @@ fa:
       target_origin: خاستگاه حساب گزارش‌شده
       title: گزارش‌ها
       unassign: پس‌گرفتن مسئولیت
+      unknown_action_msg: 'کنش ناشناخته: %{action}'
       unresolved: حل‌نشده
       updated_at: به‌روز شد
       view_profile: دیدن نمایه
@@ -625,6 +644,7 @@ fa:
         manage_taxonomies: مدیریت طیقه‌بندی‌ها
         manage_user_access: مدیریت دسترسی کاربران
         manage_users: مدیریت کاربران
+        manage_webhooks: مدیریت قلّاب‌های وب
         view_dashboard: دیدن داشبورد
         view_dashboard_description: اجازه به کاربران برای دسترسی به داشتبورد و سنجه‌های مختلف
         view_devops: دواپس
@@ -643,6 +663,8 @@ fa:
       appearance:
         preamble: سفارشی‌سازی رابطس وب ماستودون.
         title: ظاهر
+      branding:
+        title: ویژندگی
       default_noindex:
         title: درخواست خروج از اندیس‌گذاری پیش‌گزیدهٔ موتور جست‌وجو
       discovery:
@@ -743,6 +765,16 @@ fa:
         action: برای اطّلاعات بیش‌تر این‌جا را بررسی کنید
         message_html: "<strong>ذخیره‌سازتان بد پیکربندی شده. محرمانگی کاربرانتان در خطر است.</strong>"
     tags:
+      moderation:
+        not_trendable: غیر قابل داغ شدن
+        not_usable: غير قابل استفاده
+        pending_review: بازبینی منتظر
+        review_requested: بازبینی درخواست شده
+        reviewed: بازبینی شده
+        title: وضعیت
+        trendable: قابل داغ شدن
+        unreviewed: بررسی نشده
+        usable: قابل استفاده
       review: وضعیت بازبینی
       updated_msg: تنظیمات برچسب‌ها با موفقیت به‌روز شد
     title: مدیریت
@@ -753,15 +785,25 @@ fa:
       links:
         allow: اجازه به پیوند
         allow_provider: اجازه به ناشر
+        confirm_disallow: مطمئنید که می خواهید پیوندهای گزیده را ممنوع کنید؟
+        confirm_disallow_provider: مطمئنید که می خواهید فراهم کننده‌های گزیده را ممنوع کنید؟
         disallow: اجازه ندادن به پیوند
         disallow_provider: اجازه ندادن به ناشر
         no_link_selected: هیچ پیوندی تغییر نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
+        publishers:
+          no_publisher_selected: هیچ ناشری تغییر نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
         title: پیوندهای داغ
+      not_allowed_to_trend: اجازهٔ داغ شدن ندارد
       pending_review: بازبینی منتظر
       preview_card_providers:
         title: ناشران
       rejected: رد شده
       statuses:
+        allow: اجازه به فرسته
+        allow_account: اجازه به نگارنده
+        disallow: ممنوع کردن فرسته
+        disallow_account: ممنوع کردن نگارنده
+        no_status_selected: هیچ فرستهٔ داغی تغییری نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
         title: فرسته‌های داغ
       tags:
         current_score: امتیاز کنونی %{score}
@@ -845,7 +887,9 @@ fa:
       guide_link_text: همه می‌توانند کمک کنند.
     sensitive_content: محتوای حساس
   application_mailer:
+    notification_preferences: تغییر ترجیحات رایانامه
     salutation: "%{name}،"
+    settings: 'تغییر ترجیحات رایانامه: %{link}'
     unsubscribe: لغو اشتراک
     view: 'نمایش:'
     view_profile: دیدن نمایه
@@ -863,6 +907,7 @@ fa:
     captcha_confirmation:
       title: بررسی های امنیتی
     confirmations:
+      awaiting_review_title: ثبت‌نامتان دارد بررسی می‌شود
       login_link: ورود
       welcome_title: خوش آمدید، %{name}!
     delete_account: پاک‌کردن حساب
@@ -914,6 +959,10 @@ fa:
       view_strikes: دیدن شکایت‌های گذشته از حسابتان
     too_fast: فرم با سرعت بسیار زیادی فرستاده شد، دوباره تلاش کنید.
     use_security_key: استفاده از کلید امنیتی
+  author_attribution:
+    example_title: متن نمونه
+    more_from_html: بیش‌تر از %{name}
+    s_blog: بلاگ %{name}
   challenge:
     confirm: ادامه
     hint_html: "<strong>نکته:</strong> ما در یک ساعت آینده گذرواژه‌تان را از شما نخواهیم پرسید."
@@ -1079,6 +1128,9 @@ fa:
     none: هیچ‌کدام
     order_by: مرتب‌سازی
     save_changes: ذخیرهٔ تغییرات
+    select_all_matching_items:
+      one: گزینش %{count} مورد مطابق با جست‌وجویتان.
+      other: گزینش %{count} مورد مطابق با جست‌وجویتان.
     today: امروز
     validation_errors:
       one: یک چیزی هنوز درست نیست! لطفاً خطاهای زیر را ببینید
@@ -1087,6 +1139,7 @@ fa:
     errors:
       over_rows_processing_limit: دارای بیش از %{count} ردیف
       too_large: حجم فایل خیلی بزرگ است
+    failures: شکست‌ها
     imported: وارد شد
     modes:
       merge: ادغام
@@ -1103,11 +1156,23 @@ fa:
     status: وضعیت
     success: داده‌های شما با موفقیت بارگذاری شد و به زودی پردازش می‌شود
     time_started: آغاز شده در
+    titles:
+      blocking: درون ریختن حساب‌های مسدود
+      bookmarks: درون ریختن نشانک‌ها
+      domain_blocking: درون ریختن دامنه‌های مسدود
+      following: درون ریختن حساب‌های پی‌گرفته
+      lists: درون ریختن سیاهه‌ها
+      muting: درون ریختن حساب‌های خموش
+    type: گونهٔ درون‌ریزی
+    type_groups:
+      constructive: پی‌گیری‌ها و نشانک‌ها
+      destructive: انسدادها و خموشی‌ها
     types:
       blocking: سیاههٔ انسداد
       bookmarks: نشانک‌ها
       domain_blocking: سیاههٔ انسداد دامنه
       following: سیاههٔ پی‌گیری
+      lists: سیاهه‌ها
       muting: سیاههٔ خموشی
     upload: بارگذاری
   invites:
@@ -1140,6 +1205,7 @@ fa:
     authentication_methods:
       otp: کارهٔ تأیید هویت دوعاملی
       password: گذرواژه
+      sign_in_token: کد امنیتی رایانامه‌ای
       webauthn: کلیدهای امنیتی
     description_html: اگر فعالیتی می‌بینید که تشخیصش نمی‌دهید، تغییر گذرواژه و به کار انداختن تأیید هویت دوعاملی را در نظر داشته باشید.
     empty: هیچ تاریخچه‌ای از تأییدهویت موجود نیست
@@ -1315,6 +1381,8 @@ fa:
     over_daily_limit: شما از حد مجاز %{limit} فرسته زمان‌بندی‌شده در آن روز فراتر رفته‌اید
     over_total_limit: شما از حد مجاز %{limit} فرسته زمان‌بندی‌شده فراتر رفته‌اید
     too_soon: زمان تعیین‌شده باید در آینده باشد
+  self_destruct:
+    title: این کارساز دارد بسته می‌شود
   sessions:
     activity: آخرین فعالیت
     browser: مرورگر
@@ -1339,6 +1407,7 @@ fa:
       unknown_browser: مرورگر ناشناخته
       weibo: وبیو
     current_session: نشست فعلی
+    date: تاریخ
     description: "%{browser} روی %{platform}"
     explanation: مرورگرهای زیر هم‌اینک به حساب شما وارد شده‌اند.
     ip: آی‌پی
@@ -1375,6 +1444,7 @@ fa:
     import: درون‌ریزی
     import_and_export: درون‌ریزی و برون‌بری
     migrate: انتقال حساب
+    notifications: آگاهی‌های رایانامه‌ای
     preferences: ترجیحات
     profile: نمایه
     relationships: پیگیری‌ها و پیگیران
@@ -1382,6 +1452,9 @@ fa:
     strikes: شکایت‌های مدیریتی
     two_factor_authentication: ورود دومرحله‌ای
     webauthn_authentication: کلیدهای امنیتی
+  severed_relationships:
+    download: بارگیری (%{count})
+    type: رویداد
   statuses:
     attached:
       audio:
@@ -1520,7 +1593,16 @@ fa:
         silence: حساب محدود شده است
         suspend: حساب معلق شده است
     welcome:
+      apps_android_action: گرفتن از پلی گوگل
+      apps_ios_action: بارگیری روی فروشگاه کاره
+      apps_step: بارگیری کارهٔ رسمیمان.
+      apps_title: کاره‌های ماستودون
+      edit_profile_action: شخصی سازی
       explanation: نکته‌هایی که برای آغاز کار به شما کمک می‌کنند
+      follow_action: پی‌گیری
+      post_action: ایجاد
+      share_action: هم‌رسانی
+      sign_in_action: ورود
       subject: به ماستودون خوش آمدید
       title: خوش آمدید، کاربر %{name}!
   users:

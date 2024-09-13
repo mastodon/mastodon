@@ -83,6 +83,7 @@ lv:
         access_denied: Resursa īpašnieks vai autorizācijas serveris pieprasījumu noraidīja.
         credential_flow_not_configured: Resursa īpašnieka paroles akreditācijas datu plūsma neizdevās, jo Doorkeeper.configure.resource_owner_from_credentials nebija konfigurēts.
         invalid_client: Klienta autentifikācija neizdevās nezināma klienta, klienta autentifikācijas vai neatbalstītas autentifikācijas metodes dēļ.
+        invalid_code_challenge_method: Koda izaicinājuma veidam jābūt S256, vienkāršs netiek atbalstīts.
         invalid_grant: Sniegtā autorizācijas piekrišana nav derīga, tai ir beidzies derīguma termiņš, tā ir atsaukta, tā neatbilst autorizācijas pieprasījumā izmantotajam novirzīšanas URI vai tika izsniegta citam klientam.
         invalid_redirect_uri: Iekļauts novirzīšanas uri nav derīgs.
         invalid_request:

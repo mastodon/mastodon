@@ -26,6 +26,8 @@ lv:
   admin:
     account_actions:
       action: Veikt darbību
+      already_silenced: Šis konts jau ir ierobežots.
+      already_suspended: Šis konts jau ir aizturēts.
       title: Veikt moderācijas darbību %{acct}
     account_moderation_notes:
       create: Atstāt piezīmi
@@ -46,6 +48,7 @@ lv:
         title: Mainīt e-pastu %{username}
       change_role:
         changed_msg: Loma veiksmīgi nomainīta!
+        edit_roles: Pārvaldīt lietotāju lomas
         label: Mainīt lomu
         no_role: Nav lomas
         title: Mainīt lomu %{username}
@@ -131,6 +134,7 @@ lv:
       resubscribe: Pieteikties vēlreiz
       role: Loma
       search: Meklēt
+      search_same_email_domain: Citi lietotāji ar tādu pašu e-pasta domēnu
       search_same_ip: Citi lietotāji ar tādu pašu IP
       security: Drošība
       security_measures:
@@ -171,6 +175,7 @@ lv:
         approve_appeal: Apstiprināt Apelāciju
         approve_user: Apstiprināt lietotāju
         assigned_to_self_report: Piešķirt Pārskatu
+        change_email_user: Mainīt lietotāja e-pasta adresi
         change_role_user: Mainīt lietotāja lomu
         confirm_user: Apstiprināt lietotāju
         create_account_warning: Izveidot Brīdinājumu
@@ -217,13 +222,16 @@ lv:
         update_custom_emoji: Atjaunināt pielāgoto emocijzīmi
         update_domain_block: Atjaunināt Domēna Bloku
         update_ip_block: Atjaunināt IP noteikumu
+        update_report: Atjaunināt atskaiti
         update_status: Atjaunināt ziņu
         update_user_role: Atjaunināt lomu
       actions:
         approve_appeal_html: "%{name} apstiprināja moderācijas lēmuma apelāciju no %{target}"
         approve_user_html: "%{name} apstiprināja reģistrēšanos no %{target}"
         assigned_to_self_report_html: "%{name} piešķīra pārskatu %{target} sev"
+        change_email_user_html: "%{name} nomainīja lietotāja %{target} e-pasta adresi"
         change_role_user_html: "%{name} nomainīja lomu uz %{target}"
+        confirm_user_html: "%{name} apstiprināja lietotāja %{target} e-pasta adresi"
         create_account_warning_html: "%{name} nosūtīja brīdinājumu %{target}"
         create_announcement_html: "%{name} izveidoja jaunu paziņojumu %{target}"
         create_custom_emoji_html: "%{name} augšupielādēja jaunu emocijzīmi %{target}"
@@ -253,6 +261,7 @@ lv:
         reject_user_html: "%{name} noraidīja reģistrēšanos no %{target}"
         remove_avatar_user_html: "%{name} noņēma %{target} profila attēlu"
         reopen_report_html: "%{name} atkārtoti atvēra ziņojumu %{target}"
+        resend_user_html: "%{name} atkārtoti nosūtīja %{target} apstiprinājuma e-pasta ziņojumu"
         reset_password_user_html: "%{name} atiestatīja paroli lietotājam %{target}"
         resolve_report_html: "%{name} atrisināja ziņojumu %{target}"
         sensitive_account_html: "%{name} atzīmēja %{target} multividi kā sensitīvu"
@@ -267,6 +276,7 @@ lv:
         update_custom_emoji_html: "%{name} atjaunināja emocijzīmi %{target}"
         update_domain_block_html: "%{name} atjaunināja domēna bloku %{target}"
         update_ip_block_html: "%{name} mainīja nosacījumu priekš IP %{target}"
+        update_report_html: "%{name} atjaunināja %{target} pārskatu"
         update_status_html: "%{name} atjaunināja ziņu %{target}"
         update_user_role_html: "%{name} nomainīja %{target} lomu"
       deleted_account: dzēsts konts
@@ -274,6 +284,7 @@ lv:
       filter_by_action: Filtrēt pēc darbības
       filter_by_user: Filtrēt pēc lietotāja
       title: Auditācijas pieraksti
+      unavailable_instance: "(domēna vārds nav pieejams)"
     announcements:
       destroyed_msg: Paziņojums ir veiksmīgi izdzēsts!
       edit:
@@ -855,7 +866,13 @@ lv:
         action: Pārbaudi šeit, lai iegūtu plašāku informāciju
         message_html: "<strong>Tava objektu krātuve ir nepareizi konfigurēta. Tavu lietotāju privātums ir apdraudēts.</strong>"
     tags:
+      moderation:
+        not_usable: Nav izmantojams
+        pending_review: Gaida pārskatīšanu
+        review_requested: Pieprasīta pārskatīšana
+        reviewed: Pārskatīts
       review: Pārskatīt stāvokli
+      title: Tēmturi
       updated_msg: Tēmtura iestatījumi ir veiksmīgi atjaunināti
     title: Administrēšana
     trends:
@@ -929,6 +946,7 @@ lv:
       delete: Dzēst
       edit_preset: Labot iepriekš iestatītus brīdinājumus
       empty: Tu vēl neesi definējis iepriekš iestatītos brīdinājumus.
+      title: Brīdinājumu priekšiestatījums
     webhooks:
       add_new: Pievienot galapunktu
       delete: Dzēst
@@ -1004,7 +1022,9 @@ lv:
       guide_link_text: Ikviens var piedalīties.
     sensitive_content: Sensitīvs saturs
   application_mailer:
+    notification_preferences: Mainīt e-pasta uztādījumus
     salutation: "%{name},"
+    settings: 'Mainīt e-pasta uztādījumus: %{link}'
     unsubscribe: Atcelt abonēšanu
     view: 'Skatīt:'
     view_profile: Skatīt profilu
@@ -1024,6 +1044,7 @@ lv:
       hint_html: Vēl tikai viena lieta! Mums ir jāapstiprina, ka tu esi cilvēks (tas ir tāpēc, lai mēs varētu nepieļaut surogātpasta izsūtīšanu!). Atrisini tālāk norādīto CAPTCHA un noklikšķini uz "Turpināt".
       title: Drošības pārbaude
     confirmations:
+      awaiting_review: E-pasta adrese ir apstiprināta. %{domain} darbinieki tagad pārskata reģistrāciju. Tiks saņemts e-pasta ziņojums, ja viņi apstiprinās kontu.
       awaiting_review_title: Tava reģistrācija tiek izskatīta
       clicking_this_link: klikšķinot šo saiti
       login_link: pieteikties
@@ -1031,6 +1052,7 @@ lv:
       redirect_to_app_html: Tev vajadzētu būt novirzītam uz lietotni <strong>%{app_name}</strong>. Ja tas nenotika, mēģini %{clicking_this_link} vai manuāli atgriezieties lietotnē.
       registration_complete: Tava reģistrācija domēnā %{domain} tagad ir pabeigta!
       welcome_title: Laipni lūdzam, %{name}!
+      wrong_email_hint: Ja šī e-pasta adrese nav pareiza, to var mainīt konta iestatījumos.
     delete_account: Dzēst kontu
     delete_account_html: Ja vēlies dzēst savu kontu, tu vari <a href="%{path}">turpināt šeit</a>. Tev tiks lūgts apstiprinājums.
     description:
@@ -1051,6 +1073,7 @@ lv:
     or_log_in_with: Vai piesakies ar
     privacy_policy_agreement_html: Esmu izlasījis un piekrītu <a href="%{privacy_policy_path}" target="_blank">privātuma politikai</a>
     progress:
+      confirm: Apstiprināt e-pasta adresi
       details: Tavi dati
       review: Mūsu apskats
       rules: Pieņemt noteikumus
@@ -1072,8 +1095,10 @@ lv:
     security: Drošība
     set_new_password: Iestatīt jaunu paroli
     setup:
+      email_below_hint_html: Jāpārbauda sava surogātpasta mape vai jāpieprasa vēl vienu! Savu e-pasta adresi var labot, ja tā ir nepareiza.
       email_settings_hint_html: Noklikšķini uz saites, kuru mēs tev nosūtījām, lai apstiprinātu %{email}. Mēs tepat pagaidīsim.
       link_not_received: Vai nesaņēmi sati?
+      new_confirmation_instructions_sent: Pēc dažām minūtēm saņemsi jaunu e-pasta ziņojumu ar apstiprinājuma saiti.
       title: Pārbaudi savu iesūtni
     sign_in:
       preamble_html: Jāpiesakās ar saviem <strong>%{domain}</strong> piekļuves datiem. Ja Tavs konts tiek mitināts citā serverī, Tu nevarēsi šeit pieteikties.
@@ -1084,6 +1109,7 @@ lv:
       title: Atļauj tevi iestatīt %{domain}.
     status:
       account_status: Konta statuss
+      confirming: Gaida e-pasta adreses apstiprināšanas pabeigšanu.
       functional: Tavs konts ir pilnā darba kārtībā.
       redirecting_to: Tavs konts ir neaktīvs, jo pašlaik tas tiek novirzīts uz %{acct}.
       self_destruct: Tā kā %{domain} tiek slēgts, tu iegūsi tikai ierobežotu piekļuvi savam kontam.
