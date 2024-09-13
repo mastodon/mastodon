@@ -67,6 +67,8 @@ class Tag < ApplicationRecord
 
   update_index('tags', :self)
 
+  attribute :usable, default: true
+
   def to_param
     name
   end
@@ -78,12 +80,6 @@ class Tag < ApplicationRecord
   def formatted_name
     "##{display_name}"
   end
-
-  def usable
-    boolean_with_default('usable', true)
-  end
-
-  alias usable? usable
 
   def listable
     boolean_with_default('listable', true)
