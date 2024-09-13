@@ -13,7 +13,11 @@ module Account::AttributionDomains
 
   def attribution_domains_as_text=(str)
     self[:attribution_domains] = str.split.filter_map do |line|
-      line.strip.delete_prefix('*.')
+      line
+        .strip
+        .delete_prefix('http://')
+        .delete_prefix('https://')
+        .delete_prefix('*.')
     end
   end
 
