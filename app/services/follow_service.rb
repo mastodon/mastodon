@@ -5,6 +5,9 @@ class FollowService < BaseService
   include Payloadable
   include DomainControlHelper
 
+  class Error < StandardError; end
+  class SelfFollowError < Error; end
+
   # Follow a remote user, notify remote user about the follow
   # @param [Account] source_account From which to follow
   # @param [Account] target_account Account to follow
@@ -50,7 +53,11 @@ class FollowService < BaseService
   end
 
   def following_not_possible?
-    @target_account.nil? || @target_account.id == @source_account.id || @target_account.unavailable?
+    @target_account.nil? || @target_account.unavailable?
+  end
+
+  def following_self?
+    @target_account.id == @source_account.id
   end
 
   def following_not_allowed?
