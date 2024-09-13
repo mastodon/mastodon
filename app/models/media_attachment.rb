@@ -400,8 +400,8 @@ class MediaAttachment < ApplicationRecord
   end
 
   # We call this method about 3 different times on potentially different
-  # paths but ultimately the same file, so it makes sense to memoize the
-  # result while disregarding the path
+  # paths but ultimately the same file, so it makes sense to memorize
+  # the result while disregarding the path
   def ffmpeg_data(path = nil)
     @ffmpeg_data ||= VideoMetadataExtractor.new(path)
   end
