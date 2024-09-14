@@ -25,10 +25,7 @@ module Mastodon::CLI
     end
 
     def parallelize_with_progress(scope)
-      if options[:concurrency] < 1
-        say('Cannot run with this concurrency setting, must be at least 1', :red)
-        exit(1)
-      end
+      fail_with_message 'Cannot run with this concurrency setting, must be at least 1' if options[:concurrency] < 1
 
       reset_connection_pools!
 
@@ -38,10 +35,8 @@ module Mastodon::CLI
       aggregate = Concurrent::AtomicFixnum.new(0)
 
       scope.reorder(nil).find_in_batches do |items|
-        futures = []
-
-        items.each do |item|
-          futures << Concurrent::Future.execute(executor: pool) do
+        futures = items.map do |item|
+          Concurrent::Future.execute(executor: pool) do
             if !progress.total.nil? && progress.progress + 1 > progress.total
               # The number of items has changed between start and now,
               # since there is no good way to predict the final count from
@@ -56,7 +51,7 @@ module Mastodon::CLI
               result = ActiveRecord::Base.connection_pool.with_connection do
                 yield(item)
               ensure
-                RedisConfiguration.pool.checkin if Thread.current[:redis]
+                RedisConnection.pool.checkin if Thread.current[:redis]
                 Thread.current[:redis] = nil
               end
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CustomEmoji do
+RSpec.describe CustomEmoji, :attachment_processing do
   describe '#search' do
     subject { described_class.search(search_term) }
 
@@ -78,12 +78,10 @@ RSpec.describe CustomEmoji do
     end
   end
 
-  describe 'pre_validation' do
-    let(:custom_emoji) { Fabricate(:custom_emoji, domain: 'wWw.MaStOdOn.CoM') }
-
-    it 'downcases' do
-      custom_emoji.valid?
-      expect(custom_emoji.domain).to eq('www.mastodon.com')
+  describe 'Normalizations' do
+    describe 'domain' do
+      it { is_expected.to normalize(:domain).from('wWw.MaStOdOn.CoM').to('www.mastodon.com') }
+      it { is_expected.to normalize(:domain).from(nil).to(nil) }
     end
   end
 end

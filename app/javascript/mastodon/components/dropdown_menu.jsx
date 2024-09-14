@@ -6,7 +6,6 @@ import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
@@ -21,7 +20,7 @@ let id = 0;
 class DropdownMenu extends PureComponent {
 
   static propTypes = {
-    items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list]).isRequired,
+    items: PropTypes.array.isRequired,
     loading: PropTypes.bool,
     scrollable: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
@@ -40,6 +39,7 @@ class DropdownMenu extends PureComponent {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
       e.stopPropagation();
+      e.preventDefault();
     }
   };
 
@@ -165,7 +165,7 @@ class Dropdown extends PureComponent {
     children: PropTypes.node,
     icon: PropTypes.string,
     iconComponent: PropTypes.func,
-    items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list]).isRequired,
+    items: PropTypes.array.isRequired,
     loading: PropTypes.bool,
     size: PropTypes.number,
     title: PropTypes.string,
@@ -298,7 +298,7 @@ class Dropdown extends PureComponent {
     }) : (
       <IconButton
         icon={!open ? icon : 'close'}
-        iconComponent={!open ? iconComponent : CloseIcon}
+        iconComponent={iconComponent}
         title={title}
         active={open}
         disabled={disabled}

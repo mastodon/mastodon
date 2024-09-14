@@ -83,6 +83,11 @@ module Account::Interactions
     has_many :following, -> { order('follows.id desc') }, through: :active_relationships,  source: :target_account
     has_many :followers, -> { order('follows.id desc') }, through: :passive_relationships, source: :account
 
+    with_options class_name: 'SeveredRelationship', dependent: :destroy do
+      has_many :severed_relationships, foreign_key: 'local_account_id', inverse_of: :local_account
+      has_many :remote_severed_relationships, foreign_key: 'remote_account_id', inverse_of: :remote_account
+    end
+
     # Account notes
     has_many :account_notes, dependent: :destroy
 
@@ -178,12 +183,12 @@ module Account::Interactions
   end
 
   def unblock_domain!(other_domain)
-    block = domain_blocks.find_by(domain: other_domain)
+    block = domain_blocks.find_by(domain: normalized_domain(other_domain))
     block&.destroy
   end
 
   def following?(other_account)
-    active_relationships.where(target_account: other_account).exists?
+    active_relationships.exists?(target_account: other_account)
   end
 
   def following_anyone?
@@ -199,51 +204,47 @@ module Account::Interactions
   end
 
   def blocking?(other_account)
-    block_relationships.where(target_account: other_account).exists?
+    block_relationships.exists?(target_account: other_account)
   end
 
   def domain_blocking?(other_domain)
-    domain_blocks.where(domain: other_domain).exists?
+    domain_blocks.exists?(domain: other_domain)
   end
 
   def muting?(other_account)
-    mute_relationships.where(target_account: other_account).exists?
+    mute_relationships.exists?(target_account: other_account)
   end
 
   def muting_conversation?(conversation)
-    conversation_mutes.where(conversation: conversation).exists?
+    conversation_mutes.exists?(conversation: conversation)
   end
 
   def muting_notifications?(other_account)
-    mute_relationships.where(target_account: other_account, hide_notifications: true).exists?
+    mute_relationships.exists?(target_account: other_account, hide_notifications: true)
   end
 
   def muting_reblogs?(other_account)
-    active_relationships.where(target_account: other_account, show_reblogs: false).exists?
+    active_relationships.exists?(target_account: other_account, show_reblogs: false)
   end
 
   def requested?(other_account)
-    follow_requests.where(target_account: other_account).exists?
+    follow_requests.exists?(target_account: other_account)
   end
 
   def favourited?(status)
-    status.proper.favourites.where(account: self).exists?
+    status.proper.favourites.exists?(account: self)
   end
 
   def bookmarked?(status)
-    status.proper.bookmarks.where(account: self).exists?
+    status.proper.bookmarks.exists?(account: self)
   end
 
   def reblogged?(status)
-    status.proper.reblogs.where(account: self).exists?
+    status.proper.reblogs.exists?(account: self)
   end
 
   def pinned?(status)
-    status_pins.where(status: status).exists?
-  end
-
-  def endorsed?(account)
-    account_pins.where(target_account: account).exists?
+    status_pins.exists?(status: status)
   end
 
   def status_matches_filters(status)
@@ -254,13 +255,13 @@ module Account::Interactions
   def followers_for_local_distribution
     followers.local
              .joins(:user)
-             .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
+             .merge(User.signed_in_recently)
   end
 
   def lists_for_local_distribution
     scope = lists.joins(account: :user)
     scope.where.not(list_accounts: { follow_id: nil }).or(scope.where(account_id: id))
-         .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
+         .merge(User.signed_in_recently)
   end
 
   def remote_followers_hash(url)
@@ -299,5 +300,9 @@ module Account::Interactions
       muting: Account.muting_map(account_ids, id),
       domain_blocking_by_domain: Account.domain_blocking_map_by_domain(domains, id),
     })
+  end
+
+  def normalized_domain(domain)
+    TagManager.instance.normalize_domain(domain)
   end
 end

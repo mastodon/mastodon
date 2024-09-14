@@ -5,9 +5,11 @@ class Api::V1::StatusesController < Api::BaseController
 
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :update, :destroy]
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :update, :destroy]
-  before_action :require_user!, except:  [:show, :context]
-  before_action :set_status, only:       [:show, :context]
-  before_action :set_thread, only:       [:create]
+  before_action :require_user!, except:      [:index, :show, :context]
+  before_action :set_statuses, only:         [:index]
+  before_action :set_status, only:           [:show, :context]
+  before_action :set_thread, only:           [:create]
+  before_action :check_statuses_limit, only: [:index]
 
   override_rate_limit_headers :create, family: :statuses
   override_rate_limit_headers :update, family: :statuses
@@ -23,9 +25,14 @@ class Api::V1::StatusesController < Api::BaseController
   DESCENDANTS_LIMIT       = 60
   DESCENDANTS_DEPTH_LIMIT = 20
 
+  def index
+    @statuses = preload_collection(@statuses, Status)
+    render json: @statuses, each_serializer: REST::StatusSerializer
+  end
+
   def show
     cache_if_unauthenticated!
-    @status = cache_collection([@status], Status).first
+    @status = preload_collection([@status], Status).first
     render json: @status, serializer: REST::StatusSerializer
   end
 
@@ -44,8 +51,8 @@ class Api::V1::StatusesController < Api::BaseController
 
     ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(ancestors_limit, current_account)
     descendants_results = @status.descendants(descendants_limit, current_account, descendants_depth_limit)
-    loaded_ancestors    = cache_collection(ancestors_results, Status)
-    loaded_descendants  = cache_collection(descendants_results, Status)
+    loaded_ancestors    = preload_collection(ancestors_results, Status)
+    loaded_descendants  = preload_collection(descendants_results, Status)
 
     @context = Context.new(ancestors: loaded_ancestors, descendants: loaded_descendants)
     statuses = [@status] + @context.ancestors + @context.descendants
@@ -71,13 +78,9 @@ class Api::V1::StatusesController < Api::BaseController
       with_rate_limit: true
     )
 
-    render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
+    render json: @status, serializer: serializer_for_status
   rescue PostStatusService::UnexpectedMentionsError => e
-    unexpected_accounts = ActiveModel::Serializer::CollectionSerializer.new(
-      e.accounts,
-      serializer: REST::AccountSerializer
-    )
-    render json: { error: e.message, unexpected_accounts: unexpected_accounts }, status: 422
+    render json: unexpected_accounts_error_json(e), status: 422
   end
 
   def update
@@ -115,6 +118,10 @@ class Api::V1::StatusesController < Api::BaseController
 
   private
 
+  def set_statuses
+    @statuses = Status.permitted_statuses_from_ids(status_ids, current_account)
+  end
+
   def set_status
     @status = Status.find(params[:id])
     authorize @status, :show?
@@ -127,6 +134,18 @@ class Api::V1::StatusesController < Api::BaseController
     authorize(@thread, :show?) if @thread.present?
   rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     render json: { error: I18n.t('statuses.errors.in_reply_not_found') }, status: 404
+  end
+
+  def check_statuses_limit
+    raise(Mastodon::ValidationError) if status_ids.size > DEFAULT_STATUSES_LIMIT
+  end
+
+  def status_ids
+    Array(statuses_params[:id]).uniq.map(&:to_i)
+  end
+
+  def statuses_params
+    params.permit(id: [])
   end
 
   def status_params
@@ -155,7 +174,18 @@ class Api::V1::StatusesController < Api::BaseController
     )
   end
 
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
+  def serializer_for_status
+    @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
+  end
+
+  def unexpected_accounts_error_json(error)
+    {
+      error: error.message,
+      unexpected_accounts: serialized_accounts(error.accounts),
+    }
+  end
+
+  def serialized_accounts(accounts)
+    ActiveModel::Serializer::CollectionSerializer.new(accounts, serializer: REST::AccountSerializer)
   end
 end

@@ -1,98 +1,46 @@
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
+= content_for :heading do
+  = render 'application/mailer/heading', heading_title: t("user_mailer.warning.title.#{@warning.action}"), heading_image_url: frontend_asset_url('images/mailer-new/heading/warning.png')
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-body-padding-td
+      %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-inner-card-td-without-padding
+            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
               %tr
-                %td.content-cell.hero
-                  .email-row
-                    .col-6
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.text-center.padded
-                              %table.hero-icon.alert-icon{ align: 'center', cellspacing: 0, cellpadding: 0 }
-                                %tbody
-                                  %tr
-                                    %td
-                                      = image_tag full_pack_url('media/images/mailer/icon_flag.png'), alt: ''
+                %td.email-prose.email-padding-24
+                  - unless @warning.none_action?
+                    %p= t "user_mailer.warning.explanation.#{@warning.action}", instance: @instance
 
-                              %h1= t "user_mailer.warning.title.#{@warning.action}"
+                  - if @warning.text.present?
+                    = linkify(@warning.text)
 
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
+                  - if @warning.report && !@warning.report.other?
+                    %p
+                      %strong= t('user_mailer.warning.reason')
+                      = t("user_mailer.warning.categories.#{@warning.report.category}")
+
+                    - if @warning.report.violation? && @warning.report.rule_ids.present?
+                      %ul.rules-list
+                        - @warning.report.rules.each do |rule|
+                          %li= rule.text
+
+                  - unless @statuses.empty?
+                    %p
+                      %strong= t('user_mailer.warning.statuses')
+
+            - unless @statuses.empty?
+              %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                %tr
+                  %td.email-border-top
+                    - @statuses.each_with_index do |status, i|
+                      %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                        %tr
+                          %td.email-border-bottom.email-padding-24
+                            = render 'notification_mailer/status', status: status, i: i + 1, highlighted: true, time_zone: @resource.time_zone.presence
+
+            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
               %tr
-                %td.content-cell.content-start
-                  .email-row
-                    .col-6
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.text-center
-                              - unless @warning.none_action?
-                                %p= t "user_mailer.warning.explanation.#{@warning.action}", instance: @instance
-
-                              - if @warning.text.present?
-                                = linkify(@warning.text)
-
-                              - if @warning.report && !@warning.report.other?
-                                %p
-                                  %strong= t('user_mailer.warning.reason')
-                                  = t("user_mailer.warning.categories.#{@warning.report.category}")
-
-                                - if @warning.report.violation? && @warning.report.rule_ids.present?
-                                  %ul.rules-list
-                                    - @warning.report.rules.each do |rule|
-                                      %li= rule.text
-
-                              - unless @statuses.empty?
-                                %p
-                                  %strong= t('user_mailer.warning.statuses')
-
-- unless @statuses.empty?
-  - @statuses.each_with_index do |status, i|
-    = render 'notification_mailer/status', status: status, i: i + 1, highlighted: true, time_zone: @resource.time_zone.presence
-
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
-              %tr
-                %td.content-cell{ class: @statuses.blank? ? '' : 'content-start' }
-                  %table.column{ cellspacing: 0, cellpadding: 0 }
-                    %tbody
-                      %tr
-                        %td.column-cell.button-cell
-                          %table.button{ align: 'center', cellspacing: 0, cellpadding: 0 }
-                            %tbody
-                              %tr
-                                %td.button-primary
-                                  = link_to disputes_strike_url(@warning) do
-                                    %span= t 'user_mailer.warning.appeal'
-
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
-              %tr
-                %td.content-cell
-                  .email-row
-                    .col-6
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.text-center
-                              %p= t 'user_mailer.warning.appeal_description', instance: @instance
+                %td.email-prose.email-padding-24
+                  %p= t 'user_mailer.warning.appeal_description', instance: @instance
+                  = render 'application/mailer/button', text: t('user_mailer.warning.appeal'), url: disputes_strike_url(@warning)

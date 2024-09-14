@@ -3,6 +3,7 @@ pt-BR:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Protege de atribuições falsas.
         discoverable: Suas publicações e perfil públicos podem ser destaques ou recomendados em várias áreas de Mastodon, e seu perfil pode ser sugerido a outros usuários.
         display_name: Seu nome completo ou apelido.
         fields: Sua página inicial, pronomes, idade ou qualquer coisa que quiser.
@@ -39,14 +40,14 @@ pt-BR:
         text: Você só pode solicitar uma revisão uma vez
       defaults:
         autofollow: Pessoas que criarem conta através de seu convite te seguirão automaticamente
-        avatar: PNG, GIF or JPG. Arquivos de até %{size}. Serão redimensionados para %{dimensions}px
+        avatar: WEBP, PNG, GIF ou JPG. No máximo %{size}. Será reduzido para %{dimensions}px
         bot: Essa conta executa principalmente ações automatizadas e pode não ser monitorada
         context: Um ou mais contextos onde o filtro deve atuar
         current_password: Para fins de segurança, digite a senha da conta atual
         current_username: Para confirmar, digite o nome de usuário da conta atual
         digest: Enviado apenas após um longo período de inatividade com um resumo das menções recebidas durante ausência
         email: Você receberá um e-mail de confirmação
-        header: PNG, GIF ou JPG de até %{size}. Serão redimensionados para %{dimensions}px
+        header: WEBP, PNG, GIF ou JPG. No máximo %{size}. Será reduzido para %{dimensions}px
         inbox_url: Copie o link da página inicial do repetidor que você deseja usar
         irreversible: As publicações filtradas desaparecerão irreversivelmente, mesmo se o filtro for removido depois
         locale: O idioma da interface do usuário, e-mails e notificações
@@ -77,13 +78,15 @@ pt-BR:
           warn: Ocultar o conteúdo filtrado por trás de um aviso mencionando o título do filtro
       form_admin_settings:
         activity_api_enabled: Contagem de publicações locais, usuários ativos e novos usuários semanais
-        backups_retention_period: Manter os arquivos de usuário gerados pelo número de dias especificados.
+        app_icon: WEBP, PNG, GIF ou JPG. Sobrescrever o ícone padrão do aplicativo em dispositivos móveis com um ícone personalizado.
+        backups_retention_period: Os usuários têm a capacidade de gerar arquivos de suas postagens para baixar mais tarde. Quando definido como um valor positivo, esses arquivos serão automaticamente excluídos do seu armazenamento após o número especificado de dias.
         bootstrap_timeline_accounts: Estas contas serão fixadas no topo das recomendações de novos usuários para seguir.
         closed_registrations_message: Exibido quando as inscrições estiverem fechadas
-        content_cache_retention_period: Postagens de outros servidores serão excluídas após o número de dias especificados, quando definido com um valor positivo. Isso pode ser irreversível.
+        content_cache_retention_period: Todas as postagens de outros servidores (incluindo boosts e respostas) serão excluídas após o número especificado de dias, sem levar a qualquer interação do usuário local com esses posts. Isto inclui postagens onde um usuário local o marcou como favorito ou favoritos. Menções privadas entre usuários de diferentes instâncias também serão perdidas e impossíveis de restaurar. O uso desta configuração destina-se a instâncias especiais de propósitos e quebra muitas expectativas dos usuários quando implementadas para uso de propósito geral.
         custom_css: Você pode aplicar estilos personalizados na versão da web do Mastodon.
+        favicon: WEBP, PNG, GIF ou JPG. Sobrescreve o favicon padrão do Mastodon com um ícone personalizado.
         mascot: Substitui a ilustração na interface web avançada.
-        media_cache_retention_period: Os arquivos de mídia baixados serão excluídos após o número especificado de dias, quando definido para um valor positivo, e baixados novamente na demanda.
+        media_cache_retention_period: Arquivos de mídia de mensagens de usuários remotos são armazenados em cache no seu servidor. Quando definido como valor positivo, a mídia será excluída após o número especificado de dias. Se os dados da mídia forem solicitados depois de excluídos, eles serão baixados novamente, se o conteúdo fonte ainda estiver disponível. Devido a restrições de quantas vezes os cartões de visualização de links sondam sites de terceiros, é recomendado definir este valor em pelo menos 14 dias, ou pré-visualização de links não serão atualizados a pedido antes desse tempo.
         peers_api_enabled: Uma lista de nomes de domínio que este servidor encontrou no "fediverse". Nenhum dado é incluído aqui sobre se você concorda com os padroes operacionais de um determinado servidor, apenas que o seu servidor sabe disso. Esta ferramenta é utilizado por serviços que recolhem estatísticas sob as normas da federação (grupo de empresas que concordam sob paramentros operacionais específicos), em termos gerais.
         profile_directory: O diretório de perfis lista todos os usuários que optaram por permitir que suas contas sejam descobertas.
         require_invite_text: 'Quando o cadastro de novas contas exigir aprovação manual, tornar obrigatório, ao invés de opcional, o texto de solicitação de convite: "Por que você deseja ingressar nessa comunidade?"'
@@ -116,6 +119,7 @@ pt-BR:
           sign_up_requires_approval: Novas inscrições exigirão sua aprovação
         severity: Escolha o que acontecerá com as solicitações deste IP
       rule:
+        hint: Opcional. Forneça mais detalhes sobre a regra
         text: Descreva uma regra ou requisito para os usuários neste servidor. Tente mantê-la curta e simples.
       sessions:
         otp: 'Digite o código de dois fatores gerado pelo aplicativo no seu celular ou use um dos códigos de recuperação:'
@@ -127,7 +131,7 @@ pt-BR:
         name: Você pode mudar a capitalização das letras, por exemplo, para torná-la mais legível
       user:
         chosen_languages: Apenas as publicações dos idiomas selecionados serão exibidas nas linhas públicas
-        role: O cargo controla quais permissões o usuário tem
+        role: A função controla quais permissões o usuário tem.
       user_role:
         color: Cor a ser usada para o cargo em toda a interface do usuário, como RGB no formato hexadecimal
         highlighted: Isso torna o cargo publicamente visível
@@ -140,6 +144,7 @@ pt-BR:
         url: Aonde os eventos serão enviados
     labels:
       account:
+        attribution_domains_as_text: Permitir apenas sites específicos
         discoverable: Destacar perfil e publicações nos algoritmos de descoberta
         fields:
           name: Rótulo
@@ -208,6 +213,7 @@ pt-BR:
         setting_default_privacy: Privacidade dos toots
         setting_default_sensitive: Sempre marcar mídia como sensível
         setting_delete_modal: Solicitar confirmação antes de excluir toot
+        setting_disable_hover_cards: Desativar visualização de perfil ao passar o mouse por cima
         setting_disable_swiping: Desabilitar movimentos deslizantes
         setting_display_media: Exibição das mídias
         setting_display_media_default: Padrão
@@ -239,11 +245,13 @@ pt-BR:
           warn: Ocultar com um aviso
       form_admin_settings:
         activity_api_enabled: Publicar estatísticas agregadas sobre atividade de usuários na API
+        app_icon: Ícone do aplicativo
         backups_retention_period: Período de retenção do arquivo de usuário
         bootstrap_timeline_accounts: Sempre recomendar essas contas para novos usuários
         closed_registrations_message: Mensagem personalizada quando inscrições não estão disponíveis
-        content_cache_retention_period: Período de retenção do cachê de conteúdo
+        content_cache_retention_period: Período de retenção de conteúdo remoto
         custom_css: CSS personalizável
+        favicon: Favicon
         mascot: Mascote personalizado (legado)
         media_cache_retention_period: Período de retenção do cachê de mídia
         peers_api_enabled: Publicar lista de instâncias de servidor descobertas na API
@@ -299,6 +307,7 @@ pt-BR:
           patch: Notificar sobre atualizações de correções
         trending_tag: Uma nova tendência requer revisão
       rule:
+        hint: Informações adicionais
         text: Regra
       settings:
         indexable: Incluir página de perfil nos motores de busca
@@ -307,7 +316,7 @@ pt-BR:
         listable: Permitir que esta hashtag apareça em pesquisas e sugestões
         name: Hashtag
         trendable: Permitir que esta hashtag fique em alta
-        usable: Permitir que toots usem esta hashtag
+        usable: Permitir que as publicações usem esta hashtag localmente
       user:
         role: Cargo
         time_zone: Fuso horário

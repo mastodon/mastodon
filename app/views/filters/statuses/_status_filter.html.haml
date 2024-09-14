@@ -15,7 +15,7 @@
 
     - status.ordered_media_attachments.each do |media_attachment|
       %abbr{ title: media_attachment.description }
-        = fa_icon 'link'
+        = material_symbol 'link'
         = media_attachment.file_file_name
 
     .detailed-status__meta
@@ -29,9 +29,9 @@
         ·
         = t('statuses.edited_at_html', date: content_tag(:time, l(status.edited_at), datetime: status.edited_at.iso8601, title: l(status.edited_at), class: 'formatted'))
       ·
-      = fa_visibility_icon(status)
+      = material_symbol visibility_icon(status)
       = t("statuses.visibilities.#{status.visibility}")
       - if status.sensitive?
         ·
-        = fa_icon('eye-slash fw')
+        = material_symbol 'visibility_off'
         = t('stream_entries.sensitive_content')

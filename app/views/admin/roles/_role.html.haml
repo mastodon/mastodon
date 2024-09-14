@@ -2,7 +2,7 @@
   - if can?(:update, role)
     = link_to edit_admin_role_path(role), class: 'announcements-list__item__title' do
       %span.user-role{ class: "user-role-#{role.id}" }
-        = fa_icon 'users fw'
+        = material_symbol 'group'
 
         - if role.everyone?
           = t('admin.roles.everyone')
@@ -11,7 +11,7 @@
   - else
     %span.announcements-list__item__title
       %span.user-role{ class: "user-role-#{role.id}" }
-        = fa_icon 'users fw'
+        = material_symbol 'group'
 
         - if role.everyone?
           = t('admin.roles.everyone')
@@ -27,4 +27,4 @@
         ·
         %abbr{ title: role.permissions_as_keys.map { |privilege| I18n.t("admin.roles.privileges.#{privilege}") }.join(', ') }= t('admin.roles.permissions_count', count: role.permissions_as_keys.size)
     %div
-      = table_link_to 'pencil', t('admin.accounts.edit'), edit_admin_role_path(role) if can?(:update, role)
+      = table_link_to 'edit', t('admin.accounts.edit'), edit_admin_role_path(role) if can?(:update, role)

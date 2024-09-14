@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe UniqueUsernameValidator do
+RSpec.describe UniqueUsernameValidator do
   describe '#validate' do
     context 'when local account' do
       it 'does not add errors if username is nil' do

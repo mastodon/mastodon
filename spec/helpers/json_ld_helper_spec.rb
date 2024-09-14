@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe JsonLdHelper do
+RSpec.describe JsonLdHelper do
   describe '#equals_or_includes?' do
     it 'returns true when value equals' do
       expect(helper.equals_or_includes?('foo', 'foo')).to be true
@@ -18,6 +18,34 @@ describe JsonLdHelper do
 
     it 'returns false when value is not included' do
       expect(helper.equals_or_includes?(%w(foo baz), 'bar')).to be false
+    end
+  end
+
+  describe '#uri_from_bearcap' do
+    subject { helper.uri_from_bearcap(string) }
+
+    context 'when a bear string has a u param' do
+      let(:string) { 'bear:?t=TOKEN&u=https://example.com/foo' }
+
+      it 'returns the value from the u query param' do
+        expect(subject).to eq('https://example.com/foo')
+      end
+    end
+
+    context 'when a bear string does not have a u param' do
+      let(:string) { 'bear:?t=TOKEN&h=https://example.com/foo' }
+
+      it 'returns nil' do
+        expect(subject).to be_nil
+      end
+    end
+
+    context 'when a non-bear string' do
+      let(:string) { 'http://example.com' }
+
+      it 'returns the string' do
+        expect(subject).to eq('http://example.com')
+      end
     end
   end
 
@@ -56,15 +84,15 @@ describe JsonLdHelper do
   describe '#fetch_resource' do
     context 'when the second argument is false' do
       it 'returns resource even if the retrieved ID and the given URI does not match' do
-        stub_request(:get, 'https://bob.test/').to_return body: '{"id": "https://alice.test/"}'
-        stub_request(:get, 'https://alice.test/').to_return body: '{"id": "https://alice.test/"}'
+        stub_request(:get, 'https://bob.test/').to_return(body: '{"id": "https://alice.test/"}', headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, 'https://alice.test/').to_return(body: '{"id": "https://alice.test/"}', headers: { 'Content-Type': 'application/activity+json' })
 
         expect(fetch_resource('https://bob.test/', false)).to eq({ 'id' => 'https://alice.test/' })
       end
 
       it 'returns nil if the object identified by the given URI and the object identified by the retrieved ID does not match' do
-        stub_request(:get, 'https://mallory.test/').to_return body: '{"id": "https://marvin.test/"}'
-        stub_request(:get, 'https://marvin.test/').to_return body: '{"id": "https://alice.test/"}'
+        stub_request(:get, 'https://mallory.test/').to_return(body: '{"id": "https://marvin.test/"}', headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, 'https://marvin.test/').to_return(body: '{"id": "https://alice.test/"}', headers: { 'Content-Type': 'application/activity+json' })
 
         expect(fetch_resource('https://mallory.test/', false)).to be_nil
       end
@@ -72,7 +100,7 @@ describe JsonLdHelper do
 
     context 'when the second argument is true' do
       it 'returns nil if the retrieved ID and the given URI does not match' do
-        stub_request(:get, 'https://mallory.test/').to_return body: '{"id": "https://alice.test/"}'
+        stub_request(:get, 'https://mallory.test/').to_return(body: '{"id": "https://alice.test/"}', headers: { 'Content-Type': 'application/activity+json' })
         expect(fetch_resource('https://mallory.test/', true)).to be_nil
       end
     end
@@ -80,12 +108,12 @@ describe JsonLdHelper do
 
   describe '#fetch_resource_without_id_validation' do
     it 'returns nil if the status code is not 200' do
-      stub_request(:get, 'https://host.test/').to_return status: 400, body: '{}'
+      stub_request(:get, 'https://host.test/').to_return(status: 400, body: '{}', headers: { 'Content-Type': 'application/activity+json' })
       expect(fetch_resource_without_id_validation('https://host.test/')).to be_nil
     end
 
     it 'returns hash' do
-      stub_request(:get, 'https://host.test/').to_return status: 200, body: '{}'
+      stub_request(:get, 'https://host.test/').to_return(status: 200, body: '{}', headers: { 'Content-Type': 'application/activity+json' })
       expect(fetch_resource_without_id_validation('https://host.test/')).to eq({})
     end
   end

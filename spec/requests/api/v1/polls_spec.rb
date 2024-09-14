@@ -23,7 +23,7 @@ RSpec.describe 'Polls' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(
             id: poll.id.to_s,
             voted: false,

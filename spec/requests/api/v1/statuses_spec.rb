@@ -2,12 +2,28 @@
 
 require 'rails_helper'
 
-describe '/api/v1/statuses' do
+RSpec.describe '/api/v1/statuses' do
   context 'with an oauth token' do
     let(:user)  { Fabricate(:user) }
     let(:client_app) { Fabricate(:application, name: 'Test app', website: 'http://testapp.com') }
     let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, application: client_app, scopes: scopes) }
     let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+
+    describe 'GET /api/v1/statuses?id[]=:id' do
+      let(:status) { Fabricate(:status) }
+      let(:other_status) { Fabricate(:status) }
+      let(:scopes) { 'read:statuses' }
+
+      it 'returns expected response' do
+        get '/api/v1/statuses', headers: headers, params: { id: [status.id, other_status.id, 123_123] }
+
+        expect(response).to have_http_status(200)
+        expect(response.parsed_body).to contain_exactly(
+          hash_including(id: status.id.to_s),
+          hash_including(id: other_status.id.to_s)
+        )
+      end
+    end
 
     describe 'GET /api/v1/statuses/:id' do
       subject do
@@ -36,7 +52,7 @@ describe '/api/v1/statuses' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json[:filtered][0]).to include({
+          expect(response.parsed_body[:filtered][0]).to include({
             filter: a_hash_including({
               id: user.account.custom_filters.first.id.to_s,
               title: 'filter1',
@@ -59,7 +75,7 @@ describe '/api/v1/statuses' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json[:filtered][0]).to include({
+          expect(response.parsed_body[:filtered][0]).to include({
             filter: a_hash_including({
               id: user.account.custom_filters.first.id.to_s,
               title: 'filter1',
@@ -81,7 +97,7 @@ describe '/api/v1/statuses' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json[:reblog][:filtered][0]).to include({
+          expect(response.parsed_body[:reblog][:filtered][0]).to include({
             filter: a_hash_including({
               id: user.account.custom_filters.first.id.to_s,
               title: 'filter1',
@@ -138,7 +154,7 @@ describe '/api/v1/statuses' do
           subject
 
           expect(response).to have_http_status(422)
-          expect(body_as_json[:unexpected_accounts].map { |a| a.slice(:id, :acct) }).to eq [{ id: bob.id.to_s, acct: bob.acct }]
+          expect(response.parsed_body[:unexpected_accounts].map { |a| a.slice(:id, :acct) }).to match [{ id: bob.id.to_s, acct: bob.acct }]
         end
       end
 
@@ -165,6 +181,42 @@ describe '/api/v1/statuses' do
           expect(response).to have_http_status(429)
           expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
           expect(response.headers['X-RateLimit-Remaining']).to eq '0'
+        end
+      end
+
+      context 'with missing thread' do
+        let(:params) { { status: 'Hello world', in_reply_to_id: 0 } }
+
+        it 'returns http not found' do
+          subject
+
+          expect(response).to have_http_status(404)
+        end
+      end
+
+      context 'when scheduling a status' do
+        let(:params) { { status: 'Hello world', scheduled_at: 10.minutes.from_now } }
+        let(:account) { user.account }
+
+        it 'returns HTTP 200' do
+          subject
+
+          expect(response).to have_http_status(200)
+        end
+
+        it 'creates a scheduled status' do
+          expect { subject }.to change { account.scheduled_statuses.count }.from(0).to(1)
+        end
+
+        context 'when the scheduling time is less than 5 minutes' do
+          let(:params) { { status: 'Hello world', scheduled_at: 4.minutes.from_now } }
+
+          it 'does not create a scheduled status', :aggregate_failures do
+            subject
+
+            expect(response).to have_http_status(422)
+            expect(account.scheduled_statuses).to be_empty
+          end
         end
       end
     end

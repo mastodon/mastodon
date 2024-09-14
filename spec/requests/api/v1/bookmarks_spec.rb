@@ -33,7 +33,7 @@ RSpec.describe 'Bookmarks' do
     it 'returns the bookmarked statuses' do
       subject
 
-      expect(body_as_json).to match_array(expected_response)
+      expect(response.parsed_body).to match_array(expected_response)
     end
 
     context 'with limit param' do
@@ -42,9 +42,14 @@ RSpec.describe 'Bookmarks' do
       it 'paginates correctly', :aggregate_failures do
         subject
 
-        expect(body_as_json.size).to eq(params[:limit])
-        expect(response.headers['Link'].find_link(%w(rel prev)).href).to eq(api_v1_bookmarks_url(limit: params[:limit], min_id: bookmarks.last.id))
-        expect(response.headers['Link'].find_link(%w(rel next)).href).to eq(api_v1_bookmarks_url(limit: params[:limit], max_id: bookmarks[1].id))
+        expect(response.parsed_body.size)
+          .to eq(params[:limit])
+
+        expect(response)
+          .to include_pagination_headers(
+            prev: api_v1_bookmarks_url(limit: params[:limit], min_id: bookmarks.last.id),
+            next: api_v1_bookmarks_url(limit: params[:limit], max_id: bookmarks.second.id)
+          )
       end
     end
 

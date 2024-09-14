@@ -2,37 +2,22 @@
 
 require 'rails_helper'
 
-describe ApplicationHelper do
-  describe 'active_nav_class' do
-    it 'returns active when on the current page' do
-      allow(helper).to receive(:current_page?).and_return(true)
-
-      result = helper.active_nav_class('/test')
-      expect(result).to eq 'active'
-    end
-
-    it 'returns active when on a current page' do
-      allow(helper).to receive(:current_page?).with('/foo').and_return(false)
-      allow(helper).to receive(:current_page?).with('/test').and_return(true)
-
-      result = helper.active_nav_class('/foo', '/test')
-      expect(result).to eq 'active'
-    end
-
-    it 'returns empty string when not on current page' do
-      allow(helper).to receive(:current_page?).and_return(false)
-
-      result = helper.active_nav_class('/test')
-      expect(result).to eq ''
-    end
-  end
-
+RSpec.describe ApplicationHelper do
   describe 'body_classes' do
     context 'with a body class string from a controller' do
       before { helper.extend controller_helpers }
 
       it 'uses the controller body classes in the result' do
-        expect(helper.body_classes).to match(/modal-layout compose-standalone/)
+        expect(helper.body_classes)
+          .to match(/modal-layout compose-standalone/)
+          .and match(/theme-default/)
+      end
+
+      it 'includes values set via content_for' do
+        helper.content_for(:body_classes) { 'admin' }
+
+        expect(helper.body_classes)
+          .to match(/admin/)
       end
 
       private
@@ -77,9 +62,12 @@ describe ApplicationHelper do
     end
   end
 
-  describe 'fa_icon' do
-    it 'returns a tag of fixed-width cog' do
-      expect(helper.fa_icon('cog fw')).to eq '<i class="fa fa-cog fa-fw"></i>'
+  describe '#material_symbol' do
+    it 'returns an svg with the icon and options' do
+      expect(helper.material_symbol('lock', class: :test, data: { hidden: true }))
+        .to match('<svg.*/svg>')
+        .and match('class="icon material-lock test"')
+        .and match('data-hidden="true"')
     end
   end
 
@@ -96,36 +84,6 @@ describe ApplicationHelper do
 
       expect(helper.open_registrations?).to be false
       expect(Setting).to have_received(:[]).with('registrations_mode')
-    end
-  end
-
-  describe 'show_landing_strip?', :without_verify_partial_doubles do
-    describe 'when signed in' do
-      before do
-        allow(helper).to receive(:user_signed_in?).and_return(true)
-      end
-
-      it 'does not show landing strip' do
-        expect(helper.show_landing_strip?).to be false
-      end
-    end
-
-    describe 'when signed out' do
-      before do
-        allow(helper).to receive(:user_signed_in?).and_return(false)
-      end
-
-      it 'does not show landing strip on single user instance' do
-        allow(helper).to receive(:single_user_mode?).and_return(true)
-
-        expect(helper.show_landing_strip?).to be false
-      end
-
-      it 'shows landing strip on multi user instance' do
-        allow(helper).to receive(:single_user_mode?).and_return(false)
-
-        expect(helper.show_landing_strip?).to be true
-      end
     end
   end
 
@@ -277,7 +235,7 @@ describe ApplicationHelper do
 
     it 'returns an unlock icon for a unlisted visible status' do
       result = helper.visibility_icon Status.new(visibility: 'unlisted')
-      expect(result).to match(/unlock/)
+      expect(result).to match(/lock_open/)
     end
 
     it 'returns a lock icon for a private visible status' do
@@ -287,7 +245,7 @@ describe ApplicationHelper do
 
     it 'returns an at icon for a direct visible status' do
       result = helper.visibility_icon Status.new(visibility: 'direct')
-      expect(result).to match(/at/)
+      expect(result).to match(/alternate_email/)
     end
   end
 

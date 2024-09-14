@@ -21,7 +21,7 @@ RSpec.describe 'Tags' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:name]).to eq(name)
+        expect(response.parsed_body[:name]).to eq(name)
       end
     end
 

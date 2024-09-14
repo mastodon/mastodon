@@ -8,18 +8,18 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as BlockIcon } from '@material-symbols/svg-600/outlined/block-fill.svg';
 import { debounce } from 'lodash';
+
+import BlockIcon from '@/material-icons/400-24px/block-fill.svg?react';
+import { Domain } from 'mastodon/components/domain';
 
 import { fetchDomainBlocks, expandDomainBlocks } from '../../actions/domain_blocks';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
-import DomainContainer from '../../containers/domain_container';
 import Column from '../ui/components/column';
 
 const messages = defineMessages({
   heading: { id: 'column.domain_blocks', defaultMessage: 'Blocked domains' },
-  unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
 });
 
 const mapStateToProps = state => ({
@@ -69,7 +69,7 @@ class Blocks extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
         >
           {domains.map(domain =>
-            <DomainContainer key={domain} domain={domain} />,
+            <Domain key={domain} domain={domain} />,
           )}
         </ScrollableList>
 

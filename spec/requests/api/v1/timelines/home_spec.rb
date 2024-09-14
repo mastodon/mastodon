@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Home' do
+RSpec.describe 'Home', :inline_jobs do
   let(:user)    { Fabricate(:user) }
   let(:scopes)  { 'read:statuses' }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
@@ -40,7 +40,7 @@ describe 'Home' do
       it 'returns the statuses of followed users' do
         subject
 
-        expect(body_as_json.pluck(:id)).to match_array(home_statuses.map { |status| status.id.to_s })
+        expect(response.parsed_body.pluck(:id)).to match_array(home_statuses.map { |status| status.id.to_s })
       end
 
       context 'with limit param' do
@@ -49,16 +49,17 @@ describe 'Home' do
         it 'returns only the requested number of statuses' do
           subject
 
-          expect(body_as_json.size).to eq(params[:limit])
+          expect(response.parsed_body.size).to eq(params[:limit])
         end
 
         it 'sets the correct pagination headers', :aggregate_failures do
           subject
 
-          headers = response.headers['Link']
-
-          expect(headers.find_link(%w(rel prev)).href).to eq(api_v1_timelines_home_url(limit: 1, min_id: ana.statuses.first.id.to_s))
-          expect(headers.find_link(%w(rel next)).href).to eq(api_v1_timelines_home_url(limit: 1, max_id: ana.statuses.first.id.to_s))
+          expect(response)
+            .to include_pagination_headers(
+              prev: api_v1_timelines_home_url(limit: params[:limit], min_id: ana.statuses.first.id),
+              next: api_v1_timelines_home_url(limit: params[:limit], max_id: ana.statuses.first.id)
+            )
         end
       end
     end
@@ -93,8 +94,9 @@ describe 'Home' do
       it 'returns http unprocessable entity', :aggregate_failures do
         subject
 
-        expect(response).to have_http_status(422)
-        expect(response.headers['Link']).to be_nil
+        expect(response)
+          .to have_http_status(422)
+          .and not_have_http_link_header
       end
     end
   end

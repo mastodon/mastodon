@@ -28,7 +28,10 @@ ie:
         destroy: Es tu cert?
       edit:
         title: Modificar aplication
+      form:
+        error: Ups! Ples inspecter tui formul por possibil erras
       help:
+        native_redirect_uri: Usar %{native_redirect_uri} por local provas
         redirect_uri: Usar un linea per URI
         scopes: Separar scopes con intersticies. Lassar blanc por usar li scopes predefinit.
       index:
@@ -57,8 +60,11 @@ ie:
       error:
         title: Alquo ha errat
       new:
+        prompt_html: "%{client_name}, un aplication de triesim partise, vole permission por accesser tui conto. <strong>Si tu ne fide it, ne autorisa it.</strong>"
         review_permissions: Inspecter permissiones
         title: Autorisation besonat
+      show:
+        title: Copiar ti-ci code de autorisation e glutinar it al demanda.
     authorized_applications:
       buttons:
         revoke: Revocar
@@ -66,6 +72,7 @@ ie:
         revoke: Es tu cert?
       index:
         authorized_at: Autorisat ye %{date}
+        description_html: Hay aplicationes queles posse accesser tui conto tra li API. Si trova si aplicationes queles tu ne reconosse, o un aplication quel ha conduit se mal, tu posse revocar su accesse.
         last_used_at: Ultimmen usat ye %{date}
         never_used: Nequande usat
         scopes: Permissiones
@@ -73,14 +80,25 @@ ie:
         title: Tui autorisat aplicationes
     errors:
       messages:
+        access_denied: Demanda negat per li proprietario del ressurse o servitor de autorisation.
+        credential_flow_not_configured: Falliment de flution Resource Owner Pasword Credentials pro ínconfigurat Doorkeeper.configure.resource_owner_from_credentials.
         invalid_client: Fallit autentification pro ínconosset client, manca de client-autentification, o ne subtenet metode de autentification.
+        invalid_grant: Li providet autorisation ó es ínvalid, expirat, revocat, ne acorda con li URI de redirection usat in li demanda de autorisation, ó ha esset emisset a un altri client.
         invalid_redirect_uri: Li uri de redirection includet ne es valid.
         invalid_request:
+          missing_param: 'Mancant postulat parametre: %{value}.'
+          request_not_authorized: Demanda besonant autorisation. Hay un mancant o ínvalid parametre besonat por autorisar li demanda.
           unknown: Li petition manca un postulat parametre, include un ne apoyat parametre-valore, o es altrimen mal format.
+        invalid_resource_owner: Sive li credentiales de ressurse-proprietario providet es ínvalid, sive li ressurse-proprietario ne posse esser trovat
+        invalid_scope: Li scope demandat es ínvalid, ínconosset, o malformat.
         invalid_token:
           expired: Li access-clave expirat
           revoked: Li access-clave esset revocat
           unknown: Li accesse-clave es ínvalid
+        resource_owner_authenticator_not_configured: Sercha por Proprietario de Ressurse fallit pro ínconfigurat Doorkeeper.configure.resource_owner_authenticator.
+        server_error: Li servitor de autorisation incontrat un ínexpectat condition quel impedit it a plenar li demanda.
+        temporarily_unavailable: Li servitor de autorisation actualmen ne posse tractar li demanda pro un temporari supercargada o mantention del servitor.
+        unauthorized_client: Li client ne es autorisat a efectuar li demanda con ti-ci metode.
         unsupported_grant_type: Li tip de autorisation concedet ne es subtenet per li autorisant servitor.
         unsupported_response_type: Li autorisant servitor ne subtene ti-ci tip de response.
     flash:
@@ -108,6 +126,7 @@ ie:
         blocks: Bloccas
         bookmarks: Marcatores
         conversations: Conversationes
+        crypto: Incription del cap al fine
         favourites: Favorites
         filters: Filtres
         follow: Seques, silentias e bloccas
@@ -144,6 +163,7 @@ ie:
       admin:write:email_domain_blocks: far actiones de moderation sur bloccas de dominia basat sur e-posta
       admin:write:ip_blocks: fa moderatori actiones sur bloccas de IP
       admin:write:reports: far moderatori actiones sur raportes
+      crypto: usar incription del cap al fine
       follow: modifica li relationes del conto
       push: reciver tui pussa-notificationes
       read: lee omni datas de tui conto
@@ -162,6 +182,7 @@ ie:
       write: modificar li tot data de tui conto
       write:accounts: modifica tui profile
       write:blocks: bloccar contos e dominias
+      write:bookmarks: marcar postas
       write:conversations: silentiar e deleter conversationes
       write:favourites: favorit postas
       write:filters: crea filtres

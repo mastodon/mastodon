@@ -38,7 +38,7 @@ module Admin
           log_action :create, @email_domain_block
 
           (@email_domain_block.other_domains || []).uniq.each do |domain|
-            next if EmailDomainBlock.where(domain: domain).exists?
+            next if EmailDomainBlock.exists?(domain: domain)
 
             other_email_domain_block = EmailDomainBlock.create!(domain: domain, allow_with_approval: @email_domain_block.allow_with_approval, parent: @email_domain_block)
             log_action :create, other_email_domain_block

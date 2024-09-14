@@ -41,11 +41,9 @@ module Mastodon::CLI
 
       # Sanity check on command arguments
       if options[:limited_federation_mode] && !domains.empty?
-        say('DOMAIN parameter not supported with --limited-federation-mode', :red)
-        exit(1)
+        fail_with_message 'DOMAIN parameter not supported with --limited-federation-mode'
       elsif domains.empty? && !options[:limited_federation_mode]
-        say('No domain(s) given', :red)
-        exit(1)
+        fail_with_message 'No domain(s) given'
       end
 
       # Build scopes from command arguments

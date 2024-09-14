@@ -32,7 +32,7 @@ RSpec.describe 'Filters' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json.pluck(:id)).to match_array(filters.map { |filter| filter.id.to_s })
+      expect(response.parsed_body.pluck(:id)).to match_array(filters.map { |filter| filter.id.to_s })
     end
   end
 
@@ -58,12 +58,15 @@ RSpec.describe 'Filters' do
       it 'returns a filter with keywords', :aggregate_failures do
         subject
 
-        json = body_as_json
-
-        expect(json[:title]).to eq 'magic'
-        expect(json[:filter_action]).to eq 'hide'
-        expect(json[:context]).to eq ['home']
-        expect(json[:keywords].map { |keyword| keyword.slice(:keyword, :whole_word) }).to eq [{ keyword: 'magic', whole_word: true }]
+        expect(response.parsed_body)
+          .to include(
+            title: 'magic',
+            filter_action: 'hide',
+            context: %w(home),
+            keywords: contain_exactly(
+              include(keyword: 'magic', whole_word: true)
+            )
+          )
       end
 
       it 'creates a filter', :aggregate_failures do
@@ -124,7 +127,10 @@ RSpec.describe 'Filters' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json[:id]).to eq(filter.id.to_s)
+      expect(response.parsed_body)
+        .to include(
+          id: filter.id.to_s
+        )
     end
 
     context 'when the filter belongs to someone else' do

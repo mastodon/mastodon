@@ -69,7 +69,7 @@ class Form::Import
     ApplicationRecord.transaction do
       now = Time.now.utc
       @bulk_import = current_account.bulk_imports.create(type: type, overwrite: overwrite || false, state: :unconfirmed, original_filename: data.original_filename, likely_mismatched: likely_mismatched?)
-      nb_items = BulkImportRow.insert_all(parsed_rows.map { |row| { bulk_import_id: bulk_import.id, data: row, created_at: now, updated_at: now } }).length # rubocop:disable Rails/SkipsModelValidations
+      nb_items = BulkImportRow.insert_all(parsed_rows.map { |row| { bulk_import_id: bulk_import.id, data: row, created_at: now, updated_at: now } }).length
       @bulk_import.update(total_items: nb_items)
     end
   end
@@ -111,12 +111,14 @@ class Form::Import
     csv_converter = lambda do |field, field_info|
       case field_info.header
       when 'Show boosts', 'Notify on new posts', 'Hide notifications'
-        ActiveModel::Type::Boolean.new.cast(field)
+        ActiveModel::Type::Boolean.new.cast(field&.downcase)
       when 'Languages'
         field&.split(',')&.map(&:strip)&.presence
       when 'Account address'
         field.strip.gsub(/\A@/, '')
-      when '#domain', '#uri', 'List name'
+      when '#domain'
+        field&.strip&.downcase
+      when '#uri', 'List name'
         field.strip
       else
         field

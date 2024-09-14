@@ -18,7 +18,7 @@ RSpec.describe '/api/web/embed' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json[:html]).to be_present
+          expect(response.parsed_body[:html]).to be_present
         end
       end
 
@@ -71,7 +71,7 @@ RSpec.describe '/api/web/embed' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json[:html]).to be_present
+          expect(response.parsed_body[:html]).to be_present
         end
 
         context 'when the requesting user is blocked' do
@@ -133,7 +133,19 @@ RSpec.describe '/api/web/embed' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json[:html]).to be_present
+          expect(response.parsed_body[:html]).to be_present
+        end
+      end
+
+      context 'when sanitizing the fragment fails' do
+        let(:call_result) { { html: 'ok' } }
+
+        before { allow(Sanitize).to receive(:fragment).and_raise(ArgumentError) }
+
+        it 'returns http not found' do
+          subject
+
+          expect(response).to have_http_status(404)
         end
       end
 

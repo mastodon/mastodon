@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ScopeTransformer do
+RSpec.describe ScopeTransformer do
   describe '#apply' do
     subject { described_class.new.apply(ScopeParser.new.parse(input)) }
 
@@ -18,6 +18,12 @@ describe ScopeTransformer do
       it 'parses the access' do
         expect(subject.access).to eq access
       end
+    end
+
+    context 'with scope "profile"' do
+      let(:input) { 'profile' }
+
+      it_behaves_like 'a scope', nil, 'profile', 'read'
     end
 
     context 'with scope "read"' do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe RedownloadHeaderWorker do
+RSpec.describe RedownloadHeaderWorker do
   let(:worker) { described_class.new }
 
   describe '#perform' do
@@ -41,7 +41,7 @@ describe RedownloadHeaderWorker do
     it 'reprocesses a remote header' do
       stub_request(:get, 'https://example.host/file').to_return request_fixture('avatar.txt')
       account = Fabricate(:account, header_remote_url: 'https://example.host/file')
-      account.update_column(:header_file_name, nil) # rubocop:disable Rails/SkipsModelValidations
+      account.update_column(:header_file_name, nil)
 
       result = worker.perform(account.id)
 

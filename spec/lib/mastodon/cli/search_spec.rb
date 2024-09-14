@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'mastodon/cli/search'
 
-describe Mastodon::CLI::Search do
+RSpec.describe Mastodon::CLI::Search do
   subject { cli.invoke(action, arguments, options) }
 
   let(:cli) { described_class.new }
@@ -20,8 +20,7 @@ describe Mastodon::CLI::Search do
 
       it 'Exits with error message' do
         expect { subject }
-          .to output_results('this concurrency setting')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, /this concurrency setting/)
       end
     end
 
@@ -30,8 +29,18 @@ describe Mastodon::CLI::Search do
 
       it 'Exits with error message' do
         expect { subject }
-          .to output_results('this batch_size setting')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, /this batch_size setting/)
+      end
+    end
+
+    context 'when server communication raises an error' do
+      let(:options) { { reset_chewy: true } }
+
+      before { allow(Chewy::Stash::Specification).to receive(:reset!).and_raise(Elasticsearch::Transport::Transport::Errors::InternalServerError) }
+
+      it 'Exits with error message' do
+        expect { subject }
+          .to raise_error(Thor::Error, /issue connecting to the search/)
       end
     end
 

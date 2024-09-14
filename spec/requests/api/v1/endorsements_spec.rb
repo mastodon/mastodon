@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Endorsements' do
+RSpec.describe 'Endorsements' do
   let(:user)    { Fabricate(:user) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
@@ -37,7 +37,7 @@ describe 'Endorsements' do
           expect(response)
             .to have_http_status(200)
 
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to be_present
             .and have_attributes(
               first: include(acct: account_pin.target_account.acct)
@@ -52,7 +52,7 @@ describe 'Endorsements' do
           expect(response)
             .to have_http_status(200)
 
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to_not be_present
         end
       end

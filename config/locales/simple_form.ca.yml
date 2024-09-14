@@ -3,6 +3,7 @@ ca:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Protegeix de falses atribucions.
         discoverable: El teu perfil i els teus tuts públics poden aparèixer o ser recomanats en diverses àreas de Mastodon i el teu perfil pot ser suggerit a altres usuaris.
         display_name: El teu nom complet o el teu nom divertit.
         fields: La teva pàgina d'inici, pronoms, edat, el que vulguis.
@@ -39,14 +40,14 @@ ca:
         text: Només pots emetre una apel·lació per cada acció
       defaults:
         autofollow: Qui es registri a través de la invitació et seguirà automàticament
-        avatar: PNG, GIF o JPG de com a màxim %{size}. S'escalarà a %{dimensions}px
+        avatar: WEBP, PNG, GIF o JPG. De com a màxim %{size}. S'escalarà a %{dimensions} px
         bot: Notifica que aquest compte realitza principalment accions automatitzades i que pot estar no monitorat
         context: Un o diversos contextos en què s'ha d'aplicar el filtre
         current_password: Per motius de seguretat, introduïu la contrasenya del compte actual
         current_username: Per a confirmar, entreu el nom d'usuari del compte actual
         digest: Només s'envia després d'un llarg període d'inactivitat i només si has rebut algun missatge personal durant la teva absència
         email: Se t'enviarà un correu electrònic de confirmació
-        header: PNG, GIF o JPG de com a màxim %{size}. S'escalarà a %{dimensions}px
+        header: WEBP, PNG, GIF o JPG. De com a màxim %{size}. S'escalarà a %{dimensions} px
         inbox_url: Copia l'enllaç de la pàgina principal del relay que vols usar
         irreversible: Els tuts filtrats desapareixeran de manera irreversible, fins i tot si el filtre es retira més tard
         locale: L'idioma de la interfície d’usuari, els correus i les notificacions push
@@ -77,13 +78,15 @@ ca:
           warn: Oculta el contingut filtrat darrere d'un avís mencionant el títol del filtre
       form_admin_settings:
         activity_api_enabled: Contador de tuts publicats localment, usuaris actius i registres nous en períodes setmanals
-        backups_retention_period: Manté els arxius d'usuari generats durant el nombre de dies especificats.
+        app_icon: WEBP, PNG, GIF o JPG. Canvia la icona per defecte de l'app en dispositius mòbils per una de personalitzada.
+        backups_retention_period: Els usuaris poden generar arxius de les seves publicacions per a baixar-los més endavant. Quan tingui un valor positiu, els arxius s'esborraran del vostre emmagatzematge després del nombre donat de dies.
         bootstrap_timeline_accounts: Aquests comptes es fixaran en la part superior de les recomanacions de seguiment dels nous usuaris.
         closed_registrations_message: Es mostra quan el registres estan tancats
-        content_cache_retention_period: Els tuts d'altres servidors se suprimiran després del nombre de dies especificat quan s'estableix un valor positiu. Això pot ser irreversible.
+        content_cache_retention_period: S'esborraran totes les publicacions d'altres servidors (impulsos i respostes inclosos) passats els dies indicats, sense tenir en consideració les interaccions d'usuaris locals amb aquestes publicacions. Això inclou les publicacions que un usuari local hagi marcat com a favorites. També es perdran, i no es podran recuperar, les mencions privades entre usuaris d'instàncies diferents. Aquest paràmetre està pensat per a instàncies amb un propòsit especial i trencarà les expectatives dels usuaris si s'utilitza en una instància convencional.
         custom_css: Pots aplicar estils personalitzats en la versió web de Mastodon.
+        favicon: WEBP, PNG, GIF o JPG. Canvia la icona per defecte de Mastodon a la pestanya del navegador per una de personalitzada.
         mascot: Anul·la la il·lustració en la interfície web avançada.
-        media_cache_retention_period: Els fitxers multimèdia descarregats s'esborraran després del nombre de dies especificat quan el valor configurat és positiu, i tornats a descarregats sota demanda.
+        media_cache_retention_period: El vostre servidor conserva una còpia dels fitxers multimèdia de les publicacions dels usuaris remots. Si s'indica un valor positiu, s'esborraran passats els dies indicats. Si el fitxer es torna a demanar un cop esborrat, es tornarà a baixar si el contingut origen segueix disponible. Per causa de les restriccions en la freqüència amb què es poden demanar les targetes de previsualització d'altres servidors, es recomana definir aquest valor com a mínim a 14 dies, o les targetes de previsualització no s'actualizaran a demanda abans d'aquest termini.
         peers_api_enabled: Una llista de noms de domini que aquest servidor ha trobat al fedivers. No inclou cap dada sobre si estàs federat amb un servidor determinat, només si el teu en sap res. La fan servir, en un sentit general, serveis que recol·lecten estadístiques sobre la federació.
         profile_directory: El directori de perfils llista tots els usuaris que tenen activat ser descoberts.
         require_invite_text: Quan el registre requereixi aprovació manual, fes que sigui obligatori en lloc d'opcional d'escriure el text de la sol·licitud d'invitació "Per què vols unir-te?"
@@ -116,6 +119,7 @@ ca:
           sign_up_requires_approval: Els nous registres requeriran la teva aprovació
         severity: Tria què passarà amb les sol·licituds des d’aquesta IP
       rule:
+        hint: Opcional. Proporcioneu més detalls de la regla
         text: Descriu una norma o requeriment pels usuaris d'aquest servidor. Intenta fer-la curta i senzilla
       sessions:
         otp: 'Introdueix el codi de dos factors generat per el teu telèfon o utilitza un dels teus codis de recuperació:'
@@ -127,7 +131,7 @@ ca:
         name: Només pots canviar la caixa de les lletres, per exemple, per fer-la més llegible
       user:
         chosen_languages: Quan estigui marcat, només es mostraran els tuts de les llengües seleccionades en les línies de temps públiques
-        role: El rol controla quines permissions té l'usuari
+        role: El rol controla quins permisos té l'usuari.
       user_role:
         color: Color que s'usarà per al rol a tota la interfície d'usuari, com a RGB en format hexadecimal
         highlighted: Això fa el rol visible públicament
@@ -140,6 +144,7 @@ ca:
         url: On els esdeveniments seran enviats
     labels:
       account:
+        attribution_domains_as_text: Permet només webs específics
         discoverable: Permet el perfil i el tuts en els algorismes de descobriment
         fields:
           name: Etiqueta
@@ -208,6 +213,7 @@ ca:
         setting_default_privacy: Privacitat dels tuts
         setting_default_sensitive: Marcar sempre el contingut gràfic com a sensible
         setting_delete_modal: Mostra la finestra de confirmació abans d'esborrar un tut
+        setting_disable_hover_cards: Deshabilita la vista prèvia del perfil en passar-hi per sobre
         setting_disable_swiping: Desactiva les animacions
         setting_display_media: Visualització multimèdia
         setting_display_media_default: Per defecte
@@ -239,11 +245,13 @@ ca:
           warn: Oculta amb un avís
       form_admin_settings:
         activity_api_enabled: Publica a l'API estadístiques agregades sobre l'activitat dels usuaris
+        app_icon: Icona de l'aplicació
         backups_retention_period: Període de retenció del arxiu d'usuari
         bootstrap_timeline_accounts: Recomana sempre aquests comptes als nous usuaris
         closed_registrations_message: Missatge personalitzat quan el registre no és accessible
-        content_cache_retention_period: Període de retenció de la memòria cau de contingut
+        content_cache_retention_period: Període de retenció del contingut remot
         custom_css: CSS personalitzat
+        favicon: Icona de preferits
         mascot: Mascota personalitzada (llegat)
         media_cache_retention_period: Període de retenció del cau multimèdia
         peers_api_enabled: Publica a l'API la llista de servidors descoberts
@@ -299,6 +307,7 @@ ca:
           patch: Notificar sobre les actualitzacions de correcció d'errors
         trending_tag: Nova tendència requereix revisió
       rule:
+        hint: Informació addicional
         text: Norma
       settings:
         indexable: Inclou la pàgina del perfil en els motors de cerca
@@ -307,7 +316,7 @@ ca:
         listable: Permet que aquesta etiqueta aparegui en les cerques i en el directori de perfils
         name: Etiqueta
         trendable: Permet que aquesta etiqueta aparegui en les tendències
-        usable: Permet als tuts emprar aquesta etiqueta
+        usable: Permet a les publicacions emprar aquesta etiqueta localment
       user:
         role: Rol
         time_zone: Zona horària

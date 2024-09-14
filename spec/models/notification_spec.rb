@@ -58,6 +58,159 @@ RSpec.describe Notification do
     end
   end
 
+  describe 'Setting account from activity_type' do
+    context 'when activity_type is a Status' do
+      it 'sets the notification from_account correctly' do
+        status = Fabricate(:status)
+
+        notification = Fabricate.build(:notification, activity_type: 'Status', activity: status)
+
+        expect(notification.from_account).to eq(status.account)
+      end
+    end
+
+    context 'when activity_type is a Follow' do
+      it 'sets the notification from_account correctly' do
+        follow = Fabricate(:follow)
+
+        notification = Fabricate.build(:notification, activity_type: 'Follow', activity: follow)
+
+        expect(notification.from_account).to eq(follow.account)
+      end
+    end
+
+    context 'when activity_type is a Favourite' do
+      it 'sets the notification from_account correctly' do
+        favourite = Fabricate(:favourite)
+
+        notification = Fabricate.build(:notification, activity_type: 'Favourite', activity: favourite)
+
+        expect(notification.from_account).to eq(favourite.account)
+      end
+    end
+
+    context 'when activity_type is a FollowRequest' do
+      it 'sets the notification from_account correctly' do
+        follow_request = Fabricate(:follow_request)
+
+        notification = Fabricate.build(:notification, activity_type: 'FollowRequest', activity: follow_request)
+
+        expect(notification.from_account).to eq(follow_request.account)
+      end
+    end
+
+    context 'when activity_type is a Poll' do
+      it 'sets the notification from_account correctly' do
+        poll = Fabricate(:poll)
+
+        notification = Fabricate.build(:notification, activity_type: 'Poll', activity: poll)
+
+        expect(notification.from_account).to eq(poll.account)
+      end
+    end
+
+    context 'when activity_type is a Report' do
+      it 'sets the notification from_account correctly' do
+        report = Fabricate(:report)
+
+        notification = Fabricate.build(:notification, activity_type: 'Report', activity: report)
+
+        expect(notification.from_account).to eq(report.account)
+      end
+    end
+
+    context 'when activity_type is a Mention' do
+      it 'sets the notification from_account correctly' do
+        mention = Fabricate(:mention)
+
+        notification = Fabricate.build(:notification, activity_type: 'Mention', activity: mention)
+
+        expect(notification.from_account).to eq(mention.status.account)
+      end
+    end
+
+    context 'when activity_type is an Account' do
+      it 'sets the notification from_account correctly' do
+        account = Fabricate(:account)
+
+        notification = Fabricate.build(:notification, activity_type: 'Account', account: account)
+
+        expect(notification.account).to eq(account)
+      end
+    end
+
+    context 'when activity_type is an AccountWarning' do
+      it 'sets the notification from_account to the recipient of the notification' do
+        account = Fabricate(:account)
+        account_warning = Fabricate(:account_warning, target_account: account)
+
+        notification = Fabricate.build(:notification, activity_type: 'AccountWarning', activity: account_warning, account: account)
+
+        expect(notification.from_account).to eq(account)
+      end
+    end
+  end
+
+  describe '.paginate_groups_by_max_id' do
+    let(:account) { Fabricate(:account) }
+
+    let!(:notifications) do
+      ['group-1', 'group-1', nil, 'group-2', nil, 'group-1', 'group-2', 'group-1']
+        .map { |group_key| Fabricate(:notification, account: account, group_key: group_key) }
+    end
+
+    context 'without since_id or max_id' do
+      it 'returns the most recent notifications, only keeping one notification per group' do
+        expect(described_class.without_suspended.paginate_groups_by_max_id(4).pluck(:id))
+          .to eq [notifications[7], notifications[6], notifications[4], notifications[2]].pluck(:id)
+      end
+    end
+
+    context 'with since_id' do
+      it 'returns the most recent notifications, only keeping one notification per group' do
+        expect(described_class.without_suspended.paginate_groups_by_max_id(4, since_id: notifications[4].id).pluck(:id))
+          .to eq [notifications[7], notifications[6]].pluck(:id)
+      end
+    end
+
+    context 'with max_id' do
+      it 'returns the most recent notifications after max_id, only keeping one notification per group' do
+        expect(described_class.without_suspended.paginate_groups_by_max_id(4, max_id: notifications[7].id).pluck(:id))
+          .to eq [notifications[6], notifications[5], notifications[4], notifications[2]].pluck(:id)
+      end
+    end
+  end
+
+  describe '.paginate_groups_by_min_id' do
+    let(:account) { Fabricate(:account) }
+
+    let!(:notifications) do
+      ['group-1', 'group-1', nil, 'group-2', nil, 'group-1', 'group-2', 'group-1']
+        .map { |group_key| Fabricate(:notification, account: account, group_key: group_key) }
+    end
+
+    context 'without min_id or max_id' do
+      it 'returns the oldest notifications, only keeping one notification per group' do
+        expect(described_class.without_suspended.paginate_groups_by_min_id(4).pluck(:id))
+          .to eq [notifications[0], notifications[2], notifications[3], notifications[4]].pluck(:id)
+      end
+    end
+
+    context 'with max_id' do
+      it 'returns the oldest notifications, stopping at max_id, only keeping one notification per group' do
+        expect(described_class.without_suspended.paginate_groups_by_min_id(4, max_id: notifications[4].id).pluck(:id))
+          .to eq [notifications[0], notifications[2], notifications[3]].pluck(:id)
+      end
+    end
+
+    context 'with min_id' do
+      it 'returns the most oldest notifications after min_id, only keeping one notification per group' do
+        expect(described_class.without_suspended.paginate_groups_by_min_id(4, min_id: notifications[0].id).pluck(:id))
+          .to eq [notifications[1], notifications[2], notifications[3], notifications[4]].pluck(:id)
+      end
+    end
+  end
+
   describe '.preload_cache_collection_target_statuses' do
     subject do
       described_class.preload_cache_collection_target_statuses(notifications) do |target_statuses|

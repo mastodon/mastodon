@@ -29,14 +29,12 @@ sco:
         text: Ye kin ainly appeal a strike the wance
       defaults:
         autofollow: Fowk thit signs up throu the invite wull follae ye automatic
-        avatar: PNG, GIF or JPG. At maist %{size}. Wull get doonscaled tae %{dimensions}px
         bot: Signal tae ithers thit the accoont maistly performs automatit actions an mibbie wullnae be monitort
         context: Ae or mair contexts whaur the filter shuid apply
         current_password: Fir security purposes please pit in the passwird o the current accoont
         current_username: Fir tae confirm, please pit in the uisernemm o the current accoont
         digest: Ainly sent efter a lang whilie o inactivity an ainly if ye'v gotten onie personal messages whilst ye wis awa
         email: Ye'll be sent a confirmation email
-        header: PNG, GIF or JPG. At maist %{size}. Wull get doonscaled tae %{dimensions}px
         inbox_url: Copy the URL fae the frontpage o the relay thit ye'r wantin tae uise
         irreversible: Filtert posts wull dizappear irreversibly, even if filter is taen aff efter
         locale: The leid o the uiser interface, emails an push notes
@@ -65,13 +63,10 @@ sco:
           hide: Totally plank the filtert content, ackin as if it didnae exist
           warn: Plank the filtert content ahin a warnin menshiein the filter's title
       form_admin_settings:
-        backups_retention_period: Haud generatit uiser archives fir the specified nummer o days.
         bootstrap_timeline_accounts: Thir accoonts wull get preenit tae the tap o new uisers' follae recommendations.
         closed_registrations_message: Displayit whan sign-ups is shut
-        content_cache_retention_period: Posts fae ither servers wull get deletit efter the specified nummer o days whan set tae a positive value. This wull mibbie be irreversible.
         custom_css: Ye kin pit custom styles on tae the web version o Mastodon.
         mascot: Owerrides the illustration in the advanced web interface.
-        media_cache_retention_period: Doonloadit media files wull be deletit efter the specified nummer o days whan set tae a positive value, an re-doonloadit on demand.
         profile_directory: The profile directory lists aw uisers thit hae opted-in fir tae be discoverable.
         require_invite_text: Whan sign-ups require approval bi haun, mak the “Hou dae ye want tae jyne?” text input mandatory raither nor optional
         site_contact_email: Hou fowk kin reach ye fir legal or support inquiries.
@@ -109,7 +104,6 @@ sco:
         name: Ye kin ainly chynge the case o the letters, fir example, fir tae mak it mair readable
       user:
         chosen_languages: Whan ticked, ainly posts in selectit leids wull be displayit in public timelines
-        role: The role controls whit permissions the uiser haes
       user_role:
         color: Colour tae be uised fir the role throuoot the UI, as RGB in hex format
         highlighted: This maks the role visible publicly
@@ -218,7 +212,6 @@ sco:
         backups_retention_period: Uiser archive retention period
         bootstrap_timeline_accounts: Aye recommend thir accoonts tae new uisers
         closed_registrations_message: Custom message whan sign-ups urnae available
-        content_cache_retention_period: Content cache retention period
         custom_css: Custom CSS
         mascot: Custom mascot (legacy)
         media_cache_retention_period: Media cache retention period
@@ -271,7 +264,6 @@ sco:
         listable: Alloo this hashtag tae appear in seirches an suggestions
         name: Hashtag
         trendable: Alloo this hashtag fir tae appear unner trends
-        usable: Alloo posts fir tae uise this hashtag
       user:
         role: Role
       user_role:

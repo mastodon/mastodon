@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'mastodon/cli/maintenance'
 
-describe Mastodon::CLI::Maintenance do
+RSpec.describe Mastodon::CLI::Maintenance do
   subject { cli.invoke(action, arguments, options) }
 
   let(:cli) { described_class.new }
@@ -22,8 +22,7 @@ describe Mastodon::CLI::Maintenance do
 
       it 'Exits with error message' do
         expect { subject }
-          .to output_results('is too old')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, /is too old/)
       end
     end
 
@@ -36,7 +35,7 @@ describe Mastodon::CLI::Maintenance do
       it 'Exits with error message' do
         expect { subject }
           .to output_results('more recent')
-          .and raise_error(SystemExit)
+          .and raise_error(Thor::Error, /more recent/)
       end
     end
 
@@ -48,8 +47,7 @@ describe Mastodon::CLI::Maintenance do
 
       it 'Exits with error message' do
         expect { subject }
-          .to output_results('Sidekiq is running')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, /Sidekiq is running/)
       end
     end
 

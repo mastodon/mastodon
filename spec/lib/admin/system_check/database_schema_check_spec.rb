@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::SystemCheck::DatabaseSchemaCheck do
+RSpec.describe Admin::SystemCheck::DatabaseSchemaCheck do
   subject(:check) { described_class.new(user) }
 
   let(:user) { Fabricate(:user) }

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Translation Languages' do
+RSpec.describe 'Translation Languages' do
   describe 'GET /api/v1/instances/translation_languages' do
     context 'when no translation service is configured' do
       it 'returns empty language matrix', :aggregate_failures do
@@ -11,7 +11,7 @@ describe 'Translation Languages' do
         expect(response)
           .to have_http_status(200)
 
-        expect(body_as_json)
+        expect(response.parsed_body)
           .to eq({})
       end
     end
@@ -25,8 +25,8 @@ describe 'Translation Languages' do
         expect(response)
           .to have_http_status(200)
 
-        expect(body_as_json)
-          .to eq({ und: %w(en de), en: ['de'] })
+        expect(response.parsed_body)
+          .to match({ und: %w(en de), en: ['de'] })
       end
 
       private

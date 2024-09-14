@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Accounts Notes API' do
+RSpec.describe 'Accounts Notes API' do
   let(:user)     { Fabricate(:user) }
   let(:token)    { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:scopes)   { 'write:accounts' }

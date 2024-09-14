@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AccountWarningPreset do
+RSpec.describe AccountWarningPreset do
   describe 'alphabetical' do
     let(:first) { Fabricate(:account_warning_preset, title: 'aaa', text: 'aaa') }
     let(:second) { Fabricate(:account_warning_preset, title: 'bbb', text: 'aaa') }

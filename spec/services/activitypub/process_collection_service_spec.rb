@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
+RSpec.describe ActivityPub::ProcessCollectionService do
   subject { described_class.new }
 
   let(:actor) { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/account') }
@@ -265,7 +265,7 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
             anything
           )
 
-          expect(Status.where(uri: 'https://example.com/users/bob/fake-status').exists?).to be false
+          expect(Status.exists?(uri: 'https://example.com/users/bob/fake-status')).to be false
         end
       end
     end

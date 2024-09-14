@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Links' do
+RSpec.describe 'Links' do
   let(:role)    { UserRole.find_by(name: 'Admin') }
   let(:user)    { Fabricate(:user, role: role) }
   let(:scopes)  { 'admin:read admin:write' }
@@ -32,19 +32,19 @@ describe 'Links' do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'returns http success' do
-      subject
+      expect { subject }
+        .to change_link_trendable_to_true
 
       expect(response).to have_http_status(200)
+      expects_correct_link_data
     end
 
-    it 'sets the link as trendable' do
-      expect { subject }.to change { preview_card.reload.trendable }.from(false).to(true)
+    def change_link_trendable_to_true
+      change { preview_card.reload.trendable }.from(false).to(true)
     end
 
-    it 'returns the link data' do
-      subject
-
-      expect(body_as_json).to match(
+    def expects_correct_link_data
+      expect(response.parsed_body).to match(
         a_hash_including(
           url: preview_card.url,
           title: preview_card.title,
@@ -85,19 +85,20 @@ describe 'Links' do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'returns http success' do
-      subject
+      expect { subject }
+        .to_not change_link_trendable
 
       expect(response).to have_http_status(200)
     end
 
-    it 'does not set the link as trendable' do
-      expect { subject }.to_not(change { preview_card.reload.trendable })
+    def change_link_trendable
+      change { preview_card.reload.trendable }
     end
 
     it 'returns the link data' do
       subject
 
-      expect(body_as_json).to match(
+      expect(response.parsed_body).to match(
         a_hash_including(
           url: preview_card.url,
           title: preview_card.title,

@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'mastodon/cli/cache'
 
-describe Mastodon::CLI::Cache do
+RSpec.describe Mastodon::CLI::Cache do
   subject { cli.invoke(action, arguments, options) }
 
   let(:cli) { described_class.new }
@@ -64,8 +64,7 @@ describe Mastodon::CLI::Cache do
 
       it 'Exits with an error message' do
         expect { subject }
-          .to output_results('Unknown')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, /Unknown/)
       end
     end
   end

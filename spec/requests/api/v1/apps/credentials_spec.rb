@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Credentials' do
+RSpec.describe 'Credentials' do
   describe 'GET /api/v1/apps/verify_credentials' do
     subject do
       get '/api/v1/apps/verify_credentials', headers: headers
@@ -18,15 +18,27 @@ describe 'Credentials' do
 
         expect(response).to have_http_status(200)
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(
+            id: token.application.id.to_s,
             name: token.application.name,
             website: token.application.website,
-            vapid_key: Rails.configuration.x.vapid_public_key,
             scopes: token.application.scopes.map(&:to_s),
-            client_id: token.application.uid
+            redirect_uris: token.application.redirect_uris,
+            # Deprecated properties as of 4.3:
+            redirect_uri: token.application.redirect_uri.split.first,
+            vapid_key: Rails.configuration.x.vapid_public_key
           )
         )
+      end
+
+      it 'does not expose the client_id or client_secret' do
+        subject
+
+        expect(response).to have_http_status(200)
+
+        expect(response.parsed_body[:client_id]).to_not be_present
+        expect(response.parsed_body[:client_secret]).to_not be_present
       end
     end
 
@@ -44,13 +56,16 @@ describe 'Credentials' do
       it 'returns the app information correctly' do
         subject
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(
+            id: token.application.id.to_s,
             name: token.application.name,
             website: token.application.website,
-            vapid_key: Rails.configuration.x.vapid_public_key,
             scopes: token.application.scopes.map(&:to_s),
-            client_id: token.application.uid
+            redirect_uris: token.application.redirect_uris,
+            # Deprecated properties as of 4.3:
+            redirect_uri: token.application.redirect_uri.split.first,
+            vapid_key: Rails.configuration.x.vapid_public_key
           )
         )
       end
@@ -80,7 +95,7 @@ describe 'Credentials' do
       it 'returns the error in the json response' do
         subject
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(
             error: 'The access token was revoked'
           )
@@ -102,7 +117,7 @@ describe 'Credentials' do
       it 'returns the error in the json response' do
         subject
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(
             error: 'The access token is invalid'
           )

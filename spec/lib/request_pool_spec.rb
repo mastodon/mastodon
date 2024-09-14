@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe RequestPool do
+RSpec.describe RequestPool do
   subject { described_class.new }
 
   describe '#with' do
@@ -33,19 +33,13 @@ describe RequestPool do
 
       subject
 
-      threads = Array.new(3) do
-        Thread.new do
-          2.times do
-            subject.with('http://example.com') do |http_client|
-              http_client.get('/').flush
-              # Nudge scheduler to yield and exercise the full pool
-              sleep(0)
-            end
-          end
+      multi_threaded_execution(5) do
+        subject.with('http://example.com') do |http_client|
+          http_client.get('/').flush
+          # Nudge scheduler to yield and exercise the full pool
+          sleep(0.01)
         end
       end
-
-      threads.map(&:join)
 
       expect(subject.size).to be > 1
     end

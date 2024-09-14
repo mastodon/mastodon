@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Favourites' do
+RSpec.describe 'Favourites', :inline_jobs do
   let(:user)    { Fabricate(:user) }
   let(:scopes)  { 'write:favourites' }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
@@ -28,7 +28,7 @@ RSpec.describe 'Favourites' do
       it 'returns json with updated attributes' do
         subject
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(id: status.id.to_s, favourites_count: 1, favourited: true)
         )
       end
@@ -70,7 +70,7 @@ RSpec.describe 'Favourites' do
     end
   end
 
-  describe 'POST /api/v1/statuses/:status_id/unfavourite', :sidekiq_fake do
+  describe 'POST /api/v1/statuses/:status_id/unfavourite' do
     subject do
       post "/api/v1/statuses/#{status.id}/unfavourite", headers: headers
     end
@@ -88,16 +88,14 @@ RSpec.describe 'Favourites' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(user.account.favourited?(status)).to be true
 
-        UnfavouriteWorker.drain
         expect(user.account.favourited?(status)).to be false
       end
 
       it 'returns json with updated attributes' do
         subject
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(id: status.id.to_s, favourites_count: 0, favourited: false)
         )
       end
@@ -113,16 +111,14 @@ RSpec.describe 'Favourites' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(user.account.favourited?(status)).to be true
 
-        UnfavouriteWorker.drain
         expect(user.account.favourited?(status)).to be false
       end
 
       it 'returns json with updated attributes' do
         subject
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(id: status.id.to_s, favourites_count: 0, favourited: false)
         )
       end

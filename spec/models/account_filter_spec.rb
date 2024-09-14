@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AccountFilter do
+RSpec.describe AccountFilter do
   describe 'with empty params' do
     it 'excludes instance actor by default' do
       filter = described_class.new({})

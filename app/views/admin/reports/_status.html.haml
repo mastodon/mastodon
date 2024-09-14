@@ -22,18 +22,20 @@
         %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
       - if status.edited?
         ·
-        = link_to t('statuses.edited_at_html', date: content_tag(:time, l(status.edited_at), datetime: status.edited_at.iso8601, title: l(status.edited_at), class: 'formatted')), admin_account_status_path(status.account_id, status), class: 'detailed-status__datetime'
+        = link_to t('statuses.edited_at_html', date: content_tag(:time, l(status.edited_at), datetime: status.edited_at.iso8601, title: l(status.edited_at), class: 'formatted')),
+                  admin_account_status_path(status.account_id, status),
+                  class: 'detailed-status__datetime'
       - if status.discarded?
         ·
         %span.negative-hint= t('admin.statuses.deleted')
       ·
       - if status.reblog?
-        = fa_icon('retweet fw')
+        = material_symbol('repeat_active')
         = t('statuses.boosted_from_html', acct_link: admin_account_inline_link_to(status.proper.account))
       - else
-        = fa_visibility_icon(status)
+        = material_symbol visibility_icon(status)
         = t("statuses.visibilities.#{status.visibility}")
       - if status.proper.sensitive?
         ·
-        = fa_icon('eye-slash fw')
+        = material_symbol('visibility_off')
         = t('stream_entries.sensitive_content')

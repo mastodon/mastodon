@@ -3,5 +3,5 @@
 Fabricator(:identity) do
   user { Fabricate.build(:user) }
   provider 'MyString'
-  uid      'MyString'
+  uid { sequence(:uid) { |i| "uid_string_#{i}" } }
 end

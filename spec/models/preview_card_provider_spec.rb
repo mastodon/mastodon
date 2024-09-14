@@ -2,7 +2,9 @@
 
 require 'rails_helper'
 
-describe PreviewCardProvider do
+RSpec.describe PreviewCardProvider do
+  include_examples 'Reviewable'
+
   describe 'scopes' do
     let(:trendable_and_reviewed) { Fabricate(:preview_card_provider, trendable: true, reviewed_at: 5.days.ago) }
     let(:not_trendable_and_not_reviewed) { Fabricate(:preview_card_provider, trendable: false, reviewed_at: nil) }

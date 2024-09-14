@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Announcement do
+RSpec.describe Announcement do
   describe 'Scopes' do
     context 'with published and unpublished records' do
       let!(:published) { Fabricate(:announcement, published: true) }
@@ -22,22 +22,6 @@ describe Announcement do
 
           expect(results).to eq([published])
         end
-      end
-    end
-
-    describe '#without_muted' do
-      let!(:announcement) { Fabricate(:announcement) }
-      let(:account) { Fabricate(:account) }
-      let(:muted_announcement) { Fabricate(:announcement) }
-
-      before do
-        Fabricate(:announcement_mute, account: account, announcement: muted_announcement)
-      end
-
-      it 'returns the announcements not muted by the account' do
-        results = described_class.without_muted(account)
-        expect(results).to include(announcement)
-        expect(results).to_not include(muted_announcement)
       end
     end
 
@@ -80,14 +64,7 @@ describe Announcement do
   end
 
   describe 'Validations' do
-    describe 'text' do
-      it 'validates presence of attribute' do
-        record = Fabricate.build(:announcement, text: nil)
-
-        expect(record).to_not be_valid
-        expect(record.errors[:text]).to be_present
-      end
-    end
+    it { is_expected.to validate_presence_of(:text) }
 
     describe 'ends_at' do
       it 'validates presence when starts_at is present' do
@@ -129,54 +106,37 @@ describe Announcement do
     end
   end
 
-  describe '#time_range?' do
-    it 'returns false when starts_at and ends_at are missing' do
-      record = Fabricate.build(:announcement, starts_at: nil, ends_at: nil)
-
-      expect(record.time_range?).to be(false)
-    end
-
-    it 'returns false when starts_at is present and ends_at is missing' do
-      record = Fabricate.build(:announcement, starts_at: 5.days.from_now, ends_at: nil)
-
-      expect(record.time_range?).to be(false)
-    end
-
-    it 'returns false when starts_at is missing and ends_at is present' do
-      record = Fabricate.build(:announcement, starts_at: nil, ends_at: 5.days.from_now)
-
-      expect(record.time_range?).to be(false)
-    end
-
-    it 'returns true when starts_at and ends_at are present' do
-      record = Fabricate.build(:announcement, starts_at: 5.days.from_now, ends_at: 10.days.from_now)
-
-      expect(record.time_range?).to be(true)
-    end
-  end
-
   describe '#reactions' do
     context 'with announcement_reactions present' do
+      let(:account_reaction_emoji) { Fabricate :custom_emoji }
+      let(:other_reaction_emoji) { Fabricate :custom_emoji }
       let!(:account) { Fabricate(:account) }
       let!(:announcement) { Fabricate(:announcement) }
-      let!(:announcement_reaction) { Fabricate(:announcement_reaction, announcement: announcement, created_at: 10.days.ago) }
-      let!(:announcement_reaction_account) { Fabricate(:announcement_reaction, announcement: announcement, created_at: 5.days.ago, account: account) }
 
       before do
-        Fabricate(:announcement_reaction)
+        Fabricate(:announcement_reaction, announcement: announcement, created_at: 10.days.ago, name: other_reaction_emoji.shortcode)
+        Fabricate(:announcement_reaction, announcement: announcement, created_at: 5.days.ago, account: account, name: account_reaction_emoji.shortcode)
+        Fabricate(:announcement_reaction) # For some other announcement
       end
 
       it 'returns the announcement reactions for the announcement' do
         results = announcement.reactions
 
-        expect(results.first.name).to eq(announcement_reaction.name)
-        expect(results.last.name).to eq(announcement_reaction_account.name)
+        expect(results).to have_attributes(
+          size: eq(2),
+          first: have_attributes(name: other_reaction_emoji.shortcode, me: false),
+          last: have_attributes(name: account_reaction_emoji.shortcode, me: false)
+        )
       end
 
-      it 'returns the announcement reactions for the announcement limited to account' do
+      it 'returns the announcement reactions for the announcement with `me` set correctly' do
         results = announcement.reactions(account)
 
-        expect(results.first.name).to eq(announcement_reaction.name)
+        expect(results).to have_attributes(
+          size: eq(2),
+          first: have_attributes(name: other_reaction_emoji.shortcode, me: false),
+          last: have_attributes(name: account_reaction_emoji.shortcode, me: true)
+        )
       end
     end
   end
