@@ -18,7 +18,7 @@ class AccountPin < ApplicationRecord
   belongs_to :account
   belongs_to :target_account, class_name: 'Account'
 
-  validate :validate_follow_relationship
+  validate :validate_follow_relationship, if: -> { account.present? }
 
   private
 
