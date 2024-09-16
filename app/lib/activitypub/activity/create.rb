@@ -386,7 +386,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     linkify(@status_parser.url || @status_parser.uri)
   end
 
-
   def unsupported_media_type?(mime_type)
     mime_type.present? && !MediaAttachment.supported_mime_types.include?(mime_type)
   end
