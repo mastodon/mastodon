@@ -52,7 +52,7 @@ module Mastodon::CLI
       account.account_stat.tap do |account_stat|
         account_stat.following_count = account.active_relationships.count
         account_stat.followers_count = account.passive_relationships.count
-        account_stat.statuses_count  = account.statuses.where.not(visibility: :direct).count
+        account_stat.statuses_count  = account.statuses.not_direct_visibility.count
 
         account_stat.save if account_stat.changed?
       end
@@ -60,7 +60,7 @@ module Mastodon::CLI
 
     def recount_status_stats(status)
       status.status_stat.tap do |status_stat|
-        status_stat.replies_count    = status.replies.where.not(visibility: :direct).count
+        status_stat.replies_count    = status.replies.not_direct_visibility.count
         status_stat.reblogs_count    = status.reblogs.count
         status_stat.favourites_count = status.favourites.count
 
