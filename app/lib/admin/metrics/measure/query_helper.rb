@@ -32,9 +32,7 @@ module Admin::Metrics::Measure::QueryHelper
   end
 
   def select_target
-    <<~SQL.squish
-      COUNT(*)
-    SQL
+    Arel.star.count.to_sql
   end
 
   def daily_period(table, column = :created_at)
