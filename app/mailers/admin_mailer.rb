@@ -14,7 +14,7 @@ class AdminMailer < ApplicationMailer
   def new_report(report)
     @report = report
 
-    with_user(@user) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(instance: @instance, id: @report.id)
     end
   end
@@ -22,7 +22,7 @@ class AdminMailer < ApplicationMailer
   def new_appeal(appeal)
     @appeal = appeal
 
-    with_user(@user) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(instance: @instance, username: @appeal.account.username)
     end
   end
@@ -30,7 +30,7 @@ class AdminMailer < ApplicationMailer
   def new_pending_account(user)
     @account = user.account
 
-    with_user(@user) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(instance: @instance, username: @account.username)
     end
   end
@@ -40,7 +40,7 @@ class AdminMailer < ApplicationMailer
     @tags                   = tags
     @statuses               = statuses
 
-    with_user(@user) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(instance: @instance)
     end
   end
@@ -48,7 +48,7 @@ class AdminMailer < ApplicationMailer
   def new_software_updates
     @software_updates = SoftwareUpdate.all.to_a.sort_by(&:gem_version)
 
-    with_user(@user) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(instance: @instance)
     end
   end
@@ -60,13 +60,13 @@ class AdminMailer < ApplicationMailer
     headers['X-Priority'] = '1'
     headers['Importance'] = 'high'
 
-    with_user(@user) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(instance: @instance)
     end
   end
 
   def auto_close_registrations
-    with_user(@user) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(instance: @instance)
     end
   end

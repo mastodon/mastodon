@@ -20,7 +20,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    with_user(@resource) do
+    with_user_settings(@resource) do
       mail to: @resource.unconfirmed_email.presence || @resource.email,
            subject: I18n.t(@resource.pending_reconfirmation? ? 'devise.mailer.reconfirmation_instructions.subject' : 'devise.mailer.confirmation_instructions.subject', instance: @instance),
            template_name: @resource.pending_reconfirmation? ? 'reconfirmation_instructions' : 'confirmation_instructions'
@@ -33,7 +33,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    with_user(@resource, use_current_locale: true) do
+    with_user_settings(@resource, use_current_locale: true) do
       mail subject: default_devise_subject
     end
   end
@@ -43,7 +43,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    with_user(@resource, use_current_locale: true) do
+    with_user_settings(@resource, use_current_locale: true) do
       mail subject: default_devise_subject
     end
   end
@@ -53,7 +53,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    with_user(@resource, use_current_locale: true) do
+    with_user_settings(@resource, use_current_locale: true) do
       mail subject: default_devise_subject
     end
   end
@@ -63,7 +63,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    with_user(@resource, use_current_locale: true) do
+    with_user_settings(@resource, use_current_locale: true) do
       mail subject: default_devise_subject
     end
   end
@@ -73,7 +73,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    with_user(@resource, use_current_locale: true) do
+    with_user_settings(@resource, use_current_locale: true) do
       mail subject: default_devise_subject
     end
   end
@@ -83,7 +83,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    with_user(@resource, use_current_locale: true) do
+    with_user_settings(@resource, use_current_locale: true) do
       mail subject: default_devise_subject
     end
   end
@@ -93,7 +93,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    with_user(@resource, use_current_locale: true) do
+    with_user_settings(@resource, use_current_locale: true) do
       mail subject: default_devise_subject
     end
   end
@@ -103,7 +103,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    with_user(@resource, use_current_locale: true) do
+    with_user_settings(@resource, use_current_locale: true) do
       mail subject: default_devise_subject
     end
   end
@@ -114,7 +114,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    with_user(@resource, use_current_locale: true) do
+    with_user_settings(@resource, use_current_locale: true) do
       mail subject: I18n.t('devise.mailer.webauthn_credential.added.subject')
     end
   end
@@ -125,7 +125,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    with_user(@resource, use_current_locale: true) do
+    with_user_settings(@resource, use_current_locale: true) do
       mail subject: I18n.t('devise.mailer.webauthn_credential.deleted.subject')
     end
   end
@@ -141,7 +141,7 @@ class UserMailer < Devise::Mailer
     @has_active_relationships = @resource.account.active_relationships.exists?
     @has_statuses = @resource.account.statuses.exists?
 
-    with_user(@resource) do
+    with_user_settings(@resource) do
       mail subject: default_i18n_subject
     end
   end
@@ -152,7 +152,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    with_user(@resource) do
+    with_user_settings(@resource) do
       mail subject: default_i18n_subject
     end
   end
@@ -162,7 +162,7 @@ class UserMailer < Devise::Mailer
     @warning  = warning
     @statuses = @warning.statuses.includes(:account, :preloadable_poll, :media_attachments, active_mentions: [:account])
 
-    with_user(@resource) do
+    with_user_settings(@resource) do
       mail subject: I18n.t("user_mailer.warning.subject.#{@warning.action}", acct: "@#{user.account.local_username_and_domain}")
     end
   end
@@ -171,7 +171,7 @@ class UserMailer < Devise::Mailer
     @resource = user
     @appeal   = appeal
 
-    with_user(@resource) do
+    with_user_settings(@resource) do
       mail subject: default_i18n_subject(date: l(@appeal.created_at))
     end
   end
@@ -180,7 +180,7 @@ class UserMailer < Devise::Mailer
     @resource = user
     @appeal   = appeal
 
-    with_user(@resource) do
+    with_user_settings(@resource) do
       mail subject: default_i18n_subject(date: l(@appeal.created_at))
     end
   end
@@ -191,7 +191,7 @@ class UserMailer < Devise::Mailer
     @user_agent = user_agent
     @detection  = Browser.new(user_agent)
 
-    with_user(@resource) do
+    with_user_settings(@resource) do
       @timestamp = timestamp.in_time_zone
 
       mail subject: default_i18n_subject
@@ -204,7 +204,7 @@ class UserMailer < Devise::Mailer
     @user_agent = user_agent
     @detection  = Browser.new(user_agent)
 
-    with_user(@resource) do
+    with_user_settings(@resource) do
       @timestamp = timestamp.in_time_zone
 
       mail subject: default_i18n_subject
@@ -221,7 +221,7 @@ class UserMailer < Devise::Mailer
     @instance = Rails.configuration.x.local_domain
   end
 
-  def with_user(user, use_current_locale: false, &block)
+  def with_user_settings(user, use_current_locale: false, &block)
     I18n.with_locale(user.locale || (use_current_locale && I18n.locale) || I18n.default_locale) do
       Time.use_zone(user.time_zone || ENV['DEFAULT_TIME_ZONE'] || 'UTC', &block)
     end
