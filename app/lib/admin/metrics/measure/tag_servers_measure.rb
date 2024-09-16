@@ -29,7 +29,7 @@ class Admin::Metrics::Measure::TagServersMeasure < Admin::Metrics::Measure::Base
       .joins(:tags, :account)
       .where(statuses_tags: { tag_id: tag.id })
       .where(id: earliest_status_id..latest_status_id)
-      .where(daily_period(:statuses))
+      .where(matching_day(Status, :created_at))
   end
 
   def earliest_status_id

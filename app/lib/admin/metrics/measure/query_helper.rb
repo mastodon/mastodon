@@ -35,9 +35,9 @@ module Admin::Metrics::Measure::QueryHelper
     Arel.star.count.to_sql
   end
 
-  def daily_period(table, column = :created_at)
+  def matching_day(model, column)
     <<~SQL.squish
-      DATE_TRUNC('day', #{table}.#{column})::date = axis.period
+      DATE_TRUNC('day', #{model.table_name}.#{column})::date = axis.period
     SQL
   end
 

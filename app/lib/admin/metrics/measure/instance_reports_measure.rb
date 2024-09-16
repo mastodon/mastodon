@@ -32,7 +32,7 @@ class Admin::Metrics::Measure::InstanceReportsMeasure < Admin::Metrics::Measure:
       .select(:id)
       .joins(:target_account)
       .merge(account_domain_scope)
-      .where(daily_period(:reports))
+      .where(matching_day(Report, :created_at))
   end
 
   def params

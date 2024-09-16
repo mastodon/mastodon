@@ -32,7 +32,7 @@ class Admin::Metrics::Measure::InstanceFollowsMeasure < Admin::Metrics::Measure:
       .select(:id)
       .joins(:target_account)
       .merge(account_domain_scope)
-      .where(daily_period(:follows))
+      .where(matching_day(Follow, :created_at))
   end
 
   def params
