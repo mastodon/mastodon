@@ -18,6 +18,9 @@ fr-CA:
       attributes:
         domain:
           invalid: n'est pas un nom de domaine valide
+      messages:
+        invalid_domain_on_line: "%{value} n'est pas un nom de domaine valide"
+        too_many_lines: dépasse la limite de %{limit} lignes
       models:
         account:
           attributes:

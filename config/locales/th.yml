@@ -22,6 +22,7 @@ th:
   admin:
     account_actions:
       action: ทำการกระทำ
+      already_silenced: มีการจำกัดบัญชีนี้ไปแล้ว
       already_suspended: มีการระงับบัญชีนี้ไปแล้ว
       title: ทำการกระทำการกลั่นกรองต่อ %{acct}
     account_moderation_notes:
@@ -1141,6 +1142,12 @@ th:
       view_strikes: ดูการดำเนินการที่ผ่านมาต่อบัญชีของคุณ
     too_fast: ส่งแบบฟอร์มเร็วเกินไป ลองอีกครั้ง
     use_security_key: ใช้กุญแจความปลอดภัย
+  author_attribution:
+    example_title: ข้อความตัวอย่าง
+    hint_html: ควบคุมวิธีที่ให้เครดิตแก่คุณเมื่อมีการแบ่งปันลิงก์ใน Mastodon
+    more_from_html: เพิ่มเติมจาก %{name}
+    s_blog: บล็อกของ %{name}
+    title: การระบุแหล่งที่มาผู้สร้าง
   challenge:
     confirm: ดำเนินการต่อ
     hint_html: "<strong>เคล็ดลับ:</strong> เราจะไม่ถามรหัสผ่านของคุณกับคุณสำหรับชั่วโมงถัดไป"
@@ -1905,6 +1912,7 @@ th:
     instructions_html: คัดลอกแล้ววางโค้ดด้านล่างลงใน HTML ของเว็บไซต์ของคุณ จากนั้นเพิ่มที่อยู่ของเว็บไซต์ของคุณลงในหนึ่งในช่องพิเศษในโปรไฟล์ของคุณจากแท็บ "แก้ไขโปรไฟล์" และบันทึกการเปลี่ยนแปลง
     verification: การตรวจสอบ
     verified_links: ลิงก์ที่ยืนยันแล้วของคุณ
+    website_verification: การตรวจสอบเว็บไซต์
   webauthn_credentials:
     add: เพิ่มกุญแจความปลอดภัยใหม่
     create:
