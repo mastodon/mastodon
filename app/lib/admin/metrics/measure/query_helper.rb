@@ -41,12 +41,6 @@ module Admin::Metrics::Measure::QueryHelper
     SQL
   end
 
-  def status_range_sql
-    <<~SQL.squish
-      statuses.id BETWEEN :earliest_status_id AND :latest_status_id
-    SQL
-  end
-
   def account_domain_scope
     if params[:include_subdomains]
       Account.by_domain_and_subdomains(params[:domain])
