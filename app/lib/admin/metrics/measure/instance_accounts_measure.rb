@@ -30,7 +30,7 @@ class Admin::Metrics::Measure::InstanceAccountsMeasure < Admin::Metrics::Measure
   def data_source
     Account
       .select(:id)
-      .where(account_domain_sql, domain: params[:domain])
+      .merge(account_domain_scope)
       .where(daily_period(:accounts))
   end
 

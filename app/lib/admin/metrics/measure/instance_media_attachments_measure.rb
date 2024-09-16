@@ -40,7 +40,7 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
     MediaAttachment
       .select(media_size_total)
       .joins(:account)
-      .where(account_domain_sql, domain: params[:domain])
+      .merge(account_domain_scope)
       .where(daily_period(:media_attachments))
   end
 

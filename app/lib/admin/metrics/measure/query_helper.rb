@@ -47,15 +47,11 @@ module Admin::Metrics::Measure::QueryHelper
     SQL
   end
 
-  def account_domain_sql
+  def account_domain_scope
     if params[:include_subdomains]
-      <<~SQL.squish
-        accounts.domain IN (SELECT domain FROM instances WHERE reverse('.' || domain) LIKE reverse('.' || :domain::text))
-      SQL
+      Account.by_domain_and_subdomains(params[:domain])
     else
-      <<~SQL.squish
-        accounts.domain = :domain::text
-      SQL
+      Account.with_domain(params[:domain])
     end
   end
 end
