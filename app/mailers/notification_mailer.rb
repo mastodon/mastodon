@@ -84,9 +84,9 @@ class NotificationMailer < ApplicationMailer
   def thread_by_conversation(conversation)
     return if conversation.nil?
 
-    msg_id = "<conversation-#{conversation.id}.#{conversation.created_at.strftime('%Y-%m-%d')}@#{Rails.configuration.x.local_domain}>"
+    message_id = "<#{conversation.to_message_id}@#{Rails.configuration.x.local_domain}>"
 
-    headers['In-Reply-To'] = msg_id
-    headers['References']  = msg_id
+    headers['In-Reply-To'] = message_id
+    headers['References'] = message_id
   end
 end
