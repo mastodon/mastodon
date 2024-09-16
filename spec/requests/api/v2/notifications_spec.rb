@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# TODO: remove this before 4.3.0-rc1
-
 require 'rails_helper'
 
 RSpec.describe 'Notifications' do
@@ -10,9 +8,9 @@ RSpec.describe 'Notifications' do
   let(:scopes)  { 'read:notifications write:notifications' }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  describe 'GET /api/v2_alpha/notifications/unread_count', :inline_jobs do
+  describe 'GET /api/v2/notifications/unread_count', :inline_jobs do
     subject do
-      get '/api/v2_alpha/notifications/unread_count', headers: headers, params: params
+      get '/api/v2/notifications/unread_count', headers: headers, params: params
     end
 
     let(:params) { {} }
@@ -98,9 +96,9 @@ RSpec.describe 'Notifications' do
     end
   end
 
-  describe 'GET /api/v2_alpha/notifications', :inline_jobs do
+  describe 'GET /api/v2/notifications', :inline_jobs do
     subject do
-      get '/api/v2_alpha/notifications', headers: headers, params: params
+      get '/api/v2/notifications', headers: headers, params: params
     end
 
     let(:bob)    { Fabricate(:user) }
@@ -271,9 +269,9 @@ RSpec.describe 'Notifications' do
     end
   end
 
-  describe 'GET /api/v2_alpha/notifications/:id' do
+  describe 'GET /api/v2/notifications/:id' do
     subject do
-      get "/api/v2_alpha/notifications/#{notification.group_key}", headers: headers
+      get "/api/v2/notifications/#{notification.group_key}", headers: headers
     end
 
     let(:notification) { Fabricate(:notification, account: user.account, group_key: 'foobar') }
@@ -297,9 +295,9 @@ RSpec.describe 'Notifications' do
     end
   end
 
-  describe 'POST /api/v2_alpha/notifications/:id/dismiss' do
+  describe 'POST /api/v2/notifications/:id/dismiss' do
     subject do
-      post "/api/v2_alpha/notifications/#{notification.group_key}/dismiss", headers: headers
+      post "/api/v2/notifications/#{notification.group_key}/dismiss", headers: headers
     end
 
     let!(:notification) { Fabricate(:notification, account: user.account, group_key: 'foobar') }
@@ -324,9 +322,9 @@ RSpec.describe 'Notifications' do
     end
   end
 
-  describe 'POST /api/v2_alpha/notifications/clear' do
+  describe 'POST /api/v2/notifications/clear' do
     subject do
-      post '/api/v2_alpha/notifications/clear', headers: headers
+      post '/api/v2/notifications/clear', headers: headers
     end
 
     before do

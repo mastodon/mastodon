@@ -316,6 +316,21 @@ namespace :api, format: false do
     end
   end
 
+  concern :grouped_notifications do
+    resources :notifications, param: :group_key, only: [:index, :show] do
+      collection do
+        post :clear
+        get :unread_count
+      end
+
+      member do
+        post :dismiss
+      end
+
+      resources :accounts, only: [:index], module: :notifications
+    end
+  end
+
   namespace :v2 do
     get '/search', to: 'search#index', as: :search
 
@@ -341,21 +356,12 @@ namespace :api, format: false do
     namespace :notifications do
       resource :policy, only: [:show, :update]
     end
+
+    concerns :grouped_notifications
   end
 
-  namespace :v2_alpha do
-    resources :notifications, param: :group_key, only: [:index, :show] do
-      collection do
-        post :clear
-        get :unread_count
-      end
-
-      member do
-        post :dismiss
-      end
-
-      resources :accounts, only: [:index], module: :notifications
-    end
+  namespace :v2_alpha, module: 'v2' do
+    concerns :grouped_notifications
   end
 
   namespace :web do
