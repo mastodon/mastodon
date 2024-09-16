@@ -43,6 +43,12 @@ module Mastodon
       @gem_version ||= Gem::Version.new(to_s.split('+')[0])
     end
 
+    def api_versions
+      {
+        mastodon: 2,
+      }
+    end
+
     def repository
       ENV.fetch('GITHUB_REPOSITORY', 'mastodon/mastodon')
     end

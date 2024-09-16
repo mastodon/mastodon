@@ -24,6 +24,7 @@ fr:
   admin:
     account_actions:
       action: Effectuer l'action
+      already_silenced: Ce compte a déjà été limité.
       already_suspended: Ce compte est déjà suspendu.
       title: Effectuer une action de modération sur %{acct}
     account_moderation_notes:
@@ -133,7 +134,7 @@ fr:
       resubscribe: Se réabonner
       role: Rôle
       search: Rechercher
-      search_same_email_domain: Autres utilisateurs avec le même domaine de courriel
+      search_same_email_domain: Autres utilisateur·rice·s ayant le même domaine de messagerie
       search_same_ip: Autres utilisateur·rice·s avec la même IP
       security: Sécurité
       security_measures:
@@ -270,6 +271,7 @@ fr:
         reject_user_html: "%{name} a rejeté l’inscription de %{target}"
         remove_avatar_user_html: "%{name} a supprimé l'avatar de %{target}"
         reopen_report_html: "%{name} a rouvert le signalement %{target}"
+        resend_user_html: "%{name} a renvoyé l'e-mail de confirmation pour %{target}"
         reset_password_user_html: "%{name} a réinitialisé le mot de passe de l'utilisateur·rice %{target}"
         resolve_report_html: "%{name} a résolu le signalement %{target}"
         sensitive_account_html: "%{name} a marqué le média de %{target} comme sensible"
@@ -284,6 +286,7 @@ fr:
         update_custom_emoji_html: "%{name} a mis à jour l'émoji %{target}"
         update_domain_block_html: "%{name} a mis à jour le blocage de domaine pour %{target}"
         update_ip_block_html: "%{name} a modifié la règle pour l'IP %{target}"
+        update_report_html: "%{name} a mis à jour le rapport de signalement %{target}"
         update_status_html: "%{name} a mis à jour le message de %{target}"
         update_user_role_html: "%{name} a changé le rôle %{target}"
       deleted_account: compte supprimé
@@ -439,7 +442,12 @@ fr:
         create: Créer le blocage
         resolve: Résoudre le domaine
         title: Blocage d'un nouveau domaine de messagerie électronique
+      no_email_domain_block_selected: Aucun blocage de domaine de messagerie n'a été modifié comme aucun n'a été sélectionné
       not_permitted: Non autorisé
+      resolved_dns_records_hint_html: |-
+        Le nom de domaine se réfère aux domaines MX suivants, qui sont à leur tour responsables de la réception des courriels.
+
+        Le blocage d'un domaine MX empêchera l'inscription depuis toute adresse électronique ayant recours au même domaine MX, et ce même si le nom de domaine visible est différent. <strong>Veillez à ne pas bloquer les principaux fournisseurs de services de messagerie.</strong>
       resolved_through_html: Résolu par %{domain}
       title: Domaines de messagerie électronique bloqués
     export_domain_allows:
@@ -595,7 +603,9 @@ fr:
         resolve_description_html: Aucune mesure ne sera prise contre le compte signalé, aucune sanction ne sera enregistrée et le sigalement sera clôturé.
         silence_description_html: Le compte ne sera visible que par ceux qui le suivent déjà ou qui le recherchent manuellement, ce qui limite fortement sa portée. Cette action peut toujours être annulée. Cloture tous les signalements concernant ce compte.
         suspend_description_html: Le compte et tous ses contenus seront inaccessibles et finalement supprimés, et il sera impossible d'interagir avec lui. Réversible dans les 30 jours. Cloture tous les signalements concernant ce compte.
+      actions_description_html: Décidez de l'action à entreprendre pour résoudre ce signalement. Si vous prenez une mesure punitive à l'encontre du compte signalé, une notification par courrier électronique lui sera envoyée, excepté lorsque la catégorie <strong>Spam</strong> est sélectionnée.
       actions_description_remote_html: Décidez des mesures à prendre pour résoudre ce signalement. Cela n'affectera que la manière dont <strong>votre</strong> serveur communique avec ce compte distant et traite son contenu.
+      actions_no_posts: Ce signalement n'a pas de messages qui lui sont associés et qui devraient être supprimés
       add_to_report: Ajouter davantage au rapport
       already_suspended_badges:
         local: Déjà suspendu sur ce serveur
@@ -717,6 +727,7 @@ fr:
         manage_taxonomies: Gérer les taxonomies
         manage_taxonomies_description: Permet aux utilisateur⋅rice⋅s d'examiner les contenus tendance et de mettre à jour les paramètres des hashtags
         manage_user_access: Gérer l'accès utilisateur
+        manage_user_access_description: Permet aux utilisateur·rice·s de désactiver l'authentification à deux facteurs des autres utilisateur·rice·s, de modifier leur adresse électronique et de réinitialiser leur mot de passe
         manage_users: Gérer les utilisateur·rice·s
         manage_users_description: Permet aux utilisateur⋅rice⋅s de voir les détails des autres utilisateur⋅rice⋅s et d'effectuer des actions de modération en conséquence
         manage_webhooks: Gérer les points d’ancrage web
@@ -879,16 +890,19 @@ fr:
         message_html: "<strong>Votre serveur web est mal configuré. La confidentialité de vos utilisateurs est en péril.</strong>"
     tags:
       moderation:
+        not_trendable: Ne peut être en tendance
         not_usable: Non utilisable
         pending_review: En attente de traitement
         review_requested: Révision requise
         reviewed: Traité
         title: État
+        trendable: Peut s'afficher dans les tendances
         unreviewed: Non traité
         usable: Utilisable
       name: Nom
       newest: Plus récents
       oldest: Plus anciens
+      open: Afficher publiquement
       reset: Réinitialiser
       review: État du traitement
       search: Recherche
@@ -1434,6 +1448,15 @@ fr:
     unsubscribe:
       action: Oui, se désinscrire
       complete: Désinscrit
+      emails:
+        notification_emails:
+          favourite: e-mails de notifications de favoris
+          follow: e-mails de notifications d’abonnements
+          follow_request: e-mails de demandes d’abonnements
+          mention: e-mails de notifications de mentions
+          reblog: e-mails de notifications de partages
+      resubscribe_html: Si vous vous êtes désinscrit par erreur, vous pouvez vous réinscrire à partir de vos <a href="%{settings_path}">paramètres de notification par e-mail</a>.
+      success_html: Vous ne recevrez plus de %{type} pour Mastodon sur %{domain} à votre adresse e-mail à %{email}.
       title: Se désinscrire
   media_attachments:
     validations:

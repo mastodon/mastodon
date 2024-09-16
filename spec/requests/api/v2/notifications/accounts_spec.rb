@@ -8,9 +8,9 @@ RSpec.describe 'Accounts in grouped notifications' do
   let(:scopes)  { 'read:notifications write:notifications' }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  describe 'GET /api/v2_alpha/notifications/:group_key/accounts', :inline_jobs do
+  describe 'GET /api/v2/notifications/:group_key/accounts', :inline_jobs do
     subject do
-      get "/api/v2_alpha/notifications/#{user.account.notifications.first.group_key}/accounts", headers: headers, params: params
+      get "/api/v2/notifications/#{user.account.notifications.first.group_key}/accounts", headers: headers, params: params
     end
 
     let(:params) { {} }
@@ -71,8 +71,8 @@ RSpec.describe 'Accounts in grouped notifications' do
 
         expect(response)
           .to include_pagination_headers(
-            prev: api_v2_alpha_notification_accounts_url(limit: params[:limit], min_id: notifications.first.id),
-            next: api_v2_alpha_notification_accounts_url(limit: params[:limit], max_id: notifications.second.id)
+            prev: api_v2_notification_accounts_url(limit: params[:limit], min_id: notifications.first.id),
+            next: api_v2_notification_accounts_url(limit: params[:limit], max_id: notifications.second.id)
           )
       end
     end
