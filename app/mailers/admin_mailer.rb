@@ -56,9 +56,11 @@ class AdminMailer < ApplicationMailer
   def new_critical_software_updates
     @software_updates = SoftwareUpdate.where(urgent: true).to_a.sort_by(&:gem_version)
 
-    headers['Priority'] = 'urgent'
-    headers['X-Priority'] = '1'
-    headers['Importance'] = 'high'
+    headers(
+      'Importance' => 'high',
+      'Priority' => 'urgent',
+      'X-Priority' => '1'
+    )
 
     locale_for_account(@me) do
       mail subject: default_i18n_subject(instance: @instance)

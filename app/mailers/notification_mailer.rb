@@ -18,7 +18,7 @@ class NotificationMailer < ApplicationMailer
     return unless @user.functional? && @status.present?
 
     locale_for_account(@me) do
-      thread_by_conversation(@status.conversation)
+      thread_by_conversation!
       mail subject: default_i18n_subject(name: @status.account.acct)
     end
   end
@@ -35,7 +35,7 @@ class NotificationMailer < ApplicationMailer
     return unless @user.functional? && @status.present?
 
     locale_for_account(@me) do
-      thread_by_conversation(@status.conversation)
+      thread_by_conversation!
       mail subject: default_i18n_subject(name: @account.acct)
     end
   end
@@ -44,7 +44,7 @@ class NotificationMailer < ApplicationMailer
     return unless @user.functional? && @status.present?
 
     locale_for_account(@me) do
-      thread_by_conversation(@status.conversation)
+      thread_by_conversation!
       mail subject: default_i18n_subject(name: @account.acct)
     end
   end
@@ -76,17 +76,23 @@ class NotificationMailer < ApplicationMailer
   end
 
   def set_list_headers!
-    headers['List-ID'] = "<#{@type}.#{@me.username}.#{Rails.configuration.x.local_domain}>"
-    headers['List-Unsubscribe'] = "<#{@unsubscribe_url}>"
-    headers['List-Unsubscribe-Post'] = 'List-Unsubscribe=One-Click'
+    headers(
+      'List-ID' => "<#{@type}.#{@me.username}.#{Rails.configuration.x.local_domain}>",
+      'List-Unsubscribe-Post' => 'List-Unsubscribe=One-Click',
+      'List-Unsubscribe' => "<#{@unsubscribe_url}>"
+    )
   end
 
-  def thread_by_conversation(conversation)
-    return if conversation.nil?
+  def thread_by_conversation!
+    return if @status.conversation.nil?
 
-    message_id = "<#{conversation.to_message_id}@#{Rails.configuration.x.local_domain}>"
+    headers(
+      'In-Reply-To' => conversation_message_id,
+      'References' => conversation_message_id
+    )
+  end
 
-    headers['In-Reply-To'] = message_id
-    headers['References'] = message_id
+  def conversation_message_id
+    "<#{@status.conversation.to_message_id}@#{Rails.configuration.x.local_domain}>"
   end
 end
