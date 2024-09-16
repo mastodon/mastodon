@@ -20,6 +20,6 @@ class Admin::Metrics::Measure::NewUsersMeasure < Admin::Metrics::Measure::BaseMe
   def data_source
     User
       .select(:id)
-      .where(daily_period(:users))
+      .where(matching_day(User, :created_at))
   end
 end

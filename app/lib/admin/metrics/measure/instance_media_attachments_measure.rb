@@ -41,7 +41,7 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
       .select(media_size_total)
       .joins(:account)
       .merge(account_domain_scope)
-      .where(daily_period(:media_attachments))
+      .where(matching_day(MediaAttachment, :created_at))
   end
 
   def select_target

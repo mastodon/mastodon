@@ -20,6 +20,6 @@ class Admin::Metrics::Measure::ResolvedReportsMeasure < Admin::Metrics::Measure:
   def data_source
     Report
       .select(:id)
-      .where(daily_period(:reports, :action_taken_at))
+      .where(matching_day(Report, :action_taken_at))
   end
 end

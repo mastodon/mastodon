@@ -20,6 +20,6 @@ class Admin::Metrics::Measure::OpenedReportsMeasure < Admin::Metrics::Measure::B
   def data_source
     Report
       .select(:id)
-      .where(daily_period(:reports))
+      .where(matching_day(Report, :created_at))
   end
 end
