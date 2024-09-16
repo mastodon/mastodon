@@ -32,7 +32,7 @@ class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure
       .select(:id)
       .joins(:account)
       .merge(account_domain_scope)
-      .where(status_range_sql, earliest_status_id: earliest_status_id, latest_status_id: latest_status_id)
+      .where(id: earliest_status_id..latest_status_id)
       .where(daily_period(:statuses))
   end
 

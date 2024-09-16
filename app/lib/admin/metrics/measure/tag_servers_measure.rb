@@ -28,7 +28,7 @@ class Admin::Metrics::Measure::TagServersMeasure < Admin::Metrics::Measure::Base
       .reorder(nil)
       .joins(:tags, :account)
       .where(statuses_tags: { tag_id: tag.id })
-      .where(status_range_sql, earliest_status_id: earliest_status_id, latest_status_id: latest_status_id)
+      .where(id: earliest_status_id..latest_status_id)
       .where(daily_period(:statuses))
   end
 
