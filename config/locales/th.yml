@@ -7,7 +7,6 @@ th:
     hosted_on: Mastodon ที่โฮสต์ที่ %{domain}
     title: เกี่ยวกับ
   accounts:
-    follow: ติดตาม
     followers:
       other: ผู้ติดตาม
     following: กำลังติดตาม
@@ -23,6 +22,7 @@ th:
   admin:
     account_actions:
       action: ทำการกระทำ
+      already_silenced: มีการจำกัดบัญชีนี้ไปแล้ว
       already_suspended: มีการระงับบัญชีนี้ไปแล้ว
       title: ทำการกระทำการกลั่นกรองต่อ %{acct}
     account_moderation_notes:
@@ -1142,6 +1142,12 @@ th:
       view_strikes: ดูการดำเนินการที่ผ่านมาต่อบัญชีของคุณ
     too_fast: ส่งแบบฟอร์มเร็วเกินไป ลองอีกครั้ง
     use_security_key: ใช้กุญแจความปลอดภัย
+  author_attribution:
+    example_title: ข้อความตัวอย่าง
+    hint_html: ควบคุมวิธีที่ให้เครดิตแก่คุณเมื่อมีการแบ่งปันลิงก์ใน Mastodon
+    more_from_html: เพิ่มเติมจาก %{name}
+    s_blog: บล็อกของ %{name}
+    title: การระบุแหล่งที่มาผู้สร้าง
   challenge:
     confirm: ดำเนินการต่อ
     hint_html: "<strong>เคล็ดลับ:</strong> เราจะไม่ถามรหัสผ่านของคุณกับคุณสำหรับชั่วโมงถัดไป"
@@ -1703,21 +1709,12 @@ th:
     edited_at_html: แก้ไขเมื่อ %{date}
     errors:
       in_reply_not_found: ดูเหมือนว่าจะไม่มีโพสต์ที่คุณกำลังพยายามตอบกลับอยู่
-    open_in_web: เปิดในเว็บ
     over_character_limit: เกินขีดจำกัดตัวอักษรที่ %{max} แล้ว
     pin_errors:
       direct: ไม่สามารถปักหมุดโพสต์ที่ปรากฏแก่ผู้ใช้ที่กล่าวถึงเท่านั้น
       limit: คุณได้ปักหมุดโพสต์ถึงจำนวนสูงสุดไปแล้ว
       ownership: ไม่สามารถปักหมุดโพสต์ของคนอื่น
       reblog: ไม่สามารถปักหมุดการดัน
-    poll:
-      total_people:
-        other: "%{count} คน"
-      total_votes:
-        other: "%{count} การลงคะแนน"
-      vote: ลงคะแนน
-    show_more: แสดงเพิ่มเติม
-    show_thread: แสดงกระทู้
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: โดยตรง
@@ -1915,6 +1912,7 @@ th:
     instructions_html: คัดลอกแล้ววางโค้ดด้านล่างลงใน HTML ของเว็บไซต์ของคุณ จากนั้นเพิ่มที่อยู่ของเว็บไซต์ของคุณลงในหนึ่งในช่องพิเศษในโปรไฟล์ของคุณจากแท็บ "แก้ไขโปรไฟล์" และบันทึกการเปลี่ยนแปลง
     verification: การตรวจสอบ
     verified_links: ลิงก์ที่ยืนยันแล้วของคุณ
+    website_verification: การตรวจสอบเว็บไซต์
   webauthn_credentials:
     add: เพิ่มกุญแจความปลอดภัยใหม่
     create:

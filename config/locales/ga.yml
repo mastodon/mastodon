@@ -7,7 +7,6 @@ ga:
     hosted_on: Mastodon arna óstáil ar %{domain}
     title: Maidir le
   accounts:
-    follow: Lean
     followers:
       few: Leantóirí
       many: Leantóirí
@@ -31,6 +30,7 @@ ga:
   admin:
     account_actions:
       action: Déan gníomh
+      already_silenced: Tá teorainn leis an gcuntas seo cheana féin.
       already_suspended: Tá an cuntas seo curtha ar fionraí cheana féin.
       title: Dean gníomh modhnóireachta ar %{acct}
     account_moderation_notes:
@@ -1214,6 +1214,12 @@ ga:
       view_strikes: Féach ar stailceanna san am atá caite i gcoinne do chuntais
     too_fast: Cuireadh an fhoirm isteach róthapa, triail arís.
     use_security_key: Úsáid eochair shlándála
+  author_attribution:
+    example_title: Téacs samplach
+    hint_html: Rialú conas a chuirtear chun sochair tú nuair a roinntear naisc ar Mastodon.
+    more_from_html: Tuilleadh ó %{name}
+    s_blog: Blag %{name}
+    title: Leithdháil an údair
   challenge:
     confirm: Lean ar aghaidh
     hint_html: "<strong>Leid:</strong> Ní iarrfaimid do phasfhocal ort arís go ceann uair an chloig eile."
@@ -1823,29 +1829,12 @@ ga:
     edited_at_html: "%{date} curtha in eagar"
     errors:
       in_reply_not_found: Is cosúil nach ann don phostáil a bhfuil tú ag iarraidh freagra a thabhairt air.
-    open_in_web: Oscail i ngréasán
     over_character_limit: teorainn carachtar %{max} sáraithe
     pin_errors:
       direct: Ní féidir postálacha nach bhfuil le feiceáil ach ag úsáideoirí luaite a phinnáil
       limit: Tá uaslíon na bpostálacha pinn agat cheana féin
       ownership: Ní féidir postáil duine éigin eile a phionnáil
       reblog: Ní féidir treisiú a phinnáil
-    poll:
-      total_people:
-        few: "%{count} daoine"
-        many: "%{count} daoine"
-        one: "%{count} duine"
-        other: "%{count} daoine"
-        two: "%{count} daoine"
-      total_votes:
-        few: "%{count} vótaí"
-        many: "%{count} vótaí"
-        one: "%{count} vóta"
-        other: "%{count} vótaí"
-        two: "%{count} vótaí"
-      vote: Vótáil
-    show_more: Taispeáin níos mó
-    show_thread: Taispeáin snáithe
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Díreach
@@ -2047,6 +2036,7 @@ ga:
     instructions_html: Cóipeáil agus greamaigh an cód thíos isteach i HTML do shuíomh Gréasáin. Ansin cuir seoladh do shuíomh Gréasáin isteach i gceann de na réimsí breise ar do phróifíl ón gcluaisín "Cuir próifíl in eagar" agus sábháil athruithe.
     verification: Fíorú
     verified_links: Do naisc fhíoraithe
+    website_verification: Fíorú láithreán gréasáin
   webauthn_credentials:
     add: Cuir eochair shlándála nua leis
     create:

@@ -74,7 +74,7 @@ class Admin::AccountAction
     end
 
     def disabled_types_for_account(account)
-      if account.suspended?
+      if account.suspended_locally?
         %w(silence suspend)
       elsif account.silenced?
         %w(silence)

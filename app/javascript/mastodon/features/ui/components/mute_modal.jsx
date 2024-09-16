@@ -137,7 +137,7 @@ export const MuteModal = ({ accountId, acct }) => {
             <FormattedMessage id='confirmation_modal.cancel' defaultMessage='Cancel' />
           </button>
 
-          <Button onClick={handleClick}>
+          <Button onClick={handleClick} autoFocus>
             <FormattedMessage id='confirmations.mute.confirm' defaultMessage='Mute' />
           </Button>
         </div>

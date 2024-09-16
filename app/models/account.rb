@@ -259,6 +259,10 @@ class Account < ApplicationRecord
     suspended_at.present? && !instance_actor?
   end
 
+  def suspended_locally?
+    suspended? && suspension_origin_local?
+  end
+
   def suspended_permanently?
     suspended? && deletion_request.nil?
   end

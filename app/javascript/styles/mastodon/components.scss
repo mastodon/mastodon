@@ -1677,18 +1677,6 @@ body > [data-popper-placement] {
   padding: 16px;
   border-top: 1px solid var(--background-border-color);
 
-  &--flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-
-    .status__content,
-    .detailed-status__meta {
-      flex: 100%;
-    }
-  }
-
   .status__content {
     font-size: 19px;
     line-height: 24px;
@@ -1722,6 +1710,29 @@ body > [data-popper-placement] {
     &:last-child {
       margin-bottom: 0;
     }
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+    color: $dark-text-color;
+  }
+}
+
+.embed {
+  position: relative;
+
+  &__overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .detailed-status {
+    border-top: 0;
   }
 }
 
@@ -6282,6 +6293,50 @@ a.status-card {
   }
 }
 
+.dialog-modal {
+  width: 588px;
+  max-height: 80vh;
+  flex-direction: column;
+  background: var(--modal-background-color);
+  backdrop-filter: var(--background-filter);
+  border: 1px solid var(--modal-border-color);
+  border-radius: 16px;
+
+  &__header {
+    border-bottom: 1px solid var(--modal-border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    padding: 12px 24px;
+
+    &__title {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 500;
+      letter-spacing: 0.15px;
+    }
+  }
+
+  &__content {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    overflow-y: auto;
+
+    &__form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px;
+    }
+  }
+
+  .copy-paste-text {
+    margin-bottom: 0;
+  }
+}
+
 .hotkey-combination {
   display: inline-flex;
   align-items: center;
@@ -6307,6 +6362,11 @@ a.status-card {
   width: 480px;
   position: relative;
   flex-direction: column;
+
+  @media screen and (max-width: $no-columns-breakpoint) {
+    border-bottom: 0;
+    border-radius: 4px 4px 0 0;
+  }
 }
 
 .boost-modal__container {
@@ -6704,7 +6764,7 @@ a.status-card {
 
     li:not(:empty) {
       a {
-        color: $inverted-text-color;
+        color: $primary-text-color;
         display: flex;
         padding: 12px 16px;
         font-size: 15px;
@@ -6784,7 +6844,7 @@ a.status-card {
 
 .compare-history-modal {
   .report-modal__target {
-    border-bottom: 1px solid $ui-secondary-color;
+    border-bottom: 1px solid var(--background-border-color);
   }
 
   &__container {
@@ -6794,7 +6854,7 @@ a.status-card {
   }
 
   .status__content {
-    color: $inverted-text-color;
+    color: $secondary-text-color;
     font-size: 19px;
     line-height: 24px;
 
@@ -7727,69 +7787,6 @@ noscript {
 
   100% {
     opacity: 1;
-  }
-}
-
-.embed-modal {
-  width: auto;
-  max-width: 80vw;
-  max-height: 80vh;
-
-  h4 {
-    padding: 30px;
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-  }
-
-  .embed-modal__container {
-    padding: 10px;
-
-    .hint {
-      margin-bottom: 15px;
-    }
-
-    .embed-modal__html {
-      outline: 0;
-      box-sizing: border-box;
-      display: block;
-      width: 100%;
-      border: 0;
-      padding: 10px;
-      font-family: $font-monospace, monospace;
-      background: $ui-base-color;
-      color: $primary-text-color;
-      font-size: 14px;
-      margin: 0;
-      margin-bottom: 15px;
-      border-radius: 4px;
-
-      &::-moz-focus-inner {
-        border: 0;
-      }
-
-      &::-moz-focus-inner,
-      &:focus,
-      &:active {
-        outline: 0 !important;
-      }
-
-      &:focus {
-        background: lighten($ui-base-color, 4%);
-      }
-
-      @media screen and (width <= 600px) {
-        font-size: 16px;
-      }
-    }
-
-    .embed-modal__iframe {
-      width: 400px;
-      max-width: 100%;
-      overflow: hidden;
-      border: 0;
-      border-radius: 4px;
-    }
   }
 }
 
@@ -10237,6 +10234,7 @@ noscript {
       scroll-padding: 16px;
       scroll-behavior: smooth;
       overflow-x: scroll;
+      scrollbar-width: none;
 
       &__card {
         background: var(--background-color);

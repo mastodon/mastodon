@@ -1,2 +1,1 @@
-.activity-stream.activity-stream--headless
-  = render 'status', status: @status, centered: true
+#mastodon-status{ data: { props: Oj.dump(default_props.merge(id: @status.id.to_s)) } }

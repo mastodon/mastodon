@@ -7,7 +7,6 @@ vi:
     hosted_on: "%{domain} vận hành nhờ Mastodon"
     title: Giới thiệu
   accounts:
-    follow: Theo dõi
     followers:
       other: Người theo dõi
     following: Theo dõi
@@ -23,6 +22,7 @@ vi:
   admin:
     account_actions:
       action: Thực hiện hành động
+      already_silenced: Tài khoản này đã bị hạn chế.
       already_suspended: Tài khoản này đã bị vô hiệu hóa.
       title: Áp đặt kiểm duyệt với %{acct}
     account_moderation_notes:
@@ -1142,6 +1142,12 @@ vi:
       view_strikes: Xem những lần cảnh cáo cũ
     too_fast: Nghi vấn đăng ký spam, xin thử lại.
     use_security_key: Dùng khóa bảo mật
+  author_attribution:
+    example_title: Văn bản mẫu
+    hint_html: Kiểm soát cách bạn được ghi nhận khi chia sẻ liên kết trên Mastodon.
+    more_from_html: Thêm từ %{name}
+    s_blog: "%{name}'s Blog"
+    title: Ghi nhận tác giả
   challenge:
     confirm: Tiếp tục
     hint_html: "<strong>Mẹo:</strong> Chúng tôi sẽ không hỏi lại mật khẩu của bạn sau này."
@@ -1703,21 +1709,12 @@ vi:
     edited_at_html: Sửa %{date}
     errors:
       in_reply_not_found: Bạn đang trả lời một tút không còn tồn tại.
-    open_in_web: Xem trong web
     over_character_limit: vượt quá giới hạn %{max} ký tự
     pin_errors:
       direct: Không thể ghim những tút nhắn riêng
       limit: Bạn đã ghim quá số lượng tút cho phép
       ownership: Không thể ghim tút của người khác
       reblog: Không thể ghim tút đăng lại
-    poll:
-      total_people:
-        other: "%{count} người bình chọn"
-      total_votes:
-        other: "%{count} người bình chọn"
-      vote: Bình chọn
-    show_more: Đọc thêm
-    show_thread: Nội dung gốc
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Nhắn riêng
@@ -1915,6 +1912,7 @@ vi:
     instructions_html: Sao chép và dán mã bên dưới vào mã nguồn trang web của bạn. Sau đó, thêm địa chỉ trang web của bạn vào một trong các trường metadata trên hồ sơ của bạn từ tab "Sửa hồ sơ" và lưu thay đổi.
     verification: Xác minh
     verified_links: Những liên kết bạn đã xác minh
+    website_verification: Xác minh website
   webauthn_credentials:
     add: Thêm khóa bảo mật mới
     create:

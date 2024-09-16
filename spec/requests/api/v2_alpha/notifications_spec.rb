@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# TODO: remove this before 4.3.0-rc1
+
 require 'rails_helper'
 
 RSpec.describe 'Notifications' do
@@ -84,14 +86,14 @@ RSpec.describe 'Notifications' do
 
     context 'when there are more notifications than the limit' do
       before do
-        stub_const('Api::V2Alpha::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT', 2)
+        stub_const('Api::V2::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT', 2)
       end
 
       it 'returns a capped value' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(response.parsed_body[:count]).to eq Api::V2Alpha::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT
+        expect(response.parsed_body[:count]).to eq Api::V2::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT
       end
     end
   end
@@ -206,10 +208,10 @@ RSpec.describe 'Notifications' do
 
         expect(response)
           .to include_pagination_headers(
-            prev: api_v2_alpha_notifications_url(limit: params[:limit], min_id: notifications.first.id),
+            prev: api_v2_notifications_url(limit: params[:limit], min_id: notifications.first.id),
             # TODO: one downside of the current approach is that we return the first ID matching the group,
             # not the last that has been skipped, so pagination is very likely to give overlap
-            next: api_v2_alpha_notifications_url(limit: params[:limit], max_id: notifications[3].id)
+            next: api_v2_notifications_url(limit: params[:limit], max_id: notifications[3].id)
           )
       end
     end
@@ -226,10 +228,10 @@ RSpec.describe 'Notifications' do
 
         expect(response)
           .to include_pagination_headers(
-            prev: api_v2_alpha_notifications_url(limit: params[:limit], min_id: notifications.first.id),
+            prev: api_v2_notifications_url(limit: params[:limit], min_id: notifications.first.id),
             # TODO: one downside of the current approach is that we return the first ID matching the group,
             # not the last that has been skipped, so pagination is very likely to give overlap
-            next: api_v2_alpha_notifications_url(limit: params[:limit], max_id: notifications[1].id)
+            next: api_v2_notifications_url(limit: params[:limit], max_id: notifications[1].id)
           )
       end
     end

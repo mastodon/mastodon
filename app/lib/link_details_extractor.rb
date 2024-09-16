@@ -225,7 +225,7 @@ class LinkDetailsExtractor
   end
 
   def valid_url_or_nil(str, same_origin_only: false)
-    return if str.blank? || str == 'null'
+    return if str.blank? || str == 'null' || str == 'undefined'
 
     url = @original_url + Addressable::URI.parse(str)
 

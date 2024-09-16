@@ -7,7 +7,6 @@ ar:
     hosted_on: ماستدون مُستضاف على %{domain}
     title: عن
   accounts:
-    follow: متابَعة
     followers:
       few: متابِعون
       many: متابِعون
@@ -54,6 +53,7 @@ ar:
         title: تعديل عنوان البريد الإلكتروني الخاص بـ %{username}
       change_role:
         changed_msg: تم تغيير بنجاح!
+        edit_roles: إدارة أدوار المستخدمين
         label: تغيير الدور
         no_role: بلا دور
         title: تغيير دور %{username}
@@ -1165,6 +1165,11 @@ ar:
       view_strikes: عرض العقوبات السابقة المُطَبَّقة ضد حسابك
     too_fast: تم إرسال النموذج بسرعة كبيرة، حاول مرة أخرى.
     use_security_key: استخدام مفتاح الأمان
+  author_attribution:
+    example_title: عينة نص
+    more_from_html: المزيد من %{name}
+    s_blog: مدونة %{name}
+    title: إسناد المؤلف
   challenge:
     confirm: واصل
     hint_html: "<strong>توصية:</strong> لن نطلب منك ثانية كلمتك السرية في غضون الساعة اللاحقة."
@@ -1772,31 +1777,12 @@ ar:
     edited_at_html: عُدّل في %{date}
     errors:
       in_reply_not_found: إنّ المنشور الذي تحاول الرد عليه غير موجود على ما يبدو.
-    open_in_web: افتح في الويب
     over_character_limit: تم تجاوز حد الـ %{max} حرف المسموح بها
     pin_errors:
       direct: لا يمكن تثبيت المنشورات التي يراها فقط المتسخدمون المشار إليهم
       limit: لقد بلغت الحد الأقصى للمنشورات المثبتة
       ownership: لا يمكن تثبيت منشور نشره شخص آخر
       reblog: لا يمكن تثبيت إعادة نشر
-    poll:
-      total_people:
-        few: "%{count} أشخاص"
-        many: "%{count} أشخاص"
-        one: "%{count} شخص واحد"
-        other: "%{count} شخصا"
-        two: "%{count} شخصين"
-        zero: "%{count} شخص"
-      total_votes:
-        few: "%{count} أصوات"
-        many: "%{count} أصوات"
-        one: صوت واحد %{count}
-        other: "%{count} صوتا"
-        two: صوتين %{count}
-        zero: بدون صوت %{count}
-      vote: صوّت
-    show_more: أظهر المزيد
-    show_thread: اعرض خيط المحادثة
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: مباشرة
@@ -1991,6 +1977,7 @@ ar:
     instructions_html: قم بنسخ ولصق التعليمة البرمجية أدناه في شفرة HTML لموقعك الخاص على الويب. ثم أضف عنوان موقع الويب الخاص بك إلى أحد الحقول الإضافية في ملفك التعريفي عبر لسان "تعديل الملف التعريفي" ثم احفظ التغييرات.
     verification: التحقق
     verified_links: روابطك التي تم التحقق منها
+    website_verification: التحقق من موقع الويب
   webauthn_credentials:
     add: إضافة مفتاح أمان جديد
     create:

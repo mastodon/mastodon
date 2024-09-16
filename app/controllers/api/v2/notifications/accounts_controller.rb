@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V2Alpha::Notifications::AccountsController < Api::BaseController
+class Api::V2::Notifications::AccountsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:notifications' }
   before_action :require_user!
   before_action :set_notifications!
@@ -33,11 +33,11 @@ class Api::V2Alpha::Notifications::AccountsController < Api::BaseController
   end
 
   def next_path
-    api_v2_alpha_notification_accounts_url pagination_params(max_id: pagination_max_id) if records_continue?
+    api_v2_notification_accounts_url pagination_params(max_id: pagination_max_id) if records_continue?
   end
 
   def prev_path
-    api_v2_alpha_notification_accounts_url pagination_params(min_id: pagination_since_id) unless @paginated_notifications.empty?
+    api_v2_notification_accounts_url pagination_params(min_id: pagination_since_id) unless @paginated_notifications.empty?
   end
 
   def pagination_collection
