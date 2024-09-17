@@ -106,35 +106,39 @@ class AccountSearchQuery
 
   DEFAULT_LIMIT = 10
 
-  class << self
-    def search_for(terms, limit: DEFAULT_LIMIT, offset: 0)
-      tsquery = generate_query_for_search(terms)
+  attr_reader :terms
 
-      Account.find_by_sql([BASIC_SEARCH_SQL, { limit: limit, offset: offset, tsquery: tsquery }]).tap do |records|
-        ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
-      end
+  def initialize(terms:)
+    @terms = terms
+  end
+
+  def search_for(limit: DEFAULT_LIMIT, offset: 0)
+    tsquery = generate_query_for_search(@terms)
+
+    Account.find_by_sql([BASIC_SEARCH_SQL, { limit: limit, offset: offset, tsquery: tsquery }]).tap do |records|
+      ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
     end
+  end
 
-    def advanced_search_for(terms, account, limit: DEFAULT_LIMIT, following: false, offset: 0)
-      tsquery = generate_query_for_search(terms)
-      sql_template = following ? ADVANCED_SEARCH_WITH_FOLLOWING : ADVANCED_SEARCH_WITHOUT_FOLLOWING
+  def advanced_search_for(account, limit: DEFAULT_LIMIT, following: false, offset: 0)
+    tsquery = generate_query_for_search(@terms)
+    sql_template = following ? ADVANCED_SEARCH_WITH_FOLLOWING : ADVANCED_SEARCH_WITHOUT_FOLLOWING
 
-      Account.find_by_sql([sql_template, { id: account.id, limit: limit, offset: offset, tsquery: tsquery }]).tap do |records|
-        ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
-      end
+    Account.find_by_sql([sql_template, { id: account.id, limit: limit, offset: offset, tsquery: tsquery }]).tap do |records|
+      ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
     end
+  end
 
-    private
+  private
 
-    def generate_query_for_search(unsanitized_terms)
-      terms = unsanitized_terms.gsub(DISALLOWED_TSQUERY_CHARACTERS, ' ')
+  def generate_query_for_search(unsanitized_terms)
+    terms = unsanitized_terms.gsub(DISALLOWED_TSQUERY_CHARACTERS, ' ')
 
-      # The final ":*" is for prefix search.
-      # The trailing space does not seem to fit any purpose, but `to_tsquery`
-      # behaves differently with and without a leading space if the terms start
-      # with `./`, `../`, or `.. `. I don't understand why, so, in doubt, keep
-      # the same query.
-      "' #{terms} ':*"
-    end
+    # The final ":*" is for prefix search.
+    # The trailing space does not seem to fit any purpose, but `to_tsquery`
+    # behaves differently with and without a leading space if the terms start
+    # with `./`, `../`, or `.. `. I don't understand why, so, in doubt, keep
+    # the same query.
+    "' #{terms} ':*"
   end
 end
