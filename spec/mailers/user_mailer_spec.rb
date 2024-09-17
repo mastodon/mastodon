@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe UserMailer do
+  timestamp = Time.now.utc - 5.minutes
+
   let(:receiver) { Fabricate(:user, locale: nil) }
 
   describe '#confirmation_instructions' do
@@ -108,7 +110,6 @@ RSpec.describe UserMailer do
   describe '#suspicious_sign_in' do
     let(:ip) { '192.168.0.1' }
     let(:agent) { 'NCSA_Mosaic/2.0 (Windows 3.1)' }
-    let(:timestamp) { '2024-01-01 12:34Z'.to_datetime }
     let(:mail) { described_class.suspicious_sign_in(receiver, ip, agent, timestamp) }
 
     it 'renders suspicious sign in notification' do
@@ -119,13 +120,12 @@ RSpec.describe UserMailer do
 
     include_examples 'localized subject',
                      'user_mailer.suspicious_sign_in.subject'
-    include_examples 'timestamp in time zone', '2024-01-01 12:34Z'.to_datetime
+    include_examples 'timestamp in time zone', timestamp
   end
 
   describe '#failed_2fa' do
     let(:ip) { '192.168.0.1' }
     let(:agent) { 'NCSA_Mosaic/2.0 (Windows 3.1)' }
-    let(:timestamp) { '2024-01-01 12:34Z'.to_datetime }
     let(:mail) { described_class.failed_2fa(receiver, ip, agent, timestamp) }
 
     it 'renders failed 2FA notification' do
@@ -136,11 +136,11 @@ RSpec.describe UserMailer do
 
     include_examples 'localized subject',
                      'user_mailer.failed_2fa.subject'
-    include_examples 'timestamp in time zone', '2024-01-01 12:34Z'.to_datetime
+    include_examples 'timestamp in time zone', timestamp
   end
 
   describe '#appeal_approved' do
-    let(:appeal) { Fabricate(:appeal, account: receiver.account, created_at: '2024-01-01 12:34Z', approved_at: Time.now.utc) }
+    let(:appeal) { Fabricate(:appeal, account: receiver.account, created_at: timestamp, approved_at: Time.now.utc) }
     let(:mail) { described_class.appeal_approved(receiver, appeal) }
 
     it 'renders appeal_approved notification' do
@@ -150,11 +150,11 @@ RSpec.describe UserMailer do
         .and(have_body_text(I18n.t('user_mailer.appeal_approved.title')))
     end
 
-    include_examples 'timestamp in time zone', '2024-01-01 12:34Z'.to_datetime
+    include_examples 'timestamp in time zone', timestamp
   end
 
   describe '#appeal_rejected' do
-    let(:appeal) { Fabricate(:appeal, account: receiver.account, created_at: '2024-01-01 12:34Z', rejected_at: Time.now.utc) }
+    let(:appeal) { Fabricate(:appeal, account: receiver.account, created_at: timestamp, rejected_at: Time.now.utc) }
     let(:mail) { described_class.appeal_rejected(receiver, appeal) }
 
     it 'renders appeal_rejected notification' do
@@ -164,7 +164,7 @@ RSpec.describe UserMailer do
         .and(have_body_text(I18n.t('user_mailer.appeal_rejected.title')))
     end
 
-    include_examples 'timestamp in time zone', '2024-01-01 12:34Z'.to_datetime
+    include_examples 'timestamp in time zone', timestamp
   end
 
   describe '#two_factor_enabled' do
