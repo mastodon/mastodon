@@ -106,25 +106,27 @@ class AccountSearchQuery
 
   DEFAULT_LIMIT = 10
 
-  attr_reader :terms
+  attr_reader :terms, :limit, :offset
 
-  def initialize(terms:)
+  def initialize(terms:, limit: DEFAULT_LIMIT, offset: 0)
     @terms = terms
+    @limit = limit
+    @offset = offset
   end
 
-  def search_for(limit: DEFAULT_LIMIT, offset: 0)
+  def search
     tsquery = generate_query_for_search(@terms)
 
-    Account.find_by_sql([BASIC_SEARCH_SQL, { limit: limit, offset: offset, tsquery: tsquery }]).tap do |records|
+    Account.find_by_sql([BASIC_SEARCH_SQL, { limit: @limit, offset: @offset, tsquery: tsquery }]).tap do |records|
       ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
     end
   end
 
-  def advanced_search_for(account, limit: DEFAULT_LIMIT, following: false, offset: 0)
+  def advanced_search(account, following: false)
     tsquery = generate_query_for_search(@terms)
     sql_template = following ? ADVANCED_SEARCH_WITH_FOLLOWING : ADVANCED_SEARCH_WITHOUT_FOLLOWING
 
-    Account.find_by_sql([sql_template, { id: account.id, limit: limit, offset: offset, tsquery: tsquery }]).tap do |records|
+    Account.find_by_sql([sql_template, { id: account.id, limit: @limit, offset: @offset, tsquery: tsquery }]).tap do |records|
       ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
     end
   end
