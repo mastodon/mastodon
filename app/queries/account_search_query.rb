@@ -115,32 +115,32 @@ class AccountSearchQuery
   end
 
   def search
-    tsquery = generate_query_for_search(@terms)
-
-    Account.find_by_sql([BASIC_SEARCH_SQL, { limit: @limit, offset: @offset, tsquery: tsquery }]).tap do |records|
+    Account.find_by_sql([BASIC_SEARCH_SQL, { limit: @limit, offset: @offset, tsquery: generate_query_for_search }]).tap do |records|
       ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
     end
   end
 
   def advanced_search(account, following: false)
-    tsquery = generate_query_for_search(@terms)
     sql_template = following ? ADVANCED_SEARCH_WITH_FOLLOWING : ADVANCED_SEARCH_WITHOUT_FOLLOWING
 
-    Account.find_by_sql([sql_template, { id: account.id, limit: @limit, offset: @offset, tsquery: tsquery }]).tap do |records|
+    Account.find_by_sql([sql_template, { id: account.id, limit: @limit, offset: @offset, tsquery: generate_query_for_search }]).tap do |records|
       ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
     end
   end
 
   private
 
-  def generate_query_for_search(unsanitized_terms)
-    terms = unsanitized_terms.gsub(DISALLOWED_TSQUERY_CHARACTERS, ' ')
-
+  def generate_query_for_search
     # The final ":*" is for prefix search.
     # The trailing space does not seem to fit any purpose, but `to_tsquery`
     # behaves differently with and without a leading space if the terms start
     # with `./`, `../`, or `.. `. I don't understand why, so, in doubt, keep
     # the same query.
-    "' #{terms} ':*"
+    "' #{sanitized_search_terms} ':*"
+  end
+
+  def sanitized_search_terms
+    @terms
+      .gsub(DISALLOWED_TSQUERY_CHARACTERS, ' ')
   end
 end
