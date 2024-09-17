@@ -15,14 +15,12 @@ module Account::Search
     end
   end
 
-  DEFAULT_LIMIT = 10
-
   class_methods do
-    def search_for(terms, limit: DEFAULT_LIMIT, offset: 0)
+    def search_for(terms, limit: AccountSearchQuery::DEFAULT_LIMIT, offset: 0)
       AccountSearchQuery.search_for(terms, limit: limit, offset: offset)
     end
 
-    def advanced_search_for(terms, account, limit: DEFAULT_LIMIT, following: false, offset: 0)
+    def advanced_search_for(terms, account, limit: AccountSearchQuery::DEFAULT_LIMIT, following: false, offset: 0)
       AccountSearchQuery.advanced_search_for(terms, account, limit: limit, following: following, offset: offset)
     end
   end
