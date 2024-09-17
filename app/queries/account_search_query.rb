@@ -121,9 +121,7 @@ class AccountSearchQuery
   end
 
   def advanced_search(account, following: false)
-    sql_template = following ? ADVANCED_SEARCH_WITH_FOLLOWING : ADVANCED_SEARCH_WITHOUT_FOLLOWING
-
-    Account.find_by_sql([sql_template, { id: account.id, limit: @limit, offset: @offset, tsquery: generate_query_for_search }]).tap do |records|
+    Account.find_by_sql([advanced_sql_template(following), { id: account.id, limit: @limit, offset: @offset, tsquery: generate_query_for_search }]).tap do |records|
       ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
     end
   end
@@ -142,5 +140,9 @@ class AccountSearchQuery
   def sanitized_search_terms
     @terms
       .gsub(DISALLOWED_TSQUERY_CHARACTERS, ' ')
+  end
+
+  def advanced_sql_template(following)
+    following ? ADVANCED_SEARCH_WITH_FOLLOWING : ADVANCED_SEARCH_WITHOUT_FOLLOWING
   end
 end
