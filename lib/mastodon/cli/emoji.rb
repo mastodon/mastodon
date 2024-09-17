@@ -62,7 +62,9 @@ module Mastodon::CLI
             failed += 1
             say('Failure/Error: ', :red)
             say(entry.full_name)
-            say("    #{custom_emoji.errors[:image].join(', ')}", :red)
+            shell.indent(2) do
+              say(custom_emoji.errors[:image].join(', '), :red)
+            end
           end
         end
       end
