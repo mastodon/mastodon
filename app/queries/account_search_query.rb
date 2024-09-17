@@ -116,17 +116,24 @@ class AccountSearchQuery
 
   def search
     Account.find_by_sql([BASIC_SEARCH_SQL, { limit: @limit, offset: @offset, tsquery: generate_query_for_search }]).tap do |records|
-      ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
+      preload(records)
     end
   end
 
   def advanced_search(account, following: false)
     Account.find_by_sql([advanced_sql_template(following), { id: account.id, limit: @limit, offset: @offset, tsquery: generate_query_for_search }]).tap do |records|
-      ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
+      preload(records)
     end
   end
 
   private
+
+  def preload(records)
+    ActiveRecord::Associations::Preloader.new(
+      records: records,
+      associations: [:account_stat, { user: :role }]
+    ).call
+  end
 
   def generate_query_for_search
     # The final ":*" is for prefix search.
