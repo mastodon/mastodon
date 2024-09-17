@@ -17,11 +17,11 @@ module Account::Search
 
   class_methods do
     def search_for(terms, limit: AccountSearchQuery::DEFAULT_LIMIT, offset: 0)
-      AccountSearchQuery.new(terms:).search_for(limit: limit, offset: offset)
+      AccountSearchQuery.new(terms:, limit:, offset:).search
     end
 
     def advanced_search_for(terms, account, limit: AccountSearchQuery::DEFAULT_LIMIT, following: false, offset: 0)
-      AccountSearchQuery.new(terms:).advanced_search_for(account, limit: limit, following: following, offset: offset)
+      AccountSearchQuery.new(terms:, limit:, offset:).advanced_search(account, following: following)
     end
   end
 end
