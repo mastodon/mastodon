@@ -223,7 +223,7 @@ class UserMailer < Devise::Mailer
 
   def with_user_settings(user, use_current_locale: false, &block)
     I18n.with_locale(user.locale || (use_current_locale && I18n.locale) || I18n.default_locale) do
-      Time.use_zone(user.time_zone || ENV['DEFAULT_TIME_ZONE'] || 'UTC', &block)
+      Time.use_zone(user.time_zone || Rails.configuration.x.default_time_zone, &block)
     end
   end
 end
