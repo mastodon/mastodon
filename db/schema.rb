@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_23_160722) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_05_135925) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -939,11 +939,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_23_160722) do
   create_table "settings", force: :cascade do |t|
     t.string "var", null: false
     t.text "value"
-    t.string "thing_type"
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
-    t.bigint "thing_id"
-    t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
+    t.index ["var"], name: "index_settings_on_var", unique: true
   end
 
   create_table "severed_relationships", force: :cascade do |t|
