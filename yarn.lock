@@ -5169,17 +5169,17 @@ __metadata:
   linkType: hard
 
 "babel-loader@npm:^8.3.0":
-  version: 8.3.0
-  resolution: "babel-loader@npm:8.3.0"
+  version: 8.4.1
+  resolution: "babel-loader@npm:8.4.1"
   dependencies:
     find-cache-dir: "npm:^3.3.1"
-    loader-utils: "npm:^2.0.0"
+    loader-utils: "npm:^2.0.4"
     make-dir: "npm:^3.1.0"
     schema-utils: "npm:^2.6.5"
   peerDependencies:
     "@babel/core": ^7.0.0
     webpack: ">=2"
-  checksum: 10c0/7b83bae35a12fbc5cdf250e2d36a288305fe5b6d20ab044ab7c09bbf456c8895b80af7a4f1e8b64b5c07a4fd48d4b5144dab40b4bc72a4fed532dc000362f38f
+  checksum: 10c0/efdca9c3ef502af58b923a32123d660c54fd0be125b7b64562c8a43bda0a3a55dac0db32331674104e7e5184061b75c3a0e395b2c5ccdc7cb2125dd9ec7108d2
   languageName: node
   linkType: hard
 
@@ -5899,25 +5899,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:>=3.0.0 <4.0.0, chokidar@npm:^3.4.1":
-  version: 3.5.3
-  resolution: "chokidar@npm:3.5.3"
-  dependencies:
-    anymatch: "npm:~3.1.2"
-    braces: "npm:~3.0.2"
-    fsevents: "npm:~2.3.2"
-    glob-parent: "npm:~5.1.2"
-    is-binary-path: "npm:~2.1.0"
-    is-glob: "npm:~4.0.1"
-    normalize-path: "npm:~3.0.0"
-    readdirp: "npm:~3.6.0"
-  dependenciesMeta:
-    fsevents:
-      optional: true
-  checksum: 10c0/1076953093e0707c882a92c66c0f56ba6187831aa51bb4de878c1fec59ae611a3bf02898f190efec8e77a086b8df61c2b2a3ea324642a0558bdf8ee6c5dc9ca1
-  languageName: node
-  linkType: hard
-
 "chokidar@npm:^2.1.8":
   version: 2.1.8
   resolution: "chokidar@npm:2.1.8"
@@ -5938,6 +5919,34 @@ __metadata:
     fsevents:
       optional: true
   checksum: 10c0/5631cc00080224f9482cf5418dcbea111aec02fa8d81a8cfe37e47b9cf36089e071de52d503647e3a821a01426a40adc926ba899f657af86a51b8f8d4eef12a7
+  languageName: node
+  linkType: hard
+
+"chokidar@npm:^3.4.1":
+  version: 3.5.3
+  resolution: "chokidar@npm:3.5.3"
+  dependencies:
+    anymatch: "npm:~3.1.2"
+    braces: "npm:~3.0.2"
+    fsevents: "npm:~2.3.2"
+    glob-parent: "npm:~5.1.2"
+    is-binary-path: "npm:~2.1.0"
+    is-glob: "npm:~4.0.1"
+    normalize-path: "npm:~3.0.0"
+    readdirp: "npm:~3.6.0"
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  checksum: 10c0/1076953093e0707c882a92c66c0f56ba6187831aa51bb4de878c1fec59ae611a3bf02898f190efec8e77a086b8df61c2b2a3ea324642a0558bdf8ee6c5dc9ca1
+  languageName: node
+  linkType: hard
+
+"chokidar@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "chokidar@npm:4.0.0"
+  dependencies:
+    readdirp: "npm:^4.0.1"
+  checksum: 10c0/42d03c53b0ad200689e4fae7763133561480561cab8ba5304e8f2298ff45ff84bf0f6065c3f02b9e557b74b156813734439a1a2ff19a1ea6b35692395cd92738
   languageName: node
   linkType: hard
 
@@ -11421,7 +11430,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loader-utils@npm:^2.0.0":
+"loader-utils@npm:^2.0.0, loader-utils@npm:^2.0.4":
   version: 2.0.4
   resolution: "loader-utils@npm:2.0.4"
   dependencies:
@@ -12993,9 +13002,9 @@ __metadata:
   linkType: hard
 
 "pg-connection-string@npm:^2.6.0, pg-connection-string@npm:^2.6.4":
-  version: 2.6.4
-  resolution: "pg-connection-string@npm:2.6.4"
-  checksum: 10c0/0d0b617df0fc6507bf6a94bdcd56c7a305788a1402d69bff9773350947c8f525d6d8136128065370749a3325e99658ae40fbdcce620fb8e60126181f0591a6a6
+  version: 2.7.0
+  resolution: "pg-connection-string@npm:2.7.0"
+  checksum: 10c0/50a1496a1c858f9495d78a2c7a66d93ef3602e718aff2953bb5738f3ea616d7f727f32fc20513c9bed127650cd14c1ddc7b458396f4000e689d4b64c65c5c51e
   languageName: node
   linkType: hard
 
@@ -14884,6 +14893,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"readdirp@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "readdirp@npm:4.0.1"
+  checksum: 10c0/e5a0b547015f68ecc918f115b62b75b2b840611480a9240cb3317090a0ddac01bb9b40315a8fa08acdf52a43eea17b808c89b645263cba3ab64dc557d7f801f1
+  languageName: node
+  linkType: hard
+
 "readdirp@npm:~3.6.0":
   version: 3.6.0
   resolution: "readdirp@npm:3.6.0"
@@ -15459,15 +15475,15 @@ __metadata:
   linkType: hard
 
 "sass@npm:^1.62.1":
-  version: 1.78.0
-  resolution: "sass@npm:1.78.0"
+  version: 1.79.1
+  resolution: "sass@npm:1.79.1"
   dependencies:
-    chokidar: "npm:>=3.0.0 <4.0.0"
+    chokidar: "npm:^4.0.0"
     immutable: "npm:^4.0.0"
     source-map-js: "npm:>=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: 10c0/6577a87c00b03a5a50f3a11b4b6592f28abce34e61812e381535a3b712151bd94db3ca06467d20395431e0f38a23f99e616d6859d771fb6d4617c359f590c48c
+  checksum: 10c0/187bc885bad2e81e5414a146c9e14a28f622b5aba5c1425f4dd6d8ef2045b66c69de93689503886a8d2cc55d6bcce97b05ee87b074628fefd03e762789f931d0
   languageName: node
   linkType: hard
 

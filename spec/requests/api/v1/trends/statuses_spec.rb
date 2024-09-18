@@ -10,7 +10,9 @@ RSpec.describe 'API V1 Trends Statuses' do
       it 'returns http success' do
         get '/api/v1/trends/statuses'
 
-        expect(response).to have_http_status(200)
+        expect(response)
+          .to have_http_status(200)
+          .and not_have_http_link_header
       end
     end
 
@@ -22,8 +24,9 @@ RSpec.describe 'API V1 Trends Statuses' do
         stub_const('Api::BaseController::DEFAULT_STATUSES_LIMIT', 2)
         get '/api/v1/trends/statuses'
 
-        expect(response).to have_http_status(200)
-        expect(response.headers).to include('Link')
+        expect(response)
+          .to have_http_status(200)
+          .and have_http_link_header(api_v1_trends_statuses_url(offset: 2)).for(rel: 'next')
       end
 
       def prepare_trends
