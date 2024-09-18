@@ -10,8 +10,9 @@ RSpec.describe 'API V1 Trends Tags' do
       it 'returns http success' do
         get '/api/v1/trends/tags'
 
-        expect(response).to have_http_status(200)
-        expect(response.headers).to_not include('Link')
+        expect(response)
+          .to have_http_status(200)
+          .and not_have_http_link_header
       end
     end
 
@@ -23,8 +24,9 @@ RSpec.describe 'API V1 Trends Tags' do
         stub_const('Api::V1::Trends::TagsController::DEFAULT_TAGS_LIMIT', 2)
         get '/api/v1/trends/tags'
 
-        expect(response).to have_http_status(200)
-        expect(response.headers).to include('Link')
+        expect(response)
+          .to have_http_status(200)
+          .and have_http_link_header(api_v1_trends_tags_url(offset: 2)).for(rel: 'next')
       end
 
       def prepare_trends
