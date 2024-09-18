@@ -86,13 +86,11 @@ class NotificationMailer < ApplicationMailer
   def thread_by_conversation!
     return if @status.conversation.nil?
 
+    conversation_message_id = "<#{@status.conversation.to_message_id}@#{Rails.configuration.x.local_domain}>"
+
     headers(
       'In-Reply-To' => conversation_message_id,
       'References' => conversation_message_id
     )
-  end
-
-  def conversation_message_id
-    "<#{@status.conversation.to_message_id}@#{Rails.configuration.x.local_domain}>"
   end
 end
