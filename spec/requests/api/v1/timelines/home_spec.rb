@@ -31,14 +31,10 @@ RSpec.describe 'Home', :inline_jobs do
         PostStatusService.new.call(ana, text: 'New toot from ana.')
       end
 
-      it 'returns http success' do
+      it 'returns http success and statuses of followed users' do
         subject
 
         expect(response).to have_http_status(200)
-      end
-
-      it 'returns the statuses of followed users' do
-        subject
 
         expect(response.parsed_body.pluck(:id)).to match_array(home_statuses.map { |status| status.id.to_s })
       end
@@ -46,14 +42,10 @@ RSpec.describe 'Home', :inline_jobs do
       context 'with limit param' do
         let(:params) { { limit: 1 } }
 
-        it 'returns only the requested number of statuses' do
+        it 'returns only the requested number of statuses with pagination headers', :aggregate_failures do
           subject
 
           expect(response.parsed_body.size).to eq(params[:limit])
-        end
-
-        it 'sets the correct pagination headers', :aggregate_failures do
-          subject
 
           expect(response)
             .to include_pagination_headers(

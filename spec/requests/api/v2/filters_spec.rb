@@ -49,14 +49,10 @@ RSpec.describe 'Filters' do
     context 'with valid params' do
       let(:params) { { title: 'magic', context: %w(home), filter_action: 'hide', keywords_attributes: [keyword: 'magic'] } }
 
-      it 'returns http success' do
+      it 'returns http success with a filter with keywords in json and creates a filter', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
-      end
-
-      it 'returns a filter with keywords', :aggregate_failures do
-        subject
 
         expect(response.parsed_body)
           .to include(
@@ -67,10 +63,6 @@ RSpec.describe 'Filters' do
               include(keyword: 'magic', whole_word: true)
             )
           )
-      end
-
-      it 'creates a filter', :aggregate_failures do
-        subject
 
         filter = user.account.custom_filters.first
 
@@ -189,20 +181,12 @@ RSpec.describe 'Filters' do
         allow(redis).to receive_messages(publish: nil)
       end
 
-      it 'returns http success' do
+      it 'returns http success and updates keyword and sends a filters_changed event' do
         subject
 
         expect(response).to have_http_status(200)
-      end
-
-      it 'updates the keyword' do
-        subject
 
         expect(keyword.reload.keyword).to eq 'updated'
-      end
-
-      it 'sends exactly one filters_changed event' do
-        subject
 
         expect(redis).to have_received(:publish).with("timeline:#{user.account.id}", Oj.dump(event: :filters_changed)).once
       end
@@ -229,14 +213,10 @@ RSpec.describe 'Filters' do
     it_behaves_like 'forbidden for wrong scope', 'read read:filters'
     it_behaves_like 'unauthorized for invalid token'
 
-    it 'returns http success' do
+    it 'returns http success and removes the filter' do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'removes the filter' do
-      subject
 
       expect { filter.reload }.to raise_error ActiveRecord::RecordNotFound
     end

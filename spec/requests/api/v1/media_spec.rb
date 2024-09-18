@@ -17,15 +17,10 @@ RSpec.describe 'Media' do
 
     it_behaves_like 'forbidden for wrong scope', 'read'
 
-    it 'returns http success' do
+    it 'returns http success with media information' do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns the media information' do
-      subject
-
       expect(response.parsed_body).to match(
         a_hash_including(
           id: media.id.to_s,

@@ -193,15 +193,11 @@ RSpec.describe 'Accounts' do
       it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
       it_behaves_like 'forbidden for wrong role', ''
 
-      it 'removes the user successfully', :aggregate_failures do
+      it 'removes the user successfully and logs action', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
         expect(User.where(id: account.user.id)).to_not exist
-      end
-
-      it 'logs action', :aggregate_failures do
-        subject
 
         expect(latest_admin_action_log)
           .to be_present

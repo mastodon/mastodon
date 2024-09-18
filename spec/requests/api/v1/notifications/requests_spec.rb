@@ -39,15 +39,10 @@ RSpec.describe 'Requests' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:notifications'
 
-    it 'returns http success' do
+    it 'returns http success and creates notification permission' do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'creates notification permission' do
-      subject
-
       expect(NotificationPermission.find_by(account: notification_request.account, from_account: notification_request.from_account)).to_not be_nil
     end
 

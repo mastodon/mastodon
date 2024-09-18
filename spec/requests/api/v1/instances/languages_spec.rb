@@ -8,11 +8,8 @@ RSpec.describe 'Languages' do
       get '/api/v1/instance/languages'
     end
 
-    it 'returns http success' do
+    it 'returns http success and includes supported languages' do
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns the supported languages' do
       expect(response.parsed_body.pluck(:code)).to match_array LanguagesHelper::SUPPORTED_LOCALES.keys.map(&:to_s)
     end
   end

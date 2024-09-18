@@ -18,15 +18,11 @@ RSpec.describe 'Favourites', :inline_jobs do
     it_behaves_like 'forbidden for wrong scope', 'read read:favourites'
 
     context 'with public status' do
-      it 'favourites the status successfully', :aggregate_failures do
+      it 'favourites the status successfully and includes updated json', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
         expect(user.account.favourited?(status)).to be true
-      end
-
-      it 'returns json with updated attributes' do
-        subject
 
         expect(response.parsed_body).to match(
           a_hash_including(id: status.id.to_s, favourites_count: 1, favourited: true)
@@ -84,16 +80,12 @@ RSpec.describe 'Favourites', :inline_jobs do
         FavouriteService.new.call(user.account, status)
       end
 
-      it 'unfavourites the status successfully', :aggregate_failures do
+      it 'unfavourites the status successfully and includes updated json', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
 
         expect(user.account.favourited?(status)).to be false
-      end
-
-      it 'returns json with updated attributes' do
-        subject
 
         expect(response.parsed_body).to match(
           a_hash_including(id: status.id.to_s, favourites_count: 0, favourited: false)
@@ -107,16 +99,12 @@ RSpec.describe 'Favourites', :inline_jobs do
         status.account.block!(user.account)
       end
 
-      it 'unfavourites the status successfully', :aggregate_failures do
+      it 'unfavourites the status successfully and includes updated json', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
 
         expect(user.account.favourited?(status)).to be false
-      end
-
-      it 'returns json with updated attributes' do
-        subject
 
         expect(response.parsed_body).to match(
           a_hash_including(id: status.id.to_s, favourites_count: 0, favourited: false)

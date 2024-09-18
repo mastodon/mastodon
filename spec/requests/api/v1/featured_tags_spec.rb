@@ -58,15 +58,10 @@ RSpec.describe 'FeaturedTags' do
   describe 'POST /api/v1/featured_tags' do
     let(:params) { { name: 'tag' } }
 
-    it 'returns http success' do
+    it 'returns http success and includes correct tag name' do
       post '/api/v1/featured_tags', headers: headers, params: params
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns the correct tag name' do
-      post '/api/v1/featured_tags', headers: headers, params: params
-
       expect(response.parsed_body)
         .to include(
           name: params[:name]
@@ -132,23 +127,13 @@ RSpec.describe 'FeaturedTags' do
     let!(:featured_tag) { FeaturedTag.create(name: 'tag', account: user.account) }
     let(:id) { featured_tag.id }
 
-    it 'returns http success' do
+    it 'returns http success with an empty body and deletes the featured tag', :inline_jobs do
       delete "/api/v1/featured_tags/#{id}", headers: headers
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns an empty body' do
-      delete "/api/v1/featured_tags/#{id}", headers: headers
-
       expect(response.parsed_body).to be_empty
-    end
-
-    it 'deletes the featured tag', :inline_jobs do
-      delete "/api/v1/featured_tags/#{id}", headers: headers
 
       featured_tag = FeaturedTag.find_by(id: id)
-
       expect(featured_tag).to be_nil
     end
 
