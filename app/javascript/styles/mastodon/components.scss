@@ -2032,13 +2032,14 @@ body > [data-popper-placement] {
   display: block;
   position: relative;
   border-radius: var(--avatar-border-radius);
+  background-color: var(--surface-background-color);
 
   img {
-    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: var(--avatar-border-radius);
+    display: inline-block; // to not show broken images
   }
 
   &-inline {
