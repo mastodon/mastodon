@@ -13,6 +13,13 @@ class MigrateHideNetworkPreference < ActiveRecord::Migration[6.1]
     belongs_to :account
   end
 
+  class Setting < ApplicationRecord
+    # Mirror the behavior of the `Setting` model at this point in db history
+    def value
+      YAML.safe_load(self[:value], permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Symbol]) if self[:value].present?
+    end
+  end
+
   def up
     Account.reset_column_information
 
