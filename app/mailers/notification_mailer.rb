@@ -6,7 +6,10 @@ class NotificationMailer < ApplicationMailer
          :routing
 
   before_action :process_params
-  before_action :set_status, only: [:mention, :favourite, :reblog]
+  with_options only: %i(mention favourite reblog) do
+    before_action :set_status
+    after_action :thread_by_conversation!
+  end
   before_action :set_account, only: [:follow, :favourite, :reblog, :follow_request]
   after_action :set_list_headers!
 
@@ -18,7 +21,6 @@ class NotificationMailer < ApplicationMailer
     return unless @user.functional? && @status.present?
 
     locale_for_account(@me) do
-      thread_by_conversation!
       mail subject: default_i18n_subject(name: @status.account.acct)
     end
   end
@@ -35,7 +37,6 @@ class NotificationMailer < ApplicationMailer
     return unless @user.functional? && @status.present?
 
     locale_for_account(@me) do
-      thread_by_conversation!
       mail subject: default_i18n_subject(name: @account.acct)
     end
   end
@@ -44,7 +45,6 @@ class NotificationMailer < ApplicationMailer
     return unless @user.functional? && @status.present?
 
     locale_for_account(@me) do
-      thread_by_conversation!
       mail subject: default_i18n_subject(name: @account.acct)
     end
   end
