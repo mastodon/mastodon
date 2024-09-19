@@ -141,9 +141,7 @@ RSpec.describe FollowService do
       it 'raises an exception and does not create a following relation' do
         expect { subject.call(sender, sender) }
           .to raise_error(FollowService::SelfFollowError)
-          .and(not_change { sender.following?(sender) })
-
-        expect(sender.following?(sender)).to be false
+          .and(not_change { sender.following?(sender) }.from(false))
       end
     end
   end

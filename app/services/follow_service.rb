@@ -25,6 +25,7 @@ class FollowService < BaseService
 
     raise ActiveRecord::RecordNotFound if following_not_possible?
     raise Mastodon::NotPermittedError  if following_not_allowed?
+    raise SelfFollowError if following_self?
 
     if @source_account.following?(@target_account)
       return change_follow_options!

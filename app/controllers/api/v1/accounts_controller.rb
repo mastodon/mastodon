@@ -48,7 +48,7 @@ class Api::V1::AccountsController < Api::BaseController
 
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships(**options)
   rescue FollowService::SelfFollowError
-    render json: { error: 'Following your own account is not allowed' }, status: 403
+    render json: { error: I18n.t('Following your own account is not allowed') }, status: 403
   end
 
   def block
