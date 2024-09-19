@@ -173,7 +173,7 @@ class Status < ApplicationRecord
 
   REAL_TIME_WINDOW = 6.hours
   # debounce fetching all replies to minimize DoS
-  FETCH_REPLIES_DEBOUNCE = 1.hour
+  FETCH_REPLIES_DEBOUNCE = 30.minutes
 
   def cache_key
     "v3:#{super}"
