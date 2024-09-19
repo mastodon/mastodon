@@ -49,24 +49,20 @@ class Api::V1::StatusesController < Api::BaseController
       descendants_limit       = DESCENDANTS_LIMIT
       descendants_depth_limit = DESCENDANTS_DEPTH_LIMIT
     else
-      unless @status.local?
-         json_status = fetch_resource(@status.uri, true, @current_account)
+      unless @status.local? && !@status.should_fetch_replies?
+        json_status = fetch_resource(@status.uri, true, @current_account)
 
-         logger.warn "json status"
-         logger.warn json_status
-         # rescue this whole block on failure, don't want to fail the whole context request if we can't do this
-         collection = json_status['replies']
-         logger.warn "replies uri"
-         logger.warn collection
+        # rescue this whole block on failure, don't want to fail the whole context request if we can't do this
+        collection = json_status['replies']
 
-         unless collection.nil?
-           ActivityPub::FetchRepliesService.new.call(
-             @status,
-             collection,
-             allow_synchronous_requests: true,
-             all_replies: true
-           )
-         end
+        unless collection.nil?
+          ActivityPub::FetchRepliesService.new.call(
+            @status,
+            collection,
+            allow_synchronous_requests: true,
+            all_replies: true
+          )
+        end
       end
     end
 
