@@ -3,14 +3,17 @@
 class FetchReplyWorker
   include Sidekiq::Worker
   include ExponentialBackoff
+  include JsonLdHelper
 
   sidekiq_options queue: 'pull', retry: 3
 
-  def perform(child_url, options = {}, all_replies: false)
+  def perform(child_url, options = {})
+    all_replies = options.delete('all_replies')
+
     status = FetchRemoteStatusService.new.call(child_url, **options.deep_symbolize_keys)
 
     # asked to fetch replies recursively - do the second-level calls async
-    if all_replies && status.should_fetch_replies?
+    if all_replies && status
       json_status = fetch_resource(status.uri, true)
 
       collection = json_status['replies']
