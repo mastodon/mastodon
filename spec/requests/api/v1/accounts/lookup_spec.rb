@@ -14,6 +14,8 @@ RSpec.describe 'Accounts Lookup API' do
       get '/api/v1/accounts/lookup', params: { account_id: account.id, acct: account.acct }, headers: headers
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
   end
 end

@@ -25,6 +25,8 @@ RSpec.describe 'Email Domain Blocks' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
 
     context 'when there is no email domain block' do
@@ -97,6 +99,8 @@ RSpec.describe 'Email Domain Blocks' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body[:domain]).to eq(email_domain_block.domain)
       end
     end
@@ -106,6 +110,8 @@ RSpec.describe 'Email Domain Blocks' do
         get '/api/v1/admin/email_domain_blocks/-1', headers: headers
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -125,6 +131,8 @@ RSpec.describe 'Email Domain Blocks' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body[:domain]).to eq(params[:domain])
     end
 
@@ -135,6 +143,8 @@ RSpec.describe 'Email Domain Blocks' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -145,6 +155,8 @@ RSpec.describe 'Email Domain Blocks' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -157,6 +169,8 @@ RSpec.describe 'Email Domain Blocks' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -176,6 +190,8 @@ RSpec.describe 'Email Domain Blocks' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body).to be_empty
       expect(EmailDomainBlock.find_by(id: email_domain_block.id)).to be_nil
     end
@@ -185,6 +201,8 @@ RSpec.describe 'Email Domain Blocks' do
         delete '/api/v1/admin/email_domain_blocks/-1', headers: headers
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

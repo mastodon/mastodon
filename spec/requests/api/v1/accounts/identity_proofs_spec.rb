@@ -14,6 +14,8 @@ RSpec.describe 'Accounts Identity Proofs API' do
       get "/api/v1/accounts/#{account.id}/identity_proofs", params: { limit: 2 }, headers: headers
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
   end
 end

@@ -35,6 +35,8 @@ RSpec.describe 'Home', :inline_jobs do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
 
         expect(response.parsed_body.pluck(:id)).to match_array(home_statuses.map { |status| status.id.to_s })
       end
@@ -52,6 +54,8 @@ RSpec.describe 'Home', :inline_jobs do
               prev: api_v1_timelines_home_url(limit: params[:limit], min_id: ana.statuses.first.id),
               next: api_v1_timelines_home_url(limit: params[:limit], max_id: ana.statuses.first.id)
             )
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
     end
@@ -67,6 +71,8 @@ RSpec.describe 'Home', :inline_jobs do
         subject
 
         expect(response).to have_http_status(206)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -77,6 +83,8 @@ RSpec.describe 'Home', :inline_jobs do
         subject
 
         expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -89,6 +97,8 @@ RSpec.describe 'Home', :inline_jobs do
         expect(response)
           .to have_http_status(422)
           .and not_have_http_link_header
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

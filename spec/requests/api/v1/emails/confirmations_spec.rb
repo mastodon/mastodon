@@ -26,6 +26,8 @@ RSpec.describe 'Confirmations' do
           subject
 
           expect(response).to have_http_status(403)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
 
@@ -41,6 +43,8 @@ RSpec.describe 'Confirmations' do
             subject
 
             expect(response).to have_http_status(403)
+            expect(response.content_type)
+              .to start_with('application/json')
           end
 
           context 'when user changed e-mail and has not confirmed it' do
@@ -52,6 +56,8 @@ RSpec.describe 'Confirmations' do
               subject
 
               expect(response).to have_http_status(200)
+              expect(response.content_type)
+                .to start_with('application/json')
             end
           end
         end
@@ -61,6 +67,8 @@ RSpec.describe 'Confirmations' do
             subject
 
             expect(response).to have_http_status(200)
+            expect(response.content_type)
+              .to start_with('application/json')
           end
         end
 
@@ -71,6 +79,8 @@ RSpec.describe 'Confirmations' do
             subject
 
             expect(response).to have_http_status(200)
+            expect(response.content_type)
+              .to start_with('application/json')
             expect(user.reload.unconfirmed_email).to eq('foo@bar.com')
           end
         end
@@ -82,6 +92,8 @@ RSpec.describe 'Confirmations' do
             subject
 
             expect(response).to have_http_status(422)
+            expect(response.content_type)
+              .to start_with('application/json')
           end
         end
       end
@@ -94,6 +106,8 @@ RSpec.describe 'Confirmations' do
         subject
 
         expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -111,6 +125,8 @@ RSpec.describe 'Confirmations' do
           subject
 
           expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
           expect(response.parsed_body).to be false
         end
       end
@@ -122,6 +138,8 @@ RSpec.describe 'Confirmations' do
           subject
 
           expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
           expect(response.parsed_body).to be true
         end
       end
@@ -139,6 +157,8 @@ RSpec.describe 'Confirmations' do
           subject
 
           expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
           expect(response.parsed_body).to be false
         end
       end
@@ -150,6 +170,8 @@ RSpec.describe 'Confirmations' do
           subject
 
           expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
           expect(response.parsed_body).to be true
         end
       end
@@ -162,6 +184,8 @@ RSpec.describe 'Confirmations' do
         subject
 
         expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

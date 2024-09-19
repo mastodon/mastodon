@@ -24,6 +24,8 @@ RSpec.describe 'Domain Blocks' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
 
     context 'when there are no domain blocks' do
@@ -94,6 +96,8 @@ RSpec.describe 'Domain Blocks' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body).to match(
         id: domain_block.id.to_s,
         domain: domain_block.domain,
@@ -113,6 +117,8 @@ RSpec.describe 'Domain Blocks' do
         get '/api/v1/admin/domain_blocks/-1', headers: headers
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -132,6 +138,8 @@ RSpec.describe 'Domain Blocks' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body).to match a_hash_including(
         {
           domain: 'foo.bar.com',
@@ -153,6 +161,8 @@ RSpec.describe 'Domain Blocks' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body).to match a_hash_including(
           {
             domain: 'foo.bar.com',
@@ -173,6 +183,8 @@ RSpec.describe 'Domain Blocks' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body[:existing_domain_block][:domain]).to eq('foo.bar.com')
       end
     end
@@ -186,6 +198,8 @@ RSpec.describe 'Domain Blocks' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body[:existing_domain_block][:domain]).to eq('bar.com')
       end
     end
@@ -197,6 +211,8 @@ RSpec.describe 'Domain Blocks' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -217,6 +233,8 @@ RSpec.describe 'Domain Blocks' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body).to match a_hash_including(
         {
           id: domain_block.id.to_s,
@@ -236,6 +254,8 @@ RSpec.describe 'Domain Blocks' do
         put '/api/v1/admin/domain_blocks/-1', headers: headers
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -255,6 +275,8 @@ RSpec.describe 'Domain Blocks' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(DomainBlock.find_by(id: domain_block.id)).to be_nil
     end
 
@@ -263,6 +285,8 @@ RSpec.describe 'Domain Blocks' do
         delete '/api/v1/admin/domain_blocks/-1', headers: headers
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

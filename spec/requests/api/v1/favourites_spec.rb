@@ -28,6 +28,8 @@ RSpec.describe 'Favourites' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body).to match_array(expected_response)
     end
 
@@ -43,6 +45,8 @@ RSpec.describe 'Favourites' do
             prev: api_v1_favourites_url(limit: params[:limit], min_id: favourites.last.id),
             next: api_v1_favourites_url(limit: params[:limit], max_id: favourites.second.id)
           )
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -53,6 +57,8 @@ RSpec.describe 'Favourites' do
         subject
 
         expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
