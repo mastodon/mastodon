@@ -19,6 +19,8 @@ RSpec.describe 'Search API' do
         get '/api/v2/search', headers: headers, params: params
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
 
       context 'when searching accounts' do
@@ -37,6 +39,8 @@ RSpec.describe 'Search API' do
             get '/api/v2/search', headers: headers, params: params
 
             expect(response).to have_http_status(200)
+            expect(response.content_type)
+              .to start_with('application/json')
           end
         end
 
@@ -47,6 +51,8 @@ RSpec.describe 'Search API' do
             get '/api/v2/search', headers: headers, params: params
 
             expect(response).to have_http_status(200)
+            expect(response.content_type)
+              .to start_with('application/json')
           end
         end
 
@@ -57,6 +63,8 @@ RSpec.describe 'Search API' do
             get '/api/v2/search', headers: headers, params: params
 
             expect(response).to have_http_status(400)
+            expect(response.content_type)
+              .to start_with('application/json')
           end
         end
 
@@ -67,6 +75,8 @@ RSpec.describe 'Search API' do
             get '/api/v2/search', headers: headers, params: params
 
             expect(response).to have_http_status(400)
+            expect(response.content_type)
+              .to start_with('application/json')
           end
         end
 
@@ -92,6 +102,8 @@ RSpec.describe 'Search API' do
           get '/api/v2/search', headers: headers, params: params
 
           expect(response).to have_http_status(422)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
 
@@ -102,6 +114,8 @@ RSpec.describe 'Search API' do
           get '/api/v2/search', headers: headers, params: params
 
           expect(response).to have_http_status(404)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
     end
@@ -118,6 +132,8 @@ RSpec.describe 'Search API' do
       context 'without a `q` param' do
         it 'returns http bad_request' do
           expect(response).to have_http_status(400)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
 
@@ -126,6 +142,8 @@ RSpec.describe 'Search API' do
 
         it 'returns http success' do
           expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
 
@@ -134,6 +152,8 @@ RSpec.describe 'Search API' do
 
         it 'returns http success' do
           expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
 
         context 'with truthy `resolve`' do
@@ -141,6 +161,8 @@ RSpec.describe 'Search API' do
 
           it 'returns http unauthorized' do
             expect(response).to have_http_status(401)
+            expect(response.content_type)
+              .to start_with('application/json')
             expect(response.body).to match('resolve remote resources')
           end
         end
@@ -150,6 +172,8 @@ RSpec.describe 'Search API' do
 
           it 'returns http unauthorized' do
             expect(response).to have_http_status(401)
+            expect(response.content_type)
+              .to start_with('application/json')
             expect(response.body).to match('pagination is not supported')
           end
         end

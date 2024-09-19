@@ -15,6 +15,8 @@ RSpec.describe 'Filters' do
       subject
 
       expect(response).to have_http_status(401)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
   end
 
@@ -32,6 +34,8 @@ RSpec.describe 'Filters' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body.pluck(:id)).to match_array(filters.map { |filter| filter.id.to_s })
     end
   end
@@ -53,6 +57,8 @@ RSpec.describe 'Filters' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
 
         expect(response.parsed_body)
           .to include(
@@ -81,6 +87,8 @@ RSpec.describe 'Filters' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -91,6 +99,8 @@ RSpec.describe 'Filters' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -101,6 +111,8 @@ RSpec.describe 'Filters' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -119,6 +131,8 @@ RSpec.describe 'Filters' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body)
         .to include(
           id: filter.id.to_s
@@ -132,6 +146,8 @@ RSpec.describe 'Filters' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -158,6 +174,8 @@ RSpec.describe 'Filters' do
           filter.reload
 
           expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
           expect(filter.title).to eq 'updated'
           expect(filter.reload.context).to eq %w(home public)
         end
@@ -170,6 +188,8 @@ RSpec.describe 'Filters' do
           subject
 
           expect(response).to have_http_status(422)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
     end
@@ -185,6 +205,8 @@ RSpec.describe 'Filters' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
 
         expect(keyword.reload.keyword).to eq 'updated'
 
@@ -199,6 +221,8 @@ RSpec.describe 'Filters' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -217,6 +241,8 @@ RSpec.describe 'Filters' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
 
       expect { filter.reload }.to raise_error ActiveRecord::RecordNotFound
     end
@@ -228,6 +254,8 @@ RSpec.describe 'Filters' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
