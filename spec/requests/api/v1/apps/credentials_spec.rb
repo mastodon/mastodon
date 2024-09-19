@@ -47,14 +47,10 @@ RSpec.describe 'Credentials' do
       let(:token)   { Fabricate(:accessible_access_token, application: application) }
       let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-      it 'returns http success' do
+      it 'returns http success and returns app information' do
         subject
 
         expect(response).to have_http_status(200)
-      end
-
-      it 'returns the app information correctly' do
-        subject
 
         expect(response.parsed_body).to match(
           a_hash_including(
@@ -108,14 +104,10 @@ RSpec.describe 'Credentials' do
       let(:token)   { Fabricate(:accessible_access_token, application: application) }
       let(:headers) { { 'Authorization' => "Bearer #{token.token}-invalid" } }
 
-      it 'returns http authorization error' do
+      it 'returns http authorization error with json error' do
         subject
 
         expect(response).to have_http_status(401)
-      end
-
-      it 'returns the error in the json response' do
-        subject
 
         expect(response.parsed_body).to match(
           a_hash_including(
