@@ -5,22 +5,27 @@ class ActivityPub::FetchRepliesService < BaseService
 
   # Limit of fetched replies used when not fetching all replies
   MAX_REPLIES_LOW = 5
+  # limit of fetched replies used when fetching all replies
+  MAX_REPLIES_HIGH = 500
 
   def call(parent_status, collection_or_uri, allow_synchronous_requests: true, request_id: nil, all_replies: false)
     # Whether we are getting replies from more than the originating server,
     # and don't limit ourselves to getting at most `MAX_REPLIES_LOW`
     @all_replies = all_replies
+    # store the status and whether we should fetch replies for it to avoid
+    # race conditions if something else updates us in the meantime
+    @status = parent_status
+    @should_fetch_replies = parent_status.should_fetch_replies?
 
     @account = parent_status.account
     @allow_synchronous_requests = allow_synchronous_requests
 
     @items = collection_items(collection_or_uri)
-    logger = Logger.new(STDOUT)
-    logger.warn 'collection items'
-    logger.warn @items
     return if @items.nil?
 
     FetchReplyWorker.push_bulk(filtered_replies) { |reply_uri| [reply_uri, { 'request_id' => request_id }] }
+    # Store last fetched all to debounce
+    @status.update(fetched_replies_at: Time.now.utc) if fetch_all_replies?
 
     @items
   end
@@ -28,26 +33,30 @@ class ActivityPub::FetchRepliesService < BaseService
   private
 
   def collection_items(collection_or_uri)
-    logger = Logger.new(STDOUT)
     collection = fetch_collection(collection_or_uri)
-    logger.warn 'first collection'
-    logger.warn collection
     return unless collection.is_a?(Hash)
 
     collection = fetch_collection(collection['first']) if collection['first'].present?
-    logger.warn 'second collection'
-    logger.warn collection
     return unless collection.is_a?(Hash)
 
-    # Need to do another "next" here. see https://neuromatch.social/users/jonny/statuses/112401738180959195/replies for example
-    # then we are home free (stopping for tonight tho.)
+    all_items = []
+    while collection.is_a?(Hash)
+      items = case collection['type']
+              when 'Collection', 'CollectionPage'
+                collection['items']
+              when 'OrderedCollection', 'OrderedCollectionPage'
+                collection['orderedItems']
+              end
 
-    case collection['type']
-    when 'Collection', 'CollectionPage'
-      as_array(collection['items'])
-    when 'OrderedCollection', 'OrderedCollectionPage'
-      as_array(collection['orderedItems'])
+      all_items.concat(as_array(items))
+
+      # Quit early if we are not fetching all replies
+      break if all_items.size >= MAX_REPLIES_HIGH || !fetch_all_replies?
+
+      collection = collection['next'].present? ? fetch_collection(collection['next']) : nil
     end
+
+    all_items
   end
 
   def fetch_collection(collection_or_uri)
@@ -73,7 +82,8 @@ class ActivityPub::FetchRepliesService < BaseService
 
   def filtered_replies
     if @all_replies
-      @items.map { |item| value_or_id(item) }
+      # Reject all statuses that we already have in the db
+      @items.map { |item| value_or_id(item) }.reject { |uri| Status.exists?(uri: uri) }
     else
       # Only fetch replies to the same server as the original status to avoid
       # amplification attacks.
@@ -81,5 +91,9 @@ class ActivityPub::FetchRepliesService < BaseService
       # Also limit to 5 fetched replies to limit potential for DoS.
       @items.map { |item| value_or_id(item) }.reject { |uri| non_matching_uri_hosts?(@account.uri, uri) }.take(MAX_REPLIES_LOW)
     end
+  end
+
+  def fetch_all_replies?
+    @all_replies && @should_fetch_replies
   end
 end
