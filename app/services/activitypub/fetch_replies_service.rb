@@ -25,7 +25,7 @@ class ActivityPub::FetchRepliesService < BaseService
 
     FetchReplyWorker.push_bulk(filtered_replies) { |reply_uri| [reply_uri, { 'request_id' => request_id, 'all_replies' => @all_replies }] }
     # Store last fetched all to debounce
-    @status.update(fetched_replies_at: Time.now.utc) if fetch_all_replies?
+    @status.touch(:fetched_replies_at)
 
     @items
   end
