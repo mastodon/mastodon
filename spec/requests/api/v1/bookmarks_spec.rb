@@ -24,15 +24,10 @@ RSpec.describe 'Bookmarks' do
 
     it_behaves_like 'forbidden for wrong scope', 'write'
 
-    it 'returns http success' do
+    it 'returns http success and the bookmarked statuses' do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns the bookmarked statuses' do
-      subject
-
       expect(response.parsed_body).to match_array(expected_response)
     end
 

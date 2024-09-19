@@ -28,15 +28,10 @@ RSpec.describe 'Followed tags' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:follows'
 
-    it 'returns http success' do
+    it 'returns http success and includes followed tags' do
       subject
 
       expect(response).to have_http_status(:success)
-    end
-
-    it 'returns the followed tags correctly' do
-      subject
-
       expect(response.parsed_body).to match_array(expected_response)
     end
 

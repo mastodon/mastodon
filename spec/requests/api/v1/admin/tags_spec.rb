@@ -73,14 +73,10 @@ RSpec.describe 'Tags' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'returns http success' do
+    it 'returns http success and expected tag content' do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns expected tag content' do
-      subject
 
       expect(response.parsed_body[:id].to_i).to eq(tag.id)
       expect(response.parsed_body[:name]).to eq(tag.name)
@@ -107,14 +103,10 @@ RSpec.describe 'Tags' do
     it_behaves_like 'forbidden for wrong scope', 'admin:read'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'returns http success' do
+    it 'returns http success and updates tag' do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns updated tag' do
-      subject
 
       expect(response.parsed_body[:id].to_i).to eq(tag.id)
       expect(response.parsed_body[:name]).to eq(tag.name.upcase)

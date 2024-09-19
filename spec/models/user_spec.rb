@@ -4,6 +4,8 @@ require 'rails_helper'
 require 'devise_two_factor/spec_helpers'
 
 RSpec.describe User do
+  subject { described_class.new(account: account) }
+
   let(:password) { 'abcd1234' }
   let(:account) { Fabricate(:account, username: 'alice') }
 

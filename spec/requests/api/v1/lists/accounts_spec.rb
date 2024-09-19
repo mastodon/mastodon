@@ -139,16 +139,11 @@ RSpec.describe 'Accounts' do
         list.accounts << [bob, peter]
       end
 
-      it 'removes the specified account from the list', :aggregate_failures do
+      it 'removes the specified account from the list but keeps other accounts in the list', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
         expect(list.accounts).to_not include(bob)
-      end
-
-      it 'does not remove any other account from the list' do
-        subject
-
         expect(list.accounts).to include(peter)
       end
 
