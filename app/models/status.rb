@@ -396,7 +396,7 @@ class Status < ApplicationRecord
 
   def should_fetch_replies?
     # we aren't brand new, and we haven't fetched replies since the debounce window
-    created_at <= 10.minutes.ago && (
+    !local? && created_at <= 10.minutes.ago && (
       fetched_replies_at.nil? || fetched_replies_at <= FETCH_REPLIES_DEBOUNCE.ago
     )
   end
