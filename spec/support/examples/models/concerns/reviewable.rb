@@ -6,6 +6,21 @@ RSpec.shared_examples 'Reviewable' do
   let(:reviewed_at) { nil }
   let(:requested_review_at) { nil }
 
+  describe '.reviewed' do
+    it 'returns reviewed records' do
+      reviewed_record = Fabricate factory_name, reviewed_at: 10.days.ago
+      un_reviewed_record = Fabricate factory_name, reviewed_at: nil
+
+      expect(described_class.reviewed)
+        .to include(reviewed_record)
+        .and not_include(un_reviewed_record)
+    end
+
+    def factory_name
+      described_class.name.downcase.to_sym
+    end
+  end
+
   describe '#requires_review?' do
     it { is_expected.to be_requires_review }
 
