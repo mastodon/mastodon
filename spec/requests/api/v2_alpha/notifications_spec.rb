@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# TODO: remove this before 4.3.0-rc1
+
 require 'rails_helper'
 
 RSpec.describe 'Notifications' do
@@ -31,7 +33,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq 4
+        expect(response.parsed_body[:count]).to eq 4
       end
     end
 
@@ -42,7 +44,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq 5
+        expect(response.parsed_body[:count]).to eq 5
       end
     end
 
@@ -56,7 +58,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq 2
+        expect(response.parsed_body[:count]).to eq 2
       end
     end
 
@@ -67,7 +69,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq 3
+        expect(response.parsed_body[:count]).to eq 3
       end
     end
 
@@ -78,20 +80,20 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq 2
+        expect(response.parsed_body[:count]).to eq 2
       end
     end
 
     context 'when there are more notifications than the limit' do
       before do
-        stub_const('Api::V2Alpha::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT', 2)
+        stub_const('Api::V2::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT', 2)
       end
 
       it 'returns a capped value' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:count]).to eq Api::V2Alpha::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT
+        expect(response.parsed_body[:count]).to eq Api::V2::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT
       end
     end
   end
@@ -125,7 +127,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:notification_groups]).to eq []
+        expect(response.parsed_body[:notification_groups]).to eq []
       end
     end
 
@@ -145,7 +147,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:notification_groups]).to contain_exactly(
+        expect(response.parsed_body[:notification_groups]).to contain_exactly(
           a_hash_including(
             type: 'reblog',
             sample_account_ids: [bob.account_id.to_s]
@@ -177,7 +179,7 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json.size).to_not eq 0
+        expect(response.parsed_body.size).to_not eq 0
         expect(body_json_types.uniq).to_not include 'mention'
       end
     end
@@ -190,7 +192,7 @@ RSpec.describe 'Notifications' do
 
         expect(response).to have_http_status(200)
         expect(body_json_types.uniq).to eq ['mention']
-        expect(body_as_json.dig(:notification_groups, 0, :page_min_id)).to_not be_nil
+        expect(response.parsed_body.dig(:notification_groups, 0, :page_min_id)).to_not be_nil
       end
     end
 
@@ -201,15 +203,15 @@ RSpec.describe 'Notifications' do
       it 'returns the requested number of notifications paginated', :aggregate_failures do
         subject
 
-        expect(body_as_json[:notification_groups].size)
+        expect(response.parsed_body[:notification_groups].size)
           .to eq(params[:limit])
 
         expect(response)
           .to include_pagination_headers(
-            prev: api_v2_alpha_notifications_url(limit: params[:limit], min_id: notifications.first.id),
+            prev: api_v2_notifications_url(limit: params[:limit], min_id: notifications.first.id),
             # TODO: one downside of the current approach is that we return the first ID matching the group,
             # not the last that has been skipped, so pagination is very likely to give overlap
-            next: api_v2_alpha_notifications_url(limit: params[:limit], max_id: notifications[3].id)
+            next: api_v2_notifications_url(limit: params[:limit], max_id: notifications[3].id)
           )
       end
     end
@@ -221,15 +223,15 @@ RSpec.describe 'Notifications' do
       it 'returns the requested number of notifications paginated', :aggregate_failures do
         subject
 
-        expect(body_as_json[:notification_groups].size)
+        expect(response.parsed_body[:notification_groups].size)
           .to eq(2)
 
         expect(response)
           .to include_pagination_headers(
-            prev: api_v2_alpha_notifications_url(limit: params[:limit], min_id: notifications.first.id),
+            prev: api_v2_notifications_url(limit: params[:limit], min_id: notifications.first.id),
             # TODO: one downside of the current approach is that we return the first ID matching the group,
             # not the last that has been skipped, so pagination is very likely to give overlap
-            next: api_v2_alpha_notifications_url(limit: params[:limit], max_id: notifications[1].id)
+            next: api_v2_notifications_url(limit: params[:limit], max_id: notifications[1].id)
           )
       end
     end
@@ -247,10 +249,10 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json[:partial_accounts].size).to be > 0
-        expect(body_as_json[:partial_accounts][0].keys.map(&:to_sym)).to contain_exactly(:acct, :avatar, :avatar_static, :bot, :id, :locked, :url)
-        expect(body_as_json[:partial_accounts].pluck(:id)).to_not include(recent_account.id.to_s)
-        expect(body_as_json[:accounts].pluck(:id)).to include(recent_account.id.to_s)
+        expect(response.parsed_body[:partial_accounts].size).to be > 0
+        expect(response.parsed_body[:partial_accounts][0].keys.map(&:to_sym)).to contain_exactly(:acct, :avatar, :avatar_static, :bot, :id, :locked, :url)
+        expect(response.parsed_body[:partial_accounts].pluck(:id)).to_not include(recent_account.id.to_s)
+        expect(response.parsed_body[:accounts].pluck(:id)).to include(recent_account.id.to_s)
       end
     end
 
@@ -265,7 +267,7 @@ RSpec.describe 'Notifications' do
     end
 
     def body_json_types
-      body_as_json[:notification_groups].pluck(:type)
+      response.parsed_body[:notification_groups].pluck(:type)
     end
   end
 

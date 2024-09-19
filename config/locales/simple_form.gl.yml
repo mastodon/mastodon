@@ -3,6 +3,7 @@ gl:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Protéxete de falsas atribucións.
         discoverable: As túas publicacións públicas e perfil poden mostrarse ou recomendarse en varias zonas de Mastodon e o teu perfil ser suxerido a outras usuarias.
         display_name: O teu nome completo ou un nome divertido.
         fields: Páxina web, pronome, idade, o que ti queiras.
@@ -130,7 +131,7 @@ gl:
         name: Só podes cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
       user:
         chosen_languages: Se ten marca, só as publicacións nos idiomas seleccionados serán mostrados en cronoloxías públicas
-        role: O control dos roles adxudicados ás usuarias
+        role: Os roles establecen os permisos que ten a usuaria.
       user_role:
         color: Cor que se usará para o rol a través da IU, como RGB en formato hex
         highlighted: Isto fai o rol publicamente visible
@@ -143,6 +144,7 @@ gl:
         url: A onde se enviarán os eventos
     labels:
       account:
+        attribution_domains_as_text: Permitir só os sitios web indicados
         discoverable: Perfil destacado e publicacións nos algoritmos de descubrimento
         fields:
           name: Etiqueta

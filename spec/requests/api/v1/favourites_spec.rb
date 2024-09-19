@@ -33,7 +33,7 @@ RSpec.describe 'Favourites' do
     it 'returns the favourites' do
       subject
 
-      expect(body_as_json).to match_array(expected_response)
+      expect(response.parsed_body).to match_array(expected_response)
     end
 
     context 'with limit param' do
@@ -42,7 +42,7 @@ RSpec.describe 'Favourites' do
       it 'returns only the requested number of favourites' do
         subject
 
-        expect(body_as_json.size).to eq(params[:limit])
+        expect(response.parsed_body.size).to eq(params[:limit])
       end
 
       it 'sets the correct pagination headers' do

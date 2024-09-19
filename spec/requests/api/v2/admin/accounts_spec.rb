@@ -76,7 +76,7 @@ RSpec.describe 'API V2 Admin Accounts' do
     end
 
     def body_json_ids
-      body_as_json.map { |a| a[:id].to_i }
+      response.parsed_body.map { |a| a[:id].to_i }
     end
 
     context 'with limit param' do

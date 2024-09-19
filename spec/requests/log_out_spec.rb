@@ -24,7 +24,7 @@ RSpec.describe 'Log Out' do
       expect(response).to have_http_status(200)
       expect(response.media_type).to eq 'application/json'
 
-      expect(body_as_json[:redirect_to]).to eq '/auth/sign_in'
+      expect(response.parsed_body[:redirect_to]).to eq '/auth/sign_in'
     end
   end
 end

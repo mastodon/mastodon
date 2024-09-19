@@ -7,7 +7,6 @@ fo:
     hosted_on: Mastodon hýst á %{domain}
     title: Um
   accounts:
-    follow: Fylg
     followers:
       one: Fylgjari
       other: Fylgjarar
@@ -25,6 +24,8 @@ fo:
   admin:
     account_actions:
       action: Frem atgerð
+      already_silenced: Hendan kontan er longu avmarkað.
+      already_suspended: Hendan kontan er longu ógildað.
       title: Frem umsjónaratgerð á %{acct}
     account_moderation_notes:
       create: Skriva umsjónarviðmerking
@@ -46,6 +47,7 @@ fo:
         title: Broyt teldupostin hjá %{username}
       change_role:
         changed_msg: Leiklutur broyttur!
+        edit_roles: Stýr brúkaraleiklutir
         label: Broyt leiklut
         no_role: Eingin leiklutur
         title: Broyt leiklut hjá %{username}
@@ -602,6 +604,7 @@ fo:
         suspend_description_html: Kontan og alt innihald hjá kontuni gerast óatkomulig og við tíðini strikaði, og tað verður ógjørligt at samvirka við henni. Kann angrast innan 30 dagar. Lukkar allar rapporteringar av hesi kontuni.
       actions_description_html: Ger av hvør atgerð skal takast fyri at avgreiða hesa meldingina. Revsitiltøk móti meldaðu kontuni føra við sær, at ein teldupostfráboðan verður send teimum, undantikið tá <strong>Ruskpostur</strong> verður valdur.
       actions_description_remote_html: Tak avgerð um hvat skal gerast fyri at avgreiða hesa rapporteringina. Hetta fer einans at ávirka, hvussu <strong>tín</strong> ambætari samskiftir við hesa fjarkontuna og hvussu hann handfer tilfar frá henni.
+      actions_no_posts: Hendan fráboðanin hevur ongar viðkomandi postar at strika
       add_to_report: Legg meira afturat meldingini
       already_suspended_badges:
         local: Longu gjørt óvirkin á hesum ambætaranum
@@ -1157,6 +1160,12 @@ fo:
       view_strikes: Vís eldri atsóknir móti tíni kontu
     too_fast: Oyðublaðið innsent ov skjótt, royn aftur.
     use_security_key: Brúka trygdarlykil
+  author_attribution:
+    example_title: Tekstadømi
+    hint_html: Kanna, hvussu tú verður viðurkend/ur, tá ið onnur deila slóðir á Mastodon.
+    more_from_html: Meiri frá %{name}
+    s_blog: Bloggurin hjá %{name}
+    title: Ískoyti høvundans
   challenge:
     confirm: Hald á
     hint_html: "<strong>Góð ráð:</strong> vit spyrja teg ikki aftur um loyniorðið næsta tíman."
@@ -1165,7 +1174,6 @@ fo:
   crypto:
     errors:
       invalid_key: er ikki ein gildur Ed25519 ella Curve25519 lykil
-      invalid_signature: er ikki ein gildug Ed25519 undirskrift
   date:
     formats:
       default: "%b %d, %Y"
@@ -1231,8 +1239,6 @@ fo:
       your_appeal_approved: Kæra tín er góðkend
       your_appeal_pending: Tú hevur kært
       your_appeal_rejected: Kæra tín er vrakað
-  domain_validator:
-    invalid_domain: er ikki eitt loyvt økisnavn
   edit_profile:
     basic_information: Grundleggjandi upplýsingar
     hint_html: "<strong>Tillaga tað, sum fólk síggja á tínum almenna vanga og við síðna av tínum postum.</strong> Sannlíkindini fyri, at onnur fylgja tær og virka saman við tær eru størri, tá tú hevur fylt út vangan og eina vangamynd."
@@ -1732,23 +1738,12 @@ fo:
     edited_at_html: Rættað %{date}
     errors:
       in_reply_not_found: Posturin, sum tú roynir at svara, sýnist ikki at finnast.
-    open_in_web: Lat upp á vevinum
     over_character_limit: mesta tal av teknum, %{max}, rokkið
     pin_errors:
       direct: Postar, sum einans eru sjónligir hjá nevndum brúkarum, kunnu ikki festast
       limit: Tú hevur longu fest loyvda talið av postum
       ownership: Postar hjá øðrum kunnu ikki festast
       reblog: Ein stimbran kann ikki festast
-    poll:
-      total_people:
-        one: "%{count} fólk"
-        other: "%{count} fólk"
-      total_votes:
-        one: "%{count} atkvøða"
-        other: "%{count} atkvøður"
-      vote: Atkvøð
-    show_more: Vís meira
-    show_thread: Vís tráð
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Beinleiðis
@@ -1917,6 +1912,9 @@ fo:
       follows_subtitle: Fylg vælkendar kontur
       follows_title: Hvørji tú átti at fylgt
       follows_view_more: Sí fleiri fólk at fylgja
+      hashtags_recent_count:
+        one: "%{people} fólk seinastu 2 dagarnar"
+        other: "%{people} fólk seinastu 2 dagarnar"
       hashtags_subtitle: Kanna rákið seinastu 2 dagarnar
       hashtags_title: Vælumtókt frámerki
       hashtags_view_more: Sí fleiri vælumtókt frámerki
@@ -1944,6 +1942,7 @@ fo:
     instructions_html: Avrita og innset koduna niðanfyri inn í HTML'ið á heimasíðuni hjá tær. Legg síðani adressuna á heimasíðuni hjá tær inn á eitt av eyka teigunum á vanganum hjá tær umvegis "Rætta vanga" teigin og goym broytingar.
     verification: Váttan
     verified_links: Tíni váttaðu leinki
+    website_verification: Heimasíðuváttan
   webauthn_credentials:
     add: Legg nýggjan trygdarlykil afturat
     create:

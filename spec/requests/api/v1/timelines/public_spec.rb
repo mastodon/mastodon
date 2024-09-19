@@ -13,7 +13,7 @@ RSpec.describe 'Public' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json.pluck(:id)).to match_array(expected_statuses.map { |status| status.id.to_s })
+      expect(response.parsed_body.pluck(:id)).to match_array(expected_statuses.map { |status| status.id.to_s })
     end
   end
 
@@ -81,7 +81,7 @@ RSpec.describe 'Public' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json.size).to eq(params[:limit])
+          expect(response.parsed_body.size).to eq(params[:limit])
         end
 
         it 'sets the correct pagination headers', :aggregate_failures do

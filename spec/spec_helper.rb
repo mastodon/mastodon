@@ -34,10 +34,6 @@ RSpec.configure do |config|
   end
 end
 
-def body_as_json
-  response.parsed_body
-end
-
 def serialized_record_json(record, serializer, adapter: nil)
   options = { serializer: serializer }
   options[:adapter] = adapter if adapter.present?

@@ -18,7 +18,7 @@ RSpec.describe 'API V1 Statuses Histories' do
 
       it 'returns http success' do
         expect(response).to have_http_status(200)
-        expect(body_as_json.size).to_not be 0
+        expect(response.parsed_body.size).to_not be 0
       end
     end
   end

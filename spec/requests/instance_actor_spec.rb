@@ -4,11 +4,6 @@ require 'rails_helper'
 
 RSpec.describe 'Instance actor endpoint' do
   describe 'GET /actor' do
-    before do
-      integration_session.https! # TODO: Move to global rails_helper for all request specs?
-      host! Rails.configuration.x.local_domain # TODO: Move to global rails_helper for all request specs?
-    end
-
     let!(:original_federation_mode) { Rails.configuration.x.limited_federation_mode }
 
     shared_examples 'instance actor endpoint' do
@@ -20,7 +15,7 @@ RSpec.describe 'Instance actor endpoint' do
           .and have_cacheable_headers
         expect(response.content_type)
           .to start_with('application/activity+json')
-        expect(body_as_json)
+        expect(response.parsed_body)
           .to include(
             id: instance_actor_url,
             type: 'Application',

@@ -27,7 +27,7 @@ RSpec.describe 'Search API' do
         it 'returns all matching accounts' do
           get '/api/v2/search', headers: headers, params: params
 
-          expect(body_as_json[:accounts].pluck(:id)).to contain_exactly(bob.id.to_s, ana.id.to_s, tom.id.to_s)
+          expect(response.parsed_body[:accounts].pluck(:id)).to contain_exactly(bob.id.to_s, ana.id.to_s, tom.id.to_s)
         end
 
         context 'with truthy `resolve`' do
@@ -80,7 +80,7 @@ RSpec.describe 'Search API' do
           it 'returns only the followed accounts' do
             get '/api/v2/search', headers: headers, params: params
 
-            expect(body_as_json[:accounts].pluck(:id)).to contain_exactly(ana.id.to_s)
+            expect(response.parsed_body[:accounts].pluck(:id)).to contain_exactly(ana.id.to_s)
           end
         end
       end

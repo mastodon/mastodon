@@ -84,4 +84,13 @@ RSpec.describe CustomEmoji, :attachment_processing do
       it { is_expected.to normalize(:domain).from(nil).to(nil) }
     end
   end
+
+  describe 'Validations' do
+    subject { Fabricate.build :custom_emoji }
+
+    it { is_expected.to validate_uniqueness_of(:shortcode).scoped_to(:domain) }
+    it { is_expected.to validate_length_of(:shortcode).is_at_least(described_class::MINIMUM_SHORTCODE_SIZE) }
+    it { is_expected.to allow_values('cats').for(:shortcode) }
+    it { is_expected.to_not allow_values('@#$@#$', 'X').for(:shortcode) }
+  end
 end

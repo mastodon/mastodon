@@ -7,7 +7,6 @@ lt:
     hosted_on: Mastodon talpinamas %{domain}
     title: Apie
   accounts:
-    follow: Sekti
     followers:
       few: Sekėjai
       many: Sekėjo
@@ -29,6 +28,8 @@ lt:
   admin:
     account_actions:
       action: Atlikti veiksmą
+      already_silenced: Ši paskyra jau buvo apribota.
+      already_suspended: Ši paskyra jau sustabdyta.
       title: Atlikti prižiūrėjimo veiksmą %{acct}
     account_moderation_notes:
       create: Palikti pastabą
@@ -49,6 +50,7 @@ lt:
         title: Keisti el. paštą %{username}
       change_role:
         changed_msg: Vaidmuo sėkmingai pakeistas.
+        edit_roles: Tvarkyti naudotojų vaidmenis
         label: Keisti vaidmenį
         no_role: Jokios vaidmenį
         title: Keisti vaidmenį %{username}
@@ -419,9 +421,21 @@ lt:
       domain: Domenas
       new:
         create: Pridėto domeną
+    export_domain_allows:
+      new:
+        title: Importuoti domeno leidžiamus
+      no_file: Nėra pasirinkto failo
     export_domain_blocks:
       import:
         description_html: Netrukus importuosi domenų blokavimų sąrašą. Labai atidžiai peržiūrėk šį sąrašą, ypač jei ne tu jį sudarei.
+        existing_relationships_warning: Esami sekimo sąryšiai
+        private_comment_description_html: 'Kad būtų lengviau atsekti, iš kur importuoti blokavimai, importuoti blokavimai bus kuriami su šiuo privačiu komentaru: <q>%{comment}</q>'
+        private_comment_template: Importuota iš %{source}, %{date}
+        title: Importuoti domeno blokavimus
+      invalid_domain_block: 'Vienas ar daugiau domenų blokavimų buvo praleisti dėl toliau nurodytos (-ų) klaidos (-ų): %{error}'
+      new:
+        title: Importuoti domeno blokavimus
+      no_file: Nėra pasirinkto failo
     follow_recommendations:
       language: Kalbui
       status: Būsena
@@ -485,6 +499,7 @@ lt:
       destroyed_msg: Skundo žinutė sekmingai ištrinta!
     reports:
       action_taken_by: Veiksmo ėmėsi
+      actions_no_posts: Ši ataskaita neturi jokių susijusių įrašų ištrinti
       already_suspended_badges:
         local: Jau sustabdytas šiame serveryje
         remote: Jau sustabdytas jų serveryje
@@ -797,6 +812,12 @@ lt:
       redirecting_to: Tavo paskyra yra neaktyvi, nes šiuo metu ji nukreipiama į %{acct}.
       self_destruct: Kadangi %{domain} uždaromas, turėsi tik ribotą prieigą prie savo paskyros.
       view_strikes: Peržiūrėti ankstesnius savo paskyros pažeidimus
+  author_attribution:
+    example_title: Teksto pavyzdys
+    hint_html: Valdyk, kaip esi nurodomas (-a), kai nuorodos bendrinamos platformoje „Mastodon“.
+    more_from_html: Daugiau iš %{name}
+    s_blog: "%{name} tinklaraštis"
+    title: Autoriaus (-ės) atribucija
   challenge:
     hint_html: "<strong>Patarimas:</strong> artimiausią valandą daugiau neprašysime tavo slaptažodžio."
   datetime:
@@ -844,18 +865,18 @@ lt:
   exports:
     archive_takeout:
       date: Data
-      download: Parsisiųsti archyvą
-      hint_html: Jūs galite prašyti savo <strong>įrašų bei medijos</strong> archyvo. Eksportuota informacija bus ActivityPub formatu, skaitoma suderintų programų. Galite prašyti archyvo, kas 7 dienas.
+      download: Atsisiųsti archyvą
+      hint_html: Gali paprašyti savo <strong>įrašų ir įkeltos medijos</strong> archyvo. Eksportuoti duomenys bus „ActivityPub“ formatu, kurį galima perskaityti bet kuria suderinama programine įranga. Archyvo galima prašyti kas 7 dienas.
       in_progress: Sudaromas archyvas...
       request: Prašyti savo archyvo
       size: Dydis
-    blocks: Jūs blokuojate
+    blocks: Blokuoji
     bookmarks: Žymės
     csv: CSV
-    domain_blocks: Domeno blokai
+    domain_blocks: Domeno blokavimai
     lists: Sąrašai
-    mutes: Jūs tildote
-    storage: Medijos sandėlis
+    mutes: Nutildei
+    storage: Medijos saugykla
   featured_tags:
     add_new: Pridėti naują
     hint_html: "<strong>Savo profilyje parodyk svarbiausius saitažodžius.</strong> Tai puikus įrankis kūrybiniams darbams ir ilgalaikiams projektams sekti, todėl svarbiausios saitažodžiai rodomi matomoje vietoje profilyje ir leidžia greitai pasiekti tavo paties įrašus."
@@ -895,7 +916,7 @@ lt:
       merge_long: Išsaugoti esančius įrašus ir pridėti naujus
       overwrite: Perrašyti
       overwrite_long: Pakeisti senus įrašus naujais
-    preface: Jūs galite importuoti informaciją iš kito serverio, tokią kaip sąrašą žmonių kuriuos sekate.
+    preface: Gali importuoti duomenis, kuriuos eksportavai iš kito serverio, pavyzdžiui, sekamų arba blokuojamų žmonių sąrašą.
     success: Jūsų informacija sėkmingai įkelta ir bus apdorota kaip įmanoma greičiau
     types:
       blocking: Blokuojamų sąrašas
@@ -946,6 +967,8 @@ lt:
   migrations:
     acct: Perkelta į
     cancel: Atšaukti nukreipimą
+    warning:
+      disabled_account: Po to tavo dabartine paskyra nebus galima naudotis visiškai. Tačiau turėsi prieigą prie duomenų eksporto ir pakartotinio aktyvavimo.
   moderation:
     title: Prižiūrėjimas
   notification_mailer:
@@ -1036,7 +1059,7 @@ lt:
       generic: Nežinoma naršyklė
     current_session: Dabartinis seansas
     date: Data
-    description: "%{browser} ant %{platform}"
+    description: "„%{browser}“ per „%{platform}“"
     explanation: Čia rodomos web naršyklės prijungtos prie Jūsų Mastodon paskyros.
     ip: IP
     platforms:
@@ -1070,6 +1093,7 @@ lt:
     export: Duomenų eksportas
     featured_tags: Rodomi saitažodžiai
     import: Importuoti
+    import_and_export: Importas ir eksportas
     migrate: Paskyros migracija
     notifications: El. laiško pranešimai
     preferences: Nuostatos
@@ -1097,16 +1121,11 @@ lt:
         other: "%{count} vaizdų"
     boosted_from_html: Pakelta iš %{acct_link}
     content_warning: 'Turinio įspėjimas: %{warning}'
-    open_in_web: Atidaryti naudojan Web
     over_character_limit: pasiektas %{max} simbolių limitas
     pin_errors:
       limit: Jūs jau prisegėte maksimalų toot'ų skaičų
       ownership: Kitų vartotojų toot'ai negali būti prisegti
       reblog: Pakeltos žinutės negali būti prisegtos
-    poll:
-      vote: Balsuoti
-    show_more: Rodyti daugiau
-    show_thread: Rodyti giją
     visibilities:
       private: Tik sekėjams
       private_long: rodyti tik sekėjams
@@ -1116,6 +1135,7 @@ lt:
       unlisted_long: matyti gali visi, bet nėra išvardyti į viešąsias laiko skales
   statuses_cleanup:
     enabled_hint: Automatiškai ištrina įrašus, kai jie pasiekia nustatytą amžiaus ribą, nebent jie atitinka vieną iš toliau nurodytų išimčių
+    interaction_exceptions_explanation: Atkreipk dėmesį, kad negarantuojama, jog įrašai nebus ištrinti, jei jų mėgstamumo ar pasidalinimo riba bus žemesnė, nors vieną kartą ji jau buvo viršyta.
     keep_polls_hint: Neištrina jokių tavo apklausų
     keep_self_bookmark: Laikyti įrašus, kuriuos pažymėjai
     keep_self_bookmark_hint: Neištrina tavo pačių įrašų, jei esi juos pažymėjęs (-usi)
@@ -1226,6 +1246,7 @@ lt:
     instructions_html: Nukopijuok ir įklijuok toliau pateiktą kodą į savo svetainės HTML. Tada į vieną iš papildomų profilio laukų skirtuke Redaguoti profilį įrašyk savo svetainės adresą ir išsaugok pakeitimus.
     verification: Patvirtinimas
     verified_links: Tavo patikrintos nuorodos
+    website_verification: Svetainės patvirtinimas
   webauthn_credentials:
     add: Pridėti naują saugumo raktą
     create:

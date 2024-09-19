@@ -29,7 +29,7 @@
         ·
         = t('statuses.edited_at_html', date: content_tag(:time, l(status.edited_at), datetime: status.edited_at.iso8601, title: l(status.edited_at), class: 'formatted'))
       ·
-      = fa_visibility_icon(status)
+      = material_symbol visibility_icon(status)
       = t("statuses.visibilities.#{status.visibility}")
       - if status.sensitive?
         ·

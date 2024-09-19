@@ -63,7 +63,7 @@ RSpec.describe StatusesController do
           expect(response.headers).to include(
             'Vary' => 'Accept, Accept-Language, Cookie',
             'Cache-Control' => include('public'),
-            'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+            'Link' => include('activity+json')
           )
           expect(response.body).to include status.text
         end
@@ -79,9 +79,9 @@ RSpec.describe StatusesController do
 
           expect(response.headers).to include(
             'Content-Type' => include('application/activity+json'),
-            'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+            'Link' => include('activity+json')
           )
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to include(content: include(status.text))
         end
       end
@@ -168,7 +168,7 @@ RSpec.describe StatusesController do
             expect(response.headers).to include(
               'Vary' => 'Accept, Accept-Language, Cookie',
               'Cache-Control' => include('private'),
-              'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+              'Link' => include('activity+json')
             )
             expect(response.body).to include status.text
           end
@@ -184,9 +184,9 @@ RSpec.describe StatusesController do
               'Vary' => 'Accept, Accept-Language, Cookie',
               'Cache-Control' => include('private'),
               'Content-Type' => include('application/activity+json'),
-              'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+              'Link' => include('activity+json')
             )
-            expect(body_as_json)
+            expect(response.parsed_body)
               .to include(content: include(status.text))
           end
         end
@@ -212,7 +212,7 @@ RSpec.describe StatusesController do
               expect(response.headers).to include(
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
               expect(response.body).to include status.text
             end
@@ -228,9 +228,9 @@ RSpec.describe StatusesController do
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
-              expect(body_as_json)
+              expect(response.parsed_body)
                 .to include(content: include(status.text))
             end
           end
@@ -278,7 +278,7 @@ RSpec.describe StatusesController do
               expect(response.headers).to include(
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
               expect(response.body).to include status.text
             end
@@ -294,9 +294,9 @@ RSpec.describe StatusesController do
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
-              expect(body_as_json)
+              expect(response.parsed_body)
                 .to include(content: include(status.text))
             end
           end
@@ -370,7 +370,7 @@ RSpec.describe StatusesController do
             expect(response.headers).to include(
               'Vary' => 'Accept, Accept-Language, Cookie',
               'Cache-Control' => include('private'),
-              'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+              'Link' => include('activity+json')
             )
             expect(response.body).to include status.text
           end
@@ -385,9 +385,9 @@ RSpec.describe StatusesController do
               .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
             expect(response.headers).to include(
               'Content-Type' => include('application/activity+json'),
-              'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+              'Link' => include('activity+json')
             )
-            expect(body_as_json)
+            expect(response.parsed_body)
               .to include(content: include(status.text))
           end
         end
@@ -412,7 +412,7 @@ RSpec.describe StatusesController do
               expect(response.headers).to include(
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
               expect(response.body).to include status.text
             end
@@ -428,10 +428,10 @@ RSpec.describe StatusesController do
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
 
-              expect(body_as_json)
+              expect(response.parsed_body)
                 .to include(content: include(status.text))
             end
           end
@@ -479,7 +479,7 @@ RSpec.describe StatusesController do
               expect(response.headers).to include(
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
               expect(response.body).to include status.text
             end
@@ -495,9 +495,9 @@ RSpec.describe StatusesController do
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
-              expect(body_as_json)
+              expect(response.parsed_body)
                 .to include(content: include(status.text))
             end
           end
@@ -779,9 +779,8 @@ RSpec.describe StatusesController do
         expect(response.headers).to include(
           'Vary' => 'Accept, Accept-Language, Cookie',
           'Cache-Control' => include('public'),
-          'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+          'Link' => include('activity+json')
         )
-        expect(response.body).to include status.text
       end
     end
 

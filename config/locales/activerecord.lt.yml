@@ -15,6 +15,12 @@ lt:
       user/invite_request:
         text: Priežastis
     errors:
+      attributes:
+        domain:
+          invalid: nėra tinkamas domeno vardas.
+      messages:
+        invalid_domain_on_line: "%{value} nėra tinkamas domeno vardas."
+        too_many_lines: yra daugiau nei %{limit} eilučių ribojimą.
       models:
         account:
           attributes:

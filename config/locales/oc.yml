@@ -7,7 +7,6 @@ oc:
     hosted_on: Mastodon albergat sus %{domain}
     title: A prepaus
   accounts:
-    follow: Sègre
     followers:
       one: Seguidor
       other: Seguidors
@@ -538,8 +537,6 @@ oc:
     strikes:
       title_actions:
         none: Avertiment
-  domain_validator:
-    invalid_domain: es pas un nom de domeni valid
   errors:
     '403': Avètz pas l’autorizacion de veire aquesta pagina.
     '404': La pagina que cercatz existís pas aquí.
@@ -848,22 +845,11 @@ oc:
     edited_at_html: Modificat %{date}
     errors:
       in_reply_not_found: La publicacion que respondètz sembla pas mai exisitir.
-    open_in_web: Dobrir sul web
     over_character_limit: limit de %{max} caractèrs passat
     pin_errors:
       limit: Avètz ja lo maximum de tuts penjats
       ownership: Se pòt pas penjar lo tut de qualqu’un mai
       reblog: Se pòt pas penjar un tut partejat
-    poll:
-      total_people:
-        one: "%{count} persona"
-        other: "%{count} personas"
-      total_votes:
-        one: "%{count} vòte"
-        other: "%{count} vòtes"
-      vote: Votar
-    show_more: Ne veire mai
-    show_thread: Mostrar lo fil
     title: '%{name} : "%{quote}"'
     visibilities:
       direct: Dirècte

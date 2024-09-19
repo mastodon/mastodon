@@ -52,7 +52,7 @@ class Sanitize
                  :relative
                end
 
-      current_node.replace(Nokogiri::XML::Text.new(current_node.text, current_node.document)) unless LINK_PROTOCOLS.include?(scheme)
+      current_node.replace(current_node.document.create_text_node(current_node.text)) unless LINK_PROTOCOLS.include?(scheme)
     end
 
     UNSUPPORTED_ELEMENTS_TRANSFORMER = lambda do |env|
