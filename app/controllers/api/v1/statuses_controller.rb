@@ -50,7 +50,7 @@ class Api::V1::StatusesController < Api::BaseController
       descendants_depth_limit = DESCENDANTS_DEPTH_LIMIT
     else
       unless @status.local? && !@status.should_fetch_replies?
-        json_status = fetch_resource(@status.uri, true, @current_account)
+        json_status = fetch_resource(@status.uri, true, current_account)
 
         # rescue this whole block on failure, don't want to fail the whole context request if we can't do this
         collection = json_status['replies']
