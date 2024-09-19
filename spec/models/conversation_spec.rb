@@ -12,13 +12,4 @@ RSpec.describe Conversation do
       expect(Fabricate(:conversation, uri: 'abc').local?).to be false
     end
   end
-
-  describe '#to_message_id' do
-    it 'converts the conversation details into a string ID' do
-      conversation = described_class.new(id: 123, created_at: DateTime.new(2024, 1, 1))
-
-      expect(conversation.to_message_id)
-        .to eq('conversation-123.2024-01-01')
-    end
-  end
 end

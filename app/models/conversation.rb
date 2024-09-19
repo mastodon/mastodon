@@ -18,8 +18,4 @@ class Conversation < ApplicationRecord
   def local?
     uri.nil?
   end
-
-  def to_message_id
-    "#{self.class.name.downcase}-#{id}.#{created_at.to_date}"
-  end
 end
