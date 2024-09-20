@@ -63,6 +63,6 @@ class OEmbedSerializer < ActiveModel::Serializer
   end
 
   def height
-    Array.new(instance_options[:height].to_i).detect(&:positive?)
+    instance_options[:height].presence&.to_i
   end
 end
