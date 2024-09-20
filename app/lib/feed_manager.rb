@@ -535,8 +535,8 @@ class FeedManager
       arr = crutches[:active_mentions][s.id] || []
       arr.concat([s.account_id])
 
-      if s.reblog?
-        arr.concat([s.reblog.account_id])
+      if s.reblog? && s.reblog.present?
+        arr.push(s.reblog.account_id)
         arr.concat(crutches[:active_mentions][s.reblog_of_id] || [])
       end
 
