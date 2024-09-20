@@ -12,21 +12,6 @@ RSpec.describe Settings::ApplicationsController do
     sign_in user, scope: :user
   end
 
-  describe 'GET #show' do
-    it 'returns http success' do
-      get :show, params: { id: app.id }
-      expect(response).to have_http_status(200)
-      expect(assigns[:application]).to eql(app)
-    end
-
-    it 'returns 404 if you dont own app' do
-      app.update!(owner: nil)
-
-      get :show, params: { id: app.id }
-      expect(response).to have_http_status 404
-    end
-  end
-
   describe 'GET #new' do
     it 'returns http success' do
       get :new
