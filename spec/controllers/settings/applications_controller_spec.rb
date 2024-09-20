@@ -12,69 +12,6 @@ RSpec.describe Settings::ApplicationsController do
     sign_in user, scope: :user
   end
 
-  describe 'GET #new' do
-    it 'returns http success' do
-      get :new
-      expect(response).to have_http_status(200)
-    end
-  end
-
-  describe 'POST #create' do
-    context 'when success (passed scopes as a String)' do
-      subject do
-        post :create, params: {
-          doorkeeper_application: {
-            name: 'My New App',
-            redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
-            website: 'http://google.com',
-            scopes: 'read write follow',
-          },
-        }
-      end
-
-      it 'creates an entry in the database', :aggregate_failures do
-        expect { subject }.to change(Doorkeeper::Application, :count)
-        expect(response).to redirect_to(settings_applications_path)
-      end
-    end
-
-    context 'when success (passed scopes as an Array)' do
-      subject do
-        post :create, params: {
-          doorkeeper_application: {
-            name: 'My New App',
-            redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
-            website: 'http://google.com',
-            scopes: %w(read write follow),
-          },
-        }
-      end
-
-      it 'creates an entry in the database', :aggregate_failures do
-        expect { subject }.to change(Doorkeeper::Application, :count)
-        expect(response).to redirect_to(settings_applications_path)
-      end
-    end
-
-    context 'with failure request' do
-      before do
-        post :create, params: {
-          doorkeeper_application: {
-            name: '',
-            redirect_uri: '',
-            website: '',
-            scopes: [],
-          },
-        }
-      end
-
-      it 'returns http success and renders form', :aggregate_failures do
-        expect(response).to have_http_status(200)
-        expect(response).to render_template(:new)
-      end
-    end
-  end
-
   describe 'PATCH #update' do
     context 'when success' do
       subject do
