@@ -8,6 +8,8 @@ class OEmbedSerializer < ActiveModel::Serializer
     div1: 'font-weight: 500;',
   }.freeze
 
+  DEFAULT_WIDTH = 400
+
   include RoutingHelper
   include ActionView::Helpers::TagHelper
 
@@ -57,10 +59,10 @@ class OEmbedSerializer < ActiveModel::Serializer
   end
 
   def width
-    instance_options[:width]
+    (instance_options[:width] || DEFAULT_WIDTH).to_i
   end
 
   def height
-    instance_options[:height]
+    instance_options[:height].presence&.to_i
   end
 end
