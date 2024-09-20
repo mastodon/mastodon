@@ -26,6 +26,8 @@ RSpec.describe 'Requests' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -43,6 +45,8 @@ RSpec.describe 'Requests' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(NotificationPermission.find_by(account: notification_request.account, from_account: notification_request.from_account)).to_not be_nil
     end
 
@@ -53,6 +57,8 @@ RSpec.describe 'Requests' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -70,6 +76,8 @@ RSpec.describe 'Requests' do
       expect { subject }.to change(NotificationRequest, :count).by(-1)
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
 
     context 'when notification request belongs to someone else' do
@@ -79,6 +87,8 @@ RSpec.describe 'Requests' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -97,6 +107,8 @@ RSpec.describe 'Requests' do
 
       expect(NotificationPermission.find_by(account: notification_request.account, from_account: notification_request.from_account)).to_not be_nil
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
   end
 
@@ -113,6 +125,8 @@ RSpec.describe 'Requests' do
       expect { subject }.to change(NotificationRequest, :count).by(-1)
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
   end
 
@@ -128,6 +142,8 @@ RSpec.describe 'Requests' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body).to match({ merged: true })
       end
     end
@@ -141,6 +157,8 @@ RSpec.describe 'Requests' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body).to match({ merged: false })
       end
     end

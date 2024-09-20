@@ -45,6 +45,8 @@ RSpec.describe 'API V1 Push Subscriptions' do
       subject
 
       expect(response).to have_http_status(422)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(endpoint_push_subscriptions.count).to eq(0)
       expect(endpoint_push_subscription).to be_nil
     end

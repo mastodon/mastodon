@@ -20,6 +20,8 @@ RSpec.describe 'credentials API' do
 
       expect(response)
         .to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body).to include({
         source: hash_including({
           discoverable: false,
@@ -36,6 +38,8 @@ RSpec.describe 'credentials API' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
 
         expect(response.parsed_body).to include({
           locked: true,
@@ -75,6 +79,8 @@ RSpec.describe 'credentials API' do
       it 'returns http success' do
         subject
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -84,6 +90,8 @@ RSpec.describe 'credentials API' do
       it 'returns http unprocessable entity' do
         subject
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -92,6 +100,8 @@ RSpec.describe 'credentials API' do
 
       expect(response)
         .to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
 
       expect(response.parsed_body).to include({
         source: hash_including({

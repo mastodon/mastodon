@@ -14,6 +14,8 @@ RSpec.describe 'Accounts Familiar Followers API' do
       get '/api/v1/accounts/familiar_followers', params: { account_id: account.id, limit: 2 }, headers: headers
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
 
     context 'when there are duplicate account IDs in the params' do

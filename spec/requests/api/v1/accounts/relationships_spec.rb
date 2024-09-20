@@ -29,6 +29,8 @@ RSpec.describe 'GET /api/v1/accounts/relationships' do
 
       expect(response)
         .to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body)
         .to be_an(Enumerable)
         .and contain_exactly(
@@ -50,6 +52,8 @@ RSpec.describe 'GET /api/v1/accounts/relationships' do
 
           expect(response)
             .to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
           expect(response.parsed_body)
             .to be_an(Enumerable)
             .and have_attributes(
@@ -70,6 +74,8 @@ RSpec.describe 'GET /api/v1/accounts/relationships' do
 
           expect(response)
             .to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
           expect(response.parsed_body)
             .to be_an(Enumerable)
             .and have_attributes(
@@ -149,6 +155,8 @@ RSpec.describe 'GET /api/v1/accounts/relationships' do
 
       expect(response)
         .to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
 
       expect(response.parsed_body)
         .to be_an(Enumerable)
@@ -171,6 +179,8 @@ RSpec.describe 'GET /api/v1/accounts/relationships' do
 
       expect(response)
         .to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
 
       expect(response.parsed_body)
         .to be_an(Enumerable)

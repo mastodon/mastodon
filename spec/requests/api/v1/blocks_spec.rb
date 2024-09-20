@@ -26,6 +26,8 @@ RSpec.describe 'Blocks' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body).to match_array(expected_response)
     end
 
@@ -36,6 +38,8 @@ RSpec.describe 'Blocks' do
         subject
 
         expect(response.parsed_body.size).to eq(params[:limit])
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response)
           .to include_pagination_headers(
             prev: api_v1_blocks_url(limit: params[:limit], since_id: blocks.last.id),

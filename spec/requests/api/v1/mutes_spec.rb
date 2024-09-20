@@ -22,6 +22,8 @@ RSpec.describe 'Mutes' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
 
       muted_accounts = mutes.map(&:target_account)
       expect(response.parsed_body.pluck(:id)).to match_array(muted_accounts.map { |account| account.id.to_s })
@@ -34,6 +36,8 @@ RSpec.describe 'Mutes' do
         subject
 
         expect(response.parsed_body.size).to eq(params[:limit])
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response)
           .to include_pagination_headers(
             prev: api_v1_mutes_url(limit: params[:limit], since_id: mutes.last.id),
@@ -71,6 +75,8 @@ RSpec.describe 'Mutes' do
         subject
 
         expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

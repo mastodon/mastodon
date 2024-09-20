@@ -24,6 +24,8 @@ RSpec.describe 'Domain Allows' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
 
     context 'when there is no allowed domains' do
@@ -79,6 +81,8 @@ RSpec.describe 'Domain Allows' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body[:domain]).to eq domain_allow.domain
     end
 
@@ -87,6 +91,8 @@ RSpec.describe 'Domain Allows' do
         get '/api/v1/admin/domain_allows/-1', headers: headers
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -107,6 +113,8 @@ RSpec.describe 'Domain Allows' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body[:domain]).to eq 'foo.bar.com'
         expect(DomainAllow.find_by(domain: 'foo.bar.com')).to be_present
       end
@@ -119,6 +127,8 @@ RSpec.describe 'Domain Allows' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -129,6 +139,8 @@ RSpec.describe 'Domain Allows' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -160,6 +172,8 @@ RSpec.describe 'Domain Allows' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(DomainAllow.find_by(id: domain_allow.id)).to be_nil
     end
 
@@ -168,6 +182,8 @@ RSpec.describe 'Domain Allows' do
         delete '/api/v1/admin/domain_allows/-1', headers: headers
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
