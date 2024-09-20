@@ -47,7 +47,7 @@ RSpec.describe 'Settings applications page' do
     end
 
     def fill_in_form
-      fill_in I18n.t('activerecord.attributes.doorkeeper/application.name'),
+      fill_in form_app_name_label,
               with: 'My new app'
       fill_in I18n.t('activerecord.attributes.doorkeeper/application.website'),
               with: 'http://google.com'
@@ -68,7 +68,7 @@ RSpec.describe 'Settings applications page' do
     it 'successfully updates with valid values' do
       visit settings_application_path(application)
 
-      fill_in I18n.t('activerecord.attributes.doorkeeper/application.name'),
+      fill_in form_app_name_label,
               with: 'My new app name with a new value'
       submit_form
 
@@ -79,7 +79,7 @@ RSpec.describe 'Settings applications page' do
     it 'does not update with wrong values' do
       visit settings_application_path(application)
 
-      fill_in I18n.t('activerecord.attributes.doorkeeper/application.name'),
+      fill_in form_app_name_label,
               with: ''
       submit_form
 
@@ -133,5 +133,9 @@ RSpec.describe 'Settings applications page' do
     def regenerate_token
       click_on I18n.t('applications.regenerate_token')
     end
+  end
+
+  def form_app_name_label
+    I18n.t('activerecord.attributes.doorkeeper/application.name')
   end
 end
