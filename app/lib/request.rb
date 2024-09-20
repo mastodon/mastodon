@@ -77,7 +77,7 @@ class Request
     @url         = Addressable::URI.parse(url).normalize
     @http_client = options.delete(:http_client)
     @allow_local = options.delete(:allow_local)
-    @full_path   = options.delete(:with_query_string)
+    @full_path   = !options.delete(:omit_query_string)
     @options     = options.merge(socket_class: use_proxy? || @allow_local ? ProxySocket : Socket)
     @options     = @options.merge(timeout_class: PerOperationWithDeadline, timeout_options: TIMEOUT)
     @options     = @options.merge(proxy_url) if use_proxy?
