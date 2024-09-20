@@ -119,4 +119,19 @@ RSpec.describe 'Settings applications page' do
         .and_yield(redis_pipeline_stub)
     end
   end
+
+  describe 'Regenerating an app token' do
+    it 'updates the app token' do
+      visit settings_application_path(application)
+
+      expect { regenerate_token }
+        .to(change { user.token_for_app(application) })
+      expect(page)
+        .to have_content(I18n.t('applications.token_regenerated'))
+    end
+
+    def regenerate_token
+      click_on I18n.t('applications.regenerate_token')
+    end
+  end
 end
