@@ -12,50 +12,6 @@ RSpec.describe Settings::ApplicationsController do
     sign_in user, scope: :user
   end
 
-  describe 'PATCH #update' do
-    context 'when success' do
-      subject do
-        patch :update, params: {
-          id: app.id,
-          doorkeeper_application: opts,
-        }
-        response
-      end
-
-      let(:opts) do
-        {
-          website: 'https://foo.bar/',
-        }
-      end
-
-      it 'updates existing application' do
-        subject
-
-        expect(app.reload.website).to eql(opts[:website])
-        expect(response).to redirect_to(settings_application_path(app))
-      end
-    end
-
-    context 'with failure request' do
-      before do
-        patch :update, params: {
-          id: app.id,
-          doorkeeper_application: {
-            name: '',
-            redirect_uri: '',
-            website: '',
-            scopes: [],
-          },
-        }
-      end
-
-      it 'returns http success and renders form', :aggregate_failures do
-        expect(response).to have_http_status(200)
-        expect(response).to render_template(:show)
-      end
-    end
-  end
-
   describe 'destroy' do
     let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
     let!(:access_token) { Fabricate(:accessible_access_token, application: app) }

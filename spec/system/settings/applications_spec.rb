@@ -63,4 +63,32 @@ RSpec.describe 'Settings applications page' do
       click_on I18n.t('doorkeeper.applications.buttons.submit')
     end
   end
+
+  describe 'Updating an application' do
+    it 'successfully updates with valid values' do
+      visit settings_application_path(application)
+
+      fill_in I18n.t('activerecord.attributes.doorkeeper/application.name'),
+              with: 'My new app name with a new value'
+      submit_form
+
+      expect(page)
+        .to have_content('My new app name with a new value')
+    end
+
+    it 'does not update with wrong values' do
+      visit settings_application_path(application)
+
+      fill_in I18n.t('activerecord.attributes.doorkeeper/application.name'),
+              with: ''
+      submit_form
+
+      expect(page)
+        .to have_content("can't be blank")
+    end
+
+    def submit_form
+      click_on I18n.t('generic.save_changes')
+    end
+  end
 end
