@@ -34,6 +34,8 @@ RSpec.describe 'API V2 Admin Accounts' do
 
       it 'returns the correct accounts' do
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(body_json_ids).to eq([admin_account.id])
       end
     end
@@ -43,6 +45,8 @@ RSpec.describe 'API V2 Admin Accounts' do
 
       it 'returns the correct accounts' do
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(body_json_ids).to include(remote_account.id)
         expect(body_json_ids).to_not include(other_remote_account.id)
       end
@@ -53,6 +57,8 @@ RSpec.describe 'API V2 Admin Accounts' do
 
       it 'returns the correct accounts' do
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(body_json_ids).to include(suspended_remote.id, suspended_account.id)
       end
     end
@@ -62,6 +68,8 @@ RSpec.describe 'API V2 Admin Accounts' do
 
       it 'returns the correct accounts' do
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(body_json_ids).to include(disabled_account.id)
       end
     end
@@ -71,6 +79,8 @@ RSpec.describe 'API V2 Admin Accounts' do
 
       it 'returns the correct accounts' do
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(body_json_ids).to include(pending_account.id)
       end
     end
@@ -85,6 +95,8 @@ RSpec.describe 'API V2 Admin Accounts' do
       it 'sets the correct pagination headers' do
         expect(response)
           .to include_pagination_headers(next: api_v2_admin_accounts_url(limit: 1, max_id: admin_account.id))
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
