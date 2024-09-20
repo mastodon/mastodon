@@ -91,4 +91,32 @@ RSpec.describe 'Settings applications page' do
       click_on I18n.t('generic.save_changes')
     end
   end
+
+  describe 'Destroying an application' do
+    let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
+    let!(:access_token) { Fabricate(:accessible_access_token, application: application) }
+
+    before { stub_redis_pipeline }
+
+    it 'destroys the record and tells the broader universe about that' do
+      visit settings_applications_path
+
+      expect { destroy_application }
+        .to change(Doorkeeper::Application, :count).by(-1)
+      expect(page)
+        .to have_no_content(application.name)
+      expect(redis_pipeline_stub)
+        .to have_received(:publish).with("timeline:access_token:#{access_token.id}", '{"event":"kill"}')
+    end
+
+    def destroy_application
+      click_on I18n.t('doorkeeper.applications.index.delete')
+    end
+
+    def stub_redis_pipeline
+      allow(redis)
+        .to receive(:pipelined)
+        .and_yield(redis_pipeline_stub)
+    end
+  end
 end
