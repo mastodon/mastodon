@@ -2,7 +2,7 @@
 
 class OEmbedSerializer < ActiveModel::Serializer
   INLINE_STYLES = {
-    blockquote: <<~STYLES.squish,
+    blockquote: <<~CSS.squish,
       background: #FCF8FF;
       border-radius: 8px;
       border: 1px solid #C9C4DA;
@@ -11,8 +11,8 @@ class OEmbedSerializer < ActiveModel::Serializer
       min-width: 270px;
       overflow: hidden;
       padding: 0;
-    STYLES
-    status_link: <<~STYLES.squish,
+    CSS
+    status_link: <<~CSS.squish,
       align-items: center;
       color: #1C1A25;
       display: flex;
@@ -24,14 +24,14 @@ class OEmbedSerializer < ActiveModel::Serializer
       line-height: 20px;
       padding: 24px;
       text-decoration: none;
-    STYLES
-    div_account: <<~STYLES.squish,
+    CSS
+    div_account: <<~CSS.squish,
       color: #787588;
       margin-top: 16px;
-    STYLES
-    div_view: <<~STYLES.squish,
+    CSS
+    div_view: <<~CSS.squish,
       font-weight: 500;
-    STYLES
+    CSS
   }.freeze
 
   include RoutingHelper
