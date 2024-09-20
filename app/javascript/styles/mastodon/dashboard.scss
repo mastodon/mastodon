@@ -91,6 +91,7 @@
     height: 36px;
     text-decoration: none;
     margin-bottom: 4px;
+    white-space: nowrap;
 
     &:active,
     &:focus,
@@ -111,6 +112,8 @@
 
     span {
       flex: 1 1 auto;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     strong {
