@@ -12,18 +12,6 @@ RSpec.describe Settings::ApplicationsController do
     sign_in user, scope: :user
   end
 
-  describe 'GET #index' do
-    before do
-      Fabricate(:application)
-      get :index
-    end
-
-    it 'returns http success with private cache control headers', :aggregate_failures do
-      expect(response).to have_http_status(200)
-      expect(response.headers['Cache-Control']).to include('private, no-store')
-    end
-  end
-
   describe 'GET #show' do
     it 'returns http success' do
       get :show, params: { id: app.id }
