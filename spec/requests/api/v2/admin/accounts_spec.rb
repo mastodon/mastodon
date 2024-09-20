@@ -36,7 +36,10 @@ RSpec.describe 'API V2 Admin Accounts' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
-        expect(body_json_ids).to eq([admin_account.id])
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: admin_account.id.to_s)
+          )
       end
     end
 
@@ -47,8 +50,11 @@ RSpec.describe 'API V2 Admin Accounts' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
-        expect(body_json_ids).to include(remote_account.id)
-        expect(body_json_ids).to_not include(other_remote_account.id)
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: remote_account.id.to_s)
+          )
+          .and not_include(hash_including(id: other_remote_account.id.to_s))
       end
     end
 
@@ -59,7 +65,11 @@ RSpec.describe 'API V2 Admin Accounts' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
-        expect(body_json_ids).to include(suspended_remote.id, suspended_account.id)
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: suspended_remote.id.to_s),
+            hash_including(id: suspended_account.id.to_s)
+          )
       end
     end
 
@@ -70,7 +80,10 @@ RSpec.describe 'API V2 Admin Accounts' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
-        expect(body_json_ids).to include(disabled_account.id)
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: disabled_account.id.to_s)
+          )
       end
     end
 
@@ -81,12 +94,11 @@ RSpec.describe 'API V2 Admin Accounts' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
-        expect(body_json_ids).to include(pending_account.id)
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: pending_account.id.to_s)
+          )
       end
-    end
-
-    def body_json_ids
-      response.parsed_body.map { |a| a[:id].to_i }
     end
 
     context 'with limit param' do
