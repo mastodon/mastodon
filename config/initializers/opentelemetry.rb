@@ -56,7 +56,7 @@ if ENV.keys.any? { |name| name.match?(/OTEL_.*_ENDPOINT/) }
       },
     })
 
-    prefix = ENV.fetch('OTEL_SERVICE_NAME_PREFIX', 'mastodon')
+    prefix    = ENV.fetch('OTEL_SERVICE_NAME_PREFIX', 'mastodon')
     separator = ENV.fetch('OTEL_SERVICE_NAME_SEPARATOR', '/')
 
     c.service_name =  case $PROGRAM_NAME
