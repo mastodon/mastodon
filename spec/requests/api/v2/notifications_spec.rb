@@ -312,12 +312,15 @@ RSpec.describe 'Notifications' do
     end
 
     context 'when notification belongs to someone else' do
-      let(:notification) { Fabricate(:notification) }
+      let(:notification) { Fabricate(:notification, group_key: 'foobar') }
 
-      it 'returns http not found' do
-        subject
+      it 'leaves the notification alone' do
+        expect { subject }
+          .to_not change(Notification, :count)
 
-        expect(response).to have_http_status(404)
+        expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
