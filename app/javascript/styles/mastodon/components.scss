@@ -5764,19 +5764,34 @@ a.status-card {
   height: 100%;
   position: relative;
 
-  &__close,
-  &__zoom-button {
-    color: rgba($white, 0.7);
+  &__buttons {
+    position: absolute;
+    inset-inline-end: 8px;
+    top: 8px;
+    z-index: 100;
+    display: flex;
+    gap: 8px;
+    align-items: center;
 
-    &:hover,
-    &:focus,
-    &:active {
-      color: $white;
-      background-color: rgba($white, 0.15);
-    }
+    .icon-button {
+      color: rgba($white, 0.7);
+      padding: 8px;
 
-    &:focus {
-      background-color: rgba($white, 0.3);
+      .icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: $white;
+        background-color: rgba($white, 0.15);
+      }
+
+      &:focus {
+        background-color: rgba($white, 0.3);
+      }
     }
   }
 }
@@ -5935,28 +5950,6 @@ a.status-card {
     outline: 0;
     background-color: $highlight-text-color;
   }
-}
-
-.media-modal__close {
-  position: absolute;
-  inset-inline-end: 8px;
-  top: 8px;
-  z-index: 100;
-}
-
-.media-modal__zoom-button {
-  position: absolute;
-  inset-inline-end: 64px;
-  top: 8px;
-  z-index: 100;
-  pointer-events: auto;
-  transition: opacity 0.3s linear;
-  will-change: opacity;
-}
-
-.media-modal__zoom-button--hidden {
-  pointer-events: none;
-  opacity: 0;
 }
 
 .onboarding-modal,
