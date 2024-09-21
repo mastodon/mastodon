@@ -256,44 +256,67 @@ RSpec.describe Notification do
         it 'preloads association records and replaces association records' do
           expect(subject)
             .to contain_exactly(
-              have_attributes(
-                type: :mention,
-                target_status: eq(mention.status).and(have_loaded_association(:account)),
-                mention: have_loaded_association(:status)
-              ).and(have_loaded_association(:mention)),
-              have_attributes(
-                type: :status,
-                target_status: eq(status)
-                .and(have_loaded_association(:account))
-              )
-              .and(have_loaded_association(:status)),
-              have_attributes(
-                type: :reblog,
-                status: have_loaded_association(:reblog),
-                target_status: eq(reblog.reblog)
-                .and(have_loaded_association(:account))
-              ).and(have_loaded_association(:status)),
-              have_attributes(
-                type: :follow,
-                target_status: be_nil
-              ),
-              have_attributes(
-                type: :follow_request,
-                target_status: be_nil
-              ),
-              have_attributes(
-                type: :favourite,
-                favourite: have_loaded_association(:status),
-                target_status: eq(favourite.status)
-                .and(have_loaded_association(:account))
-              ).and(have_loaded_association(:favourite)),
-              have_attributes(
-                type: :poll,
-                poll: have_loaded_association(:status),
-                target_status: eq(poll.status)
-                .and(have_loaded_association(:account))
-              ).and(have_loaded_association(:poll))
+              mention_attributes,
+              status_attributes,
+              reblog_attributes,
+              follow_attributes,
+              follow_request_attributes,
+              favourite_attributes,
+              poll_attributes
             )
+        end
+
+        def mention_attributes
+          have_attributes(
+            type: :mention,
+            target_status: eq(mention.status).and(have_loaded_association(:account)),
+            mention: have_loaded_association(:status)
+          ).and(have_loaded_association(:mention))
+        end
+
+        def status_attributes
+          have_attributes(
+            type: :status,
+            target_status: eq(status).and(have_loaded_association(:account))
+          ).and(have_loaded_association(:status))
+        end
+
+        def reblog_attributes
+          have_attributes(
+            type: :reblog,
+            status: have_loaded_association(:reblog),
+            target_status: eq(reblog.reblog).and(have_loaded_association(:account))
+          ).and(have_loaded_association(:status))
+        end
+
+        def follow_attributes
+          have_attributes(
+            type: :follow,
+            target_status: be_nil
+          )
+        end
+
+        def follow_request_attributes
+          have_attributes(
+            type: :follow_request,
+            target_status: be_nil
+          )
+        end
+
+        def favourite_attributes
+          have_attributes(
+            type: :favourite,
+            favourite: have_loaded_association(:status),
+            target_status: eq(favourite.status).and(have_loaded_association(:account))
+          ).and(have_loaded_association(:favourite))
+        end
+
+        def poll_attributes
+          have_attributes(
+            type: :poll,
+            poll: have_loaded_association(:status),
+            target_status: eq(poll.status).and(have_loaded_association(:account))
+          ).and(have_loaded_association(:poll))
         end
       end
     end
