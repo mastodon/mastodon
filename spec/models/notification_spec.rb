@@ -252,19 +252,26 @@ RSpec.describe Notification do
         ]
       end
 
-      context 'with a preloaded target status' do
-        it 'preloads association records' do
+      context 'with a preloaded target status and a cached status' do
+        it 'preloads association records and replaces association records' do
           expect(subject)
             .to contain_exactly(
               have_attributes(
                 type: :mention,
+                target_status: eq(mention.status).and(have_loaded_association(:account)),
                 mention: have_loaded_association(:status)
               ).and(have_loaded_association(:mention)),
-              have_attributes(type: :status)
+              have_attributes(
+                type: :status,
+                target_status: eq(status)
+                .and(have_loaded_association(:account))
+              )
               .and(have_loaded_association(:status)),
               have_attributes(
                 type: :reblog,
-                status: have_loaded_association(:reblog)
+                status: have_loaded_association(:reblog),
+                target_status: eq(reblog.reblog)
+                .and(have_loaded_association(:account))
               ).and(have_loaded_association(:status)),
               have_attributes(
                 type: :follow,
@@ -276,53 +283,16 @@ RSpec.describe Notification do
               ),
               have_attributes(
                 type: :favourite,
-                favourite: have_loaded_association(:status)
+                favourite: have_loaded_association(:status),
+                target_status: eq(favourite.status)
+                .and(have_loaded_association(:account))
               ).and(have_loaded_association(:favourite)),
               have_attributes(
                 type: :poll,
-                poll: have_loaded_association(:status)
-              ).and(have_loaded_association(:poll))
-            )
-        end
-      end
-
-      context 'with a cached status' do
-        it 'replaces association records' do
-          expect(subject)
-            .to contain_exactly(
-              have_attributes(
-                type: :mention,
-                target_status: eq(mention.status)
-                .and(have_loaded_association(:account))
-              ),
-              have_attributes(
-                type: :status,
-                target_status: eq(status)
-                .and(have_loaded_association(:account))
-              ),
-              have_attributes(
-                type: :reblog,
-                target_status: eq(reblog.reblog)
-                .and(have_loaded_association(:account))
-              ),
-              have_attributes(
-                type: :follow,
-                target_status: be_nil
-              ),
-              have_attributes(
-                type: :follow_request,
-                target_status: be_nil
-              ),
-              have_attributes(
-                type: :favourite,
-                target_status: eq(favourite.status)
-                .and(have_loaded_association(:account))
-              ),
-              have_attributes(
-                type: :poll,
+                poll: have_loaded_association(:status),
                 target_status: eq(poll.status)
                 .and(have_loaded_association(:account))
-              )
+              ).and(have_loaded_association(:poll))
             )
         end
       end
