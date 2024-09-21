@@ -21,19 +21,16 @@ RSpec.describe 'Email Domain Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns http success' do
-      subject
-
-      expect(response).to have_http_status(200)
-      expect(response.content_type)
-        .to start_with('application/json')
-    end
-
     context 'when there is no email domain block' do
       it 'returns an empty list' do
         subject
 
-        expect(response.parsed_body).to be_empty
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to be_empty
       end
     end
 
@@ -44,7 +41,12 @@ RSpec.describe 'Email Domain Blocks' do
       it 'return the correct blocked email domains' do
         subject
 
-        expect(response.parsed_body.pluck(:domain)).to match_array(blocked_email_domains)
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body.pluck(:domain))
+          .to match_array(blocked_email_domains)
       end
 
       context 'with limit param' do

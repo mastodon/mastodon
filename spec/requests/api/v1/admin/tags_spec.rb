@@ -20,19 +20,16 @@ RSpec.describe 'Tags' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'returns http success' do
-      subject
-
-      expect(response).to have_http_status(200)
-      expect(response.content_type)
-        .to start_with('application/json')
-    end
-
     context 'when there are no tags' do
       it 'returns an empty list' do
         subject
 
-        expect(response.parsed_body).to be_empty
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to be_empty
       end
     end
 
@@ -48,6 +45,11 @@ RSpec.describe 'Tags' do
 
       it 'returns the expected tags' do
         subject
+
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         tags.each do |tag|
           expect(response.parsed_body.find { |item| item[:id] == tag.id.to_s && item[:name] == tag.name }).to_not be_nil
         end
