@@ -8,6 +8,18 @@ RSpec.describe 'Filters' do
 
   before { sign_in(user) }
 
+  describe 'Viewing existing filters' do
+    before { Fabricate :custom_filter, account: user.account, phrase: 'Photography' }
+
+    it 'shows a list of user filters' do
+      visit filters_path
+
+      expect(page)
+        .to have_content('Photography')
+        .and have_private_cache_control
+    end
+  end
+
   describe 'Creating a filter' do
     it 'Populates a new filter from form' do
       navigate_to_filters
