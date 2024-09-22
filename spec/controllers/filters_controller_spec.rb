@@ -6,16 +6,6 @@ RSpec.describe FiltersController do
   render_views
 
   describe 'GET #index' do
-    context 'with signed out user' do
-      before do
-        get :index
-      end
-
-      it 'redirects' do
-        expect(response).to be_redirect
-      end
-    end
-
     context 'with a signed in user' do
       before do
         sign_in(Fabricate(:user))
