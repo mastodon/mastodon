@@ -1037,7 +1037,7 @@ vi:
     remove: Bỏ liên kết bí danh
   appearance:
     advanced_web_interface: Bố cục
-    advanced_web_interface_hint: Bố cục nhiều cột cho phép bạn chuyển bố cục hiển thị thành nhiều cột khác nhau. Thích hợp với màn hình rộng.
+    advanced_web_interface_hint: Chia giao diện thành nhiều cột, phù hợp với màn hình rộng.
     animations_and_accessibility: Hiệu ứng
     confirmation_dialogs: Hộp thoại xác nhận
     discovery: Khám phá
@@ -1262,7 +1262,7 @@ vi:
     add_new: Thêm mới
     errors:
       limit: Bạn đã đạt tới số lượng hashtag tối đa
-    hint_html: "<strong>Làm nổi bật những hashtag thường dùng.</strong> Một công cụ tuyệt vời để theo dõi các tác phẩm sáng tạo và dự án dài hạn của bạn, các hashtag thường dùng sẽ hiển thị nổi bật trên hồ sơ của bạn và cho phép truy cập nhanh vào các tút."
+    hint_html: "<strong>Làm nổi bật những hashtag thường dùng.</strong> Một công cụ tuyệt vời để theo dõi các tác phẩm sáng tạo và dự án dài hạn của bạn, cũng như giúp truy cập nhanh vào các tút."
   filters:
     contexts:
       account: Trang hồ sơ
@@ -1555,13 +1555,13 @@ vi:
     posting_defaults: Mặc định cho tút
     public_timelines: Bảng tin
   privacy:
-    hint_html: "<strong>Tùy chỉnh cách mọi người tìm thấy hồ sơ và các tút của bạn.</strong> Nhiều tính năng trong Mastodon có thể giúp bạn tiếp cận nhiều đối tượng hơn khi được bật. Hãy xem lại các cài đặt này để đảm bảo chúng phù hợp với bạn."
+    hint_html: "<strong>Tùy chỉnh cách mọi người tìm thấy hồ sơ và tút của bạn.</strong> Hãy đảm bảo các thiết lập sau phù hợp với bạn."
     privacy: Riêng tư
     privacy_hint_html: Kiểm soát mức độ chi tiết bạn muốn tiết lộ. Mọi người khám phá các hồ sơ thú vị và các ứng dụng thú vị bằng cách theo dõi những người khác và xem họ đăng từ ứng dụng nào, nhưng có thể bạn muốn ẩn nó đi.
     reach: Tiếp cận
     reach_hint_html: Kiểm soát cách bạn được khám phá và theo dõi. Bạn có muốn tút của mình xuất hiện trên màn hình Khám phá không? Bạn có muốn người khác nhìn thấy bạn trong các đề xuất theo dõi của họ không? Bạn muốn tự động chấp nhận tất cả những người theo dõi mới hay tự duyệt từng người theo dõi?
     search: Tìm kiếm
-    search_hint_html: Kiểm soát cách tìm thấy bạn. Bạn có muốn mọi người tìm thấy bạn bằng những gì bạn đã đăng công khai không? Bạn có muốn những người bên ngoài Mastodon tìm thấy hồ sơ của bạn khi tìm kiếm trên web không? Xin lưu ý rằng không thể đảm bảo loại trừ hoàn toàn khỏi tất cả các công cụ tìm kiếm đối với thông tin công khai.
+    search_hint_html: Kiểm soát cách tìm thấy bạn. Bạn có muốn mọi người tìm thấy bạn bằng những gì bạn đã đăng công khai không? Bạn có muốn những người bên ngoài Mastodon tìm thấy hồ sơ của bạn khi tìm kiếm trên web không? Lưu ý là không thể đảm bảo tránh khỏi các công cụ tìm kiếm đối với thông tin công khai.
     title: Riêng tư và tiếp cận
   privacy_policy:
     title: Chính sách bảo mật
@@ -1675,7 +1675,7 @@ vi:
     preferences: Chung
     profile: Hồ sơ
     relationships: Quan hệ
-    severed_relationships: Mối quan hệ bị cắt đứt
+    severed_relationships: Quan hệ bị cắt đứt
     statuses_cleanup: Tự động xóa tút cũ
     strikes: Lần cảnh cáo
     two_factor_authentication: Xác minh 2 bước
@@ -1688,7 +1688,7 @@ vi:
       user_domain_block: Bạn đã chặn %{target_name}
     lost_followers: Mất người theo dõi
     lost_follows: Mất người đang theo dõi
-    preamble: Bạn có thể mất số lượt theo dõi và người theo dõi khi chặn một máy chủ hoặc khi kiểm duyệt viên của bạn quyết định tạm dừng máy chủ từ xa. Khi điều đó xảy ra, bạn sẽ có thể tải xuống danh sách các mối quan hệ đã bị cắt đứt, để kiểm tra và nhập vào máy chủ khác.
+    preamble: Khi bạn hoặc kiểm duyệt viên máy chủ của bạn chặn một máy chủ, người bạn đang theo dõi và người theo dõi bạn có thể sẽ bị mất. Khi điều đó xảy ra, hãy vào đây tải xuống danh sách các mối quan hệ đã bị cắt đứt, và nhập thủ công.
     purged: Thông tin về máy chủ này đã bị quản trị viên máy chủ của bạn xóa sạch.
     type: Sự kiện
   statuses:
@@ -1769,7 +1769,7 @@ vi:
     contrast: Mastodon (Tương phản)
     default: Mastodon (Tối)
     mastodon-light: Mastodon (Sáng)
-    system: Tự động (chủ đề hệ thống)
+    system: Theo hệ thống
   time:
     formats:
       default: "%-d.%m.%Y %H:%M"
@@ -1905,7 +1905,7 @@ vi:
     seamless_external_login: Bạn đã đăng nhập thông qua một dịch vụ bên ngoài, vì vậy mật khẩu và email không khả dụng.
     signed_in_as: 'Đăng nhập bằng:'
   verification:
-    extra_instructions_html: <strong>Mẹo:</strong> Liên kết trên trang web của bạn có thể ẩn. Phần quan trọng là <code>rel="me"</code> ngăn chặn việc mạo danh trên các trang web có nội dung do người dùng tạo. Bạn thậm chí có thể sử dụng một thẻ <code>link</code> trên header của trang thay vì <code>a</code>, nhưng HTML phải có thể truy cập được mà không cần thực thi JavaScript.
+    extra_instructions_html: <strong>Mẹo:</strong> Có thể ẩn liên kết trên trang web của bạn. Quan trọng là <code>rel="me"</code> giúp ngăn chặn việc mạo danh trên các trang web có nội dung do người dùng tạo. Bạn cũng có thể sử dụng một thẻ <code>link</code> trên header của trang thay vì <code>a</code>, nhưng HTML phải có thể truy cập được mà không cần thực thi JavaScript.
     here_is_how: Cách thực hiện
     hint_html: "<strong>Xác minh danh tính trên Mastodon là dành cho tất cả mọi người.</strong> Dựa trên các tiêu chuẩn web mở, miễn phí bây giờ và mãi mãi. Tất cả những gì bạn cần là một trang web cá nhân để mọi người nhận ra bạn. Khi bạn liên kết đến trang web này từ hồ sơ của mình, chúng tôi sẽ kiểm tra xem trang web đó có liên kết lại với hồ sơ của bạn hay không và hiển thị một chỉ báo trực quan trên đó."
     instructions_html: Sao chép và dán mã bên dưới vào mã nguồn trang web của bạn. Sau đó, thêm địa chỉ trang web của bạn vào một trong các trường metadata trên hồ sơ của bạn từ tab "Sửa hồ sơ" và lưu thay đổi.
@@ -1918,7 +1918,7 @@ vi:
       error: Có vấn đề khi thêm khóa bảo mật. Xin thử lại.
       success: Đã thêm khóa bảo mật mới thành công.
     delete: Xóa
-    delete_confirmation: Bạn thật sự muốn xóa khóa bảo mật này?
+    delete_confirmation: Bạn có chắc muốn xóa khóa bảo mật này?
     description_html: Nếu bạn kích hoạt <strong>khóa bảo mật</strong>, bạn sẽ cần dùng một trong những khóa bảo mật đó mỗi khi đăng nhập.
     destroy:
       error: Có vấn đề khi xóa khóa bảo mật. Xin thử lại.
