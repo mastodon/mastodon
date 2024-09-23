@@ -61,8 +61,8 @@ export default class ColumnsArea extends ImmutablePureComponent {
     children: PropTypes.node,
   };
 
-  // Corresponds to (max-width: $no-gap-breakpoint - 1px) in SCSS
-  mediaQuery = 'matchMedia' in window && window.matchMedia('(max-width: 1206px)');
+  // Corresponds to (max-width: $no-gap-breakpoint + 285px - 1px) in SCSS
+  mediaQuery = 'matchMedia' in window && window.matchMedia('(max-width: 1174px)');
 
   state = {
     renderComposePanel: !(this.mediaQuery && this.mediaQuery.matches),
