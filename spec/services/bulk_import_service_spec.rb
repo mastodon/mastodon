@@ -34,7 +34,7 @@ RSpec.describe BulkImportService do
 
       it 'enqueues workers for the expected rows' do
         subject.call(import)
-        expect(Import::RowWorker.jobs.pluck('args').flatten).to match_array(rows.map(&:id))
+        expect(row_worker_job_args).to match_array(rows.map(&:id))
       end
 
       it 'requests to follow all the listed users once the workers have run' do
@@ -79,7 +79,7 @@ RSpec.describe BulkImportService do
 
       it 'enqueues workers for the expected rows' do
         subject.call(import)
-        expect(Import::RowWorker.jobs.pluck('args').flatten).to match_array(rows[1..].map(&:id))
+        expect(row_worker_job_args).to match_array(rows[1..].map(&:id))
       end
 
       it 'requests to follow all the expected users once the workers have run' do
@@ -114,7 +114,7 @@ RSpec.describe BulkImportService do
 
       it 'enqueues workers for the expected rows' do
         subject.call(import)
-        expect(Import::RowWorker.jobs.pluck('args').flatten).to match_array(rows.map(&:id))
+        expect(row_worker_job_args).to match_array(rows.map(&:id))
       end
 
       it 'blocks all the listed users once the workers have run' do
@@ -155,7 +155,7 @@ RSpec.describe BulkImportService do
 
       it 'enqueues workers for the expected rows' do
         subject.call(import)
-        expect(Import::RowWorker.jobs.pluck('args').flatten).to match_array(rows[1..].map(&:id))
+        expect(row_worker_job_args).to match_array(rows[1..].map(&:id))
       end
 
       it 'requests to follow all the expected users once the workers have run' do
@@ -190,7 +190,7 @@ RSpec.describe BulkImportService do
 
       it 'enqueues workers for the expected rows' do
         subject.call(import)
-        expect(Import::RowWorker.jobs.pluck('args').flatten).to match_array(rows.map(&:id))
+        expect(row_worker_job_args).to match_array(rows.map(&:id))
       end
 
       it 'mutes all the listed users once the workers have run' do
@@ -235,7 +235,7 @@ RSpec.describe BulkImportService do
 
       it 'enqueues workers for the expected rows' do
         subject.call(import)
-        expect(Import::RowWorker.jobs.pluck('args').flatten).to match_array(rows[1..].map(&:id))
+        expect(row_worker_job_args).to match_array(rows[1..].map(&:id))
       end
 
       it 'requests to follow all the expected users once the workers have run' do
@@ -331,7 +331,7 @@ RSpec.describe BulkImportService do
 
       it 'enqueues workers for the expected rows' do
         subject.call(import)
-        expect(Import::RowWorker.jobs.pluck('args').flatten).to match_array(rows.map(&:id))
+        expect(row_worker_job_args).to match_array(rows.map(&:id))
       end
 
       it 'updates the bookmarks as expected once the workers have run' do
@@ -371,7 +371,7 @@ RSpec.describe BulkImportService do
 
       it 'enqueues workers for the expected rows' do
         subject.call(import)
-        expect(Import::RowWorker.jobs.pluck('args').flatten).to match_array(rows.map(&:id))
+        expect(row_worker_job_args).to match_array(rows.map(&:id))
       end
 
       it 'updates the bookmarks as expected once the workers have run' do
@@ -383,6 +383,13 @@ RSpec.describe BulkImportService do
 
         expect(account.bookmarks.map { |bookmark| bookmark.status.uri }).to contain_exactly(status.uri, bookmarked.uri, 'https://domain.unknown/foo')
       end
+    end
+
+    def row_worker_job_args
+      Import::RowWorker
+        .jobs
+        .pluck('args')
+        .flatten
     end
 
     def stub_resolve_account_service
