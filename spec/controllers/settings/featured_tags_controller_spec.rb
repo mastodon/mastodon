@@ -5,16 +5,10 @@ require 'rails_helper'
 RSpec.describe Settings::FeaturedTagsController do
   render_views
 
-  shared_examples 'authenticate user' do
-    it 'redirects to sign_in page' do
-      expect(subject).to redirect_to new_user_session_path
-    end
-  end
-
   context 'when user is not signed in' do
     subject { post :create }
 
-    it_behaves_like 'authenticate user'
+    it { is_expected.to redirect_to new_user_session_path }
   end
 
   context 'when user is signed in' do
