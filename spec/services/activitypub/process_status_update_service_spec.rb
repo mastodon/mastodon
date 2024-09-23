@@ -2,10 +2,6 @@
 
 require 'rails_helper'
 
-def poll_option_json(name, votes)
-  { type: 'Note', name: name, replies: { type: 'Collection', totalItems: votes } }
-end
-
 RSpec.describe ActivityPub::ProcessStatusUpdateService do
   subject { described_class.new }
 
@@ -418,5 +414,9 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       expect(status.reload.edited_at.to_s)
         .to eq '2021-09-08 22:39:25 UTC'
     end
+  end
+
+  def poll_option_json(name, votes)
+    { type: 'Note', name: name, replies: { type: 'Collection', totalItems: votes } }
   end
 end
