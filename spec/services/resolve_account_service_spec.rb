@@ -28,7 +28,7 @@ RSpec.describe ResolveAccountService do
 
         it 'does not make a webfinger query' do
           subject.call('foo@ap.example.com', skip_webfinger: true)
-          expect(a_request(:get, 'https://ap.example.com/.well-known/webfinger?resource=acct:foo@ap.example.com')).to_not have_been_made
+          expect(webfinger_discovery_request).to_not have_been_made
         end
       end
 
@@ -39,7 +39,7 @@ RSpec.describe ResolveAccountService do
 
         it 'does not make a webfinger query' do
           subject.call('foo@ap.example.com', skip_webfinger: true)
-          expect(a_request(:get, 'https://ap.example.com/.well-known/webfinger?resource=acct:foo@ap.example.com')).to_not have_been_made
+          expect(webfinger_discovery_request).to_not have_been_made
         end
       end
     end
@@ -51,8 +51,15 @@ RSpec.describe ResolveAccountService do
 
       it 'does not make a webfinger query' do
         subject.call('foo@ap.example.com', skip_webfinger: true)
-        expect(a_request(:get, 'https://ap.example.com/.well-known/webfinger?resource=acct:foo@ap.example.com')).to_not have_been_made
+        expect(webfinger_discovery_request).to_not have_been_made
       end
+    end
+
+    def webfinger_discovery_request
+      a_request(
+        :get,
+        'https://ap.example.com/.well-known/webfinger?resource=acct:foo@ap.example.com'
+      )
     end
   end
 
