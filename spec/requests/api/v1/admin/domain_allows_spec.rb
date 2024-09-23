@@ -20,18 +20,14 @@ RSpec.describe 'Domain Allows' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns http success' do
-      subject
-
-      expect(response).to have_http_status(200)
-      expect(response.content_type)
-        .to start_with('application/json')
-    end
-
     context 'when there is no allowed domains' do
       it 'returns an empty body' do
         subject
 
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body).to be_empty
       end
     end
@@ -51,7 +47,12 @@ RSpec.describe 'Domain Allows' do
       it 'returns the correct allowed domains' do
         subject
 
-        expect(response.parsed_body).to match_array(expected_response)
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to match_array(expected_response)
       end
 
       context 'with limit param' do

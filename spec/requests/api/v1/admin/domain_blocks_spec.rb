@@ -20,19 +20,16 @@ RSpec.describe 'Domain Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns http success' do
-      subject
-
-      expect(response).to have_http_status(200)
-      expect(response.content_type)
-        .to start_with('application/json')
-    end
-
     context 'when there are no domain blocks' do
       it 'returns an empty list' do
         subject
 
-        expect(response.parsed_body).to be_empty
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to be_empty
       end
     end
 
@@ -66,7 +63,12 @@ RSpec.describe 'Domain Blocks' do
       it 'returns the expected domain blocks' do
         subject
 
-        expect(response.parsed_body).to match_array(expected_responde)
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to match_array(expected_responde)
       end
 
       context 'with limit param' do

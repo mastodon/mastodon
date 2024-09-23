@@ -20,19 +20,16 @@ RSpec.describe 'Canonical Email Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns http success' do
-      subject
-
-      expect(response).to have_http_status(200)
-      expect(response.content_type)
-        .to start_with('application/json')
-    end
-
     context 'when there is no canonical email block' do
       it 'returns an empty list' do
         subject
 
-        expect(response.parsed_body).to be_empty
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to be_empty
       end
     end
 
@@ -43,7 +40,12 @@ RSpec.describe 'Canonical Email Blocks' do
       it 'returns the correct canonical email hashes' do
         subject
 
-        expect(response.parsed_body.pluck(:canonical_email_hash)).to match_array(expected_email_hashes)
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body.pluck(:canonical_email_hash))
+          .to match_array(expected_email_hashes)
       end
 
       context 'with limit param' do
