@@ -28,37 +28,37 @@ RSpec.describe PollExpirationNotifyWorker do
         poll_vote
 
         travel_to poll.expires_at + 5.minutes
-
-        worker.perform(poll.id)
       end
 
       context 'when poll is local' do
-        it 'notifies voters' do
-          expect(ActivityPub::DistributePollUpdateWorker).to have_enqueued_sidekiq_job(poll.status.id)
-        end
+        it 'notifies voters, owner, and local voters' do
+          worker.perform(poll.id)
 
-        it 'notifies owner' do
-          expect(LocalNotificationWorker).to have_enqueued_sidekiq_job(poll.account.id, poll.id, 'Poll', 'poll')
-        end
+          expect(ActivityPub::DistributePollUpdateWorker)
+            .to have_enqueued_sidekiq_job(poll.status.id)
 
-        it 'notifies local voters' do
-          expect(LocalNotificationWorker).to have_enqueued_sidekiq_job(poll_vote.account.id, poll.id, 'Poll', 'poll')
+          expect(LocalNotificationWorker)
+            .to have_enqueued_sidekiq_job(poll.account.id, poll.id, 'Poll', 'poll')
+
+          expect(LocalNotificationWorker)
+            .to have_enqueued_sidekiq_job(poll_vote.account.id, poll.id, 'Poll', 'poll')
         end
       end
 
       context 'when poll is remote' do
         let(:remote?) { true }
 
-        it 'does not notify remote voters' do
-          expect(ActivityPub::DistributePollUpdateWorker).to_not have_enqueued_sidekiq_job(poll.status.id)
-        end
+        it 'does not notify remote voters or owner, but does notify local voters' do
+          worker.perform(poll.id)
 
-        it 'does not notify owner' do
-          expect(LocalNotificationWorker).to_not have_enqueued_sidekiq_job(poll.account.id, poll.id, 'Poll', 'poll')
-        end
+          expect(ActivityPub::DistributePollUpdateWorker)
+            .to_not have_enqueued_sidekiq_job(poll.status.id)
 
-        it 'notifies local voters' do
-          expect(LocalNotificationWorker).to have_enqueued_sidekiq_job(poll_vote.account.id, poll.id, 'Poll', 'poll')
+          expect(LocalNotificationWorker)
+            .to_not have_enqueued_sidekiq_job(poll.account.id, poll.id, 'Poll', 'poll')
+
+          expect(LocalNotificationWorker)
+            .to have_enqueued_sidekiq_job(poll_vote.account.id, poll.id, 'Poll', 'poll')
         end
       end
     end
