@@ -35,6 +35,9 @@ RSpec.describe 'Settings applications page' do
 
       expect { submit_form }
         .to change(Doorkeeper::Application, :count).by(1)
+      expect(page)
+        .to have_content(I18n.t('doorkeeper.applications.index.title'))
+        .and have_content('My new app')
     end
 
     it 'does not save with invalid form values' do
