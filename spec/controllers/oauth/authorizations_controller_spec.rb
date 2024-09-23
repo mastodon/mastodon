@@ -10,13 +10,6 @@ RSpec.describe Oauth::AuthorizationsController do
       get :new, params: { client_id: app.uid, response_type: 'code', redirect_uri: 'http://localhost/', scope: 'read' }
     end
 
-    shared_examples 'stores location for user' do
-      it 'stores location for user' do
-        subject
-        expect(controller.stored_location_for(:user)).to eq "/oauth/authorize?client_id=#{app.uid}&redirect_uri=http%3A%2F%2Flocalhost%2F&response_type=code&scope=read"
-      end
-    end
-
     context 'when signed in' do
       let!(:user) { Fabricate(:user) }
 
@@ -24,17 +17,16 @@ RSpec.describe Oauth::AuthorizationsController do
         sign_in user, scope: :user
       end
 
-      it 'returns http success' do
+      it 'returns http success and private cache control headers' do
         subject
-        expect(response).to have_http_status(200)
-      end
 
-      it 'returns private cache control headers' do
-        subject
-        expect(response.headers['Cache-Control']).to include('private, no-store')
+        expect(response)
+          .to have_http_status(200)
+        expect(response.headers['Cache-Control'])
+          .to include('private, no-store')
+        expect(controller.stored_location_for(:user))
+          .to eq authorize_path_for(app)
       end
-
-      include_examples 'stores location for user'
 
       context 'when app is already authorized' do
         before do
@@ -52,10 +44,12 @@ RSpec.describe Oauth::AuthorizationsController do
           expect(response).to redirect_to(/\A#{app.redirect_uri}/)
         end
 
-        it 'does not redirect to callback with force_login=true' do
-          get :new, params: { client_id: app.uid, response_type: 'code', redirect_uri: 'http://localhost/', scope: 'read', force_login: 'true' }
+        context 'with `force_login` param true' do
+          subject do
+            get :new, params: { client_id: app.uid, response_type: 'code', redirect_uri: 'http://localhost/', scope: 'read', force_login: 'true' }
+          end
 
-          expect(response).to have_http_status(:success)
+          it { is_expected.to have_http_status(:success) }
         end
       end
     end
@@ -63,10 +57,16 @@ RSpec.describe Oauth::AuthorizationsController do
     context 'when not signed in' do
       it 'redirects' do
         subject
-        expect(response).to redirect_to '/auth/sign_in'
-      end
 
-      include_examples 'stores location for user'
+        expect(response)
+          .to redirect_to '/auth/sign_in'
+        expect(controller.stored_location_for(:user))
+          .to eq authorize_path_for(app)
+      end
+    end
+
+    def authorize_path_for(app)
+      "/oauth/authorize?client_id=#{app.uid}&redirect_uri=http%3A%2F%2Flocalhost%2F&response_type=code&scope=read"
     end
   end
 end
