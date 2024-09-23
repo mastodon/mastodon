@@ -102,7 +102,14 @@ RSpec.describe AccountStatusesCleanupService do
           subject.call(account_policy, 10)
           subject.call(account_policy, 10)
           subject.call(account_policy, 10)
-          expect(account_policy.last_inspected).to be < Mastodon::Snowflake.id_at(account_policy.min_status_age.seconds.ago, with_random: false)
+          expect(account_policy.last_inspected).to be < oldest_deletable_record_id
+        end
+
+        def oldest_deletable_record_id
+          Mastodon::Snowflake.id_at(
+            account_policy.min_status_age.seconds.ago,
+            with_random: false
+          )
         end
       end
     end
