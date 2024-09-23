@@ -40,10 +40,7 @@ RSpec.describe BulkImportService do
       it 'requests to follow all the listed users once the workers have run' do
         subject.call(import)
 
-        resolve_account_service_double = instance_double(ResolveAccountService)
-        allow(ResolveAccountService).to receive(:new).and_return(resolve_account_service_double)
-        allow(resolve_account_service_double).to receive(:call).with('user@foo.bar', any_args) { Fabricate(:account, username: 'user', domain: 'foo.bar', protocol: :activitypub) }
-        allow(resolve_account_service_double).to receive(:call).with('unknown@unknown.bar', any_args) { Fabricate(:account, username: 'unknown', domain: 'unknown.bar', protocol: :activitypub) }
+        stub_resolve_account_service
 
         Import::RowWorker.drain
 
@@ -88,10 +85,7 @@ RSpec.describe BulkImportService do
       it 'requests to follow all the expected users once the workers have run' do
         subject.call(import)
 
-        resolve_account_service_double = instance_double(ResolveAccountService)
-        allow(ResolveAccountService).to receive(:new).and_return(resolve_account_service_double)
-        allow(resolve_account_service_double).to receive(:call).with('user@foo.bar', any_args) { Fabricate(:account, username: 'user', domain: 'foo.bar', protocol: :activitypub) }
-        allow(resolve_account_service_double).to receive(:call).with('unknown@unknown.bar', any_args) { Fabricate(:account, username: 'unknown', domain: 'unknown.bar', protocol: :activitypub) }
+        stub_resolve_account_service
 
         Import::RowWorker.drain
 
@@ -126,10 +120,7 @@ RSpec.describe BulkImportService do
       it 'blocks all the listed users once the workers have run' do
         subject.call(import)
 
-        resolve_account_service_double = instance_double(ResolveAccountService)
-        allow(ResolveAccountService).to receive(:new).and_return(resolve_account_service_double)
-        allow(resolve_account_service_double).to receive(:call).with('user@foo.bar', any_args) { Fabricate(:account, username: 'user', domain: 'foo.bar', protocol: :activitypub) }
-        allow(resolve_account_service_double).to receive(:call).with('unknown@unknown.bar', any_args) { Fabricate(:account, username: 'unknown', domain: 'unknown.bar', protocol: :activitypub) }
+        stub_resolve_account_service
 
         Import::RowWorker.drain
 
@@ -170,10 +161,7 @@ RSpec.describe BulkImportService do
       it 'requests to follow all the expected users once the workers have run' do
         subject.call(import)
 
-        resolve_account_service_double = instance_double(ResolveAccountService)
-        allow(ResolveAccountService).to receive(:new).and_return(resolve_account_service_double)
-        allow(resolve_account_service_double).to receive(:call).with('user@foo.bar', any_args) { Fabricate(:account, username: 'user', domain: 'foo.bar', protocol: :activitypub) }
-        allow(resolve_account_service_double).to receive(:call).with('unknown@unknown.bar', any_args) { Fabricate(:account, username: 'unknown', domain: 'unknown.bar', protocol: :activitypub) }
+        stub_resolve_account_service
 
         Import::RowWorker.drain
 
@@ -208,10 +196,7 @@ RSpec.describe BulkImportService do
       it 'mutes all the listed users once the workers have run' do
         subject.call(import)
 
-        resolve_account_service_double = instance_double(ResolveAccountService)
-        allow(ResolveAccountService).to receive(:new).and_return(resolve_account_service_double)
-        allow(resolve_account_service_double).to receive(:call).with('user@foo.bar', any_args) { Fabricate(:account, username: 'user', domain: 'foo.bar', protocol: :activitypub) }
-        allow(resolve_account_service_double).to receive(:call).with('unknown@unknown.bar', any_args) { Fabricate(:account, username: 'unknown', domain: 'unknown.bar', protocol: :activitypub) }
+        stub_resolve_account_service
 
         Import::RowWorker.drain
 
@@ -256,10 +241,7 @@ RSpec.describe BulkImportService do
       it 'requests to follow all the expected users once the workers have run' do
         subject.call(import)
 
-        resolve_account_service_double = instance_double(ResolveAccountService)
-        allow(ResolveAccountService).to receive(:new).and_return(resolve_account_service_double)
-        allow(resolve_account_service_double).to receive(:call).with('user@foo.bar', any_args) { Fabricate(:account, username: 'user', domain: 'foo.bar', protocol: :activitypub) }
-        allow(resolve_account_service_double).to receive(:call).with('unknown@unknown.bar', any_args) { Fabricate(:account, username: 'unknown', domain: 'unknown.bar', protocol: :activitypub) }
+        stub_resolve_account_service
 
         Import::RowWorker.drain
 
@@ -355,10 +337,7 @@ RSpec.describe BulkImportService do
       it 'updates the bookmarks as expected once the workers have run' do
         subject.call(import)
 
-        service_double = instance_double(ActivityPub::FetchRemoteStatusService)
-        allow(ActivityPub::FetchRemoteStatusService).to receive(:new).and_return(service_double)
-        allow(service_double).to receive(:call).with('https://domain.unknown/foo') { Fabricate(:status, uri: 'https://domain.unknown/foo') }
-        allow(service_double).to receive(:call).with('https://domain.unknown/private') { Fabricate(:status, uri: 'https://domain.unknown/private', visibility: :direct) }
+        stub_fetch_remote_status_service
 
         Import::RowWorker.drain
 
@@ -398,15 +377,40 @@ RSpec.describe BulkImportService do
       it 'updates the bookmarks as expected once the workers have run' do
         subject.call(import)
 
-        service_double = instance_double(ActivityPub::FetchRemoteStatusService)
-        allow(ActivityPub::FetchRemoteStatusService).to receive(:new).and_return(service_double)
-        allow(service_double).to receive(:call).with('https://domain.unknown/foo') { Fabricate(:status, uri: 'https://domain.unknown/foo') }
-        allow(service_double).to receive(:call).with('https://domain.unknown/private') { Fabricate(:status, uri: 'https://domain.unknown/private', visibility: :direct) }
+        stub_fetch_remote_status_service
 
         Import::RowWorker.drain
 
         expect(account.bookmarks.map { |bookmark| bookmark.status.uri }).to contain_exactly(status.uri, bookmarked.uri, 'https://domain.unknown/foo')
       end
+    end
+
+    def stub_resolve_account_service
+      resolve_account_service_double = instance_double(ResolveAccountService)
+
+      allow(ResolveAccountService)
+        .to receive(:new)
+        .and_return(resolve_account_service_double)
+      allow(resolve_account_service_double)
+        .to receive(:call)
+        .with('user@foo.bar', any_args) { Fabricate(:account, username: 'user', domain: 'foo.bar', protocol: :activitypub) }
+      allow(resolve_account_service_double)
+        .to receive(:call)
+        .with('unknown@unknown.bar', any_args) { Fabricate(:account, username: 'unknown', domain: 'unknown.bar', protocol: :activitypub) }
+    end
+
+    def stub_fetch_remote_status_service
+      service_double = instance_double(ActivityPub::FetchRemoteStatusService)
+
+      allow(ActivityPub::FetchRemoteStatusService)
+        .to receive(:new)
+        .and_return(service_double)
+      allow(service_double)
+        .to receive(:call)
+        .with('https://domain.unknown/foo') { Fabricate(:status, uri: 'https://domain.unknown/foo') }
+      allow(service_double)
+        .to receive(:call)
+        .with('https://domain.unknown/private') { Fabricate(:status, uri: 'https://domain.unknown/private', visibility: :direct) }
     end
   end
 end
