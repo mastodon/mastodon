@@ -41,8 +41,9 @@ RSpec.describe 'Credentials' do
         expect(response.content_type)
           .to start_with('application/json')
 
-        expect(response.parsed_body[:client_id]).to_not be_present
-        expect(response.parsed_body[:client_secret]).to_not be_present
+        expect(response.parsed_body)
+          .to not_include(client_id: be_present)
+          .and not_include(client_secret: be_present)
       end
     end
 
