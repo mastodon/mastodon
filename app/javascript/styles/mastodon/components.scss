@@ -6971,14 +6971,14 @@ a.status-card {
   inset-inline-end: 8px;
   display: flex;
   gap: 2px;
+  pointer-events: none;
 }
 
-.media-gallery__alt__label,
-.media-gallery__gifv__label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.media-gallery__alt__label {
+  display: block;
+  text-align: center;
   color: $white;
+  border: 0;
   background: rgba($black, 0.65);
   backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
   padding: 3px 8px;
@@ -6986,8 +6986,41 @@ a.status-card {
   font-size: 12px;
   font-weight: 700;
   z-index: 1;
-  pointer-events: none;
   line-height: 20px;
+  cursor: pointer;
+  pointer-events: auto;
+
+  &--non-interactive {
+    pointer-events: none;
+  }
+}
+
+.media-gallery__alt__popover {
+  background: rgba($black, 0.65);
+  backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
+  border-radius: 4px;
+  box-shadow: var(--dropdown-shadow);
+  padding: 16px;
+  min-width: 16em;
+  min-height: 2em;
+  max-width: 22em;
+  max-height: 30em;
+  overflow-y: auto;
+
+  h4 {
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 500;
+    color: $white;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 20px;
+    color: rgba($white, 0.85);
+    white-space: pre-line;
+  }
 }
 
 .attachment-list {
