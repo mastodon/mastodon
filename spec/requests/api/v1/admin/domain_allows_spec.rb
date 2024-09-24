@@ -78,7 +78,7 @@ RSpec.describe 'Domain Allows' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns the expected allowed domain name', :aggregate_failures do
+    it 'returns the expected allowed domain name' do
       subject
 
       expect(response).to have_http_status(200)
@@ -110,7 +110,7 @@ RSpec.describe 'Domain Allows' do
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
     context 'with a valid domain name' do
-      it 'returns the expected domain name', :aggregate_failures do
+      it 'returns the expected domain name' do
         subject
 
         expect(response).to have_http_status(200)
@@ -169,7 +169,7 @@ RSpec.describe 'Domain Allows' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'deletes the allowed domain', :aggregate_failures do
+    it 'deletes the allowed domain' do
       subject
 
       expect(response).to have_http_status(200)

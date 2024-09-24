@@ -23,7 +23,7 @@ RSpec.describe 'API V1 Statuses Reblogged by Accounts' do
         Fabricate(:status, account: bob, reblog_of_id: status.id)
       end
 
-      it 'returns accounts who reblogged the status', :aggregate_failures do
+      it 'returns accounts who reblogged the status' do
         subject
 
         expect(response)

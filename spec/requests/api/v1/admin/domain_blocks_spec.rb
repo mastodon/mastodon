@@ -94,7 +94,7 @@ RSpec.describe 'Domain Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns the expected domain block content', :aggregate_failures do
+    it 'returns the expected domain block content' do
       subject
 
       expect(response).to have_http_status(200)
@@ -136,7 +136,7 @@ RSpec.describe 'Domain Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'creates a domain block with the expected domain name and severity', :aggregate_failures do
+    it 'creates a domain block with the expected domain name and severity' do
       subject
 
       expect(response).to have_http_status(200)
@@ -159,7 +159,7 @@ RSpec.describe 'Domain Blocks' do
         Fabricate(:domain_block, domain: 'bar.com', severity: :silence)
       end
 
-      it 'creates a domain block with the expected domain name and severity', :aggregate_failures do
+      it 'creates a domain block with the expected domain name and severity' do
         subject
 
         expect(response).to have_http_status(200)
@@ -181,7 +181,7 @@ RSpec.describe 'Domain Blocks' do
         Fabricate(:domain_block, domain: 'foo.bar.com', severity: :silence)
       end
 
-      it 'returns existing domain block in error', :aggregate_failures do
+      it 'returns existing domain block in error' do
         subject
 
         expect(response).to have_http_status(422)
@@ -196,7 +196,7 @@ RSpec.describe 'Domain Blocks' do
         Fabricate(:domain_block, domain: 'bar.com', severity: :suspend)
       end
 
-      it 'returns existing domain block in error', :aggregate_failures do
+      it 'returns existing domain block in error' do
         subject
 
         expect(response).to have_http_status(422)
@@ -231,7 +231,7 @@ RSpec.describe 'Domain Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns the updated domain block', :aggregate_failures do
+    it 'returns the updated domain block' do
       subject
 
       expect(response).to have_http_status(200)
@@ -273,7 +273,7 @@ RSpec.describe 'Domain Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'deletes the domain block', :aggregate_failures do
+    it 'deletes the domain block' do
       subject
 
       expect(response).to have_http_status(200)

@@ -17,7 +17,7 @@ RSpec.describe 'API V1 Conversations' do
       PostStatusService.new.call(user.account, text: 'Hey, nobody here', visibility: 'direct')
     end
 
-    it 'returns pagination headers', :aggregate_failures do
+    it 'returns pagination headers' do
       get '/api/v1/conversations', params: { limit: 1 }, headers: headers
 
       expect(response)
@@ -30,7 +30,7 @@ RSpec.describe 'API V1 Conversations' do
         .to start_with('application/json')
     end
 
-    it 'returns conversations', :aggregate_failures do
+    it 'returns conversations' do
       get '/api/v1/conversations', headers: headers
 
       expect(response.parsed_body.size).to eq 2

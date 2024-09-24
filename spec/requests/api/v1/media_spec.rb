@@ -79,7 +79,7 @@ RSpec.describe 'Media' do
     let(:params) { {} }
 
     shared_examples 'a successful media upload' do |media_type|
-      it 'uploads the file successfully and returns correct media content', :aggregate_failures do
+      it 'uploads the file successfully and returns correct media content' do
         subject
 
         expect(response).to have_http_status(200)

@@ -19,7 +19,7 @@ RSpec.describe 'Polls' do
     it_behaves_like 'forbidden for wrong scope', 'write write:statuses'
 
     context 'when parent status is public' do
-      it 'returns the poll data successfully', :aggregate_failures do
+      it 'returns the poll data successfully' do
         subject
 
         expect(response).to have_http_status(200)

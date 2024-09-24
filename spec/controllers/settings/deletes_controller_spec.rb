@@ -14,7 +14,7 @@ RSpec.describe Settings::DeletesController do
         get :show
       end
 
-      it 'renders confirmation page with private cache control headers', :aggregate_failures do
+      it 'renders confirmation page with private cache control headers' do
         expect(response).to have_http_status(200)
         expect(response.headers['Cache-Control']).to include('private, no-store')
       end
@@ -22,7 +22,7 @@ RSpec.describe Settings::DeletesController do
       context 'when suspended' do
         let(:user) { Fabricate(:user, account_attributes: { suspended_at: Time.now.utc }) }
 
-        it 'returns http forbidden with private cache control headers', :aggregate_failures do
+        it 'returns http forbidden with private cache control headers' do
           expect(response).to have_http_status(403)
           expect(response.headers['Cache-Control']).to include('private, no-store')
         end
@@ -50,7 +50,7 @@ RSpec.describe Settings::DeletesController do
           delete :destroy, params: { form_delete_confirmation: { password: 'petsmoldoggos' } }
         end
 
-        it 'removes user record and redirects', :aggregate_failures, :inline_jobs do
+        it 'removes user record and redirects', :inline_jobs do
           expect(response).to redirect_to '/auth/sign_in'
           expect(User.find_by(id: user.id)).to be_nil
           expect(user.account.reload).to be_suspended

@@ -43,7 +43,7 @@ RSpec.describe 'API V2 Filters Keywords' do
       post "/api/v2/filters/#{filter_id}/keywords", headers: headers, params: { keyword: 'magic', whole_word: false }
     end
 
-    it 'creates a filter', :aggregate_failures do
+    it 'creates a filter' do
       expect(response).to have_http_status(200)
       expect(response.content_type)
         .to start_with('application/json')
@@ -78,7 +78,7 @@ RSpec.describe 'API V2 Filters Keywords' do
       get "/api/v2/filters/keywords/#{keyword.id}", headers: headers
     end
 
-    it 'responds with the keyword', :aggregate_failures do
+    it 'responds with the keyword' do
       expect(response).to have_http_status(200)
       expect(response.content_type)
         .to start_with('application/json')
@@ -109,7 +109,7 @@ RSpec.describe 'API V2 Filters Keywords' do
       put "/api/v2/filters/keywords/#{keyword.id}", headers: headers, params: { keyword: 'updated' }
     end
 
-    it 'updates the keyword', :aggregate_failures do
+    it 'updates the keyword' do
       expect(response).to have_http_status(200)
       expect(response.content_type)
         .to start_with('application/json')
@@ -136,7 +136,7 @@ RSpec.describe 'API V2 Filters Keywords' do
       delete "/api/v2/filters/keywords/#{keyword.id}", headers: headers
     end
 
-    it 'destroys the keyword', :aggregate_failures do
+    it 'destroys the keyword' do
       expect(response).to have_http_status(200)
       expect(response.content_type)
         .to start_with('application/json')

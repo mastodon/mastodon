@@ -18,7 +18,7 @@ RSpec.describe 'Favourites', :inline_jobs do
     it_behaves_like 'forbidden for wrong scope', 'read read:favourites'
 
     context 'with public status' do
-      it 'favourites the status successfully and includes updated json', :aggregate_failures do
+      it 'favourites the status successfully and includes updated json' do
         subject
 
         expect(response).to have_http_status(200)
@@ -51,7 +51,7 @@ RSpec.describe 'Favourites', :inline_jobs do
         user.account.follow!(status.account)
       end
 
-      it 'favourites the status successfully', :aggregate_failures do
+      it 'favourites the status successfully' do
         subject
 
         expect(response).to have_http_status(200)
@@ -88,7 +88,7 @@ RSpec.describe 'Favourites', :inline_jobs do
         FavouriteService.new.call(user.account, status)
       end
 
-      it 'unfavourites the status successfully and includes updated json', :aggregate_failures do
+      it 'unfavourites the status successfully and includes updated json' do
         subject
 
         expect(response).to have_http_status(200)
@@ -109,7 +109,7 @@ RSpec.describe 'Favourites', :inline_jobs do
         status.account.block!(user.account)
       end
 
-      it 'unfavourites the status successfully and includes updated json', :aggregate_failures do
+      it 'unfavourites the status successfully and includes updated json' do
         subject
 
         expect(response).to have_http_status(200)

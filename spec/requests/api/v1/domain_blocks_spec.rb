@@ -22,7 +22,7 @@ RSpec.describe 'Domain blocks' do
 
     it_behaves_like 'forbidden for wrong scope', 'write:blocks'
 
-    it 'returns the domains blocked by the requesting user', :aggregate_failures do
+    it 'returns the domains blocked by the requesting user' do
       subject
 
       expect(response).to have_http_status(200)
@@ -51,7 +51,7 @@ RSpec.describe 'Domain blocks' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:blocks'
 
-    it 'creates a domain block', :aggregate_failures do
+    it 'creates a domain block' do
       subject
 
       expect(response).to have_http_status(200)
@@ -98,7 +98,7 @@ RSpec.describe 'Domain blocks' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:blocks'
 
-    it 'deletes the specified domain block', :aggregate_failures do
+    it 'deletes the specified domain block' do
       subject
 
       expect(response).to have_http_status(200)

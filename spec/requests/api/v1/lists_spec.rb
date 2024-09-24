@@ -39,7 +39,7 @@ RSpec.describe 'Lists' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:lists'
 
-    it 'returns the expected lists', :aggregate_failures do
+    it 'returns the expected lists' do
       subject
 
       expect(response).to have_http_status(200)
@@ -58,7 +58,7 @@ RSpec.describe 'Lists' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:lists'
 
-    it 'returns the requested list correctly', :aggregate_failures do
+    it 'returns the requested list correctly' do
       subject
 
       expect(response).to have_http_status(200)
@@ -104,7 +104,7 @@ RSpec.describe 'Lists' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:lists'
 
-    it 'returns the new list', :aggregate_failures do
+    it 'returns the new list' do
       subject
 
       expect(response).to have_http_status(200)
@@ -149,7 +149,7 @@ RSpec.describe 'Lists' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:lists'
 
-    it 'returns the updated list and updates values', :aggregate_failures do
+    it 'returns the updated list and updates values' do
       expect { subject }
         .to change_list_title
         .and change_list_replies_policy
@@ -212,7 +212,7 @@ RSpec.describe 'Lists' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:lists'
 
-    it 'deletes the list', :aggregate_failures do
+    it 'deletes the list' do
       subject
 
       expect(response).to have_http_status(200)

@@ -13,7 +13,7 @@ RSpec.describe AppSignUpService do
     let(:params) { good_params }
 
     shared_examples 'successful registration' do
-      it 'creates an unconfirmed user with access token and the app\'s scope', :aggregate_failures do
+      it 'creates an unconfirmed user with access token and the app\'s scope' do
         access_token = subject.call(app, remote_ip, params)
         expect(access_token).to_not be_nil
         expect(access_token.scopes.to_s).to eq 'read write'
@@ -33,7 +33,7 @@ RSpec.describe AppSignUpService do
         Fabricate(:email_domain_block, allow_with_approval: true, domain: 'email.com')
       end
 
-      it 'creates an unapproved user', :aggregate_failures do
+      it 'creates an unapproved user' do
         access_token = subject.call(app, remote_ip, params)
         expect(access_token).to_not be_nil
         expect(access_token.scopes.to_s).to eq 'read write'
@@ -56,7 +56,7 @@ RSpec.describe AppSignUpService do
         configure_mx(domain: 'email.com', exchange: 'smtp.email.com')
       end
 
-      it 'creates an unapproved user', :aggregate_failures do
+      it 'creates an unapproved user' do
         access_token = subject.call(app, remote_ip, params)
         expect(access_token).to_not be_nil
         expect(access_token.scopes.to_s).to eq 'read write'
@@ -76,7 +76,7 @@ RSpec.describe AppSignUpService do
         Setting.registrations_mode = 'none'
       end
 
-      it 'raises an error', :aggregate_failures do
+      it 'raises an error' do
         expect { subject.call(app, remote_ip, good_params) }.to raise_error Mastodon::NotPermittedError
       end
 
@@ -95,7 +95,7 @@ RSpec.describe AppSignUpService do
         let(:params) { good_params.merge({ invite_code: invite.code }) }
         let(:invite) { Fabricate(:invite, uses: 1, max_uses: 1) }
 
-        it 'raises an error', :aggregate_failures do
+        it 'raises an error' do
           expect { subject.call(app, remote_ip, params) }.to raise_error Mastodon::NotPermittedError
         end
       end

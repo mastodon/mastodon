@@ -33,7 +33,7 @@ RSpec.describe 'API V1 Filters' do
       post '/api/v1/filters', params: { phrase: 'magic', context: %w(home), irreversible: irreversible, whole_word: whole_word }, headers: headers
     end
 
-    it 'creates a filter', :aggregate_failures do
+    it 'creates a filter' do
       filter = user.account.custom_filters.first
 
       expect(response).to have_http_status(200)
@@ -50,7 +50,7 @@ RSpec.describe 'API V1 Filters' do
       let(:irreversible) { false }
       let(:whole_word)   { true }
 
-      it 'creates a filter', :aggregate_failures do
+      it 'creates a filter' do
         filter = user.account.custom_filters.first
 
         expect(response).to have_http_status(200)
@@ -88,7 +88,7 @@ RSpec.describe 'API V1 Filters' do
       put "/api/v1/filters/#{keyword.id}", headers: headers, params: { phrase: 'updated' }
     end
 
-    it 'updates the filter', :aggregate_failures do
+    it 'updates the filter' do
       expect(response).to have_http_status(200)
       expect(response.content_type)
         .to start_with('application/json')
@@ -105,7 +105,7 @@ RSpec.describe 'API V1 Filters' do
       delete "/api/v1/filters/#{keyword.id}", headers: headers
     end
 
-    it 'removes the filter', :aggregate_failures do
+    it 'removes the filter' do
       expect(response).to have_http_status(200)
       expect(response.content_type)
         .to start_with('application/json')

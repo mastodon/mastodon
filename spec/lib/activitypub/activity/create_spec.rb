@@ -95,7 +95,7 @@ RSpec.describe ActivityPub::Activity::Create do
       follower.follow!(sender)
     end
 
-    it 'correctly processes posts and inserts them in timelines', :aggregate_failures do
+    it 'correctly processes posts and inserts them in timelines' do
       # Simulate a temporary failure preventing from fetching the parent post
       stub_request(:get, object_json[:id]).to_return(status: 500)
 
@@ -174,7 +174,7 @@ RSpec.describe ActivityPub::Activity::Create do
           }
         end
 
-        it 'creates status with a valid creation date', :aggregate_failures do
+        it 'creates status with a valid creation date' do
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -194,7 +194,7 @@ RSpec.describe ActivityPub::Activity::Create do
           }
         end
 
-        it 'creates status with a valid creation date', :aggregate_failures do
+        it 'creates status with a valid creation date' do
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -215,7 +215,7 @@ RSpec.describe ActivityPub::Activity::Create do
           }
         end
 
-        it 'creates status with appropriate creation and edition dates', :aggregate_failures do
+        it 'creates status with appropriate creation and edition dates' do
           status = sender.statuses.first
 
           expect(status).to_not be_nil

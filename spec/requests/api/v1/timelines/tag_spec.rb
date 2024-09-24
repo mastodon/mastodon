@@ -14,7 +14,7 @@ RSpec.describe 'Tag' do
     end
 
     shared_examples 'a successful request to the tag timeline' do
-      it 'returns the expected statuses', :aggregate_failures do
+      it 'returns the expected statuses' do
         subject
 
         expect(response)
@@ -75,7 +75,7 @@ RSpec.describe 'Tag' do
         expect(response.parsed_body.size).to eq(params[:limit])
       end
 
-      it 'sets the correct pagination headers', :aggregate_failures do
+      it 'sets the correct pagination headers' do
         subject
 
         expect(response)

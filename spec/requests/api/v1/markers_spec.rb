@@ -16,7 +16,7 @@ RSpec.describe 'API Markers' do
       get '/api/v1/markers', headers: headers, params: { timeline: %w(home notifications) }
     end
 
-    it 'returns markers', :aggregate_failures do
+    it 'returns markers' do
       expect(response).to have_http_status(200)
       expect(response.content_type)
         .to start_with('application/json')
@@ -34,7 +34,7 @@ RSpec.describe 'API Markers' do
         post '/api/v1/markers', headers: headers, params: { home: { last_read_id: '69420' } }
       end
 
-      it 'creates a marker', :aggregate_failures do
+      it 'creates a marker' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
@@ -49,7 +49,7 @@ RSpec.describe 'API Markers' do
         post '/api/v1/markers', headers: headers, params: { home: { last_read_id: '70120' } }
       end
 
-      it 'updates a marker', :aggregate_failures do
+      it 'updates a marker' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')

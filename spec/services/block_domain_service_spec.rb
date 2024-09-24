@@ -19,18 +19,20 @@ RSpec.describe BlockDomainService do
       bystander.follow!(local_account)
     end
 
-    it 'creates a domain block, suspends remote accounts with appropriate suspension date, records severed relationships and sends notification', :aggregate_failures do
+    it 'creates a domain block, suspends remote accounts with appropriate suspension date, records severed relationships and sends notification' do
       subject.call(DomainBlock.create!(domain: 'evil.org', severity: :suspend))
 
       expect(DomainBlock.blocked?('evil.org')).to be true
 
       # Suspends account with appropriate suspension date
-      expect(bad_account.reload.suspended?).to be true
-      expect(bad_account.reload.suspended_at).to eq DomainBlock.find_by(domain: 'evil.org').created_at
+      expect(bad_account.reload)
+        .to be_suspended
+        .and have_attributes(suspended_at: eq(DomainBlock.find_by(domain: 'evil.org').created_at))
 
       # Keep already-suspended account without updating the suspension date
-      expect(already_banned_account.reload.suspended?).to be true
-      expect(already_banned_account.reload.suspended_at).to_not eq DomainBlock.find_by(domain: 'evil.org').created_at
+      expect(already_banned_account.reload)
+        .to be_suspended
+        .and have_attributes(suspended_at: (a_value < DomainBlock.find_by(domain: 'evil.org').created_at))
 
       # Removes content
       expect { bad_status_plain.reload }.to raise_exception ActiveRecord::RecordNotFound
@@ -39,9 +41,11 @@ RSpec.describe BlockDomainService do
 
       # Records severed relationships
       severed_relationships = local_account.severed_relationships.to_a
-      expect(severed_relationships.count).to eq 2
-      expect(severed_relationships[0].relationship_severance_event).to eq severed_relationships[1].relationship_severance_event
-      expect(severed_relationships.map { |rel| [rel.account, rel.target_account] }).to contain_exactly([bystander, local_account], [local_account, bad_account])
+      expect(severed_relationships)
+        .to contain_exactly(
+          have_attributes(account: bystander, target_account: local_account, relationship_severance_event: severed_relationships[1].relationship_severance_event),
+          have_attributes(account: local_account, target_account: bad_account)
+        )
 
       # Sends severed relationships notification
       expect(LocalNotificationWorker).to have_enqueued_sidekiq_job(local_account.id, anything, 'AccountRelationshipSeveranceEvent', 'severed_relationships')
@@ -49,7 +53,7 @@ RSpec.describe BlockDomainService do
   end
 
   describe 'for a silence with reject media' do
-    it 'does not mark the domain as blocked, but silences accounts with an appropriate silencing date, clears media', :aggregate_failures, :inline_jobs do
+    it 'does not mark the domain as blocked, but silences accounts with an appropriate silencing date, clears media', :inline_jobs do
       subject.call(DomainBlock.create!(domain: 'evil.org', severity: :silence, reject_media: true))
 
       expect(DomainBlock.blocked?('evil.org')).to be false

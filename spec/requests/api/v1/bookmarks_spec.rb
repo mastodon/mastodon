@@ -36,7 +36,7 @@ RSpec.describe 'Bookmarks' do
     context 'with limit param' do
       let(:params) { { limit: 1 } }
 
-      it 'paginates correctly', :aggregate_failures do
+      it 'paginates correctly' do
         subject
 
         expect(response.parsed_body.size)

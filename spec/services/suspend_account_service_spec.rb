@@ -85,7 +85,7 @@ RSpec.describe SuspendAccountService, :inline_jobs do
         account.follow!(local_followee)
       end
 
-      it 'sends a Reject Follow activity', :aggregate_failures do
+      it 'sends a Reject Follow activity' do
         subject
 
         expect(a_request(:post, account.inbox_url).with { |req| match_reject_follow_request(req, account, local_followee) }).to have_been_made.once

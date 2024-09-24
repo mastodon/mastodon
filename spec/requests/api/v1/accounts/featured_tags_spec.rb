@@ -19,7 +19,7 @@ RSpec.describe 'account featured tags API' do
       account.featured_tags.create!(name: 'bar')
     end
 
-    it 'returns the expected tags', :aggregate_failures do
+    it 'returns the expected tags' do
       subject
 
       expect(response).to have_http_status(200)
@@ -35,7 +35,7 @@ RSpec.describe 'account featured tags API' do
     end
 
     context 'when the account is remote' do
-      it 'returns the expected tags', :aggregate_failures do
+      it 'returns the expected tags' do
         subject
 
         expect(response).to have_http_status(200)

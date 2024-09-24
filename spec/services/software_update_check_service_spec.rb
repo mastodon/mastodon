@@ -89,7 +89,7 @@ RSpec.describe SoftwareUpdateCheckService do
       end
 
       context 'when no update is urgent' do
-        it 'sends e-mail notifications according to settings', :aggregate_failures do
+        it 'sends e-mail notifications according to settings' do
           expect { subject.call }.to have_enqueued_mail(AdminMailer, :new_software_updates)
             .with(hash_including(params: { recipient: owner_user.account })).once
             .and(have_enqueued_mail(AdminMailer, :new_software_updates).with(hash_including(params: { recipient: patch_user.account })).once)
@@ -111,7 +111,7 @@ RSpec.describe SoftwareUpdateCheckService do
           }
         end
 
-        it 'sends e-mail notifications according to settings', :aggregate_failures do
+        it 'sends e-mail notifications according to settings' do
           expect { subject.call }.to have_enqueued_mail(AdminMailer, :new_critical_software_updates)
             .with(hash_including(params: { recipient: owner_user.account })).once
             .and(have_enqueued_mail(AdminMailer, :new_critical_software_updates).with(hash_including(params: { recipient: patch_user.account })).once)

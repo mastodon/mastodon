@@ -34,7 +34,7 @@ RSpec.describe 'Status embed' do
     end
 
     context 'when status is public' do
-      it 'renders status successfully', :aggregate_failures do
+      it 'renders status successfully' do
         subject
 
         expect(response)

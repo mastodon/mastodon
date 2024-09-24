@@ -17,7 +17,7 @@ RSpec.describe Settings::PrivacyController do
       get :show
     end
 
-    it 'returns http success with private cache control headers', :aggregate_failures do
+    it 'returns http success with private cache control headers' do
       expect(response)
         .to have_http_status(200)
         .and have_attributes(

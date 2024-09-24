@@ -8,7 +8,7 @@ RSpec.describe DismissNotificationRequestService do
     let(:receiver) { Fabricate(:account) }
     let(:request) { Fabricate(:notification_request, account: receiver, from_account: sender) }
 
-    it 'destroys the request and queues a worker', :aggregate_failures do
+    it 'destroys the request and queues a worker' do
       expect { described_class.new.call(request) }
         .to change(request, :destroyed?).to(true)
 

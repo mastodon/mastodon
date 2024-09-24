@@ -16,7 +16,7 @@ RSpec.describe AfterBlockDomainFromAccountService do
     alice.follow!(dog)
   end
 
-  it 'purge followers from blocked domain, remove notification permissions, sends `Reject->Follow`, and records severed relationships', :aggregate_failures do
+  it 'purge followers from blocked domain, remove notification permissions, sends `Reject->Follow`, and records severed relationships' do
     expect { subject.call(alice, 'evil.org') }
       .to change { wolf.following?(alice) }.from(true).to(false)
       .and change { NotificationPermission.exists?(account: alice, from_account: wolf) }.from(true).to(false)

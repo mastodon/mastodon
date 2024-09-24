@@ -9,7 +9,7 @@ RSpec.describe 'Export page' do
 
   describe 'Viewing the export page' do
     context 'when signed in' do
-      it 'shows the export page', :aggregate_failures do
+      it 'shows the export page' do
         visit settings_export_path
 
         expect(page)

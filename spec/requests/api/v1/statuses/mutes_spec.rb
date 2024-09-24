@@ -16,7 +16,7 @@ RSpec.describe 'API V1 Statuses Mutes' do
         post "/api/v1/statuses/#{status.id}/mute", headers: headers
       end
 
-      it 'creates a conversation mute', :aggregate_failures do
+      it 'creates a conversation mute' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
@@ -32,7 +32,7 @@ RSpec.describe 'API V1 Statuses Mutes' do
         post "/api/v1/statuses/#{status.id}/unmute", headers: headers
       end
 
-      it 'destroys the conversation mute', :aggregate_failures do
+      it 'destroys the conversation mute' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')

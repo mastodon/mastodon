@@ -17,7 +17,7 @@ RSpec.describe 'API V1 Statuses Reblogs' do
       end
 
       context 'with public status' do
-        it 'reblogs the status', :aggregate_failures do
+        it 'reblogs the status' do
           expect(response).to have_http_status(200)
           expect(response.content_type)
             .to start_with('application/json')
@@ -57,7 +57,7 @@ RSpec.describe 'API V1 Statuses Reblogs' do
           post "/api/v1/statuses/#{status.id}/unreblog", headers: headers
         end
 
-        it 'destroys the reblog', :aggregate_failures do
+        it 'destroys the reblog' do
           expect(response).to have_http_status(200)
           expect(response.content_type)
             .to start_with('application/json')
@@ -84,7 +84,7 @@ RSpec.describe 'API V1 Statuses Reblogs' do
           post "/api/v1/statuses/#{status.id}/unreblog", headers: headers
         end
 
-        it 'destroys the reblog', :aggregate_failures do
+        it 'destroys the reblog' do
           expect(response).to have_http_status(200)
           expect(response.content_type)
             .to start_with('application/json')

@@ -96,7 +96,7 @@ RSpec.describe 'Canonical Email Blocks' do
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
     context 'when the requested canonical email block exists' do
-      it 'returns the requested canonical email block data correctly', :aggregate_failures do
+      it 'returns the requested canonical email block data correctly' do
         subject
 
         expect(response).to have_http_status(200)
@@ -148,7 +148,7 @@ RSpec.describe 'Canonical Email Blocks' do
       context 'when there is a matching canonical email block' do
         let!(:canonical_email_block) { CanonicalEmailBlock.create(params) }
 
-        it 'returns the expected canonical email hash', :aggregate_failures do
+        it 'returns the expected canonical email hash' do
           subject
 
           expect(response).to have_http_status(200)
@@ -159,7 +159,7 @@ RSpec.describe 'Canonical Email Blocks' do
       end
 
       context 'when there is no matching canonical email block' do
-        it 'returns an empty list', :aggregate_failures do
+        it 'returns an empty list' do
           subject
 
           expect(response).to have_http_status(200)
@@ -183,7 +183,7 @@ RSpec.describe 'Canonical Email Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns the canonical_email_hash correctly', :aggregate_failures do
+    it 'returns the canonical_email_hash correctly' do
       subject
 
       expect(response).to have_http_status(200)
@@ -207,7 +207,7 @@ RSpec.describe 'Canonical Email Blocks' do
     context 'when the canonical_email_hash param is provided instead of email' do
       let(:params) { { canonical_email_hash: 'dd501ce4e6b08698f19df96f2f15737e48a75660b1fa79b6ff58ea25ee4851a4' } }
 
-      it 'returns the correct canonical_email_hash', :aggregate_failures do
+      it 'returns the correct canonical_email_hash' do
         subject
 
         expect(response).to have_http_status(200)
@@ -220,7 +220,7 @@ RSpec.describe 'Canonical Email Blocks' do
     context 'when both email and canonical_email_hash params are provided' do
       let(:params) { { email: 'example@email.com', canonical_email_hash: 'dd501ce4e6b08698f19df96f2f15737e48a75660b1fa79b6ff58ea25ee4851a4' } }
 
-      it 'ignores the canonical_email_hash param', :aggregate_failures do
+      it 'ignores the canonical_email_hash param' do
         subject
 
         expect(response).to have_http_status(200)
@@ -257,7 +257,7 @@ RSpec.describe 'Canonical Email Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'deletes the canonical email block', :aggregate_failures do
+    it 'deletes the canonical email block' do
       subject
 
       expect(response).to have_http_status(200)

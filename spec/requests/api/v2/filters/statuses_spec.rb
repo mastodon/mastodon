@@ -44,7 +44,7 @@ RSpec.describe 'API V2 Filters Statuses' do
       post "/api/v2/filters/#{filter_id}/statuses", headers: headers, params: { status_id: status.id }
     end
 
-    it 'creates a filter', :aggregate_failures do
+    it 'creates a filter' do
       expect(response).to have_http_status(200)
       expect(response.content_type)
         .to start_with('application/json')
@@ -78,7 +78,7 @@ RSpec.describe 'API V2 Filters Statuses' do
       get "/api/v2/filters/statuses/#{status_filter.id}", headers: headers
     end
 
-    it 'responds with the filter', :aggregate_failures do
+    it 'responds with the filter' do
       expect(response).to have_http_status(200)
       expect(response.content_type)
         .to start_with('application/json')
@@ -106,7 +106,7 @@ RSpec.describe 'API V2 Filters Statuses' do
       delete "/api/v2/filters/statuses/#{status_filter.id}", headers: headers
     end
 
-    it 'destroys the filter', :aggregate_failures do
+    it 'destroys the filter' do
       expect(response).to have_http_status(200)
       expect(response.content_type)
         .to start_with('application/json')

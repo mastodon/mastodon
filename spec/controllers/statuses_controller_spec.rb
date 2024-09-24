@@ -56,7 +56,7 @@ RSpec.describe StatusesController do
       context 'with HTML' do
         let(:format) { 'html' }
 
-        it 'renders status successfully', :aggregate_failures do
+        it 'renders status successfully' do
           expect(response)
             .to have_http_status(200)
             .and render_template(:show)
@@ -72,7 +72,7 @@ RSpec.describe StatusesController do
       context 'with JSON' do
         let(:format) { 'json' }
 
-        it 'renders ActivityPub Note object successfully', :aggregate_failures do
+        it 'renders ActivityPub Note object successfully' do
           expect(response)
             .to have_http_status(200)
             .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
@@ -161,7 +161,7 @@ RSpec.describe StatusesController do
         context 'with HTML' do
           let(:format) { 'html' }
 
-          it 'renders status successfully', :aggregate_failures do
+          it 'renders status successfully' do
             expect(response)
               .to have_http_status(200)
               .and render_template(:show)
@@ -177,7 +177,7 @@ RSpec.describe StatusesController do
         context 'with JSON' do
           let(:format) { 'json' }
 
-          it 'renders ActivityPub Note object successfully', :aggregate_failures do
+          it 'renders ActivityPub Note object successfully' do
             expect(response)
               .to have_http_status(200)
             expect(response.headers).to include(
@@ -204,7 +204,7 @@ RSpec.describe StatusesController do
           context 'with HTML' do
             let(:format) { 'html' }
 
-            it 'renders status successfully', :aggregate_failures do
+            it 'renders status successfully' do
               expect(response)
                 .to have_http_status(200)
                 .and render_template(:show)
@@ -221,7 +221,7 @@ RSpec.describe StatusesController do
           context 'with JSON' do
             let(:format) { 'json' }
 
-            it 'renders ActivityPub Note object successfully', :aggregate_failures do
+            it 'renders ActivityPub Note object successfully' do
               expect(response)
                 .to have_http_status(200)
               expect(response.headers).to include(
@@ -271,7 +271,7 @@ RSpec.describe StatusesController do
           context 'with HTML' do
             let(:format) { 'html' }
 
-            it 'renders status successfully', :aggregate_failures do
+            it 'renders status successfully' do
               expect(response)
                 .to have_http_status(200)
                 .and render_template(:show)
@@ -363,7 +363,7 @@ RSpec.describe StatusesController do
         context 'with HTML' do
           let(:format) { 'html' }
 
-          it 'renders status successfully', :aggregate_failures do
+          it 'renders status successfully' do
             expect(response)
               .to have_http_status(200)
               .and render_template(:show)
@@ -379,7 +379,7 @@ RSpec.describe StatusesController do
         context 'with JSON' do
           let(:format) { 'json' }
 
-          it 'renders ActivityPub Note object successfully', :aggregate_failures do
+          it 'renders ActivityPub Note object successfully' do
             expect(response)
               .to have_http_status(200)
               .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
@@ -405,7 +405,7 @@ RSpec.describe StatusesController do
           context 'with HTML' do
             let(:format) { 'html' }
 
-            it 'renders status successfully', :aggregate_failures do
+            it 'renders status successfully' do
               expect(response)
                 .to have_http_status(200)
                 .and render_template(:show)
@@ -472,7 +472,7 @@ RSpec.describe StatusesController do
           context 'with HTML' do
             let(:format) { 'html' }
 
-            it 'renders status successfully', :aggregate_failures do
+            it 'renders status successfully' do
               expect(response)
                 .to have_http_status(200)
                 .and render_template(:show)
@@ -488,7 +488,7 @@ RSpec.describe StatusesController do
           context 'with JSON' do
             let(:format) { 'json' }
 
-            it 'renders ActivityPub Note object', :aggregate_failures do
+            it 'renders ActivityPub Note object' do
               expect(response)
                 .to have_http_status(200)
               expect(response.headers).to include(
