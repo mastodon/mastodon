@@ -9,7 +9,7 @@ RSpec.describe 'Link' do
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   shared_examples 'a successful request to the link timeline' do
-    it 'returns the expected statuses successfully', :aggregate_failures do
+    it 'returns the expected statuses successfully' do
       subject
 
       expect(response).to have_http_status(200)
@@ -135,7 +135,7 @@ RSpec.describe 'Link' do
       context 'with limit param' do
         let(:params) { { limit: 1, url: url } }
 
-        it 'returns only the requested number of statuses with pagination headers', :aggregate_failures do
+        it 'returns only the requested number of statuses with pagination headers' do
           subject
 
           expect(response).to have_http_status(200)

@@ -30,7 +30,7 @@ RSpec.describe 'Filters' do
     it_behaves_like 'forbidden for wrong scope', 'write write:filters'
     it_behaves_like 'unauthorized for invalid token'
 
-    it 'returns the existing filters successfully', :aggregate_failures do
+    it 'returns the existing filters successfully' do
       subject
 
       expect(response).to have_http_status(200)
@@ -53,7 +53,7 @@ RSpec.describe 'Filters' do
     context 'with valid params' do
       let(:params) { { title: 'magic', context: %w(home), filter_action: 'hide', keywords_attributes: [keyword: 'magic'] } }
 
-      it 'returns http success with a filter with keywords in json and creates a filter', :aggregate_failures do
+      it 'returns http success with a filter with keywords in json and creates a filter' do
         subject
 
         expect(response).to have_http_status(200)
@@ -127,7 +127,7 @@ RSpec.describe 'Filters' do
     it_behaves_like 'forbidden for wrong scope', 'write write:filters'
     it_behaves_like 'unauthorized for invalid token'
 
-    it 'returns the filter successfully', :aggregate_failures do
+    it 'returns the filter successfully' do
       subject
 
       expect(response).to have_http_status(200)
@@ -168,7 +168,7 @@ RSpec.describe 'Filters' do
       context 'with valid params' do
         let(:params) { { title: 'updated', context: %w(home public) } }
 
-        it 'updates the filter successfully', :aggregate_failures do
+        it 'updates the filter successfully' do
           subject
 
           filter.reload

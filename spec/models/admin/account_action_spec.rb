@@ -79,7 +79,7 @@ RSpec.describe Admin::AccountAction do
       )
     end
 
-    it 'sends notification, log the action, and closes other reports', :aggregate_failures do
+    it 'sends notification, log the action, and closes other reports' do
       other_report = Fabricate(:report, target_account: target_account)
 
       expect { subject }

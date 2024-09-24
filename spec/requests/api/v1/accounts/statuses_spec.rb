@@ -9,7 +9,7 @@ RSpec.describe 'API V1 Accounts Statuses' do
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   describe 'GET /api/v1/accounts/:account_id/statuses' do
-    it 'returns expected headers', :aggregate_failures do
+    it 'returns expected headers' do
       status = Fabricate(:status, account: user.account)
       get "/api/v1/accounts/#{user.account.id}/statuses", params: { limit: 1 }, headers: headers
 
@@ -42,7 +42,7 @@ RSpec.describe 'API V1 Accounts Statuses' do
         get "/api/v1/accounts/#{user.account.id}/statuses", params: { exclude_replies: true }, headers: headers
       end
 
-      it 'returns posts along with self replies', :aggregate_failures do
+      it 'returns posts along with self replies' do
         expect(response)
           .to have_http_status(200)
         expect(response.content_type)

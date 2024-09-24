@@ -30,7 +30,7 @@ RSpec.describe 'Accounts' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:lists'
 
-    it 'returns the accounts in the requested list', :aggregate_failures do
+    it 'returns the accounts in the requested list' do
       subject
 
       expect(response).to have_http_status(200)
@@ -66,7 +66,7 @@ RSpec.describe 'Accounts' do
         user.account.follow!(bob)
       end
 
-      it 'adds account to the list', :aggregate_failures do
+      it 'adds account to the list' do
         subject
 
         expect(response).to have_http_status(200)
@@ -81,7 +81,7 @@ RSpec.describe 'Accounts' do
         user.account.follow_requests.create!(target_account: bob)
       end
 
-      it 'adds account to the list', :aggregate_failures do
+      it 'adds account to the list' do
         subject
 
         expect(response).to have_http_status(200)
@@ -92,7 +92,7 @@ RSpec.describe 'Accounts' do
     end
 
     context 'when the added account is not followed' do
-      it 'does not add the account to the list', :aggregate_failures do
+      it 'does not add the account to the list' do
         subject
 
         expect(response).to have_http_status(404)
@@ -151,7 +151,7 @@ RSpec.describe 'Accounts' do
         list.accounts << [bob, peter]
       end
 
-      it 'removes the specified account from the list but keeps other accounts in the list', :aggregate_failures do
+      it 'removes the specified account from the list but keeps other accounts in the list' do
         subject
 
         expect(response).to have_http_status(200)
@@ -164,7 +164,7 @@ RSpec.describe 'Accounts' do
       context 'when the specified account is not in the list' do
         let(:params) { { account_ids: [0] } }
 
-        it 'does not remove any account from the list', :aggregate_failures do
+        it 'does not remove any account from the list' do
           subject
 
           expect(response).to have_http_status(200)

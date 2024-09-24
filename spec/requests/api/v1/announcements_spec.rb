@@ -52,7 +52,7 @@ RSpec.describe 'API V1 Announcements' do
         post "/api/v1/announcements/#{announcement.id}/dismiss", headers: headers
       end
 
-      it 'dismisses announcement', :aggregate_failures do
+      it 'dismisses announcement' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')

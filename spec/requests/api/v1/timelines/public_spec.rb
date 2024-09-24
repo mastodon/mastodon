@@ -9,7 +9,7 @@ RSpec.describe 'Public' do
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   shared_examples 'a successful request to the public timeline' do
-    it 'returns the expected statuses successfully', :aggregate_failures do
+    it 'returns the expected statuses successfully' do
       subject
 
       expect(response).to have_http_status(200)
@@ -79,7 +79,7 @@ RSpec.describe 'Public' do
       context 'with limit param' do
         let(:params) { { limit: 1 } }
 
-        it 'returns only the requested number of statuses and sets pagination headers', :aggregate_failures do
+        it 'returns only the requested number of statuses and sets pagination headers' do
           subject
 
           expect(response).to have_http_status(200)
