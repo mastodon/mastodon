@@ -32,6 +32,8 @@ RSpec.describe 'Deleting profile images' do
         delete '/api/v1/profile/avatar', headers: headers
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
 
         account.reload
         expect(account.avatar).to_not exist
@@ -53,6 +55,8 @@ RSpec.describe 'Deleting profile images' do
         delete '/api/v1/profile/header', headers: headers
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
 
         account.reload
         expect(account.avatar).to exist

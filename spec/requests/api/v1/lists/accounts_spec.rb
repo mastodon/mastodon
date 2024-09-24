@@ -34,6 +34,8 @@ RSpec.describe 'Accounts' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body).to match_array(expected_response)
     end
 
@@ -68,6 +70,8 @@ RSpec.describe 'Accounts' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(list.accounts).to include(bob)
       end
     end
@@ -81,6 +85,8 @@ RSpec.describe 'Accounts' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(list.accounts).to include(bob)
       end
     end
@@ -90,6 +96,8 @@ RSpec.describe 'Accounts' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(list.accounts).to_not include(bob)
       end
     end
@@ -105,6 +113,8 @@ RSpec.describe 'Accounts' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -118,6 +128,8 @@ RSpec.describe 'Accounts' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -143,6 +155,8 @@ RSpec.describe 'Accounts' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(list.accounts).to_not include(bob)
         expect(list.accounts).to include(peter)
       end
@@ -154,6 +168,8 @@ RSpec.describe 'Accounts' do
           subject
 
           expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
           expect(list.accounts).to contain_exactly(bob, peter)
         end
       end
@@ -167,6 +183,8 @@ RSpec.describe 'Accounts' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

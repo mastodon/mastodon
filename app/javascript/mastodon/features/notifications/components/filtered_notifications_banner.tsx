@@ -31,7 +31,7 @@ export const FilteredNotificationsIconButton: React.FC<{
     history.push('/notifications/requests');
   }, [history]);
 
-  if (policy === null || policy.summary.pending_notifications_count === 0) {
+  if (policy === null || policy.summary.pending_requests_count <= 0) {
     return null;
   }
 
@@ -70,7 +70,7 @@ export const FilteredNotificationsBanner: React.FC = () => {
     };
   }, [dispatch]);
 
-  if (policy === null || policy.summary.pending_notifications_count === 0) {
+  if (policy === null || policy.summary.pending_requests_count <= 0) {
     return null;
   }
 

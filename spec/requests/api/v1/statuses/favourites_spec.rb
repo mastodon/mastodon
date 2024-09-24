@@ -22,6 +22,8 @@ RSpec.describe 'Favourites', :inline_jobs do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(user.account.favourited?(status)).to be true
 
         expect(response.parsed_body).to match(
@@ -37,6 +39,8 @@ RSpec.describe 'Favourites', :inline_jobs do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -51,6 +55,8 @@ RSpec.describe 'Favourites', :inline_jobs do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(user.account.favourited?(status)).to be true
       end
     end
@@ -62,6 +68,8 @@ RSpec.describe 'Favourites', :inline_jobs do
         subject
 
         expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -84,6 +92,8 @@ RSpec.describe 'Favourites', :inline_jobs do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
 
         expect(user.account.favourited?(status)).to be false
 
@@ -103,6 +113,8 @@ RSpec.describe 'Favourites', :inline_jobs do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
 
         expect(user.account.favourited?(status)).to be false
 
@@ -117,6 +129,8 @@ RSpec.describe 'Favourites', :inline_jobs do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -127,6 +141,8 @@ RSpec.describe 'Favourites', :inline_jobs do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

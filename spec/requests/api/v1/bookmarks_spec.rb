@@ -28,6 +28,8 @@ RSpec.describe 'Bookmarks' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body).to match_array(expected_response)
     end
 
@@ -40,6 +42,8 @@ RSpec.describe 'Bookmarks' do
         expect(response.parsed_body.size)
           .to eq(params[:limit])
 
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response)
           .to include_pagination_headers(
             prev: api_v1_bookmarks_url(limit: params[:limit], min_id: bookmarks.last.id),
@@ -55,6 +59,8 @@ RSpec.describe 'Bookmarks' do
         subject
 
         expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

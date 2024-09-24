@@ -31,6 +31,8 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body[:count]).to eq 4
       end
     end
@@ -42,6 +44,8 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body[:count]).to eq 5
       end
     end
@@ -56,6 +60,8 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body[:count]).to eq 2
       end
     end
@@ -67,6 +73,8 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body[:count]).to eq 3
       end
     end
@@ -78,6 +86,8 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body[:count]).to eq 2
       end
     end
@@ -91,6 +101,8 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body[:count]).to eq Api::V2::NotificationsController::DEFAULT_NOTIFICATIONS_COUNT_LIMIT
       end
     end
@@ -125,6 +137,8 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body[:notification_groups]).to eq []
       end
     end
@@ -134,6 +148,8 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(body_json_types).to include('reblog', 'mention', 'favourite', 'follow')
       end
     end
@@ -145,6 +161,8 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body[:notification_groups]).to contain_exactly(
           a_hash_including(
             type: 'reblog',
@@ -177,6 +195,8 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body.size).to_not eq 0
         expect(body_json_types.uniq).to_not include 'mention'
       end
@@ -189,6 +209,8 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(body_json_types.uniq).to eq ['mention']
         expect(response.parsed_body.dig(:notification_groups, 0, :page_min_id)).to_not be_nil
       end
@@ -211,6 +233,8 @@ RSpec.describe 'Notifications' do
             # not the last that has been skipped, so pagination is very likely to give overlap
             next: api_v2_notifications_url(limit: params[:limit], max_id: notifications[3].id)
           )
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -224,6 +248,8 @@ RSpec.describe 'Notifications' do
         expect(response.parsed_body[:notification_groups].size)
           .to eq(2)
 
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response)
           .to include_pagination_headers(
             prev: api_v2_notifications_url(limit: params[:limit], min_id: notifications.first.id),
@@ -247,6 +273,8 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body[:partial_accounts].size).to be > 0
         expect(response.parsed_body[:partial_accounts][0].keys.map(&:to_sym)).to contain_exactly(:acct, :avatar, :avatar_static, :bot, :id, :locked, :url)
         expect(response.parsed_body[:partial_accounts].pluck(:id)).to_not include(recent_account.id.to_s)
@@ -261,6 +289,8 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(400)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -282,6 +312,8 @@ RSpec.describe 'Notifications' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
 
     context 'when notification belongs to someone else' do
@@ -291,6 +323,8 @@ RSpec.describe 'Notifications' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -308,16 +342,21 @@ RSpec.describe 'Notifications' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect { notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     context 'when notification belongs to someone else' do
-      let(:notification) { Fabricate(:notification) }
+      let(:notification) { Fabricate(:notification, group_key: 'foobar') }
 
-      it 'returns http not found' do
-        subject
+      it 'leaves the notification alone' do
+        expect { subject }
+          .to_not change(Notification, :count)
 
-        expect(response).to have_http_status(404)
+        expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -338,6 +377,8 @@ RSpec.describe 'Notifications' do
 
       expect(user.account.reload.notifications).to be_empty
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
   end
 end
