@@ -450,7 +450,7 @@ export function expandFollowingFail(id, error) {
   };
 }
 
-const debouncedFetchRelationships = debounceWithDispatchAndArguments((dispatch, newAccountIds) => {
+const debouncedFetchRelationships = debounceWithDispatchAndArguments((dispatch, ...newAccountIds) => {
   if (newAccountIds.length === 0) {
     return;
   }
@@ -475,7 +475,7 @@ export function fetchRelationships(accountIds) {
       return;
     }
 
-    debouncedFetchRelationships(dispatch, newAccountIds);
+    debouncedFetchRelationships(dispatch, ...newAccountIds);
   };
 }
 
