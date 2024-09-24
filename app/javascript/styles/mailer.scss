@@ -168,6 +168,7 @@ table + p {
 
 // Utility classes
 .email-w-full {
+  table-layout: fixed;
   width: 100%;
 }
 
@@ -587,7 +588,10 @@ table + p {
   p {
     font-size: 14px;
     line-height: 20px;
+    margin-bottom: 20px;
     color: #17063b;
+    white-space: pre-wrap;
+    unicode-bidi: plaintext;
   }
 
   a {
@@ -596,6 +600,21 @@ table + p {
 
     &:hover {
       color: #563acc !important;
+    }
+  }
+
+  .invisible {
+    font-size: 0;
+    line-height: 0;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    position: absolute;
+  }
+
+  .ellipsis {
+    &::after {
+      content: '…';
     }
   }
 }
