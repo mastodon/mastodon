@@ -13,11 +13,11 @@ import type {
   ApiNotificationJSON,
 } from 'mastodon/api_types/notifications';
 import type { ApiStatusJSON } from 'mastodon/api_types/statuses';
-import type { AppDispatch, RootState } from 'mastodon/store';
+import type { AppDispatch } from 'mastodon/store';
 import { createDataLoadingThunk } from 'mastodon/store/typed_functions';
 
 import { importFetchedAccounts, importFetchedStatuses } from './importer';
-import { decreasePendingNotificationsCount } from './notification_policies';
+import { decreasePendingRequestsCount } from './notification_policies';
 
 // TODO: refactor with notification_groups
 function dispatchAssociatedRecords(
@@ -169,19 +169,11 @@ export const expandNotificationsForRequest = createDataLoadingThunk(
   },
 );
 
-const selectNotificationCountForRequest = (state: RootState, id: string) => {
-  const requests = state.notificationRequests.items;
-  const thisRequest = requests.find((request) => request.id === id);
-  return thisRequest ? thisRequest.notifications_count : 0;
-};
-
 export const acceptNotificationRequest = createDataLoadingThunk(
   'notificationRequest/accept',
   ({ id }: { id: string }) => apiAcceptNotificationRequest(id),
-  (_data, { dispatch, getState, discardLoadData, actionArg: { id } }) => {
-    const count = selectNotificationCountForRequest(getState(), id);
-
-    dispatch(decreasePendingNotificationsCount(count));
+  (_data, { dispatch, discardLoadData }) => {
+    dispatch(decreasePendingRequestsCount(1));
 
     // The payload is not used in any functions
     return discardLoadData;
@@ -191,10 +183,8 @@ export const acceptNotificationRequest = createDataLoadingThunk(
 export const dismissNotificationRequest = createDataLoadingThunk(
   'notificationRequest/dismiss',
   ({ id }: { id: string }) => apiDismissNotificationRequest(id),
-  (_data, { dispatch, getState, discardLoadData, actionArg: { id } }) => {
-    const count = selectNotificationCountForRequest(getState(), id);
-
-    dispatch(decreasePendingNotificationsCount(count));
+  (_data, { dispatch, discardLoadData }) => {
+    dispatch(decreasePendingRequestsCount(1));
 
     // The payload is not used in any functions
     return discardLoadData;
@@ -204,13 +194,8 @@ export const dismissNotificationRequest = createDataLoadingThunk(
 export const acceptNotificationRequests = createDataLoadingThunk(
   'notificationRequests/acceptBulk',
   ({ ids }: { ids: string[] }) => apiAcceptNotificationRequests(ids),
-  (_data, { dispatch, getState, discardLoadData, actionArg: { ids } }) => {
-    const count = ids.reduce(
-      (count, id) => count + selectNotificationCountForRequest(getState(), id),
-      0,
-    );
-
-    dispatch(decreasePendingNotificationsCount(count));
+  (_data, { dispatch, discardLoadData, actionArg: { ids } }) => {
+    dispatch(decreasePendingRequestsCount(ids.length));
 
     // The payload is not used in any functions
     return discardLoadData;
@@ -220,13 +205,8 @@ export const acceptNotificationRequests = createDataLoadingThunk(
 export const dismissNotificationRequests = createDataLoadingThunk(
   'notificationRequests/dismissBulk',
   ({ ids }: { ids: string[] }) => apiDismissNotificationRequests(ids),
-  (_data, { dispatch, getState, discardLoadData, actionArg: { ids } }) => {
-    const count = ids.reduce(
-      (count, id) => count + selectNotificationCountForRequest(getState(), id),
-      0,
-    );
-
-    dispatch(decreasePendingNotificationsCount(count));
+  (_data, { dispatch, discardLoadData, actionArg: { ids } }) => {
+    dispatch(decreasePendingRequestsCount(ids.length));
 
     // The payload is not used in any functions
     return discardLoadData;

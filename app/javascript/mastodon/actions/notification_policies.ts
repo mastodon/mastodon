@@ -17,6 +17,6 @@ export const updateNotificationsPolicy = createDataLoadingThunk(
   (policy: Partial<NotificationPolicy>) => apiUpdateNotificationsPolicy(policy),
 );
 
-export const decreasePendingNotificationsCount = createAction<number>(
-  'notificationPolicy/decreasePendingNotificationCount',
+export const decreasePendingRequestsCount = createAction<number>(
+  'notificationPolicy/decreasePendingRequestsCount',
 );
