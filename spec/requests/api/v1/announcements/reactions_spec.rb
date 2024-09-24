@@ -26,7 +26,7 @@ RSpec.describe 'API V1 Announcements Reactions' do
         put "/api/v1/announcements/#{announcement.id}/reactions/#{escaped_emoji}", headers: headers
       end
 
-      it 'creates reaction', :aggregate_failures do
+      it 'creates reaction' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
@@ -54,7 +54,7 @@ RSpec.describe 'API V1 Announcements Reactions' do
         delete "/api/v1/announcements/#{announcement.id}/reactions/#{escaped_emoji}", headers: headers
       end
 
-      it 'creates reaction', :aggregate_failures do
+      it 'creates reaction' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')

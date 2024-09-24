@@ -22,7 +22,7 @@ RSpec.describe 'Policies' do
     it_behaves_like 'forbidden for wrong scope', 'write write:notifications'
 
     context 'with no options' do
-      it 'returns json with expected attributes', :aggregate_failures do
+      it 'returns json with expected attributes' do
         subject
 
         expect(response).to have_http_status(200)
@@ -51,7 +51,7 @@ RSpec.describe 'Policies' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:notifications'
 
-    it 'changes notification policy and returns an updated json object', :aggregate_failures do
+    it 'changes notification policy and returns an updated json object' do
       expect { subject }
         .to change { NotificationPolicy.find_or_initialize_by(account: user.account).for_not_following.to_sym }.from(:accept).to(:filter)
 

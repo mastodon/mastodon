@@ -15,7 +15,7 @@ RSpec.describe 'Accounts Notes API' do
       post "/api/v1/accounts/#{account.id}/note", params: { comment: comment }, headers: headers
     end
 
-    context 'when account note has reasonable length', :aggregate_failures do
+    context 'when account note has reasonable length' do
       let(:comment) { 'foo' }
 
       it 'updates account note' do
@@ -28,7 +28,7 @@ RSpec.describe 'Accounts Notes API' do
       end
     end
 
-    context 'when account note exceeds allowed length', :aggregate_failures do
+    context 'when account note exceeds allowed length' do
       let(:comment) { 'a' * 2_001 }
 
       it 'does not create account note' do

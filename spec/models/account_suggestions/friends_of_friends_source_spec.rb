@@ -32,7 +32,7 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
         [eve, mallory, jerk, larry, neil, morty].each { |account| eugen.follow!(account) }
       end
 
-      it 'returns eligible accounts', :aggregate_failures do
+      it 'returns eligible accounts' do
         results = subject.get(bob)
 
         # eve is returned through eugen

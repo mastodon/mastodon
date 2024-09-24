@@ -30,7 +30,7 @@ RSpec.describe '/api/v1/accounts' do
     context 'when logged out' do
       let(:account) { Fabricate(:account) }
 
-      it 'returns account entity as 200 OK', :aggregate_failures do
+      it 'returns account entity as 200 OK' do
         get "/api/v1/accounts/#{account.id}"
 
         expect(response).to have_http_status(200)
@@ -59,7 +59,7 @@ RSpec.describe '/api/v1/accounts' do
       let(:account) { Fabricate(:account) }
       let(:scopes) { 'read:accounts' }
 
-      it 'returns account entity as 200 OK', :aggregate_failures do
+      it 'returns account entity as 200 OK' do
         subject
 
         expect(response).to have_http_status(200)
@@ -84,7 +84,7 @@ RSpec.describe '/api/v1/accounts' do
     context 'when given truthy agreement' do
       let(:agreement) { 'true' }
 
-      it 'creates a user', :aggregate_failures do
+      it 'creates a user' do
         subject
 
         expect(response).to have_http_status(200)
@@ -121,7 +121,7 @@ RSpec.describe '/api/v1/accounts' do
       context 'with unlocked account' do
         let(:locked) { false }
 
-        it 'creates a following relation between user and target user', :aggregate_failures do
+        it 'creates a following relation between user and target user' do
           subject
 
           expect(response).to have_http_status(200)
@@ -143,7 +143,7 @@ RSpec.describe '/api/v1/accounts' do
       context 'with locked account' do
         let(:locked) { true }
 
-        it 'creates a follow request relation between user and target user', :aggregate_failures do
+        it 'creates a follow request relation between user and target user' do
           subject
 
           expect(response).to have_http_status(200)
@@ -215,7 +215,7 @@ RSpec.describe '/api/v1/accounts' do
       user.account.follow!(other_account)
     end
 
-    it 'removes the following relation between user and target user', :aggregate_failures do
+    it 'removes the following relation between user and target user' do
       subject
 
       expect(response).to have_http_status(200)
@@ -239,7 +239,7 @@ RSpec.describe '/api/v1/accounts' do
       other_account.follow!(user.account)
     end
 
-    it 'removes the followed relation between user and target user', :aggregate_failures do
+    it 'removes the followed relation between user and target user' do
       subject
 
       expect(response).to have_http_status(200)
@@ -263,7 +263,7 @@ RSpec.describe '/api/v1/accounts' do
       user.account.follow!(other_account)
     end
 
-    it 'creates a blocking relation', :aggregate_failures do
+    it 'creates a blocking relation' do
       subject
 
       expect(response).to have_http_status(200)
@@ -288,7 +288,7 @@ RSpec.describe '/api/v1/accounts' do
       user.account.block!(other_account)
     end
 
-    it 'removes the blocking relation between user and target user', :aggregate_failures do
+    it 'removes the blocking relation between user and target user' do
       subject
 
       expect(response).to have_http_status(200)
@@ -312,7 +312,7 @@ RSpec.describe '/api/v1/accounts' do
       user.account.follow!(other_account)
     end
 
-    it 'mutes notifications', :aggregate_failures do
+    it 'mutes notifications' do
       subject
 
       expect(response).to have_http_status(200)
@@ -338,7 +338,7 @@ RSpec.describe '/api/v1/accounts' do
       user.account.follow!(other_account)
     end
 
-    it 'does not mute notifications', :aggregate_failures do
+    it 'does not mute notifications' do
       subject
 
       expect(response).to have_http_status(200)
@@ -364,7 +364,7 @@ RSpec.describe '/api/v1/accounts' do
       user.account.follow!(other_account)
     end
 
-    it 'mutes notifications', :aggregate_failures do
+    it 'mutes notifications' do
       subject
 
       expect(response).to have_http_status(200)
@@ -390,7 +390,7 @@ RSpec.describe '/api/v1/accounts' do
       user.account.mute!(other_account)
     end
 
-    it 'removes the muting relation between user and target user', :aggregate_failures do
+    it 'removes the muting relation between user and target user' do
       subject
 
       expect(response).to have_http_status(200)

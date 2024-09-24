@@ -22,7 +22,7 @@ RSpec.describe 'Blocks' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:blocks'
 
-    it 'returns the blocked accounts', :aggregate_failures do
+    it 'returns the blocked accounts' do
       subject
 
       expect(response).to have_http_status(200)
@@ -51,7 +51,7 @@ RSpec.describe 'Blocks' do
     context 'with max_id param' do
       let(:params) { { max_id: blocks[1].id } }
 
-      it 'queries the blocks in range according to max_id', :aggregate_failures do
+      it 'queries the blocks in range according to max_id' do
         subject
 
         expect(response.parsed_body)
@@ -62,7 +62,7 @@ RSpec.describe 'Blocks' do
     context 'with since_id param' do
       let(:params) { { since_id: blocks[1].id } }
 
-      it 'queries the blocks in range according to since_id', :aggregate_failures do
+      it 'queries the blocks in range according to since_id' do
         subject
 
         expect(response.parsed_body)

@@ -16,7 +16,7 @@ RSpec.describe 'API V1 Polls Votes' do
       post "/api/v1/polls/#{poll.id}/votes", params: params, headers: headers
     end
 
-    it 'creates a vote', :aggregate_failures do
+    it 'creates a vote' do
       expect(response).to have_http_status(200)
       expect(response.content_type)
         .to start_with('application/json')

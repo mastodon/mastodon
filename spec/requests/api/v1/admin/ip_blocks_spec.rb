@@ -88,7 +88,7 @@ RSpec.describe 'IP Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns the correct ip block', :aggregate_failures do
+    it 'returns the correct ip block' do
       subject
 
       expect(response).to have_http_status(200)
@@ -124,7 +124,7 @@ RSpec.describe 'IP Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns the correct ip block', :aggregate_failures do
+    it 'returns the correct ip block' do
       subject
 
       expect(response).to have_http_status(200)
@@ -197,7 +197,7 @@ RSpec.describe 'IP Blocks' do
     let!(:ip_block) { IpBlock.create(ip: '185.200.13.3', severity: 'no_access', comment: 'Spam', expires_in: 48.hours) }
     let(:params)    { { severity: 'sign_up_requires_approval', comment: 'Decreasing severity' } }
 
-    it 'returns the correct ip block', :aggregate_failures do
+    it 'returns the correct ip block' do
       expect { subject }
         .to change_severity_level
         .and change_comment_value
@@ -238,7 +238,7 @@ RSpec.describe 'IP Blocks' do
 
     let!(:ip_block) { IpBlock.create(ip: '185.200.13.3', severity: 'no_access') }
 
-    it 'deletes the ip block', :aggregate_failures do
+    it 'deletes the ip block' do
       subject
 
       expect(response).to have_http_status(200)
