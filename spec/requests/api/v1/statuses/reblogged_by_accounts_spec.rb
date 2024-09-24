@@ -32,6 +32,8 @@ RSpec.describe 'API V1 Statuses Reblogged by Accounts' do
             prev: api_v1_status_reblogged_by_index_url(limit: 2, since_id: bob.statuses.first.id),
             next: api_v1_status_reblogged_by_index_url(limit: 2, max_id: alice.statuses.first.id)
           )
+        expect(response.content_type)
+          .to start_with('application/json')
 
         expect(response.parsed_body.size)
           .to eq(2)
@@ -71,6 +73,8 @@ RSpec.describe 'API V1 Statuses Reblogged by Accounts' do
           subject
 
           expect(response).to have_http_status(404)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
     end
@@ -87,6 +91,8 @@ RSpec.describe 'API V1 Statuses Reblogged by Accounts' do
           subject
 
           expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
     end

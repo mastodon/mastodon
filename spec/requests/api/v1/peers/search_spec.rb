@@ -23,6 +23,8 @@ RSpec.describe 'API Peers Search' do
 
         expect(response)
           .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body)
           .to be_blank
       end
@@ -34,6 +36,8 @@ RSpec.describe 'API Peers Search' do
 
         expect(response)
           .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body)
           .to be_blank
       end
@@ -49,6 +53,8 @@ RSpec.describe 'API Peers Search' do
 
         expect(response)
           .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body.size)
           .to eq(1)
         expect(response.parsed_body.first)

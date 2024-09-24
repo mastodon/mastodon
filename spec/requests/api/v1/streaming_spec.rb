@@ -17,6 +17,8 @@ RSpec.describe 'API V1 Streaming' do
         get '/api/v1/streaming'
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

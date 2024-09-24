@@ -82,6 +82,8 @@ RSpec.describe 'Directories API' do
         get '/api/v1/directory', headers: headers
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body.size).to eq(2)
         expect(response.parsed_body.pluck(:id)).to contain_exactly(eligible_remote_account.id.to_s, local_discoverable_account.id.to_s)
       end
@@ -101,6 +103,8 @@ RSpec.describe 'Directories API' do
         get '/api/v1/directory', headers: headers, params: { local: '1' }
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body.size).to eq(1)
         expect(response.parsed_body.first[:id]).to include(local_account.id.to_s)
         expect(response.body).to_not include(remote_account.id.to_s)
@@ -115,6 +119,8 @@ RSpec.describe 'Directories API' do
         get '/api/v1/directory', headers: headers, params: { order: 'active' }
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body.size).to eq(2)
         expect(response.parsed_body.first[:id]).to include(new_stat.account_id.to_s)
         expect(response.parsed_body.second[:id]).to include(old_stat.account_id.to_s)
@@ -130,6 +136,8 @@ RSpec.describe 'Directories API' do
         get '/api/v1/directory', headers: headers, params: { order: 'new' }
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response.parsed_body.size).to eq(2)
         expect(response.parsed_body.first[:id]).to include(account_new.id.to_s)
         expect(response.parsed_body.second[:id]).to include(account_old.id.to_s)

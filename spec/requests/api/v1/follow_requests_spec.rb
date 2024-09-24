@@ -36,6 +36,8 @@ RSpec.describe 'Follow requests' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body).to match_array(expected_response)
     end
 
@@ -66,6 +68,8 @@ RSpec.describe 'Follow requests' do
     it 'allows the requesting follower to follow', :aggregate_failures do
       expect { subject }.to change { follower.following?(user.account) }.from(false).to(true)
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body[:followed_by]).to be true
     end
   end
@@ -87,6 +91,8 @@ RSpec.describe 'Follow requests' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(FollowRequest.where(target_account: user.account, account: follower)).to_not exist
       expect(response.parsed_body[:followed_by]).to be false
     end

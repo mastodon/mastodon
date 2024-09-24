@@ -26,21 +26,20 @@ RSpec.describe 'Blocks' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body).to match_array(expected_response)
     end
 
     context 'with limit param' do
       let(:params) { { limit: 2 } }
 
-      it 'returns only the requested number of blocked accounts' do
+      it 'returns only the requested number of blocked accounts and sets link header pagination' do
         subject
 
         expect(response.parsed_body.size).to eq(params[:limit])
-      end
-
-      it 'sets correct link header pagination' do
-        subject
-
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response)
           .to include_pagination_headers(
             prev: api_v1_blocks_url(limit: params[:limit], since_id: blocks.last.id),

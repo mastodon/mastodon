@@ -24,35 +24,29 @@ RSpec.describe 'Favourites' do
 
     it_behaves_like 'forbidden for wrong scope', 'write'
 
-    it 'returns http success' do
+    it 'returns http success and includes the favourites' do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns the favourites' do
-      subject
-
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body).to match_array(expected_response)
     end
 
     context 'with limit param' do
       let(:params) { { limit: 1 } }
 
-      it 'returns only the requested number of favourites' do
+      it 'returns only the requested number of favourites and sets pagination headers' do
         subject
 
         expect(response.parsed_body.size).to eq(params[:limit])
-      end
-
-      it 'sets the correct pagination headers' do
-        subject
-
         expect(response)
           .to include_pagination_headers(
             prev: api_v1_favourites_url(limit: params[:limit], min_id: favourites.last.id),
             next: api_v1_favourites_url(limit: params[:limit], max_id: favourites.second.id)
           )
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -63,6 +57,8 @@ RSpec.describe 'Favourites' do
         subject
 
         expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
