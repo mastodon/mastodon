@@ -3,12 +3,13 @@ vi:
   simple_form:
     hints:
       account:
-        discoverable: Các tút và hồ sơ công khai của bạn có thể được giới thiệu hoặc đề xuất ở nhiều khu vực khác nhau của Mastodon và hồ sơ của bạn có thể được đề xuất cho những người dùng khác.
+        attribution_domains_as_text: Bảo vệ khỏi những sự gán ghép sai.
+        discoverable: Hồ sơ và tút công khai của bạn được đề xuất cho những người dùng Mastodon khác.
         display_name: Tên đầy đủ hoặc biệt danh đều được.
         fields: Trang blog của bạn, nghề nghiệp, tuổi hoặc bất cứ thứ gì.
-        indexable: Tút công khai của bạn sẽ xuất hiện khi tìm kiếm trên Mastodon. Những người đã tương tác với tút của bạn có thể tìm kiếm chúng.
-        note: 'Bạn có thể @nhắnriêng ai đó hoặc #hashtags.'
-        show_collections: Mọi người sẽ biết những bạn theo dõi và người theo dõi bạn. Những người bạn theo dõi sẽ vẫn thấy rằng bạn theo dõi họ.
+        indexable: Mọi người có thể tìm kiếm và tương tác với những tút công khai của bạn trên Mastodon.
+        note: 'Bạn có thể @aiđó hoặc #hashtags.'
+        show_collections: Mọi người sẽ biết những bạn theo dõi và người theo dõi bạn.
         unlocked: Mọi người sẽ theo dõi bạn mà không cần bạn cho phép.
       account_alias:
         acct: Nhập tên_người_dùng@máy chủ của tài khoản cũ
@@ -39,18 +40,18 @@ vi:
         text: Bạn chỉ có thể khiếu nại mỗi lần một cảnh cáo
       defaults:
         autofollow: Những người đăng ký sẽ tự động theo dõi bạn
-        avatar: PNG, GIF hoặc JPG, tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
+        avatar: WEBP, PNG, GIF hoặc JPG, tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         bot: Tài khoản này tự động thực hiện các hành động và không được quản lý bởi người thật
-        context: Chọn một hoặc nhiều nơi mà bộ lọc sẽ áp dụng
+        context: Chọn những nơi mà bộ lọc sẽ áp dụng
         current_password: Vì mục đích bảo mật, vui lòng nhập mật khẩu của tài khoản hiện tại
         current_username: Để xác nhận, vui lòng nhập tên người dùng của tài khoản hiện tại
         digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được tin nhắn (trong thời gian vắng mặt)
         email: Bạn sẽ được gửi một email xác minh
-        header: PNG, GIF hoặc JPG, tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
+        header: WEBP, PNG, GIF hoặc JPG, tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         inbox_url: Sao chép URL của máy chủ mà bạn muốn dùng
         irreversible: Các tút đã lọc sẽ không thể phục hồi, kể cả sau khi xóa bộ lọc
         locale: Ngôn ngữ của giao diện, email và thông báo đẩy
-        password: Dùng ít nhất 8 ký tự
+        password: Tối thiểu 8 ký tự
         phrase: Sẽ được hiện thị trong văn bản hoặc cảnh báo nội dung của một tút
         scopes: Ứng dụng sẽ được phép truy cập những API nào. Nếu bạn chọn quyền cấp cao nhất, không cần chọn quyền nhỏ.
         setting_aggregate_reblogs: Nếu một tút đã được đăng lại thì những lượt đăng lại sau sẽ không hiện trên bảng tin nữa
@@ -73,17 +74,19 @@ vi:
       filters:
         action: Chọn hành động sẽ thực hiện khi một tút khớp với bộ lọc
         actions:
-          hide: Ẩn hoàn toàn nội dung đã lọc, như thể nó không tồn tại
-          warn: Ẩn nội dung đã lọc đằng sau một cảnh báo đề cập đến tiêu đề của bộ lọc
+          hide: Ẩn hoàn toàn, như thể nó không tồn tại
+          warn: Hiện cảnh báo và bộ lọc
       form_admin_settings:
         activity_api_enabled: Số lượng tút được đăng trong máy chủ, người dùng đang hoạt động và đăng ký mới hàng tuần
-        backups_retention_period: Lưu trữ dữ liệu người dùng đã tạo trong số ngày được chỉ định.
+        app_icon: WEBP, PNG, GIF hoặc JPG. Dùng biểu tượng tùy chỉnh trên thiết bị di động.
+        backups_retention_period: Người dùng có khả năng tạo bản sao lưu các tút của họ để tải xuống sau. Các bản sao lưu này sẽ tự động bị xóa khỏi bộ nhớ của bạn sau số ngày được chỉ định.
         bootstrap_timeline_accounts: Những người này sẽ được ghim vào đầu các gợi ý theo dõi của người mới.
         closed_registrations_message: Được hiển thị khi đóng đăng ký
-        content_cache_retention_period: Tút từ các máy chủ khác sẽ bị xóa sau số ngày được chỉ định. Sau đó có thể không thể phục hồi được.
+        content_cache_retention_period: Tất cả tút từ các máy chủ khác (bao gồm cả đăng lại và trả lời) sẽ bị xóa sau số ngày được chỉ định mà không tính đến bất kỳ tương tác nào của người dùng cục bộ với các tút đó. Điều này bao gồm các tút mà người dùng cục bộ đã đánh dấu nó là dấu trang hoặc mục yêu thích. Những lượt nhắc riêng tư giữa những người dùng từ các máy chủ khác nhau cũng sẽ bị mất và không thể khôi phục. Việc sử dụng cài đặt này dành cho các trường hợp có mục đích đặc biệt và phá vỡ nhiều kỳ vọng của người dùng khi được triển khai cho mục đích sử dụng chung.
         custom_css: Bạn có thể tùy chỉnh phong cách trên bản web của Mastodon.
+        favicon: WEBP, PNG, GIF hoặc JPG. Dùng favicon Maston tùy chỉnh.
         mascot: Ghi đè hình minh họa trong giao diện web nâng cao.
-        media_cache_retention_period: Media đã tải xuống sẽ bị xóa sau số ngày được chỉ định và sẽ tải xuống lại theo yêu cầu.
+        media_cache_retention_period: Các tệp phương tiện từ các tút do người dùng máy chủ khác thực hiện sẽ được lưu vào bộ đệm trên máy chủ của bạn. Khi được đặt thành giá trị dương, phương tiện sẽ bị xóa sau số ngày được chỉ định. Nếu dữ liệu phương tiện được yêu cầu sau khi bị xóa, dữ liệu đó sẽ được tải xuống lại nếu nội dung nguồn vẫn còn. Do những hạn chế về tần suất thẻ xem trước liên kết thăm dò ý kiến ​​các trang web của bên thứ ba, bạn nên đặt giá trị này thành ít nhất 14 ngày, nếu không thẻ xem trước liên kết sẽ không được cập nhật theo yêu cầu trước thời gian đó.
         peers_api_enabled: Danh sách các máy chủ khác mà máy chủ này đã liên hợp. Không có dữ liệu nào được đưa vào đây về việc bạn có liên kết với một máy chủ nhất định hay không, chỉ là máy chủ của bạn biết về nó. Điều này được sử dụng bởi các dịch vụ thu thập số liệu thống kê về liên kết theo nghĩa chung.
         profile_directory: Liệt kê tất cả người đã chọn tham gia để có thể khám phá.
         require_invite_text: Khi đăng ký yêu cầu phê duyệt thủ công, hãy đặt câu hỏi "Tại sao bạn muốn tham gia?" nhập văn bản bắt buộc thay vì tùy chọn
@@ -116,6 +119,7 @@ vi:
           sign_up_requires_approval: Bạn sẽ phê duyệt những đăng ký mới từ IP này
         severity: Chọn hành động nếu nhận được yêu cầu từ IP này
       rule:
+        hint: Tùy chọn. Cung cấp chi tiết hơn về nội quy
         text: Mô tả một nội quy bắt buộc trên máy chủ này. Nên để ngắn và đơn giản
       sessions:
         otp: 'Nhập mã xác minh 2 bước được tạo bởi ứng dụng điện thoại của bạn hoặc dùng một trong các mã khôi phục của bạn:'
@@ -127,7 +131,7 @@ vi:
         name: Bạn có thể thay đổi cách viết hoa các chữ cái để giúp nó dễ đọc hơn
       user:
         chosen_languages: Chỉ hiển thị những tút viết bằng các ngôn ngữ sau
-        role: Vai trò kiểm soát những quyền mà người dùng có
+        role: Vai trò kiểm soát những quyền mà người dùng có.
       user_role:
         color: Màu được sử dụng cho vai trò trong toàn bộ giao diện người dùng, dưới dạng RGB ở định dạng hex
         highlighted: Vai trò sẽ hiển thị công khai
@@ -140,6 +144,7 @@ vi:
         url: Nơi những sự kiện được gửi đến
     labels:
       account:
+        attribution_domains_as_text: Chỉ cho phép các website đặc biệt
         discoverable: Cho phép khám phá hồ sơ
         fields:
           name: Nhãn
@@ -208,7 +213,8 @@ vi:
         setting_default_privacy: Kiểu đăng
         setting_default_sensitive: Đánh dấu media nhạy cảm
         setting_delete_modal: Hỏi trước khi xóa tút
-        setting_disable_swiping: Không dùng chuyển động vuốt
+        setting_disable_hover_cards: Tắt thẻ xem trước hồ sơ
+        setting_disable_swiping: Tắt thao tác vuốt
         setting_display_media: Media nhạy cảm
         setting_display_media_default: Mặc định
         setting_display_media_hide_all: Ẩn toàn bộ
@@ -220,7 +226,7 @@ vi:
         setting_theme: Giao diện
         setting_trends: Hiển thị xu hướng trong ngày
         setting_unfollow_modal: Hỏi trước khi bỏ theo dõi ai đó
-        setting_use_blurhash: Phủ màu media nhạy cảm
+        setting_use_blurhash: Làm mờ media nhạy cảm
         setting_use_pending_items: Không tự động cập nhật bảng tin
         severity: Mức độ nghiêm trọng
         sign_in_token_attempt: Mã an toàn
@@ -239,11 +245,13 @@ vi:
           warn: Ẩn kèm theo cảnh báo
       form_admin_settings:
         activity_api_enabled: Công khai số liệu thống kê tổng hợp về hoạt động của người dùng trong API
+        app_icon: Biểu tượng ứng dụng
         backups_retention_period: Thời hạn lưu trữ nội dung người dùng sao lưu
         bootstrap_timeline_accounts: Luôn đề xuất những người này đến người mới
         closed_registrations_message: Thông báo tùy chỉnh khi tắt đăng ký
-        content_cache_retention_period: Thời hạn lưu trữ cache nội dung
+        content_cache_retention_period: Khoảng thời gian lưu giữ nội dung máy chủ khác
         custom_css: Tùy chỉnh CSS
+        favicon: Favicon
         mascot: Tùy chỉnh linh vật (kế thừa)
         media_cache_retention_period: Thời hạn lưu trữ cache media
         peers_api_enabled: Công khai danh sách các máy chủ được phát hiện trong API
@@ -297,17 +305,18 @@ vi:
           label: Đã có phiên bản Mastodon mới
           none: Không bao giờ thông báo (không đề xuất)
           patch: Thông báo bản cập sửa lỗi
-        trending_tag: Phê duyệt nội dung nổi bật mới
+        trending_tag: Phê duyệt xu hướng mới
       rule:
+        hint: Thông tin thêm
         text: Nội quy
       settings:
         indexable: Cho phép hiện hồ sơ trong công cụ tìm kiếm
-        show_application: Cho phép hiện ứng dụng dùng để đăng tút
+        show_application: Hiện ứng dụng dùng để đăng tút
       tag:
         listable: Cho phép xuất hiện trong tìm kiếm và đề xuất
         name: Hashtag
         trendable: Cho phép hashtag này lên xu hướng
-        usable: Cho phép dùng trong tút
+        usable: Cho phép dùng hashtag này khi soạn tút
       user:
         role: Vai trò
         time_zone: Múi giờ

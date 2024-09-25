@@ -30,5 +30,9 @@ RSpec.describe Vacuum::PreviewCardsVacuum do
     it 'does not delete attached preview cards' do
       expect(new_preview_card.reload).to be_persisted
     end
+
+    it 'does not delete orphaned preview cards in the retention period' do
+      expect(orphaned_preview_card.reload).to be_persisted
+    end
   end
 end

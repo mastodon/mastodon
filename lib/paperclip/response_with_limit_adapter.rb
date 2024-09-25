@@ -16,7 +16,9 @@ module Paperclip
     private
 
     def cache_current_values
-      @original_filename = filename_from_content_disposition.presence || filename_from_path.presence || 'data'
+      @target.response.require_limit_not_exceeded!(@target.limit)
+
+      @original_filename = truncated_filename
       @tempfile = copy_to_tempfile(@target)
       @content_type = ContentTypeDetector.new(@tempfile.path).detect
       @size = File.size(@tempfile)
@@ -27,20 +29,26 @@ module Paperclip
 
       source.response.body.each do |chunk|
         bytes_read += chunk.bytesize
+        raise Mastodon::LengthValidationError, "Body size exceeds limit of #{source.limit}" if bytes_read > source.limit
 
         destination.write(chunk)
         chunk.clear
-
-        raise Mastodon::LengthValidationError if bytes_read > source.limit
       end
 
       destination.rewind
       destination
-    rescue Mastodon::LengthValidationError
+    rescue
       destination.close(true)
       raise
     ensure
       source.response.connection.close
+    end
+
+    def truncated_filename
+      filename = filename_from_content_disposition.presence || filename_from_path.presence || 'data'
+      extension = File.extname(filename)
+      basename = File.basename(filename, extension)
+      [basename[...20], extension[..4]].compact_blank.join
     end
 
     def filename_from_content_disposition

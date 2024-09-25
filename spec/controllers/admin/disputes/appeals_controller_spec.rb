@@ -30,42 +30,48 @@ RSpec.describe Admin::Disputes::AppealsController do
   end
 
   describe 'POST #approve' do
+    subject { post :approve, params: { id: appeal.id } }
+
     let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
-    before do
-      allow(UserMailer).to receive(:appeal_approved)
-        .and_return(instance_double(ActionMailer::MessageDelivery, deliver_later: nil))
-      post :approve, params: { id: appeal.id }
-    end
+    it 'redirects back to the strike page and notifies target account about approved appeal', :inline_jobs do
+      emails = capture_emails { subject }
 
-    it 'unsuspends a suspended account' do
-      expect(target_account.reload.suspended?).to be false
-    end
+      expect(response)
+        .to redirect_to(disputes_strike_path(appeal.strike))
 
-    it 'redirects back to the strike page' do
-      expect(response).to redirect_to(disputes_strike_path(appeal.strike))
-    end
+      expect(target_account.reload)
+        .to_not be_suspended
 
-    it 'notifies target account about approved appeal' do
-      expect(UserMailer).to have_received(:appeal_approved).with(target_account.user, appeal)
+      expect(emails.size)
+        .to eq(1)
+      expect(emails.first)
+        .to have_attributes(
+          to: contain_exactly(target_account.user.email),
+          subject: eq(I18n.t('user_mailer.appeal_approved.subject', date: I18n.l(appeal.created_at)))
+        )
     end
   end
 
   describe 'POST #reject' do
+    subject { post :reject, params: { id: appeal.id } }
+
     let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
-    before do
-      allow(UserMailer).to receive(:appeal_rejected)
-        .and_return(instance_double(ActionMailer::MessageDelivery, deliver_later: nil))
-      post :reject, params: { id: appeal.id }
-    end
+    it 'redirects back to the strike page and notifies target account about rejected appeal', :inline_jobs do
+      emails = capture_emails { subject }
 
-    it 'redirects back to the strike page' do
-      expect(response).to redirect_to(disputes_strike_path(appeal.strike))
-    end
+      expect(response)
+        .to redirect_to(disputes_strike_path(appeal.strike))
 
-    it 'notifies target account about rejected appeal' do
-      expect(UserMailer).to have_received(:appeal_rejected).with(target_account.user, appeal)
+      expect(emails.size)
+        .to eq(1)
+
+      expect(emails.first)
+        .to have_attributes(
+          to: contain_exactly(target_account.user.email),
+          subject: eq(I18n.t('user_mailer.appeal_rejected.subject', date: I18n.l(appeal.created_at)))
+        )
     end
   end
 end

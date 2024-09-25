@@ -15,6 +15,12 @@ fo:
       user/invite_request:
         text: Orsøk
     errors:
+      attributes:
+        domain:
+          invalid: er ikki eitt virkið økisnavn
+      messages:
+        invalid_domain_on_line: "%{value} er ikki eitt virkið økisnavn"
+        too_many_lines: er longri enn markið á %{limit} reglur
       models:
         account:
           attributes:

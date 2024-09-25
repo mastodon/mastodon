@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ReportFilter do
+RSpec.describe ReportFilter do
   describe 'with empty params' do
     it 'defaults to unresolved reports list' do
       filter = described_class.new({})

@@ -47,8 +47,12 @@ RSpec.describe ActivityPub::Activity::Delete do
         expect(Status.find_by(id: status.id)).to be_nil
       end
 
-      it 'sends delete activity to followers of rebloggers' do
+      it 'sends delete activity to followers of rebloggers', :inline_jobs do
         expect(a_request(:post, 'http://example.com/inbox')).to have_been_made.once
+      end
+
+      it 'deletes the reblog' do
+        expect { reblog.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end

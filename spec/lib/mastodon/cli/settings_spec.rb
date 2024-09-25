@@ -3,67 +3,58 @@
 require 'rails_helper'
 require 'mastodon/cli/settings'
 
-describe Mastodon::CLI::Settings do
-  describe '.exit_on_failure?' do
-    it 'returns true' do
-      expect(described_class.exit_on_failure?).to be true
-    end
-  end
+RSpec.describe Mastodon::CLI::Settings do
+  it_behaves_like 'CLI Command'
 
   describe 'subcommand "registrations"' do
+    subject { cli.invoke(action, arguments, options) }
+
     let(:cli) { Mastodon::CLI::Registrations.new }
+    let(:arguments) { [] }
+    let(:options) { {} }
 
     before do
       Setting.registrations_mode = nil
     end
 
     describe '#open' do
-      it 'changes "registrations_mode" to "open"' do
-        expect { cli.open }.to change(Setting, :registrations_mode).from(nil).to('open')
-      end
+      let(:action) { :open }
 
-      it 'displays success message' do
-        expect { cli.open }.to output(
-          a_string_including('OK')
-        ).to_stdout
+      it 'changes "registrations_mode" to "open" and displays success' do
+        expect { subject }
+          .to change(Setting, :registrations_mode).from(nil).to('open')
+          .and output_results('OK')
       end
     end
 
     describe '#approved' do
-      it 'changes "registrations_mode" to "approved"' do
-        expect { cli.approved }.to change(Setting, :registrations_mode).from(nil).to('approved')
-      end
+      let(:action) { :approved }
 
-      it 'displays success message' do
-        expect { cli.approved }.to output(
-          a_string_including('OK')
-        ).to_stdout
+      it 'changes "registrations_mode" to "approved" and displays success' do
+        expect { subject }
+          .to change(Setting, :registrations_mode).from(nil).to('approved')
+          .and output_results('OK')
       end
 
       context 'with --require-reason' do
-        before do
-          cli.options = { require_reason: true }
-        end
+        let(:options) { { require_reason: true } }
 
-        it 'changes "registrations_mode" to "approved"' do
-          expect { cli.approved }.to change(Setting, :registrations_mode).from(nil).to('approved')
-        end
-
-        it 'sets "require_invite_text" to "true"' do
-          expect { cli.approved }.to change(Setting, :require_invite_text).from(false).to(true)
+        it 'changes registrations_mode and require_invite_text' do
+          expect { subject }
+            .to output_results('OK')
+            .and change(Setting, :registrations_mode).from(nil).to('approved')
+            .and change(Setting, :require_invite_text).from(false).to(true)
         end
       end
     end
 
     describe '#close' do
-      it 'changes "registrations_mode" to "none"' do
-        expect { cli.close }.to change(Setting, :registrations_mode).from(nil).to('none')
-      end
+      let(:action) { :close }
 
-      it 'displays success message' do
-        expect { cli.close }.to output(
-          a_string_including('OK')
-        ).to_stdout
+      it 'changes "registrations_mode" to "none" and displays success' do
+        expect { subject }
+          .to change(Setting, :registrations_mode).from(nil).to('none')
+          .and output_results('OK')
       end
     end
   end

@@ -11,6 +11,7 @@ import type {
 import { createBrowserHistory } from 'history';
 
 import { layoutFromWindow } from 'mastodon/is_mobile';
+import { isDevelopment } from 'mastodon/utils/environment';
 
 interface MastodonLocationState {
   fromMastodon?: boolean;
@@ -21,7 +22,7 @@ type LocationState = MastodonLocationState | null | undefined;
 
 type HistoryPath = Path | LocationDescriptor<LocationState>;
 
-const browserHistory = createBrowserHistory<LocationState>();
+export const browserHistory = createBrowserHistory<LocationState>();
 const originalPush = browserHistory.push.bind(browserHistory);
 const originalReplace = browserHistory.replace.bind(browserHistory);
 
@@ -40,7 +41,7 @@ function normalizePath(
   } else if (
     location.state !== undefined &&
     state !== undefined &&
-    process.env.NODE_ENV === 'development'
+    isDevelopment()
   ) {
     // eslint-disable-next-line no-console
     console.log(
@@ -50,7 +51,8 @@ function normalizePath(
 
   if (
     layoutFromWindow() === 'multi-column' &&
-    !location.pathname?.startsWith('/deck')
+    location.pathname &&
+    !location.pathname.startsWith('/deck')
   ) {
     location.pathname = `/deck${location.pathname}`;
   }

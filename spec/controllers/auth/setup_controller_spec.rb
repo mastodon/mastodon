@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Auth::SetupController do
+RSpec.describe Auth::SetupController do
   render_views
 
   describe 'GET #show' do

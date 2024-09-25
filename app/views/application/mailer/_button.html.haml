@@ -1,0 +1,7 @@
+%table.email-btn-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-btn-td
+      - if defined?(has_arrow) && !has_arrow
+        = link_to text, url, class: 'email-btn-a email-btn-hover'
+      - else
+        = link_to "#{text} ➜", url, class: 'email-btn-a email-btn-hover'

@@ -6,13 +6,13 @@ require 'rails/generators/testing/assertions'
 
 require 'generators/post_deployment_migration/post_deployment_migration_generator'
 
-describe PostDeploymentMigrationGenerator, type: :generator do
+RSpec.describe PostDeploymentMigrationGenerator, type: :generator do
   include Rails::Generators::Testing::Behavior
   include Rails::Generators::Testing::Assertions
   include FileUtils
 
   tests described_class
-  destination File.expand_path('../../tmp', __dir__)
+  destination Rails.root.join('tmp', 'generator-test')
   before { prepare_destination }
   after { rm_rf(destination_root) }
 

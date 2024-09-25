@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ReactComponentHelper do
+RSpec.describe ReactComponentHelper do
   describe 'react_component' do
     context 'with no block passed in' do
       let(:result) { helper.react_component('name', { one: :two }) }

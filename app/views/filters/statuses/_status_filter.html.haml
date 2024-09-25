@@ -15,12 +15,12 @@
 
     - status.ordered_media_attachments.each do |media_attachment|
       %abbr{ title: media_attachment.description }
-        = fa_icon 'link'
+        = material_symbol 'link'
         = media_attachment.file_file_name
 
     .detailed-status__meta
       = link_to ActivityPub::TagManager.instance.url_for(status.account), class: 'name-tag', target: '_blank', rel: 'noopener noreferrer' do
-        = image_tag(status.account.avatar.url, width: 15, height: 15, alt: display_name(status.account), class: 'avatar')
+        = image_tag(status.account.avatar.url, width: 15, height: 15, alt: '', class: 'avatar')
         .username= status.account.acct
       ·
       = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime', target: stream_link_target, rel: 'noopener noreferrer' do
@@ -29,9 +29,9 @@
         ·
         = t('statuses.edited_at_html', date: content_tag(:time, l(status.edited_at), datetime: status.edited_at.iso8601, title: l(status.edited_at), class: 'formatted'))
       ·
-      = fa_visibility_icon(status)
+      = material_symbol visibility_icon(status)
       = t("statuses.visibilities.#{status.visibility}")
       - if status.sensitive?
         ·
-        = fa_icon('eye-slash fw')
+        = material_symbol 'visibility_off'
         = t('stream_entries.sensitive_content')

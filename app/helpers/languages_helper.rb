@@ -109,6 +109,7 @@ module LanguagesHelper
     mn: 'Монгол хэл',
     mr: 'मराठी',
     ms: 'Melayu',
+    'ms-Arab': 'بهاس ملايو',
     mt: 'Malti',
     my: 'မြန်မာ',
     na: 'Ekakairũ Naoero',
@@ -191,15 +192,20 @@ module LanguagesHelper
     chr: 'ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ',
     ckb: 'کوردیی ناوەندی',
     cnr: 'crnogorski',
+    csb: 'Kaszëbsczi',
     jbo: 'la .lojban.',
     kab: 'Taqbaylit',
     ldn: 'Láadan',
     lfn: 'lingua franca nova',
+    moh: 'Kanienʼkéha',
+    nds: 'Plattdüütsch',
+    pdc: 'Pennsilfaani-Deitsch',
     sco: 'Scots',
     sma: 'Åarjelsaemien Gïele',
     smj: 'Julevsámegiella',
     szl: 'ślōnski',
     tok: 'toki pona',
+    vai: 'ꕙꔤ',
     xal: 'Хальмг келн',
     zba: 'باليبلن',
     zgh: 'ⵜⴰⵎⴰⵣⵉⵖⵜ',
@@ -224,7 +230,7 @@ module LanguagesHelper
     'en-GB': 'English (British)',
     'es-AR': 'español (Argentina)',
     'es-MX': 'español (México)',
-    'fr-QC': 'français (Canadien)',
+    'fr-CA': 'français (Canadien)',
     'pt-BR': 'português (Brasil)',
     'pt-PT': 'português (Portugal)',
     'sr-Latn': 'srpski (latinica)',
@@ -234,6 +240,10 @@ module LanguagesHelper
   private_class_method def self.locale_name_for_sorting(locale)
     if locale.blank? || locale == 'und'
       '000'
+    elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
+      ASCIIFolding.new.fold(supported_locale[1]).downcase
+    elsif (regional_locale = REGIONAL_LOCALE_NAMES[locale.to_sym])
+      ASCIIFolding.new.fold(regional_locale).downcase
     else
       standard_locale_name(locale)
     end
@@ -301,5 +311,3 @@ module LanguagesHelper
     locale_name.to_sym if locale_name.present? && I18n.available_locales.include?(locale_name.to_sym)
   end
 end
-
-# rubocop:enable Metrics/ModuleLength

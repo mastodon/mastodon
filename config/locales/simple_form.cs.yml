@@ -3,9 +3,13 @@ cs:
   simple_form:
     hints:
       account:
+        discoverable: Vaše veřejné příspěvky a profil mohou být zobrazeny nebo doporučeny v různých oblastech Mastodonu a váš profil může být navrhován ostatním uživatelům.
         display_name: Vaše celé jméno nebo přezdívka.
         fields: Vaše domovská stránka, zájmena, věk, cokoliv chcete.
+        indexable: Vaše veřejné příspěvky se mohou objevit ve výsledcích vyhledávání na Mastodonu. Lidé, kteří s vašimi příspěvky interagovaly, je mohou stále vyhledávat.
         note: 'Můžete @zmínit jiné osoby nebo #hashtagy.'
+        show_collections: Lidé budou moci procházet skrz sledující. Lidé, které sledujete, uvidí, že je sledujete bezohledně.
+        unlocked: Lidé vás budou moci sledovat, aniž by vás žádali o schválení. Zrušte zaškrtnutí, pokud chcete zkontrolovat požadavky a zvolte, zda přijmete nebo odmítněte nové následovníky.
       account_alias:
         acct: Zadejte svůj účet, ze kterého se chcete přesunout jinam, ve formátu přezdívka@doména
       account_migration:
@@ -34,15 +38,15 @@ cs:
       appeal:
         text: Proti prohřešku se můžete odvolat jen jednou
       defaults:
-        autofollow: Lidé, kteří se zaregistrují na základě pozvánky, vás budou automaticky sledovat
-        avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
+        autofollow: Lidé, kteří se zaregistrují skrz pozvánky, vás budou automaticky sledovat
+        avatar: WEBP, PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         bot: Signalizovat ostatním, že účet převážně vykonává automatizované akce a nemusí být monitorován
         context: Jeden či více kontextů, ve kterých má být filtr uplatněn
         current_password: Z bezpečnostních důvodů prosím zadejte heslo současného účtu
         current_username: Potvrďte prosím tuto akci zadáním uživatelského jména aktuálního účtu
         digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste během své nepřítomnosti obdrželi osobní zprávy
         email: Bude vám poslán potvrzovací e-mail
-        header: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
+        header: WEBP, PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         inbox_url: Zkopírujte URL z hlavní stránky mostu, který chcete použít
         irreversible: Filtrované příspěvky nenávratně zmizí, i pokud bude filtr později odstraněn
         locale: Jazyk uživatelského rozhraní, e-mailů a push notifikací
@@ -55,7 +59,7 @@ cs:
         setting_display_media_default: Skrývat média označená jako citlivá
         setting_display_media_hide_all: Vždy skrývat média
         setting_display_media_show_all: Vždy zobrazovat média
-        setting_use_blurhash: Gradienty jsou založeny na barvách skryté grafiky, ale zakrývají jakékoliv detaily
+        setting_use_blurhash: Gradienty jsou vytvořeny na základě barvev skrytých médií, ale zakrývají veškeré detaily
         setting_use_pending_items: Aktualizovat časovou osu až po kliknutí namísto automatického rolování kanálu
         username: Pouze písmena, číslice a podtržítka
         whole_word: Je-li klíčové slovo či fráze pouze alfanumerická, bude aplikován pouze, pokud se shoduje s celým slovem
@@ -72,14 +76,16 @@ cs:
           hide: Úplně schovat filtrovaný obsah tak, jako by neexistoval
           warn: Schovat filtrovaný obsah za varováním zmiňujicím název filtru
       form_admin_settings:
-        activity_api_enabled: Počty lokálně publikovaných příspěvků, aktivních uživatelů a nových registrací v týdenních intervalech
-        backups_retention_period: Zachovat generované uživatelské archivy pro zadaný počet dní.
+        activity_api_enabled: Počty lokálně zveřejnělých příspěvků, aktivních uživatelů a nových registrací v týdenních intervalech
+        app_icon: WEBP, PNG, GIF nebo JPG. Nahradí výchozí ikonu aplikace v mobilních zařízeních vlastní ikonou.
+        backups_retention_period: Uživatelé mají možnost vytvářet archivy svých příspěvků, které si mohou stáhnout později. Pokud je nastaveno na kladnou hodnotu, budou tyto archivy po zadaném počtu dní automaticky odstraněny z úložiště.
         bootstrap_timeline_accounts: Tyto účty budou připnuty na vrchol nových uživatelů podle doporučení.
         closed_registrations_message: Zobrazeno při zavření registrace
-        content_cache_retention_period: Příspěvky z jiných serverů budou odstraněny po zadaném počtu dní, pokud je nastavena kladná hodnota. To může být nevratné.
+        content_cache_retention_period: Všechny příspěvky z jiných serverů (včetně boostů a odpovědí) budou po uplynutí stanoveného počtu dní smazány bez ohledu na interakci místního uživatele s těmito příspěvky. To se týká i příspěvků, které místní uživatel přidal do záložek nebo oblíbených. Soukromé zmínky mezi uživateli z různých instancí budou rovněž ztraceny a nebude možné je obnovit. Použití tohoto nastavení je určeno pro instance pro speciální účely a při implementaci pro obecné použití porušuje mnohá očekávání uživatelů.
         custom_css: Můžete použít vlastní styly ve verzi Mastodonu.
+        favicon: WEBP, PNG, GIF nebo JPG. Nahradí výchozí favicon Mastodonu vlastní ikonou.
         mascot: Přepíše ilustraci v pokročilém webovém rozhraní.
-        media_cache_retention_period: Stažené mediální soubory budou po zadaném počtu dní odstraněny, pokud je nastavena kladná hodnota, a na požádání znovu staženy.
+        media_cache_retention_period: Mediální soubory z příspěvků vzdálených uživatelů se ukládají do mezipaměti na vašem serveru. Pokud je nastaveno na kladnou hodnotu, budou média po zadaném počtu dní odstraněna. Pokud jsou mediální data vyžádána po jejich odstranění, budou znovu stažena, pokud je zdrojový obsah stále k dispozici. Vzhledem k omezením týkajícím se četnosti dotazů karet náhledů odkazů na weby třetích stran se doporučuje nastavit tuto hodnotu alespoň na 14 dní, jinak nebudou karty náhledů odkazů na vyžádání aktualizovány dříve.
         peers_api_enabled: Seznam názvů domén se kterými se tento server setkal ve fediversu. Neobsahuje žádná data o tom, zda jste federovali s daným serverem, pouze že o něm váš server ví. Toto je využíváno službami, které sbírají o federování statistiku v obecném smyslu.
         profile_directory: Adresář profilu obsahuje seznam všech uživatelů, kteří se přihlásili, aby mohli být nalezeni.
         require_invite_text: Pokud přihlášení vyžaduje ruční schválení, měl by být textový vstup „Proč se chcete připojit?“ povinný spíše než volitelný
@@ -112,15 +118,18 @@ cs:
           sign_up_requires_approval: Nové registrace budou vyžadovat schválení
         severity: Zvolte, jak naložit s požadavky z dané IP
       rule:
+        hint: Nepovinné. Uveďte další podrobnosti o pravidle
         text: Popište pravidlo nebo požadavek uživatelům tohoto serveru. Snažte se ho držet krátký a jednoduchý
       sessions:
         otp: 'Zadejte kód pro dvoufázové ověření vygenerovaný vaší mobilní aplikací, nebo použijte jeden z vašich záložních kódů:'
         webauthn: Pokud jde o USB klíč, vložte jej a případně se dotkněte jeho tlačítka.
+      settings:
+        indexable: Vaše profilová stránka se může objevit ve výsledcích vyhledávání na Google, Bingu a ostatních vyhledávačích.
+        show_application: I tak budete vždy moci vidět, která aplikace zveřejnila váš příspěvek.
       tag:
         name: Můžete měnit pouze velikost písmen, například kvůli lepší čitelnosti
       user:
         chosen_languages: Po zaškrtnutí budou ve veřejných časových osách zobrazeny pouze příspěvky ve zvolených jazycích
-        role: Role určuje, která oprávnění má uživatel
       user_role:
         color: Barva, která má být použita pro roli v celém UI, jako RGB v hex formátu
         highlighted: Toto roli učiní veřejně viditelnou
@@ -133,9 +142,13 @@ cs:
         url: Kam budou události odesílány
     labels:
       account:
+        discoverable: Zobrazovat profil a příspěvky ve vyhledávacích algoritmech
         fields:
           name: Označení
           value: Obsah
+        indexable: Zahrnout veřejné příspěvky do výsledků hledání
+        show_collections: Zobrazit koho sledujete a kdo vás sleduje v profilu
+        unlocked: Automaticky přijímat nové sledující
       account_alias:
         acct: Adresa starého účtu
       account_migration:
@@ -197,6 +210,7 @@ cs:
         setting_default_privacy: Soukromí příspěvků
         setting_default_sensitive: Vždy označovat média jako citlivá
         setting_delete_modal: Před smazáním příspěvku zobrazovat potvrzovací dialog
+        setting_disable_hover_cards: Zakázat náhled profilu při přejetí myší
         setting_disable_swiping: Vypnout gesta přejetí prsty
         setting_display_media: Zobrazování médií
         setting_display_media_default: Výchozí
@@ -228,11 +242,13 @@ cs:
           warn: Skrýt s varováním
       form_admin_settings:
         activity_api_enabled: Zveřejnit souhrnné statistiky o aktivitě uživatele v API
+        app_icon: Ikona aplikace
         backups_retention_period: Doba uchovávání archivu uživatelů
         bootstrap_timeline_accounts: Vždy doporučovat tyto účty novým uživatelům
         closed_registrations_message: Vlastní zpráva, když přihlášení není k dispozici
-        content_cache_retention_period: Doba uchování mezipaměti obsahu
+        content_cache_retention_period: Doba uchovávání vzdáleného obsahu
         custom_css: Vlastní CSS
+        favicon: Favicon
         mascot: Vlastní maskot (zastaralé)
         media_cache_retention_period: Doba uchovávání mezipaměti médií
         peers_api_enabled: Zveřejnit seznam nalezených serverů v API
@@ -280,14 +296,24 @@ cs:
         pending_account: Je třeba posoudit nový účet
         reblog: Někdo boostnul váš příspěvek
         report: Je odesláno nové hlášení
+        software_updates:
+          all: Upozornit na všechny aktualizace
+          critical: Upozornit pouze na kritické aktualizace
+          label: Nová verze Mastodonu k dispozici
+          none: Nikdy neoznamovat aktualizace (nedoporučeno)
+          patch: Upozornit na aktualizace chyb
         trending_tag: Nový trend vyžaduje posouzení
       rule:
+        hint: Další informace
         text: Pravidlo
+      settings:
+        indexable: Zahrnout stránku profilu do vyhledávačů
+        show_application: Zobrazit aplikaci, ze které jste odeslali příspěvek
       tag:
         listable: Povolit zobrazení tohoto hashtagu ve vyhledávání a návrzích
         name: Hashtag
         trendable: Povolit zobrazení tohoto hashtagu mezi populárními
-        usable: Povolit používat tento hashtag v příspěvcích
+        usable: Povolit příspěvkům používat tento hashtag lokálně
       user:
         role: Role
         time_zone: Časové pásmo
@@ -303,6 +329,7 @@ cs:
         url: URL koncového bodu
     'no': Ne
     not_recommended: Nedoporučuje se
+    overridden: Přepsáno
     recommended: Doporučeno
     required:
       mark: "*"

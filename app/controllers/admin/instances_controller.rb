@@ -13,6 +13,7 @@ module Admin
     def show
       authorize :instance, :show?
       @time_period = (6.days.ago.to_date...Time.now.utc.to_date)
+      @action_logs = Admin::ActionLogFilter.new(target_domain: @instance.domain).results.limit(5)
     end
 
     def destroy

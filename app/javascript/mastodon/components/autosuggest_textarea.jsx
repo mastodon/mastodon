@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
+import { useCallback, useRef, useState, useEffect, forwardRef } from 'react';
 
 import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import Overlay from 'react-overlays/Overlay';
 import Textarea from 'react-textarea-autosize';
 
 import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
@@ -37,54 +38,45 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
   }
 };
 
-export default class AutosuggestTextarea extends ImmutablePureComponent {
+const AutosuggestTextarea = forwardRef(({
+  value,
+  suggestions,
+  disabled,
+  placeholder,
+  onSuggestionSelected,
+  onSuggestionsClearRequested,
+  onSuggestionsFetchRequested,
+  onChange,
+  onKeyUp,
+  onKeyDown,
+  onPaste,
+  onFocus,
+  autoFocus = true,
+  lang,
+}, textareaRef) => {
 
-  static propTypes = {
-    value: PropTypes.string,
-    suggestions: ImmutablePropTypes.list,
-    disabled: PropTypes.bool,
-    placeholder: PropTypes.string,
-    onSuggestionSelected: PropTypes.func.isRequired,
-    onSuggestionsClearRequested: PropTypes.func.isRequired,
-    onSuggestionsFetchRequested: PropTypes.func.isRequired,
-    onChange: PropTypes.func.isRequired,
-    onKeyUp: PropTypes.func,
-    onKeyDown: PropTypes.func,
-    onPaste: PropTypes.func.isRequired,
-    autoFocus: PropTypes.bool,
-    lang: PropTypes.string,
-  };
+  const [suggestionsHidden, setSuggestionsHidden] = useState(true);
+  const [selectedSuggestion, setSelectedSuggestion] = useState(0);
+  const lastTokenRef = useRef(null);
+  const tokenStartRef = useRef(0);
 
-  static defaultProps = {
-    autoFocus: true,
-  };
-
-  state = {
-    suggestionsHidden: true,
-    focused: false,
-    selectedSuggestion: 0,
-    lastToken: null,
-    tokenStart: 0,
-  };
-
-  onChange = (e) => {
+  const handleChange = useCallback((e) => {
     const [ tokenStart, token ] = textAtCursorMatchesToken(e.target.value, e.target.selectionStart);
 
-    if (token !== null && this.state.lastToken !== token) {
-      this.setState({ lastToken: token, selectedSuggestion: 0, tokenStart });
-      this.props.onSuggestionsFetchRequested(token);
+    if (token !== null && lastTokenRef.current !== token) {
+      tokenStartRef.current = tokenStart;
+      lastTokenRef.current = token;
+      setSelectedSuggestion(0);
+      onSuggestionsFetchRequested(token);
     } else if (token === null) {
-      this.setState({ lastToken: null });
-      this.props.onSuggestionsClearRequested();
+      lastTokenRef.current = null;
+      onSuggestionsClearRequested();
     }
 
-    this.props.onChange(e);
-  };
+    onChange(e);
+  }, [onSuggestionsFetchRequested, onSuggestionsClearRequested, onChange, setSelectedSuggestion]);
 
-  onKeyDown = (e) => {
-    const { suggestions, disabled } = this.props;
-    const { selectedSuggestion, suggestionsHidden } = this.state;
-
+  const handleKeyDown = useCallback((e) => {
     if (disabled) {
       e.preventDefault();
       return;
@@ -102,80 +94,75 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
         document.querySelector('.ui').parentElement.focus();
       } else {
         e.preventDefault();
-        this.setState({ suggestionsHidden: true });
+        setSuggestionsHidden(true);
       }
 
       break;
     case 'ArrowDown':
       if (suggestions.size > 0 && !suggestionsHidden) {
         e.preventDefault();
-        this.setState({ selectedSuggestion: Math.min(selectedSuggestion + 1, suggestions.size - 1) });
+        setSelectedSuggestion(Math.min(selectedSuggestion + 1, suggestions.size - 1));
       }
 
       break;
     case 'ArrowUp':
       if (suggestions.size > 0 && !suggestionsHidden) {
         e.preventDefault();
-        this.setState({ selectedSuggestion: Math.max(selectedSuggestion - 1, 0) });
+        setSelectedSuggestion(Math.max(selectedSuggestion - 1, 0));
       }
 
       break;
     case 'Enter':
     case 'Tab':
       // Select suggestion
-      if (this.state.lastToken !== null && suggestions.size > 0 && !suggestionsHidden) {
+      if (lastTokenRef.current !== null && suggestions.size > 0 && !suggestionsHidden) {
         e.preventDefault();
         e.stopPropagation();
-        this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestions.get(selectedSuggestion));
+        onSuggestionSelected(tokenStartRef.current, lastTokenRef.current, suggestions.get(selectedSuggestion));
       }
 
       break;
     }
 
-    if (e.defaultPrevented || !this.props.onKeyDown) {
+    if (e.defaultPrevented || !onKeyDown) {
       return;
     }
 
-    this.props.onKeyDown(e);
-  };
+    onKeyDown(e);
+  }, [disabled, suggestions, suggestionsHidden, selectedSuggestion, setSelectedSuggestion, setSuggestionsHidden, onSuggestionSelected, onKeyDown]);
 
-  onBlur = () => {
-    this.setState({ suggestionsHidden: true, focused: false });
-  };
+  const handleBlur = useCallback(() => {
+    setSuggestionsHidden(true);
+  }, [setSuggestionsHidden]);
 
-  onFocus = (e) => {
-    this.setState({ focused: true });
-    if (this.props.onFocus) {
-      this.props.onFocus(e);
+  const handleFocus = useCallback((e) => {
+    if (onFocus) {
+      onFocus(e);
     }
-  };
+  }, [onFocus]);
 
-  onSuggestionClick = (e) => {
-    const suggestion = this.props.suggestions.get(e.currentTarget.getAttribute('data-index'));
+  const handleSuggestionClick = useCallback((e) => {
+    const suggestion = suggestions.get(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
-    this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
-    this.textarea.focus();
-  };
+    onSuggestionSelected(tokenStartRef.current, lastTokenRef.current, suggestion);
+    textareaRef.current?.focus();
+  }, [suggestions, onSuggestionSelected, textareaRef]);
 
-  UNSAFE_componentWillReceiveProps (nextProps) {
-    if (nextProps.suggestions !== this.props.suggestions && nextProps.suggestions.size > 0 && this.state.suggestionsHidden && this.state.focused) {
-      this.setState({ suggestionsHidden: false });
-    }
-  }
-
-  setTextarea = (c) => {
-    this.textarea = c;
-  };
-
-  onPaste = (e) => {
+  const handlePaste = useCallback((e) => {
     if (e.clipboardData && e.clipboardData.files.length === 1) {
-      this.props.onPaste(e.clipboardData.files);
+      onPaste(e.clipboardData.files);
       e.preventDefault();
     }
-  };
+  }, [onPaste]);
 
-  renderSuggestion = (suggestion, i) => {
-    const { selectedSuggestion } = this.state;
+  // Show the suggestions again whenever they change and the textarea is focused
+  useEffect(() => {
+    if (suggestions.size > 0 && textareaRef.current === document.activeElement) {
+      setSuggestionsHidden(false);
+    }
+  }, [suggestions, textareaRef, setSuggestionsHidden]);
+
+  const renderSuggestion = (suggestion, i) => {
     let inner, key;
 
     if (suggestion.type === 'emoji') {
@@ -190,50 +177,61 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     }
 
     return (
-      <div role='button' tabIndex={0} key={key} data-index={i} className={classNames('autosuggest-textarea__suggestions__item', { selected: i === selectedSuggestion })} onMouseDown={this.onSuggestionClick}>
+      <div role='button' tabIndex={0} key={key} data-index={i} className={classNames('autosuggest-textarea__suggestions__item', { selected: i === selectedSuggestion })} onMouseDown={handleSuggestionClick}>
         {inner}
       </div>
     );
   };
 
-  render () {
-    const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus, lang, children } = this.props;
-    const { suggestionsHidden } = this.state;
+  return (
+    <div className='autosuggest-textarea'>
+      <Textarea
+        ref={textareaRef}
+        className='autosuggest-textarea__textarea'
+        disabled={disabled}
+        placeholder={placeholder}
+        autoFocus={autoFocus}
+        value={value}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        onKeyUp={onKeyUp}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        onPaste={handlePaste}
+        dir='auto'
+        aria-autocomplete='list'
+        aria-label={placeholder}
+        lang={lang}
+      />
 
-    return [
-      <div className='compose-form__autosuggest-wrapper' key='autosuggest-wrapper'>
-        <div className='autosuggest-textarea'>
-          <label>
-            <span style={{ display: 'none' }}>{placeholder}</span>
+      <Overlay show={!(suggestionsHidden || suggestions.isEmpty())} offset={[0, 0]} placement='bottom' target={textareaRef} popperConfig={{ strategy: 'fixed' }}>
+        {({ props }) => (
+          <div {...props}>
+            <div className='autosuggest-textarea__suggestions' style={{ width: textareaRef.current?.clientWidth }}>
+              {suggestions.map(renderSuggestion)}
+            </div>
+          </div>
+        )}
+      </Overlay>
+    </div>
+  );
+});
 
-            <Textarea
-              ref={this.setTextarea}
-              className='autosuggest-textarea__textarea'
-              disabled={disabled}
-              placeholder={placeholder}
-              autoFocus={autoFocus}
-              value={value}
-              onChange={this.onChange}
-              onKeyDown={this.onKeyDown}
-              onKeyUp={onKeyUp}
-              onFocus={this.onFocus}
-              onBlur={this.onBlur}
-              onPaste={this.onPaste}
-              dir='auto'
-              aria-autocomplete='list'
-              lang={lang}
-            />
-          </label>
-        </div>
-        {children}
-      </div>,
+AutosuggestTextarea.propTypes = {
+  value: PropTypes.string,
+  suggestions: ImmutablePropTypes.list,
+  disabled: PropTypes.bool,
+  placeholder: PropTypes.string,
+  onSuggestionSelected: PropTypes.func.isRequired,
+  onSuggestionsClearRequested: PropTypes.func.isRequired,
+  onSuggestionsFetchRequested: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onKeyUp: PropTypes.func,
+  onKeyDown: PropTypes.func,
+  onPaste: PropTypes.func.isRequired,
+  onFocus:PropTypes.func,
+  autoFocus: PropTypes.bool,
+  lang: PropTypes.string,
+};
 
-      <div className='autosuggest-textarea__suggestions-wrapper' key='suggestions-wrapper'>
-        <div className={`autosuggest-textarea__suggestions ${suggestionsHidden || suggestions.isEmpty() ? '' : 'autosuggest-textarea__suggestions--visible'}`}>
-          {suggestions.map(this.renderSuggestion)}
-        </div>
-      </div>,
-    ];
-  }
-
-}
+export default AutosuggestTextarea;

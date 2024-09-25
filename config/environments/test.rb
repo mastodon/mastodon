@@ -44,6 +44,7 @@ Rails.application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
+  # TODO: Remove once devise-two-factor data migration complete
   config.x.otp_secret = '100c7faeef00caa29242f6b04156742bf76065771fd4117990c4282b8748ff3d99f8fdae97c982ab5bd2e6756a159121377cce4421f4a8ecd2d67bd7749a3fb4'
 
   # Generate random VAPID keys
@@ -59,12 +60,6 @@ Rails.application.configure do
 
   config.i18n.default_locale = :en
   config.i18n.fallbacks = true
-
-  config.to_prepare do
-    # Force Status to always be SHAPE_TOO_COMPLEX
-    # Ref: https://github.com/mastodon/mastodon/issues/23644
-    10.times { |i| Status.allocate.instance_variable_set(:"@ivar_#{i}", nil) }
-  end
 
   # Tell Active Support which deprecation messages to disallow.
   config.active_support.disallowed_deprecation_warnings = []
@@ -88,7 +83,7 @@ if ENV['PAM_ENABLED'] == 'true'
       usernames: Set['pam_user1', 'pam_user2'],
       servicenames: Set['pam_test', 'pam_test_controlled'],
       password: '123456',
-      env: { email: 'pam@example.com' }
+      env: { email: 'pam@example.com' },
     }
 end
 

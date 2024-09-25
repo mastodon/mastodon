@@ -11,18 +11,19 @@ module Attachmentable
   # For some file extensions, there exist different content
   # type variants, and browsers often send the wrong one,
   # for example, sending an audio .ogg file as video/ogg,
-  # likewise, MimeMagic also misreports them as such. For
+  # likewise, kt-paperclip also misreports them as such. For
   # those files, it is necessary to use the output of the
   # `file` utility instead
   INCORRECT_CONTENT_TYPES = %w(
     audio/vorbis
+    audio/opus
     video/ogg
     video/webm
   ).freeze
 
   included do
     def self.has_attached_file(name, options = {}) # rubocop:disable Naming/PredicateName
-      super(name, options)
+      super
 
       send(:"before_#{name}_validate", prepend: true) do
         attachment = send(name)
@@ -52,9 +53,13 @@ module Attachmentable
     return if attachment.blank? || !/image.*/.match?(attachment.content_type) || attachment.queued_for_write[:original].blank?
 
     width, height = FastImage.size(attachment.queued_for_write[:original].path)
-    matrix_limit  = attachment.content_type == 'image/gif' ? GIF_MATRIX_LIMIT : MAX_MATRIX_LIMIT
+    return unless width.present? && height.present?
 
-    raise Mastodon::DimensionsValidationError, "#{width}x#{height} images are not supported" if width.present? && height.present? && (width * height > matrix_limit)
+    if attachment.content_type == 'image/gif' && width * height > GIF_MATRIX_LIMIT
+      raise Mastodon::DimensionsValidationError, "#{width}x#{height} GIF files are not supported"
+    elsif width * height > MAX_MATRIX_LIMIT
+      raise Mastodon::DimensionsValidationError, "#{width}x#{height} images are not supported"
+    end
   end
 
   def appropriate_extension(attachment)
@@ -64,7 +69,7 @@ module Attachmentable
     original_extension       = Paperclip::Interpolations.extension(attachment, :original)
     proper_extension         = extensions_for_mime_type.first.to_s
     extension                = extensions_for_mime_type.include?(original_extension) ? original_extension : proper_extension
-    extension                = 'jpeg' if extension == 'jpe'
+    extension                = 'jpeg' if ['jpe', 'jfif'].include?(extension)
 
     extension
   end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::IpBlocksController do
+RSpec.describe Admin::IpBlocksController do
   render_views
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }

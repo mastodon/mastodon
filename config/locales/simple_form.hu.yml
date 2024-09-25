@@ -3,6 +3,7 @@ hu:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Megvéd a hamis forrásmegjelölésektől.
         discoverable: A nyilvános bejegyzéseid és a profilod kiemelhető vagy ajánlható a Mastodon különböző területein, a profilod más felhasználóknak is javasolható.
         display_name: Teljes neved vagy vicces neved.
         fields: Weboldalad, megszólításaid, korod, bármi, amit szeretnél.
@@ -39,14 +40,14 @@ hu:
         text: Egy vétséget csak egyszer fellebbezhetsz meg
       defaults:
         autofollow: Akik meghívón keresztül regisztrálnak, automatikusan követni fognak téged
-        avatar: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
+        avatar: WEBP, PNG, GIF vagy JPG. Legfeljebb %{size}. Át lesz méretezve %{dimensions} képpontosra.
         bot: Ez a fiók automatikus műveleteket végez és valószínűleg nem figyeljük
         context: Kontextusok, ahol a szűrőnek működnie kell
         current_password: Biztonsági okok miatt kérlek, írd be a jelenlegi fiók jelszavát
         current_username: A jóváhagyáshoz írd be a jelenlegi fiók felhasználói nevét
         digest: Csak hosszú távollét esetén küldődik és csak ha személyes üzenetet kaptál távollétedben
         email: Kapsz egy megerősítő e-mailt
-        header: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
+        header: WEBP, PNG, GIF vagy JPG. Legfeljebb %{size}. Át lesz méretezve %{dimensions} képpontosra.
         inbox_url: Másold ki a használandó relé szerver kezdőoldalának URL-jét
         irreversible: A kiszűrt bejegyzések visszafordíthatatlanul eltűnnek, a szűrő későbbi törlése esetén is
         locale: A felhasználói felület, e-mailek, push üzenetek nyelve
@@ -54,11 +55,11 @@ hu:
         phrase: Illeszkedni fog kis/nagybetű függetlenül, és tartalmi figyelmeztetések mögött is
         scopes: Mely API-kat érheti el az alkalmazás. Ha felső szintű hatáskört választasz, nem kell egyesével kiválasztanod az alatta lévőeket.
         setting_aggregate_reblogs: Ne mutassunk megtolásokat olyan bejegyzésekhez, melyeket nemrég toltak meg (csak új megtolásokra lép életbe)
-        setting_always_send_emails: Alapesetben nem küldünk e-mail értesítéseket, ha aktívan használod a Mastodont
+        setting_always_send_emails: Alapesetben nem küldünk e-mail-értesítéseket, ha aktívan használod a Mastodont
         setting_default_sensitive: A kényes médiatartalmat alapesetben elrejtjük, de egyetlen kattintással előhozható
         setting_display_media_default: Kényes tartalomnak jelölt média elrejtése
-        setting_display_media_hide_all: Mindig minden média elrejtése
-        setting_display_media_show_all: Mindig mutasd a szenzitív tartalomként jelölt médiát
+        setting_display_media_hide_all: Média elrejtése mindig
+        setting_display_media_show_all: Média megjelenítése mindig
         setting_use_blurhash: A kihomályosítás az eredeti képből történik, de minden részletet elrejt
         setting_use_pending_items: Idővonal frissítése csak kattintásra automatikus görgetés helyett
         username: Betűk, számok és alávonások használhatók
@@ -77,13 +78,15 @@ hu:
           warn: A szűrt tartalom a szűrő címét említő figyelmeztetés mögé rejtése
       form_admin_settings:
         activity_api_enabled: Helyi bejegyzések, aktív felhasználók és új regisztrációk száma heti bontásban
-        backups_retention_period: Az előállított felhasználói archívumok megtartása a megadott napokig.
+        app_icon: WEBP, PNG, GIF vagy JPG. Mobileszközökön az alkalmazás alapértelmezett ikonját felülírja egy egyéni ikonnal.
+        backups_retention_period: A felhasználók archívumokat állíthatnak elő a bejegyzéseikből, hogy később letöltsék azokat. Ha pozitív értékre van állítva, akkor a megadott számú nap után automatikusan törölve lesznek a tárhelyedről.
         bootstrap_timeline_accounts: Ezek a fiókok ki lesznek tűzve az új felhasználók követési javaslatainak élére.
         closed_registrations_message: Akkor jelenik meg, amikor a regisztráció le van zárva
-        content_cache_retention_period: A más kiszolgálókról származó bejegyzések megadott számú nap után törölve lesznek, ha pozitív értékre van állítva. Ez lehet, hogy nem fordítható vissza.
-        custom_css: A Mastodon webes verziójában használhatsz egyedi stílusokat.
-        mascot: Felülvágja a haladó webes felületen található illusztrációt.
-        media_cache_retention_period: A letöltött médiafájlok megadott számú nap után törölve lesznek, ha pozitív értékre van állítva, és igény szerint újból le lesznek töltve.
+        content_cache_retention_period: Minden más kiszolgálóról származó bejegyzés (megtolásokkal és válaszokkal együtt) törölve lesz a megadott számú nap elteltével, függetlenül a helyi felhasználók ezekkel a bejegyzésekkel történő interakcióitól. Ebben azok a bejegyzések is benne vannak, melyeket a helyi felhasználó könyvjelzőzött vagy kedvencnek jelölt. A különböző kiszolgálók felhasználói közötti privát üzenetek is el fognak veszni visszaállíthatatlanul. Ennek a beállításnak a használata különleges felhasználási esetekre javasolt, mert számos felhasználói elvárás fog eltörni, ha általános céllal használják.
+        custom_css: A Mastodon webes verziójában használhatsz egyéni stílusokat.
+        favicon: WEBP, PNG, GIF vagy JPG. Az alapértelmezett Mastodon favicont felülírja egy egyéni ikonnal.
+        mascot: Felülbírálja a speciális webes felületen található illusztrációt.
+        media_cache_retention_period: A távoli felhasználók bejegyzéseinek médiatartalmait a kiszolgálód gyorsítótárazza. Ha pozitív értékre állítják, ezek a médiatartalmak a megadott számú nap után törölve lesznek. Ha a médiát újra lekérik, miután törlődött, újra le fogjuk tölteni, ha az eredeti még elérhető. A hivatkozások előnézeti kártyáinak harmadik fél weboldalai felé történő hivatkozásaira alkalmazott megkötései miatt javasolt, hogy ezt az értéket legalább 14 napra állítsuk, ellenkező esetben a hivatkozások előnézeti kártyái szükség esetén nem fognak tudni frissülni ezen idő előtt.
         peers_api_enabled: Azon domainek listája, melyekkel ez a kiszolgáló találkozott a fediverzumban. Nem csatolunk adatot arról, hogy föderált kapcsolatban vagy-e az adott kiszolgálóval, csak arról, hogy a kiszolgálód tud a másikról. Ezt olyan szolgáltatások használják, melyek általában a föderációról készítenek statisztikákat.
         profile_directory: A profilok jegyzéke minden olyan felhasználót felsorol, akik engedélyezték a felfedezhetőségüket.
         require_invite_text: Ha a regisztrációhoz manuális jóváhagyásra van szükség, akkor a „Miért akarsz csatlakozni?” válasz kitöltése legyen kötelező, és ne opcionális
@@ -103,7 +106,7 @@ hu:
       form_challenge:
         current_password: Beléptél egy biztonsági térben
       imports:
-        data: Egy másik Mastodon kiszolgálóról exportált CSV-fájl
+        data: Egy másik Mastodon-kiszolgálóról exportált CSV-fájl
       invite_request:
         text: Ez segít nekünk átnézni a jelentkezésedet
       ip_block:
@@ -116,6 +119,7 @@ hu:
           sign_up_requires_approval: Új regisztrációk csak a jóváhagyásoddal történhetnek majd meg
         severity: Válaszd ki, mi történjen a kérésekkel erről az IP-ről
       rule:
+        hint: Nem kötelező. Adj meg további részleteket a szabályról.
         text: Írd le, mi a szabály vagy elvárás ezen a kiszolgálón a felhasználók felé. Próbálj röviden, egyszerűen fogalmazni.
       sessions:
         otp: 'Add meg a telefonodon generált kétlépcsős azonosító kódodat vagy használd az egyik tartalék bejelentkező kódot:'
@@ -127,7 +131,7 @@ hu:
         name: Csak a kis/nagybetűséget változtathatod meg, pl. hogy olvashatóbb legyen
       user:
         chosen_languages: Ha aktív, csak a kiválasztott nyelvű bejegyzések jelennek majd meg a nyilvános idővonalon
-        role: A szerep szabályozza, hogy a felhasználó milyen jogosultságokkal rendelkezik
+        role: A szerep szabályozza, hogy a felhasználó milyen jogosultságokkal rendelkezik.
       user_role:
         color: A szerephez használandó szín mindenhol a felhasználói felületen, hexa RGB formátumban
         highlighted: Ez nyilvánosan láthatóvá teszi a szerepet
@@ -140,17 +144,18 @@ hu:
         url: Ahová az eseményket küldjük
     labels:
       account:
+        attribution_domains_as_text: Csak meghatározott weboldalak engedélyezése
         discoverable: Profil és bejegyzések szerepeltetése a felfedezési algoritmusokban
         fields:
           name: Címke
           value: Tartalom
         indexable: Nyilvános bejegyzések szerepeltetése a keresési eredményekben
-        show_collections: Követők és követettek megjelnítése a profilban
+        show_collections: Követők és követettek megjelenítése a profilban
         unlocked: Új követők automatikus elfogadása
       account_alias:
-        acct: Régi fiók kezelése
+        acct: A régi fiók fiókneve
       account_migration:
-        acct: Új fiók kezelése
+        acct: Az új fiók fiókneve
       account_warning_preset:
         text: Figyelmeztető szöveg
         title: Cím
@@ -186,7 +191,7 @@ hu:
         data: Adatok
         display_name: Megjelenített név
         email: E-mail cím
-        expires_in: Elévül
+        expires_in: Elévülés dátuma
         fields: Profil metaadatai
         header: Fejléc
         honeypot: "%{label} (ne töltsd ki)"
@@ -199,15 +204,16 @@ hu:
         otp_attempt: Kétlépcsős azonosító kód
         password: Jelszó
         phrase: Kulcsszó vagy kifejezés
-        setting_advanced_layout: Haladó webes felület engedélyezése
+        setting_advanced_layout: Speciális webes felület engedélyezése
         setting_aggregate_reblogs: Megtolások csoportosítása az idővonalakon
-        setting_always_send_emails: E-mail értesítések küldése mindig
+        setting_always_send_emails: E-mail-értesítések küldése mindig
         setting_auto_play_gif: GIF-ek automatikus lejátszása
         setting_boost_modal: Megerősítés kérése megtolás előtt
         setting_default_language: Bejegyzések nyelve
         setting_default_privacy: Bejegyzések láthatósága
         setting_default_sensitive: Minden médiafájl megjelölése kényesként
         setting_delete_modal: Megerősítés kérése bejegyzés törlése előtt
+        setting_disable_hover_cards: Profilelőnézet letiltása föléhúzás esetén
         setting_disable_swiping: Elhúzás művelet kikapcsolása
         setting_display_media: Média megjelenítése
         setting_display_media_default: Alapértelmezés
@@ -239,11 +245,13 @@ hu:
           warn: Elrejtés figyelmeztetéssel
       form_admin_settings:
         activity_api_enabled: Összesített statisztikák közzététele az API-ban a felhasználók aktivitásáról
+        app_icon: Alkalmazásikon
         backups_retention_period: Felhasználói archívum megtartási időszaka
         bootstrap_timeline_accounts: Mindig javasoljuk ezeket a fiókokat az új felhasználók számára
         closed_registrations_message: A feliratkozáskor megjelenő egyéni üzenet nem érhető el
-        content_cache_retention_period: Tartalom-gyorsítótár megtartási időszaka
+        content_cache_retention_period: Távoli tartalmak megtartási időszaka
         custom_css: Egyéni CSS
+        favicon: Könyvjelzőikon
         mascot: Egyéni kabala (örökölt)
         media_cache_retention_period: Média-gyorsítótár megtartási időszaka
         peers_api_enabled: Felfedezett kiszolgálók listájának közzététele az API-ban
@@ -251,7 +259,7 @@ hu:
         registrations_mode: Ki regisztrálhat
         require_invite_text: Indok megkövetelése a csatlakozáshoz
         show_domain_blocks: Domain tiltások megjelenitése
-        show_domain_blocks_rationale: A domainok blokkolásának okának megjelenítése
+        show_domain_blocks_rationale: A domainek letiltási okainak megjelenítése
         site_contact_email: Kapcsolattartó e-mail
         site_contact_username: Kapcsolattartó felhasználóneve
         site_extended_description: Bővített leírás
@@ -299,6 +307,7 @@ hu:
           patch: Értesítés hibajavítási frissítésekről
         trending_tag: Új trend felülvizsgálatra vár
       rule:
+        hint: További információk
         text: Szabály
       settings:
         indexable: A profiloldal szerepeltetése a keresőmotorokban
@@ -307,7 +316,7 @@ hu:
         listable: A hashtag megjelenhet a profiladatbázisban
         name: Hashtag
         trendable: A hashtag megjelenhet a felkapottak között
-        usable: Bejegyzések használhatják ezt a hashtaget
+        usable: A helyi bejegyzések használhatják ezt a hashtaget
       user:
         role: Szerep
         time_zone: Időzóna

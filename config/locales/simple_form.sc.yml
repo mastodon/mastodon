@@ -27,14 +27,12 @@ sc:
         text: Podes impreare sintassi in is tuts. Dae cara a su tretu chi s'annùntziu at a pigare in s'ischermu de s'utente
       defaults:
         autofollow: Is persones chi s'ant a registrare pro mèdiu de s'invitu t'ant a sighire in manera automàtica
-        avatar: PNG, GIF o JPG. Màssimu %{size}. Ant a èssere iscaladas a %{dimensions}px
         bot: Sinnala a àtere chi custu contu faghet pro su prus atziones automatizadas e diat pòdere no èssere monitoradu
         context: Unu o prus cuntestos in ue su filtru si diat dèpere aplicare
         current_password: Pro chistiones de seguresa inserta sa crae de intrada de su contu atuale
         current_username: Pro cunfirmare inserta su nòmine utente de su contu atuale
         digest: Imbiadu isceti a pustis de unu perìodu longu de inatividade, e isceti si as retzidu calicunu messàgiu personale cando non bi fias
         email: As a retzire unu messàgiu eletrònicu de cunfirma
-        header: PNG, GIF o JPG. Màssimu %{size}. Ant a èssere iscaladas a %{dimensions}px
         inbox_url: Còpia s'URL dae sa pàgina printzipale de su ripetidore chi boles impreare
         irreversible: Is tuts filtrados ant a isparèssere in manera irreversìbile, fintzas si prus a tardu s'at a bogare su filtru
         locale: S'idioma de s'interfache de s'utente, de is messàgios de posta eletrònica e de is notìficas push
@@ -53,6 +51,8 @@ sc:
         domain: Custu domìniu at a pòdere recuperare datos dae custu serbidore e is datos in intrada dae cue ant a èssere protzessados e archiviados
       email_domain_block:
         with_dns_records: S'at a fàghere unu tentativu de risòlvere is registros DNS de su domìniu e fintzas is risultados ant a èssere blocados
+      form_admin_settings:
+        activity_api_enabled: Nùmeru de publicatziones in locale, utentes ativos e registros noos in perìodos chidajolos
       form_challenge:
         current_password: Ses intrende in un'àrea segura
       imports:
@@ -155,6 +155,7 @@ sc:
         setting_use_pending_items: Modalidade lenta
         severity: Severidade
         sign_in_token_attempt: Còdighe de seguresa
+        title: Tìtulu
         type: Casta de importatzione
         username: Nòmine utente
         username_or_email: Nòmine utente o indiritzu de posta eletrònica
@@ -163,6 +164,16 @@ sc:
         with_dns_records: Include registros MX e indiritzos IP de su domìniu
       featured_tag:
         name: Eticheta
+      form_admin_settings:
+        activity_api_enabled: Pùblica istatìsticas agregadas subra s'atividade de s'utente
+        custom_css: CSS personalizadu
+        peers_api_enabled: Pùblica sa lista de serbidores iscobertos in s'API
+        profile_directory: Ativa diretòriu de profilos
+        show_domain_blocks: Ammustra blocos de domìniu
+        site_contact_username: Nòmine de utente de su cuntatu
+        site_short_description: Descritzione de su serbidore
+        site_title: Nòmine de su serbidore
+        thumbnail: Miniadura de su serbidore
       interactions:
         must_be_follower: Bloca is notìficas dae chie non ti sighit
         must_be_following: Bloca is notìficas dae gente chi non sighis
@@ -180,19 +191,22 @@ sc:
         severity: Règula
       notification_emails:
         digest: Imbia lìteras eletrònicas de resumu
-        favourite: Una persone at postu s'istadu tuo in is preferidos suos
+        favourite: Una persone at postu sa publicatzione tua in is preferidos
         follow: Una persone t'at incumentzadu a sighire
         follow_request: Una persone at pedidu de ti sighire
         mention: Una persone t'at mentovadu
         pending_account: Unu contu nou tenet bisòngiu de una revisione
-        reblog: Una persone at cumpartzidu s'istadu tuo
+        reblog: Una persone at potentziadu sa publicatzione tua
+        report: Imbiu de un'informe nou
       rule:
         text: Règula
       tag:
         listable: Permite a custa eticheta de apàrrere in is chircas e in sa cartella de is profilos
         name: Eticheta
         trendable: Permite a custa eticheta de apàrrere in is tendèntzias
-        usable: Permite a is tuts de impreare custa eticheta
+      user_role:
+        name: Nòmine
+        permissions_as_keys: Permissos
     'no': Nono
     recommended: Cussigiadu
     required:

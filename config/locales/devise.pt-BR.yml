@@ -12,8 +12,9 @@ pt-BR:
       last_attempt: Você tem mais uma tentativa antes de sua conta ser bloqueada.
       locked: Sua conta está bloqueada.
       not_found_in_database: "%{authentication_keys} ou senha inválida."
+      omniauth_user_creation_failure: Erro ao criar uma conta para esta identidade.
       pending: Sua conta está sendo revisada.
-      timeout: Sua sessão expirou. Por favor, entre novamente para continuar.
+      timeout: Sua sessão expirou. Faça ‘login’ novamente para continuar.
       unauthenticated: Você precisa entrar ou criar uma conta antes de continuar.
       unconfirmed: Você precisa confirmar o seu endereço de e-mail antes de continuar.
     mailer:
@@ -47,16 +48,19 @@ pt-BR:
         subject: 'Mastodon: Instruções para alterar senha'
         title: Redefinir senha
       two_factor_disabled:
-        explanation: A autenticação de dois fatores para sua conta foi desativada. Agora é possível entrar apenas com seu endereço de e-mail e senha.
+        explanation: O ‘login’ agora é possível usando apenas o endereço eletrônico e senha.
         subject: 'Mastodon: Autenticação de dois fatores desativada'
+        subtitle: A autenticação de dois fatores foi desativada.
         title: 2FA desativada
       two_factor_enabled:
-        explanation: A autenticação de dois fatores foi ativada para sua conta. Um código gerado no aplicativo TOTP pareado será necessário para entrar.
+        explanation: Será necessário um código gerado pelo aplicativo de autenticação TOTP para fazer login.
         subject: 'Mastodon: Autenticação de dois fatores ativada'
+        subtitle: A autenticação de dois fatores foi ativada para sua conta.
         title: 2FA ativada
       two_factor_recovery_codes_changed:
         explanation: Os códigos de recuperação anteriores foram invalidados e novos códigos foram gerados.
         subject: 'Mastodon: Novos códigos de recuperação de dois fatores'
+        subtitle: Os códigos de recuperação anteriores foram invalidados, e novos códigos foram gerados.
         title: Códigos de recuperação de dois fatores alterados
       unlock_instructions:
         subject: 'Mastodon: Instruções de desbloqueio'
@@ -70,11 +74,13 @@ pt-BR:
           subject: 'Mastodon: Chave de segurança excluída'
           title: Uma das suas chaves de segurança foi excluída
       webauthn_disabled:
-        explanation: A autenticação por chaves de segurança foi desativada para a sua conta. Agora é possível entrar apenas com seu código gerado no aplicativo TOTP pareado.
+        explanation: A autenticação por chaves de segurança foi desativada para sua conta.
+        extra: Agora você pode fazer login usando apenas o código gerado pelo aplicativo de autenticação TOTP.
         subject: 'Mastodon: Autenticação por chaves de segurança desativada'
         title: Chaves de segurança desativadas
       webauthn_enabled:
-        explanation: A autenticação por chave de segurança foi ativada para a sua conta. Sua chave de segurança agora pode ser usada para entrar.
+        explanation: A autenticação por chave de segurança foi ativada para sua conta.
+        extra: Sua chave de segurança agora pode ser usada para ‘login’.
         subject: 'Mastodon: Autenticação por chaves de segurança ativada'
         title: Chaves de segurança ativadas
     omniauth_callbacks:

@@ -3,6 +3,7 @@ pl:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Chroni przed fałszywym przypisaniem wpisów.
         discoverable: Twój profil i publiczne wpisy mogą być promowane lub polecane na Mastodonie i twój profil może być sugerowany innym użytkownikom.
         display_name: Twoje imię lub pseudonim.
         fields: Co ci się tylko podoba – twoja strona domowa, zaimki, wiek…
@@ -39,14 +40,14 @@ pl:
         text: Możesz wysłać odwołanie do ostrzeżenia tylko raz
       defaults:
         autofollow: Osoby, które zarejestrują się z Twojego zaproszenia automatycznie zaczną Cię obserwować
-        avatar: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
+        avatar: WEBP, PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
         bot: To konto wykonuje głównie zautomatyzowane działania i może nie być monitorowane
         context: Jedno lub wiele miejsc, w których filtr zostanie zastosowany
         current_password: Ze względów bezpieczeństwa wprowadź hasło obecnego konta
         current_username: Aby potwierdzić, wprowadź nazwę użytkownika obecnego konta
         digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
         email: Otrzymasz e-mail potwierdzający
-        header: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
+        header: WEBP, PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
         inbox_url: Skopiuj adres ze strony głównej przekaźnika, którego chcesz użyć
         irreversible: Filtrowane wpisy znikną bezpowrotnie, nawet gdy filtr zostanie usunięty
         locale: Język interfejsu, wiadomości e-mail i powiadomieniach push
@@ -77,13 +78,15 @@ pl:
           warn: Ukryj filtrowaną zawartość za ostrzeżeniem wskazującym tytuł filtra
       form_admin_settings:
         activity_api_enabled: Liczby opublikowanych lokalnych postów, aktywnych użytkowników i nowych rejestracji w tygodniowych przedziałach
-        backups_retention_period: Zachowaj wygenerowane archiwa użytkownika przez określoną liczbę dni.
+        app_icon: WEBP, PNG, GIF, albo JPEG. Nadpisuje domyślną ikonę aplikacji na urządzeniach mobilnych.
+        backups_retention_period: Użytkownicy mogą generować archiwa wpisów do późniejszego pobrania. Jeżeli ta wartość jest dodatnia, te archiwa zostaną automatycznie usunięte z twojego serwera po danej liczbie dni.
         bootstrap_timeline_accounts: Te konta zostaną przypięte na górze rekomendacji obserwacji nowych użytkowników.
         closed_registrations_message: Wyświetlane po zamknięciu rejestracji
-        content_cache_retention_period: Posty z innych serwerów zostaną usunięte po określonej liczbie dni, kiedy liczba jest ustawiona na wartość dodatnią. Może to być nieodwracalne.
+        content_cache_retention_period: Wszystkie wpisy z innych serwerów (w tym podbicia i odpowiedzi) zostaną usunięte po danej liczbie dni, bez względu na interakcje z nimi twoich użytkowników. Zawierają się w tym wpisy, które twoi użytkownicy dodali do zakładek lub ulubionych. Prywatne wzmianki od innych instancji zostaną utracone i będą nieprzywracalne. To ustawienie jest przeznaczone dla instancji zastosowania specjalnego i jest niezgodne z wieloma oczekiwaniami użytkowników.
         custom_css: Możesz zastosować niestandardowe style w internetowej wersji Mastodon.
+        favicon: WEBP, PNG, GIF, albo JPEG. Nadpisuje domyślną faviconę Mastodona.
         mascot: Nadpisuje ilustrację w zaawansowanym interfejsie internetowym.
-        media_cache_retention_period: Pobrane pliki multimedialne zostaną usunięte po określonej liczbie dni po ustawieniu na wartość dodatnią i ponownie pobrane na żądanie.
+        media_cache_retention_period: Media z wpisów od obcych użytkowników są cache'owane na twoim serwerze. Kiedy dana wartość jest dodatnia, media te będą usunięte po tylu dniach. Jeżeli usunięte media zostaną potem zażądane, oryginał zostanie ponownie pobrany (o ile jest dalej dostępny). Z powodu ograniczeń dot. częstotliwości z jaką karty podglądu linków dopytują się o dane od stron trzecich, zalecana wartość to min. 14 dni, bo karty podglądu linków nie będą wcześniej odświeżane na żądane.
         peers_api_enabled: Lista nazw domen, z którymi ten serwer spotkał się w fediverse. Nie są tu zawarte żadne dane o tym, czy użytkownik dokonuje federacji z danym serwerem, a jedynie, że jego serwer o tym wie. Jest to wykorzystywane przez serwisy, które zbierają statystyki dotyczące federacji w ogólnym sensie.
         profile_directory: Katalog profili zawiera listę wszystkich użytkowników, którzy zgodzili się na bycie znalezionymi.
         require_invite_text: Kiedy rejestracje wymagają ręcznego zatwierdzenia, ustaw pole "Dlaczego chcesz dołączyć?" jako obowiązkowe, a nie opcjonalne
@@ -116,6 +119,7 @@ pl:
           sign_up_requires_approval: Nowe rejestracje będą wymagać twojej zgody
         severity: Wybierz co ma się stać z żadaniami z tego adresu IP
       rule:
+        hint: Opcjonalne. Dodaj więcej szczegółów dot. tej zasady
         text: Opisz wymóg lub regułę dla użytkowników na tym serwerze. Postaraj się, aby była krótka i prosta
       sessions:
         otp: 'Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych:'
@@ -127,7 +131,7 @@ pl:
         name: Możesz zmieniać tylko wielkość liter, np. aby były bardziej widoczne
       user:
         chosen_languages: Jeżeli zaznaczone, tylko wpisy w wybranych językach będą wyświetlane na publicznych osiach czasu
-        role: Rola kontroluje uprawnienia użytkownika
+        role: Rola kontroluje uprawnienia użytkownika.
       user_role:
         color: Kolor używany dla roli w całym interfejsie użytkownika, wyrażony jako RGB w formacie szesnastkowym
         highlighted: To sprawia, że rola jest widoczna publicznie
@@ -140,6 +144,7 @@ pl:
         url: Dokąd będą wysłane zdarzenia
     labels:
       account:
+        attribution_domains_as_text: Zezwól tylko na konkretne strony
         discoverable: Udostępniaj profil i wpisy funkcjom odkrywania
         fields:
           name: Nazwa
@@ -208,6 +213,7 @@ pl:
         setting_default_privacy: Widoczność wpisów
         setting_default_sensitive: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
         setting_delete_modal: Pytaj o potwierdzenie przed usunięciem wpisu
+        setting_disable_hover_cards: Wyłącz podgląd profilu po najechaniu
         setting_disable_swiping: Wyłącz ruchy przesuwania
         setting_display_media: Wyświetlanie zawartości multimedialnej
         setting_display_media_default: Domyślne
@@ -239,11 +245,13 @@ pl:
           warn: Ukryj z ostrzeżeniem
       form_admin_settings:
         activity_api_enabled: Publikuj zagregowane statystyki dotyczące aktywności użytkownika w API
+        app_icon: Ikona aplikacji
         backups_retention_period: Okres przechowywania archiwum użytkownika
         bootstrap_timeline_accounts: Zawsze rekomenduj te konta nowym użytkownikom
         closed_registrations_message: Niestandardowa wiadomość, gdy rejestracje nie są dostępne
-        content_cache_retention_period: Okres przechowywania pamięci podręcznej
+        content_cache_retention_period: Okres zachowywania zdalnych treści
         custom_css: Niestandardowy CSS
+        favicon: Favicon
         mascot: Własna ikona
         media_cache_retention_period: Okres przechowywania pamięci podręcznej
         peers_api_enabled: Opublikuj listę odkrytych serwerów w API
@@ -299,6 +307,7 @@ pl:
           patch: Powiadamiaj o aktualizacjach naprawiających błędy
         trending_tag: Nowe popularne wymagają przeglądu
       rule:
+        hint: Informacje dodatkowe
         text: Zasada
       settings:
         indexable: Udostępniaj profil wyszukiwarkom
@@ -307,7 +316,7 @@ pl:
         listable: Pozwól, aby ten hashtag pojawiał się w wynikach wyszukiwania i katalogu profilów
         name: Hasztag
         trendable: Pozwól na wyświetlanie tego hashtagu w „Na czasie”
-        usable: Pozwól na umieszczanie tego hashtagu we wpisach
+        usable: Pozwól na umieszczanie tego hashtagu w lokalnych wpisach
       user:
         role: Rola
         time_zone: Strefa czasowa

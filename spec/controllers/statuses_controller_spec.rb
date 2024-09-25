@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe StatusesController do
+RSpec.describe StatusesController do
   render_views
 
   describe 'GET #show' do
@@ -57,11 +57,14 @@ describe StatusesController do
         let(:format) { 'html' }
 
         it 'renders status successfully', :aggregate_failures do
-          expect(response).to have_http_status(200)
-          expect(response.headers['Link'].to_s).to include 'activity+json'
-          expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
-          expect(response.headers['Cache-Control']).to include 'public'
-          expect(response).to render_template(:show)
+          expect(response)
+            .to have_http_status(200)
+            .and render_template(:show)
+          expect(response.headers).to include(
+            'Vary' => 'Accept, Accept-Language, Cookie',
+            'Cache-Control' => include('public'),
+            'Link' => include('activity+json')
+          )
           expect(response.body).to include status.text
         end
       end
@@ -69,15 +72,17 @@ describe StatusesController do
       context 'with JSON' do
         let(:format) { 'json' }
 
-        it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
         it 'renders ActivityPub Note object successfully', :aggregate_failures do
-          expect(response).to have_http_status(200)
-          expect(response.headers['Link'].to_s).to include 'activity+json'
-          expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
-          expect(response.headers['Content-Type']).to include 'application/activity+json'
-          json = body_as_json
-          expect(json[:content]).to include status.text
+          expect(response)
+            .to have_http_status(200)
+            .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
+
+          expect(response.headers).to include(
+            'Content-Type' => include('application/activity+json'),
+            'Link' => include('activity+json')
+          )
+          expect(response.parsed_body)
+            .to include(content: include(status.text))
         end
       end
     end
@@ -157,11 +162,14 @@ describe StatusesController do
           let(:format) { 'html' }
 
           it 'renders status successfully', :aggregate_failures do
-            expect(response).to have_http_status(200)
-            expect(response.headers['Link'].to_s).to include 'activity+json'
-            expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
-            expect(response.headers['Cache-Control']).to include 'private'
-            expect(response).to render_template(:show)
+            expect(response)
+              .to have_http_status(200)
+              .and render_template(:show)
+            expect(response.headers).to include(
+              'Vary' => 'Accept, Accept-Language, Cookie',
+              'Cache-Control' => include('private'),
+              'Link' => include('activity+json')
+            )
             expect(response.body).to include status.text
           end
         end
@@ -170,13 +178,16 @@ describe StatusesController do
           let(:format) { 'json' }
 
           it 'renders ActivityPub Note object successfully', :aggregate_failures do
-            expect(response).to have_http_status(200)
-            expect(response.headers['Link'].to_s).to include 'activity+json'
-            expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
-            expect(response.headers['Cache-Control']).to include 'private'
-            expect(response.headers['Content-Type']).to include 'application/activity+json'
-            json = body_as_json
-            expect(json[:content]).to include status.text
+            expect(response)
+              .to have_http_status(200)
+            expect(response.headers).to include(
+              'Vary' => 'Accept, Accept-Language, Cookie',
+              'Cache-Control' => include('private'),
+              'Content-Type' => include('application/activity+json'),
+              'Link' => include('activity+json')
+            )
+            expect(response.parsed_body)
+              .to include(content: include(status.text))
           end
         end
       end
@@ -194,11 +205,15 @@ describe StatusesController do
             let(:format) { 'html' }
 
             it 'renders status successfully', :aggregate_failures do
-              expect(response).to have_http_status(200)
-              expect(response.headers['Link'].to_s).to include 'activity+json'
-              expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
-              expect(response.headers['Cache-Control']).to include 'private'
-              expect(response).to render_template(:show)
+              expect(response)
+                .to have_http_status(200)
+                .and render_template(:show)
+
+              expect(response.headers).to include(
+                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Cache-Control' => include('private'),
+                'Link' => include('activity+json')
+              )
               expect(response.body).to include status.text
             end
           end
@@ -207,13 +222,16 @@ describe StatusesController do
             let(:format) { 'json' }
 
             it 'renders ActivityPub Note object successfully', :aggregate_failures do
-              expect(response).to have_http_status(200)
-              expect(response.headers['Link'].to_s).to include 'activity+json'
-              expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
-              expect(response.headers['Cache-Control']).to include 'private'
-              expect(response.headers['Content-Type']).to include 'application/activity+json'
-              json = body_as_json
-              expect(json[:content]).to include status.text
+              expect(response)
+                .to have_http_status(200)
+              expect(response.headers).to include(
+                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Cache-Control' => include('private'),
+                'Content-Type' => include('application/activity+json'),
+                'Link' => include('activity+json')
+              )
+              expect(response.parsed_body)
+                .to include(content: include(status.text))
             end
           end
         end
@@ -254,11 +272,14 @@ describe StatusesController do
             let(:format) { 'html' }
 
             it 'renders status successfully', :aggregate_failures do
-              expect(response).to have_http_status(200)
-              expect(response.headers['Link'].to_s).to include 'activity+json'
-              expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
-              expect(response.headers['Cache-Control']).to include 'private'
-              expect(response).to render_template(:show)
+              expect(response)
+                .to have_http_status(200)
+                .and render_template(:show)
+              expect(response.headers).to include(
+                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Cache-Control' => include('private'),
+                'Link' => include('activity+json')
+              )
               expect(response.body).to include status.text
             end
           end
@@ -267,13 +288,16 @@ describe StatusesController do
             let(:format) { 'json' }
 
             it 'renders ActivityPub Note object successfully' do
-              expect(response).to have_http_status(200)
-              expect(response.headers['Link'].to_s).to include 'activity+json'
-              expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
-              expect(response.headers['Cache-Control']).to include 'private'
-              expect(response.headers['Content-Type']).to include 'application/activity+json'
-              json = body_as_json
-              expect(json[:content]).to include status.text
+              expect(response)
+                .to have_http_status(200)
+              expect(response.headers).to include(
+                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Cache-Control' => include('private'),
+                'Content-Type' => include('application/activity+json'),
+                'Link' => include('activity+json')
+              )
+              expect(response.parsed_body)
+                .to include(content: include(status.text))
             end
           end
         end
@@ -340,11 +364,14 @@ describe StatusesController do
           let(:format) { 'html' }
 
           it 'renders status successfully', :aggregate_failures do
-            expect(response).to have_http_status(200)
-            expect(response.headers['Link'].to_s).to include 'activity+json'
-            expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
-            expect(response.headers['Cache-Control']).to include 'private'
-            expect(response).to render_template(:show)
+            expect(response)
+              .to have_http_status(200)
+              .and render_template(:show)
+            expect(response.headers).to include(
+              'Vary' => 'Accept, Accept-Language, Cookie',
+              'Cache-Control' => include('private'),
+              'Link' => include('activity+json')
+            )
             expect(response.body).to include status.text
           end
         end
@@ -352,15 +379,16 @@ describe StatusesController do
         context 'with JSON' do
           let(:format) { 'json' }
 
-          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
           it 'renders ActivityPub Note object successfully', :aggregate_failures do
-            expect(response).to have_http_status(200)
-            expect(response.headers['Link'].to_s).to include 'activity+json'
-            expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
-            expect(response.headers['Content-Type']).to include 'application/activity+json'
-            json = body_as_json
-            expect(json[:content]).to include status.text
+            expect(response)
+              .to have_http_status(200)
+              .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
+            expect(response.headers).to include(
+              'Content-Type' => include('application/activity+json'),
+              'Link' => include('activity+json')
+            )
+            expect(response.parsed_body)
+              .to include(content: include(status.text))
           end
         end
       end
@@ -378,11 +406,14 @@ describe StatusesController do
             let(:format) { 'html' }
 
             it 'renders status successfully', :aggregate_failures do
-              expect(response).to have_http_status(200)
-              expect(response.headers['Link'].to_s).to include 'activity+json'
-              expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
-              expect(response.headers['Cache-Control']).to include 'private'
-              expect(response).to render_template(:show)
+              expect(response)
+                .to have_http_status(200)
+                .and render_template(:show)
+              expect(response.headers).to include(
+                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Cache-Control' => include('private'),
+                'Link' => include('activity+json')
+              )
               expect(response.body).to include status.text
             end
           end
@@ -391,13 +422,17 @@ describe StatusesController do
             let(:format) { 'json' }
 
             it 'renders ActivityPub Note object successfully' do
-              expect(response).to have_http_status(200)
-              expect(response.headers['Link'].to_s).to include 'activity+json'
-              expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
-              expect(response.headers['Cache-Control']).to include 'private'
-              expect(response.headers['Content-Type']).to include 'application/activity+json'
-              json = body_as_json
-              expect(json[:content]).to include status.text
+              expect(response)
+                .to have_http_status(200)
+              expect(response.headers).to include(
+                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Cache-Control' => include('private'),
+                'Content-Type' => include('application/activity+json'),
+                'Link' => include('activity+json')
+              )
+
+              expect(response.parsed_body)
+                .to include(content: include(status.text))
             end
           end
         end
@@ -438,11 +473,14 @@ describe StatusesController do
             let(:format) { 'html' }
 
             it 'renders status successfully', :aggregate_failures do
-              expect(response).to have_http_status(200)
-              expect(response.headers['Link'].to_s).to include 'activity+json'
-              expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
-              expect(response.headers['Cache-Control']).to include 'private'
-              expect(response).to render_template(:show)
+              expect(response)
+                .to have_http_status(200)
+                .and render_template(:show)
+              expect(response.headers).to include(
+                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Cache-Control' => include('private'),
+                'Link' => include('activity+json')
+              )
               expect(response.body).to include status.text
             end
           end
@@ -451,13 +489,16 @@ describe StatusesController do
             let(:format) { 'json' }
 
             it 'renders ActivityPub Note object', :aggregate_failures do
-              expect(response).to have_http_status(200)
-              expect(response.headers['Link'].to_s).to include 'activity+json'
-              expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
-              expect(response.headers['Cache-Control']).to include 'private'
-              expect(response.headers['Content-Type']).to include 'application/activity+json'
-              json = body_as_json
-              expect(json[:content]).to include status.text
+              expect(response)
+                .to have_http_status(200)
+              expect(response.headers).to include(
+                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Cache-Control' => include('private'),
+                'Content-Type' => include('application/activity+json'),
+                'Link' => include('activity+json')
+              )
+              expect(response.parsed_body)
+                .to include(content: include(status.text))
             end
           end
         end
@@ -732,12 +773,14 @@ describe StatusesController do
       end
 
       it 'renders status successfully', :aggregate_failures do
-        expect(response).to have_http_status(200)
-        expect(response.headers['Link'].to_s).to include 'activity+json'
-        expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
-        expect(response.headers['Cache-Control']).to include 'public'
-        expect(response).to render_template(:embed)
-        expect(response.body).to include status.text
+        expect(response)
+          .to have_http_status(200)
+          .and render_template(:embed)
+        expect(response.headers).to include(
+          'Vary' => 'Accept, Accept-Language, Cookie',
+          'Cache-Control' => include('public'),
+          'Link' => include('activity+json')
+        )
       end
     end
 

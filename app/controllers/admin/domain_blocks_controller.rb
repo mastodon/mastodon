@@ -4,6 +4,18 @@ module Admin
   class DomainBlocksController < BaseController
     before_action :set_domain_block, only: [:destroy, :edit, :update]
 
+    PERMITTED_PARAMS = %i(
+      domain
+      obfuscate
+      private_comment
+      public_comment
+      reject_media
+      reject_reports
+      severity
+    ).freeze
+
+    PERMITTED_UPDATE_PARAMS = PERMITTED_PARAMS.without(:domain).freeze
+
     def batch
       authorize :domain_block, :create?
       @form = Form::DomainBlockBatch.new(form_domain_block_batch_params.merge(current_account: current_account, action: action_from_button))
@@ -33,7 +45,7 @@ module Admin
 
       # Disallow accidentally downgrading a domain block
       if existing_domain_block.present? && !@domain_block.stricter_than?(existing_domain_block)
-        @domain_block.save
+        @domain_block.validate
         flash.now[:alert] = I18n.t('admin.domain_blocks.existing_domain_block_html', name: existing_domain_block.domain, unblock_url: admin_domain_block_path(existing_domain_block)).html_safe
         @domain_block.errors.delete(:domain)
         return render :new
@@ -88,11 +100,17 @@ module Admin
     end
 
     def update_params
-      params.require(:domain_block).permit(:severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate)
+      params
+        .require(:domain_block)
+        .slice(*PERMITTED_UPDATE_PARAMS)
+        .permit(*PERMITTED_UPDATE_PARAMS)
     end
 
     def resource_params
-      params.require(:domain_block).permit(:domain, :severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate)
+      params
+        .require(:domain_block)
+        .slice(*PERMITTED_PARAMS)
+        .permit(*PERMITTED_PARAMS)
     end
 
     def form_domain_block_batch_params
