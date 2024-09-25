@@ -99,7 +99,7 @@ export const BlockModal = ({ accountId, acct }) => {
             <FormattedMessage id='confirmation_modal.cancel' defaultMessage='Cancel' />
           </button>
 
-          <Button onClick={handleClick} autoFocus>
+          <Button onClick={handleClick} dangerous autoFocus>
             <FormattedMessage id='confirmations.block.confirm' defaultMessage='Block' />
           </Button>
         </div>
