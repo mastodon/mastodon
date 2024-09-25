@@ -7,8 +7,7 @@ module Admin
     def new
       authorize @account, :show?
 
-      @account_action  = Admin::AccountAction.new(type: params[:type], report_id: params[:report_id], send_email_notification: true, include_statuses: true)
-      @warning_presets = AccountWarningPreset.all
+      @account_action = Admin::AccountAction.new(type: params[:type], report_id: params[:report_id], send_email_notification: true, include_statuses: true, target_account: @account)
     end
 
     def create
