@@ -4,6 +4,8 @@ require 'rails_helper'
 require 'devise_two_factor/spec_helpers'
 
 RSpec.describe User do
+  subject { described_class.new(account: account) }
+
   let(:password) { 'abcd1234' }
   let(:account) { Fabricate(:account, username: 'alice') }
 
@@ -32,11 +34,7 @@ RSpec.describe User do
   end
 
   describe 'validations' do
-    it 'is invalid without an account' do
-      user = Fabricate.build(:user, account: nil)
-      user.valid?
-      expect(user).to model_have_error_on_field(:account)
-    end
+    it { is_expected.to belong_to(:account).required }
 
     it 'is invalid without a valid email' do
       user = Fabricate.build(:user, email: 'john@')
@@ -59,49 +57,22 @@ RSpec.describe User do
 
   describe 'Normalizations' do
     describe 'locale' do
-      it 'preserves valid locale' do
-        user = Fabricate.build(:user, locale: 'en')
-
-        expect(user.locale).to eq('en')
-      end
-
-      it 'cleans out invalid locale' do
-        user = Fabricate.build(:user, locale: 'toto')
-
-        expect(user.locale).to be_nil
-      end
+      it { is_expected.to_not normalize(:locale).from('en') }
+      it { is_expected.to normalize(:locale).from('toto').to(nil) }
     end
 
     describe 'time_zone' do
-      it 'preserves valid timezone' do
-        user = Fabricate.build(:user, time_zone: 'UTC')
-
-        expect(user.time_zone).to eq('UTC')
-      end
-
-      it 'cleans out invalid timezone' do
-        user = Fabricate.build(:user, time_zone: 'toto')
-
-        expect(user.time_zone).to be_nil
-      end
+      it { is_expected.to_not normalize(:time_zone).from('UTC') }
+      it { is_expected.to normalize(:time_zone).from('toto').to(nil) }
     end
 
-    describe 'languages' do
-      it 'preserves valid options for languages' do
-        user = Fabricate.build(:user, chosen_languages: ['en', 'fr', ''])
-
-        expect(user.chosen_languages).to eq(['en', 'fr'])
-      end
-
-      it 'cleans out empty string from languages' do
-        user = Fabricate.build(:user, chosen_languages: [''])
-
-        expect(user.chosen_languages).to be_nil
-      end
+    describe 'chosen_languages' do
+      it { is_expected.to normalize(:chosen_languages).from(['en', 'fr', '']).to(%w(en fr)) }
+      it { is_expected.to normalize(:chosen_languages).from(['']).to(nil) }
     end
   end
 
-  describe 'scopes', :sidekiq_inline do
+  describe 'scopes', :inline_jobs do
     describe 'recent' do
       it 'returns an array of recent users ordered by id' do
         first_user = Fabricate(:user)
@@ -182,30 +153,30 @@ RSpec.describe User do
     end
   end
 
-  describe 'blacklist' do
+  describe 'email domains denylist integration' do
     around do |example|
-      old_blacklist = Rails.configuration.x.email_blacklist
+      original = Rails.configuration.x.email_domains_denylist
 
-      Rails.configuration.x.email_domains_blacklist = 'mvrht.com'
+      Rails.configuration.x.email_domains_denylist = 'mvrht.com'
 
       example.run
 
-      Rails.configuration.x.email_domains_blacklist = old_blacklist
+      Rails.configuration.x.email_domains_denylist = original
     end
 
-    it 'allows a non-blacklisted user to be created' do
+    it 'allows a user with an email domain that is not on the denylist to be created' do
       user = described_class.new(email: 'foo@example.com', account: account, password: password, agreement: true)
 
       expect(user).to be_valid
     end
 
-    it 'does not allow a blacklisted user to be created' do
+    it 'does not allow a user with an email domain on the deylist to be created' do
       user = described_class.new(email: 'foo@mvrht.com', account: account, password: password, agreement: true)
 
       expect(user).to_not be_valid
     end
 
-    it 'does not allow a subdomain blacklisted user to be created' do
+    it 'does not allow a user with an email where the subdomain is on the denylist to be created' do
       user = described_class.new(email: 'foo@mvrht.com.topdomain.tld', account: account, password: password, agreement: true)
 
       expect(user).to_not be_valid
@@ -374,43 +345,43 @@ RSpec.describe User do
     end
   end
 
-  describe 'whitelist' do
+  describe 'allowlist integration' do
     around do |example|
-      old_whitelist = Rails.configuration.x.email_domains_whitelist
+      original = Rails.configuration.x.email_domains_allowlist
 
-      Rails.configuration.x.email_domains_whitelist = 'mastodon.space'
+      Rails.configuration.x.email_domains_allowlist = 'mastodon.space'
 
       example.run
 
-      Rails.configuration.x.email_domains_whitelist = old_whitelist
+      Rails.configuration.x.email_domains_allowlist = original
     end
 
-    it 'does not allow a user to be created unless they are whitelisted' do
+    it 'does not allow a user to be created when their email is not on the allowlist' do
       user = described_class.new(email: 'foo@example.com', account: account, password: password, agreement: true)
       expect(user).to_not be_valid
     end
 
-    it 'allows a user to be created if they are whitelisted' do
+    it 'allows a user to be created when their email is on the allowlist' do
       user = described_class.new(email: 'foo@mastodon.space', account: account, password: password, agreement: true)
       expect(user).to be_valid
     end
 
-    it 'does not allow a user with a whitelisted top domain as subdomain in their email address to be created' do
+    it 'does not allow a user with an email subdomain included on the top level domain allowlist to be created' do
       user = described_class.new(email: 'foo@mastodon.space.userdomain.com', account: account, password: password, agreement: true)
       expect(user).to_not be_valid
     end
 
-    context 'with a blacklisted subdomain' do
+    context 'with a subdomain on the denylist' do
       around do |example|
-        old_blacklist = Rails.configuration.x.email_blacklist
+        original = Rails.configuration.x.email_domains_denylist
         example.run
-        Rails.configuration.x.email_domains_blacklist = old_blacklist
+        Rails.configuration.x.email_domains_denylist = original
       end
 
-      it 'does not allow a user to be created with a specific blacklisted subdomain even if the top domain is whitelisted' do
-        Rails.configuration.x.email_domains_blacklist = 'blacklisted.mastodon.space'
+      it 'does not allow a user to be created with an email subdomain on the denylist even if the top domain is on the allowlist' do
+        Rails.configuration.x.email_domains_denylist = 'denylisted.mastodon.space'
 
-        user = described_class.new(email: 'foo@blacklisted.mastodon.space', account: account, password: password)
+        user = described_class.new(email: 'foo@denylisted.mastodon.space', account: account, password: password)
         expect(user).to_not be_valid
       end
     end
@@ -463,7 +434,9 @@ RSpec.describe User do
   end
 
   describe '#reset_password!' do
-    subject(:user) { Fabricate(:user, password: 'foobar12345') }
+    subject(:user) { Fabricate(:user, password: original_password) }
+
+    let(:original_password) { 'foobar12345' }
 
     let!(:session_activation) { Fabricate(:session_activation, user: user) }
     let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
@@ -471,31 +444,40 @@ RSpec.describe User do
 
     let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
 
-    before do
-      allow(redis).to receive(:pipelined).and_yield(redis_pipeline_stub)
-      user.reset_password!
+    before { stub_redis }
+
+    it 'changes the password immediately and revokes related access' do
+      expect { user.reset_password! }
+        .to remove_activated_sessions
+        .and remove_active_user_tokens
+        .and remove_user_web_subscriptions
+
+      expect(user)
+        .to_not be_external_or_valid_password(original_password)
+      expect { session_activation.reload }
+        .to raise_error(ActiveRecord::RecordNotFound)
+      expect { web_push_subscription.reload }
+        .to raise_error(ActiveRecord::RecordNotFound)
+      expect(redis_pipeline_stub)
+        .to have_received(:publish).with("timeline:access_token:#{access_token.id}", Oj.dump(event: :kill)).once
     end
 
-    it 'changes the password immediately' do
-      expect(user.external_or_valid_password?('foobar12345')).to be false
+    def remove_activated_sessions
+      change(user.session_activations, :count).to(0)
     end
 
-    it 'deactivates all sessions' do
-      expect(user.session_activations.count).to eq 0
-      expect { session_activation.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    def remove_active_user_tokens
+      change { Doorkeeper::AccessToken.active_for(user).count }.to(0)
     end
 
-    it 'revokes all access tokens' do
-      expect(Doorkeeper::AccessToken.active_for(user).count).to eq 0
+    def remove_user_web_subscriptions
+      change { Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count }.to(0)
     end
 
-    it 'revokes streaming access for all access tokens' do
-      expect(redis_pipeline_stub).to have_received(:publish).with("timeline:access_token:#{access_token.id}", Oj.dump(event: :kill)).once
-    end
-
-    it 'removes push subscriptions' do
-      expect(Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count).to eq 0
-      expect { web_push_subscription.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    def stub_redis
+      allow(redis)
+        .to receive(:pipelined)
+        .and_yield(redis_pipeline_stub)
     end
   end
 
@@ -507,7 +489,7 @@ RSpec.describe User do
     context 'when user is new' do
       let(:confirmed_at) { nil }
 
-      it 'confirms user and delivers welcome email', :sidekiq_inline do
+      it 'confirms user and delivers welcome email', :inline_jobs do
         emails = capture_emails { subject }
 
         expect(user.confirmed_at).to be_present

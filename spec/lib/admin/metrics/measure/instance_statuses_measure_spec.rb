@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::Metrics::Measure::InstanceStatusesMeasure do
+RSpec.describe Admin::Metrics::Measure::InstanceStatusesMeasure do
   subject { described_class.new(start_at, end_at, params) }
 
   let(:domain) { 'example.com' }

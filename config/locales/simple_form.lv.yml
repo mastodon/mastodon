@@ -3,6 +3,7 @@ lv:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Aizsargā no nepatiesa attiecinājuma.
         discoverable: Tavas publiskās ziņas un profils var tikt piedāvāti vai ieteikti dažādās Mastodon vietās, un tavs profils var tikt ieteikts citiem lietotājiem.
         display_name: Tavs pilnais vārds vai tavs joku vārds.
         fields: Tava mājas lapa, vietniekvārdi, vecums, viss, ko vēlies.
@@ -128,7 +129,7 @@ lv:
         name: Tu vari mainīt tikai burtu lielumu, piemēram, lai tie būtu vieglāk lasāmi
       user:
         chosen_languages: Ja ieķeksēts, publiskos laika grafikos tiks parādītas tikai ziņas noteiktajās valodās
-        role: Loma kontrolē, kādas atļaujas ir lietotājam
+        role: Loma nosaka, kādas lietotājam ir atļaujas.
       user_role:
         color: Krāsa, kas jāizmanto lomai visā lietotāja saskarnē, kā RGB hex formātā
         highlighted: Tas padara lomu publiski redzamu
@@ -141,6 +142,7 @@ lv:
         url: Kur notikumi tiks nosūtīti
     labels:
       account:
+        attribution_domains_as_text: Ļaut tikai noteiktas tīmekļvietnes
         discoverable: Funkcijas profils un ziņas atklāšanas algoritmos
         fields:
           name: Marķējums
@@ -209,6 +211,7 @@ lv:
         setting_default_privacy: Publicēšanas privātums
         setting_default_sensitive: Atļaut atzīmēt multividi kā sensitīvu
         setting_delete_modal: Parādīt apstiprinājuma dialogu pirms ziņas dzēšanas
+        setting_disable_hover_cards: Atspējot profila priekšskatījumu pēc kursora novietošanas
         setting_disable_swiping: Atspējot vilkšanas kustības
         setting_display_media: Multivides rādīšana
         setting_display_media_default: Noklusējums
@@ -240,11 +243,13 @@ lv:
           warn: Paslēpt ar brīdinājumu
       form_admin_settings:
         activity_api_enabled: Publicējiet apkopotu statistiku par lietotāju darbībām API
+        app_icon: Lietotnes ikona
         backups_retention_period: Lietotāja arhīva glabāšanas periods
         bootstrap_timeline_accounts: Vienmēr iesaki šos kontus jaunajiem lietotājiem
         closed_registrations_message: Pielāgots ziņojums, ja reģistrēšanās nav pieejama
         content_cache_retention_period: Attālā satura paturēšanas laika posms
         custom_css: Pielāgots CSS
+        favicon: Favikona
         mascot: Pielāgots talismans (mantots)
         media_cache_retention_period: Multivides kešatmiņas saglabāšanas periods
         peers_api_enabled: Publicēt API atklāto serveru sarakstu
@@ -309,7 +314,7 @@ lv:
         listable: Atļaut šim tēmturim parādīties meklējumos un ieteikumos
         name: Tēmturis
         trendable: Atļaut šim tēmturim parādīties zem tendencēm
-        usable: Atļaut lietot ziņās šo tēmturi
+        usable: Ļaut ierakstos vietēji izmantot šo tēmturi
       user:
         role: Loma
         time_zone: Laika josla

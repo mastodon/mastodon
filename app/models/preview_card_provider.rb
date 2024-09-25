@@ -21,6 +21,7 @@ class PreviewCardProvider < ApplicationRecord
   include Paginable
   include DomainNormalizable
   include Attachmentable
+  include Reviewable
 
   ICON_MIME_TYPES = %w(image/x-icon image/vnd.microsoft.icon image/png).freeze
   LIMIT = 1.megabyte
@@ -33,24 +34,6 @@ class PreviewCardProvider < ApplicationRecord
 
   scope :trendable, -> { where(trendable: true) }
   scope :not_trendable, -> { where(trendable: false) }
-  scope :reviewed, -> { where.not(reviewed_at: nil) }
-  scope :pending_review, -> { where(reviewed_at: nil) }
-
-  def requires_review?
-    reviewed_at.nil?
-  end
-
-  def reviewed?
-    reviewed_at.present?
-  end
-
-  def requested_review?
-    requested_review_at.present?
-  end
-
-  def requires_review_notification?
-    requires_review? && !requested_review?
-  end
 
   def self.matching_domain(domain)
     segments = domain.split('.')

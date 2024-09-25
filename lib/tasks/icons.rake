@@ -20,7 +20,7 @@ end
 def find_used_icons
   icons_by_weight_and_size = {}
 
-  Dir[Rails.root.join('app', 'javascript', '**', '*.*s*')].map do |path|
+  Rails.root.glob('app/javascript/**/*.*s*').map do |path|
     File.open(path, 'r') do |file|
       pattern = %r{\Aimport .* from '@/material-icons/(?<weight>[0-9]+)-(?<size>[0-9]+)px/(?<icon>[^-]*)(?<fill>-fill)?.svg\?react';}
       file.each_line do |line|

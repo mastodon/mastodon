@@ -34,7 +34,12 @@ RSpec.describe 'API V2 Admin Accounts' do
 
       it 'returns the correct accounts' do
         expect(response).to have_http_status(200)
-        expect(body_json_ids).to eq([admin_account.id])
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: admin_account.id.to_s)
+          )
       end
     end
 
@@ -43,8 +48,13 @@ RSpec.describe 'API V2 Admin Accounts' do
 
       it 'returns the correct accounts' do
         expect(response).to have_http_status(200)
-        expect(body_json_ids).to include(remote_account.id)
-        expect(body_json_ids).to_not include(other_remote_account.id)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: remote_account.id.to_s)
+          )
+          .and not_include(hash_including(id: other_remote_account.id.to_s))
       end
     end
 
@@ -53,7 +63,13 @@ RSpec.describe 'API V2 Admin Accounts' do
 
       it 'returns the correct accounts' do
         expect(response).to have_http_status(200)
-        expect(body_json_ids).to include(suspended_remote.id, suspended_account.id)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: suspended_remote.id.to_s),
+            hash_including(id: suspended_account.id.to_s)
+          )
       end
     end
 
@@ -62,7 +78,12 @@ RSpec.describe 'API V2 Admin Accounts' do
 
       it 'returns the correct accounts' do
         expect(response).to have_http_status(200)
-        expect(body_json_ids).to include(disabled_account.id)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: disabled_account.id.to_s)
+          )
       end
     end
 
@@ -71,19 +92,23 @@ RSpec.describe 'API V2 Admin Accounts' do
 
       it 'returns the correct accounts' do
         expect(response).to have_http_status(200)
-        expect(body_json_ids).to include(pending_account.id)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: pending_account.id.to_s)
+          )
       end
-    end
-
-    def body_json_ids
-      body_as_json.map { |a| a[:id].to_i }
     end
 
     context 'with limit param' do
       let(:params) { { limit: 1 } }
 
       it 'sets the correct pagination headers' do
-        expect(response.headers['Link'].find_link(%w(rel next)).href).to eq api_v2_admin_accounts_url(limit: 1, max_id: admin_account.id)
+        expect(response)
+          .to include_pagination_headers(next: api_v2_admin_accounts_url(limit: 1, max_id: admin_account.id))
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

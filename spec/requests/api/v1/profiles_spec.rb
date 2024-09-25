@@ -28,31 +28,16 @@ RSpec.describe 'Deleting profile images' do
         it_behaves_like 'forbidden for wrong scope', 'read'
       end
 
-      it 'returns http success' do
+      it 'returns http success and deletes the avatar, preserves the header, queues up distribution' do
         delete '/api/v1/profile/avatar', headers: headers
 
         expect(response).to have_http_status(200)
-      end
-
-      it 'deletes the avatar' do
-        delete '/api/v1/profile/avatar', headers: headers
+        expect(response.content_type)
+          .to start_with('application/json')
 
         account.reload
-
         expect(account.avatar).to_not exist
-      end
-
-      it 'does not delete the header' do
-        delete '/api/v1/profile/avatar', headers: headers
-
-        account.reload
-
         expect(account.header).to exist
-      end
-
-      it 'queues up an account update distribution' do
-        delete '/api/v1/profile/avatar', headers: headers
-
         expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(account.id)
       end
     end
@@ -66,31 +51,16 @@ RSpec.describe 'Deleting profile images' do
         it_behaves_like 'forbidden for wrong scope', 'read'
       end
 
-      it 'returns http success' do
+      it 'returns http success, preserves the avatar, deletes the header, queues up distribution' do
         delete '/api/v1/profile/header', headers: headers
 
         expect(response).to have_http_status(200)
-      end
-
-      it 'does not delete the avatar' do
-        delete '/api/v1/profile/header', headers: headers
+        expect(response.content_type)
+          .to start_with('application/json')
 
         account.reload
-
         expect(account.avatar).to exist
-      end
-
-      it 'deletes the header' do
-        delete '/api/v1/profile/header', headers: headers
-
-        account.reload
-
         expect(account.header).to_not exist
-      end
-
-      it 'queues up an account update distribution' do
-        delete '/api/v1/profile/header', headers: headers
-
         expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(account.id)
       end
     end

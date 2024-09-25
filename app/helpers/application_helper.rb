@@ -86,7 +86,7 @@ module ApplicationHelper
   def html_title
     safe_join(
       [content_for(:page_title).to_s.chomp, title]
-      .select(&:present?),
+      .compact_blank,
       ' - '
     )
   end
@@ -105,19 +105,17 @@ module ApplicationHelper
     policy(record).public_send(:"#{action}?")
   end
 
-  def fa_icon(icon, attributes = {})
-    class_names = attributes[:class]&.split || []
-    class_names << 'fa'
-    class_names += icon.split.map { |cl| "fa-#{cl}" }
-
-    content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
-  end
-
   def material_symbol(icon, attributes = {})
-    inline_svg_tag(
-      "400-24px/#{icon}.svg",
-      class: %w(icon).concat(attributes[:class].to_s.split),
-      role: :img
+    safe_join(
+      [
+        inline_svg_tag(
+          "400-24px/#{icon}.svg",
+          class: ['icon', "material-#{icon}"].concat(attributes[:class].to_s.split),
+          role: :img,
+          data: attributes[:data]
+        ),
+        ' ',
+      ]
     )
   end
 
@@ -127,23 +125,23 @@ module ApplicationHelper
 
   def visibility_icon(status)
     if status.public_visibility?
-      fa_icon('globe', title: I18n.t('statuses.visibilities.public'))
+      material_symbol('globe', title: I18n.t('statuses.visibilities.public'))
     elsif status.unlisted_visibility?
-      fa_icon('unlock', title: I18n.t('statuses.visibilities.unlisted'))
+      material_symbol('lock_open', title: I18n.t('statuses.visibilities.unlisted'))
     elsif status.private_visibility? || status.limited_visibility?
-      fa_icon('lock', title: I18n.t('statuses.visibilities.private'))
+      material_symbol('lock', title: I18n.t('statuses.visibilities.private'))
     elsif status.direct_visibility?
-      fa_icon('at', title: I18n.t('statuses.visibilities.direct'))
+      material_symbol('alternate_email', title: I18n.t('statuses.visibilities.direct'))
     end
   end
 
   def interrelationships_icon(relationships, account_id)
     if relationships.following[account_id] && relationships.followed_by[account_id]
-      fa_icon('exchange', title: I18n.t('relationships.mutual'), class: 'fa-fw active passive')
+      material_symbol('sync_alt', title: I18n.t('relationships.mutual'), class: 'active passive')
     elsif relationships.following[account_id]
-      fa_icon(locale_direction == 'ltr' ? 'arrow-right' : 'arrow-left', title: I18n.t('relationships.following'), class: 'fa-fw active')
+      material_symbol(locale_direction == 'ltr' ? 'arrow_right_alt' : 'arrow_left_alt', title: I18n.t('relationships.following'), class: 'active')
     elsif relationships.followed_by[account_id]
-      fa_icon(locale_direction == 'ltr' ? 'arrow-left' : 'arrow-right', title: I18n.t('relationships.followers'), class: 'fa-fw passive')
+      material_symbol(locale_direction == 'ltr' ? 'arrow_left_alt' : 'arrow_right_alt', title: I18n.t('relationships.followers'), class: 'passive')
     end
   end
 
@@ -161,6 +159,7 @@ module ApplicationHelper
 
   def body_classes
     output = body_class_string.split
+    output << content_for(:body_classes)
     output << "theme-#{current_theme.parameterize}"
     output << 'system-font' if current_account&.user&.setting_system_font_ui
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
@@ -242,22 +241,6 @@ module ApplicationHelper
 
   def mascot_url
     full_asset_url(instance_presenter.mascot&.file&.url || frontend_asset_path('images/elephant_ui_plane.svg'))
-  end
-
-  def instance_presenter
-    @instance_presenter ||= InstancePresenter.new
-  end
-
-  def favicon_path(size = '48')
-    instance_presenter.favicon&.file&.url(size)
-  end
-
-  def app_icon_path(size = '48')
-    instance_presenter.app_icon&.file&.url(size)
-  end
-
-  def use_mask_icon?
-    instance_presenter.app_icon.blank?
   end
 
   private

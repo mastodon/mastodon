@@ -60,7 +60,7 @@ zh-TW:
       error:
         title: 發生錯誤
       new:
-        prompt_html: "%{client_name} 欲請求存取您帳號之權限。這是一個第三方應用程式。<strong>若您不信任該應用程式，請不要授權。</strong>"
+        prompt_html: "%{client_name} 想要請求存取您帳號之權限。<strong>請僅於您所識別且信任此來源時允許請求。</strong>"
         review_permissions: 檢視權限
         title: 需要授權
       show:
@@ -83,6 +83,7 @@ zh-TW:
         access_denied: 資源持有者或授權伺服器拒絕請求。
         credential_flow_not_configured: 因為 Doorkeeper.configure.resource_owner_from_credentials 未設定，所以資源持有者密碼認證程序失敗。
         invalid_client: 用戶端驗證失敗，可能是因為未知的用戶端程式、未包含用戶端驗證、或使用了不支援的認證方法。
+        invalid_code_challenge_method: code challenge 方式必須為 S256 (SHA256)，不支援 plain 方式。
         invalid_grant: 授權申請不正確、逾期、已被註銷、與授權請求內的重新導向 URI 不符、或屬於別的用戶端程式。
         invalid_redirect_uri: 包含的重新導向 URI 是不正確的。
         invalid_request:
@@ -144,7 +145,7 @@ zh-TW:
       admin:
         nav:
           applications: 應用程式
-          oauth2_provider: OAuth2 提供者
+          oauth2_provider: OAuth2 提供商
       application:
         title: 需要 OAuth 授權
     scopes:

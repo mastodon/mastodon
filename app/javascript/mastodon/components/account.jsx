@@ -106,7 +106,7 @@ const Account = ({ size = 46, account, onFollow, onBlock, onMute, onMuteNotifica
         </>
       );
     } else if (defaultAction === 'mute') {
-      buttons = <Button title={intl.formatMessage(messages.mute)} onClick={handleMute} />;
+      buttons = <Button text={intl.formatMessage(messages.mute)} onClick={handleMute} />;
     } else if (defaultAction === 'block') {
       buttons = <Button text={intl.formatMessage(messages.block)} onClick={handleBlock} />;
     } else if (!account.get('suspended') && !account.get('moved') || following) {
@@ -131,7 +131,7 @@ const Account = ({ size = 46, account, onFollow, onBlock, onMute, onMuteNotifica
   return (
     <div className={classNames('account', { 'account--minimal': minimal })}>
       <div className='account__wrapper'>
-        <Link key={account.get('id')} className='account__display-name' title={account.get('acct')} to={`/@${account.get('acct')}`}>
+        <Link key={account.get('id')} className='account__display-name' title={account.get('acct')} to={`/@${account.get('acct')}`} data-hover-card-account={account.get('id')}>
           <div className='account__avatar-wrapper'>
             <Avatar account={account} size={size} />
           </div>

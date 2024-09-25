@@ -3,15 +3,46 @@
 require 'rails_helper'
 
 RSpec.describe Account do
+  include_examples 'Reviewable'
+
   context 'with an account record' do
     subject { Fabricate(:account) }
 
     let(:bob) { Fabricate(:account, username: 'bob') }
 
+    describe '#suspended_locally?' do
+      context 'when the account is not suspended' do
+        it 'returns false' do
+          expect(subject.suspended_locally?).to be false
+        end
+      end
+
+      context 'when the account is suspended locally' do
+        before do
+          subject.update!(suspended_at: 1.day.ago, suspension_origin: :local)
+        end
+
+        it 'returns true' do
+          expect(subject.suspended_locally?).to be true
+        end
+      end
+
+      context 'when the account is suspended remotely' do
+        before do
+          subject.update!(suspended_at: 1.day.ago, suspension_origin: :remote)
+        end
+
+        it 'returns false' do
+          expect(subject.suspended_locally?).to be false
+        end
+      end
+    end
+
     describe '#suspend!' do
       it 'marks the account as suspended and creates a deletion request' do
         expect { subject.suspend! }
           .to change(subject, :suspended?).from(false).to(true)
+          .and change(subject, :suspended_locally?).from(false).to(true)
           .and(change { AccountDeletionRequest.exists?(account: subject) }.from(false).to(true))
       end
 
@@ -592,7 +623,7 @@ RSpec.describe Account do
       expect(results).to eq [match]
     end
 
-    it 'limits by 10 by default' do
+    it 'limits result count by default value' do
       stub_const('Account::Search::DEFAULT_LIMIT', 1)
       2.times { Fabricate(:account, display_name: 'Display Name') }
       results = described_class.advanced_search_for('display', account)
@@ -711,19 +742,92 @@ RSpec.describe Account do
     it 'does not match URL query string' do
       expect(subject.match('https://example.com/?x=@alice')).to be_nil
     end
+
+    it 'matches usernames immediately following the letter ß' do
+      expect(subject.match('Hello toß @alice from me')[1]).to eq 'alice'
+    end
+
+    it 'matches usernames containing uppercase characters' do
+      expect(subject.match('Hello to @aLice@Example.com from me')[1]).to eq 'aLice@Example.com'
+    end
+  end
+
+  describe '#prepare_contents' do
+    subject { Fabricate.build :account, domain: domain, note: '  padded note  ', display_name: '  padded name  ' }
+
+    context 'with local account' do
+      let(:domain) { nil }
+
+      it 'strips values' do
+        expect { subject.valid? }
+          .to change(subject, :note).to('padded note')
+          .and(change(subject, :display_name).to('padded name'))
+      end
+    end
+
+    context 'with remote account' do
+      let(:domain) { 'host.example' }
+
+      it 'preserves values' do
+        expect { subject.valid? }
+          .to not_change(subject, :note)
+          .and(not_change(subject, :display_name))
+      end
+    end
+  end
+
+  describe '#can_be_attributed_from?' do
+    subject { Fabricate(:account, attribution_domains: %w(example.com)) }
+
+    it 'returns true for a matching domain' do
+      expect(subject.can_be_attributed_from?('example.com')).to be true
+    end
+
+    it 'returns true for a subdomain of a domain' do
+      expect(subject.can_be_attributed_from?('foo.example.com')).to be true
+    end
+
+    it 'returns false for a non-matching domain' do
+      expect(subject.can_be_attributed_from?('hoge.com')).to be false
+    end
+  end
+
+  describe '#attribution_domains_as_text=' do
+    subject { Fabricate(:account) }
+
+    it 'sets attribution_domains accordingly' do
+      subject.attribution_domains_as_text = "hoge.com\nexample.com"
+
+      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
+    end
+
+    it 'strips leading "*."' do
+      subject.attribution_domains_as_text = "hoge.com\n*.example.com"
+
+      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
+    end
+
+    it 'strips the protocol if present' do
+      subject.attribution_domains_as_text = "http://hoge.com\nhttps://example.com"
+
+      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
+    end
+
+    it 'strips a combination of leading "*." and protocol' do
+      subject.attribution_domains_as_text = "http://*.hoge.com\nhttps://*.example.com"
+
+      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
+    end
+  end
+
+  describe 'Normalizations' do
+    describe 'username' do
+      it { is_expected.to normalize(:username).from(" \u3000bob \t \u00a0 \n ").to('bob') }
+    end
   end
 
   describe 'validations' do
-    it 'is invalid without a username' do
-      account = Fabricate.build(:account, username: nil)
-      account.valid?
-      expect(account).to model_have_error_on_field(:username)
-    end
-
-    it 'squishes the username before validation' do
-      account = Fabricate(:account, domain: nil, username: " \u3000bob \t \u00a0 \n ")
-      expect(account.username).to eq 'bob'
-    end
+    it { is_expected.to validate_presence_of(:username) }
 
     context 'when is local' do
       it 'is invalid if the username is not unique in case-insensitive comparison among local accounts' do
@@ -775,7 +879,7 @@ RSpec.describe Account do
       end
 
       it 'is invalid if the display name is longer than the character limit' do
-        account = Fabricate.build(:account, display_name: username_over_limit)
+        account = Fabricate.build(:account, display_name: display_name_over_limit)
         account.valid?
         expect(account).to model_have_error_on_field(:display_name)
       end
@@ -821,7 +925,7 @@ RSpec.describe Account do
       end
 
       it 'is valid even if the display name is longer than the character limit' do
-        account = Fabricate.build(:account, domain: 'domain', display_name: username_over_limit)
+        account = Fabricate.build(:account, domain: 'domain', display_name: display_name_over_limit)
         account.valid?
         expect(account).to_not model_have_error_on_field(:display_name)
       end
@@ -835,6 +939,10 @@ RSpec.describe Account do
 
     def username_over_limit
       'a' * described_class::USERNAME_LENGTH_LIMIT * 2
+    end
+
+    def display_name_over_limit
+      'a' * described_class::DISPLAY_NAME_LENGTH_LIMIT * 2
     end
 
     def account_note_over_limit
@@ -1015,21 +1123,26 @@ RSpec.describe Account do
 
   context 'when is local' do
     it 'generates keys' do
-      account = described_class.create!(domain: nil, username: Faker::Internet.user_name(separators: ['_']))
-      expect(account.keypair).to be_private
-      expect(account.keypair).to be_public
+      account = described_class.create!(domain: nil, username: 'user_without_keys')
+
+      expect(account)
+        .to be_private_key
+        .and be_public_key
+      expect(account.keypair)
+        .to be_private
+        .and be_public
     end
   end
 
   context 'when is remote' do
     it 'does not generate keys' do
       key = OpenSSL::PKey::RSA.new(1024).public_key
-      account = described_class.create!(domain: 'remote', uri: 'https://remote/actor', username: Faker::Internet.user_name(separators: ['_']), public_key: key.to_pem)
+      account = described_class.create!(domain: 'remote', uri: 'https://remote/actor', username: 'remote_user_with_public', public_key: key.to_pem)
       expect(account.keypair.params).to eq key.params
     end
 
     it 'normalizes domain' do
-      account = described_class.create!(domain: 'にゃん', uri: 'https://xn--r9j5b5b/actor', username: Faker::Internet.user_name(separators: ['_']))
+      account = described_class.create!(domain: 'にゃん', uri: 'https://xn--r9j5b5b/actor', username: 'remote_user_with_idn_domain')
       expect(account.domain).to eq 'xn--r9j5b5b'
     end
   end

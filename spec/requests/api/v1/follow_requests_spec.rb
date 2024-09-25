@@ -36,7 +36,9 @@ RSpec.describe 'Follow requests' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json).to match_array(expected_response)
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body).to match_array(expected_response)
     end
 
     context 'with limit param' do
@@ -45,7 +47,7 @@ RSpec.describe 'Follow requests' do
       it 'returns only the requested number of follow requests' do
         subject
 
-        expect(body_as_json.size).to eq(params[:limit])
+        expect(response.parsed_body.size).to eq(params[:limit])
       end
     end
   end
@@ -66,7 +68,9 @@ RSpec.describe 'Follow requests' do
     it 'allows the requesting follower to follow', :aggregate_failures do
       expect { subject }.to change { follower.following?(user.account) }.from(false).to(true)
       expect(response).to have_http_status(200)
-      expect(body_as_json[:followed_by]).to be true
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body[:followed_by]).to be true
     end
   end
 
@@ -87,8 +91,10 @@ RSpec.describe 'Follow requests' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(FollowRequest.where(target_account: user.account, account: follower)).to_not exist
-      expect(body_as_json[:followed_by]).to be false
+      expect(response.parsed_body[:followed_by]).to be false
     end
   end
 end

@@ -101,7 +101,8 @@ module Mastodon
     end
 
     config.before_configuration do
-      require 'mastodon/redis_config'
+      require 'mastodon/redis_configuration'
+      ::REDIS_CONFIGURATION = Mastodon::RedisConfiguration.new
 
       config.x.use_vips = ENV['MASTODON_USE_LIBVIPS'] == 'true'
 
@@ -118,6 +119,7 @@ module Mastodon
       Doorkeeper::Application.include ApplicationExtension
       Doorkeeper::AccessGrant.include AccessGrantExtension
       Doorkeeper::AccessToken.include AccessTokenExtension
+      Doorkeeper::OAuth::PreAuthorization.include OauthPreAuthorizationExtension
       Devise::FailureApp.include AbstractController::Callbacks
       Devise::FailureApp.include Localized
     end

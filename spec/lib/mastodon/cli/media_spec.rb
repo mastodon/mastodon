@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'mastodon/cli/media'
 
-describe Mastodon::CLI::Media do
+RSpec.describe Mastodon::CLI::Media do
   subject { cli.invoke(action, arguments, options) }
 
   let(:cli) { described_class.new }

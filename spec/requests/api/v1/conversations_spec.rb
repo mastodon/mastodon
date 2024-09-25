@@ -10,7 +10,7 @@ RSpec.describe 'API V1 Conversations' do
 
   let(:other) { Fabricate(:user) }
 
-  describe 'GET /api/v1/conversations', :sidekiq_inline do
+  describe 'GET /api/v1/conversations', :inline_jobs do
     before do
       user.account.follow!(other.account)
       PostStatusService.new.call(other.account, text: 'Hey @alice', visibility: 'direct')
@@ -20,15 +20,21 @@ RSpec.describe 'API V1 Conversations' do
     it 'returns pagination headers', :aggregate_failures do
       get '/api/v1/conversations', params: { limit: 1 }, headers: headers
 
-      expect(response).to have_http_status(200)
-      expect(response.headers['Link'].links.size).to eq(2)
+      expect(response)
+        .to have_http_status(200)
+        .and include_pagination_headers(
+          prev: api_v1_conversations_url(limit: 1, min_id: Status.first.id),
+          next: api_v1_conversations_url(limit: 1, max_id: Status.first.id)
+        )
+      expect(response.content_type)
+        .to start_with('application/json')
     end
 
     it 'returns conversations', :aggregate_failures do
       get '/api/v1/conversations', headers: headers
 
-      expect(body_as_json.size).to eq 2
-      expect(body_as_json[0][:accounts].size).to eq 1
+      expect(response.parsed_body.size).to eq 2
+      expect(response.parsed_body.first[:accounts].size).to eq 1
     end
 
     context 'with since_id' do
@@ -36,7 +42,7 @@ RSpec.describe 'API V1 Conversations' do
         it 'returns conversations' do
           get '/api/v1/conversations', params: { since_id: Mastodon::Snowflake.id_at(1.hour.ago, with_random: false) }, headers: headers
 
-          expect(body_as_json.size).to eq 2
+          expect(response.parsed_body.size).to eq 2
         end
       end
 
@@ -44,7 +50,7 @@ RSpec.describe 'API V1 Conversations' do
         it 'returns no conversation' do
           get '/api/v1/conversations', params: { since_id: Mastodon::Snowflake.id_at(1.hour.from_now, with_random: false) }, headers: headers
 
-          expect(body_as_json.size).to eq 0
+          expect(response.parsed_body.size).to eq 0
         end
       end
     end

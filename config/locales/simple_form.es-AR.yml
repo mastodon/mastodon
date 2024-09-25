@@ -3,6 +3,7 @@ es-AR:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Protege de atribuciones falsas.
         discoverable: Tu perfil y publicaciones pueden ser destacadas o recomendadas en varias áreas de Mastodon, y tu perfil puede ser sugerido a otros usuarios.
         display_name: Tu nombre completo o tu pseudónimo.
         fields: Tu sitio web, pronombres, edad, o lo que quieras.
@@ -130,7 +131,7 @@ es-AR:
         name: Sólo podés cambiar la capitalización de las letras, por ejemplo, para que sea más legible
       user:
         chosen_languages: Cuando estén marcados, sólo se mostrarán los mensajes en los idiomas seleccionados en las líneas temporales públicas
-        role: El rol controla qué permisos tiene el usuario
+        role: El rol controla qué permisos tiene el usuario.
       user_role:
         color: Color que se utilizará para el rol a lo largo de la interface de usuario, como RGB en formato hexadecimal
         highlighted: Esto hace que el rol sea públicamente visible
@@ -143,6 +144,7 @@ es-AR:
         url: Adónde serán enviados los eventos
     labels:
       account:
+        attribution_domains_as_text: Solo permitir sitios web específicos
         discoverable: Destacar perfil y mensajes en algoritmos de descubrimiento
         fields:
           name: Nombre de campo
@@ -211,6 +213,7 @@ es-AR:
         setting_default_privacy: Privacidad de mensajes
         setting_default_sensitive: Siempre marcar medios como sensibles
         setting_delete_modal: Mostrar diálogo de confirmación antes de eliminar un mensaje
+        setting_disable_hover_cards: Deshabilitar previsualización del perfil al pasar el cursor
         setting_disable_swiping: Deshabilitar movimientos de deslizamiento
         setting_display_media: Visualización de medios
         setting_display_media_default: Predeterminada
@@ -242,11 +245,13 @@ es-AR:
           warn: Ocultar con una advertencia
       form_admin_settings:
         activity_api_enabled: Publicar estadísticas agregadas sobre la actividad de la cuenta en la API
+        app_icon: Ícono de la aplicación
         backups_retention_period: Período de retención del archivo historial del usuario
         bootstrap_timeline_accounts: Siempre recomendar estas cuentas a usuarios nuevos
         closed_registrations_message: Mensaje personalizado cuando los registros no están disponibles
         content_cache_retention_period: Período de retención de contenido remoto
         custom_css: CSS personalizado
+        favicon: Favicón
         mascot: Mascota personalizada (legado)
         media_cache_retention_period: Período de retención de la caché de medios
         peers_api_enabled: Publicar lista de servidores descubiertos en la API
@@ -311,7 +316,7 @@ es-AR:
         listable: Permitir que esta etiqueta aparezca en las búsquedas y en las sugerencias
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
-        usable: Permitir a los mensajes usar esta etiqueta
+        usable: Permitir que los mensajes usen esta etiqueta localmente
       user:
         role: Rol
         time_zone: Zona horaria

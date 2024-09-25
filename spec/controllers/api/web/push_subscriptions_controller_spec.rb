@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Api::Web::PushSubscriptionsController do
+RSpec.describe Api::Web::PushSubscriptionsController do
   render_views
 
   let(:user) { Fabricate(:user) }

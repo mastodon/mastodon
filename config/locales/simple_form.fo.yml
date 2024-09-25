@@ -3,6 +3,7 @@ fo:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Verjir fyri følskum ískoytum.
         discoverable: Tínir almennu postar og tín vangi kunnu vera drigin fram og viðmæld ymsa staðni í Mastodon og vangin hjá tær kann vera viðmæltur øðrum brúkarum.
         display_name: Títt fulla navn og títt stuttliga navn.
         fields: Heimasíðan hjá tær, fornøvn, aldur ella hvat tú vil.
@@ -130,7 +131,7 @@ fo:
         name: Tú kanst einans broyta millum stórar og smáar stavir, til dømis fyri at gera tað meira lesiligt
       user:
         chosen_languages: Tá hetta er valt, verða einans postar í valdum málum vístir á almennum tíðarlinjum
-        role: Leikluturin stýrir, hvørji loyvir brúkarin hevur
+        role: Leikluturin stýrir hvørji rættindi, brúkarin hevur.
       user_role:
         color: Litur, sum leikluturin hevur í øllum brúkaramarkamótinum, sum RGB og upplýst sum sekstandatal
         highlighted: Hetta ger, at leikluturin er alment sjónligur
@@ -143,6 +144,7 @@ fo:
         url: Hvar hendingar verða sendar til
     labels:
       account:
+        attribution_domains_as_text: Loyv einans ávísum heimasíðum
         discoverable: Framheva vanga og postar í uppdagingar-algoritmum
         fields:
           name: Spjaldur
@@ -211,6 +213,7 @@ fo:
         setting_default_privacy: Hvussu privatir eru postar?
         setting_default_sensitive: Merk altíð miðlafílur sum viðkvæmar
         setting_delete_modal: Vís váttanarmynd, áðrenn postar verða strikaðir
+        setting_disable_hover_cards: Ger undanvísing, tá músin verður flutt yvir vangan, óvirkna
         setting_disable_swiping: Ger sveipurørslur óvirknar
         setting_display_media: Vístir miðlar
         setting_display_media_default: Sjálvvirði
@@ -242,11 +245,13 @@ fo:
           warn: Fjal við eini ávaring
       form_admin_settings:
         activity_api_enabled: Útgev samantald hagtøl um brúkaravirksemi í API'num
+        app_icon: App ikon
         backups_retention_period: Hvussu leingi verða brúkarasøvn goymd
         bootstrap_timeline_accounts: Mæl altíð nýggjum brúkarum at fylgja hesar kontur
         closed_registrations_message: Serskild boð, tá tað ikki er møguligt at tilmelda seg
         content_cache_retention_period: Tíðarskeið fyri varðveiðslu av fjartilfari
         custom_css: Serskilt CSS
+        favicon: Favikon
         mascot: Serskildur maskottur (arvur)
         media_cache_retention_period: Tíðarskeið, har miðlagoymslur verða varðveittar
         peers_api_enabled: Kunnger lista við uppdagaðum ambætarum í API'num
@@ -311,7 +316,7 @@ fo:
         listable: Loyva hesum tvíkrossið, at verða vístur í leitingum og uppskotum
         name: Tvíkrossur
         trendable: Loyv hesum frámerki at síggjast undir rákum
-        usable: Loyva uppsløgum at brúka hendan tvíkross
+        usable: Loyv postum at brúka hetta frámerki lokalt
       user:
         role: Leiklutur
         time_zone: Tíðarsona

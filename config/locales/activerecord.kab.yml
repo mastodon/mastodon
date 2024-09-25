@@ -21,6 +21,18 @@ kab:
             username:
               invalid: ilaq ad ilin isekkilen, uṭṭunen d yijerriden n wadda kan
               reserved: yettwaṭṭef
+        admin/webhook:
+          attributes:
+            url:
+              invalid: mačči d URL ameɣtu
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: mačči d URL ameɣtu
+        import:
+          attributes:
+            data:
+              malformed: yir amsal
         status:
           attributes:
             reblog:
@@ -28,4 +40,20 @@ kab:
         user:
           attributes:
             email:
+              blocked: isseqdac asaǧǧaw n yimayl ur yettusirgen ara
               unreachable: ur d-ttban ara d akken yella
+            role_id:
+              elevated: ur yezmir ara ad iεeddi tamlilt-ik tamirant
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: deg-s tisirag tiriɣelsanin i temlilt tazadurt
+              elevated: ur yezmir ara ad yesεu tirirag ur nelli ara deg temlilit-ik tamirant
+              own_role: ur yezmir ara ad yettwabeddel s temlilt-ik tamirant
+            position:
+              elevated: ur yezmir ara ad iεeddi tamlilt-ik tamirant
+              own_role: ur yezmir ara ad yettwabeddel s temlilt-ik tamirant
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: ur yezmir ara ad yesεu tidyanin iwumi ur tesεiḍ ara tisirag

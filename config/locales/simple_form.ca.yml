@@ -3,6 +3,7 @@ ca:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Protegeix de falses atribucions.
         discoverable: El teu perfil i els teus tuts públics poden aparèixer o ser recomanats en diverses àreas de Mastodon i el teu perfil pot ser suggerit a altres usuaris.
         display_name: El teu nom complet o el teu nom divertit.
         fields: La teva pàgina d'inici, pronoms, edat, el que vulguis.
@@ -130,7 +131,7 @@ ca:
         name: Només pots canviar la caixa de les lletres, per exemple, per fer-la més llegible
       user:
         chosen_languages: Quan estigui marcat, només es mostraran els tuts de les llengües seleccionades en les línies de temps públiques
-        role: El rol controla quines permissions té l'usuari
+        role: El rol controla quins permisos té l'usuari.
       user_role:
         color: Color que s'usarà per al rol a tota la interfície d'usuari, com a RGB en format hexadecimal
         highlighted: Això fa el rol visible públicament
@@ -143,6 +144,7 @@ ca:
         url: On els esdeveniments seran enviats
     labels:
       account:
+        attribution_domains_as_text: Permet només webs específics
         discoverable: Permet el perfil i el tuts en els algorismes de descobriment
         fields:
           name: Etiqueta
@@ -211,6 +213,7 @@ ca:
         setting_default_privacy: Privacitat dels tuts
         setting_default_sensitive: Marcar sempre el contingut gràfic com a sensible
         setting_delete_modal: Mostra la finestra de confirmació abans d'esborrar un tut
+        setting_disable_hover_cards: Deshabilita la vista prèvia del perfil en passar-hi per sobre
         setting_disable_swiping: Desactiva les animacions
         setting_display_media: Visualització multimèdia
         setting_display_media_default: Per defecte
@@ -242,11 +245,13 @@ ca:
           warn: Oculta amb un avís
       form_admin_settings:
         activity_api_enabled: Publica a l'API estadístiques agregades sobre l'activitat dels usuaris
+        app_icon: Icona de l'aplicació
         backups_retention_period: Període de retenció del arxiu d'usuari
         bootstrap_timeline_accounts: Recomana sempre aquests comptes als nous usuaris
         closed_registrations_message: Missatge personalitzat quan el registre no és accessible
         content_cache_retention_period: Període de retenció del contingut remot
         custom_css: CSS personalitzat
+        favicon: Icona de preferits
         mascot: Mascota personalitzada (llegat)
         media_cache_retention_period: Període de retenció del cau multimèdia
         peers_api_enabled: Publica a l'API la llista de servidors descoberts
@@ -311,7 +316,7 @@ ca:
         listable: Permet que aquesta etiqueta aparegui en les cerques i en el directori de perfils
         name: Etiqueta
         trendable: Permet que aquesta etiqueta aparegui en les tendències
-        usable: Permet als tuts emprar aquesta etiqueta
+        usable: Permet a les publicacions emprar aquesta etiqueta localment
       user:
         role: Rol
         time_zone: Zona horària

@@ -3,6 +3,7 @@ en:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Protects from false attributions.
         discoverable: Your public posts and profile may be featured or recommended in various areas of Mastodon and your profile may be suggested to other users.
         display_name: Your full name or your fun name.
         fields: Your homepage, pronouns, age, anything you want.
@@ -130,7 +131,7 @@ en:
         name: You can only change the casing of the letters, for example, to make it more readable
       user:
         chosen_languages: When checked, only posts in selected languages will be displayed in public timelines
-        role: The role controls which permissions the user has
+        role: The role controls which permissions the user has.
       user_role:
         color: Color to be used for the role throughout the UI, as RGB in hex format
         highlighted: This makes the role publicly visible
@@ -143,6 +144,7 @@ en:
         url: Where events will be sent to
     labels:
       account:
+        attribution_domains_as_text: Only allow specific websites
         discoverable: Feature profile and posts in discovery algorithms
         fields:
           name: Label
@@ -211,6 +213,7 @@ en:
         setting_default_privacy: Posting privacy
         setting_default_sensitive: Always mark media as sensitive
         setting_delete_modal: Show confirmation dialog before deleting a post
+        setting_disable_hover_cards: Disable profile preview on hover
         setting_disable_swiping: Disable swiping motions
         setting_display_media: Media display
         setting_display_media_default: Default
@@ -242,11 +245,13 @@ en:
           warn: Hide with a warning
       form_admin_settings:
         activity_api_enabled: Publish aggregate statistics about user activity in the API
+        app_icon: App icon
         backups_retention_period: User archive retention period
         bootstrap_timeline_accounts: Always recommend these accounts to new users
         closed_registrations_message: Custom message when sign-ups are not available
         content_cache_retention_period: Remote content retention period
         custom_css: Custom CSS
+        favicon: Favicon
         mascot: Custom mascot (legacy)
         media_cache_retention_period: Media cache retention period
         peers_api_enabled: Publish list of discovered servers in the API
@@ -311,7 +316,7 @@ en:
         listable: Allow this hashtag to appear in searches and suggestions
         name: Hashtag
         trendable: Allow this hashtag to appear under trends
-        usable: Allow posts to use this hashtag
+        usable: Allow posts to use this hashtag locally
       user:
         role: Role
         time_zone: Time zone

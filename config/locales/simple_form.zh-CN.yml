@@ -3,13 +3,14 @@ zh-CN:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: 保护作品免受虚假署名。
         discoverable: 您的公开嘟文和个人资料可能会在 Mastodon 的多个位置展示，您的个人资料可能会被推荐给其他用户。
-        display_name: 您的全名或昵称。
+        display_name: 你的全名或昵称。
         fields: 你的主页、人称代词、年龄，以及任何你想要添加的内容。
         indexable: 您的公开嘟文会出现在 Mastodon 的搜索结果中。无论是否勾选，与您的嘟文有过交互的人都可能通过搜索找到它们。
-        note: '您可以提及 @其他人 或 #标签 。'
+        note: '你可以提及 @其他人 或 #标签 。'
         show_collections: 人们将能够浏览您的关注和追随者。您关注的人会看到您关注他们。
-        unlocked: 人们将能够在不请求批准的情况下关注您。如果您希望审核关注请求并选择接受或拒绝新的粉丝，请取消勾选此项。
+        unlocked: 人们将能够在不请求批准的情况下关注你。如果你希望审核关注请求并选择接受或拒绝新的粉丝，请取消勾选此项。
       account_alias:
         acct: 指定你想要迁移过来的原账号：用户名@站点域名
       account_migration:
@@ -49,12 +50,12 @@ zh-CN:
         header: 支持WEBP、PNG、GIF 或 JPG。最大 %{size}。将缩小到 %{dimensions}px
         inbox_url: 从你想要使用的中继站的主页上复制 URL
         irreversible: 已过滤的嘟文会不可逆转地消失，即便移除过滤器之后也一样
-        locale: 用户界面、电子邮件和推送通知中使用的语言
+        locale: 在用户界面、电子邮件和推送通知中使用的语言
         password: 至少需要8个字符
         phrase: 匹配将忽略嘟文或内容警告里的字母大小写
         scopes: 哪些 API 被允许使用。如果你勾选了更高一级的范围，就不用单独选中子项目了。
         setting_aggregate_reblogs: 不显示最近已经被转嘟过的嘟文(只会影响新收到的转嘟)
-        setting_always_send_emails: 一般情况下，如果您活跃使用 Mastodon，我们不会给您发送电子邮件通知
+        setting_always_send_emails: 一般情况下，如果你活跃使用 Mastodon，我们不会向你发送电子邮件通知
         setting_default_sensitive: 敏感内容默认隐藏，并在点击后显示
         setting_display_media_default: 隐藏被标记为敏感内容的媒体
         setting_display_media_hide_all: 始终隐藏媒体
@@ -66,7 +67,7 @@ zh-CN:
       domain_allow:
         domain: 该站点将能够从该服务器上拉取数据，并处理和存储收到的数据。
       email_domain_block:
-        domain: 这可以是电子邮件地址的域名或它使用的 MX 记录所指向的域名。用户注册时，系统会对此检查。
+        domain: 这可以是邮箱地址的域名或它使用的 MX 记录所指向的域名。用户注册时，系统会对此执行检查。
         with_dns_records: Mastodon 会尝试解析所给域名的 DNS 记录，然后把解析结果一并封禁
       featured_tag:
         name: 以下是你最近使用过的标签：
@@ -78,7 +79,7 @@ zh-CN:
       form_admin_settings:
         activity_api_enabled: 本站每周的嘟文数、活跃用户数和新注册用户数
         app_icon: WEBP、PNG、GIF 或 JPG。使用自定义图标覆盖移动设备上的默认应用图标。
-        backups_retention_period: 用户可以生成其嘟文存档以供之后下载。当该值被设为正值时，这些存档将在指定的天数后自动从您的存储中删除。
+        backups_retention_period: 用户可以生成其嘟文存档以供之后下载。当该值被设为正值时，这些存档将在指定的天数后自动从你的存储中删除。
         bootstrap_timeline_accounts: 这些账号将在新用户关注推荐中置顶。
         closed_registrations_message: 在关闭注册时显示
         content_cache_retention_period: 来自其它实例的所有嘟文（包括转嘟与回复）都将在指定天数后被删除，不论本实例用户是否与这些嘟文产生过交互。这包括被本实例用户喜欢和收藏的嘟文。实例间用户的私下提及也将丢失并无法恢复。此设置针对的是特殊用途的实例，用于一般用途时会打破许多用户的期望。
@@ -100,8 +101,8 @@ zh-CN:
         thumbnail: 与服务器信息一并展示的约 2:1 比例的图像。
         timeline_preview: 未登录访客将能够浏览服务器上最新的公共嘟文。
         trendable_by_default: 跳过对热门内容的手工审核。个别项目仍可在之后从趋势中删除。
-        trends: 趋势中会显示正在你服务器上受到关注的嘟文、标签和新闻故事。
-        trends_as_landing_page: 向注销的用户和访问者显示趋势内容，而不是对该服务器的描述，需要启用趋势。
+        trends: 热门页中会显示正在你服务器上受到关注的嘟文、标签和新闻故事。
+        trends_as_landing_page: 向注销的用户和访问者显示热门内容，而不是对该服务器的描述，需要启用热门。
       form_challenge:
         current_password: 你正在进入安全区域
       imports:
@@ -125,12 +126,12 @@ zh-CN:
         webauthn: 如果是 USB 密钥，请确保将其插入，如有必要，请点击它。
       settings:
         indexable: 您的个人资料页面可能会出现在Google、Bing等搜索结果中。
-        show_application: 无论如何，您始终可以看到是哪个应用发布了您的嘟文。
+        show_application: 无论如何，你始终可以看到是哪个应用发布了你的嘟文。
       tag:
         name: 你只能改变字母的大小写，让它更易读
       user:
         chosen_languages: 仅选中语言的嘟文会出现在公共时间轴上（全不选则显示所有语言的嘟文）
-        role: 角色用于控制用户拥有的权限
+        role: 角色用于控制用户拥有的权限。
       user_role:
         color: 在界面各处用于标记该角色的颜色，以十六进制 RGB 格式表示
         highlighted: 使角色公开可见
@@ -143,7 +144,8 @@ zh-CN:
         url: 事件将被发往的目的地
     labels:
       account:
-        discoverable: 在发现算法中展示您的个人资料和嘟文
+        attribution_domains_as_text: 仅允许特定网站
+        discoverable: 在发现算法中展示你的个人资料和嘟文
         fields:
           name: 标签
           value: 内容
@@ -188,7 +190,7 @@ zh-CN:
         current_password: 当前密码
         data: 数据文件
         display_name: 昵称
-        email: 电子邮件地址
+        email: 邮箱地址
         expires_in: 失效时间
         fields: 个人资料附加信息
         header: 个人资料页横幅图片
@@ -211,6 +213,7 @@ zh-CN:
         setting_default_privacy: 嘟文默认可见范围
         setting_default_sensitive: 始终标记媒体为敏感内容
         setting_delete_modal: 在删除嘟文前询问我
+        setting_disable_hover_cards: 禁用悬停资料预览
         setting_disable_swiping: 禁用滑动动作
         setting_display_media: 媒体显示
         setting_display_media_default: 默认
@@ -230,7 +233,7 @@ zh-CN:
         title: 标题
         type: 导入数据类型
         username: 用户名
-        username_or_email: 用户名或电子邮件地址
+        username_or_email: 用户名或邮箱地址
         whole_word: 整个词条
       email_domain_block:
         with_dns_records: 包括该域名的 MX 记录和 IP 地址
@@ -242,11 +245,13 @@ zh-CN:
           warn: 隐藏时显示警告信息
       form_admin_settings:
         activity_api_enabled: 在 API 中发布有关用户活动的汇总统计数据
+        app_icon: 应用图标
         backups_retention_period: 用户存档保留期
         bootstrap_timeline_accounts: 推荐新用户关注以下账号
         closed_registrations_message: 在关闭注册时显示的自定义消息
         content_cache_retention_period: 外站内容保留期
         custom_css: 自定义 CSS
+        favicon: Favicon
         mascot: 自定义吉祥物（旧）
         media_cache_retention_period: 媒体缓存保留期
         peers_api_enabled: 在API中公开的已知实例的服务器的列表
@@ -266,8 +271,8 @@ zh-CN:
         thumbnail: 本站缩略图
         timeline_preview: 时间轴预览
         trendable_by_default: 允许在未审核的情况下将话题置为热门
-        trends: 启用趋势
-        trends_as_landing_page: 使用趋势作为登陆页面
+        trends: 启用热门
+        trends_as_landing_page: 使用热门页作为登陆页面
       interactions:
         must_be_follower: 屏蔽来自未关注我的用户的通知
         must_be_following: 屏蔽来自我未关注的用户的通知
@@ -288,11 +293,11 @@ zh-CN:
         appeal: 有人对审核结果提出申诉
         digest: 发送摘要邮件
         favourite: 当有用户喜欢了我的嘟文时，发送电子邮件提醒我
-        follow: 当有用户关注我时，发送电子邮件提醒我
-        follow_request: 当有用户向我发送关注请求时，发送电子邮件提醒我
-        mention: 当有用户在嘟文中提及我时，发送电子邮件提醒我
-        pending_account: 在有账号需要审核时，发送电子邮件提醒我
-        reblog: 当有用户转嘟了我的嘟文时，发送电子邮件提醒我
+        follow: 有用户关注我时
+        follow_request: 有用户向我发送关注请求时
+        mention: 有用户提及我时
+        pending_account: 有账号需要审核时
+        reblog: 有用户转嘟我的嘟文时
         report: 新举报已提交
         software_updates:
           all: 通知所有更新
@@ -306,12 +311,12 @@ zh-CN:
         text: 规则
       settings:
         indexable: 允许搜索引擎索引个人资料页面
-        show_application: 显示您发嘟所用的应用
+        show_application: 显示你发嘟所用的应用
       tag:
         listable: 允许这个话题标签在用户目录中显示
         name: 话题标签
         trendable: 允许在热门下显示此话题
-        usable: 允许嘟文使用此话题标签
+        usable: 允许本站嘟文使用此话题标签
       user:
         role: 角色
         time_zone: 时区

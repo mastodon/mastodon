@@ -3,6 +3,7 @@ de:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Dadurch können falsche Zuschreibungen unterbunden werden.
         discoverable: Deine öffentlichen Beiträge und dein Profil können in verschiedenen Bereichen auf Mastodon angezeigt oder empfohlen werden und dein Profil kann anderen vorgeschlagen werden.
         display_name: Dein richtiger Name oder dein Fantasiename.
         fields: Deine Website, Pronomen, dein Alter – alles, was du möchtest.
@@ -130,7 +131,7 @@ de:
         name: Du kannst nur die Groß- und Kleinschreibung der Buchstaben ändern, um es z. B. lesbarer zu machen
       user:
         chosen_languages: Wenn du hier eine oder mehrere Sprachen auswählst, werden ausschließlich Beiträge in diesen Sprachen in deinen öffentlichen Timelines angezeigt
-        role: Die Rolle legt fest, welche Berechtigungen das Konto hat
+        role: Die Rolle bestimmt, welche Berechtigungen das Konto hat.
       user_role:
         color: Farbe, die für diese Rolle in der gesamten Benutzerschnittstelle verwendet wird, als RGB im Hexadezimalsystem
         highlighted: Dies macht die Rolle öffentlich im Profil sichtbar
@@ -143,6 +144,7 @@ de:
         url: Wohin Ereignisse gesendet werden
     labels:
       account:
+        attribution_domains_as_text: Nur ausgewählte Websites zulassen
         discoverable: Profil und Beiträge in Suchalgorithmen berücksichtigen
         fields:
           name: Beschriftung
@@ -211,6 +213,7 @@ de:
         setting_default_privacy: Beitragssichtbarkeit
         setting_default_sensitive: Medien immer mit einer Inhaltswarnung versehen
         setting_delete_modal: Bestätigungsdialog beim Löschen eines Beitrags anzeigen
+        setting_disable_hover_cards: Profilvorschau deaktivieren, wenn die Maus über das Profil bewegt wird
         setting_disable_swiping: Wischgesten deaktivieren
         setting_display_media: Darstellung von Medien
         setting_display_media_default: Standard
@@ -242,11 +245,13 @@ de:
           warn: Mit einer Inhaltswarnung ausblenden
       form_admin_settings:
         activity_api_enabled: Aggregierte Nutzungsdaten über die API veröffentlichen
+        app_icon: App-Symbol
         backups_retention_period: Aufbewahrungsfrist für Archive
         bootstrap_timeline_accounts: Neuen Nutzern immer diese Konten empfehlen
         closed_registrations_message: Nachricht, falls Registrierungen deaktiviert sind
         content_cache_retention_period: Aufbewahrungsfrist für externe Inhalte
         custom_css: Eigenes CSS
+        favicon: Favicon
         mascot: Benutzerdefiniertes Maskottchen (Legacy)
         media_cache_retention_period: Aufbewahrungsfrist für Medien im Cache
         peers_api_enabled: Die entdeckten Server im Fediverse über die API veröffentlichen
@@ -311,7 +316,7 @@ de:
         listable: Erlaube, dass dieser Hashtag in Suchen und Empfehlungen erscheint
         name: Hashtag
         trendable: Erlaube, dass dieser Hashtag in den Trends erscheint
-        usable: Erlaube, dass dieser Hashtag in Beiträgen erscheint
+        usable: Beiträge dürfen diesen Hashtag lokal verwenden
       user:
         role: Rolle
         time_zone: Zeitzone

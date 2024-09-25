@@ -200,14 +200,6 @@ module JsonLdHelper
     nil
   end
 
-  def merge_context(context, new_context)
-    if context.is_a?(Array)
-      context << new_context
-    else
-      [context, new_context]
-    end
-  end
-
   def response_successful?(response)
     (200...300).cover?(response.code)
   end

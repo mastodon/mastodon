@@ -130,7 +130,7 @@ sv:
         name: Du kan bara ändra skriftläget av bokstäverna, till exempel, för att göra det mer läsbart
       user:
         chosen_languages: Vid aktivering visas bara inlägg på dina valda språk i offentliga tidslinjer
-        role: Rollen bestämmer vilka behörigheter användaren har
+        role: Rollen styr vilka behörigheter användaren har.
       user_role:
         color: Färgen som ska användas för rollen i användargränssnittet, som RGB i hex-format
         highlighted: Detta gör rollen synlig offentligt
@@ -159,7 +159,7 @@ sv:
         title: Rubrik
       admin_account_action:
         include_statuses: Inkludera rapporterade inlägg i e-postmeddelandet
-        send_email_notification: Notifiera användaren via e-post
+        send_email_notification: Avisera användaren via e-post
         text: Anpassad varning
         type: Åtgärd
         types:
@@ -211,6 +211,7 @@ sv:
         setting_default_privacy: Inläggsintegritet
         setting_default_sensitive: Markera alltid media som känsligt
         setting_delete_modal: Visa bekräftelsedialog innan radering av inlägg
+        setting_disable_hover_cards: Inaktivera profilförhandsgranskning vid hovring
         setting_disable_swiping: Inaktivera svepande rörelser
         setting_display_media: Mediavisning
         setting_display_media_default: Standard
@@ -242,11 +243,13 @@ sv:
           warn: Dölj med en varning
       form_admin_settings:
         activity_api_enabled: Publicera aggregerad statistik om användaraktivitet i API:et
+        app_icon: Appikon
         backups_retention_period: Lagringsperiod för användararkivet
         bootstrap_timeline_accounts: Rekommendera alltid dessa konton till nya användare
         closed_registrations_message: Anpassat meddelande när nyregistreringar inte är tillgängliga
         content_cache_retention_period: Förvaringsperiod för fjärrinnehåll
         custom_css: Anpassad CSS
+        favicon: Favicon
         mascot: Anpassad maskot (tekniskt arv)
         media_cache_retention_period: Tid för bibehållande av mediecache
         peers_api_enabled: Publicera lista över upptäckta servrar i API:et
@@ -311,7 +314,7 @@ sv:
         listable: Tillåt denna hashtagg att visas i sökningar och förslag
         name: Hashtagg
         trendable: Tillåt denna hashtagg att visas under trender
-        usable: Tillåt inlägg att använda denna hashtagg
+        usable: Tillåt inlägg att använda denna fyrkantstagg
       user:
         role: Roll
         time_zone: Tidszon

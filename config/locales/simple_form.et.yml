@@ -3,6 +3,7 @@ et:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Kaitseb valede omistuste eest.
         discoverable: Su profiili ja avalikke postitusi võidakse Mastodoni erinevates piirkondades esile tõsta või soovitada ning su profiili soovitada teistele kasutajatele.
         display_name: Su täisnimi või naljanimi.
         fields: Su koduleht, sugu, vanus. Mistahes, mida soovid.
@@ -130,7 +131,7 @@ et:
         name: Saad muuta ainult tähtede suurtähelisust, näiteks selleks, et muuta seda loetavamaks
       user:
         chosen_languages: Keelte valimisel näidatakse avalikel ajajoontel ainult neis keeltes postitusi
-        role: See roll kontrollib, millised õigused kasutajal on
+        role: Rollid määravad, millised õigused kasutajal on.
       user_role:
         color: Rolli tähistamise värvus üle kasutajaliidese, RGB 16nd-formaadis
         highlighted: Teeb rolli avalikult nähtavaks
@@ -143,6 +144,7 @@ et:
         url: Kuhu sündmused saadetakse
     labels:
       account:
+        attribution_domains_as_text: Luba vaid kindlad veebilehed
         discoverable: Tõsta postitused ja profiil avastamise algoritmides esile
         fields:
           name: Nimetus
@@ -211,6 +213,7 @@ et:
         setting_default_privacy: Postituse nähtavus
         setting_default_sensitive: Alati märgista meedia tundlikuks
         setting_delete_modal: Näita kinnitusdialoogi enne postituse kustutamist
+        setting_disable_hover_cards: Keela profiili eelvaade kui hõljutada
         setting_disable_swiping: Keela pühkimisliigutused
         setting_display_media: Meedia kuvarežiim
         setting_display_media_default: Vaikimisi
@@ -242,11 +245,13 @@ et:
           warn: Peida hoiatusega
       form_admin_settings:
         activity_api_enabled: Avalda agregeeritud statistika kasutajaaktiivsuse kohta API-s
+        app_icon: Äpi ikoon
         backups_retention_period: Kasutajate arhiivi talletusperiood
         bootstrap_timeline_accounts: Alati soovita neid kontosid uutele kasutajatele
         closed_registrations_message: Kohandatud teade, kui liitumine pole võimalik
         content_cache_retention_period: Kaugsisu säilitamise aeg
         custom_css: Kohandatud CSS
+        favicon: Favicon
         mascot: Kohandatud maskott (kunagine)
         media_cache_retention_period: Meediapuhvri talletusperiood
         peers_api_enabled: Avalda avastatud serverite loetelu API kaudu
@@ -311,7 +316,7 @@ et:
         listable: Luba sellel sildil ilmuda profiilide kataloogis
         name: Silt
         trendable: Luba sellel sildil trendida
-        usable: Luba postitustel seda silti kasutada
+        usable: Luba seda märksõna postitustes kasutada lokaalselt
       user:
         role: Roll
         time_zone: Ajavöönd

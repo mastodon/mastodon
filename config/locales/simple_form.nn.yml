@@ -3,6 +3,7 @@ nn:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Vernar mot falske krediteringar.
         discoverable: Dei offentlege innlegga dine og profilen din kan dukka opp i tilrådingar på ulike stader på Mastodon, og profilen din kan bli føreslegen for andre folk.
         display_name: Ditt fulle namn eller ditt tøysenamn.
         fields: Heimesida di, pronomen, alder, eller kva du måtte ynskje.
@@ -15,7 +16,7 @@ nn:
       account_migration:
         acct: Angi brukarnamn@domene til brukaren du ynskjer å flytta til
       account_warning_preset:
-        text: Du kan bruka tut-syntaks, som t. d. URL-ar, emneknaggar og nemningar
+        text: Du kan bruka tut-syntaks, som t. d. URL-ar, emneknaggar og omtaler
         title: Valfritt. Ikkje synleg for mottakar
       admin_account_action:
         include_statuses: Brukaren får sjå kva tut som førte til moderatorhandlinga eller -åtvaringa
@@ -81,7 +82,7 @@ nn:
         backups_retention_period: Brukarar har moglegheit til å generere arkiv av sine innlegg for å laste ned seinare. Når sett til ein positiv verdi, blir desse arkiva automatisk sletta frå lagringa etter eit gitt antal dagar.
         bootstrap_timeline_accounts: Desse kontoane vil bli festa øverst på fylgjaranbefalingane til nye brukarar.
         closed_registrations_message: Vist når det er stengt for registrering
-        content_cache_retention_period: Alle innlegg frå andre serverar (inkludert boostar og svar) vil bli sletta etter dei gitte antal dagar, uten hensyn til lokale brukarinteraksjonar med desse innlegga. Dette inkluderer innlegg der ein lokal brukar har merka det som bokmerker eller som favorittar. Òg private nemningar mellom brukarar frå ulike førekomstar vil gå tapt og vere umogleg å gjenskape. Bruk av denne innstillinga er rekna på spesielle førekomstar og bryt mange brukarforventingar når dette blir tatt i generell bruk.
+        content_cache_retention_period: Alle innlegg frå andre tenarar (inkludert framhevingar og svar) vil bli sletta etter talet på dagar du skriv inn, uansett om nokon har samhandla med desse innlegga. Dette inkluderer innlegg der ein lokal brukar har merka det som bokmerke eller som favoritt. Private omtaler mellom brukarar frå ulike nettstader vil gå tapt og vera umogleg å gjenskapa. Bruk av denne innstillinga er meint for spesielle nettstader og bryt med det mange forventar av ein vanleg nettstad.
         custom_css: Du kan bruka eigendefinerte stilar på nettversjonen av Mastodon.
         favicon: WEBP, PNG, GIF eller JPG. Overstyrer det standarde Mastodon-favikonet med eit eigendefinert ikon.
         mascot: Overstyrer illustrasjonen i det avanserte webgrensesnittet.
@@ -130,7 +131,7 @@ nn:
         name: Du kan berre endra bruken av store/små bokstavar, t. d. for å gjera det meir leseleg
       user:
         chosen_languages: Når merka vil berre tuta på dei valde språka synast på offentlege tidsliner
-        role: Rolla kontrollerer kva tilgangar brukaren har
+        role: Rolla kontrollerer kva løyve brukaren har.
       user_role:
         color: Fargen som skal nyttast for denne rolla i heile brukargrensesnittet, som RGB i hex-format
         highlighted: Dette gjer rolla synleg offentleg
@@ -143,6 +144,7 @@ nn:
         url: Kvar hendingar skal sendast
     labels:
       account:
+        attribution_domains_as_text: Tillat berre visse nettstader
         discoverable: Ta med profilen og innlegga i oppdagingsalgoritmar
         fields:
           name: Merkelapp
@@ -211,6 +213,7 @@ nn:
         setting_default_privacy: Privatliv
         setting_default_sensitive: Merk alltid media som nærtakande
         setting_delete_modal: Vis stadfesting før du slettar eit tut
+        setting_disable_hover_cards: Skru av profilvising når peikaren er over
         setting_disable_swiping: Skru av sveipebevegelser
         setting_display_media: Medievisning
         setting_display_media_default: Standard
@@ -242,11 +245,13 @@ nn:
           warn: Gøym med ei åtvaring
       form_admin_settings:
         activity_api_enabled: Legg ut samla statistikk om brukaraktiviteten i APIet
+        app_icon: App-ikon
         backups_retention_period: Arkiveringsperiode for brukararkiv
         bootstrap_timeline_accounts: Tilrå alltid desse kontoane for nye brukarar
         closed_registrations_message: Eigendefinert melding når registrering ikkje er mogleg
         content_cache_retention_period: Oppbevaringstid for eksternt innhald
         custom_css: Egendefinert CSS
+        favicon: Favorittikon
         mascot: Eigendefinert maskot (eldre funksjon)
         media_cache_retention_period: Oppbevaringsperiode for mediebuffer
         peers_api_enabled: Legg ut ei liste over oppdaga tenarar i APIet
@@ -311,7 +316,7 @@ nn:
         listable: Tillat denne emneknaggen å synast i søk og i profilmappa
         name: Emneknagg
         trendable: Tillat denne emneknaggen til å synast under trendar
-        usable: Gje tut lov til å nytta denne emneknaggen
+        usable: Godta at innlegga kan bruka denne emneknaggen lokalt
       user:
         role: Rolle
         time_zone: Tidssone

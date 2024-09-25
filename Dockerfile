@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.8
+# syntax=docker/dockerfile:1.9
 
 # This file is designed for production server deployment, not local development work
 # For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/README.md#docker
@@ -12,16 +12,16 @@ ARG BUILDPLATFORM=${BUILDPLATFORM}
 
 # Ruby image to use for base image, change with [--build-arg RUBY_VERSION="3.3.x"]
 # renovate: datasource=docker depName=docker.io/ruby
-ARG RUBY_VERSION="3.3.3"
+ARG RUBY_VERSION="3.3.5"
 # # Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
 # renovate: datasource=node-version depName=node
 ARG NODE_MAJOR_VERSION="20"
 # Debian image to use for base image, change with [--build-arg DEBIAN_VERSION="bookworm"]
 ARG DEBIAN_VERSION="bookworm"
 # Node image to use for base image based on combined variables (ex: 20-bookworm-slim)
-FROM docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim as node
+FROM docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim AS node
 # Ruby image to use for base image based on combined variables (ex: 3.3.x-slim-bookworm)
-FROM docker.io/ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} as ruby
+FROM docker.io/ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} AS ruby
 
 # Resulting version string is vX.X.X-MASTODON_VERSION_PRERELEASE+MASTODON_VERSION_METADATA
 # Example: v4.3.0-nightly.2023.11.09+pr-123456
@@ -67,7 +67,9 @@ ENV \
 # Optimize jemalloc 5.x performance
   MALLOC_CONF="narenas:2,background_thread:true,thp:never,dirty_decay_ms:1000,muzzy_decay_ms:0" \
 # Enable libvips, should not be changed
-  MASTODON_USE_LIBVIPS=true
+  MASTODON_USE_LIBVIPS=true \
+# Sidekiq will touch tmp/sidekiq_process_has_started_and_will_begin_processing_jobs to indicate it is ready. This can be used for a readiness check in Kubernetes
+  MASTODON_SIDEKIQ_READY_FILENAME=sidekiq_process_has_started_and_will_begin_processing_jobs
 
 # Set default shell used for running commands
 SHELL ["/bin/bash", "-o", "pipefail", "-o", "errexit", "-c"]
@@ -117,7 +119,7 @@ RUN \
   ;
 
 # Create temporary build layer from base image
-FROM ruby as build
+FROM ruby AS build
 
 # Copy Node package configuration files into working directory
 COPY package.json yarn.lock .yarnrc.yml /opt/mastodon/
@@ -185,40 +187,46 @@ RUN \
   corepack prepare --activate;
 
 # Create temporary libvips specific build layer from build layer
-FROM build as libvips
+FROM build AS libvips
 
 # libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
 # renovate: datasource=github-releases depName=libvips packageName=libvips/libvips
-ARG VIPS_VERSION=8.15.2
+ARG VIPS_VERSION=8.15.3
 # libvips download URL, change with [--build-arg VIPS_URL="https://github.com/libvips/libvips/releases/download"]
 ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
 
 WORKDIR /usr/local/libvips/src
+# Download and extract libvips source code
+ADD ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz /usr/local/libvips/src/
+RUN tar xf vips-${VIPS_VERSION}.tar.xz;
 
+WORKDIR /usr/local/libvips/src/vips-${VIPS_VERSION}
+
+# Configure and compile libvips
 RUN \
-  curl -sSL -o vips-${VIPS_VERSION}.tar.xz ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz; \
-  tar xf vips-${VIPS_VERSION}.tar.xz; \
-  cd vips-${VIPS_VERSION}; \
   meson setup build --prefix /usr/local/libvips --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false; \
   cd build; \
   ninja; \
   ninja install;
 
 # Create temporary ffmpeg specific build layer from build layer
-FROM build as ffmpeg
+FROM build AS ffmpeg
 
 # ffmpeg version to compile, change with [--build-arg FFMPEG_VERSION="7.0.x"]
 # renovate: datasource=repology depName=ffmpeg packageName=openpkg_current/ffmpeg
-ARG FFMPEG_VERSION=7.0.1
+ARG FFMPEG_VERSION=7.0.2
 # ffmpeg download URL, change with [--build-arg FFMPEG_URL="https://ffmpeg.org/releases"]
 ARG FFMPEG_URL=https://ffmpeg.org/releases
 
 WORKDIR /usr/local/ffmpeg/src
+# Download and extract ffmpeg source code
+ADD ${FFMPEG_URL}/ffmpeg-${FFMPEG_VERSION}.tar.xz /usr/local/ffmpeg/src/
+RUN tar xf ffmpeg-${FFMPEG_VERSION}.tar.xz;
 
+WORKDIR /usr/local/ffmpeg/src/ffmpeg-${FFMPEG_VERSION}
+
+# Configure and compile ffmpeg
 RUN \
-  curl -sSL -o ffmpeg-${FFMPEG_VERSION}.tar.xz ${FFMPEG_URL}/ffmpeg-${FFMPEG_VERSION}.tar.xz; \
-  tar xf ffmpeg-${FFMPEG_VERSION}.tar.xz; \
-  cd ffmpeg-${FFMPEG_VERSION}; \
   ./configure \
     --prefix=/usr/local/ffmpeg \
     --toolchain=hardened \
@@ -247,7 +255,7 @@ RUN \
   make install;
 
 # Create temporary bundler specific build layer from build layer
-FROM build as bundler
+FROM build AS bundler
 
 ARG TARGETPLATFORM
 
@@ -269,7 +277,7 @@ RUN \
   bundle install -j"$(nproc)";
 
 # Create temporary node specific build layer from build layer
-FROM build as yarn
+FROM build AS yarn
 
 ARG TARGETPLATFORM
 
@@ -286,7 +294,7 @@ RUN \
   yarn workspaces focus --production @mastodon/mastodon;
 
 # Create temporary assets build layer from build layer
-FROM build as precompiler
+FROM build AS precompiler
 
 # Copy Mastodon sources into precompiler layer
 COPY . /opt/mastodon/
@@ -310,7 +318,7 @@ RUN \
   rm -fr /opt/mastodon/tmp;
 
 # Prep final Mastodon Ruby layer
-FROM ruby as mastodon
+FROM ruby AS mastodon
 
 ARG TARGETPLATFORM
 

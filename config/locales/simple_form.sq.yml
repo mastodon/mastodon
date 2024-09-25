@@ -3,6 +3,7 @@ sq:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Mbron nga atribuime të rreme.
         discoverable: Postimet dhe profili juaj publik mund të shfaqen, ose rekomandohen në zona të ndryshme të Mastodon-it dhe profili juaj mund të sugjerohet përdoruesve të tjerë.
         display_name: Emri juaj i plotë, ose emri juaj lojcak.
         fields: Faqja juaj hyrëse, përemra, moshë, ç’të keni qejf.
@@ -130,7 +131,7 @@ sq:
         name: Mund të ndryshoni shkronjat vetëm nga të mëdha në të vogla ose anasjelltas, për shembull, për t’i bërë më të lexueshme
       user:
         chosen_languages: Në iu vëntë shenjë, te rrjedha kohore publike do të shfaqen vetëm mesazhe në gjuhët e përzgjedhura
-        role: Roli kontrollon cilat leje ka përdoruesi
+        role: Roli kontrollon cilat leje ka përdoruesi.
       user_role:
         color: Ngjyrë për t’u përdorur për rolin nëpër UI, si RGB në format gjashtëmbëdhjetësh
         highlighted: Kjo e bën rolin të dukshëm publikisht
@@ -143,6 +144,7 @@ sq:
         url: Ku do të dërgohen aktet
     labels:
       account:
+        attribution_domains_as_text: Lejo vetëm sajte specifikë
         discoverable: Profilin dhe postimet bëji objekt të algoritmeve të zbulimit
         fields:
           name: Etiketë
@@ -211,6 +213,7 @@ sq:
         setting_default_privacy: Privatësi postimi
         setting_default_sensitive: Mediave vëru përherë shenjë si rezervat
         setting_delete_modal: Shfaq dialog ripohimi përpara fshirjes së një mesazhi
+        setting_disable_hover_cards: Çaktivizo paraparje profili, kur i kalohet kursori përsipër
         setting_disable_swiping: Çaktivizo lëvizje me fërkim
         setting_display_media: Shfaqje mediash
         setting_display_media_default: Parazgjedhje
@@ -242,11 +245,13 @@ sq:
           warn: Fshihe me një sinjalizim
       form_admin_settings:
         activity_api_enabled: Publikoni te API statistika përmbledhëse rreth veprimtarisë së përdoruesve
+        app_icon: Ikonë aplikacioni
         backups_retention_period: Periudhë mbajtjeje arkivash përdoruesish
         bootstrap_timeline_accounts: Rekomandoju përherë këto llogari përdoruesve të rinj
         closed_registrations_message: Mesazh vetjak për pamundësi regjistrimesh të reja
         content_cache_retention_period: Periudhë mbajtjeje lënde të largët
         custom_css: CSS Vetjake
+        favicon: Favikonë
         mascot: Simbol vetjak (e dikurshme)
         media_cache_retention_period: Periudhë mbajtjeje lënde media
         peers_api_enabled: Publiko te API listë shërbyesish të zbuluar
@@ -311,7 +316,7 @@ sq:
         listable: Lejoje këtë hashtag të shfaqet në kërkime dhe në drejtori profilesh
         name: Hashtag
         trendable: Lejoje këtë hashtag të shfaqet në prirje
-        usable: Lejoji mesazhet të përdorin këtë hashtag
+        usable: Lejoji postimet të përdorin lokalisht këtë hashtag
       user:
         role: Rol
         time_zone: Zonë kohore

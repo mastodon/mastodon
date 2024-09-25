@@ -2,14 +2,27 @@ import { IntlProvider } from 'react-intl';
 
 import { MemoryRouter } from 'react-router';
 
+import type { RenderOptions } from '@testing-library/react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { render as rtlRender } from '@testing-library/react';
 
 import { IdentityContext } from './identity_context';
 
+beforeEach(() => {
+  global.requestIdleCallback = jest
+    .fn()
+    .mockImplementation((fn: () => void) => {
+      fn();
+    });
+});
+
 function render(
   ui: React.ReactElement,
-  { locale = 'en', signedIn = true, ...renderOptions } = {},
+  {
+    locale = 'en',
+    signedIn = true,
+    ...renderOptions
+  }: RenderOptions & { locale?: string; signedIn?: boolean } = {},
 ) {
   const fakeIdentity = {
     signedIn: signedIn,

@@ -15,6 +15,12 @@ ko:
       user/invite_request:
         text: 이유
     errors:
+      attributes:
+        domain:
+          invalid: 올바른 도메인 네임이 아닙니다
+      messages:
+        invalid_domain_on_line: "%{value}는 올바른 도메인 네임이 아닙니다"
+        too_many_lines: "%{limit}줄 제한을 초과합니다"
       models:
         account:
           attributes:

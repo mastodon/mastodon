@@ -3,6 +3,7 @@ ko:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: 가짜 기여로부터 보호합니다.
         discoverable: 내 공개 게시물과 프로필이 마스토돈의 다양한 추천 기능에 나타날 수 있고 프로필이 다른 사용자에게 제안될 수 있습니다
         display_name: 진짜 이름 또는 재미난 이름.
         fields: 홈페이지, 호칭, 나이, 뭐든지 적고 싶은 것들.
@@ -130,7 +131,7 @@ ko:
         name: 읽기 쉽게하기 위한 글자의 대소문자만 변경할 수 있습니다.
       user:
         chosen_languages: 체크하면, 선택 된 언어로 작성된 게시물들만 공개 타임라인에 보여집니다
-        role: 역할은 사용자가 어떤 권한을 가지게 될 지 결정합니다
+        role: 역할은 사용자가 어떤 권한을 가지게 될 지 결정합니다.
       user_role:
         color: 색상은 사용자 인터페이스에서 역할을 나타내기 위해 사용되며, RGB 16진수 형식입니다
         highlighted: 이 역할이 공개적으로 보이도록 설정합니다
@@ -143,6 +144,7 @@ ko:
         url: 이벤트가 어디로 전송될 지
     labels:
       account:
+        attribution_domains_as_text: 특정 웹사이트만 허용하기
         discoverable: 발견하기 알고리즘에 프로필과 게시물을 추천하기
         fields:
           name: 라벨
@@ -211,6 +213,7 @@ ko:
         setting_default_privacy: 게시물 프라이버시
         setting_default_sensitive: 미디어를 언제나 민감한 콘텐츠로 설정
         setting_delete_modal: 게시물 삭제 전 확인 창을 표시
+        setting_disable_hover_cards: 호버시 프로필 미리보기를 비활성화
         setting_disable_swiping: 스와이프 모션 비활성화
         setting_display_media: 미디어 표시
         setting_display_media_default: 기본
@@ -242,11 +245,13 @@ ko:
           warn: 경고와 함께 숨기기
       form_admin_settings:
         activity_api_enabled: API에 유저 활동에 대한 통계 발행
+        app_icon: 앱 아이콘
         backups_retention_period: 사용자 아카이브 유지 기한
         bootstrap_timeline_accounts: 새로운 사용자들에게 추천할 계정들
         closed_registrations_message: 가입이 불가능 할 때의 사용자 지정 메시지
         content_cache_retention_period: 리모트 콘텐츠 보유 기간
         custom_css: 사용자 정의 CSS
+        favicon: 파비콘
         mascot: 사용자 정의 마스코트 (legacy)
         media_cache_retention_period: 미디어 캐시 유지 기한
         peers_api_enabled: API에 발견 된 서버들의 목록 발행
@@ -311,7 +316,7 @@ ko:
         listable: 이 해시태그가 검색과 추천에 보여지도록 허용
         name: 해시태그
         trendable: 이 해시태그가 유행에 나타날 수 있도록 허용
-        usable: 이 해시태그를 게시물에 사용 가능하도록 허용
+        usable: 이 해시태그를 로컬 게시물에서 사용 가능하도록 허용
       user:
         role: 역할
         time_zone: 시간대

@@ -2,13 +2,22 @@
 
 require 'rails_helper'
 
-describe ApplicationHelper do
+RSpec.describe ApplicationHelper do
   describe 'body_classes' do
     context 'with a body class string from a controller' do
       before { helper.extend controller_helpers }
 
       it 'uses the controller body classes in the result' do
-        expect(helper.body_classes).to match(/modal-layout compose-standalone/)
+        expect(helper.body_classes)
+          .to match(/modal-layout compose-standalone/)
+          .and match(/theme-default/)
+      end
+
+      it 'includes values set via content_for' do
+        helper.content_for(:body_classes) { 'admin' }
+
+        expect(helper.body_classes)
+          .to match(/admin/)
       end
 
       private
@@ -53,9 +62,12 @@ describe ApplicationHelper do
     end
   end
 
-  describe 'fa_icon' do
-    it 'returns a tag of fixed-width cog' do
-      expect(helper.fa_icon('cog fw')).to eq '<i class="fa fa-cog fa-fw"></i>'
+  describe '#material_symbol' do
+    it 'returns an svg with the icon and options' do
+      expect(helper.material_symbol('lock', class: :test, data: { hidden: true }))
+        .to match('<svg.*/svg>')
+        .and match('class="icon material-lock test"')
+        .and match('data-hidden="true"')
     end
   end
 
@@ -223,7 +235,7 @@ describe ApplicationHelper do
 
     it 'returns an unlock icon for a unlisted visible status' do
       result = helper.visibility_icon Status.new(visibility: 'unlisted')
-      expect(result).to match(/unlock/)
+      expect(result).to match(/lock_open/)
     end
 
     it 'returns a lock icon for a private visible status' do
@@ -233,7 +245,7 @@ describe ApplicationHelper do
 
     it 'returns an at icon for a direct visible status' do
       result = helper.visibility_icon Status.new(visibility: 'direct')
-      expect(result).to match(/at/)
+      expect(result).to match(/alternate_email/)
     end
   end
 
@@ -282,35 +294,6 @@ describe ApplicationHelper do
 
         expect(helper.html_title).to eq 'Site Title'
         expect(helper.html_title).to be_html_safe
-      end
-    end
-  end
-
-  describe 'favicon' do
-    context 'when an icon exists' do
-      let!(:favicon) { Fabricate(:site_upload, var: 'favicon') }
-      let!(:app_icon) { Fabricate(:site_upload, var: 'app_icon') }
-
-      it 'returns the URL of the icon' do
-        expect(helper.favicon_path).to eq(favicon.file.url('48'))
-        expect(helper.app_icon_path).to eq(app_icon.file.url('48'))
-      end
-
-      it 'returns the URL of the icon with size parameter' do
-        expect(helper.favicon_path(16)).to eq(favicon.file.url('16'))
-        expect(helper.app_icon_path(16)).to eq(app_icon.file.url('16'))
-      end
-    end
-
-    context 'when an icon does not exist' do
-      it 'returns nil' do
-        expect(helper.favicon_path).to be_nil
-        expect(helper.app_icon_path).to be_nil
-      end
-
-      it 'returns nil with size parameter' do
-        expect(helper.favicon_path(16)).to be_nil
-        expect(helper.app_icon_path(16)).to be_nil
       end
     end
   end

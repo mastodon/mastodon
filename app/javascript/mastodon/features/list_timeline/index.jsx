@@ -15,7 +15,7 @@ import DeleteIcon from '@/material-icons/400-24px/delete.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
-import { fetchList, deleteList, updateList } from 'mastodon/actions/lists';
+import { fetchList, updateList } from 'mastodon/actions/lists';
 import { openModal } from 'mastodon/actions/modal';
 import { connectListStream } from 'mastodon/actions/streaming';
 import { expandListTimeline } from 'mastodon/actions/timelines';
@@ -29,8 +29,6 @@ import StatusListContainer from 'mastodon/features/ui/containers/status_list_con
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 const messages = defineMessages({
-  deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
-  deleteConfirm: { id: 'confirmations.delete_list.confirm', defaultMessage: 'Delete' },
   followed:   { id: 'lists.replies_policy.followed', defaultMessage: 'Any followed user' },
   none:    { id: 'lists.replies_policy.none', defaultMessage: 'No one' },
   list:  { id: 'lists.replies_policy.list', defaultMessage: 'Members of the list' },
@@ -125,25 +123,10 @@ class ListTimeline extends PureComponent {
   };
 
   handleDeleteClick = () => {
-    const { dispatch, columnId, intl } = this.props;
+    const { dispatch, columnId } = this.props;
     const { id } = this.props.params;
 
-    dispatch(openModal({
-      modalType: 'CONFIRM',
-      modalProps: {
-        message: intl.formatMessage(messages.deleteMessage),
-        confirm: intl.formatMessage(messages.deleteConfirm),
-        onConfirm: () => {
-          dispatch(deleteList(id));
-
-          if (columnId) {
-            dispatch(removeColumn(columnId));
-          } else {
-            this.props.history.push('/lists');
-          }
-        },
-      },
-    }));
+    dispatch(openModal({ modalType: 'CONFIRM_DELETE_LIST', modalProps: { listId: id, columnId } }));
   };
 
   handleRepliesPolicyChange = ({ target }) => {

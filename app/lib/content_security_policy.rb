@@ -13,6 +13,22 @@ class ContentSecurityPolicy
     [assets_host, cdn_host_value, paperclip_root_url].compact
   end
 
+  def sso_host
+    return unless ENV['ONE_CLICK_SSO_LOGIN'] == 'true' && ENV['OMNIAUTH_ONLY'] == 'true' && Devise.omniauth_providers.length == 1
+
+    provider = Devise.omniauth_configs[Devise.omniauth_providers[0]]
+    @sso_host ||= begin
+      case provider.provider
+      when :cas
+        provider.cas_url
+      when :saml
+        provider.options[:idp_sso_target_url]
+      when :openid_connect
+        provider.options.dig(:client_options, :authorization_endpoint) || OpenIDConnect::Discovery::Provider::Config.discover!(provider.options[:issuer]).authorization_endpoint
+      end
+    end
+  end
+
   private
 
   def url_from_configured_asset_host

@@ -1,10 +1,11 @@
 name: Ruby Testing
 
 on:
+  merge_group:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
+    branches:
+      - 'main'
+      - 'stable-*'
   pull_request:
 
 env:
@@ -41,11 +42,24 @@ jobs:
         with:
           onlyProduction: 'true'
 
+      - name: Cache assets from compilation
+        uses: actions/cache@v4
+        with:
+          path: |
+            public/assets
+            public/packs
+            public/packs-test
+            tmp/cache/webpacker
+          key: ${{ matrix.mode }}-assets-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
+          restore-keys: |
+            ${{ matrix.mode }}-assets-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
+            ${{ matrix.mode }}-assets-${{ github.head_ref || github.ref_name }}
+            ${{ matrix.mode }}-assets-main
+            ${{ matrix.mode }}-assets
+
       - name: Precompile assets
-        # Previously had set this, but it's not supported
-        # export NODE_OPTIONS=--openssl-legacy-provider
         run: |-
-          ./bin/rails assets:precompile
+          bin/rails assets:precompile
 
       - name: Archive asset artifacts
         run: |
@@ -132,15 +146,30 @@ jobs:
           additional-system-dependencies: ffmpeg libpam-dev
 
       - name: Load database schema
-        run: './bin/rails db:create db:schema:load db:seed'
+        run: |
+          bin/rails db:setup
+          bin/flatware fan bin/rails db:test:prepare
 
-      - run: bin/rspec
+      - name: Cache RSpec persistence file
+        uses: actions/cache@v4
+        with:
+          path: |
+            tmp/rspec/examples.txt
+          key: rspec-persistence-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
+          restore-keys: |
+            rspec-persistence-${{ github.head_ref || github.ref_name }}-${{ github.sha }}-${{ matrix.ruby-version }}
+            rspec-persistence-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
+            rspec-persistence-${{ github.head_ref || github.ref_name }}
+            rspec-persistence-main
+            rspec-persistence
+
+      - run: bin/flatware rspec -r ./spec/flatware_helper.rb
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
         uses: codecov/codecov-action@v4
         with:
-          files: coverage/lcov/mastodon.lcov
+          files: coverage/lcov/*.lcov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
@@ -221,7 +250,7 @@ jobs:
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
-      - run: bin/rspec --tag paperclip_processing
+      - run: bin/rspec --tag attachment_processing
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
