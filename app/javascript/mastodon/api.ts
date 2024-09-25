@@ -70,6 +70,7 @@ export async function apiRequest<ApiResponse = unknown>(
   args: {
     params?: RequestParamsOrData;
     data?: RequestParamsOrData;
+    timeout?: number;
   } = {},
 ) {
   const { data } = await api().request<ApiResponse>({

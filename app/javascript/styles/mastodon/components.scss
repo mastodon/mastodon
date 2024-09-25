@@ -81,6 +81,18 @@
     outline: $ui-button-icon-focus-outline;
   }
 
+  &--dangerous {
+    background-color: var(--error-background-color);
+    color: var(--on-error-color);
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: var(--error-active-background-color);
+      transition: none;
+    }
+  }
+
   &--destructive {
     &:active,
     &:focus,
@@ -6237,6 +6249,14 @@ a.status-card {
       display: flex;
       gap: 16px;
       align-items: center;
+
+      strong {
+        font-weight: 700;
+      }
+    }
+
+    &--deemphasized {
+      color: $secondary-text-color;
     }
 
     &__icon {
