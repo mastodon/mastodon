@@ -1,0 +1,27 @@
+.flash-message= t('admin.settings.registrations.moderation_recommandation')
+
+.fields-row
+  .fields-row__column.fields-row__column-6.fields-group
+    = form.input :registrations_mode,
+                 collection: %w(open approved none),
+                 include_blank: false,
+                 label_method: ->(mode) { I18n.t("admin.settings.registrations_mode.modes.#{mode}") },
+                 warning_hint: I18n.t('admin.settings.registrations_mode.warning_hint'),
+                 wrapper: :with_label
+  .fields-row__column.fields-row__column-6.fields-group
+    = form.input :require_invite_text,
+                 as: :boolean,
+                 disabled: !approved_registrations?,
+                 wrapper: :with_label
+- if captcha_available?
+  .fields-group
+    = form.input :captcha_enabled,
+                 as: :boolean,
+                 hint: t('admin.settings.captcha_enabled.desc_html'),
+                 label: t('admin.settings.captcha_enabled.title'),
+                 wrapper: :with_label
+.fields-group
+  = form.input :closed_registrations_message,
+               as: :text,
+               input_html: { rows: 2 },
+               wrapper: :with_block_label

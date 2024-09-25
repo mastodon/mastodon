@@ -1,0 +1,56 @@
+%h4= t('admin.settings.discovery.trends')
+.fields-group
+  = form.input :trends,
+               as: :boolean,
+               wrapper: :with_label
+.fields-group
+  = form.input :trends_as_landing_page,
+               as: :boolean,
+               wrapper: :with_label
+.fields-group
+  = form.input :trendable_by_default,
+               as: :boolean,
+               recommended: :not_recommended,
+               wrapper: :with_label
+%h4= t('admin.settings.discovery.public_timelines')
+.fields-group
+  = form.input :timeline_preview,
+               as: :boolean,
+               wrapper: :with_label
+.fields-group
+  = form.input :noindex,
+               as: :boolean,
+               hint: t('admin.settings.default_noindex.desc_html'),
+               label: t('admin.settings.default_noindex.title'),
+               wrapper: :with_label
+%h4= t('admin.settings.discovery.publish_statistics')
+.fields-group
+  = form.input :activity_api_enabled,
+               as: :boolean,
+               recommended: :recommended,
+               wrapper: :with_label
+%h4= t('admin.settings.discovery.publish_discovered_servers')
+.fields-group
+  = form.input :peers_api_enabled,
+               as: :boolean,
+               recommended: :recommended,
+               wrapper: :with_label
+%h4= t('admin.settings.security.federation_authentication')
+.fields-group
+  = form.input :authorized_fetch,
+               as: :boolean,
+               disabled: authorized_fetch_overridden?,
+               hint: discovery_hint_text,
+               label: t('admin.settings.security.authorized_fetch'),
+               recommended: discovery_recommended_value,
+               warning_hint: discovery_warning_hint_text,
+               wrapper: :with_label
+%h4= t('admin.settings.discovery.follow_recommendations')
+.fields-group
+  = form.input :bootstrap_timeline_accounts,
+               wrapper: :with_block_label
+%h4= t('admin.settings.discovery.profile_directory')
+.fields-group
+  = form.input :profile_directory,
+               as: :boolean,
+               wrapper: :with_label

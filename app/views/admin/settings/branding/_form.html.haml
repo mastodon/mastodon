@@ -1,0 +1,50 @@
+.fields-group
+  = form.input :site_title,
+               wrapper: :with_label
+.fields-row
+  .fields-row__column.fields-row__column-6.fields-group
+    = form.input :site_contact_username,
+                 wrapper: :with_label
+  .fields-row__column.fields-row__column-6.fields-group
+    = form.input :site_contact_email,
+                 wrapper: :with_label
+.fields-group
+  = form.input :site_short_description,
+               as: :text,
+               input_html: { rows: 2, maxlength: Form::AdminSettings::DESCRIPTION_LIMIT },
+               wrapper: :with_block_label
+.fields-row
+  .fields-row__column.fields-row__column-6.fields-group
+    = form.input :thumbnail,
+                 as: :file,
+                 wrapper: :with_block_label
+  .fields-row__column.fields-row__column-6.fields-group
+    - if form.object.thumbnail.persisted?
+      = image_tag form.object.thumbnail.file.url(:'@1x'), class: 'fields-group__thumbnail'
+      = link_to admin_site_upload_path(form.object.thumbnail), data: { method: :delete }, class: 'link-button link-button--destructive' do
+        = material_symbol 'delete'
+        = t('admin.site_uploads.delete')
+.fields-row
+  .fields-row__column.fields-row__column-6.fields-group
+    = form.input :favicon,
+                 as: :file,
+                 input_html: { accept: ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].join(',') },
+                 wrapper: :with_block_label
+  .fields-row__column.fields-row__column-6.fields-group
+    - if form.object.favicon.persisted?
+      = image_tag form.object.favicon.file.url('48'), class: 'fields-group__thumbnail'
+      = link_to admin_site_upload_path(form.object.favicon), data: { method: :delete }, class: 'link-button link-button--destructive' do
+        = material_symbol 'delete'
+        = t('admin.site_uploads.delete')
+.fields-row
+  .fields-row__column.fields-row__column-6.fields-group
+    = form.input :app_icon,
+                 as: :file,
+                 input_html: { accept: ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].join(',') },
+                 wrapper: :with_block_label
+  .fields-row__column.fields-row__column-6.fields-group
+    - if form.object.app_icon.persisted?
+      = image_tag form.object.app_icon.file.url('48'), class: 'fields-group__thumbnail'
+      = link_to admin_site_upload_path(form.object.app_icon), data: { method: :delete }, class: 'link-button link-button--destructive' do
+        = material_symbol 'delete'
+        = t('admin.site_uploads.delete')
