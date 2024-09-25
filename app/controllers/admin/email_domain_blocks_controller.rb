@@ -57,6 +57,15 @@ module Admin
 
     private
 
+    def resolved_records
+      if defined?(@resolved_records)
+        @resolved_records
+      else
+        []
+      end
+    end
+    helper_method :resolved_records
+
     def set_resolved_records
       @resolved_records = DomainResource.new(@email_domain_block.domain).mx
     end

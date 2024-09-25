@@ -1,0 +1,32 @@
+.fields-group
+  = form.input :domain,
+               input_html: { readonly: resolved_records.any? },
+               label: t('admin.email_domain_blocks.domain'),
+               wrapper: :with_block_label
+.fields-group
+  = form.input :allow_with_approval,
+               hint: false,
+               label: I18n.t('admin.email_domain_blocks.allow_registrations_with_approval'),
+               wrapper: :with_label
+- if resolved_records.any?
+  %p.hint= t('admin.email_domain_blocks.resolved_dns_records_hint_html')
+  .batch-table
+    .batch-table__toolbar
+      %label.batch-table__toolbar__select.batch-checkbox-all
+        = check_box_tag :batch_checkbox_all, nil, false
+      .batch-table__toolbar__actions
+    .batch-table__body
+      - resolved_records.each do |record|
+        .batch-table__row
+          %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
+            = form.input_field :other_domains,
+                               as: :boolean,
+                               checked_value: record,
+                               include_hidden: false,
+                               multiple: true
+          .batch-table__row__content.pending-account
+            .pending-account__header
+              %samp= record
+              %br
+              = t('admin.email_domain_blocks.dns.types.mx')
+  %hr.spacer/

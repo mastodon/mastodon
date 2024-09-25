@@ -1,48 +1,13 @@
 - content_for :page_title do
   = t('.title')
 
-= simple_form_for @email_domain_block, url: admin_email_domain_blocks_path do |f|
+= simple_form_for @email_domain_block, url: admin_email_domain_blocks_path do |form|
   = render 'shared/error_messages', object: @email_domain_block
 
-  .fields-group
-    = f.input :domain,
-              input_html: { readonly: defined?(@resolved_records) },
-              label: t('admin.email_domain_blocks.domain'),
-              wrapper: :with_block_label
-
-  .fields-group
-    = f.input :allow_with_approval,
-              hint: false,
-              label: I18n.t('admin.email_domain_blocks.allow_registrations_with_approval'),
-              wrapper: :with_label
-
-  - if defined?(@resolved_records) && @resolved_records.any?
-    %p.hint= t('admin.email_domain_blocks.resolved_dns_records_hint_html')
-
-    .batch-table
-      .batch-table__toolbar
-        %label.batch-table__toolbar__select.batch-checkbox-all
-          = check_box_tag :batch_checkbox_all, nil, false
-        .batch-table__toolbar__actions
-      .batch-table__body
-        - @resolved_records.each do |record|
-          .batch-table__row
-            %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
-              = f.input_field :other_domains,
-                              as: :boolean,
-                              checked_value: record,
-                              include_hidden: false,
-                              multiple: true
-            .batch-table__row__content.pending-account
-              .pending-account__header
-                %samp= record
-                %br
-                = t('admin.email_domain_blocks.dns.types.mx')
-
-    %hr.spacer/
+  = render form
 
   .actions
     - if defined?(@resolved_records)
-      = f.button :button, t('.create'), type: :submit, name: :save
+      = form.button :button, t('.create'), type: :submit, name: :save
     - else
-      = f.button :button, t('.resolve'), type: :submit, name: :resolve
+      = form.button :button, t('.resolve'), type: :submit, name: :resolve
