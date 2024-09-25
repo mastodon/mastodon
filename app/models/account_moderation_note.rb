@@ -16,7 +16,7 @@ class AccountModerationNote < ApplicationRecord
   CONTENT_SIZE_LIMIT = 2_000
 
   belongs_to :account
-  belongs_to :target_account, class_name: 'Account', counter_cache: true
+  belongs_to :target_account, class_name: 'Account', counter_cache: :targeted_moderation_notes_count
 
   scope :chronological, -> { reorder(id: :asc) }
 
