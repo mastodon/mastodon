@@ -4,37 +4,10 @@ require 'rails_helper'
 
 RSpec.describe WebauthnCredential do
   describe 'validations' do
-    it 'is invalid without an external id' do
-      webauthn_credential = Fabricate.build(:webauthn_credential, external_id: nil)
-
-      webauthn_credential.valid?
-
-      expect(webauthn_credential).to model_have_error_on_field(:external_id)
-    end
-
-    it 'is invalid without a public key' do
-      webauthn_credential = Fabricate.build(:webauthn_credential, public_key: nil)
-
-      webauthn_credential.valid?
-
-      expect(webauthn_credential).to model_have_error_on_field(:public_key)
-    end
-
-    it 'is invalid without a nickname' do
-      webauthn_credential = Fabricate.build(:webauthn_credential, nickname: nil)
-
-      webauthn_credential.valid?
-
-      expect(webauthn_credential).to model_have_error_on_field(:nickname)
-    end
-
-    it 'is invalid without a sign_count' do
-      webauthn_credential = Fabricate.build(:webauthn_credential, sign_count: nil)
-
-      webauthn_credential.valid?
-
-      expect(webauthn_credential).to model_have_error_on_field(:sign_count)
-    end
+    it { is_expected.to validate_presence_of(:external_id) }
+    it { is_expected.to validate_presence_of(:public_key) }
+    it { is_expected.to validate_presence_of(:nickname) }
+    it { is_expected.to validate_presence_of(:sign_count) }
 
     it 'is invalid if already exist a webauthn credential with the same external id' do
       Fabricate(:webauthn_credential, external_id: '_Typ0ygudDnk9YUVWLQayw')

@@ -1,5 +1,7 @@
 import { FormattedMessage } from 'react-intl';
 
+import { isEqual } from 'lodash';
+
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import ReplyIcon from '@/material-icons/400-24px/reply-fill.svg?react';
 import { me } from 'mastodon/initial_state';
@@ -37,13 +39,17 @@ export const NotificationMention: React.FC<{
   unread: boolean;
 }> = ({ notification, unread }) => {
   const [isDirect, isReply] = useAppSelector((state) => {
-    const status = state.statuses.get(notification.statusId) as Status;
+    const status = state.statuses.get(notification.statusId) as
+      | Status
+      | undefined;
+
+    if (!status) return [false, false] as const;
 
     return [
       status.get('visibility') === 'direct',
       status.get('in_reply_to_account_id') === me,
     ] as const;
-  });
+  }, isEqual);
 
   let labelRenderer = mentionLabelRenderer;
 

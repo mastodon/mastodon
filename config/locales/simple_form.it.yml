@@ -3,6 +3,7 @@ it:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Protegge da false attribuzioni.
         discoverable: I tuoi post pubblici e il tuo profilo potrebbero essere presenti o consigliati in varie aree di Mastodon e il tuo profilo potrebbe essere suggerito ad altri utenti.
         display_name: Il tuo nome completo o il tuo soprannome.
         fields: La tua homepage, i pronomi, l'età, tutto quello che vuoi.
@@ -130,7 +131,7 @@ it:
         name: Puoi cambiare solo il minuscolo/maiuscolo delle lettere, ad esempio, per renderlo più leggibile
       user:
         chosen_languages: Quando una o più lingue sono contrassegnate, nelle timeline pubbliche vengono mostrati solo i toot nelle lingue selezionate
-        role: Il ruolo controlla quali permessi ha l'utente
+        role: Il ruolo controlla quali permessi ha l'utente.
       user_role:
         color: Colore da usare per il ruolo in tutta l'UI, come RGB in formato esadecimale
         highlighted: Rende il ruolo visibile
@@ -143,6 +144,7 @@ it:
         url: Dove gli eventi saranno inviati
     labels:
       account:
+        attribution_domains_as_text: Consenti solo siti web specifici
         discoverable: Include il profilo e i post negli algoritmi di scoperta
         fields:
           name: Etichetta

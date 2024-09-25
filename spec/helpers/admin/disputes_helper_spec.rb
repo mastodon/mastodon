@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::DisputesHelper do
+RSpec.describe Admin::DisputesHelper do
   describe 'strike_action_label' do
     it 'returns html describing the appeal' do
       adam = Account.new(username: 'Adam')

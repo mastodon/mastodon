@@ -7,7 +7,6 @@ fi:
     hosted_on: Mastodon palvelimella %{domain}
     title: Tietoja
   accounts:
-    follow: Seuraa
     followers:
       one: seuraaja
       other: seuraajaa
@@ -24,6 +23,8 @@ fi:
   admin:
     account_actions:
       action: Suorita toimi
+      already_silenced: Tätä tiliä on jo rajoitettu.
+      already_suspended: Tämä tili on jo jäädytetty.
       title: Suorita moderointitoimi käyttäjälle %{acct}
     account_moderation_notes:
       create: Jätä muistiinpano
@@ -45,6 +46,7 @@ fi:
         title: Vaihda käyttäjän %{username} sähköposti-osoite
       change_role:
         changed_msg: Roolin vaihto onnistui!
+        edit_roles: Hallinnoi käyttäjien rooleja
         label: Vaihda rooli
         no_role: Ei roolia
         title: Vaihda käyttäjän %{username} rooli
@@ -202,7 +204,7 @@ fi:
         disable_sign_in_token_auth_user: Poista sähköpostitunnuksella todennus käytöstä käyttäjältä
         disable_user: Poista tili käytöstä
         enable_custom_emoji: Ota mukautettu emoji käyttöön
-        enable_sign_in_token_auth_user: Salli käyttäjälle sähköpostitunnuksella todennus
+        enable_sign_in_token_auth_user: Ota sähköpostitunnuksella todennus käyttöön käyttäjälle
         enable_user: Ota tili käyttöön
         memorialize_account: Muuta muistotiliksi
         promote_user: Ylennä käyttäjä
@@ -441,9 +443,9 @@ fi:
         create: Lisää verkkotunnus
         resolve: Selvitä verkkotunnus
         title: Estä uusi sähköpostiverkkotunnus
-      no_email_domain_block_selected: Sähköpostin verkkotunnuksia ei muutettu, koska yhtään ei ollut valittuna
+      no_email_domain_block_selected: Sähköpostiverkkotunnusten estoja ei muutettu, koska yhtäkään ei ollut valittuna
       not_permitted: Ei sallittu
-      resolved_dns_records_hint_html: Verkkotunnuksen nimi määräytyy seuraaviin MX-verkkotunnuksiin, jotka ovat viime kädessä vastuussa sähköpostin vastaanottamisesta. MX-verkkotunnuksen estäminen estää rekisteröitymisen mistä tahansa sähköpostiosoitteesta, joka käyttää samaa MX-verkkotunnusta, vaikka näkyvä verkkotunnuksen nimi olisikin erilainen. <strong>Varo estämästä suuria sähköpostin palveluntarjoajia.</strong>
+      resolved_dns_records_hint_html: Verkkotunnusnimi kytkeytyy seuraaviin MX-verkkotunnuksiin, jotka ovat viime kädessä vastuussa sähköpostin vastaanottamisesta. MX-verkkotunnuksen estäminen estää rekisteröitymisen mistä tahansa sähköpostiosoitteesta, joka käyttää samaa MX-verkkotunnusta, vaikka näkyvä verkkotunnuksen nimi olisikin erilainen. <strong>Varo estämästä suuria sähköpostipalvelujen tarjoajia.</strong>
       resolved_through_html: Ratkaistu verkkotunnuksen %{domain} kautta
       title: Estetyt sähköpostiverkkotunnukset
     export_domain_allows:
@@ -599,8 +601,9 @@ fi:
         resolve_description_html: Ilmoitettua tiliä kohtaan ei ryhdytä toimiin, varoitusta ei kirjata ja raportti suljetaan.
         silence_description_html: Tili näkyy vain niille, jotka jo seuraavat sitä tai etsivät sen manuaalisesti, mikä rajoittaa merkittävästi sen tavoitettavuutta. Voidaan perua milloin vain. Sulkee kaikki tiliin kohdistuvat raportit.
         suspend_description_html: Tili ja mikään sen sisältö eivät ole käytettävissä, ja lopulta ne poistetaan ja vuorovaikutus tilin kanssa on mahdotonta. Peruttavissa 30 päivän ajan. Sulkee kaikki tiliin kohdistuvat raportit.
-      actions_description_html: Päätä, mihin toimiin ryhdyt tämän raportin ratkaisemiseksi. Jos ryhdyt rangaistustoimeen ilmoitettua tiliä kohtaan, hänelle lähetetään sähköposti-ilmoitus, paitsi jos <strong>Roskaposti</strong>-luokka on valittuna.
+      actions_description_html: Päätä, mihin toimiin ryhdyt tämän raportin ratkaisemiseksi. Jos ryhdyt rangaistustoimeen raportoitua tiliä kohtaan, hänelle lähetetään sähköpostitse ilmoitus asiasta, paitsi jos valittuna on <strong>Roskaposti</strong>-luokka.
       actions_description_remote_html: Päätä, mihin toimiin ryhdyt tämän raportin ratkaisemiseksi. Tämä vaikuttaa vain siihen, miten <strong>sinun</strong> palvelimesi viestii tämän etätilin kanssa ja käsittelee sen sisältöä.
+      actions_no_posts: Tähän raporttiin ei liity poistettavia julkaisuja
       add_to_report: Lisää raporttiin
       already_suspended_badges:
         local: Jäädytetty jo tällä palvelimella
@@ -698,7 +701,7 @@ fi:
         delete_user_data: Poistaa käyttäjän tiedot
         delete_user_data_description: Sallii käyttäjien poistaa muiden käyttäjien tiedot viipymättä
         invite_users: Kutsua käyttäjiä
-        invite_users_description: Sallii käyttäjien kutsua uusia ihmisiä palvelimelle
+        invite_users_description: Sallii käyttäjien kutsua uusia käyttäjiä palvelimelle
         manage_announcements: Hallita tiedotteita
         manage_announcements_description: Sallii käyttäjien hallita palvelimen tiedotteita
         manage_appeals: Hallita valituksia
@@ -897,6 +900,7 @@ fi:
       name: Nimi
       newest: Uusimmat
       oldest: Vanhimmat
+      open: Näytä julkisesti
       reset: Palauta
       review: Tarkastuksen tila
       search: Hae
@@ -906,10 +910,16 @@ fi:
     trends:
       allow: Salli
       approved: Hyväksytty
+      confirm_allow: Haluatko varmasti sallia valitut tunnisteet?
+      confirm_disallow: Haluatko varmasti kieltää valitut tunnisteet?
       disallow: Kiellä
       links:
         allow: Salli linkki
         allow_provider: Salli julkaisija
+        confirm_allow: Haluatko varmasti sallia valitut linkit?
+        confirm_allow_provider: Haluatko varmasti sallia valitut palveluntarjoajat?
+        confirm_disallow: Haluatko varmasti kieltää valitut linkit?
+        confirm_disallow_provider: Haluatko varmasti kieltää valitut palveluntarjoajat?
         description_html: Näitä linkkejä jaetaan parhaillaan paljon tileillä, joiden julkaisuja palvelimesi näkee. Luettelo voi auttaa käyttäjiäsi saamaan selville, mitä maailmassa tapahtuu. Linkit eivät näy julkisesti ennen kuin hyväksyt julkaisijan. Voit myös sallia tai hylätä yksittäisiä linkkejä.
         disallow: Kiellä linkki
         disallow_provider: Kiellä julkaisija
@@ -933,6 +943,10 @@ fi:
       statuses:
         allow: Salli julkaisu
         allow_account: Salli tekijä
+        confirm_allow: Haluatko varmasti sallia valitut julkaisut?
+        confirm_allow_account: Haluatko varmasti sallia valitut tilit?
+        confirm_disallow: Haluatko varmasti kieltää valitut julkaisut?
+        confirm_disallow_account: Haluatko varmasti kieltää valitut tilit?
         description_html: Näitä julkaisuja palvelimesi tietää parhaillaan jaettavan ja lisättävän suosikkeihin paljon. Luettelo voi auttaa uusia ja palaavia käyttäjiäsi löytämään lisää seurattavia. Julkaisut eivät näy julkisesti ennen kuin hyväksyt niiden tekijän ja tekijä sallii tilinsä ehdottamisen. Voit myös sallia tai hylätä yksittäisiä julkaisuja.
         disallow: Kiellä julkaisu
         disallow_account: Kiellä tekijä
@@ -965,7 +979,7 @@ fi:
         used_by_over_week:
           one: Käyttänyt yksi käyttäjä viimeisen viikon aikana
           other: Käyttänyt %{count} käyttäjää viimeisen viikon aikana
-      title: Trendit
+      title: Suositukset ja trendit
       trending: Trendaus
     warning_presets:
       add_new: Lisää uusi
@@ -1123,7 +1137,7 @@ fi:
     security: Turvallisuus
     set_new_password: Aseta uusi salasana
     setup:
-      email_below_hint_html: Tarkista roskapostikansiosi tai pyydä uusi viesti. Voit korjata sähköpostiosoitteesi, jos se oli väärin.
+      email_below_hint_html: Tarkista roskapostikansiosi tai pyydä uusi viesti. Voit korjata sähköpostiosoitteesi tarvittaessa.
       email_settings_hint_html: Napsauta lähettämäämme linkkiä vahvistaaksesi osoitteen %{email}. Odotamme täällä.
       link_not_received: Etkö saanut linkkiä?
       new_confirmation_instructions_sent: Saat pian uuden vahvistuslinkin sisältävän sähköpostiviestin!
@@ -1145,6 +1159,12 @@ fi:
       view_strikes: Näytä aiemmat tiliäsi koskevat varoitukset
     too_fast: Lomake lähetettiin liian nopeasti, yritä uudelleen.
     use_security_key: Käytä suojausavainta
+  author_attribution:
+    example_title: Esimerkkiteksti
+    hint_html: Määrää, kuinka tulet tunnustetuksi, kun Mastodonissa jaetaan linkkejä.
+    more_from_html: Lisää tekijältä %{name}
+    s_blog: Käyttäjän %{name} blogi
+    title: Tekijän tunnustus
   challenge:
     confirm: Jatka
     hint_html: "<strong>Vihje:</strong> Emme pyydä sinulta salasanaa uudelleen seuraavan tunnin aikana."
@@ -1153,7 +1173,6 @@ fi:
   crypto:
     errors:
       invalid_key: ei ole kelvollinen Ed25519- tai Curve25519-avain
-      invalid_signature: ei ole kelvollinen Ed25519-allekirjoitus
   date:
     formats:
       default: "%b %d, %Y"
@@ -1183,8 +1202,8 @@ fi:
       caches: Muiden palvelinten välimuistiinsa tallentamaa sisältöä voi säilyä
       data_removal: Julkaisusi ja muut tietosi poistetaan pysyvästi
       email_change_html: Voit <a href="%{path}">muuttaa sähköpostiosoitettasi</a> poistamatta tiliäsi
-      email_contact_html: Jos ei saavu perille, voit pyytää apua sähköpostilla <a href="mailto:%{email}">%{email}</a>
-      email_reconfirmation_html: Jos et saa vahvistuksen sähköpostia, niin voit <a href="%{path}">pyytää sitä uudelleen</a>
+      email_contact_html: Jos viesti ei vieläkään saavu perille, voit pyytää apua sähköpostitse osoitteella <a href="mailto:%{email}">%{email}</a>
+      email_reconfirmation_html: Jos et saa vahvistussähköpostiviestiä, voit <a href="%{path}">pyytää sitä uudelleen</a>
       irreversible: Et voi palauttaa tiliäsi etkä aktivoida sitä uudelleen
       more_details_html: Tarkempia tietoja saat <a href="%{terms_path}">tietosuojakäytännöstämme</a>.
       username_available: Käyttäjänimesi tulee saataville uudelleen
@@ -1219,8 +1238,6 @@ fi:
       your_appeal_approved: Valituksesi on hyväksytty
       your_appeal_pending: Olet lähettänyt valituksen
       your_appeal_rejected: Valituksesi on hylätty
-  domain_validator:
-    invalid_domain: ei ole kelvollinen verkkotunnus
   edit_profile:
     basic_information: Perustiedot
     hint_html: "<strong>Mukauta, mitä ihmiset näkevät julkisessa profiilissasi ja julkaisujesi vieressä.</strong> Sinua seurataan takaisin ja kanssasi ollaan vuorovaikutuksessa todennäköisemmin, kun sinulla on täytetty profiili ja profiilikuva."
@@ -1409,7 +1426,7 @@ fi:
     table:
       expires_at: Vanhenee
       uses: Käyttökertoja
-    title: Kutsu ihmisiä
+    title: Kutsu käyttäjiä
   lists:
     errors:
       limit: Sinulla on enimmäismäärä listoja
@@ -1442,6 +1459,7 @@ fi:
   media_attachments:
     validations:
       images_and_video: Videota ei voi liittää tilapäivitykseen, jossa on jo kuvia
+      not_found: Mediaa %{ids} ei löytynyt, tai se on jo liitetty toiseen julkaisuun
       not_ready: Ei voi liittää tiedostoja, joiden käsittely on kesken. Yritä hetken kuluttua uudelleen!
       too_many: Tiedostoja voi liittää enintään 4
   migrations:
@@ -1718,23 +1736,12 @@ fi:
     edited_at_html: Muokattu %{date}
     errors:
       in_reply_not_found: Julkaisua, johon yrität vastata, ei näytä olevan olemassa.
-    open_in_web: Avaa selaimessa
     over_character_limit: merkkimäärän rajoitus %{max} ylitetty
     pin_errors:
       direct: Vain mainituille käyttäjille näkyviä julkaisuja ei voi kiinnittää
       limit: Olet jo kiinnittänyt enimmäismäärän julkaisuja
       ownership: Muiden julkaisuja ei voi kiinnittää
       reblog: Tehostusta ei voi kiinnittää
-    poll:
-      total_people:
-        one: "%{count} käyttäjä"
-        other: "%{count} käyttäjää"
-      total_votes:
-        one: "%{count} ääni"
-        other: "%{count} ääntä"
-      vote: Äänestä
-    show_more: Näytä lisää
-    show_thread: Näytä ketju
     title: "%{name}: ”%{quote}”"
     visibilities:
       direct: Suoraan
@@ -1933,6 +1940,7 @@ fi:
     instructions_html: Kopioi ja liitä seuraava koodi verkkosivustosi HTML-lähdekoodiin. Lisää sitten verkkosivustosi osoite johonkin profiilisi lisäkentistä ”Muokkaa profiilia” -välilehdellä ja tallenna muutokset.
     verification: Vahvistus
     verified_links: Vahvistetut linkkisi
+    website_verification: Verkkosivuston vahvistus
   webauthn_credentials:
     add: Lisää uusi suojausavain
     create:

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Paperclip::ResponseWithLimitAdapter do
+RSpec.describe Paperclip::ResponseWithLimitAdapter do
   subject { described_class.new(response_with_limit) }
 
   before { stub_request(:get, url).to_return(headers: headers, body: body) }

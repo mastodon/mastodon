@@ -1,7 +1,7 @@
 %tr
   %td
     %span{ title: session.user_agent }<
-      = fa_icon "#{session_device_icon(session)} fw", 'aria-label': session_device_icon(session)
+      = material_symbol session_device_icon(session), 'aria-label': session_device_icon(session)
       &nbsp;
       = t 'sessions.description',
           browser: t("sessions.browsers.#{session.browser}", default: session.browser.to_s),
@@ -15,4 +15,4 @@
       %time.time-ago{ datetime: session.updated_at.iso8601, title: l(session.updated_at) }= l(session.updated_at)
   %td
     - if current_session.session_id != session.session_id && !current_account.suspended?
-      = table_link_to 'times', t('sessions.revoke'), settings_session_path(session), method: :delete
+      = table_link_to 'close', t('sessions.revoke'), settings_session_path(session), method: :delete

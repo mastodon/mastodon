@@ -13,7 +13,7 @@ module Admin
         redirect_to admin_account_path(@account_moderation_note.target_account_id), notice: I18n.t('admin.account_moderation_notes.created_msg')
       else
         @account          = @account_moderation_note.target_account
-        @moderation_notes = @account.targeted_moderation_notes.latest
+        @moderation_notes = @account.targeted_moderation_notes.chronological.includes(:account)
         @warnings         = @account.strikes.custom.latest
 
         render 'admin/accounts/show'

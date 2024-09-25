@@ -68,23 +68,6 @@ namespace :api, format: false do
       end
     end
 
-    # namespace :crypto do
-    #   resources :deliveries, only: :create
-
-    #   namespace :keys do
-    #     resource :upload, only: [:create]
-    #     resource :query,  only: [:create]
-    #     resource :claim,  only: [:create]
-    #     resource :count,  only: [:show]
-    #   end
-
-    #   resources :encrypted_messages, only: [:index] do
-    #     collection do
-    #       post :clear
-    #     end
-    #   end
-    # end
-
     resources :conversations, only: [:index, :destroy] do
       member do
         post :read
@@ -142,6 +125,10 @@ namespace :api, format: false do
       get :search, to: 'search#index'
     end
 
+    namespace :domain_blocks do
+      resource :preview, only: [:show]
+    end
+
     resource :domain_blocks, only: [:show, :create, :destroy]
 
     resource :directory, only: [:show]
@@ -158,6 +145,7 @@ namespace :api, format: false do
         collection do
           post :accept, to: 'requests#accept_bulk'
           post :dismiss, to: 'requests#dismiss_bulk'
+          get :merged, to: 'requests#merged?'
         end
 
         member do
@@ -340,10 +328,8 @@ namespace :api, format: false do
     namespace :notifications do
       resource :policy, only: [:show, :update]
     end
-  end
 
-  namespace :v2_alpha do
-    resources :notifications, only: [:index, :show] do
+    resources :notifications, param: :group_key, only: [:index, :show] do
       collection do
         post :clear
         get :unread_count
@@ -352,6 +338,8 @@ namespace :api, format: false do
       member do
         post :dismiss
       end
+
+      resources :accounts, only: [:index], module: :notifications
     end
   end
 

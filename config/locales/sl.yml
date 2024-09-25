@@ -7,7 +7,6 @@ sl:
     hosted_on: Mastodon gostuje na %{domain}
     title: O programu
   accounts:
-    follow: Sledi
     followers:
       few: Sledilci
       one: Sledilec
@@ -910,11 +909,13 @@ sl:
         message_html: "<strong>Vaša predmetna shramba je napačno nastavljena. Zasebnost vaših uporabnikov je izpostavljena tveganjem.</strong>"
     tags:
       moderation:
+        not_trendable: Ni v trendu
         not_usable: Ni uporabno
         pending_review: Čakajoče na pregled
         review_requested: Zahtevan pregled
         reviewed: Pregledano
         title: Stanje
+        trendable: V trendu
         unreviewed: Nepregledano
         usable: Uporabno
       name: Ime
@@ -929,10 +930,16 @@ sl:
     trends:
       allow: Dovoli
       approved: Odobren
+      confirm_allow: Ali ste prepričani, da želite dopustiti izbrane oznake?
+      confirm_disallow: Ali ste prepričani, da želite prepovedati izbrane oznake?
       disallow: Ne dovoli
       links:
         allow: Dovoli povezavo
         allow_provider: Dovoli izdajatelja
+        confirm_allow: Ali ste prepričani, da želite dopustiti izbrane povezave?
+        confirm_allow_provider: Ali ste prepričani, da želite dopustiti izbrane ponudnike?
+        confirm_disallow: Ali ste prepričani, da želite prepovedati izbrane povezave?
+        confirm_disallow_provider: Ali ste prepričani, da želite prepovedati izbrane ponudnike?
         description_html: To so povezave, ki jih trenutno veliko delijo računi, iz katerih vaš strežnik vidi objave. Vašim uporabnikom lahko pomaga izvedeti, kaj se dogaja po svetu. Nobene povezave niso javno prikazane, dokler ne odobrite izdajatelja. Posamezne povezave lahko tudi dovolite ali zavrnete.
         disallow: Ne dovoli povezave
         disallow_provider: Ne dovoli izdajatelja
@@ -958,6 +965,10 @@ sl:
       statuses:
         allow: Dovoli objavo
         allow_account: Dovoli avtorja
+        confirm_allow: Ali ste prepričani, da želite dopustiti izbrana stanja?
+        confirm_allow_account: Ali ste prepričani, da želite dopustiti izbrane račune?
+        confirm_disallow: Ali ste prepričani, da želite prepovedati izbrana stanja?
+        confirm_disallow_account: Ali ste prepričani, da želite prepovedati izbrane račune?
         description_html: To so objave, za katere vaš strežnik ve, da so trenutno v skupni rabi in med priljubljenimi. Vašim novim uporabnikom in uporabnikom, ki se vračajo, lahko pomaga najti več oseb, ki jim bodo sledili. Nobena objava ni javno prikazana, dokler avtorja ne odobrite in avtor ne dovoli, da se njegov račun predlaga drugim. Posamezne objave lahko tudi dovolite ali zavrnete.
         disallow: Ne dovoli objave
         disallow_account: Ne dovoli avtorja
@@ -994,7 +1005,7 @@ sl:
           one: Uporabila %{count} oseba v zadnjem tednu
           other: Uporabilo %{count} oseb v zadnjem tednu
           two: Uporabili %{count} osebi v zadnjem tednu
-      title: Trendi
+      title: Priporočila in trendi
       trending: V porastu
     warning_presets:
       add_new: Dodaj novo
@@ -1184,7 +1195,6 @@ sl:
   crypto:
     errors:
       invalid_key: ni veljaven ključ Ed25519 ali Curve25519
-      invalid_signature: ni veljaven podpis Ed25519
   date:
     formats:
       default: "%d %b %Y"
@@ -1250,8 +1260,6 @@ sl:
       your_appeal_approved: Vaša pritožba je bila odobrena
       your_appeal_pending: Oddali ste pritožbo
       your_appeal_rejected: Vaša pritožba je bila zavržena
-  domain_validator:
-    invalid_domain: ni veljavno ime domene
   edit_profile:
     basic_information: Osnovni podatki
     hint_html: "<strong>Prilagodite, kaj ljudje vidijo na vašem javnem profilu in poleg vaših objav.</strong> Drugi vam bodo raje sledili nazaj in z vami klepetali, če boste imeli izpolnjen profil in nastavljeno profilno sliko."
@@ -1724,7 +1732,7 @@ sl:
     featured_tags: Vključeni ključniki
     import: Uvozi
     migrate: Selitev računa
-    notifications: Obvestila po e-pošti
+    notifications: E-poštna obvestila
     preferences: Nastavitve
     profile: Profil
     relationships: Sledenja in sledilci
@@ -1773,27 +1781,12 @@ sl:
     edited_at_html: Urejeno %{date}
     errors:
       in_reply_not_found: Objava, na katero želite odgovoriti, ne obstaja.
-    open_in_web: Odpri na spletu
     over_character_limit: omejitev %{max} znakov je presežena
     pin_errors:
       direct: Objav, ki so vidne samo omenjenum uporabnikom, ni mogoče pripenjati
       limit: Pripeli ste največje število objav
       ownership: Objava nekoga drugega ne more biti pripeta
       reblog: Izpostavitev ne more biti pripeta
-    poll:
-      total_people:
-        few: "%{count} osebe"
-        one: "%{count} Oseba"
-        other: "%{count} oseb"
-        two: "%{count} osebi"
-      total_votes:
-        few: "%{count} glasovi"
-        one: "%{count} glas"
-        other: "%{count} glasov"
-        two: "%{count} glasova"
-      vote: Glasuj
-    show_more: Pokaži več
-    show_thread: Pokaži nit
     title: "%{name}: »%{quote}«"
     visibilities:
       direct: Neposredno

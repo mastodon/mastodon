@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::SystemCheck::Message do
+RSpec.describe Admin::SystemCheck::Message do
   subject(:check) { described_class.new(:key_value, :value_value, :action_value, :critical_value) }
 
   it 'providers readers when initialized' do

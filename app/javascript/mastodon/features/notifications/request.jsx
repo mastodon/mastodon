@@ -10,7 +10,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import DeleteIcon from '@/material-icons/400-24px/delete.svg?react';
 import DoneIcon from '@/material-icons/400-24px/done.svg?react';
 import InventoryIcon from '@/material-icons/400-24px/inventory_2.svg?react';
-import { fetchNotificationRequest, fetchNotificationsForRequest, expandNotificationsForRequest, acceptNotificationRequest, dismissNotificationRequest } from 'mastodon/actions/notifications';
+import {
+  fetchNotificationRequest,
+  fetchNotificationsForRequest,
+  expandNotificationsForRequest,
+  acceptNotificationRequest,
+  dismissNotificationRequest,
+} from 'mastodon/actions/notification_requests';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 import { IconButton } from 'mastodon/components/icon_button';
@@ -44,28 +50,28 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
   const columnRef = useRef();
   const intl = useIntl();
   const dispatch = useDispatch();
-  const notificationRequest = useSelector(state => state.getIn(['notificationRequests', 'current', 'item', 'id']) === id ? state.getIn(['notificationRequests', 'current', 'item']) : null);
-  const accountId = notificationRequest?.get('account');
+  const notificationRequest = useSelector(state => state.notificationRequests.current.item?.id === id ? state.notificationRequests.current.item : null);
+  const accountId = notificationRequest?.account_id;
   const account = useSelector(state => state.getIn(['accounts', accountId]));
-  const notifications = useSelector(state => state.getIn(['notificationRequests', 'current', 'notifications', 'items']));
-  const isLoading = useSelector(state => state.getIn(['notificationRequests', 'current', 'notifications', 'isLoading']));
-  const hasMore = useSelector(state => !!state.getIn(['notificationRequests', 'current', 'notifications', 'next']));
-  const removed = useSelector(state => state.getIn(['notificationRequests', 'current', 'removed']));
+  const notifications = useSelector(state => state.notificationRequests.current.notifications.items);
+  const isLoading = useSelector(state => state.notificationRequests.current.notifications.isLoading);
+  const hasMore = useSelector(state => !!state.notificationRequests.current.notifications.next);
+  const removed = useSelector(state => state.notificationRequests.current.removed);
 
   const handleHeaderClick = useCallback(() => {
     columnRef.current?.scrollTop();
   }, [columnRef]);
 
   const handleLoadMore = useCallback(() => {
-    dispatch(expandNotificationsForRequest());
-  }, [dispatch]);
+    dispatch(expandNotificationsForRequest({ accountId }));
+  }, [dispatch, accountId]);
 
   const handleDismiss = useCallback(() => {
-    dispatch(dismissNotificationRequest(id));
+    dispatch(dismissNotificationRequest({ id }));
   }, [dispatch, id]);
 
   const handleAccept = useCallback(() => {
-    dispatch(acceptNotificationRequest(id));
+    dispatch(acceptNotificationRequest({ id }));
   }, [dispatch, id]);
 
   const handleMoveUp = useCallback(id => {
@@ -79,12 +85,12 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
   }, [columnRef, notifications]);
 
   useEffect(() => {
-    dispatch(fetchNotificationRequest(id));
+    dispatch(fetchNotificationRequest({ id }));
   }, [dispatch, id]);
 
   useEffect(() => {
     if (accountId) {
-      dispatch(fetchNotificationsForRequest(accountId));
+      dispatch(fetchNotificationsForRequest({ accountId }));
     }
   }, [dispatch, accountId]);
 

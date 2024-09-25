@@ -12,6 +12,7 @@ import BundleColumnError from 'mastodon/features/ui/components/bundle_column_err
 import { me } from 'mastodon/initial_state';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
 import { getAccountHidden } from 'mastodon/selectors';
+import { useAppSelector } from 'mastodon/store';
 
 import { lookupAccount, fetchAccount } from '../../actions/accounts';
 import { fetchFeaturedTags } from '../../actions/featured_tags';
@@ -59,12 +60,22 @@ const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = fa
   };
 };
 
-const RemoteHint = ({ url }) => (
-  <TimelineHint url={url} resource={<FormattedMessage id='timeline_hint.resources.statuses' defaultMessage='Older posts' />} />
-);
+const RemoteHint = ({ accountId, url }) => {
+  const acct = useAppSelector(state => state.accounts.get(accountId)?.acct);
+  const domain = acct ? acct.split('@')[1] : undefined;
+
+  return (
+    <TimelineHint
+      url={url}
+      message={<FormattedMessage id='hints.profiles.posts_may_be_missing' defaultMessage='Some posts from this profile may be missing.' />}
+      label={<FormattedMessage id='hints.profiles.see_more_posts' defaultMessage='See more posts on {domain}' values={{ domain: <strong>{domain}</strong> }} />}
+    />
+  );
+};
 
 RemoteHint.propTypes = {
   url: PropTypes.string.isRequired,
+  accountId: PropTypes.string.isRequired,
 };
 
 class AccountTimeline extends ImmutablePureComponent {
@@ -175,12 +186,12 @@ class AccountTimeline extends ImmutablePureComponent {
     } else if (blockedBy) {
       emptyMessage = <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />;
     } else if (remote && statusIds.isEmpty()) {
-      emptyMessage = <RemoteHint url={remoteUrl} />;
+      emptyMessage = <RemoteHint accountId={accountId} url={remoteUrl} />;
     } else {
       emptyMessage = <FormattedMessage id='empty_column.account_timeline' defaultMessage='No posts found' />;
     }
 
-    const remoteMessage = remote ? <RemoteHint url={remoteUrl} /> : null;
+    const remoteMessage = remote ? <RemoteHint accountId={accountId} url={remoteUrl} /> : null;
 
     return (
       <Column>

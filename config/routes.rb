@@ -126,6 +126,8 @@ Rails.application.routes.draw do
       end
 
       resources :replies, only: [:index], module: :activitypub
+      resources :likes, only: [:index], module: :activitypub
+      resources :shares, only: [:index], module: :activitypub
     end
 
     resources :followers, only: [:index], controller: :follower_accounts
@@ -134,7 +136,6 @@ Rails.application.routes.draw do
     scope module: :activitypub do
       resource :outbox, only: [:show]
       resource :inbox, only: [:create]
-      resource :claim, only: [:create]
       resources :collections, only: [:show]
       resource :followers_synchronization, only: [:show]
     end

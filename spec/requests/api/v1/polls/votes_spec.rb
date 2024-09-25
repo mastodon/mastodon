@@ -18,6 +18,8 @@ RSpec.describe 'API V1 Polls Votes' do
 
     it 'creates a vote', :aggregate_failures do
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
 
       expect(vote).to_not be_nil
       expect(vote.choice).to eq 1
@@ -30,6 +32,8 @@ RSpec.describe 'API V1 Polls Votes' do
 
       it 'returns http bad request' do
         expect(response).to have_http_status(400)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 

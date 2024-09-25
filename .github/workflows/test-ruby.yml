@@ -42,11 +42,24 @@ jobs:
         with:
           onlyProduction: 'true'
 
+      - name: Cache assets from compilation
+        uses: actions/cache@v4
+        with:
+          path: |
+            public/assets
+            public/packs
+            public/packs-test
+            tmp/cache/webpacker
+          key: ${{ matrix.mode }}-assets-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
+          restore-keys: |
+            ${{ matrix.mode }}-assets-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
+            ${{ matrix.mode }}-assets-${{ github.head_ref || github.ref_name }}
+            ${{ matrix.mode }}-assets-main
+            ${{ matrix.mode }}-assets
+
       - name: Precompile assets
-        # Previously had set this, but it's not supported
-        # export NODE_OPTIONS=--openssl-legacy-provider
         run: |-
-          ./bin/rails assets:precompile
+          bin/rails assets:precompile
 
       - name: Archive asset artifacts
         run: |
@@ -136,6 +149,19 @@ jobs:
         run: |
           bin/rails db:setup
           bin/flatware fan bin/rails db:test:prepare
+
+      - name: Cache RSpec persistence file
+        uses: actions/cache@v4
+        with:
+          path: |
+            tmp/rspec/examples.txt
+          key: rspec-persistence-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
+          restore-keys: |
+            rspec-persistence-${{ github.head_ref || github.ref_name }}-${{ github.sha }}-${{ matrix.ruby-version }}
+            rspec-persistence-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
+            rspec-persistence-${{ github.head_ref || github.ref_name }}
+            rspec-persistence-main
+            rspec-persistence
 
       - run: bin/flatware rspec -r ./spec/flatware_helper.rb
 

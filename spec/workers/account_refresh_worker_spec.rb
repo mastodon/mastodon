@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AccountRefreshWorker do
+RSpec.describe AccountRefreshWorker do
   let(:worker) { described_class.new }
   let(:service) { instance_double(ResolveAccountService, call: true) }
 

@@ -2,7 +2,7 @@
 
 class FixReblogsInFeeds < ActiveRecord::Migration[5.1]
   def up
-    redis = RedisConfiguration.pool.checkout
+    redis = RedisConnection.pool.checkout
     fm = FeedManager.instance
 
     # Old scheme:

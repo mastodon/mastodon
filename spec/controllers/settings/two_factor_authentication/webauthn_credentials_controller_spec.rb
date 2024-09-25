@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'webauthn/fake_client'
 
-describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
+RSpec.describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
   render_views
 
   let(:user) { Fabricate(:user) }

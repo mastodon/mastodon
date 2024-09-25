@@ -26,7 +26,9 @@ RSpec.describe 'Policies' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json).to include(
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body).to include(
           for_not_following: 'accept',
           for_not_followers: 'accept',
           for_new_accounts: 'accept',
@@ -56,7 +58,9 @@ RSpec.describe 'Policies' do
         .and change { NotificationPolicy.find_or_initialize_by(account: user.account).for_limited_accounts.to_sym }.from(:filter).to(:drop)
 
       expect(response).to have_http_status(200)
-      expect(body_as_json).to include(
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body).to include(
         for_not_following: 'filter',
         for_not_followers: 'accept',
         for_new_accounts: 'accept',

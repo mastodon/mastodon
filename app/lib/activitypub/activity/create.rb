@@ -8,43 +8,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     dereference_object!
 
-    case @object['type']
-    when 'EncryptedMessage'
-      create_encrypted_message
-    else
-      create_status
-    end
+    create_status
   end
 
   private
-
-  def create_encrypted_message
-    return reject_payload! if non_matching_uri_hosts?(@account.uri, object_uri) || @options[:delivered_to_account_id].blank?
-
-    target_account = Account.find(@options[:delivered_to_account_id])
-    target_device  = target_account.devices.find_by(device_id: @object.dig('to', 'deviceId'))
-
-    return if target_device.nil?
-
-    target_device.encrypted_messages.create!(
-      from_account: @account,
-      from_device_id: @object.dig('attributedTo', 'deviceId'),
-      type: @object['messageType'],
-      body: @object['cipherText'],
-      digest: @object.dig('digest', 'digestValue'),
-      message_franking: message_franking.to_token
-    )
-  end
-
-  def message_franking
-    MessageFranking.new(
-      hmac: @object.dig('digest', 'digestValue'),
-      original_franking: @object['messageFranking'],
-      source_account_id: @account.id,
-      target_account_id: @options[:delivered_to_account_id],
-      timestamp: Time.now.utc
-    )
-  end
 
   def create_status
     return reject_payload! if unsupported_object_type? || non_matching_uri_hosts?(@account.uri, object_uri) || tombstone_exists? || !related_to_local_activity?
@@ -375,7 +342,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def converted_text
-    linkify([@status_parser.title.presence, @status_parser.spoiler_text.presence, @status_parser.url || @status_parser.uri].compact.join("\n\n"))
+    [formatted_title, @status_parser.spoiler_text.presence, formatted_url].compact.join("\n\n")
+  end
+
+  def formatted_title
+    "<h2>#{@status_parser.title}</h2>" if @status_parser.title.present?
+  end
+
+  def formatted_url
+    linkify(@status_parser.url || @status_parser.uri)
   end
 
   def unsupported_media_type?(mime_type)

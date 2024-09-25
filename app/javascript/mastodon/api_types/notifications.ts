@@ -60,12 +60,12 @@ export interface BaseNotificationGroupJSON {
 
 interface NotificationGroupWithStatusJSON extends BaseNotificationGroupJSON {
   type: NotificationWithStatusType;
-  status_id: string;
+  status_id: string | null;
 }
 
 interface NotificationWithStatusJSON extends BaseNotificationJSON {
   type: NotificationWithStatusType;
-  status: ApiStatusJSON;
+  status: ApiStatusJSON | null;
 }
 
 interface ReportNotificationGroupJSON extends BaseNotificationGroupJSON {
@@ -148,4 +148,13 @@ export interface ApiNotificationGroupsResultJSON {
   accounts: ApiAccountJSON[];
   statuses: ApiStatusJSON[];
   notification_groups: ApiNotificationGroupJSON[];
+}
+
+export interface ApiNotificationRequestJSON {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  notifications_count: string;
+  account: ApiAccountJSON;
+  last_status?: ApiStatusJSON;
 }

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure do
+RSpec.describe Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure do
   subject { described_class.new(start_at, end_at, params) }
 
   let(:domain) { 'example.com' }

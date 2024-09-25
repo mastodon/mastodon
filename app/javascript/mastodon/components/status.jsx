@@ -12,7 +12,8 @@ import { HotKeys } from 'react-hotkeys';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import PushPinIcon from '@/material-icons/400-24px/push_pin.svg?react';
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
-import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
+import { ContentWarning } from 'mastodon/components/content_warning';
+import { FilterWarning } from 'mastodon/components/filter_warning';
 import { Icon }  from 'mastodon/components/icon';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 import { withOptionalRouter, WithOptionalRouterPropTypes } from 'mastodon/utils/react_router';
@@ -32,6 +33,7 @@ import { getHashtagBarForStatus } from './hashtag_bar';
 import { RelativeTimestamp } from './relative_timestamp';
 import StatusActionBar from './status_action_bar';
 import StatusContent from './status_content';
+import { StatusThreadLabel } from './status_thread_label';
 import { VisibilityIcon } from './visibility_icon';
 
 const domParser = new DOMParser();
@@ -140,7 +142,7 @@ class Status extends ImmutablePureComponent {
 
   state = {
     showMedia: defaultMediaVisibility(this.props.status) && !(this.context?.hideMediaByDefault),
-    forceFilter: undefined,
+    showDespiteFilter: undefined,
   };
 
   componentDidUpdate (prevProps) {
@@ -152,7 +154,7 @@ class Status extends ImmutablePureComponent {
     if (this.props.status?.get('id') !== prevProps.status?.get('id')) {
       this.setState({
         showMedia: defaultMediaVisibility(this.props.status) && !(this.context?.hideMediaByDefault),
-        forceFilter: undefined,
+        showDespiteFilter: undefined,
       });
     }
   }
@@ -325,20 +327,32 @@ class Status extends ImmutablePureComponent {
   };
 
   handleHotkeyToggleHidden = () => {
-    this.props.onToggleHidden(this._properStatus());
+    const { onToggleHidden } = this.props;
+    const status = this._properStatus();
+
+    if (status.get('matched_filters')) {
+      const expandedBecauseOfCW = !status.get('hidden') || status.get('spoiler_text').length === 0;
+      const expandedBecauseOfFilter = this.state.showDespiteFilter;
+
+      if (expandedBecauseOfFilter && !expandedBecauseOfCW) {
+        onToggleHidden(status);
+      } else if (expandedBecauseOfFilter && expandedBecauseOfCW) {
+        onToggleHidden(status);
+        this.handleFilterToggle();
+      } else  {
+        this.handleFilterToggle();
+      }
+    } else {
+      onToggleHidden(status);
+    }
   };
 
   handleHotkeyToggleSensitive = () => {
     this.handleToggleMediaVisibility();
   };
 
-  handleUnfilterClick = e => {
-    this.setState({ forceFilter: false });
-    e.preventDefault();
-  };
-
-  handleFilterClick = () => {
-    this.setState({ forceFilter: true });
+  handleFilterToggle = () => {
+    this.setState(state => ({ ...state, showDespiteFilter: !state.showDespiteFilter }));
   };
 
   _properStatus () {
@@ -396,29 +410,10 @@ class Status extends ImmutablePureComponent {
     const connectReply = nextInReplyToId && nextInReplyToId === status.get('id');
     const matchedFilters = status.get('matched_filters');
 
-    if (this.state.forceFilter === undefined ? matchedFilters : this.state.forceFilter) {
-      const minHandlers = this.props.muted ? {} : {
-        moveUp: this.handleHotkeyMoveUp,
-        moveDown: this.handleHotkeyMoveDown,
-      };
-
-      return (
-        <HotKeys handlers={minHandlers} tabIndex={unfocusable ? null : -1}>
-          <div className='status__wrapper status__wrapper--filtered focusable' tabIndex={unfocusable ? null : 0} ref={this.handleRef}>
-            <FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {matchedFilters.join(', ')}.
-            {' '}
-            <button className='status__wrapper--filtered__button' onClick={this.handleUnfilterClick}>
-              <FormattedMessage id='status.show_filter_reason' defaultMessage='Show anyway' />
-            </button>
-          </div>
-        </HotKeys>
-      );
-    }
-
     if (featured) {
       prepend = (
         <div className='status__prepend'>
-          <div className='status__prepend-icon-wrapper'><Icon id='thumb-tack' icon={PushPinIcon} className='status__prepend-icon' /></div>
+          <div className='status__prepend__icon'><Icon id='thumb-tack' icon={PushPinIcon} /></div>
           <FormattedMessage id='status.pinned' defaultMessage='Pinned post' />
         </div>
       );
@@ -427,7 +422,7 @@ class Status extends ImmutablePureComponent {
 
       prepend = (
         <div className='status__prepend'>
-          <div className='status__prepend-icon-wrapper'><Icon id='retweet' icon={RepeatIcon} className='status__prepend-icon' /></div>
+          <div className='status__prepend__icon'><Icon id='retweet' icon={RepeatIcon} /></div>
           <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handlePrependAccountClick} data-id={status.getIn(['account', 'id'])} data-hover-card-account={status.getIn(['account', 'id'])} href={`/@${status.getIn(['account', 'acct'])}`} className='status__display-name muted'><bdi><strong dangerouslySetInnerHTML={display_name_html} /></bdi></a> }} />
         </div>
       );
@@ -439,18 +434,13 @@ class Status extends ImmutablePureComponent {
     } else if (status.get('visibility') === 'direct') {
       prepend = (
         <div className='status__prepend'>
-          <div className='status__prepend-icon-wrapper'><Icon id='at' icon={AlternateEmailIcon} className='status__prepend-icon' /></div>
+          <div className='status__prepend__icon'><Icon id='at' icon={AlternateEmailIcon} /></div>
           <FormattedMessage id='status.direct_indicator' defaultMessage='Private mention' />
         </div>
       );
-    } else if (showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id'])) {
-      const display_name_html = { __html: status.getIn(['account', 'display_name_html']) };
-
+    } else if (showThread && status.get('in_reply_to_id')) {
       prepend = (
-        <div className='status__prepend'>
-          <div className='status__prepend-icon-wrapper'><Icon id='reply' icon={ReplyIcon} className='status__prepend-icon' /></div>
-          <FormattedMessage id='status.replied_to' defaultMessage='Replied to {name}' values={{ name: <a onClick={this.handlePrependAccountClick} data-id={status.getIn(['account', 'id'])} data-hover-card-account={status.getIn(['account', 'id'])} href={`/@${status.getIn(['account', 'acct'])}`} className='status__display-name muted'><bdi><strong dangerouslySetInnerHTML={display_name_html} /></bdi></a> }} />
-        </div>
+        <StatusThreadLabel accountId={status.getIn(['account', 'id'])} inReplyToAccountId={status.get('in_reply_to_account_id')} />
       );
     }
 
@@ -548,7 +538,7 @@ class Status extends ImmutablePureComponent {
     }
 
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
-    const expanded = !status.get('hidden') || status.get('spoiler_text').length === 0;
+    const expanded = (!matchedFilters || this.state.showDespiteFilter) && (!status.get('hidden') || status.get('spoiler_text').length === 0);
 
     return (
       <HotKeys handlers={handlers} tabIndex={unfocusable ? null : -1}>
@@ -574,22 +564,27 @@ class Status extends ImmutablePureComponent {
               </a>
             </div>
 
-            <StatusContent
-              status={status}
-              onClick={this.handleClick}
-              expanded={expanded}
-              onExpandedToggle={this.handleExpandedToggle}
-              onTranslate={this.handleTranslate}
-              collapsible
-              onCollapsedToggle={this.handleCollapsedToggle}
-              {...statusContentProps}
-            />
+            {matchedFilters && <FilterWarning title={matchedFilters.join(', ')} expanded={this.state.showDespiteFilter} onClick={this.handleFilterToggle} />}
 
-            {media}
+            {(status.get('spoiler_text').length > 0 && (!matchedFilters || this.state.showDespiteFilter)) && <ContentWarning text={status.getIn(['translation', 'spoilerHtml']) || status.get('spoilerHtml')} expanded={expanded} onClick={this.handleExpandedToggle} />}
 
-            {expanded && hashtagBar}
+            {expanded && (
+              <>
+                <StatusContent
+                  status={status}
+                  onClick={this.handleClick}
+                  onTranslate={this.handleTranslate}
+                  collapsible
+                  onCollapsedToggle={this.handleCollapsedToggle}
+                  {...statusContentProps}
+                />
 
-            <StatusActionBar scrollKey={scrollKey} status={status} account={account} onFilter={matchedFilters ? this.handleFilterClick : null} {...other} />
+                {media}
+                {hashtagBar}
+              </>
+            )}
+
+            <StatusActionBar scrollKey={scrollKey} status={status} account={account}  {...other} />
           </div>
         </div>
       </HotKeys>

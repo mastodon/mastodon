@@ -15,7 +15,7 @@ export interface AsyncThunkRejectValue {
 }
 
 interface AppMeta {
-  skipLoading?: boolean;
+  useLoadingBar?: boolean;
 }
 
 export const createAppAsyncThunk = createAsyncThunk.withTypes<{
@@ -33,8 +33,12 @@ interface AppThunkConfig {
 }
 type AppThunkApi = Pick<GetThunkAPI<AppThunkConfig>, 'getState' | 'dispatch'>;
 
-interface AppThunkOptions {
-  skipLoading?: boolean;
+interface AppThunkOptions<Arg> {
+  useLoadingBar?: boolean;
+  condition?: (
+    arg: Arg,
+    { getState }: { getState: AppThunkApi['getState'] },
+  ) => boolean;
 }
 
 const createBaseAsyncThunk = createAsyncThunk.withTypes<AppThunkConfig>();
@@ -42,7 +46,7 @@ const createBaseAsyncThunk = createAsyncThunk.withTypes<AppThunkConfig>();
 export function createThunk<Arg = void, Returned = void>(
   name: string,
   creator: (arg: Arg, api: AppThunkApi) => Returned | Promise<Returned>,
-  options: AppThunkOptions = {},
+  options: AppThunkOptions<Arg> = {},
 ) {
   return createBaseAsyncThunk(
     name,
@@ -54,17 +58,23 @@ export function createThunk<Arg = void, Returned = void>(
         const result = await creator(arg, { dispatch, getState });
 
         return fulfillWithValue(result, {
-          skipLoading: options.skipLoading,
+          useLoadingBar: options.useLoadingBar,
         });
       } catch (error) {
-        return rejectWithValue({ error }, { skipLoading: true });
+        return rejectWithValue(
+          { error },
+          {
+            useLoadingBar: options.useLoadingBar,
+          },
+        );
       }
     },
     {
       getPendingMeta() {
-        if (options.skipLoading) return { skipLoading: true };
+        if (options.useLoadingBar) return { useLoadingBar: true };
         return {};
       },
+      condition: options.condition,
     },
   );
 }
@@ -91,7 +101,7 @@ type ArgsType = Record<string, unknown> | undefined;
 export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
   name: string,
   loadData: (args: Args) => Promise<LoadDataResult>,
-  thunkOptions?: AppThunkOptions,
+  thunkOptions?: AppThunkOptions<Args>,
 ): ReturnType<typeof createThunk<Args, LoadDataResult>>;
 
 // Overload when the `onData` method returns discardLoadDataInPayload, then the payload is empty
@@ -99,17 +109,19 @@ export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
   name: string,
   loadData: LoadData<Args, LoadDataResult>,
   onDataOrThunkOptions?:
-    | AppThunkOptions
+    | AppThunkOptions<Args>
     | OnData<Args, LoadDataResult, DiscardLoadData>,
-  thunkOptions?: AppThunkOptions,
+  thunkOptions?: AppThunkOptions<Args>,
 ): ReturnType<typeof createThunk<Args, void>>;
 
 // Overload when the `onData` method returns nothing, then the mayload is the `onData` result
 export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
   name: string,
   loadData: LoadData<Args, LoadDataResult>,
-  onDataOrThunkOptions?: AppThunkOptions | OnData<Args, LoadDataResult, void>,
-  thunkOptions?: AppThunkOptions,
+  onDataOrThunkOptions?:
+    | AppThunkOptions<Args>
+    | OnData<Args, LoadDataResult, void>,
+  thunkOptions?: AppThunkOptions<Args>,
 ): ReturnType<typeof createThunk<Args, LoadDataResult>>;
 
 // Overload when there is an `onData` method returning something
@@ -121,9 +133,9 @@ export function createDataLoadingThunk<
   name: string,
   loadData: LoadData<Args, LoadDataResult>,
   onDataOrThunkOptions?:
-    | AppThunkOptions
+    | AppThunkOptions<Args>
     | OnData<Args, LoadDataResult, Returned>,
-  thunkOptions?: AppThunkOptions,
+  thunkOptions?: AppThunkOptions<Args>,
 ): ReturnType<typeof createThunk<Args, Returned>>;
 
 /**
@@ -148,7 +160,8 @@ export function createDataLoadingThunk<
  *   You can also omit this parameter and pass `thunkOptions` directly
  * @param maybeThunkOptions
  *   Additional Mastodon specific options for the thunk. Currently supports:
- *   - `skipLoading` to avoid showing the loading bar when the request is in progress
+ *   - `useLoadingBar` to display a loading bar while this action is pending. Defaults to true.
+ *   - `condition` is passed to `createAsyncThunk` (https://redux-toolkit.js.org/api/createAsyncThunk#canceling-before-execution)
  * @returns The created thunk
  */
 export function createDataLoadingThunk<
@@ -159,12 +172,12 @@ export function createDataLoadingThunk<
   name: string,
   loadData: LoadData<Args, LoadDataResult>,
   onDataOrThunkOptions?:
-    | AppThunkOptions
+    | AppThunkOptions<Args>
     | OnData<Args, LoadDataResult, Returned>,
-  maybeThunkOptions?: AppThunkOptions,
+  maybeThunkOptions?: AppThunkOptions<Args>,
 ) {
   let onData: OnData<Args, LoadDataResult, Returned> | undefined;
-  let thunkOptions: AppThunkOptions | undefined;
+  let thunkOptions: AppThunkOptions<Args> | undefined;
 
   if (typeof onDataOrThunkOptions === 'function') onData = onDataOrThunkOptions;
   else if (typeof onDataOrThunkOptions === 'object')
@@ -198,6 +211,9 @@ export function createDataLoadingThunk<
         return undefined as Returned;
       else return result;
     },
-    thunkOptions,
+    {
+      useLoadingBar: thunkOptions?.useLoadingBar ?? true,
+      condition: thunkOptions?.condition,
+    },
   );
 }

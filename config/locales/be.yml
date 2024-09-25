@@ -7,7 +7,6 @@ be:
     hosted_on: Mastodon месціцца на %{domain}
     title: Пра нас
   accounts:
-    follow: Падпісацца
     followers:
       few: Падпісчыка
       many: Падпісчыкаў
@@ -61,7 +60,7 @@ be:
       demote: Панізіць у правах
       destroyed_msg: Даныя %{username} цяпер у чарзе на прымусовае выдаленне
       disable: Замарозіць
-      disable_sign_in_token_auth: Выключыць аўтэнтыфікацыю па e-mail токену
+      disable_sign_in_token_auth: Выключыць аўтэнтыфікацыю па токену эл. пошты
       disable_two_factor_authentication: Адключыць 2FA
       disabled: Замарожаны
       display_name: Бачнае імя
@@ -70,7 +69,7 @@ be:
       email: Электронная пошта
       email_status: Статус электроннай пошты
       enable: Размарозіць
-      enable_sign_in_token_auth: Уключыць аўтэнтыфікацыю па e-mail токену
+      enable_sign_in_token_auth: Уключыць аўтэнтыфікацыю па токену эл. пошты
       enabled: Уключана
       enabled_msg: Уліковы запіс %{username} размарожаны
       followers: Падпісчыкі
@@ -178,7 +177,7 @@ be:
         approve_appeal: Ухваліць абскарджанне
         approve_user: Зацвердзіць карыстальніка
         assigned_to_self_report: Прызначыць скаргу
-        change_email_user: Змяніць E-mail карыстальніка
+        change_email_user: Змяніць эл. пошту карыстальніка
         change_role_user: Змяніць ролю карыстальніка
         confirm_user: Пацвердзіць карыстальніка
         create_account_warning: Стварыць папярэджанне
@@ -205,10 +204,10 @@ be:
         destroy_user_role: Выдаліць ролю
         disable_2fa_user: Адключыць двухэтапнае спраўджанне
         disable_custom_emoji: Адключыць адвольныя эмодзі
-        disable_sign_in_token_auth_user: Адключыць аўтарызацыю праз электронную пошту для Карыстальніка
+        disable_sign_in_token_auth_user: Адключыць аўтарызацыю праз электронную пошту для карыстальніка
         disable_user: Адключыць карыстальніка
         enable_custom_emoji: Уключыць адвольныя эмодзі
-        enable_sign_in_token_auth_user: Адключыць аўтарызацыю праз электронную пошту для Карыстальніка
+        enable_sign_in_token_auth_user: Уключыць аўтарызацыю праз электронную пошту для карыстальніка
         enable_user: Уключыць карыстальніка
         memorialize_account: Запомніць уліковы запіс
         promote_user: Павысіць правы Карыстальніка
@@ -243,7 +242,7 @@ be:
         confirm_user_html: "%{name} пацвердзіў паштовы адрас %{target}"
         create_account_warning_html: "%{name} накіраваў папярэджанне %{target}"
         create_announcement_html: "%{name} зрабіў новую аб'яву %{target}"
-        create_canonical_email_block_html: "%{name} заблакаваў імэйл з хэшам %{target}"
+        create_canonical_email_block_html: "%{name} заблакіраваў эл. пошту з хэшам %{target}"
         create_custom_emoji_html: "%{name} загрузіў новы смайлік %{target}\n\n"
         create_domain_allow_html: "%{name} дазволіў федэрацыю з даменам %{target}"
         create_domain_block_html: "%{name} заблакіраваў дамен %{target}"
@@ -253,11 +252,11 @@ be:
         create_user_role_html: "%{name} зрабіў ролю %{target}"
         demote_user_html: "%{name} прыбраў карыстальніка %{target}"
         destroy_announcement_html: "%{name} выдаліў аб'яву %{target}"
-        destroy_canonical_email_block_html: "%{name} разблакаваў імэйл з хэшам %{target}"
+        destroy_canonical_email_block_html: "%{name} разблакіраваў эл. пошту з хэшам %{target}"
         destroy_custom_emoji_html: "%{name} выдаліў(а) эмоджі %{target}"
         destroy_domain_allow_html: "%{name} зняў дазвол на аб'яднанне з даменам %{target}\n"
         destroy_domain_block_html: "%{name} разблакаваў дамен %{target}"
-        destroy_email_domain_block_html: "%{name} зняў блакіроўку імэйла дамена %{target}\n"
+        destroy_email_domain_block_html: "%{name} разблакіраваў дамен эл. пошты %{target}"
         destroy_instance_html: "%{name} цалкам прыбраў дамен %{target}"
         destroy_ip_block_html: "%{name} выдаліў правіла для IP %{target}"
         destroy_status_html: "%{name} выдаліў допіс %{target}"
@@ -265,10 +264,10 @@ be:
         destroy_user_role_html: "%{name} выдаліў ролю %{target}"
         disable_2fa_user_html: "%{name} амяніў абавязковую двухфактарную верыфікацыю для карыстальніка %{target}"
         disable_custom_emoji_html: "%{name} заблакіраваў эмодзі %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} выключыў токен аўэнтыфікацыі e-mail для %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} адключыў уваход праз эл. пошту для %{target}"
         disable_user_html: "%{name} адключыў уваход для карыстальніка %{target}"
         enable_custom_emoji_html: "%{name} уключыў эмодзі %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} уключыў(ла) такенную e-mail праверку для %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} уключыў уваход праз эл. пошту для %{target}"
         enable_user_html: "%{name} уключыў уваход для карыстальніка %{target}"
         memorialize_account_html: Карыстальнік %{name} пераключыў уліковы запіс %{target} у старонку памяці
         promote_user_html: "%{name} павысіў карыстальніка %{target}"
@@ -461,7 +460,7 @@ be:
       not_permitted: Забаронена
       resolved_dns_records_hint_html: Даменнае імя ператвараецца ў наступныя дамены MX, якія ў канчатковым выніку адказваюць за прыём электроннай пошты. Блакаванне дамена MX заблакуе рэгістрацыю з любога адраса электроннай пошты, які выкарыстоўвае той жа дамен MX, нават калі бачнае імя дамена адрозніваецца. <strong>Будзьце асцярожныя, каб не заблакіраваць асноўных пастаўшчыкоў электроннай пошты.</strong>
       resolved_through_html: Вызначына каля %{domain}
-      title: Заблакаваныя паштовыя дамены
+      title: Заблакіраваныя паштовыя дамены
     export_domain_allows:
       new:
         title: Імпарт дазволаў дамена
@@ -999,7 +998,7 @@ be:
           many: Выкарысталі %{count} чалавек за апошні тыдзень
           one: Выкарыстаў адзін чалавек за апошні тыдзень
           other: Выкарысталі %{count} чалавек за апошні тыдзень
-      title: Актуальныя
+      title: Рэкамендацыі і трэнды
       trending: Папулярныя
     warning_presets:
       add_new: Дадаць новы
@@ -1189,7 +1188,6 @@ be:
   crypto:
     errors:
       invalid_key: гэта не сапраўдны Ed25519 або Curve25519 ключ
-      invalid_signature: гэта не сапраўдная Ed25519 сігнатура
   date:
     formats:
       default: "%d.%m.%Y"
@@ -1255,8 +1253,6 @@ be:
       your_appeal_approved: Ваша абскарджанне было ўхвалена
       your_appeal_pending: Вы адправілі апеляцыю
       your_appeal_rejected: Ваша абскарджанне было адхілена
-  domain_validator:
-    invalid_domain: не з'яўляецца сапраўдным даменным імем
   edit_profile:
     basic_information: Асноўная інфармацыя
     hint_html: "<strong>Наладзьце тое, што людзі будуць бачыць у вашым профілі і побач з вашымі паведамленнямі.</strong> Іншыя людзі з большай верагоднасцю будуць сачыць і ўзаемадзейнічаць з вамі, калі ў вас ёсць запоўнены профіль і фота профілю."
@@ -1729,7 +1725,7 @@ be:
     featured_tags: Выбраныя хэштэгі
     import: Імпарт
     migrate: Перамяшчэнне ўліковага запісу
-    notifications: Email апавяшчэнні
+    notifications: Апавяшчэнні па эл. пошце
     preferences: Налады
     profile: Профіль
     relationships: Падпіскі і падпісчыкі
@@ -1778,27 +1774,12 @@ be:
     edited_at_html: Адрэдагавана %{date}
     errors:
       in_reply_not_found: Здаецца, допіс, на які вы спрабуеце адказаць, не існуе.
-    open_in_web: Адчыніць у вэб-версіі
     over_character_limit: перавышаная колькасць сімвалаў у %{max}
     pin_errors:
       direct: Допісы, бачныя толькі згаданым карыстальнікам, не могуць быць замацаваныя
       limit: Вы ўжо замацавалі максімальную колькасць допісаў
       ownership: Немагчыма замацаваць чужы допіс
       reblog: Немагчыма замацаваць пашырэнне
-    poll:
-      total_people:
-        few: "%{count} чалавекі"
-        many: "%{count} чалавек"
-        one: "%{count} чалавек"
-        other: "%{count} чалавека"
-      total_votes:
-        few: "%{count} галасы"
-        many: "%{count} галасоў"
-        one: "%{count} голас"
-        other: "%{count} голасу"
-      vote: Прагаласаваць
-    show_more: Паказаць больш
-    show_thread: Паказаць ланцуг
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Асабіста

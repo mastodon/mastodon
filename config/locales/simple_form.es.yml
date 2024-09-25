@@ -3,6 +3,7 @@ es:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Protege frente atribuciones fraudulentas.
         discoverable: Tu perfil y publicaciones públicas pueden ser destacadas o recomendadas en varias áreas de Mastodon y tu perfil puede ser sugerido a otros usuarios.
         display_name: Tu nombre completo o tu apodo.
         fields: Tu carta de presentación, pronombres, edad, lo que quieras.
@@ -130,7 +131,7 @@ es:
         name: Sólo se puede cambiar el cajón de las letras, por ejemplo, para que sea más legible
       user:
         chosen_languages: Cuando se marca, solo se mostrarán las publicaciones en los idiomas seleccionados en las líneas de tiempo públicas
-        role: El rol controla qué permisos tiene el usuario
+        role: El rol controla qué permisos tiene el usuario.
       user_role:
         color: Color que se utilizará para el rol a lo largo de la interfaz de usuario, como RGB en formato hexadecimal
         highlighted: Esto hace que el rol sea públicamente visible
@@ -143,6 +144,7 @@ es:
         url: Donde los eventos serán enviados
     labels:
       account:
+        attribution_domains_as_text: Solo permitir sitios web específicos
         discoverable: Destacar perfil y publicaciones en algoritmos de descubrimiento
         fields:
           name: Etiqueta
