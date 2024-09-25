@@ -6,7 +6,6 @@ kk:
     contact_unavailable: Белгісіз
     hosted_on: Mastodon орнатылған %{domain} доменінде
   accounts:
-    follow: Жазылу
     followers:
       one: Оқырман
       other: Оқырман
@@ -385,8 +384,6 @@ kk:
       more_details_html: Қосымша мәліметтер алу үшін <a href="%{terms_path}"> құпиялылық саясатын </a> қараңыз.
       username_available: Аккаунтыңыз қайтадан қолжетімді болады
       username_unavailable: Логиніңіз қолжетімді болмайды
-  domain_validator:
-    invalid_domain: жарамды домен атауы емес
   errors:
     '400': Сіз жіберген сұрау жарамсыз немесе дұрыс емес.
     '403': Бұны көру үшін сізде рұқсат жоқ.
@@ -649,22 +646,11 @@ kk:
     disallowed_hashtags:
       one: 'рұқсат етілмеген хэштег: %{tags}'
       other: 'рұқсат етілмеген хэштегтер: %{tags}'
-    open_in_web: Вебте ашу
     over_character_limit: "%{max} максимум таңбадан асып кетті"
     pin_errors:
       limit: Жабыстырылатын жазба саны максимумынан асты
       ownership: Біреудің жазбасы жабыстырылмайды
       reblog: Бөлісілген жазба жабыстырылмайды
-    poll:
-      total_people:
-        one: "%{count} адам"
-        other: "%{count} адам"
-      total_votes:
-        one: "%{count} дауыс"
-        other: "%{count} дауыс"
-      vote: Дауыс беру
-    show_more: Тағы әкел
-    show_thread: Тақырыпты көрсет
     visibilities:
       private: Тек оқырмандарға
       private_long: Тек оқырмандарға ғана көрінеді

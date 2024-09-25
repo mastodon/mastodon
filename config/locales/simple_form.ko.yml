@@ -3,6 +3,7 @@ ko:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: 가짜 기여로부터 보호합니다.
         discoverable: 내 공개 게시물과 프로필이 마스토돈의 다양한 추천 기능에 나타날 수 있고 프로필이 다른 사용자에게 제안될 수 있습니다
         display_name: 진짜 이름 또는 재미난 이름.
         fields: 홈페이지, 호칭, 나이, 뭐든지 적고 싶은 것들.
@@ -130,7 +131,7 @@ ko:
         name: 읽기 쉽게하기 위한 글자의 대소문자만 변경할 수 있습니다.
       user:
         chosen_languages: 체크하면, 선택 된 언어로 작성된 게시물들만 공개 타임라인에 보여집니다
-        role: 역할은 사용자가 어떤 권한을 가지게 될 지 결정합니다
+        role: 역할은 사용자가 어떤 권한을 가지게 될 지 결정합니다.
       user_role:
         color: 색상은 사용자 인터페이스에서 역할을 나타내기 위해 사용되며, RGB 16진수 형식입니다
         highlighted: 이 역할이 공개적으로 보이도록 설정합니다
@@ -143,6 +144,7 @@ ko:
         url: 이벤트가 어디로 전송될 지
     labels:
       account:
+        attribution_domains_as_text: 특정 웹사이트만 허용하기
         discoverable: 발견하기 알고리즘에 프로필과 게시물을 추천하기
         fields:
           name: 라벨

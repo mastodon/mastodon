@@ -31,9 +31,13 @@ class AccountMigration < ApplicationRecord
   validate :validate_migration_cooldown
   validate :validate_target_account
 
-  scope :within_cooldown, ->(now = Time.now.utc) { where(arel_table[:created_at].gteq(now - COOLDOWN_PERIOD)) }
+  scope :within_cooldown, -> { where(created_at: cooldown_duration_ago..) }
 
   attr_accessor :current_password, :current_username
+
+  def self.cooldown_duration_ago
+    Time.current - COOLDOWN_PERIOD
+  end
 
   def save_with_challenge(current_user)
     if current_user.encrypted_password.present?

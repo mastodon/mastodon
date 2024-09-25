@@ -228,7 +228,7 @@ RSpec.describe ResolveAccountService do
       rescue ActiveRecord::RecordNotUnique
         fail_occurred = true
       ensure
-        RedisConfiguration.pool.checkin if Thread.current[:redis]
+        RedisConnection.pool.checkin if Thread.current[:redis]
       end
     end
 

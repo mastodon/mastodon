@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::Metrics::Measure::InteractionsMeasure do
+RSpec.describe Admin::Metrics::Measure::InteractionsMeasure do
   subject { described_class.new(start_at, end_at, params) }
 
   let(:start_at) { 2.days.ago }

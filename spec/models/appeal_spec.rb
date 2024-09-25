@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Appeal do
+RSpec.describe Appeal do
   describe 'Validations' do
     it 'validates text length is under limit' do
       appeal = Fabricate.build(

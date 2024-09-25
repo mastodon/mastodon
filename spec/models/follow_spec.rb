@@ -9,17 +9,8 @@ RSpec.describe Follow do
   describe 'validations' do
     subject { described_class.new(account: alice, target_account: bob, rate_limit: true) }
 
-    it 'is invalid without an account' do
-      follow = Fabricate.build(:follow, account: nil)
-      follow.valid?
-      expect(follow).to model_have_error_on_field(:account)
-    end
-
-    it 'is invalid without a target_account' do
-      follow = Fabricate.build(:follow, target_account: nil)
-      follow.valid?
-      expect(follow).to model_have_error_on_field(:target_account)
-    end
+    it { is_expected.to belong_to(:account).required }
+    it { is_expected.to belong_to(:target_account).required }
 
     it 'is invalid if account already follows too many people' do
       alice.update(following_count: FollowLimitValidator::LIMIT)

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Emojis' do
+RSpec.describe 'Emojis' do
   describe 'GET /emojis/:id' do
     let(:emoji) { Fabricate(:custom_emoji, shortcode: 'coolcat') }
 
@@ -11,7 +11,7 @@ describe 'Emojis' do
 
       expect(response)
         .to have_http_status(200)
-      expect(body_as_json)
+      expect(response.parsed_body)
         .to include(
           name: ':coolcat:',
           type: 'Emoji'

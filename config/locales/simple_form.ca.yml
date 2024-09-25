@@ -3,6 +3,7 @@ ca:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Protegeix de falses atribucions.
         discoverable: El teu perfil i els teus tuts públics poden aparèixer o ser recomanats en diverses àreas de Mastodon i el teu perfil pot ser suggerit a altres usuaris.
         display_name: El teu nom complet o el teu nom divertit.
         fields: La teva pàgina d'inici, pronoms, edat, el que vulguis.
@@ -130,7 +131,7 @@ ca:
         name: Només pots canviar la caixa de les lletres, per exemple, per fer-la més llegible
       user:
         chosen_languages: Quan estigui marcat, només es mostraran els tuts de les llengües seleccionades en les línies de temps públiques
-        role: El rol controla quines permissions té l'usuari
+        role: El rol controla quins permisos té l'usuari.
       user_role:
         color: Color que s'usarà per al rol a tota la interfície d'usuari, com a RGB en format hexadecimal
         highlighted: Això fa el rol visible públicament
@@ -143,6 +144,7 @@ ca:
         url: On els esdeveniments seran enviats
     labels:
       account:
+        attribution_domains_as_text: Permet només webs específics
         discoverable: Permet el perfil i el tuts en els algorismes de descobriment
         fields:
           name: Etiqueta

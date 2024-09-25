@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Home page' do
+RSpec.describe 'Home page' do
   context 'when signed in' do
     before { sign_in Fabricate(:user) }
 

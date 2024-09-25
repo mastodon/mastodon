@@ -27,7 +27,7 @@ class AnnouncementReaction < ApplicationRecord
   private
 
   def set_custom_emoji
-    self.custom_emoji = CustomEmoji.local.find_by(disabled: false, shortcode: name) if name.present?
+    self.custom_emoji = CustomEmoji.local.enabled.find_by(shortcode: name) if name.present?
   end
 
   def queue_publish

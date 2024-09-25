@@ -246,10 +246,6 @@ class User < ApplicationRecord
     unconfirmed? || pending?
   end
 
-  def inactive_message
-    approved? ? super : :pending
-  end
-
   def approve!
     return if approved?
 

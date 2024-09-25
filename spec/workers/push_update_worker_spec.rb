@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe PushUpdateWorker do
+RSpec.describe PushUpdateWorker do
   let(:worker) { described_class.new }
 
   describe 'perform' do

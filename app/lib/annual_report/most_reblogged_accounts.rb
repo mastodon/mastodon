@@ -17,6 +17,6 @@ class AnnualReport::MostRebloggedAccounts < AnnualReport::Source
   private
 
   def most_reblogged_accounts
-    @account.statuses.reorder(nil).where(id: year_as_snowflake_range).where.not(reblog_of_id: nil).joins(reblog: :account).group('accounts.id').having('count(*) > 1').order(total: :desc).limit(SET_SIZE).pluck(Arel.sql('accounts.id, count(*) as total'))
+    report_statuses.where.not(reblog_of_id: nil).joins(reblog: :account).group('accounts.id').having('count(*) > 1').order(total: :desc).limit(SET_SIZE).pluck(Arel.sql('accounts.id, count(*) as total'))
   end
 end

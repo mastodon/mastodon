@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Severed relationships page' do
+RSpec.describe 'Severed relationships page' do
   include ProfileStories
 
   describe 'GET severed_relationships#index' do

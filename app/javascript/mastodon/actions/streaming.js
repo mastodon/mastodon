@@ -103,18 +103,14 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
           const notificationJSON = JSON.parse(data.payload);
           dispatch(updateNotifications(notificationJSON, messages, locale));
           // TODO: remove this once the groups feature replaces the previous one
-          if(getState().settings.getIn(['notifications', 'groupingBeta'], false)) {
-            dispatch(processNewNotificationForGroups(notificationJSON));
-          }
+          dispatch(processNewNotificationForGroups(notificationJSON));
           break;
         }
         case 'notifications_merged':
           const state = getState();
           if (state.notifications.top || !state.notifications.mounted)
             dispatch(expandNotifications({ forceLoad: true, maxId: undefined }));
-          if(state.settings.getIn(['notifications', 'groupingBeta'], false)) {
-            dispatch(refreshStaleNotificationGroups());
-          }
+          dispatch(refreshStaleNotificationGroups());
           break;
         case 'conversation':
           // @ts-expect-error
@@ -139,21 +135,15 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
 
 /**
  * @param {Function} dispatch
- * @param {Function} getState
  */
-async function refreshHomeTimelineAndNotification(dispatch, getState) {
+async function refreshHomeTimelineAndNotification(dispatch) {
   await dispatch(expandHomeTimeline({ maxId: undefined }));
 
-  // TODO: remove this once the groups feature replaces the previous one
-  if(getState().settings.getIn(['notifications', 'groupingBeta'], false)) {
-    // TODO: polling for merged notifications
-    try {
-      await dispatch(pollRecentGroupNotifications());
-    } catch (error) {
-      // TODO
-    }
-  } else {
-    await dispatch(expandNotifications({}));
+  // TODO: polling for merged notifications
+  try {
+    await dispatch(pollRecentGroupNotifications());
+  } catch {
+    // TODO
   }
 
   await dispatch(fetchAnnouncements());

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe UserTrackingConcern do
+RSpec.describe UserTrackingConcern do
   controller(ApplicationController) do
     include UserTrackingConcern
 

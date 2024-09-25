@@ -19,19 +19,19 @@ RSpec.describe ActivityPub::OutboxesController do
     context 'without signature' do
       subject(:response) { get :show, params: { account_username: account.username, page: page } }
 
-      let(:body) { body_as_json }
       let(:remote_account) { nil }
 
       context 'with page not requested' do
         let(:page) { nil }
 
-        it_behaves_like 'cacheable response'
-
         it 'returns http success and correct media type and headers and items count' do
-          expect(response).to have_http_status(200)
+          expect(response)
+            .to have_http_status(200)
+            .and have_cacheable_headers
+
           expect(response.media_type).to eq 'application/activity+json'
           expect(response.headers['Vary']).to be_nil
-          expect(body[:totalItems]).to eq 4
+          expect(response.parsed_body[:totalItems]).to eq 4
         end
 
         context 'when account is permanently suspended' do
@@ -59,16 +59,20 @@ RSpec.describe ActivityPub::OutboxesController do
       context 'with page requested' do
         let(:page) { 'true' }
 
-        it_behaves_like 'cacheable response'
-
         it 'returns http success and correct media type and vary header and items' do
-          expect(response).to have_http_status(200)
+          expect(response)
+            .to have_http_status(200)
+            .and have_cacheable_headers
+
           expect(response.media_type).to eq 'application/activity+json'
           expect(response.headers['Vary']).to include 'Signature'
 
-          expect(body[:orderedItems]).to be_an Array
-          expect(body[:orderedItems].size).to eq 2
-          expect(body[:orderedItems].all? { |item| targets_public_collection?(item) }).to be true
+          expect(response.parsed_body)
+            .to include(
+              orderedItems: be_an(Array)
+              .and(have_attributes(size: 2))
+              .and(all(satisfy { |item| targets_public_collection?(item) }))
+            )
         end
 
         context 'when account is permanently suspended' do
@@ -108,9 +112,12 @@ RSpec.describe ActivityPub::OutboxesController do
           expect(response.media_type).to eq 'application/activity+json'
           expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
 
-          expect(body_as_json[:orderedItems]).to be_an Array
-          expect(body_as_json[:orderedItems].size).to eq 2
-          expect(body_as_json[:orderedItems].all? { |item| targets_public_collection?(item) }).to be true
+          expect(response.parsed_body)
+            .to include(
+              orderedItems: be_an(Array)
+              .and(have_attributes(size: 2))
+              .and(all(satisfy { |item| targets_public_collection?(item) }))
+            )
         end
       end
 
@@ -125,9 +132,12 @@ RSpec.describe ActivityPub::OutboxesController do
           expect(response.media_type).to eq 'application/activity+json'
           expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
 
-          expect(body_as_json[:orderedItems]).to be_an Array
-          expect(body_as_json[:orderedItems].size).to eq 3
-          expect(body_as_json[:orderedItems].all? { |item| targets_public_collection?(item) || targets_followers_collection?(item, account) }).to be true
+          expect(response.parsed_body)
+            .to include(
+              orderedItems: be_an(Array)
+              .and(have_attributes(size: 3))
+              .and(all(satisfy { |item| targets_public_collection?(item) || targets_followers_collection?(item, account) }))
+            )
         end
       end
 
@@ -142,9 +152,10 @@ RSpec.describe ActivityPub::OutboxesController do
           expect(response.media_type).to eq 'application/activity+json'
           expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
 
-          expect(body_as_json[:orderedItems])
-            .to be_an(Array)
-            .and be_empty
+          expect(response.parsed_body)
+            .to include(
+              orderedItems: be_an(Array).and(be_empty)
+            )
         end
       end
 
@@ -159,9 +170,10 @@ RSpec.describe ActivityPub::OutboxesController do
           expect(response.media_type).to eq 'application/activity+json'
           expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
 
-          expect(body_as_json[:orderedItems])
-            .to be_an(Array)
-            .and be_empty
+          expect(response.parsed_body)
+            .to include(
+              orderedItems: be_an(Array).and(be_empty)
+            )
         end
       end
     end

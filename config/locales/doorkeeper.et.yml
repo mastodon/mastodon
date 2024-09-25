@@ -60,7 +60,6 @@ et:
       error:
         title: Ilmnes viga
       new:
-        prompt_html: "%{client_name} soovib luba kontole juurdepääsuks. See on kolmanda osapoole rakendus. <strong>Kui see pole usaldusväärne, siis ei tohiks seda lubada.</strong>"
         review_permissions: Lubade ülevaade
         title: Autoriseerimine vajalik
       show:
@@ -83,6 +82,7 @@ et:
         access_denied: Ressursi omanik või autoriseerimisserver lükkas taotluse tagasi.
         credential_flow_not_configured: Resource Owner Password Credentials vool ebaõnnestus, kuna Doorkeeper.configure.resource_owner_from_credentials ei ole seadistatud.
         invalid_client: Kliendi autentimine ebaõnnestus. Põhjus kas tundmatu klient, puudulik autentimine või toetamata autentimismeetod.
+        invalid_code_challenge_method: Code challenge meetod peab olema S256,, plain ei ole toetatud.
         invalid_grant: Antud autoriseerimisluba on vale, aegunud, tagasi võetud, ei kattu kasutatud ümbersuunamise URLid või oli antud teisele kliendile.
         invalid_redirect_uri: Antud ümbersuunamise URL ei ole õige.
         invalid_request:

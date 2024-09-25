@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::SessionsController do
+RSpec.describe Settings::SessionsController do
   render_views
 
   let(:user) { Fabricate(:user) }

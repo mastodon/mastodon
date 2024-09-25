@@ -4,6 +4,8 @@ require 'rails_helper'
 require 'devise_two_factor/spec_helpers'
 
 RSpec.describe User do
+  subject { described_class.new(account: account) }
+
   let(:password) { 'abcd1234' }
   let(:account) { Fabricate(:account, username: 'alice') }
 
@@ -32,11 +34,7 @@ RSpec.describe User do
   end
 
   describe 'validations' do
-    it 'is invalid without an account' do
-      user = Fabricate.build(:user, account: nil)
-      user.valid?
-      expect(user).to model_have_error_on_field(:account)
-    end
+    it { is_expected.to belong_to(:account).required }
 
     it 'is invalid without a valid email' do
       user = Fabricate.build(:user, email: 'john@')
@@ -59,45 +57,18 @@ RSpec.describe User do
 
   describe 'Normalizations' do
     describe 'locale' do
-      it 'preserves valid locale' do
-        user = Fabricate.build(:user, locale: 'en')
-
-        expect(user.locale).to eq('en')
-      end
-
-      it 'cleans out invalid locale' do
-        user = Fabricate.build(:user, locale: 'toto')
-
-        expect(user.locale).to be_nil
-      end
+      it { is_expected.to_not normalize(:locale).from('en') }
+      it { is_expected.to normalize(:locale).from('toto').to(nil) }
     end
 
     describe 'time_zone' do
-      it 'preserves valid timezone' do
-        user = Fabricate.build(:user, time_zone: 'UTC')
-
-        expect(user.time_zone).to eq('UTC')
-      end
-
-      it 'cleans out invalid timezone' do
-        user = Fabricate.build(:user, time_zone: 'toto')
-
-        expect(user.time_zone).to be_nil
-      end
+      it { is_expected.to_not normalize(:time_zone).from('UTC') }
+      it { is_expected.to normalize(:time_zone).from('toto').to(nil) }
     end
 
-    describe 'languages' do
-      it 'preserves valid options for languages' do
-        user = Fabricate.build(:user, chosen_languages: ['en', 'fr', ''])
-
-        expect(user.chosen_languages).to eq(['en', 'fr'])
-      end
-
-      it 'cleans out empty string from languages' do
-        user = Fabricate.build(:user, chosen_languages: [''])
-
-        expect(user.chosen_languages).to be_nil
-      end
+    describe 'chosen_languages' do
+      it { is_expected.to normalize(:chosen_languages).from(['en', 'fr', '']).to(%w(en fr)) }
+      it { is_expected.to normalize(:chosen_languages).from(['']).to(nil) }
     end
   end
 
@@ -463,7 +434,9 @@ RSpec.describe User do
   end
 
   describe '#reset_password!' do
-    subject(:user) { Fabricate(:user, password: 'foobar12345') }
+    subject(:user) { Fabricate(:user, password: original_password) }
+
+    let(:original_password) { 'foobar12345' }
 
     let!(:session_activation) { Fabricate(:session_activation, user: user) }
     let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
@@ -471,31 +444,40 @@ RSpec.describe User do
 
     let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
 
-    before do
-      allow(redis).to receive(:pipelined).and_yield(redis_pipeline_stub)
-      user.reset_password!
+    before { stub_redis }
+
+    it 'changes the password immediately and revokes related access' do
+      expect { user.reset_password! }
+        .to remove_activated_sessions
+        .and remove_active_user_tokens
+        .and remove_user_web_subscriptions
+
+      expect(user)
+        .to_not be_external_or_valid_password(original_password)
+      expect { session_activation.reload }
+        .to raise_error(ActiveRecord::RecordNotFound)
+      expect { web_push_subscription.reload }
+        .to raise_error(ActiveRecord::RecordNotFound)
+      expect(redis_pipeline_stub)
+        .to have_received(:publish).with("timeline:access_token:#{access_token.id}", Oj.dump(event: :kill)).once
     end
 
-    it 'changes the password immediately' do
-      expect(user.external_or_valid_password?('foobar12345')).to be false
+    def remove_activated_sessions
+      change(user.session_activations, :count).to(0)
     end
 
-    it 'deactivates all sessions' do
-      expect(user.session_activations.count).to eq 0
-      expect { session_activation.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    def remove_active_user_tokens
+      change { Doorkeeper::AccessToken.active_for(user).count }.to(0)
     end
 
-    it 'revokes all access tokens' do
-      expect(Doorkeeper::AccessToken.active_for(user).count).to eq 0
+    def remove_user_web_subscriptions
+      change { Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count }.to(0)
     end
 
-    it 'revokes streaming access for all access tokens' do
-      expect(redis_pipeline_stub).to have_received(:publish).with("timeline:access_token:#{access_token.id}", Oj.dump(event: :kill)).once
-    end
-
-    it 'removes push subscriptions' do
-      expect(Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count).to eq 0
-      expect { web_push_subscription.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    def stub_redis
+      allow(redis)
+        .to receive(:pipelined)
+        .and_yield(redis_pipeline_stub)
     end
   end
 

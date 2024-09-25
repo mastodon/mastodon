@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Scheduler::SoftwareUpdateCheckScheduler do
+RSpec.describe Scheduler::SoftwareUpdateCheckScheduler do
   subject { described_class.new }
 
   describe 'perform' do
