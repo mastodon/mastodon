@@ -81,6 +81,18 @@
     outline: $ui-button-icon-focus-outline;
   }
 
+  &--dangerous {
+    background-color: var(--error-background-color);
+    color: var(--on-error-color);
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: var(--error-active-background-color);
+      transition: none;
+    }
+  }
+
   &--destructive {
     &:active,
     &:focus,
@@ -93,7 +105,7 @@
   &:disabled,
   &.disabled {
     background-color: $ui-primary-color;
-    cursor: default;
+    cursor: not-allowed;
   }
 
   &.copyable {
@@ -297,6 +309,10 @@
     &:hover {
       background: rgba($black, 0.9);
     }
+  }
+
+  &--with-counter {
+    padding-inline-end: 4px;
   }
 
   &__counter {
@@ -1462,6 +1478,15 @@ body > [data-popper-placement] {
 
     .status__content__read-more-button {
       margin-inline-start: $thread-margin;
+    }
+  }
+
+  &__action-bar__button-wrapper {
+    flex-basis: 0;
+    flex-grow: 1;
+
+    &:last-child {
+      flex-grow: 0;
     }
   }
 
@@ -3477,12 +3502,14 @@ $ui-header-logo-wordmark-width: 99px;
   margin-top: 10px;
   margin-bottom: 10px;
   height: calc(100% - 20px);
-  overflow-y: auto;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 
-  & > a {
-    flex: 0 0 auto;
+  &__menu {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
   }
 
   .logo {
@@ -3492,6 +3519,36 @@ $ui-header-logo-wordmark-width: 99px;
 
   &__logo {
     margin-bottom: 12px;
+  }
+
+  @media screen and (height <= 710px) {
+    &__portal {
+      display: none;
+    }
+  }
+
+  @media screen and (height <= 765px) {
+    &__portal .trends__item:nth-child(n + 3) {
+      display: none;
+    }
+  }
+
+  @media screen and (height <= 820px) {
+    &__portal .trends__item:nth-child(n + 4) {
+      display: none;
+    }
+  }
+
+  @media screen and (height <= 920px) {
+    .column-link.column-link--optional {
+      display: none;
+    }
+  }
+
+  @media screen and (height <= 1040px) {
+    .list-panel {
+      display: none;
+    }
   }
 }
 
@@ -3854,22 +3911,6 @@ $ui-header-logo-wordmark-width: 99px;
         color: $darker-text-color;
         text-decoration: none;
       }
-    }
-
-    @media screen and (height <= 810px) {
-      .trends__item:nth-of-type(3) {
-        display: none;
-      }
-    }
-
-    @media screen and (height <= 720px) {
-      .trends__item:nth-of-type(2) {
-        display: none;
-      }
-    }
-
-    @media screen and (height <= 670px) {
-      display: none;
     }
 
     .trends__item {
@@ -6208,6 +6249,14 @@ a.status-card {
       display: flex;
       gap: 16px;
       align-items: center;
+
+      strong {
+        font-weight: 700;
+      }
+    }
+
+    &--deemphasized {
+      color: $secondary-text-color;
     }
 
     &__icon {

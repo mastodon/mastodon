@@ -342,7 +342,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def converted_text
-    linkify([@status_parser.title.presence, @status_parser.spoiler_text.presence, @status_parser.url || @status_parser.uri].compact.join("\n\n"))
+    [formatted_title, @status_parser.spoiler_text.presence, formatted_url].compact.join("\n\n")
+  end
+
+  def formatted_title
+    "<h2>#{@status_parser.title}</h2>" if @status_parser.title.present?
+  end
+
+  def formatted_url
+    linkify(@status_parser.url || @status_parser.uri)
   end
 
   def unsupported_media_type?(mime_type)

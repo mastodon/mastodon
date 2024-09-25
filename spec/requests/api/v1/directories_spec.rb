@@ -84,8 +84,11 @@ RSpec.describe 'Directories API' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
-        expect(response.parsed_body.size).to eq(2)
-        expect(response.parsed_body.pluck(:id)).to contain_exactly(eligible_remote_account.id.to_s, local_discoverable_account.id.to_s)
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: eligible_remote_account.id.to_s),
+            hash_including(id: local_discoverable_account.id.to_s)
+          )
       end
     end
 
@@ -105,9 +108,11 @@ RSpec.describe 'Directories API' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
-        expect(response.parsed_body.size).to eq(1)
-        expect(response.parsed_body.first[:id]).to include(local_account.id.to_s)
-        expect(response.body).to_not include(remote_account.id.to_s)
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: local_account.id.to_s)
+          )
+          .and not_include(remote_account.id.to_s)
       end
     end
 
@@ -121,9 +126,11 @@ RSpec.describe 'Directories API' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
-        expect(response.parsed_body.size).to eq(2)
-        expect(response.parsed_body.first[:id]).to include(new_stat.account_id.to_s)
-        expect(response.parsed_body.second[:id]).to include(old_stat.account_id.to_s)
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: new_stat.account_id.to_s),
+            hash_including(id: old_stat.account_id.to_s)
+          )
       end
     end
 
@@ -138,9 +145,11 @@ RSpec.describe 'Directories API' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
-        expect(response.parsed_body.size).to eq(2)
-        expect(response.parsed_body.first[:id]).to include(account_new.id.to_s)
-        expect(response.parsed_body.second[:id]).to include(account_old.id.to_s)
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: account_new.id.to_s),
+            hash_including(id: account_old.id.to_s)
+          )
       end
     end
   end

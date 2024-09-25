@@ -31,7 +31,7 @@ module WebAppControllerConcern
   def redirect_unauthenticated_to_permalinks!
     return if user_signed_in? && current_account.moved_to_account_id.nil?
 
-    permalink_redirector = PermalinkRedirector.new(request.path)
+    permalink_redirector = PermalinkRedirector.new(request.original_fullpath)
     return if permalink_redirector.redirect_path.blank?
 
     expires_in(15.seconds, public: true, stale_while_revalidate: 30.seconds, stale_if_error: 1.day) unless user_signed_in?

@@ -31,6 +31,7 @@ export const apiFetchNotifications = async (
 
 export const apiFetchNotificationGroups = async (params?: {
   url?: string;
+  grouped_types?: string[];
   exclude_types?: string[];
   max_id?: string;
   since_id?: string;
