@@ -25,6 +25,8 @@ class Admin::AccountAction
   alias send_email_notification? send_email_notification
   alias include_statuses? include_statuses
 
+  delegate :local?, :pretty_acct, to: :target_account, prefix: true
+
   validates :type, :target_account, :current_account, presence: true
   validates :type, inclusion: { in: TYPES }
 

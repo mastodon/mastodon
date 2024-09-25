@@ -9,4 +9,8 @@ module Admin::AccountActionsHelper
       ]
     )
   end
+
+  def warning_presets
+    AccountWarningPreset.alphabetic
+  end
 end
