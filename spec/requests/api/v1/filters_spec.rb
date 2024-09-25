@@ -15,6 +15,8 @@ RSpec.describe 'API V1 Filters' do
     it 'returns http success' do
       get '/api/v1/filters', headers: headers
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body)
         .to contain_exactly(
           include(id: custom_filter_keyword.id.to_s)
@@ -35,6 +37,8 @@ RSpec.describe 'API V1 Filters' do
       filter = user.account.custom_filters.first
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(filter).to_not be_nil
       expect(filter.keywords.pluck(:keyword, :whole_word)).to eq [['magic', whole_word]]
       expect(filter.context).to eq %w(home)
@@ -50,6 +54,8 @@ RSpec.describe 'API V1 Filters' do
         filter = user.account.custom_filters.first
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(filter).to_not be_nil
         expect(filter.keywords.pluck(:keyword, :whole_word)).to eq [['magic', whole_word]]
         expect(filter.context).to eq %w(home)
@@ -68,6 +74,8 @@ RSpec.describe 'API V1 Filters' do
       get "/api/v1/filters/#{keyword.id}", headers: headers
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
   end
 
@@ -82,6 +90,8 @@ RSpec.describe 'API V1 Filters' do
 
     it 'updates the filter', :aggregate_failures do
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(keyword.reload.phrase).to eq 'updated'
     end
   end
@@ -97,6 +107,8 @@ RSpec.describe 'API V1 Filters' do
 
     it 'removes the filter', :aggregate_failures do
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect { keyword.reload }.to raise_error ActiveRecord::RecordNotFound
     end
   end

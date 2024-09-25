@@ -26,6 +26,8 @@ RSpec.describe 'Domain blocks' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body).to match_array(blocked_domains)
     end
 
@@ -53,6 +55,8 @@ RSpec.describe 'Domain blocks' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(user.account.domain_blocking?(params[:domain])).to be(true)
     end
 
@@ -63,6 +67,8 @@ RSpec.describe 'Domain blocks' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -73,6 +79,8 @@ RSpec.describe 'Domain blocks' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -94,6 +102,8 @@ RSpec.describe 'Domain blocks' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(user.account.domain_blocking?('example.com')).to be(false)
     end
 
@@ -104,6 +114,8 @@ RSpec.describe 'Domain blocks' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

@@ -1,7 +1,7 @@
 ---
 lv:
   about:
-    about_mastodon_html: 'Nākotnes sociālais tīkls: bez reklāmām, bez korporatīvās uzraudzības, ētisks dizains un decentralizācija! Pārvaldi savus datus ar Mastodon!'
+    about_mastodon_html: 'Nākotnes sabiedriskais tīkls: bez reklāmām, bez korporatīvās novērošanas, ētiska projektēšana un decentralizēšana. Pārvaldi savus datus ar Mastodon!'
     contact_missing: Nav uzstādīts
     contact_unavailable: N/A
     hosted_on: Mastodon mitināts %{domain}
@@ -613,6 +613,7 @@ lv:
       created_at: Ziņoti
       delete_and_resolve: Izdzēst rakstus
       forwarded: Pārsūtīti
+      forwarded_replies_explanation: Šis ziņojums ir no attāla lietotāja un par attālu saturu. Tas tika pārvirzīts šeit, jo saturs, par kuru tika ziņots, ir atbilde vienam no šī servera lietotājiem.
       forwarded_to: Pārsūtīti %{domain}
       mark_as_resolved: Atzīmēt kā atrisinātu
       mark_as_sensitive: Atzīmēt kā sensitīvu
@@ -633,6 +634,7 @@ lv:
       report: 'Ziņojums #%{id}'
       reported_account: Ziņotais konts
       reported_by: Ziņoja
+      reported_with_application: Ziņots no lietotnes
       resolved: Atrisināts
       resolved_msg: Ziņojums veiksmīgi atrisināts!
       skip_to_actions: Pāriet uz darbībām
@@ -876,7 +878,13 @@ lv:
         pending_review: Gaida pārskatīšanu
         review_requested: Pieprasīta pārskatīšana
         reviewed: Pārskatīts
+        title: Stāvoklis
+      name: Nosaukums
+      newest: Jaunākie
+      oldest: Vecākie
+      reset: Atiestatīt
       review: Pārskatīt stāvokli
+      search: Meklēt
       title: Tēmturi
       updated_msg: Tēmtura iestatījumi ir veiksmīgi atjaunināti
     title: Administrēšana
@@ -1106,7 +1114,7 @@ lv:
       new_confirmation_instructions_sent: Pēc dažām minūtēm saņemsi jaunu e-pasta ziņojumu ar apstiprinājuma saiti.
       title: Pārbaudi savu iesūtni
     sign_in:
-      preamble_html: Jāpiesakās ar saviem <strong>%{domain}</strong> piekļuves datiem. Ja Tavs konts tiek mitināts citā serverī, Tu nevarēsi šeit pieteikties.
+      preamble_html: Jāpiesakās ar saviem <strong>%{domain}</strong> piekļuves datiem. Ja konts tiek mitināts citā serverī, šeit nevarēs pieteikties.
       title: Pierakstīties %{domain}
     sign_up:
       manual_review: Reģistrācijas domēnā %{domain} manuāli pārbauda mūsu moderatori. Lai palīdzētu mums apstrādāt tavu reģistrāciju, uzraksti mazliet par sevi un to, kāpēc vēlies kontu %{domain}.
@@ -1121,6 +1129,9 @@ lv:
       view_strikes: Skati iepriekšējos brīdinājumus par savu kontu
     too_fast: Veidlapa ir iesniegta pārāk ātri, mēģini vēlreiz.
     use_security_key: Lietot drošības atslēgu
+  author_attribution:
+    s_blog: "%{name} emuāri"
+    title: Autora attiecinājums
   challenge:
     confirm: Turpināt
     hint_html: "<strong>Padoms:</strong> Nākamās stundas laikā mēs tev vairs neprasīsim paroli."
@@ -1129,7 +1140,6 @@ lv:
   crypto:
     errors:
       invalid_key: nav derīga Ed25519 vai Curve25519 atslēga
-      invalid_signature: nav derīgs Ed25519 paraksts
   date:
     formats:
       default: "%b %d, %Y"
@@ -1158,6 +1168,9 @@ lv:
       before: 'Pirms turpināšanas lūgums uzmanīgi izlasīt šīs piezīmes:'
       caches: Citu serveru kešatmiņā saglabātais saturs var saglabāties
       data_removal: Tavas ziņas un citi dati tiks neatgriezeniski noņemti
+      email_change_html: Savu <a href="%{path}">e-pasta adresi var mainīt</a> bez sava konta izdzēšanas
+      email_contact_html: Ja tas joprojām nav saņemts, var nosūtīt e-pastu uz <a href="mailto:%{email}">%{email}</a>, lai saņemtu palīdzību
+      email_reconfirmation_html: Ja netiek saņemts apstiprinājuma e-pasta ziņojums, to var <a href="%{path}">pieprasīt vēlreiz</a>
       irreversible: Tu nevarēsi atjaunot vai atkārtoti aktivizēt savu kontu
       more_details_html: Plašāku informāciju skatīt <a href="%{terms_path}">privātuma politika</a>.
       username_available: Tavs lietotājvārds atkal būs pieejams
@@ -1377,6 +1390,7 @@ lv:
       '86400': 1 diena
     expires_in_prompt: Nekad
     generate: Ģenerēt uzaicinājuma saiti
+    invalid: Šis uzaicinājums nav derīgs
     invited_by: 'Tevi uzaicināja:'
     max_uses:
       one: 1 lietojums
@@ -1395,6 +1409,7 @@ lv:
     authentication_methods:
       otp: divpakāpju autentifikācijas lietotne
       password: parole
+      sign_in_token: e-pasta drošības kods
       webauthn: drošības atslēgas
     description_html: Ja pamani darbības, kuras neatpazīsti, jāapsver iespēja nomainīt savu paroli un iespējot divpakāpju autentifikāciju.
     empty: Nav pieejama autentifikācijas vēsture
@@ -1820,14 +1835,20 @@ lv:
       explanation: Šeit ir daži padomi, kā sākt darbu
       feature_action: Uzzināt vairāk
       feature_creativity: Mastodon nodrošina skaņas, video un attēlu ierakstus, pieejamības aprakstus, aptaujas, satura brīdinājumus, animētus profila attēlus, pielāgotas emocijzīmes, sīktēlu apgriešanas vadīklas un vēl, lai palīdzētu Tev sevi izpaust tiešsaistē. Vai Tu izplati savu mākslu, mūziku vai aplādes, Mastodon ir šeit ar Tevi.
+      feature_moderation_title: Moderēšana, kādai tai būtu jābūt
       follow_action: Sekot
+      follow_step: Sekošana aizraujošiem cilvēkiem ir viss, par ko ir Mastodon.
       follow_title: Pielāgo savu mājas barotni
+      follows_subtitle: Seko labi zināmiem kontiem
       follows_title: Kam sekot
       follows_view_more: Rādīt vairāk cilvēku, kuriem sekot
       hashtags_recent_count:
         one: "%{people} cilvēks pēdējās 2 dienās"
         other: "%{people} cilvēki pēdējās 2 dienās"
         zero: "%{people} cilvēku pēdējās divās dienās"
+      hashtags_subtitle: Izpēti, kas pēdējās divās dienāš ir piesasitījis cilvēku uzmanību
+      hashtags_title: Izplatīti tēmturi
+      hashtags_view_more: Skatīt vairāk izplatītu tēmturu
       post_action: Rakstīt
       post_step: Pasveicini pasauli ar tekstu, fotoattēliem, video vai aptaujām!
       post_title: Izveido savu pirmo ierakstu
@@ -1843,6 +1864,7 @@ lv:
     invalid_otp_token: Nederīgs divfaktora kods
     otp_lost_help_html: Ja esi zaudējis piekļuvi abiem, tu vari sazināties ar %{email}
     rate_limited: Pārāk daudz autentifikācijas mēģinājumu, vēlāk jāmēģina vēlreiz.
+    seamless_external_login: Tu esi pieteicies caur ārēju pakalpojumu, tāpēc paroles un e-pasta iestatījumi nav pieejami.
     signed_in_as: 'Pieteicies kā:'
   verification:
     extra_instructions_html: <strong>Padoms:</strong> saite Tavā vietnē var būt neredzama. Svarīga daļa ir <code>rel="me"</code>, kas novērš uzdošanos vietnēs ar lietotāju izveidotu saturu. Tu pat vari lapas galvenē izmantot tagu <code>link</code>, nevis <code>a</code>, taču HTML ir jābūt pieejamam bez JavaScript izpildīšanas.
@@ -1851,6 +1873,7 @@ lv:
     instructions_html: Ievieto starpliktuvē un ielīmē tālāk norādīto kodu savas tīmekļvietnes HTML! Tad pievieno savas tīmekļvietnes adresi vienā no papildu laukiem savā profila cilnē "Labot profilu" un saglabā izmaiņas!
     verification: Pārbaude
     verified_links: Tavas verifikācijas saites
+    website_verification: Tīmekļvietnes apliecināšana
   webauthn_credentials:
     add: Pievienot jaunu drošības atslēgu
     create:

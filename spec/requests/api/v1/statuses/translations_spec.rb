@@ -20,6 +20,8 @@ RSpec.describe 'API V1 Statuses Translations' do
 
       it 'returns http unprocessable entity' do
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -38,6 +40,8 @@ RSpec.describe 'API V1 Statuses Translations' do
 
       it 'returns http success' do
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

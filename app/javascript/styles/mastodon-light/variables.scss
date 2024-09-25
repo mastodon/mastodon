@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 // Dependent colors
 $black: #000000;
 $white: #ffffff;
@@ -47,11 +49,19 @@ $account-background-color: $white !default;
 
 // Invert darkened and lightened colors
 @function darken($color, $amount) {
-  @return hsl(hue($color), saturation($color), lightness($color) + $amount);
+  @return hsl(
+    hue($color),
+    color.channel($color, 'saturation', $space: hsl),
+    color.channel($color, 'lightness', $space: hsl) + $amount
+  );
 }
 
 @function lighten($color, $amount) {
-  @return hsl(hue($color), saturation($color), lightness($color) - $amount);
+  @return hsl(
+    hue($color),
+    color.channel($color, 'saturation', $space: hsl),
+    color.channel($color, 'lightness', $space: hsl) - $amount
+  );
 }
 
 $emojis-requiring-inversion: 'chains';

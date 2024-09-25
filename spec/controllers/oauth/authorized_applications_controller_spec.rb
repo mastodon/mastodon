@@ -10,38 +10,31 @@ RSpec.describe Oauth::AuthorizedApplicationsController do
       get :index
     end
 
-    shared_examples 'stores location for user' do
-      it 'stores location for user' do
-        subject
-        expect(controller.stored_location_for(:user)).to eq '/oauth/authorized_applications'
-      end
-    end
-
     context 'when signed in' do
       before do
         sign_in Fabricate(:user), scope: :user
       end
 
-      it 'returns http success' do
+      it 'returns http success with private cache control headers' do
         subject
-        expect(response).to have_http_status(200)
+        expect(response)
+          .to have_http_status(200)
+        expect(response.headers['Cache-Control'])
+          .to include('private, no-store')
+        expect(controller.stored_location_for(:user))
+          .to eq '/oauth/authorized_applications'
       end
-
-      it 'returns private cache control headers' do
-        subject
-        expect(response.headers['Cache-Control']).to include('private, no-store')
-      end
-
-      include_examples 'stores location for user'
     end
 
     context 'when not signed in' do
       it 'redirects' do
         subject
-        expect(response).to redirect_to '/auth/sign_in'
-      end
 
-      include_examples 'stores location for user'
+        expect(response)
+          .to redirect_to '/auth/sign_in'
+        expect(controller.stored_location_for(:user))
+          .to eq '/oauth/authorized_applications'
+      end
     end
   end
 
@@ -55,23 +48,19 @@ RSpec.describe Oauth::AuthorizedApplicationsController do
     before do
       sign_in user, scope: :user
       allow(redis).to receive(:pipelined).and_yield(redis_pipeline_stub)
+    end
+
+    it 'revokes access tokens for the application and removes subscriptions and sends kill payload to streaming' do
       post :destroy, params: { id: application.id }
-    end
 
-    it 'revokes access tokens for the application' do
-      expect(Doorkeeper::AccessToken.where(application: application).first.revoked_at).to_not be_nil
-    end
-
-    it 'removes subscriptions for the application\'s access tokens' do
-      expect(Web::PushSubscription.where(user: user).count).to eq 0
-    end
-
-    it 'removes the web_push_subscription' do
-      expect { web_push_subscription.reload }.to raise_error(ActiveRecord::RecordNotFound)
-    end
-
-    it 'sends a session kill payload to the streaming server' do
-      expect(redis_pipeline_stub).to have_received(:publish).with("timeline:access_token:#{access_token.id}", '{"event":"kill"}')
+      expect(Doorkeeper::AccessToken.where(application: application).first.revoked_at)
+        .to_not be_nil
+      expect(Web::PushSubscription.where(user: user).count)
+        .to eq(0)
+      expect { web_push_subscription.reload }
+        .to raise_error(ActiveRecord::RecordNotFound)
+      expect(redis_pipeline_stub)
+        .to have_received(:publish).with("timeline:access_token:#{access_token.id}", '{"event":"kill"}')
     end
   end
 end

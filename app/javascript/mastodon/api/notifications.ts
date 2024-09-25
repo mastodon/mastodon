@@ -31,6 +31,7 @@ export const apiFetchNotifications = async (
 
 export const apiFetchNotificationGroups = async (params?: {
   url?: string;
+  grouped_types?: string[];
   exclude_types?: string[];
   max_id?: string;
   since_id?: string;
@@ -91,5 +92,5 @@ export const apiAcceptNotificationRequests = async (id: string[]) => {
 };
 
 export const apiDismissNotificationRequests = async (id: string[]) => {
-  return apiRequestPost('v1/notifications/dismiss/dismiss', { id });
+  return apiRequestPost('v1/notifications/requests/dismiss', { id });
 };

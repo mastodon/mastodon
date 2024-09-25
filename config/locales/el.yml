@@ -24,6 +24,8 @@ el:
   admin:
     account_actions:
       action: Εκτέλεση ενέργειας
+      already_silenced: Αυτός ο λογαριασμός έχει ήδη περιοριστεί.
+      already_suspended: Αυτός ο λογαριασμός έχει ήδη ανασταλεί.
       title: Εκτέλεση ενέργειας συντονισμού στον %{acct}
     account_moderation_notes:
       create: Άφησε σημείωση
@@ -45,6 +47,7 @@ el:
         title: Αλλαγή email για %{username}
       change_role:
         changed_msg: Ο ρόλος άλλαξε επιτυχώς!
+        edit_roles: Διαχείριση ρόλων χρήστη
         label: Αλλαγή ρόλου
         no_role: Κανένας ρόλος
         title: Αλλαγή ρόλου για %{username}
@@ -1128,7 +1131,6 @@ el:
   crypto:
     errors:
       invalid_key: δεν είναι έγκυρο κλειδί Ed25519 ή Curve25519
-      invalid_signature: δεν είναι έγκυρη υπογραφή Ed25519
   date:
     formats:
       default: "%b %d, %Y"

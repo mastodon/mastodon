@@ -24,12 +24,15 @@ eo:
   admin:
     account_actions:
       action: Plenumi agon
+      already_silenced: Ĉi tiu konto jam estis limigita.
+      already_suspended: Ĉi tiu konto jam estis suspendita.
       title: Plenumi kontrolan agon al %{acct}
     account_moderation_notes:
       create: Lasi noton
       created_msg: Noto de moderigado sukcese kreita!
       destroyed_msg: Noto de moderigado sukcese detruita!
     accounts:
+      add_email_domain_block: Bloki retpoŝtan domajnon
       approve: Aprobi
       approved_msg: Sukcese aprobis aliĝ-peton de %{username}
       are_you_sure: Ĉu vi certas?
@@ -44,6 +47,7 @@ eo:
         title: Ŝanĝi retadreson por %{username}
       change_role:
         changed_msg: Rolo sukcese ŝanĝita!
+        edit_roles: Administri uzantrolojn
         label: Ŝanĝi rolon
         no_role: Neniu rolo
         title: Ŝanĝi rolon por %{username}
@@ -817,16 +821,27 @@ eo:
         action: Klaku ĉi tie por pliaj informoj
         message_html: "<strong>Via objektostokado estas misagordita. La privateco de viaj uzantoj estas en risko.</strong>"
     tags:
+      moderation:
+        title: Stato
+      name: Nomo
+      newest: Plej novaj
+      oldest: Plej malnovaj
       review: La statuso de la recenzo
+      search: Serĉi
+      title: Kradvortoj
       updated_msg: Kradvorto agordoj ĝisdatigis sukcese
     title: Administrado
     trends:
       allow: Permesi
       approved: Aprobita
+      confirm_allow: Ĉu vi certas, ke vi volas permesi elektitajn etikedojn?
+      confirm_disallow: Ĉu vi certas, ke vi volas malpermesi elektitajn etikedojn?
       disallow: Malpermesi
       links:
         allow: Permesi ligilon
         allow_provider: Permesi publikiganto
+        confirm_allow: Ĉu vi certas, ke vi volas permesi elektitajn ligilojn?
+        confirm_disallow: Ĉu vi certas, ke vi volas malpermesi elektitajn ligilojn?
         description_html: Ĉioj estas ligiloj kiuj nun diskonitajs multe de kontoj kiujn via servilo vidas. Ligiloj ne montritas publike se vi ne aprobis la publikiganton.
         disallow: Malpermesi ligilon
         disallow_provider: Malpermesi publikiganton
@@ -850,6 +865,8 @@ eo:
       statuses:
         allow: Permesi afiŝon
         allow_account: Permesi aŭtoron
+        confirm_allow_account: Ĉu vi certas, ke vi volas permesi elektitajn kontojn?
+        confirm_disallow_account: Ĉu vi certas, ke vi volas malpermesi elektitajn kontojn?
         description_html: Oni multe diskonigas kaj stelumas ĉi tiujn mesaĝojn nuntempe laŭ via servilo. Tio povas helpi novajn kaj revenantajn uzantojn trovi pli da homoj por sekvi. Mesaĝo estas montrita publike nur se vi aprobis la aŭtoron kaj se la aŭtoro aprobis ke ties konto estu proponita al aliaj. Vi ankaŭ povas permesi aŭ malakcepti specifajn mesaĝojn.
         disallow: Malpermesi afiŝon
         disallow_account: Malpermesi aŭtoron
@@ -928,6 +945,8 @@ eo:
       body: "%{reporter} signalis %{target}"
       body_remote: Iu de %{domain} signalis %{target}
       subject: Nova signalo por %{instance} (#%{id})
+    new_software_updates:
+      body: Novaj versioj de Mastodon estis publikigitaj, vi eble volas ĝisdatigi!
     new_trends:
       body: 'La eroj bezonas kontrolon antau ol ili povas montritas publike:'
       new_trending_links:
@@ -1033,6 +1052,9 @@ eo:
       view_strikes: Vidi antauaj admonoj kontra via konto
     too_fast: Formularo sendita tro rapide, klopodu denove.
     use_security_key: Uzi sekurecan ŝlosilon
+  author_attribution:
+    more_from_html: Pli de %{name}
+    s_blog: Blogo de %{name}
   challenge:
     confirm: Daŭrigi
     hint_html: "<strong>Konsileto:</strong> Ni ne demandos pri via pasvorto ĝis 1 horo."
@@ -1041,7 +1063,6 @@ eo:
   crypto:
     errors:
       invalid_key: 올바른 Ed25519 혹은 Curve25519 키가 아닙니다
-      invalid_signature: 올바른 Ed25519 시그니처가 아닙니다
   date:
     formats:
       default: "%Y-%b-%d"
@@ -1232,6 +1253,7 @@ eo:
     states:
       finished: Finita
       unconfirmed: Nekonfirmita
+    status: Stato
     success: Viaj datumoj estis sukcese alŝutitaj kaj estos traktitaj kiel planite
     titles:
       following: Importado de sekvaj kontoj
@@ -1690,7 +1712,13 @@ eo:
         silence: Konto limigita
         suspend: Konto suspendita
     welcome:
+      apps_step: Elŝutu niajn oficialajn aplikaĵojn.
+      apps_title: Aplikaĵoj de Mastodon
+      edit_profile_action: Agordi
+      edit_profile_title: Agordi vian profilon
       explanation: Jen kelkaj konsiloj por helpi vin komenci
+      feature_action: Lerni pli
+      follow_action: Sekvi
       subject: Bonvenon en Mastodon
       title: Bonvenon, %{name}!
   users:
