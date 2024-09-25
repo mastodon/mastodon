@@ -4,19 +4,8 @@ require 'rails_helper'
 
 RSpec.describe CustomFilter do
   describe 'Validations' do
-    it 'requires presence of title' do
-      record = described_class.new(title: '')
-      record.valid?
-
-      expect(record).to model_have_error_on_field(:title)
-    end
-
-    it 'requires presence of context' do
-      record = described_class.new(context: nil)
-      record.valid?
-
-      expect(record).to model_have_error_on_field(:context)
-    end
+    it { is_expected.to validate_presence_of(:title) }
+    it { is_expected.to validate_presence_of(:context) }
 
     it 'requires non-empty of context' do
       record = described_class.new(context: [])
@@ -34,10 +23,8 @@ RSpec.describe CustomFilter do
   end
 
   describe 'Normalizations' do
-    it 'cleans up context values' do
-      record = described_class.new(context: ['home', 'notifications', 'public    ', ''])
-
-      expect(record.context).to eq(%w(home notifications public))
+    describe 'context' do
+      it { is_expected.to normalize(:context).from(['home', 'notifications', 'public    ', '']).to(%w(home notifications public)) }
     end
   end
 end

@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'mastodon/cli/statuses'
 
-describe Mastodon::CLI::Statuses do
+RSpec.describe Mastodon::CLI::Statuses do
   subject { cli.invoke(action, arguments, options) }
 
   let(:cli) { described_class.new }

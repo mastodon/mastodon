@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe REST::SuggestionSerializer do
+RSpec.describe REST::SuggestionSerializer do
   let(:serialization) { serialized_record_json(record, described_class) }
   let(:record) do
     AccountSuggestions::Suggestion.new(

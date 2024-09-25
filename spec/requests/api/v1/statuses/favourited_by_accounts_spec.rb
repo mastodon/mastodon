@@ -33,10 +33,12 @@ RSpec.describe 'API V1 Statuses Favourited by Accounts' do
             prev: api_v1_status_favourited_by_index_url(limit: 2, since_id: Favourite.last.id),
             next: api_v1_status_favourited_by_index_url(limit: 2, max_id: Favourite.first.id)
           )
+        expect(response.content_type)
+          .to start_with('application/json')
 
-        expect(body_as_json.size)
+        expect(response.parsed_body.size)
           .to eq(2)
-        expect(body_as_json)
+        expect(response.parsed_body)
           .to contain_exactly(
             include(id: alice.id.to_s),
             include(id: bob.id.to_s)
@@ -48,9 +50,9 @@ RSpec.describe 'API V1 Statuses Favourited by Accounts' do
 
         subject
 
-        expect(body_as_json.size)
+        expect(response.parsed_body.size)
           .to eq 1
-        expect(body_as_json.first[:id]).to eq(alice.id.to_s)
+        expect(response.parsed_body.first[:id]).to eq(alice.id.to_s)
       end
     end
   end
@@ -72,6 +74,8 @@ RSpec.describe 'API V1 Statuses Favourited by Accounts' do
           subject
 
           expect(response).to have_http_status(404)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
     end
@@ -88,6 +92,8 @@ RSpec.describe 'API V1 Statuses Favourited by Accounts' do
           subject
 
           expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
     end

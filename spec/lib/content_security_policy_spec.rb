@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ContentSecurityPolicy do
+RSpec.describe ContentSecurityPolicy do
   subject { described_class.new }
 
   around do |example|

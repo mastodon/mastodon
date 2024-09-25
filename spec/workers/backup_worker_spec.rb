@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe BackupWorker do
+RSpec.describe BackupWorker do
   let(:worker) { described_class.new }
   let(:service) { instance_double(BackupService, call: true) }
 

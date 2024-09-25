@@ -3,6 +3,7 @@ pl:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Chroni przed fałszywym przypisaniem wpisów.
         discoverable: Twój profil i publiczne wpisy mogą być promowane lub polecane na Mastodonie i twój profil może być sugerowany innym użytkownikom.
         display_name: Twoje imię lub pseudonim.
         fields: Co ci się tylko podoba – twoja strona domowa, zaimki, wiek…
@@ -130,7 +131,7 @@ pl:
         name: Możesz zmieniać tylko wielkość liter, np. aby były bardziej widoczne
       user:
         chosen_languages: Jeżeli zaznaczone, tylko wpisy w wybranych językach będą wyświetlane na publicznych osiach czasu
-        role: Rola kontroluje uprawnienia użytkownika
+        role: Rola kontroluje uprawnienia użytkownika.
       user_role:
         color: Kolor używany dla roli w całym interfejsie użytkownika, wyrażony jako RGB w formacie szesnastkowym
         highlighted: To sprawia, że rola jest widoczna publicznie
@@ -143,6 +144,7 @@ pl:
         url: Dokąd będą wysłane zdarzenia
     labels:
       account:
+        attribution_domains_as_text: Zezwól tylko na konkretne strony
         discoverable: Udostępniaj profil i wpisy funkcjom odkrywania
         fields:
           name: Nazwa

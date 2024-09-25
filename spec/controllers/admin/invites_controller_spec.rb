@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::InvitesController do
+RSpec.describe Admin::InvitesController do
   render_views
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
@@ -18,7 +18,8 @@ describe Admin::InvitesController do
 
     it 'renders index page' do
       expect(subject).to render_template :index
-      expect(assigns(:invites)).to include invite
+      expect(response.body)
+        .to include(invite.code)
     end
   end
 

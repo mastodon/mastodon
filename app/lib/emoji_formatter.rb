@@ -24,7 +24,7 @@ class EmojiFormatter
   def to_s
     return html if custom_emojis.empty? || html.blank?
 
-    tree = Nokogiri::HTML.fragment(html)
+    tree = Nokogiri::HTML5.fragment(html)
     tree.xpath('./text()|.//text()[not(ancestor[@class="invisible"])]').to_a.each do |node|
       i                     = -1
       inside_shortname      = false
@@ -43,8 +43,8 @@ class EmojiFormatter
 
           next unless (char_after.nil? || !DISALLOWED_BOUNDING_REGEX.match?(char_after)) && (emoji = emoji_map[shortcode])
 
-          result << Nokogiri::XML::Text.new(text[last_index..shortname_start_index - 1], tree.document) if shortname_start_index.positive?
-          result << Nokogiri::HTML.fragment(tag_for_emoji(shortcode, emoji))
+          result << tree.document.create_text_node(text[last_index..shortname_start_index - 1]) if shortname_start_index.positive?
+          result << tree.document.fragment(tag_for_emoji(shortcode, emoji))
 
           last_index = i + 1
         elsif text[i] == ':' && (i.zero? || !DISALLOWED_BOUNDING_REGEX.match?(text[i - 1]))
@@ -53,7 +53,7 @@ class EmojiFormatter
         end
       end
 
-      result << Nokogiri::XML::Text.new(text[last_index..], tree.document)
+      result << tree.document.create_text_node(text[last_index..])
       node.replace(result)
     end
 

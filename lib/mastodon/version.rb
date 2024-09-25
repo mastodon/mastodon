@@ -17,7 +17,7 @@ module Mastodon
     end
 
     def default_prerelease
-      'beta.1'
+      'beta.2'
     end
 
     def prerelease
@@ -41,6 +41,12 @@ module Mastodon
 
     def gem_version
       @gem_version ||= Gem::Version.new(to_s.split('+')[0])
+    end
+
+    def api_versions
+      {
+        mastodon: 2,
+      }
     end
 
     def repository

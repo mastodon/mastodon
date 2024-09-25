@@ -23,7 +23,7 @@
       = f.input :mode,
                 as: :radio_buttons,
                 collection_wrapper_tag: 'ul',
-                collection: Import::MODES,
+                collection: Form::Import::MODES,
                 item_wrapper_tag: 'li',
                 label_method: ->(mode) { safe_join([I18n.t("imports.modes.#{mode}"), content_tag(:span, I18n.t("imports.modes.#{mode}_long"), class: 'hint')]) }
 
@@ -46,7 +46,7 @@
           %th= t('imports.failures')
       %tbody
         - @recent_imports.each do |import|
-          %tr
+          %tr{ id: dom_id(import) }
             %td= t("imports.types.#{import.type}")
             %td
               - if import.state_unconfirmed?

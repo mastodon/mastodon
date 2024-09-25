@@ -2,13 +2,22 @@
 
 require 'rails_helper'
 
-describe ApplicationHelper do
+RSpec.describe ApplicationHelper do
   describe 'body_classes' do
     context 'with a body class string from a controller' do
       before { helper.extend controller_helpers }
 
       it 'uses the controller body classes in the result' do
-        expect(helper.body_classes).to match(/modal-layout compose-standalone/)
+        expect(helper.body_classes)
+          .to match(/modal-layout compose-standalone/)
+          .and match(/theme-default/)
+      end
+
+      it 'includes values set via content_for' do
+        helper.content_for(:body_classes) { 'admin' }
+
+        expect(helper.body_classes)
+          .to match(/admin/)
       end
 
       private
