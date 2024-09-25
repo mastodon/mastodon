@@ -83,6 +83,6 @@ class PermalinkRedirector
   end
 
   def path_segments
-    @path_segments ||= @path.delete_prefix('/deck').delete_prefix('/').split('/')
+    @path_segments ||= @path.split('?')[0].delete_prefix('/deck').delete_prefix('/').split('/')
   end
 end
