@@ -65,7 +65,7 @@ module LanguagesHelper
     hu: 'magyar',
     hy: 'հայերեն',
     hz: 'Otjiherero',
-    ia: 'Interlingua',
+    ia: 'interlingua',
     id: 'Indonesia',
     ie: 'Interlingue',
     ig: 'Igbo',
