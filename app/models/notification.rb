@@ -30,7 +30,7 @@ class Notification < ApplicationRecord
     'Poll' => :poll,
   }.freeze
 
-  GROUPABLE_NOTIFICATION_TYPES = %i(favourite reblog).freeze
+  GROUPABLE_NOTIFICATION_TYPES = %i(favourite reblog follow).freeze
 
   # Please update app/javascript/api_types/notification.ts if you change this
   PROPERTIES = {
