@@ -14,6 +14,17 @@ RSpec.describe NotificationMailer do
     end
   end
 
+  shared_examples 'delivery without status' do
+    context 'when notification target_status is missing' do
+      before { allow(notification).to receive(:target_status).and_return(nil) }
+
+      it 'does not deliver mail' do
+        emails = capture_emails { mail.deliver_now }
+        expect(emails).to be_empty
+      end
+    end
+  end
+
   let(:receiver)       { Fabricate(:user, account_attributes: { username: 'alice' }) }
   let(:sender)         { Fabricate(:account, username: 'bob') }
   let(:foreign_status) { Fabricate(:status, account: sender, text: 'The body of the foreign status') }
@@ -37,6 +48,7 @@ RSpec.describe NotificationMailer do
     end
 
     include_examples 'delivery to non functional user'
+    include_examples 'delivery without status'
   end
 
   describe 'follow' do
@@ -75,6 +87,7 @@ RSpec.describe NotificationMailer do
     end
 
     include_examples 'delivery to non functional user'
+    include_examples 'delivery without status'
   end
 
   describe 'reblog' do
@@ -95,6 +108,7 @@ RSpec.describe NotificationMailer do
     end
 
     include_examples 'delivery to non functional user'
+    include_examples 'delivery without status'
   end
 
   describe 'follow_request' do
