@@ -299,6 +299,10 @@
     }
   }
 
+  &--with-counter {
+    padding-right: 4px;
+  }
+
   &__counter {
     display: block;
     width: auto;
@@ -1462,6 +1466,15 @@ body > [data-popper-placement] {
 
     .status__content__read-more-button {
       margin-inline-start: $thread-margin;
+    }
+  }
+
+  &__action-bar__button-wrapper {
+    flex-basis: 0;
+    flex-grow: 1;
+
+    &:last-child {
+      flex-grow: 0;
     }
   }
 
