@@ -27,7 +27,7 @@ RSpec.describe MentionResolveWorker do
         allow(service_double).to receive(:call).with(uri, anything) { Fabricate(:account, domain: 'example.com', uri: uri) }
       end
 
-      it 'resolves the account and adds a new mention', :aggregate_failures do
+      it 'resolves the account and adds a new mention' do
         expect { subject }
           .to change { status.reload.mentions }.from([]).to(a_collection_including(having_attributes(account: having_attributes(uri: uri), silent: false)))
 

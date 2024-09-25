@@ -136,7 +136,7 @@ RSpec.describe ActivityPub::Activity::Create do
       expect(Notification.count).to eq 2
     end
 
-    it 'ignores unprocessable mention', :aggregate_failures do
+    it 'ignores unprocessable mention' do
       stub_request(:get, invalid_mention_json[:tag][:href]).to_raise(HTTP::ConnectionError)
       # When receiving the post that contains an invalid mention…
       described_class.new(activity_for_object(invalid_mention_json), sender, delivery: true).perform
