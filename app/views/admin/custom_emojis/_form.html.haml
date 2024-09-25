@@ -1,0 +1,10 @@
+.fields-group
+  = form.input :shortcode,
+               hint: t('admin.custom_emojis.shortcode_hint'),
+               label: t('admin.custom_emojis.shortcode'),
+               wrapper: :with_label
+.fields-group
+  = form.input :image,
+               hint: t('admin.custom_emojis.image_hint', size: number_to_human_size(CustomEmoji::LIMIT)),
+               input_html: { accept: CustomEmoji::IMAGE_MIME_TYPES.join(',') },
+               wrapper: :with_label
