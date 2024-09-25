@@ -58,34 +58,28 @@ RSpec.describe BackupService do
     body = export_json_raw(:outbox)
     json = Oj.load(body)
 
-    aggregate_failures do
-      expect(body.scan('@context').count).to eq 1
-      expect(body.scan('orderedItems').count).to eq 1
-      expect(json['@context']).to_not be_nil
-      expect(json['type']).to eq 'OrderedCollection'
-      expect(json['totalItems']).to eq 2
-      expect(json['orderedItems'][0]['@context']).to be_nil
-      expect(json['orderedItems'][0]).to include_create_item(status)
-      expect(json['orderedItems'][1]).to include_create_item(private_status)
-    end
+    expect(body.scan('@context').count).to eq 1
+    expect(body.scan('orderedItems').count).to eq 1
+    expect(json['@context']).to_not be_nil
+    expect(json['type']).to eq 'OrderedCollection'
+    expect(json['totalItems']).to eq 2
+    expect(json['orderedItems'][0]['@context']).to be_nil
+    expect(json['orderedItems'][0]).to include_create_item(status)
+    expect(json['orderedItems'][1]).to include_create_item(private_status)
   end
 
   def expect_likes_export
     json = export_json(:likes)
 
-    aggregate_failures do
-      expect(json['type']).to eq 'OrderedCollection'
-      expect(json['orderedItems']).to eq [ActivityPub::TagManager.instance.uri_for(favourite.status)]
-    end
+    expect(json['type']).to eq 'OrderedCollection'
+    expect(json['orderedItems']).to eq [ActivityPub::TagManager.instance.uri_for(favourite.status)]
   end
 
   def expect_bookmarks_export
     json = export_json(:bookmarks)
 
-    aggregate_failures do
-      expect(json['type']).to eq 'OrderedCollection'
-      expect(json['orderedItems']).to eq [ActivityPub::TagManager.instance.uri_for(bookmark.status)]
-    end
+    expect(json['type']).to eq 'OrderedCollection'
+    expect(json['orderedItems']).to eq [ActivityPub::TagManager.instance.uri_for(bookmark.status)]
   end
 
   def export_json_raw(type)
