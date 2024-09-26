@@ -5,8 +5,6 @@ class FollowService < BaseService
   include Payloadable
   include DomainControlHelper
 
-  class Error < StandardError; end
-
   # Follow a remote user, notify remote user about the follow
   # @param [Account] source_account From which to follow
   # @param [Account] target_account Account to follow
