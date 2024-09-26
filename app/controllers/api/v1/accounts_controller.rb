@@ -16,6 +16,7 @@ class Api::V1::AccountsController < Api::BaseController
   before_action :check_account_confirmation, except: [:index, :create]
   before_action :check_enabled_registrations, only: [:create]
   before_action :check_accounts_limit, only: [:index]
+  before_action :check_following_self, only: [:follow]
 
   skip_before_action :require_authenticated_user!, only: :create
 
@@ -47,8 +48,8 @@ class Api::V1::AccountsController < Api::BaseController
     options = @account.locked? || current_user.account.silenced? ? {} : { following_map: { @account.id => { reblogs: follow.show_reblogs?, notify: follow.notify?, languages: follow.languages } }, requested_map: { @account.id => false } }
 
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships(**options)
-  rescue FollowService::SelfFollowError
-    render json: { error: I18n.t('Following your own account is not allowed') }, status: 403
+  rescue Mastodon::ValidationError
+    render json: { error: I18n.t('accounts.self_follow_error') }, status: 403
   end
 
   def block
@@ -101,6 +102,10 @@ class Api::V1::AccountsController < Api::BaseController
 
   def check_accounts_limit
     raise(Mastodon::ValidationError) if account_ids.size > DEFAULT_ACCOUNTS_LIMIT
+  end
+
+  def check_following_self
+    raise(Mastodon::ValidationError) if current_user.account.id == @account.id
   end
 
   def relationships(**options)

@@ -6,7 +6,6 @@ class FollowService < BaseService
   include DomainControlHelper
 
   class Error < StandardError; end
-  class SelfFollowError < Error; end
 
   # Follow a remote user, notify remote user about the follow
   # @param [Account] source_account From which to follow
@@ -25,7 +24,6 @@ class FollowService < BaseService
 
     raise ActiveRecord::RecordNotFound if following_not_possible?
     raise Mastodon::NotPermittedError  if following_not_allowed?
-    raise SelfFollowError if following_self?
 
     if @source_account.following?(@target_account)
       return change_follow_options!
@@ -55,10 +53,6 @@ class FollowService < BaseService
 
   def following_not_possible?
     @target_account.nil? || @target_account.unavailable?
-  end
-
-  def following_self?
-    @target_account.id == @source_account.id
   end
 
   def following_not_allowed?
