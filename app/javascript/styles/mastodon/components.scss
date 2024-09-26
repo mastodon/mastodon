@@ -3954,9 +3954,19 @@ $ui-header-logo-wordmark-width: 99px;
   padding: 8px 0 0;
   overflow: hidden;
 
+  table {
+    width: 100%;
+  }
+
   thead {
     position: absolute;
     inset-inline-start: -9999px;
+  }
+
+  tbody {
+    td:last-child {
+      text-align: right;
+    }
   }
 
   td {
@@ -3964,10 +3974,16 @@ $ui-header-logo-wordmark-width: 99px;
   }
 
   kbd {
-    display: inline-block;
-    padding: 3px 5px;
-    background-color: lighten($ui-base-color, 8%);
+    background-color: darken($ui-base-color, 10%);
+    border-radius: 6px;
     border: 1px solid darken($ui-base-color, 4%);
+    box-shadow: inset 0 -1px 0;
+    color: $light-text-color;
+    display: inline-block;
+    font: 11px monospace;
+    margin: 0 2px;
+    padding: 4px 6px;
+    vertical-align: middle;
   }
 }
 
