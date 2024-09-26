@@ -173,10 +173,10 @@ RSpec.describe '/api/v1/accounts' do
         expect(response).to have_http_status(403)
 
         expect(response.parsed_body)
-            .to include(
-              error: error_msg,
-              following: false
-            )
+          .to include(
+            error: error_msg,
+            following: false
+          )
       end
 
       it_behaves_like 'forbidden for wrong scope', 'read:accounts'
