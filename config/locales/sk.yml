@@ -394,6 +394,7 @@ sk:
         resolve: Preveď doménu
       not_permitted: Nepovolená
       resolved_through_html: Prevedená cez %{domain}
+      title: Blokované e-mailové domény
     export_domain_allows:
       new:
         title: Nahraj povolené domény
@@ -401,6 +402,7 @@ sk:
     export_domain_blocks:
       import:
         existing_relationships_warning: Existujúce vzťahy nasledovania
+        private_comment_template: 'Importované z: %{source} dňa %{date}'
         title: Nahraj zákazy domén
       new:
         title: Nahraj zákazy domén
@@ -1097,7 +1099,7 @@ sk:
       subject: "%{name} si obľúbil/a tvoj príspevok"
       title: Novo obľúbené
     follow:
-      body: "%{name} ťa teraz následuje!"
+      body: "%{name} ťa teraz nasleduje!"
       subject: "%{name} ťa teraz nasleduje"
       title: Nový sledovateľ
     follow_request:
@@ -1166,7 +1168,7 @@ sk:
     follow_failure: Nemožno nasledovať niektoré z vybraných účtov.
     follow_selected_followers: Následuj označených sledovatelov
     followers: Následovatelia
-    following: Následovaní
+    following: Nasledovaní
     invited: Pozvaný/á
     last_active: Naposledy aktívny
     most_recent: Najnovšie
@@ -1226,7 +1228,6 @@ sk:
     delete: Vymazanie účtu
     development: Vývoj
     edit_profile: Uprav profil
-    export: Exportuj dáta
     featured_tags: Zvýraznené haštagy
     import: Importuj
     import_and_export: Import a export
