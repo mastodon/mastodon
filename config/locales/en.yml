@@ -858,6 +858,9 @@ en:
         message_html: You haven't defined any server rules.
       sidekiq_process_check:
         message_html: No Sidekiq process running for the %{value} queue(s). Please review your Sidekiq configuration
+      software_version_check:
+        action: See available updates
+        message_html: A Mastodon update is available.
       software_version_critical_check:
         action: See available updates
         message_html: A critical Mastodon update is available, please update as quickly as possible.
