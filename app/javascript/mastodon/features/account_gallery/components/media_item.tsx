@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import HeadphonesIcon from '@/material-icons/400-24px/headphones-fill.svg?react';
 import MovieIcon from '@/material-icons/400-24px/movie-fill.svg?react';
 import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
+import { AltTextBadge } from 'mastodon/components/alt_text_badge';
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon } from 'mastodon/components/icon';
 import { formatTime } from 'mastodon/features/video';
@@ -77,11 +78,7 @@ export const MediaItem: React.FC<{
   const badges = [];
 
   if (description && description.length > 0) {
-    badges.push(
-      <span key='alt' className='media-gallery__alt__label'>
-        ALT
-      </span>,
-    );
+    badges.push(<AltTextBadge key='alt' description={description} />);
   }
 
   if (!visible) {
@@ -156,13 +153,19 @@ export const MediaItem: React.FC<{
 
     if (type === 'gifv') {
       badges.push(
-        <span key='gif' className='media-gallery__gifv__label'>
+        <span
+          key='gif'
+          className='media-gallery__alt__label media-gallery__alt__label--non-interactive'
+        >
           GIF
         </span>,
       );
     } else {
       badges.push(
-        <span key='video' className='media-gallery__gifv__label'>
+        <span
+          key='video'
+          className='media-gallery__alt__label media-gallery__alt__label--non-interactive'
+        >
           {formatTime(Math.floor(duration))}
         </span>,
       );

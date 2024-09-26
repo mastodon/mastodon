@@ -10,6 +10,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { debounce } from 'lodash';
 
+import { AltTextBadge } from 'mastodon/components/alt_text_badge';
 import { Blurhash } from 'mastodon/components/blurhash';
 import { formatTime } from 'mastodon/features/video';
 
@@ -97,7 +98,7 @@ class Item extends PureComponent {
     }
 
     if (attachment.get('description')?.length > 0) {
-      badges.push(<span key='alt' className='media-gallery__alt__label'>ALT</span>);
+      badges.push(<AltTextBadge key='alt' description={attachment.get('description')} />);
     }
 
     const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
@@ -156,9 +157,9 @@ class Item extends PureComponent {
       const duration = attachment.getIn(['meta', 'original', 'duration']);
 
       if (attachment.get('type') === 'gifv') {
-        badges.push(<span key='gif' className='media-gallery__gifv__label'>GIF</span>);
+        badges.push(<span key='gif' className='media-gallery__alt__label media-gallery__alt__label--non-interactive'>GIF</span>);
       } else {
-        badges.push(<span key='video' className='media-gallery__gifv__label'>{formatTime(Math.floor(duration))}</span>);
+        badges.push(<span key='video' className='media-gallery__alt__label media-gallery__alt__label--non-interactive'>{formatTime(Math.floor(duration))}</span>);
       }
 
       thumbnail = (
