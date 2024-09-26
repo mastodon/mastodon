@@ -242,6 +242,7 @@
   flex: 0 0 auto;
 
   a {
+    display: flex;
     color: inherit;
     text-decoration: none;
   }
@@ -5821,6 +5822,7 @@ a.status-card {
       .icon {
         width: 24px;
         height: 24px;
+        filter: var(--overlay-icon-shadow);
       }
 
       &:hover,
@@ -5915,6 +5917,10 @@ a.status-card {
     .icon-button {
       color: $white;
 
+      .icon {
+        filter: var(--overlay-icon-shadow);
+      }
+
       &:hover,
       &:focus,
       &:active {
@@ -5973,6 +5979,7 @@ a.status-card {
 .media-modal__page-dot {
   flex: 0 0 auto;
   background-color: $white;
+  filter: var(--overlay-icon-shadow);
   opacity: 0.4;
   height: 6px;
   width: 6px;
@@ -6964,14 +6971,14 @@ a.status-card {
   inset-inline-end: 8px;
   display: flex;
   gap: 2px;
+  pointer-events: none;
 }
 
-.media-gallery__alt__label,
-.media-gallery__gifv__label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.media-gallery__alt__label {
+  display: block;
+  text-align: center;
   color: $white;
+  border: 0;
   background: rgba($black, 0.65);
   backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
   padding: 3px 8px;
@@ -6979,8 +6986,41 @@ a.status-card {
   font-size: 12px;
   font-weight: 700;
   z-index: 1;
-  pointer-events: none;
   line-height: 20px;
+  cursor: pointer;
+  pointer-events: auto;
+
+  &--non-interactive {
+    pointer-events: none;
+  }
+}
+
+.media-gallery__alt__popover {
+  background: rgba($black, 0.65);
+  backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
+  border-radius: 4px;
+  box-shadow: var(--dropdown-shadow);
+  padding: 16px;
+  min-width: 16em;
+  min-height: 2em;
+  max-width: 22em;
+  max-height: 30em;
+  overflow-y: auto;
+
+  h4 {
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 500;
+    color: $white;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 20px;
+    color: rgba($white, 0.85);
+    white-space: pre-line;
+  }
 }
 
 .attachment-list {
@@ -7053,8 +7093,8 @@ a.status-card {
   width: 100%;
   min-height: 64px;
   display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 2px;
 
   &--layout-2 {
@@ -7123,6 +7163,9 @@ a.status-card {
   position: relative;
   border-radius: 8px;
   overflow: hidden;
+  outline: 1px solid var(--media-outline-color);
+  outline-offset: -1px;
+  z-index: 1;
 
   &--tall {
     grid-row: span 2;
@@ -7131,15 +7174,44 @@ a.status-card {
   &--wide {
     grid-column: span 2;
   }
+
+  &--square {
+    aspect-ratio: 1;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    padding: 8px;
+    z-index: 1;
+
+    &--corner {
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+
+    .icon {
+      color: $white;
+      filter: var(--overlay-icon-shadow);
+    }
+  }
 }
 
 .media-gallery__item-thumbnail {
-  cursor: zoom-in;
+  cursor: pointer;
   display: block;
   text-decoration: none;
   color: $secondary-text-color;
   position: relative;
-  z-index: 1;
+  z-index: -1;
 
   &,
   img {
@@ -7159,7 +7231,7 @@ a.status-card {
   position: absolute;
   top: 0;
   inset-inline-start: 0;
-  z-index: 0;
+  z-index: -2;
   background: $base-overlay-background;
 
   &--hidden {
@@ -7172,20 +7244,14 @@ a.status-card {
   overflow: hidden;
   position: relative;
   width: 100%;
+  z-index: -1;
 }
 
 .media-gallery__item-gifv-thumbnail {
-  cursor: zoom-in;
+  cursor: pointer;
   height: 100%;
   object-fit: cover;
   width: 100%;
-}
-
-.media-gallery__item-thumbnail-label {
-  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-  clip: rect(1px, 1px, 1px, 1px);
-  overflow: hidden;
-  position: absolute;
 }
 
 /* End Media Gallery */
@@ -7210,6 +7276,8 @@ a.status-card {
   border-radius: 8px;
   padding-bottom: 44px;
   width: 100%;
+  outline: 1px solid var(--media-outline-color);
+  outline-offset: -1px;
 
   &.editable {
     border-radius: 0;
@@ -7266,6 +7334,7 @@ a.status-card {
   .video-player__controls {
     padding-top: 10px;
     background: transparent;
+    z-index: 1;
   }
 }
 
@@ -7279,19 +7348,18 @@ a.status-card {
   color: $white;
   display: flex;
   align-items: center;
+  outline: 1px solid var(--media-outline-color);
+  outline-offset: -1px;
+  z-index: 2;
 
   &.editable {
     border-radius: 0;
     height: 100% !important;
   }
 
-  &:focus {
-    outline: 0;
-  }
-
   video {
     display: block;
-    z-index: 1;
+    z-index: -2;
   }
 
   &.fullscreen {
@@ -7310,7 +7378,7 @@ a.status-card {
   &__controls {
     position: absolute;
     direction: ltr;
-    z-index: 2;
+    z-index: -1;
     bottom: 0;
     inset-inline-start: 0;
     inset-inline-end: 0;
@@ -7625,26 +7693,16 @@ a.status-card {
 }
 
 .account-gallery__container {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 4px 2px;
-}
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
 
-.account-gallery__item {
-  border: 0;
-  box-sizing: border-box;
-  display: block;
-  position: relative;
-  border-radius: 4px;
-  overflow: hidden;
-  margin: 2px;
+  .media-gallery__item {
+    border-radius: 0;
+  }
 
-  &__icons {
-    position: absolute;
-    top: 50%;
-    inset-inline-start: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 24px;
+  .load-more {
+    grid-column: span 3;
   }
 }
 
