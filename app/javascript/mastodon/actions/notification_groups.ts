@@ -2,7 +2,7 @@ import { createAction } from '@reduxjs/toolkit';
 
 import {
   apiClearNotifications,
-  apiFetchNotifications,
+  apiFetchNotificationGroups,
 } from 'mastodon/api/notifications';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import type {
@@ -68,10 +68,15 @@ function dispatchAssociatedRecords(
     dispatch(importFetchedStatuses(fetchedStatuses));
 }
 
+const supportedGroupedNotificationTypes = ['favourite', 'reblog'];
+
 export const fetchNotifications = createDataLoadingThunk(
   'notificationGroups/fetch',
   async (_params, { getState }) =>
-    apiFetchNotifications({ exclude_types: getExcludedTypes(getState()) }),
+    apiFetchNotificationGroups({
+      grouped_types: supportedGroupedNotificationTypes,
+      exclude_types: getExcludedTypes(getState()),
+    }),
   ({ notifications, accounts, statuses }, { dispatch }) => {
     dispatch(importFetchedAccounts(accounts));
     dispatch(importFetchedStatuses(statuses));
@@ -92,7 +97,8 @@ export const fetchNotifications = createDataLoadingThunk(
 export const fetchNotificationsGap = createDataLoadingThunk(
   'notificationGroups/fetchGap',
   async (params: { gap: NotificationGap }, { getState }) =>
-    apiFetchNotifications({
+    apiFetchNotificationGroups({
+      grouped_types: supportedGroupedNotificationTypes,
       max_id: params.gap.maxId,
       exclude_types: getExcludedTypes(getState()),
     }),
@@ -108,7 +114,8 @@ export const fetchNotificationsGap = createDataLoadingThunk(
 export const pollRecentNotifications = createDataLoadingThunk(
   'notificationGroups/pollRecentNotifications',
   async (_params, { getState }) => {
-    return apiFetchNotifications({
+    return apiFetchNotificationGroups({
+      grouped_types: supportedGroupedNotificationTypes,
       max_id: undefined,
       exclude_types: getExcludedTypes(getState()),
       // In slow mode, we don't want to include notifications that duplicate the already-displayed ones

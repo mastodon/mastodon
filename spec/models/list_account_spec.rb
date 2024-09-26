@@ -9,7 +9,7 @@ RSpec.describe ListAccount do
       let(:list) { Fabricate :list, account: follow.account }
 
       it 'finds and sets the follow with the list account' do
-        list_account = described_class.create list: list, account: follow.target_account
+        list_account = Fabricate :list_account, list: list, account: follow.target_account
         expect(list_account)
           .to have_attributes(
             follow: eq(follow),
@@ -23,7 +23,7 @@ RSpec.describe ListAccount do
       let(:list) { Fabricate :list, account: follow_request.account }
 
       it 'finds and sets the follow request with the list account' do
-        list_account = described_class.create list: list, account: follow_request.target_account
+        list_account = Fabricate :list_account, list: list, account: follow_request.target_account
         expect(list_account)
           .to have_attributes(
             follow: be_nil,
@@ -33,10 +33,8 @@ RSpec.describe ListAccount do
     end
 
     context 'when list owner is the account' do
-      let(:list) { Fabricate :list  }
-
       it 'does not set follow or follow request' do
-        list_account = described_class.create list: list, account: list.account
+        list_account = Fabricate :list_account
         expect(list_account)
           .to have_attributes(
             follow: be_nil,

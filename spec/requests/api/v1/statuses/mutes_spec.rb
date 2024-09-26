@@ -18,6 +18,8 @@ RSpec.describe 'API V1 Statuses Mutes' do
 
       it 'creates a conversation mute', :aggregate_failures do
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(ConversationMute.find_by(account: user.account, conversation_id: status.conversation_id)).to_not be_nil
       end
     end
@@ -32,6 +34,8 @@ RSpec.describe 'API V1 Statuses Mutes' do
 
       it 'destroys the conversation mute', :aggregate_failures do
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(ConversationMute.find_by(account: user.account, conversation_id: status.conversation_id)).to be_nil
       end
     end

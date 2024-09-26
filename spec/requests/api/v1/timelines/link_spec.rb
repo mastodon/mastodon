@@ -13,6 +13,8 @@ RSpec.describe 'Link' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body.pluck(:id)).to match_array(expected_statuses.map { |status| status.id.to_s })
     end
   end
@@ -50,6 +52,8 @@ RSpec.describe 'Link' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -62,6 +66,8 @@ RSpec.describe 'Link' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -74,6 +80,8 @@ RSpec.describe 'Link' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -91,6 +99,8 @@ RSpec.describe 'Link' do
           subject
 
           expect(response).to have_http_status(422)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
 
@@ -101,6 +111,8 @@ RSpec.describe 'Link' do
           subject
 
           expect(response).to have_http_status(422)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
 
@@ -123,15 +135,13 @@ RSpec.describe 'Link' do
       context 'with limit param' do
         let(:params) { { limit: 1, url: url } }
 
-        it 'returns only the requested number of statuses', :aggregate_failures do
+        it 'returns only the requested number of statuses with pagination headers', :aggregate_failures do
           subject
 
           expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
           expect(response.parsed_body.size).to eq(params[:limit])
-        end
-
-        it 'sets the correct pagination headers', :aggregate_failures do
-          subject
 
           expect(response)
             .to include_pagination_headers(

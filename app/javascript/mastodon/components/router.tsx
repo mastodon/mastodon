@@ -51,7 +51,8 @@ function normalizePath(
 
   if (
     layoutFromWindow() === 'multi-column' &&
-    !location.pathname?.startsWith('/deck')
+    location.pathname &&
+    !location.pathname.startsWith('/deck')
   ) {
     location.pathname = `/deck${location.pathname}`;
   }

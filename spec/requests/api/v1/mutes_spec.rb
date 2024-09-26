@@ -18,32 +18,26 @@ RSpec.describe 'Mutes' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:mutes'
 
-    it 'returns http success' do
+    it 'returns http success with muted accounts' do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns the muted accounts' do
-      subject
+      expect(response.content_type)
+        .to start_with('application/json')
 
       muted_accounts = mutes.map(&:target_account)
-
       expect(response.parsed_body.pluck(:id)).to match_array(muted_accounts.map { |account| account.id.to_s })
     end
 
     context 'with limit param' do
       let(:params) { { limit: 1 } }
 
-      it 'returns only the requested number of muted accounts' do
+      it 'returns only the requested number of muted accounts with pagination headers' do
         subject
 
         expect(response.parsed_body.size).to eq(params[:limit])
-      end
-
-      it 'sets the correct pagination headers', :aggregate_failures do
-        subject
-
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(response)
           .to include_pagination_headers(
             prev: api_v1_mutes_url(limit: params[:limit], since_id: mutes.last.id),
@@ -81,6 +75,8 @@ RSpec.describe 'Mutes' do
         subject
 
         expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

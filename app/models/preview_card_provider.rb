@@ -34,8 +34,6 @@ class PreviewCardProvider < ApplicationRecord
 
   scope :trendable, -> { where(trendable: true) }
   scope :not_trendable, -> { where(trendable: false) }
-  scope :reviewed, -> { where.not(reviewed_at: nil) }
-  scope :pending_review, -> { where(reviewed_at: nil) }
 
   def self.matching_domain(domain)
     segments = domain.split('.')
