@@ -5,7 +5,10 @@
   = render 'shared/error_messages', object: @relay
 
   .field-group
-    = f.input :inbox_url, as: :string, wrapper: :with_block_label
+    = f.input :inbox_url,
+              required: true,
+              type: :url,
+              wrapper: :with_block_label
 
   .actions
     = f.button :button, t('admin.relays.save_and_enable'), type: :submit
