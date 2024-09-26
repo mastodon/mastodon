@@ -105,7 +105,7 @@ module Mastodon::CLI
       tools. Only blocks with no_access severity are returned.
     LONG_DESC
     def export
-      IpBlock.where(severity: :no_access).find_each do |ip_block|
+      IpBlock.severity_no_access.find_each do |ip_block|
         case options[:format]
         when 'nginx'
           say "deny #{ip_block.ip}/#{ip_block.ip.prefix};"

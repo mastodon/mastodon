@@ -44,7 +44,7 @@ class FetchResourceService < BaseService
     @response_code = response.code
     return nil if response.code != 200
 
-    if ['application/activity+json', 'application/ld+json'].include?(response.mime_type)
+    if valid_activitypub_content_type?(response)
       body = response.body_with_limit
       json = body_to_json(body)
 
@@ -73,7 +73,7 @@ class FetchResourceService < BaseService
   end
 
   def process_html(response)
-    page      = Nokogiri::HTML(response.body_with_limit)
+    page      = Nokogiri::HTML5(response.body_with_limit)
     json_link = page.xpath('//link[@rel="alternate"]').find { |link| ACTIVITY_STREAM_LINK_TYPES.include?(link['type']) }
 
     process(json_link['href'], terminal: true) unless json_link.nil?

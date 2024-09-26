@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Form::AdminSettings do
+RSpec.describe Form::AdminSettings do
   describe 'validations' do
     describe 'site_contact_username' do
       context 'with no accounts' do

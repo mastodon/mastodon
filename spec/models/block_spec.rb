@@ -4,17 +4,8 @@ require 'rails_helper'
 
 RSpec.describe Block do
   describe 'validations' do
-    it 'is invalid without an account' do
-      block = Fabricate.build(:block, account: nil)
-      block.valid?
-      expect(block).to model_have_error_on_field(:account)
-    end
-
-    it 'is invalid without a target_account' do
-      block = Fabricate.build(:block, target_account: nil)
-      block.valid?
-      expect(block).to model_have_error_on_field(:target_account)
-    end
+    it { is_expected.to belong_to(:account).required }
+    it { is_expected.to belong_to(:target_account).required }
   end
 
   it 'removes blocking cache after creation' do

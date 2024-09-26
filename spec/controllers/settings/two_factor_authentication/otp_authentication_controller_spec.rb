@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
+RSpec.describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
   render_views
 
   let(:user) { Fabricate(:user) }

@@ -274,7 +274,7 @@ RSpec.describe BulkImportService do
       let(:rows) do
         [
           { 'domain' => 'blocked.com' },
-          { 'domain' => 'to_block.com' },
+          { 'domain' => 'to-block.com' },
         ]
       end
 
@@ -286,12 +286,12 @@ RSpec.describe BulkImportService do
 
       it 'blocks all the new domains' do
         subject.call(import)
-        expect(account.domain_blocks.pluck(:domain)).to contain_exactly('alreadyblocked.com', 'blocked.com', 'to_block.com')
+        expect(account.domain_blocks.pluck(:domain)).to contain_exactly('alreadyblocked.com', 'blocked.com', 'to-block.com')
       end
 
       it 'marks the import as finished' do
         subject.call(import)
-        expect(import.reload.finished?).to be true
+        expect(import.reload.state_finished?).to be true
       end
     end
 
@@ -302,7 +302,7 @@ RSpec.describe BulkImportService do
       let(:rows) do
         [
           { 'domain' => 'blocked.com' },
-          { 'domain' => 'to_block.com' },
+          { 'domain' => 'to-block.com' },
         ]
       end
 
@@ -314,12 +314,12 @@ RSpec.describe BulkImportService do
 
       it 'blocks all the new domains' do
         subject.call(import)
-        expect(account.domain_blocks.pluck(:domain)).to contain_exactly('blocked.com', 'to_block.com')
+        expect(account.domain_blocks.pluck(:domain)).to contain_exactly('blocked.com', 'to-block.com')
       end
 
       it 'marks the import as finished' do
         subject.call(import)
-        expect(import.reload.finished?).to be true
+        expect(import.reload.state_finished?).to be true
       end
     end
 

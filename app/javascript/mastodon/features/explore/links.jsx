@@ -13,7 +13,7 @@ import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
-import Story from './components/story';
+import { Story } from './components/story';
 
 const mapStateToProps = state => ({
   links: state.getIn(['trends', 'links', 'items']),
@@ -75,6 +75,7 @@ class Links extends PureComponent {
             publisher={link.get('provider_name')}
             publishedAt={link.get('published_at')}
             author={link.get('author_name')}
+            authorAccount={link.getIn(['authors', 0, 'account', 'id'])}
             sharedTimes={link.getIn(['history', 0, 'accounts']) * 1 + link.getIn(['history', 1, 'accounts']) * 1}
             thumbnail={link.get('image')}
             thumbnailDescription={link.get('image_description')}

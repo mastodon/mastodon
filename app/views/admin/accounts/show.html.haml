@@ -20,7 +20,7 @@
               %dd{ title: field.value, class: custom_field_classes(field) }
                 - if field.verified?
                   %span.verified__mark{ title: t('accounts.link_verified_on', date: l(field.verified_at)) }
-                    = fa_icon 'check'
+                    = material_symbol 'check'
                 = prerender_custom_emojis(account_field_value_format(field, with_rel_me: false), account.emojis)
 
     - if account.note.present?
@@ -62,14 +62,16 @@
   .report-notes
     = render partial: 'admin/report_notes/report_note', collection: @moderation_notes
 
-  = simple_form_for @account_moderation_note, url: admin_account_moderation_notes_path do |f|
-    = f.hidden_field :target_account_id
+  = simple_form_for @account_moderation_note, url: admin_account_moderation_notes_path do |form|
+    = form.hidden_field :target_account_id
+
+    = render 'shared/error_messages', object: @account_moderation_note
 
     .field-group
-      = f.input :content, placeholder: t('admin.reports.notes.placeholder'), rows: 6
+      = form.input :content, input_html: { placeholder: t('admin.reports.notes.placeholder'), maxlength: AccountModerationNote::CONTENT_SIZE_LIMIT, rows: 6, autofocus: @account_moderation_note.errors.any? }
 
     .actions
-      = f.button :button, t('admin.account_moderation_notes.create'), type: :submit
+      = form.button :button, t('admin.account_moderation_notes.create'), type: :submit
 
   %hr.spacer/
 

@@ -33,7 +33,7 @@ class BackupService < BaseService
 
       file.write(statuses.map do |status|
         item = serialize_payload(ActivityPub::ActivityPresenter.from_status(status), ActivityPub::ActivitySerializer)
-        item.delete('@context')
+        item.delete(:@context)
 
         unless item[:type] == 'Announce' || item[:object][:attachment].blank?
           item[:object][:attachment].each do |attachment|

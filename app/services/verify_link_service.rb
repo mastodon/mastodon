@@ -19,14 +19,14 @@ class VerifyLinkService < BaseService
 
   def perform_request!
     @body = Request.new(:get, @url).add_headers('Accept' => 'text/html').perform do |res|
-      res.code == 200 ? res.body_with_limit : nil
+      res.code == 200 ? res.truncated_body : nil
     end
   end
 
   def link_back_present?
     return false if @body.blank?
 
-    links = Nokogiri::HTML5(@body).xpath('//a[contains(concat(" ", normalize-space(@rel), " "), " me ")]|//link[contains(concat(" ", normalize-space(@rel), " "), " me ")]')
+    links = Nokogiri::HTML5(@body).css("a[rel~='me'],link[rel~='me']")
 
     if links.any? { |link| link['href']&.downcase == @link_back.downcase }
       true
