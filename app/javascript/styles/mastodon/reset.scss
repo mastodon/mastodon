@@ -53,6 +53,12 @@ table {
   border-spacing: 0;
 }
 
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-color: $action-button-color var(--background-border-color);
+  }
+}
+
 .custom-scrollbars {
   ::-webkit-scrollbar {
     width: 8px;
