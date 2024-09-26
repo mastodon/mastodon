@@ -18,7 +18,7 @@
 
 .field-group
   .input.with_block_label
-    %label= t('activerecord.attributes.doorkeeper/application.scopes')
+    = form.label t('activerecord.attributes.doorkeeper/application.scopes'), required: true
     %span.hint= t('simple_form.hints.defaults.scopes')
 
   - Doorkeeper.configuration.scopes.group_by { |s| s.split(':').first }.each_value do |value|
@@ -29,7 +29,7 @@
                  hint: false,
                  include_blank: false,
                  item_wrapper_tag: 'li',
-                 label_method: ->(scope) { safe_join([content_tag(:samp, scope, class: class_for_scope(scope)), content_tag(:span, t("doorkeeper.scopes.#{scope}"), class: 'hint')]) },
+                 label_method: ->(scope) { label_for_scope(scope) },
                  label: false,
                  required: false,
                  selected: form.object.scopes.all,
