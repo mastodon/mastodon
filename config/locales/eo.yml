@@ -275,6 +275,7 @@ eo:
       filter_by_action: Filtri per ago
       filter_by_user: Filtri per uzanto
       title: Ĵurnalo de revizo
+      unavailable_instance: "(domajna nomo nedisponebla)"
     announcements:
       destroyed_msg: Anonco sukcese forigita!
       edit:
@@ -412,6 +413,7 @@ eo:
       attempts_over_week:
         one: "%{count} provo ekde lasta semajno"
         other: "%{count} registroprovoj ekde lasta semajno"
+      created_msg: Sukcese blokita retpoŝta domajno
       delete: Forigi
       dns:
         types:
@@ -420,6 +422,7 @@ eo:
       new:
         create: Aldoni domajnon
         resolve: Solvi domajnon
+        title: Bloki novan retpoŝtan domajnon
       not_permitted: Ne permesita
       resolved_through_html: Solvis tra %{domain}
     export_domain_allows:
@@ -572,6 +575,7 @@ eo:
         silence_description_html: La konto estos videbla al nur personoj kiu jam sekvis ĝin au permane serĉo ĝin, ege limigante ĝian atingon. Malfermi ciujn raportojn kontra ĉi tiun konton.
         suspend_description_html: La konto kaj ciuj ĝiaj enhavoj estos neatingebla kaj poŝte forigitas, kaj interagi per ĝi estos neebla. Malfermi ciujn raportojn kontra ĉi tiu konto.
       actions_description_remote_html: Decidu kiun klopodon por solvi ĉi tiun raporton. Ĉi tiu efikas kiel nur <strong>via</strong> servilo komuniki per ĉi tiu fora konto kaj trakti ĝian enhavon.
+      actions_no_posts: Ĉi tiu raporto havas neniujn rilatajn afiŝojn por forigi
       add_to_report: Aldoni pli al raporto
       are_you_sure: Ĉu vi certas?
       assign_to_self: Asigni al mi
@@ -608,6 +612,7 @@ eo:
       report: 'Signalo #%{id}'
       reported_account: Signalita konto
       reported_by: Signalita de
+      reported_with_application: Raportita per aplikaĵo
       resolved: Solvitaj
       resolved_msg: Signalo sukcese solvita!
       skip_to_actions: Salti al agoj
@@ -804,6 +809,8 @@ eo:
         message_html: Estas pritraktataj datumbazaj migradoj. Bonvolu ekzekuti ilin por certigi, ke la apliko kondutas kiel atendite
       elasticsearch_preset:
         action: Legi dokumentaron
+      elasticsearch_preset_single_node:
+        action: Vidi dokumentadon
       elasticsearch_running_check:
         message_html: Ne eblas konekti Elasticsearch. Bonvolu kontroli ke ĝi funkcias, aǔ malŝaltu plentekstan serĉon
       elasticsearch_version_check:
@@ -814,6 +821,8 @@ eo:
         message_html: Vi ne difinis iujn servilajn regulojn.
       sidekiq_process_check:
         message_html: Neniu Sidekiq-procezo por la %{value} vico
+      software_version_critical_check:
+        action: Vidi disponeblajn ĝisdatigojn
       upload_check_privacy_error:
         action: Klaku ĉi tie por pliaj informoj
         message_html: "<strong>Via retservilo estas misagordita. La privateco de viaj uzantoj estas en risko.</strong>"
@@ -975,7 +984,9 @@ eo:
       guide_link_text: Ĉiu povas kontribui.
     sensitive_content: Tikla enhavo
   application_mailer:
+    notification_preferences: Ŝanĝi retpoŝtajn preferojn
     salutation: "%{name},"
+    settings: 'Ŝanĝi retpoŝtajn preferojn: %{link}'
     unsubscribe: Malabonu
     view: 'Vidi:'
     view_profile: Vidi profilon
@@ -994,8 +1005,11 @@ eo:
       help_html: Se vi havas problemojn solvi la CAPTCHA, vi povas kontakti nin per %{email} kaj ni povas helpi vin.
       title: Sekureckontrolo
     confirmations:
+      clicking_this_link: alklakante ĉi tiun ligilon
       login_link: ensaluti
+      registration_complete: Via registriĝo sur %{domain} nun finiĝis!
       welcome_title: Bonvenon, %{name}!
+      wrong_email_hint: Se tiu retadreso ne estas ĝusta, vi povas ŝanĝi ĝin en kontagordoj.
     delete_account: Forigi konton
     delete_account_html: Se vi deziras forigi vian konton, vi povas <a href="%{path}">fari tion ĉi tie</a>. Vi bezonos konfirmi vian peton.
     description:
@@ -1016,6 +1030,7 @@ eo:
     or_log_in_with: Aŭ saluti per
     privacy_policy_agreement_html: Mi legis kaj konsentis pri <a href="%{privacy_policy_path}" target="_blank">privatpolitiko</a>
     progress:
+      confirm: Konfirmi retadreson
       details: Viaj detaloj
       review: Niaj recenzoj
       rules: Akcepti regulojn
@@ -1053,8 +1068,10 @@ eo:
     too_fast: Formularo sendita tro rapide, klopodu denove.
     use_security_key: Uzi sekurecan ŝlosilon
   author_attribution:
+    example_title: Ekzempla teksto
     more_from_html: Pli de %{name}
     s_blog: Blogo de %{name}
+    title: Atribuo de aŭtoro
   challenge:
     confirm: Daŭrigi
     hint_html: "<strong>Konsileto:</strong> Ni ne demandos pri via pasvorto ĝis 1 horo."
@@ -1250,8 +1267,10 @@ eo:
       overwrite: Anstataŭigi
       overwrite_long: Anstataŭigi la nunajn registrojn per la novaj
     preface: Vi povas importi datumojn, kiujn vi eksportis el alia servilo, kiel liston de homoj, kiujn vi sekvas aŭ blokas.
+    recent_imports: Lastatempaj importoj
     states:
       finished: Finita
+      in_progress: Farata
       unconfirmed: Nekonfirmita
     status: Stato
     success: Viaj datumoj estis sukcese alŝutitaj kaj estos traktitaj kiel planite
@@ -1541,7 +1560,6 @@ eo:
     delete: Konta forigo
     development: Evoluigado
     edit_profile: Redakti profilon
-    export: Eksporti datumojn
     featured_tags: Elstarigitaj kradvortoj
     import: Enporti
     import_and_export: Importi kaj eksporti
@@ -1553,6 +1571,9 @@ eo:
     strikes: Kontroladmonoj
     two_factor_authentication: Dufaktora aŭtentigo
     webauthn_authentication: Sekurecaj ŝlosiloj
+  severed_relationships:
+    lost_followers: Perditaj sekvantoj
+    type: Evento
   statuses:
     attached:
       audio:
@@ -1719,6 +1740,12 @@ eo:
       explanation: Jen kelkaj konsiloj por helpi vin komenci
       feature_action: Lerni pli
       follow_action: Sekvi
+      hashtags_title: Popularaj kradvortoj
+      hashtags_view_more: Vidi pli da popularaj kradvortoj
+      post_step: Salutu la mondon per teksto, fotoj, filmetoj aŭ balotenketoj.
+      post_title: Faru vian unuan afiŝon
+      share_step: Sciigu viajn amikojn kiel trovi vin sur Mastodon.
+      sign_in_action: Ensaluti
       subject: Bonvenon en Mastodon
       title: Bonvenon, %{name}!
   users:
