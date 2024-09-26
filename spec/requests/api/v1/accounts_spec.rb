@@ -164,10 +164,16 @@ RSpec.describe '/api/v1/accounts' do
     end
 
     context 'when user tries to follow their own account' do
+      subject do
+        post "/api/v1/accounts/#{other_account.id}/follow", headers: headers
+      end
+
       let(:locked) { false }
       let(:other_account) { user.account }
 
       it 'returns http forbidden and error message' do
+        subject
+
         error_msg = 'Following your own account is not allowed'
 
         expect(response).to have_http_status(403)
