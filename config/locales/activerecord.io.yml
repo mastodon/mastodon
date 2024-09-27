@@ -15,6 +15,12 @@ io:
       user/invite_request:
         text: Rezono
     errors:
+      attributes:
+        domain:
+          invalid: ne esas valida domennomo
+      messages:
+        invalid_domain_on_line: "%{value} ne esas valida domennomo"
+        too_many_lines: esas plu kam la limito qua esas %{limit} linei
       models:
         account:
           attributes:
