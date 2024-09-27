@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.13] - 2024-09-30
+
+### Security
+
+- Fix ReDoS vulnerability on some Ruby versions ([GHSA-jpxp-r43f-rhvx](https://github.com/mastodon/mastodon/security/advisories/GHSA-jpxp-r43f-rhvx))
+- Update dependencies
+
+### Added
+
+- Add “A Mastodon update is available.” message on admin dashboard for non-bugfix updates (#32106 by @ClearlyClaire)
+
+### Changed
+
+- Change Mastodon to issue correct HTTP signatures by default (#31994 by @ClearlyClaire)
+
+### Fixed
+
+- Fix replies collection being cached improperly
+- Fix security context sometimes not being added in LD-Signed activities (#31871 by @ClearlyClaire)
+- Fix error when encountering reblog of deleted post in feed rebuild (#32001 by @ClearlyClaire)
+
 ## [4.2.12] - 2024-08-19
 
 ### Fixed
