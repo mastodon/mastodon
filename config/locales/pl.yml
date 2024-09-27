@@ -903,6 +903,9 @@ pl:
         message_html: Nie zdefiniowano żadnych reguł serwera.
       sidekiq_process_check:
         message_html: Brak uruchomionego procesu Sidekiq dla kolejki(-ek) %{value}. Sprawdź konfigurację Sidekiq
+      software_version_check:
+        action: Pokaż dostępne aktualizacje
+        message_html: Dostępna aktualizacja Mastodona.
       software_version_critical_check:
         action: Pokaż dostępne aktualizacje
         message_html: Dostępna krytyczna aktualizacja Mastodona, zaktualizuj jak tylko będzie to możliwe.
@@ -1744,6 +1747,7 @@ pl:
     delete: Usuń konto
     development: Tworzenie aplikacji
     edit_profile: Edytuj profil
+    export: Eksportowanie danych
     featured_tags: Wyróżnione hashtagi
     import: Importowanie danych
     import_and_export: Import i eksport

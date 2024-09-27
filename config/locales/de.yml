@@ -875,6 +875,9 @@ de:
         message_html: Du hast keine Serverregeln festgelegt.
       sidekiq_process_check:
         message_html: Kein Sidekiq-Prozess läuft für die %{value} Warteschlange(n). Bitte überprüfe deine Sidekiq-Konfiguration
+      software_version_check:
+        action: Verfügbare Updates ansehen
+        message_html: Ein Update für Mastodon ist verfügbar.
       software_version_critical_check:
         action: Verfügbare Updates ansehen
         message_html: Ein kritisches Mastodon-Update ist verfügbar – bitte aktualisiere so schnell wie möglich.
@@ -1692,6 +1695,7 @@ de:
     delete: Kontolöschung
     development: Entwicklung
     edit_profile: Profil bearbeiten
+    export: Exportieren
     featured_tags: Vorgestellte Hashtags
     import: Importieren
     import_and_export: Importieren und exportieren

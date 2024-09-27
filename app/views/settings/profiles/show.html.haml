@@ -15,10 +15,10 @@
   .fields-row
     .fields-row__column.fields-row__column-6
       .fields-group
-        = f.input :display_name, wrapper: :with_block_label, input_html: { maxlength: 30, data: { default: @account.username } }
+        = f.input :display_name, wrapper: :with_block_label, input_html: { maxlength: Account::DISPLAY_NAME_LENGTH_LIMIT, data: { default: @account.username } }
 
       .fields-group
-        = f.input :note, wrapper: :with_block_label, input_html: { maxlength: 500 }
+        = f.input :note, wrapper: :with_block_label, input_html: { maxlength: Account::NOTE_LENGTH_LIMIT }
 
     .fields-row__column.fields-group.fields-row__column-6
       .input.with_block_label
@@ -27,8 +27,8 @@
 
         = f.simple_fields_for :fields do |fields_f|
           .row
-            = fields_f.input :name, placeholder: t('simple_form.labels.account.fields.name'), input_html: { maxlength: 255 }
-            = fields_f.input :value, placeholder: t('simple_form.labels.account.fields.value'), input_html: { maxlength: 255 }
+            = fields_f.input :name, placeholder: t('simple_form.labels.account.fields.name'), input_html: { maxlength: Account::Field::MAX_CHARACTERS_LOCAL }
+            = fields_f.input :value, placeholder: t('simple_form.labels.account.fields.value'), input_html: { maxlength: Account::Field::MAX_CHARACTERS_LOCAL }
 
   .fields-row
     .fields-row__column.fields-row__column-6

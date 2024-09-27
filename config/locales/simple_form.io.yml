@@ -3,6 +3,7 @@ io:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Protektas de falsa akreditaji.
         discoverable: Vua publika posti e profilo povas remarkesar o rekomendesar en diferanta parti di Mastodon e vua profilo povas sugestesar ad altra uzanti.
         display_name: Vua tota nomo o vua gaya nomo.
         fields: Vua retsituo, pronomi, evo, irgo quan vu volas.
@@ -39,12 +40,14 @@ io:
         text: Vu povas nur apelar striko unafoye
       defaults:
         autofollow: Personi quo registresesas tra invito automatika sequos vu
+        avatar: WEBP, PNG, GIF o JPG. Maxime %{size}. Esos mikrigita a %{dimensions}px
         bot: Signalez a altra personi ke la konto precipue havas automatikigita agi e forsan ne surveyesas
         context: Situeso kande filtrilo debas aplikesar
         current_password: Por sekuresorezoni, pozez pasvorto di ca konto
         current_username: Por konfirmar, pozez uzantonomo di ca konto
         digest: Nur sendesas pos longa neaktiveso e nur se vu ganis irga mesaji dum ke vu esas neprezenta
         email: Vu sendesos konfirmretposto
+        header: WEBP, PNG, GIF o JPG. Maxime %{size}. Esos mikrigita a %{dimensions}px
         inbox_url: Kopiez URL de frontpagino de relayo quon vu volas uzar
         irreversible: Filtrita posti neinversigeble desaparos, mem se filtro efacesas pose
         locale: Linguo di uzantointervizajo, retposti e pulsavizi
@@ -75,10 +78,15 @@ io:
           warn: Celez filtrita kontenajo dop avert quo montras titulo di filtrilo
       form_admin_settings:
         activity_api_enabled: Quanto de lokale publikigita posti, aktiva uzanti e nova registri, donita semanope
+        app_icon: WEBP, PNG, GIF o JPG. Ol remplas la originala imajeto di softwaro sur poshaparati kun personaligita imajeto.
+        backups_retention_period: Uzanto povas facar arkivi di sua posti por deskargar pose. Se ol esas positiva nombro, ca arkivi automate efacesis de vua konserveyo pos la decidita quanto di dii.
         bootstrap_timeline_accounts: Ca konti pinglagesos a super sequorekomendi di nova uzanti.
         closed_registrations_message: Montresas kande registradi klozesas
+        content_cache_retention_period: Omna posti de altra servili efacesos (anke repeti e respondi) pos decidita quanto di dii, sen ye irga lokala uzantointerago kun ti posti. Privata mencioni inter uzanto de dessanta servili anke desganos e neposible riganesos.
         custom_css: Vu povas pozar kustumizita staili en retverso di Mastodon.
+        favicon: WEBP, PNG, GIF o JPG. Ol remplas la originala imajeto di Mastodon kun personaligita imajeto.
         mascot: Remplas montreso en avanca retintervizajo.
+        media_cache_retention_period: Medidoseri de posti quan posti da deslokala uzanti retummemoresis sur vua servilo. Se medidatumo demandesas pos ol efacesas, ol rideskargesos.
         peers_api_enabled: Listo di domeni quin ca servilo trovis en la fediverso. Nula informo inkluzesas hike pri ka vu federas kun partikulara servilo, nur ke vua servilo savas pri lo. Co es uzata da enti qui kolektas statistiki pri federeso generale.
         profile_directory: La profilcheflisto montras omna uzanti quo voluntale volas esar deskovrebla.
         require_invite_text: Kande registradi bezonas manuala aprobo, ol kauzigas "Por quo vu volas juntas?" textoenpozo esar obliganta
@@ -111,6 +119,7 @@ io:
           sign_up_requires_approval: Nova registro bezonos vua aprobo
         severity: Selektez quo eventos kun demandi de ca IP
       rule:
+        hint: Nemusta. Ol donas plu multa detali pri la regulo
         text: Deskriptez regulo o bezonaj por uzanti en ca servilo. Vu debas lasar lu esar korta e simpla
       sessions:
         otp: Enter the Two-factor code from your phone or use one of your recovery codes.
@@ -122,6 +131,7 @@ io:
         name: Vu povas nur chanjar literkaso, por exemplo, por kauzigar lu divenar plu lektebla
       user:
         chosen_languages: Kande marketigesis, nur posti en selektesis lingui montresos en publika tempolinei
+        role: La rolo donas certena permisi a la uzanto.
       user_role:
         color: Koloro quo uzesas por rolo en tota UI, quale RGB kun hexformato
         highlighted: Co kauzigas rolo divenar publike videbla
@@ -130,9 +140,11 @@ io:
         position: Plu alta rolo decidas problemsolvo en kelka situeso. Kelka agi povas nur eventar a roli kun plu basa prioreso
       webhook:
         events: Selektigez eventi por sendar
+        template: Facez vua sua JSON per variebla interpolo. Lasez quale nulo por originala JSON.
         url: Ibe eventi sendesos
     labels:
       account:
+        attribution_domains_as_text: Nur permisas specifika retsitui
         discoverable: Inkluzar profilo e posti en trovado-algoritmi
         fields:
           name: Etiketo
@@ -201,6 +213,7 @@ io:
         setting_default_privacy: Videbleso di la mesaji
         setting_default_sensitive: Sempre markizez medii quale sentoza
         setting_delete_modal: Montrez konfirmdialogo ante efacar posto
+        setting_disable_hover_cards: Desaktivigez profilprevido dum klikpaso
         setting_disable_swiping: Desaktivigez fingromovi
         setting_display_media: Mediomontrajo
         setting_display_media_default: Originalo
@@ -232,10 +245,13 @@ io:
           warn: Celez kun averto
       form_admin_settings:
         activity_api_enabled: Publikigez rezumstatistiko pri uzantoaktiveso en API
+        app_icon: Softwarimajeto
         backups_retention_period: Uzantoarkivretendurtempo
         bootstrap_timeline_accounts: Sempre rekomendez ca konti a nova uzanti
         closed_registrations_message: Kustumizita mesajo kande registradi ne esas disponebla
+        content_cache_retention_period: Fora kontenajretenperiodo
         custom_css: Kustumizita CSS
+        favicon: Imajeto
         mascot: Kustumizita reprezentimajo (oldo)
         media_cache_retention_period: Mediimemorajretendurtempo
         peers_api_enabled: Publikigez listo di deskovrita servili en API
@@ -291,6 +307,7 @@ io:
           patch: Notifikar pri problemosolvanta aktualigi
         trending_tag: Nova tendenco bezonas kontrolo
       rule:
+        hint: Plusa informo
         text: Regulo
       settings:
         indexable: Inkluzar profilopagino en serchili
@@ -299,6 +316,7 @@ io:
         listable: Permisez ca hashtago aparar en trovaji e sugestaji
         name: Hashtago
         trendable: Permisez ca hashtago aparar che tendenci
+        usable: Permisez posti uzar ca gretiketo lokale
       user:
         role: Rolo
         time_zone: Klokozono
@@ -310,9 +328,11 @@ io:
         position: Prioreso
       webhook:
         events: Aktivigita eventi
+        template: Pagkargshablono
         url: URL di finpunto
     'no': Ne
     not_recommended: Ne rekomendesas
+    overridden: Remplesis
     recommended: Rekomendito
     required:
       mark: "*"
