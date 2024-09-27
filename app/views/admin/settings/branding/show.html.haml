@@ -33,8 +33,8 @@
       = f.input :thumbnail,
                 as: :file,
                 wrapper: :with_block_label
-    .fields-row__column.fields-row__column-6.fields-group
-      - if @admin_settings.thumbnail.persisted?
+    - if @admin_settings.thumbnail.persisted?
+      .fields-row__column.fields-row__column-6.fields-group
         = image_tag @admin_settings.thumbnail.file.url(:'@1x'), class: 'fields-group__thumbnail'
         = link_to admin_site_upload_path(@admin_settings.thumbnail), data: { method: :delete }, class: 'link-button link-button--destructive' do
           = material_symbol 'delete'
@@ -47,8 +47,8 @@
                 input_html: { accept: ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].join(',') },
                 wrapper: :with_block_label
 
-    .fields-row__column.fields-row__column-6.fields-group
-      - if @admin_settings.favicon.persisted?
+    - if @admin_settings.favicon.persisted?
+      .fields-row__column.fields-row__column-6.fields-group
         = image_tag @admin_settings.favicon.file.url('48'), class: 'fields-group__thumbnail'
         = link_to admin_site_upload_path(@admin_settings.favicon), data: { method: :delete }, class: 'link-button link-button--destructive' do
           = material_symbol 'delete'
@@ -61,8 +61,8 @@
                 input_html: { accept: ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].join(',') },
                 wrapper: :with_block_label
 
-    .fields-row__column.fields-row__column-6.fields-group
-      - if @admin_settings.app_icon.persisted?
+    - if @admin_settings.app_icon.persisted?
+      .fields-row__column.fields-row__column-6.fields-group
         = image_tag @admin_settings.app_icon.file.url('48'), class: 'fields-group__thumbnail'
         = link_to admin_site_upload_path(@admin_settings.app_icon), data: { method: :delete }, class: 'link-button link-button--destructive' do
           = material_symbol 'delete'
