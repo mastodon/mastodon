@@ -873,6 +873,9 @@ ca:
         message_html: No has definit cap norma del servidor.
       sidekiq_process_check:
         message_html: No hi ha cap procés de Sidekiq executant-se per a la cua (o cues) de %{value}. Reviseu la configuració de Sidekiq
+      software_version_check:
+        action: Veure les actualitzacions disponibles
+        message_html: Hi ha disponible una actualització de Mastodon.
       software_version_critical_check:
         action: Veure actualitzacions disponibles
         message_html: Hi ha disponible una actualització crítica de Mastodon, si us plau, actualitza-la el més abans possible.

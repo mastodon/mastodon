@@ -875,6 +875,9 @@ nn:
         message_html: Du har ikke definert noen serverregler.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-prosess kjører for %{value} køen(e). Vennligst se gjennom Sidekiq-konfigurasjonen din
+      software_version_check:
+        action: Sjå tilgjengelege oppdateringar
+        message_html: Ei Mastodon-oppdatering er tilgjengeleg.
       software_version_critical_check:
         action: Sjå tilgjengelege oppdateringar
         message_html: Ei kritisk oppdatering til Mastodon er tilgjengeleg. Oppdater så snart som mogleg.
