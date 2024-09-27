@@ -4,3 +4,7 @@ ignore:
   # We have rate-limits on authentication endpoints in place (including second
   # factor verification) since Mastodon v3.2.0
   - CVE-2024-0227
+  # devise-two-factor advisory about generated secrets being weaker than expected
+  # We call `generate_otp_secret` ourselves with a requested length of 32 characters,
+  # which exceeds the recommended remediation of 26 characters, so we're safe
+  - CVE-2024-8796
