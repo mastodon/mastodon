@@ -102,7 +102,8 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     {
       enabled: registrations_enabled?,
       approval_required: Setting.registrations_mode == 'approved',
-      message: registrations_enabled? ? nil : registrations_message,
+      reason_required: registrations_require_reason?,
+      message: registrations_message,
       url: ENV.fetch('SSO_ACCOUNT_SIGN_UP', nil),
     }
   end
@@ -117,8 +118,16 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode
   end
 
+  def registrations_require_reason?
+    Setting.registrations_mode == 'approved' && Setting.require_invite_text?
+  end
+
   def registrations_message
-    markdown.render(Setting.closed_registrations_message) if Setting.closed_registrations_message.present?
+    if registrations_enabled? == false
+      markdown.render(Setting.closed_registrations_message) if Setting.closed_registrations_message.present?
+    elsif registrations_require_reason?
+      markdown.render(Setting.require_invite_message) if Setting.require_invite_message.present?
+    end
   end
 
   def markdown

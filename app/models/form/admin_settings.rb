@@ -31,6 +31,7 @@ class Form::AdminSettings
     show_domain_blocks_rationale
     noindex
     require_invite_text
+    require_invite_message
     media_cache_retention_period
     content_cache_retention_period
     backups_retention_period
@@ -83,6 +84,7 @@ class Form::AdminSettings
   validates :show_domain_blocks_rationale, inclusion: { in: %w(disabled users all) }, if: -> { defined?(@show_domain_blocks_rationale) }
   validates :media_cache_retention_period, :content_cache_retention_period, :backups_retention_period, numericality: { only_integer: true }, allow_blank: true, if: -> { defined?(@media_cache_retention_period) || defined?(@content_cache_retention_period) || defined?(@backups_retention_period) }
   validates :site_short_description, length: { maximum: 200 }, if: -> { defined?(@site_short_description) }
+  validates :require_invite_message, length: { maximum: 500 }, if: -> { defined?(@require_invite_message) }
   validates :status_page_url, url: true, allow_blank: true
   validate :validate_site_uploads
 

@@ -7,6 +7,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   layout :determine_layout
 
   before_action :set_invite, only: [:new, :create]
+  before_action :set_invite_reason_message, only: [:new, :create]
   before_action :check_enabled_registrations, only: [:new, :create]
   before_action :configure_sign_up_params, only: [:create]
   before_action :set_sessions, only: [:edit, :update]
@@ -110,6 +111,12 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def set_invite_reason_message
+    # rubocop:disable Rails/OutputSafety
+    @invite_reason_message = markdown.render(Setting.require_invite_message).html_safe if Setting.require_invite_message.present?
+    # rubocop:enable Rails/OutputSafety
+  end
+
   def determine_layout
     %w(edit update).include?(action_name) ? 'admin' : 'auth'
   end
@@ -141,5 +148,9 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def set_cache_headers
     response.cache_control.replace(private: true, no_store: true)
+  end
+
+  def markdown
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, no_images: true, filter_html: true, safe_links_only: true)
   end
 end

@@ -56,6 +56,9 @@
   - if approved_registrations? && @invite.blank?
     %p.lead= t('auth.sign_up.manual_review', domain: site_hostname)
 
+    - if @invite_reason_message.present?
+      .invite_reason_message= @invite_reason_message
+
     .fields-group
       = f.simple_fields_for :invite_request, resource.invite_request || resource.build_invite_request do |invite_request_fields|
         = invite_request_fields.input :text,
