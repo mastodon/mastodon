@@ -388,6 +388,10 @@ code {
 
       &-6 {
         max-width: 50%;
+
+        &:only-child {
+          max-width: 100%;
+        }
       }
 
       .actions {
