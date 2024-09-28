@@ -43,7 +43,7 @@
 
 %hr.spacer/
 
-%p.muted-hint= t('exports.archive_takeout.hint_html')
+%p.muted-hint= t('exports.archive_takeout.hint_html', count: BackupPolicy::REQUEST_DAYS_LIMIT)
 
 - if policy(:backup).create?
   %p= link_to t('exports.archive_takeout.request'), settings_export_path, class: 'button', method: :post

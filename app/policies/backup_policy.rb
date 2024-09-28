@@ -1,9 +1,17 @@
 # frozen_string_literal: true
 
 class BackupPolicy < ApplicationPolicy
-  MIN_AGE = 6.days
+  REQUEST_DAYS_LIMIT = 7
 
   def create?
-    user_signed_in? && current_user.backups.where(created_at: MIN_AGE.ago..).count.zero?
+    user_signed_in? && user_backups_after_limit.count.zero?
+  end
+
+  private
+
+  def user_backups_after_limit
+    current_user
+      .backups
+      .where(created_at: (REQUEST_DAYS_LIMIT - 1).days.ago..)
   end
 end
