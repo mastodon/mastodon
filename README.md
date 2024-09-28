@@ -33,25 +33,15 @@ Mastodon is a **free, open-source social network server** based on ActivityPub w
 
 <img src="/app/javascript/images/elephant_ui_working.svg?raw=true" align="right" width="30%" />
 
-### No vendor lock-in: Fully interoperable with any conforming platform
+#### **🔶 No vendor lock-in: Fully interoperable with any conforming platform** - It doesn't have to be Mastodon; whatever implements ActivityPub is part of the social network! [Learn more](https://blog.joinmastodon.org/2018/06/why-activitypub-is-the-future/)
 
-It doesn't have to be Mastodon; whatever implements ActivityPub is part of the social network! [Learn more](https://blog.joinmastodon.org/2018/06/why-activitypub-is-the-future/)
+#### **🔶 Real-time, chronological timeline updates** - updates of people you're following appear in real-time in the UI via WebSockets. There's a firehose view as well!
 
-### Real-time, chronological timeline updates
+#### **🔶 Media attachments like images and short videos** - upload and view images and WebM/MP4 videos attached to the updates. Videos with no audio track are treated like GIFs; normal videos loop continuously!
 
-Updates of people you're following appear in real-time in the UI via WebSockets. There's a firehose view as well!
+#### **🔶 Safety and moderation tools** - Mastodon includes private posts, locked accounts, phrase filtering, muting, blocking, and all sorts of other features, along with a reporting and moderation system. [Learn more](https://blog.joinmastodon.org/2018/07/cage-the-mastodon/)
 
-### Media attachments like images and short videos
-
-Upload and view images and WebM/MP4 videos attached to the updates. Videos with no audio track are treated like GIFs; normal videos loop continuously!
-
-### Safety and moderation tools
-
-Mastodon includes private posts, locked accounts, phrase filtering, muting, blocking, and all sorts of other features, along with a reporting and moderation system. [Learn more](https://blog.joinmastodon.org/2018/07/cage-the-mastodon/)
-
-### OAuth2 and a straightforward REST API
-
-Mastodon acts as an OAuth2 provider, so 3rd party apps can use the REST and Streaming APIs. This results in a rich app ecosystem with a lot of choices!
+#### **🔶 OAuth2 and a straightforward REST API** - Mastodon acts as an OAuth2 provider, so 3rd party apps can use the REST and Streaming APIs. This results in a rich app ecosystem with a lot of choices!
 
 ## Deployment
 
