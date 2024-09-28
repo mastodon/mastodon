@@ -5589,26 +5589,33 @@ a.status-card {
 
       &__item {
         display: block;
-        box-sizing: border-box;
         width: 100%;
-        border: 0;
-        font: inherit;
-        background: transparent;
-        color: $darker-text-color;
-        padding: 10px;
-        cursor: pointer;
         border-radius: 4px;
-        text-align: start;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
 
         &--flex {
           display: flex;
           justify-content: space-between;
         }
 
+        &:is(button),
+        button {
+          flex: 1;
+          box-sizing: border-box;
+          border: 0;
+          font: inherit;
+          background: transparent;
+          color: $darker-text-color;
+          padding: 10px;
+          cursor: pointer;
+          text-align: start;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+
         .icon-button {
+          flex: 0;
+          padding: 10px 20px 10px 10px;
           transition: none;
         }
 
