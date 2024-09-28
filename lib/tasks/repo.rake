@@ -5,7 +5,7 @@ REPOSITORY_NAME = 'mastodon/mastodon'
 namespace :repo do
   desc 'Generate the AUTHORS.md file'
   task :authors do
-    file = Rails.root.join('AUTHORS.md').open('w')
+    file = Rails.root.join('.github/AUTHORS.md').open('w')
 
     file << <<~HEADER
       Authors
@@ -40,7 +40,7 @@ namespace :repo do
 
   desc 'Replace pull requests with authors in the CHANGELOG.md file'
   task :changelog do
-    path = Rails.root.join('CHANGELOG.md')
+    path = Rails.root.join('.github/CHANGELOG.md')
     tmp  = Tempfile.new
 
     HttpLog.config.compact_log = true

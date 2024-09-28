@@ -14,7 +14,7 @@ If your contributions are accepted into Mastodon, you can request to be paid thr
 Please review the org-level [contribution guidelines] for high-level acceptance
 criteria guidance.
 
-[contribution guidelines]: https://github.com/mastodon/.github/blob/main/CONTRIBUTING.md
+[contribution guidelines]: https://github.com/mastodon/.github/blob/main/.github/CONTRIBUTING.md
 
 ## API Changes and Additions
 
