@@ -2,7 +2,7 @@
   %td
     .input-copy
       .input-copy__wrapper
-        = copyable_input value: public_invite_url(invite_code: invite.code)
+        = copyable_input value: public_invite_url(invite_code: invite.code), dir: :rtl
       %button{ type: :button }= t('generic.copy')
 
   %td
