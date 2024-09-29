@@ -298,7 +298,6 @@ export function submitComposeFail(error) {
 
 export function uploadCompose(files) {
   return function (dispatch, getState) {
-    const uploadLimit = getState().getIn(['server', 'server', 'configuration', 'statuses', 'max_media_attachments']);
     const media = getState().getIn(['compose', 'media_attachments']);
     const pending = getState().getIn(['compose', 'pending_media_attachments']);
     const serverConfiguration = getState().getIn(['server', 'server', 'configuration']);
@@ -308,10 +307,11 @@ export function uploadCompose(files) {
     const filesArray = Array.from(files);
     const progress = new Array(files.length).fill(0);
     let total = filesArray.reduce((a, v) => a + v.size, 0);
-    if (
-      filesArray.some(file => (file.type.match(/video\/.*/) && file.size > videoSizeLimit)
-        || (file.type.match(/image\/.*/) && file.size > imageSizeLimit)
-        || (files.length + media.size + pending > maxMediaAttachments))) {
+    if (files.length + media.size + pending > maxMediaAttachments
+      || filesArray.some(file => (
+        file.type.match(/video\/.*/) && file.size > videoSizeLimit)
+        || (file.type.match(/image\/.*/) && file.size > imageSizeLimit)))
+    {
       dispatch(showAlert({ message: messages.uploadErrorLimit }));
       return;
     }
@@ -324,7 +324,7 @@ export function uploadCompose(files) {
     dispatch(uploadComposeRequest());
 
     for (const [i, file] of Array.from(files).entries()) {
-      if (media.size + i > (uploadLimit - 1)) break;
+      if (media.size + i > (maxMediaAttachments - 1)) break;
 
       const data = new FormData();
       data.append('file', file);
