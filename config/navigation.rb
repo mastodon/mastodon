@@ -31,7 +31,7 @@ SimpleNavigation::Configuration.run do |navigation|
     end
 
     n.item :data, safe_join([material_symbol('cloud_sync'), t('settings.import_and_export')]), settings_export_path do |s|
-      s.item :import, safe_join([material_symbol('cloud_upload'), t('settings.import')]), settings_imports_path, if: -> { current_user.functional? && !self_destruct }
+      s.item :import, safe_join([material_symbol('cloud_upload'), t('settings.import')]), settings_imports_path, highlights_on: %r{/settings/imports}, if: -> { current_user.functional? && !self_destruct }
       s.item :export, safe_join([material_symbol('cloud_download'), t('settings.export')]), settings_export_path
     end
 
