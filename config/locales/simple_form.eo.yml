@@ -3,6 +3,7 @@ eo:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Protektas kontraŭ falsaj atribuoj.
         discoverable: Viaj publikaj afiŝoj kaj profilo povas esti prezentitaj aŭ rekomenditaj en diversaj lokoj de Mastodon kaj via profilo povas esti proponita al aliaj uzantoj.
         display_name: Via plena nomo aŭ via kromnomo.
         fields: Via retpaĝo, pronomoj, aĝo, ĉio, kion vi volas.
@@ -78,6 +79,7 @@ eo:
         bootstrap_timeline_accounts: Ĉi tiuj kontoj pinglitas al la supro de sekvorekomendoj de novaj uzantoj.
         closed_registrations_message: Montrita kiam registroj fermitas
         custom_css: Vi povas meti propajn stilojn en la retversio de Mastodon.
+        favicon: WEBP, PNG, GIF aŭ JPG. Anstataŭigas la defaŭltan Mastodon-favikono kun propra bildsimbolo.
         mascot: Anstatauigi la ilustraĵon en la altnivela retinterfaco.
         peers_api_enabled: Listo de domajnaj nomoj kiujn ĉi tiu servilo renkontis en la fediverso. Neniuj datumoj estas inkluditaj ĉi tie pri ĉu vi federacias kun donita servilo, nur ke via servilo scias pri ĝi. Ĉi tio estas uzata de servoj kiuj kolektas statistikojn pri federacio en ĝenerala signifo.
         profile_directory: La profilujo listigas ĉiujn uzantojn kiu volonte malkovrebli.
@@ -111,6 +113,7 @@ eo:
           sign_up_requires_approval: Novaj registriĝoj bezonos vian aprobon
         severity: Elektu, kio okazos pri petoj de ĉi tiu IP-adreso
       rule:
+        hint: Laŭvola. Provizu pliajn detalojn pri la regulo
         text: Priskribu regulon aŭ neceson por uzantoj en ĉi tiu servilo. Provu fari ĝin mallonga kaj simpla
       sessions:
         otp: 'Enmetu la kodon de dufaktora aŭtentigo el via telefono aŭ uzu unu el viaj realiraj kodoj:'
@@ -122,6 +125,7 @@ eo:
         name: Vi povas ŝanĝi nur la majuskladon de la literoj, ekzemple, por igi ĝin pli legebla
       user:
         chosen_languages: Kun tio markita nur mesaĝoj en elektitaj lingvoj aperos en publikaj tempolinioj
+        role: La rolo kontrolas kiujn permesojn la uzanto havas.
       user_role:
         color: Koloro uzita por la rolo sur la UI, kun RGB-formato
         highlighted: Ĉi tio igi la rolon publike videbla
@@ -134,6 +138,7 @@ eo:
         url: Kien eventoj sendotas
     labels:
       account:
+        attribution_domains_as_text: Permesi nur specifajn retejojn
         discoverable: Elstarigi profilon kaj afiŝojn en eltrovantaj algoritmoj
         fields:
           name: Etikedo
@@ -239,6 +244,7 @@ eo:
         bootstrap_timeline_accounts: Ĉiam rekomendi ĉi tiujn kontojn al novaj uzantoj
         closed_registrations_message: Kutima mesaĝo kiam registroj ne estas disponeblaj
         custom_css: Propa CSS
+        favicon: Favorikono
         mascot: Propa maskoto
         media_cache_retention_period: Audovidaĵkaŝaĵretendauro
         peers_api_enabled: Eldonu liston de malkovritaj serviloj en la API
@@ -294,6 +300,7 @@ eo:
           patch: Sciigi pri cimoriparaj ĝisdatigoj
         trending_tag: Nova furoro bezonas kontrolon
       rule:
+        hint: Pliaj informoj
         text: Regulo
       settings:
         indexable: Inkludi profilan paĝon en serĉiloj
@@ -302,6 +309,7 @@ eo:
         listable: Permesi ĉi tiun kradvorton aperi en serĉoj kaj sugestoj
         name: Kradvorto
         trendable: Permesi al ĉi tiu kradvorto aperi en furoraĵoj
+        usable: Permesi afiŝojn uzi ĉi tiun kradvorton loke
       user:
         role: Rolo
         time_zone: Horzono
