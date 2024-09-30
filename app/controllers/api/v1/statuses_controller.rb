@@ -44,8 +44,8 @@ class Api::V1::StatusesController < Api::BaseController
     descendants_depth_limit = nil
 
     if current_account.nil?
-      ancestors_limit = ANCESTORS_LIMIT
-      descendants_limit = DESCENDANTS_LIMIT
+      ancestors_limit         = ANCESTORS_LIMIT
+      descendants_limit       = DESCENDANTS_LIMIT
       descendants_depth_limit = DESCENDANTS_DEPTH_LIMIT
     end
 
