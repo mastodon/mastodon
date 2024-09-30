@@ -1,7 +1,5 @@
-name: Crowdin / Download translations
+name: Crowdin / Download translations (stable branches)
 on:
-  schedule:
-    - cron: '17 4 * * *' # Every day
   workflow_dispatch:
 
 permissions:
@@ -9,7 +7,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  download-translations:
+  download-translations-stable:
     runs-on: ubuntu-latest
     if: github.repository == 'mastodon/mastodon'
 
@@ -31,7 +29,7 @@ jobs:
           upload_sources: false
           upload_translations: false
           download_translations: true
-          crowdin_branch_name: main
+          crowdin_branch_name: ${{ github.base_ref || github.ref_name }}
           push_translations: false
           create_pull_request: false
         env:
@@ -55,7 +53,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7.0.1
         with:
           commit-message: 'New Crowdin translations'
-          title: 'New Crowdin Translations (automated)'
+          title: 'New Crowdin Translations for ${{ github.base_ref || github.ref_name }} (automated)'
           author: 'GitHub Actions <noreply@github.com>'
           body: |
             New Crowdin translations, automated with GitHub Actions
@@ -66,6 +64,6 @@ jobs:
 
             Due to a limitation in GitHub Actions, checks are not running on this PR without manual action.
             If you want to run the checks, then close and re-open it.
-          branch: i18n/crowdin/translations
-          base: main
+          branch: i18n/crowdin/translations-${{ github.base_ref || github.ref_name }}
+          base: ${{ github.base_ref || github.ref_name }}
           labels: i18n
