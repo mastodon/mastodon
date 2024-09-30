@@ -66,15 +66,25 @@ class Api::V1::StatusesController < Api::BaseController
       end
     end
 
-    ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(ancestors_limit, current_account)
+    ancestors_results = @status.in_reply_to_id.nil? ? [] : @status.ancestors(ancestors_limit, current_account)
     descendants_results = @status.descendants(descendants_limit, current_account, descendants_depth_limit)
-    loaded_ancestors    = preload_collection(ancestors_results, Status)
-    loaded_descendants  = preload_collection(descendants_results, Status)
+    loaded_ancestors = preload_collection(ancestors_results, Status)
+    loaded_descendants = preload_collection(descendants_results, Status)
 
     @context = Context.new(ancestors: loaded_ancestors, descendants: loaded_descendants)
     statuses = [@status] + @context.ancestors + @context.descendants
 
     render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
+
+    if @status.should_fetch_replies?
+      ActivityPub::FetchAllRepliesWorker.perform_async(
+        @status.id,
+        {
+          allow_synchronous_requests: true,
+          current_account_id: current_account.id,
+        }
+      )
+    end
   end
 
   def create
