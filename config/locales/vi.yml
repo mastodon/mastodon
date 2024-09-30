@@ -91,7 +91,7 @@ vi:
       moderation:
         active: Hoạt động
         all: Tất cả
-        disabled: Đã tắt
+        disabled: Khóa đăng nhập
         pending: Chờ
         silenced: Hạn chế
         suspended: Vô hiệu hóa
@@ -861,6 +861,9 @@ vi:
         message_html: Bạn chưa cập nhật nội quy máy chủ.
       sidekiq_process_check:
         message_html: Sidekiq không hoạt động khi truy vấn %{value}. Hãy kiểm tra lại cấu hình Sidekiq
+      software_version_check:
+        action: Bản cập nhật mới
+        message_html: Có bản cập nhật Mastodon mới.
       software_version_critical_check:
         action: Bản cập nhật mới
         message_html: Có bản cập nhật quan trọng của Mastodon, vui lòng cập nhật nhanh nhất có thể.
