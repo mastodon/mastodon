@@ -35,6 +35,7 @@ class Status < ApplicationRecord
   include Discard::Model
   include Paginable
   include RateLimitable
+  include Status::FetchRepliesConcern
   include Status::SafeReblogInsert
   include Status::SearchConcern
   include Status::SnapshotConcern
@@ -172,8 +173,6 @@ class Status < ApplicationRecord
   delegate :domain, to: :account, prefix: true
 
   REAL_TIME_WINDOW = 6.hours
-  # debounce fetching all replies to minimize DoS
-  FETCH_REPLIES_DEBOUNCE = 30.minutes
 
   def cache_key
     "v3:#{super}"
@@ -392,13 +391,6 @@ class Status < ApplicationRecord
     inbox_owners.each do |inbox_owner|
       AccountConversation.remove_status(inbox_owner, self)
     end
-  end
-
-  def should_fetch_replies?
-    # we aren't brand new, and we haven't fetched replies since the debounce window
-    !local? && created_at <= 10.minutes.ago && (
-      fetched_replies_at.nil? || fetched_replies_at <= FETCH_REPLIES_DEBOUNCE.ago
-    )
   end
 
   private
