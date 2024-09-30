@@ -3,22 +3,13 @@
 class ActivityPub::FetchRepliesService < BaseService
   include JsonLdHelper
 
-  # Limit of fetched replies used when not fetching all replies
-  MAX_REPLIES_LOW = 5
-  # limit of fetched replies used when fetching all replies
-  MAX_REPLIES_HIGH = 500
+  # Limit of fetched replies
+  MAX_REPLIES = 5
 
-  def call(parent_status, collection_or_uri, allow_synchronous_requests: true, request_id: nil, all_replies: false)
-    # Whether we are getting replies from more than the originating server,
-    # and don't limit ourselves to getting at most `MAX_REPLIES_LOW`
-    @all_replies = all_replies
-    # store the status and whether we should fetch replies for it to avoid
-    # race conditions if something else updates us in the meantime
-    @status = parent_status
-    @should_fetch_replies = parent_status.should_fetch_replies?
-
+  def call(parent_status, collection_or_uri, allow_synchronous_requests: true, request_id: nil, filter_by_host: true)
     @account = parent_status.account
     @allow_synchronous_requests = allow_synchronous_requests
+    @filter_by_host = filter_by_host
 
     @items = collection_items(collection_or_uri)
     return if @items.nil?
@@ -51,7 +42,7 @@ class ActivityPub::FetchRepliesService < BaseService
       all_items.concat(as_array(items))
 
       # Quit early if we are not fetching all replies
-      break if all_items.size >= MAX_REPLIES_HIGH || !fetch_all_replies?
+      break if all_items.size >= MAX_REPLIES
 
       collection = collection['next'].present? ? fetch_collection(collection['next']) : nil
     end
@@ -62,7 +53,7 @@ class ActivityPub::FetchRepliesService < BaseService
   def fetch_collection(collection_or_uri)
     return collection_or_uri if collection_or_uri.is_a?(Hash)
     return unless @allow_synchronous_requests
-    return if !@all_replies && non_matching_uri_hosts?(@account.uri, collection_or_uri)
+    return if @filter_by_host && non_matching_uri_hosts?(@account.uri, collection_or_uri)
 
     # NOTE: For backward compatibility reasons, Mastodon signs outgoing
     # queries incorrectly by default.
@@ -81,19 +72,14 @@ class ActivityPub::FetchRepliesService < BaseService
   end
 
   def filtered_replies
-    if @all_replies
-      # Reject all statuses that we already have in the db
-      @items.map { |item| value_or_id(item) }.reject { |uri| Status.exists?(uri: uri) }
-    else
+    if @filter_by_host
       # Only fetch replies to the same server as the original status to avoid
       # amplification attacks.
 
       # Also limit to 5 fetched replies to limit potential for DoS.
-      @items.map { |item| value_or_id(item) }.reject { |uri| non_matching_uri_hosts?(@account.uri, uri) }.take(MAX_REPLIES_LOW)
+      @items.map { |item| value_or_id(item) }.reject { |uri| non_matching_uri_hosts?(@account.uri, uri) }.take(MAX_REPLIES)
+    else
+      @items.map { |item| value_or_id(item) }.take(MAX_REPLIES)
     end
-  end
-
-  def fetch_all_replies?
-    @all_replies && @should_fetch_replies
   end
 end
