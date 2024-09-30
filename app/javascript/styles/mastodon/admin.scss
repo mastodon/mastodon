@@ -576,36 +576,6 @@ body,
   }
 }
 
-.report-status,
-.account-status {
-  display: flex;
-  margin-bottom: 10px;
-
-  .activity-stream {
-    flex: 2 0 0;
-    margin-inline-end: 20px;
-    max-width: calc(100% - 60px);
-
-    .entry {
-      border-radius: 4px;
-    }
-  }
-}
-
-.report-status__actions,
-.account-status__actions {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-
-  .icon-button {
-    font-size: 24px;
-    width: 24px;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-}
-
 .simple_form.new_report_note,
 .simple_form.new_account_moderation_note {
   max-width: 100%;
