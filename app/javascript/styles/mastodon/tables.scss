@@ -359,6 +359,10 @@ a.table-action-link {
     @media screen and (max-width: $no-gap-breakpoint) {
       border-top: 1px solid var(--background-border-color);
     }
+
+    &--no-toolbar {
+      border-top: 1px solid var(--background-border-color);
+    }
   }
 
   @media screen and (width <= 870px) {

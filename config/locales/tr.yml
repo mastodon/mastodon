@@ -875,6 +875,9 @@ tr:
         message_html: Herhangi bir sunucu kuralı belirlemediniz.
       sidekiq_process_check:
         message_html: "%{value} kuyruk(lar)ı için herhangi bir Sidekiq süreci çalışmıyor. Lütfen Sidekiq yapılandırmanızı gözden geçirin"
+      software_version_check:
+        action: Mevcut güncellemeleri görün
+        message_html: Mastodon güncellemesi mevcut.
       software_version_critical_check:
         action: Mevcut güncellemeleri göster
         message_html: Kritik bir Mastodon güncellemesi var, lütfen en kısa sürede güncelleyin.
