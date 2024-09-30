@@ -2,7 +2,6 @@
 
 class Api::V1::StatusesController < Api::BaseController
   include Authorization
-  include JsonLdHelper
 
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :update, :destroy]
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :update, :destroy]
@@ -45,15 +44,15 @@ class Api::V1::StatusesController < Api::BaseController
     descendants_depth_limit = nil
 
     if current_account.nil?
-      ancestors_limit         = ANCESTORS_LIMIT
-      descendants_limit       = DESCENDANTS_LIMIT
+      ancestors_limit = ANCESTORS_LIMIT
+      descendants_limit = DESCENDANTS_LIMIT
       descendants_depth_limit = DESCENDANTS_DEPTH_LIMIT
     end
 
-    ancestors_results = @status.in_reply_to_id.nil? ? [] : @status.ancestors(ancestors_limit, current_account)
+    ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(ancestors_limit, current_account)
     descendants_results = @status.descendants(descendants_limit, current_account, descendants_depth_limit)
-    loaded_ancestors = preload_collection(ancestors_results, Status)
-    loaded_descendants = preload_collection(descendants_results, Status)
+    loaded_ancestors    = preload_collection(ancestors_results, Status)
+    loaded_descendants  = preload_collection(descendants_results, Status)
 
     @context = Context.new(ancestors: loaded_ancestors, descendants: loaded_descendants)
     statuses = [@status] + @context.ancestors + @context.descendants
