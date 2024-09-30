@@ -3,7 +3,6 @@
 class FetchReplyWorker
   include Sidekiq::Worker
   include ExponentialBackoff
-  include JsonLdHelper
 
   sidekiq_options queue: 'pull', retry: 3
 
