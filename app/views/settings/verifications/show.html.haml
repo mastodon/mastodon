@@ -31,7 +31,7 @@
             = material_symbol 'check', class: 'verified-badge__mark'
             %span= field.value
 
-= simple_form_for @account, url: settings_verification_path, html: { method: :put, class: 'form-section' } do |f|
+= simple_form_for @account, url: settings_verification_path, html: { class: 'form-section' } do |f|
   = render 'shared/error_messages', object: @account
 
   %h3= t('author_attribution.title')
